@@ -21,11 +21,13 @@ var const localized string CartString;
 var const localized string ToolsString;
 var const localized string WeaponSkinsString;
 var const localized string CharactersString;
+var KFGFxMenu_Store StoreMenu;
 var KFGFxStoreContainer_Main.EStore_Filter CurrentStoreFilter;
 
 function Initialize(KFGFxObject_Menu NewParentMenu)
 {
     super.Initialize(NewParentMenu);
+    StoreMenu = KFGFxMenu_Store(NewParentMenu);
     LocalizeText();
 }
 
@@ -64,7 +66,7 @@ function SendItems(const out array<ItemProperties> StoreItemArray)
 
     if(I < StoreItemArray.Length)
     {
-        if((StoreItemArray[I].Price != "") && ((StoreItemArray[I].Type + 1) == CurrentStoreFilter) || CurrentStoreFilter == 0)
+        if((StoreItemArray[I].Price != "") && (IsFilterSame(StoreItemArray[I].Type, CurrentStoreFilter)) || CurrentStoreFilter == 0)
         {
             DataObject = Outer.CreateObject("Object");
             DataObject.SetString("label", StoreItemArray[I].Name);
@@ -80,6 +82,11 @@ function SendItems(const out array<ItemProperties> StoreItemArray)
         goto J0x3F;
     }
     SetObject("storeItemData", DataProvider);
+}
+
+function bool IsFilterSame(Engine.OnlineSubsystem.ItemType FirstType, KFGFxStoreContainer_Main.EStore_Filter SecondType)
+{
+    return (FirstType + 1) == SecondType;
 }
 
 defaultproperties

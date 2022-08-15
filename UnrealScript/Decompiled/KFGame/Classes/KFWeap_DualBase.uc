@@ -505,18 +505,6 @@ simulated function ResetBulletMeshesLeft()
 // Export UKFWeap_DualBase::execAddAmmoToSingleOnSell(FFrame&, void* const)
 native simulated function AddAmmoToSingleOnSell(KFInventoryManager KFIM, int DefaultSingleAmmo, int TraderItemIndex);
 
-simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optional int NumHits, optional out float out_PenetrationVal, optional int ImpactNum)
-{
-    local KFPerk InstigatorPerk;
-
-    InstigatorPerk = GetPerk();
-    if(InstigatorPerk != none)
-    {
-        InstigatorPerk.UpdatePerkHeadShots(Impact, InstantHitDamageTypes[FiringMode], ImpactNum);
-    }
-    super.ProcessInstantHitEx(FiringMode, Impact, NumHits, out_PenetrationVal, ImpactNum);
-}
-
 simulated function bool ShouldAutoReload(byte FireModeNum)
 {
     return ShouldAutoReloadGunslinger(FireModeNum);

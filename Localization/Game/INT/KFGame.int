@@ -1206,7 +1206,7 @@ QuickSwitch="Quick Draw"
 QuickSwitchDescription="You know it: 50% faster weapon switch - and, if you keep firing when you are out of ammo, quick draw spare pistols."
 
 RhythmMethod="Rack 'em Up"
-RhythmMethodDescription="Rack up the headshots: each consecutive headshot increases damage by 5%  up to 75% with Gunslinger weapons."
+RhythmMethodDescription="Rack up the headshots: each consecutive headshot increases damage by 10% up to 70% with Gunslinger weapons."
 
 BoneBreaker="Bone Breaker"
 BoneBreakerDescription="Don't just collect them, break them too: do 20% more damage with Gunslinger weapons."

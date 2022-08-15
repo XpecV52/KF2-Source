@@ -15,6 +15,7 @@ var localized string CartString;
 var localized string ToolsString;
 var localized string WeaponSkinsString;
 var localized string CharactersString;
+var KFGFxMenu_Store StoreMenu;
 
 enum EStore_Filter
 {
@@ -29,7 +30,7 @@ var EStore_Filter CurrentStoreFilter;
 function Initialize( KFGFxObject_Menu NewParentMenu )
 {
 	super.Initialize( NewParentMenu );
-	
+	StoreMenu = KFGFxMenu_Store(NewParentMenu);
 	LocalizeText();
 }
 
@@ -71,10 +72,10 @@ function SendItems(const out Array<ItemProperties> StoreItemArray)
 
 	for (i = 0; i < StoreItemArray.Length; i++)
 	{
-		if(StoreItemArray[i].Price != "" && (int(StoreItemArray[i].Type) + 1 == int(CurrentStoreFilter) || CurrentStoreFilter == EStore_All ) )
+		if(StoreItemArray[i].Price != "" && (IsFilterSame(StoreItemArray[i].Type, CurrentStoreFilter) || CurrentStoreFilter == EStore_All ))
 		{
 			DataObject = CreateObject( "Object" );
-			
+				
 			DataObject.SetString("label", StoreItemArray[i].Name);
 			DataObject.SetString("description", StoreItemArray[i].Description);
 			DataObject.SetString("price", StoreItemArray[i].Price);
@@ -84,10 +85,16 @@ function SendItems(const out Array<ItemProperties> StoreItemArray)
 
 			DataProvider.SetElementObject(ItemCount, DataObject);
 			ItemCount++;
+			
 		}
 	}
 
 	SetObject("storeItemData", DataProvider);
+}
+
+function bool IsFilterSame(ItemType FirstType, EStore_Filter SecondType)
+{
+	return (FirstType + 1) == SecondType;
 }
 
 defaultproperties

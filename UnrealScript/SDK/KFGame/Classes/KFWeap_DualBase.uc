@@ -802,23 +802,6 @@ native simulated function AddAmmoToSingleOnSell( KFInventoryManager KFIM, int De
  * @name	Firing / Projectile
 ********************************************************************************************* */
 /**
- * See Pawn.ProcessInstantHit
- * @param DamageReduction: Custom KF parameter to handle penetration damage reduction
- */
-simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optional int NumHits, optional out float out_PenetrationVal, optional int ImpactNum )
-{
-	local KFPerk InstigatorPerk;
-
-	InstigatorPerk = GetPerk();
-	if( InstigatorPerk != none )
-	{
-		InstigatorPerk.UpdatePerkHeadShots( Impact, InstantHitDamageTypes[FiringMode], ImpactNum );
-	}
-	
-	super.ProcessInstantHitEx( FiringMode, Impact, NumHits, out_PenetrationVal, ImpactNum );
-}
-
-/**
  * @brief Checks if weapon should be auto-reloaded - overwritten to allow gunslinger insta switch
  * 
  * @param FireModeNum Current fire mode

@@ -47,6 +47,37 @@ function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
     super.InitializeMenu(InManager);
     LocalizeText();
     OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+    OnlineSub.AddOnInventoryReadCompleteDelegate(OnInventoryReadComplete);
+}
+
+function OnOpen()
+{
+    if(OnlineSub != none)
+    {
+        OnlineSub.AddOnInventoryReadCompleteDelegate(OnInventoryReadComplete);
+    }
+    RefreshItemList();
+}
+
+function OnClose()
+{
+    if(OnlineSub != none)
+    {
+        OnlineSub.ClearOnInventoryReadCompleteDelegate(OnInventoryReadComplete);
+    }
+}
+
+function OnInventoryReadComplete()
+{
+    RefreshItemList();
+}
+
+function RefreshItemList()
+{
+    if(MainContainer != none)
+    {
+        MainContainer.SendItems(OnlineSub.ItemPropertiesList);
+    }
 }
 
 function LocalizeText()
@@ -89,8 +120,6 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
     }
     return true;
 }
-
-function OnOpen();
 
 function Callback_StoreSectionChanged(string SectionName)
 {

@@ -5,15 +5,11 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFDT_Ballistic_SW500 extends KFDT_Ballistic_Shotgun
+class KFDT_Ballistic_SW500 extends KFDT_Ballistic_Handgun
     abstract;
 
 static simulated function bool CanDismemberHitZone(name InHitZoneName)
 {
-    if(super(KFDT_Ballistic).CanDismemberHitZone(InHitZoneName))
-    {
-        return true;
-    }
     switch(InHitZoneName)
     {
         case 'lupperarm':
@@ -34,6 +30,7 @@ defaultproperties
     StumblePower=60
     LegStumblePower=60
     GunHitPower=35
+    GoreDamageGroup=EGoreDamageGroup.DGT_Shotgun
     ModifierPerkList=/* Array type was not detected. */
     KDamageImpulse=4500
     KDeathVel=350

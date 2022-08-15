@@ -8,7 +8,7 @@
 // Jeff Robinson
 //=============================================================================
 
-class KFDT_Ballistic_SW500 extends KFDT_Ballistic_Shotgun // derives from shotgun to get more gore (through functions and goredamagegroup)
+class KFDT_Ballistic_SW500 extends KFDT_Ballistic_Handgun
 	abstract
 	hidedropdown;
 
@@ -17,11 +17,6 @@ class KFDT_Ballistic_SW500 extends KFDT_Ballistic_Shotgun // derives from shotgu
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
-	if( super.CanDismemberHitZone( InHitZoneName ) )
-	{
-		return true;
-	}
-
     switch ( InHitZoneName )
 	{
 		case 'lupperarm':
@@ -36,6 +31,8 @@ static simulated function bool CanDismemberHitZone( name InHitZoneName )
 
 defaultproperties
 {
+	GoreDamageGroup=DGT_Shotgun
+
 	KDamageImpulse=4500
 	KDeathUpKick=-700
 	KDeathVel=350
@@ -44,9 +41,7 @@ defaultproperties
 	StumblePower=60
 	LegStumblePower=60
 	GunHitPower=35
-	
 
 	WeaponDef=class'KFWeapDef_SW500'
-
 	ModifierPerkList(0)=class'KFPerk_Gunslinger'
 }
