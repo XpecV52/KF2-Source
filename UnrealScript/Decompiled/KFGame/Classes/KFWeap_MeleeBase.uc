@@ -791,8 +791,8 @@ simulated state MeleeBlocking
         local KFPerk InstigatorPerk;
         local bool bInterruptSuccess;
 
-        Dir2d = Normal2D(DamageCauser.Location - Location);
-        FacingDot = vector(Rotation) Dot Dir2d;
+        Dir2d = Normal2D(DamageCauser.Location - Instigator.Location);
+        FacingDot = vector(Instigator.Rotation) Dot Dir2d;
         if((FacingDot > 0.087) && CanBlockDamageType(DamageType))
         {
             InstigatorPerk = GetPerk();

@@ -855,8 +855,8 @@ simulated state MeleeBlocking
 		local bool bInterruptSuccess;
 
 		// zero Z to give us a 2d dot product
-		Dir2d = Normal2d(DamageCauser.Location - Location);
-		FacingDot = vector(Rotation) dot (Dir2d);
+		Dir2d = Normal2d(DamageCauser.Location - Instigator.Location);
+		FacingDot = vector(Instigator.Rotation) dot (Dir2d);
 
 		// Cos(85)
 		if ( FacingDot > 0.087f && CanBlockDamageType(DamageType) )
