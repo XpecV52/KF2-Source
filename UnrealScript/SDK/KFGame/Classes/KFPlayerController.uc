@@ -636,6 +636,16 @@ simulated function ReceivedGameClass(class<GameInfo> GameClass)
 	}
 }
 
+event Possess(Pawn aPawn, bool bVehicleTransition)
+{
+	if( aPawn != none )
+	{
+		bIsAchievementPlayer = true;
+	}
+
+	super.Possess( aPawn, bVehicleTransition );
+}
+
 reliable client function ClientRestart(Pawn NewPawn)
 {
 	Super.ClientRestart(NewPawn);
@@ -2081,7 +2091,12 @@ function bool AimingHelp(bool bInstantHit)
 static simulated function KFInterface_Usable GetCurrentUsableActor( Pawn P, optional bool bUseOnFind=false )
 {
 	local KFInterface_Usable UsableActor;
-	local Actor A;
+	local Actor A, BestActor;
+
+	local KFInterface_Usable BestUsableActor;
+	local int InteractionIndex, BestInteractionIndex;
+
+	BestInteractionIndex = -1;
 
 	if ( P != None )
 	{
@@ -2091,12 +2106,25 @@ static simulated function KFInterface_Usable GetCurrentUsableActor( Pawn P, opti
 			UsableActor = KFInterface_Usable( A );
 			if ( UsableActor != none && UsableActor.GetIsUsable( P ) )
 			{
-				if( bUseOnFind )
+				// find the best usable by priority
+				// use the usable's interaction index as priority, since the UI already sort of does that
+				InteractionIndex = UsableActor.GetInteractionIndex();
+				if( InteractionIndex > BestInteractionIndex )
 				{
-					A.UsedBy( P );
+					BestInteractionIndex = InteractionIndex;
+					BestUsableActor = UsableActor;
+					BestActor = A;
 				}
-				return UsableActor;
 			}
+		}
+
+		if( BestUsableActor != none )
+		{
+			if( bUseOnFind )
+			{
+				BestActor.UsedBy( P );
+			}
+			return BestUsableActor;
 		}
 	}
 	return none;
@@ -2170,13 +2198,33 @@ static function UpdateInteractionMessages( Actor InteractingActor )
 			UsableActor = GetCurrentUsableActor( P );
 			if( UsableActor != none )
 			{
+				PC.SetTimer( 1.f, true, nameof(CheckCurrentUsableActor), PC );
 				PC.ReceiveLocalizedMessage( class'KFLocalMessage_Interaction', UsableActor.GetInteractionIndex() );
 			}
 			else
 			{
+				PC.ClearTimer( nameof(CheckCurrentUsableActor), PC );
 				PC.ReceiveLocalizedMessage( class'KFLocalMessage_Interaction', IMT_None );
 			}
 		}
+	}
+}
+
+/** Checks to see if the player still needs an interaction message to be displayed.
+  * When used with a timer, lower priority "usable" messages can be resumed after being interrupted by higher priority messages. */
+function CheckCurrentUsableActor()
+{
+	local KFInterface_Usable UsableActor;
+
+	UsableActor = GetCurrentUsableActor( Pawn );
+	if( UsableActor != none )
+	{
+		ReceiveLocalizedMessage( class'KFLocalMessage_Interaction', UsableActor.GetInteractionIndex() );
+	}
+	else
+	{
+		ReceiveLocalizedMessage( class'KFLocalMessage_Interaction', IMT_None );
+		ClearTimer( nameof(CheckCurrentUsableActor) );
 	}
 }
 
@@ -2645,6 +2693,12 @@ simulated protected function DoForceFeedbackForScreenShake( CameraShake ShakeDat
 	local KFCameraShake KFCS;
 	local int ShakeLevel;
 	local float RotMag, LocMag, FOVMag;
+
+	// Don't rumble at all if scale is zero
+	if( Scale == 0.f )
+	{
+		return;
+	}
 
 	KFCS = KFCameraShake(ShakeData);
 	if( KFCS == none || KFCS.FFWaveform == none )
@@ -3654,14 +3708,19 @@ function OnExternalUIChanged(bool bIsOpening)
 	SetPause(bIsOpening, CanUnpauseExternalUI);
 }
 
-/* Pause()
-Command to try to pause the game.
-*/
-exec function Pause()
+reliable server function ServerPause()
 {
-	if( WorldInfo.NetMode == NM_Standalone )
+	if( WorldInfo.Game.AllowPausing( self ) )
 	{
-		super.Pause();
+		// Pause if not already
+		if( !IsPaused() )
+		{
+			SetPause( true );
+		}
+		else
+		{
+			SetPause( false );
+		}
 	}
 }
 

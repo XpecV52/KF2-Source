@@ -2,8 +2,10 @@ package tripwire.menus
 {
     import com.greensock.TweenMax;
     import com.greensock.easing.Cubic;
+    import com.greensock.events.TweenEvent;
     import flash.events.Event;
     import flash.events.KeyboardEvent;
+    import flash.external.ExternalInterface;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.ListEvent;
     import scaleform.clik.ui.InputDetails;
@@ -66,6 +68,12 @@ package tripwire.menus
             this.itemDetailsContainer.addEventListener("detailsClosed",this.onSubContainerClosed,false,0,true);
             this.openCrateContainer.addEventListener("containerClosed",this.onCrateContainerClosed,false,0,true);
             this.itemDetailsContainer.previewButton.visible = false;
+        }
+        
+        override protected function onOpened(param1:TweenEvent = null) : void
+        {
+            super.onOpened(param1);
+            ExternalInterface.call("Callback_RequestInitialnventory");
         }
         
         public function onItemUsed() : void

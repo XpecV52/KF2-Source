@@ -1375,6 +1375,7 @@ event MakeReservations(const string URLOptions, const UniqueNetId PlayerId, out 
 event bool ConfirmReservation(const UniqueNetId PlayerID);
 
 native function SetNeedsRestart();
+native function SetNeedsReload();
 
 
 /* StartMatch()

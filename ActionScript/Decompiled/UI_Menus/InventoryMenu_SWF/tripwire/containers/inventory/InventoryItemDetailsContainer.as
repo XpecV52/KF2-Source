@@ -150,7 +150,8 @@ package tripwire.containers.inventory
                     "remove":true
                 },
                 "ease":Cubic.easeOut,
-                "useFrames":true
+                "useFrames":true,
+                "onComplete":onOpened
             });
         }
         
@@ -170,7 +171,8 @@ package tripwire.containers.inventory
                     "remove":true
                 },
                 "ease":Cubic.easeOut,
-                "useFrames":true
+                "useFrames":true,
+                "onComplete":onClosed
             });
         }
     }

@@ -107,7 +107,10 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
         ExplosionActor.Explode( LifeDrainSmokeExplosionTemplate );
     }
 
-    InvulnerableEnergyPSC = KFPOwner.WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(InvulnerableEnergyFX, KFPOwner.Mesh, InvulnerableEnergySocketName, true);
+    if( KFPOwner.WorldInfo.NetMode != NM_DedicatedServer )
+    {
+        InvulnerableEnergyPSC = KFPOwner.WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(InvulnerableEnergyFX, KFPOwner.Mesh, InvulnerableEnergySocketName, true);
+    }
 }
 
 function PlayGrappleAnim()
@@ -194,7 +197,10 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
     	}
     }
 
-    KFPOwner.DetachEmitter( InvulnerableEnergyPSC );
+    if( InvulnerableEnergyPSC != none )
+    {
+        KFPOwner.DetachEmitter( InvulnerableEnergyPSC );
+    }
     CachedFollower = none;
 
     super.SpecialMoveEnded( PrevMove, NextMove );

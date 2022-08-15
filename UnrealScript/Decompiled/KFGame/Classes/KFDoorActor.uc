@@ -412,7 +412,7 @@ event Bump(Actor Other, PrimitiveComponent OtherComp, Vector HitNormal)
     }
 }
 
-private final simulated function OpenDoor(Pawn P)
+protected simulated function OpenDoor(Pawn P)
 {
     if(bIsDestroyed || WeldIntegrity > 0)
     {
@@ -651,7 +651,7 @@ event TakeDamage(int Damage, Controller EventInstigator, Vector HitLocation, Vec
     }
     else
     {
-        if(!bIsDoorOpen)
+        if(!bIsDoorOpen && class<KFDT_Ballistic>(DamageType) == none)
         {
             OpenDoor(EventInstigator.Pawn);
         }
@@ -1202,6 +1202,7 @@ simulated event DrawTemporaryWeldIcon(HUD HUD, Canvas C)
     local FontRenderInfo FRI;
     local float Dot;
     local Texture2D Icon;
+    local float WeldPercentageFloat;
     local int WeldPercentage;
     local float FontScale;
 
@@ -1227,7 +1228,19 @@ simulated event DrawTemporaryWeldIcon(HUD HUD, Canvas C)
     Y = ScreenLoc.Y - float(Icon.SizeY / 2);
     Canvas.SetPos(X, Y);
     FontScale = Class'KFGameEngine'.static.GetKFFontScale();
-    WeldPercentage = int((float(WeldIntegrity) / float(MaxWeldIntegrity)) * 100);
+    WeldPercentageFloat = (float(WeldIntegrity) / float(MaxWeldIntegrity)) * 100;
+    if((WeldPercentageFloat < 1) && WeldPercentageFloat > 0)
+    {
+        WeldPercentageFloat = 1;        
+    }
+    else
+    {
+        if((WeldPercentageFloat > 99) && WeldPercentageFloat < 100)
+        {
+            WeldPercentageFloat = 99;
+        }
+    }
+    WeldPercentage = int(WeldPercentageFloat);
     Str = (WeldIntegrityString @ string(WeldPercentage)) $ "%";
     Canvas.DrawText(Str, true, FontScale, FontScale, FRI);
     if((DemoWeld > 0) && !bShouldExplode)
@@ -1272,6 +1285,7 @@ defaultproperties
     SlideTranslation=-100
     LiftTranslation=245
     bDoorMoveCompleted=true
+    bIsDoorOpen=true
     MaxHealth=4000
     MaxWeldIntegrity=1500
     DemoWeldRequired=500

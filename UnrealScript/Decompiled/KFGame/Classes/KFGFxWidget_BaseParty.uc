@@ -327,7 +327,6 @@ function UpdateVOIP(PlayerReplicationInfo PRI, bool bIsTalking);
 function RefreshParty()
 {
     OccupiedSlots = 0;
-    UpdateLock();
 }
 
 function StatsInit()

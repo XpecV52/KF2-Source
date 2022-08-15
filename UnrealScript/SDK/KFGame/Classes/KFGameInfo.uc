@@ -416,6 +416,12 @@ static function PreloadContentClasses(KFGameReplicationInfo GRI);
  */
 native function SetNeedsRestart();
 
+/**
+ * @brief Marks the game as needing to reload the map. If no one is playing, will reload the map immediately, otherwise will do nothing because the map
+ *        will reload when the player win/lose/all leave
+ */
+native function SetNeedsReload();
+
 native static function StaticSetNeedsRestart();
 
 /************************************************************************************
@@ -1272,6 +1278,38 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 	local int PlayerScoreDelta, TeamPenalty;
 	local KFPerk KFPCP;
 	local KFPawn_Monster MonsterPawn;
+	local string KillerLabel;
+	local KFAIController KFAIC;
+
+	if ( KilledPlayer != None && KilledPlayer.bIsPlayer )
+	{
+		KilledPRI = KFPlayerReplicationInfo( KilledPlayer.PlayerReplicationInfo );
+		KFPC = KFPlayerController( KilledPlayer );
+		if( KilledPRI != none )
+		{
+			if ( KilledPlayer == Killer )
+			{
+				KillerLabel = "self";
+			}
+			else
+			{
+				KFAIC = KFAIController(Killer);
+				if ( KFAIC != none )
+				{
+					KillerLabel = string(KFAIC.MyKFPawn.Class.Name);
+				}
+			}
+		}			
+
+		`AnalyticsLog(("player_death",
+					   KilledPRI,
+					   KillerLabel,
+					   DT.Class.Name,
+					   "#"$MyKFGRI.WaveNum,
+					   KFPC.GetPerk().PerkName,
+					   KFPC.GetPerk().GetLevel(),
+					   KFInventoryManager(KilledPawn.InvManager).DumpInventory() ));
+	}
 
 	Super.Killed( Killer, KilledPlayer, KilledPawn, DT );
 
@@ -1320,8 +1358,6 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 		KilledPRI = KFPlayerReplicationInfo(KilledPlayer.PlayerReplicationInfo);
         if( KilledPRI != none )
 		{
-			`AnalyticsLog(("player_death", KilledPRI));
-			
         	PlayerScoreDelta = GetAdjustedDeathPenalty( KilledPRI );
         	`log("SCORING: Player" @ KilledPRI.PlayerName @ "next starting dosh =" @ PlayerScoreDelta + KilledPRI.score, bLogScoring);
         	KilledPRI.AddDosh( PlayerScoreDelta );
@@ -1901,6 +1937,10 @@ function UnregisterPlayer(PlayerController PC)
 	KFPC = KFPlayerController(PC);
 	if( KFPC != none )
 	{
+		`AnalyticsLog(("player_disconnected",
+					   KFPC.PlayerReplicationInfo,
+					   "#"$MyKFGRI.WaveNum));
+
 		KFPC.ClientWriteAndFlushStats();
 	}
 
@@ -2257,7 +2297,7 @@ function LogPlayersDosh(name EventName)
 		if ( PC.PlayerReplicationInfo != None && !PC.PlayerReplicationInfo.bIsSpectator )
 		{
 			`BalanceLog(EventName, PC.PlayerReplicationInfo, "$"$PC.PlayerReplicationInfo.Score$","$PC.GetPerk());
-			`AnalyticsLog(("dosh", PC.PlayerReplicationInfo, EventName, "#"$PC.PlayerReplicationInfo.Score, PC.GetPerk(), "#"$MyKFGRI.WaveNum ));
+//			`AnalyticsLog(("dosh", PC.PlayerReplicationInfo, EventName, "#"$PC.PlayerReplicationInfo.Score, PC.GetPerk(), "#"$MyKFGRI.WaveNum ));
 		}
 	}
 }
@@ -2280,8 +2320,8 @@ function LogPlayersKillCount()
 		{
 			`BalanceLog(GBE_Kills, PRI, PRI.Kills$","$PC.GetPerk());
 			`BalanceLog(GBE_Deaths, PRI, PRI.Deaths$","$PC.GetPerk());
-			`AnalyticsLog(("kills", PRI, "#"$PRI.Kills, PC.GetPerk()));
-			`AnalyticsLog(("deaths", PRI, "#"$PRI.Deaths, PC.GetPerk()));
+//			`AnalyticsLog(("kills", PRI, "#"$PRI.Kills, PC.GetPerk()));
+//			`AnalyticsLog(("deaths", PRI, "#"$PRI.Deaths, PC.GetPerk()));
 		}
 	}
 }
@@ -2532,6 +2572,7 @@ defaultproperties
 	bTeamGame=true
 	bCanPerkAlwaysChange=true
     bRequiresPushToTalk=true
+    bPauseable=false
 
     ZedTimeSlomoScale=0.2
 	ZedTimeBlendOutTime=0.5

@@ -235,7 +235,6 @@ function GiveTo(Pawn P)
             {
                 KFW.SetOriginalValuesFromPickup(KFWeapon(Inventory));
             }
-            Inventory = none;
             Destroy();
         }
     }
@@ -243,6 +242,13 @@ function GiveTo(Pawn P)
     {
         NotifyHUDofWeapon(P);
     }
+}
+
+event Destroyed()
+{
+    super.Destroyed();
+    Inventory.Destroy();
+    Inventory = none;
 }
 
 function NotifyHUDofWeapon(Pawn P)

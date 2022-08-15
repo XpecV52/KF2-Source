@@ -13,18 +13,24 @@ class KFLocalMessage_Interaction extends KFLocalMessage;
 enum EInteractionMessageType
 {
 	IMT_None,
+
+	// usables messaging (should always be lowest "priority")
 	IMT_AcceptObjective,
-	IMT_GamepadWeaponSelectHint,
-	IMT_UseTrader,
-	IMT_UseDoor,	
 	IMT_ReceiveAmmo,
 	IMT_ReceiveGrenades,
+	IMT_UseTrader,
+	IMT_UseDoor,
+	IMT_UseDoorWelded,
+
+	// conditional messaging
+	IMT_GamepadWeaponSelectHint,
 	IMT_HealSelfWarning,
 	IMT_ClotGrabWarning,
 };
 
 var localized string			UseTraderMessage;
 var localized string			UseDoorMessage;
+var localized string			UseDoorWeldedMessage;
 var localized string			AcceptObjectiveMessage;
 var localized string			ReceiveAmmoMessage;
 var localized string			ReceiveGrenadesMessage;
@@ -89,6 +95,7 @@ static function string GetKeyBind( PlayerController P, optional int Switch )
 		// Use binding
 		case IMT_UseTrader:
 		case IMT_UseDoor:
+		case IMT_UseDoorWelded:
 		case IMT_AcceptObjective:
 		case IMT_ReceiveAmmo:
 		case IMT_ReceiveGrenades:
@@ -136,6 +143,8 @@ static function string GetString(
 			return default.UseTraderMessage;
 		case IMT_UseDoor:
 			return default.UseDoorMessage;
+		case IMT_UseDoorWelded:
+			return default.UseDoorWeldedMessage;
 		case IMT_AcceptObjective:
 			return default.AcceptObjectiveMessage;
 		case IMT_ReceiveAmmo:
@@ -169,6 +178,7 @@ defaultproperties
 {
    UseTraderMessage="<%x%> USE TRADER"
    UseDoorMessage="<%x%> Open/Close     (HOLD) <%x%> equip welder"
+   UseDoorWeldedMessage="(HOLD) <%x%> equip welder"
    AcceptObjectiveMessage="<%x%> accept objective"
    ReceiveAmmoMessage="<%x%> receive ammo"
    ReceiveGrenadesMessage="<%x%> receive grenades"

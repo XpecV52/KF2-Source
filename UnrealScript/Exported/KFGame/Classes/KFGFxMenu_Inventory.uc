@@ -218,6 +218,11 @@ function LocalizeText()
 	SetObject("localizedText", LocalizedObject);
 }
 
+function Callback_RequestInitialnventory()
+{
+	InitInventory();
+}
+
 function Callback_InventoryFilter( int FilterIndex )
 {
 	local EINventory_Filter NewFilter;

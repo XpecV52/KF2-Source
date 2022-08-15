@@ -12,16 +12,26 @@ class KFAIController_ZedSiren extends KFAIController_Monster;
 function PreMoveToEnemy()
 {
 	// Push the AICommand for sirens scream before SetMoveGoal
-	if( MyKFPawn.SpecialMove != SM_Stumble )
+	if( MyKFPawn.SpecialMove == SM_SonicAttack || (MyKFPawn.SpecialMove == SM_None && !IsTimerActive(nameOf(DoScream))) )
 	{
-		class'AICommand_Siren_Scream'.static.Scream( self );
+		DoScream();
 	}
 }
 
 /** Scream after a stumble */
 function NotifySpecialMoveEnded( KFSpecialMove SM )
 {
+	// Allow a bit of time to blend out of stumble
 	if( SM.Handle == 'KFSM_Stumble' )
+	{
+		SetTimer( 0.4f, false, nameOf(DoScream) );
+	}
+}
+
+/** Executes a scream */
+function DoScream()
+{
+	if( MyKFPawn.SpecialMove == SM_None )
 	{
 		class'AICommand_Siren_Scream'.static.Scream( self );
 	}
@@ -67,6 +77,16 @@ function DoMeleeAttack( optional Pawn NewEnemy, optional Actor InTarget, optiona
 //{
 //	class'AICommand_Hide'.static.HideFrom( self, Enemy, false );
 //}
+
+function EnterZedVictoryState()
+{
+	if( IsTimerActive(nameOf(DoScream)) )
+	{
+		ClearTimer( nameOf(DoScream) );
+	}
+
+	super.EnterZedVictoryState();
+}
 
 DefaultProperties
 {

@@ -354,6 +354,33 @@ replication
 
 native function bool AddWeaponToGroup( out KFWeapon AddedWeapon );
 
+simulated function string DumpInventory()
+{
+	local Inventory InventoryItem;
+	local KFWeapon Weapon;
+	local string InventoryLabel;
+
+	InventoryItem = InventoryChain;
+	while( InventoryItem != none )
+	{
+		Weapon = KFWeapon( InventoryItem );
+		if ( Weapon != none )
+		{
+			InventoryLabel $= Weapon.Name $":"$ string(Weapon.GetTotalAmmoAmount(0)) $ ",";
+		}
+
+		InventoryItem = InventoryItem.Inventory;
+	}
+
+	if ( Len(InventoryLabel) > 0 )
+	{
+		InventoryLabel = Left( InventoryLabel, Len(InventoryLabel) - 1 );
+	}
+
+	return InventoryLabel;
+
+}
+
 /** Create a GFxMoviePlayer for weapon optics if it doesn't exist, otherwise grab the existing GFxMoviePlayer */
 simulated function GFxMoviePlayer GetOpticsUIMovie(class<GFxMoviePlayer> OpticsClass)
 {
@@ -932,8 +959,8 @@ reliable client function SetCurrentWeapon(Weapon DesiredWeapon)
 			DesiredKFW.bIronSightOnBringUp = (bCurrentWeaponUsingSights);
 		}
 
-		// cache previously equipped weapon for SwitchToLastWeapon
-		if ( DesiredKFW.InventoryGroup != IG_Equipment )
+		// Cache previously equipped weapon for SwitchToLastWeapon
+		if ( DesiredKFW.InventoryGroup != IG_Equipment || PreviousEquippedWeapon == None )
 		{
 			PreviousEquippedWeapon = CurrentWeapon;
 		}
@@ -1100,7 +1127,7 @@ simulated function AttemptQuickHeal()
 }
 
 /** Equip the welder immediately */
-simulated function QuickWeld()
+simulated function bool QuickWeld()
 {
 	local KFWeapon KFW;
 	local KFInterface_Usable UsableTrigger;
@@ -1109,14 +1136,14 @@ simulated function QuickWeld()
 
 	if( Instigator == none || Instigator.Owner == none )
 	{
-		return;
+		return false;
 	}
 
 	// make sure player is actually allowed to switch weapons
 	KFW = KFWeapon( Instigator.Weapon );
 	if( KFW != none && !KFW.CanSwitchWeapons() )
 	{
-		return;
+		return false;
 	}
 
 	KFPC = KFPlayerController(Instigator.Owner);
@@ -1134,22 +1161,27 @@ simulated function QuickWeld()
 					KFPC.Use();
 				}
 
-				// Find and equip the welder if it isn't already equipped
-				if(Instigator.Weapon == none || !Instigator.Weapon.IsA('KFWeap_Welder'))
+				// return success if we already have the welder
+				if ( Instigator.Weapon != None && Instigator.Weapon.IsA('KFWeap_Welder') )
 				{
-					foreach InventoryActors( class'KFWeapon', KFW )
+					return true; 
+				}
+
+				// attempt to equip the welder from our inventory
+				foreach InventoryActors( class'KFWeapon', KFW )
+				{
+					if( KFW.IsA('KFWeap_Welder') )
 					{
-						if( KFW.IsA('KFWeap_Welder') )
-						{
-							SetCurrentWeapon(KFW);
-							ShowAllHUDGroups();
-							break;
-						}
+						SetCurrentWeapon(KFW);
+						ShowAllHUDGroups();
+						return true;
 					}
 				}
 			}
 		}
 	}
+
+	return false;
 }
 
 /** Set the GrenadeCount to the starting amount. Returns true if any ammo was added */
@@ -1168,12 +1200,18 @@ function bool GiveInitialGrenadeCount()
 }
 
 /** Add grenades to the player's Inventory */
-function AddGrenades(int AmountToAdd)
+function bool AddGrenades(int AmountToAdd)
 {
 	if( KFPawn(Instigator) != none )
 	{
-		GrenadeCount = Min(KFPawn(Instigator).GetPerk().MaxGrenadeCount, GrenadeCount + AmountToAdd);
+		if( GrenadeCount < KFPawn(Instigator).GetPerk().MaxGrenadeCount )
+		{
+			GrenadeCount = Min(KFPawn(Instigator).GetPerk().MaxGrenadeCount, GrenadeCount + AmountToAdd);
+			return true;
+		}
 	}
+
+	return false;
 }
 
 /** Use/Consume/Remove grenades from the player's Inventory. Returns true if any ammo was removed */
@@ -1320,7 +1358,7 @@ function bool GiveWeaponAmmo(KFWeapon KFW)
 {
 	local bool bAddedAmmo;
 
-	if ( KFW.AddAmmo(Max(KFW.AmmoPickupScale[0] * KFW.MagazineCapacity[0], 1)) > 0 )
+	if( KFW.AddAmmo(Max(KFW.AmmoPickupScale[0] * KFW.MagazineCapacity[0], 1)) > 0 )
 	{
 		bAddedAmmo = true;
 	}
@@ -1352,11 +1390,21 @@ function bool GiveWeaponsAmmo( bool bIncludeGrenades )
 
 	if( bIncludeGrenades )
 	{
-		AddGrenades(1);
+		if( AddGrenades(1) )
+		{
+			bAddedAmmo = true;
+		}
 	}
 
-	PlayerController( Instigator.Owner ).ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_Ammo );
-	PlayGiveInventorySound( AmmoPickupSound );
+	if( bAddedAmmo )
+	{
+		PlayerController( Instigator.Owner ).ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_Ammo );
+		PlayGiveInventorySound( AmmoPickupSound );
+	}
+	/*else
+	{
+		PlayerController( Instigator.Owner ).ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_AmmoIsFull );	
+	}*/
 
 	return bAddedAmmo;
 }
@@ -1631,7 +1679,7 @@ reliable server final private function ServerBuyArmor( int PercentPurchased )
 		    if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogArmorPurchase(class'KFGameplayEventsWriter'.const.GAMEEVENT_PURCHASE_ARMOR,Instigator.Controller,AmountPurchased);};
 			if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Buy$","$Instigator.PlayerReplicationInfo.PlayerName$","$"Armor,"@PercentPurchased);
 			// this is a bit spammy, since it buys armor in increments of '3'
-			//`AnalyticsLog(("buy", Instigator.PlayerReplicationInfo, "armor", "#"$PercentPurchased));
+			if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("buy", Instigator.PlayerReplicationInfo, "armor", "#"$PercentPurchased);
 		}
 	}
 }
@@ -1742,6 +1790,7 @@ reliable server final function ServerSellWeapon( byte ItemIndex )
 
 				KFPRI.AddDosh(SellPrice);
 		    	ServerRemoveFromInventory(KFW);
+		    	KFW.Destroy();
 	    	}
 	    	else   // Otherwise it's a transaction item that needs to be removed
 	    	{

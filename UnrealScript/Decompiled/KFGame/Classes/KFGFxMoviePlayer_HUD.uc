@@ -377,13 +377,13 @@ function DisplayInteractionMessage(string MessageString, int MessageIndex, optio
     ButtonName = "";    
     if(InteractionMessageContainer != none)
     {
-        if((MessageIndex > CurrentInteractionIndex) || MessageIndex == 0)
+        if(MessageIndex == 0)
         {
-            if(MessageIndex == 0)
-            {
-                HideInteractionMessage();                
-            }
-            else
+            HideInteractionMessage();            
+        }
+        else
+        {
+            if((MessageIndex != CurrentInteractionIndex) && (GetInteractionMessagePriority(MessageIndex)) >= (GetInteractionMessagePriority(CurrentInteractionIndex)))
             {
                 MessageString = Caps(MessageString);
                 if(KFPC != none)
@@ -400,10 +400,19 @@ function DisplayInteractionMessage(string MessageString, int MessageIndex, optio
                 }
                 Class'Actor'.static.ReplaceText(MessageString, "<%X%>", ButtonName);
                 SendInteractionMessageToGFX(MessageString);
+                CurrentInteractionIndex = MessageIndex;
             }
-            CurrentInteractionIndex = MessageIndex;
         }
     }
+}
+
+function int GetInteractionMessagePriority(int MessageIndex)
+{
+    if(MessageIndex < 7)
+    {
+        return 7 - 1;
+    }
+    return MessageIndex;
 }
 
 function SendInteractionMessageToGFX(string MessageString)
@@ -413,6 +422,7 @@ function SendInteractionMessageToGFX(string MessageString)
 
 function HideInteractionMessage()
 {
+    CurrentInteractionIndex = 0;
     InteractionMessageContainer.ActionScriptVoid("outInteractionMessage");
 }
 

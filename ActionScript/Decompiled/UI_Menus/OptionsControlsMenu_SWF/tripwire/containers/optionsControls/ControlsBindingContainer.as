@@ -185,10 +185,14 @@ package tripwire.containers.optionsControls
         {
             alpha = 1;
             visible = true;
+            _bReadyForInput = true;
+            mouseEnabled = mouseChildren = true;
         }
         
         override protected function closeAnimation() : *
         {
+            mouseEnabled = mouseChildren = false;
+            _bReadyForInput = false;
             visible = false;
         }
         

@@ -101,6 +101,8 @@ cpptext
 
 	/** Initializes default resolution */
 	void InitializeResolution(INT CompatLevel);
+
+	virtual void PerformBetweenMapTasks();
 }
 
 native static function bool CheckSkipLobby(); // If -skiplobby is added to the command line, return true

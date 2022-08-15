@@ -68,6 +68,7 @@ cpptext
 	void DownloadingItemFinished(PublishedFileId_t Id);
 
 	UBOOL CheckItemInstalled(PublishedFileId_t Id);
+	UBOOL ForceItemInstall(PublishedFileId_t Id);
 
 	UBOOL CheckAppId(AppId_t AppId);
 	
@@ -76,8 +77,8 @@ cpptext
 	void DownloadFiles(const TArray<PublishedFileId_t>& Items);
 	void ServerDownloadNextFile();
 
-	UBOOL RequestWorkshopFileInfo(const TArray<PublishedFileId_t>& Items);
-	void SaveWorkshopFileInfo(FOnlineAsyncTaskSteamUGCQueryCompleteReceived* QueryResult);
+//	UBOOL RequestWorkshopFileInfo(const TArray<PublishedFileId_t>& Items);
+//	void SaveWorkshopFileInfo(FOnlineAsyncTaskSteamUGCQueryCompleteReceived* QueryResult);
 
 	void ClientDownloadFinished(FOnlineAsyncEventSteamUGCDownloadComplete* DownloadTask);
 	void ServerDownloadFinished(FOnlineAsyncEventSteamUGCDownloadComplete* DownloadTask);
@@ -86,6 +87,9 @@ cpptext
 	virtual UBOOL IsTickable() const;
 
 	private:
+
+	UBOOL GetItemCurrent(PublishedFileId_t Id);
+	UBOOL DeleteItem(PublishedFileId_t Id);
 
 	void CallDownloadUpdateDelegate(FString* Name, uint64 BytesDownloaded, uint64 BytesTotal, INT ItemsLeft);
 }

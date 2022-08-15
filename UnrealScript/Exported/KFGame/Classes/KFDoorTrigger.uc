@@ -60,7 +60,14 @@ simulated function bool GetIsUsable( Pawn User )
 
 function int GetInteractionIndex()
 {
-	return IMT_UseDoor;
+	if( DoorActor.WeldIntegrity > 0 )
+	{
+		return IMT_UseDoorWelded;
+	}
+	else
+	{
+		return IMT_UseDoor;
+	}
 }
 
 function bool UsedBy(Pawn User)

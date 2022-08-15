@@ -61,6 +61,32 @@ replication
 // Export UKFInventoryManager::execAddWeaponToGroup(FFrame&, void* const)
 native function bool AddWeaponToGroup(out KFWeapon AddedWeapon);
 
+simulated function string DumpInventory()
+{
+    local Inventory InventoryItem;
+    local KFWeapon Weapon;
+    local string InventoryLabel;
+
+    InventoryItem = InventoryChain;
+    J0x13:
+
+    if(InventoryItem != none)
+    {
+        Weapon = KFWeapon(InventoryItem);
+        if(Weapon != none)
+        {            
+            InventoryLabel $= (((string(Weapon.Name) $ ":") $ string(Weapon.GetTotalAmmoAmount(0))) $ ",");
+        }
+        InventoryItem = InventoryItem.Inventory;
+        goto J0x13;
+    }
+    if(Len(InventoryLabel) > 0)
+    {
+        InventoryLabel = Left(InventoryLabel, Len(InventoryLabel) - 1);
+    }
+    return InventoryLabel;
+}
+
 simulated function GFxMoviePlayer GetOpticsUIMovie(class<GFxMoviePlayer> OpticsClass)
 {
     local byte OpticsIndex;
@@ -580,7 +606,7 @@ reliable client simulated function SetCurrentWeapon(Weapon DesiredWeapon)
         {
             DesiredKFW.bIronSightOnBringUp = bCurrentWeaponUsingSights;
         }
-        if(DesiredKFW.InventoryGroup != 3)
+        if((DesiredKFW.InventoryGroup != 3) || PreviousEquippedWeapon == none)
         {
             PreviousEquippedWeapon = CurrentWeapon;
         }
@@ -723,7 +749,7 @@ simulated function AttemptQuickHeal()
     }    
 }
 
-simulated function QuickWeld()
+simulated function bool QuickWeld()
 {
     local KFWeapon KFW;
     local KFInterface_Usable UsableTrigger;
@@ -732,12 +758,12 @@ simulated function QuickWeld()
 
     if((Instigator == none) || Instigator.Owner == none)
     {
-        return;
+        return false;
     }
     KFW = KFWeapon(Instigator.Weapon);
     if((KFW != none) && !KFW.CanSwitchWeapons())
     {
-        return;
+        return false;
     }
     KFPC = KFPlayerController(Instigator.Owner);
     if(KFPC != none)
@@ -752,21 +778,23 @@ simulated function QuickWeld()
                 {
                     KFPC.Use();
                 }
-                if((Instigator.Weapon == none) || !Instigator.Weapon.IsA('KFWeap_Welder'))
+                if((Instigator.Weapon != none) && Instigator.Weapon.IsA('KFWeap_Welder'))
                 {
-                    foreach InventoryActors(Class'KFWeapon', KFW)
-                    {
-                        if(KFW.IsA('KFWeap_Welder'))
-                        {
-                            SetCurrentWeapon(KFW);
-                            ShowAllHUDGroups();
-                            break;
-                        }                        
-                    }                    
+                    return true;
                 }
+                foreach InventoryActors(Class'KFWeapon', KFW)
+                {
+                    if(KFW.IsA('KFWeap_Welder'))
+                    {
+                        SetCurrentWeapon(KFW);
+                        ShowAllHUDGroups();                        
+                        return true;
+                    }                    
+                }                
             }
         }
     }
+    return false;
 }
 
 function bool GiveInitialGrenadeCount()
@@ -781,12 +809,17 @@ function bool GiveInitialGrenadeCount()
     return GrenadeCount > OriginalGrenadeCount;
 }
 
-function AddGrenades(int AmountToAdd)
+function bool AddGrenades(int AmountToAdd)
 {
     if(KFPawn(Instigator) != none)
     {
-        GrenadeCount = byte(Min(KFPawn(Instigator).GetPerk().MaxGrenadeCount, GrenadeCount + AmountToAdd));
+        if(GrenadeCount < KFPawn(Instigator).GetPerk().MaxGrenadeCount)
+        {
+            GrenadeCount = byte(Min(KFPawn(Instigator).GetPerk().MaxGrenadeCount, GrenadeCount + AmountToAdd));
+            return true;
+        }
     }
+    return false;
 }
 
 function bool ConsumeGrenades(optional int AmountToSubtract)
@@ -937,10 +970,16 @@ function bool GiveWeaponsAmmo(bool bIncludeGrenades)
     }    
     if(bIncludeGrenades)
     {
-        AddGrenades(1);
+        if(AddGrenades(1))
+        {
+            bAddedAmmo = true;
+        }
     }
-    PlayerController(Instigator.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 8);
-    PlayGiveInventorySound(AmmoPickupSound);
+    if(bAddedAmmo)
+    {
+        PlayerController(Instigator.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 8);
+        PlayGiveInventorySound(AmmoPickupSound);
+    }
     return bAddedAmmo;
 }
 
@@ -1206,6 +1245,10 @@ private reliable server final function ServerBuyArmor(int PercentPurchased)
             {
                 WorldInfo.LogGameBalance(((((string('Buy') $ ",") $ Instigator.PlayerReplicationInfo.PlayerName) $ ",") $ "Armor,") @ string(PercentPurchased));
             }
+            if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+            {
+                WorldInfo.TWLogEvent("buy", Instigator.PlayerReplicationInfo, "armor", "#" $ string(PercentPurchased));
+            }
         }
     }
 }
@@ -1303,7 +1346,8 @@ reliable server final function ServerSellWeapon(byte ItemIndex)
             {
                 SellPrice = GetAdjustedSellPriceFor(SoldItem, KFW);
                 KFPRI.AddDosh(SellPrice);
-                ServerRemoveFromInventory(KFW);                
+                ServerRemoveFromInventory(KFW);
+                KFW.Destroy();                
             }
             else
             {

@@ -11,11 +11,12 @@ enum EInteractionMessageType
 {
     IMT_None,
     IMT_AcceptObjective,
-    IMT_GamepadWeaponSelectHint,
-    IMT_UseTrader,
-    IMT_UseDoor,
     IMT_ReceiveAmmo,
     IMT_ReceiveGrenades,
+    IMT_UseTrader,
+    IMT_UseDoor,
+    IMT_UseDoorWelded,
+    IMT_GamepadWeaponSelectHint,
     IMT_HealSelfWarning,
     IMT_ClotGrabWarning,
     IMT_MAX
@@ -23,6 +24,7 @@ enum EInteractionMessageType
 
 var const localized string UseTraderMessage;
 var const localized string UseDoorMessage;
+var const localized string UseDoorWeldedMessage;
 var const localized string AcceptObjectiveMessage;
 var const localized string ReceiveAmmoMessage;
 var const localized string ReceiveGrenadesMessage;
@@ -56,7 +58,7 @@ static function float GetMessageDuration(int Switch)
 {
     switch(Switch)
     {
-        case 2:
+        case 7:
             return 2;
         default:
             return 0;
@@ -77,15 +79,16 @@ static function string GetKeyBind(PlayerController P, optional int Switch)
     }
     switch(Switch)
     {
-        case 3:
         case 4:
-        case 1:
         case 5:
         case 6:
+        case 1:
+        case 2:
+        case 3:
             KFInput.GetKeyBindFromCommand(BoundKey, default.USE_COMMAND, false);
             KeyString = KFInput.GetBindDisplayName(BoundKey);
             break;
-        case 7:
+        case 8:
             if(KFInput.bUsingGamepad)
             {
                 KFInput.GetKeyBindFromCommand(BoundKey, default.HEAL_COMMAND_CONTROLLER, false);                
@@ -96,11 +99,11 @@ static function string GetKeyBind(PlayerController P, optional int Switch)
             }
             KeyString = KFInput.GetBindDisplayName(BoundKey);
             break;
-        case 8:
+        case 9:
             KFInput.GetKeyBindFromCommand(BoundKey, default.BASH_COMMAND, false);
             KeyString = KFInput.GetBindDisplayName(BoundKey);
             break;
-        case 2:
+        case 7:
             KFInput.GetKeyBindFromCommand(BoundKey, default.WEAPON_SELECT_CONTROLLER, false);
             KeyString = KFInput.GetBindDisplayName(BoundKey);
             break;
@@ -116,22 +119,24 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
 
     switch(Switch)
     {
-        case 3:
-            return default.UseTraderMessage;
         case 4:
+            return default.UseTraderMessage;
+        case 5:
             return default.UseDoorMessage;
+        case 6:
+            return default.UseDoorWeldedMessage;
         case 1:
             return default.AcceptObjectiveMessage;
-        case 5:
+        case 2:
             return default.ReceiveAmmoMessage;
-        case 6:
+        case 3:
             return default.ReceiveGrenadesMessage;
-        case 7:
+        case 8:
             Input = Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController().PlayerInput;
             return (((Input != none) && Input.bUsingGamepad) ? default.HealSelfGamepadWarning : default.HealSelfWarning);
-        case 8:
+        case 9:
             return default.PressToBashWarning;
-        case 2:
+        case 7:
             return default.GamepadWeaponSelectHint;
         default:
             return "";
@@ -153,6 +158,7 @@ defaultproperties
 {
     UseTraderMessage="<%x%> USE TRADER"
     UseDoorMessage="<%x%> Open/Close     (HOLD) <%x%> equip welder"
+    UseDoorWeldedMessage="(HOLD) <%x%> equip welder"
     AcceptObjectiveMessage="<%x%> accept objective"
     ReceiveAmmoMessage="<%x%> receive ammo"
     ReceiveGrenadesMessage="<%x%> receive grenades"

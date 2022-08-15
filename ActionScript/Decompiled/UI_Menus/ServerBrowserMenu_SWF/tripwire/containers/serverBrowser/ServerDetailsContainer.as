@@ -230,7 +230,8 @@ package tripwire.containers.serverBrowser
                     "remove":true
                 },
                 "ease":Cubic.easeOut,
-                "useFrames":true
+                "useFrames":true,
+                "onComplete":onOpened
             });
         }
         
@@ -250,7 +251,8 @@ package tripwire.containers.serverBrowser
                     "remove":true
                 },
                 "ease":Cubic.easeOut,
-                "useFrames":true
+                "useFrames":true,
+                "onComplete":onClosed
             });
         }
     }

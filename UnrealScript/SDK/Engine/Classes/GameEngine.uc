@@ -357,7 +357,9 @@ cpptext
 	virtual UBOOL LoadMap( const FURL& URL, class UPendingLevel* Pending, FString& Error );
 	virtual void PostLoadMap();
 	virtual void CancelPending();
-
+`if(`__TW_ONLINESUBSYSTEM_)
+	virtual void PerformBetweenMapTasks();
+`endif
 	/**
 	 * Spawns all of the registered server actors
 	 */

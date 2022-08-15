@@ -286,7 +286,7 @@ simulated function CustomFire()
 		// Healing Self
 		else if( CurrentFireMode == ALTFIRE_FIREMODE )
 		{
-			if ( KFGameInfo(WorldInfo.Game).bOnePlayerAtStart )
+			if ( GetActivePlayerCount() < 2 )
 			{
 				HealAmount = StandAloneHealAmount;
 			}
@@ -755,6 +755,24 @@ reliable server private function ServerStartQuickHeal()
 {
 	SetCurrentFireMode(ALTFIRE_FIREMODE);
 	GotoState('WeaponQuickHeal');
+}
+
+/** Returns the number of players active in the game */
+function int GetActivePlayerCount()
+{
+	local KFPlayerController KFPC;
+	local int totalPlayers;
+
+	totalPlayers = 0;
+	foreach WorldInfo.AllControllers( class'KFPlayerController', KFPC )
+	{
+		if( KFPC.bIsAchievementPlayer )
+		{
+			totalPlayers++;
+		}
+	}
+
+	return totalPlayers;
 }
 
 defaultproperties

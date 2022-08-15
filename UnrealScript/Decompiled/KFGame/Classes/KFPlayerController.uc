@@ -393,6 +393,15 @@ simulated function ReceivedGameClass(class<GameInfo> GameClass)
     }
 }
 
+event Possess(Pawn aPawn, bool bVehicleTransition)
+{
+    if(aPawn != none)
+    {
+        bIsAchievementPlayer = true;
+    }
+    super(PlayerController).Possess(aPawn, bVehicleTransition);
+}
+
 reliable client simulated function ClientRestart(Pawn NewPawn)
 {
     super(PlayerController).ClientRestart(NewPawn);
@@ -1457,9 +1466,12 @@ function bool AimingHelp(bool bInstantHit)
 static simulated function KFInterface_Usable GetCurrentUsableActor(Pawn P, optional bool bUseOnFind)
 {
     local KFInterface_Usable UsableActor;
-    local Actor A;
+    local Actor A, BestActor;
+    local KFInterface_Usable BestUsableActor;
+    local int InteractionIndex, BestInteractionIndex;
 
     bUseOnFind = false;
+    BestInteractionIndex = -1;
     if(P != none)
     {
         foreach P.TouchingActors(Class'Actor', A)
@@ -1467,13 +1479,23 @@ static simulated function KFInterface_Usable GetCurrentUsableActor(Pawn P, optio
             UsableActor = KFInterface_Usable(A);
             if(NotEqual_InterfaceInterface(UsableActor, (none)) && UsableActor.GetIsUsable(P))
             {
-                if(bUseOnFind)
+                InteractionIndex = UsableActor.GetInteractionIndex();
+                if(InteractionIndex > BestInteractionIndex)
                 {
-                    A.UsedBy(P);
-                }                
-                return UsableActor;
+                    BestInteractionIndex = InteractionIndex;
+                    BestUsableActor = UsableActor;
+                    BestActor = A;
+                }
             }            
         }        
+        if(NotEqual_InterfaceInterface(BestUsableActor, (none)))
+        {
+            if(bUseOnFind)
+            {
+                BestActor.UsedBy(P);
+            }
+            return BestUsableActor;
+        }
     }
     return none;
 }
@@ -1541,13 +1563,31 @@ static function UpdateInteractionMessages(Actor InteractingActor)
             UsableActor = GetCurrentUsableActor(P);
             if(NotEqual_InterfaceInterface(UsableActor, (none)))
             {
+                PC.SetTimer(1, true, 'CheckCurrentUsableActor', PC);
                 PC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', UsableActor.GetInteractionIndex());                
             }
             else
             {
+                PC.ClearTimer('CheckCurrentUsableActor', PC);
                 PC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 0);
             }
         }
+    }
+}
+
+function CheckCurrentUsableActor()
+{
+    local KFInterface_Usable UsableActor;
+
+    UsableActor = GetCurrentUsableActor(Pawn);
+    if(NotEqual_InterfaceInterface(UsableActor, (none)))
+    {
+        ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', UsableActor.GetInteractionIndex());        
+    }
+    else
+    {
+        ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 0);
+        ClearTimer('CheckCurrentUsableActor');
     }
 }
 
@@ -1677,7 +1717,7 @@ function SetGrabEffect(bool bValue)
     bGrabEffectIsActive = bValue;
     if(bGrabEffectIsActive)
     {
-        ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 8);        
+        ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 9);        
     }
     else
     {
@@ -1925,6 +1965,10 @@ protected simulated function DoForceFeedbackForScreenShake(CameraShake ShakeData
     local int ShakeLevel;
     local float RotMag, LocMag, FOVMag;
 
+    if(Scale == 0)
+    {
+        return;
+    }
     KFCS = KFCameraShake(ShakeData);
     if((KFCS == none) || KFCS.FFWaveform == none)
     {
@@ -2772,11 +2816,18 @@ function OnExternalUIChanged(bool bIsOpening)
     SetPause(bIsOpening, CanUnpauseExternalUI);
 }
 
-exec function Pause()
+reliable server function ServerPause()
 {
-    if(WorldInfo.NetMode == NM_Standalone)
+    if(WorldInfo.Game.AllowPausing(self))
     {
-        super(PlayerController).Pause();
+        if(!IsPaused())
+        {
+            SetPause(true);            
+        }
+        else
+        {
+            SetPause(false);
+        }
     }
 }
 

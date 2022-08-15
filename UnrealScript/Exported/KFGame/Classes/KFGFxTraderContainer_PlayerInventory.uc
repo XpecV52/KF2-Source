@@ -341,7 +341,7 @@ function float FillAmmo( out SItemInformation ItemInfo, optional bool bIsGrenade
 	// If we cannot fill all our ammo, fill as much as possible
 	if ( FillAmmoCost > MyTraderMenu.TotalDosh )
 	{
-	    PricePerRound = PricePerMag / MagSize;
+	    PricePerRound = ( bIsGrenade ) ? PricePerMag : PricePerMag / MagSize;
 	    MissingAmmo = FFloor(MyTraderMenu.TotalDosh / PricePerRound);
 	    FillAmmoCost = FCeil(MissingAmmo * PricePerRound);
 	}

@@ -14,26 +14,18 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_0
 End Object
 
 Begin Object Class=PrefabSequenceContainer Name=Prefabs
-   Begin Object Class=PrefabSequence Name=Windows_Seq_99 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_99
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_99'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_99'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_8
          ObjInstanceVersion=1
@@ -57,21 +49,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_113"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_99.SeqAct_Toggle_120',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_99.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_99.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_99.SeqAct_Toggle_120',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_99.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_99.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_99'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_99 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_6
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_99.SeqAct_Toggle_8',InputLinkIdx=1)))
@@ -99,35 +83,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_120"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_99.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_99.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_99'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_99.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_99.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_99'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_99.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_99.SeqVar_Object_0'
@@ -140,37 +108,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_99.SeqVar_Bool_8'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_99.SequenceFrame_4'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_99.SeqAct_Toggle_8'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_99"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_99"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_98 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_98
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_98'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_98'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_9
          ObjInstanceVersion=1
@@ -194,21 +149,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_112"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_98.SeqAct_Toggle_119',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_98.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_98.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_98.SeqAct_Toggle_119',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_98.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_98.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_98'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_98 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_7
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_98.SeqAct_Toggle_9',InputLinkIdx=1)))
@@ -236,35 +183,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_119"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_98.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_98.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_98'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_98.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_98.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_98'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_98.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_98.SeqVar_Object_0'
@@ -277,37 +208,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_98.SeqVar_Bool_9'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_98.SequenceFrame_5'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_98.SeqAct_Toggle_9'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_98"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_98"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_97 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_97
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_97'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_97'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_10
          ObjInstanceVersion=1
@@ -331,21 +249,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_111"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_97.SeqAct_Toggle_118',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_97.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_97.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_97.SeqAct_Toggle_118',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_97.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_97.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_97'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_97 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_8
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_97.SeqAct_Toggle_10',InputLinkIdx=1)))
@@ -373,35 +283,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_10"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_97.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_97.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_97'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_97.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_97.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_97'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_97.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_97.SeqVar_Object_0'
@@ -414,37 +308,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_97.SeqVar_Bool_10'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_97.SequenceFrame_6'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_97.SeqAct_Toggle_10'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_97"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_97"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_96 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_96
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_96'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_96'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_11
          ObjInstanceVersion=1
@@ -468,21 +349,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_110"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_96.SeqAct_Toggle_117',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_96.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_96.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_96.SeqAct_Toggle_117',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_96.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_96.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_96'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_96 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_9
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_96.SeqAct_Toggle_11',InputLinkIdx=1)))
@@ -510,35 +383,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_11"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_96.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_96.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_96'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_96.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_96.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_96'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_96.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_96.SeqVar_Object_0'
@@ -551,37 +408,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_96.SeqVar_Bool_11'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_96.SequenceFrame_7'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_96.SeqAct_Toggle_11'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_96"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_96"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_95 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_95
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_95'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_95'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_12
          ObjInstanceVersion=1
@@ -605,21 +449,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_109"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_95.SeqAct_Toggle_116',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_95.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_95.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_95.SeqAct_Toggle_116',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_95.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_95.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_95'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_95 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_10
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_95.SeqAct_Toggle_12',InputLinkIdx=1)))
@@ -647,35 +483,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_116"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_95.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_95.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_95'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_95.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_95.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_95'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_95.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_95.SeqVar_Object_0'
@@ -688,37 +508,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_95.SeqVar_Bool_12'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_95.SequenceFrame_8'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_95.SeqAct_Toggle_12'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_95"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_95"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_94 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_94
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_94'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_94'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_13
          ObjInstanceVersion=1
@@ -742,21 +549,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_108"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_94.SeqAct_Toggle_115',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_94.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_94.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_94.SeqAct_Toggle_115',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_94.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_94.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_94'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_94 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_11
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_94.SeqAct_Toggle_13',InputLinkIdx=1)))
@@ -784,35 +583,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_115"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_94.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_94.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_94'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_94.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_94.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_94'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_94.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_94.SeqVar_Object_0'
@@ -825,37 +608,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_94.SeqVar_Bool_13'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_94.SequenceFrame_9'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_94.SeqAct_Toggle_13'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_94"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_94"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_93 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_93
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_93'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_93'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_14
          ObjInstanceVersion=1
@@ -879,21 +649,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_107"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_93.SeqAct_Toggle_114',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_93.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_93.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_93.SeqAct_Toggle_114',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_93.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_93.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_93'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_93 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_12
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_93.SeqAct_Toggle_14',InputLinkIdx=1)))
@@ -921,35 +683,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_114"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_93.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_93.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_93'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_93.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_93.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_93'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_93.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_93.SeqVar_Object_0'
@@ -962,37 +708,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_93.SeqVar_Bool_14'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_93.SequenceFrame_10'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_93.SeqAct_Toggle_14'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_93"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_93"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_92 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_92
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_92'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_92'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_15
          ObjInstanceVersion=1
@@ -1016,21 +749,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_106"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_92.SeqAct_Toggle_113',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_92.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_92.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_92.SeqAct_Toggle_113',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_92.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_92.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_92'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_92 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_13
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_92.SeqAct_Toggle_15',InputLinkIdx=1)))
@@ -1058,35 +783,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_113"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_92.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_92.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_92'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_92.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_92.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_92'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_92.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_92.SeqVar_Object_0'
@@ -1099,37 +808,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_92.SeqVar_Bool_15'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_92.SequenceFrame_11'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_92.SeqAct_Toggle_15'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_92"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_92"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_91 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_91
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_91'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_91'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_16
          ObjInstanceVersion=1
@@ -1153,21 +849,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_105"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_91.SeqAct_Toggle_112',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_91.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_91.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_91.SeqAct_Toggle_112',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_91.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_91.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_91'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_91 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_14
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_91.SeqAct_Toggle_16',InputLinkIdx=1)))
@@ -1195,35 +883,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_112"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_91.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_91.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_91'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_91.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_91.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_91'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_91.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_91.SeqVar_Object_0'
@@ -1236,37 +908,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_91.SeqVar_Bool_16'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_91.SequenceFrame_12'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_91.SeqAct_Toggle_16'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_91"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_91"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_90 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_90
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_90'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_90'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_17
          ObjInstanceVersion=1
@@ -1290,21 +949,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_104"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_90.SeqAct_Toggle_111',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_90.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_90.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_90.SeqAct_Toggle_111',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_90.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_90.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_90'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_90 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_15
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_90.SeqAct_Toggle_17',InputLinkIdx=1)))
@@ -1332,35 +983,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_111"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_90.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_90.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_90'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_90.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_90.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_90'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_90.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_90.SeqVar_Object_0'
@@ -1373,37 +1008,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_90.SeqVar_Bool_17'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_90.SequenceFrame_13'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_90.SeqAct_Toggle_17'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_90"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_90"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_9 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_9
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_9'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_9'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_18
          ObjInstanceVersion=1
@@ -1427,21 +1049,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_103"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_9.SeqAct_Toggle_110',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_9.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_9.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_9.SeqAct_Toggle_110',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_9.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_9.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_9'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_9 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_16
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_9.SeqAct_Toggle_18',InputLinkIdx=1)))
@@ -1469,35 +1083,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_110"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_9.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_9.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_9'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_9.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_9.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_9'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_9.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_9.SeqVar_Object_0'
@@ -1510,37 +1108,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_9.SeqVar_Bool_18'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_9.SequenceFrame_14'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_9.SeqAct_Toggle_18'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_9"
       DrawWidth=117
-      DrawHeight=29
       Name="Windows_Seq_9"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_89 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_89
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_89'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_89'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_19
          ObjInstanceVersion=1
@@ -1564,21 +1149,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_102"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_89.SeqAct_Toggle_109',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_89.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_89.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_89.SeqAct_Toggle_109',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_89.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_89.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_89'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_89 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_17
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_89.SeqAct_Toggle_19',InputLinkIdx=1)))
@@ -1606,35 +1183,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_109"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_89.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_89.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_89'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_89.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_89.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_89'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_89.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_89.SeqVar_Object_0'
@@ -1647,37 +1208,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_89.SeqVar_Bool_19'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_89.SequenceFrame_15'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_89.SeqAct_Toggle_19'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_89"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_89"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_88 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_88
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_88'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_88'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_20
          ObjInstanceVersion=1
@@ -1701,21 +1249,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_101"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_88.SeqAct_Toggle_108',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_88.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_88.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_88.SeqAct_Toggle_108',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_88.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_88.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_88'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_88 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_18
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_88.SeqAct_Toggle_20',InputLinkIdx=1)))
@@ -1743,35 +1283,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_108"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_88.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_88.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_88'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_88.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_88.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_88'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_88.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_88.SeqVar_Object_0'
@@ -1784,37 +1308,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_88.SeqVar_Bool_20'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_88.SequenceFrame_16'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_88.SeqAct_Toggle_20'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_88"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_88"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_87 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_87
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_87'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_87'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_21
          ObjInstanceVersion=1
@@ -1838,21 +1349,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_100"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_87.SeqAct_Toggle_107',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_87.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_87.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_87.SeqAct_Toggle_107',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_87.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_87.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_87'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_87 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_19
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_87.SeqAct_Toggle_21',InputLinkIdx=1)))
@@ -1880,35 +1383,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_107"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_87.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_87.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_87'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_87.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_87.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_87'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_87.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_87.SeqVar_Object_0'
@@ -1921,37 +1408,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_87.SeqVar_Bool_21'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_87.SequenceFrame_17'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_87.SeqAct_Toggle_21'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_87"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_87"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_86 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_86
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_86'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_86'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_22
          ObjInstanceVersion=1
@@ -1975,21 +1449,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_99"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_86.SeqAct_Toggle_106',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_86.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_86.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_86.SeqAct_Toggle_106',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_86.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_86.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_86'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_86 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_20
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_86.SeqAct_Toggle_22',InputLinkIdx=1)))
@@ -2017,35 +1483,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_106"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_86.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_86.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_86'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_86.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_86.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_86'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_86.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_86.SeqVar_Object_0'
@@ -2058,37 +1508,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_86.SeqVar_Bool_22'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_86.SequenceFrame_18'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_86.SeqAct_Toggle_22'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_86"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_86"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_85 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_85
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_85'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_85'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_23
          ObjInstanceVersion=1
@@ -2112,21 +1549,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_98"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_85.SeqAct_Toggle_105',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_85.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_85.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_85.SeqAct_Toggle_105',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_85.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_85.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_85'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_85 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_21
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_85.SeqAct_Toggle_23',InputLinkIdx=1)))
@@ -2154,35 +1583,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_105"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_85.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_85.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_85'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_85.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_85.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_85'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_85.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_85.SeqVar_Object_0'
@@ -2195,37 +1608,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_85.SeqVar_Bool_23'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_85.SequenceFrame_19'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_85.SeqAct_Toggle_23'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_85"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_85"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_84 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_84
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_84'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_84'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_24
          ObjInstanceVersion=1
@@ -2249,21 +1649,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_97"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_84.SeqAct_Toggle_104',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_84.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_84.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_84.SeqAct_Toggle_104',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_84.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_84.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_84'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_84 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_22
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_84.SeqAct_Toggle_24',InputLinkIdx=1)))
@@ -2291,35 +1683,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_104"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_84.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_84.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_84'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_84.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_84.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_84'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_84.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_84.SeqVar_Object_0'
@@ -2332,37 +1708,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_84.SeqVar_Bool_24'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_84.SequenceFrame_20'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_84.SeqAct_Toggle_24'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_84"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_84"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_83 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_83
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_83'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_83'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_25
          ObjInstanceVersion=1
@@ -2386,21 +1749,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_96"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_83.SeqAct_Toggle_103',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_83.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_83.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_83.SeqAct_Toggle_103',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_83.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_83.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_83'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_83 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_23
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_83.SeqAct_Toggle_25',InputLinkIdx=1)))
@@ -2428,35 +1783,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_103"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_83.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_83.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_83'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_83.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_83.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_83'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_83.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_83.SeqVar_Object_0'
@@ -2469,37 +1808,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_83.SeqVar_Bool_25'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_83.SequenceFrame_21'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_83.SeqAct_Toggle_25'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_83"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_83"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_82 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_82
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_82'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_82'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_26
          ObjInstanceVersion=1
@@ -2523,21 +1849,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_95"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_82.SeqAct_Toggle_102',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_82.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_82.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_82.SeqAct_Toggle_102',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_82.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_82.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_82'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_82 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_24
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_82.SeqAct_Toggle_26',InputLinkIdx=1)))
@@ -2565,35 +1883,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_102"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_82.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_82.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_82'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_82.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_82.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_82'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_82.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_82.SeqVar_Object_0'
@@ -2606,37 +1908,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_82.SeqVar_Bool_26'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_82.SequenceFrame_22'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_82.SeqAct_Toggle_26'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_82"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_82"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_81 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_81
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_81'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_81'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_27
          ObjInstanceVersion=1
@@ -2660,21 +1949,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_94"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_81.SeqAct_Toggle_101',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_81.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_81.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_81.SeqAct_Toggle_101',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_81.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_81.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_81'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_81 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_25
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_81.SeqAct_Toggle_27',InputLinkIdx=1)))
@@ -2702,35 +1983,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_101"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_81.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_81.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_81'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_81.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_81.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_81'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_81.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_81.SeqVar_Object_0'
@@ -2743,37 +2008,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_81.SeqVar_Bool_27'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_81.SequenceFrame_23'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_81.SeqAct_Toggle_27'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_81"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_81"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_80 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_80
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_80'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_80'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_28
          ObjInstanceVersion=1
@@ -2797,21 +2049,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_93"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_80.SeqAct_Toggle_100',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_80.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_80.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_80.SeqAct_Toggle_100',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_80.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_80.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_80'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_80 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_26
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_80.SeqAct_Toggle_28',InputLinkIdx=1)))
@@ -2839,35 +2083,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_100"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_80.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_80.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_80'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_80.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_80.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_80'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_80.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_80.SeqVar_Object_0'
@@ -2880,37 +2108,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_80.SeqVar_Bool_28'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_80.SequenceFrame_24'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_80.SeqAct_Toggle_28'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_80"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_80"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_8 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_8
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_8'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_8'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_29
          ObjInstanceVersion=1
@@ -2934,21 +2149,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_92"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_8.SeqAct_Toggle_99',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_8.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_8.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_8.SeqAct_Toggle_99',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_8.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_8.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_8'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_105 InterpActor_19 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_27
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_8.SeqAct_Toggle_29',InputLinkIdx=1)))
@@ -2976,35 +2183,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_29"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_8.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_8.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_8'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_8.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_8.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_8'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_8.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_8.SeqVar_Object_0'
@@ -3017,37 +2208,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_8.SeqVar_Bool_29'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_8.SequenceFrame_25'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_8.SeqAct_Toggle_29'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_8"
       DrawWidth=117
-      DrawHeight=29
       Name="Windows_Seq_8"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_79 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_79
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_79'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_79'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_30
          ObjInstanceVersion=1
@@ -3071,21 +2249,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_91"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_79.SeqAct_Toggle_98',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_79.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_79.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_79.SeqAct_Toggle_98',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_79.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_79.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_79'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_79 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_28
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_79.SeqAct_Toggle_30',InputLinkIdx=1)))
@@ -3113,35 +2283,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_30"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_79.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_79.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_79'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_79.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_79.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_79'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_79.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_79.SeqVar_Object_0'
@@ -3154,37 +2308,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_79.SeqVar_Bool_30'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_79.SequenceFrame_26'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_79.SeqAct_Toggle_30'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_79"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_79"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_78 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_78
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_78'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_78'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_31
          ObjInstanceVersion=1
@@ -3208,21 +2349,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_90"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_78.SeqAct_Toggle_97',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_78.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_78.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_78.SeqAct_Toggle_97',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_78.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_78.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_78'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_78 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_29
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_78.SeqAct_Toggle_31',InputLinkIdx=1)))
@@ -3250,35 +2383,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_31"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_78.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_78.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_78'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_78.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_78.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_78'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_78.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_78.SeqVar_Object_0'
@@ -3291,37 +2408,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_78.SeqVar_Bool_31'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_78.SequenceFrame_27'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_78.SeqAct_Toggle_31'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_78"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_78"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_77 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_77
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_77'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_77'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_32
          ObjInstanceVersion=1
@@ -3345,21 +2449,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_89"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_77.SeqAct_Toggle_96',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_77.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_77.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_77.SeqAct_Toggle_96',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_77.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_77.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_77'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_77 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_30
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_77.SeqAct_Toggle_32',InputLinkIdx=1)))
@@ -3387,35 +2483,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_32"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_77.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_77.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_77'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_77.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_77.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_77'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_77.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_77.SeqVar_Object_0'
@@ -3428,37 +2508,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_77.SeqVar_Bool_32'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_77.SequenceFrame_28'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_77.SeqAct_Toggle_32'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_77"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_77"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_76 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_76
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_76'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_76'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_33
          ObjInstanceVersion=1
@@ -3482,21 +2549,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_88"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_76.SeqAct_Toggle_95',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_76.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_76.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_76.SeqAct_Toggle_95',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_76.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_76.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_76'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_76 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_31
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_76.SeqAct_Toggle_33',InputLinkIdx=1)))
@@ -3524,35 +2583,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_33"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_76.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_76.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_76'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_76.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_76.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_76'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_76.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_76.SeqVar_Object_0'
@@ -3565,37 +2608,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_76.SeqVar_Bool_33'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_76.SequenceFrame_29'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_76.SeqAct_Toggle_33'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_76"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_76"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_75 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_75
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_75'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_75'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_34
          ObjInstanceVersion=1
@@ -3619,21 +2649,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_87"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_75.SeqAct_Toggle_94',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_75.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_75.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_75.SeqAct_Toggle_94',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_75.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_75.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_75'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_75 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_32
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_75.SeqAct_Toggle_34',InputLinkIdx=1)))
@@ -3661,35 +2683,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_34"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_75.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_75.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_75'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_75.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_75.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_75'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_75.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_75.SeqVar_Object_0'
@@ -3702,37 +2708,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_75.SeqVar_Bool_34'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_75.SequenceFrame_30'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_75.SeqAct_Toggle_34'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_75"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_75"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_74 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_74
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_74'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_74'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_35
          ObjInstanceVersion=1
@@ -3756,21 +2749,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_86"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_74.SeqAct_Toggle_93',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_74.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_74.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_74.SeqAct_Toggle_93',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_74.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_74.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_74'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_74 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_33
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_74.SeqAct_Toggle_35',InputLinkIdx=1)))
@@ -3798,35 +2783,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_35"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_74.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_74.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_74'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_74.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_74.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_74'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_74.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_74.SeqVar_Object_0'
@@ -3839,37 +2808,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_74.SeqVar_Bool_35'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_74.SequenceFrame_31'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_74.SeqAct_Toggle_35'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_74"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_74"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_73 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_73
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_73'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_73'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_36
          ObjInstanceVersion=1
@@ -3893,21 +2849,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_85"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_73.SeqAct_Toggle_92',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_73.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_73.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_73.SeqAct_Toggle_92',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_73.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_73.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_73'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_73 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_34
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_73.SeqAct_Toggle_36',InputLinkIdx=1)))
@@ -3935,35 +2883,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_36"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_73.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_73.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_73'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_73.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_73.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_73'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_73.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_73.SeqVar_Object_0'
@@ -3976,37 +2908,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_73.SeqVar_Bool_36'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_73.SequenceFrame_32'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_73.SeqAct_Toggle_36'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_73"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_73"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_72 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_72
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_72'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_72'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_37
          ObjInstanceVersion=1
@@ -4030,21 +2949,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_84"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_72.SeqAct_Toggle_91',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_72.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_72.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_72.SeqAct_Toggle_91',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_72.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_72.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_72'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_72 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_35
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_72.SeqAct_Toggle_37',InputLinkIdx=1)))
@@ -4072,35 +2983,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_37"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_72.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_72.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_72'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_72.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_72.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_72'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_72.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_72.SeqVar_Object_0'
@@ -4113,37 +3008,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_72.SeqVar_Bool_37'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_72.SequenceFrame_33'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_72.SeqAct_Toggle_37'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_72"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_72"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_71 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_71
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_71'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_71'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_38
          ObjInstanceVersion=1
@@ -4167,21 +3049,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_83"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_71.SeqAct_Toggle_90',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_71.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_71.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_71.SeqAct_Toggle_90',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_71.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_71.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_71'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_71 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_36
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_71.SeqAct_Toggle_38',InputLinkIdx=1)))
@@ -4209,35 +3083,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_38"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_71.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_71.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_71'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_71.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_71.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_71'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_71.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_71.SeqVar_Object_0'
@@ -4250,37 +3108,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_71.SeqVar_Bool_38'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_71.SequenceFrame_34'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_71.SeqAct_Toggle_38'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_71"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_71"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_70 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_70
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_70'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_70'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_39
          ObjInstanceVersion=1
@@ -4304,21 +3149,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_82"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_70.SeqAct_Toggle_89',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_70.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_70.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_70.SeqAct_Toggle_89',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_70.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_70.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_70'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_70 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_37
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_70.SeqAct_Toggle_39',InputLinkIdx=1)))
@@ -4346,35 +3183,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_39"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_70.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_70.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_70'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_70.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_70.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_70'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_70.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_70.SeqVar_Object_0'
@@ -4387,37 +3208,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_70.SeqVar_Bool_39'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_70.SequenceFrame_35'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_70.SeqAct_Toggle_39'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_70"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_70"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_7 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_7
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_7'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_7'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_40
          ObjInstanceVersion=1
@@ -4441,21 +3249,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_81"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_7.SeqAct_Toggle_88',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_7.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_7.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_7.SeqAct_Toggle_88',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_7.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_7.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_7'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_5 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_38
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_7.SeqAct_Toggle_40',InputLinkIdx=1)))
@@ -4483,35 +3283,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_40"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_7.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_7.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_7'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_7.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_7.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_7'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_7.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_7.SeqVar_Object_0'
@@ -4524,37 +3308,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_7.SeqVar_Bool_40'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_7.SequenceFrame_36'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_7.SeqAct_Toggle_40'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_7"
       DrawWidth=117
-      DrawHeight=29
       Name="Windows_Seq_7"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_69 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_69
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_69'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_69'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_41
          ObjInstanceVersion=1
@@ -4578,21 +3349,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_80"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_69.SeqAct_Toggle_87',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_69.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_69.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_69.SeqAct_Toggle_87',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_69.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_69.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_69'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_69 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_39
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_69.SeqAct_Toggle_41',InputLinkIdx=1)))
@@ -4620,35 +3383,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_41"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_69.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_69.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_69'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_69.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_69.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_69'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_69.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_69.SeqVar_Object_0'
@@ -4661,37 +3408,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_69.SeqVar_Bool_41'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_69.SequenceFrame_37'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_69.SeqAct_Toggle_41'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_69"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_69"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_68 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_68
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_68'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_68'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_42
          ObjInstanceVersion=1
@@ -4715,21 +3449,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_79"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_68.SeqAct_Toggle_86',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_68.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_68.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_68.SeqAct_Toggle_86',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_68.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_68.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_68'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_68 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_40
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_68.SeqAct_Toggle_42',InputLinkIdx=1)))
@@ -4757,35 +3483,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_42"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_68.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_68.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_68'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_68.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_68.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_68'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_68.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_68.SeqVar_Object_0'
@@ -4798,37 +3508,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_68.SeqVar_Bool_42'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_68.SequenceFrame_38'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_68.SeqAct_Toggle_42'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_68"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_68"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_67 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_67
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_67'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_67'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_43
          ObjInstanceVersion=1
@@ -4852,21 +3549,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_78"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_67.SeqAct_Toggle_85',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_67.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_67.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_67.SeqAct_Toggle_85',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_67.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_67.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_67'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_67 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_41
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_67.SeqAct_Toggle_43',InputLinkIdx=1)))
@@ -4894,35 +3583,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_43"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_67.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_67.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_67'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_67.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_67.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_67'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_67.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_67.SeqVar_Object_0'
@@ -4935,37 +3608,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_67.SeqVar_Bool_43'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_67.SequenceFrame_39'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_67.SeqAct_Toggle_43'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_67"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_67"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_66 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_66
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_66'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_66'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_44
          ObjInstanceVersion=1
@@ -4989,21 +3649,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_77"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_66.SeqAct_Toggle_84',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_66.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_66.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_66.SeqAct_Toggle_84',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_66.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_66.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_66'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_66 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_42
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_66.SeqAct_Toggle_44',InputLinkIdx=1)))
@@ -5031,35 +3683,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_44"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_66.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_66.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_66'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_66.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_66.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_66'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_66.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_66.SeqVar_Object_0'
@@ -5072,37 +3708,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_66.SeqVar_Bool_44'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_66.SequenceFrame_40'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_66.SeqAct_Toggle_44'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_66"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_66"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_65 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_65
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_65'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_65'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_45
          ObjInstanceVersion=1
@@ -5126,21 +3749,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_76"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_65.SeqAct_Toggle_83',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_65.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_65.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_65.SeqAct_Toggle_83',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_65.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_65.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_65'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_65 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_43
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_65.SeqAct_Toggle_45',InputLinkIdx=1)))
@@ -5168,35 +3783,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_45"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_65.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_65.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_65'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_65.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_65.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_65'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_65.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_65.SeqVar_Object_0'
@@ -5209,37 +3808,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_65.SeqVar_Bool_45'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_65.SequenceFrame_41'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_65.SeqAct_Toggle_45'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_65"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_65"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_64 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_64
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_64'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_64'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_46
          ObjInstanceVersion=1
@@ -5263,21 +3849,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_75"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_64.SeqAct_Toggle_82',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_64.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_64.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_64.SeqAct_Toggle_82',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_64.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_64.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_64'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_64 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_44
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_64.SeqAct_Toggle_46',InputLinkIdx=1)))
@@ -5305,35 +3883,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_46"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_64.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_64.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_64'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_64.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_64.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_64'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_64.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_64.SeqVar_Object_0'
@@ -5346,37 +3908,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_64.SeqVar_Bool_46'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_64.SequenceFrame_42'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_64.SeqAct_Toggle_46'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_64"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_64"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_63 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_63
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_63'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_63'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_47
          ObjInstanceVersion=1
@@ -5400,21 +3949,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_74"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_63.SeqAct_Toggle_81',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_63.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_63.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_63.SeqAct_Toggle_81',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_63.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_63.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_63'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_63 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_45
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_63.SeqAct_Toggle_47',InputLinkIdx=1)))
@@ -5442,35 +3983,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_47"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_63.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_63.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_63'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_63.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_63.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_63'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_63.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_63.SeqVar_Object_0'
@@ -5483,37 +4008,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_63.SeqVar_Bool_47'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_63.SequenceFrame_43'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_63.SeqAct_Toggle_47'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_63"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_63"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_62 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_62
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_62'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_62'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_48
          ObjInstanceVersion=1
@@ -5537,21 +4049,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_73"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_62.SeqAct_Toggle_80',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_62.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_62.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_62.SeqAct_Toggle_80',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_62.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_62.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_62'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_62 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_46
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_62.SeqAct_Toggle_48',InputLinkIdx=1)))
@@ -5579,35 +4083,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_48"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_62.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_62.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_62'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_62.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_62.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_62'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_62.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_62.SeqVar_Object_0'
@@ -5620,37 +4108,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_62.SeqVar_Bool_48'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_62.SequenceFrame_44'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_62.SeqAct_Toggle_48'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_62"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_62"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_61 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_61
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_61'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_61'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_49
          ObjInstanceVersion=1
@@ -5674,21 +4149,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_72"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_61.SeqAct_Toggle_79',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_61.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_61.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_61.SeqAct_Toggle_79',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_61.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_61.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_61'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_61 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_47
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_61.SeqAct_Toggle_49',InputLinkIdx=1)))
@@ -5716,35 +4183,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_49"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_61.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_61.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_61'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_61.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_61.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_61'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_61.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_61.SeqVar_Object_0'
@@ -5757,37 +4208,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_61.SeqVar_Bool_49'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_61.SequenceFrame_45'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_61.SeqAct_Toggle_49'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_61"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_61"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_60 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_60
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_60'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_60'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_50
          ObjInstanceVersion=1
@@ -5811,21 +4249,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_71"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_60.SeqAct_Toggle_78',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_60.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_60.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_60.SeqAct_Toggle_78',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_60.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_60.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_60'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_60 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_48
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_60.SeqAct_Toggle_50',InputLinkIdx=1)))
@@ -5853,35 +4283,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_50"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_60.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_60.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_60'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_60.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_60.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_60'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_60.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_60.SeqVar_Object_0'
@@ -5894,37 +4308,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_60.SeqVar_Bool_50'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_60.SequenceFrame_46'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_60.SeqAct_Toggle_50'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_60"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_60"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_6 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_6
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_6'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_6'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_51
          ObjInstanceVersion=1
@@ -5948,21 +4349,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_70"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_6.SeqAct_Toggle_77',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_6.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_6.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_6.SeqAct_Toggle_77',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_6.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_6.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_6'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_6 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_49
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_6.SeqAct_Toggle_51',InputLinkIdx=1)))
@@ -5990,35 +4383,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_51"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_6.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_6.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_6'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_6.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_6.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_6'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_6.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_6.SeqVar_Object_0'
@@ -6031,37 +4408,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_6.SeqVar_Bool_51'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_6.SequenceFrame_47'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_6.SeqAct_Toggle_51'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_6"
       DrawWidth=117
-      DrawHeight=29
       Name="Windows_Seq_6"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_59 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_59
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_59'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_59'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_52
          ObjInstanceVersion=1
@@ -6085,21 +4449,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_69"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_59.SeqAct_Toggle_76',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_59.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_59.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_59.SeqAct_Toggle_76',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_59.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_59.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_59'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_59 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_50
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_59.SeqAct_Toggle_52',InputLinkIdx=1)))
@@ -6127,35 +4483,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_52"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_59.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_59.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_59'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_59.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_59.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_59'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_59.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_59.SeqVar_Object_0'
@@ -6168,37 +4508,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_59.SeqVar_Bool_52'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_59.SequenceFrame_48'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_59.SeqAct_Toggle_52'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_59"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_59"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_58 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_58
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_58'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_58'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_53
          ObjInstanceVersion=1
@@ -6222,21 +4549,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_68"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_58.SeqAct_Toggle_75',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_58.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_58.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_58.SeqAct_Toggle_75',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_58.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_58.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_58'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_58 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_51
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_58.SeqAct_Toggle_53',InputLinkIdx=1)))
@@ -6264,35 +4583,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_53"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_58.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_58.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_58'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_58.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_58.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_58'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_58.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_58.SeqVar_Object_0'
@@ -6305,37 +4608,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_58.SeqVar_Bool_53'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_58.SequenceFrame_49'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_58.SeqAct_Toggle_53'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_58"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_58"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_57 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_57
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_57'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_57'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_54
          ObjInstanceVersion=1
@@ -6359,21 +4649,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_67"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_57.SeqAct_Toggle_74',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_57.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_57.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_57.SeqAct_Toggle_74',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_57.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_57.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_57'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_57 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_52
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_57.SeqAct_Toggle_54',InputLinkIdx=1)))
@@ -6401,35 +4683,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_54"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_57.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_57.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_57'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_57.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_57.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_57'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_57.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_57.SeqVar_Object_0'
@@ -6442,37 +4708,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_57.SeqVar_Bool_54'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_57.SequenceFrame_50'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_57.SeqAct_Toggle_54'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_57"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_57"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_56 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_56
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_56'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_56'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_55
          bValue=1
@@ -6499,21 +4752,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_66"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_56.SeqAct_Toggle_73',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_56.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_56.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_56.SeqAct_Toggle_73',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_56.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_56.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_56'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_56 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_53
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_56.SeqAct_Toggle_55',InputLinkIdx=1)))
@@ -6541,35 +4786,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_55"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_56.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_56.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_56'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_56.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_56.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_56'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_56.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_56.SeqVar_Object_0'
@@ -6584,35 +4813,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_56.SeqAct_Toggle_55'
       DefaultViewX=108
       DefaultViewY=-1649
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_56"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_56"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_55 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_55
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_55'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_55'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_56
          bValue=1
@@ -6639,21 +4857,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_65"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_55.SeqAct_Toggle_72',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_55.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_55.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_55.SeqAct_Toggle_72',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_55.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_55.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_55'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_55 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_54
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_55.SeqAct_Toggle_56',InputLinkIdx=1)))
@@ -6681,35 +4891,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_56"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_55.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_55.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_55'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_55.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_55.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_55'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_55.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_55.SeqVar_Object_0'
@@ -6724,35 +4918,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_55.SeqAct_Toggle_56'
       DefaultViewX=116
       DefaultViewY=-1661
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_55"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_55"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_54 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_54
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_54'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_54'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_57
          bValue=1
@@ -6779,21 +4962,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_64"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_54.SeqAct_Toggle_71',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_54.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_54.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_54.SeqAct_Toggle_71',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_54.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_54.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_54'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_54 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_55
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_54.SeqAct_Toggle_57',InputLinkIdx=1)))
@@ -6821,35 +4996,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_57"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_54.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_54.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_54'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_54.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_54.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_54'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_54.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_54.SeqVar_Object_0'
@@ -6864,35 +5023,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_54.SeqAct_Toggle_57'
       DefaultViewX=116
       DefaultViewY=-1661
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_54"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_54"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_53 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_53
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_53'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_53'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_58
          bValue=1
@@ -6919,21 +5067,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_63"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_53.SeqAct_Toggle_70',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_53.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_53.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_53.SeqAct_Toggle_70',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_53.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_53.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_53'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_53 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_56
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_53.SeqAct_Toggle_58',InputLinkIdx=1)))
@@ -6961,35 +5101,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_58"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_53.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_53.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_53'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_53.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_53.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_53'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_53.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_53.SeqVar_Object_0'
@@ -7004,35 +5128,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_53.SeqAct_Toggle_58'
       DefaultViewX=116
       DefaultViewY=-1661
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_53"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_53"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_52 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_52
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_52'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_52'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_59
          bValue=1
@@ -7059,21 +5172,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_62"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_52.SeqAct_Toggle_69',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_52.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_52.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_52.SeqAct_Toggle_69',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_52.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_52.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_52'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_52 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_57
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_52.SeqAct_Toggle_59',InputLinkIdx=1)))
@@ -7101,35 +5206,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_59"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_52.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_52.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_52'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_52.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_52.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_52'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_52.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_52.SeqVar_Object_0'
@@ -7144,35 +5233,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_52.SeqAct_Toggle_59'
       DefaultViewX=116
       DefaultViewY=-1661
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_52"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_52"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_51 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_51
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_51'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_51'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_60
          bValue=1
@@ -7199,21 +5277,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_61"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_51.SeqAct_Toggle_68',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_51.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_51.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_51.SeqAct_Toggle_68',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_51.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_51.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_51'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_51 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_58
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_51.SeqAct_Toggle_60',InputLinkIdx=1)))
@@ -7241,35 +5311,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_60"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_51.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_51.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_51'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_51.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_51.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_51'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_51.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_51.SeqVar_Object_0'
@@ -7284,35 +5338,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_51.SeqAct_Toggle_60'
       DefaultViewX=-219
       DefaultViewY=-1715
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_51"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_51"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_50 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_50
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_50'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_50'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_61
          bValue=1
@@ -7339,21 +5382,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_60"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_50.SeqAct_Toggle_67',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_50.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_50.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_50.SeqAct_Toggle_67',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_50.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_50.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_50'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_50 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_59
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_50.SeqAct_Toggle_61',InputLinkIdx=1)))
@@ -7381,35 +5416,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_61"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_50.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_50.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_50'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_50.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_50.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_50'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_50.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_50.SeqVar_Object_0'
@@ -7424,35 +5443,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_50.SeqAct_Toggle_61'
       DefaultViewX=-219
       DefaultViewY=-1724
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_50"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_50"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_5 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_5
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_5'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_5'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_62
          ObjInstanceVersion=1
@@ -7476,21 +5484,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_59"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_5.SeqAct_Toggle_66',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_5.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_5.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_5.SeqAct_Toggle_66',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_5.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_5.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_5'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_0 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_60
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_5.SeqAct_Toggle_62',InputLinkIdx=1)))
@@ -7518,35 +5518,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_62"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_5.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_5.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_5'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_5.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_5.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_5'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_5.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_5.SeqVar_Object_0'
@@ -7559,37 +5543,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_5.SeqVar_Bool_62'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_5.SequenceFrame_58'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_5.SeqAct_Toggle_62'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_5"
       DrawWidth=117
-      DrawHeight=29
       Name="Windows_Seq_5"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_49 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_49
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_49'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_49'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_63
          bValue=1
@@ -7616,21 +5587,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_58"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_49.SeqAct_Toggle_65',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_49.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_49.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_49.SeqAct_Toggle_65',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_49.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_49.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_49'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_49 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_61
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_49.SeqAct_Toggle_63',InputLinkIdx=1)))
@@ -7658,35 +5621,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_63"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_49.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_49.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_49'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_49.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_49.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_49'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_49.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_49.SeqVar_Object_0'
@@ -7701,35 +5648,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_49.SeqAct_Toggle_63'
       DefaultViewX=-219
       DefaultViewY=-1715
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_49"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_49"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_48 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_48
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_48'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_48'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_64
          bValue=1
@@ -7756,21 +5692,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_57"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_48.SeqAct_Toggle_64',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_48.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_48.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_48.SeqAct_Toggle_64',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_48.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_48.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_48'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_48 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_62
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_48.SeqAct_Toggle_65',InputLinkIdx=1)))
@@ -7798,35 +5726,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_64"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_48.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_48.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_48'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_48.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_48.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_48'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_48.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_48.SeqVar_Object_0'
@@ -7841,35 +5753,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_48.SeqAct_Toggle_65'
       DefaultViewX=-218
       DefaultViewY=-1715
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_48"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_48"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_47 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_47
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_47'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_47'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_65
          ObjInstanceVersion=1
@@ -7893,21 +5794,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_56"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_47.SeqAct_Toggle_63',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_47.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_47.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_47.SeqAct_Toggle_63',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_47.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_47.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_47'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_47 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_63
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_47.SeqAct_Toggle_66',InputLinkIdx=1)))
@@ -7935,35 +5828,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_63"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_47.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_47.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_47'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_47.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_47.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_47'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_47.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_47.SeqVar_Object_0'
@@ -7976,37 +5853,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_47.SeqVar_Bool_65'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_47.SequenceFrame_61'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_47.SeqAct_Toggle_66'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_47"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_47"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_46 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_46
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_46'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_46'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_66
          ObjInstanceVersion=1
@@ -8030,21 +5894,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_55"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_46.SeqAct_Toggle_62',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_46.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_46.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_46.SeqAct_Toggle_62',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_46.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_46.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_46'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_46 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_64
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_46.SeqAct_Toggle_67',InputLinkIdx=1)))
@@ -8072,35 +5928,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_62"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_46.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_46.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_46'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_46.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_46.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_46'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_46.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_46.SeqVar_Object_0'
@@ -8113,37 +5953,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_46.SeqVar_Bool_66'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_46.SequenceFrame_62'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_46.SeqAct_Toggle_67'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_46"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_46"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_45 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_45
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_45'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_45'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_67
          ObjInstanceVersion=1
@@ -8167,21 +5994,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_54"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_45.SeqAct_Toggle_61',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_45.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_45.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_45.SeqAct_Toggle_61',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_45.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_45.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_45'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_45 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_65
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_45.SeqAct_Toggle_68',InputLinkIdx=1)))
@@ -8209,35 +6028,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_61"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_45.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_45.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_45'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_45.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_45.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_45'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_45.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_45.SeqVar_Object_0'
@@ -8250,37 +6053,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_45.SeqVar_Bool_67'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_45.SequenceFrame_63'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_45.SeqAct_Toggle_68'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_45"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_45"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_44 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_44
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_44'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_44'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_68
          ObjInstanceVersion=1
@@ -8304,21 +6094,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_53"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_44.SeqAct_Toggle_60',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_44.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_44.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_44.SeqAct_Toggle_60',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_44.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_44.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_44'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_44 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_66
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_44.SeqAct_Toggle_69',InputLinkIdx=1)))
@@ -8346,35 +6128,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_60"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_44.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_44.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_44'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_44.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_44.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_44'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_44.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_44.SeqVar_Object_0'
@@ -8387,37 +6153,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_44.SeqVar_Bool_68'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_44.SequenceFrame_64'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_44.SeqAct_Toggle_69'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_44"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_44"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_43 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_43
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_43'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_43'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_69
          ObjInstanceVersion=1
@@ -8441,21 +6194,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_52"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_43.SeqAct_Toggle_59',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_43.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_43.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_43.SeqAct_Toggle_59',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_43.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_43.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_43'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_43 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_67
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_43.SeqAct_Toggle_70',InputLinkIdx=1)))
@@ -8483,35 +6228,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_59"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_43.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_43.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_43'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_43.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_43.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_43'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_43.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_43.SeqVar_Object_0'
@@ -8524,37 +6253,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_43.SeqVar_Bool_69'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_43.SequenceFrame_65'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_43.SeqAct_Toggle_70'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_43"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_43"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_42 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_42
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_42'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_42'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_70
          ObjInstanceVersion=1
@@ -8578,21 +6294,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_51"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_42.SeqAct_Toggle_58',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_42.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_42.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_42.SeqAct_Toggle_58',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_42.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_42.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_42'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_42 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_68
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_42.SeqAct_Toggle_71',InputLinkIdx=1)))
@@ -8620,35 +6328,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_58"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_42.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_42.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_42'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_42.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_42.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_42'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_42.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_42.SeqVar_Object_0'
@@ -8661,37 +6353,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_42.SeqVar_Bool_70'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_42.SequenceFrame_66'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_42.SeqAct_Toggle_71'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_42"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_42"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_41 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_41
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_41'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_41'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_71
          ObjInstanceVersion=1
@@ -8715,21 +6394,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_50"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_41.SeqAct_Toggle_57',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_41.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_41.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_41.SeqAct_Toggle_57',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_41.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_41.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_41'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_41 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_69
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_41.SeqAct_Toggle_72',InputLinkIdx=1)))
@@ -8757,35 +6428,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_57"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_41.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_41.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_41'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_41.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_41.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_41'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_41.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_41.SeqVar_Object_0'
@@ -8798,37 +6453,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_41.SeqVar_Bool_71'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_41.SequenceFrame_67'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_41.SeqAct_Toggle_72'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_41"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_41"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_40 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_40
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_40'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_40'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_72
          ObjInstanceVersion=1
@@ -8852,21 +6494,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_49"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_40.SeqAct_Toggle_56',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_40.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_40.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_40.SeqAct_Toggle_56',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_40.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_40.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_40'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_40 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_70
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_40.SeqAct_Toggle_73',InputLinkIdx=1)))
@@ -8894,35 +6528,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_56"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_40.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_40.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_40'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_40.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_40.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_40'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_40.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_40.SeqVar_Object_0'
@@ -8935,37 +6553,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_40.SeqVar_Bool_72'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_40.SequenceFrame_68'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_40.SeqAct_Toggle_73'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_40"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_40"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_4 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_4
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_4'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_4'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_73
          ObjInstanceVersion=1
@@ -8989,21 +6594,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_48"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_4.SeqAct_Toggle_55',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_4.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_4.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_4.SeqAct_Toggle_55',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_4.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_4.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_4'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_4 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_71
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_4.SeqAct_Toggle_74',InputLinkIdx=1)))
@@ -9031,35 +6628,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_55"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_4.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_4.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_4'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_4.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_4.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_4'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_4.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_4.SeqVar_Object_0'
@@ -9072,37 +6653,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_4.SeqVar_Bool_73'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_4.SequenceFrame_69'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_4.SeqAct_Toggle_74'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_4"
       DrawWidth=117
-      DrawHeight=29
       Name="Windows_Seq_4"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_39 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_39
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_39'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_39'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_74
          ObjInstanceVersion=1
@@ -9126,21 +6694,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_47"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_39.SeqAct_Toggle_54',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_39.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_39.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_39.SeqAct_Toggle_54',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_39.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_39.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_39'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_39 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_72
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_39.SeqAct_Toggle_75',InputLinkIdx=1)))
@@ -9168,35 +6728,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_54"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_39.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_39.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_39'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_39.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_39.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_39'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_39.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_39.SeqVar_Object_0'
@@ -9209,37 +6753,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_39.SeqVar_Bool_74'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_39.SequenceFrame_70'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_39.SeqAct_Toggle_75'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_39"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_39"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_38 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_38
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_38'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_38'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_75
          ObjInstanceVersion=1
@@ -9263,21 +6794,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_46"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_38.SeqAct_Toggle_53',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_38.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_38.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_38.SeqAct_Toggle_53',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_38.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_38.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_38'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_38 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_73
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_38.SeqAct_Toggle_76',InputLinkIdx=1)))
@@ -9305,35 +6828,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_53"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_38.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_38.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_38'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_38.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_38.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_38'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_38.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_38.SeqVar_Object_0'
@@ -9346,37 +6853,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_38.SeqVar_Bool_75'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_38.SequenceFrame_71'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_38.SeqAct_Toggle_76'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_38"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_38"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_37 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_37
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_37'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_37'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_76
          ObjInstanceVersion=1
@@ -9400,21 +6894,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_45"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_37.SeqAct_Toggle_52',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_37.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_37.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_37.SeqAct_Toggle_52',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_37.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_37.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_37'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_37 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_74
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_37.SeqAct_Toggle_77',InputLinkIdx=1)))
@@ -9442,35 +6928,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_52"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_37.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_37.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_37'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_37.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_37.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_37'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_37.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_37.SeqVar_Object_0'
@@ -9483,37 +6953,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_37.SeqVar_Bool_76'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_37.SequenceFrame_72'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_37.SeqAct_Toggle_77'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_37"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_37"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_36 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_36
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_36'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_36'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_77
          ObjInstanceVersion=1
@@ -9537,21 +6994,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_44"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_36.SeqAct_Toggle_51',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_36.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_36.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_36.SeqAct_Toggle_51',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_36.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_36.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_36'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_36 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_75
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_36.SeqAct_Toggle_78',InputLinkIdx=1)))
@@ -9579,35 +7028,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_51"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_36.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_36.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_36'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_36.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_36.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_36'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_36.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_36.SeqVar_Object_0'
@@ -9620,37 +7053,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_36.SeqVar_Bool_77'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_36.SequenceFrame_73'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_36.SeqAct_Toggle_78'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_36"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_36"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_35 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_35
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_35'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_35'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_78
          ObjInstanceVersion=1
@@ -9674,21 +7094,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_43"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_35.SeqAct_Toggle_50',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_35.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_35.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_35.SeqAct_Toggle_50',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_35.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_35.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_35'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_35 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_76
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_35.SeqAct_Toggle_79',InputLinkIdx=1)))
@@ -9716,35 +7128,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_50"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_35.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_35.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_35'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_35.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_35.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_35'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_35.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_35.SeqVar_Object_0'
@@ -9757,37 +7153,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_35.SeqVar_Bool_78'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_35.SequenceFrame_74'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_35.SeqAct_Toggle_79'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_35"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_35"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_34 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_34
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_34'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_34'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_79
          ObjInstanceVersion=1
@@ -9811,21 +7194,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_42"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_34.SeqAct_Toggle_49',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_34.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_34.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_34.SeqAct_Toggle_49',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_34.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_34.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_34'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_26 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_77
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_34.SeqAct_Toggle_80',InputLinkIdx=1)))
@@ -9853,35 +7228,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_49"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_34.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_34.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_34'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_34.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_34.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_34'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_34.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_34.SeqVar_Object_0'
@@ -9894,37 +7253,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_34.SeqVar_Bool_79'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_34.SequenceFrame_75'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_34.SeqAct_Toggle_80'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_34"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_34"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_33 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_33
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_33'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_33'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_80
          ObjInstanceVersion=1
@@ -9948,21 +7294,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_41"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_33.SeqAct_Toggle_48',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_33.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_33.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_33.SeqAct_Toggle_48',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_33.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_33.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_33'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_34 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_78
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_33.SeqAct_Toggle_81',InputLinkIdx=1)))
@@ -9990,35 +7328,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_48"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_33.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_33.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_33'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_33.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_33.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_33'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_33.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_33.SeqVar_Object_0'
@@ -10031,37 +7353,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_33.SeqVar_Bool_80'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_33.SequenceFrame_76'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_33.SeqAct_Toggle_81'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_33"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_33"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_32 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_32
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_32'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_32'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_81
          ObjInstanceVersion=1
@@ -10085,21 +7394,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_40"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_32.SeqAct_Toggle_47',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_32.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_32.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_32.SeqAct_Toggle_47',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_32.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_32.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_32'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_33 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_79
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_32.SeqAct_Toggle_82',InputLinkIdx=1)))
@@ -10127,35 +7428,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_47"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_32.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_32.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_32'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_32.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_32.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_32'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_32.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_32.SeqVar_Object_0'
@@ -10168,37 +7453,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_32.SeqVar_Bool_81'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_32.SequenceFrame_77'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_32.SeqAct_Toggle_82'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_32"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_32"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_31 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_31
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_31'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_31'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_82
          ObjInstanceVersion=1
@@ -10222,21 +7494,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_39"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_31.SeqAct_Toggle_46',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_31.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_31.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_31.SeqAct_Toggle_46',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_31.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_31.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_31'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_32 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_80
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_31.SeqAct_Toggle_83',InputLinkIdx=1)))
@@ -10264,35 +7528,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_46"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_31.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_31.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_31'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_31.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_31.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_31'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_31.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_31.SeqVar_Object_0'
@@ -10305,37 +7553,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_31.SeqVar_Bool_82'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_31.SequenceFrame_78'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_31.SeqAct_Toggle_83'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_31"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_31"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_30 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_30
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_30'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_30'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_83
          ObjInstanceVersion=1
@@ -10359,21 +7594,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_38"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_30.SeqAct_Toggle_45',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_30.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_30.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_30.SeqAct_Toggle_45',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_30.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_30.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_30'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_31 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_81
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_30.SeqAct_Toggle_84',InputLinkIdx=1)))
@@ -10401,35 +7628,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_45"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_30.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_30.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_30'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_30.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_30.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_30'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_30.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_30.SeqVar_Object_0'
@@ -10442,37 +7653,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_30.SeqVar_Bool_83'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_30.SequenceFrame_79'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_30.SeqAct_Toggle_84'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_30"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_30"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_3 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_3
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_3'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_3'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_84
          ObjInstanceVersion=1
@@ -10496,21 +7694,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_37"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_3.SeqAct_Toggle_44',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_3.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_3.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_3.SeqAct_Toggle_44',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_3.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_3.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_3'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_3 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_82
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_3.SeqAct_Toggle_85',InputLinkIdx=1)))
@@ -10538,35 +7728,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_44"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_3.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_3.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_3'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_3.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_3.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_3'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_3.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_3.SeqVar_Object_0'
@@ -10579,37 +7753,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_3.SeqVar_Bool_84'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_3.SequenceFrame_80'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_3.SeqAct_Toggle_85'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_3"
       DrawWidth=117
-      DrawHeight=29
       Name="Windows_Seq_3"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_29 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_29
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_29'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_29'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_85
          ObjInstanceVersion=1
@@ -10633,21 +7794,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_36"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_29.SeqAct_Toggle_43',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_29.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_29.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_29.SeqAct_Toggle_43',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_29.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_29.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_29'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_30 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_83
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_29.SeqAct_Toggle_86',InputLinkIdx=1)))
@@ -10675,35 +7828,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_43"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_29.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_29.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_29'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_29.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_29.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_29'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_29.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_29.SeqVar_Object_0'
@@ -10716,37 +7853,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_29.SeqVar_Bool_85'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_29.SequenceFrame_81'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_29.SeqAct_Toggle_86'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_29"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_29"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_28 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_28
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_28'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_28'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_86
          ObjInstanceVersion=1
@@ -10770,21 +7894,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_35"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_28.SeqAct_Toggle_42',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_28.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_28.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_28.SeqAct_Toggle_42',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_28.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_28.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_28'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_29 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_84
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_28.SeqAct_Toggle_87',InputLinkIdx=1)))
@@ -10812,35 +7928,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_42"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_28.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_28.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_28'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_28.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_28.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_28'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_28.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_28.SeqVar_Object_0'
@@ -10853,37 +7953,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_28.SeqVar_Bool_86'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_28.SequenceFrame_82'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_28.SeqAct_Toggle_87'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_28"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_28"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_27 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_27
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_27'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_27'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_87
          ObjInstanceVersion=1
@@ -10907,21 +7994,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_34"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_27.SeqAct_Toggle_41',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_27.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_27.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_27.SeqAct_Toggle_41',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_27.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_27.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_27'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_28 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_85
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_27.SeqAct_Toggle_88',InputLinkIdx=1)))
@@ -10949,35 +8028,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_41"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_27.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_27.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_27'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_27.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_27.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_27'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_27.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_27.SeqVar_Object_0'
@@ -10990,37 +8053,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_27.SeqVar_Bool_87'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_27.SequenceFrame_83'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_27.SeqAct_Toggle_88'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_27"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_27"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_26 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_26
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_26'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_26'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_88
          ObjInstanceVersion=1
@@ -11044,21 +8094,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_33"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_26.SeqAct_Toggle_40',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_26.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_26.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_26.SeqAct_Toggle_40',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_26.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_26.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_26'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_27 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_86
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_26.SeqAct_Toggle_89',InputLinkIdx=1)))
@@ -11086,35 +8128,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_40"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_26.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_26.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_26'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_26.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_26.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_26'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_26.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_26.SeqVar_Object_0'
@@ -11127,37 +8153,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_26.SeqVar_Bool_88'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_26.SequenceFrame_84'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_26.SeqAct_Toggle_89'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_26"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_26"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_25 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_25
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_25'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_25'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_89
          ObjInstanceVersion=1
@@ -11181,21 +8194,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_32"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_25.SeqAct_Toggle_39',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_25.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_25.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_25.SeqAct_Toggle_39',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_25.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_25.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_25'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_25 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_87
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_25.SeqAct_Toggle_90',InputLinkIdx=1)))
@@ -11223,35 +8228,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_39"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_25.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_25.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_25'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_25.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_25.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_25'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_25.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_25.SeqVar_Object_0'
@@ -11264,37 +8253,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_25.SeqVar_Bool_89'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_25.SequenceFrame_85'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_25.SeqAct_Toggle_90'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_25"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_25"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_24 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_24
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_24'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_24'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_90
          ObjInstanceVersion=1
@@ -11318,21 +8294,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_31"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_24.SeqAct_Toggle_38',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_24.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_24.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_24.SeqAct_Toggle_38',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_24.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_24.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_24'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_24 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_88
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_24.SeqAct_Toggle_91',InputLinkIdx=1)))
@@ -11360,35 +8328,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_38"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_24.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_24.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_24'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_24.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_24.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_24'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_24.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_24.SeqVar_Object_0'
@@ -11401,37 +8353,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_24.SeqVar_Bool_90'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_24.SequenceFrame_86'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_24.SeqAct_Toggle_91'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_24"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_24"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_23 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_23
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_23'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_23'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_91
          ObjInstanceVersion=1
@@ -11455,21 +8394,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_30"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_23.SeqAct_Toggle_37',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_23.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_23.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_23.SeqAct_Toggle_37',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_23.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_23.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_23'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_23 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_89
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_23.SeqAct_Toggle_92',InputLinkIdx=1)))
@@ -11497,35 +8428,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_37"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_23.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_23.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_23'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_23.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_23.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_23'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_23.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_23.SeqVar_Object_0'
@@ -11538,37 +8453,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_23.SeqVar_Bool_91'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_23.SequenceFrame_87'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_23.SeqAct_Toggle_92'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_23"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_23"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_22 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_22
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_22'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_22'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_92
          bValue=1
@@ -11595,21 +8497,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_29"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_22.SeqAct_Toggle_36',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_22.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_22.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_22.SeqAct_Toggle_36',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_22.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_22.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_22'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_22 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_90
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_22.SeqAct_Toggle_93',InputLinkIdx=1)))
@@ -11637,35 +8531,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_36"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_22.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_22.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_22'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_22.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_22.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_22'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_22.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_22.SeqVar_Object_0'
@@ -11680,35 +8558,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_22.SeqAct_Toggle_93'
       DefaultViewX=-219
       DefaultViewY=-1715
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_22"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_22"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_21 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_21
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_21'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_21'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_93
          bValue=1
@@ -11735,21 +8602,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_28"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_21.SeqAct_Toggle_35',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_21.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_21.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_21.SeqAct_Toggle_35',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_21.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_21.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_21'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_21 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_91
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_21.SeqAct_Toggle_94',InputLinkIdx=1)))
@@ -11777,35 +8636,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_35"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_21.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_21.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_21'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_21.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_21.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_21'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_21.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_21.SeqVar_Object_0'
@@ -11820,35 +8663,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_21.SeqAct_Toggle_94'
       DefaultViewX=-219
       DefaultViewY=-1715
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_21"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_21"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_20 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_20
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_20'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_20'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_94
          bValue=1
@@ -11875,21 +8707,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_27"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_20.SeqAct_Toggle_34',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_20.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_20.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_20.SeqAct_Toggle_34',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_20.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_20.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_20'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_20 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_92
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_20.SeqAct_Toggle_95',InputLinkIdx=1)))
@@ -11917,35 +8741,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_34"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_20.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_20.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_20'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_20.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_20.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_20'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_20.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_20.SeqVar_Object_0'
@@ -11960,35 +8768,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_20.SeqAct_Toggle_95'
       DefaultViewX=-219
       DefaultViewY=-1715
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_20"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_20"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_2 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_2
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_2'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_2'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_95
          ObjInstanceVersion=1
@@ -12012,21 +8809,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_26"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_2.SeqAct_Toggle_33',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_2.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_2.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_2.SeqAct_Toggle_33',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_2.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_2.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_2'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_2 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_93
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_2.SeqAct_Toggle_96',InputLinkIdx=1)))
@@ -12054,35 +8843,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_33"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_2.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_2.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_2'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_2.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_2.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_2'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_2.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_2.SeqVar_Object_0'
@@ -12095,37 +8868,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_2.SeqVar_Bool_95'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_2.SequenceFrame_91'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_2.SeqAct_Toggle_96'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_2"
       DrawWidth=117
-      DrawHeight=29
       Name="Windows_Seq_2"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_19 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_19
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_19'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_19'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_96
          bValue=1
@@ -12152,21 +8912,12 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_25"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_19.SeqAct_Toggle_32',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_19.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_19.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_19.SeqAct_Toggle_32',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_19.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_19.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_19'
-         ObjPosX=1144
-         ObjPosY=3256
-         ObjName="InterpActor_19 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_94
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_19.SeqAct_Toggle_97',InputLinkIdx=1)))
@@ -12194,35 +8945,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_32"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_19.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_19.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_19'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_19.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_19.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_19'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_19.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_19.SeqVar_Object_0'
@@ -12237,35 +8972,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_19.SeqAct_Toggle_97'
       DefaultViewX=-219
       DefaultViewY=-1715
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_19"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_19"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_17 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_17
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_17'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_17'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_97
          ObjInstanceVersion=1
@@ -12289,21 +9013,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_24"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_17.SeqAct_Toggle_31',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_17.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_17.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_17.SeqAct_Toggle_31',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_17.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_17.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_17'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_17 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_95
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_17.SeqAct_Toggle_98',InputLinkIdx=1)))
@@ -12331,35 +9047,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_31"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_17.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_17.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_17'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_17.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_17.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_17'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_17.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_17.SeqVar_Object_0'
@@ -12372,37 +9072,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_17.SeqVar_Bool_97'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_17.SequenceFrame_93'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_17.SeqAct_Toggle_98'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_17"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_17"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_16 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_16
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_16'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_16'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_98
          ObjInstanceVersion=1
@@ -12426,21 +9113,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_23"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_16.SeqAct_Toggle_30',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_16.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_16.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_16.SeqAct_Toggle_30',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_16.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_16.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_16'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_16 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_96
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_16.SeqAct_Toggle_99',InputLinkIdx=1)))
@@ -12468,35 +9147,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_30"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_16.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_16.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_16'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_16.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_16.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_16'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_16.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_16.SeqVar_Object_0'
@@ -12509,37 +9172,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_16.SeqVar_Bool_98'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_16.SequenceFrame_94'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_16.SeqAct_Toggle_99'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_16"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_16"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_15 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_15
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_15'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_15'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_99
          ObjInstanceVersion=1
@@ -12563,21 +9213,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_22"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_15.SeqAct_Toggle_29',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_15.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_15.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_15.SeqAct_Toggle_29',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_15.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_15.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_15'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_15 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_97
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_15.SeqAct_Toggle_100',InputLinkIdx=1)))
@@ -12605,35 +9247,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_100"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_15.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_15.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_15'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_15.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_15.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_15'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_15.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_15.SeqVar_Object_0'
@@ -12646,37 +9272,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_15.SeqVar_Bool_99'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_15.SequenceFrame_95'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_15.SeqAct_Toggle_100'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_15"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_15"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_14 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_14
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_14'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_14'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_100
          ObjInstanceVersion=1
@@ -12700,21 +9313,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_21"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_14.SeqAct_Toggle_28',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_14.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_14.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_14.SeqAct_Toggle_28',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_14.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_14.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_14'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_14 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_98
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_14.SeqAct_Toggle_101',InputLinkIdx=1)))
@@ -12742,35 +9347,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_101"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_14.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_14.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_14'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_14.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_14.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_14'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_14.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_14.SeqVar_Object_0'
@@ -12783,37 +9372,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_14.SeqVar_Bool_100'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_14.SequenceFrame_96'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_14.SeqAct_Toggle_101'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_14"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_14"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_13 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_13
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_13'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_13'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_101
          ObjInstanceVersion=1
@@ -12837,21 +9413,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_20"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_13.SeqAct_Toggle_27',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_13.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_13.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_13.SeqAct_Toggle_27',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_13.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_13.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_13'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_13 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_99
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_13.SeqAct_Toggle_102',InputLinkIdx=1)))
@@ -12879,35 +9447,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_102"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_13.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_13.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_13'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_13.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_13.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_13'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_13.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_13.SeqVar_Object_0'
@@ -12920,78 +9472,56 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_13.SeqVar_Bool_101'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_13.SequenceFrame_97'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_13.SeqAct_Toggle_102'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_13"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_13"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_123 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_123
       DefaultViewX=108
       DefaultViewY=-1649
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjPosX=-88
       ObjPosY=272
       ObjName="Windows_Seq_123"
       DrawWidth=133
-      DrawHeight=29
       Name="Windows_Seq_123"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_121 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_121
       DefaultViewX=-219
       DefaultViewY=-1724
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjPosX=-16
       ObjPosY=144
       ObjName="Windows_Seq_121"
       DrawWidth=133
-      DrawHeight=29
       Name="Windows_Seq_121"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_120 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_120
       DefaultViewX=-219
       DefaultViewY=-1724
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjPosY=144
       ObjName="Windows_Seq_120"
       DrawWidth=133
-      DrawHeight=29
       Name="Windows_Seq_120"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_12 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_12
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_12'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_12'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_102
          ObjInstanceVersion=1
@@ -13015,21 +9545,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_19"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_12.SeqAct_Toggle_26',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_12.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_12.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_12.SeqAct_Toggle_26',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_12.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_12.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_12'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_12 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_100
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_12.SeqAct_Toggle_103',InputLinkIdx=1)))
@@ -13057,35 +9579,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_103"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_12.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_12.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_12'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_12.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_12.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_12'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_12.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_12.SeqVar_Object_0'
@@ -13098,49 +9604,33 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_12.SeqVar_Bool_102'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_12.SequenceFrame_98'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_12.SeqAct_Toggle_103'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_12"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_12"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_119 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_119
       DefaultViewX=116
       DefaultViewY=-1661
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_119"
       DrawWidth=133
-      DrawHeight=29
       Name="Windows_Seq_119"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_118 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_118
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_118'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_118'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_103
          bValue=1
@@ -13165,21 +9655,15 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_18"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
          MaxWidth=212
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_118.SeqAct_Toggle_25',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_118.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_118.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1216,OverrideDelta=40)
-         VariableLinks(1)=(DrawX=1290,OverrideDelta=120)
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_118.SeqAct_Toggle_25',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_118.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_118.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_118'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_118 Take Damage"
          DrawWidth=126
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_101
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_118.SeqAct_Toggle_104',InputLinkIdx=1)))
@@ -13207,35 +9691,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_104"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_118.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_118.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_118'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_118.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_118.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_118'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_118.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_118.SeqVar_Object_0'
@@ -13250,35 +9718,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_118.SeqAct_Toggle_104'
       DefaultViewX=-469
       DefaultViewY=-1943
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_118"
       DrawWidth=133
-      DrawHeight=29
       Name="Windows_Seq_118"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_112 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_112
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_112'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_112'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_104
          bValue=1
@@ -13303,21 +9760,15 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_17"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
          MaxWidth=212
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_112.SeqAct_Toggle_24',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_112.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_112.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1216,OverrideDelta=40)
-         VariableLinks(1)=(DrawX=1290,OverrideDelta=120)
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_112.SeqAct_Toggle_24',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_112.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_112.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_112'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_112 Take Damage"
          DrawWidth=126
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_102
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_112.SeqAct_Toggle_105',InputLinkIdx=1)))
@@ -13345,35 +9796,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_105"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_112.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_112.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_112'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_112.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_112.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_112'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_112.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_112.SeqVar_Object_0'
@@ -13388,35 +9823,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_112.SeqAct_Toggle_105'
       DefaultViewX=108
       DefaultViewY=-1649
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_112"
       DrawWidth=133
-      DrawHeight=29
       Name="Windows_Seq_112"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_11 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_11
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_11'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_11'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_105
          ObjInstanceVersion=1
@@ -13440,21 +9864,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_16"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_11.SeqAct_Toggle_23',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_11.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_11.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_11.SeqAct_Toggle_23',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_11.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_11.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_11'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_11 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_103
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_11.SeqAct_Toggle_106',InputLinkIdx=1)))
@@ -13482,35 +9898,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_106"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_11.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_11.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_11'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_11.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_11.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_11'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_11.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_11.SeqVar_Object_0'
@@ -13523,37 +9923,26 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_11.SeqVar_Bool_105'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_11.SequenceFrame_101'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_11.SeqAct_Toggle_106'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_11"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_11"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_107 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_107
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_107'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_107'
          ObjPosX=2456
          ObjPosY=3296
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_106
          ObjInstanceVersion=1
@@ -13577,21 +9966,15 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_15"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
          MaxWidth=212
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_107.SeqAct_Toggle_22',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_107.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_107.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1216,OverrideDelta=40)
-         VariableLinks(1)=(DrawX=1290,OverrideDelta=120)
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_107.SeqAct_Toggle_22',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_107.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_107.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_107'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_107 Take Damage"
          DrawWidth=126
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_104
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_107.SeqAct_Toggle_107',InputLinkIdx=1)))
@@ -13619,35 +10002,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_107"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_107.SeqVar_Object_0'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_107.SeqVar_Object_0'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_107'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_107.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_107.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_107'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_107.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_107.SeqVar_Object_0'
@@ -13663,34 +10030,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       DefaultViewX=-643
       DefaultViewY=-1920
       DefaultViewZoom=0.650345
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_107"
       DrawWidth=133
-      DrawHeight=29
       Name="Windows_Seq_107"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_104 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_104
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_104'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_104'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_107
          bValue=1
@@ -13715,21 +10072,15 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_14"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
          MaxWidth=212
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_104.SeqAct_Toggle_21',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_104.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_104.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1216,OverrideDelta=40)
-         VariableLinks(1)=(DrawX=1290,OverrideDelta=120)
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_104.SeqAct_Toggle_21',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_104.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_104.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_104'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_104 Take Damage"
          DrawWidth=126
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_105
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_104.SeqAct_Toggle_108',InputLinkIdx=1)))
@@ -13757,35 +10108,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_108"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_104.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_104.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_104'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_104.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_104.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_104'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_104.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_104.SeqVar_Object_0'
@@ -13800,35 +10135,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_104.SeqAct_Toggle_108'
       DefaultViewX=-219
       DefaultViewY=-1724
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_104"
       DrawWidth=133
-      DrawHeight=29
       Name="Windows_Seq_104"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_103 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_103
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_103'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_103'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_108
          bValue=1
@@ -13853,21 +10177,15 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_13"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
          MaxWidth=212
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_103.SeqAct_Toggle_20',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_103.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_103.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1216,OverrideDelta=40)
-         VariableLinks(1)=(DrawX=1290,OverrideDelta=120)
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_103.SeqAct_Toggle_20',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_103.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_103.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_103'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_103 Take Damage"
          DrawWidth=126
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_106
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_103.SeqAct_Toggle_109',InputLinkIdx=1)))
@@ -13895,35 +10213,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_109"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_103.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_103.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_103'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_103.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_103.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_103'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_103.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_103.SeqVar_Object_0'
@@ -13938,35 +10240,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_103.SeqAct_Toggle_109'
       DefaultViewX=-219
       DefaultViewY=-1724
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_103"
       DrawWidth=133
-      DrawHeight=29
       Name="Windows_Seq_103"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_102 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_102
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_102'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_102'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_109
          bValue=1
@@ -13991,21 +10282,15 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_12"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
          MaxWidth=212
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_102.SeqAct_Toggle_19',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_102.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_102.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1216,OverrideDelta=40)
-         VariableLinks(1)=(DrawX=1290,OverrideDelta=120)
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_102.SeqAct_Toggle_19',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_102.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_102.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_102'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_102 Take Damage"
          DrawWidth=126
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_107
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_102.SeqAct_Toggle_110',InputLinkIdx=1)))
@@ -14033,35 +10318,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_110"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_102.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_102.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_102'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_102.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_102.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_102'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_102.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_102.SeqVar_Object_0'
@@ -14076,35 +10345,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_102.SeqAct_Toggle_110'
       DefaultViewX=-219
       DefaultViewY=-1724
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_102"
       DrawWidth=133
-      DrawHeight=29
       Name="Windows_Seq_102"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_101 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_101
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_101'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_101'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_110
          bValue=1
@@ -14129,21 +10387,15 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_11"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
          MaxWidth=212
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_101.SeqAct_Toggle_18',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_101.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_101.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1216,OverrideDelta=40)
-         VariableLinks(1)=(DrawX=1290,OverrideDelta=120)
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_101.SeqAct_Toggle_18',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_101.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_101.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_101'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_101 Take Damage"
          DrawWidth=126
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_108
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_101.SeqAct_Toggle_111',InputLinkIdx=1)))
@@ -14171,35 +10423,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_111"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_101.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_101.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_101'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_101.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_101.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_101'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_101.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_101.SeqVar_Object_0'
@@ -14214,35 +10450,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_101.SeqAct_Toggle_111'
       DefaultViewX=-219
       DefaultViewY=-1724
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_101"
       DrawWidth=133
-      DrawHeight=29
       Name="Windows_Seq_101"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_10 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_10
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_10'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_10'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_111
          ObjInstanceVersion=1
@@ -14266,21 +10491,13 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_10"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
-         MaxWidth=204
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_10.SeqAct_Toggle_17',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_10.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_10.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1212,OverrideDelta=36)
-         VariableLinks(1)=(DrawX=1286,OverrideDelta=116)
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_10.SeqAct_Toggle_17',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_10.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_10.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_10'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_10 Take Damage"
-         DrawWidth=122
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_109
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_10.SeqAct_Toggle_112',InputLinkIdx=1)))
@@ -14308,35 +10525,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_112"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_10.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_10.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_10'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_10.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_10.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_10'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_10.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_10.SeqVar_Object_0'
@@ -14349,37 +10550,24 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_10.SeqVar_Bool_111'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_10.SequenceFrame_107'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_10.SeqAct_Toggle_112'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_10"
       DrawWidth=125
-      DrawHeight=29
       Name="Windows_Seq_10"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
-   Begin Object Class=PrefabSequence Name=Windows_Seq_0 Archetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+   Begin Object Class=PrefabSequence Name=Windows_Seq_0
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_0'
-         ObjPosX=1944
-         ObjPosY=3312
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_19"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_19'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
-      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0 Archetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+      Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_0'
-         ObjPosX=1968
-         ObjPosY=3088
-         DrawWidth=32
-         DrawHeight=32
          Name="SeqVar_Object_0"
-         ObjectArchetype=SeqVar_Object'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqVar_Object_0'
+         ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
       End Object
       Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_112
          ObjInstanceVersion=1
@@ -14405,21 +10593,15 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqEvent_Touch_9"
          ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
       End Object
-      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0 Archetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
-         DamageThreshold=25.000000
+      Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_0
          MaxWidth=196
-         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_0.SeqAct_Toggle_16',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_0.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_0.SeqAct_PlaySound_0')),DrawY=3322,OverrideDelta=11)
-         VariableLinks(0)=(DrawX=1208,OverrideDelta=32)
-         VariableLinks(1)=(DrawX=1282,OverrideDelta=112)
+         OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_0.SeqAct_Toggle_16',InputLinkIdx=2),(LinkedOp=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_0.SeqAct_Destroy_0'),(LinkedOp=SeqAct_PlaySound'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_0.SeqAct_PlaySound_0')))
          ObjInstanceVersion=3
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_0'
-         ObjPosX=1144
-         ObjPosY=3256
          ObjName="InterpActor_7 Take Damage"
          DrawWidth=118
-         DrawHeight=144
          Name="SeqEvent_TakeDamage_0"
-         ObjectArchetype=SeqEvent_TakeDamage'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqEvent_TakeDamage_0'
+         ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
       End Object
       Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_110
          OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_0.SeqAct_Toggle_113',InputLinkIdx=1)))
@@ -14447,35 +10629,19 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
          Name="SeqAct_Toggle_113"
          ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
       End Object
-      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0 Archetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
-         InputLinks(0)=(DrawY=3464,OverrideDelta=25)
-         InputLinks(1)=(DrawY=3508,OverrideDelta=69)
-         OutputLinks(0)=(DrawY=3453,OverrideDelta=14)
-         OutputLinks(1)=(DrawY=3475,OverrideDelta=36)
-         OutputLinks(2)=(DrawY=3497,OverrideDelta=58)
-         OutputLinks(3)=(DrawY=3519,OverrideDelta=80)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_0.SeqVar_Object_19'),DrawX=2023,OverrideDelta=33)
+      Begin Object Class=SeqAct_PlaySound Name=SeqAct_PlaySound_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_0.SeqVar_Object_19'))
          ObjInstanceVersion=2
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_0'
-         ObjPosX=1968
-         ObjPosY=3416
-         DrawWidth=111
-         DrawHeight=133
          Name="SeqAct_PlaySound_0"
-         ObjectArchetype=SeqAct_PlaySound'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_PlaySound_0'
+         ObjectArchetype=SeqAct_PlaySound'Engine.Default__SeqAct_PlaySound'
       End Object
-      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0 Archetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
-         InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_0.SeqVar_Object_0'),DrawX=2006,OverrideDelta=16)
+      Begin Object Class=SeqAct_Destroy Name=SeqAct_Destroy_0
+         VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_0.SeqVar_Object_0'))
          ObjInstanceVersion=1
          ParentSequence=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_0'
-         ObjPosX=1968
-         ObjPosY=2984
-         DrawWidth=76
-         DrawHeight=61
          Name="SeqAct_Destroy_0"
-         ObjectArchetype=SeqAct_Destroy'LD_Toolbox.Prefabs.Windows:PrefabSequence_5.SeqAct_Destroy_0'
+         ObjectArchetype=SeqAct_Destroy'Engine.Default__SeqAct_Destroy'
       End Object
       SequenceObjects(0)=SeqAct_Destroy'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_0.SeqAct_Destroy_0'
       SequenceObjects(1)=SeqVar_Object'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_0.SeqVar_Object_0'
@@ -14488,16 +10654,11 @@ Begin Object Class=PrefabSequenceContainer Name=Prefabs
       SequenceObjects(8)=SeqVar_Bool'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_0.SeqVar_Bool_112'
       SequenceObjects(9)=SequenceFrame'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_0.SequenceFrame_108'
       SequenceObjects(10)=SeqAct_Toggle'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_0.SeqAct_Toggle_113'
-      DefaultViewX=-509
-      DefaultViewY=-1906
-      DefaultViewZoom=0.666233
-      ObjInstanceVersion=1
       ParentSequence=PrefabSequenceContainer'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs'
       ObjName="Windows_Seq_0"
       DrawWidth=117
-      DrawHeight=29
       Name="Windows_Seq_0"
-      ObjectArchetype=PrefabSequence'LD_Toolbox.Prefabs.Windows:PrefabSequence_5'
+      ObjectArchetype=PrefabSequence'Engine.Default__PrefabSequence'
    End Object
    SequenceObjects(0)=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_2'
    SequenceObjects(1)=PrefabSequence'KF-Outpost.TheWorld:PersistentLevel.Main_Sequence.Prefabs.Windows_Seq_3'

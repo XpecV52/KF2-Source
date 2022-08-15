@@ -70,7 +70,7 @@ private final simulated function ResetSupplier()
         {
             InteractionTrigger = Spawn(Class'KFUsablePerkTrigger', OwnerPawn,, OwnerPawn.Location, OwnerPawn.Rotation,, true);
             InteractionTrigger.SetBase(OwnerPawn);
-            InteractionTrigger.SetInteractionIndex(5);
+            InteractionTrigger.SetInteractionIndex(2);
             OwnerPC.SetPendingInteractionMessage();
         }        
     }

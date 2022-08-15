@@ -962,6 +962,9 @@ event bool ConfirmReservation(const UniqueNetId PlayerID);
 // Export UGameInfo::execSetNeedsRestart(FFrame&, void* const)
 native function SetNeedsRestart();
 
+// Export UGameInfo::execSetNeedsReload(FFrame&, void* const)
+native function SetNeedsReload();
+
 function StartMatch()
 {
     local Actor A;

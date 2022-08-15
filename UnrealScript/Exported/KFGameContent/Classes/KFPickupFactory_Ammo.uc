@@ -39,13 +39,14 @@ function GiveTo( Pawn P )
 	KFIM = KFInventoryManager(P.InvManager);
 	if ( KFIM != None )
 	{
-		KFIM.GiveWeaponsAmmo( true );
+		if( KFIM.GiveWeaponsAmmo( true ) )
+		{
+			if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Pickup$","$P.PlayerReplicationInfo.PlayerName$","$"Ammo");
+			if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ( "pickup", P.PlayerReplicationInfo, "ammo");
 
-		if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Pickup$","$P.PlayerReplicationInfo.PlayerName$","$"Ammo");
-		if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ( "pickup", P.PlayerReplicationInfo, "ammo");
+			PickedUpBy( P );
+		}
 	}
-
-	PickedUpBy( P );
 }
 
 /** Activate a different pickup after the 'RespawnDelay' has finished */

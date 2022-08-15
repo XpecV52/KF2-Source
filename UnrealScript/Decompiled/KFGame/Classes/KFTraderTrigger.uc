@@ -28,7 +28,7 @@ simulated function bool GetIsUsable(Pawn User)
 
 function int GetInteractionIndex()
 {
-    return 3;
+    return 4;
 }
 
 event Touch(Actor Other, PrimitiveComponent OtherComp, Vector HitLocation, Vector HitNormal)

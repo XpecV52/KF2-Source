@@ -32,7 +32,8 @@ package tripwire.containers.trader
                 "delay":6,
                 "autoAlpha":1,
                 "ease":Cubic.easeOut,
-                "useFrames":true
+                "useFrames":true,
+                "onComplete":onOpened
             });
             this.perkList.focusable = true;
         }
@@ -48,7 +49,8 @@ package tripwire.containers.trader
                 "alpha":0,
                 "visible":false,
                 "ease":Cubic.easeOut,
-                "useFrames":true
+                "useFrames":true,
+                "onComplete":onClosed
             });
         }
     }

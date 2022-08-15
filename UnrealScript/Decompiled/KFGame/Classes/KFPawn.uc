@@ -509,6 +509,9 @@ native function bool AllowFirstPersonPreshadows();
 // Export UKFPawn::execClearBloodDecals(FFrame&, void* const)
 native function ClearBloodDecals();
 
+// Export UKFPawn::execForceUnCrouch(FFrame&, void* const)
+native function ForceUnCrouch();
+
 simulated event PreBeginPlay()
 {
     local MapInfo MapInfo;

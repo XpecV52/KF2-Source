@@ -102,6 +102,8 @@ var config bool	bEnableAdvDebugLines;
 // (cpptext)
 // (cpptext)
 // (cpptext)
+// (cpptext)
+// (cpptext)
 
 native static function bool CheckSkipLobby(); // If -skiplobby is added to the command line, return true
 native static function bool CheckSkipGammaCheck(); // If -NoGammaStartup is added to the command line, return true

@@ -74,6 +74,7 @@ simulated event Destroyed()
 
 simulated function UpdateScreenUI()
 {
+    local float WeldPercentageFloat;
     local byte WeldPercentage;
 
     if(((Instigator != none) && Instigator.IsLocallyControlled()) && Instigator.Weapon == self)
@@ -86,7 +87,19 @@ simulated function UpdateScreenUI()
             }
             if(WeldTarget != none)
             {
-                WeldPercentage = byte((float(WeldTarget.WeldIntegrity) / float(WeldTarget.MaxWeldIntegrity)) * float(100));
+                WeldPercentageFloat = (float(WeldTarget.WeldIntegrity) / float(WeldTarget.MaxWeldIntegrity)) * 100;
+                if((WeldPercentageFloat < 1) && WeldPercentageFloat > 0)
+                {
+                    WeldPercentageFloat = 1;                    
+                }
+                else
+                {
+                    if((WeldPercentageFloat > 99) && WeldPercentageFloat < 100)
+                    {
+                        WeldPercentageFloat = 99;
+                    }
+                }
+                WeldPercentage = byte(WeldPercentageFloat);
                 if(WeldPercentage != ScreenUI.IntegrityPercentage)
                 {
                     ScreenUI.SetIntegrity(WeldPercentage);
@@ -115,7 +128,7 @@ simulated function bool HasAmmo(byte FireModeNum, optional int Amount)
     {
         if((float(AmmoCount[0]) - AmmoCost) > float(0))
         {
-            return WeldTarget != none;
+            return (WeldTarget != none) && CanWeldTarget(FireModeNum);
         }
         return false;
     }
@@ -193,15 +206,16 @@ simulated function CustomFire()
     }
 }
 
-simulated function bool CanWeldTarget()
+simulated function bool CanWeldTarget(optional int FireModeNum)
 {
-    if((CurrentFireMode == 0) && WeldTarget.WeldIntegrity >= WeldTarget.MaxWeldIntegrity)
+    FireModeNum = CurrentFireMode;
+    if((FireModeNum == 0) && WeldTarget.WeldIntegrity >= WeldTarget.MaxWeldIntegrity)
     {
         return false;        
     }
     else
     {
-        if((CurrentFireMode == 1) && WeldTarget.WeldIntegrity <= 0)
+        if((FireModeNum == 1) && WeldTarget.WeldIntegrity <= 0)
         {
             return false;
         }

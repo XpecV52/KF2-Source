@@ -741,6 +741,12 @@ static function PreloadContentClasses(KFGameReplicationInfo GRI);
  */
 native function SetNeedsRestart();
 
+/**
+ * @brief Marks the game as needing to reload the map. If no one is playing, will reload the map immediately, otherwise will do nothing because the map
+ *        will reload when the player win/lose/all leave
+ */
+native function SetNeedsReload();
+
 native static function StaticSetNeedsRestart();
 
 /************************************************************************************
@@ -1597,6 +1603,38 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 	local int PlayerScoreDelta, TeamPenalty;
 	local KFPerk KFPCP;
 	local KFPawn_Monster MonsterPawn;
+	local string KillerLabel;
+	local KFAIController KFAIC;
+
+	if ( KilledPlayer != None && KilledPlayer.bIsPlayer )
+	{
+		KilledPRI = KFPlayerReplicationInfo( KilledPlayer.PlayerReplicationInfo );
+		KFPC = KFPlayerController( KilledPlayer );
+		if( KilledPRI != none )
+		{
+			if ( KilledPlayer == Killer )
+			{
+				KillerLabel = "self";
+			}
+			else
+			{
+				KFAIC = KFAIController(Killer);
+				if ( KFAIC != none )
+				{
+					KillerLabel = string(KFAIC.MyKFPawn.Class.Name);
+				}
+			}
+		}			
+
+		if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("player_death",
+					   KilledPRI,
+					   KillerLabel,
+					   DT.Class.Name,
+					   "#"$MyKFGRI.WaveNum,
+					   KFPC.GetPerk().PerkName,
+					   KFPC.GetPerk().GetLevel(),
+					   KFInventoryManager(KilledPawn.InvManager).DumpInventory() );
+	}
 
 	Super.Killed( Killer, KilledPlayer, KilledPawn, DT );
 
@@ -1645,8 +1683,6 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 		KilledPRI = KFPlayerReplicationInfo(KilledPlayer.PlayerReplicationInfo);
         if( KilledPRI != none )
 		{
-			if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("player_death", KilledPRI);
-			
         	PlayerScoreDelta = GetAdjustedDeathPenalty( KilledPRI );
         	if (bLogScoring) LogInternal("SCORING: Player" @ KilledPRI.PlayerName @ "next starting dosh =" @ PlayerScoreDelta + KilledPRI.score);
         	KilledPRI.AddDosh( PlayerScoreDelta );
@@ -2226,6 +2262,10 @@ function UnregisterPlayer(PlayerController PC)
 	KFPC = KFPlayerController(PC);
 	if( KFPC != none )
 	{
+		if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("player_disconnected",
+					   KFPC.PlayerReplicationInfo,
+					   "#"$MyKFGRI.WaveNum);
+
 		KFPC.ClientWriteAndFlushStats();
 	}
 
@@ -2582,7 +2622,7 @@ function LogPlayersDosh(name EventName)
 		if ( PC.PlayerReplicationInfo != None && !PC.PlayerReplicationInfo.bIsSpectator )
 		{
 			if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(EventName$","$PC.PlayerReplicationInfo.PlayerName$","$"$"$PC.PlayerReplicationInfo.Score$","$PC.GetPerk());
-			if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("dosh", PC.PlayerReplicationInfo, EventName, "#"$PC.PlayerReplicationInfo.Score, PC.GetPerk(), "#"$MyKFGRI.WaveNum );
+//			`AnalyticsLog(("dosh", PC.PlayerReplicationInfo, EventName, "#"$PC.PlayerReplicationInfo.Score, PC.GetPerk(), "#"$MyKFGRI.WaveNum ));
 		}
 	}
 }
@@ -2605,8 +2645,8 @@ function LogPlayersKillCount()
 		{
 			if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(GBE_Kills$","$PRI.PlayerName$","$PRI.Kills$","$PC.GetPerk());
 			if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(GBE_Deaths$","$PRI.PlayerName$","$PRI.Deaths$","$PC.GetPerk());
-			if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("kills", PRI, "#"$PRI.Kills, PC.GetPerk());
-			if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("deaths", PRI, "#"$PRI.Deaths, PC.GetPerk());
+//			`AnalyticsLog(("kills", PRI, "#"$PRI.Kills, PC.GetPerk()));
+//			`AnalyticsLog(("deaths", PRI, "#"$PRI.Deaths, PC.GetPerk()));
 		}
 	}
 }
@@ -2892,6 +2932,7 @@ defaultproperties
    ForcedMusicTracks(4)=KFMusicTrackInfo'WW_MACT_Default.TI_ID_Murderer'
    ReservationTimeout=32
    bRestartLevel=False
+   bPauseable=False
    bTeamGame=True
    bWaitingToStartMatch=True
    bRequiresPushToTalk=True

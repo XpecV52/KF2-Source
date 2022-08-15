@@ -2,6 +2,7 @@ package tripwire.popups
 {
     import com.greensock.TweenMax;
     import com.greensock.easing.Cubic;
+    import flash.events.Event;
     import flash.external.ExternalInterface;
     import scaleform.clik.events.ButtonEvent;
     import tripwire.containers.TripContainer;
@@ -14,15 +15,20 @@ package tripwire.popups
         {
             super();
             enableInitCallback = true;
-            this.setTabIndex();
             this.openPopup();
         }
         
-        public function setTabIndex() : *
+        override protected function addedToStage(param1:Event) : void
+        {
+            super.addedToStage(param1);
+            this.setTabIndex();
+        }
+        
+        public function setTabIndex() : void
         {
         }
         
-        public function set descriptionText(param1:String) : *
+        public function set descriptionText(param1:String) : void
         {
         }
         

@@ -866,7 +866,7 @@ exec function ReleaseGamepadWeaponSelect()
             {
                 if(bShowGamepadWeaponSelectHint)
                 {
-                    Outer.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 2);
+                    Outer.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 7);
                 }
                 KFInventoryManager(Outer.Pawn.InvManager).GamePadNextWeapon();
                 Outer.ClearTimer('GamepadWeaponMenuTimer', self);                

@@ -105,6 +105,7 @@ simulated event Destroyed()
 /** Only update the screen screen if we have the welder equipped and it's screen values have changed */
 simulated function UpdateScreenUI()
 {
+	local float WeldPercentageFloat;
 	local byte WeldPercentage;
 
 	if ( Instigator != none && Instigator.IsLocallyControlled() && Instigator.Weapon == self )
@@ -119,7 +120,18 @@ simulated function UpdateScreenUI()
 
 			if ( WeldTarget != none )
 			{
-				WeldPercentage = ( float(WeldTarget.WeldIntegrity) / float(WeldTarget.MaxWeldIntegrity) ) * 100;
+				// Address rounding errors in UI
+				WeldPercentageFloat = ( float(WeldTarget.WeldIntegrity) / float(WeldTarget.MaxWeldIntegrity) ) * 100.f;
+				if( WeldPercentageFloat < 1.f && WeldPercentageFloat > 0.f )
+				{
+					WeldPercentageFloat = 1.f;
+				}
+				else if( WeldPercentageFloat > 99.f && WeldPercentageFloat < 100.f )
+				{
+					WeldPercentageFloat = 99.f;
+				}
+
+				WeldPercentage = byte( WeldPercentageFloat );
 				// Check if our weld integrity has changed
 				if ( WeldPercentage != ScreenUI.IntegrityPercentage )
 				{
@@ -151,7 +163,7 @@ simulated function bool HasAmmo( byte FireModeNum, optional int Amount=1 )
 		if ( AmmoCount[0] - AmmoCost > 0 )
 		{
 			// Requires a valid WeldTarget (see ServerSetWeldTarget)
-			return WeldTarget != None;
+			return ( WeldTarget != None && CanWeldTarget(FireModeNum) );
 		}
 		return false;
 	}
@@ -257,14 +269,14 @@ simulated function CustomFire()
 	}
 }
 
-simulated function bool CanWeldTarget()
+simulated function bool CanWeldTarget( optional int FireModeNum=CurrentFireMode )
 {
-	if ( CurrentFireMode == DEFAULT_FIREMODE &&
+	if ( FireModeNum == DEFAULT_FIREMODE &&
 		 WeldTarget.WeldIntegrity >= WeldTarget.MaxWeldIntegrity )
 	{
 		return false;
 	}
-	else if ( CurrentFireMode == ALTFIRE_FIREMODE &&
+	else if ( FireModeNum == ALTFIRE_FIREMODE &&
 				WeldTarget.WeldIntegrity <= 0 )
 	{
 		return false;

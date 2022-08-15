@@ -199,7 +199,11 @@ function RestartPlayer(Controller NewPlayer)
 			}
 
 			`BalanceLog(GBE_Respawn, KFPRI, "$"$KFPRI.Score);
-			`AnalyticsLog(("respawn", KFPRI, "#"$KFPRI.Score));
+
+			`AnalyticsLog(("player_respawn",
+						   KFPRI,
+						   "#"$MyKFGRI.WaveNum,
+						   "#"$KFPRI.Score ));
 		}
 	}
 }
@@ -707,11 +711,30 @@ function WaveStarted()
 	local KFSeqEvent_WaveStart WaveStartEvt;
 	local Sequence GameSeq;
 	local int i;
+	local KFPlayerController KFPC;
 
 	/* __TW_ANALYTICS_ */
 	`RecordGameIntStat(WAVE_START,WaveNum);
 
-	`AnalyticsLog(("wave_start", None, "#"$WaveNum, "#"$GetLivingPlayerCount()));
+	`AnalyticsLog(("wave_start",
+				   None,
+				   "#"$WaveNum,
+				   "#"$GetLivingPlayerCount()));
+
+	ForEach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
+	{
+		if( !KFPC.bDemoOwner )
+		{
+			`AnalyticsLog(("pc_wave_start",
+						   KFPC.PlayerReplicationInfo,
+						   "#"$WaveNum,
+						   KFPC.GetPerk().Class.Name,
+						   KFPC.GetPerk().GetLevel(),
+						   "#"$KFPC.PlayerReplicationInfo.Score,
+						   KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory()
+						  ));
+		}
+	}
 
 	// Get the gameplay sequence.
 	GameSeq = WorldInfo.GetGameSequence();
@@ -776,12 +799,20 @@ function WaveEnded(EWaveEndCondition WinCondition)
 			`AnalyticsLog(("pc_wave_stats",
 						   KFPC.PlayerReplicationInfo,
 						   "#"$WaveNum,
-						   "#"$WaveMax,
+						   "#"$KFPC.MatchStats.GetHealReceivedInWave(),
 						   "#"$KFPC.MatchStats.GetDamageDealtInWave(),
 						   "#"$KFPC.MatchStats.GetHeadShotsInWave(),
 						   "#"$KFPC.MatchStats.GetDoshEarnedInWave(),
 						   "#"$KFPC.MatchStats.GetDamageTakenInWave(),
-						   KFPC.GetPerk().Class.Name ));
+						   "#"$KFPC.PlayerReplicationInfo.Score ));
+
+			`AnalyticsLog(("pc_wave_loadout",
+						   KFPC.PlayerReplicationInfo,
+						   "#"$WaveNum,
+						   KFPC.GetPerk().Class.Name,
+						   KFPC.GetPerk().GetLevel(),
+						   KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory()
+						  ));
 
 			KFPC.MatchStats.GetTopWeapons( 3, Weapons );
 
@@ -793,8 +824,7 @@ function WaveEnded(EWaveEndCondition WinCondition)
 							   Weapons[i].WeaponDef.Name,
 							   "#"$Weapons[i].DamageAmount,
 							   "#"$Weapons[i].HeadShots,
-							   "#"$Weapons[i].LargeZedKills,
-							   KFPC.GetPerk().Class.Name ));
+							   "#"$Weapons[i].LargeZedKills ));
 			}
 		}
 
@@ -896,6 +926,10 @@ State TraderOpen
 			if( KFPC.GetPerk() != none )
 			{
 				KFPC.GetPerk().OnWaveEnded();
+				`AnalyticsLog(("trader_open",
+							   KFPC.PlayerReplicationInfo,
+							   "#"$MyKFGRI.WaveNum,
+							   "#"$KFPC.PlayerReplicationInfo.Score ));
 			}
 			KFPC.ApplyPendingPerks();
 		}

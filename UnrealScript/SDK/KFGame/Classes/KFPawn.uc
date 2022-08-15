@@ -833,6 +833,9 @@ native function bool AllowFirstPersonPreshadows();
 /** Removes all blood decals from pawn mesh */
 native function ClearBloodDecals();
 
+/** Force uncrouch */
+native function ForceUnCrouch();
+
 // Called immediately before gameplay begins.
 simulated event PreBeginPlay()
 {

@@ -39,6 +39,14 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
             }
         }
     }
+    KFPOwner.ShouldCrouch(false);
+    if(KFPOwner.bIsCrouched)
+    {
+        KFPOwner.ForceUnCrouch();
+    }
+    KFPOwner.bCanCrouch = false;
+    KFPOwner.bCanJump = false;
+    KFPOwner.bJumpCapable = false;
 }
 
 function SpecialMoveEnded(name PrevMove, name NextMove)
@@ -58,6 +66,9 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
     {
         KFPOwner.SetWeakGrabCoolDown(GrabVictimCooldownTime);
     }
+    KFPOwner.bCanCrouch = KFPOwner.default.bCanCrouch;
+    KFPOwner.bCanJump = KFPOwner.default.bCanJump;
+    KFPOwner.bJumpCapable = KFPOwner.default.bJumpCapable;
 }
 
 function SetGrabEffect(KFPlayerController KFPC, bool bValue)

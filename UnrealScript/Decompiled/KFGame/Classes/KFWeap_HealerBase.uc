@@ -206,7 +206,7 @@ simulated function CustomFire()
         {
             if(CurrentFireMode == 1)
             {
-                if(KFGameInfo(WorldInfo.Game).bOnePlayerAtStart)
+                if((GetActivePlayerCount()) < 2)
                 {
                     HealAmount = StandAloneHealAmount;                    
                 }
@@ -379,7 +379,7 @@ simulated function UpdateInteractionMessage()
         if((Instigator.Health <= InstigatorKFPC.LowHealthThreshold) && AmmoCount[0] >= AmmoCost[1])
         {
             bIsQuickHealMessageShowing = true;
-            InstigatorKFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 7);
+            InstigatorKFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 8);
         }
     }
 }
@@ -444,6 +444,22 @@ private reliable server final function ServerStartQuickHeal()
 {
     SetCurrentFireMode(1);
     GotoState('WeaponQuickHeal');
+}
+
+function int GetActivePlayerCount()
+{
+    local KFPlayerController KFPC;
+    local int TotalPlayers;
+
+    TotalPlayers = 0;
+    foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+    {
+        if(KFPC.bIsAchievementPlayer)
+        {
+            ++ TotalPlayers;
+        }        
+    }    
+    return TotalPlayers;
 }
 
 simulated state Active

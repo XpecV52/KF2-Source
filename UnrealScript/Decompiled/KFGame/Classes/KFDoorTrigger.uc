@@ -50,7 +50,14 @@ simulated function bool GetIsUsable(Pawn User)
 
 function int GetInteractionIndex()
 {
-    return 4;
+    if(DoorActor.WeldIntegrity > 0)
+    {
+        return 6;        
+    }
+    else
+    {
+        return 5;
+    }
 }
 
 function bool UsedBy(Pawn User)

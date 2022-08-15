@@ -196,6 +196,8 @@ package tripwire.containers.inventory
             this.confirmBlocker.visible = true;
             this.confirmButton.visible = false;
             this.masterTimeline.play();
+            mouseEnabled = mouseChildren = true;
+            _bReadyForInput = true;
         }
         
         override protected function closeAnimation() : *
@@ -214,7 +216,8 @@ package tripwire.containers.inventory
                     "remove":true
                 },
                 "ease":Cubic.easeOut,
-                "useFrames":true
+                "useFrames":true,
+                "onComplete":onClosed
             });
         }
         

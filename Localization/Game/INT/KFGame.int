@@ -895,6 +895,7 @@ GameName="Survival"
 [KFLocalMessage_Interaction]
 UseTraderMessage="<%x%> USE TRADER"
 UseDoorMessage="<%x%> Open/Close     (HOLD) <%x%> equip welder"
+UseDoorWeldedMessage="(HOLD) <%x%> equip welder"
 AcceptObjectiveMessage="<%x%> accept objective"
 ReceiveAmmoMessage="<%x%> receive ammo"
 ReceiveGrenadesMessage="<%x%> receive grenades"

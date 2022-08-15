@@ -34,17 +34,19 @@ function GiveTo(Pawn P)
     KFIM = KFInventoryManager(P.InvManager);
     if(KFIM != none)
     {
-        KFIM.GiveWeaponsAmmo(true);
-        if(Class'KFGameInfo'.static.AllowBalanceLogging())
+        if(KFIM.GiveWeaponsAmmo(true))
         {
-            WorldInfo.LogGameBalance((((string('Pickup') $ ",") $ P.PlayerReplicationInfo.PlayerName) $ ",") $ "Ammo");
-        }
-        if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
-        {
-            WorldInfo.TWLogEvent("pickup", P.PlayerReplicationInfo, "ammo");
+            if(Class'KFGameInfo'.static.AllowBalanceLogging())
+            {
+                WorldInfo.LogGameBalance((((string('Pickup') $ ",") $ P.PlayerReplicationInfo.PlayerName) $ ",") $ "Ammo");
+            }
+            if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+            {
+                WorldInfo.TWLogEvent("pickup", P.PlayerReplicationInfo, "ammo");
+            }
+            PickedUpBy(P);
         }
     }
-    PickedUpBy(P);
 }
 
 function PickedUpBy(Pawn P)

@@ -11,15 +11,23 @@ class KFAIController_ZedSiren extends KFAIController_Monster
 
 function PreMoveToEnemy()
 {
-    if(MyKFPawn.SpecialMove != 5)
+    if((MyKFPawn.SpecialMove == 16) || (MyKFPawn.SpecialMove == 0) && !IsTimerActive('DoScream'))
     {
-        Class'AICommand_Siren_Scream'.static.Scream(self);
+        DoScream();
     }
 }
 
 function NotifySpecialMoveEnded(KFSpecialMove SM)
 {
     if(SM.Handle == 'KFSM_Stumble')
+    {
+        SetTimer(0.4, false, 'DoScream');
+    }
+}
+
+function DoScream()
+{
+    if(MyKFPawn.SpecialMove == 0)
     {
         Class'AICommand_Siren_Scream'.static.Scream(self);
     }
@@ -31,6 +39,15 @@ function NotifyMeleeAttackFinished()
     {
         MyKFPawn.NotifyMeleeAttackFinished();
     }
+}
+
+function EnterZedVictoryState()
+{
+    if(IsTimerActive('DoScream'))
+    {
+        ClearTimer('DoScream');
+    }
+    super(KFAIController).EnterZedVictoryState();
 }
 
 defaultproperties

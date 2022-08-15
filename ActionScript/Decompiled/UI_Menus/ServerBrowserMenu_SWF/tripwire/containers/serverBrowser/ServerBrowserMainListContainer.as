@@ -364,10 +364,14 @@ package tripwire.containers.serverBrowser
         override protected function openAnimation() : *
         {
             alpha = 1;
+            _bReadyForInput = true;
+            mouseEnabled = mouseChildren = true;
         }
         
         override protected function closeAnimation() : *
         {
+            mouseEnabled = mouseChildren = false;
+            _bReadyForInput = false;
         }
         
         override public function closeContainer() : void
