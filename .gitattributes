@@ -1,0 +1,27 @@
+* text=auto eol=lf
+
+*.as         text eol=lf working-tree-encoding=utf-8
+*.ini        text eol=lf working-tree-encoding=utf-8
+*.md         text eol=lf working-tree-encoding=utf-8
+*.rtf        text eol=lf working-tree-encoding=utf-8 diff=astextplain
+*.txt        text eol=lf working-tree-encoding=utf-8
+*.uc         text eol=lf working-tree-encoding=utf-8
+*.uci        text eol=lf working-tree-encoding=utf-8
+*.upkg       text eol=lf working-tree-encoding=utf-8
+
+*.chn        text eol=lf working-tree-encoding=utf-16le-bom
+*.cze        text eol=lf working-tree-encoding=utf-16le-bom
+*.deu        text eol=lf working-tree-encoding=utf-16le-bom
+*.esm        text eol=lf working-tree-encoding=utf-16le-bom
+*.esn        text eol=lf working-tree-encoding=utf-16le-bom
+*.fra        text eol=lf working-tree-encoding=utf-16le-bom
+*.hun        text eol=lf working-tree-encoding=utf-16le-bom
+*.int        text eol=lf working-tree-encoding=utf-16le-bom
+*.ita        text eol=lf working-tree-encoding=utf-16le-bom
+*.jpn        text eol=lf working-tree-encoding=utf-16le-bom
+*.kor        text eol=lf working-tree-encoding=utf-16le-bom
+*.pol        text eol=lf working-tree-encoding=utf-16le-bom
+*.properties text eol=lf working-tree-encoding=utf-16le-bom
+*.ptb        text eol=lf working-tree-encoding=utf-16le-bom
+*.rus        text eol=lf working-tree-encoding=utf-16le-bom
+*.slo        text eol=lf working-tree-encoding=utf-16le-bom
