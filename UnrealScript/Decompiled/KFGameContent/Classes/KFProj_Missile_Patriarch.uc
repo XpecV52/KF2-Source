@@ -221,8 +221,8 @@ defaultproperties
 {
     FlockRadius=10
     FlockStiffness=-20
-    FlockMaxForce=800
-    FlockCurlForce=4000
+    FlockMaxForce=700
+    FlockCurlForce=3600
     WobbleForce=120
     SeekForce=10
     begin object name=FlightPointLight class=PointLightComponent

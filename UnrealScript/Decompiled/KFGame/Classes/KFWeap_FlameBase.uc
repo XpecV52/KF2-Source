@@ -295,12 +295,23 @@ protected simulated function KFSprayActor GetFlameSprayFromPool()
 
 protected simulated function TurnOnFireSpray()
 {
+    local KFSprayActor PrevFlameSpray;
+
     if(!bFireSpraying)
     {
+        PrevFlameSpray = ActiveFlameSpray;
         ActiveFlameSpray = GetFlameSprayFromPool();
         if(ActiveFlameSpray != none)
         {
-            ActiveFlameSpray.BeginSpray();            
+            if(Role == ROLE_Authority)
+            {
+                ActiveFlameSpray.bVisualOnly = false;
+            }
+            ActiveFlameSpray.BeginSpray();
+            if(((Role == ROLE_Authority) && PrevFlameSpray != none) && PrevFlameSpray != ActiveFlameSpray)
+            {
+                PrevFlameSpray.bVisualOnly = true;
+            }            
         }
         else
         {

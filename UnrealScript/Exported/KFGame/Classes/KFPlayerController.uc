@@ -4171,10 +4171,10 @@ reliable client function ClientWonGame( string MapName, byte Difficulty, byte Ga
  *
  * @param AchievementIndex the achievemnt's index
  */
-reliable client event ClientUnlockAchievement( int AchievementIndex )
+reliable client event ClientUnlockAchievement( int AchievementIndex, optional bool bAlwaysUnlock=false )
 {
-	if ( WorldInfo.NetMode != NM_DedicatedServer && IsLocalPlayerController() && bIsAchievementPlayer
-		&& !PlayerReplicationInfo.bOnlySpectator && !StatsWrite.HasCheated() && !StatsWrite.IsAchievementUnlocked(AchievementIndex) )
+	if ( WorldInfo.NetMode != NM_DedicatedServer && IsLocalPlayerController() && (bIsAchievementPlayer || bAlwaysUnlock) &&
+		!PlayerReplicationInfo.bOnlySpectator && !StatsWrite.HasCheated() && !StatsWrite.IsAchievementUnlocked(AchievementIndex) )
 	{
 
 

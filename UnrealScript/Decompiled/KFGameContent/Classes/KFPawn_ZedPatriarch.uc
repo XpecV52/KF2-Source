@@ -78,6 +78,7 @@ var bool bGunTracking;
 var repnotify bool bInFleeAndHealMode;
 var bool bHealedThisPhase;
 var float BoilPulseRate;
+var float BoilPulseAccum;
 var float BoilLightBrightness[4];
 var name BoilLightSocketName;
 var export editinline transient PointLightComponent BoilLightComponent;
@@ -508,9 +509,14 @@ simulated event Tick(float DeltaTime)
         }
         if(bPulseBoils && !bIsCloaking)
         {
-            BoilPulseSin = Abs(Cos(WorldInfo.TimeSeconds * (DeltaTime * BoilPulseRate)));
+            if(BoilPulseAccum > 1)
+            {
+                BoilPulseAccum = -1;
+            }
+            BoilPulseSin = Abs(BoilPulseAccum);
             ActualBoilColor = Multiply_LinearColorFloat(BoilColors[3], BoilPulseSin);
-            BodyAltMIC.SetVectorParameterValue('Vector_GlowColor', ActualBoilColor);            
+            BodyAltMIC.SetVectorParameterValue('Vector_GlowColor', ActualBoilColor);
+            BoilPulseAccum += (DeltaTime * BoilPulseRate);            
         }
         else
         {
@@ -1303,11 +1309,11 @@ defaultproperties
     BoilColors[2]=(R=0.54,G=0.079,B=0,A=1)
     BoilColors[3]=(R=0.85,G=0,B=0.003,A=1)
     DeadBoilColor=(R=0.05,G=0,B=0,A=1)
-    BoilPulseRate=400
-    BoilLightBrightness[0]=2.5
-    BoilLightBrightness[1]=2.6
-    BoilLightBrightness[2]=2.7
-    BoilLightBrightness[3]=2.8
+    BoilPulseRate=2.5
+    BoilLightBrightness[0]=2.6
+    BoilLightBrightness[1]=2.7
+    BoilLightBrightness[2]=2.8
+    BoilLightBrightness[3]=2.9
     BoilLightSocketName=BoilLightSocket
     begin object name=BoilLightComponent0 class=PointLightComponent
         Radius=190
@@ -1338,6 +1344,7 @@ defaultproperties
     BattleDamageFX_Tentacle_MidDmg=ParticleSystem'ZED_Patriarch_EMIT.FX_Patriarch_tentacle_MidD_01'
     BattleDamageFX_Tentacle_HighDmg=ParticleSystem'ZED_Patriarch_EMIT.FX_Patriarch_tentacle_HighD_01'
     BattleDamageFX_Smoke_HighDmg=ParticleSystem'ZED_Patriarch_EMIT.FX_Pat_smoke_HighD_01'
+    LastFXBattlePhase=1
     BattlePhases(0)=(bAllowedToSprint=true,SprintCooldownTime=3,bCanTentacleGrab=false,TentacleGrabCooldownTime=0,bCanUseMissiles=true,MissileAttackCooldownTime=10,bCanUseMortar=false,MortarAttackCooldownTime=0,bCanDoMortarBarrage=false,bCanChargeAttack=true,ChargeAttackCooldownTime=14,MaxRageAttacks=0,TentacleDamage=0,MinigunAttackCooldownTime=2.25,bCanSummonMinions=true,HealAmounts=(0.75,1,1,1))
     BattlePhases(1)=(bAllowedToSprint=true,SprintCooldownTime=2.5,bCanTentacleGrab=true,TentacleGrabCooldownTime=10,bCanUseMissiles=true,MissileAttackCooldownTime=8,bCanUseMortar=true,MortarAttackCooldownTime=10,bCanDoMortarBarrage=false,bCanChargeAttack=true,ChargeAttackCooldownTime=10,MaxRageAttacks=4,TentacleDamage=10,MinigunAttackCooldownTime=2,bCanSummonMinions=true,HealAmounts=(0.65,1,1,1))
     BattlePhases(2)=(bAllowedToSprint=true,SprintCooldownTime=2,bCanTentacleGrab=true,TentacleGrabCooldownTime=9,bCanUseMissiles=true,MissileAttackCooldownTime=7,bCanUseMortar=true,MortarAttackCooldownTime=9,bCanDoMortarBarrage=true,bCanChargeAttack=true,ChargeAttackCooldownTime=9,MaxRageAttacks=5,TentacleDamage=10,MinigunAttackCooldownTime=1.75,bCanSummonMinions=true,HealAmounts=(0.6,0.8,0.8,0.9))

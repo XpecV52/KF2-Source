@@ -639,14 +639,51 @@ function GetPersonalBests(out Array<AARAward> PersonalBests)
 function int GetPistolKills()
 {
 	local int WeaponIndex;
+	local int TotalPistolKills;
 
+	// 9mm
 	WeaponIndex = WeaponDamageList.Find('WeaponDef', class'KFWeapDef_9mm');
 	if(WeaponIndex != INDEX_NONE)
 	{
-		return WeaponDamageList[WeaponIndex].Kills;
+		TotalPistolKills += WeaponDamageList[WeaponIndex].Kills;
 	}
 
-	return 0;
+	// Remington 1858
+	WeaponIndex = WeaponDamageList.Find('WeaponDef', class'KFWeapDef_Remington1858');
+	if(WeaponIndex != INDEX_NONE)
+	{
+		TotalPistolKills += WeaponDamageList[WeaponIndex].Kills;
+	}
+
+	// Colt 1911
+	WeaponIndex = WeaponDamageList.Find('WeaponDef', class'KFWeapDef_Colt1911');
+	if(WeaponIndex != INDEX_NONE)
+	{
+		TotalPistolKills += WeaponDamageList[WeaponIndex].Kills;
+	}
+
+	// Desert Eagle
+	WeaponIndex = WeaponDamageList.Find('WeaponDef', class'KFWeapDef_Deagle');
+	if(WeaponIndex != INDEX_NONE)
+	{
+		TotalPistolKills += WeaponDamageList[WeaponIndex].Kills;
+	}
+
+	// S&W .500 Magnum
+	WeaponIndex = WeaponDamageList.Find('WeaponDef', class'KFWeapDef_SW500');
+	if(WeaponIndex != INDEX_NONE)
+	{
+		TotalPistolKills += WeaponDamageList[WeaponIndex].Kills;
+	}
+
+	// Medic pistol
+	WeaponIndex = WeaponDamageList.Find('WeaponDef', class'KFWeapDef_MedicPistol');
+	if(WeaponIndex != INDEX_NONE)
+	{
+		TotalPistolKills += WeaponDamageList[WeaponIndex].Kills;
+	}
+
+	return TotalPistolKills;
 }
 
 function int GetKnifeKills()

@@ -63,6 +63,9 @@ var bool bPulseBoils;
 /** The rate at which the boils pulse */
 var float BoilPulseRate;
 
+/** The current boil pulse brightness */
+var float BoilPulseAccum;
+
 /** Light above the boils on the arm to cast around it */
 var float BoilLightBrightness[4];
 var name BoilLightSocketName;
@@ -677,9 +680,14 @@ simulated event Tick( float DeltaTime )
 
 		if( bPulseBoils && !bIsCloaking )
 		{
-			BoilPulseSin = Abs( Cos(WorldInfo.TimeSeconds * (DeltaTime * BoilPulseRate)) );
+			if( BoilPulseAccum > 1.f )
+			{
+				BoilPulseAccum = -1.f;
+			}
+			BoilPulseSin = Abs( BoilPulseAccum );
 			ActualBoilColor = BoilColors[3] * BoilPulseSin;
 			BodyAltMIC.SetVectorParameterValue( 'Vector_GlowColor', ActualBoilColor );
+			BoilPulseAccum += DeltaTime * BoilPulseRate;
 		}
 		else
 		{
@@ -1533,11 +1541,11 @@ defaultproperties
    BoilColors(2)=(R=0.540000,G=0.079000,B=0.000000,A=1.000000)
    BoilColors(3)=(R=0.850000,G=0.000000,B=0.003000,A=1.000000)
    DeadBoilColor=(R=0.050000,G=0.000000,B=0.000000,A=1.000000)
-   BoilPulseRate=400.000000
-   BoilLightBrightness(0)=2.500000
-   BoilLightBrightness(1)=2.600000
-   BoilLightBrightness(2)=2.700000
-   BoilLightBrightness(3)=2.800000
+   BoilPulseRate=2.500000
+   BoilLightBrightness(0)=2.600000
+   BoilLightBrightness(1)=2.700000
+   BoilLightBrightness(2)=2.800000
+   BoilLightBrightness(3)=2.900000
    BoilLightSocketName="BoilLightSocket"
    CloakFX=ParticleSystem'ZED_Patriarch_EMIT.FX_Patriarch_Cloaking_01'
    CloakFXSocketName="CloakFXSocket"
@@ -1557,6 +1565,7 @@ defaultproperties
    BattleDamageFX_Tentacle_MidDmg=ParticleSystem'ZED_Patriarch_EMIT.FX_Patriarch_tentacle_MidD_01'
    BattleDamageFX_Tentacle_HighDmg=ParticleSystem'ZED_Patriarch_EMIT.FX_Patriarch_tentacle_HighD_01'
    BattleDamageFX_Smoke_HighDmg=ParticleSystem'ZED_Patriarch_EMIT.FX_Pat_smoke_HighD_01'
+   LastFXBattlePhase=1
    BattlePhases(0)=(bAllowedToSprint=True,SprintCooldownTime=3.000000,bCanUseMissiles=True,MissileAttackCooldownTime=10.000000,bCanChargeAttack=True,ChargeAttackCooldownTime=14.000000,MinigunAttackCooldownTime=2.250000,bCanSummonMinions=True,HealAmounts=(0.750000,1.000000,1.000000,1.000000))
    BattlePhases(1)=(bAllowedToSprint=True,SprintCooldownTime=2.500000,bCanTentacleGrab=True,TentacleGrabCooldownTime=10.000000,bCanUseMissiles=True,MissileAttackCooldownTime=8.000000,bCanUseMortar=True,MortarAttackCooldownTime=10.000000,bCanChargeAttack=True,ChargeAttackCooldownTime=10.000000,MaxRageAttacks=4,TentacleDamage=10,MinigunAttackCooldownTime=2.000000,bCanSummonMinions=True,HealAmounts=(0.650000,1.000000,1.000000,1.000000))
    BattlePhases(2)=(bAllowedToSprint=True,SprintCooldownTime=2.000000,bCanTentacleGrab=True,TentacleGrabCooldownTime=9.000000,bCanUseMissiles=True,MissileAttackCooldownTime=7.000000,bCanUseMortar=True,MortarAttackCooldownTime=9.000000,bCanDoMortarBarrage=True,bCanChargeAttack=True,ChargeAttackCooldownTime=9.000000,MaxRageAttacks=5,TentacleDamage=10,MinigunAttackCooldownTime=1.750000,bCanSummonMinions=True,HealAmounts=(0.600000,0.800000,0.800000,0.900000))

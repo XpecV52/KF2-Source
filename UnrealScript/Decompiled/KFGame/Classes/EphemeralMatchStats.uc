@@ -629,14 +629,39 @@ function GetPersonalBests(out array<AARAward> PersonalBests)
 
 function int GetPistolKills()
 {
-    local int WeaponIndex;
+    local int WeaponIndex, TotalPistolKills;
 
     WeaponIndex = WeaponDamageList.Find('WeaponDef', Class'KFWeapDef_9mm';
     if(WeaponIndex != -1)
     {
-        return WeaponDamageList[WeaponIndex].Kills;
+        TotalPistolKills += WeaponDamageList[WeaponIndex].Kills;
     }
-    return 0;
+    WeaponIndex = WeaponDamageList.Find('WeaponDef', Class'KFWeapDef_Remington1858';
+    if(WeaponIndex != -1)
+    {
+        TotalPistolKills += WeaponDamageList[WeaponIndex].Kills;
+    }
+    WeaponIndex = WeaponDamageList.Find('WeaponDef', Class'KFWeapDef_Colt1911';
+    if(WeaponIndex != -1)
+    {
+        TotalPistolKills += WeaponDamageList[WeaponIndex].Kills;
+    }
+    WeaponIndex = WeaponDamageList.Find('WeaponDef', Class'KFWeapDef_Deagle';
+    if(WeaponIndex != -1)
+    {
+        TotalPistolKills += WeaponDamageList[WeaponIndex].Kills;
+    }
+    WeaponIndex = WeaponDamageList.Find('WeaponDef', Class'KFWeapDef_SW500';
+    if(WeaponIndex != -1)
+    {
+        TotalPistolKills += WeaponDamageList[WeaponIndex].Kills;
+    }
+    WeaponIndex = WeaponDamageList.Find('WeaponDef', Class'KFWeapDef_MedicPistol';
+    if(WeaponIndex != -1)
+    {
+        TotalPistolKills += WeaponDamageList[WeaponIndex].Kills;
+    }
+    return TotalPistolKills;
 }
 
 function int GetKnifeKills()

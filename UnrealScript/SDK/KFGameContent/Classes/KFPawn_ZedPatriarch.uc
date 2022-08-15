@@ -63,6 +63,9 @@ var bool bPulseBoils;
 /** The rate at which the boils pulse */
 var float BoilPulseRate;
 
+/** The current boil pulse brightness */
+var float BoilPulseAccum;
+
 /** Light above the boils on the arm to cast around it */
 var float BoilLightBrightness[4];
 var name BoilLightSocketName;
@@ -677,9 +680,14 @@ simulated event Tick( float DeltaTime )
 
 		if( bPulseBoils && !bIsCloaking )
 		{
-			BoilPulseSin = Abs( Cos(WorldInfo.TimeSeconds * (DeltaTime * BoilPulseRate)) );
+			if( BoilPulseAccum > 1.f )
+			{
+				BoilPulseAccum = -1.f;
+			}
+			BoilPulseSin = Abs( BoilPulseAccum );
 			ActualBoilColor = BoilColors[3] * BoilPulseSin;
 			BodyAltMIC.SetVectorParameterValue( 'Vector_GlowColor', ActualBoilColor );
+			BoilPulseAccum += DeltaTime * BoilPulseRate;
 		}
 		else
 		{
@@ -1503,11 +1511,12 @@ defaultproperties
     BoilColors[2]=(R=0.54f,G=0.079f,B=0.f)
     BoilColors[3]=(R=0.85f,G=0.f,B=0.003f)
     DeadBoilColor=(R=0.05,G=0.f,B=0.f)
-    BoilLightBrightness[0]=2.5f
-    BoilLightBrightness[1]=2.6f
-    BoilLightBrightness[2]=2.7f
-    BoilLightBrightness[3]=2.8f
-    BoilPulseRate=400.f
+    BoilLightBrightness[0]=2.6f
+    BoilLightBrightness[1]=2.7f
+    BoilLightBrightness[2]=2.8f
+    BoilLightBrightness[3]=2.9f
+    BoilPulseRate=2.5f
+    BoilPulseAccum=0.f
 
     Begin Object Class=PointLightComponent Name=BoilLightComponent0
         FalloffExponent=10.f
@@ -1807,6 +1816,6 @@ defaultproperties
 	// ---------------------------------------------
 	// Spawning
     MinSpawnSquadSizeType=EST_Boss
-	LastFXBattlePhase
+	LastFXBattlePhase=1
 	CurrentBattlePhase=1
 }

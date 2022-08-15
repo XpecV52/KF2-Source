@@ -405,13 +405,28 @@ simulated protected function KFSprayActor GetFlameSprayFromPool()
 
 simulated protected function TurnOnFireSpray()
 {
+	local KFSprayActor PrevFlameSpray;
+
 	if (!bFireSpraying)
 	{
+		PrevFlameSpray = ActiveFlameSpray;
+
 		// spawn flame actor
 		ActiveFlameSpray = GetFlameSprayFromPool();
 		if (ActiveFlameSpray != None)
 		{
+			if( Role == ROLE_Authority )
+			{
+				ActiveFlameSpray.bVisualOnly = false;
+			}
+
 			ActiveFlameSpray.BeginSpray();
+
+			// Disable damage from the other flame spray actor, we just want it to finish its animations
+			if( Role == ROLE_Authority && PrevFlameSpray != none && PrevFlameSpray != ActiveFlameSpray )
+			{
+				PrevFlameSpray.bVisualOnly = true;
+			}
 		}
 		else
 		{

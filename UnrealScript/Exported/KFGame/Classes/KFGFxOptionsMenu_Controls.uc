@@ -247,7 +247,7 @@ defaultproperties
    MaxControllerLookSensitivity=1.200000
    MinControllerZoomLookSensitivity=0.300000
    MaxControllerZoomLookSensitivity=1.000000
-   MinMouseLookSensitivity=0.100000
+   MinMouseLookSensitivity=0.010000
    MaxMouseLookSensitivity=0.700000
    MinMouseLookZoomSensitivity=0.200000
    MaxMouseLookZoomSensitivity=1.000000

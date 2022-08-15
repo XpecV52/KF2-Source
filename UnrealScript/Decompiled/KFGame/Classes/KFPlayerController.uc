@@ -2890,9 +2890,10 @@ reliable client simulated function ClientWonGame(string MapName, byte Difficulty
     }
 }
 
-reliable client simulated event ClientUnlockAchievement(int AchievementIndex)
+reliable client simulated event ClientUnlockAchievement(int AchievementIndex, optional bool bAlwaysUnlock)
 {
-    if((((((WorldInfo.NetMode != NM_DedicatedServer) && IsLocalPlayerController()) && bIsAchievementPlayer) && !PlayerReplicationInfo.bOnlySpectator) && !StatsWrite.HasCheated()) && !StatsWrite.IsAchievementUnlocked(AchievementIndex))
+    bAlwaysUnlock = false;
+    if((((((WorldInfo.NetMode != NM_DedicatedServer) && IsLocalPlayerController()) && bIsAchievementPlayer || bAlwaysUnlock) && !PlayerReplicationInfo.bOnlySpectator) && !StatsWrite.HasCheated()) && !StatsWrite.IsAchievementUnlocked(AchievementIndex))
     {
         if(OnlineSub.PlayerInterface.UnlockAchievement(0, AchievementIndex))
         {

@@ -276,8 +276,8 @@ defaultproperties
 
 	FlockRadius=10.f
 	FlockStiffness=-20.f
-	FlockMaxForce=800.f
-	FlockCurlForce=4000.f
+	FlockMaxForce=700.f
+	FlockCurlForce=3600.f
 	WobbleForce=120.f
 	SeekForce=10.f
 	RotationRate=(Roll=50000)

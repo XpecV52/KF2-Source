@@ -1766,12 +1766,20 @@ final function RemoveTransactionItem( const out STraderItem ItemToRemove )
 reliable server final function ServerRemoveTransactionItem( int ItemIndex )
 {
 	local STraderItem ItemToRemove;
+	local KFWeapon InvWeap;
 
 	if( bServerTraderMenuOpen )
 	{
 		if( GetTraderItemFromWeaponLists(ItemToRemove, ItemIndex) )
 		{
 			RemoveTransactionItem( ItemToRemove );
+
+			// remove from inventory if necessary (like after buying a dual when owning a single)
+			GetWeaponFromClass( InvWeap, ItemToRemove.ClassName );
+			if( InvWeap != none )
+			{
+				RemoveFromInventory( InvWeap );
+			}
 		}
 	}
 }

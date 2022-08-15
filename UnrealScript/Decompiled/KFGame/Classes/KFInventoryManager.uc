@@ -1327,12 +1327,18 @@ final function RemoveTransactionItem(const out STraderItem ItemToRemove)
 reliable server final function ServerRemoveTransactionItem(int ItemIndex)
 {
     local STraderItem ItemToRemove;
+    local KFWeapon InvWeap;
 
     if(bServerTraderMenuOpen)
     {
         if(GetTraderItemFromWeaponLists(ItemToRemove, byte(ItemIndex)))
         {
             RemoveTransactionItem(ItemToRemove);
+            GetWeaponFromClass(InvWeap, ItemToRemove.ClassName);
+            if(InvWeap != none)
+            {
+                RemoveFromInventory(InvWeap);
+            }
         }
     }
 }

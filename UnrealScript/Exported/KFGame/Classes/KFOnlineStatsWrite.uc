@@ -362,6 +362,7 @@ event CacheStatsValue(int StatID, float Value)
 			CommandoXP = GetXPFromProgress( Value );
 			CommandoLVL = GetLVLFromProgress( Value );
 			CommandoPSG = GetPSGFromProgress( Value );
+			CheckPerkLvlAchievement( class'KFPerk_Commando', CommandoLVL );
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "CommandoXP:" @ CommandoXP @CommandoLVL @ "VALUE:" @ Round( value ));
 			break;
 		case 2:
@@ -372,6 +373,7 @@ event CacheStatsValue(int StatID, float Value)
 			BerserkerXP = GetXPFromProgress( Value );
 			BerserkerLVL = GetLVLFromProgress( Value );
 			BerserkerPSG = GetPSGFromProgress( Value );
+			CheckPerkLvlAchievement( class'KFPerk_Berserker', BerserkerLVL );
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "BerserkerXP:" @ BerserkerXP @ BerserkerLVL @ "VALUE:" @ Round( value ));
 			break;
 		case 11:
@@ -382,6 +384,7 @@ event CacheStatsValue(int StatID, float Value)
 			SupportXP = GetXPFromProgress( Value );
 			SupportLVL = GetLVLFromProgress( Value );
 			SupportPSG = GetPSGFromProgress( Value );
+			CheckPerkLvlAchievement( class'KFPerk_Support', SupportLVL );
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "SupportXP:" @ SupportXP @ SupportLVL @ "VALUE:" @ Round( value ));
 			break;
 		case 21:
@@ -392,6 +395,7 @@ event CacheStatsValue(int StatID, float Value)
 			MedicXP = GetXPFromProgress( Value );
 			MedicLVL = GetLVLFromProgress( Value );
 			MedicPSG = GetPSGFromProgress( Value );
+			CheckPerkLvlAchievement( class'KFPerk_FieldMedic', MedicLVL );
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "MedicXP:" @ MedicXP @ MedicLVL @ "VALUE:" @ Round( value ));
 			break;
 		case 41:
@@ -402,6 +406,7 @@ event CacheStatsValue(int StatID, float Value)
 			FirebugXP = GetXPFromProgress( Value );
 			FirebugLVL = GetLVLFromProgress( Value );
 			FirebugPSG = GetPSGFromProgress( Value );
+			CheckPerkLvlAchievement( class'KFPerk_Firebug', FirebugLVL );
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "FirebugXP:" @ FirebugXP @ FirebugLVL @ "VALUE:" @ Round( value ));
 			break;
 		case 31:
@@ -412,6 +417,7 @@ event CacheStatsValue(int StatID, float Value)
 			DemoXP = GetXPFromProgress( Value );
 			DemoLVL = GetLVLFromProgress( Value );
 			DemoPSG = GetPSGFromProgress( Value );
+			CheckPerkLvlAchievement( class'KFPerk_Demolitionist', DemoLVL );
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "DemoXP:" @ DemoXP @ DemoLVL @ "VALUE:" @ Round( value ));
 			break;
 		case 61:
@@ -422,6 +428,7 @@ event CacheStatsValue(int StatID, float Value)
 			GunslingerXP = GetXPFromProgress( Value );
 			GunslingerLVL = GetLVLFromProgress( Value );
 			GunslingerPSG = GetPSGFromProgress( Value );
+			CheckPerkLvlAchievement( class'KFPerk_Gunslinger', GunslingerLVL );
 			if (bLogStatsWrite) LogInternal(GetFuncName() @ "GunslingerXP:" @ GunslingerXP @ GunslingerLVL @ "VALUE:" @ Round( value ));
 			break;
 		case 81:
