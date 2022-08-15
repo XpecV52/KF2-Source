@@ -539,7 +539,7 @@ simulated function OnOpenAfterActionReport(optional float time)
 	}
 }
 
-function ProcessChanceDrop()
+simulated function ProcessChanceDrop()
 {
 	`if (`__TW_STEAMWORKS_)
 	SendSteamHeartbeat(); // be sure no time is lost at the end of match

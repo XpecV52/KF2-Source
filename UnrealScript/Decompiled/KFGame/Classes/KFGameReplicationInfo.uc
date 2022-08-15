@@ -451,7 +451,7 @@ simulated function OnOpenAfterActionReport(optional float Time)
     }
 }
 
-function ProcessChanceDrop()
+simulated function ProcessChanceDrop()
 {
     SendSteamHeartbeat();
     SendSteamRequestItemDrop();
