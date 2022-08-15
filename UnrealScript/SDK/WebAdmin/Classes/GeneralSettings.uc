@@ -216,7 +216,7 @@ defaultproperties
 
 	// Kick voting
 	`def_boolproperty(650, "bDisableKickVote")
-	`def_floatproperty(654, "KickVotePercentage", 0, 100, 5)
+	`def_floatproperty(654, "KickVotePercentage", 0, 1.0, 0.05)
 
 	// Map Voting
 	`def_boolproperty(600, "bDisableMapVote")

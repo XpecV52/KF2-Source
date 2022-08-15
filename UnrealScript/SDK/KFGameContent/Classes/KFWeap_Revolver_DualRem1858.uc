@@ -21,7 +21,7 @@ defaultproperties
 	End Object
 
 	Begin Object Name=StaticPickupComponent
-		StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_9mm_Pickup'
+		StaticMesh=StaticMesh'WEP_3P_Remington_1858_MESH.Wep_3P_Remington_1858_Pickup'
 	End Object
 
 	AttachmentArchetype=KFWeaponAttachment'WEP_DualRemington1858_ARCH.Wep_DualRemington1858_3P'

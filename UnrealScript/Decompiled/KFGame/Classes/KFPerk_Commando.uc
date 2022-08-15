@@ -58,13 +58,16 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
         {
             TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[1])));
         }
-        if(IsSingleFireActive() && KFW.GetStateName() == 'WeaponSingleFiring')
+        if(IsWeaponOnPerk(KFW))
         {
-            TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[6])));
-        }
-        if(IsAutoFireActive() && (KFW.GetStateName() == 'WeaponBurstFiring') || KFW.GetStateName() == 'WeaponFiring')
-        {
-            TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[7])));
+            if(IsSingleFireActive() && KFW.GetStateName() == 'WeaponSingleFiring')
+            {
+                TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[6])));
+            }
+            if(IsAutoFireActive() && (KFW.GetStateName() == 'WeaponBurstFiring') || KFW.GetStateName() == 'WeaponFiring')
+            {
+                TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[7])));
+            }
         }
     }
     InDamage = FCeil(TempDamage);

@@ -24,11 +24,11 @@ package tripwire.popups
             this.setTabIndex();
         }
         
-        public function setTabIndex() : *
+        public function setTabIndex() : void
         {
         }
         
-        public function set descriptionText(param1:String) : *
+        public function set descriptionText(param1:String) : void
         {
         }
         

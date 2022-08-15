@@ -975,11 +975,26 @@ simulated function bool CanCarryWeapon( class<KFWeapon> WeaponClass )
 		return false;
 	}
 
+	// if trying to add a second single, make sure player can carry dual (minus weight of first single
+	if( WeaponClass.default.DualClass != none && ClassIsInInventory(WeaponClass) )
+	{
+		// check weight of dual minus weight of single because we remove single when adding dual
+		if( ((CurrentCarryBlocks + WeaponClass.default.DualClass.default.InventorySize - WeaponClass.default.InventorySize) <= MaxCarryBlocks) || bInfiniteWeight)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	// if trying to add a dual, make sure player can carry it (minus weight of owned single)
 	DualWeaponClass = class<KFWeap_DualBase>(WeaponClass);
 	if( DualWeaponClass != none && DualWeaponClass.default.SingleClass != none && ClassIsInInventory(DualWeaponClass.default.SingleClass) )
 	{
 		// check weight of dual minus weight of single because we remove single when adding dual
-		if( (((CurrentCarryBlocks + DualWeaponClass.default.InventorySize) - DualWeaponClass.default.SingleClass.default.InventorySize) <= MaxCarryBlocks) || bInfiniteWeight)
+		if( ((CurrentCarryBlocks + DualWeaponClass.default.InventorySize - DualWeaponClass.default.SingleClass.default.InventorySize) <= MaxCarryBlocks) || bInfiniteWeight)
 		{
 			return true;
 		}

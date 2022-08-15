@@ -514,7 +514,7 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
     {
         InstigatorPerk.UpdatePerkHeadShots(Impact, InstantHitDamageTypes[FiringMode], ImpactNum);
     }
-    ProcessInstantHit(FiringMode, Impact, NumHits);
+    super.ProcessInstantHitEx(FiringMode, Impact, NumHits, out_PenetrationVal, ImpactNum);
 }
 
 simulated function bool ShouldAutoReload(byte FireModeNum)

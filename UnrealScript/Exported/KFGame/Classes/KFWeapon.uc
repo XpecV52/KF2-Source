@@ -1473,6 +1473,7 @@ function SetOriginalValuesFromPickup( KFWeapon PickedUpWeapon )
 				KFWInv.AmmoCount[1] -= default.MagazineCapacity[1] - AmmoCount[1];
 
 				KFWInv.SpareAmmoCount[0] -= (default.InitialSpareMags[0] * default.MagazineCapacity[0]) - SpareAmmoCount[0];
+				KFWInv.SpareAmmoCount[0] = Min( KFWInv.SpareAmmoCount[0], KFWInv.MaxSpareAmmo[0] - KFWInv.MagazineCapacity[0] );
 
 				KFWInv.ClientForceAmmoUpdate(KFWInv.AmmoCount[0],KFWInv.SpareAmmoCount[0]);
 				KFWInv.ClientForceSecondaryAmmoUpdate(KFWInv.AmmoCount[1]);

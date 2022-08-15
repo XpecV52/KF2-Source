@@ -229,7 +229,7 @@ defaultproperties
    Mesh=FirstPersonMesh
    ItemName="Dual 1858 Revolver"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_DualBase:StaticPickupComponent'
-      StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_9mm_Pickup'
+      StaticMesh=StaticMesh'WEP_3P_Remington_1858_MESH.Wep_3P_Remington_1858_Pickup'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"

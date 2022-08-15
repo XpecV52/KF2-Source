@@ -909,6 +909,8 @@ struct native ItemProperties
 	var bool Commodity;
 	var string Description;
 	var string Exchange;
+	var string Bundle;
+    var bool UniqueToOwn;
 };
 var array<ItemProperties> ItemPropertiesList;
 

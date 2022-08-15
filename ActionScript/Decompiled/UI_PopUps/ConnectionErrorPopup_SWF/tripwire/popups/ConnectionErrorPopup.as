@@ -1,5 +1,6 @@
 package tripwire.popups
 {
+    import flash.events.Event;
     import flash.text.TextField;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.gfx.FocusManager;
@@ -18,19 +19,25 @@ package tripwire.popups
         public function ConnectionErrorPopup()
         {
             super();
-            this.AcceptButton.addEventListener(ButtonEvent.PRESS,onClosePopup);
-            this.AcceptButton.preventAutosizing = true;
             defaultFirstElement = currentElement = this.AcceptButton;
         }
         
-        override public function setTabIndex() : *
+        override protected function addedToStage(param1:Event) : void
+        {
+            super.addedToStage(param1);
+            this.AcceptButton.addEventListener(ButtonEvent.PRESS,onClosePopup);
+            this.AcceptButton.preventAutosizing = true;
+        }
+        
+        override public function setTabIndex() : void
         {
             super.setTabIndex();
             this.AcceptButton.tabIndex = 1;
         }
         
-        override public function set descriptionText(param1:String) : *
+        override public function set descriptionText(param1:String) : void
         {
+            super.descriptionText = param1;
             this.DescriptionTF.text = param1;
         }
         

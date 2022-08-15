@@ -812,12 +812,12 @@ simulated exec function ToggleDoF()
 	KFPlayerController(Outer).EnableDepthOfField(!KFPlayerController(Outer).bDOFEnabled);
 }
 
-simulated exec function ShowDownloadPopup()
+simulated exec function ShowDownloadPopup(string NewText, string NewTExt2)
 {
 	local KFPlayerController KFPC;
 	KFPC = KFPlayerController(Outer);
 
-	KFPC.ShowConnectionProgressPopup( PMT_DownloadProgress, "Fake download", "Not actually downloading");
+	KFPC.ShowConnectionProgressPopup( PMT_DownloadProgress, NewText, NewTExt2);
 }
 
 /**

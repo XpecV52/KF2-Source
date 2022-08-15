@@ -34,7 +34,7 @@ package tripwire.popups
             this.cancelButton.label = param4;
         }
         
-        override public function setTabIndex() : *
+        override public function setTabIndex() : void
         {
             super.setTabIndex();
             this.playerInputText.tabIndex = 1;
@@ -46,6 +46,14 @@ package tripwire.popups
         {
             super.openContainer();
             visible = true;
+        }
+        
+        override public function set descriptionText(param1:String) : void
+        {
+            if(this.dialogText != null)
+            {
+                this.dialogText.text = param1;
+            }
         }
         
         override protected function onOpened(param1:TweenEvent = null) : void

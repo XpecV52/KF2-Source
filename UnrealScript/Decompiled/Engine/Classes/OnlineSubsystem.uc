@@ -609,6 +609,8 @@ struct native ItemProperties
     var bool Commodity;
     var string Description;
     var string Exchange;
+    var string Bundle;
+    var bool UniqueToOwn;
 
     structdefaultproperties
     {
@@ -625,6 +627,8 @@ struct native ItemProperties
         Commodity=false
         Description=""
         Exchange=""
+        Bundle=""
+        UniqueToOwn=false
     }
 };
 

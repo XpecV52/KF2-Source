@@ -385,6 +385,13 @@ reliable private final server event ServerResetHeadShotCombo()
 	SubstractHeadShotCombo();
 }
 
+reliable private final server function ServerClearHeadShotsCombo()
+{
+	HeadShotComboCountDisplay =0;
+	HeadShotComboCount=0;
+	HeadShotMessage( HeadShotComboCount, HeadShotComboCountDisplay );
+}
+
 simulated event bool GetIsHeadShotComboActive()
 {
 	return IsRhythmMethodActive();
@@ -617,6 +624,26 @@ static function bool IsDamageTypeOnPerk( class<KFDamageType> KFDT )
 	return super.IsDamageTypeOnPerk( KFDT );
 }
 
+simulated protected event PostSkillUpdate()
+{
+	super.PostSkillUpdate();
+	
+	if(Role == Role_Authority)
+	{
+		if(IsRhythmMethodActive())
+		{
+			ServerClearHeadShotsCombo();
+		}
+	}	
+}
+
+event Destroyed()
+{
+	if(Role == Role_Authority)
+	{
+			ServerClearHeadShotsCombo();
+	}	
+}
 
 /*********************************************************************************************
 * @name	 UI

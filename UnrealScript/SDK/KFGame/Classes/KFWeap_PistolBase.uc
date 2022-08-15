@@ -315,7 +315,7 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
 		InstigatorPerk.UpdatePerkHeadShots( Impact, InstantHitDamageTypes[FiringMode], ImpactNum );
 	}
 	
-	super.ProcessInstantHit( FiringMode, Impact, NumHits );
+	super.ProcessInstantHitEx( FiringMode, Impact, NumHits, out_PenetrationVal, ImpactNum );
 }
 
 /**

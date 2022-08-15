@@ -90,12 +90,12 @@ function SearchInventoryForNewItem()
     if(InventoryIndex != -1)
     {
         TempInventoryDetailsHolder = OnlineSub.CurrentInventory[InventoryIndex];
-    }
-    ItemIndex = OnlineSub.ItemPropertiesList.Find('Definition', TempInventoryDetailsHolder.Definition;
-    if(ItemIndex != -1)
-    {
-        TempItemDetailsHolder = OnlineSub.ItemPropertiesList[ItemIndex];
-        OnItemRecieved(TempItemDetailsHolder.Name, "img://" $ TempItemDetailsHolder.IconURL);
+        ItemIndex = OnlineSub.ItemPropertiesList.Find('Definition', TempInventoryDetailsHolder.Definition;
+        if(ItemIndex != -1)
+        {
+            TempItemDetailsHolder = OnlineSub.ItemPropertiesList[ItemIndex];
+            OnItemRecieved(TempItemDetailsHolder.Name, "img://" $ TempItemDetailsHolder.IconURL);
+        }
     }
 }
 

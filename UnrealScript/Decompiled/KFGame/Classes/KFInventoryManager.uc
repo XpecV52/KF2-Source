@@ -845,6 +845,17 @@ simulated function bool CanCarryWeapon(class<KFWeapon> WeaponClass)
     {
         return false;
     }
+    if((WeaponClass.default.DualClass != none) && ClassIsInInventory(WeaponClass))
+    {
+        if((((CurrentCarryBlocks + WeaponClass.default.DualClass.default.InventorySize) - WeaponClass.default.InventorySize) <= MaxCarryBlocks) || bInfiniteWeight)
+        {
+            return true;            
+        }
+        else
+        {
+            return false;
+        }
+    }
     DualWeaponClass = class<KFWeap_DualBase>(WeaponClass);
     if(((DualWeaponClass != none) && DualWeaponClass.default.SingleClass != none) && ClassIsInInventory(DualWeaponClass.default.SingleClass))
     {

@@ -82,16 +82,19 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
 			TempDamage += InDamage * GetSkillValue( PerkSkills[ECommandoBackup] );
 		}
 
-		if( IsSingleFireActive() && KFW.GetStateName() == 'WeaponSingleFiring' )
+		if( IsWeaponOnPerk(KFW) )
 		{
-			`QALog( "SingleFire DMG" @ KFW @ GetPercentage(InDamage, InDamage * GetSkillValue( PerkSkills[ECommandoSingleFire] )), bLogPerk );
-    		TempDamage += InDamage * GetSkillValue( PerkSkills[ECommandoSingleFire] );
-		}
+			if( IsSingleFireActive() && KFW.GetStateName() == 'WeaponSingleFiring' )
+			{
+				`QALog( "SingleFire DMG" @ KFW @ GetPercentage(InDamage, InDamage * GetSkillValue( PerkSkills[ECommandoSingleFire] )), bLogPerk );
+	    		TempDamage += InDamage * GetSkillValue( PerkSkills[ECommandoSingleFire] );
+			}
 
-		if( IsAutoFireActive() && (KFW.GetStateName() == 'WeaponBurstFiring' || KFW.GetStateName() == 'WeaponFiring') )
-		{
-			`QALog( "BurstFire DMG" @ KFW @ GetPercentage(InDamage, InDamage * GetSkillValue( PerkSkills[ECommandoAutoFire] )), bLogPerk );
-       		TempDamage += InDamage * GetSkillValue( PerkSkills[ECommandoAutoFire] );
+			if( IsAutoFireActive() && (KFW.GetStateName() == 'WeaponBurstFiring' || KFW.GetStateName() == 'WeaponFiring') )
+			{
+				`QALog( "BurstFire DMG" @ KFW @ GetPercentage(InDamage, InDamage * GetSkillValue( PerkSkills[ECommandoAutoFire] )), bLogPerk );
+	       		TempDamage += InDamage * GetSkillValue( PerkSkills[ECommandoAutoFire] );
+			}
 		}
 	}
 

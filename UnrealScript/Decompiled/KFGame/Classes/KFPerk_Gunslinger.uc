@@ -260,6 +260,13 @@ private reliable server final event ServerResetHeadShotCombo()
     SubstractHeadShotCombo();
 }
 
+private reliable server final function ServerClearHeadShotsCombo()
+{
+    HeadShotComboCountDisplay = 0;
+    HeadShotComboCount = 0;
+    HeadShotMessage(byte(HeadShotComboCount), byte(HeadShotComboCountDisplay));
+}
+
 simulated event bool GetIsHeadShotComboActive()
 {
     return IsRhythmMethodActive();
@@ -375,6 +382,26 @@ static function bool IsDamageTypeOnPerk(class<KFDamageType> KFDT)
         return true;
     }
     return super.IsDamageTypeOnPerk(KFDT);
+}
+
+protected simulated event PostSkillUpdate()
+{
+    super.PostSkillUpdate();
+    if(Role == ROLE_Authority)
+    {
+        if(IsRhythmMethodActive())
+        {
+            ServerClearHeadShotsCombo();
+        }
+    }
+}
+
+event Destroyed()
+{
+    if(Role == ROLE_Authority)
+    {
+        ServerClearHeadShotsCombo();
+    }
 }
 
 static function int GetMaxHeadShotsValue()

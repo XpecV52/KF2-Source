@@ -80,13 +80,13 @@ defaultproperties
     Mesh=FirstPersonMesh
     ItemName="Dual 1858 Revolver"
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_9mm_Pickup'
+        StaticMesh=StaticMesh'WEP_3P_Remington_1858_MESH.Wep_3P_Remington_1858_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Revolver_DualRem1858.StaticPickupComponent'
     DroppedPickupMesh=StaticPickupComponent
     begin object name=StaticPickupComponent class=StaticMeshComponent
-        StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_9mm_Pickup'
+        StaticMesh=StaticMesh'WEP_3P_Remington_1858_MESH.Wep_3P_Remington_1858_Pickup'
         ReplacementPrimitive=none
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_Revolver_DualRem1858.StaticPickupComponent'

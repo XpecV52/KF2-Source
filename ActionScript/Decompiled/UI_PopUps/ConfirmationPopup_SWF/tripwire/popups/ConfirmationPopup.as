@@ -1,5 +1,6 @@
 package tripwire.popups
 {
+    import flash.events.Event;
     import flash.external.ExternalInterface;
     import flash.text.TextField;
     import scaleform.clik.events.ButtonEvent;
@@ -25,15 +26,26 @@ package tripwire.popups
         {
             super();
             enableInitCallback = true;
-            this.openPopup();
-            this.leftButton.addEventListener(ButtonEvent.PRESS,this.onLeftOption,false,0,true);
-            this.middleButton.addEventListener(ButtonEvent.PRESS,this.onMiddleOption,false,0,true);
-            this.rightButton.addEventListener(ButtonEvent.PRESS,this.onRightOption,false,0,true);
-            TextFieldEx.setVerticalAlign(this.DescriptionTF,TextFieldEx.VALIGN_CENTER);
             defaultFirstElement = currentElement = this.leftButton;
         }
         
-        override public function setTabIndex() : *
+        override public function set descriptionText(param1:String) : void
+        {
+            super.descriptionText = param1;
+            this.DescriptionTF.text = param1;
+        }
+        
+        override protected function addedToStage(param1:Event) : void
+        {
+            super.addedToStage(param1);
+            this.openPopup();
+            TextFieldEx.setVerticalAlign(this.DescriptionTF,TextFieldEx.VALIGN_CENTER);
+            this.leftButton.addEventListener(ButtonEvent.PRESS,this.onLeftOption,false,0,true);
+            this.middleButton.addEventListener(ButtonEvent.PRESS,this.onMiddleOption,false,0,true);
+            this.rightButton.addEventListener(ButtonEvent.PRESS,this.onRightOption,false,0,true);
+        }
+        
+        override public function setTabIndex() : void
         {
             this.leftButton.tabIndex = 1;
             this.middleButton.tabIndex = 2;
@@ -81,11 +93,6 @@ package tripwire.popups
             this.leftButton.visible = !(param3 == null || param3 == "");
             this.middleButton.visible = !(param5 == null || param5 == "");
             this.rightButton.visible = !(param4 == null || param4 == "");
-        }
-        
-        public function set DescriptionText(param1:String) : void
-        {
-            this.DescriptionTF.text = param1;
         }
     }
 }

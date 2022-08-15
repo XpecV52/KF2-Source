@@ -153,16 +153,19 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
 			TempDamage += InDamage * GetSkillValue( PerkSkills[ECommandoBackup] );
 		}
 
-		if( IsSingleFireActive() && KFW.GetStateName() == 'WeaponSingleFiring' )
+		if( IsWeaponOnPerk(KFW) )
 		{
-			;
-    		TempDamage += InDamage * GetSkillValue( PerkSkills[ECommandoSingleFire] );
-		}
+			if( IsSingleFireActive() && KFW.GetStateName() == 'WeaponSingleFiring' )
+			{
+				;
+	    		TempDamage += InDamage * GetSkillValue( PerkSkills[ECommandoSingleFire] );
+			}
 
-		if( IsAutoFireActive() && (KFW.GetStateName() == 'WeaponBurstFiring' || KFW.GetStateName() == 'WeaponFiring') )
-		{
-			;
-       		TempDamage += InDamage * GetSkillValue( PerkSkills[ECommandoAutoFire] );
+			if( IsAutoFireActive() && (KFW.GetStateName() == 'WeaponBurstFiring' || KFW.GetStateName() == 'WeaponFiring') )
+			{
+				;
+	       		TempDamage += InDamage * GetSkillValue( PerkSkills[ECommandoAutoFire] );
+			}
 		}
 	}
 

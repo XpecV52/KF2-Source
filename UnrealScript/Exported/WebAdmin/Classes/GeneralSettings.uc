@@ -420,7 +420,7 @@ defaultproperties
    PropertyMappings(10)=(Id=702,Name="bDisablePublicTextChat",ColumnHeaderText="Public Text Chat",MappingType=PVMT_IdMapped,ValueMappings=((Name="Enabled"),(Id=1,Name="Disabled")))
    PropertyMappings(11)=(Id=703,Name="bPartitionSpectators",ColumnHeaderText="Spectators",MappingType=PVMT_IdMapped,ValueMappings=((Name="Talk to Everybody"),(Id=1,Name="Only Talk to Spectators")))
    PropertyMappings(12)=(Id=650,Name="bDisableKickVote",ColumnHeaderText="Kick Voting",MappingType=PVMT_IdMapped,ValueMappings=((Name="Enabled"),(Id=1,Name="Disabled")))
-   PropertyMappings(13)=(Id=654,Name="KickVotePercentage",ColumnHeaderText="Vote Kick Percentage",MappingType=PVMT_Ranged,MaxVal=100.000000,RangeIncrement=5.000000)
+   PropertyMappings(13)=(Id=654,Name="KickVotePercentage",ColumnHeaderText="Vote Kick Percentage",MappingType=PVMT_Ranged,MaxVal=1.000000,RangeIncrement=0.050000)
    PropertyMappings(14)=(Id=600,Name="bDisableMapVote",ColumnHeaderText="Map Voting",MappingType=PVMT_IdMapped,ValueMappings=((Name="Enabled"),(Id=1,Name="Disabled")))
    PropertyMappings(15)=(Id=601,Name="MapVoteDuration",ColumnHeaderText="Map Voting Time",MappingType=PVMT_Ranged,MinVal=10.000000,MaxVal=300.000000,RangeIncrement=5.000000)
    PropertyMappings(16)=(Id=602,Name="MapVotePercentage",ColumnHeaderText="Mid Game Voting Percentage",MappingType=PVMT_Ranged,MaxVal=100.000000,RangeIncrement=5.000000)
