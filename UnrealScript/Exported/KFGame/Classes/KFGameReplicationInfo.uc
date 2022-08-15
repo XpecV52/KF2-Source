@@ -60,7 +60,6 @@ var					int							WaveTotalAICount;
 var    				byte						GameLength;
 var    				byte						GameDifficulty;
 var 				bool 						bCustom;
-var 				bool 						bRanked;
 
  /** Combined from the PRI unlocks, but does not subtract logged out players */
  var private const byte		GameSharedUnlocks;	
@@ -215,7 +214,7 @@ replication
 		CurrentObjective, MusicIntensity, ReplicatedMusicTrackInfo, MusicTrackRepCount, 
 		bIsUnrankedGame, bLeadershipAvailable, GameSharedUnlocks;
 	if ( bNetInitial )
-		GameLength, GameDifficulty, WaveMax, bCustom, bRanked;
+		GameLength, GameDifficulty, WaveMax, bCustom;
 
 // !SHIPPING_PC_GAME && !FINAL_RELEASE in C++
 	if ( bDebugSpawnManager && bNetDirty )
@@ -1150,6 +1149,18 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
 	if(VoteCollector != none)
 	{
 		VoteCollector.ReceiveVoteMap( PRI, MapIndex);
+	}
+}
+
+/***********************************************************
+@name Ranking
+************************************************************/
+
+final private event NotifyGameUnranked()
+{
+	if( WorldInfo.Game != none )
+	{
+		WorldInfo.Game.UpdateGameSettings();
 	}
 }
 

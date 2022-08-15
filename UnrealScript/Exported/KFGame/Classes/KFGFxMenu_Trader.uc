@@ -517,7 +517,6 @@ function AddWeaponToOwnedItemList( STraderItem DefaultItem, optional bool bDoNot
    			MyKFIM.RemoveFromInventory( SingleWeapon );
    		}
 
-   		MyKFIM.RemoveItemFromTransaction( DefaultItem.SingleClassName );
    		RemoveWeaponFromOwnedItemList( , DefaultItem.SingleClassName, true );
    	}
 }
@@ -579,19 +578,19 @@ function RemoveWeaponFromOwnedItemList( optional int OwnedListIdx = INDEX_NONE, 
 	// add a single to owned items when removing a dual
 	if( ItemInfo.DefaultItem.SingleClassName != '' )
 	{
-		if( !MyKFIM.GetIsOwned(ItemInfo.DefaultItem.SingleClassName) )
+		// When removing a dual, always add a single to the owned list so that it shows up in the player inventory UI. 
+		// If we don't own the single, then also buy it (add it to the transaction list).
+
+		// assumes singles and duals belong to same perk
+		if( TraderItems.GetItemIndicesFromArche( ListIndex, ItemIndex, ItemInfo.DefaultItem.SingleClassName, ItemInfo.DefaultItem.AssociatedPerkClass) )
 		{
-			// assumes singles and duals belong to same perk
-			if( TraderItems.GetItemIndicesFromArche( ListIndex, ItemIndex, ItemInfo.DefaultItem.SingleClassName, ItemInfo.DefaultItem.AssociatedPerkClass) )
+			if( ListIndex == 255 ) // why use a byte? now we have to use 255 instead of something like INDEX_NONE
 			{
-				if( ListIndex == 255 ) // why use a byte? now we have to use 255 instead of something like INDEX_NONE
-				{
-					AddWeaponToOwnedItemList( TraderItems.OffPerkItems[ItemIndex] );
-				}
-				else
-				{
-					AddWeaponToOwnedItemList( TraderItems.TraderItemList[ListIndex].ItemList[ItemIndex] );
-				}
+				AddWeaponToOwnedItemList( TraderItems.OffPerkItems[ItemIndex], MyKFIM.GetIsOwned(ItemInfo.DefaultItem.SingleClassName) );
+			}
+			else
+			{
+				AddWeaponToOwnedItemList( TraderItems.TraderItemList[ListIndex].ItemList[ItemIndex], MyKFIM.GetIsOwned(ItemInfo.DefaultItem.SingleClassName) );
 			}
 		}
 	}
@@ -659,7 +658,7 @@ function SetTraderItemDetails(int ItemIndex)
 			SelectedItemIndex = ItemIndex;
 			SelectedItem = ShopWeaponList[ItemIndex];
 
-			bCanAfford = ShopContainer.GetCanAfford( MyKFIM.GetAdjustedBuyPriceFor(SelectedItem) );
+			bCanAfford = ShopContainer.GetCanAfford( GetAdjustedBuyPriceFor(SelectedItem) );
 			bCanCarry = ShopContainer.CanCarry(SelectedItem.BlocksRequired);
 
 			if (!bCanAfford || !bCanCarry)
@@ -671,7 +670,7 @@ function SetTraderItemDetails(int ItemIndex)
 				bCanBuyItem = true;
 			}
 
-			ItemDetails.SetShopItemDetails(SelectedItem, MyKFIM.GetAdjustedBuyPriceFor(SelectedItem), bCanCarry, bCanBuyItem);
+			ItemDetails.SetShopItemDetails(SelectedItem, GetAdjustedBuyPriceFor(SelectedItem), bCanCarry, bCanBuyItem);
 			bCanBuyOrSellItem = bCanBuyItem;
 		}
 		else
@@ -843,7 +842,24 @@ function ToggleFavorite(name ClassName)
 /** Called from KFGFxTraderContainer_Store */
 simulated function int GetAdjustedBuyPriceFor( const out STraderItem ShopItem )
 {
-	return MyKFIM.GetAdjustedBuyPriceFor( ShopItem );
+	return MyKFIM.GetAdjustedBuyPriceFor( ShopItem, OwnedItemList );
+}
+
+function bool IsInOwnedItemList( name ItemName )
+{
+	local int i;
+	local name OwnedItemClassName;
+
+	for (i = 0; i < OwnedItemList.Length; i++)
+	{
+		OwnedItemClassName = OwnedItemList[i].DefaultItem.ClassName;
+     	if ( OwnedItemClassName == ItemName )
+     	{
+     	 	return true;
+     	}
+   	}
+
+   	return false;
 }
 
 //==============================================================
@@ -862,7 +878,7 @@ function Callback_BuyOrSellItem()
 		{
 			ShopItem = ShopWeaponList[SelectedItemIndex];
 
-			AddDosh(-MyKFIM.GetAdjustedBuyPriceFor(ShopItem));
+			AddDosh(-GetAdjustedBuyPriceFor(ShopItem));
 			AddBlocks(ShopItem.BlocksRequired);
 
 			AddWeaponToOwnedItemList(ShopItem);
@@ -891,7 +907,7 @@ function Callback_BuyOrSellItem()
 	{
 		ShopItem = ShopWeaponList[SelectedItemIndex];
 
-		bCanAfford = ShopContainer.GetCanAfford( MyKFIM.GetAdjustedBuyPriceFor(ShopItem) );
+		bCanAfford = ShopContainer.GetCanAfford( GetAdjustedBuyPriceFor(ShopItem) );
 		bCanCarry = ShopContainer.CanCarry( ShopItem.BlocksRequired );
 
 		MyKFPC.PlayTraderSelectItemDialog( !bCanAfford, !bCanCarry );

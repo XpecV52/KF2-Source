@@ -152,6 +152,8 @@ var name SoundThemeName;
 /** The threshold at which a mouse movement will change the interface from controller to mouse and keyboard */
 var const int MouseInputChangedThreshold;
 
+/** TRUE if the kick vote popup is open */
+var bool bKickVotePopupActive;
 var bool bUsingGamepad; // True if we are using a gamepad, otherwise we are using mouse and keyboard
 var bool bAfterLobby;	// Set to true once we have readied up
 var bool bMenusOpen;	// true if we're using menus, otherwise we're using the HUD
@@ -269,6 +271,8 @@ function bool CheckSkipLobby()
 /** Ties the GFxClikWidget variables to the .swf components and handles events */
 event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 {
+	local PlayerController PC;
+
 	LogInternal("WidgetInitialized - Menu: " @WidgetName,'DevGFxUI');
 	switch ( WidgetName )
 	{
@@ -311,6 +315,11 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 			OnMenuOpen( WidgetPath, ServerBrowserMenu );
 		break;
 		case ( 'gearMenu' ):
+			PC = GetPC();
+			if( PC.PlayerReplicationInfo.bReadyToPlay && PC.WorldInfo.GRI.bMatchHasBegun )
+			{
+				break;
+			}
 			if (GearMenu == none)
 			{
 				GearMenu = KFGFxMenu_Gear( Widget );
@@ -481,6 +490,16 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 {
 	local EStartMenuState TempMenuState;
 	local WorldInfo WI;
+	local PlayerController PC;
+
+	if( NewMenuIndex == UI_Gear )
+	{
+		PC = GetPC();
+		if( PC.PlayerReplicationInfo.bReadyToPlay && PC.WorldInfo.GRI.bMatchHasBegun )
+		{
+			return;
+		}
+	}
 
 	WI = class'WorldInfo'.static.GetWorldInfo();
 
@@ -1120,6 +1139,7 @@ function ShowKickVote(PlayerReplicationInfo PRI)
 	VotePRI = PRI;
 	if(bMenusOpen)
 	{
+		bKickVotePopupActive = true;
 		OpenPopup(EConfirmation, Class'KFGFxWidget_KickVote'.default.VoteKickString, VotePRI.PLayerName,
 		 Class'KFCommon_LocalizedStrings'.default.YesString, Class'KFCommon_LocalizedStrings'.default.NoString, CastYesVote, CastNoVote);
 	}
@@ -1127,8 +1147,13 @@ function ShowKickVote(PlayerReplicationInfo PRI)
 
 simulated function HideKickVote()
 {
+	if( bKickVotePopupActive )
+	{
+		bKickVotePopupActive = false;
+		UnloadCurrentPopup();
+	}
+
 	VotePRI = none;
-	UnloadCurrentPopup();
 }
 
 function CastYesVote()

@@ -119,6 +119,7 @@ var bool bIdleMoveToNearestEnemy;
 var bool bReachedMoveGoal;
 var bool bReevaluatePath;
 var bool bMovingToGoal;
+var bool bMovingToEnemy;
 var bool bDirectMoveToGoal;
 var bool bMoveGoalInterruptable;
 var bool bSkipRouteCacheUpdates;
@@ -1107,7 +1108,7 @@ function ResetProbingMeleeRangeEvents(optional float DelayOverride)
     SetTimer(Delay, false, 'EnableProbingMeleeRangeEvents', self);
 }
 
-event EnemyInMeleeRange();
+event ReadyToMelee();
 
 function bool IsSuicidal()
 {
@@ -1370,9 +1371,6 @@ function bool DoHeavyZedBump(Actor Other, Vector HitNormal)
     }
     return false;
 }
-
-// Export UKFAIController::execCanMeleeAttack(FFrame&, void* const)
-native function bool CanMeleeAttack();
 
 function NotifyMeleeAttackFinished();
 
@@ -5473,6 +5471,16 @@ state ZedVictory
     function bool GetIsInZedVictoryState()
     {
         return true;
+    }
+
+    function bool CanDoStrike()
+    {
+        return false;
+    }
+
+    event bool CanGrabAttack()
+    {
+        return false;
     }
 Begin:
 

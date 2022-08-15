@@ -32,6 +32,22 @@ simulated function name GetReloadAnimName(bool bTacticalReload)
     return 'Reload_Empty';
 }
 
+static simulated function float CalculateTraderWeaponStatDamage()
+{
+    local float CalculatedDamage;
+    local class<KFDamageType> DamageType;
+    local GameExplosion ExplosionInstance;
+
+    ExplosionInstance = class<KFProjectile>(default.WeaponProjectiles[0]).default.ExplosionTemplate;
+    CalculatedDamage = default.InstantHitDamage[0] + ExplosionInstance.Damage;
+    DamageType = class<KFDamageType>(ExplosionInstance.MyDamageType);
+    if((DamageType != none) && DamageType.default.DoT_Type != 0)
+    {
+        CalculatedDamage += ((DamageType.default.DoT_Duration / DamageType.default.DoT_Interval) * (CalculatedDamage * DamageType.default.DoT_DamageScale));
+    }
+    return CalculatedDamage;
+}
+
 simulated state WeaponSingleFiring
 {
     simulated function PlayFireEffects(byte FireModeNum, optional Vector HitLocation)

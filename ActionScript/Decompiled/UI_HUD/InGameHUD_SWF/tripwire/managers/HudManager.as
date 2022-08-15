@@ -84,6 +84,8 @@ package tripwire.managers
         
         public var layout:Layout;
         
+        public var centerPoint:Point;
+        
         public function HudManager()
         {
             addFrameScript(0,this.frame1);
@@ -190,6 +192,8 @@ package tripwire.managers
         
         public function createLayout() : *
         {
+            this.centerPoint = new Point(stage.stageWidth / 2,stage.stageHeight / 2);
+            root.transform.perspectiveProjection.projectionCenter = this.centerPoint;
             this.WaveCompassWidget.layoutData = new LayoutData();
             this.WaveCompassWidget.layoutData.alignV = "top";
             this.WaveCompassWidget.layoutData.alignH = "left";
@@ -213,8 +217,8 @@ package tripwire.managers
             this.BossNamePlate.layoutData = new LayoutData();
             this.BossNamePlate.layoutData.alignV = "bottom";
             this.BossNamePlate.layoutData.alignH = "right";
-            this.BossNamePlate.layoutData.offsetH = -20;
-            this.BossNamePlate.layoutData.offsetV = -16;
+            this.BossNamePlate.layoutData.offsetH = 0;
+            this.BossNamePlate.layoutData.offsetV = 0;
             this.PlayerBackpackWidget.layoutData = new LayoutData();
             this.PlayerBackpackWidget.layoutData.alignV = "bottom";
             this.PlayerBackpackWidget.layoutData.alignH = "right";

@@ -107,6 +107,7 @@ class KFDT_Slashing_KnifeHeavy extends KFDT_Slashing_Knife
 
 
 
+
 	
 
 

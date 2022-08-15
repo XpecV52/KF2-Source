@@ -389,8 +389,16 @@ reliable server function ServerStartKickVote(PlayerReplicationInfo Kickee, Playe
 
 simulated function CastKickVote(PlayerReplicationInfo PRI, bool bKick)
 {
+	local KFPlayerController KFPC;
+
 	ServerCastKickVote(self, bKick);
-	//HideKickVote();
+
+	KFPC = KFPlayerController(Owner);
+
+	if(KFPC != none && KFPC.MyGFxManager != none)
+	{
+		KFPC.MyGFxManager.HideKickVote();
+	}
 }
 
 reliable server function ServerCastKickVote(PlayerReplicationInfo PRI, bool bKick)

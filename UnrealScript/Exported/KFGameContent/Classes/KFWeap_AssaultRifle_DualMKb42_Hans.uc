@@ -41,12 +41,16 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
 	return SpawnedProjectile;
 }
 
+/** Overridden. Hans does not consume ammo */
+simulated function ConsumeAmmo( byte FireModeNum )
+{
+}
+
 defaultproperties
 {
    SingleFireMode=1
    InventorySize=6
    bHasIronSights=True
-   bInfiniteAmmo=True
    bUseAnimLenEquipTime=False
    MeshFOV=75.000000
    MeshIronSightFOV=33.000000

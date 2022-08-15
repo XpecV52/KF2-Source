@@ -71,6 +71,22 @@ simulated function Rotator AddMultiShotSpread(Rotator BaseAim)
     }
 }
 
+static simulated function float CalculateTraderWeaponStatDamage()
+{
+    local float BaseDamage, DoTDamage;
+    local class<KFDamageType> DamageType;
+    local GameExplosion ExplosionInstance;
+
+    ExplosionInstance = class<KFProjectile>(default.WeaponProjectiles[0]).default.ExplosionTemplate;
+    BaseDamage = default.InstantHitDamage[0] + ExplosionInstance.Damage;
+    DamageType = class<KFDamageType>(ExplosionInstance.MyDamageType);
+    if((DamageType != none) && DamageType.default.DoT_Type != 0)
+    {
+        DoTDamage = (DamageType.default.DoT_Duration / DamageType.default.DoT_Interval) * (BaseDamage * DamageType.default.DoT_DamageScale);
+    }
+    return (BaseDamage * float(default.NumPellets[0])) + DoTDamage;
+}
+
 defaultproperties
 {
     NumPellets(0)=7

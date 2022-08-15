@@ -85,15 +85,6 @@ function bool IsFrustrated()
     return (IsEnraged()) || super(KFAIController).IsFrustrated();
 }
 
-event EnemyInMeleeRange()
-{
-    if(!IsMeleeRangeEventProbingEnabled() || MyKFPawn.IsDoingSpecialMove())
-    {
-        return;
-    }
-    super.EnemyInMeleeRange();
-}
-
 function bool CanEvadeGrenade()
 {
     if((MyKFPawn == none) || MyKFPawn.bIsSprinting)

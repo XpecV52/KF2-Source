@@ -62,7 +62,6 @@ function OnOpen()
         if(PC.PlayerReplicationInfo.bReadyToPlay && PC.WorldInfo.GRI.bMatchHasBegun)
         {
             SetBool("characterButtonEnabled", false);
-            Manager.CloseMenus();
         }
     }
 }

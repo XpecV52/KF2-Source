@@ -243,11 +243,11 @@ function SetItemInfo(out GFxObject ItemDataArray, out STraderItem TraderItem, in
 
 function bool IsItemFiltered(const out STraderItem Item)
 {
-    if(IsItemInInventory(Item.ClassName))
+    if(MyTraderMenu.IsInOwnedItemList(Item.ClassName))
     {
         return true;
     }
-    if(IsItemInInventory(Item.DualClassName))
+    if(MyTraderMenu.IsInOwnedItemList(Item.DualClassName))
     {
         return true;
     }
@@ -258,27 +258,6 @@ function bool IsItemFiltered(const out STraderItem Item)
     if((Item.SharedUnlockId != 0) && !Class'KFUnlockManager'.static.IsSharedContentUnlocked(Item.SharedUnlockId))
     {
         return true;
-    }
-    return false;
-}
-
-function bool IsItemInInventory(name ItemName)
-{
-    local int I;
-    local name OwnedItemClassName;
-
-    I = 0;
-    J0x0B:
-
-    if(I < MyTraderMenu.OwnedItemList.Length)
-    {
-        OwnedItemClassName = MyTraderMenu.OwnedItemList[I].DefaultItem.ClassName;
-        if(OwnedItemClassName == ItemName)
-        {
-            return true;
-        }
-        ++ I;
-        goto J0x0B;
     }
     return false;
 }

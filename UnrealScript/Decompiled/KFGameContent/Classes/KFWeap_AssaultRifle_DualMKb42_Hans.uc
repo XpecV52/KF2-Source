@@ -32,12 +32,13 @@ simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass,
     return SpawnedProjectile;
 }
 
+simulated function ConsumeAmmo(byte FireModeNum);
+
 defaultproperties
 {
     SingleFireMode=1
     InventorySize=6
     bHasIronSights=true
-    bInfiniteAmmo=true
     bUseAnimLenEquipTime=false
     MeshFOV=75
     MeshIronSightFOV=33

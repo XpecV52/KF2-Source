@@ -29,6 +29,5 @@ static function bool CheckMedicBleed(out int InDamage, out class<KFDamageType> K
 
 defaultproperties
 {
-    AARWeaponID=20
     GunHitPower=112
 }

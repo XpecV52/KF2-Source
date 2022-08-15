@@ -106,6 +106,7 @@ class KFDT_Ballistic_MB500 extends KFDT_Ballistic_Shotgun
 
 
 
+
 	
 
 

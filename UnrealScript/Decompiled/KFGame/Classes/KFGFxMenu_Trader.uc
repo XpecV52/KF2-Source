@@ -443,7 +443,6 @@ function AddWeaponToOwnedItemList(STraderItem DefaultItem, optional bool bDoNotB
         {
             MyKFIM.RemoveFromInventory(SingleWeapon);
         }
-        MyKFIM.RemoveItemFromTransaction(DefaultItem.SingleClassName);
         RemoveWeaponFromOwnedItemList(,, DefaultItem.SingleClassName, true);
     }
 }
@@ -506,18 +505,15 @@ function RemoveWeaponFromOwnedItemList(optional int OwnedListIdx, optional name 
     }
     if(ItemInfo.DefaultItem.SingleClassName != 'None')
     {
-        if(!MyKFIM.GetIsOwned(ItemInfo.DefaultItem.SingleClassName))
+        if(TraderItems.GetItemIndicesFromArche(ListIndex, ItemIndex, ItemInfo.DefaultItem.SingleClassName, ItemInfo.DefaultItem.AssociatedPerkClass))
         {
-            if(TraderItems.GetItemIndicesFromArche(ListIndex, ItemIndex, ItemInfo.DefaultItem.SingleClassName, ItemInfo.DefaultItem.AssociatedPerkClass))
+            if(ListIndex == 255)
             {
-                if(ListIndex == 255)
-                {
-                    AddWeaponToOwnedItemList(TraderItems.OffPerkItems[ItemIndex]);                    
-                }
-                else
-                {
-                    AddWeaponToOwnedItemList(TraderItems.TraderItemList[ListIndex].ItemList[ItemIndex]);
-                }
+                AddWeaponToOwnedItemList(TraderItems.OffPerkItems[ItemIndex], MyKFIM.GetIsOwned(ItemInfo.DefaultItem.SingleClassName));                
+            }
+            else
+            {
+                AddWeaponToOwnedItemList(TraderItems.TraderItemList[ListIndex].ItemList[ItemIndex], MyKFIM.GetIsOwned(ItemInfo.DefaultItem.SingleClassName));
             }
         }
     }
@@ -588,7 +584,7 @@ function SetTraderItemDetails(int ItemIndex)
         {
             SelectedItemIndex = byte(ItemIndex);
             SelectedItem = ShopWeaponList[ItemIndex];
-            bCanAfford = ShopContainer.GetCanAfford(MyKFIM.GetAdjustedBuyPriceFor(SelectedItem));
+            bCanAfford = ShopContainer.GetCanAfford(GetAdjustedBuyPriceFor(SelectedItem));
             bCanCarry = ShopContainer.CanCarry(SelectedItem.BlocksRequired);
             if(!bCanAfford || !bCanCarry)
             {
@@ -598,7 +594,7 @@ function SetTraderItemDetails(int ItemIndex)
             {
                 bCanBuyItem = true;
             }
-            ItemDetails.SetShopItemDetails(SelectedItem, MyKFIM.GetAdjustedBuyPriceFor(SelectedItem), bCanCarry, bCanBuyItem);
+            ItemDetails.SetShopItemDetails(SelectedItem, GetAdjustedBuyPriceFor(SelectedItem), bCanCarry, bCanBuyItem);
             bCanBuyOrSellItem = bCanBuyItem;            
         }
         else
@@ -774,7 +770,28 @@ function ToggleFavorite(name ClassName)
 
 simulated function int GetAdjustedBuyPriceFor(const out STraderItem ShopItem)
 {
-    return MyKFIM.GetAdjustedBuyPriceFor(ShopItem);
+    return MyKFIM.GetAdjustedBuyPriceFor(ShopItem, OwnedItemList);
+}
+
+function bool IsInOwnedItemList(name ItemName)
+{
+    local int I;
+    local name OwnedItemClassName;
+
+    I = 0;
+    J0x0B:
+
+    if(I < OwnedItemList.Length)
+    {
+        OwnedItemClassName = OwnedItemList[I].DefaultItem.ClassName;
+        if(OwnedItemClassName == ItemName)
+        {
+            return true;
+        }
+        ++ I;
+        goto J0x0B;
+    }
+    return false;
 }
 
 function Callback_BuyOrSellItem()
@@ -788,7 +805,7 @@ function Callback_BuyOrSellItem()
         if(SelectedList == 0)
         {
             ShopItem = ShopWeaponList[SelectedItemIndex];
-            AddDosh(-MyKFIM.GetAdjustedBuyPriceFor(ShopItem));
+            AddDosh(-GetAdjustedBuyPriceFor(ShopItem));
             AddBlocks(ShopItem.BlocksRequired);
             AddWeaponToOwnedItemList(ShopItem);
             RefreshItemComponents();
@@ -813,7 +830,7 @@ function Callback_BuyOrSellItem()
         if(SelectedList == 0)
         {
             ShopItem = ShopWeaponList[SelectedItemIndex];
-            bCanAfford = ShopContainer.GetCanAfford(MyKFIM.GetAdjustedBuyPriceFor(ShopItem));
+            bCanAfford = ShopContainer.GetCanAfford(GetAdjustedBuyPriceFor(ShopItem));
             bCanCarry = ShopContainer.CanCarry(ShopItem.BlocksRequired);
             MyKFPC.PlayTraderSelectItemDialog(!bCanAfford, !bCanCarry);
         }

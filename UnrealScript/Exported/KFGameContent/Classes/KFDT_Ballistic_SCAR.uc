@@ -107,6 +107,7 @@ class KFDT_Ballistic_SCAR extends KFDT_Ballistic_AssaultRifle
 
 
 
+
 	
 
 

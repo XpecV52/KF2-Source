@@ -931,7 +931,7 @@ Parry="Defender"
 ParryDescription="Combine habilidade e poder: Defender um ataque aumentará a velocidade de ataque com arma branca por 15% e o dano de ataques leves por 30% durante 4 segundos."
 
 Smash="Esmagar"
-SmashDescription="Aplique força bruta: Ataques brutos causam 30% mais dano E ataques brutos na cabeça têm uma grande chance de derrubarem os Zeds grandes.."
+SmashDescription="Aplique força bruta: Ataques brutos causam 100% mais dano E ataques brutos na cabeça têm uma grande chance de derrubarem os Zeds grandes.."
 
 Spartan="HORA ZED - Espartano"
 SpartanDescription="Você viu o 300: Se mova em tempo real, aumenta a velocidade de ataque com armas brancas de Brutamonte por 50% e qualquer defesa causará um derrube."

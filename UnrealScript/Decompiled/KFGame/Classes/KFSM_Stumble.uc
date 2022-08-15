@@ -151,10 +151,10 @@ function PlayAnimation()
     AnimName = KFPOwner.PawnAnimInfo.StumbleAnims[Type].Anims[Variant];
     PlaySpecialMoveAnim(AnimName, 0, BlendInTime, BlendOutTime, 1);
     KFPOwner.SpecialMoveFlags = 255;
-    if(PawnOwner.Role == ROLE_Authority)
+    if(KFPOwner.Role == ROLE_Authority)
     {
         bCanBeInterrupted = false;
-        PawnOwner.SetTimer(RandRange(0.5, 0.75), false, 'EnableInterrupt', self);
+        KFPOwner.SetTimer(RandRange(0.5, 0.75), false, 'EnableInterrupt', self);
     }
 }
 
@@ -165,7 +165,7 @@ function EnableInterrupt()
 
 function NotifyOwnerTakeHit(class<KFDamageType> DamageType, Vector HitLoc, Vector HitDir, Controller InstigatedBy)
 {
-    if(bCanBeInterrupted)
+    if(bCanBeInterrupted && IsAnInterruptHit(KFPOwner, DamageType))
     {
         KFPOwner.EndSpecialMove();
     }
@@ -178,7 +178,9 @@ function SpecialMoveFlagsUpdated()
 
 defaultproperties
 {
+    BlendOutTime=0.2
     bUseRootMotion=true
+    AbortBlendOutTime=0.1
     bCanOnlyWanderAtEnd=true
     bDisablesWeaponFiring=true
     AITimeout=5

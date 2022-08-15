@@ -47,6 +47,10 @@ ItemCategory="Equipment"
 ItemName="Welder"
 ItemCategory="Equipment"
 
+[KFProj_HealingDart]
+ItemName="Medic Dart"
+ItemCategory="Equipment"
+
 [KFWeap_Pistol_9mm]
 ItemName="9mm Pistol"
 ItemCategory="Hand Gun"

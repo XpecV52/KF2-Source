@@ -134,6 +134,13 @@ var array<ZedKillType> ZedKillsArray;
 
 var array<Name> AARWeaponList;
 
+var name HealerClassName;
+var string HealerClassTextureLocation;
+var name WelderClassName;
+var string WelderClassTextureLocation;
+var name MedicDartClassName;
+var string MedicDartTextureLocation;
+
 function RecordIntStat(int StatID, int Value)
 {
 	switch (StatID)
@@ -576,7 +583,25 @@ function GetWeaponInfo(name WeaponName, out string LocalizeWeaponName, out strin
 		}
 	}
 
-	//Fince the item was not found on a perk list, it must be an off perk item.
+
+	//special case
+	switch (WeaponName)
+	{
+		case HealerClassName:
+			LocalizeWeaponName = Localize(String(WeaponName), "ItemName", "KFGameContent");
+			WeaponIconSource = HealerClassTextureLocation;
+			return;	
+		case WelderClassName:
+			LocalizeWeaponName = Localize(String(WeaponName), "ItemName", "KFGameContent");
+			WeaponIconSource = WelderClassTextureLocation;
+			return;	
+		case MedicDartClassName:
+			LocalizeWeaponName = Localize(String(WeaponName), "ItemName", "KFGameContent");
+			WeaponIconSource = MedicDartTextureLocation;
+			return;	
+	}
+
+	//Since the item was not found on a perk list or a special case, it must be an off perk item.
 	TraderItems.GetOffPerkItem("KFGameContent."$WeaponName, LocalizeWeaponName, WeaponIconSource );
 }
 
@@ -1203,4 +1228,14 @@ DefaultProperties
 	AARWeaponList[`AAR_FlameThrower]=KFWeap_Flame_Flamethrower
 	AARWeaponList[`AAR_MicrowaveGun]=KFWeap_Beam_Microwave
 	AARWeaponList[`AAR_Zweihander]=KFWeap_Edged_Zweihander
+	AARWeaponList[`AAR_Healer]=KFWeap_Healer_Syringe
+	AARWeaponList[`AAR_Welder]=KFWeap_Welder
+	AARWeaponList[`AAR_MedicDart]=KFProj_HealingDart
+
+	HealerClassName=KFWeap_Healer_Syringe
+	HealerClassTextureLocation="ui_weaponselect_tex.UI_WeaponSelect_Healer"
+	WelderClassName=KFWeap_Welder
+	WelderClassTextureLocation="ui_weaponselect_tex.UI_WeaponSelect_Welder"
+	MedicDartClassName=KFProj_HealingDart
+	MedicDartTextureLocation="ui_firemodes_tex.UI_FireModeSelect_MedicDart"
 }

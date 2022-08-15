@@ -104,6 +104,7 @@ class KFDT_Slashing_KatanaHeavy extends KFDT_Slashing_Katana
 
 
 
+
 	
 
 

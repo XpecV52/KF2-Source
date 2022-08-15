@@ -304,7 +304,6 @@ function UpdateGameSettings()
                 if(MyKFGRI != none)
                 {
                     MyKFGRI.bCustom = bIsCustomGame;
-                    MyKFGRI.bRanked = !bIsUnrankedGame;
                 }
                 GameInterface.UpdateOnlineGame(SessionName, KFGameSettings, true);
             }

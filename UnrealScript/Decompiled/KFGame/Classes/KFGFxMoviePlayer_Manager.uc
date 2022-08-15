@@ -84,6 +84,7 @@ var KFGFxMenu_Trader TraderMenu;
 var KFGFxMenu_ServerBrowser ServerBrowserMenu;
 var KFGFxMenu_Exit ExitMenu;
 var bool bPostGameState;
+var bool bKickVotePopupActive;
 var bool bUsingGamepad;
 var bool bAfterLobby;
 var bool bMenusOpen;
@@ -208,6 +209,8 @@ function bool CheckSkipLobby()
 
 event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 {
+    local PlayerController PC;
+
     LogInternal("WidgetInitialized - Menu: " @ string(WidgetName), 'DevGFxUI');
     switch(WidgetName)
     {
@@ -250,6 +253,11 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             OnMenuOpen(WidgetPath, ServerBrowserMenu);
             break;
         case 'GearMenu':
+            PC = GetPC();
+            if(PC.PlayerReplicationInfo.bReadyToPlay && PC.WorldInfo.GRI.bMatchHasBegun)
+            {
+                goto J0x991;
+            }
             if(GearMenu == none)
             {
                 GearMenu = KFGFxMenu_Gear(Widget);
@@ -360,6 +368,8 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
         default:
             break;
     }
+    J0x991:
+
     return true;
 }
 
@@ -413,8 +423,17 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
 {
     local KFGFxMoviePlayer_Manager.EStartMenuState TempMenuState;
     local WorldInfo WI;
+    local PlayerController PC;
 
     bShowWidgets = true;
+    if(NewMenuIndex == 2)
+    {
+        PC = GetPC();
+        if(PC.PlayerReplicationInfo.bReadyToPlay && PC.WorldInfo.GRI.bMatchHasBegun)
+        {
+            return;
+        }
+    }
     WI = Class'WorldInfo'.static.GetWorldInfo();
     if(!bMenusOpen)
     {
@@ -960,14 +979,19 @@ function ShowKickVote(PlayerReplicationInfo PRI)
     VotePRI = PRI;
     if(bMenusOpen)
     {
+        bKickVotePopupActive = true;
         OpenPopup(0, Class'KFGFxWidget_KickVote'.default.VoteKickString, VotePRI.PlayerName, Class'KFCommon_LocalizedStrings'.default.YesString, Class'KFCommon_LocalizedStrings'.default.NoString, CastYesVote, CastNoVote);
     }
 }
 
 simulated function HideKickVote()
 {
+    if(bKickVotePopupActive)
+    {
+        bKickVotePopupActive = false;
+        UnloadCurrentPopup();
+    }
     VotePRI = none;
-    UnloadCurrentPopup();
 }
 
 function CastYesVote()

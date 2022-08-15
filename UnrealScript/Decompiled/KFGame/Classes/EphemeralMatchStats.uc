@@ -149,6 +149,12 @@ var array<PerkXPGain> PerkXPList;
 var array<WeaponDamage> WeaponDamageList;
 var array<ZedKillType> ZedKillsArray;
 var array<name> AARWeaponList;
+var name HealerClassName;
+var string HealerClassTextureLocation;
+var name WelderClassName;
+var string WelderClassTextureLocation;
+var name MedicDartClassName;
+var string MedicDartTextureLocation;
 var delegate<SortXP> __SortXP__Delegate;
 var delegate<SortWeapons> __SortWeapons__Delegate;
 
@@ -551,7 +557,24 @@ function GetWeaponInfo(name WeaponName, out string LocalizeWeaponName, out strin
         ++ I;
         goto J0xD8;
     }
-    TraderItems.GetOffPerkItem("KFGameContent." $ string(WeaponName), LocalizeWeaponName, WeaponIconSource);
+    switch(WeaponName)
+    {
+        case HealerClassName:
+            LocalizeWeaponName = Localize(string(WeaponName), "ItemName", "KFGameContent");
+            WeaponIconSource = HealerClassTextureLocation;
+            return;
+        case WelderClassName:
+            LocalizeWeaponName = Localize(string(WeaponName), "ItemName", "KFGameContent");
+            WeaponIconSource = WelderClassTextureLocation;
+            return;
+        case MedicDartClassName:
+            LocalizeWeaponName = Localize(string(WeaponName), "ItemName", "KFGameContent");
+            WeaponIconSource = MedicDartTextureLocation;
+            return;
+        default:
+            TraderItems.GetOffPerkItem("KFGameContent." $ string(WeaponName), LocalizeWeaponName, WeaponIconSource);
+            break;
+    }
 }
 
 function GetTopWeapons(int AmountToGrab, out array<WeaponDamage> TopWeaponList)
@@ -1220,4 +1243,13 @@ defaultproperties
     AARWeaponList(48)=KFWeap_Flame_Flamethrower
     AARWeaponList(49)=KFWeap_Beam_Microwave
     AARWeaponList(50)=KFWeap_Edged_Zweihander
+    AARWeaponList(51)=KFWeap_Healer_Syringe
+    AARWeaponList(52)=KFWeap_Welder
+    AARWeaponList(53)=KFProj_HealingDart
+    HealerClassName=KFWeap_Healer_Syringe
+    HealerClassTextureLocation="ui_weaponselect_tex.UI_WeaponSelect_Healer"
+    WelderClassName=KFWeap_Welder
+    WelderClassTextureLocation="ui_weaponselect_tex.UI_WeaponSelect_Welder"
+    MedicDartClassName=KFProj_HealingDart
+    MedicDartTextureLocation="ui_firemodes_tex.UI_FireModeSelect_MedicDart"
 }

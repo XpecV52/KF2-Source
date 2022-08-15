@@ -454,9 +454,6 @@ native function bool InAttackTagRange(const name AttackTag, const Vector TestLoc
 // Export UKFPawn_Monster::execInAnyAttackTagRange(FFrame&, void* const)
 native function bool InAnyAttackTagRange(const Vector TestLocation, out name outAttackTag);
 
-// Export UKFPawn_Monster::execAttemptAttack(FFrame&, void* const)
-native function AttemptAttack(const Vector TestLocation);
-
 // Export UKFPawn_Monster::execGetEnemy(FFrame&, void* const)
 native function KFPawn GetEnemy();
 

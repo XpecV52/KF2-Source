@@ -380,6 +380,7 @@ class KFGameInfo extends FrameworkGame
 
 
 
+
 	
 
 
@@ -1643,6 +1644,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 		if( KFPC != none && KFPC.bIsPlayer && MonsterPawn != none )
 		{
 			//Chris: We have to do it earlier here because we need a damage type
+			//BLEED MAY BE BREAKING AAR STUFF
 			KFPC.AddZedKill( MonsterPawn.class, GameDifficulty, DT );
 
 			KFPCP = KFPC.GetPerk();

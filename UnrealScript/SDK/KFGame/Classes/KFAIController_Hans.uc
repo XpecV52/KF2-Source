@@ -1802,6 +1802,7 @@ DefaultProperties
 	MeleeCommandClass=class'KFGame.AICommand_Base_Hans'
     MinDistanceToPerformGrabAttack=200.f
     MinTimeBetweenGrabAttacks=2.5f
+    bRepathOnInvalidStrike=true
 
 	//DefaultBehavior="Hans_BT"
 	//UsedETQQueries[ENQ_EnemySelection]="BaseZedEnemySelection"

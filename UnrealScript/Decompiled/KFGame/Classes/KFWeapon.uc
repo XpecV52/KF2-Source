@@ -175,7 +175,6 @@ var(Attachments) bool bHasFlashlight;
 /** Whether the weapon supports laser sights or not */
 var(Attachments) bool bHasLaserSight;
 var bool bIsBackupWeapon;
-var bool bUseEffectiveRangeForTrader;
 var config bool bLogAnimation;
 var config bool bLogStates;
 var bool bPauseWithPlayersOnly;
@@ -1464,7 +1463,7 @@ simulated function UpdateOutOfAmmoEffects(float BlendTime)
     }
     if(EmptyMagBlendNode != none)
     {
-        if(bAllowClientAmmoTracking && AmmoCount[0] == 0)
+        if(AmmoCount[0] == 0)
         {
             EmptyMagBlendNode.SetBlendTarget(1, 0);
         }
@@ -3514,7 +3513,7 @@ static simulated event SetTraderWeaponStats(out array<STraderItemWeaponStats> We
     WeaponStats[0].StatType = 0;
     WeaponStats[0].StatValue = CalculateTraderWeaponStatDamage();
     WeaponStats[1].StatType = 1;
-    WeaponStats[1].StatValue = CalculateTraderStatFireRate();
+    WeaponStats[1].StatValue = CalculateTraderWeaponStatFireRate();
     WeaponStats[2].StatType = 2;
     WeaponStats[2].StatValue = CalculateTraderWeaponStatRange();
     WeaponStats[3].StatType = 3;
@@ -3535,7 +3534,7 @@ static simulated function float CalculateTraderWeaponStatDamage()
     return CalculatedDamage;
 }
 
-static simulated function float CalculateTraderStatFireRate()
+static simulated function float CalculateTraderWeaponStatFireRate()
 {
     return 60 / default.FireInterval[0];
 }

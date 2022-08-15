@@ -86,7 +86,6 @@ var repnotify bool bTraderIsOpen;
 var private const bool bIsUnrankedGame;
 var bool bMatchVictory;
 var bool bCustom;
-var bool bRanked;
 var bool bCurrentSMFinishedSpawning;
 var bool bDebugSpawnManager;
 var bool bTrackingMapEnabled;
@@ -139,8 +138,7 @@ replication
 
      if(bNetInitial)
         GameDifficulty, GameLength, 
-        WaveMax, bCustom, 
-        bRanked;
+        WaveMax, bCustom;
 
      if(bDebugSpawnManager && bNetDirty)
         CurrentAIAliveCount, CurrentMaxMonsters, 
@@ -1018,6 +1016,14 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
     if(VoteCollector != none)
     {
         VoteCollector.ReceiveVoteMap(PRI, MapIndex);
+    }
+}
+
+private final event NotifyGameUnranked()
+{
+    if(WorldInfo.Game != none)
+    {
+        WorldInfo.Game.UpdateGameSettings();
     }
 }
 

@@ -61,6 +61,7 @@ function Pushed()
 {
 	`AILog( self@GetFuncName()$"() current dist to enemy: "$VSize(Enemy.Location - Pawn.Location), 'Command_MoveToEnemy' );
 	Super.Pushed();
+	bMovingToEnemy = true;
 	SprintTimer();
 	SetTimer( 1.5f + FRand(), false, nameof( SprintTimer ), self );
 	GotoState( 'Moving' );
@@ -79,6 +80,7 @@ function Popped()
 	ClearTimer( nameof(self.DirectMoveTimeout),self );
 
 	bFailedToMoveToEnemy = ( Status != 'Success' );
+	bMovingToEnemy = false;
  	if( bFailedToMoveToEnemy )
  	{
  		if( Pawn != none )

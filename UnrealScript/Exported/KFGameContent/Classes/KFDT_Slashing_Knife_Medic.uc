@@ -107,6 +107,7 @@ class KFDT_Slashing_Knife_Medic extends KFDT_Slashing_Knife
 
 
 
+
 	
 
 
@@ -150,7 +151,6 @@ static function bool CheckMedicBleed( out int InDamage, out class<KFDamageType> 
 
 defaultproperties
 {
-   AARWeaponID=20
    GunHitPower=112
    Name="Default__KFDT_Slashing_Knife_Medic"
    ObjectArchetype=KFDT_Slashing_Knife'KFGameContent.Default__KFDT_Slashing_Knife'

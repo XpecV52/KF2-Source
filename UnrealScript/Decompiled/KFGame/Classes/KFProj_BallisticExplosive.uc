@@ -306,7 +306,7 @@ protected simulated function PrepareExplosionTemplate()
 {
     local KFPlayerReplicationInfo InstigatorPRI;
 
-    if((WorldInfo.TimeDilation < 1) && Instigator != none)
+    if(bWasTimeDilated && Instigator != none)
     {
         InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
         if(InstigatorPRI != none)
@@ -335,7 +335,7 @@ protected simulated function SetExplosionActorClass()
 {
     local KFPlayerReplicationInfo InstigatorPRI;
 
-    if((WorldInfo.TimeDilation < 1) && Instigator != none)
+    if(bWasTimeDilated && Instigator != none)
     {
         InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
         if(InstigatorPRI != none)
@@ -369,7 +369,7 @@ defaultproperties
     GlassShatterType=FracturedMeshGlassShatterType.FMGS_ShatterAll
     ExtraLineCollisionOffsets(0)=
 /* Exception thrown while deserializing ExtraLineCollisionOffsets
-System.ArgumentException: Requested value '!=_6427' was not found.
+System.ArgumentException: Requested value '!=_6430' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

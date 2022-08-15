@@ -24,6 +24,5 @@ static function bool IsToxicDartWithACMedicPerk()
 
 defaultproperties
 {
-	AARWeaponID=`AAR_NONE	
-	//AARWeaponID=`AAR_Healer
+	AARWeaponID=`AAR_MedicDart
 }

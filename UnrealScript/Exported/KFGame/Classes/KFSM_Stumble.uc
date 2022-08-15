@@ -171,10 +171,10 @@ function PlayAnimation()
 	// Clear the special move flags now so that SpecialMoveFlagsUpdated never fails
 	KFPOwner.SpecialMoveFlags = 255;
 
-	if ( PawnOwner.Role == ROLE_Authority )
+	if ( KFPOwner.Role == ROLE_Authority )
 	{
 		bCanBeInterrupted = false;
-		PawnOwner.SetTimer(RandRange(0.5f, 0.75f), false, nameof(EnableInterrupt), Self);
+		KFPOwner.SetTimer(RandRange(0.5f, 0.75f), false, nameof(EnableInterrupt), Self);
 	}
 }
 
@@ -186,7 +186,7 @@ function EnableInterrupt()
 /** Server: Notification from the pawn that damage was taken during move */
 function NotifyOwnerTakeHit(class<KFDamageType> DamageType, vector HitLoc, vector HitDir, Controller InstigatedBy)
 {
-	if ( bCanBeInterrupted )
+	if ( bCanBeInterrupted && IsAnInterruptHit(KFPOwner, DamageType) )
 	{
 		KFPOwner.EndSpecialMove();
 	}
@@ -203,7 +203,9 @@ function SpecialMoveFlagsUpdated()
 
 defaultproperties
 {
+   BlendOutTime=0.200000
    bUseRootMotion=True
+   AbortBlendOutTime=0.100000
    bCanOnlyWanderAtEnd=True
    bDisablesWeaponFiring=True
    AITimeout=5.000000

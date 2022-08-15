@@ -393,21 +393,9 @@ static simulated function float CalculateTraderWeaponStatDamage()
     return CalculatedDamage;
 }
 
-static simulated function float CalculateTraderStatFireRate()
+static simulated function float CalculateTraderWeaponStatFireRate()
 {
     return float(default.EstimatedFireRate);
-}
-
-static simulated function float CalculateTraderWeaponStatRange()
-{
-    if(default.bUseEffectiveRangeForTrader)
-    {
-        return float(default.EffectiveRange);        
-    }
-    else
-    {
-        return default.MeleeAttackHelper.MaxHitRange / 100;
-    }
 }
 
 simulated state WeaponUpkeep

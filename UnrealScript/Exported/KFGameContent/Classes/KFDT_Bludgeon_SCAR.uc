@@ -104,6 +104,7 @@ class KFDT_Bludgeon_SCAR extends KFDT_Bludgeon_RifleButt
 
 
 
+
 	
 
 

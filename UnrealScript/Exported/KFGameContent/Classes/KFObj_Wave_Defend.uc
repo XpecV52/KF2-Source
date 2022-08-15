@@ -105,6 +105,7 @@ class KFObj_Wave_Defend extends KFObj_Wave;
 
 
 
+
 	
 
 

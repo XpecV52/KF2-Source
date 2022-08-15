@@ -201,7 +201,7 @@ state Debugging
 		}
 		EnableMeleeRangeEventProbing();
 		Pawn.SetPhysics( PHYS_Walking );
-		EnemyInMeleeRange();
+		ReadyToMelee();
 	}
 }
 

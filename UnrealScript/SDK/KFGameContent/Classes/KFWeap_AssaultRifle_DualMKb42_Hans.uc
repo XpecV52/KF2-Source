@@ -41,6 +41,11 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
 	return SpawnedProjectile;
 }
 
+/** Overridden. Hans does not consume ammo */
+simulated function ConsumeAmmo( byte FireModeNum )
+{
+}
+
 defaultproperties
 {
 	InventorySize=6
@@ -65,7 +70,6 @@ defaultproperties
 	InitialSpareMags[0]=3
 	bCanBeReloaded=false//true
 	bReloadFromMagazine=false//true
-	bInfiniteAmmo=true
 
 	// Recoil
 	maxRecoilPitch=200

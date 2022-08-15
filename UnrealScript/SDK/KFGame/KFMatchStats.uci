@@ -53,7 +53,7 @@
 `define AAR_M79					 17
 `define AAR_RPG7				 18
 `define AAR_MedicGrenade		 19
-`define AAR_MedicKnife			 20
+`define AAR_MedicKnife			 20 //no  longer used
 `define AAR_MedicPistol			 21
 `define AAR_MedicSMG			 22
 `define AAR_MedicShotgun		 23
@@ -86,6 +86,7 @@
 `define AAR_Zweihander			 50
 `define AAR_Healer 				 51
 `define AAR_Welder 				 52
+`define AAR_MedicDart			 53
 
 `define AAR_NONE 				 255
 

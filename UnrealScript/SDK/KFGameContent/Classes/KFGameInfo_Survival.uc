@@ -298,7 +298,6 @@ function UpdateGameSettings()
 				if(MyKFGRI != none)
 				{
 					MyKFGRI.bCustom = bIsCustomGame;
-					MyKFGRI.bRanked = !bIsUnrankedGame;
 				}
 
 				//Trigger re-broadcast of game settings

@@ -1033,9 +1033,6 @@ var(Weapon) class<KFPerk> 		AssociatedPerkClass;
   */
 var() byte EffectiveRange;
 
-/** Whether to use the hand-crafted EffectiveRange or a more deterministic value */
-var bool bUseEffectiveRangeForTrader;
-
 /** Id for shared unlock if applicable */
 var private const ESharedContentUnlock SharedUnlockId;
 
@@ -2326,7 +2323,7 @@ simulated function UpdateOutOfAmmoEffects(float BlendTime)
 	{
 		// For now just update the lock to fix edge case with newly picked up weapon until 
 		// AnimNotify system is completely removed.  Only supported for client-side ammo
-		if ( bAllowClientAmmoTracking && AmmoCount[0] == 0 )
+		if ( AmmoCount[0] == 0 )
 		{
 			EmptyMagBlendNode.SetBlendTarget(1, 0);
 		}
@@ -6075,7 +6072,7 @@ static simulated event SetTraderWeaponStats( out array<STraderItemWeaponStats> W
 
 	// attacks per minutes (design says minute. why minute?)
 	WeaponStats[1].StatType = TWS_RateOfFire;
-	WeaponStats[1].StatValue = CalculateTraderStatFireRate();
+	WeaponStats[1].StatValue = CalculateTraderWeaponStatFireRate();
 
 	WeaponStats[2].StatType = TWS_Range;
 	WeaponStats[2].StatValue = CalculateTraderWeaponStatRange();
@@ -6102,7 +6099,7 @@ static simulated function float CalculateTraderWeaponStatDamage()
 }
 
 /** Allows weapon to calculate its own fire rate for display in trader */
-static simulated function float CalculateTraderStatFireRate()
+static simulated function float CalculateTraderWeaponStatFireRate()
 {
 	return 60.f / default.FireInterval[DEFAULT_FIREMODE]; // attacks per minute
 }

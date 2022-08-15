@@ -5550,6 +5550,20 @@ exec function SetWeaponSkin(int MaterialIndex, string MaterialName)
     }
 }
 
+/** DemiGod Mode (prevents death, but not damage) */
+exec function DemiGod()
+{
+    if ( bDemiGodMode )
+    {
+        bDemiGodMode = false;
+        ClientMessage("Demi God mode off");
+        return;
+    }
+
+    bDemiGodMode = true;
+    ClientMessage("Demi God Mode on");
+}
+
 // NVCHANGE_BEGIN - RLS - Debugging Effects (do not merge)
 exec function NVZedTime(bool bImmediate = false, float Chance = 100.0, float Duration = 5.0)
 {

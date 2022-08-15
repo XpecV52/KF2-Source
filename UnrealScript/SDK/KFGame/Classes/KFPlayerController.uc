@@ -80,6 +80,9 @@ struct native ObjectiveAnnouncementInfo
 	var() localized string AnnouncementText;
 };
 
+/** Used to determine if a player can be considered for achievements */
+var bool bIsAchievementPlayer;
+
 /*********************************************************************************************
  * @name UT Variables
 ********************************************************************************************* */
@@ -644,6 +647,9 @@ reliable client function ClientRestart(Pawn NewPawn)
 
 	// Reset Depth of Field
 	EnableDepthOfField(false);
+
+	// Only unlock achievements for people who have possessed a pawn during this game
+	bIsAchievementPlayer = true;
 }
 
 reliable client function ClientReset()
@@ -3646,8 +3652,8 @@ reliable client function ClientWonGame( string MapName, byte Difficulty, byte Ga
  */
 reliable client event ClientUnlockAchievement( int AchievementIndex )
 {
-	if ( WorldInfo.NetMode != NM_DedicatedServer && IsLocalPlayerController() && !PlayerReplicationInfo.bOnlySpectator 
-		&& !StatsWrite.HasCheated() && !StatsWrite.IsAchievementUnlocked(AchievementIndex) )
+	if ( WorldInfo.NetMode != NM_DedicatedServer && IsLocalPlayerController() && bIsAchievementPlayer
+		&& !PlayerReplicationInfo.bOnlySpectator && !StatsWrite.HasCheated() && !StatsWrite.IsAchievementUnlocked(AchievementIndex) )
 	{
 
 `if(`notdefined(ShippingPC))

@@ -8,17 +8,6 @@
 //=============================================================================
 class KFAIController_ZedBloat extends KFAIController_Monster;
 
-/** Notification that enemy is now within melee attack range, called from TickMeleeCombatDecision() */
-event EnemyInMeleeRange()
-{
-	if( !IsMeleeRangeEventProbingEnabled() || MyKFPawn.IsDoingSpecialMove() )
-	{
-		return;
-	}
-
-	Super.EnemyInMeleeRange();
-}
-
 defaultproperties
 {
    bCanTeleportCloser=False

@@ -74,9 +74,6 @@ function OnOpen()
 	{
 		// Players cannot change characters if they are in a game
 		SetBool("characterButtonEnabled", false);
-		
-		//temp fix for gear menu being open when it shouldn't be
-		Manager.CloseMenus();
 	}
 }
 

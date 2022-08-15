@@ -1034,10 +1034,10 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperAI'KFGameContent.Default__KFPawn_ZedHans:MeleeHelper_0'
    DoshValue=500
-   XPValues(0)=423.000000
-   XPValues(1)=564.000000
-   XPValues(2)=762.000000
-   XPValues(3)=874.000000
+   XPValues(0)=1291.000000
+   XPValues(1)=1694.000000
+   XPValues(2)=1790.000000
+   XPValues(3)=1843.000000
    VulnerableDamageTypes(0)=(DamageType=Class'KFGameContent.KFDT_Microwave',DamageScale=1.250000)
    ResistantDamageTypes(0)=(DamageType=Class'KFGame.KFDT_Toxic')
    ResistantDamageTypes(1)=(DamageType=Class'KFGame.KFDT_EMP')

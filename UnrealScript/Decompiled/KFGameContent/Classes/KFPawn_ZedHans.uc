@@ -893,10 +893,10 @@ defaultproperties
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedHans.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
     DoshValue=500
-    XPValues[0]=423
-    XPValues[1]=564
-    XPValues[2]=762
-    XPValues[3]=874
+    XPValues[0]=1291
+    XPValues[1]=1694
+    XPValues[2]=1790
+    XPValues[3]=1843
     VulnerableDamageTypes=/* Array type was not detected. */
     ResistantDamageTypes=/* Array type was not detected. */
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'

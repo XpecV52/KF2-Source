@@ -7,3 +7,8 @@
  *******************************************************************************/
 class KFDT_Bludgeon_Welder extends KFDT_Bludgeon_RifleButt
     abstract;
+
+defaultproperties
+{
+    AARWeaponID=52
+}

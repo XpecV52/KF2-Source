@@ -34,6 +34,7 @@ var const int PlayerNum;
 var private const Controller NextController;
 var bool bIsPlayer;
 var bool bGodMode;
+var bool bDemiGodMode;
 var bool bSoaking;
 var bool bSlowerZAcquire;
 var bool bNotifyPostLanded;

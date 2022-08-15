@@ -9,15 +9,6 @@ class KFAIController_ZedBloat extends KFAIController_Monster
     config(AI)
     hidecategories(Navigation);
 
-event EnemyInMeleeRange()
-{
-    if(!IsMeleeRangeEventProbingEnabled() || MyKFPawn.IsDoingSpecialMove())
-    {
-        return;
-    }
-    super.EnemyInMeleeRange();
-}
-
 defaultproperties
 {
     bCanTeleportCloser=false

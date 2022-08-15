@@ -46,6 +46,7 @@ function Pushed()
 {
     Outer.AILog_Internal(((string(self) @ string(GetFuncName())) $ "() current dist to enemy: ") $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location)), 'Command_MoveToEnemy');
     super.Pushed();
+    Outer.bMovingToEnemy = true;
     SprintTimer();
     Outer.SetTimer(1.5 + FRand(), false, 'SprintTimer', self);
     GotoState('Moving');
@@ -63,6 +64,7 @@ function Popped()
     Outer.ClearTimer('CheckEnemyMoved', self);
     Outer.ClearTimer('DirectMoveTimeout', self);
     Outer.bFailedToMoveToEnemy = Status != 'Success';
+    Outer.bMovingToEnemy = false;
     if(Outer.bFailedToMoveToEnemy)
     {
         if(Outer.Pawn != none)

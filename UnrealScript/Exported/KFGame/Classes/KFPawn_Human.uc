@@ -380,6 +380,7 @@ class KFPawn_Human extends KFPawn
 
 
 
+
 	
 
 
@@ -1232,6 +1233,21 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	}
 
 	if (bLogTakeDamage) LogInternal(self @ GetFuncName()@"Adjusted Damage AFTER =" @ InDamage);
+
+	// (Cheats) Dont allow dying if demigod mode is enabled
+	if ( Controller != none &&  Controller.bDemiGodMode && InDamage >= Health )
+	{
+		// Increase your health when you are going to get killed... so the amount of damage in semigod is not always just 1...
+		// Some ais do different reactions depending on the amount of damaged caused in the last x seconds...
+		if ( Health == 1 )
+		{
+			Health = HealthMax * 0.25f;
+		}
+		if( InDamage >= Health )
+		{
+			InDamage = Health - 1;
+		}
+	}
 }
 
 event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)

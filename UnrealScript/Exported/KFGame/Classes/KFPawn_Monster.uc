@@ -382,6 +382,7 @@ class KFPawn_Monster extends KFPawn
 
 
 
+
 	
 
 
@@ -1016,7 +1017,6 @@ native function bool InChargeRange( const Vector TestLocation );
 native function bool InMeleeRange( const Vector TestLocation, optional name AttackTag );
 native function bool InAttackTagRange( const name AttackTag, const Vector TestLocation );
 native function bool InAnyAttackTagRange( const Vector TestLocation, out name outAttackTag );
-native function AttemptAttack( const vector TestLocation );
 /** SERVER ONLY: Gets current enemy, to avoid having to get it from the controller */
 native function KFPawn GetEnemy();
 /** Checks to see if area between CheckLocation and pawn is clear for combat */

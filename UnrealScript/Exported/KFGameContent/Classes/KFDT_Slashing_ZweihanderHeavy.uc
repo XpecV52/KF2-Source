@@ -104,6 +104,7 @@ class KFDT_Slashing_ZweihanderHeavy extends KFDT_Slashing_Katana
 
 
 
+
 	
 
 

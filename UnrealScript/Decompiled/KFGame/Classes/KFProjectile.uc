@@ -42,6 +42,7 @@ var bool bUseClientSideHitDetection;
 var bool bReplicateClientHitsAsFragments;
 var bool bDamageDestructiblesOnTouch;
 var repnotify bool bHasExploded;
+var bool bWasTimeDilated;
 var bool bReplicateLocationOnExplosion;
 var bool bValidateExplosionNormalOnClient;
 var repnotify bool bHasDisintegrated;
@@ -106,7 +107,7 @@ replication
         bFiredFromLeftHandWeapon;
 
      if(bNetInitial || bAlwaysReplicateExplosion)
-        bHasExploded;
+        bHasExploded, bWasTimeDilated;
 
      if(bNetInitial)
         InitialPenetrationPower, bAltExploEffects;
@@ -496,6 +497,10 @@ simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor 
     }
     if(!bHasExploded)
     {
+        if(((WorldInfo.NetMode == NM_ListenServer) || WorldInfo.NetMode == NM_DedicatedServer) || InstigatorController != none)
+        {
+            bWasTimeDilated = WorldInfo.TimeDilation < 1;
+        }
         if((bStopAmbientSoundOnExplode && AmbientSoundStopEvent != none) && AmbientComponent != none)
         {
             AmbientComponent.StopEvents();

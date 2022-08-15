@@ -5293,6 +5293,18 @@ exec function SetWeaponSkin(int MaterialIndex, string MaterialName)
     }
 }
 
+exec function DemiGod()
+{
+    if(Outer.bDemiGodMode)
+    {
+        Outer.bDemiGodMode = false;
+        Outer.ClientMessage("Demi God mode off");
+        return;
+    }
+    Outer.bDemiGodMode = true;
+    Outer.ClientMessage("Demi God Mode on");
+}
+
 exec function NVZedTime(optional bool bImmediate, optional float Chance, optional float Duration)
 {
     bImmediate = false;

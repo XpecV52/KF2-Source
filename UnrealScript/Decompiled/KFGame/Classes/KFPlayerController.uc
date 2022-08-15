@@ -132,6 +132,7 @@ var const name MusicMessageType;
 var private const bool bPerkStatsLoaded;
 var bool bAcuteHearing;
 var bool bUsePhysicsRotation;
+var bool bIsAchievementPlayer;
 var config bool bHideTraderPaths;
 var transient bool bClientTraderMenuOpen;
 var bool bPlayerUsedUpdatePerk;
@@ -403,6 +404,7 @@ reliable client simulated function ClientRestart(Pawn NewPawn)
         Pawn.AttachComponent(AmplificationLight);
     }
     EnableDepthOfField(false);
+    bIsAchievementPlayer = true;
 }
 
 reliable client simulated function ClientReset()
@@ -2843,7 +2845,7 @@ reliable client simulated function ClientWonGame(string MapName, byte Difficulty
 
 reliable client simulated event ClientUnlockAchievement(int AchievementIndex)
 {
-    if(((((WorldInfo.NetMode != NM_DedicatedServer) && IsLocalPlayerController()) && !PlayerReplicationInfo.bOnlySpectator) && !StatsWrite.HasCheated()) && !StatsWrite.IsAchievementUnlocked(AchievementIndex))
+    if((((((WorldInfo.NetMode != NM_DedicatedServer) && IsLocalPlayerController()) && bIsAchievementPlayer) && !PlayerReplicationInfo.bOnlySpectator) && !StatsWrite.HasCheated()) && !StatsWrite.IsAchievementUnlocked(AchievementIndex))
     {
         if(OnlineSub.PlayerInterface.UnlockAchievement(0, AchievementIndex))
         {

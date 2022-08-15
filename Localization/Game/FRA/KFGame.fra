@@ -931,7 +931,7 @@ Parry="Parade"
 ParryDescription="Combine force et talent : parer une attaque augmente ta vitesse d'attaque en mêlée de 15% et tes attaques légères de 30% pendant 4 secs."
 
 Smash="Smash"
-SmashDescription="Emploie la force brute : les coups puissants infligents 30% de dégâts supplémentaires ET ont plus de chance de mettre les gros Zeds à terre lorsqu'ils sont portés à la tête."
+SmashDescription="Emploie la force brute : les coups puissants infligents 100% de dégâts supplémentaires ET ont plus de chance de mettre les gros Zeds à terre lorsqu'ils sont portés à la tête."
 
 Spartan="ZED-TIME - Spartiate"
 SpartanDescription="Tu as trop regardé 300 : bouge en temps réel, augmente ta vitesse d'attaque avec les armes de mêlée de Fou furieux de 50% et les Parades infligent des KO.  "

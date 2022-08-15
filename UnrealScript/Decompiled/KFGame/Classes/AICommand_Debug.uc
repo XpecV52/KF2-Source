@@ -217,7 +217,7 @@ state Debugging
         }
         Outer.EnableMeleeRangeEventProbing();
         Outer.Pawn.SetPhysics(1);
-        Outer.EnemyInMeleeRange();
+        Outer.ReadyToMelee();
     }
     stop;    
 }

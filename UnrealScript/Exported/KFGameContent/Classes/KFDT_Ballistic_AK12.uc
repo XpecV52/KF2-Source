@@ -107,6 +107,7 @@ class KFDT_Ballistic_AK12 extends KFDT_Ballistic_AssaultRifle
 
 
 
+
 	
 
 

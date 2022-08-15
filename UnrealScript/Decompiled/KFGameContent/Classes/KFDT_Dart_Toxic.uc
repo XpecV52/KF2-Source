@@ -12,3 +12,8 @@ static function bool IsToxicDartWithACMedicPerk()
 {
     return true;
 }
+
+defaultproperties
+{
+    AARWeaponID=53
+}

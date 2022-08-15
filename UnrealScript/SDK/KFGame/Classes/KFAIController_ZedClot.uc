@@ -114,19 +114,6 @@ function bool ShouldSprint()
 * Combat
 **********************************************************************************************/
 
-/*event EnemyInMeleeRange()
-{
-	// Disable sprinting the moment we enter melee range. Movement AI command will reenable it as needed.
-	if( MyKFPawn != none )
-	{
-		MyKFPawn.SetSprinting( false );
-		MyKFPawn.bCanSprint = false;
-		MyKFPawn.bCanSprintWhenDamaged = MyKFPawn.default.bCanSprintWhenDamaged;
-	}
-
-	super.EnemyInMeleeRange();
-}*/
-
 function bool CanDoStrike()
 {
 	// Prioritize a grab over doing a strike

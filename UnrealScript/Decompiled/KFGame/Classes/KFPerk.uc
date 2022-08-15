@@ -529,50 +529,54 @@ private final simulated function PerkSetOwnerHealthAndArmor(optional bool bModif
     {
         return;
     }
-    CheckOwnerPawn();
-    if(bModifyHealth)
+    if(CheckOwnerPawn())
     {
-        OwnerPawn.Health = OwnerPawn.default.Health;
-        ModifyHealth(OwnerPawn.Health);
+        if(bModifyHealth)
+        {
+            OwnerPawn.Health = OwnerPawn.default.Health;
+            ModifyHealth(OwnerPawn.Health);
+        }
+        OwnerPawn.HealthMax = OwnerPawn.default.Health;
+        ModifyHealth(OwnerPawn.HealthMax);
+        OwnerPawn.Health = Min(OwnerPawn.Health, OwnerPawn.HealthMax);
+        if(OwnerPC == none)
+        {
+            OwnerPC = KFPlayerController(Owner);
+        }
+        MyPRI = KFPlayerReplicationInfo(OwnerPC.PlayerReplicationInfo);
+        if(MyPRI != none)
+        {
+            MyPRI.PlayerHealth = byte(OwnerPawn.Health);
+            MyPRI.PlayerHealthMax = byte(OwnerPawn.HealthMax);
+        }
+        OwnerPawn.MaxArmor = OwnerPawn.default.MaxArmor;
+        ModifyArmor(OwnerPawn.MaxArmor);
+        OwnerPawn.Armor = byte(Min(OwnerPawn.Armor, OwnerPawn.MaxArmor));
     }
-    OwnerPawn.HealthMax = OwnerPawn.default.Health;
-    ModifyHealth(OwnerPawn.HealthMax);
-    OwnerPawn.Health = Min(OwnerPawn.Health, OwnerPawn.HealthMax);
-    if(OwnerPC == none)
-    {
-        OwnerPC = KFPlayerController(Owner);
-    }
-    MyPRI = KFPlayerReplicationInfo(OwnerPC.PlayerReplicationInfo);
-    if(MyPRI != none)
-    {
-        MyPRI.PlayerHealth = byte(OwnerPawn.Health);
-        MyPRI.PlayerHealthMax = byte(OwnerPawn.HealthMax);
-    }
-    OwnerPawn.MaxArmor = OwnerPawn.default.MaxArmor;
-    ModifyArmor(OwnerPawn.MaxArmor);
-    OwnerPawn.Armor = byte(Min(OwnerPawn.Armor, OwnerPawn.MaxArmor));
 }
 
 function ApplySkillsToPawn()
 {
     local KFInventoryManager KFIM;
 
-    CheckOwnerPawn();
-    OwnerPawn.UpdateGroundSpeed();
-    OwnerPawn.bMovesFastInZedTime = false;
-    if(MyPRI == none)
+    if(CheckOwnerPawn())
     {
-        MyPRI = KFPlayerReplicationInfo(OwnerPawn.PlayerReplicationInfo);
-    }
-    MyPRI.bExtraFireRange = false;
-    MyPRI.bSplashActive = false;
-    MyPRI.bNukeActive = false;
-    MyPRI.bConcussiveActive = false;
-    KFIM = KFInventoryManager(OwnerPawn.InvManager);
-    if(KFIM != none)
-    {
-        KFIM.MaxCarryBlocks = KFIM.default.MaxCarryBlocks;
-        CheckForOverWeight(KFIM);
+        OwnerPawn.UpdateGroundSpeed();
+        OwnerPawn.bMovesFastInZedTime = false;
+        if(MyPRI == none)
+        {
+            MyPRI = KFPlayerReplicationInfo(OwnerPawn.PlayerReplicationInfo);
+        }
+        MyPRI.bExtraFireRange = false;
+        MyPRI.bSplashActive = false;
+        MyPRI.bNukeActive = false;
+        MyPRI.bConcussiveActive = false;
+        KFIM = KFInventoryManager(OwnerPawn.InvManager);
+        if(KFIM != none)
+        {
+            KFIM.MaxCarryBlocks = KFIM.default.MaxCarryBlocks;
+            CheckForOverWeight(KFIM);
+        }
     }
 }
 

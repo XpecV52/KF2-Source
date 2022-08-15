@@ -1115,27 +1115,12 @@ static simulated function float CalculateTraderWeaponStatDamage()
 /** Allows weapon to calculate its own fire rate for display in trader.
   * Overridden to use estimated fire rate.
   */
-static simulated function float CalculateTraderStatFireRate()
+static simulated function float CalculateTraderWeaponStatFireRate()
 {
 	// attack interval in anim-based, so there's no way to compute it programatically from the editor, where
 	// this function is called from.
 
 	return default.EstimatedFireRate;
-}
-
-/** Allows weapon to calculate its own range for display in trader.
-  * Overridden to use melee helper range if desired.
-  */
-static simulated function float CalculateTraderWeaponStatRange()
-{
-	if( default.bUseEffectiveRangeForTrader )
-	{
-		return default.EffectiveRange;
-	}
-	else
-	{
-		return default.MeleeAttackHelper.MaxHitRange / 100.f; // return in meters
-	}
 }
 
 defaultproperties

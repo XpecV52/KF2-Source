@@ -201,7 +201,7 @@ reliable server function RecieveVoteKick(PlayerReplicationInfo PRI, bool bKick)
 			
 		}
 
-		if(IsMajorityVote())
+		if( ShouldConcludeVote() )
 		{
 			ConcludeVoteKick();
 		}
@@ -241,22 +241,37 @@ function UnPackVotes()
 	}
 }
 
-function bool IsMajorityVote()
+function bool ShouldConcludeVote()
 {
 	local array<KFPlayerReplicationInfo> PRIs;
 	local KFGameInfo KFGI;
+	local int NumPRIs;
 
 	KFGI = KFGameInfo(WorldInfo.Game);
 
 	GetKFPRIArray(PRIs);
+	NumPRIs = PRIs.Length;
 
-	if(YesVotes + noVotes >= PRIs.Length)
+	// Current Kickee PRI should not count towards vote percentage
+	if( PRIs.Find(CurrentVote.PlayerPRI) != INDEX_NONE )
+	{
+		NumPRIs--;
+	}
+
+	if( YesVotes + NoVotes >= PRIs.Length )
 	{
 		return true;
 	}
-	else if((KFGI != none) && (float(YesVotes) / float(PRIs.length)) > KFGI.KickVotePercentage) //conclude if vote kick is majority yes
+	else if( KFGI != none )
 	{
-		return true;
+		if( (float(YesVotes) / float(NumPRIs)) > KFGI.KickVotePercentage ) // conclude if vote kick is majority yes
+		{
+			return true;
+		}
+		else if( (float(NoVotes) / float(NumPRIs)) >= (1.f-KFGI.KickVotePercentage) ) // conclude if vote kick can never succeed
+		{
+			return true;
+		}
 	}
 
 	return false;
@@ -266,7 +281,7 @@ reliable server function ConcludeVoteKick()
 {
 	
 	local array<KFPlayerReplicationInfo> PRIs;
-	local int i;
+	local int i, NumPRIs;
 	local KFGameInfo KFGI;
 	local KFPlayerController KickedPC;
 
@@ -281,7 +296,15 @@ reliable server function ConcludeVoteKick()
 			PRIs[i].HideKickVote();			
 		}
 
-		if( (float(YesVotes) / float(PRIs.length)) > KFGI.KickVotePercentage)
+		NumPRIs = PRIs.Length;
+
+		// Current Kickee PRI should not count towards vote percentage
+		if( PRIs.Find(CurrentVote.PlayerPRI) != INDEX_NONE )
+		{
+			NumPRIs--;
+		}
+
+		if( YesVotes >= NumPRIs || (float(YesVotes) / float(NumPRIs)) > KFGI.KickVotePercentage)
 		{
 			// See if kicked player has left
 			if( CurrentVote.PlayerPRI == none || CurrentVote.PlayerPRI.bPendingDelete )

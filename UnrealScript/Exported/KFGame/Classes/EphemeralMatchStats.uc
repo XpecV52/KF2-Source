@@ -107,6 +107,7 @@ class EphemeralMatchStats extends Object within KFPlayerController
 
 
 
+
 	
 
 
@@ -244,6 +245,13 @@ var array<WeaponDamage> WeaponDamageList;
 var array<ZedKillType> ZedKillsArray;
 
 var array<Name> AARWeaponList;
+
+var name HealerClassName;
+var string HealerClassTextureLocation;
+var name WelderClassName;
+var string WelderClassTextureLocation;
+var name MedicDartClassName;
+var string MedicDartTextureLocation;
 
 function RecordIntStat(int StatID, int Value)
 {
@@ -687,7 +695,25 @@ function GetWeaponInfo(name WeaponName, out string LocalizeWeaponName, out strin
 		}
 	}
 
-	//Fince the item was not found on a perk list, it must be an off perk item.
+
+	//special case
+	switch (WeaponName)
+	{
+		case HealerClassName:
+			LocalizeWeaponName = Localize(String(WeaponName), "ItemName", "KFGameContent");
+			WeaponIconSource = HealerClassTextureLocation;
+			return;	
+		case WelderClassName:
+			LocalizeWeaponName = Localize(String(WeaponName), "ItemName", "KFGameContent");
+			WeaponIconSource = WelderClassTextureLocation;
+			return;	
+		case MedicDartClassName:
+			LocalizeWeaponName = Localize(String(WeaponName), "ItemName", "KFGameContent");
+			WeaponIconSource = MedicDartTextureLocation;
+			return;	
+	}
+
+	//Since the item was not found on a perk list or a special case, it must be an off perk item.
 	TraderItems.GetOffPerkItem("KFGameContent."$WeaponName, LocalizeWeaponName, WeaponIconSource );
 }
 
@@ -1310,6 +1336,15 @@ defaultproperties
    AARWeaponList(48)="KFWeap_Flame_Flamethrower"
    AARWeaponList(49)="KFWeap_Beam_Microwave"
    AARWeaponList(50)="KFWeap_Edged_Zweihander"
+   AARWeaponList(51)="KFWeap_Healer_Syringe"
+   AARWeaponList(52)="KFWeap_Welder"
+   AARWeaponList(53)="KFProj_HealingDart"
+   HealerClassName="KFWeap_Healer_Syringe"
+   HealerClassTextureLocation="ui_weaponselect_tex.UI_WeaponSelect_Healer"
+   WelderClassName="KFWeap_Welder"
+   WelderClassTextureLocation="ui_weaponselect_tex.UI_WeaponSelect_Welder"
+   MedicDartClassName="KFProj_HealingDart"
+   MedicDartTextureLocation="ui_firemodes_tex.UI_FireModeSelect_MedicDart"
    Name="Default__EphemeralMatchStats"
    ObjectArchetype=Object'Core.Default__Object'
 }

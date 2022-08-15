@@ -17,7 +17,7 @@ var transient bool bHasExploded;
 
 simulated function ANIMNOTIFY_FlameThrowerOn()
 {
-    if(KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]) != none)
+    if(IsDoingSpecialMove(17))
     {
         KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]).TurnOnFlamethrower();
     }
@@ -25,7 +25,7 @@ simulated function ANIMNOTIFY_FlameThrowerOn()
 
 simulated function ANIMNOTIFY_FlameThrowerOff()
 {
-    if(KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]) != none)
+    if(IsDoingSpecialMove(17))
     {
         KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]).TurnOffFlamethrower();
     }
@@ -85,6 +85,15 @@ simulated event Vector GetWeaponStartTraceLocation(optional Weapon CurrentWeapon
         }
     }
     return super(Pawn).GetWeaponStartTraceLocation();
+}
+
+simulated function TerminateEffectsOnDeath()
+{
+    if(IsDoingSpecialMove(17))
+    {
+        SpecialMoveHandler.EndSpecialMove();
+    }
+    super(KFPawn).TerminateEffectsOnDeath();
 }
 
 function ApplySpecialZoneHealthMod(float HealthMod)

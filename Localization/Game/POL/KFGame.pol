@@ -931,7 +931,7 @@ Parry="Odbicie"
 ParryDescription="Połączenie umiejętności i siły: Odbicie ataku zwiększy szybkość uderzenia o 15% i siłę lekkiego ataku o 30% przez 4 sekundy."
 
 Smash="Krach"
-SmashDescription="Użyj siły: Ciężkie ataki zadają 30% więcej obrażeń, a jeśli trafią w głowę istnieje duża szansa na powalenie dużych Zedów na ziemię."
+SmashDescription="Użyj siły: Ciężkie ataki zadają 100% więcej obrażeń, a jeśli trafią w głowę istnieje duża szansa na powalenie dużych Zedów na ziemię."
 
 Spartan="ZWOLNIONE TEMPO – Spartanin"
 SpartanDescription="Widziałeś 300: Poruszanie się z normalną prędkością, zwiększenie szybkości ataku broniami białymi berserkera o 50% a każde odbicie powoduje ogłuszenie przeciwnika."

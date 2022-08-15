@@ -931,7 +931,7 @@ Parry="Parieren"
 ParryDescription="Verbinde Geschick und Kraft: Das Parieren eines Angriffs erhöht die Nahkampf-Angriffsgeschwindigkeit für 4 Sekunden um 15 % und den Schaden durch leichte Angriffe um 30 %."
 
 Smash="Zerschmettern"
-SmashDescription="Nutze die rohe Gewalt: Harte Treffer fügen 30 % mehr Schaden zu UND harte Treffer auf den Kopf haben eine hohe Wahrscheinlichkeit, große Zeds umzuhauen."
+SmashDescription="Nutze die rohe Gewalt: Harte Treffer fügen 100 % mehr Schaden zu UND harte Treffer auf den Kopf haben eine hohe Wahrscheinlichkeit, große Zeds umzuhauen."
 
 Spartan="ZED-ZEIT – Spartaner"
 SpartanDescription="Du hast 300 gesehen: Bewege dich in Echtzeit, erhöhe die Angriffsgeschwindigkeit mit Berserker-Nahkampfwaffen um 50 %, und jedes Parieren verursacht einen Knockdown."

@@ -971,10 +971,10 @@ DefaultProperties
     bLargeZed=true
 	// ---------------------------------------------
 	// Stats
-	XPValues(0)=423
-	XPValues(1)=564
-	XPValues(2)=762
-	XPValues(3)=874
+	XPValues(0)=1291
+	XPValues(1)=1694
+	XPValues(2)=1790
+	XPValues(3)=1843
 
     // ---------------------------------------------
     // Content

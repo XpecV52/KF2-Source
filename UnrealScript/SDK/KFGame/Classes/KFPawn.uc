@@ -2092,10 +2092,12 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 	local class<KFDamageType> KFDT;
 
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
+`if(`notdefined(ShippingPC))
 	if( WorldInfo.Game != none && KFGameInfo(WorldInfo.Game).bNVAlwaysHeadshot )
 	{
 		HitFxInfo.HitBoneIndex = HZI_HEAD;
 	}
+`endif
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
 
 	OldHealth = Health;
@@ -2162,11 +2164,13 @@ function AdjustRadiusDamage(out float InBaseDamage, float DamageScale, vector Hu
 	LastRadiusHurtOrigin = HurtOrigin;
 
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
+`if(`notdefined(ShippingPC))
 	if( WorldInfo.Game != none && KFGameInfo(WorldInfo.Game).bNVDebugDamage)
 	{
 	    FlushPersistentDebugLines();
 		DrawDebugSphere( LastRadiusHurtOrigin, LastRadiusDamageScale, 10, 255, 255, 0, true );
 	}
+`endif	
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
 }
 
@@ -2443,6 +2447,13 @@ function NotifyAttackParried(Pawn InstigatedBy, byte InParryStrength)
 /** Clean up function to terminate any effects on death */
 simulated function TerminateEffectsOnDeath()
 {
+	// Need to destroy our weapon attachment
+	if( WeaponAttachment != None && !WeaponAttachment.bPendingDelete )
+	{
+		WeaponAttachment.DetachFrom(self);
+ 		WeaponAttachment.Destroy();
+	}
+
 	// stop dialog and looping sounds
 	SetWeaponAmbientSound(None);
 	SetPawnAmbientSound(None);
@@ -2518,10 +2529,12 @@ function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, clas
 	bHasNewHitEffect = true;
 
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
+`if(`notdefined(ShippingPC))	
 	if( WorldInfo.Game != none && KFGameInfo(WorldInfo.Game).bNVAlwaysHeadshot )
 	{
 		HitZoneIdx = HZI_HEAD;
 	}
+`endif
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
 
 	// handle multiple hits occuring in the same tick
@@ -2683,10 +2696,12 @@ simulated function PlayTakeHitEffects( vector HitDirection, vector HitLocation )
 	local KFPawn InstigatedBy;
 
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
+`if(`notdefined(ShippingPC))	
 	if( WorldInfo.Game != none && KFGameInfo(WorldInfo.Game).bNVAlwaysHeadshot )
 	{
 		HitFxInfo.HitBoneIndex = HZI_HEAD;
 	}
+`endif	
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
 
 	if ( HitFxInfo.DamageType != None )

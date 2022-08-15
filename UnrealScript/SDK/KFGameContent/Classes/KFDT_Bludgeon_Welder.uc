@@ -14,6 +14,5 @@ class KFDT_Bludgeon_Welder extends KFDT_Bludgeon_RifleButt
 DefaultProperties
 {
 	//defaults
-	AARWeaponID=`AAR_NONE	
-	//AARWeaponID=`AAR_Welder
+	AARWeaponID=`AAR_Welder
 }

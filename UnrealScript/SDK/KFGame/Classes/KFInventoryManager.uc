@@ -916,7 +916,7 @@ reliable server function ServerThrowMoney()
 simulated function bool CanCarryWeapon( class<KFWeapon> WeaponClass )
 {
 	// If the trader menu is open, check if this weapon is already part of our weapon transactions
-	if( bServerTraderMenuOpen && IsTransactionWeapon( WeaponClass) )
+	if( bServerTraderMenuOpen && IsTransactionWeapon(WeaponClass.Name) )
 	{
 		return false;
 	}
@@ -943,14 +943,14 @@ simulated function bool CanCarryWeapon( class<KFWeapon> WeaponClass )
 }
 
 /** Returns whether or not we are currently in the process of buying this weapon */
-simulated function bool IsTransactionWeapon( class<KFWeapon> WeaponClass )
+simulated function bool IsTransactionWeapon( name WeaponClassName )
 {
 	local int i;
 
 	// If this was bought in a pending transaction, do not carry it
 	for(i = TransactionItems.Length - 1; i >= 0; i--)
 	{
-		if( TransactionItems[i].ClassName == WeaponClass.name )
+		if( TransactionItems[i].ClassName == WeaponClassName )
 		{
 			return true;
 		}
@@ -959,7 +959,7 @@ simulated function bool IsTransactionWeapon( class<KFWeapon> WeaponClass )
 }
 
 /** Directly removes item from transaction, bypassing cost, etc. */
-simulated function RemoveItemFromTransaction( name ClassName )
+function RemoveItemFromTransaction( name ClassName )
 {
 	local int Idx;
 
@@ -1323,6 +1323,14 @@ reliable server final function ServerBuyWeapon( byte ListIndex, byte ItemIndex )
 			NewTransactionItem.AddedAmmo[1] = 0;
 
 			TransactionItems.AddItem(NewTransactionItem);
+
+			// remove single from transaction when adding dual to transaction
+			// (selling dual adds single to transaction, so re-buying dual should remove it; occurs when same dual is sold and re-bought during same trader menu session)
+			if( PurchasedItem.SingleClassName != '' && IsTransactionWeapon(PurchasedItem.SingleClassName) )
+			{
+				RemoveItemFromTransaction( PurchasedItem.SingleClassName );
+			}
+			
 			CurrentCarryBlocks += PurchasedItem.BlocksRequired;
 		}
 	}
@@ -1539,16 +1547,33 @@ private final function bool GetTraderItemFromWeaponLists(out STraderItem TraderI
 }
 
 /** Gets buy price for trader item, adjusted for whatever we want to adjust for */
-simulated function int GetAdjustedBuyPriceFor( const out STraderItem ShopItem )
+simulated function int GetAdjustedBuyPriceFor( const out STraderItem ShopItem, optional const array<SItemInformation> TraderOwnedItems )
 {
-	local int AdjustedBuyPrice;
+	local int AdjustedBuyPrice, i;
 
 	AdjustedBuyPrice = ShopItem.BuyPrice;
 
 	// if ShopItem is a dual and we own a single already, then reduce the dual by half
-	if( ShopItem.SingleClassName != '' && GetIsOwned(ShopItem.SingleClassName) )
+	if( ShopItem.SingleClassName != '' )
 	{
-		AdjustedBuyPrice *= 0.5;
+		// checks inventory and transaction list
+		if( GetIsOwned(ShopItem.SingleClassName) )
+		{
+			AdjustedBuyPrice *= 0.5;
+		}
+		// checks trader's owned item list (only used when called from trader)
+		// example case: 9mm single could be in owned list but won't be in transaction list because it can't be purchased and might not be in inventory if it was removed when purchasing dual
+		else if( TraderOwnedItems.Length > 0 )
+		{
+			for( i = 0; i < TraderOwnedItems.Length; ++i )
+			{
+				if( TraderOwnedItems[i].DefaultItem.ClassName == ShopItem.SingleClassName )
+				{
+					AdjustedBuyPrice *= 0.5;
+					break;
+				}
+			}
+		}
 	}
 
 	// add other adjustments here
@@ -1560,7 +1585,6 @@ simulated function int GetAdjustedBuyPriceFor( const out STraderItem ShopItem )
 simulated function int GetAdjustedSellPriceFor( const out STraderItem OwnedItem, optional KFWeapon OwnedWeapon )
 {
 	local int AdjustedSellPrice;
-	//local byte ListIndex, ItemIndex;
 
 	if( OwnedWeapon != none && OwnedWeapon.bGivenAtStart )
 	{
@@ -1575,6 +1599,7 @@ simulated function int GetAdjustedSellPriceFor( const out STraderItem OwnedItem,
 	// if OwnedItem is a dual, set sell price to that of a single (because we sell one single and keep one single)
 	if( OwnedItem.SingleClassName != '' )
 	{
+		// @todo: revisit
 		// assume price of single is half the price of dual. might be better to use the actual buy price of the single,
 		// but 9mm doesn't have a buy price at the moment
 		AdjustedSellPrice *= 0.5;

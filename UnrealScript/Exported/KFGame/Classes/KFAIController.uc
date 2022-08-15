@@ -347,6 +347,8 @@ var bool			bReachedMoveGoal;
 var bool			bReevaluatePath;
 /** TRUE if my pawn is currently moving to its goal (that is, if an AICommand_MoveToGoal is active) */
 var bool			bMovingToGoal;
+/** TRUE if my pawn is currently moving to its enemy (AICommand_MoveToEnemy is active) */
+var bool 			bMovingToEnemy;
 /** Currently moving directly to a goal, rather than still on my path */
 var bool			bDirectMoveToGoal;
 /** Is the current movement goal interruptable? If you need to rely on this, re-confirm that it's working properly (haven't needed this) */
@@ -1789,9 +1791,8 @@ function ResetProbingMeleeRangeEvents( optional float DelayOverride )
 	//EnableProbingMeleeRangeEvents();
 }
 
-/** Event called by TickMeleeCombatDecision() if MeleeRangeEventProbing is enabled and enemy is within range of at
-	least one of my attack options */
-event EnemyInMeleeRange();
+/** Event called by TickMeleeCombatDecision() if MeleeRangeEventProbing is enabled and all basic melee checks have passed */
+event ReadyToMelee();
 
 /** Override in child classes for NPCs using the suicide AICommand (i.e, Husks) */
 function bool IsSuicidal()
@@ -2110,9 +2111,6 @@ function bool DoHeavyZedBump( Actor Other, vector HitNormal )
 /*********************************************************************************************
 * MELEE
 ********************************************************************************************* */
-
-/**  Can my pawn currently do a general melee attack? (doesn't take range into account */
-native function bool CanMeleeAttack();
 
 /** Notification from AICommand_Attack_Melee that I've just completed an attack */
 function NotifyMeleeAttackFinished();
@@ -6859,6 +6857,16 @@ state ZedVictory
 	function bool GetIsInZedVictoryState()
 	{
 		return true;
+	}
+
+	function bool CanDoStrike()
+	{
+		return false;
+	}
+
+	event bool CanGrabAttack()
+	{
+		return false;
 	}
 
 	Begin:

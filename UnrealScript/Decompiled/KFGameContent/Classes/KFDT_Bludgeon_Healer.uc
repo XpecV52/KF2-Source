@@ -7,3 +7,8 @@
  *******************************************************************************/
 class KFDT_Bludgeon_Healer extends KFDT_Bludgeon_RifleButt
     abstract;
+
+defaultproperties
+{
+    AARWeaponID=51
+}

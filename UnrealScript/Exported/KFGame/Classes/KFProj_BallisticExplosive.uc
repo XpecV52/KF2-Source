@@ -449,7 +449,7 @@ simulated protected function PrepareExplosionTemplate()
 {
     local KFPlayerReplicationInfo InstigatorPRI;
 
-    if( WorldInfo.TimeDilation < 1.f && Instigator != none )
+    if( bWasTimeDilated && Instigator != none )
     {
         InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
         if( InstigatorPRI != none )
@@ -476,7 +476,7 @@ simulated protected function SetExplosionActorClass()
 {
    local KFPlayerReplicationInfo InstigatorPRI;
 
-    if( WorldInfo.TimeDilation < 1.f && Instigator != none )
+    if( bWasTimeDilated && Instigator != none )
     {
        InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
         if( InstigatorPRI != none )

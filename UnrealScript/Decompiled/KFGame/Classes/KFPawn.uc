@@ -1511,10 +1511,6 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     local int OldHealth;
     local class<KFDamageType> KFDT;
 
-    if((WorldInfo.Game != none) && KFGameInfo(WorldInfo.Game).bNVAlwaysHeadshot)
-    {
-        HitFxInfo.HitBoneIndex = 0;
-    }
     OldHealth = Health;
     super(Pawn).TakeDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
     if((Health < OldHealth) && DamageCauser != none)
@@ -1567,11 +1563,6 @@ function AdjustRadiusDamage(out float InBaseDamage, float DamageScale, Vector Hu
     InBaseDamage *= (GetExposureTo(HurtOrigin));
     LastRadiusDamageScale = FloatToByte(DamageScale);
     LastRadiusHurtOrigin = HurtOrigin;
-    if((WorldInfo.Game != none) && KFGameInfo(WorldInfo.Game).bNVDebugDamage)
-    {
-        FlushPersistentDebugLines();
-        DrawDebugSphere(LastRadiusHurtOrigin, float(LastRadiusDamageScale), 10, 255, 255, 0, true);
-    }
 }
 
 function float GetExposureTo(Vector TraceStart)
@@ -1766,6 +1757,11 @@ function NotifyAttackParried(Pawn InstigatedBy, byte InParryStrength)
 
 simulated function TerminateEffectsOnDeath()
 {
+    if((WeaponAttachment != none) && !WeaponAttachment.bPendingDelete)
+    {
+        WeaponAttachment.DetachFrom(self);
+        WeaponAttachment.Destroy();
+    }
     SetWeaponAmbientSound(none);
     SetPawnAmbientSound(none);
     WeaponAmbientEchoHandler.StopAllEchoes(bPendingDelete);
@@ -1832,10 +1828,6 @@ function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, clas
     HitZoneIdx = HitZones.Find('ZoneName', HitInfo.BoneName;
     KFDT = class<KFDamageType>(DamageType);
     bHasNewHitEffect = true;
-    if((WorldInfo.Game != none) && KFGameInfo(WorldInfo.Game).bNVAlwaysHeadshot)
-    {
-        HitZoneIdx = 0;
-    }
     if(LastPainTime == WorldInfo.TimeSeconds)
     {
         if(((InstigatedBy != none) && InstigatedBy.Pawn == HitFxInstigator) && KFDT == HitFxInfo.DamageType)
@@ -1964,10 +1956,6 @@ simulated function PlayTakeHitEffects(Vector HitDirection, Vector HitLocation)
 {
     local KFPawn InstigatedBy;
 
-    if((WorldInfo.Game != none) && KFGameInfo(WorldInfo.Game).bNVAlwaysHeadshot)
-    {
-        HitFxInfo.HitBoneIndex = 0;
-    }
     if(HitFxInfo.DamageType != none)
     {
         HitFxInfo.DamageType.static.PlayImpactHitEffects(self, HitLocation, HitDirection, HitFxInfo.HitBoneIndex, HitFxInstigator);

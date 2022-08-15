@@ -102,18 +102,6 @@ function bool IsFrustrated()
     return ( IsEnraged() || super.IsFrustrated() );
 }
 
-/** Notification that enemy is now within Charge attack range, called from TickMeleeCombatDecision() */
-event EnemyInMeleeRange()
-{
-	if( !IsMeleeRangeEventProbingEnabled() || MyKFPawn.IsDoingSpecialMove() )
-	{
-		return;
-	}
-
-	Super.EnemyInMeleeRange();
-}
-
-
 function bool CanEvadeGrenade()
 {
     if(MyKFPawn == none || MyKFPawn.bIsSprinting)

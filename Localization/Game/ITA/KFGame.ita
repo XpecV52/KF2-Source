@@ -931,7 +931,7 @@ Parry="Schiva"
 ParryDescription="Combina capacità e potenza: schivare un attacco incrementerà la velocità di attacco nella mischia del 15% e il danno da attacco leggero del 30% per 4 secondi."
 
 Smash="Frantuma"
-SmashDescription="Usa la forza bruta: i colpi pesanti producono il 30% in più di danno E con quelli alla testa c'è un'alta probabilità di buttare a terra gli ZED."
+SmashDescription="Usa la forza bruta: i colpi pesanti producono il 100% in più di danno E con quelli alla testa c'è un'alta probabilità di buttare a terra gli ZED."
 
 Spartan="ZED TIME - Spartano"
 SpartanDescription="Hai visto 300: muoviti in tempo reale, aumenta la velocità di attacco con le armi da mischia del Berserker del 50% e qualsiasi schivata provocherà un abbattimento."

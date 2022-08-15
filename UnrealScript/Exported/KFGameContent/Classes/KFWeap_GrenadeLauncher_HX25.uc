@@ -80,6 +80,35 @@ simulated function rotator AddMultiShotSpread(rotator BaseAim)
 	}
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////
+//
+// Trader
+//
+///////////////////////////////////////////////////////////////////////////////////////////
+
+/** Allows weapon to calculate its own damage for display in trader 
+  * Overridden to multiply damage by number of pellets.
+  */
+static simulated function float CalculateTraderWeaponStatDamage()
+{
+	local float BaseDamage, DoTDamage;
+	local class<KFDamageType> DamageType;
+
+	local GameExplosion ExplosionInstance;
+
+	ExplosionInstance = class<KFProjectile>(default.WeaponProjectiles[DEFAULT_FIREMODE]).default.ExplosionTemplate;
+
+	BaseDamage = default.InstantHitDamage[DEFAULT_FIREMODE] + ExplosionInstance.Damage;
+
+	DamageType = class<KFDamageType>(ExplosionInstance.MyDamageType);
+	if( DamageType != none && DamageType.default.DoT_Type != DOT_None )
+	{
+		DoTDamage = (DamageType.default.DoT_Duration / DamageType.default.DoT_Interval) * (BaseDamage * DamageType.default.DoT_DamageScale);
+	}
+
+	return BaseDamage * default.NumPellets[DEFAULT_FIREMODE] + DoTDamage;
+}
+
 defaultproperties
 {
    NumPellets(0)=7

@@ -34,17 +34,16 @@ var transient bool bHasExploded;
 /** Turns medium range flamethrower effect on */
 simulated function ANIMNOTIFY_FlameThrowerOn()
 {
-	if( KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]) != none )
+    if( IsDoingSpecialMove(SM_HoseWeaponAttack) )
 	{
 		KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]).TurnOnFlamethrower();
 	}
 }
 
-// killondeactivate = false
 /** Turns medium range flamethrower effect off */
 simulated function ANIMNOTIFY_FlameThrowerOff()
 {
-    if( KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]) != none )
+    if( IsDoingSpecialMove(SM_HoseWeaponAttack) )
 	{
 		KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]).TurnOffFlamethrower();
 	}
@@ -117,6 +116,17 @@ simulated event vector GetWeaponStartTraceLocation( optional weapon CurrentWeapo
 	}
 
 	return super.GetWeaponStartTraceLocation();
+}
+
+/** Overriden to ensure flame thrower turns off on death or destruction */
+simulated function TerminateEffectsOnDeath()
+{
+    if( IsDoingSpecialMove(SM_HoseWeaponAttack) )
+	{
+		SpecialMoveHandler.EndSpecialMove();
+	}
+
+	super.TerminateEffectsOnDeath();
 }
 
 /*********************************************************************************************

@@ -248,9 +248,9 @@ function SetItemInfo(out GFxObject ItemDataArray, out STraderItem TraderItem, in
 /** returns true if this item should not be displayed */
 function bool IsItemFiltered(const out STraderItem Item)
 {
-	if ( IsItemInInventory(Item.ClassName) )
+	if ( MyTraderMenu.IsInOwnedItemList(Item.ClassName) )
 		return true;
-	if ( IsItemInInventory(Item.DualClassName) )
+	if ( MyTraderMenu.IsInOwnedItemList(Item.DualClassName) )
 		return true;
 	if ( !Item.bSellable )
 		return true;
@@ -258,23 +258,6 @@ function bool IsItemFiltered(const out STraderItem Item)
 		return true;
 
 	return false;
-}
-
-function bool IsItemInInventory( name ItemName )
-{
-	local int i;
-	local name OwnedItemClassName;
-
-	for (i = 0; i < MyTraderMenu.OwnedItemList.Length; i++)
-	{
-		OwnedItemClassName = MyTraderMenu.OwnedItemList[i].DefaultItem.ClassName;
-     	if ( OwnedItemClassName == ItemName )
-     	{
-     	 	return true;
-     	}
-   	}
-
-   	return false;
 }
 
 // Checks if we can have enough dosh to buy this item

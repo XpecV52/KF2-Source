@@ -795,7 +795,7 @@ reliable server function ServerThrowMoney()
 
 simulated function bool CanCarryWeapon(class<KFWeapon> WeaponClass)
 {
-    if(bServerTraderMenuOpen && IsTransactionWeapon(WeaponClass))
+    if(bServerTraderMenuOpen && IsTransactionWeapon(WeaponClass.Name))
     {
         return false;
     }
@@ -817,7 +817,7 @@ simulated function bool CanCarryWeapon(class<KFWeapon> WeaponClass)
     return false;
 }
 
-simulated function bool IsTransactionWeapon(class<KFWeapon> WeaponClass)
+simulated function bool IsTransactionWeapon(name WeaponClassName)
 {
     local int I;
 
@@ -826,7 +826,7 @@ simulated function bool IsTransactionWeapon(class<KFWeapon> WeaponClass)
 
     if(I >= 0)
     {
-        if(TransactionItems[I].ClassName == WeaponClass.Name)
+        if(TransactionItems[I].ClassName == WeaponClassName)
         {
             return true;
         }
@@ -836,7 +836,7 @@ simulated function bool IsTransactionWeapon(class<KFWeapon> WeaponClass)
     return false;
 }
 
-simulated function RemoveItemFromTransaction(name ClassName)
+function RemoveItemFromTransaction(name ClassName)
 {
     local int Idx;
 
@@ -1170,6 +1170,10 @@ reliable server final function ServerBuyWeapon(byte ListIndex, byte ItemIndex)
             NewTransactionItem.AddedAmmo[0] = 0;
             NewTransactionItem.AddedAmmo[1] = 0;
             TransactionItems.AddItem(NewTransactionItem;
+            if((PurchasedItem.SingleClassName != 'None') && IsTransactionWeapon(PurchasedItem.SingleClassName))
+            {
+                RemoveItemFromTransaction(PurchasedItem.SingleClassName);
+            }
             CurrentCarryBlocks += PurchasedItem.BlocksRequired;
         }
     }
@@ -1371,15 +1375,39 @@ private final function bool GetTraderItemFromWeaponLists(out STraderItem TraderI
     return false;
 }
 
-simulated function int GetAdjustedBuyPriceFor(const out STraderItem ShopItem)
+simulated function int GetAdjustedBuyPriceFor(const out STraderItem ShopItem, const optional array<SItemInformation> TraderOwnedItems)
 {
-    local int AdjustedBuyPrice;
+    local int AdjustedBuyPrice, I;
 
     AdjustedBuyPrice = ShopItem.BuyPrice;
-    if((ShopItem.SingleClassName != 'None') && GetIsOwned(ShopItem.SingleClassName))
+    if(ShopItem.SingleClassName != 'None')
     {
-        AdjustedBuyPrice *= 0.5;
+        if(GetIsOwned(ShopItem.SingleClassName))
+        {
+            AdjustedBuyPrice *= 0.5;            
+        }
+        else
+        {
+            if(TraderOwnedItems.Length > 0)
+            {
+                I = 0;
+                J0xA8:
+
+                if(I < TraderOwnedItems.Length)
+                {
+                    if(TraderOwnedItems[I].DefaultItem.ClassName == ShopItem.SingleClassName)
+                    {
+                        AdjustedBuyPrice *= 0.5;
+                        goto J0x13B;
+                    }
+                    ++ I;
+                    goto J0xA8;
+                }
+            }
+        }
     }
+    J0x13B:
+
     return AdjustedBuyPrice;
 }
 

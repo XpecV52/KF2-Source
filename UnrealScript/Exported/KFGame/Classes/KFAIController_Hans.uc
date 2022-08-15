@@ -1815,6 +1815,7 @@ defaultproperties
    StartShootingRange=500000.000000
    MinShootingRange=300.000000
    GrenadeAttackEvalInterval=0.100000
+   bRepathOnInvalidStrike=True
    MinDistanceToPerformGrabAttack=200.000000
    MinTimeBetweenGrabAttacks=2.500000
    bCanDoHeavyBump=True

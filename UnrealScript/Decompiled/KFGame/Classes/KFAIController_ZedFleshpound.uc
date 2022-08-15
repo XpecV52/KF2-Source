@@ -174,9 +174,6 @@ event bool SetEnemy(Pawn NewEnemy)
     return bNewEnemySet;
 }
 
-// Export UKFAIController_ZedFleshpound::execCanMeleeAttack(FFrame&, void* const)
-native function bool CanMeleeAttack();
-
 function DoRageTauntAt(optional KFPawn Target)
 {
     if(Role == ROLE_Authority)

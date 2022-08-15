@@ -931,7 +931,7 @@ Parry="Esquivar"
 ParryDescription="Combina habilidad y poder: Esquivando un ataque aumentará la velocidad de ataque cuerpo a cuerpo un 15% y el daño de ataque ligero en un 30% durante 4 segundos."
 
 Smash="Aplastar"
-SmashDescription="Lo brutal lo refuerza: Los golpes duros hacen 30% más de daños y los golpes duros a la cabeza aumentan la posibilidad de noquear los Zeds grandes."
+SmashDescription="Lo brutal lo refuerza: Los golpes duros hacen 100% más de daños y los golpes duros a la cabeza aumentan la posibilidad de noquear los Zeds grandes."
 
 Spartan="Tiempo ZED - Espartano"
 SpartanDescription="Has visto 300: Muévete en tiempo real, aumenta la velocidad de ataque con armas cuerpo a cuerpo de Berserker en un 50% y cualquier paro causará caída."

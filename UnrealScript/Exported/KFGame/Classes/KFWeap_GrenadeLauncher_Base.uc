@@ -62,6 +62,32 @@ simulated function name GetReloadAnimName( bool bTacticalReload )
 	return ReloadEmptyMagAnim;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////
+//
+// Trader
+//
+///////////////////////////////////////////////////////////////////////////////////////////
+
+/** Allows weapon to calculate its own damage for display in trader */
+static simulated function float CalculateTraderWeaponStatDamage()
+{
+	local float CalculatedDamage;
+	local class<KFDamageType> DamageType;
+	local GameExplosion ExplosionInstance;
+
+	ExplosionInstance = class<KFProjectile>(default.WeaponProjectiles[DEFAULT_FIREMODE]).default.ExplosionTemplate;
+
+	CalculatedDamage = default.InstantHitDamage[DEFAULT_FIREMODE] + ExplosionInstance.Damage;
+
+	DamageType = class<KFDamageType>(ExplosionInstance.MyDamageType);
+	if( DamageType != none && DamageType.default.DoT_Type != DOT_None )
+	{
+		CalculatedDamage += (DamageType.default.DoT_Duration / DamageType.default.DoT_Interval) * (CalculatedDamage * DamageType.default.DoT_DamageScale);
+	}
+
+	return CalculatedDamage;
+}
+
 defaultproperties
 {
    ForceReloadTime=0.300000

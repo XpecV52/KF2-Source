@@ -13,6 +13,7 @@ class KFAIController_Monster extends KFAIController
 
 var bool bCompletedInitialGrabAttack;
 var bool bPathAroundDestructiblesICantBreak;
+var bool bRepathOnInvalidStrike;
 var bool bUseRunOverWarning;
 var float MinDistanceToPerformGrabAttack;
 var float MinTimeBetweenGrabAttacks;
@@ -79,25 +80,21 @@ function Timer_EnableMeleeRangeEventProbing()
     }
 }
 
-event EnemyInMeleeRange()
+event ReadyToMelee()
 {
-    if(((MyKFPawn == none) || MyKFPawn.Physics == 2) || MyKFPawn.Physics == 0)
-    {
-        return;
-    }
-    if(!IsMeleeRangeEventProbingEnabled() || MyKFPawn.IsDoingSpecialMove())
-    {
-        AILog_Internal(((string(GetFuncName()) $ "() skipping melee attack because ") $ string(Pawn)) $ " is already busy.", 'Command_Attack_Melee');
-        return;
-    }
-    if((((WorldInfo.TimeSeconds - LastGetStrikeTime) >= MaxGetStrikeTime) || PendingAnimStrikeIndex == 255) && CanDoStrike())
+    if(CanDoStrike())
     {
         UpdatePendingStrike();
         LastGetStrikeTime = WorldInfo.TimeSeconds;
         if(PendingAnimStrikeIndex != 255)
         {
             DoStrike();
+            return;
         }
+    }
+    if(bRepathOnInvalidStrike && bFailedToMoveToEnemy || !bMovingToGoal && !bMovingToEnemy)
+    {
+        SetEnemyMoveGoal(self, true,,, true);
     }
 }
 
@@ -160,10 +157,6 @@ event bool CanGrabAttack()
     {
         return false;
     }
-    if(IsInState('ZedVictory'))
-    {
-        return false;
-    }
     KFPawnEnemy = KFPawn(Enemy);
     if((KFPawnEnemy == none) || !KFPawnEnemy.CanBeGrabbed(MyKFPawn))
     {
@@ -213,37 +206,10 @@ event bool CanGrabAttack()
 
 function bool CanDoStrike()
 {
-    local AICommand AIC;
     local Actor HitActor;
     local Vector TraceStepLocation, HitLocation, HitNormal;
 
     bIsBodyBlocked = false;
-    if(((MyKFPawn == none) || Enemy == none) || IsInState('ZedVictory'))
-    {
-        return false;
-    }
-    if(((!MyKFPawn.bIsHeadless && !MyKFPawn.bEmpPanicked) && !IsMeleeRangeEventProbingEnabled()) || MyKFPawn.IsDoingSpecialMove())
-    {
-        AILog_Internal(((string(GetFuncName()) $ "() skipping melee attack because ") $ string(Pawn)) $ " is already busy.", 'Command_Attack_Melee');
-        return false;
-    }
-    AIC = AICommand(GetActiveCommand());
-    if(AIC != none)
-    {
-        if(!AIC.bAllowedToAttack)
-        {
-            AILog_Internal(((string(GetFuncName()) $ "() refusing to do melee attack because ") $ string(AIC)) $ " bAllowedToAttack is FALSE", 'Command_Attack_Melee');
-            return false;
-        }
-        if(AICommand_Pause(AIC) != none)
-        {
-            return false;
-        }
-        if(AICommand_TauntEnemy(AIC) != none)
-        {
-            return false;
-        }
-    }
     TraceStepLocation = Pawn.Location + (vect(0, 0, -1) * (Pawn.CylinderComponent.CollisionHeight * 0.5));
     HitActor = Pawn.Trace(HitLocation, HitNormal, Enemy.Location, TraceStepLocation, !bCanStrikeThroughEnemies);
     if((HitActor != none) && HitActor != Enemy)

@@ -643,6 +643,17 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
     {
         LogInternal(((string(self) @ string(GetFuncName())) @ "Adjusted Damage AFTER =") @ string(InDamage));
     }
+    if(((Controller != none) && Controller.bDemiGodMode) && InDamage >= Health)
+    {
+        if(Health == 1)
+        {
+            Health = int(float(HealthMax) * 0.25);
+        }
+        if(InDamage >= Health)
+        {
+            InDamage = Health - 1;
+        }
+    }
 }
 
 event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)

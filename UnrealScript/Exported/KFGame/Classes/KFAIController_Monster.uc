@@ -295,6 +295,8 @@ var float		MinTimeBetweenGrabAttacks;
 /** Last time a grab attack was performed */
 var float		LastAttackTime_Grab;
 var bool		bPathAroundDestructiblesICantBreak;
+/** Determines if a zed should try to force a repath if they cannot execute a valid strike */
+var bool 		bRepathOnInvalidStrike;
 
 /** The amount to scale this Zed's damage based on difficulty */
 var(Combat) float	DifficultyDamageMod;
@@ -394,29 +396,28 @@ function Timer_EnableMeleeRangeEventProbing()
 	}
 }
 
-/** Notification that enemy is now within Charge attack range, called from TickMeleeCombatDecision() */
-event EnemyInMeleeRange()
+/** Notification that we have passed all our basic melee checks and are ready to attempt a melee attack */
+event ReadyToMelee()
 {
-	if( MyKFPawn == none || MyKFPawn.Physics == PHYS_Falling || MyKFPawn.Physics == PHYS_None )
+	// Check script to see if a strike is allowed
+	if( CanDoStrike() )
 	{
-		return;
-	}
-
-	if( !IsMeleeRangeEventProbingEnabled() || MyKFPawn.IsDoingSpecialMove() ) // || (MyKFPawn.IsDoingSpecialMove() && !MyKFPawn.IsDoingSpecialMove(SM_ChargeRun)) )
-	{
-		AILog_Internal(GetFuncName()$"() skipping melee attack because "$Pawn$" is already busy.",'Command_Attack_Melee',);
-		return;
-	}
-
-	if( (WorldInfo.TimeSeconds - LastGetStrikeTime >= MaxGetStrikeTime || PendingAnimStrikeIndex == 255) && CanDoStrike() )
-	{
+		// Update our next pending strike
 		UpdatePendingStrike();
 		LastGetStrikeTime = WorldInfo.TimeSeconds;
 
+		// Perform strike if we have a valid animation
 		if( PendingAnimStrikeIndex != 255 )
 		{
 			DoStrike();
+			return;
 		}
+	}
+
+	// Attempt to find another path to enemy
+	if( bRepathOnInvalidStrike && (bFailedToMoveToEnemy || (!bMovingToGoal && !bMovingToEnemy)) )
+	{
+		SetEnemyMoveGoal(self, true,,, true);
 	}
 }
 
@@ -495,11 +496,6 @@ event bool CanGrabAttack()
 		return false;
 	}
 
-	if( IsInState('ZedVictory') )
-	{
-		return false;
-	}
-
 	KFPawnEnemy = KFPawn( Enemy );
 	if( KFPawnEnemy == none || !KFPawnEnemy.CanBeGrabbed(MyKFPawn) )
 	{
@@ -558,7 +554,6 @@ event bool CanGrabAttack()
 
 function bool CanDoStrike()
 {
-	local AICommand AIC;
 	local actor HitActor;
 	local vector TraceStepLocation;
 	local vector HitLocation, HitNormal;
@@ -566,35 +561,7 @@ function bool CanDoStrike()
 	// Used by KFPawnAnimInfo to determine if an attack can be performed if legs are blocked (lunges, etc)
 	bIsBodyBlocked = false;
 
-	if( MyKFPawn == none || Enemy == none || IsInState('ZedVictory') )
-	{
-		return false;
-	}
-
-	if( (!MyKFPawn.bIsHeadless && !MyKFPawn.bEmpPanicked && !IsMeleeRangeEventProbingEnabled()) || (MyKFPawn.IsDoingSpecialMove()) )
-	{
-		AILog_Internal(GetFuncName()$"() skipping melee attack because "$Pawn$" is already busy.",'Command_Attack_Melee',);
-		return false;
-	}
-	AIC = AICommand( GetActiveCommand() );
-	if( AIC != none )
-	{
-		if ( !AIC.bAllowedToAttack )
-		{
-			AILog_Internal(GetFuncName()$"() refusing to do melee attack because "$AIC$" bAllowedToAttack is FALSE",'Command_Attack_Melee',);
-			return false;
-		}
-		if( AICommand_Pause(AIC) != none )
-		{
-			return false;
-		}
-		if( AICommand_TauntEnemy(AIC) != none )
-		{
-			return false;
-		}
-	}
-
-	// Check if a wall or another Zed is blocking my pawn from performing a melee attack, ignore zed collision if bCanStrikeThroughEnemies is true, 
+	// Check if a wall or another Zed is blocking my pawn from performing a melee attack, ignore zed collision if bCanStrikeThroughEnemies is true
 	TraceStepLocation = Pawn.Location + (vect(0,0,-1) * (Pawn.CylinderComponent.CollisionHeight * 0.5f));
 	HitActor = Pawn.Trace( HitLocation, HitNormal, Enemy.Location, TraceStepLocation, !bCanStrikeThroughEnemies );
 	if( HitActor != None && HitActor != Enemy )
@@ -610,7 +577,6 @@ function bool CanDoStrike()
 
 		if( HitActor != None && HitActor != Enemy )
 		{
-			// @todo: need to find another path to our enemy!
 			return false;
 		}
 	}

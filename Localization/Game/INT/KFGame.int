@@ -931,7 +931,7 @@ Parry="Parry"
 ParryDescription="Combine skill and power: Parrying an attack will increase melee attack speed by 15% and light attack damage by 30% for 4 seconds."
 
 Smash="Smash"
-SmashDescription="Brute force it: Hard hits do 30% more damage AND hard hits to the head have a high chance to knock big Zeds down."
+SmashDescription="Brute force it: Hard hits do 100% more damage AND hard hits to the head have a high chance to knock big Zeds down."
 
 Spartan="ZED-TIME - Spartan"
 SpartanDescription="You've seen 300: Move in real-time, increase attack speed with Berserker melee weapons by 50% and any Parry will cause knockdown."

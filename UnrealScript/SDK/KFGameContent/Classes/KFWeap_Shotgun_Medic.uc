@@ -63,6 +63,32 @@ simulated function rotator AddMultiShotSpread(rotator BaseAim)
 	}
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////
+//
+// Trader
+//
+///////////////////////////////////////////////////////////////////////////////////////////
+
+/** Allows weapon to calculate its own damage for display in trader.
+  * Overridden to multiply damage by number of pellets.
+  * Exact copy of KFWeap_ShotgunBase.CalculateTraderWeaponStatDamage
+  */
+static simulated function float CalculateTraderWeaponStatDamage()
+{
+	local float BaseDamage, DoTDamage;
+	local class<KFDamageType> DamageType;
+
+	BaseDamage = default.InstantHitDamage[DEFAULT_FIREMODE];
+
+	DamageType = class<KFDamageType>(default.InstantHitDamageTypes[DEFAULT_FIREMODE]);
+	if( DamageType != none && DamageType.default.DoT_Type != DOT_None )
+	{
+		DoTDamage = (DamageType.default.DoT_Duration / DamageType.default.DoT_Interval) * (BaseDamage * DamageType.default.DoT_DamageScale);
+	}
+
+	return BaseDamage * default.NumPellets[DEFAULT_FIREMODE] + DoTDamage;
+}
+
 defaultproperties
 {
 	// Healing charge

@@ -108,6 +108,9 @@ var(Projectile) instanced editinline KFGameExplosion	ExplosionTemplate;
 /** True if this projectile has already blown up, used to ensure only a single explosion. */
 var repnotify bool bHasExploded;
 
+/** True if WorldInfo.TimeDilation was less than 1.0 on the server when it exploded */
+var bool bWasTimeDilated;
+
 /** If this projectile is being replicated, it's location will be force updated when it explodes. Ensure explosion happens the same place on client as it did on the server */
 var bool bReplicateLocationOnExplosion;
 
@@ -223,7 +226,7 @@ replication
 	// send initially so that if the projectile exploded on the first tick it was alive, the client handles it correctly
 	// in other cases the client should be able to simulate everything
 	if ( bNetInitial || bAlwaysReplicateExplosion )
-		bHasExploded;
+		bWasTimeDilated, bHasExploded;
 
     // Need to replicate the penetration power so the clients can properly simulate the penetration
     if( bNetInitial )
@@ -751,6 +754,12 @@ simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor 
 	}
 	if (!bHasExploded)
 	{
+        // On local player or server, we cache off our time dilation setting here
+        if( WorldInfo.NetMode == NM_ListenServer || WorldInfo.NetMode == NM_DedicatedServer || InstigatorController != None )
+        {
+            bWasTimeDilated = WorldInfo.TimeDilation < 1.f;
+        }
+
         // Stop ambient sounds when this projectile explodes
     	if( bStopAmbientSoundOnExplode && AmbientSoundStopEvent != none && AmbientComponent != none )
     	{

@@ -35,6 +35,10 @@ var const private Controller			NextController;					// chained Controller list
 var		bool        					bIsPlayer;						// Pawn is a player or a player-bot.
 var		bool							bGodMode;		   				// cheat - when true, can't be killed or hurt
 
+`if(`__TW_SDK_)
+var     bool                            bDemiGodMode;                   /** It forces the pawn to not be able to die */
+`endif
+
 var		bool		bSoaking;			// pause and focus on pawn controlled by this controller if it encounters a problem
 var		bool		bSlowerZAcquire;	// AI acquires targets above or below more slowly than at same height
 
