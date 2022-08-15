@@ -116,7 +116,7 @@ TimeLeftString="TEMPS RESTANT"
 WaveString="VAGUE"
 BossWaveString="BOSS"
 
-//BossCaptionStrings[0]=""
+//BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters ma"
 [KFPawn_ZedHansBase]
 BossName="Dr. Hans Volter"
 BossCaptionStrings[0]="Hand est presque invulnérable pendant la phase de soin de sa grenade fumigène. Ne gaspille pas tes balles !"
@@ -537,8 +537,8 @@ AdjustGammaString="RÉGLER LE GAMMA"
 PhysicsLevelString="NVIDIA® FleX"
 
 PhysicsLevelOptionStrings[0]="Sans"
-PhysicsLevelOptionStrings[1]="Bas*"
-PhysicsLevelOptionStrings[2]="Haut*"
+PhysicsLevelOptionStrings[1]="Boyaux*"
+PhysicsLevelOptionStrings[2]="Boyaux ET fluides*"
 
 PhysicsLevelSuggestionStrings[0]=""
 PhysicsLevelSuggestionStrings[1]="*GeForce® GTX™ 770 ou supérieure recommandée"
@@ -925,13 +925,13 @@ FuriousDefender="Défenseur Furieux"
 FuriousDefenderDescription="Ils ne te traitent pas de Fou furieux pour rien : tes attaques de mêlée de Fou furieux sont 10% plus rapides et toutes tes attaques causent 20% de dégâts en plus."
 
 Block="Riposte"
-BlockDescription="Quel talent ! Bloquer une attaque augmente de 50% les dégâts de ta prochaine attaque de mêlée de Fou furieux."
+BlockDescription="Quel talent ! Bloquer une attaque augmente de 75% les dégâts de ta prochaine attaque de mêlée de Fou furieux."
 
 Parry="Parade"
 ParryDescription="Combine force et talent : parer une attaque augmente ta vitesse d'attaque en mêlée de 15% et tes attaques légères de 30% pendant 4 secs."
 
 Smash="Smash"
-SmashDescription="Emploie la force brute : les attaques puissantes infligents 30% de dégâts supplémentaires et mettent KO 30% plus longtemps."
+SmashDescription="Emploie la force brute : les coups puissants infligents 30% de dégâts supplémentaires ET ont plus de chance de mettre les gros Zeds à terre lorsqu'ils sont portés à la tête."
 
 Spartan="ZED-TIME - Spartiate"
 SpartanDescription="Tu as trop regardé 300 : bouge en temps réel, augmente ta vitesse d'attaque avec les armes de mêlée de Fou furieux de 50% et les Parades infligent des KO.  "
@@ -1012,14 +1012,14 @@ OnContactDescription="Dans ta face mon pote : tes bâtons de dynamite explosero
 ExplosiveResistance="Rés. aux explosifs"
 ExplosiveResistanceDescription="Endurcis l'équipe : réduit les dégâts subis de 30% - ainsi que ceux de tes équipiers s'ils sont assez proches !"
 
-Sacrifice="Sacrifice"
-SacrificeDescription="Pas de mort vaine : en mourant, vous explosez, et en emportant des Zeds si possible."
+Sacrifice="Armure réactive"
+SacrificeDescription="Sois la bombe : une fois par vague, un coup qui devrait être mortel déclenche une explosion, endommageant les Zeds autour de vous et vous laissant à 5 PV."
 
 DoorTraps="Porte piégée"
 DoorTrapsDescription="Souffle cette porte : tu soudes 30% moins vite, mais les portes que tu soudes explosent quand elles sont brisées. Plus tu soudes une porte, plus elle explose fort."
 
 SirenResistance="Rés. aux Sirènes"
-SirenResistanceDescription="Ferme ta bouche, le Zed : tes grenades ont 100% de chance de franchir les dégâts soniques et d'exploser."
+SirenResistanceDescription="Ferme ta bouche, le Zed : tes grenades ont 33% de chance de franchir les dégâts soniques et d'exploser."
 
 OffPerk="Versatile"
 OffPerkDescription="Touche-à-tout : inflige 10% de dégâts en plus avec les armes hors Perk."
@@ -1104,7 +1104,7 @@ FullyStocked="Stock plein"
 FullyStockedDescription="Comme le dit la boîte : les armes de Pyromane commençent avec le max de munitions chez la Marchande."
 
 FlarotovCoctail="Cocktail fuséetov"
-FlarotovCoctailDescription="Comme son nom l'indique : fourre une fusée dans ton cocktail molotov - tu obtiens une fuséetov pour allumer le décor pendant 30 sec."
+FlarotovCoctailDescription="Comme son nom l'indique : fourre une fusée dans ton cocktail molotov - tu obtiens une fusée qui illumine le décor pendant 30 sec ET votre feu brûle deux fois plus longtemps sur le sol"
 
 Fuse="Mèche"
 FuseDescription="Pour brûler plus lentement : l'effet embrasant des armes de Pyromane dure 70% plus longtemps."
@@ -1112,7 +1112,7 @@ FuseDescription="Pour brûler plus lentement : l'effet embrasant des armes de P
 HeatWave="Vague de chaleur"
 HeatWaveDescription="Comme un été en Géorgie : les ennemis touchés à bout portant par du Feu trébucheront."
 
-ZedShrapnel="Zed Shrapnel"
+ZedShrapnel=" Zed Shrapnel"
 ZedShrapnelDescription="Les Zeds font BOOM : tout Zed tué par une arme de Pyromane a 50% de chance d'exploser, et de blesser les Zeds près de lui."
 
 Napalm="Zed Napalm"
@@ -1244,12 +1244,12 @@ ObjectiveStatusTitle="OBTENIR UNE REMISE DE 30%"
 ObjectiveTimeString="s RESTANTES"
 
 [KFGameViewportClient]
-RandomLoadingStrings[0]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 1"
-RandomLoadingStrings[1]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 2"
-RandomLoadingStrings[2]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 3"
-RandomLoadingStrings[3]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 4"
-RandomLoadingStrings[4]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 5"
-RandomLoadingStrings[5]=""
+RandomLoadingStrings[0]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 0"
+RandomLoadingStrings[1]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 1"
+RandomLoadingStrings[2]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 2"
+RandomLoadingStrings[3]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 3"
+RandomLoadingStrings[4]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 4"
+RandomLoadingStrings[5]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 5"
 
 [Zeds]
 KFPawn_ZedBloat="Bouffi"

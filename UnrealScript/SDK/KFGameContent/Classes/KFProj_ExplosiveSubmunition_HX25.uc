@@ -21,6 +21,21 @@ simulated protected function PrepareExplosionTemplate()
     super.PrepareExplosionTemplate();
 }
 
+simulated event HitWall(vector HitNormal, actor Wall, PrimitiveComponent WallComp)
+{
+    // For some reason on clients up close shots with this projectile
+    // get HitWall calls instead of Touch calls. This little hack fixes
+    // the problem. TODO: Investigate why this happens - Ramm
+    // If we hit a pawn with a HitWall call on a client, do touch instead
+    if( WorldInfo.NetMode == NM_Client && Pawn(Wall) != none )
+    {
+        Touch( Wall, WallComp, Location, HitNormal );
+        return;
+    }
+
+    Super.HitWall(HitNormal, Wall, WallComp);
+}
+
 defaultproperties
 {
 	Physics=PHYS_Falling

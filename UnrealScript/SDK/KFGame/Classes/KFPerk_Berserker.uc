@@ -25,6 +25,7 @@ var 		private		bool		bParryActive;
 var const 	private  	float 		ParryDuration;
 var const 	private  	float 		ParrySpeed;
 var const 	private  	float 		FuriousDefenderSpeed;
+var const 	private 	float 		SmashKnockdownMultiplier;
 
 // Events to play when parry skill is activated / deactivated
 var AkEvent ParrySkillSoundModeStart;
@@ -127,21 +128,22 @@ simulated function ModifyMeleeAttackSpeed( out float InDuration, KFWeapon KFW )
 	}
 
 	TempDuration = InDuration;
-	TempDuration -= InDuration * GetPassiveValue( MeleeAttackSpeed, CurrentLevel );
 	
+	if( IsSpartanActive() )
+	{
+		TempDuration -= TempDuration * GetSkillValue( PerkSkills[EBerserkerSpartan] );
+	}
+
+	TempDuration -= TempDuration * GetPassiveValue( MeleeAttackSpeed, CurrentLevel );
+
 	if( GetParryActive() )
 	{
-		TempDuration -= InDuration * ParrySpeed;
+		TempDuration -= TempDuration * ParrySpeed;
 	}
 
 	if( IsFuriousDefenderActive() )
 	{
-		TempDuration -= InDuration * GetSkillValue( PerkSkills[EBerserkerFuriousDefender] );
-	}
-
-	if( IsSpartanActive() )
-	{
-		TempDuration -= InDuration * GetSkillValue( PerkSkills[EBerserkerSpartan] );
+		TempDuration -= TempDuration * GetSkillValue( PerkSkills[EBerserkerFuriousDefender] );
 	}
 
 	`QALog( "Total, Melee Attack Speed" @ GetPercentage( InDuration, TempDuration ) @ "Start/End" @ InDuration @ TempDuration, bLogPerk );
@@ -309,12 +311,7 @@ function ModifyLightAttackDamage( out int InDamage )
 		TempDamage *= 1 + GetSkillValue( PerkSkills[EBerserkerParry] );
 	}
 
-	if( IsSmashActive() )
-	{
-		TempDamage *= 1 + GetSkillValue( PerkSkills[EBerserkerSmash] );
-	}
-
-	`QALog( "Total Hard Atk Dmg" @ GetPercentage( InDamage, TempDamage != InDamage ? Round( TempDamage ) : InDamage ) @ "Start/End" @ InDamage @ ( TempDamage != InDamage ? Round( TempDamage ) : InDamage ), bLogPerk );
+	`QALog( "Total Light Atk Dmg" @ GetPercentage( InDamage, TempDamage != InDamage ? Round( TempDamage ) : InDamage ) @ "Start/End" @ InDamage @ ( TempDamage != InDamage ? Round( TempDamage ) : InDamage ), bLogPerk );
 	InDamage = TempDamage != InDamage ? Round( TempDamage ) : InDamage;
 }
 
@@ -359,8 +356,8 @@ function float GetKnockdownPowerModifier( optional class<DamageType> DamageType 
 	KFW = GetOwnerWeapon();
 	if( IsSmashActive() && KFW.IsMeleeWeapon() )
 	{
-		`QALog( "Smash KnockDownMultiplier" @ ( 1.f + GetSkillValue( PerkSkills[EBerserkerSmash] ) ), bLogPerk );
-		return 1.f + GetSkillValue( PerkSkills[EBerserkerSmash] );
+		`QALog( "Smash KnockDownMultiplier" @ SmashKnockdownMultiplier, bLogPerk );
+		return SmashKnockdownMultiplier;
 	}
 
 	return 1.f;
@@ -674,6 +671,8 @@ DefaultProperties
 
 	FuriousDefenderSpeed=0.1f
 
+	SmashKnockdownMultiplier=2.f
+
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Berserker'
 
 	ProgressStatID=`STATID_Bsrk_Progress
@@ -690,7 +689,7 @@ DefaultProperties
 	GrenadeClassName="KFGameContent.KFProj_EMPGrenade"
 
 	BerserkerDamage=(Name="Berserker Damage",Increment=0.01,Rank=0,StartingValue=1.25,MaxValue=1.5f)
-	MeleeAttackSpeed=(Name="Melee Attack Speed",Increment=0.008,Rank=0,StartingValue=0.05f,MaxValue=0.25f)
+	MeleeAttackSpeed=(Name="Melee Attack Speed",Increment=0.004,Rank=0,StartingValue=0.05f,MaxValue=0.1f)
 	Movement=(Name="Movement",Increment=0.006f,Rank=0,StartingValue=1.1f,MaxValue=1.25f)
 	DamageResistance=(Name="Damage Resistance",Increment=0.01f,Rank=0,StartingValue=0.f,MaxValue=0.25f)
 	NightVision=(Name="Night Vision",Increment=0.f,Rank=0,StartingValue=0.f,MaxValue=0.f)
@@ -699,11 +698,11 @@ DefaultProperties
 	PerkSkills(EBerserkerSonicResistance)=(Name="SonicResistance",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_SonicResistance",Increment=0.f,Rank=0,StartingValue=0.4f,MaxValue=0.4f)
 	PerkSkills(EBerserkerVampire)=(Name="Vampire",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Vampire",Increment=0.f,Rank=0,StartingValue=3.f,MaxValue=3.f)
 	PerkSkills(EBerserkerFortitude)=(Name="Fortitude",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Fortitude",Increment=0.f,Rank=0,StartingValue=2.f,MaxValue=2.f)
-	PerkSkills(EBerserkerFuriousDefender)=(Name="FuriousDefender",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_FuriousDefender",Increment=0.f,Rank=0,StartingValue=0.15f,MaxValue=0.15f)
+	PerkSkills(EBerserkerFuriousDefender)=(Name="FuriousDefender",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_FuriousDefender",Increment=0.f,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
 	PerkSkills(EBerserkerBlock)=(Name="Block",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Block",Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
 	PerkSkills(EBerserkerParry)=(Name="Parry",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Parry",Increment=0.f,Rank=0,StartingValue=0.15,MaxValue=0.15)
-	PerkSkills(EBerserkerSmash)=(Name="Smash",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Smash",Increment=0.f,Rank=0,StartingValue=0.3f,MaxValue=0.3f) 
-	PerkSkills(EBerserkerSpartan)=(Name="Spartan",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Spartan",Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
+	PerkSkills(EBerserkerSmash)=(Name="Smash",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Smash",Increment=0.f,Rank=0,StartingValue=1.f,MaxValue=1.f) 
+	PerkSkills(EBerserkerSpartan)=(Name="Spartan",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Spartan",Increment=0.f,Rank=0,StartingValue=0.7f,MaxValue=0.7f)
 	PerkSkills(EBerserkerMenace)=(Name="Menace",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Menace",Increment=0.f,Rank=0,StartingValue=1.f,MaxValue=1.f)
 
 	ParrySkillSoundModeStart=AkEvent'WW_GLO_Runtime.Play_Beserker_Parry_Mode'

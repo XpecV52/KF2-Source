@@ -96,7 +96,7 @@ simulated function ProcessBulletTouch( Actor Other, Vector HitLocation, Vector H
 	super.ProcessBulletTouch( Other, HitLocation, HitNormal );
 	KFPM = KFPawn_Monster(Other);
 
-	if( Other != none && KFPM != none )
+	if( Instigator != None && KFPM != none )
 	{
 		InstigatorPerk = KFPawn(Instigator).GetPerk();
 		if( InstigatorPerk != none && InstigatorPerk.ShouldSedate() )

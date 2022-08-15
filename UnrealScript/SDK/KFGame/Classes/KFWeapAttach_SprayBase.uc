@@ -370,6 +370,11 @@ simulated function AttachTo(KFPawn P)
 /** Detach weapon from owner's skeletal mesh */
 simulated function DetachFrom(KFPawn P)
 {
+	if( bFireSpraying )
+	{ 
+	    TurnOffFireSpray();
+	}
+	
     TurnOffPilot();
 
     Super.DetachFrom(P);

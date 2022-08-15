@@ -596,19 +596,19 @@ function bool CanDoStrike()
 
 	// Check if a wall or another Zed is blocking my pawn from performing a melee attack, ignore zed collision if bCanStrikeThroughEnemies is true, 
 	TraceStepLocation = Pawn.Location + (vect(0,0,-1) * (Pawn.CylinderComponent.CollisionHeight * 0.5f));
-	HitActor = Pawn.Trace( HitLocation, HitNormal, Enemy.Location, TraceStepLocation, !bCanStrikeThroughEnemies);
-	if ( HitActor != None )
+	HitActor = Pawn.Trace( HitLocation, HitNormal, Enemy.Location, TraceStepLocation, !bCanStrikeThroughEnemies );
+	if( HitActor != None && HitActor != Enemy )
 	{
-		if ( HitActor.bWorldGeometry )
+		if( HitActor.bWorldGeometry )
 		{
 			// Set the body blocked flag so the anim info can check it
 			bIsBodyBlocked = true;
-
-			// try again at eyeheight
-			HitActor = Pawn.Trace( HitLocation, HitNormal, Enemy.Location + vect(0,0,1) * (Enemy.BaseEyeHeight), Pawn.Location + vect(0,0,1) * (Pawn.BaseEyeHeight), !bCanStrikeThroughEnemies);
 		}
 
-		if( HitActor != Enemy )
+		// Try again at eyeheight
+		HitActor = Pawn.Trace( HitLocation, HitNormal, Enemy.Location + vect(0,0,1) * (Enemy.BaseEyeHeight), Pawn.Location + vect(0,0,1) * (Pawn.BaseEyeHeight), !bCanStrikeThroughEnemies );
+
+		if( HitActor != None && HitActor != Enemy )
 		{
 			// @todo: need to find another path to our enemy!
 			return false;

@@ -96,6 +96,7 @@ var 		private		bool		bParryActive;
 var const 	private  	float 		ParryDuration;
 var const 	private  	float 		ParrySpeed;
 var const 	private  	float 		FuriousDefenderSpeed;
+var const 	private 	float 		SmashKnockdownMultiplier;
 
 // Events to play when parry skill is activated / deactivated
 var AkEvent ParrySkillSoundModeStart;
@@ -198,21 +199,22 @@ simulated function ModifyMeleeAttackSpeed( out float InDuration, KFWeapon KFW )
 	}
 
 	TempDuration = InDuration;
-	TempDuration -= InDuration * GetPassiveValue( MeleeAttackSpeed, CurrentLevel );
 	
+	if( IsSpartanActive() )
+	{
+		TempDuration -= TempDuration * GetSkillValue( PerkSkills[EBerserkerSpartan] );
+	}
+
+	TempDuration -= TempDuration * GetPassiveValue( MeleeAttackSpeed, CurrentLevel );
+
 	if( GetParryActive() )
 	{
-		TempDuration -= InDuration * ParrySpeed;
+		TempDuration -= TempDuration * ParrySpeed;
 	}
 
 	if( IsFuriousDefenderActive() )
 	{
-		TempDuration -= InDuration * GetSkillValue( PerkSkills[EBerserkerFuriousDefender] );
-	}
-
-	if( IsSpartanActive() )
-	{
-		TempDuration -= InDuration * GetSkillValue( PerkSkills[EBerserkerSpartan] );
+		TempDuration -= TempDuration * GetSkillValue( PerkSkills[EBerserkerFuriousDefender] );
 	}
 
 	;
@@ -380,11 +382,6 @@ function ModifyLightAttackDamage( out int InDamage )
 		TempDamage *= 1 + GetSkillValue( PerkSkills[EBerserkerParry] );
 	}
 
-	if( IsSmashActive() )
-	{
-		TempDamage *= 1 + GetSkillValue( PerkSkills[EBerserkerSmash] );
-	}
-
 	;
 	InDamage = TempDamage != InDamage ? Round( TempDamage ) : InDamage;
 }
@@ -431,7 +428,7 @@ function float GetKnockdownPowerModifier( optional class<DamageType> DamageType 
 	if( IsSmashActive() && KFW.IsMeleeWeapon() )
 	{
 		;
-		return 1.f + GetSkillValue( PerkSkills[EBerserkerSmash] );
+		return SmashKnockdownMultiplier;
 	}
 
 	return 1.f;
@@ -741,7 +738,7 @@ simulated function LogPerkSkills()
 defaultproperties
 {
    BerserkerDamage=(Name="Berserker Damage",Increment=0.010000,StartingValue=1.250000,MaxValue=1.500000)
-   MeleeAttackSpeed=(Name="Melee Attack Speed",Increment=0.008000,StartingValue=0.050000,MaxValue=0.250000)
+   MeleeAttackSpeed=(Name="Melee Attack Speed",Increment=0.004000,StartingValue=0.050000,MaxValue=0.100000)
    Movement=(Name="Movement",Increment=0.006000,StartingValue=1.100000,MaxValue=1.250000)
    DamageResistance=(Name="Damage Resistance",Increment=0.010000,MaxValue=0.250000)
    NightVision=(Name="Night Vision")
@@ -749,6 +746,7 @@ defaultproperties
    ParryDuration=4.000000
    ParrySpeed=0.150000
    FuriousDefenderSpeed=0.100000
+   SmashKnockdownMultiplier=2.000000
    ParrySkillSoundModeStart=AkEvent'WW_GLO_Runtime.Play_Beserker_Parry_Mode'
    ParrySkillSoundModeStop=AkEvent'WW_GLO_Runtime.Stop_Beserker_Parry_Mode'
    ProgressStatID=10
@@ -775,11 +773,11 @@ defaultproperties
    PerkSkills(1)=(Name="SonicResistance",StartingValue=0.400000,MaxValue=0.400000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_SonicResistance")
    PerkSkills(2)=(Name="Vampire",StartingValue=3.000000,MaxValue=3.000000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Vampire")
    PerkSkills(3)=(Name="Fortitude",StartingValue=2.000000,MaxValue=2.000000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Fortitude")
-   PerkSkills(4)=(Name="FuriousDefender",StartingValue=0.150000,MaxValue=0.150000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_FuriousDefender")
+   PerkSkills(4)=(Name="FuriousDefender",StartingValue=0.200000,MaxValue=0.200000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_FuriousDefender")
    PerkSkills(5)=(Name="Block",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Block")
    PerkSkills(6)=(Name="Parry",StartingValue=0.150000,MaxValue=0.150000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Parry")
-   PerkSkills(7)=(Name="Smash",StartingValue=0.300000,MaxValue=0.300000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Smash")
-   PerkSkills(8)=(Name="Spartan",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Spartan")
+   PerkSkills(7)=(Name="Smash",StartingValue=1.000000,MaxValue=1.000000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Smash")
+   PerkSkills(8)=(Name="Spartan",StartingValue=0.700000,MaxValue=0.700000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Spartan")
    PerkSkills(9)=(Name="Menace",StartingValue=1.000000,MaxValue=1.000000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Menace")
    PrimaryWeaponClassName="KFGameContent.KFWeap_Blunt_Crovel"
    MeleeWeaponClassName="KFGameContent.KFWeap_Knife_Berserker"

@@ -104,7 +104,7 @@ FindGameString="WYSZUKAJ GRĘ"
 [KFGFxStartContainer_InGameOverview]
 OverviewString="PRZEGLĄD GRY"
 ChangeString="ZMIEŃ"
-SharedByString="Poszukiwane przez:"
+SharedByString="Udostępnione przez:"
 SharedContentString="UDOSTĘPNIONE"
 
 [KFGFxStartContainer_ServerBrowserOverview]
@@ -537,8 +537,8 @@ AdjustGammaString="USTAWIENIA GAMMA"
 PhysicsLevelString="NVIDIA® FleX"
 
 PhysicsLevelOptionStrings[0]="Wyłączony"
-PhysicsLevelOptionStrings[1]="Niski*"
-PhysicsLevelOptionStrings[2]="Wysoki*"
+PhysicsLevelOptionStrings[1]="Flaki*"
+PhysicsLevelOptionStrings[2]="Flaki PLUS Osocze*"
 
 PhysicsLevelSuggestionStrings[0]=""
 PhysicsLevelSuggestionStrings[1]="*Zalecana GeForce® GTX™ 770 lub lepsza"
@@ -677,7 +677,7 @@ GoreOptionStrings[1]="Mało krwi"
 GoreOptionStrings[2]="Rzeźnia"
 NormalString="Normalny"
 WiderString="Szeroki"
-FriendlyHudScaleString="Łatwe wskaźniki"
+FriendlyHudScaleString="Przyjazne wskaźniki"
 
 [LocalizedControls]
 GBA_MoveForward="Do przodu"
@@ -888,7 +888,7 @@ SkillSlots3[1]=(Title="", Description="")
 SkillSlots4[0]=(Title="", Description="")
 SkillSlots4[1]=(Title="", Description="")
 
-WeaponDroppedMessage="Upuściłeś%%%% z powodu twojej nowej ładowności!"
+WeaponDroppedMessage="Z powodu twojej nowej ładowności upuściłeś%%%%!"
 
 [KFPerk_Berserker]
 PerkName="Berserker"
@@ -925,13 +925,13 @@ FuriousDefender="Wściekły obrońca"
 FuriousDefenderDescription="Nie bez powodu nazywają cię berserkerem: Uderzenia berserkera są o 10% szybsze a wszystkie ataki powodują 20% więcej obrażeń."
 
 Block="Blok"
-BlockDescription="Silne ręce! Zablokowanie ataku spowoduje, że następne uderzenie berserkera zada o 50% więcej obrażeń. "
+BlockDescription="Silne ręce! Zablokowanie ataku spowoduje, że następne uderzenie berserkera zada o 75% więcej obrażeń. "
 
 Parry="Odbicie"
 ParryDescription="Połączenie umiejętności i siły: Odbicie ataku zwiększy szybkość uderzenia o 15% i siłę lekkiego ataku o 30% przez 4 sekundy."
 
 Smash="Krach"
-SmashDescription="Użyj siły: Ciężkie ataki zadają 30% więcej obrażeń i wydłużają ogłuszenie przeciwnika o 30%."
+SmashDescription="Użyj siły: Ciężkie ataki zadają 30% więcej obrażeń, a jeśli trafią w głowę istnieje duża szansa na powalenie dużych Zedów na ziemię."
 
 Spartan="ZWOLNIONE TEMPO – Spartanin"
 SpartanDescription="Widziałeś 300: Poruszanie się z normalną prędkością, zwiększenie szybkości ataku broniami białymi berserkera o 50% a każde odbicie powoduje ogłuszenie przeciwnika."
@@ -1012,14 +1012,14 @@ OnContactDescription="Prosto w twarz: twój dynamit wybuchnie przy kontakcie z Z
 ExplosiveResistance="Odporność na wybuchy"
 ExplosiveResistanceDescription="Zahartowanie drużyny: Obniża ilość obrażeń, które otrzymujesz ty, a także członkowie twojej drużyny, jeśli są wystarczająco blisko ciebie, o 30%."
 
-Sacrifice="Poświęcenie"
-SacrificeDescription="Nie giń na próżno: Jeśli zginiesz, twoje ciało wybucha, więc może zabijesz kilka Zedów więcej."
+Sacrifice="Reaktywny Pancerz"
+SacrificeDescription="Zostań bombą: Atak, który powinien cię zabić, powoduje eksplozję zadającą obrażenia Zedom dookoła ciebie i pozostawia ci  5 punktów zdrowia."
 
 DoorTraps="Pułapki"
 DoorTrapsDescription="Wysadź te drzwi: Spawasz o 30% wolniej, ale zaspawane przez ciebie drzwi, przy rozbiciu ich, wybuchają . Im dłużej spawasz, wym większa eksplozja."
 
 SirenResistance="Odporność na syreny"
-SirenResistanceDescription="Zamknij się Zedzie: Twoje granaty mają 100% szans na przedostanie się przez zaporę dźwiękową i poważny wybuch."
+SirenResistanceDescription="Zamknij się Zedzie: Twoje granaty mają 33% szans na przedostanie się przez zaporę dźwiękową i poważny wybuch."
 
 OffPerk="Beztalencie"
 OffPerkDescription="Znowu bez talentu: Zadawaj 10% więcej obrażeń każdą bronią spoza talentu."
@@ -1104,7 +1104,7 @@ FullyStocked="Pełen zapas"
 FullyStockedDescription="Zgodnie z tytułem: Bronie piromana u handlarki mają pełen zapas."
 
 FlarotovCoctail="Koktajl Flarotowa"
-FlarotovCoctailDescription="Tak jak nazwa wskazuje: Wsuń flarę do koktajlu Mołotowa a otrzymasz Flarotowa, który oświetli otoczenie przez 30 sekund"
+FlarotovCoctailDescription="Tak jak nazwa wskazuje: Wsuń flarę do koktajlu Mołotowa a otrzymasz Flarotowa, który oświetli otoczenie przez 30 sekund. Rzucony na ziemię płonie dwa razy dłużej niż trzymany w ręku."
 
 Fuse="Lont"
 FuseDescription="Powolne spalanie: Spalanie się broni piromana trwa o 70% dłużej powodując większe obrażenia. "
@@ -1269,10 +1269,10 @@ KFPawn_ZedSiren="Syrena"
 
 
 [SharedUnlocks]
-KFWeap_Zweihander="Reklama rycerskości"
+KFWeap_Zweihander="Reklama „Chivalry“"
 
 SharedUnlocks
-Source0="Reklama rycerskości"
+Source0="Reklama „Chivalry“"
 ;============================================
 ; Map Localization
 ;============================================

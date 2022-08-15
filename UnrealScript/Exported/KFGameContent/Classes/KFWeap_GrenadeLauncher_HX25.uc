@@ -35,7 +35,7 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
 	{
 		// Use a different projectile for the first one if demo's nuke skill is active and Zed time is active
 		if( InstigatorPRI != none && InstigatorPRI.bNukeActive && WorldInfo.TimeDilation < 1.f && i < 1 )
-		{	
+		{
 			Super.SpawnProjectile( class'KFPerk_Demolitionist'.static.GetNukeProjectileClass(), RealStartLoc, AimDir );
 		}
 		else
@@ -149,7 +149,7 @@ defaultproperties
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
-   Spread(0)=0.185000
+   Spread(0)=0.125000
    InstantHitDamage(0)=10.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()

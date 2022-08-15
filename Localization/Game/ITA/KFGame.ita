@@ -537,8 +537,8 @@ AdjustGammaString="REGOLARE LA GAMMA"
 PhysicsLevelString="NVIDIA® FleX"
 
 PhysicsLevelOptionStrings[0]="Off"
-PhysicsLevelOptionStrings[1]="Basso*"
-PhysicsLevelOptionStrings[2]="Alto*"
+PhysicsLevelOptionStrings[1]="Interiora*"
+PhysicsLevelOptionStrings[2]="Interiora E fluidi*"
 
 PhysicsLevelSuggestionStrings[0]=""
 PhysicsLevelSuggestionStrings[1]="*GeForce® GTX™ 770 o superiore consigliato"
@@ -925,13 +925,13 @@ FuriousDefender="Difensore feroce"
 FuriousDefenderDescription="Ti chiamano Berserk per una ragione: gli attacchi del Berserker nella mischia sono il 10% più veloci e tutti gli attacchi producono il 20% in più di danno."
 
 Block="Blocca"
-BlockDescription="Che capacità! Bloccare un attacco renderà il tuo prossimo attacco da Berserker nella mischia più dannoso del 50%."
+BlockDescription="Che capacità! Bloccare un attacco renderà il tuo prossimo attacco da Berserker nella mischia più dannoso del 75%."
 
 Parry="Schiva"
 ParryDescription="Combina capacità e potenza: schivare un attacco incrementerà la velocità di attacco nella mischia del 15% e il danno da attacco leggero del 30% per 4 secondi."
 
 Smash="Frantuma"
-SmashDescription="Usa la forza bruta: gli attacchi pesanti producono il 30% in più di danno e aumentano l'incapacità da abbattimento del 30%."
+SmashDescription="Usa la forza bruta: i colpi pesanti producono il 30% in più di danno E con quelli alla testa c'è un'alta probabilità di buttare a terra gli ZED."
 
 Spartan="ZED TIME - Spartano"
 SpartanDescription="Hai visto 300: muoviti in tempo reale, aumenta la velocità di attacco con le armi da mischia del Berserker del 50% e qualsiasi schivata provocherà un abbattimento."
@@ -1012,14 +1012,14 @@ OnContactDescription="Davanti a te, amico: i tuoi candelotti di dinamite esplode
 ExplosiveResistance="Resistenza all'esplosivo"
 ExplosiveResistanceDescription="Rafforza la squadra: riduci del 30% il danno che subisci tu – e quello dei tuoi compagni di squadra, se sono abbastanza vicini!"
 
-Sacrifice="Sacrificio"
-SacrificeDescription="Non morire invano: quando muori, esplodi – si spera portando degli Zed con te."
+Sacrifice="Armatura reattiva"
+SacrificeDescription="Diventa una bomba umana: una volta per ondata, un colpo che dovrebbe uccidere con un'esplosione, danneggiando gli Zed intorno a te e garantendoti 5 punti salute."
 
 DoorTraps="Trappole per porta"
 DoorTrapsDescription="Fai saltare quella porta: saldi il 30% più lentamente, ma le porte saldate esplodono quando vengono abbattute. Maggiore la saldatura della porta, maggiore l'esplosione."
 
 SirenResistance="Resistenza alla Sirena"
-SirenResistanceDescription="Chiudi il becco, Zed: le tue granate hanno il 100% di possibilità di superare il danno sonoro ed esplodere effettivamente."
+SirenResistanceDescription="Chiudi il becco, Zed: le tue granate hanno il 33% di possibilità di superare il danno sonoro ed esplodere effettivamente."
 
 OffPerk=""
 OffPerkDescription="Di nuovo senza: fa il 10% extra di danno con qualsiasi arma senza perk."
@@ -1104,7 +1104,7 @@ FullyStocked="Completamente equipaggiato"
 FullyStockedDescription="Sulla lattina recita: le armi del firebug si avviano alla massima capacità di munizione dal Mercante."
 
 FlarotovCoctail="Cocktail Flarotov"
-FlarotovCoctailDescription="Come recita il nome: lancia una fiammata nel tuo Cocktail Molotov e ottieni un Flarotov per illuminare l'ambiente per 30 secondi"
+FlarotovCoctailDescription="È tutto nel nome: infila un razzo nel tuo Cocktail Molotov che ti permetterà di illuminare l'ambiente per 30 secondi E la tua fiamma brucerà a terra per il doppio del tempo"
 
 Fuse="Fusibile"
 FuseDescription="Un bel brucia-lento: l'effetto ustionante delle armi del firebug perdura il 70% più a lungo provocando ulteriore danno nel tempo."

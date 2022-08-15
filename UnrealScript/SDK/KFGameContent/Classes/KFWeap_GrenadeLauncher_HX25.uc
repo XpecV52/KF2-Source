@@ -35,7 +35,7 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
 	{
 		// Use a different projectile for the first one if demo's nuke skill is active and Zed time is active
 		if( InstigatorPRI != none && InstigatorPRI.bNukeActive && WorldInfo.TimeDilation < 1.f && i < 1 )
-		{	
+		{
 			Super.SpawnProjectile( class'KFPerk_Demolitionist'.static.GetNukeProjectileClass(), RealStartLoc, AimDir );
 		}
 		else
@@ -154,7 +154,7 @@ defaultproperties
 	InstantHitDamage(DEFAULT_FIREMODE)=10.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_HX25SubmunitionImpact'
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_HX25'
-	Spread(DEFAULT_FIREMODE)=0.185
+	Spread(DEFAULT_FIREMODE)=0.125
 	FireInterval(DEFAULT_FIREMODE)=0.25
 	FireOffset=(X=23,Y=4.0,Z=-3)
 	// Projectile count
@@ -180,7 +180,7 @@ defaultproperties
 
 	// Trader
     EffectiveRange=25
-    
+
    	AssociatedPerkClass=class'KFPerk_Demolitionist'
 }
 

@@ -537,8 +537,8 @@ AdjustGammaString="AJUSTAR GAMA"
 PhysicsLevelString="NVIDIA® FleX"
 
 PhysicsLevelOptionStrings[0]="Desligado"
-PhysicsLevelOptionStrings[1]="Pouco*"
-PhysicsLevelOptionStrings[2]="Muito*"
+PhysicsLevelOptionStrings[1]="Entranhas*"
+PhysicsLevelOptionStrings[2]="Entranhas E Fluídos*"
 
 PhysicsLevelSuggestionStrings[0]=""
 PhysicsLevelSuggestionStrings[1]="*GeForce® GTX™ 770 ou superior recomendado"
@@ -925,13 +925,13 @@ FuriousDefender="Defensor furioso"
 FuriousDefenderDescription="Te chamam de Brutamontes por uma razão: Os ataques de arma branca do Brutamontes são 10% mais rápidos e todos os ataques causam 20% mais dano."
 
 Block="Bloqueio"
-BlockDescription="Que habilidade! Bloquear um ataque fará com que o seu próximo ataque Brutamontes cause 50% mais dano."
+BlockDescription="Que habilidade! Bloquear um ataque fará com que o seu próximo ataque Brutamontes cause 75% mais dano."
 
 Parry="Defender"
 ParryDescription="Combine habilidade e poder: Defender um ataque aumentará a velocidade de ataque com arma branca por 15% e o dano de ataques leves por 30% durante 4 segundos."
 
 Smash="Esmagar"
-SmashDescription="Aplique força bruta: Ataques brutos causam 30% mais dano e aumentam a incapacitação por derrube por 30%."
+SmashDescription="Aplique força bruta: Ataques brutos causam 30% mais dano E ataques brutos na cabeça têm uma grande chance de derrubarem os Zeds grandes.."
 
 Spartan="HORA ZED - Espartano"
 SpartanDescription="Você viu o 300: Se mova em tempo real, aumenta a velocidade de ataque com armas brancas de Brutamonte por 50% e qualquer defesa causará um derrube."
@@ -1012,14 +1012,14 @@ OnContactDescription="Na sua cara, amigo: a sua dinamite explodirá quando entra
 ExplosiveResistance="Resistência Explosiva"
 ExplosiveResistanceDescription="Fortaleça a equipe: Reduz o dano recebido por você em 30% e também para os seus colegas, se eles estiverem por perto!"
 
-Sacrifice="Sacrifício"
-SacrificeDescription="Não morra em vão: Quando morrer, você explode, com sorte levando alguns Zeds com você."
+Sacrifice="Armadura Reativa"
+SacrificeDescription="Seja a bomba: Uma vez por onda, um golpe que causa uma morte gera um explosão, danificando todos os Zeds à sua volta e te deixando com somente 5 de vida."
 
 DoorTraps="Porta Armadilha"
 DoorTrapsDescription="Explode a porta: Você solda 30% mais lentamente, mas as portas que você solda explodem ao serem quebradas. Quanto mais solda na porta maior a explosão."
 
 SirenResistance="Resistência contra as Sirenas"
-SirenResistanceDescription="Cala a boca Zed: As suas granadas têm 100% de chance de ultrapassar o dano sônico e explodir."
+SirenResistanceDescription="Cala a boca Zed: As suas granadas têm 33% de chance de ultrapassar o dano sônico e explodir."
 
 OffPerk=""
 OffPerkDescription="Sem outra vez: Causa 10% de dano extra com qualquer arma sem privilégio."
@@ -1104,7 +1104,7 @@ FullyStocked="Completamente Abastecido"
 FullyStockedDescription="O que diz na lata: Armas Besouro Amarelo começam com a munição no máximo no Comerciante."
 
 FlarotovCoctail="Cocktail Sinalizador"
-FlarotovCoctailDescription="Está no nome: Enfie um Sinalizador no Cocktail Molotov - você obtém um Cocktail Sinalizador que ilumina a área durante 30 segundos."
+FlarotovCoctailDescription="Está no nome: Enfie um Sinalizador no Cocktail Molotov - você obtém um Sinalizador que ilumina a área durante 30 segundos E a chama queima durante o dobro do tempo no chão."
 
 Fuse="Rastilho"
 FuseDescription="Um belo e lento incendiário: Armas Besouro Amarelo queimam durante 70% mais tempo adicionando dano."

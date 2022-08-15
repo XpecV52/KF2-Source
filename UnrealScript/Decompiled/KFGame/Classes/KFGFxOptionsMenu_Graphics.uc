@@ -1557,31 +1557,79 @@ static event SetCompatibilityLevel(int CompatLevel)
     if((GraphicsQualityIndex >= 0) && GraphicsQualityIndex < default.GraphicsQualityPresets.Length)
     {
         GraphicsQuality = default.GraphicsQualityPresets[GraphicsQualityIndex];
-        SetGraphicsQuality(GraphicsQuality);
+        SetGraphicsQuality(GraphicsQuality, false);
     }
 }
 
-static event SetGraphicsQuality(GraphicsQualitySetting GraphicsQuality)
+static event SetGraphicsQuality(GraphicsQualitySetting GraphicsQuality, bool bPreserveUserOverrides)
 {
     local GFXSettings NewGFXSettings;
 
     GetCurrentGFXSettings(NewGFXSettings);
-    NewGFXSettings.EnvironmentDetail = default.EnvironmentDetailPresets[GraphicsQuality.EnvironmentDetailIndex];
-    NewGFXSettings.CharacterDetail = default.CharacterDetailPresets[GraphicsQuality.CharacterDetailIndex];
-    NewGFXSettings.FX = default.FXQualityPresets[GraphicsQuality.FXQualityIndex];
-    NewGFXSettings.TextureResolution = default.TextureResolutionPresets[GraphicsQuality.TextureResolutionIndex];
-    NewGFXSettings.TextureFiltering = default.TextureFilterPresets[GraphicsQuality.TextureFilteringIndex];
-    NewGFXSettings.Shadows = default.ShadowQualityPresets[GraphicsQuality.ShadowQualityIndex];
-    NewGFXSettings.RealtimeReflections = default.RealtimeReflectionsPresets[GraphicsQuality.RealtimeReflectionsIndex];
-    NewGFXSettings.LightShafts = default.LightShaftsPresets[((GraphicsQuality.LightShafts) ? 1 : 0)];
-    NewGFXSettings.VolumetricLighting = default.VolumetricLightingPresets[((GraphicsQuality.VolumetricLighting) ? 1 : 0)];
-    NewGFXSettings.LensFlares = default.LensFlarePresets[((GraphicsQuality.LensFlares) ? 1 : 0)];
-    NewGFXSettings.AntiAliasing = default.AntiAliasingPresets[GraphicsQuality.AntiAliasingIndex];
-    NewGFXSettings.Bloom = default.BloomPresets[GraphicsQuality.BloomIndex];
-    NewGFXSettings.MotionBlur = default.MotionBlurPresets[GraphicsQuality.MotionBlurIndex];
-    NewGFXSettings.AmbientOcclusion = default.AmbientOcclusionPresets[GraphicsQuality.AmbientOcclusionIndex];
-    NewGFXSettings.DepthOfField = default.DOFPresets[GraphicsQuality.DOFIndex];
-    NewGFXSettings.Flex = default.FlexPresets[GraphicsQuality.FlexIndex];
+    if(!bPreserveUserOverrides || (FindEnvironmentDetailIndex(NewGFXSettings.EnvironmentDetail, default.EnvironmentDetailPresets)) != -1)
+    {
+        NewGFXSettings.EnvironmentDetail = default.EnvironmentDetailPresets[GraphicsQuality.EnvironmentDetailIndex];
+    }
+    if(!bPreserveUserOverrides || (FindCharacterDetailIndex(NewGFXSettings.CharacterDetail, default.CharacterDetailPresets)) != -1)
+    {
+        NewGFXSettings.CharacterDetail = default.CharacterDetailPresets[GraphicsQuality.CharacterDetailIndex];
+    }
+    if(!bPreserveUserOverrides || (FindFXQualityIndex(NewGFXSettings.FX, default.FXQualityPresets)) != -1)
+    {
+        NewGFXSettings.FX = default.FXQualityPresets[GraphicsQuality.FXQualityIndex];
+    }
+    if(!bPreserveUserOverrides || (FindTextureResolutionSettingIndex(NewGFXSettings.TextureResolution, default.TextureResolutionPresets)) != -1)
+    {
+        NewGFXSettings.TextureResolution = default.TextureResolutionPresets[GraphicsQuality.TextureResolutionIndex];
+    }
+    if(!bPreserveUserOverrides || (FindTextureFilterSettingIndex(NewGFXSettings.TextureFiltering, default.TextureFilterPresets)) != -1)
+    {
+        NewGFXSettings.TextureFiltering = default.TextureFilterPresets[GraphicsQuality.TextureFilteringIndex];
+    }
+    if(!bPreserveUserOverrides || (FindShadowQualityIndex(NewGFXSettings.Shadows, default.ShadowQualityPresets)) != -1)
+    {
+        NewGFXSettings.Shadows = default.ShadowQualityPresets[GraphicsQuality.ShadowQualityIndex];
+    }
+    if(!bPreserveUserOverrides || (FindReflectionsSettingIndex(NewGFXSettings.RealtimeReflections, default.RealtimeReflectionsPresets)) != -1)
+    {
+        NewGFXSettings.RealtimeReflections = default.RealtimeReflectionsPresets[GraphicsQuality.RealtimeReflectionsIndex];
+    }
+    if(!bPreserveUserOverrides || (FindLightShaftsSettingIndex(NewGFXSettings.LightShafts, default.LightShaftsPresets)) != -1)
+    {
+        NewGFXSettings.LightShafts = default.LightShaftsPresets[((GraphicsQuality.LightShafts) ? 1 : 0)];
+    }
+    if(!bPreserveUserOverrides || (FindVolumetricLightingSettingIndex(NewGFXSettings.VolumetricLighting, default.VolumetricLightingPresets)) != -1)
+    {
+        NewGFXSettings.VolumetricLighting = default.VolumetricLightingPresets[((GraphicsQuality.VolumetricLighting) ? 1 : 0)];
+    }
+    if(!bPreserveUserOverrides || (FindLensFlareSettingIndex(NewGFXSettings.LensFlares, default.LensFlarePresets)) != -1)
+    {
+        NewGFXSettings.LensFlares = default.LensFlarePresets[((GraphicsQuality.LensFlares) ? 1 : 0)];
+    }
+    if(!bPreserveUserOverrides || (FindAntiAliasingSettingIndex(NewGFXSettings.AntiAliasing, default.AntiAliasingPresets)) != -1)
+    {
+        NewGFXSettings.AntiAliasing = default.AntiAliasingPresets[GraphicsQuality.AntiAliasingIndex];
+    }
+    if(!bPreserveUserOverrides || (FindBloomSettingIndex(NewGFXSettings.Bloom, default.BloomPresets)) != -1)
+    {
+        NewGFXSettings.Bloom = default.BloomPresets[GraphicsQuality.BloomIndex];
+    }
+    if(!bPreserveUserOverrides || (FindMotionBlurSettingIndex(NewGFXSettings.MotionBlur, default.MotionBlurPresets)) != -1)
+    {
+        NewGFXSettings.MotionBlur = default.MotionBlurPresets[GraphicsQuality.MotionBlurIndex];
+    }
+    if(!bPreserveUserOverrides || (FindAmbientOcclusionSettingIndex(NewGFXSettings.AmbientOcclusion, default.AmbientOcclusionPresets)) != -1)
+    {
+        NewGFXSettings.AmbientOcclusion = default.AmbientOcclusionPresets[GraphicsQuality.AmbientOcclusionIndex];
+    }
+    if(!bPreserveUserOverrides || (FindDOFSettingIndex(NewGFXSettings.DepthOfField, default.DOFPresets)) != -1)
+    {
+        NewGFXSettings.DepthOfField = default.DOFPresets[GraphicsQuality.DOFIndex];
+    }
+    if(!bPreserveUserOverrides || (FindFlexSettingIndex(NewGFXSettings.Flex, default.FlexPresets)) != -1)
+    {
+        NewGFXSettings.Flex = default.FlexPresets[GraphicsQuality.FlexIndex];
+    }
     SetNativeSettings(NewGFXSettings);
     SetScriptSettings(NewGFXSettings);
     UpdateGSA(NewGFXSettings);

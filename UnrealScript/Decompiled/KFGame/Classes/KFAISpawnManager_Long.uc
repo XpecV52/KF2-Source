@@ -21,9 +21,9 @@ defaultproperties
     Waves(8)=KFAIWaveInfo'GP_Spawning_ARCH.Long.ZED_Wave9'
     Waves(9)=KFAIWaveInfo'GP_Spawning_ARCH.Long.ZED_Wave10'
     Waves(10)=KFAIWaveInfo'GP_Spawning_ARCH.Long.ZED_Boss'
-    SoloWaveSpawnRateModifier[0]=(RateModifier=(1,1,1,1,1,1,1,1,1,1))
-    SoloWaveSpawnRateModifier[1]=(RateModifier=(1,1,1,1,1,1,1,1,1,1))
-    SoloWaveSpawnRateModifier[2]=(RateModifier=(1,1,1,1,1,1,1,1,1,1))
+    SoloWaveSpawnRateModifier[0]=(RateModifier=(1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5))
+    SoloWaveSpawnRateModifier[1]=(RateModifier=(1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5))
+    SoloWaveSpawnRateModifier[2]=(RateModifier=(1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5))
     SoloWaveSpawnRateModifier[3]=(RateModifier=(1,1,1,1,1,1,1,1,1,1))
     EarlyWaveIndex=5
 }

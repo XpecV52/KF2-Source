@@ -537,8 +537,8 @@ AdjustGammaString="GAMMA ANPASSEN"
 PhysicsLevelString="NVIDIA® FleX"
 
 PhysicsLevelOptionStrings[0]="Aus"
-PhysicsLevelOptionStrings[1]="Niedrig*"
-PhysicsLevelOptionStrings[2]="Hoch*"
+PhysicsLevelOptionStrings[1]="Gibs*"
+PhysicsLevelOptionStrings[2]="Gibs UND Flüssigkeiten*"
 
 PhysicsLevelSuggestionStrings[0]=""
 PhysicsLevelSuggestionStrings[1]="*GeForce® GTX™ 770 oder höher empfohlen"
@@ -925,13 +925,13 @@ FuriousDefender="Wütender Verteidiger"
 FuriousDefenderDescription="Sie nennen dich nicht ohne Grund den Berserker: Berserker-Nahkampfwaffen sind um 10 % schneller und alle Angriffe fügen 20 % mehr Schaden zu."
 
 Block="Abwehren"
-BlockDescription="Dieses Geschick! Das Abwehren eines Angriffs erhöht den Schaden deines nächsten Berserker-Nahkampfangriffs um 50 %."
+BlockDescription="Dieses Geschick! Das Abwehren eines Angriffs erhöht den Schaden deines nächsten Berserker-Nahkampfangriffs um 75 %."
 
 Parry="Parieren"
 ParryDescription="Verbinde Geschick und Kraft: Das Parieren eines Angriffs erhöht die Nahkampf-Angriffsgeschwindigkeit für 4 Sekunden um 15 % und den Schaden durch leichte Angriffe um 30 %."
 
 Smash="Zerschmettern"
-SmashDescription="Nutze die rohe Gewalt: Harte Angriffe fügen 30 % mehr Schaden zu und erhöhen die Wirkung von Knockouts um 30 %."
+SmashDescription="Nutze die rohe Gewalt: Harte Treffer fügen 30 % mehr Schaden zu UND harte Treffer auf den Kopf haben eine hohe Wahrscheinlichkeit, große Zeds umzuhauen."
 
 Spartan="ZED-ZEIT – Spartaner"
 SpartanDescription="Du hast 300 gesehen: Bewege dich in Echtzeit, erhöhe die Angriffsgeschwindigkeit mit Berserker-Nahkampfwaffen um 50 %, und jedes Parieren verursacht einen Knockdown."
@@ -1012,14 +1012,14 @@ OnContactDescription="Mitten ins Gesicht: Deine Dynamitstangen explodieren, wenn
 ExplosiveResistance="Resistenz gegen Sprengstoff"
 ExplosiveResistanceDescription="Stähle das Team: Senke den erlittenen Schaden um 30 % – für dich und deine Teammitglieder, wenn sie nah genug sind."
 
-Sacrifice="Opfer"
-SacrificeDescription="Stirb nicht umsonst: Wenn du stirbst, explodierst du und reißt hoffentlich ein paar Zeds mit in den Tod."
+Sacrifice="Reaktive Schutzweste"
+SacrificeDescription="Du bist die Bombe: Einmal pro Welle verursacht ein eigentlich tödlicher Schlag eine Explosion, die du mit 5 Gesundheit überlebst und die bei den Zeds um dich herum Schaden verursacht."
 
 DoorTraps="Türfallen"
 DoorTrapsDescription="Jage diese Tür hoch: Du schweißt 30 % langsamer, aber von dir geschweißte Türen explodieren, wenn sie aufgebrochen werden. Je mehr du die Tür verschweißt, desto größer ist die Explosion."
 
 SirenResistance="Resistenz gegen Sirenen"
-SirenResistanceDescription="Klappe halten, Zed: Deine Granaten haben eine 100 %ige Chance, dem Schaden durch Schall zu widerstehen und tatsächlich zu explodieren."
+SirenResistanceDescription="Klappe halten, Zed: Deine Granaten haben eine 33 %ige Chance, dem Schaden durch Schall zu widerstehen und tatsächlich zu explodieren."
 
 OffPerk=""
 OffPerkDescription="Wieder ohne Perk: Füge 10 % mehr Schaden mit einer beliebigen Off-Perk-Waffe zu."
@@ -1104,7 +1104,7 @@ FullyStocked="Voll ausgestattet"
 FullyStockedDescription="Es steht auf der Box: Flammenwaffen beginnen bei der Händlerin mit maximaler Munitionskapazität."
 
 FlarotovCoctail="Facklotowcocktail"
-FlarotovCoctailDescription="Der Name sagt alles: Schiebe eine Fackel in deinen Molotowcocktail, und du erhältst einen Facklotowcocktail, mit dem du die Umgebung für 30 Sekunden erhellen kannst."
+FlarotovCoctailDescription="Der Name sagt alles: Schiebe eine Fackel in deinen Molotowcocktail und du erhältst eine Fackel, die deine Umgebung 30 Sekunden lang erhellt UND deine Flamme brennt zweimal so lange am Boden."
 
 Fuse="Zünder"
 FuseDescription="Ein hübscher Dauerbrenner: Verbrennungseffekt durch Flammenwaffen hält 70 % länger an und verursacht mehr Schaden."

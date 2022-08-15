@@ -14,6 +14,16 @@ protected simulated function PrepareExplosionTemplate()
     super.PrepareExplosionTemplate();
 }
 
+simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
+{
+    if((WorldInfo.NetMode == NM_Client) && Pawn(Wall) != none)
+    {
+        Touch(Wall, WallComp, Location, HitNormal);
+        return;
+    }
+    super.HitWall(HitNormal, Wall, WallComp);
+}
+
 defaultproperties
 {
     AlwaysRelevantDistanceSquared=2250000

@@ -637,7 +637,6 @@ simulated event ReplicatedEvent(name VarName)
 		WeaponStateChanged(CurrentWeaponState, true);
 		break;
 	case nameof(bFlashlightOn):
-		LogInternal(IsLocallyControlled() @Controller);
 		SetFlashlight(bFlashlightOn, false);
 		break;
 	case nameof(bHasMedicVaccinationBuff):

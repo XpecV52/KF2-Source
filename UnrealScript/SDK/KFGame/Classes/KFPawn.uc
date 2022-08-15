@@ -3156,11 +3156,11 @@ simulated function name GetSpecialMoveTag()
  * Configure mesh settings based on current FleX level.
  * @param bResetDefaults If set, when flex is off reset to mesh defaults
  */
-simulated function UpdateMeshForFleXCollision(optional bool bResetDefaults)
+simulated function UpdateMeshForFleXCollision()
 {
 	local GameEngine Engine;
 
-	if ( bPlayedDeath )
+	if ( bPlayedDeath || Physics == PHYS_RigidBody )
 		return;
 
 	Engine = GameEngine(Class'Engine'.static.GetEngine());
@@ -3169,14 +3169,9 @@ simulated function UpdateMeshForFleXCollision(optional bool bResetDefaults)
 	// default.bUpdateKinematicBonesFromAnimation==FALSE so this pawn doesn't push around corpses, etc...
 	if ( Mesh.RBCollideWithChannels.FlexAsset && class'Engine'.static.GetPhysXLevel() >= 2 && Engine.GetSystemSettingBool("FlexRigidBodiesCollisionAtHighLevel") )
 	{
-		Mesh.bUpdateKinematicBonesFromAnimation = true;
-		Mesh.MinDistFactorForKinematicUpdate = 0.0;
 		// @note: also requires that scene query flag is set (see InstancePhysXGeom)
-	}
-	else if ( bResetDefaults )
-	{
-		Mesh.bUpdateKinematicBonesFromAnimation = default.Mesh.bUpdateKinematicBonesFromAnimation;
-		Mesh.MinDistFactorForKinematicUpdate = default.Mesh.MinDistFactorForKinematicUpdate;
+		Mesh.bUpdateKinematicBonesFromAnimation = true;
+		Mesh.MinDistFactorForKinematicUpdate = 0.0;		
 	}
 }
 
@@ -3189,9 +3184,22 @@ simulated function SetEnableFleXCollision(bool bEnabled)
 	if ( Mesh.RBCollideWithChannels.FlexAsset != bEnabled )
 	{
 		Mesh.SetRBCollidesWithChannel(RBCC_FlexAsset, bEnabled);
-	}
 
-	UpdateMeshForFleXCollision(true);
+		// Settings may conflict with RB physics, so be careful of when this called!
+		if ( Physics != PHYS_RigidBody )
+		{
+			if ( bEnabled )
+			{
+				UpdateMeshForFleXCollision();
+			}
+			else
+			{
+				// undo mesh changes made by UpdateMeshForFleXCollision()
+				Mesh.bUpdateKinematicBonesFromAnimation = default.Mesh.bUpdateKinematicBonesFromAnimation;
+				Mesh.MinDistFactorForKinematicUpdate = default.Mesh.MinDistFactorForKinematicUpdate;
+			}
+		}
+	}
 }
 
 /*********************************************************************************************

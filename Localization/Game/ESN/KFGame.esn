@@ -537,8 +537,8 @@ AdjustGammaString="AJUSTAR GAMMA"
 PhysicsLevelString="NVIDIA® FleX"
 
 PhysicsLevelOptionStrings[0]="Off"
-PhysicsLevelOptionStrings[1]="Bajo*"
-PhysicsLevelOptionStrings[2]="Alto*"
+PhysicsLevelOptionStrings[1]="Chavetas*"
+PhysicsLevelOptionStrings[2]="Chavetas y fluidos*"
 
 PhysicsLevelSuggestionStrings[0]=""
 PhysicsLevelSuggestionStrings[1]="*GeForce® GTX™ 770 o superior recomendado"
@@ -925,13 +925,13 @@ FuriousDefender="Defensor Furioso"
 FuriousDefenderDescription="Te llaman Furioso por una razón: Los ataques cuerpo a cuerpo de Berserker son 10% más rápidos y todos los ataques hacen 20% más de daños."
 
 Block="Bloquear"
-BlockDescription=" ¡Qué habilidades! El bloqueo de un ataque hará que tu siguiente ataque cuerpo a cuerpo de Berserker haga 50% más de daño."
+BlockDescription=" ¡Qué habilidades! El bloqueo de un ataque hará que tu siguiente ataque cuerpo a cuerpo de Berserker haga 75% más de daño."
 
 Parry="Esquivar"
 ParryDescription="Combina habilidad y poder: Esquivando un ataque aumentará la velocidad de ataque cuerpo a cuerpo un 15% y el daño de ataque ligero en un 30% durante 4 segundos."
 
 Smash="Aplastar"
-SmashDescription="Lo brutal lo refuerza: Los ataques duros hacen 30% más de daños y aumentan la incapacitación de noqueo en un 30%."
+SmashDescription="Lo brutal lo refuerza: Los golpes duros hacen 30% más de daños y los golpes duros a la cabeza aumentan la posibilidad de noquear los Zeds grandes."
 
 Spartan="Tiempo ZED - Espartano"
 SpartanDescription="Has visto 300: Muévete en tiempo real, aumenta la velocidad de ataque con armas cuerpo a cuerpo de Berserker en un 50% y cualquier paro causará caída."
@@ -1012,14 +1012,14 @@ OnContactDescription="En tu cara, amigo: tus cartuchos de dinamita van a explota
 ExplosiveResistance="Resistencia al explosivo"
 ExplosiveResistanceDescription="Refuerza el equipo: Reducir el daño recibido por ti un 30% - y por tus compañeros de equipo, ¡si están lo suficientemente cerca!"
 
-Sacrifice="Sacrificio"
-SacrificeDescription="No mueras en vano: Cuando mueras, explotas, tomando con suerte algunos Zeds contigo."
+Sacrifice="Armadura reactiva"
+SacrificeDescription="Sé la bomba: Una vez por ola, un golpe que debe matar causa una explosión, dañando Zeds a tu alrededor y te deja con sólo 5 de salud."
 
 DoorTraps="Trampillas"
 DoorTrapsDescription="Revienta esa puerta: Soldarás un 30% más lento, pero las puertas que soldarás explotarán al derribarlas. Cuanto más se suelda la puerta, más grande es la explosión."
 
 SirenResistance="Resistencia a las Sirenas"
-SirenResistanceDescription="Cierra la boca Zed: Tus granadas tienen un 100% de probabilidad de pasar el daño sónico y de hecho explotar."
+SirenResistanceDescription="Cierra la boca Zed: Tus granadas tienen un 33% de probabilidad de pasar el daño sónico y de hecho explotar."
 
 OffPerk=""
 OffPerkDescription="Fuera de nuevo: Realiza 10% de daño extra con cualquier arma fuera del beneficio."
@@ -1104,7 +1104,7 @@ FullyStocked="Totalmente disponible"
 FullyStockedDescription="Lo que dice en la lata: Las armas del Pirómano inician en capacidad máxima de munición donde la Mercader."
 
 FlarotovCoctail="Cóctel Flarotov"
-FlarotovCoctailDescription="Está en el nombre: Mete una llamarada en su cóctel Molotov – obtendrás un Flarotov para iluminar el entorno durante 30 segundos"
+FlarotovCoctailDescription="Está en el nombre: Mete una llamarada en su cóctel Molotov – obtendrás una llamarada que ilumina el entorno durante 30 segundos y su llama arde el doble de tiempo en el suelo."
 
 Fuse="Fusible"
 FuseDescription="Una buena hornilla lenta: El efecto de quemar de las armas del Pirómano perdura 70% más para daños durante un tiempo."

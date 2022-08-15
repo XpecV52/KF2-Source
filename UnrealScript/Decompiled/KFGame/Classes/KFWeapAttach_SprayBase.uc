@@ -261,6 +261,10 @@ simulated function AttachTo(KFPawn P)
 
 simulated function DetachFrom(KFPawn P)
 {
+    if(bFireSpraying)
+    {
+        TurnOffFireSpray();
+    }
     TurnOffPilot();
     super.DetachFrom(P);
 }

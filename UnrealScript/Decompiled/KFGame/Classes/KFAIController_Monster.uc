@@ -246,14 +246,14 @@ function bool CanDoStrike()
     }
     TraceStepLocation = Pawn.Location + (vect(0, 0, -1) * (Pawn.CylinderComponent.CollisionHeight * 0.5));
     HitActor = Pawn.Trace(HitLocation, HitNormal, Enemy.Location, TraceStepLocation, !bCanStrikeThroughEnemies);
-    if(HitActor != none)
+    if((HitActor != none) && HitActor != Enemy)
     {
         if(HitActor.bWorldGeometry)
         {
             bIsBodyBlocked = true;
-            HitActor = Pawn.Trace(HitLocation, HitNormal, Enemy.Location + (vect(0, 0, 1) * Enemy.BaseEyeHeight), Pawn.Location + (vect(0, 0, 1) * Pawn.BaseEyeHeight), !bCanStrikeThroughEnemies);
         }
-        if(HitActor != Enemy)
+        HitActor = Pawn.Trace(HitLocation, HitNormal, Enemy.Location + (vect(0, 0, 1) * Enemy.BaseEyeHeight), Pawn.Location + (vect(0, 0, 1) * Pawn.BaseEyeHeight), !bCanStrikeThroughEnemies);
+        if((HitActor != none) && HitActor != Enemy)
         {
             return false;
         }

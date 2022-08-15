@@ -2339,11 +2339,11 @@ simulated function name GetSpecialMoveTag()
     return 'None';
 }
 
-simulated function UpdateMeshForFleXCollision(optional bool bResetDefaults)
+simulated function UpdateMeshForFleXCollision()
 {
     local GameEngine Engine;
 
-    if(bPlayedDeath)
+    if(bPlayedDeath || Physics == 10)
     {
         return;
     }
@@ -2351,15 +2351,7 @@ simulated function UpdateMeshForFleXCollision(optional bool bResetDefaults)
     if((Mesh.RBCollideWithChannels.FlexAsset && Class'Engine'.static.GetPhysXLevel() >= 2) && Engine.GetSystemSettingBool("FlexRigidBodiesCollisionAtHighLevel"))
     {
         Mesh.bUpdateKinematicBonesFromAnimation = true;
-        Mesh.MinDistFactorForKinematicUpdate = 0;        
-    }
-    else
-    {
-        if(bResetDefaults)
-        {
-            Mesh.bUpdateKinematicBonesFromAnimation = default.Mesh.bUpdateKinematicBonesFromAnimation;
-            Mesh.MinDistFactorForKinematicUpdate = default.Mesh.MinDistFactorForKinematicUpdate;
-        }
+        Mesh.MinDistFactorForKinematicUpdate = 0;
     }
 }
 
@@ -2372,8 +2364,19 @@ simulated function SetEnableFleXCollision(bool bEnabled)
     if(Mesh.RBCollideWithChannels.FlexAsset != bEnabled)
     {
         Mesh.SetRBCollidesWithChannel(20, bEnabled);
+        if(Physics != 10)
+        {
+            if(bEnabled)
+            {
+                UpdateMeshForFleXCollision();                
+            }
+            else
+            {
+                Mesh.bUpdateKinematicBonesFromAnimation = default.Mesh.bUpdateKinematicBonesFromAnimation;
+                Mesh.MinDistFactorForKinematicUpdate = default.Mesh.MinDistFactorForKinematicUpdate;
+            }
+        }
     }
-    UpdateMeshForFleXCollision(true);
 }
 
 // Export UKFPawn::execGetAKRotation(FFrame&, void* const)
