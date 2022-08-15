@@ -1,0 +1,229 @@
+//NOTES: 
+//1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
+//2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
+//3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
+//ItemDescription="Espingarda de calibre 12, lateral e de cano duplo. Ideal para combate corpo-a-corpo-. Até mesmo os maiores zeds ficarão atordoados quando atingidos com ambos os canos. A encontramos na antiga fazenda e inserimos na cápsula do comerciante. Espero que você viva mais tempo do que o fazendeiro."
+
+[Armor]
+ItemName="Armadura de combate"
+ItemCategory="Equipment"
+ItemDescription="• A armadura de combate protege contra várias formas de danos, mas se degrada no processo\n• Compre uma armadura nova ou repare a danificada no Comércio\n\nIsso é uma jaqueta, equipada com placas fabricadas em uma combinação de fibra de alta tecnologia e tungstênio."
+
+[KFProj_DynamiteGrenade]
+ItemName="1/2 Barra de Dinamite "
+ItemCategory =""Explosivos""
+ItemDescription="• Só um pequeno pedaço de dinamite com um rastilho.\n• Também é capaz de te machucar por isso tem cuidado!"
+
+[KFProj_MedicGrenade]
+ItemName="Granada médica"
+ItemCategory =" "Explosives""
+ItemDescription="• Libera um gás que envenena os Zeds, mas também cura pesssoas\n• Fique na nuvem de gás azul para ser curado\n\nCitando um cientista nosso: "O agente que sair destas granadas reavivará o Homo sapiens e matar o Homo zedicus." Tomara que isso ajude."
+
+[KFProj_MolotovGrenade]
+ItemName="Granada médica"
+ItemCategory="Explosives"
+ItemDescription="• Simples: uma granada que queima Zeds.\n• Cuidado:você também pode se ferir!\n\nChamada, ofensivamente, pelos finlandeses na Guerra de Inverno de 1939 a 1940, depois de Vyacheslav Mikhailovich Molotov, o ministro estrangeiro soviético, subordinado a Stalin... Então, você não gosta de história?"
+
+[KFProj_EMPGrenade]
+ItemName="Granada eletromag."
+ItemCategory="Explosives"
+ItemDescription="• Gera um pulso eletromagnético que causa dano nos Zeds e pode deixá-los atordoados por um tempo.n\nMais detalhes sobre detonação: gera um pulso eletromagnético de um nanossegundo que interrompe o funcionamento dos sistemas elétricos próximos. Sobretudos os dentro dos Zeds. Prático isso."
+
+[KFProj_HEGrenade]
+ItemName="Granada de alta expl."
+ItemCategory="Explosives"
+ItemDescription="• Uma granada altamente explosiva muito simples. Fere igualmente Zeds e humanos.\n\nNão tem como ser mais simples. Altamente explosiva: faz BUM e manda tudo pelos ares. Precisamos mesmo explicar?"
+
+[KFProj_FragGrenade]
+ItemName="Granada de fragmentos"
+ItemCategory="Explosives"
+ItemDescription="• A granada de fragmentos clássica: lança pedacinhos nefastos de metal pelos ares, ferindo tudo.\n\nTenho quase certeza de que vocês jogaram muito vídeo game antes do Surto, então vocês sabem muito bem como é a granada de fragmentos. E parem de fingir que não jogaram. Ninguém vai acreditar."
+
+[KFWeap_Healer_Syringe]
+ItemName="Seringa médica"
+ItemCategory="Equipment"
+
+[KFWeap_Welder]
+ItemName="Soldador"
+ItemCategory="Equipment"
+
+[KFWeap_Pistol_9mm]
+ItemName="Pistola de 9mm"
+ItemCategory="Hand Gun"
+ItemDescription="• O tiro principal funciona apenas no semiautomático.\n• Com acoplamento de lanterna.\n• Esta é a pistola padrão de 9mm. Simples e barata (para você, sinceramente, muito barata), é a arma de reserva para todos os operadores Horzine."
+
+[KFWeap_Pistol_Deagle]
+ItemName="Desert Eagle .50"
+ItemCategory="Hand Cannon"
+ItemDescription="• O tiro principal funciona apenas no semiautomático.\n• A Desert Eagle é o monstro das pistolas, e por isso que ela é conhecida por todos nós como "Canhão de mão"."
+
+[KFWeap_AssaultRifle_AR15]
+ItemName="Fuzil Varmint AR-15"
+ItemCategory="Assault Rifle"
+ItemDescription="• O principal pode ser alternado entre modos de tiros triplos e semiautomático.\n• E acoplamento de lanterna.\n• O secundário leva à mira de ferro.\n• Esta AK-12 foi obtida para ser digitalizada de um operador Spetsnaz russo que morreu.\n• Esta é a versão civil e semiautomática, usando a versão 9mm. Para os Zeds, não os "Vetores"."
+
+[KFWeap_AssaultRifle_SCAR]
+ItemName="Fuzil de ass. SCAR-H"
+ItemCategory="Assault Rifle"
+ItemDescription="• O principal pode ser alternado entre os modos de disparo totalmente automático e semiautomático.\n• Originalmente projetada para o Comando de Operações Especiais dos EUA, ela certamente é especial!"
+
+[KFWeap_AssaultRifle_AK12]
+ItemName="AK-12 Kalashnikov"
+ItemCategory="Assault Rifle"
+ItemDescription="• O principal pode ser alternado entre modos de tiros triplos e automático.\n•Disparo alternativo para mudar de tipo de tiro.\n• Esta AK-12 foi obtida para ser digitalizada de um operador Spetsnaz russo que morreu."
+
+[KFWeap_AssaultRifle_Bullpup]
+ItemName="Bullpup SA80 L85A2"
+ItemCategory="Assault Rifle"
+ItemDescription="• O principal pode ser alternado entre os modos de disparo totalmente automático e semiautomático.\n• Disparo alternativo para mudar de tipo de tiro.\n• A SA80 foi a arma padrão do Exército Britânico antes de serem, pois bem, comidos."
+
+[KFWeap_Knife_Demolitionist]
+ItemName="Faca Utilitária"
+ItemCategory="Melee"
+ItemDescription="• Principal - ataque com corte rápido, Mantenha pressionado para ataque combo\n• Secundário - ataque com corte pesado\n• Alternativo - bloqueio/defesa\n• É como um estilete. Perfeito para abrir caixas que poderá encontrar durante a matança."
+
+[KFWeap_Knife_FieldMedic]
+ItemName="Bisturi"
+ItemCategory="Melee"
+ItemDescription="• Principal - ataque com corte rápido, Mantenha pressionado para ataque combo\n• Secundário - ataque com corte pesado\n• Alternativo - bloqueio/defesa\n• Isso é um bisturi. Você é médico, então presumimos que não precisamos explicar como se usa."
+
+[KFWeap_Knife_Firebug]
+ItemName="Faca de Bombeiros"
+ItemCategory="Melee"
+ItemDescription="• Principal - ataque com corte rápido, Mantenha pressionado para ataque combo\n• Secundário - ataque com corte pesado\n• Alternativo - bloqueio/defesa\n• É a faca de um bombeiro. Você é um bombeiro, então presumimos que não precisamos explicar como se usa."
+
+[KFWeap_Pistol_Medic]
+ItemName=""
+ItemCategory=""
+ItemDescription="• O tiro principal funciona apenas no semiautomático.\n• Disparo alternativo são dardos que curam os companheiros.\n• Usando munição sem cápsula, a mesma conta as balas por você."
+
+[KFWeap_SMG_Medic]
+ItemName="Sub-metr. HMTech-201"
+ItemCategory="Sub Machine Gun"
+ItemDescription="• O tiro principal funciona apenas no automático.\n• Disparo alternativo são dardos que curam os companheiros.\n• Com acessório de lanterna.\n• É a sua pistola bombada!"
+
+[KFWeap_Shotgun_Medic]
+ItemName="Espingarda HMTech-301"
+ItemCategory="Shotgun"
+ItemDescription="• O tiro principal funciona apenas no semiautomático.\n• Disparo alternativo são dardos que curam os companheiros.\n• Com acessório de lanterna.\n• É a espingarda de combate do Médico."
+
+[KFWeap_AssaultRifle_Medic]
+ItemName="Rifle ass. HMTech-401"
+ItemCategory="Assault Rifle"
+ItemDescription="• O tiro principal funciona apenas no semiautomático.\n• Disparo alternativo são dardos que curam os companheiros.\n• Com acessório de lanterna.\n• É a caçadeira de combate do Médico."
+
+[KFWeap_Shotgun_DoubleBarrel]
+ItemName="Cano de tambor duplo"
+ItemCategory="Shotgun"
+ItemDescription="• O tiro principal funciona apenas no automático.\n• Disparo alternativo usa os dois canos de uma só vez.\n•Espingarda de calibre 12, lateral e de cano duplo. Ideal para combate corpo-a-corpo-. Até mesmo os maiores zeds ficarão atordoados!"
+
+[KFWeap_Shotgun_AA12]
+ItemName="Espingarda aut. AA-12"
+ItemCategory="Shotgun"
+ItemDescription="• O tiro principal funciona apenas no automático.\n•A AA-12 é uma espingarda completamente automática. Poder  de fogo devastador em distâncias pequenas/médias, mas a mesma come munição!"
+
+[KFWeap_Shotgun_MB500]
+ItemName="Esping. de bomba 500"
+ItemCategory="Shotgun"
+ItemDescription="• O tiro principal funciona apenas por ação da bomba.\n•Com acessório de lanterna.\n•A Mossberg SG 500 acionada por bomba, com pega de pistola, é uma bela assassina de Zeds no combate corpo-a-corpo. Simples e eficaz."
+
+[KFWeap_Shotgun_M4]
+ItemName="Esping. de combate M4"
+ItemCategory="Shotgun"
+ItemDescription="• O tiro principal funciona apenas no semiautomático.\n• Com acessório de lanerna.\n•Benelli criou a Espingarda de Combate M4 para o exército Americano. Semiautomática, permitindo uma frequência de disparos boa e firme."
+
+[KFWeap_Knife_Berserker]
+ItemName="Lâm. cort. de grama"
+ItemCategory="Melee"
+ItemDescription="• Principal - ataque de corte rápido, Mantenha o Principal pressionado para ataque combo\n• Secundário - ataque pesado de corte\n• Alternativo - bloquear/defender\n• Sim, é uma lâmina de cortador de grama de verdade. Aproveite!"
+
+[KFWeap_Knife_Commando]
+ItemName="Barra de Kung fu"
+ItemCategory="Melee"
+ItemDescription="• Principal - ataque de corte rápido, Mantenha o Principal pressionado para ataque combo\n• Secundário - ataque pesado de corte\n• Alternativo - bloquear/defender\n•  A versão Horzine da clássica faca comando."
+
+[KFWeap_Knife_Support]
+ItemName="Machete"
+ItemCategory="Melee"
+ItemDescription="• Principal - ataque de corte rápido, Mantenha o Principal pressionado para ataque combo\n• Secundário - ataque pesado de corte\n• Alternativo - bloquear/defender\n• Não se sinta especial só porque lhe damos a faca maior."
+
+[KFWeap_Edged_Katana]
+ItemName="Katana"
+ItemCategory="Melee"
+ItemDescription="• Principal - ataque de corte rápido, Mantenha o Principal pressionado para ataque combo\n• Secundário - ataque pesado de corte\n• Alternativo - bloquear/defender\n• Trate de respeitar sua classe."
+
+[KFWeap_Blunt_Crovel]
+ItemName="Ferr. sobrev. Crovel"
+ItemCategory="Melee"
+ItemDescription="• Principal - ataque de corte rápido, Mantenha o Principal pressionado para ataque combo\n• Secundário - ataque pesado e brusco\n• Alternativo - bloquear/defender\n• Parte pé-de-cabra, parte pá, tudo mata."
+
+[KFWeap_Shotgun_Nailgun]
+ItemName="Pregador VLAD-1000"
+ItemCategory="Shotgun"
+ItemDescription="• Escolha entre disparo de um ou vários pregos.\n• Disparo alternativo para mudar entre tipos de disparo.\n• Ficamos sabendo que um dos cientistas da Horzine pegou a arma de pregos original com um empregado (morto) da manutenção."
+
+[KFWeap_Blunt_Pulverizer]
+ItemName="Pulverizador"
+ItemCategory="Melee"
+ItemDescription="• Principal - ataque rápido e brusco, Mantenha pressionado para ataque combo\n• O secundário dispara uma rodada explosiva no contato também. Quando está vazio, o Secundário também é um ataque brusco - lembre-se então de recarregar!\n• Alternativo - bloquear/defender"
+
+[KFWeap_Eviscerator]
+ItemName="Desvicerador"
+ItemCategory="Special"
+ItemDescription="• O principal dispara lâminas de serra\n• O alternativo é um ataque de arma branca, mas usa muito combustível.\n• Originalmente projetada pelo grupo SDS da Horzine, essa fera não é nada sutil em seus momentos mais selvagens."
+SecondaryAmmo="Gasolina"
+
+[KFWeap_Edged_Zweihander]
+ItemName="Zweihander"
+ItemCategory="Melee"
+ItemDescription="• Principal - dano médio/pesado, com um pouco de controle de grupo.\n• Secundário - dano mais lento, mas muito mais poderoso.\n• Alternativo - bloqueio/defesa\n• Faz ainda mais dano ao mover-se para a frente."
+SharedUnlockSource="Combate Medieval Cavalaria""
+
+[KFWeap_Flame_CaulkBurn]
+ItemName="Calafetar e Queimar"
+ItemCategory="Flames"
+ItemDescription="• O modo de disparo solta chamas.\n•Lança-chamas caseiro e manual. Por favor não tente isso em casa."
+
+[KFWeap_Shotgun_DragonsBreath]
+ItemName="Arma Incendiária da Trincheira"
+ItemCategory="Espingarda"
+ItemDescription="• O tiro principal funciona apenas por ação da bomba.\n•Uma espingarda que usa Balas Incendiária Bafo do Dragão. Não são só mortais mas também têm uma bela aparência."
+
+[KFWeap_Flame_Flamethrower]
+ItemName="Lança-chamas"
+ItemCategory="Flames"
+ItemDescription="• O tiro principal solta chamas. E é só isso.\n• Uma arma clássica de qualquer geração. Se tiver dúvidas, simplesmente queime tudo."
+
+[KFWeap_Beam_Microwave]
+ItemName="Arma Microondas"
+ItemCategory="Flames"
+ItemDescription="• O tiro principal usa microondas para esquentar os Zeds que estiverem ao alcance, queimando-os por dentro.\n• O disparo alternativo liberta uma explosão de microondas de pequeno alcance.\n• As maravilhas da tecnologia moderna. Um assador de Zeds portátil."
+
+[KFWeap_Thrown_C4]
+ItemName="Explosivos C4"
+ItemCategory="Explosivos"
+ItemDescription="• O tiro principal coloca a carga C4.\n• O tiro alternativo detona a carga C4, após a ter colocado.\n• Um bloco de C4, configurado para detonação remota quando necessário."
+
+[KFWeap_GrenadeLauncher_HX25]
+ItemName="Pistola de Granadas HX25"
+ItemCategory="Explosivos"
+ItemDescription="• O tiro principal lança várias submunições que explodem no contato."
+
+[KFWeap_GrenadeLauncher_M79]
+ItemName="Lança-Granadas M79"
+ItemCategory="Explosivos"
+ItemDescription="• O tiro principal lança granadas.n• As granadas explodem com o impacto.\n• Só é armada há poucos metros do alcance, para que não exploda na sua cara."
+
+[KFWeap_RocketLauncher_RPG7]
+ItemName="RPG-7"
+ItemCategory="Explosivos"
+ItemDescription="• O tiro principal lança foguetes.\n• Os foguetes explodem com o impacto.\n• Só é armado há poucos metros do alcance, para que não exploda na sua cara.\n• E tenha cuidado com o impulso traseiro!"
+
+[KFWeap_Pistol_Dual9mm]
+ItemName="Dupla de Pistolas 9mm"
+ItemCategory="Pistola"
+ItemDescription="• O tiro principal funciona apenas no semiautomático.\n• Com acessório de lanterna.\n• Este é um par de pistolas 9mm padrão. Você pode vender uma (e só uma), se precisar."
+
+
+[KFGameInfo_Survival]
+GameName="Sobrevivência"

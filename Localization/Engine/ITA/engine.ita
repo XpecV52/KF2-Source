@@ -1,0 +1,290 @@
+[Public]
+Object[0]=(Name=Engine.ServerCommandlet,Class=Class,MetaClass=Core.Commandlet)
+Object[1]=(Name=Engine.MasterMD5Commandlet,Class=Class,MetaClass=Core.Commandlet)
+Object[2]=(Name=Engine.SmokeTestCommandlet,Class=Class,MetaClass=Core.Commandlet)
+
+[Errors]
+NetOpen=Errore di apertura del file
+NetWrite=Errore di scrittura sul file
+NetRefused=Il server ha rifiutato di inviare '`~'
+NetClose=Errore di chiusura del file
+NetSize=Dimensioni file non corrispondenti
+NetMove=Errore di spostamento del file
+NetInvalid=Ricevuta una richiesta per il file non valida
+NoDownload=Non puoi partecipare alla partita perché l'host ha contenuto scaricabile di cui tu non disponi.
+DownloadFailed=Scaricamento fallito del pacchetto '`~' : `~
+RequestDenied=Richiesta negata del file sul server per il livello attuale
+ConnectionFailed=La connessione all'host è stata persa.
+ChAllocate=Impossibile allocare il canale
+NetAlready=Già in rete
+NetListen=Ascolto fallito: nessun contesto del collegatore disponibile
+LoadEntry=Can't load Entry: `~
+InvalidUrl=Non puoi partecipare alla partita perché l'host ha contenuto scaricabile di cui tu non disponi.
+InvalidLink=Collegamento non valido: `~
+FailedBrowse=Impossibile entrare in `~: `~.
+Listen=Ascolto fallito: `~
+AbortToEntry=Fallito; ritorno all'ingresso
+ServerOpen=I server non possono aprire gli URL di rete
+ServerListen=Dedicated server can't listen: `~
+Pending=Connessione in attesa a '`~' fallita; `~
+LoadPlayerClass=Caricamento classe del giocatore fallito
+ClientOutdated=Devi applicare le ultime patch
+ServerOutdated=La versione del server non è aggiornata
+FailedMapload_NotFound=The map specified on the commandline '`~' could not be found. Would you like to load the default map instead?
+DebuggerPresentError=The game has detected that you are currently running a user-mode or kernel-mode debugger and cannot continue.  Please exit all debugging utilities and restart the game.
+NetworkInit=Error initializing network layer.
+CreateMatchError=Erro Che Genera Fiammifero
+UsedCheatCommands=Console commands were used which are disallowed in netplay.  You must restart the game to create a match.
+FailedFindPackage=Failed to find required package '`~'
+ConnectionTimeout=La connessione all'host è stata persa.
+NegativeDeltaTime=CPU time drift detected! Please consult release notes on how to address this.
+NetHDSpace=There is not enough space on your HDD to download the package. You will need to free some space to download packages.
+ConnectionFailed_Title=Connessione persa
+SteamClientRequired=Host is running Steam, so you should too. Please launch the game from Steam.
+SteamAuthFailed=Steam decided that you are not authorized to connect to this server.
+ServerHostingDifferentGame=Server is hosting a different game. You cannot connect to this server.
+PeerListen=Peer listen socket failed: `~
+PeerConnection=Peer connection failed: `~
+
+[Progress]
+CancelledConnect=Tentativo di connessione annullato
+RunningNet=`~: `~ (`~ players, `~ connections) [v`~]
+NetReceiving=Ricezione di '`~': `~/`~
+NetReceiveOk=Ricezione di '`~' avvenuta
+NetSend=Invio di '`~'
+NetSending=Invio di '`~': `~/`~
+Connecting=Connessione…
+Listening=Attesa client…
+Loading=Caricamento
+Saving=Salvataggio
+Paused=Paused by `~
+ReceiveFile=Ricezione di '`~'
+ReceiveOptionalFile=Ricezione file opzionale '`~'
+ReceiveSize=Size `~K, Complete `3.1~`~
+ConnectingText=Connessione:
+ConnectingURL=unreal://`~/`~
+Success=Success
+PeerConnecting=Peer connecting
+PeerDisconnecting=Peer disconnecting
+
+[Console]
+ClassCaption=Standard Unreal Console
+
+[GameViewportClient]
+LoadingMessage=LOADING
+SavingMessage=SAVING
+ConnectingMessage=CONNECTING
+PausedMessage=PAUSED
+PrecachingMessage=PRECACHING
+
+[MasterMD5Commandlet]
+HelpCmd=mastermd5
+HelpOneLiner=Manipulate the Master MD5 database
+HelpUsage=mastermd5 [-option..] <params>
+HelpWebLink=http://unreal.epicgames.com/servertips.htm
+HelpParm[0]=-c
+HelpDesc[0]=Creates a new MD5 database
+HelpParm[1]=-a
+HelpDesc[1]=Adds new packages to the database
+HelpParm[2]=-s
+HelpDesc[2]=Show the current database.
+HelpParm[3]=-r
+HelpDesc[3]=Force the revision of all entries to <param>
+
+[General]
+Upgrade=Per accedere a questo server, ti serve l'ultimo aggiornamento a Unreal, disponibile gratuitamente sul sito Web di Epic:
+UpgradeURL=http://www.unreal.com/upgrade
+UpgradeQuestion=Vuoi aprire il tuo browser e raggiungere subito la pagina degli aggiornamenti?
+Version=Versione `~
+SplashScreen_CopyrightInfo=Copyright ©2009-2015 Killing Floor® Tripwire Interactive LLC   All rights reserved.
+SplashScreen_ThirdPartyCopyrightInfo=Uses Bink Video, Copyright © 1997-2011 by RAD Game Tools, Inc.
+
+[Menu]
+HelpMessage=
+MenuList=
+LeftString=Left
+RightString=Right
+CenterString=Center
+EnabledString=Enabled
+DisabledString=Disabled
+HelpMessage[1]=This menu has not yet been implemented.
+YesString=yes
+NoString=no
+
+[GameInfo]
+DefaultPlayerName=Giocatore
+GameName=Game
+
+[HUD]
+LoadingMessage=LOADING
+SavingMessage=SAVING
+ConnectingMessage=CONNECTING
+PausedMessage=PAUSED
+
+[Inventory]
+PickupMessage=Snagged an item.
+
+[LevelInfo]
+Title=Untitled
+
+[PlayerReplicationInfo]
+StringSpectating="Spettatore"
+StringUnknown="Sconosciuto"
+
+[TeamInfo]
+TeamName=Team
+
+[Weapon]
+ItemName=Weapon
+
+[GameMessage]
+SwitchLevelMessage="Cambio livelli"
+LeftMessage=" ha abbandonato la partita."
+FailedTeamMessage="Impossibile trovare una squadra per il giocatore"
+FailedPlaceMessage="Impossibile trovare un punto di partenza"
+FailedSpawnMessage="Impossibile far entrare nella partita il giocatore"
+EnteredMessage=" è entrato nella partita."
+MaxedOutMessage="Il server ha raggiunto la capacità massima."
+OvertimeMessage="Pareggio alla fine del regolamento. Tempo extra con eliminazione diretta!"
+GlobalNameChange="ha cambiato nome in"
+NewTeamMessage="è ora con:"
+NoNameChange="Il nome è già in uso."
+VoteStarted="ha iniziato una votazione."
+VotePassed="Votazione passata."
+MustHaveStats="Per accedere a questo server, devono essere attivate le statistiche mondiali."
+CantBeSpectator="Spiacente, ora non puoi diventare uno spettatore."
+CantBePlayer="Spiacente, ora non puoi diventare un giocatore attivo."
+BecameSpectator="diventa uno spettatore."
+NewPlayerMessage="Un nuovo giocatore è entrato nella partita."
+KickWarning="Fra poco verrai espulso per inattività!"
+NewSpecMessage="Uno spettatore è entrato nella partita "
+SpecEnteredMessage=" partecipa come spettatore."
+ArbitrationMessage=The session has already started.
+
+[FailedConnect]
+FailMessage[0]=FAILED TO JOIN GAME.  NEED PASSWORD.
+FailMessage[1]=FAILED TO JOIN GAME.  WRONG PASSWORD.
+FailMessage[2]=FAILED TO JOIN GAME.  GAME HAS STARTED.
+FailMessage[3]=FAILED TO JOIN GAME.
+
+[AccessControl]
+IPBanned="Il tuo indirizzo IP è bandito su questo server."
+WrongPassword="La password che hai inserito è errata."
+NeedPassword="Ti serve una password per entrare in questa partita."
+SessionBanned="Il tuo indirizzo IP è stato bandito da questa sessione di gioco."
+KickedMsg="Sei stato escluso d'autorità dalla partita."
+DefaultKickReason="Nessuno specificato"
+IdleKickReason="Espulso per inerzia."
+ACDisplayText[0]="Password partita"
+ACDisplayText[1]="Regole d'accesso"
+ACDisplayText[2]="Password amministratore"
+ACDescText[0]="Se questa password è specificata, i giocatori devono inserirla per accedere a questo server."
+ACDescText[1]="Specifica gli indirizzi IP o le gamme di indirizzi banditi."
+ACDescText[2]="Password necessaria per accedere a questo server con privilegi di amministratore."
+
+[ServerCommandlet]
+HelpDescription=Network game server
+HelpUsage=server map.unr[?game=gametype] [-option…] [parm=value]…
+HelpWebLink=http://unreal.epicgames.com/servertips.htm
+HelpParamNames[0]=Log
+HelpParamDescriptions[0]=Specify the log file to generate
+HelpParamNames[1]=AllAdmin
+HelpParamDescriptions[1]=Give all players admin privelages
+
+[SmokeTestCommandlet]
+HelpDescription=This commandlet runs a series of tests to validate a build
+HelpUsage=gamename.exe smoketest <SERVER | CHECK_NATIVE_CLASS_SIZES>
+HelpWebLink=
+HelpParamNames[0]=SERVER
+HelpParamDescriptions[0]=Runs the game as a server for one tick to validate startup and first frame code
+HelpParamNames[1]=CHECK_NATIVE_CLASS_SIZES
+HelpParamDescriptions[1]=Validates that all native classes match their script classes in member layout
+
+[ExampleGameMenu]
+CancelButtonText=Return To Game
+RespawnButtonText=Respawn Player
+ReloadButtonText=Reload Map
+InlineFontSampleText=These words are small… <Fonts:EngineFonts.LargeFont>these words are big,<Fonts:/> and these words are back to normal.
+InlineStyleSampleText=These words are normal… <Styles:ConsoleStyle>these words are green<Styles:/> and these words are normal too.
+SplitscreenButtonText=Splitscreen Test Scene
+
+[TestMenuStrings]
+ButtonTestText=The button has been clicked <SceneData:ButtonClickCount> times.
+PlayerIndexText=The propagated PlayerIndex is: <SceneData:PlayerIndex>.
+WrapStringTest=This is just some nonsense text that will be used for testing various string auto-sizing features. This really long string is a great one to use for testing the wrapping functionality of a UIString.  In fact, there are so many characters in this string that it is great for testing many different features of a UIString.
+
+[OnlineProfileSettings]
+OwnerMappings[0]=(Name="None")
+OwnerMappings[1]=(Name="Online Service Setting")
+OwnerMappings[2]=(Name="Game Setting")
+ProfileMappings[0]=(ValueMappings=((Name="Off"),(Name="On")))
+ProfileMappings[1]=(ValueMappings=((Name="Off"),(Name="On")))
+ProfileMappings[2]=(ValueMappings=((Name="No"),(Name="Yes")))
+ProfileMappings[3]=(ValueMappings=((Name="Off"),(Name="On"),(Name="Both")))
+ProfileMappings[5]=(ValueMappings=((Name="Normal"),(Name="Easy"),(Name="Hard")))
+ProfileMappings[6]=(ValueMappings=((Name="Medium"),(Name="Low"),(Name="High")))
+ProfileMappings[7]=(ValueMappings=((Name="None"),(Name="Black"),(Name="White"),(Name="Yellow"),(Name="Orange"),(Name="Pink"),(Name="Red"),(Name="Purple"),(Name="Blue"),(Name="Green"),(Name="Brown"),(Name="Silver")))
+ProfileMappings[8]=(ValueMappings=((Name="None"),(Name="Black"),(Name="White"),(Name="Yellow"),(Name="Orange"),(Name="Pink"),(Name="Red"),(Name="Purple"),(Name="Blue"),(Name="Green"),(Name="Brown"),(Name="Silver")))
+ProfileMappings[9]=(ValueMappings=((Name="Off"),(Name="On")))
+ProfileMappings[10]=(ValueMappings=((Name="Off"),(Name="On")))
+ProfileMappings[11]=(ValueMappings=((Name="Left Thumbstick"),(Name="Right Thumbstick")))
+ProfileMappings[12]=(ValueMappings=((Name="Auto"),(Name="Manual")))
+ProfileMappings[13]=(ValueMappings=((Name="Behind"),(Name="Front"),(Name="Inside")))
+ProfileMappings[14]=(ValueMappings=((Name="Trigger"),(Name="Button")))
+ProfileMappings[15]=(ValueMappings=((Name="Trigger"),(Name="Button")))
+
+[ViewportStatus]
+RenderingFrozenE=Rendering frozen…
+OcclusionChild=Occlusion Child
+
+[UIDataProvider_OnlineFriendMessages]
+SendingPlayerNameCol=Sender's Name
+bIsFriendInviteCol=Friend Invitation
+bWasAcceptedCol=Friend Was Accepted
+bWasDeniedCol=Friend Was Denied
+MessageCol=Message
+
+[UIDataProvider_OnlineFriends]
+NickNameCol=Name
+PresenceInfoCol=Online Status
+bIsOnlineCol=Is Online
+bIsPlayingCol=Is Playing
+bIsPlayingThisGameCol=Is Playing This Game
+bIsJoinableCol=Is Joinable
+bHasVoiceSupportCol=Has Voice Support
+OfflineText=Offline
+OnlineText=Online
+AwayText=Assente
+BusyText=Occupato
+
+[OnlineGameSettings]
+NumPublicConnections.FriendlyName="Max Public Slots"
+NumPrivateConnections.FriendlyName="Scanalature Riservate Massime"
+NumOpenPublicConnections.FriendlyName="Open Public Slots"
+NumOpenPrivateConnections.FriendlyName="Open Private Slots"
+bShouldAdvertise.FriendlyName="Advertise"
+bIsLanMatch.FriendlyName="Lan Match"
+bUsesStats.FriendlyName="Uses Stats"
+bAllowJoinInProgress.FriendlyName="Join In Progress Allowed"
+bAllowInvites.FriendlyName="Invites Allowed"
+bUsesPresence.FriendlyName="Presence Enabled"
+bAllowJoinViaPresence.FriendlyName="Join Via Presence Allowed"
+bUsesArbitration.FriendlyName="Arbitration"
+OwningPlayerName.FriendlyName="Server"
+PingInMs.FriendlyName="Ping"
+bIsDedicated.FriendlyName="Specializzato"
+bIsListPlay.FriendlyName="ListPlay"
+AverageSkillRating.FriendlyName="Skill Rating"
+bAntiCheatProtected.FriendlyName="Anti-Cheat Protected"
+
+[UIDataStore_OnlineStats]
+PlayerNickData.PlayerNickColumnName="Nome Giocatore"
+RankNameMetaData.RankColumnName="Classificata"
+
+[UIDataProvider_OnlinePartyChatList]
+NatTypes=Unknown
+
+[CheatManager]
+ViewingFrom=Now viewing from
+OwnCamera=Now viewing from own camera
+

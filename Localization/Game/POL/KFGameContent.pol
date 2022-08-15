@@ -1,0 +1,229 @@
+//NOTES: 
+//1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
+//2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
+//3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
+//ItemDescription="Dubeltówka równoległa, kaliber 12. Idealna do walki na krótkie odległości. Nawet najwięksi Zedowie zachwieją się trafieni wystrzałem z obu luf. Znaleźliśmy ją w starym domu na farmie i sprzedaliśmy w siedlisku handlarki. Mamy nadzieję, że przeżyjesz dłużej niż jej poprzedni właściciel."
+
+[Armor]
+ItemName="Pancerz bojowy"
+ItemCategory="Equipment"
+ItemDescription="• Pancerz bojowy chroni cię przed wieloma obrażeniami, jednak z czasem niszczeje.\n• Kup nowy albo napraw uszkodzony pancerz u handlarki.\n\nTo kurtka z zamocowanymi płytkami wykonanymi z połączenia zaawansowanego technologicznie włókna i stali wolframowej."
+
+[KFProj_DynamiteGrenade]
+ItemName="1/2 laski dynamitu"
+ItemCategory =" Explosives"
+ItemDescription="• Zaledwie mały kawałek dynamitu z lontem.\n• Tobie także może zrobić krzywdę, więc obchódź się z nim ostrożnie!"
+
+[KFProj_MedicGrenade]
+ItemName="Granat medyka"
+ItemCategory =" Explosives"
+ItemDescription="• Uwalnia gaz, który zatruwa Zedy i leczy ludzi.\n• Jeśli chcesz się wyleczyć, stań w niebieskiej chmurze dymu.\n\nJeden z naszych naukowców powiedział:  „Czynnik uwalniany z tych granatów leczy Homo Sapiens i jednocześnie zabija Homo Zedicus”.  Mamy nadzieję, że się przyda."
+
+[KFProj_MolotovGrenade]
+ItemName="Koktajl Mołotowa"
+ItemCategory="Explosives"
+ItemDescription="• Granat zapalający Zedy.\n• Uważaj, bo ciebie też może zranić!\n\nNazwany tak przez Finów podczas wojny zimowej w latach 1939–1940, od nazwiska Wiaczesława Mołotowa, sowieckiego ministra spraw zagranicznych u boku Stalina... Skąd mieliśmy wiedzieć, że nie lubisz historii?"
+
+[KFProj_EMPGrenade]
+ItemName="Granat EMP"
+ItemCategory="Explosives"
+ItemDescription="• Generuje impuls elektromagnetyczny, który zadaje Zedom obrażenia i może je także na krótko ogłuszyć.n\n\Podczas detonacji wytwarza nanosekundowy impuls, który zakłóca pracę urządzeń elektrycznych znajdujących się w jego zasięgu. Szczególnie tych u Zedów. Niezłe, co?"
+
+[KFProj_HEGrenade]
+ItemName="Granat wybuchowy"
+ItemCategory="Explosives"
+ItemDescription="• Bardzo prosty granat wybuchowy. Zadaje obrażenia zarówno Zedom, jak i ludziom.\n\nProściej się nie da. Robi BUM i wysadza okolicę w powietrze. Czy naprawdę musimy ci to tłumaczyć?"
+
+[KFProj_FragGrenade]
+ItemName="Granat odłamkowy"
+ItemCategory="Explosives"
+ItemDescription="• Klasyczny granat odłamkowy: rozrzuca kawałki metalu, raniąc wszystkich dookoła.\n\nJestem pewien, że masz na swoim koncie sporo gier ukończonych przed wybuchem epidemii, więc bardzo dobrze wiesz, czym jest granat odłamkowy. I nie udawaj, że pierwsze słyszysz. Nikt ci w to nie uwierzy."
+
+[KFWeap_Healer_Syringe]
+ItemName="Strzykawka"
+ItemCategory="Equipment"
+
+[KFWeap_Welder]
+ItemName="Spawarka"
+ItemCategory="Equipment"
+
+[KFWeap_Pistol_9mm]
+ItemName="Pistolet 9mm"
+ItemCategory="Hand Gun"
+ItemDescription="• Podstawowy typ ostrzału to półautomat.\n• Możliwość dołączenia latarki.\n• Standardowy pistolet 9 mm. Prosty i tani (szczerze mówiąc, bardzo tani). Jest podstawowym wyposażeniem Horzine."
+
+[KFWeap_Pistol_Deagle]
+ItemName=".50 Desert Eagle"
+ItemCategory="Hand Cannon"
+ItemDescription="• Podstawowy typ ostrzału to półautomat.\n• Desert Eagle jest bestią wśród pistoletów, dlatego też wszyscy znają go jako „działo ręczne”."
+
+[KFWeap_AssaultRifle_AR15]
+ItemName="Karabin AR-15 Varmint"
+ItemCategory="Assault Rifle"
+ItemDescription="• Możliwość wyboru pomiędzy serią 3 strzałów lub pojedynczym wystrzałem.\n• Naciśnij przycisk alternatywnego ostrzału żeby zmienić tryb.\n• Na Zedy, nie „łapserdaki”."
+
+[KFWeap_AssaultRifle_SCAR]
+ItemName="Karabin SCAR-H"
+ItemCategory="Assault Rifle"
+ItemDescription="• Możliwość wyboru pomiędzy pełnym i pół automatem.\n• Naciśnij przycisk alternatywnego ostrzału żeby zmienić tryb.\n• Zaprojektowany dla Dowództwa Operacji Specjalnych USA. I naprawdę służy do operacji specjalnych!"
+
+[KFWeap_AssaultRifle_AK12]
+ItemName="Kałasznikow AK-12"
+ItemCategory="Assault Rifle"
+ItemDescription="• Możliwość wyboru pomiędzy automatem i serią 3 strzałów.\n• Naciśnij przycisk alternatywnego ostrzału żeby zmienić tryb.\n• Ten AK-12 został zabrany martwemu żołnierzowi rosyjskiego Specnazu."
+
+[KFWeap_AssaultRifle_Bullpup]
+ItemName="SA80 L85A2 Bullpup"
+ItemCategory="Assault Rifle"
+ItemDescription="• Możliwość wyboru pomiędzy pełnym i pół automatem.\n• Naciśnij przycisk alternatywnego ostrzału żeby zmienić tryb.\n• SA80 był podstawowym wyposażeniem armii brytyjskiej, zanim nie została... zjedzona."
+
+[KFWeap_Knife_Demolitionist]
+ItemName="Nóż"
+ItemCategory="Melee"
+ItemDescription="• Podstawowy – szybki atak cięciem, przytrzymany powoduje atak kombinacyjny\n• Drugi – mocny atak cięciem\n• Alt. – blok/odpieranie ataku\n• Po prostu nóż. Idealny od otwierania kartonów, które możesz napotkać w Killing Floor."
+
+[KFWeap_Knife_FieldMedic]
+ItemName="Skalpel"
+ItemCategory="Melee"
+ItemDescription="• Podstawowy – szybki atak cięciem, przytrzymany powoduje atak kombinacyjny\n• Drugi – mocny atak cięciem\n• Alt - blok/odpieranie ataku\n• Po prostu skalpel. Jesteś Medykiem, więc zakładamy, że nie musimy ci wyjaśniać jak go używać."
+
+[KFWeap_Knife_Firebug]
+ItemName="Nóż strażacki"
+ItemCategory="Melee"
+ItemDescription="• Podstawowy – szybki atak cięciem, przytrzymany powoduje atak kombinacyjny\n• Drugi – mocny atak cięciem\n• Alt - blok/odpieranie ataku\n• Po prostu nóż strażacki. Jesteś strażakiem, więc zakładamy, że nie musimy ci wyjaśniać jak go używać."
+
+[KFWeap_Pistol_Medic]
+ItemName="Pistolet HMTech-101"
+ItemCategory="Pistol"
+ItemDescription="• Podstawowy typ ostrzału to półautomat.\n• Po przełączeniu strzela leczniczymi strzałkami, którymi można wspomóc członków drużyny.\n• Korzysta z bezmagazynkowej amunicji i sam liczy pociski."
+
+[KFWeap_SMG_Medic]
+ItemName="HMTech-201 SMG"
+ItemCategory="Sub Machine Gun"
+ItemDescription="• Podstawowy typ ostrzału to automat.\n• Po przełączeniu strzela leczniczymi strzałkami, którymi można wspomóc członków drużyny.\n• Możliwość dołączenia latarki.\n• Jak twój pistolet, ale lepszy!"
+
+[KFWeap_Shotgun_Medic]
+ItemName="Strzelba HMTech-301"
+ItemCategory="Shotgun"
+ItemDescription="• Podstawowy typ ostrzału to półautomat.\n• Po przełączeniu strzela leczniczymi strzałkami, którymi można wspomóc członków drużyny.\n• Możliwość dołączenia latarki.\n• Strzelba w wersji dla Medyka."
+
+[KFWeap_AssaultRifle_Medic]
+ItemName="Karabin HMTech-401"
+ItemCategory="Assault Rifle"
+ItemDescription="• Podstawowy typ ostrzału to automat.\n• Po przełączeniu strzela leczniczymi strzałkami, którymi można wspomóc członków drużyny.\n• Możliwość dołączenia latarki.\n• Prawdziwy karabin szturmowy."
+
+[KFWeap_Shotgun_DoubleBarrel]
+ItemName="Dwulufowy obrzyn"
+ItemCategory="Shotgun"
+ItemDescription="• Podstawowy typ ostrzału korzysta z jednej lufy.\n• Po przełączeniu strzela z obu luf jednocześnie.\n• Dubeltówka równoległa, kaliber 12. Idealna do walki na krótkie odległości. Nawet najwięksi Zedowie zachwieją się trafieni wystrzałem z obu luf!"
+
+[KFWeap_Shotgun_AA12]
+ItemName="Strzelba AA-12"
+ItemCategory="Shotgun"
+ItemDescription="• Podstawowy typ ostrzału to automat.\n• AA-12 to w pełni automatyczna strzelba. Ogromna siła rażenia na bliskie i średnie dystanse, po prostu pluje amunicją!"
+
+[KFWeap_Shotgun_MB500]
+ItemName="SG 500 "Pompka""
+ItemCategory="Shotgun"
+ItemDescription="• Podstawowy typ ostrzału to "pompka".\n• Możliwość dołączenia latarki.\n• Mossberg SG 500 w wersji z "pompką" i kolbą pistoletu to wspaniały sprzęt do zabijania Zedów z krótkiej odległości. Łatwy i efektywny."
+
+[KFWeap_Shotgun_M4]
+ItemName="Strzelba bojowa M4"
+ItemCategory="Shotgun"
+ItemDescription="• Podstawowy typ ostrzału to półautomat.\n• Możliwość dołączenia latarki.\n• Benelli zaprojektował strzelbę bojową M4 dla wojska USA. Półautomat pozwala na celny i stały ostrzał."
+
+[KFWeap_Knife_Berserker]
+ItemName="Ostrze kosiarki"
+ItemCategory="Melee"
+ItemDescription="• Podstawowy – szybki atak cięciem, przytrzymany powoduje atak kombinacyjny\n• Drugi – mocny atak cięciem\n• Alt. – blok/odpieranie ataku\n• Tak, to naprawdę jest ostrze kosiarki. Baw się dobrze!"
+
+[KFWeap_Knife_Commando]
+ItemName="KF-BAR"
+ItemCategory="Melee"
+ItemDescription="• Podstawowy – szybki atak cięciem, przytrzymany powoduje atak kombinacyjny\n• Drugi – mocny atak cięciem\n• Alt. – blok/odpieranie ataku\n• Klasyczny nóż bojowy wykorzystywany w Horzine."
+
+[KFWeap_Knife_Support]
+ItemName="Maczeta"
+ItemCategory="Melee"
+ItemDescription="• Podstawowy – szybki atak cięciem, przytrzymany powoduje atak kombinacyjny.\n• Drugi – mocny atak cięciem\n• Alt. – blok/odpieranie ataku\n• Ale nie pęknij z dumy tylko dlatego, że daliśmy ci największy nóż."
+
+[KFWeap_Edged_Katana]
+ItemName="Katana"
+ItemCategory="Melee"
+ItemDescription="• Podstawowy – szybki atak cięciem, przytrzymany powoduje atak kombinacyjny.\n• Drugi – mocny atak cięciem\n• Alt. – blok/odpieranie ataku\n• Postaraj się okazać trochę szacunku temu cacku."
+
+[KFWeap_Blunt_Crovel]
+ItemName="Saperka Crovel"
+ItemCategory="Melee"
+ItemDescription="• Podstawowy – szybki atak cięciem, przytrzymany powoduje atak kombinacyjny.\n• Drugi – mocny atak obuchowy\n• Alt. – blok/odpieranie ataku\n• Łom i saperka w jednym, tak czy siak zabójczo niebezpieczna."
+
+[KFWeap_Shotgun_Nailgun]
+ItemName="Gwoździarka VLAD-1000"
+ItemCategory="Shotgun"
+ItemDescription="• Możliwość wyboru pomiędzy pomiędzy wystrzałem pojedynczym lub wielu gwoździ jednocześnie.\n• Naciśnij przycisk alternatywnego ostrzału żeby zmienić tryb.\n• Zdajemy sobie sprawę, że jeden z naukowców pożyczył pierwszą gwoździarkę od (martwego) robotnika budowlanego."
+
+[KFWeap_Blunt_Pulverizer]
+ItemName="Młynek"
+ItemCategory="Melee"
+ItemDescription="• Podstawowy – szybki atak obuchowy, przytrzymany powoduje atak kombinacyjny.\n• Drugi – poza podstawowym działaniem wystrzeliwuje także materiał wybuchowy. Bez ładunku drugi typ ataku jest ciężkim atakiem obuchowym, więc pamiętaj o przeładowywaniu broni!\n• Alt. – blok/odpieranie ataku"
+
+[KFWeap_Eviscerator]
+ItemName="Rozpruwacz"
+ItemCategory="Special"
+ItemDescription="• Podstawowy tryb wystrzeliwuje ostrza piły.\n• Atak alt. to uderzenie, które szybko zużywa paliwo.\n• Zaprojektowany przez grupę SDS w Horzine, podczas jednego z ich bardziej szalonych momentów. Prawdziwa bestia."
+SecondaryAmmo="Paliwo"
+
+[KFWeap_Edged_Zweihander]
+ItemName="Zweihänder"
+ItemCategory="Melee"
+ItemDescription="• Podstawowy – średnie/duże obrażenia, z pozwalający na kontrolę tłumu.\n• Drugi – wolniejszy, ale powodujący większe obrażenia.\n• Alt. – blok/odpieranie ataku\n• Zadasz jeszcze większe obrażenia idąc do przodu."
+SharedUnlockSource="Ciężki średniowieczny oręż"
+
+[KFWeap_Flame_CaulkBurn]
+ItemName="Zapalniczka"
+ItemCategory="Flames"
+ItemDescription="• Strzelający płomieniami, przenośny, domowej roboty miotacz płomieni. Dzieci, NIE próbujcie tego w domu."
+
+[KFWeap_Shotgun_DragonsBreath]
+ItemName="Strzelba zapalająca"
+ItemCategory="Shotgun"
+ItemDescription="• Jedyny tryb to ostrzał z „pompki”.\n• Strzelba wykorzystująca pociski zapalające „Oddech Smoka”. Poza tym, że jest śmiertelnie niebezpieczny, także świetnie wygląda."
+
+[KFWeap_Flame_Flamethrower]
+ItemName="Miotacz ognia"
+ItemCategory="Flames"
+ItemDescription="• Strzela płomieniami. I tyle.\n• Ponadczasowy klasyk. W razie wątpliwości spal wszystko."
+
+[KFWeap_Beam_Microwave]
+ItemName="Działo mikrofalowe"
+ItemCategory="Flames"
+ItemDescription="• Wystrzeliwuje mikrofale, które spalają Zedy od środka.\n• Alternatywny ostrzał uwalnia wybuch mikrofal przydatny na w zwarciu.\n• Cudo nowoczesnej technologii. Podręczna kuchenka na Zedy."
+
+[KFWeap_Thrown_C4]
+ItemName="Ładunek C4"
+ItemCategory="Explosives"
+ItemDescription="• Podstawowy – podkłada ładunek C4.\n• Alternatywny – detonuje ładunki w takiej kolejności w jakiej zostały podłożone .\n• Ładunek C4 przygotowany do zdalnej detonacji."
+
+[KFWeap_GrenadeLauncher_HX25]
+ItemName="Granatnik HX25"
+ItemCategory="Explosives"
+ItemDescription="• Wystrzeliwuje wiele pocisków, które wybuchają dopiero w momencie kontaktu z przeciwnikiem."
+
+[KFWeap_GrenadeLauncher_M79]
+ItemName="Granatnik M79"
+ItemCategory="Explosives"
+ItemDescription="• Wystrzeliwuje granaty, które wybuchają pod wpływem uderzenia.\n• Korzystaj z niego będąc kilka metrów od celu, w przeciwnym wypadku zrobisz sobie krzywdę."
+
+[KFWeap_RocketLauncher_RPG7]
+ItemName="RPG-7"
+ItemCategory="Explosives"
+ItemDescription="• Wystrzeliwuje rakiety, które wybuchają pod wpływem uderzenia.\n• Korzystaj z niego będąc kilka metrów od celu, w przeciwnym wypadku zrobisz sobie krzywdę.\n• Podczas wystrzału uważaj też na towarzyszy za tobą!"
+
+[KFWeap_Pistol_Dual9mm]
+ItemName="Dwa pistolety 9mm"
+ItemCategory="Hand Gun"
+ItemDescription="• Podstawowy typ ostrzału to półautomat.\n• Możliwość dołączenia latarki.\n• Para standardowych pistoletów 9 mm. Jeśli potrzebujesz forsy jeden z nich możesz sprzedać."
+
+
+[KFGameInfo_Survival]
+GameName="Survival"

@@ -1,0 +1,5 @@
+[General]
+PropNone=何も選択されていません。
+PropSingle=%s プロパティ
+PropMulti=%s プロパティ ( %i を選択)
+

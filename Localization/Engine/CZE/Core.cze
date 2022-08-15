@@ -1,0 +1,132 @@
+[Language]
+Language=Čeština
+LangId=9
+SubLangId=1
+
+[Public]
+Object=(Name=Core.HelloWorldCommandlet,Class=Class,MetaClass=Core.Commandlet)
+
+[Errors]
+Unknown=Neznámá chyba
+Aborted=Zrušeno
+ExportOpen=Chyba při exportu `~: nepodařilo se otevřít soubor '`~'
+ExportWrite=Chyba při exportu `~: nepodařilo se zapsat do souboru '`~'
+FileNotFound=Nelze najít soubor '`~'
+ObjectNotFound=Nepodařilo se najít objekt '`~ `~.`~'
+PackageNotFound=Nepodařilo najít soubor pro balíček '`~'
+PackageResolveFailed=Nepodařilo se vyřešit jméno balíčku
+FilenameToPackage=Není možné zkonvertovat jméno souboru '`~' na jméno balíčku
+Sandbox=Balíček '`~' není na tomto pískovišti dostupný
+PackageVersion=Balíček '`~' - rozdílné verze
+SavedWithNewerVersion=Balíček '`~' byl uložen v enginu novější verze, než je aktuální, a proto nemůže být uložen. Aktuální verze: `~ Uloženo ve verzi: `~
+CannotSaveWithOlderVersion=Není možné uložit balíček '`~', jelikož aktuální verze enginu je starší než verze, ve které byl balíček původně uložen.
+CannotSavePartiallyLoaded=Není možné uložit balíček '`~', jelikož byl nahrán jen částečně.
+Error_FilenameIsTooLongForCooking=Jméno souboru '`~' je příliš dlouhé, mohlo by způsobovat problémy u konzolí. Jména souborů Unrealu by neměla být delší než `~ znaků.
+FailedLoad=Nepodařilo se nahrát '`~': `~
+ConfigNotFound=Nepodařilo se najít '`~' v konfiguračním souboru sekce=`~ klíč=`~
+LoadClassMismatch=`~ není potomkem třídy `~
+NotDll='`~' není DLL balíček; nepodařilo se najít export '`~'
+NotInDll=Nepodařilo se najít '`~' v '`~.lib'
+FailedLoadPackage=Nepodařilo se nahrát balíček: `~
+FailedLoadObject=Nepodařilo se nahrát '`~ `~.`~': `~
+TransientImport=Přechodný objekt importován: `~
+LinkedToObjectsInOtherMap_FindCulpritQ=Není možné uložit `~: Graf je nalinkován na objekt v externím balíčku map. Přejete si vyhledat řetěz odkazů na tento objekt (může to chvíli trvat)?
+LinkedToPrivateObjects_FindCulpritQ=Není možné uložit `~: Graf je nalinkován na externí soukromý objekt. Přejete si vyhledat řetěz odkazů na tento objekt (může to chvíli trvat)?
+FailedSaveOtherMapPackage=Není možné uložit `~: Graf je nalinkován na objekt `~ v externím balíčku map
+FailedSavePrivate=Není možné uložit `~: Graf je nalinkován na externí soukromý objekt `~
+FailedImportPrivate=Není možné importovat soukromý objekt `~ `~
+FailedCreate=`~ `~ nenalezen pro vytvoření
+FailedImport=Nepodařilo se najít `~ v souboru '`~'
+FailedSaveFile=Chyba při ukládání souboru '`~': `~
+SaveWarning=Chyba při ukládání '`~'
+NotPackaged=Objekt není zabalen: `~ `~
+NotWithin=Objekt `~ `~ vytvořen v `~ místo v `~
+Abstract=Není možné vytvořit objekt `~: třída `~ je abstraktní
+NoReplace=Není možné nahradit `~ s `~
+ReplaceNotFullyLoaded_f="Pokus o nahrazení objektu, který není úplně nahrán: `~"
+ReplaceNoPostLoad_f="Není možné nahradit objekty, u kterých je třeba provést post-nahrávací operaci, zatímco stále probíhá deserializace objektů: `~"
+NoFindImport=Nepodařilo najít soubor '`~' pro import
+ReadFileFailed=Nepodařilo se přečíst soubor '`~' pro import
+SeekFailed=Chyba při přesunu v souboru
+OpenFailed=Chyba při otvírání souboru '`~' (`~).
+WriteFailed=Chyba při zápisu do souboru
+ReadEof=Čtení za koncem souboru
+IniReadOnly=Soubor `~ je chráněn proti zápisu, nastavení není možné uložit
+UrlFailed=Nepodařilo se spustit URL
+Warning=Varování
+Question=Otázka
+OutOfMemory=Došla virtuální paměť. Pokud chceš opakování této chyby zabránit, pokus se vyčistit více místa na primárním harddisku.
+History=Historie
+Assert=Ověření selhalo: `~ [soubor:`~] [Line: `~]
+Debug=Ladící ověření selhalo: `~ [soubor:`~] [Line: `~]
+LinkerExists=Linker pro '`~' už existuje
+BinaryFormat=Soubor '`~' obsahuje nerozpoznatelná data
+SerialSize=`~: Rozdíl v sériové velikosti: K dispozici `~, očekáváno `~
+ExportIndex=Špatný exportní index `~/`~
+ImportIndex=Špatný importní index `~/`~
+Password=Heslo nerozpoznáno
+Exec=Nerozpoznaný rozkaz
+BadProperty='`~': Špatná nebo chybějící vlastnost '`~'
+MisingIni=Chybí .ini soubor: `~
+Error_ActorComponentDestroyedWithoutRemoval=Komponenta aktoru (`~) zničen bez odstranění ze scény
+FileVersionDump=Verze balíčku `4~, maximální očekávaná `4~ : Verze balíčku licencora `4~, maximální očekávaná `4~.
+CookedPackagedVersionOlderThanEnginePackageFileCookedContentVersion=Nepodařilo se spustit, jelikož balíček byl připraven se starší verzí enginu. Vytvoř ho prosím znovu: (`~) Aktuální verze: `~ Uloženo ve verzi: `~
+NativeRebuildRequired=Nepodařilo se vytvořit objekt typu '`~': nativní rozvržení třídy je odlišné od rozvržení skriptu. Pro zabránění narušení dat přebuduj C++.
+PackageNamedNone=Pokus vytvořit balíček bez označení jména
+EmptyPackageName=Pokus vytvořit balíček s prázdným jménem
+OldVersionFile=Soubor `~ byl uložen v předchozí verzi, se kterou není tato zpětně kompatibilní.
+LoadingTransientInstance=Pokus o nahrání instance dočasné třídy z disku - Balíček:'`~' Objekt:'`~' Třída:'`~'
+LoadedDeprecatedClassInstance=`~: třída `~ je prohlášena za zastaralou.
+OperationDisallowedOnCookedContent=Požadovanou operaci není možné provést na hotovém balíčku.
+PackageBiggerThanSoftLimit=Package `~ was successfully saved and is `~ MByte in size.  This exceeds the recommended package size.  Please split it up to be less than `~ MByte.
+CannotSaveConformIncompatibility=Cannot save conformed package '`~' as it is incompatible with the original
+PS3SupportNotLoaded=The PS3 tools are not installed; objects may have been saved uncooked! Please install the latest PS3 SDK!
+Xbox360SupportNotLoaded=The Xbox360 tools are not installed; objects may have been saved uncooked! Please the install the latest XDK!
+MissingExeConfigFileError=Loading the editor with managed code requires the existance of the '`~' file which was not found.  This file is necessary in order for the managed runtime to locate dependent assembly files.  The application will now exit.
+CannotSaveStartupPackage=Cannot save package '`~' as user opted not to save this startup package
+PackagesSavedWithNewerVersion=The following packages have been saved with an engine version newer than the current and therefore will not be able to be saved:\n`~
+
+[Query]
+OldVersion=Soubor `~ byl uložen v předchozí verzi, se kterou není tato zpětně kompatibilní. Načtení zřejmě selže a může způsobit pád. Chceš to přesto zkusit?
+Name=Jméno:
+Password=Heslo:
+PassPrompt=Zadej své jméno a heslo:
+PassDlg=Kontrola identity
+Overwrite=Soubor '`~' je třeba aktualizovat. Chceš přepsat existující verzi?
+OverwriteReadOnly=`~' je označen pouze pro čtení. Chceš jej zkusit přepsat násilím?
+CheckoutPerforce=`~' je označen pouze pro čtení. Přeješ si ho zkusit přihlásit a přepsat?
+PackageFailedToOpen=Balíček '`~' se nepodařilo otevřít. Má tento příkaz pokračovat a ignorovat další chyby nahrávání? Pokračování může mít neblahé následky (může dojít ke ztrátě referencí na objekt).
+RemoveNativeClass=Detekována nativní třída bez skriptu: '`~'. Má být tato třída odstraněna ze statické inicializace? (Pokud nebyla nedávno odstraněna nativní skriptová třída, ujisti se, že deklarace třídy obsahuje CLASS_Intrinsic.)
+Warning_ForceDelete=Deleting `~.\n\nForcing delete on a referenced object is potentially dangerous and could cause data corruption.  The following objects may have invalid references if you proceed:\n `~.\n\nDo you wish to delete this referenced object?
+OverwriteMultiple=These files need to be updated: `~\nDo you want to overwrite the existing versions?
+
+[Progress]
+Saving=Ukládá se soubor `~...
+Loading=Nahrává se soubor `~...
+Finalizing=Finalizing: `~…
+AutoSaving=Saving file: `~... (Press Escape to stop the AutoSave)
+EditorPackages=Loaded Packages
+LoadingRefObjects=Loading referenced objects from: `~`~
+ProcessingRefObjects=Processing referenced objects from: `~`~
+
+[General]
+Product=Unreal
+Engine=Unreal Engine
+Copyright=Copyright 1998-2007 Epic Games, Inc. Všechna práva vyhrazena.
+True=-1
+False=0
+None=Žádná
+Yes=Ano
+No=Ne
+
+[HelpCommandlet]
+HelpDescription="Tento příkaz zobrazuje informace o dalších příkazech"
+HelpUsage="gamename.exe help <list | jménopříkazu | webhelp jménopříkazu>"
+HelpWebLink="https://udn.epicgames.com/bin/view/Three/HelpCommandlet"
+HelpParamNames[0]="list"
+HelpParamDescriptions[0]="Zobrazit všechny dostupné příkazy"
+HelpParamNames[1]="commandlet name"
+HelpParamDescriptions[1]="Zobrazit nápovědu pro specifický příkaz"
+HelpParamNames[2]="webhelp"
+HelpParamDescriptions[2]="Spustí prohlížeč s URL webové stránky dokumentující příkaz"
+

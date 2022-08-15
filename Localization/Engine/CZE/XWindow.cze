@@ -1,0 +1,5 @@
+[General]
+PropNone=Není nic vybráno
+PropSingle=`~ Vlastnosti
+PropMulti=`~ Vlastnosti (`~ vybráno)
+

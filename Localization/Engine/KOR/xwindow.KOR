@@ -1,0 +1,5 @@
+[General]
+PropNone=선택된 것 없음
+PropSingle=`~ 속성
+PropMulti=`~ 속성 (`~ 선택됨)
+

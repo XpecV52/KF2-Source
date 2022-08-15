@@ -1,0 +1,20 @@
+[Public]
+Class=(Class=WinDrv.WindowsClient,SuperClass=Engine.Client)
+
+[Errors]
+Failed3D=3d hardware inicializálása nem sikerült
+DDrawMode=DirectDraw nem tudta beállítani a kért videó módot.
+
+[General]
+ViewPersp=Perspective map
+ViewXY=Overhead map
+ViewXZ=XZ map
+ViewYZ=YZ map
+ViewOther=Nézőke
+Color16=&16-bit színmélység
+Color32=&32-bit színmélység
+AdvancedOptions=Haladó beállítások
+
+[WindowsClient]
+ClassCaption="Standard Windows Menedzser"
+

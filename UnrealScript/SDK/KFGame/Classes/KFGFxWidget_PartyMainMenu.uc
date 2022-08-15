@@ -1,0 +1,378 @@
+//=============================================================================
+// KFGFxWidget_PartyMainMenu
+//=============================================================================
+// The party widget that is used while in the main menu that uses the steam party system
+//=============================================================================
+// Killing Floor 2
+// Copyright (C) 2015 Tripwire Interactive LLC
+//  - Author 11/14/2013
+//=============================================================================
+
+class KFGFxWidget_PartyMainMenu extends KFGFxWidget_BaseParty;
+
+var bool bIsInParty;
+
+function OneSecondLoop()
+{
+	if ( OnlineLobby.IsInLobby())
+	{
+	    SendMyOptions();
+	    SendSearching();
+	    UpdateInLobby(true);
+	}	
+	else
+	{
+		UpdateInLobby(false);
+	}
+	RefreshParty();
+}
+
+function InitializeWidget()
+{
+	super.InitializeWidget();
+	SetReadyButtonVisibility(false);
+}
+
+function SendSearching()
+{
+	local string SearchingTextString;
+	local string SearchingMessage;
+	local UniqueNetId AdminId;
+	local bool bIsLeader;
+
+	if(Manager == none)
+	{
+		return;
+	}
+
+	if(OnlineLobby.IsInLobby())
+	{
+		OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId);
+		bIsLeader = GetPC().PlayerReplicationInfo.UniqueId  == AdminId;	
+
+		if(bIsLeader)
+		{
+			if(Manager.CurrentMenuIndex == UI_Start)
+			{
+				if(Manager.bSearchingForGame)
+				{
+					SearchingTextString = SearchingForGameString;
+					SetSearchingText(SearchingTextString);
+					SearchingMessage = SearchingForGame;
+				}
+				else
+				{
+					SearchingMessage = UpdatingOptions;
+				}
+			}
+			else if(Manager.CurrentMenuIndex == UI_ServerBrowserMenu)
+			{
+				SearchingMessage = ServerBrowserOpen;
+			}
+			else
+			{
+				SearchingMessage = InOtherMenu;
+			}
+			//Send message out to lobby
+			OnlineLobby.LobbyMessage(SearchingPrefix$SearchingMessage);   	
+		}
+	}
+	else if(Manager.bSearchingForGame)
+	{
+		SearchingTextString = SearchingForGameString;
+		SetSearchingText(SearchingTextString);
+	}
+	else
+	{
+		SetSearchingText(SearchingTextString);
+	}
+}
+
+function SetSearchingText(string Message)
+{
+	SetString("searchingText", Message);
+}
+
+// Refresh a slot if any of it's values have changed or a player was removed
+function RefreshParty()
+{
+	local ActiveLobbyInfo LobbyInfo;
+	local UniqueNetId AdminId;
+	local int SlotIndex;
+	local bool bInParty;
+	super.RefreshParty();
+
+	if ( OnlineLobby.GetCurrentLobby(LobbyInfo) )
+	{		
+		OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId);
+
+		if(PartyChatWidget != none)
+		{
+			PartyChatWidget.SetLobbyChatVisible(LobbyInfo.Members.Length > 1);	
+		}
+
+		if( AdminId != LastLeaderID )
+		{	
+			HandleLeaderChange(AdminId);	
+		}		
+
+		OccupiedSlots = LobbyInfo.Members.Length;
+		bInParty = (OccupiedSlots > 1) || bInLobby;
+		if(bIsInParty != bInParty)
+		{
+			//clear out the first slot since that is where you are
+			EmptySlot(0);
+			bIsInParty = bInParty;	
+		}
+
+		for ( SlotIndex = 0; SlotIndex < `KF_MAX_PLAYERS; SlotIndex++ )
+		{
+			if ( SlotIndex < LobbyInfo.Members.Length )
+			{
+	            RefreshSlot(SlotIndex, LobbyInfo.Members[SlotIndex].PlayerUID);
+			}
+			else if ( MemberSlots[SlotIndex].bIsSlotTaken )
+			{
+	         	EmptySlot(SlotIndex);
+			}
+		}
+	}
+	// If we are not in a party, only add our name to the party list
+	else
+	{
+	    RefreshSlot(0, GetPC().PlayerReplicationInfo.UniqueId);
+	    InitializePerk();
+	    bInParty = false || bInLobby;
+		bIsInParty = bInParty;
+	    SetSearchingText("");
+	    UpdatePlayerName(0, OnlineLobby.GetFriendNickname(GetPC().PlayerReplicationInfo.UniqueId));
+	    if(PartyChatWidget != none)
+		{
+	    	PartyChatWidget.SetLobbyChatVisible(false);	
+		}
+	    // Clear out the rest of the list if we are not in a lobby
+	    for ( SlotIndex = 1; SlotIndex < `KF_MAX_PLAYERS; SlotIndex++ )
+		{
+			if ( MemberSlots[SlotIndex].bIsSlotTaken )
+			{
+	         	EmptySlot(SlotIndex);
+			}
+		}
+	}
+	UpdateSoloSquadText();
+}
+
+function HandleLeaderChange(UniqueNetId AdminId)
+{
+	local string HostName;
+	
+	HostName = OnlineLobby.GetFriendNickname(AdminId);
+	Manager.HandleSteamLobbyLeaderTakeOver(AdminId);	
+	if(LastLeaderID != ZeroUniqueId )
+	{
+		Manager.OpenPopup(ENotification, PartHostLeftString, HostName@PartyLeaderChangedString, class'KFCommon_LocalizedStrings'.default.OKString);
+	}
+	LastLeaderID = AdminId;
+}
+
+// Check which aspect of the slot has changed and update it
+function RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
+{
+	local string PlayerName;	
+	local UniqueNetId AdminId;
+	local bool bIsLeader;
+	local bool bIsMyPlayer;
+
+	OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId);
+	bIsLeader = (PlayerUID == AdminId);
+
+	MemberSlots[SlotIndex].bIsSlotTaken = true;
+	MemberSlots[SlotIndex].bIsLeader = bIsLeader;
+	MemberSlots[SlotIndex].PlayerUID = PlayerUID;
+
+	bIsMyPlayer = (GetPC().PlayerReplicationInfo.UniqueId == PlayerUID);
+
+	PlayerName = OnlineLobby.GetFriendNickname(PlayerUID);
+	if (PlayerName == "")
+	{
+		PlayerName = DefaultPlayerName;
+	}
+	
+	SlotChanged( SlotIndex, true, bIsMyPlayer, bIsLeader );
+	
+
+	CreatePlayerOptions(PlayerUID, SlotIndex);
+	MemberSlots[SlotIndex].MemberSlotObject.SetString("profileImageSource", KFPC.GetSteamAvatar(PlayerUID));
+}
+
+
+function InitializePerk()
+{
+	local KFPerk CurrentPerk;
+	local string PerkIconPath;
+	local class<KFPerk> PerkClass;
+	local byte PerkLevel;
+
+	CurrentPerk = KFPC.GetPerk();
+	if (CurrentPerk != none)
+	{
+		PerkClass = KFPlayerReplicationInfo(GetPC().PlayerReplicationInfo).CurrentPerkClass;
+		PerkLevel = CurrentPerk.GetLevel();
+		if (PerkClass != MemberSlots[0].PerkClass || PerkLevel != MemberSlots[0].PerkLevel)
+		{
+			MemberSlots[0].PerkClass = PerkClass;
+			PerkIconPath = "img://"$CurrentPerk.GetPerkIconPath();
+			UpdatePerk(0, CurrentPerk.PerkName, string(PerkLevel), PerkIconPath);
+		}		
+	}
+}
+
+/****************************************************************************
+*	Sending / Receiving steam data
+****************************************************************************/
+
+// As a member of party, check to see if your options are different than the party leaders
+function UpdatePerks(string Message)
+{
+	local array<string> PlayerInfoStrings;
+	local UniqueNetId PlayerID;
+	local string PerkName, IconPath, PerkLevel;
+	local ActiveLobbyInfo LobbyInfo;
+	local byte i;
+
+	ParseStringIntoArray(Message, PlayerInfoStrings, "/", true);
+	class'OnlineSubsystem'.static.StringToUniqueNetId(PlayerInfoStrings[0], PlayerID);
+	PerkName = PlayerInfoStrings[1];
+	IconPath = "img://"$PlayerInfoStrings[2];
+	PerkLevel = PlayerInfoStrings[3];
+
+	if (OnlineLobby.GetCurrentLobby(LobbyInfo))
+	{
+		for (i = 0; i < LobbyInfo.Members.Length; i++)
+		{
+			if (LobbyInfo.Members[i].PlayerUID == PlayerID)
+			{
+				UpdatePlayerName( i, OnlineLobby.GetFriendNickname(PlayerID) );
+				UpdatePerk(i, PerkName, PerkLevel, IconPath);
+			}
+		}
+	}
+}
+
+function UpdateSearching(string Message)
+{
+	local string SearchingText;
+	local string PartyLeaderName;
+	local UniqueNetId AdminId;
+		
+
+	OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId);
+	PartyLeaderName = OnlineLobby.GetFriendNickname(AdminId);
+	switch (Message)
+	{
+		case InOtherMenu:
+			SearchingText = PartyLeaderInOtherMenuString;
+			break;
+	
+		case ServerBrowserOpen:
+			Manager.ChangeOverviewState(true);
+			SearchingText = PartyLeaderInServerBrowserString;
+			break;
+
+		case SearchingForGame:
+			SearchingText = PartyLeaderSearchingForMatchString;
+			break;
+
+		case UpdatingOptions:
+			Manager.ChangeOverviewState(false);
+			SearchingText = PartyLeaderIsUpdatingMatchOptionsString;
+			break;
+
+		case InOtherMenu:
+			SearchingText = PartyLeaderInOtherMenuString;
+			break;
+	}
+
+	SetSearchingText(PartyLeaderName @SearchingText);
+}
+
+function ToggelMuteOnPlayer(int SlotIndex)
+{
+	local ActiveLobbyInfo LobbyInfo;
+	if( OnlineLobby != none )
+	{
+		OnlineLobby.GetCurrentLobby(LobbyInfo);
+		if( LobbyInfo.Members.Length > SlotIndex )
+		{
+			`log("CALL MUTE FOR PLAYER: " @OnlineLobby.GetFriendNickname(LobbyInfo.Members[SlotIndex].PlayerUID) );
+		}
+	}
+	
+}
+
+function ViewProfile(int SlotIndex)
+{
+	local ActiveLobbyInfo LobbyInfo;
+	if( OnlineLobby != none )
+	{
+		OnlineLobby.GetCurrentLobby(LobbyInfo);
+		if( LobbyInfo.Members.Length > SlotIndex )
+		{
+			`log("View PLAYER profile: " @OnlineLobby.GetFriendNickname(LobbyInfo.Members[SlotIndex].PlayerUID) );
+		}
+	}
+}
+
+//Since the PRI Array doe not exist int he main menu, we are using the lobby to access PlayerUI's  
+//Adding and removing friends through steam will just bring up the overlay.  From there the player will have to click 
+//the option to add or remove them based on the friend status.
+function AddFriend(int SlotIndex)
+{
+	local ActiveLobbyInfo LobbyInfo;
+	local LocalPlayer LocPlayer;
+
+	LocPlayer = LocalPlayer(GetPC().Player);
+
+	if( OnlineLobby != none )
+	{
+		OnlineLobby.GetCurrentLobby(LobbyInfo);
+		if( LobbyInfo.Members.Length > SlotIndex )
+		{
+			if( OnlineSub.IsFriend(LocPlayer.ControllerId, LobbyInfo.Members[SlotIndex].PlayerUID) )
+			{
+				if( !OnlineSub.RemoveFriend(LocPlayer.ControllerId, LobbyInfo.Members[SlotIndex].PlayerUID) )
+				{
+					`log("Failed to remove friend!");
+				}
+			}
+			else
+			{
+				if( !OnlineSub.AddFriend(LocPlayer.ControllerId, LobbyInfo.Members[SlotIndex].PlayerUID) )
+				{
+					`log("Failed to add friend!");
+				}
+			}
+		}
+	}
+}
+
+// As the leader of the party, make sure the members have the latest information
+function SendMyOptions()
+{
+	local KFPerk CurrentPerk;
+	local string CurrentLevel;
+	local string PerkMessage;
+	local string UIDStrings;
+
+	CurrentPerk = KFPC.GetPerk();
+	CurrentLevel = string(KFPC.GetLevel());
+
+	UIDStrings = class'OnlineSubsystem'.static.UniqueNetIdToString(GetPC().PlayerReplicationInfo.UniqueId);
+	PerkMessage = PerkPrefix$UIDStrings$"/"$CurrentPerk.PerkName$"/"$CurrentPerk.GetPerkIconPath()$"/"$CurrentLevel;
+	OnlineLobby.LobbyMessage(PerkMessage);   	
+}
+
+defaultproperties
+{
+	
+}

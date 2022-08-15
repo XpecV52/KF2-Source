@@ -1,0 +1,20 @@
+[Public]
+Class=(Class=WinDrv.WindowsClient,SuperClass=Engine.Client)
+
+[Errors]
+Failed3D=3D 하드웨어 초기화에 실패했습니다.
+DDrawMode=DirectDraw 에서 요청된 비디오 모드 설정이 불가능합니다.
+
+[General]
+ViewPersp=원근보기 맵
+ViewXY=내려보기 맵
+ViewXZ=XZ 맵
+ViewYZ=YZ 맵
+ViewOther=뷰포트
+Color16=&16비트 색
+Color32=&32비트 색
+AdvancedOptions=고급 옵션
+
+[WindowsClient]
+ClassCaption="표준 윈도우 매니저"
+

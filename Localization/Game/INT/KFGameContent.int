@@ -1,0 +1,229 @@
+//NOTES: 
+//1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
+//2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
+//3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
+//ItemDescription="Double-barreled, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest zeds will stagger when hit with both barrels. We found it in an old farm-house and //canned it for the Trader Pod. Hope you live longer than the farmer."
+
+[Armor]
+ItemName="Combat Armor"
+ItemCategory="Equipment"
+ItemDescription="• Combat armor protects you from various forms of damage, but is degraded in the process\n• Buy new armor or repair damaged armor at the Trader\n\nIt's a jacket, fitted with plates made from a combo of high-tech fiber and tungsten steel."
+
+[KFProj_DynamiteGrenade]
+ItemName="1/2 Stick of Dynamite"
+ItemCategory = "Explosives"
+ItemDescription="• Just a small piece of dynamite, with a fuse attached.\n• It can also hurt you, so be careful with it!" 
+
+[KFProj_MedicGrenade]
+ItemName="Medic Grenade"
+ItemCategory = "Explosives"
+ItemDescription="• Releases a gas that will poison Zeds, but will also heal people\n• Stand in the blue gas cloud to be healed\n\nTo quote one of our scientists: 'The agent released from these grenades will revivify Homo Sapiens, while euthanizing Homo Zedicus.' We hope that helps." 
+
+[KFProj_MolotovGrenade]
+ItemName="Molotov Cocktail"
+ItemCategory="Explosives"
+ItemDescription="• Very simply, a flame grenade that will burn Zeds.\n• Be aware that it can also hurt you!\n\nNamed, insultingly, by the Finns during the 1929-40 Winter War, after Vyacheslav Mikhailovich Molotov, the Soviet Foreign Minister under Stalin... Sorry, did you not want a history lesson?" 
+
+[KFProj_EMPGrenade]
+ItemName="EMP Grenade"
+ItemCategory="Explosives"
+ItemDescription="• Generates an electric pulse that will both damage Zeds and may also stun them for a brief time.\n\nIf you want more detail - on detonation, it generates a nanosecond electro-magnetic pulse that will disrupt electrical systems within a short range. Particularly those within the Zeds. Handy, that." 
+
+[KFProj_HEGrenade]
+ItemName="HE Grenade"
+ItemCategory="Explosives"
+ItemDescription="• A very simple high-explosive grenade. Hurts Zeds and humans alike.\n\nIt really doesn't get any simpler. HE - High Explosive - it goes BOOM and blows things up. Do we really have to explain it to you?" 
+
+[KFProj_FragGrenade]
+ItemName="Frag Grenade"
+ItemCategory="Explosives"
+ItemDescription="• The classic frag grenade: throws nasty little bits of metal around, hurting everything.\n\nI am quite sure you all played enough video games before the Outbreak, so you know perfectly well what a frag grenade is. And stop pretending that you didn't. No-one in here is going to believe you." 
+
+[KFWeap_Healer_Syringe]
+ItemName="Medical Syringe"
+ItemCategory="Equipment"
+
+[KFWeap_Welder]
+ItemName="Welder"
+ItemCategory="Equipment"
+
+[KFWeap_Pistol_9mm]
+ItemName="9mm Pistol"
+ItemCategory="Hand Gun"
+ItemDescription="• Fire mode is semi-auto only.\n• With flashlight attachment.\n• This is the standard 9mm pistol. Simple and cheap (very cheap, frankly, to you), it is the basic sidearm for all Horzine operatives."
+
+[KFWeap_Pistol_Deagle]
+ItemName=".50 Desert Eagle"
+ItemCategory="Hand Cannon"
+ItemDescription="• Fire mode is semi-auto only.\n• The Desert Eagle is the beast of hand guns, which is why we all know it as the 'Hand Cannon'."
+
+[KFWeap_AssaultRifle_AR15]
+ItemName="AR-15 Varmint Rifle"
+ItemCategory="Assault Rifle"
+ItemDescription="• Choice of 3-shot burst or single shot fire modes.\n• Alt-fire to toggle between fire modes.\n• With flashlight attachment.\n• This is for Zeds, not 'varmints'."
+
+[KFWeap_AssaultRifle_SCAR]
+ItemName="SCAR-H Assault Rifle"
+ItemCategory="Assault Rifle"
+ItemDescription="• Choice of full-auto and semi-auto fire modes.\n• Alt-fire to toggle between fire modes.\n• Designed originally for the US Special Operations Command, it is, indeed, special!"
+
+[KFWeap_AssaultRifle_AK12]
+ItemName="Kalashnikov AK-12"
+ItemCategory="Assault Rifle"
+ItemDescription="• Choice of full-auto and 3-round-burst fire modes.\n• Alt-fire to toggle between fire modes.\n• This AK-12 was taken from a dead Russian Spetsnaz operative for scanning."
+
+[KFWeap_AssaultRifle_Bullpup]
+ItemName="SA80 L85A2 Bullpup"
+ItemCategory="Assault Rifle"
+ItemDescription="• Choice of full-auto and semi-auto fire modes.\n• Alt-fire to toggle between fire modes.\n• The SA80 was the British Army's standard weapon, before the Army was, well, eaten."
+
+[KFWeap_Knife_Demolitionist]
+ItemName="Utility Knife"
+ItemCategory="Melee"
+ItemDescription="• Primary - fast slash attack, Hold for combo attack.\n• Secondary - heavy slash attack\n• Alt - block/parry\n• It's a box cutter. Perfect for opening any boxes you may come across on the killing floor."
+
+[KFWeap_Knife_FieldMedic]
+ItemName="Scalpel"
+ItemCategory="Melee"
+ItemDescription="• Primary - fast slash attack, Hold for combo attack.\n• Secondary - heavy slash attack\n• Alt - block/parry\n• It's a scalpel. You're a medic, so we're assuming that we do not need to explain to you how to use it."
+
+[KFWeap_Knife_Firebug]
+ItemName="Firemans Knife"
+ItemCategory="Melee"
+ItemDescription="• Primary - fast slash attack, Hold for combo attack.\n• Secondary - heavy slash attack\n• Alt - block/parry\n• It's a firemans knife. You're a fireman, so we're assuming that we do not need to explain to you how to use it."
+
+[KFWeap_Pistol_Medic]
+ItemName="HMTech-101 Pistol"
+ItemCategory="Pistol"
+ItemDescription="• Fire mode is semi-auto only.\n• Alt-fire shoots healing darts to heal team members.\n• Using caseless ammunition, it counts the rounds for you."
+
+[KFWeap_SMG_Medic]
+ItemName="HMTech-201 SMG"
+ItemCategory="Sub Machine Gun"
+ItemDescription="• Fire mode is full-auto only.\n• Alt-fire shoots healing darts to heal team members.\n• With flashlight attachment.\n• Your pistol, beefed up!"
+
+[KFWeap_Shotgun_Medic]
+ItemName="HMTech-301 Shotgun"
+ItemCategory="Shotgun"
+ItemDescription="• Fire mode is semi-auto only.\n• Alt-fire shoots healing darts to heal team members.\n• With flashlight attachment.\n• The combat shotgun version for the Medic."
+
+[KFWeap_AssaultRifle_Medic]
+ItemName="HMTech-401 Assault Rifle"
+ItemCategory="Assault Rifle"
+ItemDescription="• Fire mode is full-auto only.\n• Alt-fire shoots healing darts to heal team members.\n• With flashlight attachment.\n• The full-blown assault rifle version."
+
+[KFWeap_Shotgun_DoubleBarrel]
+ItemName="Double-barrel Boomstick"
+ItemCategory="Shotgun"
+ItemDescription="• Primary fire uses a single barrel only.\n• Alt-fire shoots both barrels at once.\n• Double-barrelled, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest zeds will stagger!"
+
+[KFWeap_Shotgun_AA12]
+ItemName="AA-12 Auto Shotgun"
+ItemCategory="Shotgun"
+ItemDescription="• Fire mode is full-auto only\n• The AA-12 is a fully automatic shotgun. Devastating firepower at close to medium range, but eats ammunition!"
+
+[KFWeap_Shotgun_MB500]
+ItemName="SG 500 Pump-Action"
+ItemCategory="Shotgun"
+ItemDescription="• Fire mode is pump-action only.\n• With a flashlight.\n• The pump-action Mossberg SG 500, with the pistol grip, is a wonderful close-quarters Zed-killer. Simple and effective."
+
+[KFWeap_Shotgun_M4]
+ItemName="M4 Combat Shotgun"
+ItemCategory="Shotgun"
+ItemDescription="• Fire mode is semi-auto only.\n• With a flashlight.\n• Benelli designed the M4 Combat Shotgun for the US military. Semi-automatic, allowing for a good, steady rate of fire."
+
+[KFWeap_Knife_Berserker]
+ItemName="Lawn Mower Blade"
+ItemCategory="Melee"
+ItemDescription="• Primary - fast slash attack, Hold Primary for combo attack\n• Secondary - heavy slash attack\n• Alt - block/parry\n• Yes, it is actually a lawn-mower blade. Enjoy it!"
+
+[KFWeap_Knife_Commando]
+ItemName="KF-BAR"
+ItemCategory="Melee"
+ItemDescription="• Primary - fast slash attack, Hold Primary for combo attack\n• Secondary - heavy slash attack\n• Alt - block/parry\n• Horzine's version of the classic commando knife."
+
+[KFWeap_Knife_Support]
+ItemName="Machete"
+ItemCategory="Melee"
+ItemDescription="• Primary - fast slash attack, Hold Primary for combo attack\n• Secondary - heavy slash attack\n• Alt - block/parry\n• Don't go feeling all special just because we gave you the biggest knife."
+
+[KFWeap_Edged_Katana]
+ItemName="Katana"
+ItemCategory="Melee"
+ItemDescription="• Primary - fast slash attack, Hold Primary for combo attack\n• Secondary - heavy slash attack\n• Alt - block/parry\n• Try and show a little respect for its class."
+
+[KFWeap_Blunt_Crovel]
+ItemName="Crovel Survival Tool"
+ItemCategory="Melee"
+ItemDescription="• Primary - fast slash attack, Hold Primary for combo attack\n• Secondary - heavy blunt attack\n• Alt - block/parry\n• Part crowbar, part shovel, all quite deadly."
+
+[KFWeap_Shotgun_Nailgun]
+ItemName="VLAD-1000 Nailgun"
+ItemCategory="Shotgun"
+ItemDescription="• Choice of single or multiple nail fire modes.\n• Alt-fire to toggle between fire modes.\n• We understand that one of the Horzine scientists borrowed the original nailgun from a (dead) maintenance man."
+
+[KFWeap_Blunt_Pulverizer]
+ItemName="Pulverizer"
+ItemCategory="Melee"
+ItemDescription="• Primary - fast blunt attack, Hold Primary for combo attack\n• Secondary fires an explosive round on contact as well. When empty, Secondary is a heavy blunt attack - so remember to reload!\n• Alt - block/parry"
+
+[KFWeap_Eviscerator]
+ItemName="Eviscerator"
+ItemCategory="Special"
+ItemDescription="• Primary fire shoots saw-blades.\n• Alt-fire is a melee attack, but uses fuel fast.\n• Originally designed by Horzine's SDS group, in one of their wilder moments, this beast isn't subtle."
+SecondaryAmmo="Gasoline"
+
+[KFWeap_Edged_Zweihander]
+ItemName="Zweihander"
+ItemCategory="Melee"
+ItemDescription="• Primary - medium/heavy damage, with some crowd control.\n• Secondary - slower, but with more damage.\n• Alt - block/parry\n• You do even more damage when moving forwards."
+SharedUnlockSource="Chivalry Medieval Warfare" 
+
+[KFWeap_Flame_CaulkBurn]
+ItemName="Caulk n' Burn"
+ItemCategory="Flames"
+ItemDescription="• Fire mode shoots flame.\n• Hand-held, home-made flamethrower. Please do NOT try this at home."
+
+[KFWeap_Shotgun_DragonsBreath]
+ItemName="Incendiary Trench Gun"
+ItemCategory="Shotgun"
+ItemDescription="• Fire mode is pump-action only.\n• A shotgun using Dragon's Breath Incendiary Rounds. Not only deadly, but looks wonderful too."
+
+[KFWeap_Flame_Flamethrower]
+ItemName="Flamethrower"
+ItemCategory="Flames"
+ItemDescription="• Fire mode shoots flame. That's it.\n• A classic in any generation. If in doubt, simply burn everything down."
+
+[KFWeap_Beam_Microwave]
+ItemName="Microwave Gun"
+ItemCategory="Flames"
+ItemDescription="• Fire mode uses microwaves to heat Zeds at range, burning them inside and out.\n• Alt-fire unleashes a close-range microwave blast.\n• The wonders of modern technology. A handheld Zed-cooker."
+
+[KFWeap_Thrown_C4]
+ItemName="C4 Explosives"
+ItemCategory="Explosives"
+ItemDescription="• Fire mode places your C4 charge.\n• Alt-fire detonates your C4 charges, in the sequence that you placed them.\n• A block of C4, wired for on-demand remote detonation."
+
+[KFWeap_GrenadeLauncher_HX25]
+ItemName="HX25 Grenade Pistol"
+ItemCategory="Explosives"
+ItemDescription="• Fire mode shoots multiple submunitions, that explode on contact."
+
+[KFWeap_GrenadeLauncher_M79]
+ItemName="M79 Grenade Launcher"
+ItemCategory="Explosives"
+ItemDescription="• Fire mode launches a grenade.\n• Grenade explodes on impact.\n• Only arms itself a few meters down-range, so you don't blow your own face off."
+
+[KFWeap_RocketLauncher_RPG7]
+ItemName="RPG-7"
+ItemCategory="Explosives"
+ItemDescription="• Fire mode launches the rocket.\n• Rocket explodes on impact.\n• Only arms itself a few meters down-range, so you don't blow your own face off.\n• And watch the back-blast!"
+
+[KFWeap_Pistol_Dual9mm]
+ItemName="Dual 9mm Pistol"
+ItemCategory="Hand Gun"
+ItemDescription="• Fire mode is semi-auto only.\n• With flashlight attachment.\n• This is a pair of standard 9mm pistols. You can sell one (only), if you need to."
+
+
+[KFGameInfo_Survival]
+GameName="Survival"

@@ -1,0 +1,11 @@
+[Errors]
+Error_RemoteDesktop=This game cannot run with 3D graphics over a Remote Desktop connection.
+Error_ParentalControls=The current level of parental controls do not allow you to run this game.
+Error_ResolutionTooLow=The current resolution is too low to run this game.
+Error_FloatingPointBlendingRequired=Your video card does not support alpha blending with floating point render targets (D3DFMT_A16B16G16R16F), which is required to run this game.  Exiting...
+Error_FailedToCreateD3D9Device=Failed to create the D3D9 Device!  This can happen if the desktop is locked.  Exiting...
+Error_RanOutOfVideoMemory=Ran out of video memory!  Exiting...
+Error_NotMinSpec=Your hardware does not meet the minimum requiremts. Do you want to continue?
+Error_ModifiedCode=Modified executable code is not allowed. Please reinstall the game.
+Error_PureVirtualsEnabled=The game cannot run with CHECK_PUREVIRTUALS enabled.  Please disable CHECK_PUREVIRTUALS and rebuild the executable.
+

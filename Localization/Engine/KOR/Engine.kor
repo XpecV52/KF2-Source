@@ -1,0 +1,291 @@
+[Public]
+Object[0]=(Name=Engine.ServerCommandlet,Class=Class,MetaClass=Core.Commandlet)
+Object[1]=(Name=Engine.MasterMD5Commandlet,Class=Class,MetaClass=Core.Commandlet)
+Object[2]=(Name=Engine.SmokeTestCommandlet,Class=Class,MetaClass=Core.Commandlet)
+
+[Errors]
+NetHDSpace=HDD에 패키지를 다운로드할 공간이 충분치 않습니다. 먼저 공간을 확보하셔야 겠습니다.
+NetOpen=파일 열기 에러
+NetWrite=파일 쓰기 에러
+NetRefused=서버가 '`~' 전송 거절
+NetClose=파일 닫기 에러
+NetSize=파일 크기 불일치
+NetMove=파일 이동 에러
+NetInvalid=사용불가능한 파일 요청 수신
+NoDownload=호스트에서 다운받지 않은 콘텐츠가 있어 경기에 참여할 수 없습니다.
+DownloadFailed='`~' 패키지 다운로드중, 실패: `~
+RequestDenied=서버가 보류 레벨에서 파일을 요청했습니다: 거부
+ConnectionFailed_Title=연결 끊김
+ConnectionFailed=호스트와의 연결이 끊겼습니다.
+ChAllocate=채널을 할당할 수 없었습니다.
+NetAlready=이미 네트워크중입니다.
+NetListen=Listen 실패: 사용가능한 맥락 링커가 없습니다.
+LoadEntry=로드 불가능한 엔트리: `~
+InvalidUrl=호스트에서 다운받지 않은 콘텐츠가 있어 경기에 참여할 수 없습니다.
+InvalidLink=사용불가능한 링크: `~
+FailedBrowse=입장 실패 `~: `~. 에러는 로그를 참고하십시오.
+Listen=Listen 실패: `~
+AbortToEntry=실패. 엔트리로 돌아갑니다.
+ServerOpen=서버가 네트워크 URL을 열 수 없습니다.
+ServerListen=전용 서버는 listen이 불가능합니다: ~
+Pending='`~' 로의 연결 보류 실패, `~
+LoadPlayerClass=플레이어 클래스 로드 실패
+ClientOutdated=참여하려는 경기가 호환되지 않는 게임 버전으로 실행중입니다. 게임 버전을 업그레이드해 보십시오.
+ServerOutdated=서버 버전이 구형입니다.
+FailedMapload_NotFound=명령줄에 지정된 '`~' 맵을 찾을 수 없습니다. 대신 기본 맵을 로드하시겠습니까?
+DebuggerPresentError=현재 유저-모드나 커널-모드 디버거로 실행중임을 게임이 검출해 내어 계속할 수가 없습니다. 디버깅 유틸리티를 전부 종료하고 게임을 재시작하십시오.
+NetworkInit=네트워크 레이어 초기화 에러
+CreateMatchError=경기 생성 에러
+UsedCheatCommands=넷 플레이에서 허용되지 않은 콘솔 명령이 사용되었습니다. 경기를 생성하려면 게임을 재시작해야 합니다.
+FailedFindPackage=필수 '`~' 패키지를 찾지 못했습니다.
+ConnectionTimeout=호스트로의 연결이 타임아웃되었습니다.
+NegativeDeltaTime=CPU 시간 편류(drift) 검출! 이 문제 해결법은 릴리스 노트를 참고하십시오.
+SteamClientRequired=호스트가 Steam에서 실행중입니다. 마찬가지로 Steam에서 게임을 실행해야 합니다.
+SteamAuthFailed=Steam의 결정에 의하면, 이 서버 연결 권한이 없습니다.
+ServerHostingDifferentGame=서버가 다른 게임을 호스팅 중입니다. 이 서버에 연결할 수 없습니다.
+PeerListen=피어 리슨 소켓 실패: `~
+PeerConnection=피어 연결 실패: `~
+IPhoneLaunchURLError=지금은 이 링크를 사용할 수 없습니다. 인터넷 접속 상태를 점검해 보세요.
+
+[Progress]
+CancelledConnect=연결 시도 취소
+RunningNet=`~: `~ (`~ 플레이어, `~ connections) [v`~]
+NetReceiving=수신중 '`~': `~/`~
+NetReceiveOk='`~' 수신 성공
+NetSend=전송중 '`~'
+NetSending=전송중 '`~': `~/`~
+Connecting=접속중...
+Listening=클라이언트 listen중...
+Loading=로드중
+Saving=저장중
+Paused=`~ 에 의해 일시정지
+ReceiveFile='`~' 수신중
+ReceiveOptionalFile=옵션 파일 '`~' 수신중
+ReceiveSize=크기 `~K, 완료 `3.1~`~
+ConnectingText=연결중:
+ConnectingURL=unreal://`~/`~
+Success=성공
+PeerConnecting=피어 연결중
+PeerDisconnecting=피어 연결 해제중
+
+[Console]
+ClassCaption=표준 언리얼 콘솔
+
+[GameViewportClient]
+LoadingMessage=로드중
+SavingMessage=저장중
+ConnectingMessage=접속중
+PausedMessage=일시정지
+PrecachingMessage=미리캐시중
+
+[MasterMD5Commandlet]
+HelpCmd=mastermd5
+HelpOneLiner=Master MD5 데이터베이스를 조작합니다.
+HelpUsage=mastermd5 [-option..] <params>
+HelpWebLink=http://unreal.epicgames.com/servertips.htm
+HelpParm[0]=-c
+HelpDesc[0]=새 MD5 데이터베이스를 만듭니다.
+HelpParm[1]=-a
+HelpDesc[1]=데이터베이스에 새 패키지를 추가합니다.
+HelpParm[2]=-s
+HelpDesc[2]=현 데이터베이스를 표시합니다.
+HelpParm[3]=-r
+HelpDesc[3]=모든 항목의 리비전을 <param>에 맞춥니다.
+
+[General]
+Upgrade=이 서버에 들어가려면, 에픽의 웹사이트에서 언리얼로의 최신 무료 업데이트를 해야 합니다:
+UpgradeURL=http://www.unreal.com/upgrade
+UpgradeQuestion=바로 웹 브라우저를 실행시키고 업그레이드 페이지로 이동하시겠습니까?
+Version=버전 `~
+SplashScreen_CopyrightInfo=저작권 © 1998-2013   Epic Games, Inc.
+SplashScreen_ThirdPartyCopyrightInfo=Bink Video 사용, 저작권 © 1997-2011 RAD Game Tools, Inc.
+
+[Menu]
+HelpMessage=
+MenuList=
+LeftString=왼쪽
+RightString=오른쪽
+CenterString=가운데
+EnabledString=켜짐
+DisabledString=꺼짐
+HelpMessage[1]=이 메뉴는 아직 구현되지 않았습니다.
+YesString=예
+NoString=아뇨
+
+[CheatManager]
+ViewingFrom=현재 뷰:
+OwnCamera=현재 뷰: 자체 카메라
+
+[GameInfo]
+DefaultPlayerName=플레이어
+GameName=게임
+
+[HUD]
+LoadingMessage=로드중
+SavingMessage=저장중
+ConnectingMessage=연결중
+PausedMessage=일시정지
+
+[Inventory]
+PickupMessage=아이템을 낚아챘습니다.
+
+[LevelInfo]
+Title=무제
+
+[PlayerReplicationInfo]
+StringSpectating=관람중
+StringUnknown=무명의
+
+[TeamInfo]
+TeamName=팀
+
+[Weapon]
+ItemName=무기
+
+[GameMessage]
+SwitchLevelMessage=레벨 전환중
+LeftMessage=" 님이 게임을 떠났습니다."
+FailedTeamMessage=플레이어에 대한 팀을 찾을 수 없습니다.
+FailedPlaceMessage=시작 지점을 찾을 수 없습니다.
+FailedSpawnMessage=플레이어를 스폰할 수 없습니다.
+EnteredMessage=" 님이 게임에 들어왔습니다."
+MaxedOutMessage=서버의 인원이 꽉찼습니다.
+ArbitrationMessage=세션이 이미 시작되었습니다.
+OvertimeMessage=규정 종료시 동점입니다. 서든 데쓰 연장전!!!
+GlobalNameChange=님이 이름을 바꿨습니다:
+NewTeamMessage=님의 팀은 이제:
+NoNameChange=이미 사용중인 이름입니다.
+VoteStarted=님이 투표를 시작했습니다.
+VotePassed=투표 통과.
+MustHaveStats=이 서버에 참가하려면 통계를 켜야 합니다.
+CantBeSpectator=미안합니다, 이번에는 관람자가 될 수 없습니다.
+CantBePlayer=미안합니다, 이번에는 플레이어가 될 수 없습니다.
+BecameSpectator=님이 관람자가 되었습니다.
+NewPlayerMessage=새 플레이어가 게임에 들어왔습니다.
+KickWarning=빈둥거려서 추방되기 직전입니다!
+NewSpecMessage=관람자가 게임에 들어왔습니다/
+SpecEnteredMessage=" 님이 관람자로 참여했습니다."
+
+[FailedConnect]
+FailMessage[0]=게임 참여 실패.  암호가 필요합니다.
+FailMessage[1]=게임 참여 실패.  암호가 틀렸습니다.
+FailMessage[2]=게임 참여 실패.  게임이 시작됐습니다.
+FailMessage[3]=게임 참여 실패.
+
+[AccessControl]
+IPBanned=이 서버에 금지된 IP 주소입니다.
+WrongPassword=입력한 암호가 틀립니다.
+NeedPassword=이 게임에 참여하려면 암호를 입력해야 합니다.
+SessionBanned=현 게임 세션에는 금지된 IP 주소입니다.
+KickedMsg=게임에서 강제 퇴장당했습니다.
+DefaultKickReason=걍!
+IdleKickReason=빈둥거려서 퇴장당했습니다.
+ACDisplayText[0]=게임 암호
+ACDisplayText[1]=접근 정책
+ACDisplayText[2]=관리자 암호
+ACDescText[0]=여기에 암호를 설정하면, 이대로 입력한 플레이어만 이 서버에 접속할 수 있습니다.
+ACDescText[1]=금지시킬 IP 주소 또는 주소 범위를 지정합니다.
+ACDescText[2]=이 서버에 관리자 권한으로 접속하려면 암호가 필요합니다.
+
+[ServerCommandlet]
+HelpDescription=네트워크 게임 서버
+HelpUsage=server map.unr[?game=gametype] [-option…] [parm=value]…
+HelpWebLink=http://unreal.epicgames.com/servertips.htm
+HelpParamNames[0]=Log
+HelpParamDescriptions[0]=생성할 로그 파일을 지정합니다.
+HelpParamNames[1]=AllAdmin
+HelpParamDescriptions[1]=모든 플레이어에게 관리자 권한을 줍니다.
+
+[SmokeTestCommandlet]
+HelpDescription=빌드 확인을 위한 일련의 테스트를 실행하는 커맨드릿입니다.
+HelpUsage=gamename.exe smoketest <-SERVER | -CHECK_NATIVE_CLASS_SIZES>
+HelpWebLink=
+HelpParamNames[0]=SERVER
+HelpParamDescriptions[0]=게임 구동 및 첫 프레임 코드 확인을 위해 서버로 한 틱 실행합니다.
+HelpParamNames[1]=CHECK_NATIVE_CLASS_SIZES
+HelpParamDescriptions[1]=모든 native 클래스가 멤버 레이아웃 내의 스크립트 클래스와 일치하는지 확인합니다.
+
+[ExampleGameMenu]
+CancelButtonText=게임으로 돌아감
+RespawnButtonText=플레이어 리스폰
+ReloadButtonText=맵 리로드
+InlineFontSampleText=이 단어는 작습니다...<Font:EngineFonts.LargeFont>이 단어는 크고요,<Font:/> 이 단어는 다시 보통입니다.
+InlineStyleSampleText=이 단어는 보통입니다...<Styles:ConsoleStyle>이 단어는 녹색이고요,<Styles:/> 이 단어 역시 보통입니다.
+SplitscreenButtonText=분할화면 테스트 씬
+
+[TestMenuStrings]
+ButtonTestText=버튼이 <SceneData:ButtonClickCount> 번 클릭되었습니다.
+PlayerIndexText=전파된 PlayerIndex는: <SceneData:PlayerIndex> 입니다.
+WrapStringTest=이건 그냥 여러가지 자동-크기조절 기능 테스트용으로 쓰일 별 뜻 없는 문구입니다. 이 정말로 긴 문자열은 UIString의 wrapping 함수기능 테스트용으로 좋습니다. 사실, 이 문자열은 정말 글자가 빽빽해서 UIString의 기타 기능 테스트에는 아주 그만입니다.
+
+[OnlineProfileSettings]
+OwnerMappings[0]=(Name="None")
+OwnerMappings[1]=(Name="Online Service Setting")
+OwnerMappings[2]=(Name="Game Setting")
+ProfileMappings[0]=(ValueMappings=((Name="Off"),(Name="On")))
+ProfileMappings[1]=(ValueMappings=((Name="Off"),(Name="On")))
+ProfileMappings[2]=(ValueMappings=((Name="No"),(Name="Yes")))
+ProfileMappings[3]=(ValueMappings=((Name="Off"),(Name="On"),(Name="Both")))
+ProfileMappings[5]=(ValueMappings=((Name="Normal"),(Name="Easy"),(Name="Hard")))
+ProfileMappings[6]=(ValueMappings=((Name="Medium"),(Name="Low"),(Name="High")))
+ProfileMappings[7]=(ValueMappings=((Name="None"),(Name="Black"),(Name="White"),(Name="Yellow"),(Name="Orange"),(Name="Pink"),(Name="Red"),(Name="Purple"),(Name="Blue"),(Name="Green"),(Name="Brown"),(Name="Silver")))
+ProfileMappings[8]=(ValueMappings=((Name="None"),(Name="Black"),(Name="White"),(Name="Yellow"),(Name="Orange"),(Name="Pink"),(Name="Red"),(Name="Purple"),(Name="Blue"),(Name="Green"),(Name="Brown"),(Name="Silver")))
+ProfileMappings[9]=(ValueMappings=((Name="Off"),(Name="On")))
+ProfileMappings[10]=(ValueMappings=((Name="Off"),(Name="On")))
+ProfileMappings[11]=(ValueMappings=((Name="Left Thumbstick"),(Name="Right Thumbstick")))
+ProfileMappings[12]=(ValueMappings=((Name="Auto"),(Name="Manual")))
+ProfileMappings[13]=(ValueMappings=((Name="Behind"),(Name="Front"),(Name="Inside")))
+ProfileMappings[14]=(ValueMappings=((Name="Trigger"),(Name="Button")))
+ProfileMappings[15]=(ValueMappings=((Name="Trigger"),(Name="Button")))
+
+[ViewportStatus]
+RenderingFrozenE=얼어붙은 것 렌더링...
+OcclusionChild=오클루전 자식
+
+[UIDataProvider_OnlineFriendMessages]
+SendingPlayerNameCol=전송자 이름
+bIsFriendInviteCol=친구 초대
+bWasAcceptedCol=친구 수락됨
+bWasDeniedCol=친구 거부됨
+MessageCol=메시지
+
+[UIDataProvider_OnlineFriends]
+NickNameCol=이름
+PresenceInfoCol=온라인 상태
+bIsOnlineCol=님은 온라인 상태입니다.
+bIsPlayingCol=님은 플레이중입니다.
+bIsPlayingThisGameCol=님은 이 게임을 플레이중입니다.
+bIsJoinableCol=님은 참여 가능합니다.
+bHasVoiceSupportCol=님은 보이스 가능합니다.
+OfflineText=오프라인
+OnlineText=온라인
+AwayText=자리비움
+BusyText=바쁨
+
+[OnlineGameSettings]
+NumPublicConnections.FriendlyName="최대 공개 슬롯"
+NumPrivateConnections.FriendlyName="최대 개인 슬롯"
+NumOpenPublicConnections.FriendlyName="공개 슬롯 열기"
+NumOpenPrivateConnections.FriendlyName="개인 슬롯 열기"
+bShouldAdvertise.FriendlyName="광고"
+bIsLanMatch.FriendlyName="랜 경기"
+bUsesStats.FriendlyName="통계 사용"
+bAllowJoinInProgress.FriendlyName="진행중 참여 허용"
+bAllowInvites.FriendlyName="초대 허용됨"
+bUsesPresence.FriendlyName="참석 켜짐"
+bAllowJoinViaPresence.FriendlyName="참석 허용을 통해 참여"
+bUsesArbitration.FriendlyName="중재"
+bAntiCheatProtected.FriendlyName="치트-방지 보호됨"
+OwningPlayerName.FriendlyName="서버"
+PingInMs.FriendlyName="핑"
+bIsDedicated.FriendlyName="전용"
+bIsListPlay.FriendlyName="ListPlay"
+AverageSkillRating.FriendlyName="기량 등급"
+
+[UIDataStore_OnlineStats]
+PlayerNickData.PlayerNickColumnName="플레이어 별명"
+RankNameMetaData.RankColumnName="순위"
+
+[UIDataProvider_OnlinePartyChatList]
+NatTypes=무명
+

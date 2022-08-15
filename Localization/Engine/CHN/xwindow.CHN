@@ -1,0 +1,5 @@
+[General]
+PropNone=没有选中的属性
+PropSingle=`~ 属性
+PropMulti=`~ 属性（`~ 选中）
+

@@ -1,0 +1,132 @@
+[Language]
+Language=日本語
+LangId=9
+SubLangId=1
+
+[Public]
+Object=(Name=Core.HelloWorldCommandlet,Class=Class,MetaClass=Core.Commandlet)
+
+[Errors]
+Unknown=不明なエラー
+Aborted=中止されました。
+ExportOpen=`~ のエクスポートエラー: '`~' のファイルが開けませんでした。
+ExportWrite=`~ のエクスポートエラー: '`~' のファイルが上書きできませんでした。
+FileNotFound='`~' のファイルが見つかりません。
+ObjectNotFound=オブジェクト '`~ `~.`~' が見つかりませんでした。
+PackageNotFound=パッケージ '`~' のファイルが見つかりません。
+PackageResolveFailed=パッケージ名が解決できません。
+FilenameToPackage=ファイル名 '`~' をパッケージ名に変換できません。
+Sandbox=パッケージ '`~' はこのサンドボックスにアクセスできません。
+PackageVersion=パッケージ '`~' バージョンの不一致
+SavedWithNewerVersion=パッケージ '`~'  は現在のバージョンより新しいエンジンで保存されたため、保存ができません。現在のバージョンは `~ ですが、 `~ で保存されています。
+PackagesSavedWithNewerVersion=以下のパッケージは現在のバージョンより新しいエンジンで保存されたため、保存ができません。\n`~
+CannotSaveWithOlderVersion=パッケージ '`~'  は現存するエンジンバージョンが、最初に保存されたパッケージより古いため保存ができません。
+CannotSavePartiallyLoaded=パッケージ '`~' は部分ロードされたため、保存ができません。
+CannotSaveStartupPackage=パッケージ '`~' はユーザーによりスタートアップパッケージに指定されているため、保存ができません。
+CannotSaveConformIncompatibility=従属パッケージ '`~' はオリジナルと互換性がないため、保存ができません。
+Error_FilenameIsTooLongForCooking=フアイル名 '`~' はファイル名が長いためコンソール向けのクックができません。 `~ 文字以上にならないようにしてください。
+FailedLoad='`~' をロードできません: `~
+ConfigNotFound='`~' が構成ファイル内に見つかりません。
+LoadClassMismatch=`~ は `~ の子クラスではありません。
+NotDll='`~' はDLLパッケージではありません: エクスポート '`~' が見つかりません。
+NotInDll='`~' が `~.lib' 内に見つかりません。
+FailedLoadPackage=パッケージのロードの失敗: `~
+FailedLoadObject='`~ `~.`~' のロードの失敗: `~
+TransientImport=一時オブジェクトのインポート: `~
+LinkedToObjectsInOtherMap_FindCulpritQ=グラフ `~: は外部マップ中のオブジェクトへリンクされています。 このオブジェクトへの参照を探しますか（少々時間がかかります）？
+LinkedToPrivateObjects_FindCulpritQ=グラフ `~: は外部のプライベートオブジェクトへリンクされています。 このオブジェクトへの参照を探しますか（少々時間がかかります）？
+FailedSaveOtherMapPackage=`~ が保存できません: グラフは外部専用マップパッケージ `~ にリンクされます。
+FailedSavePrivate=`~ が保存できません: グラフは外部専用オブジェクト`~ にリンクされます。
+FailedImportPrivate=専用オブジェクト `~ `~ がインポートできません。
+FailedCreate=`~ `~ は作成で見つかりません。
+FailedImport=ファイル '`~' で `~ が見つかりません。
+FailedSaveFile=ファイル '`~' の保存エラー: `~
+SaveWarning='`~' の保存エラー
+NotPackaged=オブジェクトはパッケージされません: `~ `~
+NotWithin=オブジェクト `~ `~ は `~ の代わりに `~ に作成されました。
+Abstract=オブジェクト `~ が作成できません。クラス `~ は抽象です。
+NoReplace=`~ と `~ は置換できません。
+ReplaceNotFullyLoaded_f=部分読み込みされた `~ の置換をしようとしています。
+ReplaceNoPostLoad_f=遅延読み込みされる `~ を置換できません。
+NoFindImport=インポート用のファイル '`~' が見つかりません。
+ReadFileFailed=インポート用のファイル '`~'(`~) の読み取りができません。
+SeekFailed=ファイル検索エラー
+OpenFailed=ファイル '`~' の開始エラー
+WriteFailed=ファイル書き込みエラー
+ReadEof=ファイルの最後から更に読む
+IniReadOnly=ファイル `~ は書込み保護に設定されています: 設定は保存されません。
+UrlFailed=URL の立ち上げ失敗
+Warning=警告
+Question=質問
+OutOfMemory=バーチャルメモリの容量がありません。プライマリハードディスクのスペースを十分に空けてください。
+History=ヒストリ
+Assert=アサーション失敗: `~ [ファイル: `~] [ライン : `~]
+Debug=デバッグアサーション失敗: `~ [ファイル: `~] [ライン : `~]
+LinkerExists='`~' のリンクはすでに存在しています。
+BinaryFormat=ファイル '`~' は識別不能なデータが含まれています。
+SerialSize=`~: ファイル シリアルサイズの不一致: 不適切 `~ 、適切 `~
+ExportIndex=不良エクスポートインデックス `~/`~
+ImportIndex=不良インポートインデックス `~/`~
+Password=パスワードが正しくありません。
+Exec=コマンドが正しくありません。
+BadProperty='`~': 不良または不明のプロパティ '`~'
+MisingIni=.ini ファイル が不明です: `~
+Error_ActorComponentDestroyedWithoutRemoval=アクタ コンポネント (`~) はシーンから削除されずに破棄されました。
+FileVersionDump=パッケージ `~ が読み込めません、パッケージバージョン `4~、最大予想 `4~ :　ライセンス パッケージバージョン `4~、最大予想 `4~.
+CookedPackagedVersionOlderThanEnginePackageFileCookedContentVersion=旧バージョンのエンジンで作成されたパッケージなので、実行できません。(`~) を作成し直してしてください。
+NativeRebuildRequired=タイプ '`~' のオブジェクトの作成ができません: ネイティブ クラスのレイアウトがスクリプト レイアウトと違います。データの喪失を防ぐ為、続行する前に C++ を構築してください。
+PackageNamedNone=｢なし｣ と名前のついたパッケージの作成を試行しました。
+EmptyPackageName=名前のついていないパッケージで新しいパッケージ作成を試行しました。
+OldVersionFile=ファイル `~ は、互換性のない過去のバージョンで保存されています。少なくとも `~ 以降である必要がありますが、 `~ となっています。
+LoadingTransientInstance=ディスクより一時クラスのインスタンスのロードを試みる - パッケージ: '`~'  オブジェクト: '`~'  クラス: '`~'
+LoadedDeprecatedClassInstance=`~: クラス `~ は利用するべきではありません。
+OperationDisallowedOnCookedContent=クックパッケージ上では行えない処理です。
+PackageBiggerThanSoftLimit=パッケージ `~ の保存に成功し `~ MByte でした。 推奨されるサイズを超えていますので、`~ MByte 以下に分割してください。
+PS3SupportNotLoaded=PS3ルールがインストールされていませんのでオブジェクトはクックされていません。 PS3 SDKをインストールしてください。
+Xbox360SupportNotLoaded=Xbox360ツールがインストールされていませんのでオブジェクトはクックされていません。 XDKをインストールしてください。
+MissingExeConfigFileError=エディタのロードにマネージドコード '`~' ファイルを読み込もうとしましたが見つかりませんでした。 このファイルは起動のために必要なものです。 アプリケーションを終了します。
+
+[Query]
+OldVersion=ファイル `~ は、このファイルと後方互換可能でない前のバージョンにより保存されました。読み取りが不可能でファイルを破壊する恐れがあります。この操作を続けますか?
+Name=名前:
+Password=パスワード:
+PassPrompt=名前とパスワードを入れてください:
+PassDlg=IDチェック
+Overwrite=ファイル '`~' は、更新が必要です。既存のバージョンに上書きしますか？
+OverwriteMultiple=これらのファイルは更新が必要です `~\n既存のバージョンに上書きしますか？
+OverwriteReadOnly='`~' は読み取り専用です。上書きを強制をしますか？
+CheckoutPerforce='`~' は読み取り専用です。確認が必要ですか？
+PackageFailedToOpen=パッケージ '`~' が開けませんでした。このコマンドを続け、この先のロードエラーを無視しますか? 継続すると損害が及ぶ場合があります。(オブジェクト参照の損失の可能性あり)
+RemoveNativeClass=ネイティブ クラスのスクリプトが検出されませんでした '`~' を静的初期化から除去しますか? (ネイティブ スクリプト クラスを最近除去していない場合、クラス宣言にCLASS_Intrinsic が含まれている事を確認してください。)
+Warning_ForceDelete=`~ を削除しようとしています。\n\n以下のオブジェクトを強制削除することは、未解決の参照を引き起こしデータが壊れる危険を伴います。\n `~.\n\n参照されているこのオブジェクトを削除しますか？
+
+[Progress]
+AutoSaving=ファイル `~ を自動保存中... （エスケープキーで自動保存を止めることができます）
+Saving=ファイル `~ を保存中...
+Loading=ファイル `~ をロード中...
+Finalizing=ファイル `~ を最終処理中...
+EditorPackages=Loaded Packages
+LoadingRefObjects=Loading referenced objects from: `~`~
+ProcessingRefObjects=Processing referenced objects from: `~`~
+
+[General]
+Product=Unreal
+Engine=Unreal Engine
+Copyright=Copyright 1998-2011 Epic Games, Inc. All Rights Reserved.
+True=正
+False=誤
+None=なし
+Yes=はい
+No=いいえ
+
+[HelpCommandlet]
+HelpDescription="このコマンドレットは、他のコマンドレットのヘルプ情報を表示します"
+HelpUsage="gamename.exe help <list | commandletname | webhelp commandletname>"
+HelpWebLink="https://udn.epicgames.com/bin/view/Three/HelpCommandlet"
+HelpParamNames[0]="list"
+HelpParamDescriptions[0]="使用可能なコマンドレットのリストを表示"
+HelpParamNames[1]="コマンドレット名"
+HelpParamDescriptions[1]="指定したコマンドレットのヘルプ情報を表示する"
+HelpParamNames[2]="webhelp"
+HelpParamDescriptions[2]="コマンドレットのドキュメントがあるウェブページの URL でブラウザを起動する"
+

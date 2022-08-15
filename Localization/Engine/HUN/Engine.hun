@@ -1,0 +1,290 @@
+[Public]
+Object[0]=(Name=Engine.ServerCommandlet,Class=Class,MetaClass=Core.Commandlet)
+Object[1]=(Name=Engine.MasterMD5Commandlet,Class=Class,MetaClass=Core.Commandlet)
+Object[2]=(Name=Engine.SmokeTestCommandlet,Class=Class,MetaClass=Core.Commandlet)
+
+[Errors]
+NetOpen=Hiba a fájl megnyitásánál
+NetWrite=Hiba a  fájl írásánál
+NetRefused=A szerver megtagadta a '`~' küldését
+NetClose=Hiba a  fájl bezárásánál
+NetSize=Fájl méret nem egyezik
+NetMove=Hiba a fájl mozgatásánál
+NetInvalid=Hibás fájl kérés érkezett
+NoDownload=Nem kapcsolódhatsz a játékhoz, mert a hoszt olyan letölthető tartalommal rendelkezik, amely neked nincs meg.
+DownloadFailed=A '`~' csoamg letöltése hibás: `~
+RequestDenied=A szerver szint alatti fájlt kért: emgtagadva
+ConnectionFailed=Megszakadt a kapcsolat a létrehozó gépével.
+ChAllocate=Nem sikerült csatornát kiosztani
+NetAlready=Már hálózatban van
+NetListen=Hallgatás sikertelen: no linker context available
+LoadEntry=Nem lehet betölteni az Entry-t: `~
+InvalidUrl=Nem kapcsolódhatsz a játékhoz, mert a hoszt olyan letölthető tartalommal rendelkezik, amely neked nincs meg.
+InvalidLink=Hibás Link: `~
+FailedBrowse=Nem sikerült belépni `~: `~. Ellenőrizze a log-ot a hibáért.
+Listen=Hallgatás sikertelen: `~
+AbortToEntry=Hiba; vissza az Entry-be
+ServerOpen=A szerverek nemtudnak emgnyitni hálózati URL-eket
+ServerListen=A dedikált szerver nem látja: `~
+Pending=Függő kapcsolat '`~'-hoz sikertelen; `~
+LoadPlayerClass=Failed to load player class
+ClientOutdated=A meccs amihez csatlakozni akarsz nem megfelelő verzióval fut. Próbáld frissíteni a verziódat.
+ServerOutdated=A szerver verziója lejárt
+FailedMapload_NotFound=A parancssorban meghatározott '`~' térkép nem található. Szeretnéd betölteni az alap pályát helyette?
+DebuggerPresentError=A játék észrevette, hogy user-mode-ú vagy kernel-mode-ú debuggert futtatsz. Lépj ki ezekből és indítsd újra a játékot.
+NetworkInit=Hiba a hálózati réteg inicializálásánál.
+CreateMatchError=Hiba a meccs létrehozásánál
+UsedCheatCommands=Olyan konzolparancsokat használtál, melyek tiltva vannak netes játék esetén. Újra kell indítanod a játékot, hogy új meccset kezdhess.
+FailedFindPackage=Nem sikerült megtalálni a hiányzó csomagot: '`~'
+ConnectionTimeout=Time outolt a kapcsolatod a szerverrel
+NegativeDeltaTime=CPU időelcsúszás észlelve! Kérlek olvasd el a release notest, hogy megtaláld a megoldást.
+NetHDSpace=There is not enough space on your HDD to download the package. You will need to free some space to download packages.
+ConnectionFailed_Title=Kapcsolat megszűnt
+SteamClientRequired=Host is running Steam, so you should too. Please launch the game from Steam.
+SteamAuthFailed=Steam decided that you are not authorized to connect to this server.
+ServerHostingDifferentGame=Server is hosting a different game. You cannot connect to this server.
+PeerListen=Peer listen socket failed: `~
+PeerConnection=Peer connection failed: `~
+
+[Progress]
+CancelledConnect=Csatlakozási kísérlet megszakítva
+RunningNet=`~: `~ (`~ játékosok, `~ connections) [v`~]
+NetReceiving=Fogadás '`~': `~/`~
+NetReceiveOk=Sikeresen fogadva '`~'
+NetSend=Küldés '`~'
+NetSending=Küldés '`~': `~/`~
+Connecting=Csatlakozás...
+Listening=Kliensekre várakozás...
+Loading=Töltés
+Saving=Mentés
+Paused=Megállítva `~ által
+ReceiveFile=Fogadás '`~'
+ReceiveOptionalFile=Opcionális fájl fogadása '`~'
+ReceiveSize=Size `~K, Complete `3.1~`~
+ConnectingText=Csatlakozás:
+ConnectingURL=unreal://`~/`~
+Success=Sikeres
+PeerConnecting=Peer connecting
+PeerDisconnecting=Peer disconnecting
+
+[Console]
+ClassCaption=Alap Unreal konzol
+
+[GameViewportClient]
+LoadingMessage=TÖLTÉS
+SavingMessage=MENTÉS
+ConnectingMessage=CSATLAKOZÁS
+PausedMessage=MEGÁLLÍTVA
+PrecachingMessage=ELŐTÖLTÉS
+
+[MasterMD5Commandlet]
+HelpCmd=mastermd5
+HelpOneLiner=A fő MD5 adatbázis manipulálása
+HelpUsage=mastermd5 [-option..] <params>
+HelpWebLink=http://unreal.epicgames.com/servertips.htm
+HelpParm[0]=-c
+HelpDesc[0]=Új MD5 adatbázis létrehozása
+HelpParm[1]=-a
+HelpDesc[1]=Új csomag hozzáadása az adatbázishoz
+HelpParm[2]=-s
+HelpDesc[2]=Jelenlegi adatbázis megjelenítése.
+HelpParm[3]=-r
+HelpDesc[3]=Erőlteti az összes érték revízióját a következőre: <param>
+
+[General]
+Upgrade=Hogy beléphess erre a szerverre, szükséged van a legújabb ingyenes frissítésre az Unrealhez, amely elérhető az Epic honlapján:
+UpgradeURL=http://www.unreal.com/upgrade
+UpgradeQuestion=El kívánod indítani a böngésződet, és egyenesen a frissítésekhez menni?
+Version=Verzió `~
+SplashScreen_CopyrightInfo=Copyright © 1998-2010   Epic Games, Inc.   All rights reserved.
+SplashScreen_ThirdPartyCopyrightInfo=Uses Bink Video, Copyright © 1997-2011 by RAD Game Tools, Inc.
+
+[Menu]
+HelpMessage=
+MenuList=
+LeftString=Bal
+RightString=Jobb
+CenterString=Közép
+EnabledString=Engedélyezett
+DisabledString=Kikapcsolt
+HelpMessage[1]=Ez a menü még nem lett implementálva.
+YesString=igen
+NoString=nem
+
+[GameInfo]
+DefaultPlayerName=Játékos
+GameName=Játékos
+
+[HUD]
+LoadingMessage=TÖLTÉS
+SavingMessage=MENTÉS
+ConnectingMessage=CSATLAKOZÁS
+PausedMessage=MEGÁLLÍTVA
+
+[Inventory]
+PickupMessage=Zátonyra futtattál egy eszközt.
+
+[LevelInfo]
+Title=Névtelen
+
+[PlayerReplicationInfo]
+StringSpectating=Figyelő
+StringUnknown=Ismeretlen
+
+[TeamInfo]
+TeamName=Csapat
+
+[Weapon]
+ItemName=Fegyver
+
+[GameMessage]
+SwitchLevelMessage=Szintek váltása
+LeftMessage="elhagyta a játékot."
+FailedTeamMessage=Nemtalni groupot a játékosnak
+FailedPlaceMessage=Nemtalálni kezdő helyet
+FailedSpawnMessage=Nem spawnolható játékos
+EnteredMessage="csatlakozott a játékhoz."
+MaxedOutMessage=A szerver tele van.
+ArbitrationMessage=Bírói üzenet (c.f. GameInfo.uc)
+OvertimeMessage=Egyenlő pontok a végső elszámolás után. Ráadás hirtelen halál!!!
+GlobalNameChange=megváltoztatta a nevét erre:
+NewTeamMessage=mostantól
+NoNameChange=Név már használatban.
+VoteStarted=szavazást kezd.
+VotePassed=Szavazat leadva.
+MustHaveStats=Statisztikákat engedélyezni kell, hogy csatlakozhass erre a szerverre.
+CantBeSpectator=Sajnos most nem lehetsz megfigyelő.
+CantBePlayer=Sajnos most nem lehetsz aktív játékos.
+BecameSpectator=néző lett.
+NewPlayerMessage=Új játékos csatlakozott a játszmához.
+KickWarning=Inaktivitás miatt nemsokára kirúgnak!
+NewSpecMessage=Néző csatlakozott a játékhoz/
+SpecEnteredMessage="nézőként csatlakozott."
+
+[FailedConnect]
+FailMessage[0]=NEMSIKERÜLT CSATLAKOZNI A JÁTÉKHOZ. JELSZÓRA VAN SZÜKSÉG.
+FailMessage[1]=NEMSIKERÜLT CSATLAKOZNI A JÁTÉKHOZ. HIBÁS JELSZÓ.
+FailMessage[2]=NEMSIKERÜLT CSATLAKOZNI A JÁTÉKHOZ. A JÁTÉK ELKEZDŐDÖTT.
+FailMessage[3]=NEMSIKERÜLT CSATLAKOZNI A JÁTÉKHOZ.
+
+[AccessControl]
+IPBanned=Az IP címed tiltva van ezen a szerveren.
+WrongPassword=A megadott jelszó hibás.
+NeedPassword=Meg kell adnod egy jelszót, hogy csatlakozhass ehhez a játékhoz.
+SessionBanned=Az IP címed ki van tiltva ebből a játékból.
+KickedMsg=Kidobtak a játékból.
+DefaultKickReason=Egy sincs meghatározva
+IdleKickReason=Inaktivitás miatt kirúgtak a játékból.
+ACDisplayText[0]=Játék jelszó
+ACDisplayText[1]=Belépési feltételek
+ACDisplayText[2]=Admin jelszó
+ACDescText[0]=Ha van jelszó megadva, a játékosoknak meg kell adniuk, hogy csatlakozhassanak.
+ACDescText[1]=Meghatározza az IP címeket, amik tiltva vannak.
+ACDescText[2]=Admin jelszó a szerverhez.
+
+[ServerCommandlet]
+HelpDescription=Hálózati játék szerver
+HelpUsage=server map.unr[?game=gametype] [-option...] [parm=value]...
+HelpWebLink=http://unreal.epicgames.com/servertips.htm
+HelpParamNames[0]=Log
+HelpParamDescriptions[0]=Meghatározza a generálandó log fájlt
+HelpParamNames[1]=AllAdmin
+HelpParamDescriptions[1]=Minden játékosnak admin jogot ad
+
+[SmokeTestCommandlet]
+HelpDescription=Ez a parancslista egy tesztsorozatot futtat, hogy validálja a buildet.
+HelpUsage=gamename.exe smoketest <SERVER | CHECK_NATIVE_CLASS_SIZES>
+HelpWebLink=
+HelpParamNames[0]=SERVER
+HelpParamDescriptions[0]=Futtatja a játékot egy pillanatra, hogy validálja az indítást és az első fram kódját
+HelpParamNames[1]=CHECK_NATIVE_CLASS_SIZES
+HelpParamDescriptions[1]=Érvényesíti, hogy az összes natív osztály megfeleljen a script osztályának a member layoutban
+
+[ExampleGameMenu]
+CancelButtonText=Visszatérés a játékba
+RespawnButtonText=Játékos újraélesztése
+ReloadButtonText=Térkép Újratöltése
+InlineFontSampleText=Ezek a szavak kicsik... <Fonts:EngineFonts.LargeFont>ezek a szavak nagyok,<Fonts:/> és ezek a szavak rendes méretűek.
+InlineStyleSampleText=Ezek a szavak normálisak... <Styles:ConsoleStyle>ezek a szavak zöldek<Styles:/> és ezek a szavak is normálisak.
+SplitscreenButtonText=Splitscreen Test Scene
+
+[TestMenuStrings]
+ButtonTestText=A gomb <SceneData:ButtonClickCount> alkalommal lett lenyomva.
+PlayerIndexText=A propogált PlaxerIndex: <SceneData:PlayerIndex>.
+WrapStringTest=Ez egy tök lényegtelen szöveg, ami string auto-méretezésre lesz használva. Ez a nagyon hosszú szöveg remek ahhoz, hogy az UIString sortörési funkcióit teszteljük. Valójában egy csomó arakter van ebben a szövegben, ezért ez nagyszerű arra, hogy sok különböző szolgáltatásást teszteljük az UIString-nek.
+
+[OnlineProfileSettings]
+OwnerMappings[0]=(Name="Semmi")
+OwnerMappings[1]=(Name="Online szolgáltatás beállítás")
+OwnerMappings[2]=(Name="Játékbeállítás")
+ProfileMappings[0]=(ValueMappings=((Name="Ki"),(Name="Be")))
+ProfileMappings[1]=(ValueMappings=((Name="Ki"),(Name="Be")))
+ProfileMappings[2]=(ValueMappings=((Name="Nem"),(Name="Igen")))
+ProfileMappings[3]=(ValueMappings=((Name="Ki"),(Name="Be"),(Name="Mindkettő")))
+ProfileMappings[5]=(ValueMappings=((Name="Normál"),(Name="Könnyű"),(Name="Nehéz")))
+ProfileMappings[6]=(ValueMappings=((Name="Közepes"),(Name="Alacsony"),(Name="Magas")))
+ProfileMappings[7]=(ValueMappings=((Name="Semmi"),(Name="Fekete"),(Name="Fehér"),(Name="Sárga"),(Name="Narancs"),(Name="Rózsaszín"),(Name="Vörös"),(Name="Lila"),(Name="Kék"),(Name="Zöld"),(Name="Barna"),(Name="Ezüst")))
+ProfileMappings[8]=(ValueMappings=((Name="Semmi"),(Name="Fekete"),(Name="Fehér"),(Name="Sárga"),(Name="Narancs"),(Name="Rózsaszín"),(Name="Vörös"),(Name="Lila"),(Name="Kék"),(Name="Zöld"),(Name="Barna"),(Name="Ezüst")))
+ProfileMappings[9]=(ValueMappings=((Name="Ki"),(Name="Be")))
+ProfileMappings[10]=(ValueMappings=((Name="Ki"),(Name="Be")))
+ProfileMappings[11]=(ValueMappings=((Name="Bal kar"),(Name="Jobb kar")))
+ProfileMappings[12]=(ValueMappings=((Name="Auto"),(Name="Manual")))
+ProfileMappings[13]=(ValueMappings=((Name="Mögötte"),(Name="Előtte"),(Name="Benne")))
+ProfileMappings[14]=(ValueMappings=((Name="Kapcsoló"),(Name="Gomb")))
+ProfileMappings[15]=(ValueMappings=((Name="Kapcsoló"),(Name="Gomb")))
+
+[ViewportStatus]
+RenderingFrozenE=Renderelés lefagyott...
+OcclusionChild=Occlusion Child
+
+[UIDataProvider_OnlineFriendMessages]
+SendingPlayerNameCol=Küldő neve
+bIsFriendInviteCol=Barát Meghívása
+bWasAcceptedCol=Barát Elfogadva
+bWasDeniedCol=Barát Megtagadva
+MessageCol=Üzenet
+
+[UIDataProvider_OnlineFriends]
+NickNameCol=Név már használatban.
+PresenceInfoCol=On-line Státusz
+bIsOnlineCol=On-line
+bIsPlayingCol=Játszik
+bIsPlayingThisGameCol=Ezt a játékot játssza
+bIsJoinableCol=Csatlakotatható
+bHasVoiceSupportCol=Van Hang Támogatása
+OfflineText=Offline
+OnlineText=Online
+AwayText=Nincs a gépnél
+BusyText=Elfoglalt
+
+[OnlineGameSettings]
+NumPublicConnections.FriendlyName="Maximum publikus helyek"
+NumPrivateConnections.FriendlyName="Maximum privát helyek"
+NumOpenPublicConnections.FriendlyName="Nyitott publikus helyek"
+NumOpenPrivateConnections.FriendlyName="Nyitott privát helyek"
+bShouldAdvertise.FriendlyName="Reklámoz"
+bIsLanMatch.FriendlyName="LAN játszma"
+bUsesStats.FriendlyName="Használ statokat"
+bAllowJoinInProgress.FriendlyName="Menetközbeni csatlakozás megengedett"
+bAllowInvites.FriendlyName="Meghívások Engedélyezve"
+bUsesPresence.FriendlyName="Jelenlét Engedélyezve"
+bAllowJoinViaPresence.FriendlyName="Csatlakozás Engedélyezett Jelenléten Keresztül"
+bUsesArbitration.FriendlyName="Bíráskodás"
+OwningPlayerName.FriendlyName="Szerver"
+PingInMs.FriendlyName="Ping"
+bIsDedicated.FriendlyName="Dedikált"
+bIsListPlay.FriendlyName="ListPlay"
+AverageSkillRating.FriendlyName="Képesség osztályozás"
+bAntiCheatProtected.FriendlyName="Anti-Cheat Protected"
+
+[UIDataStore_OnlineStats]
+PlayerNickData.PlayerNickColumnName="Player Nick"
+RankNameMetaData.RankColumnName="Rank"
+
+[UIDataProvider_OnlinePartyChatList]
+NatTypes=Unknown
+
+[CheatManager]
+ViewingFrom=Now viewing from
+OwnCamera=Now viewing from own camera
+

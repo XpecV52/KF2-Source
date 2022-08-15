@@ -1,0 +1,309 @@
+[WebAdmin]
+;;Defines a subdirectory that contains localized HTML files, will be used instead
+;;of the files in the Web/WebAdmin directory.
+;HTMLSubDirectory=INT
+menuLogout="Log out"
+menuLogoutDesc="Log out from the webadmin and clear all authentication information."
+AccessDenied="Access Denied"
+msgNoPrivs="You do not have the privileges to view this page."
+msgNoStartPage="No starting page."
+msgLogoutNotice="To properly log out you will need to close the webbrowser to clear the saved authentication information."
+msgUnableToLogout="Unable to log out."
+error404="Error 404 - Page not found"
+error403="Error 403 - Forbidden"
+error401="Error 401 - Unauthorized"
+msgNotFound="The requested page was not found."
+msgSessionCreateFail="Unable to create a session. See the log file for details."
+msgWrongAuthCookie="Authentication cookie does not contain correct information."
+pageLogin="Login"
+pageLoginDesc="Log in using the administrator username and password. Cookies must be enabled for this site."
+pageAboutTitle="About"
+pageAboutDesc="Various information about the Red Orchestra 2 WebAdmin"
+msgUnknownDataType="Requested unknown data type:"
+msgInvalidToken="Invalid form data."
+msgMaxLoginTries="Exceeded login attempts."
+
+[BasicWebAdminAuth]
+NoAccessControl="No AccessControl instance."
+InvalidCreds="Invalid credentials."
+NoPassSet="No administrator password has been set for this server. Add an entry \"AdminPassword\" in the section \"[Engine.AccessControl]\" in the KFGame.ini configuration file."
+
+[MultiWebAdminAuth]
+InvalidCreds="Invalid credentials."
+NoAdmins="No administrators have been created. Please update the configuration."
+msgUnsupportedHash="Unsupported hash algorithm."
+
+[QHCurrent]
+menuCurrent="Current Game"
+menuCurrentDesc="The current game status."
+menuServerInfo="Server Info"
+menuServerInfoDesc="The current game status."
+menuPlayers="Players"
+menuPlayersDesc="Manage the players currently on the server."
+menuChat="Chat console"
+menuChatDesc="This console allows you to chat with the players on the server."
+menuChange="Change Map"
+menuChangeDesc="Change the current map or game type."
+menuConsole="Management Console"
+menuConsoleDesc="Execute console commands as if they are directly entered on the console of the server. You may not have access to the same commands as you would when logged in as admin when playing on the server."
+menuBots="Bots"
+menuBotsDesc="Add or remove bots from the current game."
+NotesSaved="Notes saved"
+msgPlayerNotFound="Unable to find the requested player."
+msgNoHumanPlayer="No human player associated with this player."
+msgVoiceMuted="Player %s's voice has been muted for everybody."
+msgVoiceUnmuted="Player %s's voice has been unmuted for everybody."
+msgTextMuted="Player %s has been muted for everybody."
+msgTextUnmuted="Player %s has been unmuted for everybody."
+msgCantBanAdmin="Unable to session ban the player %s. Logged in admins can not be removed."
+msgSessionBanned="Player %s was banned for this session."
+msgCantKickAdmin="Unable to kick the player %s. Logged in admins can not be kicked."
+msgPlayerRemoved="Player %s was removed from the server."
+msgTextMute="Text Mute"
+msgTextUnmute="Text Unmute"
+msgExecDisabled="Execution of this command has been disabled."
+msgChangingGame="Changing the game. This could take a little while..."
+msgAddingBots="Attempted to add %d bot(s). It might take a little while before they have all been spawned."
+msgAddingBotsTeam="Attempted to add %d bot(s) to team %team. It might take a little while before they have all been spawned."
+msgRemovedBots="Removed bots: %s"
+msgNoMutators="There are no mutators available for this gametype."
+msgYes="Yes"
+msgNo="No"
+PlayerAction_kick="Kick"
+PlayerAction_sessionban="Session Ban"
+PlayerAction_banip="Ban IP"
+PlayerAction_banid="Ban Unique ID"
+PlayerAction_mutevoice="Mute Voice"
+PlayerAction_unmutevoice="Unmute Voice"
+PlayerAction_screenshot="Screenshot"
+msgScreenshot="Screenshot requested from player %s"
+rmRealistic="Realistic"
+rmStandard="Standard"
+rmCustom="Custom"
+msgOff="Off"
+pbLow="Low"
+pbMedium="Medium"
+pbHigh="High"
+msgUnknown="Unknown"
+msgOn="On"
+msgSessionBanNoROAC="Session ban functionality is not available with the current access control instance.""
+msgNotAllowed="You are not allowed to execute this action.""
+
+[QHDefaults]
+menuPolicy="Access Policy"
+menuPolicyDesc="Define the policies required to join the server."
+menuIpMask="IP Masks"
+menuIpMaskDesc="Change the IP policies that determine who can join the server."
+menuBannedId="Banned IDs"
+menuBannedIdDesc="Change account ban records. These records ban a single online account."
+menuBannedHash="Banned Hashes"
+menuBannedHashDesc="Change client ban records. These records ban a single copy of the game."
+menuSession="Session Bans"
+menuSessionDesc="View current session bans."
+menuSettings="Settings"
+menuGeneral="General"
+menuGeneralDesc="Change various server wide settings. These settings affect all game types. Changes will take effect in the next level."
+menuGameplay="Gameplay"
+menuGameplayDesc="Server wide gameplay settings. These settings affect all game types. Changes will take effect in the next level."
+menuPassword="Passwords"
+menuPasswordDesc="Change the game and/or administration passwords."
+menuGametypes="Gametypes"
+menuGametypesDesc="Change the default settings of the gametypes. Changes will take effect in the next level."
+menuMutators="Mutators"
+menuMutatorsDesc="Change settings for mutators. Not all mutators can be configured. Changes will take effect in the next level."
+menuMapCycles="Map Cycles"
+menuMapCyclesDesc="Change the game type specific map cycles. each game type can have a single map cycle."
+menuMLAddition="Additional Map Cycles"
+menuMLAdditionDesc="Manage additional map cycle configurations."
+msgSettingsCacheDesc="Rebuild the settings cache."
+msgRemovedPolicy="Removed policy:"
+msgNoValidIpMask="%s is not a valid IP mask"
+msgInvalidPolicy="Invalid policy selected."
+msgAddedPolicy="Added IP policy:"
+msdUpdatedPolicy="Updated IP policy: "
+msgNoValidId="%s is not a valid ID"
+msgAddedBanId="Added ban for UniqueID:"
+msgNoValidHash="%s is not a valid client hash"
+msgBannedHash="Added ban for hash: "
+msgRemovedSessionBan="Removed session ban for UniqueID: %1
+msgSettingsSaved="Settings saved."
+msgCantSaveSettings="Unable to load a settings information for this game type."
+msgCantLoadSettings="Unable to load settings."
+msgGamePWError="Game password and confirmation do not match"
+msgGamePWSaved="Game password updated"
+msgAdminPWError="Admin password and confirmation do not match"
+msgAdminPWEmpty="Admin password can not be empty"
+msgAdminPWSaved="Admin password updated"
+msgMapCycleSaved="Map cycle saved."
+msgCantLoadGT="Unable to load the selected game type."
+msgImportedMapList="Imported map cycle"
+msgInvalidMaplist="Invalid gametype selected."
+Untitled="Untitled"
+msgCantFindMapCycle="Unable to find the map cycle"
+msgCycleDeleted="Map cycle %s deleted."
+msgCycleSaved="Map cycle %s saved"
+msgCycleActivated="Map cycle activated for the game type %s"
+menuServerActors="Server Actors"
+menuServerActorsDesc="Server actors are special addons that often add extra functionality to the server."
+msgServerActorsSaved="Server actors list saved. Changes take effect in the next map."
+msgServerActorsSavedWarn="Server actors list saved. However, changes will not take effect until a server restart."
+menuWelcome="Welcome Screen"
+menuWelcomeDesc="Change the content of the screen shown when players join."
+msgRealismModeEnforced="Updated various settings for the current realism mode."
+msgSessionBansNoROAC=Session bans are not available with the current access control.
+msgMapCycleActivated="Map cycle #%i activated."
+msgMapCycleDeleted="Map cycle deleted."
+msgNewMapCycle="new map cycle"
+mapList="Map list #%i"
+activeTag="(active)"
+msgBansImported="Added %i new ban(s)."
+msgBansImporting="Ban import status: %s"
+msgSessionBansNoBans="No session bans."
+
+[QHMultiAdmin]
+menuAdmins="Administrators"
+menuAdminsDesc="Manage WebAdmin administrators."
+msgCreatedAdmin="Created a new administrator with the name: %s"
+msgDupName="Unable to create a new administrator. There is already a admin with the name: %s"
+msgCantRemoveLast="You can not remove the last administrator."
+msgCantDelete="Administrator %s can not be deleted."
+msgRemovedAdmin="Removed administrator: %s"
+msgUnableToRemove="Unable to remove: %s"
+msgSavedAdmin="Saved administrator information"
+msgPassError="Passwords do not match."
+msgCannotDisableSelf="You cannot disable yourself."
+msgPrivLogEnabled="Privilege log enabled."
+msgPrivLogDisabled="Privilege log disabled."
+
+[WebAdminUtils]
+msgUnknownTeam="Team #%d"
+
+[GeneralSettings]
+SettingsGroups[0]=(DisplayName="Server Information")
+SettingsGroups[1]=(DisplayName="Connection")
+SettingsGroups[2]=(DisplayName="Cheat Detection")
+SettingsGroups[3]=(DisplayName="Game")
+SettingsGroups[4]=(DisplayName="Administration")
+SettingsGroups[5]=(DisplayName="Map Voting")
+SettingsGroups[6]=(DisplayName="Kick Voting")
+SettingsGroups[7]=(DisplayName="Chat")
+; 0
+PropertyMappings[0]=(ColumnHeaderText="Server Name")
+; 101
+PropertyMappings[1]=(ColumnHeaderText="Maximum Players")
+; 105
+PropertyMappings[2]=(ColumnHeaderText="Maximum Idle Time")
+; 200
+PropertyMappings[3]=(ColumnHeaderText="Cheat Protection (VAC)",ValueMappings=((name="Disabled"),(name="Enabled")))
+; 302
+PropertyMappings[4]=(ColumnHeaderText="Team Collision",ValueMappings=((name="Enabled"),(name="Disabled")))
+; 306
+PropertyMappings[5]=(ColumnHeaderText="Game Difficulty",ValueMappings=((name="Normal"),(name="Hard"),(name="Suicidal"),(name="Hell on Earth")))
+; 303
+PropertyMappings[6]=(ColumnHeaderText="Game Length",ValueMappings=((name="Short"),(name="Normal"),(name="Long"),(name="Custom")))
+; 500
+PropertyMappings[7]=(ColumnHeaderText="Admin Can Pause",ValueMappings=((name="No"),(name="Yes")))
+; 501
+PropertyMappings[8]=(ColumnHeaderText="Admin Login",ValueMappings=((name="Announce"),(name="Keep Silent")))
+; 701
+PropertyMappings[9]=(ColumnHeaderText="VoIP",ValueMappings=((name="Enabled"),(name="Disabled")))
+; 703
+PropertyMappings[10]=(ColumnHeaderText="Public Text Chat",ValueMappings=((name="Enabled"),(name="Disabled")))
+; 703
+PropertyMappings[11]=(ColumnHeaderText="Spectators",ValueMappings=((name="Talk to Everybody"),(name="Only Talk to Spectators")))
+; 650
+PropertyMappings[12]=(ColumnHeaderText="Kick Voting",ValueMappings=((name="Enabled"),(name="Disabled")))
+; 654
+PropertyMappings[13]=(ColumnHeaderText="Vote Kick Percentage")
+; 600
+PropertyMappings[14]=(ColumnHeaderText="Map Voting",ValueMappings=((name="Enabled"),(name="Disabled")))
+; 601
+PropertyMappings[15]=(ColumnHeaderText="Map Voting Time")
+; 602
+PropertyMappings[16]=(ColumnHeaderText="Mid Game Voting Percentage")
+
+[GeneralSettings Tooltips]
+ServerName="The name for the server as shown in the server browser."
+MaxPlayers="Maximum number of players allowed on the server."
+MaxIdleTime="Maximum number of idle seconds before kicking the player. 0 disables idle kicking."
+bAdminCanPause="Are administrators allowed to pause a network game."
+GameDifficulty=
+GameLength=
+bSilentAdminLogin="Whether to announce to players when an other player logs in as an administrator. This does not influence administration via the WebAdmin."
+bDisbableVOIP="Enable Voice over IP."
+bDisablePublicTextChat="Defines if public chat messages are possible."
+bPartitionSpectators=
+
+[WebAdminSystemSettings]
+menuSystem="WebAdmin Settings"
+menuSystemDesc="Change the web administration configuration."
+msgSettingsSaved="Settings saved."
+SettingsGroups[0]=(DisplayName="General")
+SettingsGroups[1]=(DisplayName="Chat Logging")
+SettingsGroups[2]=(DisplayName="Authentication")
+SettingsGroups[3]=(DisplayName="Advanced")
+PropertyMappings[0]=(ColumnHeaderText="Authentication Class")
+PropertyMappings[1]=(ColumnHeaderText="Session Handler class")
+PropertyMappings[2]=(ColumnHeaderText="HTTP Authentication",ValueMappings=((name="Use Login Form"),(name="Use HTTP Authentication")))
+PropertyMappings[3]=(ColumnHeaderText="Starting Page")
+PropertyMappings[4]=(ColumnHeaderText="Chat Logging",ValueMappings=((name="Disabled"),(name="Enabled")))
+PropertyMappings[5]=(ColumnHeaderText="Send XHTML headers",ValueMappings=((name="No"),(name="Yes")))
+PropertyMappings[6]=(ColumnHeaderText="Chat Window Refresh")
+PropertyMappings[7]=(ColumnHeaderText="Management Console Enabled",ValueMappings=((name="Disabled"),(name="Enabled")))
+PropertyMappings[8]=(ColumnHeaderText="Deny URL options")
+PropertyMappings[9]=(ColumnHeaderText="Deny Console Commands")
+PropertyMappings[10]=(ColumnHeaderText="Admin Console Commands Enabled",ValueMappings=((name="Disabled"),(name="Enabled")))
+PropertyMappings[11]=(ColumnHeaderText="Admin Console Commands Handler")
+PropertyMappings[12]=(ColumnHeaderText="Team Chatting",ValueMappings=((name="Disabled"),(name="Enabled")))
+PropertyMappings[13]=(ColumnHeaderText="Hide News",ValueMappings=((name="Show"),(name="Hide")))
+PropertyMappings[14]=(ColumnHeaderText="Filename")
+PropertyMappings[15]=(ColumnHeaderText="Force Unique Name",ValueMappings=((name="No"),(name="Yes")))
+PropertyMappings[16]=(ColumnHeaderText="Append Timestamp",ValueMappings=((name="No"),(name="Yes")))
+PropertyMappings[17]=(ColumnHeaderText="IP Octet Validation"))
+PropertyMappings[18]=(ColumnHeaderText="Authentication Failure Threshold"))
+
+[WebAdminSystemSettings Tooltips]
+AuthenticationClass="Class that performs the authentication for web administrators. Takes effect after the current game."
+SessionHandlerClass="Class that manages session handling for logged in web administrators. Takes effect after the current game."
+bHttpAuth="Use HTTP Basic Authentication rather than a log in form."
+startpage="The starting page when going to the Red Orchestra 2 Web server."
+bChatLog="Enable chat logging."
+bUseStrictContentType="Send the webpages with the application/xhtml+xml mime type."
+ChatRefresh="Delay between checking of chat messages in the chat window."
+bConsoleEnabled="The management console is enabled."
+denyUrlOptions="Options on a launch url to deny."
+denyConsoleCommands="Console commands which are not allowed to be executed in the management console. Matches the beginning of the command."
+bAdminConsoleCommandsHack="Support the "admin ..." console commands."
+AdminCommandHandlerClass="Handler for the "admin ..." console commands."
+bEnableTeamChat="Enable team chat functionality for webadmins."
+hideNews="Hide the news on the page"
+chatLogFilename="Mask for the filename. Following place holders can be used: %i = server ip; %p = server port; %c = computer name (as reported by the OS); %v = engine version."
+chatLogUnique="Make sure the chatlog filename is unique."
+chatLogIncludeTimeStamp="Append a timestamp to the chatlog filename."
+sessionOctetValidation="The number of IP segments to validate in the session. Increasing this value makes sessions less prone to hijacking."
+MaxAuthFails="Maximum failed login attempts before locking the user our for the duration of the game session."
+
+[KFGameInfoSettings]
+SettingsGroups[0]=(DisplayName="Rules")
+SettingsGroups[1]=(DisplayName="Game")
+SettingsGroups[2]=(DisplayName="Advanced")
+PropertyMappings[0]=(ColumnHeaderText="End Of Game Delay")
+PropertyMappings[1]=(ColumnHeaderText="Game Start Delay")
+PropertyMappings[2]=(ColumnHeaderText="Ready Up Delay")
+PropertyMappings[3]=(ColumnHeaderText="Pickups",ValueMappings=((name="Enabled"),(name="Disabled")))
+PropertyMappings[4]=(ColumnHeaderText="Objectives",ValueMappings=((name="Disabled"),(name="Enabled")))
+PropertyMappings[5]=(ColumnHeaderText="Coop Objectives",ValueMappings=((name="Disabled"),(name="Enabled")))
+
+[KFGameInfoSettings Tooltips]
+GameStartDelay="Number of seconds to wait before starting the game."
+
+[BanImporter]
+msgIOError="File download failed. The URL might be incorrect."
+msgInvalidResponse="Invalid webserver response: %response-code%. URL might be incorrect."
+msgInvalidJson="Downloaded file did not contain valid JSON data."
+msgJsonNoBans="Downloaded file did not contain ban information."
+msgStatusDownloading="Downloading"
+msgStatusParsing="Parsing"
+msgStatusDone="Completed"
+msgStatusError="Error"
+msgBadUrl="Invalid URL"

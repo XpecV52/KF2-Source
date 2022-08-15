@@ -1,0 +1,68 @@
+//=============================================================================
+// KFProj_Bullet_DragonsBreath
+//=============================================================================
+// Shotgun pellet class for the the Mossberg 500
+//=============================================================================
+// Killing Floor 2
+// Copyright (C) 2015 Tripwire Interactive LLC
+//=============================================================================
+
+class KFProj_Bullet_DragonsBreath extends KFProj_Bullet
+	hidedropdown;
+
+var PointLightComponent ProjLight;
+
+simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor HitActor)
+{
+	super.TriggerExplosion(HitLocation, HitNormal, HitActor);
+	ProjLight.SetEnabled(false);
+}
+
+defaultproperties
+{
+   Begin Object Class=PointLightComponent Name=ProjPointLight
+      Radius=500.000000
+      FalloffExponent=10.000000
+      Brightness=0.500000
+      LightColor=(B=171,G=218,R=252,A=255)
+      CastShadows=False
+      CastStaticShadows=False
+      CastDynamicShadows=False
+      LightingChannels=(Outdoor=True)
+      Name="ProjPointLight"
+      ObjectArchetype=PointLightComponent'Engine.Default__PointLightComponent'
+   End Object
+   ProjLight=ProjPointLight
+   GravityScale=0.350000
+   TerminalVelocity=7000.000000
+   ProjFlightTemplate=ParticleSystem'WEP_DragonsBreath_EMIT.Tracer.FX_DragonsBreath_Tracer'
+   ProjFlightTemplateZedTime=ParticleSystem'WEP_DragonsBreath_EMIT.Tracer.FX_DragonsBreath_Tracer_ZEDTime'
+   AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_DragonsBreath.Play_SA_DragonsBreath_Projectile_Loop'
+   AmbientSoundStopEvent=AkEvent'WW_WEP_SA_DragonsBreath.Stop_SA_DragonsBreath_Projectile_Loop'
+   Begin Object Class=AkComponent Name=AmbientAkSoundComponent Archetype=AkComponent'KFGame.Default__KFProj_Bullet:AmbientAkSoundComponent'
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      OcclusionUpdateInterval=0.100000
+      Name="AmbientAkSoundComponent"
+      ObjectArchetype=AkComponent'KFGame.Default__KFProj_Bullet:AmbientAkSoundComponent'
+   End Object
+   AmbientComponent=AmbientAkSoundComponent
+   ImpactEffects=KFImpactEffectInfo'WEP_DragonsBreath_ARCH.DragonsBreath_bullet_impact'
+   Speed=7000.000000
+   MaxSpeed=7000.000000
+   Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'KFGame.Default__KFProj_Bullet:CollisionCylinder'
+      CollisionHeight=0.000000
+      CollisionRadius=0.000000
+      ReplacementPrimitive=None
+      Name="CollisionCylinder"
+      ObjectArchetype=CylinderComponent'KFGame.Default__KFProj_Bullet:CollisionCylinder'
+   End Object
+   CylinderComponent=CollisionCylinder
+   Components(0)=CollisionCylinder
+   Components(1)=AmbientAkSoundComponent
+   Components(2)=ProjPointLight
+   Physics=PHYS_Falling
+   CollisionComponent=CollisionCylinder
+   Name="Default__KFProj_Bullet_DragonsBreath"
+   ObjectArchetype=KFProj_Bullet'KFGame.Default__KFProj_Bullet'
+}

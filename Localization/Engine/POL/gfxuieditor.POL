@@ -1,0 +1,10 @@
+[GFxImportCommandlet]
+HelpDescription="Imports or reimports swf movie files."
+HelpUsage="gamename gfximport [optional_list_of_paths]"
+HelpWebLink="https://udn.epicgames.com/Three/ScaleformImport"
+HelpParamNames[0]="optional_list_of_paths"
+HelpParamDescriptions[0]="The relative paths to .swf files that you want to import.  These files must exist within the <GameDir>/Flash directory.  In order to re-import files that are already imported into UE3, simply run the commandlet with no arguments.  The commandlet will reimport all SwfMovies for which the .swf file on disk is newer that the one imported."
+
+[GFxReimportCommandlet]
+HelpDescription="This commandlet has been deprecated.  Please use the GFxImport commandlet instead."
+

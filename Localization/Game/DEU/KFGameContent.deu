@@ -1,0 +1,229 @@
+//NOTES: 
+//1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
+//2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
+//3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
+//ItemDescription="Doppelläufige Schrotflinte mit Kaliber 12. Ideal für den Nahkampf. Selbst die größten Zeds geraten ins Wanken, wenn sie von dieser Doppelflinte getroffen werden. Wir haben sie in einem alten Farmhaus gefunden und //haben sie für die Händlerin eingepackt. Hoffentlich lebst du länger als der Farmer."
+
+[Armor]
+ItemName="Kampfrüstung"
+ItemCategory="Equipment"
+ItemDescription="• Die Kampfrüstung schützt dich vor verschiedenen Arten von Schaden, wird aber mit der Zeit schwächer.\n• Kaufe eine neue Rüstung oder repariere eine beschädigte Rüstung bei der Händlerin.\n\nEs ist eine Jacke, ausgestattet mit Platten aus einer Kombination von Hightech-Fasern und Wolframstahl."
+
+[KFProj_DynamiteGrenade]
+ItemName="1/2 Stange Dynamit"
+ItemCategory =" "Explosives""
+ItemDescription="• Eine kleine Menge Dynamit mit Zünder.\n• Kann dir schaden, also pass auf!"
+
+[KFProj_MedicGrenade]
+ItemName="Medizingranate"
+ItemCategory =" "Explosives""
+ItemDescription="• Setzt ein Gas frei, das Zeds vergiftet, aber Menschen heilt.\n• Stelle dich in die blaue Gaswolke, um geheilt zu werden.\n\nZitat von einem Wissenschaftler: 'Der Wirkstoff, den diese Granaten freisetzen, belebt den Homo sapiens wieder und schläfert den Homo zedicus ein.' Wir hoffen, das hilft."
+
+[KFProj_MolotovGrenade]
+ItemName="Molotowcocktail"
+ItemCategory="Explosives"
+ItemDescription="• Eine Flammengranate, die Zeds verbrennt.\n• Pass auf, sie kann auch dich verletzen!\n\nIhren Namen erhielt sie von den Finnen während des Winterkriegs 1939–1940, nachdem Wjatscheslaw Michailowitsch Molotow, der sowjetische Außenminister unter Stalin... Sorry, wolltest du keine Geschichtsstunde?"
+
+[KFProj_EMPGrenade]
+ItemName="EMP-Granate"
+ItemCategory="Explosives"
+ItemDescription="• Erzeugt einen elektrischen Impuls, der Zeds schadet und kurz betäubt.n\n\Wenn du weitere Details willst: Bei der Detonation erzeugt sie für eine Nanosekunde einen elektromagnetischen Impuls, der elektrische Systeme im nahen Umkreis stört. Insbesondere die in den Zeds. Ganz schön praktisch!"
+
+[KFProj_HEGrenade]
+ItemName="HE-Granate"
+ItemCategory="Explosives"
+ItemDescription="• Eine sehr einfache, hochgradig explosive Granate. Fügt Zeds und Menschen gleichermaßen Schaden zu.\n\nEinfacher geht es nicht! HE, hochgradig explosiver Sprengstoff, macht BUMM und jagt alles in die Luft. Müssen wir das wirklich noch erklären?"
+
+[KFProj_FragGrenade]
+ItemName="Splittergranate"
+ItemCategory="Explosives"
+ItemDescription="• Die klassische Splittergranate: Versprengt fiese kleine Metallteilchen, die jeden verletzen.\n\nIch bin ziemlich sicher, dass du vor dem Ausbruch genug Videospiele gespielt hast, um zu wissen, was eine Splittergranate ist. Hör auf, mir etwas vorzumachen. Niemand hier wird dir glauben."
+
+[KFWeap_Healer_Syringe]
+ItemName="Medizinische Spritze"
+ItemCategory="Equipment"
+
+[KFWeap_Welder]
+ItemName="Schweißer"
+ItemCategory="Equipment"
+
+[KFWeap_Pistol_9mm]
+ItemName="9-mm-Pistole"
+ItemCategory="Hand Gun"
+ItemDescription="• Feuer nur halbautomatisch.\n• Mit Lampenhalterung.\n• Dies ist eine Standard-9-mm-Pistole. Einfach und günstig (sehr günstig, unter uns gesagt), die grundlegende Faustfeuerwaffe für alle Horzine-Einsatzkräfte."
+
+[KFWeap_Pistol_Deagle]
+ItemName=".50 Desert Eagle"
+ItemCategory="Hand Cannon"
+ItemDescription="• Feuer nur halbautomatisch.\n• Die Desert Eagle ist das Biest unter den Handfeuerwaffen, daher kennt man sie auch unter dem Namen "Handkanone"."
+
+[KFWeap_AssaultRifle_AR15]
+ItemName="AR-15 Schädlingsgewehr"
+ItemCategory="Assault Rifle"
+ItemDescription="• Primärangriff kann zwischen 3-Schuss-Salven und halbautomatisch umgeschaltet werden.\n• Mit Lampenhalterung.\n• Sekundär: Zielen über Kimme und Korn.\n• Die halbautomatische Version mit 9-mm-Patrone. Zeds = Schädlinge."
+
+[KFWeap_AssaultRifle_SCAR]
+ItemName="SCAR-H-Sturmgewehr"
+ItemCategory="Assault Rifle"
+ItemDescription="• Wahl zwischen voll- und halbautomatischem Feuer.\n• Alternativfeuer zum Umschalten zwischen den Feuermodi.\n• Es wurde ursprünglich für das US-Kommando für Spezialoperationen entwickelt und ist in der Tat speziell!"
+
+[KFWeap_AssaultRifle_AK12]
+ItemName="Kalaschnikow AK-12"
+ItemCategory="Assault Rifle"
+ItemDescription="• Wahl zwischen vollautomatischem Feuer und Drei-Schuss-Salven.\n• Alternativfeuer zum Umschalten zwischen den Feuermodi.\n• Diese AK-12 stammt von einem toten russischen Speznas-Soldaten."
+
+[KFWeap_AssaultRifle_Bullpup]
+ItemName="Bullpup SA80 L85A2"
+ItemCategory="Assault Rifle"
+ItemDescription="• Wahl zwischen voll- und halbautomatischem Feuer.\n• Alternativfeuer zum Umschalten zwischen den Feuermodi.\n• Das SA80 war die Standardwaffe des britischen Militärs, bevor die Armee, na ja, gefressen wurde."
+
+[KFWeap_Knife_Demolitionist]
+ItemName="Teppichmesser"
+ItemCategory="Melee"
+ItemDescription="• Primärangriff: schneller Schlitzerangriff, halten für Kombiangriff.\n• Sekundärangriff: schwerer Schlitzerangriff\n• Alternativ: abwehren/parieren\n• Dies ist ein Teppichmesser. Perfekt zum Öffnen von Kisten, über die du auf dem Killing Floor stolpern könntest."
+
+[KFWeap_Knife_FieldMedic]
+ItemName="Skalpell"
+ItemCategory="Melee"
+ItemDescription="• Primärangriff: schneller Schlitzerangriff, halten für Kombiangriff.\n• Sekundärangriff: schwerer Schlitzerangriff\n• Alternativ: abwehren/parieren\n• Dies ist ein Skalpell. Da du Sanitäter bist, nehmen wir an, dass wir dir nicht erklären müssen, wie man es verwendet."
+
+[KFWeap_Knife_Firebug]
+ItemName="Feuerwehrmesser"
+ItemCategory="Melee"
+ItemDescription="• Primärangriff: schneller Schlitzerangriff, halten für Kombiangriff.\n• Sekundärangriff: schwerer Schlitzerangriff\n• Alternativ: abwehren/parieren\n• Dies ist ein Feuerwehrmesser. Da du Feuerwehrmann bist, nehmen wir an, dass wir dir nicht erklären müssen, wie man es verwendet."
+
+[KFWeap_Pistol_Medic]
+ItemName=""
+ItemCategory=""
+ItemDescription="• Feuer nur halbautomatisch.\n• Alternativfeuer verschießt Heilpfeile, um Teammitglieder zu heilen.\n• Verwendet hülsenlose Munition und zählt die Patronen."
+
+[KFWeap_SMG_Medic]
+ItemName="MP HMTech-201"
+ItemCategory="Sub Machine Gun"
+ItemDescription="• Feuer nur automatisch.\n• Alternativfeuer verschießt Heilpfeile, um Teammitglieder zu heilen.\n• Mit Lampenhalterung.\n• Deine Pistole, etwas aufgemotzt!"
+
+[KFWeap_Shotgun_Medic]
+ItemName="Schrotflinte HMTech-301"
+ItemCategory="Shotgun"
+ItemDescription="• Feuer nur halbautomatisch.\n• Alternativfeuer verschießt Heilpfeile, um Teammitglieder zu heilen.\n• Mit Lampenhalterung.\n• Die Kampfschrotflintenversion für Sanitäter."
+
+[KFWeap_AssaultRifle_Medic]
+ItemName="StGw HMTech-401"
+ItemCategory="Assault Rifle"
+ItemDescription="• Feuer nur automatisch.\n• Alternativfeuer verschießt Heilpfeile, um Teammitglieder zu heilen.\n• Mit Lampenhalterung.\n• Die Vollversion des Sturmgewehrs."
+
+[KFWeap_Shotgun_DoubleBarrel]
+ItemName="Doppelläufige Knarre"
+ItemCategory="Shotgun"
+ItemDescription="• Primärfeuer nur mit einem Lauf.\n• Alternativfeuer schießt aus beiden Läufen gleichzeitig.\n• Doppelläufige Schrotflinte mit Kaliber 12. Ideal für den Nahkampf. Bringt selbst die größten Zeds ins Wanken!"
+
+[KFWeap_Shotgun_AA12]
+ItemName="Auto-Schrotflinte AA-12"
+ItemCategory="Shotgun"
+ItemDescription="• Feuer nur automatisch.\n• Die AA-12 ist eine vollautomatische Schrotflinte. Hat eine zerstörende Feuerkraft im nahen und mittleren Umkreis, frisst aber Munition!"
+
+[KFWeap_Shotgun_MB500]
+ItemName="Repetierflinte SG 500"
+ItemCategory="Shotgun"
+ItemDescription="• Feuer nur mit Repetierflinte.\n• Mit Lampe.\n• Die Repetierflinte Mossberg SG 500 mit Pistolengriff ist ein wunderbarer Zed-Killer für den Nahkampf. Einfach und effektiv."
+
+[KFWeap_Shotgun_M4]
+ItemName="M4-Kampfschrotflinte"
+ItemCategory="Shotgun"
+ItemDescription="• Feuer nur halbautomatisch.\n• Mit Lampe.\n• Benelli hat die M4-Kampfschrotflinte für das US-Militär entwickelt. Halbautomatisch, ermöglicht stetes Feuer."
+
+[KFWeap_Knife_Berserker]
+ItemName="Rasenmäherklinge"
+ItemCategory="Melee"
+ItemDescription="• Primärangriff: schneller Schlitzerangriff, halten für Kombiangriff\n• Sekundärangriff: schwerer Schlitzerangriff\n• Alternativ: abwehren/parieren\n• Ja, das ist tatsächlich eine Rasenmäherklinge. Viel Spaß damit!"
+
+[KFWeap_Knife_Commando]
+ItemName="KF-BAR"
+ItemCategory="Melee"
+ItemDescription="• Primärangriff: schneller Schlitzerangriff, halten für Kombiangriff\n• Sekundärangriff: schwerer Schlitzerangriff\n• Alternativ: abwehren/parieren\n• Horzines Version des klassischen Kommandomessers."
+
+[KFWeap_Knife_Support]
+ItemName="Machete"
+ItemCategory="Melee"
+ItemDescription="• Primärangriff: schneller Schlitzerangriff, halten für Kombiangriff\n• Sekundärangriff: schwerer Schlitzerangriff\n• Alternativ: abwehren/parieren\n• Glaub nicht, dass du etwas Besonderes bist, nur weil wir dir das größte Messer gegeben haben!"
+
+[KFWeap_Edged_Katana]
+ItemName="Katana"
+ItemCategory="Melee"
+ItemDescription="• Primärangriff: schneller Schlitzerangriff, halten für Kombiangriff\n• Sekundärangriff: schwerer Schlitzerangriff\n• Alternativ: abwehren/parieren\n• Versuche, ein bisschen Respekt für seine Eleganz aufzubringen!"
+
+[KFWeap_Blunt_Crovel]
+ItemName="Crovel-Überlebenstool"
+ItemCategory="Melee"
+ItemDescription="• Primärangriff: schneller Schlitzerangriff, halten für Kombiangriff\n• Sekundärangriff: schwerer stumpfer Angriff\n• Alternativ: abwehren/parieren\n• Zum Teil Brechstange, zum Teil Schaufel und insgesamt ziemlich tödlich."
+
+[KFWeap_Shotgun_Nailgun]
+ItemName="Nagelpistole VLAD-1000"
+ItemCategory="Shotgun"
+ItemDescription="• Wahl zwischen Einfach- und Mehrfach-Nagelfeuermodus.\n• Alternativfeuer zum Umschalten zwischen den Feuermodi.\n• Einer der Horzine-Wissenschaftler hat sich wohl die Nagelpistole von einem (toten) Wartungstechniker geborgt."
+
+[KFWeap_Blunt_Pulverizer]
+ItemName="Pulverisator"
+ItemCategory="Melee"
+ItemDescription="• Primärangriff: schneller stumpfer Angriff, halten für Kombiangriff\n• Sekundärangriff feuert mit Explosivpatrone bei Kontakt. Wenn leer: schwerer stumpfer Angriff. Denke daran, nachzuladen!\n• Alternativ: abwehren/parieren."
+
+[KFWeap_Eviscerator]
+ItemName="Ausweider"
+ItemCategory="Special"
+ItemDescription="• Primärfeuer mit Sägeblättern\n• Alternative ist ein Nahkampfangriff, verbraucht aber viel Benzin.\n• Dieses Biest wurde ursprünglich in einer wilden Phase von Horzines SDS-Gruppe entwickelt und ist alles andere als subtil."
+SecondaryAmmo="Benzin"
+
+[KFWeap_Edged_Zweihander]
+ItemName="Zweihänder"
+ItemCategory="Melee"
+ItemDescription="• Primärangriff: mittlerer/schwerer Schaden, zur Kontrolle von großen Gruppen.\n• Sekundärangriff: langsamer, aber mit mehr Schaden.\n• Alternativ: abwehren/parieren\n• Du verursachst größeren Schaden, wenn du dich vorwärts bewegst."
+SharedUnlockSource="Chivalry: Medieval Warfare"
+
+[KFWeap_Flame_CaulkBurn]
+ItemName="Caulk n' Burn"
+ItemCategory="Flames"
+ItemDescription="• Feuermodus verschießt Flammen.\n• Selbstgebauter, tragbarer Flammenwerfer. Bitte NICHT zuhause nachmachen."
+
+[KFWeap_Shotgun_DragonsBreath]
+ItemName="Schrotflinte mit zündbarer Munition"
+ItemCategory="Shotgun"
+ItemDescription="• Feuer nur mit Repetierflinte.\n• Eine Schrotflinte mit zündbaren Dragon's-Breath-Patronen. Nicht nur tödlich, sondern auch schön anzusehen."
+
+[KFWeap_Flame_Flamethrower]
+ItemName="Flammenwerfer"
+ItemCategory="Flames"
+ItemDescription="• Feuermodus verschießt Flammen. Das ist alles.\n• Ein Klassiker in jeder Generation. Im Zweifel einfach alles niederbrennen."
+
+[KFWeap_Beam_Microwave]
+ItemName="Mikrowellenwaffe"
+ItemCategory="Flames"
+ItemDescription="• Feuermodus nutzt Mikrowellen, um Zeds zu erhitzen und sie innen und außen zu verbrennen.\n• Alternativfeuer stößt Mikrowellenstrahl für den Nahbereich aus.\n• Die Wunder der modernen Technik. Ein tragbarer Zed-Kocher."
+
+[KFWeap_Thrown_C4]
+ItemName="C4-Sprengstoff"
+ItemCategory="Explosives"
+ItemDescription="• Feuermodus platziert die C4-Ladung.\n• Alternativfeuer zündet die C4-Ladungen in der Reihenfolge, in der sie platziert wurden.\n• Ein Block C4, für die Fernzündung verkabelt."
+
+[KFWeap_GrenadeLauncher_HX25]
+ItemName="HX25-Granatpistole"
+ItemCategory="Explosives"
+ItemDescription="• Feuermodus verschießt Streumunition, die bei Kontakt explodiert."
+
+[KFWeap_GrenadeLauncher_M79]
+ItemName="M79-Granatwerfer"
+ItemCategory="Explosives"
+ItemDescription="• Feuermodus verschießt eine Granate.\n• Granate explodiert beim Aufprall.\n• Zündet nur in einigen Metern Entfernung, damit du dir nicht dein Gesicht wegbläst."
+
+[KFWeap_RocketLauncher_RPG7]
+ItemName="RPG-7"
+ItemCategory="Explosives"
+ItemDescription="• Feuermodus verschießt die Rakete.\n• Rakete explodiert beim Aufprall.\n• Zündet nur in einigen Metern Entfernung, damit du dir nicht dein Gesicht wegbläst.\n• Vorsicht vor dem Rückstoß!"
+
+[KFWeap_Pistol_Dual9mm]
+ItemName="Duale 9-mm-Pistole"
+ItemCategory="Hand Gun"
+ItemDescription="• Feuer nur halbautomatisch.\n• Mit Lampenhalterung.\n• Dies sind zwei Standard-9-mm-Pistolen. Du kannst (nur) eine verkaufen, wenn es nötig ist."
+
+
+[KFGameInfo_Survival]
+GameName="Überleben"

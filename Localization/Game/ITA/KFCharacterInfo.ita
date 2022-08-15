@@ -1,0 +1,517 @@
+//NOTES: 
+//1. CharacterName can be changed slightly. It can run to about ?? characters (MAX), including spaces.
+//2. Description is the bio and can be edited quite happily. Limit is just over 800 characters, including spaces. 
+//3. All the rest (Skin descriptions) should be 20-21 characters, max, including spaces.
+
+//DJ Scully
+
+[chr_DJSkully_archetype]
+CharacterName="Dj Skully"
+Description="Skully, il più fico Dj underground  olandese della sua generazione, non può non essere amato da tutti. Sembra che le donne alla fine se ne innamorino sempre, anche se non c'è nessuna logica. Basterebbe questo come motivo per essere odiato dagli uomini, ma è troppo divertente stare con Skully. Quando l'epidemia  era scoppiata, aveva appena terminato un mega set in un ex manicomio in disuso a nord di Londra. È riuscito a salvarsi grazie alla sua furbizia e alla sua velocità, anche se non era addestrato a combattere. Skully ha sempre avuto qualche difficoltà a prendere la vita sul serio e quest'apocalisse non lo ha cambiato. E poi è troppo bravo a far fuori i mostri, talmente bravo che si diceva stupidamente in giro che in passato avesse fatto parte delle forze speciali, ma si tratta anche in questo caso di un altro scherzo di Skully."
+BodyMesh0="Felpa con cappuccio "
+HeadMesh0="Maschera Skully"
+Attachment0="Cappello Skully"
+Attachment1="Skullyphones"
+
+[chr_DJSkully_archetype.BodyMesh0]
+BodySkin0="Nero intenso"
+BodySkin1="Extra rosso"
+BodySkin2="Giallo "
+BodySkin3="Verde acceso"
+BodySkin4="Retro Skully"
+
+[chr_DJSkully_archetype.HeadMesh0]
+HeadSkin0="Nero intenso"
+HeadSkin1="Extra rosso"
+HeadSkin2="Giallo "
+HeadSkin3="Verde acceso"
+HeadSkin4="Retro Skully"
+
+[chr_DJSkully_archetype.Attachment0]
+AttachmentSkin0="Nero intenso"
+AttachmentSkin1="Extra rosso"
+AttachmentSkin2="Giallo "
+AttachmentSkin3="Verde acceso"
+AttachmentSkin4="Retro Skully"
+
+[chr_DJSkully_archetype.Attachment1]
+AttachmentSkin0="Rosso ghigliottina"
+AttachmentSkin1="Giallo "
+AttachmentSkin2="Blu scuro"
+AttachmentSkin3="Arancio"
+AttachmentSkin4="Retro Skully"
+AttachmentSkin5="Bianco Horzine"
+
+
+//Police Constable Rob Briar
+
+[chr_briar_archetype]
+CharacterName="Agente Rob Brian"
+Description="Rob Briar era stato un agente di polizia dall'età di 17 anni fino a quel giorno in cui fu chiamato per quella che ai suoi superiori sembrava una specie di sommossa di attivisti anarchici. Sappiamo tutti che non lo era, ma per Briar fu una brutta scoperta. Per fortuna non era solo il classico poliziotto londinese ma aveva passato abbastanza tempo a svolgere missioni antiterroristiche in modo da conoscere un'ampia gamma di armi da fuoco. Sotto quella sua aria spensierata e scherzosa, Brian era davvero un duro ed era grazie a questo, e alla resistenza della sua tenuta antisommossa in Kevlar, che era rimasto in vita in quei primi pochi giorni. Adesso continua a fare il suo dovere, restando al servizio della gente nel tentativo di eliminare questa minaccia con qualsiasi arma disponibile."
+BodyMesh0="Tenuta  antisommossa"
+HeadMesh0="Capelli"
+Attachment0="Casco antisommossa"
+Attachment1="Maschera NBC S10"
+Attachment2="Occhiali"
+Attachment3="Occhiali da vista"
+
+[chr_briar_archetype.BodyMesh0]
+BodySkin0="Blu polizia"
+BodySkin1="Nero notte"
+BodySkin2="Verde militare"
+BodySkin3="Mimetico SAS"
+
+[chr_briar_archetype.HeadMesh0]
+HeadSkin0="Naturali"
+HeadSkin1="Ossigenati"
+HeadSkin2="Neri"
+
+[chr_briar_archetype.Attachment0]
+AttachmentSkin0="Rosso acceso"
+AttachmentSkin1="Blu polizia"
+AttachmentSkin2="Verde militare"
+AttachmentSkin3="Nero notte"
+
+[chr_briar_archetype.Attachment1]
+AttachmentSkin0="Nera"
+AttachmentSkin1="Mimetica"
+AttachmentSkin2="Biohazard"
+AttachmentSkin3="Zed Time"
+
+[CHR_briar_archetype.Attachment2]
+AttachmentSkin0="Occhiali da sole"
+AttachmentSkin1="Occhiali da vista"
+
+[CHR_briar_archetype.Attachment3]
+AttachmentSkin0="Occhiali da vista"
+
+//Mr Foster
+
+[CHR_MrFoster_archetype]
+CharacterName="Sig. Foster"
+Description="Foster era arrivato al day trading dopo aver frequentato una mediocre scuola privata inglese, con in mente la frase che gli aveva detto il funzionario scolastico dell'ufficio per il lavoro: "tu non  arriverai mai da nessuna parte, Foster". Non che a Foster importasse davvero. Ma, paradossalmente, pensava che il day trading gli si addicesse. Con sua grande soddisfazione, cominciò a fare parecchi soldi. Non che avrebbe mai ammesso di essere contento di lavorare, ovviamente. Aveva anche l'abitudine di insultare le autorità. Per questo suo atteggiamento Foster era considerato un ragazzo intelligente e in gamba, dotato di pungente senso dell'umorismo e buon gusto per vestiti e macchine. Oppure un pivello presuntuoso. A te la scelta."
+BodyMesh0="Giacca di pelle"
+HeadMesh0="Maschera antigas"
+Attachment0="Bombetta"
+Attachment1="Skullyphones"
+
+[CHR_MrFoster_archetype.BodyMesh0]
+BodySkin0="Blu KF"
+BodySkin1="Dosh PCG "
+BodySkin2="Biohazard"
+BodySkin3="Solo classe"
+BodySkin4="Rosso magma"
+
+[CHR_MrFoster_archetype.HeadMesh0]
+HeadSkin0="Bianca originale"
+HeadSkin1="Rosso PCG"
+HeadSkin2="Il mio compagno Skully"
+HeadSkin3="Rosso magma"
+HeadSkin4="Classe British"
+
+[CHR_MrFoster_archetype.Attachment0]
+AttachmentSkin0="Nero business"
+AttachmentSkin1="Top British"
+AttachmentSkin2="Marrone cioccolato"
+AttachmentSkin3="Rosso fuoco"
+AttachmentSkin4="Viola intenso"
+AttachmentSkin5="Bianco performance"
+
+[chr_MrFoster_archetype.Attachment1]
+AttachmentSkin0="Blu scuro"
+AttachmentSkin1="Rosso ghigliottina"
+AttachmentSkin2="Arancio"
+AttachmentSkin3="Retro Skully"
+AttachmentSkin4="Bianco Horzine"
+AttachmentSkin5="Giallo "
+
+
+
+//Erskine Coleman - renamed to Donovan Neal
+
+[CHR_Coleman_archetype]
+CharacterName="Donovan Neal"
+Description="Donovan è un tipaccio tosto in grado di cavarsela quasi in ogni situazione. Ma è molto di più di quello che può sembrare a un osservatore distratto. Non era solo uno di quei ragazzi che si occupava della sicurezza di un gruppo di wrestler, ma era la persona che aveva messo su, possedeva e gestiva interamente il giro d'affari che ruotava intorno alla sicurezza. Nato ad Atlanta, in Georgia, era intelligente e istruito, e, prima di mettersi in proprio con la sua società, lavorava per assicurare il rispetto della legge.  Non si trattava solo di muscoli: Donovan era anche il cervello dell'operazione. Ma adesso è solo un altro sopravvissuto, incastrato nel posto sbagliato al momento sbagliato. Di' una preghierina per tutti gli Zed che dovessero trovarsi tra quest'uomo e i suoi obiettivi. Oppure raggiungilo e aiutalo a ucciderli!"
+BodyMesh0="Felpa con cappuccio RQ"
+HeadMesh0="Faccia"
+Attachment0="Cappello RQ"
+Attachment1="Maschera NBC S10"
+Attachment2="Occhiali"
+Attachment3="Skullyphones"
+
+[CHR_Coleman_archetype.BodyMesh0]
+BodySkin0="Verde racing"
+BodySkin1="Rosso mattone"
+BodySkin2="Grigio chiaro"
+BodySkin3="Sabbia"
+
+[CHR_Coleman_archetype.HeadMesh0]
+HeadSkin0="Donovan"
+HeadSkin1="Tatuaggio"
+HeadSkin2="Occhio nero"
+
+[CHR_Coleman_archetype.Attachment0]
+AttachmentSkin0="Giallo paglierino"
+AttachmentSkin1="Rosso mattone"
+AttachmentSkin2="Azzurro"
+AttachmentSkin3="Verde foglia"
+
+[CHR_Coleman_archetype.Attachment1]
+AttachmentSkin0="Nera"
+AttachmentSkin1="Mimetica"
+AttachmentSkin2="Biohazard"
+AttachmentSkin3="Zed time"
+
+[CHR_Coleman_archetype.Attachment2]
+AttachmentSkin0="Occhiali da sole"
+AttachmentSkin1="Occhiali da vista"
+
+[chr_Coleman_archetype.Attachment3]
+AttachmentSkin0="Blu scuro"
+AttachmentSkin1="Rosso ghigliottina"
+AttachmentSkin2="Arancio"
+AttachmentSkin3="Retro Skully"
+AttachmentSkin4="Bianco Horzine"
+AttachmentSkin5="Giallo "
+
+//Reverend Alberts
+
+[CHR_Alberts_archetype]
+CharacterName="Reverendo Alberts"
+Description="Per metà inglese e per metà scozzese, Alberts era sempre stato fisicamente un tipo duro, ammorbidito dal desiderio di aiutare gli altri. Quell'atteggiamento duro, forte e pragmatico era stato perfetto per un periodo come cappellano dell'esercito, a cui erano seguiti 20 anni di lavoro con i giovani disadattati nella zona sud di Londra. Avendo trascorso la sua vita a cercare di riportare le persone sulla retta via, Alberts non fu contento quando il lavoro di una vita fu distrutto in un pomeriggio all'ora del thè da un branco di mostri rabbiosi. Quel pomeriggio Alberts passò velocemente dall'amministrare l'estrema unzione a morti e agonizzanti a far ricadere la sua rabbia sulle teste di quegli esseri abominevoli... e su qualunque altra parte del corpo poteva raggiungere."
+BodyMesh0="Collarino da prete"
+HeadMesh0="Capelli"
+Attachment0="Borsalino"
+Attachment1="Occhiali"
+Attachment2="Maschera antigas S10"
+Attachment3="Bombetta"
+
+[CHR_Alberts_archetype.BodyMesh0]
+BodySkin0="Nero classico"
+BodySkin1="Rosso rubino"
+BodySkin2="Bluette"
+BodySkin3="Bianco ghiaccio"
+
+[CHR_Alberts_archetype.HeadMesh0]
+HeadSkin0="Grigi"
+HeadSkin1="Castani"
+HeadSkin2="Neri"
+HeadSkin3="Bianchi"
+
+[CHR_Alberts_archetype.Attachment0]
+AttachmentSkin0="Nero classico"
+AttachmentSkin1="Rosso rubino"
+AttachmentSkin2="Grigio elegante"
+AttachmentSkin3="Blu scuro"
+
+[CHR_Alberts_archetype.Attachment1]
+AttachmentSkin0="Occhiali da sole"
+AttachmentSkin1="Occhiali da vista"
+
+[CHR_Alberts_archetype.Attachment2]
+AttachmentSkin0="Nera"
+AttachmentSkin1="Mimetica"
+AttachmentSkin2="Biohazard"
+AttachmentSkin3="Zed time"
+
+[CHR_Alberts_archetype.Attachment3]
+AttachmentSkin0="Nero business"
+AttachmentSkin1="Top British"
+AttachmentSkin2="Marrone cioccolato"
+AttachmentSkin3="Rosso fuoco"
+AttachmentSkin4="Viola intenso"
+AttachmentSkin5="Bianco performance"
+
+
+//Start Masterson
+
+[CHR_Masterson_archetype]
+CharacterName="Tenente Bill Masterson"
+Description="Bill Masterson aveva avuto una carriera altalenante nell'esercito. Desiderava combattere eroicamente contro i coraggiosi e malvagi nemici della regina e del paese. Aveva ottenuto un mucchio di sporchi terroristi. Desiderava  una bel conflitto armato. Invece aveva guidato i suoi uomini in una serie di stupide "azioni di polizia" in  parti del mondo schifose. Così se ne era andato. Dopo un paio di lavori inutili, si era svegliato una mattina con l'apocalisse che era scoppiata nelle strade di Londra. Masterson, diventato ora il soldato eroico che voleva essere, entrò nella caserma  delle riserve locali, si equipaggiò per bene e iniziò il suo conflitto armato. Non era la guerra che si era aspettato o per cui si era addestrato, ma andava bene ugualmente. E lui è particolarmente bravo!"
+BodyMesh0="Tenuta da combattimento"
+HeadMesh0="Faccia"
+Attachment0="Maschera NBC S10"
+Attachment1="Occhiali"
+
+[CHR_Masterson_archetype.HeadMesh0]
+HeadSkin0="Pulito"
+HeadSkin1="Mimetica"
+
+
+[CHR_Masterson_archetype.Attachment0]
+AttachmentSkin0="Nera"
+AttachmentSkin1="Mimetica"
+AttachmentSkin2="Rischio biologico"
+AttachmentSkin3="Zed Time"
+
+[CHR_Masterson_archetype.Attachment1]
+AttachmentSkin0="Occhiali da sole"
+AttachmentSkin1="Occhiali da vista"
+
+[CHR_Masterson_archetype.BodyMesh0]
+BodySkin0="Verde"
+BodySkin1="Nero"
+BodySkin2="Neve"
+BodySkin3="Verde DPM"
+
+
+//Start Tanaka
+
+[CHR_Tanaka_Archetype]
+CharacterName="Hayako Tanaka"
+Description="Tanaka è una persona indecisa, con un serio e problematico desiderio di morte. Nato a Okinawa, era cresciuto avendo intorno gli americani dell'esercito. Trasferitosi nel Giappone interno con la famiglia, Tanaka, ormai americanizzato, non era riuscito a integrarsi e aveva iniziato a prendere lezioni di teatro. Dopo la scuola superiore si era trasferito a LA, recitando piccoli ruoli cliché in film mediocri, prima di andare in Europa per cercare un lavoro più "serio". Ma tutto ciò che aveva ottenuto laggiù era il ruolo del cattivo in film gangster francesi e qualche tatuaggio. Adesso, in quest'apocalisse, sembra che confonda la realtà con qualche parte dei film in cui ha recitato, con tanto di visioni della Yakuza, demoni e una interpretazione hollywoodiana del bushido."
+BodyMesh0="Muori da fico"
+HeadMesh0="Capelli"
+Attachment0="Bandana"
+Attachment1="Maschera NBC S10"
+Attachment2="Occhiali"
+Attachment3="Skullyphones"
+Attachment4="Occhiali 3D"
+
+[CHR_Tanaka_Archetype.HeadMesh0]
+HeadSkin0="Neri"
+HeadSkin1="Ossigenati"
+
+
+[CHR_Tanaka_Archetype.BodyMesh0]
+BodySkin0="Di classe"
+BodySkin1="Kakihara-san"
+BodySkin2="Di Nero"
+BodySkin3="Drago blu"
+
+[chr_Tanaka_archetype.Attachment0]
+AttachmentSkin0="Drago dorato"
+AttachmentSkin1="Kakihara-san"
+AttachmentSkin2="Hannya"
+AttachmentSkin3="Azzurro"
+
+[chr_Tanaka_archetype.Attachment1]
+AttachmentSkin0="Nera"
+AttachmentSkin1="Mimetica"
+AttachmentSkin2="Biohazard"
+AttachmentSkin3="Zed time"
+
+[CHR_Tanaka_archetype.Attachment2]
+AttachmentSkin0="Occhiali da sole"
+AttachmentSkin1="Occhiali da vista"
+
+[chr_Tanaka_archetype.Attachment3]
+AttachmentSkin0="Blu scuro"
+AttachmentSkin1="Rosso ghigliottina"
+AttachmentSkin2="Arancio"
+AttachmentSkin3="Retro Skully"
+AttachmentSkin4="Bianco Horzine"
+AttachmentSkin5="Giallo "
+
+[CHR_Tanaka_archetype.Attachment4]
+AttachmentSkin0="3D anaglifico"
+AttachmentSkin1="Shutter attivo"
+AttachmentSkin2="3D trioscopico"
+AttachmentSkin3="Occhiali a raggi X"
+
+//Ana
+[CHR_Ana_Archetype]
+CharacterName="Ana Larive"
+Description="Probabilmente si potrebbe assegnarla a quella categoria che il sistema definisce "giovani disadattati", se non fosse che ad Ana non frega niente di niente, tranne  viaggiare per l'Europa coltivando le sue passioni: ovvero fotografare posti abbandonati e andare ai concerti di gruppi death metal. E ora che del "sistema" non è rimasto molto, Ana è ancora più indifferente. Se da un lato c'è un'evidente carenza di gruppi in tourné, dall'altro almeno sono aumentati i posti abbandonati. E la cosa bella del suo attuale lavoro è che riesce ad andare in questi posti  e a renderli ancora più abbandonati. Ecco, Ana ha scoperto una nuova passione:  far esplodere le cose!"
+BodyMesh0="Metalcore"
+HeadMesh0="Cresta mohicana"
+Attachment0="Sciarpa"
+Attachment1="Maschera antigas S10"
+Attachment2="Occhiali"
+Attachment3="Occhiali 3D"
+
+[CHR_Ana_Archetype.HeadMesh0]
+HeadSkin0="Pioggia mortale"
+HeadSkin1="Sangue vivo"
+HeadSkin2="Verde acido"
+HeadSkin3="Blu vivace"
+
+[CHR_Ana_Archetype.BodyMesh0]
+BodySkin0="Pioggia mortale"
+BodySkin1="Sangue vivo"
+BodySkin2="Verde acido"
+BodySkin3="Blu vivace"
+BodySkin4="Omaggio a Chickenator"
+
+[CHR_Ana_Archetype.Attachment0]
+AttachmentSkin0="Pioggia mortale"
+AttachmentSkin1="Tigre"
+AttachmentSkin2="Bunberry"
+AttachmentSkin3="Blu vivace"
+
+[CHR_Ana_Archetype.Attachment1]
+AttachmentSkin0="Nera"
+AttachmentSkin1="Mimetico"
+AttachmentSkin2="Biohazard"
+AttachmentSkin3="Zed time"
+
+[CHR_Ana_archetype.Attachment2]
+AttachmentSkin0="Occhiali da sole"
+AttachmentSkin1="Occhiali da vista"
+
+[CHR_Ana_archetype.Attachment3]
+AttachmentSkin0="3D anaglifico"
+AttachmentSkin1="Shutter attivo"
+AttachmentSkin2="3D trioscopico"
+AttachmentSkin3="Occhiali a raggi X"
+
+
+//Classic Briar 
+
+[chr_mark_archetype]
+CharacterName="Classic Briar"
+Description="Una volta, Briar veniva chiamato a indossare l'uniforme per occuparsi di una sommossa a Londra. Stavolta, però, non si trattava della solita processione di hippie, ambientalisti e anarchici capelloni che avrebbero assaggiato il suo manganello. Fortunatamente, la passione di Briar per la violenza indesiderata lo aiutò davvero a superare i mesi successivi, prima che dovesse lasciare Blighty per trasferirsi in territori stranieri.\n\nIl poliziotto vecchio stile che prende a scappellotti degli adolescenti traviati oggi può estendere i suoi metodi a un'orda di mutanti mostri cannibali sparandogli, bruciandoli e riducendoli a brandelli. E questo spensierato poliziotto londinese aiuta a tenere alto il morale dei membri della squadra. O a rompere i coglioni a morte."
+
+BodyMesh0="Tenuta antisommossa"
+HeadMesh0="Testa"
+Attachment0="Casco antisommossa"
+Attachment1="Maschera NBC S10"
+Attachment2="Occhiali"
+
+
+[chr_mark_archetype.BodyMesh0]
+BodySkin0="Blu polizia "
+BodySkin1="Nero notte"
+BodySkin2="Verde militare"
+BodySkin3="Mimetico SAS"
+
+[chr_mark_archetype.HeadMesh0]
+HeadSkin0="L'unico originale"
+HeadSkin1="Sangue all'ora del tè"
+HeadSkin2="Un bel marrone, Capo?"
+Headskin3="Biondo svedese"
+
+[chr_mark_archetype.Attachment0]
+AttachmentSkin0="Rosso acceso"
+AttachmentSkin1="Blu polizia "
+AttachmentSkin2="Verde militare"
+AttachmentSkin3="Nero notte"
+
+[chr_mark_archetype.Attachment1]
+AttachmentSkin0="Nero"
+AttachmentSkin1="Verde mimetico"
+AttachmentSkin2="Verde pericolo"
+AttachmentSkin3="Zed Time"
+
+[CHR_mark_archetype.Attachment2]
+AttachmentSkin0="Occhiali da sole"
+AttachmentSkin1="Occhiali normali"
+
+
+//Classic Masterson
+
+[chr_alan_archetype]
+CharacterName="Classic Masterson"
+Description="Nessuno ha mai capito veramente come questo Masterson abbia scalato i ranghi, sebbene alcuni abbiano insinuato che il cugino più ricco e più bello, il Capitano Sir Richard Wiggins, possa aver avuto qualche influenza. O magari si trattava del fratello più furbo. Tuttavia, come si nota sempre, lui è un diamante grezzo, un uomo di poche (educate) parole e ha un comportamento stranamente calmo in caso di combattimento. Più o meno tutti ritengono che questo sia dovuto alla sua mancanza di fantasia, empatia e intelligenza. Fortunatamente, comanda i suoi uomini con decisione e porta sempre a termine il lavoro – non importa quanto sgradevole possa sembrare a chiunque abbia buon gusto o maniere decenti."
+
+BodyMesh0="Tenuta antisommossa"
+HeadMesh0="Testa"
+Attachment0="Maschera NBC S10"
+Attachment1="Occhiali"
+
+[CHR_alan_archetype.BodyMesh0]
+BodySkin0="Verde"
+BodySkin1="Nero"
+BodySkin2="Neve"
+BodySkin3="Verde DPM"
+
+[chr_alan_archetype.HeadMesh0]
+HeadSkin0="L'unico originale"
+HeadSkin1="Ginger! Davvero?"
+HeadSkin2="Giornataccia, amico?"
+Headskin3="Su la mimetica, ragazzi!"
+
+[CHR_alan_archetype.Attachment0]
+AttachmentSkin0="Nero"
+AttachmentSkin1="Verde mimetico"
+AttachmentSkin2="Verde pericolo"
+AttachmentSkin3="Zed Time"
+
+[CHR_alan_archetype.Attachment1]
+AttachmentSkin0="Occhiali da sole"
+AttachmentSkin1="Occhiali normali"
+
+
+//Anton Strasser
+
+[chr_strasser_archetype]
+CharacterName="Anton Strasser"
+Description="Strasser partì per la sua prima guerra nel 1939, come soldato dell'esercito tedesco durante l'invasione della Polonia, quindi toccò la Francia nel 1940 e si spinse in Russia nel 1941. Questo, tuttavia, lo condusse quasi alla morte per congelamento mentre lottava aspramente per la vita contro il Generale Inverno e l'Armata Rossa. Nel 1942 fu la volta di Stalingrado, le vittorie ebbero finire lasciando spazio solo alla disillusione. Al campo di aviazione di Gumrak, subì una grave commozione cerebrale eppure fu fortunato. In stato comatoso, fu trasportato in volo da Hans Volter che lo attendeva ansioso, e venne condotto in segreto al laboratorio di Volter come meraviglioso soggetto per test criogenici. Lì rimase, congelato e dimenticato, fino a quando non fu accidentalmente liberato da un'esplosione. Disorientato, ebbe una breve occasione di uccidere Volter ma non la colse. Suo malgrado, quando scoprì cosa stava accadendo."
+
+BodyMesh0="RO2: Eroe di Stalingrado"
+HeadMesh0="Capelli"
+Attachment0="Bustina tedesca"
+Attachment1="Elmetto tedesco in acciaio"
+
+[CHR_strasser_archetype.BodyMesh0]
+BodySkin0="Recluta inesperta"
+BodySkin1="Temprato dall'esperienza in battaglia"
+
+[chr_strasser_archetype.HeadMesh0]
+HeadSkin0="Acciaio scuro"
+HeadSkin1="Acciaio biondo"
+
+
+[CHR_strasser_archetype.Attachment0]
+AttachmentSkin0="Copricapo da parata"
+AttachmentSkin1="Berretto insanguinato"
+
+[CHR_strasser_archetype.Attachment1]
+AttachmentSkin0="Acciaio classico"
+AttachmentSkin1="Acciaio invecchiato"
+
+//Chivalry Knight
+
+[chr_knight_archetype]
+CharacterName="Cavaliere della cavalleria"
+Description="Tom Banner era stato ossessionato dall'eroisimo del Medioevo sin da ragazzino. La sua carriera quasi stellare come Consulente di Gestione permetteva effettivamente a questa sua ossessione di svilupparsi, mentre egli si trasferiva dal natio Canada all'Inghilterra passando per Boston. Aveva già realizzato la sua armatura personale e si era creato un nuovo personaggio come rievocatore nell'Allegra Vecchia Inghilterra. Questo passaggio coincise con l'uscita di "Chivalry", che gli permise di realizzare la sua fantasia a un livello che sarebbe stato certamente pericoloso per un rievocatore. Quando scoppiò l'epidemia, Tom indossò la sua armatura e partì per salvare le donzelle dai mostri. Per davvero. Il fatto che rifiuti di levarsi l'armatura suscita la preoccupazione che stia prendendo l'intera faccenda medievale troppo seriamente. Tuttavia, a chi interessa?"
+
+BodyMesh0="Armatura"
+HeadMesh0="Testa"
+Attachment0="Elmo del cavaliere"
+Attachment1="Elmo del cavaliere"
+Attachment2="Elmo del veterano"
+Attachment3="Casco anti-sommossa"
+Attachment4="Occhiali Ye"
+
+[CHR_knight_archetype.BodyMesh0]
+BodySkin0="Agatha"
+BodySkin1="Cleese"
+BodySkin2="Perceval"
+BodySkin3="Jaime"
+
+[chr_knight_archetype.HeadMesh0]
+HeadSkin0="Alla battaglia!"
+HeadSkin1="Libertà!"
+HeadSkin2="Alla guerra!"
+HeadSkin3="Valhalla!"
+
+
+[CHR_knight_archetype.Attachment0]
+AttachmentSkin0="Agatha"
+AttachmentSkin1="Cleese"
+AttachmentSkin2="Perceval"
+AttachmentSkin3="Jaime"
+
+
+[CHR_knight_archetype.Attachment1]
+AttachmentSkin0="Agatha"
+AttachmentSkin1="Cleese"
+AttachmentSkin2="Perceval"
+AttachmentSkin3="Jaime"
+
+[CHR_knight_archetype.Attachment2]
+AttachmentSkin0="Agatha"
+AttachmentSkin1="Cleese"
+AttachmentSkin2="Perceval"
+AttachmentSkin3="Jaime"
+
+[chr_knight_archetype.Attachment3]
+AttachmentSkin0="Rosso regale"
+AttachmentSkin1="Blu regale"
+AttachmentSkin2="Verde signorile"
+AttachmentSkin3="Nero notte"
+
+[CHR_knight_archetype.Attachment4]
+AttachmentSkin0="Oscura il sole"
+AttachmentSkin1="Il meglio da vedere"

@@ -1,0 +1,11 @@
+[Errors]
+Error_RemoteDesktop=Tato hra nemůže běžet s 3D grafikou na připojení na vzdálenou plochu.
+Error_ParentalControls=Aktuální úroveň rodičovského zabezpečení znemožňuje spuštění této hry.
+Error_ResolutionTooLow=Aktuální rozlišení je pro spuštění hry příliš nízké.
+Error_NotMinSpec=Tvůj hardware nesplňuje minimální požadavky. Chceš pokračovat?
+Error_ModifiedCode=Modifikovaný spustitelný kód není povolen. Reinstaluj prosím hru.
+Error_PureVirtualsEnabled=The game cannot run with CHECK_PUREVIRTUALS enabled.  Please disable CHECK_PUREVIRTUALS and rebuild the executable.
+Error_FloatingPointBlendingRequired=Your video card does not support alpha blending with floating point render targets (D3DFMT_A16B16G16R16F), which is required to run this game.  Exiting...
+Error_FailedToCreateD3D9Device=Failed to create the D3D9 Device!  This can happen if the desktop is locked.  Exiting...
+Error_RanOutOfVideoMemory=Ran out of video memory!  Exiting...
+

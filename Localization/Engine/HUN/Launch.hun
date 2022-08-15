@@ -1,0 +1,11 @@
+[Errors]
+Error_RemoteDesktop=A játék nem tud futni 3D-s grafikával egy Távoli Asztal kapcsolaton keresztül.
+Error_ParentalControls=A szülői felügyelet nem engedélyezi, ennek a játéknak a futását.
+Error_ResolutionTooLow=A jelenlegi felbontás túl alacsony a játék futtatásához.
+Error_NotMinSpec=A hardwered nem éri el a minimum követelményeket. Mégis szeretnéd folytatni?
+Error_ModifiedCode=Módosított futtatható kód nincs elfogadva. Telepítsd újra a játékot!
+Error_PureVirtualsEnabled=The game cannot run with CHECK_PUREVIRTUALS enabled.  Please disable CHECK_PUREVIRTUALS and rebuild the executable.
+Error_FloatingPointBlendingRequired=Your video card does not support alpha blending with floating point render targets (D3DFMT_A16B16G16R16F), which is required to run this game.  Exiting...
+Error_FailedToCreateD3D9Device=Failed to create the D3D9 Device!  This can happen if the desktop is locked.  Exiting...
+Error_RanOutOfVideoMemory=Ran out of video memory!  Exiting...
+

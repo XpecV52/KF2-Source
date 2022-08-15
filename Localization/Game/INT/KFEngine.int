@@ -1,0 +1,6 @@
+[Errors]
+DuplicateUID="Duplicate UID"
+InvalidUID="Invalid UID"
+FailedKickOff="Failed to kickoff authentication"
+RequiresAuthentication="Server requires authentication"
+CouldNotConnect_Title="Connection Failed"

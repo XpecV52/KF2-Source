@@ -1,0 +1,290 @@
+[Public]
+Object[0]=(Name=Engine.ServerCommandlet,Class=Class,MetaClass=Core.Commandlet)
+Object[1]=(Name=Engine.MasterMD5Commandlet,Class=Class,MetaClass=Core.Commandlet)
+Object[2]=(Name=Engine.SmokeTestCommandlet,Class=Class,MetaClass=Core.Commandlet)
+
+[Errors]
+NetOpen=Chyba při otvírání souboru
+NetWrite=Chyba při zápisu do souboru
+NetRefused=Server odmítnul poslat send '`~'
+NetClose=Chyba při zavírání souboru
+NetSize=Rozdíl velikostí souboru
+NetMove=Chyba při přesouvání souboru
+NetInvalid=Obdržena neplatná žádost o soubor
+NoDownload=Nemůžete se zúčastnit hry, protože hostitel hry má stažitelný obsah, který vy nemáte.
+DownloadFailed=Stahování balíčku '`~' selhalo: `~
+RequestDenied=Server si vyžádal soubor z probíhající úrovně: zamítnuto
+ConnectionFailed=Vaše síťové připojení bylo ztraceno.
+ChAllocate=Nepodařilo se alokovat kanál
+NetAlready=Síť už je aktivní
+NetListen=Naslouchání selhalo: není dostupný linkovací kontext
+LoadEntry=Není možné nahrát položku: `~
+InvalidUrl=Nemůžete se zúčastnit hry, protože hostitel hry má stažitelný obsah, který vy nemáte.
+InvalidLink=Neplatný odkaz: `~
+FailedBrowse=Nepodařilo se zadat `~: `~. Zkontroluj prosím log ohledně chyb.
+Listen=Naslouchání selhalo: `~
+AbortToEntry=Selhalo; vracím se na vstup
+ServerOpen=Servery nemohou otevřít síťové URL
+ServerListen=Dedikovaný server nemůže naslouchat: `~
+Pending=Probíhající připojení k '`~' selhalo; `~
+LoadPlayerClass=Nepodařilo se nahrát třídu hráče
+ClientOutdated=Snažíš se připojit k zápasu, který používá nekompatibilní verzi hry. Zkus prosím aktualizovat svou verzi.
+ServerOutdated=Verze serveru je zastaralá
+FailedMapload_NotFound=Mapa určená v příkazové řádce '`~' nebyla nalezena. Má se místo toho nahrát výchozí mapa?
+DebuggerPresentError=Hra zjistila, že máš spuštěný debugger v uživatelském nebo kernel módu, a nemůže pokračovat. Vypni prosím všechny ladící utility a restartuj hru.
+NetworkInit=Chyba při inicializaci síťové hry.
+CreateMatchError=Chyba při vytváření hry
+UsedCheatCommands=Použité konzolové příkazy jsou pro síťovou hru zakázány. Pro vytvoření zápasu musíš restartovat hru.
+FailedFindPackage=Nepodařilo se najít vyžadovaný balíček '`~'
+ConnectionTimeout=Čas tvého připojení k hostiteli vypršel
+NegativeDeltaTime=Odhalen rozdíl času CPU! Podívej se prosím do poznámek k vydání.
+NetHDSpace=There is not enough space on your HDD to download the package. You will need to free some space to download packages.
+ConnectionFailed_Title=Spojení přerušeno
+SteamClientRequired=Host is running Steam, so you should too. Please launch the game from Steam.
+SteamAuthFailed=Steam decided that you are not authorized to connect to this server.
+ServerHostingDifferentGame=Server is hosting a different game. You cannot connect to this server.
+PeerListen=Peer listen socket failed: `~
+PeerConnection=Peer connection failed: `~
+
+[Progress]
+CancelledConnect=Zrušen pokus o připojení
+RunningNet=`~: `~ (`~ hráčů, `~ connections) [v`~]
+NetReceiving=Přijato '`~': `~/`~
+NetReceiveOk=Úspěšně přijato '`~'
+NetSend=Odesílá '`~'
+NetSending=Odesílá '`~': `~/`~
+Connecting=Připojuje se...
+Listening=Naslouchá se klientům...
+Loading=Nahrává se
+Saving=Ukládá se
+Paused=Pozastaveno `~
+ReceiveFile=Přijímá se '`~'
+ReceiveOptionalFile=Přijímá se volitelný soubor '`~'
+ReceiveSize=Velikost `~K, hotovo `3.1~`~
+ConnectingText=Připojuje se:
+ConnectingURL=unreal://`~/`~
+Success=Úspěch
+PeerConnecting=Peer connecting
+PeerDisconnecting=Peer disconnecting
+
+[Console]
+ClassCaption=Standardní Unreal konzole
+
+[GameViewportClient]
+LoadingMessage=NAHRÁVÁ
+SavingMessage=UKLÁDÁ
+ConnectingMessage=PŘIPOJUJE SE
+PausedMessage=PAUZA
+PrecachingMessage=PŘEDNAHRÁVÁ SE
+
+[MasterMD5Commandlet]
+HelpCmd=mastermd5
+HelpOneLiner=Manipulace s hlavní databází MD5
+HelpUsage=mastermd5 [-option..] <params>
+HelpWebLink=http://unreal.epicgames.com/servertips.htm
+HelpParm[0]=-c
+HelpDesc[0]=Vytvoří novou databázi MD5
+HelpParm[1]=-a
+HelpDesc[1]=Přidá do databáze nové balíčky
+HelpParm[2]=-s
+HelpDesc[2]=Zobrazit aktuální databázi.
+HelpParm[3]=-r
+HelpDesc[3]=Donutit revizi všech vstupů na <param>
+
+[General]
+Upgrade=Pro vstup na tento server potřebuješ poslední aktualizaci pro Unreal, která je volně dostupná na webové stránce Epicu:
+UpgradeURL=http://www.unreal.com/upgrade
+UpgradeQuestion=Chceš spustit prohlížeč a přejít na stránku aktualizace?
+Version=Verze `~
+SplashScreen_CopyrightInfo=Copyright © 1998-2010   Epic Games, Inc.   All rights reserved.
+SplashScreen_ThirdPartyCopyrightInfo=Uses Bink Video, Copyright © 1997-2011 by RAD Game Tools, Inc.
+
+[Menu]
+HelpMessage=
+MenuList=
+LeftString=Nalevo
+RightString=Napravo
+CenterString=Střed
+EnabledString=Povoleno
+DisabledString=Zakázáno
+HelpMessage[1]=Tato nabídka ještě nebyla implementována.
+YesString=ano
+NoString=ne
+
+[GameInfo]
+DefaultPlayerName=Hráč
+GameName=Hra
+
+[HUD]
+LoadingMessage=NAHRÁVÁ
+SavingMessage=UKLÁDÁ
+ConnectingMessage=PŘIPOJUJE SE
+PausedMessage=PAUZA
+
+[Inventory]
+PickupMessage=Popadnul předmět.
+
+[LevelInfo]
+Title=Bez titulu
+
+[PlayerReplicationInfo]
+StringSpectating=Pozoruje
+StringUnknown=Neznámo
+
+[TeamInfo]
+TeamName=Tým
+
+[Weapon]
+ItemName=Zbraň
+
+[GameMessage]
+SwitchLevelMessage=Přepínají se úrovně
+LeftMessage=" opustil(a) hru."
+FailedTeamMessage=Není možné najít hráči tým
+FailedPlaceMessage=Není možné najít startovní místo
+FailedSpawnMessage=Není možné zrodit hráče
+EnteredMessage=" vstoupil(a) do hry."
+MaxedOutMessage=Server už je zaplněn.
+ArbitrationMessage=Arbitrační zpráva (c.f. GameInfo.uc)
+OvertimeMessage=Na konci vyrovnané skóre. Přesčas náhlé smrti!!!
+GlobalNameChange=si změnil(a) jméno na
+NewTeamMessage=je teď na
+NoNameChange=Jméno už je používáno.
+VoteStarted=zahájil(a) hlasování.
+VotePassed=Hlasování prošlo.
+MustHaveStats=Pro připojení se k tomuto serveru je třeba mít povolené statistiky.
+CantBeSpectator=Teď se nemůžeš stát pozorovatelem.
+CantBePlayer=Teď se nemůžeš stát aktivním hráčem.
+BecameSpectator=se stal(a) pozorovatelem.
+NewPlayerMessage=Do hry vstoupil nový hráč.
+KickWarning=Za chvíli budeš vyhozen(a) za nečinnost!
+NewSpecMessage=Pozorovatel vstoupil do hry/
+SpecEnteredMessage=" se připojil(a) jako pozorovatel."
+
+[FailedConnect]
+FailMessage[0]=NEPODAŘILO SE PŘIPOJIT KE HŘE. JE POTŘEBA HESLO.
+FailMessage[1]=NEPODAŘILO SE PŘIPOJIT KE HŘE. ŠPATNÉ HESLO.
+FailMessage[2]=NEPODAŘILO SE PŘIPOJIT KE HŘE. HRA ZAČALA.
+FailMessage[3]=NEPODAŘILO SE PŘIPOJIT KE HŘE.
+
+[AccessControl]
+IPBanned=Tvá IP adresa má na tento server zakázaný vstup.
+WrongPassword=Zadané heslo je neplatné.
+NeedPassword=Pro připojení se k této hře potřebuješ heslo.
+SessionBanned=Tvá IP adresa má do této hry zakázaný vstup.
+KickedMsg=Byl jsi násilím vyřazen ze hry.
+DefaultKickReason=Nespecifikováno
+IdleKickReason=Vykopnut za nečinnost.
+ACDisplayText[0]=Heslo hry
+ACDisplayText[1]=Správa přístupu
+ACDisplayText[2]=Heslo administrátora
+ACDescText[0]=Pokud je toto heslo nastavené, budou ho muset hráči pro připojení se k serveru zadat.
+ACDescText[1]=Specifikuje IP adresu nebo rozsah adres, které byly zakázány.
+ACDescText[2]=Pro přihlášení se na tento server s právy administrátora je vyžadováno heslo.
+
+[ServerCommandlet]
+HelpDescription=Síťový herní server
+HelpUsage=server map.unr[?game=gametype] [-option...] [parm=value]...
+HelpWebLink=http://unreal.epicgames.com/servertips.htm
+HelpParamNames[0]=Log
+HelpParamDescriptions[0]=Určení logovacího souboru, který se má vytvořit
+HelpParamNames[1]=AllAdmin
+HelpParamDescriptions[1]=Dát všem hráčům administrátorská práva
+
+[SmokeTestCommandlet]
+HelpDescription=Tento příkaz spustí sérii testů pro ověření buildu
+HelpUsage=gamename.exe smoketest <SERVER | CHECK_NATIVE_CLASS_SIZES>
+HelpWebLink=
+HelpParamNames[0]=SERVER
+HelpParamDescriptions[0]=Spustí hru jako server na jeden tik pro ověření startu a kódu pro první snímek
+HelpParamNames[1]=CHECK_NATIVE_CLASS_SIZES
+HelpParamDescriptions[1]=Ověřuje, že všechny nativní třídy odpovídají svým skriptovým třídám v rozvržení členů
+
+[ExampleGameMenu]
+CancelButtonText=Návrat do hry
+RespawnButtonText=Oživit hráče
+ReloadButtonText=Obnovit mapu
+InlineFontSampleText=Tato slova jsou malá... <Fonts:EngineFonts.LargeFont>tato slova jsou velká,<Fonts:/> a tato slova jsou zase normální.
+InlineStyleSampleText=Tato slova jsou normální... <Styles:ConsoleStyle>tato slova jsou zelená<Styles:/> a tato slova jsou zase normální.
+SplitscreenButtonText=Testovací scéna pro rozdělenou obrazovku
+
+[TestMenuStrings]
+ButtonTestText=Tlačítko bylo stisknuto <SceneData:ButtonClickCount>krát.
+PlayerIndexText=Propagovaný PlayerIndex je: <SceneData:PlayerIndex>.
+WrapStringTest=Nesmyslně dlouhý text bude používán pro různé testování automatické velikosti. 'This is just some nonsense text that will be used for testing various string auto-sizing features. This really long string is a great one to use for testing the wrapping functionality of a UIString.  In fact, there are so many characters in this string that it is great for testing many different features of a UIString.
+
+[OnlineProfileSettings]
+OwnerMappings[0]=(Name="Žádná")
+OwnerMappings[1]=(Name="Nastavení online služby")
+OwnerMappings[2]=(Name="Nastavení hry")
+ProfileMappings[0]=(ValueMappings=((Name="Vypnuto"),(Name="Zapnuto")))
+ProfileMappings[1]=(ValueMappings=((Name="Vypnuto"),(Name="Zapnuto")))
+ProfileMappings[2]=(ValueMappings=((Name="Ne"),(Name="Ano")))
+ProfileMappings[3]=(ValueMappings=((Name="Vypnuto"),(Name="Zapnuto"),(Name="Obojí")))
+ProfileMappings[5]=(ValueMappings=((Name="Normální"),(Name="Lehká"),(Name="Těžká")))
+ProfileMappings[6]=(ValueMappings=((Name="Střední"),(Name="Nízké"),(Name="Vysoké")))
+ProfileMappings[7]=(ValueMappings=((Name="Žádná"),(Name="Černá"),(Name="Bílá"),(Name="Žlutá"),(Name="Oranžová"),(Name="Růžová"),(Name="Červená"),(Name="Purpurová"),(Name="Modrá"),(Name="Zelená"),(Name="Hnědá"),(Name="Stříbrná")))
+ProfileMappings[8]=(ValueMappings=((Name="Žádná"),(Name="Černá"),(Name="Bílá"),(Name="Žlutá"),(Name="Oranžová"),(Name="Růžová"),(Name="Červená"),(Name="Purpurová"),(Name="Modrá"),(Name="Zelená"),(Name="Hnědá"),(Name="Stříbrná")))
+ProfileMappings[9]=(ValueMappings=((Name="Vypnuto"),(Name="Zapnuto")))
+ProfileMappings[10]=(ValueMappings=((Name="Vypnuto"),(Name="Zapnuto")))
+ProfileMappings[11]=(ValueMappings=((Name="Levá páčka"),(Name="Pravá páčka")))
+ProfileMappings[12]=(ValueMappings=((Name="Auto"),(Name="Manuál")))
+ProfileMappings[13]=(ValueMappings=((Name="Za"),(Name="Před"),(Name="Uvnitř")))
+ProfileMappings[14]=(ValueMappings=((Name="Spoušť"),(Name="Tlačítko")))
+ProfileMappings[15]=(ValueMappings=((Name="Spoušť"),(Name="Tlačítko")))
+
+[ViewportStatus]
+RenderingFrozenE=Renderování zmraženo...
+OcclusionChild=Potomek okluze
+
+[UIDataProvider_OnlineFriendMessages]
+SendingPlayerNameCol=Jméno odesílatele
+bIsFriendInviteCol=Pozvání přítele
+bWasAcceptedCol=Přítel přijat
+bWasDeniedCol=Přítel zamítnut
+MessageCol=Zpráva
+
+[UIDataProvider_OnlineFriends]
+NickNameCol=Jméno
+PresenceInfoCol=Stav online
+bIsOnlineCol=Je online
+bIsPlayingCol=Hraje
+bIsPlayingThisGameCol=Hraje tuto hru
+bIsJoinableCol=Je připojitelný
+bHasVoiceSupportCol=Má podporu hlasu
+OfflineText=Nepřipojen
+OnlineText=Online
+AwayText=Nepřítomen
+BusyText=Zaneprázdněn
+
+[OnlineGameSettings]
+NumPublicConnections.FriendlyName="Max. veřejných pozic"
+NumPrivateConnections.FriendlyName="Max. soukromých pozic"
+NumOpenPublicConnections.FriendlyName="Otevřené veřejné pozice"
+NumOpenPrivateConnections.FriendlyName="Otevřené soukromé pozice"
+bShouldAdvertise.FriendlyName="Ohlásit"
+bIsLanMatch.FriendlyName="Lan zápas"
+bUsesStats.FriendlyName="Uživatelské statistiky"
+bAllowJoinInProgress.FriendlyName="Povoleno připojení za chodu"
+bAllowInvites.FriendlyName="Pozvánky povoleny"
+bUsesPresence.FriendlyName="Prezence povolena"
+bAllowJoinViaPresence.FriendlyName="Povoleno připojení přes prezenci"
+bUsesArbitration.FriendlyName="Arbitrace"
+OwningPlayerName.FriendlyName="Server"
+PingInMs.FriendlyName="Ping"
+bIsDedicated.FriendlyName="Dedikovaný"
+bIsListPlay.FriendlyName="Seznam her"
+AverageSkillRating.FriendlyName="Hodnocení schopností"
+bAntiCheatProtected.FriendlyName="Anti-Cheat Protected"
+
+[UIDataStore_OnlineStats]
+PlayerNickData.PlayerNickColumnName="Player Nick"
+RankNameMetaData.RankColumnName="Rank"
+
+[UIDataProvider_OnlinePartyChatList]
+NatTypes=Unknown
+
+[CheatManager]
+ViewingFrom=Now viewing from
+OwnCamera=Now viewing from own camera
+

@@ -1,0 +1,291 @@
+[Public]
+Object[0]=(Name=Engine.ServerCommandlet,Class=Class,MetaClass=Core.Commandlet)
+Object[1]=(Name=Engine.MasterMD5Commandlet,Class=Class,MetaClass=Core.Commandlet)
+Object[2]=(Name=Engine.SmokeTestCommandlet,Class=Class,MetaClass=Core.Commandlet)
+
+[Errors]
+NetHDSpace=There is not enough space on your HDD to download the package. You will need to free some space to download packages.
+NetOpen=ファイルの開始エラー
+NetWrite=ファイルの書き込みエラー
+NetRefused=サーバーが '%s' の送信を拒否しました。
+NetClose=ファイルの終了エラー
+NetSize=ファイルサイズ不一致
+NetMove=ファイル移動エラー
+NetInvalid=無効なファイル要求を受信しました。
+NoDownload=パッケージ '%s' はダウンロードできません。
+DownloadFailed=パッケージ '%s' のダウンロード失敗: %s
+RequestDenied=サーバーがペンディングレベルからファイルを要求しました: 拒否
+ConnectionFailed_Title=Connection Lost
+ConnectionFailed=接続失敗
+ChAllocate=チャンネルを割り当てできませんでした。
+NetAlready=すでに接続されています。
+NetListen=listen不可能: 可能なリンカーコンテキストが見つかりません。
+LoadEntry=エントリがロードできません。: %s
+InvalidUrl=パッケージ '%s' はダウンロードできません。
+InvalidLink=無効のリンク: %s
+FailedBrowse=%s の入力失敗: %s。ログでエラー内容をチェックしてください｡
+Listen=listen不可能: %s
+AbortToEntry=失敗 ; 入力に戻ります。
+ServerOpen=ネットワーク URL をサーバで開けません。
+ServerListen=専用サーバーが listen できません。%s
+Pending='%s' への接続ができません: %s
+LoadPlayerClass=プレーヤクラスのロードができませんでした。
+ClientOutdated=The match you are trying to join is running an incompatible version of the game.  Please try upgrading your game version.
+ServerOutdated=サーバーのバージョンは期日切れです。
+FailedMapload_NotFound=コマンドラインで入力された '%s' というマップが見つかりません。代わりにデフォルトマップを読み込みますか？
+DebuggerPresentError=The game has detected that you are currently running a user-mode or kernel-mode debugger and cannot continue.  Please exit all debugging utilities and restart the game.
+NetworkInit=Error initializing network layer.
+CreateMatchError=Error creating match
+UsedCheatCommands=Console commands were used which are disallowed in netplay.  You must restart the game to create a match.
+FailedFindPackage=Failed to find required package '`~'
+ConnectionTimeout=Your connection to the host timed out
+NegativeDeltaTime=CPU time drift detected! Please consult release notes on how to address this.
+SteamClientRequired=Host is running Steam, so you should too. Please launch the game from Steam.
+SteamAuthFailed=Steam decided that you are not authorized to connect to this server.
+ServerHostingDifferentGame=Server is hosting a different game. You cannot connect to this server.
+PeerListen=Peer listen socket failed: `~
+PeerConnection=Peer connection failed: `~
+IPhoneLaunchURLError=This link is unavailable right now. Please check your internet connection.
+
+[Progress]
+CancelledConnect= 接続を中止しました。
+RunningNet=%s: %s (%i プレーヤ, `~ connections) [v`~]
+NetReceiving=%i/%i を受信中: '%s'
+NetReceiveOk='%s' の受信を完了しました。
+NetSend='%s' を送信中
+NetSending=%i/%i を送信中: '%s'
+Connecting=接続中...
+Listening=クライアントのための listen...
+Loading=ロード中
+Saving=保存中
+Paused=%sによりポーズされました。
+ReceiveFile='%s' を受信中(F10 キャンセル)
+ReceiveOptionalFile=オプショナルファイル'%s' を受信しています (スキップは F10 を押してください)。
+ReceiveSize=サイズ %iK、完了 %3.1f%%
+ConnectingText=接続中(F10 キャンセル):
+ConnectingURL=unreal://%s/%s
+Success=Success
+PeerConnecting=Peer connecting
+PeerDisconnecting=Peer disconnecting
+
+[Console]
+ClassCaption=標準 Unreal Console
+
+[GameViewportClient]
+LoadingMessage=ロード中
+SavingMessage=保存中
+ConnectingMessage=接続中
+PausedMessage=一時停止
+PrecachingMessage=PRECACHING
+
+[MasterMD5Commandlet]
+HelpCmd=mastermd5
+HelpOneLiner=Master MD5 データベースの操作
+HelpUsage=mastermd5 [-オプション..] <パラメータ>
+HelpWebLink=http://unreal.epicgames.com/servertips.htm
+HelpParm[0]=-c
+HelpDesc[0]=生成するためにログファイルを指定してください
+HelpParm[1]=-a
+HelpDesc[1]=全てのプレーヤに管理者特権を与える
+HelpParm[2]=-s
+HelpDesc[2]=現在のデータベースを表示
+HelpParm[3]=-r
+HelpDesc[3]=<パラメータ> への全てのエントリを改訂する。
+
+[General]
+Upgrade=このサーバーに入るには、Epic 社の最新の Unreal 無料アップデートが必要です。Web サイト:
+UpgradeURL=http://www.unreal.com/upgrade
+UpgradeQuestion=ウェブブラウザを起ちあげてアップグレードのページを開きますか?
+Version=バージョン %i
+SplashScreen_CopyrightInfo=Copyright © 1998-2010   Epic Games, Inc.   All rights reserved.
+SplashScreen_ThirdPartyCopyrightInfo=Uses Bink Video, Copyright © 1997-2011 by RAD Game Tools, Inc.
+
+[Menu]
+HelpMessage=
+MenuList=
+LeftString=左
+RightString=右
+CenterString=中心
+EnabledString=有効
+DisabledString=無効
+HelpMessage[1]=このメニューはまだ実施されていません。
+YesString=はい
+NoString=いいえ
+
+[CheatManager]
+ViewingFrom=Now viewing from
+OwnCamera=Now viewing from own camera
+
+[GameInfo]
+DefaultPlayerName=プレーヤ
+GameName=ゲーム
+
+[HUD]
+LoadingMessage=ロード中
+SavingMessage=保存中
+ConnectingMessage=接続中
+PausedMessage=一時停止
+
+[Inventory]
+PickupMessage=弾薬を拾った
+
+[LevelInfo]
+Title=タイトルなし
+
+[PlayerReplicationInfo]
+StringSpectating=傍観中
+StringUnknown=不明
+
+[TeamInfo]
+TeamName=チーム
+
+[Weapon]
+ItemName=武器
+
+[GameMessage]
+SwitchLevelMessage=レベルの切り替え
+LeftMessage="ゲームを終了しました"
+FailedTeamMessage=プレーヤのチームがみつかりませんでした。
+FailedPlaceMessage=スタート地点がみつかりませんでした。(レベルに PlayerStart が必要です。)
+FailedSpawnMessage=プレーヤアクタの作成ができませんでした。
+EnteredMessage="ゲームを開始しました。"
+MaxedOutMessage=サーバーはすでに最大容量に達しています。
+ArbitrationMessage=The session has already started.
+OvertimeMessage=規定の最後にスコアが同点でした。 タイムオーバー サドンデス!!!
+GlobalNameChange=に名前を変える
+NewTeamMessage=プレイ中
+NoNameChange=この名前はすでに使われています。
+VoteStarted=投票を始めました。
+VotePassed=投票が終りました。
+MustHaveStats=このサーバーに入るには統計値が必要です。
+CantBeSpectator=今回は観戦できません。
+CantBePlayer=今回はゲームをプレイできません。
+BecameSpectator=観戦者になりました。
+NewPlayerMessage=新しいプレーヤが入りました。
+KickWarning=キックアウトされます!
+NewSpecMessage=新しい観戦者が入りました/
+SpecEnteredMessage="観戦者として参加しています。"
+
+[FailedConnect]
+FailMessage[0]=ゲームに参加できません。 パスワードが必要です。
+FailMessage[1]=ゲームに参加できません。パスワードが正しくありません。
+FailMessage[2]=ゲームに参加できません。 ゲームはすでに始まっています。
+FailMessage[3]=ゲームに参加できません。
+
+[AccessControl]
+IPBanned=あなたの IP アドレスでのアクセスは禁止されています。
+WrongPassword=入力されたパスワードが正しくありません。
+NeedPassword=このゲームに参加するにはパスワードが必要です。
+SessionBanned=あなたの IP アドレスでのアクセスは、現在のゲームセッションでは禁止されています。
+KickedMsg=強制的にゲームから削除されました。
+DefaultKickReason=詳細なし
+IdleKickReason=キックアウトされました。
+ACDisplayText[0]=ゲーム パスワード
+ACDisplayText[1]=アクセス ポリシー
+ACDisplayText[2]=管理者パスワード
+ACDescText[0]=パスワードが設定された場合、プレーヤはこのサーバに入らなくてはいけません。
+ACDescText[1]=IPアドレス、または禁止されたアドレス範囲の指定
+ACDescText[2]=このサーバーにログインするには、管理者権限のパスワードが必要です。
+
+[ServerCommandlet]
+HelpDescription=Network game server
+HelpUsage=server map.unr[?game=ゲームタイプ] [-オプション...] [parm=値]...
+HelpWebLink=http://unreal.epicgames.com/servertips.htm
+HelpParamNames[0]=ログ
+HelpParamDescriptions[0]=生成するためにログファイルを指定してください
+HelpParamNames[1]=全ての管理者
+HelpParamDescriptions[1]=全てのプレーヤに管理者権限を与える
+
+[SmokeTestCommandlet]
+HelpDescription=このコマンドレットは、一連のテストを実行しビルドをバリデートします。
+HelpUsage=gamename.exe smoketest <SERVER | CHECK_NATIVE_CLASS_SIZES>
+HelpWebLink=
+HelpParamNames[0]=SERVER
+HelpParamDescriptions[0]=スタートアップと最初のフレームコードを 1 Tick で行うサーバーとしてゲームを実行します。
+HelpParamNames[1]=CHECK_NATIVE_CLASS_SIZES
+HelpParamDescriptions[1]=メンバーレイアウトのスクリプトクラスに合うネイティブ クラスをバリデートします。
+
+[ExampleGameMenu]
+CancelButtonText=ゲームに戻る
+RespawnButtonText=プレイヤーを再スポーンする
+ReloadButtonText=マップを再ロードする
+InlineFontSampleText=この部分は小さい文字... <Fonts:EngineFonts.LargeFont> この部分は大きい文字,<Fonts:/> この部分は標準の文字に戻る。
+InlineStyleSampleText=この部分は標準の文字... <Styles:ConsoleStyle>この部分は文字が緑<Styles:/> この部分も標準。
+SplitscreenButtonText=Splitscreen Test Scene
+
+[TestMenuStrings]
+ButtonTestText=The button has been clicked <SceneData:ButtonClickCount> times.
+PlayerIndexText=The propagated PlayerIndex is: <SceneData:PlayerIndex>.
+WrapStringTest=This is just some nonsense text that will be used for testing various string auto-sizing features. This really long string is a great one to use for testing the wrapping functionality of a UIString.  In fact, there are so many characters in this string that it is great for testing many different features of a UIString.
+
+[OnlineProfileSettings]
+OwnerMappings[0]=(Name="None")
+OwnerMappings[1]=(Name="Online Service Setting")
+OwnerMappings[2]=(Name="Game Setting")
+ProfileMappings[0]=(ValueMappings=((Name="Off"),(Name="On")))
+ProfileMappings[1]=(ValueMappings=((Name="Off"),(Name="On")))
+ProfileMappings[2]=(ValueMappings=((Name="No"),(Name="Yes")))
+ProfileMappings[3]=(ValueMappings=((Name="Off"),(Name="On"),(Name="Both")))
+ProfileMappings[5]=(ValueMappings=((Name="Normal"),(Name="Easy"),(Name="Hard")))
+ProfileMappings[6]=(ValueMappings=((Name="Medium"),(Name="Low"),(Name="High")))
+ProfileMappings[7]=(ValueMappings=((Name="None"),(Name="Black"),(Name="White"),(Name="Yellow"),(Name="Orange"),(Name="Pink"),(Name="Red"),(Name="Purple"),(Name="Blue"),(Name="Green"),(Name="Brown"),(Name="Silver")))
+ProfileMappings[8]=(ValueMappings=((Name="None"),(Name="Black"),(Name="White"),(Name="Yellow"),(Name="Orange"),(Name="Pink"),(Name="Red"),(Name="Purple"),(Name="Blue"),(Name="Green"),(Name="Brown"),(Name="Silver")))
+ProfileMappings[9]=(ValueMappings=((Name="Off"),(Name="On")))
+ProfileMappings[10]=(ValueMappings=((Name="Off"),(Name="On")))
+ProfileMappings[11]=(ValueMappings=((Name="Left Thumbstick"),(Name="Right Thumbstick")))
+ProfileMappings[12]=(ValueMappings=((Name="Auto"),(Name="Manual")))
+ProfileMappings[13]=(ValueMappings=((Name="Behind"),(Name="Front"),(Name="Inside")))
+ProfileMappings[14]=(ValueMappings=((Name="Trigger"),(Name="Button")))
+ProfileMappings[15]=(ValueMappings=((Name="Trigger"),(Name="Button")))
+
+[ViewportStatus]
+RenderingFrozenE=Rendering frozen...
+OcclusionChild=Occlusion Child
+
+[UIDataProvider_OnlineFriendMessages]
+SendingPlayerNameCol=Sender's Name
+bIsFriendInviteCol=Friend Invitation
+bWasAcceptedCol=Friend Was Accepted
+bWasDeniedCol=Friend Was Denied
+MessageCol=Message
+
+[UIDataProvider_OnlineFriends]
+NickNameCol=Name
+PresenceInfoCol=Online Status
+bIsOnlineCol=Is Online
+bIsPlayingCol=Is Playing
+bIsPlayingThisGameCol=Is Playing This Game
+bIsJoinableCol=Is Joinable
+bHasVoiceSupportCol=Has Voice Support
+OfflineText=Offline
+OnlineText=Online
+AwayText=Away
+BusyText=Busy
+
+[OnlineGameSettings]
+NumPublicConnections.FriendlyName="Max Public Slots"
+NumPrivateConnections.FriendlyName="Max Private Slots"
+NumOpenPublicConnections.FriendlyName="Open Public Slots"
+NumOpenPrivateConnections.FriendlyName="Open Private Slots"
+bShouldAdvertise.FriendlyName="Advertise"
+bIsLanMatch.FriendlyName="Lan Match"
+bUsesStats.FriendlyName="Uses Stats"
+bAllowJoinInProgress.FriendlyName="Join In Progress Allowed"
+bAllowInvites.FriendlyName="Invites Allowed"
+bUsesPresence.FriendlyName="Presence Enabled"
+bAllowJoinViaPresence.FriendlyName="Join Via Presence Allowed"
+bUsesArbitration.FriendlyName="Arbitration"
+bAntiCheatProtected.FriendlyName="Anti-Cheat Protected"
+OwningPlayerName.FriendlyName="Server"
+PingInMs.FriendlyName="Ping"
+bIsDedicated.FriendlyName="Dedicated"
+bIsListPlay.FriendlyName="ListPlay"
+AverageSkillRating.FriendlyName="Skill Rating"
+
+[UIDataStore_OnlineStats]
+PlayerNickData.PlayerNickColumnName="Player Nick"
+RankNameMetaData.RankColumnName="Rank"
+
+[UIDataProvider_OnlinePartyChatList]
+NatTypes=Unknown
+

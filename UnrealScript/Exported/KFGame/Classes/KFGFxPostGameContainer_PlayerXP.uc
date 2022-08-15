@@ -1,0 +1,86 @@
+//=============================================================================
+// KFGFxPostGameContainer_PlayerXP
+//=============================================================================
+// Class Description
+//=============================================================================
+// Killing Floor 2
+// Copyright (C) 2015 Tripwire Interactive LLC
+//  - Zane Gholson 07/10/2015
+//=============================================================================
+
+class KFGFxPostGameContainer_PlayerXP extends KFGFxObject_Container;
+
+var int ItemCount;
+
+//==============================================================
+// Initialization
+//==============================================================
+function Initialize( KFGFxObject_Menu NewParentMenu )
+{
+	super.Initialize( NewParentMenu );
+	SetXPList();
+}
+
+function SetXPList()
+{
+	local GFxObject ObjectArray;
+	local KFPlayerReplicationInfo KFPRI;
+	local KFPlayerController KFPC;
+	local int i;
+	local EphemeralMatchStats StatCollector;
+
+	ItemCount = 0;
+
+	KFPRI = KFPlayerReplicationInfo(GetPC().PlayerReplicationInfo);
+
+	KFPC = KFPlayerController(GetPC());
+
+	if(KFPRI != none && KFPC != none)
+	{
+		StatCollector = KFPC.MatchStats;
+
+		ObjectArray = CreateArray();
+
+		StatCollector.PerkXPList.Sort(StatCollector.SortXP);
+		//Temp XP Print out on AAR player stats
+		for (i = 0; i < StatCollector.PerkXPList.length; i++)
+		{
+			ObjectArray.SetElementObject(ItemCount, MakePerkXPObject(StatCollector.PerkXPList[i]));
+		}
+	}
+
+	SetObject("xpList", ObjectArray);
+}
+
+function GFxObject MakePerkXPObject(PerkXPGain PerkXPObject)
+{
+	local GFxObject TempGFxObject;
+	local KFPlayerController KFPC; 
+
+	KFPC = KFPlayerController(GetPC());
+
+	TempGFxObject = CreateObject("Object");
+
+	TempGFxObject.SetFloat("startXP", 		PerkXPObject.StartXPPercentage);	
+	TempGFxObject.SetFloat("finishXP", 		Min(KFPC.GetPerkLevelProgressPercentage(PerkXPObject.PerkClass), 100 ));	
+	TempGFxObject.SetFloat("xpDelta", 		PerkXPObject.XPDelta);	
+	TempGFxObject.SetInt("perkLevel", 		PerkXPObject.StartLevel);	
+	TempGFxObject.SetInt("finishLevel", 	KFPC.GetPerkLevelFromPerkList(PerkXPObject.PerkClass));	
+	TempGFxObject.SetString("perkName", 	PerkXPObject.PerkClass.default.PerkName);	
+	TempGFxObject.SetString("perkIcon",		"img://" $PerkXPObject.PerkClass.static.GetPerkIconPath());
+	TempGFxObject.SetString("objective1", 	PerkXPObject.PerkClass.default.EXPAction1);
+	TempGFxObject.SetInt("objective1Value", PerkXPObject.XPDelta - PerkXPObject.SecondaryXPGain	);
+	TempGFxObject.SetString("objective2", 	PerkXPObject.PerkClass.default.EXPAction2);
+	TempGFxObject.SetInt("objective2Value", PerkXPObject.SecondaryXPGain );
+
+	ItemCount++;
+
+	return TempGFxObject;
+}
+
+defaultproperties
+{
+   ItemCount=-1
+   Name="Default__KFGFxPostGameContainer_PlayerXP"
+   ObjectArchetype=KFGFxObject_Container'KFGame.Default__KFGFxObject_Container'
+}

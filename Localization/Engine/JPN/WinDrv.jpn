@@ -1,0 +1,20 @@
+[Public]
+Class=(Class=WinDrv.WindowsClient,SuperClass=Engine.Client)
+
+[Errors]
+Failed3D=3D ハードウェアの初期化ができません。
+DDrawMode=ダイレクトドローは要求されたビデオモードでセットアップできません。
+
+[General]
+ViewPersp=パースペクティブマップ
+ViewXY=オーバーヘッドマップ
+ViewXZ=XZマップ
+ViewYZ=YZマップ
+ViewOther=ビューポート
+Color16=&16ビットカラー
+Color32=&32ビットカラー
+AdvancedOptions=詳細オプション
+
+[WindowsClient]
+ClassCaption="標準Windowsマネージャ"
+

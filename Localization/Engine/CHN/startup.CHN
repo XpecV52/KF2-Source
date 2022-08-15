@@ -1,0 +1,34 @@
+[General]
+Run=Run!
+FirstTime=虚幻引擎首发配置
+SafeMode=虚幻引擎安全模式
+RecoveryMode=虚幻引擎回复模式
+WebPage=http://unreal.epicgames.com/versions.htm
+Detecting=检测3D显卡装置，请稍等...
+
+[IDDIALOG_ConfigPageDetail]
+IDC_ConfigPageDetail=
+IDC_DetailPrompt=根据您的计算机速度、内存和显卡，虚幻引擎选择了下面的详细选项以优化性能。
+IDC_DetailNote=如果您愿意，稍后可以通过游戏的“参数选择(Preferences)”窗口更改这些选项。
+
+[IDDIALOG_ConfigPageFirstTime]
+IDC_ConfigPageFirstTime=
+IDC_Prompt=虚幻引擎将要首次启动。如果您在这期间遇到了任何问题，请阅读窗口“开始”菜单的“程序/虚幻竞技场”章节中的版本声明。
+
+[IDDIALOG_ConfigPageSafeMode]
+IDC_ConfigPageSafeMode=
+IDC_SafeModePrompt=上一次运行虚幻引擎后，没有正确关闭。如果是由于出现问题后关闭的情况，您可以使用下面的选项进行恢复。
+IDC_SafeModePrompt2=虚幻引擎安全模式选项：如果你遇到了问题，可以使用下面的选项进行恢复。
+IDC_Run=运行虚幻引擎
+IDC_SafeMode=以安全模式运行虚幻引擎 - 进行故障排除
+IDC_Web=访问我们的网址了解有关故障排除的建议
+
+[IDDIALOG_ConfigPageSafeOptions]
+IDC_ConfigPageSafeOptions=
+IDC_SafeOptions=安全模式选项，进行问题诊断
+IDC_NoSound=禁用所有声音
+IDC_Res=以标准的640x480分辨率运行
+IDC_ResetConfig=将所有配置选项重新设置为默认值
+IDC_NoProcessor=禁用Pentium III/3DNow处理器扩展
+IDC_NoJoy=禁用控制杆支持
+

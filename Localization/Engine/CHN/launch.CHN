@@ -1,0 +1,11 @@
+[Errors]
+Error_RemoteDesktop=这个游戏无法在远程桌面连接的过程中运行3D图形。
+Error_ParentalControls=家长控制当前等级不允许您运行这款游戏。
+Error_ResolutionTooLow=当前分辨率太低，无法运行这款游戏。
+Error_NotMinSpec=您的硬件不满足最小需求。您想继续吗？
+Error_ModifiedCode=不允许使用修改后的可执行文件代码。请重新安装这款游戏。
+Error_PureVirtualsEnabled=在启用CHECK_PUREVIRTUALS的情况下，这款游戏无法运行。请禁用CHECK_PUREVIRTUALS并重新编译可执行文件。
+Error_FloatingPointBlendingRequired=您的显卡不支持alpha与浮点渲染目标(D3DFMT_A16B16G16R16F)混合，而运行这款游戏必须使用它。退出...
+Error_FailedToCreateD3D9Device=无法创建D3D9设备！桌面被锁住导致发生这种情况。退出...
+Error_RanOutOfVideoMemory=显卡内存不足！退出...
+

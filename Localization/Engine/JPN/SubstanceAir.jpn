@@ -1,0 +1,14 @@
+[Editor]
+EditorGraphInstance=Show Graph Instance Editor
+InstantiateAllGraphs=Instantiate All Graphs 
+InstantiateGraph=Instantiate Graph 
+DeleteAllIO=Delete Instance and Outputs
+DeleteAllIOP=Delete Package, Instances and Outputs
+CreateMaterialGraphInstance=Create material
+ExportPreset=Export Substance Air Preset 
+ImportPreset=Import Substance Air Preset 
+ObjectContext_ReimportSubstance=Reimport Substance Package
+ObjectContext_ReimportImageInput=Reimport Substance Image Input
+CannotDeleteSubstanceObject=Cannot delete this object while the Graph Instance Editor is opened.
+FindParentInstance=Find parent Substance Graph Instance
+ModifiedInput=Substance Input Modified

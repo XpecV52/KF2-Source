@@ -1,0 +1,14 @@
+[Editor]
+EditorGraphInstance=显示图形实例化编辑器
+InstantiateAllGraphs=实例化全部图形 
+InstantiateGraph=实例化图形 
+DeleteAllIO=删除实例和输出
+DeleteAllIOP=删除软件包、实例及输出
+CreateMaterialGraphInstance=创建材质
+ExportPreset=导出Substance Air预设值 
+ImportPreset=导入Substance Air预设值
+ObjectContext_ReimportSubstance=重新导入Substance软件包
+ObjectContext_ReimportImageInput=重新导入Substance图片输入
+CannotDeleteSubstanceObject=在图形实例编辑器打开的情况下无法删除这个对象。
+FindParentInstance=查找父项Substance图形实例
+ModifiedInput=Substance输入修改

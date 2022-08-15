@@ -1,0 +1,20 @@
+[Public]
+Class=(Class=WinDrv.WindowsClient,SuperClass=Engine.Client)
+
+[Errors]
+Failed3D=Selhala inicializace 3d hardwaru
+DDrawMode=DirectDraw nedokázal nastavit požadovaný režim obrazovky
+
+[General]
+ViewPersp=Perspektivní mapa
+ViewXY=Náhledová mapa
+ViewXZ=XZ mapa
+ViewYZ=YZ mapa
+ViewOther=Výhled
+Color16=&16bitové barvy
+Color32=&32bitové barvy
+AdvancedOptions=Rozšířené nastavení
+
+[WindowsClient]
+ClassCaption="Standardní správce Windows"
+

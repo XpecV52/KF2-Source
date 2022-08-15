@@ -1,0 +1,290 @@
+[Public]
+Object[0]=(Name=Engine.ServerCommandlet,Class=Class,MetaClass=Core.Commandlet)
+Object[1]=(Name=Engine.MasterMD5Commandlet,Class=Class,MetaClass=Core.Commandlet)
+Object[2]=(Name=Engine.SmokeTestCommandlet,Class=Class,MetaClass=Core.Commandlet)
+
+[Errors]
+NetOpen=Ошибка при открытии файла
+NetWrite=Ошибка при записи файла
+NetRefused=Сервер отказался переслать '`~'
+NetClose=Ошибка при закрытии файла
+NetSize=Несоответствие размеров файла
+NetMove=Ошибка при перемещении файла
+NetInvalid=Получен неправильный запрос файла
+NoDownload=Вы не можете присоединиться к игре, так как у хоста есть загружаемый контент, которого нет у вас.
+DownloadFailed=Не удалось скачать файл '`~': `~
+RequestDenied=Server requested file from pending level: Denied
+ConnectionFailed=Ваше соединение с хостом было прервано.
+ChAllocate=Невозможно определить канал
+NetAlready=Уже в сети
+NetListen=Listen failed: No linker context available
+LoadEntry=Невозможно загрузить Entry: `~
+InvalidUrl=Вы не можете присоединиться к игре, так как у хоста есть загружаемый контент, которого нет у вас.
+InvalidLink=Недействительная ссылка: `~
+FailedBrowse=Не удалось открыть `~: `~. Проверьте лог на наличие ошибок.
+Listen=Listen failed: `~
+AbortToEntry=Ошибка; возвращение в Entry
+ServerOpen=Серверы не могут открывать другие адреса в сети
+ServerListen=Dedicated server can't listen: `~
+Pending=Подключение к '`~' не удалось; `~
+LoadPlayerClass=Не удалось загрузить класс игрока
+ClientOutdated=Для игры в онлайне необходима более новая версия Unreal Tournament 3. Подробную информацию об этом можно посмотреть на сайте www.unrealtournament3.com.
+ServerOutdated=Версия сервера устарела
+FailedMapload_NotFound=Карта указанная в командной строке '`~' не муожет быть найдена. Хотите загрузить вместо нее карту по умолчанию?
+DebuggerPresentError=Игра обнаружила что сейчас у вас запущена программа отладки user-mode или kernel-mode типа и из-за этого не может продолжить работу. Пожалуйста закройте все программы отладки и запустите игру заново.
+NetworkInit=Ошибка инициализации сетевой подсистемы.
+CreateMatchError=Ошибка при создании матча
+UsedCheatCommands=Были использованы консольные команды запрещённые в сетевой игре. Вы должны перезапустить сервер, чтобы создать матч.
+FailedFindPackage=Требуемый файл '`~' не найден
+ConnectionTimeout=Время ожидания соединения с сервером вышло
+NegativeDeltaTime=Обнаружено изменение времени CPU! Ознакомтесь с readme чтобы решить эту проблему.
+NetHDSpace=There is not enough space on your HDD to download the package. You will need to free some space to download packages.
+ConnectionFailed_Title=Нет подключения
+SteamClientRequired=Host is running Steam, so you should too. Please launch the game from Steam.
+SteamAuthFailed=Steam decided that you are not authorized to connect to this server.
+ServerHostingDifferentGame=Server is hosting a different game. You cannot connect to this server.
+PeerListen=Peer listen socket failed: `~
+PeerConnection=Peer connection failed: `~
+
+[Progress]
+CancelledConnect=Попытка соединения отменена
+RunningNet=`~: `~ (`~ игроков, `~ connections) [v`~]
+NetReceiving=Скачивается '`~': `~/`~
+NetReceiveOk=Файл '`~' успешно скачан
+NetSend=Отправка '`~'
+NetSending=Отправка '`~': `~/`~
+Connecting=Производится соединение...
+Listening=Ожидание клиентов...
+Loading=Загрузка
+Saving=Сохранение
+Paused=Пауза игрока `~
+ReceiveFile=Скачивается файл '`~'
+ReceiveOptionalFile=Скачивается необязательный файл '`~'
+ReceiveSize=Размер `~K, Скачано `3.1~`~
+ConnectingText=Подключение:
+ConnectingURL=unreal://`~/`~
+Success=Success
+PeerConnecting=Peer connecting
+PeerDisconnecting=Peer disconnecting
+
+[Console]
+ClassCaption=Standard Unreal Console
+
+[GameViewportClient]
+LoadingMessage=ЗАГРУЗКА
+SavingMessage=СОХРАНЕНИЕ
+ConnectingMessage=ПОДКЛЮЧЕНИЕ
+PausedMessage=ПАУЗА
+PrecachingMessage=КЭШИРОВАНИЕ
+
+[MasterMD5Commandlet]
+HelpCmd=mastermd5
+HelpOneLiner=Manipulate the Master MD5 database
+HelpUsage=mastermd5 [-option..] <params>
+HelpWebLink=http://unreal.epicgames.com/servertips.htm
+HelpParm[0]=-c
+HelpDesc[0]=Creates a new MD5 database
+HelpParm[1]=-a
+HelpDesc[1]=Adds new packages to the database
+HelpParm[2]=-s
+HelpDesc[2]=Show the current database.
+HelpParm[3]=-r
+HelpDesc[3]=Force the revision of all entries to <param>
+
+[General]
+Upgrade=To enter this server, you need the latest free update to Unreal available from Epic's Web site:
+UpgradeURL=http://www.unreal.com/upgrade
+UpgradeQuestion=Do you want to launch your web browser and go to the upgrade page now?
+Version=Version `~
+SplashScreen_CopyrightInfo=Copyright ©2009-2015 Killing Floor® Tripwire Interactive LLC   All rights reserved.
+SplashScreen_ThirdPartyCopyrightInfo=Uses Bink Video, Copyright © 1997-2011 by RAD Game Tools, Inc.
+
+[Menu]
+HelpMessage=
+MenuList=
+LeftString=Left
+RightString=Right
+CenterString=Center
+EnabledString=Enabled
+DisabledString=Disabled
+HelpMessage[1]=This menu has not yet been implemented.
+YesString=yes
+NoString=no
+
+[GameInfo]
+DefaultPlayerName=Игрок
+GameName=Игра
+
+[HUD]
+LoadingMessage=ЗАГРУЗКА
+SavingMessage=СОХРАНЕНИЕ
+ConnectingMessage=ПОДКЛЮЧЕНИЕ
+PausedMessage=ПАУЗА
+
+[Inventory]
+PickupMessage=Предмет подобран.
+
+[LevelInfo]
+Title=Безымянный
+
+[PlayerReplicationInfo]
+StringSpectating=Зритель
+StringUnknown=Неизвестно
+
+[TeamInfo]
+TeamName=Команда
+
+[Weapon]
+ItemName=Оружие
+
+[GameMessage]
+SwitchLevelMessage=Производится смена уровней
+LeftMessage=" покидает игру."
+FailedTeamMessage=Невозможно найти команду для игрока
+FailedPlaceMessage=Невозможно найти место для респауна
+FailedSpawnMessage=невозможно отреспаунить игрока
+EnteredMessage="  присоединяется к игре."
+MaxedOutMessage=Сервер переполнен.
+ArbitrationMessage=Arbitration Message (c.f. GameInfo.uc)
+OvertimeMessage=По истечении времени матча, счет равный! Овертайм до первого очка!!
+GlobalNameChange=меняет имя на
+NewTeamMessage=играет за
+NoNameChange=Имя уже используется.
+VoteStarted=объявляет голосование.
+VotePassed=Голосование прошло.
+MustHaveStats=Для подключения к этому серверу нужно включить сбор статистики.
+CantBeSpectator=Извините, но в данный момент вы не можете стать зрителем.
+CantBePlayer=Извините, но в данный момент вы не можете стать игроком.
+BecameSpectator=становится зрителем.
+NewPlayerMessage=К матчу присоединяется новый игрок.
+KickWarning=Вас вот-вот отключат за бездействие!
+NewSpecMessage=К игре присоединяется зритель/
+SpecEnteredMessage=" присоединяется к матчу в качестве зрителя."
+
+[FailedConnect]
+FailMessage[0]=FAILED TO JOIN GAME.  NEED PASSWORD.
+FailMessage[1]=FAILED TO JOIN GAME.  WRONG PASSWORD.
+FailMessage[2]=FAILED TO JOIN GAME.  GAME HAS STARTED.
+FailMessage[3]=FAILED TO JOIN GAME.
+
+[AccessControl]
+IPBanned=Ваш IP-адрес забанен на этом сервере.
+WrongPassword=Введенный вами пароль неверен.
+NeedPassword=Вам необходимо ввести пароль, чтобы подключиться к этому серверу.
+SessionBanned=Ваш IP-адрес был забанен до конца текущего матча.
+KickedMsg=Вы были принудительно отключены от сервера.
+DefaultKickReason=Не указано
+IdleKickReason=Отключен за бездействие.
+ACDisplayText[0]=Пароль на подключение
+ACDisplayText[1]=Политика доступа
+ACDisplayText[2]=Пароль админа
+ACDescText[0]=Если указан пароль, то для подключения к серверу потребуется ввести пароль.
+ACDescText[1]=Список IP-адресов или диапазонов IP-адресов, забаненных на этом сервере.
+ACDescText[2]=Пароль необходимый для авторизации на этом сервер в качестве администратора.
+
+[ServerCommandlet]
+HelpDescription=Network game server
+HelpUsage=server map.unr[?game=gametype] [-option...] [parm=value]...
+HelpWebLink=http://unreal.epicgames.com/servertips.htm
+HelpParamNames[0]=Log
+HelpParamDescriptions[0]=Specify the log file to generate
+HelpParamNames[1]=AllAdmin
+HelpParamDescriptions[1]=Give all players admin privelages
+
+[SmokeTestCommandlet]
+HelpDescription=This commandlet runs a series of tests to validate a build
+HelpUsage=gamename.exe smoketest <SERVER | CHECK_NATIVE_CLASS_SIZES>
+HelpWebLink=
+HelpParamNames[0]=SERVER
+HelpParamDescriptions[0]=Runs the game as a server for one tick to validate startup and first frame code
+HelpParamNames[1]=CHECK_NATIVE_CLASS_SIZES
+HelpParamDescriptions[1]=Validates that all native classes match their script classes in member layout
+
+[ExampleGameMenu]
+CancelButtonText=Return To Game
+RespawnButtonText=Respawn Player
+ReloadButtonText=Reload Map
+InlineFontSampleText=These words are small... <Fonts:EngineFonts.LargeFont>these words are big,<Fonts:/> and these words are back to normal.
+InlineStyleSampleText=These words are normal... <Styles:ConsoleStyle>these words are green<Styles:/> and these words are normal too.
+SplitscreenButtonText=Splitscreen Test Scene
+
+[TestMenuStrings]
+ButtonTestText=The button has been clicked <SceneData:ButtonClickCount> times.
+PlayerIndexText=The propagated PlayerIndex is: <SceneData:PlayerIndex>.
+WrapStringTest=This is just some nonsense text that will be used for testing various string auto-sizing features. This really long string is a great one to use for testing the wrapping functionality of a UIString.  In fact, there are so many characters in this string that it is great for testing many different features of a UIString.
+
+[OnlineProfileSettings]
+OwnerMappings[0]=(Name="None")
+OwnerMappings[1]=(Name="Online Service Setting")
+OwnerMappings[2]=(Name="Game Setting")
+ProfileMappings[0]=(ValueMappings=((Name="Off"),(Name="On")))
+ProfileMappings[1]=(ValueMappings=((Name="Off"),(Name="On")))
+ProfileMappings[2]=(ValueMappings=((Name="No"),(Name="Yes")))
+ProfileMappings[3]=(ValueMappings=((Name="Off"),(Name="On"),(Name="Both")))
+ProfileMappings[5]=(ValueMappings=((Name="Normal"),(Name="Easy"),(Name="Hard")))
+ProfileMappings[6]=(ValueMappings=((Name="Medium"),(Name="Low"),(Name="High")))
+ProfileMappings[7]=(ValueMappings=((Name="None"),(Name="Black"),(Name="White"),(Name="Yellow"),(Name="Orange"),(Name="Pink"),(Name="Red"),(Name="Purple"),(Name="Blue"),(Name="Green"),(Name="Brown"),(Name="Silver")))
+ProfileMappings[8]=(ValueMappings=((Name="None"),(Name="Black"),(Name="White"),(Name="Yellow"),(Name="Orange"),(Name="Pink"),(Name="Red"),(Name="Purple"),(Name="Blue"),(Name="Green"),(Name="Brown"),(Name="Silver")))
+ProfileMappings[9]=(ValueMappings=((Name="Off"),(Name="On")))
+ProfileMappings[10]=(ValueMappings=((Name="Off"),(Name="On")))
+ProfileMappings[11]=(ValueMappings=((Name="Left Thumbstick"),(Name="Right Thumbstick")))
+ProfileMappings[12]=(ValueMappings=((Name="Auto"),(Name="Manual")))
+ProfileMappings[13]=(ValueMappings=((Name="Behind"),(Name="Front"),(Name="Inside")))
+ProfileMappings[14]=(ValueMappings=((Name="Trigger"),(Name="Button")))
+ProfileMappings[15]=(ValueMappings=((Name="Trigger"),(Name="Button")))
+
+[ViewportStatus]
+RenderingFrozenE=Rendering frozen...
+OcclusionChild=Occlusion Child
+
+[UIDataProvider_OnlineFriendMessages]
+SendingPlayerNameCol=Отправитель
+bIsFriendInviteCol=Предложение дружить
+bWasAcceptedCol=Предложение принято
+bWasDeniedCol=Предложение отклонено
+MessageCol=Сообщение
+
+[UIDataProvider_OnlineFriends]
+NickNameCol=Имя
+PresenceInfoCol=Статус
+bIsOnlineCol=В сети
+bIsPlayingCol=Играет
+bIsPlayingThisGameCol=Играет в эту игру
+bIsJoinableCol=Можно присоединиться
+bHasVoiceSupportCol=Голосовой чат
+OfflineText=Не в сети
+OnlineText=В сети
+AwayText=Нет на месте
+BusyText=Занят
+
+[OnlineGameSettings]
+NumPublicConnections.FriendlyName="Макс. публичных слотов"
+NumPrivateConnections.FriendlyName="Макс. частных слотов"
+NumOpenPublicConnections.FriendlyName="Открытых публичных слотов"
+NumOpenPrivateConnections.FriendlyName="Открытых частных слотов"
+bShouldAdvertise.FriendlyName="Оповещать мастер-сервер"
+bIsLanMatch.FriendlyName="LAN-игра"
+bUsesStats.FriendlyName="Сбор статистики"
+bAllowJoinInProgress.FriendlyName="Подключение по ходу игры"
+bAllowInvites.FriendlyName="Приглашения разрешены"
+bUsesPresence.FriendlyName="Поддержка Presence"
+bAllowJoinViaPresence.FriendlyName="Присединение через Presence"
+bUsesArbitration.FriendlyName="Arbitration"
+OwningPlayerName.FriendlyName="Сервер"
+PingInMs.FriendlyName="Пинг"
+bIsDedicated.FriendlyName="Выделенный"
+bIsListPlay.FriendlyName="Поддерживает ListPlay"
+AverageSkillRating.FriendlyName="Рейтинг мастерства"
+bAntiCheatProtected.FriendlyName="Anti-Cheat Protected"
+
+[UIDataStore_OnlineStats]
+PlayerNickData.PlayerNickColumnName="Имя игрока"
+RankNameMetaData.RankColumnName="место"
+
+[UIDataProvider_OnlinePartyChatList]
+NatTypes=Unknown
+
+[CheatManager]
+ViewingFrom=Now viewing from
+OwnCamera=Now viewing from own camera
+

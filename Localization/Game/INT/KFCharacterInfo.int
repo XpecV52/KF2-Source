@@ -1,0 +1,517 @@
+//NOTES: 
+//1. CharacterName can be changed slightly. It can run to about ?? characters (MAX), including spaces.
+//2. Description is the bio and can be edited quite happily. Limit is just over 800 characters, including spaces. 
+//3. All the rest (Skin descriptions) should be 20-21 characters, max, including spaces.
+
+//DJ Scully
+
+[chr_DJSkully_archetype]
+CharacterName="DJ Scully"
+Description="The coolest Dutch underground DJ of his generation, Scully can't help but be loved by everyone. Women seem to end up loving him, regardless of any common sense involved. The men should all hate him for that alone, but he's just too much fun to be around. When the outbreak broke, he'd just finished a monster set at a disused insane asylum north of London. As the Zeds tried to eat everyone, being quick-witted and quick on his feet, if not combat-trained, kept him alive. Scully has always had trouble taking life seriously and the apocalypse hasn't changed that. Just that he's really good at dispatching monsters. So good that it spawned silly rumors that he must be ex-special forces, which is just another Scully joke."
+BodyMesh0="Hoodie"
+HeadMesh0="Scully Mask"
+Attachment0="Scully Cap"
+Attachment1="Scullyphones"
+
+[chr_DJSkully_archetype.BodyMesh0]
+BodySkin0="Blackest Black"
+BodySkin1="Xtra Red"
+BodySkin2="GearXT Yellow"
+BodySkin3="Green Hazard"
+BodySkin4="Retro Scully"
+
+[chr_DJSkully_archetype.HeadMesh0]
+HeadSkin0="Blackest Black"
+HeadSkin1="Xtra Red"
+HeadSkin2="GearXT Yellow"
+HeadSkin3="Green Hazard"
+HeadSkin4="Retro Scully"
+
+[chr_DJSkully_archetype.Attachment0]
+AttachmentSkin0="Blackest Black"
+AttachmentSkin1="Xtra Red"
+AttachmentSkin2="GearXT Yellow"
+AttachmentSkin3="Green Hazard"
+AttachmentSkin4="Retro Scully"
+
+[chr_DJSkully_archetype.Attachment1]
+AttachmentSkin0="Guillotine Red"
+AttachmentSkin1="GearXT Yellow"
+AttachmentSkin2="Deep Blue"
+AttachmentSkin3="Guardian Orange"
+AttachmentSkin4="Retro Scully"
+AttachmentSkin5="Horzine White"
+
+
+//Police Constable Rob Briar
+
+[chr_briar_archetype]
+CharacterName="PC Rob Briar"
+Description="Rob Briar was a Police Constable from the age of 17, until the day he was called out to what seemed, to his superiors, to be some half-witted anarchist riot. We all know it wasn't, but Briar discovered that the hard way. Luckily, he wasn't just an old-fashioned "London bobby", but had spent enough time on counter-terrorism work to be familiar with a broad range of firearms. Underneath the happy-go-lucky, jokey exterior, Briar is as hard as nails. That toughness, along with the toughness of the Kevlar in his riot gear, is about all that got him through those first few days alive. Now he is continuing to do his duty, serving the public by trying to stamp out this menace with any and every weapon that comes to hand."
+BodyMesh0="Riot Gear"
+HeadMesh0="Hair"
+Attachment0="Riot Helmet"
+Attachment1="S10 NBC Mask"
+Attachment2="Glasses"
+Attachment3="Spectacles"
+
+[chr_briar_archetype.BodyMesh0]
+BodySkin0="Police Blue"
+BodySkin1="Night Black"
+BodySkin2="Army Green"
+BodySkin3="SAS Camo"
+
+[chr_briar_archetype.HeadMesh0]
+HeadSkin0="Original"
+HeadSkin1="Highlights"
+HeadSkin2="Black"
+
+[chr_briar_archetype.Attachment0]
+AttachmentSkin0="Visible Red"
+AttachmentSkin1="Police Blue"
+AttachmentSkin2="Army Green"
+AttachmentSkin3="Night Black"
+
+[chr_briar_archetype.Attachment1]
+AttachmentSkin0="Black"
+AttachmentSkin1="Camo"
+AttachmentSkin2="Biohazard"
+AttachmentSkin3="Zed Time"
+
+[CHR_briar_archetype.Attachment2]
+AttachmentSkin0="Shades"
+AttachmentSkin1="Regular Glasses"
+
+[CHR_briar_archetype.Attachment3]
+AttachmentSkin0="Spectacles"
+
+//Mr Foster
+
+[CHR_MrFoster_archetype]
+CharacterName="Mr. Foster"
+Description="Foster had wandered into day trading from a mediocre English private school education, with the classic "you'll never amount to anything, Foster" ringing in his ears from the school's careers officer. Not that Foster really cared. But, bizarrely, he found that day trading suited him. He started to generate large sums of money and thoroughly enjoyed it. Not that he would admit to enjoying a job, obviously. He also had a habit of verbally abusing authority figures. This led to Foster being seen as a clever, smart guy, with a sardonic sense of humor and great taste in clothes and cars. Or a jumped-up little tool. You decide."
+BodyMesh0="Leather Jacket"
+HeadMesh0="Gas Mask"
+Attachment0="Bowler Hat"
+Attachment1="Scullyphones"
+
+[CHR_MrFoster_archetype.BodyMesh0]
+BodySkin0="KF Blue"
+BodySkin1="PCG Dosh"
+BodySkin2="Biohazard"
+BodySkin3="Just Class"
+BodySkin4="Magma Red"
+
+[CHR_MrFoster_archetype.HeadMesh0]
+HeadSkin0="Original White"
+HeadSkin1="PCG Red"
+HeadSkin2="My Mate Scully"
+HeadSkin3="Magma Red"
+HeadSkin4="British Class"
+
+[CHR_MrFoster_archetype.Attachment0]
+AttachmentSkin0="Business Black"
+AttachmentSkin1="Best of British"
+AttachmentSkin2="Chocolate Brown"
+AttachmentSkin3="Flaming Red"
+AttachmentSkin4="Seriously Purple"
+AttachmentSkin5="Performance White"
+
+[chr_MrFoster_archetype.Attachment1]
+AttachmentSkin0="Deep Blue"
+AttachmentSkin1="Guillotine Red"
+AttachmentSkin2="Guardian Orange"
+AttachmentSkin3="Retro Skull"
+AttachmentSkin4="Horzine White"
+AttachmentSkin5="GearXT Yellow"
+
+
+
+//Erskine Coleman - renamed to Donovan Neal
+
+[CHR_Coleman_archetype]
+CharacterName="Donovan Neal"
+Description="Donovan is big, tough and can handle himself in almost any situation. But he is way more than he seems to a careless glance. He wasn't just one of the guys providing close protection services to a bunch of wrestlers - he was the guy who set up, owned and ran the whole security business. Born in Atlanta, GA, he was smart and well-educated, working in law enforcement before setting up his own business.  Not just muscle - he was the brains of the operation, too. But now he's another survivor, stuck in the wrong place at the wrong time. Just say a short prayer for all the Zeds that are standing between this man and what he wants. Or get in there and help him kill them!"
+BodyMesh0="RQ Hoodie"
+HeadMesh0="Face"
+Attachment0="RQ Cap"
+Attachment1="S10 NBC Mask"
+Attachment2="Glasses"
+Attachment3="Scullyphones"
+
+[CHR_Coleman_archetype.BodyMesh0]
+BodySkin0="Racing Green"
+BodySkin1="Rustic Red"
+BodySkin2="Cool Grey"
+BodySkin3="Pale Earth"
+
+[CHR_Coleman_archetype.HeadMesh0]
+HeadSkin0="Donovan"
+HeadSkin1="Tat"
+HeadSkin2="Glare"
+
+[CHR_Coleman_archetype.Attachment0]
+AttachmentSkin0="Mellow Yellow"
+AttachmentSkin1="Rustic Red"
+AttachmentSkin2="True Blue"
+AttachmentSkin3="Lean Green"
+
+[CHR_Coleman_archetype.Attachment1]
+AttachmentSkin0="Black"
+AttachmentSkin1="Camo"
+AttachmentSkin2="Biohazard"
+AttachmentSkin3="Zed Time"
+
+[CHR_Coleman_archetype.Attachment2]
+AttachmentSkin0="Shades"
+AttachmentSkin1="Regular Glasses"
+
+[chr_Coleman_archetype.Attachment3]
+AttachmentSkin0="Deep Blue"
+AttachmentSkin1="Guillotine Red"
+AttachmentSkin2="Guardian Orange"
+AttachmentSkin3="Retro Skull"
+AttachmentSkin4="Horzine White"
+AttachmentSkin5="GearXT Yellow"
+
+//Reverend Alberts
+
+[CHR_Alberts_archetype]
+CharacterName="Reverend Alberts"
+Description="Half English, half Scottish, Alberts was always physically tough, tempered by his desire to help others. That tough, solid, no-nonsense approach was perfect for a stint as an Army Chaplain, followed by 20 years working with disaffected youths in South London. Having spent his life trying to steer people away from the "bad" side, over to the "good", Alberts wasn't happy when his life's work was destroyed by a pack of raging monsters at tea-time one afternoon. That afternoon, he quickly went from ministering to the dead and dying, to bringing down the wrath of Alberts on the heads of all the evil abominations. And on any other body parts he can reach."
+BodyMesh0="Dog Collar"
+HeadMesh0="Hair"
+Attachment0="Fedora"
+Attachment1="Glasses"
+Attachment2="S10 Gas Mask"
+Attachment3="Bowler Hat"
+
+[CHR_Alberts_archetype.BodyMesh0]
+BodySkin0="Basic Black"
+BodySkin1="Ruby Red"
+BodySkin2="Sharp Blue"
+BodySkin3="Tropical White"
+
+[CHR_Alberts_archetype.HeadMesh0]
+HeadSkin0="Grey"
+HeadSkin1="Brown"
+HeadSkin2="Black"
+HeadSkin3="White"
+
+[CHR_Alberts_archetype.Attachment0]
+AttachmentSkin0="Basic Black"
+AttachmentSkin1="Ruby Red"
+AttachmentSkin2="Elegant Grey"
+AttachmentSkin3="Dark Blue"
+
+[CHR_Alberts_archetype.Attachment1]
+AttachmentSkin0="Shades"
+AttachmentSkin1="Regular Glasses"
+
+[CHR_Alberts_archetype.Attachment2]
+AttachmentSkin0="Black"
+AttachmentSkin1="Camo"
+AttachmentSkin2="Biohazard"
+AttachmentSkin3="Zed Time"
+
+[CHR_Alberts_archetype.Attachment3]
+AttachmentSkin0="Business Black"
+AttachmentSkin1="Best of British"
+AttachmentSkin2="Chocolate Brown"
+AttachmentSkin3="Flaming Red"
+AttachmentSkin4="Seriously Purple"
+AttachmentSkin5="Performance White"
+
+
+//Start Masterson
+
+[CHR_Masterson_archetype]
+CharacterName="Lt. Bill Masterson"
+Description="Bill Masterson had a checkered career in the Army. He wanted heroic soldiering, against bold and evil enemies of Queen and Country. What he got was a bunch of dirty terrorists. He wanted a good shooting war. What he got was leading his men through a series of stupid "police actions" in crappy parts of the world. So he quit. After a couple of worthless jobs, he woke up one morning to the Apocalypse going on in the streets of London. Masterson, now the heroic soldier he wanted to be, let himself in to the local Reserves barracks, tooled himself up and started his own shooting war. It wasn't the war he had expected or trained for, but it worked. And he is bloody good at it!"
+BodyMesh0="Combat Dress"
+HeadMesh0="Face"
+Attachment0="S10 NBC Mask"
+Attachment1="Glasses"
+
+[CHR_Masterson_archetype.HeadMesh0]
+HeadSkin0="Clean"
+HeadSkin1="Camo"
+
+
+[CHR_Masterson_archetype.Attachment0]
+AttachmentSkin0="Black"
+AttachmentSkin1="Camo"
+AttachmentSkin2="Biohazard"
+AttachmentSkin3="Zed Time"
+
+[CHR_Masterson_archetype.Attachment1]
+AttachmentSkin0="Shades"
+AttachmentSkin1="Regular Glasses"
+
+[CHR_Masterson_archetype.BodyMesh0]
+BodySkin0="Green"
+BodySkin1="Black"
+BodySkin2="Snow"
+BodySkin3="DPM"
+
+
+//Start Tanaka
+
+[CHR_Tanaka_Archetype]
+CharacterName="Hayato Tanaka"
+Description="Tanaka is a conflicted individual, with a serious death-wish problem. Born in Okinawa, he was brought up around Americans in the military. Moving to mainland Japan with his family, the Americanized Tanaka failed to fit in and took up drama classes. After college he moved to LA, playing cliched bit-parts in bad movies, before moving on to Europe trying to find more 'serious' work. All he got there were bad-guy roles in French gangster films and some tats. Now, in the apocalypse, he seems to be confusing his own reality with some of the movie parts he has played. This seems to involve visions of the Yakuza, demons and a Hollywood take on bushido."
+BodyMesh0="Die Cool"
+HeadMesh0="Hair"
+Attachment0="Facemask"
+Attachment1="S10 NBC Mask"
+Attachment2="Glasses"
+Attachment3="Scullyphones"
+Attachment4="3D Glasses"
+
+[CHR_Tanaka_Archetype.HeadMesh0]
+HeadSkin0="Black"
+HeadSkin1="Blonde"
+
+
+[CHR_Tanaka_Archetype.BodyMesh0]
+BodySkin0="And Classy"
+BodySkin1="Kakihara-san"
+BodySkin2="In Black"
+BodySkin3="Blue Dragon"
+
+[chr_Tanaka_archetype.Attachment0]
+AttachmentSkin0="Gold Dragon"
+AttachmentSkin1="Kakihara-san"
+AttachmentSkin2="Hannya"
+AttachmentSkin3="True Blue"
+
+[chr_Tanaka_archetype.Attachment1]
+AttachmentSkin0="Black"
+AttachmentSkin1="Camo"
+AttachmentSkin2="Biohazard"
+AttachmentSkin3="Zed Time"
+
+[CHR_Tanaka_archetype.Attachment2]
+AttachmentSkin0="Shades"
+AttachmentSkin1="Regular Glasses"
+
+[chr_Tanaka_archetype.Attachment3]
+AttachmentSkin0="Deep Blue"
+AttachmentSkin1="Guillotine Red"
+AttachmentSkin2="Guardian Orange"
+AttachmentSkin3="Retro Skull"
+AttachmentSkin4="Horzine White"
+AttachmentSkin5="GearXT Yellow"
+
+[CHR_Tanaka_archetype.Attachment4]
+AttachmentSkin0="Anaglyph 3D"
+AttachmentSkin1="Passive Shutter"
+AttachmentSkin2="Trioscopic 3D"
+AttachmentSkin3="X-Ray Specs"
+
+//Ana
+[CHR_Ana_Archetype]
+CharacterName="Ana Larive"
+Description="She would probably be assigned to that group the establishment called "disaffected youth", except that Ana largely didn't give enough of a crap about anything except travelling around Europe indulging her passions for photographing abandoned places and for death metal bands. And now there isn't much "establishment" left, Ana cares even less. While there is now a distinct lack of bands on tour, there are ever-more abandoned places. And the sweet part about her current job is that she gets to go into those places and make them look even more abandoned. You see, she's discovered a new passion - blowing stuff up!"
+BodyMesh0="Metalcore"
+HeadMesh0="Mohawk"
+Attachment0="Scarf"
+Attachment1="S10 Gas Mask"
+Attachment2="Glasses"
+Attachment3="3D Glasses"
+
+[CHR_Ana_Archetype.HeadMesh0]
+HeadSkin0="Death Rain"
+HeadSkin1="Bright Blood"
+HeadSkin2="Bio-Cola Green"
+HeadSkin3="Pretty Blue"
+
+[CHR_Ana_Archetype.BodyMesh0]
+BodySkin0="Death Rain"
+BodySkin1="Bright Blood"
+BodySkin2="Bio-Cola Green"
+BodySkin3="Pretty Blue"
+BodySkin4="Chickenator Homage"
+
+[CHR_Ana_Archetype.Attachment0]
+AttachmentSkin0="Death Rain"
+AttachmentSkin1="Tigress"
+AttachmentSkin2="Bunberry"
+AttachmentSkin3="Pretty Blue"
+
+[CHR_Ana_Archetype.Attachment1]
+AttachmentSkin0="Black"
+AttachmentSkin1="Camo"
+AttachmentSkin2="Biohazard"
+AttachmentSkin3="Zed Time"
+
+[CHR_Ana_archetype.Attachment2]
+AttachmentSkin0="Shades"
+AttachmentSkin1="Regular Glasses"
+
+[CHR_Ana_archetype.Attachment3]
+AttachmentSkin0="Anaglyph 3D"
+AttachmentSkin1="Passive Shutter"
+AttachmentSkin2="Trioscopic 3D"
+AttachmentSkin3="X-Ray Specs"
+
+
+//Classic Briar 
+
+[chr_mark_archetype]
+CharacterName="Classic Briar"
+Description="Once upon a time, Briar got the call to suit up to handle a riot in London. But, this time, it wasn't the usual procession of hippies, environmentalists and hairy anarchists getting the rough end of Briar's nightstick. Happily, his affinity for unsolicited violence actually did get him through the next few months, before he had to abandon Blighty and move on to foreign fields.\n\nNow he can extend his good old-fashioned police methods beyond clipping errant teenagers upside the head, to controlling a horde of man-eating mutant monsters by shooting, burning and blowing them to smithereens. And his happy-go-lucky London bobby persona helps to keep the morale of the team up. Or annoy the crap out of them."
+
+BodyMesh0="Riot Gear"
+HeadMesh0="Hair"
+Attachment0="Riot Helmet"
+Attachment1="S10 NBC Mask"
+Attachment2="Glasses"
+
+
+[chr_mark_archetype.BodyMesh0]
+BodySkin0="Police Blue"
+BodySkin1="Night Black"
+BodySkin2="Army Green"
+BodySkin3="SAS Camo"
+
+[chr_mark_archetype.HeadMesh0]
+HeadSkin0="The Real Deal"
+HeadSkin1="Bloody 5 O'Clock"
+HeadSkin2="A Nice Brown, Guv?"
+Headskin3="Swedish Blonde"
+
+[chr_mark_archetype.Attachment0]
+AttachmentSkin0="Visible Red"
+AttachmentSkin1="Police Blue"
+AttachmentSkin2="Army Green"
+AttachmentSkin3="Night Black"
+
+[chr_mark_archetype.Attachment1]
+AttachmentSkin0="Black"
+AttachmentSkin1="Camo"
+AttachmentSkin2="Biohazard"
+AttachmentSkin3="Zed Time"
+
+[CHR_mark_archetype.Attachment2]
+AttachmentSkin0="Shades"
+AttachmentSkin1="Regular Glasses"
+
+
+//Classic Masterson
+
+[chr_alan_archetype]
+CharacterName="Classic Masterson"
+Description="No-one has ever really understood how this Masterson rose through the ranks at all, although some have suggested his richer and better-looking cousin, Captain Sir Richard Wiggins, may have had some influence. Or perhaps it was his smarter brother. But, as is always noted, he's a rough diamond, a man of few (polite) words and has an unnaturally calm demeanour in combat situations. Pretty much everyone reckons this is due to his lack of imagination, empathy and intelligence. Luckily, he directs his men decisively and always gets the job done - no matter how unsavory that job would appear to anyone with good taste or decent manners."
+
+BodyMesh0="Riot Gear"
+HeadMesh0="Face"
+Attachment0="S10 NBC Mask"
+Attachment1="Glasses"
+
+[CHR_alan_archetype.BodyMesh0]
+BodySkin0="Green"
+BodySkin1="Black"
+BodySkin2="Snow"
+BodySkin3="DPM"
+
+[chr_alan_archetype.HeadMesh0]
+HeadSkin0="The Real Deal"
+HeadSkin1="Ginger! Really?"
+HeadSkin2="Rough Day, Mate?"
+Headskin3="Camo Up, Chaps!"
+
+[CHR_alan_archetype.Attachment0]
+AttachmentSkin0="Black"
+AttachmentSkin1="Camo"
+AttachmentSkin2="Biohazard"
+AttachmentSkin3="Zed Time"
+
+[CHR_alan_archetype.Attachment1]
+AttachmentSkin0="Shades"
+AttachmentSkin1="Regular Glasses"
+
+
+//Anton Strasser
+
+[chr_strasser_archetype]
+CharacterName="Anton Strasser"
+Description="Strasser marched off to his first war in 1939, as a soldier in the German army invading Poland, followed by a stomp through France in 1940 and a charge into Russia in 1941. But that led to him almost freezing to death, fighting General Winter and the Red Army equally hard for his life. In 1942 Stalingrad loomed, victories ended and disillusion set in. At Gumrak airfield, he was severely concussed, but lucky. Flown out, comatose, into the waiting arms of one Hans Volter, he was quietly spirited away to Volter's lab as a wonderful subject for cryogenic tests. There he stayed, frozen and forgotten, until accidentally released by an outbreak. Bewildered, he had one brief chance to kill Volter but didn't take it. Much to his regret when he found out what was going on."
+
+BodyMesh0="RO2: Hero of Stalingrad"
+HeadMesh0="Hair"
+Attachment0="German Side Cap"
+Attachment1="German Steel Helmet"
+
+[CHR_strasser_archetype.BodyMesh0]
+BodySkin0="Raw Recruit"
+BodySkin1="Battle-hardened"
+
+[chr_strasser_archetype.HeadMesh0]
+HeadSkin0="Dark Steel"
+HeadSkin1="Blond Steel"
+
+
+[CHR_strasser_archetype.Attachment0]
+AttachmentSkin0="Parade Cap"
+AttachmentSkin1="Bloodied Cap"
+
+[CHR_strasser_archetype.Attachment1]
+AttachmentSkin0="Classic Steel"
+AttachmentSkin1="Aged Steel"
+
+//Chivalry Knight
+
+[chr_knight_archetype]
+CharacterName="Chivalry Knight"
+Description="Tom Banner had obsessed about the heroics of the Middle Ages since he was a small boy. His fairly stellar career as a Management Consultant actually enabled this obsession to grow as he moved from his native Canada, via Boston, to England. He had already created his own armor and took on his new persona as a re-enactor in Merry Olde England. This move coincided with the release of 'Chivalry', which enabled him to act out the fantasy to a degree that most definitely would not be safe as a re-enactor. When the outbreak came, Tom climbed into his armor and went off to save fair maidens from monsters. For real. The fact that he refuses to take off his armor has lead to concerns that he is taking the whole medieval thing a touch too far. But who cares?"
+
+BodyMesh0="Armour"
+HeadMesh0="Head"
+Attachment0="Knight's Helm"
+Attachment1="Horseman's Helm"
+Attachment2="Veteran's Helm"
+Attachment3="Olde Riote Helm"
+Attachment4="Ye Eyeglasses"
+
+[CHR_knight_archetype.BodyMesh0]
+BodySkin0="Agatha"
+BodySkin1="Cleese"
+BodySkin2="Perceval"
+BodySkin3="Jaime"
+
+[chr_knight_archetype.HeadMesh0]
+HeadSkin0="To Battle!"
+HeadSkin1="Freedom!"
+HeadSkin2="To War!"
+HeadSkin3="Valhalla!"
+
+
+[CHR_knight_archetype.Attachment0]
+AttachmentSkin0="Agatha"
+AttachmentSkin1="Cleese"
+AttachmentSkin2="Perceval"
+AttachmentSkin3="Jaime"
+
+
+[CHR_knight_archetype.Attachment1]
+AttachmentSkin0="Agatha"
+AttachmentSkin1="Cleese"
+AttachmentSkin2="Perceval"
+AttachmentSkin3="Jaime"
+
+[CHR_knight_archetype.Attachment2]
+AttachmentSkin0="Agatha"
+AttachmentSkin1="Cleese"
+AttachmentSkin2="Perceval"
+AttachmentSkin3="Jaime"
+
+[chr_knight_archetype.Attachment3]
+AttachmentSkin0="Kingly Red"
+AttachmentSkin1="Knightly Blue"
+AttachmentSkin2="Lordly Green"
+AttachmentSkin3="Black Night"
+
+[CHR_knight_archetype.Attachment4]
+AttachmentSkin0="Shadeth the sun"
+AttachmentSkin1="The better to see"

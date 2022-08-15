@@ -1,0 +1,117 @@
+//=============================================================================
+// KFWeap_AssaultRifle_Medic
+//=============================================================================
+// A Medic Assault Rifle
+//=============================================================================
+// Killing Floor 2
+// Copyright (C) 2015 Tripwire Interactive LLC
+// John "Ramm-Jaeger" Gibson
+//=============================================================================
+
+class KFWeap_AssaultRifle_Medic extends KFWeap_MedicBase;
+
+defaultproperties
+{
+   HealAmount=40
+   HealAmmoCost=30
+   HealFullRechargeSeconds=10.000000
+   FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletAuto'
+   FireModeIconPaths(1)=()
+   SingleFireMode=1
+   InventorySize=7
+   EffectiveRange=70
+   bHasIronSights=True
+   bCanBeReloaded=True
+   bReloadFromMagazine=True
+   bHasFlashlight=True
+   MeshFOV=75.000000
+   MeshIronSightFOV=52.000000
+   PlayerIronSightFOV=70.000000
+   IronSightPosition=(X=12.000000,Y=0.000000,Z=0.000000)
+   DOF_FG_FocalRadius=85.000000
+   DOF_FG_MaxNearBlurSize=2.500000
+   GroupPriority=100.000000
+   UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicAssault'
+   SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
+   MagazineCapacity(0)=30
+   MaxSpareAmmo(0)=300
+   InitialSpareMags(0)=3
+   bLoopingFireAnim(0)=True
+   bLoopingFireSnd(0)=True
+   FireSightedAnims(1)="Shoot_Iron2"
+   FireSightedAnims(2)="Shoot_Iron3"
+   WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_MedicAssault.Play_SA_MedicAssault_Fire_3P_Loop',FirstPersonCue=AkEvent'WW_WEP_SA_MedicAssault.Play_SA_MedicAssault_Fire_1P_Loop')
+   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_MedicAssault.Play_SA_MedicAssault_Fire_3P_Single',FirstPersonCue=AkEvent'WW_WEP_SA_MedicAssault.Play_SA_MedicAssault_Fire_1P_Single')
+   WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_MedicAssault.Play_SA_MedicAssault_Fire_3P_EndLoop',FirstPersonCue=AkEvent'WW_WEP_SA_MedicAssault.Play_SA_MedicAssault_Fire_1P_EndLoop')
+   WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_MedicAssault.Play_SA_MedicAssault_Handling_DryFire'
+   WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_DryFire'
+   PlayerViewOffset=(X=15.000000,Y=6.500000,Z=-3.000000)
+   AttachmentArchetype=KFWeaponAttachment'WEP_Medic_Assault_ARCH.Wep_Medic_Assault_3P'
+   Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_MedicBase:MeleeHelper_0'
+      MaxHitRange=175.000000
+      Name="MeleeHelper_0"
+      ObjectArchetype=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_MedicBase:MeleeHelper_0'
+   End Object
+   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_AssaultRifle_Medic:MeleeHelper_0'
+   MuzzleFlashTemplate=KFMuzzleFlash'WEP_Medic_Assault_ARCH.Wep_Medic_Assault_MuzzleFlash'
+   maxRecoilPitch=200
+   minRecoilPitch=150
+   maxRecoilYaw=175
+   minRecoilYaw=-125
+   RecoilRate=0.085000
+   RecoilMaxYawLimit=500
+   RecoilMinYawLimit=65035
+   RecoilMaxPitchLimit=900
+   RecoilMinPitchLimit=65035
+   RecoilISMaxYawLimit=75
+   RecoilISMinYawLimit=65460
+   RecoilISMaxPitchLimit=375
+   RecoilISMinPitchLimit=65460
+   IronSightMeshFOVCompensationScale=1.500000
+   AssociatedPerkClass=Class'KFGame.KFPerk_FieldMedic'
+   WeaponProjectiles(0)=Class'KFGameContent.KFProj_Bullet_AssaultRifle'
+   WeaponProjectiles(1)=()
+   FireInterval(0)=0.092300
+   FireInterval(1)=()
+   FireInterval(2)=()
+   FireInterval(3)=()
+   FireInterval(4)=()
+   Spread(0)=0.008500
+   Spread(1)=()
+   InstantHitDamage(0)=40.000000
+   InstantHitDamage(1)=()
+   InstantHitDamage(2)=()
+   InstantHitDamage(3)=()
+   InstantHitDamageTypes(0)=Class'KFGameContent.KFDT_Ballistic_Assault_Medic'
+   InstantHitDamageTypes(1)=()
+   InstantHitDamageTypes(2)=None
+   InstantHitDamageTypes(3)=Class'KFGameContent.KFDT_Bludgeon_Assault_Medic'
+   FireOffset=(X=30.000000,Y=4.500000,Z=-5.000000)
+   Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGameContent.Default__KFWeap_MedicBase:FirstPersonMesh'
+      SkeletalMesh=SkeletalMesh'WEP_1P_Medic_Assault_MESH.Wep_1stP_Medic_Assault_Rig'
+      AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
+      AnimSets(0)=AnimSet'WEP_1P_Medic_Assault_ANIM.Wep_1stP_Medic_Assault_Anim'
+      bOverrideAttachmentOwnerVisibility=True
+      bAllowBooleanPreshadows=False
+      ReplacementPrimitive=None
+      DepthPriorityGroup=SDPG_Foreground
+      bOnlyOwnerSee=True
+      LightingChannels=(bInitialized=True,Outdoor=True)
+      bAllowPerObjectShadows=True
+      Name="FirstPersonMesh"
+      ObjectArchetype=KFSkeletalMeshComponent'KFGameContent.Default__KFWeap_MedicBase:FirstPersonMesh'
+   End Object
+   Mesh=FirstPersonMesh
+   ItemName="HMTech-401 Assault Rifle"
+   Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGameContent.Default__KFWeap_MedicBase:StaticPickupComponent'
+      StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Medic_Assault_Pickup'
+      ReplacementPrimitive=None
+      CastShadow=False
+      Name="StaticPickupComponent"
+      ObjectArchetype=StaticMeshComponent'KFGameContent.Default__KFWeap_MedicBase:StaticPickupComponent'
+   End Object
+   DroppedPickupMesh=StaticPickupComponent
+   PickupFactoryMesh=StaticPickupComponent
+   Name="Default__KFWeap_AssaultRifle_Medic"
+   ObjectArchetype=KFWeap_MedicBase'KFGameContent.Default__KFWeap_MedicBase'
+}

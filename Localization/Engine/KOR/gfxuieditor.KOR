@@ -1,0 +1,10 @@
+[GFxImportCommandlet]
+HelpDescription="SWF 무비 파일을 (다시)가져옵니다."
+HelpUsage="게임명 gfximport [추가_경로_목록]"
+HelpWebLink="https://udn.epicgames.com/Three/ScaleformImportKR"
+HelpParamNames[0]="추가_경로_목록"
+HelpParamDescriptions[0]="가져오려는 .SWF 파일의 상대 경로. <게임폴더>/Flash 디렉토리 내에 있는 파일이어야 합니다. 이미 UE3에 가져왔던 파일을 다시 가져오려면, 그냥 커맨드릿만 실행시키십시오. 더 새것인 .swf의 무비 전부를 다시 가져오게 됩니다."
+
+[GFxReimportCommandlet]
+HelpDescription="이 커맨드릿은 지양 상태입니다. 대신 GFxImport 커맨드릿을 사용해 주십시오."
+

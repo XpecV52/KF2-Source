@@ -1,0 +1,132 @@
+[Language]
+Language=Magyar
+LangId=9
+SubLangId=1
+
+[Public]
+Object=(Name=Core.HelloWorldCommandlet,Class=Class,MetaClass=Core.Commandlet)
+
+[Errors]
+Unknown=Ismeretlen hiba
+Aborted=Megszakítva
+ExportOpen=Exportálás közben hiba: `~: nem sikerült megnyitni a fájlt '`~'
+ExportWrite=Exportálás közben hiba: `~: nem sikerült írni a fájlt '`~'
+FileNotFound=A fájl nem található '`~'
+ObjectNotFound=Nem sikerült megtalálni az objektumot '`~ `~.`~'
+PackageNotFound=Nem sikerült megtalálni a fájlt vagy csomagot '`~'
+PackageResolveFailed=Nem sikerült meghatározni a csomag nevét
+FilenameToPackage=Nem lehet a fájlnevet '`~' átalakítani csomagnévvé
+Sandbox=A '`~' csomag nem elfogadható ebben a sandboxban
+PackageVersion=A '`~' csomag nem megfelelő verziójú
+SavedWithNewerVersion=A '`~' csomag újabb verziójú engin-nel lett elmentve, mint a jelenlegi, így nem menthető. Jelenlegi engine verzió: `~  VersionSavedWith: `~
+CannotSaveWithOlderVersion=A '`~' csomag nem menthető, mivel a jelenlegi engine verzója régebbi, mint amivel az eredetit mentették.
+CannotSavePartiallyLoaded=Nem lehet elmenteni a '`~' csomagot, mert csak részlegesen lett betöltve
+Error_FilenameIsTooLongForCooking=A '`~' fájlnév túl hosszú; ez zavart okozhat. Az Unreal fájlnevek nem lehetnek hosszabbak `~ karakternél.
+FailedLoad=Nem sikerült betölteni: '`~': `~
+ConfigNotFound=Nem található a(z) '`~' a konfigurációs fájlban, section=`~ key=`~
+LoadClassMismatch=`~ nem gyermekosztálya a következőnek: `~
+NotDll=`~' nem DLL csomag; nem található az export '`~'
+NotInDll=Nem található: '`~' in '`~.lib'
+FailedLoadPackage=Nem sikerült betölteni a csomagot: `~
+FailedLoadObject=Nem sikerült betölteni '`~`~.`~': `~
+TransientImport=Ideiglenes objektum importálva: `~
+LinkedToObjectsInOtherMap_FindCulpritQ=Nem lehet menteni `~: A gráf egy külső térkép csomaghoz van kapcsolva. Megpróbálod megkeresni az utat ehhez az objektumhoz (eltarthat egy ideig)?
+LinkedToPrivateObjects_FindCulpritQ=Nem lehet menteni `~: A gráf egy külső privát objektumhoz van csatolva. Megpróbálod megkeresni az utat ehhez az objektumhoz (eltarthat egy ideig)?
+FailedSaveOtherMapPackage=Nem lehet menteni `~: A gráf a(z) `~ objektumhoz van csatolva egy külső térkép csomagban
+FailedSavePrivate=Nem lehet menteni `~: A gráf a `~ külső privát objektumhoz van csatolva
+FailedImportPrivate=Nem lehet importálni a `~ `~ privát objektumot
+FailedCreate=`~ `~ nem található létrehozásra
+FailedImport=Nem található `~ a '`~' fájlban
+FailedSaveFile=Hiba a fájl mentése közben '`~': `~
+SaveWarning=Hiba '`~' mentése közben
+NotPackaged=Az objektum nincs csomagolva: `~ `~
+NotWithin=`~ `~ objektum lett létrehozva `~-ban `~ helyett
+Abstract=Nem lehet létrehozni `~ objektumot: `~ osztály kivonat
+NoReplace=Nem lehet helyettesíteni `~ `~-vel
+ReplaceNotFullyLoaded_f="Megpróbál helyettesíteni egy objektumot, amit nem sikerült teljesen betölteni: `~"
+ReplaceNoPostLoad_f="Nem lehet olyan objektumot kicserélni, amit előre be kell tölteni, amíg objektumok deszérializálódnak: `~"
+NoFindImport=Nem található '`~' fájl importálásra
+ReadFileFailed=Nem sikerrült olvasni a '`~' fájlt importálásra
+SeekFailed=Nem sikerült megtalálni a fájlt
+OpenFailed=Nem sikerült megnyitni a fájlt: '`~' (`~).
+WriteFailed=Nem sikerült írni a fájlba
+ReadEof=Tovább olvasás a fájl végénél
+IniReadOnly=A `~ fájl írásvédett; a beállításokat nemlehet menteni
+UrlFailed=Nemsikerült megnyitni az URL-t
+Warning=Figyelem
+Question=Kérdés
+OutOfMemory=Elfogyott a virtuális memória. Hogy megelőzd ezt az állapotot, helyet kell felszabadítanod az elsődleges merevlemezen.
+History=Történet
+Assert=Kijelentés nem sikerült: `~ [Fájl:`~] [Sor: `~]
+Debug=Debug kijelentés nem sikerült: `~ [Fájl:`~] [Sor: `~]
+LinkerExists=Már van csatoló '`~'-hoz
+BinaryFormat=A '`~' fájl felismerhetetlen adatot tartalmaz
+SerialSize=`~: serial méret hiba: `~ karakter van `~ helyett
+ExportIndex=Rossz exportálási index: `~/`~
+ImportIndex=Rossz importálási index: `~/`~
+Password=Jelszó nem ismerhető fel
+Exec=Ismeretlen parancs
+BadProperty=`~': rossz, vagy hiányzó tulajdonság '`~'
+MisingIni=Hiányzó .ini fájl: `~
+Error_ActorComponentDestroyedWithoutRemoval=Actor komponens (`~) törölve, a jelenetből való eltávolítása nélkül
+FileVersionDump=PackageVersion `4~, MaxExpected `4~ : LicenseePackageVersion `4~, MaxExpected `4~.
+CookedPackagedVersionOlderThanEnginePackageFileCookedContentVersion=Nem lehet futattni, mert a csomag az engine régebbi verziójával lett feldolgozva. Dolgozd fel újra: (`~) Jelenlegi engine verzió: `~  VersionSavedWith: `~
+NativeRebuildRequired=Nem lehet létrehozni '`~' típusú objektumot: a natív osztályszerkezet különbözik a script szerkezettől. Kérlek buildeld a C++ -t mielőtt folytatnád, a adatkorrupció elkerülése érdekében.
+PackageNamedNone=Megpróbáltál létrehozni egy 'None' nevű csomagot
+EmptyPackageName=Megpróbáltál létehozni egy névtelen csomagot
+OldVersionFile=A `~ fájl egy régebbi verzióval lett mentve, ami nem kompatibilis visszafelé a mostanival.
+LoadingTransientInstance=Megpróbál betölteni egy hivatkozást egy ideiglenes osztályról a mrevlemezen - Package:'`~'  Object:'`~'  Class:'`~'
+LoadedDeprecatedClassInstance=`~: `~ osztály érvénytelenítve lett.
+OperationDisallowedOnCookedContent=A kért művelet nem hajtható végre egy feldolgozott csomagon.
+PackageBiggerThanSoftLimit=Package `~ was successfully saved and is `~ MByte in size.  This exceeds the recommended package size.  Please split it up to be less than `~ MByte.
+CannotSaveConformIncompatibility=Cannot save conformed package '`~' as it is incompatible with the original
+PS3SupportNotLoaded=The PS3 tools are not installed; objects may have been saved uncooked! Please install the latest PS3 SDK!
+Xbox360SupportNotLoaded=The Xbox360 tools are not installed; objects may have been saved uncooked! Please the install the latest XDK!
+MissingExeConfigFileError=Loading the editor with managed code requires the existance of the '`~' file which was not found.  This file is necessary in order for the managed runtime to locate dependent assembly files.  The application will now exit.
+CannotSaveStartupPackage=Cannot save package '`~' as user opted not to save this startup package
+PackagesSavedWithNewerVersion=The following packages have been saved with an engine version newer than the current and therefore will not be able to be saved:\n`~
+
+[Query]
+OldVersion=A `~ fájl egy régebbi verzióval került mentésre, ami nem visszafelé kompatibilis  a jelenlegivel. Az olvasása valószínűleg nem fog sikerrülni, és fagyáshoz vezethet. Mindenképpen megpróbálod?
+Name=Név:
+Password=Jelszó:
+PassPrompt=Add meg a neved és jelszavad:
+PassDlg=Személyiség Ellenőrzés
+Overwrite=A '`~' fájlt frissíteni kell. Felülírod a mostani verziót?
+OverwriteReadOnly='`~' csak olvashatónak van jelölve. Szeretnéd mindenképpen megpróbálni felülírni?
+CheckoutPerforce=`~' csak olvashatónak van jelölve. Okvetlenül ellenőrizzem?
+PackageFailedToOpen=A '`~' csomagot nem sikerült megnyitni. Folytassa a parancs a műveletet, figyelmen kívül hagyva a többi hibát? A folytatás hátrányos hatásokhoz vezethet (objektum referenciák veszhetnek el).
+RemoveNativeClass=Natív osztály nélküli script: '`~'. Eltávolítod ezt az osztályt a statikus initializációtól? (Ha még nem távolítottál el osztályt, légy biztos benne, hogy az osztály leírásában szerepel CLASS_Intrinsic.)
+Warning_ForceDelete=Deleting `~.\n\nForcing delete on a referenced object is potentially dangerous and could cause data corruption.  The following objects may have invalid references if you proceed:\n `~.\n\nDo you wish to delete this referenced object?
+OverwriteMultiple=These files need to be updated: `~\nDo you want to overwrite the existing versions?
+
+[Progress]
+Saving=Fájl mentése `~...
+Loading=Fájl betöltése `~...
+Finalizing=Finalizing: `~…
+AutoSaving=Saving file: `~... (Press Escape to stop the AutoSave)
+EditorPackages=Loaded Packages
+LoadingRefObjects=Loading referenced objects from: `~`~
+ProcessingRefObjects=Processing referenced objects from: `~`~
+
+[General]
+Product=Unreal
+Engine=Unreal Engine
+Copyright=Copyright 1998-2007 Epic Games, Inc. All Rights Reserved.
+True=Igaz
+False=Hamis
+None=Nincs
+Yes=Igen
+No=Nem lehet a fájlnevet '`~' átalakítani csomagnévvé
+
+[HelpCommandlet]
+HelpDescription="Ez a parancslista a többi parancslistáról tartalmaz segítő információkat"
+HelpUsage="gamename.exe help <list | commandletname | webhelp commandletname>"
+HelpWebLink="https://udn.epicgames.com/bin/view/Three/HelpCommandlet"
+HelpParamNames[0]="list"
+HelpParamDescriptions[0]="Minden elérhető parancslista kiírása"
+HelpParamNames[1]="commandlet name"
+HelpParamDescriptions[1]="Segítő információt jelenít meg a meghatározott parancslistáról"
+HelpParamNames[2]="webhelp"
+HelpParamDescriptions[2]="Elindít egy böngészőt a parancslista dokumentációját tartalmazó URL-el"
+

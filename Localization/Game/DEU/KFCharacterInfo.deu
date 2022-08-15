@@ -1,0 +1,517 @@
+//NOTES: 
+//1. CharacterName can be changed slightly. It can run to about ?? characters (MAX), including spaces.
+//2. Description is the bio and can be edited quite happily. Limit is just over 800 characters, including spaces. 
+//3. All the rest (Skin descriptions) should be 20-21 characters, max, including spaces.
+
+//DJ Scully
+
+[chr_DJSkully_archetype]
+CharacterName="DJ Skully"
+Description="Als coolster niederländischer Underground-DJ seiner Generation wird Skully einfach von allen geliebt. Die Frauen verlieben sich in ihn, auch wenn sie es besser wissen sollten. Schon allein deswegen sollten ihn die Männer hassen, aber er ist einfach so ein lustiger Kerl! Zum Zeitpunkt des Ausbruchs hatte er gerade einen Monsterauftritt in einer Irrenanstalt nördlich von London beendet. Als die Zeds alle Menschen fressen wollten, konnte er sich geistesgegenwärtig und dank seiner schnellen Beine am Leben halten. Skully hatte immer Schwierigkeiten, das Leben ernst zu nehmen, und die Apokalypse hat daran nichts geändert. Nur, dass er nun auch wirklich gut im Beseitigen von Monstern ist. So gut, dass Gerüchte aufkamen, er wäre Ex-Mitglied einer Spezialeinheit – ein weiterer Skully-Witz."
+BodyMesh0="Hoodie"
+HeadMesh0="Skully-Maske"
+Attachment0="Skully-Kappe"
+Attachment1="Skullyphones"
+
+[chr_DJSkully_archetype.BodyMesh0]
+BodySkin0="Tiefschwarz"
+BodySkin1="Xtra-Rot"
+BodySkin2="GearXT-Gelb"
+BodySkin3="Grüne Gefahr"
+BodySkin4="Retro Skully"
+
+[chr_DJSkully_archetype.HeadMesh0]
+HeadSkin0="Tiefschwarz"
+HeadSkin1="Xtra-Rot"
+HeadSkin2="GearXT-Gelb"
+HeadSkin3="Grüne Gefahr"
+HeadSkin4="Retro Skully"
+
+[chr_DJSkully_archetype.Attachment0]
+AttachmentSkin0="Tiefschwarz"
+AttachmentSkin1="Xtra-Rot"
+AttachmentSkin2="GearXT-Gelb"
+AttachmentSkin3="Grüne Gefahr"
+AttachmentSkin4="Retro Skully"
+
+[chr_DJSkully_archetype.Attachment1]
+AttachmentSkin0="Guillotinen-Rot"
+AttachmentSkin1="GearXT-Gelb"
+AttachmentSkin2="Tiefblau"
+AttachmentSkin3="Wächter-Orange"
+AttachmentSkin4="Retro Skully"
+AttachmentSkin5="Horzine-Weiß"
+
+
+//Police Constable Rob Briar
+
+[chr_briar_archetype]
+CharacterName="PC Rob Briar"
+Description="Rob Briar ist seit seinem 17. Lebensjahr Polizist. Eines Tages wurde er zu einem Einsatz gerufen, den seine Vorgesetzten für einen blöden Anarchistenaufstand hielten. Wir alle wissen, dass dem nicht so war, aber Briar erfuhr es am eigenen Leib. Zum Glück war er kein altmodischer Londoner "Bobby", sondern hatte viel Zeit bei der Terrorismusbekämpfung verbracht, sodass er im Umgang mit zahlreichen Schusswaffen vertraut ist. Unter der unbekümmerten Oberfläche ist Briar stahlhart. Diese Zähigkeit und die Stärke des Kevlar seiner Schutzausrüstung hielten ihn in diesen ersten Tagen am Leben. Jetzt erfüllt er weiterhin seine Pflicht und dient der Öffentlichkeit, indem er versucht, die Bedrohung mit jeder Waffe, die er in die Hände bekommen kann, auszumerzen."
+BodyMesh0="Schutzausrüstung"
+HeadMesh0="Haare"
+Attachment0="Schutzhelm"
+Attachment1="S10-NBC-Maske"
+Attachment2="Brille"
+Attachment3="Brille"
+
+[chr_briar_archetype.BodyMesh0]
+BodySkin0="Polizeiblau"
+BodySkin1="Nachtschwarz"
+BodySkin2="Armeegrün"
+BodySkin3="SAS-Camouflage"
+
+[chr_briar_archetype.HeadMesh0]
+HeadSkin0="Original"
+HeadSkin1="Strähnchen"
+HeadSkin2="Schwarz"
+
+[chr_briar_archetype.Attachment0]
+AttachmentSkin0="Sichtbares Rot"
+AttachmentSkin1="Polizeiblau"
+AttachmentSkin2="Armeegrün"
+AttachmentSkin3="Nachtschwarz"
+
+[chr_briar_archetype.Attachment1]
+AttachmentSkin0="Schwarz"
+AttachmentSkin1="Camouflage"
+AttachmentSkin2="Biohazard"
+AttachmentSkin3="Zed-Zeit"
+
+[CHR_briar_archetype.Attachment2]
+AttachmentSkin0="Sonnenbrille"
+AttachmentSkin1="Normale Brille"
+
+[CHR_briar_archetype.Attachment3]
+AttachmentSkin0="Brille"
+
+//Mr Foster
+
+[CHR_MrFoster_archetype]
+CharacterName="Mr. Foster"
+Description="Nach seinem Abschluss an einer zweitklassigen englischen Privatschule stieg Foster in den Handel mit Wertpapieren ein, die Worte des Berufsberaters noch im Kopf: "Du wirst es nie zu etwas bringen, Foster!" Nicht, dass Foster sich daraus etwas gemacht hätte. Aber erstaunlicherweise gefiel ihm der Wertpapierhandel! Er erwirtschaftete große Summen Geld und fand Gefallen daran. Natürlich würde er nie zugeben, dass ihm seine Arbeit gefiel. Außerdem hatte er es sich zur Gewohnheit gemacht, Autoritätspersonen zu beleidigen. Das führte letztendlich dazu, dass Foster als schlauer, geschickter Kerl mit schwarzem Humor und gutem Geschmack für Kleidung und Autos angesehen wurde. Oder als aufgeblasener Handlanger. Wie man es nimmt."
+BodyMesh0="Lederjacke"
+HeadMesh0="Gasmaske"
+Attachment0="Melone"
+Attachment1="Skullyphones"
+
+[CHR_MrFoster_archetype.BodyMesh0]
+BodySkin0="KF-Blau"
+BodySkin1="PCG-Kohle"
+BodySkin2="Biohazard"
+BodySkin3="Elegant"
+BodySkin4="Magma-Rot"
+
+[CHR_MrFoster_archetype.HeadMesh0]
+HeadSkin0="Reines Weiß"
+HeadSkin1="PCG-Rot"
+HeadSkin2="Mein Freund Skully"
+HeadSkin3="Magma-Rot"
+HeadSkin4="Britisch-elegant"
+
+[CHR_MrFoster_archetype.Attachment0]
+AttachmentSkin0="Business-Schwarz"
+AttachmentSkin1="Best-of-British"
+AttachmentSkin2="Schokoladenbraun"
+AttachmentSkin3="Flammendes Rot"
+AttachmentSkin4="Ernsthaftes Violett"
+AttachmentSkin5="Starkes Weiß"
+
+[chr_MrFoster_archetype.Attachment1]
+AttachmentSkin0="Tiefblau"
+AttachmentSkin1="Guillotinen-Rot"
+AttachmentSkin2="Wächterorange"
+AttachmentSkin3="Retro Skully"
+AttachmentSkin4="Horzine-Weiß"
+AttachmentSkin5="GearXT-Gelb"
+
+
+
+//Erskine Coleman - renamed to Donovan Neal
+
+[CHR_Coleman_archetype]
+CharacterName="Donovan Neal"
+Description="Donovan ist groß, zäh und kommt mit fast jeder Situation zurecht. Aber es steckt mehr in ihm, als man auf den ersten Blick sieht! Er war nicht nur einer von den Typen, die einem Haufen Wrestler Personenschutz gaben. Er war derjenige, der das ganze Sicherheitsunternehmen aufbaute, besaß und leitete. Er wurde in Atlanta, Georgia, geboren, war schlau und erhielt eine gute Ausbildung. Bevor er sein eigenes Unternehmen gründete, arbeitete er in der Strafverfolgung.  Er hatte nicht nur die Muskeln, sondern auch das Köpfchen dafür. Jetzt ist er ein weiterer Überlebender, zur falschen Zeit am falschen Ort. Bete für all die Zeds, die zwischen diesem Mann und seinen Zielen stehen. Oder mach mit und hilf ihm dabei, sie zu töten!"
+BodyMesh0="RQ-Hoodie"
+HeadMesh0="Gesicht"
+Attachment0="RQ-Kappe"
+Attachment1="S10-NBC-Maske"
+Attachment2="Brille"
+Attachment3="Skullyphones"
+
+[CHR_Coleman_archetype.BodyMesh0]
+BodySkin0="Racing-Grün"
+BodySkin1="Rustikales Rot"
+BodySkin2="Cooles Grau"
+BodySkin3="Helle Erdfarben"
+
+[CHR_Coleman_archetype.HeadMesh0]
+HeadSkin0="Donovan"
+HeadSkin1="Tattoo"
+HeadSkin2="Eye Black"
+
+[CHR_Coleman_archetype.Attachment0]
+AttachmentSkin0="Frisches Gelb"
+AttachmentSkin1="Rustikales Rot"
+AttachmentSkin2="Echtes Blau"
+AttachmentSkin3="Fahles Grün"
+
+[CHR_Coleman_archetype.Attachment1]
+AttachmentSkin0="Schwarz"
+AttachmentSkin1="Camouflage"
+AttachmentSkin2="Biohazard"
+AttachmentSkin3="Zed-Zeit"
+
+[CHR_Coleman_archetype.Attachment2]
+AttachmentSkin0="Sonnenbrille"
+AttachmentSkin1="Normale Brille"
+
+[chr_Coleman_archetype.Attachment3]
+AttachmentSkin0="Tiefblau"
+AttachmentSkin1="Guillotinen-Rot"
+AttachmentSkin2="Wächterorange"
+AttachmentSkin3="Retro Skully"
+AttachmentSkin4="Horzine-Weiß"
+AttachmentSkin5="GearXT-Gelb"
+
+//Reverend Alberts
+
+[CHR_Alberts_archetype]
+CharacterName="Reverend Alberts"
+Description="Als Halb-Engländer und Halb-Schotte war Alberts schon immer körperlich stark und wurde von seinem Wunsch getrieben, anderen zu helfen. Dieser harte, geradlinige Ansatz war ideal für seinen Einsatz als Militärgeistlicher. Danach arbeitete er 20 Jahre mit desillusionierten Jugendlichen in Südlondon. Nachdem er sein ganzes Leben damit verbracht hatte, die Menschen von der "bösen" auf die "gute" Seite zu führen, war Alberts nicht gerade glücklich darüber, als sein Lebenswerk eines Nachmittags zur Teestunde von einem Haufen tobender Monster zerstört wurde. An diesem Nachmittag wurde er in wenigen Augenblicken vom Betreuer der Alten und Hilflosen zum zornerfüllten Unheilsbringer für die Ausgeburten der Hölle."
+BodyMesh0="Priesterkragen"
+HeadMesh0="Haare"
+Attachment0="Filzhut"
+Attachment1="Brille"
+Attachment2="S10-Gasmaske"
+Attachment3="Melone"
+
+[CHR_Alberts_archetype.BodyMesh0]
+BodySkin0="Einfaches Schwarz"
+BodySkin1="Rubinrot"
+BodySkin2="Kräftiges Blau"
+BodySkin3="Tropisches Weiß"
+
+[CHR_Alberts_archetype.HeadMesh0]
+HeadSkin0="Grau"
+HeadSkin1="Braun"
+HeadSkin2="Schwarz"
+HeadSkin3="Weiß"
+
+[CHR_Alberts_archetype.Attachment0]
+AttachmentSkin0="Einfaches Schwarz"
+AttachmentSkin1="Rubinrot"
+AttachmentSkin2="Elegantes Grau"
+AttachmentSkin3="Dunkelblau"
+
+[CHR_Alberts_archetype.Attachment1]
+AttachmentSkin0="Sonnenbrille"
+AttachmentSkin1="Normale Brille"
+
+[CHR_Alberts_archetype.Attachment2]
+AttachmentSkin0="Schwarz"
+AttachmentSkin1="Camouflage"
+AttachmentSkin2="Biohazard"
+AttachmentSkin3="Zed-Zeit"
+
+[CHR_Alberts_archetype.Attachment3]
+AttachmentSkin0="Business-Schwarz"
+AttachmentSkin1="Best-of-British"
+AttachmentSkin2="Schokoladenbraun"
+AttachmentSkin3="Flammendes Rot"
+AttachmentSkin4="Seriöses Violett"
+AttachmentSkin5="Starkes Weiß"
+
+
+//Start Masterson
+
+[CHR_Masterson_archetype]
+CharacterName="Lt. Bill Masterson"
+Description="Bill Masterson hatte eine bunte Karriere in der Armee. Er wollte ein heldenhafter Soldat sein, gegen böse Feinde von Königin und Vaterland kämpfen. Stattdessen bekam er es mit einem Haufen hinterhältiger Terroristen zu tun. Er wollte einen klassischen Krieg mit Schießereien. Stattdessen musste er seine Männer durch eine Reihe schwachsinniger "polizeilicher Maßnahmen" in den hintersten Winkeln der Erde führen. Also kündigte er. Nach einigen unnützen Jobs wachte er eines Morgens auf, und die Apokalypse war in den Straßen von London in vollem Gange. Masterson, jetzt der heldenhafte Soldat, der er immer sein wollte, rüstete sich aus und stürzte sich in den Kampf. Es war nicht der Krieg, den er erwartet oder für den er trainiert hatte, aber es funktionierte. Und er ist verdammt gut darin!"
+BodyMesh0="Kampfkleidung"
+HeadMesh0="Gesicht"
+Attachment0="S10-NBC-Maske"
+Attachment1="Brille"
+
+[CHR_Masterson_archetype.HeadMesh0]
+HeadSkin0="Glatt"
+HeadSkin1="Camouflage"
+
+
+[CHR_Masterson_archetype.Attachment0]
+AttachmentSkin0="Schwarz"
+AttachmentSkin1="Camouflage"
+AttachmentSkin2="Biohazard"
+AttachmentSkin3="Zed-Zeit"
+
+[CHR_Masterson_archetype.Attachment1]
+AttachmentSkin0="Sonnenbrille"
+AttachmentSkin1="Normale Brille"
+
+[CHR_Masterson_archetype.BodyMesh0]
+BodySkin0="Grün"
+BodySkin1="Schwarz"
+BodySkin2="Schnee"
+BodySkin3="Camouflage"
+
+
+//Start Tanaka
+
+[CHR_Tanaka_Archetype]
+CharacterName="Hayako Tanaka"
+Description="Tanaka ist eine zerrissene Persönlichkeit mit ernsthaftem Todeswunsch. Er wurde in Okinawa geboren und wuchs unter amerikanischem Militär auf. Als er mit seiner Familie nach Japan zog, konnte sich der amerikanisierte Tanaka nur schwer anpassen und belegte Theaterkurse. Nach dem College zog er nach L.A., spielte klischeehafte Mini-Rollen in schlechten Filmen und landete schließlich auf der Suche nach "ernsthafter" Arbeit in Europa. Dort bekam er Rollen als Bösewicht in französischen Gangsterfilmen und einige Tattoos. Jetzt in der Apokalypse scheint er seine eigene Realität mit einige Filmszenen, die er gespielt hat, zu verwechseln. Dazu gehören Visionen der Yakuza, von Dämonen und eine Hollywood-Variante des japanischen Bushido."
+BodyMesh0="Stirb cool"
+HeadMesh0="Haare"
+Attachment0="Gesichtsmaske"
+Attachment1="S10-NBC-Maske"
+Attachment2="Brille"
+Attachment3="Skullyphones"
+Attachment4="3D-Brille"
+
+[CHR_Tanaka_Archetype.HeadMesh0]
+HeadSkin0="Schwarz"
+HeadSkin1="Blond"
+
+
+[CHR_Tanaka_Archetype.BodyMesh0]
+BodySkin0="Und elegant"
+BodySkin1="Kakihara-san"
+BodySkin2="In Schwarz"
+BodySkin3="Blauer Drache"
+
+[chr_Tanaka_archetype.Attachment0]
+AttachmentSkin0="Goldener Drache"
+AttachmentSkin1="Kakihara-san"
+AttachmentSkin2="Hannya"
+AttachmentSkin3="Echtes Blau"
+
+[chr_Tanaka_archetype.Attachment1]
+AttachmentSkin0="Schwarz"
+AttachmentSkin1="Camouflage"
+AttachmentSkin2="Biohazard"
+AttachmentSkin3="Zed-Zeit"
+
+[CHR_Tanaka_archetype.Attachment2]
+AttachmentSkin0="Sonnenbrille"
+AttachmentSkin1="Normale Brille"
+
+[chr_Tanaka_archetype.Attachment3]
+AttachmentSkin0="Tiefblau"
+AttachmentSkin1="Guillotinen-Rot"
+AttachmentSkin2="Wächterorange"
+AttachmentSkin3="Retro Skully"
+AttachmentSkin4="Horzine-Weiß"
+AttachmentSkin5="GearXT-Gelb"
+
+[CHR_Tanaka_archetype.Attachment4]
+AttachmentSkin0="Anaglyph 3D"
+AttachmentSkin1="Passive Shutterbrille"
+AttachmentSkin2="Trioscopic 3D"
+AttachmentSkin3="Röntgenbrille"
+
+//Ana
+[CHR_Ana_Archetype]
+CharacterName="Ana Larive"
+Description="Das Establishment würde sie vermutlich zu der Gruppe "desillusionierter Jugendlicher" zählen. Ana hatte an nichts wirkliches Interesse, außer daran, durch Europa zu reisen und ihrer Leidenschaft nachzugehen, verlassene Orte zu fotografieren, und Death-Metal-Bands spielen zu sehen. Und nun, da das "Establishment" quasi nicht mehr existiert, kümmert sich Ana noch weniger darum. Natürlich sind jetzt kaum noch Death-Metal-Bands auf Tour, aber es gibt immer mehr verlassenen Orte. Und das Schöne an ihrem aktuellen Job ist, dass sie diese Orte besuchen und sie noch verlassener aussehen lassen kann! Wie man sieht, hat sie eine neue Leidenschaft gefunden: Dinge in die Luft jagen!"
+BodyMesh0="Metalcore"
+HeadMesh0="Irokese"
+Attachment0="Schal"
+Attachment1="S10-Gasmaske"
+Attachment2="Brille"
+Attachment3="3D-Brille"
+
+[CHR_Ana_Archetype.HeadMesh0]
+HeadSkin0="Tödlicher Regen"
+HeadSkin1="Blutiges Rot"
+HeadSkin2="Bio-Cola-Grün"
+HeadSkin3="Hübsches Blau"
+
+[CHR_Ana_Archetype.BodyMesh0]
+BodySkin0="Tödlicher Regen"
+BodySkin1="Blutiges Rot"
+BodySkin2="Bio-Cola-Grün"
+BodySkin3="Hübsches Blau"
+BodySkin4="Chickenator-Hommage"
+
+[CHR_Ana_Archetype.Attachment0]
+AttachmentSkin0="Tödlicher Regen"
+AttachmentSkin1="Tigerin"
+AttachmentSkin2="Bunberry"
+AttachmentSkin3="Hübsches Blau"
+
+[CHR_Ana_Archetype.Attachment1]
+AttachmentSkin0="Schwarz"
+AttachmentSkin1="Camouflage"
+AttachmentSkin2="Biohazard"
+AttachmentSkin3="Zed-Zeit"
+
+[CHR_Ana_archetype.Attachment2]
+AttachmentSkin0="Sonnenbrille"
+AttachmentSkin1="Normale Brille"
+
+[CHR_Ana_archetype.Attachment3]
+AttachmentSkin0="Anaglyph 3D"
+AttachmentSkin1="Passive Shutterbrille"
+AttachmentSkin2="Trioscopic 3D"
+AttachmentSkin3="Röntgenbrille"
+
+
+//Classic Briar 
+
+[chr_mark_archetype]
+CharacterName="Klassischer Briar"
+Description="Eines Tages erhielt Briar den Anruf, er solle einen Aufstand in London niederschlagen. Doch diesmal waren es nicht die üblichen Hippies, Umweltaktivisten und behaarten Anarchisten, die Briars Schlagstock abbekamen. Zum Glück half ihm sein Hang zur Gewalt durch die nächsten Monate, bevor er Blighty verlassen und sich in fremde Gefilde begeben musste.\n\nJetzt muss er sich nicht mehr mit aufmüpfigen Teenagern herumschlagen, sondern eine Horde menschenfressender Mutantenmonster in Stücke schießen, niederbrennen und wegpusten. Und dieser unbekümmerte Londoner Polizist sorgt für die Moral im Team. Oder er nervt alle zu Tode."
+
+BodyMesh0="Schutzausrüstung"
+HeadMesh0="Kopf"
+Attachment0="Schutzhelm"
+Attachment1="S10-NBC-Maske"
+Attachment2="Brille"
+
+
+[chr_mark_archetype.BodyMesh0]
+BodySkin0="Polizeiblau"
+BodySkin1="Nachtschwarz"
+BodySkin2="Armeegrün"
+BodySkin3="SAS-Camouflage"
+
+[chr_mark_archetype.HeadMesh0]
+HeadSkin0="Der wahre Deal"
+HeadSkin1="Verdammt, 5 Uhr"
+HeadSkin2="Ein nettes Braun, Guv?"
+Headskin3="Schwedisches Blond"
+
+[chr_mark_archetype.Attachment0]
+AttachmentSkin0="Sichtbares Rot"
+AttachmentSkin1="Polizeiblau"
+AttachmentSkin2="Armeegrün"
+AttachmentSkin3="Nachtschwarz"
+
+[chr_mark_archetype.Attachment1]
+AttachmentSkin0="Schwarz"
+AttachmentSkin1="Camouflage"
+AttachmentSkin2="Biohazard"
+AttachmentSkin3="Zed-Zeit"
+
+[CHR_mark_archetype.Attachment2]
+AttachmentSkin0="Sonnenbrille"
+AttachmentSkin1="Normale Brille"
+
+
+//Classic Masterson
+
+[chr_alan_archetype]
+CharacterName="Klassischer Masterson"
+Description="Niemand versteht so richtig, wie dieser Masterson überhaupt aufsteigen konnte. Manche glauben, dass sein reicher und gut aussehender Cousin, Captain Sir Richard Wiggins, seine Finger im Spiel hatte. Oder vielleicht war es sein schlauer Bruder. Dennoch gilt er als ungeschliffener Diamant, als Mann der wenigen (netten) Worte, als einer, der in Kampfsituationen ungewöhnlich gelassen bleibt. Alle glauben, das läge an seiner mangelnden Fantasie und Intelligenz und dem fehlenden Einfühlungsvermögen. Zum Glück führt er seine Männer bestimmt und erfüllt die Mission – ganz gleich, wie abstoßend sie jemandem mit Geschmack oder Manieren erscheinen mag."
+
+BodyMesh0="Schutzausrüstung"
+HeadMesh0="Kopf"
+Attachment0="S10-NBC-Maske"
+Attachment1="Brille"
+
+[CHR_alan_archetype.BodyMesh0]
+BodySkin0="Grün"
+BodySkin1="Schwarz"
+BodySkin2="Schnee"
+BodySkin3="Camouflage"
+
+[chr_alan_archetype.HeadMesh0]
+HeadSkin0="Der wahre Deal"
+HeadSkin1="Rote Haare! Wirklich?"
+HeadSkin2="Harter Tag, Kumpel?"
+Headskin3="Camouflage, Leute!"
+
+[CHR_alan_archetype.Attachment0]
+AttachmentSkin0="Schwarz"
+AttachmentSkin1="Camouflage"
+AttachmentSkin2="Biohazard"
+AttachmentSkin3="Zed-Zeit"
+
+[CHR_alan_archetype.Attachment1]
+AttachmentSkin0="Sonnenbrille"
+AttachmentSkin1="Normale Brille"
+
+
+//Anton Strasser
+
+[chr_strasser_archetype]
+CharacterName="Anton Strasser"
+Description="Strasser zog 1939 zum ersten Mal in den Krieg. Als Soldat der deutschen Armee fiel er in Polen ein, marschierte 1940 durch Frankreich und stieß 1941 nach Russland vor. Fast wäre er erfroren, als er General Winter und die Rote Armee gleichermaßen erbittert bekämpfte. 1942 drohte Stalingrad, die Siege endeten und Ernüchterung machte sich breit. Auf dem Flugplatz Gumrak zog er sich eine schwere Gehirnerschütterung zu, aber überlebte. Im Koma liegend wurde er ausgeflogen und heimlich in das Labor eines gewissen Hans Volter gebracht, wo er für kryogene Versuche herhalten musste. Dort blieb er, eingefroren und vergessen, bis er versehentlich während eines Ausbruchs befreit wurde. Aufgrund seiner Verwirrung ließ er die Chance verstreichen, Volter zu töten. Als er wieder klar denken konnte, bedauerte er dies sehr."
+
+BodyMesh0="RO2: Held von Stalingrad"
+HeadMesh0="Haare"
+Attachment0="Deutsches Schiffchen"
+Attachment1="Deutscher Stahlhelm"
+
+[CHR_strasser_archetype.BodyMesh0]
+BodySkin0="Blutiger Anfänger"
+BodySkin1="Kampferprobt"
+
+[chr_strasser_archetype.HeadMesh0]
+HeadSkin0="Dunkler Stahl"
+HeadSkin1="Heller Stahl"
+
+
+[CHR_strasser_archetype.Attachment0]
+AttachmentSkin0="Paradekappe"
+AttachmentSkin1="Blutige Kappe"
+
+[CHR_strasser_archetype.Attachment1]
+AttachmentSkin0="Klassischer Stahl"
+AttachmentSkin1="Gealterter Stahl"
+
+//Chivalry Knight
+
+[chr_knight_archetype]
+CharacterName="Chivalry Knight"
+Description="Tom Banner ist seit seiner Kindheit fasziniert von den Heldensagen des Mittelalters. Seine steile Karriere als Unternehmensberater verstärkte seine Faszination, als er beruflich von Kanada über Boston nach England umziehen musste. Er hatte bereits seine eigene Rüstung gefertigt und nahm im guten alten England seine neue Persönlichkeit als Mittelalter-Darsteller an. Dieser Schritt fiel mit der Veröffentlichung des Spiels "Chivalry" zusammen, durch das er seine Fantasie in noch ungeheuerlicherem Maße ausleben konnte. Als der Ausbruch kam, streifte Tom seine Rüstung über und zog los, um holde Burgfräulein vor realen Monstern zu retten. Die Tatsache, dass er sich weigert, seine Rüstung abzulegen, lässt vermuten, dass er seine ritterliche Rolle etwas zu ernst nimmt. Aber wen stört das schon?"
+
+BodyMesh0="Rüstung"
+HeadMesh0="Kopf"
+Attachment0="Ritterhelm"
+Attachment1="Reiterhelm"
+Attachment2="Veteranenhelm"
+Attachment3="Alter englischer Helm"
+Attachment4="Brille"
+
+[CHR_knight_archetype.BodyMesh0]
+BodySkin0="Agatha"
+BodySkin1="Cleese"
+BodySkin2="Parzival"
+BodySkin3="Jaime"
+
+[chr_knight_archetype.HeadMesh0]
+HeadSkin0="Auf in den Kampf!"
+HeadSkin1="Freiheit!"
+HeadSkin2="In den Krieg!"
+HeadSkin3="Walhalla!"
+
+
+[CHR_knight_archetype.Attachment0]
+AttachmentSkin0="Agatha"
+AttachmentSkin1="Cleese"
+AttachmentSkin2="Parzival"
+AttachmentSkin3="Jaime"
+
+
+[CHR_knight_archetype.Attachment1]
+AttachmentSkin0="Agatha"
+AttachmentSkin1="Cleese"
+AttachmentSkin2="Parzival"
+AttachmentSkin3="Jaime"
+
+[CHR_knight_archetype.Attachment2]
+AttachmentSkin0="Agatha"
+AttachmentSkin1="Cleese"
+AttachmentSkin2="Parzival"
+AttachmentSkin3="Jaime"
+
+[chr_knight_archetype.Attachment3]
+AttachmentSkin0="Königliches Rot"
+AttachmentSkin1="Königliches Blau"
+AttachmentSkin2="Edles Grün"
+AttachmentSkin3="Schwarze Nacht"
+
+[CHR_knight_archetype.Attachment4]
+AttachmentSkin0="Schutz vor der Sonne"
+AttachmentSkin1="Bessere Sicht"

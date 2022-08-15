@@ -1,0 +1,91 @@
+//=============================================================================
+// KFProj_ExplosiveSubmunition_HX25
+//=============================================================================
+// Explosive submunition projectile for the HX25
+//=============================================================================
+// Killing Floor 2
+// Copyright (C) 2015 Tripwire Interactive LLC
+// - John "Ramm-Jaeger" Gibso
+//=============================================================================
+
+class KFProj_ExplosiveSubmunition_HX25 extends KFProj_BallisticExplosive
+	hidedropdown;
+
+/**
+ * Force the fire not to burn the instigator, since setting it in the default props is not working for some reason - Ramm
+ */
+simulated protected function PrepareExplosionTemplate()
+{
+	ExplosionTemplate.bIgnoreInstigator=true;
+
+    super.PrepareExplosionTemplate();
+}
+
+defaultproperties
+{
+	Physics=PHYS_Falling
+	Speed=5000
+	MaxSpeed=5000
+	TerminalVelocity=5000
+	TossZ=150
+	GravityScale=0.25
+    MomentumTransfer=50000.0
+    ArmDistSquared=0 // Arm instantly
+
+	ProjFlightTemplate=ParticleSystem'WEP_HX25_Pistol_EMIT.FX_HX25_Pistol_Projectile_small'
+	ProjFlightTemplateZedTime=ParticleSystem'WEP_HX25_Pistol_EMIT.FX_HX25_Pistol_Projectile_small_ZEDTIME'
+	AltExploEffects=KFImpactEffectInfo'WEP_HX25_Pistol_ARCH.HX25_Pistol_Submunition_Explosion_Concussive_Force'
+	ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
+
+	// Grenade explosion light
+	Begin Object Class=PointLightComponent Name=ExplosionPointLight
+	    LightColor=(R=252,G=218,B=171,A=255)
+		Brightness=4.f
+		Radius=250.f
+		FalloffExponent=10.f
+		CastShadows=False
+		CastStaticShadows=FALSE
+		CastDynamicShadows=False
+		bEnabled=FALSE
+		LightingChannels=(Indoor=TRUE,Outdoor=TRUE,bInitialized=TRUE)
+	End Object
+
+	// explosion
+	Begin Object Class=KFGameExplosion Name=ExploTemplate0
+		Damage=30
+		DamageRadius=150
+		DamageFalloffExponent=1.0f
+		DamageDelay=0.f
+
+		MomentumTransferScale=0.0f
+
+		// Damage Effects
+		MyDamageType=class'KFDT_ExplosiveSubmunition_HX25'
+		KnockDownStrength=0
+		FractureMeshRadius=200.0
+		FracturePartVel=500.0
+		ExplosionEffects=KFImpactEffectInfo'WEP_HX25_Pistol_ARCH.HX25_Pistol_Submunition_Explosion'
+		ExplosionSound=AkEvent'WW_WEP_SA_HX25.Play_WEP_SA_HX25_Mini_Explosion'
+		bIgnoreInstigator=true
+		ActorClassToIgnoreForDamage=class'KFProj_ExplosiveSubmunition_HX25'
+
+        // Dynamic Light
+        ExploLight=ExplosionPointLight
+        ExploLightStartFadeOutTime=0.0
+        ExploLightFadeOutTime=0.3
+
+		// Camera Shake
+		CamShake=KFCameraShake'FX_CameraShake_Arch.Guns.HX25_Submunition_CameraShake'
+		CamShakeInnerRadius=150
+		CamShakeOuterRadius=300
+		CamShakeFalloff=1.f
+		bOrientCameraShakeTowardsEpicenter=true
+	End Object
+	ExplosionTemplate=ExploTemplate0
+
+    AmbientSoundPlayEvent=AkEvent'WW_WEP_Bullet_FlyBys.Play_WEP_Bullet_Flyby_Small'
+    AmbientSoundStopEvent=AkEvent'WW_WEP_Bullet_FlyBys.Stop_WEP_Bullet_Flyby_Small'
+
+    AlwaysRelevantDistanceSquared=2250000 // 15m
+}
+

@@ -1,0 +1,1298 @@
+[KFCommon_LocalizedStrings]
+DifficultyStrings[0]="Iniciante"
+DifficultyStrings[1]="Normal"
+DifficultyStrings[2]="Difícil"
+DifficultyStrings[3]="Inferno na Terra"
+
+LengthStrings[0]="Curta (4 ondas)"
+LengthStrings[1]="Média (7 ondas)"
+LengthStrings[2]="Longa (10 ondas)"
+
+ServerTypeStrings[0]="Classificado"
+ServerTypeStrings[1]="Classificado - Personalizado"
+;ServerTypeStrings[2]="Sem classificação"
+
+PermissionStrings[0]="Público"
+PermissionStrings[1]="Apenas amigos"
+PermissionStrings[2]="Privado"
+
+ModeStrings[0]="Sobrevivência"
+
+NoPreferenceString="QUALQUER"
+OKString="OK"
+ConfirmString="CONFIRMAR"
+CancelString="CANCELAR"
+BackString="ANTERIOR"
+AcceptString="Aceitar"
+DeclineString="Recusar"
+NoticeString="AVISO!"
+PerkUpdateNoticeString="Só é possível atualizar o privilégio uma vez por onda!"
+YesString="Sim"
+NoString="Não"
+
+DisbandPartyString="ACABAR COM O GRUPO"
+LeaveCurrentMenuString="Sair do menu atual?"
+
+[KFGFxMoviePlayer_Manager]
+FailedSearchTitleString="FALHA AO ENCONTRAR PARTIDA"
+FailedSearchString="Não foi possível encontrar uma partida com as opções fornecidas. Amplie sua busca ou considere o uso o lista de servidores para encontrar uma partida."
+BrowseServersString="PESQUISAR SERVIDORES"
+HasInvitedToGameString=" convidou-lhe para um jogo."
+JoinGameString="Participar do jogo?"
+
+
+[KFGFxObject_Menu]
+LeavePartyTitleString="SAINDO DO GRUPO"
+LeavePartyDescriptionString="Tem certeza de que deseja sair deste grupo on-line?"
+LeaveString="SAIR"
+
+[KFDoorActor]
+WeldIntegrityString="Integridade da solda:"
+ExplosiveString="Porta Armadilha:"
+
+[KFGFxMenu_StartGame]
+CreateMatchString="CRIAR PARTIDA"
+MatchmakingString="ENCONTRAR PARTIDAS ON-LINE"
+ServerBrowserString="Pesquisar servidores"
+
+DifficultyTitle="DIFICULDADE"
+GameModeTitle="MODO DE JOGO"
+ServerTypeString="TIPO DE SERVIDOR"
+PermissionsTitle="PERMISSÕES"
+WhiteListedTitle="ESTATÍSTICAS HABILITADAS"
+LengthTitle="DURAÇÃO"
+MapTitle="MAPA INICIAL"
+MutatorTitle="TRANSFORMADORES"
+InfoTitle="INFORMAÇÃO"
+InProgressString="EM ANDAMENTO"
+
+WhiteListedStrings[0]="SIM"
+WhiteListedStrings[1]="NÃO"
+
+FindGameString="PRINCIPAL"
+LeaveMenuString="Ao sair da combinação, seu grupo acabará. Ir para o lista de servidores em vez disso? "
+
+CouldNotFindGameTitleString="Não foi possível encontrar uma partida"
+CouldNotFindGameDescriptionString="Nenhum servidor correspondente às suas configurações de busca foi encontrado. Tente filtros diferentes ou use o lista de servidores."
+
+[KFGFxStartGameContainer_FindGame]
+MultiplayerString="Encontrar Partidas on-line"
+SoloString="Jogar solitário off-line"
+
+[KFGFxStartGameContainer_Options]
+BackString="ANTERIOR"
+StartGameString="INICIAR JOGO"
+LaunchGameString="COMEÇAR JOGO"
+InProgressString="ANDAMENTO DO JOGO"
+SoloGameString="JOGO SOLITÁRIO"
+LeaveMatchMakingString="SAIR DA COMBINAÇÃO DE JOGO"
+MultiplayerLaunchString="JOGAR ON-LINE AGORA"
+SearchingString="CANCELAR BUSCA"
+ServerTypeString="TIPO DE SERVIDOR"
+StandardServerString="Padrão"
+UnrankedServerString="Sem classificação"
+CustomServerString="Personalizado"
+AllowInProgressString="Permitir jogos em andamento"
+NotStartedString="Apenas jogos novos"
+
+
+[KFGFxStartContainer_MatchMaking]
+OptionsHeaderString="ENCONTRAR PARTIDAS"
+BackString="ANTERIOR"
+FindGameString="ENCONTRAR JOGO"
+
+[KFGFxStartContainer_InGameOverview]
+OverviewString="VISÃO GERAL DA PARTIDA"
+ChangeString="ALTERAR"
+SharedByString="Partilhado por:"
+SharedContentString="CONTEÚDO PARTILHADO"
+
+[KFGFxStartContainer_ServerBrowserOverview]
+OverviewString="VISÃO GERAL DA PARTIDA"
+DescriptionString="está buscando um jogo no lista de servidores..."
+
+[KFGFxTraderContainer_GameInfo]
+TimeLeftString="TEMPO RESTANTE"
+WaveString="ONDA"
+BossWaveString="CHEFE"
+
+//BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters ma"
+[KFPawn_ZedHansBase]
+BossName="Dr. Hans Volter"
+BossCaptionStrings[0]="Hans é praticamente invunerável  durante a sua fase de cura com granada de fumaça. Não desperdice a sua munição!"
+BossCaptionStrings[1]="Observe o seu núcleo de energia: O Hans fica mais agressivo conforme a cor muda."
+BossCaptionStrings[2]="Mire no seu grande núcleo de energia. É uma área vulnerável."
+BossCaptionStrings[3]="O gás das granadas do Hans se cola a você, como a bílis do Bloat. Tente evitá-lo!"
+BossCaptionStrings[4]="Os seus ataques cortantes são fortes demais para defender. Você acabará por receber dano total."
+BossCaptionStrings[5]="Cuidado com os indicadores vermelhos de aviso de granada, que podem te ajudar a ver onde elas vão parar."
+BossCaptionStrings[6]="Quando o Hans pegar as armas, fique fora do seu campo de visão. Óbvio mas importante!"
+
+[KFPawn_MonsterBoss]
+BossName="Chefe"
+BossCaptionStrings[0]="Legenda do chefe 1"
+BossCaptionStrings[1]="Legenda do chefe 2"
+
+[KFGFxTraderContainer_PlayerInfo]
+PlayerHeaderString="INVENTÁRIO"
+SelectPerkString="SELECIONAR PRIVILÉGIO"
+
+[KFGFxMenu_ServerBrowser]
+FavoriteString="FAVORITO"
+MultiplayerMenuString="ENCONTRAR PARTIDA"
+LeaveMenuString="Ao sair deste menu, seu grupo acabará. Ir para a combinação de partidas em vez disso? "
+NameString="NOME"
+RefreshString="ATUALIZAR"
+GamesFoundString="JOGOS ENCONTRADOS:"
+
+ServerBrowserString="LISTA DE SERVIDORES"
+
+JoinString="PARTICIPAR"
+PasswordPromptString="DIGITAR SENHA"
+
+RankedString="ESTATÍSTICAS HABILITADAS"
+DedicatedString="DEDICADO"
+VACSecureString="PROTEGIDO CONTRA VÁCUO"
+InLobbyString="NO SALÃO"
+InProgressString="EM ANDAMENTO"
+
+BackString="ANTERIOR"
+ApplyString="APLICAR"
+ResetString="REDEFINIR"
+
+PingString="PING"
+LengthString="DURAÇÃO"
+DifficultyString="DIFICULDADE"
+MapString="MAPA"
+GameModeString="MODO"
+WaveString="ONDA"
+PlayersString="JOGADORES"
+ZedCountString="CONTAGEM DE ZEDS"
+FiltersString="FILTROS"
+
+SearchString="BUSCA"
+
+PingOptionStrings[0]="< 50 MS"
+PingOptionStrings[1]="< 100 MS"
+PingOptionStrings[2]="< 150 MS"
+PingOptionStrings[3]="< 200 MS"
+
+TabStrings[0]="PESQUISAR"
+TabStrings[1]="FAVORITOS"
+TabStrings[2]="AMIGOS"
+TabStrings[3]="HISTÓRICO"
+TabStrings[4]="LAN"
+
+[KFGFxServerBrowser_Filters]
+NoPasswordString="SEM SENHA"
+NoMutatorsString="SEM TRANSFORMADORES"
+NotFullString="NÃO ESTÁ CHEIO"
+NotEmptyString="NÃO ESTÁ VAZIO"
+NoStatsEnabledString="NENHUM SERVIDOR CLASSIFICADO (Padrão)"
+NoRankedCustomString="NENHUM SERVIDOR PERSONALIZADO"
+NoUnrankedString="NENHUM SERVIDOR SEM CLASSIFICAÇÃO"
+DedicatedString="SERVIDOR DEDICADO"
+VACSecureString="PROTEGIDO CONTRA VÁCUO"
+InLobbyString="NO SALÃO"
+InProgressString="EM ANDAMENTO"
+OnlyStockMapsString="APENAS MAPAS DE FÁBRICA"
+OnlyCustomMapsString="APENAS MAPAS PERSONALIZADOS"
+LimitServerResultsString="LIMITAR RESULTADOS:"
+
+[KFGFxServerBrowser_ServerDetails]
+MutatorsString="TRANSFORMADORES"
+JoinGameString="PARTICIPAR DE JOGO"
+SpectateGameString="ASSISTIR"
+ServerInfoString="INFORMAÇÕES DO SERVIDOR"
+UnfavoriteString="REMOVER DOS FAVORITOS"
+
+[KFGFxMenu_Trader]
+ExitMenuString="SAIR DO MENU"
+
+[KFGFxTraderContainer_Store]
+TraderString="COMPRAR ITENS"
+
+[KFGFxServerBrowser_ServerList]
+LeaveServerBrowserString="SAIR DO LISTA DE SERVIDORES"
+DetailsString="DETALHES"
+SpectateString="ASSISTIR"
+
+[KFGFxTraderContainer_ItemDetails]
+DamageTitle="DANO"
+FireRateTitle="RITMO DOS TIROS"
+PenetrationTitle="PENETRAÇÃO"
+RangeTitle="ALCANCE"
+BlockTitle="BLOQUEIO"
+ParryTitle="DEFESA"
+AccuracyTitle="PRECISÃO"
+CapacityTitle="CAPACIDADE DA MUNIÇÃO"
+MagTitle="TAMANHO DO COMPARTIMENTO"
+HealAmountTitle="QUANTIDADE DE CURA"
+HealRechargeTitle="TEMPO DE RECARGA"
+BuyString="COMPRAR"
+SellString="VENDER"
+CannotSellString="NÃO PODE VENDER"
+CannotBuyString="NÃO PODE COMPRAR"
+FavoriteString="ADICIONAR AOS FAVORITOS"
+UnfavoriteString="REMOVER DOS FAVORITOS"
+
+[KFGFxTraderContainer_PlayerInventory]
+FillString="ENCHER"
+MagString="COMP"
+BuyGrenadeString="1X"
+AutoFillString="PREENCHER AUTOMATICAMENTE"
+ArmorString="Armadura de combate"
+ChangePerkString="ALTERAR PRIVILÉGIO"
+
+[KFGFxTraderContainer_Filter]
+TabsArray[0]="PRIVILÉGIOS"
+TabsArray[1]="TIPO"
+TabsArray[2]="FAVORITOS"
+TabsArray[3]="TODOS"
+
+WeaponTypeStrings[0]="Pistolas"
+WeaponTypeStrings[1]="Espingardas"
+WeaponTypeStrings[2]="Fuzis"
+WeaponTypeStrings[3]="Projéteis"
+WeaponTypeStrings[4]="Armas de chama"
+WeaponTypeStrings[5]="Armas elétricas"
+WeaponTypeStrings[6]="Explosivos"
+WeaponTypeStrings[7]="Fuzis de assalto"
+WeaponTypeStrings[8]="Armas brancas"
+WeaponTypeStrings[9]="Submetralhadora"
+
+OffPerkString="Sem privilégio"
+
+[KFGFxMenu_PostGameReport]
+MapVoteString="VOTO DE MAPA"
+PlayerStatsString="ESTATÍSTICAS DE JOGADOR"
+TeamAwardsString="RECOMPENSAS"
+PostGameReportString="RELATÓRIO PÓS JOGO"
+NextMapString="Próximo mapa em:"
+WaveString="ONDA"
+XPString="XP"
+VictoryString="Vitória"
+DefeatString="Derrota"
+
+[EphemeralMatchStats]
+MedicineMaster="Mestre da Medicina"
+MedicineMasterValue="Saúde"
+ZedSlayer="Matador de Zeds"
+ZedSlayerValue="Mortes"
+Enforcer="Executor"
+EnforcerValue="Assistências"
+Destroyer="Destruidor"
+DestroyerValue="Dano"
+GiantSlayer="Matador Gigante"
+GiantSlayerValue="Zeds Grandes"
+MoneyBags="Sacos de Dinheiro"
+MoneyBagsValue="Grana"
+HeadPopper="Estourador de Cabeças"
+HeadPopperValue="Tiros na Cabeça"
+Dominator="Dominador"
+DominatorValue="Chefe"
+
+EPB_Healing="Curando"
+EPB_Kills="Mortes"
+EPB_Assists="Assistências"
+EPB_LargeZedKill="Mortes de Zeds Grandes"
+EPB_Dosh="Grana Ganha"
+EPB_HeadShots="Tiros na Cabeça"
+EPB_KnifeKills="Mortes com Faca"
+EPB_PistolKills="Mortes com Pistola"
+EPB_DoorWelding="Soldagem de Portas"
+
+EPB_HealingValue="Saúde"
+EPB_KillsValue="Mortes"
+EPB_AssistsValue="Assistências"
+EPB_LargeZedKillValue="Zeds Grandes"
+EPB_DoshValue="Grana"
+EPB_HeadShotsValue="Tiros na Cabeça"
+EPB_KnifeKillsValue="Mortes"
+EPB_PistolKillsValue="Mortes"
+EPB_DoorWeldingValue="Pontos de Soldagem"
+
+[KFGFxPostGameContainer_TeamAwards]
+TeamAwardsString="RECOMPENSAS DA EQUIPE"
+PersonalBestsString="RECORDE PESSOAL"
+NoTeamAwardsGivenString="SEM RECOMPENSAS RECEBIDAS"
+
+[KFGFxPostGameContainer_MapVote]
+YourVoteString="O SEU VOTO"
+TopVotesString="VOTOS DO TOPO"
+
+[KFGFxPostGameContainer_PlayerStats]
+AchievementsString="Conquistas"
+KnifeString="Faca"
+TopWeaponsString="ARMAS DE TOPO"
+ZedKillsString="MORTES DE ZED"
+
+
+[KFGFxWidget_BaseParty]
+PlayerReadyString="[ PRONTO ]"
+WaitingString="AGUARDANDO JOGADORES"
+DeployingString="OCUPANDO"
+CreatePartyString="CONV. AMIGOS"
+ReadyString="COMEÇAR"
+LeaveString="SAIR DO GRUPO"
+SquadString="ESQUADRÃO"
+SoloString="SOLITÁRIO"
+DefaultPlayerName="Jogador"
+
+PartyLeaderSearchingForMatchString="está buscando uma partida..."
+PartyLeaderIsUpdatingMatchOptionsString="está configurando as opções da partida..."
+PartyLeaderInServerBrowserString="está buscando o lista de servidores..."
+PartyLeaderInOtherMenuString="está em outro menu..."
+SearchingForGameString="Buscando jogo on-line..."
+
+PartHostLeftString="O anfitrião da festa saiu"
+PartyLeaderChangedString="é agora o novo anfitrião da festa."
+
+MuteString="Silenciar jogador"
+UnmuteString="Desativar mudo do jogador"
+AddFriendString="Adicionar amigo"
+RemoveFriendString="Remover amigo"
+VoteKickString="Expulsar Jogador"
+ViewProfileString="Visualizar perfil"
+
+[KFGFxMenu_Gear]
+GearHeaderString="PERSONALIZAR"
+BioString="BIO"
+CharacterString="PERSONAGEM"
+HeadString="CABEÇA"
+BodyString="CORPO"
+SkinsString="PELES"
+AttachmentsString="ACESSÓRIOS"
+BackString="RETORNAR"
+NoneString="NENHUM"
+
+[KFGFxPerksContainer]
+LevelString=""
+
+[KFGFxPerksContainer_Header]
+ExperienceString="Experiência"
+PrestigeLevelString="Prestígio"
+
+[KFGFxPerksContainer_SkillsSummary]
+ConfigureString="CONFIGURAR"
+SkillsString="HABILIDADES"
+
+[KFGFxMenu_Perks]
+TierUnlockedText="Novo nível desbloqueado!"
+TierUnlockedSecondaryText="Você desbloqueou um novo nível para os seguintes privilégios:"
+
+
+[KFGFxPerksContainer_Details]
+ObjectivesString="OBJETIVOS DE XP"
+PerkBonusesString="BÔNUS POR PRIVILÉGIOS"
+BasicLoadoutString="INICIANDO ABASTECIMENTO"
+
+[KFGFxPerksContainer_Skills]
+ConfigureSkillsString="CONFIGURAR HABILIDADES"
+BackButtonString="<< RETORNAR"
+
+[KFGFxPerksContainer_Selection]
+HeaderTitle="SELECIONAR PRIVILÉGIO"
+EndOfWaveString="As alterações de privilégio serão aplicadas no término da onda!"
+ChangesAppliedOnCloseString="As alterações de privilégio serão aplicadas quando este menu for fechado"
+OncePerWaveString="Os privilégios só podem ser realizados uma vez por onda!"
+
+[KFGFxWidget_ButtonPrompt]
+CancelString="RETORNAR"
+ConfirmString="SELECIONAR"
+
+[KFGFxWidget_MenuBar]
+MenuStrings[0]="PRINCIPAL"
+MenuStrings[1]="PRIVILÉGIO"
+MenuStrings[2]="ITENS"
+MenuStrings[3]="OPÇÕES"
+MenuStrings[4]="SAIR"
+
+ServerBrowserString="LISTA DE SERVIDORES"
+MatchmakingString="ENCONTRAR PARTIDAS"
+SoloString="SOLITÁRIO"
+OverviewString="VISÃO GERAL DA PARTIDA"
+
+TitleStrings[0]="Já está abandonando a luta?"
+TitleStrings[1]="Saindo tão cedo?"
+TitleStrings[2]="Cansado de tomar surra?"
+
+DescriptionStrings[0]="Que ótimo, pode seguir com sua vida ridícula. Você não duraria nem cinco minutos na Pista da Morte."
+DescriptionStrings[1]="A cada segundo seu de distância nasce uma horda de loucos para deleitarem-se com seus amigos. Você vai mesmo abandoná-los?"
+DescriptionStrings[2]="Eles encontrarão você de qualquer maneira. Eles encontrarão você e comerão seu coração, como se fosse um lanchinho bem fresco."
+
+ExitString="SAIR"
+CancelString="CANCELAR"
+
+[KFGFxWidget_LevelUpNotification]
+LevelUpString="SUBIU DE NÍVEL"
+TierUnlockedString="NOVAS HABILIDADES DESBLOQUEADAS"
+
+[KFGFxHUD_WaveInfo]
+WaveString="ONDA"
+BossWaveString="CHEFE"
+FinalWaveString="FINAL"
+
+[KFGFxHUD_TraderCompass]
+TraderString="COMERCIANTE"
+
+[KFGFxHUD_SpectatorInfo]
+PrevPlayerString="PRÓXIMO"
+NextPlayerString="ANTERIOR"
+ChangeCameraString="ALTERAR CÂMERA"
+
+[KFGFxHUD_ScoreboardWidget]
+PlayerString="JOGADOR"
+DoshString="GRANA"
+KillsString="MORTES"
+AssistsString="ASSISTÊNCIAS"
+PingString="PING"
+
+[KFGFxHUD_PlayerStatus]
+EXPString="XP"
+
+
+[KFGFxHUD_ScoreboardMapInfoContainer]
+WaveString="ONDA"
+FinalString="Final"
+
+[KFGFxHUD_WeaponSelectWidget]
+PrimaryString="PRINCIPAL"
+EquiptmentString="ITENS"
+MeleeString="ARMA BRANCA"
+SecondaryString="SECUNDÁRIO"
+
+[KFGFxWidget_KickVote]
+VoteKickString="Expulsar Jogador?"
+
+[KFGFxWidget_VoiceComms]
+VoiceCommsOptionStrings[0]="SOLICITAR CURA"
+VoiceCommsOptionStrings[1]="SOLICITAR GRANA"
+VoiceCommsOptionStrings[2]="SOLICITAR AJUDA"
+VoiceCommsOptionStrings[3]="INSULTAR OS ZEDS"
+VoiceCommsOptionStrings[4]="SIGA-ME"
+VoiceCommsOptionStrings[5]="IR ATÉ O NEGOCIANTE"
+VoiceCommsOptionStrings[6]="AFIRMATIVO"
+VoiceCommsOptionStrings[7]="NEGATIVO"
+
+[KFGFxMenu_Exit]
+HeaderString="SAIR DO JOGO"
+ExitToMainDescription="Sair do jogo atual e voltar à tela de títulos?"
+ExitToMainMenu="Sair para a Tela de títulos"
+ExitKF2="Sair do Jogo"
+
+[KFGFxOptionsMenu_Selection]
+HeaderString="OPÇÕES"
+OptionStrings[0]="Vídeo"
+OptionStrings[1]="Áudio"
+OptionStrings[2]="Controles"
+OptionStrings[3]="Jogabilidade"
+OptionStrings[4]="Créditos"
+
+[KFGFxOptionsMenu_Audio]
+AudioString="OPÇÕES DE ÁUDIO"
+SectionNameString="VOLUME"
+OptionsString="OPÇÕES"
+MusicString="Volume da música durante o jogo"
+SFxString="Volume do jogo"
+VOIPVolumeString="Volume de entrada do bate-papo em voz"
+ConfigureMicString="CONFIGURAR MICROFONE"
+VocalsString="Vocais musicais"
+BattleChatterString="Minimizar falatório durante a batalha"
+PushToVoIPString="Forçar VoIP""
+
+[KFGFxOptionsMenu_Graphics]
+KeepSettingsPromptString="Usar estas configurações de vídeo?"
+WarningPromptString="AVISO"
+WillExpireString="As configurações serão revertidas em %x% segundos."
+SingleWarningString="Algumas alterações selecionadas podem %x%"
+DoubleWarningString="Algumas configurações selecionadas poderão %x% e %y%"
+PerformanceDescString[0]="afetar o desempenho negativamente"
+PerformanceDescString[1]="afetar o desempenho gravemente"
+RestartDescString="solicitar um reinício"
+OKString="OK"
+CancelString="CANCELAR"
+UnsavedChangesString="Você tem alterações não guardadas"
+SaveChangesString="Deseja as guardar agora?"
+ContinueString="Deseja continuar?"
+
+AdjustGammaDescription="Ajuste o cursor até que a criatura à esquerda fique pouco visível e a criatura da direita possa ser vista com clareza."
+ResetGammaString="REINICIAR"
+SetGammaString="APLICAR"
+
+
+GraphicsString="GRÁFICOS"
+BasicString="Básico"
+AdvancedString="Avançado"
+EffectsString="Efeitos"
+
+AspectRatioString="Proporção"
+ResolutionString="Resolução"
+GraphicsQualityString="Qualidade dos gráficos"
+VSyncString="Sincronização vertical"
+FullscreenString="Visor"
+VariableFrameRateString="Taxa de quadros variáveis"
+FilmGrainString="Granulação de filme"
+AdjustGammaString="AJUSTAR GAMA"
+
+PhysicsLevelString="NVIDIA® FleX"
+
+PhysicsLevelOptionStrings[0]="Desligado"
+PhysicsLevelOptionStrings[1]="Pouco*"
+PhysicsLevelOptionStrings[2]="Muito*"
+
+PhysicsLevelSuggestionStrings[0]=""
+PhysicsLevelSuggestionStrings[1]="*GeForce® GTX™ 770 ou superior recomendado"
+PhysicsLevelSuggestionStrings[2]="*GeForce® GTX™ 980 ou superior recomendado"
+
+FlexPopUpString="NVIDIA® FleX permite a simulação de violência e fluídos. Esta definição pode afetar o desempenho e requer uma reinicialização."
+
+EnvironmentDetailsString="Detalhe do ambiente"
+FoliageString="Detalhe da folhagem"
+CharacterDetailString="Detalhe do personagem"
+FXString="FX"
+TextureResolutionString="Resolução da textura"
+TextureFilteringString="Filtragem da textura"
+ShadowsString="Qualidade da sombra"
+RealtimeReflectionsString="Reflexos em tempo real"
+AntiAliasingString="Suavização"
+BloomString="Brilho"
+MotionBlurString="Desfoque de movimento"
+AmbientOcclusionString="Oclusão de ambiente"
+DepthOfFieldString="Profundidade do campo"
+
+
+VolumetricLightingString="Efeito de iluminação volumétrica"
+LensFlaresString="Luzes nas lentes"
+LightShaftsString="Eixos luminosos"
+CustomString="Personalizar"
+IniOverrideString="Sobrescrever INI"
+
+ApplyString="APLICAR"
+CancelString="CANCELAR"
+DefaultString="PADRÃO"
+
+AspectRatioString_All="Todos"
+StandardAspectRatioString_4_3="0.16875"
+StandardAspectRatioString_5_4="0.211111111111111"
+StandardAspectRatioString_3_2="0.126388888888889"
+WideAspectRatioString_16_9="0.672916666666667"
+WideAspectRatioString_16_10="0.673611111111111"
+ExtraWideAspectRatioString_2_1="8.40277777777778E-02"
+ExtraWideAspectRatioString_21_9="0.88125"
+MultiMonitorAspectRatioString="Vários monitores"
+
+FullScreenStringOptions[0]="Em janela"
+FullScreenStringOptions[1]="Sem bordas"
+FullScreenStringOptions[2]="Tela cheia"
+
+OffOnStringOptions[0]="Desativado"
+OffOnStringOptions[1]="Ativado"
+
+GraphicsQualityStringOptions[0]="Baixo"
+GraphicsQualityStringOptions[1]="Médio"
+GraphicsQualityStringOptions[2]="Alto"
+GraphicsQualityStringOptions[3]="Ultra"
+
+VSyncStringOptions[0]="Desativado"
+VSyncStringOptions[1]="Ativado"
+;VSyncStringOptions[2]="Triplamente armazenado"
+
+EnvironmentDetailsStringOptions[0]="Baixo"
+EnvironmentDetailsStringOptions[1]="Médio"
+EnvironmentDetailsStringOptions[2]="Alto"
+EnvironmentDetailsStringOptions[3]="Ultra"
+
+FoliageStringOptions[0]="Baixo"
+FoliageStringOptions[1]="Médio"
+FoliageStringOptions[2]="Alto"
+
+CharacterDetailStringOptions[0]="Baixo"
+CharacterDetailStringOptions[1]="Alto"
+CharacterDetailStringOptions[2]="Ultra"
+
+FXStringOptions[0]="Baixo"
+FXStringOptions[1]="Médio"
+FXStringOptions[2]="Alto"
+FXStringOptions[3]="Ultra"
+
+TextureResolutionStringOptions[0]="Baixo"
+TextureResolutionStringOptions[1]="Médio"
+TextureResolutionStringOptions[2]="Alto"
+TextureResolutionStringOptions[3]="Ultra"
+
+TextureFilteringStringOptions[0]="Bilinear"
+TextureFilteringStringOptions[1]="Trilinear"
+TextureFilteringStringOptions[2]="4x anisotrópico"
+TextureFilteringStringOptions[3]="16x anisotrópico"
+
+ShadowsStringOptions[0]="Baixo"
+ShadowsStringOptions[1]="Médio"
+ShadowsStringOptions[2]="Alto"
+ShadowsStringOptions[3]="Ultra"
+
+PhysicsStringOptions[0]="Desativado"
+PhysicsStringOptions[1]="Normal"
+PhysicsStringOptions[2]="Alto"
+
+RealtimeReflectionsStringOptions[0]="Desativado"
+RealtimeReflectionsStringOptions[1]="Ativado"
+
+AntiAliasingStringOptions[0]="Desativado"
+AntiAliasingStringOptions[1]="FXAA"
+
+BloomStringOptions[0]="Desativado"
+BloomStringOptions[1]="Baixo"
+BloomStringOptions[2]="Alto"
+
+MotionBlurStringOptions[0]="Desativado"
+MotionBlurStringOptions[1]="Normal"
+MotionBlurStringOptions[2]="Alto"
+
+AmbientOcclusionStringOptions[0]="Desativado"
+AmbientOcclusionStringOptions[1]="SSAO"
+AmbientOcclusionStringOptions[2]="HBAO+"
+
+DepthOfFieldStringOptions[0]="Desativado"
+DepthOfFieldStringOptions[1]="SAT DOF"
+
+[KFGFxOptionsMenu_Graphics_DX10]
+AmbientOcclusionStringOptions_DX10[0]="Desativado"
+AmbientOcclusionStringOptions_DX10[1]="SSAO"
+
+[KFGFxOptionsMenu_Controls]
+TabStrings[0]="INSERIR"
+TabStrings[1]="ATALHOS DE TECLAS"
+TabStrings[2]="CONTROLADORES"
+HeaderText="OPÇÕES DOS CONTROLES"
+
+[KFGFxOptionsMenu_GameSettings]
+SectionNameString="OPÇÕES"
+GameSettingsString="CONFIGURAÇÕES DO JOGO"
+FOVString="CAMPO DE VISÃO"
+GoreString="Intensidade do sangue"
+ShowCrosshairString="Exibir mira"
+ClassicWeaponSelectString="Selecionar arma rapidamente"
+GoreOptionStrings[0]="Sem sangue"
+GoreOptionStrings[1]="Pouco sangue"
+GoreOptionStrings[2]="Sangrento"
+NormalString="Normal"
+WiderString="Alargado"
+FriendlyHudScaleString="Escala do HUD Amigável"
+
+[LocalizedControls]
+GBA_MoveForward="Seguir em frente"
+GBA_StrafeLeft="Metralhar à esquerda"
+GBA_Backward="Para trás"
+GBA_StrafeRight="Metralhar à direita"
+GBA_Jump="Pular"
+GBA_Sprint="Correr"
+GBA_CrouchToggle="Agachar (Alternar)"
+GBA_CrouchHold="Agachar (Manter)"
+GBA_SprintAndCrouch="Agachar/correr"
+
+GBA_Use="Usar/solda rápida (Manter)"
+GBA_Talk="Conversar"
+GBA_VoiceChat="Bate-papo com voz"
+GBA_ShowVoiceComms="Comandos por voz"
+GBA_ShowScores="Mostrar Pontuação""
+GBA_TossMoney="Jogar grana"
+GBA_DropWeapon="Jogar a Arma"
+
+GBA_Fire="Disparar"
+GBA_IronSightsToggle="Mira em Ferro (Ativar)"
+GBA_IronsightsHold=" Mira em Ferro (Segurar)"
+GBA_Reload="Recarregar"
+GBA_Grenade="Atirar Granada"
+GBA_QuickHeal="Cura Rápida"
+GBA_SwitchFireMode="Disparo Alt. / Bloquear"
+GBA_TertiaryFire="Ataque Físico"
+GBA_ToggleFlashlight="Ligar a Lanterna"
+GBA_AltFire="Disparo Alt. / Bloquear"
+
+GBA_WeaponSelect_Gamepad="Menu de seleção de armas (Manter)"
+GBA_NextWeapon="Arma seguinte"
+GBA_PrevWeapon="Arma anterior"
+GBA_SwitchWeapon1="Arma principal"
+GBA_SwitchWeapon2="Arma secundária"
+GBA_SwitchWeapon3="Arma branca"
+GBA_SwitchWeapon4="Itens"
+GBA_VoteYes="Votar Sim (Manter)"
+GBA_VoteNo="Votar Não (Manter)"
+
+[KFGFxControlsContainer_Input]
+SensitivityString="Sensibilidade"
+InvertedString="Invertido"
+ControllerString="Controlador"
+ControllerSensitivityString="Sensibilidade de olhar"
+ControllerInvertedString="Interverter Y"
+MouseString="Mouse"
+
+[KFGFxControlsContainer_Keybinding]
+SectionHeaders[0]="Movimento"
+SectionHeaders[1]="Interação"
+SectionHeaders[2]="Combater"
+SectionHeaders[3]="Seleção de armas"
+
+ResetString="REDEFINIR TUDO"
+ApplyString="APLICAR"
+PressKeyString="[PRESSIONAR TECLA]"
+WarningString="AVISO"
+KeyAlreadyBoundString="A tecla <%x%> já foi configurada para:"
+RebindString="Configurar para:"
+ClearedString=(A configuração anterior será apagada)
+CancelString="CANCELAR"
+AcceptString="ACEITAR"
+IgnoredKeyString="não pode ser designado a tecla ignorada"
+
+[KFGFxControlsContainer_ControllerPresets]
+MovementString="Controle de movimentos"
+LookString="Controle de olhar"
+WeaponSelectMenuString="Menu de seleção de armas (Manter)"
+ShowScoardBoardString="Exibir tabela de pontuação"
+ShowIngameMenuString="Alternar o menu do jogo"
+
+BashString="Esmagar"
+BlockString="Bloquear (Manter)"
+HoldString=(Manter)
+
+
+[KFLocalMessage]
+SystemString="Sistema:"
+AdminString =(Administrador)
+LoggedInAsAdminString=" entrou como Administrador do Servidor"
+LoggedOutAsAdminString=" saiu como Administrador do Servidor"
+MustLoginToCheatString="Você deve autenticar para ativar trapaças."
+CheatsEnabledString=" ativou as trapaças. As estatísticas foram desativadas para esta sessão."
+ServerMaintenanceString="O Servidor será desligado para manutenção no fim da partida."
+KickVoteStartedString="Uma votação para expulsão foi iniciado:"
+KickVoteSucceededString="A votação de expulsão foi aprovado:"
+KickVoteFailedString="A votação de expulsão não foi aprovado:"
+KickVoteRejectedString="Ainda não passou tempo suficiente após o último voto falhado. Por favor espere e depois tente novamente."
+KickVoteInProgressString="Não foi possível iniciar um voto, já existe uma votação ativa."
+KickVoteDisabledString="A votação para expulsão está desativada nesse servidor"
+KickVoteYesReceivedString="Você votou para expulsar:"
+KickVoteNoReceivedString="Você votou para não expulsar:"
+KickVoteKickAdminString="Você não pode expulsar o administrador do servidor."
+KickVoteActiveTimeString="A partida não está ativa há tempo suficiente para voto de expulsão."
+KickVoteMatchNotStartedString="A votação de expulsão não pode ser iniciada antes da partida."
+KickVoteMaxKicksReachedString="Não pode iniciar mais expulsões durante esta partida."
+KickVoteNotEnoughPlayersString="Sem jogadores suficientes para iniciar uma votação de expulsão."
+KickVoteNoSpectatorsString="Os espectadores não podem iniciar uma votação de expulsão."
+KickedFromServerString="Você foi retirado do servidor."
+BannedFromServerString="Você foi retirado do servidor. Não pode voltar a entrar neste momento."
+
+[KFLocalMessage_Game]
+ReceivedAmmoFromMessage="Você recebeu munição de"
+GaveAmmoToMessage="Você deu munição para"
+PendingPerkChangesSet="As alterações de privilégio serão aplicadas no fim da onda."
+PendingPerkChangesApplied="Alterações de privilégio aplicadas!"
+HealedByMessage="Você foi curado por"
+HealedMessage="Você curou"
+YourselfString="a si próprio."
+PickedupArmorMessage="Você recolheu armadura"
+FullArmorMessage="Sua armadura já está completa"
+PickupAmmoMessage="Você recolheu munição"
+PickupWeaponAmmoMessage="Você pegou %x% munições"
+AlreadyCarryingWeaponMessage="Você já possui esta arma"
+PickupMessage="Você pegou um(a)"
+TooMuchWeightMessage="Esta arma é uma pesada. Tente se desfazer ou vender uma arma."
+FailedDropInventoryMessage="Não é possível se desfazer disso aqui"
+ReceivedGrenadesFromMessage="Você recebeu granadas de"
+GaveGrenadesToMessage="Você tem granadas para"
+SharingContentString="está partilhando conteúdo."
+
+SuicideMessage="acabou de desistir da vida..."
+KilledMessage="foi comido vivo"
+KillzedBy_HansString=" 'teve o corpo levado para mais experimentos"
+KillzedBy_ZedCrawlerString="teve os tornozelos arrancados por mordidas"
+KillzedBy_ZedBloatString=" se afogou em fluídos corporais"
+KillzedBy_ZedFleshpoundString=" foi moído até sobrar só a polpa"
+KillzedBy_ZedGorefastString=" foi esfolado vivo"
+KillzedBy_ZedHuskString=" foi queimado até virar carvão"
+KillzedBy_ZedScrakeString=" foi abatido no seu melhor momento"
+KillzedBy_ZedSirenString=" teve as orelhas estouradas - permanentemente"
+KillzedBy_ZedStalkerString=" nem viu o que aconteceu"
+KillzedBy_ZedClot_CystString=" sofreu uma morte desapontadora"
+KillzedBy_ZedClot_AlphaString=" foi agarrado inapropriadamente"
+KillzedBy_ZedClot_SlasherString=" não gosta mais de filmes de terror"
+
+FoundAMapCollectibleMessage="%x% encontrou um %y%. %z% restantes..."
+FoundAllMapCollectiblesMessage="Todos os %x% foram encontrados!"
+MapCollectibleName="pedaço de jóia valiosa"
+
+[KFLocalMessage_Priority]
+WaveStartMessage="O N D A  E N T R A N D O"
+WaveEndMessage="O N D A  C O M P L E T A"
+GetToTraderMessage="Ir para a Instalação do comerciante"
+YouLostMessage="D E R R O T A"
+YouWonMessage="V I T Ó R I A"
+SquadWipedOutMessage="Seu esquadrão foi aniquilado"
+SquadSurvivedMessage="Seu esquadrão sobreviveu"
+ObjectiveStartMessage="Objetivo iniciado!"
+ObjectiveWonMessage="Objetivo vencido!"
+ObjectiveEndedMessage="Objetivo encerrado!"
+ObjectiveLostMessage="Objetivo perdido!"
+ObjNotEnoughPlayersMessage="Não há jogadores suficientes!"
+ObjTimeRanOutMessage="Limite de tempo alcançado!"
+
+[KFGameInfo_Survival]
+GameName="Sobrevivência"
+
+[KFGameReplicationInfo]
+
+
+[KFLocalMessage_Interaction]
+UseTraderMessage="Pressione <%x%> para negociar"
+UseDoorMessage="PRESSIONE <%x%> para usar, MANTENHA PRESSIONADO para equipar o soldador"
+AcceptObjectiveMessage="Pressione <%x%> para aceitar o objetivo"
+ReceiveAmmoMessage="Pressione <%x%> para receber munição do fornecedor"
+ReceiveGrenadesMessage="Pressione <%x%> para receber granadas do fornecedor"
+HealSelfWarning="Pressione <%x%> para curar a si próprio."
+PressToBashWarning="Pressione <%x%> para ataque físico."
+
+[KFGfxPerkComp_Abilities]
+RankNames[0]="Classificação I"
+RankNames[1]="Classificação II"
+RankNames[2]="Classificação III"
+
+[KFPerk]
+SkillCatagories[0]=""
+SkillCatagories[1]=""
+SkillCatagories[2]=""
+SkillCatagories[3]=""
+SkillCatagories[4]=""
+
+LevelString="Nível"
+
+SpecialAbilityName="Habilidade de assinatura"
+SpecialAbilityDescription=""
+
+Passives[0]=(Title="",Description="");
+Passives[1]=(Title="",Description="");
+Passives[2]=(Title="",Description="");
+Passives[3]=(Title="",Description="");
+Passives[4]=(Title="",Description="");
+
+SkillSlots0[0]=(Title="", Description="")
+SkillSlots0[1]=(Title="", Description="")
+
+SkillSlots1[0]=(Title="", Description="")
+SkillSlots1[1]=(Title="", Description="")
+
+SkillSlots2[0]=(Title="", Description="")
+SkillSlots2[1]=(Title="", Description="")
+
+SkillSlots3[0]=(Title="", Description="")
+SkillSlots3[1]=(Title="", Description="")
+
+SkillSlots4[0]=(Title="", Description="")
+SkillSlots4[1]=(Title="", Description="")
+
+WeaponDroppedMessage="Você largou%%%% devido a sua nova capacidadde de carga!"
+
+[KFPerk_Berserker]
+PerkName="Brutamonte"
+
+SkillCatagories[0]="Resistência"
+SkillCatagories[1]="Sobrevivência"
+SkillCatagories[2]="Combate corpo-a-corpo"
+SkillCatagories[3]="Força"
+SkillCatagories[4]="Treinamento avançado"
+
+Passives[0]=(Title="Dano de arma privilegiada",Description="25% de aumento de dano da arma Brutamontes, mais x%x em cada nível");
+Passives[1]=(Title="Velocidade de ataque com armas brancas",Description="0% de aumento na velocidade de ataque com armas brancas, aumentando x%x por nível");
+Passives[2]=(Title="Velocidade de movimento com arma branca",Description="Movimento 10% mais rápido quando usa uma arma branca, mais x%x por nível");
+Passives[3]=(Title="Resistência de dano",Description="Dano recebido reduzido em  %x%");
+Passives[4]=(Title="Capacidade +Visão Noturna",Description="Lanternas E Visão Noturna")
+Passives[5]=(Title="+Os Coaguladores não podem te agarrar",Description="Coaguladores não conseguem agarrar um Brutamontes.")
+
+EXPAction1="Negociando o dano da arma da Brutamonte"
+EXPAction2="Mate zeds próximo a um jogador com uma arma privilegiada"
+
+PoisonResistance="Resistência ao Veneno"
+PoisonResistanceDescription="Eu cuspo no seu veneno: Reduz o dano que recebe de ataques de Veneno por 40%."
+
+SonicResistance="Resistência Sônica"
+SonicResistanceDescription="Não consigo te ouvir! Reduz o dano que recebe de ataques Sônicos por 40%"
+
+Vampire="Vampiro"
+VampireDescription="Pequenas sanguessugas: Nanotecnologia Horzine suga 3 pontos de vida de cada Zed que você mata com qualquer arma privilegiada e aplica-os a você."
+
+Fortitude="Força"
+FortitudeDescription="Dê a você mesmo mais chances: Aumenta a Vida Máxima e Inicial por 100%"
+
+FuriousDefender="Defensor furioso"
+FuriousDefenderDescription="Te chamam de Brutamontes por uma razão: Os ataques de arma branca do Brutamontes são 10% mais rápidos e todos os ataques causam 20% mais dano."
+
+Block="Bloqueio"
+BlockDescription="Que habilidade! Bloquear um ataque fará com que o seu próximo ataque Brutamontes cause 75% mais dano."
+
+Parry="Defender"
+ParryDescription="Combine habilidade e poder: Defender um ataque aumentará a velocidade de ataque com arma branca por 15% e o dano de ataques leves por 30% durante 4 segundos."
+
+Smash="Esmagar"
+SmashDescription="Aplique força bruta: Ataques brutos causam 30% mais dano e aumentam a incapacitação por derrube por 30%."
+
+Spartan="HORA ZED - Espartano"
+SpartanDescription="Você viu o 300: Se mova em tempo real, aumenta a velocidade de ataque com armas brancas de Brutamonte por 50% e qualquer defesa causará um derrube."
+
+Menace=""
+MenaceDescription="Seja muito perigoso: Se mova em tempo real, o poder de atordoar das armas brancas do Brutamontes aumenta em 100% em acertos na cabeça e o poder de Tropeço aumenta por 100%."
+
+[KFPerk_Commando]
+PerkName="Comando"
+
+SkillCatagories[0]="Consciência"
+SkillCatagories[1]="Fornecer"
+SkillCatagories[2]="Manuseio de armas"
+SkillCatagories[3]="Especialista em armas"
+SkillCatagories[4]="Treinamento avançado"
+
+Passives[0]=(Title="Dano de Arma Privilegiada",Description="Aumento de %x% no dano das armas Comando.");
+Passives[1]=(Title="Detecção de inimigos encobertos",Description="Aumentou a detecção de inimigos encobertos em %x%");
+Passives[2]=(Title="Detecção da barra de saúde",Description="A detecção da barra de saúde aumentou em %x%");
+Passives[3]=(Title="Prorrogação da câmera lenta",Description="A câmera lenta dura %x%");
+Passives[4]=(Title="Aumento de saúde",Description="Aumentou a saúde em %x%");
+Passives[5]=(Title="Capacidade +Visão Noturna",Description="Lanternas E Visão Noturna");
+
+EXPAction1="Lidando com o dano da arma Comando"
+EXPAction2="Matando assediadores com armas Comando"
+
+LargeMags="Compartimentos grandes"
+LargeMagsDescription="Deixe a coisa um pouco mais séria - atualize as capacidades do compartimento de munição das armas do Comando em 50%."
+
+Backup="Reserva"
+BackupDescription="Dê 60% de dano extra à sua Pistola e Faca de reserva para aqueles momentos em que realmente precisa!"
+
+Impact="Impacto"
+ImpactDescription="Bata mais forte e derrube-os. Aumente sua chance de derrubar um Zed em 30% com todas as armas Comando."
+
+TacticalReload="Recarga tática"
+TacticalReloadDescription="Mantenha a calma. Seja rápido. Recarregue mais rápido com armas privilegiadas E tenha aquela aparência de elite nessas ocasiões."
+
+Leadership="Liderança"
+LeadershipDescription="A sua liderança acalma e tranquiliza os seus companheiros tornando-os mais eficientes. Os companheiros recarregam 10% mais rapidamente."
+
+CallOut="Convocação"
+CallOutDescription="Dá aos companheiros a habilidade de ver inimigos camuflados assim como você consegue. Eles te agradecerão por tal E você receberá o mesmo XP que eles pelas mortes!"
+
+SingleFire="Disparo único"
+SingleFireDescription="Compensa ser preciso ao disparar! Dê as suas armas de Comando 20% mais dano quando disparadas em modo de disparo único."
+
+Autofire="Disparo automático"
+AutofireDescription="Ser sutil para quê? Cause um dano 20% maior com armas Comando usando os modos de disparo Totalmente automático ou Explosão."
+
+RapidFire="CÂMERA LENTA - Disparo rápido"
+RapidFireDescription="Quando o mundo desacelerar, fira mais: cause um dano 3% maior com armas Comando e atire 3 vezes mais rápido com todas as armas."
+
+Professional="CÂMERA LENTA - Profissional"
+ProfessionalDescription="O mundo pode desacelerar, mas você não. Recarregue as armas à toda velocidade - troque as armas duas vezes mais rápido!"
+
+[KFPerk_Demolitionist]
+PerkName="Demolidor"
+EXPAction1="Causando dano de Arma demolidora"
+EXPAction2="Matando Batedores de Carne com armas Demolidoras"
+
+SkillCatagories[0]="Técnica"
+SkillCatagories[1]="Resistência"
+SkillCatagories[2]="Técnicas Avançadas"
+SkillCatagories[3]="Técnicas de Arma"
+SkillCatagories[4]="Explosivos Avançados"
+
+Passives[0]=(Title="Dano de Arma Privilegiada",Description="Dano de arma privilegiada elevado por %x%");
+Passives[1]=(Title="Resistência a Explosivos",Description="%x% de resistência a danos de explosivos");
+Passives[2]=(Title="Munição Explosiva Extra",Description="%x% mais de munição explosiva inicial");
+
+GrenadeSupplier="Fornecedor de Granada"
+GrenadeSupplierDescription="Eles te amarão por causa disso: Os companheiros conseguem uma granada extra com você, em cada onda."
+
+OnContact="Em contato"
+OnContactDescription="Na sua cara, amigo: a sua dinamite explodirá quando entrar em contato com um Zed."
+
+ExplosiveResistance="Resistência Explosiva"
+ExplosiveResistanceDescription="Fortaleça a equipe: Reduz o dano recebido por você em 30% e também para os seus colegas, se eles estiverem por perto!"
+
+Sacrifice="Sacrifício"
+SacrificeDescription="Não morra em vão: Quando morrer, você explode, com sorte levando alguns Zeds com você."
+
+DoorTraps="Porta Armadilha"
+DoorTrapsDescription="Explode a porta: Você solda 30% mais lentamente, mas as portas que você solda explodem ao serem quebradas. Quanto mais solda na porta maior a explosão."
+
+SirenResistance="Resistência contra as Sirenas"
+SirenResistanceDescription="Cala a boca Zed: As suas granadas têm 100% de chance de ultrapassar o dano sônico e explodir."
+
+OffPerk=""
+OffPerkDescription="Sem outra vez: Causa 10% de dano extra com qualquer arma sem privilégio."
+
+OnPerk="Com privilégio"
+OnPerkDescription="Com outra vez: Aumenta todos os poderes de reação, tropeço e derrube por 30% para armas de Demolição."
+
+Nuke="HORA ZED - Nuclear"
+NukeDescription="Explode-os: Os seus explosivos causam dano radioativo massivo na Hora Zed, envenenando os Zeds."
+
+ConcussiveForce="HORA ZED - Força Chocante"
+ConcussiveForceDescription="Derrube todos: A sua explosão tem uma força de derrube massiva contra os Zeds na Hora Zed."
+
+
+[KFPerk_FieldMedic]
+PerkName="Médico de campo"
+
+SkillCatagories[0]="Condicionamento"
+SkillCatagories[1]="Técnico em medicina"
+SkillCatagories[2]="Manuseio de armas"
+SkillCatagories[3]="Técnico em combates"
+SkillCatagories[4]="Treinamento avançado"
+
+Passives[0]=(Title="Taxa de recarga da seringa",Description="Aumento de %x% no dano da arma");
+Passives[1]=(Title="Potência da seringa",Description="Aumentou a detecção de escondidos em %x%");
+Passives[2]=(Title="Resistência à bílis do Bloat",Description="Aumentou a detecção da barra de saúde em %x%");
+Passives[3]=(Title="Velocidade de movimentos",Description="A câmera lenta dura %x%");
+Passives[4]=(Title="Bônus por armadura",Description="Aumentou a saúde em %x%");
+
+HealingSurge="Surto de cura"
+HealingSurgeDescription="Faça bom uso do conhecimento médico: aumente a saúde em 20%."
+
+Enforcer="Aplicador"
+EnforcerDescription="Chega de focar em cuidados: aumente a capacidade de sua munição inicial em 20% para suas armas Privilégio e Reserva."
+
+Combatant="Combatente"
+CombatantDescription="Seja mais que um médico - seja o médico de combate que sempre quis ser com armadura corporal inicial grátis e um desconto de 60% em todas as compras de armaduras!"
+
+Armament="Armamento"
+ArmamentDescription="Faça mais que curar pessoas: perca 10% da eficácia de cura sobre os colegas de equipe, mas repare 2% de sua armadura corporal máxima!"
+
+Regeneration="Regeneração"
+RegenerationDescription="Vá na dosagem certa: sua saúde se regenera lentamente com o passar do tempo, graças aos nanorrobôs Horzine."
+
+Lacerate="Lacere"
+LacerateDescription="Cuidado com o bisturi: você faz com que os Zeds sangrem mais após um dano com todas as armas Privilégio."
+
+VaccinationArmor="Vacinação"
+VaccinationArmorDescription="Ajude a evitar que a morte se espalhe: sua cura dá uma armadura máxima maior aos colegas de equipe e mais resistência temporária à bílis do Bloat."
+
+VaccinationDamageMod="Componente ácido"
+VaccinationDamageModDescription="A cura para alguns... A morte para outros! Agora, seus dardos de cura podem envenenar os Zeds e suas granadas e dardos deixam os Zeds em pânico."
+
+AirborneAgent="CÂMERA LENTA - Agente aéreo"
+AirborneAgentDescription="Dizem que o tempo cura: seus dardos médicos formarão uma nuvem de cura para que seu alvo e amigos próximos obtenham uma cura 10% maior."
+
+Sedative="CÂMERA LENTA - Sedativo"
+SedativeDescription="E o tempo fica parado: dardos e granadas médicas liberam um sedativo anti-Zed que pode parar os movimentos dos Zeds temporariamente."
+
+
+EXPAction1="Lidando com o dano da arma médica"
+EXPAction2="Curar companheiros"
+
+[KFPerk_Firebug]
+PerkName="Besouro amarelo"
+EXPAction1="Lidando com o dano da arma Besouro amarelo"
+EXPAction2="Matando Rastreadores com armas Besouro amarelo"
+
+SkillCatagories[0]="Mercadorias"
+SkillCatagories[1]="Picante"
+SkillCatagories[2]="Queima"
+SkillCatagories[3]="Chama"
+SkillCatagories[4]="Treino Avançado"
+
+Passives[0]=(Title="Dano de Arma Privilegiada",Description="Dano de arma privilegiada elevado por %x%");
+Passives[1]=(Title="Dano de Arma Privilegiada",Description="Velocidade de recarga de arma privilegiada elevada por %x%");
+Passives[2]=(Title="Resistência ao Dano de Fogo Zed",Description="%x% de resistência ao dano de fogo.");
+Passives[3]=(Title="Imunidade ao seu próprio fogo",Description="%x% de resistência ao dano de fogo pessoal");
+Passives[4]=(Title="Munição Inicial",Description="%x% de munição inicial extra");
+
+FullyStocked="Completamente Abastecido"
+FullyStockedDescription="O que diz na lata: Armas Besouro Amarelo começam com a munição no máximo no Comerciante."
+
+FlarotovCoctail="Cocktail Sinalizador"
+FlarotovCoctailDescription="Está no nome: Enfie um Sinalizador no Cocktail Molotov - você obtém um Cocktail Sinalizador que ilumina a área durante 30 segundos."
+
+Fuse="Rastilho"
+FuseDescription="Um belo e lento incendiário: Armas Besouro Amarelo queimam durante 70% mais tempo adicionando dano."
+
+HeatWave="Onda de Calor"
+HeatWaveDescription="Como o verão escaldante: Os inimigos atingidos à queima roupa com fogo tropeçarão para trás."
+
+ZedShrapnel="Estilhaço Zed"
+ZedShrapnelDescription="Zed faz BOOM: Qualquer zed morto por armas de Fogo têm 50% de chance de explodir, causando dano aos Zeds por perto."
+
+Napalm="Napalm Zed"
+NapalmDescription="Zed em CHAMAS: Zeds que estão em chamas queimarão outros zeds ao entrar em contato com eles."
+
+Range="Alcance"
+RangeDescription="Aumento de alcance de todas as armas de Fogo. Vá - você sabe que você quer."
+
+SplashDamage="Dano de ricochete"
+SplashDamageDescription="Ou aumenta o dano de ricochete ou o impacto de armas de Fogo. Decisões, decisões!"
+
+Combustion="HORA ZED - Combustão"
+CombustionDescription="Estilhaço + Napalm = Combustão. Mais ou menos. Qualquer zed que morre com as suas armas de Fogo na Hora Zed explode em uma bola de fogo queimando tudo que for apanhado pela explosão."
+
+Scorch="HORA ZED - Queimar"
+ScorchDescription="Você está queimando! Bem, não literalmente. As armas privilegiadas usadas na Hora Zed dispararão quase em velocidade real."
+
+[KFPerk_Gunslinger]
+PerkName="Pistoleiro"
+
+[KFPerk_MartialArtist]
+PerkName="Lutador marcial"
+
+[KFPerk_Sharpshooter]
+PerkName="Atirador de elite"
+
+[KFPerk_Support]
+PerkName="Suporte"
+
+SkillCatagories[0]="Manuseio de armas"
+SkillCatagories[1]="Adequação"
+SkillCatagories[2]="Fornecer"
+SkillCatagories[3]="Resistência"
+SkillCatagories[4]="Treinamento avançado"
+
+Passives[0]=(Title="Proficiência em soldagem",Description="Aumentou a velocidade da soldagem em %x%");
+Passives[1]=(Title="Dano de Arma Privilegiada",Description="Dano de arma privilegiada elevador por %x%");
+Passives[2]=(Title="Penetração de Arma Privilegiada",Description="Em cada nível as armas privilegiadas ganham %x% de aumento de poder de penetração");
+Passives[3]=(Title="Dano de granada",Description="Aumentou o dano da granada em %x%");
+Passives[4]=(Title="",Description=""); 
+
+;Passives[0]=(Title="Proficiência em soldagem",Description="Aumento de 2% na velocidade de soldagem (Máximo de 50%)");
+;Passives[1]=(Title="Dano de espingarda",Description="Aumento de 2% no dano da espingarda (máximo de 50%)");
+;Passives[2]=(Title="Penetração da espingarda",Description="Em cada nível, o poder de penetração das espingardas fica 25% maior");
+;Passives[3]=(Title="Dano de granada",Description="Aumento de 2% no dano de granada (máximo de 50%)");
+;Passives[4]=(Title="",Description="");
+
+EXPAction1="Lidando com o dano das armas Suporte"
+EXPAction2="Portas de soldagem"
+
+Ammo="Munição"
+AmmoDescription="Deixe a coisa séria: aumente a capacidade de sua munição e munição inicial em 20%."
+
+Supplier="Fornecedor"
+SupplierDescription="Seja aquele cara adorado por todos: carregue uma mochila de onde todos os jogadores podem obter munição uma vez por onda."
+
+Fortitude="Fortaleza"
+FortitudeDescription="Aumente as suas chances: aumente sua saúde em 50%."
+
+Regeneration="Regeneração"
+RegenerationDescription="Tire os médicos da parada: sua saúde se regenera lentamente com o passar do tempo, graças aos nanorrobôs Horzine."
+
+Bombard="Bombardeio"
+BombardDescription="Deixe a coisa mais forte: aumente sua chance de fazer um espécime tropeçar em 60% com várias armas Suporte."
+
+TacticalReload="Recarga tática"
+TacticalReloadDescription="Mantenha a calma. Seja rápido. Recarregue mais rápido com armas privilegiadas E tenha aquela aparência de elite nessas ocasiões."
+
+Strength="Força"
+StrengthDescription="Hora da academia. Treine e deixe sua capacidade de carga 5 vezes maior."
+
+Tenacity="Tenacidade"
+TenacityDescription="Dedique-se a melhorar e cause um dano 10% maior com armas Suporte."
+
+Safeguard="CÂMERA LENTA - Salva-vidas"
+SafeguardDescription="Avance na medida certa com armadura 5% melhor para você E seus amigos que estiverem próximos!"
+
+Barrage="CÂMERA LENTA - Barragem"
+BarrageDescription="Aproveite o tempo ao máximo com aumento de 15% em todos os danos para você E seus amigos que estiverem próximos!"
+
+[KFPerk_Sharpshooter]
+PerkName="Atirador de Elite"
+
+[KFPerk_SWAT]
+PerkName="SWAT"
+
+[Fonts]
+Bicubik="Bicubik"
+
+[KFObjective]
+ObjectiveDifficulties[0]="FÁCIL"
+ObjectiveDifficulties[1]="MÉDIO"
+ObjectiveDifficulties[2]="DIFÍCIL"
+ObjectiveStartTitle="Siga a trilha para o local inicial"
+ObjectiveWaitingString="AGUARDANDO MAIS JOGADORES!"
+ObjectiveWonString="CONCLUÍDO!"
+ObjectiveFailedString="FALHOU!"
+ObjectiveEndedString="ENCERRADO!"
+ObjectiveFailReasons[0]="ACABOU O LIMITE DE TEMPO!"
+ObjectiveFailReasons[1]="EQUIPE ANIQUILADA"
+ObjectiveFailReasons[2]="JOGADOR COM SAÚDE BAIXA MORREU"
+ObjectiveFailReasons[3]="ONDA ENCERRADA"
+ObjectiveFailReasons[4]="OBJETIVO ENCERRADO"
+ObjectiveFailReasons[5]="NÃO SOBRARAM JOGADORES COM POUCA GRANA"
+ObjectiveFailReasons[6]="NÃO HÁ JOGADORE SUFICIENTES!"
+ObjectiveXPString="XP:"
+ObjectiveTimeLimitString="LIMITE DE TEMPO:"
+ObjectiveTimeUnit="s"
+ObjectiveStatusString="STATUS DO OBJETIVO:"
+
+[KFObj_Wave]
+ObjectiveAvailableString="OBJETIVO DISPONÍVEL"
+
+[KFObj_Wave_Defend]
+ObjectiveTypeString="DEFENDER"
+ObjectiveTargetTitle="Defenda o carregamento do vírus!"
+ObjectiveStatusTitle="VINCULAR STATUS DO DOWNLOAD"
+
+[KFObj_Coop_Healer]
+ObjectiveTypeString="CURADOR"
+ObjectiveTargetTitle="CURAR JOGADOR COM SAÚDE BAIXA"
+ObjectiveStatusTitle="JOGADORES CURADOS"
+ObjectiveTimeString="s RESTANTE(S)"
+
+[KFObj_Coop_PayDay]
+ObjectiveTypeString="DIA DO PAGAMENTO"
+ObjectiveTargetTitle="DAR DINHEIRO AOS JOGADORES RECUPERADOS"
+ObjectiveStatusTitle="OBTENHA 30% DE DEVOLUÇÃO DO DINHEIRO"
+ObjectiveTimeString="s RESTANTE(S)"
+
+[KFGameViewportClient]
+RandomLoadingStrings[0]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 0"
+RandomLoadingStrings[1]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 1"
+RandomLoadingStrings[2]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 2"
+RandomLoadingStrings[3]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 3"
+RandomLoadingStrings[4]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 4"
+RandomLoadingStrings[5]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 5"
+
+[Zeds]
+KFPawn_ZedBloat="Bloat"
+KFPawn_ZedClot="Coagulador"
+KFPawn_ZedCrawler="Rastreador"
+KFPawn_ZedFleshPound="Batedor de Carne"
+KFPawn_ZedGorefast="Sanguinário Ágil"
+KFPawn_ZedHans="Dr. Hans Volter"
+KFPawn_ZedHusk="Carcaça"
+KFPawn_ZedStalker="Assediador"
+KFPawn_ZedClot_Cyst="Cisto"
+KFPawn_ZedClot_Slasher="Cortador"
+KFPawn_ZedClot_Alpha="Coagulador Alfa"
+KFPawn_ZedScrake="Serrador"
+KFPawn_ZedSiren="Sirena"
+
+
+
+[SharedUnlocks]
+KFWeap_Zweihander="Promo Cavalaria"
+
+SharedUnlocks
+Source0="Promo Cavalaria"
+;============================================
+; Map Localization
+;============================================
+[KF-BioticsLab KFMapSummary]
+DisplayName="Laboratório de biótica"
+
+[KF-Outpost KFMapSummary]
+DisplayName="Posto avançado"
+
+[KF-BurningParis KFMapSummary]
+DisplayName="Paris em chamas"
+
+[Survival KFGameInfoSummary]
+GameName="Sobrevivência"
+
+[KF-VolterManor KFMapSummary]
+DisplayName="Mansão Völter"
+
+[KF-Catacombs KFMapSummary]
+DisplayName="Catacumbas"
+
+[KF-EvacuationPoint KFMapSummary]
+DisplayName="Ponto de Evacuação"

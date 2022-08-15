@@ -1,0 +1,11 @@
+[Errors]
+Error_RemoteDesktop=이 게임은 원격 데스크탑 연결상에서 3D 그래픽으로 실행할 수 없습니다.
+Error_ParentalControls=현재 부모 콘트롤 수준에서는 이 게임의 실행이 허용되지 않습니다.
+Error_ResolutionTooLow=현재 해상도가 이 게임을 실행하기에 너무 낮습니다.
+Error_FloatingPointBlendingRequired=비디오 카드가 이 게임을 실행하는 데 필요한 부동 소수점 렌더 타겟의 알파 블렌딩을 지원하지 않습니다. (D3DFMT_A16B16G16R16F) 종료합니다...
+Error_FailedToCreateD3D9Device=D3D9 장치를 만들지 못했습니다! 데스크탑이 잠겼을 때 발생할 수 있는 문제입니다. 종료합니다...
+Error_RanOutOfVideoMemory=비디오 메모리가 부족합니다! 종료합니다...
+Error_NotMinSpec=하드웨어 사양이 최소 요구치만 못합니다. 계속하시겠습니까?
+Error_ModifiedCode=실행 코드 수정은 허용되지 않습니다. 게임을 다시 인스톨해 주십시오.
+Error_PureVirtualsEnabled=CHECK_PUREVIRTUALS 옵션을 켠 상태로는 게임을 실행할 수 없습니다. CHECK_PUREVIRTUALS 옵션을 끄고 실행파일을 리빌드하시기 바랍니다.
+

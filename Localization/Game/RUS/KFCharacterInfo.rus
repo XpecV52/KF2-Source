@@ -1,0 +1,531 @@
+//NOTES: 
+//1. CharacterName can be changed slightly. It can run to about ?? characters (MAX), including spaces.
+//2. Description is the bio and can be edited quite happily. Limit is just over 800 characters, including spaces. 
+//3. All the rest (Skin descriptions) should be 20-21 characters, max, including spaces.
+
+//DJ Scully
+
+[chr_DJSkully_archetype]
+CharacterName="DJ Скалли"
+Description="Скалли - это наикрутейший голландский DJ в стиле андеграунда, и его любят все без исключения.  Женщины его очень любят, вопреки всякому здравому смыслу. Хотя бы по этой причине, мужчины, по идее, должны его ненавидеть, но с ним так весело, что мужикам он тоже нравится. Когда случился бунт, он только что закончил работать над группой монстров в заброшенном сумасшедшем доме, находящемся к северу от Лондона. Даже при отсутствии специального обучения в области самозащиты, его сообразительность и ловкость спасли ему жизнь, когда Зеды метались повсюду в попытке съесть всех вокруг. Скалли никогда не воспринимал жизнь серьезно, и Апокалипсис не изменил его мировоззрения. Дело в том, что он очень хорошо умеет управлять монстрами. Настолько хорошо, что это породило глупые слухи о том, что он раньше служил в войсках специального назначения. Еще одна шутка про Скалли."
+BodyMesh0="Прикид"
+HeadMesh0="Маска Скалли"
+Attachment0="Шапка Скалли"
+Attachment1="Наушники Скалли"
+
+[chr_DJSkully_archetype.BodyMesh0]
+BodySkin0="Наичернейший"
+BodySkin1="Xtra красный"
+BodySkin2="GearXT желтый"
+BodySkin3="Опасно зеленый"
+BodySkin4="Ретро Скалли"
+
+[chr_DJSkully_archetype.HeadMesh0]
+HeadSkin0="Наичернейший"
+HeadSkin1="Xtra красный"
+HeadSkin2="GearXT желтый"
+HeadSkin3="Опасно зеленый"
+HeadSkin4="Ретро Скалли"
+
+[chr_DJSkully_archetype.Attachment0]
+AttachmentSkin0="Наичернейший"
+AttachmentSkin1="Xtra красный"
+AttachmentSkin2="GearXT желтый"
+AttachmentSkin3="Опасно зеленый"
+AttachmentSkin4="Ретро Скалли"
+
+[chr_DJSkully_archetype.Attachment1]
+AttachmentSkin0="Гильотинный красный"
+AttachmentSkin1="GearXT желтый"
+AttachmentSkin2="Темно-синий"
+AttachmentSkin3="Защитный оранжевый"
+AttachmentSkin4="Ретро Скалли"
+AttachmentSkin5="Горизонтный белый"
+
+
+//Police Constable Rob Briar
+
+[chr_briar_archetype]
+CharacterName="Констебль Роб Бриар"
+Description="Роб Бриар работал констеблем с 17 лет до тех пор, пока его не вызвали на место бунта каких-то слабоумных анархистов. Ну, во всяком случае, его начальники думали, что это был бунт слабоумных анархистов. Мы то все знаем, что это было на самом деле, но Бриару пришлось об этом узнать самому - и это было не очень приятно. К счастью, он не обычный старомодный Лондонский полицейский. Он был часто вовлечен в контртеррористические операции, а потому был знаком с разнообразными видами огнестрельного оружия. Посмотришь на Бриара, и кажется, что он этакий беспечный шутник. А на самом деле, он очень крутой парниша. Эта его крутизна, как и впрочем крутизна Кевлара и его бунтовского снаряжения - спасла его от верной смерти в течение тех первых ужасных дней. Он продолжает выполнять свой долг и сегодня. Он верно служит обществу и делает все возможное, чтобы искоренить эту угрозу при помощи любого оружия, которое он может найти."
+BodyMesh0="Бунтовское снаряжение"
+HeadMesh0="Волосы"
+Attachment0="Бунтовской шлем"
+Attachment1="S10 Противогаз"
+Attachment2="Очки"
+Attachment3="Защитные очки"
+
+[chr_briar_archetype.BodyMesh0]
+BodySkin0="Полицейское синее"
+BodySkin1="Черное как ночь"
+BodySkin2="Армейское зеленое"
+BodySkin3="SAS камуфляж"
+
+[chr_briar_archetype.HeadMesh0]
+HeadSkin0="Скромная классика"
+HeadSkin1="Мелирование"
+HeadSkin2="Брюнет"
+
+[chr_briar_archetype.Attachment0]
+AttachmentSkin0="Ярко-красный"
+AttachmentSkin1="Полицейское синее"
+AttachmentSkin2="Армейское зеленое"
+AttachmentSkin3="Черное как ночь"
+
+[chr_briar_archetype.Attachment1]
+AttachmentSkin0="Брюнет"
+AttachmentSkin1="Камуфляж"
+AttachmentSkin2="Биологическая опасность"
+AttachmentSkin3="Зед тайм"
+
+[CHR_briar_archetype.Attachment2]
+AttachmentSkin0="Солнечные очки"
+AttachmentSkin1="Обычные очки"
+
+[CHR_briar_archetype.Attachment3]
+AttachmentSkin0="Защитные очки"
+
+//Mr Foster
+
+[CHR_MrFoster_archetype]
+CharacterName="Г-н Фостер"
+Description="Фостер пришел в мир дневной торговли прямо из посредственной частной английской школы, где ему постоянно говорили, что «из него никогда ничего не получится». Это предсказание отдавалось звоном в его ушах. Хотя Фостера это не особенно волновало. Вот что странно, так это то, что Фостер вдруг понял, что дневная торговля ему очень даже подходит. Он начал крайне хорошо зарабатывать, и ему это весьма понравилось. Хотя, само собой, он ни за что не признается, что ему нравится работать. Он также стал зачастую оскорблять авторитетных лиц. Именно поэтому все видят Фостера как умного, интеллигентного парня с сардоническим чувством юмора и отличным вкусом в одежде и автомобилях. Или как еще того чудака. Вам решать."
+BodyMesh0="Кожаная куртка"
+HeadMesh0="Противогаз"
+Attachment0="Котелок"
+Attachment1="Наушники Скалли"
+
+[CHR_MrFoster_archetype.BodyMesh0]
+BodySkin0="KF синий"
+BodySkin1="PCG Тугрики"
+BodySkin2="Биологическая опасность"
+BodySkin3="Просто класс"
+BodySkin4="Красная как магма"
+
+[CHR_MrFoster_archetype.HeadMesh0]
+HeadSkin0="Классический белый"
+HeadSkin1="PCG красный"
+HeadSkin2="Мой дружище Скалли"
+HeadSkin3="Красная как магма"
+HeadSkin4="Британский класс"
+
+[CHR_MrFoster_archetype.Attachment0]
+AttachmentSkin0="Бизнес-черный"
+AttachmentSkin1="Лучшее из Великобритании"
+AttachmentSkin2="Шоколадный"
+AttachmentSkin3="Пылающий красный"
+AttachmentSkin4="Серьезно фиолетовый"
+AttachmentSkin5="Продуктивный белый"
+
+[chr_MrFoster_archetype.Attachment1]
+AttachmentSkin0="Темно-синий"
+AttachmentSkin1="Гильотинный красный"
+AttachmentSkin2="Защитный оранжевый"
+AttachmentSkin3="Ретро Скалли"
+AttachmentSkin4="Горизонтный белый"
+AttachmentSkin5="GearXT желтый"
+
+
+
+//Erskine Coleman - renamed to Donovan Neal
+
+[CHR_Coleman_archetype]
+CharacterName="Донован Нил"
+Description="Донован - здоровый и крутой чувак, который сможет найти выход практически из любой ситуации. Но он не настолько прост, как может показаться на первый взгляд. Он не просто один из телохранителей, который работал на кучку борцов. Он основал, завладел и управлял всем бизнесом по предоставлению услуг безопасности. Он родился в Атланте, штат Джорджия, был интеллигентным и хорошо образованным человеком и работал в правоохранительных органах до того, как занялся собственным бизнесом.  Он был не только мышцами, но и мозгами в своем деле. А сейчас, он всего лишь еще один оставшийся в живых человек, который оказался не в то время и не в том месте. Ты помолись, пожалуйста, за тех Зедов, что посмели встать у него на пути. А лучше - давай вперед! Помоги ему расправиться с ними! "
+BodyMesh0="RQ Капюшон"
+HeadMesh0="Лицо"
+Attachment0="RQ Шапка"
+Attachment1="S10 Противогаз"
+Attachment2="Очки"
+Attachment3="Наушники Скалли"
+
+[CHR_Coleman_archetype.BodyMesh0]
+BodySkin0="Супер зеленый"
+BodySkin1="Стильный красный"
+BodySkin2="Прохладно серый"
+BodySkin3="Цвета Земли"
+
+[CHR_Coleman_archetype.HeadMesh0]
+HeadSkin0="Донован"
+HeadSkin1="Татуировка"
+HeadSkin2="Черные полосы"
+
+[CHR_Coleman_archetype.Attachment0]
+AttachmentSkin0="Сочный желтый"
+AttachmentSkin1="Стильный красный"
+AttachmentSkin2="Настоящий синий"
+AttachmentSkin3="Гладкий зеленый"
+
+[CHR_Coleman_archetype.Attachment1]
+AttachmentSkin0="Брюнет"
+AttachmentSkin1="Камуфляж"
+AttachmentSkin2="Биологическая опасность"
+AttachmentSkin3="Зед тайм"
+
+[CHR_Coleman_archetype.Attachment2]
+AttachmentSkin0="Солнечные очки"
+AttachmentSkin1="Обычные очки"
+
+[chr_Coleman_archetype.Attachment3]
+AttachmentSkin0="Темно-синий"
+AttachmentSkin1="Гильотинный красный"
+AttachmentSkin2="Защитный оранжевый"
+AttachmentSkin3="Ретро Скалли"
+AttachmentSkin4="Горизонтный белый"
+AttachmentSkin5="GearXT желтый"
+
+//Reverend Alberts
+
+[CHR_Alberts_archetype]
+CharacterName="Преподобный Альбертс"
+Description="Наполовину англичанин, наполовину шотландец, Альбертс всегда был очень сильным физически, но его непременное желание помочь окружающим людям делало его мягким. Его жесткий, солидный, серьезный подход к жизни был идеален для его поста в качестве Капеллана армии, после чего он провел 20 лет, работая с недовольной молодежью в Южном Лондоне. Альбертс провел всю свою жизнь, пытаясь направить людей на путь истинный, а потому ему не очень понравилось, когда результат всей его работы был в одночасье разрушен кучкой разбушевавшихся монстров. В тот день, он очень быстро забыл о служении мертвым и умирающим и сосредоточил свои усилия на низложении гнева Альбертса на головы зловредной скверны. И на другие части их тел, которые попадались ему под руку."
+BodyMesh0="Собачий ошейник"
+HeadMesh0="Волосы"
+Attachment0="Фетровая шляпа"
+Attachment1="Очки"
+Attachment2="S10 Противогаз"
+Attachment3="Котелок"
+
+[CHR_Alberts_archetype.BodyMesh0]
+BodySkin0="Классический черный"
+BodySkin1="Рубиновый красный"
+BodySkin2="Ярко голубой"
+BodySkin3="Тропический белый"
+
+[CHR_Alberts_archetype.HeadMesh0]
+HeadSkin0="Серый"
+HeadSkin1="Коричневый"
+HeadSkin2="Брюнет"
+HeadSkin3="Белый"
+
+[CHR_Alberts_archetype.Attachment0]
+AttachmentSkin0="Классический черный"
+AttachmentSkin1="Рубиновый красный"
+AttachmentSkin2="Элегантный серый"
+AttachmentSkin3="Темно-синий"
+
+[CHR_Alberts_archetype.Attachment1]
+AttachmentSkin0="Солнечные очки"
+AttachmentSkin1="Обычные очки"
+
+[CHR_Alberts_archetype.Attachment2]
+AttachmentSkin0="Брюнет"
+AttachmentSkin1="Камуфляж"
+AttachmentSkin2="Биологическая опасность"
+AttachmentSkin3="Зед тайм"
+
+[CHR_Alberts_archetype.Attachment3]
+AttachmentSkin0="Бизнес-черный"
+AttachmentSkin1="Лучшее из Великобритании"
+AttachmentSkin2="Шоколадный"
+AttachmentSkin3="Пылающий красный"
+AttachmentSkin4="Серьезно фиолетовый"
+AttachmentSkin5="Продуктивный белый"
+
+
+//Start Masterson
+
+[CHR_Masterson_archetype]
+CharacterName="Лейтенант Билл Мастерсон"
+Description="Армейская карьера Билла Мастерсон была полосатая, как зебра. Он хотел стать солдатом-героем и отважно сражаться против дерзких и злобных врагов Королевы и Государства. А вместо этого он застрял с кучкой грязных террористов. Он хотел хорошей войны - чтоб можно было вдоволь настреляться. А вместо этого ему пришлось шататься со своими ребятами по всему миру - особенно по его дерьмовым закоулкам - выполняя ряд каких-то дурацких «действий по наведению порядка». И он уволился. После того, как он уволился с еще нескольких никчемных постов, он однажды проснулся и увидел, что улицы Лондона охвачены Апокалипсисом. Теперь Мастерсон стал солдатом-героем, которым он всегда хотел быть. Он пробрался в казармы местных Резервов, вооружился до зубов и начал свою собственную войну-стрелялку. Он не ожидал такой войны и не проходил специальную подготовку к ней - но все же это была война. И он весьма лихо с ней справлялся!"
+BodyMesh0="Спецодежда"
+HeadMesh0="Лицо"
+Attachment0="S10 Противогаз"
+Attachment1="Очки"
+
+[CHR_Masterson_archetype.HeadMesh0]
+HeadSkin0="Нейтральная"
+HeadSkin1="Камуфляж"
+
+
+[CHR_Masterson_archetype.Attachment0]
+AttachmentSkin0="Брюнет"
+AttachmentSkin1="Камуфляж"
+AttachmentSkin2="Биологическая опасность"
+AttachmentSkin3="Зед тайм"
+
+[CHR_Masterson_archetype.Attachment1]
+AttachmentSkin0="Солнечные очки"
+AttachmentSkin1="Обычные очки"
+
+[CHR_Masterson_archetype.BodyMesh0]
+BodySkin0="Зеленая"
+BodySkin1="Брюнет"
+BodySkin2="Снежная"
+BodySkin3="Камуфляж"
+
+
+//Start Tanaka
+
+[CHR_Tanaka_Archetype]
+CharacterName="Хайяко Танака"
+Description="Танака — человек противоречивый и постоянно одолеваемый желанием умереть.  Он родился в Окинаве и вырос в окружении военных американцев. Позже он переехал на материковую часть Японии вместе со своей семьей. Танака был крайне американизирован, ему не удалось адаптироваться на новом месте, и он записался на уроки драматургии. Закончив колледж, он переехал в Лос-Анджелес, где он играл незначительные и весьма банальные роли в плохих фильмах, после чего он решил переехать в Европу и найти более «серьезную» работу. Вместо этого, он сыграл плохих парней в парочке французских фильмов о гангстерах и получил несколько ролей в рекламе. Теперь, в условиях Апокалипсиса, он, похоже, путает реальность с некоторыми ролями, которые он играл. При этом ему непременно видятся якудза, демоны и Голливудская версия Бусидо."
+BodyMesh0="Смертельно прохладный"
+HeadMesh0="Волосы"
+Attachment0="Дыхательная маска"
+Attachment1="S10 Противогаз"
+Attachment2="Очки"
+Attachment3="Наушники Скалли"
+Attachment4="3D Очки"
+
+[CHR_Tanaka_Archetype.HeadMesh0]
+HeadSkin0="Брюнет"
+HeadSkin1="Блондин"
+
+
+[CHR_Tanaka_Archetype.BodyMesh0]
+BodySkin0="И со стилем"
+BodySkin1="Какихара Сан"
+BodySkin2="В черном исполнении"
+BodySkin3="Синий дракон"
+
+[chr_Tanaka_archetype.Attachment0]
+AttachmentSkin0="Золотой Дракон"
+AttachmentSkin1="Какихара Сан"
+AttachmentSkin2="Хання"
+AttachmentSkin3="Настоящий синий"
+
+[chr_Tanaka_archetype.Attachment1]
+AttachmentSkin0="Брюнет"
+AttachmentSkin1="Камуфляж"
+AttachmentSkin2="Биологическая опасность"
+AttachmentSkin3="Зед тайм"
+
+[CHR_Tanaka_archetype.Attachment2]
+AttachmentSkin0="Солнечные очки"
+AttachmentSkin1="Обычные очки"
+
+[chr_Tanaka_archetype.Attachment3]
+AttachmentSkin0="Темно-синий"
+AttachmentSkin1="Гильотинный красный"
+AttachmentSkin2="Защитный оранжевый"
+AttachmentSkin3="Ретро Скалли"
+AttachmentSkin4="Горизонтный белый"
+AttachmentSkin5="GearXT желтый"
+
+[CHR_Tanaka_archetype.Attachment4]
+AttachmentSkin0="3D Анаглиф "
+AttachmentSkin1="Пассивный затвор"
+AttachmentSkin2="3D Триоскопик"
+AttachmentSkin3="Рентгеновские очки"
+
+//Ana
+[CHR_Ana_Archetype]
+CharacterName="Ана Ларив"
+Description="Ее можно было бы отнести к так называемой «недовольной молодежи», да вот дело в том, что Ане было абсолютно наплевать на все, за исключением путешествий по Европе, где она предавалась своей страсти к фотографированию заброшенных мест и дэт-метал групп. А сейчас, когда в мире и вовсе не осталось какой-либо организации или правящих кругов, Ане вообще все по барабану. Хотя группы явно перестали гастролировать, заброшенных мест сейчас стало еще больше. И самое классное в ее новой работе так это то, что она может теперь заявиться в этих самых местах и сделать их еще более заброшенными. Она нашла свое новое призвание - взрывать все к чертовой матери!"
+BodyMesh0="Металкор"
+HeadMesh0="Ирокез"
+Attachment0="Шарф"
+Attachment1="S10 Противогаз"
+Attachment2="Очки"
+Attachment3="3D Очки"
+
+[CHR_Ana_Archetype.HeadMesh0]
+HeadSkin0="Смертельный дождь"
+HeadSkin1="Яркая кровь"
+HeadSkin2="Зеленая Био-кола"
+HeadSkin3="Симпатичная синяя"
+
+[CHR_Ana_Archetype.BodyMesh0]
+BodySkin0="Смертельный дождь"
+BodySkin1="Яркая кровь"
+BodySkin2="Зеленая Био-кола"
+BodySkin3="Симпатичная синяя"
+BodySkin4="Дань Куринатору"
+
+[CHR_Ana_Archetype.Attachment0]
+AttachmentSkin0="Смертельный дождь"
+AttachmentSkin1="Тигрица"
+AttachmentSkin2="Банберри"
+AttachmentSkin3="Симпатичная синяя"
+
+[CHR_Ana_Archetype.Attachment1]
+AttachmentSkin0="Брюнет"
+AttachmentSkin1="Камуфляж"
+AttachmentSkin2="Биологическая опасность"
+AttachmentSkin3="Зед тайм"
+
+[CHR_Ana_archetype.Attachment2]
+AttachmentSkin0="Солнечные очки"
+AttachmentSkin1="Обычные очки"
+
+[CHR_Ana_archetype.Attachment3]
+AttachmentSkin0="3D Анаглиф "
+AttachmentSkin1="Пассивный затвор"
+AttachmentSkin2="3D Триоскопик"
+AttachmentSkin3="Рентгеновские очки"
+
+
+//Classic Briar 
+
+[chr_mark_archetype]
+CharacterName="Классический Бриар"
+Description="Давным-давно Бриар получил приказ поехать разобраться с беспорядками в Лондоне. Однако, в этот раз, это была не обычная демонстрация хиппи, «зелёных» и волосатых анархистов, которым предстояло получить от Бриара палкой по башке.  К счастью, его любовь к насилию помогла ему продержаться в течение нескольких месяцев, прежде чем он был вынужден покинуть Англию и перекочевать в иностранные земли.\n\nТеперь он сможет вовсю применять добрые-старые полицейские  методы расправы, которые распространятся на только на избиение сбившихся с пути подростков, но и на разборки с ордой монстров-людоедов при помощи стрельбы, поджога и подрыва их ко всем чертям собачьим. И его беспечный характер лондонского полицейского помогает поддерживать моральный настрой команды на высоком уровне. Или раздражает их по самое не балуйся."
+
+BodyMesh0="Бунтовское снаряжение"
+HeadMesh0="Голова"
+Attachment0="Бунтовской шлем"
+Attachment1="S10 Противогаз"
+Attachment2="Очки"
+
+
+[chr_mark_archetype.BodyMesh0]
+BodySkin0="Полицейское синее"
+BodySkin1="Черное как ночь"
+BodySkin2="Армейское зеленое"
+BodySkin3="SAS камуфляж"
+
+[chr_mark_archetype.HeadMesh0]
+HeadSkin0="Самый класс"
+HeadSkin1="Кровавые 5 часов"
+HeadSkin2="Клёвый коричневый"
+Headskin3="Шведский блондичик"
+
+[chr_mark_archetype.Attachment0]
+AttachmentSkin0="Ярко-красный"
+AttachmentSkin1="Полицейское синее"
+AttachmentSkin2="Армейское зеленое"
+AttachmentSkin3="Черное как ночь"
+
+[chr_mark_archetype.Attachment1]
+AttachmentSkin0="Брюнет"
+AttachmentSkin1="Камуфляж"
+AttachmentSkin2="Биологическая опасность"
+AttachmentSkin3="Зед тайм"
+
+[CHR_mark_archetype.Attachment2]
+AttachmentSkin0="Солнечные очки"
+AttachmentSkin1="Обычные очки"
+
+
+//Classic Masterson
+
+[chr_alan_archetype]
+CharacterName="Классический Мастерсон"
+Description="Никто так никогда и не понял, как этот Мастерсон поднялся по служебной лестнице, хотя некоторые полагают, что его богатенький и симпатичный двоюродный брат, Капитан Сэр Ричард Уиггинс, имел к этому какое-то отношение. Или его брат - тот, который умный. Но, как было отмечено многими, он представляет из себя эдакий неотшлифованный алмаз; он немногословный человек (во всяком случае, что качается вежливых слов) и имеет привычку неестественно спокойно вести себя в боевых ситуациях. Практически все согласны с тем, что его характер обусловлен отсутствием воображения, способности сочувствовать окружающим и интеллекта. К счастью, он решительно командует людьми и всегда завершает начатое задание - независимо от того, насколько непривлекательным это задание представляется людям с хорошим вкусом и достойными манерами."
+
+BodyMesh0="Бунтовское снаряжение"
+HeadMesh0="Голова"
+Attachment0="S10 Противогаз"
+Attachment1="Очки"
+
+[CHR_alan_archetype.BodyMesh0]
+BodySkin0="Зеленая"
+BodySkin1="Брюнет"
+BodySkin2="Снежная"
+BodySkin3="Камуфляж"
+
+[chr_alan_archetype.HeadMesh0]
+HeadSkin0="Самый класс"
+HeadSkin1="Рыжий! Серьёзно?"
+HeadSkin2="Денёк не задался, дружок?"
+Headskin3="Камуфляж, ребята!"
+
+[CHR_alan_archetype.Attachment0]
+AttachmentSkin0="Брюнет"
+AttachmentSkin1="Камуфляж"
+AttachmentSkin2="Биологическая опасность"
+AttachmentSkin3="Зед тайм"
+
+[CHR_alan_archetype.Attachment1]
+AttachmentSkin0="Солнечные очки"
+AttachmentSkin1="Обычные очки"
+
+
+//Anton Strasser
+
+[chr_strasser_archetype]
+CharacterName="Антон Штрассер"
+Description="Штрассер впервые попал на войну в 1939 году. Он был обычным рядовым немецкой армии. Сперва вторжение в Польшу, затем разгром Франции в 1940 и, наконец, нападение на Россию в 1941.
+Тогда он чуть не замерз до смерти: сражаться пришлось с двумя одинаково опасными противниками - зимней стужей и Красной армией.
+В 1942 году началась затяжная Сталинградская битва, победы завершились и пришло разочарование. В сражении у аэропорта Гумрак его сильно контузило, но ему повезло.
+Совершенно обессилевшим попал он в руки Ганса Вольтера, который незаметно переправил его в свою лабораторию, увидев в Антоне прекрасный объект для криогенных опытов.
+Так он и томился, замороженный и всеми забытый, пока во время вспышки ему не удалось случайно освободиться.
+Ему представился единственный шанс покончить с Вольтером, но Антон растерялся и упустил его.
+Позднее, узнав, что на самом деле творится, он сильно пожалел об этом."
+
+BodyMesh0="RO2:
+Герой Сталинградской битвы"
+HeadMesh0="Волосы"
+Attachment0="Немецкая пилотка"
+Attachment1="Немецкая стальная каска"
+
+[CHR_strasser_archetype.BodyMesh0]
+BodySkin0="Новобранец"
+BodySkin1="Ветеран"
+
+[chr_strasser_archetype.HeadMesh0]
+HeadSkin0="Вороненая сталь"
+HeadSkin1="Светлая сталь"
+
+
+[CHR_strasser_archetype.Attachment0]
+AttachmentSkin0="Парадная пилотка"
+AttachmentSkin1="Окровавленная пилотка"
+
+[CHR_strasser_archetype.Attachment1]
+AttachmentSkin0="Сталь"
+AttachmentSkin1="Потертая сталь"
+
+//Chivalry Knight
+
+[chr_knight_archetype]
+CharacterName="Благородный рыцарь"
+Description="Том Бэннер с детских лет грезил о геройских подвигах средневековых рыцарей.
+Успешная карьера управленческого консультанта способствовала развитию его детских мечт - Том смог перебраться из Канады в Бостон, а затем в Англию.
+Он сделал собственный комплект доспехов и возомнил себя возродителем старой доброй Англии.
+Переезд совпал с выходом Рыцарства, и Том дал такую волю своей средневековой фантазии, что в качестве возродителя он был бы опасен для окружающих.
+После вспышки Том надел свои доспехи и отправился спасать прекрасных дев от жутких монстров.
+Серьезно.
+Том наотрез отказывается снимать доспехи, поэтому многие считают, что он слегка свихнулся из-за всей этой средневековой ерунды.
+Но разве это важно?"
+
+BodyMesh0="Броня"
+HeadMesh0="Голова"
+Attachment0="Рыцарский шлем"
+Attachment1="Шлем всадника"
+Attachment2="Шлем воителя"
+Attachment3="Шлем старого вояки"
+Attachment4="Очки под старину"
+
+[CHR_knight_archetype.BodyMesh0]
+BodySkin0="Агата"
+BodySkin1="Клиз"
+BodySkin2="Парцифаль"
+BodySkin3="Джейми"
+
+[chr_knight_archetype.HeadMesh0]
+HeadSkin0="В бой!"
+HeadSkin1="За свободу!"
+HeadSkin2="К оружию!"
+HeadSkin3="Вальхалла ждет нас!"
+
+
+[CHR_knight_archetype.Attachment0]
+AttachmentSkin0="Агата"
+AttachmentSkin1="Клиз"
+AttachmentSkin2="Парцифаль"
+AttachmentSkin3="Джейми"
+
+
+[CHR_knight_archetype.Attachment1]
+AttachmentSkin0="Агата"
+AttachmentSkin1="Клиз"
+AttachmentSkin2="Парцифаль"
+AttachmentSkin3="Джейми"
+
+[CHR_knight_archetype.Attachment2]
+AttachmentSkin0="Агата"
+AttachmentSkin1="Клиз"
+AttachmentSkin2="Парцифаль"
+AttachmentSkin3="Джейми"
+
+[chr_knight_archetype.Attachment3]
+AttachmentSkin0="Величественный красный"
+AttachmentSkin1="Благородный синий"
+AttachmentSkin2="Роскошный зеленый"
+AttachmentSkin3="Черный как ночь"
+
+[CHR_knight_archetype.Attachment4]
+AttachmentSkin0="Солнце тьма поглотит"
+AttachmentSkin1="Чтоб врага нам узреть"

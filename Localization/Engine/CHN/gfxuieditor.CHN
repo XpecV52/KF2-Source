@@ -1,0 +1,10 @@
+[GFxImportCommandlet]
+HelpDescription="导入或重新导入swf视频文件。"
+HelpUsage="gamename gfximport [optional_list_of_paths]"
+HelpWebLink="https://udn.epicgames.com/Three/ScaleformImport"
+HelpParamNames[0]="optional_list_of_paths"
+HelpParamDescriptions[0]="您想要导入的.swf文件的相对路径。这些文件必须放在 <GameDir>/Flash 目录内。要重新导入已经导入到虚幻引擎3中的文件，只需运行这个命令行开关，不需要参数。该命令行开关将会重新导入所有SwfMovies，因为目前磁盘上的.swf文件比之前导入的文件版本更新。"
+
+[GFxReimportCommandlet]
+HelpDescription="该命令行开关已经被废弃。请换成使用GFxImport命令行开关。"
+

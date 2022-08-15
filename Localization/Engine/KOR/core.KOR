@@ -1,0 +1,132 @@
+[Language]
+Language=한국어
+LangId=9
+SubLangId=1
+
+[Public]
+Object=(Name=Core.HelloWorldCommandlet,Class=Class,MetaClass=Core.Commandlet)
+
+[Errors]
+Unknown=생소한 에러입니다.
+Aborted=중단됐습니다.
+ExportOpen=`~ 내보내기 에러: '`~' 파일을 열 수 없습니다.
+ExportWrite=`~ 내보내기 에러: '`~' 파일을 쓸 수 없습니다.
+FileNotFound='`~' 파일을 찾을 수 없습니다.
+ObjectNotFound=오브젝트 찾기 실패: '`~ `~.`~'
+PackageNotFound='`~' 패키지에 대한 파일을 찾을 수 없습니다. `~ 로드중이었습니다.
+PackageResolveFailed=패키지명을 분해할 수 없습니다.
+FilenameToPackage='`~' 파일명을 패키지명으로 변환할 수 없습니다.
+Sandbox='`~' 패키지를 이 샌드박스에서 접근할 수 없습니다.
+PackageVersion='`~' 패키지 버전이 다릅니다.
+SavedWithNewerVersion='`~' 패키지가 현재보다 새 버전의 엔진에서 저장되었기에 저장할 수가 없을 겁니다. 현재 엔진 버전: `~  저장된 버전: `~
+PackagesSavedWithNewerVersion=현재 엔진보다 상위 버전으로 저장되어서, 다음 패키지는 저장되지 않습니다:\n`~
+CannotSaveWithOlderVersion='`~' 패키지를 저장할 수 없습니다. 원래 패키지를 저장했던 버전보다 현 엔진 버전이 구형입니다.
+CannotSavePartiallyLoaded='`~' 패키지를 저장할 수 없습니다. 일부만 로드됐기 때문입니다.
+CannotSaveStartupPackage='`~' 패키지를 저장할 수 없습니다. 유저가 이 스타트업 패키지를 저장하지 않게 했기 때문입니다.
+CannotSaveConformIncompatibility=일치된 '`~' 패키지를 저장할 수 없습니다. 원본과 호환되지 않기 때문입니다.
+Error_FilenameIsTooLongForCooking='`~' 파일명이 너무 깁니다; 콘솔용 쿠킹에 문제가 있을 수 있습니다. 언리얼 파일명은 `~자 이하여야 합니다.
+FailedLoad=다음 로드 실패: '`~': `~
+ConfigNotFound=환경설정 파일에 없습니다: '`~' / 섹션=`~ / 키=`~
+LoadClassMismatch=`~ 클래스가 `~ 의 자식 클래스가 아닙니다.
+NotDll='`~' 패키지는 DLL 패키지가 아닙니다; '`~' 내보내기를 찾을 수 없습니다.
+NotInDll='`~' 를 '`~.lib' 에서 찾을 수 없습니다.
+FailedLoadPackage=패키지 로드 실패: `~
+FailedLoadObject=다음 로드 실패 '`~ `~.`~': `~
+TransientImport=일시적인 오브젝트를 가져왔습니다: `~
+LinkedToObjectsInOtherMap_FindCulpritQ=`~ 저장 불가: 그래프가 외부 맵 패키지에 있는 오브젝트에 링크되어 있습니다. (시간이 좀 걸리겠지만) 해당 오브젝트로의 참조 체인을 찾아 보십시오.
+LinkedToPrivateObjects_FindCulpritQ=`~ 저장 불가: 그래프가 외부 private 오브젝트에 링크되어 있습니다. (시간이 좀 걸리겠지만) 해당 오브젝트로의 참조 체인을 찾아 보십시오.
+FailedSaveOtherMapPackage=`~ 저장 불가: 그래프가 외부 맵 패키지에 있는 `~ 오브젝트에 링크되어 있습니다.
+FailedSavePrivate=`~ 저장 불가: 그래프가 외부 private 오브젝트 `~ 에 링크되어 있습니다.
+FailedImportPrivate=`~ `~ private 오브젝트를 가져올 수 없습니다.
+FailedCreate=생성하는 데 `~ `~ 를 찾을 수 없습니다.
+FailedImport=`~ 를 '`~' 파일에서 찾을 수 없습니다.
+FailedSaveFile='`~' 파일 저장 에러: `~
+SaveWarning='`~' 저장 에러
+NotPackaged=오브젝트가 패키지화되지 않았습니다: `~ `~
+NotWithin=`~ `~ 오브젝트가 `~ 안에 생성되었는데, `~ 안에 생성되어야 합니다.
+Abstract=`~ 오브젝트를 만들 수 없습니다: `~ 클래스는 abstract 입니다.
+NoReplace=`~ 를 `~ 로 대체할 수 없습니다.
+ReplaceNotFullyLoaded_f="전체 로드되지 않은 오브젝트를 대체하려고 했습니다: `~"
+ReplaceNoPostLoad_f="오브젝트 비일련화(de-serialize) 도중에는 후-로딩(post-load)이 필요한 오브젝트를 대체할 수 없습니다: `~"
+NoFindImport=가져올 '`~' 파일을 찾을 수 없습니다.
+ReadFileFailed=가져올 '`~' 파일을 읽는 데 실패했습니다.
+SeekFailed=파일 찾기 실패
+OpenFailed='`~' 파일 열기 에러 (`~).
+WriteFailed=파일 쓰기 에러
+ReadEof=파일 끝 너머로 읽음
+IniReadOnly=`~ 파일은 쓰기 방지 상태라 세팅을 저장할 수 없습니다.
+UrlFailed=URL 런칭 실패
+Warning=경고
+Question=질문
+OutOfMemory=가상 메모리가 부족합니다. 이런 상태를 방지하려면 스왑 파일이 있는 하드 디스크 공간을 좀 더 확보하셔야 합니다.
+History=히스토리
+Assert=assertion 실패: `~ [파일:`~] [줄: `~]
+Debug=디버그 assertion 실패: `~ [파일:`~] [줄: `~]
+LinkerExists='`~'에 대한 링커가 이미 존재합니다.
+BinaryFormat='`~' 파일에 알 수 없는 데이터가 들어있습니다. 올바른 종류인지 확인하세요.
+SerialSize=`~: 시리얼 크기 불일치: 결과는 `~, 예상은 `~
+ExportIndex=잘못된 내보내기 인덱스 `~/`~
+ImportIndex=잘못된 가져오기 인덱스 `~/`~
+Password=알 수 없는 암호입니다.
+Exec=알 수 없는 명령입니다.
+BadProperty='`~': 다음 속성이 잘못되거나 빠져 있습니다: '`~'
+MisingIni=.ini 파일이 없습니다: `~
+Error_ActorComponentDestroyedWithoutRemoval=(`~) 액터 콤포넌트가 씬에서의 삭제 없이 파괴되었습니다.
+FileVersionDump=(`~) 패키지를 로드할 수 없습니다. 패키지 버전 `4~, 최대 예상 `4~ : 라이선시 패키지 버전 `4~, 최대 예상 `4~.
+CookedPackagedVersionOlderThanEnginePackageFileCookedContentVersion=옛날 버전 엔진으로 구은 패키지라 실행할 수 없습니다. 다시 구워주세요: (`~) 현재 엔진 버전: `~  저장된 버전: `~
+NativeRebuildRequired='`~'형 오브젝트를 만들 수 없습니다: native 클래스 레이아웃은 스크립트 레이아웃과 다릅니다. 데이터가 꼬이지 않게 하려면 C++ 빌드부터 해 주십시오.
+PackageNamedNone=이름이 'None'인 패키지를 생성하려 했습니다.
+EmptyPackageName=이름이 공백인 패키지를 생성하려 했습니다.
+OldVersionFile=`~ 파일은 이 버전과 하위호환되지 않는 버전으로 저장되었습니다. 최소 요구 버전: `~  패키지 버전: `~
+LoadingTransientInstance=디스크에서 임시적인 클래스의 인스턴스를 로드하려 했습니다 - 패키지:'`~'  오브젝트:'`~'  클래스:'`~'
+LoadedDeprecatedClassInstance=`~: `~ 클래스는 지양 상태입니다.
+OperationDisallowedOnCookedContent=요청 작업을 요리된 패키지에서 수행할 수 없었습니다.
+PackageBiggerThanSoftLimit=`~ 패키지를 성공적으로 저장했으나 크기가 `~ MByte로, 추천 패키지 크기를 넘어섰습니다. `~ MByte 이하가 되도록 분할해 주시기 바랍니다.
+PS3SupportNotLoaded=PS3 도구가 설치되어 있지 않아, 오브젝트가 요리되지 않은 상태로 저장되었을 수 있습니다. 최신 PS3 SDK를 설치해 주십시오!
+Xbox360SupportNotLoaded=Xbox360 도구가 설치되어 있지 않아, 오브젝트가 요리되지 않은 상태로 저장되었을 수 있습니다. 최신 XDK를 설치해 주십시오!
+MissingExeConfigFileError=에디터를 매니지드 코드로 로드하는 데는 '`~' 파일이 있어야 하는데 찾을 수가 없습니다. 매니지드 런타임이 의존 어셈블리 파일을 찾아내는 데 필요한 파일입니다. 어플을 종료합니다.
+
+[Query]
+OldVersion=`~ 파일은 이 버전과 하위호환되지 않는 버전으로 저장되었습니다. 제대로 읽히지도 않을 뿐더러, 크래시가 생길 수도 있습니다. 그래도 시도해 보시겠습니까?
+Name=이름:
+Password=암호:
+PassPrompt=이름과 암호를 입력하세요:
+PassDlg=신원 확인
+Overwrite='`~' 파일을 업데이트해야 합니다. 기존 버전을 덮어쓰시겠습니까?
+OverwriteMultiple=다음 파일들을 업데이트해야 합니다: `~\n기존 버전들을 덮어쓰시겠습니까?
+OverwriteReadOnly='`~' 는 읽기-전용입니다. 강제로 덮어쓰기를 시도하시겠습니까?
+CheckoutPerforce='`~' 는 읽기 전용입니다. 퍼포스에서 체크아웃 시도할까요?
+PackageFailedToOpen='`~' 패키지를 여는 데 실패했습니다. 앞으로의 로드 에러를 무시하고 이 커맨드릿 작동을 지속시킬까요? 계속하면 (오브젝트 참조가 사라지는) 부정적 효과가 있을 수 있습니다.
+RemoveNativeClass=스크립트가 없는 native 클래스가 검출됐습니다: '`~'. 이 클래스를 정적 초기화에서 제거하시겠습니까? (최근에 native 스크립트 클래스를 제거하신 게 아니라면, 클래스 선언에 CLASS_Intrinsic (내재성)이 포함되었는지 확인해 보십시오.)
+Warning_ForceDelete=`~ 삭제중.\n\n참조된 데이터의 강제 삭제는 잠재적으로 위험하며 데이터가 꼬이게 될 수 있습니다. 계속하실 경우 다음 오브젝트의 참조가 망가질 수 있습니다:\n `~.\n\n이 참조된 오브젝트를 지우시겠습니까?
+
+[Progress]
+AutoSaving=파일 저장중: `~... (자동저장을 중단하려면 Esc)
+Saving=파일 저장중: `~...
+Loading=파일 로드중: `~...
+Finalizing=마무리중: `~...
+EditorPackages=로드된 패키지
+LoadingRefObjects=다음에 의해 리퍼런스된 오브젝트 로드중: `~`~
+ProcessingRefObjects=다음에 의해 리퍼런스된 오브젝트 처리중: `~`~
+
+[General]
+Product=언리얼
+Engine=언리얼 엔진
+Copyright=저작권 1998-2013 Epic Games, Inc. 판권 소유.
+True=참
+False=거짓
+None=없음
+Yes=예
+No=아뇨
+
+[HelpCommandlet]
+HelpDescription="다른 커맨드릿에 대한 도움말 정보를 표시해 주는 커맨드릿입니다."
+HelpUsage="게임명.exe help <list | 커맨드릿명 | webhelp 커맨드릿명>"
+HelpWebLink="https://udn.epicgames.com/bin/view/Three/HelpCommandlet"
+HelpParamNames[0]="list"
+HelpParamDescriptions[0]="사용가능한 커맨드릿 전부를 나열합니다."
+HelpParamNames[1]="커맨드릿명"
+HelpParamDescriptions[1]="지정된 커맨드릿에 대한 도움말 정보를 표시합니다."
+HelpParamNames[2]="webhelp"
+HelpParamDescriptions[2]="커맨드릿에 대한 문서가 있는 웹 페이지 URL을 브라우저로 엽니다."
+
