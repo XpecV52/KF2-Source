@@ -298,7 +298,7 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
     bCanRepairArmor = true;
     bMessageHealer = true;
     InstigatorPC = KFPlayerController(Healer);
-    InstigatorPerk = InstigatorPC.GetPerk();
+    InstigatorPerk = ((InstigatorPC != none) ? InstigatorPC.GetPerk() : none);
     if((InstigatorPerk != none) && bCanRepairArmor)
     {
         bRepairedArmor = InstigatorPerk.RepairArmor(self);
@@ -316,11 +316,11 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
         }
         if(Role == ROLE_Authority)
         {
-            InstigatorPRI = KFPlayerReplicationInfo(Healer.PlayerReplicationInfo);
-            if((InstigatorPC == none) || InstigatorPRI == none)
+            if((InstigatorPC == none) || InstigatorPC.PlayerReplicationInfo == none)
             {
                 return false;
             }
+            InstigatorPRI = KFPlayerReplicationInfo(InstigatorPC.PlayerReplicationInfo);
             UsedHealAmount = float(Amount);
             if(InstigatorPerk != none)
             {
@@ -375,7 +375,7 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
                 }
             }
             I = 0;
-            J0x815:
+            J0x83C:
 
             if(I < DamageOverTimeArray.Length)
             {
@@ -383,12 +383,12 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
                 {
                     DamageOverTimeArray[I].Duration *= 0.5;
                     DamageOverTimeArray[I].Damage *= 0.5;
-                    goto J0x8C6;
+                    goto J0x8ED;
                 }
                 ++ I;
-                goto J0x815;
+                goto J0x83C;
             }
-            J0x8C6:
+            J0x8ED:
 
             return true;
         }
@@ -542,7 +542,7 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
     {
         KFDT = class<KFDamageType>(DamageType);
         SetTimer(BloodPoolDelay, false, 'LeaveBloodPool');
-        PlayDamageMaterialEffects(((KFDT.default.DeathMaterialEffectParamName != 'None') ? KFDT.default.DeathMaterialEffectParamName : default.DeathMaterialEffectParamName), ((KFDT.default.DeathMaterialEffectDuration != 0) ? KFDT.default.DeathMaterialEffectDuration : default.DeathMaterialEffectDuration));
+        PlayDamageMaterialEffects((((KFDT != none) && KFDT.default.DeathMaterialEffectParamName != 'None') ? KFDT.default.DeathMaterialEffectParamName : default.DeathMaterialEffectParamName), (((KFDT != none) && KFDT.default.DeathMaterialEffectDuration != 0) ? KFDT.default.DeathMaterialEffectDuration : default.DeathMaterialEffectDuration));
     }
     if(PlayerPartyInfo != none)
     {

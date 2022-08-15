@@ -85,8 +85,8 @@ defaultproperties
          SkelControlLists(2)=(BoneName="RW_Liquid_Translate",ControlHead=KFSkelControl_AmmoSlider'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Healer:KFSkelControl_AmmoSlider_0',DrawY=126)
          MorphConnDrawY=60
          PreviewMeshList(0)=(PreviewSkelMesh=SkeletalMesh'WEP_1P_Healer_MESH.Wep_1stP_Healer_Rig')
-         PreviewCamPos=(X=-13.055468,Y=-202.358643,Z=156.258011)
-         PreviewCamRot=(Pitch=-6848,Yaw=15712,Roll=0)
+         PreviewCamPos=(X=-10.338246,Y=-202.515625,Z=156.257996)
+         PreviewCamRot=(Pitch=-6848,Yaw=15852,Roll=0)
          AnimTickArray(0)=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Healer'
          AnimTickArray(1)=KFAnimSeq_Tween'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Healer:KFAnimSeq_Tween_0'
          Children(0)=(Anim=KFAnimSeq_Tween'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Healer:KFAnimSeq_Tween_0',DrawY=38)

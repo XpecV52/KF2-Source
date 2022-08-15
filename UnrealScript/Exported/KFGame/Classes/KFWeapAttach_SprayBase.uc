@@ -278,7 +278,7 @@ simulated protected function TurnOnFireSpray()
 {
 	//local GearGRI GRI;
 
-	if (!bFireSpraying)
+	if (!bDeleteMe && !bFireSpraying)
 	{
 		// spawn flame actor
 		ActiveFlameSpray = GetFlameSprayFromPool();
@@ -316,8 +316,12 @@ simulated protected function TurnOffFireSpray()
 		ActiveFlameSpray.DetachAndFinish();
 	}
 
-	StartPilotSound();
-	SetPilotDynamicLightEnabled(true);
+	if( !bDeleteMe )
+	{
+		StartPilotSound();
+		SetPilotDynamicLightEnabled(true);
+	}
+	
 //
 //	if( PSC_UnignitedFuel != None )
 //	{

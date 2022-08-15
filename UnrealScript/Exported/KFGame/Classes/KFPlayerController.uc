@@ -1018,6 +1018,7 @@ simulated event ReplicatedEvent( name VarName )
 	if ( VarName == nameof(Pawn) )
 	{
 		SetAmplificationLightEnabled(Pawn != None);
+		ToggleHealthEffects(Pawn != None);
 	}
 	if ( VarName == nameof(PWRI) )
 	{
@@ -1810,6 +1811,16 @@ function ProcessViewRotation( float DeltaTime, out Rotator out_ViewRotation, Rot
 
 function SetBossCamera( Pawn Boss )
 {
+	local KFPawn_MonsterBoss KFPMBoss;
+
+	// If our view target has been obliterated, the camera will default to view the player controller.
+	// So, put the player controller where the view target was.
+	KFPMBoss = KFPawn_MonsterBoss( Boss );
+	if( Boss == none || (KFPMBoss != none && KFPMBoss.HitFxInfo.bObliterated) )
+	{
+		SetLocation( Boss.Location );
+	}
+
 	SetViewTarget( Boss );
 	ServerCamera( 'Boss' );
 }
@@ -2941,15 +2952,23 @@ function UpdateLowHealthEffect(float DeltaTime)
 
 		SetRTPCValue( 'Health', Pawn.Health, true );
 	}
-	else
+}
+
+/**
+ * Can be used to force health FX on or off 
+ * Network: Standalone + Local Client
+ */
+function ToggleHealthEffects(bool bEnableFX)
+{
+	if( !bEnableFX )
 	{
 		if( bPlayingLowHealthSFX )
 		{
 			PostAkEvent( LowHealthStopEvent );
 			bPlayingLowHealthSFX = false;
-
-			SetRTPCValue( 'Health', 100, true );
 		}
+
+		SetRTPCValue( 'Health', 100, true );
 	}
 }
 
@@ -5534,6 +5553,12 @@ state Spectating
 			SpectatePlayer( SMODE_PawnFreeCam );
 
 			NotifyChangeSpectateViewTarget();
+		}
+
+		// If we end up spectating in standalone, toggle health FX off
+		if( WorldInfo.NetMode == NM_StandAlone )
+		{
+			ToggleHealthEffects(false);
 		}
 	}
 

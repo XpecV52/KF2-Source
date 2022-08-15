@@ -451,7 +451,10 @@ simulated function ANIMNOTIFY_ShellEject()
 
 simulated function SetThirdPersonFlashlight(bool bEnabled)
 {
-    FlashLight.SetEnabled(bEnabled);
+    if(FlashLight != none)
+    {
+        FlashLight.SetEnabled(bEnabled);
+    }
 }
 
 simulated function AddBattleBlood(float InBloodParamIncrementValue)

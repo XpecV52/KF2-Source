@@ -2832,19 +2832,7 @@ simulated function TerminateEffectsOnDeath()
 	WeaponAmbientEchoHandler.StopAllEchoes(bPendingDelete); // force if called from Destroy
 	DialogAkComponent.StopEvents();
 
-	// Server will clear this through AfflictionHandler
-	if( Role < ROLE_Authority )
-	{
-		if( bEmpDisrupted )
-		{
-			AfflictionHandler.SetEMPDisrupted( false );
-		}
-
-		if( bEmpPanicked )
-		{
-			AfflictionHandler.SetEMPPanicked( false );
-		}
-	}
+	AfflictionHandler.Shutdown();
 }
 
 /*********************************************************************************************
@@ -3553,16 +3541,19 @@ simulated function name GetSpecialMoveTag()
  */
 simulated function UpdateMeshForFleXCollision(optional bool bResetDefaults)
 {
+	local GameEngine Engine;
+
 	if ( bPlayedDeath )
 		return;
 
+	Engine = GameEngine(Class'Engine'.static.GetEngine());
+
 	// force update kinematic bones for flex collision, but still disable RBChannel iff
 	// default.bUpdateKinematicBonesFromAnimation==FALSE so this pawn doesn't push around corpses, etc...
-	if ( Mesh.RBCollideWithChannels.FlexAsset && class'Engine'.static.GetPhysXLevel() >= 2 )
+	if ( Mesh.RBCollideWithChannels.FlexAsset && class'Engine'.static.GetPhysXLevel() >= 2 && Engine.GetSystemSettingBool("FlexRigidBodiesCollisionAtHighLevel") )
 	{
 		Mesh.bUpdateKinematicBonesFromAnimation = true;
 		Mesh.MinDistFactorForKinematicUpdate = 0.0;
-
 		// @note: also requires that scene query flag is set (see InstancePhysXGeom)
 	}
 	else if ( bResetDefaults )

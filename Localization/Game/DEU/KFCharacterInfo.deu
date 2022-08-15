@@ -463,7 +463,7 @@ AttachmentSkin1="Gealterter Stahl"
 //Chivalry Knight
 
 [chr_knight_archetype]
-CharacterName="Chivalry Knight"
+CharacterName="Tom Banner"
 Description="Tom Banner ist seit seiner Kindheit fasziniert von den Heldensagen des Mittelalters. Seine steile Karriere als Unternehmensberater verstärkte seine Faszination, als er beruflich von Kanada über Boston nach England umziehen musste. Er hatte bereits seine eigene Rüstung gefertigt und nahm im guten alten England seine neue Persönlichkeit als Mittelalter-Darsteller an. Dieser Schritt fiel mit der Veröffentlichung des Spiels "Chivalry" zusammen, durch das er seine Fantasie in noch ungeheuerlicherem Maße ausleben konnte. Als der Ausbruch kam, streifte Tom seine Rüstung über und zog los, um holde Burgfräulein vor realen Monstern zu retten. Die Tatsache, dass er sich weigert, seine Rüstung abzulegen, lässt vermuten, dass er seine ritterliche Rolle etwas zu ernst nimmt. Aber wen stört das schon?"
 
 BodyMesh0="Rüstung"

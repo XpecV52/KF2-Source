@@ -193,8 +193,8 @@ state Command_SpecialMove
         if((Outer.Pawn.bCrawler || Outer.Pawn.ReachedDesiredRotation()) && AttackTarget != none)
         {
             Outer.AILog_Internal(((string(self) $ " Target in melee range (Dist: ") $ string(VSize(AttackTarget.Location - Outer.Pawn.Location))) $ "... do attack", 'Command_Attack_Melee');
-            Outer.MyKFPawn.DoSpecialMove(GetSpecialMove(), true,, SMFlags);
-            return true;
+            Outer.MyKFPawn.DoSpecialMove(GetSpecialMove(),,, SMFlags);
+            return Outer.MyKFPawn.SpecialMove == AttackSpecialMove;
         }
         Outer.AILog_Internal((string(self) $ " ExecuteSpecialMove returning false because ReachedDesiredRotation isn't done?  AttackTarget: ") $ string(AttackTarget), 'Command_Attack_Melee');
         return false;

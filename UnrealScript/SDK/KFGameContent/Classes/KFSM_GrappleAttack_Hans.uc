@@ -241,9 +241,12 @@ function Timer_DetachFollower()
     if( Follower != none )
     {
         // Have Hans and other zeds not attack this player after he just drained them
-        Follower.AIIgnoreEndTime = Follower.WorldInfo.TimeSeconds + PostDrainAttackCooldown;
-        KFPOwner.MyKFAIC.Enemy = none;
-        KFPOwner.MyKFAIC.FindNewEnemy();
+        if( KFPOwner.WorldInfo.Game != None && KFPOwner.WorldInfo.Game.NumPlayers > 1 )
+        {
+            Follower.AIIgnoreEndTime = Follower.WorldInfo.TimeSeconds + PostDrainAttackCooldown;
+            KFPOwner.MyKFAIC.Enemy = none;
+            KFPOwner.MyKFAIC.FindNewEnemy();
+        }
 
         // End special move on Follower
         Follower.EndSpecialMove();

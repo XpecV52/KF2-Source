@@ -1437,6 +1437,11 @@ function CheckForNapalmInfect( KFPawn_Monster KFPM, byte DoTIndex )
 	local KFPerk InstigatorPerk;
 	local KFPlayerController KFPC;
 
+	if( DoTIndex >= DamageOverTimeArray.Length )
+	{
+		return;
+	}
+	
 	KFPC = KFPlayerController(DamageOverTimeArray[DotIndex].InstigatedBy);
 	if( KFPC != none )
 	{

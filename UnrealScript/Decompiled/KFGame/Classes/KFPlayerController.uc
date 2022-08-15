@@ -349,6 +349,7 @@ simulated event ReplicatedEvent(name VarName)
     if(VarName == 'Pawn')
     {
         SetAmplificationLightEnabled(Pawn != none);
+        ToggleHealthEffects(Pawn != none);
     }
     if(VarName == 'PWRI')
     {
@@ -979,6 +980,13 @@ function ProcessViewRotation(float DeltaTime, out Rotator out_ViewRotation, Rota
 
 function SetBossCamera(Pawn Boss)
 {
+    local KFPawn_MonsterBoss KFPMBoss;
+
+    KFPMBoss = KFPawn_MonsterBoss(Boss);
+    if((Boss == none) || (KFPMBoss != none) && KFPMBoss.HitFxInfo.bObliterated)
+    {
+        SetLocation(Boss.Location);
+    }
     SetViewTarget(Boss);
     ServerCamera('Boss');
 }
@@ -1853,16 +1861,20 @@ function UpdateLowHealthEffect(float DeltaTime)
                 bPlayingLowHealthSFX = false;
             }
         }
-        SetRTPCValue('Health', float(Pawn.Health), true);        
+        SetRTPCValue('Health', float(Pawn.Health), true);
     }
-    else
+}
+
+function ToggleHealthEffects(bool bEnableFX)
+{
+    if(!bEnableFX)
     {
         if(bPlayingLowHealthSFX)
         {
             PostAkEvent(LowHealthStopEvent);
             bPlayingLowHealthSFX = false;
-            SetRTPCValue('Health', 100, true);
         }
+        SetRTPCValue('Health', 100, true);
     }
 }
 
@@ -3747,6 +3759,10 @@ state Spectating
         {
             SpectatePlayer(ROLE_None);
             NotifyChangeSpectateViewTarget();
+        }
+        if(WorldInfo.NetMode == NM_Standalone)
+        {
+            ToggleHealthEffects(false);
         }
     }
 

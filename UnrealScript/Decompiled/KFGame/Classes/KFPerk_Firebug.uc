@@ -315,7 +315,7 @@ defaultproperties
     HeatWaveRadiusSQ=90000
     ShrapnelChance=0.3
     begin object name=ExploTemplate0 class=KFGameExplosion
-        ExplosionEffects=KFImpactEffectInfo'wep_molotov_arch.Molotov_Explosion'
+        ExplosionEffects=KFImpactEffectInfo'FX_Explosions_ARCH.FX_Combustion_Explosion'
         Damage=120
         DamageRadius=600
         KnockDownStrength=0

@@ -925,7 +925,7 @@ FuriousDefender="Wütender Verteidiger"
 FuriousDefenderDescription="Sie nennen dich nicht ohne Grund den Berserker: Berserker-Nahkampfwaffen sind um 10 % schneller und alle Angriffe fügen 20 % mehr Schaden zu."
 
 Block="Abwehren"
-BlockDescription="Dieses Geschick! Das Abwehren eines Angriffs erhöht den Schaden deines nächsten Berserker-Nahkampfangriffs um 75 %."
+BlockDescription="Dieses Geschick! Das Abwehren eines Angriffs erhöht den Schaden deines nächsten Berserker-Nahkampfangriffs um 50 %."
 
 Parry="Parieren"
 ParryDescription="Verbinde Geschick und Kraft: Das Parieren eines Angriffs erhöht die Nahkampf-Angriffsgeschwindigkeit für 4 Sekunden um 15 % und den Schaden durch leichte Angriffe um 30 %."

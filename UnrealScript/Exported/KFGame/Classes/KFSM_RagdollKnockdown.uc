@@ -64,6 +64,9 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 	// failsafe in case knockdown needs to be cleaned up
 	if ( PawnOwner.Mesh.PhysicsWeight >= 1.f && NextMove != 'RecoverFromRagdoll' )
 	{
+		PawnOwner.ClearTimer(nameof(EndKnockdown), self);
+		PawnOwner.ClearTimer(nameof(KnockdownTimer), self);
+
 		TermKnockdownRagdoll(KFPOwner);
 	}
 }

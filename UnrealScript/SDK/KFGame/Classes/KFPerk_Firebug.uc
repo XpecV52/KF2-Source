@@ -570,7 +570,7 @@ DefaultProperties
 		KnockDownStrength=0
 		FractureMeshRadius=200.0
 		FracturePartVel=500.0
-		ExplosionEffects=KFImpactEffectInfo'wep_molotov_arch.Molotov_Explosion'
+		ExplosionEffects=KFImpactEffectInfo'FX_Explosions_ARCH.FX_Combustion_Explosion'
 		ExplosionSound=AkEvent'WW_WEP_EXP_Grenade_Frag.Play_WEP_EXP_Grenade_Frag_Explosion'
 
 		// Camera Shake

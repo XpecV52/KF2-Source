@@ -1272,16 +1272,6 @@ simulated function ResetHingedDoor()
 	}
 
 	SkeletalMeshComp.bComponentUseFixedSkelBounds = TRUE;
-	if ( SkeletalMeshComp.PhysicsAssetInstance != none )
-	{
-		SkeletalMeshComp.PhysicsAssetInstance.SetAllBodiesFixed(TRUE);
-	}
-
-   	SkeletalMeshComp.PhysicsWeight = 0.f;
-    SkeletalMeshComp.SetHasPhysicsAssetInstance(TRUE);
-	SkeletalMeshComp.ForceSkelUpdate();
-	SkeletalMeshComp.UpdateRBBonesFromSpaceBases(TRUE, TRUE);
-	SkeletalMeshComp.SetBlockRigidBody(TRUE);
 }
 
 /*********************************************************************************************
@@ -1547,7 +1537,7 @@ defaultproperties
 		bForceDirectLightMap=TRUE
 		bUsePrecomputedShadows=TRUE
 		LightingChannels=(Indoor=TRUE,Outdoor=TRUE,bInitialized=TRUE)
-		Rotation=(Pitch=32768) // compensate for bone orientation
+		Rotation=(Pitch=32768) // compensate for bone orientation (for uniform SkelControl)
 		// Collision
 		CollideActors=TRUE
 		BlockActors=TRUE

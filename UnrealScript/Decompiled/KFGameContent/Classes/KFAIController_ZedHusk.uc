@@ -366,6 +366,7 @@ defaultproperties
     FireballFireIntervalSuicidal=4
     FireballFireIntervalHellOnEarth=3.5
     FireOffset=(X=15,Y=32,Z=-12)
+    bCanTeleportCloser=false
     bUseDesiredRotationForMelee=false
     EvadeGrenadeChance=0.9
     BaseShapeOfProjectileForCalc=(X=10,Y=10,Z=10)

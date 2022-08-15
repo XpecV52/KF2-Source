@@ -891,7 +891,7 @@ function SpawnImpactProjectile(vector SpawnLocation, vector SpawnRotation)
 	CurrSprayFxLocIdx = (CurrSprayFxLocIdx + 1) % MAX_SPRAY_FX_INFOS;
 
 	// Spawn projectile
-	SpawnedProjectile = Spawn( ImpactProjectileClass, Self,, SpawnLocation, rotator(SpawnRotation));
+	SpawnedProjectile = Spawn( ImpactProjectileClass, Self,, SpawnLocation, rotator(SpawnRotation),, true);
 	if( SpawnedProjectile != none && !SpawnedProjectile.bDeleteMe )
 	{
 		// Set the penetration power for this projectile

@@ -463,7 +463,7 @@ AttachmentSkin1="Acciaio invecchiato"
 //Chivalry Knight
 
 [chr_knight_archetype]
-CharacterName="Cavaliere della cavalleria"
+CharacterName="Tom Banner"
 Description="Tom Banner era stato ossessionato dall'eroisimo del Medioevo sin da ragazzino. La sua carriera quasi stellare come Consulente di Gestione permetteva effettivamente a questa sua ossessione di svilupparsi, mentre egli si trasferiva dal natio Canada all'Inghilterra passando per Boston. Aveva già realizzato la sua armatura personale e si era creato un nuovo personaggio come rievocatore nell'Allegra Vecchia Inghilterra. Questo passaggio coincise con l'uscita di "Chivalry", che gli permise di realizzare la sua fantasia a un livello che sarebbe stato certamente pericoloso per un rievocatore. Quando scoppiò l'epidemia, Tom indossò la sua armatura e partì per salvare le donzelle dai mostri. Per davvero. Il fatto che rifiuti di levarsi l'armatura suscita la preoccupazione che stia prendendo l'intera faccenda medievale troppo seriamente. Tuttavia, a chi interessa?"
 
 BodyMesh0="Armatura"

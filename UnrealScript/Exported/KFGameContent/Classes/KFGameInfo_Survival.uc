@@ -448,7 +448,7 @@ static function bool ShouldPlayMusicAtStart()
 /** Whether an action or ambient track should be played */
 static function bool ShouldPlayActionMusicTrack(KFGameReplicationInfo GRI)
 {
-	return GRI.WaveNum > 0 && !GRI.bTraderIsOpen;
+	return GRI.bMatchHasBegun && !GRI.bTraderIsOpen;
 }
 
 event PreBeginPlay()

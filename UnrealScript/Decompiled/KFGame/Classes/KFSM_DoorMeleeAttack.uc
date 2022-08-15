@@ -42,7 +42,7 @@ protected function bool InternalCanDoSpecialMove()
     {
         if(KFPOwner.IsAliveAndWell() && KFPOwner.Physics != 2)
         {
-            return true;
+            return super(KFSpecialMove).InternalCanDoSpecialMove();
         }
     }
     return false;

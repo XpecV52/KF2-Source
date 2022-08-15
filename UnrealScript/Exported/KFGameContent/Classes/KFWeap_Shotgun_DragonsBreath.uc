@@ -20,7 +20,7 @@ defaultproperties
    EffectiveRange=25
    bHasIronSights=True
    bCanBeReloaded=True
-   PenetrationPower(0)=2.000000
+   PenetrationPower(0)=3.000000
    PenetrationPower(1)=()
    MeshFOV=75.000000
    MeshIronSightFOV=52.000000

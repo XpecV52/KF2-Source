@@ -22,6 +22,10 @@ defaultproperties
    Waves(8)=KFAIWaveInfo'GP_Spawning_ARCH.Long.ZED_Wave9'
    Waves(9)=KFAIWaveInfo'GP_Spawning_ARCH.Long.ZED_Wave10'
    Waves(10)=KFAIWaveInfo'GP_Spawning_ARCH.Long.ZED_Boss'
+   SoloWaveSpawnRateModifier(0)=(RateModifier=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000))
+   SoloWaveSpawnRateModifier(1)=(RateModifier=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000))
+   SoloWaveSpawnRateModifier(2)=(RateModifier=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000))
+   SoloWaveSpawnRateModifier(3)=(RateModifier=(1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000))
    EarlyWaveIndex=5
    Name="Default__KFAISpawnManager_Long"
    ObjectArchetype=KFAISpawnManager'KFGame.Default__KFAISpawnManager'

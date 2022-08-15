@@ -925,7 +925,7 @@ FuriousDefender="Wściekły obrońca"
 FuriousDefenderDescription="Nie bez powodu nazywają cię berserkerem: Uderzenia berserkera są o 10% szybsze a wszystkie ataki powodują 20% więcej obrażeń."
 
 Block="Blok"
-BlockDescription="Silne ręce! Zablokowanie ataku spowoduje, że następne uderzenie berserkera zada o 75% więcej obrażeń. "
+BlockDescription="Silne ręce! Zablokowanie ataku spowoduje, że następne uderzenie berserkera zada o 50% więcej obrażeń. "
 
 Parry="Odbicie"
 ParryDescription="Połączenie umiejętności i siły: Odbicie ataku zwiększy szybkość uderzenia o 15% i siłę lekkiego ataku o 30% przez 4 sekundy."

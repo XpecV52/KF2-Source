@@ -463,7 +463,7 @@ AttachmentSkin1="Wiekowa stal"
 //Chivalry Knight
 
 [chr_knight_archetype]
-CharacterName="Średniowieczny rycerz"
+CharacterName="Tom Banner"
 Description="Tom Banner był zafascynowany bohaterami średniowiecza od dzieciństwa. Jego całkiem udana kariera konsultanta ds. zarządzania pomogła mu rozwijać tę pasję dzięki przeprowadzce z rodzinnej Kanady najpierw do Bostonu i w końcu do Anglii. Już wcześniej wykuł swój pancerz i odgrywał swoją nową rolę wyimaginowanym świecie fantazji. Ten krok zgrał się w czasie z pojawieniem się na rynku gry „Chivalry”, która pozwoliła mu na realizowanie swojej pasji w stopniu, który w rzeczywistym świecie nie byłby zbyt bezpieczny.  Kiedy to szaleństwo się rozpoczęło, Tom włożył na siebie swoją zbroję i ruszył ratować niewinne dziewice z rąk potworów. Dokładnie tak. Możliwe nawet że zagalopował się w tym wszystkim trochę za daleko, ponieważ nie ma nawet zamiaru ściągać swojej zbroi. Ale kogo to obchodzi?"
 
 BodyMesh0="Pancerz"

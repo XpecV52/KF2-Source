@@ -208,8 +208,8 @@ defaultproperties
    GroupPriority=50.000000
    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_DBShotgun'
    MagazineCapacity(0)=2
-   MaxSpareAmmo(0)=30
-   InitialSpareMags(0)=7
+   MaxSpareAmmo(0)=46
+   InitialSpareMags(0)=11
    AmmoPickupScale(0)=2.000000
    FireAnim="Shoot_Single"
    FireSightedAnims(0)="Shoot_Iron_Single"

@@ -80,7 +80,7 @@ simulated protected function PrepareExplosionActor(GameExplosionActor GEA)
 		// else floor
 
 		KFPInstigator = KFPawn(Instigator);
-		if( KFPInstigator != none )
+		if( KFPInstigator != None && KFPInstigator.GetPerk() != None )
 		{
 			if( KFPInstigator.GetPerk().IsFlarotovActive() )
 			{

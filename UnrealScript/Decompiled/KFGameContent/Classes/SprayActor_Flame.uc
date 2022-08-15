@@ -55,6 +55,10 @@ simulated function BeginSpray()
 {
     local KFPerk InstigatorPerk;
 
+    if(bDeleteMe)
+    {
+        return;
+    }
     super.BeginSpray();
     if(OwningKFPawn != none)
     {

@@ -416,6 +416,7 @@ package tripwire.menus
                 this.menuState = ServerBrowserMenu.MENU_STATE_LIST;
                 ExternalInterface.call("CallBack_SearchTabChanged",param1.index);
             }
+            this.serverListContainer.tabChanged();
         }
         
         private function onButtonSelected(param1:ButtonEvent) : void
@@ -425,6 +426,7 @@ package tripwire.menus
                 this.menuState = ServerBrowserMenu.MENU_STATE_LIST;
                 ExternalInterface.call("CallBack_SearchTabChanged",this.tabButtonBar.selectedIndex);
             }
+            this.serverListContainer.tabChanged();
         }
         
         private function makeFakeTabs() : *

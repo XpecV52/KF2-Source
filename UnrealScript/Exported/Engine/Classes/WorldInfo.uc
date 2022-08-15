@@ -1815,7 +1815,8 @@ defaultproperties
    MaxNumFacturedChunksToSpawnInAFrame=12
    FracturedMeshWeaponDamage=1.000000
    VisibilityCellSize=200
-   MeshBoundsScale=1.200000
+   VisibilitySpreadingIterations=1
+   MeshBoundsScale=1.100000
    PlayAreaHeight=172.000000
    MinMeshSamples=28
    MaxMeshSamples=80

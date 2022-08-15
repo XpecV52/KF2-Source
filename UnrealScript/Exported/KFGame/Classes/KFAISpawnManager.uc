@@ -308,6 +308,15 @@ var	int									WaveTotalAI;
 var const byte							MaxMonsters;
 /** Maximum number of AI that can be active at one time in solo */
 var() byte							    MaxMonstersSolo[4];
+
+/** Used for arrays to modify spawn rate */
+struct SpawnRateModifier
+{
+    var() array<float> RateModifier;
+};
+
+/** How much to modify the spawn rate for solo play by difficulty */
+var() SpawnRateModifier 				SoloWaveSpawnRateModifier[4];
 /** How much to modify the spawn rate for early waves. Generally used to make early waves more intense */
 var() float 						    EarlyWaveSpawnRateModifier[4];
 /** Waves below this index will be considered "early waves" waves after this index will be considered "later waves" */
@@ -832,9 +841,39 @@ function float GetNextSpawnTimeMod()
 	local byte NumLivingPlayers;
 	local float SpawnTimeMod;
 	local float UsedEarlyWaveRateMod;
+	local float UsedSoloWaveRateMod;
 
 	NumLivingPlayers = GetLivingPlayerCount();
 	SpawnTimeMod = 1.0;
+	UsedSoloWaveRateMod = 1.0;
+
+    // Scale solo spawning rate by wave and difficulty
+    if( bOnePlayerAtStart )
+    {
+    	if( GameDifficulty < ArrayCount(SoloWaveSpawnRateModifier) )
+    	{
+            if( MyKFGRI.WaveNum <= SoloWaveSpawnRateModifier[GameDifficulty].RateModifier.Length )
+            {
+                UsedSoloWaveRateMod = SoloWaveSpawnRateModifier[GameDifficulty].RateModifier[MyKFGRI.WaveNum - 1];
+            }
+            else
+            {
+                UsedSoloWaveRateMod = SoloWaveSpawnRateModifier[GameDifficulty].RateModifier[SoloWaveSpawnRateModifier[GameDifficulty].RateModifier.Length -1];
+            }
+    	}
+    	else
+    	{
+
+            if( MyKFGRI.WaveNum <= SoloWaveSpawnRateModifier[GameDifficulty].RateModifier.Length )
+            {
+                UsedSoloWaveRateMod = SoloWaveSpawnRateModifier[ArrayCount(SoloWaveSpawnRateModifier) - 1].RateModifier[MyKFGRI.WaveNum - 1];
+            }
+            else
+            {
+                UsedSoloWaveRateMod = SoloWaveSpawnRateModifier[ArrayCount(SoloWaveSpawnRateModifier) - 1].RateModifier[SoloWaveSpawnRateModifier[GameDifficulty].RateModifier.Length -1];
+            }
+    	}
+    }
 
 	if ( MyKFGRI.WaveNum < EarlyWaveIndex )
 	{
@@ -862,6 +901,7 @@ function float GetNextSpawnTimeMod()
     	}
 
         SpawnTimeMod *= UsedEarlyWaveRateMod;
+        SpawnTimeMod *= UsedSoloWaveRateMod;
 
         return SpawnTimeMod;
 	}
@@ -870,7 +910,14 @@ function float GetNextSpawnTimeMod()
 	{
 		if ( NumLivingPlayers <= 3 )
 		{
-		    return 1.1;
+		    if( bOnePlayerAtStart )
+		    {
+                return 1.1 * UsedSoloWaveRateMod;
+		    }
+		    else
+		    {
+                return 1.1;
+            }
 		}
 		else if ( NumLivingPlayers == 4 )
 		{
@@ -885,6 +932,9 @@ function float GetNextSpawnTimeMod()
 		    return 0.6;
 		}
 	}
+
+	SpawnTimeMod *= UsedSoloWaveRateMod;
+
 	return SpawnTimeMod;
 }
 
@@ -1312,6 +1362,10 @@ defaultproperties
    MaxMonstersSolo(1)=24
    MaxMonstersSolo(2)=24
    MaxMonstersSolo(3)=24
+   SoloWaveSpawnRateModifier(0)=(RateModifier=(1.000000,1.000000,1.000000,1.000000))
+   SoloWaveSpawnRateModifier(1)=(RateModifier=(1.000000,1.000000,1.000000,1.000000))
+   SoloWaveSpawnRateModifier(2)=(RateModifier=(1.000000,1.000000,1.000000,1.000000))
+   SoloWaveSpawnRateModifier(3)=(RateModifier=(1.000000,1.000000,1.000000,1.000000))
    EarlyWaveSpawnRateModifier(0)=1.000000
    EarlyWaveSpawnRateModifier(1)=0.800000
    EarlyWaveSpawnRateModifier(2)=0.800000

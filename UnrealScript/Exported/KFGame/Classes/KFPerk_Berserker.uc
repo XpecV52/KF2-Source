@@ -188,9 +188,14 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
  *
  * @param InDuration delay inbetween attacks
  */
-simulated function ModifyMeleeAttackSpeed( out float InDuration )
+simulated function ModifyMeleeAttackSpeed( out float InDuration, KFWeapon KFW )
 {
 	local float TempDuration;
+
+	if( KFW == none || !KFW.IsMeleeWeapon() )
+	{
+		return;
+	}
 
 	TempDuration = InDuration;
 	TempDuration -= InDuration * GetPassiveValue( MeleeAttackSpeed, CurrentLevel );
@@ -289,7 +294,7 @@ simulated static function GetPassiveStrings( out array<string> PassiveValues, ou
 	Increments[0] = "[" @ ("25% + " @ Int(default.BerserkerDamage.Increment * 100))  $"% /" @ default.LevelString @ "]";
 	Increments[1] = "[" @ "5% + ." @ int(default.MeleeAttackSpeed.Increment * 1000)  $ "% /" @ default.LevelString @ "]";
 	Increments[2] = "[" @ "10% + ." $ int(default.Movement.Increment * 1000) $ "% /" @ default.LevelString @ "]";
-	Increments[3] = "[" @ (Int(default.DamageResistance.Increment * 10))  $"% /" @ default.LevelString @ "]";
+	Increments[3] = "[" @ (Int(default.DamageResistance.Increment * 100))  $"% /" @ default.LevelString @ "]";
 	Increments[4] = "";
 	Increments[5] = "";
 }
@@ -347,12 +352,12 @@ function ModifyHardAttackDamage( out int InDamage )
 
 	if( IsFuriousDefenderActive() )
 	{
-		TempDamage *= 1 + GetSkillValue( PerkSkills[EBerserkerFuriousDefender] );
+		TempDamage += InDamage * GetSkillValue( PerkSkills[EBerserkerFuriousDefender] );
 	}
 
 	if( IsSmashActive() )
 	{
-		TempDamage *= 1 + GetSkillValue( PerkSkills[EBerserkerSmash] );
+		TempDamage += InDamage * GetSkillValue( PerkSkills[EBerserkerSmash] );
 	}
 
 	;
@@ -634,7 +639,7 @@ simulated function bool HasNightVision()
  *
  * @return true if we have the skill enabled
  */
-final private function bool IsFuriousDefenderActive()
+simulated final private function bool IsFuriousDefenderActive()
 {
 	return PerkSkills[EBerserkerFuriousDefender].bActive;
 }
@@ -736,7 +741,7 @@ simulated function LogPerkSkills()
 defaultproperties
 {
    BerserkerDamage=(Name="Berserker Damage",Increment=0.010000,StartingValue=1.250000,MaxValue=1.500000)
-   MeleeAttackSpeed=(Name="Melee Attack Speed",Increment=0.004000,StartingValue=0.050000,MaxValue=0.100000)
+   MeleeAttackSpeed=(Name="Melee Attack Speed",Increment=0.008000,StartingValue=0.050000,MaxValue=0.250000)
    Movement=(Name="Movement",Increment=0.006000,StartingValue=1.100000,MaxValue=1.250000)
    DamageResistance=(Name="Damage Resistance",Increment=0.010000,MaxValue=0.250000)
    NightVision=(Name="Night Vision")
@@ -770,10 +775,10 @@ defaultproperties
    PerkSkills(1)=(Name="SonicResistance",StartingValue=0.400000,MaxValue=0.400000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_SonicResistance")
    PerkSkills(2)=(Name="Vampire",StartingValue=3.000000,MaxValue=3.000000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Vampire")
    PerkSkills(3)=(Name="Fortitude",StartingValue=2.000000,MaxValue=2.000000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Fortitude")
-   PerkSkills(4)=(Name="FuriousDefender",StartingValue=0.200000,MaxValue=0.200000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_FuriousDefender")
+   PerkSkills(4)=(Name="FuriousDefender",StartingValue=0.150000,MaxValue=0.150000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_FuriousDefender")
    PerkSkills(5)=(Name="Block",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Block")
    PerkSkills(6)=(Name="Parry",StartingValue=0.150000,MaxValue=0.150000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Parry")
-   PerkSkills(7)=(Name="Smash",StartingValue=1.000000,MaxValue=1.000000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Smash")
+   PerkSkills(7)=(Name="Smash",StartingValue=0.300000,MaxValue=0.300000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Smash")
    PerkSkills(8)=(Name="Spartan",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Spartan")
    PerkSkills(9)=(Name="Menace",StartingValue=1.000000,MaxValue=1.000000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Menace")
    PrimaryWeaponClassName="KFGameContent.KFWeap_Blunt_Crovel"

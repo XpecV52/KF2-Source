@@ -18,5 +18,9 @@ defaultproperties
     Waves(5)=KFAIWaveInfo'GP_Spawning_ARCH.Normal.ZED_Wave6'
     Waves(6)=KFAIWaveInfo'GP_Spawning_ARCH.Normal.ZED_Wave7'
     Waves(7)=KFAIWaveInfo'GP_Spawning_ARCH.Normal.ZED_Boss'
+    SoloWaveSpawnRateModifier[0]=(RateModifier=(1,1,1,1,1,1,1))
+    SoloWaveSpawnRateModifier[1]=(RateModifier=(1,0.5,1,1,1,1,1))
+    SoloWaveSpawnRateModifier[2]=(RateModifier=(1,1,1,1,1,1,1))
+    SoloWaveSpawnRateModifier[3]=(RateModifier=(1,1,1,1,1,1,1))
     EarlyWaveIndex=4
 }

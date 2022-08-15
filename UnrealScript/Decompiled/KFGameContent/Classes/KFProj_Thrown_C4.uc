@@ -229,7 +229,7 @@ simulated function TryStick(Vector HitNormal, optional Vector HitLocation, optio
 {
     local TraceHitInfo HitInfo;
 
-    if(!Instigator.IsLocallyControlled())
+    if((Instigator == none) || !Instigator.IsLocallyControlled())
     {
         return;
     }

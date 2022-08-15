@@ -53,7 +53,7 @@ protected function bool InternalCanDoSpecialMove()
 //    if( HansPawn != none && !HansPawn.IsDoingSpecialMove(SM_ChangeStance)
 //        && !HansPawn.bGunsEquipped )
 //    {
-        return true;
+        return super.InternalCanDoSpecialMove();
 //    }
 //    else
 //    {

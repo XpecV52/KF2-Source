@@ -28,8 +28,8 @@ defaultproperties
    GroupPriority=25.000000
    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Mossberg'
    MagazineCapacity(0)=8
-   MaxSpareAmmo(0)=24
-   InitialSpareMags(0)=1
+   MaxSpareAmmo(0)=40
+   InitialSpareMags(0)=2
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_MB500.Play_WEP_SA_MB500_Fire_M',FirstPersonCue=AkEvent'WW_WEP_SA_MB500.Play_WEP_SA_MB500_Fire_S')
    WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_MB500.Play_WEP_SA_MB500_Fire_M',FirstPersonCue=AkEvent'WW_WEP_SA_MB500.Play_WEP_SA_MB500_Fire_S')
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_M4.Play_WEP_SA_M4_Handling_DryFire'

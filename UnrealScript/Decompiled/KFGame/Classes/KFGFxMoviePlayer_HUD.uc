@@ -326,6 +326,7 @@ function ShowBossNameplate(string BossName, string InSecondaryMessageString)
 {
     local GFxObject TempObject;
 
+    ShowVoiceComms(false);
     if((BossNameplateContainer != none) && BossName != "")
     {
         TempObject = CreateObject("Object");

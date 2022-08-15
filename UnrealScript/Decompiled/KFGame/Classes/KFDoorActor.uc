@@ -1096,15 +1096,6 @@ simulated function ResetHingedDoor()
         goto J0x0C;
     }
     SkeletalMeshComp.bComponentUseFixedSkelBounds = true;
-    if(SkeletalMeshComp.PhysicsAssetInstance != none)
-    {
-        SkeletalMeshComp.PhysicsAssetInstance.SetAllBodiesFixed(true);
-    }
-    SkeletalMeshComp.PhysicsWeight = 0;
-    SkeletalMeshComp.SetHasPhysicsAssetInstance(true);
-    SkeletalMeshComp.ForceSkelUpdate();
-    SkeletalMeshComp.UpdateRBBonesFromSpaceBases(true, true);
-    SkeletalMeshComp.SetBlockRigidBody(true);
 }
 
 private final simulated function PlayMovingSound(bool bClosing)

@@ -184,9 +184,12 @@ function Timer_DetachFollower()
     KFPOwner.ClearTimer('RetryCollisionTimer', self);
     if(Follower != none)
     {
-        Follower.AIIgnoreEndTime = Follower.WorldInfo.TimeSeconds + PostDrainAttackCooldown;
-        KFPOwner.MyKFAIC.Enemy = none;
-        KFPOwner.MyKFAIC.FindNewEnemy();
+        if((KFPOwner.WorldInfo.Game != none) && KFPOwner.WorldInfo.Game.NumPlayers > 1)
+        {
+            Follower.AIIgnoreEndTime = Follower.WorldInfo.TimeSeconds + PostDrainAttackCooldown;
+            KFPOwner.MyKFAIC.Enemy = none;
+            KFPOwner.MyKFAIC.FindNewEnemy();
+        }
         Follower.EndSpecialMove();
         if(bAlignPawns)
         {

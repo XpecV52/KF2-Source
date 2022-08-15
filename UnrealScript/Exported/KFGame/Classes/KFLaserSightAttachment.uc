@@ -14,13 +14,9 @@ class KFLaserSightAttachment extends Object
 
 /** Distance at which we should start scaling the dot size and depth bias (5m) */
 
-/** Distance at which we should stop scaling the dot size and depth bias (30m) */
+/** Distance at which we should stop scaling the dot size and depth bias (60m) */
 
-/** Max scale is clamped at 10x */
-
-/** Min depth bias applied to avoid z-fighting and clipping (2cm) */
-
-/** Max depth bias is clamped at 5cm */
+/** Max scale is clamped at 20x */
 
 
 /*********************************************************************************************
@@ -276,7 +272,7 @@ function AimAt(vector HitLocation, vector HitNormal, SkeletalMeshComponent Paren
 	LaserDotMeshComp.SetTranslation(SocketSpaceAimLocation);
 
 	// Scale laser dot based on distance clamped at 10x at 30m
-	LaserDotScale = 1.f + (10.f- 1.f) * FMax((SocketSpaceAimLocation.X - 500.f )/(3000.f- 500.f ), 0.f);
+	LaserDotScale = 1.f + (10.f- 1.f) * FMax((SocketSpaceAimLocation.X - 500.f )/(6000.f- 500.f ), 0.f);
 	LaserDotMeshComp.SetScale(LaserDotScale);
 
 	// START DEBUG
@@ -287,7 +283,7 @@ function AimAt(vector HitLocation, vector HitNormal, SkeletalMeshComponent Paren
 
 defaultproperties
 {
-   LaserSightRange=3000.000000
+   LaserSightRange=10000.000000
    AnimBlendRate=12.000000
    WeapAttachmentSkipTickInterval=0.500000
    Name="Default__KFLaserSightAttachment"

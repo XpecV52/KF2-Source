@@ -1544,16 +1544,6 @@ simulated function ResetHingedDoor()
 	}
 
 	SkeletalMeshComp.bComponentUseFixedSkelBounds = TRUE;
-	if ( SkeletalMeshComp.PhysicsAssetInstance != none )
-	{
-		SkeletalMeshComp.PhysicsAssetInstance.SetAllBodiesFixed(TRUE);
-	}
-
-   	SkeletalMeshComp.PhysicsWeight = 0.f;
-    SkeletalMeshComp.SetHasPhysicsAssetInstance(TRUE);
-	SkeletalMeshComp.ForceSkelUpdate();
-	SkeletalMeshComp.UpdateRBBonesFromSpaceBases(TRUE, TRUE);
-	SkeletalMeshComp.SetBlockRigidBody(TRUE);
 }
 
 /*********************************************************************************************

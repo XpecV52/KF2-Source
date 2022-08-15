@@ -254,6 +254,7 @@ static function class<KFPerk> GetPerkFromDamageCauser(Actor WeaponActor)
     {
         return KFW.default.AssociatedPerkClass;
     }
+    return none;
 }
 
 static function class<KFPerk> GetPerkFromProjectile(Actor WeaponActor)
@@ -816,7 +817,7 @@ simulated function ModifyRateOfFire(out float InRate);
 
 simulated function ModifySpread(out float InSpread);
 
-function ModifyMeleeAttackSpeed(out float InDuration);
+function ModifyMeleeAttackSpeed(out float InDuration, KFWeapon KFW);
 
 function ModifyScreamEffectDuration(out float InDuration);
 

@@ -23,12 +23,24 @@ simulated function bool ShouldPlayFireLast(byte FireModeNum)
     return false;
 }
 
+simulated function name GetReloadAnimName(bool bTacticalReload)
+{
+    if(AmmoCount[0] > 0)
+    {
+        WarnInternal("Grenade launcher reloading with non-empty mag");
+    }
+    return 'Reload_Empty';
+}
+
 simulated state WeaponSingleFiring
 {
     simulated function PlayFireEffects(byte FireModeNum, optional Vector HitLocation)
     {
         super(KFWeapon).PlayFireEffects(FireModeNum, HitLocation);
-        SetTimer(ForceReloadTime, false, 'ForceReload');
+        if(Instigator.IsLocallyControlled())
+        {
+            SetTimer(ForceReloadTime, false, 'ForceReload');
+        }
     }
     stop;    
 }
@@ -37,6 +49,7 @@ defaultproperties
 {
     ForceReloadTime=0.3
     EffectiveRange=30
+    bAllowClientAmmoTracking=false
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_GrenadeLauncher_Base.MeleeHelper'
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
         ReplacementPrimitive=none

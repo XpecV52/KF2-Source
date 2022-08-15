@@ -54,21 +54,6 @@ function UnpackSpecialMoveFlags()
 	bCanBeInterrupted = (bCanBeInterrupted || !bUseRootMotion);
 }
 
-/** Called from CanDoSpecialMove, checks attack conditions and owning pawn's capabilities */
-protected function bool InternalCanDoSpecialMove()
-{
-	// Ensure that the NPC & target are valid, NPC in valid physics state and not too busy, etc.
-	if( AIOwner != none && AIOwner.Enemy != none && AIOwner.Enemy.IsAliveAndWell() )
-	{
-		if( KFPOwner.IsAliveAndWell() && KFPOwner.Physics != PHYS_Falling )
-		{
-			return AIOwner.CanDoStrike();
-		}
-	}
-
-	return false;
-}
-
 /**
  * Can a new special move override this one before it is finished?
  * This is only if CanDoSpecialMove() == TRUE && !bForce when starting it.

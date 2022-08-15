@@ -499,10 +499,12 @@ simulated exec function ToggleFlashlight()
     {
         if(bPerkHasNightVision)
         {
-            ToggleNightVIsion(KFP);
-            return;
+            ToggleNightVIsion(KFP);            
         }
-        ToggleActualFlashLight(KFP);
+        else
+        {
+            ToggleActualFlashLight(KFP);
+        }
     }
     if(KFP != none)
     {
@@ -563,7 +565,7 @@ simulated function PlayFlashlightNVSounds(KFPawn_Human KFP, bool bPerkHasNightVi
 {
     if(bPerkHasNightVision && !KFP.bFlashlightOn)
     {
-        ((Outer.bNightVisionActive) ? KFP.PlaySoundBase(Outer.NightVisionOnEvent) : KFP.PlaySoundBase(Outer.NightVisionOffEvent));        
+        ((Outer.bNightVisionActive) ? KFP.PlaySoundBase(Outer.NightVisionOffEvent) : KFP.PlaySoundBase(Outer.NightVisionOnEvent));        
     }
     else
     {

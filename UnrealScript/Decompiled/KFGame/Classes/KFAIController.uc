@@ -296,6 +296,8 @@ var float BumpThreshold;
 var float BumpDecayRate;
 var float BumpGrowthRate;
 var float LastStuckCheckTime;
+var float TotalStuckCheckCloseRangeTime;
+var float LastStuckCheckCloseRangeTime;
 /** How often to check and see if this AI is stuck */
 var(StuckChecking) float StuckCheckInterval;
 /** How slow a zed needs to be moving (squared) in the X/Y access to be considered possibly stuck */
@@ -853,6 +855,10 @@ event bool FindNewEnemy()
     local int BestEnemyZedCount, PotentialEnemyZedCount;
     local bool bUpdateBestEnemy;
 
+    if(Pawn == none)
+    {
+        return false;
+    }
     BestEnemy = none;
     foreach WorldInfo.AllPawns(Class'Pawn', PotentialEnemy)
     {
@@ -2793,11 +2799,24 @@ function EvaluateStuckPossibility(float DeltaTime)
     if(Enemy != none)
     {
         DistToEnemySquared = VSizeSq(Enemy.Location - Pawn.Location);
-        if((DistToEnemySquared < StuckCheckEnemyDistThreshholdSquared) || IsWithinAttackRange())
+        if(DistToEnemySquared < StuckCheckEnemyDistThreshholdSquared)
         {
-            StuckPossiblity = 0;
-            bTryingToGetUnstuck = false;
-            return;
+            if((MyKFGameInfo.MyKFGRI.AIRemaining > 5) || TotalStuckCheckCloseRangeTime < 5)
+            {
+                if(LastStuckCheckCloseRangeTime > 0)
+                {
+                    TotalStuckCheckCloseRangeTime += (WorldInfo.TimeSeconds - LastStuckCheckCloseRangeTime);
+                }
+                LastStuckCheckCloseRangeTime = WorldInfo.TimeSeconds;
+                StuckPossiblity = 0;
+                bTryingToGetUnstuck = false;
+                return;
+            }            
+        }
+        else
+        {
+            TotalStuckCheckCloseRangeTime = 0;
+            LastStuckCheckCloseRangeTime = 0;
         }
     }
     if(((Enemy != none) && MoveTarget == Enemy) && RouteCache.Length <= 0)
@@ -2807,7 +2826,7 @@ function EvaluateStuckPossibility(float DeltaTime)
         return;
     }
     I = 0;
-    J0x481:
+    J0x551:
 
     if(I < RouteCache.Length)
     {
@@ -2821,7 +2840,7 @@ function EvaluateStuckPossibility(float DeltaTime)
             }
         }
         ++ I;
-        goto J0x481;
+        goto J0x551;
     }
     if((MyKFPawn.Physics != 2) && VSizeSq2D(MyKFPawn.Velocity) < StuckVelocityThreshholdSquared)
     {

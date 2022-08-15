@@ -50,7 +50,7 @@ defaultproperties
 	InstantHitDamage(DEFAULT_FIREMODE)=15
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_DragonsBreath'
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_DragonsBreath'
-	PenetrationPower(DEFAULT_FIREMODE)=2.0
+	PenetrationPower(DEFAULT_FIREMODE)=3.0
 	FireInterval(DEFAULT_FIREMODE)=0.77 // 78 RPM
 	FireOffset=(X=30,Y=3,Z=-3)
 	// Shotgun

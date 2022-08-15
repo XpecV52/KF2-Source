@@ -29,6 +29,8 @@ package AssetLib_fla
         
         public var dropdown:DefaultDropdownMenu;
         
+        public var dropdown2:DefaultDropdownMenu;
+        
         public var optionStepper:DefaultOptionStepper;
         
         public var scrollBar:DefaultScrollBar;
@@ -63,8 +65,9 @@ package AssetLib_fla
             this.__setProp_voipList_Scene1_Layer1_0();
             this.__setProp___id3__Scene1_Layer1_0();
             this.__setProp_searchBar_Scene1_Layer1_0();
-            this.__setProp_dropdown_Scene1_Layer1_0();
+            this.__setProp_dropdown2_Scene1_Layer1_0();
             this.__setProp_NewDropDownList_Scene1_Layer1_0();
+            this.__setProp_dropdown_Scene1_Layer1_0();
             this.__setProp_buttonBar_Scene1_ButtonBar_0();
         }
         
@@ -294,47 +297,47 @@ package AssetLib_fla
             }
         }
         
-        function __setProp_dropdown_Scene1_Layer1_0() : *
+        function __setProp_dropdown2_Scene1_Layer1_0() : *
         {
             try
             {
-                this.dropdown["componentInspectorSetting"] = true;
+                this.dropdown2["componentInspectorSetting"] = true;
             }
             catch(e:Error)
             {
             }
-            this.dropdown.autoSize = "none";
-            this.dropdown.dropdown = "TripScrollingList";
-            this.dropdown.enabled = true;
-            this.dropdown.enableInitCallback = false;
-            this.dropdown.focusable = true;
-            this.dropdown.itemRenderer = "DefaultTripListItemRenderer";
-            this.dropdown.menuDirection = "down";
-            this.dropdown.menuMargin = 1;
-            this.dropdown.inspectableMenuOffset = {
+            this.dropdown2.autoSize = "none";
+            this.dropdown2.dropdown = "$DropDownScrollingList";
+            this.dropdown2.enabled = false;
+            this.dropdown2.enableInitCallback = false;
+            this.dropdown2.focusable = true;
+            this.dropdown2.itemRenderer = "DefaultTripListItemRenderer";
+            this.dropdown2.menuDirection = "down";
+            this.dropdown2.menuMargin = 1;
+            this.dropdown2.inspectableMenuOffset = {
                 "top":0,
                 "right":0,
                 "bottom":0,
                 "left":0
             };
-            this.dropdown.inspectableMenuPadding = {
+            this.dropdown2.inspectableMenuPadding = {
                 "top":0,
                 "right":0,
                 "bottom":0,
                 "left":0
             };
-            this.dropdown.menuRowCount = 0;
-            this.dropdown.menuWidth = -1;
-            this.dropdown.menuWrapping = "normal";
-            this.dropdown.scrollBar = "";
-            this.dropdown.inspectableThumbOffset = {
+            this.dropdown2.menuRowCount = 0;
+            this.dropdown2.menuWidth = -1;
+            this.dropdown2.menuWrapping = "normal";
+            this.dropdown2.scrollBar = "";
+            this.dropdown2.inspectableThumbOffset = {
                 "top":0,
                 "bottom":0
             };
-            this.dropdown.visible = true;
+            this.dropdown2.visible = true;
             try
             {
-                this.dropdown["componentInspectorSetting"] = false;
+                this.dropdown2["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {
@@ -369,6 +372,53 @@ package AssetLib_fla
             try
             {
                 this.NewDropDownList["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        
+        function __setProp_dropdown_Scene1_Layer1_0() : *
+        {
+            try
+            {
+                this.dropdown["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            this.dropdown.autoSize = "none";
+            this.dropdown.dropdown = "$DropDownScrollingList";
+            this.dropdown.enabled = true;
+            this.dropdown.enableInitCallback = false;
+            this.dropdown.focusable = true;
+            this.dropdown.itemRenderer = "DefaultTripListItemRenderer";
+            this.dropdown.menuDirection = "down";
+            this.dropdown.menuMargin = 1;
+            this.dropdown.inspectableMenuOffset = {
+                "top":0,
+                "right":0,
+                "bottom":0,
+                "left":0
+            };
+            this.dropdown.inspectableMenuPadding = {
+                "top":0,
+                "right":0,
+                "bottom":0,
+                "left":0
+            };
+            this.dropdown.menuRowCount = 0;
+            this.dropdown.menuWidth = -1;
+            this.dropdown.menuWrapping = "normal";
+            this.dropdown.scrollBar = "";
+            this.dropdown.inspectableThumbOffset = {
+                "top":0,
+                "bottom":0
+            };
+            this.dropdown.visible = true;
+            try
+            {
+                this.dropdown["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

@@ -464,7 +464,7 @@ AttachmentSkin1="Acero envejecido"
 //Chivalry Knight
 
 [chr_knight_archetype]
-CharacterName="Caballero de cortesía"
+CharacterName="Tom Banner"
 Description="Tom Banner se había obsesionado con los actos heroicos de la Edad Medieval desde que era un niño pequeño. Su carrera bastante brillante como Consultor de Gestión de hecho activo esta obsesión de crecer mientras se movía de su país natal, Canadá, a través de Boston, a Inglaterra. Él ya había creado su propia armadura y la tomó en su nueva personalidad como un recreador en la antigua Inglaterra. Este movimiento coincidió con el lanzamiento de la "Caballerosidad", lo que le permitió representar la fantasía en un grado que definitivamente no sería muy seguro como recreador. Cuando llegó el brote, Tom se metió en su armadura y se fue para salvar doncellas de los monstruos. De verdad. El hecho de que él se niega a quitarse su armadura ha llevado a la preocupación de que se está tomando toda la cosa medieval un toque demasiado en serio. ¿Pero a quién le importa?"
 
 BodyMesh0="Armadura"

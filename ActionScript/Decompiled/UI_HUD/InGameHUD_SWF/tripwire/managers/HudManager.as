@@ -116,7 +116,7 @@ package tripwire.managers
                 this.____motion_BossNamePlateaf1_mat3DVec__[9] = 0;
                 this.____motion_BossNamePlateaf1_mat3DVec__[10] = 1;
                 this.____motion_BossNamePlateaf1_mat3DVec__[11] = 0;
-                this.____motion_BossNamePlateaf1_mat3DVec__[12] = 811.450012;
+                this.____motion_BossNamePlateaf1_mat3DVec__[12] = 991.450012;
                 this.____motion_BossNamePlateaf1_mat3DVec__[13] = 524.150024;
                 this.____motion_BossNamePlateaf1_mat3DVec__[14] = 0;
                 this.____motion_BossNamePlateaf1_mat3DVec__[15] = 1;
@@ -213,8 +213,8 @@ package tripwire.managers
             this.BossNamePlate.layoutData = new LayoutData();
             this.BossNamePlate.layoutData.alignV = "bottom";
             this.BossNamePlate.layoutData.alignH = "right";
-            this.BossNamePlate.layoutData.offsetH = 0;
-            this.BossNamePlate.layoutData.offsetV = 0;
+            this.BossNamePlate.layoutData.offsetH = -20;
+            this.BossNamePlate.layoutData.offsetV = -16;
             this.PlayerBackpackWidget.layoutData = new LayoutData();
             this.PlayerBackpackWidget.layoutData.alignV = "bottom";
             this.PlayerBackpackWidget.layoutData.alignH = "right";

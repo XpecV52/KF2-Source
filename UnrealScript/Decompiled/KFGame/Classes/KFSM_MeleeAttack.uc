@@ -41,18 +41,6 @@ function UnpackSpecialMoveFlags()
     bCanBeInterrupted = bCanBeInterrupted || !bUseRootMotion;
 }
 
-protected function bool InternalCanDoSpecialMove()
-{
-    if(((AIOwner != none) && AIOwner.Enemy != none) && AIOwner.Enemy.IsAliveAndWell())
-    {
-        if(KFPOwner.IsAliveAndWell() && KFPOwner.Physics != 2)
-        {
-            return AIOwner.CanDoStrike();
-        }
-    }
-    return false;
-}
-
 function bool CanOverrideMoveWith(name NewMove)
 {
     if(bCanBeInterrupted && ((NewMove == 'KFSM_Stunned') || NewMove == 'KFSM_Stumble') || NewMove == 'Knockdown')

@@ -262,8 +262,8 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=2
-	MaxSpareAmmo[0]=30
-	InitialSpareMags[0]=7
+	MaxSpareAmmo[0]=46
+	InitialSpareMags[0]=11
 	AmmoPickupScale[0]=2.0
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -290,7 +290,7 @@ defaultproperties
 	HippedRecoilModifier=1.25
 
 	// Trader
-    EffectiveRange=15	
+    EffectiveRange=15
 
 	AssociatedPerkClass=class'KFPerk_Support'
 }

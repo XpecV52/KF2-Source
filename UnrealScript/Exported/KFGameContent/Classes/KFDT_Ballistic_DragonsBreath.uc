@@ -223,7 +223,7 @@ defaultproperties
    GunHitPower=30
    EffectGroup=FXG_IncendiaryRound
    GoreDamageGroup=DGT_Shotgun
-   BurnPower=0.250000
+   BurnPower=0.500000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Firebug'
    CameraLensEffectTemplate=Class'KFGame.KFCameraLensEmit_Fire'
    BloodSpread=0.400000

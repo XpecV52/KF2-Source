@@ -289,6 +289,8 @@ static function class<KFPerk> GetPerkFromDamageCauser( Actor WeaponActor )
 	{
 		return KFW.default.AssociatedPerkClass;
 	}
+
+	return none;
 }
 
 static function class<KFPerk> GetPerkFromProjectile( Actor WeaponActor  )
@@ -920,7 +922,7 @@ simulated function ModifyRateOfFire( out float InRate );
 simulated function ModifySpread( out float InSpread );
 
 /** Berserker functions */
-function ModifyMeleeAttackSpeed( out float InDuration );
+function ModifyMeleeAttackSpeed( out float InDuration, KFWeapon KFW );
 function ModifyScreamEffectDuration( out float InDuration );
 function bool CanNotBeGrabbed(){ return false; }
 function bool CanEarnSmallRadiusKillXP( class<DamageType> DT ){ return false; }

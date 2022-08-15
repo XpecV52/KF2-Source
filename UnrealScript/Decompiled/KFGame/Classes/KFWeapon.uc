@@ -3245,7 +3245,7 @@ simulated function TimeWeaponReloading()
     }
     else
     {
-        WarnInternal("ReloadDuration is zero!!!");
+        WarnInternal((("Reload duration is zero! Anim=" $ string(AnimName)) @ "Rate:") $ string(AnimRate));
         ReloadComplete();
     }
 }
@@ -3496,7 +3496,7 @@ simulated function PlayMeleeAnimation(name AnimName, out float out_Rate, float B
     InstigatorPerk = GetPerk();
     if(InstigatorPerk != none)
     {
-        InstigatorPerk.ModifyMeleeAttackSpeed(out_Rate);
+        InstigatorPerk.ModifyMeleeAttackSpeed(out_Rate, self);
     }
     Duration = MySkelMesh.GetAnimLength(AnimName);
     Duration *= out_Rate;

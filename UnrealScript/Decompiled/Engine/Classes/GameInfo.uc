@@ -867,7 +867,7 @@ event PlayerController Login(string Portal, string Options, const UniqueNetId Un
     bAdmin = false;
     if(bUsingArbitration && bHasArbitratedHandshakeBegun)
     {
-        ErrorMessage = PathName(WorldInfo.Game.GameMessageClass) $ ".ArbitrationMessage";
+        ErrorMessage = ("<Strings:" $ PathName(WorldInfo.Game.GameMessageClass)) $ ".ArbitrationMessage>";
         return none;
     }
     if(BaseMutator != none)
@@ -885,13 +885,13 @@ event PlayerController Login(string Portal, string Options, const UniqueNetId Un
     }
     if(!bAdmin && AtCapacity(bSpectator))
     {
-        ErrorMessage = PathName(WorldInfo.Game.GameMessageClass) $ ".MaxedOutMessage";
+        ErrorMessage = ("<Strings:" $ PathName(WorldInfo.Game.GameMessageClass)) $ ".MaxedOutMessage>";
         return none;
     }
     if((WorldInfo.Game.AccessControl != none) && WorldInfo.Game.AccessControl.IsIDBanned(UniqueId))
     {
         LogInternal(InName @ "is banned, rejecting...");
-        ErrorMessage = "Engine.AccessControl.SessionBanned";
+        ErrorMessage = "<Strings:Engine.AccessControl.SessionBanned>";
         return none;
     }
     if(bAdmin && AtCapacity(false))
@@ -902,7 +902,7 @@ event PlayerController Login(string Portal, string Options, const UniqueNetId Un
     StartSpot = FindPlayerStart(none, InTeam, Portal);
     if(StartSpot == none)
     {
-        ErrorMessage = PathName(WorldInfo.Game.GameMessageClass) $ ".FailedPlaceMessage";
+        ErrorMessage = ("<Strings:" $ PathName(WorldInfo.Game.GameMessageClass)) $ ".FailedPlaceMessage>";
         return none;
     }
     SpawnRotation.Yaw = StartSpot.Rotation.Yaw;
@@ -910,7 +910,7 @@ event PlayerController Login(string Portal, string Options, const UniqueNetId Un
     if(NewPlayer == none)
     {
         LogInternal("Couldn't spawn player controller of class " $ string(PlayerControllerClass));
-        ErrorMessage = PathName(WorldInfo.Game.GameMessageClass) $ ".FailedSpawnMessage";
+        ErrorMessage = ("<Strings:" $ PathName(WorldInfo.Game.GameMessageClass)) $ ".FailedSpawnMessage>";
         return none;
     }
     NewPlayer.StartSpot = StartSpot;
@@ -2767,7 +2767,7 @@ auto state PendingMatch
 
         if(Index < PendingArbitrationPCs.Length)
         {
-            AccessControl.KickPlayer(PendingArbitrationPCs[Index], GameMessageClass.default.MaxedOutMessage);
+            AccessControl.KickPlayer(PendingArbitrationPCs[Index], ("<Strings:" $ PathName(WorldInfo.Game.GameMessageClass)) $ ".MaxedOutMessage>");
             ++ Index;
             goto J0x0B;
         }
@@ -2795,7 +2795,7 @@ auto state PendingMatch
             }
             else
             {
-                AccessControl.KickPlayer(PC, GameMessageClass.default.MaxedOutMessage);
+                AccessControl.KickPlayer(PC, ("<Strings:" $ PathName(WorldInfo.Game.GameMessageClass)) $ ".MaxedOutMessage>");
             }
         }
         if(PendingArbitrationPCs.Length == 0)

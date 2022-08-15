@@ -437,8 +437,8 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
     local bool bRepairedArmor;
 
 	InstigatorPC = KFPlayerController(Healer);
-	InstigatorPerk = InstigatorPC.GetPerk();
-	if( InstigatorPerk != none && bCanRepairArmor )
+	InstigatorPerk = InstigatorPC != None ? InstigatorPC.GetPerk() : None;
+	if( InstigatorPerk != None && bCanRepairArmor )
 	{
 		// Instigator might be able to repair some armomr
 		bRepairedArmor = InstigatorPerk.RepairArmor( self );
@@ -459,12 +459,12 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 
     	if( Role == ROLE_Authority )
 		{
-			InstigatorPRI = KFPlayerReplicationInfo(Healer.PlayerReplicationInfo);
-			if( InstigatorPC == none || InstigatorPRI == none )
+			if( InstigatorPC == None || InstigatorPC.PlayerReplicationInfo == None )
 			{
 				return false;
 			}
 
+			InstigatorPRI = KFPlayerReplicationInfo(InstigatorPC.PlayerReplicationInfo);
 			UsedHealAmount = Amount;
 			if( InstigatorPerk != none )
 			{
@@ -730,8 +730,8 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 
 		// Death material effect (damage type based)
 		PlayDamageMaterialEffects(
-			KFDT.default.DeathMaterialEffectParamName != '' ? KFDT.default.DeathMaterialEffectParamName : default.DeathMaterialEffectParamName,
-			KFDT.default.DeathMaterialEffectDuration != 0.f ? KFDT.default.DeathMaterialEffectDuration : default.DeathMaterialEffectDuration
+			(KFDT != None && KFDT.default.DeathMaterialEffectParamName != '') ? KFDT.default.DeathMaterialEffectParamName : default.DeathMaterialEffectParamName,
+			(KFDT != None && KFDT.default.DeathMaterialEffectDuration != 0.f) ? KFDT.default.DeathMaterialEffectDuration : default.DeathMaterialEffectDuration
 			);
 	}
 

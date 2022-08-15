@@ -367,7 +367,6 @@ function OnFindOnlineGamesCompleteDelegate(bool bWasSuccessful)
 function OnClose()
 {
 	LogInternal("KFGFxServerBrowser_ServerList::OnClose called.");
-	SearchDataStore.CancelFindServerPlayerList();
 	//Make sure delegate isn't still set
 	CancelQuery(QUERYACTION_CloseScene);
 	ChangeSearchType(SMT_Internet, true);

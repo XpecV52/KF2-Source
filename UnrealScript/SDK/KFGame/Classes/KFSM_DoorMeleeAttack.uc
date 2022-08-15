@@ -45,7 +45,7 @@ protected function bool InternalCanDoSpecialMove()
 		if( KFPOwner.IsAliveAndWell() && KFPOwner.Physics != PHYS_Falling )
 		{
 			// Just return true for now
-			return true;
+			return super.InternalCanDoSpecialMove();
 		}
 	}
 

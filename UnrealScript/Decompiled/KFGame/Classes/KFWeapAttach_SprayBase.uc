@@ -199,7 +199,7 @@ simulated function SetPilotDynamicLightEnabled(bool bLightEnabled)
 
 protected simulated function TurnOnFireSpray()
 {
-    if(!bFireSpraying)
+    if(!bDeleteMe && !bFireSpraying)
     {
         ActiveFlameSpray = GetFlameSprayFromPool();
         if(ActiveFlameSpray != none)
@@ -226,8 +226,11 @@ protected simulated function TurnOffFireSpray()
     {
         ActiveFlameSpray.DetachAndFinish();
     }
-    StartPilotSound();
-    SetPilotDynamicLightEnabled(true);
+    if(!bDeleteMe)
+    {
+        StartPilotSound();
+        SetPilotDynamicLightEnabled(true);
+    }
     bFireSpraying = false;
 }
 

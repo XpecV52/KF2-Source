@@ -90,7 +90,7 @@ defaultproperties
     GunHitPower=30
     EffectGroup=EEffectDamageGroup.FXG_IncendiaryRound
     GoreDamageGroup=EGoreDamageGroup.DGT_Shotgun
-    BurnPower=0.25
+    BurnPower=0.5
     ModifierPerkList=/* Array type was not detected. */
     CameraLensEffectTemplate=Class'KFGame.KFCameraLensEmit_Fire'
     BloodSpread=0.4

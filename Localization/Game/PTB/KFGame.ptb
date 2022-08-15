@@ -925,7 +925,7 @@ FuriousDefender="Defensor furioso"
 FuriousDefenderDescription="Te chamam de Brutamontes por uma razão: Os ataques de arma branca do Brutamontes são 10% mais rápidos e todos os ataques causam 20% mais dano."
 
 Block="Bloqueio"
-BlockDescription="Que habilidade! Bloquear um ataque fará com que o seu próximo ataque Brutamontes cause 75% mais dano."
+BlockDescription="Que habilidade! Bloquear um ataque fará com que o seu próximo ataque Brutamontes cause 50% mais dano."
 
 Parry="Defender"
 ParryDescription="Combine habilidade e poder: Defender um ataque aumentará a velocidade de ataque com arma branca por 15% e o dano de ataques leves por 30% durante 4 segundos."

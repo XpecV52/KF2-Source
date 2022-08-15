@@ -2348,7 +2348,7 @@ event MakeReservations(const string URLOptions, const UniqueNetId PlayerId, out 
 		if (!AddPlayerReservations(Reservations))
 		{
 			if (bLogReservations) LogInternal("KFGameInfo.MakeReservations failed");
-			OutError = PathName(WorldInfo.Game.GameMessageClass)$".MaxedOutMessage";
+			OutError = "<Strings:"$PathName(WorldInfo.Game.GameMessageClass)$".MaxedOutMessage>";
 		}
 	}
 }

@@ -138,7 +138,6 @@ function  CancelLeaveMenu()
 
 function  CancelGameSearch()
 {
-	ServerListContainer.SearchDataStore.CancelFindServerPlayerList();
 }
 
 function GoToMultiplayerMenu()
@@ -343,7 +342,6 @@ function CallBack_ServerJoinGame()
 	{
 		ServerListContainer.JoinServer(ServerListContainer.SelectedServerIndex);
 	}
-	ServerListContainer.SearchDataStore.CancelFindServerPlayerList();	
 }
 
 function  ShowPasswordPopUp()

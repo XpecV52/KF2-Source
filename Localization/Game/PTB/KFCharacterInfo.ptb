@@ -463,7 +463,7 @@ AttachmentSkin1="Aço Envelhecido"
 //Chivalry Knight
 
 [chr_knight_archetype]
-CharacterName="Cavaleiro da Cavalaria"
+CharacterName="Tom Banner"
 Description="Tom Banner é obcecado com o heroísmo da Idade Média desde criança. A sua razoavelmente brilhante carreira como Consultor de Gestão permitiu que tal obsessão crescesse ao mudar-se do Canadá, sua terra natal, através de Boston, para a Inglaterra. Ele já tinha criado a sua própria armadura e uma nova personalidade como um ator de encenações na Inglaterra Merry Olde. Essa mudança coincidiu com o lançamento da “cavalaria”, o que lhe permitiu viver a sua fantasia em um nível que a maioria diria que não é seguro para um ator. Quando o surto chegou, o Tom entrou na sua armadura e saiu para salvar as belas donzelas dos monstros. É sério. O fato de que ele recusa retirar a armadura cria preocupações sobre o fato de ele estar levando esse lance todo de ser medieval um pouco longe demais. Mas quem se importa?"
 
 BodyMesh0="Armadura"

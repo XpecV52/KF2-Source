@@ -25,7 +25,7 @@ protected function bool InternalCanDoSpecialMove()
 	{
 		return false;
 	}
-	return true;
+	return super.InternalCanDoSpecialMove();
 }
 
 static function byte PackSMFlags( KFPawn P, byte InTauntType )

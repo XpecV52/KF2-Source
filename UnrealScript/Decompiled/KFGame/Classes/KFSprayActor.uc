@@ -751,7 +751,7 @@ function SpawnImpactProjectile(Vector SpawnLocation, Vector SpawnRotation)
     SprayFxInfos[CurrSprayFxLocIdx].Location = SpawnLocation;
     SprayFxInfos[CurrSprayFxLocIdx].TimeStamp = WorldInfo.TimeSeconds;
     CurrSprayFxLocIdx = (CurrSprayFxLocIdx + 1) % 20;
-    SpawnedProjectile = Spawn(ImpactProjectileClass, self,, SpawnLocation, rotator(SpawnRotation));
+    SpawnedProjectile = Spawn(ImpactProjectileClass, self,, SpawnLocation, rotator(SpawnRotation),, true);
     if((SpawnedProjectile != none) && !SpawnedProjectile.bDeleteMe)
     {
         if(SpawnedProjectile != none)

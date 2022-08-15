@@ -59,7 +59,7 @@ protected simulated function PrepareExplosionActor(GameExplosionActor GEA)
             }
         }
         KFPInstigator = KFPawn(Instigator);
-        if(KFPInstigator != none)
+        if((KFPInstigator != none) && KFPInstigator.GetPerk() != none)
         {
             if(KFPInstigator.GetPerk().IsFlarotovActive())
             {

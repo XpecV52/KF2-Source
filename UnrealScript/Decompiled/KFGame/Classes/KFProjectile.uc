@@ -185,7 +185,7 @@ simulated event ReplicatedEvent(name VarName)
 simulated function Vector ValidateExplosionNormal()
 {
     local Vector ExplosionNormal, AimDir, HitLocation, HitNormal;
-    local Actor HitActor;
+    local Actor TraceActor, HitActor;
 
     if(!IsZero(Velocity))
     {
@@ -199,7 +199,8 @@ simulated function Vector ValidateExplosionNormal()
     {
         AimDir = Normal(vector(Rotation));
     }
-    HitActor = Instigator.Trace(HitLocation, HitNormal, Location + (AimDir * 32), Location - (AimDir * 32), true,,, 1);
+    TraceActor = ((Instigator != none) ? Instigator : self);
+    HitActor = TraceActor.Trace(HitLocation, HitNormal, Location + (AimDir * 32), Location - (AimDir * 32), true,,, 1);
     if(HitActor != none)
     {
         ExplosionNormal = HitNormal;

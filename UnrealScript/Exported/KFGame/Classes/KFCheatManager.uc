@@ -5538,6 +5538,18 @@ exec function WeaponGotoState( name StateName )
     }
 }
 
+/** SDK - Weapon skin preview */
+exec function SetWeaponSkin(int MaterialIndex, string MaterialName)
+{
+    local MaterialInterface NewMat;
+
+    if( Pawn != none && Pawn.Weapon != none )
+    {
+        NewMat = MaterialInterface(DynamicLoadObject(MaterialName, class'MaterialInterface'));
+        Pawn.Weapon.Mesh.SetMaterial(MaterialIndex, NewMat);
+    }
+}
+
 // NVCHANGE_BEGIN - RLS - Debugging Effects (do not merge)
 exec function NVZedTime(bool bImmediate = false, float Chance = 100.0, float Duration = 5.0)
 {

@@ -689,13 +689,14 @@ simulated exec function ToggleFlashlight()
 	KFP = KFPawn_Human(Pawn);
 	if( KFP != None && KFP.MyKFWeapon != None )
 	{
-			if( bPerkHasNightVision )
-			{
-				ToggleNightVision( KFP );
-				return;
-			}
-			
+		if( bPerkHasNightVision )
+		{
+			ToggleNightVision( KFP );
+		}
+		else
+		{
 			ToggleActualFlashLight( KFP );
+		}
 	}
 
 	if( KFP != none )
@@ -769,7 +770,7 @@ simulated function PlayFlashlightNVSounds( KFPawn_Human KFP, bool bPerkHasNightV
 {
 	if( bPerkHasNightVision && !KFP.bFlashlightOn )
 	{
-		bNightVisionActive ? KFP.PlaySoundBase( NightVisionOnEvent ) : KFP.PlaySoundBase( NightVisionOffEvent );
+		bNightVisionActive ? KFP.PlaySoundBase( NightVisionOffEvent ) : KFP.PlaySoundBase( NightVisionOnEvent );
 	}
 	else
 	{

@@ -580,6 +580,10 @@ var bool	        bSpecialBumpHandling;
 
 /** This last time this AI checked to see if it was stuck */
 var                     float       LastStuckCheckTime;
+/** How much time we've spent within close range to the player */
+var 					float 		TotalStuckCheckCloseRangeTime;
+/** The last time we checked and found that we were within close range to the player */
+var 					float 		LastStuckCheckCloseRangeTime;
 /** How often to check and see if this AI is stuck */
 var(StuckChecking)      float       StuckCheckInterval;
 /** How slow a zed needs to be moving (squared) in the X/Y access to be considered possibly stuck */
@@ -1466,6 +1470,11 @@ event bool FindNewEnemy()
 	local int 				 BestEnemyZedCount;
 	local int 				 PotentialEnemyZedCount;
 	local bool 				 bUpdateBestEnemy;
+
+	if( Pawn == none )
+	{
+		return false;
+	}
 
 	BestEnemy = none;
    	foreach WorldInfo.AllPawns( class'Pawn', PotentialEnemy )
@@ -3938,11 +3947,28 @@ function EvaluateStuckPossibility(float DeltaTime)
     {
         DistToEnemySquared = VSizeSq(Enemy.Location - Pawn.Location);
 
-        if( DistToEnemySquared < StuckCheckEnemyDistThreshholdSquared || IsWithinAttackRange() )
+        // Modified to only allow it to bypass the rest of the stuck checks for 5 seconds
+        // if we are down to only a few zeds. Would never run HandleStuck() on stuck zeds
+        // if any players were too close to them.
+        if( DistToEnemySquared < StuckCheckEnemyDistThreshholdSquared )
         {
-            StuckPossiblity=0;
-            bTryingToGetUnstuck=false;
-            return;
+        	if( MyKFGameInfo.MyKFGRI.AIRemaining > 5 || TotalStuckCheckCloseRangeTime < 5.0f )
+        	{
+		        if( LastStuckCheckCloseRangeTime > 0.f )
+		        {
+		        	TotalStuckCheckCloseRangeTime += (WorldInfo.TimeSeconds - LastStuckCheckCloseRangeTime);
+		        }
+		        LastStuckCheckCloseRangeTime = WorldInfo.TimeSeconds;
+
+	            StuckPossiblity=0;
+	            bTryingToGetUnstuck=false;
+	            return;
+	        }
+        }
+        else
+        {
+			TotalStuckCheckCloseRangeTime = 0.f;
+			LastStuckCheckCloseRangeTime = 0.f;
         }
     }
 

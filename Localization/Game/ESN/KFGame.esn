@@ -925,7 +925,7 @@ FuriousDefender="Defensor Furioso"
 FuriousDefenderDescription="Te llaman Furioso por una razón: Los ataques cuerpo a cuerpo de Berserker son 10% más rápidos y todos los ataques hacen 20% más de daños."
 
 Block="Bloquear"
-BlockDescription=" ¡Qué habilidades! El bloqueo de un ataque hará que tu siguiente ataque cuerpo a cuerpo de Berserker haga 75% más de daño."
+BlockDescription=" ¡Qué habilidades! El bloqueo de un ataque hará que tu siguiente ataque cuerpo a cuerpo de Berserker haga 50% más de daño."
 
 Parry="Esquivar"
 ParryDescription="Combina habilidad y poder: Esquivando un ataque aumentará la velocidad de ataque cuerpo a cuerpo un 15% y el daño de ataque ligero en un 30% durante 4 segundos."

@@ -565,7 +565,10 @@ simulated function ANIMNOTIFY_ShellEject()
 
 simulated function SetThirdPersonFlashlight(bool bEnabled)
 {
-	Flashlight.SetEnabled(bEnabled);
+	if( Flashlight != None )
+	{
+		Flashlight.SetEnabled(bEnabled);
+	}
 }
 
 /** Adds some value to this weapon's blood material parameter */

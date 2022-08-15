@@ -785,8 +785,8 @@ defaultproperties
    PerkSkills(7)=(Name="Tenacity",StartingValue=0.100000,MaxValue=0.100000,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Tenacity")
    PerkSkills(8)=(Name="Safeguard",StartingValue=0.050000,MaxValue=0.050000,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Safeguard")
    PerkSkills(9)=(Name="Barrage",StartingValue=0.150000,MaxValue=0.150000,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Barrage")
-   RegenerationInterval=5.000000
-   RegenerationAmount=2
+   RegenerationInterval=2.500000
+   RegenerationAmount=4
    PrimaryWeaponClassName="KFGameContent.KFWeap_Shotgun_MB500"
    MeleeWeaponClassName="KFGameContent.KFWeap_Knife_Support"
    Name="Default__KFPerk_Support"

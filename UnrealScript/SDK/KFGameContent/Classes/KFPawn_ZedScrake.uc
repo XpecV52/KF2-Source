@@ -199,6 +199,7 @@ defaultproperties
 	HitZones[8]		  =(ZoneName=rforearm, BoneName=RightForearm, Limb=BP_RightArm, GoreHealth=20,  DmgScale=0.5, SkinID=2)
 
     VulnerableDamageTypes.Add((DamageType=class'KFDT_Microwave'))
+    VulnerableDamageTypes.Add((DamageType=class'KFDT_Ballistic_RPG7Impact', DamageScale=4.0))
 	ResistantDamageTypes.Add((DamageType=class'KFDT_Slashing'))
 	ResistantDamageTypes.Add((DamageType=class'KFDT_Explosive'))
 

@@ -463,7 +463,7 @@ AttachmentSkin1="Aged Steel"
 //Chivalry Knight
 
 [chr_knight_archetype]
-CharacterName="Chivalry Knight"
+CharacterName="Tom Banner"
 Description="Tom Banner had obsessed about the heroics of the Middle Ages since he was a small boy. His fairly stellar career as a Management Consultant actually enabled this obsession to grow as he moved from his native Canada, via Boston, to England. He had already created his own armor and took on his new persona as a re-enactor in Merry Olde England. This move coincided with the release of 'Chivalry', which enabled him to act out the fantasy to a degree that most definitely would not be safe as a re-enactor. When the outbreak came, Tom climbed into his armor and went off to save fair maidens from monsters. For real. The fact that he refuses to take off his armor has lead to concerns that he is taking the whole medieval thing a touch too far. But who cares?"
 
 BodyMesh0="Armour"

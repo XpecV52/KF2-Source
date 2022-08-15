@@ -230,14 +230,15 @@ package tripwire.controls.postGameMenu
         {
             this.alpha = 1;
             this.perkLevel.text = this.finishLevel;
+            this.perkInfo.perkXPNum.text = "+" + this.xpDelta + "XP";
             this.perkLevel.x = this.perklevelFinX;
             this.perkInfo.alpha = 1;
             this.perksubXP1Mask.width = this.perkSubWidth;
             this.perksubXP2Mask.width = this.perkSubWidth;
             this.perksubXP1.alpha = 1;
             this.perksubXP2.alpha = 1;
-            this.perksubXP1.perksubxpNum.text = this.finishSubXP1;
-            this.perksubXP2.perksubxpNum.text = this.finishSubXP2;
+            this.perksubXP1.perksubxpNum.text = "+" + this.finishSubXP1;
+            this.perksubXP2.perksubxpNum.text = "+" + this.finishSubXP2;
             this.perkInfo.perkXPBar.width = this.finishXPPercentage;
             this.doneAndDone();
         }

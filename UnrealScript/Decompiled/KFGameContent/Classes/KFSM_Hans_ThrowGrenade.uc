@@ -45,7 +45,7 @@ protected function bool InternalCanDoSpecialMove()
     {
         return false;
     }
-    return true;
+    return super(KFSpecialMove).InternalCanDoSpecialMove();
 }
 
 defaultproperties

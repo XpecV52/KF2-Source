@@ -324,7 +324,7 @@ simulated function vector ValidateExplosionNormal()
     local vector ExplosionNormal;
     local vector AimDir;
 	local vector			HitLocation, HitNormal;
-	local Actor				HitActor;
+	local Actor				TraceActor, HitActor;
 
     // Set the aim direction to the vector along the line where the
     // projectile would hit based on velocity. This is the most accurate
@@ -348,7 +348,8 @@ simulated function vector ValidateExplosionNormal()
     }
 
 	// Perform trace to retrieve hit info
-	HitActor = Instigator.Trace(HitLocation, HitNormal, Location + AimDir * 32.0, Location - AimDir * 32.0, TRUE,,, TRACEFLAG_Bullet);
+    TraceActor = Instigator != None ? Instigator : self;
+	HitActor = TraceActor.Trace(HitLocation, HitNormal, Location + AimDir * 32.0, Location - AimDir * 32.0, TRUE,,, TRACEFLAG_Bullet);
 
     //Instigator.DrawDebugLine(Location - AimDir * 32.0,Location + AimDir * 32.0,255,255,0,TRUE);
     //DrawDebugSphere(Location + AimDir * 32.0, 4, 6, 255, 255, 0, TRUE);

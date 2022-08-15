@@ -336,6 +336,13 @@ package tripwire.containers.serverBrowser
             }
         }
         
+        public function tabChanged() : void
+        {
+            this.joinGameButton.enabled = false;
+            this.spectateGameButton.enabled = false;
+            this.detailsButton.enabled = false;
+        }
+        
         private function getFakePlayerData() : Array
         {
             var _loc3_:Object = null;

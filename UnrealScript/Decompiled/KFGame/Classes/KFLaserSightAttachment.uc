@@ -175,7 +175,7 @@ function AimAt(Vector HitLocation, Vector HitNormal, SkeletalMeshComponent Paren
     SocketToWorldTransform = ParentMesh.GetSocketMatrix(LaserSightSocketName);
     SocketSpaceAimLocation = InverseTransformVector(SocketToWorldTransform, HitLocation);
     LaserDotMeshComp.SetTranslation(SocketSpaceAimLocation);
-    LaserDotScale = 1 + ((10 - 1) * FMax((SocketSpaceAimLocation.X - 500) / (3000 - 500), 0));
+    LaserDotScale = 1 + ((10 - 1) * FMax((SocketSpaceAimLocation.X - 500) / (6000 - 500), 0));
     LaserDotMeshComp.SetScale(LaserDotScale);
 }
 
@@ -200,7 +200,7 @@ defaultproperties
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFLaserSightAttachment.LaserBeamMeshComp'
     LaserBeamMeshComp=LaserBeamMeshComp
-    LaserSightRange=3000
+    LaserSightRange=10000
     AnimBlendRate=12
     WeapAttachmentSkipTickInterval=0.5
 }

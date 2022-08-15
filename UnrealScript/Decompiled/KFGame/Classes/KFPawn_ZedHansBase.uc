@@ -372,7 +372,7 @@ defaultproperties
     BossCaptionStrings(0)="Hans is nearly invulnerable during his smoke grenade healing phase. Don't waste your ammo!"
     BossCaptionStrings(1)="Watch his power core: Hans is more aggressive as it changes color."
     BossCaptionStrings(2)="Aim for his emissive power core. It is a vulnerable zone."
-    BossCaptionStrings(3)="Gas from Han's grenades clings to you, like Bloat bile. Try to avoid it!"
+    BossCaptionStrings(3)="Gas from Hans' grenades clings to you, like Bloat bile. Try to avoid it!"
     BossCaptionStrings(4)="His slashing attacks are too strong to parry. You'll still take full damage."
     BossCaptionStrings(5)="Watch for red grenade warning indicators, which may help you spot where they land."
     BossCaptionStrings(6)="When Hans pulls out his guns, stay out of the line of sight. Obvious, but important!"

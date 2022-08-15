@@ -679,8 +679,8 @@ simulated function PlayerDied()
 
 DefaultProperties
 {
-	RegenerationAmount=2
-	RegenerationInterval=5.f
+	RegenerationAmount=4
+	RegenerationInterval=2.5f
 
 	SafeguardRangeSQ=1000000;
 

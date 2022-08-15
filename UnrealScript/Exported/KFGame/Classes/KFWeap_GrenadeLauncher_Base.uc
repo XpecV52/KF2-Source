@@ -30,8 +30,11 @@ simulated state WeaponSingleFiring
 	{
 		Super.PlayFireEffects( FireModeNum, HitLocation );
 
-		// Reload after every shot, assuming there is ammo available
-		SetTimer(ForceReloadTime, false, nameof( ForceReload ) );
+		if ( Instigator.IsLocallyControlled() )
+		{
+			// Reload after every shot, assuming there is ammo available
+			SetTimer(ForceReloadTime, false, nameof( ForceReload ) );
+		}
 	}
 }
 
@@ -46,10 +49,24 @@ simulated function bool ShouldPlayFireLast(byte FireModeNum)
     return false;
 }
 
+/** Returns animation to play based on reload type and status */
+simulated function name GetReloadAnimName( bool bTacticalReload )
+{
+	if ( AmmoCount[0] > 0 )
+	{
+		// Disable half-reloads for now.  This can happen if server gets out
+		// of sync, but choosing the wrong animation will just make it worse!
+		WarnInternal("Grenade launcher reloading with non-empty mag");
+	}
+
+	return ReloadEmptyMagAnim;
+}
+
 defaultproperties
 {
    ForceReloadTime=0.300000
    EffectiveRange=30
+   bAllowClientAmmoTracking=False
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"

@@ -1219,7 +1219,11 @@ event PlayerController Login(string Portal, string Options, const UniqueNetID Un
 	// Kick the player if they joined during the handshake process
 	if (bUsingArbitration && bHasArbitratedHandshakeBegun)
 	{
+`if(`__TW_)
+		ErrorMessage = "<Strings:"$PathName(WorldInfo.Game.GameMessageClass) $ ".ArbitrationMessage>";
+`else
 		ErrorMessage = PathName(WorldInfo.Game.GameMessageClass) $ ".ArbitrationMessage";
+`endif
 		return None;
 	}
 
@@ -1244,7 +1248,11 @@ event PlayerController Login(string Portal, string Options, const UniqueNetID Un
 	// Make sure there is capacity except for admins. (This might have changed since the PreLogin call).
 	if ( !bAdmin && AtCapacity(bSpectator) )
 	{
+`if(`__TW_)
+		ErrorMessage = "<Strings:"$PathName(WorldInfo.Game.GameMessageClass) $ ".MaxedOutMessage>";
+`else
 		ErrorMessage = PathName(WorldInfo.Game.GameMessageClass) $ ".MaxedOutMessage";
+`endif
 		return None;
 	}
 
@@ -1252,7 +1260,11 @@ event PlayerController Login(string Portal, string Options, const UniqueNetID Un
 	if( ( WorldInfo.Game.AccessControl != none ) && (WorldInfo.Game.AccessControl.IsIDBanned(UniqueId)) )
 	{
 		`Log(InName @ "is banned, rejecting...");
+`if(`__TW_)
+		ErrorMessage = "<Strings:Engine.AccessControl.SessionBanned>";
+`else
 		ErrorMessage = "Engine.AccessControl.SessionBanned";
+`endif
 		return None;
 	}
 
@@ -1270,7 +1282,11 @@ event PlayerController Login(string Portal, string Options, const UniqueNetID Un
 
 	if( StartSpot == None )
 	{
+`if(`__TW_)
+		ErrorMessage = "<Strings:"$PathName(WorldInfo.Game.GameMessageClass) $ ".FailedPlaceMessage>";
+`else
 		ErrorMessage = PathName(WorldInfo.Game.GameMessageClass) $ ".FailedPlaceMessage";
+`endif		
 		return None;
 	}
 
@@ -1281,7 +1297,11 @@ event PlayerController Login(string Portal, string Options, const UniqueNetID Un
 	if( NewPlayer == None )
 	{
 		`log("Couldn't spawn player controller of class "$PlayerControllerClass);
+`if(`__TW_)
+		ErrorMessage = "<Strings:"$PathName(WorldInfo.Game.GameMessageClass) $ ".FailedSpawnMessage>";
+`else
 		ErrorMessage = PathName(WorldInfo.Game.GameMessageClass) $ ".FailedSpawnMessage";
+`endif
 		return None;
 	}
 
@@ -3334,7 +3354,11 @@ auto State PendingMatch
 		// Kick any pending players
 		for (Index = 0; Index < PendingArbitrationPCs.Length; Index++)
 		{
+`if(`__TW_)
+			AccessControl.KickPlayer(PendingArbitrationPCs[Index], "<Strings:"$PathName(WorldInfo.Game.GameMessageClass) $ ".MaxedOutMessage>");
+`else
 			AccessControl.KickPlayer(PendingArbitrationPCs[Index],GameMessageClass.Default.MaxedOutMessage);
+`endif
 		}
 		PendingArbitrationPCs.Length = 0;
 		// Do the server registration now that any remaining clients are kicked
@@ -3375,7 +3399,11 @@ auto State PendingMatch
 			}
 			else
 			{
+`if(`__TW_)
+				AccessControl.KickPlayer(PC, "<Strings:"$PathName(WorldInfo.Game.GameMessageClass) $ ".MaxedOutMessage>");
+`else
 				AccessControl.KickPlayer(PC,GameMessageClass.Default.MaxedOutMessage);
+`endif
 			}
 		}
 		// Start the match if all clients have responded

@@ -14,14 +14,10 @@ class KFLaserSightAttachment extends Object
 
 /** Distance at which we should start scaling the dot size and depth bias (5m) */
 `define LaserDotLerpStartDistance 	500.f 
-/** Distance at which we should stop scaling the dot size and depth bias (30m) */
-`define LaserDotLerpEndDistance 	3000.f
-/** Max scale is clamped at 10x */
+/** Distance at which we should stop scaling the dot size and depth bias (60m) */
+`define LaserDotLerpEndDistance 	6000.f
+/** Max scale is clamped at 20x */
 `define LaserDotMaxScale			10.f
-/** Min depth bias applied to avoid z-fighting and clipping (2cm) */
-`define LaserDotMinDepthBias		2.f
-/** Max depth bias is clamped at 5cm */
-`define LaserDotMaxDepthBias		5.f
 
 /*********************************************************************************************
  * @name	Attachments
@@ -305,7 +301,7 @@ defaultproperties
 	End Object
 	LaserBeamMeshComp=LaserBeamMeshComp_0
 
-	LaserSightRange=3000
+	LaserSightRange=10000 //100m
 	WeapAttachmentSkipTickInterval=0.5
 
 	// Set AnimWeight to 0 as it causes the laser dot to diverge from the 

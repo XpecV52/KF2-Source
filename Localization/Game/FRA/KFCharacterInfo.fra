@@ -463,7 +463,7 @@ AttachmentSkin1="Acier vieux"
 //Chivalry Knight
 
 [chr_knight_archetype]
-CharacterName="Chevalier"
+CharacterName="Tom Banner"
 Description="Tom Banner était obsédé par les faits héroïques du Moyen Âge depuis son enfance. Sa carrière plutôt exemplaire de Consultant en gestion a en réalité permis à cette obsession de grandir alors qu'il quitta son Canada natal pour l'Angleterre, via Boston. Reconstituteur de la bonne vieille Angleterre, il avait déjà créé sa propre armure et endossé son nouveau personnage. Ceci coïncida avec le retour de la « Chevalerie » qui lui permit de laisser parler ce côté fantaisiste jusqu'à un degré qui dépasse le cadre du reconstituteur. Lorsque l'épidémie survint, Tom enfila son armure et partit sauver de jeunes vierges des griffes des monstres. Pour de vrai. Mais le fait qu'il refuse d'enlever son armure conduit à penser qu'il prend maintenant ce côté médiéval trop à cœur. Mais après tout, qui s'en soucie ?"
 
 BodyMesh0="Armure"

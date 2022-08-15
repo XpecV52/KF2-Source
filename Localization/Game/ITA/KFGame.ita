@@ -925,7 +925,7 @@ FuriousDefender="Difensore feroce"
 FuriousDefenderDescription="Ti chiamano Berserk per una ragione: gli attacchi del Berserker nella mischia sono il 10% più veloci e tutti gli attacchi producono il 20% in più di danno."
 
 Block="Blocca"
-BlockDescription="Che capacità! Bloccare un attacco renderà il tuo prossimo attacco da Berserker nella mischia più dannoso del 75%."
+BlockDescription="Che capacità! Bloccare un attacco renderà il tuo prossimo attacco da Berserker nella mischia più dannoso del 50%."
 
 Parry="Schiva"
 ParryDescription="Combina capacità e potenza: schivare un attacco incrementerà la velocità di attacco nella mischia del 15% e il danno da attacco leggero del 30% per 4 secondi."

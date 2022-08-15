@@ -5282,6 +5282,17 @@ exec function WeaponGotoState(name StateName)
     }
 }
 
+exec function SetWeaponSkin(int MaterialIndex, string MaterialName)
+{
+    local MaterialInterface NewMat;
+
+    if((Outer.Pawn != none) && Outer.Pawn.Weapon != none)
+    {
+        NewMat = MaterialInterface(DynamicLoadObject(MaterialName, Class'MaterialInterface'));
+        Outer.Pawn.Weapon.Mesh.SetMaterial(MaterialIndex, NewMat);
+    }
+}
+
 exec function NVZedTime(optional bool bImmediate, optional float Chance, optional float Duration)
 {
     bImmediate = false;

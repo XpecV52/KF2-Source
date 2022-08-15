@@ -23,11 +23,14 @@ simulated event PostBeginPlay()
     if(ProjFlightTemplate != none)
     {
         ProjEffects = WorldInfo.MyEmitterPool.SpawnEmitterCustomLifetime(ProjFlightTemplate);
-        ProjEffects.SetAbsolute(false, false, false);
-        ProjEffects.SetLODLevel(((WorldInfo.bDropDetail) ? 1 : 0));
-        ProjEffects.bUpdateComponentInTick = true;
-        ProjEffects.SetTranslation(vect(0, 0, 2));
-        AttachComponent(ProjEffects);
+        if(ProjEffects != none)
+        {
+            ProjEffects.SetAbsolute(false, false, false);
+            ProjEffects.SetLODLevel(((WorldInfo.bDropDetail) ? 1 : 0));
+            ProjEffects.bUpdateComponentInTick = true;
+            ProjEffects.SetTranslation(vect(0, 0, 2));
+            AttachComponent(ProjEffects);
+        }
     }
     LightFadePerSecond = PointLight.Brightness / LightFadeTime;
     PlaySoundBase(FuseEvent, true,, true);

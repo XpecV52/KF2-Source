@@ -30,8 +30,11 @@ simulated state WeaponSingleFiring
 	{
 		Super.PlayFireEffects( FireModeNum, HitLocation );
 
-		// Reload after every shot, assuming there is ammo available
-		SetTimer(ForceReloadTime, false, nameof( ForceReload ) );
+		if ( Instigator.IsLocallyControlled() )
+		{
+			// Reload after every shot, assuming there is ammo available
+			SetTimer(ForceReloadTime, false, nameof( ForceReload ) );
+		}
 	}
 }
 
@@ -46,9 +49,26 @@ simulated function bool ShouldPlayFireLast(byte FireModeNum)
     return false;
 }
 
+/** Returns animation to play based on reload type and status */
+simulated function name GetReloadAnimName( bool bTacticalReload )
+{
+	if ( AmmoCount[0] > 0 )
+	{
+		// Disable half-reloads for now.  This can happen if server gets out
+		// of sync, but choosing the wrong animation will just make it worse!
+		`warn("Grenade launcher reloading with non-empty mag");
+	}
+
+	return ReloadEmptyMagAnim;
+}
+
 DefaultProperties
 {
 	ForceReloadTime=0.3
+
+	// Doesn't use CSHD so FALSE is needed to avoid some rare, but tricky sync issues.
+	// Since these weapons have a mag size of 1 client ammo is not that useful anyway.
+	bAllowClientAmmoTracking=false
 
 	// Trader
     EffectiveRange=30

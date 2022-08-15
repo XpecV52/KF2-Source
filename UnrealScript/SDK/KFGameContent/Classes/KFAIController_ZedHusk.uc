@@ -409,6 +409,7 @@ DefaultProperties
 	FireOffset=(X=15.f,Y=32,Z=-12)
 	FireballSocketName=FireballSocket
 	bUseDesiredRotationForMelee=false
+	bCanTeleportCloser=false
 
 	//bGoToEnemiesOutsideNavmesh=false
 

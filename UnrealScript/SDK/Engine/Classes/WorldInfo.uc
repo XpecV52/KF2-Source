@@ -1799,8 +1799,8 @@ defaultproperties
 	ImageReflectionEnvironmentColor=(R=1.f,G=1.f,B=1.f,A=1.f)
 
 `if(`__TW_PRECOMPUTED_VISIBILITY_)
-	VisibilitySpreadingIterations=0
-	MeshBoundsScale=1.2f
+	VisibilitySpreadingIterations=1
+	MeshBoundsScale=1.1f
 	PlayAreaHeight=172.f
 	MinMeshSamples=28
 	MaxMeshSamples=80

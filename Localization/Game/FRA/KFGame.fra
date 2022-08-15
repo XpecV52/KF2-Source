@@ -925,7 +925,7 @@ FuriousDefender="Défenseur Furieux"
 FuriousDefenderDescription="Ils ne te traitent pas de Fou furieux pour rien : tes attaques de mêlée de Fou furieux sont 10% plus rapides et toutes tes attaques causent 20% de dégâts en plus."
 
 Block="Riposte"
-BlockDescription="Quel talent ! Bloquer une attaque augmente de 75% les dégâts de ta prochaine attaque de mêlée de Fou furieux."
+BlockDescription="Quel talent ! Bloquer une attaque augmente de 50% les dégâts de ta prochaine attaque de mêlée de Fou furieux."
 
 Parry="Parade"
 ParryDescription="Combine force et talent : parer une attaque augmente ta vitesse d'attaque en mêlée de 15% et tes attaques légères de 30% pendant 4 secs."

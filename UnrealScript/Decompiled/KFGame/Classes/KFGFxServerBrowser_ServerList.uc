@@ -257,7 +257,6 @@ function OnFindOnlineGamesCompleteDelegate(bool bWasSuccessful)
 function OnClose()
 {
     LogInternal("KFGFxServerBrowser_ServerList::OnClose called.");
-    SearchDataStore.CancelFindServerPlayerList();
     CancelQuery(2);
     ChangeSearchType(2, true);
     KFGameEngine(Class'Engine'.static.GetEngine()).OnHandshakeComplete = None;

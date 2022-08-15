@@ -1965,7 +1965,7 @@ event MakeReservations(const string URLOptions, const UniqueNetId PlayerId, out 
 		if (!AddPlayerReservations(Reservations))
 		{
 			`log("KFGameInfo.MakeReservations failed", bLogReservations);
-			OutError = PathName(WorldInfo.Game.GameMessageClass)$".MaxedOutMessage";
+			OutError = "<Strings:"$PathName(WorldInfo.Game.GameMessageClass)$".MaxedOutMessage>";
 		}
 	}
 }

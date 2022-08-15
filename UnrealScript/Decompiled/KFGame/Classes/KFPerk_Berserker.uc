@@ -80,10 +80,14 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     InDamage = Round(TempDamage);
 }
 
-simulated function ModifyMeleeAttackSpeed(out float InDuration)
+simulated function ModifyMeleeAttackSpeed(out float InDuration, KFWeapon KFW)
 {
     local float TempDuration;
 
+    if((KFW == none) || !KFW.IsMeleeWeapon())
+    {
+        return;
+    }
     TempDuration = InDuration;
     TempDuration -= (InDuration * (GetPassiveValue(MeleeAttackSpeed, CurrentLevel)));
     if(GetParryActive())
@@ -155,7 +159,7 @@ static simulated function GetPassiveStrings(out array<string> PassiveValues, out
     Increments[0] = ((("[" @ ("25% + " @ string(int(default.BerserkerDamage.Increment * float(100))))) $ "% /") @ default.LevelString) @ "]";
     Increments[1] = (((("[" @ "5% + .") @ string(int(default.MeleeAttackSpeed.Increment * float(1000)))) $ "% /") @ default.LevelString) @ "]";
     Increments[2] = (((("[" @ "10% + .") $ string(int(default.Movement.Increment * float(1000)))) $ "% /") @ default.LevelString) @ "]";
-    Increments[3] = ((("[" @ string(int(default.DamageResistance.Increment * float(10)))) $ "% /") @ default.LevelString) @ "]";
+    Increments[3] = ((("[" @ string(int(default.DamageResistance.Increment * float(100)))) $ "% /") @ default.LevelString) @ "]";
     Increments[4] = "";
     Increments[5] = "";
 }
@@ -188,11 +192,11 @@ function ModifyHardAttackDamage(out int InDamage)
     TempDamage = float(InDamage);
     if(IsFuriousDefenderActive())
     {
-        TempDamage *= (float(1) + (GetSkillValue(PerkSkills[4])));
+        TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[4])));
     }
     if(IsSmashActive())
     {
-        TempDamage *= (float(1) + (GetSkillValue(PerkSkills[7])));
+        TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[7])));
     }
     InDamage = ((TempDamage != float(InDamage)) ? Round(TempDamage) : InDamage);
 }
@@ -359,7 +363,7 @@ simulated function bool HasNightVision()
     return true;
 }
 
-private final function bool IsFuriousDefenderActive()
+private final simulated function bool IsFuriousDefenderActive()
 {
     return PerkSkills[4].bActive;
 }
@@ -425,7 +429,7 @@ simulated function LogPerkSkills()
 defaultproperties
 {
     BerserkerDamage=(Name="Berserker Damage",Increment=0.01,Rank=0,StartingValue=1.25,MaxValue=1.5,ModifierValue=0,IconPath="",bActive=false)
-    MeleeAttackSpeed=(Name="Melee Attack Speed",Increment=0.004,Rank=0,StartingValue=0.05,MaxValue=0.1,ModifierValue=0,IconPath="",bActive=false)
+    MeleeAttackSpeed=(Name="Melee Attack Speed",Increment=0.008,Rank=0,StartingValue=0.05,MaxValue=0.25,ModifierValue=0,IconPath="",bActive=false)
     Movement=(Name="Movement",Increment=0.006,Rank=0,StartingValue=1.1,MaxValue=1.25,ModifierValue=0,IconPath="",bActive=false)
     DamageResistance=(Name="Damage Resistance",Increment=0.01,Rank=0,StartingValue=0,MaxValue=0.25,ModifierValue=0,IconPath="",bActive=false)
     NightVision=(Name="Night Vision",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="",bActive=false)
@@ -459,10 +463,10 @@ defaultproperties
     PerkSkills(1)=(Name="SonicResistance",Increment=0,Rank=0,StartingValue=0.4,MaxValue=0.4,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_SonicResistance",bActive=false)
     PerkSkills(2)=(Name="Vampire",Increment=0,Rank=0,StartingValue=3,MaxValue=3,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Vampire",bActive=false)
     PerkSkills(3)=(Name="Fortitude",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Fortitude",bActive=false)
-    PerkSkills(4)=(Name="FuriousDefender",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_FuriousDefender",bActive=false)
+    PerkSkills(4)=(Name="FuriousDefender",Increment=0,Rank=0,StartingValue=0.15,MaxValue=0.15,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_FuriousDefender",bActive=false)
     PerkSkills(5)=(Name="Block",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Block",bActive=false)
     PerkSkills(6)=(Name="Parry",Increment=0,Rank=0,StartingValue=0.15,MaxValue=0.15,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Parry",bActive=false)
-    PerkSkills(7)=(Name="Smash",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Smash",bActive=false)
+    PerkSkills(7)=(Name="Smash",Increment=0,Rank=0,StartingValue=0.3,MaxValue=0.3,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Smash",bActive=false)
     PerkSkills(8)=(Name="Spartan",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Spartan",bActive=false)
     PerkSkills(9)=(Name="Menace",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Menace",bActive=false)
     PrimaryWeaponClassName="KFGameContent.KFWeap_Blunt_Crovel"

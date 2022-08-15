@@ -1770,17 +1770,7 @@ simulated function TerminateEffectsOnDeath()
     SetPawnAmbientSound(none);
     WeaponAmbientEchoHandler.StopAllEchoes(bPendingDelete);
     DialogAkComponent.StopEvents();
-    if(Role < ROLE_Authority)
-    {
-        if(bEmpDisrupted)
-        {
-            AfflictionHandler.SetEMPDisrupted(false);
-        }
-        if(bEmpPanicked)
-        {
-            AfflictionHandler.SetEMPPanicked(false);
-        }
-    }
+    AfflictionHandler.ShutDown();
 }
 
 // Export UKFPawn::execCalcOctagonRegion(FFrame&, void* const)
@@ -2351,11 +2341,14 @@ simulated function name GetSpecialMoveTag()
 
 simulated function UpdateMeshForFleXCollision(optional bool bResetDefaults)
 {
+    local GameEngine Engine;
+
     if(bPlayedDeath)
     {
         return;
     }
-    if(Mesh.RBCollideWithChannels.FlexAsset && Class'Engine'.static.GetPhysXLevel() >= 2)
+    Engine = GameEngine(Class'Engine'.static.GetEngine());
+    if((Mesh.RBCollideWithChannels.FlexAsset && Class'Engine'.static.GetPhysXLevel() >= 2) && Engine.GetSystemSettingBool("FlexRigidBodiesCollisionAtHighLevel"))
     {
         Mesh.bUpdateKinematicBonesFromAnimation = true;
         Mesh.MinDistFactorForKinematicUpdate = 0;        

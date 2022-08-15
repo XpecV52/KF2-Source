@@ -46,6 +46,8 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
 {
     if((PawnOwner.Mesh.PhysicsWeight >= 1) && NextMove != 'RecoverFromRagdoll')
     {
+        PawnOwner.ClearTimer('EndKnockdown', self);
+        PawnOwner.ClearTimer('KnockdownTimer', self);
         TermKnockdownRagdoll(KFPOwner);
     }
 }

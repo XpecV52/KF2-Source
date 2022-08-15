@@ -229,8 +229,8 @@ state Command_SpecialMove
 		if( (Pawn.bCrawler || Pawn.ReachedDesiredRotation()) && AttackTarget != none )
 		{
 			`AILog( self$" Target in melee range (Dist: "$VSize(AttackTarget.Location - Pawn.Location)$"... do attack", 'Command_Attack_Melee' );
-			MyKFPawn.DoSpecialMove( GetSpecialMove(), true,, SMFlags );
-			return true;
+			MyKFPawn.DoSpecialMove( GetSpecialMove(),,, SMFlags );
+			return MyKFPawn.SpecialMove == AttackSpecialMove;
 		}
 		`AILog( self$" ExecuteSpecialMove returning false because ReachedDesiredRotation isn't done?  AttackTarget: "$AttackTarget, 'Command_Attack_Melee' );
 		return false;
