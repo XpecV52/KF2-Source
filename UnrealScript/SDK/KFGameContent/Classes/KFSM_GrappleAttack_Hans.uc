@@ -124,6 +124,7 @@ function PlayGrappleAnim()
     // Set our release timer
     bAlreadyDetachedFollower = false;
     InterruptTime = KFSkeletalMeshComponent(KFPOwner.Mesh).GetAniminterruptTime( GrappleAnims[GrappleAnimIdx] );
+    PostDrainAttackCooldown = (Duration - InterruptTime) + 0.5f;
     KFPOwner.SetTimer( InterruptTime, false, nameof(Timer_DetachFollower), self );
 
     // Scale the damage per second by the interrupt time (the moment Hans lets go of the player, not when the specialmove ends)
@@ -241,12 +242,9 @@ function Timer_DetachFollower()
     if( Follower != none )
     {
         // Have Hans and other zeds not attack this player after he just drained them
-        if( KFPOwner.WorldInfo.Game != None && KFPOwner.WorldInfo.Game.NumPlayers > 1 )
-        {
-            Follower.AIIgnoreEndTime = Follower.WorldInfo.TimeSeconds + PostDrainAttackCooldown;
-            KFPOwner.MyKFAIC.Enemy = none;
-            KFPOwner.MyKFAIC.FindNewEnemy();
-        }
+        Follower.AIIgnoreEndTime = Follower.WorldInfo.TimeSeconds + PostDrainAttackCooldown;
+        KFPOwner.MyKFAIC.Enemy = none;
+        KFPOwner.MyKFAIC.FindNewEnemy();
 
         // End special move on Follower
         Follower.EndSpecialMove();
@@ -315,8 +313,6 @@ DefaultProperties
     MaxEnemyLifeDrawThresholdHard=0.60
     MaxEnemyLifeDrawThresholdSuicidal=0.50
     MaxEnemyLifeDrawThresholdHellOnEarth=0.25
-
-    PostDrainAttackCooldown=2.5
 
     // smoke cloud explosion template
     Begin Object Class=KFGameExplosion Name=ExploTemplate0

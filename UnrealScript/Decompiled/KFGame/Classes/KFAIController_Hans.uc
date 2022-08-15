@@ -214,7 +214,7 @@ function DoSmokeGrenadeThrow(optional bool bGrenadeBarrage, optional bool bSpawn
 function NotifySpecialMoveEnded(KFSpecialMove SM)
 {
     super(KFAIController).NotifySpecialMoveEnded(SM);
-    if((MyHansPawn != none) && MyHansPawn.bPendingSmokeGrenadeBarrage)
+    if(((Enemy != none) && MyHansPawn != none) && MyHansPawn.bPendingSmokeGrenadeBarrage)
     {
         DoSmokeGrenadeThrow(true, true);
     }
@@ -635,7 +635,7 @@ function TickRangedCombatDecision()
             goto J0x89;
         }
     }
-    if((LastGrenadeAttackEvalTime == float(0)) || (WorldInfo.TimeSeconds - LastGrenadeAttackEvalTime) > GrenadeAttackEvalInterval)
+    if((Enemy != none) && (LastGrenadeAttackEvalTime == float(0)) || (WorldInfo.TimeSeconds - LastGrenadeAttackEvalTime) > GrenadeAttackEvalInterval)
     {
         LastGrenadeAttackEvalTime = WorldInfo.TimeSeconds;
         if(SetupGrenadeAttack())

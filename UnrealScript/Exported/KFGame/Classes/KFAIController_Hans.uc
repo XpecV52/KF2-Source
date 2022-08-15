@@ -313,7 +313,7 @@ function NotifySpecialMoveEnded(KFSpecialMove SM)
 {
     super.NotifySpecialMoveEnded(SM);
 
-	if( MyHansPawn != none && MyHansPawn.bPendingSmokeGrenadeBarrage )
+	if( Enemy != None && MyHansPawn != none && MyHansPawn.bPendingSmokeGrenadeBarrage )
 	{
 		DoSmokeGrenadeThrow( true, true );
 	}
@@ -881,7 +881,7 @@ function TickRangedCombatDecision()
     	}
     }
 
-    if( LastGrenadeAttackEvalTime == 0 || (WorldInfo.TimeSeconds - LastGrenadeAttackEvalTime) > GrenadeAttackEvalInterval )
+    if( Enemy != None && (LastGrenadeAttackEvalTime == 0 || (WorldInfo.TimeSeconds - LastGrenadeAttackEvalTime) > GrenadeAttackEvalInterval) )
     {
         LastGrenadeAttackEvalTime = WorldInfo.TimeSeconds;
 

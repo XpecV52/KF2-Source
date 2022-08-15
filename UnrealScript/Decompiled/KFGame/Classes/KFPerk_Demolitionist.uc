@@ -60,6 +60,7 @@ event ResetPerk()
 {
     super.ResetPerk();
     bUsedSacrifice = false;
+    InitSupplier();
 }
 
 simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType)

@@ -96,6 +96,7 @@ function PlayGrappleAnim()
     Duration = PlaySpecialMoveAnim(GrappleAnims[GrappleAnimIdx], 0);
     bAlreadyDetachedFollower = false;
     InterruptTime = KFSkeletalMeshComponent(KFPOwner.Mesh).GetAnimInterruptTime(GrappleAnims[GrappleAnimIdx]);
+    PostDrainAttackCooldown = (Duration - InterruptTime) + 0.5;
     KFPOwner.SetTimer(InterruptTime, false, 'Timer_DetachFollower', self);
     DamageMod = Duration / InterruptTime;
     if(Follower.GetHealthPercentage() > EnemyDrawLifeThreshold)
@@ -184,12 +185,9 @@ function Timer_DetachFollower()
     KFPOwner.ClearTimer('RetryCollisionTimer', self);
     if(Follower != none)
     {
-        if((KFPOwner.WorldInfo.Game != none) && KFPOwner.WorldInfo.Game.NumPlayers > 1)
-        {
-            Follower.AIIgnoreEndTime = Follower.WorldInfo.TimeSeconds + PostDrainAttackCooldown;
-            KFPOwner.MyKFAIC.Enemy = none;
-            KFPOwner.MyKFAIC.FindNewEnemy();
-        }
+        Follower.AIIgnoreEndTime = Follower.WorldInfo.TimeSeconds + PostDrainAttackCooldown;
+        KFPOwner.MyKFAIC.Enemy = none;
+        KFPOwner.MyKFAIC.FindNewEnemy();
         Follower.EndSpecialMove();
         if(bAlignPawns)
         {
@@ -233,7 +231,6 @@ defaultproperties
     MaxEnemyLifeDrawThresholdHard=0.6
     MaxEnemyLifeDrawThresholdSuicidal=0.5
     MaxEnemyLifeDrawThresholdHellOnEarth=0.25
-    PostDrainAttackCooldown=2.5
     LifeDrainSmokeExplosionActorClass=Class'KFExplosion_HansSmokeGrenade'
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'ZED_Hans_EMIT.SmokeGrenade_Explosion'

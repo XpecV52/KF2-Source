@@ -79,6 +79,7 @@ event ResetPerk()
 	Super.ResetPerk();
 
 	bUsedSacrifice = false;
+	InitSupplier();
 }
 
 
