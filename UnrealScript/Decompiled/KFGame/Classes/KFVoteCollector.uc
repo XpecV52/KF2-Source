@@ -130,19 +130,19 @@ reliable server function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, P
         CurrentVote.PlayerPRI = PRI_Kickee;
         CurrentVote.PlayerIPAddress = KickeePC.GetPlayerNetworkAddress();
         bIsVoteInProgress = true;
-        RecieveVoteKick(PRI_Kicker, true);
         Outer.GetKFPRIArray(PRIs);
         I = 0;
-        J0x4BD:
+        J0x4A9:
 
         if(I < PRIs.Length)
         {
             PRIs[I].ShowKickVote(PRI_Kickee, VoteTime, !(PRIs[I] == PRI_Kicker) || PRIs[I] == PRI_Kickee);
             ++ I;
-            goto J0x4BD;
+            goto J0x4A9;
         }
         KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', 5, CurrentVote.PlayerPRI);
-        Outer.SetTimer(float(VoteTime), false, 'ConcludeVoteKick', self);        
+        Outer.SetTimer(float(VoteTime), false, 'ConcludeVoteKick', self);
+        RecieveVoteKick(PRI_Kicker, true);        
     }
     else
     {
@@ -229,6 +229,14 @@ function bool ShouldConcludeVote()
     local int NumPRIs;
 
     KFGI = KFGameInfo(Outer.WorldInfo.Game);
+    if(KFGI != none)
+    {
+        if((KFGI.KickVotePercentage < 0) || KFGI.KickVotePercentage > 1)
+        {
+            KFGI.KickVotePercentage = 0.5;
+            KFGI.SaveConfig();
+        }
+    }
     Outer.GetKFPRIArray(PRIs);
     NumPRIs = PRIs.Length;
     if(PRIs.Find(CurrentVote.PlayerPRI != -1)
@@ -267,17 +275,25 @@ reliable server function ConcludeVoteKick()
     local KFPlayerController KickedPC;
 
     KFGI = KFGameInfo(Outer.WorldInfo.Game);
+    if(KFGI != none)
+    {
+        if((KFGI.KickVotePercentage < 0) || KFGI.KickVotePercentage > 1)
+        {
+            KFGI.KickVotePercentage = 0.5;
+            KFGI.SaveConfig();
+        }
+    }
     if(bIsVoteInProgress)
     {
         Outer.GetKFPRIArray(PRIs);
         I = 0;
-        J0x87:
+        J0x124:
 
         if(I < PRIs.Length)
         {
             PRIs[I].HideKickVote();
             ++ I;
-            goto J0x87;
+            goto J0x124;
         }
         NumPRIs = PRIs.Length;
         if(PRIs.Find(CurrentVote.PlayerPRI != -1)
@@ -289,20 +305,20 @@ reliable server function ConcludeVoteKick()
             if((CurrentVote.PlayerPRI == none) || CurrentVote.PlayerPRI.bPendingDelete)
             {
                 I = 0;
-                J0x1E2:
+                J0x27F:
 
                 if(I < Outer.WorldInfo.Game.InactivePRIArray.Length)
                 {
                     if(Outer.WorldInfo.Game.InactivePRIArray[I].UniqueId == CurrentVote.PlayerID)
                     {
                         CurrentVote.PlayerPRI = Outer.WorldInfo.Game.InactivePRIArray[I];
-                        goto J0x348;
+                        goto J0x3E5;
                     }
                     ++ I;
-                    goto J0x1E2;
+                    goto J0x27F;
                 }
             }
-            J0x348:
+            J0x3E5:
 
             if(KFGI.AccessControl != none)
             {

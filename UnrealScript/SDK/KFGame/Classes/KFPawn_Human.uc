@@ -1357,7 +1357,7 @@ function bool DoJump( bool bUpdating )
 /**
 * Toggle the flashlight on and off
 */
-simulated function ToggleFlashlight()
+simulated function ToggleEquipment()
 {
 	local bool bIsEnabled;
 

@@ -5587,7 +5587,7 @@ unreliable server function ServerPlayLevelUpDialog()
 unreliable server function ServerPlayVoiceCommsDialog( int CommsIndex )
 {
 	BroadcastLocalizedMessage( class'KFLocalMessage_VoiceComms', CommsIndex, PlayerReplicationInfo );
-	`SafeDialogManager.PlayVoiceCommandDialog( KFPawn_Human(Pawn), CommsIndex );
+	`SafeDialogManager.PlayVoiceCommandDialog( KFPawn(Pawn), CommsIndex );
 }
 
 /*********************************************************************************************

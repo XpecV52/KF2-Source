@@ -5983,7 +5983,7 @@ unreliable server function ServerPlayLevelUpDialog()
 unreliable server function ServerPlayVoiceCommsDialog( int CommsIndex )
 {
 	BroadcastLocalizedMessage( class'KFLocalMessage_VoiceComms', CommsIndex, PlayerReplicationInfo );
-	if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayVoiceCommandDialog( KFPawn_Human(Pawn), CommsIndex );
+	if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayVoiceCommandDialog( KFPawn(Pawn), CommsIndex );
 }
 
 /*********************************************************************************************

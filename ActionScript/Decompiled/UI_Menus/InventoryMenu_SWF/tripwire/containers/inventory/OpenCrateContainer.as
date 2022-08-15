@@ -33,6 +33,10 @@ package tripwire.containers.inventory
         
         public var confirmButton:TripButton;
         
+        public var itemObject:Object;
+        
+        public var bDecryptPlayed:Boolean;
+        
         public var crateHeader:TextField;
         
         public var blackBG:MovieClip;
@@ -139,12 +143,14 @@ package tripwire.containers.inventory
         
         public function onConfirmClicked(param1:ButtonEvent) : void
         {
+            this.bDecryptPlayed = false;
+            this.bItemReceived = false;
+            this.itemObject = null;
             this.closeContainer();
         }
         
         public function startAnimating() : *
         {
-            this.bItemReceived = false;
             this.bLoopingStarted = false;
             this.setCrateDecTimeline();
             this.sethighlightCrate();
@@ -156,6 +162,7 @@ package tripwire.containers.inventory
         {
             if(param1)
             {
+                this.itemObject = param1;
                 this.bItemReceived = true;
                 this.itemNameString = !!param1.label ? param1.label : "";
                 this.itemTypeText.text = !!param1.typeRarity ? param1.typeRarity : "";
@@ -464,18 +471,7 @@ package tripwire.containers.inventory
             }
             this.highlightDecTimeline.time(0);
             this.highlightDecTimeline.play();
-            if(!this.bItemReceived)
-            {
-                TweenMax.to(this.itemNameText,this.loopDuration * 2,{
-                    "scrambleText":{
-                        "text":"GAWESW-952JW9A-BNIL25-76524-WLJ2SK92-2S2",
-                        "revealDelay":this.loopDuration * 2 - 8
-                    },
-                    "useFrames":true,
-                    "onComplete":this.highlightCrateDec
-                });
-            }
-            else
+            if(this.bItemReceived && this.bDecryptPlayed)
             {
                 this.setRevealTimeline();
                 this.revealTimeline.duration(this.endAnimDuration);
@@ -488,6 +484,18 @@ package tripwire.containers.inventory
                     "useFrames":true,
                     "onComplete":this.revealTimeline.play
                 });
+            }
+            else
+            {
+                TweenMax.to(this.itemNameText,this.loopDuration * 2,{
+                    "scrambleText":{
+                        "text":"GAWESW-952JW9A-BNIL25-76524-WLJ2SK92-2S2",
+                        "revealDelay":this.loopDuration * 2 - 8
+                    },
+                    "useFrames":true,
+                    "onComplete":this.highlightCrateDec
+                });
+                this.bDecryptPlayed = true;
             }
         }
         
@@ -548,7 +556,6 @@ package tripwire.containers.inventory
         
         public function animCheck() : void
         {
-            trace("SOMETHIN IS FUCKY");
         }
         
         public function testCrate(param1:KeyboardEvent) : void

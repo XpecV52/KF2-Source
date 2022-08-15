@@ -2435,7 +2435,7 @@ function PlaySwitchToFavoriteWeaponDialog( KFPawn_Human Speaker )
  * Voice Command Dialog
  ************************************************/
 
-function PlayVoiceCommandDialog( KFPawn_Human Speaker, int CommandIndex )
+function PlayVoiceCommandDialog( KFPawn Speaker, int CommandIndex )
 {
     switch( CommandIndex )
     {

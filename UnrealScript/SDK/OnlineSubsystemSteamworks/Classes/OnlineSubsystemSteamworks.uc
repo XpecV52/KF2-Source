@@ -3683,6 +3683,7 @@ native function ShowVoIPConfigUI();
 native private function bool ValidateStat(qword UserId, int StatId, int Value);
 native private function SubmitStatValidation(qword UserId, int StatId, int Value, bool bClientInterface);
 // Inventory
+native function GetItemDefs();
 native function RefreshInventory();
 native function OpenItemPurchaseOverlay(int SKU);
 native function OpenURL(string WebsiteLink);

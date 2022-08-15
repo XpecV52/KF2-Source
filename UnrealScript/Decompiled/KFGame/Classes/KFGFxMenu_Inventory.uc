@@ -106,7 +106,7 @@ function InitInventory()
         if(ItemIndex != -1)
         {
             TempItemDetailsHolder = OnlineSub.ItemPropertiesList[ItemIndex];
-            if((CurrentInventoryFilter == 0) || CurrentInventoryFilter == (TempItemDetailsHolder.Type + 1))
+            if(((CurrentInventoryFilter == 0) || CurrentInventoryFilter == (TempItemDetailsHolder.Type + 1)) || bool(OnlineSub.CurrentInventory[I].NewlyAdded))
             {
                 ItemObject = Outer.CreateObject("Object");
                 HelperIndex = ActiveItems.Find('ItemDefinition', OnlineSub.CurrentInventory[I].Definition;
@@ -146,13 +146,13 @@ function InitInventory()
         goto J0x45;
     }
     I = 0;
-    J0x783:
+    J0x7C5:
 
     if(I < ActiveItems.Length)
     {
         ItemArray.SetElementObject(I, ActiveItems[I].GfxItemObject);
         ++ I;
-        goto J0x783;
+        goto J0x7C5;
     }
     SetObject("inventoryList", ItemArray);
     bInitialInventoryPassComplete = true;

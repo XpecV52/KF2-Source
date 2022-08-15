@@ -791,7 +791,7 @@ simulated exec function ToggleFlashlight()
 		}
 		else
 		{
-			KFP.ToggleFlashlight();
+			KFP.ToggleEquipment();
 			PlayFlashlightNVSounds( KFP, bPerkHasNightVision );
 		}
 	}
@@ -808,7 +808,7 @@ simulated function ToggleNightVIsion( KFPawn_Human KFP )
 		if( IsTimerActive( nameOf(NightVisionTimer), self ) )
 		{
 			ClearTimer( nameOf(NightVisionTimer), self );				
-			KFP.ToggleFlashlight();
+			KFP.ToggleEquipment();
 			PlayFlashlightNVSounds( KFP, bPerkHasNightVision );
 		}
 		else
@@ -823,7 +823,7 @@ simulated function ToggleNightVIsion( KFPawn_Human KFP )
 			ClearTimer( nameOf(NightVisionTimer),self );
 			SetNightVision( !bNightVisionActive );
 			PlayFlashlightNVSounds( KFP, bPerkHasNightVision );
-			KFP.ToggleFlashlight();
+			KFP.ToggleEquipment();
 		}
 		else
 		{
@@ -833,9 +833,10 @@ simulated function ToggleNightVIsion( KFPawn_Human KFP )
 	else if( KFP.bFlashlightOn )
 	{
 		PlayFlashlightNVSounds( KFP, bPerkHasNightVision );
-		KFP.ToggleFlashlight();
+		KFP.ToggleEquipment();
 	}
 }
+
 
 
 /**
@@ -857,7 +858,7 @@ simulated function NightVisionTimer()
 
 /**
  * @brief Plays flashlight/night vision related sounds
- * @details Moved this out of ToggleFlashlight()
+ * @details Moved this out of ToggleEquipment()
  * 
  * @param KFP Player's pawn
  * @param bPerkHasNightVision Perk has nigh vision or not

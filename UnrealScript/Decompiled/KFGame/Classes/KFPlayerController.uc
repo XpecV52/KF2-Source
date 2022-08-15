@@ -3622,7 +3622,7 @@ unreliable server function ServerPlayVoiceCommsDialog(int CommsIndex)
     BroadcastLocalizedMessage(Class'KFLocalMessage_VoiceComms', CommsIndex, PlayerReplicationInfo);
     if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
     {
-        KFGameInfo(WorldInfo.Game).DialogManager.PlayVoiceCommandDialog(KFPawn_Human(Pawn), CommsIndex);
+        KFGameInfo(WorldInfo.Game).DialogManager.PlayVoiceCommandDialog(KFPawn(Pawn), CommsIndex);
     }
 }
 

@@ -1785,6 +1785,9 @@ simulated function WeaponStateChanged(byte NewState, optional bool bViaReplicati
 /** Reset/Update ground speed based on perk/weapon selection (Net: Server) */
 function UpdateGroundSpeed();
 
+/** Toggle the flashlight on and off */
+simulated function ToggleEquipment();
+
 /** Server - Called when a new weapon is added or removed from inventory */
 function NotifyInventoryWeightChanged()
 {

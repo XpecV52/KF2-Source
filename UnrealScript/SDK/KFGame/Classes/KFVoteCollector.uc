@@ -149,8 +149,8 @@ reliable server function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, P
 
 		bIsVoteInProgress = true;
 
-		// Cast initial vote
-		RecieveVoteKick(PRI_Kicker, true);
+		
+		
 		GetKFPRIArray(PRIs);
 		for (i = 0; i < PRIs.Length; i++)
 		{
@@ -158,6 +158,8 @@ reliable server function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, P
 		}
 		KFGI.BroadcastLocalized(KFGI, class'KFLocalMessage', LMT_KickVoteStarted, CurrentVote.PlayerPRI);
 		SetTimer( VoteTime, false, nameof(ConcludeVoteKick), self );
+		// Cast initial vote
+		RecieveVoteKick(PRI_Kicker, true);
 	}
 	else if(PRI_Kickee == CurrentVote.PlayerPRI)
 	{
@@ -249,6 +251,16 @@ function bool ShouldConcludeVote()
 
 	KFGI = KFGameInfo(WorldInfo.Game);
 
+	// Clamp kick vote percentage to ensure it stays valid
+	if( KFGI != none )
+	{
+		if( KFGI.KickVotePercentage < 0.f || KFGI.KickVotePercentage > 1.f )
+		{
+			KFGI.KickVotePercentage = 0.5f;
+			KFGI.SaveConfig();
+		}
+	}
+
 	GetKFPRIArray(PRIs);
 	NumPRIs = PRIs.Length;
 
@@ -286,6 +298,16 @@ reliable server function ConcludeVoteKick()
 	local KFPlayerController KickedPC;
 
 	KFGI = KFGameInfo(WorldInfo.Game);
+
+	// Clamp kick vote percentage to ensure it stays valid
+	if( KFGI != none )
+	{
+		if( KFGI.KickVotePercentage < 0.f || KFGI.KickVotePercentage > 1.f )
+		{
+			KFGI.KickVotePercentage = 0.5f;
+			KFGI.SaveConfig();
+		}
+	}
 
 	if(bIsVoteInProgress)
 	{

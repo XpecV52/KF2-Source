@@ -215,7 +215,7 @@ simulated function RemoveFromInventory(Inventory ItemToRemove)
     {
         PendingWeapon = none;
     }
-    if(Instigator.Weapon == ItemToRemove)
+    if((Instigator != none) && Instigator.Weapon == ItemToRemove)
     {
         Instigator.Weapon = none;
     }
@@ -227,7 +227,7 @@ simulated function RemoveFromInventory(Inventory ItemToRemove)
     else
     {
         Item = InventoryChain;
-        J0x102:
+        J0x113:
 
         if(Item != none)
         {
@@ -235,13 +235,13 @@ simulated function RemoveFromInventory(Inventory ItemToRemove)
             {
                 bFound = true;
                 Item.Inventory = ItemToRemove.Inventory;
-                goto J0x1B4;
+                goto J0x1C5;
             }
             Item = Item.Inventory;
-            goto J0x102;
+            goto J0x113;
         }
     }
-    J0x1B4:
+    J0x1C5:
 
     if(bFound)
     {
@@ -249,7 +249,7 @@ simulated function RemoveFromInventory(Inventory ItemToRemove)
         ItemToRemove.SetOwner(none);
         ItemToRemove.Inventory = none;
     }
-    if((Instigator.Health > 0) && Instigator.Controller != none)
+    if(((Instigator != none) && Instigator.Health > 0) && Instigator.Controller != none)
     {
         if((WorldInfo.NetMode == NM_DedicatedServer) || (WorldInfo.NetMode == NM_ListenServer) && !Instigator.IsLocallyControlled())
         {

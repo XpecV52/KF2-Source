@@ -1001,6 +1001,8 @@ simulated function WeaponStateChanged(byte NewState, optional bool bViaReplicati
 
 function UpdateGroundSpeed();
 
+simulated function ToggleEquipment();
+
 function NotifyInventoryWeightChanged()
 {
     UpdateGroundSpeed();

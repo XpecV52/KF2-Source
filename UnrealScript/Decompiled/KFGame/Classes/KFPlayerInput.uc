@@ -561,7 +561,7 @@ simulated exec function ToggleFlashlight()
         }
         else
         {
-            KFP.ToggleFlashlight();
+            KFP.ToggleEquipment();
             PlayFlashlightNVSounds(KFP, bPerkHasNightVision);
         }
     }
@@ -577,7 +577,7 @@ simulated function ToggleNightVIsion(KFPawn_Human KFP)
         if(Outer.IsTimerActive('NightVisionTimer', self))
         {
             Outer.ClearTimer('NightVisionTimer', self);
-            KFP.ToggleFlashlight();
+            KFP.ToggleEquipment();
             PlayFlashlightNVSounds(KFP, bPerkHasNightVision);            
         }
         else
@@ -594,7 +594,7 @@ simulated function ToggleNightVIsion(KFPawn_Human KFP)
                 Outer.ClearTimer('NightVisionTimer', self);
                 Outer.SetNightVision(!Outer.bNightVisionActive);
                 PlayFlashlightNVSounds(KFP, bPerkHasNightVision);
-                KFP.ToggleFlashlight();                
+                KFP.ToggleEquipment();                
             }
             else
             {
@@ -606,7 +606,7 @@ simulated function ToggleNightVIsion(KFPawn_Human KFP)
             if(KFP.bFlashlightOn)
             {
                 PlayFlashlightNVSounds(KFP, bPerkHasNightVision);
-                KFP.ToggleFlashlight();
+                KFP.ToggleEquipment();
             }
         }
     }

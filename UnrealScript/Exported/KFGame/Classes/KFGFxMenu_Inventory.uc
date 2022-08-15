@@ -111,7 +111,7 @@ function InitInventory()
 		if(ItemIndex != INDEX_NONE)
 		{
 			TempItemDetailsHolder = OnlineSub.ItemPropertiesList[ItemIndex];
-			if(CurrentInventoryFilter == EInv_All || int(CurrentInventoryFilter) == int(TempItemDetailsHolder.Type) + 1) //offset
+			if(CurrentInventoryFilter == EInv_All || int(CurrentInventoryFilter) == int(TempItemDetailsHolder.Type) + 1 || bool(OnlineSub.CurrentInventory[i].NewlyAdded)) //offset
 			{
 				ItemObject = CreateObject("Object");
 				HelperIndex = ActiveItems.Find('ItemDefinition', onlineSub.CurrentInventory[i].Definition);

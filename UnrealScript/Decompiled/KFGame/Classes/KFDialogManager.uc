@@ -2147,7 +2147,7 @@ function PlaySwitchToFavoriteWeaponDialog(KFPawn_Human Speaker)
     PlayDialogEvent(Speaker, 42 + FavoriteWeaponIndex);
 }
 
-function PlayVoiceCommandDialog(KFPawn_Human Speaker, int CommandIndex)
+function PlayVoiceCommandDialog(KFPawn Speaker, int CommandIndex)
 {
     switch(CommandIndex)
     {

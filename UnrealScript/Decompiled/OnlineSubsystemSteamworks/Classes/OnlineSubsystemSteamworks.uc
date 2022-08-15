@@ -1833,6 +1833,9 @@ private native final function bool ValidateStat(QWord UserId, int StatId, int Va
 // Export UOnlineSubsystemSteamworks::execSubmitStatValidation(FFrame&, void* const)
 private native final function SubmitStatValidation(QWord UserId, int StatId, int Value, bool bClientInterface);
 
+// Export UOnlineSubsystemSteamworks::execGetItemDefs(FFrame&, void* const)
+native function GetItemDefs();
+
 // Export UOnlineSubsystemSteamworks::execRefreshInventory(FFrame&, void* const)
 native function RefreshInventory();
 

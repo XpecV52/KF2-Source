@@ -255,7 +255,7 @@ simulated function RemoveFromInventory(Inventory ItemToRemove)
 	    PendingWeapon = none;
 	}
 
-	if( Instigator.Weapon == ItemToRemove )
+	if( Instigator != none && Instigator.Weapon == ItemToRemove )
 	{
 		Instigator.Weapon = None;
 	}
@@ -286,7 +286,7 @@ simulated function RemoveFromInventory(Inventory ItemToRemove)
 		ItemToRemove.Inventory = None;
 	}
 
-	if (Instigator.Health > 0 && Instigator.Controller != none)
+	if (Instigator != none && Instigator.Health > 0 && Instigator.Controller != none)
 	{
 		if ( WorldInfo.NetMode == NM_DedicatedServer || (WorldInfo.NetMode == NM_ListenServer && !Instigator.IsLocallyControlled()) )
 		{

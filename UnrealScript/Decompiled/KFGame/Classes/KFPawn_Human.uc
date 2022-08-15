@@ -1093,7 +1093,7 @@ function bool DoJump(bool bUpdating)
     return false;
 }
 
-simulated function ToggleFlashlight()
+simulated function ToggleEquipment()
 {
     local bool bIsEnabled;
 
