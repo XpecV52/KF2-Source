@@ -473,6 +473,29 @@ class KFPawnVoiceGroupEventData_Player extends KFPawnVoiceGroupEventData;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 13
 
 defaultproperties
@@ -544,7 +567,7 @@ defaultproperties
    Events(64)=(EventID=64,Priority=6,Chance=1.000000,CoolDownTime=25.000000,Radius=350.000000,bCanPlayAlone=False,CoolDownCategory=6)
    Events(65)=(EventID=65,Priority=4,Weight=80,CoolDownTime=14.000000,Delay=0.500000,CoolDownCategory=1)
    Events(66)=(EventID=66,Priority=4,Weight=80,CoolDownTime=14.000000,Delay=0.500000,CoolDownCategory=1)
-   Events(67)=(EventID=67,Priority=4,Chance=1.000000,CoolDownTime=0.500000,Delay=0.500000,CoolDownCategory=1)
+   Events(67)=(EventID=67,Priority=3,Chance=1.000000,CoolDownTime=0.500000,Delay=0.500000,CoolDownCategory=1)
    Events(68)=(EventID=68,Priority=4,Chance=1.000000,CoolDownTime=0.500000,Delay=0.500000,bCanPlayAlone=False,CoolDownCategory=6)
    Events(69)=(EventID=69,Priority=3,Weight=100,Chance=75.000000,CoolDownTime=25.000000,Delay=0.750000,Radius=1500.000000)
    Events(70)=(EventID=70,Priority=4,Chance=0.950000,Delay=0.500000,Radius=1500.000000,bCanPlayAlone=False,CoolDownCategory=6)

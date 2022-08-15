@@ -26,6 +26,7 @@ struct native TransactionItem
 
 var transient Weapon PreviousEquippedWeapon;
 var transient KFWeap_HealerBase HealerWeapon;
+var const localized string FullHealthMsg;
 var byte GrenadeCount;
 var byte CurrentCarryBlocks;
 var byte MaxCarryBlocks;
@@ -33,8 +34,6 @@ var byte SelectedGroup;
 var byte SelectedIndex;
 var bool bInfiniteWeight;
 var bool bServerTraderMenuOpen;
-var bool bPendingFlashlight;
-var bool bToggleFlashlightOnEquip;
 var bool bAutoswitchWeapon;
 /** Sound to play when we receive ammo from an already owned weapon */
 var() AkEvent AmmoPickupSound;
@@ -291,6 +290,10 @@ reliable server final function ServerRemoveFromInventory(Inventory ItemToRemove)
         {
             WorldInfo.LogGameBalance((((string('Sell') $ ",") $ Instigator.PlayerReplicationInfo.PlayerName) $ ",") $ string(ItemToRemove.Class));
         }
+        if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+        {
+            WorldInfo.TWLogEvent("sell", Instigator.PlayerReplicationInfo, string(ItemToRemove.Class));
+        }
     }
 }
 
@@ -337,7 +340,7 @@ function bool ClassIsInInventory(class<Inventory> ItemClass)
     return false;
 }
 
-simulated function AutoSwitchLastWeapon()
+simulated function SwitchToLastWeapon()
 {
     local Weapon CurrentWeapon;
 
@@ -349,57 +352,32 @@ simulated function AutoSwitchLastWeapon()
     bAutoswitchWeapon = true;
     SetCurrentWeapon(PreviousEquippedWeapon);
     PreviousEquippedWeapon = CurrentWeapon;
-    bPendingFlashlight = bToggleFlashlightOnEquip;
-    bToggleFlashlightOnEquip = false;
     bAutoswitchWeapon = false;
 }
 
-simulated function SwitchToPrimaryFlashLightWeapon()
+simulated function KFWeapon GetBestPerkWeaponWithAmmo(class<KFPerk> PerkClass, optional bool bBackupIfEmpty)
 {
-    local KFWeapon NewWeapon, PriorityWeapon, EmptyPriorityWeapon;
-    local float HighestPriority;
+    local KFWeapon PerkWeapon, NextWeapon, BackupWeapon;
 
-    foreach InventoryActors(Class'KFWeapon', NewWeapon)
+    bBackupIfEmpty = false;
+    if(InventoryChain == none)
     {
-        if(NewWeapon.bHasFlashlight)
+        return none;
+    }
+    foreach InventoryActors(Class'KFWeapon', NextWeapon)
+    {
+        if(((NextWeapon.AssociatedPerkClass == PerkClass) && NextWeapon.HasAmmo(0)) && !NextWeapon.IsMeleeWeapon())
         {
-            bPendingFlashlight = true;
-            if(NewWeapon.HasAnyAmmo())
-            {
-                PriorityWeapon = NewWeapon;
-                break;                
-            }
-            else
-            {
-                if(NewWeapon.GroupPriority >= HighestPriority)
-                {
-                    EmptyPriorityWeapon = NewWeapon;
-                }
-            }
-            HighestPriority = NewWeapon.GroupPriority;
+            PerkWeapon = NextWeapon;
+            break;
+            continue;
+        }
+        if((NextWeapon.bIsBackupWeapon && !NextWeapon.IsMeleeWeapon()) && NextWeapon.HasAmmo(0))
+        {
+            BackupWeapon = NextWeapon;
         }        
     }    
-    if(PriorityWeapon != none)
-    {
-        SetCurrentWeapon(PriorityWeapon);        
-    }
-    else
-    {
-        if(EmptyPriorityWeapon != none)
-        {
-            SetCurrentWeapon(EmptyPriorityWeapon);
-        }
-    }
-}
-
-simulated function ChangedWeapon()
-{
-    super.ChangedWeapon();
-    if(bPendingFlashlight)
-    {
-        KFPawn_Human(Instigator).ToggleFlashlight();
-        bPendingFlashlight = false;
-    }
+    return ((PerkWeapon != none) ? PerkWeapon : BackupWeapon);
 }
 
 simulated function KFWeapon GetNextGroupedWeapon(byte GroupID, optional bool bGetFirstWeapon)
@@ -472,6 +450,68 @@ simulated function HighlightPrevWeapon()
     HighlightWeapon(CandidateWeapon);
 }
 
+simulated function GamePadNextWeapon()
+{
+    local Weapon StartWeapon, CandidateWeapon, W;
+    local bool bBreakNext;
+
+    StartWeapon = Instigator.Weapon;
+    if(PendingWeapon != none)
+    {
+        StartWeapon = PendingWeapon;
+    }
+    foreach InventoryActors(Class'Weapon', W)
+    {
+        if(bBreakNext || StartWeapon == none)
+        {
+            if(!ShouldSkipGamePadNextWeapon(W))
+            {
+                CandidateWeapon = W;
+                break;
+            }
+        }
+        if(W == StartWeapon)
+        {
+            bBreakNext = true;
+        }        
+    }    
+    if(CandidateWeapon == none)
+    {
+        foreach InventoryActors(Class'Weapon', W)
+        {
+            if(!ShouldSkipGamePadNextWeapon(W))
+            {
+                CandidateWeapon = W;
+                break;
+            }            
+        }        
+    }
+    if(CandidateWeapon == Instigator.Weapon)
+    {
+        return;
+    }
+    SetCurrentWeapon(CandidateWeapon);
+}
+
+function bool ShouldSkipGamePadNextWeapon(Weapon CandidateWeapon)
+{
+    local KFWeapon KFW;
+
+    KFW = KFWeapon(CandidateWeapon);
+    if(KFW != none)
+    {
+        if(KFW.InventoryGroup == 3)
+        {
+            return true;
+        }
+        if(!KFW.HasAnyAmmo())
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 simulated function HighlightNextWeapon()
 {
     local Weapon StartWeapon, CandidateWeapon, W;
@@ -540,10 +580,10 @@ reliable client simulated function SetCurrentWeapon(Weapon DesiredWeapon)
         {
             DesiredKFW.bIronSightOnBringUp = bCurrentWeaponUsingSights;
         }
-        if(!bAutoswitchWeapon)
+        if(DesiredKFW.InventoryGroup != 3)
         {
+            PreviousEquippedWeapon = CurrentWeapon;
         }
-        PreviousEquippedWeapon = CurrentWeapon;
         super.SetCurrentWeapon(DesiredWeapon);
         UpdateHUD();
     }
@@ -656,10 +696,15 @@ function SelectCurrentWeapon(byte GroupIndex, byte WeaponIndex)
 simulated function AttemptQuickHeal()
 {
     local KFWeap_HealerBase W;
-    local KFWeapon InstigatorKFWeapon;
+    local KFPlayerController KFPC;
 
     if(Instigator.Health >= Instigator.HealthMax)
     {
+        KFPC = KFPlayerController(Instigator.Owner);
+        if((KFPC != none) && KFPC.MyGFxHUD != none)
+        {
+            KFPC.MyGFxHUD.ShowNonCriticalMessage(FullHealthMsg);
+        }
         return;
     }
     if((KFWeap_HealerBase(Instigator.Weapon) != none) && !Instigator.Weapon.IsFiring())
@@ -667,12 +712,10 @@ simulated function AttemptQuickHeal()
         Instigator.Weapon.StartFire(1);
         return;
     }
-    InstigatorKFWeapon = KFWeapon(Instigator.Weapon);
     foreach InventoryActors(Class'KFWeap_HealerBase', W)
     {
         if((W != Instigator.Weapon) && W.HasAmmo(1))
         {
-            bToggleFlashlightOnEquip = ((InstigatorKFWeapon != none) && InstigatorKFWeapon.FlashLight != none) && InstigatorKFWeapon.FlashLight.bEnabled;
             PreviousEquippedWeapon = Instigator.Weapon;
             W.bQuickHealMode = true;
             SetCurrentWeapon(W);
@@ -716,6 +759,7 @@ simulated function QuickWeld()
                         if(KFW.IsA('KFWeap_Welder'))
                         {
                             SetCurrentWeapon(KFW);
+                            ShowAllHUDGroups();
                             break;
                         }                        
                     }                    
@@ -795,13 +839,16 @@ reliable server function ServerThrowMoney()
 
 simulated function bool CanCarryWeapon(class<KFWeapon> WeaponClass)
 {
+    local class<KFWeap_DualBase> DualWeaponClass;
+
     if(bServerTraderMenuOpen && IsTransactionWeapon(WeaponClass.Name))
     {
         return false;
     }
-    if((WeaponClass.default.DualClass != none) && ClassIsInInventory(WeaponClass))
+    DualWeaponClass = class<KFWeap_DualBase>(WeaponClass);
+    if(((DualWeaponClass != none) && DualWeaponClass.default.SingleClass != none) && ClassIsInInventory(DualWeaponClass.default.SingleClass))
     {
-        if((((CurrentCarryBlocks - WeaponClass.default.InventorySize) + WeaponClass.default.DualClass.default.InventorySize) <= MaxCarryBlocks) || bInfiniteWeight)
+        if((((CurrentCarryBlocks + DualWeaponClass.default.InventorySize) - DualWeaponClass.default.SingleClass.default.InventorySize) <= MaxCarryBlocks) || bInfiniteWeight)
         {
             return true;            
         }
@@ -834,17 +881,6 @@ simulated function bool IsTransactionWeapon(name WeaponClassName)
         goto J0x17;
     }
     return false;
-}
-
-function RemoveItemFromTransaction(name ClassName)
-{
-    local int Idx;
-
-    Idx = GetTransactionItemIndex(ClassName);
-    if(Idx != -1)
-    {
-        TransactionItems.Remove(Idx, 1;
-    }
 }
 
 function bool AddAmmoFromPickup(KFWeapon KFW, optional Inventory Pickup)
@@ -1004,12 +1040,11 @@ reliable server function ServerCloseTraderMenu()
         KFWClass = class<KFWeapon>(DynamicLoadObject(TransactionItems[I].DLOString, Class'Class'));
         if(KFWClass != none)
         {
-            CurrentCarryBlocks -= KFWClass.default.InventorySize;
+            AddCurrentCarryBlocks(-KFWClass.default.InventorySize);
             KFWeap = KFWeapon(CreateInventory(KFWClass));
             if(KFWeap != none)
             {
-                KFWeap.AddAmmo(TransactionItems[I].AddedAmmo[0]);
-                KFWeap.AddSecondaryAmmo(TransactionItems[I].AddedAmmo[1]);
+                KFWeap.AddTransactionAmmo(TransactionItems[I].AddedAmmo[0], TransactionItems[I].AddedAmmo[1]);
             }
             if(((WorldInfo.Game != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress())
             {
@@ -1019,6 +1054,10 @@ reliable server function ServerCloseTraderMenu()
             {
                 WorldInfo.LogGameBalance((((string('Buy') $ ",") $ Instigator.PlayerReplicationInfo.PlayerName) $ ",") $ string(KFWClass));
             }
+            if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+            {
+                WorldInfo.TWLogEvent("buy", Instigator.PlayerReplicationInfo, string(KFWClass));
+            }
         }
         TransactionItems.Remove(I, 1;
         -- I;
@@ -1026,11 +1065,11 @@ reliable server function ServerCloseTraderMenu()
     }
 }
 
-final simulated function BuyAmmo(int AmountPurchased, KFGFxMenu_Trader.EItemType ItemType, optional byte ListIndex, optional byte ItemIndex, optional bool bSecondaryAmmo)
+final simulated function BuyAmmo(int AmountPurchased, KFGFxMenu_Trader.EItemType ItemType, optional byte ItemIndex, optional bool bSecondaryAmmo)
 {
     if(ItemType == 0)
     {
-        ServerBuyAmmo(AmountPurchased, ListIndex, ItemIndex, bSecondaryAmmo);        
+        ServerBuyAmmo(AmountPurchased, ItemIndex, bSecondaryAmmo);        
     }
     else
     {
@@ -1048,7 +1087,7 @@ final simulated function BuyAmmo(int AmountPurchased, KFGFxMenu_Trader.EItemType
     }
 }
 
-private reliable server final function ServerBuyAmmo(int AmountPurchased, byte ListIndex, byte ItemIndex, bool bSecondaryAmmo)
+private reliable server final function ServerBuyAmmo(int AmountPurchased, byte ItemIndex, bool bSecondaryAmmo)
 {
     local STraderItem WeaponItem;
     local KFWeapon KFW;
@@ -1056,7 +1095,7 @@ private reliable server final function ServerBuyAmmo(int AmountPurchased, byte L
 
     if((Role == ROLE_Authority) && bServerTraderMenuOpen)
     {
-        if(GetTraderItemFromWeaponLists(WeaponItem, ListIndex, ItemIndex))
+        if(GetTraderItemFromWeaponLists(WeaponItem, ItemIndex))
         {
             if(!ProcessAmmoDosh(WeaponItem, AmountPurchased, bSecondaryAmmo))
             {
@@ -1075,6 +1114,10 @@ private reliable server final function ServerBuyAmmo(int AmountPurchased, byte L
                     if(Class'KFGameInfo'.static.AllowBalanceLogging())
                     {
                         WorldInfo.LogGameBalance(((((((string('Buy') $ ",") $ Instigator.PlayerReplicationInfo.PlayerName) $ ",") $ "Ammo,") @ string(KFW.Class)) $ ",") @ string(AmountPurchased));
+                    }
+                    if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+                    {
+                        WorldInfo.TWLogEvent("buy", Instigator.PlayerReplicationInfo, "ammo", string(KFW.Class), "#" $ string(AmountPurchased));
                     }                    
                 }
                 else
@@ -1087,6 +1130,10 @@ private reliable server final function ServerBuyAmmo(int AmountPurchased, byte L
                     if(Class'KFGameInfo'.static.AllowBalanceLogging())
                     {
                         WorldInfo.LogGameBalance(((((((string('Buy') $ ",") $ Instigator.PlayerReplicationInfo.PlayerName) $ ",") $ "S.Ammo,") @ string(KFW.Class)) $ ",") @ string(AmountPurchased));
+                    }
+                    if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+                    {
+                        WorldInfo.TWLogEvent("buy", Instigator.PlayerReplicationInfo, "S.ammo", string(KFW.Class), "#" $ string(AmountPurchased));
                     }
                 }                
             }
@@ -1102,6 +1149,25 @@ private reliable server final function ServerBuyAmmo(int AmountPurchased, byte L
                         TransactionItems[TransactionIndex].AddedAmmo[AmmoTypeIndex] += AmountPurchased;
                     }
                 }
+            }
+        }
+    }
+}
+
+private reliable server final event ServerAddTransactionAmmo(int AmountAdded, byte ItemIndex, bool bSecondaryAmmo)
+{
+    local STraderItem WeaponItem;
+    local byte AmmoTypeIndex, TransactionIndex;
+
+    if(bServerTraderMenuOpen)
+    {
+        if(GetTraderItemFromWeaponLists(WeaponItem, ItemIndex))
+        {
+            TransactionIndex = byte(GetTransactionItemIndex(WeaponItem.ClassName));
+            if(TransactionIndex != -1)
+            {
+                AmmoTypeIndex = byte(bSecondaryAmmo);
+                TransactionItems[TransactionIndex].AddedAmmo[AmmoTypeIndex] += AmountAdded;
             }
         }
     }
@@ -1148,38 +1214,68 @@ private reliable server final function ServerBuyGrenade(int AmountPurchased)
             {
                 WorldInfo.LogGameBalance((((((string('Buy') $ ",") $ Instigator.PlayerReplicationInfo.PlayerName) $ ",") $ "Grenades(s),") $ ",") @ string(AmountPurchased));
             }
+            if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+            {
+                WorldInfo.TWLogEvent("buy", Instigator.PlayerReplicationInfo, "grenades", "#" $ string(AmountPurchased));
+            }
         }
     }
 }
 
-reliable server final function ServerBuyWeapon(byte ListIndex, byte ItemIndex)
+reliable server final function ServerBuyWeapon(byte ItemIndex)
 {
     local STraderItem PurchasedItem;
-    local TransactionItem NewTransactionItem;
+    local int BlocksRequired;
 
     if((Role == ROLE_Authority) && bServerTraderMenuOpen)
     {
-        if(GetTraderItemFromWeaponLists(PurchasedItem, ListIndex, ItemIndex))
+        if(GetTraderItemFromWeaponLists(PurchasedItem, ItemIndex))
         {
-            if((CurrentCarryBlocks > (CurrentCarryBlocks + PurchasedItem.BlocksRequired)) || !ProcessWeaponDosh(PurchasedItem))
+            BlocksRequired = GetDisplayedBlocksRequiredFor(PurchasedItem);
+            if((CurrentCarryBlocks > (CurrentCarryBlocks + BlocksRequired)) || !ProcessWeaponDosh(PurchasedItem))
             {
                 return;
             }
-            NewTransactionItem.ClassName = PurchasedItem.ClassName;
-            NewTransactionItem.DLOString = string(PurchasedItem.PathName);
-            NewTransactionItem.AddedAmmo[0] = 0;
-            NewTransactionItem.AddedAmmo[1] = 0;
-            TransactionItems.AddItem(NewTransactionItem;
-            if((PurchasedItem.SingleClassName != 'None') && IsTransactionWeapon(PurchasedItem.SingleClassName))
-            {
-                RemoveItemFromTransaction(PurchasedItem.SingleClassName);
-            }
-            CurrentCarryBlocks += PurchasedItem.BlocksRequired;
+            AddTransactionItem(PurchasedItem);
         }
     }
 }
 
-reliable server final function ServerSellWeapon(byte ListIndex, byte ItemIndex)
+function AddCurrentCarryBlocks(int AddAmount)
+{
+    CurrentCarryBlocks += byte(AddAmount);
+}
+
+final function AddTransactionItem(const out STraderItem ItemToAdd)
+{
+    local TransactionItem NewTransactionItem;
+
+    if((Role < ROLE_Authority) || !bServerTraderMenuOpen)
+    {
+        return;
+    }
+    NewTransactionItem.ClassName = ItemToAdd.ClassName;
+    NewTransactionItem.DLOString = ItemToAdd.WeaponDef.default.WeaponClassPath;
+    NewTransactionItem.AddedAmmo[0] = 0;
+    NewTransactionItem.AddedAmmo[1] = 0;
+    TransactionItems.AddItem(NewTransactionItem;
+    AddCurrentCarryBlocks(ItemToAdd.BlocksRequired);
+}
+
+reliable server final function ServerAddTransactionItem(byte ItemIndex)
+{
+    local STraderItem PurchasedItem;
+
+    if((Role == ROLE_Authority) && bServerTraderMenuOpen)
+    {
+        if(GetTraderItemFromWeaponLists(PurchasedItem, ItemIndex))
+        {
+            AddTransactionItem(PurchasedItem);
+        }
+    }
+}
+
+reliable server final function ServerSellWeapon(byte ItemIndex)
 {
     local STraderItem SoldItem;
     local int SellPrice, TransactionIndex;
@@ -1189,7 +1285,7 @@ reliable server final function ServerSellWeapon(byte ListIndex, byte ItemIndex)
     if((Role == ROLE_Authority) && bServerTraderMenuOpen)
     {
         KFPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
-        if((KFPRI != none) && GetTraderItemFromWeaponLists(SoldItem, ListIndex, ItemIndex))
+        if((KFPRI != none) && GetTraderItemFromWeaponLists(SoldItem, ItemIndex))
         {
             GetWeaponFromClass(KFW, SoldItem.ClassName);
             if(KFW != none)
@@ -1205,10 +1301,38 @@ reliable server final function ServerSellWeapon(byte ListIndex, byte ItemIndex)
                 {
                     SellPrice = GetAdjustedSellPriceFor(SoldItem);
                     KFPRI.AddDosh(SellPrice);
-                    CurrentCarryBlocks -= SoldItem.BlocksRequired;
-                    TransactionItems.Remove(TransactionIndex, 1;
+                    RemoveTransactionItem(SoldItem);
                 }
             }
+        }
+    }
+}
+
+final function RemoveTransactionItem(const out STraderItem ItemToRemove)
+{
+    local int TransactionIndex;
+
+    if((Role < ROLE_Authority) || !bServerTraderMenuOpen)
+    {
+        return;
+    }
+    TransactionIndex = GetTransactionItemIndex(ItemToRemove.ClassName);
+    if(TransactionIndex != -1)
+    {
+        AddCurrentCarryBlocks(-ItemToRemove.BlocksRequired);
+        TransactionItems.Remove(TransactionIndex, 1;
+    }
+}
+
+reliable server final function ServerRemoveTransactionItem(int ItemIndex)
+{
+    local STraderItem ItemToRemove;
+
+    if(bServerTraderMenuOpen)
+    {
+        if(GetTraderItemFromWeaponLists(ItemToRemove, byte(ItemIndex)))
+        {
+            RemoveTransactionItem(ItemToRemove);
         }
     }
 }
@@ -1232,7 +1356,7 @@ final function int GetTransactionItemIndex(name ClassName)
     return -1;
 }
 
-final function GetWeaponFromClass(out KFWeapon KFW, name ClassName)
+final simulated function GetWeaponFromClass(out KFWeapon KFW, name ClassName)
 {
     local Inventory Item;
 
@@ -1280,13 +1404,13 @@ private final function bool ProcessAmmoDosh(out STraderItem PurchasedItem, int A
     {
         if(bSecondaryAmmo)
         {
-            PricePerMag = float(PurchasedItem.SecondaryAmmoMagPrice);
-            MagSize = float(PurchasedItem.SecondaryAmmoMagSize);
+            PricePerMag = float(PurchasedItem.WeaponDef.default.SecondaryAmmoMagPrice);
+            MagSize = float(PurchasedItem.WeaponDef.default.SecondaryAmmoMagSize);
             BuyPrice = FCeil((PricePerMag / MagSize) * float(AdditionalAmmo));            
         }
         else
         {
-            PricePerMag = float(PurchasedItem.AmmoPricePerMagazine);
+            PricePerMag = float(PurchasedItem.WeaponDef.default.AmmoPricePerMag);
             MagSize = float(PurchasedItem.MagazineCapacity);
             BuyPrice = FCeil((PricePerMag / MagSize) * float(AdditionalAmmo));
         }
@@ -1312,7 +1436,7 @@ private final function bool ProcessGrenadeDosh(int AmountPurchased)
     if((KFPC != none) && KFPRI != none)
     {
         TraderItems = KFGameReplicationInfo(WorldInfo.GRI).TraderItems;
-        BuyPrice = TraderItems.GetGrenadeByPerk(KFPC.CurrentPerk.Class).AmmoPricePerMagazine * AmountPurchased;
+        BuyPrice = TraderItems.GrenadePrice * AmountPurchased;
         if(float(BuyPrice) <= KFPRI.Score)
         {
             KFPRI.AddDosh(-BuyPrice);
@@ -1329,14 +1453,14 @@ private final function bool ProcessArmorDosh(int PercentPurchased)
     local KFGFxObject_TraderItems TraderItems;
     local KFPlayerController KFPC;
     local KFPerk CurrentPerk;
-    local float ArmorPricePerPercent;
+    local int ArmorPricePerPercent;
     local KFPlayerReplicationInfo KFPRI;
 
     KFPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
     if(KFPRI != none)
     {
         TraderItems = KFGameReplicationInfo(WorldInfo.GRI).TraderItems;
-        ArmorPricePerPercent = float(TraderItems.ArmorItem.AmmoPricePerMagazine);
+        ArmorPricePerPercent = TraderItems.ArmorPrice;
         KFPC = KFPlayerController(Instigator.Owner);
         if(KFPC != none)
         {
@@ -1346,7 +1470,7 @@ private final function bool ProcessArmorDosh(int PercentPurchased)
                 ArmorPricePerPercent *= CurrentPerk.GetArmorDiscountMod();
             }
         }
-        BuyPrice = FCeil(ArmorPricePerPercent * float(PercentPurchased));
+        BuyPrice = FCeil(float(ArmorPricePerPercent * PercentPurchased));
         if(float(BuyPrice) <= KFPRI.Score)
         {
             KFPRI.AddDosh(-BuyPrice);
@@ -1357,19 +1481,14 @@ private final function bool ProcessArmorDosh(int PercentPurchased)
     return false;
 }
 
-private final function bool GetTraderItemFromWeaponLists(out STraderItem TraderItem, byte ListIndex, byte ItemIndex)
+private final function bool GetTraderItemFromWeaponLists(out STraderItem TraderItem, byte ItemIndex)
 {
     local KFGFxObject_TraderItems TraderItemsObject;
 
     TraderItemsObject = KFGameReplicationInfo(WorldInfo.GRI).TraderItems;
-    if(ListIndex < TraderItemsObject.TraderItemList.Length)
+    if(ItemIndex < TraderItemsObject.SaleItems.Length)
     {
-        TraderItem = TraderItemsObject.TraderItemList[ListIndex].ItemList[ItemIndex];
-        return true;        
-    }
-    else
-    {
-        TraderItem = TraderItemsObject.OffPerkItems[ItemIndex];
+        TraderItem = TraderItemsObject.SaleItems[ItemIndex];
         return true;
     }
     return false;
@@ -1379,7 +1498,7 @@ simulated function int GetAdjustedBuyPriceFor(const out STraderItem ShopItem, co
 {
     local int AdjustedBuyPrice, I;
 
-    AdjustedBuyPrice = ShopItem.BuyPrice;
+    AdjustedBuyPrice = ShopItem.WeaponDef.default.BuyPrice;
     if(ShopItem.SingleClassName != 'None')
     {
         if(GetIsOwned(ShopItem.SingleClassName))
@@ -1391,22 +1510,22 @@ simulated function int GetAdjustedBuyPriceFor(const out STraderItem ShopItem, co
             if(TraderOwnedItems.Length > 0)
             {
                 I = 0;
-                J0xA8:
+                J0xBD:
 
                 if(I < TraderOwnedItems.Length)
                 {
                     if(TraderOwnedItems[I].DefaultItem.ClassName == ShopItem.SingleClassName)
                     {
                         AdjustedBuyPrice *= 0.5;
-                        goto J0x13B;
+                        goto J0x150;
                     }
                     ++ I;
-                    goto J0xA8;
+                    goto J0xBD;
                 }
             }
         }
     }
-    J0x13B:
+    J0x150:
 
     return AdjustedBuyPrice;
 }
@@ -1417,17 +1536,30 @@ simulated function int GetAdjustedSellPriceFor(const out STraderItem OwnedItem, 
 
     if((OwnedWeapon != none) && OwnedWeapon.bGivenAtStart)
     {
-        AdjustedSellPrice = int(float(OwnedItem.BuyPrice) * StartedWithWeaponPriceModifier);        
+        AdjustedSellPrice = int(float(OwnedItem.WeaponDef.default.BuyPrice) * StartedWithWeaponPriceModifier);        
     }
     else
     {
-        AdjustedSellPrice = int(float(OwnedItem.BuyPrice) * SellPriceModifier);
+        AdjustedSellPrice = int(float(OwnedItem.WeaponDef.default.BuyPrice) * SellPriceModifier);
     }
     if(OwnedItem.SingleClassName != 'None')
     {
         AdjustedSellPrice *= 0.5;
     }
     return AdjustedSellPrice;
+}
+
+simulated function int GetDisplayedBlocksRequiredFor(const out STraderItem ShopItem)
+{
+    if((ShopItem.SingleClassName == 'None') || ShopItem.SingleClassName == 'KFWeap_Pistol_9mm')
+    {
+        return ShopItem.BlocksRequired;
+    }
+    if(GetIsOwned(ShopItem.SingleClassName))
+    {
+        return ShopItem.BlocksRequired / 2;
+    }
+    return ShopItem.BlocksRequired;
 }
 
 simulated function bool GetIsOwned(name ClassName)
@@ -1473,6 +1605,7 @@ simulated event DiscardInventory()
 
 defaultproperties
 {
+    FullHealthMsg="Health Full"
     MaxCarryBlocks=15
     AmmoPickupSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Ammo'
     ItemPickupSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Weapon'

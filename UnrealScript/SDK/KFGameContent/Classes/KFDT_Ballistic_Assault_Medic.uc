@@ -66,7 +66,7 @@ defaultproperties
 	LegStumblePower=117
 	GunHitPower=116
 
-	AARWeaponID=`AAR_MedicRifle
+	WeaponDef=class'KFWeapDef_MedicRifle'
 
 	//Perk
 	ModifierPerkList(0)=class'KFPerk_FieldMedic'

@@ -162,7 +162,9 @@ function GiveArmor( Pawn P )
 	{
   		ActivateNewPickup(P);
   
-  		`BalanceLog(class'KFGameInfo'.const.GBE_Pickup, P.PlayerReplicationInfo, "Armor");
+		`BalanceLog(class'KFGameInfo'.const.GBE_Pickup, P.PlayerReplicationInfo, "Armor");
+		`AnalyticsLog(("pickup", P.PlayerReplicationInfo, "armor"));
+
 	}
 }
 
@@ -210,6 +212,8 @@ function GiveWeapon( Pawn P )
         ActivateNewPickup(P);
 
 		`BalanceLog(class'KFGameInfo'.const.GBE_Pickup, P.PlayerReplicationInfo, InventoryClass);
+		`AnalyticsLog(("pickup", P.PlayerReplicationInfo, InventoryClass));
+
 	}
 }
 

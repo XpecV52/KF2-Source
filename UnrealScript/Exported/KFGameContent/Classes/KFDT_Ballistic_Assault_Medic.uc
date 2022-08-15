@@ -49,65 +49,6 @@ class KFDT_Ballistic_Assault_Medic extends KFDT_Ballistic_AssaultRifle
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -169,7 +110,7 @@ static function bool CheckMedicBleed( out int InDamage, out class<KFDamageType> 
 
 defaultproperties
 {
-   AARWeaponID=24
+   WeaponDef=Class'KFGame.KFWeapDef_MedicRifle'
    StumblePower=20
    LegStumblePower=117
    GunHitPower=116
@@ -178,5 +119,5 @@ defaultproperties
    KDeathVel=135.000000
    KDeathUpKick=-200.000000
    Name="Default__KFDT_Ballistic_Assault_Medic"
-   ObjectArchetype=KFDT_Ballistic_AssaultRifle'KFGameContent.Default__KFDT_Ballistic_AssaultRifle'
+   ObjectArchetype=KFDT_Ballistic_AssaultRifle'kfgamecontent.Default__KFDT_Ballistic_AssaultRifle'
 }

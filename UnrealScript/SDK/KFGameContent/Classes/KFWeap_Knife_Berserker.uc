@@ -18,12 +18,10 @@ defaultproperties
 		SkeletalMesh=SkeletalMesh'WEP_1P_BerserkerKnife_MESH.Wep_1stP_BerserkerKnife_Rig'
 		AnimSets(0)=AnimSet'WEP_1P_CommandoKnife_ANIM.Wep_1stP_CommKnife_Anim'
 	End Object
-
 	
 	// Inventory
-	FilterTypeUI=FT_Melee
 	AssociatedPerkClass=class'KFPerk_Berserker'
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_BerserkerKnife'
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_BerserkerKnife'
 
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Slashing_Knife_Berserker'
 	InstantHitDamageTypes(HEAVY_ATK_FIREMODE)=class'KFDT_Slashing_KnifeHeavy_Berserker'

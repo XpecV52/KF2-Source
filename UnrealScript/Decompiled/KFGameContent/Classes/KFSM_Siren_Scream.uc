@@ -142,7 +142,7 @@ defaultproperties
         ActorClassToIgnoreForDamage=Class'KFGame.KFPawn_Monster'
         MyDamageType=Class'KFGame.KFDT_Sonic'
         KnockDownStrength=0
-        MomentumTransferScale=0
+        MomentumTransferScale=100
         CamShake=KFCameraShake'FX_CameraShake_Arch.Misc_Explosions.SirenScream'
     object end
     // Reference: KFGameExplosion'Default__KFSM_Siren_Scream.ExploTemplate0'

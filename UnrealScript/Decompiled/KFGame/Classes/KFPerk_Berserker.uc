@@ -157,9 +157,9 @@ static simulated function GetPassiveStrings(out array<string> PassiveValues, out
     PassiveValues[3] = string(Round((GetPassiveValue(default.DamageResistance, Level)) * float(100))) $ "%";
     PassiveValues[4] = "";
     PassiveValues[5] = "";
-    Increments[0] = ((("[" @ ("25% + " @ string(int(default.BerserkerDamage.Increment * float(100))))) $ "% /") @ default.LevelString) @ "]";
-    Increments[1] = (((("[" @ "5% + .") @ string(int(default.MeleeAttackSpeed.Increment * float(1000)))) $ "% /") @ default.LevelString) @ "]";
-    Increments[2] = (((("[" @ "10% + .") $ string(int(default.Movement.Increment * float(1000)))) $ "% /") @ default.LevelString) @ "]";
+    Increments[0] = ((("[" @ ("25% + " $ string(int(default.BerserkerDamage.Increment * float(100))))) $ "% /") @ default.LevelString) @ "]";
+    Increments[1] = (((("[" @ "5% + 0.") $ string(int(default.MeleeAttackSpeed.Increment * float(1000)))) $ "% /") @ default.LevelString) @ "]";
+    Increments[2] = (((("[" @ "10% + 0.") $ string(int(default.Movement.Increment * float(1000)))) $ "% /") @ default.LevelString) @ "]";
     Increments[3] = ((("[" @ string(int(default.DamageResistance.Increment * float(100)))) $ "% /") @ default.LevelString) @ "]";
     Increments[4] = "";
     Increments[5] = "";
@@ -233,10 +233,11 @@ function ModifyScreamEffectDuration(out float InDuration)
     }
 }
 
-function float GetKnockdownPowerModifier(optional class<DamageType> DamageType)
+function float GetKnockdownPowerModifier(optional class<DamageType> DamageType, optional byte BodyPartt, optional bool bIsSprinting)
 {
     local KFWeapon KFW;
 
+    bIsSprinting = false;
     KFW = GetOwnerWeapon();
     if(IsSmashActive() && KFW.IsMeleeWeapon())
     {
@@ -245,7 +246,7 @@ function float GetKnockdownPowerModifier(optional class<DamageType> DamageType)
     return 1;
 }
 
-function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier)
+function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart)
 {
     if(IsMenaceActive())
     {
@@ -459,15 +460,14 @@ defaultproperties
     EXPAction2="Kill zeds near a player with a Perk weapon"
     PerkSkills(0)=(Name="PoisonResistance",Increment=0,Rank=0,StartingValue=0.4,MaxValue=0.4,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_PoisonResistance",bActive=false)
     PerkSkills(1)=(Name="SonicResistance",Increment=0,Rank=0,StartingValue=0.4,MaxValue=0.4,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_SonicResistance",bActive=false)
-    PerkSkills(2)=(Name="Vampire",Increment=0,Rank=0,StartingValue=3,MaxValue=3,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Vampire",bActive=false)
-    PerkSkills(3)=(Name="Fortitude",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Fortitude",bActive=false)
+    PerkSkills(2)=(Name="Vampire",Increment=0,Rank=0,StartingValue=4,MaxValue=4,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Vampire",bActive=false)
+    PerkSkills(3)=(Name="Fortitude",Increment=0,Rank=0,StartingValue=1.75,MaxValue=1.75,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Fortitude",bActive=false)
     PerkSkills(4)=(Name="FuriousDefender",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_FuriousDefender",bActive=false)
     PerkSkills(5)=(Name="Block",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Block",bActive=false)
     PerkSkills(6)=(Name="Parry",Increment=0,Rank=0,StartingValue=0.15,MaxValue=0.15,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Parry",bActive=false)
-    PerkSkills(7)=(Name="Smash",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Smash",bActive=false)
+    PerkSkills(7)=(Name="Smash",Increment=0,Rank=0,StartingValue=0.25,MaxValue=0.25,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Smash",bActive=false)
     PerkSkills(8)=(Name="Spartan",Increment=0,Rank=0,StartingValue=0.7,MaxValue=0.7,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Spartan",bActive=false)
     PerkSkills(9)=(Name="Menace",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Menace",bActive=false)
-    PrimaryWeaponClassName="KFGameContent.KFWeap_Blunt_Crovel"
-    MeleeWeaponClassName="KFGameContent.KFWeap_Knife_Berserker"
-    GrenadeClassName="KFGameContent.KFProj_EMPGrenade"
+    PrimaryWeaponDef=Class'KFWeapDef_Crovel'
+    KnifeWeaponDef=Class'KFweapDef_Knife_Berserker'
 }

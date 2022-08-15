@@ -10,6 +10,7 @@ class KFSM_GrappleVictim extends KFSM_InteractionPawnFollower;
 var transient KFPlayerController OwnerController;
 var AkEvent GrabbedSoundModeStartEvent;
 var AkEvent GrabbedSoundModeEndEvent;
+var float GrabVictimCooldownTime;
 
 function SpecialMoveStarted(bool bForced, name PrevMove)
 {
@@ -53,6 +54,10 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
             OwnerController.PostAkEvent(GrabbedSoundModeEndEvent);
         }
     }
+    if(PawnOwner.Role == ROLE_Authority)
+    {
+        KFPOwner.SetWeakGrabCoolDown(GrabVictimCooldownTime);
+    }
 }
 
 function SetGrabEffect(KFPlayerController KFPC, bool bValue)
@@ -64,6 +69,7 @@ defaultproperties
 {
     GrabbedSoundModeStartEvent=AkEvent'WW_UI_PlayerCharacter.Play_Grab_Start'
     GrabbedSoundModeEndEvent=AkEvent'WW_UI_PlayerCharacter.Play_Grab_Stop'
+    GrabVictimCooldownTime=5
     bAllowThirdPersonWeaponAnims=true
     bDisableMovement=true
     Handle=SM_GrappleVictim

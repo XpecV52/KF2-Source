@@ -43,19 +43,18 @@ simulated protected function StopFlightEffects();
 defaultproperties
 {
    FuseTime=1.000000
-   UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicGrenade'
    bAllowTossDuringZedGrabRotation=True
-   ExplosionActorClass=Class'KFGameContent.KFExplosion_MedicGrenade'
+   ExplosionActorClass=Class'kfgamecontent.KFExplosion_MedicGrenade'
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
       ExplosionEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Explosions.MedicGrenade_Explosion'
       Damage=50.000000
       DamageRadius=350.000000
       DamageFalloffExponent=0.000000
-      MyDamageType=Class'KFGameContent.KFDT_Toxic_MedicGrenade'
+      MyDamageType=Class'kfgamecontent.KFDT_Toxic_MedicGrenade'
       KnockDownStrength=0.000000
       MomentumTransferScale=0.000000
       ExplosionSound=AkEvent'WW_WEP_EXP_Grenade_Medic.Play_WEP_EXP_Grenade_Medic_Explosion'
-      ExploLight=PointLightComponent'KFGameContent.Default__KFProj_MedicGrenade:ExplosionPointLight'
+      ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_MedicGrenade:ExplosionPointLight'
       ExploLightFadeOutTime=1.000000
       ExploLightStartFadeOutTime=7.000000
       ExploLightFlickerIntensity=5.000000
@@ -66,7 +65,7 @@ defaultproperties
       Name="ExploTemplate0"
       ObjectArchetype=KFGameExplosion'KFGame.Default__KFGameExplosion'
    End Object
-   ExplosionTemplate=KFGameExplosion'KFGameContent.Default__KFProj_MedicGrenade:ExploTemplate0'
+   ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFProj_MedicGrenade:ExploTemplate0'
    ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
    PostExplosionLifetime=15.000000
    ProjFlightTemplate=ParticleSystem'WEP_3P_Medic_Grenade_EMIT.FX_Medic_Grenade_Mesh'

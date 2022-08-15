@@ -64,6 +64,7 @@ var localized string LevelString;
 var Texture2D 		PerkIcon;
 var array<string> 	ColumnOneIcons;
 var array<string> 	ColumnTwoIcons;
+var Texture2D 		InteractIcon;
 
 var localized string WeaponDroppedMessage;
 /*********************************************************************************************
@@ -100,10 +101,11 @@ struct native BuffedPlayerInfo
 };
 
 var 			array<BuffedPlayerInfo>		BuffedPlayerInfos;
-var 			float 						PreBuffValue;
 
 // This trigger is created to allow other players to interact with your perk abilities
 var 			KFUsablePerkTrigger 		InteractionTrigger;
+
+var		const	array<Name>		ZedTimeModifyingStates;
 
 /*********************************************************************************************
 * Special abilities
@@ -139,11 +141,16 @@ var	const 	bool				bInitialized;
 /*********************************************************************************************
 * Inventory
 ********************************************************************************************* */
+
 /** The weapon class string used to load the weapon class for this perk */
-var	string 						PrimaryWeaponClassName;
-var	string 						SecondaryWeaponClassName;	// Secondary weapon spawned from the pawn, this can be overridden though
-var	string 						MeleeWeaponClassName;
-var	string 						GrenadeClassName;
+var class<KFWeaponDefinition> PrimaryWeaponDef;
+var class<KFWeaponDefinition> SecondaryWeaponDef;
+
+/** default starting knife */
+var class<KFWeaponDefinition> KnifeWeaponDef;
+
+/** perk specific grenade class */
+var class<KFWeaponDefinition> GrenadeWeaponDef;
 
 /** The grenade archetype for this perk. Don't set directly in defaultprops. Set the GrenadeClassName so it will be dynamically loaded */
 var class<KFProj_Grenade> 		GrenadeClass;
@@ -629,7 +636,7 @@ static simulated event string GetPerkIconPath()
 simulated event PreBeginPlay()
 {
     // Set the grenade class for this perk
-    GrenadeClass = class<KFProj_Grenade>(DynamicLoadObject(GrenadeClassName, class'Class'));
+    GrenadeClass = class<KFProj_Grenade>(DynamicLoadObject(GrenadeWeaponDef.default.WeaponClassPath, class'Class'));
     PerkIcon = Texture2D(DynamicLoadObject(GetPerkIconPath(), class'Texture2D'));
 
 	MyKFGRI = KFGameReplicationInfo(WorldInfo.GRI);
@@ -720,6 +727,7 @@ function ApplySkillsToPawn()
 		MyPRI.bSplashActive = false;
 		MyPRI.bNukeActive = false;
 		MyPRI.bConcussiveActive = false;
+		MyPRI.bPerkCanSupply = false;
 		
 		KFIM = KFInventoryManager(OwnerPawn.InvManager);
 		if( KFIM != none )
@@ -769,10 +777,10 @@ function AddDefaultInventory( KFPawn P )
 			KFIM.GiveInitialGrenadeCount();
 		}
 
-		P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(PrimaryWeaponClassName, class'Class')));
+		P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(PrimaryWeaponDef.default.WeaponClassPath, class'Class')));
 		// Secondary weapon is spawned through the pawn unless we want an additional one
 		// P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(SecondaryWeaponClassName, class'Class')));
-		P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(MeleeWeaponClassName, class'Class')));
+		P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(KnifeWeaponDef.default.WeaponClassPath, class'Class')));
 	}
 }
 
@@ -883,7 +891,7 @@ simulated function float GetReloadRateScale(KFWeapon KFW) {return 1.f;}
 /** Movement - all movement speeds increased */
 function ModifySpeed( out float Speed );
 /** Kickback - recaoil bonus */
-simulated function ModifyRecoil( out float CurrentRecoilModifier );
+simulated function ModifyRecoil( out float CurrentRecoilModifier, KFWeapon KFW );
 /** Allow perk to adjust damage given */
 function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType );
 function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageType, optional Controller InstigatedBy );
@@ -900,8 +908,8 @@ simulated function bool ShouldMagSizeModifySpareAmmo( KFWeapon KFW, optional Cla
 /** Fortitude - max health goes up*/
 function ModifyHealth( out int InHealth );
 static simulated function float GetZedTimeExtension( byte Level ){ return 1.0f; }
-function float GetKnockdownPowerModifier( optional class<DamageType> DamageType ){ return 1.f; }
-function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier ){ return 1.f; }
+function float GetKnockdownPowerModifier( optional class<DamageType> DamageType, optional byte BodyPart, optional bool bIsSprinting=false ){ return 1.f; }
+function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart ){ return 1.f; }
 function float GetStunPowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx ){ return 1.f; }
 
 /** Support functions */
@@ -909,11 +917,8 @@ function float GetStunPowerModifier( optional class<DamageType> DamageType, opti
 simulated function ModifyWeldingRate( out float FastenRate, out float UnfastenRate );
 simulated function bool CanInteract( KFPawn_Human KFPH ){ return false; }
 simulated function Interact( KFPawn_Human KFPH );
-static simulated function float GetPenetrationModifier( byte Level, class<KFDamageType> DamageType, optional bool bForce );
-static function float GetBarrageDamageModifier()
-{
-	return default.BarrageDamageModifier;
-}
+simulated function float GetPenetrationModifier( byte Level, class<KFDamageType> DamageType, optional bool bForce );
+static function float GetBarrageDamageModifier(){ return default.BarrageDamageModifier; }
 
 /** Commando functions */
 simulated function bool IsCallOutActive(){ return false; }
@@ -921,7 +926,6 @@ simulated function bool IsShootAndMoveActive(){ return false; }
 simulated function bool HasNightVision(){ return false; }
 simulated protected function bool IsRapidFireActive(){ return false; }
 simulated function float GetZedTimeModifier( KFWeapon W ){ return 0.f; }
-simulated function ModifyRateOfFire( out float InRate );
 simulated function ModifySpread( out float InSpread );
 
 /** Berserker functions */
@@ -964,12 +968,24 @@ simulated function bool ShouldShrapnel(){ return  false; }
 simulated function float GetSplashDamageModifier(){ return 1.f; }
 simulated function bool IsRangeActive(){ return false; }
 
-/**Demo functions */
+/** Demo functions */
 simulated function bool IsOnContactActive(){ return false; }
 simulated function bool IsSharedExplosiveResistaneActive(){ return false; }
 simulated function bool ShouldSacrifice(){ return false; }
 simulated function bool ShouldRandSirenResist(){ return false; }
 simulated function bool CanExplosiveWeld(){ return false; }
+
+/** Gunslinger functions */
+simulated function bool GetIsUberAmmoActive( KFWeapon KFW ){ return false; }
+function UpdatePerkHeadShots( ImpactInfo Impact, class<DamageType> DamageType, int NumHit );
+function AddToHeadShotCombo( class<KFDamageType> KFDT, KFPawn_Monster KFPM );
+function ResetHeadShotCombo();
+simulated event bool GetIsHeadShotComboActive(){ return false; }
+simulated function ModifyRateOfFire( out float InRate, KFWeapon KFW );
+simulated event float GetIronSightSpeedModifier( KFWeapon KFW ){ return 1.f; }
+simulated function ModifyWeaponSwitchTime( out float ModifiedSwitchTime );
+simulated function bool ShouldInstantlySwitchWeapon( KFWeapon KFW ){ return false; }
+simulated function ModifyWeaponBopDamping( out float BobDamping, KFWeapon PawnWeapon );
 
 function string GetModifierString( byte ModifierIndex )
 {
@@ -1002,28 +1018,22 @@ function KFWeapon GetOwnerWeapon()
 /**
  * @brief Resets certain perk values on wave start/end
  */
-event ResetPerk()
+function OnWaveEnded()
 {
 	if( WorldInfo.Role < ROLE_Authority )
 	{
 		return;
 	}
 
-	PreBuffValue = -1;
-	ClientResetPerk();
+	ClientOnWaveEnded();
 }
 
 /**
- * @brief Client version of ResetPerk()
+ * @brief Client version of OnWaveEnded()
  */
-reliable protected client function ClientResetPerk()
+reliable protected client function ClientOnWaveEnded()
 {
-	if( WorldInfo.Role == ROLE_Authority )
-	{	
-		return;
-	}
-
-	PreBuffValue = -1;
+	MyPRI.ResetSupplierUsed();
 }
 
 simulated function bool GetUsingTactialReload( KFWeapon KFW )
@@ -1094,6 +1104,11 @@ function TickRegen( float DeltaTime )
 simulated function class<EmitterCameraLensEffectBase> GetPerkLensEffect( class<KFDamageType> DmgType )
 {
 	return DmgType.default.CameraLensEffectTemplate;
+}
+
+static simulated function Texture2d GetInteractIcon()
+{
+	return default.InteractIcon;
 }
 /*********************************************************************************************
 * @name	 Debug
@@ -1166,7 +1181,6 @@ DefaultProperties
 
 	ProgressStatID=INDEX_NONE
 
-	PreBuffValue=-1.f
 	BarrageDamageModifier=1.15
 	FormidableDamageModifier=0.75f
 
@@ -1185,9 +1199,9 @@ DefaultProperties
 	bOnlyRelevantToOwner=TRUE
 
 	// weapon content
-	PrimaryWeaponClassName =""
-	SecondaryWeaponClassName="KFGameContent.KFWeap_Pistol_9mm" //default pistol
-	GrenadeClassName="KFGameContent.KFProj_FragGrenade"
+	SecondaryWeaponDef=class'KFWeapDef_9mm'
+	KnifeWeaponDef=class'KFWeapDef_Knife_Commando'
+	GrenadeWeaponDef=class'KFWeapDef_Grenade_Berserker'
 
 	InitialGrenadeCount=2
 	MaxGrenadeCount=5

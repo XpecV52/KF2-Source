@@ -11,7 +11,7 @@ class KFWeap_Knife_Support extends KFWeap_Edged_Knife
 
 defaultproperties
 {
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SupportKnife'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SupportKnife'
     AttachmentArchetype=KFWeaponAttachment'WEP_SupportKnife_ARCH.Wep_SupportKnife_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Knife_Support.MeleeHelper'
     AssociatedPerkClass=Class'KFGame.KFPerk_Support'

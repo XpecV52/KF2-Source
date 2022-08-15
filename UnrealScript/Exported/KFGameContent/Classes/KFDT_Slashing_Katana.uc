@@ -46,65 +46,6 @@ class KFDT_Slashing_Katana extends KFDT_Slashing
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -240,7 +181,7 @@ static simulated function ModifyDismembermentHitImpulse(KFPawn_Monster InPawn, n
 
 defaultproperties
 {
-   AARWeaponID=2
+   WeaponDef=Class'KFGame.KFWeapDef_Katana'
    StumblePower=40
    LegStumblePower=40
    MeleeHitPower=37

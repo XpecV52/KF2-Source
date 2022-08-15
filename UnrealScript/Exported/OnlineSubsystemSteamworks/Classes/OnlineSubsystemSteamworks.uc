@@ -554,7 +554,6 @@ struct native SteamPlayerClanData
 	var const string ClanTag;
 };
 
-
 /** Pointer to the object that handles the auth interface */
 var const OnlineAuthInterfaceSteamworks CachedAuthInt;
 
@@ -564,6 +563,9 @@ var const OnlineAuthInterfaceSteamworks CachedAuthInt;
 var OnlineLobbyInterfaceSteamworks LobbyInterface;
 
 
+
+
+var KFWorkshopSteamWorks WorkshopInterface;
 
 
 /**
@@ -3240,6 +3242,12 @@ function TWOnlineLobby GetLobbyInterface()
 
 //(`__TW_STEAMWORKS_)
 
+//(`STEAM_MATCHMAKING_LOBBY)
+
+
+native function bool SetWorkshopInterface(KFWorkshopSteamworks NewInterface);
+
+native function TWOnlineUGCInterface GetUGCInterface();
 
 
 /**
@@ -3665,6 +3673,7 @@ function ClearAllDelegates()
 }
 
 
+	
 // VoIP
 native function SetVoIPVolume(float Volume);
 native function float GetVoIPVolume();
@@ -3673,6 +3682,28 @@ native function ShowVoIPConfigUI();
 // Stats
 native private function bool ValidateStat(qword UserId, int StatId, int Value);
 native private function SubmitStatValidation(qword UserId, int StatId, int Value, bool bClientInterface);
+// Inventory
+native function RefreshInventory();
+native function OpenItemPurchaseOverlay(int SKU);
+native function OpenURL(string WebsiteLink);
+
+//Groups
+/**
+ * Gets the friends' groups of which the player is a member
+ *
+ * @param UserGroups the list of groups
+ *
+ */
+native function GetPlayerGroups(out array<UniqueNetId> PlayerGroups);
+
+/**
+ * Checks the player's membership in a friends' group
+ *
+ * @param UserGroups the group to check
+ *
+ * @return whether the player is a member of that group
+ */
+native function bool CheckPlayerGroup(UniqueNetId Group);
 
 
 //@zombie_mod_begin

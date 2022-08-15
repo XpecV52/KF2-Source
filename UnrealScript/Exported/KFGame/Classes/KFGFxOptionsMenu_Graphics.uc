@@ -597,6 +597,7 @@ struct native EnvironmentDetailSetting
 struct native ShadowQualitySetting
 {
 	var bool bAllowWholeSceneDominantShadows;
+	var bool bOverrideMapWholeSceneDominantShadowSetting;
 	var bool bAllowDynamicShadows;
 	var bool bAllowPerObjectShadows;
 	var int MaxWholeSceneDominantShadowResolution;
@@ -612,6 +613,7 @@ struct native ShadowQualitySetting
 		void CopyToNativeSettings(FSystemSettings& OutSettings, UEngine* OutEngine)
 		{
 			OutSettings.bAllowWholeSceneDominantShadows = bAllowWholeSceneDominantShadows;
+			OutSettings.bOverrideMapWholeSceneDominantShadowSetting = bOverrideMapWholeSceneDominantShadowSetting;
 			OutSettings.bAllowDynamicShadows = bAllowDynamicShadows;
 			OutSettings.bAllowPerObjectShadows = bAllowPerObjectShadows;
 			OutSettings.MaxWholeSceneDominantShadowResolution = MaxWholeSceneDominantShadowResolution;
@@ -626,6 +628,7 @@ struct native ShadowQualitySetting
 		void CopyFromNativeSettings(FSystemSettings& InSettings, UEngine* InEngine)
 		{
 			bAllowWholeSceneDominantShadows = InSettings.bAllowWholeSceneDominantShadows;
+			bOverrideMapWholeSceneDominantShadowSetting = InSettings.bOverrideMapWholeSceneDominantShadowSetting;
 			bAllowDynamicShadows = InSettings.bAllowDynamicShadows;
 			bAllowPerObjectShadows = InSettings.bAllowPerObjectShadows;
 			MaxWholeSceneDominantShadowResolution = InSettings.MaxWholeSceneDominantShadowResolution;
@@ -3477,7 +3480,7 @@ defaultproperties
    ShadowQualityPresets(0)=(bAllowDynamicShadows=True,MaxWholeSceneDominantShadowResolution=1204,MaxShadowResolution=1024,ShadowFadeResolution=256,MinShadowResolution=128,ShadowTexelsPerPixel=0.500000,GlobalShadowDistanceScale=0.750000)
    ShadowQualityPresets(1)=(bAllowWholeSceneDominantShadows=True,bAllowDynamicShadows=True,bAllowPerObjectShadows=True,MaxWholeSceneDominantShadowResolution=1204,MaxShadowResolution=1024,ShadowFadeResolution=128,MinShadowResolution=64,ShadowTexelsPerPixel=1.000000,GlobalShadowDistanceScale=0.750000)
    ShadowQualityPresets(2)=(bAllowWholeSceneDominantShadows=True,bAllowDynamicShadows=True,bAllowPerObjectShadows=True,MaxWholeSceneDominantShadowResolution=1280,MaxShadowResolution=1024,ShadowFadeResolution=128,MinShadowResolution=64,ShadowTexelsPerPixel=1.300000,GlobalShadowDistanceScale=1.000000,AllowForegroundPreshadows=True)
-   ShadowQualityPresets(3)=(bAllowWholeSceneDominantShadows=True,bAllowDynamicShadows=True,bAllowPerObjectShadows=True,MaxWholeSceneDominantShadowResolution=2048,MaxShadowResolution=1536,ShadowFadeResolution=64,MinShadowResolution=32,ShadowTexelsPerPixel=2.000000,GlobalShadowDistanceScale=1.500000,AllowForegroundPreshadows=True)
+   ShadowQualityPresets(3)=(bAllowWholeSceneDominantShadows=True,bOverrideMapWholeSceneDominantShadowSetting=True,bAllowDynamicShadows=True,bAllowPerObjectShadows=True,MaxWholeSceneDominantShadowResolution=2048,MaxShadowResolution=1536,ShadowFadeResolution=64,MinShadowResolution=32,ShadowTexelsPerPixel=2.000000,GlobalShadowDistanceScale=1.500000,AllowForegroundPreshadows=True)
    FXQualityPresets(0)=(ParticleLODBias=1,DropParticleDistortion=True,EmitterPoolScale=0.250000,ShellEjectLifetime=2.000000,MaxImpactEffectDecals=8,MaxExplosionDecals=8,GoreFXLifetimeMultiplier=0.500000,MaxBloodEffects=12,MaxGoreEffects=8,MaxPersistentSplatsPerFrame=25)
    FXQualityPresets(1)=(DropParticleDistortion=True,EmitterPoolScale=0.500000,ShellEjectLifetime=5.000000,AllowExplosionLights=True,AllowFootstepSounds=True,AllowRagdollAndGoreOnDeadBodies=True,AllowPilotLights=True,MaxImpactEffectDecals=15,MaxExplosionDecals=12,GoreFXLifetimeMultiplier=0.750000,MaxBloodEffects=15,MaxGoreEffects=8,MaxPersistentSplatsPerFrame=50)
    FXQualityPresets(2)=(Distortion=True,FilteredDistortion=True,AllowSecondaryBloodEffects=True,EmitterPoolScale=1.000000,ShellEjectLifetime=10.000000,AllowExplosionLights=True,AllowSprayActorLights=True,AllowFootstepSounds=True,AllowBloodSplatterDecals=True,AllowRagdollAndGoreOnDeadBodies=True,AllowPilotLights=True,MaxImpactEffectDecals=20,MaxExplosionDecals=15,GoreFXLifetimeMultiplier=1.000000,MaxBloodEffects=25,MaxGoreEffects=10,MaxPersistentSplatsPerFrame=75)

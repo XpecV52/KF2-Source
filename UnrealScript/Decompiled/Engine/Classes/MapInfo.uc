@@ -11,3 +11,10 @@ class MapInfo extends Object
     editinlinenew;
 
 var bool bDefaultPawnsToOutdoor;
+/** Enable automatic triangle collision. */
+var(Flex) bool bUseFlexTriangleCollision;
+
+defaultproperties
+{
+    bUseFlexTriangleCollision=true
+}

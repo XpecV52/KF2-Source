@@ -1,8 +1,8 @@
 package
 {
-    import tripwire.controls.perks.PerkSkillsListRenderer;
+    import tripwire.controls.perks.PerkSkillsSummaryListRenderer;
     
-    public dynamic class PerkSummaryLineRenderer extends PerkSkillsListRenderer
+    public dynamic class PerkSummaryLineRenderer extends PerkSkillsSummaryListRenderer
     {
          
         

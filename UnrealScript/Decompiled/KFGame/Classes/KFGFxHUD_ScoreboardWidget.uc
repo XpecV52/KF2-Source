@@ -52,7 +52,6 @@ function SendServerInfoToGFX()
         {
             ServerObject.SetString("serverName", WI.GRI.ServerName);
         }
-        ServerObject.SetString("serverIP", WI.GetAddressURL());
     }
     SetObject("serverInfo", ServerObject);
 }

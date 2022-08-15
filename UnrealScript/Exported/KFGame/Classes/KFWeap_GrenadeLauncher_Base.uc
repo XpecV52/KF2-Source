@@ -62,11 +62,9 @@ simulated function name GetReloadAnimName( bool bTacticalReload )
 	return ReloadEmptyMagAnim;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////
-//
-// Trader
-//
-///////////////////////////////////////////////////////////////////////////////////////////
+/*********************************************************************************************
+ * @name	Trader
+ *********************************************************************************************/
 
 /** Allows weapon to calculate its own damage for display in trader */
 static simulated function float CalculateTraderWeaponStatDamage()
@@ -88,10 +86,15 @@ static simulated function float CalculateTraderWeaponStatDamage()
 	return CalculatedDamage;
 }
 
+/** Returns trader filter index based on weapon type */
+static simulated event EFilterTypeUI GetTraderFilter()
+{
+	return FT_Explosive;
+}
+
 defaultproperties
 {
    ForceReloadTime=0.300000
-   EffectiveRange=30
    bAllowClientAmmoTracking=False
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
       MaxHitRange=175.000000

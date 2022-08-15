@@ -6,13 +6,290 @@
  * All rights belong to their respective owners.
  *******************************************************************************/
 class KFWeap_PistolBase extends KFWeapon
-    abstract
+    native
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
+const CYLINDERSTATE_READY = 0;
+const CYLINDERSTATE_PENDING = 1;
+const CYLINDERSTATE_ROTATING = 2;
+
+struct native CylinderRotationInfo
+{
+    var float InC;
+    var transient float PrevDegrees;
+    var transient float NextDegrees;
+    var float Time;
+    var transient float Timer;
+    var transient SkelControlSingleBone Control;
+    var transient int State;
+
+    structdefaultproperties
+    {
+        InC=0
+        PrevDegrees=0
+        NextDegrees=0
+        Time=0
+        Timer=0
+        Control=none
+        State=0
+    }
+};
+
+var bool bRevolver;
+var SkeletalMesh UnusedBulletMeshTemplate;
+var SkeletalMesh UsedBulletMeshTemplate;
+var array<name> BulletFXSocketNames;
+var export editinline array<export editinline KFSkeletalMeshComponent> BulletMeshComponents;
+var CylinderRotationInfo CylinderRotInfo;
+
+simulated event PreBeginPlay()
+{
+    local int I;
+
+    super.PreBeginPlay();
+    if(bRevolver)
+    {
+        I = 0;
+        J0x22:
+
+        if(I < BulletMeshComponents.Length)
+        {
+            BulletMeshComponents[I].SetHidden(false);
+            MySkelMesh.AttachComponentToSocket(BulletMeshComponents[I], BulletFXSocketNames[I]);
+            ++ I;
+            goto J0x22;
+        }
+    }
+}
+
+simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
+{
+    super.PostInitAnimTree(SkelComp);
+    if(bRevolver)
+    {
+        PostInitAnimTreeRevolver(SkelComp);
+    }
+}
+
+simulated function ConsumeAmmo(byte FireModeNum)
+{
+    local int BulletIndex;
+
+    BulletIndex = MagazineCapacity[0] - AmmoCount[0];
+    super.ConsumeAmmo(FireModeNum);
+    if(BulletIndex < BulletMeshComponents.Length)
+    {
+        BulletMeshComponents[BulletIndex].SetSkeletalMesh(UsedBulletMeshTemplate);
+    }
+    if((bRevolver && Instigator != none) && Instigator.IsLocallyControlled())
+    {
+        ConsumeAmmoRevolver();
+    }
+}
+
+simulated event PostInitAnimTreeRevolver(SkeletalMeshComponent SkelComp)
+{
+    CylinderRotInfo.Control = SkelControlSingleBone(SkelComp.FindSkelControl('CylinderControl'));
+    if(CylinderRotInfo.Control != none)
+    {
+        CylinderRotInfo.Control.SetSkelControlActive(true);
+    }
+}
+
+simulated function ConsumeAmmoRevolver()
+{
+    CheckCylinderRotation(CylinderRotInfo);
+    CylinderRotInfo.State = 1;
+}
+
+simulated function CheckCylinderRotation(out CylinderRotationInfo RotInfo, optional bool bResetState)
+{
+    if(RotInfo.State != 0)
+    {
+        RotateCylinder(RotInfo, true);
+        if(bResetState)
+        {
+            RotInfo.State = 0;
+        }
+    }
+}
+
+simulated function ANIMNOTIFY_RotateCylinder()
+{
+    RotateCylinder(CylinderRotInfo);
+}
+
+simulated function RotateCylinder(out CylinderRotationInfo RotInfo, optional bool bInstant)
+{
+    if(bInstant)
+    {
+        if(RotInfo.State == 1)
+        {
+            IncrementCylinderRotation(RotInfo);            
+        }
+        else
+        {
+            RotInfo.State = 1;
+        }
+        SetCylinderRotation(RotInfo, RotInfo.NextDegrees);
+        RotInfo.Timer = 0;        
+    }
+    else
+    {
+        RotInfo.State = 2;
+        IncrementCylinderRotation(RotInfo);
+        RotInfo.Timer = RotInfo.Time;
+    }
+}
+
+simulated function IncrementCylinderRotation(out CylinderRotationInfo RotInfo)
+{
+    RotInfo.PrevDegrees = RotInfo.NextDegrees;
+    RotInfo.NextDegrees += RotInfo.InC;
+}
+
+simulated function ResetCylinderInfo(out CylinderRotationInfo RotInfo)
+{
+    RotInfo.PrevDegrees = 0;
+    RotInfo.NextDegrees = 0;
+    RotInfo.State = 0;
+}
+
+simulated event OnCylinderRotationFinished(out CylinderRotationInfo RotInfo)
+{
+    RotInfo.State = 0;
+}
+
+// Export UKFWeap_PistolBase::execSetCylinderRotation(FFrame&, void* const)
+native simulated function SetCylinderRotation(out CylinderRotationInfo RotInfo, float Degrees);
+
+simulated function InitializeReload()
+{
+    super.InitializeReload();
+    CheckCylinderRotation(CylinderRotInfo, true);
+}
+
+simulated function ANIMNOTIFY_ResetBulletMeshes()
+{
+    ResetBulletMeshes();
+}
+
+simulated function ResetCylinder()
+{
+    local int I, UsedStartIdx, UsedEndIdx;
+
+    SetCylinderRotation(CylinderRotInfo, 0);
+    ResetCylinderInfo(CylinderRotInfo);
+    if(AmmoCount[0] == 0)
+    {
+        return;
+    }
+    BulletMeshComponents[0].SetSkeletalMesh(UnusedBulletMeshTemplate);
+    UsedStartIdx = BulletMeshComponents.Length - 1;
+    UsedEndIdx = UsedStartIdx - (MagazineCapacity[0] - AmmoCount[0]);
+    I = UsedStartIdx;
+    J0xC7:
+
+    if(I > UsedEndIdx)
+    {
+        BulletMeshComponents[I].SetSkeletalMesh(UsedBulletMeshTemplate);
+        -- I;
+        goto J0xC7;
+    }
+    I = UsedEndIdx;
+    J0x132:
+
+    if(I > 0)
+    {
+        BulletMeshComponents[I].SetSkeletalMesh(UnusedBulletMeshTemplate);
+        -- I;
+        goto J0x132;
+    }
+}
+
+simulated function ResetBulletMeshes()
+{
+    local int I;
+
+    I = 0;
+    J0x0B:
+
+    if(I < BulletMeshComponents.Length)
+    {
+        BulletMeshComponents[I].SetSkeletalMesh(UnusedBulletMeshTemplate);
+        ++ I;
+        goto J0x0B;
+    }
+}
+
+simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optional int NumHits, optional out float out_PenetrationVal, optional int ImpactNum)
+{
+    local KFPerk InstigatorPerk;
+
+    InstigatorPerk = GetPerk();
+    if(InstigatorPerk != none)
+    {
+        InstigatorPerk.UpdatePerkHeadShots(Impact, InstantHitDamageTypes[FiringMode], ImpactNum);
+    }
+    ProcessInstantHit(FiringMode, Impact, NumHits);
+}
+
+simulated function bool ShouldAutoReload(byte FireModeNum)
+{
+    return ShouldAutoReloadGunslinger(FireModeNum);
+}
+
+simulated event SetFOV(float NewFOV)
+{
+    local int I;
+
+    super.SetFOV(NewFOV);
+    I = 0;
+    J0x1E:
+
+    if(I < BulletMeshComponents.Length)
+    {
+        BulletMeshComponents[I].super(KFSkeletalMeshComponent).SetFOV(NewFOV);
+        ++ I;
+        goto J0x1E;
+    }
+}
+
+static simulated event KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
+{
+    return 0;
+}
+
+simulated state Reloading
+{
+    ignores ForceReload, ShouldAutoReload, AllowSprinting;
+
+    simulated function BeginState(name PreviousStateName)
+    {
+        super.BeginState(PreviousStateName);
+        if(bRevolver)
+        {
+            ResetCylinder();
+        }
+    }
+    stop;    
+}
+
+simulated state WeaponPuttingDown
+{
+    simulated function EndState(name NextStateName)
+    {
+        super.EndState(NextStateName);
+        CheckCylinderRotation(CylinderRotInfo, true);
+    }
+    stop;    
+}
+
 defaultproperties
 {
-    EffectiveRange=50
+    InventoryGroup=EInventoryGroup.IG_Secondary
+    AimCorrectionSize=40
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_PistolBase.MeleeHelper'
     InstantHitDamage=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent

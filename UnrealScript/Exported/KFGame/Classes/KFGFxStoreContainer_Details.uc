@@ -1,0 +1,42 @@
+//=============================================================================
+// KFGFxStoreContainer_Details
+//=============================================================================
+// Class Description
+//=============================================================================
+// Killing Floor 2
+// Copyright (C) 2015 Tripwire Interactive LLC
+//  - Zane Gholson 9/18/2015
+//=============================================================================
+
+class KFGFxStoreContainer_Details extends KFGFxObject_Container;
+
+var localized string AddToCartString;
+var localized string PreviewString;
+
+function Initialize( KFGFxObject_Menu NewParentMenu )
+{
+	super.Initialize( NewParentMenu );
+	
+	LocalizeText();
+}
+
+function LocalizeText()
+{
+	local GFxObject LocalizedObject;
+
+	LocalizedObject = CreateObject( "Object" );
+	
+	LocalizedObject.SetString("cancel", 					Class'KFCommon_LocalizedStrings'.default.BackString); 
+	LocalizedObject.SetString("preview", 					PreviewString); 
+	LocalizedObject.SetString("addToCart", 					AddToCartString); 
+	 		
+	SetObject("localizedText", LocalizedObject);
+}
+
+defaultproperties
+{
+   AddToCartString="Buy Item"
+   PreviewString="Preview"
+   Name="Default__KFGFxStoreContainer_Details"
+   ObjectArchetype=KFGFxObject_Container'KFGame.Default__KFGFxObject_Container'
+}

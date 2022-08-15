@@ -47,65 +47,6 @@ class KFObj_Wave_Defend extends KFObj_Wave;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -280,5 +221,5 @@ defaultproperties
    DfficultyModifier(1)=0.800000
    DfficultyModifier(2)=0.900000
    Name="Default__KFObj_Wave_Defend"
-   ObjectArchetype=KFObj_Wave'KFGameContent.Default__KFObj_Wave'
+   ObjectArchetype=KFObj_Wave'kfgamecontent.Default__KFObj_Wave'
 }

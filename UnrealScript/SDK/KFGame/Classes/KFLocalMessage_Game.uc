@@ -37,6 +37,7 @@ enum EGameMessageType
 
 	KMT_Killed,
 	KMT_Suicide
+
 };
 
 var localized string 			ReceivedAmmoFromMessage;
@@ -79,7 +80,9 @@ var localized string			FoundAllMapCollectiblesMessage;
 var localized string 			MapCollectibleName;
 var localized string 			SharingContentString;
 
-
+var localized string 			HeadShotAddedString;
+var localized string 			HeadShotMaxString;
+var localized string 			HeadShotResetString;
 
 // Returns a hex color code for the supplied message type
 static function string GetHexColor(int Switch)

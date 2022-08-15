@@ -17,7 +17,8 @@ static simulated function bool CanDismemberHitZone( name InHitZoneName )
 
 DefaultProperties
 {
-	KDeathUpKick=500.0
+	KDeathUpKick=500
+	KDeathVel=700
 	KDamageImpulse=1500
 	// unreal physics momentum
 	bExtraMomentumZ=True

@@ -140,5 +140,5 @@ defaultproperties
 	KDamageImpulse=200
 	KDeathUpKick=250	
 
-	AARWeaponID=`AAR_Knife
+	WeaponDef=class'KFWeapDef_Knife_Base'
 }

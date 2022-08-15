@@ -47,5 +47,5 @@ defaultproperties
 	LegStumblePower=108
 	GunHitPower=106
 
-	AARWeaponID=`AAR_MedicSMG
+	WeaponDef=class'KFWeapDef_MedicSMG'
 }

@@ -119,7 +119,7 @@ defaultproperties
 	LegStumblePower=53
 	GunHitPower=30
 
-	AARWeaponID=`AAR_DragonsBreath
+	WeaponDef=class'KFWeapDef_DragonsBreath'
 
 	// Even though with do DOT in a different class, we still
 	// Need burn power here for the initial incap from the pellet

@@ -23,7 +23,6 @@ defaultproperties
 	End Object
 
 	// Inventory
-	FilterTypeUI=FT_Melee
 	AssociatedPerkClass=class'KFPerk_Firebug'
-	UITexture=Texture2D'WEP_UI_Firebug_Knife_TEX.UI_WeaponSelect_FirebugKnife'
+	WeaponSelectTexture=Texture2D'WEP_UI_Firebug_Knife_TEX.UI_WeaponSelect_FirebugKnife'
 }

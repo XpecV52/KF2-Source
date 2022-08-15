@@ -26,8 +26,6 @@ var 	const	float			RapidFireFiringRate;    			// Faster firing rate in %  NOTE:T
 /** Temp HUD */
 var 			Texture2d		WhiteMaterial;
 
-var		const	array<Name>		ZedTimeModifyingStates;
-
 enum ECommandoSkills
 {
 	ECommandoLargeMags,
@@ -223,7 +221,7 @@ simulated function float GetZedTimeModifier( KFWeapon W )
  * @brief skills and weapons can modify the stumbling power
  * @return stumpling power modifier
  */
-function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier )
+function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart )
 {
 	local KFWeapon KFW;
 
@@ -504,9 +502,9 @@ DefaultProperties
    	ProgressStatID=`STATID_Cmdo_Progress
    	PerkBuildStatID=`STATID_Cmdo_Build
 
-   	PrimaryWeaponClassName="KFGameContent.KFWeap_AssaultRifle_AR15"
-   	MeleeWeaponClassName="KFGameContent.KFWeap_Knife_Commando"
-   	GrenadeClassName="KFGameContent.KFProj_HEGrenade"
+   	PrimaryWeaponDef=class'KFWeapDef_AR15'
+	KnifeWeaponDef=class'KFweapDef_Knife_Commando'
+	GrenadeWeaponDef=class'KFWeapDef_Grenade_Commando'
 
    	RapidFireFiringRate=0.5f
 

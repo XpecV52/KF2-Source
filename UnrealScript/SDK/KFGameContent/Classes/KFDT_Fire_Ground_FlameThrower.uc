@@ -15,5 +15,5 @@ class KFDT_Fire_Ground_FlameThrower extends KFDT_Fire_Ground
 
 defaultproperties
 {
-	AARWeaponID=`AAR_FlameThrower
+	WeaponDef=class'KFWeapDef_FlameThrower'
 }

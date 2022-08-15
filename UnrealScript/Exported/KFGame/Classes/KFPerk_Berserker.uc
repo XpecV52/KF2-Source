@@ -293,9 +293,9 @@ simulated static function GetPassiveStrings( out array<string> PassiveValues, ou
 	PassiveValues[4] = "";
 	PassiveValues[5] = "";
 
-	Increments[0] = "[" @ ("25% + " @ Int(default.BerserkerDamage.Increment * 100))  $"% /" @ default.LevelString @ "]";
-	Increments[1] = "[" @ "5% + ." @ int(default.MeleeAttackSpeed.Increment * 1000)  $ "% /" @ default.LevelString @ "]";
-	Increments[2] = "[" @ "10% + ." $ int(default.Movement.Increment * 1000) $ "% /" @ default.LevelString @ "]";
+	Increments[0] = "[" @ ("25% + " $ Int(default.BerserkerDamage.Increment * 100))  $"% /" @ default.LevelString @ "]";
+	Increments[1] = "[" @ "5% + 0." $ int(default.MeleeAttackSpeed.Increment * 1000)  $ "% /" @ default.LevelString @ "]";
+	Increments[2] = "[" @ "10% + 0." $ int(default.Movement.Increment * 1000) $ "% /" @ default.LevelString @ "]";
 	Increments[3] = "[" @ (Int(default.DamageResistance.Increment * 100))  $"% /" @ default.LevelString @ "]";
 	Increments[4] = "";
 	Increments[5] = "";
@@ -420,7 +420,7 @@ function ModifyScreamEffectDuration( out float InDuration )
  * @brief Random chance to knockdown a zed with a melee weapon
  * @return true/false
  */
-function float GetKnockdownPowerModifier( optional class<DamageType> DamageType )
+function float GetKnockdownPowerModifier( optional class<DamageType> DamageType, optional byte BodyPartt, optional bool bIsSprinting=false )
 {
 	local KFWeapon KFW;;
 
@@ -438,7 +438,7 @@ function float GetKnockdownPowerModifier( optional class<DamageType> DamageType 
  * @brief skills and weapons can modify the stumbling power
  * @return stumpling power modifier
  */
-function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier )
+function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart )
 {
 	if( IsMenaceActive() )
 	{
@@ -771,17 +771,16 @@ defaultproperties
    EXPAction2="Kill zeds near a player with a Perk weapon"
    PerkSkills(0)=(Name="PoisonResistance",StartingValue=0.400000,MaxValue=0.400000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_PoisonResistance")
    PerkSkills(1)=(Name="SonicResistance",StartingValue=0.400000,MaxValue=0.400000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_SonicResistance")
-   PerkSkills(2)=(Name="Vampire",StartingValue=3.000000,MaxValue=3.000000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Vampire")
-   PerkSkills(3)=(Name="Fortitude",StartingValue=2.000000,MaxValue=2.000000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Fortitude")
+   PerkSkills(2)=(Name="Vampire",StartingValue=4.000000,MaxValue=4.000000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Vampire")
+   PerkSkills(3)=(Name="Fortitude",StartingValue=1.750000,MaxValue=1.750000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Fortitude")
    PerkSkills(4)=(Name="FuriousDefender",StartingValue=0.200000,MaxValue=0.200000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_FuriousDefender")
    PerkSkills(5)=(Name="Block",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Block")
    PerkSkills(6)=(Name="Parry",StartingValue=0.150000,MaxValue=0.150000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Parry")
-   PerkSkills(7)=(Name="Smash",StartingValue=1.000000,MaxValue=1.000000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Smash")
+   PerkSkills(7)=(Name="Smash",StartingValue=0.250000,MaxValue=0.250000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Smash")
    PerkSkills(8)=(Name="Spartan",StartingValue=0.700000,MaxValue=0.700000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Spartan")
    PerkSkills(9)=(Name="Menace",StartingValue=1.000000,MaxValue=1.000000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Menace")
-   PrimaryWeaponClassName="KFGameContent.KFWeap_Blunt_Crovel"
-   MeleeWeaponClassName="KFGameContent.KFWeap_Knife_Berserker"
-   GrenadeClassName="KFGameContent.KFProj_EMPGrenade"
+   PrimaryWeaponDef=Class'KFGame.KFWeapDef_Crovel'
+   KnifeWeaponDef=Class'KFGame.KFweapDef_Knife_Berserker'
    Name="Default__KFPerk_Berserker"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

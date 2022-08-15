@@ -6,6 +6,7 @@
  * All rights belong to their respective owners.
  *******************************************************************************/
 class KFPerk_Firebug extends KFPerk
+    native
     config(Game)
     hidecategories(Navigation,Movement,Collision);
 
@@ -33,7 +34,6 @@ var const int HeatWaveRadiusSQ;
 var const float ShrapnelChance;
 var GameExplosion ExplosionTemplate;
 var const string ShrapnelExplosionDamageTypeName;
-var const array<name> ZedTimeModifyingStates;
 
 function ApplySkillsToPawn()
 {
@@ -190,7 +190,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
     return 0;
 }
 
-function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier)
+function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart)
 {
     if((IsHeatWaveActive() && IsDamageTypeOnPerk(DamageType)) && InHeatRange(KFP))
     {
@@ -325,10 +325,6 @@ defaultproperties
     // Reference: KFGameExplosion'Default__KFPerk_Firebug.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0
     ShrapnelExplosionDamageTypeName="KFGameContent.KFDT_Explosive_Shrapnel"
-    ZedTimeModifyingStates(0)=WeaponFiring
-    ZedTimeModifyingStates(1)=WeaponBurstFiring
-    ZedTimeModifyingStates(2)=WeaponSingleFiring
-    ZedTimeModifyingStates(3)=SprayingFire
     ProgressStatID=30
     PerkBuildStatID=31
     SecondaryXPModifier[0]=2
@@ -359,7 +355,11 @@ defaultproperties
     PerkSkills(7)=(Name="SplashDamage",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_SplashDamage",bActive=false)
     PerkSkills(8)=(Name="Combustion",Increment=0,Rank=0,StartingValue=1.03,MaxValue=1.03,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Combustion",bActive=false)
     PerkSkills(9)=(Name="Scorch",Increment=0,Rank=0,StartingValue=0.9,MaxValue=0.9,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Scorch",bActive=false)
-    PrimaryWeaponClassName="KFGameContent.KFWeap_Flame_CaulkBurn"
-    MeleeWeaponClassName="KFGameContent.KFWeap_Knife_Firebug"
-    GrenadeClassName="KFGameContent.KFProj_MolotovGrenade"
+    ZedTimeModifyingStates(0)=WeaponFiring
+    ZedTimeModifyingStates(1)=WeaponBurstFiring
+    ZedTimeModifyingStates(2)=WeaponSingleFiring
+    ZedTimeModifyingStates(3)=SprayingFire
+    PrimaryWeaponDef=Class'KFWeapDef_CaulkBurn'
+    KnifeWeaponDef=Class'KFWeapDef_Knife_Firebug'
+    GrenadeWeaponDef=Class'KFWeapDef_Grenade_Firebug'
 }

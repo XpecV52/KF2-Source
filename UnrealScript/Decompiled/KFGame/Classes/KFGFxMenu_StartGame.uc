@@ -240,7 +240,7 @@ function HandleSteamLobbyLeaderTakeOver(UniqueNetId AdminId)
         case 4:
             if(bClientIsLeader)
             {
-                Manager.OpenMenu(14);
+                Manager.OpenMenu(15);
                 return;
             }
         default:
@@ -333,7 +333,7 @@ function ApproveMatchMakingLeave()
 
 function GoToServerBrowser()
 {
-    Manager.OpenMenu(14);
+    Manager.OpenMenu(15);
 }
 
 function CancelLeaveMenu();
@@ -348,6 +348,17 @@ function UpdateStartMenuState()
     if(Manager != none)
     {
         Manager.SetStartMenuState(GetStartMenuState());
+    }
+}
+
+function Callback_OnWebLinkClicked(string WebsiteLink)
+{
+    local OnlineSubsystem OnlineSub;
+
+    OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+    if(OnlineSub != none)
+    {
+        OnlineSub.OpenURL(WebsiteLink);
     }
 }
 
@@ -387,7 +398,7 @@ function Callback_InGamePermissionChange(int Index)
 
 function Callback_OpenServerBrowser()
 {
-    Manager.OpenMenu(14);
+    Manager.OpenMenu(15);
 }
 
 function Callback_StartMenuRequestReinit()

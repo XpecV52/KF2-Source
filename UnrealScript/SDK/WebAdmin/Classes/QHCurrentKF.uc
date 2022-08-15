@@ -91,7 +91,7 @@ function substGameInfoSurvival(WebAdminQuery q)
 	gri = gameinfo.MyKFGRI;
 
 	q.response.subst("wave.num", gameinfo.WaveNum);
-	q.response.subst("wave.max", gameinfo.WaveMax);
+	q.response.subst("wave.max", gameinfo.WaveMax-1);
 	// total number spawned so far minus living monsters
 	deadMonsters = gameinfo.NumAISpawnsQueued - gameinfo.GetMonsterAliveCount();
 	q.response.subst("wave.monsters.pending", gri.WaveTotalAICount - deadMonsters);

@@ -8,7 +8,8 @@
 // Christian "schneidzekk" Schneider
 //=============================================================================
 
-class KFPerk_Demolitionist extends KFPerk;
+class KFPerk_Demolitionist extends KFPerk
+		native;
 
 `include(KFOnlineStats.uci)
 
@@ -68,20 +69,18 @@ function ApplySkillsToPawn()
 		MyPRI.bConcussiveActive = IsConcussiveForceActive();
 	}
 
-	InitSupplier();
+	ResetSupplier();
 }
 
 /**
  * @brief Resets certain perk values on wave start/end
  */
-event ResetPerk()
+function OnWaveEnded()
 {
-	Super.ResetPerk();
-
+	Super.OnWaveEnded();
 	bUsedSacrifice = false;
-	InitSupplier();
+	ResetSupplier();
 }
-
 
 /*********************************************************************************************
 * @name	 Passives
@@ -160,7 +159,7 @@ simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo
 	if( KFW == none )
 	{
 		WeaponPerkClass = TraderItem.AssociatedPerkClass;
-		bUsesAmmo = TraderItem.bUsesAmmo;
+		bUsesAmmo = TraderItem.WeaponDef.static.UsesAmmo();
 	}
 	else
 	{
@@ -190,7 +189,7 @@ simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo,
 	if( KFW == none )
 	{
 		WeaponPerkClass = TraderItem.AssociatedPerkClass;
-		bUsesAmmo = TraderItem.bUsesAmmo;
+		bUsesAmmo = TraderItem.WeaponDef.static.UsesAmmo();
 	}
 	else
 	{
@@ -223,7 +222,7 @@ simulated static private final function int GetExtraAmmo( int Level )
 /**
  * @brief Sets up the supllier skill
  */
-simulated final private function InitSupplier()
+simulated final private function ResetSupplier()
 {
 	if( MyPRI != none )
 	{
@@ -233,8 +232,15 @@ simulated final private function InitSupplier()
 		}
 	}
 
-	if( IsSupplierActive() )
+	if( MyPRI != none && IsSupplierActive() )
 	{
+		if( SuppliedPawnList.Length > 0 )
+		{
+			SuppliedPawnList.Remove( 0, SuppliedPawnList.Length );
+		}
+
+		MyPRI.bPerkCanSupply = true;
+
 		if( InteractionTrigger != none )
 		{
 			InteractionTrigger.Destroy();
@@ -264,6 +270,7 @@ simulated function Interact( KFPawn_Human KFPH )
 {
 	local KFInventoryManager KFIM;
 	local KFPlayerController KFPC;
+	local KFPlayerReplicationInfo OwnerPRI, UserPRI;
 
 	if( SuppliedPawnList.Find( KFPH ) != INDEX_NONE )
 	{
@@ -277,6 +284,13 @@ simulated function Interact( KFPawn_Human KFPH )
 		{
 			OwnerPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_GaveGrenadesTo, KFPC.PlayerReplicationInfo );
 			KFPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_ReceivedGrenadesFrom, OwnerPC.PlayerReplicationInfo );
+			
+			UserPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
+			OwnerPRI = KFPlayerReplicationInfo(OwnerPC.PlayerReplicationInfo);
+			if( UserPRI != none && OwnerPRI != none )
+			{
+				UserPRI.MarkSupplierOwnerUsed( OwnerPRI );
+			}
 		}
 	}
 
@@ -366,7 +380,7 @@ simulated function bool ShouldRandSirenResist()
  * @brief skills and weapons can modify the knockdown power chance
  * @return true/false
  */
-function float GetKnockdownPowerModifier( optional class<DamageType> DamageType )
+function float GetKnockdownPowerModifier( optional class<DamageType> DamageType, optional byte BodyPart, optional bool bIsSprinting=false )
 {
 	local float KnockDownMultiplier;
 
@@ -385,7 +399,7 @@ function float GetKnockdownPowerModifier( optional class<DamageType> DamageType 
  * @brief skills and weapons can modify the stumbling power chance
  * @return stumpling power modifier
  */
-function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier )
+function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart )
 {
 	if( IsOnPerkActive() && IsDamageTypeOnPerk( DamageType ) )
 	{
@@ -699,10 +713,11 @@ DefaultProperties
 	SharedExplosiveResistance=0.3f
 
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Demolition'
+	InteractIcon=Texture2D'UI_World_TEX.Demolitionist_Supplier_HUD'
 
-	PrimaryWeaponClassName="KFGameContent.KFWeap_GrenadeLauncher_HX25"
-	MeleeWeaponClassName="KFGameContent.KFWeap_Knife_Demolitionist"
-	GrenadeClassName="KFGameContent.KFProj_DynamiteGrenade"
+	PrimaryWeaponDef=class'KFWeapDef_HX25'
+	KnifeWeaponDef=class'KFWeapDef_Knife_Demo'
+	GrenadeWeaponDef=class'KFWeapDef_Grenade_Demo'
 
 	ProgressStatID=`STATID_Demo_Progress
    	PerkBuildStatID=`STATID_Demo_Build
@@ -811,6 +826,7 @@ DefaultProperties
 	DoorTrapsExplosionDamageTypeName="KFGameContent.KFDT_Explosive_DoorTrap"
 
 	NukeIgnoredProjectileNames(0)="KFProj_ExplosiveSubmunition_HX25"
+	NukeIgnoredProjectileNames(1)="KFProj_ExplosiveSubmunition_HX25_Nuke"
 	NukeDamageModifier=1.25
 	NukeRadiusModifier=1.25
 

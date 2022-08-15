@@ -60,11 +60,9 @@ defaultproperties
     BurstAmount=3
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=4
-    EffectiveRange=60
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
-    bHasFlashlight=true
     MeshIronSightFOV=52
     PlayerIronSightFOV=70
     IronSightPosition=(X=7,Y=0,Z=0)

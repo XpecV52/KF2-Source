@@ -234,6 +234,7 @@ defaultproperties
 	Handle=SM_Emerge
 	bPawnRotationLocked=true
 	bDisablePhysics=true
+	bCanOnlyWanderAtEnd=true
 
 	// animations
 	FloorEmerge=(Enter_Floor_V1, Enter_Floor_V2, Enter_Floor_V3)

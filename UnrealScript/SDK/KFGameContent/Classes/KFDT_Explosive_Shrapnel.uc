@@ -26,7 +26,6 @@ defaultproperties
 	KnockdownPower=0
 	StumblePower=120
 
-	//AARWeaponID=`AAR_FragGrenade
 
 	ModifierPerkList(0)=class'KFPerk_Firebug'	
 }

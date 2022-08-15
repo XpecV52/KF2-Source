@@ -78,9 +78,7 @@ defaultproperties
     AltFireRecoilModifier=0.5
     NumPellets=/* Array type was not detected. */
     FireModeIconPaths=/* Array type was not detected. */
-    FilterTypeUI=EFilterTypeUI.FT_Shotgun
     InventorySize=6
-    EffectiveRange=20
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -90,7 +88,7 @@ defaultproperties
     PlayerIronSightFOV=70
     IronSightPosition=(X=12,Y=0,Z=0)
     GroupPriority=50
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_NailShotgun'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_NailShotgun'
     MagazineCapacity=42
     MaxSpareAmmo=336
     InitialSpareMags=4

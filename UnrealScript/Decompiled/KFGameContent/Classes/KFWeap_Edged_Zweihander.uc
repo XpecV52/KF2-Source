@@ -14,12 +14,9 @@ defaultproperties
     ParryStrength=5
     BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
     ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Metal'
-    FilterTypeUI=EFilterTypeUI.FT_Melee
     InventorySize=6
-    EffectiveRange=3
-    SharedUnlockId=ESharedContentUnlock.SCU_Zweihander
     GroupPriority=85
-    UITexture=Texture2D'WEP_UI_Zweihander_TEX.UI_WeaponSelect_Zweihander'
+    WeaponSelectTexture=Texture2D'WEP_UI_Zweihander_TEX.UI_WeaponSelect_Zweihander'
     PlayerViewOffset=(X=2,Y=0,Z=0)
     AttachmentArchetype=KFWeaponAttachment'WEP_Zweihander_ARCH.Wep_Zweihander_3P'
     begin object name=MeleeHelper class=KFMeleeHelperWeapon

@@ -14,5 +14,5 @@ class KFDT_Bludgeon_DragonsBreath extends KFDT_Bludgeon_RifleButt
 DefaultProperties
 {
 	//defaults
-	AARWeaponID=`AAR_DragonsBreath
+	WeaponDef=class'KFWeapDef_DragonsBreath'
 }

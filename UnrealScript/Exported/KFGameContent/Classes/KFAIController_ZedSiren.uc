@@ -12,7 +12,19 @@ class KFAIController_ZedSiren extends KFAIController_Monster;
 function PreMoveToEnemy()
 {
 	// Push the AICommand for sirens scream before SetMoveGoal
-	class'AICommand_Siren_Scream'.static.Scream( self );
+	if( MyKFPawn.SpecialMove != SM_Stumble )
+	{
+		class'AICommand_Siren_Scream'.static.Scream( self );
+	}
+}
+
+/** Scream after a stumble */
+function NotifySpecialMoveEnded( KFSpecialMove SM )
+{
+	if( SM.Handle == 'KFSM_Stumble' )
+	{
+		class'AICommand_Siren_Scream'.static.Scream( self );
+	}
 }
 
 function NotifyMeleeAttackFinished()

@@ -15,5 +15,5 @@ defaultproperties
 {
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
    Name="Default__KFDT_Piercing_KnifeStab_Berserker"
-   ObjectArchetype=KFDT_Piercing_KnifeStab'KFGameContent.Default__KFDT_Piercing_KnifeStab'
+   ObjectArchetype=KFDT_Piercing_KnifeStab'kfgamecontent.Default__KFDT_Piercing_KnifeStab'
 }

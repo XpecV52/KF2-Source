@@ -15,6 +15,6 @@ static function int GetKillerDialogID()
 
 defaultproperties
 {
-    DoT_Type=EDamageOverTimeGroup.DOT_None
     bNoInstigatorDamage=true
+    DoT_Type=EDamageOverTimeGroup.DOT_None
 }

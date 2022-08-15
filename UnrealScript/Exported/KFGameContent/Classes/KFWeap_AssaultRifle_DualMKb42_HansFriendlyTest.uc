@@ -12,18 +12,18 @@ class KFWeap_AssaultRifle_DualMKb42_HansFriendlyTest extends KFWeap_AssaultRifle
 
 defaultproperties
 {
-   Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_AssaultRifle_DualMKb42_Hans:MeleeHelper_0'
+   Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_AssaultRifle_DualMKb42_Hans:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
-      ObjectArchetype=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_AssaultRifle_DualMKb42_Hans:MeleeHelper_0'
+      ObjectArchetype=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_AssaultRifle_DualMKb42_Hans:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_AssaultRifle_DualMKb42_HansFriendlyTest:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_AssaultRifle_DualMKb42_HansFriendlyTest:MeleeHelper_0'
    Spread(0)=0.025000
    InstantHitDamage(0)=35.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=()
-   Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGameContent.Default__KFWeap_AssaultRifle_DualMKb42_Hans:FirstPersonMesh'
+   Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFWeap_AssaultRifle_DualMKb42_Hans:FirstPersonMesh'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
@@ -33,18 +33,18 @@ defaultproperties
       LightingChannels=(bInitialized=True,Outdoor=True)
       bAllowPerObjectShadows=True
       Name="FirstPersonMesh"
-      ObjectArchetype=KFSkeletalMeshComponent'KFGameContent.Default__KFWeap_AssaultRifle_DualMKb42_Hans:FirstPersonMesh'
+      ObjectArchetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFWeap_AssaultRifle_DualMKb42_Hans:FirstPersonMesh'
    End Object
    Mesh=FirstPersonMesh
-   Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGameContent.Default__KFWeap_AssaultRifle_DualMKb42_Hans:StaticPickupComponent'
+   Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'kfgamecontent.Default__KFWeap_AssaultRifle_DualMKb42_Hans:StaticPickupComponent'
       StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"
-      ObjectArchetype=StaticMeshComponent'KFGameContent.Default__KFWeap_AssaultRifle_DualMKb42_Hans:StaticPickupComponent'
+      ObjectArchetype=StaticMeshComponent'kfgamecontent.Default__KFWeap_AssaultRifle_DualMKb42_Hans:StaticPickupComponent'
    End Object
    DroppedPickupMesh=StaticPickupComponent
    PickupFactoryMesh=StaticPickupComponent
    Name="Default__KFWeap_AssaultRifle_DualMKb42_HansFriendlyTest"
-   ObjectArchetype=KFWeap_AssaultRifle_DualMKb42_Hans'KFGameContent.Default__KFWeap_AssaultRifle_DualMKb42_Hans'
+   ObjectArchetype=KFWeap_AssaultRifle_DualMKb42_Hans'kfgamecontent.Default__KFWeap_AssaultRifle_DualMKb42_Hans'
 }

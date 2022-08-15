@@ -93,8 +93,8 @@ ItemCategory="Melee"
 ItemDescription="• Primario - ataque de corte rápido, mantener para ataque combinado. \n• Secundario - ataque de corte rápido pesado \n• Alt - bloquear/desviar\n• Es un cuchillo del bombero. Eres bombero, por lo que suponemos que no tenemos que explicarte cómo usarlo."
 
 [KFWeap_Pistol_Medic]
-ItemName=""
-ItemCategory=""
+ItemName="HMTech-101 Pistol"
+ItemCategory="Pistol"
 ItemDescription="• El modo de fuego es solo semiautomático.\n• Alt-fuego dispara dardos curativos para sanar los miembros del equipo.\n• Utilizando municiones sin estuche, cuenta las balas por ti."
 
 [KFWeap_SMG_Medic]
@@ -205,7 +205,7 @@ ItemCategory="Explosives"
 ItemDescription="• El modo de fuego pone su cargo C4.\n • Alt-fuego detona sus cargos C4, en la secuencia que los colocó.\n• Un bloque de C4, cableado para detonación remota bajo demanda."
 
 [KFWeap_GrenadeLauncher_HX25]
-ItemName=""
+ItemName="HX25"
 ItemCategory="Explosives"
 ItemDescription="• El modo de fuego dispara múltiples submuniciones que explotan al contacto."
 

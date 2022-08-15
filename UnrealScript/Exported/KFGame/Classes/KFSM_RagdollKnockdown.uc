@@ -180,7 +180,7 @@ protected function PlayFallDown()
 
 protected event KnockdownFailsafe()
 {
-	PawnOwner.Died(PawnOwner.LastHitBy, class'DmgType_Fell', PawnOwner.Location);
+	PawnOwner.Died(PawnOwner.LastHitBy, class'KFDT_Falling', PawnOwner.Location);
 }
 
 /** Timer called to check if ragdoll has come to a rest */

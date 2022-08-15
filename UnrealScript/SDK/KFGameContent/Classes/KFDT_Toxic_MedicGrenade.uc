@@ -18,5 +18,5 @@ defaultproperties
 {
 	ModifierPerkList(0)=class'KFPerk_FieldMedic'
 
-	AARWeaponID=`AAR_MedicGrenade
+	WeaponDef=class'KFWeapDef_Grenade_Medic'
 }

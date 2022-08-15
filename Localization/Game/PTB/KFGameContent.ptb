@@ -93,8 +93,8 @@ ItemCategory="Melee"
 ItemDescription="• Principal - ataque com corte rápido, Mantenha pressionado para ataque combo\n• Secundário - ataque com corte pesado\n• Alternativo - bloqueio/defesa\n• É a faca de um bombeiro. Você é um bombeiro, então presumimos que não precisamos explicar como se usa."
 
 [KFWeap_Pistol_Medic]
-ItemName=""
-ItemCategory=""
+ItemName="HMTech-101 Pistol"
+ItemCategory="Pistol"
 ItemDescription="• O tiro principal funciona apenas no semiautomático.\n• Disparo alternativo são dardos que curam os companheiros.\n• Usando munição sem cápsula, a mesma conta as balas por você."
 
 [KFWeap_SMG_Medic]

@@ -13,8 +13,7 @@ defaultproperties
 	// Inventory
 	InventorySize=5
 	GroupPriority=25
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Mossberg'
-	FilterTypeUI=FT_Shotgun
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Mossberg'
 
     // FOV
 	MeshIronSightFOV=52
@@ -97,9 +96,6 @@ defaultproperties
 	RecoilViewRotationScale=0.8
 	FallingRecoilModifier=1.5
 	HippedRecoilModifier=1.25
-
-	// Trader
-    EffectiveRange=20
 
 	AssociatedPerkClass=class'KFPerk_Support'
 }

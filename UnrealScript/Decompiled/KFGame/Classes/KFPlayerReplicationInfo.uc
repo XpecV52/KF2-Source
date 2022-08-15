@@ -8,20 +8,19 @@
 class KFPlayerReplicationInfo extends PlayerReplicationInfo
     native(ReplicationInfo)
     nativereplication
-    config(Game)
     hidecategories(Navigation,Movement,Collision);
 
 const NUM_COSMETIC_ATTACHMENTS = 3;
 
 struct native CustomizationInfo
 {
-    var byte CharacterIndex;
-    var byte HeadMeshIndex;
-    var byte HeadSkinIndex;
-    var byte BodyMeshIndex;
-    var byte BodySkinIndex;
-    var byte AttachmentMeshIndices[3];
-    var byte AttachmentSkinIndices[3];
+    var const byte CharacterIndex;
+    var const byte HeadMeshIndex;
+    var const byte HeadSkinIndex;
+    var const byte BodyMeshIndex;
+    var const byte BodySkinIndex;
+    var const byte AttachmentMeshIndices[3];
+    var const byte AttachmentSkinIndices[3];
 
     structdefaultproperties
     {
@@ -39,24 +38,25 @@ struct native CustomizationInfo
     }
 };
 
-var array<KFCharacterInfo_Human> CharacterArchetypes;
-var config byte StoredCharIndex;
+var float LastQuitTime;
 var byte NumTimesReconnected;
 var repnotify byte VOIPStatus;
 var byte NetPerkIndex;
 var private byte ActivePerkLevel;
-var byte Assists;
 var byte PlayerHealth;
 var byte PlayerHealthMax;
 var byte SharedUnlocks;
-var float LastQuitTime;
-var repnotify CustomizationInfo RepCustomizationInfo;
+var const array<KFCharacterInfo_Human> CharacterArchetypes;
+var repnotify const CustomizationInfo RepCustomizationInfo;
 var Texture CharPortrait;
 var class<KFPerk> CurrentPerkClass;
+var int Assists;
 var bool bExtraFireRange;
 var bool bSplashActive;
 var bool bNukeActive;
 var bool bConcussiveActive;
+var bool bPerkCanSupply;
+var bool bPerkSupplyUsed;
 var bool bObjectivePlayer;
 
 replication
@@ -67,23 +67,18 @@ replication
         PlayerHealth, PlayerHealthMax, 
         RepCustomizationInfo, bConcussiveActive, 
         bExtraFireRange, bNukeActive, 
-        bObjectivePlayer, bSplashActive;
+        bObjectivePlayer, bPerkCanSupply, 
+        bSplashActive;
 
      if(bNetDirty && !bNetOwner || bDemoRecording)
         SharedUnlocks, VOIPStatus;
 }
 
-// Export UKFPlayerReplicationInfo::execSaveCharacterConfig(FFrame&, void* const)
-native function SaveCharacterConfig(string SectionString);
-
-// Export UKFPlayerReplicationInfo::execLoadCharacterConfig(FFrame&, void* const)
-native function LoadCharacterConfig(string SectionString);
-
 simulated event ReplicatedEvent(name VarName)
 {
     if(VarName == 'RepCustomizationInfo')
     {
-        UpdateCustomizationPawn(RepCustomizationInfo.CharacterIndex);        
+        CharacterCustomizationChanged();        
     }
     else
     {
@@ -252,15 +247,18 @@ reliable server function ServerNotifyStopVOIP()
     VOIPStatus = 0;
     VOIPStatusChanged(self, false);
     KFPC = KFPlayerController(Owner);
-    KFPC.VoiceReceivers.Remove(0, KFPC.VoiceReceivers.Length;
+    if(KFPC != none)
+    {
+        KFPC.VoiceReceivers.Remove(0, KFPC.VoiceReceivers.Length;
+    }
     foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
     {
-        J0xA8:
+        J0xB7:
 
         if(KFPC.VoiceSenders.Find('Uid', UniqueId.Uid != -1)
         {
             KFPC.VoiceSenders.RemoveItem(UniqueId;
-            goto J0xA8;
+            goto J0xB7;
         }        
     }    
 }
@@ -408,20 +406,17 @@ reliable client simulated function RecieveTopMaps(TopVotes VoteObject)
 // Export UKFPlayerReplicationInfo::execServerSetSharedUnlocks(FFrame&, void* const)
 private reliable server native final event ServerSetSharedUnlocks(byte NewUnlocks);
 
-simulated function SetCharacter(int Index)
-{
-    StoredCharIndex = byte(Index);
-    SaveConfig();
-    InitializeCharacter(byte(Index));
-}
+// Export UKFPlayerReplicationInfo::execServerSetCharacterCustomization(FFrame&, void* const)
+private reliable server native final event ServerSetCharacterCustomization(CustomizationInfo NewMeshInfo);
 
-reliable server event SeverAnnounceNewSharedContent()
-{
-    if((WorldInfo.GRI != none) && WorldInfo.GRI.bMatchHasBegun)
-    {
-        BroadcastLocalizedMessage(Class'KFLocalMessage_Game', 20, self);
-    }
-}
+// Export UKFPlayerReplicationInfo::execSaveCharacterConfig(FFrame&, void* const)
+private native final function bool SaveCharacterConfig();
+
+// Export UKFPlayerReplicationInfo::execLoadCharacterConfig(FFrame&, void* const)
+private native final function bool LoadCharacterConfig(out int CharacterIndex);
+
+// Export UKFPlayerReplicationInfo::execClearCharacterAttachment(FFrame&, void* const)
+native function ClearCharacterAttachment(int AttachmentIndex);
 
 simulated function ClientInitialize(Controller C)
 {
@@ -433,30 +428,31 @@ simulated function ClientInitialize(Controller C)
     if(C.IsLocalController())
     {
         KFPlayerController(C).InitializeStats();
-        InitializeCharacter(StoredCharIndex);
+        SelectCharacter();
         Class'KFUnlockManager'.static.InitSharedUnlocksFor(self);
     }
 }
 
-simulated function InitializeCharacter(byte CharIndex)
+private final simulated event SelectCharacter(optional int CharIndex)
 {
+    CharIndex = -1;
+    LoadCharacterConfig(CharIndex);
     if(!Class'KFUnlockManager'.static.GetAvailable((CharacterArchetypes[CharIndex])))
     {
-        CharIndex = byte(GetValidCharacterIndex(CharIndex));
-        StoredCharIndex = CharIndex;
+        CharIndex = GetAnyAvailableCharacter(byte(CharIndex));
+        LoadCharacterConfig(CharIndex);
     }
-    LoadCharacterConfig(PathName(CharacterArchetypes[CharIndex]));
     if(Role < ROLE_Authority)
     {
-        ServerSetCharacter(RepCustomizationInfo);        
+        ServerSetCharacterCustomization(RepCustomizationInfo);        
     }
     else
     {
-        UpdateCustomizationPawn(CharIndex);
+        CharacterCustomizationChanged();
     }
 }
 
-simulated function int GetValidCharacterIndex(byte CharIndex)
+private final simulated function int GetAnyAvailableCharacter(byte CharIndex)
 {
     local byte I;
 
@@ -475,42 +471,40 @@ simulated function int GetValidCharacterIndex(byte CharIndex)
     return 0;
 }
 
-private reliable server final function ServerSetCharacter(CustomizationInfo NewMeshInfo)
+private final simulated event string GetCharacterConfigSection(int Idx)
 {
-    local int I;
-
-    RepCustomizationInfo.CharacterIndex = NewMeshInfo.CharacterIndex;
-    RepCustomizationInfo.BodyMeshIndex = NewMeshInfo.BodyMeshIndex;
-    RepCustomizationInfo.HeadMeshIndex = NewMeshInfo.HeadMeshIndex;
-    RepCustomizationInfo.HeadSkinIndex = NewMeshInfo.HeadSkinIndex;
-    RepCustomizationInfo.BodySkinIndex = NewMeshInfo.BodySkinIndex;
-    I = 0;
-    J0x128:
-
-    if(I < 3)
-    {
-        RepCustomizationInfo.AttachmentMeshIndices[I] = NewMeshInfo.AttachmentMeshIndices[I];
-        RepCustomizationInfo.AttachmentSkinIndices[I] = NewMeshInfo.AttachmentSkinIndices[I];
-        ++ I;
-        goto J0x128;
-    }
-    if(Role == ROLE_Authority)
-    {
-        UpdateCustomizationPawn(RepCustomizationInfo.CharacterIndex);
-    }
+    return PathName(CharacterArchetypes[Idx]);
 }
 
-simulated function UpdateCustomizationPawn(byte CharIndex)
+simulated event CharacterCustomizationChanged()
 {
     local KFPawn_Human KFP;
+    local KFCharacterInfoBase NewCharArch;
 
     foreach WorldInfo.AllPawns(Class'KFPawn_Human', KFP)
     {
         if((KFP.PlayerReplicationInfo == self) || (KFP.DrivenVehicle != none) && KFP.DrivenVehicle.PlayerReplicationInfo == self)
         {
-            KFP.UpdateCustomizationChar(CharacterArchetypes[CharIndex]);
+            NewCharArch = CharacterArchetypes[RepCustomizationInfo.CharacterIndex];
+            if(NewCharArch != KFP.CharacterArch)
+            {
+                KFP.SetCharacterArch(NewCharArch);
+                continue;
+            }
+            if(WorldInfo.NetMode != NM_DedicatedServer)
+            {
+                KFP.CharacterArch.SetCharacterMeshFromArch(KFP, self);
+            }
         }        
     }    
+}
+
+private reliable server final event ServerAnnounceNewSharedContent()
+{
+    if((WorldInfo.GRI != none) && WorldInfo.GRI.bMatchHasBegun)
+    {
+        BroadcastLocalizedMessage(Class'KFLocalMessage_Game', 20, self);
+    }
 }
 
 function PlayerReplicationInfo Duplicate()
@@ -595,19 +589,50 @@ function IncrementDeaths(optional int Amt)
     }
 }
 
+reliable client simulated function MarkSupplierOwnerUsed(KFPlayerReplicationInfo SupplierPRI)
+{
+    if(SupplierPRI != none)
+    {
+        SupplierPRI.MarkSupplierUsed();
+    }
+}
+
+simulated function MarkSupplierUsed()
+{
+    bPerkSupplyUsed = true;
+}
+
+simulated function ResetSupplierUsed()
+{
+    local array<KFPlayerReplicationInfo> KFPRIArray;
+    local int I;
+
+    KFGameReplicationInfo(WorldInfo.GRI).GetKFPRIArray(KFPRIArray);
+    I = 0;
+    J0x52:
+
+    if(I < KFPRIArray.Length)
+    {
+        KFPRIArray[I].bPerkSupplyUsed = false;
+        ++ I;
+        goto J0x52;
+    }
+}
+
 defaultproperties
 {
-    CharacterArchetypes(0)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Ana_Archetype'
-    CharacterArchetypes(1)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_DJSkully_archetype'
-    CharacterArchetypes(2)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Coleman_archetype'
-    CharacterArchetypes(3)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Tanaka_Archetype'
-    CharacterArchetypes(4)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Masterson_Archetype'
-    CharacterArchetypes(5)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_MrFoster_archetype'
-    CharacterArchetypes(6)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_briar_archetype'
-    CharacterArchetypes(7)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Alberts_archetype'
-    CharacterArchetypes(8)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Mark_archetype'
-    CharacterArchetypes(9)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Alan_Archetype'
-    CharacterArchetypes(10)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Strasser_Archetype'
-    CharacterArchetypes(11)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Knight_Archetype'
+    CharacterArchetypes(0)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Alberts_archetype'
+    CharacterArchetypes(1)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Knight_Archetype'
+    CharacterArchetypes(2)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_briar_archetype'
+    CharacterArchetypes(3)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Mark_archetype'
+    CharacterArchetypes(4)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_MrFoster_archetype'
+    CharacterArchetypes(5)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Jagerhorn_Archetype'
+    CharacterArchetypes(6)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Ana_Archetype'
+    CharacterArchetypes(7)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Masterson_Archetype'
+    CharacterArchetypes(8)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Alan_Archetype'
+    CharacterArchetypes(9)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Coleman_archetype'
+    CharacterArchetypes(10)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_DJSkully_archetype'
+    CharacterArchetypes(11)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Strasser_Archetype'
+    CharacterArchetypes(12)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Tanaka_Archetype'
     RepCustomizationInfo=(CharacterIndex=0,HeadMeshIndex=0,HeadSkinIndex=0,BodyMeshIndex=0,BodySkinIndex=0,AttachmentMeshIndices=255,AttachmentMeshIndices[1]=255,AttachmentMeshIndices[2]=255,AttachmentSkinIndices=0,AttachmentSkinIndices[1]=0,AttachmentSkinIndices[2]=0)
 }

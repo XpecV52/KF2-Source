@@ -350,57 +350,27 @@ var(Weapon) float   ZedGrabGrenadeTossCooldown;
 /** Target friction enabled? */
 var() bool bTargetFrictionEnabled;
 
-/** Min distance for friction */
-var() float TargetFrictionDistanceMin;
-
-/** Peak distance for friction */
-var() float TargetFrictionDistancePeak;
-
 /** Max distance allow for friction */
 var() float TargetFrictionDistanceMax;
 
-/** Interp curve that allows for piece wise functions for the TargetFrictionDistance amount at different ranges **/
-var() InterpCurveFloat TargetFrictionDistanceCurve;
-
-/** Min/Max friction multiplier applied when target acquired */
-var() Vector2d TargetFrictionMultiplierRange;
-
-/** Amount of additional radius/height given to target cylinder when at peak distance */
-var() float TargetFrictionPeakRadiusScale;
-var() float TargetFrictionPeakHeightScale;
-
-/** Offset to apply to friction target location (aim for the chest, etc) */
-var() vector TargetFrictionOffset;
-
-/** Boost the Target Friction by this much when zoomed in **/
-var() float TargetFrictionZoomedBoostValue;
-
+/** Target adhesion enabled? */
 var() bool bTargetAdhesionEnabled;
-
-/** Max time to attempt adhesion to the friction target */
-var() float TargetAdhesionTimeMax;
 
 /** Max distance to allow adhesion to still kick in */
 var() float TargetAdhesionDistanceMax;
 
-/** Max distance from edge of cylinder for adhesion to be valid */
-var() float TargetAdhesionAimDistY;
-var() float TargetAdhesionAimDistZ;
+/** Adhesion scalar curve based on distance */
+var() InterpCurveFloat TargetAdhesionOffsetScaleCurve;
+/** Adhesion scalar curve based on angle offset to center of zed cylinder */
+var() InterpCurveFloat TargetAdhesionDistanceScaleCurve;
 
-/** Min/Max amount to scale for adhesive purposes */
-var() Vector2d TargetAdhesionScaleRange;
+/** Friction scalar curve based on distance */
+var() InterpCurveFloat TargetFrictionOffsetScaleCurve;
+/** Friction scalar curve based on angle offset to center of zed cylinder */
+var() InterpCurveFloat TargetFrictionDistanceScaleCurve;
 
-/** Min amount to scale for adhesive purposes */
-var() float TargetAdhesionScaleAmountMin;
-
-/** Require the target to be moving for adhesion to kick in? */
-var() float TargetAdhesionTargetVelocityMin;
-
-/** Require the player to be moving for adhesion to kick in? */
-var() float TargetAdhesionPlayerVelocityMin;
-
-/** Boost the Target Adhesion by this much when zoomed in **/
-var() float TargetAdhesionZoomedBoostValue;
+/** Aim correction - headshot offset */
+var() const float AimCorrectionSize;
 
 /************************************************************************************
  * @name	Weapon positioning: Iron sights, hipped, etc
@@ -524,30 +494,13 @@ enum EInventoryGroup
 /** Determines which group a weapon falls into in weapon select */
 var(Inventory) const EInventoryGroup	InventoryGroup;
 
-enum EFilterTypeUI
-{
-	FT_Pistol,
-	FT_Shotgun,
-	FT_Rifle,
-	FT_Projectile,
-	FT_Flame,
-	FT_Electric,
-	FT_Explosive,
-	FT_Assault,
-	FT_Melee,
-	FT_SMG
-};
-
-/** Determine which group a weapon will show up for the weapon type filter */
-var(Inventory) const EFilterTypeUI	FilterTypeUI;
-
 /** Inventory (In blocks) cost */
 var(Inventory) byte	InventorySize;
 
 /** Used to place this weapon in the inventory */
 var(Inventory) float GroupPriority;
 ///** The UI image for this weapon */
-var (Inventory) Texture2D UITexture;
+var(Inventory) Texture2D WeaponSelectTexture;
 /** The path that locates the image for this weapon */
 var(Inventory) Texture2D SecondaryAmmoTexture;
 /** The path that locates the image for this weapon */
@@ -640,7 +593,7 @@ var bool	bPlayingLoopingFireAnim;
 var(Camera) const CameraShake MeleeImpactCamShake;
 
 /*********************************************************************************************
- * @name	Animations (Using const anim names to reduce instanced data cost)
+ * @name	Animations (const names reduce instanced data)
 ********************************************************************************************* */
 
 /** Cached anim nodes */
@@ -743,6 +696,9 @@ var bool bEnableTiltSkelControl;
 /** Set from unlock notify to enable test for an aborted reload */
 var transient bool bCheckBoltLockPostReload;
 
+/** array of bones to lock when out of ammo */
+var array<name> BonesToLockOnEmpty;
+
 /*********************************************************************************************
  * @name	Sounds
 ********************************************************************************************* */
@@ -769,6 +725,9 @@ var() bool  bPendingAutoSwitchOnDryFire;
  * @name	First person weapon view positioning and rendering
 ********************************************************************************************* */
 
+const BloodParamName			= 'Scalar_Blood_Contrast';
+const MinBloodParamValue		= 0.20f;
+
 /** How much to damp view bob */
 var(Motion) float	BobDamping;
 
@@ -786,8 +745,8 @@ var MaterialInstanceConstant	WeaponMIC;
 /** Defines how bloody the weapon looks */
 var float						BloodParamValue;
 
-const BloodParamName			= 'Scalar_Blood_Contrast';
-const MinBloodParamValue		= 0.20f;
+/** ItemID for currently/last equipped weapon skin. TODO: Cloud save */
+var const config int SkinItemId;
 
 /*********************************************************************************************
  * @name	Weapon Lag System
@@ -858,12 +817,8 @@ var					   KFMuzzleFlash MuzzleFlash;
 /** A reference to the muzzle flash template */
 var(Attachments) const KFMuzzleFlash MuzzleFlashTemplate;
 
-/** A flashlight flash instance */
-var	transient		   KFFlashlightAttachment FlashLight;
-/** A reference to the muzzle flash template */
-var(Attachments) const KFFlashlightAttachment FlashLightTemplate;
-
-var(Attachments)		bool			   bHasFlashlight;
+/** DEPRECATED */
+var deprecated bool bHasFlashlight;
 
 /** A laser sight instance */
 var	transient		   KFLaserSightAttachment LaserSight;
@@ -1020,21 +975,9 @@ struct native ImpactRepInfo
  * @name	Perks
  ********************************************************************************************* */
 /** Is this perk backup weapon? */
-var bool bIsBackupWeapon;
-var(Weapon) class<KFPerk> 		AssociatedPerkClass;
-
-/*********************************************************************************************
- * @name	Trader
- ********************************************************************************************* */
-
-/** The maximum range at which this weapon is effective. Unlike other trader stats, this isn't
-  * programatically generated but rather set by design to a reasonable value based on judgment.
-  * Range is 0-100.
-  */
-var() byte EffectiveRange;
-
-/** Id for shared unlock if applicable */
-var private const ESharedContentUnlock SharedUnlockId;
+var 				bool 				bIsBackupWeapon;
+var(Weapon) 		Class<KFPerk> 		AssociatedPerkClass;
+var const 			int 				MinUberAmmoCount;
 
 /*********************************************************************************************
  * @name	Debug
@@ -1052,6 +995,7 @@ var bool bDebugRecoilPosition;
 /** temp ammo logging */
 var config bool	bLogAmmo;
 
+// (cpptext)
 // (cpptext)
 // (cpptext)
 // (cpptext)
@@ -1137,11 +1081,6 @@ simulated event PreBeginPlay()
 		RecoilPitchBlendOutRate = maxRecoilPitch/RecoilRate * RecoilBlendOutRatio;
 	}
 
-	if ( bHasFlashlight )
-	{
-		AttachFlashlight();
-	}
-
 	if( bHasLaserSight )
 	{
 		AttachLaserSight();
@@ -1164,7 +1103,14 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 	ToggleAdditiveBobAnim(false, 0.f);
 
 	EmptyMagBlendNode = AnimNodeBlendPerBone(SkelComp.FindAnimNode('EmptyMagBlend'));
+	if( EmptyMagBlendNode != none && BonesToLockOnEmpty.Length > 0 )
+	{
+		BuildEmptyMagNodeWeightList( EmptyMagBlendNode, BonesToLockOnEmpty );
+	}
 }
+
+/** Rebuilds weight list for "empty mag" bolt lock node after updating its target bones */
+native function BuildEmptyMagNodeWeightList( AnimNodeBlendPerBone EmptyNode, const out array<name> BonesToLock );
 
 /** Setup the time it takes before the equip anim can be interrupted */
 simulated function InitializeEquipTime()
@@ -1211,30 +1157,17 @@ simulated function InitFOV(float SizeX, float SizeY, float DefaultPlayerFOV)
     if (bLogAnimation) LogInternal("SprintFOV = "$PlayerSprintFOV$" default POV = "$default.PlayerSprintFOV);
 }
 
-simulated event Destroyed()
-{
-	if (Instigator != None && Instigator.IsHumanControlled() && Instigator.IsLocallyControlled())
-	{
-		PreloadTextures(false);
-	}
-	super.Destroyed();
-}
-
-/**
-  * Force streamed textures to be loaded.  Used to get MIPS streamed in before weapon comes up
-  * @PARAM bForcePreload if true causes streamed textures to be force loaded, if false, clears force loading
-  */
-simulated function PreloadTextures(bool bForcePreload)
-{
-	if ( MySkelMesh != None )
-	{
-		MySkelMesh.PreloadTextures(bForcePreload, WorldInfo.TimeSeconds + 2);
-	}
-}
-
 /*********************************************************************************************
  * @name	Inventory & Weapon Switching
  *********************************************************************************************/
+
+/** Weapon skins */
+native reliable client private function ClientSetFirstPersonSkin(int ItemId);
+native reliable server private event ServerUpdateWeaponSkin(int ItemId);
+native private function ClearSkinItemId();
+
+/** Trader Menu */
+function class<KFWeaponDefinition> GetKnifeWeaponDef();
 
 /**
  * This Inventory Item has just been given to this Pawn
@@ -1244,8 +1177,13 @@ function GivenTo( Pawn thisPawn, optional bool bDoNotActivate )
 {
 	Super.GivenTo(thisPawn, bDoNotActivate);
 
-	KFInventoryManager(InvManager).CurrentCarryBlocks += InventorySize;
+	// need to reset skin and wait for ServerUpdateWeaponSkin
+	if ( !Instigator.IsLocallyControlled() )
+	{
+		ClearSkinItemId();
+	}
 
+	KFInventoryManager(InvManager).AddCurrentCarryBlocks( InventorySize );
 	KFPawn(Instigator).NotifyInventoryWeightChanged();
 }
 
@@ -1257,7 +1195,7 @@ function ItemRemovedFromInvManager()
 {
 	Super.ItemRemovedFromInvManager();
 
-	KFInventoryManager(InvManager).CurrentCarryBlocks -= InventorySize;
+	KFInventoryManager(InvManager).AddCurrentCarryBlocks( -InventorySize );
 
 	KFPawn(Instigator).NotifyInventoryWeightChanged();
 }
@@ -1266,14 +1204,25 @@ reliable client function ClientWeaponSet(bool bOptionalSet, optional bool bDoNot
 {
 	local PlayerController PC;
 
-	if ( Instigator != None )
+	// This is the first time we have a valid Instigator (see PendingClientWeaponSet)
+	if ( Instigator != None && InvManager != None
+		&& WorldInfo.NetMode != NM_DedicatedServer )
 	{
 		PC = PlayerController(Instigator.Controller);
 		if( Instigator.Controller != none && PC.myHUD != none )
 		{
 			InitFOV(PC.myHUD.SizeX, PC.myHUD.SizeY, PC.DefaultFOV);
 		}
+
+		// One-time skin initialization on local player
+		if ( SkinItemId > 0 )
+		{
+			ClientSetFirstPersonSkin(SkinItemId);
+		}
+
+		WeaponMIC = Mesh.CreateAndSetMaterialInstanceConstant(0);
 	}
+
 	Super.ClientWeaponSet(bOptionalSet, bDoNotActivate);
 }
 
@@ -1340,13 +1289,30 @@ simulated function AttachWeaponTo( SkeletalMeshComponent MeshCpnt, optional Name
 		}
 	}
 
-	// Spawn the 3rd Person Attachment
-	if (Role == ROLE_Authority && KFP != None)
+	// Assign/spawn the 3rd Person Attachment
+	if (KFP != None)
 	{
-		KFP.WeaponAttachmentTemplate = AttachmentArchetype;
+		AttachThirdPersonWeapon(KFP);
+	}
+}
+
+/** Assign a new 3rd person weapon attachment  */
+function AttachThirdPersonWeapon(KFPawn P)
+{
+	// Create weapon attachment (server only)
+	if ( Role == ROLE_Authority )
+	{
+		P.WeaponAttachmentTemplate = AttachmentArchetype;
+
 		if ( WorldInfo.NetMode != NM_DedicatedServer )
 		{
-			KFP.WeaponAttachmentChanged();
+			P.WeaponAttachmentChanged();
+		}
+
+		// Assign replicated 3rd person skin (local & server)
+		if ( P.IsHumanControlled() )
+		{
+			ServerUpdateWeaponSkin(SkinItemId);
 		}
 	}
 }
@@ -1388,7 +1354,6 @@ simulated function DetachWeapon()
 	SetBase(None);
 	SetHidden(True);
 	DetachMuzzleFlash();
-	DeactivateFlashlight();
 }
 
 /**
@@ -1403,20 +1368,6 @@ simulated function DetachMuzzleFlash()
 	}
 }
 
-simulated function AttachFlashlight()
-{
-	if( WorldInfo.NetMode == NM_DedicatedServer )
-	{
-        return;
-	}
-
-	if ( MySkelMesh != none && Flashlight == None && bHasFlashlight )
-	{
-		Flashlight = new(self) Class'KFFlashlightAttachment' (FlashLightTemplate);
-		Flashlight.AttachFlashlight(MySkelMesh);
-	}
-}
-
 simulated function AttachLaserSight()
 {
 	if( WorldInfo.NetMode == NM_DedicatedServer )
@@ -1428,15 +1379,6 @@ simulated function AttachLaserSight()
 	{
 		LaserSight = new(self) Class'KFLaserSightAttachment' (LaserSightTemplate);
 		LaserSight.AttachLaserSight(MySkelMesh, true);
-	}
-}
-
-/** Make sure flashlight is off when weapon is discarded, detached, etc... */
-simulated function DeactivateFlashlight()
-{
-	if ( Flashlight != none && Flashlight.bEnabled && Instigator.IsLocallyControlled() )
-	{
-		KFPawn_Human(Instigator).SetFlashlight(false);
 	}
 }
 
@@ -1542,6 +1484,12 @@ function SetOriginalValuesFromPickup( KFWeapon PickedUpWeapon )
 		}
 	}
 
+	// assign weapon skin from the pickup mesh
+	if ( PickedUpWeapon.SkinItemId > 0 )
+	{
+		ClientSetFirstPersonSkin(PickedUpWeapon.SkinItemId);
+	}
+
 	ClientForceAmmoUpdate( AmmoCount[0],SpareAmmoCount[0] );
 	ClientForceSecondaryAmmoUpdate( AmmoCount[1] );
 
@@ -1639,11 +1587,6 @@ simulated event SetFOV( float NewFOV )
 		{
 			KFP.ArmsMesh.SetFOV(NewFOV);
 		}
-	}
-
-	if( Flashlight != none )
-	{
-		Flashlight.SetFOV(NewFOV);
 	}
 }
 
@@ -2077,12 +2020,6 @@ simulated function PlayWeaponAnimation(name Sequence, float fDesiredDuration, op
 
 	if ( Mesh != none && Instigator != none && WorldInfo.NetMode != NM_DedicatedServer )
 	{
-		if ( !Mesh.bAttached )
-		{
-			// The weapon is equipped, attach it to the mesh.
-			AttachWeaponTo(Instigator.Mesh);
-		}
-
 		if ( WeaponAnimSeqNode != None )
 		{
 			if (WeaponAnimSeqNode.AnimSeq == None || WeaponAnimSeqNode.AnimSeq.SequenceName != Sequence)
@@ -2859,6 +2796,27 @@ simulated function StartFire(byte FireModeNum)
 }
 
 /**
+ * BeginFire is the point at which the server and client sync up their code path.  It's job is to set
+ * the weapon in to the firing state.
+ * Network: LocalPlayer and Server
+ */
+simulated function BeginFire( Byte FireModeNum )
+{
+	local KFPerk_Gunslinger GunslingerPerk;
+	
+	super.BeginFire( FireModeNum );
+
+	if( Role == Role_Authority )
+	{
+		GunslingerPerk = KFPerk_Gunslinger(GetPerk());
+		if( GunslingerPerk != none && !IsMeleeWeapon() && !GunslingerPerk.IsWeaponOnPerk( self ) )
+		{
+			GunslingerPerk.ResetHeadShotCombo();
+		}
+	}
+}
+
+/**
  * @see Weapon::StopFire
  */
 simulated function StopFire(byte FireModeNum)
@@ -3153,10 +3111,10 @@ simulated function rotator AddSpread(rotator BaseAim)
 	}
 }
 
-// Overridden if we want to add recoild modifiers
+// Overridden if we want to add recoil modifiers
 simulated function ModifyRecoil( out float CurrentRecoilModifier )
 {
-	GetPerk().ModifyRecoil(CurrentRecoilModifier);
+	GetPerk().ModifyRecoil( CurrentRecoilModifier, self );
 }
 
 /**
@@ -3407,14 +3365,14 @@ simulated event float GetInitialPenetrationPower(byte FiringMode)
  * See Pawn.ProcessInstantHit
  * @param DamageReduction: Custom KF parameter to handle penetration damage reduction
  */
-simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optional int NumHits, optional out float out_PenetrationVal)
+simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optional int NumHits, optional out float out_PenetrationVal, optional int ImpactNum)
 {
 	local int TotalDamage;
 	local KActorFromStatic NewKActor;
 	local StaticMeshComponent HitStaticMesh;
 	local InterpCurveFloat PenetrationCurve;
     local KFPawn KFP;
-
+    
 	if (Impact.HitActor != None)
 	{
 		// default damage model is just hits * base damage
@@ -3454,6 +3412,7 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
             	}
 			}
 		}
+
 		Impact.HitActor.TakeDamage( TotalDamage, Instigator.Controller,
 						Impact.HitLocation, InstantHitMomentum[FiringMode] * Impact.RayDir,
 						InstantHitDamageTypes[FiringMode], Impact.HitInfo, self );
@@ -3474,7 +3433,7 @@ simulated function HandleProjectileImpact(ImpactInfo Impact, optional float Pene
 			SendClientProjectileImpact(CurrentFireMode, Impact, PenetrationValue);
 		}
 
-		ProcessInstantHitEx(CurrentFireMode, Impact,, PenetrationValue);
+		ProcessInstantHitEx(CurrentFireMode, Impact,, PenetrationValue, 0);
 	}
 }
 
@@ -3586,10 +3545,15 @@ simulated function InstantFireClient()
 	local ImpactInfo		RealImpact;
 	local float				CurPenetrationValue;
 
+	// see Controller AimHelpDot() / AimingHelp()
+	bInstantHit = true;
+
 	// define range to use for CalcWeaponFire()
 	StartTrace = GetSafeStartTraceLocation();
 	AimRot = GetAdjustedAim(StartTrace);
 	EndTrace = StartTrace + vector(AimRot) * GetTraceRange();
+
+	bInstantHit = false;
 
     // Initialize penetration power
     PenetrationPowerRemaining = GetInitialPenetrationPower(CurrentFireMode);
@@ -3617,7 +3581,7 @@ simulated function InstantFireClient()
 
 		for (Idx = 0; Idx < ImpactList.Length; Idx++)
 		{
-			ProcessInstantHitEx(CurrentFireMode, ImpactList[Idx],, CurPenetrationValue);
+			ProcessInstantHitEx(CurrentFireMode, ImpactList[Idx],, CurPenetrationValue, Idx);
 		}
 
 		if ( Instigator.Role < ROLE_Authority )
@@ -3628,15 +3592,21 @@ simulated function InstantFireClient()
 }
 
 /** process local player impact for clientside hit detection */
-event RecieveClientImpact(byte FiringMode, const out ImpactInfo Impact, optional out float PenetrationValue)
+event RecieveClientImpact(byte FiringMode, const out ImpactInfo Impact, optional out float PenetrationValue, optional int ImpactNum)
 {
-	if ( FiringMode == BASH_FIREMODE )
+
+	if( FiringMode == BASH_FIREMODE )
 	{
 		MeleeAttackHelper.ProcessMeleeHit(FiringMode, Impact);
 	}
 	else
 	{
-        ProcessInstantHitEx(FiringMode, Impact,, PenetrationValue);
+       if( KFPawn_Monster(Impact.HitActor) != none && PenetrationValue < GetInitialPenetrationPower( FiringMode ) )
+       {
+       		ImpactNum = 1;
+       }
+
+       ProcessInstantHitEx(FiringMode, Impact,, PenetrationValue, ImpactNum);
 	}
 }
 
@@ -3799,6 +3769,7 @@ function ReInitializeAmmoCounts(KFPerk CurrentPerk)
 simulated function ConsumeAmmo( byte FireModeNum )
 {
     local int AmmoGroup;
+    local KFPerk InstigatorPerk;
 
 
 
@@ -3806,17 +3777,30 @@ simulated function ConsumeAmmo( byte FireModeNum )
 
 
 
+
+	AmmoGroup = GetAmmoType(FireModeNum);
+
+	InstigatorPerk = GetPerk();
+	if( InstigatorPerk != none && InstigatorPerk.GetIsUberAmmoActive( self ) && 
+		AmmoCount[AmmoGroup] == GetUberAmmoMinAmmo() )
+	{
+		return;
+	}
 
 	// If AmmoCount is being replicated, don't allow the client to modify it here
 	if ( Role == ROLE_Authority || bAllowClientAmmoTracking )
 	{
-		AmmoGroup = GetAmmoType(FireModeNum);
-        // Don't consume ammo if magazine size is 0 (infinite ammo with no reload)
+	    // Don't consume ammo if magazine size is 0 (infinite ammo with no reload)
 		if (MagazineCapacity[AmmoGroup] > 0 && AmmoCount[AmmoGroup] > 0)
 		{
 			AmmoCount[AmmoGroup]--;
 		}
 	}
+}
+
+simulated final private function int GetUberAmmoMinAmmo()
+{
+	return default.MinUberAmmoCount;
 }
 
 /**
@@ -3845,6 +3829,36 @@ function int AddAmmo(int Amount)
 	if (bLogAmmo) LogInternal(self@"Added" @ SpareAmmoCount[0] - OldSpareAmmo @ "Ammo");
 
 	return SpareAmmoCount[0] - OldSpareAmmo;
+}
+
+/** Add primary and secondary ammo to weapon based on trader transactions. Amounts could be negative. */
+function AddTransactionAmmo( int TransactionPrimaryAmmo, int TransactionSecondaryAmmo )
+{
+	local int SpareAmmoToAdd, ExtraTransactionAmmo;
+
+	if( TransactionPrimaryAmmo >= 0 )
+	{
+		AddAmmo( TransactionPrimaryAmmo );
+	}
+	else
+	{
+		// only subtract as much spare ammo as the gun actually has
+		// (the passed-in values are from the trader/UI and include default spare and main ammo)
+		SpareAmmoToAdd = Max( -SpareAmmoCount[0], TransactionPrimaryAmmo );
+		
+		// if there isn't enough spare ammo to subtract, keep track of the extra and subtract it from the main ammo
+		ExtraTransactionAmmo = TransactionPrimaryAmmo - SpareAmmoToAdd;
+
+		// subtract from spare ammo
+		AddAmmo( SpareAmmoToAdd );
+
+		// subtract any extra from ammo
+		AmmoCount[0] = Max( 0, AmmoCount[0] + ExtraTransactionAmmo );
+
+		ClientForceAmmoUpdate(AmmoCount[0], SpareAmmoCount[0]);
+	}
+
+	AddSecondaryAmmo( TransactionSecondaryAmmo );
 }
 
 /**
@@ -3877,24 +3891,36 @@ function int AddSecondaryAmmo(int Amount)
 	return AmmoCount[1] - OldAmmo;
 }
 
-/** Force client to match server ammo counts */
-reliable client function ClientForceAmmoUpdate(byte NewAmmoCount, int NewSpareAmmoCount)
+/** 
+ * Force client to match server ammo counts 
+ * 
+ * @param	bAmmoSync	- If performing a sync the lowest value is typically the most correct
+ */
+reliable client function ClientForceAmmoUpdate(byte NewAmmoCount, int NewSpareAmmoCount, optional bool bAmmoSync)
 {
 	if ( Role < ROLE_Authority )
-	{
-		// detect sync errors
-		if (bDebug) LogInternal(self@"ClientForceAmmoUpdate ServerAmmo Primary:"$NewAmmoCount@"ClientAmmo Primary:"$AmmoCount[0]@"ServerSpareAmmo Primary:"$NewSpareAmmoCount@"ClientSpareAmmo Primary:"$SpareAmmoCount[0]);
-		if ( NewAmmoCount != AmmoCount[0] )
+	{		
+		if ( bAmmoSync )
 		{
-			LogInternal(self@"ClientForceAmmoUpdate Primary Ammo mismatch Server:"$NewAmmoCount@"Client:"$AmmoCount[0]);
-		}
-		if ( NewSpareAmmoCount != SpareAmmoCount[0] )
-		{
-			LogInternal(self@"ClientForceAmmoUpdate Primary SpareAmmo mismatch Server:"$NewSpareAmmoCount@"Client:"$SpareAmmoCount[0]);
-		}
+			// detect sync errors
+			if (bDebug) LogInternal(self@GetFuncName()@"ServerAmmo Primary:"$NewAmmoCount@"ClientAmmo Primary:"$AmmoCount[0]@"ServerSpareAmmo Primary:"$NewSpareAmmoCount@"ClientSpareAmmo Primary:"$SpareAmmoCount[0]);
+			if ( NewAmmoCount != AmmoCount[0] )
+			{
+				LogInternal(self@GetFuncName()@"Primary Ammo mismatch Server:"$NewAmmoCount@"Client:"$AmmoCount[0]);
+			}
+			if ( NewSpareAmmoCount != SpareAmmoCount[0] )
+			{
+				LogInternal(self@GetFuncName()@"Primary SpareAmmo mismatch Server:"$NewSpareAmmoCount@"Client:"$SpareAmmoCount[0]);
+			}
 
-		AmmoCount[0] = NewAmmoCount;
-		SpareAmmoCount[0] = NewSpareAmmoCount;
+			AmmoCount[0] = Min(NewAmmoCount, AmmoCount[0]);
+			SpareAmmoCount[0] = Min(NewSpareAmmoCount, SpareAmmoCount[0]);
+		}
+		else
+		{
+			AmmoCount[0] = NewAmmoCount;
+			SpareAmmoCount[0] = NewSpareAmmoCount;
+		}
 		NotifyHUDofWeapon(Pawn(Owner));
 	}
 }
@@ -3905,10 +3931,10 @@ reliable client function ClientForceSecondaryAmmoUpdate(byte NewSecondaryAmmoCou
 	if ( Role < ROLE_Authority )
 	{
 		// detect sync errors
-		if (bDebug) LogInternal(self@"ClientForceAmmoUpdate ServerAmmo Secondary:"$NewSecondaryAmmoCount@"ClientAmmo Secondary:"$AmmoCount[1]);
+		if (bDebug) LogInternal(self@GetFuncName()@"ServerAmmo Secondary:"$NewSecondaryAmmoCount@"ClientAmmo Secondary:"$AmmoCount[1]);
 		if ( NewSecondaryAmmoCount != AmmoCount[1] )
 		{
-			LogInternal(self@"ClientForceAmmoUpdate Secondary Ammo mismatch Server:"$NewSecondaryAmmoCount@"Client:"$AmmoCount[1]);
+			LogInternal(self@GetFuncName()@"Secondary Ammo mismatch Server:"$NewSecondaryAmmoCount@"Client:"$AmmoCount[1]);
 		}
 		AmmoCount[1] = NewSecondaryAmmoCount;
 		NotifyHUDofWeapon(Pawn(Owner));
@@ -4089,7 +4115,62 @@ simulated function bool ShouldAutoReload(byte FireModeNum)
 		}
     }
 
-	return (!bHasAmmo && CanReload());
+	return !bHasAmmo && CanReload();
+}
+
+simulated function bool ShouldAutoReloadGunslinger( byte FireModeNum )
+{
+    local KFPerk InstigatorPerk;
+    local KFWeapon NewWeapon;
+    local KFInventoryManager KFIM;
+    local bool bHasAmmo;
+
+    bHasAmmo = HasAmmo( FireModeNum );
+
+	InstigatorPerk = GetPerk();
+	if( !bHasAmmo &&  CanSwitchWeapons() && InstigatorPerk != none && 
+		InstigatorPerk.ShouldInstantlySwitchWeapon( self ) )
+	{
+		KFIM = KFInventoryManager(InvManager);
+		if( KFIM != none )
+		{
+			NewWeapon = KFIM.GetBestPerkWeaponWithAmmo( InstigatorPerk.class, true );
+			if( NewWeapon != none )
+			{
+				KFIM.SetCurrentWeapon( NewWeapon );
+				return false;
+			}
+		}
+	}
+
+    // do dry fire or auto switch
+    if( !bHasAmmo && Instigator != none && Instigator.IsLocallyControlled() )
+    {
+		if( bPendingAutoSwitchOnDryFire )
+		{
+			if( CanSwitchWeapons() )
+			{
+                if( !HasSpareAmmo() )
+    			{
+    				Instigator.Controller.ClientSwitchToBestWeapon(false);
+    			}
+			}
+
+			bPendingAutoSwitchOnDryFire = false;
+		}
+		else
+		{
+			WeaponPlaySound( WeaponDryFireSnd[FireModeNum] );
+			
+			if( Role < ROLE_Authority )
+			{
+				ServerPlayDryFireSound(FireModeNum);
+			}
+			bPendingAutoSwitchOnDryFire = !HasSpareAmmo();
+		}
+    }
+
+	return !bHasAmmo && CanReload();
 }
 
 /** Play the dry fire sound on the server */
@@ -4376,7 +4457,7 @@ simulated function NotifyEndState()
  * This state is the default state.  It needs to make sure Zooming is reset when entering/leaving
  *********************************************************************************************/
 
-auto simulated state Inactive
+auto state Inactive
 {
 	ignores ForceReload, ShouldAutoReload, AllowIronSights;
 
@@ -4405,7 +4486,7 @@ auto simulated state Inactive
 		// force an update when switching weapons so we can detect sync errors
 		if ( bAllowClientAmmoTracking && Role == ROLE_Authority && WorldInfo.TimeSeconds > CreationTime )
 		{
-			ClientForceAmmoUpdate(AmmoCount[0], SpareAmmoCount[0]);
+			ClientForceAmmoUpdate(AmmoCount[0], SpareAmmoCount[0], true);
 			ClientForceSecondaryAmmoUpdate(AmmoCount[1]);
 		}
 
@@ -4545,6 +4626,9 @@ simulated state Active
 			LaserSight.SetAimBlendState(true, false);
 		}
 
+		// test ironsights in the same way Super.BeginState() tests pending fire
+		CheckPendingIronsights();
+
 		// do this last so the above code happens before any state changes
 		Super.BeginState(PreviousStateName);
 	}
@@ -4672,8 +4756,16 @@ simulated state Active
 
 	/** called during the settle portion of certain weapon actions */
 	simulated function ANIMNOTIFY_EnableAdditiveBob()
-	{
-		ToggleAdditiveBobAnim(true, 0.3f);
+	{		
+		if ( !bUsingSights )
+		{
+			ToggleAdditiveBobAnim(true, 0.3f);
+		}
+		else
+		{
+			// Should never happen, but some notifies have been placed in IS anims?!
+			//`log(self@"called ANIMNOTIFY_EnableAdditiveBob while in ironsights");
+		}
 	}
 
 	/**
@@ -4691,6 +4783,24 @@ simulated state Active
 			if( PendingFire(i) )
 			{
 				BeginFire(i);
+			}
+		}
+	}
+}
+
+/** test ironsights in the same way Super.BeginState() tests pending fire */
+simulated function CheckPendingIronsights()
+{
+	local PlayerController PC;
+	
+	if ( Instigator.IsLocallyControlled() )
+	{
+		PC = PlayerController(Instigator.Controller);
+		if ( PC != None && PC.PlayerInput != None )
+		{
+			if ( KFPlayerInput(PC.PlayerInput).bPendingIronsights )
+			{
+				SetIronsights(true);
 			}
 		}
 	}
@@ -4766,10 +4876,21 @@ simulated state WeaponEquipping
  */
 simulated function TimeWeaponEquipping()
 {
-	// Play the animation
-	PlayWeaponEquip();
+	local KFPerk InstigatorPerk;
+	local float ModifiedEquipTime;
 
-	SetTimer(EquipTime, false, nameof( WeaponEquipped ) );
+	ModifiedEquipTime = MySkelMesh.GetAnimLength( EquipAnim );
+
+	InstigatorPerk = GetPerk();
+	if( InstigatorPerk != none )
+	{
+		InstigatorPerk.ModifyWeaponSwitchTime( ModifiedEquipTime );
+	}
+
+	// Play the animation
+	PlayWeaponEquip( ModifiedEquipTime );
+
+	SetTimer( EquipTime>0 ? EquipTime : 0.01, false, nameof( WeaponEquipped ) );
 }
 
 simulated function WeaponEquipped();
@@ -4777,10 +4898,10 @@ simulated function WeaponEquipped();
 /**
  * Show the weapon begin equipped
  */
-simulated function PlayWeaponEquip()
+simulated function PlayWeaponEquip( float ModifiedEquipTime )
 {
 	// Play the animation for the weapon being equipped
-	PlayAnimation(GetEquipAnimName(), 0.f,,0.f);
+	PlayAnimation( GetEquipAnimName(), ModifiedEquipTime );
 }
 
 /** Get equip anim name (overridden as necessary) */
@@ -4806,12 +4927,6 @@ simulated state WeaponPuttingDown
 	{
 		local KFPerk InstigatorPerk;
 		local float PerkZedTimeResist;
-
-		// Turn off flashlight if it is on and we are changing weapons
-		if ( Flashlight != none && Flashlight.bEnabled && Instigator.IsLocallyControlled() )
-		{
-			KFPawn_Human(Instigator).SetFlashlight(false, true);
-		}
 
 		TimeWeaponPutDown();
 		bWeaponPutDown = false;
@@ -4878,12 +4993,6 @@ simulated state WeaponDownSimple
 	simulated function BeginState(name PreviousStateName)
 	{
 		Super.BeginState(PreviousStateName);
-
-		// Turn off flashlight if it is on and we are changing weapons
-		if ( Flashlight != none && Flashlight.bEnabled && Instigator.IsLocallyControlled() )
-		{
-			KFPawn_Human(Instigator).SetFlashlight(false, true);
-		}
 
         bDoingQuickDownZoom = true;
 
@@ -5004,21 +5113,32 @@ simulated state WeaponDownSimple
 */
 simulated function TimeWeaponPutDown()
 {
-	if( Instigator.IsFirstPerson() )
+	local KFPerk InstigatorPerk;
+	local float ModifiedPutDownTime;
+
+	ModifiedPutDownTime = PutDownTime;
+
+	InstigatorPerk = GetPerk();
+	if( InstigatorPerk != none )
 	{
-		PlayWeaponPutDown();
+		InstigatorPerk.ModifyWeaponSwitchTime( ModifiedPutDownTime );
 	}
 
-	super.TimeWeaponPutDown();
+	SetTimer( ModifiedPutDownTime > 0 ? ModifiedPutDownTime : 0.01, false, nameof(WeaponIsDown) );
+
+	if( Instigator.IsFirstPerson() )
+	{
+		PlayWeaponPutDown( ModifiedPutDownTime );
+	}
 }
 
 /**
  * Show the weapon being put away
  */
-simulated function PlayWeaponPutDown()
+simulated function PlayWeaponPutDown( float ModifiedPutDownTime )
 {
 	// Play the animation for the weapon being put down
-	PlayAnimation( GetWeaponPutDownAnimName(), PutDownTime );
+	PlayAnimation( GetWeaponPutDownAnimName(), ModifiedPutDownTime );
 }
 
 /** Get putdown anim name (overridden as necessary) */
@@ -5208,7 +5328,7 @@ simulated state WeaponFiring
  */
 simulated function TimeWeaponFiring( byte FireModeNum )
 {
-	local Float AdjustedFireInterval;
+	local float AdjustedFireInterval;
 	local KFPerk CurrentPerk;
 
 	// if weapon is not firing, then start timer. Firing state is responsible to stopping the timer.
@@ -5220,7 +5340,7 @@ simulated function TimeWeaponFiring( byte FireModeNum )
         CurrentPerk = GetPerk();
 		if( CurrentPerk != none )
 		{
-            GetPerk().ModifyRateOfFire(AdjustedFireInterval);
+            CurrentPerk.ModifyRateOfFire( AdjustedFireInterval, self );
 		}
 
 		SetTimer(AdjustedFireInterval, true, nameof(RefireCheckTimer) );
@@ -5311,11 +5431,18 @@ simulated state GrenadeFiring extends WeaponSingleFiring
 
 	simulated function EndState(Name NextStateName)
 	{
+		local byte FireModeSwap;
+
 		Super.EndState(NextStateName);
 		NotifyEndState();
 
+		// ProjectileFire needs GRENADE_FIREMODE.  Could be something else if we're 
+		// going directly (rare) to another firing state.
+		FireModeSwap = CurrentFireMode;
+		CurrentFireMode = GRENADE_FIREMODE;
 		// Spawn grenade, cannot be skipped once this state starts
 		ProjectileFire();
+		CurrentFireMode = FireModeSwap;
 	}
 
     /**
@@ -5504,10 +5631,13 @@ simulated state Reloading
 	/** Cancel reload when going into ironsights */
 	simulated function ZoomIn(bool bAnimateTransition, float ZoomTimeToGo)
 	{
-		// Do zoom first in case Abort takes us to a state where sights are disallowed
-		Global.ZoomIn(bAnimateTransition, ZoomTimeToGo);
+		if ( !bReloadFromMagazine )
+		{
+			// Do zoom first in case Abort takes us to a state where sights are disallowed
+			Global.ZoomIn(bAnimateTransition, ZoomTimeToGo);
 
-		AbortReload();
+			AbortReload();
+		}
 	}
 
 	/** @see Weapon::TryPutDown() */
@@ -5789,10 +5919,7 @@ simulated function CheckBoltLockPostReload()
 	{
 		if ( ReloadStatus < RS_Complete )
 		{
-			if ( bAllowClientAmmoTracking && AmmoCount[0] == 0 )
-			{
-				EmptyMagBlendNode.SetBlendTarget(1, 0);
-			}
+			UpdateOutOfAmmoEffects(0.f);
 		}
 
 		bCheckBoltLockPostReload = false;
@@ -6075,7 +6202,8 @@ static simulated event SetTraderWeaponStats( out array<STraderItemWeaponStats> W
 	WeaponStats[1].StatValue = CalculateTraderWeaponStatFireRate();
 
 	WeaponStats[2].StatType = TWS_Range;
-	WeaponStats[2].StatValue = CalculateTraderWeaponStatRange();
+	// This is now set in native since EffectiveRange has been moved to KFWeaponDefinition
+	//WeaponStats[2].StatValue = CalculateTraderWeaponStatRange();
 
 	WeaponStats[3].StatType = TWS_Penetration;
 	WeaponStats[3].StatValue = default.PenetrationPower[DEFAULT_FIREMODE];
@@ -6104,18 +6232,14 @@ static simulated function float CalculateTraderWeaponStatFireRate()
 	return 60.f / default.FireInterval[DEFAULT_FIREMODE]; // attacks per minute
 }
 
-/** Allows weapon to calculate its own range for display in trader */
-static simulated function float CalculateTraderWeaponStatRange()
-{
-	return default.EffectiveRange;
-}
+/** Returns trader filter index based on weapon type */
+static simulated event EFilterTypeUI GetTraderFilter();
 
 defaultproperties
 {
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
    FireModeIconPaths(1)=None
    SingleFireMode=255
-   FilterTypeUI=FT_Assault
    bTargetFrictionEnabled=True
    bTargetAdhesionEnabled=True
    DOF_bOverrideEnvironmentDOF=True
@@ -6129,20 +6253,12 @@ defaultproperties
    PenetrationDamageReductionCurve(0)=(Points=(,(InVal=1.000000,OutVal=1.000000)))
    PenetrationDamageReductionCurve(1)=(Points=(,(InVal=1.000000,OutVal=1.000000)))
    GrenadeTossWeakZedGrabCooldown=1.000000
-   TargetFrictionDistanceMin=320.000000
-   TargetFrictionDistancePeak=200.000000
    TargetFrictionDistanceMax=4000.000000
-   TargetFrictionDistanceCurve=(Points=(,(InVal=320.000000),(InVal=2000.000000,OutVal=1.000000),(InVal=4000.000000,OutVal=0.300000),(InVal=9000.000000)))
-   TargetFrictionMultiplierRange=(X=0.300000,Y=0.400000)
-   TargetFrictionPeakRadiusScale=1.000000
-   TargetFrictionPeakHeightScale=0.200000
-   TargetFrictionOffset=(X=0.000000,Y=0.000000,Z=32.000000)
-   TargetFrictionZoomedBoostValue=0.250000
    TargetAdhesionDistanceMax=2000.000000
-   TargetAdhesionAimDistY=128.000000
-   TargetAdhesionAimDistZ=96.000000
-   TargetAdhesionScaleRange=(X=0.300000,Y=2.850000)
-   TargetAdhesionZoomedBoostValue=0.250000
+   TargetAdhesionOffsetScaleCurve=(Points=((OutVal=1.000000),(InVal=0.700000,OutVal=0.700000,InterpMode=CIM_CurveAuto),(InVal=1.000000,InterpMode=CIM_CurveAuto)))
+   TargetAdhesionDistanceScaleCurve=(Points=((InVal=0.100000,OutVal=1.000000),(InVal=0.200000,OutVal=0.600000),(InVal=0.300000,OutVal=0.400000),(InVal=0.400000,OutVal=0.300000,InterpMode=CIM_CurveAuto),(InVal=1.000000,InterpMode=CIM_CurveAuto)))
+   TargetFrictionOffsetScaleCurve=(Points=((OutVal=1.000000),(InVal=0.900000,OutVal=0.900000,InterpMode=CIM_CurveAuto),(InVal=1.000000,InterpMode=CIM_CurveAuto)))
+   TargetFrictionDistanceScaleCurve=(Points=((InVal=0.500000,OutVal=1.000000,InterpMode=CIM_CurveAuto),(InVal=0.800000,OutVal=0.800000,InterpMode=CIM_CurveAuto),(InVal=1.000000,InterpMode=CIM_CurveAuto)))
    MeshFOV=86.000000
    MeshIronSightFOV=75.000000
    PlayerIronSightFOV=75.000000
@@ -6165,7 +6281,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.000000
    DOF_FG_ExpFalloff=1.000000
    GrenadeFireOffset=(X=25.000000,Y=-15.000000,Z=0.000000)
-   UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AR15'
+   WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AR15'
    SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.GasTank'
    AmmoPickupScale(0)=1.000000
    AmmoPickupScale(1)=1.000000
@@ -6192,6 +6308,7 @@ defaultproperties
    FireLoopEndAnim="ShootLoop_End"
    FireLoopEndSightedAnim="ShootLoop_Iron_End"
    MeleeAttackAnims(0)="Bash"
+   BonesToLockOnEmpty(0)="RW_Bolt"
    BobDamping=0.850000
    JumpDamping=1.000000
    PlayerViewOffset=(X=1.000000,Y=9.000000,Z=-3.000000)
@@ -6215,7 +6332,6 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFMeleeHelperWeapon'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
-   FlashLightTemplate=KFFlashlightAttachment'FX_Flashlight_ARCH.Default_Flashlight_1P'
    LaserSightTemplate=KFLaserSightAttachment'FX_LaserSight_ARCH.Default_LaserSight_1P'
    MovingSpreadMod=1.000000
    IronSightsSpreadMod=0.500000
@@ -6243,6 +6359,7 @@ defaultproperties
    StanceCrouchedRecoilModifier=0.750000
    LastRecoilModifier=1.000000
    IronSightMeshFOVCompensationScale=1.000000
+   MinUberAmmoCount=1
    FiringStatesArray(0)="WeaponFiring"
    FiringStatesArray(1)="WeaponFiring"
    FiringStatesArray(2)="Reloading"

@@ -167,7 +167,7 @@ simulated function PostBeginPlay()
 	SurrogateComponentTemplate.CastShadow=false;
 	SurrogateComponentTemplate.bUseAsOccluder=true;
 	// SPH fluid was rendered at first
-	SurrogateComponentTemplate.TranslucencySortPriority=-1;
+	SurrogateComponentTemplate.TranslucencySortPriority=0;
 
 	FlexParticleTemplate = new(SurrogateComponentTemplate) class'ParticleSystem';
 	FlexParticleTemplate.LODSettings.Add(1);

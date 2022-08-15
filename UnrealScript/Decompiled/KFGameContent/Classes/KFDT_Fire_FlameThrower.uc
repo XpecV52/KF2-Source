@@ -25,6 +25,6 @@ static function int GetDamageeDialogID()
 
 defaultproperties
 {
-    AARWeaponID=48
+    WeaponDef=Class'KFGame.KFWeapDef_FlameThrower'
     DoT_DamageScale=0.6
 }

@@ -9,6 +9,13 @@ class KFMapInfo extends MapInfo
     native
     editinlinenew;
 
+enum ECollectibleType
+{
+    ECT_DoshBling,
+    ECT_ClotMotherBaby,
+    ECT_MAX
+};
+
 var(Spawning) float WaveSpawnPeriod;
 /** list of destructibles that require replicated damage states in this map */
 var() array<KFDestructibleActor> DestructibleActors;
@@ -17,6 +24,7 @@ var(Music) editconst array<editconst KFMusicTrackInfo> ActionMusicTracks;
 var transient array<byte> ShuffledActionMusicTrackIdxes;
 var transient byte CurrShuffledActionMusicTrackIdx;
 var transient byte CurrShuffledAmbientMusicTrackIdx;
+var const KFMapInfo.ECollectibleType CollectibleType;
 /** list of music tracks played during trader time // @todo: make these not editconst when we're ready to have mappers or whomever change them */
 var(Music) editconst array<editconst KFMusicTrackInfo> AmbientMusicTracks;
 var transient array<byte> ShuffledAmbientMusicTrackIdxes;

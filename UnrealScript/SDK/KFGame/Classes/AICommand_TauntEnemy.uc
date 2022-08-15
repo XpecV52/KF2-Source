@@ -15,8 +15,10 @@ var Pawn	TauntTarget;
 
 var byte TauntType;
 
+var class<KFSM_Zed_Taunt> TauntClass;
+
 /** Simple constructor that pushes a new instance of the command for the AI */
-static function bool Taunt( KFAIController AI, optional Pawn inTauntTarget, optional byte InTauntType )
+static function bool Taunt( KFAIController AI, optional Pawn inTauntTarget, optional byte InTauntType, optional class<KFSM_Zed_Taunt> InTauntClass=class'KFSM_Zed_Taunt' )
 {
 	local AICommand_TauntEnemy Cmd;
 
@@ -27,6 +29,7 @@ static function bool Taunt( KFAIController AI, optional Pawn inTauntTarget, opti
 		{
 			Cmd.TauntTarget	= inTauntTarget;
 			Cmd.TauntType	= InTauntType;
+			Cmd.TauntClass 	= InTauntClass;
 			AI.PushCommand( Cmd );
 			return true;
 		}
@@ -96,7 +99,7 @@ state Command_SpecialMove
 
 		if( SpecialMove != SM_None && MyKFPawn.CanDoSpecialMove(SpecialMove) )
 		{
-			SpecialMoveFlags = class'KFSM_Zed_Taunt'.static.PackSMFlags(MyKFPawn, TauntType);
+			SpecialMoveFlags = TauntClass.static.PackSMFlags(MyKFPawn, TauntType);
 			if( SpecialMoveFlags != 255 )
 			{
 				MyKFPawn.DoSpecialMove(SpecialMove, true, GetInteractionPawn(), SpecialMoveFlags);

@@ -131,11 +131,8 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
 	switch( DamageType.Name )
 	{
 		case 'KFDT_BloatPuke':
-			TempDamage -= TempDamage * FMin( BloatBileResistance.StartingValue * GetLevel(), BloatBileResistance.MaxValue );
-			if( TempDamage < 1.f )
-			{
-				TempDamage = 1.f;
-			}
+			TempDamage -= TempDamage * GetPassiveValue( BloatBileResistance, GetLevel() );
+			FMax( TempDamage, 1.f );
 		break;
 	}
 
@@ -580,9 +577,9 @@ DefaultProperties
 {
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Medic'
 
-	PrimaryWeaponClassName="KFGameContent.KFWeap_Pistol_Medic"
-   	MeleeWeaponClassName="KFGameContent.KFWeap_Knife_FieldMedic"
-   	GrenadeClassName="KFGameContent.KFProj_MedicGrenade"
+	PrimaryWeaponDef=class'KFWeapDef_MedicPistol'
+	KnifeWeaponDef=class'KFWeapDef_Knife_Medic'
+	GrenadeWeaponDef=class'KFWeapDef_Grenade_Medic'
 
 	ProgressStatID=`STATID_Medic_Progress
    	PerkBuildStatID=`STATID_Medic_Build
@@ -596,17 +593,17 @@ DefaultProperties
    	/** Passive skills */
    	HealerRecharge=(Name="Healer Recharge",Increment=0.08f,Rank=0,StartingValue=1.f,MaxValue=3.f)
    	HealPotency=(Name="Healer Recharge",Increment=0.02f,Rank=0,StartingValue=1.0f,MaxValue=1.5f)
-	BloatBileResistance=(Name="Bloat Bile Resistance",Increment=0.03,Rank=0,StartingValue=0.f,MaxValue=0.75f)
+	BloatBileResistance=(Name="Bloat Bile Resistance",Increment=0.02,Rank=0,StartingValue=0.f,MaxValue=0.5f)
 	MovementSpeed=(Name="Movement Speed",Increment=0.01f,Rank=0,StartingValue=1.0f,MaxValue=1.25f)
 	Armor=(Name="Armor",Increment=0.03f,Rank=0,StartingValue=1.f,MaxValue=1.75f)
 																
 	PerkSkills(EMedicHealingSurge)=(Name="HealingSurge",IconPath="UI_PerkTalent_TEX.Medic.UI_Talents_Medic_HealingSurge", Increment=0.f,Rank=0,StartingValue=1.2f,MaxValue=1.2f)
 	PerkSkills(EMedicEnforcer)=(Name="Enforcer",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Enforcer", Increment=0.f,Rank=0,StartingValue=1.2f,MaxValue=1.2f)
 	PerkSkills(EMedicCombatant)=(Name="Combatant",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Combatant", Increment=0.f,Rank=0,StartingValue=0.6f,MaxValue=0.6f)
-	PerkSkills(EMedicArmament)=(Name="Armament",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Armament", Increment=0.f,Rank=0,StartingValue=0.1f,MaxValue=0.02f)
+	PerkSkills(EMedicArmament)=(Name="Armament",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Armament", Increment=0.f,Rank=0,StartingValue=0.25,MaxValue=0.01f)
 	PerkSkills(EMedicRegeneration)=(Name="Regeneration",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Regenerate", Increment=0.f,Rank=0,StartingValue=0.02f,MaxValue=0.02f)
 	PerkSkills(EMedicLacerate)=(Name="Lacerate",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Lacerate", Increment=0.f,Rank=0,StartingValue=0.02f,MaxValue=0.02f)
-	PerkSkills(EMedicVaccination)=(Name="VaccinationArmor",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Vaccination", Increment=0.f,Rank=0,StartingValue=0.04f,MaxValue=0.04f)
+	PerkSkills(EMedicVaccination)=(Name="VaccinationArmor",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Vaccination", Increment=0.f,Rank=0,StartingValue=0.02f,MaxValue=0.02f)
 	PerkSkills(EMedicAcidicCompound)=(Name="VaccinationDamageMod",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_AcidicCompound", Increment=0.f,Rank=0,StartingValue=0.75f,MaxValue=0.75f)
 	PerkSkills(EMedicAirborneAgent)=(Name="AirborneAgent",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_AirborneAgent", Increment=0.f,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
 	PerkSkills(EMedicSedative)=(Name="Sedative",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Anesthetist", Increment=0.f,Rank=0,StartingValue=0.0f,MaxValue=0.0f)

@@ -74,7 +74,7 @@ function  InitValues()
 	DataObject.SetFloat("fov", 					Class'KFGameEngine'.default.FOVOptionsPercentageValue);
  	DataObject.SetFloat("gore", 				Class'GameInfo'.default.GoreLevel);
  	DataObject.SetFloat("friendlyHud", 			GetFriendlyHudScale());
- 	DataObject.SetBool("crosshair", 			Class'KFGameEngine'.default.bShowCrossHair);
+ 	DataObject.SetBool("crosshair", 			Class'KFGameEngine'.static.IsCrosshairEnabled());
  	DataObject.SetBool("classicWeaponSelect",	Class'KFPlayerInput'.default.bQuickWeaponSelect);
 
  	SetObject("dataValues", DataObject);
@@ -126,7 +126,6 @@ function Callback_ToggleCrosshair( bool bShow )
 {
 	local KFPlayerController KFPC;
 	local KFHUDBase KFHUD;
-	local KFGameEngine KFGE;
 
 	KFPC = KFPlayerController(GetPC());
 	if( KFPC != none )
@@ -139,12 +138,7 @@ function Callback_ToggleCrosshair( bool bShow )
 		}
 	}
 
-	KFGE = KFGameEngine(Class'Engine'.static.GetEngine());
-	KFGE.bShowCrossHair = bShow;
-	KFGE.SaveConfig();
-
-	class'KFGameEngine'.default.bShowCrossHair = bShow;
-	class'KFGameEngine'.static.StaticSaveConfig();
+	class'KFGameEngine'.static.SetCrosshairEnabled(bShow);
 }
 
 function Callback_FOVChanged( float NewFOVPercentage )

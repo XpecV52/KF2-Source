@@ -3,6 +3,7 @@ package tripwire.containers.trader
     import com.greensock.TweenMax;
     import com.greensock.easing.Cubic;
     import flash.display.MovieClip;
+    import flash.events.Event;
     import flash.events.FocusEvent;
     import flash.events.MouseEvent;
     import flash.external.ExternalInterface;
@@ -31,8 +32,6 @@ package tripwire.containers.trader
          
         
         public var playerInfoContainer:TraderPlayerInfoContainer;
-        
-        public var BGTint:MovieClip;
         
         public var infoList:TripScrollingList;
         
@@ -65,8 +64,11 @@ package tripwire.containers.trader
         public function TraderPlayerInventoryContainer()
         {
             super();
-            this.BGTint.mouseEnabled = false;
-            this.BGTint.mouseChildren = false;
+        }
+        
+        override protected function addedToStage(param1:Event) : void
+        {
+            super.addedToStage(param1);
             this.armorItem.fillButton.addEventListener(ButtonEvent.PRESS,this.fillArmor,false,0,true);
             this.grenadeItem.magButton.addEventListener(ButtonEvent.PRESS,this.buyGrenade,false,0,true);
             this.grenadeItem.fillButton.addEventListener(ButtonEvent.PRESS,this.fillGrenades,false,0,true);
@@ -216,19 +218,28 @@ package tripwire.containers.trader
         
         public function updateControllerVisibility() : void
         {
-            var _loc1_:int = 0;
+            var _loc1_:TraderPlayerAmmoItemRenderer = null;
+            var _loc2_:int = 0;
             this.autoFillButton.bUsingGamepad = bManagerUsingGamepad;
             this.playerInfoContainer.updateControllerVisibility();
             this.autoFillButton.focusable = bManagerUsingGamepad;
             if(!bManagerUsingGamepad)
             {
                 dispatchEvent(new IndexEvent(IndexEvent.INDEX_CHANGE,false,true,TraderMenu.SHOW_DETAILS));
-                _loc1_ = 0;
-                while(_loc1_ < this.infoList.rowCount)
+                _loc2_ = 0;
+                while(_loc2_ < this.infoList.rowCount)
                 {
-                    TraderPlayerAmmoItemRenderer(this.magList.getRendererAt(_loc1_)).controllerIconVisibility = bManagerUsingGamepad;
-                    TraderPlayerAmmoItemRenderer(this.fillButtonList.getRendererAt(_loc1_)).controllerIconVisibility = bManagerUsingGamepad;
-                    _loc1_++;
+                    _loc1_ = TraderPlayerAmmoItemRenderer(this.magList.getRendererAt(_loc2_));
+                    if(_loc1_ != null)
+                    {
+                        _loc1_.controllerIconVisibility = bManagerUsingGamepad;
+                    }
+                    _loc1_ = TraderPlayerAmmoItemRenderer(this.fillButtonList.getRendererAt(_loc2_));
+                    if(_loc1_ != null)
+                    {
+                        _loc1_.controllerIconVisibility = bManagerUsingGamepad;
+                    }
+                    _loc2_++;
                 }
             }
             else
@@ -280,25 +291,37 @@ package tripwire.containers.trader
             switch(param1.index)
             {
                 case TraderPlayerInfoContainer.OPEN_INDEX:
-                    this.fadeoutAssets();
-                    this.updateFocusableOnFillButtons(false);
-                    this.updateFocusableOnInfoList(false);
-                    this.playerInfoContainer.focusable = true;
-                    this.playerInfoContainer.perkListContainer.perkList.focusable = true;
-                    this.playerInfoContainer.perkListContainer.perkList.focused = 1;
-                    if(bManagerUsingGamepad)
-                    {
-                        this.playerInfoContainer.perkListContainer.perkList.selectedIndex = 0;
-                    }
+                    this.OpenPerkSelect();
                     break;
                 case TraderPlayerInfoContainer.CLOSE_INDEX:
-                    this.fadeinAssets();
-                    this.updateFocusableOnFillButtons(true);
-                    this.playerInfoContainer.focusable = false;
-                    this.updateFocusableOnInfoList(true);
-                    this.playerInfoContainer.perkListContainer.perkList.focusable = false;
-                    this.armorItem.focused = 1;
+                    this.ClosePerkSelect();
             }
+        }
+        
+        public function OpenPerkSelect() : void
+        {
+            this.autoFillButton.enabled = false;
+            this.fadeoutAssets();
+            this.updateFocusableOnFillButtons(false);
+            this.updateFocusableOnInfoList(false);
+            this.playerInfoContainer.focusable = true;
+            this.playerInfoContainer.perkListContainer.perkList.focusable = true;
+            this.playerInfoContainer.perkListContainer.perkList.focused = 1;
+            if(bManagerUsingGamepad)
+            {
+                this.playerInfoContainer.perkListContainer.perkList.selectedIndex = 0;
+            }
+        }
+        
+        public function ClosePerkSelect() : void
+        {
+            this.autoFillButton.enabled = true;
+            this.fadeinAssets();
+            this.updateFocusableOnFillButtons(true);
+            this.playerInfoContainer.focusable = false;
+            this.updateFocusableOnInfoList(true);
+            this.playerInfoContainer.perkListContainer.perkList.focusable = false;
+            this.armorItem.focused = 1;
         }
         
         protected function tabEnableButtons(param1:Boolean) : void

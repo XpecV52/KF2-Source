@@ -62,11 +62,9 @@ simulated function name GetReloadAnimName( bool bTacticalReload )
 	return ReloadEmptyMagAnim;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////
-//
-// Trader
-//
-///////////////////////////////////////////////////////////////////////////////////////////
+/*********************************************************************************************
+ * @name	Trader
+ *********************************************************************************************/
 
 /** Allows weapon to calculate its own damage for display in trader */
 static simulated function float CalculateTraderWeaponStatDamage()
@@ -88,6 +86,12 @@ static simulated function float CalculateTraderWeaponStatDamage()
 	return CalculatedDamage;
 }
 
+/** Returns trader filter index based on weapon type */
+static simulated event EFilterTypeUI GetTraderFilter()
+{
+	return FT_Explosive;
+}
+
 DefaultProperties
 {
 	ForceReloadTime=0.3
@@ -96,6 +100,6 @@ DefaultProperties
 	// Since these weapons have a mag size of 1 client ammo is not that useful anyway.
 	bAllowClientAmmoTracking=false
 
-	// Trader
-    EffectiveRange=30
+	// Aim Assist
+	AimCorrectionSize=0.f
 }

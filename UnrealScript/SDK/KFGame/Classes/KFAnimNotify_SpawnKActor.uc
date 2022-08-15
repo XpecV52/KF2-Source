@@ -23,6 +23,12 @@ var() vector					MinAngularVel;
 /** Upper bound of random initial angular vel */
 var() vector					MaxAngularVel;
 
+/** Mesh translation */
+var() vector MeshTranslation;
+
+/** Mesh rotation */
+var() rotator MeshRotation;
+
 /** Bone to spawn this actor on */
 var() name BoneName;
 
@@ -32,6 +38,15 @@ var() bool bShouldHideBone;
 /** If > 0, when spawned in first person the mesh is hidden for a short time */
 var() float FirstPersonUnhideDelay;
 
+/** If true, calls ANIMNOTIFY_SpawnedKActor on KFPawn, allowing access to the spawned KActor */
+var() bool bNotifyPawnOwner;
+
+/** If true, do not run on dedicated server */
+var() bool bClientOnly;
+
+/** If true, always spawn regardless of effect relevancy or detail */
+var() bool bIgnoreEffectRelevancy;
+
 /** Spwans a magazine KActor from the weapon's magazine bone */
 event Notify( Actor Owner, AnimNodeSequence AnimSeqInstigator )
 {
@@ -40,7 +55,13 @@ event Notify( Actor Owner, AnimNodeSequence AnimSeqInstigator )
 	local vector Loc, LinearVel, AngularVel;
 	local rotator Rot;
 	local Quat BoneQuat;
-	local Pawn P;
+	local KFPawn P;
+
+	// Skip if this is a dedicated server and notify is clientside-only
+	if( bClientOnly && Owner.WorldInfo.NetMode == NM_DedicatedServer )
+	{
+		return;
+	}
 
 	SkelComp = AnimSeqInstigator.SkelComponent;
 
@@ -54,17 +75,18 @@ event Notify( Actor Owner, AnimNodeSequence AnimSeqInstigator )
 	}
 
 	// Skip physics in dropdetail
-	if ( Owner.WorldInfo.bDropDetail || !Owner.ActorEffectIsRelevant(None, false) )
+	if ( !bIgnoreEffectRelevancy && (Owner.WorldInfo.bDropDetail || !Owner.ActorEffectIsRelevant(None, false)) )
 		return;
 
 	Loc = SkelComp.GetBoneLocation(BoneName);
 	BoneQuat = SkelComp.GetBoneQuaternion(BoneName);
 	Rot = QuatToRotator(BoneQuat);
 
-	NewKActor = Owner.Spawn( class'KFKActorSpawnable', Owner,, Loc, Rot);
+	NewKActor = Owner.Spawn( class'KFKActorSpawnable', Owner,, Loc, Rot + MeshRotation);
 	if ( NewKActor != None )
 	{
 		NewKActor.StaticMeshComponent.SetStaticMesh(RigidBodyMesh);
+		NewKActor.StaticMeshComponent.SetTranslation(MeshTranslation);
 		NewKActor.LifeSpan = 30.f * FClamp(Owner.WorldInfo.DestructionLifetimeScale, 0.1f, 2.f);		
 
 		// Set initial linear velocity
@@ -78,14 +100,20 @@ event Notify( Actor Owner, AnimNodeSequence AnimSeqInstigator )
 		AngularVel.Y = RandRange(MinAngularVel.Y, MaxAngularVel.Y);
 		AngularVel.Z = RandRange(MinAngularVel.Z, MaxAngularVel.Z);
 		NewKActor.StaticMeshComponent.SetRBAngularVelocity( QuatRotateVector(BoneQuat, AngularVel) );
-		
 		NewKActor.StaticMeshComponent.WakeRigidBody();
 
-		// If bOwnerNoSee, this may be a third person effect so handle FirstPersonUnhideDelay
-		if ( SkelComp.bOwnerNoSee && FirstPersonUnhideDelay > 0 )
+		if ( bNotifyPawnOwner || (SkelComp.bOwnerNoSee && FirstPersonUnhideDelay > 0) )
 		{
-			P = Pawn(Owner);
-			if ( P != None && P.IsFirstPerson() )
+			P = KFPawn(Owner);
+			
+			// Notify owner
+			if( bNotifyPawnOwner )
+			{
+				P.ANIMNOTIFY_SpawnedKActor( NewKactor, AnimSeqInstigator );
+			}
+
+			// If bOwnerNoSee, this may be a third person effect so handle FirstPersonUnhideDelay
+			if ( SkelComp.bOwnerNoSee && FirstPersonUnhideDelay > 0 && P.IsFirstPerson() )
 			{
 				NewKActor.HideForInterval(FirstPersonUnhideDelay);
 			}

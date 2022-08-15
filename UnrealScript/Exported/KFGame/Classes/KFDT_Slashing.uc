@@ -473,6 +473,29 @@ class KFDT_Slashing extends KFDamageType
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 13
 
 
@@ -601,9 +624,9 @@ static function int GetKillerDialogID()
 
 defaultproperties
 {
+   bShouldSpawnPersistentBlood=True
    EffectGroup=FXG_Slashing
    GoreDamageGroup=DGT_MeleeSlash
-   bShouldSpawnPersistentBlood=True
    BodyWoundDecalMaterials(0)=MaterialInstanceConstant'FX_Impacts_MAT.FX_Bladed_Impact_Slice_01_MIC'
    CameraLensEffectTemplate=Class'KFGame.KFCameraLensEmit_BloodBase'
    BloodScale=0.500000

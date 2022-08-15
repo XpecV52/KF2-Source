@@ -23,7 +23,7 @@ defaultproperties
     IronSightPosition=(X=20,Y=0,Z=0)
     DOF_FG_FocalRadius=150
     GroupPriority=100
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SCAR'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SCAR'
     MagazineCapacity=20
     MaxSpareAmmo=280
     InitialSpareMags=5

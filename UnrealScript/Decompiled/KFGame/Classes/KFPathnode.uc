@@ -19,6 +19,8 @@ var() const editconst bool bHasDoorLOS;
 /** If this node is on a wall and connected to a ceiling node, then auto adjust those node's height if too low */
 var() bool bAutoAdjustZToCeiling;
 var bool bAutoFlushPersistentDebugLines;
+/** If checked, this pathnode will not be considered by the trader trail emitter */
+var() bool bIgnoredByTraderTrail;
 var() duplicatetransient editconst Vector JumpVelocity;
 /** How long the jump should take.  Altering this value changes the JumpVelocity. */
 var() duplicatetransient float JumpTime;

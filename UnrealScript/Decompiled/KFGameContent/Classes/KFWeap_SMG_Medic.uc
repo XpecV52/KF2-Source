@@ -9,24 +9,26 @@ class KFWeap_SMG_Medic extends KFWeap_MedicBase
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
+static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
+{
+    return 9;
+}
+
 defaultproperties
 {
     HealAmount=30
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireMode=1
-    FilterTypeUI=EFilterTypeUI.FT_SMG
     InventorySize=3
-    EffectiveRange=70
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
-    bHasFlashlight=true
     MeshFOV=81
     MeshIronSightFOV=64
     PlayerIronSightFOV=70
     IronSightPosition=(X=8,Y=0,Z=0)
     GroupPriority=50
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicSMG'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicSMG'
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
     MagazineCapacity=40
     MaxSpareAmmo=320

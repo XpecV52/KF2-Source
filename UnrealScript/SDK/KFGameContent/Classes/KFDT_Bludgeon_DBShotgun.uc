@@ -14,5 +14,5 @@ class KFDT_Bludgeon_DBShotgun extends KFDT_Bludgeon_RifleButt
 DefaultProperties
 {
 	//defaults
-	AARWeaponID=`AAR_DoubleBarrel
+	WeaponDef=class'KFWeapDef_DoubleBarrel'
 }

@@ -49,65 +49,6 @@ class KFDT_Fire_DragonsBreathDoT extends KFDT_Fire
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -143,7 +84,7 @@ static function int GetDamageeDialogID()
 
 defaultproperties
 {
-   AARWeaponID=47
+   WeaponDef=Class'KFGame.KFWeapDef_DragonsBreath'
    DoT_DamageScale=1.000000
    BurnPower=1.250000
    Name="Default__KFDT_Fire_DragonsBreathDoT"

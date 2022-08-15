@@ -10,7 +10,7 @@ class KFDT_Ballistic_AR15 extends KFDT_Ballistic_AssaultRifle
 
 defaultproperties
 {
-    AARWeaponID=10
+    WeaponDef=Class'KFGame.KFWeapDef_AR15'
     StumblePower=35
     LegStumblePower=35
     ModifierPerkList=/* Array type was not detected. */

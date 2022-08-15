@@ -39,16 +39,6 @@ defaultproperties
 
 	SingleClass=class'KFWeap_Pistol_9mm'
 
-	FireInterval(DEFAULT_FIREMODE)=+0.1 // about twice as fast as single
-
-	//// BEGIN COPY FROM KFWEAP_PISTOLBASE
-	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
-
-	// BASH_FIREMODE
-	InstantHitDamage(BASH_FIREMODE)=10.0
-	//// END COPY
-
-	//// BEGIN COPY FROM KFWEAP_PISTOL_9MM
 	// FOV
 	MeshFOV=96
 	MeshIronSightFOV=77
@@ -60,8 +50,8 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=30 // twice as much as single
-	MaxSpareAmmo[0]=225
-	InitialSpareMags[0]=7
+	MaxSpareAmmo[0]=210
+	InitialSpareMags[0]=3
 	AmmoPickupScale[0]=0.5
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -85,18 +75,34 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Pistol9mm'
+	FireInterval(DEFAULT_FIREMODE)=+0.1 // about twice as fast as single
 	InstantHitDamage(DEFAULT_FIREMODE)=15.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_9mm'
-	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_9mm'
 	Spread(DEFAULT_FIREMODE)=0.015
 
-	// ALT_FIREMODE
+	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
+
+	// ALTFIRE_FIREMODE
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
-	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_None
+	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_InstantHit
+	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_Pistol9mm'
+	FireInterval(ALTFIRE_FIREMODE)=+0.1 // about twice as fast as single
+	InstantHitDamage(ALTFIRE_FIREMODE)=15.0
+	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_9mm'
+	Spread(ALTFIRE_FIREMODE)=0.015
+
+	FireModeIconPaths(ALTFIRE_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
+
+	// BASH_FIREMODE
+	InstantHitDamage(BASH_FIREMODE)=10.0
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_9mm'
 
 	// Fire Effects
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_9mm.Play_WEP_SA_9mm_Fire_Single_M', FirstPersonCue=AkEvent'WW_WEP_SA_9mm.Play_WEP_SA_9mm_Fire_Single_S')
 	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'WW_WEP_SA_9mm.Play_WEP_SA_9mm_Handling_DryFire'
+
+	WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'WW_WEP_SA_9mm.Play_WEP_SA_9mm_Fire_Single_M', FirstPersonCue=AkEvent'WW_WEP_SA_9mm.Play_WEP_SA_9mm_Fire_Single_S')
+	WeaponDryFireSnd(ALTFIRE_FIREMODE)=AkEvent'WW_WEP_SA_9mm.Play_WEP_SA_9mm_Handling_DryFire'
 
 	// Attachments
 	bHasIronSights=true
@@ -108,13 +114,12 @@ defaultproperties
 	InventoryGroup=IG_Secondary
 	InventorySize=2
 	GroupPriority=20
-	UITexture=Texture2D'WEP_UI_Dual_9MM_TEX.UI_WeaponSelect_Dual9mm'
-	FilterTypeUI=FT_Pistol
+	WeaponSelectTexture=Texture2D'WEP_UI_Dual_9MM_TEX.UI_WeaponSelect_Dual9mm'
 	bIsBackupWeapon=true
-	//// END COPY 9MM
 
-	// Trader
-    EffectiveRange=50
+	BonesToLockOnEmpty=(RW_Bolt, RW_Bullets1)
+    BonesToLockOnEmpty_L=(LW_Bolt, LW_Bullets1)
 
+    bHasFireLastAnims=true
 }
 

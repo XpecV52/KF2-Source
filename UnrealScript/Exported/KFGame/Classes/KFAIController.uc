@@ -976,6 +976,8 @@ native function PopCommand(GameAICommand ToBePoppedCommand);
 native function bool IgnoreNotifies() const;
 /** Returns true if CheckPawn is currently moving away from my pawn, optionally at MinSpeed */
 native function bool IsPawnMovingAwayFromMe( Pawn CheckPawn, optional float MinSpeed );
+/** Returns a KFPawn if there is one blocking the path to EnemyPawn */
+native function KFPawn GetPawnBlockingPathTo( Pawn EnemyPawn );
 /** Lock the AI pawn rotation to a specific rotation, to unlock the pawn pass in zero */
 native function LockPawnRotationTo( Rotator NewRotation );
 /** Unlock the AI pawn's rotation */
@@ -2824,11 +2826,20 @@ function DoWander( optional actor WanderGoal, optional float WanderDuration=-1.f
 }
 
 /** Begins Hide AICommand, hiding from HideFrom, with an optional duration to control when the command expires */
-function DoHideFrom( actor HideFrom, optional float HideDuration )
+/*function DoHideFrom( actor HideFrom, optional float HideDuration, optional float HideDistance )
 {
-	class'AICommand_Hide'.static.HideFrom( self, HideFrom, HideDuration );
+	class'AICommand_Hide'.static.HideFrom( self, HideFrom, HideDuration, HideDistance );
 
-	if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlaySpotRunAwayDialog( MyKFPawn );
+	`SafeDialogManager.PlaySpotRunAwayDialog( MyKFPawn );
+}*/
+
+/* Starts Flee AICommand, with optional duration and distance */
+function DoFleeFrom( actor FleeFrom,
+	optional float FleeDuration,
+	optional float FleeDistance,
+	optional bool bShouldStopAtGoal=false )
+{
+	class'AICommand_Flee'.static.FleeFrom( self, FleeFrom, FleeDuration, FleeDistance, bShouldStopAtGoal );
 }
 
 /*
@@ -3259,6 +3270,12 @@ function UpdateSprintFrustration( optional byte bForceFrustration=255 )
 
 function bool IsFrustrated()
 {
+	// Forced frustration, controlled by AI director
+	if( MyAIDirector.bForceFrustration )
+	{
+		return true;
+	}
+
 	if( FrustrationThreshold > 0 && MyKFGameInfo.MyKFGRI != None && MyKFGameInfo.MyKFGRI.AIRemaining <= FrustrationThreshold )
 	{
 		if( LastFrustrationCheckTime == 0 )
@@ -3279,6 +3296,11 @@ function bool IsFrustrated()
   Pathfinding events and related notifications
 ---------------------------------------------------------*/
 
+/** Notification from AICommand::Popped that it has completed */
+function NotifyCommandFinished( AICommand FinishedCommand );
+
+function NotifyFleeFinished();
+
 
 event NotifyFailMove( string Reason )
 {
@@ -3296,6 +3318,7 @@ event NotifyPathChanged()
 {
 	AILog_Internal(GetFuncName()$"() Command: "$GetActiveCommand(),'PathWarning',);
 }
+
 
 /** Returns true if the actor is currently directly reachable */
 function bool IsValidDirectMoveGoal( Actor A )
@@ -3849,7 +3872,7 @@ simulated function Tick( FLOAT DeltaTime )
 
     // Regularly check to see if this AI can teleport closer to the enemy
     if( bCanTeleportCloser && PendingDoor == none && Role == ROLE_Authority && MyKFPawn != none && MyKFGameInfo.MyKFGRI != None && MyKFPawn.Health > 0
-    	&& (WorldInfo.TimeSeconds - LastTeleportCheckTime) > TeleportCheckInterval && !MyKFPawn.IsDoingSpecialMove() && FrustrationThreshold > 0 && MyKFGameInfo.MyKFGRI.AIRemaining > FrustrationThreshold )
+    	&& (WorldInfo.TimeSeconds - LastTeleportCheckTime) > TeleportCheckInterval && !MyKFPawn.IsDoingSpecialMove() && MyKFGameInfo.MyKFGRI.AIRemaining > FrustrationThreshold )
     {
         EvaluateTeleportPossibility(DeltaTime);
     }
@@ -5961,6 +5984,7 @@ function AddTakenDamage( Controller DamagerController, int Damage, Actor DamageC
 function UpdateDamageHistory( Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType )
 {
 	local DamageInfo Info;
+	local Pawn BlockerPawn;
 	local bool bChangedEnemies;
 	local int HistoryIndex;
 	local float DamageThreshold;
@@ -5980,9 +6004,20 @@ function UpdateDamageHistory( Controller DamagerController, int Damage, Actor Da
 			DamageHistory[CurrentEnemysHistoryIndex].Damage = 0;
 		}
 
-		if( Info.Damage >= DamageThreshold && Info.Damage > DamageHistory[CurrentEnemysHistoryIndex].Damage )
+		if( IsAggroEnemySwitchAllowed()
+			&& DamagerController.Pawn != Enemy
+			&& Info.Damage >= DamageThreshold
+			&& Info.Damage > DamageHistory[CurrentEnemysHistoryIndex].Damage )
 		{
-			bChangedEnemies = SetEnemy(DamagerController.Pawn);
+			BlockerPawn = GetPawnBlockingPathTo( DamagerController.Pawn );
+			if( BlockerPawn == none )
+			{
+				bChangedEnemies = SetEnemy(DamagerController.Pawn);
+			}
+			else if( BlockerPawn.GetTeamNum() != GetTeamNum() )
+			{
+				bChangedEnemies = SetEnemy( BlockerPawn );
+			}
 		}
 	}
 	else
@@ -5990,9 +6025,15 @@ function UpdateDamageHistory( Controller DamagerController, int Damage, Actor Da
 		DamageThreshold = float(Pawn.HealthMax) * AggroZedHealthPercentage;
 		UpdateDamageHistoryValues( DamagerController, Damage, DamageCauser, AggroZedResetTime, Info, DamageType );
 
-		if( Info.Damage >= DamageThreshold )
+		if( IsAggroEnemySwitchAllowed()
+			&& DamagerController.Pawn != Enemy
+			&& Info.Damage >= DamageThreshold )
 		{
-			bChangedEnemies = SetEnemyToZed(DamagerController.Pawn);
+			BlockerPawn = GetPawnBlockingPathTo( DamagerController.Pawn );
+			if( BlockerPawn == none )
+			{
+				bChangedEnemies = SetEnemyToZed(DamagerController.Pawn);
+			}
 		}
 	}
 
@@ -6004,16 +6045,20 @@ function UpdateDamageHistory( Controller DamagerController, int Damage, Actor Da
 	}
 }
 
+/** To override in subclasses */
+function bool IsAggroEnemySwitchAllowed()
+{
+	return true;
+}
+
 function bool GetDamageHistory( Controller DamagerController, out DamageInfo InInfo, out int InHistoryIndex )
 {
 	// Check if this controller is already in our Damage History
-	for( InHistoryIndex = 0; InHistoryIndex < DamageHistory.Length; InHistoryIndex++ )
+	InHistoryIndex = DamageHistory.Find( 'DamagerController', DamagerController );
+	if( InHistoryIndex != INDEX_NONE )
 	{
-		if( DamageHistory[InHistoryIndex].DamagerController == DamagerController)
-		{
-			InInfo = DamageHistory[InHistoryIndex];
-			return true;
-		}
+		InInfo = DamageHistory[InHistoryIndex];
+		return true;
 	}
 
 	InHistoryIndex = 0;

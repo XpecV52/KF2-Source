@@ -2,6 +2,7 @@ package tripwire.controls.postGameMenu
 {
     import flash.events.Event;
     import scaleform.gfx.Extensions;
+    import tripwire.menus.PostGameMenu;
     
     public class PersonalBestListItemRenderer extends TeamAwardListItemRenderer
     {
@@ -12,9 +13,8 @@ package tripwire.controls.postGameMenu
             super();
         }
         
-        override protected function doneAndDone() : *
+        override public function animate() : void
         {
-            parent.dispatchEvent(new Event("PlayerNextAnim"));
             if(Extensions.enabled)
             {
                 if(_bHighlight)
@@ -26,6 +26,21 @@ package tripwire.controls.postGameMenu
                     Extensions.gfxProcessSound(this,"AAR","Award_No");
                 }
             }
+            if(PostGameMenu.bkillAnims)
+            {
+                teamAwardTimeline.timeScale(20);
+                teamAwardTimeline.play();
+            }
+            else if(!PostGameMenu.bkillAnims)
+            {
+                teamAwardTimeline.timeScale(timeDialation);
+                teamAwardTimeline.play();
+            }
+        }
+        
+        override protected function doneAndDone() : *
+        {
+            parent.dispatchEvent(new Event("PlayerNextAnim"));
         }
     }
 }

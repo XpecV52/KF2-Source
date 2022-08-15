@@ -159,14 +159,16 @@ function UpdateArmor()
 function UpdateXP(int XPDelta, int XPPercent, bool bLevelUp, class<KFPerk> PerkClass)
 {
     local bool bIsCurrentPerk;
+    local KFPlayerController KFPC;
 
+    KFPC = KFPlayerController(Outer.GetPC());
     SetBool("bLevelUp", bLevelUp);
     bIsCurrentPerk = PerkClass == MyPC.CurrentPerk.Class;
     if(bIsCurrentPerk)
     {
         SetInt("playerPerkXPPercent", int(MyPC.GetPerkLevelProgressPercentage(PerkClass)));
     }
-    if(!bLevelUp)
+    if(!bLevelUp && KFPC.GetPerkLevelFromPerkList(PerkClass) < 25)
     {
         ShowXPBark(XPDelta, "img://" $ PerkClass.static.GetPerkIconPath(), bIsCurrentPerk);
     }

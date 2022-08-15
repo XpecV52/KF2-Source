@@ -48,21 +48,6 @@ enum EInventoryGroup
     IG_MAX
 };
 
-enum EFilterTypeUI
-{
-    FT_Pistol,
-    FT_Shotgun,
-    FT_Rifle,
-    FT_Projectile,
-    FT_Flame,
-    FT_Electric,
-    FT_Explosive,
-    FT_Assault,
-    FT_Melee,
-    FT_SMG,
-    FT_MAX
-};
-
 enum EReloadStatus
 {
     RS_None,
@@ -107,23 +92,15 @@ var array<Texture2D> FireModeIconPaths;
 var byte SingleFireMode;
 /** Determines which group a weapon falls into in weapon select */
 var(Inventory) const KFWeapon.EInventoryGroup InventoryGroup;
-/** Determine which group a weapon will show up for the weapon type filter */
-var(Inventory) const KFWeapon.EFilterTypeUI FilterTypeUI;
 /** Inventory (In blocks) cost */
 var(Inventory) byte InventorySize;
 var byte AmmoCount[2];
 var KFWeapon.EReloadStatus ReloadStatus;
 var byte ReloadAmountLeft;
-/**  
- *The maximum range at which this weapon is effective. Unlike other trader stats, this isn't
- *  programatically generated but rather set by design to a reasonable value based on judgment.
- *  Range is 0-100.
- */
-var() byte EffectiveRange;
-var private const KFUnlockManager.ESharedContentUnlock SharedUnlockId;
 var bool bUseAltFireMode;
 /** Target friction enabled? */
 var() bool bTargetFrictionEnabled;
+/** Target adhesion enabled? */
 var() bool bTargetAdhesionEnabled;
 var bool bUsingSights;
 /** This weapon has sights to aim */
@@ -171,7 +148,7 @@ var(Sounds) bool bSuppressSounds;
 /** If set to true, attempting to reload will switch to best available weapon */
 var() bool bPendingAutoSwitchOnDryFire;
 var bool bPendingShow;
-var(Attachments) bool bHasFlashlight;
+var deprecated bool bHasFlashlight;
 /** Whether the weapon supports laser sights or not */
 var(Attachments) bool bHasLaserSight;
 var bool bIsBackupWeapon;
@@ -195,40 +172,20 @@ var const transient float ZedTimeResistance;
 var(Weapon) float GrenadeTossWeakZedGrabCooldown;
 /** Time after we are grabbed by a zed to prevent nade throwing so we don't blow ourselvs up */
 var(Weapon) float ZedGrabGrenadeTossCooldown;
-/** Min distance for friction */
-var() float TargetFrictionDistanceMin;
-/** Peak distance for friction */
-var() float TargetFrictionDistancePeak;
 /** Max distance allow for friction */
 var() float TargetFrictionDistanceMax;
-/** Interp curve that allows for piece wise functions for the TargetFrictionDistance amount at different ranges */
-var() InterpCurveFloat TargetFrictionDistanceCurve;
-/** Min/Max friction multiplier applied when target acquired */
-var() Vector2D TargetFrictionMultiplierRange;
-/** Amount of additional radius/height given to target cylinder when at peak distance */
-var() float TargetFrictionPeakRadiusScale;
-var() float TargetFrictionPeakHeightScale;
-/** Offset to apply to friction target location (aim for the chest, etc) */
-var() Vector TargetFrictionOffset;
-/** Boost the Target Friction by this much when zoomed in */
-var() float TargetFrictionZoomedBoostValue;
-/** Max time to attempt adhesion to the friction target */
-var() float TargetAdhesionTimeMax;
 /** Max distance to allow adhesion to still kick in */
 var() float TargetAdhesionDistanceMax;
-/** Max distance from edge of cylinder for adhesion to be valid */
-var() float TargetAdhesionAimDistY;
-var() float TargetAdhesionAimDistZ;
-/** Min/Max amount to scale for adhesive purposes */
-var() Vector2D TargetAdhesionScaleRange;
-/** Min amount to scale for adhesive purposes */
-var() float TargetAdhesionScaleAmountMin;
-/** Require the target to be moving for adhesion to kick in? */
-var() float TargetAdhesionTargetVelocityMin;
-/** Require the player to be moving for adhesion to kick in? */
-var() float TargetAdhesionPlayerVelocityMin;
-/** Boost the Target Adhesion by this much when zoomed in */
-var() float TargetAdhesionZoomedBoostValue;
+/** Adhesion scalar curve based on distance */
+var() InterpCurveFloat TargetAdhesionOffsetScaleCurve;
+/** Adhesion scalar curve based on angle offset to center of zed cylinder */
+var() InterpCurveFloat TargetAdhesionDistanceScaleCurve;
+/** Friction scalar curve based on distance */
+var() InterpCurveFloat TargetFrictionOffsetScaleCurve;
+/** Friction scalar curve based on angle offset to center of zed cylinder */
+var() InterpCurveFloat TargetFrictionDistanceScaleCurve;
+/** Aim correction - headshot offset */
+var() const float AimCorrectionSize;
 var Vector HiddenWeaponsOffset;
 /** The default FOV to use for this weapon when not in ironsights */
 var(Camera) float MeshFOV;
@@ -283,7 +240,7 @@ var(Positioning) Vector GrenadeFireOffset;
 /** Used to place this weapon in the inventory */
 var(Inventory) float GroupPriority;
 /** The UI image for this weapon */
-var(Inventory) Texture2D UITexture;
+var(Inventory) Texture2D WeaponSelectTexture;
 /** The path that locates the image for this weapon */
 var(Inventory) Texture2D SecondaryAmmoTexture;
 var float EquipAbortTime;
@@ -353,6 +310,7 @@ var array<name> MeleeAttackAnims;
 var(Camera) CameraAnim SprintCameraAnim;
 var transient CameraAnimInst SprintCameraAnimInst;
 var transient float SprintAnimRate;
+var array<name> BonesToLockOnEmpty;
 /** Sound to play when the weapon is fired */
 var(Sounds) array<WeaponFireSndInfo> WeaponFireSnd;
 /** sound to play when the weapon stops fired. Used for high ROF weapons that have a looping fire sound */
@@ -367,6 +325,7 @@ var(Motion) float JumpDamping;
 var(Positioning) Vector PlayerViewOffset;
 var MaterialInstanceConstant WeaponMIC;
 var float BloodParamValue;
+var const config int SkinItemId;
 var Vector WeaponLag;
 var float LagHorizontal;
 var float LagVertical;
@@ -405,9 +364,6 @@ var(Weapon) export editinline KFMeleeHelperWeapon MeleeAttackHelper;
 var KFMuzzleFlash MuzzleFlash;
 /** A reference to the muzzle flash template */
 var(Attachments) const KFMuzzleFlash MuzzleFlashTemplate;
-var transient KFFlashlightAttachment FlashLight;
-/** A reference to the muzzle flash template */
-var(Attachments) const KFFlashlightAttachment FlashLightTemplate;
 var transient KFLaserSightAttachment LaserSight;
 /** A reference to the laser sight template */
 var(Attachments) const KFLaserSightAttachment LaserSightTemplate;
@@ -485,6 +441,7 @@ var float LastRecoilModifier;
  */
 var(Recoil) float IronSightMeshFOVCompensationScale;
 var(Weapon) class<KFPerk> AssociatedPerkClass;
+var const int MinUberAmmoCount;
 
 replication
 {
@@ -527,10 +484,6 @@ simulated event PreBeginPlay()
         RecoilYawBlendOutRate = int((float(maxRecoilYaw) / RecoilRate) * RecoilBlendOutRatio);
         RecoilPitchBlendOutRate = int((float(maxRecoilPitch) / RecoilRate) * RecoilBlendOutRatio);
     }
-    if(bHasFlashlight)
-    {
-        AttachFlashlight();
-    }
     if(bHasLaserSight)
     {
         AttachLaserSight();
@@ -547,7 +500,14 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
     IdleBobBlendNode = AnimNodeAdditiveBlending(SkelComp.FindAnimNode('IdleBobAdditiveBlend'));
     ToggleAdditiveBobAnim(false, 0);
     EmptyMagBlendNode = AnimNodeBlendPerBone(SkelComp.FindAnimNode('EmptyMagBlend'));
+    if((EmptyMagBlendNode != none) && BonesToLockOnEmpty.Length > 0)
+    {
+        BuildEmptyMagNodeWeightList(EmptyMagBlendNode, BonesToLockOnEmpty);
+    }
 }
+
+// Export UKFWeapon::execBuildEmptyMagNodeWeightList(FFrame&, void* const)
+native function BuildEmptyMagNodeWeightList(AnimNodeBlendPerBone EmptyNode, const out array<name> BonesToLock);
 
 simulated function InitializeEquipTime()
 {
@@ -588,34 +548,32 @@ simulated function InitFOV(float SizeX, float SizeY, float DefaultPlayerFOV)
     }
 }
 
-simulated event Destroyed()
-{
-    if(((Instigator != none) && Instigator.IsHumanControlled()) && Instigator.IsLocallyControlled())
-    {
-        PreloadTextures(false);
-    }
-    super.Destroyed();
-}
+// Export UKFWeapon::execClientSetFirstPersonSkin(FFrame&, void* const)
+private reliable client native final simulated function ClientSetFirstPersonSkin(int ItemId);
 
-simulated function PreloadTextures(bool bForcePreload)
-{
-    if(MySkelMesh != none)
-    {
-        MySkelMesh.PreloadTextures(bForcePreload, WorldInfo.TimeSeconds + float(2));
-    }
-}
+// Export UKFWeapon::execServerUpdateWeaponSkin(FFrame&, void* const)
+private reliable server native final event ServerUpdateWeaponSkin(int ItemId);
+
+// Export UKFWeapon::execClearSkinItemId(FFrame&, void* const)
+private native final function ClearSkinItemId();
+
+function class<KFWeaponDefinition> GetKnifeWeaponDef();
 
 function GivenTo(Pawn thisPawn, optional bool bDoNotActivate)
 {
     super(Inventory).GivenTo(thisPawn, bDoNotActivate);
-    KFInventoryManager(InvManager).CurrentCarryBlocks += InventorySize;
+    if(!Instigator.IsLocallyControlled())
+    {
+        ClearSkinItemId();
+    }
+    KFInventoryManager(InvManager).AddCurrentCarryBlocks(InventorySize);
     KFPawn(Instigator).NotifyInventoryWeightChanged();
 }
 
 function ItemRemovedFromInvManager()
 {
     super.ItemRemovedFromInvManager();
-    KFInventoryManager(InvManager).CurrentCarryBlocks -= InventorySize;
+    KFInventoryManager(InvManager).AddCurrentCarryBlocks(-InventorySize);
     KFPawn(Instigator).NotifyInventoryWeightChanged();
 }
 
@@ -623,13 +581,18 @@ reliable client simulated function ClientWeaponSet(bool bOptionalSet, optional b
 {
     local PlayerController PC;
 
-    if(Instigator != none)
+    if(((Instigator != none) && InvManager != none) && WorldInfo.NetMode != NM_DedicatedServer)
     {
         PC = PlayerController(Instigator.Controller);
         if((Instigator.Controller != none) && PC.myHUD != none)
         {
             InitFOV(PC.myHUD.SizeX, PC.myHUD.SizeY, PC.DefaultFOV);
         }
+        if(SkinItemId > 0)
+        {
+            ClientSetFirstPersonSkin(SkinItemId);
+        }
+        WeaponMIC = Mesh.CreateAndSetMaterialInstanceConstant(0);
     }
     super.ClientWeaponSet(bOptionalSet, bDoNotActivate);
 }
@@ -686,12 +649,24 @@ simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional name 
             }
         }
     }
-    if((Role == ROLE_Authority) && KFP != none)
+    if(KFP != none)
     {
-        KFP.WeaponAttachmentTemplate = AttachmentArchetype;
+        AttachThirdPersonWeapon(KFP);
+    }
+}
+
+function AttachThirdPersonWeapon(KFPawn P)
+{
+    if(Role == ROLE_Authority)
+    {
+        P.WeaponAttachmentTemplate = AttachmentArchetype;
         if(WorldInfo.NetMode != NM_DedicatedServer)
         {
-            KFP.WeaponAttachmentChanged();
+            P.WeaponAttachmentChanged();
+        }
+        if(P.IsHumanControlled())
+        {
+            ServerUpdateWeaponSkin(SkinItemId);
         }
     }
 }
@@ -724,7 +699,6 @@ simulated function DetachWeapon()
     SetBase(none);
     SetHidden(true);
     DetachMuzzleFlash();
-    DeactivateFlashlight();
 }
 
 simulated function DetachMuzzleFlash()
@@ -733,19 +707,6 @@ simulated function DetachMuzzleFlash()
     {
         MuzzleFlash.DetachMuzzleFlash(MySkelMesh);
         MuzzleFlash = none;
-    }
-}
-
-simulated function AttachFlashlight()
-{
-    if(WorldInfo.NetMode == NM_DedicatedServer)
-    {
-        return;
-    }
-    if(((MySkelMesh != none) && FlashLight == none) && bHasFlashlight)
-    {
-        FlashLight = new (self) Class'KFFlashlightAttachment' (FlashLightTemplate);
-        FlashLight.AttachFlashlight(MySkelMesh);
     }
 }
 
@@ -759,14 +720,6 @@ simulated function AttachLaserSight()
     {
         LaserSight = new (self) Class'KFLaserSightAttachment' (LaserSightTemplate);
         LaserSight.AttachLaserSight(MySkelMesh, true);
-    }
-}
-
-simulated function DeactivateFlashlight()
-{
-    if(((FlashLight != none) && FlashLight.bEnabled) && Instigator.IsLocallyControlled())
-    {
-        KFPawn_Human(Instigator).SetFlashlight(false);
     }
 }
 
@@ -849,6 +802,10 @@ function SetOriginalValuesFromPickup(KFWeapon PickedUpWeapon)
             }            
         }        
     }
+    if(PickedUpWeapon.SkinItemId > 0)
+    {
+        ClientSetFirstPersonSkin(PickedUpWeapon.SkinItemId);
+    }
     ClientForceAmmoUpdate(AmmoCount[0], SpareAmmoCount[0]);
     ClientForceSecondaryAmmoUpdate(AmmoCount[1]);
     bGivenAtStart = PickedUpWeapon.bGivenAtStart;
@@ -916,10 +873,6 @@ simulated event SetFOV(float NewFOV)
         {
             KFP.ArmsMesh.super(KFWeapon).SetFOV(NewFOV);
         }
-    }
-    if(FlashLight != none)
-    {
-        FlashLight.SetFOV(NewFOV);
     }
 }
 
@@ -1249,10 +1202,6 @@ simulated function PlayWeaponAnimation(name Sequence, float fDesiredDuration, op
 
     if(((Mesh != none) && Instigator != none) && WorldInfo.NetMode != NM_DedicatedServer)
     {
-        if(!Mesh.bAttached)
-        {
-            AttachWeaponTo(Instigator.Mesh);
-        }
         if(WeaponAnimSeqNode != none)
         {
             if((WeaponAnimSeqNode.AnimSeq == none) || WeaponAnimSeqNode.AnimSeq.SequenceName != Sequence)
@@ -1857,6 +1806,21 @@ simulated function StartFire(byte FireModeNum)
     super.StartFire(FireModeNum);
 }
 
+simulated function BeginFire(byte FireModeNum)
+{
+    local KFPerk_Gunslinger GunslingerPerk;
+
+    super.BeginFire(FireModeNum);
+    if(Role == ROLE_Authority)
+    {
+        GunslingerPerk = KFPerk_Gunslinger(GetPerk());
+        if(((GunslingerPerk != none) && !IsMeleeWeapon()) && !GunslingerPerk.IsWeaponOnPerk(self))
+        {
+            GunslingerPerk.ResetHeadShotCombo();
+        }
+    }
+}
+
 simulated function StopFire(byte FireModeNum)
 {
     if((FireModeNum == 0) && bUseAltFireMode)
@@ -2070,7 +2034,7 @@ simulated function Rotator AddSpread(Rotator BaseAim)
 
 simulated function ModifyRecoil(out float CurrentRecoilModifier)
 {
-    GetPerk().ModifyRecoil(CurrentRecoilModifier);
+    GetPerk().ModifyRecoil(CurrentRecoilModifier, self);
 }
 
 simulated event HandleRecoil()
@@ -2236,7 +2200,7 @@ simulated event float GetInitialPenetrationPower(byte FiringMode)
     return UsedPenetrationPower;
 }
 
-simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optional int NumHits, optional out float out_PenetrationVal)
+simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optional int NumHits, optional out float out_PenetrationVal, optional int ImpactNum)
 {
     local int TotalDamage;
     local KActorFromStatic NewKActor;
@@ -2292,7 +2256,7 @@ simulated function HandleProjectileImpact(ImpactInfo Impact, optional float Pene
         {
             SendClientProjectileImpact(CurrentFireMode, Impact, PenetrationValue);
         }
-        ProcessInstantHitEx(CurrentFireMode, Impact,, PenetrationValue);
+        ProcessInstantHitEx(CurrentFireMode, Impact,, PenetrationValue, 0);
     }
 }
 
@@ -2397,9 +2361,11 @@ simulated function InstantFireClient()
     local ImpactInfo RealImpact;
     local float CurPenetrationValue;
 
+    bInstantHit = true;
     StartTrace = GetSafeStartTraceLocation();
     AimRot = GetAdjustedAim(StartTrace);
     EndTrace = StartTrace + (vector(AimRot) * (GetTraceRange()));
+    bInstantHit = false;
     PenetrationPowerRemaining = GetInitialPenetrationPower(CurrentFireMode);
     CurPenetrationValue = PenetrationPowerRemaining;
     RealImpact = CalcWeaponFire(StartTrace, EndTrace, ImpactList);
@@ -2411,13 +2377,13 @@ simulated function InstantFireClient()
     {
         InstantFireClient_AddImpacts(StartTrace, AimRot, ImpactList);
         Idx = 0;
-        J0x174:
+        J0x18C:
 
         if(Idx < ImpactList.Length)
         {
-            ProcessInstantHitEx(CurrentFireMode, ImpactList[Idx],, CurPenetrationValue);
+            ProcessInstantHitEx(CurrentFireMode, ImpactList[Idx],, CurPenetrationValue, Idx);
             ++ Idx;
-            goto J0x174;
+            goto J0x18C;
         }
         if(Instigator.Role < ROLE_Authority)
         {
@@ -2426,7 +2392,7 @@ simulated function InstantFireClient()
     }
 }
 
-event RecieveClientImpact(byte FiringMode, const out ImpactInfo Impact, optional out float PenetrationValue)
+event RecieveClientImpact(byte FiringMode, const out ImpactInfo Impact, optional out float PenetrationValue, optional int ImpactNum)
 {
     if(FiringMode == 3)
     {
@@ -2434,7 +2400,11 @@ event RecieveClientImpact(byte FiringMode, const out ImpactInfo Impact, optional
     }
     else
     {
-        ProcessInstantHitEx(FiringMode, Impact,, PenetrationValue);
+        if((KFPawn_Monster(Impact.HitActor) != none) && PenetrationValue < (GetInitialPenetrationPower(FiringMode)))
+        {
+            ImpactNum = 1;
+        }
+        ProcessInstantHitEx(FiringMode, Impact,, PenetrationValue, ImpactNum);
     }
 }
 
@@ -2542,15 +2512,26 @@ function ReInitializeAmmoCounts(KFPerk CurrentPerk)
 simulated function ConsumeAmmo(byte FireModeNum)
 {
     local int AmmoGroup;
+    local KFPerk InstigatorPerk;
 
+    AmmoGroup = GetAmmoType(FireModeNum);
+    InstigatorPerk = GetPerk();
+    if(((InstigatorPerk != none) && InstigatorPerk.GetIsUberAmmoActive(self)) && AmmoCount[AmmoGroup] == GetUberAmmoMinAmmo())
+    {
+        return;
+    }
     if((Role == ROLE_Authority) || bAllowClientAmmoTracking)
     {
-        AmmoGroup = GetAmmoType(FireModeNum);
         if((MagazineCapacity[AmmoGroup] > 0) && AmmoCount[AmmoGroup] > 0)
         {
             -- AmmoCount[AmmoGroup];
         }
     }
+}
+
+private final simulated function int GetUberAmmoMinAmmo()
+{
+    return default.MinUberAmmoCount;
 }
 
 function int AddAmmo(int Amount)
@@ -2591,6 +2572,25 @@ function int AddAmmo(int Amount)
     return SpareAmmoCount[0] - OldSpareAmmo;
 }
 
+function AddTransactionAmmo(int TransactionPrimaryAmmo, int TransactionSecondaryAmmo)
+{
+    local int SpareAmmoToAdd, ExtraTransactionAmmo;
+
+    if(TransactionPrimaryAmmo >= 0)
+    {
+        AddAmmo(TransactionPrimaryAmmo);        
+    }
+    else
+    {
+        SpareAmmoToAdd = Max(-SpareAmmoCount[0], TransactionPrimaryAmmo);
+        ExtraTransactionAmmo = TransactionPrimaryAmmo - SpareAmmoToAdd;
+        AddAmmo(SpareAmmoToAdd);
+        AmmoCount[0] = byte(Max(0, AmmoCount[0] + ExtraTransactionAmmo));
+        ClientForceAmmoUpdate(AmmoCount[0], SpareAmmoCount[0]);
+    }
+    AddSecondaryAmmo(TransactionSecondaryAmmo);
+}
+
 function int AddSecondaryAmmo(int Amount)
 {
     local int OldAmmo;
@@ -2609,24 +2609,32 @@ function int AddSecondaryAmmo(int Amount)
     return AmmoCount[1] - OldAmmo;
 }
 
-reliable client simulated function ClientForceAmmoUpdate(byte NewAmmoCount, int NewSpareAmmoCount)
+reliable client simulated function ClientForceAmmoUpdate(byte NewAmmoCount, int NewSpareAmmoCount, optional bool bAmmoSync)
 {
     if(Role < ROLE_Authority)
     {
-        if(bDebug)
+        if(bAmmoSync)
         {
-            LogInternal((((((((string(self) @ "ClientForceAmmoUpdate ServerAmmo Primary:") $ string(NewAmmoCount)) @ "ClientAmmo Primary:") $ string(AmmoCount[0])) @ "ServerSpareAmmo Primary:") $ string(NewSpareAmmoCount)) @ "ClientSpareAmmo Primary:") $ string(SpareAmmoCount[0]));
+            if(bDebug)
+            {
+                LogInternal(((((((((string(self) @ string(GetFuncName())) @ "ServerAmmo Primary:") $ string(NewAmmoCount)) @ "ClientAmmo Primary:") $ string(AmmoCount[0])) @ "ServerSpareAmmo Primary:") $ string(NewSpareAmmoCount)) @ "ClientSpareAmmo Primary:") $ string(SpareAmmoCount[0]));
+            }
+            if(NewAmmoCount != AmmoCount[0])
+            {
+                LogInternal(((((string(self) @ string(GetFuncName())) @ "Primary Ammo mismatch Server:") $ string(NewAmmoCount)) @ "Client:") $ string(AmmoCount[0]));
+            }
+            if(NewSpareAmmoCount != SpareAmmoCount[0])
+            {
+                LogInternal(((((string(self) @ string(GetFuncName())) @ "Primary SpareAmmo mismatch Server:") $ string(NewSpareAmmoCount)) @ "Client:") $ string(SpareAmmoCount[0]));
+            }
+            AmmoCount[0] = byte(Min(NewAmmoCount, AmmoCount[0]));
+            SpareAmmoCount[0] = Min(NewSpareAmmoCount, SpareAmmoCount[0]);            
         }
-        if(NewAmmoCount != AmmoCount[0])
+        else
         {
-            LogInternal((((string(self) @ "ClientForceAmmoUpdate Primary Ammo mismatch Server:") $ string(NewAmmoCount)) @ "Client:") $ string(AmmoCount[0]));
+            AmmoCount[0] = NewAmmoCount;
+            SpareAmmoCount[0] = NewSpareAmmoCount;
         }
-        if(NewSpareAmmoCount != SpareAmmoCount[0])
-        {
-            LogInternal((((string(self) @ "ClientForceAmmoUpdate Primary SpareAmmo mismatch Server:") $ string(NewSpareAmmoCount)) @ "Client:") $ string(SpareAmmoCount[0]));
-        }
-        AmmoCount[0] = NewAmmoCount;
-        SpareAmmoCount[0] = NewSpareAmmoCount;
         NotifyHUDofWeapon(Pawn(Owner));
     }
 }
@@ -2637,11 +2645,11 @@ reliable client simulated function ClientForceSecondaryAmmoUpdate(byte NewSecond
     {
         if(bDebug)
         {
-            LogInternal((((string(self) @ "ClientForceAmmoUpdate ServerAmmo Secondary:") $ string(NewSecondaryAmmoCount)) @ "ClientAmmo Secondary:") $ string(AmmoCount[1]));
+            LogInternal(((((string(self) @ string(GetFuncName())) @ "ServerAmmo Secondary:") $ string(NewSecondaryAmmoCount)) @ "ClientAmmo Secondary:") $ string(AmmoCount[1]));
         }
         if(NewSecondaryAmmoCount != AmmoCount[1])
         {
-            LogInternal((((string(self) @ "ClientForceAmmoUpdate Secondary Ammo mismatch Server:") $ string(NewSecondaryAmmoCount)) @ "Client:") $ string(AmmoCount[1]));
+            LogInternal(((((string(self) @ string(GetFuncName())) @ "Secondary Ammo mismatch Server:") $ string(NewSecondaryAmmoCount)) @ "Client:") $ string(AmmoCount[1]));
         }
         AmmoCount[1] = NewSecondaryAmmoCount;
         NotifyHUDofWeapon(Pawn(Owner));
@@ -2768,6 +2776,54 @@ simulated function bool ShouldAutoReload(byte FireModeNum)
     local bool bHasAmmo;
 
     bHasAmmo = HasAmmo(FireModeNum);
+    if((!bHasAmmo && Instigator != none) && Instigator.IsLocallyControlled())
+    {
+        if(bPendingAutoSwitchOnDryFire)
+        {
+            if(CanSwitchWeapons())
+            {
+                if(!HasSpareAmmo())
+                {
+                    Instigator.Controller.ClientSwitchToBestWeapon(false);
+                }
+            }
+            bPendingAutoSwitchOnDryFire = false;            
+        }
+        else
+        {
+            WeaponPlaySound(WeaponDryFireSnd[FireModeNum]);
+            if(Role < ROLE_Authority)
+            {
+                ServerPlayDryFireSound(FireModeNum);
+            }
+            bPendingAutoSwitchOnDryFire = !HasSpareAmmo();
+        }
+    }
+    return !bHasAmmo && CanReload();
+}
+
+simulated function bool ShouldAutoReloadGunslinger(byte FireModeNum)
+{
+    local KFPerk InstigatorPerk;
+    local KFWeapon NewWeapon;
+    local KFInventoryManager KFIM;
+    local bool bHasAmmo;
+
+    bHasAmmo = HasAmmo(FireModeNum);
+    InstigatorPerk = GetPerk();
+    if(((!bHasAmmo && CanSwitchWeapons()) && InstigatorPerk != none) && InstigatorPerk.ShouldInstantlySwitchWeapon(self))
+    {
+        KFIM = KFInventoryManager(InvManager);
+        if(KFIM != none)
+        {
+            NewWeapon = KFIM.GetBestPerkWeaponWithAmmo(InstigatorPerk.Class, true);
+            if(NewWeapon != none)
+            {
+                KFIM.SetCurrentWeapon(NewWeapon);
+                return false;
+            }
+        }
+    }
     if((!bHasAmmo && Instigator != none) && Instigator.IsLocallyControlled())
     {
         if(bPendingAutoSwitchOnDryFire)
@@ -3035,17 +3091,43 @@ simulated function bool PlayIdleFidgetAnim();
 
 simulated function ANIMNOTIFY_EnableAdditiveBob();
 
+simulated function CheckPendingIronsights()
+{
+    local PlayerController PC;
+
+    if(Instigator.IsLocallyControlled())
+    {
+        PC = PlayerController(Instigator.Controller);
+        if((PC != none) && PC.PlayerInput != none)
+        {
+            if(KFPlayerInput(PC.PlayerInput).bPendingIronsights)
+            {
+                SetIronSights(true);
+            }
+        }
+    }
+}
+
 simulated function TimeWeaponEquipping()
 {
-    PlayWeaponEquip();
-    SetTimer(EquipTime, false, 'WeaponEquipped');
+    local KFPerk InstigatorPerk;
+    local float ModifiedEquipTime;
+
+    ModifiedEquipTime = MySkelMesh.GetAnimLength(EquipAnim);
+    InstigatorPerk = GetPerk();
+    if(InstigatorPerk != none)
+    {
+        InstigatorPerk.ModifyWeaponSwitchTime(ModifiedEquipTime);
+    }
+    PlayWeaponEquip(ModifiedEquipTime);
+    SetTimer(((EquipTime > float(0)) ? EquipTime : 0.01), false, 'WeaponEquipped');
 }
 
 simulated function WeaponEquipped();
 
-simulated function PlayWeaponEquip()
+simulated function PlayWeaponEquip(float ModifiedEquipTime)
 {
-    PlayAnimation(GetEquipAnimName(), 0,, 0);
+    PlayAnimation(GetEquipAnimName(), ModifiedEquipTime);
 }
 
 simulated function name GetEquipAnimName()
@@ -3068,16 +3150,25 @@ simulated function bool CanSwitchWeapons()
 
 simulated function TimeWeaponPutDown()
 {
+    local KFPerk InstigatorPerk;
+    local float ModifiedPutDownTime;
+
+    ModifiedPutDownTime = PutDownTime;
+    InstigatorPerk = GetPerk();
+    if(InstigatorPerk != none)
+    {
+        InstigatorPerk.ModifyWeaponSwitchTime(ModifiedPutDownTime);
+    }
+    SetTimer(((ModifiedPutDownTime > float(0)) ? ModifiedPutDownTime : 0.01), false, 'WeaponIsDown');
     if(Instigator.IsFirstPerson())
     {
-        PlayWeaponPutDown();
+        PlayWeaponPutDown(ModifiedPutDownTime);
     }
-    super.TimeWeaponPutDown();
 }
 
-simulated function PlayWeaponPutDown()
+simulated function PlayWeaponPutDown(float ModifiedPutDownTime)
 {
-    PlayAnimation(GetWeaponPutDownAnimName(), PutDownTime);
+    PlayAnimation(GetWeaponPutDownAnimName(), ModifiedPutDownTime);
 }
 
 simulated function name GetWeaponPutDownAnimName()
@@ -3129,7 +3220,7 @@ simulated function TimeWeaponFiring(byte FireModeNum)
         CurrentPerk = GetPerk();
         if(CurrentPerk != none)
         {
-            GetPerk().ModifyRateOfFire(AdjustedFireInterval);
+            CurrentPerk.ModifyRateOfFire(AdjustedFireInterval, self);
         }
         SetTimer(AdjustedFireInterval, true, 'RefireCheckTimer');
     }
@@ -3379,10 +3470,7 @@ simulated function CheckBoltLockPostReload()
     {
         if(ReloadStatus < 4)
         {
-            if(bAllowClientAmmoTracking && AmmoCount[0] == 0)
-            {
-                EmptyMagBlendNode.SetBlendTarget(1, 0);
-            }
+            UpdateOutOfAmmoEffects(0);
         }
         bCheckBoltLockPostReload = false;
     }
@@ -3515,7 +3603,6 @@ static simulated event SetTraderWeaponStats(out array<STraderItemWeaponStats> We
     WeaponStats[1].StatType = 1;
     WeaponStats[1].StatValue = CalculateTraderWeaponStatFireRate();
     WeaponStats[2].StatType = 2;
-    WeaponStats[2].StatValue = CalculateTraderWeaponStatRange();
     WeaponStats[3].StatType = 3;
     WeaponStats[3].StatValue = default.PenetrationPower[0];
 }
@@ -3539,12 +3626,9 @@ static simulated function float CalculateTraderWeaponStatFireRate()
     return 60 / default.FireInterval[0];
 }
 
-static simulated function float CalculateTraderWeaponStatRange()
-{
-    return float(default.EffectiveRange);
-}
+static simulated event KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter();
 
-auto simulated state Inactive
+auto state Inactive
 {
     ignores ForceReload, ShouldAutoReload, AllowIronSights;
 
@@ -3567,7 +3651,7 @@ auto simulated state Inactive
         ClearPendingFire(2);
         if((bAllowClientAmmoTracking && Role == ROLE_Authority) && WorldInfo.TimeSeconds > CreationTime)
         {
-            ClientForceAmmoUpdate(AmmoCount[0], SpareAmmoCount[0]);
+            ClientForceAmmoUpdate(AmmoCount[0], SpareAmmoCount[0], true);
             ClientForceSecondaryAmmoUpdate(AmmoCount[1]);
         }
         bPendingAutoSwitchOnDryFire = false;
@@ -3646,6 +3730,7 @@ simulated state Active
         {
             LaserSight.SetAimBlendState(true, false);
         }
+        CheckPendingIronsights();
         super.BeginState(PreviousStateName);
     }
 
@@ -3760,7 +3845,10 @@ simulated state Active
 
     simulated function ANIMNOTIFY_EnableAdditiveBob()
     {
-        ToggleAdditiveBobAnim(true, 0.3);
+        if(!bUsingSights)
+        {
+            ToggleAdditiveBobAnim(true, 0.3);            
+        }
     }
 
     reliable server function ServerSyncReload(int ClientSpareAmmoCount)
@@ -3849,10 +3937,6 @@ simulated state WeaponPuttingDown
         local KFPerk InstigatorPerk;
         local float PerkZedTimeResist;
 
-        if(((FlashLight != none) && FlashLight.bEnabled) && Instigator.IsLocallyControlled())
-        {
-            KFPawn_Human(Instigator).SetFlashlight(false, true);
-        }
         TimeWeaponPutDown();
         bWeaponPutDown = false;
         InstigatorPerk = GetPerk();
@@ -3905,10 +3989,6 @@ simulated state WeaponDownSimple
     simulated function BeginState(name PreviousStateName)
     {
         super(Object).BeginState(PreviousStateName);
-        if(((FlashLight != none) && FlashLight.bEnabled) && Instigator.IsLocallyControlled())
-        {
-            KFPawn_Human(Instigator).SetFlashlight(false, true);
-        }
         bDoingQuickDownZoom = true;
         if(Instigator.IsLocallyControlled())
         {
@@ -4145,9 +4225,14 @@ simulated state GrenadeFiring extends WeaponSingleFiring
 
     simulated function EndState(name NextStateName)
     {
+        local byte FireModeSwap;
+
         super(WeaponFiring).EndState(NextStateName);
         NotifyEndState();
+        FireModeSwap = CurrentFireMode;
+        CurrentFireMode = 4;
         ProjectileFire();
+        CurrentFireMode = FireModeSwap;
     }
 
     simulated event Vector GetMuzzleLoc()
@@ -4265,8 +4350,11 @@ simulated state Reloading
 
     simulated function ZoomIn(bool bAnimateTransition, float ZoomTimeToGo)
     {
-        global.ZoomIn(bAnimateTransition, ZoomTimeToGo);
-        AbortReload();
+        if(!bReloadFromMagazine)
+        {
+            global.ZoomIn(bAnimateTransition, ZoomTimeToGo);
+            AbortReload();
+        }
     }
 
     simulated function bool TryPutDown()
@@ -4403,7 +4491,6 @@ defaultproperties
     FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
     FireModeIconPaths(1)=none
     SingleFireMode=255
-    FilterTypeUI=EFilterTypeUI.FT_Assault
     bTargetFrictionEnabled=true
     bTargetAdhesionEnabled=true
     DOF_bOverrideEnvironmentDOF=true
@@ -4417,20 +4504,12 @@ defaultproperties
     PenetrationDamageReductionCurve(0)=(Points=/* Array type was not detected. */,InVal=0,OutVal=0,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
     PenetrationDamageReductionCurve(1)=(InVal=1,OutVal=1,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
     GrenadeTossWeakZedGrabCooldown=1
-    TargetFrictionDistanceMin=320
-    TargetFrictionDistancePeak=200
     TargetFrictionDistanceMax=4000
-    TargetFrictionDistanceCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
-    TargetFrictionMultiplierRange=(X=0.3,Y=0.4)
-    TargetFrictionPeakRadiusScale=1
-    TargetFrictionPeakHeightScale=0.2
-    TargetFrictionOffset=(X=0,Y=0,Z=32)
-    TargetFrictionZoomedBoostValue=0.25
     TargetAdhesionDistanceMax=2000
-    TargetAdhesionAimDistY=128
-    TargetAdhesionAimDistZ=96
-    TargetAdhesionScaleRange=(X=0.3,Y=2.85)
-    TargetAdhesionZoomedBoostValue=0.25
+    TargetAdhesionOffsetScaleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=1,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
+    TargetAdhesionDistanceScaleCurve=(Points=/* Array type was not detected. */,InVal=0.1,OutVal=1,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
+    TargetFrictionOffsetScaleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=1,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
+    TargetFrictionDistanceScaleCurve=(Points=/* Array type was not detected. */,InVal=0.5,OutVal=1,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_CurveAuto)
     MeshFOV=86
     MeshIronSightFOV=75
     PlayerIronSightFOV=75
@@ -4453,7 +4532,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=3
     DOF_FG_ExpFalloff=1
     GrenadeFireOffset=(X=25,Y=-15,Z=0)
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AR15'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AR15'
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.GasTank'
     AmmoPickupScale[0]=1
     AmmoPickupScale[1]=1
@@ -4480,6 +4559,7 @@ defaultproperties
     FireLoopEndAnim=ShootLoop_End
     FireLoopEndSightedAnim=ShootLoop_Iron_End
     MeleeAttackAnims(0)=Bash
+    BonesToLockOnEmpty(0)=RW_Bolt
     WeaponFireSnd(0)=(DefaultCue=none,FirstPersonCue=none)
     BobDamping=0.85
     JumpDamping=1
@@ -4503,7 +4583,6 @@ defaultproperties
     object end
     // Reference: KFMeleeHelperWeapon'Default__KFWeapon.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
-    FlashLightTemplate=KFFlashlightAttachment'FX_Flashlight_ARCH.Default_Flashlight_1P'
     LaserSightTemplate=KFLaserSightAttachment'FX_LaserSight_ARCH.Default_LaserSight_1P'
     MovingSpreadMod=1
     IronSightsSpreadMod=0.5
@@ -4531,6 +4610,7 @@ defaultproperties
     StanceCrouchedRecoilModifier=0.75
     LastRecoilModifier=1
     IronSightMeshFOVCompensationScale=1
+    MinUberAmmoCount=1
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */

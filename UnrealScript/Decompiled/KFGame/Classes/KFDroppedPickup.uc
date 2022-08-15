@@ -17,11 +17,15 @@ var const bool bEnableStaticMeshRBPhys;
 var const bool bIgnoreBlockingVolumes;
 var protectedwrite export editinline MeshComponent MyMeshComp;
 var protectedwrite export editinline CylinderComponent MyCylinderComp;
+var private int SkinItemId;
 
 replication
 {
      if(Role == ROLE_Authority)
         RBState;
+
+     if(bNetInitial)
+        SkinItemId;
 }
 
 simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
@@ -29,7 +33,16 @@ simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
     local editinline ActorComponent Comp;
     local editinline SkeletalMeshComponent SkelMC;
     local editinline StaticMeshComponent StaticMC;
+    local array<MaterialInterface> SkinMICs;
 
+    if(Role == ROLE_Authority)
+    {
+        if((Inventory != none) && Inventory.IsA('KFWeapon'))
+        {
+            SkinItemId = KFWeapon(Inventory).SkinItemId;
+        }
+        SetTimer(LifeSpan, false, 'TryFadeOut');
+    }
     if(NewPickupMesh != none)
     {
         if((CollisionComponent == none) || CollisionComponent.Class != NewPickupMesh.Class)
@@ -86,9 +99,13 @@ simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
                 Velocity = vect(0, 0, 0);
             }
         }
-        if(Role == ROLE_Authority)
+        if(MyMeshComp != none)
         {
-            SetTimer(LifeSpan, false, 'TryFadeOut');
+            SkinMICs = Class'KFWeaponSkinList'.static.GetWeaponSkin(SkinItemId, 2);
+            if(SkinMICs.Length > 0)
+            {
+                MyMeshComp.SetMaterial(0, SkinMICs[0]);
+            }
         }
     }
 }

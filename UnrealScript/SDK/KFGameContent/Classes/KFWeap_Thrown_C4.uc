@@ -304,6 +304,8 @@ simulated state Active
  * The weapon is in this state while detonating a charge
 *********************************************************************************************/
 
+simulated function GotoActiveState();
+
 simulated state WeaponDetonating
 {
 	ignores AllowSprinting;
@@ -395,6 +397,16 @@ simulated state WeaponPuttingDown
 	ignores SetIronSights;
 }
 
+/*********************************************************************************************
+ * @name	Trader
+ *********************************************************************************************/
+
+/** Returns trader filter index based on weapon type */
+static simulated event EFilterTypeUI GetTraderFilter()
+{
+	return FT_Explosive;
+}
+
 defaultproperties
 {
 	// Zooming/Position
@@ -441,12 +453,8 @@ defaultproperties
 	// Inventory / Grouping
 	InventoryGroup=IG_Primary
 	GroupPriority=50
-	UITexture=Texture2D'WEP_UI_C4_TEX.UI_WeaponSelect_C4'
+	WeaponSelectTexture=Texture2D'WEP_UI_C4_TEX.UI_WeaponSelect_C4'
 	InventorySize=3
-	FilterTypeUI=FT_Explosive
-
-	// Trader
-    EffectiveRange=10	
 
    	AssociatedPerkClass=class'KFPerk_Demolitionist'
 

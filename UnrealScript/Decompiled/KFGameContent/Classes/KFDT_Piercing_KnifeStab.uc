@@ -10,7 +10,7 @@ class KFDT_Piercing_KnifeStab extends KFDT_Piercing
 
 defaultproperties
 {
-    AARWeaponID=3
+    WeaponDef=Class'KFGame.KFweapDef_Knife_Base'
     StunPower=35
     StumblePower=40
     LegStumblePower=40

@@ -59,8 +59,7 @@ defaultproperties
 	// Inventory
 	GroupPriority=100
 	InventorySize=3
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Katana'
-	FilterTypeUI=FT_Melee
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Katana'
 	AssociatedPerkClass=none//class'KFPerk_MartialArtist'
 	
 	// Block Sounds
@@ -68,10 +67,6 @@ defaultproperties
 	ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Metal'
 	
 	ParryStrength=4
-
-	// Trader
-    EffectiveRange=2
-
 }
 
 

@@ -15,11 +15,9 @@ defaultproperties
     BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Crovel'
     ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Metal'
     FireModeIconPaths=/* Array type was not detected. */
-    FilterTypeUI=EFilterTypeUI.FT_Melee
     InventorySize=4
-    EffectiveRange=3
     GroupPriority=25
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Crovel'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Crovel'
     AttachmentArchetype=KFWeaponAttachment'WEP_Crovel_ARCH.Wep_Crovel_3P'
     begin object name=MeleeHelper class=KFMeleeHelperWeapon
         ChainSequence_B=/* Array type was not detected. */

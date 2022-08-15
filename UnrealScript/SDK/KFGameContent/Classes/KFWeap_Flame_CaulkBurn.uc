@@ -177,8 +177,7 @@ defaultproperties
     // Inventory
 	InventorySize=6
 	GroupPriority=25
-	UITexture=Texture2D'WEP_UI_CaulkBurn_TEX.UI_WeaponSelect_CaulkNBurn'
-	FilterTypeUI=FT_Flame
+	WeaponSelectTexture=Texture2D'WEP_UI_CaulkBurn_TEX.UI_WeaponSelect_CaulkNBurn'
 
 	// DEFAULT_FIREMODE
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Flamethrower'
@@ -212,9 +211,6 @@ defaultproperties
 	// Attachments
 	bHasIronSights=true
 	bHasFlashlight=false
-
-	// Trader
-    EffectiveRange=15	
 
    	AssociatedPerkClass=class'KFPerk_Firebug'
 }

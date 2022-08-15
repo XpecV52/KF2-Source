@@ -26,5 +26,5 @@ defaultproperties
    AnimName="Atk_Nade4Barrage_V1"
    Handle="SM_Hans_GrenadeHalfBarrage"
    Name="Default__KFSM_Hans_GrenadeHalfBarrage"
-   ObjectArchetype=KFSM_Hans_GrenadeBarrage'KFGameContent.Default__KFSM_Hans_GrenadeBarrage'
+   ObjectArchetype=KFSM_Hans_GrenadeBarrage'kfgamecontent.Default__KFSM_Hans_GrenadeBarrage'
 }

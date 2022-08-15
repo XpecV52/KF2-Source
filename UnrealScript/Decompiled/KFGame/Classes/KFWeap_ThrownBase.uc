@@ -234,8 +234,8 @@ defaultproperties
     EquipLastAnim=Equip_Last
     PutDownLastAnim=Putaway_Last
     ConsumeSpareAmmoDelay=1
-    EffectiveRange=15
     bHasFireLastAnims=true
+    QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=8192)
     FireAnim=Throw
     FireLastAnim=Throw_Last
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_ThrownBase.MeleeHelper'

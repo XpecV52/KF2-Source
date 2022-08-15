@@ -31,6 +31,7 @@ function InitializeHUD()
 	SetString("waveText", WaveString);
     SetString("bossText", BossWaveString); 
     SetString("finalText", FinalWaveString);
+    UpdateWaveCount();
 }
 
 function TickHud(float DeltaTime)
@@ -41,7 +42,6 @@ function TickHud(float DeltaTime)
     }
     else
     {
-        UpdateWaveCount();
         if(KFGRI.bTraderIsOpen)
         {
             UpdateTraderTimeRemaining();
@@ -58,6 +58,8 @@ function UpdateWaveCount()
 {
     local int CurrentWaveMax,CurrentWave;
 
+    KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
+
     if( KFGRI == none )
     {
         return;
@@ -72,7 +74,7 @@ function UpdateWaveCount()
     }
 
     // Current wave we're on.
-    CurrentWave = KFGRI.WaveNum;
+    CurrentWave = KFGRI.WaveNum + 1;
     if(CurrentWave != LastWave)
     {
         SetInt("currentWave" ,CurrentWave);

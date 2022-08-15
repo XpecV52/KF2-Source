@@ -10,6 +10,7 @@
 
 class KFCharacterInfoBase extends Object
 	abstract
+	native(Pawn)
 	dependsOn(KFPawn, KFDamageType);
 
 /** Mesh scaling */
@@ -56,6 +57,20 @@ var(Effects) array<KFSkinTypeEffects> ImpactSkins;
 	vertically downwards. If not specified, the root bone (index 0) will be used as blood pool origin */
 var(Gore) name BloodPoolOriginBoneName;
 
+/************************************************************************/
+/*  Native Functions												    */
+/************************************************************************/
+
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+
+/************************************************************************/
+/*  Script Functions												    */
+/************************************************************************/
+
 /** Sets misc. properties from the character info */
 simulated function SetCharacterFromArch( KFPawn KFP, optional KFPlayerReplicationInfo KFPRI );
 
@@ -65,35 +80,8 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 simulated function SetBodyMesh( byte CurrentOutfitIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI );
 simulated function SetBodySkin(byte CurrentSkinIndex, KFPawn KFP, KFPlayerReplicationInfo KFPRI);
 
-/** Sets the pawns character mesh from it's CharacterInfo, and updates instance of player in map if there is one. */
-simulated function SetBodyMeshAndSkin(
-	byte CurrentBodyMeshIndex,
-	byte CurrentBodySkinIndex,
-	KFPawn KFP,
-	optional KFPlayerReplicationInfo KFPRI );
-
-simulated function SetHeadMeshAndSkin(
-	byte CurrentHeadMeshIndex,
-	byte CurrentHeadSkinIndex,
-	KFPawn KFP,
-	optional KFPlayerReplicationInfo KFPRI );
-
-simulated function SetAttachmentMeshAndSkin(
-	byte CurrentAttachmentMeshIndex,
-	byte CurrentAttachmentSkinIndex,
-	KFPawn KFP,
-	optional KFPlayerReplicationInfo KFPRI );
-
-simulated function ClearAllAttachments(KFPawn KFP, KFPlayerReplicationInfo KFPRI);
-
-function SetArmsMeshAndSkin(
-	byte CurrentBodyMeshIndex,
-	byte CurrentBodySkinIndex,
-	KFPawn KFP,
-	optional KFPlayerReplicationInfo KFPRI );
-
 /** Assign an arm mesh and material to this pawn */
-simulated function SetFirstPersonArmsFromArch( KFPawn KFP, optional KFPlayerReplicationInfo KFPRI );
+function SetFirstPersonArmsFromArch( KFPawn KFP, optional KFPlayerReplicationInfo KFPRI );
 
 defaultproperties
 {

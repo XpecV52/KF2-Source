@@ -11,7 +11,7 @@
 class KFGameContentRoot extends Object;
 
 /** (Debug) To force load a content class add it to this list */
-var private const array<Actor> A;
+var private const array<Object> Loaded;
 
 defaultproperties
 {

@@ -91,7 +91,7 @@ package tripwire.containers
         public function StartOptionsContainer()
         {
             super();
-            defaultFirstElement = this.modeButton;
+            currentElement = defaultFirstElement = this.startGameButton;
         }
         
         public function set localizedText(param1:Object) : void
@@ -148,16 +148,16 @@ package tripwire.containers
             this.inProgressButton.visible = !param1;
             if(param1)
             {
-                this.startGameButton.y = this.lengthButton.y + this.lengthButton.height + 32;
-                this.backButton.y = this.startGameButton.y + this.startGameButton.height + 8;
+                this.startGameButton.y = this.lengthButton.y + this.lengthButton.height + 24;
+                this.backButton.y = this.startGameButton.y + this.startGameButton.height;
                 this.optionsHeader.text = this.soloGameString;
                 this.backButton.label = this.backString;
                 this.startGameButton.label = this.lauchGameString;
             }
             else
             {
-                this.startGameButton.y = this.privacyButton.y + this.privacyButton.height + 32;
-                this.backButton.y = this.startGameButton.y + this.startGameButton.height + 8;
+                this.startGameButton.y = this.inProgressButton.y + this.inProgressButton.height + 24;
+                this.backButton.y = this.startGameButton.y + this.startGameButton.height;
                 this.optionsHeader.text = this.matchMakingString;
                 this.backButton.label = this.leaveMatchmakingString;
                 this.startGameButton.label = this.multiplayerLaunchString;
@@ -268,7 +268,7 @@ package tripwire.containers
             stage.addEventListener(KeyboardEvent.KEY_UP,this.onUserKeyUp,false,0,true);
             if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
             {
-                FocusManager.setFocus(defaultFirstElement);
+                FocusManager.setFocus(this.startGameButton);
             }
         }
         

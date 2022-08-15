@@ -17,7 +17,7 @@ var transient bool bHasExploded;
 
 simulated function ANIMNOTIFY_FlameThrowerOn()
 {
-    if(IsDoingSpecialMove(17))
+    if(IsDoingSpecialMove(18))
     {
         KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]).TurnOnFlamethrower();
     }
@@ -25,7 +25,7 @@ simulated function ANIMNOTIFY_FlameThrowerOn()
 
 simulated function ANIMNOTIFY_FlameThrowerOff()
 {
-    if(IsDoingSpecialMove(17))
+    if(IsDoingSpecialMove(18))
     {
         KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]).TurnOffFlamethrower();
     }
@@ -89,7 +89,7 @@ simulated event Vector GetWeaponStartTraceLocation(optional Weapon CurrentWeapon
 
 simulated function TerminateEffectsOnDeath()
 {
-    if(IsDoingSpecialMove(17))
+    if(IsDoingSpecialMove(18))
     {
         SpecialMoveHandler.EndSpecialMove();
     }
@@ -152,7 +152,7 @@ function TriggerExplosion(optional bool bIgnoreHumans)
 function AdjustDamage(out int InDamage, out Vector Momentum, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, TraceHitInfo HitInfo, Actor DamageCauser)
 {
     super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
-    if((((MyKFAIC != none) && MyKFAIC.IsSuicidal()) && InstigatedBy == MyKFAIC) && IsDoingSpecialMove(18))
+    if((((MyKFAIC != none) && MyKFAIC.IsSuicidal()) && InstigatedBy == MyKFAIC) && IsDoingSpecialMove(19))
     {
         InDamage = 10000;
     }
@@ -185,8 +185,8 @@ function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, 
 
 function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, Vector Momentum, TraceHitInfo HitInfo)
 {
-    super(KFPawn).PlayHit(Damage, InstigatedBy, HitLocation, DamageType, Momentum, HitInfo);
-    if(bEmpDisrupted && IsDoingSpecialMove(18))
+    super.PlayHit(Damage, InstigatedBy, HitLocation, DamageType, Momentum, HitInfo);
+    if(bEmpDisrupted && IsDoingSpecialMove(19))
     {
         Died(InstigatedBy, DamageType, HitLocation);
     }
@@ -201,7 +201,7 @@ function OnStackingAfflictionChanged(byte Id)
     }
     if(bEmpDisrupted)
     {
-        if(IsDoingSpecialMove(16) || IsDoingSpecialMove(17))
+        if(IsDoingSpecialMove(17) || IsDoingSpecialMove(18))
         {
             EndSpecialMove();
         }
@@ -234,6 +234,7 @@ defaultproperties
     MinSpawnSquadSizeType=ESquadType.EST_Medium
     begin object name=MeleeHelper class=KFMeleeHelperAI
         BaseDamage=15
+        MyDamageType=Class'KFDT_Slashing_ZedWeak'
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedHusk.MeleeHelper'
     MeleeAttackHelper=MeleeHelper

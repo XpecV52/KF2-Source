@@ -122,8 +122,7 @@ defaultproperties
 	InventoryGroup=IG_Secondary
 	GroupPriority=25
 	InventorySize=4
-	UITexture=Texture2D'WEP_UI_HX25_Pistol_TEX.UI_WeaponSelect_HX25'
-	FilterTypeUI=FT_Explosive
+	WeaponSelectTexture=Texture2D'WEP_UI_HX25_Pistol_TEX.UI_WeaponSelect_HX25'
 
     // FOV
 	MeshIronSightFOV=52
@@ -206,9 +205,6 @@ defaultproperties
 	// Attachments
 	bHasIronSights=true
 	bHasFlashlight=false
-
-	// Trader
-    EffectiveRange=25
 
    	AssociatedPerkClass=class'KFPerk_Demolitionist'
 }

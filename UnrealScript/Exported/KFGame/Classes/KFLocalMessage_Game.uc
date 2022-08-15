@@ -37,6 +37,7 @@ enum EGameMessageType
 
 	KMT_Killed,
 	KMT_Suicide
+
 };
 
 var localized string 			ReceivedAmmoFromMessage;
@@ -79,7 +80,9 @@ var localized string			FoundAllMapCollectiblesMessage;
 var localized string 			MapCollectibleName;
 var localized string 			SharingContentString;
 
-
+var localized string 			HeadShotAddedString;
+var localized string 			HeadShotMaxString;
+var localized string 			HeadShotResetString;
 
 // Returns a hex color code for the supplied message type
 static function string GetHexColor(int Switch)
@@ -237,8 +240,8 @@ defaultproperties
    FailedDropInventoryMessage="You can't drop that here"
    PendingPerkChangesSet="Perk changes will be applied at the end of the wave."
    PendingPerkChangesApplied="Perk changes applied!"
-   KilledMessage="was eaten alive"
-   SuicideMessage="just gave up on life..."
+   KilledMessage=" was eaten alive"
+   SuicideMessage=" just gave up on life..."
    KillzedBy_HansString="'s body has been removed for further experimentation"
    KillzedBy_ZedCrawlerString="'s ankles have been chewed off"
    KillzedBy_ZedBloatString=" has drowned in bodily fluids"
@@ -255,6 +258,9 @@ defaultproperties
    FoundAllMapCollectiblesMessage="Every %x% has been found!"
    MapCollectibleName="piece of dosh bling"
    SharingContentString="is sharing content."
+   HeadShotAddedString="%x Headshot(s) - %y% Extra Damage!"
+   HeadShotMaxString="Headshot! %x% Extra Damage!"
+   HeadShotResetString="Missed Headshot. Normal Damage!"
    bIsUnique=True
    bIsConsoleMessage=False
    bBeep=True

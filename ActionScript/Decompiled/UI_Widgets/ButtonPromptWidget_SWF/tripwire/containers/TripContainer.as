@@ -12,6 +12,7 @@ package tripwire.containers
     import scaleform.clik.events.InputEvent;
     import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.Extensions;
+    import scaleform.gfx.FocusManager;
     import tripwire.managers.MenuManager;
     
     public class TripContainer extends UIComponent
@@ -216,7 +217,10 @@ package tripwire.containers
                 switch(_loc2_.navEquivalent)
                 {
                     case NavigationCode.GAMEPAD_B:
-                        this.onBPressed(_loc2_);
+                        if(_loc2_.code == 97)
+                        {
+                            this.onBPressed(_loc2_);
+                        }
                 }
             }
         }
@@ -230,7 +234,6 @@ package tripwire.containers
             TweenMax.killTweensOf(this);
             TweenMax.fromTo(this,this.ANIM_TIME,{
                 "z":this.ANIM_OFFSET_Z,
-                "x":this.ANIM_START_X + this.ANIM_OFFSET_X,
                 "alpha":0,
                 "blurFilter":{
                     "blurX":this.ANIM_BLUR_X,
@@ -241,7 +244,6 @@ package tripwire.containers
                 "useFrames":true
             },{
                 "z":this.ANIM_START_Z,
-                "x":this.ANIM_START_X,
                 "alpha":this._defaultAlpha,
                 "blurFilter":{
                     "blurX":this.AnimBLUR_OUT,
@@ -261,14 +263,12 @@ package tripwire.containers
             TweenMax.killTweensOf(this);
             TweenMax.fromTo(this,this.ANIM_TIME,{
                 "z":this.ANIM_START_Z,
-                "x":this.ANIM_START_X,
                 "alpha":this._defaultAlpha,
                 "ease":Linear.easeNone,
                 "useFrames":true
             },{
                 "z":this.ANIM_OFFSET_Z,
                 "alpha":0,
-                "x":this.ANIM_START_X + this.ANIM_OFFSET_X,
                 "blurFilter":{
                     "blurX":this.ANIM_BLUR_X,
                     "blurY":this.ANIM_BLUR_Y,
@@ -278,6 +278,7 @@ package tripwire.containers
                 "useFrames":true,
                 "onComplete":this.onClosed
             });
+            FocusManager.setFocus(null);
         }
         
         protected function pushToBackAnimation() : *

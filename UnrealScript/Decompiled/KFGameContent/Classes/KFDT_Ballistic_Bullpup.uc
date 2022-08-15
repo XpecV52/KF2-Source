@@ -10,7 +10,7 @@ class KFDT_Ballistic_Bullpup extends KFDT_Ballistic_AssaultRifle
 
 defaultproperties
 {
-    AARWeaponID=11
+    WeaponDef=Class'KFGame.KFWeapDef_Bullpup'
     StumblePower=37
     LegStumblePower=37
     GunHitPower=25

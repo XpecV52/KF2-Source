@@ -62,6 +62,10 @@ function Popped()
         Outer.AILog_Internal(string(GetFuncName()) $ " Command Popped, setting CachedChildCommand to none", 'Command_Base');
     }
     CachedChildCommand = none;
+    if(AIOwner != none)
+    {
+        AIOwner.NotifyCommandFinished(self);
+    }
     super.Popped();
 }
 

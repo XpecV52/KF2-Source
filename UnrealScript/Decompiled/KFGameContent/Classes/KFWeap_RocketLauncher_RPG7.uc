@@ -83,9 +83,7 @@ defaultproperties
     ForceZoomOutTime=0.3
     ForceReloadTime=0.4
     FireModeIconPaths=/* Array type was not detected. */
-    FilterTypeUI=EFilterTypeUI.FT_Explosive
     InventorySize=10
-    EffectiveRange=100
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -96,11 +94,13 @@ defaultproperties
     FastZoomOutTime=0.2
     DOF_FG_MaxNearBlurSize=2.5
     GroupPriority=100
-    UITexture=Texture2D'WEP_UI_RPG7_TEX.UI_WeaponSelect_RPG7'
+    WeaponSelectTexture=Texture2D'WEP_UI_RPG7_TEX.UI_WeaponSelect_RPG7'
     MagazineCapacity=1
     MaxSpareAmmo=11
     InitialSpareMags=5
+    AmmoPickupScale=2
     IdleFidgetAnims=/* Array type was not detected. */
+    BonesToLockOnEmpty=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=10,Y=10,Z=-2)
@@ -134,7 +134,6 @@ defaultproperties
     FireOffset=(X=20,Y=4,Z=-3)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
         SkeletalMesh=SkeletalMesh'WEP_1P_RPG7_MESH.Wep_1stP_RPG7_Rig'
-        AnimTreeTemplate=AnimTree'WEP_1P_RPG7_ANIM.WEP_1stP_RPG7_Animtree_Master'
         AnimSets(0)=AnimSet'WEP_1P_RPG7_ANIM.Wep_1stP_RPG7_Anim'
         ReplacementPrimitive=none
     object end

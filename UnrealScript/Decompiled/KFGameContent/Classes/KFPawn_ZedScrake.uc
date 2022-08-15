@@ -131,6 +131,7 @@ defaultproperties
     MinSpawnSquadSizeType=ESquadType.EST_Large
     begin object name=MeleeHelper class=KFMeleeHelperAI
         BaseDamage=30
+        MyDamageType=Class'KFDT_Slashing_Scrake'
         MaxHitRange=200
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedScrake.MeleeHelper'

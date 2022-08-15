@@ -46,6 +46,8 @@ var KFGFxWidget_MusicNotification MusicNotification;
 var KFGFxWidget_KickVote KickVoteWidget;
 // Widget that shows unimportant messages such as receiving ammo
 var KFGFxWidget_NonCriticalGameMessage NonCriticalGameMessageWidget;
+// Widget that shows headshots for gunslinger
+var KFGFxWidget_RhythmCounter RhythmCounterWidget;
 
 var KFPlayerController KFPC;
 
@@ -210,6 +212,13 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 		{
 			NonCriticalGameMessageWidget = KFGFxWidget_NonCriticalGameMessage(Widget);
 		}
+		break;
+	case 'RhythmCounter':
+		if(RhythmCounterWidget == none)
+		{
+			RhythmCounterWidget = KFGFxWidget_RhythmCounter(Widget);
+		}
+		break;
 	}
 
 	return true;
@@ -277,6 +286,18 @@ function TickHud(float DeltaTime)
 	{
 		ScoreboardWidget.TickHUD(DeltaTime);
 	} 
+}
+
+function UpdateWaveCount()
+{
+	if(ScoreboardWidget != none && ScoreboardWidget.MatchInfoContainer != none)
+	{
+		ScoreboardWidget.MatchInfoContainer.UpdateWaveCount();
+	}
+	if(WaveInfoWidget != none)
+	{
+		WaveInfoWidget.UpdateWaveCount();
+	}
 }
 
 //==============================================================
@@ -420,11 +441,11 @@ function DisplayPriorityMessage(string InPrimaryMessageString, string InSecondar
 }
 
 /** Display a message that corresponds to input */
-function DisplayInteractionMessage( string MessageString, int MessageIndex, optional string ButtonName = "" )
+function DisplayInteractionMessage( string MessageString, int MessageIndex, optional string ButtonName = "", optional float Duration )
 {
 	if( InteractionMessageContainer != none )
 	{
-		if( MessageIndex != CurrentInteractionIndex )
+		if( MessageIndex > CurrentInteractionIndex || MessageIndex == IMT_None ) //rough priority 
 		{
 			if( MessageIndex == IMT_None )
 			{
@@ -432,6 +453,16 @@ function DisplayInteractionMessage( string MessageString, int MessageIndex, opti
 			}
 			else
 			{
+            	MessageString = Caps(MessageString);
+				if ( KFPC != None )
+				{
+					KFPC.ClearTimer(nameOf(HideInteractionMessage), self);
+					if ( Duration > 0.f )
+					{
+						KFPC.SetTimer(Duration, false, nameOf(HideInteractionMessage), self);
+					}
+				}
+
 				//Check to see if removing the controller prefix will result in a single character.  If we send a single character
 				// bad things will happen. 
 				if(class'Actor'.static.Len(ButtonName) - class'Actor'.static.Len(ControllerStringPrefix) > 1)
@@ -442,7 +473,7 @@ function DisplayInteractionMessage( string MessageString, int MessageIndex, opti
 				}
 				// Put the command into the string so that it can be replaced  Scaleform will not try to image replace a keyboard command unless
 				// we actually put an icon and object for it. 
-				class'Actor'.static.ReplaceText(MessageString, "<%x%>", ButtonName );
+				class'Actor'.static.ReplaceText(MessageString, "<%X%>", ButtonName );
 				
 				SendInteractionMessageToGFX(MessageString);
 			}
@@ -471,6 +502,15 @@ function ShowNonCriticalMessage(string LocalizedMessage)
 	if(NonCriticalGameMessageWidget != none)
 	{
 		NonCriticalGameMessageWidget.ShowMessage(LocalizedMessage);
+	}
+}
+
+
+function UpdateRhythmCounterWidget(int value)
+{
+	if(RhythmCounterWidget != none)
+	{
+		RhythmCounterWidget.SetCount(value);
 	}
 }
 
@@ -673,5 +713,6 @@ DefaultProperties
 	WidgetBindings.Add((WidgetName="KickVoteWidget", WidgetClass=class'KFGFxWidget_KickVote'))
 	WidgetBindings.Add((WidgetName="MusicNotification", WidgetClass=class'KFGFxWidget_MusicNotification'))
 	WidgetBindings.Add((WidgetName="NonCriticalGameMessageWidget", WidgetClass=class'KFGFxWidget_NonCriticalGameMessage'))
+	WidgetBindings.Add((WidgetName="RhythmCounter", WidgetClass=class'KFGFxWidget_RhythmCounter'))
 
 }

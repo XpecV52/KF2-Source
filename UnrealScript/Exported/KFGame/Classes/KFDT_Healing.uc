@@ -27,8 +27,8 @@ static function PlayImpactHitEffects( KFPawn P, vector HitLocation, vector HitDi
 
 defaultproperties
 {
-   EffectGroup=FXG_Healing
    bNoPain=True
+   EffectGroup=FXG_Healing
    ScreenMaterialName="Effect_Heal"
    Name="Default__KFDT_Healing"
    ObjectArchetype=KFDamageType'KFGame.Default__KFDamageType'

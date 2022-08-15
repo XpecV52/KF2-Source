@@ -71,17 +71,6 @@ var config float ImpactParticleEffectInterval; // Default=0.5
 /** The minimum time between mesh attached impact sound (optimization) */
 var float ImpactSoundInterval;
 
-/** 
- * Determines what severity of effect to play based on victim and DamageType.
- * Not to be confused with locational damage (aka hit zone DamageScale)  
- */
-enum EImpactEffectMode
-{
-	FXM_Neutral,
-	FXM_Vulnerable,
-	FXM_Resistant,
-};
-
 //-----------------------------------------------------------------------------
 // cpptext.
 
@@ -92,11 +81,11 @@ cpptext
 }
 
 /** Plays clientside particle effect based on damage type  */
-function PlayImpactParticleEffect(KFPawn P, vector HitLocation, vector HitDirection, byte HitZoneIndex, EEffectDamageGroup EffectGroup, EImpactEffectMode EffectMode)
+function PlayImpactParticleEffect(KFPawn P, vector HitLocation, vector HitDirection, byte HitZoneIndex, EEffectDamageGroup EffectGroup)
 {
 	local ParticleSystem ParticleTemplate;
 
-	ParticleTemplate = GetImpactParticleEffect(EffectGroup, EffectMode);
+	ParticleTemplate = GetImpactParticleEffect(EffectGroup);
 	
 	if ( ImpactFX[EffectGroup].bAttachParticle ) // Spawn effect and attach to bone
 	{
@@ -166,10 +155,13 @@ function AttachEffectToHitLocation( KFPawn P, ParticleSystem ParticleTemplate, i
 												false, 
 												EmitterLocationOffset);
 
-			P.LastImpactParticleEffectTime = P.WorldInfo.TimeSeconds;
+			if( PSC != none )
+			{
+				P.LastImpactParticleEffectTime = P.WorldInfo.TimeSeconds;
 
-			// Make the particle system ignore bone rotation
-			PSC.SetAbsolute(false, true, true);
+				// Make the particle system ignore bone rotation
+				PSC.SetAbsolute(false, true, true);
+			}
 		}
 	}
 }
@@ -180,7 +172,7 @@ function DefaultSpawnEffect( KFPawn P, ParticleSystem ParticleTemplate, vector H
 	local ParticleSystemComponent PSC;
 
 	// Don't spawn more than one effect per frame if on low detail
-	if( P.WorldInfo.bDropDetail || P.WorldInfo.GetDetailMode() == DM_Low )
+	if( ParticleTemplate == none || P.WorldInfo.bDropDetail || P.WorldInfo.GetDetailMode() == DM_Low )
 	{
 		if( `TimeSinceEx(P, P.LastImpactParticleEffectTime) == 0 )
 		{
@@ -202,34 +194,21 @@ function DefaultSpawnEffect( KFPawn P, ParticleSystem ParticleTemplate, vector H
 
 	// NVCHANGE_BEGIN: JCAO - Apply the lightingChannel for the particle from the pawn
 	PSC = P.WorldInfo.ImpactFXEmitterPool.SpawnEmitter(ParticleTemplate, HitLocation, rotator(EmitterDir));
-	PSC.SetLightingChannels(P.PawnLightingChannel);
+	if( PSC != none )
+	{
+		PSC.SetLightingChannels(P.PawnLightingChannel);
+	}
 	// NVCHANGE_END: JCAO - Apply the lightingChannel for the particle from the pawn
 }
 
 /** returns the impact particle that should be played */
-function ParticleSystem GetImpactParticleEffect(EEffectDamageGroup EffectGroup, EImpactEffectMode EffectMode)
+function ParticleSystem GetImpactParticleEffect(EEffectDamageGroup EffectGroup)
 {
-	switch(EffectMode)
-	{
-		case FXM_Vulnerable:
-			if ( ImpactFX[EffectGroup].VulnerableParticle != None )
-			{
-				return ImpactFX[EffectGroup].VulnerableParticle;
-			}
-			break;
-		case FXM_Resistant:
-			if ( ImpactFX[EffectGroup].ResistantParticle != None )
-			{
-				return ImpactFX[EffectGroup].ResistantParticle;
-			}
-			break;
-	}
-
 	return ImpactFX[EffectGroup].DefaultParticle;
 }
 
 /** Play an impact sound on taking damage */
-function PlayTakeHitSound(KFPawn P, vector HitLocation, Pawn DamageCauser, EEffectDamageGroup EffectGroup, EImpactEffectMode EffectMode)
+function PlayTakeHitSound(KFPawn P, vector HitLocation, Pawn DamageCauser, EEffectDamageGroup EffectGroup)
 {
 	local AKEvent ImpactSound;	
 
@@ -241,7 +220,7 @@ function PlayTakeHitSound(KFPawn P, vector HitLocation, Pawn DamageCauser, EEffe
 			return;
 		}
 
-		ImpactSound = GetImpactSound(EffectGroup, DamageCauser, EffectMode);
+		ImpactSound = GetImpactSound(EffectGroup, DamageCauser);
 
         if( ImpactSound != none )
         {
@@ -252,28 +231,12 @@ function PlayTakeHitSound(KFPawn P, vector HitLocation, Pawn DamageCauser, EEffe
 }
 
 /** returns the impact sound that should be played */
-function AkEvent GetImpactSound(EEffectDamageGroup EffectGroup, Pawn DamageCauser, EImpactEffectMode EffectMode)
+function AkEvent GetImpactSound(EEffectDamageGroup EffectGroup, Pawn DamageCauser)
 {
 	// handle local player sounds
 	if ( ImpactFX[EffectGroup].LocalSound != None && DamageCauser != none 
 		&& DamageCauser.IsLocallyControlled() && DamageCauser.IsHumanControlled() )
 	{
-		//switch(EffectMode)
-		//{
-		//	case FXM_Vulnerable:
-		//		if ( ImpactFX[EffectGroup].LocalVulnerableSound != None )
-		//		{
-		//			return ImpactFX[EffectGroup].LocalVulnerableSound;
-		//		}
-		//		break;
-		//	case FXM_Resistant:
-		//		if ( ImpactFX[EffectGroup].LocalResistantSound != None )
-		//		{
-		//			return ImpactFX[EffectGroup].LocalResistantSound;
-		//		}
-		//		break;
-		//}
-
 		return ImpactFX[EffectGroup].LocalSound;
 	}
 

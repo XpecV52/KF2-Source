@@ -20,10 +20,20 @@ var() Vector MaxLinearVel;
 var() Vector MinAngularVel;
 /** Upper bound of random initial angular vel */
 var() Vector MaxAngularVel;
+/** Mesh translation */
+var() Vector MeshTranslation;
+/** Mesh rotation */
+var() Rotator MeshRotation;
 /** Bone to spawn this actor on */
 var() name BoneName;
 /** If set, hide the bone when spawning the new mesh */
 var() bool bShouldHideBone;
+/** If true, calls ANIMNOTIFY_SpawnedKActor on KFPawn, allowing access to the spawned KActor */
+var() bool bNotifyPawnOwner;
+/** If true, do not run on dedicated server */
+var() bool bClientOnly;
+/** If true, always spawn regardless of effect relevancy or detail */
+var() bool bIgnoreEffectRelevancy;
 /** If > 0, when spawned in first person the mesh is hidden for a short time */
 var() float FirstPersonUnhideDelay;
 
@@ -34,8 +44,12 @@ event Notify(Actor Owner, AnimNodeSequence AnimSeqInstigator)
     local Vector Loc, LinearVel, AngularVel;
     local Rotator Rot;
     local Quat BoneQuat;
-    local Pawn P;
+    local KFPawn P;
 
+    if(bClientOnly && Owner.WorldInfo.NetMode == NM_DedicatedServer)
+    {
+        return;
+    }
     SkelComp = AnimSeqInstigator.SkelComponent;
     if((RigidBodyMesh == none) || SkelComp == none)
     {
@@ -45,17 +59,18 @@ event Notify(Actor Owner, AnimNodeSequence AnimSeqInstigator)
     {
         SkelComp.HideBoneByName(BoneName, 0);
     }
-    if(Owner.WorldInfo.bDropDetail || !Owner.ActorEffectIsRelevant(none, false))
+    if(!bIgnoreEffectRelevancy && Owner.WorldInfo.bDropDetail || !Owner.ActorEffectIsRelevant(none, false))
     {
         return;
     }
     Loc = SkelComp.GetBoneLocation(BoneName);
     BoneQuat = SkelComp.GetBoneQuaternion(BoneName);
     Rot = QuatToRotator(BoneQuat);
-    NewKActor = Owner.Spawn(Class'KFKActorSpawnable', Owner,, Loc, Rot);
+    NewKActor = Owner.Spawn(Class'KFKActorSpawnable', Owner,, Loc, Rot + MeshRotation);
     if(NewKActor != none)
     {
         NewKActor.StaticMeshComponent.SetStaticMesh(RigidBodyMesh);
+        NewKActor.StaticMeshComponent.SetTranslation(MeshTranslation);
         NewKActor.LifeSpan = 30 * FClamp(Owner.WorldInfo.DestructionLifetimeScale, 0.1, 2);
         LinearVel.X = RandRange(MinLinearVel.X, MaxLinearVel.X);
         LinearVel.Y = RandRange(MinLinearVel.Y, MaxLinearVel.Y);
@@ -66,10 +81,14 @@ event Notify(Actor Owner, AnimNodeSequence AnimSeqInstigator)
         AngularVel.Z = RandRange(MinAngularVel.Z, MaxAngularVel.Z);
         NewKActor.StaticMeshComponent.SetRBAngularVelocity(QuatRotateVector(BoneQuat, AngularVel));
         NewKActor.StaticMeshComponent.WakeRigidBody();
-        if(SkelComp.bOwnerNoSee && FirstPersonUnhideDelay > float(0))
+        if(bNotifyPawnOwner || SkelComp.bOwnerNoSee && FirstPersonUnhideDelay > float(0))
         {
-            P = Pawn(Owner);
-            if((P != none) && P.IsFirstPerson())
+            P = KFPawn(Owner);
+            if(bNotifyPawnOwner)
+            {
+                P.ANIMNOTIFY_SpawnedKActor(NewKActor, AnimSeqInstigator);
+            }
+            if((SkelComp.bOwnerNoSee && FirstPersonUnhideDelay > float(0)) && P.IsFirstPerson())
             {
                 NewKActor.HideForInterval(FirstPersonUnhideDelay);
             }

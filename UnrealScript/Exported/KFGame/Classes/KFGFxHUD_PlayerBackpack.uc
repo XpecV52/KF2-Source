@@ -82,9 +82,9 @@ function UpdateGrenades()
     //Update the icon the for grenade type.
     if(MyKFPC.GetPerk() != none)
     {
-        if(  LastPerkClass != MyKFPC.GetPerk().Class )
+        if( LastPerkClass != MyKFPC.GetPerk().Class )
         {
-            SetString("backpackGrenadeType", "img://"$MyKFPC.CurrentPerk.GrenadeClass.default.UITexture.GetPackageName()$"."$MyKFPC.CurrentPerk.GrenadeClass.default.UITexture.Name);
+            SetString("backpackGrenadeType", "img://"$MyKFPC.CurrentPerk.GrenadeWeaponDef.Static.GetImagePath());
             LastPerkClass = MyKFPC.CurrentPerk.Class;
         }  
     }

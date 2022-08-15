@@ -239,12 +239,14 @@ function UpdatePerks(string Message)
 	local string PerkName, IconPath, PerkLevel;
 	local ActiveLobbyInfo LobbyInfo;
 	local byte i;
+	local int PerkIndex;
 
 	ParseStringIntoArray(Message, PlayerInfoStrings, "/", true);
 	class'OnlineSubsystem'.static.StringToUniqueNetId(PlayerInfoStrings[0], PlayerID);
-	PerkName = PlayerInfoStrings[1];
-	IconPath = "img://"$PlayerInfoStrings[2];
-	PerkLevel = PlayerInfoStrings[3];
+	PerkIndex = int(PlayerInfoStrings[1]);
+	PerkName = KFPC.PerkList[PerkIndex].PerkClass.default.PerkName;
+	IconPath = "img://"$KFPC.PerkList[PerkIndex].PerkClass.static.GetPerkIconPath();
+	PerkLevel = PlayerInfoStrings[2];
 
 	if (OnlineLobby.GetCurrentLobby(LobbyInfo))
 	{
@@ -360,15 +362,19 @@ function AddFriend(int SlotIndex)
 function SendMyOptions()
 {
 	local KFPerk CurrentPerk;
+	local int PerkIndex;
 	local string CurrentLevel;
 	local string PerkMessage;
 	local string UIDStrings;
 
+
+
 	CurrentPerk = KFPC.GetPerk();
+	PerkIndex = KFPC.GetPerkIndexFromClass(CurrentPerk.Class);
 	CurrentLevel = string(KFPC.GetLevel());
 
 	UIDStrings = class'OnlineSubsystem'.static.UniqueNetIdToString(GetPC().PlayerReplicationInfo.UniqueId);
-	PerkMessage = PerkPrefix$UIDStrings$"/"$CurrentPerk.PerkName$"/"$CurrentPerk.GetPerkIconPath()$"/"$CurrentLevel;
+	PerkMessage = PerkPrefix$UIDStrings$"/"$string(PerkIndex)$"/"$CurrentLevel;
 	OnlineLobby.LobbyMessage(PerkMessage);   	
 }
 

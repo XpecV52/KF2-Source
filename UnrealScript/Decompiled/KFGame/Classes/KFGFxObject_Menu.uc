@@ -220,6 +220,16 @@ function Callback_BroadcastChatMessage(string Message)
     }
 }
 
+function Callback_ChatFocusIn()
+{
+    Manager.ClearFocusIgnoreKeys();
+}
+
+function Callback_ChatFocusOut()
+{
+    Manager.UpdateDynamicIgnoreKeys();
+}
+
 event bool FilterButtonInput(int ControllerId, name ButtonName, Core.Object.EInputEvent InputEvent);
 
 function SetControlScheme(bool bUseGamePad)

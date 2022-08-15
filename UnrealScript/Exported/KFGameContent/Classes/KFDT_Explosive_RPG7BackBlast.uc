@@ -49,65 +49,6 @@ class KFDT_Explosive_RPG7BackBlast extends KFDT_Explosive
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -128,10 +69,10 @@ class KFDT_Explosive_RPG7BackBlast extends KFDT_Explosive
 
 defaultproperties
 {
-   AARWeaponID=18
+   WeaponDef=Class'KFGame.KFWeapDef_RPG7'
+   bShouldSpawnPersistentBlood=True
    KnockdownPower=0
    StumblePower=120
-   bShouldSpawnPersistentBlood=True
    ModifierPerkList(0)=Class'KFGame.KFPerk_Demolitionist'
    KDeathVel=300.000000
    KDeathUpKick=1000.000000

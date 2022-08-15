@@ -11,7 +11,7 @@ class KFWeap_Knife_FieldMedic extends KFWeap_Edged_Knife
 
 defaultproperties
 {
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicKnife'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicKnife'
     AttachmentArchetype=KFWeaponAttachment'WEP_Medic_Knife_ARCH.Wep_MedicKnife_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Knife_FieldMedic.MeleeHelper'
     AssociatedPerkClass=Class'KFGame.KFPerk_FieldMedic'

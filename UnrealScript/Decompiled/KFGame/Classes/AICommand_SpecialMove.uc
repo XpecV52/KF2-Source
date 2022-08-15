@@ -58,7 +58,7 @@ function Popped()
     super.Popped();
     Outer.AILog_Internal("Popped()", 'Command_SpecialMove');
     UnlockAI();
-    Outer.ClearTimer('SpecialMoveTimeout', self);
+    ClearTimeout();
     if(bUpdateAnchorOnSuccess)
     {
         if(Status == 'Success')
@@ -75,6 +75,11 @@ function Popped()
             }
         }
     }
+}
+
+function ClearTimeout()
+{
+    Outer.ClearTimer('SpecialMoveTimeout', self);
 }
 
 function NavigationPoint GetStartAnchor()
@@ -186,6 +191,7 @@ state Command_SpecialMove extends DebugState
     function SpecialMoveTimeout()
     {
         Outer.AILog_Internal(string(GetFuncName()) $ " Special move timed out - failing and aborting", 'Command_SpecialMove');
+        LogInternal("special move timed out" @ string(self));
         if(Outer.MyKFPawn.SpecialMove == SpecialMove)
         {
             Outer.MyKFPawn.EndSpecialMove();

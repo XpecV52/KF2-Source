@@ -23,16 +23,16 @@ defaultproperties
       ExplosionEffects=KFImpactEffectInfo'WEP_HX25_Pistol_ARCH.HX25_Pistol_Grenade_Explosion'
       Damage=125.000000
       DamageRadius=400.000000
-      MyDamageType=Class'KFGameContent.KFDT_Explosive_HX25'
+      MyDamageType=Class'kfgamecontent.KFDT_Explosive_HX25'
       KnockDownStrength=0.000000
       ExplosionSound=AkEvent'WW_WEP_SA_HX25.Play_WEP_SA_HX25_Explosion'
-      ExploLight=PointLightComponent'KFGameContent.Default__KFProj_Explosive_HX25:ExplosionPointLight'
+      ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_Explosive_HX25:ExplosionPointLight'
       ExploLightFadeOutTime=0.300000
       CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
       Name="ExploTemplate0"
       ObjectArchetype=KFGameExplosion'KFGame.Default__KFGameExplosion'
    End Object
-   ExplosionTemplate=KFGameExplosion'KFGameContent.Default__KFProj_Explosive_HX25:ExploTemplate0'
+   ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFProj_Explosive_HX25:ExploTemplate0'
    ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
    AltExploEffects=KFImpactEffectInfo'WEP_HX25_Pistol_ARCH.HX25_Pistol_Grenade_Explosion_Concussive_Force'
    ProjFlightTemplate=ParticleSystem'WEP_HX25_Pistol_EMIT.FX_HX25_Pistol_Projectile'

@@ -59,6 +59,7 @@ defaultproperties
    End Object
    Components(2)=DrawCone0
    Components(3)=FogVolumeComponent0
+   CollisionType=COLLIDE_CustomDefault
    Name="Default__FogVolumeConeDensityInfo"
    ObjectArchetype=FogVolumeDensityInfo'Engine.Default__FogVolumeDensityInfo'
 }

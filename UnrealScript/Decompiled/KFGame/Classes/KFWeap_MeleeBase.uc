@@ -71,12 +71,6 @@ var ParticleSystem BlockParticleSystem;
 var ParticleSystem ParryParticleSystem;
 var name BlockEffectsSocketName;
 
-simulated event PreBeginPlay()
-{
-    super.PreBeginPlay();
-    WeaponMIC = Mesh.CreateAndSetMaterialInstanceConstant(0);
-}
-
 simulated function bool HasAnyAmmo()
 {
     return true;
@@ -183,7 +177,7 @@ simulated function SendToFiringState(byte FireModeNum)
     super.SendToFiringState(FireModeNum);
 }
 
-event RecieveClientImpact(byte FiringMode, const out ImpactInfo Impact, optional out float PenetrationValue)
+event RecieveClientImpact(byte FiringMode, const out ImpactInfo Impact, optional out float PenetrationValue, optional int ImpactNum)
 {
     MeleeAttackHelper.ProcessMeleeHit(FiringMode, Impact);
 }
@@ -287,16 +281,23 @@ unreliable client simulated function ClientPlayBlockEffects()
     PlayLocalBlockEffects(BlockSound, BlockParticleSystem);
 }
 
-unreliable client simulated function ClientPlayParryEffects()
+reliable client simulated function ClientPlayParryEffects(bool bInterruptSuccess)
 {
     local KFPerk InstigatorPerk;
 
-    InstigatorPerk = GetPerk();
-    if(InstigatorPerk != none)
+    if(bInterruptSuccess)
     {
-        InstigatorPerk.SetSuccessfullParry();
+        InstigatorPerk = GetPerk();
+        if(InstigatorPerk != none)
+        {
+            InstigatorPerk.SetSuccessfullParry();
+        }
+        PlayLocalBlockEffects(ParrySound, ParryParticleSystem);        
     }
-    PlayLocalBlockEffects(ParrySound, ParryParticleSystem);
+    else
+    {
+        PlayLocalBlockEffects(BlockSound, BlockParticleSystem);
+    }
 }
 
 simulated function PlayBlockStart()
@@ -396,6 +397,11 @@ static simulated function float CalculateTraderWeaponStatDamage()
 static simulated function float CalculateTraderWeaponStatFireRate()
 {
     return float(default.EstimatedFireRate);
+}
+
+static simulated event KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
+{
+    return 8;
 }
 
 simulated state WeaponUpkeep
@@ -767,7 +773,7 @@ simulated state MeleeBlocking
             if(IsTimerActive('ParryCheckTimer'))
             {
                 KFPawn(InstigatedBy).NotifyAttackParried(Instigator, 255);
-                ClientPlayParryEffects();                
+                ClientPlayParryEffects(true);                
             }
             else
             {
@@ -783,6 +789,7 @@ simulated state MeleeBlocking
         local float FacingDot;
         local Vector Dir2d;
         local KFPerk InstigatorPerk;
+        local bool bInterruptSuccess;
 
         Dir2d = Normal2D(DamageCauser.Location - Location);
         FacingDot = vector(Rotation) Dot Dir2d;
@@ -794,9 +801,9 @@ simulated state MeleeBlocking
                 InDamage *= ParryDamageMitigationPercent;
                 if(KFPawn(DamageCauser) != none)
                 {
-                    KFPawn(DamageCauser).NotifyAttackParried(Instigator, ParryStrength);
+                    bInterruptSuccess = KFPawn(DamageCauser).NotifyAttackParried(Instigator, ParryStrength);
                 }
-                ClientPlayParryEffects();
+                ClientPlayParryEffects(bInterruptSuccess);
                 if(InstigatorPerk != none)
                 {
                     InstigatorPerk.SetSuccessfullParry();
@@ -843,6 +850,16 @@ simulated state MeleeBlocking
                 PlayAnimation(MeleeBlockHitAnims[AnimIdx]);
                 SetTimer(Duration, false, 'BlockLoopTimer');
             }
+        }
+    }
+
+    reliable client simulated function ClientPlayParryEffects(bool bInterruptSuccess)
+    {
+        global.ClientPlayParryEffects(bInterruptSuccess);
+        if(!bInterruptSuccess)
+        {
+            ClearPendingFire(1);
+            GotoState('BlockingCooldown');
         }
     }
     stop;    
@@ -932,7 +949,7 @@ defaultproperties
     FireModeIconPaths(4)=none
     FireModeIconPaths(5)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Melee'
     InventoryGroup=EInventoryGroup.IG_Melee
-    EffectiveRange=2
+    bTargetAdhesionEnabled=false
     begin object name=MeleeHelper class=KFMeleeHelperWeapon
         bUseDirectionalMelee=true
         bHasChainAttacks=true

@@ -29,7 +29,7 @@ static function bool CheckMedicBleed(out int InDamage, out class<KFDamageType> K
 
 defaultproperties
 {
-    AARWeaponID=22
+    WeaponDef=Class'KFGame.KFWeapDef_MedicSMG'
     StumblePower=10
     LegStumblePower=108
     GunHitPower=106

@@ -93,8 +93,8 @@ ItemCategory="Melee"
 ItemDescription="• Primärangriff: schneller Schlitzerangriff, halten für Kombiangriff.\n• Sekundärangriff: schwerer Schlitzerangriff\n• Alternativ: abwehren/parieren\n• Dies ist ein Feuerwehrmesser. Da du Feuerwehrmann bist, nehmen wir an, dass wir dir nicht erklären müssen, wie man es verwendet."
 
 [KFWeap_Pistol_Medic]
-ItemName=""
-ItemCategory=""
+ItemName="HMTech-101 Pistol"
+ItemCategory="Pistol"
 ItemDescription="• Feuer nur halbautomatisch.\n• Alternativfeuer verschießt Heilpfeile, um Teammitglieder zu heilen.\n• Verwendet hülsenlose Munition und zählt die Patronen."
 
 [KFWeap_SMG_Medic]

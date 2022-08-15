@@ -24,7 +24,7 @@ defaultproperties
 	MeleeHitPower=62
 
 
-	AARWeaponID=`AAR_Pulverizer
+	WeaponDef=class'KFWeapDef_Pulverizer'
 	
 	ModifierPerkList(0)=class'KFPerk_Berserker'
 }

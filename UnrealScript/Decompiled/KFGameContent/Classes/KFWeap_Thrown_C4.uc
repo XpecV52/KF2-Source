@@ -79,7 +79,7 @@ simulated event Destroyed()
     {
         ScreenUI.Close();
     }
-    super(KFWeapon).Destroyed();
+    super(Weapon).Destroyed();
 }
 
 simulated event Tick(float DeltaTime)
@@ -222,6 +222,13 @@ static simulated event bool UsesAmmo()
 
 simulated function AltFireMode();
 
+simulated function GotoActiveState();
+
+static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
+{
+    return 6;
+}
+
 simulated state Active
 {
     simulated function bool CanPlayIdleFidget(optional bool bOnReload)
@@ -310,11 +317,9 @@ defaultproperties
     DetonateAkEvent=AkEvent'WW_WEP_EXP_C4.Play_WEP_EXP_C4_Handling_Detonate'
     DryFireAkEvent=AkEvent'WW_WEP_EXP_C4.Play_WEP_EXP_C4_DryFire'
     FireModeIconPaths=/* Array type was not detected. */
-    FilterTypeUI=EFilterTypeUI.FT_Explosive
     InventorySize=3
-    EffectiveRange=10
     GroupPriority=50
-    UITexture=Texture2D'WEP_UI_C4_TEX.UI_WeaponSelect_C4'
+    WeaponSelectTexture=Texture2D'WEP_UI_C4_TEX.UI_WeaponSelect_C4'
     MagazineCapacity=1
     MaxSpareAmmo=1
     InitialSpareMags=1

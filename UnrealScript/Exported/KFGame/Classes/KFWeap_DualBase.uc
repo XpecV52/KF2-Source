@@ -8,7 +8,7 @@
 // Jeff Robinson
 //=============================================================================
 
-class KFWeap_DualBase extends KFWeapon
+class KFWeap_DualBase extends KFWeap_PistolBase
 	native; // trader needs this to be native for now (6/10/15) so we can access SingleClass
 
 /** Animations to play when the weapon is fired */
@@ -38,12 +38,41 @@ var class<KFWeapon> SingleClass;
 
 /** Cached anim nodes */
 var AnimNodeBlendPerBone		EmptyMagBlendNode_L;
+/** array of bones to lock when out of ammo */
+var array<name> 				BonesToLockOnEmpty_L;
 
+/** Anims for ironsight and alternate ironsight mode **/
 var(Animations) const editconst name IdleToIronSightAnim;
+var(Animations) const editconst name IdleToIronSightAnim_Alt;
 var(Animations) const editconst name IronSightToIdleAnim;
+var(Animations) const editconst name IronSightToIdleAnim_Alt;
+var(Animations) const editconst array<name> IdleSightedAnims_Alt;
+var(Animations) const editconst name FireSightedAnim_Alt;
+var(Animations) const editconst	name LeftFireSightedAnim_Alt;
+var(Animations) const editconst name EquipAnimIS;
+var(Animations) const editconst name EquipAnimISAlt;
+
+var(Animations) const editconst name LeftFireLastAnim;
+var(Animations) const editconst name LeftFireLastSightedAnim;
+var(Animations) const editconst name FireLastSightedAnim_Alt;
+var(Animations) const editconst name LeftFireLastSightedAnim_Alt;
 
 const ReloadEmptyHalfAnim = 'Reload_Empty_Half';
 const ReloadEmptyHalfEliteAnim = 'Reload_Empty_Half_Elite';
+
+/*********************************************************************************************
+ * @name	Revolver vars
+********************************************************************************************* */
+
+var CylinderRotationInfo CylinderRotInfo_L;
+
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
 
 /** Cache Anim Nodes from the tree
 * 	@note: skipped on server because AttachComponent/AttachWeaponTo is not called
@@ -53,6 +82,21 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 	super.PostInitAnimTree( SkelComp );
 
 	EmptyMagBlendNode_L = AnimNodeBlendPerBone(SkelComp.FindAnimNode('EmptyMagBlend_L'));
+	if( EmptyMagBlendNode_L != none && BonesToLockOnEmpty_L.Length > 0 )
+	{
+		BuildEmptyMagNodeWeightList( EmptyMagBlendNode_L, BonesToLockOnEmpty_L );
+	}
+
+	if( !bRevolver )
+	{
+		return;
+	}
+
+	CylinderRotInfo_L.Control = SkelControlSingleBone( SkelComp.FindSkelControl('CylinderControl_L') );
+	if( CylinderRotInfo_L.Control != none )
+	{
+		CylinderRotInfo_L.Control.SetSkelControlActive( true );
+	}
 }
 
 /**
@@ -87,6 +131,58 @@ simulated state Active
 	{
 		GotoState('ActiveIronSights');
 	}
+
+	simulated function PlayIdleAnim()
+	{
+		local int IdleIndex;
+
+		if ( Instigator.IsFirstPerson() )
+		{
+			if( bUsingSights && IdleSightedAnims.Length > 0 )
+			{
+				if( bUseAltFireMode )
+				{
+					IdleIndex = Rand(IdleSightedAnims_Alt.Length);
+					PlayAnimation(IdleSightedAnims_Alt[IdleIndex], 0.0, true, 0.1);
+				}
+				else
+				{
+					IdleIndex = Rand(IdleSightedAnims.Length);
+					PlayAnimation(IdleSightedAnims[IdleIndex], 0.0, true, 0.1);
+				}
+			}
+			else if ( IdleAnims.Length > 0 )
+			{
+				IdleIndex = Rand(IdleAnims.Length);
+				PlayAnimation(IdleAnims[IdleIndex], 0.0, true, 0.2);
+			}
+
+			StartIdleFidgetTimer();
+			ToggleAdditiveBobAnim(!bUsingSights);
+		}
+	}
+}
+
+/*********************************************************************************************
+ * State WeaponEquipping
+ * The Weapon is in this state while transitioning from Inactive to Active state.
+ * Typically, the weapon will remain in this state while its selection animation is being played.
+ * While in this state, the weapon cannot be fired.
+*********************************************************************************************/
+
+/** Get equip anim name (overridden as necessary) */
+simulated function name GetEquipAnimName()
+{
+	// since duals use anims to get into / out of iron sights,
+	// we need to play equip anims that blend to iron sight idle (including alt iron)
+	if( bIronSightOnBringUp )
+	{
+		return bUseAltFireMode ? EquipAnimISAlt : EquipAnimIS;
+	}
+	else
+	{
+		return EquipAnim;
+	}
 }
 
 /*********************************************************************************************
@@ -99,11 +195,15 @@ simulated state ActiveIronSights extends Active
 {
 	simulated function ZoomOut(bool bAnimateTransition, float ZoomTimeToGo)
 	{
-		ZoomTimeToGo = MySkelMesh.GetAnimLength(IronSightToIdleAnim);
+		local name IronToIdleAnimName;
+
+		IronToIdleAnimName = GetIronToIdleAnim();
+
+		ZoomTimeToGo = MySkelMesh.GetAnimLength(IronToIdleAnimName);
 
 		Global.ZoomOut( true, ZoomTimeToGo );
 
-		PlayAnimation( IronSightToIdleAnim, ZoomTime, false );
+		PlayAnimation( IronToIdleAnimName, ZoomTime, false );
 
 		GotoState('Active');
 	}
@@ -111,13 +211,28 @@ simulated state ActiveIronSights extends Active
 	simulated function BeginState( Name PreviousStateName )
 	{
 		local float ZoomTimeToGo;
+		local name IdleToIronAnimName;
 
-		ZoomTimeToGo = MySkelMesh.GetAnimLength(IdleToIronSightAnim);
+		IdleToIronAnimName = GetIdleToIronAnim();
+
+		ZoomTimeToGo = MySkelMesh.GetAnimLength(IdleToIronAnimName);
 
 		Global.ZoomIn( true, ZoomTimeToGo );
 
-		PlayAnimation( IdleToIronSightAnim, ZoomTime, false );
+		PlayAnimation( IdleToIronAnimName, ZoomTime, false );
 	}
+}
+
+/** Gets idle-to-iron anim with regard to "stance" (toggle by alt fire) */
+simulated function name GetIdleToIronAnim()
+{
+	return bUseAltFireMode ? IdleToIronSightAnim_Alt : IdleToIronSightAnim;
+}
+
+/** Gets iron-to-idle anim with regard to "stance" (toggle by alt fire) */
+simulated function name GetIronToIdleAnim()
+{
+	return bUseAltFireMode ? IronSightToIdleAnim_Alt : IronSightToIdleAnim;
 }
 
 /*********************************************************************************************
@@ -147,6 +262,11 @@ simulated state Reloading
 	{
 		super.BeginState( PreviousStateName );
 		bFireFromRightWeapon = false;
+
+		if( bRevolver )
+		{
+			ResetCylinderLeft();
+		}
 	}
 }
 
@@ -196,33 +316,98 @@ simulated function IncrementFlashCount()
 	}
 }
 
+/** Return true if this weapon should play the fire last animation for this shoot animation */
+simulated function bool ShouldPlayFireLast(byte FireModeNum)
+{
+	if ( bHasFireLastAnims )
+	{
+		if( bFireFromRightWeapon )
+		{
+			if( (!bAllowClientAmmoTracking && Role < ROLE_Authority && AmmoCount[GetAmmoType(FireModeNum)] <= 2)
+				|| ((bAllowClientAmmoTracking || Role == ROLE_Authority) && AmmoCount[GetAmmoType(FireModeNum)] == 1) )
+			{
+				return true;
+			}
+		}
+		else
+		{
+			if( (!bAllowClientAmmoTracking && Role < ROLE_Authority && AmmoCount[GetAmmoType(FireModeNum)] <= 1)
+				|| ((bAllowClientAmmoTracking || Role == ROLE_Authority) && AmmoCount[GetAmmoType(FireModeNum)] == 0) )
+			{
+				return true;
+			}
+		}
+	}
+
+    return false;
+}
+
 /** Get name of the animation to play for PlayFireEffects 
   * 
   * Overridden to allow for left weapon anims
   */
 simulated function name GetWeaponFireAnim(byte FireModeNum)
 {
+	local bool bPlayFireLast;
+
+    bPlayFireLast = ShouldPlayFireLast(FireModeNum);
+
 	if( bFireFromRightWeapon )
 	{
-		return super.GetWeaponFireAnim(FireModeNum);
+		if ( bUsingSights )
+		{
+			if( bPlayFireLast )
+			{
+				return bUseAltFireMode ? FireLastSightedAnim_Alt : FireLastSightedAnim;
+			}
+			else
+			{
+				return bUseAltFireMode ? FireSightedAnim_Alt : FireSightedAnims[Rand(LeftFireSightedAnims.Length)];
+			}
+		}
+		else
+		{
+			if( bPlayFireLast )
+			{
+				return FireLastAnim;
+			}
+			else
+			{
+				return FireAnim;
+			}
+		}
 	}
 	else
 	{
-		return GetLeftWeaponFireAnim(FireModeNum);
+		return GetLeftWeaponFireAnim(FireModeNum, bPlayFireLast);
 	}
 }
 
 /** Get name of the animation to play for PlayFireEffects */
-simulated function name GetLeftWeaponFireAnim(byte FireModeNum)
+simulated function name GetLeftWeaponFireAnim(byte FireModeNum, bool bPlayFireLast)
 {
 	// ironsights animations
 	if ( bUsingSights )
 	{
-		return LeftFireSightedAnims[Rand(LeftFireSightedAnims.Length)];
+		if( bPlayFireLast )
+		{
+			return bUseAltFireMode ?  LeftFireLastSightedAnim_Alt : LeftFireLastSightedAnim;
+		}
+		else
+		{
+			return bUseAltFireMode ?  LeftFireSightedAnim_Alt : LeftFireSightedAnims[Rand(LeftFireSightedAnims.Length)];
+		}
 	}
 	else
 	{
-		return LeftFireAnim;
+		if( bPlayFireLast )
+		{
+			return LeftFireLastAnim;
+		}
+		else
+		{
+			return LeftFireAnim;
+		}
 	}
 }
 
@@ -387,17 +572,23 @@ function SetupDroppedPickup( out DroppedPickup P, vector StartVelocity )
 	P.InventoryClass = SingleClass;
 }
 
-/** Overridden to play anim and use anim length */
-simulated function ZoomOut(bool bAnimateTransition, float ZoomTimeToGo)
+/*********************************************************************************************
+ * @name	Ammo
+********************************************************************************************* */
+
+// /** Performs actual ammo reloading */
+simulated function PerformReload()
 {
-	ZoomTimeToGo = MySkelMesh.GetAnimLength(IronSightToIdleAnim);
+	super.PerformReload();
 
-	super.ZoomOut( bAnimateTransition, ZoomTimeToGo );
-
-	if( bAnimateTransition )
+	if( !bRevolver )
 	{
-		PlayAnimation( IronSightToIdleAnim, ZoomTime, false );
+		return;
 	}
+
+	// reset cylinder rotation
+	CylinderRotInfo_L.PrevDegrees = 0;
+	CylinderRotInfo_L.NextDegrees = 0;
 }
 
 /** Locks the bolt bone in place to the open position (Called by animnotify) 
@@ -435,36 +626,252 @@ simulated function UpdateOutOfAmmoEffects(float BlendTime)
 	}
 }
 
+/*********************************************************************************************
+ * @name	Revolver
+********************************************************************************************* */
+
+simulated event PostInitAnimTreeRevolver( SkeletalMeshComponent SkelComp )
+{
+	super.PostInitAnimTreeRevolver( SkelComp );
+
+	CylinderRotInfo_L.Control = SkelControlSingleBone( SkelComp.FindSkelControl('CylinderControl') );
+	if( CylinderRotInfo_L.Control != none )
+	{
+		CylinderRotInfo_L.Control.SetSkelControlActive( true );
+	}
+}
+
+simulated function ConsumeAmmoRevolver()
+{
+	// no super
+
+	if( bFireFromRightWeapon )
+	{
+		CheckCylinderRotation( CylinderRotInfo_L );
+		CylinderRotInfo.State = CYLINDERSTATE_PENDING;
+	}
+	else
+	{
+		CheckCylinderRotation( CylinderRotInfo );
+		CylinderRotInfo_L.State = CYLINDERSTATE_PENDING;
+	}
+}
+
+/** Initiate cylinder rotation (rotation occurs in tickspecial in native) */
+simulated function ANIMNOTIFY_RotateCylinder()
+{
+	if( bFireFromRightWeapon )
+	{
+		super.ANIMNOTIFY_RotateCylinder();
+		return;
+	}
+
+	RotateCylinder( CylinderRotInfo_L );
+}
+
+simulated function InitializeReload()
+{
+	// call kfweapon super so we don't rotate the other cylinder too
+	super(KFWeapon).InitializeReload();
+	CheckCylinderRotation( CylinderRotInfo_L, true );
+}
+
+simulated function ANIMNOTIFY_ResetBulletMeshesLeft()
+{
+	ResetBulletMeshesLeft();
+}
+
+/** Resets cylinder orientation to initial state and repositions bullet meshes to line up with their pre-reset locations */
+simulated function ResetCylinder()
+{
+	local int UsedStartIdx, UsedEndIdx, UsedBullets;
+
+	// reset cylinder rotation
+	SetCylinderRotation( CylinderRotInfo, 0 );
+	ResetCylinderInfo( CylinderRotInfo );
+
+	// now, we need to make sure the used bullets are still in the correct positions
+
+	// if we fired all our ammo, it doesn't matter where the bullets are, because they're all the same (used)
+	if( AmmoCount[DEFAULT_FIREMODE] <= 1 )
+	{
+		return;
+	}
+
+	// find the range of bullets that have been used
+	UsedStartIdx = BulletMeshComponents.Length - 2;
+	UsedBullets = FCeil( float(MagazineCapacity[DEFAULT_FIREMODE] - AmmoCount[DEFAULT_FIREMODE]) / 2.f );
+	UsedEndIdx = UsedStartIdx - UsedBullets * 2;
+
+	RepositionUsedBullets( 0, UsedStartIdx, UsedEndIdx );
+}
+
+/** Resets cylinder orientation to initial state and repositions bullet meshes to line up with their pre-reset locations */
+simulated function ResetCylinderLeft()
+{
+	local int UsedStartIdx, UsedEndIdx, UsedBullets;
+
+	// reset cylinder rotation (skel control needs to be reset to initial state while bullet casings are not on screen)
+	SetCylinderRotation( CylinderRotInfo_L, 0 );
+	ResetCylinderInfo( CylinderRotInfo_L );
+
+	// now, we need to make sure the used bullets are still in the correct positions
+
+	// if we fired all our ammo, it doesn't matter where the bullets are, because they're all the same (used)
+	if( AmmoCount[DEFAULT_FIREMODE] <= 0 )
+	{
+		return;
+	}
+
+	// find the range of bullets that have been used
+	UsedStartIdx = BulletMeshComponents.Length - 1;
+	UsedBullets = FFloor( float(MagazineCapacity[DEFAULT_FIREMODE] - AmmoCount[DEFAULT_FIREMODE]) / 2.f );
+	UsedEndIdx = UsedStartIdx - UsedBullets * 2;
+
+	RepositionUsedBullets( 1, UsedStartIdx, UsedEndIdx );
+}
+
+/** Sets correct bullet mesh (used/unused) in each slot after resetting cylinder */
+simulated function RepositionUsedBullets( int FirstIndex, int UsedStartIdx, int UsedEndIdx )
+{
+	local int i;
+
+	// after cylinder reset, top-most bullet will be unused
+	BulletMeshComponents[FirstIndex].SetSkeletalMesh( UnusedBulletMeshTemplate );
+
+	// set used bullets to used mesh
+	for( i = UsedStartIdx; i > UsedEndIdx; i-=2 )
+	{
+		BulletMeshComponents[i].SetSkeletalMesh( UsedBulletMeshTemplate );
+	}
+
+	// set the rest of the bullets to unused
+	for( i = UsedEndIdx; i > FirstIndex; i-=2 )
+	{
+		BulletMeshComponents[i].SetSkeletalMesh( UnusedBulletMeshTemplate );
+	}
+}
+
+/** Sets all bullet casing meshes back to unused state */
+simulated function ResetBulletMeshes()
+{
+	local int i;
+
+	for( i = 0; i < BulletMeshComponents.Length; i+=2 )
+	{
+		BulletMeshComponents[i].SetSkeletalMesh( UnusedBulletMeshTemplate );
+	}
+}
+
+/** Sets all bullet casing meshes back to unused state */
+simulated function ResetBulletMeshesLeft()
+{
+	local int i;
+
+	for( i = 1; i < BulletMeshComponents.Length; i+=2 )
+	{
+		BulletMeshComponents[i].SetSkeletalMesh( UnusedBulletMeshTemplate );
+	}
+}
+
+/*********************************************************************************************
+ * State WeaponPuttingDown
+ * Putting down weapon in favor of a new one.
+ * Weapon is transitioning to the Inactive state.
+*********************************************************************************************/
+
+simulated state WeaponPuttingDown
+{
+	simulated function EndState(Name NextStateName)
+	{
+		super.EndState( NextStateName );
+		CheckCylinderRotation( CylinderRotInfo_L, true );
+	}
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 //
 // Trader
 //
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-/** Allows weapon to calculate its own range for display in trader.
-  * Overridden to use single class range.
-  */
-static simulated function float CalculateTraderWeaponStatRange()
+/** Adds ammo to (or subtracts ammo from) the trader transaction single that gets created when selling a dual */
+native simulated function AddAmmoToSingleOnSell( KFInventoryManager KFIM, int DefaultSingleAmmo, int TraderItemIndex );
+
+/*********************************************************************************************
+ * @name	Firing / Projectile
+********************************************************************************************* */
+/**
+ * See Pawn.ProcessInstantHit
+ * @param DamageReduction: Custom KF parameter to handle penetration damage reduction
+ */
+simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optional int NumHits, optional out float out_PenetrationVal, optional int ImpactNum )
 {
-	return default.SingleClass.default.EffectiveRange;
+	local KFPerk InstigatorPerk;
+
+	InstigatorPerk = GetPerk();
+	if( InstigatorPerk != none )
+	{
+		InstigatorPerk.UpdatePerkHeadShots( Impact, InstantHitDamageTypes[FiringMode], ImpactNum );
+	}
+	
+	super.ProcessInstantHit( FiringMode, Impact, NumHits );
+}
+
+/**
+ * @brief Checks if weapon should be auto-reloaded - overwritten to allow gunslinger insta switch
+ * 
+ * @param FireModeNum Current fire mode
+ * @return auto reload or not
+ */
+simulated function bool ShouldAutoReload( byte FireModeNum )
+{
+	return ShouldAutoReloadGunslinger( FireModeNum );
+}
+
+/**
+ * Toggle between DEFAULT and ALTFIRE
+ */
+simulated function AltFireMode()
+{
+	super.AltFireMode();
+	PlayIdleAnim();
 }
 
 defaultproperties
 {
    LeftFireAnim="Shoot_LW"
-   LeftFireSightedAnims(0)="Shoot_Iron_LW"
-   IdleToIronSightAnim="Idle_To_Iron"
-   IronSightToIdleAnim="Iron_To_Idle"
+   LeftFireSightedAnims(0)="Shoot_IronOG_LW"
+   BonesToLockOnEmpty_L(0)="LW_Bolt"
+   IdleToIronSightAnim="Idle_To_IronOG"
+   IdleToIronSightAnim_Alt="Idle_To_Iron"
+   IronSightToIdleAnim="IronOG_To_Idle"
+   IronSightToIdleAnim_Alt="Iron_To_Idle"
+   IdleSightedAnims_Alt(0)="Idle_Iron"
+   FireSightedAnim_Alt="Shoot_Iron_RW"
+   LeftFireSightedAnim_Alt="Shoot_Iron_LW"
+   EquipAnimIS="Equip_IronOG"
+   EquipAnimISAlt="Equip_Iron"
+   LeftFireLastAnim="Shoot_LW_Last"
+   LeftFireLastSightedAnim="Shoot_IronOG_LW_Last"
+   FireLastSightedAnim_Alt="Shoot_Iron_RW_Last"
+   LeftFireLastSightedAnim_Alt="Shoot_Iron_RW_Last"
+   FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
+   InventoryGroup=IG_Primary
    bSkipZoomInRotation=True
    FireAnim="Shoot_RW"
-   FireSightedAnims(0)="Shoot_Iron_RW"
-   Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
+   FireLastAnim="Shoot_RW_Last"
+   FireSightedAnims(0)="Shoot_IronOG_RW"
+   FireLastSightedAnim="Shoot_IronOG_RW_Last"
+   IdleSightedAnims(0)="Idle_IronOG"
+   Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_PistolBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
-      ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
+      ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_PistolBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'KFGame.Default__KFWeap_DualBase:MeleeHelper_0'
-   Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeapon:FirstPersonMesh'
+   MinUberAmmoCount=2
+   Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_PistolBase:FirstPersonMesh'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Dual_Animtree_Master'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
@@ -474,18 +881,18 @@ defaultproperties
       LightingChannels=(bInitialized=True,Outdoor=True)
       bAllowPerObjectShadows=True
       Name="FirstPersonMesh"
-      ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFWeapon:FirstPersonMesh'
+      ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_PistolBase:FirstPersonMesh'
    End Object
    Mesh=FirstPersonMesh
-   Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeapon:StaticPickupComponent'
+   Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_PistolBase:StaticPickupComponent'
       StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"
-      ObjectArchetype=StaticMeshComponent'KFGame.Default__KFWeapon:StaticPickupComponent'
+      ObjectArchetype=StaticMeshComponent'KFGame.Default__KFWeap_PistolBase:StaticPickupComponent'
    End Object
    DroppedPickupMesh=StaticPickupComponent
    PickupFactoryMesh=StaticPickupComponent
    Name="Default__KFWeap_DualBase"
-   ObjectArchetype=KFWeapon'KFGame.Default__KFWeapon'
+   ObjectArchetype=KFWeap_PistolBase'KFGame.Default__KFWeap_PistolBase'
 }

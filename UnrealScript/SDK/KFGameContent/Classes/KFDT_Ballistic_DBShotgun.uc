@@ -46,6 +46,6 @@ defaultproperties
     StumblePower=42
 	LegStumblePower=42
 	GunHitPower=0
-
-	AARWeaponID=`AAR_DoubleBarrel	
+	
+	WeaponDef=class'KFWeapDef_DoubleBarrel'
 }

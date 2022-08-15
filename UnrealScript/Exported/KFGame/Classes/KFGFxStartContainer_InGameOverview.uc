@@ -22,11 +22,16 @@ var localized string SharedByString;
 var localized string SharedContentString;
 var	GFxObject SharedContentButton;
 
+var	GFxObject ServerWelcomeScreen;
+
 var bool bContentShared;
+
+var KFHTTPImageDownloader ImageDownLoader;
 
 function Initialize( KFGFxObject_Menu NewParentMenu )
 {
 	StartMenu = KFGfxMenu_StartGame(NewParentMenu);
+	ServerWelcomeScreen = GetObject("serverWelcomeScreen");
  	LocalizeContainer();
 	UpdateOverviewInGame();
 	SharedContentButton = GetObject("sharedContentButton");
@@ -35,6 +40,7 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
 		SharedContentButton.SetVisible((GetPC().WorldInfo.NetMode != NM_Standalone));
 	}
 	UpdateSharedContent();
+	ShowWelcomeScreen();
 }
 
 function LocalizeContainer()
@@ -82,6 +88,71 @@ function LocalizeContainer()
 	}
 
 	SetObject("localizedText", LocalizedObject);
+
+	LocalizeWelcomeScreen();
+}
+
+function LocalizeWelcomeScreen()
+{
+	local GFxObject LocalizedObject;
+
+	if(ServerWelcomeScreen == none)
+	{
+		return;
+	}
+
+	LocalizedObject = CreateObject("Object");
+	LocalizedObject.SetString("confirm", class'KFCommon_LocalizedStrings'.default.ConfirmString);
+
+	serverWelcomeScreen.SetObject("localizedText", LocalizedObject);
+
+}
+
+
+function ImageDownloadComplete(bool bWasSuccessful)
+{
+	if(bWasSuccessful) {
+		ServerWelcomeScreen.SetString("banner", "Img://" $PathName(ImageDownloader.TheTexture));
+		ServerWelcomeScreen.ActionScriptVoid("openContainer");
+	} else {
+		// Failed to download the image ... should we do anything in this case?
+	}
+}
+
+function ShowWelcomeScreen()
+{
+	local KFGameReplicationInfo KFGRI;
+	local WorldInfo WI;
+
+	if(ServerWelcomeScreen == none)
+	{
+		return;
+	}
+
+	WI = class'WorldInfo'.static.GetWorldInfo();
+
+	if( WI != none && WI.NetMode != NM_Client )
+	{
+		LogInternal("WI: " @WI);
+		LogInternal("WI.NetMode: " @WI.NetMode);
+		return;
+	}
+
+	KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
+
+	if( KFGRI == none )
+	{
+		return;
+	}
+
+	if(KFGRI.ServerAdInfo.BannerLink != "" && KFGRI.ServerAdInfo.ServerMOTD != "")
+	{
+		ImageDownloader = new(Outer) class'KFHTTPImageDownloader';
+		ImageDownloader.DownloadImageFromURL(KFGRI.ServerAdInfo.BannerLink, ImageDownloadComplete);
+		ServerWelcomeScreen.SetString("messageOfTheDay", KFGRI.ServerAdInfo.ServerMOTD);
+		ServerWelcomeScreen.SetString("serverName", WI.GRI.ServerName);    
+        ServerWelcomeScreen.SetString("serverIP", KFGRI.ServerAdInfo.WebsiteLink);
+	}
 }
 
 function UpdateSharedContent()

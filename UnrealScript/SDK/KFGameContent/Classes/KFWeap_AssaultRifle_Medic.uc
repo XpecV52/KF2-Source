@@ -10,6 +10,16 @@
 
 class KFWeap_AssaultRifle_Medic extends KFWeap_MedicBase;
 
+/*********************************************************************************************
+ * @name	Trader
+ *********************************************************************************************/
+
+/** Returns trader filter index based on weapon type */
+static simulated event EFilterTypeUI GetTraderFilter()
+{
+	return FT_Assault;
+}
+
 defaultproperties
 {
 	// Healing charge
@@ -20,9 +30,8 @@ defaultproperties
 	// Inventory
 	InventorySize=7
 	GroupPriority=100
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicAssault'
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicAssault'
 	SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
-	FilterTypeUI=FT_Assault
 
 	// Shooting Animations
 	FireSightedAnims[0]=Shoot_Iron
@@ -108,9 +117,6 @@ defaultproperties
 	// Attachments
 	bHasIronSights=true
 	bHasFlashlight=true
-
-	// Trader
-    EffectiveRange=70	
 
    	AssociatedPerkClass=class'KFPerk_FieldMedic'
 }

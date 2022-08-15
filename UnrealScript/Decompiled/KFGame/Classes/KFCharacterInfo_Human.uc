@@ -6,12 +6,13 @@
  * All rights belong to their respective owners.
  *******************************************************************************/
 class KFCharacterInfo_Human extends KFCharacterInfoBase
+    native(Pawn)
     hidecategories(Object)
     implements(KFUnlockableAsset);
 
 const NUM_FAVE_WEAPS = 8;
 
-struct SkinVariant
+struct native SkinVariant
 {
     var() const int UnlockAssetID;
     /** The path to this skins package and texture */
@@ -27,9 +28,8 @@ struct SkinVariant
     }
 };
 
-struct OutfitVariants
+struct native OutfitVariants
 {
-    var() const int UnlockAssetID;
     /** The path to this skins package and texture */
     var() Texture UITexture;
     /** Outfit mesh name. Must be of form PackageName.MeshName */
@@ -39,14 +39,13 @@ struct OutfitVariants
 
     structdefaultproperties
     {
-        UnlockAssetID=0
         UITexture=none
         MeshName=""
         SkinVariations=none
     }
 };
 
-struct AttachmentOverrideList
+struct native AttachmentOverrideList
 {
     /** List of booleans that will effect which items can be attached with the current attachment */
     var() bool bHat;
@@ -56,6 +55,8 @@ struct AttachmentOverrideList
     var() bool bEyes;
     /** List of booleans that will effect which items can be attached with the current attachment */
     var() bool bJaw;
+    /** List of cosmetic indices that this attachment will detach, if they are currently attached to a player */
+    var() array<byte> SpecialOverrideIds;
 
     structdefaultproperties
     {
@@ -63,12 +64,12 @@ struct AttachmentOverrideList
         bFace=false
         bEyes=false
         bJaw=false
+        SpecialOverrideIds=none
     }
 };
 
-struct AttachmentVariants
+struct native AttachmentVariants
 {
-    var() const int UnlockAssetID;
     /** The path to this skins package and texture */
     var() Texture UITexture;
     /**  
@@ -76,13 +77,15 @@ struct AttachmentVariants
      *               Skeletal meshe animations are parented with the body mesh and must share the same skeletaon.
      */
     var() bool bIsSkeletalAttachment;
+    /** If set enables the material mask parameter on the assigned head variant */
+    var() bool bMaskHeadMesh;
     /** Attachment mesh name. Must be of form PackageName.MeshName */
     var() string MeshName;
     /**  
      *Name of the socket that it attaches to. The socket MUST exist in the body mesh for static mesh
      *               attachments to work. SocketName is also used to resolve conflicts - when more than one attachment
      *               tries to attach to the same socket, it will replace the previously existing attachment. It will keep
-     *               both if there is no conflict. NOTE: Skeletal meshes do not use sockets for attachment, but the socket name
+     *               both if there is no conflict. NOTE: Skeletal meshes do not require sockets for attachment, but the socket name
      *               can still be used for conflit resolution.
      */
     var() name SocketName;
@@ -103,9 +106,9 @@ struct AttachmentVariants
 
     structdefaultproperties
     {
-        UnlockAssetID=0
         UITexture=none
         bIsSkeletalAttachment=false
+        bMaskHeadMesh=false
         MeshName=""
         SocketName=None
         RelativeTranslation=(X=0,Y=0,Z=0)
@@ -114,11 +117,11 @@ struct AttachmentVariants
         MaxDrawDistance=0
         SkinMaterialID=0
         SkinVariations=none
-        OverrideList=(bHat=false,bFace=false,bEyes=false,bJaw=false)
+        OverrideList=(bHat=false,bFace=false,bEyes=false,bJaw=false,SpecialOverrideIds=none)
     }
 };
 
-struct FirstPersonArmVariants
+struct native FirstPersonArmVariants
 {
     /** Mesh name. Must be of form PackageName.MeshName */
     var() string MeshName;
@@ -145,11 +148,11 @@ var(General) bool bIsFemale;
 var(ThirdPerson) int HeadMaterialID;
 var(ThirdPerson) int BodyMaterialID;
 /** The outfit variants for a character. Used for Character Customization */
-var(ThirdPerson) array<OutfitVariants> BodyVariants;
+var(ThirdPerson) const array<OutfitVariants> BodyVariants;
 /** The head variants for a character. Used for Character Customization */
-var(ThirdPerson) array<OutfitVariants> HeadVariants;
+var(ThirdPerson) const array<OutfitVariants> HeadVariants;
 /** Various cosmetic variants for a character. Used for Character Customization */
-var(ThirdPerson) array<AttachmentVariants> CosmeticVariants;
+var(ThirdPerson) const array<AttachmentVariants> CosmeticVariants;
 /** The outfit variants for a character. Used for Character Customization */
 var(FirstPerson) array<FirstPersonArmVariants> CharacterArmVariants;
 /** Package to load to find the arm mesh for this char. */
@@ -158,7 +161,8 @@ var(FirstPerson) string ArmMeshPackageName;
 var(FirstPerson) SkeletalMesh ArmMesh;
 /** Package that contains team-skin materials for first-person arms. */
 var(FirstPerson) string ArmSkinPackageName;
-var(FaveWeapons) name FavoriteWeaponClassNames[8];
+var(FaveWeapons) editconst name FavoriteWeaponClassNames[8];
+var(FaveWeapons) editoronly class<KFWeaponDefinition> FavoriteWeaponClassDefs[8]<AllowAbstract=>;
 
 function int GetAssetId()
 {
@@ -172,11 +176,6 @@ function SkeletalMesh GetFirstPersonArms()
         WarnInternal("Unable to load first person arms");
     }
     return ArmMesh;
-}
-
-function MaterialInterface GetFirstPersonArmsMaterial(int TeamNum)
-{
-    return GetFirstPersonArms().Materials[0];
 }
 
 function Texture GetCharPortrait(int TeamNum)
@@ -224,7 +223,8 @@ simulated function SetCharacterFromArch(KFPawn KFP, optional KFPlayerReplication
 
 simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplicationInfo KFPRI)
 {
-    local int AttachmentIdx;
+    local int AttachmentIdx, CosmeticMeshIdx;
+    local bool bMaskHeadMesh;
 
     super.SetCharacterMeshFromArch(KFP, KFPRI);
     if(KFPRI == none)
@@ -232,117 +232,51 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
         WarnInternal("Does not have a KFPRI" @ string(self));
         return;
     }
-    SetBodyMeshAndSkin(KFPRI.RepCustomizationInfo.BodyMeshIndex, KFPRI.RepCustomizationInfo.BodySkinIndex, KFP, KFPRI);
-    SetHeadMeshAndSkin(KFPRI.RepCustomizationInfo.HeadMeshIndex, KFPRI.RepCustomizationInfo.HeadSkinIndex, KFP, KFPRI);
-    AttachmentIdx = 0;
-    J0x153:
-
-    if(AttachmentIdx < 3)
+    SetBodyMeshAndSkin(KFPRI.RepCustomizationInfo.BodyMeshIndex, KFPRI.RepCustomizationInfo.BodySkinIndex, KFP);
+    SetHeadMeshAndSkin(KFPRI.RepCustomizationInfo.HeadMeshIndex, KFPRI.RepCustomizationInfo.HeadSkinIndex, KFP);
+    if(KFP.WorldInfo.NetMode != NM_DedicatedServer)
     {
-        DetatchAttachment(AttachmentIdx, KFP);
-        ++ AttachmentIdx;
-        goto J0x153;
-    }
-    AttachmentIdx = 0;
-    J0x198:
+        AttachmentIdx = 0;
+        J0x17F:
 
-    if(AttachmentIdx < 3)
-    {
-        SetAttachmentMeshAndSkin(KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx], KFPRI.RepCustomizationInfo.AttachmentSkinIndices[AttachmentIdx], KFP, KFPRI);
-        ++ AttachmentIdx;
-        goto J0x198;
-    }
-}
-
-simulated function byte GetValidVarriantIndex(out array<OutfitVariants> VarriantList, byte StartingIndex)
-{
-    local byte I;
-    local OutfitVariants CurrentBodyVariant;
-
-    I = 0;
-    J0x0C:
-
-    if(I < VarriantList.Length)
-    {
-        CurrentBodyVariant = VarriantList[I];
-        if(Class'KFUnlockManager'.static.GetAvailableOutfit(CurrentBodyVariant))
+        if(AttachmentIdx < 3)
         {
-            return I;
+            DetachAttachment(AttachmentIdx, KFP);
+            ++ AttachmentIdx;
+            goto J0x17F;
         }
-        ++ I;
-        goto J0x0C;
-    }
-    return 0;
-}
+        AttachmentIdx = 0;
+        J0x1C4:
 
-simulated function byte GetValidSkinIndex(out array<SkinVariant> SkinList, byte StartingIndex)
-{
-    local byte I;
-    local SkinVariant CurrentSkinVariant;
-
-    I = 0;
-    J0x0C:
-
-    if(I < SkinList.Length)
-    {
-        CurrentSkinVariant = SkinList[I];
-        if(Class'KFUnlockManager'.static.GetAvailableSkin(CurrentSkinVariant))
+        if(AttachmentIdx < 3)
         {
-            return I;
+            CosmeticMeshIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx];
+            if(CosmeticMeshIdx != 255)
+            {
+                bMaskHeadMesh = bMaskHeadMesh || CosmeticVariants[CosmeticMeshIdx].bMaskHeadMesh;
+                SetAttachmentMeshAndSkin(byte(CosmeticMeshIdx), KFPRI.RepCustomizationInfo.AttachmentSkinIndices[AttachmentIdx], KFP, KFPRI);
+            }
+            ++ AttachmentIdx;
+            goto J0x1C4;
         }
-        ++ I;
-        goto J0x0C;
-    }
-    return 0;
-}
-
-simulated function byte GetValidAttachmentIndex(out array<AttachmentVariants> AttachmentList, byte StartingIndex)
-{
-    local byte I;
-    local AttachmentVariants CurrentAttachmentVariant;
-
-    I = 0;
-    J0x0C:
-
-    if(I < AttachmentList.Length)
-    {
-        CurrentAttachmentVariant = AttachmentList[I];
-        if(Class'KFUnlockManager'.static.GetAvailableAttachment(CurrentAttachmentVariant))
+        if(bMaskHeadMesh && KFP.HeadMIC != none)
         {
-            return I;
+            KFP.HeadMIC.SetScalarParameterValue('Scalar_Mask', 1);
         }
-        ++ I;
-        goto J0x0C;
     }
-    return 0;
 }
 
-simulated function SetBodyMeshAndSkin(byte CurrentBodyMeshIndex, byte CurrentBodySkinIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI)
+private final function SetBodyMeshAndSkin(byte CurrentBodyMeshIndex, byte CurrentBodySkinIndex, KFPawn KFP)
 {
     local string CharBodyMeshName;
     local SkeletalMesh CharBodyMesh;
-    local OutfitVariants CurrentBodyVariant;
-    local SkinVariant CurrentSkinVariant;
 
     if(BodyVariants.Length > 0)
     {
         CurrentBodyMeshIndex = ((CurrentBodyMeshIndex < BodyVariants.Length) ? CurrentBodyMeshIndex : 0);
-        CurrentBodyVariant = BodyVariants[CurrentBodyMeshIndex];
-        if(!Class'KFUnlockManager'.static.GetAvailableOutfit(CurrentBodyVariant) && KFP.IsLocallyControlled())
-        {
-            CurrentBodyMeshIndex = GetValidVarriantIndex(BodyVariants, CurrentBodyMeshIndex);
-            CurrentBodyVariant = BodyVariants[CurrentBodyMeshIndex];
-        }
-        CurrentSkinVariant = CurrentBodyVariant.SkinVariations[CurrentBodySkinIndex];
-        if(!Class'KFUnlockManager'.static.GetAvailableSkin(CurrentSkinVariant) && KFP.IsLocallyControlled())
-        {
-            CurrentBodySkinIndex = GetValidSkinIndex(CurrentBodyVariant.SkinVariations, CurrentBodySkinIndex);
-        }
         CharBodyMeshName = BodyVariants[CurrentBodyMeshIndex].MeshName;
         CharBodyMesh = SkeletalMesh(DynamicLoadObject(CharBodyMeshName, Class'SkeletalMesh'));
         KFP.Mesh.SetSkeletalMesh(CharBodyMesh);
-        KFPRI.RepCustomizationInfo.BodyMeshIndex = CurrentBodyMeshIndex;
-        KFPRI.RepCustomizationInfo.BodySkinIndex = CurrentBodySkinIndex;
         if(KFP.WorldInfo.NetMode != NM_DedicatedServer)
         {
             SetBodySkinMaterial(BodyVariants[CurrentBodyMeshIndex], CurrentBodySkinIndex, KFP);
@@ -414,28 +348,14 @@ protected simulated function SetHeadSkinMaterial(OutfitVariants CurrentVariant, 
     }
 }
 
-simulated function SetHeadMeshAndSkin(byte CurrentHeadMeshIndex, byte CurrentHeadSkinIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI)
+private final function SetHeadMeshAndSkin(byte CurrentHeadMeshIndex, byte CurrentHeadSkinIndex, KFPawn KFP)
 {
     local string CharHeadMeshName;
     local SkeletalMesh CharHeadMesh;
-    local OutfitVariants HeadVariant;
-    local SkinVariant HeadSkinVariant;
 
     if(HeadVariants.Length > 0)
     {
         CurrentHeadMeshIndex = ((CurrentHeadMeshIndex < HeadVariants.Length) ? CurrentHeadMeshIndex : 0);
-        HeadVariant = HeadVariants[CurrentHeadMeshIndex];
-        if(!Class'KFUnlockManager'.static.GetAvailableOutfit(HeadVariant) && KFP.IsLocallyControlled())
-        {
-            CurrentHeadMeshIndex = GetValidVarriantIndex(HeadVariants, CurrentHeadMeshIndex);
-            HeadVariant = HeadVariants[CurrentHeadMeshIndex];
-        }
-        HeadSkinVariant = HeadVariant.SkinVariations[CurrentHeadSkinIndex];
-        if(!Class'KFUnlockManager'.static.GetAvailableSkin(HeadSkinVariant) && KFP.IsLocallyControlled())
-        {
-            CurrentHeadSkinIndex = GetValidSkinIndex(HeadVariant.SkinVariations, CurrentHeadSkinIndex);
-            HeadSkinVariant = HeadVariant.SkinVariations[CurrentHeadSkinIndex];
-        }
         CharHeadMeshName = HeadVariants[CurrentHeadMeshIndex].MeshName;
         CharHeadMesh = SkeletalMesh(DynamicLoadObject(CharHeadMeshName, Class'SkeletalMesh'));
         KFP.ThirdPersonHeadMeshComponent.SetSkeletalMesh(CharHeadMesh);
@@ -448,34 +368,28 @@ simulated function SetHeadMeshAndSkin(byte CurrentHeadMeshIndex, byte CurrentHea
         {
             SetHeadSkinMaterial(HeadVariants[CurrentHeadMeshIndex], CurrentHeadSkinIndex, KFP);
         }
-        KFPRI.RepCustomizationInfo.HeadMeshIndex = CurrentHeadMeshIndex;
-        KFPRI.RepCustomizationInfo.HeadSkinIndex = CurrentHeadSkinIndex;
     }
 }
 
-function bool IsAttachmentSupported(byte CurrentAttachmentMeshIndex, KFPawn KFP)
+function bool IsAttachmentAvailable(const out AttachmentVariants Attachment, Pawn PreviewPawn)
 {
-    local name CharAttachmentSocketName;
-
-    if(CosmeticVariants.Length > 0)
+    if(!Class'KFUnlockManager'.static.GetAvailableAttachment(Attachment))
     {
-        if(CosmeticVariants[CurrentAttachmentMeshIndex].bIsSkeletalAttachment)
-        {
-            return true;            
-        }
-        else
-        {
-            CharAttachmentSocketName = CosmeticVariants[CurrentAttachmentMeshIndex].SocketName;
-            return KFP.Mesh.GetSocketByName(CharAttachmentSocketName) != none;
-        }        
+        LogInternal(("Attachment" @ Attachment.MeshName) @ "is not purchased.");
+        return false;        
     }
     else
     {
-        return false;
+        if((Attachment.bIsSkeletalAttachment && Attachment.SocketName != 'None') && PreviewPawn.Mesh.GetSocketByName(Attachment.SocketName) == none)
+        {
+            LogInternal(("Attachment" @ Attachment.MeshName) @ "is missing a required socket.");
+            return false;
+        }
     }
+    return true;
 }
 
-protected simulated function SetAttachmentSkinMaterial(int PawnAttachmentIndex, AttachmentVariants CurrentVariant, byte NewSkinIndex, KFPawn KFP)
+protected simulated function SetAttachmentSkinMaterial(int PawnAttachmentIndex, const out AttachmentVariants CurrentVariant, byte NewSkinIndex, KFPawn KFP)
 {
     local int I;
 
@@ -483,25 +397,32 @@ protected simulated function SetAttachmentSkinMaterial(int PawnAttachmentIndex, 
     {
         if(CurrentVariant.SkinVariations.Length > 0)
         {
-            NewSkinIndex = ((NewSkinIndex < CurrentVariant.SkinVariations.Length) ? NewSkinIndex : 0);
-            KFP.ThirdPersonAttachments[PawnAttachmentIndex].SetMaterial(CurrentVariant.SkinMaterialID, CurrentVariant.SkinVariations[NewSkinIndex].Skin);            
+            if(NewSkinIndex < CurrentVariant.SkinVariations.Length)
+            {
+                KFP.ThirdPersonAttachments[PawnAttachmentIndex].SetMaterial(CurrentVariant.SkinMaterialID, CurrentVariant.SkinVariations[NewSkinIndex].Skin);                
+            }
+            else
+            {
+                LogInternal("Out of bounds skin index for" @ CurrentVariant.MeshName);
+                RemoveAttachmentMeshAndSkin(PawnAttachmentIndex, KFP);
+            }            
         }
         else
         {
             I = 0;
-            J0x148:
+            J0x190:
 
             if(I < KFP.ThirdPersonAttachments[PawnAttachmentIndex].GetNumElements())
             {
                 KFP.ThirdPersonAttachments[PawnAttachmentIndex].SetMaterial(I, none);
                 ++ I;
-                goto J0x148;
+                goto J0x190;
             }
         }
     }
 }
 
-simulated function SetAttachmentMeshAndSkin(byte CurrentAttachmentMeshIndex, byte CurrentAttachmentSkinIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI)
+private final function SetAttachmentMeshAndSkin(byte CurrentAttachmentMeshIndex, byte CurrentAttachmentSkinIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI)
 {
     local string CharAttachmentMeshName;
     local name CharAttachmentSocketName;
@@ -515,25 +436,14 @@ simulated function SetAttachmentMeshAndSkin(byte CurrentAttachmentMeshIndex, byt
     local Vector AttachmentLocationRelativeToSocket, AttachmentScaleRelativeToSocket;
     local Rotator AttachmentRotationRelativeToSocket;
     local int AttachmentSlotIndex;
-    local AttachmentVariants AttachmentVariant;
-    local SkinVariant AttachmentSkin;
 
-    DetatchConflictingAttachments(CurrentAttachmentMeshIndex, KFP, KFPRI);
+    if(KFP.WorldInfo.NetMode == NM_DedicatedServer)
+    {
+        return;
+    }
     AttachmentSlotIndex = GetAttachmentSlotIndex(CurrentAttachmentMeshIndex, KFP);
     if((CosmeticVariants.Length > 0) && CurrentAttachmentMeshIndex < CosmeticVariants.Length)
     {
-        AttachmentVariant = CosmeticVariants[CurrentAttachmentMeshIndex];
-        if(!Class'KFUnlockManager'.static.GetAvailableAttachment(AttachmentVariant) && KFP.IsLocallyControlled())
-        {
-            CurrentAttachmentMeshIndex = GetValidAttachmentIndex(CosmeticVariants, CurrentAttachmentMeshIndex);
-            AttachmentVariant = CosmeticVariants[CurrentAttachmentMeshIndex];
-        }
-        AttachmentSkin = AttachmentVariant.SkinVariations[CurrentAttachmentSkinIndex];
-        if(!Class'KFUnlockManager'.static.GetAvailableSkin(AttachmentSkin) && KFP.IsLocallyControlled())
-        {
-            CurrentAttachmentSkinIndex = GetValidSkinIndex(AttachmentVariant.SkinVariations, CurrentAttachmentSkinIndex);
-            AttachmentSkin = AttachmentVariant.SkinVariations[CurrentAttachmentSkinIndex];
-        }
         CharAttachmentMeshName = CosmeticVariants[CurrentAttachmentMeshIndex].MeshName;
         CharAttachmentSocketName = CosmeticVariants[CurrentAttachmentMeshIndex].SocketName;
         MaxDrawDistance = CosmeticVariants[CurrentAttachmentMeshIndex].MaxDrawDistance;
@@ -545,6 +455,14 @@ simulated function SetAttachmentMeshAndSkin(byte CurrentAttachmentMeshIndex, byt
         {
             if(SkeletalMeshComponent(KFP.ThirdPersonAttachments[AttachmentSlotIndex]) != none)
             {
+                if(KFP.IsLocallyControlled())
+                {
+                    if((CharAttachmentSocketName != 'None') && KFP.Mesh.GetSocketByName(CharAttachmentSocketName) == none)
+                    {
+                        RemoveAttachmentMeshAndSkin(AttachmentSlotIndex, KFP, KFPRI);
+                        return;
+                    }
+                }
                 SkeletalAttachment = SkeletalMeshComponent(KFP.ThirdPersonAttachments[AttachmentSlotIndex]);                
             }
             else
@@ -586,12 +504,7 @@ simulated function SetAttachmentMeshAndSkin(byte CurrentAttachmentMeshIndex, byt
         }
         KFP.ThirdPersonAttachmentBitMask = KFP.ThirdPersonAttachmentBitMask | (1 << AttachmentSlotIndex);
         KFP.ThirdPersonAttachmentSocketNames[AttachmentSlotIndex] = CharAttachmentSocketName;
-        if(KFP.WorldInfo.NetMode != NM_DedicatedServer)
-        {
-            SetAttachmentSkinMaterial(AttachmentSlotIndex, CosmeticVariants[CurrentAttachmentMeshIndex], CurrentAttachmentSkinIndex, KFP);
-        }
-        KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentSlotIndex] = CurrentAttachmentMeshIndex;
-        KFPRI.RepCustomizationInfo.AttachmentSkinIndices[AttachmentSlotIndex] = CurrentAttachmentSkinIndex;
+        SetAttachmentSkinMaterial(AttachmentSlotIndex, CosmeticVariants[CurrentAttachmentMeshIndex], CurrentAttachmentSkinIndex, KFP);
     }
     if(CurrentAttachmentMeshIndex == 255)
     {
@@ -599,84 +512,66 @@ simulated function SetAttachmentMeshAndSkin(byte CurrentAttachmentMeshIndex, byt
     }
 }
 
-simulated function ClearAllAttachments(KFPawn KFP, KFPlayerReplicationInfo KFPRI)
+function DetachConflictingAttachments(byte NewAttachmentMeshIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI)
 {
-    local byte I;
+    local name NewAttachmentSocketName;
+    local int I, CurrentAttachmentIdx;
 
-    I = 0;
-    J0x0C:
-
-    if(I < 3)
+    if((CosmeticVariants.Length > 0) && NewAttachmentMeshIndex < CosmeticVariants.Length)
     {
-        RemoveAttachmentMeshAndSkin(I, KFP, KFPRI);
-        ++ I;
-        goto J0x0C;
-    }
-}
-
-function bool HasSocketConflict(KFPawn KFP, name SocketName, out int OutConflictAttachmentIndex)
-{
-    local int AttachmentIdx;
-
-    AttachmentIdx = 0;
-    J0x0B:
-
-    if(AttachmentIdx < 3)
-    {
-        if((KFP.ThirdPersonAttachmentSocketNames[AttachmentIdx] != 'None') && KFP.ThirdPersonAttachmentSocketNames[AttachmentIdx] == SocketName)
-        {
-            OutConflictAttachmentIndex = AttachmentIdx;
-            return true;
-        }
-        ++ AttachmentIdx;
-        goto J0x0B;
-    }
-    OutConflictAttachmentIndex = -1;
-    return false;
-}
-
-function DetatchConflictingAttachments(byte CurrentAttachmentMeshIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI)
-{
-    local name CharAttachmentSocketName;
-    local int AttachmentIdx;
-
-    if((CosmeticVariants.Length > 0) && CurrentAttachmentMeshIndex < CosmeticVariants.Length)
-    {
-        CharAttachmentSocketName = CosmeticVariants[CurrentAttachmentMeshIndex].SocketName;
-        AttachmentIdx = 0;
+        NewAttachmentSocketName = CosmeticVariants[NewAttachmentMeshIndex].SocketName;
+        I = 0;
         J0x6A:
 
-        if(AttachmentIdx < 3)
+        if(I < 3)
         {
-            if((KFP.ThirdPersonAttachmentSocketNames[AttachmentIdx] != 'None') && KFP.ThirdPersonAttachmentSocketNames[AttachmentIdx] == CharAttachmentSocketName)
-            {
-                RemoveAttachmentMeshAndSkin(AttachmentIdx, KFP, KFPRI);                
+            CurrentAttachmentIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[I];
+            if(CurrentAttachmentIdx == 255)
+            {                
             }
             else
             {
-                if(GetOverrideCase(KFP.ThirdPersonAttachmentSocketNames[AttachmentIdx], CurrentAttachmentMeshIndex))
+                if((KFP.ThirdPersonAttachmentSocketNames[I] != 'None') && KFP.ThirdPersonAttachmentSocketNames[I] == NewAttachmentSocketName)
                 {
-                    RemoveAttachmentMeshAndSkin(AttachmentIdx, KFP, KFPRI);
+                    RemoveAttachmentMeshAndSkin(I, KFP, KFPRI);                    
+                }
+                else
+                {
+                    if(GetOverrideCase(byte(CurrentAttachmentIdx), NewAttachmentMeshIndex))
+                    {
+                        RemoveAttachmentMeshAndSkin(I, KFP, KFPRI);                        
+                    }
+                    else
+                    {
+                        if(GetOverrideCase(NewAttachmentMeshIndex, byte(CurrentAttachmentIdx)))
+                        {
+                            RemoveAttachmentMeshAndSkin(I, KFP, KFPRI);                            
+                        }
+                    }
                 }
             }
-            ++ AttachmentIdx;
+            ++ I;
             goto J0x6A;
         }
     }
 }
 
-function bool GetOverrideCase(name SocketName, byte AttachmentIndex)
+function bool GetOverrideCase(byte AttachmentIndex1, byte AttachmentIndex2)
 {
-    switch(SocketName)
+    if(CosmeticVariants[AttachmentIndex2].OverrideList.SpecialOverrideIds.Find(AttachmentIndex1 != -1)
+    {
+        return true;
+    }
+    switch(CosmeticVariants[AttachmentIndex1].SocketName)
     {
         case 'Hat_Attach':
-            return CosmeticVariants[AttachmentIndex].OverrideList.bHat;
+            return CosmeticVariants[AttachmentIndex2].OverrideList.bHat;
         case 'Face_Attach':
-            return CosmeticVariants[AttachmentIndex].OverrideList.bFace;
+            return CosmeticVariants[AttachmentIndex2].OverrideList.bFace;
         case 'Eyes_Attach':
-            return CosmeticVariants[AttachmentIndex].OverrideList.bEyes;
+            return CosmeticVariants[AttachmentIndex2].OverrideList.bEyes;
         case 'Jaw_Attach':
-            return CosmeticVariants[AttachmentIndex].OverrideList.bJaw;
+            return CosmeticVariants[AttachmentIndex2].OverrideList.bJaw;
         default:
             return false;
             break;
@@ -703,15 +598,14 @@ function int GetAttachmentSlotIndex(byte CurrentAttachmentMeshIndex, KFPawn KFP)
 
 simulated function RemoveAttachmentMeshAndSkin(int PawnAttachmentIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI)
 {
-    DetatchAttachment(PawnAttachmentIndex, KFP);
+    DetachAttachment(PawnAttachmentIndex, KFP);
     if(KFPRI != none)
     {
-        KFPRI.RepCustomizationInfo.AttachmentMeshIndices[PawnAttachmentIndex] = 255;
-        KFPRI.RepCustomizationInfo.AttachmentSkinIndices[PawnAttachmentIndex] = 255;
+        KFPRI.ClearCharacterAttachment(PawnAttachmentIndex);
     }
 }
 
-function DetatchAttachment(int PawnAttachmentIndex, KFPawn KFP)
+function DetachAttachment(int PawnAttachmentIndex, KFPawn KFP)
 {
     if(KFP.ThirdPersonAttachments[PawnAttachmentIndex] != none)
     {
@@ -735,10 +629,10 @@ simulated function SetFirstPersonArmsFromArch(KFPawn KFP, optional KFPlayerRepli
         WarnInternal("Does not have a KFPRI" @ string(self));
         return;
     }
-    SetArmsMeshAndSkin(KFPRI.RepCustomizationInfo.BodyMeshIndex, KFPRI.RepCustomizationInfo.BodySkinIndex, KFP, KFPRI);
+    SetArmsMeshAndSkin(KFPRI.RepCustomizationInfo.BodyMeshIndex, KFPRI.RepCustomizationInfo.BodySkinIndex, KFP);
 }
 
-simulated function SetArmsMeshAndSkin(byte ArmsMeshIndex, byte ArmsSkinIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI)
+simulated function SetArmsMeshAndSkin(byte ArmsMeshIndex, byte ArmsSkinIndex, KFPawn KFP)
 {
     local byte CurrentArmMeshIndex, CurrentArmSkinIndex;
     local string CharArmMeshName;

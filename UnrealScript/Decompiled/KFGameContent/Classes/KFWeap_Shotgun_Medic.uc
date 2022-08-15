@@ -71,6 +71,11 @@ static simulated function float CalculateTraderWeaponStatDamage()
     return (BaseDamage * float(default.NumPellets[0])) + DoTDamage;
 }
 
+static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
+{
+    return 1;
+}
+
 defaultproperties
 {
     NumPellets(0)=6
@@ -79,12 +84,10 @@ defaultproperties
     HealAmmoCost=40
     HealFullRechargeSeconds=12
     FireModeIconPaths=/* Array type was not detected. */
-    FilterTypeUI=EFilterTypeUI.FT_Shotgun
     InventorySize=6
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
-    bHasFlashlight=true
     PenetrationPower=/* Array type was not detected. */
     MeshIronSightFOV=52
     PlayerIronSightFOV=70
@@ -92,7 +95,7 @@ defaultproperties
     DOF_FG_FocalRadius=95
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=75
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicShotgun'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicShotgun'
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
     MagazineCapacity=10
     MaxSpareAmmo=50

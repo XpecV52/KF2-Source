@@ -25,6 +25,8 @@ var() const editconst bool					bHasDoorLOS;
 var() bool									bAutoAdjustZToCeiling;
 var class<ReachSpec>						WallReachSpecClass;
 var bool									bAutoFlushPersistentDebugLines;
+/** If checked, this pathnode will not be considered by the trader trail emitter */
+var() bool 									bIgnoredByTraderTrail;
 
 cpptext
 {
@@ -183,5 +185,6 @@ DefaultProperties
 	bDebugLogAnchorUsability=false
 	WallReachSpecClass=class'KFGame.FloorToWallReachSpec'
 	bAutoConnectToOtherFloors=true
+	bIgnoredByTraderTrail=false
 	JumpTime=0.45f
 }

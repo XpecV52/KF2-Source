@@ -40,16 +40,16 @@ defaultproperties
       Damage=95.000000
       DamageRadius=800.000000
       DamageFalloffExponent=2.000000
-      MyDamageType=Class'KFGameContent.KFDT_Explosive_HansHEGrenade'
+      MyDamageType=Class'kfgamecontent.KFDT_Explosive_HansHEGrenade'
       KnockDownStrength=0.000000
       ExplosionSound=AkEvent'WW_ZED_Hans.ZED_Hans_SFX_Grenade_Frag'
-      ExploLight=PointLightComponent'KFGameContent.Default__KFProj_HansHEGrenade:ExplosionPointLight'
+      ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_HansHEGrenade:ExplosionPointLight'
       ExploLightFadeOutTime=0.200000
       CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
       Name="ExploTemplate0"
       ObjectArchetype=KFGameExplosion'KFGame.Default__KFGameExplosion'
    End Object
-   ExplosionTemplate=KFGameExplosion'KFGameContent.Default__KFProj_HansHEGrenade:ExploTemplate0'
+   ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFProj_HansHEGrenade:ExploTemplate0'
    ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
    ProjFlightTemplate=ParticleSystem'ZED_Hans_EMIT.FX_Grenade_Explosive_01'
    Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'KFGame.Default__KFProj_Grenade:CollisionCylinder'

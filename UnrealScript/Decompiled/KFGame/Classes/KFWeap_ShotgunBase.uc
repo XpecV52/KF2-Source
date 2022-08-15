@@ -109,6 +109,11 @@ static simulated function float CalculateTraderWeaponStatDamage()
     return (BaseDamage * float(default.NumPellets[0])) + DoTDamage;
 }
 
+static simulated event KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
+{
+    return 1;
+}
+
 simulated state Reloading
 {
     simulated function AbortReload()
@@ -127,7 +132,6 @@ defaultproperties
     ReloadOpenInsertEliteAnim=Reload_Open_Shell_Elite
     FireOneHandAnim=Shoot_OneHand
     FireOneHandLastAnim=Shoot_OneHand_Last
-    EffectiveRange=30
     bHasFireLastAnims=true
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_ShotgunBase.MeleeHelper'
     Spread=/* Array type was not detected. */

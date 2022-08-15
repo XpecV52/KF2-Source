@@ -12,25 +12,12 @@ class KFGFxWidget_VoiceComms extends GFxObject;
 
 var Vector RawJoyVector;
 var PlayerController PC;
-var localized array<string> VoiceCommsOptionStrings;
+
 var array<string> IconPaths;
 var bool bActive;
 
 var const float MouseDampening;
 var const float ControllerDampening;
-
-enum EComms
-{
-	COMMS_REQUEST_HEALING,
-	COMMS_REQUEST_DOSH,
-	COMMS_REQUEST_HELP,
-	COMMS_TAUNT_ZEDS,
-	COMMS_FOLLOW_ME,
-	COMMS_GET_TO_THE_TRADER,
-	COMMS_AFFIRMATIVE,
-	COMMS_NEGATIVE,
-	COMMS_MAX
-};
 
 function InitializeHUD()
 {
@@ -44,10 +31,10 @@ function SetLocalizedText()
 	local byte i;
 
 	DataProvider = CreateArray();
-	for (i = 0; i < COMMS_MAX; i++)
+	for (i = 0; i < VCT_MAX; i++)
 	{
 		TempObj = CreateObject("Object");
-		TempObj.SetString("text", VoiceCommsOptionStrings[i]);
+		TempObj.SetString("text", class'KFLocalMessage_VoiceComms'.default.VoiceCommsOptionStrings[i]);
 		TempObj.SetString("iconPath", "img://"$IconPaths[i]);
 
 		DataProvider.SetElementObject(i,TempObj);
@@ -57,12 +44,7 @@ function SetLocalizedText()
 }
 
 function SayVoiceCommms(int CommsIndex)
-{
-	if(CommsIndex < VoiceCommsOptionStrings.length && GetPC() != none)
-	{
-		GetPC().Say(VoiceCommsOptionStrings[CommsIndex]);
-	}
-	
+{	
 	KFPlayerController(GetPC()).ServerPlayVoiceCommsDialog(CommsIndex);
 }
 
@@ -141,12 +123,12 @@ DefaultProperties
 	MouseDampening=0.2f
 	//defaults
 	bActive=false
-	IconPaths[COMMS_REQUEST_HEALING]="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Heal"
-	IconPaths[COMMS_REQUEST_DOSH]="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Dosh"
-	IconPaths[COMMS_REQUEST_HELP]="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Help"
-	IconPaths[COMMS_TAUNT_ZEDS]="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Taunt"
-	IconPaths[COMMS_FOLLOW_ME]="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Follow"
-	IconPaths[COMMS_GET_TO_THE_TRADER]="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Trader"
-	IconPaths[COMMS_AFFIRMATIVE]="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Affirmative"
-	IconPaths[COMMS_NEGATIVE]="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Negative"
+	IconPaths[VCT_REQUEST_HEALING]="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Heal"
+	IconPaths[VCT_REQUEST_DOSH]="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Dosh"
+	IconPaths[VCT_REQUEST_HELP]="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Help"
+	IconPaths[VCT_TAUNT_ZEDS]="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Taunt"
+	IconPaths[VCT_FOLLOW_ME]="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Follow"
+	IconPaths[VCT_GET_TO_THE_TRADER]="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Trader"
+	IconPaths[VCT_AFFIRMATIVE]="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Affirmative"
+	IconPaths[VCT_NEGATIVE]="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Negative"
 }

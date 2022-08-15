@@ -10,9 +10,9 @@ class KFDT_Explosive_Shrapnel extends KFDT_Explosive
 
 defaultproperties
 {
+    bShouldSpawnPersistentBlood=true
     KnockdownPower=0
     StumblePower=120
-    bShouldSpawnPersistentBlood=true
     ModifierPerkList=/* Array type was not detected. */
     KDeathVel=300
     KDeathUpKick=1000

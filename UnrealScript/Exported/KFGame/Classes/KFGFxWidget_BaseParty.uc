@@ -14,6 +14,7 @@ var localized string ReadyString, LeaveString, DefaultPlayerName, SquadString, S
 var localized string MuteString, UnmuteString, AddFriendString, RemoveFriendString, ViewProfileString, VoteKickString;// Profile options
 var localized string PartyLeaderSearchingForMatchString, PartyLeaderIsUpdatingMatchOptionsString, PartyLeaderInServerBrowserString, PartyLeaderInOtherMenuString, SearchingForGameString;
 var localized string PartHostLeftString, PartyLeaderChangedString;
+var localized string DownLoadingString, RemainingString;
 
 var array<string> ProfileOptions;
 var OnlineSubsystem OnlineSub;
@@ -31,6 +32,7 @@ var GFxObject ReadyButton;
 var GFxObject LeaveButton;
 var GFxObject CreatePartyButton;
 var GFxObject SquadHeader;
+var GFxObject Notification;
 
 var const UniqueNetId ZeroUniqueId;
 
@@ -75,6 +77,7 @@ function InitializeWidget()
 	CreatePartyButton = GetObject("createPartyButton");
 	ReadyButton = GetObject("readyButton");
 	SquadHeader = GetObject("squadHeader");
+	InitNotificationUI();
 
 	LocalizeText();
 
@@ -90,6 +93,34 @@ function  LocalizeText()
 
 	SetString("deployingString", DeployingString);
 	SetString("waitingString", WaitingString);
+}
+
+function InitNotificationUI()
+{
+	Notification = GetObject("Notification");
+
+	//@Josh Assign delgate here
+	//OnlineSub.DownloadNotification = ShowDownLoadNotification;
+}
+
+function ShowDownLoadNotification(string ItemName, Float PercentComplete, int ItemsRemaining)
+{
+	local GFxObject NotificationInfoObject;
+
+	if(Notification == none)
+	{
+		return;
+	}
+
+	NotificationInfoObject = CreateObject("Object");
+
+	NotificationInfoObject.SetString("itemName"		, ItemName);
+	NotificationInfoObject.SetFloat("percent"		, PercentComplete * 100);
+	NotificationInfoObject.SetInt("queue"		, ItemsRemaining);
+	NotificationInfoObject.SetString("downLoading"	, DownLoadingString);
+	NotificationInfoObject.SetString("remaining"		, RemainingString);
+
+	Notification.SetObject("notificationInfo", NotificationInfoObject);
 }
 
 function SetSearchingText(string Message){}
@@ -442,6 +473,8 @@ defaultproperties
    SearchingForGameString="Searching for online game..."
    PartHostLeftString="The party host has left"
    PartyLeaderChangedString="is now the new party host."
+   DownLoadingString="Downloading:"
+   RemainingString="Remaining:"
    bReadyButtonVisible=True
    PerkPrefix="%&1&%"
    SearchingPrefix="%&2&%"

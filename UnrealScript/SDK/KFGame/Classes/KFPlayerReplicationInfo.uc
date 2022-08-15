@@ -20,29 +20,32 @@ class KFPlayerReplicationInfo extends PlayerReplicationInfo
 `include(KFGame\KFGameAnalytics.uci);
 `include(KFGame\KFMatchStats.uci);
 
-/************************************
- *  Character class related variables
- ************************************/
-var array<KFCharacterInfo_Human> CharacterArchetypes;
-
-/** Index of our last selected character */
-var config byte	StoredCharIndex;
 /** The time at which this PRI left the game */
 var float LastQuitTime;
 /** The number of times this PRI has reconnected to this game */
 var byte NumTimesReconnected;
 
+/************************************
+ *  Character class related variables
+ ************************************/
+
+/** This variable exists to tell native our max number of attachments */
+const NUM_COSMETIC_ATTACHMENTS = `MAX_COSMETIC_ATTACHMENTS;
+
+/** List of all playable characters */
+var const array<KFCharacterInfo_Human> CharacterArchetypes;
+
 /** Replication info for player character customization */
 struct native CustomizationInfo
 {
 	/** Index of the current char archetype among the AvailableCharArchetypes array */
-	var byte CharacterIndex;
-	var byte HeadMeshIndex;
-	var byte HeadSkinIndex;
-	var byte BodyMeshIndex;
-	var byte BodySkinIndex;
-	var byte AttachmentMeshIndices[`MAX_COSMETIC_ATTACHMENTS];
-	var byte AttachmentSkinIndices[`MAX_COSMETIC_ATTACHMENTS];
+	var const byte CharacterIndex;
+	var const byte HeadMeshIndex;
+	var const byte HeadSkinIndex;
+	var const byte BodyMeshIndex;
+	var const byte BodySkinIndex;
+	var const byte AttachmentMeshIndices[`MAX_COSMETIC_ATTACHMENTS];
+	var const byte AttachmentSkinIndices[`MAX_COSMETIC_ATTACHMENTS];
 
 	structdefaultproperties
 	{
@@ -54,15 +57,14 @@ struct native CustomizationInfo
 	}
 };
 
-/** This variable exists to tell native our max number of attachments */
-const NUM_COSMETIC_ATTACHMENTS = `MAX_COSMETIC_ATTACHMENTS;
-
-var repnotify CustomizationInfo RepCustomizationInfo;
-// VOIP
-var	repnotify byte	VOIPStatus; // 0 is Not Talking, 1 is Public, 2 is Team, 3 is Squad, 4 is Vehicle, 5 is Spectator, 6 is Sequestered Spectator
+/** Current customization settings */
+var const repnotify CustomizationInfo RepCustomizationInfo;
 
 /** Texture of render of custom character head. */
-var	texture		CharPortrait;
+var	texture	CharPortrait;
+
+/** 0 is Not Talking, 1 is Public, 2 is Team, 3 is Squad, 4 is Vehicle, 5 is Spectator, 6 is Sequestered Spectator */
+var	repnotify byte	VOIPStatus;
 
 /************************************
  *  Replicated Perk Data
@@ -71,7 +73,8 @@ var	texture		CharPortrait;
 var  			byte			NetPerkIndex; // @todo: replace with class?
 var  			Class<KFPerk>	CurrentPerkClass;
 var private 	byte			ActivePerkLevel;
-var 			byte 			Assists;
+/** Kill assists. Need an integer here because it is very easy to exceed 255 assists. */
+var 			int 			Assists;
 var 			byte			PlayerHealth;
 var 			byte			PlayerHealthMax;
 /** The firebug range skill increases the range of fire weapons we need to tell other clients if it is on */
@@ -80,8 +83,16 @@ var 			bool 			bExtraFireRange;
 var 			bool 			bSplashActive;
 /** The demo Nuke skill changes the explosion template */
 var 			bool 			bNukeActive;
-/** The demo Nuke skill changes the explosion template */
+/** The demo Concussive skill changes the explosion template */
 var 			bool 			bConcussiveActive;
+/** Certain perks can supply ammo etc. We need to replicate that for the HUD */
+var 			bool 			bPerkCanSupply;
+
+/************************************
+ *  Not replicated Perk Data,
+ *  local client only
+ ************************************/
+var 			bool 			bPerkSupplyUsed;
 
 /************************************
  *  Replicated Unlocks
@@ -101,16 +112,13 @@ cpptext
 	INT* GetOptimizedRepList( BYTE* InDefault, FPropertyRetirement* Retire, INT* Ptr, UPackageMap* Map, UActorChannel* Channel );
 }
 
-native function SaveCharacterConfig( string SectionString );
-native function LoadCharacterConfig( string SectionString );
-
 replication
 {
 	if ( bNetDirty )
 		RepCustomizationInfo, NetPerkIndex, ActivePerkLevel,
 		CurrentPerkClass, bObjectivePlayer, Assists, PlayerHealth, 
 		PlayerHealthMax, bExtraFireRange, bSplashActive, bNukeActive, 
-		bConcussiveActive;
+		bConcussiveActive, bPerkCanSupply;
 
   	// sent to non owning clients
  	if ( bNetDirty && (!bNetOwner || bDemoRecording) )
@@ -121,7 +129,7 @@ simulated event ReplicatedEvent(name VarName)
 {
 	if ( VarName == 'RepCustomizationInfo' )
 	{
-		UpdateCustomizationPawn( RepCustomizationInfo.CharacterIndex );
+		CharacterCustomizationChanged();
 	}
 	else if ( VarName == nameof(VOIPStatus) )
 	{
@@ -294,7 +302,10 @@ reliable server function ServerNotifyStopVOIP()
 
 	KFPC = KFPlayerController(Owner);
 
-	KFPC.VoiceReceivers.Remove(0, KFPC.VoiceReceivers.Length);
+	if( KFPC != none )
+	{
+		KFPC.VoiceReceivers.Remove(0, KFPC.VoiceReceivers.Length);
+	}
 
 	foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
 	{
@@ -476,20 +487,11 @@ reliable client function RecieveTopMaps(TopVotes VoteObject)
 
 native reliable server private event ServerSetSharedUnlocks(byte NewUnlocks);
 
-simulated function SetCharacter(int Index)
-{
-	StoredCharIndex = Index;
-	SaveConfig();
-	InitializeCharacter(Index);
-}
+native reliable server private event ServerSetCharacterCustomization(CustomizationInfo NewMeshInfo);
 
-reliable server event  SeverAnnounceNewSharedContent()
-{
-	if( WorldInfo.GRI != None && WorldInfo.GRI.bMatchHasBegun )
-	{
-		BroadcastLocalizedMessage( class'KFLocalMessage_Game', GMT_UserSharingContent, self);
-	}
-}
+native private function bool SaveCharacterConfig();
+native private function bool LoadCharacterConfig(out int CharacterIndex);
+native function ClearCharacterAttachment(int AttachmentIndex);
 
 simulated function ClientInitialize(Controller C)
 {
@@ -505,32 +507,35 @@ simulated function ClientInitialize(Controller C)
 	if ( C.IsLocalController() )
 	{
 		KFPlayerController(C).InitializeStats();
-		InitializeCharacter( StoredCharIndex );
+		SelectCharacter();
 		class'KFUnlockManager'.static.InitSharedUnlocksFor(self);
 	}
 }
 
-simulated function InitializeCharacter( byte CharIndex )
+/** Network: Local Player */
+private simulated event SelectCharacter( optional int CharIndex=INDEX_None )
 {
+	// INDEX_NONE will load last character from config
+	LoadCharacterConfig(CharIndex);
+
 	if(!class'KFUnlockManager'.static.GetAvailable(CharacterArchetypes[CharIndex]))
 	{
-		CharIndex = GetValidCharacterIndex(CharIndex);
-		StoredCharIndex = CharIndex;
+		CharIndex = GetAnyAvailableCharacter(CharIndex);
+		LoadCharacterConfig(CharIndex);
 	}
-
-	LoadCharacterConfig( PathName(CharacterArchetypes[CharIndex]) );
 
 	if ( Role < Role_Authority )
     {
-		ServerSetCharacter( RepCustomizationInfo );
+		ServerSetCharacterCustomization( RepCustomizationInfo );
 	}
 	else
 	{
-		UpdateCustomizationPawn( CharIndex );
+		CharacterCustomizationChanged();
 	}
 }
 
-simulated function int GetValidCharacterIndex(byte CharIndex)
+/** Returns the first available unlocked character */
+private simulated function int GetAnyAvailableCharacter(byte CharIndex)
 {
 	local byte i;
 
@@ -545,39 +550,44 @@ simulated function int GetValidCharacterIndex(byte CharIndex)
 	return 0;
 }
 
-reliable server private function ServerSetCharacter( CustomizationInfo NewMeshInfo )
+/** Config section name for a given character archetype index */
+private simulated event string GetCharacterConfigSection(int Idx)
 {
-	local int i;
-
-	RepCustomizationInfo.CharacterIndex = NewMeshInfo.CharacterIndex;
-	RepCustomizationInfo.BodyMeshIndex = NewMeshInfo.BodyMeshIndex;
-	RepCustomizationInfo.HeadMeshIndex = NewMeshInfo.HeadMeshIndex;
-	RepCustomizationInfo.HeadSkinIndex = NewMeshInfo.HeadSkinIndex;
-	RepCustomizationInfo.BodySkinIndex = NewMeshInfo.BodySkinIndex;
-
-	for( i=0; i < `MAX_COSMETIC_ATTACHMENTS; i++ )
-	{
-		RepCustomizationInfo.AttachmentMeshIndices[i] = NewMeshInfo.AttachmentMeshIndices[i];
-		RepCustomizationInfo.AttachmentSkinIndices[i] = NewMeshInfo.AttachmentSkinIndices[i];
-	}
-
-    if ( Role == Role_Authority )
-    {
-		UpdateCustomizationPawn( RepCustomizationInfo.CharacterIndex );
-    }
+	return PathName(CharacterArchetypes[Idx]);
 }
 
-simulated function UpdateCustomizationPawn( byte CharIndex )
+/** Called when RepCustomizationInfo is modified. Network: All*/
+simulated event CharacterCustomizationChanged()
 {
 	local KFPawn_Human KFP;
+	local KFCharacterInfoBase NewCharArch;
 
 	foreach WorldInfo.AllPawns(class'KFPawn_Human', KFP)
 	{
 		if (KFP.PlayerReplicationInfo == self ||
 			(KFP.DrivenVehicle != None && KFP.DrivenVehicle.PlayerReplicationInfo == self))
 		{
-			KFP.UpdateCustomizationChar( CharacterArchetypes[CharIndex] );
+			NewCharArch = CharacterArchetypes[RepCustomizationInfo.CharacterIndex];
+
+			if( NewCharArch != KFP.CharacterArch )
+			{
+				// selected a new character
+				KFP.SetCharacterArch( NewCharArch );
+			}
+			else if( WorldInfo.NetMode != NM_DedicatedServer )
+			{
+				// refresh cosmetics only
+   				KFP.CharacterArch.SetCharacterMeshFromArch( KFP, self );
+			}
 		}
+	}
+}
+
+reliable server private event ServerAnnounceNewSharedContent()
+{
+	if( WorldInfo.GRI != None && WorldInfo.GRI.bMatchHasBegun )
+	{
+		BroadcastLocalizedMessage( class'KFLocalMessage_Game', GMT_UserSharingContent, self);
 	}
 }
 
@@ -622,6 +632,7 @@ function AddDosh( int DoshAmount, optional bool bEarned )
 	if ( bEarned && DoshAmount > 0 )
 	{
 		`RecordAARIntStat(KFPlayerController(Owner), DOSH_EARNED, DoshAmount);
+		//`AnalyticsLog(( "dosh_earned", KFPlayerController(Owner).PlayerReplicationInfo, "#"$DoshAmount ));
 	}
 }
 
@@ -679,19 +690,47 @@ function IncrementDeaths( optional int Amt = 1 )
 	}
 }
 
+reliable client function MarkSupplierOwnerUsed( KFPlayerReplicationInfo SupplierPRI )
+{
+	if( SupplierPRI != none )
+	{
+		SupplierPRI.MarkSupplierUsed();
+	}
+}
+
+simulated function MarkSupplierUsed()
+{
+	bPerkSupplyUsed = true;
+}
+
+simulated function ResetSupplierUsed()
+{
+	local array<KFPlayerReplicationInfo> KFPRIArray;
+	local int i;
+
+	KFGameReplicationInfo(WorldInfo.GRI).GetKFPRIArray( KFPRIArray );
+ 
+	for( i = 0; i < KFPRIArray.Length; ++i )
+	{
+		KFPRIArray[i].bPerkSupplyUsed = false;	
+	}
+
+}
+
 defaultproperties
 {
 	// Playable characters from archetypes
-	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Ana_Archetype')
-	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.chr_DJSkully_archetype')
-	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Coleman_archetype')
-	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Tanaka_Archetype')
-    CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Masterson_Archetype')
-    CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_MrFoster_archetype')
-	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.chr_briar_archetype')
 	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Alberts_archetype')
-	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Mark_archetype')
-	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Alan_Archetype')
-	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Strasser_Archetype')
 	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Knight_Archetype')
+	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.chr_briar_archetype')
+	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Mark_archetype')
+    CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_MrFoster_archetype')
+ 	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Jagerhorn_Archetype')
+ 	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Ana_Archetype')
+    CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Masterson_Archetype')
+ 	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Alan_Archetype')
+ 	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Coleman_archetype')
+ 	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.chr_DJSkully_archetype')
+	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Strasser_Archetype')
+	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Tanaka_Archetype')
 }

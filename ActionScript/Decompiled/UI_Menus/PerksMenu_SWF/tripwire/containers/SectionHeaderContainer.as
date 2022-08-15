@@ -46,7 +46,10 @@ package tripwire.containers
         public function updateIconVisibility() : void
         {
             this.headerIcon.visible = !bManagerUsingGamepad;
-            this.leftTriggerIcon.visible = bManagerUsingGamepad;
+            if(this.leftTriggerIcon)
+            {
+                this.leftTriggerIcon.visible = bManagerUsingGamepad;
+            }
         }
     }
 }

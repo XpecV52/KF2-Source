@@ -14,5 +14,5 @@ class KFDT_Bludgeon_Deagle extends KFDT_Bludgeon_RifleButt
 DefaultProperties
 {
 	//defaults
-	AARWeaponID=`AAR_Deagle
+	WeaponDef=class'KFWeapDef_Deagle'
 }

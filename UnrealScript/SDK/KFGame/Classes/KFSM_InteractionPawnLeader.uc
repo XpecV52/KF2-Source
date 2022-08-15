@@ -30,6 +30,10 @@ var bool			bAlignPawns;
 var	float			AlignDistance;
 /** Checks 2D dist between the pawns versus this threshold when determining if they are close enough */
 var float			AlignDistanceThreshold;
+/** Should leader be aligned as well as follower */
+var bool 			bAlignLeaderLocation;
+/** If TRUE, align the Z position of follower as well */
+var bool 			bAlignFollowerZ;
 /** Should Follower look in same dir as me? */
 var bool			bAlignFollowerLookSameDirAsMe;
 /** If Rotations should automatically be aligned */
@@ -41,6 +45,8 @@ var bool            bAlignHumanFollowerControllerRotation;
 /** Used by RInterpTo, multiplied by 4096.f (see GOW3 UGearSpecialMove::MoveTo which is similar) */
 var float			AlignFollowerInterpSpeed;
 var INT             LeaderRelativeYawOffset;
+/** Time it takes to pull the pawns together */
+var float			AlignSpeedModifier;
 
 /** (NEW) Test interaction collision to detect when pawns get too far apart. */
 var bool			bRetryCollisionCheck;
@@ -213,6 +219,7 @@ function StartInteraction()
 /** Called on an interval to detect when pawns get too far apart or are seperated by a door */
 function RetryCollisionTimer()
 {
+	`log("zdist:"@Abs(Follower.Location.Z - PawnOwner.Location.Z));
 	// Test for vertical melee range (e.g. Follower fell off a ledge) & reachabilty (doors etc.)
 	// This started happening after PHYS_Falling handling was added to PrePerformPhysics
 	if ( (Abs(Follower.Location.Z - PawnOwner.Location.Z) > PawnOwner.CylinderComponent.CollisionHeight * 1.5) ||
@@ -465,12 +472,15 @@ function bool CanInteractWithPawn(KFPawn OtherPawn)
 
 DefaultProperties
 {
+	bAlignLeaderLocation=true
 	bAlignLeaderRotation=TRUE
 	bAlignFollowerRotation=true
+	bAlignFollowerZ=false
 	AlignFollowerInterpSpeed=8.f
 	AlignDistanceThreshold=0.3f
 	InteractionStartTimeOut=4.f
 	FollowerSpecialMove=SM_None
 
 	bRetryCollisionCheck=true
+	AlignSpeedModifier=0.5f
 }

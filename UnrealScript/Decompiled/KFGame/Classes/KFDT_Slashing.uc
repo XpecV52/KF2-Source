@@ -137,9 +137,9 @@ static function int GetKillerDialogID()
 
 defaultproperties
 {
+    bShouldSpawnPersistentBlood=true
     EffectGroup=EEffectDamageGroup.FXG_Slashing
     GoreDamageGroup=EGoreDamageGroup.DGT_MeleeSlash
-    bShouldSpawnPersistentBlood=true
     BodyWoundDecalMaterials(0)=MaterialInstanceConstant'FX_Impacts_MAT.FX_Bladed_Impact_Slice_01_MIC'
     CameraLensEffectTemplate=Class'KFCameraLensEmit_BloodBase'
     BloodScale=0.5

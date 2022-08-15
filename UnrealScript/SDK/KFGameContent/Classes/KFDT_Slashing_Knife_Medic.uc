@@ -40,5 +40,5 @@ static function bool CheckMedicBleed( out int InDamage, out class<KFDamageType> 
 defaultproperties
 {
     GunHitPower=112
-    AARWeaponID=`AAR_Knife
+    WeaponDef=class'KFWeapDef_Knife_Medic'
 }

@@ -12,9 +12,9 @@ class KFWeap_Knife_FieldMedic extends KFWeap_Edged_Knife;
 
 defaultproperties
 {
-   UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicKnife'
+   WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicKnife'
    AttachmentArchetype=KFWeaponAttachment'WEP_Medic_Knife_ARCH.Wep_MedicKnife_3P'
-   Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_Edged_Knife:MeleeHelper_0'
+   Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Edged_Knife:MeleeHelper_0'
       bUseDirectionalMelee=True
       bHasChainAttacks=True
       ChainSequence_F(0)=DIR_ForwardRight
@@ -43,17 +43,17 @@ defaultproperties
       HitboxChain(5)=(BoneOffset=(X=0.000000,Y=-3.000000,Z=0.000000))
       HitboxChain(6)=(BoneOffset=(X=0.000000,Y=0.000000,Z=-25.000000))
       Name="MeleeHelper_0"
-      ObjectArchetype=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_Edged_Knife:MeleeHelper_0'
+      ObjectArchetype=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Edged_Knife:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_Knife_FieldMedic:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Knife_FieldMedic:MeleeHelper_0'
    AssociatedPerkClass=Class'KFGame.KFPerk_FieldMedic'
-   InstantHitDamageTypes(0)=Class'KFGameContent.KFDT_Slashing_Knife_Medic'
-   InstantHitDamageTypes(1)=Class'KFGameContent.KFDT_Slashing_KnifeHeavy_Medic'
+   InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Slashing_Knife_Medic'
+   InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Slashing_KnifeHeavy_Medic'
    InstantHitDamageTypes(2)=()
    InstantHitDamageTypes(3)=()
    InstantHitDamageTypes(4)=()
    InstantHitDamageTypes(5)=()
-   Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGameContent.Default__KFWeap_Edged_Knife:FirstPersonMesh'
+   Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFWeap_Edged_Knife:FirstPersonMesh'
       MinTickTimeStep=0.025000
       SkeletalMesh=SkeletalMesh'Wep_1P_Medic_Knife_MESH.Wep_1stP_Medic_Knife_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
@@ -66,19 +66,19 @@ defaultproperties
       LightingChannels=(bInitialized=True,Outdoor=True)
       bAllowPerObjectShadows=True
       Name="FirstPersonMesh"
-      ObjectArchetype=KFSkeletalMeshComponent'KFGameContent.Default__KFWeap_Edged_Knife:FirstPersonMesh'
+      ObjectArchetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFWeap_Edged_Knife:FirstPersonMesh'
    End Object
    Mesh=FirstPersonMesh
    ItemName="Scalpel"
-   Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGameContent.Default__KFWeap_Edged_Knife:StaticPickupComponent'
+   Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'kfgamecontent.Default__KFWeap_Edged_Knife:StaticPickupComponent'
       StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_CommandoKnife_Pickup'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"
-      ObjectArchetype=StaticMeshComponent'KFGameContent.Default__KFWeap_Edged_Knife:StaticPickupComponent'
+      ObjectArchetype=StaticMeshComponent'kfgamecontent.Default__KFWeap_Edged_Knife:StaticPickupComponent'
    End Object
    DroppedPickupMesh=StaticPickupComponent
    PickupFactoryMesh=StaticPickupComponent
    Name="Default__KFWeap_Knife_FieldMedic"
-   ObjectArchetype=KFWeap_Edged_Knife'KFGameContent.Default__KFWeap_Edged_Knife'
+   ObjectArchetype=KFWeap_Edged_Knife'kfgamecontent.Default__KFWeap_Edged_Knife'
 }

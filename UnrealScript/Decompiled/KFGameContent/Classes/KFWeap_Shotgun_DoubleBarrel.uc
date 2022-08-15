@@ -141,9 +141,7 @@ defaultproperties
     FallingMomentumReduction=0.5
     NumPellets=/* Array type was not detected. */
     FireModeIconPaths=/* Array type was not detected. */
-    FilterTypeUI=EFilterTypeUI.FT_Shotgun
     InventorySize=4
-    EffectiveRange=15
     bHasIronSights=true
     bNoMagazine=true
     bCanBeReloaded=true
@@ -156,11 +154,11 @@ defaultproperties
     IronSightPosition=(X=3,Y=0,Z=0)
     DOF_FG_FocalRadius=65
     GroupPriority=50
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_DBShotgun'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_DBShotgun'
     MagazineCapacity=2
     MaxSpareAmmo=46
     InitialSpareMags=11
-    AmmoPickupScale=2
+    AmmoPickupScale=3
     FireAnim=Shoot_Single
     FireSightedAnims=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */

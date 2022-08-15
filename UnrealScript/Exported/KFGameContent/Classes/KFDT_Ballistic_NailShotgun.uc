@@ -48,65 +48,6 @@ class KFDT_Ballistic_NailShotgun extends KFDT_Ballistic_Shotgun
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -136,7 +77,7 @@ static simulated function class<KFProj_PinningBullet> GetPinProjectileClass()
 
 defaultproperties
 {
-   AARWeaponID=5
+   WeaponDef=Class'KFGame.KFWeapDef_Nailgun'
    StunPower=42
    StumblePower=54
    LegStumblePower=54
@@ -148,5 +89,5 @@ defaultproperties
    KDeathVel=35.000000
    KDeathUpKick=120.000000
    Name="Default__KFDT_Ballistic_NailShotgun"
-   ObjectArchetype=KFDT_Ballistic_Shotgun'KFGameContent.Default__KFDT_Ballistic_Shotgun'
+   ObjectArchetype=KFDT_Ballistic_Shotgun'kfgamecontent.Default__KFDT_Ballistic_Shotgun'
 }

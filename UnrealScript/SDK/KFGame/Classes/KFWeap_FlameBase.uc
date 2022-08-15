@@ -116,21 +116,6 @@ simulated function SetFlameDebugFX(bool bDebugShowSeeds, bool bDebugShowBones, b
  *********************************************************************************************/
 
 /**
- * Called immediately before gameplay begins.
- */
-simulated event PreBeginPlay()
-{
-	Super.PreBeginPlay();
-
-	if ( WorldInfo.NetMode == NM_DedicatedServer )
-	{
-		return;
-	}
-
-	WeaponMIC = Mesh.CreateAndSetMaterialInstanceConstant(0);
-}
-
-/**
  * Overridden to handle the dynamic flickering lights
  */
 simulated event Tick(float DeltaTime)
@@ -264,12 +249,10 @@ simulated protected function TurnOnPilot()
 	if( FlamePool[0] == None )
 	{
 		FlamePool[0] = Spawn(FlameSprayArchetype.Class, Instigator,, MuzzleLoc, Aim, FlameSprayArchetype, TRUE);
-		FlamePool[0].SetTickIsDisabled(true);
 	}
 	if( FlamePool[1] == None )
 	{
 		FlamePool[1] = Spawn(FlameSprayArchetype.Class, Instigator,, MuzzleLoc, Aim, FlameSprayArchetype, TRUE);
-		FlamePool[1].SetTickIsDisabled(true);
 	}
 
 	// attach flamesprays here too, so they are hooked up before firing
@@ -285,6 +268,10 @@ simulated protected function TurnOnPilot()
     // Handle setting the FOV for the flame mesh and emitters
 	FlamePool[0].SetFOV(OwnerMeshFOV);
 	FlamePool[1].SetFOV(OwnerMeshFOV);
+
+	// only allow owner to see 1p mesh
+	FlamePool[0].SkeletalSprayMesh.SetOnlyOwnerSee( true );
+	FlamePool[1].SkeletalSprayMesh.SetOnlyOwnerSee( true );
 
 	if( PSC_EndSpray != None )
 	{
@@ -688,6 +675,12 @@ static simulated function float CalculateTraderWeaponStatDamage()
 	return BaseDamage + DoTDamage;
 }
 
+/** Returns trader filter index based on weapon type */
+static simulated event EFilterTypeUI GetTraderFilter()
+{
+	return FT_Flame;
+}
+
 defaultproperties
 {
 	Begin Object Class=KFParticleSystemComponent Name=FlameEndSpray0
@@ -705,6 +698,6 @@ defaultproperties
 
 	bWeaponNeedsServerPosition=true
 
-	// Trader
-    EffectiveRange=30
+	// Aim Assist
+	AimCorrectionSize=0.f
 }

@@ -10,11 +10,11 @@ class KFDT_ExplosiveSubmunition_HX25 extends KFDT_Explosive
 
 defaultproperties
 {
-    AARWeaponID=15
+    WeaponDef=Class'KFGame.KFWeapDef_HX25'
+    bShouldSpawnPersistentBlood=true
     KnockdownPower=0
     StumblePower=36
     LegStumblePower=36
-    bShouldSpawnPersistentBlood=true
     ModifierPerkList=/* Array type was not detected. */
     KDeathVel=250
     KDeathUpKick=350

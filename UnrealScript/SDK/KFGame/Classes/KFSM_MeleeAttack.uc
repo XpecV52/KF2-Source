@@ -100,7 +100,7 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 	KFPM = KFPawn_Monster(KFPOwner);
 	if ( KFPM != none )
 	{
-		if( KFPM.bCanCloak && !KFPM.bIsCloaking )
+		if( KFPM.bCanCloak && KFPM.bCloakOnMeleeEnd && !KFPM.bIsCloaking )
 		{
             KFPM.SetCloaked(true);
         }
@@ -139,6 +139,12 @@ function NotifyOwnerTakeHit(class<KFDamageType> DamageType, vector HitLoc, vecto
 	if ( bCanBeInterrupted && IsAnInterruptHit(PawnOwner, DamageType) )
 	{
 		KFPOwner.EndSpecialMove();
+
+		// Reset melee timer after interrupt
+		if( AIOwner != None )
+		{
+			AIOwner.LastGetStrikeTime = -1;
+		}
 	}
 }
 
@@ -156,6 +162,11 @@ function AbortedByAICommand()
 			if( KFPMOwner != none )
 			{
 				KFPMOwner.NotifyAnimInterrupt();
+			}
+			if( AIOwner != None )
+			{
+				// Reset melee timer after interrupt
+				AIOwner.LastGetStrikeTime = -1;
 			}
 		}
 	}
@@ -178,12 +189,18 @@ function InterruptCheckTimer()
 				KFPMOwner.NotifyAnimInterrupt();
 			}
 			KFPOwner.EndSpecialMove();
+
+			// Reset melee timer after interrupt
+			AIOwner.LastGetStrikeTime = -1;
 		}
 	}
 }
 
 defaultproperties
 {
+	BlendInTime=0.2f
+	BlendOutTime=0.33f
+
 	// ---------------------------------------------
 	// Animations
 	bUseRootMotion=false

@@ -16,6 +16,12 @@ var() AnimSet GunsAnimSet;
 var SkelControlSingleBone RightHolsterSkelCtrl;
 var SkelControlSingleBone LeftHolsterSkelCtrl;
 
+/** Explosion burst template to use for surrounded AoE nerve gas attack */
+var KFGameExplosion NerveGasExplosiveBlastTemplate;
+
+/** Lingering explosion template to use for surrounded AoE nerve gas attack */
+var KFGameExplosion NerveGasAttackTemplate;
+
 /** The damage type to use when sprinting and bumping zeds */
 var class<KFDamageType> HeavyBumpDamageType;
 
@@ -104,23 +110,19 @@ var KFSkinTypeEffects ShieldImpactEffects;
 
 simulated event ReplicatedEvent(name VarName)
 {
-	switch( VarName )
-	{
-	case nameof(bGunsEquipped):
+	if( VarName == nameof(bGunsEquipped) )
+    {
 		// Replicated for the case when SM_ChangeWeapons is skipped on the client.
 		// If the special move is in progress, delay until SpecialMoveEnded
 		if ( SpecialMove != SM_ChangeStance )
 		{
 			SetWeaponStance(bGunsEquipped);
 		}
-		break;
-
-	case nameof(CurrentBattlePhase):
-		OnBattlePhaseChanged();
-		break;
-	}
-
-	Super.ReplicatedEvent(VarName);
+    }
+    else
+    {
+        Super.ReplicatedEvent(VarName);   
+    }
 }
 
 simulated event PostBeginPlay()
@@ -136,9 +138,6 @@ simulated event PostBeginPlay()
 
 	// add a little delay to begin ticking dialog
 	LastTickDialogTime = WorldInfo.TimeSeconds;
-
-	// init lights, particles, materials
-	OnBattlePhaseChanged();
 
 	// Disable the KFPawn optimization because Hans uses weapon bones to spawn projectiles :(
 	// @todo: Do something else to get the bones like ForceUpdateSkel() or SetForceRefPose()
@@ -255,18 +254,34 @@ simulated function ANIMNOTIFY_TossGrenade_LeftHand()
 	StartThrowingGrenade( true );
 }
 
+/** AnimNotify which triggers an explosive AoE blast */
+simulated function ANIMNOTIFY_AoEBlast()
+{
+    local KFExplosionActor ExplosionActor;
+
+    // spawn initial nerve gas burst explosion
+    ExplosionActor = Spawn( class'KFExplosionActor', self,, Location, rotator(vect(0,0,1)) );
+    if( ExplosionActor != none )
+    {
+        ExplosionActor.Explode( NerveGasExplosiveBlastTemplate );
+    }
+}
+
 /** AnimNotify which starts during Hans's AoE melee attack */
 simulated function ANIMNOTIFY_AoENerveGas()
 {
-    local KFExplosionActor ExplosionActor;
+    local KFExplosion_HansNerveGasGrenade ExplosionActor;
 
     // spawn nerve gas explosion using nerve gas grenade class defaults
     if( NerveGasGrenadeClass != none )
     {
-        ExplosionActor = KFExplosionActor( Spawn(NerveGasGrenadeClass.default.ExplosionActorClass, self,, mesh.GetBoneLocation('Root'), rotator(vect(0,0,1))) );
+        ExplosionActor = KFExplosion_HansNerveGasGrenade( Spawn(NerveGasGrenadeClass.default.ExplosionActorClass, self,, mesh.GetBoneLocation('Root'), rotator(vect(0,0,1))) );
         if( ExplosionActor != none )
         {
-            ExplosionActor.Explode( NerveGasGrenadeClass.default.ExplosionTemplate );
+            ExplosionActor.bDoFullDamage = true;
+            ExplosionActor.MaxTime = 4.f;
+            ExplosionActor.Interval = 0.5f;
+            ExplosionActor.Explode( NerveGasAttackTemplate );
         }
     }
 }
@@ -756,7 +771,7 @@ simulated function DetachShieldFX()
 simulated function TerminateEffectsOnDeath()
 {
     SetHuntAndHealMode( false );
-    OnBattlePhaseChanged();
+
     super.TerminateEffectsOnDeath();
 }
 
@@ -945,14 +960,6 @@ simulated function UpdateBattlePhaseParticles()
 	};
 }
 
-/** Set gameplay related MIC params on the active body MIC. Overloaded to call OnBattlePhaseChanged. */
-simulated function SetGameplayMICParams()
-{
-	super.SetGameplayMICParams();
-
-	OnBattlePhaseChanged();
-}
-
 /** Gets skin effects associated with hit zone (allows pawns to override) */
 simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects( int HitZoneIdx )
 {
@@ -970,7 +977,9 @@ defaultproperties
 {
    MeleeAnimSet=AnimSet'ZED_Hans_ANIM.Hans_Melee_Master'
    GunsAnimSet=AnimSet'ZED_Hans_ANIM.Hans_Gun_Master'
-   HeavyBumpDamageType=Class'KFGameContent.KFDT_HeavyZedBump'
+   NerveGasExplosiveBlastTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedHans:ExploTemplate0'
+   NerveGasAttackTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedHans:ExploTemplate1'
+   HeavyBumpDamageType=Class'kfgamecontent.KFDT_HeavyZedBump'
    AmbientBreathingEvent=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Breathing_Base'
    LowHealthAmbientBreathingEvent=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_BreathHurt_Base'
    TickDialogInterval=0.500000
@@ -1000,25 +1009,34 @@ defaultproperties
    BattleDamageFX_Blood_High=ParticleSystem'ZED_Hans_EMIT.FX_Hans_Blood_Spray_01'
    InvulnerableShieldFX=ParticleSystem'ZED_Hans_EMIT.FX_Hans_Hunt_Shield'
    ShieldSocketName="Hips"
-   ShieldImpactEffects=KFSkinTypeEffects_HansShield'KFGameContent.Default__KFPawn_ZedHans:ShieldEffects'
+   ShieldImpactEffects=KFSkinTypeEffects_HansShield'kfgamecontent.Default__KFPawn_ZedHans:ShieldEffects'
    BattlePhases(0)=(bSprintingBehavior=False,GlobalOffensiveNadePhaseCooldown=12.000000,bCanTossNerveGas=True,bCanUseGuns=True,GunAttackPhaseCooldown=0.000000,GunAttackLengthPhase=99999.000000)
    BattlePhases(1)=(bCanFrenzy=True,GlobalOffensiveNadePhaseCooldown=15.000000,bCanTossNerveGas=True,NerveGasTossPhaseCooldown=20.000000,bCanUseGuns=True,GunAttackPhaseCooldown=30.000000,GunAttackLengthPhase=8.000000,bCanTossGrenade=True,HENadeTossPhaseCooldown=20.000000)
    BattlePhases(2)=(bCanFrenzy=True,bCanBarrageNerveGas=True,bCanUseGuns=True,bCanTossGrenade=True)
    BattlePhases(3)=(bCanFrenzy=True,bCanBarrageNerveGas=True,bCanUseGuns=True,bCanBarrageGrenades=True)
-   CurrentBattlePhase=1
    HuntAndHealModeDamageReduction=0.150000
-   ExplosiveGrenadeClass=Class'KFGameContent.KFProj_HansHEGrenade'
-   NerveGasGrenadeClass=Class'KFGameContent.KFProj_HansNerveGasGrenade'
-   SmokeGrenadeClass=Class'KFGameContent.KFProj_HansSmokeGrenade'
+   ExplosiveGrenadeClass=Class'kfgamecontent.KFProj_HansHEGrenade'
+   NerveGasGrenadeClass=Class'kfgamecontent.KFProj_HansNerveGasGrenade'
+   SmokeGrenadeClass=Class'kfgamecontent.KFProj_HansSmokeGrenade'
    RightHandSocketName="RightHandSocket"
    LeftHandSocketName="LeftHandSocket"
    GrenadeTossSpread=0.070000
    SmokeTossCooldown=5.000000
+   BossName="Dr. Hans Volter"
+   BossCaptionStrings(0)="Hans is nearly invulnerable during his smoke grenade healing phase. Don't waste your ammo!"
+   BossCaptionStrings(1)="Watch his power core: Hans is more aggressive as it changes color."
+   BossCaptionStrings(2)="Aim for his emissive power core. It is a vulnerable zone."
+   BossCaptionStrings(3)="Gas from Hans' grenades clings to you, like Bloat bile. Try to avoid it!"
+   BossCaptionStrings(4)="His slashing attacks are too strong to parry. You'll still take full damage."
+   BossCaptionStrings(5)="Watch for red grenade warning indicators, which may help you spot where they land."
+   BossCaptionStrings(6)="When Hans pulls out his guns, stay out of the line of sight. Obvious, but important!"
    SummonWaves(0)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Normal_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Normal_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Normal_Three')
    SummonWaves(1)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Hard_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Hard_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Hard_Three')
    SummonWaves(2)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Suicidal_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Suicidal_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Suicidal_Three')
    SummonWaves(3)=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_Three')
    NumMinionsToSpawn=8
+   CurrentBattlePhase=1
+   TheatricCameraSocketName="TheatricCameraRootSocket"
    bLargeZed=True
    bCanGrabAttack=True
    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Hans_ARCH.ZED_Hans_Archetype'
@@ -1026,19 +1044,19 @@ defaultproperties
    ParryResistance=4
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'KFGame.Default__KFPawn_ZedHansBase:MeleeHelper_0'
       BaseDamage=75.000000
-      MyDamageType=Class'KFGameContent.KFDT_Slashing_Hans'
+      MyDamageType=Class'kfgamecontent.KFDT_Slashing_Hans'
       MomentumTransfer=40000.000000
       MaxHitRange=275.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperAI'KFGame.Default__KFPawn_ZedHansBase:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperAI'KFGameContent.Default__KFPawn_ZedHans:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedHans:MeleeHelper_0'
    DoshValue=500
    XPValues(0)=1291.000000
    XPValues(1)=1694.000000
    XPValues(2)=1790.000000
    XPValues(3)=1843.000000
-   VulnerableDamageTypes(0)=(DamageType=Class'KFGameContent.KFDT_Microwave',DamageScale=1.250000)
+   VulnerableDamageTypes(0)=(DamageType=Class'kfgamecontent.KFDT_Microwave',DamageScale=1.250000)
    ResistantDamageTypes(0)=(DamageType=Class'KFGame.KFDT_Toxic')
    ResistantDamageTypes(1)=(DamageType=Class'KFGame.KFDT_EMP')
    ResistantDamageTypes(2)=(DamageType=Class'KFGame.KFDT_Slashing')
@@ -1089,10 +1107,10 @@ defaultproperties
       Name="Afflictions_0"
       ObjectArchetype=KFPawnAfflictions'KFGame.Default__KFPawn_ZedHansBase:Afflictions_0'
    End Object
-   AfflictionHandler=KFPawnAfflictions'KFGameContent.Default__KFPawn_ZedHans:Afflictions_0'
+   AfflictionHandler=KFPawnAfflictions'kfgamecontent.Default__KFPawn_ZedHans:Afflictions_0'
    KnockdownImpulseScale=1.000000
    SprintSpeed=650.000000
-   DefaultInventory(0)=Class'KFGameContent.KFWeap_AssaultRifle_DualMKb42_Hans'
+   DefaultInventory(0)=Class'kfgamecontent.KFWeap_AssaultRifle_DualMKb42_Hans'
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_ZedHansBase:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True
       bOverrideAttachmentOwnerVisibility=True
@@ -1109,8 +1127,8 @@ defaultproperties
       SpecialMoveClasses(0)=None
       SpecialMoveClasses(1)=Class'KFGame.KFSM_MeleeAttack'
       SpecialMoveClasses(2)=Class'KFGame.KFSM_DoorMeleeAttack'
-      SpecialMoveClasses(3)=Class'KFGameContent.KFSM_Hans_Grab'
-      SpecialMoveClasses(4)=Class'KFGameContent.KFSM_GrappleAttack_Hans'
+      SpecialMoveClasses(3)=Class'kfgamecontent.KFSM_Hans_Grab'
+      SpecialMoveClasses(4)=Class'kfgamecontent.KFSM_GrappleAttack_Hans'
       SpecialMoveClasses(5)=Class'KFGame.KFSM_Stumble'
       SpecialMoveClasses(6)=Class'KFGame.KFSM_RecoverFromRagdoll'
       SpecialMoveClasses(7)=Class'KFGame.KFSM_RagdollKnockdown'
@@ -1125,17 +1143,18 @@ defaultproperties
       SpecialMoveClasses(16)=None
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
-      SpecialMoveClasses(19)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(20)=Class'KFGame.KFSM_HansGrappleVictim'
-      SpecialMoveClasses(21)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
-      SpecialMoveClasses(22)=Class'KFGameContent.KFSM_Hans_WeaponSwitch'
-      SpecialMoveClasses(23)=Class'KFGameContent.KFSM_Hans_ThrowGrenade'
-      SpecialMoveClasses(24)=Class'KFGameContent.KFSM_Hans_GrenadeHalfBarrage'
-      SpecialMoveClasses(25)=Class'KFGameContent.KFSM_Hans_GrenadeBarrage'
+      SpecialMoveClasses(19)=None
+      SpecialMoveClasses(20)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(21)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(22)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(23)=Class'kfgamecontent.KFSM_Hans_WeaponSwitch'
+      SpecialMoveClasses(24)=Class'kfgamecontent.KFSM_Hans_ThrowGrenade'
+      SpecialMoveClasses(25)=Class'kfgamecontent.KFSM_Hans_GrenadeHalfBarrage'
+      SpecialMoveClasses(26)=Class'kfgamecontent.KFSM_Hans_GrenadeBarrage'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_ZedHansBase:SpecialMoveHandler_0'
    End Object
-   SpecialMoveHandler=KFSpecialMoveHandler'KFGameContent.Default__KFPawn_ZedHans:SpecialMoveHandler_0'
+   SpecialMoveHandler=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedHans:SpecialMoveHandler_0'
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent_1 Archetype=AkComponent'KFGame.Default__KFPawn_ZedHansBase:AmbientAkSoundComponent_1'
       BoneName="Spine1"
       bStopWhenOwnerDestroyed=True
@@ -1155,7 +1174,7 @@ defaultproperties
       Name="WeaponAmbientEchoHandler_0"
       ObjectArchetype=KFWeaponAmbientEchoHandler'KFGame.Default__KFPawn_ZedHansBase:WeaponAmbientEchoHandler_0'
    End Object
-   WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'KFGameContent.Default__KFPawn_ZedHans:WeaponAmbientEchoHandler_0'
+   WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'kfgamecontent.Default__KFPawn_ZedHans:WeaponAmbientEchoHandler_0'
    Begin Object Class=AkComponent Name=FootstepAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_ZedHansBase:FootstepAkSoundComponent'
       BoneName="Root"
       bStopWhenOwnerDestroyed=True

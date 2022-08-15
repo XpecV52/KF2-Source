@@ -9,10 +9,9 @@ class KFPawn_ZedFleshpound extends KFPawn_Monster
     config(Game)
     hidecategories(Navigation);
 
+var AkEvent RageStartSound;
+var AkEvent RageStopSound;
 var repnotify bool bIsEnraged;
-var protected const float FootstepCameraShakeInnerRadius;
-var protected const float FootstepCameraShakeOuterRadius;
-var CameraShake FootstepCameraShake;
 var LinearColor DefaultGlowColor;
 var LinearColor EnragedGlowColor;
 var() LinearColor DeadGlowColor;
@@ -33,7 +32,7 @@ simulated event PreBeginPlay()
     super.PreBeginPlay();
     if((WorldInfo.NetMode != NM_DedicatedServer) && Mesh != none)
     {
-        SetEnraged(false);
+        SetGameplayMICParams();
     }
 }
 
@@ -70,15 +69,6 @@ function OnStackingAfflictionChanged(byte Id)
 }
 
 simulated function StartSteering();
-
-simulated event PlayFootStepSound(int FootDown)
-{
-    super(KFPawn).PlayFootStepSound(FootDown);
-    if((MyKFAIC != none) && MyKFAIC.IsDoingLatentMove())
-    {
-        Class'Camera'.static.PlayWorldCameraShake(FootstepCameraShake, self, Location, FootstepCameraShakeInnerRadius, FootstepCameraShakeOuterRadius, 1.3, true);
-    }
-}
 
 function SetSprinting(bool bNewSprintStatus)
 {
@@ -138,6 +128,10 @@ simulated event bool IsEnraged()
 
 simulated function SetEnraged(bool bNewEnraged)
 {
+    if((Role == ROLE_Authority) && bNewEnraged == bIsEnraged)
+    {
+        return;
+    }
     if(Role == ROLE_Authority)
     {
         bIsEnraged = bNewEnraged;
@@ -145,6 +139,14 @@ simulated function SetEnraged(bool bNewEnraged)
     }
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
+        if(bNewEnraged)
+        {
+            PostAkEvent(RageStartSound, true, true);            
+        }
+        else
+        {
+            PostAkEvent(RageStopSound, true, true);
+        }
         SetGameplayMICParams();
     }
 }
@@ -182,7 +184,6 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
         SetEnraged(false);
-        UpdateBattlePhaseLights();
     }
 }
 
@@ -244,15 +245,6 @@ static function int GetTraderAdviceID()
 
 defaultproperties
 {
-    FootstepCameraShakeInnerRadius=200
-    FootstepCameraShakeOuterRadius=800
-    begin object name=FootstepCameraShake0 class=CameraShake
-        bSingleInstance=true
-        OscillationDuration=0.3
-        RotOscillation=(Pitch=(Amplitude=120,Frequency=60),Roll=(Amplitude=60,Frequency=40))
-    object end
-    // Reference: CameraShake'Default__KFPawn_ZedFleshpound.FootstepCameraShake0'
-    FootstepCameraShake=FootstepCameraShake0
     DefaultGlowColor=(R=1,G=0.35,B=0,A=1)
     EnragedGlowColor=(R=1,G=0,B=0,A=1)
     DeadGlowColor=(R=0,G=0,B=0,A=1)
@@ -284,7 +276,7 @@ defaultproperties
     MinSpawnSquadSizeType=ESquadType.EST_Large
     begin object name=MeleeHelper class=KFMeleeHelperAI
         BaseDamage=55
-        MyDamageType=Class'KFGame.KFDT_Bludgeon'
+        MyDamageType=Class'KFDT_Bludgeon_Fleshpound'
         MomentumTransfer=100000
         MaxHitRange=250
     object end
@@ -300,6 +292,15 @@ defaultproperties
     ZedBumpDamageScale=0
     BumpFrequency=0.1
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
+    FootstepCameraShakeInnerRadius=200
+    FootstepCameraShakeOuterRadius=800
+    begin object name=FootstepCameraShake0 class=CameraShake
+        bSingleInstance=true
+        OscillationDuration=0.3
+        RotOscillation=(Pitch=(Amplitude=120,Frequency=60),Roll=(Amplitude=60,Frequency=40))
+    object end
+    // Reference: CameraShake'Default__KFPawn_ZedFleshpound.FootstepCameraShake0'
+    FootstepCameraShake=FootstepCameraShake0
     PawnAnimInfo=KFPawnAnimInfo'ZED_Fleshpound_ANIM.Fleshpound_AnimGroup'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
@@ -333,7 +334,7 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedFleshpound.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedFleshpound.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedFleshpound.DialogAkSoundComponent'
-    DamageRecoveryTimeHeavy=0.35
+    DamageRecoveryTimeHeavy=0.25
     DamageRecoveryTimeMedium=0.09
     Mass=200
     GroundSpeed=260

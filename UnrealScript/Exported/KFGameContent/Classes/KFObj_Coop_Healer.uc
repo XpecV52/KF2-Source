@@ -48,65 +48,6 @@ class KFObj_Coop_Healer extends KFObj_Coop;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -417,5 +358,5 @@ defaultproperties
    ObjExpReward=200
    ObjWorldTex=Texture2D'UI_Objective_Tex.UI_Obj_Healing_Loc'
    Name="Default__KFObj_Coop_Healer"
-   ObjectArchetype=KFObj_Coop'KFGameContent.Default__KFObj_Coop'
+   ObjectArchetype=KFObj_Coop'kfgamecontent.Default__KFObj_Coop'
 }

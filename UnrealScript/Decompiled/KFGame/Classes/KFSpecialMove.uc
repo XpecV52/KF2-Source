@@ -34,6 +34,7 @@ var bool bDisableAIAttackRangeChecks;
 var bool bDisableSteering;
 var const bool bDisableTurnInPlace;
 var const bool bDisablePhysics;
+var bool bAllowFireAnims;
 var float AITimeout;
 var AICommand_PushedBySM AICommand;
 var class<AICommand_PushedBySM> DefaultAICommandClass;

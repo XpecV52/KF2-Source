@@ -46,65 +46,6 @@ class KFDT_Slashing_KatanaHeavy extends KFDT_Slashing_Katana
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -149,5 +90,5 @@ defaultproperties
    KDamageImpulse=300.000000
    KDeathUpKick=400.000000
    Name="Default__KFDT_Slashing_KatanaHeavy"
-   ObjectArchetype=KFDT_Slashing_Katana'KFGameContent.Default__KFDT_Slashing_Katana'
+   ObjectArchetype=KFDT_Slashing_Katana'kfgamecontent.Default__KFDT_Slashing_Katana'
 }

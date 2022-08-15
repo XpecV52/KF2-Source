@@ -31,8 +31,8 @@ var()			SpotLightComponent LightTemplate;
 var transient	SpotLightComponent Light;
 
 /** Light Cone Mesh*/
-var()		  SkeletalMesh				LightConeMesh;
-var transient KFSkeletalMeshComponent	LightConeMeshComp;
+var()		  StaticMesh			LightConeMesh;
+var 	  	  StaticMeshComponent	LightConeMeshComp;
 
 /** Mesh attachment (always visible) */
 var()		  StaticMesh			AttachmentMesh;
@@ -44,6 +44,12 @@ var() name FlashlightSocketName;
 /** Create/Attach flashlight components */
 function AttachFlashlight(SkeletalMeshComponent Mesh, optional name SocketNameOverride)
 {
+	if ( OwnerMesh != None && OwnerMesh != Mesh )
+	{
+		return; // unsupported attachment
+	}
+	OwnerMesh = Mesh;
+
 	// Allow code to override attachment socket
 	if ( SocketNameOverride != '' )
 	{
@@ -54,33 +60,45 @@ function AttachFlashlight(SkeletalMeshComponent Mesh, optional name SocketNameOv
 	// if/when the flashlight is turned on for the first time
 	if ( AttachmentMesh != None )
 	{
-		AttachmentMeshComp = new(self) class'StaticMeshComponent';
-		AttachmentMeshComp.SetStaticMesh(AttachmentMesh);
-		Mesh.AttachComponentToSocket(AttachmentMeshComp, FlashlightSocketName);
+		if ( AttachmentMeshComp == None )
+		{
+			AttachmentMeshComp = new(self) class'StaticMeshComponent';
+			AttachmentMeshComp.CastShadow = FALSE;
+			AttachmentMeshComp.SetStaticMesh(AttachmentMesh);
+		}
+		else
+		{
+			// Cleanup previous attachment.  For example, during customization mesh swap the
+			// link to parent is lost, but the child link is retained for some reason.
+			Mesh.DetachComponent(AttachmentMeshComp);
+		}
+		AttachFlashlightComponent(Mesh, AttachmentMeshComp);
+
+		if ( IsOwnerFirstPerson() )
+		{
+			SetFirstPersonVisibility(true);
+		}
 	}
 
-	OwnerMesh = Mesh;
+	SetLightingChannels(Mesh.LightingChannels);
 }
 
 /** Remove/Detach flashlight components */
-function DetachFlashlight(SkeletalMeshComponent Mesh)
+function DetachFlashlight()
 {
-	if ( Mesh != None )
+	if ( Light != none )
 	{
-		if ( Light != none )
-		{
-			Mesh.DetachComponent(Light);
-		}
+		Light.DetachFromAny();
+	}
 
-		if ( LightConeMeshComp != none )
-		{
-			Mesh.DetachComponent(LightConeMeshComp);
-		}
+	if ( LightConeMeshComp != none )
+	{
+		LightConeMeshComp.DetachFromAny();
+	}
 
-		if ( AttachmentMeshComp != None )
-		{
-			Mesh.DetachComponent(AttachmentMeshComp);
-		}
+	if ( AttachmentMeshComp != None )
+	{
+		AttachmentMeshComp.DetachFromAny();
 	}
 }
 
@@ -89,7 +107,7 @@ function SetEnabled(bool bNewEnabled)
 {
 	if ( bNewEnabled && !bLightInitialized )
 	{
-		InitializeLight(OwnerMesh);
+		InitializeLight();
 	}
 
 	if ( Light != None )
@@ -99,48 +117,114 @@ function SetEnabled(bool bNewEnabled)
 
 	if ( LightConeMeshComp != None )
 	{
-		LightConeMeshComp.SetHidden(!bNewEnabled);
+		LightConeMeshComp.SetHidden(!bNewEnabled || IsOwnerFirstPerson());
 	}
 
 	bEnabled = bNewEnabled;
 }
 
-/** Called once the first time the last is activated.  Seperated from AttachFlashlight and the AttachmentMesh */
-private function InitializeLight(SkeletalMeshComponent Mesh)
+/** Called once the first time the light is activated.  Seperated from AttachFlashlight and the AttachmentMesh */
+private function InitializeLight()
 {
-	if ( Mesh == None )
+	if ( OwnerMesh == None )
 	{
 		LogInternal("Invalid mesh for flashlight"@self);
 		return;
-	}
+	}	
 
 	if ( Light == None && LightTemplate != None )
 	{
 		Light = new(self) Class'SpotLightComponent' (LightTemplate);
-		OwnerMesh.AttachComponentToSocket(Light, FlashlightSocketName);
+		AttachFlashlightComponent(OwnerMesh, Light);
 	}
 
 	if ( LightConeMesh != None )
 	{
-		LightConeMeshComp.SetSkeletalMesh(LightConeMesh);
-		OwnerMesh.AttachComponentToSocket(LightConeMeshComp, FlashlightSocketName);
-
-		// If attaching to a mesh with a custom FOV
-		if (OwnerMesh.IsA('KFSkeletalMeshComponent'))
-		{
-			SetFOV( KFSkeletalMeshComponent(OwnerMesh).FOV );
-		}
+		LightConeMeshComp.SetStaticMesh(LightConeMesh);		
+		AttachFlashlightComponent(OwnerMesh, LightConeMeshComp);
 	}
-	
+
 	bLightInitialized = true;
+
+	if ( IsOwnerFirstPerson() )
+	{
+		SetFirstPersonVisibility(true);
+	}
 }
 
-/** Allows us to update FOV whenever we want (e.g. when transitioning to iron sights with the flashlight on)*/
-simulated function SetFOV( float NewFOV )
+/** attachment helper */
+private function AttachFlashlightComponent(SkeletalMeshComponent ParentMesh, ActorComponent Attachment)
 {
-	if( LightConeMeshComp != none )
+	ParentMesh.AttachComponentToSocket(Attachment, FlashlightSocketName);
+}
+
+/** attachment helper */
+private function bool IsOwnerFirstPerson()
+{
+	local Pawn P;
+	P = Pawn(OwnerMesh.Outer);
+	return (P != None) ? P.IsFirstPerson() : false;
+}
+
+/** Cleanup */
+simulated function OwnerDied()
+{
+	if ( bEnabled )
 	{
-		LightConeMeshComp.SetFOV( NewFOV );
+		SetEnabled(false);
+	}
+
+	// make sure SpotLightComponent is removed (in case of 1st person camera attachment)
+	if ( Light != None )
+	{
+		Light.DetachFromAny();
+	}
+}
+
+/** Special handling for components attached to character mesh while in 1st person */
+simulated function SetFirstPersonVisibility(bool bFirstPerson)
+{
+	local KFPawn P;
+
+	if ( bLightInitialized )
+	{
+		P = KFPawn(OwnerMesh.Outer);
+		if ( Light != None && P != None )
+		{
+			if ( bFirstPerson )
+			{
+				if( P.Controller != none && PlayerController(P.Controller) != none && PlayerController(P.Controller).PlayerCamera != none )
+				{
+					PlayerController(P.Controller).PlayerCamera.AttachComponent(Light);
+				}
+
+				//Light.SetTranslation(vect(0, -100, -50));
+			}
+			else
+			{
+				AttachFlashlightComponent(P.Mesh, Light);
+				//Light.SetTranslation(vect(0, 0, 0));
+			}
+		}
+
+		if ( LightConeMeshComp != None )
+		{
+			LightConeMeshComp.SetHidden(!bEnabled || bFirstPerson);
+		}
+	}
+
+	if ( AttachmentMeshComp != None )
+	{
+		AttachmentMeshComp.SetHidden(bFirstPerson);
+	}
+}
+
+/** Set the lighting channels on all the appropriate pawn meshes */
+simulated function SetLightingChannels(const out LightingChannelContainer NewLightingChannels)
+{
+	if ( AttachmentMeshComp != None )
+	{
+		AttachmentMeshComp.SetLightingChannels(NewLightingChannels);
 	}
 }
 
@@ -166,6 +250,13 @@ defaultproperties
       ObjectArchetype=SpotLightComponent'Engine.Default__SpotLightComponent'
    End Object
    LightTemplate=FlashLightTemplate_0
+   Begin Object Class=StaticMeshComponent Name=LightConeComp_0
+      ReplacementPrimitive=None
+      CastShadow=False
+      Name="LightConeComp_0"
+      ObjectArchetype=StaticMeshComponent'Engine.Default__StaticMeshComponent'
+   End Object
+   LightConeMeshComp=LightConeComp_0
    FlashlightSocketName="FlashLight"
    Name="Default__KFFlashlightAttachment"
    ObjectArchetype=Object'Core.Default__Object'

@@ -11,15 +11,6 @@ class KFPawn_Human extends KFPawn
     config(Game)
     hidecategories(Navigation);
 
-enum ECustomizationOption
-{
-    CO_Character,
-    CO_Head,
-    CO_Body,
-    CO_Attachment,
-    CO_MAX
-};
-
 struct native DialogResponseInfo
 {
     var KFPawn Speaker;
@@ -45,11 +36,14 @@ var byte Armor;
 var byte IntegrityLevel_High;
 var byte IntegrityLevel_Medium;
 var byte IntegrityLevel_Low;
+var repnotify const int WeaponSkinItemId;
 var array<name> DeathFaceAnims;
 var globalconfig float BloodPoolDelay;
 var float PainSoundChanceOnHit;
 var float PainSoundCoolDown;
 var float PainSoundLastPlayedTime;
+var transient KFFlashlightAttachment FlashLight;
+var const KFFlashlightAttachment FlashLightTemplate;
 var repnotify bool bFlashlightOn;
 var repnotify bool bHasSupportSafeguardBuff;
 var repnotify bool bHasSupportBarrageBuff;
@@ -91,7 +85,8 @@ replication
 {
      if(bNetDirty)
         Armor, MaxArmor, 
-        bMovesFastInZedTime, bObjectivePlayer;
+        WeaponSkinItemId, bMovesFastInZedTime, 
+        bObjectivePlayer;
 
      if(bNetDirty && !bNetOwner || bDemoRecording)
         CurrentWeaponState, bFlashlightOn;
@@ -110,7 +105,7 @@ simulated event Tick(float DeltaTime)
     {
         if(Health < HealthMax)
         {
-            NewSpeedPenalty = Lerp(0.3, 0, FMin(float(Health) / float(100), 1));            
+            NewSpeedPenalty = Lerp(0.15, 0, FMin(float(Health) / float(100), 1));            
         }
         else
         {
@@ -160,6 +155,12 @@ simulated event ReplicatedEvent(name VarName)
         case 'CurrentWeaponState':
             WeaponStateChanged(CurrentWeaponState, true);
             break;
+        case 'WeaponSkinItemId':
+            if((WeaponAttachment != none) && WeaponSkinItemId > 0)
+            {
+                WeaponAttachment.SetWeaponSkin(WeaponSkinItemId);
+            }
+            break;
         case 'bFlashlightOn':
             SetFlashlight(bFlashlightOn, false);
             break;
@@ -192,7 +193,27 @@ simulated event Destroyed()
         PlayerPartyInfo.SetVisible(false);
         PlayerPartyInfo.Close();
     }
+    if(FlashLight != none)
+    {
+        FlashLight.DetachFlashlight();
+    }
     super.Destroyed();
+}
+
+simulated function SetCharacterArch(KFCharacterInfoBase Info)
+{
+    super.SetCharacterArch(Info);
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        if((FlashLight == none) && FlashLightTemplate != none)
+        {
+            FlashLight = new (self) Class'KFFlashlightAttachment' (FlashLightTemplate);
+        }
+        if(FlashLight != none)
+        {
+            FlashLight.AttachFlashlight(Mesh);
+        }
+    }
 }
 
 function AddDefaultInventory()
@@ -221,10 +242,6 @@ simulated function PlayWeaponSwitch(Weapon OldWeapon, Weapon NewWeapon)
         {
             KFGameInfo(WorldInfo.Game).DialogManager.PlaySwitchToFavoriteWeaponDialog(self);
         }
-    }
-    if(bFlashlightOn)
-    {
-        SetFlashlight(false, false);
     }
 }
 
@@ -471,6 +488,8 @@ simulated function PlayTakeHitEffects(Vector HitDirection, Vector HitLocation)
 {
     local KFPlayerController KFPC;
     local class<KFDamageType> dmgType;
+    local name HitBoneName, RBBoneName;
+    local int HitZoneIndex;
 
     dmgType = HitFxInfo.DamageType;
     if(IsLocallyControlled() && !Controller.bGodMode)
@@ -498,6 +517,53 @@ simulated function PlayTakeHitEffects(Vector HitDirection, Vector HitLocation)
         }
     }
     super.PlayTakeHitEffects(HitDirection, HitLocation);
+    if(dmgType != none)
+    {
+        if(bTearOff && !bPlayedDeath)
+        {
+            PlayDying(HitDamageType, TakeHitLocation);
+        }
+        if(bPlayedDeath)
+        {
+            HitZoneIndex = HitFxInfo.HitBoneIndex;
+            if(HitZoneIndex != 255)
+            {
+                HitBoneName = HitZones[HitZoneIndex].BoneName;
+            }
+            if(HitBoneName != 'None')
+            {
+                RBBoneName = GetRBBoneFromBoneName(HitBoneName);
+            }
+            ApplyRagdollImpulse(dmgType, HitLocation, HitDirection, RBBoneName, 1);
+        }
+    }
+}
+
+simulated event RigidBodyCollision(PrimitiveComponent HitComponent, PrimitiveComponent OtherComponent, const out CollisionImpactData RigidCollisionData, int ContactIndex)
+{
+    local int I;
+    local KFGoreManager GoreManager;
+    local RigidBodyContactInfo ContactInfo;
+
+    GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
+    if((GoreManager != none) && (WorldInfo.TimeSeconds - LastGibCollisionTime) > GoreManager.GetTimeBetweenGibBloodSplats())
+    {
+        LastGibCollisionTime = WorldInfo.TimeSeconds;
+        if(((OtherComponent != none) && OtherComponent.Owner != none) && !OtherComponent.Owner.IsA('KFPawn'))
+        {
+            SoundGroupArch.PlayRigidBodyCollisionSound(self, RigidCollisionData.ContactInfos[ContactIndex].ContactPosition);
+            I = 0;
+            J0x18C:
+
+            if(I < RigidCollisionData.ContactInfos.Length)
+            {
+                ContactInfo = RigidCollisionData.ContactInfos[I];
+                GoreManager.LeaveAPersistentBloodSplat(ContactInfo.ContactPosition, -ContactInfo.ContactNormal);
+                ++ I;
+                goto J0x18C;
+            }
+        }
+    }
 }
 
 simulated function PlayDamageInstigatorHitEffects(KFPawn Victim)
@@ -531,6 +597,15 @@ simulated function AddBattleBlood(float InBattleBloodIncrementvalue)
 }
 
 simulated function SetNightVisionLight(bool bEnabled);
+
+simulated function TerminateEffectsOnDeath()
+{
+    super.TerminateEffectsOnDeath();
+    if(FlashLight != none)
+    {
+        FlashLight.OwnerDied();
+    }
+}
 
 simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 {
@@ -861,69 +936,6 @@ function AddHealerToObjective(Controller Healer)
     }
 }
 
-simulated function UpdateCustomizationOption(KFPawn_Human.ECustomizationOption CustomizationOption, byte MeshIndex, byte SkinIndex, optional int AttachmentIndex)
-{
-    local string CharArchPath;
-    local KFPlayerReplicationInfo KFPRI;
-
-    KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
-    if(KFPRI == none)
-    {
-        return;
-    }
-    switch(CustomizationOption)
-    {
-        case 1:
-            CharacterArch.SetHeadMeshAndSkin(MeshIndex, SkinIndex, self, KFPRI);
-            break;
-        case 2:
-            CharacterArch.SetBodyMeshAndSkin(MeshIndex, SkinIndex, self, KFPRI);
-            CharacterArch.SetArmsMeshAndSkin(MeshIndex, SkinIndex, self, KFPRI);
-            break;
-        case 3:
-            if(MeshIndex == 255)
-            {
-                CharacterArch.ClearAllAttachments(self, KFPRI);                
-            }
-            else
-            {
-                CharacterArch.SetAttachmentMeshAndSkin(MeshIndex, SkinIndex, self, KFPRI);
-            }
-            break;
-        default:
-            break;
-    }
-    CharArchPath = PathName(KFPRI.CharacterArchetypes[KFPRI.RepCustomizationInfo.CharacterIndex]);
-    KFPRI.SaveCharacterConfig(CharArchPath);
-    if(Role < ROLE_Authority)
-    {
-        KFPRI.InitializeCharacter(KFPRI.StoredCharIndex);
-    }
-}
-
-simulated function UpdateCustomizationChar(KFCharacterInfo_Human InCharArch)
-{
-    if(InCharArch != CharacterArch)
-    {
-        SetCharacterArch(InCharArch);        
-    }
-    else
-    {
-        if(WorldInfo.NetMode != NM_DedicatedServer)
-        {
-            SetCharacterMeshFromArch();
-        }
-    }
-}
-
-simulated function SetCharacterMeshFromArch()
-{
-    local KFPlayerReplicationInfo KFPRI;
-
-    KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
-    CharacterArch.SetCharacterMeshFromArch(self, KFPRI);
-}
-
 delegate OnFinishedDialog(const out DialogResponseInfo ResponseInfo);
 
 function HandleDialogResponse()
@@ -1085,13 +1097,10 @@ simulated function ToggleFlashlight()
 {
     local bool bIsEnabled;
 
-    if(IsLocallyControlled())
+    if(IsLocallyControlled() && !bPlayedDeath)
     {
-        if((MyKFWeapon != none) && MyKFWeapon.bHasFlashlight)
-        {
-            bIsEnabled = (MyKFWeapon.FlashLight != none) && MyKFWeapon.FlashLight.bEnabled;
-            SetFlashlight(!bIsEnabled, true);
-        }
+        bIsEnabled = (FlashLight != none) && FlashLight.bEnabled;
+        SetFlashlight(!bIsEnabled, true);
     }
 }
 
@@ -1102,18 +1111,11 @@ simulated function SetFlashlight(bool bEnabled, optional bool bReplicate)
     {
         return;
     }
-    if(IsLocallyControlled())
+    if(!bPlayedDeath)
     {
-        MyKFWeapon.FlashLight.SetEnabled(bEnabled);        
+        FlashLight.SetEnabled(bEnabled);
     }
-    else
-    {
-        if(WeaponAttachment != none)
-        {
-            WeaponAttachment.SetThirdPersonFlashlight(bFlashlightOn);
-        }
-    }
-    if(bReplicate && Role < ROLE_Authority)
+    if(bReplicate && Role == ROLE_AutonomousProxy)
     {
         ServerSetFlashlight(bFlashlightOn);
     }
@@ -1143,6 +1145,24 @@ simulated event NotifyOutOfBattery()
         {
             SetFlashlight(false, true);
         }
+    }
+}
+
+simulated function SetFirstPersonVisibility(bool bWeaponVisible)
+{
+    super.SetFirstPersonVisibility(bWeaponVisible);
+    if(FlashLight != none)
+    {
+        FlashLight.SetFirstPersonVisibility(bWeaponVisible);
+    }
+}
+
+simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingChannels)
+{
+    super.SetMeshLightingChannels(NewLightingChannels);
+    if(FlashLight != none)
+    {
+        FlashLight.SetLightingChannels(NewLightingChannels);
     }
 }
 
@@ -1243,6 +1263,18 @@ defaultproperties
     BloodPoolDelay=2
     PainSoundChanceOnHit=1
     PainSoundCoolDown=1
+    begin object name=FlashLight class=KFFlashlightAttachment
+        LightTemplate=SpotLightComponent'Default__KFPawn_Human.FlashLight.FlashLightTemplate'
+        LightConeMesh=StaticMesh'wep_flashlights_mesh.WEP_3P_Lightcone'
+        begin object name=LightConeComp class=StaticMeshComponent
+            ReplacementPrimitive=none
+        object end
+        // Reference: StaticMeshComponent'Default__KFPawn_Human.FlashLight.LightConeComp'
+        LightConeMeshComp=LightConeComp
+        AttachmentMesh=StaticMesh'wep_flashlights_mesh.PlayerLight_MESH'
+    object end
+    // Reference: KFFlashlightAttachment'Default__KFPawn_Human.FlashLight'
+    FlashLightTemplate=FlashLight
     BatteryDrainRate=2
     BatteryRechargeRate=4
     BatteryCharge=100

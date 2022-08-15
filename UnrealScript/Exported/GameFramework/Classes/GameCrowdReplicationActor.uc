@@ -73,6 +73,7 @@ auto state ReceivingReplication
 defaultproperties
 {
    RemoteRole=ROLE_SimulatedProxy
+   CollisionType=COLLIDE_CustomDefault
    TickGroup=TG_DuringAsyncWork
    bAlwaysRelevant=True
    bReplicateMovement=False

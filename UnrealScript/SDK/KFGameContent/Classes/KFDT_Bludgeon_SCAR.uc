@@ -14,5 +14,5 @@ class KFDT_Bludgeon_SCAR extends KFDT_Bludgeon_RifleButt
 DefaultProperties
 {
 	//defaults
-	AARWeaponID=`AAR_SCAR
+	WeaponDef=class'KFWeapDef_SCAR'
 }

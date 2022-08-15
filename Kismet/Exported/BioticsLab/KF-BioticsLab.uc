@@ -1305,8 +1305,8 @@ Begin Object Class=InterpData Name=InterpData_16
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_10
       Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_1
-         EventTrack(0)=(Time=0.720581,EventName="spray_1")
-         EventTrack(1)=(Time=20.455196,EventName="spray_2")
+         EventTrack(0)=(Time=0.720581,EventName="Spray_1")
+         EventTrack(1)=(Time=20.455196,EventName="Spray_2")
          Name="InterpTrackEvent_1"
          ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
       End Object
@@ -1833,9 +1833,9 @@ Begin Object Class=InterpData Name=InterpData_17
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_17
       Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_2
-         EventTrack(0)=(Time=4.952572,EventName="spray_1")
-         EventTrack(1)=(Time=19.713131,EventName="spray_2")
-         EventTrack(2)=(Time=31.521580,EventName="spray_3")
+         EventTrack(0)=(Time=4.952572,EventName="Spray_1")
+         EventTrack(1)=(Time=19.713131,EventName="Spray_2")
+         EventTrack(2)=(Time=31.521580,EventName="Spray_3")
          Name="InterpTrackEvent_2"
          ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
       End Object

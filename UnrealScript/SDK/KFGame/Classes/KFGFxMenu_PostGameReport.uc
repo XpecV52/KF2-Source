@@ -19,6 +19,7 @@ var localized string WaveString;
 var localized string XPString;
 var localized string VictoryString;
 var localized string DefeatString;
+var localized string ItemDropTitleString;
 
 var KFGFxPostGameContainer_PlayerStats 		PlayerStatsContainer;
 var KFGFxPostGameContainer_MapVote 			MapVoteContainer;
@@ -26,13 +27,28 @@ var KFGFxPostGameContainer_TeamAwards 		TeamAwardsContainer;
 var KFGFxPostGameContainer_PlayerXP			playerXPContainer;
 var KFGFxHUD_ChatBoxWidget 					ChatBoxWidget;
 
+var OnlineSubsystem OnlineSub;
+
 var int LastNextMapTimeRemaining;
 
 var array<KFPlayerReplicationInfo> CurrentPlayerList, TalkerPRIs;
 
 function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 {
+	local KFGameReplicationInfo KFGRI;
+
 	super.InitializeMenu( InManager );
+
+	KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
+
+	if(KFGRI != none)
+	{
+		KFGRI.ProcessChanceDrop();
+	}	
+	OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
+
+	OnlineSub.AddOnInventoryReadCompleteDelegate(SearchInventoryForNewItem);
+
 	LocalizeText();
 	SetPlayerInfo();
 	SetSumarryInfo();
@@ -59,6 +75,8 @@ function LocalizeText()
 	TextObject.SetString("xp", 			XPString);
 	TextObject.SetString("teamAwards", 	TeamAwardsString);
 
+	TextObject.SetString("dropTitle", 	ItemDropTitleString);
+
 	if(WI != none &&  WI.NetMode != NM_Standalone )
     {
         if(WI.GRI != none)
@@ -69,6 +87,51 @@ function LocalizeText()
     }
 
 	SetObject("localizedText", TextObject);
+}
+
+function SearchInventoryForNewItem()
+{
+	local int ItemIndex, InventoryIndex;
+	local CurrentInventoryEntry TempInventoryDetailsHolder;
+	local ItemProperties TempItemDetailsHolder;
+	
+
+	ItemIndex = INDEX_NONE;
+	InventoryIndex = INDEX_NONE;
+
+	//check inventory for item dropped
+	if(OnlineSub == none)
+	{
+		return;
+	}
+
+	InventoryIndex = OnlineSub.CurrentInventory.Find('NewlyAdded', 1);
+
+	if(InventoryIndex != INDEX_NONE)
+	{
+		TempInventoryDetailsHolder = OnlineSub.CurrentInventory[InventoryIndex];
+	}
+
+	ItemIndex = OnlineSub.ItemPropertiesList.Find('Definition', TempInventoryDetailsHolder.Definition);
+
+	if(ItemIndex != INDEX_NONE)
+	{
+		TempItemDetailsHolder = OnlineSub.ItemPropertiesList[ItemIndex];	
+		OnItemRecieved(TempItemDetailsHolder.Name, "img://"$TempItemDetailsHolder.IconURL);
+	}	
+}
+
+
+function OnItemRecieved(string ItemName, string IconPath)
+{
+	local GFxObject ItemObject;
+
+	ItemObject = CreateObject("Object");
+
+	ItemObject.SetString("itemName", ItemName);
+	ItemObject.SetString("iconImage", IconPath);
+
+	SetObject("itemDrop", ItemObject);
 }
 
 function SetSumarryInfo()
@@ -217,7 +280,18 @@ function  string FormatTime(int TimeInSeconds)
 
 function OnOpen()
 {
-	
+	if(OnlineSub != none)
+	{
+		OnlineSub.AddOnInventoryReadCompleteDelegate(SearchInventoryForNewItem);
+	}
+}
+
+function OnClose()
+{
+	if(OnlineSub != none)
+	{
+		OnlineSub.ClearOnInventoryReadCompleteDelegate(SearchInventoryForNewItem);
+	}
 }
 
 /** Ties the GFxClikWidget variables to the .swf components and handles events */

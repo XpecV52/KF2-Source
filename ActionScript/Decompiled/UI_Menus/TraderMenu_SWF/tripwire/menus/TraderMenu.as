@@ -38,6 +38,12 @@ package tripwire.menus
         
         private const UNSELECTED_ALPHA = 0.5;
         
+        private var _selectedMenuIndex:int = 0;
+        
+        private const PlayerInventory = 0;
+        
+        private const StoreContainer = 1;
+        
         public function TraderMenu()
         {
             super();
@@ -58,6 +64,32 @@ package tripwire.menus
                 this.shopContainer.deselectContainer();
                 this.playerInventoryContainer.selectContainer();
             }
+        }
+        
+        public function set selectedMenuIndex(param1:int) : void
+        {
+            this._selectedMenuIndex = param1;
+            switch(this._selectedMenuIndex)
+            {
+                case this.PlayerInventory:
+                    this.shopContainer.deselectContainer();
+                    this.shopContainer.filterContainer.deselectContainer();
+                    this.shopContainer.leaveList();
+                    this.playerInventoryContainer.selectContainer();
+                    this.setSelectedContainer(false,true);
+                    this.itemDetailsContainer.visible = false;
+                    break;
+                case this.StoreContainer:
+                    this.playerInventoryContainer.deselectContainer();
+                    this.shopContainer.selectContainer();
+                    this.setSelectedContainer(true,false);
+                    this.itemDetailsContainer.visible = false;
+            }
+        }
+        
+        public function get selectedMenuIndex() : int
+        {
+            return this._selectedMenuIndex;
         }
         
         public function set exitMenuString(param1:String) : void
@@ -84,25 +116,32 @@ package tripwire.menus
         
         protected function handleControllerInput(param1:InputEvent) : void
         {
-            super.handleInput(param1);
             var _loc2_:InputDetails = param1.details;
+            if(!bOpen)
+            {
+                return;
+            }
             if(_loc2_.value == InputValue.KEY_DOWN)
             {
                 switch(param1.details.navEquivalent)
                 {
-                    case NavigationCode.GAMEPAD_L2:
-                        this.playerInventoryContainer.deselectContainer();
-                        this.shopContainer.selectContainer();
-                        this.setSelectedContainer(true,false);
-                        this.itemDetailsContainer.visible = false;
+                    case NavigationCode.LEFT:
+                        if(this._selectedMenuIndex < this.StoreContainer && this.playerInventoryContainer.changePerkButton.focused != 1 && !this.playerInventoryContainer.playerInfoContainer.perkListContainer.bOpen)
+                        {
+                            this.selectedMenuIndex += 1;
+                        }
                         break;
-                    case NavigationCode.GAMEPAD_R2:
-                        this.shopContainer.deselectContainer();
-                        this.shopContainer.filterContainer.deselectContainer();
-                        this.shopContainer.leaveList();
-                        this.playerInventoryContainer.selectContainer();
-                        this.setSelectedContainer(false,true);
-                        this.itemDetailsContainer.visible = false;
+                    case NavigationCode.GAMEPAD_B:
+                        if(!this.playerInventoryContainer.playerInfoContainer.perkListContainer.bOpen)
+                        {
+                            ExternalInterface.call("Callback_Close");
+                        }
+                        break;
+                    case NavigationCode.RIGHT:
+                        if(this._selectedMenuIndex > this.PlayerInventory)
+                        {
+                            this.selectedMenuIndex = this.selectedMenuIndex - 1;
+                        }
                         break;
                     case NavigationCode.GAMEPAD_R3:
                         if(this.itemDetailsContainer.visible)
@@ -151,6 +190,7 @@ package tripwire.menus
                 this.playerInventoryContainer.closeContainer();
             }
             this.playerInventoryContainer.bCanUseMenu = false;
+            mouseEnabled = mouseChildren = false;
             super.closeContainer();
         }
         
@@ -159,6 +199,8 @@ package tripwire.menus
             super.onOpened(param1);
             this.playerInventoryContainer.bCanUseMenu = true;
             this.exitButton.addEventListener(ButtonEvent.PRESS,this.exitMenu,false,0,true);
+            mouseEnabled = mouseChildren = true;
+            stage.addEventListener(InputEvent.INPUT,this.handleControllerInput,false,0,true);
         }
         
         override protected function onClosed(param1:TweenEvent = null) : void
@@ -166,6 +208,7 @@ package tripwire.menus
             super.onClosed(param1);
             this.playerInventoryContainer.bCanUseMenu = false;
             this.exitButton.removeEventListener(ButtonEvent.PRESS,this.exitMenu);
+            stage.removeEventListener(InputEvent.INPUT,this.handleControllerInput);
         }
         
         override protected function openAnimation() : *

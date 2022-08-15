@@ -18,8 +18,7 @@ defaultproperties
 	InventoryGroup=IG_Primary
 	GroupPriority=75
 	InventorySize=6
-	UITexture=Texture2D'WEP_UI_M79_TEX.UI_WeaponSelect_M79'
-	FilterTypeUI=FT_Explosive
+	WeaponSelectTexture=Texture2D'WEP_UI_M79_TEX.UI_WeaponSelect_M79'
 
     // FOV
 	MeshIronSightFOV=52
@@ -100,9 +99,6 @@ defaultproperties
 	// Attachments
 	bHasIronSights=true
 	bHasFlashlight=false
-
-	// Trader
-    EffectiveRange=100
 
 	AssociatedPerkClass=class'KFPerk_Demolitionist'
 }

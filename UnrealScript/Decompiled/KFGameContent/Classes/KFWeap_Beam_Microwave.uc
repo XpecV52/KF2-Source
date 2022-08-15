@@ -221,9 +221,7 @@ defaultproperties
     PSC_EndSpray=FlameEndSpray0
     MinAmmoConsumed=3
     FireModeIconPaths=/* Array type was not detected. */
-    FilterTypeUI=EFilterTypeUI.FT_Flame
     InventorySize=9
-    EffectiveRange=12
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -234,14 +232,15 @@ defaultproperties
     DOF_FG_FocalRadius=150
     DOF_FG_MaxNearBlurSize=1
     GroupPriority=100
-    UITexture=Texture2D'WEP_UI_Microwave_Gun_TEX.UI_WeaponSelect_MicrowaveGun'
+    WeaponSelectTexture=Texture2D'WEP_UI_Microwave_Gun_TEX.UI_WeaponSelect_MicrowaveGun'
     MagazineCapacity=100
     MaxSpareAmmo=300
     InitialSpareMags=1
-    AmmoPickupScale=0.25
+    AmmoPickupScale=0.4
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */
     FireSightedAnims=/* Array type was not detected. */
+    BonesToLockOnEmpty=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */
     WeaponFireLoopEndSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
@@ -273,7 +272,6 @@ defaultproperties
     FireOffset=(X=30,Y=4.5,Z=-5)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
         SkeletalMesh=SkeletalMesh'WEP_1P_Microwave_Gun_MESH.Wep_1stP_Microwave_Gun_Rig'
-        AnimTreeTemplate=AnimTree'WEP_1p_Microwave_Gun_ANIM.1P_Microwave_Gun_Animtree'
         AnimSets(0)=AnimSet'WEP_1p_Microwave_Gun_ANIM.WEP_1p_Microwave_Gun_ANIM'
         ReplacementPrimitive=none
     object end

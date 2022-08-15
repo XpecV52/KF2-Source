@@ -34,14 +34,16 @@ var float KFFontScale;
 // @todo Find a way to reset a options section
 var const float DefaultGammaMult;
 
-var config float MusicVolumeMultiplier, SFxVolumeMultiplier;
+var config float MusicVolumeMultiplier, SFxVolumeMultiplier, DialogVolumeMultiplier, MasterVolumeMultiplier;
 var config float GammaMultiplier;	// a value between 0-1 that scales the gamma to a value between .5 and 3
 
 var config bool  bMusicVocalsEnabled;
 var config bool  bMinimalChatter;
-
-var config bool  bShowCrossHair;
 var config float FOVOptionsPercentageValue;
+
+var private config bool bShowCrossHair;
+/** Crossair for console builds (default on).  No config since it won't save */
+var private bool 		bShowCrossHairConsole;
 
 /** Whether to mute the game if focus is lost. */
 var config bool bMuteOnLossOfFocus;
@@ -182,6 +184,34 @@ static function float GetKFFontScale()
 	return default.KFFontScale;
 }
 
+/** Get value of crosshair option */
+static function bool IsCrosshairEnabled()
+{
+	if ( Class'WorldInfo'.Static.IsConsoleBuild() )
+	{
+		return default.bShowCrossHairConsole;
+	}
+	else
+	{
+		return default.bShowCrossHair;
+	}
+}
+
+/** Set value of crosshair option */
+static function SetCrosshairEnabled(bool bEnable)
+{
+	if ( Class'WorldInfo'.Static.IsConsoleBuild() )
+	{
+		default.bShowCrossHair = bEnable;
+		//Class'KFGameEngine'.static.StaticSaveConfig();
+	}
+	else
+	{
+		default.bShowCrossHair = bEnable;
+		StaticSaveConfig();
+	}
+}
+
 /**
  * Helper function that will return an enum value representative of the actual error that occurred
  * We have to do this by comparing the localized connection error message to what we know exists in the localization files
@@ -192,11 +222,11 @@ static function float GetKFFontScale()
  */
 static function EConnectionError GetConnectionErrorForMessage(out string Message, out string Title)
 {
-	if(Message == Localize("AccessControl", "NeedPassword", "Engine")) {
+	if(Message == "<Strings:Engine.AccessControl.NeedPassword>") {
 		return CE_NeedPassword;
 	}
 
-	if(Message == Localize("AccessControl", "WrongPassword", "Engine")) {
+	if(Message == "<Strings:Engine.AccessControl.WrongPassword>") {
 		return CE_WrongPassword;
 	}
 
@@ -262,9 +292,12 @@ defaultproperties
    KFCanvasFont=Font'UI_Canvas_Fonts.Font_General'
    KFFontScale=0.280000
    DefaultGammaMult=0.680000
-   MusicVolumeMultiplier=35.000000
+   MusicVolumeMultiplier=50.000000
    SFxVolumeMultiplier=100.000000
+   DialogVolumeMultiplier=100.000000
+   MasterVolumeMultiplier=100.000000
    GammaMultiplier=0.680000
+   bShowCrossHairConsole=True
    bMuteOnLossOfFocus=True
    FOVOptionsPercentageValue=1.000000
    Name="Default__KFGameEngine"

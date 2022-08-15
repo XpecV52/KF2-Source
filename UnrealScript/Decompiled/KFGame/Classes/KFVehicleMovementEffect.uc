@@ -51,4 +51,5 @@ defaultproperties
     object end
     // Reference: StaticMeshComponent'Default__KFVehicleMovementEffect.AerialMesh'
     Components(0)=AerialMesh
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
 }

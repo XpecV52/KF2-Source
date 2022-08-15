@@ -10,6 +10,8 @@ class KFGFxOptionsMenu_Audio extends KFGFxObject_Menu within GFxMoviePlayer;
 var const localized string SectionNameString;
 var const localized string OptionsString;
 var const localized string AudioString;
+var const localized string DialogVolumeString;
+var const localized string MasterVolumeString;
 var const localized string MusicString;
 var const localized string SFxString;
 var const localized string VOIPVolumeString;
@@ -33,6 +35,8 @@ function LocalizeText()
     LocalizedObject.SetString("sectionName", SectionNameString);
     LocalizedObject.SetString("options", OptionsString);
     LocalizedObject.SetString("header", AudioString);
+    LocalizedObject.SetString("master", MasterVolumeString);
+    LocalizedObject.SetString("dialog", DialogVolumeString);
     LocalizedObject.SetString("music", MusicString);
     LocalizedObject.SetString("sFx", SFxString);
     LocalizedObject.SetString("voipVolume", VOIPVolumeString);
@@ -51,6 +55,8 @@ function InitValues()
     Class'KFGameEngine'.static.GetVoIPVolumeRange(VoIPMin, VoIPMax, VoIPCurrent);
     SetVoIPMinMax(VoIPMin, VoIPMax);
     SetFloat("voipVolume", VoIPCurrent);
+    SetFloat("masterVolume", Class'KFGameEngine'.default.MasterVolumeMultiplier);
+    SetFloat("dialogVolume", Class'KFGameEngine'.default.DialogVolumeMultiplier);
     SetFloat("musicVolume", Class'KFGameEngine'.default.MusicVolumeMultiplier);
     SetFloat("sFxVolume", Class'KFGameEngine'.default.SFxVolumeMultiplier);
     SetBool("vocalsEnabled", Class'KFGameEngine'.default.bMusicVocalsEnabled);
@@ -76,7 +82,7 @@ function SaveConfigValues()
 
 function Callback_CloseMenu()
 {
-    Manager.OpenMenu(3);
+    Manager.OpenMenu(5);
 }
 
 function Callback_ConfigureMicPress()
@@ -118,6 +124,27 @@ function Callback_ConfigureVocals(bool bEnabled)
     KFGameEngine(Class'Engine'.static.GetEngine()).bMusicVocalsEnabled = bEnabled;
 }
 
+function Callback_MasterVolumeChanged(float NewVolume)
+{
+    local float MasterVolumeMultiplier;
+
+    MasterVolumeMultiplier = NewVolume;
+    Class'KFGameEngine'.static.SetWWiseMasterVolume(MasterVolumeMultiplier);
+    Class'KFGameEngine'.default.MasterVolumeMultiplier = MasterVolumeMultiplier;
+    KFGameEngine(Class'Engine'.static.GetEngine()).MasterVolumeMultiplier = MasterVolumeMultiplier;
+}
+
+function Callback_DialogVolumeChanged(float NewVolume)
+{
+    local float DialogVolumeMultiplier;
+
+    DialogVolumeMultiplier = NewVolume;
+    Class'KFGameEngine'.static.SetWWiseVoiceVolume(DialogVolumeMultiplier);
+    Outer.GetPC().SetAudioGroupVolume('Voice', DialogVolumeMultiplier / float(100));
+    Class'KFGameEngine'.default.DialogVolumeMultiplier = DialogVolumeMultiplier;
+    KFGameEngine(Class'Engine'.static.GetEngine()).DialogVolumeMultiplier = DialogVolumeMultiplier;
+}
+
 function Callback_MusicVolumeChanged(float NewVolume)
 {
     local float MusicVolumeMultiplier;
@@ -150,8 +177,10 @@ defaultproperties
     SectionNameString="VOLUME"
     OptionsString="OPTIONS"
     AudioString="AUDIO OPTIONS"
+    DialogVolumeString="Dialog Volume"
+    MasterVolumeString="Master Volume"
     MusicString="In-Game Music Volume"
-    SFxString="Game Volume"
+    SFxString="SFX Volume"
     VOIPVolumeString="Voice Chat Receive Volume"
     ConfigureMicString="CONFIGURE MICROPHONE"
     VocalsString="Music Vocals"

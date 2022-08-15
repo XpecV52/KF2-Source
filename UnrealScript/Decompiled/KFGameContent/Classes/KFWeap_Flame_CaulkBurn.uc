@@ -82,9 +82,7 @@ defaultproperties
     PSC_EndSpray=FlameEndSpray0
     MinAmmoConsumed=4
     FireModeIconPaths=/* Array type was not detected. */
-    FilterTypeUI=EFilterTypeUI.FT_Flame
     InventorySize=6
-    EffectiveRange=15
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -93,7 +91,7 @@ defaultproperties
     DOF_FG_FocalRadius=150
     DOF_FG_MaxNearBlurSize=2
     GroupPriority=25
-    UITexture=Texture2D'WEP_UI_CaulkBurn_TEX.UI_WeaponSelect_CaulkNBurn'
+    WeaponSelectTexture=Texture2D'WEP_UI_CaulkBurn_TEX.UI_WeaponSelect_CaulkNBurn'
     MagazineCapacity=50
     MaxSpareAmmo=250
     InitialSpareMags=3

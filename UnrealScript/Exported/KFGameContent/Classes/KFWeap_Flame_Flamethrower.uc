@@ -187,9 +187,7 @@ defaultproperties
    MinAmmoConsumed=4
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Flamethrower'
    FireModeIconPaths(1)=()
-   FilterTypeUI=FT_Flame
    InventorySize=8
-   EffectiveRange=17
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -199,11 +197,11 @@ defaultproperties
    DOF_FG_FocalRadius=150.000000
    DOF_FG_MaxNearBlurSize=1.000000
    GroupPriority=75.000000
-   UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Flamethrower'
+   WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Flamethrower'
    MagazineCapacity(0)=100
    MaxSpareAmmo(0)=300
    InitialSpareMags(0)=1
-   AmmoPickupScale(0)=0.200000
+   AmmoPickupScale(0)=0.400000
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
    FireSightedAnims(0)="Shoot"
@@ -221,7 +219,7 @@ defaultproperties
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_FlameBase:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_Flame_Flamethrower:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Flame_Flamethrower:MeleeHelper_0'
    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Flamethrower_ARCH.Wep_Flamethrower_MuzzleFlash'
    maxRecoilPitch=150
    minRecoilPitch=115
@@ -256,7 +254,7 @@ defaultproperties
    FireInterval(3)=()
    FireInterval(4)=()
    InstantHitDamageTypes(2)=None
-   InstantHitDamageTypes(3)=Class'KFGameContent.KFDT_Bludgeon_Flamethrower'
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_Flamethrower'
    FireOffset=(X=30.000000,Y=4.500000,Z=-5.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_FlameBase:FirstPersonMesh'
       SkeletalMesh=SkeletalMesh'WEP_1P_Flamethrower_MESH.Wep_1stP_Flamethrower_Rig'

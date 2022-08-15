@@ -13,7 +13,6 @@ class KFProj_EMPGrenade extends KFProj_Grenade
 
 defaultproperties
 {
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_EMPGrenade'
     LandedTranslationOffset=(X=2)
 
 	ProjFlightTemplate=ParticleSystem'WEP_3P_EMP_EMIT.FX_EMP_Grenade_Mesh'

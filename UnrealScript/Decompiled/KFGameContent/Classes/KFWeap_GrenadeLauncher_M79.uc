@@ -13,9 +13,7 @@ defaultproperties
 {
     ForceZoomOutTime=0.3
     FireModeIconPaths=/* Array type was not detected. */
-    FilterTypeUI=EFilterTypeUI.FT_Explosive
     InventorySize=6
-    EffectiveRange=100
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -24,7 +22,7 @@ defaultproperties
     PlayerIronSightFOV=73
     FastZoomOutTime=0.2
     GroupPriority=75
-    UITexture=Texture2D'WEP_UI_M79_TEX.UI_WeaponSelect_M79'
+    WeaponSelectTexture=Texture2D'WEP_UI_M79_TEX.UI_WeaponSelect_M79'
     MagazineCapacity=1
     MaxSpareAmmo=15
     InitialSpareMags=7

@@ -22,7 +22,6 @@ defaultproperties
 	End Object
 
 	// Inventory
-	FilterTypeUI=FT_Melee
 	AssociatedPerkClass=class'KFPerk_Demolitionist'
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Knife'
+	WeaponSelectTexture=Texture2D'WEP_UI_Demo_Knife_TEX.UI_WeaponSelect_DemoKnife'
 }

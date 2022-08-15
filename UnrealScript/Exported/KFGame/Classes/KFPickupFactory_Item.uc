@@ -162,7 +162,9 @@ function GiveArmor( Pawn P )
 	{
   		ActivateNewPickup(P);
   
-  		if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Pickup$","$P.PlayerReplicationInfo.PlayerName$","$"Armor");
+		if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Pickup$","$P.PlayerReplicationInfo.PlayerName$","$"Armor");
+		if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("pickup", P.PlayerReplicationInfo, "armor");
+
 	}
 }
 
@@ -210,6 +212,8 @@ function GiveWeapon( Pawn P )
         ActivateNewPickup(P);
 
 		if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Pickup$","$P.PlayerReplicationInfo.PlayerName$","$InventoryClass);
+		if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("pickup", P.PlayerReplicationInfo, InventoryClass);
+
 	}
 }
 

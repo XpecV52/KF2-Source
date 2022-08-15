@@ -5,7 +5,7 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFWeap_DualBase extends KFWeapon
+class KFWeap_DualBase extends KFWeap_PistolBase
     native
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
@@ -25,18 +25,45 @@ var() Vector LeftFireOffset;
 var transient bool bFireFromRightWeapon;
 var class<KFWeapon> SingleClass;
 var AnimNodeBlendPerBone EmptyMagBlendNode_L;
+var array<name> BonesToLockOnEmpty_L;
+/** Anims for ironsight and alternate ironsight mode */
 var(Animations) const editconst name IdleToIronSightAnim;
+var(Animations) const editconst name IdleToIronSightAnim_Alt;
 var(Animations) const editconst name IronSightToIdleAnim;
+var(Animations) const editconst name IronSightToIdleAnim_Alt;
+var(Animations) const editconst array<editconst name> IdleSightedAnims_Alt;
+var(Animations) const editconst name FireSightedAnim_Alt;
+var(Animations) const editconst name LeftFireSightedAnim_Alt;
+var(Animations) const editconst name EquipAnimIS;
+var(Animations) const editconst name EquipAnimISAlt;
+var(Animations) const editconst name LeftFireLastAnim;
+var(Animations) const editconst name LeftFireLastSightedAnim;
+var(Animations) const editconst name FireLastSightedAnim_Alt;
+var(Animations) const editconst name LeftFireLastSightedAnim_Alt;
+var CylinderRotationInfo CylinderRotInfo_L;
 
 simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 {
     super.PostInitAnimTree(SkelComp);
     EmptyMagBlendNode_L = AnimNodeBlendPerBone(SkelComp.FindAnimNode('EmptyMagBlend_L'));
+    if((EmptyMagBlendNode_L != none) && BonesToLockOnEmpty_L.Length > 0)
+    {
+        BuildEmptyMagNodeWeightList(EmptyMagBlendNode_L, BonesToLockOnEmpty_L);
+    }
+    if(!bRevolver)
+    {
+        return;
+    }
+    CylinderRotInfo_L.Control = SkelControlSingleBone(SkelComp.FindSkelControl('CylinderControl_L'));
+    if(CylinderRotInfo_L.Control != none)
+    {
+        CylinderRotInfo_L.Control.SetSkelControlActive(true);
+    }
 }
 
 simulated function AttachMuzzleFlash()
 {
-    super.AttachMuzzleFlash();
+    super(KFWeapon).AttachMuzzleFlash();
     if(MySkelMesh != none)
     {
         if(MuzzleFlashTemplate != none)
@@ -47,6 +74,28 @@ simulated function AttachMuzzleFlash()
     }
 }
 
+simulated function name GetEquipAnimName()
+{
+    if(bIronSightOnBringUp)
+    {
+        return ((bUseAltFireMode) ? EquipAnimISAlt : EquipAnimIS);        
+    }
+    else
+    {
+        return EquipAnim;
+    }
+}
+
+simulated function name GetIdleToIronAnim()
+{
+    return ((bUseAltFireMode) ? IdleToIronSightAnim_Alt : IdleToIronSightAnim);
+}
+
+simulated function name GetIronToIdleAnim()
+{
+    return ((bUseAltFireMode) ? IronSightToIdleAnim_Alt : IronSightToIdleAnim);
+}
+
 simulated function name GetReloadAnimName(bool bTacticalReload)
 {
     if(AmmoCount[0] == 1)
@@ -55,7 +104,7 @@ simulated function name GetReloadAnimName(bool bTacticalReload)
     }
     else
     {
-        return super.GetReloadAnimName(bTacticalReload);
+        return super(KFWeapon).GetReloadAnimName(bTacticalReload);
     }
 }
 
@@ -76,27 +125,87 @@ simulated function IncrementFlashCount()
     }
 }
 
+simulated function bool ShouldPlayFireLast(byte FireModeNum)
+{
+    if(bHasFireLastAnims)
+    {
+        if(bFireFromRightWeapon)
+        {
+            if(((!bAllowClientAmmoTracking && Role < ROLE_Authority) && AmmoCount[GetAmmoType(FireModeNum)] <= 2) || (bAllowClientAmmoTracking || Role == ROLE_Authority) && AmmoCount[GetAmmoType(FireModeNum)] == 1)
+            {
+                return true;
+            }            
+        }
+        else
+        {
+            if(((!bAllowClientAmmoTracking && Role < ROLE_Authority) && AmmoCount[GetAmmoType(FireModeNum)] <= 1) || (bAllowClientAmmoTracking || Role == ROLE_Authority) && AmmoCount[GetAmmoType(FireModeNum)] == 0)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 simulated function name GetWeaponFireAnim(byte FireModeNum)
 {
+    local bool bPlayFireLast;
+
+    bPlayFireLast = ShouldPlayFireLast(FireModeNum);
     if(bFireFromRightWeapon)
     {
-        return super.GetWeaponFireAnim(FireModeNum);        
+        if(bUsingSights)
+        {
+            if(bPlayFireLast)
+            {
+                return ((bUseAltFireMode) ? FireLastSightedAnim_Alt : FireLastSightedAnim);                
+            }
+            else
+            {
+                return ((bUseAltFireMode) ? FireSightedAnim_Alt : FireSightedAnims[Rand(LeftFireSightedAnims.Length)]);
+            }            
+        }
+        else
+        {
+            if(bPlayFireLast)
+            {
+                return FireLastAnim;                
+            }
+            else
+            {
+                return FireAnim;
+            }
+        }        
     }
     else
     {
-        return GetLeftWeaponFireAnim(FireModeNum);
+        return GetLeftWeaponFireAnim(FireModeNum, bPlayFireLast);
     }
 }
 
-simulated function name GetLeftWeaponFireAnim(byte FireModeNum)
+simulated function name GetLeftWeaponFireAnim(byte FireModeNum, bool bPlayFireLast)
 {
     if(bUsingSights)
     {
-        return LeftFireSightedAnims[Rand(LeftFireSightedAnims.Length)];        
+        if(bPlayFireLast)
+        {
+            return ((bUseAltFireMode) ? LeftFireLastSightedAnim_Alt : LeftFireLastSightedAnim);            
+        }
+        else
+        {
+            return ((bUseAltFireMode) ? LeftFireSightedAnim_Alt : LeftFireSightedAnims[Rand(LeftFireSightedAnims.Length)]);
+        }        
     }
     else
     {
-        return LeftFireAnim;
+        if(bPlayFireLast)
+        {
+            return LeftFireLastAnim;            
+        }
+        else
+        {
+            return LeftFireAnim;
+        }
     }
 }
 
@@ -104,7 +213,7 @@ simulated event Vector GetMuzzleLoc()
 {
     if(bFireFromRightWeapon)
     {
-        return super.GetMuzzleLoc();        
+        return super(KFWeapon).GetMuzzleLoc();        
     }
     else
     {
@@ -167,7 +276,7 @@ simulated function CauseMuzzleFlash(byte FireModeNum)
 
 simulated function DetachMuzzleFlash()
 {
-    super.DetachMuzzleFlash();
+    super(KFWeapon).DetachMuzzleFlash();
     if((MySkelMesh != none) && LeftMuzzleFlash != none)
     {
         LeftMuzzleFlash.DetachMuzzleFlash(MySkelMesh);
@@ -186,7 +295,7 @@ simulated event SetFOV(float NewFOV)
 
 simulated function StopFireEffects(byte FireModeNum)
 {
-    super.StopFireEffects(FireModeNum);
+    super(KFWeapon).StopFireEffects(FireModeNum);
     if(LeftMuzzleFlash != none)
     {
         LeftMuzzleFlash.StopMuzzleFlash();
@@ -202,7 +311,7 @@ function SetupDroppedPickup(out DroppedPickup P, Vector StartVelocity)
 {
     local KFWeapon NewSingle;
 
-    super.SetupDroppedPickup(P, StartVelocity);
+    super(KFWeapon).SetupDroppedPickup(P, StartVelocity);
     if((Instigator != none) && Instigator.InvManager != none)
     {
         NewSingle = KFWeapon(Instigator.InvManager.CreateInventory(SingleClass, true));
@@ -220,14 +329,15 @@ function SetupDroppedPickup(out DroppedPickup P, Vector StartVelocity)
     P.InventoryClass = SingleClass;
 }
 
-simulated function ZoomOut(bool bAnimateTransition, float ZoomTimeToGo)
+simulated function PerformReload()
 {
-    ZoomTimeToGo = MySkelMesh.GetAnimLength(IronSightToIdleAnim);
-    super.ZoomOut(bAnimateTransition, ZoomTimeToGo);
-    if(bAnimateTransition)
+    super(KFWeapon).PerformReload();
+    if(!bRevolver)
     {
-        PlayAnimation(IronSightToIdleAnim, ZoomTime, false);
+        return;
     }
+    CylinderRotInfo_L.PrevDegrees = 0;
+    CylinderRotInfo_L.NextDegrees = 0;
 }
 
 simulated function ANIMNOTIFY_LockBolt()
@@ -237,7 +347,7 @@ simulated function ANIMNOTIFY_LockBolt()
 
 simulated function ANIMNOTIFY_UnLockBolt()
 {
-    super.ANIMNOTIFY_UnLockBolt();
+    super(KFWeapon).ANIMNOTIFY_UnLockBolt();
     EmptyMagBlendNode_L.SetBlendTarget(0, 0);
 }
 
@@ -260,9 +370,162 @@ simulated function UpdateOutOfAmmoEffects(float BlendTime)
     }
 }
 
-static simulated function float CalculateTraderWeaponStatRange()
+simulated event PostInitAnimTreeRevolver(SkeletalMeshComponent SkelComp)
 {
-    return float(default.SingleClass.default.EffectiveRange);
+    super.PostInitAnimTreeRevolver(SkelComp);
+    CylinderRotInfo_L.Control = SkelControlSingleBone(SkelComp.FindSkelControl('CylinderControl'));
+    if(CylinderRotInfo_L.Control != none)
+    {
+        CylinderRotInfo_L.Control.SetSkelControlActive(true);
+    }
+}
+
+simulated function ConsumeAmmoRevolver()
+{
+    if(bFireFromRightWeapon)
+    {
+        CheckCylinderRotation(CylinderRotInfo_L);
+        CylinderRotInfo.State = 1;        
+    }
+    else
+    {
+        CheckCylinderRotation(CylinderRotInfo);
+        CylinderRotInfo_L.State = 1;
+    }
+}
+
+simulated function ANIMNOTIFY_RotateCylinder()
+{
+    if(bFireFromRightWeapon)
+    {
+        super.ANIMNOTIFY_RotateCylinder();
+        return;
+    }
+    RotateCylinder(CylinderRotInfo_L);
+}
+
+simulated function InitializeReload()
+{
+    super(KFWeapon).InitializeReload();
+    CheckCylinderRotation(CylinderRotInfo_L, true);
+}
+
+simulated function ANIMNOTIFY_ResetBulletMeshesLeft()
+{
+    ResetBulletMeshesLeft();
+}
+
+simulated function ResetCylinder()
+{
+    local int UsedStartIdx, UsedEndIdx, UsedBullets;
+
+    SetCylinderRotation(CylinderRotInfo, 0);
+    ResetCylinderInfo(CylinderRotInfo);
+    if(AmmoCount[0] <= 1)
+    {
+        return;
+    }
+    UsedStartIdx = BulletMeshComponents.Length - 2;
+    UsedBullets = FCeil(float(MagazineCapacity[0] - AmmoCount[0]) / 2);
+    UsedEndIdx = UsedStartIdx - (UsedBullets * 2);
+    RepositionUsedBullets(0, UsedStartIdx, UsedEndIdx);
+}
+
+simulated function ResetCylinderLeft()
+{
+    local int UsedStartIdx, UsedEndIdx, UsedBullets;
+
+    SetCylinderRotation(CylinderRotInfo_L, 0);
+    ResetCylinderInfo(CylinderRotInfo_L);
+    if(AmmoCount[0] <= 0)
+    {
+        return;
+    }
+    UsedStartIdx = BulletMeshComponents.Length - 1;
+    UsedBullets = FFloor(float(MagazineCapacity[0] - AmmoCount[0]) / 2);
+    UsedEndIdx = UsedStartIdx - (UsedBullets * 2);
+    RepositionUsedBullets(1, UsedStartIdx, UsedEndIdx);
+}
+
+simulated function RepositionUsedBullets(int FirstIndex, int UsedStartIdx, int UsedEndIdx)
+{
+    local int I;
+
+    BulletMeshComponents[FirstIndex].SetSkeletalMesh(UnusedBulletMeshTemplate);
+    I = UsedStartIdx;
+    J0x46:
+
+    if(I > UsedEndIdx)
+    {
+        BulletMeshComponents[I].SetSkeletalMesh(UsedBulletMeshTemplate);
+        I -= 2;
+        goto J0x46;
+    }
+    I = UsedEndIdx;
+    J0xB3:
+
+    if(I > FirstIndex)
+    {
+        BulletMeshComponents[I].SetSkeletalMesh(UnusedBulletMeshTemplate);
+        I -= 2;
+        goto J0xB3;
+    }
+}
+
+simulated function ResetBulletMeshes()
+{
+    local int I;
+
+    I = 0;
+    J0x0B:
+
+    if(I < BulletMeshComponents.Length)
+    {
+        BulletMeshComponents[I].SetSkeletalMesh(UnusedBulletMeshTemplate);
+        I += 2;
+        goto J0x0B;
+    }
+}
+
+simulated function ResetBulletMeshesLeft()
+{
+    local int I;
+
+    I = 1;
+    J0x0B:
+
+    if(I < BulletMeshComponents.Length)
+    {
+        BulletMeshComponents[I].SetSkeletalMesh(UnusedBulletMeshTemplate);
+        I += 2;
+        goto J0x0B;
+    }
+}
+
+// Export UKFWeap_DualBase::execAddAmmoToSingleOnSell(FFrame&, void* const)
+native simulated function AddAmmoToSingleOnSell(KFInventoryManager KFIM, int DefaultSingleAmmo, int TraderItemIndex);
+
+simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optional int NumHits, optional out float out_PenetrationVal, optional int ImpactNum)
+{
+    local KFPerk InstigatorPerk;
+
+    InstigatorPerk = GetPerk();
+    if(InstigatorPerk != none)
+    {
+        InstigatorPerk.UpdatePerkHeadShots(Impact, InstantHitDamageTypes[FiringMode], ImpactNum);
+    }
+    ProcessInstantHit(FiringMode, Impact, NumHits);
+}
+
+simulated function bool ShouldAutoReload(byte FireModeNum)
+{
+    return ShouldAutoReloadGunslinger(FireModeNum);
+}
+
+simulated function AltFireMode()
+{
+    super(KFWeapon).AltFireMode();
+    PlayIdleAnim();
 }
 
 simulated state Active
@@ -271,6 +534,38 @@ simulated state Active
     {
         GotoState('ActiveIronSights');
     }
+
+    simulated function PlayIdleAnim()
+    {
+        local int IdleIndex;
+
+        if(Instigator.IsFirstPerson())
+        {
+            if(bUsingSights && IdleSightedAnims.Length > 0)
+            {
+                if(bUseAltFireMode)
+                {
+                    IdleIndex = Rand(IdleSightedAnims_Alt.Length);
+                    PlayAnimation(IdleSightedAnims_Alt[IdleIndex], 0, true, 0.1);                    
+                }
+                else
+                {
+                    IdleIndex = Rand(IdleSightedAnims.Length);
+                    PlayAnimation(IdleSightedAnims[IdleIndex], 0, true, 0.1);
+                }                
+            }
+            else
+            {
+                if(IdleAnims.Length > 0)
+                {
+                    IdleIndex = Rand(IdleAnims.Length);
+                    PlayAnimation(IdleAnims[IdleIndex], 0, true, 0.2);
+                }
+            }
+            StartIdleFidgetTimer();
+            ToggleAdditiveBobAnim(!bUsingSights);
+        }
+    }
     stop;    
 }
 
@@ -278,19 +573,24 @@ simulated state ActiveIronSights extends Active
 {
     simulated function ZoomOut(bool bAnimateTransition, float ZoomTimeToGo)
     {
-        ZoomTimeToGo = MySkelMesh.GetAnimLength(IronSightToIdleAnim);
+        local name IronToIdleAnimName;
+
+        IronToIdleAnimName = GetIronToIdleAnim();
+        ZoomTimeToGo = MySkelMesh.GetAnimLength(IronToIdleAnimName);
         global.ZoomOut(true, ZoomTimeToGo);
-        PlayAnimation(IronSightToIdleAnim, ZoomTime, false);
+        PlayAnimation(IronToIdleAnimName, ZoomTime, false);
         GotoState('Active');
     }
 
     simulated function BeginState(name PreviousStateName)
     {
         local float ZoomTimeToGo;
+        local name IdleToIronAnimName;
 
-        ZoomTimeToGo = MySkelMesh.GetAnimLength(IdleToIronSightAnim);
+        IdleToIronAnimName = GetIdleToIronAnim();
+        ZoomTimeToGo = MySkelMesh.GetAnimLength(IdleToIronAnimName);
         global.ZoomIn(true, ZoomTimeToGo);
-        PlayAnimation(IdleToIronSightAnim, ZoomTime, false);
+        PlayAnimation(IdleToIronAnimName, ZoomTime, false);
     }
     stop;    
 }
@@ -311,6 +611,20 @@ simulated state Reloading
     {
         super.BeginState(PreviousStateName);
         bFireFromRightWeapon = false;
+        if(bRevolver)
+        {
+            ResetCylinderLeft();
+        }
+    }
+    stop;    
+}
+
+simulated state WeaponPuttingDown
+{
+    simulated function EndState(name NextStateName)
+    {
+        super.EndState(NextStateName);
+        CheckCylinderRotation(CylinderRotInfo_L, true);
     }
     stop;    
 }
@@ -318,13 +632,32 @@ simulated state Reloading
 defaultproperties
 {
     LeftFireAnim=Shoot_LW
-    LeftFireSightedAnims(0)=Shoot_Iron_LW
-    IdleToIronSightAnim=Idle_To_Iron
-    IronSightToIdleAnim=Iron_To_Idle
+    LeftFireSightedAnims(0)=Shoot_IronOG_LW
+    BonesToLockOnEmpty_L(0)=LW_Bolt
+    IdleToIronSightAnim=Idle_To_IronOG
+    IdleToIronSightAnim_Alt=Idle_To_Iron
+    IronSightToIdleAnim=IronOG_To_Idle
+    IronSightToIdleAnim_Alt=Iron_To_Idle
+    IdleSightedAnims_Alt(0)=Idle_Iron
+    FireSightedAnim_Alt=Shoot_Iron_RW
+    LeftFireSightedAnim_Alt=Shoot_Iron_LW
+    EquipAnimIS=Equip_IronOG
+    EquipAnimISAlt=Equip_Iron
+    LeftFireLastAnim=Shoot_LW_Last
+    LeftFireLastSightedAnim=Shoot_IronOG_LW_Last
+    FireLastSightedAnim_Alt=Shoot_Iron_RW_Last
+    LeftFireLastSightedAnim_Alt=Shoot_Iron_RW_Last
+    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
+    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
+    InventoryGroup=EInventoryGroup.IG_Primary
     bSkipZoomInRotation=true
     FireAnim=Shoot_RW
-    FireSightedAnims(0)=Shoot_Iron_RW
+    FireLastAnim=Shoot_RW_Last
+    FireSightedAnims(0)=Shoot_IronOG_RW
+    FireLastSightedAnim=Shoot_IronOG_RW_Last
+    IdleSightedAnims(0)=Idle_IronOG
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_DualBase.MeleeHelper'
+    MinUberAmmoCount=2
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
         AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Dual_Animtree_Master'
         ReplacementPrimitive=none

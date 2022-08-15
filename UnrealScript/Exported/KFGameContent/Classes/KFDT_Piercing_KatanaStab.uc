@@ -46,65 +46,6 @@ class KFDT_Piercing_KatanaStab extends KFDT_Piercing
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -125,7 +66,7 @@ class KFDT_Piercing_KatanaStab extends KFDT_Piercing
 
 defaultproperties
 {
-   AARWeaponID=2
+   WeaponDef=Class'KFGame.KFWeapDef_Katana'
    StumblePower=45
    LegStumblePower=45
    MeleeHitPower=80

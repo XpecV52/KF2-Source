@@ -11,7 +11,7 @@ class KFWeap_Knife_Firebug extends KFWeap_Edged_Knife
 
 defaultproperties
 {
-    UITexture=Texture2D'WEP_UI_Firebug_Knife_TEX.UI_WeaponSelect_FirebugKnife'
+    WeaponSelectTexture=Texture2D'WEP_UI_Firebug_Knife_TEX.UI_WeaponSelect_FirebugKnife'
     AttachmentArchetype=KFWeaponAttachment'WEP_FireBug_Knife_ARCH.Wep_FirebugKnife_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Knife_Firebug.MeleeHelper'
     AssociatedPerkClass=Class'KFGame.KFPerk_Firebug'

@@ -64,6 +64,8 @@ package tripwire.managers
         
         public var MusicNotification:MusicNotificationWidget;
         
+        public var RhythmCounter:RhythmCounterWidget;
+        
         public var sw:Number;
         
         public var sh:Number;
@@ -217,8 +219,8 @@ package tripwire.managers
             this.BossNamePlate.layoutData = new LayoutData();
             this.BossNamePlate.layoutData.alignV = "bottom";
             this.BossNamePlate.layoutData.alignH = "right";
-            this.BossNamePlate.layoutData.offsetH = 0;
-            this.BossNamePlate.layoutData.offsetV = 0;
+            this.BossNamePlate.layoutData.offsetH = -8;
+            this.BossNamePlate.layoutData.offsetV = -8;
             this.PlayerBackpackWidget.layoutData = new LayoutData();
             this.PlayerBackpackWidget.layoutData.alignV = "bottom";
             this.PlayerBackpackWidget.layoutData.alignH = "right";
@@ -269,6 +271,11 @@ package tripwire.managers
             this.MusicNotification.layoutData.alignH = "right";
             this.MusicNotification.layoutData.offsetV = 32;
             this.MusicNotification.layoutData.offsetH = -32;
+            this.RhythmCounter.layoutData = new LayoutData();
+            this.RhythmCounter.layoutData.alignV = "top";
+            this.RhythmCounter.layoutData.alignH = "center";
+            this.RhythmCounter.layoutData.offsetV = 0;
+            this.RhythmCounter.layoutData.offsetH = 0;
             this.layout = new Layout();
             this.layout.tiedToStageSize = true;
             this.layout.hidden = false;
@@ -363,6 +370,7 @@ package tripwire.managers
             this.scaleChild(this.NonCriticalGameMessageWidget);
             this.scaleChild(this.KickVoteWidget);
             this.scaleChild(this.BossNamePlate);
+            this.scaleChild(this.RhythmCounter);
         }
         
         public function scaleChild(param1:UIComponent) : void
@@ -388,6 +396,7 @@ package tripwire.managers
             this.apply3d(this.ScoreboardWidgetMC,0,0,288,"center","center");
             this.apply3d(this.NonCriticalGameMessageWidget,0,0,0,"center","center");
             this.apply3d(this.MusicNotification,0,24,0,"top","right");
+            this.apply3d(this.RhythmCounter,0,0,288,"top","center");
         }
         
         public function apply3d(param1:UIComponent, param2:Number, param3:Number, param4:Number, param5:String = "top", param6:String = "left") : void

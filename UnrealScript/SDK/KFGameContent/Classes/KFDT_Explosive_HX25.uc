@@ -29,7 +29,7 @@ defaultproperties
 
 	//Perk
 	ModifierPerkList(0)=class'KFPerk_Demolitionist'
-
-	AARWeaponID=`AAR_HX25
+	
+	WeaponDef=class'KFWeapDef_HX25'
 }
  

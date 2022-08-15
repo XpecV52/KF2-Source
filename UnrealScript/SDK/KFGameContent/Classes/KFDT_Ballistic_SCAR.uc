@@ -42,7 +42,7 @@ defaultproperties
 	LegStumblePower=42
 	GunHitPower=35
 
-	AARWeaponID=`AAR_SCAR
+	WeaponDef=class'KFWeapDef_SCAR'
 	
 	//Perk
 	ModifierPerkList(0)=class'KFPerk_Commando'

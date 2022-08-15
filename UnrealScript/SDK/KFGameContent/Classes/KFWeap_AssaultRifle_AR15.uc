@@ -132,8 +132,7 @@ defaultproperties
 	// Inventory / Grouping
 	InventorySize=4
 	GroupPriority=25
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AR15'
-	FilterTypeUI=FT_Assault
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AR15'
 
 	// DEFAULT_FIREMODE
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletBurst'
@@ -168,9 +167,6 @@ defaultproperties
 	// Attachments
 	bHasIronSights=true
 	bHasFlashlight=true
-
-	// Trader
-    EffectiveRange=60
 
 	AssociatedPerkClass=class'KFPerk_Commando'
 }

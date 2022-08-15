@@ -67,11 +67,13 @@ package tripwire.widgets
         public function chatFocusIn(param1:FocusEvent) : void
         {
             this.ChatHistory.bEnableMouseWheelScroll = true;
+            ExternalInterface.call("Callback_ChatFocusIn");
         }
         
         public function chatFocusOut(param1:FocusEvent) : void
         {
             this.ChatHistory.bEnableMouseWheelScroll = false;
+            ExternalInterface.call("Callback_ChatFocusOut");
         }
         
         public function InitializeAsPartyChat() : void

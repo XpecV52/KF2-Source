@@ -70,6 +70,7 @@ struct DialogEventInfo
         CoolDownCategory=255
 		bOnlyPlayLocally=false
         bCanBeMinimized=1
+        bCanInterruptEqualPriority=false
     }
 };
 

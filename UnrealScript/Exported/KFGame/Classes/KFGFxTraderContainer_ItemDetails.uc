@@ -115,10 +115,10 @@ function SetPlayerItemDetails(out STraderItem TraderItem, int ItemPrice)
 	ItemData.SetString("cannotBuyOrSellLabel", CannotSellString);
 	
  	ItemData.SetBool("bCanCarry", true);
- 	ItemData.SetBool("bCanBuyOrSell", TraderItem.bSellable);
- 	ItemData.SetBool("bHideStats", TraderItem.bHideStats);
+ 	ItemData.SetBool("bCanBuyOrSell", MyTraderMenu.IsSellable(TraderItem));
+ 	ItemData.SetBool("bHideStats", (TraderItem.WeaponStats.Length == 0));
  	
- 	ItemData.SetBool("bCanFavorite", TraderItem.bSellable);
+ 	ItemData.SetBool("bCanFavorite", MyTraderMenu.IsSellable(TraderItem));
 
  	SetGenericItemDetails(TraderItem, ItemData);
 }
@@ -201,7 +201,6 @@ function float GetStatMax( TraderWeaponStat Stat )
 
 function SetGenericItemDetails(out STraderItem TraderItem, out GFxObject ItemData)
 {
-	local string ItemString;
 	local KFPerk CurrentPerk;
 	local int FinalMaxSpareAmmoCount, FinalMagazineCapacity;
 
@@ -255,11 +254,9 @@ function SetGenericItemDetails(out STraderItem TraderItem, out GFxObject ItemDat
 		SetDetailsVisible("accuracy", false);
 	}
 
-	ItemString = string( TraderItem.ClassName );
-
- 	ItemData.SetString("type", Localize(ItemString, "ItemCategory", "KFGameContent"));
- 	ItemData.SetString("name", Localize(ItemString, "ItemName", "KFGameContent"));
- 	ItemData.SetString("description", Localize(ItemString, "ItemDescription", "KFGameContent"));
+ 	ItemData.SetString("type", TraderItem.WeaponDef.static.GetItemName());
+ 	ItemData.SetString("name", TraderItem.WeaponDef.static.GetItemCategory());
+ 	ItemData.SetString("description", TraderItem.WeaponDef.static.GetItemDescription());
 
 	CurrentPerk = KFPlayerController(GetPC()).CurrentPerk;
 	if( CurrentPerk != none )
@@ -285,12 +282,19 @@ function SetGenericItemDetails(out STraderItem TraderItem, out GFxObject ItemDat
  	ItemData.SetInt("ammoCapacity", FinalMaxSpareAmmoCount);
  	ItemData.SetInt("magSizeValue", FinalMagazineCapacity);
 
-	ItemData.SetInt("weight", TraderItem.BlocksRequired); 	
+	ItemData.SetInt("weight", MyTraderMenu.GetDisplayedBlocksRequiredFor(TraderItem)); 	
 
 	ItemData.SetBool("bIsFavorite", MyTraderMenu.GetIsFavorite(TraderItem.ClassName)); 	
 
- 	ItemData.SetString("texturePath", "img://"$TraderItem.TextureLocation);
- 	ItemData.SetString("perkIconPath", "img://"$TraderItem.PerkIconString);
+ 	ItemData.SetString("texturePath", "img://"$TraderItem.WeaponDef.static.GetImagePath());
+ 	if( TraderItem.AssociatedPerkClass != none )
+ 	{
+ 		ItemData.SetString("perkIconPath", "img://"$TraderItem.AssociatedPerkClass.static.GetPerkIconPath());
+	}
+	else
+	{
+		ItemData.SetString("perkIconPath", "img://"$class'KFGFxObject_TraderItems'.default.OffPerkIconPath);
+	}
 
  	SetObject("itemData", ItemData);
 }

@@ -29,52 +29,42 @@ function UpdateDetails(class<KFPerk> PerkClass)
 {
     local GFxObject DetailsProvider;
     local KFPlayerController KFPC;
-    local KFGameReplicationInfo KFGRI;
     local array<string> WeaponNames, WeaponSources;
-    local string WeaponNameStringHolder, WeaponSourceStringHolder;
     local int I;
 
     DetailsProvider = Outer.CreateObject("Object");
     KFPC = KFPlayerController(Outer.GetPC());
     if(KFPC != none)
     {
-        KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
         if(KFPC != none)
         {
             DetailsProvider.SetString("ExperienceMessage", ExperienceString @ string(KFPC.GetPerkXP(PerkClass)));
         }
-        if(KFGRI != none)
+        if(PerkClass.default.PrimaryWeaponDef != none)
         {
-            if(PerkClass.default.PrimaryWeaponClassName != "")
-            {
-                KFGRI.TraderItems.GetItemInfo(PerkClass, PerkClass.default.PrimaryWeaponClassName, WeaponNameStringHolder, WeaponSourceStringHolder);
-                AddWeaponInfo(WeaponNames, WeaponSources, WeaponNameStringHolder, WeaponSourceStringHolder);
-            }
-            if(Class'KFPerk'.default.SecondaryWeaponClassName != "")
-            {
-                KFGRI.TraderItems.GetItemInfo(PerkClass, PerkClass.default.SecondaryWeaponClassName, WeaponNameStringHolder, WeaponSourceStringHolder);
-                AddWeaponInfo(WeaponNames, WeaponSources, WeaponNameStringHolder, WeaponSourceStringHolder);
-            }
-            if(PerkClass.default.MeleeWeaponClassName != "")
-            {
-                KFGRI.TraderItems.GetItemInfo(PerkClass, PerkClass.default.MeleeWeaponClassName, WeaponNameStringHolder, WeaponSourceStringHolder);
-                AddWeaponInfo(WeaponNames, WeaponSources, WeaponNameStringHolder, WeaponSourceStringHolder);
-            }
-            if(PerkClass.default.GrenadeClassName != "")
-            {
-                KFGRI.TraderItems.GetGrenadeItemInfo(PerkClass, PerkClass.default.GrenadeClassName, WeaponNameStringHolder, WeaponSourceStringHolder);
-                AddWeaponInfo(WeaponNames, WeaponSources, WeaponNameStringHolder, WeaponSourceStringHolder);
-            }
+            AddWeaponInfo(WeaponNames, WeaponSources, PerkClass.default.PrimaryWeaponDef.GetItemName(), PerkClass.default.PrimaryWeaponDef.GetImagePath());
+        }
+        if(PerkClass.default.SecondaryWeaponDef != none)
+        {
+            AddWeaponInfo(WeaponNames, WeaponSources, PerkClass.default.SecondaryWeaponDef.GetItemName(), PerkClass.default.SecondaryWeaponDef.GetImagePath());
+        }
+        if(PerkClass.default.KnifeWeaponDef != none)
+        {
+            AddWeaponInfo(WeaponNames, WeaponSources, PerkClass.default.KnifeWeaponDef.GetItemName(), PerkClass.default.KnifeWeaponDef.GetImagePath());
+        }
+        if(PerkClass.default.GrenadeWeaponDef != none)
+        {
+            AddWeaponInfo(WeaponNames, WeaponSources, PerkClass.default.GrenadeWeaponDef.GetItemName(), PerkClass.default.GrenadeWeaponDef.GetImagePath());
         }
         I = 0;
-        J0x44B:
+        J0x396:
 
         if(I < WeaponNames.Length)
         {
             DetailsProvider.SetString("WeaponName" $ string(I), WeaponNames[I]);
             DetailsProvider.SetString("WeaponImage" $ string(I), "img://" $ WeaponSources[I]);
             ++ I;
-            goto J0x44B;
+            goto J0x396;
         }
         DetailsProvider.SetString("EXPAction1", PerkClass.default.EXPAction1);
         DetailsProvider.SetString("EXPAction2", PerkClass.default.EXPAction2);

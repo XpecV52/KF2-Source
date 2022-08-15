@@ -31,7 +31,7 @@ static function int GetDamageeDialogID()
 
 defaultproperties
 {
-	AARWeaponID=`AAR_DragonsBreath
+	WeaponDef=class'KFWeapDef_DragonsBreath'
 
 	DoT_Type=DOT_Fire
 	DoT_Duration=5.0

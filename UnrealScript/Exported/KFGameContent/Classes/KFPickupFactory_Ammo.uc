@@ -42,6 +42,7 @@ function GiveTo( Pawn P )
 		KFIM.GiveWeaponsAmmo( true );
 
 		if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Pickup$","$P.PlayerReplicationInfo.PlayerName$","$"Ammo");
+		if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ( "pickup", P.PlayerReplicationInfo, "ammo");
 	}
 
 	PickedUpBy( P );

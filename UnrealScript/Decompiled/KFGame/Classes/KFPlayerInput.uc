@@ -13,70 +13,105 @@ class KFPlayerInput extends MobilePlayerInput within KFPlayerController
 
 var config bool bRequiresPushToTalk;
 var config bool bQuickWeaponSelect;
+var transient bool bPendingIronsights;
 var bool bGamepadWeaponSelectOpen;
+var bool bShowGamepadWeaponSelectHint;
 var config bool bInvertController;
 var transient bool bExtendedSprinting;
+/** Toggles for all aim assists (friction, adhesion, lock-on) */
+var(AimAssistGlobal) config bool bAimAssistEnabled;
+/** Whether to use turn smoothing / blending or not */
+var(ViewSmoothing) bool bViewSmoothingEnabled;
 /** Whether ViewAcceleration is enabled or not */
-var() config bool bViewAccelerationEnabled;
+var(ViewAcceleration) config bool bViewAccelerationEnabled;
 var protected config bool bDebugViewAcceleration;
 /** Whether TargetFriction is enabled or not */
-var() config bool bTargetFrictionEnabled;
+var(Friction) config bool bTargetFrictionEnabled;
 var protected config bool bDebugTargetFriction;
-var protected bool bAppliedTargetFriction;
-var bool bAimTriggerPulled;
-var config float ZoomedSensitivityScalar;
+/** Whether TargetAdhesion is enabled or not */
+var(Adhesion) config bool bTargetAdhesionEnabled;
+/** Whether TargetAdhesion is enabled or not */
+var(AutoTarget) config bool bAutoTargetEnabled;
+/** @name  Force Feedback */
+var(ForceFeedback) config bool bForceFeedbackEnabled;
 var transient float PressedJumpTime;
+var transient float RawJoyMagnitude;
+var transient float RawJoyLookMagnitude;
 var config float GamepadButtonHoldTime;
 var config float SprintAnalogThreshold;
+var config float SkipCrouchAnalogThreshold;
 var config float TimeBelowThresholdToStopSprint;
 var transient float SprintTimeBelowThreshold;
-var transient float GamepadSprintPressTime;
-/** Store previous remainder of aTurn for smoothing slow rotations. */
-var() float RemainingaTurn;
-/** Store previous remainder of aLookUp for smoothing slow rotations. */
-var() float RemainingaLookUp;
-/** Multiplier used to scale the sensitivity of turning. */
-var() config float HorizontalSensitivityScale;
-/** Multiplier used to scale the sensitivity of looking up and down. */
-var() config float VerticalSensitivityScale;
-/** Threshold above when Yaw Acceleration kicks in */
-var() float ViewAccel_YawThreshold;
-var() float ViewAccel_DiagonalThreshold;
-/** How fast to start accelerating when the stick is slammed to the edge. It goes to a max of 2.0 over time */
-var() private float ViewAccel_CurrMutliplier;
-/** how long you need to hold at edge before the fast acceleration kicks in */
-var() float ViewAccel_TimeToHoldBeforeFastAcceleration;
-var private float ViewAccel_TimeHeld;
+var transient float LastGamepadSprintPressTime;
+/** Interp curve that allows for piece wise functions for the TargetFrictionDistance amount at different ranges */
+var(Sensitivity) InterpCurveFloat LookSensitivityScaleCurve;
+var(Sensitivity) InterpCurveFloat MoveSensitivityScaleCurve;
+/** Unified global scalar for joystick sensitivity */
+var(Sensitivity) config float GamepadSensitivityScale;
+/** Multiplier used to scale look sensitivity while sprinting. */
+var(Sensitivity) float SprintingSensitivityScale;
+/** Used to scale the sensitivity of the mouse based on how zoomed the player is. */
+var(Sensitivity) config float ZoomedSensitivityScale;
+/** Used to scale the sensitivity of the joystick based on how zoomed the player is. */
+var(Sensitivity) config float GamepadZoomedSensitivityScale;
+/** Max acceleration units per second (since the joystick max value is 1, setting to 1 means take 1 second to get to max turn speed if starting at 0) */
+var(ViewSmoothing) float ViewSmoothing_MaxAccel;
+/** Similar to MaxAccel. Should be larger then accel. */
+var(ViewSmoothing) float ViewSmoothing_MaxDecel;
+var transient float PrevTurn;
+var transient float PrevLookUp;
+var transient float CurrTurn;
+var transient float CurrLookUp;
+/** Joystick vector must be greater than this to trigger view acceleration (magnitude range is 0 to 1, regardless of direction) */
+var(ViewAcceleration) float ViewAccel_JoyMagThreshold;
+/** Joystick Y-value must be less than this to trigger view acceleration (Y-value range is from -1 to 1) */
+var(ViewAcceleration) float ViewAccel_JoyPitchThreshold;
+/** Max turn speed */
+var(ViewAcceleration) float ViewAccel_MaxTurnSpeed;
+/** How long to blend to max turn speed */
+var(ViewAcceleration) float ViewAccel_BlendTime;
+var transient float ViewAccel_BlendTimer;
+var float RemainingaTurn;
+var float RemainingaLookUp;
+/** How much friction reduces rotation */
+var(Friction) float FrictionScale;
 var private Pawn LastFrictionTarget;
 var private float LastFrictionTargetTime;
 var private float LastaTurn;
 var private float LastaLookUp;
 var private float LastaForward;
 var private float LastaStrafe;
-/** How fast you ramp up to the max speed */
-var() float ViewAccel_RampSpeed;
-/** Max turn speed */
-var() float ViewAccel_MaxTurnSpeed;
-/** Interp curve that allows for piece wise functions for the TargetFrictionDistance amount at different ranges */
-var() InterpCurveFloat SensitivityScaleCurve;
+/** Interp curve to scale Friction angle for different ranges */
+var(Friction) InterpCurveFloat FrictionAngleCurve;
+/** How much to scale friction when view acceleration (turn assist) is being applied */
+var(Friction) float ViewAccelerationFrictionScale;
+/** Interp curve to scale Adhesion angle for different ranges */
+var(Adhesion) InterpCurveFloat AdhesionAngleCurve;
+/** How strongly adhesion affects player view */
+var(Adhesion) float AdhesionFactor;
+var private Pawn LastAdhesionTarget;
+var transient Vector AdhesionTargetLastLoc;
+var transient Vector AdhesionPawnLastLoc;
+/** How long to auto target for when going to iron sights */
+var(AutoTarget) float AutoTargetTimeLeft;
 var Vector AutoTargetInitialLocation;
 var Pawn CurrentAutoTarget;
+var name CurrentAutoTargetBone;
 /** How fast to rotate towards autotarget location */
-var() float AutoTargetRotationRate;
+var(AutoTarget) float AutoTargetRotationRate;
 /** Interp curve to scale autotarget angle for different ranges */
-var() InterpCurveFloat AutoTargetAngleCurve;
-/** Interp curve to scale Friction angle for different ranges */
-var() InterpCurveFloat FrictionAngleCurve;
-/** Interp curve to scale Adhesion angle for different ranges */
-var() InterpCurveFloat AdhesionAngleCurve;
+var(AutoTarget) InterpCurveFloat AutoTargetAngleCurve;
+var(AutoTarget) InterpCurveFloat AutoTargetWeakspotCurve;
+/** Disallow auto-target spamming */
+var(AutoTarget) float AutoTargetCooldown;
+var transient float LastAutoTargetTime;
 /** Force rotation to within this angle when using the ForceLookAtPawn functionality */
-var() float ForceLookAtPawnMinAngle;
+var(AutoTarget) float ForceLookAtPawnMinAngle;
 /** How fast to rotate towards ForceLookAtPawn location */
-var() float ForceLookAtPawnRotationRate;
+var(AutoTarget) float ForceLookAtPawnRotationRate;
 /** How fast to rotate towards ForceLookAtPawn location dampened for closer rotation */
-var() float ForceLookAtPawnDampenedRotationRate;
+var(AutoTarget) float ForceLookAtPawnDampenedRotationRate;
 var const float DoubleTapDelay;
-var float LastLogPerkTime;
 
 // Export UKFPlayerInput::execGetKeyBindFromCommand(FFrame&, void* const)
 native function GetKeyBindFromCommand(out KeyBind MyKeyBind, string BindCommand, optional bool bAlt);
@@ -124,13 +159,6 @@ simulated function DisplayDebug(HUD HUD, out float out_YL, out float out_YPos)
         HUD.Canvas.DrawText("Raw: TotalRawStrafe: " $ string(Abs(RawJoyRight) + Abs(RawJoyUp)));
         out_YPos += out_YL;
     }
-    if(HUD.ShouldDisplayDebug('Accel'))
-    {
-        HUD.Canvas.SetDrawColor(0, 255, 0);
-        HUD.Canvas.DrawText((("ACCEL: ViewAccel_CurrMutliplier: " $ string(ViewAccel_CurrMutliplier)) $ " ViewAccel_TimeHeld: ") $ string(ViewAccel_TimeHeld));
-        out_YPos += out_YL;
-        HUD.Canvas.SetPos(4, out_YPos);
-    }
 }
 
 function ClientInitInputSystem()
@@ -166,23 +194,45 @@ function UpdatePushToTalk(bool bValue)
 exec function SetSensitivity(float F)
 {
     MouseSensitivity = F;
-    SaveConfig();
 }
 
 exec function SetZoomedSensitivity(float F)
 {
-    ZoomedSensitivityScalar = F;
-    SaveConfig();
+    ZoomedSensitivityScale = F;
+}
+
+function Engine.Actor.EDoubleClickDir CheckForDoubleClickMove(float DeltaTime)
+{
+    local int MappedOutput;
+    local float MinCurveOut, MaxCurveOut, CurveOut, CurvePct;
+
+    if(!bUsingGamepad)
+    {
+        return 0;
+    }
+    CurveOut = EvalInterpCurveFloat(MoveSensitivityScaleCurve, RawJoyMagnitude);
+    MinCurveOut = MoveSensitivityScaleCurve.Points[0].OutVal;
+    MaxCurveOut = MoveSensitivityScaleCurve.Points[MoveSensitivityScaleCurve.Points.Length - 1].OutVal;
+    CurvePct = (CurveOut - MinCurveOut) / (MaxCurveOut - MinCurveOut);
+    MappedOutput = int(float(Outer.4) - (CurvePct * float(Outer.4)));
+    return byte(MappedOutput);
 }
 
 event PlayerInput(float DeltaTime)
 {
     local float FOVScale, TimeScale;
+    local Vector RawJoyVector;
 
     RawJoyUp = aBaseY;
     RawJoyRight = aStrafe;
     RawJoyLookRight = aTurn;
     RawJoyLookUp = aLookUp;
+    RawJoyVector.X = RawJoyRight;
+    RawJoyVector.Y = RawJoyUp;
+    RawJoyMagnitude = VSize2D(RawJoyVector);
+    RawJoyVector.X = RawJoyLookRight;
+    RawJoyVector.Y = RawJoyLookUp;
+    RawJoyLookMagnitude = VSize2D(RawJoyVector);
     DeltaTime /= Outer.WorldInfo.TimeDilation;
     if(Outer.bDemoOwner && Outer.WorldInfo.NetMode == NM_Client)
     {
@@ -306,7 +356,7 @@ function AdjustMouseSensitivity(float FOVScale)
         }
         if((UsedFOVAngle != Outer.DefaultFOV) && bUsingSights)
         {
-            FOVScale = (UsedFOVAngle * 0.01333) * ZoomedSensitivityScalar;            
+            FOVScale = (UsedFOVAngle * 0.01333) * ZoomedSensitivityScale;            
         }
         else
         {
@@ -365,7 +415,7 @@ exec function GamepadSprint()
 {
     Outer.bRun = 0;
     bExtendedSprinting = false;
-    GamepadSprintPressTime = Outer.WorldInfo.TimeSeconds;
+    LastGamepadSprintPressTime = Outer.WorldInfo.TimeSeconds;
     GamepadSprintTimer();
     if(Outer.bRun == 0)
     {
@@ -375,7 +425,7 @@ exec function GamepadSprint()
 
 function GamepadSprintTimer()
 {
-    if(IsDirectingJoyStick(0.3))
+    if(IsDirectingJoyStick(SkipCrouchAnalogThreshold))
     {
         Outer.bRun = 1;
         Outer.ClearTimer('GamepadSprintTimer', self);
@@ -384,14 +434,14 @@ function GamepadSprintTimer()
 
 exec function GamepadSprintRelease()
 {
-    if(IsDirectingJoyStick(0.3))
+    if(IsDirectingJoyStick(SkipCrouchAnalogThreshold))
     {
         bExtendedSprinting = true;
         SprintTimeBelowThreshold = 0;        
     }
     else
     {
-        if((Outer.bRun == 0) && (Outer.WorldInfo.TimeSeconds - GamepadSprintPressTime) < GamepadButtonHoldTime)
+        if((Outer.bRun == 0) && (Outer.WorldInfo.TimeSeconds - LastGamepadSprintPressTime) < GamepadButtonHoldTime)
         {
             ToggleCrouch();
         }
@@ -457,6 +507,10 @@ simulated exec function IronSights(optional bool bHoldButtonMode)
 {
     local KFWeapon KFW;
 
+    if(bHoldButtonMode)
+    {
+        bPendingIronsights = true;
+    }
     if(Outer.Pawn != none)
     {
         KFW = KFWeapon(Outer.Pawn.Weapon);
@@ -471,6 +525,10 @@ simulated exec function IronSightsRelease(optional bool bHoldButtonMode)
 {
     local KFWeapon KFW;
 
+    if(bHoldButtonMode)
+    {
+        bPendingIronsights = false;
+    }
     if(Outer.Pawn != none)
     {
         KFW = KFWeapon(Outer.Pawn.Weapon);
@@ -503,23 +561,24 @@ simulated exec function ToggleFlashlight()
         }
         else
         {
-            ToggleActualFlashLight(KFP);
+            KFP.ToggleFlashlight();
+            PlayFlashlightNVSounds(KFP, bPerkHasNightVision);
         }
-    }
-    if(KFP != none)
-    {
-        PlayFlashlightNVSounds(KFP, bPerkHasNightVision);
     }
 }
 
 simulated function ToggleNightVIsion(KFPawn_Human KFP)
 {
+    local bool bPerkHasNightVision;
+
+    bPerkHasNightVision = Outer.GetPerk().HasNightVision();
     if(!Outer.bNightVisionActive && !KFP.bFlashlightOn)
     {
         if(Outer.IsTimerActive('NightVisionTimer', self))
         {
             Outer.ClearTimer('NightVisionTimer', self);
-            ToggleActualFlashLight(KFP);            
+            KFP.ToggleFlashlight();
+            PlayFlashlightNVSounds(KFP, bPerkHasNightVision);            
         }
         else
         {
@@ -534,7 +593,8 @@ simulated function ToggleNightVIsion(KFPawn_Human KFP)
             {
                 Outer.ClearTimer('NightVisionTimer', self);
                 Outer.SetNightVision(!Outer.bNightVisionActive);
-                ToggleActualFlashLight(KFP);                
+                PlayFlashlightNVSounds(KFP, bPerkHasNightVision);
+                KFP.ToggleFlashlight();                
             }
             else
             {
@@ -545,31 +605,37 @@ simulated function ToggleNightVIsion(KFPawn_Human KFP)
         {
             if(KFP.bFlashlightOn)
             {
-                ToggleActualFlashLight(KFP);
+                PlayFlashlightNVSounds(KFP, bPerkHasNightVision);
+                KFP.ToggleFlashlight();
             }
         }
     }
 }
 
-simulated function ToggleActualFlashLight(KFPawn_Human KFP)
-{
-    ((KFP.MyKFWeapon.bHasFlashlight) ? KFP.ToggleFlashlight() : KFInventoryManager(Outer.Pawn.InvManager).SwitchToPrimaryFlashLightWeapon());
-}
-
 simulated function NightVisionTimer()
 {
-    Outer.SetNightVision(!Outer.bNightVisionActive);
+    local KFPawn_Human KFP;
+
+    KFP = KFPawn_Human(Outer.Pawn);
+    if(KFP != none)
+    {
+        Outer.SetNightVision(!Outer.bNightVisionActive);
+        PlayFlashlightNVSounds(KFP, Outer.GetPerk().HasNightVision());
+    }
 }
 
 simulated function PlayFlashlightNVSounds(KFPawn_Human KFP, bool bPerkHasNightVision)
 {
     if(bPerkHasNightVision && !KFP.bFlashlightOn)
     {
-        ((Outer.bNightVisionActive) ? KFP.PlaySoundBase(Outer.NightVisionOffEvent) : KFP.PlaySoundBase(Outer.NightVisionOnEvent));        
+        ((Outer.bNightVisionActive) ? KFP.PlaySoundBase(Outer.NightVisionOnEvent) : KFP.PlaySoundBase(Outer.NightVisionOffEvent));        
     }
     else
     {
-        ((KFP.bFlashlightOn) ? KFP.PlaySoundBase(Outer.FlashlightOnEvent) : KFP.PlaySoundBase(Outer.FlashlightOffEvent));
+        if(!Outer.bNightVisionActive)
+        {
+            ((KFP.bFlashlightOn) ? KFP.PlaySoundBase(Outer.FlashlightOnEvent) : KFP.PlaySoundBase(Outer.FlashlightOffEvent));
+        }
     }
 }
 
@@ -607,6 +673,29 @@ exec function ReloadRelease()
     }
 }
 
+exec function GamepadReload()
+{
+    Outer.SetTimer(GamepadButtonHoldTime, false, 'GamepadReloadTimer', self);
+}
+
+function GamepadReloadTimer()
+{
+    QuickHeal();
+}
+
+exec function GamepadReloadRelease()
+{
+    if(Outer.IsTimerActive('GamepadReloadTimer', self))
+    {
+        if(Outer.Pawn != none)
+        {
+            Outer.Pawn.StartFire(2);
+            Outer.Pawn.StopFire(2);
+        }
+        Outer.ClearTimer('GamepadReloadTimer', self);
+    }
+}
+
 exec function Grenade()
 {
     if(Outer.Pawn != none)
@@ -620,6 +709,27 @@ exec function GrenadeRelease()
     if(Outer.Pawn != none)
     {
         Outer.Pawn.StopFire(4);
+    }
+}
+
+exec function GamepadGrenade()
+{
+    local Weapon W;
+
+    if(Outer.Pawn != none)
+    {
+        if(bGamepadWeaponSelectOpen)
+        {
+            W = Outer.MyGFxHUD.WeaponSelectWidget.GetSelectedWeapon();
+            if(W != none)
+            {
+                Outer.ServerThrowOtherWeapon(W);
+            }            
+        }
+        else
+        {
+            Grenade();
+        }
     }
 }
 
@@ -701,6 +811,27 @@ exec function SelectPrevWeapon()
     }
 }
 
+exec function SelectLastWeapon()
+{
+    local KFInventoryManager KFIM;
+    local KFWeapon KFW;
+
+    if(Outer.Pawn != none)
+    {
+        KFW = KFWeapon(Outer.Pawn.Weapon);
+        if((KFW != none) && !KFW.CanSwitchWeapons())
+        {
+            return;
+        }
+        KFIM = KFInventoryManager(Outer.Pawn.InvManager);
+        if(KFIM != none)
+        {
+            KFIM.SwitchToLastWeapon();
+            KFIM.ShowAllHUDGroups();
+        }
+    }
+}
+
 exec function GamepadWeaponSelect()
 {
     local KFWeapon KFW;
@@ -733,7 +864,11 @@ exec function ReleaseGamepadWeaponSelect()
         {
             if(Outer.IsTimerActive('GamepadWeaponMenuTimer', self))
             {
-                Outer.NextWeapon();
+                if(bShowGamepadWeaponSelectHint)
+                {
+                    Outer.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 2);
+                }
+                KFInventoryManager(Outer.Pawn.InvManager).GamePadNextWeapon();
                 Outer.ClearTimer('GamepadWeaponMenuTimer', self);                
             }
             else
@@ -742,6 +877,7 @@ exec function ReleaseGamepadWeaponSelect()
                 KFIM.SetCurrentWeapon(KFIM.PendingWeapon);
             }
         }
+        bShowGamepadWeaponSelectHint = false;
     }
 }
 
@@ -847,7 +983,7 @@ exec function GamepadDpadLeft()
         }
         else
         {
-            ToggleFlashlight();
+            ShowVoiceComms();
         }
     }
 }
@@ -866,7 +1002,7 @@ exec function GamepadDpadDown()
         }
         else
         {
-            QuickHeal();
+            ToggleFlashlight();
         }
     }
 }
@@ -890,11 +1026,15 @@ exec function GamepadDpadRight()
     }
 }
 
-exec function GamepadDpadRightRelease()
+exec function GamepadDpadUp()
 {
-    if(!bGamepadWeaponSelectOpen)
+    if(bGamepadWeaponSelectOpen)
     {
-        HideVoiceComms();
+        SwitchWeaponGroup(3);        
+    }
+    else
+    {
+        TossMoney();
     }
 }
 
@@ -913,38 +1053,6 @@ exec function HideVoiceComms()
         Outer.SetCinematicMode(false, false, false, false, true, false);
         Outer.MyGFxHUD.ShowVoiceComms(false);
     }
-}
-
-exec function GamepadDpadUp()
-{
-    if(bGamepadWeaponSelectOpen)
-    {
-        SwitchWeaponGroup(3);        
-    }
-    else
-    {
-        Outer.SetTimer(GamepadButtonHoldTime, false, 'GamepadDpadUpTimer', self);
-    }
-}
-
-exec function GamepadDpadUpRelease()
-{
-    local bool bButtonWasHeld;
-
-    if(!bGamepadWeaponSelectOpen)
-    {
-        bButtonWasHeld = !Outer.IsTimerActive('GamepadDpadUpTimer', self);
-        if(!bButtonWasHeld)
-        {
-            TossMoney();
-            Outer.ClearTimer('GamepadDpadUpTimer', self);
-        }
-    }
-}
-
-function GamepadDpadUpTimer()
-{
-    Outer.ThrowWeapon();
 }
 
 exec function OnVoteYesPressed()
@@ -1024,18 +1132,13 @@ exec function StopVoiceChat()
     }
 }
 
-simulated event PostBeginPlay()
-{
-    ViewAccel_CurrMutliplier = 1;
-}
-
 function PreProcessInput(float DeltaTime)
 {
     local KFWeapon KFW;
-    local float FOVScale;
+    local float FOVScale, ScaledJoyMagnitude;
 
     super(PlayerInput).PreProcessInput(DeltaTime);
-    if(Outer.Pawn == none)
+    if((Outer.Pawn == none) || Outer.Pawn.Weapon == none)
     {
         return;
     }
@@ -1043,23 +1146,7 @@ function PreProcessInput(float DeltaTime)
     {
         return;
     }
-    if((Outer.Pawn == none) || Outer.Pawn.Weapon == none)
-    {
-        return;
-    }
     KFW = KFWeapon(Outer.Pawn.Weapon);
-    if(!bAimTriggerPulled && aLeftAnalogTrigger > 0.99)
-    {
-        bAimTriggerPulled = true;
-        Outer.NewAutoTarget();        
-    }
-    else
-    {
-        if(bAimTriggerPulled && aLeftAnalogTrigger <= 0.9)
-        {
-            bAimTriggerPulled = false;
-        }
-    }
     if(KFW.ShouldOwnerWalk())
     {
         Outer.bRun = 0;
@@ -1072,25 +1159,44 @@ function PreProcessInput(float DeltaTime)
             UpdateExtendedSprint(DeltaTime);
         }
     }
-    if(bViewAccelerationEnabled)
+    CurrTurn = 0;
+    CurrLookUp = 0;
+    if(RawJoyLookMagnitude > 0)
     {
-        ApplyViewAcceleration(DeltaTime);
+        ScaledJoyMagnitude = EvalInterpCurveFloat(LookSensitivityScaleCurve, Abs(RawJoyLookMagnitude));
+        CurrTurn = ScaledJoyMagnitude * (RawJoyLookRight / RawJoyLookMagnitude);
+        CurrLookUp = ScaledJoyMagnitude * (RawJoyLookUp / RawJoyLookMagnitude);
     }
-    if(bTargetFrictionEnabled)
+    if(CanApplyViewAcceleration())
     {
-        if(KFW != none)
-        {
-            bAppliedTargetFriction = false;
-            ApplyTargetFriction(DeltaTime, KFW);
-        }
+        ApplyViewAcceleration(DeltaTime);        
+    }
+    else
+    {
+        ViewAccel_BlendTimer = 0;
+    }
+    if((IsAimAssistFrictionEnabled()) && KFW != none)
+    {
+        ApplyTargetFriction(DeltaTime, KFW);
     }
     FOVScale = GetFOVAdjustedControllerSensitivity();
-    aTurn *= FOVScale;
-    aLookUp *= FOVScale;
-    aTurn *= HorizontalSensitivityScale;
-    aLookUp *= VerticalSensitivityScale;
-    aTurn *= EvalInterpCurveFloat(SensitivityScaleCurve, Abs(RawJoyLookRight));
-    aLookUp *= EvalInterpCurveFloat(SensitivityScaleCurve, Abs(RawJoyLookUp));
+    CurrTurn *= FOVScale;
+    CurrLookUp *= FOVScale;
+    CurrTurn *= GamepadSensitivityScale;
+    CurrLookUp *= GamepadSensitivityScale;
+    if((KFPawn(Outer.Pawn) != none) && KFPawn(Outer.Pawn).bIsSprinting)
+    {
+        CurrTurn *= SprintingSensitivityScale;
+        CurrLookUp *= SprintingSensitivityScale;
+    }
+    if(bViewSmoothingEnabled)
+    {
+        ApplyViewSmoothing(DeltaTime);
+    }
+    aTurn = CurrTurn;
+    aLookUp = CurrLookUp;
+    PrevTurn = aTurn;
+    PrevLookUp = aLookUp;
 }
 
 function UpdateExtendedSprint(float DeltaTime)
@@ -1123,7 +1229,11 @@ function UpdateExtendedSprint(float DeltaTime)
 
 function bool IsDirectingJoyStick(float Threshold)
 {
-    if((Abs(RawJoyUp) + Abs(RawJoyRight)) > Threshold)
+    local Vector vAnalog;
+
+    vAnalog.X = RawJoyRight;
+    vAnalog.Y = RawJoyUp;
+    if(VSize2D(vAnalog) > Threshold)
     {
         return true;
     }
@@ -1132,129 +1242,281 @@ function bool IsDirectingJoyStick(float Threshold)
 
 function ApplyViewAcceleration(float DeltaTime)
 {
-    if((Abs(aTurn) > ViewAccel_YawThreshold) || Square(Abs(RawJoyLookRight) + Square(Abs(RawJoyLookUp / 0.75))) > ViewAccel_DiagonalThreshold)
+    ViewAccel_BlendTimer += DeltaTime;
+    if(ViewAccel_BlendTimer >= ViewAccel_BlendTime)
     {
-        if((ViewAccel_TimeHeld > ViewAccel_TimeToHoldBeforeFastAcceleration) && !bAppliedTargetFriction)
-        {
-            ViewAccel_CurrMutliplier += ViewAccel_RampSpeed;
-            aTurn *= FMin(ViewAccel_CurrMutliplier, ViewAccel_MaxTurnSpeed);            
-        }
-        else
-        {
-            ViewAccel_CurrMutliplier = Abs(aTurn);
-            ViewAccel_TimeHeld += DeltaTime;
-        }        
+        ViewAccel_BlendTimer = ViewAccel_BlendTime;
+    }
+    if(CurrTurn > float(0))
+    {
+        CurrTurn = Lerp(CurrTurn, ViewAccel_MaxTurnSpeed, ViewAccel_BlendTimer / ViewAccel_BlendTime);        
     }
     else
     {
-        ViewAccel_CurrMutliplier = 1;
-        ViewAccel_TimeHeld = 0;
+        CurrTurn = Lerp(CurrTurn, -ViewAccel_MaxTurnSpeed, ViewAccel_BlendTimer / ViewAccel_BlendTime);
+    }
+}
+
+function bool CanApplyViewAcceleration()
+{
+    if(!bViewAccelerationEnabled)
+    {
+        return false;
+    }
+    if(((Outer.Pawn == none) || KFWeapon(Outer.Pawn.Weapon) == none) || KFWeapon(Outer.Pawn.Weapon).bUsingSights)
+    {
+        return false;
+    }
+    if((RawJoyLookMagnitude < ViewAccel_JoyMagThreshold) || Abs(RawJoyLookUp) > ViewAccel_JoyPitchThreshold)
+    {
+        return false;
+    }
+    return true;
+}
+
+function bool ApplyingViewAcceleration()
+{
+    return ViewAccel_BlendTimer > float(0);
+}
+
+function ApplyViewSmoothing(float DeltaTime)
+{
+    local float MaxAccel, MaxDecel;
+
+    if(PrevTurn <= LookSensitivityScaleCurve.Points[LookSensitivityScaleCurve.Points.Length - 1].OutVal)
+    {
+        MaxAccel = ViewSmoothing_MaxAccel * DeltaTime;
+        MaxDecel = ViewSmoothing_MaxDecel * DeltaTime;
+        if(((CurrTurn >= float(0)) && PrevTurn < float(0)) || (CurrTurn <= float(0)) && PrevTurn > float(0))
+        {
+            CurrTurn = PrevTurn + FClamp(CurrTurn - PrevTurn, -MaxDecel, MaxDecel);            
+        }
+        else
+        {
+            CurrTurn = PrevTurn + FClamp(CurrTurn - PrevTurn, -MaxAccel, MaxAccel);
+        }
+        if(((CurrLookUp >= float(0)) && PrevLookUp < float(0)) || (CurrLookUp <= float(0)) && PrevLookUp > float(0))
+        {
+            CurrLookUp = PrevLookUp + FClamp(CurrLookUp - PrevLookUp, -MaxDecel, MaxDecel);            
+        }
+        else
+        {
+            CurrLookUp = PrevLookUp + FClamp(CurrLookUp - PrevLookUp, -MaxAccel, MaxAccel);
+        }
     }
 }
 
 function InitAutoTarget()
 {
-    local Vector CamLoc;
+    local Vector CamLoc, X;
     local Rotator CamRot;
-    local Vector X, Y, Z;
-    local float UsedTargetAngle;
+    local float UsedTargetAngle, MaxDistance;
 
-    if(!bUsingGamepad)
+    if((!bUsingGamepad || Outer.Pawn == none) || Outer.Pawn.Weapon == none)
     {
         return;
     }
+    if(!IsAimAssistAutoTargetEnabled())
+    {
+        return;
+    }
+    if((Outer.WorldInfo.RealTimeSeconds - LastAutoTargetTime) < AutoTargetCooldown)
+    {
+        return;
+    }
+    if(KFWeapon(Outer.Pawn.Weapon) == none)
+    {
+        return;
+    }
+    AutoTargetTimeLeft = KFWeapon(Outer.Pawn.Weapon).default.ZoomInTime * 0.85;
+    LastAutoTargetTime = Outer.WorldInfo.RealTimeSeconds;
     Outer.GetPlayerViewPoint(CamLoc, CamRot);
-    GetAxes(CamRot, X, Y, Z);
-    CurrentAutoTarget = Outer.GetTargetAdhesionFrictionTarget(50000, CamLoc, CamRot, AutoTargetAngleCurve);
-    AutoTargetInitialLocation = GetAutoTargetLocation(CurrentAutoTarget, CamLoc);
+    MaxDistance = AutoTargetAngleCurve.Points[AutoTargetAngleCurve.Points.Length - 1].InVal;
+    CurrentAutoTarget = Outer.GetTargetAdhesionFrictionTarget(MaxDistance, CamLoc, CamRot, AutoTargetAngleCurve);
+    if(CurrentAutoTarget != none)
+    {
+        CurrentAutoTargetBone = 'None';
+        AutoTargetInitialLocation = GetBestAutoTargetLocation(CurrentAutoTarget, CurrentAutoTargetBone);
+    }
     if(Outer.bDebugAutoTarget)
     {
         Outer.FlushPersistentDebugLines();
+        X = vector(CamRot);
         UsedTargetAngle = EvalInterpCurveFloat(AutoTargetAngleCurve, VSize(CamLoc - AutoTargetInitialLocation));
         Outer.DrawDebugCone(CamLoc + (X * float(5)), X, 500, Acos(UsedTargetAngle), Acos(UsedTargetAngle), 16, MakeColor(255, 0, 0, 255), true);
         Outer.DrawDebugCone(CamLoc + (X * float(5)), X, 250, Acos(AutoTargetAngleCurve.Points[0].OutVal), Acos(AutoTargetAngleCurve.Points[0].OutVal), 16, MakeColor(0, 255, 0, 255), true);
-        Outer.DrawDebugCone(CamLoc + (X * float(5)), X, 1000, Acos(AutoTargetAngleCurve.Points[AutoTargetAngleCurve.Points.Length - 1].OutVal), Acos(AutoTargetAngleCurve.Points[AutoTargetAngleCurve.Points.Length - 1].OutVal), 16, MakeColor(255, 255, 0, 255), true);
+        Outer.DrawDebugCone(CamLoc + (X * float(5)), X, AutoTargetAngleCurve.Points[AutoTargetAngleCurve.Points.Length - 1].InVal, Acos(AutoTargetAngleCurve.Points[AutoTargetAngleCurve.Points.Length - 1].OutVal), Acos(AutoTargetAngleCurve.Points[AutoTargetAngleCurve.Points.Length - 1].OutVal), 16, MakeColor(0, 255, 0, 255), true);
+        UsedTargetAngle = EvalInterpCurveFloat(AutoTargetWeakspotCurve, VSize(CamLoc - AutoTargetInitialLocation));
+        Outer.DrawDebugCone(CamLoc + (X * float(5)), X, 500, Acos(UsedTargetAngle), Acos(UsedTargetAngle), 16, MakeColor(255, 0, 0, 255), true);
+        Outer.DrawDebugCone(CamLoc + (X * float(5)), X, 250, Acos(AutoTargetWeakspotCurve.Points[0].OutVal), Acos(AutoTargetWeakspotCurve.Points[0].OutVal), 16, MakeColor(255, 255, 0, 255), true);
+        Outer.DrawDebugCone(CamLoc + (X * float(5)), X, AutoTargetWeakspotCurve.Points[AutoTargetWeakspotCurve.Points.Length - 1].InVal, Acos(AutoTargetWeakspotCurve.Points[AutoTargetWeakspotCurve.Points.Length - 1].OutVal), Acos(AutoTargetWeakspotCurve.Points[AutoTargetWeakspotCurve.Points.Length - 1].OutVal), 16, MakeColor(255, 255, 0, 255), true);
     }
 }
 
-function Vector GetAutoTargetLocation(Pawn CheckTarget, Vector CamLoc)
+function Vector GetBestAutoTargetLocation(Pawn CheckTarget, out name OutBoneName)
 {
-    local KFWeapon KFW;
+    local KFPawn KFP;
+    local array<name> WeakBones, NormalBones;
+    local Vector TestLoc, CamLoc, CamDir, HitLoc, HitNorm;
+
+    local Rotator CamRot;
+    local Actor HitActor;
+    local TraceHitInfo HitInfo;
+    local int I;
 
     if(CheckTarget == none)
     {
         return vect(0, 0, 0);
     }
-    if(KFPawn(CheckTarget) != none)
+    KFP = KFPawn(CheckTarget);
+    if(KFP != none)
     {
-        return KFPawn(CheckTarget).GetAutoTargetLocation(CamLoc, Outer.Pawn);
+        KFP.GetAutoTargetBones(WeakBones, NormalBones);
+        Outer.GetPlayerViewPoint(CamLoc, CamRot);
+        CamRot += Outer.WeaponBufferRotation;
+        CamDir = vector(CamRot);
+        I = 0;
+        J0xF4:
+
+        if(I < WeakBones.Length)
+        {
+            TestLoc = KFP.Mesh.GetBoneLocation(WeakBones[I]);
+            if(!IsAutoTargetWithinCone(TestLoc, CamLoc, CamDir, AutoTargetWeakspotCurve))
+            {                
+            }
+            else
+            {
+                HitActor = Outer.Pawn.Trace(HitLoc, HitNorm, TestLoc, CamLoc, true, vect(0, 0, 0), HitInfo, Outer.1);
+                if((HitActor == none) || HitActor == CheckTarget)
+                {
+                    if(Outer.bDebugAutoTarget)
+                    {
+                        LogInternal((("Targeting P=" $ string(CheckTarget)) @ "Bone=") $ string(WeakBones[I]));
+                    }
+                    OutBoneName = WeakBones[I];
+                    return TestLoc;
+                }
+            }
+            ++ I;
+            goto J0xF4;
+        }
+        I = 0;
+        J0x2E4:
+
+        if(I < NormalBones.Length)
+        {
+            TestLoc = KFP.Mesh.GetBoneLocation(NormalBones[I]);
+            HitActor = Outer.Pawn.Trace(HitLoc, HitNorm, TestLoc, CamLoc, true, vect(0, 0, 0), HitInfo, Outer.1);
+            if((HitActor == none) || HitActor == CheckTarget)
+            {
+                if(Outer.bDebugAutoTarget)
+                {
+                    LogInternal((("Targeting P=" $ string(CheckTarget)) @ "Bone=") $ string(NormalBones[I]));
+                }
+                OutBoneName = NormalBones[I];
+                return TestLoc;
+            }
+            ++ I;
+            goto J0x2E4;
+        }
     }
-    KFW = KFWeapon(Outer.Pawn.Weapon);
-    if(KFW != none)
+    OutBoneName = 'None';
+    return CheckTarget.Location + (CheckTarget.BaseEyeHeight * vect(0, 0, 0.5));
+}
+
+function bool IsAutoTargetWithinCone(Vector TargetLoc, Vector CamLoc, Vector CamDir, const out InterpCurveFloat Curve)
+{
+    local float DistToTarget, TargetRadius, TargetHeight, DotDiffToTarget, UsedTargetAngle;
+
+    local Vector CamToTarget;
+
+    CamToTarget = TargetLoc - CamLoc;
+    if(VSizeSq(CamToTarget) > Square(Curve.Points[Curve.Points.Length - 1].InVal))
     {
-        return CheckTarget.Location + KFW.TargetFrictionOffset;        
+        if(Outer.bDebugAutoTarget)
+        {
+            LogInternal("Auto-target Cone Distance Exceeded Dist=" $ string(VSize(CamToTarget)));
+        }
+        return false;
     }
-    else
+    DistToTarget = VSize(CamToTarget);
+    DotDiffToTarget = Normal(TargetLoc - CamLoc) Dot CamDir;
+    UsedTargetAngle = EvalInterpCurveFloat(Curve, DistToTarget);
+    if(Outer.bDebugAutoTarget)
     {
-        return CheckTarget.Location + vect(0, 0, 32);
+        CurrentAutoTarget.GetBoundingCylinder(TargetRadius, TargetHeight);
+        Outer.DrawDebugCylinder(AutoTargetInitialLocation + vect(0, 0, 5), AutoTargetInitialLocation - vect(0, 0, 5), 10, 12, 255, 0, 0);
+        Outer.DrawDebugCylinder(CurrentAutoTarget.Location + (vect(0, 0, 1) * TargetHeight), CurrentAutoTarget.Location - (vect(0, 0, 1) * TargetHeight), TargetRadius, 12, 0, 255, 0);
     }
+    if(UsedTargetAngle > DotDiffToTarget)
+    {
+        if(Outer.bDebugAutoTarget)
+        {
+            LogInternal("Auto-target Cone Angle Exceeded by " $ string(UsedTargetAngle - DotDiffToTarget));
+        }
+        return false;
+    }
+    return true;
 }
 
 function ApplyAutoTarget(float DeltaTime, KFWeapon W, out int out_YawRot, out int out_PitchRot)
 {
-    local Vector RealTargetLoc, CamToTarget, CamLoc, X, Y, Z;
-
-    local Rotator CamRot, DeltaRot, CamRotWithFreeAim;
-    local float DistToTarget, AdhesionAmtY, AdhesionAmtZ, TargetRadius, TargetHeight;
-
+    local Vector RealTargetLoc, CamLoc, CamDir;
+    local Rotator CamRot, DeltaRot, RotToTarget;
     local int AdjustY, AdjustZ;
-    local float DotDiffToTarget, UsedTargetAngle;
+    local float BlendTimeToGo;
 
-    if(!bUsingGamepad)
+    BlendTimeToGo = AutoTargetTimeLeft;
+    AutoTargetTimeLeft -= DeltaTime;
+    if((!bUsingGamepad || CurrentAutoTarget == none) || AutoTargetTimeLeft <= float(0))
     {
         return;
     }
-    if((W == none) || CurrentAutoTarget == none)
-    {
-        return;
-    }
-    Outer.GetPlayerViewPoint(CamLoc, CamRot);
-    CamRotWithFreeAim = CamRot + Outer.WeaponBufferRotation;
-    GetAxes(CamRotWithFreeAim, X, Y, Z);
     if(((CurrentAutoTarget != none) && CurrentAutoTarget.Health > 0) && (KFPawn_Monster(CurrentAutoTarget) == none) || !KFPawn_Monster(CurrentAutoTarget).bIsHeadless)
     {
         RealTargetLoc = AutoTargetInitialLocation;
-        if(Outer.bDebugAutoTarget)
+        if(CurrentAutoTargetBone != 'None')
         {
-            CurrentAutoTarget.GetBoundingCylinder(TargetRadius, TargetHeight);
-            Outer.DrawDebugCylinder(AutoTargetInitialLocation + vect(0, 0, 5), AutoTargetInitialLocation - vect(0, 0, 5), 10, 12, 255, 0, 0);
-            Outer.DrawDebugCylinder(CurrentAutoTarget.Location + (vect(0, 0, 1) * TargetHeight), CurrentAutoTarget.Location - (vect(0, 0, 1) * TargetHeight), TargetRadius, 12, 0, 255, 0);
+            RealTargetLoc = CurrentAutoTarget.Mesh.GetBoneLocation(CurrentAutoTargetBone);
         }
-        CamToTarget = RealTargetLoc - CamLoc;
-        DotDiffToTarget = Normal(RealTargetLoc - CamLoc) Dot Normal(vector(CamRotWithFreeAim));
-        DistToTarget = VSize(CamToTarget);
-        UsedTargetAngle = EvalInterpCurveFloat(AutoTargetAngleCurve, DistToTarget);
-        if(Outer.bDebugAutoTarget)
+        Outer.GetPlayerViewPoint(CamLoc, CamRot);
+        CamRot += Outer.WeaponBufferRotation;
+        CamDir = vector(CamRot);
+        if(!IsAutoTargetWithinCone(RealTargetLoc, CamLoc, CamDir, AutoTargetAngleCurve))
         {
-            LogInternal((((string(GetFuncName()) @ "DotDiffToTarget = ") $ string(DotDiffToTarget)) $ "  AutoTargetAngle = ") $ string(UsedTargetAngle));
+            if(Outer.bDebugAutoTarget)
+            {
+                LogInternal("ApplyAutoTarget target lost" @ string(CurrentAutoTarget));
+            }
+            return;
         }
-        if((DotDiffToTarget > UsedTargetAngle) && DistToTarget <= 50000)
+        RotToTarget = rotator(RealTargetLoc - CamLoc);
+        DeltaRot.Yaw = RotToTarget.Yaw - CamRot.Yaw;
+        DeltaRot.Pitch = RotToTarget.Pitch - CamRot.Pitch;
+        DeltaRot = Normalize(DeltaRot);
+        if(DeltaRot.Yaw != 0)
         {
-            DeltaRot.Yaw = rotator(RealTargetLoc - CamLoc).Yaw - CamRotWithFreeAim.Yaw;
-            DeltaRot.Pitch = rotator(RealTargetLoc - CamLoc).Pitch - CamRotWithFreeAim.Pitch;
-            DeltaRot = Normalize(DeltaRot);
-            if(DeltaRot.Yaw != 0)
+            if(BlendTimeToGo > DeltaTime)
             {
-                AdhesionAmtY = AutoTargetRotationRate;
-                AdjustY = int(float(DeltaRot.Yaw) * (AdhesionAmtY * DeltaTime));
-                out_YawRot += AdjustY;
+                AdjustY = int((float(DeltaRot.Yaw) / BlendTimeToGo) * DeltaTime);                
             }
-            if(DeltaRot.Pitch != 0)
+            else
             {
-                AdhesionAmtZ = AutoTargetRotationRate;
-                AdjustZ = int(float(DeltaRot.Pitch) * (AdhesionAmtZ * DeltaTime));
-                out_PitchRot += AdjustZ;
+                AdjustY = DeltaRot.Yaw;
             }
+            out_YawRot += AdjustY;
+        }
+        if(DeltaRot.Pitch != 0)
+        {
+            if(BlendTimeToGo > DeltaTime)
+            {
+                AdjustZ = int((float(DeltaRot.Pitch) / BlendTimeToGo) * DeltaTime);                
+            }
+            else
+            {
+                AdjustZ = DeltaRot.Pitch;
+            }
+            out_PitchRot += AdjustZ;
         }
     }
 }
@@ -1277,7 +1539,7 @@ function ApplyForceLookAtPawn(float DeltaTime, out int out_YawRot, out int out_P
     GetAxes(CamRotWithFreeAim, X, Y, Z);
     if((Outer.ForceLookAtPawn != none) && Outer.ForceLookAtPawn.Health > 0)
     {
-        RealTargetLoc = GetAutoTargetLocation(Outer.ForceLookAtPawn, CamLoc);
+        RealTargetLoc = Outer.ForceLookAtPawn.GetAutoLookAtLocation(CamLoc, Outer.Pawn);
         if(Outer.bDebugAutoTarget)
         {
             Outer.ForceLookAtPawn.GetBoundingCylinder(TargetRadius, TargetHeight);
@@ -1313,15 +1575,11 @@ function ApplyForceLookAtPawn(float DeltaTime, out int out_YawRot, out int out_P
 
 function ApplyTargetAdhesion(float DeltaTime, KFWeapon W, out int out_YawRot, out int out_PitchRot)
 {
-    local Vector RealTargetLoc, TargetLoc, CamToTarget, AimLoc, CamLoc, ClosestY,
-	    ClosestZ, X, Y, Z;
-
-    local Rotator CamRot, DeltaRot;
-    local float DistToTarget, DistFromAimZ, DistFromAimY, AdhesionAmtY, AdhesionAmtZ, TargetRadius,
-	    TargetHeight, Pct;
-
-    local int AdjustY, AdjustZ;
+    local Vector CamLoc, X, Y, Z;
+    local Rotator CamRot;
+    local float DistToTarget, TargetRadius, TargetHeight, AdhesionScale;
     local Pawn AdhesionTarget;
+    local Vector AdhesionTargetVel, AdhesionPawnVel, AdhesionTargetRelVel, AdhesionViewOffset;
 
     if(!bUsingGamepad)
     {
@@ -1334,75 +1592,41 @@ function ApplyTargetAdhesion(float DeltaTime, KFWeapon W, out int out_YawRot, ou
     Outer.GetPlayerViewPoint(CamLoc, CamRot);
     GetAxes(CamRot, X, Y, Z);
     AdhesionTarget = LastFrictionTarget;
-    if((AdhesionTarget == none) || (Outer.WorldInfo.TimeSeconds - LastFrictionTargetTime) > W.TargetAdhesionTimeMax)
+    if(AdhesionTarget == none)
     {
         AdhesionTarget = Outer.GetTargetAdhesionFrictionTarget(W.TargetAdhesionDistanceMax, CamLoc, CamRot, AdhesionAngleCurve);
     }
-    if(((AdhesionTarget != none) && AdhesionTarget.Health > 0) && (KFPawn_Monster(AdhesionTarget) == none) || !KFPawn_Monster(AdhesionTarget).bIsHeadless)
+    if(AdhesionTarget == none)
     {
+        AdhesionPawnLastLoc = Outer.Pawn.Location;
+        return;
+    }
+    if(((AdhesionTarget.Health > 0) && KFPawn_Monster(AdhesionTarget) != none) && !KFPawn_Monster(AdhesionTarget).bIsHeadless)
+    {
+        GetAimAssistViewOffsetFromTarget(CamLoc, CamRot, AdhesionTarget, AdhesionViewOffset, DistToTarget);
         AdhesionTarget.GetBoundingCylinder(TargetRadius, TargetHeight);
-        TargetRadius *= 0.65;
-        TargetHeight *= 0.65;
-        RealTargetLoc = AdhesionTarget.Location + (W.TargetFrictionOffset >> CamRot);
-        if(Outer.bDebugTargetAdhesion)
+        if((AdhesionViewOffset.Y <= TargetRadius) && AdhesionViewOffset.Z <= TargetHeight)
         {
-            Outer.DrawDebugCylinder(RealTargetLoc + (vect(0, 0, 1) * TargetHeight), RealTargetLoc - (vect(0, 0, 1) * TargetHeight), TargetRadius, 12, 0, 255, 0);
-        }
-        if((((W.TargetAdhesionTargetVelocityMin == 0) || VSize(AdhesionTarget.Velocity) > W.TargetAdhesionTargetVelocityMin) && (W.TargetAdhesionPlayerVelocityMin == 0) || VSize(Outer.Pawn.Velocity) > W.TargetAdhesionPlayerVelocityMin) && ((RealTargetLoc - CamLoc) Dot vector(CamRot)) > 0)
-        {
-            CamToTarget = RealTargetLoc - CamLoc;
-            DistToTarget = VSize(CamToTarget);
-            AimLoc = CamLoc + (X * DistToTarget);
-            TargetLoc = RealTargetLoc;
-            TargetLoc.Z = AimLoc.Z;
-            DistFromAimY = PointDistToLine(AimLoc, TargetLoc - CamLoc, CamLoc, ClosestY);
-            ClosestY = TargetLoc + (Normal(ClosestY - TargetLoc) * TargetRadius);
-            TargetLoc = RealTargetLoc;
-            TargetLoc.X = AimLoc.X;
-            TargetLoc.Y = AimLoc.Y;
-            DistFromAimZ = PointDistToLine(AimLoc, TargetLoc - CamLoc, CamLoc, ClosestZ);
-            ClosestZ = TargetLoc + (Normal(ClosestZ - TargetLoc) * TargetRadius);
-            DeltaRot.Yaw = rotator(ClosestY - CamLoc).Yaw - CamRot.Yaw;
-            DeltaRot.Pitch = rotator(ClosestZ - CamLoc).Pitch - CamRot.Pitch;
-            DeltaRot = Normalize(DeltaRot);
-            if(((DistToTarget <= W.TargetAdhesionDistanceMax) && (DistFromAimY > TargetRadius) || DistFromAimZ > TargetHeight) && Outer.LineOfSightTo(AdhesionTarget, CamLoc))
-            {
-                if(DistFromAimY > TargetRadius)
-                {
-                    Pct = 1 - ((DistFromAimY - TargetRadius) / W.TargetAdhesionAimDistY);
-                    if(Pct > 0)
-                    {
-                        Pct = FMin(Pct, 0.8);
-                        AdhesionAmtY = GetRangeValueByPct(W.TargetAdhesionScaleRange, Pct);
-                        AdjustY = int(float(DeltaRot.Yaw) * (AdhesionAmtY * DeltaTime));
-                        out_YawRot += AdjustY;
-                    }
-                }
-                if(DistFromAimZ > TargetHeight)
-                {
-                    Pct = 1 - ((DistFromAimZ - TargetHeight) / W.TargetAdhesionAimDistZ);
-                    if(Pct > 0)
-                    {
-                        Pct = FMin(Pct, 0.8);
-                        AdhesionAmtZ = GetRangeValueByPct(W.TargetAdhesionScaleRange, Pct);
-                        AdjustZ = int(float(DeltaRot.Pitch) * (AdhesionAmtZ * DeltaTime));
-                        out_PitchRot += AdjustZ;
-                    }
-                }
-            }
+            AdhesionTargetVel = ((AdhesionTarget != LastAdhesionTarget) ? vect(0, 0, 0) : (AdhesionTarget.Location - AdhesionTargetLastLoc) / DeltaTime);
+            AdhesionPawnVel = ((IsZero(AdhesionPawnLastLoc)) ? vect(0, 0, 0) : (Outer.Pawn.Location - AdhesionPawnLastLoc) / DeltaTime);
+            AdhesionTargetRelVel = (AdhesionTargetVel - AdhesionPawnVel) * EvalInterpCurveFloat(W.TargetAdhesionDistanceScaleCurve, DistToTarget / W.TargetAdhesionDistanceMax);
+            AdhesionScale = AdhesionFactor * DeltaTime;
+            out_YawRot += int(((AdhesionTargetRelVel Dot Y) * AdhesionScale) * EvalInterpCurveFloat(W.TargetAdhesionOffsetScaleCurve, AdhesionViewOffset.Y / TargetRadius));
+            out_PitchRot += int(((AdhesionTargetRelVel Dot Z) * AdhesionScale) * EvalInterpCurveFloat(W.TargetAdhesionOffsetScaleCurve, AdhesionViewOffset.Z / TargetHeight));
         }
     }
+    AdhesionTargetLastLoc = AdhesionTarget.Location;
+    AdhesionPawnLastLoc = Outer.Pawn.Location;
+    LastAdhesionTarget = AdhesionTarget;
 }
 
 function ApplyTargetFriction(float DeltaTime, KFWeapon W)
 {
     local Pawn FrictionTarget;
-    local Vector CamLoc, X, Y, Z, CamToTarget, AimLoc,
-	    TargetLoc, RealTargetLoc;
+    local Vector CamLoc, X, Y, Z, FrictionViewOffset;
 
     local Rotator CamRot;
-    local float DistToTarget, DistMultiplier, DistFromAimZ, DistFromAimY, TargetRadius, TargetHeight,
-	    FrictionMultiplier;
+    local float DistToTarget, TargetRadius, TargetHeight, FrictionMultiplier;
 
     if((Outer.Pawn == none) || !W.bTargetFrictionEnabled)
     {
@@ -1413,53 +1637,39 @@ function ApplyTargetFriction(float DeltaTime, KFWeapon W)
     FrictionTarget = Outer.GetTargetAdhesionFrictionTarget(W.TargetFrictionDistanceMax, CamLoc, CamRot, FrictionAngleCurve);
     if(FrictionTarget != none)
     {
-        RealTargetLoc = FrictionTarget.Location + (W.TargetFrictionOffset >> CamRot);
-        CamToTarget = RealTargetLoc - CamLoc;
-        DistToTarget = VSize(CamToTarget);
-        AimLoc = CamLoc + (X * DistToTarget);
+        GetAimAssistViewOffsetFromTarget(CamLoc, CamRot, FrictionTarget, FrictionViewOffset, DistToTarget);
         FrictionTarget.GetBoundingCylinder(TargetRadius, TargetHeight);
-        TargetLoc = RealTargetLoc;
-        TargetLoc.Z = AimLoc.Z;
-        DistFromAimY = PointDistToLine(AimLoc, TargetLoc - CamLoc, CamLoc);
-        TargetLoc = RealTargetLoc;
-        TargetLoc.X = AimLoc.X;
-        TargetLoc.Y = AimLoc.Y;
-        DistFromAimZ = PointDistToLine(AimLoc, TargetLoc - CamLoc, CamLoc);
-        DistMultiplier = 0;
-        if((DistToTarget >= W.TargetFrictionDistanceMin) && DistToTarget <= W.TargetFrictionDistanceMax)
+        if((FrictionViewOffset.Y <= TargetRadius) && FrictionViewOffset.Z <= TargetHeight)
         {
-            if(DistToTarget <= W.TargetFrictionDistancePeak)
+            FrictionMultiplier = FrictionScale;
+            FrictionMultiplier *= EvalInterpCurveFloat(W.TargetFrictionDistanceScaleCurve, DistToTarget / W.TargetFrictionDistanceMax);
+            FrictionMultiplier *= EvalInterpCurveFloat(W.TargetFrictionOffsetScaleCurve, FrictionViewOffset.Y / TargetRadius);
+            if(ApplyingViewAcceleration())
             {
-                DistMultiplier = FClamp((DistToTarget - W.TargetFrictionDistanceMin) / (W.TargetFrictionDistancePeak - W.TargetFrictionDistanceMin), 0, 1);                
+                FrictionMultiplier *= ViewAccelerationFrictionScale;
             }
-            else
-            {
-                DistMultiplier = FClamp(1 - ((DistToTarget - W.TargetFrictionDistancePeak) / (W.TargetFrictionDistanceMax - W.TargetFrictionDistancePeak)), 0, 1);
-            }
-            if(bDebugTargetFriction)
-            {
-                LogInternal((string(GetFuncName()) @ "DistMultiplier: ") $ string(DistMultiplier));
-            }
-            TargetRadius *= (1 + (W.TargetFrictionPeakRadiusScale * DistMultiplier));
-            TargetHeight *= (1 + (W.TargetFrictionPeakHeightScale * DistMultiplier));
-        }
-        if(bDebugTargetFriction)
-        {
-            Outer.DrawDebugCylinder(FrictionTarget.Location + (vect(0, 0, 1) * TargetHeight), FrictionTarget.Location - (vect(0, 0, 1) * TargetHeight), TargetRadius, 12, 255, 0, 0);
-        }
-        if((DistFromAimY < TargetRadius) && DistFromAimZ < TargetHeight)
-        {
-            FrictionMultiplier = GetRangeValueByPct(W.TargetFrictionMultiplierRange, 1 - (DistFromAimY / TargetRadius));
-            if(FrictionMultiplier > 0)
-            {
-                bAppliedTargetFriction = true;
-                aTurn *= (1 - FrictionMultiplier);
-                aLookUp *= (1 - FrictionMultiplier);
-                LastFrictionTargetTime = Outer.WorldInfo.TimeSeconds;
-                LastFrictionTarget = FrictionTarget;
-            }
+            CurrTurn *= (1 - FrictionMultiplier);
+            CurrLookUp *= (1 - FrictionMultiplier);
+            LastFrictionTargetTime = Outer.WorldInfo.TimeSeconds;
+            LastFrictionTarget = FrictionTarget;
         }
     }
+}
+
+function GetAimAssistViewOffsetFromTarget(Vector ViewLoc, Rotator ViewRot, Actor Target, out Vector Offset, optional out float Distance)
+{
+    local Vector TargetLoc, CamToTarget, AimLoc;
+
+    CamToTarget = Target.Location - ViewLoc;
+    Distance = VSize(CamToTarget);
+    AimLoc = ViewLoc + (vector(ViewRot) * Distance);
+    TargetLoc = Target.Location;
+    TargetLoc.Z = AimLoc.Z;
+    Offset.Y = PointDistToLine(AimLoc, TargetLoc - ViewLoc, ViewLoc);
+    TargetLoc = Target.Location;
+    TargetLoc.X = AimLoc.X;
+    TargetLoc.Y = AimLoc.Y;
+    Offset.Z = PointDistToLine(AimLoc, TargetLoc - ViewLoc, ViewLoc);
 }
 
 function float GetFOVAdjustedControllerSensitivity()
@@ -1481,7 +1691,7 @@ function float GetFOVAdjustedControllerSensitivity()
         }
         if((UsedFOVAngle != Outer.DefaultFOV) && bUsingSights)
         {
-            FOVScale = (UsedFOVAngle * 0.01333) * ZoomedSensitivityScalar;            
+            FOVScale = (UsedFOVAngle * 0.01333) * GamepadZoomedSensitivityScale;            
         }
         else
         {
@@ -1525,6 +1735,21 @@ exec function DebugTargetFriction()
         bDebugTargetFriction = !bDebugTargetFriction;
         Outer.ClientMessage("bDebugTargetFriction is now: " $ string(bDebugTargetFriction));
     }
+}
+
+function bool IsAimAssistFrictionEnabled()
+{
+    return bAimAssistEnabled && bTargetFrictionEnabled;
+}
+
+function bool IsAimAssistAdhesionEnabled()
+{
+    return bAimAssistEnabled && bTargetAdhesionEnabled;
+}
+
+function bool IsAimAssistAutoTargetEnabled()
+{
+    return bAimAssistEnabled && bAutoTargetEnabled;
 }
 
 exec function SuppressTakeDamage(optional name ClassName)
@@ -1661,24 +1886,39 @@ defaultproperties
 {
     bRequiresPushToTalk=true
     bQuickWeaponSelect=true
+    bShowGamepadWeaponSelectHint=true
+    bAimAssistEnabled=true
+    bViewSmoothingEnabled=true
     bViewAccelerationEnabled=true
     bTargetFrictionEnabled=true
-    ZoomedSensitivityScalar=0.35
+    bTargetAdhesionEnabled=true
+    bAutoTargetEnabled=true
+    bForceFeedbackEnabled=true
     GamepadButtonHoldTime=0.25
-    SprintAnalogThreshold=0.9
-    TimeBelowThresholdToStopSprint=0.05
-    HorizontalSensitivityScale=1
-    VerticalSensitivityScale=0.9
-    ViewAccel_YawThreshold=0.99
-    ViewAccel_DiagonalThreshold=0.99
-    ViewAccel_TimeToHoldBeforeFastAcceleration=0.0625
-    ViewAccel_RampSpeed=0.0075
-    ViewAccel_MaxTurnSpeed=1.1
-    SensitivityScaleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
-    AutoTargetRotationRate=35
-    AutoTargetAngleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.8,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
+    SprintAnalogThreshold=0.7
+    SkipCrouchAnalogThreshold=0.3
+    TimeBelowThresholdToStopSprint=-1
+    LookSensitivityScaleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0,ArriveTangent=0.5,LeaveTangent=0.5,InterpMode=EInterpCurveMode.CIM_CurveAuto)
+    MoveSensitivityScaleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.3,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Constant)
+    GamepadSensitivityScale=1
+    SprintingSensitivityScale=0.675
+    ZoomedSensitivityScale=0.35
+    GamepadZoomedSensitivityScale=0.65
+    ViewSmoothing_MaxAccel=25
+    ViewSmoothing_MaxDecel=50
+    ViewAccel_JoyMagThreshold=0.97
+    ViewAccel_JoyPitchThreshold=0.4
+    ViewAccel_MaxTurnSpeed=2.4
+    ViewAccel_BlendTime=0.25
+    FrictionScale=0.5
     FrictionAngleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
+    ViewAccelerationFrictionScale=0.85
     AdhesionAngleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.95,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
+    AdhesionFactor=20
+    AutoTargetTimeLeft=0.1
+    AutoTargetAngleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.9397,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
+    AutoTargetWeakspotCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.9962,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
+    AutoTargetCooldown=0.5
     ForceLookAtPawnMinAngle=0.9
     ForceLookAtPawnRotationRate=22
     ForceLookAtPawnDampenedRotationRate=8

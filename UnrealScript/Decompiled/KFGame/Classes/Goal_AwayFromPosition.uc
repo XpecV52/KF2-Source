@@ -20,7 +20,7 @@ static function bool FleeFrom(Pawn P, Vector InAvoidPos, int InMaxDist)
 
     Eval = Goal_AwayFromPosition(P.CreatePathGoalEvaluator(default.Class));
     Eval.AvoidPos = InAvoidPos;
-    Eval.AvoidDir = Normal(InAvoidPos - P.Location);
+    Eval.AvoidDir = Normal2D(InAvoidPos - P.Location);
     Eval.MaxDist = InMaxDist;
     P.AddGoalEvaluator(Eval);
     return true;

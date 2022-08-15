@@ -15,6 +15,8 @@ defaultproperties
     DeathMaterialEffectParamName=Scalar_Burnt
     DeathMaterialEffectDuration=2
     bExtraMomentumZ=true
+    KDamageImpulse=250
+    KDeathVel=350
     KDeathUpKick=250
     RadialDamageImpulse=1500
 }

@@ -473,11 +473,33 @@ class KFPawnVoiceGroupEventData_Hans extends KFPawnVoiceGroupEventData;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 13
 
 defaultproperties
 {
-   Events(0)=(EventID=0,Priority=1,Chance=1.000000,CoolDownTime=0.000000,bCanBeMinimized=0)
    Events(1)=(EventID=1,Priority=3,Chance=1.000000,CoolDownTime=12.000000,bCanBeMinimized=0,bCanInterruptEqualPriority=True)
    Events(2)=(EventID=2,Priority=3,Chance=1.000000,CoolDownTime=12.000000,bCanBeMinimized=0)
    Events(3)=(EventID=3,Priority=3,Chance=1.000000,CoolDownTime=12.000000,bCanBeMinimized=0)
@@ -490,7 +512,7 @@ defaultproperties
    Events(10)=(EventID=10,Priority=2,Chance=1.000000,CoolDownTime=1.000000,bCanBeMinimized=0)
    Events(11)=(EventID=11,Priority=1,Chance=1.000000,CoolDownTime=0.000000,bCanBeMinimized=0)
    Events(12)=(EventID=12,Priority=1,Chance=1.000000,bCanBeMinimized=0)
-   Events(13)=(EventID=13,Priority=1,Chance=1.000000,CoolDownTime=0.000000,bCanBeMinimized=0)
+   Events(13)=()
    Events(14)=(EventID=14,Priority=2,Chance=1.000000,CoolDownTime=0.000000,bCanBeMinimized=0)
    Events(15)=(EventID=15,Priority=2,Chance=1.000000,CoolDownTime=0.000000,bCanBeMinimized=0)
    Events(16)=(EventID=16,Priority=3,Chance=1.000000,CoolDownTime=12.000000,bCanBeMinimized=0)

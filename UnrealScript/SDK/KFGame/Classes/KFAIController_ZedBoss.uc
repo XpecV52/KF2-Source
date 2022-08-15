@@ -64,6 +64,44 @@ function UpdateSprintFrustration( optional byte bForceFrustration=255 )
 
 function PlayDamagePlayerDialog( class<DamageType> DmgType );
 
+/** Stub debug command to advance battle phase */
+function DebugNextPhase();
+
+/*********************************************************************************************
+*  Victory
+********************************************************************************************* */
+function EnterZedVictoryState()
+{
+	ClearMovementInfo();
+	if( CommandList != None )
+	{
+		AbortCommand( CommandList );
+	}
+
+	DisableMeleeRangeEventProbing();
+	ChangeEnemy(none);
+	MyKFPawn.SetSprinting( false );
+
+    // Keep boss looking at the camera
+    LockPawnRotationTo(MyKFPawn.Rotation);
+    MyKFPawn.SetRemoteViewPitch(0);
+
+    // Force end any special moves
+    if( MyKFPawn.IsDoingSpecialMove() )
+    {
+    	MyKFPawn.EndSpecialMove();
+    }
+
+    GotoState( 'ZedVictory', 'Begin');
+}
+
+state ZedVictory
+{
+Begin:
+    Sleep(0.1f);
+    class'AICommand_BossTheatrics'.static.DoTheatrics( self, THEATRIC_Victory, -1 );
+}
+
 DefaultProperties
 {
 	FrustrationThreshold=0

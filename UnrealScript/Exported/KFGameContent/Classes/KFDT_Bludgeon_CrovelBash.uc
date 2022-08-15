@@ -46,65 +46,6 @@ class KFDT_Bludgeon_CrovelBash extends KFDT_Bludgeon_Crovel
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -127,5 +68,5 @@ defaultproperties
 {
    KnockdownPower=24
    Name="Default__KFDT_Bludgeon_CrovelBash"
-   ObjectArchetype=KFDT_Bludgeon_Crovel'KFGameContent.Default__KFDT_Bludgeon_Crovel'
+   ObjectArchetype=KFDT_Bludgeon_Crovel'kfgamecontent.Default__KFDT_Bludgeon_Crovel'
 }

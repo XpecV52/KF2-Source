@@ -280,12 +280,6 @@ struct native TWPostProcessSettings
 	/** Controls the film-grain noise intensity (TW post process effect only) */
 	var(Noise) interp float NoiseIntensity;
 
-	/** Interpolation control for turning DOF on or off */
-	var transient float DOF_Strength;
-
-	/** Maximum focal distance */
-	var float DOF_MaxFocalDistance;
-
 	/** Whether to use tile-max motion blur */
 	var bool MB_TileMaxEnabled;
 
@@ -320,8 +314,6 @@ struct native TWPostProcessSettings
 		FTWPostProcessSettings(INT A)
 		{
 			DOF_FocalDistance=1000.0f;
-			DOF_Strength=0.0f;
-			DOF_MaxFocalDistance=10000.0f;
 			
 			DOF_SharpRadius=800.0f;
 			DOF_FocalRadius=1200.0f;
@@ -355,8 +347,6 @@ struct native TWPostProcessSettings
 	structdefaultproperties
 	{
 		DOF_FocalDistance=1000.0
-		DOF_Strength=0.0
-		DOF_MaxFocalDistance=10000.0
 		
 		DOF_SharpRadius=800.0
 		DOF_FocalRadius=1200.0

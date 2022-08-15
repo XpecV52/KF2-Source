@@ -48,5 +48,5 @@ defaultproperties
 	LegStumblePower=42
 	GunHitPower=0
 
-	AARWeaponID=`AAR_M4
+	WeaponDef=class'KFWeapDef_M4'
 }

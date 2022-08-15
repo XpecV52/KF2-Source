@@ -28,7 +28,7 @@ simulated function bool GetIsUsable(Pawn User)
 
 function int GetInteractionIndex()
 {
-    return 1;
+    return 3;
 }
 
 event Touch(Actor Other, PrimitiveComponent OtherComp, Vector HitLocation, Vector HitNormal)
@@ -106,6 +106,7 @@ simulated function ShowTraderPath()
 {
     local KFPlayerController KFPC;
     local KFGameReplicationInfo KFGRI;
+    local Engine.Pawn.EPathSearchType OldSearchType;
     local KFEmit_TraderPath Path;
     local Actor nodePathRoot;
     local bool bPathFound;
@@ -115,6 +116,14 @@ simulated function ShowTraderPath()
     {
         foreach LocalPlayerControllers(Class'KFPlayerController', KFPC)
         {
+            if(KFPC.Pawn == none)
+            {
+                continue;                
+            }
+            OldSearchType = KFPC.Pawn.PathSearchType;
+            KFPC.Pawn.PathSearchType = 3;
+            Class'Path_ToTrader'.static.ToTrader(KFPC.Pawn);
+            Class'Goal_AtActor'.static.AtActor(KFPC.Pawn, self,, false);
             nodePathRoot = KFPC.FindPathToward(self);
             if(nodePathRoot != none)
             {
@@ -140,6 +149,8 @@ simulated function ShowTraderPath()
                     LogInternal((((("ShowTraderPath - No Path Found, KFGRI.OpenedTrader: " @ string(KFGRI.OpenedTrader)) @ " trader trigger loc: ") @ string(Location)) @ " - player loc: ") @ string(KFPC.Pawn.Location));
                 }
             }
+            KFPC.Pawn.ClearConstraints();
+            KFPC.Pawn.PathSearchType = OldSearchType;
             KFPC.SetTimer(2, false, 'ShowTraderPath', self);            
         }        
     }

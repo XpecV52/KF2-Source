@@ -92,6 +92,11 @@ function Popped()
 	}
 	CachedChildCommand = none;
 
+	if( AIOwner != none )
+	{
+		AIOwner.NotifyCommandFinished( self );
+	}
+
 	Super.Popped();
 }
 

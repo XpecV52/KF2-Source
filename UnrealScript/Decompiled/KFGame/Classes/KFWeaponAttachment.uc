@@ -140,18 +140,23 @@ struct native KFTracerInfo
 {
     /** Tracer Effect */
     var() ParticleSystem TracerTemplate;
+    /** The velocity the tracer should travel at */
+    var() int TracerVelocity;
     /** Show the tracer when the weapon is firing in normal time */
     var() bool bDoTracerDuringNormalTime;
     /** Show the tracer when the weapon is firing in zed time */
     var() bool bDoTracerDuringZedTime;
     var int MinTracerEffectDistanceSquared;
+    var Vector VelocityVector;
 
     structdefaultproperties
     {
         TracerTemplate=none
+        TracerVelocity=7000
         bDoTracerDuringNormalTime=true
         bDoTracerDuringZedTime=false
         MinTracerEffectDistanceSquared=40000
+        VelocityVector=(X=0,Y=0,Z=0)
     }
 };
 
@@ -171,9 +176,6 @@ var(Anims) bool bPlayIKRecoil;
 var transient bool bSynchronizeWeaponAnim;
 var transient bool bLoopSynchedWeaponAnim;
 var transient bool bIsReloading;
-/** @name Flashlight */
-var() const KFFlashlightAttachment FlashlightArchetype;
-var transient KFFlashlightAttachment FlashLight;
 var() const KFLaserSightAttachment LaserSightArchetype;
 var transient KFLaserSightAttachment LaserSight;
 var KFMuzzleFlash MuzzleFlash;
@@ -204,10 +206,12 @@ var(Anims) name AimOffsetProfileName;
 var delegate<OnWeaponStateChanged> __OnWeaponStateChanged__Delegate;
 
 // Export UKFWeaponAttachment::execChangeVisibility(FFrame&, void* const)
-native simulated function ChangeVisibility(bool bIsVisible);
+native function ChangeVisibility(bool bIsVisible);
 
 event PreBeginPlay()
 {
+    local int I;
+
     if((WeapMesh != none) && !bWeapMeshIsPawnMesh)
     {
         if(WeaponAnimSet != none)
@@ -219,6 +223,15 @@ event PreBeginPlay()
             WeapMesh.SkeletalMesh = SkelMesh;
         }
         WeapAnimNode = AnimNodeSequence(WeapMesh.Animations);
+    }
+    I = 0;
+    J0xCC:
+
+    if(I < TracerInfos.Length)
+    {
+        TracerInfos[I].VelocityVector = vect(1, 0, 0) * float(TracerInfos[I].TracerVelocity);
+        ++ I;
+        goto J0xCC;
     }
     super.PreBeginPlay();
 }
@@ -239,7 +252,6 @@ simulated function AttachTo(KFPawn P)
             P.Mesh.AttachComponent(WeapMesh, P.WeaponAttachmentSocket);
         }
     }
-    AttachFlashlight();
     if(bHasLaserSight && !P.IsFirstPerson())
     {
         AttachLaserSight();
@@ -258,10 +270,6 @@ simulated function DetachFrom(KFPawn P)
     if(MuzzleFlash != none)
     {
         MuzzleFlash.DetachMuzzleFlash(WeapMesh);
-    }
-    if(FlashLight != none)
-    {
-        FlashLight.DetachFlashlight(WeapMesh);
     }
     if(bWeapMeshIsPawnMesh)
     {
@@ -286,21 +294,26 @@ simulated function AttachMuzzleFlash()
     }
 }
 
-simulated function AttachFlashlight()
-{
-    if(((WeapMesh != none) && FlashLight == none) && FlashlightArchetype != none)
-    {
-        FlashLight = new (self) Class'KFFlashlightAttachment' (FlashlightArchetype);
-        FlashLight.AttachFlashlight(WeapMesh);
-    }
-}
-
 simulated function AttachLaserSight()
 {
     if(((WeapMesh != none) && LaserSight == none) && LaserSightArchetype != none)
     {
         LaserSight = new (self) Class'KFLaserSightAttachment' (LaserSightArchetype);
         LaserSight.AttachLaserSight(WeapMesh, false);
+    }
+}
+
+event SetWeaponSkin(int ItemId)
+{
+    local array<MaterialInterface> SkinMICs;
+
+    if((ItemId > 0) && WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        SkinMICs = Class'KFWeaponSkinList'.static.GetWeaponSkin(ItemId, 1);
+        if(SkinMICs.Length > 0)
+        {
+            WeapMesh.SetMaterial(0, SkinMICs[0]);
+        }
     }
 }
 
@@ -333,11 +346,43 @@ simulated function StopFirstPersonFireEffects(Weapon W)
 
 simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P)
 {
+    local KFPawn.EAnimSlotStance AnimType;
+
     SpawnTracer(GetMuzzleLocation(), HitLocation);
     if(!ActorEffectIsRelevant(P, false, MaxFireEffectDistance))
     {
         return false;
     }
+    if(!bWeapMeshIsPawnMesh)
+    {
+        PlayWeaponFireAnim();
+    }
+    if(P.IsDoingSpecialMove() && P.SpecialMoves[P.SpecialMove].bAllowFireAnims)
+    {
+        AnimType = 3;        
+    }
+    else
+    {
+        AnimType = 0;
+    }
+    if(!P.IsDoingSpecialMove() || AnimType == 3)
+    {
+        PlayPawnFireAnim(P, AnimType);
+        if(!P.IsDoingSpecialMove())
+        {
+            P.StopBodyAnim(((P.bIsCrouched) ? 4 : 1), 0.1);
+        }
+        if(__OnWeaponStateChanged__Delegate != none)
+        {
+            OnWeaponStateChanged(true);
+        }
+    }
+    CauseMuzzleFlash(P.FiringMode);
+    return true;
+}
+
+simulated function PlayWeaponFireAnim()
+{
     if((Instigator.FiringMode == 1) && 'Shoot' != 'None')
     {
         WeapMesh.PlayAnim('Shoot',,, true);        
@@ -349,31 +394,25 @@ simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P)
             WeapMesh.PlayAnim('Shoot',,, true);
         }
     }
-    if(!P.IsDoingSpecialMove())
+}
+
+simulated function PlayPawnFireAnim(KFPawn P, KFPawn.EAnimSlotStance AnimType)
+{
+    if(P.bIsCrouched)
     {
-        if(P.bIsCrouched)
+        P.PlayBodyAnim('ADD_CH_Shoot', AnimType, 1, ShootBlendInTime, ShootBlendOutTime);        
+    }
+    else
+    {
+        if(P.bIsWalking)
         {
-            P.PlayBodyAnim('ADD_CH_Shoot', 0, 1, ShootBlendInTime, ShootBlendOutTime);            
+            P.PlayBodyAnim('ADD_Iron_Shoot', AnimType, 1, ShootBlendInTime, ShootBlendOutTime);            
         }
         else
         {
-            if(P.bIsWalking)
-            {
-                P.PlayBodyAnim('ADD_Iron_Shoot', 0, 1, ShootBlendInTime, ShootBlendOutTime);                
-            }
-            else
-            {
-                P.PlayBodyAnim('ADD_Shoot', 0, 1, ShootBlendInTime, ShootBlendOutTime);
-            }
-        }
-        P.StopBodyAnim(((P.bIsCrouched) ? 4 : 1), 0.1);
-        if(__OnWeaponStateChanged__Delegate != none)
-        {
-            OnWeaponStateChanged(true);
+            P.PlayBodyAnim('ADD_Shoot', AnimType, 1, ShootBlendInTime, ShootBlendOutTime);
         }
     }
-    CauseMuzzleFlash(P.FiringMode);
-    return true;
 }
 
 simulated function StopThirdPersonFireEffects()
@@ -404,18 +443,27 @@ simulated function SpawnTracer(Vector EffectLocation, Vector HitLocation)
 {
     local editinline ParticleSystemComponent E;
     local Vector Dir;
+    local float DistSq, TracerDuration;
+    local KFTracerInfo TracerInfo;
 
     if((Instigator == none) || Instigator.FiringMode >= TracerInfos.Length)
     {
         return;
     }
-    if(((!self.WorldInfo.TimeDilation < 1 && TracerInfos[Instigator.FiringMode].bDoTracerDuringNormalTime) || (self.WorldInfo.TimeDilation < 1) && TracerInfos[Instigator.FiringMode].bDoTracerDuringZedTime) && TracerInfos[Instigator.FiringMode].TracerTemplate != none)
+    TracerInfo = TracerInfos[Instigator.FiringMode];
+    if(((!self.WorldInfo.TimeDilation < 1 && TracerInfo.bDoTracerDuringNormalTime) || (self.WorldInfo.TimeDilation < 1) && TracerInfo.bDoTracerDuringZedTime) && TracerInfo.TracerTemplate != none)
     {
         Dir = HitLocation - EffectLocation;
-        if(VSizeSq(Dir) > float(TracerInfos[Instigator.FiringMode].MinTracerEffectDistanceSquared))
+        DistSq = VSizeSq(Dir);
+        if(DistSq > float(TracerInfo.MinTracerEffectDistanceSquared))
         {
-            E = WorldInfo.MyEmitterPool.SpawnEmitter(TracerInfos[Instigator.FiringMode].TracerTemplate, EffectLocation, rotator(Dir));
-            E.SetVectorParameter('TracerEnd', HitLocation);
+            TracerDuration = FMin((Sqrt(DistSq) - 100) / float(TracerInfo.TracerVelocity), 1);
+            if(TracerDuration > 0)
+            {
+                E = WorldInfo.MyEmitterPool.SpawnEmitter(TracerInfo.TracerTemplate, EffectLocation, rotator(Dir));
+                E.SetVectorParameter('Tracer_Velocity', TracerInfo.VelocityVector);
+                E.SetFloatParameter('Tracer_Lifetime', TracerDuration);
+            }
         }
     }
 }
@@ -449,24 +497,19 @@ simulated function ANIMNOTIFY_ShellEject()
     }
 }
 
-simulated function SetThirdPersonFlashlight(bool bEnabled)
-{
-    if(FlashLight != none)
-    {
-        FlashLight.SetEnabled(bEnabled);
-    }
-}
-
 simulated function AddBattleBlood(float InBloodParamIncrementValue)
 {
-    if((WeaponMIC == none) && WeapMesh != none)
+    if(!bWeapMeshIsPawnMesh)
     {
-        WeaponMIC = WeapMesh.CreateAndSetMaterialInstanceConstant(0);
-    }
-    if(WeaponMIC != none)
-    {
-        BloodParamValue = FMax(BloodParamValue + InBloodParamIncrementValue, 0.2);
-        WeaponMIC.SetScalarParameterValue('Scalar_Blood_Contrast', BloodParamValue);
+        if((WeaponMIC == none) && WeapMesh != none)
+        {
+            WeaponMIC = WeapMesh.CreateAndSetMaterialInstanceConstant(0);
+        }
+        if(WeaponMIC != none)
+        {
+            BloodParamValue = FMax(BloodParamValue + InBloodParamIncrementValue, 0.2);
+            WeaponMIC.SetScalarParameterValue('Scalar_Blood_Contrast', BloodParamValue);
+        }
     }
 }
 
@@ -771,19 +814,22 @@ simulated function PlayWeldAnim(KFPawn P)
 
 simulated function PlayWeaponMeshAnim(name AnimName, AnimNodeSlot SyncNode, bool bLoop)
 {
-    WeapMesh.PlayAnim(AnimName, 0, bLoop);
-    if(SyncNode != none)
+    if(!bWeapMeshIsPawnMesh)
     {
-        bSynchronizeWeaponAnim = true;
-        SyncPawnNode = SyncNode;
-        SyncAnimName = AnimName;
-        SyncAnimStartTime = WorldInfo.TimeSeconds;
+        WeapMesh.PlayAnim(AnimName, 0, bLoop);
+        if(SyncNode != none)
+        {
+            bSynchronizeWeaponAnim = true;
+            SyncPawnNode = SyncNode;
+            SyncAnimName = AnimName;
+            SyncAnimStartTime = WorldInfo.TimeSeconds;
+        }
     }
 }
 
 simulated event Tick(float DeltaTime)
 {
-    if((bSynchronizeWeaponAnim && SyncPawnNode != none) && WeapMesh.bForceRefpose == 0)
+    if(((!bWeapMeshIsPawnMesh && bSynchronizeWeaponAnim) && SyncPawnNode != none) && WeapMesh.bForceRefpose == 0)
     {
         if((!SyncPawnNode.bIsPlayingCustomAnim || !SyncPawnNode.bRelevant && (WorldInfo.TimeSeconds - SyncAnimStartTime) > 0.01) || SyncPawnNode.GetPlayedAnimation() != SyncAnimName)
         {
@@ -798,16 +844,22 @@ simulated event Tick(float DeltaTime)
 
 simulated function InterruptWeaponAnim()
 {
-    WeapAnimNode.StopAnim();
-    if(WeapAnimNode.bForceRefposeWhenNotPlaying)
+    if(!bWeapMeshIsPawnMesh)
     {
-        WeapMesh.SetForceRefPose(true);
+        WeapAnimNode.StopAnim();
+        if(WeapAnimNode.bForceRefposeWhenNotPlaying)
+        {
+            WeapMesh.SetForceRefPose(true);
+        }
     }
 }
 
 simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingChannels)
 {
-    WeapMesh.SetLightingChannels(NewLightingChannels);
+    if(!bWeapMeshIsPawnMesh)
+    {
+        WeapMesh.SetLightingChannels(NewLightingChannels);
+    }
 }
 
 simulated function bool HasIndoorLighting()
@@ -922,7 +974,6 @@ defaultproperties
     object end
     // Reference: SkeletalMeshComponent'Default__KFWeaponAttachment.SkeletalMeshComponent0'
     WeapMesh=SkeletalMeshComponent0
-    FlashlightArchetype=KFFlashlightAttachment'FX_Flashlight_ARCH.Default_Flashlight_3P'
     LaserSightArchetype=KFLaserSightAttachment'FX_LaserSight_ARCH.Default_LaserSight_3P'
     MaxFireEffectDistance=5000
     Recoil_Hand=(TimeToGo=0,TimeDuration=0.33,RotAmplitude=(X=0,Y=0,Z=0),RotFrequency=(X=0,Y=0,Z=0),RotSinOffset=(X=0,Y=0,Z=0),RotParams=(X=ERecoilStart.ERS_Zero,Y=ERecoilStart.ERS_Zero,Z=ERecoilStart.ERS_Zero,Padding=0),RotOffset=(Pitch=0,Yaw=0,Roll=0),LocAmplitude=(X=0,Y=0,Z=0),LocFrequency=(X=0,Y=0,Z=0),LocSinOffset=(X=0,Y=0,Z=0),LocParams=(X=ERecoilStart.ERS_Zero,Y=ERecoilStart.ERS_Zero,Z=ERecoilStart.ERS_Zero,Padding=0),LocOffset=(X=0,Y=0,Z=0))

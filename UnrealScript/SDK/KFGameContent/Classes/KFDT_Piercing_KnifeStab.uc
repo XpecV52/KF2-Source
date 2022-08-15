@@ -25,5 +25,5 @@ defaultproperties
 	MeleeHitPower=30
 
 
-	AARWeaponID=`AAR_Knife
+	WeaponDef=class'KFWeapDef_Knife_Base'
 }

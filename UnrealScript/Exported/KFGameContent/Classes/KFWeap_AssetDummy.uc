@@ -23,7 +23,7 @@ defaultproperties
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_AssetDummy:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_AssetDummy:MeleeHelper_0'
    WeaponFireTypes(0)=EWFT_Custom
    WeaponFireTypes(1)=EWFT_Custom
    WeaponFireTypes(2)=()

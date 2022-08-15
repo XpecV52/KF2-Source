@@ -475,6 +475,29 @@ class KFDT_Explosive_HansHEGrenade extends KFDT_Explosive_HEGrenade
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 15
 
 static function int GetKillerDialogID()
@@ -486,5 +509,5 @@ defaultproperties
 {
    bNoInstigatorDamage=True
    Name="Default__KFDT_Explosive_HansHEGrenade"
-   ObjectArchetype=KFDT_Explosive_HEGrenade'KFGameContent.Default__KFDT_Explosive_HEGrenade'
+   ObjectArchetype=KFDT_Explosive_HEGrenade'kfgamecontent.Default__KFDT_Explosive_HEGrenade'
 }

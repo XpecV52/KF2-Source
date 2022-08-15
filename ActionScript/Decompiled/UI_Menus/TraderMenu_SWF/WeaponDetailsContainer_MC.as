@@ -1,18 +1,14 @@
 package
 {
-    import flash.display.MovieClip;
     import tripwire.containers.trader.TraderItemDetailsContainer;
     
     public dynamic class WeaponDetailsContainer_MC extends TraderItemDetailsContainer
     {
          
         
-        public var BGTint:MovieClip;
-        
         public function WeaponDetailsContainer_MC()
         {
             super();
-            addFrameScript(0,this.frame1);
             this.__setProp_buySellButton_WeaponDetailsContainer_MC_BuySellButton_0();
         }
         
@@ -43,12 +39,6 @@ package
             catch(e:Error)
             {
             }
-        }
-        
-        function frame1() : *
-        {
-            this.BGTint.mouseEnabled = false;
-            this.BGTint.mouseChildren = false;
         }
     }
 }

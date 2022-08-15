@@ -20,4 +20,7 @@ defaultproperties
     ObliterationHealthThreshold=-1
     ObliterationDamageThreshold=3
     bArmorStops=false
+    KDamageImpulse=1400
+    KDeathVel=700
+    KDeathUpKick=500
 }

@@ -49,65 +49,6 @@ class KFDT_Slashing_KnifeHeavy_Medic extends KFDT_Slashing_KnifeHeavy
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -151,6 +92,7 @@ static function bool CheckMedicBleed( out int InDamage, out class<KFDamageType> 
 
 defaultproperties
 {
+   WeaponDef=Class'KFGame.KFWeapDef_Knife_Medic'
    Name="Default__KFDT_Slashing_KnifeHeavy_Medic"
-   ObjectArchetype=KFDT_Slashing_KnifeHeavy'KFGameContent.Default__KFDT_Slashing_KnifeHeavy'
+   ObjectArchetype=KFDT_Slashing_KnifeHeavy'kfgamecontent.Default__KFDT_Slashing_KnifeHeavy'
 }

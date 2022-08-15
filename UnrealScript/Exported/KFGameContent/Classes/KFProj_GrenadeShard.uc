@@ -66,12 +66,12 @@ simulated function Tick( float DeltaTime )
 
 defaultproperties
 {
-   RicochetEffects=KFImpactEffectInfo'WEP_Nail_Shotgun_ARCH.NailBulletImpacts'
+   RicochetEffects=KFImpactEffectInfo'WEP_MKII_ARCH.MKII_Shrapnel_Impacts'
    bSyncToThirdPersonMuzzleLocation=False
    bNoReplicationToInstigator=False
    bReplicateClientHitsAsFragments=True
-   ProjFlightTemplate=ParticleSystem'WEP_1P_Nail_Shotgun_EMIT.FX_Nail_Shotgun_Tracer'
-   ProjFlightTemplateZedTime=ParticleSystem'WEP_1P_Nail_Shotgun_EMIT.FX_Nail_Shotgun_Tracer_ZEDTime'
+   ProjFlightTemplate=ParticleSystem'WEP_3P_MKII_EMIT.FX_MKII_Shrapnel'
+   ProjFlightTemplateZedTime=ParticleSystem'WEP_3P_MKII_EMIT.FX_MKII_Shrapnel_ZEDTime'
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent Archetype=AkComponent'KFGame.Default__KFProj_RicochetBullet:AmbientAkSoundComponent'
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True
@@ -83,7 +83,7 @@ defaultproperties
    Speed=4000.000000
    MaxSpeed=4000.000000
    Damage=50.000000
-   MyDamageType=Class'KFGameContent.KFDT_Piercing_NadeFragment'
+   MyDamageType=Class'kfgamecontent.KFDT_Piercing_NadeFragment'
    Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'KFGame.Default__KFProj_RicochetBullet:CollisionCylinder'
       CollisionHeight=0.000000
       CollisionRadius=0.000000

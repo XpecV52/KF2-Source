@@ -197,13 +197,11 @@ defaultproperties
     BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Hammer'
     ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Wood'
     FireModeIconPaths=/* Array type was not detected. */
-    FilterTypeUI=EFilterTypeUI.FT_Melee
     InventorySize=6
-    EffectiveRange=3
     bCanBeReloaded=true
     bReloadFromMagazine=true
     GroupPriority=75
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Pulverizer'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Pulverizer'
     MagazineCapacity=5
     MaxSpareAmmo=30
     InitialSpareMags=3

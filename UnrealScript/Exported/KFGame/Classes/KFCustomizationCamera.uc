@@ -14,8 +14,8 @@ var		bool 	bInitialize;
 var 	byte	BodyViewIndex;
 var 	byte 	CurrentViewIndex;
 
-var		Vector	CharacterOffset;
-var		Vector	HeadOffset;
+var()	Vector	CharacterOffset;
+var()	Vector	HeadOffset;
 
 var		float 	CharacterDistance;
 var		float 	HeadDistance;
@@ -154,8 +154,8 @@ function FadeCameraRotation()
 
 defaultproperties
 {
-   CharacterOffset=(X=0.000000,Y=-35.000000,Z=5.000000)
-   HeadOffset=(X=0.000000,Y=-10.000000,Z=70.000000)
+   CharacterOffset=(X=0.000000,Y=-15.000000,Z=6.000000)
+   HeadOffset=(X=0.000000,Y=-15.000000,Z=68.000000)
    CharacterDistance=200.000000
    HeadDistance=70.000000
    RotationOffset=38500

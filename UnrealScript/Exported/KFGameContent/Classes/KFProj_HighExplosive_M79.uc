@@ -24,16 +24,16 @@ defaultproperties
       Damage=225.000000
       DamageRadius=800.000000
       DamageFalloffExponent=2.000000
-      MyDamageType=Class'KFGameContent.KFDT_Explosive_M79'
+      MyDamageType=Class'kfgamecontent.KFDT_Explosive_M79'
       KnockDownStrength=0.000000
       ExplosionSound=AkEvent'WW_WEP_SA_M79.Play_WEP_SA_M79_Explosion'
-      ExploLight=PointLightComponent'KFGameContent.Default__KFProj_HighExplosive_M79:ExplosionPointLight'
+      ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_HighExplosive_M79:ExplosionPointLight'
       ExploLightFadeOutTime=0.200000
       CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
       Name="ExploTemplate0"
       ObjectArchetype=KFGameExplosion'KFGame.Default__KFGameExplosion'
    End Object
-   ExplosionTemplate=KFGameExplosion'KFGameContent.Default__KFProj_HighExplosive_M79:ExploTemplate0'
+   ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFProj_HighExplosive_M79:ExploTemplate0'
    ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
    AltExploEffects=KFImpactEffectInfo'WEP_M79_ARCH.M79Grenade_Explosion_Concussive_Force'
    ProjFlightTemplate=ParticleSystem'WEP_3P_M79_EMIT.FX_M79_40mm_Projectile'

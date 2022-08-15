@@ -13,5 +13,7 @@ class KFDT_Slashing_Gorefast extends KFDT_Slashing
 
 defaultproperties
 {
-	KDamageImpulse=350
+	KDamageImpulse=400
+	KDeathUpKick=120
+	KDeathVel=500
 }

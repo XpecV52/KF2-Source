@@ -24,7 +24,7 @@ defaultproperties
 	LegStumblePower=56
 	MeleeHitPower=50
 
-	AARWeaponID=`AAR_Pulverizer
+	WeaponDef=class'KFWeapDef_Pulverizer'
 
 	ModifierPerkList(0)=class'KFPerk_Berserker'
 }

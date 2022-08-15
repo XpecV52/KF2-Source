@@ -11,10 +11,15 @@ class KFPawn_ZedStalker extends KFPawn_Monster;
 
 var MaterialInstanceConstant SpottedMaterial;
 var MaterialInstanceConstant CloakedMaterial;
-var MaterialInstanceConstant VisibleMaterial;
 
 var AkBaseSoundObject CloakedLoop;
 var AkBaseSoundObject CloakedLoopEnd;
+
+var float CloakPercent;
+
+/** Cloak speeds */
+var float CloakSpeed;
+var float DeCloakSpeed;
 
 simulated event PostBeginPlay()
 {
@@ -33,7 +38,7 @@ simulated event ReplicatedEvent(name VarName)
 		SetGameplayMICParams();
 		break;
 	case nameof(bIsCloaking):
-		SetGameplayMICParams();
+		ClientCloakingStateUpdated();
 		break;
 	}
 
@@ -62,7 +67,24 @@ function SetCloaked(bool bNewCloaking)
 			SetGameplayMICParams();
 			Mesh.SetPerObjectShadows(!bNewCloaking);
 		}
+
+		super.SetCloaked( bNewCloaking );
 	}
+}
+
+/** 
+ * bIsCloaking replicated state changed
+ * Network: Local and Remote Clients
+ */
+simulated function ClientCloakingStateUpdated()
+{
+	if( bIsCloaking )
+	{
+		ClearBloodDecals();
+	}
+	
+	SetGameplayMICParams();
+	Mesh.SetPerObjectShadows( !bIsCloaking );
 }
 
 /** Handle cloaking materials */
@@ -78,16 +100,11 @@ simulated function SetGameplayMICParams()
 		// visible by local player or team (must go after ServerCallOutCloaking)
 		bIsSpotted = (bIsCloakingSpottedByLP || bIsCloakingSpottedByTeam);
 
-		if ( !bIsCloaking || IsImpaired() )
-		{
-			BodyMIC.SetParent(VisibleMaterial);
-			PlayStealthSoundLoopEnd();
-		}
-		else if ( bIsSpotted )
+		if ( bIsSpotted && bIsCloaking )
 		{
 			BodyMIC.SetParent(SpottedMaterial);
 		}
-		else
+		else if( BodyMIC.Parent != CloakedMaterial )
 		{
 			BodyMIC.SetParent(CloakedMaterial);
 			PlayStealthSoundLoop();
@@ -113,6 +130,29 @@ simulated function PlayStealthSoundLoop()
 simulated function PlayStealthSoundLoopEnd()
 {
 	PlaySoundBase( CloakedLoopEnd, true );
+}
+
+/** Overridden to support transparency scalar */
+simulated event Tick( float DeltaTime )
+{
+	super.Tick( DeltaTime );
+
+	if( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		if( !bIsCloaking )
+		{
+			if( CloakPercent < 1.0f )
+			{
+				CloakPercent = FMin(CloakPercent + DeltaTime*DeCloakSpeed, 1.0f);
+				BodyMIC.SetScalarParameterValue('Transparency', CloakPercent);
+			}
+		}
+		else if( CloakPercent > 0.f )
+		{
+			CloakPercent = FMax(CloakPercent - DeltaTime*CloakSpeed, 0.f);
+			BodyMIC.SetScalarParameterValue('Transparency', CloakPercent);
+		}
+	}
 }
 
 /*********************************************************************************************
@@ -172,9 +212,10 @@ simulated event UpdateSpottedStatus()
 }
 
 /** notification from player with CallOut ability */
-function CallOutCloaking()
+function CallOutCloaking( optional KFPlayerController CallOutController )
 {
 	bIsCloakingSpottedByTeam = true;
+	LastStoredCC = CallOutController;
 	SetGameplayMICParams();
 	SetTimer(2.f, false, nameof(CallOutCloakingExpired));
 }
@@ -183,6 +224,7 @@ function CallOutCloaking()
 function CallOutCloakingExpired()
 {
 	bIsCloakingSpottedByTeam = false;
+	LastStoredCC = none;
 	SetGameplayMICParams();
 }
 
@@ -297,7 +339,6 @@ DefaultProperties
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Stalker_ANIM.Stalker_AnimGroup'
 	SpottedMaterial=MaterialInstanceConstant'ZED_Stalker_MAT.ZED_Stalker_Visible_MAT'
 	CloakedMaterial=MaterialInstanceConstant'ZED_Stalker_MAT.ZED_Stalker_MAT'
-	VisibleMaterial=MaterialInstanceConstant'ZED_Stalker_MAT.ZED_Stalker_Solid_MIC'
 
 	// ---------------------------------------------
 	// Special Moves
@@ -329,6 +370,7 @@ DefaultProperties
 	Begin Object Name=MeleeHelper_0
 		BaseDamage=9.f
 		MaxHitRange=180.f
+		MyDamageType=class'KFDT_Slashing_ZedWeak'
 	End Object
 
 	Health=75
@@ -363,6 +405,10 @@ DefaultProperties
 	// cloaking
 	bIsCloaking=true
 	bCanCloak=true
+	bCloakOnMeleeEnd=true
+	CloakPercent=1.0f
+	DeCloakSpeed=4.5f
+	CloakSpeed=4.0f
 	//CloakDuration=1.2
 
 	// audio

@@ -11,6 +11,9 @@ var transient KFPlayerController OwnerController;
 var AkEvent GrabbedSoundModeStartEvent;
 var AkEvent GrabbedSoundModeEndEvent;
 
+/** Recently grabbed targets get a repreive */
+var float GrabVictimCooldownTime;
+
 /** Notification called when Special Move starts */
 function SpecialMoveStarted(bool bForced, Name PrevMove )
 {
@@ -60,6 +63,11 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
 			OwnerController.PostAkEvent(GrabbedSoundModeEndEvent);
 		}
 	}
+
+	if ( PawnOwner.Role == ROLE_Authority )
+	{
+		KFPOwner.SetWeakGrabCoolDown(GrabVictimCooldownTime);
+	}
 }
 
 function SetGrabEffect( KFPlayerController KFPC, bool bValue )
@@ -82,5 +90,7 @@ DefaultProperties
 	// Audio
 	GrabbedSoundModeStartEvent=AkEvent'WW_UI_PlayerCharacter.Play_Grab_Start'
 	GrabbedSoundModeEndEvent=AkEvent'WW_UI_PlayerCharacter.Play_Grab_Stop'
+
+	GrabVictimCooldownTime=5.f
 }
 

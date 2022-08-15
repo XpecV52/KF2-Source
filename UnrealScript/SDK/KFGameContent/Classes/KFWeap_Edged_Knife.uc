@@ -10,15 +10,20 @@
 
 class KFWeap_Edged_Knife extends KFWeap_MeleeBase;
 
+/** Trader Menu */
+function class<KFWeaponDefinition> GetKnifeWeaponDef()
+{
+	return AssociatedPerkClass.default.KnifeWeaponDef;
+}
+
 defaultproperties
 {
 	// Inventory
 	bCanThrow=false
 	bDropOnDeath=false
 	bIsBackupWeapon=true
-	FilterTypeUI=FT_Melee
 	GroupPriority=10
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Knife'
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Knife'
 
 	// Zooming/Position
 	PlayerViewOffset=(X=10,Y=10,Z=0)

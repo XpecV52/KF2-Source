@@ -235,7 +235,7 @@ function bool ShouldConcludeVote()
     {
         -- NumPRIs;
     }
-    if((YesVotes + NoVotes) >= PRIs.Length)
+    if((YesVotes + NoVotes) >= NumPRIs)
     {
         return true;        
     }

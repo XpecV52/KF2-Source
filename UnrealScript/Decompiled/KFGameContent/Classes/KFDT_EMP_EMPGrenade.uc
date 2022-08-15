@@ -10,6 +10,6 @@ class KFDT_EMP_EMPGrenade extends KFDT_EMP
 
 defaultproperties
 {
-    AARWeaponID=8
+    WeaponDef=Class'KFGame.KFWeapDef_Grenade_Berserker'
     StumblePower=120
 }

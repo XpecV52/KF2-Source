@@ -404,8 +404,10 @@ ConfirmString="AUSWÄHLEN"
 MenuStrings[0]="HOME"
 MenuStrings[1]="PERKS"
 MenuStrings[2]="AUSRÜSTUNG"
-MenuStrings[3]="OPTIONEN"
-MenuStrings[4]="BEENDEN"
+MenuStrings[3]="INVENTORY"
+MenuStrings[4]="STORE"
+MenuStrings[5]="OPTIONEN"
+MenuStrings[6]="BEENDEN"
 
 ServerBrowserString="SERVER-BROWSER"
 MatchmakingString="SUCHE"
@@ -464,7 +466,7 @@ SecondaryString="SEKUNDÄR"
 [KFGFxWidget_KickVote]
 VoteKickString="Spieler rauswerfen?"
 
-[KFGFxWidget_VoiceComms]
+[KFLocalMessage_VoiceComms]
 VoiceCommsOptionStrings[0]="HEILUNG ANFORDERN"
 VoiceCommsOptionStrings[1]="KOHLE ANFORDERN"
 VoiceCommsOptionStrings[2]="HILFE ANFORDERN"
@@ -916,10 +918,10 @@ SonicResistance="Resistenz gegen Schall"
 SonicResistanceDescription="Ich kann dich nicht hören! Senke den Schaden durch Schallangriffe um 40 %."
 
 Vampire="Vampir"
-VampireDescription="Kleine Blutsauger: Horzine-Nanotechnologie saugt 3 Lebenspunkte aus jedem Zed, den du mit einer beliebigen Perk-Waffe tötest, und addiert sie zu deinen."
+VampireDescription="Kleine Blutsauger: Horzine-Nanotechnologie saugt 4 Lebenspunkte aus jedem Zed, den du mit einer beliebigen Perk-Waffe tötest, und addiert sie zu deinen."
 
 Fortitude="Tapferkeit"
-FortitudeDescription="Verbessere deine Chancen: Erhöhe die maximale und die Start-Gesundheit um 100 %"
+FortitudeDescription="Verbessere deine Chancen: Erhöhe die maximale und die Start-Gesundheit um 75 %"
 
 FuriousDefender="Wütender Verteidiger"
 FuriousDefenderDescription="Sie nennen dich nicht ohne Grund den Berserker: Berserker-Nahkampfwaffen sind um 10 % schneller und alle Angriffe fügen 20 % mehr Schaden zu."
@@ -931,9 +933,9 @@ Parry="Parieren"
 ParryDescription="Verbinde Geschick und Kraft: Das Parieren eines Angriffs erhöht die Nahkampf-Angriffsgeschwindigkeit für 4 Sekunden um 15 % und den Schaden durch leichte Angriffe um 30 %."
 
 Smash="Zerschmettern"
-SmashDescription="Nutze die rohe Gewalt: Harte Treffer fügen 100 % mehr Schaden zu UND harte Treffer auf den Kopf haben eine hohe Wahrscheinlichkeit, große Zeds umzuhauen."
+SmashDescription="Nutze die rohe Gewalt: Harte Treffer fügen 25 % mehr Schaden zu UND harte Treffer auf den Kopf haben eine hohe Wahrscheinlichkeit, große Zeds umzuhauen."
 
-Spartan="ZED-ZEIT – Spartaner"
+Spartan="ZED ZEIT – Spartaner"
 SpartanDescription="Du hast 300 gesehen: Bewege dich in Echtzeit, erhöhe die Angriffsgeschwindigkeit mit Berserker-Nahkampfwaffen um 50 %, und jedes Parieren verursacht einen Knockdown."
 
 Menace=""
@@ -1059,7 +1061,7 @@ Combatant="Kämpfer"
 CombatantDescription="Sei nicht nur ein Sanitäter: Sei der Kampfsanitäter, der du schon immer sein wolltest, mit kostenloser Startschutzweste und einem 60 %igen Nachlass auf alle Schutzwestenkäufe!"
 
 Armament="Aufrüstung"
-ArmamentDescription="Repariere nicht einfach nur Menschen: Verliere 10 % deiner Heilungseffizienz bei Teammitgliedern und repariere dafür jedes Mal 2 % ihrer max. Schutzweste!"
+ArmamentDescription="Repariere nicht einfach nur Menschen: Verliere 25 % deiner Heilungseffizienz bei Teammitgliedern und repariere dafür jedes Mal 1 % ihrer max. Schutzweste!"
 
 Regeneration="Regeneration"
 RegenerationDescription="Gib dir die Dröhnung: Deine Gesundheit regeneriert sich mit der Zeit langsam dank der Horzine-Nanobots."

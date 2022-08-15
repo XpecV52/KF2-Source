@@ -8,10 +8,22 @@
 //  - Greg Felber 7/23/2013
 //=============================================================================
 
-class KFGFxMenu_Gear extends KFGFxObject_Menu;
+class KFGFxMenu_Gear extends KFGFxObject_Menu
+	dependson(KFWeaponSkinList)
+	native(UI);
+
+/** The customization option we want alter */
+enum ECustomizationOption
+{
+	CO_Character,
+	CO_Head,
+	CO_Body,
+	CO_Attachment
+};
 
 var KFGFxObject_Container CustomizationComponent;
 var KFPlayerReplicationInfo MyKFPRI;
+var KFGFxGearContainer_PerksSelection PerkSelectionContainer;
 
 var const string HeadMeshKey; 
 var const string HeadSkinKey; 
@@ -37,8 +49,18 @@ var localized string SkinsString;
 var localized string BackString;
 var localized string NoneString;
 
+/*********** Weapon customization *****************/
+var localized string WeaponsString;
+var localized string WeaponsInfoString;
+
+var KFGFxObject_TraderItems TraderItems;
+
+var array<class<KFWeaponDefinition> > CurrentWearponDefList;
+
 var const int ControllerRotationRate;
 var const float ControllerRotationThreshold;
+
+var int CurrentPerkIndex;
 
 var string ClearImagePath;
 
@@ -50,6 +72,25 @@ function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 	// Set the list of usable characters
 	UpdateCharacterList();	
 	UpdateGear();
+	/*PerkSelectionContainer = GetObject("perkSelectionContainer");
+	`log("THIS IS THE PERK SELECTION CONTAITNER : " @perkSelectionContainer);*/
+	TraderItems = KFGameReplicationInfo( KFPlayerController(GetPC()).WorldInfo.GRI ).TraderItems;
+}
+
+event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
+{	
+	switch(WidgetName)
+	{
+        case ('perkSelectionContainer'):
+			if ( PerkSelectionContainer == none )
+			{
+			    PerkSelectionContainer = KFGFxGearContainer_PerksSelection( Widget );
+			    PerkSelectionContainer.Initialize(self);
+		    }
+        break;
+	}
+
+	return true;
 }
 
 function OnOpen()
@@ -92,7 +133,92 @@ function LocalizeText()
 	LocalizedObject.SetString("skinsString", SkinsString);
 	LocalizedObject.SetString("attachmentsString", AttachmentsString);
 
+	LocalizedObject.SetString("weapons", WeaponsString);
+	LocalizedObject.SetString("weaponsInfo", WeaponsInfoString);
+
 	SetObject("localizeText", LocalizedObject);
+}
+
+//WEAPONS CUSTOMIZATION 
+function UpdateWeaponList()
+{
+	local byte i, ItemIndex;
+	local GFxObject DataProvider, SlotObject;
+	local string TexturePath;
+	local KFPlayerController KFPC; 
+	local array<STraderItem> FullItemList;
+
+	KFPC = KFPlayerController(GetPC());
+	if (KFPC == none || TraderItems == none)
+	{
+		return;
+	}
+
+	ItemIndex = 0;
+	DataProvider = CreateArray();
+	FullItemList = TraderItems.SaleItems;
+
+	CurrentWearponDefList.length = 0;
+
+	for (i = 0; i < FullItemList.Length; i++)
+	{
+		if ( FullItemList[i].AssociatedPerkClass == None ||
+				 (CurrentPerkIndex < KFPC.PerkList.Length && FullItemList[i].AssociatedPerkClass == KFPC.PerkList[CurrentPerkIndex].PerkClass) )
+		{
+			SlotObject = CreateObject( "Object" );
+			SlotObject.SetInt("ItemIndex", i);
+			SlotObject.SetString("label", FullItemList[i].WeaponDef.static.GetItemName());
+			TexturePath = "img://"$FullItemList[i].WeaponDef.static.GetImagePath();
+			SlotObject.SetString("source", TexturePath);
+			SlotObject.SetBool("enabled", (class'KFWeaponSkinList'.default.Skins.Find('WeaponDef', FullItemList[i].WeaponDef) != INDEX_NONE));
+
+			UpdateWeaponVariants( FullItemList[i].WeaponDef, SlotObject );
+
+			DataProvider.SetElementObject(ItemIndex, SlotObject);
+			ItemIndex++;
+			CurrentWearponDefList.AddItem(FullItemList[i].WeaponDef);
+		}
+		
+	}
+
+	SetObject("weaponArray", DataProvider);
+}
+
+function UpdateWeaponVariants(class<KFWeaponDefinition> WeaponDef, out GFxObject MeshObject)
+{
+	local byte i, ItemIndex;
+	local GFxObject DataProvider, SlotObject;
+	//local string SectionPath;
+	//local string TexturePath;
+
+	ItemIndex = 0;
+	DataProvider = CreateArray();
+
+	SlotObject = CreateObject( "Object" );
+	SlotObject.SetString("label", NoneString);
+	SlotObject.SetString("source", "img://"$ClearImagePath);
+	SlotObject.SetBool("enabled", true);
+	DataProvider.SetElementObject(ItemIndex, SlotObject);
+	ItemIndex++;
+
+	for (i = 0; i < class'KFWeaponSkinList'.default.Skins.length; i++)
+	{
+		if( class'KFWeaponSkinList'.default.Skins[i].Weapondef == WeaponDef )
+		{
+			SlotObject = CreateObject( "Object" );
+			SlotObject.SetInt("ItemIndex", i);
+			SlotObject.SetString("label", class'KFWeaponSkinList'.default.Skins[i].MIC_3P);
+			SlotObject.SetBool("enabled", class'KFUnlockManager'.static.GetWeaponSkinAvailable(class'KFWeaponSkinList'.default.Skins[i].Id));
+			SlotObject.SetInt("definition", class'KFWeaponSkinList'.default.Skins[i].Id);
+			//TexturePath = "img://"$PathName(Skin.UITexture);
+			//SlotObject.SetString("source", TexturePath);
+
+			DataProvider.SetElementObject(ItemIndex, SlotObject);
+			ItemIndex++;
+		}
+	}
+
+	MeshObject.SetObject("skinInfo", DataProvider);
 }
 
 function UpdateCharacterList()
@@ -111,6 +237,7 @@ function UpdateCharacterList()
 			SlotObject.SetInt("ItemIndex", i);
 			SlotObject.SetString("label", Localize(String(MyKFPRI.CharacterArchetypes[i].Name), "CharacterName", KFCharacterInfoString));
 			TexturePath = "img://"$PathName(MyKFPRI.CharacterArchetypes[i].DefaultHeadPortrait);
+			SlotObject.SetBool("enabled", true);
 			SlotObject.SetString("source", TexturePath);
 			DataProvider.SetElementObject(ItemIndex, SlotObject);
 			ItemIndex++;
@@ -126,14 +253,14 @@ function UpdateCharacterList()
 
 function UpdateGear()
 {
-	CurrentCharInfo = MyKFPRI.CharacterArchetypes[MyKFPRI.StoredCharIndex];
+	CurrentCharInfo = MyKFPRI.CharacterArchetypes[MyKFPRI.RepCustomizationInfo.CharacterIndex];
 	CharInfoPath = String(CurrentCharInfo.Name);
 	// Set the list of usable bodies for this character
 	UpdateMeshList(BodyMeshKey, BodySkinKey, CurrentCharInfo.BodyVariants, "bodyArray");
 	// Set the list of usable heads for this character
 	UpdateMeshList(HeadMeshKey, HeadSkinKey, CurrentCharInfo.HeadVariants, "headsArray");
 	// Set the list of usable attachments for this character
-	UpdateAttachmentsList(AttachmentKey, CurrentCharInfo.CosmeticVariants, "attachmentsArray");
+	UpdateAttachmentsList(CurrentCharInfo.CosmeticVariants);
 
 	SetCurrentCharacterButtons();
 }
@@ -155,7 +282,7 @@ function UpdateMeshList(string OutfitKey, string SkinKey, array<OutfitVariants> 
 			SlotObject = CreateObject( "Object" );
 			SlotObject.SetInt("ItemIndex", i);
 			SlotObject.SetString("label", Localize(CharInfoPath, OutfitKey$i, KFCharacterInfoString));
-
+			SlotObject.SetBool("enabled", true);
 			TexturePath = "img://"$PathName(Outfit.UITexture);
 			SlotObject.SetString("source", TexturePath);
 
@@ -173,46 +300,45 @@ function UpdateMeshList(string OutfitKey, string SkinKey, array<OutfitVariants> 
 	SetObject(DataArrayString, DataProvider);
 }
 
-function UpdateAttachmentsList(string ItemKey, array<AttachmentVariants> Attachments, string DataArrayString)
+function UpdateAttachmentsList(array<AttachmentVariants> Attachments)
 {
 	local byte i, ItemIndex;
 	local GFxObject DataProvider, SlotObject;
 	local string TexturePath;
 	local AttachmentVariants Variant;
+	local Pawn MyPawn;
 
 	ItemIndex = 0;
 	DataProvider = CreateArray();
+	MyPawn = GetPC().Pawn;
 
 	// Insert blank object
 	SlotObject = CreateObject( "Object" );
 	SlotObject.SetString("label", NoneString);
 	SlotObject.SetString("source", "img://"$ClearImagePath);
+	SlotObject.SetBool("enabled", true);
 	DataProvider.SetElementObject(ItemIndex, SlotObject);
 	ItemIndex++;
 
 	for (i = 0; i < Attachments.length; i++)
 	{
 		Variant = Attachments[i];
-		if (class'KFUnlockManager'.static.GetAvailableAttachment(Variant))
+		if ( CurrentCharInfo.IsAttachmentAvailable(Variant, MyPawn) )
 		{
 			SlotObject = CreateObject( "Object" );
 			SlotObject.SetInt("ItemIndex", i);
-			SlotObject.SetString("label", Localize(CharInfoPath, ItemKey$i, KFCharacterInfoString));
-
+			SlotObject.SetString("label", Localize(CharInfoPath, AttachmentKey$i, KFCharacterInfoString));
+			SlotObject.SetBool("enabled", true);
 			TexturePath = "img://"$PathName(Variant.UITexture);
 			SlotObject.SetString("source", TexturePath);
-			UpdateVariants( ItemKey, AttachmentSkinKey, Variant.SkinVariations, i, SlotObject );
+			UpdateVariants( AttachmentKey, AttachmentSkinKey, Variant.SkinVariations, i, SlotObject );
 
 			DataProvider.SetElementObject(ItemIndex, SlotObject);
 			ItemIndex++;
 		}
-		else
-		{
-			LogInternal("Attachment" @ Variant.MeshName @ "is not purchased.");
-		}
 	}
 	
-	SetObject(DataArrayString, DataProvider);
+	SetObject("attachmentsArray", DataProvider);
 }
 
 function UpdateVariants(string OutfitKey, string KeyName, out array<SkinVariant> SkinVariations, int OutfitIndex, out GFxObject MeshObject)
@@ -236,6 +362,7 @@ function UpdateVariants(string OutfitKey, string KeyName, out array<SkinVariant>
 			SlotObject.SetInt("ItemIndex", i);
 			SlotObject.SetString("label", Localize(SectionPath, KeyName$i, KFCharacterInfoString));
 			TexturePath = "img://"$PathName(Skin.UITexture);
+			SlotObject.SetBool("enabled", true);
 			SlotObject.SetString("source", TexturePath);
 
 			DataProvider.SetElementObject(ItemIndex, SlotObject);
@@ -257,7 +384,7 @@ function SetCurrentCharacterButtons()
 
 	DataObject.SetString( "selectedCharacter", Localize(CharInfoPath, "CharacterName", KFCharacterInfoString) );
 	DataObject.SetString( "characterBio", Localize(CharInfoPath, "Description", KFCharacterInfoString) );
-	DataObject.SetInt( "selectedCharacterIndex", MyKFPRI.StoredCharIndex );
+	DataObject.SetInt( "selectedCharacterIndex", MyKFPRI.RepCustomizationInfo.CharacterIndex );
 
 	SetObject( "selectedCharacter", DataObject);
 
@@ -365,6 +492,16 @@ event bool OnAxisModified( int ControllerId, name Key, float Delta, float DeltaT
 // ActionScript Callbacks
 //==============================================================
 
+function Callback_PerkSelected(int PerkIndex)
+{
+	if(CurrentPerkIndex != PerkIndex)
+	{
+		CurrentPerkIndex = PerkIndex;
+		UpdateWeaponList();
+
+	}
+}
+
 function Callback_RotateCamera( int RotationDirection )
 {
 	local KFPlayerCamera PlayerCamera;
@@ -387,6 +524,18 @@ function Callback_EndRotateCamera()
 	}
 }
 
+function Callback_Weapon( int ItemIndex, int SkinIndex )
+{
+	local KFPawn_Customization KFP;
+
+	KFP = KFPawn_Customization(GetPC().Pawn);
+	if(KFP != none)
+	{
+		//KFP.AttachWeaponByItemDefinition(SkinIndex);
+	}
+	
+}
+
 function Callback_BodyCamera()
 {
 	if ( KFPlayerCamera( GetPC().PlayerCamera ) != none )
@@ -403,53 +552,91 @@ function Callback_HeadCamera()
 	}
 }
 
-function Callback_Character(byte Index)
+private function Callback_Character(byte Index)
 {
-	SetOption(CO_Character, Index);
+	local Pawn P;
+
+	P = GetPC().Pawn;
+	if( P != none )
+	{
+		// only allowed during gear preview
+		if ( KFPawn_Customization(P) != none )
+		{
+			SelectCharacter(P, Index);
+		}
+	}
+
 	UpdateGear();
 }
 
-function Callback_Head( byte MeshIndex, byte SkinIndex )
+private function Callback_Head( byte MeshIndex, byte SkinIndex )
 {
-	SetOption(CO_Head, MeshIndex, SkinIndex );
+	local Pawn P;
+	local KFPawn KFP;
+
+	P = GetPC().Pawn;
+	if( P != none )
+	{
+		KFP = KFPawn( P );
+		if ( KFP != none )
+		{
+			SelectCustomizationOption(KFP, CO_Head, MeshIndex, SkinIndex);
+		}
+	}
+
 	SetGearButtons(MeshIndex, SkinIndex, HeadMeshKey, HeadSkinKey, HeadFunctionKey);
 }
 
-function Callback_Body( byte MeshIndex, byte SkinIndex )
+private function Callback_Body( byte MeshIndex, byte SkinIndex )
 {
-	SetOption(CO_Body, MeshIndex, SkinIndex );
+	local Pawn P;
+	local KFPawn KFP;
+
+	P = GetPC().Pawn;
+	if( P != none )
+	{
+		KFP = KFPawn( P );
+		if ( KFP != none )
+		{
+			SelectCustomizationOption(KFP, CO_Body, MeshIndex, SkinIndex);
+
+			// When assigning a new body mesh we may need to remove certain attachments
+			// refresh filters, and update the equipped accessories list
+			UpdateAttachmentsList(CurrentCharInfo.CosmeticVariants);
+			SetAttachmentButtons(AttachmentKey, AttachmentFunctionKey);
+		}
+	}
+
 	SetGearButtons(MeshIndex, SkinIndex, BodyMeshKey, BodySkinKey, BodyFunctionKey);
 }
 
-function Callback_Attachment( byte MeshIndex, byte SkinIndex )
+private function Callback_Attachment( byte MeshIndex, byte SkinIndex )
 {
-	SetOption(CO_Attachment, MeshIndex, SkinIndex, 0 );
+	local Pawn P;
+	local KFPawn KFP;
+	local KFPlayerReplicationInfo KFPRI;
+	local int SlotIndex;
+
+	P = GetPC().Pawn;
+	if( P != none )
+	{
+		KFP = KFPawn( P );
+		KFPRI = KFPlayerReplicationInfo(P.PlayerReplicationInfo);
+
+		if ( KFP != none && KFPRI != None )
+		{
+			CurrentCharInfo.DetachConflictingAttachments(MeshIndex, KFP, KFPRI);
+			SlotIndex = CurrentCharInfo.GetAttachmentSlotIndex(MeshIndex, KFP);
+			SelectCustomizationOption(KFP, CO_Attachment, MeshIndex, SkinIndex, SlotIndex);
+		}
+	}
+
 	SetAttachmentButtons(AttachmentKey, AttachmentFunctionKey);
 }
 
-function SetOption( ECustomizationOption CustomizationOption, byte PrimaryIndex, optional byte SecondaryIndex, optional byte AttachmentSlot )
-{
-	local KFPawn_Human KFP;
-	if( GetPC().Pawn != none )
-	{
-		KFP = KFPawn_Human( GetPC().Pawn );
-		if ( KFP != none )
-		{
-			if( CustomizationOption == CO_Character && KFPawn_Customization(GetPC().Pawn) != none )
-			{
-				KFPawn_Customization(GetPC().Pawn).UpdateCustomizationCharacter( PrimaryIndex );
-			}
-			else if( CustomizationOption == CO_Attachment )
-			{
-				KFP.UpdateCustomizationOption( CustomizationOption, PrimaryIndex, SecondaryIndex, AttachmentSlot );
-			}
-			else
-			{
-				KFP.UpdateCustomizationOption( CustomizationOption, PrimaryIndex, SecondaryIndex );
-			}
-		}
-	}
-}
+/** Update our character parts when the UI is being used */
+native private function SelectCharacter(Pawn P, byte CharacterIndex);
+native private function SelectCustomizationOption(Pawn P, ECustomizationOption CustomizationOption, byte MeshIndex, byte SkinIndex, optional int AttachmentIndex);
 
 defaultproperties
 {
@@ -472,10 +659,14 @@ defaultproperties
    SkinsString="SKINS"
    BackString="BACK"
    NoneString="NONE"
+   WeaponsString="Weapons"
+   WeaponsInfoString="Customize"
    ControllerRotationRate=15
    ControllerRotationThreshold=0.250000
+   CurrentPerkIndex=-1
    ClearImagePath="CHR_Shared_TEX.NoItem_Selection"
    SubWidgetBindings(0)=(WidgetName="CustomizationComponent",WidgetClass=Class'KFGame.KFGFxObject_Container')
+   SubWidgetBindings(1)=(WidgetName="PerkSelectionContainer",WidgetClass=Class'KFGame.KFGFxGearContainer_PerksSelection')
    Name="Default__KFGFxMenu_Gear"
    ObjectArchetype=KFGFxObject_Menu'KFGame.Default__KFGFxObject_Menu'
 }

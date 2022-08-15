@@ -49,20 +49,18 @@ function ApplySkillsToPawn()
             KFIM.MaxCarryBlocks = byte(float(KFIM.default.MaxCarryBlocks) + PerkSkills[6].StartingValue);
         }
     }
-    InitSupplier();
+    ResetSupplier();
 }
 
-private final simulated function InitSupplier()
+private final simulated function ResetSupplier()
 {
-    if(MyPRI != none)
+    if((MyPRI != none) && IsSupplierActive())
     {
         if(SuppliedPawnList.Length > 0)
         {
             SuppliedPawnList.Remove(0, SuppliedPawnList.Length;
         }
-    }
-    if(IsSupplierActive())
-    {
+        MyPRI.bPerkCanSupply = true;
         if(InteractionTrigger != none)
         {
             InteractionTrigger.Destroy();
@@ -72,7 +70,7 @@ private final simulated function InitSupplier()
         {
             InteractionTrigger = Spawn(Class'KFUsablePerkTrigger', OwnerPawn,, OwnerPawn.Location, OwnerPawn.Rotation,, true);
             InteractionTrigger.SetBase(OwnerPawn);
-            InteractionTrigger.SetInteractionIndex(4);
+            InteractionTrigger.SetInteractionIndex(5);
             OwnerPC.SetPendingInteractionMessage();
         }        
     }
@@ -140,13 +138,13 @@ simulated function ModifyWeldingRate(out float FastenRate, out float UnfastenRat
     UnfastenRate *= WeldingModifier;
 }
 
-static simulated function float GetPenetrationModifier(byte Level, class<KFDamageType> DamageType, optional bool bForce)
+simulated function float GetPenetrationModifier(byte Level, class<KFDamageType> DamageType, optional bool bForce)
 {
     if(!bForce && (DamageType == none) || !IsDamageTypeOnPerk(DamageType))
     {
         return 0;
     }
-    return GetPassiveValue(default.ShotgunPenetration, Level);
+    return GetPassiveValue(ShotgunPenetration, Level);
 }
 
 simulated function ModifySpareAmmoAmount(KFWeapon KFW, out int PrimarySpareAmmo, const optional out STraderItem TraderItem)
@@ -295,7 +293,7 @@ function ResetPlayerBuffs()
     BuffedPlayerInfos.Remove(0, BuffedPlayerInfos.Length;
 }
 
-function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier)
+function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart)
 {
     if((IsWeaponOnPerk(GetOwnerWeapon())) && IsBombardActive())
     {
@@ -309,6 +307,7 @@ simulated function Interact(KFPawn_Human KFPH)
     local KFWeapon KFW;
     local int MagCount;
     local KFPlayerController KFPC;
+    local KFPlayerReplicationInfo UserPRI, OwnerPRI;
 
     if(SuppliedPawnList.Find(KFPH != -1)
     {
@@ -319,6 +318,12 @@ simulated function Interact(KFPawn_Human KFPH)
         KFPC = KFPlayerController(KFPH.Controller);
         OwnerPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 1, KFPC.PlayerReplicationInfo);
         KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 0, OwnerPC.PlayerReplicationInfo);
+        UserPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
+        OwnerPRI = KFPlayerReplicationInfo(OwnerPC.PlayerReplicationInfo);
+        if((UserPRI != none) && OwnerPRI != none)
+        {
+            UserPRI.MarkSupplierOwnerUsed(OwnerPRI);
+        }
     }
     foreach KFPH.InvManager.InventoryActors(Class'KFWeapon', KFW)
     {
@@ -355,16 +360,10 @@ event Tick(float DeltaTime)
     }
 }
 
-event ResetPerk()
+function OnWaveEnded()
 {
-    super.ResetPerk();
-    InitSupplier();
-}
-
-protected reliable client simulated function ClientResetPerk()
-{
-    super.ClientResetPerk();
-    InitSupplier();
+    super.OnWaveEnded();
+    ResetSupplier();
 }
 
 static simulated function GetPassiveStrings(out array<string> PassiveValues, out array<string> Increments, byte Level)
@@ -501,6 +500,7 @@ defaultproperties
     EXPAction1="Dealing Support weapon damage"
     EXPAction2="Welding doors"
     PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Support'
+    InteractIcon=Texture2D'UI_World_TEX.Support_Supplier_HUD'
     PerkSkills(0)=(Name="Ammo",Increment=0,Rank=0,StartingValue=1.2,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Ammo",bActive=false)
     PerkSkills(1)=(Name="Supplier",Increment=0,Rank=0,StartingValue=1.15,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Supplier",bActive=false)
     PerkSkills(2)=(Name="Fortitude",Increment=0,Rank=0,StartingValue=1.5,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Fortitude",bActive=false)
@@ -513,6 +513,7 @@ defaultproperties
     PerkSkills(9)=(Name="Barrage",Increment=0,Rank=0,StartingValue=0.15,MaxValue=0.15,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Barrage",bActive=false)
     RegenerationInterval=2.5
     RegenerationAmount=4
-    PrimaryWeaponClassName="KFGameContent.KFWeap_Shotgun_MB500"
-    MeleeWeaponClassName="KFGameContent.KFWeap_Knife_Support"
+    PrimaryWeaponDef=Class'KFWeapDef_MB500'
+    KnifeWeaponDef=Class'KFWeapDef_Knife_Support'
+    GrenadeWeaponDef=Class'KFWeapDef_Grenade_Support'
 }

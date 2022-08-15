@@ -87,7 +87,7 @@ simulated function int GetAmmoType(byte FiringMode)
 ********************************************************************************************* */
 
 /** process local player impact for clientside hit detection */
-event RecieveClientImpact(byte FiringMode, const out ImpactInfo Impact, optional out float PenetrationValue)
+event RecieveClientImpact(byte FiringMode, const out ImpactInfo Impact, optional out float PenetrationValue, optional int ImpactNum)
 {
 	if ( FiringMode == DEFAULT_FIREMODE )
 	{
@@ -284,15 +284,20 @@ static simulated function float CalculateTraderWeaponStatDamage()
 	return CalculatedDamage;
 }
 
+/** Returns trader filter index based on weapon type */
+static simulated event EFilterTypeUI GetTraderFilter()
+{
+	return FT_Projectile;
+}
+
 defaultproperties
 {
 	// Inventory
 	GroupPriority=100
 	InventorySize=10
 	InventoryGroup=IG_Primary
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SawbladeShooter'
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SawbladeShooter'
 	SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.GasTank'
-	FilterTypeUI=FT_Projectile
 
 	AttachmentArchetype=KFWeapAttach_Eviscerator'WEP_Sawblade_ARCH.Wep_Eviscerator_3P'
 
@@ -370,6 +375,7 @@ defaultproperties
 	// Animation
 	MeleeAttackAnims=(Atk_B)
 	bHasFireLastAnims=true
+	QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=8192)
 
 	// Block Sounds
 	BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
@@ -377,11 +383,11 @@ defaultproperties
 
 	AssociatedPerkClass=class'KFPerk_Berserker'
 
-	// Trader
-    EffectiveRange=25
-
     bHasLaserSight=TRUE
 
 	ParryStrength=5
+
+	// Eviscerator uses its own anim tree with its own specified bones to lock, so leave it alone
+	BonesToLockOnEmpty.Empty()
 }
 

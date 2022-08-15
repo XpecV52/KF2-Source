@@ -15,21 +15,8 @@ class TWPostProcessEffect extends PostProcessEffect
 /** Distance to focal plane, computed in native code */
 var const transient float DOF_FocalDistance;
 
-/** Maximum focal distance, computed focal distances are clamped to this value */
-var(DepthOfField) float DOF_MaxFocalDistance;
-
-
-/** Camera aperture for foreground depth group - larger values give more blur */
-var(DepthOfField) float DOF_FG_FocalAperture;
-/** Distance for focal plane for foreground group (typically distance to in-focus iron sight */
-var(DepthOfField) float DOF_FG_FocalDistance;
-
-/** Interpolated depth of field strength */
-var const transient float DOF_Strength;
-
 
 /** New parameters */
-
 var(DepthOfField) float DOF_SharpRadius;
 var(DepthOfField) float DOF_FocalRadius;
 var(DepthOfField) float DOF_MinBlurSize;
@@ -193,9 +180,6 @@ var(AntiAliasing) EPostProcessAAType PostProcessAAType;
 
 defaultproperties
 {
-   DOF_MaxFocalDistance=10000.000000
-   DOF_FG_FocalAperture=5.000000
-   DOF_FG_FocalDistance=50.000000
    DOF_SharpRadius=500.000000
    DOF_FocalRadius=1000.000000
    DOF_MinBlurSize=1.250000

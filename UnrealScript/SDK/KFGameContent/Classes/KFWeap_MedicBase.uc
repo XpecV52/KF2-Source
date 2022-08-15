@@ -125,25 +125,31 @@ simulated event ReplicatedEvent(name VarName)
     if (VarName == nameof(LockedTarget))
 	{
 		// Clear the lock if we lost our LockedTarget and don't have a new PendingLockedTarget
-		if (LockedTarget == none && PendingLockedTarget == none)
+		if( OpticsUI != none )
 		{
-			OpticsUI.ClearLockOn();
-		}
-		else if (LockedTarget != none)
-		{
-			OpticsUI.LockedOn();
+			if (LockedTarget == none && PendingLockedTarget == none)
+			{
+				OpticsUI.ClearLockOn();
+			}
+			else if (LockedTarget != none)
+			{
+				OpticsUI.LockedOn();
+			}
 		}
 	}
 	else if (VarName == nameof(PendingLockedTarget))
 	{
 		// Clear the lock if we lost our LockedTarget and don't have a new PendingLockedTarget
-		if (PendingLockedTarget == none && LockedTarget == none)
+		if( OpticsUI != none )
 		{
-			OpticsUI.ClearLockOn();
-		}
-		else if (PendingLockedTarget != none)
-		{
-			OpticsUI.StartLockOn();
+			if (PendingLockedTarget == none && LockedTarget == none)
+			{
+				OpticsUI.ClearLockOn();
+			}
+			else if (PendingLockedTarget != none)
+			{
+				OpticsUI.StartLockOn();
+			}
 		}
 	}
 	else
@@ -228,7 +234,7 @@ simulated function ConsumeAmmo( byte FireModeNum )
  * See Pawn.ProcessInstantHit
  * @param DamageReduction: Custom KF parameter to handle penetration damage reduction
  */
-simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optional int NumHits, optional out float out_PenetrationVal)
+simulated function ProcessInstantHitEx( byte FiringMode, ImpactInfo Impact, optional int NumHits, optional out float out_PenetrationVal, optional int ImpactNum )
 {
     local KFPawn HealTarget;
     local KFPlayerController Healer;
@@ -355,6 +361,20 @@ simulated event bool CanHealFire()
 /*********************************************************************************************
  @name Reload / recharge
 ********************************************************************************************* */
+
+/** Overridden to call StartHealRecharge on server */
+function GivenTo( Pawn thisPawn, optional bool bDoNotActivate )
+{
+	super.GivenTo( thisPawn, bDoNotActivate );
+
+	// StartHealRecharge gets called on the client from ClientWeaponSet (called from ClientGivenTo, called from GivenTo),
+	// but we also need this called on the server for remote clients, since the server needs to track the ammo too (to know if/when to spawn projectiles)
+
+	if( Role == ROLE_Authority && !thisPawn.IsLocallyControlled() )
+	{
+		StartHealRecharge();
+	}
+}
 
 /** Start the heal recharge cycle */
 simulated function StartHealRecharge()
@@ -892,7 +912,7 @@ defaultproperties
     // The animated reticle screens class
 	OpticsUIClass=class'KFGFxWorld_MedicOptics'
 
-	// Trader
-    EffectiveRange=50
+	// Aim Assist
+	AimCorrectionSize=40.f
 }
 

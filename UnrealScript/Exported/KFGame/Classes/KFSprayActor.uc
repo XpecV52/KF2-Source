@@ -918,6 +918,7 @@ defaultproperties
    SeedSimFreq=60.000000
    SeedWarmupTime=0.250000
    bHidden=True
+   bTickIsDisabled=True
    Name="Default__KFSprayActor"
    ObjectArchetype=Actor'Engine.Default__Actor'
 }

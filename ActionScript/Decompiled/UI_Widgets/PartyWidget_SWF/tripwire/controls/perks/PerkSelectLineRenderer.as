@@ -1,7 +1,5 @@
 package tripwire.controls.perks
 {
-    import com.greensock.TweenMax;
-    import com.greensock.easing.Cubic;
     import flash.display.MovieClip;
     import flash.events.FocusEvent;
     import flash.events.MouseEvent;
@@ -162,11 +160,6 @@ package tripwire.controls.perks
             {
                 textField.textColor = highlightColor;
                 this.perkLevelText.textColor = highlightColor;
-                TweenMax.to(this,this.AnimTime,{
-                    "z":this._originalPositionZ - this.AnimHighlightOffsetZ,
-                    "ease":Cubic.easeOut,
-                    "useFrames":true
-                });
                 this.hitbox.z = this.hitboxZ;
             }
             else
@@ -181,11 +174,6 @@ package tripwire.controls.perks
             {
                 textField.textColor = defaultColor;
                 this.perkLevelText.textColor = defaultColor;
-                TweenMax.to(this,this.AnimTime,{
-                    "z":this._originalPositionZ,
-                    "ease":Cubic.easeOut,
-                    "useFrames":true
-                });
                 this.hitbox.z = 0;
             }
             else

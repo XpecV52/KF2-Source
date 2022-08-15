@@ -18,6 +18,14 @@ class MapInfo extends Object
 var bool bDefaultPawnsToOutdoor;	
 
 
+// NVCHANGE_BEGIN: RLS - PhysX Triangle Collision
+/** Enable automatic triangle collision. */
+var(Flex)		bool						bUseFlexTriangleCollision;
+
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
 // (cpptext)
 // (cpptext)
 // (cpptext)
@@ -25,8 +33,11 @@ var bool bDefaultPawnsToOutdoor;
 // (cpptext)
 // (cpptext)
 
+// NVCHANGE_END: RLS - PhysX Triangle Collision
+
 defaultproperties
 {
+   bUseFlexTriangleCollision=True
    Name="Default__MapInfo"
    ObjectArchetype=Object'Core.Default__Object'
 }

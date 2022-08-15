@@ -12,8 +12,6 @@
 class KFPawn_ZedHansBase extends KFPawn_MonsterBoss
 	abstract;
 
-`include(KFGameDialog.uci)
-
 /** If true, MkB42s are unholstered and aiming (also see bIsTargeting) */
 var repnotify bool bGunsEquipped;
 
@@ -68,9 +66,6 @@ struct HansBattlePhaseInfo
 
 /** Configuration for the Hans battle phases */
 var	array<HansBattlePhaseInfo>		BattlePhases;
-
-/** The current phase of the battle we're in */
-var repnotify   int             CurrentBattlePhase;
 
 /** Whether or not we've healed this battle phase */
 var             bool            bHealedThisPhase;
@@ -144,24 +139,6 @@ var float LastSmokeTossTime;
 * Minion summoning for when Hans goes into hunt and heal mode
 **********************************************************************************************/
 
-/** Info for minion wave spawning */
-struct HansMinionWaveInfo
-{
-    /** The minion wave to spawn for Phase 1 healing*/
-    var	KFAIWaveInfo				PhaseOneWave;
-    /** The minion wave to spawn for Phase 2 healing*/
-    var	KFAIWaveInfo				PhaseTwoWave;
-    /** The minion wave to spawn for Phase 3 healing*/
-    var	KFAIWaveInfo				PhaseThreeWave;
-};
-
-
-/** Waves to summon at each stage by difficulty level*/
-var	HansMinionWaveInfo				SummonWaves[4];
-
-/** The base amount of minions to spawn when Hans goes into hunt and heal mode */
-var             int                 NumMinionsToSpawn;
-
 simulated event ReplicatedEvent( name VarName )
 {
     switch( VarName )
@@ -194,6 +171,8 @@ function IncrementBattlePhase( KFAIController_Hans HansAI )
     bHealedThisPhase = true;
 
     SetPhaseCooldowns( HansAI );
+
+    bForceNetUpdate = true;
 }
 
 /** Set the correct phase based cooldown for this battle phase */
@@ -393,6 +372,12 @@ simulated function SetHuntAndHealMode( bool bOn )
 	}
 }
 
+/** Used to clear DOTs, such as when Hans is healing */
+simulated function ClearDOTs()
+{
+    DamageOverTimeArray.Length = 0;
+}
+
 // Knock other zeds the heck out of the way when I want to attack my enemy!!!
 function HuntAndHealBump()
 {
@@ -456,5 +441,5 @@ replication
 {
 	// Replicated to ALL
 	if ( bNetDirty )
-		bGunsEquipped, bInHuntAndHealMode, CurrentBattlePhase;
+		bGunsEquipped, bInHuntAndHealMode;
 }

@@ -6,6 +6,7 @@
  * All rights belong to their respective owners.
  *******************************************************************************/
 class KFPerk_Demolitionist extends KFPerk
+    native
     config(Game)
     hidecategories(Navigation,Movement,Collision);
 
@@ -53,14 +54,14 @@ function ApplySkillsToPawn()
         MyPRI.bNukeActive = IsNukeActive();
         MyPRI.bConcussiveActive = IsConcussiveForceActive();
     }
-    InitSupplier();
+    ResetSupplier();
 }
 
-event ResetPerk()
+function OnWaveEnded()
 {
-    super.ResetPerk();
+    super.OnWaveEnded();
     bUsedSacrifice = false;
-    InitSupplier();
+    ResetSupplier();
 }
 
 simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType)
@@ -107,7 +108,7 @@ simulated function ModifySpareAmmoAmount(KFWeapon KFW, out int PrimarySpareAmmo,
     if(KFW == none)
     {
         WeaponPerkClass = TraderItem.AssociatedPerkClass;
-        bUsesAmmo = TraderItem.bUsesAmmo;        
+        bUsesAmmo = TraderItem.WeaponDef.static.UsesAmmo();        
     }
     else
     {
@@ -128,7 +129,7 @@ simulated function ModifyMaxSpareAmmoAmount(KFWeapon KFW, out int MaxSpareAmmo, 
     if(KFW == none)
     {
         WeaponPerkClass = TraderItem.AssociatedPerkClass;
-        bUsesAmmo = TraderItem.bUsesAmmo;        
+        bUsesAmmo = TraderItem.WeaponDef.static.UsesAmmo();        
     }
     else
     {
@@ -146,7 +147,7 @@ private static final simulated function int GetExtraAmmo(int Level)
     return int(default.ExplosiveAmmo.Increment * float(FFloor(float(Level) / 5)));
 }
 
-private final simulated function InitSupplier()
+private final simulated function ResetSupplier()
 {
     if(MyPRI != none)
     {
@@ -155,8 +156,13 @@ private final simulated function InitSupplier()
             SuppliedPawnList.Remove(0, SuppliedPawnList.Length;
         }
     }
-    if(IsSupplierActive())
+    if((MyPRI != none) && IsSupplierActive())
     {
+        if(SuppliedPawnList.Length > 0)
+        {
+            SuppliedPawnList.Remove(0, SuppliedPawnList.Length;
+        }
+        MyPRI.bPerkCanSupply = true;
         if(InteractionTrigger != none)
         {
             InteractionTrigger.Destroy();
@@ -166,7 +172,7 @@ private final simulated function InitSupplier()
         {
             InteractionTrigger = Spawn(Class'KFUsablePerkTrigger', OwnerPawn,, OwnerPawn.Location, OwnerPawn.Rotation,, true);
             InteractionTrigger.SetBase(OwnerPawn);
-            InteractionTrigger.SetInteractionIndex(4);
+            InteractionTrigger.SetInteractionIndex(5);
             OwnerPC.SetPendingInteractionMessage();
         }        
     }
@@ -183,6 +189,7 @@ simulated function Interact(KFPawn_Human KFPH)
 {
     local KFInventoryManager KFIM;
     local KFPlayerController KFPC;
+    local KFPlayerReplicationInfo OwnerPRI, UserPRI;
 
     if(SuppliedPawnList.Find(KFPH != -1)
     {
@@ -195,6 +202,12 @@ simulated function Interact(KFPawn_Human KFPH)
         {
             OwnerPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 17, KFPC.PlayerReplicationInfo);
             KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 16, OwnerPC.PlayerReplicationInfo);
+            UserPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
+            OwnerPRI = KFPlayerReplicationInfo(OwnerPC.PlayerReplicationInfo);
+            if((UserPRI != none) && OwnerPRI != none)
+            {
+                UserPRI.MarkSupplierOwnerUsed(OwnerPRI);
+            }
         }
     }
     KFIM = KFInventoryManager(KFPH.InvManager);
@@ -247,10 +260,11 @@ simulated function bool ShouldRandSirenResist()
     return IsSirenResistanceActive();
 }
 
-function float GetKnockdownPowerModifier(optional class<DamageType> DamageType)
+function float GetKnockdownPowerModifier(optional class<DamageType> DamageType, optional byte BodyPart, optional bool bIsSprinting)
 {
     local float KnockDownMultiplier;
 
+    bIsSprinting = false;
     KnockDownMultiplier = 1;
     if(IsDamageTypeOnPerk(class<KFDamageType>(DamageType)))
     {
@@ -260,7 +274,7 @@ function float GetKnockdownPowerModifier(optional class<DamageType> DamageType)
     return KnockDownMultiplier;
 }
 
-function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier)
+function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart)
 {
     if(IsOnPerkActive() && IsDamageTypeOnPerk(DamageType))
     {
@@ -498,6 +512,7 @@ defaultproperties
     SacrificeExplosionDamageTypeName="KFGameContent.KFDT_Explosive_Sacrifice"
     DoorTrapsExplosionDamageTypeName="KFGameContent.KFDT_Explosive_DoorTrap"
     NukeIgnoredProjectileNames(0)=KFProj_ExplosiveSubmunition_HX25
+    NukeIgnoredProjectileNames(1)=KFProj_ExplosiveSubmunition_HX25_Nuke
     NukeDamageModifier=1.25
     NukeRadiusModifier=1.25
     ConcussiveExplosionSound=AkEvent'WW_GLO_Runtime.Play_WEP_Demo_Conc'
@@ -521,6 +536,7 @@ defaultproperties
     EXPAction1="Dealing Demolitionist weapon damage"
     EXPAction2="Killing Fleshpounds with Demolitionist weapons"
     PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Demolition'
+    InteractIcon=Texture2D'UI_World_TEX.Demolitionist_Supplier_HUD'
     PerkSkills(0)=(Name="GrenadeSupplier",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_GrenadeSupplier",bActive=false)
     PerkSkills(1)=(Name="OnContact",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_OnContact",bActive=false)
     PerkSkills(2)=(Name="ExplosiveResistance",Increment=0,Rank=0,StartingValue=1.2,MaxValue=1.2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_ExplosiveResistance",bActive=false)
@@ -531,7 +547,7 @@ defaultproperties
     PerkSkills(7)=(Name="OnPerk",Increment=0,Rank=0,StartingValue=0.3,MaxValue=0.3,ModifierValue=0,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_OnPerk",bActive=false)
     PerkSkills(8)=(Name="Nuke",Increment=0,Rank=0,StartingValue=1.03,MaxValue=1.03,ModifierValue=0,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_Nuke",bActive=false)
     PerkSkills(9)=(Name="ConcussiveForce",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_ConcussiveForce",bActive=false)
-    PrimaryWeaponClassName="KFGameContent.KFWeap_GrenadeLauncher_HX25"
-    MeleeWeaponClassName="KFGameContent.KFWeap_Knife_Demolitionist"
-    GrenadeClassName="KFGameContent.KFProj_DynamiteGrenade"
+    PrimaryWeaponDef=Class'KFWeapDef_HX25'
+    KnifeWeaponDef=Class'KFWeapDef_Knife_Demo'
+    GrenadeWeaponDef=Class'KFWeapDef_Grenade_Demo'
 }

@@ -22,7 +22,7 @@ ItemDescription="• Releases a gas that will poison Zeds, but will also heal pe
 [KFProj_MolotovGrenade]
 ItemName="Molotov Cocktail"
 ItemCategory="Explosives"
-ItemDescription="• Very simply, a flame grenade that will burn Zeds.\n• Be aware that it can also hurt you!\n\nNamed, insultingly, by the Finns during the 1929-40 Winter War, after Vyacheslav Mikhailovich Molotov, the Soviet Foreign Minister under Stalin... Sorry, did you not want a history lesson?" 
+ItemDescription="• Very simply, a flame grenade that will burn Zeds.\n• Be aware that it can also hurt you!\n\nNamed, insultingly, by the Finns during the 1939-40 Winter War, after Vyacheslav Mikhailovich Molotov, the Soviet Foreign Minister under Stalin... Sorry, did you not want a history lesson?" 
 
 [KFProj_EMPGrenade]
 ItemName="EMP Grenade"
@@ -39,6 +39,11 @@ ItemName="Frag Grenade"
 ItemCategory="Explosives"
 ItemDescription="• The classic frag grenade: throws nasty little bits of metal around, hurting everything.\n\nI am quite sure you all played enough video games before the Outbreak, so you know perfectly well what a frag grenade is. And stop pretending that you didn't. No-one in here is going to believe you." 
 
+[KFProj_NailBombGrenade]
+ItemName="Nail Bomb"
+ItemCategory = "Explosives"
+ItemDescription="• Simply a canister full of old nails, with a small explosive charge in the middle.\n\nNot the most pleasant or subtle way of dealing with Zeds. But there is nothing pleasant or subtle about Zeds, is there?."
+
 [KFWeap_Healer_Syringe]
 ItemName="Medical Syringe"
 ItemCategory="Equipment"
@@ -47,14 +52,10 @@ ItemCategory="Equipment"
 ItemName="Welder"
 ItemCategory="Equipment"
 
-[KFProj_HealingDart]
-ItemName="Medic Dart"
-ItemCategory="Equipment"
-
 [KFWeap_Pistol_9mm]
 ItemName="9mm Pistol"
 ItemCategory="Hand Gun"
-ItemDescription="• Fire mode is semi-auto only.\n• With flashlight attachment.\n• This is the standard 9mm pistol. Simple and cheap (very cheap, frankly, to you), it is the basic sidearm for all Horzine operatives."
+ItemDescription="• Fire mode is semi-auto only.\n• This is the standard 9mm pistol. Simple and cheap (very cheap, frankly, to you), it is the basic sidearm for all Horzine operatives."
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50 Desert Eagle"
@@ -64,7 +65,7 @@ ItemDescription="• Fire mode is semi-auto only.\n• The Desert Eagle is the b
 [KFWeap_AssaultRifle_AR15]
 ItemName="AR-15 Varmint Rifle"
 ItemCategory="Assault Rifle"
-ItemDescription="• Choice of 3-shot burst or single shot fire modes.\n• Alt-fire to toggle between fire modes.\n• With flashlight attachment.\n• This is for Zeds, not 'varmints'."
+ItemDescription="• Choice of 3-shot burst or single shot fire modes.\n• Alt-fire to toggle between fire modes.\n• This is for Zeds, not 'varmints'."
 
 [KFWeap_AssaultRifle_SCAR]
 ItemName="SCAR-H Assault Rifle"
@@ -96,6 +97,11 @@ ItemName="Firemans Knife"
 ItemCategory="Melee"
 ItemDescription="• Primary - fast slash attack, Hold for combo attack.\n• Secondary - heavy slash attack\n• Alt - block/parry\n• It's a firemans knife. You're a fireman, so we're assuming that we do not need to explain to you how to use it."
 
+[KFWeap_Knife_Gunslinger]
+ItemName="Bowie Knife"
+ItemCategory="Melee"
+ItemDescription="• Primary - fast slash attack, Hold for combo attack.\n• Secondary - heavy slash attack\n• Alt - block/parry\n• The over-sized knife of the Old West. Perfect for slicing and dicing Zeds in the here and now."
+
 [KFWeap_Pistol_Medic]
 ItemName="HMTech-101 Pistol"
 ItemCategory="Pistol"
@@ -104,17 +110,17 @@ ItemDescription="• Fire mode is semi-auto only.\n• Alt-fire shoots healing d
 [KFWeap_SMG_Medic]
 ItemName="HMTech-201 SMG"
 ItemCategory="Sub Machine Gun"
-ItemDescription="• Fire mode is full-auto only.\n• Alt-fire shoots healing darts to heal team members.\n• With flashlight attachment.\n• Your pistol, beefed up!"
+ItemDescription="• Fire mode is full-auto only.\n• Alt-fire shoots healing darts to heal team members.\n• Your pistol, beefed up!"
 
 [KFWeap_Shotgun_Medic]
 ItemName="HMTech-301 Shotgun"
 ItemCategory="Shotgun"
-ItemDescription="• Fire mode is semi-auto only.\n• Alt-fire shoots healing darts to heal team members.\n• With flashlight attachment.\n• The combat shotgun version for the Medic."
+ItemDescription="• Fire mode is semi-auto only.\n• Alt-fire shoots healing darts to heal team members.\n• The combat shotgun version for the Medic."
 
 [KFWeap_AssaultRifle_Medic]
 ItemName="HMTech-401 Assault Rifle"
 ItemCategory="Assault Rifle"
-ItemDescription="• Fire mode is full-auto only.\n• Alt-fire shoots healing darts to heal team members.\n• With flashlight attachment.\n• The full-blown assault rifle version."
+ItemDescription="• Fire mode is full-auto only.\n• Alt-fire shoots healing darts to heal team members.\n• The full-blown assault rifle version."
 
 [KFWeap_Shotgun_DoubleBarrel]
 ItemName="Double-barrel Boomstick"
@@ -124,17 +130,17 @@ ItemDescription="• Primary fire uses a single barrel only.\n• Alt-fire shoot
 [KFWeap_Shotgun_AA12]
 ItemName="AA-12 Auto Shotgun"
 ItemCategory="Shotgun"
-ItemDescription="• Fire mode is full-auto only\n• The AA-12 is a fully automatic shotgun. Devastating firepower at close to medium range, but eats ammunition!"
+ItemDescription="• Choice of full-auto and semi-auto fire modes.\n• Alt-fire to toggle between fire modes.\n• The AA-12 is an automatic shotgun. Devastating firepower at close to medium range, but eats ammunition on full auto!"
 
 [KFWeap_Shotgun_MB500]
 ItemName="SG 500 Pump-Action"
 ItemCategory="Shotgun"
-ItemDescription="• Fire mode is pump-action only.\n• With a flashlight.\n• The pump-action Mossberg SG 500, with the pistol grip, is a wonderful close-quarters Zed-killer. Simple and effective."
+ItemDescription="• Fire mode is pump-action only.\n• The pump-action Mossberg SG 500, with the pistol grip, is a wonderful close-quarters Zed-killer. Simple and effective."
 
 [KFWeap_Shotgun_M4]
 ItemName="M4 Combat Shotgun"
 ItemCategory="Shotgun"
-ItemDescription="• Fire mode is semi-auto only.\n• With a flashlight.\n• Benelli designed the M4 Combat Shotgun for the US military. Semi-automatic, allowing for a good, steady rate of fire."
+ItemDescription="• Fire mode is semi-auto only.\n• Benelli designed the M4 Combat Shotgun for the US military. Semi-automatic, allowing for a good, steady rate of fire."
 
 [KFWeap_Knife_Berserker]
 ItemName="Lawn Mower Blade"
@@ -226,8 +232,67 @@ ItemDescription="• Fire mode launches the rocket.\n• Rocket explodes on impa
 [KFWeap_Pistol_Dual9mm]
 ItemName="Dual 9mm Pistol"
 ItemCategory="Hand Gun"
-ItemDescription="• Fire mode is semi-auto only.\n• With flashlight attachment.\n• This is a pair of standard 9mm pistols. You can sell one (only), if you need to."
+ItemDescription="• Fire mode is semi-auto only.\n• Alt-fire switches aiming styles when in Ironsights.\n• This is a pair of standard 9mm pistols. You can sell one (only), if you need to."
 
+[KFWeap_Pistol_Colt1911]
+ItemName="M1911 Pistol"
+ItemCategory="Hand Gun"
+ItemDescription="• Fire mode is semi-auto only.\n• The classic Colt 1911 semi-automatic pistol."
+
+[KFWeap_Pistol_DualColt1911]
+ItemName="Dual M1911 Pistol"
+ItemCategory="Hand Gun"
+ItemDescription="• Fire mode is semi-auto only.\n• Alt-fire switches aiming styles when in Ironsights.\n• This is a pair of Colt 1911 semi-automatic pistols. Each can be individually sold or dropped."
+
+[KFWeap_Pistol_Deagle]
+ItemName=".50 Desert Eagle"
+ItemCategory="Hand Gun"
+ItemDescription="• Fire mode is semi-auto only.\n• The Desert Eagle is the beast of hand guns, which is why we all know it as the 'Hand Cannon'."
+
+[KFWeap_Pistol_DualDeagle]
+ItemName="Dual .50 Desert Eagle"
+ItemCategory="Hand Gun"	
+ItemDescription="• Fire mode is semi-auto only.\n• Alt-fire switches aiming styles when in Ironsights.\n• A pair of Desert Eagle hand-cannons. Each can be individually sold or dropped."
+
+[KFWeap_Revolver_Rem1858]
+ItemName="1858 Revolver"
+ItemCategory="Hand Gun"
+ItemDescription="• Fire mode is single shot only.\n• A wonderful example of the Remington 'Model 1858' .44-caliber, 6-shot Army single-action revolver. Ancient, but still potent."
+
+[KFWeap_Revolver_DualRem1858]
+ItemName="Dual 1858 Revolver"
+ItemCategory="Hand Gun"
+ItemDescription="• Fire mode is semi-auto only.\n• Alt-fire switches aiming styles when in Ironsights.\n• A pair of Remington 1858 revolvers. Each can be individually sold or dropped."
+
+[KFWeap_Revolver_SW500]
+ItemName="500 Magnum Revolver"
+ItemCategory="Hand Gun"
+ItemDescription="• Fire mode is single shot only.\n• True hand artillery, in the form of a long-barrelled .50-caliber 'Bone Collector' revolver, firing full-load magnum rounds. For the serious Gunslinger."
+
+[KFWeap_Revolver_DualSW500]
+ItemName="Dual 500 Magnums"
+ItemCategory="Hand Gun"
+ItemDescription="• Fire mode is semi-auto only.\n• Alt-fire switches aiming styles when in Ironsights.\n• A pair of .500 Magnum 'Bone Collector' revolvers. Each can be individually sold or dropped. With a big 'thud'."
+
+//BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
+[KFPawn_ZedHans]
+BossName="Dr. Hans Volter"
+BossCaptionStrings[0]="Hans is nearly invulnerable during his smoke grenade healing phase. Don't waste your ammo!"
+BossCaptionStrings[1]="Watch his power core: Hans is more aggressive as it changes color."
+BossCaptionStrings[2]="Aim for his emissive power core. It is a vulnerable zone."
+BossCaptionStrings[3]="Gas from Hans' grenades clings to you, like Bloat bile. Try to avoid it!"
+BossCaptionStrings[4]="His slashing attacks are too strong to parry. You'll still take full damage."
+BossCaptionStrings[5]="Watch for red grenade warning indicators, which may help you spot where they land."
+BossCaptionStrings[6]="When Hans pulls out his guns, stay out of the line of sight. Obvious, but important!"
+
+[KFPawn_ZedPatriarch]
+BossName="The Patriarch"
+BossCaptionStrings[0]="Kevin Clamely was once a brilliant scientist, until he became his own greatest creation."
+BossCaptionStrings[1]="The Patriarch is staggeringly arrogant - he is likely to tell you which attack he will use next."
+BossCaptionStrings[2]="Hiding behind even big objects won't help as much as you'd hope. The Patriarch has an answer for that!"
+BossCaptionStrings[3]="Running off on your own isn't an escape - it makes you easy prey he will target first."
+BossCaptionStrings[4]="Yes, the Patriarch can still cloak, go invisible, run off and heal himself. Some things don't change."
+BossCaptionStrings[5]="While you won't get much choice about it, killing The Patriarch's 'children' just makes him mad(der)."
 
 [KFGameInfo_Survival]
 GameName="Survival"

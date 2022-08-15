@@ -49,65 +49,6 @@ class KFDT_Ballistic_AA12Shotgun extends KFDT_Ballistic_Shotgun
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -148,7 +89,7 @@ static simulated function bool CanDismemberHitZone( name InHitZoneName )
 
 defaultproperties
 {
-   AARWeaponID=39
+   WeaponDef=Class'KFGame.KFWeapDef_AA12'
    StumblePower=33
    LegStumblePower=33
    GunHitPower=35
@@ -158,5 +99,5 @@ defaultproperties
    KDeathVel=10.000000
    KDeathUpKick=120.000000
    Name="Default__KFDT_Ballistic_AA12Shotgun"
-   ObjectArchetype=KFDT_Ballistic_Shotgun'KFGameContent.Default__KFDT_Ballistic_Shotgun'
+   ObjectArchetype=KFDT_Ballistic_Shotgun'kfgamecontent.Default__KFDT_Ballistic_Shotgun'
 }

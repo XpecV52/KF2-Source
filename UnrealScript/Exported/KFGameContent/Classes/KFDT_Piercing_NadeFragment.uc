@@ -48,65 +48,6 @@ class KFDT_Piercing_NadeFragment extends KFDT_Piercing
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -148,15 +89,15 @@ static simulated function bool CanDismemberHitZone( name InHitZoneName )
 
 defaultproperties
 {
-   AARWeaponID=35
+   WeaponDef=Class'KFGame.KFWeapDef_Grenade_Support'
+   bShouldSpawnBloodSplat=True
+   bShouldSpawnPersistentBlood=True
    StumblePower=100
    LegStumblePower=100
    GunHitPower=25
    MeleeHitPower=20
    EffectGroup=FXG_Ballistic
    GoreDamageGroup=DGT_Handgun
-   bShouldSpawnBloodSplat=True
-   bShouldSpawnPersistentBlood=True
    ModifierPerkList(0)=Class'KFGame.KFPerk_Support'
    BodyWoundDecalMaterials(0)=MaterialInstanceConstant'FX_Gore_MAT.FX_CH_Wound_01_Mic'
    BloodSpread=0.400000

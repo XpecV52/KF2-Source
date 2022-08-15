@@ -3,6 +3,7 @@ package tripwire.widgets
     import com.greensock.*;
     import com.greensock.easing.*;
     import fl.transitions.easing.*;
+    import flash.events.Event;
     import flash.events.KeyboardEvent;
     import flash.events.TimerEvent;
     import flash.external.ExternalInterface;
@@ -21,6 +22,8 @@ package tripwire.widgets
         
         private static var _currentState:String;
          
+        
+        public var throwIndicator;
         
         public var WeaponCategoryContainer0:WeaponSelectGroupContainer;
         
@@ -71,6 +74,17 @@ package tripwire.widgets
         public static function get state() : String
         {
             return _currentState;
+        }
+        
+        override protected function addedToStage(param1:Event) : void
+        {
+            super.addedToStage(param1);
+            this.throwIndicator.visible = false;
+        }
+        
+        public function set throwString(param1:String) : void
+        {
+            this.throwIndicator.textfield.text = param1;
         }
         
         private function updateContainerList() : *
@@ -219,6 +233,10 @@ package tripwire.widgets
             this._currentGroupIndex = param1;
             this._currentSelectedIndex = param2;
             this.weaponGroupContainers[param1].selectedIndex = param2;
+            if(this.weaponGroupContainers[param1] && this.weaponGroupContainers[param1].weaponList[param2] && this.throwIndicator)
+            {
+                this.throwIndicator.visible = this.weaponGroupContainers[param1].weaponList[param2].throwable && _currentState == CONTROLLER_STATE;
+            }
         }
         
         public function showOnlyHUDGroup(param1:int) : void
@@ -349,7 +367,6 @@ package tripwire.widgets
             this.setWeaponList(_loc4_,3);
             this.setSelectedIndex(3,0);
             visible = true;
-            stage.addEventListener(KeyboardEvent.KEY_DOWN,this.OnTestKey,false,0,true);
         }
         
         private function OnTestKey(param1:KeyboardEvent) : *

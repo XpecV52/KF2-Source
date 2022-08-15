@@ -74,7 +74,7 @@ function Cleanup()
     curResponse = none;
 }
 
-function initEx(WebAdminSettings Settings, WebResponse Response)
+function InitEx(WebAdminSettings Settings, WebResponse Response)
 {
     curSettings = Settings;
     curResponse = Response;

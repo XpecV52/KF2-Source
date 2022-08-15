@@ -49,65 +49,6 @@ class KFDT_Ballistic_AK12 extends KFDT_Ballistic_AssaultRifle
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -146,7 +87,7 @@ static simulated function bool CanDismemberHitZone( name InHitZoneName )
 
 defaultproperties
 {
-   AARWeaponID=12
+   WeaponDef=Class'KFGame.KFWeapDef_AK12'
    StumblePower=39
    LegStumblePower=39
    GunHitPower=25
@@ -155,5 +96,5 @@ defaultproperties
    KDeathVel=135.000000
    KDeathUpKick=-200.000000
    Name="Default__KFDT_Ballistic_AK12"
-   ObjectArchetype=KFDT_Ballistic_AssaultRifle'KFGameContent.Default__KFDT_Ballistic_AssaultRifle'
+   ObjectArchetype=KFDT_Ballistic_AssaultRifle'kfgamecontent.Default__KFDT_Ballistic_AssaultRifle'
 }

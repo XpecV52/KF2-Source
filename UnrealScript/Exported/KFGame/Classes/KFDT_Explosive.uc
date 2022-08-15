@@ -473,6 +473,29 @@ class KFDT_Explosive extends KFDamageType
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 13
 
 /**
@@ -559,12 +582,12 @@ static simulated function GetBoneToDismember(KFPawn_Monster InPawn, vector HitDi
 
 defaultproperties
 {
-   KnockdownPower=100
-   StumblePower=150
-   GoreDamageGroup=DGT_Explosive
    bShouldSpawnBloodSplat=True
    bCanGib=True
    bCanObliterate=True
+   KnockdownPower=100
+   StumblePower=150
+   GoreDamageGroup=DGT_Explosive
    ObliterationHealthThreshold=-150
    ObliterationDamageThreshold=175
    bExtraMomentumZ=True

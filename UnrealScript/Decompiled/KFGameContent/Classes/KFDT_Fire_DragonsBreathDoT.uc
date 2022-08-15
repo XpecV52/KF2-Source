@@ -25,7 +25,7 @@ static function int GetDamageeDialogID()
 
 defaultproperties
 {
-    AARWeaponID=47
+    WeaponDef=Class'KFGame.KFWeapDef_DragonsBreath'
     DoT_DamageScale=1
     BurnPower=1.25
 }

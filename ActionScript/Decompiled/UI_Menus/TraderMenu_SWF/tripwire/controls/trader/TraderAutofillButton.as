@@ -16,10 +16,13 @@ package tripwire.controls.trader
         
         private var _buttonValue:String;
         
+        public var ArrowIcon:MovieClip;
+        
         public function TraderAutofillButton()
         {
             super();
             this.buttonIcon.visible = false;
+            this.ArrowIcon.visible = true;
         }
         
         public function get buttonValue() : String
@@ -37,6 +40,7 @@ package tripwire.controls.trader
             this.valueTextField.text = param1;
             invalidateData();
             this.buttonIcon.visible = false;
+            this.ArrowIcon.visible = true;
         }
         
         override protected function updateText() : void
@@ -79,16 +83,25 @@ package tripwire.controls.trader
             else
             {
                 this.buttonIcon.visible = false;
+                this.ArrowIcon.visible = true;
                 selected = false;
             }
         }
         
         override protected function highlightButton() : *
         {
+            if(this.bUsingGamepad)
+            {
+                this.ArrowIcon.visible = false;
+            }
         }
         
         override protected function unhighlightButton() : *
         {
+            if(this.bUsingGamepad)
+            {
+                this.ArrowIcon.visible = true;
+            }
         }
     }
 }

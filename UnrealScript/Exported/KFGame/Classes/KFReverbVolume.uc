@@ -80,7 +80,7 @@ simulated static function CalculateEchoLocationAndDelay( ReverbVolume EchoVolume
     // of sound at sea level
     if( EchoDist > 0 )
     {
-        EchoDelay = FMin((EchoDist/34029.0) * 2.0,5.0);
+        EchoDelay = FMin((EchoDist/34029.0) * 3,5.0);
     }
     else
     {
@@ -100,7 +100,7 @@ simulated static function CalculateEchoLocationAndDelay( ReverbVolume EchoVolume
             EchoLoc = NewHitLocation - ((NewHitLocation - SourceLoc) * 0.05);
 
             // update the delay
-            EchoDelay = FMin((VSize(NewHitLocation - SourceLoc)/34029.0) * 2.0,5.0);
+            EchoDelay = FMin((VSize(NewHitLocation - SourceLoc)/34029.0) * 3,5.0);
             //`log("AdjustedDelay = "$(VSize(NewHitLocation - SourceLoc)/100.0)$" Meters delay = "$EchoDelay);
             return;
         }

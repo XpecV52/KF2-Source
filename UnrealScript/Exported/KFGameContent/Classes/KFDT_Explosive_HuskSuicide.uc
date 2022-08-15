@@ -20,6 +20,7 @@ defaultproperties
    bAnyPerk=True
    bShouldSpawnPersistentBlood=True
    KDamageImpulse=1500.000000
+   KDeathVel=700.000000
    KDeathUpKick=500.000000
    Name="Default__KFDT_Explosive_HuskSuicide"
    ObjectArchetype=KFDT_Explosive'KFGame.Default__KFDT_Explosive'

@@ -183,9 +183,7 @@ defaultproperties
     PSC_EndSpray=FlameEndSpray0
     MinAmmoConsumed=4
     FireModeIconPaths=/* Array type was not detected. */
-    FilterTypeUI=EFilterTypeUI.FT_Flame
     InventorySize=8
-    EffectiveRange=17
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -195,11 +193,11 @@ defaultproperties
     DOF_FG_FocalRadius=150
     DOF_FG_MaxNearBlurSize=1
     GroupPriority=75
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Flamethrower'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Flamethrower'
     MagazineCapacity=100
     MaxSpareAmmo=300
     InitialSpareMags=1
-    AmmoPickupScale=0.2
+    AmmoPickupScale=0.4
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */
     FireSightedAnims=/* Array type was not detected. */

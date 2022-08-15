@@ -67,21 +67,18 @@ function RefreshWeaponListByPerk(byte FilterIndex, out array<STraderItem> ItemLi
 	    ItemList.length = 0;	    
 	    ItemDataArray = CreateArray();
 
-		if( FilterIndex < KFPC.PerkList.Length )
-		{
-			FullItemList = MyTraderMenu.TraderItems.GetWeaponListByPerk( KFPC.PerkList[FilterIndex].PerkClass );
-		}
-		else
-		{
-			// If the index does not match the perk array, it is an off perk
-			FullItemList = MyTraderMenu.TraderItems.OffPerkItems;
-		}
+		FullItemList = MyTraderMenu.TraderItems.SaleItems;
 
 		for (i = 0; i < FullItemList.Length; i++)
 		{
 			if ( IsItemFiltered(FullItemList[i]) )
 			{
 				continue; // Skip this item if it's in our inventory
+			}
+			else if ( FullItemList[i].AssociatedPerkClass != None 
+				&& (FilterIndex >= KFPC.PerkList.Length || FullItemList[i].AssociatedPerkClass != KFPC.PerkList[FilterIndex].PerkClass) )
+			{
+				continue; // filtered by perk
 			}
 			else
 			{
@@ -105,11 +102,11 @@ function RefreshItemsByType(byte FilterIndex, out array<STraderItem> ItemList)
     ItemList.length = 0;
 	
     ItemDataArray = CreateArray();
-    GetAllWeapons(FullItemList);
+    FullItemList = MyTraderMenu.TraderItems.SaleItems;
 
 	for (i = 0; i < FullItemList.Length; i++)
 	{
-		if ( IsItemFiltered(FullItemList[i]) || FilterIndex != FullItemList[i].FilterType )
+		if ( IsItemFiltered(FullItemList[i]) || FilterIndex != FullItemList[i].TraderFilter )
 		{
 			continue; // Skip this item if it's in our inventory
 		}
@@ -135,7 +132,7 @@ function RefreshFavoriteItems(out array<STraderItem> ItemList)
     ItemList.length = 0;
 
     ItemDataArray = CreateArray();
-	GetAllWeapons(FullItemList);
+	FullItemList = MyTraderMenu.TraderItems.SaleItems;
 
 	for (i = 0; i < FullItemList.Length; i++)
 	{
@@ -165,7 +162,7 @@ function RefreshAllItems(out array<STraderItem> ItemList)
     ItemList.length = 0;
 	
     ItemDataArray = CreateArray();
-    GetAllWeapons(FullItemList);
+    FullItemList = MyTraderMenu.TraderItems.SaleItems;
 
 	for (i = 0; i < FullItemList.Length; i++)
 	{
@@ -184,36 +181,9 @@ function RefreshAllItems(out array<STraderItem> ItemList)
 	SetObject("shopData", ItemDataArray);
 }
 
-function GetAllWeapons(out array<STraderItem> FullItemList)
-{
-	local int i, j;
-	local array<STraderItem> PerkItemList;
-	local KFPlayerController KFPC;
-
-	KFPC = KFPlayerController(GetPC());
-	if (KFPC != none)
-	{
-	    for (i = 0; i < KFPC.PerkList.length; i++)
-		{
-			PerkItemList = MyTraderMenu.TraderItems.GetWeaponListByPerk(KFPC.PerkList[i].PerkClass);
-			for (j = 0; j < PerkItemList.length; j++)
-			{
-	   			FullItemList.AddItem(PerkItemList[j]);
-	   		}
-		}
-
-		for (i = 0; i < MyTraderMenu.TraderItems.OffPerkItems.length; i++)
-		{
-			// If the index does not match the perk array, it is an off perk
-			FullItemList.AddItem(MyTraderMenu.TraderItems.OffPerkItems[i]);
-		}
-	}
-}
-
 function SetItemInfo(out GFxObject ItemDataArray, out STraderItem TraderItem, int SlotIndex)
 {
 	local GFxObject SlotObject;
-	local string ItemString;
 	local string ItemTexPath;
 	local string IconPath;
 	local bool bCanAfford, bCanCarry;
@@ -221,23 +191,29 @@ function SetItemInfo(out GFxObject ItemDataArray, out STraderItem TraderItem, in
 
 	SlotObject = CreateObject( "Object" );
 
-	ItemString = string( TraderItem.ClassName );
-	ItemTexPath = "img://"$TraderItem.TextureLocation;
-	IconPath = "img://"$TraderItem.PerkIconString;
+	ItemTexPath = "img://"$TraderItem.WeaponDef.static.GetImagePath();
+	if( TraderItem.AssociatedPerkClass != none )
+	{
+		IconPath = "img://"$TraderItem.AssociatedPerkClass.static.GetPerkIconPath();
+	}
+	else
+	{
+		IconPath = "img://"$class'KFGFxObject_TraderItems'.default.OffPerkIconPath;
+	}
 
 	SlotObject.SetString( "weaponSource", ItemTexPath );
 	SlotObject.SetString( "perkIconSource", IconPath );
 
-	SlotObject.SetString( "weaponName", Localize( ItemString, "ItemName", "KFGameContent" )  );
-	SlotObject.SetString( "weaponType", Localize( ItemString, "ItemCategory", "KFGameContent" ) );
-	SlotObject.SetInt( "weaponWeight", TraderItem.BlocksRequired );
+	SlotObject.SetString( "weaponName", TraderItem.WeaponDef.static.GetItemName() );
+	SlotObject.SetString( "weaponType", TraderItem.WeaponDef.static.GetItemCategory() );
+	SlotObject.SetInt( "weaponWeight", MyTraderMenu.GetDisplayedBlocksRequiredFor(TraderItem) );
 
 	AdjustedBuyPrice = MyTraderMenu.GetAdjustedBuyPriceFor(TraderItem);
 
 	SlotObject.SetInt( "weaponCost",  AdjustedBuyPrice );
 
 	bCanAfford = GetCanAfford(AdjustedBuyPrice);
-	bCanCarry = CanCarry(TraderItem.BlocksRequired);
+	bCanCarry = CanCarry( TraderItem );
 
 	SlotObject.SetBool("bCanAfford", bCanAfford);
 	SlotObject.SetBool("bCanCarry", bCanCarry);
@@ -252,9 +228,9 @@ function bool IsItemFiltered(const out STraderItem Item)
 		return true;
 	if ( MyTraderMenu.IsInOwnedItemList(Item.DualClassName) )
 		return true;
-	if ( !Item.bSellable )
+	if ( !MyTraderMenu.IsSellable(Item) )
 		return true;
-	if ( Item.SharedUnlockId != SCU_None && !class'KFUnlockManager'.static.IsSharedContentUnlocked(Item.SharedUnlockId) )
+	if ( Item.WeaponDef.default.SharedUnlockId != SCU_None && !class'KFUnlockManager'.static.IsSharedContentUnlocked(Item.WeaponDef.default.SharedUnlockId) )
 		return true;
 
 	return false;
@@ -271,9 +247,9 @@ function bool GetCanAfford(int BuyPrice)
 }
 
 // Checks if we can have enough blocks to hold this item
-function bool CanCarry(byte BlocksRequired)
+function bool CanCarry( const out STraderItem Item )
 {
-	if (MyTraderMenu.TotalBlocks + BlocksRequired > MyTraderMenu.MaxBlocks)
+	if (MyTraderMenu.TotalBlocks + MyTraderMenu.GetDisplayedBlocksRequiredFor(Item) > MyTraderMenu.MaxBlocks)
 	{
     	return false;
 	}

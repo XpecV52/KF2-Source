@@ -15,5 +15,5 @@ defaultproperties
 {
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
    Name="Default__KFDT_Slashing_KnifeHeavy_Berserker"
-   ObjectArchetype=KFDT_Slashing_KnifeHeavy'KFGameContent.Default__KFDT_Slashing_KnifeHeavy'
+   ObjectArchetype=KFDT_Slashing_KnifeHeavy'kfgamecontent.Default__KFDT_Slashing_KnifeHeavy'
 }

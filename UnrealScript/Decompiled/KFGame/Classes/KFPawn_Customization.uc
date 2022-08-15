@@ -45,6 +45,30 @@ simulated function SetCharacterAnimationInfo()
     PlayRandomIdleAnimation();
 }
 
+function AttachWeaponByItemDefinition(int ItemDefinition)
+{
+    local class<KFWeaponDefinition> WeaponDef;
+    local int ItemIndex;
+    local KFWeaponAttachment WeaponPreview;
+
+    ItemIndex = Class'KFWeaponSkinList'.default.Skins.Find('Id', ItemDefinition;
+    if(ItemIndex == -1)
+    {
+        LogInternal("Could not find item" @ string(ItemDefinition));
+        return;
+    }
+    WeaponDef = Class'KFWeaponSkinList'.default.Skins[ItemIndex].WeaponDef;
+    if(WeaponDef == none)
+    {
+        LogInternal("Weapon def NONE for : " @ string(ItemDefinition));
+        return;
+    }
+    WeaponPreview = KFWeaponAttachment(DynamicLoadObject(WeaponDef.default.AttachmentArchtypePath, Class'KFWeaponAttachment'));
+    WeaponAttachmentTemplate = WeaponPreview;
+    WeaponAttachmentChanged();
+    WeaponAttachment.SetWeaponSkin(ItemDefinition);
+}
+
 simulated function PlayRandomIdleAnimation()
 {
     local byte AnimIndex;
@@ -97,17 +121,6 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     return;
 }
 
-simulated function UpdateCustomizationCharacter(byte CharIndex)
-{
-    local KFPlayerReplicationInfo KFPRI;
-
-    KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
-    if(KFPRI != none)
-    {
-        KFPRI.SetCharacter(CharIndex);
-    }
-}
-
 function InitializeCustomizationPawn(PlayerController NewController, NavigationPoint BestStartSpot)
 {
     if(Controller != none)
@@ -124,12 +137,29 @@ defaultproperties
 {
     MaleCustomizationAnimSet=AnimSet'CHR_BaseMale_ANIM.CS_Male'
     FemaleCustomizationAnimSet=AnimSet'CHR_BaseFemale_ANIM.CS_Female'
+    begin object name=FlashLight class=KFFlashlightAttachment
+        begin object name=FlashLightTemplate class=SpotLightComponent
+            LightGuid=(A=0,B=0,C=0,D=0) // Ka v oh
+            LightmapGuid=(A=0,B=0,C=0,D=0) // Ka v oh
+        object end
+        // Reference: SpotLightComponent'Default__KFPawn_Customization.FlashLight.FlashLightTemplate'
+        LightTemplate=FlashLightTemplate
+        begin object name=LightConeComp class=StaticMeshComponent
+            ReplacementPrimitive=none
+        object end
+        // Reference: StaticMeshComponent'Default__KFPawn_Customization.FlashLight.LightConeComp'
+        LightConeMeshComp=LightConeComp
+    object end
+    // Reference: KFFlashlightAttachment'Default__KFPawn_Customization.FlashLight'
+    FlashLightTemplate=FlashLight
     TraderDialogAkComponent=AkComponent'Default__KFPawn_Customization.TraderDialogAkSoundComponent'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
     // Reference: SkeletalMeshComponent'Default__KFPawn_Customization.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
+    bEnableAimOffset=false
+    bDisableTurnInPlace=true
     AfflictionHandler=KFPawnAfflictions'Default__KFPawn_Customization.Afflictions'
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
@@ -144,6 +174,7 @@ defaultproperties
     DialogAkComponent=AkComponent'Default__KFPawn_Customization.DialogAkSoundComponent'
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
+        Translation=(X=0,Y=0,Z=-89)
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFPawn_Customization.KFPawnSkeletalMeshComponent'
     Mesh=KFPawnSkeletalMeshComponent
@@ -169,6 +200,7 @@ defaultproperties
     Components(2)=Arrow
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
+        Translation=(X=0,Y=0,Z=-89)
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFPawn_Customization.KFPawnSkeletalMeshComponent'
     Components(3)=KFPawnSkeletalMeshComponent

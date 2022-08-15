@@ -28,5 +28,5 @@ var()		array<DestroyActorTarget>		DestroyActorTargets;		// Array of DestroyActor
 defaultproperties
 {
    Name="Default__KFObj_Wave_Destroy"
-   ObjectArchetype=KFObj_Wave'KFGameContent.Default__KFObj_Wave'
+   ObjectArchetype=KFObj_Wave'kfgamecontent.Default__KFObj_Wave'
 }

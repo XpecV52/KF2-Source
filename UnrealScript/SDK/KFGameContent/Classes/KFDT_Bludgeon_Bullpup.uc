@@ -14,5 +14,5 @@ class KFDT_Bludgeon_Bullpup extends KFDT_Bludgeon_RifleButt
 DefaultProperties
 {
 	//defaults
-	AARWeaponID=`AAR_Bullpup
+	WeaponDef=class'KFWeapDef_Bullpup'
 }

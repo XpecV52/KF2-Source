@@ -11,9 +11,11 @@ class KFPawn_ZedStalker extends KFPawn_Monster
 
 var MaterialInstanceConstant SpottedMaterial;
 var MaterialInstanceConstant CloakedMaterial;
-var MaterialInstanceConstant VisibleMaterial;
 var AkBaseSoundObject CloakedLoop;
 var AkBaseSoundObject CloakedLoopEnd;
+var float CloakPercent;
+var float CloakSpeed;
+var float DeCloakSpeed;
 
 simulated event PostBeginPlay()
 {
@@ -29,7 +31,7 @@ simulated event ReplicatedEvent(name VarName)
             SetGameplayMICParams();
             break;
         case 'bIsCloaking':
-            SetGameplayMICParams();
+            ClientCloakingStateUpdated();
             break;
         default:
             break;
@@ -58,7 +60,18 @@ function SetCloaked(bool bNewCloaking)
             SetGameplayMICParams();
             Mesh.SetPerObjectShadows(!bNewCloaking);
         }
+        super.SetCloaked(bNewCloaking);
     }
+}
+
+simulated function ClientCloakingStateUpdated()
+{
+    if(bIsCloaking)
+    {
+        ClearBloodDecals();
+    }
+    SetGameplayMICParams();
+    Mesh.SetPerObjectShadows(!bIsCloaking);
 }
 
 simulated function SetGameplayMICParams()
@@ -69,18 +82,13 @@ simulated function SetGameplayMICParams()
     if(!bIsGoreMesh && WorldInfo.NetMode != NM_DedicatedServer)
     {
         bIsSpotted = bIsCloakingSpottedByLP || bIsCloakingSpottedByTeam;
-        if(!bIsCloaking || IsImpaired())
+        if(bIsSpotted && bIsCloaking)
         {
-            BodyMIC.SetParent(VisibleMaterial);
-            PlayStealthSoundLoopEnd();            
+            BodyMIC.SetParent(SpottedMaterial);            
         }
         else
         {
-            if(bIsSpotted)
-            {
-                BodyMIC.SetParent(SpottedMaterial);                
-            }
-            else
+            if(BodyMIC.Parent != CloakedMaterial)
             {
                 BodyMIC.SetParent(CloakedMaterial);
                 PlayStealthSoundLoop();
@@ -107,6 +115,30 @@ simulated function PlayStealthSoundLoop()
 simulated function PlayStealthSoundLoopEnd()
 {
     PlaySoundBase(CloakedLoopEnd, true);
+}
+
+simulated event Tick(float DeltaTime)
+{
+    super(KFPawn).Tick(DeltaTime);
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        if(!bIsCloaking)
+        {
+            if(CloakPercent < 1)
+            {
+                CloakPercent = FMin(CloakPercent + (DeltaTime * DeCloakSpeed), 1);
+                BodyMIC.SetScalarParameterValue('Transparency', CloakPercent);
+            }            
+        }
+        else
+        {
+            if(CloakPercent > 0)
+            {
+                CloakPercent = FMax(CloakPercent - (DeltaTime * CloakSpeed), 0);
+                BodyMIC.SetScalarParameterValue('Transparency', CloakPercent);
+            }
+        }
+    }
 }
 
 simulated event UpdateSpottedStatus()
@@ -149,9 +181,10 @@ simulated event UpdateSpottedStatus()
     }
 }
 
-function CallOutCloaking()
+function CallOutCloaking(optional KFPlayerController CallOutController)
 {
     bIsCloakingSpottedByTeam = true;
+    LastStoredCC = CallOutController;
     SetGameplayMICParams();
     SetTimer(2, false, 'CallOutCloakingExpired');
 }
@@ -159,6 +192,7 @@ function CallOutCloaking()
 function CallOutCloakingExpired()
 {
     bIsCloakingSpottedByTeam = false;
+    LastStoredCC = none;
     SetGameplayMICParams();
 }
 
@@ -193,7 +227,7 @@ function OnStackingAfflictionChanged(byte Id)
 
 function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, Vector Momentum, TraceHitInfo HitInfo)
 {
-    super(KFPawn).PlayHit(Damage, InstigatedBy, HitLocation, DamageType, Momentum, HitInfo);
+    super.PlayHit(Damage, InstigatedBy, HitLocation, DamageType, Momentum, HitInfo);
     SetCloaked(false);
     if((HitFxInfo.DamageType != none) && HitFxInfo.DamageType.default.MeleeHitPower > 0)
     {
@@ -238,15 +272,17 @@ defaultproperties
 {
     SpottedMaterial=MaterialInstanceConstant'ZED_Stalker_MAT.ZED_Stalker_Visible_MAT'
     CloakedMaterial=MaterialInstanceConstant'ZED_Stalker_MAT.ZED_Stalker_MAT'
-    VisibleMaterial=MaterialInstanceConstant'ZED_Stalker_MAT.ZED_Stalker_Solid_MIC'
     CloakedLoop=AkEvent'WW_ZED_Stalker.ZED_Stalker_SFX_Stealth_LP'
     CloakedLoopEnd=AkEvent'WW_ZED_Stalker.ZED_Stalker_SFX_Stealth_LP_Stop'
-    bCanCloak=true
-    bIsCloaking=true
+    CloakPercent=1
+    CloakSpeed=4
+    DeCloakSpeed=4.5
+    bCloakOnMeleeEnd=true
     bIsStalkerClass=true
     CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Stalker_ARCH.ZED_Stalker_Archetype'
     begin object name=MeleeHelper class=KFMeleeHelperAI
         BaseDamage=9
+        MyDamageType=Class'KFDT_Slashing_ZedWeak'
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedStalker.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
@@ -262,6 +298,8 @@ defaultproperties
     object end
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedStalker.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
+    bCanCloak=true
+    bIsCloaking=true
     PenetrationResistance=0.5
     begin object name=Afflictions class=KFPawnAfflictions
         InstantAffl=/* Array type was not detected. */

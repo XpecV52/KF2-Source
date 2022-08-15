@@ -56,7 +56,7 @@ defaultproperties
    MeshIronSightFOV=33.000000
    PlayerIronSightFOV=70.000000
    GroupPriority=50.000000
-   UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AK12'
+   WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AK12'
    MagazineCapacity(0)=60
    MaxSpareAmmo(0)=270
    InitialSpareMags(0)=3
@@ -74,7 +74,7 @@ defaultproperties
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_RifleBase:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_AssaultRifle_DualMKb42_Hans:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_AssaultRifle_DualMKb42_Hans:MeleeHelper_0'
    MuzzleFlashTemplate=KFMuzzleFlash'WEP_L85A2_ARCH.Wep_L85A2_MuzzleFlash'
    maxRecoilPitch=200
    minRecoilPitch=150
@@ -98,7 +98,7 @@ defaultproperties
    WeaponFireTypes(2)=()
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
-   WeaponProjectiles(0)=Class'KFGameContent.KFProj_Bullet_AssaultRifle'
+   WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_AssaultRifle'
    FireInterval(0)=0.050000
    FireInterval(1)=()
    FireInterval(2)=()
@@ -109,7 +109,7 @@ defaultproperties
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=()
-   InstantHitDamageTypes(0)=Class'KFGameContent.KFDT_Ballistic_HansAK12'
+   InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_HansAK12'
    InstantHitDamageTypes(1)=()
    FireOffset=(X=32.000000,Y=4.000000,Z=-5.000000)
    bCanThrow=False

@@ -165,6 +165,7 @@ struct native EnvironmentDetailSetting
 struct native ShadowQualitySetting
 {
     var bool bAllowWholeSceneDominantShadows;
+    var bool bOverrideMapWholeSceneDominantShadowSetting;
     var bool bAllowDynamicShadows;
     var bool bAllowPerObjectShadows;
     var int MaxWholeSceneDominantShadowResolution;
@@ -178,6 +179,7 @@ struct native ShadowQualitySetting
     structdefaultproperties
     {
         bAllowWholeSceneDominantShadows=false
+        bOverrideMapWholeSceneDominantShadowSetting=false
         bAllowDynamicShadows=false
         bAllowPerObjectShadows=false
         MaxWholeSceneDominantShadowResolution=0
@@ -435,7 +437,7 @@ struct native GFXSettings
         FX=(ParticleLODBias=0,Distortion=false,FilteredDistortion=false,DropParticleDistortion=false,AllowSecondaryBloodEffects=false,EmitterPoolScale=0,ShellEjectLifetime=0,AllowExplosionLights=false,AllowSprayActorLights=false,AllowFootstepSounds=false,AllowBloodSplatterDecals=false,AllowRagdollAndGoreOnDeadBodies=false,AllowPilotLights=false,MaxImpactEffectDecals=0,MaxExplosionDecals=0,GoreFXLifetimeMultiplier=0,MaxBloodEffects=0,MaxGoreEffects=0,MaxPersistentSplatsPerFrame=0)
         TextureResolution=(UIBias=0,ShadowmapBias=0,CharacterBias=0,Weapon1stBias=0,Weapon3rdBias=0,EnvironmentBias=0,FXBias=0)
         TextureFiltering=(MinMagFilter=None,MipFilter=None,MaxAnisotropy=0)
-        Shadows=(bAllowWholeSceneDominantShadows=false,bAllowDynamicShadows=false,bAllowPerObjectShadows=false,MaxWholeSceneDominantShadowResolution=0,MaxShadowResolution=0,ShadowFadeResolution=0,MinShadowResolution=0,ShadowTexelsPerPixel=0,GlobalShadowDistanceScale=0,AllowForegroundPreshadows=false)
+        Shadows=(bAllowWholeSceneDominantShadows=false,bOverrideMapWholeSceneDominantShadowSetting=false,bAllowDynamicShadows=false,bAllowPerObjectShadows=false,MaxWholeSceneDominantShadowResolution=0,MaxShadowResolution=0,ShadowFadeResolution=0,MinShadowResolution=0,ShadowTexelsPerPixel=0,GlobalShadowDistanceScale=0,AllowForegroundPreshadows=false)
         RealtimeReflections=(bAllowScreenSpaceReflections=false,bUseHighQualityReflections=false)
         AntiAliasing=(PostProcessAA=false)
         Bloom=(Bloom=false,BloomQuality=0)
@@ -2304,13 +2306,13 @@ function OnSaveConfirm()
     {
         Outer.ConsoleCommand("RESTART");
     }
-    Manager.OpenMenu(3);
+    Manager.OpenMenu(5);
 }
 
 function OnSaveCancel()
 {
     ResetValues();
-    Manager.OpenMenu(3);
+    Manager.OpenMenu(5);
 }
 
 function Callback_CloseMenu()
@@ -2377,7 +2379,7 @@ function Callback_CloseMenu()
     else
     {
         ResetValues();
-        Manager.OpenMenu(3);
+        Manager.OpenMenu(5);
     }
 }
 
@@ -2397,7 +2399,7 @@ function Callback_ApplyVideo()
 function Callback_CancelVideo()
 {
     ResetValues();
-    Manager.OpenMenu(3);
+    Manager.OpenMenu(5);
 }
 
 function Callback_ResetDefaultVideo()
@@ -2563,10 +2565,10 @@ defaultproperties
     EnvironmentDetailPresets(1)=(DetailMode=1,AllowLightFunctions=false,bDisableCanBecomeDynamicWakeup=false,MakeDynamicCollisionThreshold=200,DestructionLifetimeScale=0.5)
     EnvironmentDetailPresets(2)=(DetailMode=2,AllowLightFunctions=true,bDisableCanBecomeDynamicWakeup=false,MakeDynamicCollisionThreshold=150,DestructionLifetimeScale=1)
     EnvironmentDetailPresets(3)=(DetailMode=2,AllowLightFunctions=true,bDisableCanBecomeDynamicWakeup=false,MakeDynamicCollisionThreshold=150,DestructionLifetimeScale=1.2)
-    ShadowQualityPresets(0)=(bAllowWholeSceneDominantShadows=false,bAllowDynamicShadows=true,bAllowPerObjectShadows=false,MaxWholeSceneDominantShadowResolution=1204,MaxShadowResolution=1024,ShadowFadeResolution=256,MinShadowResolution=128,ShadowTexelsPerPixel=0.5,GlobalShadowDistanceScale=0.75,AllowForegroundPreshadows=false)
-    ShadowQualityPresets(1)=(bAllowWholeSceneDominantShadows=true,bAllowDynamicShadows=true,bAllowPerObjectShadows=true,MaxWholeSceneDominantShadowResolution=1204,MaxShadowResolution=1024,ShadowFadeResolution=128,MinShadowResolution=64,ShadowTexelsPerPixel=1,GlobalShadowDistanceScale=0.75,AllowForegroundPreshadows=false)
-    ShadowQualityPresets(2)=(bAllowWholeSceneDominantShadows=true,bAllowDynamicShadows=true,bAllowPerObjectShadows=true,MaxWholeSceneDominantShadowResolution=1280,MaxShadowResolution=1024,ShadowFadeResolution=128,MinShadowResolution=64,ShadowTexelsPerPixel=1.3,GlobalShadowDistanceScale=1,AllowForegroundPreshadows=true)
-    ShadowQualityPresets(3)=(bAllowWholeSceneDominantShadows=true,bAllowDynamicShadows=true,bAllowPerObjectShadows=true,MaxWholeSceneDominantShadowResolution=2048,MaxShadowResolution=1536,ShadowFadeResolution=64,MinShadowResolution=32,ShadowTexelsPerPixel=2,GlobalShadowDistanceScale=1.5,AllowForegroundPreshadows=true)
+    ShadowQualityPresets(0)=(bAllowWholeSceneDominantShadows=false,bOverrideMapWholeSceneDominantShadowSetting=false,bAllowDynamicShadows=true,bAllowPerObjectShadows=false,MaxWholeSceneDominantShadowResolution=1204,MaxShadowResolution=1024,ShadowFadeResolution=256,MinShadowResolution=128,ShadowTexelsPerPixel=0.5,GlobalShadowDistanceScale=0.75,AllowForegroundPreshadows=false)
+    ShadowQualityPresets(1)=(bAllowWholeSceneDominantShadows=true,bOverrideMapWholeSceneDominantShadowSetting=false,bAllowDynamicShadows=true,bAllowPerObjectShadows=true,MaxWholeSceneDominantShadowResolution=1204,MaxShadowResolution=1024,ShadowFadeResolution=128,MinShadowResolution=64,ShadowTexelsPerPixel=1,GlobalShadowDistanceScale=0.75,AllowForegroundPreshadows=false)
+    ShadowQualityPresets(2)=(bAllowWholeSceneDominantShadows=true,bOverrideMapWholeSceneDominantShadowSetting=false,bAllowDynamicShadows=true,bAllowPerObjectShadows=true,MaxWholeSceneDominantShadowResolution=1280,MaxShadowResolution=1024,ShadowFadeResolution=128,MinShadowResolution=64,ShadowTexelsPerPixel=1.3,GlobalShadowDistanceScale=1,AllowForegroundPreshadows=true)
+    ShadowQualityPresets(3)=(bAllowWholeSceneDominantShadows=true,bOverrideMapWholeSceneDominantShadowSetting=true,bAllowDynamicShadows=true,bAllowPerObjectShadows=true,MaxWholeSceneDominantShadowResolution=2048,MaxShadowResolution=1536,ShadowFadeResolution=64,MinShadowResolution=32,ShadowTexelsPerPixel=2,GlobalShadowDistanceScale=1.5,AllowForegroundPreshadows=true)
     FXQualityPresets(0)=(ParticleLODBias=1,Distortion=false,FilteredDistortion=false,DropParticleDistortion=true,AllowSecondaryBloodEffects=false,EmitterPoolScale=0.25,ShellEjectLifetime=2,AllowExplosionLights=false,AllowSprayActorLights=false,AllowFootstepSounds=false,AllowBloodSplatterDecals=false,AllowRagdollAndGoreOnDeadBodies=false,AllowPilotLights=false,MaxImpactEffectDecals=8,MaxExplosionDecals=8,GoreFXLifetimeMultiplier=0.5,MaxBloodEffects=12,MaxGoreEffects=8,MaxPersistentSplatsPerFrame=25)
     FXQualityPresets(1)=(ParticleLODBias=0,Distortion=false,FilteredDistortion=false,DropParticleDistortion=true,AllowSecondaryBloodEffects=false,EmitterPoolScale=0.5,ShellEjectLifetime=5,AllowExplosionLights=true,AllowSprayActorLights=false,AllowFootstepSounds=true,AllowBloodSplatterDecals=false,AllowRagdollAndGoreOnDeadBodies=true,AllowPilotLights=true,MaxImpactEffectDecals=15,MaxExplosionDecals=12,GoreFXLifetimeMultiplier=0.75,MaxBloodEffects=15,MaxGoreEffects=8,MaxPersistentSplatsPerFrame=50)
     FXQualityPresets(2)=(ParticleLODBias=0,Distortion=true,FilteredDistortion=true,DropParticleDistortion=false,AllowSecondaryBloodEffects=true,EmitterPoolScale=1,ShellEjectLifetime=10,AllowExplosionLights=true,AllowSprayActorLights=true,AllowFootstepSounds=true,AllowBloodSplatterDecals=true,AllowRagdollAndGoreOnDeadBodies=true,AllowPilotLights=true,MaxImpactEffectDecals=20,MaxExplosionDecals=15,GoreFXLifetimeMultiplier=1,MaxBloodEffects=25,MaxGoreEffects=10,MaxPersistentSplatsPerFrame=75)

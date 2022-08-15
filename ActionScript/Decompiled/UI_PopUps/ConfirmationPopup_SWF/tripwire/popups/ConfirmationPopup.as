@@ -25,7 +25,6 @@ package tripwire.popups
         {
             super();
             enableInitCallback = true;
-            this.setTabIndex();
             this.openPopup();
             this.leftButton.addEventListener(ButtonEvent.PRESS,this.onLeftOption,false,0,true);
             this.middleButton.addEventListener(ButtonEvent.PRESS,this.onMiddleOption,false,0,true);

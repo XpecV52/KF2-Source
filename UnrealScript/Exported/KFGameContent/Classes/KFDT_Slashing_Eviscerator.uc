@@ -46,65 +46,6 @@ class KFDT_Slashing_Eviscerator extends KFDT_Slashing
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -239,7 +180,7 @@ static simulated function ModifyDismembermentHitImpulse(KFPawn_Monster InPawn, n
 
 defaultproperties
 {
-   AARWeaponID=7
+   WeaponDef=Class'KFGame.KFWeapDef_Eviscerator'
    StunPower=42
    MeleeHitPower=114
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'

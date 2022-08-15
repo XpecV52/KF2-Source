@@ -49,65 +49,6 @@ class KFDT_Ballistic_AR15 extends KFDT_Ballistic_AssaultRifle
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -128,7 +69,7 @@ class KFDT_Ballistic_AR15 extends KFDT_Ballistic_AssaultRifle
 
 defaultproperties
 {
-   AARWeaponID=10
+   WeaponDef=Class'KFGame.KFWeapDef_AR15'
    StumblePower=35
    LegStumblePower=35
    ModifierPerkList(0)=Class'KFGame.KFPerk_Commando'
@@ -136,5 +77,5 @@ defaultproperties
    KDeathVel=100.000000
    KDeathUpKick=-300.000000
    Name="Default__KFDT_Ballistic_AR15"
-   ObjectArchetype=KFDT_Ballistic_AssaultRifle'KFGameContent.Default__KFDT_Ballistic_AssaultRifle'
+   ObjectArchetype=KFDT_Ballistic_AssaultRifle'kfgamecontent.Default__KFDT_Ballistic_AssaultRifle'
 }

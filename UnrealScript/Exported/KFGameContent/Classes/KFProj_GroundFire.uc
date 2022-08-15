@@ -80,16 +80,16 @@ defaultproperties
 {
    BurnDamageInterval=0.250000
    bAutoStartAmbientSound=True
-   ExplosionActorClass=Class'KFGameContent.KFExplosion_GroundFire'
+   ExplosionActorClass=Class'kfgamecontent.KFExplosion_GroundFire'
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
       ExplosionEffects=KFImpactEffectInfo'WEP_Flamethrower_ARCH.GroundFire_Impacts'
       bAllowPerMaterialFX=True
       Damage=10.000000
       DamageRadius=100.000000
-      MyDamageType=Class'KFGameContent.KFDT_Fire_Ground'
+      MyDamageType=Class'kfgamecontent.KFDT_Fire_Ground'
       KnockDownStrength=0.000000
       MomentumTransferScale=0.000000
-      ExploLight=PointLightComponent'KFGameContent.Default__KFProj_GroundFire:FlamePointLight'
+      ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_GroundFire:FlamePointLight'
       ExploLightFadeOutTime=0.500000
       ExploLightStartFadeOutTime=1.500000
       ExploLightFlickerIntensity=5.000000
@@ -100,7 +100,7 @@ defaultproperties
       Name="ExploTemplate0"
       ObjectArchetype=KFGameExplosion'KFGame.Default__KFGameExplosion'
    End Object
-   ExplosionTemplate=KFGameExplosion'KFGameContent.Default__KFProj_GroundFire:ExploTemplate0'
+   ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFProj_GroundFire:ExploTemplate0'
    PostExplosionLifetime=2.500000
    AltExploEffects=KFImpactEffectInfo'WEP_Flamethrower_ARCH.GroundFire_Splash_Impacts'
    AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_Flamethrower.Play_WEP_SA_Flamethrower_Residual_Fire_Loop'

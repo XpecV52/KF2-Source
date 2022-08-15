@@ -30,7 +30,9 @@ package tripwire.controls
         
         public var addPlayerHighLight:MovieClip;
         
-        public var addPlayerBG:MovieClip;
+        public var addPlayerBlackBG:MovieClip;
+        
+        public var addPlayerRedBG:MovieClip;
         
         public var HitboxMC:MovieClip;
         
@@ -125,7 +127,8 @@ package tripwire.controls
             this.HighlightBG.visible = param1;
             this.addPlayerImage.visible = !param1;
             this.addPlayerHighLight.visible = !param1;
-            this.addPlayerBG.visible = !param1;
+            this.addPlayerBlackBG.visible = !param1;
+            this.addPlayerRedBG.visible = !param1;
             this.AddHitboxMC.visible = !param1;
         }
         

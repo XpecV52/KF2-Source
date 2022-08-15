@@ -319,8 +319,8 @@ defaultproperties
    EquipLastAnim="Equip_Last"
    PutDownLastAnim="Putaway_Last"
    ConsumeSpareAmmoDelay=1.000000
-   EffectiveRange=15
    bHasFireLastAnims=True
+   QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=8192)
    FireAnim="Throw"
    FireLastAnim="Throw_Last"
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'

@@ -17,4 +17,12 @@ class KFDT_Ballistic_HansAK12 extends KFDT_Ballistic_AK12
 static function int GetKillerDialogID()
 {
 	return `HANS_KillGuns;
+	
+}
+
+defaultproperties
+{
+	KDamageImpulse=400
+	KDeathUpKick=50
+	KDeathVel=75
 }

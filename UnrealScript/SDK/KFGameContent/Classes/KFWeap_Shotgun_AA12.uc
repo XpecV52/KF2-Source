@@ -15,8 +15,7 @@ defaultproperties
 	// Inventory
 	InventorySize=10
 	GroupPriority=100
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AA12'
-	FilterTypeUI=FT_Shotgun
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AA12'
 
 	// Shooting Animations
 	FireSightedAnims[0]=Shoot_Iron
@@ -114,9 +113,6 @@ defaultproperties
 	RecoilViewRotationScale=0.7
 	FallingRecoilModifier=1.5
 	HippedRecoilModifier=1.75
-
-	// Trader
-    EffectiveRange=30
     
 	AssociatedPerkClass=class'KFPerk_Support'
 }

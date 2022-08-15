@@ -14,5 +14,5 @@ class KFDT_Bludgeon_SMG_Medic extends KFDT_Bludgeon_RifleButt
 DefaultProperties
 {
 	//defaults
-	AARWeaponID=`AAR_MedicSMG
+	WeaponDef=class'KFWeapDef_MedicSMG'
 }

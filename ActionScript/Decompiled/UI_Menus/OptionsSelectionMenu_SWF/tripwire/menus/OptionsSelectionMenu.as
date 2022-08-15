@@ -33,9 +33,31 @@ package tripwire.menus
         
         public function set buttonNames(param1:Array) : void
         {
+            var _loc3_:int = 0;
             this.header.text = param1.header;
             this.buttonBar.dataProvider = new DataProvider(param1);
             this.buttonBar.validateNow();
+            var _loc2_:int = 0;
+            while(_loc2_ < this.buttonBar.dataProvider.length)
+            {
+                if(this.buttonBar.dataProvider[_loc2_].hasOwnProperty("enabled"))
+                {
+                    this.buttonBar.getButtonAt(_loc2_).enabled = this.buttonBar.dataProvider[_loc2_].enabled;
+                }
+                _loc2_++;
+            }
+            if(bManagerUsingGamepad)
+            {
+                _loc3_ = 0;
+                while(_loc3_ < this.buttonBar.dataProvider.length)
+                {
+                    if(this.buttonBar.getButtonAt(_loc3_).enabled)
+                    {
+                        FocusManager.setFocus(this.buttonBar.getButtonAt(_loc3_));
+                    }
+                    _loc3_++;
+                }
+            }
         }
         
         override public function focusGroupIn() : void

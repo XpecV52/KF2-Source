@@ -46,65 +46,6 @@ class KFDT_Bludgeon_Pulverizer extends KFDT_Bludgeon
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -125,7 +66,7 @@ class KFDT_Bludgeon_Pulverizer extends KFDT_Bludgeon
 
 defaultproperties
 {
-   AARWeaponID=6
+   WeaponDef=Class'KFGame.KFWeapDef_Pulverizer'
    StunPower=42
    KnockdownPower=30
    StumblePower=56

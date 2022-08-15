@@ -85,7 +85,7 @@ defaultproperties
    Bindings(57)=(Name="Tab",Command="CTRLTAB SHIFTDOWN=TRUE",Control=True,Shift=True)
    Bindings(58)=(Name="L",Command="ACTOR LINKSELECTED",Control=True,Shift=True)
    Bindings(59)=(Name="U",Command="ACTOR UNLINKSELECTED",Control=True,Shift=True)
-   Bindings(60)=(Name="Semicolon",Command="BUILDLIGHTING",Control=True,Shift=True)
+   Bindings(60)=(Name="SemiColon",Command="BUILDLIGHTING",Control=True,Shift=True)
    Bindings(61)=(Name="Period",Command="RECOMPILESHADERS CHANGED",Control=True,Shift=True)
    Bindings(62)=(Name="B",Command="ACTOR ATTACH",Alt=True)
    Bindings(63)=(Name="A",Command="ACTOR ADDTOATTACHEDITOR",Alt=True)

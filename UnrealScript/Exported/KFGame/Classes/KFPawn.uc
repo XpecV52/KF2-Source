@@ -323,65 +323,6 @@ class KFPawn extends BaseAIPawn
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -625,6 +566,9 @@ var bool bHasBrokenConstraints;
 /** Setting to control whether we allow ragdoll and dismemberment on dead bodies */
 var globalconfig bool bAllowRagdollAndGoreOnDeadBodies;
 
+/** The time when a gib last collided with something in the world (relative to WorldInfo.TimeSeconds) */
+var transient float LastGibCollisionTime;
+
 /*********************************************************************************************
  * @name	Status Effects
  ********************************************************************************************* */
@@ -821,14 +765,6 @@ enum EAnimSlotStance
 	EAS_Face
 };
 
-/** replicated information on a animation we're playing */
-struct native CustomAnimRepInfo
-{
-	var byte			AnimIndex;
-	var byte			RepCount;
-	var byte			Padding[2];
-};
-
 /** Cache nodes for convenience */
 var		transient	Array<AnimNodeAimOffset>	AimOffsetNodes;
 var()	transient	Array<AnimNodeSlot>		    BodyStanceNodes;
@@ -920,6 +856,7 @@ enum ESpecialMove
 	SM_WalkingTaunt,
 	SM_Evade,
 	SM_Evade_Fear,
+	SM_Heal,
 
 	/** ZED special attacks */
 	SM_SonicAttack,
@@ -1073,6 +1010,10 @@ var bool                bAIZedsIgnoreMe;
 var Controller          ExclusiveTargetingController;
 /** If set to something other than zero, AI will ignore this pawn until the worldinfo timeseconds passes this value  */
 var float               AIIgnoreEndTime;
+/** Whether this AI pawn can cloak or not */
+var bool 				bCanCloak;
+/** Whether this AI pawn is cloaking or not */
+var	repnotify	bool	bIsCloaking;
 
 /** KF1 legacy value for zed AIControl */
 const AIAirControl = 0.35;
@@ -1122,6 +1063,8 @@ replication
 		WeaponAmbientSound;
 	if ( bEnableAimOffset && (!bNetOwner || bDemoRecording) )
 		ReplicatedAimOffsetPct;
+    if ( bNetDirty && bCanCloak )
+    	bIsCloaking;
 }
 
 // (cpptext)
@@ -1211,6 +1154,9 @@ native simulated function KFPerk GetPerk();
 
 /** Whether the world can cast shadows on first person arms and weapon */
 native function bool AllowFirstPersonPreshadows();
+
+/** Removes all blood decals from pawn mesh */
+native function ClearBloodDecals();
 
 // Called immediately before gameplay begins.
 simulated event PreBeginPlay()
@@ -2032,9 +1978,16 @@ simulated function WeaponStoppedFiring(Weapon InWeapon, bool bViaReplication)
 	}
 }
 
-simulated function vector WeaponBob(float BobDamping, float JumpDamping)
+simulated function vector WeaponBob( float BobDamping, float JumpDamping )
 {
-	Local Vector V;
+	local Vector V;
+	local KFPerk OwnerPerk;
+
+	OwnerPerk = GetPerk();
+	if( OwnerPerk != none && MyKFWeapon != none && MyKFWeapon.bUsingSights )
+	{
+		OwnerPerk.ModifyWeaponBopDamping( BobDamping, MyKFWeapon );
+	}
 
 	V = BobDamping * WalkBob;
 	V.Z = (0.45 + 0.55 * BobDamping)*WalkBob.Z;
@@ -2078,59 +2031,6 @@ function StopPartialZedTime()
 	bUnaffectedByZedTime = false;
 }
 
-/** For a given camera location give the best auto target location on this character */
-simulated function vector GetAutoTargetLocation(vector CamLoc, Pawn InstigatingPawn)
-{
-    local KFWeapon KFW;
-	local vector			HitLocation, HitNormal;
-	local Actor				HitActor;
-	local TraceHitInfo		HitInfo;
-	local vector            HeadLocation, TorsoLocation, PelvisLocation;
-
-    KFW = KFWeapon(InstigatingPawn.Weapon);
-
-    // Check to see if we can hit the head
-    HeadLocation = Mesh.GetBoneLocation(HeadBoneName);
-    HitActor = InstigatingPawn.Trace(HitLocation, HitNormal, HeadLocation, CamLoc, TRUE, vect(0,0,0), HitInfo, TRACEFLAG_Bullet);
-    if( HitActor == none || HitActor == Self)
-    {
-        //`log("Autotarget - found head");
-        return HeadLocation + (vect(0,0,-10.0));
-    }
-    else // Try for the torso
-    {
-        TorsoLocation = Mesh.GetBoneLocation(TorsoBoneName);
-        HitActor = Trace(HitLocation, HitNormal, TorsoLocation, CamLoc, TRUE, vect(0,0,0), HitInfo, TRACEFLAG_Bullet);
-        if( HitActor == none || HitActor == Self)
-        {
-            //`log("Autotarget - found torso");
-            return TorsoLocation;
-        }
-        else
-        {
-            // Try for the pelvis
-            PelvisLocation = Mesh.GetBoneLocation(PelvisBoneName);
-            HitActor = Trace(HitLocation, HitNormal, PelvisLocation, CamLoc, TRUE, vect(0,0,0), HitInfo, TRACEFLAG_Bullet);
-            if( HitActor == none || HitActor == Self)
-            {
-                //`log("Autotarget - found pelvis");
-                return PelvisLocation;
-            }
-        }
-    }
-
-    //`log("Autotarget - found nothing - returning location");
-    if( KFW != None )
-    {
-        return Location + KFW.TargetFrictionOffset;
-    }
-    else
-    {
-        // Slightly above center
-        return Location + (vect(0,0,32.0));
-    }
-}
-
 /** Enables/disables the light for night vision (humans only) */
 simulated function SetNightVisionLight(bool bEnabled);
 
@@ -2143,6 +2043,78 @@ simulated function ANIMNOTIFY_ShellEject()
 	}
 }
 
+/** called from ANIMNOTIFY_SpawnKActor -- allows access to the KActor after spawn */
+simulated function ANIMNOTIFY_SpawnedKActor( KFKActorSpawnable NewKActor, AnimNodeSequence AnimSeqInstigator );
+
+/**
+ * Allow Controller.GetAdjustedAimFor() on clients
+ */
+simulated function Rotator GetAdjustedAimFor( Weapon W, vector StartFireLoc )
+{
+	// If controller doesn't exist or we're a client, get the where the Pawn is aiming at
+	if ( Controller == None /*|| Role < Role_Authority*/ )
+	{
+		return GetBaseAimRotation();
+	}
+
+	// otherwise, give a chance to controller to adjust this Aim Rotation
+	return Controller.GetAdjustedAimFor( W, StartFireLoc );
+}
+
+/*********************************************************************************************
+ * @name	Aim Assist
+********************************************************************************************* */
+
+/** Returns bone names to use for ironsight lock-on targeting */
+simulated function bool GetAutoTargetBones(out array<name> WeakBones, out array<name> NormalBones)
+{
+	if ( !IsHeadless() )
+	{
+		WeakBones.AddItem(HeadBoneName);
+	}
+	NormalBones.AddItem(TorsoBoneName);
+	NormalBones.AddItem(PelvisBoneName);
+	return true;
+}
+
+/** For a given camera location give the best auto target location on this character */
+simulated function vector GetAutoLookAtLocation(vector CamLoc, Pawn InstigatingPawn)
+{
+	local vector			HitLocation, HitNormal;
+	local Actor				HitActor;
+	local TraceHitInfo		HitInfo;
+	local vector            HeadLocation, TorsoLocation, PelvisLocation;    
+
+    // Check to see if we can hit the head
+	HeadLocation = Mesh.GetBoneLocation(HeadBoneName);
+	HitActor = InstigatingPawn.Trace(HitLocation, HitNormal, HeadLocation, CamLoc, TRUE, vect(0,0,0), HitInfo, TRACEFLAG_Bullet);
+	if( HitActor == none || HitActor == Self )
+	{
+		//`log("Autotarget - found head");
+		return HeadLocation + (vect(0,0,-10.0));
+	}
+   
+	// Try for the torso
+    TorsoLocation = Mesh.GetBoneLocation(TorsoBoneName);
+    HitActor = InstigatingPawn.Trace(HitLocation, HitNormal, TorsoLocation, CamLoc, TRUE, vect(0,0,0), HitInfo, TRACEFLAG_Bullet);
+    if( HitActor == none || HitActor == Self)
+    {
+        //`log("Autotarget - found torso");
+        return TorsoLocation;
+    }
+
+	// Try for the pelvis
+    PelvisLocation = Mesh.GetBoneLocation(PelvisBoneName);
+    HitActor = InstigatingPawn.Trace(HitLocation, HitNormal, PelvisLocation, CamLoc, TRUE, vect(0,0,0), HitInfo, TRACEFLAG_Bullet);
+    if( HitActor == none || HitActor == Self)
+    {
+        //`log("Autotarget - found pelvis");
+        return PelvisLocation;
+    }
+
+    //`log("Autotarget - found noting - returning location");
+    return Location + BaseEyeHeight * vect(0,0,0.5f);
+}
 /*********************************************************************************************
  * @name	Movement Methods
 ********************************************************************************************* */
@@ -2404,9 +2376,9 @@ simulated function SetThirdPersonAttachmentVisibility( bool bVisible )
 ********************************************************************************************* */
 
 /** If returns true, this monster is vulnerable to this damage type damage */
-function bool IsVulnerableTo(class<DamageType> DT, out float DamageMod);
+function bool IsVulnerableTo(class<DamageType> DT, optional out float DamageMod);
 /** If returns true, this monster is vulnerable to this damage type damage */
-function bool IsResistantTo(class<DamageType> DT, out float DamageMod);
+function bool IsResistantTo(class<DamageType> DT, optional out float DamageMod);
 
 simulated final function float GetHealthPercentage()
 {
@@ -2448,6 +2420,36 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 	}
 
 	return Super.HealDamage(Amount, Healer, DamageType);
+}
+
+/** Overloaded to use a custom damagetype */
+function TakeFallingDamage()
+{
+	local float EffectiveSpeed;
+
+	if (Velocity.Z < -0.5 * MaxFallSpeed)
+	{
+		if ( Role == ROLE_Authority )
+		{
+			MakeNoise(1.0);
+			if (Velocity.Z < -1 * MaxFallSpeed)
+			{
+				EffectiveSpeed = Velocity.Z;
+				if (TouchingWaterVolume())
+				{
+					EffectiveSpeed += 100;
+				}
+				if (EffectiveSpeed < -1 * MaxFallSpeed)
+				{
+					TakeDamage(-100 * (EffectiveSpeed + MaxFallSpeed)/MaxFallSpeed, None, Location, vect(0,0,0), class'KFDT_Falling');
+				}
+			}
+		}
+	}
+	else if (Velocity.Z < -1.4 * JumpZ)
+		MakeNoise(0.5);
+	else if ( Velocity.Z < -0.8 * JumpZ )
+		MakeNoise(0.2);
 }
 
 /** Radius damage (e.g. explosives) */
@@ -2791,7 +2793,7 @@ event EncroachedBy( actor Other )
 }
 
 /** Called when a melee attack has been parried by another pawn */
-function NotifyAttackParried(Pawn InstigatedBy, byte InParryStrength)
+function bool NotifyAttackParried(Pawn InstigatedBy, byte InParryStrength)
 {
 	local KFSM_MeleeAttack Move;
 	local KFPawn InstigatorPawn;
@@ -2806,7 +2808,7 @@ function NotifyAttackParried(Pawn InstigatedBy, byte InParryStrength)
 				Move = KFSM_MeleeAttack(SpecialMoves[SpecialMove]);
 				if ( Move != None && Move.bCannotBeParried )
 				{
-					return;
+					return FALSE;
 				}
 			}
 
@@ -2824,14 +2826,18 @@ function NotifyAttackParried(Pawn InstigatedBy, byte InParryStrength)
 			{
 				DoSpecialMove(SM_Stumble,,, class'KFSM_Stumble'.static.PackParrySMFlags(self, Location - InstigatedBy.Location));
 			}
+
+			return TRUE;
 		}
 	}
+
+	return FALSE;
 }
 
 /** Clean up function to terminate any effects on death */
 simulated function TerminateEffectsOnDeath()
 {
-	// Need to destroy our weapon attachment
+	// Destroy our weapon attachment
 	if( WeaponAttachment != None && !WeaponAttachment.bPendingDelete )
 	{
 		WeaponAttachment.DetachFrom(self);
@@ -2999,7 +3005,7 @@ function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, clas
 	/** __TW_ANALYTICS_ */
 	if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogKFDamageEvent(class'KFGameplayEventsWriter'.const.GAMEEVENT_DAMAGE_GENERIC,InstigatedBy,self,HitZoneIdx,Damage,DamageType);}
 	//Record weapon Damage for AAR
-	if(KFDT!= none){class'EphemeralMatchStats'.static.RecordWeaponDamage(InstigatedBy,KFDT.default.AARWeaponID,Damage,Self,HitZoneIdx);};
+	if(KFDT!= none){class'EphemeralMatchStats'.static.RecordWeaponDamage(InstigatedBy,KFDT.default.WeaponDef,Damage,Self,HitZoneIdx);};
 }
 
 /** Plays and replicates heal effects
@@ -3453,6 +3459,12 @@ function TickDamageOverTime(float DeltaTime)
 /*********************************************************************************************
  * @name	Animation
 ********************************************************************************************* */
+
+/** Used by KFPawnAnimInfo and bosses/large Zeds that have different phases of combat */
+simulated function int GetCurrentBattlePhase()
+{
+	return 0;
+}
 
 function AnimInterruptNotifyTimer();
 
@@ -4492,8 +4504,9 @@ defaultproperties
       SpecialMoveClasses(16)=None
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
-      SpecialMoveClasses(19)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(20)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(19)=None
+      SpecialMoveClasses(20)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(21)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFSpecialMoveHandler'
    End Object

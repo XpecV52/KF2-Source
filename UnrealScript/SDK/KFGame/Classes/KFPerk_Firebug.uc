@@ -8,7 +8,8 @@
 // Christian "schneidzekk" Schneider
 //=============================================================================
 
-class KFPerk_Firebug extends KFPerk;
+class KFPerk_Firebug extends KFPerk
+	native;
 
 `include(KFOnlineStats.uci)
 
@@ -23,8 +24,6 @@ var 	const 	int 				HeatWaveRadiusSQ;
 var		const	float 				ShrapnelChance;
 var 			GameExplosion		ExplosionTemplate;
 var 			const String		ShrapnelExplosionDamageTypeName;
-
-var		const	array<Name>			ZedTimeModifyingStates;
 
 enum EFirebugSkills
 {
@@ -318,7 +317,7 @@ simulated function float GetZedTimeModifier( KFWeapon W )
  * @brief skills and weapons can modify the stumbling power
  * @return stumpling power modifier
  */
-function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier )
+function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart )
 {
 	if( IsHeatWaveActive() && IsDamageTypeOnPerk(DamageType) && InHeatRange(KFP) )
 	{
@@ -522,9 +521,10 @@ simulated function LogPerkSkills()
 DefaultProperties
 {
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Firebug'
-	PrimaryWeaponClassName="KFGameContent.KFWeap_Flame_CaulkBurn"
-	MeleeWeaponClassName="KFGameContent.KFWeap_Knife_Firebug"
-	GrenadeClassName="KFGameContent.KFProj_MolotovGrenade"
+
+	PrimaryWeaponDef=class'KFWeapDef_CaulkBurn'
+	KnifeWeaponDef=class'KFWeapDef_Knife_Firebug'
+	GrenadeWeaponDef=class'KFWeapDef_Grenade_Firebug'
 
 	ProgressStatID=`STATID_Fire_Progress
    	PerkBuildStatID=`STATID_Fire_Build

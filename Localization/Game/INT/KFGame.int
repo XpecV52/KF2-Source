@@ -116,17 +116,6 @@ TimeLeftString="TIME LEFT"
 WaveString="WAVE"
 BossWaveString="BOSS"
 
-//BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
-[KFPawn_ZedHansBase]
-BossName="Dr. Hans Volter"
-BossCaptionStrings[0]="Hans is nearly invulnerable during his smoke grenade healing phase. Don't waste your ammo!"
-BossCaptionStrings[1]="Watch his power core: Hans is more aggressive as it changes color."
-BossCaptionStrings[2]="Aim for his emissive power core. It is a vulnerable zone."
-BossCaptionStrings[3]="Gas from Hans' grenades clings to you, like Bloat bile. Try to avoid it!"
-BossCaptionStrings[4]="His slashing attacks are too strong to parry. You'll still take full damage."
-BossCaptionStrings[5]="Watch for red grenade warning indicators, which may help you spot where they land."
-BossCaptionStrings[6]="When Hans pulls out his guns, stay out of the line of sight. Obvious, but important!"
-
 [KFPawn_MonsterBoss]
 BossName="Boss"
 BossCaptionStrings[0]="Boss caption 1"
@@ -150,6 +139,7 @@ JoinString="JOIN"
 PasswordPromptString="ENTER PASSWORD"
 
 RankedString="STATS ENABLED"
+UnrankedString="STATS DISABLED"
 DedicatedString="DEDICATED"
 VACSecureString="VAC SECURE"
 InLobbyString="IN LOBBY"
@@ -272,6 +262,7 @@ WaveString="WAVE"
 XPString="XP"
 VictoryString="Victory"
 DefeatString="Defeat"
+ItemDropTitleString="NEW ITEM OBTAINED!"
 
 [EphemeralMatchStats]
 MedicineMaster="Medicine Master"
@@ -325,6 +316,14 @@ AchievementsString="Achievements"
 KnifeString="Knife"
 TopWeaponsString="TOP WEAPONS"
 ZedKillsString="ZED KILLS"
+TotalDamageDealtString="Total Damage Dealt:"
+HeadShotsString="Headshots:"
+LargeZedKillsString="Large Zed Kills:"
+TotalDoshEarnedString="Total Dosh Earned:"
+TotalKillsString="Total Kills:"
+AssistsString="Assists:"
+DamageDealtString="Damage Dealt:"
+
 
 
 [KFGFxWidget_BaseParty]
@@ -354,6 +353,9 @@ RemoveFriendString="Remove Friend"
 VoteKickString="Kick Player"
 ViewProfileString="View Profile"
 
+RemainingString="Remaining:"
+DownLoadingString="Downloading:"
+
 [KFGFxMenu_Gear]
 GearHeaderString="CUSTOMIZE GEAR"
 BioString="BIO"
@@ -364,6 +366,21 @@ SkinsString="SKINS"
 AttachmentsString="ACCESSORIES"
 BackString="BACK"
 NoneString="NONE"
+WeaponsString="Weapons"
+WeaponsInfoString="Customize"
+
+[KFGFxMenu_Inventory]
+InventoryString="INVENTORY"
+UseString="USE"
+EquipString="EQUIP"
+UnequipString="UNEQUIP"
+AllString="All"
+WeaponSkinString="Weapon Skins"
+CosmeticString="Cosmetics"
+ItemString="Items"
+FiltersString="Filters"
+MoreItemsString="You require a matching key and crate. You can purchase a key from the in game store."
+FailedToExchangeString="CANNOT OPEN CRATE"
 
 [KFGFxPerksContainer]
 LevelString=""
@@ -396,6 +413,26 @@ EndOfWaveString="Perk changes will be applied at end of the wave!"
 ChangesAppliedOnCloseString="Perk changes will be applied when this menu is closed"
 OncePerWaveString="Perk changes can only be done once per wave!"
 
+[KFGFxMenu_Store]
+StoreString="STORE"
+
+[KFGFxStoreContainer_Cart]
+CartString=Cart
+TotalString=Total
+CheckOutString=Check Out
+
+[KFGFxStoreContainer_Main]
+NewReleasesString="New Releases"
+CartString="Cart"
+ToolsString="Tools"
+WeaponSkinsString="Weapon Skins"
+CharactersString="Characters"
+
+[KFGFxStoreContainer_Details]
+AddToCartString="Buy Item"
+PreviewString="Preview"
+
+
 [KFGFxWidget_ButtonPrompt]
 CancelString="BACK"
 ConfirmString="SELECT"
@@ -404,8 +441,10 @@ ConfirmString="SELECT"
 MenuStrings[0]="HOME"
 MenuStrings[1]="PERKS"
 MenuStrings[2]="GEAR"
-MenuStrings[3]="OPTIONS"
-MenuStrings[4]="EXIT"
+MenuStrings[3]="INVENTORY"
+MenuStrings[4]="STORE"
+MenuStrings[5]="OPTIONS"
+MenuStrings[6]="EXIT"
 
 ServerBrowserString="SERVER BROWSER"
 MatchmakingString="MATCH MAKING"
@@ -460,11 +499,12 @@ PrimaryString="PRIMARY"
 EquiptmentString="EQUIPMENT"
 MeleeString="MELEE"
 SecondaryString="SECONDARY"
+ThrowString="THROW WEAPON"
 
 [KFGFxWidget_KickVote]
 VoteKickString="Kick Player?"
 
-[KFGFxWidget_VoiceComms]
+[KFLocalMessage_VoiceComms]
 VoiceCommsOptionStrings[0]="REQUEST HEALING"
 VoiceCommsOptionStrings[1]="REQUEST DOSH"
 VoiceCommsOptionStrings[2]="REQUEST HELP"
@@ -492,8 +532,10 @@ OptionStrings[4]="Credits"
 AudioString="AUDIO OPTIONS"
 SectionNameString="VOLUME"
 OptionsString="OPTIONS"
+MasterVolumeString="Master Volume"
+DialogVolumeString="Dialog Volume"
 MusicString="In-Game Music Volume"
-SFxString="Game Volume"
+SFxString="SFX Volume"
 VOIPVolumeString="Voice Chat Receive Volume"
 ConfigureMicString="CONFIGURE MICROPHONE"
 VocalsString="Music Vocals"
@@ -709,9 +751,10 @@ GBA_TertiaryFire="Melee Bash"
 GBA_ToggleFlashlight="Toggle Flashlight"
 GBA_AltFire="Alt. Fire / Block"
 
-GBA_WeaponSelect_Gamepad="Weapon Select Menu (Hold)"
+GBA_WeaponSelect_Gamepad="Weapon Select (Hold)"
 GBA_NextWeapon="Next Weapon"
 GBA_PrevWeapon="Previous Weapon"
+GBA_LastWeapon="Last Used Weapon"
 GBA_SwitchWeapon1="Primary Weapon"
 GBA_SwitchWeapon2="Secondary Weapon"
 GBA_SwitchWeapon3="Melee Weapon"
@@ -721,11 +764,17 @@ GBA_VoteNo="Vote No (Hold)"
 
 [KFGFxControlsContainer_Input]
 SensitivityString="Sensitivity"
-InvertedString="Inverted"
+InvertedString="Invert Y"
 ControllerString="Controller"
 ControllerSensitivityString="Look Sensitivity"
-ControllerInvertedString="Invert Y"
 MouseString="Mouse"
+MouseSmoothingString="Mouse Smoothing"
+ZoomSensitivityString="Zoom Sensitivity"
+ControllerZoomSensitivityString="Zoom Sensitivity"
+AimAssistLockOnString="Aim Assist Zoom Lock-On"
+AimAssistRotationString="Aim Assist Rotation"
+AimAssistSlowDownString="Aim Assist Slowdown"
+ForceFeedbackString="Controller Vibration"
 
 [KFGFxControlsContainer_Keybinding]
 SectionHeaders[0]="Movement"
@@ -755,6 +804,8 @@ BashString="Melee Bash"
 BlockString="Block (Hold)"
 HoldString="(Hold)"
 
+[KFInventoryManager]
+FullHealthMsg="Health Full"
 
 [KFLocalMessage]
 SystemString="System:"
@@ -800,9 +851,12 @@ FailedDropInventoryMessage="You can't drop that here"
 ReceivedGrenadesFromMessage="You received grenades from"
 GaveGrenadesToMessage="You gave grenades to"
 SharingContentString="is sharing content."
+HeadShotAddedString="%x Headshot(s) - %y% Extra Damage!"
+HeadShotMaxString="Headshot! %x% Extra Damage!"
+HeadShotResetString="Missed Headshot. Normal Damage!"
 
-SuicideMessage="just gave up on life..."
-KilledMessage="was eaten alive"
+SuicideMessage=" just gave up on life..."
+KilledMessage=" was eaten alive"
 KillzedBy_HansString="'s body has been removed for further experimentation"
 KillzedBy_ZedCrawlerString="'s ankles have been chewed off"
 KillzedBy_ZedBloatString=" has drowned in bodily fluids"
@@ -838,17 +892,16 @@ ObjTimeRanOutMessage="Time Limit Reached!"
 [KFGameInfo_Survival]
 GameName="Survival"
 
-[KFGameReplicationInfo]
-
-
 [KFLocalMessage_Interaction]
-UseTraderMessage="Press <%x%> to trade"
-UseDoorMessage="PRESS <%x%> to use, HOLD to equip welder"
-AcceptObjectiveMessage="Press <%x%> to accept objective"
-ReceiveAmmoMessage="Press <%x%> to receive ammo from supplier"
-ReceiveGrenadesMessage="Press <%x%> to receive grenades from supplier"
-HealSelfWarning="Press <%x%> to heal yourself."
-PressToBashWarning="Press <%x%> to melee bash."
+UseTraderMessage="<%x%> USE TRADER"
+UseDoorMessage="<%x%> Open/Close     (HOLD) <%x%> equip welder"
+AcceptObjectiveMessage="<%x%> accept objective"
+ReceiveAmmoMessage="<%x%> receive ammo"
+ReceiveGrenadesMessage="<%x%> receive grenades"
+HealSelfWarning="<%x%> heal self."
+HealSelfGamepadWarning="(HOLD) <%x%> heal self"
+PressToBashWarning="<%x%> bash"
+GamepadWeaponSelectHint="(HOLD) <%x%> weapon select"
 
 [KFGfxPerkComp_Abilities]
 RankNames[0]="Rank I"
@@ -916,10 +969,10 @@ SonicResistance="Sonic Resistance"
 SonicResistanceDescription="I can't hear you! Reduce the damage you take from Sonic attacks by 40%"
 
 Vampire="Vampire"
-VampireDescription="Little suckers: Horzine nano-tech sucks 3 points of life from every Zed you kill with any Perk weapon attack and applies it to you."
+VampireDescription="Little suckers: Horzine nano-tech sucks 4 points of life from every Zed you kill with a Berserker weapon attack and applies it to you."
 
 Fortitude="Fortitude"
-FortitudeDescription="Give yourself a better chance: Increase Maximum and Starting Health by 100%"
+FortitudeDescription="Give yourself a better chance: Increase Maximum and Starting Health by 75%"
 
 FuriousDefender="Furious Defender"
 FuriousDefenderDescription="They call you Berserk for a reason: Berserker melee attacks are 10% faster and all attacks do 20% more damage."
@@ -931,12 +984,12 @@ Parry="Parry"
 ParryDescription="Combine skill and power: Parrying an attack will increase melee attack speed by 15% and light attack damage by 30% for 4 seconds."
 
 Smash="Smash"
-SmashDescription="Brute force it: Hard hits do 100% more damage AND hard hits to the head have a high chance to knock big Zeds down."
+SmashDescription="Brute force it: Hard hits do 25% more damage AND hard hits to the head have a high chance to knock big Zeds down."
 
-Spartan="ZED-TIME - Spartan"
+Spartan="ZED TIME - Spartan"
 SpartanDescription="You've seen 300: Move in real-time, increase attack speed with Berserker melee weapons by 50% and any Parry will cause knockdown."
 
-Menace="ZED-TIME - Menace"
+Menace="ZED TIME - Menace"
 MenaceDescription="Get really dangerous: Move in real-time, Berserker melee weapons' Stun power increased 100% to head hits and Stumble power increased by 100%."
 
 [KFPerk_Commando]
@@ -1059,7 +1112,7 @@ Combatant="Combatant"
 CombatantDescription="Don't just be a Medic - be the Combat Medic you always wanted to be with free, starting body armor & a 60% discount on all armor purchases!"
 
 Armament="Armament"
-ArmamentDescription="Don't just repair people: Lose 10% of your healing effectiveness on teammates, but repair 2% of their max body armor each time, instead!"
+ArmamentDescription="Don't just repair people: Lose 25% of your healing effectiveness on teammates, but repair 1% of their max body armor each time, instead!"
 
 Regeneration="Regeneration"
 RegenerationDescription="Dose yourself up: Your health regenerates slowly over time, thanks to Horzine nano-bots."
@@ -1068,7 +1121,7 @@ Lacerate="Lacerate"
 LacerateDescription="Watch it with that scalpel: You cause Zeds to bleed more after damage with all Perk weapons."
 
 VaccinationArmor="Vaccination"
-VaccinationArmorDescription="Help prevent the spread of death: Your healing grants 4% of max armor as a repair to teammates, plus temporary resistance to Bloat Bile."
+VaccinationArmorDescription="Help prevent the spread of death: Your healing grants 2% of max armor as a repair to teammates, plus temporary resistance to Bloat Bile."
 
 VaccinationDamageMod="Acidic Compound"
 VaccinationDamageModDescription="A healer to some... death to others! Your healing darts can poison Zeds; cause enough damage and your grenades and darts cause Zeds to panic as well."
@@ -1104,7 +1157,7 @@ FullyStocked="Fully Stocked"
 FullyStockedDescription="What it says on the can: Firebug weapons start at maximum ammo capacity at the Trader."
 
 FlarotovCoctail="Flarotov Cocktail"
-FlarotovCoctailDescription="Its in the name: Shove a Flare in your Molotov Cocktail - you get a Flare that lights up the environment for 30 seconds AND your flame burns for twice as long on the ground."
+FlarotovCoctailDescription="It's in the name: Shove a Flare in your Molotov Cocktail - you get a Flare that lights up the environment for 30 seconds AND your flame burns for twice as long."
 
 Fuse="Fuse"
 FuseDescription="A nice slow-burner: Firebug weapons burn effect lingers 70% longer adding to damage over time."
@@ -1132,6 +1185,49 @@ ScorchDescription="You're on fire! Well, not literally. Perk weapons used in Zed
 
 [KFPerk_Gunslinger]
 PerkName="Gunslinger"
+EXPAction1="Dealing Gunslinger weapon damage"
+EXPAction2="Head shots with Gunslinger weapons"
+
+SkillCatagories[0]="Technique"
+SkillCatagories[1]="Skill"
+SkillCatagories[2]="Advanced Techniques"
+SkillCatagories[3]="Critical hits"
+SkillCatagories[4]="Master Techniques"
+
+Passives[0]=(Title="Perk Weapon Damage",Description="Perk weapon damage increased by %x%");
+Passives[1]=(Title="Bullet Resistance",Description="Resistance to projectile damage increased by %x%");
+Passives[2]=(Title="Movement Speed",Description="Movement speed increased by %x%");
+Passives[3]=(Title="Recoil",Description="%x% less recoil");
+
+ShootnMove="Shoot'n'Scoot"
+ShootnMoveDescription="Don't hang around to be eaten: move 50% faster in iron sights with reduced weapon bob."
+
+QuickSwitch="Quick Draw"
+QuickSwitchDescription="You know it: 50% faster weapon switch - and, if you keep firing when you are out of ammo, quick draw spare pistols."
+
+RhythmMethod="Rack 'em Up"
+RhythmMethodDescription="Rack up the headshots: each consecutive headshot increases damage by 5%  up to 75% with Gunslinger weapons."
+
+BoneBreaker="Bone Breaker"
+BoneBreakerDescription="Don't just collect them, break them too: do 20% more damage with Gunslinger weapons."
+
+SpeedReload="Speed-loader"
+SpeedReloadDescription="Cooler, quicker, deadlier: reload 20% faster with Gunslinger weapons AND look more elite while you're at it."
+
+Penetration="Penetration"
+PenetrationDescription="Line 'em up and knock 'em down: penetrate an extra Zed with every shot."
+
+CenterMass="Center Mass"
+CenterMassDescription="If you aim for the center of mass... shots to the chest have 30% more stumble power."
+
+LimbShots="Leg Shots"
+LimbShotsDescription="Or shoot them in the legs... shots to the legs have 30% more knockdown power when the zed is sprinting."
+
+Fanfare="ZED TIME - Fanfire"
+FanfareDescription="Fanfire with fanfare: shoot 3x faster with Gunslinger weapons in Zed time."
+
+UberAmmo="ZED TIME - Uber Ammo"
+UberAmmoDescription="Uber it up: you can’t run out of ammo with Gunslinger weapons during Zed time."
 
 [KFPerk_MartialArtist]
 PerkName="Martial Artist"
@@ -1265,8 +1361,78 @@ KFPawn_ZedClot_Slasher="Slasher"
 KFPawn_ZedClot_Alpha="Alpha Clot"
 KFPawn_ZedScrake="Scrake"
 KFPawn_ZedSiren="Siren"
+KFPawn_ZedPatriarch="Patriarch"
 
-
+[Keybinds]
+CtrlCombo="Ctrl + "
+ShiftCombo="Shift + "
+AltCombo="Alt + "
+LeftMouseButton="Left Click"
+MiddleMouseButton="Middle Click"
+RightMouseBUtton="Right Click"
+ThumbMouseButton1="Mouse Thumb 1"
+ThumbMouseButton2="Mouse Thumb 2"
+MouseScrollDown="Mouse Wheel Down"
+MouseScrollUp="Mouse Wheel Up"
+CapsLock="Caps Lock"
+Tab="Tab"
+BackSpace="Backspace"
+SpaceBar="Spacebar"
+LeftShift="Left Shift"
+RightSift="Right Shift"
+LeftCtrl="Left Ctrl"
+RightCtrl="Right Ctrl"
+LeftAlt="Left Alt"
+RightAlt="Right Alt"
+BackSlash="\"
+Slash="/"
+RightBracket="]"
+LeftBracket="["
+Quote="'"
+SemiColon=";"
+Period="."
+Comma=","
+Subtract="-"
+Add="+"
+Equals="="
+Multiply="*"
+Divide="Num Pad /"
+Underscore="-"
+NumPadZero="0"
+NumPadOne="1"
+NumPadTwo="2"
+NumPadThree="3"
+NumPadFour="4"
+NumPadFive="5"
+NumPadSix="6"
+NumPadSeven="7"
+NumPadEight="8"
+NumPadNine="9"
+Decimal="Num Pad ."
+NumLock="Num Lock"
+PageUp="Page Up"
+PageDown="Page Down"
+Home="Home"
+End="End"
+Insert="Insert"
+Delete="Delete"
+Up="Up"
+Down="Down"
+Left="Left"
+Right="Right"
+ScrollLock="Scroll Lock"
+Pause="Pause"
+Enter="Enter"
+one="1"
+two="2"
+three="3"
+four="4"
+five="5"
+six="6"
+seven="7"
+eight="8"
+nine="9"
+zero="0"
 
 [SharedUnlocks]
 KFWeap_Zweihander="Chivalry Promo"
@@ -1296,3 +1462,14 @@ DisplayName="Catacombs"
 
 [KF-EvacuationPoint KFMapSummary]
 DisplayName="Evacuation Point"
+
+[KF-Farmhouse KFMapSummary]
+DisplayName="Farmhouse"
+
+[KF-BlackForest KFMapSummary]
+DisplayName="Black Forest"
+
+[KFMapInfo]
+; defaults
+FoundCollectibleString="%x% found a collectible. %y% left to find..."
+FoundAllCollectiblesString="Every collectible has been found!"

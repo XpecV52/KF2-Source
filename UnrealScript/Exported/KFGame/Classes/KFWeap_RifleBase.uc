@@ -9,9 +9,26 @@
 class KFWeap_RifleBase extends KFWeapon
 	abstract;
 
+/*********************************************************************************************
+ * @name	Trader
+ *********************************************************************************************/
+
+/** Returns trader filter index based on weapon type */
+static simulated event EFilterTypeUI GetTraderFilter()
+{
+	if( default.FiringStatesArray[DEFAULT_FIREMODE] == 'WeaponFiring' || default.FiringStatesArray[DEFAULT_FIREMODE] == 'WeaponBurstFiring' )
+	{
+		return FT_Assault;
+	}
+	else // if( FiringStatesArray[DEFAULT_FIREMODE] == 'WeaponSingleFiring')
+	{
+		return FT_Rifle;
+	}
+}
+
 defaultproperties
 {
-   EffectiveRange=70
+   AimCorrectionSize=40.000000
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"

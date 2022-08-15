@@ -368,6 +368,11 @@ var int MaxBossMinions;
 /** List of currently connected players. Stored here to save time going through all controllers */
 var array <Controller>	RecentSpawnSelectedHumanControllerList;
 
+
+
+
+
+
 /************************************************************************************
  * Debugging
  ***********************************************************************************/
@@ -585,6 +590,13 @@ function GetSpawnListFromSquad(byte SquadIdx, out array< KFAISpawnSquad > Squads
 				AIType = Squad.MonsterList[i].Type;
 				if( AIType == AT_BossRandom )
 				{
+
+
+
+
+
+
+
 					AISpawnList.AddItem(AIBossClassList[Rand(AIBossClassList.Length)]);
 				}
 				else

@@ -131,6 +131,27 @@ enum EOnlineNewsType
     ONT_MAX
 };
 
+enum ItemType
+{
+    ITP_WeaponSkin,
+    ITP_CharacterSkin,
+    ITP_Item,
+    ITP_NONE,
+    ITP_MAX
+};
+
+enum ItemRarity
+{
+    ITR_Common,
+    ITR_Uncommon,
+    ITR_Rare,
+    ITR_Legendary,
+    ITR_ExceedinglyRare,
+    ITR_Mythical,
+    ITR_NONE,
+    ITR_MAX
+};
+
 struct native UniqueNetId
 {
     var QWord Uid;
@@ -557,6 +578,80 @@ struct native SocialPostLinkInfo extends SocialPostImageInfo
     var string PictureURL;
 };
 
+struct native CurrentInventoryEntry
+{
+    var UniqueNetId Instance;
+    var int Definition;
+    var int Quantity;
+    var int NewlyAdded;
+
+    structdefaultproperties
+    {
+        Instance=(Uid=none)
+        Definition=0
+        Quantity=0
+        NewlyAdded=0
+    }
+};
+
+struct native ItemProperties
+{
+    var int Definition;
+    var string Name;
+    var OnlineSubsystem.ItemType Type;
+    var OnlineSubsystem.ItemRarity Rarity;
+    var string ShortDescription;
+    var string Price;
+    var int Quality;
+    var string IconURL;
+    var string IconURLLarge;
+    var bool Tradeable;
+    var bool Commodity;
+    var string Description;
+    var string Exchange;
+
+    structdefaultproperties
+    {
+        Definition=0
+        Name=""
+        Type=ItemType.ITP_WeaponSkin
+        Rarity=ItemRarity.ITR_Common
+        ShortDescription=""
+        Price=""
+        Quality=0
+        IconURL=""
+        IconURLLarge=""
+        Tradeable=false
+        Commodity=false
+        Description=""
+        Exchange=""
+    }
+};
+
+struct native ExchangeRule
+{
+    var int Definition;
+    var int Quantity;
+
+    structdefaultproperties
+    {
+        Definition=0
+        Quantity=0
+    }
+};
+
+struct native ExchangeRuleSets
+{
+    var array<ExchangeRule> Sources;
+    var int Target;
+
+    structdefaultproperties
+    {
+        Sources=none
+        Target=0
+    }
+};
+
 var private native const noexport Pointer VfTable_FTickableObject;
 var OnlineAccountInterface AccountInterface;
 var OnlinePlayerInterface PlayerInterface;
@@ -574,6 +669,7 @@ var UserCloudFileInterface UserCloudInterface;
 var SharedCloudFileInterface SharedCloudInterface;
 var OnlineSocialInterface SocialInterface;
 var OnlineAuthInterface AuthInterface;
+var array< delegate<OnInventoryReadComplete> > ReadInventoryCompleteDelegates;
 var private array<NamedInterface> NamedInterfaces;
 var config array<config NamedInterfaceDef> NamedInterfaceDefs;
 var protected const array<NamedSession> Sessions;
@@ -582,7 +678,47 @@ var config int BuildIdOverride;
 var config string IniLocPatcherClassName;
 var transient IniLocPatcher Patcher;
 var config float AsyncMinCompletionTime;
+var array<CurrentInventoryEntry> CurrentInventory;
+var array<ItemProperties> ItemPropertiesList;
+var array<ExchangeRuleSets> ExchangeRuleSetList;
+var delegate<OnInventoryReadComplete> __OnInventoryReadComplete__Delegate;
 var delegate<OnReadOnlineAvatarComplete> __OnReadOnlineAvatarComplete__Delegate;
+
+// Export UOnlineSubsystem::execOpenItemPurchaseOverlay(FFrame&, void* const)
+native function OpenItemPurchaseOverlay(int SKU);
+
+// Export UOnlineSubsystem::execOpenURL(FFrame&, void* const)
+native function OpenURL(string WebsiteLink);
+
+// Export UOnlineSubsystem::execIsExchangeable(FFrame&, void* const)
+native function int IsExchangeable(int SourceSKU, out array<ExchangeRuleSets> Ret);
+
+// Export UOnlineSubsystem::execExchangeReady(FFrame&, void* const)
+native function bool ExchangeReady(const out ExchangeRuleSets Rule);
+
+// Export UOnlineSubsystem::execExchange(FFrame&, void* const)
+native function bool Exchange(const out ExchangeRuleSets Rule);
+
+delegate OnInventoryReadComplete();
+
+function AddOnInventoryReadCompleteDelegate(delegate<OnInventoryReadComplete> ReadCompleteDelegate)
+{
+    if(ReadInventoryCompleteDelegates.Find(ReadCompleteDelegate == -1)
+    {
+        ReadInventoryCompleteDelegates.AddItem(ReadCompleteDelegate;
+    }
+}
+
+function ClearOnInventoryReadCompleteDelegate(delegate<OnInventoryReadComplete> ReadCompleteDelegate)
+{
+    local int RemoveIndex;
+
+    RemoveIndex = ReadInventoryCompleteDelegates.Find(ReadCompleteDelegate;
+    if(RemoveIndex != -1)
+    {
+        ReadInventoryCompleteDelegates.Remove(RemoveIndex, 1;
+    }
+}
 
 // Export UOnlineSubsystem::execInit(FFrame&, void* const)
 native event bool Init();
@@ -738,6 +874,9 @@ native static final function string UniqueNetIdToString(const out UniqueNetId Id
 // Export UOnlineSubsystem::execStringToUniqueNetId(FFrame&, void* const)
 native static final function bool StringToUniqueNetId(string UniqueNetIdString, out UniqueNetId out_UniqueId);
 
+// Export UOnlineSubsystem::execStringToUniqueNetIdDec(FFrame&, void* const)
+native static final function bool StringToUniqueNetIdDec(string UniqueNetIdString, out UniqueNetId out_UniqueId);
+
 event UniqueNetId GetPlayerUniqueNetIdFromIndex(int UserIndex)
 {
     local UniqueNetId ReturnVal, NullId;
@@ -876,6 +1015,15 @@ function string UniqueNetIdToPlayerName(const out UniqueNetId Uid);
 function OnlineSubsystem.ELoginStatus GetLoginStatus(byte LocalUserNum);
 
 function OnlineSubsystem.ENATType GetNATType();
+
+// Export UOnlineSubsystem::execGetUGCInterface(FFrame&, void* const)
+native function TWOnlineUGCInterface GetUGCInterface();
+
+// Export UOnlineSubsystem::execGetPlayerGroups(FFrame&, void* const)
+native function GetPlayerGroups(out array<UniqueNetId> UserGroups);
+
+// Export UOnlineSubsystem::execCheckPlayerGroup(FFrame&, void* const)
+native function bool CheckPlayerGroup(UniqueNetId Group);
 
 defaultproperties
 {

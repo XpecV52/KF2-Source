@@ -12,3 +12,10 @@ static function int GetKillerDialogID()
 {
     return 20;
 }
+
+defaultproperties
+{
+    KDamageImpulse=400
+    KDeathVel=75
+    KDeathUpKick=50
+}

@@ -1,6 +1,7 @@
 package tripwire.controls.postGameMenu
 {
     import flash.display.MovieClip;
+    import flash.events.MouseEvent;
     import tripwire.controls.TripListItemRenderer;
     
     public class PostGameMenuPlayerSlotListItemRenderer extends TripListItemRenderer
@@ -12,6 +13,14 @@ package tripwire.controls.postGameMenu
         public function PostGameMenuPlayerSlotListItemRenderer()
         {
             super();
+        }
+        
+        override protected function handlePress(param1:uint = 0) : void
+        {
+        }
+        
+        override protected function handleMousePress(param1:MouseEvent) : void
+        {
         }
         
         public function set bTalking(param1:Boolean) : void

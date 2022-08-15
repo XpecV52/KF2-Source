@@ -49,65 +49,6 @@ class KFDT_Dart_Toxic extends KFDT_Toxic
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -136,7 +77,7 @@ static function bool IsToxicDartWithACMedicPerk()
 
 defaultproperties
 {
-   AARWeaponID=53
+   WeaponDef=Class'kfgamecontent.KFWeapDef_Healer'
    Name="Default__KFDT_Dart_Toxic"
    ObjectArchetype=KFDT_Toxic'KFGame.Default__KFDT_Toxic'
 }

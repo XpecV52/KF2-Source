@@ -14,5 +14,5 @@ class KFDT_Bludgeon_NailShotgun extends KFDT_Bludgeon_RifleButt
 DefaultProperties
 {
 	//defaults
-	AARWeaponID=`AAR_NailGun
+	WeaponDef=class'KFWeapDef_NailGun'
 }

@@ -10,7 +10,7 @@ class KFDT_Fire_MolotovGrenade extends KFDT_Fire
 
 defaultproperties
 {
-    AARWeaponID=45
+    WeaponDef=Class'KFGame.KFWeapDef_Grenade_Firebug'
     bIgnoreSelfInflictedScale=false
     DoT_DamageScale=0.2
     BurnPower=0.95

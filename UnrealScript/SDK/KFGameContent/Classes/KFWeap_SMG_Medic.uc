@@ -10,6 +10,16 @@
 
 class KFWeap_SMG_Medic extends KFWeap_MedicBase;
 
+/*********************************************************************************************
+ * @name	Trader
+ *********************************************************************************************/
+
+/** Returns trader filter index based on weapon type */
+static simulated event EFilterTypeUI GetTraderFilter()
+{
+	return FT_SMG;
+}
+
 defaultproperties
 {
 	// Healing charge
@@ -20,9 +30,8 @@ defaultproperties
 	// Inventory
 	InventorySize=3
 	GroupPriority=50
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicSMG'
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicSMG'
 	SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
-	FilterTypeUI=FT_SMG
 
     // FOV
     MeshFOV=81
@@ -43,6 +52,7 @@ defaultproperties
 	End Object
 
 	AttachmentArchetype=KFWeaponAttachment'WEP_Medic_SMG_ARCH.Wep_Medic_SMG_3P'
+	//SpectatorWeaponArchetype=KFWeaponAttachment'WEP_Medic_SMG_ARCH.Wep_Medic_SMG_3P'
 
 	// Ammo
 	MagazineCapacity[0]=40
@@ -98,9 +108,6 @@ defaultproperties
 	// Attachments
 	bHasIronSights=true
 	bHasFlashlight=true
-
-	// Trader
-    EffectiveRange=70	
 
 	AssociatedPerkClass=class'KFPerk_FieldMedic'
 }

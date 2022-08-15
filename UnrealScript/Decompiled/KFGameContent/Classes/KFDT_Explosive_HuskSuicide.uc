@@ -18,5 +18,6 @@ defaultproperties
     bAnyPerk=true
     bShouldSpawnPersistentBlood=true
     KDamageImpulse=1500
+    KDeathVel=700
     KDeathUpKick=500
 }

@@ -72,7 +72,7 @@ static simulated function CalculateEchoLocationAndDelay(ReverbVolume EchoVolume,
 
     if(EchoDist > float(0))
     {
-        EchoDelay = FMin((EchoDist / 34029) * 2, 5);        
+        EchoDelay = FMin((EchoDist / 34029) * float(3), 5);        
     }
     else
     {
@@ -85,7 +85,7 @@ static simulated function CalculateEchoLocationAndDelay(ReverbVolume EchoVolume,
         if(NewHitLocation != EchoLoc)
         {
             EchoLoc = NewHitLocation - ((NewHitLocation - SourceLoc) * 0.05);
-            EchoDelay = FMin((VSize(NewHitLocation - SourceLoc) / 34029) * 2, 5);
+            EchoDelay = FMin((VSize(NewHitLocation - SourceLoc) / 34029) * float(3), 5);
             return;
         }
     }

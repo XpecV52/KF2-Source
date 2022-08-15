@@ -29,7 +29,7 @@ defaultproperties
 {
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_MedicDart'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_MedicDart'
-   UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Healer'
+   WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Healer'
    PlayerViewOffset=(X=20.000000,Y=10.000000,Z=-8.000000)
    AttachmentArchetype=KFWeaponAttachment'WEP_Healer_ARCH.Wep_Healer_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_HealerBase:MeleeHelper_0'
@@ -37,9 +37,9 @@ defaultproperties
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_HealerBase:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_Healer_Syringe:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Healer_Syringe:MeleeHelper_0'
    InstantHitDamageTypes(2)=None
-   InstantHitDamageTypes(3)=Class'KFGameContent.KFDT_Bludgeon_Healer'
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_Healer'
    bCanThrow=False
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_HealerBase:FirstPersonMesh'
       SkeletalMesh=SkeletalMesh'WEP_1P_Healer_MESH.Wep_1stP_Healer_Rig'

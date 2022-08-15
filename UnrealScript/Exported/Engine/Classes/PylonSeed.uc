@@ -53,6 +53,7 @@ defaultproperties
       ObjectArchetype=SpriteComponent'Engine.Default__SpriteComponent'
    End Object
    Components(1)=Sprite
+   CollisionType=COLLIDE_CustomDefault
    CollisionComponent=CollisionCylinder
    Name="Default__PylonSeed"
    ObjectArchetype=Actor'Engine.Default__Actor'

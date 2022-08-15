@@ -48,65 +48,6 @@ class KFDT_Microwave_Beam extends KFDT_Microwave
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -144,7 +85,7 @@ static function bool CheckObliterate(Pawn P, int Damage)
 
 defaultproperties
 {
-   AARWeaponID=49
+   WeaponDef=Class'KFGame.KFWeapDef_MicrowaveGun'
    bCanObliterate=True
    MicrowavePower=0.250000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Firebug'
@@ -153,5 +94,5 @@ defaultproperties
    KDeathUpKick=750.000000
    RadialDamageImpulse=750.000000
    Name="Default__KFDT_Microwave_Beam"
-   ObjectArchetype=KFDT_Microwave'KFGameContent.Default__KFDT_Microwave'
+   ObjectArchetype=KFDT_Microwave'kfgamecontent.Default__KFDT_Microwave'
 }

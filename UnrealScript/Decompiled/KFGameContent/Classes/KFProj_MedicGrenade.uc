@@ -37,7 +37,6 @@ protected simulated function StopFlightEffects();
 defaultproperties
 {
     FuseTime=1
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicGrenade'
     bAllowTossDuringZedGrabRotation=true
     ExplosionActorClass=Class'KFExplosion_MedicGrenade'
     begin object name=ExploTemplate0 class=KFGameExplosion

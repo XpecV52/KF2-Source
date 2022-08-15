@@ -323,6 +323,7 @@ defaultproperties
    WeaponSelectBindList(3)="GBA_SwitchWeapon2"
    WeaponSelectBindList(4)="GBA_SwitchWeapon3"
    WeaponSelectBindList(5)="GBA_SwitchWeapon4"
+   WeaponSelectBindList(6)="GBA_LastWeapon"
    InteractionBindList(0)="GBA_Use"
    InteractionBindList(1)="GBA_Talk"
    InteractionBindList(2)="GBA_VoiceChat"

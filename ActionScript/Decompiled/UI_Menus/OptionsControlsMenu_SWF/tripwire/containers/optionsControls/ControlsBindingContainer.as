@@ -80,7 +80,7 @@ package tripwire.containers.optionsControls
             this._sectionList.push(_loc2_);
             var _loc3_:int = this.bindingSections.height;
             this._pageSize = this.bindingMask.height;
-            this._scrollDistance = _loc3_ - this._pageSize - 8;
+            this._scrollDistance = _loc3_ - this._pageSize - 4;
             this.updateScrollBar();
         }
         

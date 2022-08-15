@@ -10,9 +10,21 @@ class KFWeap_RifleBase extends KFWeapon
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
+static simulated event KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
+{
+    if((default.FiringStatesArray[0] == 'WeaponFiring') || default.FiringStatesArray[0] == 'WeaponBurstFiring')
+    {
+        return 7;        
+    }
+    else
+    {
+        return 2;
+    }
+}
+
 defaultproperties
 {
-    EffectiveRange=70
+    AimCorrectionSize=40
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_RifleBase.MeleeHelper'
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
         ReplacementPrimitive=none

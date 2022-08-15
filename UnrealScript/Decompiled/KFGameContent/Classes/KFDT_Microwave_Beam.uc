@@ -25,7 +25,7 @@ static function bool CheckObliterate(Pawn P, int Damage)
 
 defaultproperties
 {
-    AARWeaponID=49
+    WeaponDef=Class'KFGame.KFWeapDef_MicrowaveGun'
     bCanObliterate=true
     MicrowavePower=0.25
     ModifierPerkList=/* Array type was not detected. */

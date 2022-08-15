@@ -25,6 +25,7 @@ var KFGFxWidget_VoiceComms VoiceCommsWidget;
 var KFGFxWidget_MusicNotification MusicNotification;
 var KFGFxWidget_KickVote KickVoteWidget;
 var KFGFxWidget_NonCriticalGameMessage NonCriticalGameMessageWidget;
+var KFGFxWidget_RhythmCounter RhythmCounterWidget;
 var KFPlayerController KFPC;
 var config float HUDScale;
 var GFxObject KFGXHUDManager;
@@ -176,6 +177,13 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             {
                 NonCriticalGameMessageWidget = KFGFxWidget_NonCriticalGameMessage(Widget);
             }
+            break;
+        case 'RhythmCounter':
+            if(RhythmCounterWidget == none)
+            {
+                RhythmCounterWidget = KFGFxWidget_RhythmCounter(Widget);
+            }
+            break;
         default:
             break;
     }
@@ -230,6 +238,18 @@ function TickHud(float DeltaTime)
     if((ScoreboardWidget != none) && ScoreboardWidget.bUpdateScoreboard)
     {
         ScoreboardWidget.TickHud(DeltaTime);
+    }
+}
+
+function UpdateWaveCount()
+{
+    if((ScoreboardWidget != none) && ScoreboardWidget.MatchInfoContainer != none)
+    {
+        ScoreboardWidget.MatchInfoContainer.UpdateWaveCount();
+    }
+    if(WaveInfoWidget != none)
+    {
+        WaveInfoWidget.UpdateWaveCount();
     }
 }
 
@@ -352,12 +372,12 @@ function DisplayPriorityMessage(string InPrimaryMessageString, string InSecondar
     }
 }
 
-function DisplayInteractionMessage(string MessageString, int MessageIndex, optional string ButtonName)
+function DisplayInteractionMessage(string MessageString, int MessageIndex, optional string ButtonName, optional float Duration)
 {
-    ButtonName = "";
+    ButtonName = "";    
     if(InteractionMessageContainer != none)
     {
-        if(MessageIndex != CurrentInteractionIndex)
+        if((MessageIndex > CurrentInteractionIndex) || MessageIndex == 0)
         {
             if(MessageIndex == 0)
             {
@@ -365,11 +385,20 @@ function DisplayInteractionMessage(string MessageString, int MessageIndex, optio
             }
             else
             {
+                MessageString = Caps(MessageString);
+                if(KFPC != none)
+                {
+                    KFPC.ClearTimer('HideInteractionMessage', self);
+                    if(Duration > 0)
+                    {
+                        KFPC.SetTimer(Duration, false, 'HideInteractionMessage', self);
+                    }
+                }
                 if((Class'Actor'.static.Len(ButtonName) - Class'Actor'.static.Len(ControllerStringPrefix)) > 1)
                 {
                     Class'Actor'.static.ReplaceText(ButtonName, ControllerStringPrefix, "");
                 }
-                Class'Actor'.static.ReplaceText(MessageString, "<%x%>", ButtonName);
+                Class'Actor'.static.ReplaceText(MessageString, "<%X%>", ButtonName);
                 SendInteractionMessageToGFX(MessageString);
             }
             CurrentInteractionIndex = MessageIndex;
@@ -392,6 +421,14 @@ function ShowNonCriticalMessage(string LocalizedMessage)
     if(NonCriticalGameMessageWidget != none)
     {
         NonCriticalGameMessageWidget.ShowMessage(LocalizedMessage);
+    }
+}
+
+function UpdateRhythmCounterWidget(int Value)
+{
+    if(RhythmCounterWidget != none)
+    {
+        RhythmCounterWidget.SetCount(Value);
     }
 }
 

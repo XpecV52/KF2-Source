@@ -10,5 +10,5 @@ class KFDT_Bludgeon_AR15 extends KFDT_Bludgeon_RifleButt
 
 defaultproperties
 {
-    AARWeaponID=10
+    WeaponDef=Class'KFGame.KFWeapDef_AR15'
 }

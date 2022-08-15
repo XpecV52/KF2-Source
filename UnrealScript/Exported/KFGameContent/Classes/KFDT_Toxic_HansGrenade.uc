@@ -475,6 +475,29 @@ class KFDT_Toxic_HansGrenade extends KFDT_Toxic
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 15
 
 static function int GetKillerDialogID()
@@ -484,8 +507,8 @@ static function int GetKillerDialogID()
 
 defaultproperties
 {
-   DoT_Type=DOT_None
    bNoInstigatorDamage=True
+   DoT_Type=DOT_None
    Name="Default__KFDT_Toxic_HansGrenade"
    ObjectArchetype=KFDT_Toxic'KFGame.Default__KFDT_Toxic'
 }

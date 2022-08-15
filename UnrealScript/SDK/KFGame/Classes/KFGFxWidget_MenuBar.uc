@@ -72,7 +72,10 @@ function HandleButtonSpecialCase(byte ButtonIndex, out GFxObject GfxButton)
 		case UI_Start:
 			GfxButton.SetString( "label",  GetHomeButtonName());
 			GfxButton.SetBool( "bPulsing", ShouldStartMenuPulse() );
-			break;			
+			break;
+		case UI_Inventory:
+			GfxButton.SetBool( "enabled", CanUseGearButton() );
+			break;		
 	}
 }
 

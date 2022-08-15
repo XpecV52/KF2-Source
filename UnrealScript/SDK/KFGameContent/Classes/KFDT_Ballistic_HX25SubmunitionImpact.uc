@@ -49,7 +49,7 @@ defaultproperties
 	LegStumblePower=36
 	GunHitPower=30
 
-	AARWeaponID=`AAR_HX25
+	WeaponDef=class'KFWeapDef_HX25'
 
 	//Perk
 	ModifierPerkList(0)=class'KFPerk_Demolitionist'

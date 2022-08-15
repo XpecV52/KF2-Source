@@ -461,3 +461,27 @@
 `define HANS_NextBattlePhase1			34
 `define HANS_NextBattlePhase2			35
 `define HANS_NextBattlePhase3			36
+
+// extended Patriarch Boss dialog IDs
+`define PATTY_MinigunWarn 				37
+`define PATTY_MinigunAttack 			38
+`define PATTY_MinigunKill 				39
+`define PATTY_MissileKill				40
+`define PATTY_MortarKill				41
+`define PATTY_TentaclePull 				42
+`define PATTY_TentacleKill 				43
+`define PATTY_RavageAttack 				44
+`define PATTY_RavageKill				45
+`define PATTY_ChildKilled				46
+`define PATTY_NextBattlePhase1			47
+`define PATTY_NextBattlePhase2			48
+`define PATTY_NextBattlePhase3			49
+`define PATTY_MissileWarn 				50
+`define PATTY_MortarWarn 				51
+`define PATTY_Heal1 					52
+`define PATTY_Heal2 					53
+`define PATTY_Heal3 					54
+`define PATTY_LegKick					55
+`define PATTY_ChargeAttack				56
+`define PATTY_WhirlWindAttack			57
+`define PATTY_OnFire					58

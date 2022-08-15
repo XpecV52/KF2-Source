@@ -11,6 +11,17 @@ class KFPlayerController extends GamePlayerController
     config(Game)
     hidecategories(Navigation);
 
+const MAX_AIM_CORRECTION_SIZE = 40.f;
+
+enum EAnalogMovementSpeed
+{
+    AMOVESPEED,
+    AMOVESPEED_1,
+    AMOVESPEED_2,
+    AMOVESPEED_3,
+    AMOVESPEED_MAX
+};
+
 enum KFSpectateModes
 {
     SMODE_PawnFreeCam,
@@ -147,12 +158,8 @@ var bool bGamePlayDOFActive;
 var bool bIronSightsDOFActive;
 var bool bReflectionsEnabled;
 var bool bBlurEnabled;
-/** Whether TargetAdhesion is enabled or not */
-var() config bool bTargetAdhesionEnabled;
 var protected config bool bDebugTargetAdhesion;
-var protected config bool bDebugAutoTarget;
-/** Whether TargetAdhesion is enabled or not */
-var() config bool bAutoTargetEnabled;
+var(AimAssist) protected bool bDebugAutoTarget;
 /** Don't use the countdown time, just keep looking at the ForceLookAtPawn */
 var() bool bLockToForceLookAtPawn;
 var bool bDebugPartialZedTime;
@@ -285,8 +292,10 @@ var EphemeralMatchStats MatchStats;
 var class<EphemeralMatchStats> MatchStatsClass;
 var transient float LastUpdateSpectatorActiveTime;
 var transient float UpdateSpectatorActiveInterval;
-/** How long to auto target for when going to iron sights */
-var() float AutoTargetTime;
+/** Interp curve to scale autotarget scoring for different ranges */
+var(AimAssist) InterpCurveFloat ScoreTargetDistanceCurve;
+/** Aim correction */
+var(AimAssist) float MaxAimCorrectionDistance;
 /** How long to force us to look at a pawn */
 var() float ForceLookAtPawnTime;
 /** Pawn we're being forced to look at */
@@ -405,6 +414,7 @@ reliable client simulated function ClientRestart(Pawn NewPawn)
     }
     EnableDepthOfField(false);
     bIsAchievementPlayer = true;
+    NewPawn.MovementSpeedModifier = 1;
 }
 
 reliable client simulated function ClientReset()
@@ -567,6 +577,14 @@ reliable client simulated function ClientSetIgnoreButtons(bool bAffectsButtons)
     }
 }
 
+simulated function bool IsForceFeedbackAllowed()
+{
+    local KFPlayerInput KFInput;
+
+    KFInput = KFPlayerInput(PlayerInput);
+    return ((KFInput != none) && KFInput.bForceFeedbackEnabled) && super(PlayerController).IsForceFeedbackAllowed();
+}
+
 // Export UKFPlayerController::execClientInitializePerks(FFrame&, void* const)
 native final function ClientInitializePerks();
 
@@ -615,17 +633,20 @@ unreliable server function ServerCallOutPawnCloaking(KFPawn_Monster CloakedPawn)
 {
     if(CloakedPawn != none)
     {
-        CloakedPawn.CallOutCloaking();
+        CloakedPawn.CallOutCloaking(self);
     }
 }
 
 simulated event UpdatePerkLevelMenu(class<KFPerk> PerkClass)
 {
+    local KFGFxMenu_Perks PerkMenu;
+
     if(MyGFxManager != none)
     {
-        if(KFGFxMenu_Perks(MyGFxManager.CurrentMenu) != none)
+        PerkMenu = KFGFxMenu_Perks(MyGFxManager.CurrentMenu);
+        if(PerkMenu != none)
         {
-            KFGFxMenu_Perks(MyGFxManager.CurrentMenu).UpdateContainers(PerkClass);
+            PerkMenu.UpdateContainers(PerkClass);
         }
     }
 }
@@ -715,6 +736,12 @@ event int GetPerkIndexFromClass(class<KFPerk> InPerkClass)
     return PerkList.Find('PerkClass', InPerkClass;
 }
 
+function PlayRMEffect(AkEvent RhythmMethodSound, name RhytmMethodRTPCName, int Level)
+{
+    SetRTPCValue(RhytmMethodRTPCName, float(Level), true);
+    PlayAkEvent(RhythmMethodSound);
+}
+
 // Export UKFPlayerController::execSetViewTarget(FFrame&, void* const)
 native function SetViewTarget(Actor NewViewTarget, optional ViewTargetTransitionParams TransitionParams);
 
@@ -741,6 +768,14 @@ native final function UpdateDOFIronSightsLerpControl(float DeltaTime);
 
 // Export UKFPlayerController::execUpdateFullscreenBlur(FFrame&, void* const)
 native final function UpdateFullscreenBlur(float DeltaTime);
+
+exec function ShowTestDownloadNotification(string ItemName, float PercentComplete, int ItemsRemaining)
+{
+    if((MyGFxManager != none) && MyGFxManager.PartyWidget != none)
+    {
+        MyGFxManager.PartyWidget.ShowDownLoadNotification(ItemName, PercentComplete, ItemsRemaining);
+    }
+}
 
 exec function ToggleScreenShotMode()
 {
@@ -917,10 +952,6 @@ reliable client simulated function ClientSetCameraMode(name NewCamMode)
     if(NewCamMode == 'Boss')
     {
         KFBoss = GetBoss();
-        if(!ViewTarget.IsA('KFPawn_MonsterBoss'))
-        {
-            SetViewTarget(KFBoss);
-        }
         SetNightVision(false);
         if(((KFBoss != none) && KFBoss.Health > 0) && !PlayerReplicationInfo.bIsSpectator)
         {
@@ -928,16 +959,20 @@ reliable client simulated function ClientSetCameraMode(name NewCamMode)
             {
                 ShowBossNameplate(KFBoss);
             }
+        }
+        if(!ViewTarget.IsA('KFPawn_MonsterBoss'))
+        {
+            SetViewTarget(KFBoss);
         }        
     }
     else
     {
+        HideBossNamePlate();
         if((NewCamMode == 'FirstPerson') && !PlayerReplicationInfo.bIsSpectator)
         {
             if((Pawn != none) && ViewTarget != Pawn)
             {
                 SetViewTarget(Pawn);
-                HideBossNamePlate();
             }
         }
     }
@@ -1114,6 +1149,12 @@ reliable client simulated event ClientWasKicked()
     }
 }
 
+// Export UKFPlayerController::execPickAimAtTarget(FFrame&, void* const)
+private native final function Pawn PickAimAtTarget(out float bestAim, out float bestDist, Vector FireDir, Vector projStart, float MaxRange, optional bool bTargetTeammates)
+{
+    bTargetTeammates = false;                                
+}
+
 exec function SwitchToBestWeapon(optional bool bForceNewWeapon)
 {
     if(((Pawn != none) && Pawn.Weapon != none) && KFWeapon(Pawn.Weapon) != none)
@@ -1128,12 +1169,11 @@ exec function SwitchToBestWeapon(optional bool bForceNewWeapon)
 
 function Rotator GetAdjustedAimFor(Weapon W, Vector StartFireLoc)
 {
-    local Vector FireDir, AimSpot, HitLocation, HitNormal, OldAim, AimOffset;
-
+    local Vector FireDir, HitLocation, HitNormal;
     local Actor BestTarget, HitActor;
     local float bestAim, bestDist;
-    local bool bNoZAdjust, bInstantHit;
-    local Rotator BaseAimRot, AimRot;
+    local bool bNoAimCorrection, bInstantHit;
+    local Rotator BaseAimRot;
 
     bInstantHit = (W == none) || W.bInstantHit;
     BaseAimRot = ((Pawn != none) ? Pawn.GetBaseAimRotation() : Rotation);
@@ -1141,7 +1181,7 @@ function Rotator GetAdjustedAimFor(Weapon W, Vector StartFireLoc)
     {
         BaseAimRot += WeaponBufferRotation;
     }
-    if(Role < ROLE_Authority)
+    if((Role < ROLE_Authority) && !AimingHelp(bInstantHit))
     {
         return BaseAimRot;
     }
@@ -1150,8 +1190,7 @@ function Rotator GetAdjustedAimFor(Weapon W, Vector StartFireLoc)
     if((HitActor != none) && HitActor.bProjTarget)
     {
         BestTarget = HitActor;
-        bNoZAdjust = true;
-        OldAim = HitLocation;
+        bNoAimCorrection = true;
         bestDist = VSize(BestTarget.Location - Pawn.Location);        
     }
     else
@@ -1168,61 +1207,77 @@ function Rotator GetAdjustedAimFor(Weapon W, Vector StartFireLoc)
                 bestAim = 1;
             }
         }
-        BestTarget = PickTarget(Class'Pawn', bestAim, bestDist, FireDir, StartFireLoc, W.WeaponRange);
+        BestTarget = PickAimAtTarget(bestAim, bestDist, FireDir, StartFireLoc, W.WeaponRange);
         if(BestTarget == none)
         {
             return BaseAimRot;
         }
-        OldAim = StartFireLoc + (FireDir * bestDist);
     }
     ShotTarget = Pawn(BestTarget);
     if(!AimingHelp(bInstantHit))
     {
         return BaseAimRot;
     }
-    FireDir = BestTarget.Location - StartFireLoc;
-    AimSpot = StartFireLoc + (bestDist * Normal(FireDir));
-    AimOffset = AimSpot - OldAim;
-    if(ShotTarget != none)
+    if(!bNoAimCorrection && W != none)
     {
-        if(bNoZAdjust)
-        {
-            AimSpot.Z = OldAim.Z;            
-        }
-        else
-        {
-            if(AimOffset.Z < float(0))
-            {
-                AimSpot.Z = ShotTarget.Location.Z + (0.4 * ShotTarget.CylinderComponent.CollisionHeight);                
-            }
-            else
-            {
-                AimSpot.Z = ShotTarget.Location.Z - (0.7 * ShotTarget.CylinderComponent.CollisionHeight);
-            }
-        }        
+        ProcessAimCorrection(ShotTarget, KFWeapon(W), StartFireLoc, BaseAimRot);
     }
-    else
+    return BaseAimRot;
+}
+
+function ProcessAimCorrection(Pawn Target, KFWeapon W, Vector StartLoc, out Rotator AimRot)
+{
+    local Vector AimLoc, TargetLoc, HeadLoc;
+    local Vector2D Offset;
+    local float Distance, AimCorrection;
+    local KFPawn KFP;
+
+    if((W == none) || W.AimCorrectionSize <= float(0))
     {
-        AimSpot.Z = OldAim.Z;
+        return;
     }
-    if(!bNoZAdjust)
+    HeadLoc = Target.Mesh.GetBoneLocation('head');
+    Distance = VSize(HeadLoc - StartLoc);
+    if(IsZero(HeadLoc) || Distance > MaxAimCorrectionDistance)
     {
-        AimRot = rotator(AimSpot - StartFireLoc);
-        if(FOVAngle < (DefaultFOV - float(8)))
-        {
-            AimRot.Yaw = (AimRot.Yaw + 200) - Rand(400);            
-        }
-        else
-        {
-            AimRot.Yaw = (AimRot.Yaw + 375) - Rand(750);
-        }
-        return AimRot;
+        return;
     }
-    return rotator(AimSpot - StartFireLoc);
+    AimLoc = StartLoc + (vector(AimRot) * Distance);
+    TargetLoc = HeadLoc;
+    TargetLoc.Z = AimLoc.Z;
+    Offset.X = PointDistToLine(AimLoc, TargetLoc - StartLoc, StartLoc);
+    TargetLoc = HeadLoc;
+    TargetLoc.X = AimLoc.X;
+    TargetLoc.Y = AimLoc.Y;
+    Offset.Y = PointDistToLine(AimLoc, TargetLoc - StartLoc, StartLoc);
+    AimCorrection = FMin(W.AimCorrectionSize, 40);
+    if(self.WorldInfo.TimeDilation < 1)
+    {
+        AimCorrection *= 0.5;
+    }
+    if((Offset.X <= AimCorrection) && Offset.Y <= AimCorrection)
+    {
+        KFP = KFPawn(Target);
+        if((KFP != none) && KFP.IsHeadless())
+        {
+            return;
+        }
+        AimRot = rotator(HeadLoc - StartLoc);
+    }
+}
+
+reliable server function ServerThrowOtherWeapon(Weapon W)
+{
+    if(((W != none) && W.Instigator == Pawn) && W.CanThrow())
+    {
+        Pawn.TossInventory(W);
+    }
 }
 
 function HandleWalking()
 {
+    local bool bShouldSprint;
+
     if(Pawn != none)
     {
         if(Pawn.Weapon != none)
@@ -1233,7 +1288,12 @@ function HandleWalking()
         {
             Pawn.SetWalking(false);
         }
-        KFPawn(Pawn).SetSprinting((bRun != 0) && !IsZero(Pawn.Acceleration));
+        bShouldSprint = (bRun != 0) && !IsZero(Pawn.Acceleration);
+        if(bShouldSprint)
+        {
+            bDuck = 0;
+        }
+        KFPawn(Pawn).SetSprinting(bShouldSprint);
     }
 }
 
@@ -1355,18 +1415,13 @@ function ModifyUpdateRotation(float DeltaTime, out Rotator DeltaRot)
     }
     else
     {
-        if(((bAutoTargetEnabled && Pawn != none) && KFInput.CurrentAutoTarget != none) && AutoTargetTime >= float(0))
+        if(((Pawn != none) && KFInput.CurrentAutoTarget != none) && KFInput.AutoTargetTimeLeft >= float(0))
         {
-            AutoTargetTime -= DeltaTime;
-            KFInput.ApplyAutoTarget(DeltaTime, KFWeapon(Pawn.Weapon), DeltaRot.Yaw, DeltaRot.Pitch);
-            if(AutoTargetTime <= float(0))
-            {
-                KFInput.CurrentAutoTarget = none;
-            }            
+            KFInput.ApplyAutoTarget(DeltaTime, KFWeapon(Pawn.Weapon), DeltaRot.Yaw, DeltaRot.Pitch);            
         }
         else
         {
-            if((bTargetAdhesionEnabled && Pawn != none) && (PlayerInput.aForward != float(0)) || PlayerInput.aStrafe != float(0))
+            if((KFInput.IsAimAssistAdhesionEnabled() && Pawn != none) && (PlayerInput.aForward != float(0)) || PlayerInput.aStrafe != float(0))
             {
                 KFInput.ApplyTargetAdhesion(DeltaTime, KFWeapon(Pawn.Weapon), DeltaRot.Yaw, DeltaRot.Pitch);
             }
@@ -1374,19 +1429,10 @@ function ModifyUpdateRotation(float DeltaTime, out Rotator DeltaRot)
     }
 }
 
-function NewAutoTarget()
-{
-    if(Pawn != none)
-    {
-        if((KFWeapon(Pawn.Weapon) != none) && KFWeapon(Pawn.Weapon).bUsingSights)
-        {
-            StartAutoTargeting();
-        }
-    }
-}
-
 simulated function StartAutoTargeting()
 {
+    local KFPlayerInput KFInput;
+
     if(!IsLocalController())
     {
         return;
@@ -1395,24 +1441,17 @@ simulated function StartAutoTargeting()
     {
         return;
     }
-    KFPlayerInput(PlayerInput).InitAutoTarget();
-    if(KFWeapon(Pawn.Weapon) != none)
-    {
-        AutoTargetTime = KFWeapon(Pawn.Weapon).default.ZoomInTime * 0.85;        
-    }
-    else
-    {
-        AutoTargetTime = default.AutoTargetTime;
-    }
+    KFInput = KFPlayerInput(PlayerInput);
+    KFInput.InitAutoTarget();
 }
 
 function bool AimingHelp(bool bInstantHit)
 {
-    if((PlayerInput != none) && !PlayerInput.bUsingGamepad)
+    if((((PlayerInput != none) && PlayerInput.bUsingGamepad) && MaxAimCorrectionDistance > 0) && IsLocalController())
     {
-        return false;
+        return true;
     }
-    return super(PlayerController).AimingHelp(bInstantHit);
+    return false;
 }
 
 static simulated function KFInterface_Usable GetCurrentUsableActor(Pawn P, optional bool bUseOnFind)
@@ -1638,7 +1677,7 @@ function SetGrabEffect(bool bValue)
     bGrabEffectIsActive = bValue;
     if(bGrabEffectIsActive)
     {
-        ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 6);        
+        ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 8);        
     }
     else
     {
@@ -2301,7 +2340,7 @@ reliable client simulated event TeamMessage(PlayerReplicationInfo PRI, coerce st
         return;
     }
     ChatMessage = (PRI.PlayerName $ ": ") $ S;
-    if(MyGFxManager != none)
+    if((MyGFxManager != none) && Type != MusicMessageType)
     {
         if(Class'WorldInfo'.static.IsMenuLevel())
         {
@@ -2427,7 +2466,7 @@ reliable client simulated function ClientOpenTraderMenu()
 {
     if(MyGFxManager != none)
     {
-        MyGFxManager.OpenMenu(13, false);
+        MyGFxManager.OpenMenu(14, false);
         if(((WorldInfo.NetMode != NM_DedicatedServer) && KFGameReplicationInfo(WorldInfo.GRI) != none) && KFGameReplicationInfo(WorldInfo.GRI).TraderDialogManager != none)
         {
             KFGameReplicationInfo(WorldInfo.GRI).TraderDialogManager.PlayOpenTraderMenuDialog(self);
@@ -2479,7 +2518,7 @@ reliable client simulated function ClientOpenPostGameMenu()
     {
         MyGFxManager.bPostGameState = true;
         MyGFxManager.bCanCloseMenu = false;
-        MyGFxManager.OpenMenu(12, false);
+        MyGFxManager.OpenMenu(13, false);
         myHUD.bShowHUD = false;
     }
 }
@@ -2489,6 +2528,14 @@ function ClosePostGameMenu()
     if(MyGFxManager != none)
     {
         MyGFxManager.ClosePostGameMenu();
+    }
+}
+
+function UpdateRhythmCounterWidget(int Count)
+{
+    if(MyGFxHUD != none)
+    {
+        MyGFxHUD.UpdateRhythmCounterWidget(Count);
     }
 }
 
@@ -2839,7 +2886,7 @@ reliable client simulated function ClientWonGame(string MapName, byte Difficulty
 {
     if((WorldInfo.NetMode != NM_DedicatedServer) && IsLocalPlayerController())
     {
-        StatsWrite.OnGameWon(MapName, Difficulty, GameLength, bCoop);
+        StatsWrite.OnGameWon(MapName, Difficulty, GameLength, bCoop, GetPerk().Class);
     }
 }
 
@@ -2906,6 +2953,14 @@ function AddZedKill(class<KFPawn_Monster> MonsterClass, byte Difficulty, class<D
 
 // Export UKFPlayerController::execClientAddZedKill(FFrame&, void* const)
 private reliable client native final simulated function ClientAddZedKill(class<KFPawn_Monster> MonsterClass, byte Difficulty, class<DamageType> DT);
+
+function AddZedHeadshot(byte Difficulty, class<DamageType> DT)
+{
+    ClientAddZedHeadshot(Difficulty, DT);
+}
+
+// Export UKFPlayerController::execClientAddZedHeadshot(FFrame&, void* const)
+private reliable client native final simulated function ClientAddZedHeadshot(byte Difficulty, class<DamageType> DT);
 
 function AddPlayerXP(int XP, class<KFPerk> PerkClass)
 {
@@ -3046,20 +3101,15 @@ reliable client simulated event OnMapCollectibleFound(PlayerReplicationInfo Find
     local KFMapInfo KFMI;
 
     KFMI = KFMapInfo(WorldInfo.GetMapInfo());
-    CollectibleFoundMsg = Class'KFLocalMessage_Game'.default.FoundAMapCollectibleMessage;
+    CollectibleFoundMsg = Localize("KFMapInfo", "FoundCollectibleString", "KFGame");
     CollectibleFoundMsg = Repl(CollectibleFoundMsg, "%x%", FinderPRI.PlayerName);
-    CollectibleFoundMsg = Repl(CollectibleFoundMsg, "%y%", Class'KFLocalMessage_Game'.default.MapCollectibleName);
-    CollectibleFoundMsg = Repl(CollectibleFoundMsg, "%z%", string(KFMI.CollectiblesToFind - CollectibleID));
+    CollectibleFoundMsg = Repl(CollectibleFoundMsg, "%y%", string(KFMI.CollectiblesToFind - CollectibleID));
     MyGFxHUD.ShowNonCriticalMessage(CollectibleFoundMsg);
 }
 
 reliable client simulated event OnAllMapCollectiblesFound()
 {
-    local string CollectibleFoundMsg;
-
-    CollectibleFoundMsg = Class'KFLocalMessage_Game'.default.FoundAllMapCollectiblesMessage;
-    CollectibleFoundMsg = Repl(CollectibleFoundMsg, "%x%", Class'KFLocalMessage_Game'.default.MapCollectibleName);
-    MyGFxHUD.ShowNonCriticalMessage(CollectibleFoundMsg);
+    MyGFxHUD.ShowNonCriticalMessage(Localize("KFMapInfo", "FoundAllCollectiblesString", "KFGame"));
     PostAkEvent(AllMapCollectiblesFoundEvent);
 }
 
@@ -3528,6 +3578,10 @@ function NotifyKilled(Controller Killer, Controller Killed, Pawn KilledPawn, cla
         }
         ++ MatchStats.ZedsKilledLastWave;
     }
+    if(self == Killed)
+    {
+        SetLocation(KilledPawn.Location + (vect(0, 0, 1) * (KilledPawn.GetCollisionRadius() * 2)));
+    }
 }
 
 function PlayTraderDialog(int DialogEventID)
@@ -3564,10 +3618,16 @@ unreliable server function ServerPlayLevelUpDialog()
 
 unreliable server function ServerPlayVoiceCommsDialog(int CommsIndex)
 {
+    BroadcastLocalizedMessage(Class'KFLocalMessage_VoiceComms', CommsIndex, PlayerReplicationInfo);
     if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
     {
         KFGameInfo(WorldInfo.Game).DialogManager.PlayVoiceCommandDialog(KFPawn_Human(Pawn), CommsIndex);
     }
+}
+
+function CancelDownload()
+{
+    ConsoleCommand("DISCONNECT");
 }
 
 reliable client simulated event bool ShowConnectionProgressPopup(Engine.PlayerController.EProgressMessageType ProgressType, string ProgressTitle, string ProgressDescription, optional bool SuppressPasswordRetry)
@@ -3624,7 +3684,7 @@ reliable client simulated event bool ShowConnectionProgressPopup(Engine.PlayerCo
             break;
         case 2:
         case 3:
-            MyGFxManager.OpenPopup(2, CachedTitle, CachedMessage, Class'KFCommon_LocalizedStrings'.default.OKString);
+            MyGFxManager.OpenPopup(0, CachedTitle, CachedMessage, "", "", None, None, Class'KFCommon_LocalizedStrings'.default.CancelString, CancelDownload);
             return true;
             break;
         default:
@@ -3660,6 +3720,33 @@ function ClearOnlineDelegates()
 {
     OnlineSub.GameInterface.ClearOnlineDelegates();
     super(PlayerController).ClearOnlineDelegates();
+}
+
+state PlayerWalking
+{
+    ignores SeePlayer, HearNoise, Bump;
+
+    function ProcessMove(float DeltaTime, Vector newAccel, Engine.Actor.EDoubleClickDir DoubleClickMove, Rotator DeltaRot)
+    {
+        local float MinMoveScale, MaxMoveScale;
+        local InterpCurveFloat MoveSensitivityCurve;
+
+        super.ProcessMove(DeltaTime, newAccel, DoubleClickMove, DeltaRot);
+        MoveSensitivityCurve = Class'KFPlayerInput'.default.MoveSensitivityScaleCurve;
+        MinMoveScale = MoveSensitivityCurve.Points[0].OutVal;
+        MaxMoveScale = MoveSensitivityCurve.Points[MoveSensitivityCurve.Points.Length - 1].OutVal;
+        Pawn.MovementSpeedModifier = Lerp(MaxMoveScale, MinMoveScale, float(DoubleClickMove) / float(4));
+    }
+
+    function EndState(name NextStateName)
+    {
+        super.EndState(NextStateName);
+        if(Pawn != none)
+        {
+            Pawn.MovementSpeedModifier = 1;
+        }
+    }
+    stop;    
 }
 
 state Dead
@@ -3839,12 +3926,11 @@ defaultproperties
     PerkList(3)=(PerkClass=Class'KFPerk_FieldMedic',PerkLevel=0,PerkArchetype=none)
     PerkList(4)=(PerkClass=Class'KFPerk_Demolitionist',PerkLevel=0,PerkArchetype=none)
     PerkList(5)=(PerkClass=Class'KFPerk_Firebug',PerkLevel=0,PerkArchetype=none)
+    PerkList(6)=(PerkClass=Class'KFPerk_Gunslinger',PerkLevel=0,PerkArchetype=none)
     ServPendingPerkBuild=-1
     ServPendingPerkLevel=-1
     MusicMessageType=Music
     bReflectionsEnabled=true
-    bTargetAdhesionEnabled=true
-    bAutoTargetEnabled=true
     bTrackingMapTopView=true
     SavedPerkIndex=1
     ZedTimeEnterSound=AkEvent'WW_GLO_Runtime.Set_ZEDTime_On'
@@ -3921,7 +4007,7 @@ defaultproperties
     NVG_DOF_SharpRadius=1000
     NVG_DOF_FocalRadius=1200
     NVG_DOF_MaxNearBlurSize=4
-    NVG_DOF_MaxFarBlurSize=8
+    NVG_DOF_MaxFarBlurSize=3
     NVG_DOF_ExpFalloff=1
     DOF_Cinematic_BlendInSpeed=50
     DOF_Cinematic_BlendOutSpeed=10
@@ -3934,7 +4020,8 @@ defaultproperties
     BlurBlendOutSpeed=1
     MatchStatsClass=Class'EphemeralMatchStats'
     UpdateSpectatorActiveInterval=1
-    AutoTargetTime=0.1
+    ScoreTargetDistanceCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.3,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
+    MaxAimCorrectionDistance=10000
     TrackerXPosition=0.67
     TrackerYPosition=0.025
     TrackingMapScale=1
@@ -3952,6 +4039,8 @@ defaultproperties
     object end
     // Reference: CylinderComponent'Default__KFPlayerController.CollisionCylinder'
     CylinderComponent=CollisionCylinder
+    ForceFeedbackManagerClassName="WinDrv.XnaForceFeedbackManager"
+    bSkipExtraLOSChecks=true
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

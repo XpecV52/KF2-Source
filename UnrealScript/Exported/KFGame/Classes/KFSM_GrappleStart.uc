@@ -12,6 +12,9 @@ class KFSM_GrappleStart extends KFSM_PlaySingleAnim;
 /** Beyond this distance the grapple will fail */
 var float MaxGrabDistance;
 
+/** Make sure Z distance isn't too far */
+var float MaxVictimZOffset;
+
 /** If set, this ability can be blocked by a melee weapon */
 var bool bCanBeBlocked;
 
@@ -58,7 +61,7 @@ function PlayAnimation()
 function CheckGrapple()
 {
 	local vector ToEnemy;
-	local vector HitLocation, HitNormal;
+	local vector Extent, HitLocation, HitNormal;
 	local Actor HitActor;
 	local KFPawn Victim;
 	local byte SpecialMoveFlags;
@@ -74,10 +77,21 @@ function CheckGrapple()
 			return; // blocked by weapon or pawn can't be grabbed
 		}
 
+		// Check victim Z offset
+		if( Abs(PawnOwner.Location.Z - Victim.Location.Z) > MaxVictimZOffset )
+		{
+			return;
+		}
+
+		// Set our extent
+		Extent.X = PawnOwner.GetCollisionRadius() * 0.5f;
+		Extent.Y = Extent.X;
+		Extent.Z = PawnOwner.GetCollisionHeight() * 0.5f;
+
 		if( VSizeSq(ToEnemy) <= Square(MaxGrabDistance) )
 		{
 			// trace for obstructions
-			HitActor = PawnOwner.Trace(HitLocation, HitNormal, AIOwner.Enemy.Location, PawnOwner.Location, true);
+			HitActor = PawnOwner.Trace(HitLocation, HitNormal, AIOwner.Enemy.Location, PawnOwner.Location, true, Extent);
 			if ( HitActor == None || HitActor == AIOwner.Enemy )
 			{
 				SpecialMoveFlags = class'KFSM_GrappleAttack'.static.PackSMFlags();
@@ -112,6 +126,7 @@ function NotifyOwnerTakeHit(class<KFDamageType> DamageType, vector HitLoc, vecto
 defaultproperties
 {
    MaxGrabDistance=210.000000
+   MaxVictimZOffset=128.000000
    bCanBeBlocked=True
    AnimName="Grab"
    bCanBeInterrupted=True

@@ -32,10 +32,13 @@ var float KFFontScale;
 var const float DefaultGammaMult;
 var config float MusicVolumeMultiplier;
 var config float SFxVolumeMultiplier;
+var config float DialogVolumeMultiplier;
+var config float MasterVolumeMultiplier;
 var config float GammaMultiplier;
 var config bool bMusicVocalsEnabled;
 var config bool bMinimalChatter;
-var config bool bShowCrossHair;
+var private config bool bShowCrossHair;
+var private bool bShowCrossHairConsole;
 var config bool bMuteOnLossOfFocus;
 var config bool bEnableAdvDebugLines;
 var config float FOVOptionsPercentageValue;
@@ -116,13 +119,38 @@ static function float GetKFFontScale()
     return default.KFFontScale;
 }
 
+static function bool IsCrosshairEnabled()
+{
+    if(Class'WorldInfo'.static.IsConsoleBuild())
+    {
+        return default.bShowCrossHairConsole;        
+    }
+    else
+    {
+        return default.bShowCrossHair;
+    }
+}
+
+static function SetCrosshairEnabled(bool bEnable)
+{
+    if(Class'WorldInfo'.static.IsConsoleBuild())
+    {
+        default.bShowCrossHair = bEnable;        
+    }
+    else
+    {
+        default.bShowCrossHair = bEnable;
+        StaticSaveConfig();
+    }
+}
+
 static function KFGameEngine.EConnectionError GetConnectionErrorForMessage(out string Message, out string Title)
 {
-    if(Message == (Localize("AccessControl", "NeedPassword", "Engine")))
+    if(Message == "<Strings:Engine.AccessControl.NeedPassword>")
     {
         return 3;
     }
-    if(Message == (Localize("AccessControl", "WrongPassword", "Engine")))
+    if(Message == "<Strings:Engine.AccessControl.WrongPassword>")
     {
         return 2;
     }
@@ -193,9 +221,12 @@ defaultproperties
     KFCanvasFont=Font'UI_Canvas_Fonts.Font_General'
     KFFontScale=0.28
     DefaultGammaMult=0.68
-    MusicVolumeMultiplier=35
+    MusicVolumeMultiplier=50
     SFxVolumeMultiplier=100
+    DialogVolumeMultiplier=100
+    MasterVolumeMultiplier=100
     GammaMultiplier=0.68
+    bShowCrossHairConsole=true
     bMuteOnLossOfFocus=true
     FOVOptionsPercentageValue=1
 }

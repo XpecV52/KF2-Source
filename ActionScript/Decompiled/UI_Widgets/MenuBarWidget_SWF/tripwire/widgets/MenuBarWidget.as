@@ -29,11 +29,15 @@ package tripwire.widgets
         
         private const GEAR_INDEX = 2;
         
-        private const OPTIONS_INDEX = 3;
+        private const INVENTORY_INDEX = 3;
         
-        private const EXIT_INDEX = 4;
+        private const STORE_INDEX = 4;
         
-        private const MAX_INDEX = 5;
+        private const OPTIONS_INDEX = 5;
+        
+        private const EXIT_INDEX = 6;
+        
+        private const MAX_INDEX = 7;
         
         public function MenuBarWidget()
         {
@@ -86,22 +90,9 @@ package tripwire.widgets
         
         protected function handleButtonSelect(param1:ButtonBarEvent) : void
         {
-            switch(param1.index)
+            if(param1.index >= 0 && param1.index < this.MAX_INDEX)
             {
-                case this.START_INDEX:
-                    ExternalInterface.call("Callback_MenuBarTabChanged",this.START_INDEX);
-                    break;
-                case this.PERKS_INDEX:
-                    ExternalInterface.call("Callback_MenuBarTabChanged",this.PERKS_INDEX);
-                    break;
-                case this.GEAR_INDEX:
-                    ExternalInterface.call("Callback_MenuBarTabChanged",this.GEAR_INDEX);
-                    break;
-                case this.OPTIONS_INDEX:
-                    ExternalInterface.call("Callback_MenuBarTabChanged",this.OPTIONS_INDEX);
-                    break;
-                case this.EXIT_INDEX:
-                    ExternalInterface.call("Callback_MenuBarTabChanged",this.EXIT_INDEX);
+                ExternalInterface.call("Callback_MenuBarTabChanged",param1.index);
             }
             this._currentIndex = param1.index;
         }
@@ -109,7 +100,7 @@ package tripwire.widgets
         public function handleMenubarInput(param1:InputEvent) : void
         {
             var _loc2_:InputDetails = param1.details;
-            if(_loc2_.value == InputValue.KEY_DOWN && !MenuManager.manager.bPopUpOpen)
+            if(_loc2_.value == InputValue.KEY_DOWN)
             {
                 switch(param1.details.navEquivalent)
                 {

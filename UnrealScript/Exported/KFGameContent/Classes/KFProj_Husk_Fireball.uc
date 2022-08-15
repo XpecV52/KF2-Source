@@ -26,15 +26,15 @@ defaultproperties
       ExplosionEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Explosions.HuskProjectile_Explosion'
       Damage=25.000000
       DamageRadius=300.000000
-      MyDamageType=Class'KFGameContent.KFDT_Fire_HuskFireball'
+      MyDamageType=Class'kfgamecontent.KFDT_Fire_HuskFireball'
       ExplosionSound=AkEvent'WW_ZED_Husk.ZED_Husk_SFX_Ranged_Shot_Impact'
-      ExploLight=PointLightComponent'KFGameContent.Default__KFProj_Husk_Fireball:ExplosionPointLight'
+      ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_Husk_Fireball:ExplosionPointLight'
       ExploLightFadeOutTime=0.500000
       CamShake=KFCameraShake'FX_CameraShake_Arch.Misc_Explosions.HuskFireball'
       Name="ExploTemplate0"
       ObjectArchetype=KFGameExplosion'KFGame.Default__KFGameExplosion'
    End Object
-   ExplosionTemplate=KFGameExplosion'KFGameContent.Default__KFProj_Husk_Fireball:ExploTemplate0'
+   ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFProj_Husk_Fireball:ExploTemplate0'
    ProjFlightTemplate=ParticleSystem'ZED_Husk_EMIT.FX_Husk_projectile_01'
    AmbientSoundPlayEvent=AkEvent'WW_ZED_Husk.ZED_Husk_SFX_Ranged_Shot_LP'
    AmbientSoundStopEvent=AkEvent'WW_ZED_Husk.ZED_Husk_SFX_Ranged_Shot_LP_Stop'

@@ -463,12 +463,34 @@ class KFPawnVoiceGroup_Hans extends KFPawnVoiceGroup;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 3
 
 defaultproperties
 {
-   EventDataClass=Class'KFGameContent.KFPawnVoiceGroupEventData_Hans'
-   DialogEvents(0)=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Intro_Base')
+   EventDataClass=Class'kfgamecontent.KFPawnVoiceGroupEventData_Hans'
    DialogEvents(1)=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Taunt_Base')
    DialogEvents(2)=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Taunt50_Base')
    DialogEvents(3)=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Taunt25_Base')
@@ -481,7 +503,7 @@ defaultproperties
    DialogEvents(10)=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_HurtBad_Base')
    DialogEvents(11)=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Death_Base')
    DialogEvents(12)=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_KillPlayer_Base')
-   DialogEvents(13)=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_VictoryMono_Base')
+   DialogEvents(13)=()
    DialogEvents(14)=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Jump_Base')
    DialogEvents(15)=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Landing_Base')
    DialogEvents(16)=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_TauntG_Base')

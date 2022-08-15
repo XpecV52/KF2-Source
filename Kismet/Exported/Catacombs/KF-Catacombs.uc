@@ -1,15 +1,15 @@
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_0
-   InputLinks(0)=(DrawY=373,OverrideDelta=14)
-   InputLinks(1)=(DrawY=394,OverrideDelta=35)
-   InputLinks(2)=(DrawY=415,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=394,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_0'),DrawX=1139,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=1190,OverrideDelta=76)
-   EventLinks(0)=(DrawX=1239,OverrideDelta=119)
+   InputLinks(0)=(DrawY=333,OverrideDelta=14)
+   InputLinks(1)=(DrawY=354,OverrideDelta=35)
+   InputLinks(2)=(DrawY=375,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=354,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_0'),DrawX=1254,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=1305,OverrideDelta=76)
+   EventLinks(0)=(DrawX=1354,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=1101
-   ObjPosY=336
+   ObjPosX=1216
+   ObjPosY=296
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_0"
@@ -20,14 +20,14 @@ Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_0
    Originator=TriggerVolume'KF-Catacombs.TheWorld:PersistentLevel.TriggerVolume_15'
    MaxTriggerCount=0
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0')),DrawY=365,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=386,OverrideDelta=35)
-   OutputLinks(2)=(DrawY=407,OverrideDelta=56)
-   VariableLinks(0)=(DrawX=947,OverrideDelta=54)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0')),DrawY=325,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=346,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=367,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=1062,OverrideDelta=54)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=861
-   ObjPosY=296
+   ObjPosX=976
+   ObjPosY=256
    ObjName="TriggerVolume_15 Touch"
    DrawWidth=131
    DrawHeight=176
@@ -41,8 +41,8 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_0
    bDrawBox=True
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=829
-   ObjPosY=272
+   ObjPosX=944
+   ObjPosY=232
    ObjComment="Portal Spawns - Ritual Room"
    DrawWidth=632
    DrawHeight=395
@@ -54,8 +54,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
    ObjValue=KFSpawner'KF-Catacombs.TheWorld:PersistentLevel.KFSpawner_3'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=1069
-   ObjPosY=496
+   ObjPosX=1184
+   ObjPosY=456
    ObjComment="PARENT - Wall 1"
    DrawWidth=32
    DrawHeight=32
@@ -116,17 +116,17 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
 End Object
 
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_7
-   InputLinks(0)=(DrawY=1477,OverrideDelta=14)
-   InputLinks(1)=(DrawY=1498,OverrideDelta=35)
-   InputLinks(2)=(DrawY=1519,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=1498,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_18'),DrawX=1158,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=1209,OverrideDelta=76)
-   EventLinks(0)=(DrawX=1258,OverrideDelta=119)
+   InputLinks(0)=(DrawY=1485,OverrideDelta=14)
+   InputLinks(1)=(DrawY=1506,OverrideDelta=35)
+   InputLinks(2)=(DrawY=1527,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=1506,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_18'),DrawX=758,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=809,OverrideDelta=76)
+   EventLinks(0)=(DrawX=858,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=1120
-   ObjPosY=1440
+   ObjPosX=720
+   ObjPosY=1448
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_7"
@@ -137,14 +137,14 @@ Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_1
    Originator=TriggerVolume'KF-Catacombs.TheWorld:PersistentLevel.TriggerVolume_4'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_7')),DrawY=1469,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=1490,OverrideDelta=35)
-   OutputLinks(2)=(DrawY=1511,OverrideDelta=56)
-   VariableLinks(0)=(DrawX=962,OverrideDelta=50)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_7')),DrawY=1477,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=1498,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=1519,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=562,OverrideDelta=50)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=880
-   ObjPosY=1400
+   ObjPosX=480
+   ObjPosY=1408
    ObjName="TriggerVolume_4 Touch"
    DrawWidth=127
    DrawHeight=176
@@ -158,8 +158,8 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_7
    bDrawBox=True
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=848
-   ObjPosY=1376
+   ObjPosX=448
+   ObjPosY=1384
    ObjComment="Portal Spawns - Occult Room"
    DrawWidth=632
    DrawHeight=395
@@ -171,8 +171,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_18
    ObjValue=KFSpawner'KF-Catacombs.TheWorld:PersistentLevel.KFSpawner_6'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=1088
-   ObjPosY=1600
+   ObjPosX=688
+   ObjPosY=1608
    ObjComment="PARENT - Floor 1"
    DrawWidth=32
    DrawHeight=32
@@ -184,65 +184,13 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
    ObjValue=KFSpawner'KF-Catacombs.TheWorld:PersistentLevel.KFSpawner_40'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=1176
-   ObjPosY=1632
+   ObjPosX=776
+   ObjPosY=1640
    ObjComment="CHILD - Floor 2"
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_19"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SequenceFrame Name=SequenceFrame_3
-   SizeX=632
-   SizeY=395
-   bDrawBox=True
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=1680
-   ObjPosY=800
-   ObjComment="Portal Spawns - Crypt"
-   DrawWidth=632
-   DrawHeight=395
-   Name="SequenceFrame_3"
-   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
-End Object
-
-Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_2
-   Originator=TriggerVolume'KF-Catacombs.TheWorld:PersistentLevel.TriggerVolume_7'
-   MaxTriggerCount=0
-   MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_2')),DrawY=893,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=914,OverrideDelta=35)
-   OutputLinks(2)=(DrawY=935,OverrideDelta=56)
-   VariableLinks(0)=(DrawX=1794,OverrideDelta=50)
-   ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=1712
-   ObjPosY=824
-   ObjName="TriggerVolume_7 Touch"
-   DrawWidth=127
-   DrawHeight=176
-   Name="SeqEvent_Touch_2"
-   ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-End Object
-
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_2
-   InputLinks(0)=(DrawY=901,OverrideDelta=14)
-   InputLinks(1)=(DrawY=922,OverrideDelta=35)
-   InputLinks(2)=(DrawY=943,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=922,OverrideDelta=35)
-   VariableLinks(0)=(DrawX=1990,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=2041,OverrideDelta=76)
-   EventLinks(0)=(DrawX=2090,OverrideDelta=119)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=1952
-   ObjPosY=864
-   DrawWidth=173
-   DrawHeight=109
-   Name="SeqAct_Toggle_2"
-   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_4
@@ -483,8 +431,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_15
    ObjValue=KFSpawner'KF-Catacombs.TheWorld:PersistentLevel.KFSpawner_10'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=1184
-   ObjPosY=536
+   ObjPosX=1304
+   ObjPosY=496
    ObjComment="CHILD - Wall 2"
    DrawWidth=32
    DrawHeight=32
@@ -498,8 +446,8 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_14
    bDrawBox=True
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=2952
-   ObjPosY=1040
+   ObjPosX=4200
+   ObjPosY=1184
    ObjComment="Benchmark"
    DrawWidth=805
    DrawHeight=572
@@ -510,8 +458,8 @@ End Object
 Begin Object Class=SeqVar_Player Name=SeqVar_Player_0
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3360
-   ObjPosY=1520
+   ObjPosX=4608
+   ObjPosY=1664
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Player_0"
@@ -520,13 +468,13 @@ End Object
 
 Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_1
    Commands(0)="endbenchmark"
-   InputLinks(0)=(DrawY=1122,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=1122,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=3648,OverrideDelta=42)
+   InputLinks(0)=(DrawY=1266,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=1266,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=4896,OverrideDelta=42)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3584
-   ObjPosY=1088
+   ObjPosX=4832
+   ObjPosY=1232
    ObjComment="endbenchmark"
    DrawWidth=129
    DrawHeight=61
@@ -536,13 +484,13 @@ End Object
 
 Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_0
    Commands(0)="startbenchmark"
-   InputLinks(0)=(DrawY=1450,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=1450,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=3200,OverrideDelta=42)
+   InputLinks(0)=(DrawY=1594,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=1594,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=4448,OverrideDelta=42)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3136
-   ObjPosY=1416
+   ObjPosX=4384
+   ObjPosY=1560
    ObjComment="startbenchmark"
    DrawWidth=129
    DrawHeight=61
@@ -553,12 +501,12 @@ End Object
 Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_0
    ConsoleEventName="Benchmark"
    MaxWidth=190
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1'),(LinkedOp=SeqAct_ConsoleCommand'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_0')),DrawY=1194,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=3079,OverrideDelta=63)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1'),(LinkedOp=SeqAct_ConsoleCommand'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_0')),DrawY=1338,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=4327,OverrideDelta=63)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=2984
-   ObjPosY=1128
+   ObjPosX=4232
+   ObjPosY=1272
    DrawWidth=115
    DrawHeight=128
    Name="SeqEvent_Console_0"
@@ -569,8 +517,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_16
    ObjValue=CameraActor'KF-Catacombs.TheWorld:PersistentLevel.CameraActor_1'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3416
-   ObjPosY=1272
+   ObjPosX=4664
+   ObjPosY=1416
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_16"
@@ -619,8 +567,8 @@ Begin Object Class=InterpData Name=InterpData_1
    EdSectionEnd=266.542908
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3304
-   ObjPosY=1272
+   ObjPosX=4552
+   ObjPosY=1416
    DrawWidth=32
    DrawHeight=32
    Name="InterpData_1"
@@ -629,19 +577,19 @@ End Object
 
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_1
    PlayRate=0.650000
-   InputLinks(0)=(DrawY=1110,OverrideDelta=15)
-   InputLinks(1)=(DrawY=1132,OverrideDelta=37)
-   InputLinks(2)=(DrawY=1154,OverrideDelta=59)
-   InputLinks(3)=(DrawY=1176,OverrideDelta=81)
-   InputLinks(4)=(DrawY=1198,OverrideDelta=103)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_1')),DrawY=1126,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=1182,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence.InterpData_1'),DrawX=3337,OverrideDelta=18)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_16'),LinkDesc="FlythroughCamera",MinVars=0,DrawX=3404,OverrideDelta=65)
+   InputLinks(0)=(DrawY=1254,OverrideDelta=15)
+   InputLinks(1)=(DrawY=1276,OverrideDelta=37)
+   InputLinks(2)=(DrawY=1298,OverrideDelta=59)
+   InputLinks(3)=(DrawY=1320,OverrideDelta=81)
+   InputLinks(4)=(DrawY=1342,OverrideDelta=103)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_1')),DrawY=1270,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=1326,OverrideDelta=87)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence.InterpData_1'),DrawX=4585,OverrideDelta=18)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_16'),LinkDesc="FlythroughCamera",MinVars=0,DrawX=4652,OverrideDelta=65)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-Catacombs.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=3304
-   ObjPosY=1072
+   ObjPosX=4552
+   ObjPosY=1216
    DrawWidth=154
    DrawHeight=173
    Name="SeqAct_Interp_1"

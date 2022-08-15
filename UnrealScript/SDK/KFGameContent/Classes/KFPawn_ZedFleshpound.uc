@@ -9,13 +9,12 @@
 
 class KFPawn_ZedFleshpound extends KFPawn_Monster;
 
+/** Sounds */
+var AkEvent RageStartSound;
+var AkEvent RageStopSound;
+
 /** Enraged mode status */
 var repnotify bool bIsEnraged;
-
-/** Footstep shakes activated in footstep sound animnotify (move up to KFPawn/KFPawn_Monster if deciding to use for others) */
-var protected const float FootstepCameraShakeInnerRadius;
-var protected const float FootstepCameraShakeOuterRadius;
-var CameraShake	 FootstepCameraShake;
 
 /** Material parameters for rage light glow */
 var LinearColor DefaultGlowColor;
@@ -48,7 +47,7 @@ simulated event PreBeginPlay()
 
 	if( WorldInfo.NetMode != NM_DedicatedServer && Mesh != None )
 	{
-		SetEnraged( false );
+		SetGameplayMICParams();
 	}
 }
 
@@ -99,19 +98,6 @@ function OnStackingAfflictionChanged(byte Id)
 
 /** No FP steering initially */
 simulated function StartSteering() {}
-
-/** Overridden to cause slight camera shakes when walking. */
-simulated event PlayFootStepSound(int FootDown)
-{
-	Super.PlayFootStepSound(FootDown);
-
-	/** The FP has footstep notifies in one or more of his Idle anim sequences, where he kind of shuffles his foot as he shifts his weight.
-		The IsDoingLatentMove() check below makes the only happening while the FP is actively moving (latent) to avoid the shake while idle for now. */
-	if( MyKFAIC != none && MyKFAIC.IsDoingLatentMove() )
-	{
-		class'Camera'.static.PlayWorldCameraShake(FootstepCameraShake, self, Location, FootstepCameraShakeInnerRadius, FootstepCameraShakeOuterRadius, 1.3f, true);
-	}
-}
 
 /** Don't start sprinting if not enraged */
 function SetSprinting( bool bNewSprintStatus )
@@ -187,6 +173,11 @@ simulated event bool IsEnraged()
 /** Enrage this FleshPound! */
 simulated function SetEnraged( bool bNewEnraged )
 {
+	if( Role == ROLE_Authority && bNewEnraged == bIsEnraged )
+	{
+		return;
+	}
+
 	if ( Role == ROLE_Authority )
 	{
 		bIsEnraged = bNewEnraged;
@@ -196,6 +187,15 @@ simulated function SetEnraged( bool bNewEnraged )
 
 	if ( WorldInfo.NetMode != NM_DedicatedServer )
 	{
+		if( bNewEnraged )
+		{
+			PostAkEvent( RageStartSound, true, true );
+		}
+		else
+		{
+			PostAkEvent( RageStopSound, true, true );
+		}
+
 		/** Set the proper glow material */
 		SetGameplayMICParams();
 	}
@@ -243,7 +243,6 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 	if ( WorldInfo.NetMode != NM_DedicatedServer )
 	{
 		SetEnraged( false );
-        UpdateBattlePhaseLights();
 	}
 }
 
@@ -339,6 +338,8 @@ DefaultProperties
 	// Content
 	CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Fleshpound_ARCH.ZED_Fleshpound_Archetype'
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Fleshpound_ANIM.Fleshpound_AnimGroup'
+	//RageStartSound=AkEvent'ww_zed_fleshpound.Play_Fleshpound_Drill_Sprint'
+	//RageStopSound=AkEvent'ww_zed_fleshpound.Stop_Fleshpound_Drill_Sprint'
 
 	EnragedGlowColor=(R=1,G=0)
 	//DebugRange_Melee_Material=Material'ENG_EditorResources_MAT.Debug_Radius_M'
@@ -355,7 +356,7 @@ DefaultProperties
 		BaseDamage=55.f
 		MaxHitRange=250.f
 		MomentumTransfer=100000.f // for kick
-		MyDamageType=class'KFGame.KFDT_Bludgeon'
+		MyDamageType=class'KFDT_Bludgeon_Fleshpound'
 	End Object
 
 	Health=1500
@@ -397,7 +398,7 @@ DefaultProperties
 	ControllerClass=class'KFAIController_ZedFleshpound'
 	BumpDamageType=class'KFDT_NPCBump_Large'
 	BumpFrequency=0.1
-	DamageRecoveryTimeHeavy=0.35f
+	DamageRecoveryTimeHeavy=0.25f
 	DamageRecoveryTimeMedium=0.09f
 
 	// ---------------------------------------------
@@ -414,7 +415,7 @@ DefaultProperties
 		InstantAffl(IAF_Stumble)=(Head=60,Torso=65,Arm=65,Special=53,LowHealthBonus=10,Cooldown=10.0)
 		InstantAffl(IAF_LegStumble)=(Leg=60,LowHealthBonus=10,Cooldown=9.0)
 		InstantAffl(IAF_GunHit)=(Head=150,Torso=150,Leg=150,Arm=150,LowHealthBonus=10,Cooldown=20)
-		InstantAffl(IAF_MeleeHit)=(Head=25,Torso=50,Leg=50,Arm=50,LowHealthBonus=10,Cooldown=0.7)
+		InstantAffl(IAF_MeleeHit)=(Head=25,Torso=50,Leg=50,Arm=50,LowHealthBonus=10,Cooldown=1.2)
 		StackingAffl(SAF_Poison)=(Threshhold=5.0,Duration=1.5,Cooldown=20.0,DissipationRate=1.00)
 		StackingAffl(SAF_Microwave)=(Threshhold=10.0,Duration=1.5,Cooldown=20.0,DissipationRate=1.00)
 		StackingAffl(SAF_FirePanic)=(Threshhold=13.0,Duration=1.5,Cooldown=8.0,DissipationRate=1.0)

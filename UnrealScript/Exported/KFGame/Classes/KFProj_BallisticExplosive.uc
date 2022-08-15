@@ -152,7 +152,6 @@ simulated function Explode(vector HitLocation, vector HitNormal)
 		if( Instigator.Role < ROLE_Authority && Instigator.IsLocallyControlled() )
 		{
             KFWeapon(Owner).HandleClientProjectileExplosion(HitLocation, self);
-            Super.Explode(HitLocation, HitNormal);
             return;
         }
 	}

@@ -30,6 +30,8 @@ package tripwire.containers
         
         public var overviewHeader:SectionHeaderContainer;
         
+        public var serverWelcomeScreen:ServerWelcomeContainer;
+        
         public var sharedContentButton:TripButton;
         
         public var sharedContentListContainer:SharedContentListContainer;
@@ -95,16 +97,27 @@ package tripwire.containers
             this.initPermissionsItems();
             defaultFirstElement = this.sharedContentButton;
             currentElement = this.sharedContentButton;
+            this.serverWelcomeScreen.visible = false;
         }
         
         private function initPermissionsItems() : void
         {
             this.sharedContentButton.addEventListener(ButtonEvent.PRESS,this.onSharedContentPress,false,0,true);
             this.sharedContentListContainer.sharedContentConfirmButton.addEventListener(ButtonEvent.PRESS,this.hideSharedContentList,false,0,true);
+            this.serverWelcomeScreen.confirmButton.addEventListener(ButtonEvent.PRESS,this.hideWelcomeScreen,false,0,true);
             this.permissionsButton.visible = false;
             this.permissionsList.visible = false;
             this.permissionsList.associatedButton = this.permissionsButton;
             this.hideSharedContentList();
+        }
+        
+        public function hideWelcomeScreen(param1:ButtonEvent = null) : void
+        {
+            this.serverWelcomeScreen.closeContainer();
+            if(bManagerUsingGamepad)
+            {
+                this.sharedContentButton.focused = 1;
+            }
         }
         
         public function hideSharedContentList(param1:ButtonEvent = null) : void
@@ -119,6 +132,7 @@ package tripwire.containers
         
         public function showSharedContentList() : void
         {
+            this.hideWelcomeScreen();
             this.sharedContentListContainer.alpha = 0;
             this.sharedContentListContainer.visible = true;
             this.sharedContentListContainer.openAnimation();

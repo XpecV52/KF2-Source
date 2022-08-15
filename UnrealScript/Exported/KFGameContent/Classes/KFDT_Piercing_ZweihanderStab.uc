@@ -46,65 +46,6 @@ class KFDT_Piercing_ZweihanderStab extends KFDT_Piercing
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -125,7 +66,7 @@ class KFDT_Piercing_ZweihanderStab extends KFDT_Piercing
 
 defaultproperties
 {
-   AARWeaponID=50
+   WeaponDef=Class'KFGame.KFWeapDef_Zweihander'
    StunPower=42
    KnockdownPower=20
    StumblePower=63

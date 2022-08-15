@@ -31,6 +31,14 @@ var transient array< byte > 	 			ShuffledAmbientMusicTrackIdxes;
 /** Current position within the ShuffledAmbientMusicTrackIdxes array */
 var transient byte							CurrShuffledAmbientMusicTrackIdx;
 
+enum ECollectibleType
+{
+	ECT_DoshBling,
+	ECT_ClotMotherBaby
+};
+
+/** Type of collectible in this map (used for collectible text/localization) */
+var/*(Collectibles)*/ const ECollectibleType CollectibleType;
 /** How many collectibles players need to find in this map to unlock the achievement */
 var(Collectibles) const int	CollectiblesToFind;
 /** How many collectibles players have found */

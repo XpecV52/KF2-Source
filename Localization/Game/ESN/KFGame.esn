@@ -404,8 +404,10 @@ ConfirmString="SELECCIONAR"
 MenuStrings[0]="INICIO"
 MenuStrings[1]="BENEFICIOS"
 MenuStrings[2]="EQUIPO"
-MenuStrings[3]="OPCIONES"
-MenuStrings[4]="SALIR"
+MenuStrings[3]="INVENTORY"
+MenuStrings[4]="STORE"
+MenuStrings[5]="OPCIONES"
+MenuStrings[6]="SALIR"
 
 ServerBrowserString="BUSCADOR DE SERVIDORES"
 MatchmakingString="BUSCADOR DE PARTIDAS"
@@ -464,7 +466,7 @@ SecondaryString="SECUNDARIO"
 [KFGFxWidget_KickVote]
 VoteKickString="¿Expulsar jugador?"
 
-[KFGFxWidget_VoiceComms]
+[KFLocalMessage_VoiceComms]
 VoiceCommsOptionStrings[0]="SOLICITAR CURACIÓN"
 VoiceCommsOptionStrings[1]="SOLICITAR PLATA"
 VoiceCommsOptionStrings[2]="SOLICITAR AYUDA"
@@ -916,10 +918,10 @@ SonicResistance="Resistencia sonora"
 SonicResistanceDescription="¡No puedo escucharte! Reduce el daño que recibes de los ataques sónicos en un 40%"
 
 Vampire="Vampiro"
-VampireDescription="Pequeños chupones: Nano-tecnología de Horzine chupa 3 puntos de vida de todos los Zeds que matas con cualquier ataque con armas de beneficio y los aplica a ti."
+VampireDescription="Pequeños chupones: Nano-tecnología de Horzine chupa 4 puntos de vida de todos los Zeds que matas con cualquier ataque con armas de beneficio y los aplica a ti."
 
 Fortitude="Fortaleza"
-FortitudeDescription="Date una mejor oportunidad: Aumenta la salud máxima e inicial en un 100%"
+FortitudeDescription="Date una mejor oportunidad: Aumenta la salud máxima e inicial en un 75%"
 
 FuriousDefender="Defensor Furioso"
 FuriousDefenderDescription="Te llaman Furioso por una razón: Los ataques cuerpo a cuerpo de Berserker son 10% más rápidos y todos los ataques hacen 20% más de daños."
@@ -931,7 +933,7 @@ Parry="Esquivar"
 ParryDescription="Combina habilidad y poder: Esquivando un ataque aumentará la velocidad de ataque cuerpo a cuerpo un 15% y el daño de ataque ligero en un 30% durante 4 segundos."
 
 Smash="Aplastar"
-SmashDescription="Lo brutal lo refuerza: Los golpes duros hacen 100% más de daños y los golpes duros a la cabeza aumentan la posibilidad de noquear los Zeds grandes."
+SmashDescription="Lo brutal lo refuerza: Los golpes duros hacen 25% más de daños y los golpes duros a la cabeza aumentan la posibilidad de noquear los Zeds grandes."
 
 Spartan="Tiempo ZED - Espartano"
 SpartanDescription="Has visto 300: Muévete en tiempo real, aumenta la velocidad de ataque con armas cuerpo a cuerpo de Berserker en un 50% y cualquier paro causará caída."
@@ -1059,7 +1061,7 @@ Combatant="Combatiente"
 CombatantDescription="¡No te limites a ser un médico - se el médico de combate que siempre has querido ser con armadura corporal inicial gratuita y un descuento del 60% en todas las compras de la armadura!"
 
 Armament="Armamento"
-ArmamentDescription="No te limites a sanar gente: ¡Pierde un 10% de tu eficacia en la curación de compañeros de equipo pero repara cada vez el 2% de su armadura corporal máxima!"
+ArmamentDescription="No te limites a sanar gente: ¡Pierde un 25% de tu eficacia en la curación de compañeros de equipo pero repara cada vez el 1% de su armadura corporal máxima!"
 
 Regeneration="Regeneración"
 RegenerationDescription="Aplícate una dosis: Tu salud se regenera lentamente con el tiempo gracias a los nano-bots Horzine."

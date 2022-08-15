@@ -188,7 +188,7 @@ DefaultProperties
 		DamageFalloffExponent=1f
 		DamageDelay=0.f
 
-		MomentumTransferScale=0//-100000 Reactivate this to add siren pull
+		MomentumTransferScale=100//-100000 Reactivate this to add siren pull
 
 		ActorClassToIgnoreForDamage=class'KFPawn_Monster'
 

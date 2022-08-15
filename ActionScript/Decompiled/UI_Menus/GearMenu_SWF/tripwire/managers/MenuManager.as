@@ -308,6 +308,23 @@ package tripwire.managers
             this.controllerEnableWidgets(true);
         }
         
+        public function setWidgetsVisiblity(param1:Boolean) : void
+        {
+            var _loc2_:int = 0;
+            while(_loc2_ < this._widgets.length)
+            {
+                if(param1)
+                {
+                    this._widgets[_loc2_].openContainer();
+                }
+                else
+                {
+                    this._widgets[_loc2_].closeContainer();
+                }
+                _loc2_++;
+            }
+        }
+        
         public function setMenuVisibility(param1:Boolean) : void
         {
             var _loc2_:int = 0;
@@ -360,6 +377,8 @@ package tripwire.managers
             }
             this.mCursor.visible = param1 && !this.bUsingGamepad;
             this.MenuScanlines.visible = param1;
+            this.mCursor.x = mouseX;
+            this.mCursor.y = mouseY;
         }
         
         public function onMenuClosed() : void

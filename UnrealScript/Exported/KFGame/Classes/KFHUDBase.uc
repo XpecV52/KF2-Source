@@ -28,6 +28,7 @@ var const color LightGoldColor, LightGreenColor;
 
 var const color ArmorColor, HealthColor;
 var const color PlayerBarBGColor, PlayerBarTextColor, PlayerBarIconColor;
+var const color SupplierActiveColor, SupplierUsableColor;
 
 /** Holds the scaling factor given the current resolution.  This is calculated in PostRender() */
 var float ResolutionScale, ResolutionScaleX;
@@ -103,7 +104,7 @@ simulated function PostBeginPlay()
 
 	KFPlayerOwner = KFPlayerController(PlayerOwner);
 
-	bDrawCrosshair = class'KFGameEngine'.default.bShowCrossHair;
+	bDrawCrosshair = class'KFGameEngine'.static.IsCrosshairEnabled();
 }
 
 /**
@@ -466,7 +467,10 @@ function DrawHUD()
 	// Draw the crosshair for casual mode
 	if( bDrawCrosshair || bForceDrawCrosshair )
 	{
-        DrawCrosshair();
+		if( KFPlayerOwner != none && !KFPlayerOwner.bCinematicMode )
+		{
+	        DrawCrosshair();
+	    }
     }
 
     if( KFPlayerOwner != none )
@@ -501,6 +505,7 @@ simulated function DrawFriendlyHUD( KFPawn_Human KFPH )
 	local KFPlayerReplicationInfo KFPRI;
 	local FontRenderInfo MyFontRenderInfo;
 	local float FontScale;
+	local color TempColor;
 
 	KFPRI = KFPlayerReplicationInfo(KFPH.PlayerReplicationInfo);
 
@@ -536,7 +541,6 @@ simulated function DrawFriendlyHUD( KFPawn_Human KFPH )
 	Canvas.SetPos(ScreenPos.X - (BarLength *0.5f), ScreenPos.Y - BarHeight * 3);
 	Canvas.DrawText( KFPRI.PlayerName,,FontScale * FriendlyHudScale,FontScale * FriendlyHudScale, MyFontRenderInfo );
 
-
 	if( KFPRI.CurrentPerkClass == none )
 	{
 		return;
@@ -545,12 +549,20 @@ simulated function DrawFriendlyHUD( KFPawn_Human KFPH )
 	//draw perk icon
 	Canvas.SetDrawColorStruct(PlayerBarIconColor);
 	Canvas.SetPos(ScreenPos.X - (BarLength * 0.75), ScreenPos.Y - BarHeight * 2);
-	Canvas.DrawTile(KFPRI.CurrentPerkClass.default.PerkIcon, PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256); //check what this icon size is and set a const for it
+	Canvas.DrawTile(KFPRI.CurrentPerkClass.default.PerkIcon, PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256 );
 
 	//Draw perk level and name text
 	Canvas.SetDrawColorStruct(PlayerBarTextColor);
 	Canvas.SetPos(ScreenPos.X - (BarLength *0.5f), ScreenPos.Y + BarHeight);
 	Canvas.DrawText( KFPRI.GetActivePerkLevel() @KFPRI.CurrentPerkClass.default.PerkName,,FontScale * FriendlyHudScale, FontScale * FriendlyHudScale, MyFontRenderInfo );
+
+	if( KFPRI.bPerkCanSupply && KFPRI.CurrentPerkClass.static.GetInteractIcon() != none )
+	{
+		TempColor = KFPRI.bPerkSupplyUsed ? SupplierActiveColor : SupplierUsableColor;
+		Canvas.SetDrawColorStruct( TempColor );
+		Canvas.SetPos( ScreenPos.X + BarLength * 0.5f, ScreenPos.Y - BarHeight * 2 );
+		Canvas.DrawTile( KFPRI.CurrentPerkClass.static.GetInteractIcon(), PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256); 
+	}
 }
 
 simulated function DrawKFBar( float BarPercentage, float BarLength, float BarHeight, float XPos, float YPos, Color BarColor )
@@ -617,6 +629,8 @@ defaultproperties
    PlayerBarBGColor=(B=0,G=0,R=0,A=192)
    PlayerBarTextColor=(B=192,G=192,R=192,A=192)
    PlayerBarIconColor=(B=192,G=192,R=192,A=192)
+   SupplierActiveColor=(B=128,G=128,R=128,A=192)
+   SupplierUsableColor=(B=0,G=0,R=255,A=192)
    FriendlyHudScale=1.000000
    TextRenderInfo=(GlowInfo=(GlowColor=(R=0.000000,G=0.000000,B=0.000000,A=1.000000)))
    PulseDuration=0.330000

@@ -49,65 +49,6 @@ class KFDT_Ballistic_M4Shotgun extends KFDT_Ballistic_Shotgun
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -148,7 +89,7 @@ static simulated function bool CanDismemberHitZone( name InHitZoneName )
 
 defaultproperties
 {
-   AARWeaponID=38
+   WeaponDef=Class'KFGame.KFWeapDef_M4'
    StumblePower=42
    LegStumblePower=42
    BloodSpread=0.400000
@@ -157,5 +98,5 @@ defaultproperties
    KDeathVel=10.000000
    KDeathUpKick=120.000000
    Name="Default__KFDT_Ballistic_M4Shotgun"
-   ObjectArchetype=KFDT_Ballistic_Shotgun'KFGameContent.Default__KFDT_Ballistic_Shotgun'
+   ObjectArchetype=KFDT_Ballistic_Shotgun'kfgamecontent.Default__KFDT_Ballistic_Shotgun'
 }

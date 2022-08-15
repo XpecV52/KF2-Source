@@ -23,9 +23,8 @@ defaultproperties
 	End Object
 
 	// Inventory
-	FilterTypeUI=FT_Melee
 	AssociatedPerkClass=class'KFPerk_FieldMedic'
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicKnife'
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicKnife'
 
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Slashing_Knife_Medic'
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Slashing_KnifeHeavy_Medic'

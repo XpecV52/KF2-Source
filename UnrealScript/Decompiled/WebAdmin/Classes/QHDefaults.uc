@@ -222,6 +222,9 @@ function bool handleQuery(WebAdminQuery Q)
         case "/policy/passwords":
             handleSettingsPasswords(Q);
             return true;
+        case "/settings/welcome":
+            handleSettingsWelcome(Q);
+            return true;
         case "/settings/gametypes":
             handleSettingsGametypes(Q);
             return true;
@@ -258,6 +261,7 @@ function registerMenuItems(WebAdminMenu menu)
     menu.addMenu("/policy/ip", menuIpMask, (self), menuIpMaskDesc, -50);
     menu.addMenu("/settings", menuSettings, (self), "", -50);
     menu.addMenu("/settings/general", menuGeneral, (self), menuGeneralDesc, -10);
+    menu.addMenu("/settings/welcome", menuWelcome, (self), menuWelcomeDesc);
     menu.addMenu("/settings/gametypes", menuGametypes, (self), menuGametypesDesc);
     menu.addMenu("/settings/maplist", menuMapCycles, (self), menuMapCyclesDesc);
     menu.addMenu("/settings/serveractors", menuServerActors, (self), menuServerActorsDesc);
@@ -973,7 +977,7 @@ function handleSettingsGametypes(WebAdminQuery Q)
         }
         if(NotEqual_InterfaceInterface(IAdvWebAdminSettings(Settings), (none)))
         {
-            SettingsRenderer.initEx(Settings, Q.Response);
+            SettingsRenderer.InitEx(Settings, Q.Response);
             IAdvWebAdminSettings(Settings).advRenderSettings(Q.Response, SettingsRenderer,, privs);            
         }
         else
@@ -1046,6 +1050,10 @@ function handleSettingsGeneral(WebAdminQuery Q)
 {
     local class<WebAdminSettings> settingsClass;
     local WebAdminSettings Settings;
+    local float Difficulty;
+    local int Length;
+    local bool bNoLiveAdjust;
+    local KFGameInfo KFGI;
 
     settingsClass = class<WebAdminSettings>(DynamicLoadObject(GeneralSettingsClass, Class'Class'));
     if(settingsClass != none)
@@ -1054,7 +1062,17 @@ function handleSettingsGeneral(WebAdminQuery Q)
     }
     if(Settings != none)
     {
-        genericSettingsHandler(Q, Settings);        
+        if((Q.Request.GetVariable("action") ~= "save") || Q.Request.GetVariable("action") ~= "save settings")
+        {
+            KFGI = KFGameInfo(webadmin.WorldInfo.Game);
+            Difficulty = float(Q.Request.GetVariable("settings_GameDifficulty"));
+            Length = int(Q.Request.GetVariable("settings_GameLength"));
+            if((KFGI != none) && (KFGI.GameDifficulty != Difficulty) || KFGI.GameLength != Length)
+            {
+                bNoLiveAdjust = true;
+            }
+        }
+        genericSettingsHandler(Q, Settings, bNoLiveAdjust);        
     }
     else
     {
@@ -1064,15 +1082,16 @@ function handleSettingsGeneral(WebAdminQuery Q)
     webadmin.sendPage(Q, "default_settings_general.html");
 }
 
-function bool genericSettingsHandler(WebAdminQuery Q, WebAdminSettings Settings)
+function bool genericSettingsHandler(WebAdminQuery Q, WebAdminSettings Settings, optional bool bNoLiveAdjust)
 {
     local ISettingsPrivileges privs;
     local bool settingsSaved, liveAdjust;
 
+    bNoLiveAdjust = false;
     settingsSaved = false;
     if((Q.Request.GetVariable("action") ~= "save") || Q.Request.GetVariable("action") ~= "save settings")
     {
-        liveAdjust = Q.Request.GetVariable("liveAdjust", "0") == "1";
+        liveAdjust = ((bNoLiveAdjust) ? false : Q.Request.GetVariable("liveAdjust", "0") == "1");
         if(!liveAdjust)
         {
             Settings.setCurrentGameInfo(none);
@@ -1113,7 +1132,7 @@ function bool genericSettingsHandler(WebAdminQuery Q, WebAdminSettings Settings)
     }
     if(NotEqual_InterfaceInterface(IAdvWebAdminSettings(Settings), (none)))
     {
-        SettingsRenderer.initEx(Settings, Q.Response);
+        SettingsRenderer.InitEx(Settings, Q.Response);
         IAdvWebAdminSettings(Settings).advRenderSettings(Q.Response, SettingsRenderer,, privs);        
     }
     else
@@ -1314,7 +1333,7 @@ function handleSettingsMutators(WebAdminQuery Q)
         }
         if(NotEqual_InterfaceInterface(IAdvWebAdminSettings(Settings), (none)))
         {
-            SettingsRenderer.initEx(Settings, Q.Response);
+            SettingsRenderer.InitEx(Settings, Q.Response);
             IAdvWebAdminSettings(Settings).advRenderSettings(Q.Response, SettingsRenderer,, privs);            
         }
         else

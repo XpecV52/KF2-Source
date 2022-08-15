@@ -266,7 +266,6 @@ defaultproperties
 	Begin Object Name=FirstPersonMesh
 		SkeletalMesh=SkeletalMesh'WEP_1P_Microwave_Gun_MESH.Wep_1stP_Microwave_Gun_Rig'
 		AnimSets(0)=AnimSet'WEP_1p_Microwave_Gun_ANIM.WEP_1p_Microwave_Gun_ANIM'
-		AnimTreeTemplate=AnimTree'WEP_1p_Microwave_Gun_ANIM.1P_Microwave_Gun_Animtree'
 	End Object
 
 	Begin Object Name=StaticPickupComponent
@@ -279,7 +278,7 @@ defaultproperties
 	MagazineCapacity[0]=100
 	MaxSpareAmmo[0]=300
 	InitialSpareMags[0]=1
-	AmmoPickupScale[0]=0.25
+	AmmoPickupScale[0]=0.4
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
 
@@ -304,8 +303,7 @@ defaultproperties
     // Inventory
 	InventorySize=9
 	GroupPriority=100
-	UITexture=Texture2D'WEP_UI_Microwave_Gun_TEX.UI_WeaponSelect_MicrowaveGun'
-	FilterTypeUI=FT_Flame
+	WeaponSelectTexture=Texture2D'WEP_UI_Microwave_Gun_TEX.UI_WeaponSelect_MicrowaveGun'
 
 	// DEFAULT_FIREMODE
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Flamethrower'
@@ -356,10 +354,9 @@ defaultproperties
 	bHasIronSights=true
 	bHasFlashlight=false
 
-	// Trader
-    EffectiveRange=12	
-
    	AssociatedPerkClass=class'KFPerk_Firebug'
+
+   	BonesToLockOnEmpty=(RW_Handle1, RW_BatteryCylinder1, RW_BatteryCylinder2, RW_LeftArmSpinner, RW_RightArmSpinner, RW_LockEngager2, RW_LockEngager1)
 }
 
 

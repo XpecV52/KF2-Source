@@ -14,6 +14,7 @@ class KFGFxPostGameContainer_PlayerStats extends KFGFxObject_Container
 `include(KFGame\KFMatchStats.uci);
 
 var localized string AchievementsString, ZedKillsString, TopWeaponsString;
+var localized string TotalDamageDealtString, HeadShotsString, LargeZedKillsString, TotalDoshEarnedString, TotalKillsString, AssistsString, DamageDealtString;
 var localized string KnifeString;
 var string PlayerStatsString;
 var int ItemCount;
@@ -51,7 +52,6 @@ function SetPlayerStats()
 	local int TopWeaponCount;
 	local array<WeaponDamage> TopWeaponList;
 	local EphemeralMatchStats StatCollector;
-	local string TempWeaponName, TempIconSource;
 
 	ItemCount = 0;
 
@@ -67,14 +67,14 @@ function SetPlayerStats()
 		ObjectArrayAdvancedStats = CreateArray();
 		ObjectTopWeaponsList = CreateArray();
 
-		ObjectArray.SetElementObject(ItemCount, MakeTextObject("Total Dosh Earned:", String(Max(StatCollector.TotalDoshEarned, 0)) ));
+		ObjectArray.SetElementObject(ItemCount, MakeTextObject(TotalDoshEarnedString, String(Max(StatCollector.TotalDoshEarned, 0)) ));
 		//ObjectArray.SetElementObject(ItemCount, MakeTextObject("Total Healing Given:", String(StatCollector.TotalAmountHealGiven) ));
 		//ObjectArray.SetElementObject(ItemCount, MakeTextObject("Total Healing Received", String(StatCollector.TotalAmountHealReceived) ));
-		ObjectArray.SetElementObject(ItemCount, MakeTextObject("Total Kills:", String(KFPRI.Kills) ));
-		ObjectArray.SetElementObject(ItemCount, MakeTextObject("Large Zed Kills:", String(StatCollector.TotalLargeZedKills) ));
-		ObjectArray.SetElementObject(ItemCount, MakeTextObject("Assists:", String(KFPRI.Assists) ));
-		ObjectArray.SetElementObject(ItemCount, MakeTextObject("HeadShots:", String(StatCollector.TotalHeadShots) ));
-		ObjectArray.SetElementObject(ItemCount, MakeTextObject("Total Damage Dealt:", String(StatCollector.TotalDamageDealt) ));
+		ObjectArray.SetElementObject(ItemCount, MakeTextObject(TotalKillsString, String(KFPRI.Kills) ));
+		ObjectArray.SetElementObject(ItemCount, MakeTextObject(LargeZedKillsString, String(StatCollector.TotalLargeZedKills) ));
+		ObjectArray.SetElementObject(ItemCount, MakeTextObject(AssistsString, String(KFPRI.Assists) ));
+		ObjectArray.SetElementObject(ItemCount, MakeTextObject(HeadShotsString, String(StatCollector.TotalHeadShots) ));
+		ObjectArray.SetElementObject(ItemCount, MakeTextObject(TotalDamageDealtString, String(StatCollector.TotalDamageDealt) ));
 		//ObjectArray.SetElementObject(ItemCount, MakeTextObject("Total Damage Received:", String(StatCollector.TotalDamageTaken) ));
 		
 		//weapons
@@ -83,19 +83,9 @@ function SetPlayerStats()
 		TopWeaponCount = 0;
 		for (i = 0; i < TopWeaponList.length; i++)
 		{
-			StatCollector.ResolveLocalizedWeaponNameAndIcon( TopWeaponList[i].DamageTypeID, TempWeaponName, TempIconSource);
-
-			//Special case for knives at the moment since they all share the same damage type -ZG
-			if(TopWeaponList[i].DamageTypeID == `AAR_Knife)
-			{
-				TempWeaponName = KnifeString;
-			}
-
-			ObjectTopWeaponsList.SetElementObject(TopWeaponCount,MakeWeaponObject(TempWeaponName, TempIconSource, TopWeaponList[i].DamageAmount, TopWeaponList[i].HeadShots, TopWeaponList[i].LargeZedKills) );	
+			ObjectTopWeaponsList.SetElementObject(TopWeaponCount,MakeWeaponObject(TopWeaponList[i].WeaponDef.static.GetItemName(), TopWeaponList[i].WeaponDef.static.GetImagePath(), TopWeaponList[i].DamageAmount, TopWeaponList[i].HeadShots, TopWeaponList[i].LargeZedKills) );	
 			TopWeaponCount++;
 			//clear the string so we do not get duplicate values
-			TempWeaponName = "";
-			TempIconSource = "";
 		}
 		
 		for(i = 0; i < StatCollector.ZedKillsArray.length; i++)
@@ -151,9 +141,9 @@ function GFxObject MakeWeaponObject( string WeaponName, string WeaponIcon, int W
 	TempObject.SetString("weaponName", 		WeaponName);
 	TempObject.SetString("weaponIcon", 		"img://"$WeaponIcon);
 
-	TempObject.SetString("damageText", 			"DAMAGE DEALT:");
-	TempObject.SetString("headshotsText", 		"HEADSHOTS:");
-	TempObject.SetString("largeZedText", 		"LARGE ZED KILLS:");
+	TempObject.SetString("damageText", 			DamageDealtString);
+	TempObject.SetString("headshotsText", 		HeadShotsString);
+	TempObject.SetString("largeZedText", 		LargeZedKillsString);
 
 	TempObject.SetInt("damage", 		WeaponDamage);
 	TempObject.SetInt("headshots", 		HeadShotsWithWeapon);

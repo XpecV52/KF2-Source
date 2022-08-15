@@ -41,6 +41,6 @@ defaultproperties
 	LegStumblePower=63
 	MeleeHitPower=50
 
-	AARWeaponID=`AAR_Zweihander
+	WeaponDef=class'KFWeapDef_Zweihander'
 	ModifierPerkList(0)=class'KFPerk_Berserker'
 }

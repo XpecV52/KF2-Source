@@ -47,65 +47,6 @@ class KFDT_Fire_CaulkBurn extends KFDT_Fire
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -141,7 +82,7 @@ static function int GetDamageeDialogID()
 
 defaultproperties
 {
-   AARWeaponID=46
+   WeaponDef=Class'KFGame.KFWeapDef_CaulkBurn'
    Name="Default__KFDT_Fire_CaulkBurn"
    ObjectArchetype=KFDT_Fire'KFGame.Default__KFDT_Fire'
 }

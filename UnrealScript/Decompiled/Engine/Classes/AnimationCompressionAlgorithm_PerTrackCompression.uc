@@ -68,9 +68,9 @@ defaultproperties
     MaxZeroingThreshold=0.0002
     MaxPosDiffBitwise=0.007
     MaxAngleDiffBitwise=0.002
-    AllowedRotationFormats(0)=79
+    AllowedRotationFormats(0)=81
     AllowedRotationFormats(1)=0
-    AllowedTranslationFormats(0)=79
+    AllowedTranslationFormats(0)=81
     AllowedTranslationFormats(1)=0
     AllowedTranslationFormats(2)=0
     ResampledFramerate=15

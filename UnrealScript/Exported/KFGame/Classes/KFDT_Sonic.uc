@@ -472,6 +472,29 @@ class KFDT_Sonic extends KFDamageType
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 12
 
 /** Returns ID of dialog event for damagee to speak after getting damaged by a zed using this damage type */
@@ -487,6 +510,9 @@ defaultproperties
    ObliterationHealthThreshold=-1
    ObliterationDamageThreshold=3
    bArmorStops=False
+   KDamageImpulse=1400.000000
+   KDeathVel=700.000000
+   KDeathUpKick=500.000000
    Name="Default__KFDT_Sonic"
    ObjectArchetype=KFDamageType'KFGame.Default__KFDamageType'
 }

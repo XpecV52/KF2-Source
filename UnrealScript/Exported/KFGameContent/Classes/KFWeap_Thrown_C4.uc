@@ -304,6 +304,8 @@ simulated state Active
  * The weapon is in this state while detonating a charge
 *********************************************************************************************/
 
+simulated function GotoActiveState();
+
 simulated state WeaponDetonating
 {
 	ignores AllowSprinting;
@@ -395,6 +397,16 @@ simulated state WeaponPuttingDown
 	ignores SetIronSights;
 }
 
+/*********************************************************************************************
+ * @name	Trader
+ *********************************************************************************************/
+
+/** Returns trader filter index based on weapon type */
+static simulated event EFilterTypeUI GetTraderFilter()
+{
+	return FT_Explosive;
+}
+
 defaultproperties
 {
    DetonateAnim="Detonate"
@@ -405,11 +417,9 @@ defaultproperties
    DryFireAkEvent=AkEvent'WW_WEP_EXP_C4.Play_WEP_EXP_C4_DryFire'
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
    FireModeIconPaths(1)=()
-   FilterTypeUI=FT_Explosive
    InventorySize=3
-   EffectiveRange=10
    GroupPriority=50.000000
-   UITexture=Texture2D'WEP_UI_C4_TEX.UI_WeaponSelect_C4'
+   WeaponSelectTexture=Texture2D'WEP_UI_C4_TEX.UI_WeaponSelect_C4'
    MagazineCapacity(0)=1
    MaxSpareAmmo(0)=1
    InitialSpareMags(0)=1
@@ -422,18 +432,18 @@ defaultproperties
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ThrownBase:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_Thrown_C4:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Thrown_C4:MeleeHelper_0'
    AssociatedPerkClass=Class'KFGame.KFPerk_Demolitionist'
    FiringStatesArray(5)="WeaponDetonating"
    WeaponFireTypes(5)=EWFT_Custom
-   WeaponProjectiles(0)=Class'KFGameContent.KFProj_Thrown_C4'
+   WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Thrown_C4'
    FireInterval(0)=0.250000
    FireInterval(1)=()
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
    InstantHitDamageTypes(2)=None
-   InstantHitDamageTypes(3)=Class'KFGameContent.KFDT_Bludgeon_C4'
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_C4'
    FireOffset=(X=25.000000,Y=15.000000,Z=0.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_ThrownBase:FirstPersonMesh'
       SkeletalMesh=SkeletalMesh'Wep_1P_C4_MESH.Wep_1stP_C4_Rig'

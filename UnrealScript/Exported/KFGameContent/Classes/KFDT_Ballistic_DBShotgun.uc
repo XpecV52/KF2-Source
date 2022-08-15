@@ -49,65 +49,6 @@ class KFDT_Ballistic_DBShotgun extends KFDT_Ballistic_Shotgun
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -148,7 +89,7 @@ static simulated function bool CanDismemberHitZone( name InHitZoneName )
 
 defaultproperties
 {
-   AARWeaponID=37
+   WeaponDef=Class'KFGame.KFWeapDef_DoubleBarrel'
    StumblePower=42
    LegStumblePower=42
    BloodSpread=0.400000
@@ -157,5 +98,5 @@ defaultproperties
    KDeathVel=20.000000
    KDeathUpKick=350.000000
    Name="Default__KFDT_Ballistic_DBShotgun"
-   ObjectArchetype=KFDT_Ballistic_Shotgun'KFGameContent.Default__KFDT_Ballistic_Shotgun'
+   ObjectArchetype=KFDT_Ballistic_Shotgun'kfgamecontent.Default__KFDT_Ballistic_Shotgun'
 }

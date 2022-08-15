@@ -46,65 +46,6 @@ class KFDT_Bludgeon_Assault_Medic extends KFDT_Bludgeon_RifleButt
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -125,7 +66,7 @@ class KFDT_Bludgeon_Assault_Medic extends KFDT_Bludgeon_RifleButt
 
 defaultproperties
 {
-   AARWeaponID=24
+   WeaponDef=Class'KFGame.KFWeapDef_MedicRifle'
    Name="Default__KFDT_Bludgeon_Assault_Medic"
-   ObjectArchetype=KFDT_Bludgeon_RifleButt'KFGameContent.Default__KFDT_Bludgeon_RifleButt'
+   ObjectArchetype=KFDT_Bludgeon_RifleButt'kfgamecontent.Default__KFDT_Bludgeon_RifleButt'
 }

@@ -11,10 +11,15 @@ class KFPawn_ZedStalker extends KFPawn_Monster;
 
 var MaterialInstanceConstant SpottedMaterial;
 var MaterialInstanceConstant CloakedMaterial;
-var MaterialInstanceConstant VisibleMaterial;
 
 var AkBaseSoundObject CloakedLoop;
 var AkBaseSoundObject CloakedLoopEnd;
+
+var float CloakPercent;
+
+/** Cloak speeds */
+var float CloakSpeed;
+var float DeCloakSpeed;
 
 simulated event PostBeginPlay()
 {
@@ -33,7 +38,7 @@ simulated event ReplicatedEvent(name VarName)
 		SetGameplayMICParams();
 		break;
 	case nameof(bIsCloaking):
-		SetGameplayMICParams();
+		ClientCloakingStateUpdated();
 		break;
 	}
 
@@ -62,7 +67,24 @@ function SetCloaked(bool bNewCloaking)
 			SetGameplayMICParams();
 			Mesh.SetPerObjectShadows(!bNewCloaking);
 		}
+
+		super.SetCloaked( bNewCloaking );
 	}
+}
+
+/** 
+ * bIsCloaking replicated state changed
+ * Network: Local and Remote Clients
+ */
+simulated function ClientCloakingStateUpdated()
+{
+	if( bIsCloaking )
+	{
+		ClearBloodDecals();
+	}
+	
+	SetGameplayMICParams();
+	Mesh.SetPerObjectShadows( !bIsCloaking );
 }
 
 /** Handle cloaking materials */
@@ -78,16 +100,11 @@ simulated function SetGameplayMICParams()
 		// visible by local player or team (must go after ServerCallOutCloaking)
 		bIsSpotted = (bIsCloakingSpottedByLP || bIsCloakingSpottedByTeam);
 
-		if ( !bIsCloaking || IsImpaired() )
-		{
-			BodyMIC.SetParent(VisibleMaterial);
-			PlayStealthSoundLoopEnd();
-		}
-		else if ( bIsSpotted )
+		if ( bIsSpotted && bIsCloaking )
 		{
 			BodyMIC.SetParent(SpottedMaterial);
 		}
-		else
+		else if( BodyMIC.Parent != CloakedMaterial )
 		{
 			BodyMIC.SetParent(CloakedMaterial);
 			PlayStealthSoundLoop();
@@ -113,6 +130,29 @@ simulated function PlayStealthSoundLoop()
 simulated function PlayStealthSoundLoopEnd()
 {
 	PlaySoundBase( CloakedLoopEnd, true );
+}
+
+/** Overridden to support transparency scalar */
+simulated event Tick( float DeltaTime )
+{
+	super.Tick( DeltaTime );
+
+	if( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		if( !bIsCloaking )
+		{
+			if( CloakPercent < 1.0f )
+			{
+				CloakPercent = FMin(CloakPercent + DeltaTime*DeCloakSpeed, 1.0f);
+				BodyMIC.SetScalarParameterValue('Transparency', CloakPercent);
+			}
+		}
+		else if( CloakPercent > 0.f )
+		{
+			CloakPercent = FMax(CloakPercent - DeltaTime*CloakSpeed, 0.f);
+			BodyMIC.SetScalarParameterValue('Transparency', CloakPercent);
+		}
+	}
 }
 
 /*********************************************************************************************
@@ -172,9 +212,10 @@ simulated event UpdateSpottedStatus()
 }
 
 /** notification from player with CallOut ability */
-function CallOutCloaking()
+function CallOutCloaking( optional KFPlayerController CallOutController )
 {
 	bIsCloakingSpottedByTeam = true;
+	LastStoredCC = CallOutController;
 	SetGameplayMICParams();
 	SetTimer(2.f, false, nameof(CallOutCloakingExpired));
 }
@@ -183,6 +224,7 @@ function CallOutCloaking()
 function CallOutCloakingExpired()
 {
 	bIsCloakingSpottedByTeam = false;
+	LastStoredCC = none;
 	SetGameplayMICParams();
 }
 
@@ -279,27 +321,29 @@ defaultproperties
 {
    SpottedMaterial=MaterialInstanceConstant'ZED_Stalker_MAT.ZED_Stalker_Visible_MAT'
    CloakedMaterial=MaterialInstanceConstant'ZED_Stalker_MAT.ZED_Stalker_MAT'
-   VisibleMaterial=MaterialInstanceConstant'ZED_Stalker_MAT.ZED_Stalker_Solid_MIC'
    CloakedLoop=AkEvent'WW_ZED_Stalker.ZED_Stalker_SFX_Stealth_LP'
    CloakedLoopEnd=AkEvent'WW_ZED_Stalker.ZED_Stalker_SFX_Stealth_LP_Stop'
-   bCanCloak=True
-   bIsCloaking=True
+   CloakPercent=1.000000
+   CloakSpeed=4.000000
+   DeCloakSpeed=4.500000
+   bCloakOnMeleeEnd=True
    bIsStalkerClass=True
    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Stalker_ARCH.ZED_Stalker_Archetype'
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
       BaseDamage=9.000000
+      MyDamageType=Class'kfgamecontent.KFDT_Slashing_ZedWeak'
       MaxHitRange=180.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperAI'KFGameContent.Default__KFPawn_ZedStalker:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedStalker:MeleeHelper_0'
    DoshValue=15
    XPValues(0)=8.000000
    XPValues(1)=10.000000
    XPValues(2)=10.000000
    XPValues(3)=10.000000
    ResistantDamageTypes(0)=(DamageType=Class'KFGame.KFDT_Toxic')
-   ResistantDamageTypes(1)=(DamageType=Class'KFGameContent.KFDT_Microwave')
+   ResistantDamageTypes(1)=(DamageType=Class'kfgamecontent.KFDT_Microwave')
    PawnAnimInfo=KFPawnAnimInfo'ZED_Stalker_ANIM.Stalker_AnimGroup'
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
       ReplacementPrimitive=None
@@ -308,6 +352,8 @@ defaultproperties
       ObjectArchetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
    End Object
    ThirdPersonHeadMeshComponent=ThirdPersonHead0
+   bCanCloak=True
+   bIsCloaking=True
    PenetrationResistance=0.500000
    Begin Object Class=KFPawnAfflictions Name=Afflictions_0 Archetype=KFPawnAfflictions'KFGame.Default__KFPawn_Monster:Afflictions_0'
       InstantAffl(0)=(head=50,Torso=75,Leg=75,Arm=75,LowHealthBonus=10,Cooldown=9.000000)
@@ -325,7 +371,7 @@ defaultproperties
       Name="Afflictions_0"
       ObjectArchetype=KFPawnAfflictions'KFGame.Default__KFPawn_Monster:Afflictions_0'
    End Object
-   AfflictionHandler=KFPawnAfflictions'KFGameContent.Default__KFPawn_ZedStalker:Afflictions_0'
+   AfflictionHandler=KFPawnAfflictions'kfgamecontent.Default__KFPawn_ZedStalker:Afflictions_0'
    PhysRagdollImpulseScale=0.900000
    KnockdownImpulseScale=0.900000
    SprintSpeed=500.000000
@@ -356,17 +402,18 @@ defaultproperties
       SpecialMoveClasses(11)=Class'KFGame.KFSM_Zed_Taunt'
       SpecialMoveClasses(12)=Class'KFGame.KFSM_Zed_WalkingTaunt'
       SpecialMoveClasses(13)=Class'KFGame.KFSM_Evade'
-      SpecialMoveClasses(14)=Class'KFGameContent.KFSM_Evade_Fear'
+      SpecialMoveClasses(14)=Class'kfgamecontent.KFSM_Evade_Fear'
       SpecialMoveClasses(15)=None
       SpecialMoveClasses(16)=None
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
-      SpecialMoveClasses(19)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(20)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(19)=None
+      SpecialMoveClasses(20)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(21)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
-   SpecialMoveHandler=KFSpecialMoveHandler'KFGameContent.Default__KFPawn_ZedStalker:SpecialMoveHandler_0'
+   SpecialMoveHandler=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedStalker:SpecialMoveHandler_0'
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent_1 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:AmbientAkSoundComponent_1'
       BoneName="Spine1"
       bStopWhenOwnerDestroyed=True
@@ -386,7 +433,7 @@ defaultproperties
       Name="WeaponAmbientEchoHandler_0"
       ObjectArchetype=KFWeaponAmbientEchoHandler'KFGame.Default__KFPawn_Monster:WeaponAmbientEchoHandler_0'
    End Object
-   WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'KFGameContent.Default__KFPawn_ZedStalker:WeaponAmbientEchoHandler_0'
+   WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'kfgamecontent.Default__KFPawn_ZedStalker:WeaponAmbientEchoHandler_0'
    Begin Object Class=AkComponent Name=FootstepAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_Monster:FootstepAkSoundComponent'
       BoneName="Root"
       bStopWhenOwnerDestroyed=True
@@ -406,7 +453,7 @@ defaultproperties
    Mass=50.000000
    GroundSpeed=400.000000
    Health=75
-   ControllerClass=Class'KFGameContent.KFAIController_ZedStalker'
+   ControllerClass=Class'kfgamecontent.KFAIController_ZedStalker'
    Begin Object Class=KFSkeletalMeshComponent Name=KFPawnSkeletalMeshComponent Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:KFPawnSkeletalMeshComponent'
       WireframeColor=(B=0,G=255,R=255,A=255)
       MinDistFactorForKinematicUpdate=0.200000

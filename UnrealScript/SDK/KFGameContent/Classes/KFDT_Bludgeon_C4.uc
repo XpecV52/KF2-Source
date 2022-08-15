@@ -14,5 +14,5 @@ class KFDT_Bludgeon_C4 extends KFDT_Bludgeon_RifleButt
 DefaultProperties
 {
 	//defaults
-	AARWeaponID=`AAR_C4
+	WeaponDef=class'KFWeapDef_C4'
 }

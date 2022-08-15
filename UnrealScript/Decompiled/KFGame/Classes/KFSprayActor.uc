@@ -775,4 +775,5 @@ defaultproperties
     SeedSimFreq=60
     SeedWarmupTime=0.25
     bHidden=true
+    bTickIsDisabled=true
 }

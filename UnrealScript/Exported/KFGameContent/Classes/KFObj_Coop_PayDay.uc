@@ -297,5 +297,5 @@ defaultproperties
 {
    ObjWorldTex=Texture2D'UI_Objective_Tex.UI_Obj_Dosh_Loc'
    Name="Default__KFObj_Coop_PayDay"
-   ObjectArchetype=KFObj_Coop'KFGameContent.Default__KFObj_Coop'
+   ObjectArchetype=KFObj_Coop'kfgamecontent.Default__KFObj_Coop'
 }

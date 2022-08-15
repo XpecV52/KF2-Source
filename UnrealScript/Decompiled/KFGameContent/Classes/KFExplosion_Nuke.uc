@@ -9,6 +9,8 @@ class KFExplosion_Nuke extends KFExplosionActorLingering
     config(Weapon)
     hidecategories(Navigation);
 
+var float NukeEffectRadius;
+
 protected simulated function AffectsPawn(Pawn Victim, float DamageScale)
 {
     local KFPawn_Monster MonsterVictim;
@@ -23,8 +25,57 @@ protected simulated function AffectsPawn(Pawn Victim, float DamageScale)
     }
 }
 
+protected simulated function bool ExplodePawns()
+{
+    local Pawn Victim;
+    local float CheckRadius;
+    local bool bDamageBlocked, bHitPawn;
+    local Actor HitActor;
+    local Vector BBoxCenter;
+    local float DamageScale;
+    local Box BBox;
+
+    CheckRadius = GetNukeEffectCheckRadius();
+    if(CheckRadius > 0)
+    {
+        foreach WorldInfo.AllPawns(Class'Pawn', Victim, Location, CheckRadius)
+        {
+            if((((!Victim.bWorldGeometry || Victim.bCanBeDamaged) && Victim != ExplosionTemplate.ActorToIgnoreForDamage) && !ExplosionTemplate.bIgnoreInstigator || Victim != Instigator) && !ClassIsChildOf(Victim.Class, ExplosionTemplate.ActorClassToIgnoreForDamage))
+            {
+                if(bSkipLineCheckForPawns)
+                {
+                    bDamageBlocked = false;                    
+                }
+                else
+                {
+                    Victim.GetComponentsBoundingBox(BBox);
+                    BBoxCenter = (BBox.Min + BBox.Max) * 0.5;
+                    HitActor = TraceExplosive(BBoxCenter, Location + vect(0, 0, 20));
+                    bDamageBlocked = (HitActor != none) && HitActor != Victim;
+                }
+                if(!bDamageBlocked)
+                {
+                    DamageScale = ((DamageScalePerStack < 1) ? CalcStackingDamageScale(KFPawn(Victim), interval) : 1);
+                    if(DamageScale > 0)
+                    {
+                        AffectsPawn(Victim, DamageScale);
+                        bHitPawn = true;
+                    }
+                }
+            }            
+        }        
+    }
+    return bHitPawn;
+}
+
+protected simulated function float GetNukeEffectCheckRadius()
+{
+    return default.NukeEffectRadius;
+}
+
 defaultproperties
 {
+    NukeEffectRadius=300
     interval=1
     maxTime=8
     bSkipLineCheckForPawns=true

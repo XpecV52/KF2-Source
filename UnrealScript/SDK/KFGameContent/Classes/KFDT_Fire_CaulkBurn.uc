@@ -29,7 +29,7 @@ static function int GetDamageeDialogID()
 
 defaultproperties
 {
-	AARWeaponID=`AAR_CaulkBurn
+	WeaponDef=class'KFWeapDef_CaulkBurn'
 
 	DoT_Type=DOT_Fire
 	DoT_Duration=5.0

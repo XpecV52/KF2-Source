@@ -61,6 +61,14 @@ var globalconfig 	bool			bDisableMapVote;			// Turn off map voting
 var globalconfig	float			MapVotePercentage;			// Percentage of players that must vote for this map
 var globalconfig	float			MapVoteDuration;			// time till the map vote ends
 
+var globalconfig 	string 			ServerMOTD;			// Message of the day to be displayed on the server welcome screen
+var globalconfig 	Color      		ServerMOTDColor;        // The color of the server MOTD text (set in the form ServerMOTDColor=(R=0,G=0,B=0)
+var globalconfig 	string 			BannerLink;			// The url to the banner to be loaded from the magical internet
+var globalconfig 	string 			WebsiteLink;		// The url to the clan website
+var globalconfig 	Color     	 	WebLinkColor;           // The color of the web link text (set in the form WebLinkColor=(R=0,G=0,B=0)
+var globalconfig 	string 			ClanMotto;			// The server's motto of the day
+var globalconfig 	Color      		ClanMottoColor;         // The color of the clan motto text (set in the form ClanMottoColor=(R=0,G=0,B=0)
+
 /** If set, ignore blocking collision of teammates */
 var globalconfig 	bool			bDisableTeamCollision;
 
@@ -253,7 +261,7 @@ var bool	bIsCustomGame;
 var bool	bIsUnrankedGame;
 
 /** Whether we should check if this server is out of date and shut it down. Set in native PreBeginPlay */
-var const bool bEnableUpToDateCheck;
+var const bool bEnableServerVersionCheck;
 /** Time since we last checked for updates */
 var const float LastUpToDateCheckTime;
 
@@ -288,7 +296,7 @@ cpptext
 	virtual void SendUpToDateCheck();
 	virtual void ServerCleanExit();
 
-	virtual UBOOL IsUnrankedGame() {return bIsUnrankedGame;}	
+	virtual UBOOL IsUnrankedGame() {return bIsUnrankedGame;}
 }
 
 // Returns num of alive AI
@@ -404,9 +412,11 @@ static function string StripPlayOnPrefix( String MapName )
 static function PreloadContentClasses(KFGameReplicationInfo GRI);
 
 /**
- * @brief Marks the game as running an out-of-date version of the engine
+ * @brief Marks the game as running an out-of-date version of the engine or workshop content. Designed to be callable on default object
  */
-native static function SetNeedsRestart(bool bOutOfDate);
+native function SetNeedsRestart();
+
+native static function StaticSetNeedsRestart();
 
 /************************************************************************************
  * @name		InitGame
@@ -491,6 +501,9 @@ event PreBeginPlay()
     CreateTeam(0);
     InitAIDirector();
 	InitTraderList();
+	ReplicateWelcomeScreen();
+
+	WorldInfo.TWLogsInit();
 }
 
 event PostBeginPlay()
@@ -521,6 +534,25 @@ function InitGameplayEventWriter()
    {
       `log("Gameplay events will not be recorded.");
    }
+}
+
+function ReplicateWelcomeScreen()
+{
+	local WorldInfo WI;
+
+	WI = class'WorldInfo'.static.GetWorldInfo();
+
+	if(WI.NetMode != NM_DedicatedServer)
+	{
+		return;
+	}
+
+	if(MyKFGRI != none)
+	{
+		MyKFGRI.ServerAdInfo.BannerLink = BannerLink;
+		MyKFGRI.ServerAdInfo.ServerMOTD = ServerMOTD;
+		MyKFGRI.ServerAdInfo.WebsiteLink= WebsiteLink;
+	}
 }
 
 function EndLogging(string Reason)
@@ -1244,7 +1276,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 	Super.Killed( Killer, KilledPlayer, KilledPawn, DT );
 
 	/* __TW_ANALYTICS_ */
-   `RecordKillEvent( NORMAL, Killer, DT, KilledPlayer );
+	`RecordKillEvent( NORMAL, Killer, DT, KilledPlayer );
 
 	// Maybe do a DramaticEvent that may trigger Zedtime when someone is killed
 	if( Killer != KilledPlayer )
@@ -1260,7 +1292,6 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 		if( KFPC != none && KFPC.bIsPlayer && MonsterPawn != none )
 		{
 			//Chris: We have to do it earlier here because we need a damage type
-			//BLEED MAY BE BREAKING AAR STUFF
 			KFPC.AddZedKill( MonsterPawn.class, GameDifficulty, DT );
 
 			KFPCP = KFPC.GetPerk();
@@ -1288,7 +1319,9 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 	{
 		KilledPRI = KFPlayerReplicationInfo(KilledPlayer.PlayerReplicationInfo);
         if( KilledPRI != none )
-        {
+		{
+			`AnalyticsLog(("player_death", KilledPRI));
+			
         	PlayerScoreDelta = GetAdjustedDeathPenalty( KilledPRI );
         	`log("SCORING: Player" @ KilledPRI.PlayerName @ "next starting dosh =" @ PlayerScoreDelta + KilledPRI.score, bLogScoring);
         	KilledPRI.AddDosh( PlayerScoreDelta );
@@ -1365,6 +1398,13 @@ function ScoreMonsterKill( Controller Killer, Controller Monster, KFPawn_Monster
 		if( KFAIC.DamageHistory.Length > 0 )
 		{
 			DistributeMoneyAndXP( MonsterPawn.class, KFAIC.DamageHistory, Killer );
+
+			if( MonsterPawn.IsStalkerClass() &&
+			 	MonsterPawn.LastStoredCC != none &&
+			 	MonsterPawn.bIsCloakingSpottedByTeam )
+			{
+				MonsterPawn.LastStoredCC.AddPlayerXP( MonsterPawn.static.GetXPValue(GameDifficulty), class'KFPerk_Commando' );
+			}
 		}
 	}
 
@@ -1850,7 +1890,7 @@ function int GetCurrentMapCycleIndex(const out array<string> MapList)
 
 exec function MaintenanceRestart()
 {
-	SetNeedsRestart(false);
+	SetNeedsRestart();
 }
 
 // Save player's stats on leave
@@ -2173,6 +2213,7 @@ function int GetAvailableReservations()
  *********************************************************************************************/
 
 static native function bool AllowBalanceLogging();
+static native function bool AllowAnalyticsLogging();
 
 /** logs what each player is carrying */
 function LogPlayersInventory()
@@ -2196,6 +2237,7 @@ function LogPlayersInventory()
 				InvString $= Item.Class.Name $ ",";
 			}
 			`BalanceLog(GBE_Inventory, PC.PlayerReplicationInfo, InvString);
+			`AnalyticsLog(("inventory", PC.PlayerReplicationInfo, InvString));
 		}
 	}
 }
@@ -2215,6 +2257,7 @@ function LogPlayersDosh(name EventName)
 		if ( PC.PlayerReplicationInfo != None && !PC.PlayerReplicationInfo.bIsSpectator )
 		{
 			`BalanceLog(EventName, PC.PlayerReplicationInfo, "$"$PC.PlayerReplicationInfo.Score$","$PC.GetPerk());
+			`AnalyticsLog(("dosh", PC.PlayerReplicationInfo, EventName, "#"$PC.PlayerReplicationInfo.Score, PC.GetPerk(), "#"$MyKFGRI.WaveNum ));
 		}
 	}
 }
@@ -2237,6 +2280,8 @@ function LogPlayersKillCount()
 		{
 			`BalanceLog(GBE_Kills, PRI, PRI.Kills$","$PC.GetPerk());
 			`BalanceLog(GBE_Deaths, PRI, PRI.Deaths$","$PC.GetPerk());
+			`AnalyticsLog(("kills", PRI, "#"$PRI.Kills, PC.GetPerk()));
+			`AnalyticsLog(("deaths", PRI, "#"$PRI.Deaths, PC.GetPerk()));
 		}
 	}
 }
@@ -2518,7 +2563,7 @@ defaultproperties
     ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo' // menu
     ForcedMusicTracks(1)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo' // credits
     ForcedMusicTracks(2)=KFMusicTrackInfo'WW_MACT_Default.TI_SH_Boss_DieVolter' // hans
-    ForcedMusicTracks(3)=KFMusicTrackInfo'WW_MACT_Default.TI_ID_Murderer' // patriarch
+    ForcedMusicTracks(3)=KFMusicTrackInfo'WW_MACT_Default.TI_Boss_Patriarch' // patriarch
     ForcedMusicTracks(4)=KFMusicTrackInfo'WW_MACT_Default.TI_ID_Murderer' // matriarch
 
 	ReservationTimeout=32

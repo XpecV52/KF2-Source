@@ -2,6 +2,7 @@ package tripwire.containers.serverBrowser
 {
     import com.greensock.TweenMax;
     import com.greensock.easing.Cubic;
+    import flash.display.MovieClip;
     import flash.events.Event;
     import flash.external.ExternalInterface;
     import flash.text.TextField;
@@ -49,8 +50,6 @@ package tripwire.containers.serverBrowser
         
         public var rankedLabelText:TextField;
         
-        public var rankedValueText:TextField;
-        
         public var zedCountText:TextField;
         
         public var mutatorsLabelText:TextField;
@@ -66,6 +65,12 @@ package tripwire.containers.serverBrowser
         public var serverNameText:TextField;
         
         public var serverIPText:TextField;
+        
+        public var rankedString:String;
+        
+        public var unrankedString:String;
+        
+        public var rankedIcon:MovieClip;
         
         public function ServerDetailsContainer()
         {
@@ -83,7 +88,8 @@ package tripwire.containers.serverBrowser
             this.vacLabelText.text = param1.vacSecure;
             this.zedCountLabelText.text = param1.zedCount;
             this.mutatorsLabelText.text = param1.mutators;
-            this.rankedLabelText.text = param1.ranked;
+            this.rankedString = param1.ranked;
+            this.unrankedString = param1.unranked;
             this.titleText.text = param1.serverInfo;
             this.favoriteButton.label = param1.favorite;
             this.favoriteString = !!param1.favorite ? param1.favorite : "";
@@ -101,7 +107,8 @@ package tripwire.containers.serverBrowser
                 this.zedCountText.text = (!!param1.zedCount ? param1.zedCount : "0") + "/" + (!!param1.maxZedCount ? param1.maxZedCount : "0");
                 this.vacValueText.text = !!param1.vacEnable ? param1.vacEnable : "";
                 this.mutatorsValueText.text = !!param1.mutators ? param1.mutators : "";
-                this.rankedValueText.text = !!param1.ranked ? param1.ranked : "";
+                this.rankedLabelText.text = !!param1.ranked ? this.rankedString : this.unrankedString;
+                this.rankedIcon.gotoAndStop(!!param1.ranked ? 1 : 2);
                 this.mapNameText.text = !!param1.map ? param1.map : "";
                 this.mapImagePath = !!param1.mapImagePath ? param1.mapImagePath : "";
                 this.serverNameText.text = !!param1.serverName ? param1.serverName : "";

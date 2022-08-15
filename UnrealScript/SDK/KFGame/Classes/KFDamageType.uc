@@ -15,7 +15,7 @@ class KFDamageType extends DamageType
 `include(KFGameDialog.uci)
 `include(KFGame\KFMatchStats.uci);
 
-var byte AARWeaponID;
+var class<KFWeaponDefinition> WeaponDef;
 
 /** Won't do damage to the instigator */
 var bool bNoInstigatorDamage;
@@ -164,6 +164,9 @@ var name DeathMaterialEffectParamName;
 /** Interpolation duration for death material parameter above */
 var float DeathMaterialEffectDuration;
 
+/** Custom override that bypasses skin type system for one-off damage types. */
+var AKEvent OverrideImpactSound;
+
 /**
  * Take the primary HitDirection and modify it to add more spread.
  * Use the BloodSpread property to calculate the spread amount
@@ -287,25 +290,22 @@ static function bool IsToxicDartWithACMedicPerk()
 static function PlayImpactHitEffects( KFPawn P, vector HitLocation, vector HitDirection, byte HitZoneIndex, optional Pawn HitInstigator )
 {
 	local KFSkinTypeEffects SkinType;
-	local EImpactEffectMode Mode;
-	local float DummyMod;
 
 	if ( P.CharacterArch != None && default.EffectGroup < FXG_Max )
 	{
 		SkinType = P.GetHitZoneSkinTypeEffects( HitZoneIndex );
 		if( SkinType != none )
 		{
-			if( P.IsVulnerableTo(default.class,DummyMod) )
-			{
-				Mode = FXM_Vulnerable;
-			}
-			else if( P.IsResistantTo(default.class,DummyMod) )
-			{
-				Mode = FXM_Resistant;
-			}
+			SkinType.PlayImpactParticleEffect(P, HitLocation, HitDirection, HitZoneIndex, default.EffectGroup);
 
-			SkinType.PlayImpactParticleEffect(P, HitLocation, HitDirection, HitZoneIndex, default.EffectGroup, Mode);
-			SkinType.PlayTakeHitSound(P, HitLocation, HitInstigator, default.EffectGroup, Mode);
+			if ( default.OverrideImpactSound != None )
+			{
+				P.PlaySoundBase(default.OverrideImpactSound, true,,, HitLocation);
+			}
+			else
+			{
+				SkinType.PlayTakeHitSound(P, HitLocation, HitInstigator, default.EffectGroup);
+			}				
 		}
 	}
 }
@@ -340,7 +340,7 @@ Defaultproperties
 	BodyWoundDecalHeight=20
 
 	EffectGroup=`FXG_NONE
-	AARWeaponID=`AAR_NONE
+	WeaponDef=None
 
 	bAnyPerk=false;
 }

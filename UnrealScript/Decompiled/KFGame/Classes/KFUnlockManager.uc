@@ -31,9 +31,9 @@ struct native SharedContent
 };
 
 var array<SharedContent> SharedContentList;
-
-// Export UKFUnlockManager::execTestSteamAPI(FFrame&, void* const)
-native static function TestSteamAPI(PlayerReplicationInfo PRI, byte CallFlags);
+var OnlineSubsystem MyOnlineSubsystem;
+var const bool bDebugUnlocks;
+var const int SteamGroupAppId;
 
 // Export UKFUnlockManager::execInitSharedUnlocksFor(FFrame&, void* const)
 native static function InitSharedUnlocksFor(KFPlayerReplicationInfo PRI);
@@ -47,6 +47,11 @@ native static function GetSharedContentPlayerList(KFUnlockManager.ESharedContent
 // Export UKFUnlockManager::execGetIDAvailable(FFrame&, void* const)
 private native static final function bool GetIDAvailable(int Id);
 
+static function bool GetWeaponSkinAvailable(int Id)
+{
+    return GetIDAvailable(Id);
+}
+
 static function bool GetAvailable(KFUnlockableAsset Asset)
 {
     return GetIDAvailable(Asset.GetAssetId());
@@ -59,16 +64,98 @@ static function bool GetAvailableSkin(const out SkinVariant Asset)
 
 static function bool GetAvailableOutfit(const out OutfitVariants Asset)
 {
-    return GetIDAvailable(Asset.UnlockAssetID);
+    local int I;
+
+    I = 0;
+    J0x0B:
+
+    if(I < Asset.SkinVariations.Length)
+    {
+        if(GetIDAvailable(Asset.SkinVariations[I].UnlockAssetID))
+        {
+            return true;
+        }
+        ++ I;
+        goto J0x0B;
+    }
+    return false;
 }
 
 static function bool GetAvailableAttachment(const out AttachmentVariants Asset)
 {
-    return GetIDAvailable(Asset.UnlockAssetID);
+    local int I;
+
+    I = 0;
+    J0x0B:
+
+    if(I < Asset.SkinVariations.Length)
+    {
+        if(GetIDAvailable(Asset.SkinVariations[I].UnlockAssetID))
+        {
+            return true;
+        }
+        ++ I;
+        goto J0x0B;
+    }
+    return false;
 }
+
+private static final event bool CheckCustomizationOwnership(KFPlayerReplicationInfo PRI)
+{
+    local KFCharacterInfo_Human CharArch;
+    local OutfitVariants Outfit;
+    local SkinVariant Skin;
+    local AttachmentVariants Attachment;
+    local int I;
+
+    CharArch = PRI.CharacterArchetypes[PRI.RepCustomizationInfo.CharacterIndex];
+    if(CharArch != none)
+    {
+        Outfit = CharArch.BodyVariants[PRI.RepCustomizationInfo.BodyMeshIndex];
+        Skin = Outfit.SkinVariations[PRI.RepCustomizationInfo.BodySkinIndex];
+        if(!GetIDAvailable(Skin.UnlockAssetID))
+        {
+            ClearCharacterCustomization(PRI);
+            return false;
+        }
+        Outfit = CharArch.HeadVariants[PRI.RepCustomizationInfo.HeadMeshIndex];
+        Skin = Outfit.SkinVariations[PRI.RepCustomizationInfo.HeadSkinIndex];
+        if(!GetIDAvailable(Skin.UnlockAssetID))
+        {
+            ClearCharacterCustomization(PRI);
+            return false;
+        }
+        I = 0;
+        J0x262:
+
+        if(I < 3)
+        {
+            if(PRI.RepCustomizationInfo.AttachmentMeshIndices[I] != 255)
+            {
+                Attachment = CharArch.CosmeticVariants[PRI.RepCustomizationInfo.AttachmentMeshIndices[I]];
+                Skin = Attachment.SkinVariations[PRI.RepCustomizationInfo.AttachmentSkinIndices[I]];
+                if(!GetIDAvailable(Skin.UnlockAssetID))
+                {
+                    ClearCharacterCustomization(PRI);
+                    return false;
+                }
+            }
+            ++ I;
+            goto J0x262;
+        }
+    }
+    return true;
+}
+
+// Export UKFUnlockManager::execClearCharacterCustomization(FFrame&, void* const)
+private native static final function ClearCharacterCustomization(KFPlayerReplicationInfo PRI);
+
+// Export UKFUnlockManager::execTestSteamAPI(FFrame&, void* const)
+native static function TestSteamAPI(PlayerReplicationInfo PRI, byte CallFlags);
 
 defaultproperties
 {
     SharedContentList(0)=(Name=None,IconPath="",Id=0)
     SharedContentList(1)=(Name=KFWeap_Edged_Zweihander,IconPath="WEP_UI_Zweihander_TEX.UI_WeaponSelect_Zweihander",Id=219640)
+    SteamGroupAppId=1
 }

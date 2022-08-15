@@ -54,14 +54,19 @@ simulated function Explode(GameExplosion NewExplosionTemplate, optional vector D
 }
 
 /** During explosion, spawn additional shard/shrapnel projectiles */
-simulated function SpawnShards(GameExplosion NewExplosionTemplate, int NumShards, class<Projectile> ShardClass)
+simulated function SpawnShards(GameExplosion NewExplosionTemplate, int NumShards, class<Projectile> ShardClass, optional int PitchShardMin=10, optional int PitchShardMax=35)
 {
-	local vector SpawnPos, BaseChunkDir;
+	local vector SpawnPos;
 	local actor HitActor;
 	local rotator rot;
 	local int i;
 	local Projectile NewChunk;
 	local vector HitLocation, HitNormal;
+	local int YawShardPosition;
+	local int YawShardIncrement;
+
+	// Disperse NumShards across 360 degrees, YawShardPosition is increased by this amount with each shard
+	YawShardIncrement = 360 / NumShards;	 
 
 	SpawnPos = NewExplosionTemplate.HitLocation + 10 * NewExplosionTemplate.HitNormal;
 
@@ -78,9 +83,6 @@ simulated function SpawnShards(GameExplosion NewExplosionTemplate, int NumShards
 	// Spawn the shards only on the server
 	if ( Instigator != none && Instigator.Role == ROLE_Authority )
 	{
-		// Spawn the shards in the direction of the HitNormal
-		BaseChunkDir = HitNormal;
-
 		if(bDrawDebug)
 		{
 			DrawDebugLine(SpawnPos,SpawnPos + HitNormal * 1000.0,0,255,0,TRUE);
@@ -89,8 +91,10 @@ simulated function SpawnShards(GameExplosion NewExplosionTemplate, int NumShards
 		// Spawn the number of shards we need
 		for (i = 0; i < NumShards; i++)
 		{
-			rot = rotator(BaseChunkDir + VRand());
-
+			rot.Pitch = RandRange( PitchShardMin, PitchShardMax ) * DegToUnrRot;			
+			YawShardPosition += YawShardIncrement;
+			rot.Yaw = YawShardPosition * DegToUnrRot;
+			
 			NewChunk = Spawn(ShardClass,Instigator != none ? Instigator.Weapon : self,, SpawnPos, rot);
 
 			if(bDrawDebug)

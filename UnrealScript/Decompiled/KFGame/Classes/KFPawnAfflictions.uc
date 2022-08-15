@@ -178,8 +178,8 @@ protected function CheckSpecialMoveAfflictions(KFPerk InstigatorPerk, Vector Hit
     StunPowerModifier = 1;
     if(InstigatorPerk != none)
     {
-        KnockdownPowerModifier = InstigatorPerk.GetKnockdownPowerModifier(DamageType);
-        StumblePowerModifier = InstigatorPerk.GetStumblePowerModifier(Outer, DamageType, StumbleCooldownModifier);
+        KnockdownPowerModifier = InstigatorPerk.GetKnockdownPowerModifier(DamageType, BodyPart, Outer.bIsSprinting);
+        StumblePowerModifier = InstigatorPerk.GetStumblePowerModifier(Outer, DamageType, StumbleCooldownModifier, BodyPart);
         StunPowerModifier = InstigatorPerk.GetStunPowerModifier(DamageType, HitZoneIdx);
     }
     if(StumblePowerModifier >= 255)

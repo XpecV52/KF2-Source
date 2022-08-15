@@ -47,5 +47,5 @@ defaultproperties
 	LegStumblePower=33
 	GunHitPower=0
 
-	AARWeaponID=`AAR_MB500
+	WeaponDef=class'KFWeapDef_MB500'
 }

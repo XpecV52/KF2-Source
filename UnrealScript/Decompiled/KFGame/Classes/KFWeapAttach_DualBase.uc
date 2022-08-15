@@ -11,6 +11,14 @@ class KFWeapAttach_DualBase extends KFWeaponAttachment
 
 const ShootLeftAnim = 'ADD_Shoot_LW';
 const ShootRightAnim = 'ADD_Shoot_RW';
+const CrouchShootLeftAnim = 'ADD_CH_Shoot_LW';
+const CrouchShootRightAnim = 'ADD_CH_Shoot_RW';
+const IronShootLeftAnim = 'ADD_Iron_Shoot_LW';
+const IronShootRightAnim = 'ADD_Iron_Shoot_RW';
+const WeaponFireAnim_R = 'Shoot_RW';
+const WeaponFireAnim_L = 'Shoot_LW';
+const WeaponAltFireAnim_R = 'Shoot_RW';
+const WeaponAltFireAnim_L = 'Shoot_LW';
 const LeftWeaponSocket = 'LW_Weapon';
 
 /** Left hand skeletal mesh. If none is specified, the right hand skeletal mesh will be duplicated. */
@@ -101,6 +109,21 @@ simulated function AttachMuzzleFlash()
     }
 }
 
+function SetWeaponSkin(int ItemId)
+{
+    local array<MaterialInterface> SkinMICs;
+
+    if((ItemId > 0) && WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        SkinMICs = Class'KFWeaponSkinList'.static.GetWeaponSkin(ItemId, 1);
+        if(SkinMICs.Length > 0)
+        {
+            WeapMesh.SetMaterial(0, SkinMICs[0]);
+            LeftWeapMesh.SetMaterial(0, SkinMICs[0]);
+        }
+    }
+}
+
 function bool ChooseActiveWeapon(byte FlashCount)
 {
     if(LastChooseWeaponTime == WorldInfo.TimeSeconds)
@@ -122,24 +145,55 @@ function bool ChooseActiveWeapon(byte FlashCount)
 simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P)
 {
     ChooseActiveWeapon(P.FlashCount);
-    SpawnTracer(GetMuzzleLocation(((bPlayFXOnSecondWeapon) ? 1 : 0)), HitLocation);
-    if(!ActorEffectIsRelevant(P, false, MaxFireEffectDistance))
-    {
-        return false;
-    }
-    if(!P.IsDoingSpecialMove())
+    return super.ThirdPersonFireEffects(HitLocation, P);
+}
+
+simulated function PlayWeaponFireAnim()
+{
+    if((Instigator.FiringMode == 1) && 'Shoot' != 'None')
     {
         if(bPlayFXOnSecondWeapon)
         {
-            P.PlayBodyAnim('ADD_Shoot_LW', 0, 1, ShootBlendInTime, ShootBlendOutTime);            
+            LeftWeapMesh.PlayAnim('Shoot_LW',,, true);            
         }
         else
         {
-            P.PlayBodyAnim('ADD_Shoot_RW', 0, 1, ShootBlendInTime, ShootBlendOutTime);
+            WeapMesh.PlayAnim('Shoot_RW',,, true);
+        }        
+    }
+    else
+    {
+        if('Shoot' != 'None')
+        {
+            if(bPlayFXOnSecondWeapon)
+            {
+                LeftWeapMesh.PlayAnim('Shoot_LW',,, true);                
+            }
+            else
+            {
+                WeapMesh.PlayAnim('Shoot_RW',,, true);
+            }
         }
     }
-    CauseMuzzleFlash(P.FiringMode);
-    return true;
+}
+
+simulated function PlayPawnFireAnim(KFPawn P, KFPawn.EAnimSlotStance AnimType)
+{
+    if(P.bIsCrouched)
+    {
+        P.PlayBodyAnim(((bPlayFXOnSecondWeapon) ? 'ADD_CH_Shoot_LW' : 'ADD_CH_Shoot_RW'), 0, 1, ShootBlendInTime, ShootBlendOutTime);        
+    }
+    else
+    {
+        if(P.bIsWalking)
+        {
+            P.PlayBodyAnim(((bPlayFXOnSecondWeapon) ? 'ADD_Iron_Shoot_LW' : 'ADD_Iron_Shoot_RW'), 0, 1, ShootBlendInTime, ShootBlendOutTime);            
+        }
+        else
+        {
+            P.PlayBodyAnim(((bPlayFXOnSecondWeapon) ? 'ADD_Shoot_LW' : 'ADD_Shoot_RW'), 0, 1, ShootBlendInTime, ShootBlendOutTime);
+        }
+    }
 }
 
 simulated function CauseMuzzleFlash(byte FiringMode)
@@ -169,7 +223,7 @@ simulated function Vector GetMuzzleLocation(optional byte MuzzleID)
 {
     local Vector SocketLocation;
 
-    if(MuzzleID >= 1)
+    if((MuzzleID >= 1) || bPlayFXOnSecondWeapon)
     {
         if((LeftMuzzleFlash == none) && MuzzleFlashTemplate != none)
         {
@@ -177,7 +231,7 @@ simulated function Vector GetMuzzleLocation(optional byte MuzzleID)
         }
         if(LeftMuzzleFlash != none)
         {
-            LeftWeapMesh.GetSocketWorldLocationAndRotation(LeftMuzzleFlash.GetAltSocketName(), SocketLocation);
+            LeftWeapMesh.GetSocketWorldLocationAndRotation(LeftMuzzleFlash.GetSocketName(), SocketLocation);
             return SocketLocation;
         }
     }
@@ -188,6 +242,25 @@ simulated function PlayWeaponMeshAnim(name AnimName, AnimNodeSlot SyncNode, bool
 {
     super.PlayWeaponMeshAnim(AnimName, SyncNode, bLoop);
     LeftWeapMesh.PlayAnim(AnimName, 0, bLoop);
+}
+
+simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingChannels)
+{
+    super.SetMeshLightingChannels(NewLightingChannels);
+    if(!bWeapMeshIsPawnMesh)
+    {
+        LeftWeapMesh.SetLightingChannels(NewLightingChannels);
+    }
+}
+
+simulated function bool HasIndoorLighting()
+{
+    return super.HasIndoorLighting() && LeftWeapMesh.LightingChannels.Indoor;
+}
+
+simulated function bool HasOutdoorLighting()
+{
+    return super.HasOutdoorLighting() && LeftWeapMesh.LightingChannels.Outdoor;
 }
 
 defaultproperties

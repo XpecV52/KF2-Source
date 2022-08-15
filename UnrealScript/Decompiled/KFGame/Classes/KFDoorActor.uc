@@ -122,6 +122,8 @@ var NavigationPoint MyMarker;
 var() float BrokenDoorImpulse;
 /** The maximum angular velocity applied to a broken hinged door */
 var() float MaxAngularVelocity;
+/** Adjusts the "push" plane of the door (the threshold for pushing forward or backward) along its X-axis */
+var() float PushOriginOffset;
 /** sound played when the mover is interpolated forward */
 var(Sound) AkBaseSoundObject OpenSound;
 /** looping sound while opening */
@@ -163,7 +165,10 @@ simulated event ReplicatedEvent(name VarName)
     {
         if(bIsDoorOpen)
         {
-            OpenDoor(none);            
+            if(MovementControl.StrengthTarget == float(0))
+            {
+                OpenDoor(none);
+            }            
         }
         else
         {
@@ -328,6 +333,8 @@ simulated function InitSkelControl()
         default:
             break;
     }
+    MovementControl.SetSkelControlStrength(1, 0);
+    bIsDoorOpen = true;
 }
 
 // Export UKFDoorActor::execIsCompletelyOpen(FFrame&, void* const)
@@ -534,11 +541,13 @@ private final function TryPushPawns()
 {
     local Pawn P;
     local bool bInFrontOfDoor;
-    local Vector DoorX, DoorY, DoorZ, PushDir;
+    local Vector DoorX, DoorY, DoorZ, PushDir, OffsetLocation;
+
     local Rotator DoorYRot;
 
     GetAxes(Rotation, DoorX, DoorY, DoorZ);
     DoorYRot = rotator(DoorY);
+    OffsetLocation = Location + (DoorX * PushOriginOffset);
     foreach WorldInfo.AllPawns(Class'Pawn', P, Location, 200)
     {
         if(!P.IsAliveAndWell())
@@ -547,9 +556,9 @@ private final function TryPushPawns()
         }
         if(!bIsDoorOpen && P.IsPlayerOwned())
         {
-            if(PointDistToPlane(Location, DoorYRot, P.Location) < float(40))
+            if(PointDistToPlane(OffsetLocation, DoorYRot, P.Location) < float(40))
             {
-                bInFrontOfDoor = (DoorX Dot (P.Location - Location)) > 0;
+                bInFrontOfDoor = (DoorX Dot (P.Location - OffsetLocation)) > 0;
                 PushDir = float(750) * DoorX;
                 if(DoorMechanism == 0)
                 {

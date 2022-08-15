@@ -83,8 +83,7 @@ var bool bPlayShambling;
 var bool bCanSprint;
 var bool bCanSprintWhenDamaged;
 var bool bSprintingDisabled;
-var bool bCanCloak;
-var repnotify bool bIsCloaking;
+var bool bCloakOnMeleeEnd;
 var bool bIsCloakingSpottedByLP;
 var repnotify bool bIsCloakingSpottedByTeam;
 var private bool bIsStalkerClass;
@@ -127,6 +126,7 @@ var transient int OldHealth;
 var KFAnim_RandomScripted WalkBlendList;
 var float KnockedDownBySonicWaveOdds;
 var float LastSpottedStatusUpdate;
+var KFPlayerController LastStoredCC;
 var transient float NormalGroundSpeed;
 var transient float LastAISpeedCheckTime;
 var transient float LastLOSOrRelevantTime;
@@ -139,7 +139,9 @@ var float ReachedGoalThresh_Spider;
 var float LastBumpTime;
 var float BumpFrequency;
 var class<KFDamageType> BumpDamageType;
-var transient float LastGibCollisionTime;
+var protected const float FootstepCameraShakeInnerRadius;
+var protected const float FootstepCameraShakeOuterRadius;
+var CameraShake FootstepCameraShake;
 var transient array<AttachedGoreChunkInfo> AttachedGoreChunks;
 var transient int NumHeadChunksRemoved;
 var transient array<name> BrokenHeadBones;
@@ -160,7 +162,7 @@ replication
         bShowHealth;
 
      if(bNetDirty && bCanCloak)
-        bIsCloaking, bIsCloakingSpottedByTeam;
+        bIsCloakingSpottedByTeam;
 }
 
 simulated delegate bool GoreChunkAttachmentCriteria();
@@ -310,6 +312,15 @@ function ApplySpecialZoneHealthMod(float HealthMod)
     HitZones[0].GoreHealth = int(float(default.HitZones[0].GoreHealth) * HealthMod);
 }
 
+simulated event PlayFootStepSound(int FootDown)
+{
+    super.PlayFootStepSound(FootDown);
+    if(((MyKFAIC != none) && FootstepCameraShake != none) && MyKFAIC.IsDoingLatentMove())
+    {
+        Class'Camera'.static.PlayWorldCameraShake(FootstepCameraShake, self, Location, FootstepCameraShakeInnerRadius, FootstepCameraShakeOuterRadius, 1.3, true);
+    }
+}
+
 event SpiderBumpLevel(Vector HitLocation, Vector HitNormal, optional Actor Wall);
 
 simulated event Bump(Actor Other, PrimitiveComponent OtherComp, Vector HitNormal)
@@ -441,6 +452,9 @@ function SetMovementPhysics()
     }
     super(Pawn).SetMovementPhysics();
 }
+
+// Export UKFPawn_Monster::execIsValidEnemyTargetFor(FFrame&, void* const)
+native function bool IsValidEnemyTargetFor(const PlayerReplicationInfo PRI, bool bNoPRIisEnemy);
 
 // Export UKFPawn_Monster::execInChargeRange(FFrame&, void* const)
 native function bool InChargeRange(const Vector TestLocation);
@@ -591,7 +605,7 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
     local float DamageMod;
 
     super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
-    if(DamageType.default.bCausedByWorld && ClassIsChildOf(DamageType, Class'DmgType_Fell'))
+    if(DamageType.default.bCausedByWorld && ClassIsChildOf(DamageType, Class'KFDT_Falling'))
     {
         InDamage = 0;
         return;
@@ -654,12 +668,12 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
     }
 }
 
-function bool IsVulnerableTo(class<DamageType> DT, out float DamageMod)
+function bool IsVulnerableTo(class<DamageType> DT, optional out float DamageMod)
 {
     local int Idx;
 
     Idx = 0;
-    J0x0B:
+    J0x0C:
 
     if(Idx < VulnerableDamageTypes.Length)
     {
@@ -669,17 +683,17 @@ function bool IsVulnerableTo(class<DamageType> DT, out float DamageMod)
             return true;
         }
         ++ Idx;
-        goto J0x0B;
+        goto J0x0C;
     }
     return false;
 }
 
-function bool IsResistantTo(class<DamageType> DT, out float DamageMod)
+function bool IsResistantTo(class<DamageType> DT, optional out float DamageMod)
 {
     local int Idx;
 
     Idx = 0;
-    J0x0B:
+    J0x0C:
 
     if(Idx < ResistantDamageTypes.Length)
     {
@@ -689,7 +703,7 @@ function bool IsResistantTo(class<DamageType> DT, out float DamageMod)
             return true;
         }
         ++ Idx;
-        goto J0x0B;
+        goto J0x0C;
     }
     return false;
 }
@@ -723,7 +737,7 @@ function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, 
         {
             if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
             {
-                KFGameInfo(WorldInfo.Game).DialogManager.PlayDamagedZedDialog(KFPH_Instigator, self, DamageType);
+                KFGameInfo(WorldInfo.Game).DialogManager.PlayDamageZedContinuousDialog(KFPH_Instigator, self);
             }
         }
     }
@@ -734,6 +748,24 @@ function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, 
     if(MyKFAIC != none)
     {
         MyKFAIC.AILog_Internal((((string(GetFuncName()) $ "() Instigator:") $ string(InstigatedBy)) $ " DT: ") $ string(DamageType), 'Damage');
+    }
+}
+
+function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, Vector Momentum, TraceHitInfo HitInfo)
+{
+    local KFPawn_Human KFPH_Instigator;
+
+    super.PlayHit(Damage, InstigatedBy, HitLocation, DamageType, Momentum, HitInfo);
+    if((InstigatedBy != none) && InstigatedBy.Pawn != none)
+    {
+        KFPH_Instigator = KFPawn_Human(InstigatedBy.Pawn);
+        if(KFPH_Instigator != none)
+        {
+            if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
+            {
+                KFGameInfo(WorldInfo.Game).DialogManager.PlayDamagedZedDialog(KFPH_Instigator, self, DamageType);
+            }
+        }
     }
 }
 
@@ -797,12 +829,13 @@ event OnRigidBodyLinearConstraintViolated(name StretchedBoneName)
     local KFCharacterInfo_Monster MonsterInfo;
 
     GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
-    if((GoreManager != none) && GoreManager.AllowMutilation())
+    if(((CanSwapToGoreMesh()) && GoreManager != none) && GoreManager.AllowMutilation())
     {
         MonsterInfo = GetCharacterMonsterInfo();
         if(!bIsGoreMesh && MonsterInfo != none)
         {
             SwitchToGoreMesh(MonsterInfo.GoreMesh, MonsterInfo.CharacterGoreMaterialID);
+            GoreMeshSwapped();
         }
     }
     if(bIsGoreMesh && GoreManager != none)
@@ -869,12 +902,21 @@ function ShrapnelExplode(Controller Killer)
 
 function CauseHeadTrauma(optional float BleedOutTime)
 {
+    local KFPlayerController KFPC;
+    local KFGameInfo KFGI;
+
     BleedOutTime = 5;
     if(!bIsHeadless)
     {
-        if((HitFxInstigator.Controller != none) && HitFxInfo.DamageType != none)
+        KFPC = KFPlayerController(HitFxInstigator.Controller);
+        KFGI = KFGameInfo(WorldInfo.Game);
+        if((KFPC != none) && KFGI != none)
         {
-            Class'EphemeralMatchStats'.static.RecordWeaponHeadShot(HitFxInstigator.Controller, HitFxInfo.DamageType);
+            KFPC.AddZedHeadshot(byte(KFGI.GameDifficulty), HitFxInfo.DamageType);
+            if((KFPC != none) && HitFxInfo.DamageType != none)
+            {
+                Class'EphemeralMatchStats'.static.RecordWeaponHeadShot(KFPC, HitFxInfo.DamageType);
+            }
         }
     }
     if(!bIsHeadless && !bPlayedDeath)
@@ -984,18 +1026,24 @@ simulated function SetGameplayMICParams()
     super.SetGameplayMICParams();
 }
 
-function NotifyAttackParried(Pawn InstigatedBy, byte InParryStrength)
+function bool NotifyAttackParried(Pawn InstigatedBy, byte InParryStrength)
 {
     if(InParryStrength < ParryResistance)
     {
-        return;
+        return false;
     }
-    super.NotifyAttackParried(InstigatedBy, InParryStrength);
+    return super.NotifyAttackParried(InstigatedBy, InParryStrength);
 }
 
-function SetCloaked(bool bNewCloaking);
+function SetCloaked(bool bNewCloaking)
+{
+    if(bNewCloaking)
+    {
+        ClearBloodDecals();
+    }
+}
 
-function CallOutCloaking();
+function CallOutCloaking(optional KFPlayerController CallOutController);
 
 function MeleeSpecialMoveEnded();
 
@@ -1099,6 +1147,13 @@ native final simulated function bool SwitchToGoreLOD(int GoreLODIndex);
 
 // Export UKFPawn_Monster::execSwitchToGoreMesh(FFrame&, void* const)
 native final simulated function bool SwitchToGoreMesh(SkeletalMesh GoreSkelMesh, int GoreMaterialID);
+
+simulated function GoreMeshSwapped();
+
+simulated function bool CanSwapToGoreMesh()
+{
+    return true;
+}
 
 simulated function GetClosestHitBones(int NumBones, Vector TestLocation, out array<name> OutHitBoneList)
 {
@@ -1253,7 +1308,7 @@ simulated function HandleRagdollImpulseEffects(Vector HitLocation, Vector HitDir
     if(bIsDismemberingHit && ParentImpulseScale > float(0))
     {
         HitBoneParentName = Mesh.GetParentBone(HitBoneName);
-        if((RBBoneName != HitBoneParentName) && Mesh.MatchRefBone(HitBoneParentName) > 1)
+        if((RBBoneName != HitBoneParentName) && Mesh.PhysicsAsset.FindBodyIndex(HitBoneParentName) != -1)
         {
             ApplyRagdollImpulse(dmgType, HitLocation, ParentImpulseDir, HitBoneParentName, ParentImpulseScale);
         }
@@ -1484,7 +1539,7 @@ simulated function ApplyBloodDecals(int HitZoneIndex, Vector HitLocation, Vector
     GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
     if((dmgType != none) && GoreManager != none)
     {
-        if(!bWasObliterated)
+        if(!bWasObliterated && !bIsCloaking)
         {
             GoreManager.LeaveABodyWoundDecal(self, HitLocation, HitDirection, HitZoneName, HitBoneName, dmgType);
         }
@@ -1507,12 +1562,13 @@ simulated function HandlePartialGoreAndGibs(class<KFDamageType> dmgType, Vector 
     GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
     if((dmgType != none) && GoreManager != none)
     {
-        if(GoreManager.AllowMutilation())
+        if((CanSwapToGoreMesh()) && GoreManager.AllowMutilation())
         {
             MonsterInfo = GetCharacterMonsterInfo();
             if(!bIsGoreMesh && MonsterInfo != none)
             {
                 SwitchToGoreMesh(MonsterInfo.GoreMesh, MonsterInfo.CharacterGoreMaterialID);
+                GoreMeshSwapped();
             }
             if(bIsGoreMesh)
             {
@@ -1602,12 +1658,13 @@ simulated function ApplyHeadChunkGore(class<KFDamageType> dmgType, Vector HitLoc
     GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
     if((dmgType != none) && GoreManager != none)
     {
-        if(GoreManager.AllowMutilation())
+        if((CanSwapToGoreMesh()) && GoreManager.AllowMutilation())
         {
             MonsterInfo = GetCharacterMonsterInfo();
             if(!bIsGoreMesh && MonsterInfo != none)
             {
                 SwitchToGoreMesh(MonsterInfo.GoreMesh, MonsterInfo.CharacterGoreMaterialID);
+                GoreMeshSwapped();
             }
             if(!bPlayedDeath)
             {
@@ -1660,12 +1717,13 @@ simulated function PlayHeadAsplode()
         return;
     }
     GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
-    if((GoreManager != none) && GoreManager.AllowHeadless())
+    if(((CanSwapToGoreMesh()) && GoreManager != none) && GoreManager.AllowHeadless())
     {
         MonsterInfo = GetCharacterMonsterInfo();
         if(!bIsGoreMesh && MonsterInfo != none)
         {
             SwitchToGoreMesh(MonsterInfo.GoreMesh, MonsterInfo.CharacterGoreMaterialID);
+            GoreMeshSwapped();
         }
     }
     if(bIsGoreMesh && GoreManager != none)
@@ -1692,12 +1750,13 @@ simulated function bool PlayDismemberment(int InHitZoneIndex, class<KFDamageType
         return false;
     }
     GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
-    if((GoreManager != none) && GoreManager.AllowMutilation())
+    if(((CanSwapToGoreMesh()) && GoreManager != none) && GoreManager.AllowMutilation())
     {
         MonsterInfo = GetCharacterMonsterInfo();
         if(!bIsGoreMesh && MonsterInfo != none)
         {
             SwitchToGoreMesh(MonsterInfo.GoreMesh, MonsterInfo.CharacterGoreMaterialID);
+            GoreMeshSwapped();
         }
     }
     if(bIsGoreMesh && GoreManager != none)
@@ -2310,8 +2369,9 @@ defaultproperties
         SpecialMoveClasses(16)=none
         SpecialMoveClasses(17)=none
         SpecialMoveClasses(18)=none
-        SpecialMoveClasses(19)=class'KFSM_GrappleVictim'
-        SpecialMoveClasses(20)=class'KFSM_HansGrappleVictim'
+        SpecialMoveClasses(19)=none
+        SpecialMoveClasses(20)=class'KFSM_GrappleVictim'
+        SpecialMoveClasses(21)=class'KFSM_HansGrappleVictim'
     object end
     // Reference: KFSpecialMoveHandler'Default__KFPawn_Monster.SpecialMoveHandler'
     SpecialMoveHandler=SpecialMoveHandler

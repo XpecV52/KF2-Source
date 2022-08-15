@@ -208,6 +208,7 @@ defaultproperties
     CeilingEmerge(2)=Enter_Ceiling_V3
     CeilingEmerge(3)=Enter_Ceiling_V4
     BlendOutTime=0.2
+    bCanOnlyWanderAtEnd=true
     bPawnRotationLocked=true
     bDisablePhysics=true
     DefaultAICommandClass=Class'AICommand_PushedBySM'

@@ -42,6 +42,7 @@ function GiveTo( Pawn P )
 		KFIM.GiveWeaponsAmmo( true );
 
 		`BalanceLog(class'KFGameInfo'.const.GBE_Pickup, P.PlayerReplicationInfo, "Ammo");
+		`AnalyticsLog(( "pickup", P.PlayerReplicationInfo, "ammo"));
 	}
 
 	PickedUpBy( P );

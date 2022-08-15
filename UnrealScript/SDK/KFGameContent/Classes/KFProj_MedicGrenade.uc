@@ -42,7 +42,6 @@ simulated protected function StopFlightEffects();
 
 defaultproperties
 {
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicGrenade'
 	FuseTime=1
 	PostExplosionLifetime=15
 

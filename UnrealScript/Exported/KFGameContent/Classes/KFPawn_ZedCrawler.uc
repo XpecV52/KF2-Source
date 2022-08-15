@@ -314,11 +314,12 @@ defaultproperties
    MinSpawnSquadSizeType=EST_Crawler
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
       BaseDamage=7.000000
+      MyDamageType=Class'kfgamecontent.KFDT_Slashing_ZedWeak'
       MaxHitRange=180.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperAI'KFGameContent.Default__KFPawn_ZedCrawler:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedCrawler:MeleeHelper_0'
    DoshValue=10
    XPValues(0)=8.000000
    XPValues(1)=10.000000
@@ -328,7 +329,7 @@ defaultproperties
    VulnerableDamageTypes(1)=(DamageType=Class'KFGame.KFDT_Toxic')
    VulnerableDamageTypes(2)=(DamageType=Class'KFGame.KFDT_Bludgeon')
    ResistantDamageTypes(0)=(DamageType=Class'KFGame.KFDT_Slashing')
-   ResistantDamageTypes(1)=(DamageType=Class'KFGameContent.KFDT_Microwave')
+   ResistantDamageTypes(1)=(DamageType=Class'kfgamecontent.KFDT_Microwave')
    PawnAnimInfo=KFPawnAnimInfo'ZED_Crawler_ANIM.Crawler_AnimGroup'
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
       ReplacementPrimitive=None
@@ -356,7 +357,7 @@ defaultproperties
       Name="Afflictions_0"
       ObjectArchetype=KFPawnAfflictions'KFGame.Default__KFPawn_Monster:Afflictions_0'
    End Object
-   AfflictionHandler=KFPawnAfflictions'KFGameContent.Default__KFPawn_ZedCrawler:Afflictions_0'
+   AfflictionHandler=KFPawnAfflictions'kfgamecontent.Default__KFPawn_ZedCrawler:Afflictions_0'
    KnockdownImpulseScale=1.000000
    SprintSpeed=500.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:FirstPersonArms'
@@ -382,21 +383,22 @@ defaultproperties
       SpecialMoveClasses(7)=Class'KFGame.KFSM_RagdollKnockdown'
       SpecialMoveClasses(8)=Class'KFGame.KFSM_DeathAnim'
       SpecialMoveClasses(9)=Class'KFGame.KFSM_Stunned'
-      SpecialMoveClasses(10)=Class'KFGameContent.KFSM_Emerge_Crawler'
+      SpecialMoveClasses(10)=Class'kfgamecontent.KFSM_Emerge_Crawler'
       SpecialMoveClasses(11)=Class'KFGame.KFSM_Zed_Taunt'
       SpecialMoveClasses(12)=Class'KFGame.KFSM_Zed_WalkingTaunt'
       SpecialMoveClasses(13)=Class'KFGame.KFSM_Evade'
-      SpecialMoveClasses(14)=Class'KFGameContent.KFSM_Evade_Fear'
+      SpecialMoveClasses(14)=Class'kfgamecontent.KFSM_Evade_Fear'
       SpecialMoveClasses(15)=None
       SpecialMoveClasses(16)=None
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
-      SpecialMoveClasses(19)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(20)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(19)=None
+      SpecialMoveClasses(20)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(21)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
-   SpecialMoveHandler=KFSpecialMoveHandler'KFGameContent.Default__KFPawn_ZedCrawler:SpecialMoveHandler_0'
+   SpecialMoveHandler=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedCrawler:SpecialMoveHandler_0'
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent_1 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:AmbientAkSoundComponent_1'
       BoneName="Spine1"
       bStopWhenOwnerDestroyed=True
@@ -416,7 +418,7 @@ defaultproperties
       Name="WeaponAmbientEchoHandler_0"
       ObjectArchetype=KFWeaponAmbientEchoHandler'KFGame.Default__KFPawn_Monster:WeaponAmbientEchoHandler_0'
    End Object
-   WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'KFGameContent.Default__KFPawn_ZedCrawler:WeaponAmbientEchoHandler_0'
+   WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'kfgamecontent.Default__KFPawn_ZedCrawler:WeaponAmbientEchoHandler_0'
    Begin Object Class=AkComponent Name=FootstepAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_Monster:FootstepAkSoundComponent'
       BoneName="Root"
       bStopWhenOwnerDestroyed=True

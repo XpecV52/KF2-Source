@@ -1,7 +1,5 @@
 package tripwire.controls
 {
-    import com.greensock.TweenMax;
-    import com.greensock.easing.Cubic;
     import flash.events.FocusEvent;
     import flash.events.MouseEvent;
     import scaleform.clik.controls.Button;
@@ -98,25 +96,15 @@ package tripwire.controls
         
         protected function highlightButton() : *
         {
-            if(this.doAnimations)
+            if(!this.doAnimations)
             {
-                TweenMax.to(this,this.AnimTime,{
-                    "z":this._originalPositionZ - this.AnimHighlightOffsetZ,
-                    "ease":Cubic.easeOut,
-                    "useFrames":true
-                });
             }
         }
         
         protected function unhighlightButton() : *
         {
-            if(this.doAnimations)
+            if(!this.doAnimations)
             {
-                TweenMax.to(this,this.AnimTime,{
-                    "z":this._originalPositionZ,
-                    "ease":Cubic.easeOut,
-                    "useFrames":true
-                });
             }
         }
     }

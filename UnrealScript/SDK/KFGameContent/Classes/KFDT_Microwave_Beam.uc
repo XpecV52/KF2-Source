@@ -32,7 +32,7 @@ static function bool CheckObliterate(Pawn P, int Damage)
 
 defaultproperties
 {
-	AARWeaponID=`AAR_MicrowaveGun
+	WeaponDef=class'KFWeapDef_MicrowaveGun'
 
 	// physics impact
 	RadialDamageImpulse=750

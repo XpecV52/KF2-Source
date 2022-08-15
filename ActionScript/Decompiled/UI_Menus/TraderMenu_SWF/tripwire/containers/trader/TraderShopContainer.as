@@ -39,6 +39,7 @@ package tripwire.containers.trader
             this.shopList.tabIndex = 1;
             this.updateControllerVisibility();
             this.shopList.bStayOpenOnSelection = true;
+            defaultFirstElement = this.shopList;
         }
         
         public function set shopHeaderName(param1:String) : void
@@ -65,10 +66,10 @@ package tripwire.containers.trader
         
         override public function selectContainer() : void
         {
-            currentElement = this.filterContainer.tabBar;
+            currentElement = this.shopList;
             super.selectContainer();
-            this.filterContainer.selectContainer();
-            this.filterContainer.tabBar.addEventListener(ButtonEvent.PRESS,this.handleGamepadTabSelect,false,0,true);
+            this.shopList.selectedIndex = 0;
+            this.enterShoppingList();
         }
         
         override public function deselectContainer() : void
@@ -111,10 +112,7 @@ package tripwire.containers.trader
         public function updateControllerVisibility() : *
         {
             this.cancelPrompt.visible = bManagerUsingGamepad;
-            if(!bManagerUsingGamepad)
-            {
-                this.filterContainer.controllerIconVisibility = false;
-            }
+            this.filterContainer.controllerIconVisibility = bManagerUsingGamepad;
         }
         
         override public function handleInput(param1:InputEvent) : void
@@ -125,27 +123,34 @@ package tripwire.containers.trader
             }
             super.handleInput(param1);
             var _loc2_:InputDetails = param1.details;
-            if(_loc2_.value == InputValue.KEY_DOWN)
+            if(_loc2_.value == InputValue.KEY_UP)
             {
                 switch(_loc2_.navEquivalent)
                 {
                     case NavigationCode.GAMEPAD_L1:
+                        if(this.shopList.focused == 1 && this.filterContainer.changeTabIndex(this.filterContainer.selectedTab - 1))
+                        {
+                            this.filterContainer.tabBar;
+                            this.shopList.selectedIndex = 0;
+                        }
+                        break;
+                    case NavigationCode.GAMEPAD_R1:
+                        if(this.shopList.focused == 1 && this.filterContainer.changeTabIndex(this.filterContainer.selectedTab + 1))
+                        {
+                            this.shopList.selectedIndex = 0;
+                        }
+                        break;
+                    case NavigationCode.GAMEPAD_L2:
                         if(this.shopList.focused == 1 && this.filterContainer.changeFilterIndex(this.filterContainer.filterIndex - 1))
                         {
                             this.shopList.selectedIndex = 0;
                         }
                         break;
-                    case NavigationCode.GAMEPAD_R1:
+                    case NavigationCode.GAMEPAD_R2:
                         if(this.shopList.focused == 1 && this.filterContainer.changeFilterIndex(this.filterContainer.filterIndex + 1))
                         {
                             this.shopList.selectedIndex = 0;
                         }
-                        break;
-                    case NavigationCode.DOWN:
-                        this.downPressed();
-                        break;
-                    case NavigationCode.UP:
-                        this.upPressed();
                 }
             }
         }
@@ -165,7 +170,6 @@ package tripwire.containers.trader
         
         public function leaveList() : *
         {
-            this.filterContainer.controllerIconVisibility = false;
             this.shopList.selectedIndex = -1;
             dispatchEvent(new IndexEvent(IndexEvent.INDEX_CHANGE,false,true,TraderMenu.HIDE_DETAILS));
         }
@@ -180,7 +184,6 @@ package tripwire.containers.trader
             if(bManagerUsingGamepad)
             {
                 currentElement = this.shopList;
-                this.filterContainer.controllerIconVisibility = this.filterContainer.filterButtonBar.visible;
                 this.shopList.selectedIndex = 0;
                 this.shopList.focused = 1;
             }

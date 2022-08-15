@@ -16,4 +16,9 @@ class TWSplatterMapTexture2D extends Texture2D
 var array<byte> SystemMemoryCache;
 var bool bDirty;	
 
+defaultproperties
+{
+	bNoTiling=TRUE
+}
+
 

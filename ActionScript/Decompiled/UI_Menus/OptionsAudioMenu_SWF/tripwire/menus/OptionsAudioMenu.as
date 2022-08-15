@@ -25,9 +25,13 @@ package tripwire.menus
         
         public var optionsTextField:TextField;
         
-        public var musicSlider:SliderOption;
+        public var masterVolumeSlider:SliderOption;
         
         public var sFxSlider:SliderOption;
+        
+        public var dialogSlider:SliderOption;
+        
+        public var musicSlider:SliderOption;
         
         public var voipVolumeSlider:SliderOption;
         
@@ -51,23 +55,27 @@ package tripwire.menus
         
         public function setTabIndex() : *
         {
-            this.musicSlider.tabIndex = 1;
+            this.masterVolumeSlider.tabIndex = 1;
             this.sFxSlider.tabIndex = 2;
-            this.voipVolumeSlider.tabIndex = 3;
-            this.pushToTalkBox.tabIndex = 4;
-            this.vocalsCheckBox.tabIndex = 5;
-            this.minimalDialogueCheckBox.tabIndex = 6;
-            this.configureMicrophoneButton.tabIndex = 7;
-            this.closeButton.tabIndex = 8;
+            this.dialogSlider.tabIndex = 3;
+            this.musicSlider.tabIndex = 4;
+            this.voipVolumeSlider.tabIndex = 5;
+            this.pushToTalkBox.tabIndex = 6;
+            this.vocalsCheckBox.tabIndex = 7;
+            this.minimalDialogueCheckBox.tabIndex = 8;
+            this.configureMicrophoneButton.tabIndex = 9;
+            this.closeButton.tabIndex = 10;
         }
         
         public function set localizedText(param1:Object) : void
         {
+            this.masterVolumeSlider.textField.text = !!param1.master ? param1.master : "mast";
+            this.dialogSlider.textField.text = !!param1.dialog ? param1.dialog : "dia";
+            this.musicSlider.textField.text = !!param1.music ? param1.music : "mus";
+            this.sFxSlider.textField.text = !!param1.sFx ? param1.sFx : "sfx.";
+            this.voipVolumeSlider.textField.text = !!param1.voipVolume ? param1.voipVolume : "vp";
             this.sectionTextField.text = !!param1.sectionName ? param1.sectionName : "";
             this.optionsTextField.text = !!param1.options ? param1.options : "";
-            this.musicSlider.textField.text = !!param1.music ? param1.music : "";
-            this.sFxSlider.textField.text = !!param1.sFx ? param1.sFx : "";
-            this.voipVolumeSlider.textField.text = !!param1.voipVolume ? param1.voipVolume : "";
             this.header.text = !!param1.header ? param1.header : "";
             this.configureMicrophoneButton.label = !!param1.configureMic ? param1.configureMic : "";
             this.pushToTalkBox.label = !!param1.pushToTalk ? param1.pushToTalk : "";
@@ -85,6 +93,8 @@ package tripwire.menus
         override public function openContainer() : void
         {
             super.openContainer();
+            this.masterVolumeSlider.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged,false,0,true);
+            this.dialogSlider.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged,false,0,true);
             this.musicSlider.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged,false,0,true);
             this.sFxSlider.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged,false,0,true);
             this.voipVolumeSlider.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged,false,0,true);
@@ -98,6 +108,8 @@ package tripwire.menus
         override public function closeContainer() : void
         {
             super.closeContainer();
+            this.masterVolumeSlider.slider.removeEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged);
+            this.dialogSlider.slider.removeEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged);
             this.musicSlider.slider.removeEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged);
             this.sFxSlider.slider.removeEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged);
             this.voipVolumeSlider.slider.removeEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged);
@@ -128,6 +140,16 @@ package tripwire.menus
         public function set vocalsEnabled(param1:Boolean) : void
         {
             this.vocalsCheckBox.selected = param1;
+        }
+        
+        public function set masterVolume(param1:Number) : void
+        {
+            this.masterVolumeSlider.sliderValue = param1;
+        }
+        
+        public function set dialogVolume(param1:Number) : void
+        {
+            this.dialogSlider.sliderValue = param1;
         }
         
         public function set voipVolume(param1:Number) : void
@@ -165,6 +187,12 @@ package tripwire.menus
                     break;
                 case this.sFxSlider.slider:
                     ExternalInterface.call("Callback_SFxVolumeChanged",param1.value);
+                    break;
+                case this.masterVolumeSlider.slider:
+                    ExternalInterface.call("Callback_MasterVolumeChanged",param1.value);
+                    break;
+                case this.dialogSlider.slider:
+                    ExternalInterface.call("Callback_DialogVolumeChanged",param1.value);
             }
         }
         

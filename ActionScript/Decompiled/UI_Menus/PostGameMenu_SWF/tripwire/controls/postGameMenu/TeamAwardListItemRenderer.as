@@ -82,8 +82,9 @@ package tripwire.controls.postGameMenu
         
         public function animate() : void
         {
-            if(!Extensions.enabled)
+            if(Extensions.enabled)
             {
+                Extensions.gfxProcessSound(this,"AAR","Team_Award");
             }
             if(PostGameMenu.bkillAnims)
             {
@@ -113,10 +114,6 @@ package tripwire.controls.postGameMenu
         protected function doneAndDone() : *
         {
             parent.dispatchEvent(new Event("PlayerNextAnim"));
-            if(Extensions.enabled)
-            {
-                Extensions.gfxProcessSound(this,"AAR","Team_Award");
-            }
         }
         
         override public function set data(param1:Object) : void

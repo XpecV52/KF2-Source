@@ -10,16 +10,25 @@
 
 class KFWeap_Pistol_Medic extends KFWeap_MedicBase;
 
+/*********************************************************************************************
+ * @name	Trader
+ *********************************************************************************************/
+
+/** Returns trader filter index based on weapon type */
+static simulated event EFilterTypeUI GetTraderFilter()
+{
+	return FT_Pistol;
+}
+
 defaultproperties
 {
 	// Inventory
 	InventoryGroup=IG_Secondary
-	FilterTypeUI=FT_Pistol
 	InventorySize=1
 	GroupPriority=25
 	bCanThrow=true
 	bDropOnDeath=true
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicPistol'
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicPistol'
 	SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
 	AssociatedPerkClass=class'KFPerk_FieldMedic'
 
@@ -100,9 +109,5 @@ defaultproperties
 	// Attachments
 	bHasIronSights=true
 	bHasFlashlight=false
-
-	// Trader
-    EffectiveRange=50
-
 }
 

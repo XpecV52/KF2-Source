@@ -1,18 +1,14 @@
 package
 {
-    import flash.display.MovieClip;
     import tripwire.containers.trader.TraderShopContainer;
     
     public dynamic class ShopContainer_MC extends TraderShopContainer
     {
          
         
-        public var BGTint:MovieClip;
-        
         public function ShopContainer_MC()
         {
             super();
-            addFrameScript(0,this.frame1);
             this.__setProp_shopList_ShopContainer_MC_ShopList_0();
         }
         
@@ -48,12 +44,6 @@ package
             catch(e:Error)
             {
             }
-        }
-        
-        function frame1() : *
-        {
-            this.BGTint.mouseEnabled = false;
-            this.BGTint.mouseChildren = false;
         }
     }
 }

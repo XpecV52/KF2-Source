@@ -10,8 +10,10 @@ class KFDT_Ballistic_9mm extends KFDT_Ballistic_Handgun
 
 defaultproperties
 {
-    AARWeaponID=0
-    LegStumblePower=20
+    WeaponDef=Class'KFGame.KFWeapDef_9mm'
+    KnockdownPower=30
+    StumblePower=35
+    LegStumblePower=35
     GunHitPower=15
     KDamageImpulse=900
     KDeathVel=100

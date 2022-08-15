@@ -28,9 +28,9 @@ package tripwire.controls.trader
         
         public var perkIconLoader:TripUILoader;
         
-        private var activeColor:uint = 31319;
+        private var activeColor:uint = 38006;
         
-        private var inactiveColor:uint = 15541248;
+        private var inactiveColor:uint = 15547935;
         
         private var doshColor:uint = 0;
         

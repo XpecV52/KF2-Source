@@ -19,7 +19,7 @@ static function PlayImpactHitEffects(KFPawn P, Vector HitLocation, Vector HitDir
 
 defaultproperties
 {
-    EffectGroup=EEffectDamageGroup.FXG_Healing
     bNoPain=true
+    EffectGroup=EEffectDamageGroup.FXG_Healing
     ScreenMaterialName=Effect_Heal
 }

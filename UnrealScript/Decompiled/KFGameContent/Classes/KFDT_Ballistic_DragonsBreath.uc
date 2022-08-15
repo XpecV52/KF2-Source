@@ -84,7 +84,7 @@ static function bool CanApplyDamageOverTime(out int InDamage, out class<KFDamage
 defaultproperties
 {
     BurnDamageType=Class'KFDT_Fire_DragonsBreathDoT'
-    AARWeaponID=47
+    WeaponDef=Class'KFGame.KFWeapDef_DragonsBreath'
     StumblePower=53
     LegStumblePower=53
     GunHitPower=30

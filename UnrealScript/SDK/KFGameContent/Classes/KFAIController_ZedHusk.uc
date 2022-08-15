@@ -139,27 +139,31 @@ simulated function Tick( FLOAT DeltaTime )
 		{
 			if( GetActiveCommand() != none && !GetActiveCommand().IsA('AICommand_SpecialMove') )
 			{
-				DistToTargetSq = VSizeSq( Enemy.Location - Pawn.Location );
+				// Trace from worldinfo, open doors ignore traces from zeds
+				if( WorldInfo.FastTrace( Enemy.Location, Pawn.Location,, true ) )
+				{
+					DistToTargetSq = VSizeSq( Enemy.Location - Pawn.Location );
 
-				// If you are suicidal, do not even try to use the flamethrower or fireball
-				if( IsSuicidal() )
-				{
-					if( CanDoSuicide(DistToTargetSq) )
+					// If you are suicidal, do not even try to use the flamethrower or fireball
+					if( IsSuicidal() )
 					{
-						class'AICommand_Husk_Suicide'.static.Suicide(self);
+						if( CanDoSuicide(DistToTargetSq) )
+						{
+							class'AICommand_Husk_Suicide'.static.Suicide(self);
+						}
 					}
-				}
-				// Check if i can use my flamethrower
-				else if( CanDoFlamethrower(DistToTargetSq) )
-				{
-					class'AICommand_HuskFlameThrowerAttack'.static.FlameThrowerAttack(self);
-				}
-				// Check if i can use my projectile
-				else if( CanDoFireball(DistToTargetSq) )
-				{
-					class'AICommand_HuskFireBallAttack'.static.FireBallAttack(self);
-					// Randomize the next fireball time
-					TimeBetweenFireBalls = BaseTimeBetweenFireBalls + RandRange(-FireballRandomizedValue, FireballRandomizedValue);
+					// Check if i can use my flamethrower
+					else if( CanDoFlamethrower(DistToTargetSq) )
+					{
+						class'AICommand_HuskFlameThrowerAttack'.static.FlameThrowerAttack(self);
+					}
+					// Check if i can use my projectile
+					else if( CanDoFireball(DistToTargetSq) )
+					{
+						class'AICommand_HuskFireBallAttack'.static.FireBallAttack(self);
+						// Randomize the next fireball time
+						TimeBetweenFireBalls = BaseTimeBetweenFireBalls + RandRange(-FireballRandomizedValue, FireballRandomizedValue);
+					}
 				}
 			}
 			LastCheckSpecialMoveTime = WorldInfo.TimeSeconds;
@@ -308,7 +312,7 @@ function ShootFireball(class<KFProjectile> FireballClass)
 
 		//DrawDebugLine( SocketLocation, AimLocation, 0, 0, 255, true );
 
-        HitActor = Trace( HitLocation, HitNormal, AimLocation, SocketLocation, true );
+        HitActor = WorldInfo.Trace( HitLocation, HitNormal, AimLocation, SocketLocation, true );
 
         // Don't shoot if it's too close
 		if( HitActor == Enemy )

@@ -125,25 +125,31 @@ simulated event ReplicatedEvent(name VarName)
     if (VarName == nameof(LockedTarget))
 	{
 		// Clear the lock if we lost our LockedTarget and don't have a new PendingLockedTarget
-		if (LockedTarget == none && PendingLockedTarget == none)
+		if( OpticsUI != none )
 		{
-			OpticsUI.ClearLockOn();
-		}
-		else if (LockedTarget != none)
-		{
-			OpticsUI.LockedOn();
+			if (LockedTarget == none && PendingLockedTarget == none)
+			{
+				OpticsUI.ClearLockOn();
+			}
+			else if (LockedTarget != none)
+			{
+				OpticsUI.LockedOn();
+			}
 		}
 	}
 	else if (VarName == nameof(PendingLockedTarget))
 	{
 		// Clear the lock if we lost our LockedTarget and don't have a new PendingLockedTarget
-		if (PendingLockedTarget == none && LockedTarget == none)
+		if( OpticsUI != none )
 		{
-			OpticsUI.ClearLockOn();
-		}
-		else if (PendingLockedTarget != none)
-		{
-			OpticsUI.StartLockOn();
+			if (PendingLockedTarget == none && LockedTarget == none)
+			{
+				OpticsUI.ClearLockOn();
+			}
+			else if (PendingLockedTarget != none)
+			{
+				OpticsUI.StartLockOn();
+			}
 		}
 	}
 	else
@@ -228,7 +234,7 @@ simulated function ConsumeAmmo( byte FireModeNum )
  * See Pawn.ProcessInstantHit
  * @param DamageReduction: Custom KF parameter to handle penetration damage reduction
  */
-simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optional int NumHits, optional out float out_PenetrationVal)
+simulated function ProcessInstantHitEx( byte FiringMode, ImpactInfo Impact, optional int NumHits, optional out float out_PenetrationVal, optional int ImpactNum )
 {
     local KFPawn HealTarget;
     local KFPlayerController Healer;
@@ -355,6 +361,20 @@ simulated event bool CanHealFire()
 /*********************************************************************************************
  @name Reload / recharge
 ********************************************************************************************* */
+
+/** Overridden to call StartHealRecharge on server */
+function GivenTo( Pawn thisPawn, optional bool bDoNotActivate )
+{
+	super.GivenTo( thisPawn, bDoNotActivate );
+
+	// StartHealRecharge gets called on the client from ClientWeaponSet (called from ClientGivenTo, called from GivenTo),
+	// but we also need this called on the server for remote clients, since the server needs to track the ammo too (to know if/when to spawn projectiles)
+
+	if( Role == ROLE_Authority && !thisPawn.IsLocallyControlled() )
+	{
+		StartHealRecharge();
+	}
+}
 
 /** Start the heal recharge cycle */
 simulated function StartHealRecharge()
@@ -854,7 +874,7 @@ static simulated event SetTraderWeaponStats( out array<STraderItemWeaponStats> W
 
 defaultproperties
 {
-   HealingDartDamageType=Class'KFGameContent.KFDT_Dart_Healing'
+   HealingDartDamageType=Class'kfgamecontent.KFDT_Dart_Healing'
    HealAmount=20
    HealAmmoCost=50
    HealFullRechargeSeconds=15.000000
@@ -872,15 +892,15 @@ defaultproperties
    LockLostSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Lost_1P'
    LockTargetingSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Locking_1P'
    OpticsUIClass=Class'KFGame.KFGFxWorld_MedicOptics'
-   EffectiveRange=50
    bCanRefillSecondaryAmmo=False
+   AimCorrectionSize=40.000000
    MagazineCapacity(1)=100
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_MedicBase:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_MedicBase:MeleeHelper_0'
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()
@@ -890,14 +910,14 @@ defaultproperties
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
    WeaponProjectiles(0)=None
-   WeaponProjectiles(1)=Class'KFGameContent.KFProj_HealingDart'
+   WeaponProjectiles(1)=Class'kfgamecontent.KFProj_HealingDart'
    FireInterval(1)=0.175000
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
    Spread(0)=0.000000
    Spread(1)=0.015000
-   InstantHitDamageTypes(1)=Class'KFGameContent.KFDT_Dart_Toxic'
+   InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Dart_Toxic'
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeapon:FirstPersonMesh'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
       bOverrideAttachmentOwnerVisibility=True

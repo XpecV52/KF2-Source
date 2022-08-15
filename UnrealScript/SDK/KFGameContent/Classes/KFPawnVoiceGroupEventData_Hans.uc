@@ -14,7 +14,6 @@ class KFPawnVoiceGroupEventData_Hans extends KFPawnVoiceGroupEventData;
 
 defaultproperties
 {
-	Events[`BOSS_Intro]=            (EventID=`BOSS_Intro,	        Priority=1, Weight=1, 	Chance=1.00,	CoolDownTime=0.00,							bCanBeMinimized=0)
 	Events[`BOSS_TauntBase]=        (EventID=`BOSS_TauntBase,	    Priority=3, Weight=1, 	Chance=1.00,	CoolDownTime=12.00,							bCanBeMinimized=0,					bCanInterruptEqualPriority=true)
 	Events[`BOSS_Taunt_LT50]=       (EventID=`BOSS_Taunt_LT50,	    Priority=3, Weight=1, 	Chance=1.00,	CoolDownTime=12.00, 						bCanBeMinimized=0)
 	Events[`BOSS_Taunt_LT25]=       (EventID=`BOSS_Taunt_LT25,	    Priority=3, Weight=1, 	Chance=1.00,	CoolDownTime=12.00, 						bCanBeMinimized=0)
@@ -33,7 +32,6 @@ defaultproperties
 	Events[`BOSS_TakeDmg_LT25]=     (EventID=`BOSS_TakeDmg_LT25,	Priority=2, Weight=1, 	Chance=1.00,	CoolDownTime=1.00,							bCanBeMinimized=0)
 	Events[`BOSS_Death]=            (EventID=`BOSS_Death,	        Priority=1, Weight=1, 	Chance=1.00,	CoolDownTime=0.00,							bCanBeMinimized=0)
 	Events[`BOSS_KillBase]=         (EventID=`BOSS_KillBase,	    Priority=1, Weight=1, 	Chance=1.00,	CoolDownTime=3.00,							bCanBeMinimized=0)
-	Events[`BOSS_Victory]=          (EventID=`BOSS_Victory,	        Priority=1, Weight=1, 	Chance=1.00,	CoolDownTime=0.00,							bCanBeMinimized=0)
 	Events[`BOSS_Jump]=             (EventID=`BOSS_Jump,	        Priority=2, Weight=1, 	Chance=1.00,	CoolDownTime=0.00,							bCanBeMinimized=0)
 	Events[`BOSS_Land]=             (EventID=`BOSS_Land,	        Priority=2, Weight=1, 	Chance=1.00,	CoolDownTime=0.00,							bCanBeMinimized=0)
 

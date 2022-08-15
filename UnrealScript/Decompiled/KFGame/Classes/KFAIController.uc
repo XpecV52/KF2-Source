@@ -422,6 +422,9 @@ native function bool IgnoreNotifies();
 // Export UKFAIController::execIsPawnMovingAwayFromMe(FFrame&, void* const)
 native function bool IsPawnMovingAwayFromMe(Pawn CheckPawn, optional float MinSpeed);
 
+// Export UKFAIController::execGetPawnBlockingPathTo(FFrame&, void* const)
+native function KFPawn GetPawnBlockingPathTo(Pawn EnemyPawn);
+
 // Export UKFAIController::execLockPawnRotationTo(FFrame&, void* const)
 native function LockPawnRotationTo(Rotator NewRotation);
 
@@ -1124,7 +1127,7 @@ function bool CanTargetBeGrabbed(KFPawn TargetKFP)
 {
     local KFAIController OtherKFAIC;
 
-    if((((TargetKFP == none) || TargetKFP.Health <= 0) || TargetKFP.IsDoingSpecialMove(19)) || TargetKFP.Physics == 2)
+    if((((TargetKFP == none) || TargetKFP.Health <= 0) || TargetKFP.IsDoingSpecialMove(20)) || TargetKFP.Physics == 2)
     {
         return false;
     }
@@ -1234,7 +1237,7 @@ final event bool IsDoingAttackSpecialMove()
     if(MyKFPawn.IsDoingSpecialMove())
     {
         KFSM = MyKFPawn.SpecialMove;
-        if((((((KFSM == 1) || KFSM == 3) || KFSM == 4) || KFSM == 15) || KFSM == 2) || KFSM == 18)
+        if((((((KFSM == 1) || KFSM == 3) || KFSM == 4) || KFSM == 16) || KFSM == 2) || KFSM == 19)
         {
             return true;
         }
@@ -1946,13 +1949,10 @@ function DoWander(optional Actor WanderGoal, optional float WanderDuration, opti
     Class'AICommand_Wander'.static.BeginWander(self, WanderDuration, WanderGoal, bWanderAwayFromGoal, MaxWanderDist);
 }
 
-function DoHideFrom(Actor HideFrom, optional float HideDuration)
+function DoFleeFrom(Actor FleeFrom, optional float FleeDuration, optional float FleeDistance, optional bool bShouldStopAtGoal)
 {
-    Class'AICommand_Hide'.static.HideFrom(self, HideFrom, HideDuration);
-    if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
-    {
-        KFGameInfo(WorldInfo.Game).DialogManager.PlaySpotRunAwayDialog(MyKFPawn);
-    }
+    bShouldStopAtGoal = false;
+    Class'AICommand_Flee'.static.FleeFrom(self, FleeFrom, FleeDuration, FleeDistance, bShouldStopAtGoal);
 }
 
 event SetMoveGoal(Actor NewMoveGoal, optional Actor NewMoveFocus, optional bool bInterruptable, optional float OffsetDist, optional bool bIsValidCache, optional bool bInCanPathfind, optional bool bForce, optional bool bAllowedToAttack, optional bool bAllowPartialPath)
@@ -2283,6 +2283,10 @@ function UpdateSprintFrustration(optional byte bForceFrustration)
 
 function bool IsFrustrated()
 {
+    if(MyAIDirector.bForceFrustration)
+    {
+        return true;
+    }
     if(((FrustrationThreshold > 0) && MyKFGameInfo.MyKFGRI != none) && MyKFGameInfo.MyKFGRI.AIRemaining <= FrustrationThreshold)
     {
         if(LastFrustrationCheckTime == float(0))
@@ -2296,6 +2300,10 @@ function bool IsFrustrated()
     }
     return false;
 }
+
+function NotifyCommandFinished(AICommand FinishedCommand);
+
+function NotifyFleeFinished();
 
 event NotifyFailMove(string Reason)
 {
@@ -2727,7 +2735,7 @@ simulated function Tick(float DeltaTime)
     {
         EvaluateStuckPossibility(DeltaTime);
     }
-    if(((((((((bCanTeleportCloser && PendingDoor == none) && Role == ROLE_Authority) && MyKFPawn != none) && MyKFGameInfo.MyKFGRI != none) && MyKFPawn.Health > 0) && (WorldInfo.TimeSeconds - LastTeleportCheckTime) > TeleportCheckInterval) && !MyKFPawn.IsDoingSpecialMove()) && FrustrationThreshold > 0) && MyKFGameInfo.MyKFGRI.AIRemaining > FrustrationThreshold)
+    if((((((((bCanTeleportCloser && PendingDoor == none) && Role == ROLE_Authority) && MyKFPawn != none) && MyKFGameInfo.MyKFGRI != none) && MyKFPawn.Health > 0) && (WorldInfo.TimeSeconds - LastTeleportCheckTime) > TeleportCheckInterval) && !MyKFPawn.IsDoingSpecialMove()) && MyKFGameInfo.MyKFGRI.AIRemaining > FrustrationThreshold)
     {
         EvaluateTeleportPossibility(DeltaTime);
     }
@@ -3289,7 +3297,7 @@ event SeePlayer(Pawn Seen)
     }
     if((Enemy != none) && Enemy != Seen)
     {
-        if((((KFPawn(Seen) != none) && KFPawn(Seen).IsDoingSpecialMove(19)) && (NumberOfZedsTargetingPawn(Seen)) <= 3) && !bEnemyIsVisible)
+        if((((KFPawn(Seen) != none) && KFPawn(Seen).IsDoingSpecialMove(20)) && (NumberOfZedsTargetingPawn(Seen)) <= 3) && !bEnemyIsVisible)
         {
             SetEnemy(Seen);            
         }
@@ -4295,6 +4303,7 @@ function AddTakenDamage(Controller DamagerController, int Damage, Actor DamageCa
 function UpdateDamageHistory(Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType)
 {
     local DamageInfo Info;
+    local Pawn BlockerPawn;
     local bool bChangedEnemies;
     local int HistoryIndex;
     local float DamageThreshold;
@@ -4311,18 +4320,33 @@ function UpdateDamageHistory(Controller DamagerController, int Damage, Actor Dam
         {
             DamageHistory[CurrentEnemysHistoryIndex].Damage = 0;
         }
-        if((Info.Damage >= DamageThreshold) && Info.Damage > DamageHistory[CurrentEnemysHistoryIndex].Damage)
+        if((((IsAggroEnemySwitchAllowed()) && DamagerController.Pawn != Enemy) && Info.Damage >= DamageThreshold) && Info.Damage > DamageHistory[CurrentEnemysHistoryIndex].Damage)
         {
-            bChangedEnemies = SetEnemy(DamagerController.Pawn);
+            BlockerPawn = GetPawnBlockingPathTo(DamagerController.Pawn);
+            if(BlockerPawn == none)
+            {
+                bChangedEnemies = SetEnemy(DamagerController.Pawn);                
+            }
+            else
+            {
+                if(BlockerPawn.GetTeamNum() != GetTeamNum())
+                {
+                    bChangedEnemies = SetEnemy(BlockerPawn);
+                }
+            }
         }        
     }
     else
     {
         DamageThreshold = float(Pawn.HealthMax) * AggroZedHealthPercentage;
         UpdateDamageHistoryValues(DamagerController, Damage, DamageCauser, AggroZedResetTime, Info, DamageType);
-        if(Info.Damage >= DamageThreshold)
+        if(((IsAggroEnemySwitchAllowed()) && DamagerController.Pawn != Enemy) && Info.Damage >= DamageThreshold)
         {
-            bChangedEnemies = SetEnemyToZed(DamagerController.Pawn);
+            BlockerPawn = GetPawnBlockingPathTo(DamagerController.Pawn);
+            if(BlockerPawn == none)
+            {
+                bChangedEnemies = SetEnemyToZed(DamagerController.Pawn);
+            }
         }
     }
     DamageHistory[HistoryIndex] = Info;
@@ -4332,20 +4356,18 @@ function UpdateDamageHistory(Controller DamagerController, int Damage, Actor Dam
     }
 }
 
+function bool IsAggroEnemySwitchAllowed()
+{
+    return true;
+}
+
 function bool GetDamageHistory(Controller DamagerController, out DamageInfo InInfo, out int InHistoryIndex)
 {
-    InHistoryIndex = 0;
-    J0x0B:
-
-    if(InHistoryIndex < DamageHistory.Length)
+    InHistoryIndex = DamageHistory.Find('DamagerController', DamagerController;
+    if(InHistoryIndex != -1)
     {
-        if(DamageHistory[InHistoryIndex].DamagerController == DamagerController)
-        {
-            InInfo = DamageHistory[InHistoryIndex];
-            return true;
-        }
-        ++ InHistoryIndex;
-        goto J0x0B;
+        InInfo = DamageHistory[InHistoryIndex];
+        return true;
     }
     InHistoryIndex = 0;
     return false;
@@ -5512,7 +5534,7 @@ Begin:
         WaitForLanding();
     }
     goto 'Begin';
-    stop;                    
+    stop;            
 }
 
 defaultproperties

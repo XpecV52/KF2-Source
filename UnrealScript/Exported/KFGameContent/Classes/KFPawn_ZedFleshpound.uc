@@ -9,13 +9,12 @@
 
 class KFPawn_ZedFleshpound extends KFPawn_Monster;
 
+/** Sounds */
+var AkEvent RageStartSound;
+var AkEvent RageStopSound;
+
 /** Enraged mode status */
 var repnotify bool bIsEnraged;
-
-/** Footstep shakes activated in footstep sound animnotify (move up to KFPawn/KFPawn_Monster if deciding to use for others) */
-var protected const float FootstepCameraShakeInnerRadius;
-var protected const float FootstepCameraShakeOuterRadius;
-var CameraShake	 FootstepCameraShake;
 
 /** Material parameters for rage light glow */
 var LinearColor DefaultGlowColor;
@@ -48,7 +47,7 @@ simulated event PreBeginPlay()
 
 	if( WorldInfo.NetMode != NM_DedicatedServer && Mesh != None )
 	{
-		SetEnraged( false );
+		SetGameplayMICParams();
 	}
 }
 
@@ -99,19 +98,6 @@ function OnStackingAfflictionChanged(byte Id)
 
 /** No FP steering initially */
 simulated function StartSteering() {}
-
-/** Overridden to cause slight camera shakes when walking. */
-simulated event PlayFootStepSound(int FootDown)
-{
-	Super.PlayFootStepSound(FootDown);
-
-	/** The FP has footstep notifies in one or more of his Idle anim sequences, where he kind of shuffles his foot as he shifts his weight.
-		The IsDoingLatentMove() check below makes the only happening while the FP is actively moving (latent) to avoid the shake while idle for now. */
-	if( MyKFAIC != none && MyKFAIC.IsDoingLatentMove() )
-	{
-		class'Camera'.static.PlayWorldCameraShake(FootstepCameraShake, self, Location, FootstepCameraShakeInnerRadius, FootstepCameraShakeOuterRadius, 1.3f, true);
-	}
-}
 
 /** Don't start sprinting if not enraged */
 function SetSprinting( bool bNewSprintStatus )
@@ -187,6 +173,11 @@ simulated event bool IsEnraged()
 /** Enrage this FleshPound! */
 simulated function SetEnraged( bool bNewEnraged )
 {
+	if( Role == ROLE_Authority && bNewEnraged == bIsEnraged )
+	{
+		return;
+	}
+
 	if ( Role == ROLE_Authority )
 	{
 		bIsEnraged = bNewEnraged;
@@ -196,6 +187,15 @@ simulated function SetEnraged( bool bNewEnraged )
 
 	if ( WorldInfo.NetMode != NM_DedicatedServer )
 	{
+		if( bNewEnraged )
+		{
+			PostAkEvent( RageStartSound, true, true );
+		}
+		else
+		{
+			PostAkEvent( RageStopSound, true, true );
+		}
+
 		/** Set the proper glow material */
 		SetGameplayMICParams();
 	}
@@ -243,7 +243,6 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 	if ( WorldInfo.NetMode != NM_DedicatedServer )
 	{
 		SetEnraged( false );
-        UpdateBattlePhaseLights();
 	}
 }
 
@@ -318,13 +317,10 @@ static function int GetTraderAdviceID()
 
 defaultproperties
 {
-   FootstepCameraShakeInnerRadius=200.000000
-   FootstepCameraShakeOuterRadius=800.000000
-   FootstepCameraShake=CameraShake'KFGameContent.Default__KFPawn_ZedFleshpound:FootstepCameraShake0'
    DefaultGlowColor=(R=1.000000,G=0.350000,B=0.000000,A=1.000000)
    EnragedGlowColor=(R=1.000000,G=0.000000,B=0.000000,A=1.000000)
    DeadGlowColor=(R=0.000000,G=0.000000,B=0.000000,A=1.000000)
-   RageBumpDamageType=Class'KFGameContent.KFDT_HeavyZedBump'
+   RageBumpDamageType=Class'kfgamecontent.KFDT_HeavyZedBump'
    BattlePhaseLightFrontSocketName="Light"
    bLargeZed=True
    bIsFleshpoundClass=True
@@ -334,13 +330,13 @@ defaultproperties
    MinSpawnSquadSizeType=EST_Large
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
       BaseDamage=55.000000
-      MyDamageType=Class'KFGame.KFDT_Bludgeon'
+      MyDamageType=Class'kfgamecontent.KFDT_Bludgeon_Fleshpound'
       MomentumTransfer=100000.000000
       MaxHitRange=250.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperAI'KFGameContent.Default__KFPawn_ZedFleshpound:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedFleshpound:MeleeHelper_0'
    DoshValue=200
    XPValues(0)=35.000000
    XPValues(1)=47.000000
@@ -348,11 +344,14 @@ defaultproperties
    XPValues(3)=72.000000
    VulnerableDamageTypes(0)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=1.500000)
    VulnerableDamageTypes(1)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=1.500000)
-   VulnerableDamageTypes(2)=(DamageType=Class'KFGameContent.KFDT_Microwave',DamageScale=1.000000)
+   VulnerableDamageTypes(2)=(DamageType=Class'kfgamecontent.KFDT_Microwave',DamageScale=1.000000)
    ResistantDamageTypes(0)=(DamageType=Class'KFGame.KFDamageType')
    ZedBumpDamageScale=0.000000
    BumpFrequency=0.100000
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
+   FootstepCameraShakeInnerRadius=200.000000
+   FootstepCameraShakeOuterRadius=800.000000
+   FootstepCameraShake=CameraShake'kfgamecontent.Default__KFPawn_ZedFleshpound:FootstepCameraShake0'
    PawnAnimInfo=KFPawnAnimInfo'ZED_Fleshpound_ANIM.Fleshpound_AnimGroup'
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
       ReplacementPrimitive=None
@@ -385,7 +384,7 @@ defaultproperties
       InstantAffl(1)=(head=60,Torso=65,Leg=50,Arm=65,Special=53,LowHealthBonus=10,Cooldown=12.000000)
       InstantAffl(2)=(head=60,Torso=65,Arm=65,Special=53,LowHealthBonus=10,Cooldown=10.000000)
       InstantAffl(3)=(Leg=60,LowHealthBonus=10,Cooldown=9.000000)
-      InstantAffl(4)=(head=25,Torso=50,Leg=50,Arm=50,LowHealthBonus=10,Cooldown=0.700000)
+      InstantAffl(4)=(head=25,Torso=50,Leg=50,Arm=50,LowHealthBonus=10,Cooldown=1.200000)
       InstantAffl(5)=(head=150,Torso=150,Leg=150,Arm=150,LowHealthBonus=10,Cooldown=20.000000)
       StackingAffl(0)=(Threshhold=2.000000,Duration=3.000000,Cooldown=10.000000,DissipationRate=0.500000)
       StackingAffl(1)=(Threshhold=13.000000,Duration=1.500000,Cooldown=8.000000)
@@ -397,7 +396,7 @@ defaultproperties
       Name="Afflictions_0"
       ObjectArchetype=KFPawnAfflictions'KFGame.Default__KFPawn_Monster:Afflictions_0'
    End Object
-   AfflictionHandler=KFPawnAfflictions'KFGameContent.Default__KFPawn_ZedFleshpound:Afflictions_0'
+   AfflictionHandler=KFPawnAfflictions'kfgamecontent.Default__KFPawn_ZedFleshpound:Afflictions_0'
    PhysRagdollImpulseScale=1.500000
    KnockdownImpulseScale=2.000000
    SprintSpeed=725.000000
@@ -433,12 +432,13 @@ defaultproperties
       SpecialMoveClasses(16)=None
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
-      SpecialMoveClasses(19)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(20)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(19)=None
+      SpecialMoveClasses(20)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(21)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
-   SpecialMoveHandler=KFSpecialMoveHandler'KFGameContent.Default__KFPawn_ZedFleshpound:SpecialMoveHandler_0'
+   SpecialMoveHandler=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedFleshpound:SpecialMoveHandler_0'
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent_1 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:AmbientAkSoundComponent_1'
       BoneName="Spine1"
       bStopWhenOwnerDestroyed=True
@@ -458,7 +458,7 @@ defaultproperties
       Name="WeaponAmbientEchoHandler_0"
       ObjectArchetype=KFWeaponAmbientEchoHandler'KFGame.Default__KFPawn_Monster:WeaponAmbientEchoHandler_0'
    End Object
-   WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'KFGameContent.Default__KFPawn_ZedFleshpound:WeaponAmbientEchoHandler_0'
+   WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'kfgamecontent.Default__KFPawn_ZedFleshpound:WeaponAmbientEchoHandler_0'
    Begin Object Class=AkComponent Name=FootstepAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_Monster:FootstepAkSoundComponent'
       BoneName="Root"
       bStopWhenOwnerDestroyed=True
@@ -474,7 +474,7 @@ defaultproperties
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:DialogAkSoundComponent'
    End Object
    DialogAkComponent=DialogAkSoundComponent
-   DamageRecoveryTimeHeavy=0.350000
+   DamageRecoveryTimeHeavy=0.250000
    DamageRecoveryTimeMedium=0.090000
    Mass=200.000000
    GroundSpeed=260.000000

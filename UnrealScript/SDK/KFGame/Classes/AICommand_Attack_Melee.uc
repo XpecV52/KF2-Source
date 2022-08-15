@@ -151,7 +151,12 @@ function bool NotifyPlayerBecameVisible( Pawn VisiblePlayer )
 
 event String GetDumpString()
 {
-	return Super.GetDumpString()@"AttackTarget:"@AttackTarget$" Enemy: "$Enemy$" Dist: "$VSize( Enemy.Location - Pawn.Location);
+	if( Enemy != none )
+	{
+		return Super.GetDumpString()@"AttackTarget:"@AttackTarget$" Enemy: "$Enemy$" Dist: "$VSize( Enemy.Location - Pawn.Location);
+	}
+
+	return Super.GetDumpString()@"No enemy! AttackTarget:"@AttackTarget;
 }
 
 function float GetAbortAttackDistanceSq()

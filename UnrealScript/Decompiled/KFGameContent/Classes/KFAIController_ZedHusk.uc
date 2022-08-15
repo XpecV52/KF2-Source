@@ -99,26 +99,29 @@ simulated function Tick(float DeltaTime)
         {
             if((GetActiveCommand() != none) && !GetActiveCommand().IsA('AICommand_SpecialMove'))
             {
-                DistToTargetSq = VSizeSq(Enemy.Location - Pawn.Location);
-                if(IsSuicidal())
+                if(WorldInfo.FastTrace(Enemy.Location, Pawn.Location,, true))
                 {
-                    if(CanDoSuicide(DistToTargetSq))
+                    DistToTargetSq = VSizeSq(Enemy.Location - Pawn.Location);
+                    if(IsSuicidal())
                     {
-                        Class'AICommand_Husk_Suicide'.static.Suicide(self);
-                    }                    
-                }
-                else
-                {
-                    if(CanDoFlamethrower(DistToTargetSq))
-                    {
-                        Class'AICommand_HuskFlameThrowerAttack'.static.FlameThrowerAttack(self);                        
+                        if(CanDoSuicide(DistToTargetSq))
+                        {
+                            Class'AICommand_Husk_Suicide'.static.Suicide(self);
+                        }                        
                     }
                     else
                     {
-                        if(CanDoFireball(DistToTargetSq))
+                        if(CanDoFlamethrower(DistToTargetSq))
                         {
-                            Class'AICommand_HuskFireBallAttack'.static.FireBallAttack(self);
-                            TimeBetweenFireBalls = BaseTimeBetweenFireBalls + RandRange(-FireballRandomizedValue, FireballRandomizedValue);
+                            Class'AICommand_HuskFlameThrowerAttack'.static.FlameThrowerAttack(self);                            
+                        }
+                        else
+                        {
+                            if(CanDoFireball(DistToTargetSq))
+                            {
+                                Class'AICommand_HuskFireBallAttack'.static.FireBallAttack(self);
+                                TimeBetweenFireBalls = BaseTimeBetweenFireBalls + RandRange(-FireballRandomizedValue, FireballRandomizedValue);
+                            }
                         }
                     }
                 }
@@ -139,7 +142,7 @@ function bool IsSuicidal()
 
 function bool CanDoSuicide(float DistToTargetSq)
 {
-    if((DistToTargetSq <= (MinDistanceToSuicide * MinDistanceToSuicide)) && MyKFPawn.CanDoSpecialMove(18))
+    if((DistToTargetSq <= (MinDistanceToSuicide * MinDistanceToSuicide)) && MyKFPawn.CanDoSpecialMove(19))
     {
         return true;
     }
@@ -148,7 +151,7 @@ function bool CanDoSuicide(float DistToTargetSq)
 
 function bool CanDoFlamethrower(float DistToTargetSq)
 {
-    if(((bCanUseFlameThrower && (LastFlameThrowerTime == float(0)) || (WorldInfo.TimeSeconds - LastFlameThrowerTime) > TimeBetweenFlameThrower) && DistToTargetSq <= float(MaxDistanceForFlameThrower * MaxDistanceForFlameThrower)) && MyKFPawn.CanDoSpecialMove(17))
+    if(((bCanUseFlameThrower && (LastFlameThrowerTime == float(0)) || (WorldInfo.TimeSeconds - LastFlameThrowerTime) > TimeBetweenFlameThrower) && DistToTargetSq <= float(MaxDistanceForFlameThrower * MaxDistanceForFlameThrower)) && MyKFPawn.CanDoSpecialMove(18))
     {
         return true;
     }
@@ -157,7 +160,7 @@ function bool CanDoFlamethrower(float DistToTargetSq)
 
 function bool CanDoFireball(float DistToTargetSq)
 {
-    if((((LastFireBallTime == float(0)) || (WorldInfo.TimeSeconds - LastFireBallTime) > TimeBetweenFireBalls) && DistToTargetSq <= float(MaxDistanceForFireBall * MaxDistanceForFireBall)) && MyKFPawn.CanDoSpecialMove(16))
+    if((((LastFireBallTime == float(0)) || (WorldInfo.TimeSeconds - LastFireBallTime) > TimeBetweenFireBalls) && DistToTargetSq <= float(MaxDistanceForFireBall * MaxDistanceForFireBall)) && MyKFPawn.CanDoSpecialMove(17))
     {
         return true;
     }
@@ -166,7 +169,7 @@ function bool CanDoFireball(float DistToTargetSq)
 
 event bool SetEnemy(Pawn NewEnemy)
 {
-    if((MyKFPawn == none) || MyKFPawn.IsDoingSpecialMove(16))
+    if((MyKFPawn == none) || MyKFPawn.IsDoingSpecialMove(17))
     {
         if(MyKFPawn.NeedToTurn(NewEnemy.Location))
         {
@@ -220,7 +223,7 @@ function ShootFireball(class<KFProjectile> FireballClass)
         return;
     }
     SocketLocation = MyKFPawn.GetPawnViewLocation() + (FireOffset >> Pawn.GetViewRotation());
-    if(((float(MyKFPawn.Health) > 0) && Role == ROLE_Authority) && MyKFPawn.IsDoingSpecialMove(16))
+    if(((float(MyKFPawn.Health) > 0) && Role == ROLE_Authority) && MyKFPawn.IsDoingSpecialMove(17))
     {
         AimLocation = Enemy.Location;
         if(Skill == Class'KFDifficultyInfo'.static.GetDifficultyValue(0))
@@ -258,7 +261,7 @@ function ShootFireball(class<KFProjectile> FireballClass)
                 AimLocation = GroundAimLocation;
             }
         }
-        HitActor = Trace(HitLocation, HitNormal, AimLocation, SocketLocation, true);
+        HitActor = WorldInfo.Trace(HitLocation, HitNormal, AimLocation, SocketLocation, true);
         if(HitActor == Enemy)
         {
             randVectorDraw = VRand();
@@ -291,7 +294,7 @@ function ShootFireball(class<KFProjectile> FireballClass)
                 {
                     self.AILog_Internal(((((((string(GetFuncName()) @ " HitActor: ") @ string(HitActor)) @ " Is NOT My Enemy: ") @ string(Enemy)) @ " and distanceToHitLoc: ") @ string(distanceToHitLoc)) @ " is too close so not firing!!!", 'FireBall');
                 }
-                MyKFPawn.SpecialMoves[16].AbortedByAICommand();
+                MyKFPawn.SpecialMoves[17].AbortedByAICommand();
                 LastFireBallTime = WorldInfo.TimeSeconds;
                 return;                
             }

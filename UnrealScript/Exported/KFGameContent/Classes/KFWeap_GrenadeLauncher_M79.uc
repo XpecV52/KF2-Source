@@ -15,9 +15,7 @@ defaultproperties
    ForceZoomOutTime=0.300000
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
    FireModeIconPaths(1)=()
-   FilterTypeUI=FT_Explosive
    InventorySize=6
-   EffectiveRange=100
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -26,7 +24,7 @@ defaultproperties
    PlayerIronSightFOV=73.000000
    FastZoomOutTime=0.200000
    GroupPriority=75.000000
-   UITexture=Texture2D'WEP_UI_M79_TEX.UI_WeaponSelect_M79'
+   WeaponSelectTexture=Texture2D'WEP_UI_M79_TEX.UI_WeaponSelect_M79'
    MagazineCapacity(0)=1
    MaxSpareAmmo(0)=15
    InitialSpareMags(0)=7
@@ -40,7 +38,7 @@ defaultproperties
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_GrenadeLauncher_Base:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_GrenadeLauncher_M79:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_GrenadeLauncher_M79:MeleeHelper_0'
    MuzzleFlashTemplate=KFMuzzleFlash'WEP_M79_ARCH.Wep_M79_MuzzleFlash'
    maxRecoilPitch=900
    minRecoilPitch=775
@@ -69,7 +67,7 @@ defaultproperties
    WeaponFireTypes(2)=()
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
-   WeaponProjectiles(0)=Class'KFGameContent.KFProj_HighExplosive_M79'
+   WeaponProjectiles(0)=Class'kfgamecontent.KFProj_HighExplosive_M79'
    FireInterval(0)=0.250000
    FireInterval(1)=()
    FireInterval(2)=()
@@ -80,10 +78,10 @@ defaultproperties
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=()
-   InstantHitDamageTypes(0)=Class'KFGameContent.KFDT_Ballistic_M79Impact'
+   InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_M79Impact'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=None
-   InstantHitDamageTypes(3)=Class'KFGameContent.KFDT_Bludgeon_M79'
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_M79'
    FireOffset=(X=23.000000,Y=4.000000,Z=-3.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_GrenadeLauncher_Base:FirstPersonMesh'
       SkeletalMesh=SkeletalMesh'WEP_1P_M79_MESH.Wep_1stP_M79_Rig'

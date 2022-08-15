@@ -22,6 +22,7 @@ package tripwire.menus
     import tripwire.containers.TripContainer;
     import tripwire.containers.postGame.MapVoteContainer;
     import tripwire.containers.postGame.PlayerStatsContainer;
+    import tripwire.containers.postGame.PostGameItemDropContainer;
     import tripwire.containers.postGame.PostGameSummaryContainer;
     import tripwire.containers.postGame.TeamAwardsContainer;
     import tripwire.controls.TripUILoader;
@@ -48,9 +49,13 @@ package tripwire.menus
         
         public var chatBoxWidget:PlayerChatWidget;
         
+        public var itemDropContainer:PostGameItemDropContainer;
+        
         public var playerNamePlate:PlayerNamePlateContainer;
         
         public var summaryContainer:PostGameSummaryContainer;
+        
+        public var currentContainer:TripContainer;
         
         public var controllerIcon_Left:MovieClip;
         
@@ -120,6 +125,7 @@ package tripwire.menus
                 this.xpString = !!param1.xp ? param1.xp : "_xp";
                 this.serverNameText.text = !!param1.serverName ? param1.serverName : "";
                 this.serverIPText.text = !!param1.serverIP ? param1.serverIP : "";
+                this.itemDropContainer.dropTitleText.text = !!param1.dropTitle ? param1.dropTitle : "";
                 this.tabButtons = [this.teamAwardsString,this.playerStatsString,this.xpString,this.mapVoteString];
             }
         }
@@ -171,6 +177,14 @@ package tripwire.menus
         override public function openContainer() : void
         {
             super.openContainer();
+            if(stage && !hasEventListener(InputEvent.INPUT))
+            {
+                stage.addEventListener(InputEvent.INPUT,this.handleUserInput,false,0,true);
+            }
+            if(this.currentMenu != null)
+            {
+                this.currentMenu.selectContainer();
+            }
         }
         
         override public function closeContainer() : void
@@ -184,22 +198,32 @@ package tripwire.menus
             var _loc2_:InputDetails = param1.details;
             if(_loc2_.value == InputValue.KEY_DOWN)
             {
-                this.playAnims = false;
-                bkillAnims = true;
                 switch(param1.details.navEquivalent)
                 {
                     case NavigationCode.RIGHT:
                         if(this._selectedMenu < this.MENU_MAX - 1)
                         {
                             this.selectedMenu = this._selectedMenu + 1;
+                            this.playAnims = false;
+                            bkillAnims = true;
                         }
                         break;
                     case NavigationCode.LEFT:
                         if(this._selectedMenu > 0)
                         {
                             this.selectedMenu = this._selectedMenu - 1;
+                            this.playAnims = false;
+                            bkillAnims = true;
                         }
                 }
+            }
+        }
+        
+        public function set itemDrop(param1:Object) : void
+        {
+            if(this.itemDropContainer != null)
+            {
+                this.itemDropContainer.data = param1;
             }
         }
         

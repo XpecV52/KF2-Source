@@ -42,7 +42,7 @@ defaultproperties
 {
    FuseTime=1.000000
    LandedTranslationOffset=(X=-5.000000,Y=0.000000,Z=0.000000)
-   ExplosionActorClass=Class'KFGameContent.KFExplosion_HansSmokeGrenade'
+   ExplosionActorClass=Class'kfgamecontent.KFExplosion_HansSmokeGrenade'
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
       ExplosionEffects=KFImpactEffectInfo'ZED_Hans_EMIT.SmokeGrenade_Explosion'
       Damage=0.000000
@@ -61,7 +61,7 @@ defaultproperties
       Name="ExploTemplate0"
       ObjectArchetype=KFGameExplosion'KFGame.Default__KFGameExplosion'
    End Object
-   ExplosionTemplate=KFGameExplosion'KFGameContent.Default__KFProj_HansSmokeGrenade:ExploTemplate0'
+   ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFProj_HansSmokeGrenade:ExploTemplate0'
    ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
    PostExplosionLifetime=15.000000
    ProjFlightTemplate=ParticleSystem'ZED_Hans_EMIT.FX_Grenade_Smoke_01'

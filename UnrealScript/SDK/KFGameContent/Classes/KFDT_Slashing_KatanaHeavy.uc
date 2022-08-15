@@ -38,5 +38,5 @@ defaultproperties
 	LegStumblePower=50
 	MeleeHitPower=55
 
-	AARWeaponID=`AAR_Katana
+	WeaponDef=class'KFWeapDef_Katana'
 }

@@ -10,8 +10,8 @@ class KFCustomizationCamera extends GameCameraBase;
 var bool bInitialize;
 var byte BodyViewIndex;
 var byte CurrentViewIndex;
-var Vector CharacterOffset;
-var Vector HeadOffset;
+var() Vector CharacterOffset;
+var() Vector HeadOffset;
 var float CharacterDistance;
 var float HeadDistance;
 var int RotationOffset;
@@ -135,8 +135,8 @@ function FadeCameraRotation()
 
 defaultproperties
 {
-    CharacterOffset=(X=0,Y=-35,Z=5)
-    HeadOffset=(X=0,Y=-10,Z=70)
+    CharacterOffset=(X=0,Y=-15,Z=6)
+    HeadOffset=(X=0,Y=-15,Z=68)
     CharacterDistance=200
     HeadDistance=70
     RotationOffset=38500

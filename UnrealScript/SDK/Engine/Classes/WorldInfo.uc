@@ -36,6 +36,10 @@ var(Rendering) config				float					SquintModeKernelSize;
 
 `if(`__TW_)
 var(Rendering) float LevelShadowDepthBias;
+/** Use this setting to turn off WholeSceneDominantShadows for the map. This can be used to circumvent the shadow graphics setting for certain maps in order to meet the performance benchmarks.
+	USE CASE: Set the light to cast WholeSceneShadows, and check bDisableWholeSceneDominantShadow. Whole scene shadows can then be enabled based on bOverrideMapWholeSceneDominantShadowSetting system setting.
+	*/
+var(Rendering) bool bDisableWholeSceneDominantShadow;
 `endif
 
 /** Linked list of post processing volumes, sorted in descending order of priority.					*/
@@ -1761,6 +1765,24 @@ native function name GetAkEnvironmentName( vector AtLocation );
 `if(`__TW_)
 /** See `BalanceLog() */
 native function LogGameBalance(coerce string S);
+
+native function TWLogsInit(); // resets the millisecond diff timer
+
+/** More than 9 params? do some manual concatination */
+native function TWLogEvent( string EventName,
+							PlayerReplicationInfo info,
+							optional coerce string P1,
+							optional coerce string P2,
+							optional coerce string P3,
+							optional coerce string P4,
+							optional coerce string P5,
+							optional coerce string P6,
+							optional coerce string P7,
+							optional coerce string P8,
+							optional coerce string P9 );
+
+native function TWPushLogs();
+
 `endif
 
 defaultproperties

@@ -10,5 +10,5 @@ class KFDT_Bludgeon_Shotgun_Medic extends KFDT_Bludgeon_RifleButt
 
 defaultproperties
 {
-    AARWeaponID=23
+    WeaponDef=Class'KFGame.KFWeapDef_MedicShotgun'
 }

@@ -25,6 +25,7 @@ package tripwire.controls
             {
                 visible = true;
                 textField.text = !!param1.label ? param1.label : "";
+                enabled = param1.enabled;
                 if(param1.source && param1.source != "")
                 {
                     this.imageLoader.source = param1.source;

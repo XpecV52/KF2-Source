@@ -1,5 +1,6 @@
 package tripwire.menus
 {
+    import com.greensock.events.TweenEvent;
     import flash.display.MovieClip;
     import flash.events.Event;
     import flash.events.MouseEvent;
@@ -9,12 +10,15 @@ package tripwire.menus
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.IndexEvent;
     import scaleform.clik.ui.InputDetails;
+    import scaleform.gfx.FocusManager;
     import tripwire.containers.GearListContainer;
     import tripwire.containers.SectionHeaderContainer;
     import tripwire.containers.TripContainer;
+    import tripwire.containers.gear.GearPerkSelectionContainer;
     import tripwire.controls.CategoryButton;
     import tripwire.controls.TripButton;
     import tripwire.controls.TripTextArea;
+    import tripwire.managers.MenuManager;
     
     public class GearMenu extends TripContainer
     {
@@ -37,6 +41,8 @@ package tripwire.menus
         public var bodyButton:CategoryButton;
         
         public var attachmentButton:CategoryButton;
+        
+        public var weaponsButton:CategoryButton;
         
         public var rotateCameraWindow:MovieClip;
         
@@ -74,6 +80,10 @@ package tripwire.menus
         
         private var _skinsString:String;
         
+        private var _weapons:Array;
+        
+        private var _weaponSkins:Array;
+        
         private var _characters:Array;
         
         private var _heads:Array;
@@ -88,6 +98,8 @@ package tripwire.menus
         
         private var _bRotating:Boolean;
         
+        public var perkSelectionContainer:GearPerkSelectionContainer;
+        
         public function GearMenu()
         {
             super();
@@ -95,6 +107,17 @@ package tripwire.menus
             this.bodyArray = new Array();
             this.attachmentsArray = new Array();
             this.setTabIndexes();
+        }
+        
+        public function set weaponArray(param1:Array) : void
+        {
+            this._weapons = param1;
+            this.setOptionList(this.gearList,this._weapons,"WEAPons");
+        }
+        
+        public function set weaponSkins(param1:Array) : void
+        {
+            this._weaponSkins = param1;
         }
         
         public function set characterArray(param1:Array) : void
@@ -199,6 +222,8 @@ package tripwire.menus
             this._skinsString = param1.skinsString;
             this._attachmentString = param1.attachmentsString;
             this.attachmentButton.label = this._attachmentString;
+            this.weaponsButton.label = !!param1.weapons ? param1.weapons : "";
+            this.weaponsButton.infoString = !!param1.weaponsInfo ? param1.weaponsInfo : "";
         }
         
         override public function selectContainer() : void
@@ -219,12 +244,21 @@ package tripwire.menus
         
         override public function openContainer() : void
         {
-            defaultFirstElement = !!this.characterButton.enabled ? this.characterButton : this.headButton;
+            super.openContainer();
+        }
+        
+        override protected function onOpened(param1:TweenEvent = null) : void
+        {
+            super.onOpened(param1);
+            currentElement = defaultFirstElement = !!this.characterButton.enabled ? this.characterButton : this.headButton;
             if(defaultFirstElement == null)
             {
-                defaultFirstElement = !!this.bodyButton.enabled ? this.bodyButton : this.attachmentButton;
+                currentElement = defaultFirstElement = !!this.bodyButton.enabled ? this.bodyButton : this.attachmentButton;
             }
-            super.openContainer();
+            if(!MenuManager.manager.bPopUpOpen)
+            {
+                FocusManager.setFocus(currentElement);
+            }
         }
         
         override public function deselectContainer() : void
@@ -271,9 +305,11 @@ package tripwire.menus
         protected function setTabIndexes() : *
         {
             this.characterButton.tabIndex = 1;
-            this.headButton.tabIndex = 2;
-            this.bodyButton.tabIndex = 3;
-            this.attachmentButton.tabIndex = 4;
+            this.weaponsButton.tabIndex = 2;
+            this.headButton.tabIndex = 3;
+            this.bodyButton.tabIndex = 4;
+            this.attachmentButton.tabIndex = 5;
+            this.perkSelectionContainer.tabIndex = 6;
         }
         
         override protected function addedToStage(param1:Event) : void
@@ -283,11 +319,16 @@ package tripwire.menus
             this.headButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.bodyButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.attachmentButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
+            this.weaponsButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
+            this.perkSelectionContainer.weaponBackButton.addEventListener(ButtonEvent.PRESS,this.hideWeaponOptions,false,0,true);
             this.rotateCameraWindow.addEventListener(MouseEvent.MOUSE_DOWN,this.startRotate,false,0,true);
             this.gearList.addEventListener(IndexEvent.INDEX_CHANGE,this.listSelect,false,0,true);
             this.skinList.addEventListener(IndexEvent.INDEX_CHANGE,this.listSelect,false,0,true);
             this.gearList.visible = false;
             this.skinList.visible = false;
+            this.hideWeaponOptions();
+            this.testMenu();
+            this.weaponsButton.visible = false;
         }
         
         protected function handleButtonEvent(param1:ButtonEvent) : void
@@ -299,7 +340,7 @@ package tripwire.menus
             {
                 return;
             }
-            if(this._selectedButton == this.headButton)
+            if(this._selectedButton == this.headButton || this._selectedButton == this.attachmentButton)
             {
                 ExternalInterface.call("Callback_HeadCamera");
             }
@@ -336,6 +377,9 @@ package tripwire.menus
                     {
                         this.gearList.tileList.selectedIndex = this._selectedAttachmentIndex;
                     }
+                    break;
+                case this.weaponsButton:
+                    this.showWeaponOptions();
             }
         }
         
@@ -404,6 +448,9 @@ package tripwire.menus
                         break;
                     case this.attachmentButton:
                         this.chosenItem(this._attachments,param1.index,"Callback_Attachment");
+                        break;
+                    case this.weaponsButton:
+                        this.chosenItem(this._weapons,param1.index,"Callback_Weapon");
                 }
             }
             else
@@ -419,7 +466,7 @@ package tripwire.menus
             if(!this._bSelectingSkin)
             {
                 this._meshIndex = this._selectedButton != this.attachmentButton ? int(param2) : int(param2);
-                if(this._meshIndex >= 0 && param1[param2].skinInfo && param1[param2].skinInfo.length > 1)
+                if(this._meshIndex >= 0 && param1[param2].skinInfo && param1[param2].skinInfo.length > 0)
                 {
                     this.setOptionList(this.skinList,param1[param2].skinInfo,this._skinsString);
                 }
@@ -431,7 +478,7 @@ package tripwire.menus
                     {
                         _loc4_ = param1[param2].ItemIndex;
                     }
-                    ExternalInterface.call(param3,_loc4_,0);
+                    ExternalInterface.call(param3,_loc4_,-1);
                     this.selectContainer();
                 }
             }
@@ -439,10 +486,45 @@ package tripwire.menus
             {
                 this.selectButton();
                 this._skinIndex = param2;
-                ExternalInterface.call(param3,param1[this._meshIndex].ItemIndex,param1[this._meshIndex].skinInfo[this._skinIndex].ItemIndex);
+                if(param1[this._meshIndex].skinInfo[this._skinIndex].ItemIndex == undefined)
+                {
+                    ExternalInterface.call(param3,param1[this._meshIndex].ItemIndex,-1);
+                }
+                else
+                {
+                    if(param3 == "Callback_Weapon")
+                    {
+                        ExternalInterface.call(param3,param1[this._meshIndex].ItemIndex,param1[this._meshIndex].skinInfo[this._skinIndex].definition);
+                    }
+                    ExternalInterface.call(param3,param1[this._meshIndex].ItemIndex,param1[this._meshIndex].skinInfo[this._skinIndex].ItemIndex);
+                }
                 this.selectContainer();
                 this._bSelectingSkin = false;
             }
+        }
+        
+        function showWeaponOptions(param1:ButtonEvent = null) : void
+        {
+            this.skinList.closeContainer();
+            this.gearList.closeContainer();
+            this.perkSelectionContainer.visible = true;
+            this.characterButton.visible = false;
+            this.bioTextArea.visible = false;
+            this.headButton.visible = false;
+            this.bodyButton.visible = false;
+            this.attachmentButton.visible = false;
+        }
+        
+        function hideWeaponOptions(param1:ButtonEvent = null) : void
+        {
+            this.skinList.closeContainer();
+            this.gearList.closeContainer();
+            this.perkSelectionContainer.visible = false;
+            this.characterButton.visible = true;
+            this.bioTextArea.visible = true;
+            this.headButton.visible = true;
+            this.bodyButton.visible = true;
+            this.attachmentButton.visible = true;
         }
         
         protected function handleOverEvent(param1:MouseEvent) : void

@@ -42,7 +42,7 @@ defaultproperties
 	LegStumblePower=39
 	GunHitPower=25
 
-	AARWeaponID=`AAR_Ak12
+	WeaponDef=class'KFWeapDef_AK12'
 
 	//Perk
 	ModifierPerkList(0)=class'KFPerk_Commando'

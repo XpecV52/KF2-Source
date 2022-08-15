@@ -26,5 +26,5 @@ defaultproperties
    AnimName="Atk_NadeBarrage_V1"
    Handle="SM_Hans_GrenadeBarrage"
    Name="Default__KFSM_Hans_GrenadeBarrage"
-   ObjectArchetype=KFSM_Hans_ThrowGrenade'KFGameContent.Default__KFSM_Hans_ThrowGrenade'
+   ObjectArchetype=KFSM_Hans_ThrowGrenade'kfgamecontent.Default__KFSM_Hans_ThrowGrenade'
 }

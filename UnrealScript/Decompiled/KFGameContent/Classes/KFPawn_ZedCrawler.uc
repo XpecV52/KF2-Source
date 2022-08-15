@@ -152,6 +152,7 @@ defaultproperties
     MinSpawnSquadSizeType=ESquadType.EST_Crawler
     begin object name=MeleeHelper class=KFMeleeHelperAI
         BaseDamage=7
+        MyDamageType=Class'KFDT_Slashing_ZedWeak'
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedCrawler.MeleeHelper'
     MeleeAttackHelper=MeleeHelper

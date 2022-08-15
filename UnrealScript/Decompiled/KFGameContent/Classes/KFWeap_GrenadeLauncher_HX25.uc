@@ -93,9 +93,7 @@ defaultproperties
     ForceZoomOutTime=0.3
     FireModeIconPaths=/* Array type was not detected. */
     InventoryGroup=EInventoryGroup.IG_Secondary
-    FilterTypeUI=EFilterTypeUI.FT_Explosive
     InventorySize=4
-    EffectiveRange=25
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -104,7 +102,7 @@ defaultproperties
     PlayerIronSightFOV=73
     FastZoomOutTime=0.2
     GroupPriority=25
-    UITexture=Texture2D'WEP_UI_HX25_Pistol_TEX.UI_WeaponSelect_HX25'
+    WeaponSelectTexture=Texture2D'WEP_UI_HX25_Pistol_TEX.UI_WeaponSelect_HX25'
     MagazineCapacity=1
     MaxSpareAmmo=23
     InitialSpareMags=11

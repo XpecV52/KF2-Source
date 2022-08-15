@@ -24,7 +24,7 @@ defaultproperties
    IronSightPosition=(X=20.000000,Y=0.000000,Z=0.000000)
    DOF_FG_FocalRadius=150.000000
    GroupPriority=100.000000
-   UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SCAR'
+   WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SCAR'
    MagazineCapacity(0)=20
    MaxSpareAmmo(0)=280
    InitialSpareMags(0)=5
@@ -44,7 +44,7 @@ defaultproperties
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_RifleBase:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_AssaultRifle_SCAR:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_AssaultRifle_SCAR:MeleeHelper_0'
    MuzzleFlashTemplate=KFMuzzleFlash'WEP_SCAR_ARCH.Wep_Scar_MuzzleFlash'
    maxRecoilPitch=150
    minRecoilPitch=125
@@ -65,8 +65,8 @@ defaultproperties
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()
    FiringStatesArray(4)=()
-   WeaponProjectiles(0)=Class'KFGameContent.KFProj_Bullet_AssaultRifle'
-   WeaponProjectiles(1)=Class'KFGameContent.KFProj_Bullet_AssaultRifle'
+   WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_AssaultRifle'
+   WeaponProjectiles(1)=Class'kfgamecontent.KFProj_Bullet_AssaultRifle'
    FireInterval(0)=0.096000
    FireInterval(1)=0.100000
    FireInterval(2)=()
@@ -78,10 +78,10 @@ defaultproperties
    InstantHitDamage(1)=50.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=()
-   InstantHitDamageTypes(0)=Class'KFGameContent.KFDT_Ballistic_SCAR'
-   InstantHitDamageTypes(1)=Class'KFGameContent.KFDT_Ballistic_SCAR'
+   InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_SCAR'
+   InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_SCAR'
    InstantHitDamageTypes(2)=None
-   InstantHitDamageTypes(3)=Class'KFGameContent.KFDT_Bludgeon_SCAR'
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_SCAR'
    FireOffset=(X=30.000000,Y=4.500000,Z=-5.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_RifleBase:FirstPersonMesh'
       SkeletalMesh=SkeletalMesh'WEP_1P_SCAR_MESH.Wep_1stP_SCAR_Rig'

@@ -280,12 +280,6 @@ struct native TWPostProcessSettings
 	/** Controls the film-grain noise intensity (TW post process effect only) */
 	var(Noise) interp float NoiseIntensity;
 
-	/** Interpolation control for turning DOF on or off */
-	var transient float DOF_Strength;
-
-	/** Maximum focal distance */
-	var float DOF_MaxFocalDistance;
-
 	/** Whether to use tile-max motion blur */
 	var bool MB_TileMaxEnabled;
 
@@ -320,8 +314,6 @@ struct native TWPostProcessSettings
 		FTWPostProcessSettings(INT A)
 		{
 			DOF_FocalDistance=1000.0f;
-			DOF_Strength=0.0f;
-			DOF_MaxFocalDistance=10000.0f;
 			
 			DOF_SharpRadius=800.0f;
 			DOF_FocalRadius=1200.0f;
@@ -355,8 +347,6 @@ struct native TWPostProcessSettings
 	structdefaultproperties
 	{
 		DOF_FocalDistance=1000.0
-		DOF_Strength=0.0
-		DOF_MaxFocalDistance=10000.0
 		
 		DOF_SharpRadius=800.0
 		DOF_FocalRadius=1200.0
@@ -1171,7 +1161,7 @@ simulated function OnToggle(SeqAct_Toggle action)
 defaultproperties
 {
    bEnabled=True
-   Settings=(bOverride_EnableBloom=True,bOverride_EnableDOF=True,bOverride_EnableMotionBlur=True,bOverride_EnableSceneEffect=True,bOverride_AllowAmbientOcclusion=True,bOverride_OverrideRimShaderColor=True,bOverride_Bloom_Scale=True,bOverride_Bloom_Threshold=True,bOverride_Bloom_Tint=True,bOverride_Bloom_ScreenBlendThreshold=True,bOverride_Bloom_InterpolationDuration=True,bOverride_DOF_FalloffExponent=True,bOverride_DOF_BlurKernelSize=True,bOverride_DOF_BlurBloomKernelSize=True,bOverride_DOF_MaxNearBlurAmount=True,bOverride_DOF_MaxFarBlurAmount=True,bOverride_DOF_FocusType=True,bOverride_DOF_FocusInnerRadius=True,bOverride_DOF_FocusDistance=True,bOverride_DOF_FocusPosition=True,bOverride_DOF_InterpolationDuration=True,bOverride_Scene_Desaturation=True,bOverride_Scene_HighLights=True,bOverride_Scene_MidTones=True,bOverride_Scene_Shadows=True,bOverride_Scene_InterpolationDuration=True,bOverride_RimShader_Color=True,bOverride_RimShader_InterpolationDuration=True,bEnableBloom=True,bEnableMotionBlur=True,bEnableSceneEffect=True,bAllowAmbientOcclusion=True,TripwireSettings=(DOF_FocalDistance=1000.000000,DOF_SharpRadius=800.000000,DOF_FocalRadius=1200.000000,DOF_ExpFalloff=1.000000,DOF_FG_SharpRadius=75.000000,DOF_FG_FocalRadius=150.000000,DOF_FG_ExpFalloff=1.000000,Bloom_Intensity=1.050000,Bloom_Width=4.000000,Bloom_Exposure=1.250000,Bloom_Threshold=0.600000,Bloom_InterpolationDuration=1.000000,NoiseIntensity=1.000000,DOF_MaxFocalDistance=10000.000000,MB_TileMaxEnabled=True,bEnableScreenSpaceReflections=True),LegacySettings=(Bloom_Scale=1.000000,Bloom_Threshold=1.000000,Bloom_InterpolationDuration=1.000000,DOF_BlurBloomKernelSize=16.000000,DOF_FalloffExponent=4.000000,DOF_BlurKernelSize=16.000000,DOF_MaxNearBlurAmount=1.000000,DOF_MaxFarBlurAmount=1.000000,DOF_FocusInnerRadius=2000.000000,DOF_InterpolationDuration=1.000000,MotionBlur_MaxVelocity=1.000000,MotionBlur_Amount=0.500000,MotionBlur_FullMotionBlur=True,MotionBlur_CameraRotationThreshold=45.000000,MotionBlur_CameraTranslationThreshold=10000.000000,MotionBlur_InterpolationDuration=1.000000,RimShader_Color=(R=0.470440,G=0.585973,B=0.827726,A=1.000000),RimShader_InterpolationDuration=1.000000,MobileColorGrading=(TransitionTime=1.000000,HighLights=(R=0.700000,G=0.700000,B=0.700000,A=1.000000),MidTones=(R=0.000000,G=0.000000,B=0.000000,A=1.000000),Shadows=(R=0.000000,G=0.000000,B=0.000000,A=1.000000)),MobilePostProcess=(Mobile_BlurAmount=16.000000,Mobile_TransitionTime=1.000000,Mobile_Bloom_Scale=0.500000,Mobile_Bloom_Threshold=0.750000,Mobile_Bloom_Tint=(R=1.000000,G=1.000000,B=1.000000,A=1.000000),Mobile_DOF_Distance=1500.000000,Mobile_DOF_MinRange=600.000000,Mobile_DOF_MaxRange=1200.000000,Mobile_DOF_FarBlurFactor=1.000000)),Bloom_Tint=(B=255,G=255,R=255,A=0),Bloom_ScreenBlendThreshold=10.000000,Scene_Colorize=(X=1.000000,Y=1.000000,Z=1.000000),Scene_TonemapperScale=1.000000,Scene_HighLights=(X=1.000000,Y=1.000000,Z=1.000000),Scene_MidTones=(X=1.000000,Y=1.000000,Z=1.000000))
+   Settings=(bOverride_EnableBloom=True,bOverride_EnableDOF=True,bOverride_EnableMotionBlur=True,bOverride_EnableSceneEffect=True,bOverride_AllowAmbientOcclusion=True,bOverride_OverrideRimShaderColor=True,bOverride_Bloom_Scale=True,bOverride_Bloom_Threshold=True,bOverride_Bloom_Tint=True,bOverride_Bloom_ScreenBlendThreshold=True,bOverride_Bloom_InterpolationDuration=True,bOverride_DOF_FalloffExponent=True,bOverride_DOF_BlurKernelSize=True,bOverride_DOF_BlurBloomKernelSize=True,bOverride_DOF_MaxNearBlurAmount=True,bOverride_DOF_MaxFarBlurAmount=True,bOverride_DOF_FocusType=True,bOverride_DOF_FocusInnerRadius=True,bOverride_DOF_FocusDistance=True,bOverride_DOF_FocusPosition=True,bOverride_DOF_InterpolationDuration=True,bOverride_Scene_Desaturation=True,bOverride_Scene_HighLights=True,bOverride_Scene_MidTones=True,bOverride_Scene_Shadows=True,bOverride_Scene_InterpolationDuration=True,bOverride_RimShader_Color=True,bOverride_RimShader_InterpolationDuration=True,bEnableBloom=True,bEnableMotionBlur=True,bEnableSceneEffect=True,bAllowAmbientOcclusion=True,TripwireSettings=(DOF_FocalDistance=1000.000000,DOF_SharpRadius=800.000000,DOF_FocalRadius=1200.000000,DOF_ExpFalloff=1.000000,DOF_FG_SharpRadius=75.000000,DOF_FG_FocalRadius=150.000000,DOF_FG_ExpFalloff=1.000000,Bloom_Intensity=1.050000,Bloom_Width=4.000000,Bloom_Exposure=1.250000,Bloom_Threshold=0.600000,Bloom_InterpolationDuration=1.000000,NoiseIntensity=1.000000,MB_TileMaxEnabled=True,bEnableScreenSpaceReflections=True),LegacySettings=(Bloom_Scale=1.000000,Bloom_Threshold=1.000000,Bloom_InterpolationDuration=1.000000,DOF_BlurBloomKernelSize=16.000000,DOF_FalloffExponent=4.000000,DOF_BlurKernelSize=16.000000,DOF_MaxNearBlurAmount=1.000000,DOF_MaxFarBlurAmount=1.000000,DOF_FocusInnerRadius=2000.000000,DOF_InterpolationDuration=1.000000,MotionBlur_MaxVelocity=1.000000,MotionBlur_Amount=0.500000,MotionBlur_FullMotionBlur=True,MotionBlur_CameraRotationThreshold=45.000000,MotionBlur_CameraTranslationThreshold=10000.000000,MotionBlur_InterpolationDuration=1.000000,RimShader_Color=(R=0.470440,G=0.585973,B=0.827726,A=1.000000),RimShader_InterpolationDuration=1.000000,MobileColorGrading=(TransitionTime=1.000000,HighLights=(R=0.700000,G=0.700000,B=0.700000,A=1.000000),MidTones=(R=0.000000,G=0.000000,B=0.000000,A=1.000000),Shadows=(R=0.000000,G=0.000000,B=0.000000,A=1.000000)),MobilePostProcess=(Mobile_BlurAmount=16.000000,Mobile_TransitionTime=1.000000,Mobile_Bloom_Scale=0.500000,Mobile_Bloom_Threshold=0.750000,Mobile_Bloom_Tint=(R=1.000000,G=1.000000,B=1.000000,A=1.000000),Mobile_DOF_Distance=1500.000000,Mobile_DOF_MinRange=600.000000,Mobile_DOF_MaxRange=1200.000000,Mobile_DOF_FarBlurFactor=1.000000)),Bloom_Tint=(B=255,G=255,R=255,A=0),Bloom_ScreenBlendThreshold=10.000000,Scene_Colorize=(X=1.000000,Y=1.000000,Z=1.000000),Scene_TonemapperScale=1.000000,Scene_HighLights=(X=1.000000,Y=1.000000,Z=1.000000),Scene_MidTones=(X=1.000000,Y=1.000000,Z=1.000000))
    Begin Object Class=BrushComponent Name=BrushComponent0 Archetype=BrushComponent'Engine.Default__Volume:BrushComponent0'
       ReplacementPrimitive=None
       bAcceptsLights=True

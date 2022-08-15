@@ -157,7 +157,7 @@ function Timer_DrainHealth()
 {
     local KFPawn_ZedHansBase HansPawn;
 
-    if(((((KFPOwner != none) && KFPOwner.Health > 0) && Follower != none) && Follower.Health >= 0) && Follower.IsDoingSpecialMove(20))
+    if(((((KFPOwner != none) && KFPOwner.Health > 0) && Follower != none) && Follower.Health >= 0) && Follower.IsDoingSpecialMove(21))
     {
         if(Follower.GetHealthPercentage() > EnemyDrawLifeThreshold)
         {
@@ -247,4 +247,5 @@ defaultproperties
     FollowerSpecialMove=ESpecialMove.SM_HansGrappleVictim
     bStopAlignFollowerRotationAtGoal=false
     AlignDistance=108
+    bCanOnlyWanderAtEnd=true
 }

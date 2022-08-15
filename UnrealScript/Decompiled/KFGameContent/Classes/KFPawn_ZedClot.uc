@@ -50,6 +50,7 @@ defaultproperties
     bCanGrabAttack=true
     CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Clot_ARCH.ZED_Clot_Undev_Archetype'
     begin object name=MeleeHelper class=KFMeleeHelperAI
+        MyDamageType=Class'KFDT_Slashing_ZedWeak'
         MaxHitRange=172
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedClot.MeleeHelper'

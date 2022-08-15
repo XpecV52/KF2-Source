@@ -133,6 +133,7 @@ simulated function ShowTraderPath()
 {
 	local KFPlayerController KFPC;
 	local KFGameReplicationInfo KFGRI;
+	local EPathSearchType OldSearchType;
 	local KFEmit_TraderPath Path;
 	local Actor nodePathRoot;
 	local bool bPathFound;
@@ -143,6 +144,16 @@ simulated function ShowTraderPath()
 	{
 		foreach LocalPlayerControllers(class'KFPlayerController', KFPC)
 		{
+			if( KFPC.Pawn == none )
+			{
+				continue;
+			}
+
+			OldSearchType = KFPC.Pawn.PathSearchType;
+			KFPC.Pawn.PathSearchType = PST_Constraint;
+			class'Path_ToTrader'.static.ToTrader( KFPC.Pawn );
+			class'Goal_AtActor'.static.AtActor( KFPC.Pawn, self,, false );
+
 			nodePathRoot = KFPC.FindPathToward(self);
 			if( nodePathRoot != none )
 			{
@@ -169,6 +180,8 @@ simulated function ShowTraderPath()
 				`log("ShowTraderPath - No Path Found, KFGRI.OpenedTrader: " @ KFGRI.OpenedTrader @ " trader trigger loc: " @ Location @ " - player loc: " @ KFPC.Pawn.Location, bLogTrader);
 			}
 
+			KFPC.Pawn.ClearConstraints();
+			KFPC.Pawn.PathSearchType = OldSearchType;
 			KFPC.SetTimer(2.0, false, nameof(ShowTraderPath), self);
 		}
 	}

@@ -463,11 +463,34 @@ class KFPawnVoiceGroup_Strasser extends KFPawnVoiceGroup;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 3
 
 defaultproperties
 {
-   EventDataClass=Class'KFGameContent.KFPawnVoiceGroupEventData_Player'
+   EventDataClass=Class'kfgamecontent.KFPawnVoiceGroupEventData_Player'
    DialogEvents(0)=(DefaultAudioCue=AkEvent'ww_vox_chr_Strasser.Play_Strasser_MAN_GetToTrader_Base')
    DialogEvents(1)=(DefaultAudioCue=AkEvent'ww_vox_chr_Strasser.Play_Strasser_MAN_FollowMe_Base')
    DialogEvents(2)=(DefaultAudioCue=AkEvent'ww_vox_chr_Strasser.Play_Strasser_MAN_InsultZed_Base')

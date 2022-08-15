@@ -13,6 +13,8 @@ enum EUIIndex
     UI_Start,
     UI_Perks,
     UI_Gear,
+    UI_Inventory,
+    UI_Store,
     UI_OptionsSelection,
     UI_Exit_Menu,
     UI_OptionsControls,
@@ -21,7 +23,6 @@ enum EUIIndex
     UI_OptionsGameSettings,
     UI_Achievements,
     UI_Extras,
-    UI_Store,
     UI_PostGame,
     UI_Trader,
     UI_ServerBrowserMenu,
@@ -74,6 +75,8 @@ var KFGFxMoviePlayer_Manager.EPopUpType CurrentPopUpType;
 var KFGFxMenu_StartGame StartMenu;
 var KFGFxMenu_Perks PerksMenu;
 var KFGFxMenu_Gear GearMenu;
+var KFGFxMenu_Inventory InventoryMenu;
+var KFGFxMenu_Store StoreMenu;
 var KFGFxOptionsMenu_Controls OptionsControlsMenu;
 var KFGFxOptionsMenu_Audio OptionsAudioMenu;
 var KFGFxOptionsMenu_Graphics OptionsGraphicsMenu;
@@ -256,7 +259,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             PC = GetPC();
             if(PC.PlayerReplicationInfo.bReadyToPlay && PC.WorldInfo.GRI.bMatchHasBegun)
             {
-                goto J0x991;
+                goto J0xAA5;
             }
             if(GearMenu == none)
             {
@@ -264,6 +267,24 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
                 GearMenu.InitializeMenu(self);
             }
             OnMenuOpen(WidgetPath, GearMenu);
+            break;
+        case 'InventoryMenu':
+            PC = GetPC();
+            if(InventoryMenu == none)
+            {
+                InventoryMenu = KFGFxMenu_Inventory(Widget);
+                InventoryMenu.InitializeMenu(self);
+            }
+            OnMenuOpen(WidgetPath, InventoryMenu);
+            break;
+        case 'StoreMenu':
+            PC = GetPC();
+            if(StoreMenu == none)
+            {
+                StoreMenu = KFGFxMenu_Store(Widget);
+                StoreMenu.InitializeMenu(self);
+            }
+            OnMenuOpen(WidgetPath, StoreMenu);
             break;
         case 'OptionsSelectionMenu':
             if(OptionsSelectionMenu == none)
@@ -368,7 +389,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
         default:
             break;
     }
-    J0x991:
+    J0xAA5:
 
     return true;
 }
@@ -435,6 +456,10 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
         }
     }
     WI = Class'WorldInfo'.static.GetWorldInfo();
+    if(NewMenuIndex == 13)
+    {
+        UnloadCurrentPopup();
+    }
     if(!bMenusOpen)
     {
         SetMenusOpen(true);
@@ -448,7 +473,7 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
         CurrentMenu.OnClose();
         CurrentMenu = none;
     }
-    if(NewMenuIndex != 13)
+    if(NewMenuIndex != 14)
     {
         CurrentMenuIndex = NewMenuIndex;        
     }
@@ -462,8 +487,8 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
     {
         if(StartMenuState == 1)
         {
-            CurrentMenuIndex = 14;
-            NewMenuIndex = 14;            
+            CurrentMenuIndex = 15;
+            NewMenuIndex = 15;            
         }
         else
         {
@@ -603,7 +628,7 @@ function bool ToggleMenus()
                 }
                 else
                 {
-                    OpenMenu(12);
+                    OpenMenu(13);
                     SetWidgetsVisible(false);
                 }
             }
@@ -642,7 +667,10 @@ function SetHUDVisiblity(bool bIsVisible)
         HUD.SetVisible(bIsVisible);
     }
     bCaptureInput = !bIsVisible;
-    GetPC().PlayerInput.ResetInput();
+    if(((GetPC()) != none) && GetPC().PlayerInput != none)
+    {
+        GetPC().PlayerInput.ResetInput();
+    }
 }
 
 event OnTraderTimeStart()
@@ -658,6 +686,14 @@ function CloseTraderMenu()
     if(CurrentMenu == TraderMenu)
     {
         CloseMenus();
+    }
+}
+
+function ShowWelcomeScreen()
+{
+    if((StartMenu != none) && StartMenu.OverviewContainer != none)
+    {
+        StartMenu.OverviewContainer.ShowWelcomeScreen();
     }
 }
 
@@ -814,7 +850,7 @@ function bool IsInLobby()
 
 function bool GetMultiplayerMenuActive()
 {
-    if(CurrentMenuIndex == 14)
+    if(CurrentMenuIndex == 15)
     {
         return true;
     }
@@ -1031,18 +1067,19 @@ defaultproperties
     MenuSWFPaths(0)="../UI_Menus/StartMenu_SWF.swf"
     MenuSWFPaths(1)="../UI_Menus/PerksMenu_SWF.swf"
     MenuSWFPaths(2)="../UI_Menus/GearMenu_SWF.swf"
-    MenuSWFPaths(3)="../UI_Menus/OptionsSelectionMenu_SWF.swf"
-    MenuSWFPaths(4)="../UI_Menus/ExitMenu_SWF.swf"
-    MenuSWFPaths(5)="../UI_Menus/OptionsControlsMenu_SWF.swf"
-    MenuSWFPaths(6)="../UI_Menus/OptionsAudioMenu_SWF.swf"
-    MenuSWFPaths(7)="../UI_Menus/OptionsGraphicsMenu_SWF.swf"
-    MenuSWFPaths(8)="../UI_Menus/OptionsGameSettingsMenu_SWF.swf"
-    MenuSWFPaths(9)=""
-    MenuSWFPaths(10)=""
+    MenuSWFPaths(3)="../UI_Menus/InventoryMenu_SWF.swf"
+    MenuSWFPaths(4)="../UI_Menus/StoreMenu_SWF.swf"
+    MenuSWFPaths(5)="../UI_Menus/OptionsSelectionMenu_SWF.swf"
+    MenuSWFPaths(6)="../UI_Menus/ExitMenu_SWF.swf"
+    MenuSWFPaths(7)="../UI_Menus/OptionsControlsMenu_SWF.swf"
+    MenuSWFPaths(8)="../UI_Menus/OptionsAudioMenu_SWF.swf"
+    MenuSWFPaths(9)="../UI_Menus/OptionsGraphicsMenu_SWF.swf"
+    MenuSWFPaths(10)="../UI_Menus/OptionsGameSettingsMenu_SWF.swf"
     MenuSWFPaths(11)=""
-    MenuSWFPaths(12)="../UI_Menus/PostGameMenu_SWF.swf"
-    MenuSWFPaths(13)="../UI_Menus/TraderMenu_SWF.swf"
-    MenuSWFPaths(14)="../UI_Menus/ServerBrowserMenu_SWF.swf"
+    MenuSWFPaths(12)=""
+    MenuSWFPaths(13)="../UI_Menus/PostGameMenu_SWF.swf"
+    MenuSWFPaths(14)="../UI_Menus/TraderMenu_SWF.swf"
+    MenuSWFPaths(15)="../UI_Menus/ServerBrowserMenu_SWF.swf"
     CurrentMenuIndex=255
     PopupData(0)=(SWFPath="../UI_PopUps/ConfirmationPopup_SWF.swf",TitleStrings=none,DescriptionStrings=none,LeftButtonString="",RightButtonString="")
     PopupData(1)=(SWFPath="../UI_PopUps/GammaPopup_SWF.swf",TitleStrings=none,DescriptionStrings=none,LeftButtonString="",RightButtonString="")

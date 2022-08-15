@@ -67,8 +67,7 @@ defaultproperties
     // Inventory / Grouping
 	InventorySize=6
 	GroupPriority=50
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Bullpup'
-	FilterTypeUI=FT_Assault
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Bullpup'
    	AssociatedPerkClass=class'KFPerk_Commando'
 
 	// DEFAULT_FIREMODE
@@ -110,10 +109,6 @@ defaultproperties
 	// Attachments
 	bHasIronSights=true
 	bHasFlashlight=false
-
-	// Trader
-    EffectiveRange=68
-
 }
 
 

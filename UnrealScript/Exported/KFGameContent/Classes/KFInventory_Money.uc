@@ -67,6 +67,7 @@ function DropFrom(vector StartLocation, vector StartVelocity)
 	if( KFPlayerReplicationInfo(PRI) != none )
 	{
 		KFPlayerReplicationInfo(PRI).AddDosh( -Amount );
+		//`AnalyticsLog(("dosh_tossed", KFPlayerReplicationInfo(PRI), "#"$Amount));
 	}
 
 	if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayDoshTossDialog( KFPawn(Instigator) );

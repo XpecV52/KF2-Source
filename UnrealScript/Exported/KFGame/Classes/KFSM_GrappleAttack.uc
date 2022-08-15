@@ -5,7 +5,8 @@
 // Copyright (C) 2015 Tripwire Interactive LLC
 //=============================================================================
 
-class KFSM_GrappleAttack extends KFSM_InteractionPawnLeader;
+class KFSM_GrappleAttack extends KFSM_InteractionPawnLeader
+	native(SpecialMoves);
 
 // Animations
 var array<name>	 GrappleAnims;
@@ -21,9 +22,14 @@ static function byte PackSMFlags()
 /** Notification called when Special Move starts */
 function SpecialMoveStarted(bool bForced, Name PrevMove )
 {
-	local KFAIDirector AIDirector;
-
 	Super.SpecialMoveStarted(bForced,PrevMove);
+	PlayGrappleAnim();
+}
+
+/** StartInteraction */
+function StartInteraction() 
+{
+	local KFAIDirector AIDirector;
 
 	// Try to let the game's KFAIDirector know about the successful grab, so it can alert nearby Zeds
 	// TODO: Might want to move this to a timer so other zeds aren't alerted until the grapple anim actively looping
@@ -56,8 +62,6 @@ function SpecialMoveStarted(bool bForced, Name PrevMove )
 			AIDirector.NotifyPawnGrabbed( Follower, KFPOwner );
 		}
 	}
-
-	PlayGrappleAnim();
 }
 
 /**
@@ -74,7 +78,7 @@ function bool CanInteractWithPawn(KFPawn OtherPawn)
 function PlayGrappleAnim()
 {
 	LastVariant = KFPOwner.SpecialMoveFlags;
-	PlaySpecialMoveAnim(GrappleAnims[LastVariant], EAS_FullBody );
+	PlaySpecialMoveAnim(GrappleAnims[LastVariant], EAS_FullBody);
 }
 
 // Use timer & animlength instead of animend

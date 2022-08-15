@@ -404,8 +404,10 @@ ConfirmString="WYBIERZ"
 MenuStrings[0]="MENU GŁÓWNE"
 MenuStrings[1]="TALENTY"
 MenuStrings[2]="SPRZĘT"
-MenuStrings[3]="OPCJE"
-MenuStrings[4]="WYJŚCIE"
+MenuStrings[3]="INVENTORY"
+MenuStrings[4]="STORE"
+MenuStrings[5]="OPCJE"
+MenuStrings[6]="WYJŚCIE"
 
 ServerBrowserString="SERWERY"
 MatchmakingString="SZUKANIE"
@@ -464,7 +466,7 @@ SecondaryString="DODATKOWE"
 [KFGFxWidget_KickVote]
 VoteKickString="Wykopać gracza?"
 
-[KFGFxWidget_VoiceComms]
+[KFLocalMessage_VoiceComms]
 VoiceCommsOptionStrings[0]="POPROŚ O LECZENIE"
 VoiceCommsOptionStrings[1]="POPROŚ O FORSĘ"
 VoiceCommsOptionStrings[2]="POPROŚ O POMOC"
@@ -916,10 +918,10 @@ SonicResistance="Odporność na dźwięki"
 SonicResistanceDescription="Nie słucham cię! Redukcja otrzymywanych obrażeń zadawanych przez dźwięki o 40%."
 
 Vampire="Wampir"
-VampireDescription="Mali krwiopijcy: Nanoboty Horzine wysysają 3 punkty życia z każdego Zeda, którego zabijesz dowolną bronią talentu i przekazuję je tobie."
+VampireDescription="Mali krwiopijcy: Nanoboty Horzine wysysają 4 punkty życia z każdego Zeda, którego zabijesz dowolną bronią talentu i przekazuję je tobie."
 
 Fortitude="Hart"
-FortitudeDescription="Daj sobie szansę: Zwiększenie początkowej i maksymalnej ilości punktów życia o 100%"
+FortitudeDescription="Daj sobie szansę: Zwiększenie początkowej i maksymalnej ilości punktów życia o 75%"
 
 FuriousDefender="Wściekły obrońca"
 FuriousDefenderDescription="Nie bez powodu nazywają cię berserkerem: Uderzenia berserkera są o 10% szybsze a wszystkie ataki powodują 20% więcej obrażeń."
@@ -931,7 +933,7 @@ Parry="Odbicie"
 ParryDescription="Połączenie umiejętności i siły: Odbicie ataku zwiększy szybkość uderzenia o 15% i siłę lekkiego ataku o 30% przez 4 sekundy."
 
 Smash="Krach"
-SmashDescription="Użyj siły: Ciężkie ataki zadają 100% więcej obrażeń, a jeśli trafią w głowę istnieje duża szansa na powalenie dużych Zedów na ziemię."
+SmashDescription="Użyj siły: Ciężkie ataki zadają 25% więcej obrażeń, a jeśli trafią w głowę istnieje duża szansa na powalenie dużych Zedów na ziemię."
 
 Spartan="ZWOLNIONE TEMPO – Spartanin"
 SpartanDescription="Widziałeś 300: Poruszanie się z normalną prędkością, zwiększenie szybkości ataku broniami białymi berserkera o 50% a każde odbicie powoduje ogłuszenie przeciwnika."
@@ -1059,7 +1061,7 @@ Combatant="Bojownik"
 CombatantDescription="Nie bądź zwykłym medykiem – zostań medykiem w bojowym wydaniu. Na początek dostaniesz wymarzony pancerz i zniżkę w wysokości 60% na wszelkie zakupy pancerzy!"
 
 Armament="Uzbrojenie"
-ArmamentDescription="Nie zajmuj się tylko leczeniem: poświęć 10% skuteczności leczenia drużyny, aby w zamian naprawić 2% ich pancerza!"
+ArmamentDescription="Nie zajmuj się tylko leczeniem: poświęć 25% skuteczności leczenia drużyny, aby w zamian naprawić 1% ich pancerza!"
 
 Regeneration="Regeneracja"
 RegenerationDescription="Nafaszeruj się lekami: twoje zdrowie powoli regeneruje się wraz z upływem czasu dzięki nanobotom od Horzine."

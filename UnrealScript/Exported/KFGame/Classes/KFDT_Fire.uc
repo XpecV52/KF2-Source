@@ -473,6 +473,29 @@ class KFDT_Fire extends KFDamageType
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 13
 
 /** Returns ID of dialog event for killer to speak after killing a zed using this damage type */
@@ -495,10 +518,10 @@ static function int GetDamageeDialogID()
 
 defaultproperties
 {
+   bIgnoreSelfInflictedScale=True
    DoT_Type=DOT_Fire
    EffectGroup=FXG_Fire
    GoreDamageGroup=DGT_Fire
-   bIgnoreSelfInflictedScale=True
    DoT_Duration=5.000000
    DoT_Interval=1.000000
    DoT_DamageScale=1.500000

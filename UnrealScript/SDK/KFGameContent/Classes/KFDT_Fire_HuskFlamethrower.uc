@@ -13,4 +13,8 @@ class KFDT_Fire_HuskFlamethrower extends KFDT_Fire
 defaultproperties
 {
 	DoT_DamageScale=0.5f
+
+	KDamageImpulse=400
+	KDeathUpKick=50
+	KDeathVel=75
 }

@@ -39,6 +39,6 @@ DefaultProperties
 	bCanGib=true
 	GoreDamageGroup=DGT_Obliteration
 
-	AARWeaponID=`AAR_MicrowaveGun
+	WeaponDef=class'KFWeapDef_MicrowaveGun'
 	ModifierPerkList(0)=class'KFPerk_Firebug'
 }

@@ -159,6 +159,7 @@ defaultproperties
     MinSpawnSquadSizeType=ESquadType.EST_Large
     begin object name=MeleeHelper class=KFMeleeHelperAI
         BaseDamage=14
+        MyDamageType=Class'KFDT_Slashing_ZedWeak'
         MaxHitRange=250
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedBloat.MeleeHelper'

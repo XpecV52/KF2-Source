@@ -25,5 +25,5 @@ static function int GetDamageeDialogID()
 
 defaultproperties
 {
-    AARWeaponID=46
+    WeaponDef=Class'KFGame.KFWeapDef_CaulkBurn'
 }

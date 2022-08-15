@@ -14,6 +14,10 @@ package tripwire.controls.trader
         
         private var _buttonValue:String;
         
+        public var PlusIcon:MovieClip;
+        
+        public var AmmoIcon:MovieClip;
+        
         public function TraderPlayerAmmoItemRenderer()
         {
             super();
@@ -92,6 +96,8 @@ package tripwire.controls.trader
         public function set controllerIconVisibility(param1:Boolean) : void
         {
             this.buttonIcon.visible = param1;
+            this.PlusIcon.visible = !param1;
+            this.AmmoIcon.visible = !param1;
         }
         
         override protected function highlightButton() : *

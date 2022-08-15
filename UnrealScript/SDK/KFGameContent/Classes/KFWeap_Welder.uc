@@ -169,7 +169,25 @@ simulated function bool ShouldAutoReload(byte FireModeNum)
  @name Firing / Projectile
 ********************************************************************************************* */
 
-/** Instead of switch fire mode use as immediate alt fire */
+/** Unweld with RM/L2 */
+simulated function SetIronSights(bool bNewIronSights)
+{
+	if ( !Instigator.IsLocallyControlled()  )
+	{
+		return;
+	}
+
+	if ( bNewIronSights )
+	{
+		StartFire(ALTFIRE_FIREMODE);
+	}
+	else
+	{
+		StopFire(ALTFIRE_FIREMODE);
+	}
+}
+
+/** Also unweld with MM/R1 */
 simulated function AltFireMode()
 {
 	if ( !Instigator.IsLocallyControlled() )
@@ -559,6 +577,10 @@ defaultproperties
 	WeldOpenAnim=Weld_On
 	WeldCloseAnim=Weld_Off
 
+	// Aim Assist
+	AimCorrectionSize=0.f
+	bTargetAdhesionEnabled=false
+	
 	// Ammo
 	AmmoCost=7.f
 	MagazineCapacity[0]=100
@@ -569,7 +591,7 @@ defaultproperties
 
 	// Grouping
 	GroupPriority=5
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Welder'
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Welder'
 
 	// Weld
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Electricity'

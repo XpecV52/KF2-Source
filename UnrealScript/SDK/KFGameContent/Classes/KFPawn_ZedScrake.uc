@@ -184,6 +184,7 @@ defaultproperties
 	Begin Object Name=MeleeHelper_0
 		BaseDamage=30.f
 		MaxHitRange=200.f
+		MyDamageType=class'KFGameContent.KFDT_Slashing_Scrake'
 	End Object
 
 	Health=1100

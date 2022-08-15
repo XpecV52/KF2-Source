@@ -37,7 +37,7 @@ defaultproperties
 	LegStumblePower=54
 	GunHitPower=118
 
-	AARWeaponID=`AAR_NailGun
+	WeaponDef=class'KFWeapDef_NailGun'
 
 	ModifierPerkList(0)=class'KFPerk_Berserker'
 }

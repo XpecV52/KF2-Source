@@ -40,6 +40,7 @@ defaultproperties
     CharacterMonsterArch=KFCharacterInfo_Monster'zed_siren_arch.ZED_Siren_Archetype'
     begin object name=MeleeHelper class=KFMeleeHelperAI
         BaseDamage=13
+        MyDamageType=Class'KFDT_Slashing_ZedWeak'
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedSiren.MeleeHelper'
     MeleeAttackHelper=MeleeHelper

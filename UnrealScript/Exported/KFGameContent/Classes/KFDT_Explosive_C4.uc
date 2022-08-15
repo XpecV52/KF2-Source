@@ -49,65 +49,6 @@ class KFDT_Explosive_C4 extends KFDT_Explosive
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -128,13 +69,13 @@ class KFDT_Explosive_C4 extends KFDT_Explosive
 
 defaultproperties
 {
-   AARWeaponID=16
+   WeaponDef=Class'KFGame.KFWeapDef_C4'
+   bShouldSpawnPersistentBlood=True
    DoT_Type=DOT_Fire
    KnockdownPower=40
    StumblePower=38
    LegStumblePower=38
    EffectGroup=FXG_Fire
-   bShouldSpawnPersistentBlood=True
    DoT_Duration=3.000000
    DoT_Interval=1.000000
    BurnPower=0.200000

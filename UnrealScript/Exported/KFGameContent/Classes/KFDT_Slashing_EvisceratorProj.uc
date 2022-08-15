@@ -49,65 +49,6 @@ class KFDT_Slashing_EvisceratorProj extends KFDT_Slashing
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -282,12 +223,12 @@ static simulated function GetBoneToDismember(KFPawn_Monster InPawn, vector HitDi
 
 defaultproperties
 {
-   AARWeaponID=7
+   WeaponDef=Class'KFGame.KFWeapDef_Eviscerator'
+   bNoInstigatorDamage=True
    StunPower=42
    StumblePower=60
    LegStumblePower=60
    GunHitPower=150
-   bNoInstigatorDamage=True
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
    KDamageImpulse=1000.000000
    KDeathVel=135.000000

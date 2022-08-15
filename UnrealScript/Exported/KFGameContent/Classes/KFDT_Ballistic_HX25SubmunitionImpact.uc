@@ -49,65 +49,6 @@ class KFDT_Ballistic_HX25SubmunitionImpact extends KFDT_Ballistic_Shotgun
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -148,7 +89,7 @@ static simulated function bool CanDismemberHitZone( name InHitZoneName )
 
 defaultproperties
 {
-   AARWeaponID=15
+   WeaponDef=Class'KFGame.KFWeapDef_HX25'
    StumblePower=36
    LegStumblePower=36
    GunHitPower=30
@@ -160,5 +101,5 @@ defaultproperties
    KDeathVel=10.000000
    KDeathUpKick=120.000000
    Name="Default__KFDT_Ballistic_HX25SubmunitionImpact"
-   ObjectArchetype=KFDT_Ballistic_Shotgun'KFGameContent.Default__KFDT_Ballistic_Shotgun'
+   ObjectArchetype=KFDT_Ballistic_Shotgun'kfgamecontent.Default__KFDT_Ballistic_Shotgun'
 }

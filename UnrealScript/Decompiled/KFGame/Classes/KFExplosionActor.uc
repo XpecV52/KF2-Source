@@ -37,15 +37,19 @@ simulated function Explode(GameExplosion NewExplosionTemplate, optional Vector D
     }
 }
 
-simulated function SpawnShards(GameExplosion NewExplosionTemplate, int NumShards, class<Projectile> ShardClass)
+simulated function SpawnShards(GameExplosion NewExplosionTemplate, int NumShards, class<Projectile> ShardClass, optional int PitchShardMin, optional int PitchShardMax)
 {
-    local Vector SpawnPos, BaseChunkDir;
+    local Vector SpawnPos;
     local Actor HitActor;
     local Rotator Rot;
     local int I;
     local Projectile NewChunk;
     local Vector HitLocation, HitNormal;
+    local int YawShardPosition, YawShardIncrement;
 
+    PitchShardMin = 10;
+    PitchShardMax = 35;
+    YawShardIncrement = 360 / NumShards;
     SpawnPos = NewExplosionTemplate.HitLocation + (float(10) * NewExplosionTemplate.HitNormal);
     HitActor = Trace(HitLocation, HitNormal, SpawnPos, NewExplosionTemplate.HitLocation, false);
     if(HitActor != none)
@@ -58,17 +62,18 @@ simulated function SpawnShards(GameExplosion NewExplosionTemplate, int NumShards
     }
     if((Instigator != none) && Instigator.Role == ROLE_Authority)
     {
-        BaseChunkDir = HitNormal;
         if(bDrawDebug)
         {
             DrawDebugLine(SpawnPos, SpawnPos + (HitNormal * 1000), 0, 255, 0, true);
         }
         I = 0;
-        J0x17F:
+        J0x192:
 
         if(I < NumShards)
         {
-            Rot = rotator(BaseChunkDir + VRand());
+            Rot.Pitch = int(RandRange(float(PitchShardMin), float(PitchShardMax)) * 182.0444);
+            YawShardPosition += YawShardIncrement;
+            Rot.Yaw = int(float(YawShardPosition) * 182.0444);
             NewChunk = Spawn(ShardClass, ((Instigator != none) ? Instigator.Weapon : self),, SpawnPos, Rot);
             if(bDrawDebug)
             {
@@ -79,7 +84,7 @@ simulated function SpawnShards(GameExplosion NewExplosionTemplate, int NumShards
                 NewChunk.Init(vector(Rot));
             }
             ++ I;
-            goto J0x17F;
+            goto J0x192;
         }
     }
 }

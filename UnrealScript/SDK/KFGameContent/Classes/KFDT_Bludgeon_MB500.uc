@@ -14,5 +14,5 @@ class KFDT_Bludgeon_MB500 extends KFDT_Bludgeon_RifleButt
 DefaultProperties
 {
 	//defaults
-	AARWeaponID=`AAR_MB500
+	WeaponDef=class'KFWeapDef_MB500'
 }

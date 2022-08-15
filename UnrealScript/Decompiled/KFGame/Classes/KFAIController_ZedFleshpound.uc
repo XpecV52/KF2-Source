@@ -87,7 +87,7 @@ function NotifyMeleeDamageDealt()
     super(KFAIController).NotifyMeleeDamageDealt();
     if(!IsFrustrated() && RagePlugin != none)
     {
-        if(MyKFPawn.SpecialMove != 5)
+        if((MyKFPawn.SpecialMove != 5) && MyKFPawn.SpecialMove != 2)
         {
             RagePlugin.EndRage();
         }

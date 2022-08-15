@@ -704,7 +704,7 @@ function TickGunSystem()
             }
             return;
         }
-        if((HansPawn != none) && (curMove == none) || !MyKFPawn.IsDoingSpecialMove(22) && !MyKFPawn.IsDoingSpecialMove(21))
+        if((HansPawn != none) && (curMove == none) || !MyKFPawn.IsDoingSpecialMove(23) && !MyKFPawn.IsDoingSpecialMove(22))
         {
             if((Pawn.IsFiring() || IsTimerActive('FireTimer', self)) || IsTimerActive('StartFireTiming', self))
             {
@@ -806,7 +806,7 @@ function DrawRangedAttackInfo(HUD HUD)
     DrawDebugText(HUD, "Battle Phase: " $ string(MyHansPawn.CurrentBattlePhase));
     DrawDebugText(HUD, "--Guns--");
     DrawDebugText(HUD, (("Guns Equipped: " $ string(MyHansPawn.bGunsEquipped)) $ " Can Use Guns In This Phase: ") $ string(MyHansPawn.CanUseGunsInThisPhase()));
-    DrawDebugText(HUD, (((("Stance Changing: " $ string(MyKFPawn.IsDoingSpecialMove(22))) $ " CurrentMove: ") $ string(curMove)) $ " bDisablesWeaponFiring: ") $ string(bMoveDisablesFiring));
+    DrawDebugText(HUD, (((("Stance Changing: " $ string(MyKFPawn.IsDoingSpecialMove(23))) $ " CurrentMove: ") $ string(curMove)) $ " bDisablesWeaponFiring: ") $ string(bMoveDisablesFiring));
     if((WorldInfo.TimeSeconds - StartDrawGunsTime) > DrawGunFireDelay)
     {
         UsedDrawGunsCooldown = 0;        
@@ -966,7 +966,7 @@ function bool GrenadeAttackInterruptGuns()
 
 function bool SetupGrenadeAttack()
 {
-    if(((((((MyHansPawn != none) && Enemy != none) && !MyHansPawn.IsDoingSpecialMove(22)) && !MyHansPawn.IsThrowingGrenade()) && !MyHansPawn.bGunsEquipped) && CanSeeByPoints(Pawn.GetPawnViewLocation(), Enemy.Location, rotator(Enemy.Location - Pawn.GetPawnViewLocation()))) && MyHansPawn.CacheGrenadeThrowLocation())
+    if(((((((MyHansPawn != none) && Enemy != none) && !MyHansPawn.IsDoingSpecialMove(23)) && !MyHansPawn.IsThrowingGrenade()) && !MyHansPawn.bGunsEquipped) && CanSeeByPoints(Pawn.GetPawnViewLocation(), Enemy.Location, rotator(Enemy.Location - Pawn.GetPawnViewLocation()))) && MyHansPawn.CacheGrenadeThrowLocation())
     {
         CurrentNadeAttackType = 0;
         if(!IsWithinAttackRange())
@@ -1103,7 +1103,7 @@ event bool CanGrabAttack()
         return false;
     }
     KFPawnEnemy = KFPawn(Enemy);
-    if(((KFPawnEnemy != none) && KFPawnEnemy.IsDoingSpecialMove(19)) && VSizeSq(MyHansPawn.Location - Enemy.Location) < float(250000))
+    if(((KFPawnEnemy != none) && KFPawnEnemy.IsDoingSpecialMove(20)) && VSizeSq(MyHansPawn.Location - Enemy.Location) < float(250000))
     {
         KFPawnEnemy.InteractionPawn.EndSpecialMove();
     }
@@ -1148,7 +1148,7 @@ function bool CanTargetBeGrabbed(KFPawn TargetKFP)
 {
     local KFAIController OtherKFAIC;
 
-    if((((TargetKFP == none) || TargetKFP.Health <= 0) || TargetKFP.IsDoingSpecialMove(19)) || TargetKFP.Physics == 2)
+    if((((TargetKFP == none) || TargetKFP.Health <= 0) || TargetKFP.IsDoingSpecialMove(20)) || TargetKFP.Physics == 2)
     {
         return false;
     }
@@ -1353,28 +1353,6 @@ function PlayDamagePlayerDialog(class<DamageType> dmgType)
     {
         KFGameInfo(WorldInfo.Game).DialogManager.PlayHansDamagePlayerDialog(MyHansPawn, dmgType);
     }
-}
-
-function EnterZedVictoryState()
-{
-    ClearMovementInfo();
-    if(CommandList != none)
-    {
-        AbortCommand(CommandList);
-    }
-    DisableMeleeRangeEventProbing();
-    ChangeEnemy(none);
-    MyKFPawn.SetSprinting(false);
-    LockPawnRotationTo(MyKFPawn.Rotation);
-    MyKFPawn.SetRemoteViewPitch(0);
-    GotoState('ZedVictory', 'Begin');
-}
-
-state ZedVictory
-{Begin:
-
-    Class'AICommand_BossTheatrics'.static.DoTheatrics(self, 1, -1);
-    stop;                    
 }
 
 defaultproperties

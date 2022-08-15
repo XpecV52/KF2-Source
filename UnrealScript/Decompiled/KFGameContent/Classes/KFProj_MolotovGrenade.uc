@@ -121,7 +121,6 @@ defaultproperties
     NumResidualFlames=4
     ThrowAkEvent=AkEvent'WW_WEP_EXP_MOLOTOV.Play_WEP_EXP_Molotov_Throw'
     FuseTime=10
-    UITexture=Texture2D'WEP_UI_Molotov_TEX.UI_WeaponSelect_MolotovCocktail'
     TossZ=650
     TerminalVelocity=2000
     ExplosionActorClass=Class'KFGame.KFExplosionActor'

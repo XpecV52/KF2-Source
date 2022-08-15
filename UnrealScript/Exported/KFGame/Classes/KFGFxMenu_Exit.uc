@@ -12,8 +12,8 @@ class KFGFxMenu_Exit extends KFGFxObject_Menu;
 
 enum ExitOptions
 {
-	EO_TO_OS,
 	EO_TO_Main_Menu,
+	EO_TO_OS,
 };
 
 var localized string HeaderString;
@@ -37,13 +37,9 @@ function OnOpen()
 function SetExitOptions()
 {
 	OptionStrings.Length = 0;
-
+	OptionStrings.AddItem(ExitToMainMenu);
 	OptionStrings.AddItem(ExitKF2);
 
-	if( !class'WorldInfo'.static.IsMenuLevel() )
-	{
-		OptionStrings.AddItem(ExitToMainMenu);
-	}
 	SetMenuText();
 }
 
@@ -58,6 +54,15 @@ function SetMenuText()
 	{
 		DataObject = CreateObject( "Object" );
 		DataObject.SetString( "label", OptionStrings[i] );
+		if(OptionStrings[i] == ExitToMainMenu)
+		{
+			DataObject.SetBool( "enabled", !class'WorldInfo'.static.IsMenuLevel() );
+		}
+		else
+		{
+			DataObject.SetBool( "enabled", true );
+		}
+		
 		DataProvider.SetElementObject( i, DataObject );
 	}
 	SetObject("buttonNames", DataProvider);

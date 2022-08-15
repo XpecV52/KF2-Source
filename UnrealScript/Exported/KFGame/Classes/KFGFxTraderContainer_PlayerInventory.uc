@@ -81,7 +81,7 @@ function RefreshPlayerInventory()
 	local float PricePerRound;
 	local int AmmoCount, MaxAmmoCount, MagSize, PricePerMag;
 	local int FillAmmoCost, BlocksRequired, AutoFillCost;
-	local string ItemString, TextureLocation;
+	local string TextureLocation;
 	local GFxObject InfoSlot, MagSlot, FillSlot;
 	local GFxObject InfoDataProvider, FillDataProvider, MagDataProvider;	// This array of information is sent to ActionScript to update the item data
    	local SItemInformation ItemInfo;	
@@ -102,12 +102,12 @@ function RefreshPlayerInventory()
 		FillSlot = CreateObject("Object");
 
 		ItemInfo = MyTraderMenu.OwnedItemList[SlotIndex];
-		ItemString = string(ItemInfo.DefaultItem.ClassName);
 		FillAmmoCost = GetFillAmmoCost(ItemInfo);
 
 	    if( !ItemInfo.bIsSecondaryAmmo )
 		{
-			TextureLocation = ItemInfo.DefaultItem.TextureLocation;
+			// @temp: Use LastPerkClass to determine correct knife image
+			TextureLocation = ItemInfo.DefaultItem.WeaponDef.static.GetImagePath();
 			AmmoCount = ItemInfo.SpareAmmoCount;
 			MaxAmmoCount = ItemInfo.MaxSpareAmmo;
 			MagSize = ItemInfo.MagazineCapacity;
@@ -115,21 +115,21 @@ function RefreshPlayerInventory()
 			PricePerRound = ( MagSize > 0 ) ? float(PricePerMag) / float(MagSize) : 0.f;
 			BlocksRequired = ItemInfo.DefaultItem.BlocksRequired;
 
-			SetItemInfo( InfoSlot, ItemString, "ItemName", TextureLocation, AmmoCount, MaxAmmoCount, BlocksRequired );
+			SetItemInfo( InfoSlot, ItemInfo.DefaultItem.WeaponDef, "ItemName", TextureLocation, AmmoCount, MaxAmmoCount, BlocksRequired );
 			SetMagInfo( MagSlot, AmmoCount, MaxAmmoCount, MagSize, PricePerMag, PricePerRound, FillAmmoCost );
 			SetFillInfo( FillSlot, AmmoCount, MaxAmmoCount, PricePerRound, FillAmmoCost, AutoFillCost );
 		}
 		else
 		{
-			TextureLocation = ItemInfo.DefaultItem.SecondaryAmmoTexturePath;
+			TextureLocation = ItemInfo.DefaultItem.SecondaryAmmoImagePath;
 			AmmoCount = ItemInfo.SecondaryAmmoCount;
 			MaxAmmoCount = ItemInfo.MaxSecondaryAmmoCount;
-			MagSize = ItemInfo.DefaultItem.SecondaryAmmoMagSize;
-			PricePerMag = ItemInfo.DefaultItem.SecondaryAmmoMagPrice;
+			MagSize = ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagSize;
+			PricePerMag = ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagPrice;
 			PricePerRound = ( MagSize > 0 ) ? float(PricePerMag) / float(MagSize) : 0.f;
 			BlocksRequired = -1; // This will hide the weight and 
 
-			SetItemInfo( InfoSlot, ItemString, "SecondaryAmmo", TextureLocation, AmmoCount, MaxAmmoCount, BlocksRequired );
+			SetItemInfo( InfoSlot, ItemInfo.DefaultItem.WeaponDef, "SecondaryAmmo", TextureLocation, AmmoCount, MaxAmmoCount, BlocksRequired );
 			SetMagInfo( MagSlot, AmmoCount, MaxAmmoCount, MagSize, PricePerMag, PricePerRound, FillAmmoCost );
 			SetFillInfo( FillSlot, AmmoCount, MaxAmmoCount, PricePerRound, FillAmmoCost, AutoFillCost );
 		}
@@ -156,8 +156,8 @@ function SetArmorInfo(out SItemInformation ArmorInfo, out int AutoFillCost)
 	SlotObject = CreateObject( "Object" );
 	SlotObject.SetInt("cost", FillCost);    
 
-	SlotObject.SetString("itemName", Localize(String(ArmorInfo.DefaultItem.ClassName), "ItemName", "KFGameContent" ));
-	SlotObject.SetString("itemSource", "img://"$ArmorInfo.DefaultItem.TextureLocation);	
+	SlotObject.SetString("itemName", ArmorString);
+	SlotObject.SetString("itemSource", "img://"$ArmorInfo.DefaultItem.WeaponDef.static.GetImagePath());	
 	SlotObject.SetString("itemAmmo",  ArmorInfo.SpareAmmoCount$"/"$ArmorInfo.MaxSpareAmmo);
 	SlotObject.Setint("buttonState", GetButtonState( ArmorInfo.AmmoPricePerMagazine, ArmorInfo.SpareAmmoCount, ArmorInfo.MaxSpareAmmo ));
 
@@ -176,8 +176,8 @@ function SetGrenadeInfo(out SItemInformation GrenadeInfo, out int AutoFillCost)
     AmmoPricePerMagazine = GrenadeInfo.AmmoPricePerMagazine;
 
 	SlotObject = CreateObject("Object");	
-	SlotObject.SetString("itemSource", "img://"$GrenadeInfo.DefaultItem.TextureLocation);
-	SlotObject.SetString("itemName", Localize(String(GrenadeInfo.DefaultItem.ClassName), "ItemName", "KFGameContent" ));
+	SlotObject.SetString("itemSource", "img://"$GrenadeInfo.DefaultItem.WeaponDef.static.GetImagePath());
+	SlotObject.SetString("itemName", GrenadeInfo.DefaultItem.WeaponDef.static.GetItemName());
 
 	FillCost = GetFillGrenadeCost(GrenadeInfo);
 	MagCost = (GrenadeInfo.SpareAmmoCount != GrenadeInfo.MaxSpareAmmo) ? GrenadeInfo.AmmoPricePerMagazine : 0;
@@ -193,11 +193,11 @@ function SetGrenadeInfo(out SItemInformation GrenadeInfo, out int AutoFillCost)
 	AutoFillCost += FillCost;
 }
 
-function SetItemInfo(out GFxObject InfoSlot, string ItemString, string ItemKeyString, string TextureLocation, int AmmoCount, int MaxAmmoCount, int BlocksRequired )
+function SetItemInfo(out GFxObject InfoSlot, class<KFWeaponDefinition> WeaponDef, string ItemKeyString, string TextureLocation, int AmmoCount, int MaxAmmoCount, int BlocksRequired )
 {
 	local string ItemTexPath;
 
-    InfoSlot.SetString( "itemName", Localize(ItemString, ItemKeyString, "KFGameContent") );
+    InfoSlot.SetString( "itemName", WeaponDef.static.GetItemLocalization(ItemKeyString) );
     InfoSlot.SetString( "itemAmmo", AmmoCount $"/" $MaxAmmoCount);
     InfoSlot.Setint( "itemWeight", BlocksRequired );
 
@@ -250,8 +250,8 @@ function int GetFillAmmoCost( out SItemInformation ItemInfo )
     {
     	AmmoCount = ItemInfo.SecondaryAmmoCount;
     	MaxAmmoCount = ItemInfo.MaxSecondaryAmmoCount;
-    	PricePerMag = ItemInfo.DefaultItem.SecondaryAmmoMagPrice;
-    	MagSize = ItemInfo.DefaultItem.SecondaryAmmoMagSize;
+    	PricePerMag = ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagPrice;
+    	MagSize = ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagSize;
     }
     else
     {
@@ -290,7 +290,7 @@ function int GetFillGrenadeCost( out SItemInformation ItemInfo )
 function int GetFillArmorCost( out SItemInformation ArmorInfo )
 {
 	local float ArmorPercentage, FillCost, ArmorPricePerPercent;
-	
+
 	ArmorPercentage = ArmorInfo.MaxSpareAmmo - ArmorInfo.SpareAmmoCount;
 	ArmorPricePerPercent = ArmorInfo.AmmoPricePerMagazine;
 	FillCost = FCeil(ArmorPercentage * ArmorPricePerPercent);
@@ -325,8 +325,8 @@ function float FillAmmo( out SItemInformation ItemInfo, optional bool bIsGrenade
 
     if( ItemInfo.bIsSecondaryAmmo )
     {
-		MagSize = ItemInfo.DefaultItem.SecondaryAmmoMagSize;
-    	PricePerMag = ItemInfo.DefaultItem.SecondaryAmmoMagPrice;
+		MagSize = ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagSize;
+    	PricePerMag = ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagPrice;
 		MissingAmmo = ItemInfo.DefaultItem.MaxSecondaryAmmoCount - ItemInfo.SecondaryAmmoCount;
 		FillAmmoCost = GetFillAmmoCost(ItemInfo);
     }
@@ -361,7 +361,7 @@ function float FillAmmo( out SItemInformation ItemInfo, optional bool bIsGrenade
     }
     else
     {
-		MyTraderMenu.BoughtAmmo(MissingAmmo, FillAmmoCost, IT_Weapon, ItemInfo.DefaultItem.ClassName, ItemInfo.DefaultItem.AssociatedPerkClass, ItemInfo.bIsSecondaryAmmo);
+		MyTraderMenu.BoughtAmmo(MissingAmmo, FillAmmoCost, IT_Weapon, ItemInfo.DefaultItem.ClassName, ItemInfo.bIsSecondaryAmmo);
     }
 
     return FillAmmoCost;
@@ -451,7 +451,7 @@ function int BuyItemMagazine( out SItemInformation ItemInfo )
         ItemInfo.SpareAmmoCount += ItemInfo.DefaultItem.MagazineCapacity;
         ItemInfo.SpareAmmoCount = Min( ItemInfo.MaxSpareAmmo, ItemInfo.SpareAmmoCount );
 
-		MyTraderMenu.BoughtAmmo(ItemInfo.DefaultItem.MagazineCapacity, MagAmmoCost, IT_Weapon, ItemInfo.DefaultItem.ClassName, ItemInfo.DefaultItem.AssociatedPerkClass, ItemInfo.bIsSecondaryAmmo);
+		MyTraderMenu.BoughtAmmo(ItemInfo.DefaultItem.MagazineCapacity, MagAmmoCost, IT_Weapon, ItemInfo.DefaultItem.ClassName, ItemInfo.bIsSecondaryAmmo);
     }
 
     return MagAmmoCost;
@@ -467,21 +467,21 @@ function int BuySecondaryAmmoMag( out SItemInformation ItemInfo  )
     MagSpaceAvailable = ItemInfo.MaxSecondaryAmmoCount - ItemInfo.SecondaryAmmoCount;
     if( MagSpaceAvailable > 0 )
     {
-        MagAmmoCost = ItemInfo.DefaultItem.SecondaryAmmoMagPrice;
+        MagAmmoCost = ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagPrice;
 
         // Don't charge them full price if they don't buy a full mag's worth of ammo
         // or we can only afford part of a magazine
-        if( (MagSpaceAvailable < ItemInfo.DefaultItem.SecondaryAmmoMagSize) || (MyTraderMenu.TotalDosh < MagAmmoCost) )
+        if( (MagSpaceAvailable < ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagSize) || (MyTraderMenu.TotalDosh < MagAmmoCost) )
         {
             return FillAmmo( ItemInfo );
         }
 
-        AddedAmmo = ItemInfo.DefaultItem.SecondaryAmmoMagSize;
+        AddedAmmo = ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagSize;
 
         ItemInfo.SecondaryAmmoCount += AddedAmmo;
         ItemInfo.SecondaryAmmoCount = Min( ItemInfo.MaxSecondaryAmmoCount, ItemInfo.SecondaryAmmoCount );
 
-		MyTraderMenu.BoughtAmmo(AddedAmmo, MagAmmoCost, IT_Weapon, ItemInfo.DefaultItem.ClassName, ItemInfo.DefaultItem.AssociatedPerkClass, ItemInfo.bIsSecondaryAmmo);
+		MyTraderMenu.BoughtAmmo(AddedAmmo, MagAmmoCost, IT_Weapon, ItemInfo.DefaultItem.ClassName, ItemInfo.bIsSecondaryAmmo);
     }
 
     return MagAmmoCost;
@@ -560,7 +560,7 @@ function bool AutoFillOwnedItems( out int AutoFillDosh, bool bLastCycle )
 		ItemInfo = MyTraderMenu.OwnedItemList[ i ];
 	    if( ItemInfo.bIsSecondaryAmmo )
 	    {
-			PricePerMag = ItemInfo.DefaultItem.SecondaryAmmoMagPrice;
+			PricePerMag = ItemInfo.DefaultItem.WeaponDef.default.SecondaryAmmoMagPrice;
 	    	AmmoCount = ItemInfo.SecondaryAmmoCount;
 	    	MaxAmmoCount = ItemInfo.MaxSecondaryAmmoCount;
 	    }

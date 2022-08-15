@@ -157,8 +157,6 @@ defaultproperties
 	TerminalVelocity=2000
 	TossZ=650
 
-	UITexture=Texture2D'WEP_UI_Molotov_TEX.UI_WeaponSelect_MolotovCocktail'
-
 	ProjFlightTemplate=ParticleSystem'WEP_3P_Molotov_EMIT.FX_Molotov_Grenade_Mesh'
 	ExplosionActorClass=class'KFExplosionActor'
 

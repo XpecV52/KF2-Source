@@ -379,6 +379,7 @@ var config array<config ViewIdToLeaderboardName> LeaderboardNameMappings;
 var config array<config int> GameServerStatsMappings;
 var const OnlineAuthInterfaceSteamworks CachedAuthInt;
 var OnlineLobbyInterfaceSteamworks LobbyInterface;
+var KFWorkshopSteamworks WorkshopInterface;
 var delegate<OnLoginChange> __OnLoginChange__Delegate;
 var delegate<OnLoginCancelled> __OnLoginCancelled__Delegate;
 var delegate<OnMutingChange> __OnMutingChange__Delegate;
@@ -1620,6 +1621,12 @@ function TWOnlineLobby GetLobbyInterface()
     return LobbyInterface;
 }
 
+// Export UOnlineSubsystemSteamworks::execSetWorkshopInterface(FFrame&, void* const)
+native function bool SetWorkshopInterface(KFWorkshopSteamworks NewInterface);
+
+// Export UOnlineSubsystemSteamworks::execGetUGCInterface(FFrame&, void* const)
+native function TWOnlineUGCInterface GetUGCInterface();
+
 // Export UOnlineSubsystemSteamworks::execUniqueNetIdToInt64(FFrame&, void* const)
 native function string UniqueNetIdToInt64(const out UniqueNetId Uid);
 
@@ -1825,6 +1832,21 @@ private native final function bool ValidateStat(QWord UserId, int StatId, int Va
 
 // Export UOnlineSubsystemSteamworks::execSubmitStatValidation(FFrame&, void* const)
 private native final function SubmitStatValidation(QWord UserId, int StatId, int Value, bool bClientInterface);
+
+// Export UOnlineSubsystemSteamworks::execRefreshInventory(FFrame&, void* const)
+native function RefreshInventory();
+
+// Export UOnlineSubsystemSteamworks::execOpenItemPurchaseOverlay(FFrame&, void* const)
+native function OpenItemPurchaseOverlay(int SKU);
+
+// Export UOnlineSubsystemSteamworks::execOpenURL(FFrame&, void* const)
+native function OpenURL(string WebsiteLink);
+
+// Export UOnlineSubsystemSteamworks::execGetPlayerGroups(FFrame&, void* const)
+native function GetPlayerGroups(out array<UniqueNetId> PlayerGroups);
+
+// Export UOnlineSubsystemSteamworks::execCheckPlayerGroup(FFrame&, void* const)
+native function bool CheckPlayerGroup(UniqueNetId Group);
 
 function bool AddInGamePost(int InPostID, optional string InPostParam);
 

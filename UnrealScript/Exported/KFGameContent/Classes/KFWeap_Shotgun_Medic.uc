@@ -89,6 +89,12 @@ static simulated function float CalculateTraderWeaponStatDamage()
 	return BaseDamage * default.NumPellets[DEFAULT_FIREMODE] + DoTDamage;
 }
 
+/** Returns trader filter index based on weapon type */
+static simulated event EFilterTypeUI GetTraderFilter()
+{
+	return FT_Shotgun;
+}
+
 defaultproperties
 {
    NumPellets(0)=6
@@ -98,12 +104,10 @@ defaultproperties
    HealFullRechargeSeconds=12.000000
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_MedicDart'
-   FilterTypeUI=FT_Shotgun
    InventorySize=6
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
-   bHasFlashlight=True
    PenetrationPower(0)=2.000000
    PenetrationPower(1)=()
    MeshIronSightFOV=52.000000
@@ -112,7 +116,7 @@ defaultproperties
    DOF_FG_FocalRadius=95.000000
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=75.000000
-   UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicShotgun'
+   WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicShotgun'
    SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
    MagazineCapacity(0)=10
    MaxSpareAmmo(0)=50
@@ -123,12 +127,12 @@ defaultproperties
    WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_DryFire'
    PlayerViewOffset=(X=14.000000,Y=6.500000,Z=-3.500000)
    AttachmentArchetype=KFWeaponAttachment'WEP_Medic_Shotgun_ARCH.Wep_Medic_Shotgun_3P'
-   Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_MedicBase:MeleeHelper_0'
+   Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_MedicBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
-      ObjectArchetype=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_MedicBase:MeleeHelper_0'
+      ObjectArchetype=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_MedicBase:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_Shotgun_Medic:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Shotgun_Medic:MeleeHelper_0'
    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Medic_Shotgun_ARCH.Wep_Medic_Shotgun_MuzzleFlash'
    maxRecoilPitch=400
    minRecoilPitch=375
@@ -158,7 +162,7 @@ defaultproperties
    WeaponFireTypes(2)=()
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
-   WeaponProjectiles(0)=Class'KFGameContent.KFProj_Bullet_Pellet'
+   WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_Pellet'
    WeaponProjectiles(1)=()
    FireInterval(0)=0.200000
    FireInterval(1)=()
@@ -171,12 +175,12 @@ defaultproperties
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=20.000000
-   InstantHitDamageTypes(0)=Class'KFGameContent.KFDT_Ballistic_Shotgun_Medic'
+   InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_Shotgun_Medic'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=None
-   InstantHitDamageTypes(3)=Class'KFGameContent.KFDT_Bludgeon_Shotgun_Medic'
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_Shotgun_Medic'
    FireOffset=(X=30.000000,Y=3.000000,Z=-3.000000)
-   Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGameContent.Default__KFWeap_MedicBase:FirstPersonMesh'
+   Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFWeap_MedicBase:FirstPersonMesh'
       SkeletalMesh=SkeletalMesh'WEP_1P_Medic_Shotgun_MESH.Wep_1stP_Medic_Shotgun_Rig'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
       AnimSets(0)=AnimSet'WEP_1P_Medic_Shotgun_ANIM.WEP_1P_Medic_Shotgun_ANIM'
@@ -188,19 +192,19 @@ defaultproperties
       LightingChannels=(bInitialized=True,Outdoor=True)
       bAllowPerObjectShadows=True
       Name="FirstPersonMesh"
-      ObjectArchetype=KFSkeletalMeshComponent'KFGameContent.Default__KFWeap_MedicBase:FirstPersonMesh'
+      ObjectArchetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFWeap_MedicBase:FirstPersonMesh'
    End Object
    Mesh=FirstPersonMesh
    ItemName="HMTech-301 Shotgun"
-   Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGameContent.Default__KFWeap_MedicBase:StaticPickupComponent'
+   Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'kfgamecontent.Default__KFWeap_MedicBase:StaticPickupComponent'
       StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Medic_Shotgun_Pickup'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"
-      ObjectArchetype=StaticMeshComponent'KFGameContent.Default__KFWeap_MedicBase:StaticPickupComponent'
+      ObjectArchetype=StaticMeshComponent'kfgamecontent.Default__KFWeap_MedicBase:StaticPickupComponent'
    End Object
    DroppedPickupMesh=StaticPickupComponent
    PickupFactoryMesh=StaticPickupComponent
    Name="Default__KFWeap_Shotgun_Medic"
-   ObjectArchetype=KFWeap_MedicBase'KFGameContent.Default__KFWeap_MedicBase'
+   ObjectArchetype=KFWeap_MedicBase'kfgamecontent.Default__KFWeap_MedicBase'
 }

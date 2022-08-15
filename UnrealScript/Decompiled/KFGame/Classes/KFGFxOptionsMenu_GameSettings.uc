@@ -71,7 +71,7 @@ function InitValues()
     DataObject.SetFloat("fov", Class'KFGameEngine'.default.FOVOptionsPercentageValue);
     DataObject.SetFloat("gore", float(Class'GameInfo'.default.GoreLevel));
     DataObject.SetFloat("friendlyHud", GetFriendlyHudScale());
-    DataObject.SetBool("crosshair", Class'KFGameEngine'.default.bShowCrossHair);
+    DataObject.SetBool("crosshair", Class'KFGameEngine'.static.IsCrosshairEnabled());
     DataObject.SetBool("classicWeaponSelect", Class'KFPlayerInput'.default.bQuickWeaponSelect);
     SetObject("dataValues", DataObject);
 }
@@ -109,14 +109,13 @@ function SetFriendlyHudMinMax(float MinVol, float MaxVol)
 
 function Callback_CloseMenu()
 {
-    Manager.OpenMenu(3);
+    Manager.OpenMenu(5);
 }
 
 function Callback_ToggleCrosshair(bool bShow)
 {
     local KFPlayerController KFPC;
     local KFHUDBase KFHud;
-    local KFGameEngine KFGE;
 
     KFPC = KFPlayerController(Outer.GetPC());
     if(KFPC != none)
@@ -127,11 +126,7 @@ function Callback_ToggleCrosshair(bool bShow)
             KFHud.bDrawCrosshair = bShow;
         }
     }
-    KFGE = KFGameEngine(Class'Engine'.static.GetEngine());
-    KFGE.bShowCrossHair = bShow;
-    KFGE.SaveConfig();
-    Class'KFGameEngine'.default.bShowCrossHair = bShow;
-    Class'KFGameEngine'.static.StaticSaveConfig();
+    Class'KFGameEngine'.static.SetCrosshairEnabled(bShow);
 }
 
 function Callback_FOVChanged(float NewFOVPercentage)

@@ -14,5 +14,5 @@ class KFDT_Bludgeon_Flamethrower extends KFDT_Bludgeon_RifleButt
 DefaultProperties
 {
 	//defaults
-	AARWeaponID=`AAR_FlameThrower
+	WeaponDef=class'KFWeapDef_FlameThrower'
 }

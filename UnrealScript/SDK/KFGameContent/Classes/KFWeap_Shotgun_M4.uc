@@ -15,8 +15,7 @@ defaultproperties
 	// Ineventory
 	InventorySize=8
 	GroupPriority=75
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Benelli'
-	FilterTypeUI=FT_Shotgun
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Benelli'
 
     // FOV
  	MeshFOV=75
@@ -102,9 +101,6 @@ defaultproperties
 	RecoilViewRotationScale=0.7
 	FallingRecoilModifier=1.5
 	HippedRecoilModifier=1.5
-
-	// Trader
-    EffectiveRange=35
 
 	AssociatedPerkClass=class'KFPerk_Support'
 }

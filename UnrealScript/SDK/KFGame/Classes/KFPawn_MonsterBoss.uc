@@ -11,8 +11,64 @@ class KFPawn_MonsterBoss extends KFPawn_Monster
 	abstract
 	native(Pawn);
 
+`include(KFGameDialog.uci)
+
 var localized string BossName;
 var localized array<string> BossCaptionStrings;
+
+/** Info for minion wave spawning */
+struct native BossMinionWaveInfo
+{
+    /** The minion wave to spawn for Phase 1 healing*/
+    var	KFAIWaveInfo				PhaseOneWave;
+    /** The minion wave to spawn for Phase 2 healing*/
+    var	KFAIWaveInfo				PhaseTwoWave;
+    /** The minion wave to spawn for Phase 3 healing*/
+    var	KFAIWaveInfo				PhaseThreeWave;
+};
+
+/** Waves to summon at each stage by difficulty level*/
+var	BossMinionWaveInfo				SummonWaves[4];
+
+/** The base amount of minions to spawn when boss goes into hunt and heal mode */
+var             int                 NumMinionsToSpawn;
+
+/** The current phase of the battle we're in */
+var repnotify   int 				CurrentBattlePhase;
+
+/** Whether this pawn is in theatric camera mode */
+var 			bool 				bUseAnimatedTheatricCamera;
+
+/** The name of the socket to use as a camera base for theatric sequences */
+var 			Name 				TheatricCameraSocketName;
+
+/** The relative offset to use for the cinematic camera */
+var 			vector 				TheatricCameraAnimOffset;
+
+replication
+{
+	if( bNetDirty )
+		CurrentBattlePhase;
+}
+
+simulated event ReplicatedEvent(name VarName)
+{
+	if( VarName == nameOf(CurrentBattlePhase) )
+	{
+		OnBattlePhaseChanged();
+	}
+	else
+	{
+		Super.ReplicatedEvent( VarName );
+	}
+}
+
+simulated event PostBeginPlay()
+{
+	Super.PostBeginPlay();
+
+	OnBattlePhaseChanged();
+}
 
 /** Called from Possessed event when this controller has taken control of a Pawn */
 function PossessedBy( Controller C, bool bVehicleTransition )
@@ -65,6 +121,33 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 	}
 }
 
+/** Called when pawn dies or is destroyed. Overloaded to call OnBattlePhaseChanged. */
+simulated function TerminateEffectsOnDeath()
+{
+	super.TerminateEffectsOnDeath();
+
+	OnBattlePhaseChanged();
+}
+
+/** Set gameplay related MIC params on the active body MIC. Overloaded to call OnBattlePhaseChanged. */
+simulated function SetGameplayMICParams()
+{
+	super.SetGameplayMICParams();
+
+	OnBattlePhaseChanged();
+}
+
+/** Returns current battle phase, used by KFPawnAnimInfo */
+simulated function int GetCurrentBattlePhase()
+{
+	return CurrentBattlePhase;
+}
+
+/** Called when current battle phase changes */
+/* Network: ALL
+ */
+simulated function OnBattlePhaseChanged();
+
 /************************************
  * @name	Ephemeral Stats Tracking
  ************************************/
@@ -96,7 +179,7 @@ simulated function PlayHeadAsplode();
 
 function PlayMonologue( byte MonologueType )
 {
-	`SafeDialogManager.PlayBossMonologue( self, MonologueType );
+	//`SafeDialogManager.PlayBossMonologue( self, MonologueType );
 }
 
 function PlayGrabDialog()
@@ -118,6 +201,10 @@ function PlayLandedDialog()
 {
 	`SafeDialogManager.PlayBossLandedDialog( self );
 }
+
+function PlayGrabbedPlayerDialog( KFPawn_Human Target );
+
+function PlayGrabKilledDialog();
 
 defaultproperties
 {

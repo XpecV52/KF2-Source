@@ -6,7 +6,8 @@
  * All rights belong to their respective owners.
  *******************************************************************************/
 class KFCharacterInfoBase extends Object
-    abstract;
+    abstract
+    native(Pawn);
 
 /** Mesh scaling */
 var(ThirdPerson) float DefaultMeshScale;
@@ -41,17 +42,7 @@ simulated function SetBodyMesh(byte CurrentOutfitIndex, KFPawn KFP, optional KFP
 
 simulated function SetBodySkin(byte CurrentSkinIndex, KFPawn KFP, KFPlayerReplicationInfo KFPRI);
 
-simulated function SetBodyMeshAndSkin(byte CurrentBodyMeshIndex, byte CurrentBodySkinIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI);
-
-simulated function SetHeadMeshAndSkin(byte CurrentHeadMeshIndex, byte CurrentHeadSkinIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI);
-
-simulated function SetAttachmentMeshAndSkin(byte CurrentAttachmentMeshIndex, byte CurrentAttachmentSkinIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI);
-
-simulated function ClearAllAttachments(KFPawn KFP, KFPlayerReplicationInfo KFPRI);
-
-function SetArmsMeshAndSkin(byte CurrentBodyMeshIndex, byte CurrentBodySkinIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI);
-
-simulated function SetFirstPersonArmsFromArch(KFPawn KFP, optional KFPlayerReplicationInfo KFPRI);
+function SetFirstPersonArmsFromArch(KFPawn KFP, optional KFPlayerReplicationInfo KFPRI);
 
 defaultproperties
 {

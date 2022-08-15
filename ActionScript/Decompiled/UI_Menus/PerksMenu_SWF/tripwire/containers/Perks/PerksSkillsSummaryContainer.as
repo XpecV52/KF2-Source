@@ -36,6 +36,7 @@ package tripwire.containers.perks
             {
                 this.skillList.scrollBar.visible = false;
             }
+            this.skillList.mouseEnabled = false;
         }
         
         override protected function addedToStage(param1:Event) : void

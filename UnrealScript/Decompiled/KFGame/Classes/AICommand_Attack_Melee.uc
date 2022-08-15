@@ -109,7 +109,11 @@ function bool NotifyPlayerBecameVisible(Pawn VisiblePlayer)
 
 event string GetDumpString()
 {
-    return (((((super(GameAICommand).GetDumpString() @ "AttackTarget:") @ string(AttackTarget)) $ " Enemy: ") $ string(Outer.Enemy)) $ " Dist: ") $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location));
+    if(Outer.Enemy != none)
+    {
+        return (((((super(GameAICommand).GetDumpString() @ "AttackTarget:") @ string(AttackTarget)) $ " Enemy: ") $ string(Outer.Enemy)) $ " Dist: ") $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location));
+    }
+    return (super(GameAICommand).GetDumpString() @ "No enemy! AttackTarget:") @ string(AttackTarget);
 }
 
 function float GetAbortAttackDistanceSq()
@@ -301,7 +305,7 @@ TauntEnemy:
     Outer.Sleep(0.33);
     Status = 'Success';
     Outer.PopCommand(self);
-    stop;                
+    stop;            
 }
 
 state TestMove

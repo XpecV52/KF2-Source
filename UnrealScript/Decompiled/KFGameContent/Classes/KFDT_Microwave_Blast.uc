@@ -10,12 +10,12 @@ class KFDT_Microwave_Blast extends KFDT_Microwave
 
 defaultproperties
 {
-    AARWeaponID=49
+    WeaponDef=Class'KFGame.KFWeapDef_MicrowaveGun'
+    bCanGib=true
     StumblePower=135
     LegStumblePower=135
     EffectGroup=EEffectDamageGroup.FXG_MicrowaveBlast
     GoreDamageGroup=EGoreDamageGroup.DGT_Obliteration
-    bCanGib=true
     BurnPower=0.25
     ModifierPerkList=/* Array type was not detected. */
     bExtraMomentumZ=true

@@ -233,7 +233,7 @@ defaultproperties
 	MagazineCapacity[0]=100
 	MaxSpareAmmo[0]=300
 	InitialSpareMags[0]=1
-	AmmoPickupScale[0]=0.2
+	AmmoPickupScale[0]=0.4
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
 
@@ -258,8 +258,7 @@ defaultproperties
     // Inventory
 	InventorySize=8
 	GroupPriority=75
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Flamethrower'
-	FilterTypeUI=FT_Flame
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Flamethrower'
 
 	// DEFAULT_FIREMODE
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Flamethrower'
@@ -293,9 +292,6 @@ defaultproperties
 	// Attachments
 	bHasIronSights=true
 	bHasFlashlight=false
-
-	// Trader
-    EffectiveRange=17
 
    	AssociatedPerkClass=class'KFPerk_Firebug'
 }

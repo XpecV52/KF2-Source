@@ -14,5 +14,5 @@ class KFDT_Bludgeon_M79 extends KFDT_Bludgeon_RifleButt
 DefaultProperties
 {
 	//defaults
-	AARWeaponID=`AAR_M79
+	WeaponDef=class'KFWeapDef_M79'
 }

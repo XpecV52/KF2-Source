@@ -35,7 +35,7 @@ package
                 "left":0
             };
             mapVoteList.rowHeight = 0;
-            mapVoteList.scrollBar = "";
+            mapVoteList.scrollBar = "scollBar";
             mapVoteList.visible = true;
             mapVoteList.wrapping = "stick";
             try

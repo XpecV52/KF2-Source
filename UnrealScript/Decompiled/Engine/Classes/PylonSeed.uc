@@ -33,6 +33,7 @@ defaultproperties
     object end
     // Reference: SpriteComponent'Default__PylonSeed.Sprite'
     Components(1)=Sprite
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionHeight=50
         CollisionRadius=50

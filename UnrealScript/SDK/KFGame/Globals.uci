@@ -42,12 +42,16 @@
 `define SafeDialogManager if( `CheckDialogManager ) KFGameInfo(WorldInfo.Game).DialogManager
 `define SafeTraderDialogManager if( `CheckTraderDialogManager ) KFGameReplicationInfo(WorldInfo.GRI).TraderDialogManager
 
+/** Useful shortcut for calling a function on the next frame */
+`define CallOnNextTick(funcname,Object) class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController().SetTimer(0.001f, false, `funcname, `Object)
+
 /** Zed-time helper, halfway between normal time and full zedtime */
 `define IsInZedTime(Actor) (`Actor.WorldInfo.TimeDilation < 1.f)
 `define NotInZedTime(Actor) !`IsInZedTime(`Actor)
 
 /** custom logs */
 `define BalanceLog(tag,pri,text) if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(`tag$","$`PRI.PlayerName$","$`text)
+`define AnalyticsLog( arg ) if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent `arg 
 
 /** dev-only logs */
 `if(`isdefined(ShippingPC))

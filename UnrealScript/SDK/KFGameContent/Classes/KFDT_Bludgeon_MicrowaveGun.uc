@@ -14,5 +14,5 @@ class KFDT_Bludgeon_MicrowaveGun extends KFDT_Bludgeon_RifleButt
 DefaultProperties
 {
 	//defaults
-	AARWeaponID=`AAR_MicrowaveGun
+	WeaponDef=class'KFWeapDef_MicrowaveGun'
 }

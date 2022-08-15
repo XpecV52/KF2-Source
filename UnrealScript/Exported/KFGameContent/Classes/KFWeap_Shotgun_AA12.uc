@@ -14,7 +14,6 @@ defaultproperties
 {
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunAuto'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
-   FilterTypeUI=FT_Shotgun
    InventorySize=10
    bHasIronSights=True
    bCanBeReloaded=True
@@ -28,7 +27,7 @@ defaultproperties
    DOF_FG_FocalRadius=85.000000
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=100.000000
-   UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AA12'
+   WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AA12'
    MagazineCapacity(0)=20
    MaxSpareAmmo(0)=60
    InitialSpareMags(0)=1
@@ -45,7 +44,7 @@ defaultproperties
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ShotgunBase:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_Shotgun_AA12:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Shotgun_AA12:MeleeHelper_0'
    MuzzleFlashTemplate=KFMuzzleFlash'WEP_AA12_ARCH.Wep_AA12_MuzzleFlash'
    maxRecoilPitch=250
    minRecoilPitch=225
@@ -73,8 +72,8 @@ defaultproperties
    WeaponFireTypes(2)=()
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
-   WeaponProjectiles(0)=Class'KFGameContent.KFProj_Bullet_Pellet'
-   WeaponProjectiles(1)=Class'KFGameContent.KFProj_Bullet_Pellet'
+   WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_Pellet'
+   WeaponProjectiles(1)=Class'kfgamecontent.KFProj_Bullet_Pellet'
    FireInterval(0)=0.200000
    FireInterval(1)=0.200000
    FireInterval(2)=()
@@ -84,10 +83,10 @@ defaultproperties
    InstantHitDamage(1)=25.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=()
-   InstantHitDamageTypes(0)=Class'KFGameContent.KFDT_Ballistic_AA12Shotgun'
-   InstantHitDamageTypes(1)=Class'KFGameContent.KFDT_Ballistic_AA12Shotgun'
+   InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_AA12Shotgun'
+   InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_AA12Shotgun'
    InstantHitDamageTypes(2)=None
-   InstantHitDamageTypes(3)=Class'KFGameContent.KFDT_Bludgeon_AA12Shotgun'
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_AA12Shotgun'
    FireOffset=(X=30.000000,Y=5.000000,Z=-4.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_ShotgunBase:FirstPersonMesh'
       SkeletalMesh=SkeletalMesh'Wep_1P_AA12_MESH.Wep_1stP_AA12_Rig'

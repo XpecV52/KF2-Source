@@ -88,7 +88,7 @@ defaultproperties
 
 	Events[`KILL_Generic]=			 		(EventID=`KILL_Generic,                      Priority=4, Weight=80,   Chance=0.5, CoolDownTime=14.0,  CoolDownRadius=1000.0, Delay=0.5,  bCanPlayAlone=true,                           CoolDownCategory=ECC_KillEnemy)
 	Events[`KILL_Female]=			 		(EventID=`KILL_Female,                       Priority=4, Weight=80,   Chance=0.5, CoolDownTime=14.0,  CoolDownRadius=1000.0, Delay=0.5,  bCanPlayAlone=true,                           CoolDownCategory=ECC_KillEnemy)
-	Events[`KILL_Boss]=			 			(EventID=`KILL_Boss,                         Priority=4, Weight=1,   Chance=1.00, CoolDownTime=0.5,  CoolDownRadius=1000.0, Delay=0.5,  bCanPlayAlone=true,                           CoolDownCategory=ECC_KillEnemy)
+	Events[`KILL_Boss]=			 			(EventID=`KILL_Boss,                         Priority=3, Weight=1,   Chance=1.00, CoolDownTime=0.5,  CoolDownRadius=1000.0, Delay=0.5,  bCanPlayAlone=true,                           CoolDownCategory=ECC_KillEnemy)
 	Events[`KILL_BossResp]=			 		(EventID=`KILL_BossResp,                     Priority=4, Weight=1,   Chance=1.00, CoolDownTime=0.5,  CoolDownRadius=1000.0, Delay=0.5,  bCanPlayAlone=false,                          CoolDownCategory=ECC_Resp)
 	Events[`KILL_Massacre]=			 		(EventID=`KILL_Massacre,                     Priority=3, Weight=100, Chance=75.00, CoolDownTime=25.0,  CoolDownRadius=1000.0, Delay=0.75, bCanPlayAlone=true, Radius=1500, FOV=`FOV45)
 	Events[`KILL_MassacreResp]=			 	(EventID=`KILL_MassacreResp,                 Priority=4, Weight=1,   Chance=0.95, CoolDownTime=3.0,  CoolDownRadius=1000.0, Delay=0.5,  bCanPlayAlone=false, Radius=1500, FOV=`FOV45, CoolDownCategory=ECC_Resp)

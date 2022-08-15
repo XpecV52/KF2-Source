@@ -181,12 +181,12 @@ static simulated function GetBoneToDismember(KFPawn_Monster inPawn, Vector HitDi
 
 defaultproperties
 {
-    AARWeaponID=7
+    WeaponDef=Class'KFGame.KFWeapDef_Eviscerator'
+    bNoInstigatorDamage=true
     StunPower=42
     StumblePower=60
     LegStumblePower=60
     GunHitPower=150
-    bNoInstigatorDamage=true
     ModifierPerkList=/* Array type was not detected. */
     KDamageImpulse=1000
     KDeathVel=135

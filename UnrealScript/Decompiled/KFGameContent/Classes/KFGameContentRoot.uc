@@ -7,4 +7,4 @@
  *******************************************************************************/
 class KFGameContentRoot extends Object;
 
-var private const array<Actor> A;
+var private const array<Object> Loaded;

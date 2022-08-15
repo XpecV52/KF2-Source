@@ -14,14 +14,13 @@ defaultproperties
     LeftMuzzleFlashTemplate=KFMuzzleFlash'WEP_Dual_9MM_ARCH.Wep_Dual_9MM_MuzzleFlash_L'
     LeftFireOffset=(X=17,Y=-4,Z=-2.25)
     SingleClass=Class'KFWeap_Pistol_9mm'
+    BonesToLockOnEmpty_L=/* Array type was not detected. */
     InventoryGroup=EInventoryGroup.IG_Secondary
-    FilterTypeUI=EFilterTypeUI.FT_Pistol
     InventorySize=2
-    EffectiveRange=50
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
-    bHasFlashlight=true
+    bHasFireLastAnims=true
     bIsBackupWeapon=true
     MeshFOV=96
     MeshIronSightFOV=77
@@ -31,11 +30,12 @@ defaultproperties
     DOF_FG_FocalRadius=40
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=20
-    UITexture=Texture2D'WEP_UI_Dual_9MM_TEX.UI_WeaponSelect_Dual9mm'
+    WeaponSelectTexture=Texture2D'WEP_UI_Dual_9MM_TEX.UI_WeaponSelect_Dual9mm'
     MagazineCapacity=30
-    MaxSpareAmmo=225
-    InitialSpareMags=7
+    MaxSpareAmmo=210
+    InitialSpareMags=3
     AmmoPickupScale=0.5
+    BonesToLockOnEmpty=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=5,Y=0,Z=-5)
@@ -56,7 +56,6 @@ defaultproperties
     RecoilISMaxPitchLimit=250
     RecoilISMinPitchLimit=65485
     FiringStatesArray=/* Array type was not detected. */
-    WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */
     Spread=/* Array type was not detected. */

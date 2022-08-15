@@ -49,65 +49,6 @@ class KFDT_Toxic_MedicGrenade extends KFDT_Toxic
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -128,7 +69,7 @@ class KFDT_Toxic_MedicGrenade extends KFDT_Toxic
 
 defaultproperties
 {
-   AARWeaponID=19
+   WeaponDef=Class'KFGame.KFWeapDef_Grenade_Medic'
    ModifierPerkList(0)=Class'KFGame.KFPerk_FieldMedic'
    Name="Default__KFDT_Toxic_MedicGrenade"
    ObjectArchetype=KFDT_Toxic'KFGame.Default__KFDT_Toxic'

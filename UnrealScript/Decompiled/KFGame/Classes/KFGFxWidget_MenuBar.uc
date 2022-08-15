@@ -59,6 +59,9 @@ function HandleButtonSpecialCase(byte ButtonIndex, out GFxObject GfxButton)
             GfxButton.SetString("label", GetHomeButtonName());
             GfxButton.SetBool("bPulsing", ShouldStartMenuPulse());
             break;
+        case 3:
+            GfxButton.SetBool("enabled", CanUseGearButton());
+            break;
         default:
             break;
     }
@@ -87,7 +90,7 @@ function string GetHomeButtonName()
 
     if((Manager != none) && Manager.StartMenu != none)
     {
-        if(Manager.CurrentMenuIndex == 14)
+        if(Manager.CurrentMenuIndex == 15)
         {
             LastHomeString = ServerBrowserString;
             return LastHomeString;
@@ -142,8 +145,10 @@ defaultproperties
     MenuStrings(0)="HOME"
     MenuStrings(1)="PERKS"
     MenuStrings(2)="GEAR"
-    MenuStrings(3)="OPTIONS"
-    MenuStrings(4)="EXIT"
+    MenuStrings(3)="INVENTORY"
+    MenuStrings(4)="STORE"
+    MenuStrings(5)="OPTIONS"
+    MenuStrings(6)="EXIT"
     ExitString="EXIT"
     CancelString="CANCEL"
     ServerBrowserString="SERVER BROWSER"

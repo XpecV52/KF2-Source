@@ -16,11 +16,14 @@ var const localized string ChangeString;
 var const localized string SharedByString;
 var const localized string SharedContentString;
 var GFxObject SharedContentButton;
+var GFxObject ServerWelcomeScreen;
 var bool bContentShared;
+var KFHTTPImageDownloader ImageDownLoader;
 
 function Initialize(KFGFxObject_Menu NewParentMenu)
 {
     StartMenu = KFGFxMenu_StartGame(NewParentMenu);
+    ServerWelcomeScreen = GetObject("serverWelcomeScreen");
     LocalizeContainer();
     UpdateOverviewInGame();
     SharedContentButton = GetObject("sharedContentButton");
@@ -29,6 +32,7 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
         SharedContentButton.SetVisible(Outer.GetPC().WorldInfo.NetMode != NM_Standalone);
     }
     UpdateSharedContent();
+    ShowWelcomeScreen();
 }
 
 function LocalizeContainer()
@@ -71,6 +75,60 @@ function LocalizeContainer()
         LocalizedObject.SetString("authorName", Outer.GetPC().WorldInfo.Author);
     }
     SetObject("localizedText", LocalizedObject);
+    LocalizeWelcomeScreen();
+}
+
+function LocalizeWelcomeScreen()
+{
+    local GFxObject LocalizedObject;
+
+    if(ServerWelcomeScreen == none)
+    {
+        return;
+    }
+    LocalizedObject = Outer.CreateObject("Object");
+    LocalizedObject.SetString("confirm", Class'KFCommon_LocalizedStrings'.default.ConfirmString);
+    ServerWelcomeScreen.SetObject("localizedText", LocalizedObject);
+}
+
+function ImageDownloadComplete(bool bWasSuccessful)
+{
+    if(bWasSuccessful)
+    {
+        ServerWelcomeScreen.SetString("banner", "Img://" $ PathName(ImageDownLoader.TheTexture));
+        ServerWelcomeScreen.ActionScriptVoid("openContainer");        
+    }
+}
+
+function ShowWelcomeScreen()
+{
+    local KFGameReplicationInfo KFGRI;
+    local WorldInfo WI;
+
+    if(ServerWelcomeScreen == none)
+    {
+        return;
+    }
+    WI = Class'WorldInfo'.static.GetWorldInfo();
+    if((WI != none) && WI.NetMode != NM_Client)
+    {
+        LogInternal("WI: " @ string(WI));
+        LogInternal("WI.NetMode: " @ string(WI.NetMode));
+        return;
+    }
+    KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
+    if(KFGRI == none)
+    {
+        return;
+    }
+    if((KFGRI.ServerAdInfo.BannerLink != "") && KFGRI.ServerAdInfo.ServerMOTD != "")
+    {
+        ImageDownLoader = new (Outer) Class'KFHTTPImageDownloader';
+        ImageDownLoader.DownloadImageFromURL(KFGRI.ServerAdInfo.BannerLink, ImageDownloadComplete);
+        ServerWelcomeScreen.SetString("messageOfTheDay", KFGRI.ServerAdInfo.ServerMOTD);
+        ServerWelcomeScreen.SetString("serverName", WI.GRI.ServerName);
+        ServerWelcomeScreen.SetString("serverIP", KFGRI.ServerAdInfo.WebsiteLink);
+    }
 }
 
 function UpdateSharedContent()

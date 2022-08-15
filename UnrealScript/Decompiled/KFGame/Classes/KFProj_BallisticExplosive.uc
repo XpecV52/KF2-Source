@@ -80,7 +80,6 @@ simulated function Explode(Vector HitLocation, Vector HitNormal)
         if((Instigator.Role < ROLE_Authority) && Instigator.IsLocallyControlled())
         {
             KFWeapon(Owner).HandleClientProjectileExplosion(HitLocation, self);
-            super.Explode(HitLocation, HitNormal);
             return;
         }
     }
@@ -369,7 +368,7 @@ defaultproperties
     GlassShatterType=FracturedMeshGlassShatterType.FMGS_ShatterAll
     ExtraLineCollisionOffsets(0)=
 /* Exception thrown while deserializing ExtraLineCollisionOffsets
-System.ArgumentException: Requested value '!=_6430' was not found.
+System.ArgumentException: Requested value '!=_6739' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

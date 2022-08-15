@@ -45,65 +45,6 @@ class KFDT_Explosive_Pulverizer extends KFDT_Explosive
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -124,7 +65,8 @@ class KFDT_Explosive_Pulverizer extends KFDT_Explosive
 
 defaultproperties
 {
-   AARWeaponID=6
+   WeaponDef=Class'KFGame.KFWeapDef_Pulverizer'
+   bCanObliterate=False
    StunPower=42
    KnockdownPower=42
    StumblePower=66
@@ -132,7 +74,6 @@ defaultproperties
    GunHitPower=129
    MeleeHitPower=130
    GoreDamageGroup=DGT_Obliteration
-   bCanObliterate=False
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
    Name="Default__KFDT_Explosive_Pulverizer"
    ObjectArchetype=KFDT_Explosive'KFGame.Default__KFDT_Explosive'

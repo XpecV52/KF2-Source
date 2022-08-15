@@ -10,13 +10,6 @@ class TWPostProcessEffect extends PostProcessEffect
     hidecategories(Object);
 
 var const transient float DOF_FocalDistance;
-/** Maximum focal distance, computed focal distances are clamped to this value */
-var(DepthOfField) float DOF_MaxFocalDistance;
-/** Camera aperture for foreground depth group - larger values give more blur */
-var(DepthOfField) float DOF_FG_FocalAperture;
-/** Distance for focal plane for foreground group (typically distance to in-focus iron sight */
-var(DepthOfField) float DOF_FG_FocalDistance;
-var const transient float DOF_Strength;
 /** New parameters */
 var(DepthOfField) float DOF_SharpRadius;
 var(DepthOfField) float DOF_FocalRadius;
@@ -92,9 +85,6 @@ var(AntiAliasing) float EdgeDetectionThreshold;
 defaultproperties
 {
     DOF_FocalDistance=1000
-    DOF_MaxFocalDistance=10000
-    DOF_FG_FocalAperture=5
-    DOF_FG_FocalDistance=50
     DOF_SharpRadius=500
     DOF_FocalRadius=1000
     DOF_MinBlurSize=1.25

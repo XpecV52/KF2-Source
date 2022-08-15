@@ -315,7 +315,7 @@ simulated function Tick( float DeltaTime )
 
 defaultproperties
 {
-   WeaponClass=Class'KFGameContent.KFWeap_Eviscerator'
+   WeaponClass=Class'kfgamecontent.KFWeap_Eviscerator'
    PickupRadius=200.000000
    PickupHeight=50.000000
    ProjPickupTemplate=ParticleSystem'WEP_SawBlade_EMIT.FX_Sawblade_pickup_01'

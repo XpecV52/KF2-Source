@@ -23,6 +23,21 @@ enum TraderWeaponStat
     TWS_MAX
 };
 
+enum EFilterTypeUI
+{
+    FT_Pistol,
+    FT_Shotgun,
+    FT_Rifle,
+    FT_Projectile,
+    FT_Flame,
+    FT_Electric,
+    FT_Explosive,
+    FT_Assault,
+    FT_Melee,
+    FT_SMG,
+    FT_MAX
+};
+
 struct native STraderItemWeaponStats
 {
     var KFGFxObject_TraderItems.TraderWeaponStat StatType;
@@ -37,274 +52,85 @@ struct native STraderItemWeaponStats
 
 struct native STraderItem
 {
-    var editconst bool bHasNoClass;
-    var editconst bool bSellable;
-    var editconst bool bUsesAmmo;
-    var editconst bool bUsesSecondaryAmmo;
-    /** The path to the item */
-    var() editconst name PathName;
-    var edithide name SingleClassPathName;
-    /** The weapon class we want to make available for purchase */
-    var() editoronly class<KFWeapon> ItemClass<EditCondition=!bHasNoClass>;
-    /** The cost of this weapon ( Sold for .75 this amount ) */
-    var() int BuyPrice<EditCondition=bSellable>;
-    /** Price per magazine */
-    var() int AmmoPricePerMagazine<EditCondition=bUsesAmmo>;
-    /** How much ammo you will receive for buying a mag of secondary ammo */
-    var() int SecondaryAmmoMagSize<EditCondition=bUsesSecondaryAmmo>;
-    /** Price to fill the secondary ammo */
-    var() int SecondaryAmmoMagPrice<EditCondition=bUsesSecondaryAmmo>;
-    /** The location of the weapon texture */
-    var() editconst string TextureLocation;
-    /** The location of the weapon texture */
-    var() editconst string SecondaryAmmoTexturePath<EditCondition=bUsesSecondaryAmmo>;
-    /** The location of the weapon texture */
-    var() bool bHideStats;
-    var editconst name ClassName;
-    var edithide name SingleClassName;
-    var edithide name DualClassName;
-    var editconst byte FilterType;
-    var editconst class<KFPerk> AssociatedPerkClass;
-    var editconst string PerkIconString;
-    var editconst int MagazineCapacity;
-    var editconst int InitialSpareMags;
-    var editconst int MaxSpareAmmo;
-    var editconst int MaxSecondaryAmmoCount;
-    var editconst byte BlocksRequired;
-    var editconst byte InventoryGroup;
-    var editconst float GroupPriority;
-    var editconst byte Power;
-    var editconst int FireRate;
-    var editconst byte Penetration;
-    var editconst byte Accuracy;
+    /** Link to weapon defintion class */
+    var() class<KFWeaponDefinition> WeaponDef<AllowAbstract=>;
+    var name ClassName;
+    var name SingleClassName;
+    var name DualClassName;
+    var class<KFPerk> AssociatedPerkClass;
+    var int MagazineCapacity;
+    var int InitialSpareMags;
+    var int MaxSpareAmmo;
+    var int MaxSecondaryAmmoCount;
+    var byte BlocksRequired;
+    var string SecondaryAmmoImagePath;
+    var KFGFxObject_TraderItems.EFilterTypeUI TraderFilter;
+    var byte InventoryGroup;
+    var float GroupPriority;
     /** Dynamic array of stats to display. Each weapon has the opportunity to set its own stats. */
     var() editconst array<editconst STraderItemWeaponStats> WeaponStats;
-    /** Unlock Id for shared unlock items */
-    var() editconst KFUnlockManager.ESharedContentUnlock SharedUnlockId;
 
     structdefaultproperties
     {
-        bHasNoClass=false
-        bSellable=true
-        bUsesAmmo=false
-        bUsesSecondaryAmmo=false
-        PathName=None
-        SingleClassPathName=None
-        ItemClass=none
-        BuyPrice=0
-        AmmoPricePerMagazine=0
-        SecondaryAmmoMagSize=0
-        SecondaryAmmoMagPrice=0
-        TextureLocation=""
-        SecondaryAmmoTexturePath=""
-        bHideStats=false
+        WeaponDef=none
         ClassName=None
         SingleClassName=None
         DualClassName=None
-        FilterType=0
         AssociatedPerkClass=none
-        PerkIconString=""
         MagazineCapacity=0
         InitialSpareMags=0
         MaxSpareAmmo=0
         MaxSecondaryAmmoCount=0
         BlocksRequired=0
+        SecondaryAmmoImagePath=""
+        TraderFilter=EFilterTypeUI.FT_Pistol
         InventoryGroup=0
         GroupPriority=0
-        Power=0
-        FireRate=0
-        Penetration=0
-        Accuracy=0
         WeaponStats=none
-        SharedUnlockId=ESharedContentUnlock.SCU_None
     }
 };
 
-struct native SPerkTraderList
-{
-    /** The perk that this item list is tied to */
-    var() class<KFPerk> PerkClass;
-    /** The perk that this item list is tied to */
-    var() STraderItem GrenadeItem;
-    /** The perk that this item list is tied to */
-    var() array<STraderItem> ItemList;
-
-    structdefaultproperties
-    {
-        PerkClass=Class'KFPerk_Commando'
-        GrenadeItem=(bHasNoClass=false,bSellable=true,bUsesAmmo=false,bUsesSecondaryAmmo=false,PathName=None,SingleClassPathName=None,ItemClass=none,BuyPrice=0,AmmoPricePerMagazine=0,SecondaryAmmoMagSize=0,SecondaryAmmoMagPrice=0,TextureLocation="",SecondaryAmmoTexturePath="",bHideStats=false,ClassName=None,SingleClassName=None,DualClassName=None,FilterType=0,AssociatedPerkClass=none,PerkIconString="",MagazineCapacity=0,InitialSpareMags=0,MaxSpareAmmo=0,MaxSecondaryAmmoCount=0,BlocksRequired=0,InventoryGroup=0,GroupPriority=0,Power=0,FireRate=0,Penetration=0,Accuracy=0,WeaponStats=none,SharedUnlockId=ESharedContentUnlock.SCU_None)
-        ItemList=none
-    }
-};
-
-var() STraderItem ArmorItem;
-var() array<SPerkTraderList> TraderItemList;
-var() array<STraderItem> OffPerkItems;
-var() string OffPerkIconPath;
-var() string ArmorClassName;
-var() string ArmorTextureLocation;
+var() editoronly transient bool bBuildItemInfo;
+/** main list of all items available for purchase at trader */
+var() array<STraderItem> SaleItems;
+/** Cost per 1 armor point */
+var() int ArmorPrice;
+/** Cost per 1 grenade */
+var() int GrenadePrice;
+var class<KFWeaponDefinition> ArmorDef;
+var array<STraderItemWeaponStats> KnifeStats;
+var string OffPerkIconPath;
 
 // Export UKFGFxObject_TraderItems::execSetItemsInfo(FFrame&, void* const)
-native function SetItemsInfo(out array<STraderItem> ItemArray, optional bool bIsOffPerk);
+native function SetItemsInfo(out array<STraderItem> ItemArray);
 
-// Export UKFGFxObject_TraderItems::execSetGrenadeInfo(FFrame&, void* const)
-native function SetGrenadeInfo(out SPerkTraderList TraderList);
-
-function GetItemInfo(class<KFPerk> PerkClass, string PathName, out string WeaponName, out string WeaponSource)
-{
-    local array<STraderItem> MyWeaponList;
-    local array<string> TempStringArray;
-    local int I;
-
-    MyWeaponList = GetWeaponListByPerk(PerkClass);
-    I = 0;
-    J0x28:
-
-    if(I < MyWeaponList.Length)
-    {
-        if(string(MyWeaponList[I].PathName) == PathName)
-        {
-            WeaponSource = MyWeaponList[I].TextureLocation;
-            ParseStringIntoArray(PathName, TempStringArray, ".", true);
-            WeaponName = Localize(TempStringArray[TempStringArray.Length - 1], "ItemName", "KFGameContent");
-            return;
-        }
-        ++ I;
-        goto J0x28;
-    }
-    GetOffPerkItem(PathName, WeaponName, WeaponSource);
-}
-
-function GetOffPerkItem(string PathName, out string WeaponName, out string WeaponSource)
-{
-    local int I;
-    local array<string> TempStringArray;
-
-    I = 0;
-    J0x0B:
-
-    if(I < OffPerkItems.Length)
-    {
-        if(string(OffPerkItems[I].PathName) == PathName)
-        {
-            WeaponSource = OffPerkItems[I].TextureLocation;
-            ParseStringIntoArray(PathName, TempStringArray, ".", true);
-            WeaponName = Localize(TempStringArray[TempStringArray.Length - 1], "ItemName", "KFGameContent");
-            return;
-        }
-        ++ I;
-        goto J0x0B;
-    }
-}
-
-function GetGrenadeItemInfo(class<KFPerk> PerkClass, string PathName, out string WeaponName, out string WeaponSource)
-{
-    local STraderItem GrenadeItem;
-    local array<string> TempStringArray;
-
-    GrenadeItem = GetGrenadeByPerk(PerkClass);
-    WeaponSource = GrenadeItem.TextureLocation;
-    ParseStringIntoArray(PathName, TempStringArray, ".", true);
-    WeaponName = Localize(TempStringArray[TempStringArray.Length - 1], "ItemName", "KFGameContent");
-}
-
-function STraderItem GetGrenadeByPerk(class<KFPerk> PerkClass)
+final function bool GetItemIndicesFromArche(out byte ItemIndex, name WeaponClassName)
 {
     local byte I;
 
     I = 0;
     J0x0C:
 
-    if(I < TraderItemList.Length)
+    if(I < SaleItems.Length)
     {
-        if(TraderItemList[I].PerkClass == PerkClass)
-        {
-            return TraderItemList[I].GrenadeItem;
-        }
-        ++ I;
-        goto J0x0C;
-    }
-    return TraderItemList[0].GrenadeItem;
-}
-
-function array<STraderItem> GetWeaponListByPerk(class<KFPerk> PerkClass)
-{
-    local byte I;
-
-    I = 0;
-    J0x0C:
-
-    if(I < TraderItemList.Length)
-    {
-        if(TraderItemList[I].PerkClass == PerkClass)
-        {
-            return TraderItemList[I].ItemList;
-        }
-        ++ I;
-        goto J0x0C;
-    }
-    return TraderItemList[0].ItemList;
-}
-
-final function bool GetItemIndicesFromArche(out byte ListIndex, out byte ItemIndex, name WeaponClassName, class<KFPerk> PerkClass)
-{
-    local byte I;
-
-    if(PerkClass != none)
-    {
-        I = 0;
-        J0x1B:
-
-        if(I < TraderItemList.Length)
-        {
-            if(TraderItemList[I].PerkClass == PerkClass)
-            {
-                ListIndex = I;
-                goto J0x8F;
-            }
-            ++ I;
-            goto J0x1B;
-        }
-        J0x8F:
-
-        if(ListIndex < TraderItemList.Length)
-        {
-            I = 0;
-            J0xB5:
-
-            if(I < TraderItemList[ListIndex].ItemList.Length)
-            {
-                if(WeaponClassName == TraderItemList[ListIndex].ItemList[I].ClassName)
-                {
-                    ItemIndex = I;
-                    return true;
-                }
-                ++ I;
-                goto J0xB5;
-            }
-        }
-    }
-    ListIndex = 255;
-    I = 0;
-    J0x17E:
-
-    if(I < OffPerkItems.Length)
-    {
-        if(WeaponClassName == OffPerkItems[I].ClassName)
+        if(WeaponClassName == SaleItems[I].ClassName)
         {
             ItemIndex = I;
             return true;
         }
         ++ I;
-        goto J0x17E;
+        goto J0x0C;
     }
     return false;
 }
 
 defaultproperties
 {
-    ArmorItem=(bHasNoClass=false,bSellable=true,bUsesAmmo=false,bUsesSecondaryAmmo=false,PathName=None,SingleClassPathName=None,ItemClass=none,BuyPrice=0,AmmoPricePerMagazine=0,SecondaryAmmoMagSize=0,SecondaryAmmoMagPrice=0,TextureLocation="",SecondaryAmmoTexturePath="",bHideStats=false,ClassName=None,SingleClassName=None,DualClassName=None,FilterType=0,AssociatedPerkClass=none,PerkIconString="",MagazineCapacity=0,InitialSpareMags=0,MaxSpareAmmo=0,MaxSecondaryAmmoCount=0,BlocksRequired=0,InventoryGroup=0,GroupPriority=0,Power=0,FireRate=0,Penetration=0,Accuracy=0,WeaponStats=none,SharedUnlockId=ESharedContentUnlock.SCU_None)
+    ArmorPrice=3
+    GrenadePrice=40
+    ArmorDef=Class'KFWeapDef_Armor'
+    KnifeStats(0)=(StatType=TraderWeaponStat.TWS_Damage,StatValue=64)
+    KnifeStats(1)=(StatType=TraderWeaponStat.TWS_RateOfFire,StatValue=100)
+    KnifeStats(2)=(StatType=TraderWeaponStat.TWS_Range,StatValue=2)
     OffPerkIconPath="UI_TraderMenu_TEX.UI_WeaponSelect_Trader_Perk"
-    ArmorClassName="Armor"
-    ArmorTextureLocation="UI_TraderMenu_TEX.UI_WeaponSelect_Armor"
 }

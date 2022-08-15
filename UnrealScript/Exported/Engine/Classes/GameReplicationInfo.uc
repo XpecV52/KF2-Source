@@ -73,6 +73,9 @@ var bool bPendingMusicTrackChange;
 // (cpptext)
 // (cpptext)
 // (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
 
 replication
 {

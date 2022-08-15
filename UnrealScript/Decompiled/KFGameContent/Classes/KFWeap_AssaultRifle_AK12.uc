@@ -177,7 +177,6 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireMode=1
     InventorySize=6
-    EffectiveRange=67
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -185,7 +184,7 @@ defaultproperties
     MeshIronSightFOV=33
     PlayerIronSightFOV=70
     GroupPriority=75
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AK12'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AK12'
     MagazineCapacity=30
     MaxSpareAmmo=210
     InitialSpareMags=3

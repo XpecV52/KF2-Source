@@ -9,6 +9,11 @@ class KFWeap_Edged_Knife extends KFWeap_MeleeBase
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
+function class<KFWeaponDefinition> GetKnifeWeaponDef()
+{
+    return AssociatedPerkClass.default.KnifeWeaponDef;
+}
+
 defaultproperties
 {
     MaxChainAtkCount=4
@@ -16,10 +21,9 @@ defaultproperties
     ParryDamageMitigationPercent=0.3
     BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
     ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
-    FilterTypeUI=EFilterTypeUI.FT_Melee
     bIsBackupWeapon=true
     GroupPriority=10
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Knife'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Knife'
     PlayerViewOffset=(X=10,Y=10,Z=0)
     AttachmentArchetype=KFWeaponAttachment'WEP_CommandoKnife_ARCH.Wep_CommandoKnife_3P'
     begin object name=MeleeHelper class=KFMeleeHelperWeapon

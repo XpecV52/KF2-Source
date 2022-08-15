@@ -13,13 +13,14 @@ class KFLocalMessage_Interaction extends KFLocalMessage;
 enum EInteractionMessageType
 {
 	IMT_None,
+	IMT_AcceptObjective,
+	IMT_GamepadWeaponSelectHint,
 	IMT_UseTrader,
 	IMT_UseDoor,	
-	IMT_AcceptObjective,
 	IMT_ReceiveAmmo,
+	IMT_ReceiveGrenades,
 	IMT_HealSelfWarning,
 	IMT_ClotGrabWarning,
-	IMT_ReceiveGrenades
 };
 
 var localized string			UseTraderMessage;
@@ -28,14 +29,15 @@ var localized string			AcceptObjectiveMessage;
 var localized string			ReceiveAmmoMessage;
 var localized string			ReceiveGrenadesMessage;
 var localized string			HealSelfWarning;
+var localized string			HealSelfGamepadWarning;
 var localized string 			PressToBashWarning;
+var localized string 			GamepadWeaponSelectHint;
 
 var const string USE_COMMAND;
 var const string HEAL_COMMAND;
 var const string HEAL_COMMAND_CONTROLLER;
-var const string BASH_COMMAND_CONTROLLER;
 var const string BASH_COMMAND;
-
+var const string WEAPON_SELECT_CONTROLLER;
 
 static function ClientReceive(
 	PlayerController P,
@@ -53,10 +55,21 @@ static function ClientReceive(
 	    GFxHud = KFGFxHudWrapper(P.myHUD).HudMovie;
 		if ( GFxHud != None )
 		{
-			MessageString = static.GetString( Switch, (RelatedPRI_1 == P.PlayerReplicationInfo), RelatedPRI_1, RelatedPRI_2, OptionalObject );
-            GFxHud.DisplayInteractionMessage( MessageString, Switch,  GetKeyBind(P, Switch));
+			MessageString = static.GetString( Switch, (RelatedPRI_1 == P.PlayerReplicationInfo), RelatedPRI_1, RelatedPRI_2, OptionalObject );	
+            GFxHud.DisplayInteractionMessage( MessageString, Switch,  GetKeyBind(P, Switch), GetMessageDuration(Switch));
 		}
 	}
+}
+
+static function float GetMessageDuration(int Switch)
+{
+	switch ( Switch )
+	{
+		case IMT_GamepadWeaponSelectHint:
+			return 2.f;
+	}	
+
+	return 0.f;
 }
 
 static function string GetKeyBind( PlayerController P, optional int Switch )
@@ -83,19 +96,23 @@ static function string GetKeyBind( PlayerController P, optional int Switch )
 			KeyString = KFInput.GetBindDisplayName(BoundKey);
 			break;
 		case IMT_HealSelfWarning:
-			//Something about the gamepad and the fact that these butons are not treated as the other breaks this functionality.  
-			//Adding a none check to ensure that a button is passed in
-			KFInput.GetKeyBindFromCommand(BoundKey, default.HEAL_COMMAND, false);
-			if(BoundKey.Name == 'None')
+			if ( KFInput.bUsingGamepad )
 			{
 				KFInput.GetKeyBindFromCommand(BoundKey, default.HEAL_COMMAND_CONTROLLER, false);
 			}
+			else
+			{
+				KFInput.GetKeyBindFromCommand(BoundKey, default.HEAL_COMMAND, false);
+			}
 			
 			KeyString = KFInput.GetBindDisplayName(BoundKey);
-
 			break;
 		case IMT_ClotGrabWarning:
 			KFInput.GetKeyBindFromCommand(BoundKey, default.BASH_COMMAND, false);
+			KeyString = KFInput.GetBindDisplayName(BoundKey);
+			break;
+		case IMT_GamepadWeaponSelectHint:
+			KFInput.GetKeyBindFromCommand(BoundKey, default.WEAPON_SELECT_CONTROLLER, false);
 			KeyString = KFInput.GetBindDisplayName(BoundKey);
 			break;
 	}
@@ -111,6 +128,8 @@ static function string GetString(
 	optional Object OptionalObject
 	)
 {
+	local PlayerInput Input;
+
 	switch ( Switch )
 	{
 		case IMT_UseTrader:
@@ -124,9 +143,12 @@ static function string GetString(
 		case IMT_ReceiveGrenades:
 			return default.ReceiveGrenadesMessage;
 		case IMT_HealSelfWarning:
-			return default.HealSelfWarning;
+			Input = class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController().PlayerInput;
+			return (Input != None && Input.bUsingGamepad) ? default.HealSelfGamepadWarning : default.HealSelfWarning;
 		case IMT_ClotGrabWarning:
 			return default.PressToBashWarning;
+		case IMT_GamepadWeaponSelectHint:
+			return default.GamepadWeaponSelectHint;
 		default:
 			return "";
 	}
@@ -153,8 +175,8 @@ DefaultProperties
 
  	USE_COMMAND="GBA_Use"
  	HEAL_COMMAND="GBA_QuickHeal"
- 	HEAL_COMMAND_CONTROLLER="GBA_DPad_Down_Gamepad"
+ 	HEAL_COMMAND_CONTROLLER="GBA_Reload_Gamepad"
  	BASH_COMMAND="GBA_TertiaryFire"
-
+ 	WEAPON_SELECT_CONTROLLER="GBA_WeaponSelect_Gamepad"
 }
 

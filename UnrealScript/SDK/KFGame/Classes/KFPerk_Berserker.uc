@@ -222,9 +222,9 @@ simulated static function GetPassiveStrings( out array<string> PassiveValues, ou
 	PassiveValues[4] = "";
 	PassiveValues[5] = "";
 
-	Increments[0] = "[" @ ("25% + " @ Int(default.BerserkerDamage.Increment * 100))  $"% /" @ default.LevelString @ "]";
-	Increments[1] = "[" @ "5% + ." @ int(default.MeleeAttackSpeed.Increment * 1000)  $ "% /" @ default.LevelString @ "]";
-	Increments[2] = "[" @ "10% + ." $ int(default.Movement.Increment * 1000) $ "% /" @ default.LevelString @ "]";
+	Increments[0] = "[" @ ("25% + " $ Int(default.BerserkerDamage.Increment * 100))  $"% /" @ default.LevelString @ "]";
+	Increments[1] = "[" @ "5% + 0." $ int(default.MeleeAttackSpeed.Increment * 1000)  $ "% /" @ default.LevelString @ "]";
+	Increments[2] = "[" @ "10% + 0." $ int(default.Movement.Increment * 1000) $ "% /" @ default.LevelString @ "]";
 	Increments[3] = "[" @ (Int(default.DamageResistance.Increment * 100))  $"% /" @ default.LevelString @ "]";
 	Increments[4] = "";
 	Increments[5] = "";
@@ -349,7 +349,7 @@ function ModifyScreamEffectDuration( out float InDuration )
  * @brief Random chance to knockdown a zed with a melee weapon
  * @return true/false
  */
-function float GetKnockdownPowerModifier( optional class<DamageType> DamageType )
+function float GetKnockdownPowerModifier( optional class<DamageType> DamageType, optional byte BodyPartt, optional bool bIsSprinting=false )
 {
 	local KFWeapon KFW;;
 
@@ -367,7 +367,7 @@ function float GetKnockdownPowerModifier( optional class<DamageType> DamageType 
  * @brief skills and weapons can modify the stumbling power
  * @return stumpling power modifier
  */
-function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier )
+function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart )
 {
 	if( IsMenaceActive() )
 	{
@@ -684,9 +684,9 @@ DefaultProperties
 	SecondaryXPModifier(3)=14
 	SmallRadiusSizeSQ=40000
 
-	PrimaryWeaponClassName="KFGameContent.KFWeap_Blunt_Crovel"
-	MeleeWeaponClassName="KFGameContent.KFWeap_Knife_Berserker"
-	GrenadeClassName="KFGameContent.KFProj_EMPGrenade"
+	PrimaryWeaponDef=class'KFWeapDef_Crovel'
+	KnifeWeaponDef=class'KFweapDef_Knife_Berserker'
+	GrenadeWeaponDef=class'KFWeapDef_Grenade_Berserker'
 
 	BerserkerDamage=(Name="Berserker Damage",Increment=0.01,Rank=0,StartingValue=1.25,MaxValue=1.5f)
 	MeleeAttackSpeed=(Name="Melee Attack Speed",Increment=0.004,Rank=0,StartingValue=0.05f,MaxValue=0.1f)
@@ -696,12 +696,12 @@ DefaultProperties
 
 	PerkSkills(EBerserkerPoisonResistance)=(Name="PoisonResistance",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_PoisonResistance",Increment=0.f,Rank=0,StartingValue=0.4f,MaxValue=0.4f)
 	PerkSkills(EBerserkerSonicResistance)=(Name="SonicResistance",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_SonicResistance",Increment=0.f,Rank=0,StartingValue=0.4f,MaxValue=0.4f)
-	PerkSkills(EBerserkerVampire)=(Name="Vampire",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Vampire",Increment=0.f,Rank=0,StartingValue=3.f,MaxValue=3.f)
-	PerkSkills(EBerserkerFortitude)=(Name="Fortitude",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Fortitude",Increment=0.f,Rank=0,StartingValue=2.f,MaxValue=2.f)
+	PerkSkills(EBerserkerVampire)=(Name="Vampire",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Vampire",Increment=0.f,Rank=0,StartingValue=4.f,MaxValue=4.f)
+	PerkSkills(EBerserkerFortitude)=(Name="Fortitude",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Fortitude",Increment=0.f,Rank=0,StartingValue=1.75,MaxValue=1.75)
 	PerkSkills(EBerserkerFuriousDefender)=(Name="FuriousDefender",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_FuriousDefender",Increment=0.f,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
 	PerkSkills(EBerserkerBlock)=(Name="Block",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Block",Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
 	PerkSkills(EBerserkerParry)=(Name="Parry",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Parry",Increment=0.f,Rank=0,StartingValue=0.15,MaxValue=0.15)
-	PerkSkills(EBerserkerSmash)=(Name="Smash",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Smash",Increment=0.f,Rank=0,StartingValue=1.f,MaxValue=1.f) 
+	PerkSkills(EBerserkerSmash)=(Name="Smash",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Smash",Increment=0.f,Rank=0,StartingValue=0.25,MaxValue=0.25) 
 	PerkSkills(EBerserkerSpartan)=(Name="Spartan",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Spartan",Increment=0.f,Rank=0,StartingValue=0.7f,MaxValue=0.7f)
 	PerkSkills(EBerserkerMenace)=(Name="Menace",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Menace",Increment=0.f,Rank=0,StartingValue=1.f,MaxValue=1.f)
 

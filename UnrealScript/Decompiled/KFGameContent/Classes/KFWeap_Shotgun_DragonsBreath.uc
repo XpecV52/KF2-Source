@@ -13,9 +13,7 @@ defaultproperties
 {
     NumPellets=/* Array type was not detected. */
     FireModeIconPaths=/* Array type was not detected. */
-    FilterTypeUI=EFilterTypeUI.FT_Shotgun
     InventorySize=6
-    EffectiveRange=25
     bHasIronSights=true
     bCanBeReloaded=true
     PenetrationPower=/* Array type was not detected. */
@@ -26,10 +24,11 @@ defaultproperties
     DOF_FG_FocalRadius=95
     DOF_FG_MaxNearBlurSize=2.5
     GroupPriority=50
-    UITexture=Texture2D'WEP_UI_DragonsBreath.UI_WeaponSelect_DragonsBreath'
+    WeaponSelectTexture=Texture2D'WEP_UI_DragonsBreath.UI_WeaponSelect_DragonsBreath'
     MagazineCapacity=6
     MaxSpareAmmo=40
     InitialSpareMags=3
+    BonesToLockOnEmpty=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=10,Y=7.5,Z=-4.5)
@@ -63,7 +62,6 @@ defaultproperties
     FireOffset=(X=30,Y=3,Z=-3)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
         SkeletalMesh=SkeletalMesh'WEP_1P_DragonsBreath_MESH.Wep_1stP_DragonsBreath_Rig'
-        AnimTreeTemplate=AnimTree'WEP_1P_DragonsBreath_ANIM.WEP_1stP_Animtree_DragonsBreath'
         AnimSets(0)=AnimSet'WEP_1P_DragonsBreath_ANIM.WEP_1P_DragonsBreath_ANIM'
         ReplacementPrimitive=none
     object end

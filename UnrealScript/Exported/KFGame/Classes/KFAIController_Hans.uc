@@ -1733,6 +1733,16 @@ event EdgeAndPolySubRegionRejectedDueToProximityToTarget( vector EdgeCenterRejec
 {
 }
 
+
+
+
+
+
+
+
+
+
+
 /*********************************************************************************************
 * Pathfinding
 ********************************************************************************************* */
@@ -1764,35 +1774,6 @@ function NotifyKilled(Controller Killer, Controller Killed, pawn KilledPawn, cla
 function PlayDamagePlayerDialog( class<DamageType> DmgType )
 {
 	if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayHansDamagePlayerDialog( MyHansPawn, DmgType );
-}
-
-
-/*********************************************************************************************
-*  Victory
-********************************************************************************************* */
-function EnterZedVictoryState()
-{
-	ClearMovementInfo();
-	if( CommandList != None )
-	{
-		AbortCommand( CommandList );
-	}
-
-	DisableMeleeRangeEventProbing();
-	ChangeEnemy(none);
-	MyKFPawn.SetSprinting( false );
-
-    // Keep hans looking at the camera
-    LockPawnRotationTo(MyKFPawn.Rotation);
-    MyKFPawn.SetRemoteViewPitch(0);
-
-    GotoState( 'ZedVictory', 'Begin');
-}
-
-state ZedVictory
-{
-    Begin:
-        class'AICommand_BossTheatrics'.static.DoTheatrics( self, THEATRIC_Victory, -1 );
 }
 
 defaultproperties

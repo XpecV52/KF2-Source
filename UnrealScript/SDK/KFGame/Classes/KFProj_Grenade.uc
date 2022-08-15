@@ -27,8 +27,6 @@ var() float DampenFactorParallel;
 /** How much to offset the emitter mesh when the grenade has landed so that it doesn't penetrate the ground */
 var() vector LandedTranslationOffset;
 
-var Texture2D UITexture;
-
 /** Whether or not we want to prevent this grenade from being tossed during the initial zed grab rotation. If the nade can insta kill the player, set to false */
 var(Grab) bool bAllowTossDuringZedGrabRotation;
 
@@ -171,7 +169,7 @@ simulated event GrenadeIsAtRest()
 // Touching
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
 {
-	if ( Other != Instigator && !Other.bWorldGeometry )
+	if ( Other != none && Other != Instigator && !Other.bWorldGeometry )
 	{
 		if ( Pawn(other) != None )
 		{
@@ -196,7 +194,6 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 
 defaultproperties
 {
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Grenade'
 	Physics=PHYS_Falling
 	Speed=2500
 	MaxSpeed=2500

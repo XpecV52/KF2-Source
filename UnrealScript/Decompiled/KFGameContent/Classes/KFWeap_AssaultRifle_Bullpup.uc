@@ -14,7 +14,6 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireMode=1
     InventorySize=6
-    EffectiveRange=68
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -23,7 +22,7 @@ defaultproperties
     DOF_FG_FocalRadius=85
     DOF_FG_MaxNearBlurSize=2.5
     GroupPriority=50
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Bullpup'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Bullpup'
     MagazineCapacity=30
     MaxSpareAmmo=270
     InitialSpareMags=4

@@ -49,65 +49,6 @@ class KFDT_Explosive_HX25 extends KFDT_Explosive
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -128,11 +69,11 @@ class KFDT_Explosive_HX25 extends KFDT_Explosive
 
 defaultproperties
 {
-   AARWeaponID=15
+   WeaponDef=Class'KFGame.KFWeapDef_HX25'
+   bShouldSpawnPersistentBlood=True
    KnockdownPower=30
    StumblePower=36
    LegStumblePower=36
-   bShouldSpawnPersistentBlood=True
    ModifierPerkList(0)=Class'KFGame.KFPerk_Demolitionist'
    KDeathVel=250.000000
    KDeathUpKick=500.000000

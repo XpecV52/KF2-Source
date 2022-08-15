@@ -15,7 +15,6 @@ defaultproperties
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
    SingleFireMode=1
    InventorySize=6
-   EffectiveRange=68
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -24,7 +23,7 @@ defaultproperties
    DOF_FG_FocalRadius=85.000000
    DOF_FG_MaxNearBlurSize=2.500000
    GroupPriority=50.000000
-   UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Bullpup'
+   WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Bullpup'
    MagazineCapacity(0)=30
    MaxSpareAmmo(0)=270
    InitialSpareMags(0)=4
@@ -44,7 +43,7 @@ defaultproperties
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_RifleBase:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_AssaultRifle_Bullpup:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_AssaultRifle_Bullpup:MeleeHelper_0'
    MuzzleFlashTemplate=KFMuzzleFlash'WEP_L85A2_ARCH.Wep_L85A2_MuzzleFlash'
    maxRecoilPitch=150
    minRecoilPitch=115
@@ -67,8 +66,8 @@ defaultproperties
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()
    FiringStatesArray(4)=()
-   WeaponProjectiles(0)=Class'KFGameContent.KFProj_Bullet_AssaultRifle'
-   WeaponProjectiles(1)=Class'KFGameContent.KFProj_Bullet_AssaultRifle'
+   WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_AssaultRifle'
+   WeaponProjectiles(1)=Class'kfgamecontent.KFProj_Bullet_AssaultRifle'
    FireInterval(0)=0.090900
    FireInterval(1)=0.100000
    FireInterval(2)=()
@@ -80,10 +79,10 @@ defaultproperties
    InstantHitDamage(1)=25.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=()
-   InstantHitDamageTypes(0)=Class'KFGameContent.KFDT_Ballistic_Bullpup'
-   InstantHitDamageTypes(1)=Class'KFGameContent.KFDT_Ballistic_Bullpup'
+   InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_Bullpup'
+   InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_Bullpup'
    InstantHitDamageTypes(2)=None
-   InstantHitDamageTypes(3)=Class'KFGameContent.KFDT_Bludgeon_Bullpup'
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_Bullpup'
    FireOffset=(X=30.000000,Y=4.500000,Z=-5.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_RifleBase:FirstPersonMesh'
       SkeletalMesh=SkeletalMesh'WEP_1P_L85A2_MESH.Wep_1stP_L85A2_Rig'

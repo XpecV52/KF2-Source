@@ -25,9 +25,9 @@ function UpdateGameInfo()
     KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
     if(KFGRI != none)
     {
-        if(KFGRI.WaveNum < KFGRI.WaveMax)
+        if((KFGRI.WaveNum + 1) < KFGRI.WaveMax)
         {
-            FinalWaveString = ((WaveString @ string(KFGRI.WaveNum)) $ "/") $ string(KFGRI.WaveMax - 1);            
+            FinalWaveString = ((WaveString @ string(KFGRI.WaveNum + 1)) $ "/") $ string(KFGRI.WaveMax - 1);            
         }
         else
         {

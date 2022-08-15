@@ -89,7 +89,7 @@ var bool bLogReservations;
 var bool bLogAnalytics;
 var bool bIsCustomGame;
 var bool bIsUnrankedGame;
-var const bool bEnableUpToDateCheck;
+var const bool bEnableServerVersionCheck;
 var bool bNVAlwaysDramatic;
 var bool bNVBlockDramatic;
 var bool bNVAlwaysHeadshot;
@@ -104,6 +104,13 @@ var globalconfig float KickVotePercentage;
 var globalconfig float TimeBetweenFailedVotes;
 var globalconfig float MapVotePercentage;
 var globalconfig float MapVoteDuration;
+var globalconfig string ServerMOTD;
+var globalconfig Color ServerMOTDColor;
+var globalconfig string BannerLink;
+var globalconfig string WebsiteLink;
+var globalconfig Color WebLinkColor;
+var globalconfig string ClanMotto;
+var globalconfig Color ClanMottoColor;
 var const int ReconnectRespawnTime;
 var KFDifficultyInfo DifficultyInfo;
 var KFDifficultyInfo DifficultyTemplate;
@@ -262,7 +269,10 @@ static function string StripPlayOnPrefix(string MapName)
 static function PreloadContentClasses(KFGameReplicationInfo GRI);
 
 // Export UKFGameInfo::execSetNeedsRestart(FFrame&, void* const)
-native static function SetNeedsRestart(bool bOutOfDate);
+native function SetNeedsRestart();
+
+// Export UKFGameInfo::execStaticSetNeedsRestart(FFrame&, void* const)
+native static function StaticSetNeedsRestart();
 
 event InitGame(string Options, out string ErrorMessage)
 {
@@ -315,6 +325,8 @@ event PreBeginPlay()
     CreateTeam(0);
     InitAIDirector();
     InitTraderList();
+    ReplicateWelcomeScreen();
+    WorldInfo.TWLogsInit();
 }
 
 event PostBeginPlay()
@@ -334,6 +346,23 @@ function InitGameplayEventWriter()
     else
     {
         LogInternal("Gameplay events will not be recorded.");
+    }
+}
+
+function ReplicateWelcomeScreen()
+{
+    local WorldInfo WI;
+
+    WI = Class'WorldInfo'.static.GetWorldInfo();
+    if(WI.NetMode != NM_DedicatedServer)
+    {
+        return;
+    }
+    if(MyKFGRI != none)
+    {
+        MyKFGRI.ServerAdInfo.BannerLink = BannerLink;
+        MyKFGRI.ServerAdInfo.ServerMOTD = ServerMOTD;
+        MyKFGRI.ServerAdInfo.WebsiteLink = WebsiteLink;
     }
 }
 
@@ -1010,6 +1039,10 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
         KilledPRI = KFPlayerReplicationInfo(KilledPlayer.PlayerReplicationInfo);
         if(KilledPRI != none)
         {
+            if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+            {
+                WorldInfo.TWLogEvent("player_death", KilledPRI);
+            }
             PlayerScoreDelta = GetAdjustedDeathPenalty(KilledPRI);
             if(bLogScoring)
             {
@@ -1072,6 +1105,10 @@ function ScoreMonsterKill(Controller Killer, Controller Monster, KFPawn_Monster 
         if(KFAIC.DamageHistory.Length > 0)
         {
             DistributeMoneyAndXP(MonsterPawn.Class, KFAIC.DamageHistory, Killer);
+            if((MonsterPawn.IsStalkerClass() && MonsterPawn.LastStoredCC != none) && MonsterPawn.bIsCloakingSpottedByTeam)
+            {
+                MonsterPawn.LastStoredCC.AddPlayerXP(int(MonsterPawn.GetXPValue(byte(GameDifficulty))), Class'KFPerk_Commando');
+            }
         }
     }
     if((GameplayEventsWriter != none) && GameplayEventsWriter.IsSessionInProgress())
@@ -1398,9 +1435,7 @@ Parameter name: index
         break;
         @NULL
         @NULL
-        -- @NULL;
-        string(GetFuncName()) $ "() Notifying ";
-        string(AI)        
+        Exp(@NULL, @NULL, string(GetFuncName()) $ "() Notifying ", string(AI));
         " that navigation has changed for "        
         string(N)        
         'PathWarning'
@@ -1515,7 +1550,7 @@ function int GetCurrentMapCycleIndex(const out array<string> MapList)
 
 exec function MaintenanceRestart()
 {
-    SetNeedsRestart(false);
+    SetNeedsRestart();
 }
 
 function UnregisterPlayer(PlayerController PC)
@@ -1884,6 +1919,9 @@ function int GetAvailableReservations()
 // Export UKFGameInfo::execAllowBalanceLogging(FFrame&, void* const)
 native static function bool AllowBalanceLogging();
 
+// Export UKFGameInfo::execAllowAnalyticsLogging(FFrame&, void* const)
+native static function bool AllowAnalyticsLogging();
+
 function LogPlayersInventory()
 {
     local PlayerController PC;
@@ -1912,6 +1950,10 @@ function LogPlayersInventory()
             {
                 WorldInfo.LogGameBalance((((string('Inventory') $ ",") $ PC.PlayerReplicationInfo.PlayerName) $ ",") $ InvString);
             }
+            if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+            {
+                WorldInfo.TWLogEvent("inventory", PC.PlayerReplicationInfo, InvString);
+            }
         }        
     }    
 }
@@ -1931,6 +1973,10 @@ function LogPlayersDosh(name EventName)
             if(Class'KFGameInfo'.static.AllowBalanceLogging())
             {
                 WorldInfo.LogGameBalance(((((((string(EventName) $ ",") $ PC.PlayerReplicationInfo.PlayerName) $ ",") $ "$") $ string(PC.PlayerReplicationInfo.Score)) $ ",") $ string(PC.GetPerk()));
+            }
+            if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+            {
+                WorldInfo.TWLogEvent("dosh", PC.PlayerReplicationInfo, string(EventName), "#" $ string(PC.PlayerReplicationInfo.Score), string(PC.GetPerk()), "#" $ string(MyKFGRI.WaveNum));
             }
         }        
     }    
@@ -1957,6 +2003,14 @@ function LogPlayersKillCount()
             if(Class'KFGameInfo'.static.AllowBalanceLogging())
             {
                 WorldInfo.LogGameBalance((((((string('Deaths') $ ",") $ PRI.PlayerName) $ ",") $ string(PRI.Deaths)) $ ",") $ string(PC.GetPerk()));
+            }
+            if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+            {
+                WorldInfo.TWLogEvent("kills", PRI, "#" $ string(PRI.Kills), string(PC.GetPerk()));
+            }
+            if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+            {
+                WorldInfo.TWLogEvent("deaths", PRI, "#" $ string(PRI.Deaths), string(PC.GetPerk()));
             }
         }        
     }    
@@ -2206,6 +2260,13 @@ defaultproperties
     KickVotePercentage=0.5
     TimeBetweenFailedVotes=10
     MapVoteDuration=60
+    ServerMOTD="Welcome to our server. \\n \\n Have fun and good luck!"
+    ServerMOTDColor=(B=254,G=254,R=254,A=192)
+    BannerLink="http://art.tripwirecdn.com/TestItemIcons/MOTDServer.png"
+    WebsiteLink="http://killingfloor2.com/"
+    WebLinkColor=(B=254,G=254,R=254,A=192)
+    ClanMotto="This is the clan motto."
+    ClanMottoColor=(B=254,G=254,R=254,A=192)
     ReconnectRespawnTime=30
     DifficultyTemplate=KFDifficultyInfo'GP_Difficulty_ARCH.Difficulty'
     DeathPenaltyModifiers(0)=0.05
@@ -2214,13 +2275,13 @@ defaultproperties
     DeathPenaltyModifiers(3)=0.25
     ZedTimeSlomoScale=0.2
     ZedTimeBlendOutTime=0.5
-    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint"))
+    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest"))
     DialogManagerClass=Class'KFDialogManager'
     ActionMusicDelay=5
     ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'
     ForcedMusicTracks(1)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'
     ForcedMusicTracks(2)=KFMusicTrackInfo'WW_MACT_Default.TI_SH_Boss_DieVolter'
-    ForcedMusicTracks(3)=KFMusicTrackInfo'WW_MACT_Default.TI_ID_Murderer'
+    ForcedMusicTracks(3)=KFMusicTrackInfo'WW_MACT_Default.TI_Boss_Patriarch'
     ForcedMusicTracks(4)=KFMusicTrackInfo'WW_MACT_Default.TI_ID_Murderer'
     ReservationTimeout=32
     bRestartLevel=false

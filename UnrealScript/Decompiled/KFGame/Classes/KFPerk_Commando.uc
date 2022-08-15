@@ -33,7 +33,6 @@ var const PerkSkill ExtraHealth;
 var const PerkSkill NightVision;
 var const float RapidFireFiringRate;
 var Texture2D WhiteMaterial;
-var const array<name> ZedTimeModifyingStates;
 
 simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType)
 {
@@ -160,7 +159,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
     return 0;
 }
 
-function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier)
+function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart)
 {
     local KFWeapon KFW;
 
@@ -334,9 +333,6 @@ defaultproperties
     NightVision=(Name="Night Vision",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="",bActive=false)
     RapidFireFiringRate=0.5
     WhiteMaterial=Texture2D'EngineResources.WhiteSquareTexture'
-    ZedTimeModifyingStates(0)=WeaponFiring
-    ZedTimeModifyingStates(1)=WeaponBurstFiring
-    ZedTimeModifyingStates(2)=WeaponSingleFiring
     ProgressStatID=1
     PerkBuildStatID=2
     SecondaryXPModifier[0]=3
@@ -368,8 +364,10 @@ defaultproperties
     PerkSkills(7)=(Name="Autofire",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_AutoFire",bActive=false)
     PerkSkills(8)=(Name="RapidFire",Increment=0,Rank=0,StartingValue=0.03,MaxValue=0.03,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_RapidFire",bActive=false)
     PerkSkills(9)=(Name="Professional",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_Professional",bActive=false)
+    ZedTimeModifyingStates(0)=WeaponFiring
+    ZedTimeModifyingStates(1)=WeaponBurstFiring
+    ZedTimeModifyingStates(2)=WeaponSingleFiring
     bCanSeeCloakedZeds=true
-    PrimaryWeaponClassName="KFGameContent.KFWeap_AssaultRifle_AR15"
-    MeleeWeaponClassName="KFGameContent.KFWeap_Knife_Commando"
-    GrenadeClassName="KFGameContent.KFProj_HEGrenade"
+    PrimaryWeaponDef=Class'KFWeapDef_AR15'
+    GrenadeWeaponDef=Class'KFWeapDef_Grenade_Commando'
 }

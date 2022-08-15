@@ -26,6 +26,9 @@ native final exec function ResetPerkLevels();
 // Export UKFCheatManager::execReadGlobalStat(FFrame&, void* const)
 native exec function ReadGlobalStat(string StatId, optional int HistoryNumDays);
 
+// Export UKFCheatManager::execFindTranslucencyInheritDominantShadowMaterials(FFrame&, void* const)
+native final exec function FindTranslucencyInheritDominantShadowMaterials();
+
 function Pawn GetMyPawn()
 {
     return ((Outer.Pawn != none) ? Outer.Pawn : DebugCameraController(Outer).OriginalControllerRef.Pawn);
@@ -344,7 +347,7 @@ exec function HansGunsOut()
 
     foreach Outer.WorldInfo.AllPawns(Class'KFPawn_Monster', KFPM)
     {
-        KFPM.DoSpecialMove(22, false, none, 1);        
+        KFPM.DoSpecialMove(23, false, none, 1);        
     }    
 }
 
@@ -354,7 +357,7 @@ exec function HansGunsAway()
 
     foreach Outer.WorldInfo.AllPawns(Class'KFPawn_Monster', KFPM)
     {
-        KFPM.DoSpecialMove(22, false, none, 0);        
+        KFPM.DoSpecialMove(23, false, none, 0);        
     }    
 }
 
@@ -543,6 +546,19 @@ simulated exec function Pistols()
 simulated exec function Dualies()
 {
     GiveWeapon("KFGameContent.KFWeap_Pistol_Dual9mm");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_DualDeagle");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_DualColt1911");
+    GiveWeapon("KFGameContent.KFWeap_Revolver_DualRem1858");
+    GiveWeapon("KFGameContent.KFWeap_Revolver_DualSW500");
+}
+
+simulated exec function Singles()
+{
+    GiveWeapon("KFGameContent.KFWeap_Pistol_9mm");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_Deagle");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_Colt1911");
+    GiveWeapon("KFGameContent.KFWeap_Revolver_Rem1858");
+    GiveWeapon("KFGameContent.KFWeap_Revolver_SW500");
 }
 
 simulated exec function DummyWeapon()
@@ -585,6 +601,19 @@ simulated exec function Assault()
     GiveWeapon("KFGameContent.KFWeap_AssaultRifle_AK12");
 }
 
+simulated exec function Scope()
+{
+    GiveWeapon("KFGameContent.KFWeap_Rifle_M14EBR");
+}
+
+simulated exec function ScopeFOV(float NewFOV)
+{
+    if(KFWeap_ScopedBase(Outer.Pawn.Weapon) != none)
+    {
+        KFWeap_ScopedBase(Outer.Pawn.Weapon).SceneCapture.SetCaptureParameters(,, NewFOV);
+    }
+}
+
 simulated exec function Demo()
 {
     GiveWeapon("KFGameContent.KFWeap_GrenadeLauncher_HX25");
@@ -620,6 +649,13 @@ simulated exec function Firebug()
 simulated exec function Rifle()
 {
     GiveWeapon("KFGameContent.KFWeap_Rifle_Winchester1894");
+}
+
+simulated exec function Sharpshooter()
+{
+    GiveWeapon("KFGameContent.KFWeap_Rifle_Winchester1894");
+    GiveWeapon("KFGameContent.KFWeap_Bow_Crossbow");
+    GiveWeapon("KFGameContent.KFWeap_Rifle_M14EBR");
 }
 
 simulated exec function SMG()
@@ -673,6 +709,14 @@ simulated exec function WeapFOV(float NewFOV, optional bool bScaleByAspectRatio)
 simulated exec function ToggleDoF()
 {
     KFPlayerController(Outer).EnableDepthOfField(!KFPlayerController(Outer).bDOFEnabled);
+}
+
+simulated exec function ShowDownloadPopup()
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(Outer);
+    KFPC.ShowConnectionProgressPopup(3, "Fake download", "Not actually downloading");
 }
 
 simulated exec function BackgroundBlur(bool bBlur)
@@ -1044,7 +1088,7 @@ exec function AllAmmo()
     }    
     if(KFInventoryManager(Outer.Pawn.InvManager) != none)
     {
-        KFInventoryManager(Outer.Pawn.InvManager).GiveInitialGrenadeCount();
+        KFInventoryManager(Outer.Pawn.InvManager).AddGrenades(100);
     }
 }
 
@@ -1275,7 +1319,7 @@ exec function AIHuskFlamethrower()
     if((((KFAIC != none) && KFAIC.Pawn != none) && KFAIC.Pawn.Health > 0) && KFAIC.Pawn.IsA('KFPawn_ZedHusk'))
     {
         KFAIC.MovementPlugin.DisablePlugin();
-        KFPawn(KFAIC.Pawn).DoSpecialMove(17, true, Outer.Pawn, 255);        
+        KFPawn(KFAIC.Pawn).DoSpecialMove(18, true, Outer.Pawn, 255);        
     }
     else
     {
@@ -1773,15 +1817,15 @@ exec function AIDebug(optional bool bAllZeds)
     }    
 }
 
-exec function AIHide(optional float HideDuration, optional bool bLoop)
+exec function AIFlee(optional float FleeDuration, optional float FleeDistance)
 {
     local KFAIController KFAIC;
 
-    bLoop = true;
+    FleeDistance = 5000;
     KFAIC = GetKFAICFromAim();
     if(KFAIC != none)
     {
-        KFAIC.DoHideFrom(GetMyPawn(), HideDuration);
+        KFAIC.DoFleeFrom(GetMyPawn(), FleeDuration, FleeDistance);
     }
 }
 
@@ -2086,7 +2130,7 @@ exec function DumpInfoForAI(optional bool bOutputToConsole)
 ... ") $ string(KFAIC)) @ string(KFAIC.Pawn)) $ "(ActvCmd:") $ KFAIC.GetActionString()) $ ")  -- TimeSinceLastRender:") @ string(TimeSinceLastRender)) @ "Enemy:") @ string(KFAIC.Enemy)) @ "AILoc:") @ string(KFAIC.Pawn.Location)) $ "
 ";        
     }    
-    if(bOutputToConsole)
+    if((bOutputToConsole && Outer.Player != none) && LocalPlayer(Outer.Player) != none)
     {
         LocalPlayer(Outer.Player).ViewportClient.ViewportConsole.OutputText(Info);
     }
@@ -2290,7 +2334,7 @@ exec function AIScream()
         if((KFPM.IsA('KFPawn_ZedSiren') && KFPM.IsAliveAndWell()) && KFPM.MyKFAIC != none)
         {
             Siren = KFPM;
-            KFPM.DoSpecialMove(15, true);
+            KFPM.DoSpecialMove(16, true);
         }        
     }    
     foreach Outer.DynamicActors(Class'KFPawn_Monster', KFPM)
@@ -2995,16 +3039,19 @@ exec function AIPlayTaunt(byte TauntType)
     }    
 }
 
+exec function DebugNextPhase()
+{
+    local KFAIController_ZedBoss KFAICB;
+
+    foreach Outer.AllActors(Class'KFAIController_ZedBoss', KFAICB)
+    {
+        KFAICB.DebugNextPhase();        
+    }    
+}
+
 exec function HansNextPhase()
 {
-    local KFAIController_Hans KFAIC;
-
-    foreach Outer.AllActors(Class'KFAIController_Hans', KFAIC)
-    {
-        KFAIC.MyHansPawn.SetHuntAndHealMode(true);
-        KFAIC.MyHansPawn.Health = int(float(KFAIC.MyHansPawn.HealthMax) * 0.34);
-        KFAIC.NextBattlePhase();        
-    }    
+    DebugNextPhase();
 }
 
 exec function HansGas()
@@ -3019,36 +3066,36 @@ exec function HansGas()
 
 exec function AISummonZeds(int BattlePhase, int DifficultyIndex)
 {
-    local KFAIController_Hans KFAIC;
+    local KFAIController_ZedBoss KFAIC;
     local KFAIWaveInfo MinionWave;
-    local KFPawn_ZedHansBase HansPawn;
+    local KFPawn_MonsterBoss BossPawn;
 
-    foreach Outer.AllActors(Class'KFAIController_Hans', KFAIC)
+    foreach Outer.AllActors(Class'KFAIController_ZedBoss', KFAIC)
     {
-        HansPawn = KFPawn_ZedHansBase(KFAIC.MyKFPawn);
-        if(HansPawn == none)
+        BossPawn = KFPawn_MonsterBoss(KFAIC.MyKFPawn);
+        if(BossPawn == none)
         {            
             return;
         }
         if(BattlePhase == 0)
         {
-            MinionWave = HansPawn.SummonWaves[DifficultyIndex].PhaseOneWave;            
+            MinionWave = BossPawn.SummonWaves[DifficultyIndex].PhaseOneWave;            
         }
         else
         {
             if(BattlePhase == 1)
             {
-                MinionWave = HansPawn.SummonWaves[DifficultyIndex].PhaseTwoWave;                
+                MinionWave = BossPawn.SummonWaves[DifficultyIndex].PhaseTwoWave;                
             }
             else
             {
                 if(BattlePhase == 2)
                 {
-                    MinionWave = HansPawn.SummonWaves[DifficultyIndex].PhaseThreeWave;
+                    MinionWave = BossPawn.SummonWaves[DifficultyIndex].PhaseThreeWave;
                 }
             }
         }
-        Class'AICommand_SummonZeds'.static.Summon(KFAIC, MinionWave, HansPawn.NumMinionsToSpawn);        
+        Class'AICommand_SummonZeds'.static.Summon(KFAIC, MinionWave, BossPawn.NumMinionsToSpawn);        
     }    
 }
 
@@ -3620,6 +3667,31 @@ simulated exec function BigHeadMode()
     }
 }
 
+simulated exec function BigZedMode(optional float Scale, optional bool bScaleCollision)
+{
+    local Pawn P;
+    local KFPawn_Monster Zed;
+
+    Scale = 2;    
+    P = Outer.WorldInfo.PawnList;
+    J0x47:
+
+    if(P != none)
+    {
+        Zed = KFPawn_Monster(P);
+        if(Zed != none)
+        {
+            Zed.SetDrawScale(Scale);
+            if(bScaleCollision)
+            {
+                Zed.SetCollisionSize(Zed.CylinderComponent.default.CollisionRadius * Scale, Zed.CylinderComponent.default.CollisionHeight * Scale);
+            }
+        }
+        P = P.NextPawn;
+        goto J0x47;
+    }
+}
+
 simulated exec function AISetInUseCost(optional float NewCost)
 {
     local KFAIController KFAIC;
@@ -3885,6 +3957,11 @@ simulated function KFPawn SpawnAIZed(string ZedName, float Distance, optional na
     return Zed;
 }
 
+exec function SetBossNum(int PosInBossArray)
+{
+    Outer.ConsoleCommand("SETNOPEC KFAISpawnManager ForcedBossNum" @ string(PosInBossArray));
+}
+
 function class<KFPawn_Monster> LoadMonsterByName(string ZedName)
 {
     if(Left(ZedName, 5) ~= "ClotA")
@@ -3985,7 +4062,14 @@ function class<KFPawn_Monster> LoadMonsterByName(string ZedName)
                                                                 {
                                                                     if(Left(ZedName, 2) ~= "Si")
                                                                     {
-                                                                        return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedSiren", Class'Class'));
+                                                                        return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedSiren", Class'Class'));                                                                        
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        if(Left(ZedName, 1) ~= "P")
+                                                                        {
+                                                                            return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedPatriarch", Class'Class'));
+                                                                        }
                                                                     }
                                                                 }
                                                             }
@@ -4041,7 +4125,6 @@ exec function SpawnHumanPawn(optional bool bEnemy, optional bool bUseGodMode, op
         KFBot.bGodMode = true;
     }
     KFPRI = KFPlayerReplicationInfo(KFBot.PlayerReplicationInfo);
-    KFPRI.SetCharacter(CharIndex);
     KFPRI.CurrentPerkClass = Class'KFPlayerController'.default.PerkList[1].PerkClass;
     KFPRI.NetPerkIndex = 1;
     if(KFPRI != none)
@@ -4170,7 +4253,8 @@ simulated exec function SpawnZedGroup(string ZedName, int NumRows, int NumCols, 
                     KFPM = KFPawn_Monster(KFP);
                     if(KFPM != none)
                     {
-                        KFPM.SwitchToGoreMesh(KFPM.GetCharacterMonsterInfo().GoreMesh, KFPM.GetCharacterMonsterInfo().CharacterGoreMaterialID);                        
+                        KFPM.SwitchToGoreMesh(KFPM.GetCharacterMonsterInfo().GoreMesh, KFPM.GetCharacterMonsterInfo().CharacterGoreMaterialID);
+                        KFPM.GoreMeshSwapped();                        
                     }
                     else
                     {
@@ -4839,6 +4923,18 @@ exec function CameraBlood()
     Outer.ClientSpawnCameraLensEffect(Class'KFCameraLensEmit_BloodBase');
 }
 
+exec function HeadShotPing(bool Value)
+{
+    if(Value)
+    {
+        Outer.ClientSpawnCameraLensEffect(Class'KFCameraLensEmit_RackemHeadShotPing');        
+    }
+    else
+    {
+        Outer.ClientSpawnCameraLensEffect(Class'KFCameraLensEmit_RackemHeadShot');
+    }
+}
+
 exec function CameraPuke()
 {
     Outer.ClientSpawnCameraLensEffect(Class'KFCameraLensEmit_Puke');
@@ -5015,28 +5111,6 @@ exec function ShowLevelUpPopUp(bool bTierUnlock)
 exec function GetCurrentPerkXP()
 {
     Outer.ClientMessage((("Perk:" @ Mid(string(KFPawn(Outer.Pawn).GetPerk()), 7)) @ "XP:") @ string(KFPlayerController(Outer).GetPerkXP(KFPawn(Outer.Pawn).GetPerk().Class)), CheatType);
-}
-
-exec function RandomizeCharacter()
-{
-    local KFPawn_Human KFPH;
-    local KFPlayerReplicationInfo KFPRI;
-
-    KFPH = KFPawn_Human(Outer.Pawn);
-    KFPRI = KFPlayerReplicationInfo(Outer.PlayerReplicationInfo);
-    if(KFPRI != none)
-    {
-        KFPRI.RepCustomizationInfo.BodyMeshIndex = byte(Rand(3));
-        KFPRI.RepCustomizationInfo.BodyMeshIndex = byte(Rand(3));
-        KFPRI.RepCustomizationInfo.HeadMeshIndex = byte(Rand(3));
-        KFPRI.RepCustomizationInfo.HeadSkinIndex = byte(Rand(3));
-        KFPRI.RepCustomizationInfo.AttachmentMeshIndices[0] = ((Rand(2) > 0) ? 0 : 255);
-        KFPRI.RepCustomizationInfo.AttachmentSkinIndices[0] = byte(Rand(3));
-        if(KFPH != none)
-        {
-            KFPH.CharacterArch.SetCharacterMeshFromArch(KFPH, KFPRI);
-        }
-    }
 }
 
 exec function TestFalloffDamage(float Distance, float MaxRadius, float FalloffExponent)
@@ -5305,137 +5379,17 @@ exec function DemiGod()
     Outer.ClientMessage("Demi God Mode on");
 }
 
-exec function NVZedTime(optional bool bImmediate, optional float Chance, optional float Duration)
+exec function TestGrapple()
 {
-    bImmediate = false;
-    Chance = 100;
-    Duration = 5;
-    if(KFGameInfo(Outer.WorldInfo.Game) != none)
+    local KFPawn_Monster P;
+
+    foreach Outer.WorldInfo.AllPawns(Class'KFPawn_Monster', P)
     {
-        if(bImmediate)
+        if(P.CanDoSpecialMove(4))
         {
-            KFGameInfo(Outer.WorldInfo.Game).DramaticEvent(Chance, Duration);            
-        }
-        else
-        {
-            KFGameInfo(Outer.WorldInfo.Game).bNVAlwaysDramatic = !KFGameInfo(Outer.WorldInfo.Game).bNVAlwaysDramatic;
-        }
-        if(KFGameInfo(Outer.WorldInfo.Game).bNVAlwaysDramatic)
-        {
-            Outer.ClientMessage("NV: Always ZedTime ENABLED!");            
-        }
-        else
-        {
-            Outer.ClientMessage("NV: Always ZedTime DISABLED.");
-        }
-    }
-}
-
-exec function NVEnableZedTime(optional bool bEnable)
-{
-    bEnable = true;
-    if(KFGameInfo(Outer.WorldInfo.Game) != none)
-    {
-        KFGameInfo(Outer.WorldInfo.Game).bNVBlockDramatic = !bEnable;
-        if(KFGameInfo(Outer.WorldInfo.Game).bNVBlockDramatic)
-        {
-            Outer.ClientMessage("NV: ZedTime BLOCKED!");            
-        }
-        else
-        {
-            Outer.ClientMessage("NV: ZedTime UNBLOCKED.");
-        }
-    }
-}
-
-exec function NVHeadshot()
-{
-    if(KFGameInfo(Outer.WorldInfo.Game) != none)
-    {
-        KFGameInfo(Outer.WorldInfo.Game).bNVAlwaysHeadshot = !KFGameInfo(Outer.WorldInfo.Game).bNVAlwaysHeadshot;
-        if(KFGameInfo(Outer.WorldInfo.Game).bNVAlwaysHeadshot)
-        {
-            Outer.ClientMessage("NV: Always Headshot ENABLED!");            
-        }
-        else
-        {
-            Outer.ClientMessage("NV: Always Headshot DISABLED.");
-        }
-    }
-}
-
-exec function NVDamage()
-{
-    if(KFGameInfo(Outer.WorldInfo.Game) != none)
-    {
-        KFGameInfo(Outer.WorldInfo.Game).bNVDebugDamage = !KFGameInfo(Outer.WorldInfo.Game).bNVDebugDamage;
-        if(KFGameInfo(Outer.WorldInfo.Game).bNVDebugDamage)
-        {
-            Outer.ClientMessage("NV: Debug Damage ENABLED!");            
-        }
-        else
-        {
-            Outer.ClientMessage("NV: Debug Damage DISABLED.");
-        }
-    }
-}
-
-exec function NVGod()
-{
-    AllWeapons();
-    Flame();
-    UberAmmo();
-    KillRecoil();
-    NVZedTime();
-}
-
-exec function NVSpawnFlex(optional int EffectNumber, optional name BoneName)
-{
-    local ParticleSystem FlexPSCTemplate;
-    local KFPawn KFP;
-    local Matrix KMatrix;
-    local Vector KLoc;
-    local Rotator KRot;
-    local editinline ParticleSystemComponent PSC;
-
-    EffectNumber = 0;    
-    KFP = KFPawn(Outer.Pawn);
-    if(KFP != none)
-    {
-        if(EffectNumber == 0)
-        {
-            EffectNumber = Rand(5) + 1;
-        }
-        if(BoneName == 'None')
-        {
-            BoneName = 'head';
-        }
-        switch(EffectNumber)
-        {
-            case 1:
-                FlexPSCTemplate = ParticleSystem'FX_Obliteration_Explode';
-                break;
-            case 2:
-                FlexPSCTemplate = ParticleSystem'FX_Spine_Jet_01';
-                break;
-            case 3:
-                FlexPSCTemplate = ParticleSystem'FX_Bloat_Explode';
-                break;
-            case 4:
-                FlexPSCTemplate = ParticleSystem'FX_Siren_scream_01';
-                break;
-            default:
-                FlexPSCTemplate = ParticleSystem'FX_Bloat_Barf';
-                break;
-                break;
-        }
-        KMatrix = KFP.Mesh.GetBoneMatrix(KFP.Mesh.MatchRefBone(BoneName));
-        KLoc = MatrixGetOrigin(KMatrix);
-        KMatrix = Multiply_MatrixMatrix(MakeRotationMatrix(rot(0, -16383, 16383)), KMatrix);
-        KRot = MatrixGetRotator(KMatrix);
-        PSC = Outer.WorldInfo.MyEmitterPool.SpawnEmitter(FlexPSCTemplate, KLoc, KRot, KFP);
-        PSC.SetLightingChannels(KFP.PawnLightingChannel);
-    }
+            P.DoSpecialMove(4, true, Outer.Pawn);
+        }        
+    }    
 }
 
 defaultproperties

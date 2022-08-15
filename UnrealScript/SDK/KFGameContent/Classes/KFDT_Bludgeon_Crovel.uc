@@ -23,6 +23,6 @@ defaultproperties
 	LegStumblePower=51
 	MeleeHitPower=50
 
-	AARWeaponID=`AAR_Crovel
+	WeaponDef=class'KFWeapDef_Crovel'
 	ModifierPerkList(0)=class'KFPerk_Berserker'
 }

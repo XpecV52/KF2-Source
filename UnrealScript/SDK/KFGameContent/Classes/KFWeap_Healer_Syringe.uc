@@ -42,7 +42,7 @@ defaultproperties
 	
 	//Grouping
 	GroupPriority=6
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Healer'
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Healer'
 
 	AttachmentArchetype=KFWeaponAttachment'WEP_Healer_ARCH.Wep_Healer_3P'
 

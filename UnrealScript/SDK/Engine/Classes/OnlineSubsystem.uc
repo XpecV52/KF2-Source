@@ -64,6 +64,10 @@ var OnlineSocialInterface SocialInterface;
 /** The interface to use for multiplayer authentication */
 var OnlineAuthInterface AuthInterface;
 
+`if(`__TW_)
+/** The array of delegates that notify that the stats read operation has completed */
+var array<delegate<OnInventoryReadComplete> > ReadInventoryCompleteDelegates;
+`endif 
 /** Struct that holds a transient, unique identifier for a player */
 struct native UniqueNetId
 {
@@ -856,6 +860,111 @@ struct native SocialPostLinkInfo extends SocialPostImageInfo
     var string PictureURL;
 };
 
+`if (`__TW_ONLINESUBSYSTEM_)
+
+/* Used to contain a local list of inventory items fetched from Steam */
+struct native CurrentInventoryEntry
+{
+	var UniqueNetId Instance;
+	var int Definition;
+	var int Quantity;
+	var int NewlyAdded;
+};
+var array<CurrentInventoryEntry> CurrentInventory;
+
+enum ItemType
+{
+	ITP_WeaponSkin,
+	ITP_CharacterSkin,
+	ITP_Item,
+
+	ITP_NONE,
+};
+
+enum ItemRarity
+{
+	ITR_Common,
+	ITR_Uncommon,
+	ITR_Rare,
+	ITR_Legendary,
+	ITR_ExceedinglyRare,
+	ITR_Mythical,
+
+	ITR_NONE,
+};
+
+/* fetching the individual properties of an item */
+struct native ItemProperties
+{
+	var int Definition;
+	var string Name;
+	var ItemType Type;
+	var ItemRarity Rarity;
+	var string ShortDescription;
+	var string Price;
+	var int Quality;
+	var string IconURL;
+	var string IconURLLarge;
+	var bool Tradeable;
+	var bool Commodity;
+	var string Description;
+	var string Exchange;
+};
+var array<ItemProperties> ItemPropertiesList;
+
+struct native ExchangeRule
+{
+	var int Definition;
+	var int Quantity;
+};
+
+struct native ExchangeRuleSets
+{
+	var array<ExchangeRule> Sources;
+	var int Target;
+};
+var array<ExchangeRuleSets> ExchangeRuleSetList;
+
+
+native function OpenItemPurchaseOverlay(int SKU);
+native function OpenURL(string WebsiteLink);
+
+// return a list of rulesets this item is a source for (Crates,
+// Crafting, ... )
+native function int IsExchangeable( int SourceSKU, out array<ExchangeRuleSets> Ret );
+
+// Are the requirements met to recieve the target SKU with the given
+// Rule (from IsExchangeable() above)
+native function bool ExchangeReady( const out ExchangeRuleSets Rule );
+
+// do the exchange with the given rule. Inventory will be scanned and
+// appropriate items removed to make the exchange
+native function bool Exchange( const out ExchangeRuleSets Rule );
+
+delegate OnInventoryReadComplete();
+
+function AddOnInventoryReadCompleteDelegate(delegate<OnInventoryReadComplete> ReadCompleteDelegate)
+{
+	if (ReadInventoryCompleteDelegates.Find(ReadCompleteDelegate) == INDEX_NONE)
+	{
+		ReadInventoryCompleteDelegates.AddItem(ReadCompleteDelegate);
+	}
+}
+
+function ClearOnInventoryReadCompleteDelegate(delegate<OnInventoryReadComplete> ReadCompleteDelegate)
+{
+	local int RemoveIndex;
+
+	// Remove this delegate from the array if found
+	RemoveIndex = ReadInventoryCompleteDelegates.Find(ReadCompleteDelegate);
+	if (RemoveIndex != INDEX_NONE)
+	{
+		ReadInventoryCompleteDelegates.Remove(RemoveIndex,1);
+	}
+}
+
+`endif
+
 cpptext
 {
 // FTickableObject interface
@@ -909,7 +1018,14 @@ cpptext
 	 *
 	 * @return	TRUE if the string was successfully converted into a UniqueNetId; FALSE if the string was not a valid UniqueNetId.
 	 */
-	static UBOOL StringToUniqueNetId( const FString& UniqueNetIdString, FUniqueNetId& out_UniqueId );
+	static UBOOL StringToUniqueNetId( const FString& UniqueNetIdString, FUniqueNetId& out_UniqueId);
+
+#if __TW_
+	/**
+	 * Same as StringToUniqueNetId but assumes the string is decimal
+	 */
+	static UBOOL StringToUniqueNetIdDec( const FString& UniqueNetIdString, FUniqueNetId& out_UniqueId);
+#endif
 
 	/**
 	 * Searches the named session array for the specified session
@@ -1325,6 +1441,13 @@ static final native noexportheader function string UniqueNetIdToString(const out
  */
 static final native noexportheader function bool StringToUniqueNetId(string UniqueNetIdString,out UniqueNetId out_UniqueId);
 
+`if(`__TW_)
+/**
+ * Same as StringToUniqueNetId but assumes the string is decimal
+ */
+static final native noexportheader function bool StringToUniqueNetIdDec(string UniqueNetIdString,out UniqueNetId out_UniqueId);
+`endif //__TW_
+
 /**
  * Returns the unique id of the player for the specified index
  *
@@ -1553,5 +1676,24 @@ function ELoginStatus GetLoginStatus(byte LocalUserNum);
  * Determines the NAT type the player is using
  */
 function ENATType GetNATType();
+
+native function TWOnlineUGCInterface GetUGCInterface();
+
+/**
+ * Gets the friends' groups of which the player is a member
+ *
+ * @param UserGroups the list of groups
+ *
+ */
+native function GetPlayerGroups(out array<UniqueNetId> UserGroups);
+
+/**
+ * Checks the player's membership in a friends' group
+ *
+ * @param UserGroups the group to check
+ *
+ * @return whether the player is a member of that group
+ */
+ native function bool CheckPlayerGroup(UniqueNetId Group);
 
 `endif //(`__TW_ONLINESUBSYSTEM_)

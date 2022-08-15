@@ -82,7 +82,7 @@ function Popped()
 	`AILog( "Popped()", 'Command_SpecialMove' );
 
 	UnlockAI();
-	ClearTimer( nameof(self.SpecialMoveTimeout), self );
+	ClearTimeout();
 
 	if( bUpdateAnchorOnSuccess )
 	{
@@ -104,6 +104,11 @@ function Popped()
 			}
 		}
 	}
+}
+
+function ClearTimeout()
+{
+	ClearTimer( nameof(self.SpecialMoveTimeout), self );	
 }
 
 /*********************************************************************************************
@@ -245,6 +250,8 @@ state Command_SpecialMove `DEBUGSTATE
 	function SpecialMoveTimeout()
 	{
 		`AILog( GetFuncName()$" Special move timed out - failing and aborting", 'Command_SpecialMove' );
+
+		`log("special move timed out"@self);
 
 		if( MyKFPawn.SpecialMove == SpecialMove )
 		{

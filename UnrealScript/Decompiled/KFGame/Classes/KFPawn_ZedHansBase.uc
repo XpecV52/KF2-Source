@@ -58,27 +58,12 @@ struct HansBattlePhaseInfo
     }
 };
 
-struct HansMinionWaveInfo
-{
-    var KFAIWaveInfo PhaseOneWave;
-    var KFAIWaveInfo PhaseTwoWave;
-    var KFAIWaveInfo PhaseThreeWave;
-
-    structdefaultproperties
-    {
-        PhaseOneWave=none
-        PhaseTwoWave=none
-        PhaseThreeWave=none
-    }
-};
-
 var repnotify bool bGunsEquipped;
 var bool bHealedThisPhase;
 var repnotify bool bInHuntAndHealMode;
 var bool bPendingSmokeGrenadeBarrage;
 var bool bDoingBarrage;
 var array<HansBattlePhaseInfo> BattlePhases;
-var repnotify int CurrentBattlePhase;
 /** How much to reduce Hans' damage he recieves when he is in hunt and heal mode */
 var() float HuntAndHealModeDamageReduction;
 var class<KFProj_Grenade> ActiveGrenadeClass;
@@ -101,14 +86,11 @@ var float NerveGasBarrageCooldown;
 var float LastNerveGasBarrageTime;
 var float SmokeTossCooldown;
 var float LastSmokeTossTime;
-var HansMinionWaveInfo SummonWaves[4];
-var int NumMinionsToSpawn;
 
 replication
 {
      if(bNetDirty)
-        CurrentBattlePhase, bGunsEquipped, 
-        bInHuntAndHealMode;
+        bGunsEquipped, bInHuntAndHealMode;
 }
 
 simulated event ReplicatedEvent(name VarName)
@@ -119,7 +101,7 @@ simulated event ReplicatedEvent(name VarName)
             SetHuntAndHealMode(bInHuntAndHealMode);
             break;
         default:
-            super(KFPawn_Monster).ReplicatedEvent(VarName);
+            super.ReplicatedEvent(VarName);
             break;
     }
 }
@@ -138,6 +120,7 @@ function IncrementBattlePhase(KFAIController_Hans HansAI)
     ++ CurrentBattlePhase;
     bHealedThisPhase = true;
     SetPhaseCooldowns(HansAI);
+    bForceNetUpdate = true;
 }
 
 function SetPhaseCooldowns(KFAIController_Hans HansAI)
@@ -317,6 +300,11 @@ simulated function SetHuntAndHealMode(bool bOn)
     }
 }
 
+simulated function ClearDOTs()
+{
+    DamageOverTimeArray.Length = 0;
+}
+
 function HuntAndHealBump()
 {
     local KFPawn_Monster KFPM;
@@ -368,14 +356,6 @@ simulated function DetachShieldFX();
 
 defaultproperties
 {
-    BossName="Dr. Hans Volter"
-    BossCaptionStrings(0)="Hans is nearly invulnerable during his smoke grenade healing phase. Don't waste your ammo!"
-    BossCaptionStrings(1)="Watch his power core: Hans is more aggressive as it changes color."
-    BossCaptionStrings(2)="Aim for his emissive power core. It is a vulnerable zone."
-    BossCaptionStrings(3)="Gas from Hans' grenades clings to you, like Bloat bile. Try to avoid it!"
-    BossCaptionStrings(4)="His slashing attacks are too strong to parry. You'll still take full damage."
-    BossCaptionStrings(5)="Watch for red grenade warning indicators, which may help you spot where they land."
-    BossCaptionStrings(6)="When Hans pulls out his guns, stay out of the line of sight. Obvious, but important!"
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedHansBase.MeleeHelper'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none

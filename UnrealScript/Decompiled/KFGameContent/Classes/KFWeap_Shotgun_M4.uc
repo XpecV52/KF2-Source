@@ -12,12 +12,9 @@ class KFWeap_Shotgun_M4 extends KFWeap_ShotgunBase
 defaultproperties
 {
     FireModeIconPaths=/* Array type was not detected. */
-    FilterTypeUI=EFilterTypeUI.FT_Shotgun
     InventorySize=8
-    EffectiveRange=35
     bHasIronSights=true
     bCanBeReloaded=true
-    bHasFlashlight=true
     PenetrationPower=/* Array type was not detected. */
     MeshFOV=75
     MeshIronSightFOV=52
@@ -25,7 +22,7 @@ defaultproperties
     IronSightPosition=(X=5,Y=0,Z=0)
     DOF_FG_FocalRadius=25
     GroupPriority=75
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Benelli'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Benelli'
     MagazineCapacity=8
     MaxSpareAmmo=40
     InitialSpareMags=2

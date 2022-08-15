@@ -15,6 +15,8 @@ var KFPawn Follower;
 var KFPawn.ESpecialMove FollowerSpecialMove;
 var float InteractionStartTimeOut;
 var bool bAlignPawns;
+var bool bAlignLeaderLocation;
+var bool bAlignFollowerZ;
 var bool bAlignFollowerLookSameDirAsMe;
 var bool bAlignLeaderRotation;
 var bool bAlignFollowerRotation;
@@ -25,6 +27,7 @@ var float AlignDistance;
 var float AlignDistanceThreshold;
 var float AlignFollowerInterpSpeed;
 var int LeaderRelativeYawOffset;
+var float AlignSpeedModifier;
 
 // Export UKFSM_InteractionPawnLeader::execGetClipSafeMeshTranslation(FFrame&, void* const)
 native function Vector GetClipSafeMeshTranslation(out Vector TargetRelativeOffset);
@@ -159,6 +162,7 @@ function StartInteraction()
 
 function RetryCollisionTimer()
 {
+    LogInternal("zdist:" @ string(Abs(Follower.Location.Z - PawnOwner.Location.Z)));
     if((Abs(Follower.Location.Z - PawnOwner.Location.Z) > (PawnOwner.CylinderComponent.CollisionHeight * 1.5)) || !IsFollowerReachable())
     {
         KFPOwner.EndSpecialMove();
@@ -314,9 +318,11 @@ function bool CanInteractWithPawn(KFPawn OtherPawn)
 defaultproperties
 {
     InteractionStartTimeOut=4
+    bAlignLeaderLocation=true
     bAlignLeaderRotation=true
     bAlignFollowerRotation=true
     bRetryCollisionCheck=true
     AlignDistanceThreshold=0.3
     AlignFollowerInterpSpeed=8
+    AlignSpeedModifier=0.5
 }

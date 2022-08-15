@@ -46,65 +46,6 @@ class KFDT_Slashing_ZweihanderHeavy extends KFDT_Slashing_Katana
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -143,7 +84,7 @@ static simulated function bool CanDismemberHitZone( name InHitZoneName )
 
 defaultproperties
 {
-   AARWeaponID=50
+   WeaponDef=Class'KFGame.KFWeapDef_Zweihander'
    StunPower=42
    KnockdownPower=40
    StumblePower=63
@@ -154,5 +95,5 @@ defaultproperties
    KDeathVel=500.000000
    KDeathUpKick=200.000000
    Name="Default__KFDT_Slashing_ZweihanderHeavy"
-   ObjectArchetype=KFDT_Slashing_Katana'KFGameContent.Default__KFDT_Slashing_Katana'
+   ObjectArchetype=KFDT_Slashing_Katana'kfgamecontent.Default__KFDT_Slashing_Katana'
 }

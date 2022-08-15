@@ -115,8 +115,8 @@ package
                 this.____motion_shopContaineraf1_mat3DVec__[9] = 0;
                 this.____motion_shopContaineraf1_mat3DVec__[10] = 0.961262;
                 this.____motion_shopContaineraf1_mat3DVec__[11] = 0;
-                this.____motion_shopContaineraf1_mat3DVec__[12] = 32.005684;
-                this.____motion_shopContaineraf1_mat3DVec__[13] = 32;
+                this.____motion_shopContaineraf1_mat3DVec__[12] = 16.005686;
+                this.____motion_shopContaineraf1_mat3DVec__[13] = 16;
                 this.____motion_shopContaineraf1_mat3DVec__[14] = -0.034546;
                 this.____motion_shopContaineraf1_mat3DVec__[15] = 1;
                 this.____motion_shopContaineraf1_matArray__.push(new Matrix3D(this.____motion_shopContaineraf1_mat3DVec__));
@@ -152,7 +152,7 @@ package
                 this.____motion_itemDetailsContaineraf1_mat3DVec__[10] = 1;
                 this.____motion_itemDetailsContaineraf1_mat3DVec__[11] = 0;
                 this.____motion_itemDetailsContaineraf1_mat3DVec__[12] = 768;
-                this.____motion_itemDetailsContaineraf1_mat3DVec__[13] = 248;
+                this.____motion_itemDetailsContaineraf1_mat3DVec__[13] = 216;
                 this.____motion_itemDetailsContaineraf1_mat3DVec__[14] = 224;
                 this.____motion_itemDetailsContaineraf1_mat3DVec__[15] = 1;
                 this.____motion_itemDetailsContaineraf1_matArray__.push(new Matrix3D(this.____motion_itemDetailsContaineraf1_mat3DVec__));
@@ -188,7 +188,7 @@ package
                 this.____motion_exitButtonaf1_mat3DVec__[10] = 1;
                 this.____motion_exitButtonaf1_mat3DVec__[11] = 0;
                 this.____motion_exitButtonaf1_mat3DVec__[12] = 846.200012;
-                this.____motion_exitButtonaf1_mat3DVec__[13] = 1024;
+                this.____motion_exitButtonaf1_mat3DVec__[13] = 984;
                 this.____motion_exitButtonaf1_mat3DVec__[14] = 224;
                 this.____motion_exitButtonaf1_mat3DVec__[15] = 1;
                 this.____motion_exitButtonaf1_matArray__.push(new Matrix3D(this.____motion_exitButtonaf1_mat3DVec__));
@@ -224,7 +224,7 @@ package
                 this.____motion_gameInfoContaineraf1_mat3DVec__[10] = 1;
                 this.____motion_gameInfoContaineraf1_mat3DVec__[11] = 0;
                 this.____motion_gameInfoContaineraf1_mat3DVec__[12] = 768;
-                this.____motion_gameInfoContaineraf1_mat3DVec__[13] = 28;
+                this.____motion_gameInfoContaineraf1_mat3DVec__[13] = 12;
                 this.____motion_gameInfoContaineraf1_mat3DVec__[14] = 224;
                 this.____motion_gameInfoContaineraf1_mat3DVec__[15] = 1;
                 this.____motion_gameInfoContaineraf1_matArray__.push(new Matrix3D(this.____motion_gameInfoContaineraf1_mat3DVec__));
@@ -259,8 +259,8 @@ package
                 this.____motion_playerInventoryContaineraf1_mat3DVec__[9] = 0;
                 this.____motion_playerInventoryContaineraf1_mat3DVec__[10] = 0.961262;
                 this.____motion_playerInventoryContaineraf1_mat3DVec__[11] = 0;
-                this.____motion_playerInventoryContaineraf1_mat3DVec__[12] = 1872.045288;
-                this.____motion_playerInventoryContaineraf1_mat3DVec__[13] = 288;
+                this.____motion_playerInventoryContaineraf1_mat3DVec__[12] = 1888.045288;
+                this.____motion_playerInventoryContaineraf1_mat3DVec__[13] = 272;
                 this.____motion_playerInventoryContaineraf1_mat3DVec__[14] = -0.017627;
                 this.____motion_playerInventoryContaineraf1_mat3DVec__[15] = 1;
                 this.____motion_playerInventoryContaineraf1_matArray__.push(new Matrix3D(this.____motion_playerInventoryContaineraf1_mat3DVec__));

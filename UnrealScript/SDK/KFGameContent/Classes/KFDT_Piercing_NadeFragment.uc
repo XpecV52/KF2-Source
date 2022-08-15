@@ -55,7 +55,7 @@ defaultproperties
 	GunHitPower=25
 	MeleeHitPower=20
 
-	AARWeaponID=`AAR_FragGrenade
+	WeaponDef=class'KFWeapDef_Grenade_Support'
 
 	ModifierPerkList(0)=class'KFPerk_Support'
 }

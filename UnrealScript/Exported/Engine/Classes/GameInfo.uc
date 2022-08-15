@@ -1352,7 +1352,7 @@ event PlayerController Login(string Portal, string Options, const UniqueNetID Un
 		AccessControl.AdminEntered(NewPlayer);
 	}
 
-
+	
 	// if delayed start, don't give a pawn to the player yet
 	// Normal for multiplayer games
 	if ( bDelayedStart )
@@ -1366,9 +1366,15 @@ event PlayerController Login(string Portal, string Options, const UniqueNetID Un
 }
 
 
+static function bool AllowAnalyticsLogging();
+
+	
+
 event bool SeatPlayer(const UniqueNetId SeatedPlayerID);
 event MakeReservations(const string URLOptions, const UniqueNetId PlayerId, out string OutError);
 event bool ConfirmReservation(const UniqueNetId PlayerID);
+
+native function SetNeedsRestart();
 
 
 /* StartMatch()

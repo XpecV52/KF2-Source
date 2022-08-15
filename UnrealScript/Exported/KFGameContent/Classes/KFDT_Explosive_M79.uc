@@ -49,65 +49,6 @@ class KFDT_Explosive_M79 extends KFDT_Explosive
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -128,11 +69,11 @@ class KFDT_Explosive_M79 extends KFDT_Explosive
 
 defaultproperties
 {
-   AARWeaponID=17
+   WeaponDef=Class'KFGame.KFWeapDef_M79'
+   bShouldSpawnPersistentBlood=True
    KnockdownPower=45
    StumblePower=42
    LegStumblePower=42
-   bShouldSpawnPersistentBlood=True
    ModifierPerkList(0)=Class'KFGame.KFPerk_Demolitionist'
    KDeathVel=300.000000
    KDeathUpKick=1000.000000

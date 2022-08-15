@@ -40,8 +40,8 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=15
-	MaxSpareAmmo[0]=195
-	InitialSpareMags[0]=6
+	MaxSpareAmmo[0]=225
+	InitialSpareMags[0]=7
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
 
@@ -87,19 +87,21 @@ defaultproperties
 	AssociatedPerkClass=none
 
 	// Inventory
-	InventoryGroup=IG_Secondary
 	InventorySize=0
-	GroupPriority=15
+	GroupPriority=10
 	bCanThrow=false
 	bDropOnDeath=false
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_9mm'
-	FilterTypeUI=FT_Pistol
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_9mm'
 	bIsBackupWeapon=true
 
 	DualClass=class'KFWeap_Pistol_Dual9mm'
 
 	// Custom animations
 	FireSightedAnims=(Shoot_Iron, Shoot_Iron2, Shoot_Iron3)
-	IdleFidgetAnims=(Guncheck_v1, Guncheck_v2, Guncheck_v3, Guncheck_v4, Guncheck_v5,Guncheck_v6)
+	IdleFidgetAnims=(Guncheck_v1, Guncheck_v2, Guncheck_v3, Guncheck_v4)
+
+	bHasFireLastAnims=true
+
+	BonesToLockOnEmpty=(RW_Bolt, RW_Bullets1)
 }
 

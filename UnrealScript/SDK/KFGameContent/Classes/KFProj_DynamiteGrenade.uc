@@ -126,9 +126,6 @@ simulated protected function SetExplosionActorClass()
 
 defaultproperties
 {
-
-	UITexture=Texture2D'WEP_UI_Dynamite_TEX.UI_WeaponSelect_Dynamite'
-	
 	Speed=1500
 	TossZ=400
 

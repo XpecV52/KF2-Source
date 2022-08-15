@@ -11,7 +11,8 @@ class KFAnimNotify_MeleeImpact extends AnimNotify
     collapsecategories
     hidecategories(Object);
 
-var bool bExtraReach;
+/** AI - Damage Modifier */
+var() float DamageScale;
 /** AI - Apply damage to multiple nearby actors */
 var() bool bDoAreaDamage;
 /** AI - Complex collision type that hits multiple targets.  Supports notify duration. */
@@ -20,8 +21,12 @@ var() bool bDoSwipeDamage;
 var() bool bCanDoKnockback;
 /** AI - If set, hits have a 3% chance to trigger zed time */
 var() bool bCanCauseZedTime;
-/** AI - Damage Modifier */
-var() float DamageScale;
+/** AI - Momentum transfer amount to scale default melee momentum transfer by */
+var() float MomentumTransferScale<EditCondition=bCanDoKnockback>;
+/** AI - Damagetype to override default melee damagetype with */
+var() class<KFDamageType> CustomDamageType<AllowAbstract=>;
+/** AI - Attack reach -- overrides default reach in melee helper */
+var() float AttackReachOverride<EditCondition=!bDoSwipeDamage>;
 /** Direction to use for fov-based swipe attacks // This gives more consistant results than using socket collision.  Socket collision// is okay for location, but direction can change so quickly that the attack will// depend on FPS.  This is especially bad when using AnimTree tick rate optimizations. */
 var() KFPawn.EPawnOctant SwipeDirection<EditCondition=bDoSwipeDamage>;
 
@@ -38,5 +43,6 @@ event NotifyThirdPerson(KFPawn P, AnimNodeSequence AnimSeqInstigator)
 defaultproperties
 {
     DamageScale=1
+    MomentumTransferScale=1
     NotifyColor=(B=0,G=0,R=255,A=255)
 }

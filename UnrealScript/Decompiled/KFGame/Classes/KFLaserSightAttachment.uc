@@ -26,6 +26,9 @@ var transient bool LaserAimBlendOut;
 var float WeapAttachmentSkipTickInterval;
 var transient float LastWeapAttachmentUpdateTime;
 
+// Export UKFLaserSightAttachment::execTraceLaserSight(FFrame&, void* const)
+native function Actor TraceLaserSight(Actor TraceOwner, Vector TraceStart, Vector TraceEnd, out Vector HitLocation, out Vector HitNormal);
+
 function AttachLaserSight(SkeletalMeshComponent OwnerMesh, bool bFirstPerson, optional name SocketNameOverride)
 {
     if(OwnerMesh == none)
@@ -69,7 +72,6 @@ simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
 	    TraceAimDir, SocketSpaceNewTraceDir, WorldSpaceNewTraceDir, SocketSpaceAimLocation, SocketSpaceAimDir;
 
     local Actor HitActor;
-    local TraceHitInfo HitInfo;
     local Rotator SocketRotation;
     local Matrix SocketToWorldTransform;
     local float MaxAimStrength;
@@ -100,7 +102,7 @@ simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
             TraceStart = OwningWeapon.Instigator.GetWeaponStartTraceLocation();
             TraceAimDir = vector(OwningWeapon.Instigator.GetAdjustedAimFor(OwningWeapon, TraceStart));
             TraceEnd = TraceStart + (TraceAimDir * LaserSightRange);
-            HitActor = OwningWeapon.GetTraceOwner().Trace(InstantTraceHitLocation, InstantTraceHitNormal, TraceEnd, TraceStart, true,, HitInfo, 1);
+            HitActor = TraceLaserSight(OwningWeapon.GetTraceOwner(), TraceStart, TraceEnd, InstantTraceHitLocation, InstantTraceHitNormal);
             if(HitActor != none)
             {
                 if(LaserSightAimStrength < 1)
@@ -120,7 +122,7 @@ simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
                         SocketSpaceNewTraceDir = (LaserSightAimStrength * SocketSpaceAimDir) + ((1 - LaserSightAimStrength) * DirB);
                         WorldSpaceNewTraceDir = TransformVector(SocketToWorldTransform, SocketSpaceNewTraceDir) - TraceStart;
                         TraceEnd = TraceStart + (Normal(WorldSpaceNewTraceDir) * LaserSightRange);
-                        HitActor = OwningWeapon.GetTraceOwner().Trace(HitLocation, HitNormal, TraceEnd, TraceStart, true,, HitInfo, 1);
+                        HitActor = TraceLaserSight(OwningWeapon.GetTraceOwner(), TraceStart, TraceEnd, HitLocation, HitNormal);
                         if(HitActor != none)
                         {
                             LaserDotMeshComp.SetHidden(false);
@@ -150,7 +152,7 @@ simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
                 if((OwningWeapon.MySkelMesh != none) && OwningWeapon.MySkelMesh.GetSocketWorldLocationAndRotation(LaserSightSocketName, TraceStart, SocketRotation))
                 {
                     TraceEnd = TraceStart + (vector(SocketRotation) * LaserSightRange);
-                    HitActor = OwningWeapon.GetTraceOwner().Trace(HitLocation, HitNormal, TraceEnd, TraceStart, true,, HitInfo, 1);
+                    HitActor = TraceLaserSight(OwningWeapon.GetTraceOwner(), TraceStart, TraceEnd, HitLocation, HitNormal);
                     if(HitActor != none)
                     {
                         LaserDotMeshComp.SetHidden(false);

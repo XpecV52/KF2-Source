@@ -71,15 +71,18 @@ simulated event ReplicatedEvent(name VarName)
 {
     if(VarName == 'LockedTarget')
     {
-        if((LockedTarget == none) && PendingLockedTarget == none)
+        if(OpticsUI != none)
         {
-            OpticsUI.ClearLockOn();            
-        }
-        else
-        {
-            if(LockedTarget != none)
+            if((LockedTarget == none) && PendingLockedTarget == none)
             {
-                OpticsUI.LockedOn();
+                OpticsUI.ClearLockOn();                
+            }
+            else
+            {
+                if(LockedTarget != none)
+                {
+                    OpticsUI.LockedOn();
+                }
             }
         }        
     }
@@ -87,15 +90,18 @@ simulated event ReplicatedEvent(name VarName)
     {
         if(VarName == 'PendingLockedTarget')
         {
-            if((PendingLockedTarget == none) && LockedTarget == none)
+            if(OpticsUI != none)
             {
-                OpticsUI.ClearLockOn();                
-            }
-            else
-            {
-                if(PendingLockedTarget != none)
+                if((PendingLockedTarget == none) && LockedTarget == none)
                 {
-                    OpticsUI.StartLockOn();
+                    OpticsUI.ClearLockOn();                    
+                }
+                else
+                {
+                    if(PendingLockedTarget != none)
+                    {
+                        OpticsUI.StartLockOn();
+                    }
                 }
             }            
         }
@@ -147,7 +153,7 @@ simulated function ConsumeAmmo(byte FireModeNum)
     }
 }
 
-simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optional int NumHits, optional out float out_PenetrationVal)
+simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optional int NumHits, optional out float out_PenetrationVal, optional int ImpactNum)
 {
     local KFPawn HealTarget;
     local KFPlayerController Healer;
@@ -191,6 +197,15 @@ simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass,
 simulated event bool CanHealFire()
 {
     return AmmoCount[1] >= HealAmmoCost;
+}
+
+function GivenTo(Pawn thisPawn, optional bool bDoNotActivate)
+{
+    super.GivenTo(thisPawn, bDoNotActivate);
+    if((Role == ROLE_Authority) && !thisPawn.IsLocallyControlled())
+    {
+        StartHealRecharge();
+    }
 }
 
 simulated function StartHealRecharge()
@@ -557,7 +572,7 @@ simulated state WeaponSingleFiring
         {
             return;
         }
-        super(Weapon).BeginFire(FireModeNum);
+        super(KFWeapon).BeginFire(FireModeNum);
     }
     stop;    
 }
@@ -639,8 +654,8 @@ defaultproperties
     LockLostSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Lost_1P'
     LockTargetingSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Locking_1P'
     OpticsUIClass=Class'KFGame.KFGFxWorld_MedicOptics'
-    EffectiveRange=50
     bCanRefillSecondaryAmmo=false
+    AimCorrectionSize=40
     MagazineCapacity[1]=100
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_MedicBase.MeleeHelper'
     FiringStatesArray=/* Array type was not detected. */

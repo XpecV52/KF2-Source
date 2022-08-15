@@ -24,7 +24,7 @@ defaultproperties
 	LegStumblePower=35
 	GunHitPower=15
 
-	AARWeaponID=`AAR_AR15
+	WeaponDef=class'KFWeapDef_AR15'
 
 	//Perk
 	ModifierPerkList(0)=class'KFPerk_Commando'

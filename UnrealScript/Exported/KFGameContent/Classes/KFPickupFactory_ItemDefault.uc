@@ -12,12 +12,12 @@ class KFPickupFactory_ItemDefault extends KFPickupFactory_Item;
 
 defaultproperties
 {
-   ItemPickups(0)=(ItemClass=Class'KFGameContent.KFInventory_Armor')
-   ItemPickups(1)=(ItemClass=Class'KFGameContent.KFWeap_AssaultRifle_AR15')
-   ItemPickups(2)=(ItemClass=Class'KFGameContent.KFWeap_Shotgun_MB500')
-   ItemPickups(3)=(ItemClass=Class'KFGameContent.KFWeap_Blunt_Crovel')
-   ItemPickups(4)=(ItemClass=Class'KFGameContent.KFWeap_Edged_Katana')
-   ItemPickups(5)=(ItemClass=Class'KFGameContent.KFWeap_Pistol_9mm')
+   ItemPickups(0)=(ItemClass=Class'kfgamecontent.KFInventory_Armor')
+   ItemPickups(1)=(ItemClass=Class'kfgamecontent.KFWeap_AssaultRifle_AR15')
+   ItemPickups(2)=(ItemClass=Class'kfgamecontent.KFWeap_Shotgun_MB500')
+   ItemPickups(3)=(ItemClass=Class'kfgamecontent.KFWeap_Blunt_Crovel')
+   ItemPickups(4)=(ItemClass=Class'kfgamecontent.KFWeap_Edged_Katana')
+   ItemPickups(5)=(ItemClass=Class'kfgamecontent.KFWeap_Pistol_9mm')
    Begin Object Class=StaticMeshComponent Name=StaticMeshComponent0 Archetype=StaticMeshComponent'KFGame.Default__KFPickupFactory_Item:StaticMeshComponent0'
       StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_AR15_Pickup'
       ReplacementPrimitive=None

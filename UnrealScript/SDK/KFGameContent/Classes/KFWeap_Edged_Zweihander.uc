@@ -51,25 +51,20 @@ defaultproperties
 
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Slashing_Zweihander'
 	InstantHitMomentum(DEFAULT_FIREMODE)=30000.f
-	InstantHitDamage(DEFAULT_FIREMODE)=90   //70
+	InstantHitDamage(DEFAULT_FIREMODE)=85   //70
 
 	InstantHitDamageTypes(HEAVY_ATK_FIREMODE)=class'KFDT_Slashing_ZweihanderHeavy'
 	InstantHitMomentum(HEAVY_ATK_FIREMODE)=30000.f
-	InstantHitDamage(HEAVY_ATK_FIREMODE)=290     //200
+	InstantHitDamage(HEAVY_ATK_FIREMODE)=195     //200
 
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Piercing_ZweihanderStab'
-	InstantHitDamage(BASH_FIREMODE)=120
+	InstantHitDamage(BASH_FIREMODE)=63
 
 	// Inventory
 	GroupPriority=85
 	InventorySize=6
-	UITexture=Texture2D'WEP_UI_Zweihander_TEX.UI_WeaponSelect_Zweihander'
-	FilterTypeUI=FT_Melee
+	WeaponSelectTexture=Texture2D'WEP_UI_Zweihander_TEX.UI_WeaponSelect_Zweihander'
 	AssociatedPerkClass=class'KFPerk_Berserker'
-	SharedUnlockId=SCU_Zweihander
-
-	// Trader
-    EffectiveRange=3
 
 	// Block Sounds
 	BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'

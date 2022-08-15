@@ -64,6 +64,42 @@ simulated function SetCharacterAnimationInfo()
 	PlayRandomIdleAnimation();
 }
 
+function AttachWeaponByItemDefinition( int ItemDefinition )
+{
+	local class<KFWeaponDefinition> WeaponDef;
+	local int ItemINdex;
+	local KFWeaponAttachment WeaponPreview;
+
+	//find weapon def
+	ItemIndex = class'KFWeaponSkinList'.default.Skins.Find('Id', ItemDefinition);
+
+	if(ItemIndex ==  INDEX_NONE)
+	{
+		`log("Could not find item" @ItemDefinition);
+		return;
+	}
+
+	WeaponDef = class'KFWeaponSkinList'.default.Skins[ItemIndex].WeaponDef;
+
+	if(WeaponDef == none)
+	{
+		`log("Weapon def NONE for : " @ItemDefinition);
+		return;
+	}
+
+	//load in and add object .  
+	WeaponPreview = KFWeaponAttachment ( DynamicLoadObject( WeaponDef.default.AttachmentArchtypePath, class'KFWeaponAttachment' ) );
+
+	//attatch it to player
+	WeaponAttachmentTemplate = WeaponPreview;
+
+	WeaponAttachmentChanged();		
+
+	//setweapon skin
+	WeaponAttachment.SetWeaponSkin(ItemDefinition);
+	
+}
+
 simulated function PlayRandomIdleAnimation()
 {
 	local byte AnimIndex;
@@ -132,17 +168,6 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 Customizing
 ********************************************************************************************* */
 
-simulated function UpdateCustomizationCharacter( byte CharIndex )
-{
-	local KFPlayerReplicationInfo KFPRI;
-
-    KFPRI = KFPlayerReplicationInfo( PlayerReplicationInfo );
-    if( KFPRI != none )
-    {
-		KFPRI.SetCharacter( CharIndex );
-    }
-}
-
 /** Set basic variables for the newly created Customization Pawn, derived from RestartPlayer */
 function InitializeCustomizationPawn( PlayerController NewController, NavigationPoint BestStartSpot )
 {
@@ -163,7 +188,14 @@ defaultproperties
 {
 	MaleCustomizationAnimSet=AnimSet'CHR_BaseMale_ANIM.CS_Male'
 	FemaleCustomizationAnimSet=AnimSet'CHR_BaseFemale_ANIM.CS_Female'
+	bDisableTurnInPlace=true
+	bEnableAimOffset=false
 
 	// Default the customization pawn to walking so that IK is enabled
 	Physics=PHYS_Walking
+
+    // artificial nudge -3uu to align to floor w/o IK
+	Begin Object Name=KFPawnSkeletalMeshComponent
+		Translation=(Z=-89)
+	End Object
 }

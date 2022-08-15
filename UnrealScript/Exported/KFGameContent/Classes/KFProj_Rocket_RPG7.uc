@@ -21,10 +21,10 @@ defaultproperties
       Damage=750.000000
       DamageRadius=1000.000000
       DamageFalloffExponent=3.000000
-      MyDamageType=Class'KFGameContent.KFDT_Explosive_RPG7'
+      MyDamageType=Class'kfgamecontent.KFDT_Explosive_RPG7'
       KnockDownStrength=0.000000
       ExplosionSound=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_Explosion'
-      ExploLight=PointLightComponent'KFGameContent.Default__KFProj_Rocket_RPG7:ExplosionPointLight'
+      ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_Rocket_RPG7:ExplosionPointLight'
       ExploLightFadeOutTime=0.200000
       CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
       CamShakeInnerRadius=900.000000
@@ -32,7 +32,7 @@ defaultproperties
       Name="ExploTemplate0"
       ObjectArchetype=KFGameExplosion'KFGame.Default__KFGameExplosion'
    End Object
-   ExplosionTemplate=KFGameExplosion'KFGameContent.Default__KFProj_Rocket_RPG7:ExploTemplate0'
+   ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFProj_Rocket_RPG7:ExploTemplate0'
    ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
    AltExploEffects=KFImpactEffectInfo'WEP_RPG7_ARCH.RPG7_Explosion_Concussive_Force'
    ProjFlightTemplate=ParticleSystem'WEP_RPG7_EMIT.FX_RPG7_Projectile'

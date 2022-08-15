@@ -14,5 +14,5 @@ class KFDT_Bludgeon_CaulkBurn extends KFDT_Bludgeon_RifleButt
 DefaultProperties
 {
 	//defaults
-	AARWeaponID=`AAR_CaulkBurn
+	WeaponDef=class'KFWeapDef_CaulkBurn'
 }

@@ -49,17 +49,17 @@ simulated protected function PrepareExplosionTemplate()
 defaultproperties
 {
    FuseTime=1.000000
-   ExplosionActorClass=Class'KFGameContent.KFExplosion_HansNerveGasGrenade'
+   ExplosionActorClass=Class'kfgamecontent.KFExplosion_HansNerveGasGrenade'
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
       ExplosionEffects=KFImpactEffectInfo'ZED_Hans_EMIT.NerveGasGrenade_Explosion'
       Damage=6.000000
       DamageRadius=450.000000
       DamageFalloffExponent=0.000000
-      MyDamageType=Class'KFGameContent.KFDT_Toxic_HansGrenade'
+      MyDamageType=Class'kfgamecontent.KFDT_Toxic_HansGrenade'
       KnockDownStrength=0.000000
       MomentumTransferScale=0.000000
       ExplosionSound=AkEvent'WW_ZED_Hans.ZED_Hans_SFX_Grenade_Poison'
-      ExploLight=PointLightComponent'KFGameContent.Default__KFProj_HansNerveGasGrenade:ExplosionPointLight'
+      ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_HansNerveGasGrenade:ExplosionPointLight'
       ExploLightFadeOutTime=1.000000
       ExploLightStartFadeOutTime=7.000000
       ExploLightFlickerIntensity=5.000000
@@ -70,7 +70,7 @@ defaultproperties
       Name="ExploTemplate0"
       ObjectArchetype=KFGameExplosion'KFGame.Default__KFGameExplosion'
    End Object
-   ExplosionTemplate=KFGameExplosion'KFGameContent.Default__KFProj_HansNerveGasGrenade:ExploTemplate0'
+   ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFProj_HansNerveGasGrenade:ExploTemplate0'
    ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
    PostExplosionLifetime=15.000000
    ProjFlightTemplate=ParticleSystem'ZED_Hans_EMIT.FX_Grenade_Nerve_Gas_01'

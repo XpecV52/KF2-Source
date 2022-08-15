@@ -11,8 +11,52 @@ class KFPawn_MonsterBoss extends KFPawn_Monster
     config(Game)
     hidecategories(Navigation);
 
+struct native BossMinionWaveInfo
+{
+    var KFAIWaveInfo PhaseOneWave;
+    var KFAIWaveInfo PhaseTwoWave;
+    var KFAIWaveInfo PhaseThreeWave;
+
+    structdefaultproperties
+    {
+        PhaseOneWave=none
+        PhaseTwoWave=none
+        PhaseThreeWave=none
+    }
+};
+
 var const localized string BossName;
 var const localized array<localized string> BossCaptionStrings;
+var BossMinionWaveInfo SummonWaves[4];
+var int NumMinionsToSpawn;
+var repnotify int CurrentBattlePhase;
+var bool bUseAnimatedTheatricCamera;
+var name TheatricCameraSocketName;
+var Vector TheatricCameraAnimOffset;
+
+replication
+{
+     if(bNetDirty)
+        CurrentBattlePhase;
+}
+
+simulated event ReplicatedEvent(name VarName)
+{
+    if(VarName == 'CurrentBattlePhase')
+    {
+        OnBattlePhaseChanged();        
+    }
+    else
+    {
+        super.ReplicatedEvent(VarName);
+    }
+}
+
+simulated event PostBeginPlay()
+{
+    super(KFPawn).PostBeginPlay();
+    OnBattlePhaseChanged();
+}
 
 function PossessedBy(Controller C, bool bVehicleTransition)
 {
@@ -55,6 +99,25 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
     }    
 }
 
+simulated function TerminateEffectsOnDeath()
+{
+    super(KFPawn).TerminateEffectsOnDeath();
+    OnBattlePhaseChanged();
+}
+
+simulated function SetGameplayMICParams()
+{
+    super.SetGameplayMICParams();
+    OnBattlePhaseChanged();
+}
+
+simulated function int GetCurrentBattlePhase()
+{
+    return CurrentBattlePhase;
+}
+
+simulated function OnBattlePhaseChanged();
+
 static function bool IsABoss()
 {
     return true;
@@ -81,13 +144,7 @@ function CauseHeadTrauma(optional float BleedOutTime)
 
 simulated function PlayHeadAsplode();
 
-function PlayMonologue(byte MonologueType)
-{
-    if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
-    {
-        KFGameInfo(WorldInfo.Game).DialogManager.PlayBossMonologue(self, MonologueType);
-    }
-}
+function PlayMonologue(byte MonologueType);
 
 function PlayGrabDialog()
 {
@@ -120,6 +177,10 @@ function PlayLandedDialog()
         KFGameInfo(WorldInfo.Game).DialogManager.PlayBossLandedDialog(self);
     }
 }
+
+function PlayGrabbedPlayerDialog(KFPawn_Human Target);
+
+function PlayGrabKilledDialog();
 
 defaultproperties
 {
@@ -160,9 +221,10 @@ defaultproperties
         SpecialMoveClasses(16)=none
         SpecialMoveClasses(17)=none
         SpecialMoveClasses(18)=none
-        SpecialMoveClasses(19)=class'KFSM_GrappleVictim'
-        SpecialMoveClasses(20)=class'KFSM_HansGrappleVictim'
-        SpecialMoveClasses(21)=class'KFSM_Zed_Boss_Theatrics'
+        SpecialMoveClasses(19)=none
+        SpecialMoveClasses(20)=class'KFSM_GrappleVictim'
+        SpecialMoveClasses(21)=class'KFSM_HansGrappleVictim'
+        SpecialMoveClasses(22)=class'KFSM_Zed_Boss_Theatrics'
     object end
     // Reference: KFSpecialMoveHandler'Default__KFPawn_MonsterBoss.SpecialMoveHandler'
     SpecialMoveHandler=SpecialMoveHandler

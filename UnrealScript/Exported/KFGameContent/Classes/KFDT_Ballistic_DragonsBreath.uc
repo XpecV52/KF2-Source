@@ -52,65 +52,6 @@ var class<KFDamageType> BurnDamageType;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -217,8 +158,8 @@ static function bool CanApplyDamageOverTime( out int InDamage, out class<KFDamag
 
 defaultproperties
 {
-   BurnDamageType=Class'KFGameContent.KFDT_Fire_DragonsBreathDoT'
-   AARWeaponID=47
+   BurnDamageType=Class'kfgamecontent.KFDT_Fire_DragonsBreathDoT'
+   WeaponDef=Class'KFGame.KFWeapDef_DragonsBreath'
    StumblePower=53
    LegStumblePower=53
    GunHitPower=30

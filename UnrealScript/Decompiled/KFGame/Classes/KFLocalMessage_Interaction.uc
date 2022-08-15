@@ -10,13 +10,14 @@ class KFLocalMessage_Interaction extends KFLocalMessage;
 enum EInteractionMessageType
 {
     IMT_None,
+    IMT_AcceptObjective,
+    IMT_GamepadWeaponSelectHint,
     IMT_UseTrader,
     IMT_UseDoor,
-    IMT_AcceptObjective,
     IMT_ReceiveAmmo,
+    IMT_ReceiveGrenades,
     IMT_HealSelfWarning,
     IMT_ClotGrabWarning,
-    IMT_ReceiveGrenades,
     IMT_MAX
 };
 
@@ -26,12 +27,14 @@ var const localized string AcceptObjectiveMessage;
 var const localized string ReceiveAmmoMessage;
 var const localized string ReceiveGrenadesMessage;
 var const localized string HealSelfWarning;
+var const localized string HealSelfGamepadWarning;
 var const localized string PressToBashWarning;
+var const localized string GamepadWeaponSelectHint;
 var const string USE_COMMAND;
 var const string HEAL_COMMAND;
 var const string HEAL_COMMAND_CONTROLLER;
-var const string BASH_COMMAND_CONTROLLER;
 var const string BASH_COMMAND;
+var const string WEAPON_SELECT_CONTROLLER;
 
 static function ClientReceive(PlayerController P, optional int Switch, optional PlayerReplicationInfo RelatedPRI_1, optional PlayerReplicationInfo RelatedPRI_2, optional Object OptionalObject)
 {
@@ -44,8 +47,20 @@ static function ClientReceive(PlayerController P, optional int Switch, optional 
         if(GFxHud != none)
         {
             MessageString = GetString(Switch, RelatedPRI_1 == P.PlayerReplicationInfo, RelatedPRI_1, RelatedPRI_2, OptionalObject);
-            GFxHud.DisplayInteractionMessage(MessageString, Switch, GetKeyBind(P, Switch));
+            GFxHud.DisplayInteractionMessage(MessageString, Switch, GetKeyBind(P, Switch), GetMessageDuration(Switch));
         }
+    }
+}
+
+static function float GetMessageDuration(int Switch)
+{
+    switch(Switch)
+    {
+        case 2:
+            return 2;
+        default:
+            return 0;
+            break;
     }
 }
 
@@ -62,24 +77,31 @@ static function string GetKeyBind(PlayerController P, optional int Switch)
     }
     switch(Switch)
     {
-        case 1:
-        case 2:
         case 3:
         case 4:
-        case 7:
+        case 1:
+        case 5:
+        case 6:
             KFInput.GetKeyBindFromCommand(BoundKey, default.USE_COMMAND, false);
             KeyString = KFInput.GetBindDisplayName(BoundKey);
             break;
-        case 5:
-            KFInput.GetKeyBindFromCommand(BoundKey, default.HEAL_COMMAND, false);
-            if(BoundKey.Name == 'None')
+        case 7:
+            if(KFInput.bUsingGamepad)
             {
-                KFInput.GetKeyBindFromCommand(BoundKey, default.HEAL_COMMAND_CONTROLLER, false);
+                KFInput.GetKeyBindFromCommand(BoundKey, default.HEAL_COMMAND_CONTROLLER, false);                
+            }
+            else
+            {
+                KFInput.GetKeyBindFromCommand(BoundKey, default.HEAL_COMMAND, false);
             }
             KeyString = KFInput.GetBindDisplayName(BoundKey);
             break;
-        case 6:
+        case 8:
             KFInput.GetKeyBindFromCommand(BoundKey, default.BASH_COMMAND, false);
+            KeyString = KFInput.GetBindDisplayName(BoundKey);
+            break;
+        case 2:
+            KFInput.GetKeyBindFromCommand(BoundKey, default.WEAPON_SELECT_CONTROLLER, false);
             KeyString = KFInput.GetBindDisplayName(BoundKey);
             break;
         default:
@@ -90,22 +112,27 @@ static function string GetKeyBind(PlayerController P, optional int Switch)
 
 static function string GetString(optional int Switch, optional bool bPRI1HUD, optional PlayerReplicationInfo RelatedPRI_1, optional PlayerReplicationInfo RelatedPRI_2, optional Object OptionalObject)
 {
+    local PlayerInput Input;
+
     switch(Switch)
     {
-        case 1:
-            return default.UseTraderMessage;
-        case 2:
-            return default.UseDoorMessage;
         case 3:
-            return default.AcceptObjectiveMessage;
+            return default.UseTraderMessage;
         case 4:
-            return default.ReceiveAmmoMessage;
-        case 7:
-            return default.ReceiveGrenadesMessage;
+            return default.UseDoorMessage;
+        case 1:
+            return default.AcceptObjectiveMessage;
         case 5:
-            return default.HealSelfWarning;
+            return default.ReceiveAmmoMessage;
         case 6:
+            return default.ReceiveGrenadesMessage;
+        case 7:
+            Input = Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController().PlayerInput;
+            return (((Input != none) && Input.bUsingGamepad) ? default.HealSelfGamepadWarning : default.HealSelfWarning);
+        case 8:
             return default.PressToBashWarning;
+        case 2:
+            return default.GamepadWeaponSelectHint;
         default:
             return "";
             break;
@@ -124,17 +151,20 @@ static function string GetHexColor(int Switch)
 
 defaultproperties
 {
-    UseTraderMessage="Press <%x%> to trade"
-    UseDoorMessage="PRESS <%x%> to use, HOLD to equip welder"
-    AcceptObjectiveMessage="Press <%x%> to accept objective"
-    ReceiveAmmoMessage="Press <%x%> to receive ammo from supplier"
-    ReceiveGrenadesMessage="Press <%x%> to receive grenades from supplier"
-    HealSelfWarning="Press <%x%> to heal yourself."
-    PressToBashWarning="Press <%x%> to melee bash."
+    UseTraderMessage="<%x%> USE TRADER"
+    UseDoorMessage="<%x%> Open/Close     (HOLD) <%x%> equip welder"
+    AcceptObjectiveMessage="<%x%> accept objective"
+    ReceiveAmmoMessage="<%x%> receive ammo"
+    ReceiveGrenadesMessage="<%x%> receive grenades"
+    HealSelfWarning="<%x%> heal self."
+    HealSelfGamepadWarning="(HOLD) <%x%> heal self"
+    PressToBashWarning="<%x%> bash"
+    GamepadWeaponSelectHint="(HOLD) <%x%> weapon select"
     USE_COMMAND="GBA_Use"
     HEAL_COMMAND="GBA_QuickHeal"
-    HEAL_COMMAND_CONTROLLER="GBA_DPad_Down_Gamepad"
+    HEAL_COMMAND_CONTROLLER="GBA_Reload_Gamepad"
     BASH_COMMAND="GBA_TertiaryFire"
+    WEAPON_SELECT_CONTROLLER="GBA_WeaponSelect_Gamepad"
     bIsUnique=true
     bIsConsoleMessage=false
     bBeep=true

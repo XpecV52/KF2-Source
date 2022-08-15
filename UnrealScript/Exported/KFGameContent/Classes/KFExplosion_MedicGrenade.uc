@@ -82,7 +82,7 @@ protected simulated function AffectsPawn(Pawn Victim, float DamageScale)
 
 defaultproperties
 {
-   HealingDamageType=Class'KFGameContent.KFDT_Healing_MedicGrenade'
+   HealingDamageType=Class'kfgamecontent.KFDT_Healing_MedicGrenade'
    HealingAmount=5.000000
    interval=1.000000
    maxTime=8.000000

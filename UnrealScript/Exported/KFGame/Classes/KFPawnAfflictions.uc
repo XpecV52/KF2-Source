@@ -274,8 +274,8 @@ protected function CheckSpecialMoveAfflictions(KFPerk InstigatorPerk, vector Hit
 	// Allow damage instigator perk to modify reaction
     if ( InstigatorPerk != None )
     {
-        KnockdownPowerModifier = InstigatorPerk.GetKnockdownPowerModifier( DamageType );
-        StumblePowerModifier = InstigatorPerk.GetStumblePowerModifier( Outer, DamageType, StumbleCooldownModifier );
+        KnockdownPowerModifier = InstigatorPerk.GetKnockdownPowerModifier( DamageType, BodyPart, bIsSprinting );
+        StumblePowerModifier = InstigatorPerk.GetStumblePowerModifier( Outer, DamageType, StumbleCooldownModifier, BodyPart );
         StunPowerModifier = InstigatorPerk.GetStunPowerModifier( DamageType, HitZoneIdx );
     }
 

@@ -119,11 +119,11 @@ defaultproperties
     ControllerPreset0(5)=(Key="r3",Command="GBA_Use",HoldCommand="")
     ControllerPreset0(6)=(Key="a",Command="GBA_Jump",HoldCommand="")
     ControllerPreset0(7)=(Key="b",Command="GBA_TertiaryFire",HoldCommand="")
-    ControllerPreset0(8)=(Key="x",Command="GBA_Reload",HoldCommand="")
-    ControllerPreset0(9)=(Key="y",Command="GBA_PrevWeapon",HoldCommand="GBA_WeaponSelect_Gamepad")
-    ControllerPreset0(10)=(Key="left",Command="GBA_ToggleFlashlight",HoldCommand="")
+    ControllerPreset0(8)=(Key="x",Command="GBA_Reload",HoldCommand="GBA_QuickHeal")
+    ControllerPreset0(9)=(Key="y",Command="GBA_NextWeapon",HoldCommand="GBA_WeaponSelect_Gamepad")
+    ControllerPreset0(10)=(Key="left",Command="GBA_ShowVoiceComms",HoldCommand="")
     ControllerPreset0(11)=(Key="right",Command="GBA_ShowVoiceComms",HoldCommand="")
-    ControllerPreset0(12)=(Key="up",Command="GBA_TossMoney",HoldCommand="GBA_DropWeapon")
-    ControllerPreset0(13)=(Key="down",Command="GBA_QuickHeal",HoldCommand="")
+    ControllerPreset0(12)=(Key="up",Command="GBA_TossMoney",HoldCommand="")
+    ControllerPreset0(13)=(Key="down",Command="GBA_ToggleFlashlight",HoldCommand="")
     CurrentPresetIndex=255
 }

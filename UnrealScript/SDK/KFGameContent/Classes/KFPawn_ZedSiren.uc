@@ -86,6 +86,7 @@ defaultproperties
 	Begin Object Name=MeleeHelper_0
 		BaseDamage=13.f
 		MaxHitRange=180.f
+		MyDamageType=class'KFDT_Slashing_ZedWeak'
 	End Object
 
 	Health=230 // KF1=300

@@ -83,8 +83,8 @@ package
                 this.____motion_bossNameContaineraf1_mat3DVec__[9] = 0;
                 this.____motion_bossNameContaineraf1_mat3DVec__[10] = 1;
                 this.____motion_bossNameContaineraf1_mat3DVec__[11] = 0;
-                this.____motion_bossNameContaineraf1_mat3DVec__[12] = 112;
-                this.____motion_bossNameContaineraf1_mat3DVec__[13] = 272;
+                this.____motion_bossNameContaineraf1_mat3DVec__[12] = 128;
+                this.____motion_bossNameContaineraf1_mat3DVec__[13] = 320;
                 this.____motion_bossNameContaineraf1_mat3DVec__[14] = -128;
                 this.____motion_bossNameContaineraf1_mat3DVec__[15] = 1;
                 this.____motion_bossNameContaineraf1_matArray__.push(new Matrix3D(this.____motion_bossNameContaineraf1_mat3DVec__));
@@ -119,7 +119,7 @@ package
                 this.__motion_bossNameContaineraf1.addPropertyArray("visible",[true]);
                 this.__motion_bossNameContaineraf1.addPropertyArray("alphaMultiplier",[0.48,0.5775,0.675,0.7725,0.87,0.9025,0.935,0.9675,1]);
                 this.__motion_bossNameContaineraf1.motion_internal::transformationPoint = new Point(457,60.2);
-                this.__motion_bossNameContaineraf1.motion_internal::initialPosition = [633,332.2,-128];
+                this.__motion_bossNameContaineraf1.motion_internal::initialPosition = [649,380.2,-128];
                 this.__motion_bossNameContaineraf1.is3D = true;
                 this.__motion_bossNameContaineraf1.motion_internal::spanStart = 11;
                 this.__animArray_bossNameContaineraf1.push(this.__motion_bossNameContaineraf1);
@@ -146,8 +146,8 @@ package
                 this.____motion_bossNameContaineraf1_mat3DVec__[9] = 0;
                 this.____motion_bossNameContaineraf1_mat3DVec__[10] = 1;
                 this.____motion_bossNameContaineraf1_mat3DVec__[11] = 0;
-                this.____motion_bossNameContaineraf1_mat3DVec__[12] = 96;
-                this.____motion_bossNameContaineraf1_mat3DVec__[13] = 272;
+                this.____motion_bossNameContaineraf1_mat3DVec__[12] = 112;
+                this.____motion_bossNameContaineraf1_mat3DVec__[13] = 320;
                 this.____motion_bossNameContaineraf1_mat3DVec__[14] = -128;
                 this.____motion_bossNameContaineraf1_mat3DVec__[15] = 1;
                 this.____motion_bossNameContaineraf1_matArray__.push(new Matrix3D(this.____motion_bossNameContaineraf1_mat3DVec__));
@@ -191,8 +191,8 @@ package
                 this.____motion_subTextContaineraf1_mat3DVec__[9] = 0;
                 this.____motion_subTextContaineraf1_mat3DVec__[10] = 1;
                 this.____motion_subTextContaineraf1_mat3DVec__[11] = 0;
-                this.____motion_subTextContaineraf1_mat3DVec__[12] = 432;
-                this.____motion_subTextContaineraf1_mat3DVec__[13] = 330.25;
+                this.____motion_subTextContaineraf1_mat3DVec__[12] = 448;
+                this.____motion_subTextContaineraf1_mat3DVec__[13] = 378.25;
                 this.____motion_subTextContaineraf1_mat3DVec__[14] = -128;
                 this.____motion_subTextContaineraf1_mat3DVec__[15] = 1;
                 this.____motion_subTextContaineraf1_matArray__.push(new Matrix3D(this.____motion_subTextContaineraf1_mat3DVec__));
@@ -236,7 +236,7 @@ package
                 this.__motion_subTextContaineraf1.addPropertyArray("visible",[true]);
                 this.__motion_subTextContaineraf1.addPropertyArray("alphaMultiplier",[0.48,0.5775,0.675,0.7725,0.87,0.9025,0.935,0.9675,1]);
                 this.__motion_subTextContaineraf1.motion_internal::transformationPoint = new Point(295.65,33.25);
-                this.__motion_subTextContaineraf1.motion_internal::initialPosition = [791.65,363.5,-128];
+                this.__motion_subTextContaineraf1.motion_internal::initialPosition = [807.65,411.5,-128];
                 this.__motion_subTextContaineraf1.is3D = true;
                 this.__motion_subTextContaineraf1.motion_internal::spanStart = 20;
                 this.__animArray_subTextContaineraf1.push(this.__motion_subTextContaineraf1);
@@ -263,8 +263,8 @@ package
                 this.____motion_subTextContaineraf1_mat3DVec__[9] = 0;
                 this.____motion_subTextContaineraf1_mat3DVec__[10] = 1;
                 this.____motion_subTextContaineraf1_mat3DVec__[11] = 0;
-                this.____motion_subTextContaineraf1_mat3DVec__[12] = 416;
-                this.____motion_subTextContaineraf1_mat3DVec__[13] = 330.25;
+                this.____motion_subTextContaineraf1_mat3DVec__[12] = 432;
+                this.____motion_subTextContaineraf1_mat3DVec__[13] = 378.25;
                 this.____motion_subTextContaineraf1_mat3DVec__[14] = -128;
                 this.____motion_subTextContaineraf1_mat3DVec__[15] = 1;
                 this.____motion_subTextContaineraf1_matArray__.push(new Matrix3D(this.____motion_subTextContaineraf1_mat3DVec__));

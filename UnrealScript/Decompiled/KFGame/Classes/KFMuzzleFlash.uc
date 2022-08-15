@@ -22,6 +22,8 @@ struct native MuzzleEffectInfo
     var() float Duration;
     /** The default socket name to attach to */
     var() name SocketName;
+    /** The default socket name to attach to */
+    var() Engine.Scene.ESceneDepthPriorityGroup FirstPersonDepthPriorityGroup;
     var const name TimerName;
     var export editinline transient KFParticleSystemComponent PSC;
     var export editinline transient KFExplosionLightComponent LightComponent;
@@ -34,6 +36,7 @@ struct native MuzzleEffectInfo
         bPSCLoops=false
         Duration=0.33
         SocketName=MuzzleFlash
+        FirstPersonDepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_World
         TimerName=None
         PSC=none
         LightComponent=none
@@ -43,12 +46,15 @@ struct native MuzzleEffectInfo
 
 var transient Actor Owner;
 var() MuzzleEffectInfo MuzzleFlash;
-var() MuzzleEffectInfo MuzzleFlashAlt<EditCondition=bEnableSecondaryMuzzleFlash>;
+/** If set, creates an extra set of muzzle flash data used for an effect that plays on top of the 1p gun */
+var() bool bEnableMidGunMuzzleFlash;
 /** If set, creates a second set of muzzle flash data used for alt firemode */
 var() bool bEnableSecondaryMuzzleFlash;
 var transient bool bLastWasPrimary;
 /** If set, the shell eject will automatically trigger with the muzzle flash */
 var(ShellEject) bool bAutoActivateShellEject;
+var() MuzzleEffectInfo MuzzleFlashMid<EditCondition=bEnableMidGunMuzzleFlash>;
+var() MuzzleEffectInfo MuzzleFlashAlt<EditCondition=bEnableSecondaryMuzzleFlash>;
 /** Set this to a fire mode when you want them to alternate between the primary muzzle flash, and alternate when using this fire mode */
 var(Advanced) byte FireModeAlternateBothEffects;
 /** Set this to a fire mode when you want them to fire both the primary muzzle flash, and alternate when using this fire mode */
@@ -92,6 +98,25 @@ function AttachMuzzleFlash(SkeletalMeshComponent OwnerMesh, optional name Socket
         MuzzleFlash.LightComponent.SetEnabled(false);
         OwnerMesh.AttachComponentToSocket(MuzzleFlash.LightComponent, MuzzleFlash.SocketName);
     }
+    if(bEnableMidGunMuzzleFlash)
+    {
+        if(AltSocketNameOverride != 'None')
+        {
+            MuzzleFlashMid.SocketName = AltSocketNameOverride;
+        }
+        if(MuzzleFlashMid.ParticleSystemTemplate != none)
+        {
+            OwnerMesh.AttachComponentToSocket(MuzzleFlashMid.PSC, MuzzleFlashMid.SocketName);
+            MuzzleFlashMid.PSC.SetTemplate(MuzzleFlashMid.ParticleSystemTemplate);
+        }
+        if(MuzzleFlashMid.LightTemplate != none)
+        {
+            MuzzleFlashMid.LightComponent = new (self) Class'KFExplosionLightComponent';
+            MuzzleFlashMid.LightComponent.SetTemplate(MuzzleFlashMid.LightTemplate);
+            MuzzleFlashMid.LightComponent.SetEnabled(false);
+            OwnerMesh.AttachComponentToSocket(MuzzleFlashMid.LightComponent, MuzzleFlashMid.SocketName);
+        }
+    }
     if(bEnableSecondaryMuzzleFlash)
     {
         if(AltSocketNameOverride != 'None')
@@ -121,8 +146,12 @@ function AttachMuzzleFlash(SkeletalMeshComponent OwnerMesh, optional name Socket
     }
     if(OwnerMesh.DepthPriorityGroup == 2)
     {
-        MuzzleFlash.PSC.bDepthTestEnabled = false;
-        MuzzleFlashAlt.PSC.bDepthTestEnabled = false;
+        MuzzleFlash.PSC.SetDepthPriorityGroup(MuzzleFlash.FirstPersonDepthPriorityGroup);
+        MuzzleFlash.PSC.bDepthTestEnabled = MuzzleFlash.FirstPersonDepthPriorityGroup == 2;
+        MuzzleFlashAlt.PSC.SetDepthPriorityGroup(MuzzleFlashAlt.FirstPersonDepthPriorityGroup);
+        MuzzleFlashAlt.PSC.bDepthTestEnabled = MuzzleFlashAlt.FirstPersonDepthPriorityGroup == 2;
+        MuzzleFlashMid.PSC.SetDepthPriorityGroup(MuzzleFlashMid.FirstPersonDepthPriorityGroup);
+        MuzzleFlashMid.PSC.bDepthTestEnabled = MuzzleFlashMid.FirstPersonDepthPriorityGroup == 2;
     }
     if(OwnerMesh.IsA('KFSkeletalMeshComponent'))
     {
@@ -139,12 +168,17 @@ simulated event SetFOV(float NewFOV)
     {
         MuzzleFlashAlt.PSC.super(KFMuzzleFlash).SetFOV(NewFOV);
     }
+    if(MuzzleFlashMid.PSC != none)
+    {
+        MuzzleFlashMid.PSC.super(KFMuzzleFlash).SetFOV(NewFOV);
+    }
 }
 
 function DetachMuzzleFlash(SkeletalMeshComponent OwnerMesh)
 {
     OwnerMesh.DetachComponent(MuzzleFlash.PSC);
     OwnerMesh.DetachComponent(MuzzleFlashAlt.PSC);
+    OwnerMesh.DetachComponent(MuzzleFlashMid.PSC);
     if(MuzzleFlash.LightComponent != none)
     {
         OwnerMesh.DetachComponent(MuzzleFlash.LightComponent);
@@ -152,6 +186,10 @@ function DetachMuzzleFlash(SkeletalMeshComponent OwnerMesh)
     if(MuzzleFlashAlt.LightComponent != none)
     {
         OwnerMesh.DetachComponent(MuzzleFlashAlt.LightComponent);
+    }
+    if(MuzzleFlashMid.LightComponent != none)
+    {
+        OwnerMesh.DetachComponent(MuzzleFlashMid.LightComponent);
     }
     if(ShellEjectPSC != none)
     {
@@ -188,9 +226,10 @@ function SetShellEjectLife(optional float NewLifetime)
 
 defaultproperties
 {
-    MuzzleFlash=(LightTemplate=none,ParticleSystemTemplate=none,bPSCLoops=false,Duration=0.33,SocketName=MuzzleFlash,TimerName=MuzzleFlashTimer,PSC=KFParticleSystemComponent'Default__KFMuzzleFlash.ParticleSystemComponent0',LightComponent=none,bIsActive=false)
-    MuzzleFlashAlt=(LightTemplate=none,ParticleSystemTemplate=none,bPSCLoops=false,Duration=0.33,SocketName=MuzzleFlash,TimerName=MuzzleFlashAltTimer,PSC=KFParticleSystemComponent'Default__KFMuzzleFlash.ParticleSystemComponent1',LightComponent=none,bIsActive=false)
+    MuzzleFlash=(LightTemplate=none,ParticleSystemTemplate=none,bPSCLoops=false,Duration=0.33,SocketName=MuzzleFlash,FirstPersonDepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_World,TimerName=MuzzleFlashTimer,PSC=KFParticleSystemComponent'Default__KFMuzzleFlash.ParticleSystemComponent0',LightComponent=none,bIsActive=false)
     bAutoActivateShellEject=true
+    MuzzleFlashMid=(LightTemplate=none,ParticleSystemTemplate=none,bPSCLoops=false,Duration=0.33,SocketName=MuzzleFlash,FirstPersonDepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_Foreground,TimerName=MuzzleFlashTimer,PSC=KFParticleSystemComponent'Default__KFMuzzleFlash.ParticleSystemComponent2',LightComponent=none,bIsActive=false)
+    MuzzleFlashAlt=(LightTemplate=none,ParticleSystemTemplate=none,bPSCLoops=false,Duration=0.33,SocketName=MuzzleFlash,FirstPersonDepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_World,TimerName=MuzzleFlashAltTimer,PSC=KFParticleSystemComponent'Default__KFMuzzleFlash.ParticleSystemComponent1',LightComponent=none,bIsActive=false)
     FireModeAlternateBothEffects=255
     FireModeFireBothEffects=255
     ShellEjectSocketName=ShellEject

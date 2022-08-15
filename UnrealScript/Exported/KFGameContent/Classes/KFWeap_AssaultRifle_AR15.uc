@@ -79,11 +79,9 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletBurst'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
    InventorySize=4
-   EffectiveRange=60
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
-   bHasFlashlight=True
    MeshIronSightFOV=52.000000
    PlayerIronSightFOV=70.000000
    IronSightPosition=(X=7.000000,Y=0.000000,Z=0.000000)
@@ -106,7 +104,7 @@ defaultproperties
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_RifleBase:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_AssaultRifle_AR15:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_AssaultRifle_AR15:MeleeHelper_0'
    MuzzleFlashTemplate=KFMuzzleFlash'WEP_AR15_9mm_ARCH.Wep_AR15_9MM_MuzzleFlash'
    maxRecoilPitch=225
    minRecoilPitch=150
@@ -129,8 +127,8 @@ defaultproperties
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()
    FiringStatesArray(4)=()
-   WeaponProjectiles(0)=Class'KFGameContent.KFProj_Bullet_AssaultRifle'
-   WeaponProjectiles(1)=Class'KFGameContent.KFProj_Bullet_AssaultRifle'
+   WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_AssaultRifle'
+   WeaponProjectiles(1)=Class'kfgamecontent.KFProj_Bullet_AssaultRifle'
    FireInterval(0)=0.120000
    FireInterval(1)=0.120000
    FireInterval(2)=()
@@ -142,10 +140,10 @@ defaultproperties
    InstantHitDamage(1)=20.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=()
-   InstantHitDamageTypes(0)=Class'KFGameContent.KFDT_Ballistic_AR15'
-   InstantHitDamageTypes(1)=Class'KFGameContent.KFDT_Ballistic_AR15'
+   InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_AR15'
+   InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_AR15'
    InstantHitDamageTypes(2)=None
-   InstantHitDamageTypes(3)=Class'KFGameContent.KFDT_Bludgeon_AR15'
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_AR15'
    FireOffset=(X=30.000000,Y=4.500000,Z=-4.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_RifleBase:FirstPersonMesh'
       SkeletalMesh=SkeletalMesh'WEP_1P_AR15_9mm_MESH.Wep_1stP_AR15_9mm_Rig'

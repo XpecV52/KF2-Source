@@ -32,7 +32,7 @@ function bool advSaveSettings(WebRequest request, WebAdminMessages messages)
 	class'KFGameInfo'.default.ClanMottoColor = class'WebAdminUtils'.static.HTMLColorToColor(request.GetVariable("ClanMottoColor", ""));
 	class'KFGameInfo'.default.ServerMOTD = Repl(Repl(request.GetVariable("ServerMOTD", ""), Chr(10), "@nl@"), Chr(13), "");
 	class'KFGameInfo'.default.ServerMOTDColor = class'WebAdminUtils'.static.HTMLColorToColor(request.GetVariable("ServerMOTDColor", ""));
-	class'KFGameInfo'.default.WebLink = request.GetVariable("WebLink", "");
+	class'KFGameInfo'.default.WebSiteLink = request.GetVariable("WebSiteLink", "");
 	class'KFGameInfo'.default.WebLinkColor = class'WebAdminUtils'.static.HTMLColorToColor(request.GetVariable("WebLinkColor", ""));
 	class'KFGameInfo'.static.StaticSaveConfig();
 
@@ -43,7 +43,7 @@ function bool advSaveSettings(WebRequest request, WebAdminMessages messages)
 		gameinfo.ClanMottoColor = class'KFGameInfo'.default.ClanMottoColor;
 		gameinfo.ServerMOTD = class'KFGameInfo'.default.ServerMOTD;
 		gameinfo.ServerMOTDColor = class'KFGameInfo'.default.ServerMOTDColor;
-		gameinfo.WebLink = class'KFGameInfo'.default.WebLink;
+		gameinfo.WebSiteLink = class'KFGameInfo'.default.WebSiteLink;
 		gameinfo.WebLinkColor = class'KFGameInfo'.default.WebLinkColor;
 		gameinfo.SaveConfig();
 	}
@@ -60,7 +60,7 @@ function advRenderSettings(WebResponse response, SettingsRenderer renderer,
 		response.Subst("ClanMottoColor", class'WebAdminUtils'.static.ColorToHTMLColor(gameinfo.ClanMottoColor));
 		response.Subst("ServerMOTD", repl(gameinfo.ServerMOTD, "@nl@", chr(10)));
 		response.Subst("ServerMOTDColor", class'WebAdminUtils'.static.ColorToHTMLColor(gameinfo.ServerMOTDColor));
-		response.Subst("WebLink", gameinfo.WebLink);
+		response.Subst("WebLink", gameinfo.WebSiteLink);
 		response.Subst("WebLinkColor", class'WebAdminUtils'.static.ColorToHTMLColor(gameinfo.WebLinkColor));
 	}
 	else {
@@ -69,7 +69,7 @@ function advRenderSettings(WebResponse response, SettingsRenderer renderer,
 		response.Subst("ClanMottoColor", class'WebAdminUtils'.static.ColorToHTMLColor(class'KFGameInfo'.default.ClanMottoColor));
 		response.Subst("ServerMOTD", repl(class'KFGameInfo'.default.ServerMOTD, "@nl@", chr(10)));
 		response.Subst("ServerMOTDColor", class'WebAdminUtils'.static.ColorToHTMLColor(class'KFGameInfo'.default.ServerMOTDColor));
-		response.Subst("WebLink", class'KFGameInfo'.default.WebLink);
+		response.Subst("WebLink", class'KFGameInfo'.default.WebSiteLink);
 		response.Subst("WebLinkColor", class'WebAdminUtils'.static.ColorToHTMLColor(class'KFGameInfo'.default.WebLinkColor));
 	}
 }

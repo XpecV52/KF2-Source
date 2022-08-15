@@ -61,16 +61,6 @@ simulated function SetFlameDebugDamage(bool bDebugDirectDamage, bool bDebugSplas
 
 simulated function SetFlameDebugFX(bool bDebugShowSeeds, bool bDebugShowBones, bool bDebugForceNonPlayerParticles);
 
-simulated event PreBeginPlay()
-{
-    super.PreBeginPlay();
-    if(WorldInfo.NetMode == NM_DedicatedServer)
-    {
-        return;
-    }
-    WeaponMIC = Mesh.CreateAndSetMaterialInstanceConstant(0);
-}
-
 simulated event Tick(float DeltaTime)
 {
     local int Idx;
@@ -144,7 +134,7 @@ simulated function Destroyed()
         ++ Idx;
         goto J0x22;
     }
-    super.Destroyed();
+    super(Weapon).Destroyed();
 }
 
 protected simulated function TurnOnPilot()
@@ -189,12 +179,10 @@ protected simulated function TurnOnPilot()
     if(FlamePool[0] == none)
     {
         FlamePool[0] = Spawn(FlameSprayArchetype.Class, Instigator,, MuzzleLoc, Aim, FlameSprayArchetype, true);
-        FlamePool[0].SetTickIsDisabled(true);
     }
     if(FlamePool[1] == none)
     {
         FlamePool[1] = Spawn(FlameSprayArchetype.Class, Instigator,, MuzzleLoc, Aim, FlameSprayArchetype, true);
-        FlamePool[1].SetTickIsDisabled(true);
     }
     FlamePool[0].AttachToMesh(self, MySkelMesh, FlamePool[0].SpraySocketName);
     FlamePool[1].AttachToMesh(self, MySkelMesh, FlamePool[1].SpraySocketName);
@@ -204,6 +192,8 @@ protected simulated function TurnOnPilot()
     FlamePool[1].DamageInterval = FireInterval[0];
     FlamePool[0].SetFOV(OwnerMeshFOV);
     FlamePool[1].SetFOV(OwnerMeshFOV);
+    FlamePool[0].SkeletalSprayMesh.SetOnlyOwnerSee(true);
+    FlamePool[1].SkeletalSprayMesh.SetOnlyOwnerSee(true);
     if(PSC_EndSpray != none)
     {
         PSC_EndSpray.SetTemplate(FlamePool[0].SprayEndEffect);
@@ -405,6 +395,11 @@ static simulated function float CalculateTraderWeaponStatDamage()
     return BaseDamage + DoTDamage;
 }
 
+static simulated event KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
+{
+    return 4;
+}
+
 simulated state SprayingFire extends WeaponFiring
 {
     simulated function BeginState(name PreviousStateName)
@@ -511,7 +506,6 @@ defaultproperties
     object end
     // Reference: KFParticleSystemComponent'Default__KFWeap_FlameBase.FlameEndSpray0'
     PSC_EndSpray=FlameEndSpray0
-    EffectiveRange=30
     bWeaponNeedsServerPosition=true
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_FlameBase.MeleeHelper'
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent

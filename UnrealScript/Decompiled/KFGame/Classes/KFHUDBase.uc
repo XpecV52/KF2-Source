@@ -23,6 +23,8 @@ var const Color HealthColor;
 var const Color PlayerBarBGColor;
 var const Color PlayerBarTextColor;
 var const Color PlayerBarIconColor;
+var const Color SupplierActiveColor;
+var const Color SupplierUsableColor;
 var float ResolutionScale;
 var float ResolutionScaleX;
 var config float FriendlyHudScale;
@@ -59,7 +61,7 @@ simulated function PostBeginPlay()
     super.PostBeginPlay();
     bCachedShowOverlays = bShowOverlays;
     KFPlayerOwner = KFPlayerController(PlayerOwner);
-    bDrawCrosshair = Class'KFGameEngine'.default.bShowCrossHair;
+    bDrawCrosshair = Class'KFGameEngine'.static.IsCrosshairEnabled();
 }
 
 function PreCalcValues()
@@ -292,7 +294,10 @@ function DrawHUD()
     super.DrawHUD();
     if(bDrawCrosshair || bForceDrawCrosshair)
     {
-        DrawCrosshair();
+        if((KFPlayerOwner != none) && !KFPlayerOwner.bCinematicMode)
+        {
+            DrawCrosshair();
+        }
     }
     if(KFPlayerOwner != none)
     {
@@ -322,6 +327,7 @@ simulated function DrawFriendlyHUD(KFPawn_Human KFPH)
     local KFPlayerReplicationInfo KFPRI;
     local FontRenderInfo MyFontRenderInfo;
     local float FontScale;
+    local Color TempColor;
 
     KFPRI = KFPlayerReplicationInfo(KFPH.PlayerReplicationInfo);
     if(KFPRI == none)
@@ -356,6 +362,13 @@ simulated function DrawFriendlyHUD(KFPawn_Human KFPH)
     Canvas.SetDrawColorStruct(PlayerBarTextColor);
     Canvas.SetPos(ScreenPos.X - (BarLength * 0.5), ScreenPos.Y + BarHeight);
     Canvas.DrawText(string(KFPRI.GetActivePerkLevel()) @ KFPRI.CurrentPerkClass.default.PerkName,, FontScale * FriendlyHudScale, FontScale * FriendlyHudScale, MyFontRenderInfo);
+    if(KFPRI.bPerkCanSupply && KFPRI.CurrentPerkClass.static.GetInteractIcon() != none)
+    {
+        TempColor = ((KFPRI.bPerkSupplyUsed) ? SupplierActiveColor : SupplierUsableColor);
+        Canvas.SetDrawColorStruct(TempColor);
+        Canvas.SetPos(ScreenPos.X + (BarLength * 0.5), ScreenPos.Y - (BarHeight * float(2)));
+        Canvas.DrawTile(KFPRI.CurrentPerkClass.static.GetInteractIcon(), PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256);
+    }
 }
 
 simulated function DrawKFBar(float BarPercentage, float BarLength, float BarHeight, float XPos, float YPos, Color BarColor)
@@ -403,6 +416,8 @@ defaultproperties
     PlayerBarBGColor=(B=0,G=0,R=0,A=192)
     PlayerBarTextColor=(B=192,G=192,R=192,A=192)
     PlayerBarIconColor=(B=192,G=192,R=192,A=192)
+    SupplierActiveColor=(B=128,G=128,R=128,A=192)
+    SupplierUsableColor=(B=0,G=0,R=255,A=192)
     FriendlyHudScale=1
     TextRenderInfo=(bClipText=false,bEnableShadow=false,GlowInfo=(bEnableGlow=false,GlowColor=(R=0,G=0,B=0,A=1),GlowOuterRadius=(X=0,Y=0),GlowInnerRadius=(X=0,Y=0)))
     PulseDuration=0.33

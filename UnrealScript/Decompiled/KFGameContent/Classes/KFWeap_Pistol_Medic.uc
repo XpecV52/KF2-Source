@@ -9,10 +9,14 @@ class KFWeap_Pistol_Medic extends KFWeap_MedicBase
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
+static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
+{
+    return 0;
+}
+
 defaultproperties
 {
     InventoryGroup=EInventoryGroup.IG_Secondary
-    FilterTypeUI=EFilterTypeUI.FT_Pistol
     InventorySize=1
     bHasIronSights=true
     bCanBeReloaded=true
@@ -23,7 +27,7 @@ defaultproperties
     DOF_FG_FocalRadius=40
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=25
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicPistol'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicPistol'
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
     MagazineCapacity=15
     MaxSpareAmmo=225

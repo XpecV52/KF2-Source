@@ -70,7 +70,7 @@ function UpdateGrenades()
     {
         if(LastPerkClass != MyKFPC.GetPerk().Class)
         {
-            SetString("backpackGrenadeType", (("img://" $ string(MyKFPC.CurrentPerk.GrenadeClass.default.UITexture.GetPackageName())) $ ".") $ string(MyKFPC.CurrentPerk.GrenadeClass.default.UITexture.Name));
+            SetString("backpackGrenadeType", "img://" $ MyKFPC.CurrentPerk.GrenadeWeaponDef.static.GetImagePath());
             LastPerkClass = MyKFPC.CurrentPerk.Class;
         }
     }

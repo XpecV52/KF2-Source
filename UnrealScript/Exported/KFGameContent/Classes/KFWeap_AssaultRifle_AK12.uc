@@ -222,7 +222,6 @@ defaultproperties
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletBurst'
    SingleFireMode=1
    InventorySize=6
-   EffectiveRange=67
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -230,7 +229,7 @@ defaultproperties
    MeshIronSightFOV=33.000000
    PlayerIronSightFOV=70.000000
    GroupPriority=75.000000
-   UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AK12'
+   WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AK12'
    MagazineCapacity(0)=30
    MaxSpareAmmo(0)=210
    InitialSpareMags(0)=3
@@ -248,7 +247,7 @@ defaultproperties
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_RifleBase:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_AssaultRifle_AK12:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_AssaultRifle_AK12:MeleeHelper_0'
    MuzzleFlashTemplate=KFMuzzleFlash'WEP_AK12_ARCH.Wep_AK12_MuzzleFlash'
    maxRecoilPitch=200
    minRecoilPitch=150
@@ -269,8 +268,8 @@ defaultproperties
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()
    FiringStatesArray(4)=()
-   WeaponProjectiles(0)=Class'KFGameContent.KFProj_Bullet_AssaultRifle'
-   WeaponProjectiles(1)=Class'KFGameContent.KFProj_Bullet_AssaultRifle'
+   WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_AssaultRifle'
+   WeaponProjectiles(1)=Class'kfgamecontent.KFProj_Bullet_AssaultRifle'
    FireInterval(0)=0.100000
    FireInterval(1)=0.060000
    FireInterval(2)=()
@@ -282,10 +281,10 @@ defaultproperties
    InstantHitDamage(1)=35.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=()
-   InstantHitDamageTypes(0)=Class'KFGameContent.KFDT_Ballistic_AK12'
-   InstantHitDamageTypes(1)=Class'KFGameContent.KFDT_Ballistic_AK12'
+   InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_AK12'
+   InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_AK12'
    InstantHitDamageTypes(2)=None
-   InstantHitDamageTypes(3)=Class'KFGameContent.KFDT_Bludgeon_AK12'
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_AK12'
    FireOffset=(X=32.000000,Y=4.000000,Z=-5.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_RifleBase:FirstPersonMesh'
       SkeletalMesh=SkeletalMesh'WEP_1P_AK12_MESH.Wep_1stP_AK12_Rig'

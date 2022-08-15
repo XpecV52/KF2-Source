@@ -13,7 +13,7 @@
 `define WITH_INT_MOD present
 `define WITH_MUTATORS
 `define WITH_BOTS
-`define WITH_WELCOME_SETTINGS
+`define WITH_WELCOME_SETTINGS present
 
 // Various subclasses of base classes which expose additional logic which
 // is common to most games, yet not part of the core engine
@@ -132,6 +132,10 @@
 // If non empty bots exist in this game
 `if(`notdefined(WITH_BOTS))
 	`define WITH_BOTS
+`endif
+
+`if(`notdefined(WITH_WELCOME_SETTINGS))
+	`define WITH_WELCOME_SETTINGS
 `endif
 
 //

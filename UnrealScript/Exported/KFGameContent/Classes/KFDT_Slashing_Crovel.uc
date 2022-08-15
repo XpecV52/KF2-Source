@@ -46,65 +46,6 @@ class KFDT_Slashing_Crovel extends KFDT_Slashing
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -125,7 +66,7 @@ class KFDT_Slashing_Crovel extends KFDT_Slashing
 
 defaultproperties
 {
-   AARWeaponID=4
+   WeaponDef=Class'KFGame.KFWeapDef_Crovel'
    StunPower=42
    StumblePower=43
    LegStumblePower=43

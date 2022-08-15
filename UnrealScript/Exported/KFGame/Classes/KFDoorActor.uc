@@ -452,6 +452,9 @@ const DoorWidth = 200;
 const HumanPushDistance = 40;
 const SlidingPushForce = 750;
 
+/** Adjusts the "push" plane of the door (the threshold for pushing forward or backward) along its X-axis */
+var() float PushOriginOffset;
+
 /*********************************************************************************************
  * @name	Effects
  ********************************************************************************************* */
@@ -527,7 +530,11 @@ simulated event ReplicatedEvent(name VarName)
 	{
 		if ( bIsDoorOpen )
 		{
-			OpenDoor(None);
+			// not already open (see InitSkelControl)
+			if ( MovementControl.StrengthTarget == 0 )
+			{
+				OpenDoor(None);
+			}
 		}
 		else
 		{
@@ -688,6 +695,10 @@ simulated function InitSkelControl()
 		MovementControl.BoneTranslation.Z = LiftTranslation;
 		break;
 	}
+
+	// start in open state
+	MovementControl.SetSkelControlStrength(1.f, 0.f);
+	bIsDoorOpen = true;
 }
 
 /*********************************************************************************************
@@ -930,11 +941,13 @@ private function TryPushPawns()
 {
 	local Pawn P;
 	local bool bInFrontOfDoor;
-	local vector DoorX, DoorY, DoorZ, PushDir;
+	local vector DoorX, DoorY, DoorZ, PushDir, OffsetLocation;
 	local rotator DoorYRot;
 
     GetAxes(Rotation, DoorX, DoorY, DoorZ);
 	DoorYRot = rotator(DoorY);
+
+	OffsetLocation = Location + DoorX * PushOriginOffset;
 
 	foreach WorldInfo.AllPawns( class'Pawn', P, Location, DoorWidth )
 	{
@@ -943,9 +956,9 @@ private function TryPushPawns()
 
 		if( !bIsDoorOpen && P.IsPlayerOwned() )
 		{
-			if( PointDistToPlane( Location, DoorYRot, P.Location ) < HumanPushDistance )
+			if( PointDistToPlane( OffsetLocation, DoorYRot, P.Location ) < HumanPushDistance )
 			{
-				bInFrontOfDoor = (DoorX dot (P.Location - Location) > 0.f);
+				bInFrontOfDoor = (DoorX dot (P.Location - OffsetLocation) > 0.f);
 				PushDir = SlidingPushForce * DoorX;
 
 	   			if( DoorMechanism == EDoorMechanism.EDM_Hinge )

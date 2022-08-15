@@ -27,14 +27,6 @@ enum EEffectDamageGroup
     FXG_MAX
 };
 
-enum EImpactEffectMode
-{
-    FXM_Neutral,
-    FXM_Vulnerable,
-    FXM_Resistant,
-    FXM_MAX
-};
-
 struct native SkinEffectInfo
 {
     /** type for readability in editor */
@@ -74,11 +66,11 @@ var() array<SkinEffectInfo> CustomEffects;
 var config float ImpactParticleEffectInterval;
 var float ImpactSoundInterval;
 
-function PlayImpactParticleEffect(KFPawn P, Vector HitLocation, Vector HitDirection, byte HitZoneIndex, KFSkinTypeEffects.EEffectDamageGroup EffectGroup, KFSkinTypeEffects.EImpactEffectMode EffectMode)
+function PlayImpactParticleEffect(KFPawn P, Vector HitLocation, Vector HitDirection, byte HitZoneIndex, KFSkinTypeEffects.EEffectDamageGroup EffectGroup)
 {
     local ParticleSystem ParticleTemplate;
 
-    ParticleTemplate = GetImpactParticleEffect(EffectGroup, EffectMode);
+    ParticleTemplate = GetImpactParticleEffect(EffectGroup);
     if(ImpactFX[EffectGroup].bAttachParticle)
     {
         AttachEffectToBone(P, ParticleTemplate, HitZoneIndex);        
@@ -131,8 +123,11 @@ function AttachEffectToHitLocation(KFPawn P, ParticleSystem ParticleTemplate, in
             BoneSpaceHitLocation = InverseTransformVector(P.Mesh.GetBoneMatrix(HitBoneIdx), HitLocation);
             EmitterLocationOffset = BoneSpaceHitLocation;
             PSC = P.WorldInfo.ImpactFXEmitterPool.SpawnEmitterMeshAttachment(ParticleTemplate, P.Mesh, HitBoneName, false, EmitterLocationOffset);
-            P.LastImpactParticleEffectTime = P.WorldInfo.TimeSeconds;
-            PSC.SetAbsolute(false, true, true);
+            if(PSC != none)
+            {
+                P.LastImpactParticleEffectTime = P.WorldInfo.TimeSeconds;
+                PSC.SetAbsolute(false, true, true);
+            }
         }
     }
 }
@@ -142,7 +137,7 @@ function DefaultSpawnEffect(KFPawn P, ParticleSystem ParticleTemplate, Vector Hi
     local Vector EmitterDir, EmitterDirRight, EmitterDirLeft, RelativeHitLoc;
     local editinline ParticleSystemComponent PSC;
 
-    if(P.WorldInfo.bDropDetail || P.WorldInfo.GetDetailMode() == 0)
+    if(((ParticleTemplate == none) || P.WorldInfo.bDropDetail) || P.WorldInfo.GetDetailMode() == 0)
     {
         if((P.WorldInfo.TimeSeconds - P.LastImpactParticleEffectTime) == float(0))
         {
@@ -156,32 +151,18 @@ function DefaultSpawnEffect(KFPawn P, ParticleSystem ParticleTemplate, Vector Hi
     RelativeHitLoc = HitLocation - P.Location;
     EmitterDir = (((EmitterDirRight Dot RelativeHitLoc) >= float(0)) ? EmitterDirRight : EmitterDirLeft);
     PSC = P.WorldInfo.ImpactFXEmitterPool.SpawnEmitter(ParticleTemplate, HitLocation, rotator(EmitterDir));
-    PSC.SetLightingChannels(P.PawnLightingChannel);
+    if(PSC != none)
+    {
+        PSC.SetLightingChannels(P.PawnLightingChannel);
+    }
 }
 
-function ParticleSystem GetImpactParticleEffect(KFSkinTypeEffects.EEffectDamageGroup EffectGroup, KFSkinTypeEffects.EImpactEffectMode EffectMode)
+function ParticleSystem GetImpactParticleEffect(KFSkinTypeEffects.EEffectDamageGroup EffectGroup)
 {
-    switch(EffectMode)
-    {
-        case 1:
-            if(ImpactFX[EffectGroup].VulnerableParticle != none)
-            {
-                return ImpactFX[EffectGroup].VulnerableParticle;
-            }
-            break;
-        case 2:
-            if(ImpactFX[EffectGroup].ResistantParticle != none)
-            {
-                return ImpactFX[EffectGroup].ResistantParticle;
-            }
-            break;
-        default:
-            break;
-    }
     return ImpactFX[EffectGroup].DefaultParticle;
 }
 
-function PlayTakeHitSound(KFPawn P, Vector HitLocation, Pawn DamageCauser, KFSkinTypeEffects.EEffectDamageGroup EffectGroup, KFSkinTypeEffects.EImpactEffectMode EffectMode)
+function PlayTakeHitSound(KFPawn P, Vector HitLocation, Pawn DamageCauser, KFSkinTypeEffects.EEffectDamageGroup EffectGroup)
 {
     local AkEvent ImpactSound;
 
@@ -191,7 +172,7 @@ function PlayTakeHitSound(KFPawn P, Vector HitLocation, Pawn DamageCauser, KFSki
         {
             return;
         }
-        ImpactSound = GetImpactSound(EffectGroup, DamageCauser, EffectMode);
+        ImpactSound = GetImpactSound(EffectGroup, DamageCauser);
         if(ImpactSound != none)
         {
             P.LastImpactSoundTime = P.WorldInfo.TimeSeconds;
@@ -200,7 +181,7 @@ function PlayTakeHitSound(KFPawn P, Vector HitLocation, Pawn DamageCauser, KFSki
     }
 }
 
-function AkEvent GetImpactSound(KFSkinTypeEffects.EEffectDamageGroup EffectGroup, Pawn DamageCauser, KFSkinTypeEffects.EImpactEffectMode EffectMode)
+function AkEvent GetImpactSound(KFSkinTypeEffects.EEffectDamageGroup EffectGroup, Pawn DamageCauser)
 {
     if((((ImpactFX[EffectGroup].LocalSound != none) && DamageCauser != none) && DamageCauser.IsLocallyControlled()) && DamageCauser.IsHumanControlled())
     {

@@ -14,21 +14,30 @@ class KFPlayerInput extends MobilePlayerInput within KFPlayerController
 //The player is required to push to talk
 var config bool bRequiresPushToTalk;
 
-/** Used to scale the sensitivity of the mouse based on how zoomed the player is. */
-var config float ZoomedSensitivityScalar;
-
 /** Set to false if we want to use KF1 style weapon switching */
 var config bool bQuickWeaponSelect;
-
-/** Set to true when we have opened the weapon select menu with a controller */
-var bool bGamepadWeaponSelectOpen;
 
 /** Start time when player last pressed jump.  Used by CannotJumpNow() */
 var transient float PressedJumpTime;
 
+/** Unlike other weapons states ironsights doesn't use PendingFire (see InventoryManager).
+ This concept is useful for Ironsights(HOLD), which is accomplished by this bool. */
+var transient bool bPendingIronsights;
+
+/** cached magnitude of 2d input move vector */
+var transient float RawJoyMagnitude;
+
+/** cached magnitude of 2d input look vector */
+var transient float RawJoyLookMagnitude;
+
 /*********************************************************************************************
  * @name Gamepad Specific Controls
 ********************************************************************************************* */
+
+/** Set to true when we have opened the weapon select menu with a controller */
+var bool 		bGamepadWeaponSelectOpen;
+/** One-time on screen button hint */
+var bool 		bShowGamepadWeaponSelectHint;
 
 /** Set to true if we want to invert the Y on the controller */
 var config bool bInvertController;
@@ -38,6 +47,9 @@ var config float GamepadButtonHoldTime;
 
 /** Amount thumbstick should be pressed to activate sprint */
 var config float SprintAnalogThreshold;
+
+/** Amount thumbstick should be pressed to activate crouch */
+var config float SkipCrouchAnalogThreshold;
 
 /** How long has the stick been under the gamepad sprint threshold **/
 var config float TimeBelowThresholdToStopSprint;
@@ -49,49 +61,76 @@ var transient bool bExtendedSprinting;
 var transient float SprintTimeBelowThreshold;
 
 /** Time when left-thumbstick was pressed in */
-var transient float GamepadSprintPressTime;
+var transient float LastGamepadSprintPressTime;
 
 /*********************************************************************************************
  * @name Aim assists
 ********************************************************************************************* */
 
-/** Store previous remainder of aTurn for smoothing slow rotations. */
-var() float RemainingaTurn;
+/** Toggles for all aim assists (friction, adhesion, lock-on) */
+var(AimAssistGlobal) config bool bAimAssistEnabled;
 
-/** Store previous remainder of aLookUp for smoothing slow rotations. */
-var() float RemainingaLookUp;
+////////////////////////////////
+// Sensitivity
 
-/** Multiplier used to scale the sensitivity of turning. */
-var() config float HorizontalSensitivityScale;
+/** Interp curve that allows for piece wise functions for the TargetFrictionDistance amount at different ranges **/
+var(Sensitivity) InterpCurveFloat LookSensitivityScaleCurve;
+var(Sensitivity) InterpCurveFloat MoveSensitivityScaleCurve;
+/** Unified global scalar for joystick sensitivity */
+var(Sensitivity) config float GamepadSensitivityScale;
+/** Multiplier used to scale look sensitivity while sprinting. */
+var(Sensitivity) float SprintingSensitivityScale;
+/** Used to scale the sensitivity of the mouse based on how zoomed the player is. */
+var(Sensitivity) config float ZoomedSensitivityScale;
+/** Used to scale the sensitivity of the joystick based on how zoomed the player is. */
+var(Sensitivity) config float GamepadZoomedSensitivityScale;
 
-/** Multiplier used to scale the sensitivity of looking up and down. */
-var() config float VerticalSensitivityScale;
+////////////////////////////////
+// View Smoothing
+
+/** Whether to use turn smoothing / blending or not */
+var(ViewSmoothing) bool bViewSmoothingEnabled;
+/** Max acceleration units per second (since the joystick max value is 1, setting to 1 means take 1 second to get to max turn speed if starting at 0) */
+var(ViewSmoothing) float ViewSmoothing_MaxAccel;
+/** Similar to MaxAccel. Should be larger then accel. */
+var(ViewSmoothing) float ViewSmoothing_MaxDecel;
+
+/** Vars to keep track of values to blend between for smoothing */
+var transient float PrevTurn, PrevLookUp, CurrTurn, CurrLookUp;
+
+////////////////////////////////
+// View Acceleration
 
 /** Whether ViewAcceleration is enabled or not **/
-var() config bool bViewAccelerationEnabled;
+var(ViewAcceleration) config bool bViewAccelerationEnabled;
+/** Joystick vector must be greater than this to trigger view acceleration (magnitude range is 0 to 1, regardless of direction)*/
+var(ViewAcceleration) float ViewAccel_JoyMagThreshold;
+/** Joystick Y-value must be less than this to trigger view acceleration (Y-value range is from -1 to 1) */
+var(ViewAcceleration) float ViewAccel_JoyPitchThreshold;
+/** Max turn speed **/
+var(ViewAcceleration) float ViewAccel_MaxTurnSpeed;
+/** How long to blend to max turn speed */
+var(ViewAcceleration) float ViewAccel_BlendTime;
+/** Timer for BlendTime */
+var transient float ViewAccel_BlendTimer;
 
 var config protected bool bDebugViewAcceleration;
+/** Store previous remainder of aTurn for smoothing slow rotations. */
+var float RemainingaTurn;
+/** Store previous remainder of aLookUp for smoothing slow rotations. */
+var float RemainingaLookUp;
 
-/** Threshold above when Yaw Acceleration kicks in*/
-var() float ViewAccel_YawThreshold;
-var() float ViewAccel_DiagonalThreshold;
-
-/** How fast to start accelerating when the stick is slammed to the edge. It goes to a max of 2.0 over time **/
-var() private float ViewAccel_CurrMutliplier;
-
-/** How to handle slamming the stick to the edges **/
-/** how long you need to hold at edge before the fast acceleration kicks in **/
-var() float ViewAccel_TimeToHoldBeforeFastAcceleration;
-var private float ViewAccel_TimeHeld;
+////////////////////////////////
+// Target Friction
 
 /** Whether TargetFriction is enabled or not **/
-var() config bool bTargetFrictionEnabled;
+var(Friction) config bool bTargetFrictionEnabled;
+
+/** How much friction reduces rotation */
+var(Friction) float FrictionScale;
 
 /** Enables Target Friction debugging **/
 var config protected bool bDebugTargetFriction;
-
-/** Whether or not we actually applied friction.  This is used to make certain we don't then accelerate the view **/
-var protected bool bAppliedTargetFriction;
 
 /** Last friction target */
 var private Pawn LastFrictionTarget;
@@ -102,53 +141,72 @@ var private float LastFrictionTargetTime;
 // Friction/Adhesion debugging vars
 var private float LastaTurn, LastaLookUp, LastaForward, LastaStrafe;
 
-/** How fast you ramp up to the max speed**/
-var() float ViewAccel_RampSpeed;
-/** Max turn speed **/
-var() float ViewAccel_MaxTurnSpeed;
+/** Interp curve to scale Friction angle for different ranges **/
+var(Friction) InterpCurveFloat FrictionAngleCurve;
 
-/** Interp curve that allows for piece wise functions for the TargetFrictionDistance amount at different ranges **/
-var() InterpCurveFloat SensitivityScaleCurve;
+/** How much to scale friction when view acceleration (turn assist) is being applied */
+var(Friction) float ViewAccelerationFrictionScale;
+
+////////////////////////////////
+// Target Adhesion
+
+/** Whether TargetAdhesion is enabled or not **/
+var(Adhesion) config bool bTargetAdhesionEnabled;
+
+/** Interp curve to scale Adhesion angle for different ranges **/
+var(Adhesion) InterpCurveFloat AdhesionAngleCurve;
+
+/** How strongly adhesion affects player view */
+var(Adhesion) float AdhesionFactor;
+
+/** Cached vars to help with adhesion */
+var private Pawn LastAdhesionTarget;
+var transient vector AdhesionTargetLastLoc, AdhesionPawnLastLoc;
+
+////////////////////////////////
+// Auto Target
+
+/** Whether TargetAdhesion is enabled or not **/
+var(AutoTarget) config bool bAutoTargetEnabled;
+
+/** How long to auto target for when going to iron sights **/
+var(AutoTarget) float 	AutoTargetTimeLeft;
 
 /** Where we were aiming at the autotargeted pawn was when we first locked on **/
 var vector AutoTargetInitialLocation;
 /** The current Pawn we're locked onto for auto targeting **/
 var Pawn CurrentAutoTarget;
+/** The Target's bone name being followed */
+var name CurrentAutoTargetBone;
 
 /** How fast to rotate towards autotarget location**/
-var() float AutoTargetRotationRate;
+var(AutoTarget) float AutoTargetRotationRate;
 
 /** Interp curve to scale autotarget angle for different ranges **/
-var() InterpCurveFloat AutoTargetAngleCurve;
+var(AutoTarget) InterpCurveFloat AutoTargetAngleCurve;
+var(AutoTarget) InterpCurveFloat AutoTargetWeakspotCurve;
 
-/** Interp curve to scale Friction angle for different ranges **/
-var() InterpCurveFloat FrictionAngleCurve;
-
-/** Interp curve to scale Adhesion angle for different ranges **/
-var() InterpCurveFloat AdhesionAngleCurve;
-
-/** Used to track when the aim trigger has been pulled/released incrementally **/
-var bool bAimTriggerPulled;
+/** Disallow auto-target spamming */
+var(AutoTarget) float AutoTargetCooldown;
+var transient 	float LastAutoTargetTime;
 
 /** Force rotation to within this angle when using the ForceLookAtPawn functionality **/
-var() float ForceLookAtPawnMinAngle;
-
+var(AutoTarget) float ForceLookAtPawnMinAngle;
 /** How fast to rotate towards ForceLookAtPawn location**/
-var() float ForceLookAtPawnRotationRate;
-
+var(AutoTarget) float ForceLookAtPawnRotationRate;
 /** How fast to rotate towards ForceLookAtPawn location dampened for closer rotation**/
-var() float ForceLookAtPawnDampenedRotationRate;
+var(AutoTarget) float ForceLookAtPawnDampenedRotationRate;
+
+/*********************************************************************************************
+* @name	Force Feedback
+********************************************************************************************* */
+
+var(ForceFeedback) config bool bForceFeedbackEnabled;
 
 /*********************************************************************************************
  * @name Flashlight / Night vision
 ********************************************************************************************* */
 var const float DoubleTapDelay;
-
-/*********************************************************************************************
- * @name Debugging
-********************************************************************************************* */
-
-var float LastLogPerkTime;
 
 // (cpptext)
 // (cpptext)
@@ -210,14 +268,6 @@ simulated function DisplayDebug(HUD HUD, out float out_YL, out float out_YPos)
 		HUD.Canvas.DrawText("Raw: TotalRawStrafe: "$Abs(RawJoyRight) + Abs(RawJoyUp));
 		out_YPos += out_YL;
 	}
-
-    if (HUD.ShouldDisplayDebug('accel'))
-	{
-		HUD.Canvas.SetDrawColor(0,255,0);
-		HUD.Canvas.DrawText("ACCEL: ViewAccel_CurrMutliplier: "$ViewAccel_CurrMutliplier$" ViewAccel_TimeHeld: "$ViewAccel_TimeHeld);
-		out_YPos += out_YL;
-		HUD.Canvas.SetPos(4, out_YPos);
-	}
 }
 
 function ClientInitInputSystem()
@@ -259,25 +309,61 @@ function UpdatePushToTalk(bool bValue)
 exec function SetSensitivity(Float F)
 {
 	MouseSensitivity = F;
-	SaveConfig();
 }
 
 exec function SetZoomedSensitivity(Float F)
 {
-	ZoomedSensitivityScalar = F;
-	SaveConfig();
+	ZoomedSensitivityScale = F;
+}
+
+/** No one ever uses double clicks, so we hijack this function and the variable to store an
+  * approximation of the output of the movement sensitivity curve */
+function EDoubleClickDir CheckForDoubleClickMove(float DeltaTime)
+{
+	local int MappedOutput;
+	local float MinCurveOut, MaxCurveOut, CurveOut, CurvePct;
+
+	if( !bUsingGamepad )
+	{
+		// max speed (modifer will be 1)
+		return EDoubleClickDir( 0 );
+	}
+
+	// Map RawJoyMagnitude to our movement speed enum range
+
+	// get curve out value and range
+	CurveOut = EvalInterpCurveFloat( MoveSensitivityScaleCurve, RawJoyMagnitude );
+	MinCurveOut = MoveSensitivityScaleCurve.Points[0].OutVal;
+	MaxCurveOut = MoveSensitivityScaleCurve.Points[MoveSensitivityScaleCurve.Points.Length - 1].OutVal;
+
+	CurvePct = (CurveOut - MinCurveOut) / (MaxCurveOut - MinCurveOut);
+
+	MappedOutput = EAnalogMovementSpeed.AMOVESPEED_Max - (CurvePct * EAnalogMovementSpeed.AMOVESPEED_Max);
+	
+	return EDoubleClickDir( MappedOutput );
 }
 
 // Overridden to not double apply FOV scaling
 event PlayerInput( float DeltaTime )
 {
 	local float FOVScale, TimeScale;
+	local vector RawJoyVector;
 
 	// Save Raw values
 	RawJoyUp		= aBaseY;
 	RawJoyRight		= aStrafe;
 	RawJoyLookRight	= aTurn;
 	RawJoyLookUp	= aLookUp;
+
+	// cache raw input (left stick) vector
+	RawJoyVector.x = RawJoyRight;
+	RawJoyVector.y = RawJoyUp;
+	RawJoyMagnitude = VSize2d( RawJoyVector );
+
+	// cache raw input look (right stick) vector
+	RawJoyVector.x = RawJoyLookRight;
+	RawJoyVector.y = RawJoyLookUp;
+	RawJoyLookMagnitude = VSize2d( RawJoyVector );
 
 	// PlayerInput shouldn't take timedilation into account
 	DeltaTime /= WorldInfo.TimeDilation;
@@ -441,7 +527,7 @@ function AdjustMouseSensitivity(float FOVScale)
         }
 
 		if( UsedFOVAngle != DefaultFOV && bUsingSights )
-            FOVScale = UsedFOVAngle * 0.01333 * ZoomedSensitivityScalar; // 0.01333 = 1 / 75.0 - the default FOV
+            FOVScale = UsedFOVAngle * 0.01333 * ZoomedSensitivityScale; // 0.01333 = 1 / 75.0 - the default FOV
         else
             FOVScale = 1.0;
 	}
@@ -519,7 +605,7 @@ exec function GamepadSprint()
 {
 	bRun = 0;
 	bExtendedSprinting = false;
-	GamepadSprintPressTime = WorldInfo.TimeSeconds;
+	LastGamepadSprintPressTime = WorldInfo.TimeSeconds;
 
 	GamepadSprintTimer();
 	if ( bRun == 0 )
@@ -531,7 +617,7 @@ exec function GamepadSprint()
 /** Keep checking if thumbstick has exceeded sprint threshold */
 function GamepadSprintTimer()
 {
-	if ( IsDirectingJoyStick(0.3) )
+	if ( IsDirectingJoyStick(SkipCrouchAnalogThreshold) )
 	{
 		bRun = 1;
 		ClearTimer(nameof(GamepadSprintTimer), self);
@@ -541,13 +627,13 @@ function GamepadSprintTimer()
 /** On release: Crouch or switch to 'ExtendedSprint' */
 exec function GamepadSprintRelease()
 {
-	if( IsDirectingJoyStick(0.3) )
+	if( IsDirectingJoyStick(SkipCrouchAnalogThreshold) )
 	{
 		// end sprint; begin extended (non-pressed) sprint
 		bExtendedSprinting = true;
 		SprintTimeBelowThreshold = 0;
 	}
-	else if ( bRun == 0 && (WorldInfo.TimeSeconds - GamepadSprintPressTime) < GamepadButtonHoldTime )
+	else if ( bRun == 0 && (WorldInfo.TimeSeconds - LastGamepadSprintPressTime) < GamepadButtonHoldTime )
 	{
 		ToggleCrouch();
 	}
@@ -635,6 +721,11 @@ simulated exec function IronSights(optional bool bHoldButtonMode)
 {
 	local KFWeapon KFW;
 
+	if ( bHoldButtonMode )
+	{
+		bPendingIronsights = true;
+	}
+
 	if( Pawn != none )
 	{
 		KFW = KFWeapon(Pawn.Weapon);
@@ -651,6 +742,11 @@ simulated exec function IronSights(optional bool bHoldButtonMode)
 simulated exec function IronSightsRelease(optional bool bHoldButtonMode)
 {
 	local KFWeapon KFW;
+
+	if ( bHoldButtonMode )
+	{
+		bPendingIronsights = false;
+	}
 
 	if( Pawn != none )
 	{
@@ -695,24 +791,25 @@ simulated exec function ToggleFlashlight()
 		}
 		else
 		{
-			ToggleActualFlashLight( KFP );
+			KFP.ToggleFlashlight();
+			PlayFlashlightNVSounds( KFP, bPerkHasNightVision );
 		}
-	}
-
-	if( KFP != none )
-	{
-		PlayFlashlightNVSounds( KFP, bPerkHasNightVision );
 	}
 }
 
 simulated function ToggleNightVIsion( KFPawn_Human KFP )
 {
+	local bool bPerkHasNightVision;
+	
+	bPerkHasNightVision = GetPerk().HasNightVision();
+
 	if( !bNightVisionActive && !KFP.bFlashlightOn )
 	{
 		if( IsTimerActive( nameOf(NightVisionTimer), self ) )
 		{
 			ClearTimer( nameOf(NightVisionTimer), self );				
-			ToggleActualFlashLight( KFP );
+			KFP.ToggleFlashlight();
+			PlayFlashlightNVSounds( KFP, bPerkHasNightVision );
 		}
 		else
 		{				
@@ -725,7 +822,8 @@ simulated function ToggleNightVIsion( KFPawn_Human KFP )
 		{
 			ClearTimer( nameOf(NightVisionTimer),self );
 			SetNightVision( !bNightVisionActive );
-			ToggleActualFlashLight( KFP );
+			PlayFlashlightNVSounds( KFP, bPerkHasNightVision );
+			KFP.ToggleFlashlight();
 		}
 		else
 		{
@@ -734,20 +832,11 @@ simulated function ToggleNightVIsion( KFPawn_Human KFP )
 	}
 	else if( KFP.bFlashlightOn )
 	{
-		ToggleActualFlashLight( KFP );
+		PlayFlashlightNVSounds( KFP, bPerkHasNightVision );
+		KFP.ToggleFlashlight();
 	}
 }
 
-/**
- * @brief Toggles the flashligh on ort off
- * 
- * @param KFP Our pawn
- */
-simulated function ToggleActualFlashLight( KFPawn_Human KFP )
-{
-	// toggle flashlight
-	KFP.MyKFWeapon.bHasFlashlight ? KFP.ToggleFlashlight() : KFInventoryManager(Pawn.InvManager).SwitchToPrimaryFlashLightWeapon();
-}
 
 /**
  * @brief Toggles the night vision on or off
@@ -756,7 +845,14 @@ simulated function ToggleActualFlashLight( KFPawn_Human KFP )
  */
 simulated function NightVisionTimer()
 {
-	SetNightVision( !bNightVisionActive );	
+	local KFPawn_Human KFP;
+
+	KFP = KFPawn_Human(Pawn);
+	if( KFP != None )
+	{
+		SetNightVision( !bNightVisionActive );	
+		PlayFlashlightNVSounds( KFP, GetPerk().HasNightVision() );
+	}
 }
 
 /**
@@ -770,9 +866,9 @@ simulated function PlayFlashlightNVSounds( KFPawn_Human KFP, bool bPerkHasNightV
 {
 	if( bPerkHasNightVision && !KFP.bFlashlightOn )
 	{
-		bNightVisionActive ? KFP.PlaySoundBase( NightVisionOffEvent ) : KFP.PlaySoundBase( NightVisionOnEvent );
+		bNightVisionActive ? KFP.PlaySoundBase( NightVisionOnEvent ) : KFP.PlaySoundBase( NightVisionOffEvent );
 	}
-	else
+	else if( !bNightVisionActive )
 	{
 		KFP.bFlashlightOn ? KFP.PlaySoundBase( FlashlightOnEvent ) : KFP.PlaySoundBase( FlashlightOffEvent );
 	}
@@ -823,6 +919,36 @@ exec function ReloadRelease()
 	}
 }
 
+/** GBA_Reload_Gamepad */
+exec function GamepadReload()
+{
+	SetTimer(GamepadButtonHoldTime, false, nameof(GamepadReloadTimer), self);
+}
+
+/** GBA_Reload_Gamepad */
+function GamepadReloadTimer()
+{
+	QuickHeal();
+}
+
+/** GBA_Reload_Gamepad */
+exec function GamepadReloadRelease()
+{
+	if ( IsTimerActive(nameof(GamepadReloadTimer), self) )
+	{
+		if ( Pawn != None )
+		{
+			Pawn.StartFire(2);
+
+			// It's unusual to kill a pending fire on the same frame since it
+			// has to replicate.  Seems to work well enough for reload.
+			Pawn.StopFire(2);
+		}
+
+		ClearTimer(nameof(GamepadReloadTimer), self);
+	}
+}
+
 /** GBA_Grenade */
 exec function Grenade()
 {
@@ -838,6 +964,29 @@ exec function GrenadeRelease()
 	if ( Pawn != None )
 	{
 		Pawn.StopFire(4);
+	}
+}
+
+/** GBA_Grenade_Gamepad */
+exec function GamepadGrenade()
+{
+	local Weapon W;
+
+	if ( Pawn != None )
+	{
+		if ( bGamepadWeaponSelectOpen )
+		{
+			W = MyGFxHUD.WeaponSelectWidget.GetSelectedWeapon();
+			if ( W != None )
+			{
+				ServerThrowOtherWeapon(W);
+				//ThrowWeapon();
+			}
+		}
+		else
+		{
+			Grenade();
+		}
 	}
 }
 
@@ -934,6 +1083,30 @@ exec function SelectPrevWeapon()
 	}
 }
 
+/** Equips the previous weapon in the inventory chain */
+exec function SelectLastWeapon()
+{
+	local KFInventoryManager KFIM;
+	local KFWeapon KFW;
+
+	if( Pawn != none )
+	{
+    	// Don't switch weapons if the current weapon prevents it
+        KFW = KFWeapon(Pawn.Weapon);
+    	if ( KFW != None && !KFW.CanSwitchWeapons())
+    	{
+    		return;
+    	}
+
+		KFIM = KFInventoryManager( Pawn.InvManager );
+		if ( KFIM != None )
+		{
+			KFIM.SwitchToLastWeapon();
+			KFIM.ShowAllHUDGroups();
+		}
+	}
+}
+
 /** Weapon select button for controllers
  * Tap: Equip last weapon
  * Hold: Open gamepad weapon select UI
@@ -980,7 +1153,12 @@ exec function ReleaseGamepadWeaponSelect()
 		    // On button tap, cycle weapons
 		    if (IsTimerActive(nameof(GamepadWeaponMenuTimer), self))
 		    {
-			    NextWeapon();
+		    	// once per match show hint for the hold function
+		    	if ( bShowGamepadWeaponSelectHint )
+		    	{
+		    		ReceiveLocalizedMessage( class'KFLocalMessage_Interaction', IMT_GamepadWeaponSelectHint);
+		    	}
+		    	KFINventoryManager(Pawn.InvManager).GamePadNextWeapon();
 			    ClearTimer(nameof(GamepadWeaponMenuTimer), self);
 		    }
 		    // Switch to selected weapon
@@ -990,6 +1168,9 @@ exec function ReleaseGamepadWeaponSelect()
 			    KFIM.SetCurrentWeapon(KFIM.PendingWeapon);
 		    }
 		}
+
+		// first time hint only
+		bShowGamepadWeaponSelectHint = false;
 	}
 }
 
@@ -1124,7 +1305,7 @@ exec function GamepadDpadLeft()
 	}
 	else
 	{
-		ToggleFlashlight();
+		ShowVoiceComms();
 	}
 }
 
@@ -1144,7 +1325,7 @@ exec function GamepadDpadDown()
 	}
 	else
 	{
-		QuickHeal();
+		ToggleFlashlight();
 	}
 }
 
@@ -1168,11 +1349,20 @@ exec function GamepadDpadRight()
 	}
 }
 
-exec function GamepadDpadRightRelease()
+/** Implementation for pressing/holding D-pad up
+  * TAP: throw dosh / select weapon group (if weapon select UI is active)
+  * HOLD: throw weapon
+  */
+exec function GamepadDpadUp()
 {
-	if( !bGamepadWeaponSelectOpen )
+	if( bGamepadWeaponSelectOpen )
 	{
-		HideVoiceComms();
+		SwitchWeaponGroup( 3 );
+	}
+	else
+	{
+		TossMoney();
+		//SetTimer( GamepadButtonHoldTime, false, nameof(GamepadDpadUpTimer), self );
 	}
 }
 
@@ -1191,44 +1381,6 @@ exec function HideVoiceComms()
 		SetCinematicMode(false, false, false, false, true, false);
 		MyGFxHUD.ShowVoiceComms(false);
 	}
-}
-
-/** Implementation for pressing/holding D-pad up
-  * TAP: throw dosh / select weapon group (if weapon select UI is active)
-  * HOLD: throw weapon
-  */
-exec function GamepadDpadUp()
-{
-	if( bGamepadWeaponSelectOpen )
-	{
-		SwitchWeaponGroup( 3 );
-	}
-	else
-	{
-		SetTimer( GamepadButtonHoldTime, false, nameof(GamepadDpadUpTimer), self );
-	}
-}
-
-/** Throw dosh if button was tapped */
-exec function GamepadDpadUpRelease()
-{
-	local bool bButtonWasHeld;
-
-	if( !bGamepadWeaponSelectOpen )
-	{
-		bButtonWasHeld = !IsTimerActive( nameof(GamepadDpadUpTimer), self );
-		if( !bButtonWasHeld )
-		{
-			TossMoney();
-			ClearTimer( nameof(GamepadDpadUpTimer), self );
-		}
-	}
-}
-
-/** Throw weapon if button was held */
-function GamepadDpadUpTimer()
-{
-	ThrowWeapon();
 }
 
 exec function OnVoteYesPressed()
@@ -1324,11 +1476,6 @@ exec function StopVoiceChat()
  * @name Aim assists
 ********************************************************************************************* */
 
-simulated event PostBeginPlay()
-{
-    ViewAccel_CurrMutliplier = 1.0;
-}
-
 /**
  * Overridden to add hooks for view acceleration, target friction, auto centering, controller sensitivity.
  */
@@ -1337,10 +1484,12 @@ function PreProcessInput( float DeltaTime )
 	local KFWeapon KFW;
 	local float FOVScale;
 
+	local float ScaledJoyMagnitude;
+
 	Super.PreProcessInput(DeltaTime);
 	//`log( " RawJoyUp: " $ RawJoyUp $ " RawJoyRight: " $ RawJoyRight );
 
-	if( Pawn == none )
+	if( Pawn == none || Pawn.Weapon == none )
 	{
 		return;
 	}
@@ -1348,28 +1497,12 @@ function PreProcessInput( float DeltaTime )
 	//`log( "bUsingGamepad: " $ bUsingGamepad );
 	// whenever a player uses a non Gamepad for input the input for that frame is set to:  bUsingGamepad=false  so we do not even attempt
 	// to do any input help
-	if (!bUsingGamepad)
-	{
-		return;
-	}
-
-	if( Pawn == none || Pawn.Weapon == none )
+	if ( !bUsingGamepad )
 	{
 		return;
 	}
 
 	KFW = KFWeapon(Pawn.Weapon);
-
-	// Autotarget if the trigger has been pulled, even if its only be slightly released
-    if( !bAimTriggerPulled && aLeftAnalogTrigger > 0.99 )
-	{
-        bAimTriggerPulled = true;
-        NewAutoTarget();
-	}
-	else if( bAimTriggerPulled && aLeftAnalogTrigger <= 0.9 )
-    {
-        bAimTriggerPulled = false;
-    }
 
     if( KFW.ShouldOwnerWalk() )
     {
@@ -1382,38 +1515,68 @@ function PreProcessInput( float DeltaTime )
 		UpdateExtendedSprint( DeltaTime );
     }
 
-	// Accelerate turning rate if we did not apply friction
-	// we have a "slowdown" acceleration so we need to do that first
-	if( bViewAccelerationEnabled )
+    // Use these instead of aTurn and aLookUp so that we can blend between previous and current frames to smooth them.
+    // Then set aTurn and aLookUp to the blended value.
+    CurrTurn = 0.f;
+	CurrLookup = 0.f;
+
+	// Baseline rotation control, taking stick sensitivity into account
+	// Uses magnitude of input for both instead of individual axes, which makes diagonals feel wonky
+	if( RawJoyLookMagnitude > 0.f )
+	{
+		ScaledJoyMagnitude = EvalInterpCurveFloat(LookSensitivityScaleCurve, Abs(RawJoyLookMagnitude));
+		CurrTurn = ScaledJoyMagnitude * (RawJoyLookRight/RawJoyLookMagnitude);
+		CurrLookUp = ScaledJoyMagnitude * (RawJoyLookUp/RawJoyLookMagnitude);
+	}
+
+	// sets CurrTurn/CurrLookUp directly if applicable, does not multiply
+	if( CanApplyViewAcceleration() )
 	{
 		ApplyViewAcceleration( DeltaTime );
 	}
-
-	if( bTargetFrictionEnabled )
+	else
 	{
-		if( KFW != none )
-		{
-			bAppliedTargetFriction = FALSE; // clear the friction flag (we do it here so applyViewAcceleration has a chance to use it from the time before)
-			ApplyTargetFriction( DeltaTime, KFW );
-		}
+		ViewAccel_BlendTimer = 0;
+	}
+
+	if( IsAimAssistFrictionEnabled() && KFW != none )
+	{
+		ApplyTargetFriction( DeltaTime, KFW );
 	}
 
 	// Apply FOV zoomed/iron sight sensitivity scaling
     FOVScale = GetFOVAdjustedControllerSensitivity();
 
-	aTurn *= FOVScale;
-	aLookUp *= FOVScale;
+	CurrTurn *= FOVScale;
+	CurrLookUp *= FOVScale;
 
 	// Globally scale the turning and up/down sensitivity
-    aTurn *= HorizontalSensitivityScale;
-	aLookUp *= VerticalSensitivityScale;
+    CurrTurn *= GamepadSensitivityScale;
+	CurrLookUp *= GamepadSensitivityScale;
 
-	// This will apply the sensitivity scaling to the controller inputs based on a curve
-	// NOTE:  once we have this we may not want to apply if we bAppliedTargetFriction
-	aTurn *= EvalInterpCurveFloat(SensitivityScaleCurve, Abs(RawJoyLookRight));
-	aLookUp *= EvalInterpCurveFloat(SensitivityScaleCurve, Abs(RawJoyLookUp));
+	// be less sensitive while sprinting
+	if( KFPawn(Pawn) != none && KFPawn(Pawn).bIsSprinting )
+	{
+		CurrTurn *= SprintingSensitivityScale;
+		CurrLookUp *= SprintingSensitivityScale;
+	}
 
 	//`log( "aTurn: " $ aTurn $ " aLookUp: " $ aLookUp $ " DeltaTime: " $ DeltaTime );
+
+	if( bViewSmoothingEnabled )
+	{
+		// sets CurrTurn/CurrLookUp directly if applicable, does not multiply
+		ApplyViewSmoothing( DeltaTime );
+	}
+
+	aTurn = CurrTurn;
+	aLookUp = CurrLookUp;
+
+	//`log("aTurn In: "$RawJoyLookRight$"; aTurn Out: "$aTurn$"; aLookUp In: "$RawJoyLookUp$"; aLookUp Out: "$aLookUp$"; RawJoyLookMag: "$RawJoyLookMagnitude);
+
+	//`log("PrevTurn: "$PrevTurn$"; aTurn: "$aTurn$"; CurrTurn: "$CurrTurn$"; PrevLookUp: "$PrevLookUp$"; aLookUp: "$aLookUp$"; CurrLookUp: "$CurrLookUp);
+	PrevTurn = aTurn;
+	PrevLookUp = aLookUp;
 }
 
 /** Called from PreProcessInput when bExtendedSprinting=TRUE */
@@ -1450,7 +1613,14 @@ function UpdateExtendedSprint( float DeltaTime )
 /** Returns true if we are pressing the joystick in a direction */
 function bool IsDirectingJoyStick(float Threshold)
 {
-    if( (Abs(RawJoyUp) + Abs(RawJoyRight)) > Threshold )
+	local vector vAnalog;
+
+	// Take 2d vector mag to get (more) circular threshold. Inputs don't make an
+	// exact circle however. They are wide at diagonals and vary by hardware.
+	vAnalog.x = RawJoyRight;
+	vAnalog.y = RawJoyUp;
+
+    if( VSize2d(vAnalog) > Threshold )
     {
     	return true;
     }
@@ -1458,108 +1628,256 @@ function bool IsDirectingJoyStick(float Threshold)
 }
 
 /**
- * This will scale the player's rotation speed depending on the location of their thumbstick and how
- * long they have held it there.
+ * This will scale the player's rotation speed depending on the location of their thumbstick. Framerate independent.
  **/
 function ApplyViewAcceleration( float DeltaTime )
 {
-	//`log( "ahh: " $ square(Abs(RawJoyLookRight)) + square(Abs(RawJoyLookUp/0.75)) $ " RawJoyLookRight: " $ RawJoyLookRight $ " RawJoyLookUp: " $ RawJoyLookUp );
-
-    // If above threshold, accelerate Yaw turning rate (e.g. when you slam the thumbstick to the farthest position)
-	if( ( Abs(aTurn) > ViewAccel_YawThreshold ) ||  ( ( square(Abs(RawJoyLookRight) + square(Abs(RawJoyLookUp/0.75))) ) > ViewAccel_DiagonalThreshold )
-		)
+	ViewAccel_BlendTimer += DeltaTime;
+	if( ViewAccel_BlendTimer >= ViewAccel_BlendTime )
 	{
-		 // if we are not targeting someone.  (i.e. in the heat of battle of circle straffing you want to be JAMMED to the edge as you are spazzing out.  but are targeting and fighting so you don't want to flip around all speedy )
-		if( ( ViewAccel_TimeHeld > ViewAccel_TimeToHoldBeforeFastAcceleration )
-			&& ( !bAppliedTargetFriction )
-			)
+		ViewAccel_BlendTimer = ViewAccel_BlendTime;
+	}
+
+	if( CurrTurn > 0 )
+	{
+		CurrTurn = Lerp( CurrTurn, ViewAccel_MaxTurnSpeed, ViewAccel_BlendTimer / ViewAccel_BlendTime );
+	}
+	else
+	{
+		CurrTurn = Lerp( CurrTurn, -ViewAccel_MaxTurnSpeed, ViewAccel_BlendTimer / ViewAccel_BlendTime );
+	}
+}
+
+function bool CanApplyViewAcceleration()
+{
+	if( !bViewAccelerationEnabled )
+	{
+		return false;
+	}
+
+	// don't accelerate in iron sights
+	if( Pawn == none || KFWeapon(Pawn.Weapon) == none || KFWeapon(Pawn.Weapon).bUsingSights )
+	{
+		return false;
+	}
+
+	// only accelerate if the right stick is within certain bounds
+	if( RawJoyLookMagnitude < ViewAccel_JoyMagThreshold || Abs(RawJoyLookUp) > ViewAccel_JoyPitchThreshold )
+	{
+		return false;
+	}
+
+	return true;
+}
+
+/** Whether we're applying view acceleration (turn assist) */
+function bool ApplyingViewAcceleration()
+{
+	return ViewAccel_BlendTimer > 0;
+}
+
+/** Blends between last frame's look speed and this frame's, using MaxAccel as a constraint. Framerate independent. */
+function ApplyViewSmoothing( float DeltaTime )
+{
+	local float MaxAccel, MaxDecel;
+
+	// Only smooth values on the base sensitivity curve. Don't smooth once (if) view acceleration kicks in.
+	if( PrevTurn <= LookSensitivityScaleCurve.Points[LookSensitivityScaleCurve.Points.Length-1].OutVal )
+	{
+		MaxAccel = ViewSmoothing_MaxAccel * DeltaTime;
+		MaxDecel = ViewSmoothing_MaxDecel * DeltaTime;
+
+		if( (CurrTurn >= 0 && PrevTurn < 0) || (CurrTurn <= 0 && PrevTurn > 0) )
 		{
-			ViewAccel_CurrMutliplier += ( ViewAccel_RampSpeed ) ;
-			aTurn *= FMin( ViewAccel_CurrMutliplier, ViewAccel_MaxTurnSpeed );  // we need to always be at least a 1.0f here or we will go slower and hitch
+			CurrTurn = PrevTurn + FClamp(CurrTurn - PrevTurn, -MaxDecel, MaxDecel);
 		}
 		else
 		{
-			ViewAccel_CurrMutliplier = Abs(aTurn);
-			ViewAccel_TimeHeld += DeltaTime;
+			CurrTurn = PrevTurn + FClamp(CurrTurn - PrevTurn, -MaxAccel, MaxAccel);
 		}
-	}
-	// we are doing a non slam to the edge movement
-	else
-	{
-		// reset
-		ViewAccel_CurrMutliplier = 1.0;
-		ViewAccel_TimeHeld = 0;
+
+		if( (CurrLookUp >= 0 && PrevLookUP < 0) || (CurrLookUp <= 0 && PrevLookUP > 0) )
+		{
+			CurrLookUp = PrevLookUP + FClamp(CurrLookUp - PrevLookUP, -MaxDecel, MaxDecel);
+		}
+		else
+		{
+			CurrLookUp = PrevLookUP + FClamp(CurrLookUp - PrevLookUP, -MaxAccel, MaxAccel);
+		}
 	}
 }
 
 /**
  * Begin an AutoTargeting adhesion cycle
- * TODO: This is pretty messy - clean it up - Ramm
  **/
 function InitAutoTarget()
 {
-    local Vector	CamLoc;
+    local Vector	CamLoc, X;
 	local Rotator	CamRot;
-	local Vector	X, Y, Z;
-	local float     UsedTargetAngle;
+	local float     UsedTargetAngle, MaxDistance;
 
 	// No autotargeting without a gamepad!
-    if (!bUsingGamepad)
+    if ( !bUsingGamepad || Pawn == None || Pawn.Weapon == None )
 	{
 		return;
 	}
 
+	if( !IsAimAssistAutoTargetEnabled() )
+	{
+		return;
+	}
+
+    // auto-target cooldown (in real seconds)
+    if ( (WorldInfo.RealTimeSeconds - LastAutoTargetTime) < AutoTargetCooldown )
+    {
+    	return;
+    }
+
+    if( KFWeapon(Pawn.Weapon) == none )
+    {
+    	return;
+    }
+
+    AutoTargetTimeLeft = KFWeapon(Pawn.Weapon).default.ZoomInTime * 0.85;
+	LastAutoTargetTime = WorldInfo.RealTimeSeconds;
+
 	// Get camera location/rotation
 	GetPlayerViewPoint( CamLoc, CamRot );
-	GetAxes( CamRot, X, Y, Z );
 
 	// look for a new target
-	CurrentAutoTarget = GetTargetAdhesionFrictionTarget( 50000.0/*W.TargetAdhesionDistanceMax*/, CamLoc, CamRot, AutoTargetAngleCurve );
-
-    AutoTargetInitialLocation = GetAutoTargetLocation(CurrentAutoTarget, CamLoc);
+	MaxDistance = AutoTargetAngleCurve.Points[AutoTargetAngleCurve.Points.Length-1].InVal;
+	CurrentAutoTarget = GetTargetAdhesionFrictionTarget( MaxDistance, CamLoc, CamRot, AutoTargetAngleCurve );
+	if (CurrentAutoTarget != None)
+	{
+		CurrentAutoTargetBone = '';
+		AutoTargetInitialLocation = GetBestAutoTargetLocation(CurrentAutoTarget, CurrentAutoTargetBone);
+	}
 
 	if( bDebugAutoTarget )
 	{
 	   FlushPersistentDebugLines();
 
+	   X = vector(CamRot);
 	   UsedTargetAngle = EvalInterpCurveFloat(AutoTargetAngleCurve, VSize(CamLoc - AutoTargetInitialLocation));
-
        DrawDebugCone(CamLoc + X * 5,X,500.0, Acos(UsedTargetAngle), Acos(UsedTargetAngle),16,MakeColor(255,0,0,255),true);
        DrawDebugCone(CamLoc + X * 5,X,250.0, Acos(AutoTargetAngleCurve.Points[0].OutVal), Acos(AutoTargetAngleCurve.Points[0].OutVal),16,MakeColor(0,255,0,255),true);
-       DrawDebugCone(CamLoc + X * 5,X,1000.0, Acos(AutoTargetAngleCurve.Points[AutoTargetAngleCurve.Points.Length - 1].OutVal), Acos(AutoTargetAngleCurve.Points[AutoTargetAngleCurve.Points.Length - 1].OutVal),16,MakeColor(255,255,0,255),true);
+       DrawDebugCone(CamLoc + X * 5,X,AutoTargetAngleCurve.Points[AutoTargetAngleCurve.Points.Length - 1].InVal, Acos(AutoTargetAngleCurve.Points[AutoTargetAngleCurve.Points.Length - 1].OutVal), Acos(AutoTargetAngleCurve.Points[AutoTargetAngleCurve.Points.Length - 1].OutVal),16,MakeColor(0,255,0,255),true);
+
+       UsedTargetAngle = EvalInterpCurveFloat(AutoTargetWeakspotCurve, VSize(CamLoc - AutoTargetInitialLocation));
+       DrawDebugCone(CamLoc + X * 5,X,500.0, Acos(UsedTargetAngle), Acos(UsedTargetAngle),16,MakeColor(255,0,0,255),true);
+       DrawDebugCone(CamLoc + X * 5,X,250.0, Acos(AutoTargetWeakspotCurve.Points[0].OutVal), Acos(AutoTargetWeakspotCurve.Points[0].OutVal),16,MakeColor(255,255,0,255),true);
+       DrawDebugCone(CamLoc + X * 5,X,AutoTargetWeakspotCurve.Points[AutoTargetWeakspotCurve.Points.Length - 1].InVal, Acos(AutoTargetWeakspotCurve.Points[AutoTargetWeakspotCurve.Points.Length - 1].OutVal), Acos(AutoTargetWeakspotCurve.Points[AutoTargetWeakspotCurve.Points.Length - 1].OutVal),16,MakeColor(255,255,0,255),true);
 	}
 }
 
 /**
  * Returns the best location for auto targeting a pawn
  */
-function vector GetAutoTargetLocation(Pawn CheckTarget, vector CamLoc)
+function vector GetBestAutoTargetLocation(Pawn CheckTarget, out name outBoneName)
 {
-    local KFWeapon KFW;
+    local KFPawn KFP;
+    local array<name> WeakBones;
+    local array<name> NormalBones;
+    local vector TestLoc, CamLoc, CamDir, HitLoc, HitNorm;
+    local rotator CamRot;
+    local Actor HitActor;
+   	local TraceHitInfo HitInfo;
+    local int i;
 
     if( CheckTarget == none )
     {
         return vect(0,0,0);
     }
 
-    // Get the location from the pawn we're targeting if we can
-    if( KFPawn(CheckTarget) != none )
+   	KFP = KFPawn(CheckTarget);
+    if( KFP != none )
     {
-        return KFPawn(CheckTarget).GetAutoTargetLocation(CamLoc, Pawn);
+    	// Get the location from the pawn we're targeting if we can
+        KFP.GetAutoTargetBones(WeakBones, NormalBones);
+
+        // cone setup
+    	GetPlayerViewPoint( CamLoc, CamRot );
+		CamRot += WeaponBufferRotation;
+		CamDir = vector(CamRot);
+
+    	for(i = 0; i < WeakBones.Length; ++i)
+    	{
+    		TestLoc = KFP.Mesh.GetBoneLocation(WeakBones[i]);
+        	if ( !IsAutoTargetWithinCone(TestLoc, CamLoc, CamDir, AutoTargetWeakspotCurve) )
+        		continue; // test each weakspot bone
+
+    		HitActor = Pawn.Trace(HitLoc, HitNorm, TestLoc, CamLoc, TRUE, vect(0,0,0), HitInfo, TRACEFLAG_Bullet);
+			if( HitActor == none || HitActor == CheckTarget )
+			{
+				if (bDebugAutoTarget) LogInternal("Targeting P="$CheckTarget@"Bone="$WeakBones[i]);
+				outBoneName = WeakBones[i];
+				return TestLoc;
+			}
+   		}
+
+   		for(i = 0; i < NormalBones.Length; ++i)
+    	{
+    		TestLoc = KFP.Mesh.GetBoneLocation(NormalBones[i]);
+
+    		// No need to bother with cone check, since we're going to return some 
+    		// location anyway, use line trace to determine which.
+    		HitActor = Pawn.Trace(HitLoc, HitNorm, TestLoc, CamLoc, TRUE, vect(0,0,0), HitInfo, TRACEFLAG_Bullet);
+			if( HitActor == none || HitActor == CheckTarget )
+			{
+				if (bDebugAutoTarget) LogInternal("Targeting P="$CheckTarget@"Bone="$NormalBones[i]);
+				outBoneName = NormalBones[i];
+				return TestLoc;
+			}
+   		}
     }
 
-    KFW = KFWeapon(Pawn.Weapon);
+    // Slightly above center
+    outBoneName = '';
+    return CheckTarget.Location + CheckTarget.BaseEyeHeight * vect(0,0,0.5);
+}
 
-    //`log("Autotarget - found nothing - returning location");
-    if( KFW != None )
+/**
+ * Returns true if TargetLoc falls within a given view cone
+ */
+function bool IsAutoTargetWithinCone(vector TargetLoc, vector CamLoc, vector CamDir, const out InterpCurveFloat Curve)
+{
+	local float		DistToTarget, TargetRadius, TargetHeight;
+	local float     DotDiffToTarget;
+	local float     UsedTargetAngle;
+	local vector 	CamToTarget;
+	
+	// Figure out the distance from aim to target
+    CamToTarget = (TargetLoc - CamLoc);
+    if ( VSizeSq(CamToTarget) > Square(Curve.Points[Curve.Points.Length-1].InVal) )
     {
-        return CheckTarget.Location + KFW.TargetFrictionOffset;
+    	if (bDebugAutoTarget) LogInternal("Auto-target Cone Distance Exceeded Dist="$VSize(CamToTarget));
+    	return false;
     }
-    else
-    {
-        // Slightly above center
-        return CheckTarget.Location + (vect(0,0,32.0));
-    }
+
+	// Figure out the angle to the target
+	DistToTarget = VSize(CamToTarget);
+	DotDiffToTarget = Normal(TargetLoc - CamLoc) dot CamDir;
+	UsedTargetAngle = EvalInterpCurveFloat(Curve, DistToTarget);
+
+	if( bDebugAutoTarget )
+	{
+		// Grab collision info from target
+		CurrentAutoTarget.GetBoundingCylinder( TargetRadius, TargetHeight );
+
+		DrawDebugCylinder(AutoTargetInitialLocation+vect(0,0,5), AutoTargetInitialLocation-vect(0,0,5), 10, 12, 255, 0, 0);
+        DrawDebugCylinder(CurrentAutoTarget.Location+vect(0,0,1)*TargetHeight, CurrentAutoTarget.Location-vect(0,0,1)*TargetHeight, TargetRadius, 12, 0, 255, 0);
+
+        //`log(GetFuncName()@"DotDiffToTarget = "$DotDiffToTarget$"  AutoTargetAngle = "$UsedTargetAngle);
+	}
+
+	// Make sure the target is in front of us and close enough
+	if( UsedTargetAngle > DotDiffToTarget )
+	{
+		if (bDebugAutoTarget) LogInternal("Auto-target Cone Angle Exceeded by "$UsedTargetAngle - DotDiffToTarget);
+		return false;
+	}
+
+    return true;
 }
 
 /**
@@ -1568,88 +1886,80 @@ function vector GetAutoTargetLocation(Pawn CheckTarget, vector CamLoc)
  **/
 function ApplyAutoTarget( float DeltaTime, KFWeapon W, out int out_YawRot, out int out_PitchRot )
 {
-	local Vector	RealTargetLoc, CamToTarget, CamLoc;
-	local Vector	X, Y, Z;
-	local Rotator	CamRot, DeltaRot, CamRotWithFreeAim;
-	local float		DistToTarget, AdhesionAmtY, AdhesionAmtZ, TargetRadius, TargetHeight;
+	local Vector	RealTargetLoc,  CamLoc, CamDir;
+	local Rotator	CamRot, DeltaRot, RotToTarget;
 	local int		AdjustY, AdjustZ;
-	local float     DotDiffToTarget;
-	local float     UsedTargetAngle;
+	local float     BlendTimeToGo;
 
-	// No autotargeting without a gamepad!
-    if (!bUsingGamepad)
+	BlendTimeToGo = AutoTargetTimeLeft;
+    AutoTargetTimeLeft -= DeltaTime;
+
+	if( !bUsingGamepad || CurrentAutoTarget == None || AutoTargetTimeLeft <= 0 )
 	{
 		return;
 	}
 
-	if( W == None || CurrentAutoTarget == None )
-	{
-		return;
-	}
-
-	// Setup some initial data
-//    CamLoc = CalcViewLocation;
-//	CamRot = CalcViewRotation;
-	// using this at this point here causes mega hitches to occur.  As the correct values have not been updated yet this early
-	GetPlayerViewPoint( CamLoc, CamRot );
-	CamRotWithFreeAim = CamRot + WeaponBufferRotation;
-	GetAxes( CamRotWithFreeAim, X, Y, Z );
-
-	// If the target is still alive or has its head
+	// If the target is still alive and has its head
 	if( CurrentAutoTarget != none && CurrentAutoTarget.Health > 0 &&
         (KFPawn_Monster(CurrentAutoTarget) == none || !KFPawn_Monster(CurrentAutoTarget).bIsHeadless) )
 	{
 		RealTargetLoc = AutoTargetInitialLocation;
 
-		if( bDebugAutoTarget )
+		// If the target supplied a bone name, try to follow it
+		if ( CurrentAutoTargetBone != '' )
 		{
-    		// Grab collision info from target
-    		CurrentAutoTarget.GetBoundingCylinder( TargetRadius, TargetHeight );
-
-			DrawDebugCylinder(AutoTargetInitialLocation+vect(0,0,5), AutoTargetInitialLocation-vect(0,0,5), 10, 12, 255, 0, 0);
-            DrawDebugCylinder(CurrentAutoTarget.Location+vect(0,0,1)*TargetHeight, CurrentAutoTarget.Location-vect(0,0,1)*TargetHeight, TargetRadius, 12, 0, 255, 0);
+			RealTargetLoc = CurrentAutoTarget.Mesh.GetBoneLocation(CurrentAutoTargetBone);
 		}
 
-		// Figure out the angle to the target
-        CamToTarget = (RealTargetLoc - CamLoc);
-        DotDiffToTarget = Normal(RealTargetLoc - CamLoc) dot Normal(Vector(CamRotWithFreeAim));
+        // cone setup
+    	GetPlayerViewPoint( CamLoc, CamRot );
+		CamRot += WeaponBufferRotation;
+		CamDir = vector(CamRot);
 
-		// Figure out the distance from aim to target
- 		DistToTarget = VSize(CamToTarget);
-
-    	UsedTargetAngle = EvalInterpCurveFloat(AutoTargetAngleCurve, DistToTarget);
-
-    	if( bDebugAutoTarget )
-    	{
-            LogInternal(GetFuncName()@"DotDiffToTarget = "$DotDiffToTarget$"  AutoTargetAngle = "$UsedTargetAngle);
-    	}
-
-		// Make sure the target is in front of us and close enough
-		if( DotDiffToTarget > UsedTargetAngle && DistToTarget <= 50000.0)
+		// Make sure the target is still front of us and close enough
+		if ( !IsAutoTargetWithinCone(RealTargetLoc, CamLoc, CamDir, AutoTargetAngleCurve) )
 		{
-			DeltaRot.Yaw	= Rotator(RealTargetLoc - CamLoc).Yaw	- CamRotWithFreeAim.Yaw;
-			DeltaRot.Pitch	= Rotator(RealTargetLoc - CamLoc).Pitch	- CamRotWithFreeAim.Pitch;
-			DeltaRot = Normalize( DeltaRot );
+			if (bDebugAutoTarget) LogInternal("ApplyAutoTarget target lost"@CurrentAutoTarget);
+			return;
+		}
 
-			// Lateral adhesion
-			if(	DeltaRot.Yaw != 0 )
+		RotToTarget     = Rotator(RealTargetLoc - CamLoc);
+		DeltaRot.Yaw	= RotToTarget.Yaw	- CamRot.Yaw;
+		DeltaRot.Pitch	= RotToTarget.Pitch	- CamRot.Pitch;
+		DeltaRot = Normalize( DeltaRot );
+
+		// Lateral adhesion
+		if(	DeltaRot.Yaw != 0 )
+		{
+			// Amount we want to change by.
+			if ( BlendTimeToGo > DeltaTime )
 			{
-				AdhesionAmtY = AutoTargetRotationRate;
-
-				// Apply the adhesion
-				AdjustY = DeltaRot.Yaw * (AdhesionAmtY * DeltaTime);
-				out_YawRot += AdjustY;
+				AdjustY = (DeltaRot.Yaw / BlendTimeToGo) * DeltaTime;
+			}
+			else
+			{
+				AdjustY = DeltaRot.Yaw;
 			}
 
-			// Vertical adhesion
-			if( DeltaRot.Pitch != 0 )
-			{
-				AdhesionAmtZ = AutoTargetRotationRate;
+			// Apply the adhesion
+			out_YawRot += AdjustY;
+		}
 
-				// Apply the adhesion
-				AdjustZ = DeltaRot.Pitch * (AdhesionAmtZ * DeltaTime);
-				out_PitchRot += AdjustZ;
+		// Vertical adhesion
+		if( DeltaRot.Pitch != 0 )
+		{
+			// Amount we want to change by.
+			if ( BlendTimeToGo > DeltaTime )
+			{
+				AdjustZ = (DeltaRot.Pitch / BlendTimeToGo) * DeltaTime;
 			}
+			else
+			{
+				AdjustZ = DeltaRot.Pitch;
+			}
+
+			// Apply the adhesion
+			out_PitchRot += AdjustZ;
 		}
 	}
 }
@@ -1681,7 +1991,8 @@ function ApplyForceLookAtPawn( float DeltaTime, out int out_YawRot, out int out_
 	// If the target is still alive
 	if( ForceLookAtPawn != none && ForceLookAtPawn.Health > 0 )
 	{
-		RealTargetLoc = GetAutoTargetLocation(ForceLookAtPawn, CamLoc);
+	    // Get the location from the pawn we're targeting if we can
+        RealTargetLoc = ForceLookAtPawn.GetAutoLookAtLocation(CamLoc, Pawn);
 
 		if( bDebugAutoTarget )
 		{
@@ -1739,12 +2050,11 @@ function ApplyForceLookAtPawn( float DeltaTime, out int out_YawRot, out int out_
  **/
 function ApplyTargetAdhesion( float DeltaTime, KFWeapon W, out int out_YawRot, out int out_PitchRot )
 {
-	local Vector	RealTargetLoc, TargetLoc, CamToTarget, AimLoc, CamLoc, ClosestY, ClosestZ;
-	local Vector	X, Y, Z;
-	local Rotator	CamRot, DeltaRot;
-	local float		DistToTarget, DistFromAimZ, DistFromAimY, AdhesionAmtY, AdhesionAmtZ, TargetRadius, TargetHeight, Pct;
-	local int		AdjustY, AdjustZ;
-	local Pawn	AdhesionTarget;
+	local Vector	CamLoc, X, Y, Z;
+	local Rotator	CamRot;
+	local float		DistToTarget, TargetRadius, TargetHeight, AdhesionScale;
+	local Pawn		AdhesionTarget;
+	local vector 	AdhesionTargetVel, AdhesionPawnVel, AdhesionTargetRelVel, AdhesionViewOffset;
 
 	// No adhesion without a gamepad!
     if (!bUsingGamepad)
@@ -1752,124 +2062,62 @@ function ApplyTargetAdhesion( float DeltaTime, KFWeapon W, out int out_YawRot, o
 		return;
 	}
 
-	if( W == None
-		|| !W.bTargetAdhesionEnabled
-		)
+	if( W == None || !W.bTargetAdhesionEnabled )
 	{
 		return;
 	}
 
-	// Setup some initial data
-	//Todo, maybe cache the values like UT3 - Ramm
-//	CamLoc = CalcViewLocation;
-//	CamRot = CalcViewRotation;
-	// using this at this point here causes mega hitches to occur.  As the correct values have not been updated yet this early
-	//Todo, maybe cache the values like UT3 - Ramm
     GetPlayerViewPoint( CamLoc, CamRot );
 	GetAxes( CamRot, X, Y, Z );
 
 	// attempt to use the friction target if available
 	AdhesionTarget = LastFrictionTarget;
-	if (AdhesionTarget == None || (WorldInfo.TimeSeconds - LastFrictionTargetTime) > W.TargetAdhesionTimeMax)
+	if( AdhesionTarget == None )
 	{
 		// otherwise look for a new target
 		AdhesionTarget = GetTargetAdhesionFrictionTarget( W.TargetAdhesionDistanceMax, CamLoc, CamRot, AdhesionAngleCurve );
 	}
 
-	// If still within adhesion time constraints, and the target is still alive
-	if( AdhesionTarget != None && AdhesionTarget.Health > 0
-        && (KFPawn_Monster(AdhesionTarget) == none || !KFPawn_Monster(AdhesionTarget).bIsHeadless))
+	if( AdhesionTarget == none )
 	{
-		// Grab collision info from target
+		// keep track of player location either way
+		AdhesionPawnLastLoc = Pawn.Location;
+		return;
+	}
+
+	if( AdhesionTarget.Health > 0 && KFPawn_Monster(AdhesionTarget) != none && !KFPawn_Monster(AdhesionTarget).bIsHeadless )
+	{
+		// Get yaw and pitch view offset from adhesiontarget
+		GetAimAssistViewOffsetFromTarget(CamLoc, CamRot, AdhesionTarget, AdhesionViewOffset, DistToTarget);
+
 		AdhesionTarget.GetBoundingCylinder( TargetRadius, TargetHeight );
 
-		// reduce the size a bit to allow adhesion to move the crosshair onto the character
-		TargetRadius *= 0.65f;
-		TargetHeight *= 0.65f;
-
-		RealTargetLoc = AdhesionTarget.Location + (W.TargetFrictionOffset >> CamRot);
-
-		if( bDebugTargetAdhesion )
+		// If the player's view is "on" the target, apply adhesion.
+		// Adhesion gently rotates the player away from the relative velocity direction of player and target
+		if( AdhesionViewOffset.Y <= TargetRadius && AdhesionViewOffset.Z <= TargetHeight )
 		{
-			DrawDebugCylinder(RealTargetLoc+vect(0,0,1)*TargetHeight, RealTargetLoc-vect(0,0,1)*TargetHeight, TargetRadius, 12, 0, 255, 0);
-		}
+			// Get target's velocity based on current and previous position (Velocity Actor member variable doesn't include Z). If current target is a new target, use 0 velocity
+			AdhesionTargetVel = (AdhesionTarget != LastAdhesionTarget) ? vect(0,0,0) : ((AdhesionTarget.Location - AdhesionTargetLastLoc) / DeltaTime);
 
-		// Make sure the target has some velocity
-		if( (W.TargetAdhesionTargetVelocityMin == 0.f || VSize(AdhesionTarget.Velocity) > W.TargetAdhesionTargetVelocityMin)
-			&& (W.TargetAdhesionPlayerVelocityMin == 0.f || VSize(Pawn.Velocity) > W.TargetAdhesionPlayerVelocityMin)
-			&& ((RealTargetLoc - CamLoc) DOT Vector(CamRot) > 0.f) )
-		{
-			// Figure out the distance from aim to target
-			CamToTarget = (RealTargetLoc - CamLoc);
-			DistToTarget = VSize(CamToTarget);
-			AimLoc = CamLoc + (X * DistToTarget);
+			// Get player's velocity based on current and previous position
+			AdhesionPawnVel = IsZero(AdhesionPawnLastLoc) ? vect(0,0,0) : ((Pawn.Location - AdhesionPawnLastLoc) / DeltaTime);
 
-			// Calculate the aim friction multiplier
-			// Y component
-			TargetLoc	 = RealTargetLoc;
-			TargetLoc.Z  = AimLoc.Z;
-			DistFromAimY = PointDistToLine(AimLoc,(TargetLoc - CamLoc),CamLoc, ClosestY );
-			ClosestY = TargetLoc + Normal(ClosestY - TargetLoc) * TargetRadius;
+			// Calculate relative velocity between player and target and scale by distance scale curve
+			AdhesionTargetRelVel = (AdhesionTargetVel - AdhesionPawnVel) * EvalInterpCurveFloat(W.TargetAdhesionDistanceScaleCurve, DistToTarget / W.TargetAdhesionDistanceMax);
 
-			// Z component
-			TargetLoc	 = RealTargetLoc;
-			TargetLoc.X  = AimLoc.X;
-			TargetLoc.Y  = AimLoc.Y;
-			DistFromAimZ = PointDistToLine(AimLoc,(TargetLoc - CamLoc),CamLoc, ClosestZ);
-			ClosestZ	 = TargetLoc + Normal(ClosestZ - TargetLoc) * TargetRadius;
+			AdhesionScale = AdhesionFactor * DeltaTime;
 
-			DeltaRot.Yaw	= Rotator(ClosestY - CamLoc).Yaw	- CamRot.Yaw;
-			DeltaRot.Pitch	= Rotator(ClosestZ - CamLoc).Pitch	- CamRot.Pitch;
-			DeltaRot = Normalize( DeltaRot );
-
-			// Make sure it is still within valid distance AND
-			// outside the cylinder in at least one direction AND
-			// target can be seen
-			if( ( DistToTarget <= W.TargetAdhesionDistanceMax )
-				&& (DistFromAimY > TargetRadius || DistFromAimZ > TargetHeight)
-				&& LineOfSightTo( AdhesionTarget, CamLoc ) // find a way no do this line check
-				)
-			{
-				// Lateral adhesion
-				if(	DistFromAimY > TargetRadius )
-				{
-					Pct = 1.f - (DistFromAimY-TargetRadius)/W.TargetAdhesionAimDistY;
-					if (Pct > 0.f)
-					{
-						// boost based on other gameplay things (distance or something)
-						// boost slightly when targeting
-						Pct = FMin(Pct, 0.8f);
-
-						AdhesionAmtY = GetRangeValueByPct(W.TargetAdhesionScaleRange, Pct);
-
-						// Apply the adhesion
-						AdjustY = DeltaRot.Yaw * (AdhesionAmtY * DeltaTime);
-						out_YawRot += AdjustY;
-					}
-				}
-
-				// Vertical adhesion
-				if( DistFromAimZ > TargetHeight )
-				{
-					Pct = 1.f - (DistFromAimZ-TargetHeight)/W.TargetAdhesionAimDistZ;
-					if (Pct > 0.f)
-					{
-						// boost based on other gameplay things (distance or something)
-						// boost slightly when targeting
-						Pct = FMin(Pct, 0.8f);
-
-						AdhesionAmtZ = GetRangeValueByPct(W.TargetAdhesionScaleRange, Pct);
-
-						//`log( "AdhesionAmtZ: " $ AdhesionAmtZ );
-
-						// Apply the adhesion
-						AdjustZ = DeltaRot.Pitch * (AdhesionAmtZ * DeltaTime);
-						out_PitchRot += AdjustZ;
-					}
-				}
-			}
+			// Delta rotation is based on velocity, distance, and angle to target
+			out_YawRot += (AdhesionTargetRelVel Dot Y) * AdhesionScale * EvalInterpCurveFloat(W.TargetAdhesionOffsetScaleCurve, AdhesionViewOffset.Y / TargetRadius);
+			out_PitchRot += (AdhesionTargetRelVel Dot Z) * AdhesionScale * EvalInterpCurveFloat(W.TargetAdhesionOffsetScaleCurve, AdhesionViewOffset.Z / TargetHeight);
 		}
 	}
+
+	// keep track of player and target locations
+	AdhesionTargetLastLoc = AdhesionTarget.Location;
+	AdhesionPawnLastLoc = Pawn.Location;
+
+	LastAdhesionTarget = AdhesionTarget;
 }
 
 /**
@@ -1881,11 +2129,9 @@ function ApplyTargetAdhesion( float DeltaTime, KFWeapon W, out int out_YawRot, o
 function ApplyTargetFriction( float DeltaTime, KFWeapon W )
 {
 	local Pawn FrictionTarget;
-	local Vector CamLoc, X, Y, Z, CamToTarget, AimLoc, TargetLoc, RealTargetLoc;
+	local Vector CamLoc, X, Y, Z, FrictionViewOffset;
  	local Rotator CamRot;
- 	local float DistToTarget, DistMultiplier, DistFromAimZ, DistFromAimY;
- 	local float TargetRadius, TargetHeight;
- 	local float FrictionMultiplier;
+ 	local float DistToTarget, TargetRadius, TargetHeight, FrictionMultiplier;
 
 	//	local float Time;
 	//	CLOCK_CYCLES(time);
@@ -1896,107 +2142,66 @@ function ApplyTargetFriction( float DeltaTime, KFWeapon W )
 		return;
 	}
 
-	// Setup some initial data
-	// TODO: Todo, maybe cache the values like UT3 - Ramm
-//	CamLoc = CalcViewLocation;
-//	CamRot = CalcViewRotation;
-	// using this at this point here causes mega hitches to occur.  As the correct values have not been updated yet this early
-	// Todo, maybe cache the values like UT3 - Ramm
     GetPlayerViewPoint( CamLoc, CamRot );
 	GetAxes( CamRot, X, Y, Z );
 
 	// Look for a friction target
 	FrictionTarget = GetTargetAdhesionFrictionTarget( W.TargetFrictionDistanceMax, CamLoc, CamRot, FrictionAngleCurve );
 
-	// If we have a valid friction target
-	if( FrictionTarget != None )
+	if( FrictionTarget != none )
 	{
-		//`log( "Friction Target: " $ FrictionTarget );
-		RealTargetLoc = FrictionTarget.Location + ( W.TargetFrictionOffset >> CamRot );
-		CamToTarget = ( RealTargetLoc - CamLoc );
-		DistToTarget = VSize(CamToTarget);
-		AimLoc = CamLoc + ( X * DistToTarget );
+		// Get yaw and pitch view offset from FrictionTarget
+		GetAimAssistViewOffsetFromTarget(CamLoc, CamRot, FrictionTarget, FrictionViewOffset, DistToTarget);
 
-		// Grab collision info from target
 		FrictionTarget.GetBoundingCylinder( TargetRadius, TargetHeight );
 
-		// Calculate the aim friction multiplier
-		// Y component
-		TargetLoc	 = RealTargetLoc;
-		TargetLoc.Z  = AimLoc.Z;
-		DistFromAimY = PointDistToLine(AimLoc,(TargetLoc - CamLoc),CamLoc);
-
-		// Z component
-		TargetLoc	 = RealTargetLoc;
-		TargetLoc.X  = AimLoc.X;
-		TargetLoc.Y  = AimLoc.Y;
-		DistFromAimZ = PointDistToLine(AimLoc,(TargetLoc - CamLoc),CamLoc);
-
-		// Calculate the distance multiplier
-		DistMultiplier = 0.f;
-		//`log( " TargetFrictionDistanceMin: " $ W.TargetFrictionDistanceMin  $ " TargetFrictionDistanceMax: " $ W.TargetFrictionDistanceMax $ " DistToTarget: " $ DistToTarget );
-
-		if( DistToTarget >= W.TargetFrictionDistanceMin
-			&& DistToTarget <= W.TargetFrictionDistanceMax
-			)
+		// If the player's view is "on" the target, apply friction.
+		// Friction slows the player's rotation when player's view is "on" the target
+		if( FrictionViewOffset.Y <= TargetRadius && FrictionViewOffset.Z <= TargetHeight )
 		{
-			if( DistToTarget <= W.TargetFrictionDistancePeak )
+			FrictionMultiplier = FrictionScale;
+
+			// scale friction by distance and yaw offset to target
+			FrictionMultiplier *= EvalInterpCurveFloat(W.TargetFrictionDistanceScaleCurve, DistToTarget / W.TargetFrictionDistanceMax);
+			FrictionMultiplier *= EvalInterpCurveFloat(W.TargetFrictionOffsetScaleCurve, FrictionViewOffset.Y / TargetRadius);
+
+			// reduce friction if player is currently using view acceleration (turn assist)
+			if( ApplyingViewAcceleration() )
 			{
-				// Ramp up to peak
-				DistMultiplier = FClamp((DistToTarget - W.TargetFrictionDistanceMin)/(W.TargetFrictionDistancePeak - W.TargetFrictionDistanceMin),0.f,1.f);
-			}
-			else
-			{
-				// Ramp down from peak
-				DistMultiplier = FClamp(1.f - (DistToTarget - W.TargetFrictionDistancePeak)/(W.TargetFrictionDistanceMax - W.TargetFrictionDistancePeak),0.f,1.f);
+				FrictionMultiplier *= ViewAccelerationFrictionScale;
 			}
 
-    		if( bDebugTargetFriction )
-    		{
-    			LogInternal(GetFuncName()@"DistMultiplier: " $ DistMultiplier);
-			}
+			// Apply the friction
+			CurrTurn *= 1.f - FrictionMultiplier;
+			CurrLookUp *= 1.f - FrictionMultiplier;
 
-			// Scale target radius by distance
-			TargetRadius *= 1.f + (W.TargetFrictionPeakRadiusScale * DistMultiplier);
-			TargetHeight *= 1.f + (W.TargetFrictionPeakHeightScale * DistMultiplier);
-		}
-
-		if( bDebugTargetFriction )
-		{
-			DrawDebugCylinder(FrictionTarget.Location+vect(0,0,1)*TargetHeight, FrictionTarget.Location-vect(0,0,1)*TargetHeight, TargetRadius, 12, 255, 0, 0);
-		}
-		// this is used to reduce the target radius so that moving pawns have a smaller radius so that when we are tracking
-		// them the reticle doesn't stop outside of their body mass making it either impossible to hit them or making it look bad when
-		// shots do actually hit them
-//		if( ( VSize(FrictionTarget.Velocity) > 200 )
-//			&& ( W.GetZoomedState() == ZST_Zoomed )
-//			)
-//		{
-//			TargetRadius *= 0.05f;
-//		}
-
-		// If we should apply friction - must be within friction collision box
-		if( DistFromAimY < TargetRadius
-			&& DistFromAimZ < TargetHeight
-			)
-		{
-			// Calculate the final multiplier (only based on horizontal turn)
-			FrictionMultiplier = GetRangeValueByPct( W.TargetFrictionMultiplierRange, 1.f - (DistFromAimY/TargetRadius) );
-
-			if( FrictionMultiplier > 0.0f )
-			{
-				bAppliedTargetFriction = TRUE;
-
-				// Apply the friction
-				aTurn *= (1.f - FrictionMultiplier);
-				aLookUp *= (1.f - FrictionMultiplier);
-
-				// Keep the friction target for possible use with adhesion
-				LastFrictionTargetTime	= WorldInfo.TimeSeconds;
-				LastFrictionTarget		= FrictionTarget;
-			}
+			// Keep the friction target for possible use with adhesion
+			LastFrictionTargetTime	= WorldInfo.TimeSeconds;
+			LastFrictionTarget		= FrictionTarget;
 		}
 	}
+}
+
+/** Returns yaw and pitch offsets for a given location/orientation to a given actor's location. Also can return distance. */
+function GetAimAssistViewOffsetFromTarget( vector ViewLoc, rotator ViewRot, Actor Target, out vector Offset, optional out float Distance )
+{
+	local Vector	TargetLoc, CamToTarget, AimLoc;
+
+	CamToTarget = Target.Location - ViewLoc;
+	Distance = VSize(CamToTarget);
+	AimLoc = ViewLoc + vector(ViewRot) * Distance;
+
+	// Calculate the aim friction multiplier
+	// Y component
+	TargetLoc	 = Target.Location;
+	TargetLoc.Z  = AimLoc.Z;
+	Offset.Y = PointDistToLine( AimLoc, (TargetLoc - ViewLoc), ViewLoc );
+
+	// Z component
+	TargetLoc	 = Target.Location;
+	TargetLoc.X  = AimLoc.X;
+	TargetLoc.Y  = AimLoc.Y;
+	Offset.Z = PointDistToLine( AimLoc, (TargetLoc - ViewLoc), ViewLoc );
 }
 
 // Overridden to do custom FOV scaling, especially for weapons with 3d scopes
@@ -2022,7 +2227,7 @@ function float GetFOVAdjustedControllerSensitivity()
         }
 
 		if( UsedFOVAngle != DefaultFOV && bUsingSights )
-            FOVScale = UsedFOVAngle * 0.01333 * ZoomedSensitivityScalar; // 0.01333 = 1 / 75.0 - the default FOV
+            FOVScale = UsedFOVAngle * 0.01333 * GamepadZoomedSensitivityScale; // 0.01333 = 1 / 75.0 - the default FOV
         else
             FOVScale = 1.0;
 	}
@@ -2069,6 +2274,21 @@ exec function DebugTargetFriction()
 		bDebugTargetFriction = !bDebugTargetFriction;
 		ClientMessage( "bDebugTargetFriction is now: " $ bDebugTargetFriction );
 	}
+}
+
+function bool IsAimAssistFrictionEnabled()
+{
+	return bAimAssistEnabled && bTargetFrictionEnabled;
+}
+
+function bool IsAimAssistAdhesionEnabled()
+{
+	return bAimAssistEnabled && bTargetAdhesionEnabled;	
+}
+
+function bool IsAimAssistAutoTargetEnabled()
+{
+	return bAimAssistEnabled && bAutoTargetEnabled;
 }
 
 /*********************************************************************************************
@@ -2210,24 +2430,39 @@ defaultproperties
 {
    bRequiresPushToTalk=True
    bQuickWeaponSelect=True
+   bShowGamepadWeaponSelectHint=True
+   bAimAssistEnabled=True
+   bViewSmoothingEnabled=True
    bViewAccelerationEnabled=True
    bTargetFrictionEnabled=True
-   ZoomedSensitivityScalar=0.350000
+   bTargetAdhesionEnabled=True
+   bAutoTargetEnabled=True
+   bForceFeedbackEnabled=True
    GamepadButtonHoldTime=0.250000
-   SprintAnalogThreshold=0.900000
-   TimeBelowThresholdToStopSprint=0.050000
-   HorizontalSensitivityScale=1.000000
-   VerticalSensitivityScale=0.900000
-   ViewAccel_YawThreshold=0.990000
-   ViewAccel_DiagonalThreshold=0.990000
-   ViewAccel_TimeToHoldBeforeFastAcceleration=0.062500
-   ViewAccel_RampSpeed=0.007500
-   ViewAccel_MaxTurnSpeed=1.100000
-   SensitivityScaleCurve=(Points=(,(InVal=0.100000,OutVal=0.070000),(InVal=0.250000,OutVal=0.200000),(InVal=0.500000,OutVal=0.500000),(InVal=0.750000,OutVal=1.250000),(InVal=1.000000,OutVal=1.800000)))
-   AutoTargetRotationRate=35.000000
-   AutoTargetAngleCurve=(Points=((OutVal=0.800000),(InVal=2500.000000,OutVal=0.980000)))
+   SprintAnalogThreshold=0.700000
+   SkipCrouchAnalogThreshold=0.300000
+   TimeBelowThresholdToStopSprint=-1.000000
+   LookSensitivityScaleCurve=(Points=((ArriveTangent=0.500000,LeaveTangent=0.500000,InterpMode=CIM_CurveAuto),(InVal=0.800000,OutVal=0.600000,ArriveTangent=2.000000,LeaveTangent=2.000000,InterpMode=CIM_CurveAuto),(InVal=1.000000,OutVal=1.300000,ArriveTangent=8.000000,LeaveTangent=8.000000,InterpMode=CIM_CurveAuto)))
+   MoveSensitivityScaleCurve=(Points=((OutVal=0.300000,InterpMode=CIM_Constant),(InVal=0.300000,OutVal=0.300000),(InVal=0.900000,OutVal=1.000000)))
+   GamepadSensitivityScale=1.000000
+   SprintingSensitivityScale=0.675000
+   ZoomedSensitivityScale=0.350000
+   GamepadZoomedSensitivityScale=0.650000
+   ViewSmoothing_MaxAccel=25.000000
+   ViewSmoothing_MaxDecel=50.000000
+   ViewAccel_JoyMagThreshold=0.970000
+   ViewAccel_JoyPitchThreshold=0.400000
+   ViewAccel_MaxTurnSpeed=2.400000
+   ViewAccel_BlendTime=0.250000
+   FrictionScale=0.500000
    FrictionAngleCurve=(Points=(,(InVal=2500.000000)))
+   ViewAccelerationFrictionScale=0.850000
    AdhesionAngleCurve=(Points=((OutVal=0.950000),(InVal=2000.000000,OutVal=0.980000)))
+   AdhesionFactor=20.000000
+   AutoTargetTimeLeft=0.100000
+   AutoTargetAngleCurve=(Points=((OutVal=0.939700),(InVal=1500.000000,OutVal=0.984800),(InVal=6000.000000,OutVal=1.000000)))
+   AutoTargetWeakspotCurve=(Points=((OutVal=0.996200),(InVal=1000.000000,OutVal=0.999400),(InVal=2000.000000,OutVal=1.000000)))
+   AutoTargetCooldown=0.500000
    ForceLookAtPawnMinAngle=0.900000
    ForceLookAtPawnRotationRate=22.000000
    ForceLookAtPawnDampenedRotationRate=8.000000

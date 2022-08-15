@@ -13,10 +13,9 @@ defaultproperties
 {
     BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
     ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Metal'
-    FilterTypeUI=EFilterTypeUI.FT_Melee
     InventorySize=3
     GroupPriority=100
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Katana'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Katana'
     PlayerViewOffset=(X=2,Y=0,Z=0)
     AttachmentArchetype=KFWeaponAttachment'WEP_Katana_ARCH.Wep_Katana_3P'
     begin object name=MeleeHelper class=KFMeleeHelperWeapon

@@ -404,8 +404,10 @@ ConfirmString="SELECIONAR"
 MenuStrings[0]="PRINCIPAL"
 MenuStrings[1]="PRIVILÉGIO"
 MenuStrings[2]="ITENS"
-MenuStrings[3]="OPÇÕES"
-MenuStrings[4]="SAIR"
+MenuStrings[3]="INVENTORY"
+MenuStrings[4]="STORE"
+MenuStrings[5]="OPÇÕES"
+MenuStrings[6]="SAIR"
 
 ServerBrowserString="LISTA DE SERVIDORES"
 MatchmakingString="ENCONTRAR PARTIDAS"
@@ -464,7 +466,7 @@ SecondaryString="SECUNDÁRIO"
 [KFGFxWidget_KickVote]
 VoteKickString="Expulsar Jogador?"
 
-[KFGFxWidget_VoiceComms]
+[KFLocalMessage_VoiceComms]
 VoiceCommsOptionStrings[0]="SOLICITAR CURA"
 VoiceCommsOptionStrings[1]="SOLICITAR GRANA"
 VoiceCommsOptionStrings[2]="SOLICITAR AJUDA"
@@ -916,10 +918,10 @@ SonicResistance="Resistência Sônica"
 SonicResistanceDescription="Não consigo te ouvir! Reduz o dano que recebe de ataques Sônicos por 40%"
 
 Vampire="Vampiro"
-VampireDescription="Pequenas sanguessugas: Nanotecnologia Horzine suga 3 pontos de vida de cada Zed que você mata com qualquer arma privilegiada e aplica-os a você."
+VampireDescription="Pequenas sanguessugas: Nanotecnologia Horzine suga 4 pontos de vida de cada Zed que você mata com qualquer arma privilegiada e aplica-os a você."
 
 Fortitude="Força"
-FortitudeDescription="Dê a você mesmo mais chances: Aumenta a Vida Máxima e Inicial por 100%"
+FortitudeDescription="Dê a você mesmo mais chances: Aumenta a Vida Máxima e Inicial por 75%"
 
 FuriousDefender="Defensor furioso"
 FuriousDefenderDescription="Te chamam de Brutamontes por uma razão: Os ataques de arma branca do Brutamontes são 10% mais rápidos e todos os ataques causam 20% mais dano."
@@ -931,7 +933,7 @@ Parry="Defender"
 ParryDescription="Combine habilidade e poder: Defender um ataque aumentará a velocidade de ataque com arma branca por 15% e o dano de ataques leves por 30% durante 4 segundos."
 
 Smash="Esmagar"
-SmashDescription="Aplique força bruta: Ataques brutos causam 100% mais dano E ataques brutos na cabeça têm uma grande chance de derrubarem os Zeds grandes.."
+SmashDescription="Aplique força bruta: Ataques brutos causam 25% mais dano E ataques brutos na cabeça têm uma grande chance de derrubarem os Zeds grandes.."
 
 Spartan="HORA ZED - Espartano"
 SpartanDescription="Você viu o 300: Se mova em tempo real, aumenta a velocidade de ataque com armas brancas de Brutamonte por 50% e qualquer defesa causará um derrube."
@@ -1059,7 +1061,7 @@ Combatant="Combatente"
 CombatantDescription="Seja mais que um médico - seja o médico de combate que sempre quis ser com armadura corporal inicial grátis e um desconto de 60% em todas as compras de armaduras!"
 
 Armament="Armamento"
-ArmamentDescription="Faça mais que curar pessoas: perca 10% da eficácia de cura sobre os colegas de equipe, mas repare 2% de sua armadura corporal máxima!"
+ArmamentDescription="Faça mais que curar pessoas: perca 25% da eficácia de cura sobre os colegas de equipe, mas repare 1% de sua armadura corporal máxima!"
 
 Regeneration="Regeneração"
 RegenerationDescription="Vá na dosagem certa: sua saúde se regenera lentamente com o passar do tempo, graças aos nanorrobôs Horzine."

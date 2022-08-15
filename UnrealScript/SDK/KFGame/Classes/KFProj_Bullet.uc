@@ -8,6 +8,7 @@
 //=============================================================================
 
 class KFProj_Bullet extends KFProjectile
+    native
 	abstract;
 
 /** Store the current scale of the ProjEffects for procedurally ramping them up/down */

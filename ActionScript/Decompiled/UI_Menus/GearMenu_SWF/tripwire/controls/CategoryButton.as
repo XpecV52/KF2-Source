@@ -1,5 +1,6 @@
 package tripwire.controls
 {
+    import flash.display.MovieClip;
     import flash.text.TextField;
     import scaleform.gfx.TextFieldEx;
     
@@ -18,6 +19,10 @@ package tripwire.controls
         public var defaultColor:uint = 12234399;
         
         public var disabledColor:uint = 8743272;
+        
+        public var hitbox2:MovieClip;
+        
+        public const hitboxZ:int = 32;
         
         public function CategoryButton()
         {
@@ -78,6 +83,7 @@ package tripwire.controls
             super.highlightButton();
             this.infoTextField.textColor = this.highlightColor;
             TextFieldEx.setVerticalAlign(this.infoTextField,TextFieldEx.VALIGN_CENTER);
+            this.hitbox2.z = this.hitboxZ;
         }
         
         override protected function unhighlightButton() : *
@@ -85,6 +91,7 @@ package tripwire.controls
             super.unhighlightButton();
             this.infoTextField.textColor = this.defaultColor;
             TextFieldEx.setVerticalAlign(this.infoTextField,TextFieldEx.VALIGN_CENTER);
+            this.hitbox2.z = 0;
         }
         
         override public function set enabled(param1:Boolean) : void

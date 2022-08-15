@@ -33,6 +33,8 @@ var() AnimSet MeleeAnimSet;
 var() AnimSet GunsAnimSet;
 var SkelControlSingleBone RightHolsterSkelCtrl;
 var SkelControlSingleBone LeftHolsterSkelCtrl;
+var KFGameExplosion NerveGasExplosiveBlastTemplate;
+var KFGameExplosion NerveGasAttackTemplate;
 var class<KFDamageType> HeavyBumpDamageType;
 var ProjectileTossInfo CachedGoodGrenadeToss;
 var AkEvent AmbientBreathingEvent;
@@ -85,31 +87,26 @@ var KFSkinTypeEffects ShieldImpactEffects;
 
 simulated event ReplicatedEvent(name VarName)
 {
-    switch(VarName)
+    if(VarName == 'bGunsEquipped')
     {
-        case 'bGunsEquipped':
-            if(SpecialMove != 22)
-            {
-                SetWeaponStance(bGunsEquipped);
-            }
-            break;
-        case 'CurrentBattlePhase':
-            OnBattlePhaseChanged();
-            break;
-        default:
-            break;
+        if(SpecialMove != 23)
+        {
+            SetWeaponStance(bGunsEquipped);
+        }        
     }
-    super.ReplicatedEvent(VarName);
+    else
+    {
+        super.ReplicatedEvent(VarName);
+    }
 }
 
 simulated event PostBeginPlay()
 {
-    super(KFPawn).PostBeginPlay();
+    super(KFPawn_MonsterBoss).PostBeginPlay();
     AddDefaultInventory();
     AmbientAkComponent.CachedObjectPosition = Location;
     SetPawnAmbientSound(AmbientBreathingEvent);
     LastTickDialogTime = WorldInfo.TimeSeconds;
-    OnBattlePhaseChanged();
     if(WorldInfo.NetMode == NM_DedicatedServer)
     {
         Mesh.bPauseAnims = false;
@@ -190,16 +187,30 @@ simulated function ANIMNOTIFY_TossGrenade_LeftHand()
     StartThrowingGrenade(true);
 }
 
-simulated function ANIMNOTIFY_AoENerveGas()
+simulated function ANIMNOTIFY_AoEBlast()
 {
     local KFExplosionActor ExplosionActor;
 
+    ExplosionActor = Spawn(Class'KFExplosionActor', self,, Location, rotator(vect(0, 0, 1)));
+    if(ExplosionActor != none)
+    {
+        ExplosionActor.Explode(NerveGasExplosiveBlastTemplate);
+    }
+}
+
+simulated function ANIMNOTIFY_AoENerveGas()
+{
+    local KFExplosion_HansNerveGasGrenade ExplosionActor;
+
     if(NerveGasGrenadeClass != none)
     {
-        ExplosionActor = KFExplosionActor(Spawn(NerveGasGrenadeClass.default.ExplosionActorClass, self,, Mesh.GetBoneLocation('Root'), rotator(vect(0, 0, 1))));
+        ExplosionActor = KFExplosion_HansNerveGasGrenade(Spawn(NerveGasGrenadeClass.default.ExplosionActorClass, self,, Mesh.GetBoneLocation('Root'), rotator(vect(0, 0, 1))));
         if(ExplosionActor != none)
         {
-            ExplosionActor.Explode(NerveGasGrenadeClass.default.ExplosionTemplate);
+            ExplosionActor.bDoFullDamage = true;
+            ExplosionActor.maxTime = 4;
+            ExplosionActor.interval = 0.5;
+            ExplosionActor.Explode(NerveGasAttackTemplate);
         }
     }
 }
@@ -439,7 +450,7 @@ function bool IsThrowingGrenade()
     {
         return false;
     }
-    return (IsDoingSpecialMove(23) || IsDoingSpecialMove(25)) || AICommand_ThrowGrenade(MyKFAIC.GetActiveCommand()) != none;
+    return (IsDoingSpecialMove(24) || IsDoingSpecialMove(26)) || AICommand_ThrowGrenade(MyKFAIC.GetActiveCommand()) != none;
 }
 
 function DrawDebugOverheadText(KFHUDBase HUD, out Vector2D ScreenPos)
@@ -608,8 +619,7 @@ simulated function DetachShieldFX()
 simulated function TerminateEffectsOnDeath()
 {
     SetHuntAndHealMode(false);
-    OnBattlePhaseChanged();
-    super(KFPawn).TerminateEffectsOnDeath();
+    super(KFPawn_MonsterBoss).TerminateEffectsOnDeath();
 }
 
 function IncrementBattlePhase(KFAIController_Hans HansAI)
@@ -774,12 +784,6 @@ simulated function UpdateBattlePhaseParticles()
     }
 }
 
-simulated function SetGameplayMICParams()
-{
-    super(KFPawn_Monster).SetGameplayMICParams();
-    OnBattlePhaseChanged();
-}
-
 simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects(int HitZoneIdx)
 {
     if(bInHuntAndHealMode)
@@ -796,6 +800,39 @@ defaultproperties
 {
     MeleeAnimSet=AnimSet'ZED_Hans_ANIM.Hans_Melee_Master'
     GunsAnimSet=AnimSet'ZED_Hans_ANIM.Hans_Gun_Master'
+    begin object name=ExploTemplate0 class=KFGameExplosion
+        Damage=50
+        DamageRadius=450
+        DamageFalloffExponent=0.25
+        MyDamageType=Class'KFDT_Explosive_HansHEGrenade'
+        KnockDownStrength=0
+        ExploLightFadeOutTime=0.2
+        CamShake=none
+        CamShakeInnerRadius=0
+        CamShakeOuterRadius=0
+    object end
+    // Reference: KFGameExplosion'Default__KFPawn_ZedHans.ExploTemplate0'
+    NerveGasExplosiveBlastTemplate=ExploTemplate0
+    begin object name=ExploTemplate1 class=KFGameExplosion
+        ExplosionEffects=KFImpactEffectInfo'ZED_Hans_EMIT.NerveGasAoEAttack_Explosion'
+        Damage=8
+        DamageRadius=450
+        DamageFalloffExponent=0
+        MyDamageType=Class'KFDT_Toxic_HansGrenade'
+        KnockDownStrength=0
+        MomentumTransferScale=0
+        ExplosionSound=AkEvent'WW_ZED_Hans.ZED_Hans_SFX_Grenade_Poison'
+        ExploLight=PointLightComponent'Default__KFPawn_ZedHans.ExplosionPointLight'
+        ExploLightFadeOutTime=1
+        ExploLightStartFadeOutTime=7
+        ExploLightFlickerIntensity=5
+        ExploLightFlickerInterpSpeed=15
+        FractureMeshRadius=0
+        FracturePartVel=0
+        CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
+    object end
+    // Reference: KFGameExplosion'Default__KFPawn_ZedHans.ExploTemplate1'
+    NerveGasAttackTemplate=ExploTemplate1
     HeavyBumpDamageType=Class'KFDT_HeavyZedBump'
     AmbientBreathingEvent=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Breathing_Base'
     LowHealthAmbientBreathingEvent=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_BreathHurt_Base'
@@ -865,7 +902,6 @@ defaultproperties
     ShieldSocketName=Hips
     ShieldImpactEffects=KFSkinTypeEffects_HansShield'Default__KFPawn_ZedHans.ShieldEffects'
     BattlePhases=/* Array type was not detected. */
-    CurrentBattlePhase=1
     HuntAndHealModeDamageReduction=0.15
     ExplosiveGrenadeClass=Class'KFProj_HansHEGrenade'
     NerveGasGrenadeClass=Class'KFProj_HansNerveGasGrenade'
@@ -874,11 +910,15 @@ defaultproperties
     LeftHandSocketName=LeftHandSocket
     GrenadeTossSpread=0.07
     SmokeTossCooldown=5
+    BossName="Dr. Hans Volter"
+    BossCaptionStrings=/* Array type was not detected. */
     SummonWaves[0]=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Normal_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Normal_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Normal_Three')
     SummonWaves[1]=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Hard_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Hard_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Hard_Three')
     SummonWaves[2]=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Suicidal_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Suicidal_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_Suicidal_Three')
     SummonWaves[3]=(PhaseOneWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_One',PhaseTwoWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_Two',PhaseThreeWave=KFAIWaveInfo'GP_Spawning_ARCH.Special.Hans_Minions_HOE_Three')
     NumMinionsToSpawn=8
+    CurrentBattlePhase=1
+    TheatricCameraSocketName=TheatricCameraRootSocket
     bLargeZed=true
     bCanGrabAttack=true
     CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Hans_ARCH.ZED_Hans_Archetype'

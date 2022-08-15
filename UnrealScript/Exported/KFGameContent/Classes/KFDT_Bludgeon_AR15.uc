@@ -46,65 +46,6 @@ class KFDT_Bludgeon_AR15 extends KFDT_Bludgeon_RifleButt
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -125,7 +66,7 @@ class KFDT_Bludgeon_AR15 extends KFDT_Bludgeon_RifleButt
 
 defaultproperties
 {
-   AARWeaponID=10
+   WeaponDef=Class'KFGame.KFWeapDef_AR15'
    Name="Default__KFDT_Bludgeon_AR15"
-   ObjectArchetype=KFDT_Bludgeon_RifleButt'KFGameContent.Default__KFDT_Bludgeon_RifleButt'
+   ObjectArchetype=KFDT_Bludgeon_RifleButt'kfgamecontent.Default__KFDT_Bludgeon_RifleButt'
 }

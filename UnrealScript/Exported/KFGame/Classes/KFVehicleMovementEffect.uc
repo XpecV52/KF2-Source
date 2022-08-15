@@ -57,6 +57,7 @@ defaultproperties
    AirEffectScalar="Wind_Opacity"
    AirMaxDelta=0.050000
    Components(0)=AerialMesh
+   CollisionType=COLLIDE_CustomDefault
    Name="Default__KFVehicleMovementEffect"
    ObjectArchetype=Actor'Engine.Default__Actor'
 }

@@ -90,11 +90,8 @@ function ModifyDamageTaken(out int InDamage, optional class<DamageType> DamageTy
     switch(DamageType.Name)
     {
         case 'KFDT_BloatPuke':
-            TempDamage -= (TempDamage * FMin(BloatBileResistance.StartingValue * float(GetLevel()), BloatBileResistance.MaxValue));
-            if(TempDamage < 1)
-            {
-                TempDamage = 1;
-            }
+            TempDamage -= (TempDamage * (GetPassiveValue(BloatBileResistance, GetLevel())));
+            FMax(TempDamage, 1);
             break;
         default:
             break;
@@ -379,7 +376,7 @@ defaultproperties
 {
     HealerRecharge=(Name="Healer Recharge",Increment=0.08,Rank=0,StartingValue=1,MaxValue=3,ModifierValue=0,IconPath="",bActive=false)
     HealPotency=(Name="Healer Recharge",Increment=0.02,Rank=0,StartingValue=1,MaxValue=1.5,ModifierValue=0,IconPath="",bActive=false)
-    BloatBileResistance=(Name="Bloat Bile Resistance",Increment=0.03,Rank=0,StartingValue=0,MaxValue=0.75,ModifierValue=0,IconPath="",bActive=false)
+    BloatBileResistance=(Name="Bloat Bile Resistance",Increment=0.02,Rank=0,StartingValue=0,MaxValue=0.5,ModifierValue=0,IconPath="",bActive=false)
     MovementSpeed=(Name="Movement Speed",Increment=0.01,Rank=0,StartingValue=1,MaxValue=1.25,ModifierValue=0,IconPath="",bActive=false)
     Armor=(Name="Armor",Increment=0.03,Rank=0,StartingValue=1,MaxValue=1.75,ModifierValue=0,IconPath="",bActive=false)
     VaccinationResistableDamageTypeNames(0)=KFDT_BloatPuke
@@ -407,17 +404,17 @@ defaultproperties
     PerkSkills(0)=(Name="HealingSurge",Increment=0,Rank=0,StartingValue=1.2,MaxValue=1.2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Medic.UI_Talents_Medic_HealingSurge",bActive=false)
     PerkSkills(1)=(Name="Enforcer",Increment=0,Rank=0,StartingValue=1.2,MaxValue=1.2,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Enforcer",bActive=false)
     PerkSkills(2)=(Name="Combatant",Increment=0,Rank=0,StartingValue=0.6,MaxValue=0.6,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Combatant",bActive=false)
-    PerkSkills(3)=(Name="Armament",Increment=0,Rank=0,StartingValue=0.1,MaxValue=0.02,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Armament",bActive=false)
+    PerkSkills(3)=(Name="Armament",Increment=0,Rank=0,StartingValue=0.25,MaxValue=0.01,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Armament",bActive=false)
     PerkSkills(4)=(Name="Regeneration",Increment=0,Rank=0,StartingValue=0.02,MaxValue=0.02,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Regenerate",bActive=false)
     PerkSkills(5)=(Name="Lacerate",Increment=0,Rank=0,StartingValue=0.02,MaxValue=0.02,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Lacerate",bActive=false)
-    PerkSkills(6)=(Name="VaccinationArmor",Increment=0,Rank=0,StartingValue=0.04,MaxValue=0.04,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Vaccination",bActive=false)
+    PerkSkills(6)=(Name="VaccinationArmor",Increment=0,Rank=0,StartingValue=0.02,MaxValue=0.02,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Vaccination",bActive=false)
     PerkSkills(7)=(Name="VaccinationDamageMod",Increment=0,Rank=0,StartingValue=0.75,MaxValue=0.75,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_AcidicCompound",bActive=false)
     PerkSkills(8)=(Name="AirborneAgent",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_AirborneAgent",bActive=false)
     PerkSkills(9)=(Name="Sedative",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Anesthetist",bActive=false)
     RegenerationInterval=5
     RegenerationAmount=2
     VaccinationDuration=10
-    PrimaryWeaponClassName="KFGameContent.KFWeap_Pistol_Medic"
-    MeleeWeaponClassName="KFGameContent.KFWeap_Knife_FieldMedic"
-    GrenadeClassName="KFGameContent.KFProj_MedicGrenade"
+    PrimaryWeaponDef=Class'KFWeapDef_MedicPistol'
+    KnifeWeaponDef=Class'KFWeapDef_Knife_Medic'
+    GrenadeWeaponDef=Class'KFWeapDef_Grenade_Medic'
 }

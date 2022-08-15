@@ -307,8 +307,7 @@ defaultproperties
 	// Inventory
 	GroupPriority=75
 	InventorySize=6
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Pulverizer'
-	FilterTypeUI=FT_Melee
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Pulverizer'
 
 	// Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Pulverizer_ARCH.Wep_Pulverizer_MuzzleFlash'
@@ -319,7 +318,6 @@ defaultproperties
 	ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Wood'
 
 	// Trader
-    EffectiveRange=3
 	ParryDamageMitigationPercent=0.1
 	
 	ParryStrength=5

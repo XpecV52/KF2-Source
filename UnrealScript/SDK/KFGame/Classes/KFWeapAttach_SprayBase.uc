@@ -239,7 +239,10 @@ simulated function StartPilotSound()
 {
 	if( Instigator != none && !Instigator.IsFirstPerson() )
 	{
-        Instigator.PlaySoundBase(PilotLightPlayEvent, true, true, true,, true);
+		if ( PilotLightPlayEvent != None )
+		{
+        	Instigator.PlaySoundBase(PilotLightPlayEvent, true, true, true,, true);
+		}
     }
 }
 

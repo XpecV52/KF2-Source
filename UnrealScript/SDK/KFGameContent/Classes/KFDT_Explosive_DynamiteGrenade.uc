@@ -31,5 +31,5 @@ defaultproperties
 	//Perk
 	ModifierPerkList(0)=class'KFPerk_Demolitionist'
 	
-	AARWeaponID=`AAR_DynamiteGrenade
+	WeaponDef=class'KFWeapDef_Grenade_Demo'
 }

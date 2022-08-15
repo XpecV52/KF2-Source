@@ -100,6 +100,7 @@ var const localized string LevelString;
 var Texture2D PerkIcon;
 var array<string> ColumnOneIcons;
 var array<string> ColumnTwoIcons;
+var Texture2D InteractIcon;
 var const localized string WeaponDroppedMessage;
 var array<PerkSkill> PerkSkills;
 var protected byte SelectedSkills[5];
@@ -115,8 +116,8 @@ var const float BarrageDamageModifier;
 var const float FormidableDamageModifier;
 var const float VaccinationDuration;
 var array<BuffedPlayerInfo> BuffedPlayerInfos;
-var float PreBuffValue;
 var KFUsablePerkTrigger InteractionTrigger;
+var const array<name> ZedTimeModifyingStates;
 var bool bCanSeeCloakedZeds;
 var bool bHasTempSkill_TacticalReload;
 var const bool bInitialized;
@@ -128,10 +129,10 @@ var int CurrentAbilityPoints;
 var() const PerkSkill TacticalReload;
 var protected const class<KFDamageType> BleedDmgTypeClass;
 var int SavedBuild;
-var string PrimaryWeaponClassName;
-var string SecondaryWeaponClassName;
-var string MeleeWeaponClassName;
-var string GrenadeClassName;
+var class<KFWeaponDefinition> PrimaryWeaponDef;
+var class<KFWeaponDefinition> SecondaryWeaponDef;
+var class<KFWeaponDefinition> KnifeWeaponDef;
+var class<KFWeaponDefinition> GrenadeWeaponDef;
 var class<KFProj_Grenade> GrenadeClass;
 var int InitialGrenadeCount;
 var int MaxGrenadeCount;
@@ -496,7 +497,7 @@ static simulated event string GetPerkIconPath()
 
 simulated event PreBeginPlay()
 {
-    GrenadeClass = class<KFProj_Grenade>(DynamicLoadObject(GrenadeClassName, Class'Class'));
+    GrenadeClass = class<KFProj_Grenade>(DynamicLoadObject(GrenadeWeaponDef.default.WeaponClassPath, Class'Class'));
     PerkIcon = Texture2D(DynamicLoadObject(GetPerkIconPath(), Class'Texture2D'));
     MyKFGRI = KFGameReplicationInfo(WorldInfo.GRI);
     if(WorldInfo.Game != none)
@@ -571,6 +572,7 @@ function ApplySkillsToPawn()
         MyPRI.bSplashActive = false;
         MyPRI.bNukeActive = false;
         MyPRI.bConcussiveActive = false;
+        MyPRI.bPerkCanSupply = false;
         KFIM = KFInventoryManager(OwnerPawn.InvManager);
         if(KFIM != none)
         {
@@ -607,8 +609,8 @@ function AddDefaultInventory(KFPawn P)
         {
             KFIM.GiveInitialGrenadeCount();
         }
-        P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(PrimaryWeaponClassName, Class'Class'));
-        P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(MeleeWeaponClassName, Class'Class'));
+        P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(PrimaryWeaponDef.default.WeaponClassPath, Class'Class'));
+        P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(KnifeWeaponDef.default.WeaponClassPath, Class'Class'));
     }
 }
 
@@ -735,7 +737,7 @@ simulated function float GetReloadRateScale(KFWeapon KFW)
 
 function ModifySpeed(out float Speed);
 
-simulated function ModifyRecoil(out float CurrentRecoilModifier);
+simulated function ModifyRecoil(out float CurrentRecoilModifier, KFWeapon KFW);
 
 function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType);
 
@@ -761,12 +763,13 @@ static simulated function float GetZedTimeExtension(byte Level)
     return 1;
 }
 
-function float GetKnockdownPowerModifier(optional class<DamageType> DamageType)
+function float GetKnockdownPowerModifier(optional class<DamageType> DamageType, optional byte BodyPart, optional bool bIsSprinting)
 {
+    bIsSprinting = false;
     return 1;
 }
 
-function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier)
+function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart)
 {
     return 1;
 }
@@ -785,7 +788,7 @@ simulated function bool CanInteract(KFPawn_Human KFPH)
 
 simulated function Interact(KFPawn_Human KFPH);
 
-static simulated function float GetPenetrationModifier(byte Level, class<KFDamageType> DamageType, optional bool bForce);
+simulated function float GetPenetrationModifier(byte Level, class<KFDamageType> DamageType, optional bool bForce);
 
 static function float GetBarrageDamageModifier()
 {
@@ -816,8 +819,6 @@ simulated function float GetZedTimeModifier(KFWeapon W)
 {
     return 0;
 }
-
-simulated function ModifyRateOfFire(out float InRate);
 
 simulated function ModifySpread(out float InSpread);
 
@@ -976,6 +977,38 @@ simulated function bool CanExplosiveWeld()
     return false;
 }
 
+simulated function bool GetIsUberAmmoActive(KFWeapon KFW)
+{
+    return false;
+}
+
+function UpdatePerkHeadShots(ImpactInfo Impact, class<DamageType> DamageType, int NumHit);
+
+function AddToHeadShotCombo(class<KFDamageType> KFDT, KFPawn_Monster KFPM);
+
+function ResetHeadShotCombo();
+
+simulated event bool GetIsHeadShotComboActive()
+{
+    return false;
+}
+
+simulated function ModifyRateOfFire(out float InRate, KFWeapon KFW);
+
+simulated event float GetIronSightSpeedModifier(KFWeapon KFW)
+{
+    return 1;
+}
+
+simulated function ModifyWeaponSwitchTime(out float ModifiedSwitchTime);
+
+simulated function bool ShouldInstantlySwitchWeapon(KFWeapon KFW)
+{
+    return false;
+}
+
+simulated function ModifyWeaponBopDamping(out float BobDamping, KFWeapon PawnWeapon);
+
 function string GetModifierString(byte ModifierIndex)
 {
     return "";
@@ -1002,23 +1035,18 @@ function KFWeapon GetOwnerWeapon()
     return none;
 }
 
-event ResetPerk()
+function OnWaveEnded()
 {
     if(WorldInfo.Role < ROLE_Authority)
     {
         return;
     }
-    PreBuffValue = -1;
-    ClientResetPerk();
+    ClientOnWaveEnded();
 }
 
-protected reliable client simulated function ClientResetPerk()
+protected reliable client simulated function ClientOnWaveEnded()
 {
-    if(WorldInfo.Role == ROLE_Authority)
-    {
-        return;
-    }
-    PreBuffValue = -1;
+    MyPRI.ResetSupplierUsed();
 }
 
 simulated function bool GetUsingTactialReload(KFWeapon KFW)
@@ -1077,6 +1105,11 @@ function TickRegen(float DeltaTime)
 simulated function class<EmitterCameraLensEffectBase> GetPerkLensEffect(class<KFDamageType> dmgType)
 {
     return dmgType.default.CameraLensEffectTemplate;
+}
+
+static simulated function Texture2D GetInteractIcon()
+{
+    return default.InteractIcon;
 }
 
 simulated function float GetPercentage(float OriginalValue, float NewValue)
@@ -1153,11 +1186,11 @@ defaultproperties
     RegenerationInterval=1
     BarrageDamageModifier=1.15
     FormidableDamageModifier=0.75
-    PreBuffValue=-1
     SignatureDamageScale=1
     BleedDmgTypeClass=Class'KFDT_Bleeding'
-    SecondaryWeaponClassName="KFGameContent.KFWeap_Pistol_9mm"
-    GrenadeClassName="KFGameContent.KFProj_FragGrenade"
+    SecondaryWeaponDef=Class'KFWeapDef_9mm'
+    KnifeWeaponDef=Class'KFWeapDef_Knife_Commando'
+    GrenadeWeaponDef=Class'KFWeapDef_Grenade_Berserker'
     InitialGrenadeCount=2
     MaxGrenadeCount=5
     BackupWeaponDamageTypeNames(0)=KFDT_Ballistic_9mm

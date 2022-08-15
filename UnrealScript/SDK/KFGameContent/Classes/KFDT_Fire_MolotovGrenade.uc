@@ -31,5 +31,5 @@ defaultproperties
 	DoT_DamageScale=0.2
 	bIgnoreSelfInflictedScale=false
 
-	AARWeaponID=`AAR_MolotovGrenade
+	WeaponDef=class'KFWeapDef_Grenade_Firebug'
 }

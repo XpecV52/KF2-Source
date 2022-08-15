@@ -404,8 +404,10 @@ ConfirmString="SÉLECTIONNER"
 MenuStrings[0]="ACCUEIL"
 MenuStrings[1]="AVANTAGES"
 MenuStrings[2]="ÉQUIPEMENT"
-MenuStrings[3]="OPTIONS"
-MenuStrings[4]="QUITTER"
+MenuStrings[3]="INVENTORY"
+MenuStrings[4]="STORE"
+MenuStrings[5]="OPTIONS"
+MenuStrings[6]="QUITTER"
 
 ServerBrowserString="EXPLORATEUR DE SERVEURS"
 MatchmakingString="MATCH MAKING"
@@ -916,10 +918,10 @@ SonicResistance="Résistance sonique"
 SonicResistanceDescription="Je vous entends pas ! Réduit les dégâts causés par des attaques soniques de 40%."
 
 Vampire="Vampire"
-VampireDescription="Sales suceurs : la nano-tech d'Horzine te permet d'absorber 3 points de vie sur chaque Zed que tu tues avec une arme de Perk."
+VampireDescription="Sales suceurs : la nano-tech d'Horzine te permet d'absorber 4 points de vie sur chaque Zed que tu tues avec une arme de Perk."
 
 Fortitude="Courage"
-FortitudeDescription="Tu as de meilleures chances de t'en sortir : Santé maximum et de départ +100%."
+FortitudeDescription="Tu as de meilleures chances de t'en sortir : Santé maximum et de départ +75%."
 
 FuriousDefender="Défenseur Furieux"
 FuriousDefenderDescription="Ils ne te traitent pas de Fou furieux pour rien : tes attaques de mêlée de Fou furieux sont 10% plus rapides et toutes tes attaques causent 20% de dégâts en plus."
@@ -931,9 +933,9 @@ Parry="Parade"
 ParryDescription="Combine force et talent : parer une attaque augmente ta vitesse d'attaque en mêlée de 15% et tes attaques légères de 30% pendant 4 secs."
 
 Smash="Smash"
-SmashDescription="Emploie la force brute : les coups puissants infligents 100% de dégâts supplémentaires ET ont plus de chance de mettre les gros Zeds à terre lorsqu'ils sont portés à la tête."
+SmashDescription="Emploie la force brute : les coups puissants infligents 25% de dégâts supplémentaires ET ont plus de chance de mettre les gros Zeds à terre lorsqu'ils sont portés à la tête."
 
-Spartan="ZED-TIME - Spartiate"
+Spartan="ZED TIME - Spartiate"
 SpartanDescription="Tu as trop regardé 300 : bouge en temps réel, augmente ta vitesse d'attaque avec les armes de mêlée de Fou furieux de 50% et les Parades infligent des KO.  "
 
 Menace=""
@@ -1059,7 +1061,7 @@ Combatant="Combattant"
 CombatantDescription="Ne sois pas qu'un simple Médecin - sois le médecin de combat que tu as toujours voulu être, avec des gilets pare-balles de départ gratuits et un rabais de 60% sur tous les achats d'armure !"
 
 Armament="Armement"
-ArmamentDescription="Ne répare pas que les gens : perds 10% de ton efficacité de guérison des coéquipiers, mais répare chaque fois 2% du maximum de leur armure de corps à la place !"
+ArmamentDescription="Ne répare pas que les gens : perds 25% de ton efficacité de guérison des coéquipiers, mais répare chaque fois 1% du maximum de leur armure de corps à la place !"
 
 Regeneration="Régénération"
 RegenerationDescription="Dose-toi : ta santé se régénère lentement au fil du temps, grâce à des nano-robots Horzine."

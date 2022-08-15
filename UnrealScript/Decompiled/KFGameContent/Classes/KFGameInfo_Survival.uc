@@ -215,6 +215,10 @@ function RestartPlayer(Controller NewPlayer)
             {
                 WorldInfo.LogGameBalance(((((string('Respawn') $ ",") $ KFPRI.PlayerName) $ ",") $ "$") $ string(KFPRI.Score));
             }
+            if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+            {
+                WorldInfo.TWLogEvent("respawn", KFPRI, "#" $ string(KFPRI.Score));
+            }
         }
     }
 }
@@ -633,12 +637,16 @@ function WaveStarted()
     {
         KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogGameIntEvent(1001, WaveNum);
     }
+    if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+    {
+        WorldInfo.TWLogEvent("wave_start", none, "#" $ string(WaveNum), "#" $ string(GetLivingPlayerCount()));
+    }
     GameSeq = WorldInfo.GetGameSequence();
     if(GameSeq != none)
     {
         GameSeq.FindSeqObjectsByClass(Class'KFSeqEvent_WaveStart', true, AllWaveStartEvents);
         I = 0;
-        J0x194:
+        J0x234:
 
         if(I < AllWaveStartEvents.Length)
         {
@@ -649,7 +657,7 @@ function WaveStarted()
                 WaveStartEvt.CheckActivate(self, self);
             }
             ++ I;
-            goto J0x194;
+            goto J0x234;
         }
     }
     if(bLogScoring)
@@ -687,9 +695,31 @@ function CheckWaveEnd(optional bool bForceWaveEnd)
 function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
 {
     local KFPlayerController KFPC;
+    local int I;
+    local array<WeaponDamage> Weapons;
 
     foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
     {
+        if(!KFPC.bDemoOwner)
+        {
+            if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+            {
+                WorldInfo.TWLogEvent("pc_wave_stats", KFPC.PlayerReplicationInfo, "#" $ string(WaveNum), "#" $ string(WaveMax), "#" $ string(KFPC.MatchStats.GetDamageDealtInWave()), "#" $ string(KFPC.MatchStats.GetHeadShotsInWave()), "#" $ string(KFPC.MatchStats.GetDoshEarnedInWave()), "#" $ string(KFPC.MatchStats.GetDamageTakenInWave()), string(KFPC.GetPerk().Class.Name));
+            }
+            KFPC.MatchStats.GetTopWeapons(3, Weapons);
+            I = 0;
+            J0x293:
+
+            if(I < Weapons.Length)
+            {
+                if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+                {
+                    WorldInfo.TWLogEvent("pc_weapon_stats", KFPC.PlayerReplicationInfo, "#" $ string(WaveNum), string(Weapons[I].WeaponDef.Name), "#" $ string(Weapons[I].DamageAmount), "#" $ string(Weapons[I].HeadShots), "#" $ string(Weapons[I].LargeZedKills), string(KFPC.GetPerk().Class.Name));
+                }
+                ++ I;
+                goto J0x293;
+            }
+        }
         KFPC.ClientWriteAndFlushStats();        
     }    
     MyKFGRI.NotifyWaveEnded();
@@ -797,6 +827,10 @@ function EndOfMatch(bool bVictory)
 {
     local KFPlayerController KFPC;
 
+    if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+    {
+        WorldInfo.TWLogEvent("match_end", none, "#" $ string(WaveNum), "#" $ ((bVictory) ? "1" : "0"));
+    }
     if(bVictory)
     {
         SetTimer(EndCinematicDelay, false, 'SetWonGameCamera');
@@ -811,6 +845,7 @@ function EndOfMatch(bool bVictory)
         BroadcastLocalizedMessage(Class'KFLocalMessage_Priority', 3);
         SetZedsToVictoryState();
     }
+    WorldInfo.TWPushLogs();
     GotoState('MatchEnded');
 }
 
@@ -828,6 +863,7 @@ function string GetNextMap()
     {
         return GameMapCycles[ActiveMapCycle].Maps[NextMapIndex];
     }
+    return super.GetNextMap();
 }
 
 function SetWonGameCamera()
@@ -928,7 +964,7 @@ state TraderOpen
         {
             if(KFPC.GetPerk() != none)
             {
-                KFPC.GetPerk().ResetPerk();
+                KFPC.GetPerk().OnWaveEnded();
             }
             KFPC.ApplyPendingPerks();            
         }        
@@ -1024,6 +1060,7 @@ defaultproperties
     MinAIAlivePercReqForObjStart=0.3
     bCanPerkAlwaysChange=false
     bEnableGameAnalytics=true
+    bEnableDevAnalytics=true
     MaxRespawnDosh=/* Array type was not detected. */
     AIClassList=/* Array type was not detected. */
     AIBossClassList=/* Array type was not detected. */

@@ -44,6 +44,8 @@ var private	int 	FirebugXP, FirebugLVL, FirebugPSG;
 var private	int 	FirebugBuild;
 var private	int 	DemoXP, DemoLVL, DemoPSG;
 var private	int 	DemoBuild;
+var private	int 	GunslingerXP, GunslingerLVL, GunslingerPSG;
+var private	int 	GunslingerBuild;
 
 var private int 	PersonalBest_KnifeKills;
 var private int 	PersonalBest_PistolKills;
@@ -89,6 +91,85 @@ const KFACHID_CatacombsHellOnEarth		=	27;
 
 const KFACHID_EvacsCollectibles			= 	28;
 const KFACHID_CatacombsCollectibles		= 	29;
+
+const KFACHID_Berserker_Lvl5			= 	30;
+const KFACHID_Berserker_Lvl10			= 	31;
+const KFACHID_Berserker_Lvl15			= 	32;
+const KFACHID_Berserker_Lvl20			= 	33;
+const KFACHID_Berserker_Lvl25			= 	34;
+const KFACHID_FieldMedic_Lvl5			= 	35;
+const KFACHID_FieldMedic_Lvl10			= 	36;
+const KFACHID_FieldMedic_Lvl15			= 	37;
+const KFACHID_FieldMedic_Lvl20			= 	38;
+const KFACHID_FieldMedic_Lvl25			= 	39;
+const KFACHID_Commando_Lvl5				= 	40;
+const KFACHID_Commando_Lvl10			= 	41;
+const KFACHID_Commando_Lvl15			= 	42;
+const KFACHID_Commando_Lvl20			= 	43;
+const KFACHID_Commando_Lvl25			= 	44;
+const KFACHID_Support_Lvl5				= 	45;
+const KFACHID_Support_Lvl10				= 	46;
+const KFACHID_Support_Lvl15				= 	47;
+const KFACHID_Support_Lvl20				= 	48;
+const KFACHID_Support_Lvl25				= 	49;
+const KFACHID_Firebug_Lvl5				= 	50;
+const KFACHID_Firebug_Lvl10				= 	51;
+const KFACHID_Firebug_Lvl15				= 	52;
+const KFACHID_Firebug_Lvl20				= 	53;
+const KFACHID_Firebug_Lvl25				= 	54;
+const KFACHID_Demolitionist_Lvl5		= 	55;
+const KFACHID_Demolitionist_Lvl10		= 	56;
+const KFACHID_Demolitionist_Lvl15		= 	57;
+const KFACHID_Demolitionist_Lvl20		= 	58;
+const KFACHID_Demolitionist_Lvl25		= 	59;
+const KFACHID_Gunslinger_Lvl5			= 	60;
+const KFACHID_Gunslinger_Lvl10			= 	61;
+const KFACHID_Gunslinger_Lvl15			= 	62;
+const KFACHID_Gunslinger_Lvl20			= 	63;
+const KFACHID_Gunslinger_Lvl25			= 	64;
+
+const KFACHID_BerserkerNormal			=	65;
+const KFACHID_BerserkerHard				=	66;
+const KFACHID_BerserkerSuicidal			=	67;
+const KFACHID_BerserkerHellOnEarth		=	68;
+const KFACHID_FieldMedicNormal			=	69;
+const KFACHID_FieldMedicHard			=	70;
+const KFACHID_FieldMedicSuicidal		=	71;
+const KFACHID_FieldMedicHellOnEarth		=	72;
+const KFACHID_CommandoNormal			=	73;
+const KFACHID_CommandoHard				=	74;
+const KFACHID_CommandoSuicidal			=	75;
+const KFACHID_CommandoHellOnEarth		=	76;
+const KFACHID_SupportNormal				=	77;
+const KFACHID_SupportHard				=	78;
+const KFACHID_SupportSuicidal			=	79;
+const KFACHID_SupportHellOnEarth		=	80;
+const KFACHID_FirebugNormal				=	81;
+const KFACHID_FirebugHard				=	82;
+const KFACHID_FirebugSuicidal			=	83;
+const KFACHID_FirebugHellOnEarth		=	84;
+const KFACHID_DemolitionistNormal		=	85;
+const KFACHID_DemolitionistHard			=	86;
+const KFACHID_DemolitionistSuicidal		=	87;
+const KFACHID_DemolitionistHellOnEarth	=	88;
+const KFACHID_GunslingerNormal			=	89;
+const KFACHID_GunslingerHard			=	90;
+const KFACHID_GunslingerSuicidal		=	91;
+const KFACHID_GunslingerHellOnEarth		=	92;
+
+const KFACHID_All_Lvl25					=	93;
+
+const KFACHID_BlackForestNormal	 		=	94;
+const KFACHID_BlackForestHard  			=	95;
+const KFACHID_BlackForestSuicidal		=	96;
+const KFACHID_BlackForestHellOnEarth	=	97;
+const KFACHID_BlackForestCollectibles	= 	98;
+
+const KFACHID_FarmhouseNormal	 		=	99;
+const KFACHID_FarmhouseHard  			=	100;
+const KFACHID_FarmhouseSuicidal			=	101;
+const KFACHID_FarmhouseHellOnEarth		=	102;
+const KFACHID_FarmhouseCollectibles		= 	103;
 
 /* __TW_ANALYTICS_ */
 var int PerRoundWeldXP;
@@ -213,6 +294,16 @@ event CacheStatsValue(int StatID, float Value)
 			DemoBuild = Value;
 			`log(GetFuncName() @ "DemoBuild:" @ DemoBuild, bLogStatsWrite);
 			break;
+		case `STATID_Guns_Progress:
+			GunslingerXP = GetXPFromProgress( Value );
+			GunslingerLVL = GetLVLFromProgress( Value );
+			GunslingerPSG = GetPSGFromProgress( Value );
+			`log(GetFuncName() @ "GunslingerXP:" @ GunslingerXP @ GunslingerLVL @ "VALUE:" @ Round( value ), bLogStatsWrite);
+			break;
+		case `STATID_Guns_Build:
+			GunslingerBuild = Value;
+			`log(GetFuncName() @ "GunslingerBuild:" @ GunslingerBuild, bLogStatsWrite);
+			break;
 		// end of perk progress stats
 		case `STATID_Kills:
 			Kills = Value;
@@ -296,6 +387,9 @@ private event GetPerkBuildFromStats( class<KFPerk> PerkClass, out int Build )
 		case class'KFPerk_Demolitionist':
 			Build = DemoBuild;
 			break;
+		case class'KFPerk_Gunslinger':
+			Build = GunslingerBuild;
+			break;
 	}
 }
 
@@ -351,6 +445,11 @@ private event NotifyLevelUp(class<KFPerk> PerkClass, int NewLVL)
 	{
 		MyKFPC.NotifyLevelUp( PerkClass, NewLVL );
 		`log(GetFuncName() @ "PerkClass:" @ PerkClass @ "New LVL:" @ NewLVL, bLogStatsWrite);
+		
+		if( NewLVL % 5 == 0 )
+		{
+			CheckPerkLvlAchievement( PerkCLass, NewLVL );
+		}
 	}
 }
 
@@ -365,6 +464,7 @@ private event int GetPerkXP( int StatID )
 		case `STATID_Medic_Progress:		return MedicXP;
 		case `STATID_Fire_Progress:			return FirebugXP;
 		case `STATID_Demo_Progress:			return DemoXP;
+		case `STATID_Guns_Progress:			return GunslingerXP;
 	}
 
 	return 0;
@@ -381,6 +481,7 @@ private event int GetPerkLVLInternal( int StatID )
 		case `STATID_Medic_Progress:		return MedicLVL;
 		case `STATID_Fire_Progress:			return FirebugLVL;
 		case `STATID_Demo_Progress:			return DemoLVL;
+		case `STATID_Guns_Progress:			return GunslingerLVL;
 	}
 
 	return 0;
@@ -397,6 +498,7 @@ private event int GetPerkPSG( int StatID )
 		case `STATID_Medic_Progress:		return MedicPSG;
 		case `STATID_Fire_Progress:			return FirebugPSG;
 		case `STATID_Demo_Progress:			return DemoPSG;
+		case `STATID_Guns_Progress:			return GunslingerPSG;
 	}
 
 	return 0;
@@ -495,6 +597,20 @@ private function AddStalkerKill( byte Difficulty )
 }
 
 /**
+ * @brief Adds EXP for a small radius kill
+ * @details Berserker gains XP when killing a zed close to another player
+ * 			
+ * @param Difficulty current game difficulty
+ */
+private event AddSmallRadiusKill( byte Difficulty )
+{
+	AddXP( class'KFPerk_Berserker', class'KFPerk_Berserker'.static.GetSmallRadiusKillXP(Difficulty) );
+
+	//AAR
+	`RecordSecondaryXPGain( MyKFPC, class'KFPerk_Berserker', class'KFPerk_Berserker'.static.GetSmallRadiusKillXP(Difficulty) );
+}
+
+/**
  * @brief Adds EXP for a qualified crawler kill
  * @details The Firebug perk only receives extra EXP when a crawler is killed
  * 			with a Firebug weapon. The currently selected skill does not matter
@@ -513,8 +629,8 @@ private function AddCrawlerKill( byte Difficulty )
 
 /**
  * @brief Adds EXP for a qualified Fleshpound kill
- * @details The Firebug perk only receives extra EXP when a crawler is killed
- * 			with a Firebug weapon. The currently selected skill does not matter
+ * @details The Demolitionist perk only receives extra EXP when a Fleshpound is killed
+ * 			with a demo weapon. The currently selected skill does not matter
  * @param Difficulty current game difficulty
  */
 private function AddFleshpoundKill( byte Difficulty )
@@ -565,15 +681,6 @@ private final function bool IsFleshPoundKill( class<KFPawn_Monster> MonsterClass
 {
 	return  MonsterClass.static.IsFleshpoundClass() &&
 			class'KFPerk'.static.IsDamageTypeOnThisPerk( class<KFDamageType>(DT), class'KFPerk_Demolitionist'.static.GetPerkClass() );
-}
-
-// Berserker gains XP when killing a zed close to another player
-private event AddSmallRadiusKill( byte Difficulty )
-{
-	AddXP( class'KFPerk_Berserker', class'KFPerk_Berserker'.static.GetSmallRadiusKillXP(Difficulty) );
-
-	//AAR
-	`RecordSecondaryXPGain( MyKFPC, class'KFPerk_Berserker', class'KFPerk_Berserker'.static.GetSmallRadiusKillXP(Difficulty) );
 }
 
 /*
@@ -678,6 +785,72 @@ private event int AddHealingPoints( int PointsHealed )
 	return XPEarned;
 }
 
+/**
+ * @brief Add a headshot and give some EXP tp the player
+ * @param Difficulty The current game difficulty
+ * @param DT The damagetype used to headshot the zed
+ * @return [description]
+ */
+private event AddToHeadshots( byte Difficulty, class<DamageType> DT )
+{
+	if( IsGunslingerHeadshot(DT) )
+	{
+		AddGunslingerHeadshot( Difficulty );
+	}
+	// else if( IsSharpshooterHeadshot(DT) )
+	// {
+	// 	AddSharpshooterHeadshot( Difficulty );
+	// }
+}
+
+/**
+ * @brief Adds EXP for a gunslinger headshot
+ * @details The Gunslinger perk only receives extra EXP when a headshot is achieved with a Gunslinger weapon.
+ * @param Difficulty current game difficulty
+ */
+private function AddGunslingerHeadshot( byte Difficulty )
+{
+	AddXP( class'KFPerk_Gunslinger', class'KFPerk_Gunslinger'.static.GetHeadshotXP(Difficulty) );
+
+	//AAR
+	`RecordSecondaryXPGain( MyKFPC, class'KFPerk_Gunslinger', class'KFPerk_Gunslinger'.static.GetHeadshotXP(Difficulty) );
+}
+
+/**
+ * @brief Adds EXP for a sharpshooter headshot
+ * @details The Sharpshooter perk only receives extra EXP when a headshot is achieved with a Sharpshooter weapon.
+ * @param Difficulty current game difficulty
+ */
+// private function AddSharpshooterHeadshot( byte Difficulty )
+// {
+// 	AddXP( class'KFPerk_Sharpshooter', class'KFPerk_Sharpshooter'.static.GetHeadshotXP(Difficulty) );
+
+// 	//AAR
+// 	`RecordSecondaryXPGain( MyKFPC, class'KFPerk_Sharpshooter', class'KFPerk_Sharpshooter'.static.GetHeadshotXP(Difficulty) );
+// }
+
+/**
+ * @brief Checks if a headshot qualifies for gunslinger EXP
+ *
+ * @param DT Used damage type
+ * @return true if damage type is on perk
+ */
+private final function bool IsGunslingerHeadshot( class<DamageType> DT )
+{
+	return class'KFPerk'.static.IsDamageTypeOnThisPerk( class<KFDamageType>(DT), class'KFPerk_Gunslinger'.static.GetPerkClass() );
+}
+
+/**
+ * @brief Checks if a headshot qualifies for sharpshooter EXP
+ *
+ * @param DT Used damage type
+ * @return true if damage type is on perk
+ */
+// private final function bool IsSharpshooterHeadshot( class<DamageType> DT )
+// {
+// 	return class'KFPerk'.static.IsDamageTypeOnThisPerk( class<KFDamageType>(DT), class'KFPerk_Sharpshooter'.static.GetPerkClass() );
+// }
+
 /*********************************************************************************************
 * @name Achievements
 ********************************************************************************************* */
@@ -691,7 +864,7 @@ function GetAchievements()
 	}
 }
 
-function bool IsAchievementUnlocked( int AchievementIndex )
+final function bool IsAchievementUnlocked( int AchievementIndex )
 {
 	return ( AchievementIndex < Achievements.length ) && Achievements[AchievementIndex].bWasAchievedOnline;
 }
@@ -704,13 +877,13 @@ function OnUnlockAchievement( int AchievementIndex )
 
 /**
  * @brief Call into native to determine if we achieved anything
-  *
+ *
  * @param MapName The name of the map played
  * @param Difficulty The game's difficulty
  * @param GameLength short/medium/long
  * @param bCoop mutiplayer or not
   */
-native final function OnGameWon( string MapName, byte Difficulty, byte GameLength, byte bCoop );
+native final function OnGameWon( string MapName, byte Difficulty, byte GameLength, byte bCoop, class<KFPerk> PerkClass );
 
 /**
  * @brief Check for map specific achievements on game end
@@ -721,6 +894,24 @@ native final function OnGameWon( string MapName, byte Difficulty, byte GameLengt
  * @param bCoop mutiplayer or not
  */
 native final function CheckMapEndAchievements( string MapName, byte Difficulty, byte bCoop );
+
+/**
+ * @brief Check if a new perk tier has been reached
+ * 
+ * @param PerkClass Perk leveled up
+ * @param NewLVL [Thge new perk level
+ */
+native final private function CheckPerkLvlAchievement( class<KFPerk> PerkClass, int NewLVL );
+
+/**
+ * @brief Check if a new difficulty with the selected perk was won
+ * 
+ * @param PerkClass Selected perk class
+ * @param Difficulty Difficulty played
+ */
+native final private function CheckPerkDifficultyAchievements( class<KFPerk> PerkClass, byte Difficulty );
+
+native final private function CheckAllPerksLvl25();
 
 defaultproperties
 {

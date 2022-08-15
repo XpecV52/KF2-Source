@@ -44,18 +44,18 @@ enum EPersonalBests
 
 struct TopWeaponReplicationInfo
 {
-    var byte TopWeapon1;
-    var byte TopWeapon2;
-    var byte TopWeapon3;
+    var class<KFWeaponDefinition> TopWeapon1;
+    var class<KFWeaponDefinition> TopWeapon2;
+    var class<KFWeaponDefinition> TopWeapon3;
     var Vector TopWeapon1Info;
     var Vector TopWeapon2Info;
     var Vector TopWeapon3Info;
 
     structdefaultproperties
     {
-        TopWeapon1=255
-        TopWeapon2=255
-        TopWeapon3=255
+        TopWeapon1=none
+        TopWeapon2=none
+        TopWeapon3=none
         TopWeapon1Info=(X=0,Y=0,Z=0)
         TopWeapon2Info=(X=0,Y=0,Z=0)
         TopWeapon3Info=(X=0,Y=0,Z=0)
@@ -98,7 +98,7 @@ struct ZedKillType
 
 struct WeaponDamage
 {
-    var byte DamageTypeID;
+    var class<KFWeaponDefinition> WeaponDef;
     var int DamageAmount;
     var int HeadShots;
     var int LargeZedKills;
@@ -106,7 +106,7 @@ struct WeaponDamage
 
     structdefaultproperties
     {
-        DamageTypeID=255
+        WeaponDef=none
         DamageAmount=0
         HeadShots=0
         LargeZedKills=0
@@ -148,13 +148,6 @@ var int TotalLargeZedKills;
 var array<PerkXPGain> PerkXPList;
 var array<WeaponDamage> WeaponDamageList;
 var array<ZedKillType> ZedKillsArray;
-var array<name> AARWeaponList;
-var name HealerClassName;
-var string HealerClassTextureLocation;
-var name WelderClassName;
-var string WelderClassTextureLocation;
-var name MedicDartClassName;
-var string MedicDartTextureLocation;
 var delegate<SortXP> __SortXP__Delegate;
 var delegate<SortWeapons> __SortWeapons__Delegate;
 
@@ -301,7 +294,7 @@ function RecordZedKill(class<Pawn> PawnClass, class<DamageType> DT)
     KFDT = class<KFDamageType>(DT);
     if(KFDT != none)
     {
-        RecordWeaponKill(KFDT.default.AARWeaponID);
+        RecordWeaponKill(KFDT.default.WeaponDef);
     }
     if(MonsterClass != none)
     {
@@ -344,10 +337,10 @@ static function RecordWeaponHeadShot(Controller InstigatedBy, class<DamageType> 
         }
         if(KFDT != none)
         {
-            WeaponIndex = KFPC.MatchStats.WeaponDamageList.Find('DamageTypeID', KFDT.default.AARWeaponID;
+            WeaponIndex = KFPC.MatchStats.WeaponDamageList.Find('WeaponDef', KFDT.default.WeaponDef;
             if(WeaponIndex == -1)
             {
-                TempWeaponDamage.DamageTypeID = KFDT.default.AARWeaponID;
+                TempWeaponDamage.WeaponDef = KFDT.default.WeaponDef;
                 ++ TempWeaponDamage.HeadShots;
                 KFPC.MatchStats.WeaponDamageList.AddItem(TempWeaponDamage;                
             }
@@ -359,7 +352,7 @@ static function RecordWeaponHeadShot(Controller InstigatedBy, class<DamageType> 
     }
 }
 
-static function RecordWeaponDamage(Controller InstigatedBy, byte AARWeaponID, int Damage, KFPawn TargetPawn, int HitZoneIdx)
+static function RecordWeaponDamage(Controller InstigatedBy, class<KFWeaponDefinition> WeaponDef, int Damage, KFPawn TargetPawn, int HitZoneIdx)
 {
     local KFPlayerController KFPC;
 
@@ -370,19 +363,19 @@ static function RecordWeaponDamage(Controller InstigatedBy, byte AARWeaponID, in
     KFPC = KFPlayerController(InstigatedBy);
     if((KFPC != none) && KFPC.MatchStats != none)
     {
-        KFPC.MatchStats.InternalRecordWeaponDamage(AARWeaponID, Damage, TargetPawn, HitZoneIdx);
+        KFPC.MatchStats.InternalRecordWeaponDamage(WeaponDef, Damage, TargetPawn, HitZoneIdx);
     }
 }
 
-function RecordWeaponKill(byte AARWeaponID)
+function RecordWeaponKill(class<KFWeaponDefinition> WeaponDef)
 {
     local int WeaponIndex;
     local WeaponDamage TempWeaponDamage;
 
-    WeaponIndex = WeaponDamageList.Find('DamageTypeID', AARWeaponID;
+    WeaponIndex = WeaponDamageList.Find('WeaponDef', WeaponDef;
     if(WeaponIndex == -1)
     {
-        TempWeaponDamage.DamageTypeID = AARWeaponID;
+        TempWeaponDamage.WeaponDef = WeaponDef;
         ++ TempWeaponDamage.Kills;
         WeaponDamageList.AddItem(TempWeaponDamage;        
     }
@@ -392,7 +385,7 @@ function RecordWeaponKill(byte AARWeaponID)
     }
 }
 
-function InternalRecordWeaponDamage(byte AARWeaponID, int Damage, KFPawn TargetPawn, int HitZoneIdx)
+function InternalRecordWeaponDamage(class<KFWeaponDefinition> WeaponDef, int Damage, KFPawn TargetPawn, int HitZoneIdx)
 {
     local int WeaponIndex;
     local WeaponDamage TempWeaponDamage;
@@ -404,14 +397,14 @@ function InternalRecordWeaponDamage(byte AARWeaponID, int Damage, KFPawn TargetP
     }
     bKilled = (TargetPawn.Health <= 0) && (TargetPawn.Health + Damage) > 0;
     bLargeZedKill = bKilled && TargetPawn.IsLargeZed();
-    WeaponIndex = WeaponDamageList.Find('DamageTypeID', AARWeaponID;
+    WeaponIndex = WeaponDamageList.Find('WeaponDef', WeaponDef;
     if(WeaponIndex == -1)
     {
-        TempWeaponDamage.DamageTypeID = AARWeaponID;
+        TempWeaponDamage.WeaponDef = WeaponDef;
         WeaponIndex = WeaponDamageList.Length;
         WeaponDamageList.AddItem(TempWeaponDamage;
     }
-    if(WeaponDamageList[WeaponIndex].DamageTypeID == AARWeaponID)
+    if(WeaponDamageList[WeaponIndex].WeaponDef == WeaponDef)
     {
         if((TargetPawn.Health + Damage) > 0)
         {
@@ -444,19 +437,19 @@ function PackTopWeapons()
         switch(I)
         {
             case 0:
-                TWRI.TopWeapon1 = TopWeaponsArray[I].DamageTypeID;
+                TWRI.TopWeapon1 = TopWeaponsArray[I].WeaponDef;
                 TWRI.TopWeapon1Info.X = float(TopWeaponsArray[I].DamageAmount);
                 TWRI.TopWeapon1Info.Y = float(TopWeaponsArray[I].HeadShots);
                 TWRI.TopWeapon1Info.Z = float(TopWeaponsArray[I].LargeZedKills);
                 break;
             case 1:
-                TWRI.TopWeapon2 = TopWeaponsArray[I].DamageTypeID;
+                TWRI.TopWeapon2 = TopWeaponsArray[I].WeaponDef;
                 TWRI.TopWeapon2Info.X = float(TopWeaponsArray[I].DamageAmount);
                 TWRI.TopWeapon2Info.Y = float(TopWeaponsArray[I].HeadShots);
                 TWRI.TopWeapon2Info.Z = float(TopWeaponsArray[I].LargeZedKills);
                 break;
             case 2:
-                TWRI.TopWeapon3 = TopWeaponsArray[I].DamageTypeID;
+                TWRI.TopWeapon3 = TopWeaponsArray[I].WeaponDef;
                 TWRI.TopWeapon3Info.X = float(TopWeaponsArray[I].DamageAmount);
                 TWRI.TopWeapon3Info.Y = float(TopWeaponsArray[I].HeadShots);
                 TWRI.TopWeapon3Info.Z = float(TopWeaponsArray[I].LargeZedKills);
@@ -472,15 +465,15 @@ function PackTopWeapons()
 function UnpackTopWeapons(TopWeaponReplicationInfo TopWeapons)
 {
     TWRI = TopWeapons;
-    if(TWRI.TopWeapon1 != 255)
+    if(TWRI.TopWeapon1 != none)
     {
         AddUnpackedWeaponToDamageList(TWRI.TopWeapon1, int(TWRI.TopWeapon1Info.X), int(TWRI.TopWeapon1Info.Y), int(TWRI.TopWeapon1Info.Z));
     }
-    if(TWRI.TopWeapon2 != 255)
+    if(TWRI.TopWeapon2 != none)
     {
         AddUnpackedWeaponToDamageList(TWRI.TopWeapon2, int(TWRI.TopWeapon2Info.X), int(TWRI.TopWeapon2Info.Y), int(TWRI.TopWeapon2Info.Z));
     }
-    if(TWRI.TopWeapon3 != 255)
+    if(TWRI.TopWeapon3 != none)
     {
         AddUnpackedWeaponToDamageList(TWRI.TopWeapon3, int(TWRI.TopWeapon3Info.X), int(TWRI.TopWeapon3Info.Y), int(TWRI.TopWeapon3Info.Z));
     }
@@ -495,12 +488,12 @@ function ProcessTopWeaponsStats()
     }
 }
 
-function AddUnpackedWeaponToDamageList(byte WeaponID, int DamageAmount, int HeadShots, int LargeZedKills)
+function AddUnpackedWeaponToDamageList(class<KFWeaponDefinition> WeaponDef, int DamageAmount, int HeadShots, int LargeZedKills)
 {
     local WeaponDamage TempWeaponDamage;
     local int WeaponIndex;
 
-    WeaponIndex = WeaponDamageList.Find('DamageTypeID', WeaponID;
+    WeaponIndex = WeaponDamageList.Find('WeaponDef', WeaponDef;
     if(WeaponIndex == -1)
     {
         TempWeaponDamage.DamageAmount = DamageAmount;
@@ -510,70 +503,10 @@ function AddUnpackedWeaponToDamageList(byte WeaponID, int DamageAmount, int Head
     }
     else
     {
-        WeaponDamageList[WeaponIndex].DamageTypeID = WeaponID;
+        WeaponDamageList[WeaponIndex].WeaponDef = WeaponDef;
         WeaponDamageList[WeaponIndex].DamageAmount = DamageAmount;
         WeaponDamageList[WeaponIndex].HeadShots = HeadShots;
         WeaponDamageList[WeaponIndex].LargeZedKills = LargeZedKills;
-    }
-}
-
-function GetWeaponInfo(name WeaponName, out string LocalizeWeaponName, out string WeaponIconSource)
-{
-    local KFGameReplicationInfo KFGRI;
-    local KFGFxObject_TraderItems TraderItems;
-    local array<SPerkTraderList> TraderItemList;
-    local int I, J;
-
-    KFGRI = KFGameReplicationInfo(Outer.WorldInfo.GRI);
-    if((KFGRI == none) && KFGRI.TraderItems == none)
-    {
-        return;
-    }
-    TraderItems = KFGRI.TraderItems;
-    TraderItemList = TraderItems.TraderItemList;
-    I = 0;
-    J0xD8:
-
-    if(I < TraderItemList.Length)
-    {
-        if(TraderItemList[I].GrenadeItem.ClassName == WeaponName)
-        {
-            TraderItems.GetGrenadeItemInfo(TraderItemList[I].PerkClass, "KFGameContent." $ string(WeaponName), LocalizeWeaponName, WeaponIconSource);
-            return;
-        }
-        J = 0;
-        J0x1B8:
-
-        if(J < TraderItemList[I].ItemList.Length)
-        {
-            if(TraderItemList[I].ItemList[J].ClassName == WeaponName)
-            {
-                TraderItems.GetItemInfo(TraderItemList[I].ItemList[J].AssociatedPerkClass, "KFGameContent." $ string(WeaponName), LocalizeWeaponName, WeaponIconSource);
-                return;
-            }
-            ++ J;
-            goto J0x1B8;
-        }
-        ++ I;
-        goto J0xD8;
-    }
-    switch(WeaponName)
-    {
-        case HealerClassName:
-            LocalizeWeaponName = Localize(string(WeaponName), "ItemName", "KFGameContent");
-            WeaponIconSource = HealerClassTextureLocation;
-            return;
-        case WelderClassName:
-            LocalizeWeaponName = Localize(string(WeaponName), "ItemName", "KFGameContent");
-            WeaponIconSource = WelderClassTextureLocation;
-            return;
-        case MedicDartClassName:
-            LocalizeWeaponName = Localize(string(WeaponName), "ItemName", "KFGameContent");
-            WeaponIconSource = MedicDartTextureLocation;
-            return;
-        default:
-            TraderItems.GetOffPerkItem("KFGameContent." $ string(WeaponName), LocalizeWeaponName, WeaponIconSource);
-            break;
     }
 }
 
@@ -589,9 +522,10 @@ function GetTopWeapons(int AmountToGrab, out array<WeaponDamage> TopWeaponList)
     {
         if(I < AmountToGrab)
         {
-            if(WeaponDamageList[I].DamageTypeID == 255)
+            if(WeaponDamageList[I].WeaponDef == none)
             {
-                WeaponDamageList.Remove(-- I, 1;                
+                WeaponDamageList.Remove(I, 1;
+                I -= 1;                
             }
             else
             {
@@ -600,17 +534,6 @@ function GetTopWeapons(int AmountToGrab, out array<WeaponDamage> TopWeaponList)
         }
         ++ I;
         goto J0x29;
-    }
-}
-
-function ResolveLocalizedWeaponNameAndIcon(byte WeaponDamageItemID, out string LocalizedWeaponName, out string WeaponIconSource)
-{
-    local name WeaponName;
-
-    if(WeaponDamageItemID < AARWeaponList.Length)
-    {
-        WeaponName = AARWeaponList[WeaponDamageItemID];
-        GetWeaponInfo(WeaponName, LocalizedWeaponName, WeaponIconSource);
     }
 }
 
@@ -708,7 +631,7 @@ function int GetPistolKills()
 {
     local int WeaponIndex;
 
-    WeaponIndex = WeaponDamageList.Find('DamageTypeID', 0;
+    WeaponIndex = WeaponDamageList.Find('WeaponDef', Class'KFWeapDef_9mm';
     if(WeaponIndex != -1)
     {
         return WeaponDamageList[WeaponIndex].Kills;
@@ -718,14 +641,21 @@ function int GetPistolKills()
 
 function int GetKnifeKills()
 {
-    local int WeaponIndex;
+    local int TotalKnifeKills, I;
 
-    WeaponIndex = WeaponDamageList.Find('DamageTypeID', 3;
-    if(WeaponIndex != -1)
+    I = 0;
+    J0x0B:
+
+    if(I < WeaponDamageList.Length)
     {
-        return WeaponDamageList[WeaponIndex].Kills;
+        if((WeaponDamageList[I].WeaponDef != none) && class<KFweapDef_Knife_Base>(WeaponDamageList[I].WeaponDef) != none)
+        {
+            TotalKnifeKills += WeaponDamageList[I].Kills;
+        }
+        ++ I;
+        goto J0x0B;
     }
-    return 0;
+    return TotalKnifeKills;
 }
 
 function AARAward GivePersonalBestKnifeKills()
@@ -1191,65 +1121,4 @@ defaultproperties
     PersonalBestList(6)=(IconPath=UI_Award_PersonalMulti.UI_Award_PersonalMulti-Giants,TitleIdentifier="EPB_LargeZedKill",DescriptionIdentifier="",ValueIdentifier="EPB_LargeZedKillValue",DisplayValue=0,bHighLight=false,PRI=none)
     PersonalBestList(7)=(IconPath=UI_Award_PersonalMulti.UI_Award_PersonalMulti-Dosh,TitleIdentifier="EPB_Dosh",DescriptionIdentifier="",ValueIdentifier="EPB_DoshValue",DisplayValue=0,bHighLight=false,PRI=none)
     PersonalBestList(8)=(IconPath=ui_weaponselect_tex.UI_WeaponSelect_Welder,TitleIdentifier="EPB_DoorWelding",DescriptionIdentifier="",ValueIdentifier="EPB_DoorWeldingValue",DisplayValue=0,bHighLight=false,PRI=none)
-    TWRI=(TopWeapon1=255,TopWeapon2=255,TopWeapon3=255,TopWeapon1Info=(X=0,Y=0,Z=0),TopWeapon2Info=(X=0,Y=0,Z=0),TopWeapon3Info=(X=0,Y=0,Z=0))
-    AARWeaponList(0)=KFWeap_Pistol_9mm
-    AARWeaponList(1)=KFWeap_Pistol_Dual9mm
-    AARWeaponList(2)=KFWeap_Edged_Katana
-    AARWeaponList(3)=KFWeap_Knife_Commando
-    AARWeaponList(4)=KFWeap_Blunt_Crovel
-    AARWeaponList(5)=KFWeap_Shotgun_Nailgun
-    AARWeaponList(6)=KFWeap_Blunt_Pulverizer
-    AARWeaponList(7)=KFWeap_Eviscerator
-    AARWeaponList(8)=KFProj_EMPGrenade
-    AARWeaponList(9)=KFProj_HEGrenade
-    AARWeaponList(10)=KFWeap_AssaultRifle_AR15
-    AARWeaponList(11)=KFWeap_AssaultRifle_Bullpup
-    AARWeaponList(12)=KFWeap_AssaultRifle_AK12
-    AARWeaponList(13)=KFWeap_AssaultRifle_SCAR
-    AARWeaponList(14)=KFProj_DynamiteGrenade
-    AARWeaponList(15)=KFWeap_GrenadeLauncher_HX25
-    AARWeaponList(16)=KFWeap_Thrown_C4
-    AARWeaponList(17)=KFWeap_GrenadeLauncher_M79
-    AARWeaponList(18)=KFWeap_RocketLauncher_RPG7
-    AARWeaponList(19)=KFProj_MedicGrenade
-    AARWeaponList(20)=KFWeap_Knife_FieldMedic
-    AARWeaponList(21)=KFWeap_Pistol_Medic
-    AARWeaponList(22)=KFWeap_SMG_Medic
-    AARWeaponList(23)=KFWeap_Shotgun_Medic
-    AARWeaponList(24)=KFWeap_AssaultRifle_Medic
-    AARWeaponList(25)=NA
-    AARWeaponList(26)=KFWeap_Pistol_Deagle
-    AARWeaponList(27)=NA
-    AARWeaponList(28)=NA
-    AARWeaponList(29)=NA
-    AARWeaponList(30)=NA
-    AARWeaponList(31)=NA
-    AARWeaponList(32)=NA
-    AARWeaponList(33)=NA
-    AARWeaponList(34)=NA
-    AARWeaponList(35)=KFProj_FragGrenade
-    AARWeaponList(36)=KFWeap_Shotgun_MB500
-    AARWeaponList(37)=KFWeap_Shotgun_DoubleBarrel
-    AARWeaponList(38)=KFWeap_Shotgun_M4
-    AARWeaponList(39)=KFWeap_Shotgun_AA12
-    AARWeaponList(40)=NA
-    AARWeaponList(41)=KFWeap_SMG_P90
-    AARWeaponList(42)=NA
-    AARWeaponList(43)=NA
-    AARWeaponList(44)=NA
-    AARWeaponList(45)=KFProj_MolotovGrenade
-    AARWeaponList(46)=KFWeap_Flame_CaulkBurn
-    AARWeaponList(47)=KFWeap_Shotgun_DragonsBreath
-    AARWeaponList(48)=KFWeap_Flame_Flamethrower
-    AARWeaponList(49)=KFWeap_Beam_Microwave
-    AARWeaponList(50)=KFWeap_Edged_Zweihander
-    AARWeaponList(51)=KFWeap_Healer_Syringe
-    AARWeaponList(52)=KFWeap_Welder
-    AARWeaponList(53)=KFProj_HealingDart
-    HealerClassName=KFWeap_Healer_Syringe
-    HealerClassTextureLocation="ui_weaponselect_tex.UI_WeaponSelect_Healer"
-    WelderClassName=KFWeap_Welder
-    WelderClassTextureLocation="ui_weaponselect_tex.UI_WeaponSelect_Welder"
-    MedicDartClassName=KFProj_HealingDart
-    MedicDartTextureLocation="ui_firemodes_tex.UI_FireModeSelect_MedicDart"
 }

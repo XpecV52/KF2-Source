@@ -47,65 +47,6 @@ class KFDT_Fire_FlameThrower extends KFDT_Fire
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -141,7 +82,7 @@ static function int GetDamageeDialogID()
 
 defaultproperties
 {
-   AARWeaponID=48
+   WeaponDef=Class'KFGame.KFWeapDef_FlameThrower'
    DoT_DamageScale=0.600000
    Name="Default__KFDT_Fire_FlameThrower"
    ObjectArchetype=KFDT_Fire'KFGame.Default__KFDT_Fire'

@@ -291,6 +291,9 @@ var transient Weapon PreviousEquippedWeapon;
 /** reference to the currently equipped healer weapon */
 var transient KFWeap_HealerBase HealerWeapon;
 
+/** Localized message for quick heal */
+var localized string FullHealthMsg;
+
 /** The number of grenades the character is carrying */
 var byte GrenadeCount;
 
@@ -316,15 +319,10 @@ var() AkEvent ArmorPickupSound;
 /** Sound to play when toggling fire modes */
 var AkEvent SwitchFireModeEvent;
 
-/** If set, attempt to turn on flashlight of the next equipped weapon */
-var bool bPendingFlashlight;
 /** The time at which we were last given a weapon */
 var float LastCreatedWeaponTime;
 /** This stores any GFxMoviePlayers that are inventory may be using */
 var array<GFxMoviePlayer> OpticsUIMovies;
-
-/** Whether or not to turn on a weapon's flashlight upon equip (used when resuming from quick heal) */
-var bool bToggleFlashlightOnEquip;
 
 var bool bAutoswitchWeapon;
 
@@ -591,6 +589,8 @@ reliable server final function ServerRemoveFromInventory(Inventory ItemToRemove)
 		/* __TW_ Analytics */
 		if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogTraderTransactions(class'KFGameplayEventsWriter'.const.GAMEEVENT_SELL_WEAP,Instigator.Controller,ItemToRemove.class,,);};
 		if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Sell$","$Instigator.PlayerReplicationInfo.PlayerName$","$ItemToRemove.Class);
+		if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("sell", Instigator.PlayerReplicationInfo, ItemToRemove.Class);
+
 	}
 }
 
@@ -635,7 +635,7 @@ function bool ClassIsInInventory( class<Inventory> ItemClass )
  * Switches to Previous weapon
  * Network: Client
  */
-simulated function AutoSwitchLastWeapon()
+simulated function SwitchToLastWeapon()
 {
 	local Weapon CurrentWeapon;
 
@@ -651,59 +651,40 @@ simulated function AutoSwitchLastWeapon()
 	SetCurrentWeapon(PreviousEquippedWeapon);
 
 	PreviousEquippedWeapon = CurrentWeapon;
-
-	bPendingFlashlight = bToggleFlashlightOnEquip;
-	bToggleFlashlightOnEquip = false;
-	bAutoswitchWeapon = false;
+	bAutoSwitchWeapon = false;
 }
 
-/** Switch to the highest priority flashlight weapon */
-simulated function SwitchToPrimaryFlashLightWeapon()
+/**
+ * @brief Picks the best next available and per weapon with ammo
+ * 
+ * @param PerkClass Currently selected perk 
+ * @param bBackupIfEmpty Return the backup pistol if no perk weapon available
+ * @return Next best weapon with ammo
+ */
+simulated function KFWeapon GetBestPerkWeaponWithAmmo( class<KFPerk> PerkClass, optional bool bBackupIfEmpty=false )
 {
-	local KFWeapon NewWeapon, PriorityWeapon, EmptyPriorityWeapon;
-	local float HighestPriority;
+	local KFWeapon PerkWeapon, NextWeapon, BackupWeapon;
 
-	/** Inventory list is already sorted by weapon group (Primary, secondary, etc..) and priority.
-	* try to get the highest priority weapon with ammo, if none exist,
-	* give us the highest priority weapon with no ammo */
-	foreach InventoryActors( class'KFWeapon', NewWeapon )
+	if( InventoryChain == none )
 	{
-		if( NewWeapon.bHasFlashlight )
+		return none;
+	}
+
+	foreach InventoryActors( class'KFWeapon', NextWeapon )
+	{
+		if( NextWeapon.AssociatedPerkClass == PerkClass && NextWeapon.HasAmmo( 0 ) && !NextWeapon.IsMeleeWeapon() )
 		{
-			bPendingFlashlight = true;
-			if( NewWeapon.HasAnyAmmo() )
-			{
-				PriorityWeapon = NewWeapon;
-				break;
-			}
-			else if( NewWeapon.GroupPriority >= HighestPriority )
-			{
-				EmptyPriorityWeapon = NewWeapon;
-			}
-			HighestPriority = NewWeapon.GroupPriority;
+			PerkWeapon = NextWeapon;
+			break;
+		}
+		else if( NextWeapon.bIsBackupWeapon && !NextWeapon.IsMeleeWeapon() && NextWeapon.HasAmmo( 0 ) )
+		{
+			BackupWeapon = NextWeapon;
 		}
 	}
 
-	if( PriorityWeapon != none )
-	{
-		SetCurrentWeapon(PriorityWeapon);
-	}
-	else if( EmptyPriorityWeapon != none )
-	{
-		SetCurrentWeapon(EmptyPriorityWeapon);
-	}
-}
 
-/** Handle bPendingFlashlight */
-simulated function ChangedWeapon()
-{
-	Super.ChangedWeapon();
-
-	if ( bPendingFlashlight )
-	{
-		KFPawn_Human(Instigator).ToggleFlashlight();
-		bPendingFlashlight = false;
-	}
+	return PerkWeapon != none ? PerkWeapon : BackupWeapon;
 }
 
 /** Get the next weapon in the specified group */
@@ -792,6 +773,74 @@ simulated function HighlightPrevWeapon()
 	HighlightWeapon(CandidateWeapon);
 }
 
+simulated function GamePadNextWeapon()
+{
+	local Weapon	StartWeapon, CandidateWeapon, W;
+	local bool		bBreakNext;
+
+	StartWeapon = Instigator.Weapon;
+	if( PendingWeapon != None )
+	{
+		StartWeapon = PendingWeapon;
+	}
+
+	ForEach InventoryActors( class'Weapon', W )
+	{
+		if( bBreakNext || (StartWeapon == None) )
+		{
+			if(!ShouldSkipGamePadNextWeapon(W))
+			{
+				CandidateWeapon = W;
+				break;
+			}
+		}
+		if( W == StartWeapon )
+		{
+			bBreakNext = true;
+		}
+	}
+
+	if( CandidateWeapon == None )
+	{
+		ForEach InventoryActors( class'Weapon', W )
+		{
+			if(!ShouldSkipGamePadNextWeapon(W))
+			{
+				CandidateWeapon = W;
+				break;
+			}
+		}
+	}
+
+	// If same weapon, do not change
+	if( CandidateWeapon == Instigator.Weapon )
+	{
+		return;
+	}
+
+	SetCurrentWeapon(CandidateWeapon);
+}
+
+function bool ShouldSkipGamePadNextWeapon(Weapon CandidateWeapon)
+{
+	local KFWeapon KFW;
+
+	KFW = KFWeapon(CandidateWeapon);
+	if(KFW != none)
+	{
+		if(KFW.InventoryGroup == IG_Equipment)
+		{
+			return true;
+		}
+
+		if(!KFW.HasAnyAmmo())
+		{
+			return true;
+		}
+	}
+	//out of ammo or equipment
+	return false;
+}
 
 /**
  * Switches to Next weapon
@@ -882,13 +931,13 @@ reliable client function SetCurrentWeapon(Weapon DesiredWeapon)
 		{
 			DesiredKFW.bIronSightOnBringUp = (bCurrentWeaponUsingSights);
 		}
-		if(!bAutoswitchWeapon)
+
+		// cache previously equipped weapon for SwitchToLastWeapon
+		if ( DesiredKFW.InventoryGroup != IG_Equipment )
 		{
-			//Show and highlight this weapon on the hud
-			//ShowOnlyHUDGroup( DesiredKFW.InventoryGroup );
+			PreviousEquippedWeapon = CurrentWeapon;
 		}
 
-		PreviousEquippedWeapon = CurrentWeapon;
 		super.SetCurrentWeapon(DesiredWeapon);
 		UpdateHUD();
 	}
@@ -1017,11 +1066,16 @@ function SelectCurrentWeapon( byte GroupIndex, byte WeaponIndex )
 simulated function AttemptQuickHeal()
 {
 	local KFWeap_HealerBase W;
-	local KFWeapon InstigatorKFWeapon;
+	local KFPlayerController KFPC;
 
 	// Do not heal if we have full health
 	if ( Instigator.Health >= Instigator.HealthMax )
 	{
+		KFPC = KFPlayerController(Instigator.Owner);
+		if ( KFPC != None && KFPC.MyGFxHUD != None )
+		{
+			KFPC.MyGFxHUD.ShowNonCriticalMessage(FullHealthMsg);
+		}
 	 	return;
 	}
 
@@ -1032,14 +1086,11 @@ simulated function AttemptQuickHeal()
 		return;
 	}
 
-	InstigatorKFWeapon = KFWeapon(Instigator.Weapon);
-
 	// otherwise try to equip one
 	ForEach InventoryActors( class'KFWeap_HealerBase', W )
 	{
 		if ( W != Instigator.Weapon && W.HasAmmo(1) )
 		{
-			bToggleFlashlightOnEquip = (InstigatorKFWeapon != none && InstigatorKFWeapon.Flashlight != None && InstigatorKFWeapon.Flashlight.bEnabled);
 			PreviousEquippedWeapon = Instigator.Weapon;
 			W.bQuickHealMode = true;
 			SetCurrentWeapon(W);
@@ -1091,6 +1142,7 @@ simulated function QuickWeld()
 						if( KFW.IsA('KFWeap_Welder') )
 						{
 							SetCurrentWeapon(KFW);
+							ShowAllHUDGroups();
 							break;
 						}
 					}
@@ -1187,16 +1239,19 @@ reliable server function ServerThrowMoney()
 /** Returns whether or not we have the carrying capacity to pickup this weapon */
 simulated function bool CanCarryWeapon( class<KFWeapon> WeaponClass )
 {
+	local class<KFWeap_DualBase> DualWeaponClass;
+
 	// If the trader menu is open, check if this weapon is already part of our weapon transactions
 	if( bServerTraderMenuOpen && IsTransactionWeapon(WeaponClass.Name) )
 	{
 		return false;
 	}
 
-	if( WeaponClass.default.DualClass != none && ClassIsInInventory(WeaponClass) )
+	DualWeaponClass = class<KFWeap_DualBase>(WeaponClass);
+	if( DualWeaponClass != none && DualWeaponClass.default.SingleClass != none && ClassIsInInventory(DualWeaponClass.default.SingleClass) )
 	{
 		// check weight of dual minus weight of single because we remove single when adding dual
-		if( (CurrentCarryBlocks - WeaponClass.default.InventorySize + WeaponClass.default.DualClass.default.InventorySize <= MaxCarryBlocks) || bInfiniteWeight)
+		if( (((CurrentCarryBlocks + DualWeaponClass.default.InventorySize) - DualWeaponClass.default.SingleClass.default.InventorySize) <= MaxCarryBlocks) || bInfiniteWeight)
 		{
 			return true;
 		}
@@ -1229,19 +1284,6 @@ simulated function bool IsTransactionWeapon( name WeaponClassName )
 	}
 	return false;
 }
-
-/** Directly removes item from transaction, bypassing cost, etc. */
-function RemoveItemFromTransaction( name ClassName )
-{
-	local int Idx;
-
-	Idx = GetTransactionItemIndex( ClassName );
-	if( Idx != INDEX_NONE )
-	{
-		TransactionItems.Remove( Idx, 1 );
-	}
-}
-
 
 /**
  * Finds out if player is carrying weapon, and adds ammunition if so.
@@ -1442,17 +1484,18 @@ reliable server function ServerCloseTraderMenu()
 		if( KFWClass != none )
 		{
 			// Remove the transaction inventory blocks before trying to create the inventory
-			CurrentCarryBlocks -= KFWClass.default.InventorySize;
+			AddCurrentCarryBlocks( -KFWClass.default.InventorySize );
 			KFWeap = KFWeapon(CreateInventory(KFWClass));
 			if( KFWeap != none )
 			{
-				KFWeap.AddAmmo(TransactionItems[i].AddedAmmo[0]);
-				KFWeap.AddSecondaryAmmo(TransactionItems[i].AddedAmmo[1]);
+				KFWeap.AddTransactionAmmo( TransactionItems[i].AddedAmmo[0], TransactionItems[i].AddedAmmo[1] );
 			}
 
 	    	/* __TW_ Analytics */
 	    	if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogTraderTransactions(class'KFGameplayEventsWriter'.const.GAMEEVENT_PURCHASE_WEAP,Instigator.Controller,KFWClass,,);};
-	    	if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Buy$","$Instigator.PlayerReplicationInfo.PlayerName$","$KFWClass);
+			if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Buy$","$Instigator.PlayerReplicationInfo.PlayerName$","$KFWClass);
+			if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("buy", Instigator.PlayerReplicationInfo, KFWClass);
+
 		}
 
 		TransactionItems.Remove(i, 1);
@@ -1460,11 +1503,11 @@ reliable server function ServerCloseTraderMenu()
 }
 
 /** Find out what type of ammo we are buying and ask the server for it */
-simulated function final BuyAmmo( int AmountPurchased, EItemType ItemType, optional byte ListIndex, optional byte ItemIndex, optional bool bSecondaryAmmo )
+simulated function final BuyAmmo( int AmountPurchased, EItemType ItemType, optional byte ItemIndex, optional bool bSecondaryAmmo )
 {
 	if ( ItemType == IT_Weapon )
 	{
-		ServerBuyAmmo(AmountPurchased, ListIndex, ItemIndex, bSecondaryAmmo);
+		ServerBuyAmmo(AmountPurchased, ItemIndex, bSecondaryAmmo);
 	}
  	else if ( ItemType == IT_Armor )
  	{
@@ -1477,7 +1520,7 @@ simulated function final BuyAmmo( int AmountPurchased, EItemType ItemType, optio
 }
 
 /** Receive weapon ammo */
-reliable server final private function ServerBuyAmmo(int AmountPurchased, byte ListIndex, byte ItemIndex, bool bSecondaryAmmo)
+reliable server final private function ServerBuyAmmo(int AmountPurchased, byte ItemIndex, bool bSecondaryAmmo)
 {
 	local STraderItem WeaponItem;
 	local KFWeapon KFW;
@@ -1485,7 +1528,7 @@ reliable server final private function ServerBuyAmmo(int AmountPurchased, byte L
 
 	if( Role == ROLE_Authority && bServerTraderMenuOpen )
 	{
-		if( GetTraderItemFromWeaponLists(WeaponItem, ListIndex, ItemIndex) )
+		if( GetTraderItemFromWeaponLists(WeaponItem, ItemIndex) )
 		{
 			if( !ProcessAmmoDosh(WeaponItem, AmountPurchased, bSecondaryAmmo) )
 			{
@@ -1502,6 +1545,7 @@ reliable server final private function ServerBuyAmmo(int AmountPurchased, byte L
 		    		/* __TW_ Analytics */
 		    		if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogTraderTransactions(class'KFGameplayEventsWriter'.const.GAMEEVENT_PURCHASE_AMMO,Instigator.Controller,KFW.class,AmountPurchased,bSecondaryAmmo);};
 					if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Buy$","$Instigator.PlayerReplicationInfo.PlayerName$","$"Ammo,"@KFW.class$","@AmountPurchased);
+					if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("buy", Instigator.PlayerReplicationInfo, "ammo", KFW.class, "#"$AmountPurchased);
 				}
 				else
 				{
@@ -1509,7 +1553,8 @@ reliable server final private function ServerBuyAmmo(int AmountPurchased, byte L
 		    		
 		    		/* __TW_ Analytics */
 		    		if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogTraderTransactions(class'KFGameplayEventsWriter'.const.GAMEEVENT_PURCHASE_AMMO,Instigator.Controller,KFW.class,AmountPurchased,bSecondaryAmmo);};
-		    		if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Buy$","$Instigator.PlayerReplicationInfo.PlayerName$","$"S.Ammo,"@KFW.class$","@AmountPurchased);
+					if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Buy$","$Instigator.PlayerReplicationInfo.PlayerName$","$"S.Ammo,"@KFW.class$","@AmountPurchased);
+					if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("buy", Instigator.PlayerReplicationInfo, "S.ammo", KFW.class, "#"$AmountPurchased);
 		    	}
 			}
 			else
@@ -1529,27 +1574,49 @@ reliable server final private function ServerBuyAmmo(int AmountPurchased, byte L
 	}
 }
 
+/** Modifies ammo for a transaction item */
+reliable server final private event ServerAddTransactionAmmo( int AmountAdded, byte ItemIndex, bool bSecondaryAmmo )
+{
+	local STraderItem WeaponItem;
+	local byte AmmoTypeIndex, TransactionIndex;
+
+	if( bServerTraderMenuOpen )
+	{
+		if( GetTraderItemFromWeaponLists(WeaponItem, ItemIndex) )
+		{
+			TransactionIndex = GetTransactionItemIndex(WeaponItem.ClassName);
+			if( TransactionIndex != INDEX_NONE )
+			{
+				AmmoTypeIndex = byte(bSecondaryAmmo);
+				TransactionItems[TransactionIndex].AddedAmmo[AmmoTypeIndex] += AmountAdded;
+			}
+		}
+	}
+}
+
 /** Receive armor */
-reliable server final private function ServerBuyArmor(int PercentPurchased)
+reliable server final private function ServerBuyArmor( int PercentPurchased )
 {
 	local KFPawn_Human KFP;
 	local int AmountPurchased;
 	local float MaxArmor;
 
     KFP = KFPawn_Human( Instigator );
-	if (Role == ROLE_Authority && KFP != none && bServerTraderMenuOpen)
+	if( Role == ROLE_Authority && KFP != none && bServerTraderMenuOpen )
 	{
-		if(ProcessArmorDosh(PercentPurchased))
+		if( ProcessArmorDosh( PercentPurchased ) )
 		{
 			// We've passed the percent armor purchased into this function, now get the armor count
 			MaxArmor = KFP.GetMaxArmor();
-			AmountPurchased = FCeil(MaxArmor * (float(PercentPurchased) / 100.0));
+			AmountPurchased = FCeil( MaxArmor * (float(PercentPurchased) / 100.0) );
 
 		    KFP.AddArmor( AmountPurchased );
 
 		    /* __TW_ Analytics */
 		    if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogArmorPurchase(class'KFGameplayEventsWriter'.const.GAMEEVENT_PURCHASE_ARMOR,Instigator.Controller,AmountPurchased);};
 			if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Buy$","$Instigator.PlayerReplicationInfo.PlayerName$","$"Armor,"@PercentPurchased);
+			// this is a bit spammy, since it buys armor in increments of '3'
+			//`AnalyticsLog(("buy", Instigator.PlayerReplicationInfo, "armor", "#"$PercentPurchased));
 		}
 	}
 }
@@ -1565,64 +1632,92 @@ reliable server final private function ServerBuyGrenade( int AmountPurchased )
 	    	
 	    	/* __TW_ Analytics */
 	    	if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogTraderTransactions(class'KFGameplayEventsWriter'.const.GAMEEVENT_PURCHASE_WEAP,Instigator.Controller,KFPlayerController(Instigator.Controller).GetPerk().GetGrenadeClass(),AmountPurchased,);};
-    		if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Buy$","$Instigator.PlayerReplicationInfo.PlayerName$","$"Grenades(s),"$","@AmountPurchased);
+			if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Buy$","$Instigator.PlayerReplicationInfo.PlayerName$","$"Grenades(s),"$","@AmountPurchased);
+			if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("buy", Instigator.PlayerReplicationInfo, "grenades", "#"$AmountPurchased);
     	}
     }
 }
 
 /** Receive our new weapon */
-reliable server final function ServerBuyWeapon( byte ListIndex, byte ItemIndex )
+reliable server final function ServerBuyWeapon( byte ItemIndex )
 {
 	local STraderItem PurchasedItem;
-	local TransactionItem NewTransactionItem;
+	local int BlocksRequired;
 
 	// Find the weapon in the servers TraderItemList
     if (Role == ROLE_Authority && bServerTraderMenuOpen)
     {
         // Get the purchased item info using the item indicies
-		if( GetTraderItemFromWeaponLists(PurchasedItem, ListIndex, ItemIndex) )
+		if( GetTraderItemFromWeaponLists(PurchasedItem, ItemIndex) )
 		{
-	    	if(CurrentCarryBlocks > CurrentCarryBlocks + PurchasedItem.BlocksRequired
+			BlocksRequired = GetDisplayedBlocksRequiredFor(PurchasedItem);
+	    	if(CurrentCarryBlocks > CurrentCarryBlocks + BlocksRequired
 	    		|| !ProcessWeaponDosh(PurchasedItem))
 	    	{
 	    		return;
 	    	}
 
-	    	// Set a new transaction item and add it to our array
-			NewTransactionItem.ClassName = PurchasedItem.ClassName;
-			NewTransactionItem.DLOString = string(PurchasedItem.PathName);
-			NewTransactionItem.AddedAmmo[0] = 0;
-			NewTransactionItem.AddedAmmo[1] = 0;
+			AddTransactionItem( PurchasedItem );
+		}
+	}
+}
 
-			TransactionItems.AddItem(NewTransactionItem);
+/** Single location for adding/subtracting from current carry blocks */
+function AddCurrentCarryBlocks( int AddAmount )
+{
+	CurrentCarryBlocks += AddAmount;
+}
 
-			// remove single from transaction when adding dual to transaction
-			// (selling dual adds single to transaction, so re-buying dual should remove it; occurs when same dual is sold and re-bought during same trader menu session)
-			if( PurchasedItem.SingleClassName != '' && IsTransactionWeapon(PurchasedItem.SingleClassName) )
-			{
-				RemoveItemFromTransaction( PurchasedItem.SingleClassName );
-			}
-			
-			CurrentCarryBlocks += PurchasedItem.BlocksRequired;
+/** Creates a new transaction item based on a trader item and adds it to transaction list */
+final function AddTransactionItem( const out STraderItem ItemToAdd )
+{
+	local TransactionItem NewTransactionItem;
+
+	if( Role < ROLE_Authority || !bServerTraderMenuOpen )
+	{
+		return;
+	}
+
+	NewTransactionItem.ClassName = ItemToAdd.ClassName;
+	NewTransactionItem.DLOString = ItemToAdd.WeaponDef.default.WeaponClassPath;
+	NewTransactionItem.AddedAmmo[0] = 0;
+	NewTransactionItem.AddedAmmo[1] = 0;
+
+	TransactionItems.AddItem( NewTransactionItem );
+	
+	AddCurrentCarryBlocks( ItemToAdd.BlocksRequired );
+}
+
+/** Creates a new transaction item based on a trader item and adds it to transaction list */
+reliable server final function ServerAddTransactionItem( byte ItemIndex )
+{
+	local STraderItem PurchasedItem;
+
+	// Find the weapon in the servers TraderItemList
+    if (Role == ROLE_Authority && bServerTraderMenuOpen)
+    {
+        // Get the purchased item info using the item indicies
+		if( GetTraderItemFromWeaponLists(PurchasedItem, ItemIndex) )
+		{
+			AddTransactionItem( PurchasedItem );
 		}
 	}
 }
 
 /** Receive our new weapon */
-reliable server final function ServerSellWeapon( byte ListIndex, byte ItemIndex )
+reliable server final function ServerSellWeapon( byte ItemIndex )
 {
 	local STraderItem SoldItem;
 	local int SellPrice, TransactionIndex;
 	local KFWeapon KFW;
 	local KFPlayerReplicationInfo KFPRI;
 
-
 	// Find the weapon in the servers TraderItemList
     if (Role == ROLE_Authority && bServerTraderMenuOpen)
     {
 		KFPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
         // Get the Sold Item info using the Item indicies
-		if( KFPRI != none && GetTraderItemFromWeaponLists(SoldItem, ListIndex, ItemIndex) )
+		if( KFPRI != none && GetTraderItemFromWeaponLists(SoldItem, ItemIndex) )
 		{
 			GetWeaponFromClass(KFW, SoldItem.ClassName);
             // If the weapon is in our inventory, sell it immediately
@@ -1641,11 +1736,42 @@ reliable server final function ServerSellWeapon( byte ListIndex, byte ItemIndex 
 					SellPrice = GetAdjustedSellPriceFor( SoldItem );
 
 					KFPRI.AddDosh(SellPrice);
-					CurrentCarryBlocks -= SoldItem.BlocksRequired;
-
-					TransactionItems.Remove(TransactionIndex, 1);
+					
+					RemoveTransactionItem( SoldItem );
 				}
 	    	}
+		}
+	}
+}
+
+/** Removes an item from the transaction list */
+final function RemoveTransactionItem( const out STraderItem ItemToRemove )
+{
+	local int TransactionIndex;
+
+	if( Role < ROLE_Authority || !bServerTraderMenuOpen )
+	{
+		return;
+	}
+
+	TransactionIndex = GetTransactionItemIndex( ItemToRemove.ClassName );
+	if( TransactionIndex != INDEX_NONE )
+	{
+		AddCurrentCarryBlocks( -ItemToRemove.BlocksRequired );
+		TransactionItems.Remove( TransactionIndex, 1 );
+	}
+}
+
+/** Removes an item from the transaction list */
+reliable server final function ServerRemoveTransactionItem( int ItemIndex )
+{
+	local STraderItem ItemToRemove;
+
+	if( bServerTraderMenuOpen )
+	{
+		if( GetTraderItemFromWeaponLists(ItemToRemove, ItemIndex) )
+		{
+			RemoveTransactionItem( ItemToRemove );
 		}
 	}
 }
@@ -1666,7 +1792,7 @@ final function int GetTransactionItemIndex(name ClassName)
 }
 
 /** Get a KFWeapon from our inventory using its weapon class */
-final function GetWeaponFromClass( out KFWeapon KFW, name ClassName )
+final simulated function GetWeaponFromClass( out KFWeapon KFW, name ClassName )
 {
 	local Inventory Item;
 	// Skip if already in the inventory.
@@ -1713,14 +1839,14 @@ private final function bool ProcessAmmoDosh(out STraderItem PurchasedItem, int A
 	{
 		if( bSecondaryAmmo )
 		{
-	    	PricePerMag = PurchasedItem.SecondaryAmmoMagPrice;
-	    	MagSize = PurchasedItem.SecondaryAmmoMagSize;
+	    	PricePerMag = PurchasedItem.WeaponDef.default.SecondaryAmmoMagPrice;
+	    	MagSize = PurchasedItem.WeaponDef.default.SecondaryAmmoMagSize;
 
 			BuyPrice = FCeil((PricePerMag / MagSize) * float(AdditionalAmmo));
 		}
 		else
 		{
-	    	PricePerMag = PurchasedItem.AmmoPricePerMagazine;
+	    	PricePerMag = PurchasedItem.WeaponDef.default.AmmoPricePerMag;
 	    	MagSize = PurchasedItem.MagazineCapacity;
 
 			BuyPrice = FCeil((PricePerMag / MagSize) * float(AdditionalAmmo));
@@ -1751,7 +1877,7 @@ private final function bool ProcessGrenadeDosh(int AmountPurchased)
 	if( KFPC != none && KFPRI != none )
 	{
 		TraderItems = KFGameReplicationInfo( WorldInfo.GRI ).TraderItems;
-		BuyPrice = TraderItems.GetGrenadeByPerk(KFPC.CurrentPerk.class).AmmoPricePerMagazine * AmountPurchased;
+		BuyPrice = TraderItems.GrenadePrice * AmountPurchased;
 		if(BuyPrice <= KFPRI.Score)
 		{
 			KFPRI.AddDosh(-BuyPrice);
@@ -1769,14 +1895,14 @@ private final function bool ProcessArmorDosh(int PercentPurchased)
 	local KFGFxObject_TraderItems TraderItems;
 	local KFPlayerController KFPC;
 	local KFPerk CurrentPerk;
-	local float ArmorPricePerPercent;
+	local int ArmorPricePerPercent;
 	local KFPlayerReplicationInfo KFPRI;
 
 	KFPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
 	if( KFPRI != none )
 	{
 		TraderItems = KFGameReplicationInfo( WorldInfo.GRI ).TraderItems;
-		ArmorPricePerPercent = TraderItems.ArmorItem.AmmoPricePerMagazine;
+		ArmorPricePerPercent = TraderItems.ArmorPrice;
 
 		KFPC = KFPlayerController(Instigator.Owner);
 		if( KFPC != none )
@@ -1800,21 +1926,17 @@ private final function bool ProcessArmorDosh(int PercentPurchased)
 	return false;
 }
 
-private final function bool GetTraderItemFromWeaponLists(out STraderItem TraderItem, byte ListIndex, byte ItemIndex )
+private final function bool GetTraderItemFromWeaponLists(out STraderItem TraderItem, byte ItemIndex )
 {
 	local KFGFxObject_TraderItems TraderItemsObject;
 
 	TraderItemsObject = KFGameReplicationInfo( WorldInfo.GRI ).TraderItems;
-	if( ListIndex < TraderItemsObject.TraderItemList.Length )
+	if( ItemIndex < TraderItemsObject.SaleItems.Length )
 	{
-		TraderItem = TraderItemsObject.TraderItemList[ListIndex].ItemList[ItemIndex];
+		TraderItem = TraderItemsObject.SaleItems[ItemIndex];
 		return true;
 	}
-	else
-	{
-		TraderItem = TraderItemsObject.OffPerkItems[ItemIndex];
-		return true;
-	}
+
 	return false;
 }
 
@@ -1823,7 +1945,7 @@ simulated function int GetAdjustedBuyPriceFor( const out STraderItem ShopItem, o
 {
 	local int AdjustedBuyPrice, i;
 
-	AdjustedBuyPrice = ShopItem.BuyPrice;
+	AdjustedBuyPrice = ShopItem.WeaponDef.default.BuyPrice;
 
 	// if ShopItem is a dual and we own a single already, then reduce the dual by half
 	if( ShopItem.SingleClassName != '' )
@@ -1860,12 +1982,12 @@ simulated function int GetAdjustedSellPriceFor( const out STraderItem OwnedItem,
 
 	if( OwnedWeapon != none && OwnedWeapon.bGivenAtStart )
 	{
-	 	AdjustedSellPrice = OwnedItem.BuyPrice * StartedWithWeaponPriceModifier;
+	 	AdjustedSellPrice = OwnedItem.WeaponDef.default.BuyPrice * StartedWithWeaponPriceModifier;
 	}
 	// otherwise modify its buy value by a modifier
 	else
 	{
-		AdjustedSellPrice = OwnedItem.BuyPrice * SellPriceModifier;
+		AdjustedSellPrice = OwnedItem.WeaponDef.default.BuyPrice * SellPriceModifier;
 	}
 
 	// if OwnedItem is a dual, set sell price to that of a single (because we sell one single and keep one single)
@@ -1881,6 +2003,24 @@ simulated function int GetAdjustedSellPriceFor( const out STraderItem OwnedItem,
 
 	return AdjustedSellPrice;
 }
+
+/** Modifies blocks required for the UI (e.g. in the case of dualies) */
+simulated function int GetDisplayedBlocksRequiredFor( const out STraderItem ShopItem )
+{
+	// for now, only adjust blocks required for duals, except for dual 9mm since the single 9mm doesn't require any blocks
+	if( ShopItem.SingleClassName == '' || ShopItem.SingleClassName == 'KFWeap_Pistol_9mm' )
+	{
+		return ShopItem.BlocksRequired;
+	}
+	
+	// display half weight of dual if player owns single
+	if( GetIsOwned(ShopItem.SingleClassName) )
+	{
+		return ShopItem.BlocksRequired / 2;
+	}
+
+	return ShopItem.BlocksRequired;
+} 
 
 /** Check if a given class is currently "owned" (in inventory or transaction list) */
 simulated function bool GetIsOwned( name ClassName )
@@ -1930,6 +2070,7 @@ simulated event DiscardInventory()
 
 defaultproperties
 {
+   FullHealthMsg="Health Full"
    MaxCarryBlocks=15
    AmmoPickupSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Ammo'
    ItemPickupSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Weapon'

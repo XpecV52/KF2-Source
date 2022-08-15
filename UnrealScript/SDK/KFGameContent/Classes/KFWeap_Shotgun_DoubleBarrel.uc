@@ -184,8 +184,7 @@ defaultproperties
 	// Inventory
 	InventorySize=4
 	GroupPriority=50
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_DBShotgun'
-	FilterTypeUI=FT_Shotgun
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_DBShotgun'
 
     // FOV
     MeshFOV=75
@@ -264,7 +263,7 @@ defaultproperties
 	MagazineCapacity[0]=2
 	MaxSpareAmmo[0]=46
 	InitialSpareMags[0]=11
-	AmmoPickupScale[0]=2.0
+	AmmoPickupScale[0]=3.0
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
 	bNoMagazine=true
@@ -288,9 +287,6 @@ defaultproperties
 	FallingRecoilModifier=1.5
 	DoubleFireRecoilModifier=2.2
 	HippedRecoilModifier=1.25
-
-	// Trader
-    EffectiveRange=15
 
 	AssociatedPerkClass=class'KFPerk_Support'
 }

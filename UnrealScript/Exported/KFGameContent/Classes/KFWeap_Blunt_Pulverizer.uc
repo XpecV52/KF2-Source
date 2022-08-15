@@ -253,13 +253,11 @@ defaultproperties
    FireModeIconPaths(4)=()
    FireModeIconPaths(5)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
    FireModeIconPaths(6)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
-   FilterTypeUI=FT_Melee
    InventorySize=6
-   EffectiveRange=3
    bCanBeReloaded=True
    bReloadFromMagazine=True
    GroupPriority=75.000000
-   UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Pulverizer'
+   WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Pulverizer'
    MagazineCapacity(0)=5
    MaxSpareAmmo(0)=30
    InitialSpareMags(0)=3
@@ -293,7 +291,7 @@ defaultproperties
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_Blunt_Pulverizer:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Blunt_Pulverizer:MeleeHelper_0'
    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Pulverizer_ARCH.Wep_Pulverizer_MuzzleFlash'
    AssociatedPerkClass=Class'KFGame.KFPerk_Berserker'
    FiringStatesArray(2)="Reloading"
@@ -310,12 +308,12 @@ defaultproperties
    InstantHitDamage(3)=20.000000
    InstantHitDamage(4)=()
    InstantHitDamage(5)=145.000000
-   InstantHitDamageTypes(0)=Class'KFGameContent.KFDT_Bludgeon_Pulverizer'
+   InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Bludgeon_Pulverizer'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=()
-   InstantHitDamageTypes(3)=Class'KFGameContent.KFDT_Bludgeon_PulverizerBash'
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_PulverizerBash'
    InstantHitDamageTypes(4)=()
-   InstantHitDamageTypes(5)=Class'KFGameContent.KFDT_Bludgeon_PulverizerHeavy'
+   InstantHitDamageTypes(5)=Class'kfgamecontent.KFDT_Bludgeon_PulverizerHeavy'
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_MeleeBase:FirstPersonMesh'
       MinTickTimeStep=0.025000
       SkeletalMesh=SkeletalMesh'WEP_1P_Pulverizer_MESH.Wep_1stP_Pulverizer_Rig_New'

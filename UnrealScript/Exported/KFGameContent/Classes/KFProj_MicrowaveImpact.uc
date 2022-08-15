@@ -40,13 +40,13 @@ simulated protected function PrepareExplosionTemplate()
 defaultproperties
 {
    bAutoStartAmbientSound=True
-   ExplosionActorClass=Class'KFGameContent.KFExplosion_GroundFire'
+   ExplosionActorClass=Class'kfgamecontent.KFExplosion_GroundFire'
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
       ExplosionEffects=KFImpactEffectInfo'WEP_Microwave_Gun_ARCH.Beam_Impacts'
       bAllowPerMaterialFX=True
       Damage=0.000000
       DamageRadius=0.000000
-      MyDamageType=Class'KFGameContent.KFDT_Microwave_Beam'
+      MyDamageType=Class'kfgamecontent.KFDT_Microwave_Beam'
       KnockDownStrength=0.000000
       MomentumTransferScale=0.000000
       FractureMeshRadius=0.000000
@@ -55,7 +55,7 @@ defaultproperties
       Name="ExploTemplate0"
       ObjectArchetype=KFGameExplosion'KFGame.Default__KFGameExplosion'
    End Object
-   ExplosionTemplate=KFGameExplosion'KFGameContent.Default__KFProj_MicrowaveImpact:ExploTemplate0'
+   ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFProj_MicrowaveImpact:ExploTemplate0'
    PostExplosionLifetime=1.500000
    Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'KFGame.Default__KFProjectile:CollisionCylinder'
       CollisionHeight=0.000000

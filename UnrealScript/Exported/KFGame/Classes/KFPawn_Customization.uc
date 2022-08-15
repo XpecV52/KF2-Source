@@ -64,6 +64,42 @@ simulated function SetCharacterAnimationInfo()
 	PlayRandomIdleAnimation();
 }
 
+function AttachWeaponByItemDefinition( int ItemDefinition )
+{
+	local class<KFWeaponDefinition> WeaponDef;
+	local int ItemINdex;
+	local KFWeaponAttachment WeaponPreview;
+
+	//find weapon def
+	ItemIndex = class'KFWeaponSkinList'.default.Skins.Find('Id', ItemDefinition);
+
+	if(ItemIndex ==  INDEX_NONE)
+	{
+		LogInternal("Could not find item" @ItemDefinition);
+		return;
+	}
+
+	WeaponDef = class'KFWeaponSkinList'.default.Skins[ItemIndex].WeaponDef;
+
+	if(WeaponDef == none)
+	{
+		LogInternal("Weapon def NONE for : " @ItemDefinition);
+		return;
+	}
+
+	//load in and add object .  
+	WeaponPreview = KFWeaponAttachment ( DynamicLoadObject( WeaponDef.default.AttachmentArchtypePath, class'KFWeaponAttachment' ) );
+
+	//attatch it to player
+	WeaponAttachmentTemplate = WeaponPreview;
+
+	WeaponAttachmentChanged();		
+
+	//setweapon skin
+	WeaponAttachment.SetWeaponSkin(ItemDefinition);
+	
+}
+
 simulated function PlayRandomIdleAnimation()
 {
 	local byte AnimIndex;
@@ -132,17 +168,6 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 Customizing
 ********************************************************************************************* */
 
-simulated function UpdateCustomizationCharacter( byte CharIndex )
-{
-	local KFPlayerReplicationInfo KFPRI;
-
-    KFPRI = KFPlayerReplicationInfo( PlayerReplicationInfo );
-    if( KFPRI != none )
-    {
-		KFPRI.SetCharacter( CharIndex );
-    }
-}
-
 /** Set basic variables for the newly created Customization Pawn, derived from RestartPlayer */
 function InitializeCustomizationPawn( PlayerController NewController, NavigationPoint BestStartSpot )
 {
@@ -163,6 +188,7 @@ defaultproperties
 {
    MaleCustomizationAnimSet=AnimSet'CHR_BaseMale_ANIM.CS_Male'
    FemaleCustomizationAnimSet=AnimSet'CHR_BaseFemale_ANIM.CS_Female'
+   FlashLightTemplate=KFFlashlightAttachment'KFGame.Default__KFPawn_Customization:FlashLight_0'
    Begin Object Class=AkComponent Name=TraderDialogAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_Human:TraderDialogAkSoundComponent'
       BoneName="Root"
       bForceOcclusionUpdateInterval=True
@@ -177,6 +203,8 @@ defaultproperties
       ObjectArchetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Human:ThirdPersonHead0'
    End Object
    ThirdPersonHeadMeshComponent=ThirdPersonHead0
+   bEnableAimOffset=False
+   bDisableTurnInPlace=True
    Begin Object Class=KFPawnAfflictions Name=Afflictions_0 Archetype=KFPawnAfflictions'KFGame.Default__KFPawn_Human:Afflictions_0'
       StackingAffl(0)=(Cooldown=5.000000,DissipationRate=0.500000)
       StackingAffl(1)=(Threshhold=0.200000,Duration=1.000000,DissipationRate=0.200000)
@@ -219,8 +247,9 @@ defaultproperties
       SpecialMoveClasses(16)=None
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
-      SpecialMoveClasses(19)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(20)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(19)=None
+      SpecialMoveClasses(20)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(21)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Human:SpecialMoveHandler_0'
    End Object
@@ -278,7 +307,7 @@ defaultproperties
       BlockZeroExtent=True
       BlockRigidBody=True
       RBCollideWithChannels=(Default=True,Pawn=True,Vehicle=True,BlockingVolume=True)
-      Translation=(X=0.000000,Y=0.000000,Z=-86.000000)
+      Translation=(X=0.000000,Y=0.000000,Z=-89.000000)
       ScriptRigidBodyCollisionThreshold=200.000000
       PerObjectShadowCullDistance=4000.000000
       bAllowPerObjectShadows=True

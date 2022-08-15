@@ -303,8 +303,11 @@ simulated event ReplicatedEvent(name VarName)
 	else if (VarName == 'bIsInactive')
 	{
 		// remove and re-add from the GRI so it's in the right list
-		WorldInfo.GRI.RemovePRI(self);
-		WorldInfo.GRI.AddPRI(self);
+		if( WorldInfo.GRI != none )
+		{
+			WorldInfo.GRI.RemovePRI(self);
+			WorldInfo.GRI.AddPRI(self);
+		}
 	}
 }
 

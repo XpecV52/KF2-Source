@@ -120,7 +120,7 @@ package tripwire.containers
                     _loc1_ = this.firstItemIndex + _loc2_;
                     if(_loc1_ > this.weaponList.length - 1)
                     {
-                        _loc1_ %= this.weaponList.length - 1;
+                        _loc1_ %= this.weaponList.length;
                     }
                     this._weaponItemContainers[_loc2_].data = this.weaponList[_loc1_];
                 }

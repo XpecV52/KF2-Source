@@ -268,6 +268,17 @@ function Callback_BroadcastChatMessage(string Message)
     }
 }
 
+//From Party widget chat and aar chat
+function Callback_ChatFocusIn()
+{
+	Manager.ClearFocusIgnoreKeys();
+}
+
+function Callback_ChatFocusOut()
+{
+	Manager.UpdateDynamicIgnoreKeys();
+}
+
 /** RETURN TO THESE FUNCTIONS */
 
 /************************************************************************

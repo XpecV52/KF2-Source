@@ -10,5 +10,5 @@ class KFDT_Bludgeon_M4Shotgun extends KFDT_Bludgeon_RifleButt
 
 defaultproperties
 {
-    AARWeaponID=38
+    WeaponDef=Class'KFGame.KFWeapDef_M4'
 }

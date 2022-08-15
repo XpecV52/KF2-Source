@@ -15,7 +15,7 @@ static simulated function class<KFProj_PinningBullet> GetPinProjectileClass()
 
 defaultproperties
 {
-    AARWeaponID=5
+    WeaponDef=Class'KFGame.KFWeapDef_Nailgun'
     StunPower=42
     StumblePower=54
     LegStumblePower=54

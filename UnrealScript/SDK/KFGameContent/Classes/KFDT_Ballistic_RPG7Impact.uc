@@ -51,5 +51,6 @@ defaultproperties
 
 	//Perk
 	ModifierPerkList(0)=class'KFPerk_Demolitionist'
-	AARWeaponID=`AAR_RPG7
+	
+	WeaponDef=class'KFWeapDef_RPG7'
 }

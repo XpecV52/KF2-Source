@@ -214,8 +214,11 @@ simulated event ReplicatedEvent(name VarName)
             {
                 if(VarName == 'bIsInactive')
                 {
-                    WorldInfo.GRI.RemovePRI(self);
-                    WorldInfo.GRI.AddPRI(self);
+                    if(WorldInfo.GRI != none)
+                    {
+                        WorldInfo.GRI.RemovePRI(self);
+                        WorldInfo.GRI.AddPRI(self);
+                    }
                 }
             }
         }

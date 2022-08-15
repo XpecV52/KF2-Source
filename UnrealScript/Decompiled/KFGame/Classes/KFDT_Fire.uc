@@ -25,10 +25,10 @@ static function int GetDamageeDialogID()
 
 defaultproperties
 {
+    bIgnoreSelfInflictedScale=true
     DoT_Type=EDamageOverTimeGroup.DOT_Fire
     EffectGroup=EEffectDamageGroup.FXG_Fire
     GoreDamageGroup=EGoreDamageGroup.DGT_Fire
-    bIgnoreSelfInflictedScale=true
     DoT_Duration=5
     DoT_Interval=1
     DoT_DamageScale=1.5

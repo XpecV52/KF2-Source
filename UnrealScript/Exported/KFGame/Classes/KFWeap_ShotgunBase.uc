@@ -125,11 +125,9 @@ simulated function name GetWeaponFireAnim(byte FireModeNum)
 	return Super.GetWeaponFireAnim(FireModeNum);
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////
-//
-// Trader
-//
-///////////////////////////////////////////////////////////////////////////////////////////
+/*********************************************************************************************
+ * @name	Trader
+ *********************************************************************************************/
 
 /** Allows weapon to calculate its own damage for display in trader.
   * Overridden to multiply damage by number of pellets.
@@ -150,6 +148,12 @@ static simulated function float CalculateTraderWeaponStatDamage()
 	return BaseDamage * default.NumPellets[DEFAULT_FIREMODE] + DoTDamage;
 }
 
+/** Returns trader filter index based on weapon type */
+static simulated event EFilterTypeUI GetTraderFilter()
+{
+	return FT_Shotgun;
+}
+
 defaultproperties
 {
    NumPellets(0)=7
@@ -158,7 +162,6 @@ defaultproperties
    ReloadOpenInsertEliteAnim="Reload_Open_Shell_Elite"
    FireOneHandAnim="Shoot_OneHand"
    FireOneHandLastAnim="Shoot_OneHand_Last"
-   EffectiveRange=30
    bHasFireLastAnims=True
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
       MaxHitRange=175.000000

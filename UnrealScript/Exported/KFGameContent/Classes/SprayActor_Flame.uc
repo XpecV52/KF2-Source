@@ -165,7 +165,7 @@ defaultproperties
    SplashGlancingDotLimit=-0.900000
    LastBoneChainIndexThatCanSpawnSplashEffects=11
    ImpactProjectileInterval=0.100000
-   ImpactProjectileClass=Class'KFGameContent.KFProj_GroundFire'
+   ImpactProjectileClass=Class'kfgamecontent.KFProj_GroundFire'
    SplashRotInterpSpeed=8.000000
    SplashLocInterpSpeed=40.000000
    SprayLights(0)=(Light=FlamePointLight0,BoneChainIndex=1,FlickerIntensity=5.000000,FlickerInterpSpeed=15.000000)

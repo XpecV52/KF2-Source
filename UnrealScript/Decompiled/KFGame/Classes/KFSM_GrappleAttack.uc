@@ -5,7 +5,8 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFSM_GrappleAttack extends KFSM_InteractionPawnLeader;
+class KFSM_GrappleAttack extends KFSM_InteractionPawnLeader
+    native(SpecialMoves);
 
 var array<name> GrappleAnims;
 var bool bStopFullBodyWhenMoveEnds;
@@ -18,9 +19,14 @@ static function byte PackSMFlags()
 
 function SpecialMoveStarted(bool bForced, name PrevMove)
 {
+    super.SpecialMoveStarted(bForced, PrevMove);
+    PlayGrappleAnim();
+}
+
+function StartInteraction()
+{
     local KFAIDirector AIDirector;
 
-    super.SpecialMoveStarted(bForced, PrevMove);
     if(((Follower != none) && KFPOwner != none) && KFPOwner.MyKFAIC != none)
     {
         AIDirector = KFPOwner.MyKFAIC.MyAIDirector;
@@ -42,7 +48,6 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
             AIDirector.NotifyPawnGrabbed(Follower, KFPOwner);
         }
     }
-    PlayGrappleAnim();
 }
 
 function bool CanInteractWithPawn(KFPawn OtherPawn)

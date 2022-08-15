@@ -48,6 +48,11 @@ static simulated function float CalculateTraderWeaponStatDamage()
     return CalculatedDamage;
 }
 
+static simulated event KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
+{
+    return 6;
+}
+
 simulated state WeaponSingleFiring
 {
     simulated function PlayFireEffects(byte FireModeNum, optional Vector HitLocation)
@@ -64,7 +69,6 @@ simulated state WeaponSingleFiring
 defaultproperties
 {
     ForceReloadTime=0.3
-    EffectiveRange=30
     bAllowClientAmmoTracking=false
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_GrenadeLauncher_Base.MeleeHelper'
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent

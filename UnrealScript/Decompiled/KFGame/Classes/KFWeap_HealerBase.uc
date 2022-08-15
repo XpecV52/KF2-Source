@@ -44,6 +44,8 @@ var float LastReadyHealTime;
 var const float StandAloneHealAmount;
 var class<KFGFxWorld_HealerScreen> ScreenUIClass;
 var KFGFxWorld_HealerScreen ScreenUI;
+var float LastUIUpdateTime;
+var float UIUpdateInterval;
 
 replication
 {
@@ -109,7 +111,7 @@ simulated event Destroyed()
     {
         ScreenUI.Close();
     }
-    super.Destroyed();
+    super(Weapon).Destroyed();
 }
 
 simulated function int GetSpareAmmoForHUD()
@@ -347,7 +349,11 @@ simulated event Tick(float DeltaTime)
     {
         HealAmmoRegeneration(DeltaTime);
     }
-    UpdateInteractionMessage();
+    if((Instigator != none) && (Instigator.WorldInfo.TimeSeconds - LastUIUpdateTime) > UIUpdateInterval)
+    {
+        LastUIUpdateTime = Instigator.WorldInfo.TimeSeconds;
+        UpdateInteractionMessage();
+    }
     UpdateScreenUI();
 }
 
@@ -368,15 +374,12 @@ simulated function UpdateInteractionMessage()
             {
                 bIsQuickHealMessageShowing = false;
                 InstigatorKFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 0);
-            }            
-        }
-        else
-        {
-            if((Instigator.Health <= InstigatorKFPC.LowHealthThreshold) && AmmoCount[0] >= AmmoCost[1])
-            {
-                bIsQuickHealMessageShowing = true;
-                InstigatorKFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 5);
             }
+        }
+        if((Instigator.Health <= InstigatorKFPC.LowHealthThreshold) && AmmoCount[0] >= AmmoCost[1])
+        {
+            bIsQuickHealMessageShowing = true;
+            InstigatorKFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 7);
         }
     }
 }
@@ -554,7 +557,7 @@ simulated state WeaponQuickHeal extends WeaponHealing
 
     simulated function QuickHealEndTimer()
     {
-        KFInventoryManager(InvManager).AutoSwitchLastWeapon();
+        KFInventoryManager(InvManager).SwitchToLastWeapon();
         PutDownWeapon();
         WeaponIsDown();
     }
@@ -583,7 +586,9 @@ defaultproperties
     HealingRange=135
     StandAloneHealAmount=50
     ScreenUIClass=Class'KFGFxWorld_HealerScreen'
+    UIUpdateInterval=1
     InventoryGroup=EInventoryGroup.IG_Equipment
+    bTargetAdhesionEnabled=false
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bInfiniteSpareAmmo=true

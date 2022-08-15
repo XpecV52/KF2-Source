@@ -89,6 +89,12 @@ static simulated function float CalculateTraderWeaponStatDamage()
 	return BaseDamage * default.NumPellets[DEFAULT_FIREMODE] + DoTDamage;
 }
 
+/** Returns trader filter index based on weapon type */
+static simulated event EFilterTypeUI GetTraderFilter()
+{
+	return FT_Shotgun;
+}
+
 defaultproperties
 {
 	// Healing charge
@@ -99,9 +105,8 @@ defaultproperties
 	// Inventory
 	InventorySize=6
 	GroupPriority=75
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicShotgun'
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicShotgun'
 	SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
-	FilterTypeUI=FT_Shotgun
 
     // FOV
 	MeshIronSightFOV=52
@@ -190,9 +195,6 @@ defaultproperties
 	RecoilViewRotationScale=0.7
 	FallingRecoilModifier=1.5
 	HippedRecoilModifier=1.5
-
-	// Trader
-    EffectiveRange=50
 
 	AssociatedPerkClass=class'KFPerk_FieldMedic'
 }

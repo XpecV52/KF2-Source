@@ -49,65 +49,6 @@ class KFDT_Ballistic_SMG_Medic extends KFDT_Ballistic_Submachinegun
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -151,7 +92,7 @@ static function bool CheckMedicBleed( out int InDamage, out class<KFDamageType> 
 
 defaultproperties
 {
-   AARWeaponID=22
+   WeaponDef=Class'KFGame.KFWeapDef_MedicSMG'
    StumblePower=10
    LegStumblePower=108
    GunHitPower=106
@@ -159,5 +100,5 @@ defaultproperties
    KDeathVel=100.000000
    KDeathUpKick=-300.000000
    Name="Default__KFDT_Ballistic_SMG_Medic"
-   ObjectArchetype=KFDT_Ballistic_Submachinegun'KFGameContent.Default__KFDT_Ballistic_Submachinegun'
+   ObjectArchetype=KFDT_Ballistic_Submachinegun'kfgamecontent.Default__KFDT_Ballistic_Submachinegun'
 }

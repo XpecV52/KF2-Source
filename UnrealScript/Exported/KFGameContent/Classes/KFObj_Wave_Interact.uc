@@ -29,5 +29,5 @@ var()		int						InteractPoints;			//A number of "points" a player must reach by 
 defaultproperties
 {
    Name="Default__KFObj_Wave_Interact"
-   ObjectArchetype=KFObj_Wave'KFGameContent.Default__KFObj_Wave'
+   ObjectArchetype=KFObj_Wave'kfgamecontent.Default__KFObj_Wave'
 }

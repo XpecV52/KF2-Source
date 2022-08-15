@@ -2,13 +2,17 @@ package tripwire.widgets
 {
     import flash.display.MovieClip;
     import flash.events.Event;
+    import flash.events.KeyboardEvent;
     import flash.events.TimerEvent;
     import flash.external.ExternalInterface;
     import flash.text.TextField;
+    import flash.ui.Keyboard;
     import flash.utils.Timer;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.ui.InputDetails;
+    import scaleform.gfx.FocusManager;
     import scaleform.gfx.TextFieldEx;
+    import tripwire.containers.NotificationContainer;
     import tripwire.containers.TripContainer;
     import tripwire.controls.PartySlotButton;
     import tripwire.controls.TripButton;
@@ -17,6 +21,8 @@ package tripwire.widgets
     public class PartyWidget extends TripContainer
     {
          
+        
+        public var Notification:NotificationContainer;
         
         public var searchingTextField:TextField;
         
@@ -161,6 +167,19 @@ package tripwire.widgets
             this.bListsInit = true;
             super.addedToStage(param1);
             this.bInParty = false;
+        }
+        
+        public function set readyHighlight(param1:Boolean) : void
+        {
+            FocusManager.setFocus(this.readyButton);
+        }
+        
+        public function testKey(param1:KeyboardEvent) : void
+        {
+            if(param1.keyCode == Keyboard.Q)
+            {
+                this.readyHighlight = true;
+            }
         }
         
         public function set searchingText(param1:String) : void

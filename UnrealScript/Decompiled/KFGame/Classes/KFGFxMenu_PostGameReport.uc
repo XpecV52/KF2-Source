@@ -16,18 +16,29 @@ var const localized string WaveString;
 var const localized string XPString;
 var const localized string VictoryString;
 var const localized string DefeatString;
+var const localized string ItemDropTitleString;
 var KFGFxPostGameContainer_PlayerStats PlayerStatsContainer;
 var KFGFxPostGameContainer_MapVote MapVoteContainer;
 var KFGFxPostGameContainer_TeamAwards TeamAwardsContainer;
 var KFGFxPostGameContainer_PlayerXP playerXPContainer;
 var KFGFxHUD_ChatBoxWidget ChatBoxWidget;
+var OnlineSubsystem OnlineSub;
 var int LastNextMapTimeRemaining;
 var array<KFPlayerReplicationInfo> CurrentPlayerList;
 var array<KFPlayerReplicationInfo> TalkerPRIs;
 
 function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
 {
+    local KFGameReplicationInfo KFGRI;
+
     super.InitializeMenu(InManager);
+    KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
+    if(KFGRI != none)
+    {
+        KFGRI.ProcessChanceDrop();
+    }
+    OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+    OnlineSub.AddOnInventoryReadCompleteDelegate(SearchInventoryForNewItem);
     LocalizeText();
     SetPlayerInfo();
     SetSumarryInfo();
@@ -51,6 +62,7 @@ function LocalizeText()
     TextObject.SetString("playerStats", PlayerStatsString);
     TextObject.SetString("xp", XPString);
     TextObject.SetString("teamAwards", TeamAwardsString);
+    TextObject.SetString("dropTitle", ItemDropTitleString);
     if((WI != none) && WI.NetMode != NM_Standalone)
     {
         if(WI.GRI != none)
@@ -60,6 +72,41 @@ function LocalizeText()
         TextObject.SetString("serverIP", WI.GetAddressURL());
     }
     SetObject("localizedText", TextObject);
+}
+
+function SearchInventoryForNewItem()
+{
+    local int ItemIndex, InventoryIndex;
+    local CurrentInventoryEntry TempInventoryDetailsHolder;
+    local ItemProperties TempItemDetailsHolder;
+
+    ItemIndex = -1;
+    InventoryIndex = -1;
+    if(OnlineSub == none)
+    {
+        return;
+    }
+    InventoryIndex = OnlineSub.CurrentInventory.Find('NewlyAdded', 1;
+    if(InventoryIndex != -1)
+    {
+        TempInventoryDetailsHolder = OnlineSub.CurrentInventory[InventoryIndex];
+    }
+    ItemIndex = OnlineSub.ItemPropertiesList.Find('Definition', TempInventoryDetailsHolder.Definition;
+    if(ItemIndex != -1)
+    {
+        TempItemDetailsHolder = OnlineSub.ItemPropertiesList[ItemIndex];
+        OnItemRecieved(TempItemDetailsHolder.Name, "img://" $ TempItemDetailsHolder.IconURL);
+    }
+}
+
+function OnItemRecieved(string ItemName, string IconPath)
+{
+    local GFxObject ItemObject;
+
+    ItemObject = Outer.CreateObject("Object");
+    ItemObject.SetString("itemName", ItemName);
+    ItemObject.SetString("iconImage", IconPath);
+    SetObject("itemDrop", ItemObject);
 }
 
 function SetSumarryInfo()
@@ -191,7 +238,21 @@ function string FormatTime(int TimeInSeconds)
     return TimeString;
 }
 
-function OnOpen();
+function OnOpen()
+{
+    if(OnlineSub != none)
+    {
+        OnlineSub.AddOnInventoryReadCompleteDelegate(SearchInventoryForNewItem);
+    }
+}
+
+function OnClose()
+{
+    if(OnlineSub != none)
+    {
+        OnlineSub.ClearOnInventoryReadCompleteDelegate(SearchInventoryForNewItem);
+    }
+}
 
 event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 {
@@ -292,5 +353,6 @@ defaultproperties
     XPString="XP"
     VictoryString="Victory"
     DefeatString="Defeat"
+    ItemDropTitleString="NEW ITEM OBTAINED!"
     SubWidgetBindings=/* Array type was not detected. */
 }

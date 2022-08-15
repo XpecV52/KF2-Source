@@ -38,7 +38,7 @@ defaultproperties
 	BurnPower=0.2
 	EffectGroup=FXG_Fire
 
-	AARWeaponID=`AAR_C4
+	WeaponDef=class'KFWeapDef_C4'
 	//Perk
 	ModifierPerkList(0)=class'KFPerk_Demolitionist'
 

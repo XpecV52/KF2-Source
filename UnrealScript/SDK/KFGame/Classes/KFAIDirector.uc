@@ -25,6 +25,8 @@ var config bool				bDebugAllAI;
 var bool					bUseGrabAlerts;
 /** Max distance from grabbed player at which to alert Zeds */
 var float					GrabAlertMaxZedDistance;
+/** Turns on forced frustation mode */
+var bool 					bForceFrustration;
 
 /** A bi-direction graph representation of the connections between doors for long range "Macro" pathing decisions*/
 //var KFDoorGraph             DoorGraph;
@@ -396,4 +398,5 @@ function array<KFDoorActor> FindClosedDoorsWithInRange( float RangeToBeLessThan,
 DefaultProperties
 {
 	GrabAlertMaxZedDistance=2700.f
+	bForceFrustration = false;
 }

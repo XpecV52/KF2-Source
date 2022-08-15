@@ -32,6 +32,7 @@ auto state ReceivingReplication
 defaultproperties
 {
     RemoteRole=ENetRole.ROLE_SimulatedProxy
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
     TickGroup=ETickingGroup.TG_DuringAsyncWork
     bAlwaysRelevant=true
     bReplicateMovement=false

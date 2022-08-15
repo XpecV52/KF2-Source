@@ -15,5 +15,6 @@ var bool bDirty;
 
 defaultproperties
 {
+    bNoTiling=true
     LODGroup=TextureGroup.TEXTUREGROUP_Splattermap
 }

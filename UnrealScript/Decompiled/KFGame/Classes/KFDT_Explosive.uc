@@ -82,12 +82,12 @@ static simulated function GetBoneToDismember(KFPawn_Monster inPawn, Vector HitDi
 
 defaultproperties
 {
-    KnockdownPower=100
-    StumblePower=150
-    GoreDamageGroup=EGoreDamageGroup.DGT_Explosive
     bShouldSpawnBloodSplat=true
     bCanGib=true
     bCanObliterate=true
+    KnockdownPower=100
+    StumblePower=150
+    GoreDamageGroup=EGoreDamageGroup.DGT_Explosive
     ObliterationHealthThreshold=-150
     ObliterationDamageThreshold=175
     bExtraMomentumZ=true

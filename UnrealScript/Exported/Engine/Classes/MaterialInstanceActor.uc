@@ -30,7 +30,6 @@ defaultproperties
       ObjectArchetype=SpriteComponent'Engine.Default__SpriteComponent'
    End Object
    Components(0)=Sprite
-   CollisionType=COLLIDE_CustomDefault
    TickGroup=TG_DuringAsyncWork
    bNoDelete=True
    Name="Default__MaterialInstanceActor"

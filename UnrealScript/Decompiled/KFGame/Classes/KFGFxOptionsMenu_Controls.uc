@@ -10,8 +10,14 @@ class KFGFxOptionsMenu_Controls extends KFGFxObject_Menu within GFxMoviePlayer;
 var KFGFxControlsContainer_Keybinding KeybindingsContainer;
 var KFGFxControlsContainer_Input InputContainer;
 var KFGFxControlsContainer_ControllerPresets ControllerPresetsContainer;
-var const float BaseControllerLookSensitivity;
-var const float BaseMouseLookSensitivity;
+var const float MinControllerLookSensitivity;
+var const float MaxControllerLookSensitivity;
+var const float MinControllerZoomLookSensitivity;
+var const float MaxControllerZoomLookSensitivity;
+var const float MinMouseLookSensitivity;
+var const float MaxMouseLookSensitivity;
+var const float MinMouseLookZoomSensitivity;
+var const float MaxMouseLookZoomSensitivity;
 var const localized array<localized string> TabStrings;
 var const localized string HeaderText;
 
@@ -115,8 +121,15 @@ function Callback_ControllerSensitivity(float NewSensitivity)
     local KFPlayerInput KFPI;
 
     KFPI = KFPlayerInput(Outer.GetPC().PlayerInput);
-    KFPI.HorizontalSensitivityScale = (NewSensitivity / float(100)) + BaseControllerLookSensitivity;
-    KFPI.VerticalSensitivityScale = (NewSensitivity / float(100)) + BaseControllerLookSensitivity;
+    KFPI.GamepadSensitivityScale = NewSensitivity / float(100);
+}
+
+function Callback_ControllerZoomSensitivity(float NewSensitivity)
+{
+    local KFPlayerInput KFPI;
+
+    KFPI = KFPlayerInput(Outer.GetPC().PlayerInput);
+    KFPI.GamepadZoomedSensitivityScale = NewSensitivity / float(100);
 }
 
 function Callback_ControllerInvertChanged(bool bInvertController)
@@ -129,12 +142,57 @@ function Callback_ControllerInvertChanged(bool bInvertController)
 
 function Callback_MouseSensitivity(float NewSensitivity)
 {
-    Outer.GetPC().PlayerInput.SetSensitivity(NewSensitivity + BaseMouseLookSensitivity);
+    Outer.GetPC().PlayerInput.SetSensitivity(NewSensitivity);
+}
+
+function Callback_MouseZoomSensitivity(float NewSensitivity)
+{
+    KFPlayerInput(Outer.GetPC().PlayerInput).SetZoomedSensitivity(NewSensitivity / float(100));
 }
 
 function Callback_InvertChanged(bool bInvertMouse)
 {
     Outer.GetPC().PlayerInput.bInvertMouse = bInvertMouse;
+}
+
+function Callback_MouseSmoothingChanged(bool NewValue)
+{
+    local KFPlayerInput KFPI;
+
+    KFPI = KFPlayerInput(Outer.GetPC().PlayerInput);
+    KFPI.bEnableMouseSmoothing = NewValue;
+}
+
+function Callback_AimAssistZoomLockOnChanged(bool NewValue)
+{
+    local KFPlayerInput KFPI;
+
+    KFPI = KFPlayerInput(Outer.GetPC().PlayerInput);
+    KFPI.bAutoTargetEnabled = NewValue;
+}
+
+function Callback_AimAssistRotationChanged(bool NewValue)
+{
+    local KFPlayerInput KFPI;
+
+    KFPI = KFPlayerInput(Outer.GetPC().PlayerInput);
+    KFPI.bTargetAdhesionEnabled = NewValue;
+}
+
+function Callback_AimAssistSlowDownChanged(bool NewValue)
+{
+    local KFPlayerInput KFPI;
+
+    KFPI = KFPlayerInput(Outer.GetPC().PlayerInput);
+    KFPI.bTargetFrictionEnabled = NewValue;
+}
+
+function Callback_ForceFeedbackChanged(bool NewValue)
+{
+    local KFPlayerInput KFPI;
+
+    KFPI = KFPlayerInput(Outer.GetPC().PlayerInput);
+    KFPI.bForceFeedbackEnabled = NewValue;
 }
 
 function Callback_ChangeBind(string ChangedCommand, byte SelectedSection)
@@ -163,13 +221,19 @@ function Callback_AcceptBind()
 
 function Callback_CloseMenu()
 {
-    Manager.OpenMenu(3);
+    Manager.OpenMenu(5);
 }
 
 defaultproperties
 {
-    BaseControllerLookSensitivity=0.5
-    BaseMouseLookSensitivity=1
+    MinControllerLookSensitivity=0.4
+    MaxControllerLookSensitivity=1.2
+    MinControllerZoomLookSensitivity=0.3
+    MaxControllerZoomLookSensitivity=1
+    MinMouseLookSensitivity=0.1
+    MaxMouseLookSensitivity=0.7
+    MinMouseLookZoomSensitivity=0.2
+    MaxMouseLookZoomSensitivity=1
     TabStrings(0)="INPUT"
     TabStrings(1)="KEY BINDINGS"
     TabStrings(2)="CONTROLLERS"

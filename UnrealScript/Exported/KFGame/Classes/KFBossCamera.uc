@@ -23,7 +23,7 @@ var CameraOffsets DeadOffsets;
 var	PointLightComponent PointLightTemplate;
 var transient	PointLightComponent PointLight;
 
-var Pawn ViewedPawn;
+var KFPawn_MonsterBoss ViewedPawn;
 
 /** Called when the camera becomes inactive */
 function OnBecomeActive( GameCameraBase NewCamera )
@@ -61,24 +61,42 @@ function OnBecomeInActive( GameCameraBase NewCamera )
 */
 function UpdateCamera(Pawn P, GamePlayerCamera CameraActor, float DeltaTime, out TViewTarget OutVT)
 {
-	local vector		Loc;
+	local vector		Loc, X,Y,Z;
 	local rotator		Rot;
 	local CameraOffsets FinalOffsets;
-	
-	FinalOffsets = ( P != none && P.IsAliveAndWell() ) ? BaseOffsets : DeadOffsets;
-	if( !GetOffsets(OutVT.Target, CameraActor, FinalOffsets, Loc, Rot) )
-	{
-		GetOffsets(OutVT.Target, CameraActor, BackupOffsets, Loc, Rot);
-	}
-
-	OutVT.POV.Location = Loc;
-	OutVT.POV.Rotation = Rot;
 
 	if( P != none && PointLight != none && !PointLight.bAttached )
 	{
-		ViewedPawn = P;
-		ViewedPawn.AttachComponent(PointLight);
+		ViewedPawn = KFPawn_MonsterBoss(P);
+
+		if( ViewedPawn != none )
+		{
+			ViewedPawn.AttachComponent(PointLight);
+		}
 		PointLight.SetTranslation( Loc - OutVT.Target.Location );
+	}
+	
+	if( ViewedPawn != none && ViewedPawn.bUseAnimatedTheatricCamera && ViewedPawn.TheatricCameraSocketName != '' )
+	{
+		ViewedPawn.Mesh.GetSocketWorldLocationAndRotation( ViewedPawn.TheatricCameraSocketName, Loc, Rot );
+		GetAxes( Rot, X,Y,Z );
+		Loc += X*ViewedPawn.TheatricCameraAnimOffset.X + Y*ViewedPawn.TheatricCameraAnimOffset.Y + Z*ViewedPawn.TheatricCameraAnimOffset.Z;
+		OutVT.POV.Location = Loc;
+		OutVT.POV.Rotation = Rot;
+
+		// Apply our animated camera
+		PlayerCamera.ApplyCameraModifiers( DeltaTime, OutVT.POV );
+	}
+	else
+	{
+		FinalOffsets = ( P != none && P.IsAliveAndWell() ) ? BaseOffsets : DeadOffsets;
+		if( !GetOffsets(OutVT.Target, CameraActor, FinalOffsets, Loc, Rot) )
+		{
+			GetOffsets(OutVT.Target, CameraActor, BackupOffsets, Loc, Rot);
+		}
+
+		OutVT.POV.Location = Loc;
+		OutVT.POV.Rotation = Rot;
 	}
 }
 

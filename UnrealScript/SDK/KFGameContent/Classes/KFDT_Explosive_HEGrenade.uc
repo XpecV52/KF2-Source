@@ -29,5 +29,5 @@ defaultproperties
 	ObliterationHealthThreshold=-250
 	ObliterationDamageThreshold=250
 
-	AARWeaponID=`AAR_HEGrenade
+	WeaponDef=class'KFWeapDef_Grenade_Commando'
 }

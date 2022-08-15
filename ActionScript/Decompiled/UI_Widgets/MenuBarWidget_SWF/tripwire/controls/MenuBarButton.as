@@ -13,6 +13,8 @@ package tripwire.controls
         
         public var highlight:MovieClip;
         
+        public var superHighlight:MovieClip;
+        
         public var disabledHighlight:MovieClip;
         
         public var iconContainer:MovieClip;
@@ -26,6 +28,8 @@ package tripwire.controls
         public const HighLightColor:uint = 16503487;
         
         public const UnhighLightColor:uint = 12234399;
+        
+        public const DisabledColor:uint = 5393734;
         
         public var _bPulsing:Boolean;
         
@@ -66,12 +70,11 @@ package tripwire.controls
         {
             super.selected = param1;
             this.highlight.visible = param1;
+            this.superHighlight.visible = false;
             this.highlight.alpha = 1;
             if(param1)
             {
                 this.menuText.textColor = this.HighLightColor;
-                this.iconColor.setTint(this.HighLightColor,1);
-                this.iconContainer.transform.colorTransform = this.iconColor;
                 if(this._bPulsing)
                 {
                     this.pausePulse();
@@ -81,26 +84,21 @@ package tripwire.controls
             {
                 this.menuText.textColor = this.UnhighLightColor;
                 this.bPulsing = this._bPulsing;
-                this.iconColor.setTint(this.UnhighLightColor,1);
-                this.iconContainer.transform.colorTransform = this.iconColor;
             }
         }
         
         override protected function highlightButton() : *
         {
-            this.highlight.visible = true;
-            this.highlight.alpha = 0.5;
+            this.highlight.visible = false;
+            this.superHighlight.visible = true;
             this.menuText.textColor = this.HighLightColor;
-            this.iconColor.setTint(this.HighLightColor,1);
-            this.iconContainer.transform.colorTransform = this.iconColor;
         }
         
         override protected function unhighlightButton() : *
         {
             this.highlight.visible = false;
+            this.superHighlight.visible = false;
             this.menuText.textColor = this.UnhighLightColor;
-            this.iconColor.setTint(this.UnhighLightColor,1);
-            this.iconContainer.transform.colorTransform = this.iconColor;
         }
         
         public function set index(param1:int) : void
@@ -114,6 +112,12 @@ package tripwire.controls
             mouseEnabled = param1;
             mouseChildren = param1;
             this.disabledHighlight.visible = !param1;
+            if(!param1)
+            {
+                this.menuText.textColor = this.DisabledColor;
+                this.iconColor.setTint(this.DisabledColor,1);
+                this.iconContainer.transform.colorTransform = this.iconColor;
+            }
         }
     }
 }

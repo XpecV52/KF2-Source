@@ -48,65 +48,6 @@ class KFDT_Ballistic_Shotgun_Medic extends KFDT_Ballistic_Shotgun
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -170,7 +111,7 @@ static function bool CheckMedicBleed( out int InDamage, out class<KFDamageType> 
 
 defaultproperties
 {
-   AARWeaponID=23
+   WeaponDef=Class'KFGame.KFWeapDef_MedicShotgun'
    StumblePower=20
    LegStumblePower=110
    GunHitPower=113
@@ -181,5 +122,5 @@ defaultproperties
    KDeathVel=35.000000
    KDeathUpKick=120.000000
    Name="Default__KFDT_Ballistic_Shotgun_Medic"
-   ObjectArchetype=KFDT_Ballistic_Shotgun'KFGameContent.Default__KFDT_Ballistic_Shotgun'
+   ObjectArchetype=KFDT_Ballistic_Shotgun'kfgamecontent.Default__KFDT_Ballistic_Shotgun'
 }

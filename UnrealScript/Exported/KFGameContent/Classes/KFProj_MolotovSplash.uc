@@ -106,16 +106,16 @@ defaultproperties
    bAlwaysReplicateExplosion=True
    bAutoStartAmbientSound=True
    AlwaysRelevantDistanceSquared=6250000.000000
-   ExplosionActorClass=Class'KFGameContent.KFExplosion_Molotov'
+   ExplosionActorClass=Class'kfgamecontent.KFExplosion_Molotov'
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
       ExplosionEffects=KFImpactEffectInfo'wep_molotov_arch.Molotov_GroundFire'
       bDirectionalExplosion=True
       Damage=10.000000
       DamageRadius=150.000000
-      MyDamageType=Class'KFGameContent.KFDT_Fire_MolotovGrenade'
+      MyDamageType=Class'kfgamecontent.KFDT_Fire_MolotovGrenade'
       KnockDownStrength=0.000000
       MomentumTransferScale=0.000000
-      ExploLight=PointLightComponent'KFGameContent.Default__KFProj_MolotovSplash:FlamePointLight'
+      ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_MolotovSplash:FlamePointLight'
       ExploLightFadeOutTime=0.300000
       ExploLightStartFadeOutTime=4.200000
       FractureMeshRadius=0.000000
@@ -123,7 +123,7 @@ defaultproperties
       Name="ExploTemplate0"
       ObjectArchetype=KFGameExplosion'KFGame.Default__KFGameExplosion'
    End Object
-   ExplosionTemplate=KFGameExplosion'KFGameContent.Default__KFProj_MolotovSplash:ExploTemplate0'
+   ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFProj_MolotovSplash:ExploTemplate0'
    ProjFlightTemplate=ParticleSystem'WEP_3P_Molotov_EMIT.FX_Molotov_Grenade_Spread_01'
    AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_Flamethrower.Play_WEP_SA_Flamethrower_Residual_Fire_Loop'
    AmbientSoundStopEvent=AkEvent'WW_WEP_SA_Flamethrower.Stop_WEP_SA_Flamethrower_Residual_Fire_Loop'

@@ -8,13 +8,66 @@
 class WelcomeSettings extends WebAdminSettings
     implements(IAdvWebAdminSettings);
 
+var KFGameInfo GameInfo;
+
+function setCurrentGameInfo(GameInfo Instance)
+{
+    GameInfo = KFGameInfo(Instance);
+}
+
+function cleanupSettings()
+{
+    GameInfo = none;
+    super.cleanupSettings();
+}
+
 function advInitSettings(WorldInfo WorldInfo, DataStoreCache dscache);
 
-function cleanupSettings();
-
-function bool advSaveSettings(WebRequest Request, WebAdminMessages Messages);
+function bool advSaveSettings(WebRequest Request, WebAdminMessages Messages)
+{
+    Class'KFGameInfo'.default.BannerLink = Request.GetVariable("BannerLink", "");
+    Class'KFGameInfo'.default.ClanMotto = Repl(Repl(Request.GetVariable("ClanMotto", ""), Chr(10), "@nl@"), Chr(13), "");
+    Class'KFGameInfo'.default.ClanMottoColor = Class'WebAdminUtils'.static.HTMLColorToColor(Request.GetVariable("ClanMottoColor", ""));
+    Class'KFGameInfo'.default.ServerMOTD = Repl(Repl(Request.GetVariable("ServerMOTD", ""), Chr(10), "@nl@"), Chr(13), "");
+    Class'KFGameInfo'.default.ServerMOTDColor = Class'WebAdminUtils'.static.HTMLColorToColor(Request.GetVariable("ServerMOTDColor", ""));
+    Class'KFGameInfo'.default.WebsiteLink = Request.GetVariable("WebSiteLink", "");
+    Class'KFGameInfo'.default.WebLinkColor = Class'WebAdminUtils'.static.HTMLColorToColor(Request.GetVariable("WebLinkColor", ""));
+    Class'KFGameInfo'.static.StaticSaveConfig();
+    if(GameInfo != none)
+    {
+        GameInfo.BannerLink = Class'KFGameInfo'.default.BannerLink;
+        GameInfo.ClanMotto = Class'KFGameInfo'.default.ClanMotto;
+        GameInfo.ClanMottoColor = Class'KFGameInfo'.default.ClanMottoColor;
+        GameInfo.ServerMOTD = Class'KFGameInfo'.default.ServerMOTD;
+        GameInfo.ServerMOTDColor = Class'KFGameInfo'.default.ServerMOTDColor;
+        GameInfo.WebsiteLink = Class'KFGameInfo'.default.WebsiteLink;
+        GameInfo.WebLinkColor = Class'KFGameInfo'.default.WebLinkColor;
+        GameInfo.SaveConfig();
+    }
+    return true;
+}
 
 function advRenderSettings(WebResponse Response, SettingsRenderer Renderer, optional string substName, optional ISettingsPrivileges privileges)
 {
     substName = "settings";    
+    if(GameInfo != none)
+    {
+        Response.Subst("BannerLink", GameInfo.BannerLink);
+        Response.Subst("ClanMotto", Repl(GameInfo.ClanMotto, "@nl@", Chr(10)));
+        Response.Subst("ClanMottoColor", Class'WebAdminUtils'.static.ColorToHTMLColor(GameInfo.ClanMottoColor));
+        Response.Subst("ServerMOTD", Repl(GameInfo.ServerMOTD, "@nl@", Chr(10)));
+        Response.Subst("ServerMOTDColor", Class'WebAdminUtils'.static.ColorToHTMLColor(GameInfo.ServerMOTDColor));
+        Response.Subst("WebLink", GameInfo.WebsiteLink);
+        Response.Subst("WebLinkColor", Class'WebAdminUtils'.static.ColorToHTMLColor(GameInfo.WebLinkColor));        
+    }
+    else
+    {
+        Response.Subst("BannerLink", Class'KFGameInfo'.default.BannerLink);
+        Response.Subst("ClanMotto", Repl(Class'KFGameInfo'.default.ClanMotto, "@nl@", Chr(10)));
+        Response.Subst("ClanMottoColor", Class'WebAdminUtils'.static.ColorToHTMLColor(Class'KFGameInfo'.default.ClanMottoColor));
+        Response.Subst("ServerMOTD", Repl(Class'KFGameInfo'.default.ServerMOTD, "@nl@", Chr(10)));
+        Response.Subst("ServerMOTDColor", Class'WebAdminUtils'.static.ColorToHTMLColor(Class'KFGameInfo'.default.ServerMOTDColor));
+        Response.Subst("WebLink", Class'KFGameInfo'.default.WebsiteLink);
+        Response.Subst("WebLinkColor", Class'WebAdminUtils'.static.ColorToHTMLColor(Class'KFGameInfo'.default.WebLinkColor));
+    }
 }

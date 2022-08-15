@@ -129,7 +129,7 @@ protected function PlayFallDown()
 
 protected event KnockdownFailsafe()
 {
-    PawnOwner.Died(PawnOwner.LastHitBy, Class'DmgType_Fell', PawnOwner.Location);
+    PawnOwner.Died(PawnOwner.LastHitBy, Class'KFDT_Falling', PawnOwner.Location);
 }
 
 protected function KnockdownTimer()

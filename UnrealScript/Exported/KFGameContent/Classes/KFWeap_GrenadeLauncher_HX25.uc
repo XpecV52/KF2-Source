@@ -116,9 +116,7 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
    FireModeIconPaths(1)=()
    InventoryGroup=IG_Secondary
-   FilterTypeUI=FT_Explosive
    InventorySize=4
-   EffectiveRange=25
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -127,7 +125,7 @@ defaultproperties
    PlayerIronSightFOV=73.000000
    FastZoomOutTime=0.200000
    GroupPriority=25.000000
-   UITexture=Texture2D'WEP_UI_HX25_Pistol_TEX.UI_WeaponSelect_HX25'
+   WeaponSelectTexture=Texture2D'WEP_UI_HX25_Pistol_TEX.UI_WeaponSelect_HX25'
    MagazineCapacity(0)=1
    MaxSpareAmmo(0)=23
    InitialSpareMags(0)=11
@@ -143,7 +141,7 @@ defaultproperties
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_GrenadeLauncher_Base:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_GrenadeLauncher_HX25:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_GrenadeLauncher_HX25:MeleeHelper_0'
    MuzzleFlashTemplate=KFMuzzleFlash'WEP_HX25_Pistol_ARCH.Wep_HX25_Pistol_MuzzleFlash'
    maxRecoilPitch=900
    minRecoilPitch=775
@@ -172,7 +170,7 @@ defaultproperties
    WeaponFireTypes(2)=()
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
-   WeaponProjectiles(0)=Class'KFGameContent.KFProj_ExplosiveSubmunition_HX25'
+   WeaponProjectiles(0)=Class'kfgamecontent.KFProj_ExplosiveSubmunition_HX25'
    FireInterval(0)=0.250000
    FireInterval(1)=()
    FireInterval(2)=()
@@ -183,10 +181,10 @@ defaultproperties
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=()
-   InstantHitDamageTypes(0)=Class'KFGameContent.KFDT_Ballistic_HX25SubmunitionImpact'
+   InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_HX25SubmunitionImpact'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=None
-   InstantHitDamageTypes(3)=Class'KFGameContent.KFDT_Bludgeon_HX25'
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_HX25'
    FireOffset=(X=23.000000,Y=4.000000,Z=-3.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_GrenadeLauncher_Base:FirstPersonMesh'
       SkeletalMesh=SkeletalMesh'WEP_1P_HX25_Pistol_MESH.Wep_1stP_HX25_Pistol_Rig'

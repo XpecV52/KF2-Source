@@ -475,6 +475,29 @@ class KFDialogManager extends Actor
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 15
 
 var bool bEnabled;
@@ -513,6 +536,8 @@ var float               LastIdleUpdateTime;
 
 /** Dialog at this priority level and above are considered "urgent" and will interrupt dialog of lower priority */
 var byte                InterruptPriorityThreshold;
+/** Dialog at this priority level and below can be interrupted by any higher-priority dialog, disregarding InterruptPriorityThreshold */
+var byte                InterruptedByAnyPriorityThreshold;
 
 /** Set at beginning of wave and beginning of trader time */
 var bool                bIsTraderTime;
@@ -916,23 +941,23 @@ function bool DialogEventCanBePlayed( KFPawn KFP, const out DialogEventInfo Even
     if( KFP.IsSpeaking() )
     {
         // event isn't allowed to interrupt anything
-        if( EventInfo.Priority > InterruptPriorityThreshold )
+        if( EventInfo.Priority > InterruptPriorityThreshold && KFP.CurrDialogPriority < InterruptedByAnyPriorityThreshold )
         {
-            if (bLogDialog) LogInternal(KFP.VoiceGroupArch.static.GetEventName(EventInfo.EventID)$" can't be played for "$Right(KFP.VoiceGroupArch.Name,Len(KFP.VoiceGroupArch.Name)-InStr(KFP.VoiceGroupArch.Name, "_")-1)$" - Already speaking "$KFP.VoiceGroupArch.static.GetEventName(KFP.CurrDialogEventID),'BattleChatter');
+            if (bLogDialog) LogInternal(KFP.VoiceGroupArch.static.GetEventName(EventInfo.EventID)$" can't be played for "$Right(KFP.VoiceGroupArch.Name,Len(KFP.VoiceGroupArch.Name)-InStr(KFP.VoiceGroupArch.Name, "_")-1)$" - Already speaking "$KFP.VoiceGroupArch.static.GetEventName(KFP.CurrDialogEventID)$" (priority too low to cause interupt)",'BattleChatter');
             return false;
         }
 
         // event is lower priority than dialog being spoken, so it can't interrupt it
         if( EventInfo.Priority > KFP.CurrDialogPriority )
         {
-            if (bLogDialog) LogInternal(KFP.VoiceGroupArch.static.GetEventName(EventInfo.EventID)$" can't be played for "$Right(KFP.VoiceGroupArch.Name,Len(KFP.VoiceGroupArch.Name)-InStr(KFP.VoiceGroupArch.Name, "_")-1)$" - Already speaking "$KFP.VoiceGroupArch.static.GetEventName(KFP.CurrDialogEventID),'BattleChatter');
+            if (bLogDialog) LogInternal(KFP.VoiceGroupArch.static.GetEventName(EventInfo.EventID)$" can't be played for "$Right(KFP.VoiceGroupArch.Name,Len(KFP.VoiceGroupArch.Name)-InStr(KFP.VoiceGroupArch.Name, "_")-1)$" - Already speaking "$KFP.VoiceGroupArch.static.GetEventName(KFP.CurrDialogEventID)$" (lower priority)",'BattleChatter');
             return false;
         }
 
         // event is same priority and isn't allowed to interrupt equal priority dialog
         if( EventInfo.Priority == KFP.CurrDialogPriority && !EventInfo.bCanInterruptEqualPriority )
         {
-            if (bLogDialog) LogInternal(KFP.VoiceGroupArch.static.GetEventName(EventInfo.EventID)$" can't be played for "$Right(KFP.VoiceGroupArch.Name,Len(KFP.VoiceGroupArch.Name)-InStr(KFP.VoiceGroupArch.Name, "_")-1)$" - Already speaking "$KFP.VoiceGroupArch.static.GetEventName(KFP.CurrDialogEventID),'BattleChatter');
+            if (bLogDialog) LogInternal(KFP.VoiceGroupArch.static.GetEventName(EventInfo.EventID)$" can't be played for "$Right(KFP.VoiceGroupArch.Name,Len(KFP.VoiceGroupArch.Name)-InStr(KFP.VoiceGroupArch.Name, "_")-1)$" - Already speaking "$KFP.VoiceGroupArch.static.GetEventName(KFP.CurrDialogEventID)$" (same priority, not allowed to interrupt same priority)",'BattleChatter');
             return false;
         }
     }
@@ -1806,8 +1831,6 @@ function PlayDamagedZedDialog( KFPawn_Human Damager, KFPawn_Monster Zed, class<D
         AddRandomDialogOption( Damager, 99, NumOptions, BestOptionID );
     }
 
-    CheckContinuousDamageDialog( Damager, Zed, NumOptions, BestOptionID );
-
     if( class<KFDamageType>(DamageType) != none )
     {
         AddRandomDialogOption( Damager, class< KFDamageType >( DamageType ).static.GetDamagerDialogID(), NumOptions, BestOptionID );
@@ -1816,13 +1839,14 @@ function PlayDamagedZedDialog( KFPawn_Human Damager, KFPawn_Monster Zed, class<D
     PlayDialogEvent( Damager, BestOptionID );
 }
 
-/** Add "over and over" random dialog if player deals enough consecutive damage to a given zed */
-function CheckContinuousDamageDialog( KFPawn_Human Damager, KFPawn_Monster Zed, out int out_NumOptions, out int out_BestOptionID )
+/** Play "over and over" random dialog if player deals enough consecutive damage to a given zed 
+  * NOTE: this needs to be called before zed's LastHitBy and LastPainTime are set for current hit */
+function PlayDamageZedContinuousDialog( KFPawn_Human Damager, KFPawn_Monster Zed )
 {
     Damager.UpdateContinuousDamage( Zed, TimeBetweenHitsForContinuousDamage );
     if( (WorldInfo.TimeSeconds - Damager.InitialContinousDamageTime) >= TimeForContinuousDamageThreshold )
     {
-        AddRandomDialogOption( Damager, 107, out_NumOptions, out_BestOptionID );
+        PlayDialogEvent( Damager, 107);
     }
 }
 
@@ -1911,6 +1935,14 @@ function PlayPlayerGrabbedDialog( KFPawn_Human Speaker )
     if( Speaker != none )
     {
         PlayDialogEvent( Speaker, 150);
+    }
+}
+
+function PlayPlayerGrabbedByPatriarchDialog( KFPawn_Human Speaker )
+{
+    if( Speaker != none )
+    {
+        PlayDialogEvent( Speaker, 151);
     }
 }
 
@@ -2633,8 +2665,9 @@ function PlayRandomSituationalDialog( KFPawn_Human Speaker, KFPawn_Human Target 
     else if( NumPlayers > 1 && NumLivingPlayers == 1 )
     {
         AddRandomDialogOption( Speaker, 175, NumOptions, BestOptionID );
-        PlayDialogEvent( Speaker, BestOptionID );
     }
+
+    PlayDialogEvent( Speaker, BestOptionID );
 }
 
 /** Plays response to random situational dialog */
@@ -3142,10 +3175,74 @@ function PlayHansBattlePhaseDialog( KFPawn Hans, int CurrBattlePhase )
     };
 }
 
+/************************************************
+ * Patriarch Dialog
+ ************************************************/
+
+function PlayPattyMinigunWarnDialog( KFPawn Patty )
+{
+    PlayDialogEvent( Patty, 37);
+}
+
+function PlayPattyMinigunAttackDialog( KFPawn Patty )
+{
+    PlayDialogEvent( Patty, 38);
+}
+
+function PlayPattyTentaclePullDialog( KFPawn Patty )
+{
+    PlayDialogEvent( Patty, 42);
+}
+
+function PlayPattyChildKilledDialog( KFPawn Patty )
+{
+    PlayDialogEvent( Patty, 46);
+}
+
+function PlayPattyKilledDialog( KFPawn Patty, class<DamageType> DmgType )
+{
+    local int NumOptions, BestOptionID;
+
+    BestOptionID = -1;
+
+    AddRandomDialogOption( Patty, 12, NumOptions, BestOptionID );
+
+    if( class<KFDamageType>(DmgType) != none )
+    {
+        AddRandomDialogOption( Patty, class<KFDamageType>(DmgType).static.GetKillerDialogID(), NumOptions, BestOptionID );
+    }
+
+    PlayDialogEvent( Patty, BestOptionID );
+}
+
+function PlayPattyBattlePhaseDialog( KFPawn Patty, int CurrBattlePhase )
+{
+    if( !Patty.IsAliveAndWell() )
+    {
+        return;
+    }
+
+    switch( CurrBattlePhase )
+    {
+    case 2:
+        PlayDialogEvent( Patty, 47);
+        break;
+
+    case 3:
+        PlayDialogEvent( Patty, 48);
+        break;
+
+    case 4:
+        PlayDialogEvent( Patty, 49);
+        break;
+    };
+}
+
 defaultproperties
 {
    bEnabled=True
    InterruptPriorityThreshold=2
+   InterruptedByAnyPriorityThreshold=7
    WeldAboutToBreakThreshold=60
    NeedMoreHealingPctThreshold=0.750000
    NeedNoMoreHealingPctThreshold=0.750000

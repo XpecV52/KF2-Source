@@ -46,65 +46,6 @@ class KFDT_Slashing_Zweihander extends KFDT_Slashing
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -240,7 +181,7 @@ static simulated function ModifyDismembermentHitImpulse(KFPawn_Monster InPawn, n
 
 defaultproperties
 {
-   AARWeaponID=50
+   WeaponDef=Class'KFGame.KFWeapDef_Zweihander'
    StunPower=42
    KnockdownPower=30
    StumblePower=53

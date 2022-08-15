@@ -87,7 +87,7 @@ simulated function int GetAmmoType(byte FiringMode)
 ********************************************************************************************* */
 
 /** process local player impact for clientside hit detection */
-event RecieveClientImpact(byte FiringMode, const out ImpactInfo Impact, optional out float PenetrationValue)
+event RecieveClientImpact(byte FiringMode, const out ImpactInfo Impact, optional out float PenetrationValue, optional int ImpactNum)
 {
 	if ( FiringMode == DEFAULT_FIREMODE )
 	{
@@ -284,6 +284,12 @@ static simulated function float CalculateTraderWeaponStatDamage()
 	return CalculatedDamage;
 }
 
+/** Returns trader filter index based on weapon type */
+static simulated event EFilterTypeUI GetTraderFilter()
+{
+	return FT_Projectile;
+}
+
 defaultproperties
 {
    IdleMotorSound=AkEvent'WW_WEP_SA_SawBlade.Play_WEP_SA_Sawblade_Idle_Loop'
@@ -299,17 +305,16 @@ defaultproperties
    FireModeIconPaths(4)=()
    FireModeIconPaths(5)=()
    InventoryGroup=IG_Primary
-   FilterTypeUI=FT_Projectile
    InventorySize=10
-   EffectiveRange=25
    bCanBeReloaded=True
    bReloadFromMagazine=True
    bHasFireLastAnims=True
    bHasLaserSight=True
    PenetrationPower(0)=4.000000
    PenetrationPower(1)=()
+   QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=8192)
    GroupPriority=100.000000
-   UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SawbladeShooter'
+   WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SawbladeShooter'
    MagazineCapacity(0)=5
    MagazineCapacity(1)=250
    MaxSpareAmmo(0)=20
@@ -351,7 +356,7 @@ defaultproperties
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_Eviscerator:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Eviscerator:MeleeHelper_0'
    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Sawblade_ARCH.Wep_Sawblade_MuzzleFlash'
    AssociatedPerkClass=Class'KFGame.KFPerk_Berserker'
    FiringStatesArray(0)="WeaponSingleFiring"
@@ -366,7 +371,7 @@ defaultproperties
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
    WeaponFireTypes(5)=()
-   WeaponProjectiles(0)=Class'KFGameContent.KFProj_Blade_Eviscerator'
+   WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Blade_Eviscerator'
    FireInterval(0)=0.950000
    FireInterval(1)=()
    FireInterval(2)=()
@@ -380,12 +385,12 @@ defaultproperties
    InstantHitDamage(3)=90.000000
    InstantHitDamage(4)=()
    InstantHitDamage(5)=29.000000
-   InstantHitDamageTypes(0)=Class'KFGameContent.KFDT_Slashing_EvisceratorProj'
+   InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Slashing_EvisceratorProj'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=()
-   InstantHitDamageTypes(3)=Class'KFGameContent.KFDT_Slashing_Eviscerator'
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Slashing_Eviscerator'
    InstantHitDamageTypes(4)=()
-   InstantHitDamageTypes(5)=Class'KFGameContent.KFDT_Slashing_Eviscerator'
+   InstantHitDamageTypes(5)=Class'kfgamecontent.KFDT_Slashing_Eviscerator'
    FireOffset=(X=25.000000,Y=5.000000,Z=-10.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_MeleeBase:FirstPersonMesh'
       MinTickTimeStep=0.025000

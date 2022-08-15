@@ -18,14 +18,16 @@ cpptext
 	virtual UBOOL DetermineFinalGoal( ANavigationPoint*& out_GoalNav );
 }
 
-/** location to flee from */
+/** Location to flee from */
 var vector AvoidPos;
-/** cached direction from AvoidPos to Pawn.Location */
+
+/** Cached direction from AvoidPos to Pawn.Location */
 var vector AvoidDir;
-/** exit with the best result so far if the travel distance to the nodes being evaluated exceeds this */
+
+/** Exit with the best result so far if the travel distance to the nodes being evaluated exceeds this */
 var int MaxDist;
 
-/** best node we've found so far */
+/** Best node away from AvoidDir we've found so far */
 var NavigationPoint BestNode;
 var int BestRating;
 
@@ -35,7 +37,7 @@ static function bool FleeFrom(Pawn P, vector InAvoidPos, int InMaxDist)
 
 	Eval = Goal_AwayFromPosition(P.CreatePathGoalEvaluator(default.class));
 	Eval.AvoidPos = InAvoidPos;
-	Eval.AvoidDir = Normal(InAvoidPos - P.Location);
+	Eval.AvoidDir = Normal2D(InAvoidPos - P.Location);
 	Eval.MaxDist = InMaxDist;
 	P.AddGoalEvaluator(Eval);
 	return true;

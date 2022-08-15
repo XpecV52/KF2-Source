@@ -8,14 +8,16 @@
 class KFGFxHUD_ScoreboardMapInfoContainer extends GFxObject within GFxMoviePlayer;
 
 var protected int LastMatchTime;
-var protected int LastWaveNumber;
 var const localized string WaveString;
 var const localized string FinalString;
 var int CurrentGameDifficulty;
 var string GameTypeString;
 var bool bLocalized;
 
-function InitializeHUD();
+function InitializeHUD()
+{
+    UpdateWaveCount();
+}
 
 function LocalizeText()
 {
@@ -58,7 +60,7 @@ function string GetFriendlyMapName(string MapName)
 function UpdateMatchInfo()
 {
     local KFGameReplicationInfo KFGRI;
-    local int CurrentMatchTime, CurrentWaveNum;
+    local int CurrentMatchTime;
 
     KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
     if(KFGRI != none)
@@ -73,25 +75,32 @@ function UpdateMatchInfo()
             SetInt("timeValue", CurrentMatchTime);
             LastMatchTime = CurrentMatchTime;
         }
-        CurrentWaveNum = KFGRI.WaveNum;
-        if(CurrentWaveNum != LastWaveNumber)
-        {
-            if(KFGRI.IsFinalWave())
-            {
-                SetString("waveNumber", FinalString);                
-            }
-            else
-            {
-                SetString("waveNumber", (string(CurrentWaveNum) $ "/") $ string(KFGRI.WaveMax - 1));
-                LastWaveNumber = CurrentWaveNum;
-            }
-        }
+    }
+}
+
+function UpdateWaveCount()
+{
+    local int CurrentWaveNum;
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
+    if(KFGRI == none)
+    {
+        return;
+    }
+    CurrentWaveNum = KFGRI.WaveNum + 1;
+    if(CurrentWaveNum == (KFGRI.WaveMax - 1))
+    {
+        SetString("waveNumber", FinalString);        
+    }
+    else
+    {
+        SetString("waveNumber", (string(CurrentWaveNum) $ "/") $ string(KFGRI.WaveMax - 1));
     }
 }
 
 defaultproperties
 {
-    LastWaveNumber=-1
     WaveString="WAVE"
     FinalString="Final"
 }

@@ -89,7 +89,7 @@ defaultproperties
 
 	// Grouping
 	GroupPriority=50
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AK12'
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AK12'
 
 	// DEFAULT_FIREMODE
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponFiring

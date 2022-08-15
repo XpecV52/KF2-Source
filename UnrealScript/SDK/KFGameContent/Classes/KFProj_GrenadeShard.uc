@@ -81,10 +81,10 @@ defaultproperties
 
     BouncesLeft=2
     DampingFactor=0.65
-    RicochetEffects=KFImpactEffectInfo'WEP_Nail_Shotgun_ARCH.NailBulletImpacts'
+    RicochetEffects=KFImpactEffectInfo'WEP_MKII_ARCH.MKII_Shrapnel_Impacts'
 
-	ProjFlightTemplate=ParticleSystem'WEP_1P_Nail_Shotgun_EMIT.FX_Nail_Shotgun_Tracer'
-	ProjFlightTemplateZedTime=ParticleSystem'WEP_1P_Nail_Shotgun_EMIT.FX_Nail_Shotgun_Tracer_ZEDTime'
+	ProjFlightTemplate=ParticleSystem'WEP_3P_MKII_EMIT.FX_MKII_Shrapnel'
+	ProjFlightTemplateZedTime=ParticleSystem'WEP_3P_MKII_EMIT.FX_MKII_Shrapnel_ZEDTime'
 }
 
 

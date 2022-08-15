@@ -135,7 +135,7 @@ defaultproperties
     GunHitPower=0
 	MeleeHitPower=114
 	
-	AARWeaponID=`AAR_Eviscerator
+	WeaponDef=class'KFWeapDef_Eviscerator'
 
 	ModifierPerkList(0)=class'KFPerk_Berserker'
 }

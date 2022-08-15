@@ -20,9 +20,10 @@ defaultproperties
 	KDeathUpKick=-300
 	KDeathVel=100
 
-	StumblePower=10
-	LegStumblePower=20
+	KnockdownPower=30
+	StumblePower=35
+	LegStumblePower=35
 	GunHitPower=15
 
-	AARWeaponID=`AAR_9mm
+	WeaponDef=class'KFWeapDef_9mm'
 }

@@ -435,6 +435,8 @@ package tripwire.managers
             }
             this.mCursor.visible = param1 && !this.bUsingGamepad;
             this.MenuScanlines.visible = param1;
+            this.mCursor.x = mouseX;
+            this.mCursor.y = mouseY;
         }
         
         public function onMenuClosed() : void

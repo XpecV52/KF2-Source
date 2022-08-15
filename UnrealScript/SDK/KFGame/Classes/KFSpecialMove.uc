@@ -77,6 +77,7 @@ var					bool	bDisableSteering;
 /** If TRUE, disables turning in place animations & code. Pawn will always face his rotation. */
 var const			bool	bDisableTurnInPlace;
 var	const			bool	bDisablePhysics;
+var 				bool 	bAllowFireAnims;
 var	AICommand_PushedBySM	AICommand;
 /** Default AICommand to push on AI when SpecialMove starts */
 var class<AICommand_PushedBySM>	DefaultAICommandClass;

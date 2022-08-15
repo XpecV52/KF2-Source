@@ -12,12 +12,9 @@ class KFWeap_Shotgun_MB500 extends KFWeap_ShotgunBase
 defaultproperties
 {
     FireModeIconPaths=/* Array type was not detected. */
-    FilterTypeUI=EFilterTypeUI.FT_Shotgun
     InventorySize=5
-    EffectiveRange=20
     bHasIronSights=true
     bCanBeReloaded=true
-    bHasFlashlight=true
     PenetrationPower=/* Array type was not detected. */
     MeshIronSightFOV=52
     PlayerIronSightFOV=70
@@ -25,7 +22,7 @@ defaultproperties
     DOF_FG_FocalRadius=95
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=25
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Mossberg'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Mossberg'
     MagazineCapacity=8
     MaxSpareAmmo=40
     InitialSpareMags=2

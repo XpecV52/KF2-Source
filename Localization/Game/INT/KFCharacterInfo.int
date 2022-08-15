@@ -3,15 +3,162 @@
 //2. Description is the bio and can be edited quite happily. Limit is just over 800 characters, including spaces. 
 //3. All the rest (Skin descriptions) should be 20-21 characters, max, including spaces.
 
+//Jagerhorn
+[CHR_Jagerhorn_Archetype]
+CharacterName="Oisten Jägerhorn"
+Description="Being a big guy, from Sweden, who enjoyed beer and getting loud in bars, Jägerhorn tended to fit everyone's idea of a modern-day Viking, before the outbreak. But, after being vaguely involved in the craziness that was the Great Nordic Biker war in the 1990s, he'd decided that insane violence, directed at people, was far less fun than drinking plenty of beer and playing mediocre lead guitar for 'Metalbika' - his Metallica tribute band. \n\nOnce the outbreaks reached Scandinavia, on the other hand, insane violence became the order of the day after all. Zeds vs. People - not good karma, by Jägerhorn's standards. Big Swedish Viking Jägerhorn vs. Zeds? Bring it on!"
+BodyMesh0="Biker Time"
+HeadMesh0="Beard Power!"
+
+
+Attachment0="Flatcap"
+Attachment1="Kevlar Helmet"
+Attachment2="Nightvision Helmet"
+Attachment3="Welding Mask"
+Attachment4="Eye Patch"
+Attachment5="Chef Hat"
+Attachment6="Cowboy Hat"
+Attachment7="Baseball Hat"
+Attachment8="Aviators"
+Attachment9="Retro Sunglasses"
+Attachment10="Spiky Cowboy Hat"
+Attachment11="Front Row Protection Up"
+Attachment12="Front Row Protection Down"
+Attachment13="Custodian Helmet"
+
+[CHR_Jagerhorn_Archetype.BodyMesh0]
+BodySkin0="Guillotine"
+BodySkin1="Horzine"
+BodySkin2="DJ Scully"
+BodySkin3="True Defiance"
+BodySkin4="Demon Hunter"
+
+[CHR_Jagerhorn_Archetype.HeadMesh0]
+HeadSkin0="Swedish Blonde"
+HeadSkin1="The Black Album"
+HeadSkin2="Blood Red"
+
+
+[chr_Jagerhorn_archetype.Attachment0]
+AttachmentSkin0="Olde English"
+AttachmentSkin1="Leather Head"
+AttachmentSkin2="Union Style"
+AttachmentSkin3="Green Thumb"
+AttachmentSkin4="Holier Than Thou"
+
+[chr_Jagerhorn_archetype.Attachment1]
+AttachmentSkin0="Camo"
+
+[chr_Jagerhorn_archetype.Attachment2]
+AttachmentSkin0="Blue Glow"
+
+[chr_Jagerhorn_archetype.Attachment3]
+AttachmentSkin0="Dark Metal"
+
+[chr_Jagerhorn_archetype.Attachment4]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian"
+AttachmentSkin2="Bio"
+AttachmentSkin3="Blue"
+AttachmentSkin4="Camo"
+AttachmentSkin5="Dosh"
+AttachmentSkin6="Eye"
+AttachmentSkin7="Fancy"
+AttachmentSkin8="Flame"
+AttachmentSkin9="Plaid"
+AttachmentSkin10="Purple"
+AttachmentSkin11="Skull"
+AttachmentSkin12="Splatter"
+AttachmentSkin13="Tie Dye"
+
+[chr_Jagerhorn_archetype.Attachment5]
+AttachmentSkin0="An Excellent Hat"
+AttachmentSkin1="Baker's Dozen"
+AttachmentSkin2="Slightly Used"
+
+[chr_Jagerhorn_archetype.Attachment6]
+AttachmentSkin0="Cowboy Hat"
+
+[chr_Jagerhorn_archetype.Attachment7]
+AttachmentSkin0="UK"
+AttachmentSkin1="USA"
+AttachmentSkin2="CA"
+AttachmentSkin3="DE"
+AttachmentSkin4="RU"
+
+[chr_Jagerhorn_archetype.Attachment8]
+AttachmentSkin0="White Rims"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+
+[chr_Jagerhorn_archetype.Attachment9]
+AttachmentSkin0="Black"
+AttachmentSkin1="Camo"
+AttachmentSkin2="Tiger"
+AttachmentSkin3="USA"
+
+[chr_Jagerhorn_archetype.Attachment10]
+AttachmentSkin0="Dark Rider"
+AttachmentSkin1="Worn Leather"
+AttachmentSkin2="Clean Slate"
+AttachmentSkin3="Blood Red"
+
+[chr_Jagerhorn_archetype.Attachment11]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_Jagerhorn_archetype.Attachment12]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_Jagerhorn_archetype.Attachment13]
+AttachmentSkin0="Black"
+AttachmentSkin1="Gold"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Precious Gold"
+
 //DJ Scully
 
 [chr_DJSkully_archetype]
 CharacterName="DJ Scully"
-Description="The coolest Dutch underground DJ of his generation, Scully can't help but be loved by everyone. Women seem to end up loving him, regardless of any common sense involved. The men should all hate him for that alone, but he's just too much fun to be around. When the outbreak broke, he'd just finished a monster set at a disused insane asylum north of London. As the Zeds tried to eat everyone, being quick-witted and quick on his feet, if not combat-trained, kept him alive. Scully has always had trouble taking life seriously and the apocalypse hasn't changed that. Just that he's really good at dispatching monsters. So good that it spawned silly rumors that he must be ex-special forces, which is just another Scully joke."
+Description="The coolest Dutch underground DJ of his generation, Scully can't help but be loved by everyone. Women seem to end up loving him, regardless of any common sense involved. The men should all hate him for that alone, but he's just too much fun to be around. \n\nWhen the outbreak broke, he'd just finished a monster set at a disused insane asylum north of London. As the Zeds tried to eat everyone, being quick-witted and quick on his feet, if not combat-trained, kept him alive. Scully has always had trouble taking life seriously and the apocalypse hasn't changed that. Just that he's really good at dispatching monsters. So good that it spawned silly rumors that he must be ex-special forces, which is just another Scully joke."
 BodyMesh0="Hoodie"
 HeadMesh0="Scully Mask"
 Attachment0="Scully Cap"
 Attachment1="Scullyphones"
+Attachment2="Alienware"
+Attachment3="Baseball Hat"
+Attachment4="Flatcap"
+Attachment5="Chef Hat"
+Attachment6="Cowboy Hat"
+Attachment7="Kevlar Helmet"
+Attachment8="Nightvision Helmet"
+Attachment9="Welding Mask"
+Attachment10="German Gas Mask"
+Attachment11="Devtac Ballistic Mask"
+Attachment12="Headband"
+Attachment13="Ski Mask"
+Attachment14="Aviators"
+Attachment15="Retro Sunglasses"
+Attachment16="Reinforced Helmet"
+Attachment17="Front Row Protection Up"
+Attachment18="Criminally Insane Mask"
+Attachment19="Flight Helmet"
+Attachment20="Custodian Helmet"
+Attachment21="Flight Mask"
 
 [chr_DJSkully_archetype.BodyMesh0]
 BodySkin0="Blackest Black"
@@ -41,7 +188,150 @@ AttachmentSkin2="Deep Blue"
 AttachmentSkin3="Guardian Orange"
 AttachmentSkin4="Retro Scully"
 AttachmentSkin5="Horzine White"
+AttachmentSkin6="Precious Gold"
 
+[chr_DJSkully_archetype.Attachment2]
+AttachmentSkin0="Black"
+AttachmentSkin1="Black Glow"
+AttachmentSkin2="White"
+AttachmentSkin3="White Glow"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Blue Glow"
+AttachmentSkin6="Gold"
+AttachmentSkin7="Gold Glow"
+AttachmentSkin8="Green"
+AttachmentSkin9="Green Glow"
+
+[chr_DJSkully_archetype.Attachment3]
+AttachmentSkin0="UK"
+AttachmentSkin1="USA"
+AttachmentSkin2="CA"
+AttachmentSkin3="DE"
+AttachmentSkin4="RU"
+
+[chr_DJSkully_archetype.Attachment4]
+AttachmentSkin0="Olde English"
+AttachmentSkin1="Leather Head"
+AttachmentSkin2="Union Style"
+AttachmentSkin3="Green Thumb"
+AttachmentSkin4="Holier Than Thou"
+
+[chr_DJSkully_archetype.Attachment5]
+AttachmentSkin0="An Excellent Hat"
+AttachmentSkin1="Baker's Dozen"
+AttachmentSkin2="Slightly Used"
+
+[chr_DJSkully_archetype.Attachment6]
+AttachmentSkin0="Cowboy Hat"
+
+[chr_DJSkully_archetype.Attachment7]
+AttachmentSkin0="Camo"
+
+[chr_DJSkully_archetype.Attachment8]
+AttachmentSkin0="Blue Glow"
+
+[chr_DJSkully_archetype.Attachment9]
+AttachmentSkin0="Dark Metal"
+
+[chr_DJSkully_archetype.Attachment10]
+AttachmentSkin0="German Gas Mask"
+
+[chr_DJSkully_archetype.Attachment11]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+
+[chr_DJSkully_archetype.Attachment12]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian White"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue"
+AttachmentSkin4="Camo"
+AttachmentSkin5="Dark Purple"
+AttachmentSkin6="Flame"
+AttachmentSkin7="Green"
+AttachmentSkin8="Japan"
+AttachmentSkin9="Light Blue"
+AttachmentSkin10="Purple"
+AttachmentSkin11="Red"
+AttachmentSkin12="Red Black"
+AttachmentSkin13="Red Pattern"
+AttachmentSkin14="Star"
+AttachmentSkin15="Stripe"
+AttachmentSkin16="Tie Dye"
+AttachmentSkin17="White"
+AttachmentSkin18="Yellow"
+
+[chr_DJSkully_archetype.Attachment13]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue Green"
+AttachmentSkin4="Blue White"
+AttachmentSkin5="Blue Yellow"
+AttachmentSkin6="Camo"
+AttachmentSkin7="Dark Purple"
+AttachmentSkin8="Flames"
+AttachmentSkin9="Green Blue"
+AttachmentSkin10="Green Yellow"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Purple"
+AttachmentSkin13="Purple Black"
+AttachmentSkin14="Rainbow"
+AttachmentSkin15="Red White"
+AttachmentSkin16="White Black"
+AttachmentSkin17="Yellow Black"
+
+[chr_DJSkully_archetype.Attachment14]
+AttachmentSkin0="White Rims"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+
+[chr_DJSkully_archetype.Attachment15]
+AttachmentSkin0="Black"
+AttachmentSkin1="Camo"
+AttachmentSkin2="Tiger"
+AttachmentSkin3="USA"
+
+[chr_DJSkully_archetype.Attachment16]
+AttachmentSkin0="Reinforced Helmet
+
+[chr_DJSkully_archetype.Attachment17]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_DJSkully_archetype.Attachment18]
+AttachmentSkin0="Criminally Insane Mask"
+
+[chr_DJSkully_archetype.Attachment19]
+AttachmentSkin0="Flight Helmet"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_DJSkully_archetype.Attachment20]
+AttachmentSkin0="Black"
+AttachmentSkin1="Gold"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Precious Gold"
+
+[chr_DJSkully_archetype.Attachment21]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
 
 //Police Constable Rob Briar
 
@@ -49,17 +339,49 @@ AttachmentSkin5="Horzine White"
 CharacterName="PC Rob Briar"
 Description="Rob Briar was a Police Constable from the age of 17, until the day he was called out to what seemed, to his superiors, to be some half-witted anarchist riot. We all know it wasn't, but Briar discovered that the hard way. Luckily, he wasn't just an old-fashioned "London bobby", but had spent enough time on counter-terrorism work to be familiar with a broad range of firearms. Underneath the happy-go-lucky, jokey exterior, Briar is as hard as nails. That toughness, along with the toughness of the Kevlar in his riot gear, is about all that got him through those first few days alive. Now he is continuing to do his duty, serving the public by trying to stamp out this menace with any and every weapon that comes to hand."
 BodyMesh0="Riot Gear"
+BodyMesh1="London"
 HeadMesh0="Hair"
 Attachment0="Riot Helmet"
 Attachment1="S10 NBC Mask"
 Attachment2="Glasses"
-Attachment3="Spectacles"
+Attachment3="Alienware"
+Attachment4="Custodian Helmet"
+Attachment5="Aviators"
+Attachment6="Devtac Ballistic Mask"
+Attachment7="Baseball Hat"
+Attachment8="Flatcap"
+Attachment9="Chef Hat"
+Attachment10="Chemical Gas Mask"
+Attachment11="Cowboy Hat"
+Attachment12="Kevlar Helmet"
+Attachment13="Nightvision Helmet"
+Attachment14="Eye Patch"
+Attachment15="Welding Mask"
+Attachment16="German Gas Mask"
+Attachment17="Headband"
+Attachment18="Retro Sunglasses"
+Attachment19="Ski Mask"
+Attachment20="Doctor's Mask"
+Attachment21="Front Row Protection Up"
+Attachment22="Front Row Protection Down"
+Attachment23="Criminally Insane Mask"
+Attachment24="Flight Helmet"
+Attachment25="Skull Breaker Helmet"
+Attachment26="Skull Breaker Mask"
+Attachment27="Flight Helmet"
 
 [chr_briar_archetype.BodyMesh0]
 BodySkin0="Police Blue"
 BodySkin1="Night Black"
 BodySkin2="Army Green"
 BodySkin3="SAS Camo"
+
+[chr_briar_archetype.BodyMesh1]
+BodySkin0="Metro"
+BodySkin1="Night Black"
+BodySkin2="Blue"
+BodySkin3="Reflective"
+BodySkin4="Reflective Black"
 
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
@@ -77,13 +399,195 @@ AttachmentSkin0="Black"
 AttachmentSkin1="Camo"
 AttachmentSkin2="Biohazard"
 AttachmentSkin3="Zed Time"
+AttachmentSkin4="Precious"
 
 [CHR_briar_archetype.Attachment2]
 AttachmentSkin0="Shades"
 AttachmentSkin1="Regular Glasses"
 
-[CHR_briar_archetype.Attachment3]
-AttachmentSkin0="Spectacles"
+[chr_briar_archetype.Attachment3]
+AttachmentSkin0="Black"
+AttachmentSkin1="Black Glow"
+AttachmentSkin2="White"
+AttachmentSkin3="White Glow"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Blue Glow"
+AttachmentSkin6="Gold"
+AttachmentSkin7="Gold Glow"
+AttachmentSkin8="Green"
+AttachmentSkin9="Green Glow"
+
+[chr_briar_archetype.Attachment4]
+AttachmentSkin0="Black"
+AttachmentSkin1="Gold"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Precious Gold"
+
+[chr_briar_archetype.Attachment5]
+AttachmentSkin0="White Rims"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+
+[chr_briar_archetype.Attachment6]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+
+[chr_briar_archetype.Attachment7]
+AttachmentSkin0="UK"
+AttachmentSkin1="USA"
+AttachmentSkin2="CA"
+AttachmentSkin3="DE"
+AttachmentSkin4="RU"
+
+[chr_briar_archetype.Attachment8]
+AttachmentSkin0="Olde English"
+AttachmentSkin1="Leather Head"
+AttachmentSkin2="Union Style"
+AttachmentSkin3="Green Thumb"
+AttachmentSkin4="Holier Than Thou"
+
+[chr_briar_archetype.Attachment9]
+AttachmentSkin0="An Excellent Hat"
+AttachmentSkin1="Baker's Dozen"
+AttachmentSkin2="Slightly Used"
+
+[chr_briar_archetype.Attachment10]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Yellow"
+
+[chr_briar_archetype.Attachment11]
+AttachmentSkin0="Cowboy Hat"
+
+[chr_briar_archetype.Attachment12]
+AttachmentSkin0="Camo"
+
+[chr_briar_archetype.Attachment13]
+AttachmentSkin0="Blue Glow"
+
+[chr_briar_archetype.Attachment14]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian"
+AttachmentSkin2="Bio"
+AttachmentSkin3="Blue"
+AttachmentSkin4="Camo"
+AttachmentSkin5="Dosh"
+AttachmentSkin6="Eye"
+AttachmentSkin7="Fancy"
+AttachmentSkin8="Flame"
+AttachmentSkin9="Plaid"
+AttachmentSkin10="Purple"
+AttachmentSkin11="Skull"
+AttachmentSkin12="Splatter"
+AttachmentSkin13="Tie Dye"
+
+[chr_briar_archetype.Attachment15]
+AttachmentSkin0="Dark Metal"
+
+[chr_briar_archetype.Attachment16]
+AttachmentSkin0="German Gas Mask"
+
+[chr_briar_archetype.Attachment17]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian White"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue"
+AttachmentSkin4="Camo"
+AttachmentSkin5="Dark Purple"
+AttachmentSkin6="Flame"
+AttachmentSkin7="Green"
+AttachmentSkin8="Japan"
+AttachmentSkin9="Light Blue"
+AttachmentSkin10="Purple"
+AttachmentSkin11="Red"
+AttachmentSkin12="Red Black"
+AttachmentSkin13="Red Pattern"
+AttachmentSkin14="Star"
+AttachmentSkin15="Stripe"
+AttachmentSkin16="Tie Dye"
+AttachmentSkin17="White"
+AttachmentSkin18="Yellow"
+
+[chr_briar_archetype.Attachment18]
+AttachmentSkin0="Black"
+AttachmentSkin1="Camo"
+AttachmentSkin2="Tiger"
+AttachmentSkin3="USA"
+
+[chr_briar_archetype.Attachment19]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue Green"
+AttachmentSkin4="Blue White"
+AttachmentSkin5="Blue Yellow"
+AttachmentSkin6="Camo"
+AttachmentSkin7="Dark Purple"
+AttachmentSkin8="Flames"
+AttachmentSkin9="Green Blue"
+AttachmentSkin10="Green Yellow"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Purple"
+AttachmentSkin13="Purple Black"
+AttachmentSkin14="Rainbow"
+AttachmentSkin15="Red White"
+AttachmentSkin16="White Black"
+AttachmentSkin17="Yellow Black"
+
+[chr_briar_archetype.Attachment20]
+AttachmentSkin0="White"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+
+[chr_briar_archetype.Attachment21]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_briar_archetype.Attachment22]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_briar_archetype.Attachment23]
+AttachmentSkin0="Criminally Insane Mask"
+
+[chr_briar_archetype.Attachment24]
+AttachmentSkin0="Flight Helmet"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_briar_archetype.Attachment25]
+AttachmentSkin0="Skull Breaker Helmet"
+
+[chr_briar_archetype.Attachment26]
+AttachmentSkin0="Skull Breaker Mask"
+
+[chr_briar_archetype.Attachment27]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
 
 //Mr Foster
 
@@ -91,9 +595,30 @@ AttachmentSkin0="Spectacles"
 CharacterName="Mr. Foster"
 Description="Foster had wandered into day trading from a mediocre English private school education, with the classic "you'll never amount to anything, Foster" ringing in his ears from the school's careers officer. Not that Foster really cared. But, bizarrely, he found that day trading suited him. He started to generate large sums of money and thoroughly enjoyed it. Not that he would admit to enjoying a job, obviously. He also had a habit of verbally abusing authority figures. This led to Foster being seen as a clever, smart guy, with a sardonic sense of humor and great taste in clothes and cars. Or a jumped-up little tool. You decide."
 BodyMesh0="Leather Jacket"
+BodyMesh1="Classic Suit"
 HeadMesh0="Gas Mask"
 Attachment0="Bowler Hat"
 Attachment1="Scullyphones"
+Attachment2="NeckTie"
+Attachment3="LooseTie"
+Attachment4="BowTie"
+Attachment5="Alienware"
+Attachment6="Baseball Hat"
+Attachment7="LooseTie"
+Attachment8="Chef Hat"
+Attachment9="Cowboy Hat"
+Attachment10="Flatcap"
+Attachment11="Kevlar Helmet"
+Attachment12="Nightvision Helmet"
+Attachment13="Welding Mask"
+Attachment14="German Gas Mask"
+Attachment15="Devtac Ballistic Mask"
+Attachment16="Headband"
+Attachment17="Ski Mask"
+Attachment18="Front Row Protection Up"
+Attachment19="Flight Helmet"
+Attachment20="Custodian Helmet"
+Attachment21="Flight Mask"
 
 [CHR_MrFoster_archetype.BodyMesh0]
 BodySkin0="KF Blue"
@@ -101,6 +626,17 @@ BodySkin1="PCG Dosh"
 BodySkin2="Biohazard"
 BodySkin3="Just Class"
 BodySkin4="Magma Red"
+
+[CHR_MrFoster_archetype.BodyMesh1]
+BodySkin0="Classic"
+BodySkin1="Black"
+BodySkin2="Gomez"
+BodySkin3="Pin Stripe"
+BodySkin4="The Rox"
+BodySkin5="Vice Blue"
+BodySkin6="Vice"
+BodySkin7="Casino"
+BodySkin8="Smokin'"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Original White"
@@ -124,8 +660,170 @@ AttachmentSkin2="Guardian Orange"
 AttachmentSkin3="Retro Skull"
 AttachmentSkin4="Horzine White"
 AttachmentSkin5="GearXT Yellow"
+AttachmentSkin6="Precious Gold"
 
+[chr_MrFoster_archetype.Attachment2]
+AttachmentSkin0="Classic Blue"
+AttachmentSkin1="Red Stripe"
+AttachmentSkin2="Black"
+AttachmentSkin3="Black and White"
+AttachmentSkin4="Casino"
+AttachmentSkin5="The Stuff"
+AttachmentSkin6="Magma"
+AttachmentSkin7="PC Gamer"
 
+[chr_MrFoster_archetype.Attachment3]
+AttachmentSkin0="Classic Blue"
+AttachmentSkin1="Red Stripe"
+AttachmentSkin2="Black"
+AttachmentSkin3="Smokin'"
+AttachmentSkin4="Casino"
+AttachmentSkin5="The Stuff"
+AttachmentSkin6="Magma"
+AttachmentSkin7="PC Gamer"
+
+[chr_MrFoster_archetype.Attachment4]
+AttachmentSkin0="Classic Blue"
+AttachmentSkin1="Red Stripe"
+AttachmentSkin2="Black"
+AttachmentSkin3="Black and White"
+AttachmentSkin4="Casino"
+AttachmentSkin5="The Stuff"
+AttachmentSkin6="Magma"
+AttachmentSkin7="PC Gamer"
+
+[chr_MrFoster_archetype.Attachment5]
+AttachmentSkin0="Black"
+AttachmentSkin1="Black Glow"
+AttachmentSkin2="White"
+AttachmentSkin3="White Glow"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Blue Glow"
+AttachmentSkin6="Gold"
+AttachmentSkin7="Gold Glow"
+AttachmentSkin8="Green"
+AttachmentSkin9="Green Glow"
+
+[chr_MrFoster_archetype.Attachment6]
+AttachmentSkin0="UK"
+AttachmentSkin1="USA"
+AttachmentSkin2="CA"
+AttachmentSkin3="DE"
+AttachmentSkin4="RU"
+
+[chr_MrFoster_archetype.Attachment7]
+AttachmentSkin0="Classic Blue"
+AttachmentSkin1="Red Stripe"
+AttachmentSkin2="Black"
+AttachmentSkin3="Black and White"
+AttachmentSkin4="Casino"
+AttachmentSkin5="The Stuff"
+
+[chr_MrFoster_archetype.Attachment8]
+AttachmentSkin0="An Excellent Hat"
+AttachmentSkin1="Baker's Dozen"
+AttachmentSkin2="Slightly Used"
+
+[chr_MrFoster_archetype.Attachment9]
+AttachmentSkin0="Cowboy Hat"
+
+[chr_MrFoster_archetype.Attachment10]
+AttachmentSkin0="Olde English"
+AttachmentSkin1="Leather Head"
+AttachmentSkin2="Union Style"
+AttachmentSkin3="Green Thumb"
+AttachmentSkin4="Holier Than Thou"
+
+[chr_MrFoster_archetype.Attachment11]
+AttachmentSkin0="Camo"
+
+[chr_MrFoster_archetype.Attachment12]
+AttachmentSkin0="Blue Glow"
+
+[chr_MrFoster_archetype.Attachment13]
+AttachmentSkin0="Dark Metal"
+
+[chr_MrFoster_archetype.Attachment14]
+AttachmentSkin0="German Gas Mask"
+
+[chr_MrFoster_archetype.Attachment15]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+
+[chr_MrFoster_archetype.Attachment16]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian White"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue"
+AttachmentSkin4="Camo"
+AttachmentSkin5="Dark Purple"
+AttachmentSkin6="Flame"
+AttachmentSkin7="Green"
+AttachmentSkin8="Japan"
+AttachmentSkin9="Light Blue"
+AttachmentSkin10="Purple"
+AttachmentSkin11="Red"
+AttachmentSkin12="Red Black"
+AttachmentSkin13="Red Pattern"
+AttachmentSkin14="Star"
+AttachmentSkin15="Stripe"
+AttachmentSkin16="Tie Dye"
+AttachmentSkin17="White"
+AttachmentSkin18="Yellow"
+
+[chr_MrFoster_archetype.Attachment17]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue Green"
+AttachmentSkin4="Blue White"
+AttachmentSkin5="Blue Yellow"
+AttachmentSkin6="Camo"
+AttachmentSkin7="Dark Purple"
+AttachmentSkin8="Flames"
+AttachmentSkin9="Green Blue"
+AttachmentSkin10="Green Yellow"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Purple"
+AttachmentSkin13="Purple Black"
+AttachmentSkin14="Rainbow"
+AttachmentSkin15="Red White"
+AttachmentSkin16="White Black"
+AttachmentSkin17="Yellow Black"
+
+[chr_MrFoster_archetype.Attachment18]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_MrFoster_archetype.Attachment19]
+AttachmentSkin0="Flight Helmet"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_MrFoster_archetype.Attachment20]
+AttachmentSkin0="Black"
+AttachmentSkin1="Gold"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Precious Gold"
+
+[chr_MrFoster_archetype.Attachment21]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
 
 //Erskine Coleman - renamed to Donovan Neal
 
@@ -138,6 +836,32 @@ Attachment0="RQ Cap"
 Attachment1="S10 NBC Mask"
 Attachment2="Glasses"
 Attachment3="Scullyphones"
+Attachment4="Alienware"
+Attachment5="Aviators"
+Attachment6="Devtac Ballistic Mask"
+Attachment7="Baseball Hat"
+Attachment8="Chef Hat"
+Attachment9="Chemical Gas Mask"
+Attachment10="Cowboy Hat"
+Attachment11="Flatcap"
+Attachment12="Kevlar Helmet"
+Attachment13="Nightvision Helmet"
+Attachment14="Eye Patch"
+Attachment15="Welding Mask"
+Attachment16="German Gas Mask"
+Attachment17="Headband"
+Attachment18="Retro Sunglasses"
+Attachment19="Ski Mask"
+Attachment20="Doctor's Mask"
+Attachment21="Boxing Headgear"
+Attachment22="Front Row Protection Up"
+Attachment23="Front Row Protection Down"
+Attachment24="Criminally Insane Mask"
+Attachment25="Flight Helmet"
+Attachment26="Skull Breaker Helmet"
+Attachment27="Skull Breaker Mask"
+Attachment28="Custodian Helmet"
+Attachment29="Flight Mask"
 
 [CHR_Coleman_archetype.BodyMesh0]
 BodySkin0="Racing Green"
@@ -161,6 +885,7 @@ AttachmentSkin0="Black"
 AttachmentSkin1="Camo"
 AttachmentSkin2="Biohazard"
 AttachmentSkin3="Zed Time"
+AttachmentSkin4="Precious"
 
 [CHR_Coleman_archetype.Attachment2]
 AttachmentSkin0="Shades"
@@ -173,6 +898,196 @@ AttachmentSkin2="Guardian Orange"
 AttachmentSkin3="Retro Skull"
 AttachmentSkin4="Horzine White"
 AttachmentSkin5="GearXT Yellow"
+AttachmentSkin6="Precious Gold"
+
+[chr_Coleman_archetype.Attachment4]
+AttachmentSkin0="Black"
+AttachmentSkin1="Black Glow"
+AttachmentSkin2="White"
+AttachmentSkin3="White Glow"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Blue Glow"
+AttachmentSkin6="Gold"
+AttachmentSkin7="Gold Glow"
+AttachmentSkin8="Green"
+AttachmentSkin9="Green Glow"
+
+[chr_Coleman_archetype.Attachment5]
+AttachmentSkin0="White Rims"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+
+[chr_Coleman_archetype.Attachment6]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+
+[chr_Coleman_archetype.Attachment7]
+AttachmentSkin0="UK"
+AttachmentSkin1="USA"
+AttachmentSkin2="CA"
+AttachmentSkin3="DE"
+AttachmentSkin4="RU"
+
+[chr_Coleman_archetype.Attachment8]
+AttachmentSkin0="An Excellent Hat"
+AttachmentSkin1="Baker's Dozen"
+AttachmentSkin2="Slightly Used"
+
+[chr_Coleman_archetype.Attachment9]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Yellow"
+
+[chr_Coleman_archetype.Attachment10]
+AttachmentSkin0="Cowboy Hat"
+
+[chr_Coleman_archetype.Attachment11]
+AttachmentSkin0="Olde English"
+AttachmentSkin1="Leather Head"
+AttachmentSkin2="Union Style"
+AttachmentSkin3="Green Thumb"
+AttachmentSkin4="Holier Than Thou"
+
+[chr_Coleman_archetype.Attachment12]
+AttachmentSkin0="Camo"
+
+[chr_Coleman_archetype.Attachment13]
+AttachmentSkin0="Blue Glow"
+
+[chr_Coleman_archetype.Attachment14]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian"
+AttachmentSkin2="Bio"
+AttachmentSkin3="Blue"
+AttachmentSkin4="Camo"
+AttachmentSkin5="Dosh"
+AttachmentSkin6="Eye"
+AttachmentSkin7="Fancy"
+AttachmentSkin8="Flame"
+AttachmentSkin9="Plaid"
+AttachmentSkin10="Purple"
+AttachmentSkin11="Skull"
+AttachmentSkin12="Splatter"
+AttachmentSkin13="Tie Dye"
+
+[chr_Coleman_archetype.Attachment15]
+AttachmentSkin0="Dark Metal"
+
+[chr_Coleman_archetype.Attachment16]
+AttachmentSkin0="German Gas Mask"
+
+[chr_Coleman_archetype.Attachment17]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian White"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue"
+AttachmentSkin4="Camo"
+AttachmentSkin5="Dark Purple"
+AttachmentSkin6="Flame"
+AttachmentSkin7="Green"
+AttachmentSkin8="Japan"
+AttachmentSkin9="Light Blue"
+AttachmentSkin10="Purple"
+AttachmentSkin11="Red"
+AttachmentSkin12="Red Black"
+AttachmentSkin13="Red Pattern"
+AttachmentSkin14="Star"
+AttachmentSkin15="Stripe"
+AttachmentSkin16="Tie Dye"
+AttachmentSkin17="White"
+AttachmentSkin18="Yellow"
+
+[chr_Coleman_archetype.Attachment18]
+AttachmentSkin0="Black"
+AttachmentSkin1="Camo"
+AttachmentSkin2="Tiger"
+AttachmentSkin3="USA"
+
+[chr_Coleman_archetype.Attachment19]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue Green"
+AttachmentSkin4="Blue White"
+AttachmentSkin5="Blue Yellow"
+AttachmentSkin6="Camo"
+AttachmentSkin7="Dark Purple"
+AttachmentSkin8="Flames"
+AttachmentSkin9="Green Blue"
+AttachmentSkin10="Green Yellow"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Purple"
+AttachmentSkin13="Purple Black"
+AttachmentSkin14="Rainbow"
+AttachmentSkin15="Red White"
+AttachmentSkin16="White Black"
+AttachmentSkin17="Yellow Black"
+
+[chr_Coleman_archetype.Attachment20]
+AttachmentSkin0="White"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+
+[chr_Coleman_archetype.Attachment21]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Brown"
+AttachmentSkin3="Yellow"
+
+[chr_Coleman_archetype.Attachment22]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_Coleman_archetype.Attachment23]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_Coleman_archetype.Attachment24]
+AttachmentSkin0="Criminally Insane Mask"
+
+[chr_Coleman_archetype.Attachment25]
+AttachmentSkin0="Flight Helmet"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_Coleman_archetype.Attachment26]
+AttachmentSkin0="Skull Breaker Helmet"
+
+[chr_Coleman_archetype.Attachment27]
+AttachmentSkin0="Skull Breaker Mask"
+
+[chr_Coleman_archetype.Attachment28]
+AttachmentSkin0="Black"
+AttachmentSkin1="Gold"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Precious Gold"
+
+[chr_Coleman_archetype.Attachment29]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
 
 //Reverend Alberts
 
@@ -183,8 +1098,35 @@ BodyMesh0="Dog Collar"
 HeadMesh0="Hair"
 Attachment0="Fedora"
 Attachment1="Glasses"
-Attachment2="S10 Gas Mask"
+Attachment2="S10 NBC Mask"
 Attachment3="Bowler Hat"
+Attachment4="Alienware"
+Attachment5="Aviators"
+Attachment6="Devtac Ballistic Mask"
+Attachment7="Baseball Hat"
+Attachment8="Flat Cap"
+Attachment9="Chef Hat"
+Attachment10="Chemical Gas Mask"
+Attachment11="Cowboy Hat"
+Attachment12="Kevlar Helmet"
+Attachment13="Nightvision Helmet"
+Attachment14="Eye Patch"
+Attachment15="Welding Mask"
+Attachment16="German Gas Mask"
+Attachment17="Headband"
+Attachment18="Ski Mask"
+Attachment19="Retro Sunglasses"
+Attachment20="Holy Glasses"
+Attachment21="Van Alberts Hat"
+Attachment22="Van Alberts Cloak"
+Attachment23="Front Row Protection Up"
+Attachment24="Front Row Protection Down"
+Attachment25="Criminally Insane Mask"
+Attachment26="Flight Helmet"
+Attachment27="Skull Breaker Helmet"
+Attachment28="Skull Breaker Mask"
+Attachment29="Custodian Helmet"
+Attachment30="Flight Mask"
 
 [CHR_Alberts_archetype.BodyMesh0]
 BodySkin0="Basic Black"
@@ -213,6 +1155,7 @@ AttachmentSkin0="Black"
 AttachmentSkin1="Camo"
 AttachmentSkin2="Biohazard"
 AttachmentSkin3="Zed Time"
+AttachmentSkin4="Precious"
 
 [CHR_Alberts_archetype.Attachment3]
 AttachmentSkin0="Business Black"
@@ -222,6 +1165,196 @@ AttachmentSkin3="Flaming Red"
 AttachmentSkin4="Seriously Purple"
 AttachmentSkin5="Performance White"
 
+[chr_Alberts_archetype.Attachment4]
+AttachmentSkin0="Black"
+AttachmentSkin1="Black Glow"
+AttachmentSkin2="White"
+AttachmentSkin3="White Glow"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Blue Glow"
+AttachmentSkin6="Gold"
+AttachmentSkin7="Gold Glow"
+AttachmentSkin8="Green"
+AttachmentSkin9="Green Glow"
+
+[chr_Alberts_archetype.Attachment5]
+AttachmentSkin0="White Rims"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+
+[chr_Alberts_archetype.Attachment6]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+
+[chr_Alberts_archetype.Attachment7]
+AttachmentSkin0="UK"
+AttachmentSkin1="USA"
+AttachmentSkin2="CA"
+AttachmentSkin3="DE"
+AttachmentSkin4="RU"
+
+[chr_Alberts_archetype.Attachment8]
+AttachmentSkin0="Olde English"
+AttachmentSkin1="Leather Head"
+AttachmentSkin2="Union Style"
+AttachmentSkin3="Green Thumb"
+AttachmentSkin4="Holier Than Thou"
+
+[chr_Alberts_archetype.Attachment9]
+AttachmentSkin0="An Excellent Hat"
+AttachmentSkin1="Baker's Dozen"
+AttachmentSkin2="Slightly Used"
+
+[chr_Alberts_archetype.Attachment10]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Yellow"
+
+[chr_Alberts_archetype.Attachment11]
+AttachmentSkin0="Cowboy Hat"
+
+[chr_Alberts_archetype.Attachment12]
+AttachmentSkin0="Camo"
+
+[chr_Alberts_archetype.Attachment13]
+AttachmentSkin0="Blue Glow"
+
+[chr_Alberts_archetype.Attachment14]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian"
+AttachmentSkin2="Bio"
+AttachmentSkin3="Blue"
+AttachmentSkin4="Camo"
+AttachmentSkin5="Dosh"
+AttachmentSkin6="Eye"
+AttachmentSkin7="Fancy"
+AttachmentSkin8="Flame"
+AttachmentSkin9="Plaid"
+AttachmentSkin10="Purple"
+AttachmentSkin11="Skull"
+AttachmentSkin12="Splatter"
+AttachmentSkin13="Tie Dye"
+
+[chr_Alberts_archetype.Attachment15]
+AttachmentSkin0="Dark Metal"
+
+[chr_Alberts_archetype.Attachment16]
+AttachmentSkin0="German Gas Mask"
+
+[chr_Alberts_archetype.Attachment17]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian White"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue"
+AttachmentSkin4="Camo"
+AttachmentSkin5="Dark Purple"
+AttachmentSkin6="Flame"
+AttachmentSkin7="Green"
+AttachmentSkin8="Japan"
+AttachmentSkin9="Light Blue"
+AttachmentSkin10="Purple"
+AttachmentSkin11="Red"
+AttachmentSkin12="Red Black"
+AttachmentSkin13="Red Pattern"
+AttachmentSkin14="Star"
+AttachmentSkin15="Stripe"
+AttachmentSkin16="Tie Dye"
+AttachmentSkin17="White"
+AttachmentSkin18="Yellow"
+
+[chr_Alberts_archetype.Attachment18]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue Green"
+AttachmentSkin4="Blue White"
+AttachmentSkin5="Blue Yellow"
+AttachmentSkin6="Camo"
+AttachmentSkin7="Dark Purple"
+AttachmentSkin8="Flames"
+AttachmentSkin9="Green Blue"
+AttachmentSkin10="Green Yellow"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Purple"
+AttachmentSkin13="Purple Black"
+AttachmentSkin14="Rainbow"
+AttachmentSkin15="Red White"
+AttachmentSkin16="White Black"
+AttachmentSkin17="Yellow Black"
+
+[chr_Alberts_archetype.Attachment19]
+AttachmentSkin0="Black"
+AttachmentSkin1="Camo"
+AttachmentSkin2="Tiger"
+AttachmentSkin3="USA"
+
+[chr_Alberts_archetype.Attachment20]
+AttachmentSkin0="Holy Glasses"
+
+[chr_Alberts_archetype.Attachment21]
+AttachmentSkin0="Classic Caper"
+AttachmentSkin1="Hell Singer"
+AttachmentSkin2="Hierophant"
+
+[chr_Alberts_archetype.Attachment22]
+AttachmentSkin0="Classic Caper"
+AttachmentSkin1="Hell Singer"
+AttachmentSkin2="Hierophant"
+
+[chr_Alberts_archetype.Attachment23]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_Alberts_archetype.Attachment24]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_Alberts_archetype.Attachment25]
+AttachmentSkin0="Criminally Insane Mask"
+
+[chr_Alberts_archetype.Attachment26]
+AttachmentSkin0="Flight Helmet"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_Alberts_archetype.Attachment27]
+AttachmentSkin0="Skull Breaker Helmet"
+
+[chr_Alberts_archetype.Attachment28]
+AttachmentSkin0="Skull Breaker Mask"
+
+[chr_Alberts_archetype.Attachment29]
+AttachmentSkin0="Black"
+AttachmentSkin1="Gold"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Precious Gold"
+
+[chr_Alberts_archetype.Attachment30]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
 
 //Start Masterson
 
@@ -232,27 +1365,235 @@ BodyMesh0="Combat Dress"
 HeadMesh0="Face"
 Attachment0="S10 NBC Mask"
 Attachment1="Glasses"
+Attachment2="Alienware"
+Attachment3="Aviators"
+Attachment4="Devtac Ballistic Mask"
+Attachment5="Baseball Hat"
+Attachment6="Chef Hat"
+Attachment7="Chemical Gas Mask"
+Attachment8="Cowboy Hat"
+Attachment9="Flatcap"
+Attachment10="Kevlar Helmet"
+Attachment11="Nightvision Helmet"
+Attachment12="Eye Patch"
+Attachment13="Welding Mask"
+Attachment14="German Gas Mask"
+Attachment15="Headband"
+Attachment16="Retro Sunglasses"
+Attachment17="Ski Mask"
+Attachment18="Doctor's Mask"
+Attachment19="Front Row Protection Up"
+Attachment20="Front Row Protection Down"
+Attachment21="Criminally Insane Mask"
+Attachment22="Flight Helmet"
+Attachment23="Skull Breaker Helmet"
+Attachment24="Skull Breaker Mask"
+Attachment25="Flight Mask"
+Attachment26="Custodian Helmet"
 
 [CHR_Masterson_archetype.HeadMesh0]
 HeadSkin0="Clean"
 HeadSkin1="Camo"
-
-
-[CHR_Masterson_archetype.Attachment0]
-AttachmentSkin0="Black"
-AttachmentSkin1="Camo"
-AttachmentSkin2="Biohazard"
-AttachmentSkin3="Zed Time"
-
-[CHR_Masterson_archetype.Attachment1]
-AttachmentSkin0="Shades"
-AttachmentSkin1="Regular Glasses"
 
 [CHR_Masterson_archetype.BodyMesh0]
 BodySkin0="Green"
 BodySkin1="Black"
 BodySkin2="Snow"
 BodySkin3="DPM"
+
+[CHR_Masterson_archetype.Attachment0]
+AttachmentSkin0="Black"
+AttachmentSkin1="Camo"
+AttachmentSkin2="Biohazard"
+AttachmentSkin3="Zed Time"
+AttachmentSkin4="Precious"
+
+[CHR_Masterson_archetype.Attachment1]
+AttachmentSkin0="Shades"
+AttachmentSkin1="Regular Glasses"
+
+[chr_Masterson_archetype.Attachment2]
+AttachmentSkin0="Black"
+AttachmentSkin1="Black Glow"
+AttachmentSkin2="White"
+AttachmentSkin3="White Glow"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Blue Glow"
+AttachmentSkin6="Gold"
+AttachmentSkin7="Gold Glow"
+AttachmentSkin8="Green"
+AttachmentSkin9="Green Glow"
+
+[chr_Masterson_archetype.Attachment3]
+AttachmentSkin0="White Rims"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+
+[chr_Masterson_archetype.Attachment4]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+
+[chr_Masterson_archetype.Attachment5]
+AttachmentSkin0="UK"
+AttachmentSkin1="USA"
+AttachmentSkin2="CA"
+AttachmentSkin3="DE"
+AttachmentSkin4="RU"
+
+[chr_Masterson_archetype.Attachment6]
+AttachmentSkin0="An Excellent Hat"
+AttachmentSkin1="Baker's Dozen"
+AttachmentSkin2="Slightly Used"
+
+[chr_Masterson_archetype.Attachment7]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Yellow"
+
+[chr_Masterson_archetype.Attachment8]
+AttachmentSkin0="Cowboy Hat"
+
+[chr_Masterson_archetype.Attachment9]
+AttachmentSkin0="Olde English"
+AttachmentSkin1="Leather Head"
+AttachmentSkin2="Union Style"
+AttachmentSkin3="Green Thumb"
+AttachmentSkin4="Holier Than Thou"
+
+[chr_Masterson_archetype.Attachment10]
+AttachmentSkin0="Camo"
+
+[chr_Masterson_archetype.Attachment11]
+AttachmentSkin0="Blue Glow"
+
+[chr_Masterson_archetype.Attachment12]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian"
+AttachmentSkin2="Bio"
+AttachmentSkin3="Blue"
+AttachmentSkin4="Camo"
+AttachmentSkin5="Dosh"
+AttachmentSkin6="Eye"
+AttachmentSkin7="Fancy"
+AttachmentSkin8="Flame"
+AttachmentSkin9="Plaid"
+AttachmentSkin10="Purple"
+AttachmentSkin11="Skull"
+AttachmentSkin12="Splatter"
+AttachmentSkin13="Tie Dye"
+
+[chr_Masterson_archetype.Attachment13]
+AttachmentSkin0="Dark Metal"
+
+[chr_Masterson_archetype.Attachment14]
+AttachmentSkin0="German Gas Mask"
+
+[chr_Masterson_archetype.Attachment15]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian White"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue"
+AttachmentSkin4="Camo"
+AttachmentSkin5="Dark Purple"
+AttachmentSkin6="Flame"
+AttachmentSkin7="Green"
+AttachmentSkin8="Japan"
+AttachmentSkin9="Light Blue"
+AttachmentSkin10="Purple"
+AttachmentSkin11="Red"
+AttachmentSkin12="Red Black"
+AttachmentSkin13="Red Pattern"
+AttachmentSkin14="Star"
+AttachmentSkin15="Stripe"
+AttachmentSkin16="Tie Dye"
+AttachmentSkin17="White"
+AttachmentSkin18="Yellow"
+
+[chr_Masterson_archetype.Attachment16]
+AttachmentSkin0="Black"
+AttachmentSkin1="Camo"
+AttachmentSkin2="Tiger"
+AttachmentSkin3="USA"
+
+[chr_Masterson_archetype.Attachment17]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue Green"
+AttachmentSkin4="Blue White"
+AttachmentSkin5="Blue Yellow"
+AttachmentSkin6="Camo"
+AttachmentSkin7="Dark Purple"
+AttachmentSkin8="Flames"
+AttachmentSkin9="Green Blue"
+AttachmentSkin10="Green Yellow"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Purple"
+AttachmentSkin13="Purple Black"
+AttachmentSkin14="Rainbow"
+AttachmentSkin15="Red White"
+AttachmentSkin16="White Black"
+AttachmentSkin17="Yellow Black"
+
+[chr_Masterson_archetype.Attachment18]
+AttachmentSkin0="White"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+
+[chr_Masterson_archetype.Attachment19]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_Masterson_archetype.Attachment20]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_Masterson_archetype.Attachment21]
+AttachmentSkin0="Criminally Insane Mask"
+
+[chr_Masterson_archetype.Attachment22]
+AttachmentSkin0="Flight Helmet"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_Masterson_archetype.Attachment23]
+AttachmentSkin0="Skull Breaker Helmet"
+
+[chr_Masterson_archetype.Attachment24]
+AttachmentSkin0="Skull Breaker Mask"
+
+[chr_Masterson_archetype.Attachment25]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_Masterson_archetype.Attachment26]
+AttachmentSkin0="Black"
+AttachmentSkin1="Gold"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Precious Gold"
 
 
 //Start Tanaka
@@ -261,23 +1602,56 @@ BodySkin3="DPM"
 CharacterName="Hayato Tanaka"
 Description="Tanaka is a conflicted individual, with a serious death-wish problem. Born in Okinawa, he was brought up around Americans in the military. Moving to mainland Japan with his family, the Americanized Tanaka failed to fit in and took up drama classes. After college he moved to LA, playing cliched bit-parts in bad movies, before moving on to Europe trying to find more 'serious' work. All he got there were bad-guy roles in French gangster films and some tats. Now, in the apocalypse, he seems to be confusing his own reality with some of the movie parts he has played. This seems to involve visions of the Yakuza, demons and a Hollywood take on bushido."
 BodyMesh0="Die Cool"
+BodyMesh1="Motorcycle"
 HeadMesh0="Hair"
 Attachment0="Facemask"
 Attachment1="S10 NBC Mask"
 Attachment2="Glasses"
 Attachment3="Scullyphones"
 Attachment4="3D Glasses"
+Attachment5="Alienware"
+Attachment6="Helmet"
+Attachment7="Aviators"
+Attachment8="Devtac Ballistic Mask"
+Attachment9="Baseball Hat"
+Attachment10="Chef Hat"
+Attachment11="Cowboy Hat"
+Attachment12="Flatcap"
+Attachment13="Kevlar Helmet"
+Attachment14="Nightvision Helmet"
+Attachment15="Eye Patch"
+Attachment16="Welding Mask"
+Attachment17="German Gas Mask"
+Attachment18="Headband"
+Attachment19="Retro Sunglasses"
+Attachment20="Ski Mask"
+Attachment21="Doctor's Mask"
+Attachment22="Mempo"
+Attachment23="Front Row Protection Up"
+Attachment24="Front Row Protection Down"
+Attachment25="Criminally Insane Mask"
+Attachment26="Flight Helmet"
+Attachment27="Custodian Helmet"
+Attachment28="Flight Mask"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
 HeadSkin0="Black"
 HeadSkin1="Blonde"
-
 
 [CHR_Tanaka_Archetype.BodyMesh0]
 BodySkin0="And Classy"
 BodySkin1="Kakihara-san"
 BodySkin2="In Black"
 BodySkin3="Blue Dragon"
+
+[CHR_Tanaka_Archetype.BodyMesh1]
+BodySkin0="Red and Black"
+BodySkin1="Mastodon"
+BodySkin2="Stig"
+BodySkin3="Blue Blur"
+BodySkin4="Dragon"
+BodySkin5="Death Game"
+BodySkin6="Crane"
 
 [chr_Tanaka_archetype.Attachment0]
 AttachmentSkin0="Gold Dragon"
@@ -290,6 +1664,7 @@ AttachmentSkin0="Black"
 AttachmentSkin1="Camo"
 AttachmentSkin2="Biohazard"
 AttachmentSkin3="Zed Time"
+AttachmentSkin4="Precious"
 
 [CHR_Tanaka_archetype.Attachment2]
 AttachmentSkin0="Shades"
@@ -302,12 +1677,201 @@ AttachmentSkin2="Guardian Orange"
 AttachmentSkin3="Retro Skull"
 AttachmentSkin4="Horzine White"
 AttachmentSkin5="GearXT Yellow"
+AttachmentSkin6="Precious Gold"
 
 [CHR_Tanaka_archetype.Attachment4]
 AttachmentSkin0="Anaglyph 3D"
 AttachmentSkin1="Passive Shutter"
 AttachmentSkin2="Trioscopic 3D"
 AttachmentSkin3="X-Ray Specs"
+
+[chr_Tanaka_archetype.Attachment5]
+AttachmentSkin0="Black"
+AttachmentSkin1="Black Glow"
+AttachmentSkin2="White"
+AttachmentSkin3="White Glow"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Blue Glow"
+AttachmentSkin6="Gold"
+AttachmentSkin7="Gold Glow"
+AttachmentSkin8="Green"
+AttachmentSkin9="Green Glow"
+
+[chr_Tanaka_archetype.Attachment6]
+AttachmentSkin0="Rising Sun"
+AttachmentSkin1="America"
+AttachmentSkin2="Black"
+AttachmentSkin3="Blue Blur"
+AttachmentSkin4="Cheif Green"
+AttachmentSkin5="Doom Grey"
+AttachmentSkin6="Death Game"
+AttachmentSkin7="White"
+
+[chr_Tanaka_archetype.Attachment7]
+AttachmentSkin0="White Rims"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+
+[chr_Tanaka_archetype.Attachment8]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+
+[chr_Tanaka_archetype.Attachment9]
+AttachmentSkin0="UK"
+AttachmentSkin1="USA"
+AttachmentSkin2="CA"
+AttachmentSkin3="DE"
+AttachmentSkin4="RU"
+
+[chr_Tanaka_archetype.Attachment10]
+AttachmentSkin0="An Excellent Hat"
+AttachmentSkin1="Baker's Dozen"
+AttachmentSkin2="Slightly Used"
+
+[chr_Tanaka_archetype.Attachment11]
+AttachmentSkin0="Cowboy Hat"
+
+[chr_Tanaka_archetype.Attachment12]
+AttachmentSkin0="Olde English"
+AttachmentSkin1="Leather Head"
+AttachmentSkin2="Union Style"
+AttachmentSkin3="Green Thumb"
+AttachmentSkin4="Holier Than Thou"
+
+[chr_Tanaka_archetype.Attachment13]
+AttachmentSkin0="Camo"
+
+[chr_Tanaka_archetype.Attachment14]
+AttachmentSkin0="Blue Glow"
+
+[chr_Tanaka_archetype.Attachment15]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian"
+AttachmentSkin2="Bio"
+AttachmentSkin3="Blue"
+AttachmentSkin4="Camo"
+AttachmentSkin5="Dosh"
+AttachmentSkin6="Eye"
+AttachmentSkin7="Fancy"
+AttachmentSkin8="Flame"
+AttachmentSkin9="Plaid"
+AttachmentSkin10="Purple"
+AttachmentSkin11="Skull"
+AttachmentSkin12="Splatter"
+AttachmentSkin13="Tie Dye"
+
+[chr_Tanaka_archetype.Attachment16]
+AttachmentSkin0="Dark Metal"
+
+[chr_Tanaka_archetype.Attachment17]
+Attachment10="German Gas Mask"
+
+[chr_Tanaka_archetype.Attachment18]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian White"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue"
+AttachmentSkin4="Camo"
+AttachmentSkin5="Dark Purple"
+AttachmentSkin6="Flame"
+AttachmentSkin7="Green"
+AttachmentSkin8="Japan"
+AttachmentSkin9="Light Blue"
+AttachmentSkin10="Purple"
+AttachmentSkin11="Red"
+AttachmentSkin12="Red Black"
+AttachmentSkin13="Red Pattern"
+AttachmentSkin14="Star"
+AttachmentSkin15="Stripe"
+AttachmentSkin16="Tie Dye"
+AttachmentSkin17="White"
+AttachmentSkin18="Yellow"
+
+[chr_Tanaka_archetype.Attachment19]
+AttachmentSkin0="Black"
+AttachmentSkin1="Camo"
+AttachmentSkin2="Tiger"
+AttachmentSkin3="USA"
+
+[chr_Tanaka_archetype.Attachment20]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue Green"
+AttachmentSkin4="Blue White"
+AttachmentSkin5="Blue Yellow"
+AttachmentSkin6="Camo"
+AttachmentSkin7="Dark Purple"
+AttachmentSkin8="Flames"
+AttachmentSkin9="Green Blue"
+AttachmentSkin10="Green Yellow"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Purple"
+AttachmentSkin13="Purple Black"
+AttachmentSkin14="Rainbow"
+AttachmentSkin15="Red White"
+AttachmentSkin16="White Black"
+AttachmentSkin17="Yellow Black"
+
+[chr_Tanaka_archetype.Attachment21]
+AttachmentSkin0="White"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+
+[chr_Tanaka_archetype.Attachment22]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[chr_Tanaka_archetype.Attachment23]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_Tanaka_archetype.Attachment24]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_Tanaka_archetype.Attachment25]
+AttachmentSkin0="Criminally Insane Mask"
+
+[chr_Tanaka_archetype.Attachment26]
+AttachmentSkin0="Flight Helmet"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_Tanaka_archetype.Attachment27]
+AttachmentSkin0="Black"
+AttachmentSkin1="Gold"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Precious Gold"
+
+[chr_Tanaka_archetype.Attachment28]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
 
 //Ana
 [CHR_Ana_Archetype]
@@ -316,9 +1880,31 @@ Description="She would probably be assigned to that group the establishment call
 BodyMesh0="Metalcore"
 HeadMesh0="Mohawk"
 Attachment0="Scarf"
-Attachment1="S10 Gas Mask"
+Attachment1="S10 NBC Mask"
 Attachment2="Glasses"
 Attachment3="3D Glasses"
+Attachment4="Alienware"
+Attachment5="Aviators"
+Attachment6="Flatcap"
+Attachment7="Chef Hat"
+Attachment8="Chemical Gas Mask"
+Attachment9="Kevlar Helmet"
+Attachment10="Nightvision Helmet"
+Attachment11="Eye Patch"
+Attachment12="Welding Mask"
+Attachment13="German Gas Mask"
+Attachment14="Cowboy Hat"
+Attachment15="Headband"
+Attachment16="Retro Sunglasses"
+Attachment17="Ski Mask"
+Attachment18="Doctor's Mask"
+Attachment19="Front Row Protection Up"
+Attachment20="Front Row Protection Down"
+Attachment21="Criminally Insane Mask"
+Attachment22="Flight Helmet"
+Attachment23="Custodian Helmet"
+Attacgment24="Baseball Hat"
+Attachment25="Flight Mask"
 
 [CHR_Ana_Archetype.HeadMesh0]
 HeadSkin0="Death Rain"
@@ -344,6 +1930,7 @@ AttachmentSkin0="Black"
 AttachmentSkin1="Camo"
 AttachmentSkin2="Biohazard"
 AttachmentSkin3="Zed Time"
+AttachmentSkin4="Precious"
 
 [CHR_Ana_archetype.Attachment2]
 AttachmentSkin0="Shades"
@@ -355,6 +1942,176 @@ AttachmentSkin1="Passive Shutter"
 AttachmentSkin2="Trioscopic 3D"
 AttachmentSkin3="X-Ray Specs"
 
+[CHR_Ana_archetype.Attachment4]
+AttachmentSkin0="Black"
+AttachmentSkin1="Black Glow"
+AttachmentSkin2="White"
+AttachmentSkin3="White Glow"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Blue Glow"
+AttachmentSkin6="Gold"
+AttachmentSkin7="Gold Glow"
+AttachmentSkin8="Green"
+AttachmentSkin9="Green Glow"
+
+[CHR_Ana_archetype.Attachment5]
+AttachmentSkin0="White Rims"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+
+[chr_Ana_archetype.Attachment6]
+AttachmentSkin0="Olde English"
+AttachmentSkin1="Leather Head"
+AttachmentSkin2="Union Style"
+AttachmentSkin3="Green Thumb"
+AttachmentSkin4="Holier Than Thou"
+
+[chr_Ana_archetype.Attachment7]
+AttachmentSkin0="White"
+AttachmentSkin1="Striped"
+AttachmentSkin2="Bloody"
+
+[chr_Ana_archetype.Attachment8]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Yellow"
+
+[chr_Ana_archetype.Attachment9]
+AttachmentSkin0="Camo"
+
+[chr_Ana_archetype.Attachment10]
+AttachmentSkin0="Blue Glow"
+
+[chr_Ana_archetype.Attachment11]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian"
+AttachmentSkin2="Bio"
+AttachmentSkin3="Blue"
+AttachmentSkin4="Camo"
+AttachmentSkin5="Dosh"
+AttachmentSkin6="Eye"
+AttachmentSkin7="Fancy"
+AttachmentSkin8="Flame"
+AttachmentSkin9="Plaid"
+AttachmentSkin10="Purple"
+AttachmentSkin11="Skull"
+AttachmentSkin12="Splatter"
+AttachmentSkin13="Tie Dye"
+
+[chr_Ana_archetype.Attachment12]
+AttachmentSkin0="Dark Metal"
+
+[chr_Ana_archetype.Attachment13]
+AttachmentSkin0="German Gas Mask"
+
+[chr_Ana_archetype.Attachment14]
+AttachmentSkin0="Cowboy Hat"
+
+[chr_Ana_archetype.Attachment15]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian White"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue"
+AttachmentSkin4="Camo"
+AttachmentSkin5="Dark Purple"
+AttachmentSkin6="Flame"
+AttachmentSkin7="Green"
+AttachmentSkin8="Japan"
+AttachmentSkin9="Light Blue"
+AttachmentSkin10="Purple"
+AttachmentSkin11="Red"
+AttachmentSkin12="Red Black"
+AttachmentSkin13="Red Pattern"
+AttachmentSkin14="Star"
+AttachmentSkin15="Stripe"
+AttachmentSkin16="Tie Dye"
+AttachmentSkin17="White"
+AttachmentSkin18="Yellow"
+
+[chr_Ana_archetype.Attachment16]
+AttachmentSkin0="Black"
+AttachmentSkin1="Camo"
+AttachmentSkin2="Tiger"
+AttachmentSkin3="USA"
+
+[chr_Ana_archetype.Attachment17]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue Green"
+AttachmentSkin4="Blue White"
+AttachmentSkin5="Blue Yellow"
+AttachmentSkin6="Camo"
+AttachmentSkin7="Dark Purple"
+AttachmentSkin8="Flames"
+AttachmentSkin9="Green Blue"
+AttachmentSkin10="Green Yellow"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Purple"
+AttachmentSkin13="Purple Black"
+AttachmentSkin14="Rainbow"
+AttachmentSkin15="Red White"
+AttachmentSkin16="White Black"
+AttachmentSkin17="Yellow Black"
+
+[chr_Ana_archetype.Attachment18]
+AttachmentSkin0="White"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+
+[chr_Ana_archetype.Attachment19]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_Ana_archetype.Attachment20]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_Ana_archetype.Attachment21]
+AttachmentSkin0="Criminally Insane Mask"
+
+[chr_Ana_archetype.Attachment22]
+AttachmentSkin0="Flight Helmet"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_Ana_archetype.Attachment23]
+AttachmentSkin0="Black"
+AttachmentSkin1="Gold"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Precious Gold"
+
+[chr_Ana_archetype.Attachment24]
+AttachmentSkin0="UK"
+AttachmentSkin1="USA"
+AttachmentSkin2="CA"
+AttachmentSkin3="DE"
+AttachmentSkin4="RU"
+
+[chr_Ana_archetype.Attachment25]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
 
 //Classic Briar 
 
@@ -363,17 +2120,47 @@ CharacterName="Classic Briar"
 Description="Once upon a time, Briar got the call to suit up to handle a riot in London. But, this time, it wasn't the usual procession of hippies, environmentalists and hairy anarchists getting the rough end of Briar's nightstick. Happily, his affinity for unsolicited violence actually did get him through the next few months, before he had to abandon Blighty and move on to foreign fields.\n\nNow he can extend his good old-fashioned police methods beyond clipping errant teenagers upside the head, to controlling a horde of man-eating mutant monsters by shooting, burning and blowing them to smithereens. And his happy-go-lucky London bobby persona helps to keep the morale of the team up. Or annoy the crap out of them."
 
 BodyMesh0="Riot Gear"
+BodyMesh1="London"
 HeadMesh0="Hair"
 Attachment0="Riot Helmet"
 Attachment1="S10 NBC Mask"
 Attachment2="Glasses"
-
+Attachment3="Alienware"
+Attachment4="Custodian Helmet"
+Attachment5="Aviators"
+Attachment6="Devtac Ballistic Mask"
+Attachment7="Baseball Hat"
+Attachment8="Chef Hat"
+Attachment9="Chemical Gas Mask"
+Attachment10="Cowboy Hat"
+Attachment11="Flatcap"
+Attachment12="Kevlar Helmet"
+Attachment13="Nightvision Helmet"
+Attachment14="Eye Patch"
+Attachment15="Welding Mask"
+Attachment16="German Gas Mask"
+Attachment17="Headband"
+Attachment18="Retro Sunglasses"
+Attachment19="Ski Mask"
+Attachment20="Doctor's Mask"
+Attachment21="Front Row Protection Up"
+Attachment22="Front Row Protection Down"
+Attachment23="Criminally Insane Mask"
+Attachment24="Flight Helmet"
+Attachment25="Flight Mask"
 
 [chr_mark_archetype.BodyMesh0]
 BodySkin0="Police Blue"
 BodySkin1="Night Black"
 BodySkin2="Army Green"
 BodySkin3="SAS Camo"
+
+[chr_mark_archetype.BodyMesh1]
+BodySkin0="Metro"
+BodySkin1="Night Black"
+BodySkin2="Blue"
+BodySkin3="Reflective"
+BodySkin4="Reflective Black"
 
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="The Real Deal"
@@ -392,10 +2179,188 @@ AttachmentSkin0="Black"
 AttachmentSkin1="Camo"
 AttachmentSkin2="Biohazard"
 AttachmentSkin3="Zed Time"
+AttachmentSkin4="Precious"
 
 [CHR_mark_archetype.Attachment2]
 AttachmentSkin0="Shades"
 AttachmentSkin1="Regular Glasses"
+
+[chr_mark_archetype.Attachment3]
+AttachmentSkin0="Black"
+AttachmentSkin1="Black Glow"
+AttachmentSkin2="White"
+AttachmentSkin3="White Glow"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Blue Glow"
+AttachmentSkin6="Gold"
+AttachmentSkin7="Gold Glow"
+AttachmentSkin8="Green"
+AttachmentSkin9="Green Glow"
+
+[chr_mark_archetype.Attachment4]
+AttachmentSkin0="Black"
+AttachmentSkin1="Gold"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Precious Gold"
+
+[chr_mark_archetype.Attachment5]
+AttachmentSkin0="White Rims"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+
+[chr_mark_archetype.Attachment6]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+
+[chr_mark_archetype.Attachment7]
+AttachmentSkin0="UK"
+AttachmentSkin1="USA"
+AttachmentSkin2="CA"
+AttachmentSkin3="DE"
+AttachmentSkin4="RU"
+
+[chr_mark_archetype.Attachment8]
+AttachmentSkin0="An Excellent Hat"
+AttachmentSkin1="Baker's Dozen"
+AttachmentSkin2="Slightly Used"
+
+[chr_mark_archetype.Attachment9]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Yellow"
+
+[chr_mark_archetype.Attachment10]
+AttachmentSkin0="Cowboy Hat"
+
+[chr_mark_archetype.Attachment11]
+AttachmentSkin0="Olde English"
+AttachmentSkin1="Leather Head"
+AttachmentSkin2="Union Style"
+AttachmentSkin3="Green Thumb"
+AttachmentSkin4="Holier Than Thou"
+
+[chr_mark_archetype.Attachment12]
+AttachmentSkin0="Camo"
+
+[chr_mark_archetype.Attachment13]
+AttachmentSkin0="Blue Glow"
+
+[chr_mark_archetype.Attachment14]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian"
+AttachmentSkin2="Bio"
+AttachmentSkin3="Blue"
+AttachmentSkin4="Camo"
+AttachmentSkin5="Dosh"
+AttachmentSkin6="Eye"
+AttachmentSkin7="Fancy"
+AttachmentSkin8="Flame"
+AttachmentSkin9="Plaid"
+AttachmentSkin10="Purple"
+AttachmentSkin11="Skull"
+AttachmentSkin12="Splatter"
+AttachmentSkin13="Tie Dye"
+
+[chr_mark_archetype.Attachment15]
+AttachmentSkin0="Dark Metal"
+
+[chr_mark_archetype.Attachment16]
+AttachmentSkin0="German Gas Mask"
+
+[chr_mark_archetype.Attachment17]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian White"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue"
+AttachmentSkin4="Camo"
+AttachmentSkin5="Dark Purple"
+AttachmentSkin6="Flame"
+AttachmentSkin7="Green"
+AttachmentSkin8="Japan"
+AttachmentSkin9="Light Blue"
+AttachmentSkin10="Purple"
+AttachmentSkin11="Red"
+AttachmentSkin12="Red Black"
+AttachmentSkin13="Red Pattern"
+AttachmentSkin14="Star"
+AttachmentSkin15="Stripe"
+AttachmentSkin16="Tie Dye"
+AttachmentSkin17="White"
+AttachmentSkin18="Yellow"
+
+[chr_mark_archetype.Attachment18]
+AttachmentSkin0="Black"
+AttachmentSkin1="Camo"
+AttachmentSkin2="Tiger"
+AttachmentSkin3="USA"
+
+[chr_mark_archetype.Attachment19]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue Green"
+AttachmentSkin4="Blue White"
+AttachmentSkin5="Blue Yellow"
+AttachmentSkin6="Camo"
+AttachmentSkin7="Dark Purple"
+AttachmentSkin8="Flames"
+AttachmentSkin9="Green Blue"
+AttachmentSkin10="Green Yellow"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Purple"
+AttachmentSkin13="Purple Black"
+AttachmentSkin14="Rainbow"
+AttachmentSkin15="Red White"
+AttachmentSkin16="White Black"
+AttachmentSkin17="Yellow Black"
+
+[chr_mark_archetype.Attachment20]
+AttachmentSkin0="White"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+
+[chr_mark_archetype.Attachment21]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_mark_archetype.Attachment22]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_mark_archetype.Attachment23]
+AttachmentSkin0="Criminally Insane Mask"
+
+[chr_mark_archetype.Attachment24]
+AttachmentSkin0="Flight Helmet"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_mark_archetype.Attachment25]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
 
 
 //Classic Masterson
@@ -408,6 +2373,29 @@ BodyMesh0="Riot Gear"
 HeadMesh0="Face"
 Attachment0="S10 NBC Mask"
 Attachment1="Glasses"
+Attachment2="Alienware"
+Attachment3="Aviators"
+Attachment4="Devtac Ballistic Mask"
+Attachment5="Baseball Hat"
+Attachment6="Chef Hat"
+Attachment7="Chemical Gas Mask"
+Attachment8="Cowboy Hat"
+Attachment9="Flatcap"
+Attachment10="Kevlar Helmet"
+Attachment11="Nightvision Helmet"
+Attachment12="Eye Patch"
+Attachment13="Welding Mask"
+Attachment14="German Gas Mask"
+Attachment15="Headband"
+Attachment16="Retro Sunglasses"
+Attachment17="Ski Mask"
+Attachment18="Doctor's Mask"
+Attachment19="Front Row Protection Up"
+Attachment20="Front Row Protection Down"
+Attachment21="Criminally Insane Mask"
+Attachment22="Flight Helmet"
+Attachment23="Custodian Helmet"
+Attachment24="Flight Mask"
 
 [CHR_alan_archetype.BodyMesh0]
 BodySkin0="Green"
@@ -426,11 +2414,189 @@ AttachmentSkin0="Black"
 AttachmentSkin1="Camo"
 AttachmentSkin2="Biohazard"
 AttachmentSkin3="Zed Time"
+AttachmentSkin4="Precious"
 
 [CHR_alan_archetype.Attachment1]
 AttachmentSkin0="Shades"
 AttachmentSkin1="Regular Glasses"
 
+[chr_alan_archetype.Attachment2]
+AttachmentSkin0="Black"
+AttachmentSkin1="Black Glow"
+AttachmentSkin2="White"
+AttachmentSkin3="White Glow"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Blue Glow"
+AttachmentSkin6="Gold"
+AttachmentSkin7="Gold Glow"
+AttachmentSkin8="Green"
+AttachmentSkin9="Green Glow"
+
+[chr_alan_archetype.Attachment3]
+AttachmentSkin0="White Rims"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+
+[chr_alan_archetype.Attachment4]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+
+[chr_alan_archetype.Attachment5]
+AttachmentSkin0="UK"
+AttachmentSkin1="USA"
+AttachmentSkin2="CA"
+AttachmentSkin3="DE"
+AttachmentSkin4="RU"
+
+[chr_alan_archetype.Attachment6]
+AttachmentSkin0="An Excellent Hat"
+AttachmentSkin1="Baker's Dozen"
+AttachmentSkin2="Slightly Used"
+
+[chr_alan_archetype.Attachment7]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Yellow"
+
+[chr_alan_archetype.Attachment8]
+AttachmentSkin0="Cowboy Hat"
+
+[chr_alan_archetype.Attachment9]
+AttachmentSkin0="Olde English"
+AttachmentSkin1="Leather Head"
+AttachmentSkin2="Union Style"
+AttachmentSkin3="Green Thumb"
+AttachmentSkin4="Holier Than Thou"
+
+[chr_alan_archetype.Attachment10]
+AttachmentSkin0="Camo"
+
+[chr_alan_archetype.Attachment11]
+AttachmentSkin0="Blue Glow"
+
+[chr_alan_archetype.Attachment12]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian"
+AttachmentSkin2="Bio"
+AttachmentSkin3="Blue"
+AttachmentSkin4="Camo"
+AttachmentSkin5="Dosh"
+AttachmentSkin6="Eye"
+AttachmentSkin7="Fancy"
+AttachmentSkin8="Flame"
+AttachmentSkin9="Plaid"
+AttachmentSkin10="Purple"
+AttachmentSkin11="Skull"
+AttachmentSkin12="Splatter"
+AttachmentSkin13="Tie Dye"
+
+[chr_alan_archetype.Attachment13]
+AttachmentSkin0="Dark Metal"
+
+[chr_alan_archetype.Attachment14]
+AttachmentSkin0="German Gas Mask"
+
+[chr_alan_archetype.Attachment15]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian White"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue"
+AttachmentSkin4="Camo"
+AttachmentSkin5="Dark Purple"
+AttachmentSkin6="Flame"
+AttachmentSkin7="Green"
+AttachmentSkin8="Japan"
+AttachmentSkin9="Light Blue"
+AttachmentSkin10="Purple"
+AttachmentSkin11="Red"
+AttachmentSkin12="Red Black"
+AttachmentSkin13="Red Pattern"
+AttachmentSkin14="Star"
+AttachmentSkin15="Stripe"
+AttachmentSkin16="Tie Dye"
+AttachmentSkin17="White"
+AttachmentSkin18="Yellow"
+
+[chr_alan_archetype.Attachment16]
+AttachmentSkin0="Black"
+AttachmentSkin1="Camo"
+AttachmentSkin2="Tiger"
+AttachmentSkin3="USA"
+
+[chr_alan_archetype.Attachment17]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue Green"
+AttachmentSkin4="Blue White"
+AttachmentSkin5="Blue Yellow"
+AttachmentSkin6="Camo"
+AttachmentSkin7="Dark Purple"
+AttachmentSkin8="Flames"
+AttachmentSkin9="Green Blue"
+AttachmentSkin10="Green Yellow"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Purple"
+AttachmentSkin13="Purple Black"
+AttachmentSkin14="Rainbow"
+AttachmentSkin15="Red White"
+AttachmentSkin16="White Black"
+AttachmentSkin17="Yellow Black"
+
+[chr_alan_archetype.Attachment18]
+AttachmentSkin0="White"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+
+[chr_alan_archetype.Attachment19]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_alan_archetype.Attachment20]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_alan_archetype.Attachment21]
+AttachmentSkin0="Criminally Insane Mask"
+
+[chr_alan_archetype.Attachment22]
+AttachmentSkin0="Flight Helmet"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_alan_archetype.Attachment23]
+AttachmentSkin0="Black"
+AttachmentSkin1="Gold"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Precious Gold"
+
+
+[chr_alan_archetype.Attachment24]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
 
 //Anton Strasser
 
@@ -442,6 +2608,29 @@ BodyMesh0="RO2: Hero of Stalingrad"
 HeadMesh0="Hair"
 Attachment0="German Side Cap"
 Attachment1="German Steel Helmet"
+Attachment2="Alienware"
+Attachment3="Aviators"
+Attachment4="Devtac Ballistic Mask"
+Attachment5="Baseball Hat"
+Attachment6="Chef Hat"
+Attachment7="Cowboy Hat"
+Attachment8="Flatcap"
+Attachment9="Kevlar Helmet"
+Attachment10="Nightvision Helmet"
+Attachment11="Eye Patch"
+Attachment12="Welding Mask"
+Attachment13="German Gas Mask"
+Attachment14="Headband"
+Attachment15="Retro Sunglasses"
+Attachment16="Ski Mask"
+Attachment17="Doctor's Mask"
+Attachment18="German Officer's Hat"
+Attachment19="Front Row Protection Up"
+Attachment20="Front Row Protection Down"
+Attachment21="Criminally Insane Mask"
+Attachment22="Flight Helmet"
+Attachment23="Custodian Helmet"
+Attachment24="Flight Mask"
 
 [CHR_strasser_archetype.BodyMesh0]
 BodySkin0="Raw Recruit"
@@ -460,6 +2649,181 @@ AttachmentSkin1="Bloodied Cap"
 AttachmentSkin0="Classic Steel"
 AttachmentSkin1="Aged Steel"
 
+[chr_strasser_archetype.Attachment2]
+AttachmentSkin0="Black"
+AttachmentSkin1="Black Glow"
+AttachmentSkin2="White"
+AttachmentSkin3="White Glow"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Blue Glow"
+AttachmentSkin6="Gold"
+AttachmentSkin7="Gold Glow"
+AttachmentSkin8="Green"
+AttachmentSkin9="Green Glow"
+
+[chr_strasser_archetype.Attachment3]
+AttachmentSkin0="White Rims"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+
+[chr_strasser_archetype.Attachment4]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+
+[chr_strasser_archetype.Attachment5]
+AttachmentSkin0="UK"
+AttachmentSkin1="USA"
+AttachmentSkin2="CA"
+AttachmentSkin3="DE"
+AttachmentSkin4="RU"
+
+[chr_strasser_archetype.Attachment6]
+AttachmentSkin0="An Excellent Hat"
+AttachmentSkin1="Baker's Dozen"
+AttachmentSkin2="Slightly Used"
+
+[chr_strasser_archetype.Attachment7]
+AttachmentSkin0="Cowboy Hat"
+
+[chr_strasser_archetype.Attachment8]
+AttachmentSkin0="Olde English"
+AttachmentSkin1="Leather Head"
+AttachmentSkin2="Union Style"
+AttachmentSkin3="Green Thumb"
+AttachmentSkin4="Holier Than Thou"
+
+[chr_strasser_archetype.Attachment9]
+AttachmentSkin0="Camo"
+
+[chr_strasser_archetype.Attachment10]
+AttachmentSkin0="Blue Glow"
+
+[chr_strasser_archetype.Attachment11]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian"
+AttachmentSkin2="Bio"
+AttachmentSkin3="Blue"
+AttachmentSkin4="Camo"
+AttachmentSkin5="Dosh"
+AttachmentSkin6="Eye"
+AttachmentSkin7="Fancy"
+AttachmentSkin8="Flame"
+AttachmentSkin9="Plaid"
+AttachmentSkin10="Purple"
+AttachmentSkin11="Skull"
+AttachmentSkin12="Splatter"
+AttachmentSkin13="Tie Dye"
+
+[chr_strasser_archetype.Attachment12]
+AttachmentSkin0="Dark Metal"
+
+[chr_strasser_archetype.Attachment13]
+AttachmentSkin0="German Gas Mask"
+
+[chr_strasser_archetype.Attachment14]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian White"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue"
+AttachmentSkin4="Camo"
+AttachmentSkin5="Dark Purple"
+AttachmentSkin6="Flame"
+AttachmentSkin7="Green"
+AttachmentSkin8="Japan"
+AttachmentSkin9="Light Blue"
+AttachmentSkin10="Purple"
+AttachmentSkin11="Red"
+AttachmentSkin12="Red Black"
+AttachmentSkin13="Red Pattern"
+AttachmentSkin14="Star"
+AttachmentSkin15="Stripe"
+AttachmentSkin16="Tie Dye"
+AttachmentSkin17="White"
+AttachmentSkin18="Yellow"
+
+[chr_strasser_archetype.Attachment15]
+AttachmentSkin0="Black"
+AttachmentSkin1="Camo"
+AttachmentSkin2="Tiger"
+AttachmentSkin3="USA"
+
+[chr_strasser_archetype.Attachment16]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue Green"
+AttachmentSkin4="Blue White"
+AttachmentSkin5="Blue Yellow"
+AttachmentSkin6="Camo"
+AttachmentSkin7="Dark Purple"
+AttachmentSkin8="Flames"
+AttachmentSkin9="Green Blue"
+AttachmentSkin10="Green Yellow"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Purple"
+AttachmentSkin13="Purple Black"
+AttachmentSkin14="Rainbow"
+AttachmentSkin15="Red White"
+AttachmentSkin16="White Black"
+AttachmentSkin17="Yellow Black"
+
+[chr_strasser_archetype.Attachment17]
+AttachmentSkin0="White"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+
+[chr_strasser_archetype.Attachment18]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+
+[chr_strasser_archetype.Attachment19]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_strasser_archetype.Attachment20]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_strasser_archetype.Attachment21]
+AttachmentSkin0="Criminally Insane Mask"
+
+[chr_strasser_archetype.Attachment22]
+AttachmentSkin0="Flight Helmet"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_strasser_archetype.Attachment23]
+AttachmentSkin0="Black"
+AttachmentSkin1="Gold"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Precious Gold"
+
+[chr_strasser_archetype.Attachment24]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
 //Chivalry Knight
 
 [chr_knight_archetype]
@@ -473,6 +2837,27 @@ Attachment1="Horseman's Helm"
 Attachment2="Veteran's Helm"
 Attachment3="Olde Riote Helm"
 Attachment4="Ye Eyeglasses"
+Attachment5="Alienware"
+Attachment6="Devtac Ballistic Mask"
+Attachment7="Baseball Hat"
+Attachment8="Chef Hat"
+Attachment9="Cowboy Hat"
+Attachment10="Flatcap"
+Attachment11="Kevlar Helmet"
+Attachment12="Nightvision Helmet"
+Attachment13="Eye Patch"
+Attachment14="Welding Mask"
+Attachment15="German Gas Mask"
+Attachment16="Headband"
+Attachment17="Ski Mask"
+Attachment18="Aviators"
+Attachment19="Retro Sunglasses"
+Attachment20="Front Row Protection Up"
+Attachment21="Front Row Protection Down"
+Attachment22="Criminally Insane Mask"
+Attachment23="Flight Helmet"
+Attachment24="Custodian Helmet"
+Attachment25="Flight Mask"
 
 [CHR_knight_archetype.BodyMesh0]
 BodySkin0="Agatha"
@@ -515,3 +2900,169 @@ AttachmentSkin3="Black Night"
 [CHR_knight_archetype.Attachment4]
 AttachmentSkin0="Shadeth the sun"
 AttachmentSkin1="The better to see"
+
+[chr_knight_archetype.Attachment5]
+AttachmentSkin0="Black"
+AttachmentSkin1="Black Glow"
+AttachmentSkin2="White"
+AttachmentSkin3="White Glow"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Blue Glow"
+AttachmentSkin6="Gold"
+AttachmentSkin7="Gold Glow"
+AttachmentSkin8="Green"
+AttachmentSkin9="Green Glow"
+
+[chr_knight_archetype.Attachment6]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+
+[chr_knight_archetype.Attachment7]
+AttachmentSkin0="UK"
+AttachmentSkin1="USA"
+AttachmentSkin2="CA"
+AttachmentSkin3="DE"
+AttachmentSkin4="RU"
+
+[chr_knight_archetype.Attachment8]
+AttachmentSkin0="An Excellent Hat"
+AttachmentSkin1="Baker's Dozen"
+AttachmentSkin2="Slightly Used"
+
+[chr_knight_archetype.Attachment9]
+AttachmentSkin0="Cowboy Hat"
+
+[chr_knight_archetype.Attachment10]
+AttachmentSkin0="Olde English"
+AttachmentSkin1="Leather Head"
+AttachmentSkin2="Union Style"
+AttachmentSkin3="Green Thumb"
+AttachmentSkin4="Holier Than Thou"
+
+[chr_knight_archetype.Attachment11]
+AttachmentSkin0="Camo"
+
+[chr_knight_archetype.Attachment12]
+AttachmentSkin0="Blue Glow"
+
+[chr_knight_archetype.Attachment13]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian"
+AttachmentSkin2="Bio"
+AttachmentSkin3="Blue"
+AttachmentSkin4="Camo"
+AttachmentSkin5="Dosh"
+AttachmentSkin6="Eye"
+AttachmentSkin7="Fancy"
+AttachmentSkin8="Flame"
+AttachmentSkin9="Plaid"
+AttachmentSkin10="Purple"
+AttachmentSkin11="Skull"
+AttachmentSkin12="Splatter"
+AttachmentSkin13="Tie Dye"
+
+[chr_knight_archetype.Attachment14]
+AttachmentSkin0="Dark Metal"
+
+[chr_knight_archetype.Attachment15]
+AttachmentSkin0="German Gas Mask"
+
+[chr_knight_archetype.Attachment16]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian White"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue"
+AttachmentSkin4="Camo"
+AttachmentSkin5="Dark Purple"
+AttachmentSkin6="Flame"
+AttachmentSkin7="Green"
+AttachmentSkin8="Japan"
+AttachmentSkin9="Light Blue"
+AttachmentSkin10="Purple"
+AttachmentSkin11="Red"
+AttachmentSkin12="Red Black"
+AttachmentSkin13="Red Pattern"
+AttachmentSkin14="Star"
+AttachmentSkin15="Stripe"
+AttachmentSkin16="Tie Dye"
+AttachmentSkin17="White"
+AttachmentSkin18="Yellow"
+
+[chr_knight_archetype.Attachment17]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Asian"
+AttachmentSkin2="Black Red"
+AttachmentSkin3="Blue Green"
+AttachmentSkin4="Blue White"
+AttachmentSkin5="Blue Yellow"
+AttachmentSkin6="Camo"
+AttachmentSkin7="Dark Purple"
+AttachmentSkin8="Flames"
+AttachmentSkin9="Green Blue"
+AttachmentSkin10="Green Yellow"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Purple"
+AttachmentSkin13="Purple Black"
+AttachmentSkin14="Rainbow"
+AttachmentSkin15="Red White"
+AttachmentSkin16="White Black"
+AttachmentSkin17="Yellow Black"
+
+[chr_knight_archetype.Attachment18]
+AttachmentSkin0="White Rims"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+
+[chr_knight_archetype.Attachment19]
+AttachmentSkin0="Black"
+AttachmentSkin1="Camo"
+AttachmentSkin2="Tiger"
+AttachmentSkin3="USA"
+
+[chr_knight_archetype.Attachment20]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_knight_archetype.Attachment21]
+AttachmentSkin0="Standard"
+AttachmentSkin1="Biohazard"
+AttachmentSkin2="Bloodbath"
+AttachmentSkin3="British Bone Dome"
+AttachmentSkin4="Camo"
+AttachmentSkin5="German Spray"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Stained"
+
+[chr_knight_archetype.Attachment22]
+AttachmentSkin0="Criminally Insane Mask"
+
+[chr_knight_archetype.Attachment23]
+AttachmentSkin0="Flight Helmet"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_knight_archetype.Attachment24]
+AttachmentSkin0="Black"
+AttachmentSkin1="Gold"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Precious Gold"
+
+[chr_knight_archetype.Attachment25]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"

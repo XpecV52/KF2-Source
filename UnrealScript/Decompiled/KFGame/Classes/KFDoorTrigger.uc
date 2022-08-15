@@ -50,7 +50,7 @@ simulated function bool GetIsUsable(Pawn User)
 
 function int GetInteractionIndex()
 {
-    return 2;
+    return 4;
 }
 
 function bool UsedBy(Pawn User)

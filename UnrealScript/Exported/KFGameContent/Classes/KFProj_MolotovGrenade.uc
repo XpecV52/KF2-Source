@@ -151,11 +151,10 @@ function SpawnResidualFlame( vector SpawnLoc, vector SpawnVel )
 
 defaultproperties
 {
-   ResidualFlameProjClass=Class'KFGameContent.KFProj_MolotovSplash'
+   ResidualFlameProjClass=Class'kfgamecontent.KFProj_MolotovSplash'
    NumResidualFlames=4
    ThrowAkEvent=AkEvent'WW_WEP_EXP_MOLOTOV.Play_WEP_EXP_Molotov_Throw'
    FuseTime=10.000000
-   UITexture=Texture2D'WEP_UI_Molotov_TEX.UI_WeaponSelect_MolotovCocktail'
    TossZ=650.000000
    TerminalVelocity=2000.000000
    ExplosionActorClass=Class'KFGame.KFExplosionActor'
@@ -163,11 +162,11 @@ defaultproperties
       ExplosionEffects=KFImpactEffectInfo'wep_molotov_arch.Molotov_Explosion'
       Damage=60.000000
       DamageRadius=200.000000
-      MyDamageType=Class'KFGameContent.KFDT_Fire_MolotovGrenade'
+      MyDamageType=Class'kfgamecontent.KFDT_Fire_MolotovGrenade'
       KnockDownStrength=0.000000
       MomentumTransferScale=0.000000
       ExplosionSound=AkEvent'WW_WEP_EXP_MOLOTOV.Play_WEP_EXP_Molotov_Explosion'
-      ExploLight=PointLightComponent'KFGameContent.Default__KFProj_MolotovGrenade:FlamePointLight'
+      ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_MolotovGrenade:FlamePointLight'
       ExploLightFadeOutTime=0.200000
       ExploLightStartFadeOutTime=0.400000
       FractureMeshRadius=0.000000
@@ -177,7 +176,7 @@ defaultproperties
       Name="ExploTemplate0"
       ObjectArchetype=KFGameExplosion'KFGame.Default__KFGameExplosion'
    End Object
-   ExplosionTemplate=KFGameExplosion'KFGameContent.Default__KFProj_MolotovGrenade:ExploTemplate0'
+   ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFProj_MolotovGrenade:ExploTemplate0'
    ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
    ProjFlightTemplate=ParticleSystem'WEP_3P_Molotov_EMIT.FX_Molotov_Grenade_Mesh'
    AssociatedPerkClass=Class'KFGame.KFPerk_Firebug'

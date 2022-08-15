@@ -53,7 +53,7 @@ simulated function int GetAmmoType(byte FiringMode)
     }
 }
 
-event RecieveClientImpact(byte FiringMode, const out ImpactInfo Impact, optional out float PenetrationValue)
+event RecieveClientImpact(byte FiringMode, const out ImpactInfo Impact, optional out float PenetrationValue, optional int ImpactNum)
 {
     if(FiringMode == 0)
     {
@@ -127,6 +127,11 @@ static simulated function float CalculateTraderWeaponStatDamage()
         CalculatedDamage += ((DamageType.default.DoT_Duration / DamageType.default.DoT_Interval) * (CalculatedDamage * DamageType.default.DoT_DamageScale));
     }
     return CalculatedDamage;
+}
+
+static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
+{
+    return 3;
 }
 
 simulated state Active
@@ -206,16 +211,15 @@ defaultproperties
     ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
     FireModeIconPaths=/* Array type was not detected. */
     InventoryGroup=EInventoryGroup.IG_Primary
-    FilterTypeUI=EFilterTypeUI.FT_Projectile
     InventorySize=10
-    EffectiveRange=25
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bHasFireLastAnims=true
     bHasLaserSight=true
     PenetrationPower=/* Array type was not detected. */
+    QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=8192)
     GroupPriority=100
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SawbladeShooter'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SawbladeShooter'
     MagazineCapacity[0]=5
     MagazineCapacity[1]=250
     MaxSpareAmmo=20
@@ -225,6 +229,7 @@ defaultproperties
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */
     MeleeAttackAnims=/* Array type was not detected. */
+    BonesToLockOnEmpty=none
     WeaponFireSnd=/* Array type was not detected. */
     WeaponFireLoopEndSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */

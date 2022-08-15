@@ -14,5 +14,5 @@ class KFDT_Bludgeon_Healer extends KFDT_Bludgeon_RifleButt
 DefaultProperties
 {
 	//defaults
-	AARWeaponID=`AAR_Healer
+	WeaponDef=class'KFWeapDef_Healer'
 }

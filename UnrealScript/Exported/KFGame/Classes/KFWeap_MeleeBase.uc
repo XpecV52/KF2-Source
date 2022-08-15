@@ -134,16 +134,6 @@ var() byte EstimatedFireRate;
 
 //------------------------------------------------------------------------------
 
-/**
- * Called immediately before gameplay begins.
- */
-simulated event PreBeginPlay()
-{
-	Super.PreBeginPlay();
-
-	WeaponMIC = Mesh.CreateAndSetMaterialInstanceConstant(0);
-}
-
 simulated function bool HasAnyAmmo()
 {
 	return true;
@@ -297,7 +287,7 @@ simulated function SendToFiringState(byte FireModeNum)
 ********************************************************************************************* */
 
 /** process local player impact for clientside hit detection */
-event RecieveClientImpact(byte FiringMode, const out ImpactInfo Impact, optional out float PenetrationValue)
+event RecieveClientImpact(byte FiringMode, const out ImpactInfo Impact, optional out float PenetrationValue, optional int ImpactNum)
 {
 	MeleeAttackHelper.ProcessMeleeHit(FiringMode, Impact);
 }
@@ -751,6 +741,27 @@ unreliable client function ClientPlayBlockEffects()
 	PlayLocalBlockEffects(BlockSound, BlockParticleSystem);
 }
 
+/** Called on the server when successfully block/parry an attack */
+reliable client function ClientPlayParryEffects(bool bInterruptSuccess)
+{
+	local KFPerk InstigatorPerk;
+
+	if ( bInterruptSuccess )
+	{
+		InstigatorPerk = GetPerk();
+		if( InstigatorPerk != none )
+		{
+			InstigatorPerk.SetSuccessfullParry();
+		}
+
+		PlayLocalBlockEffects(ParrySound, ParryParticleSystem);
+	}
+	else
+	{
+		PlayLocalBlockEffects(BlockSound, BlockParticleSystem);
+	}	
+}
+
 simulated state MeleeBlocking
 {
 	ignores ForceReload, ShouldAutoReload;
@@ -823,7 +834,7 @@ simulated state MeleeBlocking
 			if ( IsTimerActive(nameof(ParryCheckTimer)) )
 			{
 				KFPawn(InstigatedBy).NotifyAttackParried(Instigator, 255);
-				ClientPlayParryEffects();
+				ClientPlayParryEffects(true);
 			}
 			else
 			{
@@ -841,6 +852,7 @@ simulated state MeleeBlocking
 		local float FacingDot;
 		local vector Dir2d;
 		local KFPerk InstigatorPerk;
+		local bool bInterruptSuccess;
 
 		// zero Z to give us a 2d dot product
 		Dir2d = Normal2d(DamageCauser.Location - Location);
@@ -857,10 +869,10 @@ simulated state MeleeBlocking
 				// Notify attacking pawn for effects / animations
 				if ( KFPawn(DamageCauser) != None )
 				{
-					KFPawn(DamageCauser).NotifyAttackParried(Instigator, ParryStrength);
+					bInterruptSuccess = KFPawn(DamageCauser).NotifyAttackParried(Instigator, ParryStrength);
 				}
 
-				ClientPlayParryEffects();
+				ClientPlayParryEffects(bInterruptSuccess);
 
 				if( InstigatorPerk != none )
 				{
@@ -888,7 +900,7 @@ simulated state MeleeBlocking
 		}
 	}
 
-	/** Added Block_Hit animations */
+	/** State override for Block_Hit animations */
 	unreliable client function ClientPlayBlockEffects()
 	{
 		local int AnimIdx;
@@ -915,20 +927,17 @@ simulated state MeleeBlocking
 			}
 		}
 	}
-}
 
-/** Called on the server when successfully block/parry an attack */
-unreliable client function ClientPlayParryEffects()
-{
-	local KFPerk InstigatorPerk;
-
-	InstigatorPerk = GetPerk();
-	if( InstigatorPerk != none )
+	/** state override for cancel block */
+	reliable client function ClientPlayParryEffects(bool bInterruptSuccess)
 	{
-		InstigatorPerk.SetSuccessfullParry();
+		Global.ClientPlayParryEffects(bInterruptSuccess);
+		if ( !bInterruptSuccess )
+		{
+			ClearPendingFire(BLOCK_FIREMODE);
+			GotoState('BlockingCooldown');
+		}
 	}
-
-	PlayLocalBlockEffects(ParrySound, ParryParticleSystem);
 }
 
 simulated function PlayBlockStart()
@@ -1123,6 +1132,12 @@ static simulated function float CalculateTraderWeaponStatFireRate()
 	return default.EstimatedFireRate;
 }
 
+/** Returns trader filter index based on weapon type */
+static simulated event EFilterTypeUI GetTraderFilter()
+{
+	return FT_Melee;
+}
+
 defaultproperties
 {
    MaxChainAtkCount=3
@@ -1153,7 +1168,7 @@ defaultproperties
    FireModeIconPaths(4)=None
    FireModeIconPaths(5)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Melee'
    InventoryGroup=IG_Melee
-   EffectiveRange=2
+   bTargetAdhesionEnabled=False
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
       bUseDirectionalMelee=True
       bHasChainAttacks=True

@@ -92,7 +92,7 @@ function substGameInfoSurvival(WebAdminQuery Q)
     GameInfo = KFGameInfo_Survival(webadmin.WorldInfo.Game);
     GRI = GameInfo.MyKFGRI;
     Q.Response.Subst("wave.num", string(GameInfo.WaveNum));
-    Q.Response.Subst("wave.max", string(GameInfo.WaveMax));
+    Q.Response.Subst("wave.max", string(GameInfo.WaveMax - 1));
     deadMonsters = GameInfo.NumAISpawnsQueued - GameInfo.GetMonsterAliveCount();
     Q.Response.Subst("wave.monsters.pending", string(GRI.WaveTotalAICount - deadMonsters));
     Q.Response.Subst("wave.monsters.dead", string(deadMonsters));

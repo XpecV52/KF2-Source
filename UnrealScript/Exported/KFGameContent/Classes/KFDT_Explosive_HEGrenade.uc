@@ -49,65 +49,6 @@ class KFDT_Explosive_HEGrenade extends KFDT_Explosive
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -128,10 +69,10 @@ class KFDT_Explosive_HEGrenade extends KFDT_Explosive
 
 defaultproperties
 {
-   AARWeaponID=9
+   WeaponDef=Class'KFGame.KFWeapDef_Grenade_Commando'
+   bShouldSpawnPersistentBlood=True
    KnockdownPower=0
    StumblePower=120
-   bShouldSpawnPersistentBlood=True
    ObliterationHealthThreshold=-250
    ObliterationDamageThreshold=250
    KDeathVel=300.000000

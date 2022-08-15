@@ -22,6 +22,7 @@ var localized string NameString;
 var localized string RefreshString;
 var localized string ServerBrowserString;
 var localized string RankedString;
+var localized string UnrankedString;
 var localized string DedicatedString;
 var localized string VACSecureString;
 var localized string InLobbyString;
@@ -404,7 +405,6 @@ function CallBack_ServerSpectateGame()
 
 function CallBack_ServerDetailsClicked()
 {
-	ServerListContainer.OnServerSelected();
 }
 
 function CallBack_ServerSelected(int ServerIndex)
@@ -413,6 +413,7 @@ function CallBack_ServerSelected(int ServerIndex)
 	ServerListContainer.SelectedServerIndex = ServerIndex;
 	ServerDetailsContainer.SetDetails(ServerListContainer.GetServerDetails(ServerIndex));
 	ServerDetailsContainer.SetFavoriteButtonActive(ServerListContainer.IsSelectedServerFavorited(ServerIndex));
+	ServerListContainer.OnServerSelected(ServerIndex);
 }
 
 function Callback_ResetFilters()

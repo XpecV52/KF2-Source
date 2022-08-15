@@ -44,7 +44,7 @@ defaultproperties
     MeshIronSightFOV=33
     PlayerIronSightFOV=70
     GroupPriority=50
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AK12'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AK12'
     MagazineCapacity=60
     MaxSpareAmmo=270
     InitialSpareMags=3

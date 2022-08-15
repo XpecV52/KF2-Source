@@ -14,8 +14,7 @@ defaultproperties
 	// Inventory
 	InventorySize=6
 	GroupPriority=50
-	UITexture=Texture2D'WEP_UI_DragonsBreath.UI_WeaponSelect_DragonsBreath'
-	FilterTypeUI=FT_Shotgun
+	WeaponSelectTexture=Texture2D'WEP_UI_DragonsBreath.UI_WeaponSelect_DragonsBreath'
 
     // FOV
     MeshFOV=75
@@ -33,7 +32,6 @@ defaultproperties
 	Begin Object Name=FirstPersonMesh
 		SkeletalMesh=SkeletalMesh'WEP_1P_DragonsBreath_MESH.Wep_1stP_DragonsBreath_Rig'
 		AnimSets(0)=AnimSet'WEP_1P_DragonsBreath_ANIM.WEP_1P_DragonsBreath_ANIM'
-		AnimTreeTemplate=AnimTree'WEP_1P_DragonsBreath_ANIM.WEP_1stP_Animtree_DragonsBreath'
 	End Object
 
 	Begin Object Name=StaticPickupComponent
@@ -102,10 +100,9 @@ defaultproperties
 	FallingRecoilModifier=1.5
 	HippedRecoilModifier=1.25
 
-	// Trader
-    EffectiveRange=25
-
 	AssociatedPerkClass=class'KFPerk_Firebug'
+
+	BonesToLockOnEmpty=(RW_Hammer)
 }
 
 

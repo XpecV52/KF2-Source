@@ -268,19 +268,36 @@ package tripwire.containers.postGame
                 "mapSource":"doge.png"
             };
             var _loc3_:Array = new Array();
-            _loc3_.push(_loc1_);
-            _loc3_.push(_loc2_);
-            this.mapChoices = _loc3_;
             var _loc4_:Array = new Array();
-            var _loc5_:Object = {
+            var _loc5_:int = 0;
+            while(_loc5_ < 100)
+            {
+                if(_loc5_ % 2 == 0)
+                {
+                    _loc3_.push({
+                        "label":"Live or Die",
+                        "mapSource":"maxresdefault.jpg"
+                    });
+                }
+                else
+                {
+                    _loc3_.push({
+                        "label":"Doge",
+                        "mapSource":"doge.png"
+                    });
+                }
+                _loc5_++;
+            }
+            this.mapChoices = _loc3_;
+            var _loc6_:Object = {
                 "label":"Live or Die",
                 "secondaryText":"2"
             };
-            var _loc6_:Object = {
+            var _loc7_:Object = {
                 "label":"Doge",
                 "secondaryText":"1"
             };
-            _loc4_ = [_loc5_,_loc6_];
+            _loc4_ = [_loc6_,_loc7_];
             this.currentVotes = _loc4_;
         }
     }

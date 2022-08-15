@@ -12,471 +12,6 @@
 class KFPawn_ZedHansBase extends KFPawn_MonsterBoss
 	abstract;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-	
-
-
-
-
-	
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 15
-
 /** If true, MkB42s are unholstered and aiming (also see bIsTargeting) */
 var repnotify bool bGunsEquipped;
 
@@ -531,9 +66,6 @@ struct HansBattlePhaseInfo
 
 /** Configuration for the Hans battle phases */
 var	array<HansBattlePhaseInfo>		BattlePhases;
-
-/** The current phase of the battle we're in */
-var repnotify   int             CurrentBattlePhase;
 
 /** Whether or not we've healed this battle phase */
 var             bool            bHealedThisPhase;
@@ -607,24 +139,6 @@ var float LastSmokeTossTime;
 * Minion summoning for when Hans goes into hunt and heal mode
 **********************************************************************************************/
 
-/** Info for minion wave spawning */
-struct HansMinionWaveInfo
-{
-    /** The minion wave to spawn for Phase 1 healing*/
-    var	KFAIWaveInfo				PhaseOneWave;
-    /** The minion wave to spawn for Phase 2 healing*/
-    var	KFAIWaveInfo				PhaseTwoWave;
-    /** The minion wave to spawn for Phase 3 healing*/
-    var	KFAIWaveInfo				PhaseThreeWave;
-};
-
-
-/** Waves to summon at each stage by difficulty level*/
-var	HansMinionWaveInfo				SummonWaves[4];
-
-/** The base amount of minions to spawn when Hans goes into hunt and heal mode */
-var             int                 NumMinionsToSpawn;
-
 simulated event ReplicatedEvent( name VarName )
 {
     switch( VarName )
@@ -657,6 +171,8 @@ function IncrementBattlePhase( KFAIController_Hans HansAI )
     bHealedThisPhase = true;
 
     SetPhaseCooldowns( HansAI );
+
+    bForceNetUpdate = true;
 }
 
 /** Set the correct phase based cooldown for this battle phase */
@@ -856,6 +372,12 @@ simulated function SetHuntAndHealMode( bool bOn )
 	}
 }
 
+/** Used to clear DOTs, such as when Hans is healing */
+simulated function ClearDOTs()
+{
+    DamageOverTimeArray.Length = 0;
+}
+
 // Knock other zeds the heck out of the way when I want to attack my enemy!!!
 function HuntAndHealBump()
 {
@@ -919,19 +441,11 @@ replication
 {
 	// Replicated to ALL
 	if ( bNetDirty )
-		bGunsEquipped, bInHuntAndHealMode, CurrentBattlePhase;
+		bGunsEquipped, bInHuntAndHealMode;
 }
 
 defaultproperties
 {
-   BossName="Dr. Hans Volter"
-   BossCaptionStrings(0)="Hans is nearly invulnerable during his smoke grenade healing phase. Don't waste your ammo!"
-   BossCaptionStrings(1)="Watch his power core: Hans is more aggressive as it changes color."
-   BossCaptionStrings(2)="Aim for his emissive power core. It is a vulnerable zone."
-   BossCaptionStrings(3)="Gas from Hans' grenades clings to you, like Bloat bile. Try to avoid it!"
-   BossCaptionStrings(4)="His slashing attacks are too strong to parry. You'll still take full damage."
-   BossCaptionStrings(5)="Watch for red grenade warning indicators, which may help you spot where they land."
-   BossCaptionStrings(6)="When Hans pulls out his guns, stay out of the line of sight. Obvious, but important!"
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'KFGame.Default__KFPawn_MonsterBoss:MeleeHelper_0'
       BaseDamage=6.000000
       MaxHitRange=180.000000
@@ -989,9 +503,10 @@ defaultproperties
       SpecialMoveClasses(16)=None
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
-      SpecialMoveClasses(19)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(20)=Class'KFGame.KFSM_HansGrappleVictim'
-      SpecialMoveClasses(21)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(19)=None
+      SpecialMoveClasses(20)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(21)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(22)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_MonsterBoss:SpecialMoveHandler_0'
    End Object

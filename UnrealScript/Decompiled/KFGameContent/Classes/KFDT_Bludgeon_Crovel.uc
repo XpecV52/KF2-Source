@@ -10,7 +10,7 @@ class KFDT_Bludgeon_Crovel extends KFDT_Bludgeon
 
 defaultproperties
 {
-    AARWeaponID=4
+    WeaponDef=Class'KFGame.KFWeapDef_Crovel'
     StunPower=42
     KnockdownPower=22
     StumblePower=51

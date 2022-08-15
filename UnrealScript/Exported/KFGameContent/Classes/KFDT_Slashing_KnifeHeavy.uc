@@ -49,65 +49,6 @@ class KFDT_Slashing_KnifeHeavy extends KFDT_Slashing_Knife
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -153,5 +94,5 @@ defaultproperties
    KDamageImpulse=300.000000
    KDeathUpKick=400.000000
    Name="Default__KFDT_Slashing_KnifeHeavy"
-   ObjectArchetype=KFDT_Slashing_Knife'KFGameContent.Default__KFDT_Slashing_Knife'
+   ObjectArchetype=KFDT_Slashing_Knife'kfgamecontent.Default__KFDT_Slashing_Knife'
 }

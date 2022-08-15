@@ -34,16 +34,7 @@ enum EGoreDamageGroup
     DGT_MAX
 };
 
-var byte AARWeaponID;
-var KFDamageType.EDamageOverTimeGroup DoT_Type;
-var byte StunPower;
-var byte KnockdownPower;
-var byte StumblePower;
-var byte LegStumblePower;
-var byte GunHitPower;
-var byte MeleeHitPower;
-var KFSkinTypeEffects.EEffectDamageGroup EffectGroup;
-var KFDamageType.EGoreDamageGroup GoreDamageGroup;
+var class<KFWeaponDefinition> WeaponDef;
 var bool bNoInstigatorDamage;
 var bool bAnyPerk;
 var bool bShouldSpawnBloodSplat;
@@ -53,6 +44,15 @@ var bool bCanObliterate;
 var bool bNoPain;
 var bool bIgnoreSelfInflictedScale;
 var bool bIgnoreZedOnZedScaling;
+var KFDamageType.EDamageOverTimeGroup DoT_Type;
+var byte StunPower;
+var byte KnockdownPower;
+var byte StumblePower;
+var byte LegStumblePower;
+var byte GunHitPower;
+var byte MeleeHitPower;
+var KFSkinTypeEffects.EEffectDamageGroup EffectGroup;
+var KFDamageType.EGoreDamageGroup GoreDamageGroup;
 var float DoT_Duration;
 var float DoT_Interval;
 var float DoT_DamageScale;
@@ -75,6 +75,7 @@ var float BloodSpread;
 var float BloodScale<ClampMin=0.0|ClampMax=1.0>;
 var name DeathMaterialEffectParamName;
 var float DeathMaterialEffectDuration;
+var AkEvent OverrideImpactSound;
 
 static simulated function AddBloodSpread(KFPawn_Monster inPawn, Vector HitDirection, out array<Vector> HitSpread, bool bIsDismemberingHit, bool bWasObliterated)
 {
@@ -150,27 +151,21 @@ static function bool IsToxicDartWithACMedicPerk()
 static function PlayImpactHitEffects(KFPawn P, Vector HitLocation, Vector HitDirection, byte HitZoneIndex, optional Pawn HitInstigator)
 {
     local KFSkinTypeEffects SkinType;
-    local KFSkinTypeEffects.EImpactEffectMode Mode;
-    local float DummyMod;
 
     if((P.CharacterArch != none) && default.EffectGroup < 12)
     {
         SkinType = P.GetHitZoneSkinTypeEffects(HitZoneIndex);
         if(SkinType != none)
         {
-            if(P.IsVulnerableTo(default.Class, DummyMod))
+            SkinType.PlayImpactParticleEffect(P, HitLocation, HitDirection, HitZoneIndex, default.EffectGroup);
+            if(default.OverrideImpactSound != none)
             {
-                Mode = 1;                
+                P.PlaySoundBase(default.OverrideImpactSound, true,,, HitLocation);                
             }
             else
             {
-                if(P.IsResistantTo(default.Class, DummyMod))
-                {
-                    Mode = 2;
-                }
+                SkinType.PlayTakeHitSound(P, HitLocation, HitInstigator, default.EffectGroup);
             }
-            SkinType.PlayImpactParticleEffect(P, HitLocation, HitDirection, HitZoneIndex, default.EffectGroup, Mode);
-            SkinType.PlayTakeHitSound(P, HitLocation, HitInstigator, default.EffectGroup, Mode);
         }
     }
 }
@@ -191,7 +186,6 @@ static function bool CheckObliterate(Pawn P, int Damage)
 
 defaultproperties
 {
-    AARWeaponID=255
     EffectGroup=EEffectDamageGroup.None
     BodyWoundDecalWidth=20
     BodyWoundDecalHeight=20

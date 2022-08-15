@@ -21,5 +21,5 @@ var()			SkeletalMesh	TargetMesh1st;			//The 3rd person representation of the esc
 defaultproperties
 {
    Name="Default__KFObj_Wave_Escort"
-   ObjectArchetype=KFObj_Wave'KFGameContent.Default__KFObj_Wave'
+   ObjectArchetype=KFObj_Wave'kfgamecontent.Default__KFObj_Wave'
 }

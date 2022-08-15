@@ -22,7 +22,7 @@ DefaultProperties
 
 	bCanObliterate=false
 
-	AARWeaponID=`AAR_Pulverizer
+	WeaponDef=class'KFWeapDef_Pulverizer'
 
 	ModifierPerkList(0)=class'KFPerk_Berserker'
 

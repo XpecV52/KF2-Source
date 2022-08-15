@@ -169,7 +169,25 @@ simulated function bool ShouldAutoReload(byte FireModeNum)
  @name Firing / Projectile
 ********************************************************************************************* */
 
-/** Instead of switch fire mode use as immediate alt fire */
+/** Unweld with RM/L2 */
+simulated function SetIronSights(bool bNewIronSights)
+{
+	if ( !Instigator.IsLocallyControlled()  )
+	{
+		return;
+	}
+
+	if ( bNewIronSights )
+	{
+		StartFire(ALTFIRE_FIREMODE);
+	}
+	else
+	{
+		StopFire(ALTFIRE_FIREMODE);
+	}
+}
+
+/** Also unweld with MM/R1 */
 simulated function AltFireMode()
 {
 	if ( !Instigator.IsLocallyControlled() )
@@ -557,10 +575,11 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Electricity'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Electricity'
    InventoryGroup=IG_Equipment
+   bTargetAdhesionEnabled=False
    bInfiniteSpareAmmo=True
    bAllowClientAmmoTracking=False
    GroupPriority=5.000000
-   UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Welder'
+   WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Welder'
    MagazineCapacity(0)=100
    bLoopingFireAnim(0)=True
    bLoopingFireAnim(1)=True
@@ -577,7 +596,7 @@ defaultproperties
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_Welder:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Welder:MeleeHelper_0'
    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Welder_ARCH.Wep_Welder_MuzzleFlash'
    FiringStatesArray(0)="WeaponWelding"
    FiringStatesArray(1)="WeaponWelding"
@@ -595,7 +614,7 @@ defaultproperties
    FireInterval(3)=()
    FireInterval(4)=()
    InstantHitDamageTypes(2)=None
-   InstantHitDamageTypes(3)=Class'KFGameContent.KFDT_Bludgeon_Welder'
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_Welder'
    bCanThrow=False
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeapon:FirstPersonMesh'
       SkeletalMesh=SkeletalMesh'WEP_1P_Welder_MESH.Wep_1stP_Welder_Rig'

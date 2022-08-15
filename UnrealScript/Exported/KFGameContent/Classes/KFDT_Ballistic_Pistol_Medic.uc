@@ -49,65 +49,6 @@ class KFDT_Ballistic_Pistol_Medic extends KFDT_Ballistic_Handgun
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -134,7 +75,7 @@ static function bool CanApplyDamageOverTime( out int InDamage, out class<KFDamag
 
 defaultproperties
 {
-   AARWeaponID=21
+   WeaponDef=Class'KFGame.KFWeapDef_MedicPistol'
    LegStumblePower=105
    GunHitPower=103
    ModifierPerkList(0)=Class'KFGame.KFPerk_FieldMedic'
@@ -142,5 +83,5 @@ defaultproperties
    KDeathVel=100.000000
    KDeathUpKick=-300.000000
    Name="Default__KFDT_Ballistic_Pistol_Medic"
-   ObjectArchetype=KFDT_Ballistic_Handgun'KFGameContent.Default__KFDT_Ballistic_Handgun'
+   ObjectArchetype=KFDT_Ballistic_Handgun'kfgamecontent.Default__KFDT_Ballistic_Handgun'
 }

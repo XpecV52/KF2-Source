@@ -9,11 +9,13 @@ class AICommand_TauntEnemy extends AICommand_SpecialMove within KFAIController;
 
 var Pawn TauntTarget;
 var byte TauntType;
+var class<KFSM_Zed_Taunt> TauntClass;
 
-static function bool Taunt(KFAIController AI, optional Pawn inTauntTarget, optional byte InTauntType)
+static function bool Taunt(KFAIController AI, optional Pawn inTauntTarget, optional byte InTauntType, optional class<KFSM_Zed_Taunt> InTauntClass)
 {
     local AICommand_TauntEnemy Cmd;
 
+    InTauntClass = Class'KFSM_Zed_Taunt';
     if(AI != none)
     {
         Cmd = new (AI) default.Class;
@@ -21,6 +23,7 @@ static function bool Taunt(KFAIController AI, optional Pawn inTauntTarget, optio
         {
             Cmd.TauntTarget = inTauntTarget;
             Cmd.TauntType = InTauntType;
+            Cmd.TauntClass = InTauntClass;
             AI.PushCommand(Cmd);
             return true;
         }
@@ -81,7 +84,7 @@ state Command_SpecialMove
         Outer.AILog_Internal(string(GetFuncName()) @ string(SpecialMove), 'Command_Taunt');
         if((SpecialMove != 0) && Outer.MyKFPawn.CanDoSpecialMove(SpecialMove))
         {
-            SpecialMoveFlags = Class'KFSM_Zed_Taunt'.static.PackSMFlags(Outer.MyKFPawn, TauntType);
+            SpecialMoveFlags = TauntClass.static.PackSMFlags(Outer.MyKFPawn, TauntType);
             if(SpecialMoveFlags != 255)
             {
                 Outer.MyKFPawn.DoSpecialMove(SpecialMove, true, GetInteractionPawn(), SpecialMoveFlags);

@@ -69,7 +69,7 @@ simulated event Destroyed()
     {
         ScreenUI.Close();
     }
-    super.Destroyed();
+    super(Weapon).Destroyed();
 }
 
 simulated function UpdateScreenUI()
@@ -125,6 +125,22 @@ simulated function bool HasAmmo(byte FireModeNum, optional int Amount)
 simulated function bool ShouldAutoReload(byte FireModeNum)
 {
     return false;
+}
+
+simulated function SetIronSights(bool bNewIronSights)
+{
+    if(!Instigator.IsLocallyControlled())
+    {
+        return;
+    }
+    if(bNewIronSights)
+    {
+        StartFire(1);        
+    }
+    else
+    {
+        StopFire(1);
+    }
 }
 
 simulated function AltFireMode()
@@ -447,10 +463,11 @@ defaultproperties
     ScreenUIClass=Class'KFGame.KFGFxWorld_WelderScreen'
     FireModeIconPaths=/* Array type was not detected. */
     InventoryGroup=EInventoryGroup.IG_Equipment
+    bTargetAdhesionEnabled=false
     bInfiniteSpareAmmo=true
     bAllowClientAmmoTracking=false
     GroupPriority=5
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Welder'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Welder'
     MagazineCapacity=100
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */

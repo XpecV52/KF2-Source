@@ -242,7 +242,7 @@ defaultproperties
    FireLastHeavySightedAnim="Shoot_Heavy_Iron_Last"
    FireLoopEndLastAnim="ShootLoop_End_Last"
    FireLoopEndLastSightedAnim="ShootLoop_Iron_End_Last"
-   ExplosionTemplate=GameExplosion'KFGameContent.Default__KFWeap_Beam_Microwave:ExploTemplate0'
+   ExplosionTemplate=GameExplosion'kfgamecontent.Default__KFWeap_Beam_Microwave:ExploTemplate0'
    BlastAmmoCost=10
    FlameSprayArchetype=SprayActor_Flame'WEP_Microwave_Gun_ARCH.WEP_Microwave_Gun_Flame'
    PilotLightPlayEvent=AkEvent'WW_WEP_SA_Microwave_Gun.Play_SA_MicrowaveGun_PilotLight_Loop'
@@ -266,9 +266,7 @@ defaultproperties
    MinAmmoConsumed=3
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Flamethrower'
    FireModeIconPaths(1)=()
-   FilterTypeUI=FT_Flame
    InventorySize=9
-   EffectiveRange=12
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -279,15 +277,22 @@ defaultproperties
    DOF_FG_FocalRadius=150.000000
    DOF_FG_MaxNearBlurSize=1.000000
    GroupPriority=100.000000
-   UITexture=Texture2D'WEP_UI_Microwave_Gun_TEX.UI_WeaponSelect_MicrowaveGun'
+   WeaponSelectTexture=Texture2D'WEP_UI_Microwave_Gun_TEX.UI_WeaponSelect_MicrowaveGun'
    MagazineCapacity(0)=100
    MaxSpareAmmo(0)=300
    InitialSpareMags(0)=1
-   AmmoPickupScale(0)=0.250000
+   AmmoPickupScale(0)=0.400000
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
    FireSightedAnims(0)="Shoot"
    FireSightedAnims(1)="Shoot_Heavy_Iron"
+   BonesToLockOnEmpty(0)="RW_Handle1"
+   BonesToLockOnEmpty(1)="RW_BatteryCylinder1"
+   BonesToLockOnEmpty(2)="RW_BatteryCylinder2"
+   BonesToLockOnEmpty(3)="RW_LeftArmSpinner"
+   BonesToLockOnEmpty(4)="RW_RightArmSpinner"
+   BonesToLockOnEmpty(5)="RW_LockEngager2"
+   BonesToLockOnEmpty(6)="RW_LockEngager1"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_Microwave_Gun.Play_SA_MicrowaveGun_Fire_3P_Loop',FirstPersonCue=AkEvent'WW_WEP_SA_Microwave_Gun.Play_SA_MicrowaveGun_Fire_1P_Loop')
    WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_Microwave_Gun.Play_SA_MicrowaveGun_Fire_Secondary_3P',FirstPersonCue=AkEvent'WW_WEP_SA_Microwave_Gun.Play_SA_MicrowaveGun_Fire_Secondary_1P')
    WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_Microwave_Gun.Play_SA_MicrowaveGun_Fire_3P_LoopEnd',FirstPersonCue=AkEvent'WW_WEP_SA_Microwave_Gun.Play_SA_MicrowaveGun_Fire_1P_LoopEnd')
@@ -300,7 +305,7 @@ defaultproperties
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_FlameBase:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_Beam_Microwave:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Beam_Microwave:MeleeHelper_0'
    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Microwave_Gun_ARCH.Wep_Microwave_Gun_MuzzleFlash'
    maxRecoilPitch=150
    minRecoilPitch=115
@@ -335,11 +340,11 @@ defaultproperties
    FireInterval(3)=()
    FireInterval(4)=()
    InstantHitDamageTypes(2)=None
-   InstantHitDamageTypes(3)=Class'KFGameContent.KFDT_Bludgeon_MicrowaveGun'
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_MicrowaveGun'
    FireOffset=(X=30.000000,Y=4.500000,Z=-5.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_FlameBase:FirstPersonMesh'
       SkeletalMesh=SkeletalMesh'WEP_1P_Microwave_Gun_MESH.Wep_1stP_Microwave_Gun_Rig'
-      AnimTreeTemplate=AnimTree'WEP_1p_Microwave_Gun_ANIM.1P_Microwave_Gun_Animtree'
+      AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
       AnimSets(0)=AnimSet'WEP_1p_Microwave_Gun_ANIM.WEP_1p_Microwave_Gun_ANIM'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False

@@ -419,6 +419,18 @@ function UpdateStartMenuState()
 // ActionScript Callbacks
 //==============================================================
 
+function Callback_OnWebLinkClicked(string WebSiteLink)
+{
+	local OnlineSubsystem				OnlineSub;
+
+	OnlineSub =  Class'GameEngine'.static.GetOnlineSubsystem();
+
+	if(OnlineSub != none)
+	{
+		OnlineSub.OpenURL(WebSiteLink);
+	}
+}
+
 //Request to close the match making menu
 function Callback_CancelSearch()
 {

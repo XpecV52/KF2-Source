@@ -325,6 +325,7 @@ defaultproperties
 	IdleLastPickupAnims=(Idle_Last_Pickup)
 
 	bHasFireLastAnims=true
+	QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=8192)
 
 	MeleeAttackLastAnims=(Bash_Last)
 
@@ -334,6 +335,6 @@ defaultproperties
 
 	ConsumeSpareAmmoDelay=1.0
 
-	// Trader
-    EffectiveRange=15
+	// Aim Assist
+	AimCorrectionSize=0.f
 }

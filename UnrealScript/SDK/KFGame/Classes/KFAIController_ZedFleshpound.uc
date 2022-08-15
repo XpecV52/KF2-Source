@@ -136,8 +136,9 @@ function NotifyMeleeDamageDealt()
 	// Don't end rage mode if in wave frustration mode. RAGE FOREVER ROWR!
 	if( !IsFrustrated() && RagePlugin != none )
 	{
-		// unless fp was stumbled (e.g. successful parry), end rage and clear frustration
-		if ( MyKFPawn.SpecialMove != SM_Stumble )
+		// unless fp was stumbled (e.g. successful parry), or attacked a door,
+		// end rage and clear frustration
+		if ( MyKFPawn.SpecialMove != SM_Stumble && MyKFPawn.SpecialMove != SM_MeleeAttackDoor )
 		{
 			RagePlugin.EndRage();
 		}

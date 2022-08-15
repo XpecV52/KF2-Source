@@ -20,7 +20,7 @@ function InitializeAmmo()
 defaultproperties
 {
     FireModeIconPaths=/* Array type was not detected. */
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Healer'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Healer'
     PlayerViewOffset=(X=20,Y=10,Z=-8)
     AttachmentArchetype=KFWeaponAttachment'WEP_Healer_ARCH.Wep_Healer_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Healer_Syringe.MeleeHelper'

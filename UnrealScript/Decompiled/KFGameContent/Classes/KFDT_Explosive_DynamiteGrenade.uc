@@ -10,11 +10,11 @@ class KFDT_Explosive_DynamiteGrenade extends KFDT_Explosive
 
 defaultproperties
 {
-    AARWeaponID=14
+    WeaponDef=Class'KFGame.KFWeapDef_Grenade_Demo'
+    bShouldSpawnPersistentBlood=true
     StunPower=54
     KnockdownPower=50
     StumblePower=0
-    bShouldSpawnPersistentBlood=true
     ModifierPerkList=/* Array type was not detected. */
     KDeathVel=300
     KDeathUpKick=1000

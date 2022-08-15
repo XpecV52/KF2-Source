@@ -7,22 +7,8 @@
  *******************************************************************************/
 class KFGFxWidget_VoiceComms extends GFxObject within GFxMoviePlayer;
 
-enum EComms
-{
-    COMMS_REQUEST_HEALING,
-    COMMS_REQUEST_DOSH,
-    COMMS_REQUEST_HELP,
-    COMMS_TAUNT_ZEDS,
-    COMMS_FOLLOW_ME,
-    COMMS_GET_TO_THE_TRADER,
-    COMMS_AFFIRMATIVE,
-    COMMS_NEGATIVE,
-    COMMS_MAX
-};
-
 var Vector RawJoyVector;
 var PlayerController PC;
-var const localized array<localized string> VoiceCommsOptionStrings;
 var array<string> IconPaths;
 var bool bActive;
 var const float MouseDampening;
@@ -46,7 +32,7 @@ function SetLocalizedText()
     if(I < 8)
     {
         TempObj = Outer.CreateObject("Object");
-        TempObj.SetString("text", VoiceCommsOptionStrings[I]);
+        TempObj.SetString("text", Class'KFLocalMessage_VoiceComms'.default.VoiceCommsOptionStrings[I]);
         TempObj.SetString("iconPath", "img://" $ IconPaths[I]);
         DataProvider.SetElementObject(I, TempObj);
         ++ I;
@@ -57,10 +43,6 @@ function SetLocalizedText()
 
 function SayVoiceCommms(int CommsIndex)
 {
-    if((CommsIndex < VoiceCommsOptionStrings.Length) && Outer.GetPC() != none)
-    {
-        Outer.GetPC().Say(VoiceCommsOptionStrings[CommsIndex]);
-    }
     KFPlayerController(Outer.GetPC()).ServerPlayVoiceCommsDialog(CommsIndex);
 }
 
@@ -132,14 +114,6 @@ function UpdateUICursorPosition(float newX, float newY)
 
 defaultproperties
 {
-    VoiceCommsOptionStrings(0)="REQUEST HEALING"
-    VoiceCommsOptionStrings(1)="REQUEST DOSH"
-    VoiceCommsOptionStrings(2)="REQUEST HELP"
-    VoiceCommsOptionStrings(3)="TAUNT ZEDS"
-    VoiceCommsOptionStrings(4)="FOLLOW ME"
-    VoiceCommsOptionStrings(5)="GET TO THE TRADER"
-    VoiceCommsOptionStrings(6)="AFFIRMATIVE"
-    VoiceCommsOptionStrings(7)="NEGATIVE"
     IconPaths(0)="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Heal"
     IconPaths(1)="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Dosh"
     IconPaths(2)="UI_VoiceComms_TEX.UI_VoiceCommand_Icon_Help"

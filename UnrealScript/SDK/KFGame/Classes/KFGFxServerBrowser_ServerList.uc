@@ -694,10 +694,11 @@ function SetRefreshingIndicator(bool bRefreshing)
 	SetBool("refreshing", bRefreshing);
 }
 
-function OnServerSelected()
+function OnServerSelected(int ServerIndex)
 {
 	local bool success;
 
+	SelectedServerIndex = ServerIndex;
 	`log("***Attempting to get player list for server" @ SelectedServerIndex);
 	GameInterface.AddGetPlayerListCompleteDelegate(OnGetPlayerListComplete);
 	success = SearchDataStore.FindServerPlayerList(SelectedServerIndex);

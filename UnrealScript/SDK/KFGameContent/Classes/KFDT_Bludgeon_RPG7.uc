@@ -14,5 +14,5 @@ class KFDT_Bludgeon_RPG7 extends KFDT_Bludgeon_RifleButt
 DefaultProperties
 {
 	//defaults
-	AARWeaponID=`AAR_RPG7
+	WeaponDef=class'KFWeapDef_RPG7'
 }

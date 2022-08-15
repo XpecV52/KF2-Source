@@ -322,65 +322,6 @@ class KFPawn_Human extends KFPawn
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -399,15 +340,6 @@ class KFPawn_Human extends KFPawn
 
 #linenumber 16;
 
-/** The customization option we want alter */
-enum ECustomizationOption
-{
-	CO_Character,
-	CO_Head,
-	CO_Body,
-	CO_Attachment
-};
-
 /** Current movement speed penalty based on health */
 var float LowHealthSpeedPenalty;
 
@@ -417,6 +349,9 @@ var float LowHealthSpeedPenalty;
 
 /** replicated state of 1st person for 3rd person animations */
 var repnotify byte CurrentWeaponState;
+
+/** Item Id for 3rd person weapon skin */
+var const repnotify int WeaponSkinItemId;
 
 /** Random face expression poses when dead */
 var array<name> DeathFaceAnims;
@@ -438,6 +373,11 @@ var float PainSoundLastPlayedTime;
 /*********************************************************************************************
 * @name Flashlight (aka Torch)
 ********************************************************************************************* */
+
+/** A flashlight flash instance */
+var	transient 	KFFlashlightAttachment FlashLight;
+/** A reference to the muzzle flash template */
+var const 		KFFlashlightAttachment FlashLightTemplate;
 
 /** Toggles a clients flashlight for all other clients */
 var repnotify 	bool					bFlashlightOn;
@@ -534,12 +474,13 @@ replication
 {
 	// Replicated to ALL
 	if(bNetDirty)
-		Armor, MaxArmor, bObjectivePlayer, bMovesFastInZedTime;
+		Armor, MaxArmor, bObjectivePlayer, bMovesFastInZedTime, WeaponSkinItemId;
 
-	// Replicated to all but the owning client\
+	// Replicated to all but the owning client
 	if(bNetDirty && (!bNetOwner || bDemoRecording))
 		CurrentWeaponState, bFlashlightOn;
 
+	// Replicated to owning client
 	if( bNetDirty && bNetOwner )
 		bHasSupportSafeguardBuff, bHasSupportBarrageBuff, bHasMedicVaccinationBuff;
 }
@@ -568,7 +509,7 @@ simulated event Tick( float DeltaTime )
 		if ( Health < HealthMax )
 		{
 			// Use 100 instead of HealthMax so that perk health bonuses do not penalize movement
-			NewSpeedPenalty = Lerp(0.3f, 0.f, FMin(float(Health) / 100, 1.f));
+			NewSpeedPenalty = Lerp(0.15f, 0.f, FMin(float(Health) / 100, 1.f));
 		}
 		else
 		{
@@ -637,6 +578,12 @@ simulated event ReplicatedEvent(name VarName)
 	case nameof(CurrentWeaponState):
 		WeaponStateChanged(CurrentWeaponState, true);
 		break;
+	case nameof(WeaponSkinItemId):
+		if ( WeaponAttachment != None && WeaponSkinItemId > 0 )
+		{
+			WeaponAttachment.SetWeaponSkin(WeaponSkinItemId);
+		}
+		break;
 	case nameof(bFlashlightOn):
 		SetFlashlight(bFlashlightOn, false);
 		break;
@@ -669,7 +616,31 @@ simulated event Destroyed()
 		PlayerPartyInfo.Close();
 	}
 
+	if ( Flashlight != None )
+	{
+		Flashlight.DetachFlashlight();
+	}
+
 	super.Destroyed();
+}
+
+/** Set various basic properties for this KFPawn based on the character class metadata */
+simulated function SetCharacterArch( KFCharacterInfoBase Info )
+{
+	Super.SetCharacterArch(Info);
+
+	if( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		// Attach/Reattach flashlight components when mesh is set
+		if ( Flashlight == None && FlashLightTemplate != None )
+		{
+			Flashlight = new(self) Class'KFFlashlightAttachment' (FlashLightTemplate);
+		}
+		if ( FlashLight != None )
+		{
+			Flashlight.AttachFlashlight(Mesh);
+		}
+	}
 }
 
 /*********************************************************************************************
@@ -713,15 +684,9 @@ simulated function PlayWeaponSwitch(Weapon OldWeapon, Weapon NewWeapon)
 		UpdateGroundSpeed();
 		if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlaySwitchToFavoriteWeaponDialog( self );
 	}
-
-	// turn off flashlight (1st/3rd) when switching weapons
-	if( bFlashlightOn )
-	{
-		SetFlashlight(false, false);
-	}
 }
 
-/** 
+/**
  * Reset/update GroundSpeed based on perk/weapon selection.  GroundSpeed is used instead of
  * MaxSpeedModifier() so that other physics code reacts properly (e.g. bLimitFallAccel)
  * Network: Server Only
@@ -881,7 +846,7 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 					InstigatorPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_HealedPlayer, PlayerReplicationInfo );
 					KFPC = KFPlayerController(Controller);
 					KFPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_HealedBy, Healer.PlayerReplicationInfo );
-					
+
 					if(KFPC!= none && KFPC.MatchStats != none ){KFPC.MatchStats.RecordIntStat(class'EphemeralMatchStats'.const.MATCH_EVENT_HEAL_RECEIVED,UsedHealAmount);};
 					if(InstigatorPC!= none && InstigatorPC.MatchStats != none ){InstigatorPC.MatchStats.RecordIntStat(class'EphemeralMatchStats'.const.MATCH_EVENT_HEAL_GIVEN,UsedHealAmount);};
 				}
@@ -1007,6 +972,8 @@ simulated function PlayTakeHitEffects( vector HitDirection, vector HitLocation )
 {
 	local KFPlayerController KFPC;
 	local class<KFDamageType> DmgType;
+	local name HitBoneName, RBBoneName;
+	local int HitZoneIndex;
 
 	DmgType = HitFxInfo.DamageType;
 
@@ -1042,6 +1009,60 @@ simulated function PlayTakeHitEffects( vector HitDirection, vector HitLocation )
 	}
 
 	Super.PlayTakeHitEffects( HitDirection, HitLocation );
+
+	// Add some death ragdoll velocity
+	if( DmgType != none )
+	{
+		// If TornOff hasn't been called yet on client, PlayDying now before hit reactions
+		if ( bTearOff && !bPlayedDeath )
+		{
+			PlayDying(HitDamageType,TakeHitLocation);
+		}
+
+		if( bPlayedDeath )
+		{
+			HitZoneIndex = HitFxInfo.HitBoneIndex;
+			if ( HitZoneIndex != 255 )	// INDEX_None -> 255 after byte conversion
+			{
+				HitBoneName = HitZones[HitZoneIndex].BoneName;
+			}
+
+			if( HitBoneName != '' )
+			{
+				RBBoneName = GetRBBoneFromBoneName( HitBoneName );
+			}
+
+			ApplyRagdollImpulse( DmgType, HitLocation, HitDirection, RBBoneName, 1.f );
+		}
+	}
+}
+
+/** Makes an impact sound and leaves a blood splat upon body impact */
+simulated event RigidBodyCollision( PrimitiveComponent HitComponent, PrimitiveComponent OtherComponent,
+					const out CollisionImpactData RigidCollisionData, int ContactIndex )
+{
+	local int i;
+	local KFGoreManager GoreManager;
+	local RigidBodyContactInfo ContactInfo;
+
+	GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
+
+	if( GoreManager != none && (WorldInfo.TimeSeconds - LastGibCollisionTime) > GoreManager.GetTimeBetweenGibBloodSplats() )
+	{
+		LastGibCollisionTime = WorldInfo.TimeSeconds;
+
+		if ( OtherComponent != none && OtherComponent.Owner != none && !OtherComponent.Owner.IsA('KFPawn') ) // Skip pawn-on-pawn collisions
+	    {
+		    SoundGroupArch.PlayRigidBodyCollisionSound( self, RigidCollisionData.ContactInfos[ContactIndex].ContactPosition );
+
+		    for( i=0; i<RigidCollisionData.ContactInfos.length; i++ )
+			{
+				ContactInfo = RigidCollisionData.ContactInfos[i];
+				GoreManager.LeaveAPersistentBloodSplat(ContactInfo.ContactPosition, -ContactInfo.ContactNormal);
+				//DrawDebugCoordinateSystem(ContactInfo.ContactPosition, rotator(-ContactInfo.ContactNormal), 10, true);
+			}
+	    }
+	}
 }
 
 /** Called clientside by PlayTakeHitEffects on the Instigating Pawn */
@@ -1088,6 +1109,17 @@ simulated function AddBattleBlood(float InBattleBloodIncrementvalue)
 
 simulated function SetNightVisionLight(bool bEnabled)
 {
+}
+
+/** Clean up function to terminate any effects on death */
+simulated function TerminateEffectsOnDeath()
+{
+	Super.TerminateEffectsOnDeath();
+
+	if ( Flashlight != None )
+	{
+		Flashlight.OwnerDied();
+	}
 }
 
 /*********************************************************************************************
@@ -1145,7 +1177,7 @@ function bool Died(Controller Killer, class<DamageType> damageType, vector HitLo
     			// reset start of streak
     			KFPC.PWRI.DeathStreakStartWave = WaveNum;
     		}
-    		
+
     		// update end of streak
     		KFPC.PWRI.DeathStreakEndWave = WaveNum;
 
@@ -1202,19 +1234,19 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	{
 		if( MyMedicPerk != none )
 		{
-			class'KFPerk_FieldMedic'.static.ModifyVaccinationDamage( TempDamage, DamageType, MyMedicPerk.GetLevel() );		
+			class'KFPerk_FieldMedic'.static.ModifyVaccinationDamage( TempDamage, DamageType, MyMedicPerk.GetLevel() );
 		}
 		else
 		{
-			class'KFPerk_FieldMedic'.static.ModifyVaccinationDamage( TempDamage, DamageType );	
+			class'KFPerk_FieldMedic'.static.ModifyVaccinationDamage( TempDamage, DamageType );
 		}
-		
+
 		TempDamage = TempDamage < 1.f ? 1.f : TempDamage;
 	}
 
 	if( TempDamage > 0 && class'KFPerk_Demolitionist'.static.IsDmgTypeExplosiveResistable( DamageType ) && HasExplosiveResistance() )
 	{
-		class'KFPerk_Demolitionist'.static.ModifyExplosiveDamage( TempDamage );	
+		class'KFPerk_Demolitionist'.static.ModifyExplosiveDamage( TempDamage );
 		TempDamage = TempDamage < 1.f ? 1.f : TempDamage;
 	}
 
@@ -1310,7 +1342,7 @@ function SacrificeExplode()
 	{
 		ExploActor.InstigatorController = Controller;
 		ExploActor.Instigator = self;
-		
+
 		ExplosionTemplate = class'KFPerk_Demolitionist'.static.GetSacrificeExplosionTemplate();
 		ExplosionTemplate.MyDamageType = class'KFPerk_Demolitionist'.static.GetSacrificeDamageTypeClass();
 		ExplosionTemplate.bIgnoreInstigator = true;
@@ -1451,7 +1483,7 @@ simulated function ClearBuffIcons()
 		ActiveSkillIconPaths.length = 0;
 		KFPC = KFPlayerController(Controller);
 
-		KFPC.MyGFxHUD.PlayerStatusContainer.ShowActiveIndicators(ActiveSkillIconPaths);	
+		KFPC.MyGFxHUD.PlayerStatusContainer.ShowActiveIndicators(ActiveSkillIconPaths);
 	}
 }
 
@@ -1476,75 +1508,6 @@ function AddHealerToObjective(controller Healer)
     		KFGRI.CurrentObjective.NewHealer(Healer.PlayerReplicationInfo);
     	}
 	}
-}
-
-/*********************************************************************************************
-* @name Customization
-********************************************************************************************* */
-
-/** Update our character parts when the UI is being used */
-simulated function UpdateCustomizationOption( ECustomizationOption CustomizationOption, byte MeshIndex, byte SkinIndex, optional int AttachmentIndex  )
-{
-	local string CharArchPath;
-	local KFPlayerReplicationInfo KFPRI;
-
-    KFPRI = KFPlayerReplicationInfo( PlayerReplicationInfo );
-    if( KFPRI == none )
-    {
-    	return;
-    }
-
-	switch ( CustomizationOption )
-	{
-	 	case CO_Head:
-	 		// If the head changes, we need to update the skin as well
-	 		CharacterArch.SetHeadMeshAndSkin(MeshIndex, SkinIndex, self, KFPRI);
-	 	break;
-	 	case CO_Body:
-	 		// If the body changes, we need to update the skin as well
-	 		CharacterArch.SetBodyMeshAndSkin(MeshIndex, SkinIndex, self, KFPRI);
-	 		CharacterArch.SetArmsMeshAndSkin(MeshIndex, SkinIndex, self, KFPRI);
-	 	break;
-	 	case CO_Attachment:
-	 		// If the body changes, we need to update the skin as well
-	 		if( MeshIndex == 255)
-	 		{
-				CharacterArch.ClearAllAttachments(self, KFPRI);
-	 		}
-	 		else
-	 		{
-				CharacterArch.SetAttachmentMeshAndSkin(MeshIndex, SkinIndex, self, KFPRI);
-	 		}	 		
-	 	break;
-	}
-	CharArchPath = PathName( KFPRI.CharacterArchetypes[KFPRI.RepCustomizationInfo.CharacterIndex] );
-	KFPRI.SaveCharacterConfig( CharArchPath );
-
-    if ( Role < ROLE_Authority )
-    {
-		KFPRI.InitializeCharacter( KFPRI.StoredCharIndex );
-	}
-}
-
-// Network: Server and Local
-simulated function UpdateCustomizationChar( KFCharacterInfo_Human InCharArch )
-{
-	if( InCharArch != CharacterArch )
-	{
-		SetCharacterArch( InCharArch );
-	}
-	else if( WorldInfo.NetMode != NM_DedicatedServer )
-	{
-		SetCharacterMeshFromArch();
-	}
-}
-
-simulated function SetCharacterMeshFromArch()
-{
-	local KFPlayerReplicationInfo KFPRI;
-
-    KFPRI = KFPlayerReplicationInfo( PlayerReplicationInfo );
-    CharacterArch.SetCharacterMeshFromArch( self, KFPRI );
 }
 
 /*********************************************************************************************
@@ -1723,13 +1686,10 @@ simulated function ToggleFlashlight()
 {
 	local bool bIsEnabled;
 
-	if( IsLocallyControlled() )
+	if( IsLocallyControlled() && !bPlayedDeath )
 	{
-		if( MyKFWeapon != None && MyKFWeapon.bHasFlashlight )
-		{
-			bIsEnabled = (MyKFWeapon.Flashlight != None && MyKFWeapon.Flashlight.bEnabled);
-			SetFlashlight(!bIsEnabled, true);
-		}
+		bIsEnabled = (Flashlight != None && Flashlight.bEnabled);
+		SetFlashlight(!bIsEnabled, true);
 	}
 }
 
@@ -1748,17 +1708,13 @@ simulated function SetFlashlight(bool bEnabled, optional bool bReplicate)
 
 	// So that we don't have to handle viewmode switching just
 	// always use the 1st person flashlight for the local player
-	if( IsLocallyControlled() )
+	if ( !bPlayedDeath )
 	{
-		MyKFWeapon.Flashlight.SetEnabled(bEnabled);
-	}
-	else if(WeaponAttachment != none)
-	{
-		WeaponAttachment.SetThirdPersonFlashlight(bFlashlightOn);
+		Flashlight.SetEnabled(bEnabled);
 	}
 
 	// replicate for third person flashlight
-	if( bReplicate && Role < ROLE_Authority )
+	if( bReplicate && Role == ROLE_AutonomousProxy )
 	{
 		ServerSetFlashlight(bFlashlightOn);
 	}
@@ -1796,6 +1752,28 @@ simulated event NotifyOutOfBattery()
 		{
 			SetFlashlight(false, true);
 		}
+	}
+}
+
+/** First person weapon visility */
+simulated function SetFirstPersonVisibility(bool bWeaponVisible)
+{
+	Super.SetFirstPersonVisibility(bWeaponVisible);
+
+	if ( Flashlight != None )
+	{
+		Flashlight.SetFirstPersonVisibility(bWeaponVisible);
+	}
+}
+
+/** Set the lighting channels on all the appropriate pawn meshes */
+simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingChannels)
+{
+	Super.SetMeshLightingChannels(NewLightingChannels);
+
+	if ( Flashlight != None )
+	{
+		Flashlight.SetLightingChannels(NewLightingChannels);
 	}
 }
 
@@ -1923,6 +1901,7 @@ defaultproperties
    BloodPoolDelay=2.000000
    PainSoundChanceOnHit=1.000000
    PainSoundCoolDown=1.000000
+   FlashLightTemplate=KFFlashlightAttachment'KFGame.Default__KFPawn_Human:FlashLight_0'
    BatteryDrainRate=2.000000
    BatteryRechargeRate=4.000000
    BatteryCharge=100.000000
@@ -2013,8 +1992,9 @@ defaultproperties
       SpecialMoveClasses(16)=None
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
-      SpecialMoveClasses(19)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(20)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(19)=None
+      SpecialMoveClasses(20)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(21)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn:SpecialMoveHandler_0'
    End Object

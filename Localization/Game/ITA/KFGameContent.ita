@@ -88,13 +88,13 @@ ItemCategory="Melee"
 ItemDescription=""
 
 [KFWeap_Knife_Firebug]
-ItemName=""
+ItemName="Fireman's Knife"
 ItemCategory="Melee"
 ItemDescription="• Primario: attacco con arma da taglio, veloce. Tieni premuto per l'attacco combinato.\n• Secondario: attacco pesante con arma da taglio\n• Alternativo: blocca/schiva\n• È un coltello da vigile del fuoco. Sei un vigile del fuoco, perciò presumiamo di non doverti spiegare come usarlo."
 
 [KFWeap_Pistol_Medic]
-ItemName=""
-ItemCategory=""
+ItemName="HMTech-101 Pistol"
+ItemCategory="Pistol"
 ItemDescription="• La modalità di fuoco è solo semi-automatico.\n• Il fuoco alternativo spara dardi curativi per guarire i membri della squadra.\n• Utilizzando munizioni sciolte, conta le cartucce per te."
 
 [KFWeap_SMG_Medic]

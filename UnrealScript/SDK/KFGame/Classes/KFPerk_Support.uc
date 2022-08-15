@@ -59,24 +59,23 @@ function ApplySkillsToPawn()
 		}
 	}
 
-	InitSupplier();
+	ResetSupplier();
 }
 
 /**
  * @brief Sets up the supllier skill
  */
-simulated final private function InitSupplier()
+simulated final private function ResetSupplier()
 {
-	if( MyPRI != none )
+	if( MyPRI != none && IsSupplierActive() )
 	{
 		if( SuppliedPawnList.Length > 0 )
 		{
 			SuppliedPawnList.Remove( 0, SuppliedPawnList.Length );
 		}
-	}
 
-	if( IsSupplierActive() )
-	{
+		MyPRI.bPerkCanSupply = true;
+
 		if( InteractionTrigger != none )
 		{
 			InteractionTrigger.Destroy();
@@ -189,7 +188,7 @@ simulated function ModifyWeldingRate( out float FastenRate, out float UnfastenRa
  * @param bForce
  * @return the additional penetrations
  */
-static simulated function float GetPenetrationModifier( byte Level, class<KFDamageType> DamageType, optional bool bForce  )
+simulated function float GetPenetrationModifier( byte Level, class<KFDamageType> DamageType, optional bool bForce  )
 {
     // Only buff damage types that are associated with support
     if( !bForce && (DamageType == none || !IsDamageTypeOnPerk( Damagetype )) )
@@ -197,7 +196,7 @@ static simulated function float GetPenetrationModifier( byte Level, class<KFDama
         return 0;
     }
 
-    return GetPassiveValue( default.ShotgunPenetration, Level );
+    return GetPassiveValue( ShotgunPenetration, Level );
 }
 
 /*********************************************************************************************
@@ -396,7 +395,7 @@ function ResetPlayerBuffs()
  * @brief skills and weapons can modify the stumbling power
  * @return stumpling power modifier
  */
-function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier )
+function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart )
 {
 	if( IsWeaponOnPerk( GetOwnerWeapon() ) && IsBombardActive() )
 	{
@@ -416,6 +415,7 @@ simulated function Interact( KFPawn_Human KFPH )
 	local KFWeapon KFW;
 	local int MagCount;
 	local KFPlayerController KFPC;
+	local KFPlayerReplicationInfo UserPRI, OwnerPRI;
 
 	if( SuppliedPawnList.Find( KFPH ) != INDEX_NONE )
 	{
@@ -427,6 +427,13 @@ simulated function Interact( KFPawn_Human KFPH )
 		KFPC = KFPlayerController(KFPH.Controller);
 		OwnerPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_GaveAmmoTo, KFPC.PlayerReplicationInfo );
 		KFPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_ReceivedAmmoFrom, OwnerPC.PlayerReplicationInfo );
+
+		UserPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
+		OwnerPRI = KFPlayerReplicationInfo(OwnerPC.PlayerReplicationInfo);
+		if( UserPRI != none && OwnerPRI != none )
+		{
+			UserPRI.MarkSupplierOwnerUsed( OwnerPRI );
+		}
 	}
 
 	foreach KFPH.InvManager.InventoryActors( class'KFWeapon', KFW )
@@ -491,19 +498,10 @@ event Tick( float DeltaTime )
 /**
  * @brief Reset the perk to the defaults
  */
-event ResetPerk()
+function OnWaveEnded()
 {
-	super.ResetPerk();
-	InitSupplier();
-}
-
-/**
- * @brief Client version of ResetPerk()
- */
-reliable protected client function ClientResetPerk()
-{
-	super.ClientResetPerk();
-	InitSupplier();
+	super.OnWaveEnded();
+	ResetSupplier();
 }
 
 simulated static function GetPassiveStrings( out array<string> PassiveValues, out array<string> Increments, byte Level )
@@ -688,10 +686,11 @@ DefaultProperties
 	PerkBuildStatID=`STATID_Sup_Build
 
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Support'
+	InteractIcon=Texture2D'UI_World_TEX.Support_Supplier_HUD'
 
-	PrimaryWeaponClassName="KFGameContent.KFWeap_Shotgun_MB500"
-	MeleeWeaponClassName="KFGameContent.KFWeap_Knife_Support"
-    GrenadeClassName="KFGameContent.KFProj_FragGrenade"
+	PrimaryWeaponDef=class'KFWeapDef_MB500'
+	KnifeWeaponDef=class'KFWeapDef_Knife_Support'
+	GrenadeWeaponDef=class'KFWeapDef_Grenade_Support'
 
 	ShotgunDamage=(Name="Shotgun Damage",Increment=0.01f,Rank=0,StartingValue=0.f,MaxValue=0.25f)
 	ShotgunPenetration=(Name="Shotgun Penetration",Increment=0.25,Rank=0,StartingValue=0.0f,MaxValue=6.25f)

@@ -104,9 +104,7 @@ defaultproperties
    NumPellets(1)=1
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_NailsBurst'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Nail'
-   FilterTypeUI=FT_Shotgun
    InventorySize=6
-   EffectiveRange=20
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -117,7 +115,7 @@ defaultproperties
    PlayerIronSightFOV=70.000000
    IronSightPosition=(X=12.000000,Y=0.000000,Z=0.000000)
    GroupPriority=50.000000
-   UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_NailShotgun'
+   WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_NailShotgun'
    MagazineCapacity(0)=42
    MaxSpareAmmo(0)=336
    InitialSpareMags(0)=4
@@ -134,7 +132,7 @@ defaultproperties
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ShotgunBase:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_Shotgun_Nailgun:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Shotgun_Nailgun:MeleeHelper_0'
    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Nail_Shotgun_ARCH.Wep_Nail_Shotgun_MuzzleFlash'
    maxRecoilPitch=550
    minRecoilPitch=450
@@ -162,8 +160,8 @@ defaultproperties
    WeaponFireTypes(2)=()
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
-   WeaponProjectiles(0)=Class'KFGameContent.KFProj_Nail_Nailgun'
-   WeaponProjectiles(1)=Class'KFGameContent.KFProj_Nail_Nailgun'
+   WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Nail_Nailgun'
+   WeaponProjectiles(1)=Class'kfgamecontent.KFProj_Nail_Nailgun'
    FireInterval(0)=0.400000
    FireInterval(1)=0.400000
    FireInterval(2)=()
@@ -175,10 +173,10 @@ defaultproperties
    InstantHitDamage(1)=30.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=()
-   InstantHitDamageTypes(0)=Class'KFGameContent.KFDT_Ballistic_NailShotgun'
-   InstantHitDamageTypes(1)=Class'KFGameContent.KFDT_Ballistic_NailShotgun'
+   InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_NailShotgun'
+   InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_NailShotgun'
    InstantHitDamageTypes(2)=None
-   InstantHitDamageTypes(3)=Class'KFGameContent.KFDT_Bludgeon_NailShotgun'
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_NailShotgun'
    FireOffset=(X=30.000000,Y=5.000000,Z=-4.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_ShotgunBase:FirstPersonMesh'
       SkeletalMesh=SkeletalMesh'WEP_1P_Nail_Shotgun_MESH.Wep_1stP_Nail_ShotGun_Rig'

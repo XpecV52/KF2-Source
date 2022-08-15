@@ -48,65 +48,6 @@ class KFDT_Explosive_FragGrenade extends KFDT_Explosive
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -127,10 +68,10 @@ class KFDT_Explosive_FragGrenade extends KFDT_Explosive
 
 defaultproperties
 {
-   AARWeaponID=35
+   WeaponDef=Class'KFGame.KFWeapDef_Grenade_Support'
+   bShouldSpawnPersistentBlood=True
    KnockdownPower=0
    StumblePower=120
-   bShouldSpawnPersistentBlood=True
    KDeathVel=300.000000
    KDeathUpKick=1000.000000
    RadialDamageImpulse=3000.000000

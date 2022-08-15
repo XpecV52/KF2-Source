@@ -23,13 +23,15 @@ defaultproperties
 	bShouldSpawnPersistentBlood=false
 
 	// physics impact
-	KDamageImpulse=0
+	KDamageImpulse=250
 	RadialDamageImpulse=1500.f
 	KDeathUpKick=250.f
+	KDeathVel=350
 
 	KnockdownPower=0
 	StumblePower=150
 
 	DeathMaterialEffectDuration=2.f
 	DeathMaterialEffectParamName=scalar_burnt
+	
 }

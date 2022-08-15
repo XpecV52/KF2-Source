@@ -101,8 +101,7 @@ defaultproperties
     // Inventory
 	InventorySize=6
 	GroupPriority=50
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_NailShotgun'
-	FilterTypeUI=FT_Shotgun
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_NailShotgun'
 
 	// Shooting Animations
 	FireSightedAnims[0]=Shoot_Iron
@@ -198,9 +197,6 @@ defaultproperties
 	RecoilISMinPitchLimit=65485
 	RecoilViewRotationScale=0.6
 	FallingRecoilModifier=1.5
-
-	// Trader
-    EffectiveRange=20
 
 	AssociatedPerkClass=class'KFPerk_Berserker'
 }

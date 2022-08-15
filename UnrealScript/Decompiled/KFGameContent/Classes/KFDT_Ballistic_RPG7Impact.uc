@@ -31,7 +31,7 @@ static simulated function bool CanDismemberHitZone(name InHitZoneName)
 
 defaultproperties
 {
-    AARWeaponID=18
+    WeaponDef=Class'KFGame.KFWeapDef_RPG7'
     KnockdownPower=55
     StumblePower=48
     LegStumblePower=48

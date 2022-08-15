@@ -41,7 +41,7 @@ function ProcessResponse(JsonObject response)
 	if (!bUpToDate)
 	{
 		`warn("Server is out of date, need version" @ ResponseList.GetIntValue("required_version"));
-		class'KFGameInfo'.static.SetNeedsRestart(true);
+		class'KFGameInfo'.static.StaticSetNeedsRestart();
 	}
 
 	`log(Name @ "response="$int(bUpToDate), bDebug);

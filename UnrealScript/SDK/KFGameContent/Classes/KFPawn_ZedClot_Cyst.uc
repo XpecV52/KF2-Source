@@ -44,7 +44,7 @@ defaultproperties
 	Begin Object Name=Afflictions_0
 		InstantAffl(IAF_Stun)=(Head=43,Torso=43,Leg=43,Arm=43,LowHealthBonus=10,Cooldown=3.0)
 		InstantAffl(IAF_Knockdown)=(Head=40,Torso=50,Leg=50,Arm=50,LowHealthBonus=10,Cooldown=8.0)
-		InstantAffl(IAF_Stumble)=(Head=26,Torso=26,Arm=26,LowHealthBonus=10,Cooldown=0.5)
+	    InstantAffl(IAF_Stumble)=(Head=43,Torso=43,Arm=43,LowHealthBonus=10,Cooldown=0.5)
 		InstantAffl(IAF_LegStumble)=(Leg=26,LowHealthBonus=10,Cooldown=0.5)
 		InstantAffl(IAF_GunHit)=(Head=98,Torso=98,Leg=98,Arm=98,LowHealthBonus=10,Cooldown=0.0)
 		InstantAffl(IAF_MeleeHit)=(Head=20,Torso=20,Leg=20,Arm=20,LowHealthBonus=10,Cooldown=0.0)

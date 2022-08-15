@@ -303,11 +303,11 @@ DefaultProperties
     AlignDistance=108.f
     AlignFollowerInterpSpeed=22.f
     bStopAlignFollowerRotationAtGoal=false
+    bCanOnlyWanderAtEnd=true
 
     // ---------------------------------------------
     // Animations
-    bStopFullBodyWhenMoveEnds=true
-    GrappleAnims=(Atk_DrawLife_V1);
+    GrappleAnims=(Atk_DrawLife_V1)
 
     MaxEnemyLifeDrawThresholdNormal=0.70
     MaxEnemyLifeDrawThresholdHard=0.60

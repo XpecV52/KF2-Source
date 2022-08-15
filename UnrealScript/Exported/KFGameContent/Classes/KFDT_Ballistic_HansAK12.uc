@@ -475,15 +475,42 @@ class KFDT_Ballistic_HansAK12 extends KFDT_Ballistic_AK12
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 15
 
 static function int GetKillerDialogID()
 {
 	return 20;
+	
 }
 
 defaultproperties
 {
+   KDamageImpulse=400.000000
+   KDeathVel=75.000000
+   KDeathUpKick=50.000000
    Name="Default__KFDT_Ballistic_HansAK12"
-   ObjectArchetype=KFDT_Ballistic_AK12'KFGameContent.Default__KFDT_Ballistic_AK12'
+   ObjectArchetype=KFDT_Ballistic_AK12'kfgamecontent.Default__KFDT_Ballistic_AK12'
 }

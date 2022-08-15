@@ -25,6 +25,8 @@ enum EUIIndex
 	UI_Start,
 	UI_Perks,
 	UI_Gear,
+	UI_Inventory,
+	UI_Store,
 	UI_OptionsSelection,
 	UI_Exit_Menu,
 	UI_OptionsControls,
@@ -33,7 +35,6 @@ enum EUIIndex
 	UI_OptionsGameSettings,
 	UI_Achievements,
 	UI_Extras,
-    UI_Store,
     UI_PostGame,
 	UI_Trader,
 	UI_ServerBrowserMenu,
@@ -50,6 +51,8 @@ var byte CurrentMenuIndex;
 var KFGfxMenu_StartGame StartMenu;
 var KFGFxMenu_Perks PerksMenu;
 var KFGFxMenu_Gear GearMenu;
+var KFGFxMenu_Inventory InventoryMenu;
+var KFGFxMenu_Store StoreMenu;
 var KFGFxOptionsMenu_Controls OptionsControlsMenu;
 var KFGFxOptionsMenu_Audio OptionsAudioMenu;
 var KFGFxOptionsMenu_Graphics OptionsGraphicsMenu;
@@ -327,6 +330,25 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 			}
 			OnMenuOpen( WidgetPath, GearMenu );
 		break;
+		case ( 'inventoryMenu' ):
+			PC = GetPC();
+			if (InventoryMenu == none)
+			{
+				InventoryMenu = KFGFxMenu_Inventory( Widget );
+				InventoryMenu.InitializeMenu(self);
+			}
+			OnMenuOpen( WidgetPath, InventoryMenu );
+		break;
+		
+		case ( 'storeMenu' ):
+			PC = GetPC();
+			if (StoreMenu == none)
+			{
+				StoreMenu = KFGFxMenu_Store( Widget );
+				StoreMenu.InitializeMenu(self);
+			}
+			OnMenuOpen( WidgetPath, StoreMenu );
+		break;
 		case ('optionsSelectionMenu'):
 			if (OptionsSelectionMenu == none)
 			{
@@ -502,6 +524,11 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 	}
 
 	WI = class'WorldInfo'.static.GetWorldInfo();
+
+	if(NewMenuIndex == UI_PostGame)
+	{
+		UnloadCurrentPopup();
+	}
 
 	if(!bMenusOpen)
 	{
@@ -730,7 +757,11 @@ function SetHUDVisiblity(bool bIsVisible)
 	}
 
 	bCaptureInput = !bIsVisible;
-	GetPC().PlayerInput.ResetInput();
+
+	if( GetPC() != none && GetPC().PlayerInput != none )
+	{
+		GetPC().PlayerInput.ResetInput();
+	}
 }
 
 
@@ -749,6 +780,18 @@ function CloseTraderMenu()
 	if(CurrentMenu == TraderMenu)
 	{
 		CloseMenus();
+	}
+}
+
+/*********************************************************************************************
+* @name Server Welcome Screen	
+********************************************************************************************* */
+
+function ShowWelcomeScreen()
+{
+	if(StartMenu != none && StartMenu.OverviewContainer != none)
+	{
+		StartMenu.OverviewContainer.ShowWelcomeScreen();
 	}
 }
 
@@ -1200,6 +1243,7 @@ defaultproperties
 	MouseInputChangedThreshold=5
 
 	SoundThemeName=ButtonSoundTheme
+	SoundThemes.Add((ThemeName="SoundTheme_Crate",Theme=UISoundTheme'SoundsShared_UI.SoundTheme_Crate'))
 	SoundThemes.Add((ThemeName="ButtonSoundTheme",Theme=UISoundTheme'SoundsShared_UI.SoundTheme_Buttons'))
 	SoundThemes.Add((ThemeName="AAR",Theme=UISoundTheme'SoundsShared_UI.SoundTheme_AAR'))
 
@@ -1211,6 +1255,8 @@ defaultproperties
 	MenuSWFPaths[UI_Perks]="../UI_Menus/PerksMenu_SWF.swf"
 	MenuSWFPaths[UI_ServerBrowserMenu]="../UI_Menus/ServerBrowserMenu_SWF.swf"
 	MenuSWFPaths[UI_Gear]="../UI_Menus/GearMenu_SWF.swf"
+	MenuSWFPaths[UI_Inventory]="../UI_Menus/InventoryMenu_SWF.swf"
+	MenuSWFPaths[UI_Store]="../UI_Menus/StoreMenu_SWF.swf"
 	MenuSWFPaths[UI_OptionsSelection]="../UI_Menus/OptionsSelectionMenu_SWF.swf"
 	MenuSWFPaths[UI_OptionsControls]="../UI_Menus/OptionsControlsMenu_SWF.swf"
 	MenuSWFPaths[UI_OptionsAudio]="../UI_Menus/OptionsAudioMenu_SWF.swf"
@@ -1240,6 +1286,8 @@ defaultproperties
 	WidgetBindings.Add((WidgetName="exitMenu",WidgetClass=class'KFGFxMenu_Exit'))
 	WidgetBindings.Add((WidgetName="PerksMenu",WidgetClass=class'KFGFxMenu_Perks'))
 	WidgetBindings.Add((WidgetName="gearMenu",WidgetClass=class'KFGFxMenu_Gear'))
+	WidgetBindings.Add((WidgetName="inventoryMenu",WidgetClass=class'KFGFxMenu_Inventory'))
+	WidgetBindings.Add((WidgetName="storeMenu",WidgetClass=class'KFGFxMenu_Store'))
 	WidgetBindings.Add((WidgetName="optionsSelectionMenu",WidgetClass=class'KFGFxOptionsMenu_Selection'))
 	WidgetBindings.Add((WidgetName="optionsControlsMenu",WidgetClass=class'KFGFxOptionsMenu_Controls'))
 	WidgetBindings.Add((WidgetName="optionsAudioMenu",WidgetClass=class'KFGFxOptionsMenu_Audio'))

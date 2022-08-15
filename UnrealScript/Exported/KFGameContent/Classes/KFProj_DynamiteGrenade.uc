@@ -148,7 +148,6 @@ defaultproperties
    DampenFactor=0.200000
    DampenFactorParallel=0.300000
    LandedTranslationOffset=(X=-8.000000,Y=0.000000,Z=0.000000)
-   UITexture=Texture2D'WEP_UI_Dynamite_TEX.UI_WeaponSelect_Dynamite'
    GlassShatterType=FMGS_ShatterNone
    TossZ=400.000000
    ExplosionActorClass=Class'KFGame.KFExplosionActor'
@@ -157,16 +156,16 @@ defaultproperties
       Damage=400.000000
       DamageRadius=900.000000
       DamageFalloffExponent=3.000000
-      MyDamageType=Class'KFGameContent.KFDT_Explosive_DynamiteGrenade'
+      MyDamageType=Class'kfgamecontent.KFDT_Explosive_DynamiteGrenade'
       KnockDownStrength=0.000000
       ExplosionSound=AkEvent'WW_WEP_EXP_Dynamite.Play_WEP_EXP_Dynamite_Explosion'
-      ExploLight=PointLightComponent'KFGameContent.Default__KFProj_DynamiteGrenade:ExplosionPointLight'
+      ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_DynamiteGrenade:ExplosionPointLight'
       ExploLightFadeOutTime=0.200000
       CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
       Name="ExploTemplate0"
       ObjectArchetype=KFGameExplosion'KFGame.Default__KFGameExplosion'
    End Object
-   ExplosionTemplate=KFGameExplosion'KFGameContent.Default__KFProj_DynamiteGrenade:ExploTemplate0'
+   ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFProj_DynamiteGrenade:ExploTemplate0'
    ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
    AltExploEffects=KFImpactEffectInfo'WEP_Dynamite_ARCH.Dynamite_Explosion_Concussive_Force'
    ProjFlightTemplate=ParticleSystem'WEP_Dynamite_EMIT.FX_Dynamite_Grenade_Mesh'

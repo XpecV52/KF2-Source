@@ -17,10 +17,10 @@ defaultproperties
       bAllowPerMaterialFX=True
       Damage=10.000000
       DamageRadius=100.000000
-      MyDamageType=Class'KFGameContent.KFDT_Fire_Ground_FlameThrower'
+      MyDamageType=Class'kfgamecontent.KFDT_Fire_Ground_FlameThrower'
       KnockDownStrength=0.000000
       MomentumTransferScale=0.000000
-      ExploLight=PointLightComponent'KFGameContent.Default__KFProj_FlameThrower_GroundFire:FlamePointLight'
+      ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_FlameThrower_GroundFire:FlamePointLight'
       ExploLightFadeOutTime=0.500000
       ExploLightStartFadeOutTime=1.500000
       ExploLightFlickerIntensity=5.000000
@@ -31,26 +31,26 @@ defaultproperties
       Name="ExploTemplate0"
       ObjectArchetype=KFGameExplosion'KFGame.Default__KFGameExplosion'
    End Object
-   ExplosionTemplate=KFGameExplosion'KFGameContent.Default__KFProj_FlameThrower_GroundFire:ExploTemplate0'
-   Begin Object Class=AkComponent Name=AmbientAkSoundComponent Archetype=AkComponent'KFGameContent.Default__KFProj_GroundFire:AmbientAkSoundComponent'
+   ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFProj_FlameThrower_GroundFire:ExploTemplate0'
+   Begin Object Class=AkComponent Name=AmbientAkSoundComponent Archetype=AkComponent'kfgamecontent.Default__KFProj_GroundFire:AmbientAkSoundComponent'
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True
       OcclusionUpdateInterval=0.250000
       Name="AmbientAkSoundComponent"
-      ObjectArchetype=AkComponent'KFGameContent.Default__KFProj_GroundFire:AmbientAkSoundComponent'
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFProj_GroundFire:AmbientAkSoundComponent'
    End Object
    AmbientComponent=AmbientAkSoundComponent
-   Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'KFGameContent.Default__KFProj_GroundFire:CollisionCylinder'
+   Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'kfgamecontent.Default__KFProj_GroundFire:CollisionCylinder'
       CollisionHeight=0.000000
       CollisionRadius=0.000000
       ReplacementPrimitive=None
       Name="CollisionCylinder"
-      ObjectArchetype=CylinderComponent'KFGameContent.Default__KFProj_GroundFire:CollisionCylinder'
+      ObjectArchetype=CylinderComponent'kfgamecontent.Default__KFProj_GroundFire:CollisionCylinder'
    End Object
    CylinderComponent=CollisionCylinder
    Components(0)=CollisionCylinder
    Components(1)=AmbientAkSoundComponent
    CollisionComponent=CollisionCylinder
    Name="Default__KFProj_FlameThrower_GroundFire"
-   ObjectArchetype=KFProj_GroundFire'KFGameContent.Default__KFProj_GroundFire'
+   ObjectArchetype=KFProj_GroundFire'kfgamecontent.Default__KFProj_GroundFire'
 }

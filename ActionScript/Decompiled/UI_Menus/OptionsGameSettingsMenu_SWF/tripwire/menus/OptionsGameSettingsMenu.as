@@ -57,7 +57,7 @@ package tripwire.menus
             super();
             enableInitCallback = true;
             this.setTabIndex();
-            defaultFirstElement = this.fovSlider;
+            defaultFirstElement = this.fovSlider.slider;
         }
         
         public function setTabIndex() : *

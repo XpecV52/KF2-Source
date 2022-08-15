@@ -98,7 +98,7 @@ simulated function PostBeginPlay()
     SurrogateComponentTemplate.SecondsBeforeInactive = 2.147484E+09;
     SurrogateComponentTemplate.CastShadow = false;
     SurrogateComponentTemplate.bUseAsOccluder = true;
-    SurrogateComponentTemplate.TranslucencySortPriority = -1;
+    SurrogateComponentTemplate.TranslucencySortPriority = 0;
     FlexParticleTemplate = new (SurrogateComponentTemplate) Class'ParticleSystem';
     FlexParticleTemplate.LODSettings.Add(1;
     FlexParticleTemplate.LODSettings[0].bLit = true;

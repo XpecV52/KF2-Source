@@ -7,6 +7,7 @@
  *******************************************************************************/
 class KFProj_Bullet extends KFProjectile
     abstract
+    native
     hidecategories(Navigation);
 
 var float ProjEffectsScale;

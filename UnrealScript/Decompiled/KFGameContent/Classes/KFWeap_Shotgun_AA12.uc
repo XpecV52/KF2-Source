@@ -12,7 +12,6 @@ class KFWeap_Shotgun_AA12 extends KFWeap_ShotgunBase
 defaultproperties
 {
     FireModeIconPaths=/* Array type was not detected. */
-    FilterTypeUI=EFilterTypeUI.FT_Shotgun
     InventorySize=10
     bHasIronSights=true
     bCanBeReloaded=true
@@ -25,7 +24,7 @@ defaultproperties
     DOF_FG_FocalRadius=85
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=100
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AA12'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AA12'
     MagazineCapacity=20
     MaxSpareAmmo=60
     InitialSpareMags=1

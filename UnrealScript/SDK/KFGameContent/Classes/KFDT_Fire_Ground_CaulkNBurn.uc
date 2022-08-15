@@ -15,5 +15,5 @@ class KFDT_Fire_Ground_CaulkNBurn extends KFDT_Fire_Ground
 
 defaultproperties
 {
-	AARWeaponID=`AAR_CaulkBurn
+	WeaponDef=class'KFWeapDef_CaulkBurn'
 }

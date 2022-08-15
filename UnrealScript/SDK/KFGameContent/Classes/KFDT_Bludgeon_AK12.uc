@@ -14,5 +14,5 @@ class KFDT_Bludgeon_AK12 extends KFDT_Bludgeon_RifleButt
 DefaultProperties
 {
 	//defaults
-	AARWeaponID=`AAR_Ak12	
+	WeaponDef=class'KFWeapDef_AK12'
 }

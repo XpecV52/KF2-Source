@@ -230,18 +230,24 @@ package tripwire.managers
         public function unloadCurrentPopup() : void
         {
             this._currentPopUp = null;
-            this._popupLoader.unloadAndStop();
-            this._pendingPopupTitle = "";
-            this._pendingPopupDescription = "";
-            this._pendingPopupLeftButtonString = "";
-            this._pendingPopupRightButtonString = "";
+            if(this._popupLoader != null)
+            {
+                this._popupLoader.unloadAndStop();
+                this._pendingPopupTitle = "";
+                this._pendingPopupDescription = "";
+                this._pendingPopupLeftButtonString = "";
+                this._pendingPopupRightButtonString = "";
+            }
             if(!this._bMenuOpen)
             {
                 this.mCursor.visible = false;
                 this.setMenuEvents(false);
             }
             this.bPopUpOpen = false;
-            this.menuList[this._currentMenuIndex].menuObject.focusGroupIn();
+            if(this.menuList != null && this.menuList[this._currentMenuIndex] != null && this.menuList[this._currentMenuIndex].menuObject != null)
+            {
+                this.menuList[this._currentMenuIndex].menuObject.focusGroupIn();
+            }
         }
         
         override protected function addedToStage(param1:Event) : void
@@ -302,6 +308,23 @@ package tripwire.managers
             this.controllerEnableWidgets(true);
         }
         
+        public function setWidgetsVisiblity(param1:Boolean) : void
+        {
+            var _loc2_:int = 0;
+            while(_loc2_ < this._widgets.length)
+            {
+                if(param1)
+                {
+                    this._widgets[_loc2_].openContainer();
+                }
+                else
+                {
+                    this._widgets[_loc2_].closeContainer();
+                }
+                _loc2_++;
+            }
+        }
+        
         public function setMenuVisibility(param1:Boolean) : void
         {
             var _loc2_:int = 0;
@@ -354,6 +377,9 @@ package tripwire.managers
             }
             this.mCursor.visible = param1 && !this.bUsingGamepad;
             this.MenuScanlines.visible = param1;
+            visible = param1;
+            this.mCursor.x = mouseX;
+            this.mCursor.y = mouseY;
         }
         
         public function onMenuClosed() : void

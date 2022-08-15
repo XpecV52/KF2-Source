@@ -10,6 +10,13 @@ class KFGFxPostGameContainer_PlayerStats extends KFGFxObject_Container within GF
 var const localized string AchievementsString;
 var const localized string ZedKillsString;
 var const localized string TopWeaponsString;
+var const localized string TotalDamageDealtString;
+var const localized string HeadShotsString;
+var const localized string LargeZedKillsString;
+var const localized string TotalDoshEarnedString;
+var const localized string TotalKillsString;
+var const localized string AssistsString;
+var const localized string DamageDealtString;
 var const localized string KnifeString;
 var string PlayerStatsString;
 var int ItemCount;
@@ -41,7 +48,6 @@ function SetPlayerStats()
     local int I, TopWeaponCount;
     local array<WeaponDamage> TopWeaponList;
     local EphemeralMatchStats StatCollector;
-    local string TempWeaponName, TempIconSource;
 
     ItemCount = 0;
     KFPRI = KFPlayerReplicationInfo(Outer.GetPC().PlayerReplicationInfo);
@@ -52,39 +58,32 @@ function SetPlayerStats()
         ObjectArray = Outer.CreateArray();
         ObjectArrayAdvancedStats = Outer.CreateArray();
         ObjectTopWeaponsList = Outer.CreateArray();
-        ObjectArray.SetElementObject(ItemCount, MakeTextObject("Total Dosh Earned:", string(Max(StatCollector.TotalDoshEarned, 0))));
-        ObjectArray.SetElementObject(ItemCount, MakeTextObject("Total Kills:", string(KFPRI.Kills)));
-        ObjectArray.SetElementObject(ItemCount, MakeTextObject("Large Zed Kills:", string(StatCollector.TotalLargeZedKills)));
-        ObjectArray.SetElementObject(ItemCount, MakeTextObject("Assists:", string(KFPRI.Assists)));
-        ObjectArray.SetElementObject(ItemCount, MakeTextObject("HeadShots:", string(StatCollector.TotalHeadShots)));
-        ObjectArray.SetElementObject(ItemCount, MakeTextObject("Total Damage Dealt:", string(StatCollector.TotalDamageDealt)));
+        ObjectArray.SetElementObject(ItemCount, MakeTextObject(TotalDoshEarnedString, string(Max(StatCollector.TotalDoshEarned, 0))));
+        ObjectArray.SetElementObject(ItemCount, MakeTextObject(TotalKillsString, string(KFPRI.Kills)));
+        ObjectArray.SetElementObject(ItemCount, MakeTextObject(LargeZedKillsString, string(StatCollector.TotalLargeZedKills)));
+        ObjectArray.SetElementObject(ItemCount, MakeTextObject(AssistsString, string(KFPRI.Assists)));
+        ObjectArray.SetElementObject(ItemCount, MakeTextObject(HeadShotsString, string(StatCollector.TotalHeadShots)));
+        ObjectArray.SetElementObject(ItemCount, MakeTextObject(TotalDamageDealtString, string(StatCollector.TotalDamageDealt)));
         StatCollector.GetTopWeapons(3, TopWeaponList);
         TopWeaponCount = 0;
         I = 0;
-        J0x3D5:
+        J0x3AC:
 
         if(I < TopWeaponList.Length)
         {
-            StatCollector.ResolveLocalizedWeaponNameAndIcon(TopWeaponList[I].DamageTypeID, TempWeaponName, TempIconSource);
-            if(TopWeaponList[I].DamageTypeID == 3)
-            {
-                TempWeaponName = KnifeString;
-            }
-            ObjectTopWeaponsList.SetElementObject(TopWeaponCount, MakeWeaponObject(TempWeaponName, TempIconSource, TopWeaponList[I].DamageAmount, TopWeaponList[I].HeadShots, TopWeaponList[I].LargeZedKills));
+            ObjectTopWeaponsList.SetElementObject(TopWeaponCount, MakeWeaponObject(TopWeaponList[I].WeaponDef.static.GetItemName(), TopWeaponList[I].WeaponDef.static.GetImagePath(), TopWeaponList[I].DamageAmount, TopWeaponList[I].HeadShots, TopWeaponList[I].LargeZedKills));
             ++ TopWeaponCount;
-            TempWeaponName = "";
-            TempIconSource = "";
             ++ I;
-            goto J0x3D5;
+            goto J0x3AC;
         }
         I = 0;
-        J0x57A:
+        J0x504:
 
         if(I < StatCollector.ZedKillsArray.Length)
         {
             ObjectArrayAdvancedStats.SetElementObject(I, MakeZedKillObject(StatCollector.ZedKillsArray[I].MonsterClass, string(StatCollector.ZedKillsArray[I].KillCount)));
             ++ I;
-            goto J0x57A;
+            goto J0x504;
         }
     }
     SetObject("topWeapons", ObjectTopWeaponsList);
@@ -127,9 +126,9 @@ function GFxObject MakeWeaponObject(string WeaponName, string WeaponIcon, int We
     TempObject.SetString("typeString", "TopWeapon");
     TempObject.SetString("weaponName", WeaponName);
     TempObject.SetString("weaponIcon", "img://" $ WeaponIcon);
-    TempObject.SetString("damageText", "DAMAGE DEALT:");
-    TempObject.SetString("headshotsText", "HEADSHOTS:");
-    TempObject.SetString("largeZedText", "LARGE ZED KILLS:");
+    TempObject.SetString("damageText", DamageDealtString);
+    TempObject.SetString("headshotsText", HeadShotsString);
+    TempObject.SetString("largeZedText", LargeZedKillsString);
     TempObject.SetInt("damage", WeaponDamage);
     TempObject.SetInt("headshots", HeadShotsWithWeapon);
     TempObject.SetInt("largeZed", LargeZedKillsWithWeapon);
@@ -143,5 +142,12 @@ defaultproperties
     AchievementsString="Achievements"
     ZedKillsString="ZED KILLS"
     TopWeaponsString="TOP WEAPONS"
+    TotalDamageDealtString="Total Damage Dealt:"
+    HeadShotsString="Headshots:"
+    LargeZedKillsString="Large Zed Kills:"
+    TotalDoshEarnedString="Total Dosh Earned:"
+    TotalKillsString="Total Kills:"
+    AssistsString="Assists:"
+    DamageDealtString="Damage Dealt:"
     KnifeString="Knife"
 }

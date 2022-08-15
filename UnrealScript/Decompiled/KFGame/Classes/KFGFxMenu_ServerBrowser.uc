@@ -20,6 +20,7 @@ var const localized string NameString;
 var const localized string RefreshString;
 var const localized string ServerBrowserString;
 var const localized string RankedString;
+var const localized string UnrankedString;
 var const localized string DedicatedString;
 var const localized string VACSecureString;
 var const localized string InLobbyString;
@@ -413,10 +414,7 @@ function CallBack_ServerSpectateGame()
     }
 }
 
-function CallBack_ServerDetailsClicked()
-{
-    ServerListContainer.OnServerSelected();
-}
+function CallBack_ServerDetailsClicked();
 
 function CallBack_ServerSelected(int ServerIndex)
 {
@@ -427,6 +425,7 @@ function CallBack_ServerSelected(int ServerIndex)
     ServerListContainer.SelectedServerIndex = ServerIndex;
     ServerDetailsContainer.SetDetails(ServerListContainer.GetServerDetails(ServerIndex));
     ServerDetailsContainer.SetFavoriteButtonActive(ServerListContainer.IsSelectedServerFavorited(ServerIndex));
+    ServerListContainer.OnServerSelected(ServerIndex);
 }
 
 function Callback_ResetFilters()
@@ -443,6 +442,7 @@ defaultproperties
     RefreshString="REFRESH"
     ServerBrowserString="SERVER BROWSER"
     RankedString="STATS ENABLED"
+    UnrankedString="STATS DISABLED"
     DedicatedString="DEDICATED"
     VACSecureString="VAC SECURE"
     InLobbyString="IN LOBBY"

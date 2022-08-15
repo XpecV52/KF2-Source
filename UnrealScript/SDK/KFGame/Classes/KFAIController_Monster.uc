@@ -289,7 +289,7 @@ function bool CanDoStrike()
 	// Used by KFPawnAnimInfo to determine if an attack can be performed if legs are blocked (lunges, etc)
 	bIsBodyBlocked = false;
 
-	// Check if a wall or another Zed is blocking my pawn from performing a melee attack, ignore zed collision if bCanStrikeThroughEnemies is true
+	// Check if a wall or another Zed is blocking my pawn from performing a melee attack, ignore zed collision if bCanStrikeThroughEnemies is true, 
 	TraceStepLocation = Pawn.Location + (vect(0,0,-1) * (Pawn.CylinderComponent.CollisionHeight * 0.5f));
 	HitActor = Pawn.Trace( HitLocation, HitNormal, Enemy.Location, TraceStepLocation, !bCanStrikeThroughEnemies );
 	if( HitActor != None && HitActor != Enemy )

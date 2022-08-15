@@ -49,65 +49,6 @@ class KFDT_Explosive_RPG7 extends KFDT_Explosive
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -128,11 +69,11 @@ class KFDT_Explosive_RPG7 extends KFDT_Explosive
 
 defaultproperties
 {
-   AARWeaponID=18
+   WeaponDef=Class'KFGame.KFWeapDef_RPG7'
+   bShouldSpawnPersistentBlood=True
    KnockdownPower=55
    StumblePower=48
    LegStumblePower=48
-   bShouldSpawnPersistentBlood=True
    ModifierPerkList(0)=Class'KFGame.KFPerk_Demolitionist'
    ObliterationHealthThreshold=-500
    ObliterationDamageThreshold=500

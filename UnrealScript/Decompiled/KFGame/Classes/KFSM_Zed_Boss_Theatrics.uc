@@ -15,6 +15,11 @@ enum ETheatricType
 };
 
 var byte CurrentTheatricType;
+var CameraAnim CameraAnim;
+var Color FadeInColor;
+var Color FadeOutColor;
+var float FadeInTime;
+var float FadeOutTime;
 
 protected function bool InternalCanDoSpecialMove()
 {
@@ -38,15 +43,15 @@ static function byte PackSMFlags(KFPawn P, byte InTauntType)
     switch(InTauntType)
     {
         case 0:
-            if(PAI.TheatricBossEntranceAnims.Length > 0)
+            if(PAI.TheatricBossEntranceAnimInfos.Length > 0)
             {
-                Variant = byte(Rand(PAI.TheatricBossEntranceAnims.Length));
+                Variant = byte(Rand(PAI.TheatricBossEntranceAnimInfos.Length));
             }
             break;
         case 1:
-            if(PAI.TheatricBossVictoryAnims.Length > 0)
+            if(PAI.TheatricBossVictoryAnimInfos.Length > 0)
             {
-                Variant = byte(Rand(PAI.TheatricBossVictoryAnims.Length));
+                Variant = byte(Rand(PAI.TheatricBossVictoryAnimInfos.Length));
             }
             break;
         default:
@@ -64,37 +69,38 @@ static function byte PackSMFlags(KFPawn P, byte InTauntType)
 
 function SpecialMoveStarted(bool bForced, name PrevMove)
 {
-    local KFPlayerController KFPC;
-
     super.SpecialMoveStarted(bForced, PrevMove);
     KFPOwner.BodyStanceNodes[0].SetRootBoneAxisOption(0, 0, 0);
-    if((AIOwner != none) && AIOwner.Role == ROLE_Authority)
-    {
-        foreach AIOwner.WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
-        {
-            KFPC.SetBossCamera(KFPOwner);
-            KFPC.SetCinematicMode(true, false, false, true, true, true);            
-        }        
-        KFPawn_MonsterBoss(KFPOwner).PlayMonologue(CurrentTheatricType);
-    }
 }
 
 function PlayAnimation()
 {
     local byte Variant;
+    local KFPawn_MonsterBoss BossPawn;
+    local KFPlayerController KFPC;
+    local Vector CameraAnimOffset;
 
     CurrentTheatricType = byte(KFPOwner.SpecialMoveFlags & 15);
     Variant = byte(KFPOwner.SpecialMoveFlags >> 4);
     switch(CurrentTheatricType)
     {
         case 0:
-            AnimName = KFPOwner.PawnAnimInfo.TheatricBossEntranceAnims[Variant];
+            AnimName = KFPOwner.PawnAnimInfo.TheatricBossEntranceAnimInfos[Variant].AnimationName;
+            CameraAnim = KFPOwner.PawnAnimInfo.TheatricBossEntranceAnimInfos[Variant].CameraAnimation;
+            CameraAnimOffset = KFPOwner.PawnAnimInfo.TheatricBossEntranceAnimInfos[Variant].CameraAnimOffset;
+            BlendInTime = 0;
+            BlendOutTime = 0;
+            KFPOwner.SetPhysics(2);
             break;
         case 1:
-            AnimName = KFPOwner.PawnAnimInfo.TheatricBossVictoryAnims[Variant];
+            AnimName = KFPOwner.PawnAnimInfo.TheatricBossVictoryAnimInfos[Variant].AnimationName;
+            CameraAnim = KFPOwner.PawnAnimInfo.TheatricBossVictoryAnimInfos[Variant].CameraAnimation;
+            CameraAnimOffset = KFPOwner.PawnAnimInfo.TheatricBossVictoryAnimInfos[Variant].CameraAnimOffset;
             break;
         default:
-            AnimName = KFPOwner.PawnAnimInfo.TheatricBossEntranceAnims[Variant];
+            AnimName = KFPOwner.PawnAnimInfo.TheatricBossEntranceAnimInfos[Variant].AnimationName;
+            CameraAnim = KFPOwner.PawnAnimInfo.TheatricBossEntranceAnimInfos[Variant].CameraAnimation;
+            CameraAnimOffset = KFPOwner.PawnAnimInfo.TheatricBossEntranceAnimInfos[Variant].CameraAnimOffset;
             break;
             break;
     }
@@ -103,30 +109,90 @@ function PlayAnimation()
         AIOwner.AILog_Internal((((string(GetFuncName()) $ " ") $ string(self)) $ " chose theatric animation ") $ string(AnimName), 'AIController');
     }
     PlaySpecialMoveAnim(AnimName, AnimStance, BlendInTime, BlendOutTime, 1);
+    BossPawn = KFPawn_MonsterBoss(KFPOwner);
+    if((((BossPawn == none) || BossPawn.bPlayedDeath) || BossPawn.bPendingDelete) || BossPawn.HitFxInfo.bObliterated)
+    {
+        if((AIOwner != none) && AIOwner.Role == ROLE_Authority)
+        {
+            foreach AIOwner.WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+            {
+                KFPC.SetBossCamera(none);                
+            }            
+        }
+        return;
+    }
+    if(BossPawn.WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        KFPC = KFPlayerController(BossPawn.GetALocalPlayerController());
+        KFPC.ClientSetCameraFade(true, FadeInColor, vect2d(1, 0), FadeInTime, true);
+        KFPC.SetViewTarget(BossPawn);
+        KFPC.ClientSetCameraMode('Boss');
+        if(CameraAnim != none)
+        {
+            BossPawn.bUseAnimatedTheatricCamera = true;
+            BossPawn.TheatricCameraAnimOffset = CameraAnimOffset;
+            KFPC.SetCinematicMode(true, false, false, true, true, true);
+            KFPC.ClientPlayCameraAnim(CameraAnim, 1, 0.99, BlendInTime, BlendOutTime + 0.03, false, false);
+        }
+    }
+    if(BossPawn.Role == ROLE_Authority)
+    {
+        BossPawn.PlayMonologue(CurrentTheatricType);
+    }
 }
 
 function SpecialMoveEnded(name PrevMove, name NextMove)
 {
     local KFPlayerController KFPC;
+    local KFPawn_MonsterBoss BossPawn;
 
-    if(KFPOwner.BodyStanceNodes[AnimStance].bIsPlayingCustomAnim)
+    BossPawn = KFPawn_MonsterBoss(KFPOwner);
+    if(BossPawn != none)
     {
-        KFPOwner.StopBodyAnim(AnimStance, 0.2);
-    }
-    if(AIOwner != none)
-    {
-        AIOwner.AIZeroMovementVariables();
-        if((AIOwner.Role == ROLE_Authority) && CurrentTheatricType == 0)
+        BossPawn.bUseAnimatedTheatricCamera = false;
+        BossPawn.TheatricCameraAnimOffset = vect(0, 0, 0);
+        if(BossPawn.WorldInfo.NetMode != NM_DedicatedServer)
         {
-            foreach AIOwner.WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+            if(CurrentTheatricType == 0)
             {
-                if(KFPC.Pawn != none)
+                BossPawn.GetALocalPlayerController().ClientSetCameraFade(true, FadeOutColor, vect2d(1, 0), FadeOutTime, true);
+            }
+            if(CameraAnim != none)
+            {
+                BossPawn.GetALocalPlayerController().ClientStopCameraAnim(CameraAnim);
+            }
+        }
+        if(BossPawn.BodyStanceNodes[AnimStance].bIsPlayingCustomAnim)
+        {
+            BossPawn.StopBodyAnim(AnimStance, 0.2);
+        }
+    }
+    if(CurrentTheatricType == 0)
+    {
+        if(AIOwner != none)
+        {
+            AIOwner.AIZeroMovementVariables();
+            if(AIOwner.Role == ROLE_Authority)
+            {
+                foreach AIOwner.WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
                 {
-                    KFPC.SetViewTarget(KFPC.Pawn);
-                }
-                KFPC.ServerCamera('FirstPerson');
-                KFPC.SetCinematicMode(false, false, true, true, true, false);                
-            }            
+                    if(KFPC.Pawn != none)
+                    {
+                        KFPC.SetViewTarget(KFPC.Pawn);
+                    }
+                    KFPC.ServerCamera('FirstPerson');
+                    KFPC.SetCinematicMode(false, false, true, true, true, false);                    
+                }                
+            }
+        }
+        if(BossPawn.WorldInfo.NetMode != NM_DedicatedServer)
+        {
+            KFPC = KFPlayerController(BossPawn.GetALocalPlayerController());
+            KFPC.SetCinematicMode(false, false, true, true, true, false);
+            if(KFPC.Pawn != none)
+            {
+                KFPC.SetViewTarget(KFPC.Pawn);
+            }
         }
     }
     super.SpecialMoveEnded(PrevMove, NextMove);
@@ -134,6 +200,9 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
 
 defaultproperties
 {
+    FadeOutColor=(B=255,G=255,R=255,A=0)
+    FadeInTime=3.2
+    FadeOutTime=0.6
     bDisablesWeaponFiring=true
     bDisableMovement=true
     Handle=KFSM_Zed_Boss_Theatrics

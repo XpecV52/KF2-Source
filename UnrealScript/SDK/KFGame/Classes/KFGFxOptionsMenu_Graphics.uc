@@ -597,6 +597,7 @@ struct native EnvironmentDetailSetting
 struct native ShadowQualitySetting
 {
 	var bool bAllowWholeSceneDominantShadows;
+	var bool bOverrideMapWholeSceneDominantShadowSetting;
 	var bool bAllowDynamicShadows;
 	var bool bAllowPerObjectShadows;
 	var int MaxWholeSceneDominantShadowResolution;
@@ -612,6 +613,7 @@ struct native ShadowQualitySetting
 		void CopyToNativeSettings(FSystemSettings& OutSettings, UEngine* OutEngine)
 		{
 			OutSettings.bAllowWholeSceneDominantShadows = bAllowWholeSceneDominantShadows;
+			OutSettings.bOverrideMapWholeSceneDominantShadowSetting = bOverrideMapWholeSceneDominantShadowSetting;
 			OutSettings.bAllowDynamicShadows = bAllowDynamicShadows;
 			OutSettings.bAllowPerObjectShadows = bAllowPerObjectShadows;
 			OutSettings.MaxWholeSceneDominantShadowResolution = MaxWholeSceneDominantShadowResolution;
@@ -626,6 +628,7 @@ struct native ShadowQualitySetting
 		void CopyFromNativeSettings(FSystemSettings& InSettings, UEngine* InEngine)
 		{
 			bAllowWholeSceneDominantShadows = InSettings.bAllowWholeSceneDominantShadows;
+			bOverrideMapWholeSceneDominantShadowSetting = InSettings.bOverrideMapWholeSceneDominantShadowSetting;
 			bAllowDynamicShadows = InSettings.bAllowDynamicShadows;
 			bAllowPerObjectShadows = InSettings.bAllowPerObjectShadows;
 			MaxWholeSceneDominantShadowResolution = InSettings.MaxWholeSceneDominantShadowResolution;
@@ -3382,10 +3385,10 @@ defaultproperties
 	EnvironmentDetailPresets(3)={(DetailMode=2, DestructionLifetimeScale=1.2, bDisableCanBecomeDynamicWakeup=False, MakeDynamicCollisionThreshold=150, AllowLightFunctions=True)}
 
 	// Shadows
-	ShadowQualityPresets(0)={(bAllowWholeSceneDominantShadows=FALSE, bAllowDynamicShadows=TRUE, bAllowPerObjectShadows=FALSE, MaxWholeSceneDominantShadowResolution=1204, MaxShadowResolution=1024, ShadowFadeResolution=256, MinShadowResolution=128, ShadowTexelsPerPixel=0.5, GlobalShadowDistanceScale=0.75, AllowForegroundPreshadows=False)}
-	ShadowQualityPresets(1)={(bAllowWholeSceneDominantShadows=TRUE, bAllowDynamicShadows=TRUE, bAllowPerObjectShadows=TRUE, MaxWholeSceneDominantShadowResolution=1204, MaxShadowResolution=1024, ShadowFadeResolution=128, MinShadowResolution=64, ShadowTexelsPerPixel=1.0, GlobalShadowDistanceScale=0.75, AllowForegroundPreshadows=False)}
-	ShadowQualityPresets(2)={(bAllowWholeSceneDominantShadows=TRUE, bAllowDynamicShadows=TRUE, bAllowPerObjectShadows=TRUE, MaxWholeSceneDominantShadowResolution=1280, MaxShadowResolution=1024, ShadowFadeResolution=128, MinShadowResolution=64, ShadowTexelsPerPixel=1.3, GlobalShadowDistanceScale=1.0, AllowForegroundPreshadows=True)}
-	ShadowQualityPresets(3)={(bAllowWholeSceneDominantShadows=TRUE, bAllowDynamicShadows=TRUE, bAllowPerObjectShadows=TRUE, MaxWholeSceneDominantShadowResolution=2048, MaxShadowResolution=1536, ShadowFadeResolution=64, MinShadowResolution=32, ShadowTexelsPerPixel=2.0, GlobalShadowDistanceScale=1.5, AllowForegroundPreshadows=True)}
+	ShadowQualityPresets(0)={(bAllowWholeSceneDominantShadows=FALSE, bOverrideMapWholeSceneDominantShadowSetting=FALSE, bAllowDynamicShadows=TRUE, bAllowPerObjectShadows=FALSE, MaxWholeSceneDominantShadowResolution=1204, MaxShadowResolution=1024, ShadowFadeResolution=256, MinShadowResolution=128, ShadowTexelsPerPixel=0.5, GlobalShadowDistanceScale=0.75, AllowForegroundPreshadows=False)}
+	ShadowQualityPresets(1)={(bAllowWholeSceneDominantShadows=TRUE, bOverrideMapWholeSceneDominantShadowSetting=FALSE, bAllowDynamicShadows=TRUE, bAllowPerObjectShadows=TRUE, MaxWholeSceneDominantShadowResolution=1204, MaxShadowResolution=1024, ShadowFadeResolution=128, MinShadowResolution=64, ShadowTexelsPerPixel=1.0, GlobalShadowDistanceScale=0.75, AllowForegroundPreshadows=False)}
+	ShadowQualityPresets(2)={(bAllowWholeSceneDominantShadows=TRUE, bOverrideMapWholeSceneDominantShadowSetting=FALSE, bAllowDynamicShadows=TRUE, bAllowPerObjectShadows=TRUE, MaxWholeSceneDominantShadowResolution=1280, MaxShadowResolution=1024, ShadowFadeResolution=128, MinShadowResolution=64, ShadowTexelsPerPixel=1.3, GlobalShadowDistanceScale=1.0, AllowForegroundPreshadows=True)}
+	ShadowQualityPresets(3)={(bAllowWholeSceneDominantShadows=TRUE, bOverrideMapWholeSceneDominantShadowSetting=TRUE, bAllowDynamicShadows=TRUE, bAllowPerObjectShadows=TRUE, MaxWholeSceneDominantShadowResolution=2048, MaxShadowResolution=1536, ShadowFadeResolution=64, MinShadowResolution=32, ShadowTexelsPerPixel=2.0, GlobalShadowDistanceScale=1.5, AllowForegroundPreshadows=True)}
 
 	// FX
 	FXQualityPresets(0)={(ParticleLODBias=1, Distortion=False, FilteredDistortion=False, DropParticleDistortion=True, EmitterPoolScale=0.25, ShellEjectLifetime=2, AllowExplosionLights=False, AllowSprayActorLights=False, AllowPilotLights=False, AllowFootstepSounds=False, AllowRagdollAndGoreOnDeadBodies=False, MaxImpactEffectDecals=8, MaxExplosionDecals=8, GoreFXLifetimeMultiplier=0.5, MaxBloodEffects=12, MaxGoreEffects=8, AllowSecondaryBloodEffects=False, AllowBloodSplatterDecals=False,MaxPersistentSplatsPerFrame=25)}

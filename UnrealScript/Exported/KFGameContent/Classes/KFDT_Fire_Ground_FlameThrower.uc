@@ -48,65 +48,6 @@ class KFDT_Fire_Ground_FlameThrower extends KFDT_Fire_Ground
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -127,7 +68,7 @@ class KFDT_Fire_Ground_FlameThrower extends KFDT_Fire_Ground
 
 defaultproperties
 {
-   AARWeaponID=48
+   WeaponDef=Class'KFGame.KFWeapDef_FlameThrower'
    Name="Default__KFDT_Fire_Ground_FlameThrower"
-   ObjectArchetype=KFDT_Fire_Ground'KFGameContent.Default__KFDT_Fire_Ground'
+   ObjectArchetype=KFDT_Fire_Ground'kfgamecontent.Default__KFDT_Fire_Ground'
 }

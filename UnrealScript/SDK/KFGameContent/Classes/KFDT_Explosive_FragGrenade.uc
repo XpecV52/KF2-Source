@@ -26,5 +26,5 @@ defaultproperties
 	KnockdownPower=0
 	StumblePower=120
 
-	AARWeaponID=`AAR_FragGrenade
+	WeaponDef=class'KFWeapDef_Grenade_Support'
 }

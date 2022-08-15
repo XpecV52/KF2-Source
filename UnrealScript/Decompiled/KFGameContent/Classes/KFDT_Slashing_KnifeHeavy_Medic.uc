@@ -26,3 +26,8 @@ static function bool CheckMedicBleed(out int InDamage, out class<KFDamageType> K
     KFDT = InstigatorPerk.GetBleedDmgTypeClass();
     return true;
 }
+
+defaultproperties
+{
+    WeaponDef=Class'KFGame.KFWeapDef_Knife_Medic'
+}

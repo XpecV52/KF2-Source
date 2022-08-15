@@ -71,6 +71,9 @@ cpptext
 #if __TW_SDK_
 	virtual UBOOL IsUnrankedGame() { return true; }
 	virtual FString GetGameBalanceCol1() { return TEXT(",,"); }
+	virtual int GetWaveNum() { return -1; }
+	virtual int GetWaveMax() { return -1; }
+	virtual UBOOL GetWon() { return false; }
 #endif
 }
 

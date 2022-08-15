@@ -10,6 +10,6 @@ class KFDT_Toxic_MedicGrenade extends KFDT_Toxic
 
 defaultproperties
 {
-    AARWeaponID=19
+    WeaponDef=Class'KFGame.KFWeapDef_Grenade_Medic'
     ModifierPerkList=/* Array type was not detected. */
 }

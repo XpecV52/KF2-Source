@@ -20,11 +20,9 @@ defaultproperties
    FireModeIconPaths(3)=()
    FireModeIconPaths(4)=()
    FireModeIconPaths(5)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
-   FilterTypeUI=FT_Melee
    InventorySize=4
-   EffectiveRange=3
    GroupPriority=25.000000
-   UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Crovel'
+   WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Crovel'
    AttachmentArchetype=KFWeaponAttachment'WEP_Crovel_ARCH.Wep_Crovel_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
       bUseDirectionalMelee=True
@@ -58,7 +56,7 @@ defaultproperties
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_Blunt_Crovel:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Blunt_Crovel:MeleeHelper_0'
    AssociatedPerkClass=Class'KFGame.KFPerk_Berserker'
    InstantHitDamage(0)=49.000000
    InstantHitDamage(1)=()
@@ -66,12 +64,12 @@ defaultproperties
    InstantHitDamage(3)=()
    InstantHitDamage(4)=()
    InstantHitDamage(5)=86.000000
-   InstantHitDamageTypes(0)=Class'KFGameContent.KFDT_Slashing_Crovel'
+   InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Slashing_Crovel'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=()
-   InstantHitDamageTypes(3)=Class'KFGameContent.KFDT_Bludgeon_CrovelBash'
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_CrovelBash'
    InstantHitDamageTypes(4)=()
-   InstantHitDamageTypes(5)=Class'KFGameContent.KFDT_Bludgeon_Crovel'
+   InstantHitDamageTypes(5)=Class'kfgamecontent.KFDT_Bludgeon_Crovel'
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_MeleeBase:FirstPersonMesh'
       MinTickTimeStep=0.025000
       SkeletalMesh=SkeletalMesh'WEP_1P_Crovel_MESH.Wep_1stP_Crovel_Rig'

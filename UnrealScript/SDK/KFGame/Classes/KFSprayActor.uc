@@ -929,4 +929,7 @@ DefaultProperties
 	MaxDecalEffectDistance=5000
 	ImpactProjectileInterval=0.2
 	bCollideWithTeammates=false
+
+	// call SetTickIsDisabled( false ) when we need to use this actor
+	bTickIsDisabled=TRUE
 }

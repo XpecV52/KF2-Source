@@ -29,5 +29,6 @@ static function bool CheckMedicBleed(out int InDamage, out class<KFDamageType> K
 
 defaultproperties
 {
+    WeaponDef=Class'KFGame.KFWeapDef_Knife_Medic'
     GunHitPower=112
 }

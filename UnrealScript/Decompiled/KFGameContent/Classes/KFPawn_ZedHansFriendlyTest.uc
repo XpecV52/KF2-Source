@@ -16,6 +16,8 @@ function bool CanBeGrabbed(KFPawn GrabbingPawn, optional bool bIgnoreFalling)
 
 defaultproperties
 {
+    NerveGasExplosiveBlastTemplate=KFGameExplosion'Default__KFPawn_ZedHansFriendlyTest.ExploTemplate0'
+    NerveGasAttackTemplate=KFGameExplosion'Default__KFPawn_ZedHansFriendlyTest.ExploTemplate1'
     BattlePhaseLightTemplateGreen=PointLightComponent'Default__KFPawn_ZedHansFriendlyTest.PointLightComponent0'
     BattlePhaseLightTemplateYellow=PointLightComponent'Default__KFPawn_ZedHansFriendlyTest.PointLightComponent1'
     BattlePhaseLightTemplateRed=PointLightComponent'Default__KFPawn_ZedHansFriendlyTest.PointLightComponent2'

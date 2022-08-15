@@ -14,15 +14,14 @@ defaultproperties
 {
    LeftMuzzleFlashTemplate=KFMuzzleFlash'WEP_Dual_9MM_ARCH.Wep_Dual_9MM_MuzzleFlash_L'
    LeftFireOffset=(X=17.000000,Y=-4.000000,Z=-2.250000)
-   SingleClass=Class'KFGameContent.KFWeap_Pistol_9mm'
+   SingleClass=Class'kfgamecontent.KFWeap_Pistol_9mm'
+   BonesToLockOnEmpty_L(1)="LW_Bullets1"
    InventoryGroup=IG_Secondary
-   FilterTypeUI=FT_Pistol
    InventorySize=2
-   EffectiveRange=50
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
-   bHasFlashlight=True
+   bHasFireLastAnims=True
    bIsBackupWeapon=True
    MeshFOV=96.000000
    MeshIronSightFOV=77.000000
@@ -32,13 +31,16 @@ defaultproperties
    DOF_FG_FocalRadius=40.000000
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=20.000000
-   UITexture=Texture2D'WEP_UI_Dual_9MM_TEX.UI_WeaponSelect_Dual9mm'
+   WeaponSelectTexture=Texture2D'WEP_UI_Dual_9MM_TEX.UI_WeaponSelect_Dual9mm'
    MagazineCapacity(0)=30
-   MaxSpareAmmo(0)=225
-   InitialSpareMags(0)=7
+   MaxSpareAmmo(0)=210
+   InitialSpareMags(0)=3
    AmmoPickupScale(0)=0.500000
+   BonesToLockOnEmpty(1)="RW_Bullets1"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_9mm.Play_WEP_SA_9mm_Fire_Single_M',FirstPersonCue=AkEvent'WW_WEP_SA_9mm.Play_WEP_SA_9mm_Fire_Single_S')
+   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_9mm.Play_WEP_SA_9mm_Fire_Single_M',FirstPersonCue=AkEvent'WW_WEP_SA_9mm.Play_WEP_SA_9mm_Fire_Single_S')
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_9mm.Play_WEP_SA_9mm_Handling_DryFire'
+   WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_9mm.Play_WEP_SA_9mm_Handling_DryFire'
    PlayerViewOffset=(X=5.000000,Y=0.000000,Z=-5.000000)
    AttachmentArchetype=KFWeapAttach_DualBase'WEP_Dual_9MM_ARCH.Wep_Dual_9mm_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_DualBase:MeleeHelper_0'
@@ -46,7 +48,7 @@ defaultproperties
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_DualBase:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_Pistol_Dual9mm:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Pistol_Dual9mm:MeleeHelper_0'
    MuzzleFlashTemplate=KFMuzzleFlash'WEP_Dual_9MM_ARCH.Wep_Dual_9MM_MuzzleFlash'
    maxRecoilPitch=250
    minRecoilPitch=200
@@ -66,25 +68,23 @@ defaultproperties
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()
    FiringStatesArray(4)=()
-   WeaponFireTypes(1)=EWFT_None
-   WeaponFireTypes(2)=()
-   WeaponFireTypes(3)=()
-   WeaponFireTypes(4)=()
-   WeaponProjectiles(0)=Class'KFGameContent.KFProj_Bullet_Pistol9mm'
+   WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_Pistol9mm'
+   WeaponProjectiles(1)=Class'kfgamecontent.KFProj_Bullet_Pistol9mm'
    FireInterval(0)=0.100000
-   FireInterval(1)=()
+   FireInterval(1)=0.100000
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
    Spread(0)=0.015000
+   Spread(1)=0.015000
    InstantHitDamage(0)=15.000000
-   InstantHitDamage(1)=()
+   InstantHitDamage(1)=15.000000
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=10.000000
-   InstantHitDamageTypes(0)=Class'KFGameContent.KFDT_Ballistic_9mm'
-   InstantHitDamageTypes(1)=()
+   InstantHitDamage(3)=()
+   InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_9mm'
+   InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_9mm'
    InstantHitDamageTypes(2)=None
-   InstantHitDamageTypes(3)=Class'KFGameContent.KFDT_Bludgeon_9mm'
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_9mm'
    FireOffset=(X=17.000000,Y=4.000000,Z=-2.250000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_DualBase:FirstPersonMesh'
       SkeletalMesh=SkeletalMesh'WEP_1P_Dual_9MM_MESH.Wep_1stP_Dual_9mm_Rig'

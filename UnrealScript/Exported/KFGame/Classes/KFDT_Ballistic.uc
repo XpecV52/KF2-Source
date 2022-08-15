@@ -473,6 +473,29 @@ class KFDT_Ballistic extends KFDamageType
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 13
 
 /** Allows the damage type to customize exactly which hit zones it can dismember */
@@ -510,10 +533,10 @@ static function int GetDamageeDialogID()
 
 defaultproperties
 {
-   EffectGroup=FXG_Ballistic
-   GoreDamageGroup=DGT_Handgun
    bShouldSpawnBloodSplat=True
    bShouldSpawnPersistentBlood=True
+   EffectGroup=FXG_Ballistic
+   GoreDamageGroup=DGT_Handgun
    BodyWoundDecalMaterials(0)=MaterialInstanceConstant'FX_Gore_MAT.FX_CH_Wound_01_Mic'
    KDamageImpulse=300.000000
    Name="Default__KFDT_Ballistic"

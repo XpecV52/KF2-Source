@@ -11,7 +11,7 @@ class KFWeap_Knife_Berserker extends KFWeap_Edged_Knife
 
 defaultproperties
 {
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_BerserkerKnife'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_BerserkerKnife'
     AttachmentArchetype=KFWeaponAttachment'WEP_BerserkerKnife_ARCH.Wep_Knife_3P'
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Knife_Berserker.MeleeHelper'
     AssociatedPerkClass=Class'KFGame.KFPerk_Berserker'

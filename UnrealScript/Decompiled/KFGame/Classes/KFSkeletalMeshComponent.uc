@@ -68,9 +68,15 @@ final function float GetAnimNotifyTime(name AnimSeqName, class<AnimNotify> Notif
 
     if(I < AnimSeq.Notifies.Length)
     {
-        if(ClassIsChildOf(AnimSeq.Notifies[I].Notify.Class, NotifyClass))
+        if(AnimSeq.Notifies[I].Notify == none)
+        {            
+        }
+        else
         {
-            return AnimSeq.Notifies[I].Time / AnimSeq.RateScale;
+            if(ClassIsChildOf(AnimSeq.Notifies[I].Notify.Class, NotifyClass))
+            {
+                return AnimSeq.Notifies[I].Time / AnimSeq.RateScale;
+            }
         }
         ++ I;
         goto J0x67;

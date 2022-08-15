@@ -251,6 +251,7 @@ defaultproperties
    CeilingEmerge(2)="Enter_Ceiling_V3"
    CeilingEmerge(3)="Enter_Ceiling_V4"
    BlendOutTime=0.200000
+   bCanOnlyWanderAtEnd=True
    bPawnRotationLocked=True
    bDisablePhysics=True
    DefaultAICommandClass=Class'KFGame.AICommand_PushedBySM'

@@ -41,10 +41,10 @@ static function int GetDamageeDialogID()
 
 defaultproperties
 {
-    EffectGroup=EEffectDamageGroup.FXG_Ballistic
-    GoreDamageGroup=EGoreDamageGroup.DGT_Handgun
     bShouldSpawnBloodSplat=true
     bShouldSpawnPersistentBlood=true
+    EffectGroup=EEffectDamageGroup.FXG_Ballistic
+    GoreDamageGroup=EGoreDamageGroup.DGT_Handgun
     BodyWoundDecalMaterials(0)=MaterialInstanceConstant'FX_Gore_MAT.FX_CH_Wound_01_Mic'
     KDamageImpulse=300
 }

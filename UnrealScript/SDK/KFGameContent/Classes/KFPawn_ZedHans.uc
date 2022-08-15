@@ -16,6 +16,12 @@ var() AnimSet GunsAnimSet;
 var SkelControlSingleBone RightHolsterSkelCtrl;
 var SkelControlSingleBone LeftHolsterSkelCtrl;
 
+/** Explosion burst template to use for surrounded AoE nerve gas attack */
+var KFGameExplosion NerveGasExplosiveBlastTemplate;
+
+/** Lingering explosion template to use for surrounded AoE nerve gas attack */
+var KFGameExplosion NerveGasAttackTemplate;
+
 /** The damage type to use when sprinting and bumping zeds */
 var class<KFDamageType> HeavyBumpDamageType;
 
@@ -104,23 +110,19 @@ var KFSkinTypeEffects ShieldImpactEffects;
 
 simulated event ReplicatedEvent(name VarName)
 {
-	switch( VarName )
-	{
-	case nameof(bGunsEquipped):
+	if( VarName == nameof(bGunsEquipped) )
+    {
 		// Replicated for the case when SM_ChangeWeapons is skipped on the client.
 		// If the special move is in progress, delay until SpecialMoveEnded
 		if ( SpecialMove != SM_ChangeStance )
 		{
 			SetWeaponStance(bGunsEquipped);
 		}
-		break;
-
-	case nameof(CurrentBattlePhase):
-		OnBattlePhaseChanged();
-		break;
-	}
-
-	Super.ReplicatedEvent(VarName);
+    }
+    else
+    {
+        Super.ReplicatedEvent(VarName);   
+    }
 }
 
 simulated event PostBeginPlay()
@@ -136,9 +138,6 @@ simulated event PostBeginPlay()
 
 	// add a little delay to begin ticking dialog
 	LastTickDialogTime = WorldInfo.TimeSeconds;
-
-	// init lights, particles, materials
-	OnBattlePhaseChanged();
 
 	// Disable the KFPawn optimization because Hans uses weapon bones to spawn projectiles :(
 	// @todo: Do something else to get the bones like ForceUpdateSkel() or SetForceRefPose()
@@ -255,18 +254,34 @@ simulated function ANIMNOTIFY_TossGrenade_LeftHand()
 	StartThrowingGrenade( true );
 }
 
+/** AnimNotify which triggers an explosive AoE blast */
+simulated function ANIMNOTIFY_AoEBlast()
+{
+    local KFExplosionActor ExplosionActor;
+
+    // spawn initial nerve gas burst explosion
+    ExplosionActor = Spawn( class'KFExplosionActor', self,, Location, rotator(vect(0,0,1)) );
+    if( ExplosionActor != none )
+    {
+        ExplosionActor.Explode( NerveGasExplosiveBlastTemplate );
+    }
+}
+
 /** AnimNotify which starts during Hans's AoE melee attack */
 simulated function ANIMNOTIFY_AoENerveGas()
 {
-    local KFExplosionActor ExplosionActor;
+    local KFExplosion_HansNerveGasGrenade ExplosionActor;
 
     // spawn nerve gas explosion using nerve gas grenade class defaults
     if( NerveGasGrenadeClass != none )
     {
-        ExplosionActor = KFExplosionActor( Spawn(NerveGasGrenadeClass.default.ExplosionActorClass, self,, mesh.GetBoneLocation('Root'), rotator(vect(0,0,1))) );
+        ExplosionActor = KFExplosion_HansNerveGasGrenade( Spawn(NerveGasGrenadeClass.default.ExplosionActorClass, self,, mesh.GetBoneLocation('Root'), rotator(vect(0,0,1))) );
         if( ExplosionActor != none )
         {
-            ExplosionActor.Explode( NerveGasGrenadeClass.default.ExplosionTemplate );
+            ExplosionActor.bDoFullDamage = true;
+            ExplosionActor.MaxTime = 4.f;
+            ExplosionActor.Interval = 0.5f;
+            ExplosionActor.Explode( NerveGasAttackTemplate );
         }
     }
 }
@@ -756,7 +771,7 @@ simulated function DetachShieldFX()
 simulated function TerminateEffectsOnDeath()
 {
     SetHuntAndHealMode( false );
-    OnBattlePhaseChanged();
+
     super.TerminateEffectsOnDeath();
 }
 
@@ -945,14 +960,6 @@ simulated function UpdateBattlePhaseParticles()
 	};
 }
 
-/** Set gameplay related MIC params on the active body MIC. Overloaded to call OnBattlePhaseChanged. */
-simulated function SetGameplayMICParams()
-{
-	super.SetGameplayMICParams();
-
-	OnBattlePhaseChanged();
-}
-
 /** Gets skin effects associated with hit zone (allows pawns to override) */
 simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects( int HitZoneIdx )
 {
@@ -987,6 +994,8 @@ DefaultProperties
     SmokeGrenadeClass=class'KFGameContent.KFProj_HansSmokeGrenade'
 
     HeavyBumpDamageType=class'KFGameContent.KFDT_HeavyZedBump'
+
+    TheatricCameraSocketName=TheatricCameraRootSocket
 
 	// ---------------------------------------------
 	// Special Moves
@@ -1134,6 +1143,81 @@ DefaultProperties
 
 	// hunt and heal backpack effects
     BackPackSmokeEffectTemplate=ParticleSystem'ZED_Hans_EMIT.FX_Life_Drain_Smoke_01'
+
+    // explosion
+    Begin Object Class=KFGameExplosion Name=ExploTemplate0
+        Damage=50
+        DamageRadius=450
+        DamageFalloffExponent=0.25f
+        DamageDelay=0.f
+
+        // Damage Effects
+        MyDamageType=class'KFDT_Explosive_HansHEGrenade'
+        KnockDownStrength=0
+        FractureMeshRadius=200.0
+        FracturePartVel=500.0
+        ExplosionEffects=none
+        ExplosionSound=none
+        // Dynamic Light
+        ExploLight=none
+        ExploLightStartFadeOutTime=0.0
+        ExploLightFadeOutTime=0.2
+        MomentumTransferScale
+
+        // Camera Shake
+        CamShake=none
+        CamShakeInnerRadius=0
+        CamShakeOuterRadius=0
+        CamShakeFalloff=1.f
+        bOrientCameraShakeTowardsEpicenter=true
+    End Object
+    NerveGasExplosiveBlastTemplate=ExploTemplate0
+
+    // Nerve gas AoE explosion light
+    Begin Object Class=PointLightComponent Name=ExplosionPointLight
+        LightColor=(R=200,G=200,B=0,A=255)
+        Brightness=4.f
+        Radius=500.f
+        FalloffExponent=10.f
+        CastShadows=False
+        CastStaticShadows=FALSE
+        CastDynamicShadows=True
+        bEnabled=FALSE
+        LightingChannels=(Indoor=TRUE,Outdoor=TRUE,bInitialized=TRUE)
+    End Object
+
+    // Nerve gas AoE explosion template
+    Begin Object Class=KFGameExplosion Name=ExploTemplate1
+        Damage=8
+        DamageRadius=450
+        DamageFalloffExponent=0.f
+        DamageDelay=0.f
+        MyDamageType=class'KFDT_Toxic_HansGrenade'
+
+        // Damage Effects
+        KnockDownStrength=0
+        KnockDownRadius=0
+        FractureMeshRadius=0
+        FracturePartVel=0
+        ExplosionEffects=KFImpactEffectInfo'ZED_Hans_EMIT.NerveGasAoEAttack_Explosion'
+        ExplosionSound=AkEvent'WW_ZED_Hans.ZED_Hans_SFX_Grenade_Poison'
+        MomentumTransferScale=0
+
+        // Dynamic Light
+        ExploLight=ExplosionPointLight
+        ExploLightStartFadeOutTime=7.0
+        ExploLightFadeOutTime=1.0
+        ExploLightFlickerIntensity=5.f
+        ExploLightFlickerInterpSpeed=15.f
+
+        // Camera Shake
+        CamShake=CameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
+        CamShakeInnerRadius=450
+        CamShakeOuterRadius=900
+        CamShakeFalloff=1.f
+        bOrientCameraShakeTowardsEpicenter=true
+    End Object
+    NerveGasAttackTemplate=ExploTemplate1
 
     // ---------------------------------------------
     // damage phase lights and effects

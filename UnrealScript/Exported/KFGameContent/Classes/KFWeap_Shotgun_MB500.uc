@@ -12,12 +12,9 @@ defaultproperties
 {
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
-   FilterTypeUI=FT_Shotgun
    InventorySize=5
-   EffectiveRange=20
    bHasIronSights=True
    bCanBeReloaded=True
-   bHasFlashlight=True
    PenetrationPower(0)=2.000000
    PenetrationPower(1)=()
    MeshIronSightFOV=52.000000
@@ -26,7 +23,7 @@ defaultproperties
    DOF_FG_FocalRadius=95.000000
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=25.000000
-   UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Mossberg'
+   WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Mossberg'
    MagazineCapacity(0)=8
    MaxSpareAmmo(0)=40
    InitialSpareMags(0)=2
@@ -41,7 +38,7 @@ defaultproperties
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ShotgunBase:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_Shotgun_MB500:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Shotgun_MB500:MeleeHelper_0'
    MuzzleFlashTemplate=KFMuzzleFlash'WEP_MB500_ARCH.Wep_MB500_MuzzleFlash'
    maxRecoilPitch=900
    minRecoilPitch=775
@@ -70,7 +67,7 @@ defaultproperties
    WeaponFireTypes(2)=()
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
-   WeaponProjectiles(0)=Class'KFGameContent.KFProj_Bullet_Pellet'
+   WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_Pellet'
    FireInterval(0)=0.770000
    FireInterval(1)=()
    FireInterval(2)=()
@@ -80,10 +77,10 @@ defaultproperties
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=()
-   InstantHitDamageTypes(0)=Class'KFGameContent.KFDT_Ballistic_MB500'
+   InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_MB500'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=None
-   InstantHitDamageTypes(3)=Class'KFGameContent.KFDT_Bludgeon_MB500'
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_MB500'
    FireOffset=(X=30.000000,Y=3.000000,Z=-3.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_ShotgunBase:FirstPersonMesh'
       SkeletalMesh=SkeletalMesh'WEP_1P_MB500_MESH.Wep_1stP_MB500_Rig'

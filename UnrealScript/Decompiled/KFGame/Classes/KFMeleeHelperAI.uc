@@ -26,6 +26,7 @@ struct native DelayedMeleeInfo
     var int Damage;
     var float Momentum;
     var float TimeOfDamage;
+    var class<KFDamageType> DamageType;
 
     structdefaultproperties
     {
@@ -33,6 +34,7 @@ struct native DelayedMeleeInfo
         Damage=0
         Momentum=0
         TimeOfDamage=0
+        DamageType=none
     }
 };
 
@@ -53,8 +55,7 @@ function ApplyMeleeDamage(Actor Victim, int Damage, optional float InMomentum, o
     local Vector HitLocation, HitDirection;
     local KFPawn_Monster InstigatorPawn;
 
-    InMomentum = 1;
-    inDamageType = MyDamageType;
+    InMomentum = 1;    
     HitLocation = Victim.Location;
     HitLocation.Z += FRand();
     HitDirection = Normal(HitLocation - Outer.Instigator.Location);
@@ -131,28 +132,30 @@ function MeleeImpactNotify(KFAnimNotify_MeleeImpact Notify)
     local KFAIController KFAIC;
     local float MomentumScalar;
     local bool bDealtDmg;
+    local class<KFDamageType> CurrentDamageType;
 
-    MomentumScalar = ((Notify.bCanDoKnockback) ? MomentumTransfer : 1);
+    MomentumScalar = ((Notify.bCanDoKnockback) ? Notify.MomentumTransferScale * MomentumTransfer : 1);
     KFAIC = KFAIController(Outer.Instigator.Controller);
+    CurrentDamageType = ((Notify.CustomDamageType != none) ? Notify.CustomDamageType : MyDamageType);
     if((KFAIC != none) && (KFAIC.DoorEnemy != none) || KFAIC.ActorEnemy != none)
     {
-        bDealtDmg = CheckEnemyImpact(int(Notify.DamageScale * BaseDamage), MomentumScalar);        
+        bDealtDmg = CheckEnemyImpact(int(Notify.DamageScale * BaseDamage), MomentumScalar, CurrentDamageType);        
     }
     else
     {
         if(Notify.bDoAreaDamage)
         {
-            bDealtDmg = DoAreaImpact(int(Notify.DamageScale * BaseDamage), MomentumScalar);            
+            bDealtDmg = DoAreaImpact(int(Notify.DamageScale * BaseDamage), MomentumScalar, CurrentDamageType);            
         }
         else
         {
             if(Notify.bDoSwipeDamage)
             {
-                bDealtDmg = DoSwipeImpact(int(Notify.DamageScale * BaseDamage), Notify.SwipeDirection, MomentumScalar);                
+                bDealtDmg = DoSwipeImpact(int(Notify.DamageScale * BaseDamage), Notify.SwipeDirection, MomentumScalar,,, CurrentDamageType);                
             }
             else
             {
-                bDealtDmg = CheckEnemyImpact(int(Notify.DamageScale * BaseDamage), MomentumScalar);
+                bDealtDmg = CheckEnemyImpact(int(Notify.DamageScale * BaseDamage), MomentumScalar, CurrentDamageType, ((Notify.AttackReachOverride > 0) ? Notify.AttackReachOverride : MaxHitRange));
             }
         }
     }
@@ -162,23 +165,25 @@ function MeleeImpactNotify(KFAnimNotify_MeleeImpact Notify)
     }
 }
 
-protected function bool CheckEnemyImpact(int Damage, float MomentumScalar)
+protected function bool CheckEnemyImpact(int Damage, float MomentumScalar, optional class<KFDamageType> inDamageType, optional float AttackReachOverride)
 {
     local KFAIController AIC;
 
+    inDamageType = MyDamageType;
+    AttackReachOverride = MaxHitRange;
     AIC = KFAIController(Outer.Instigator.Controller);
     if(AIC != none)
     {
-        if((AIC.Enemy != none) && ShouldDealDamageToEnemy(AIC.Enemy))
+        if((AIC.Enemy != none) && ShouldDealDamageToEnemy(AIC.Enemy, AttackReachOverride))
         {
-            ResolvePawnMeleeDamage(AIC.Enemy, Damage, MomentumScalar);
+            ResolvePawnMeleeDamage(AIC.Enemy, Damage, MomentumScalar, inDamageType);
             return true;            
         }
         else
         {
             if((AIC.DoorEnemy != none) && VSizeSq(Outer.Location - AIC.DoorEnemy.Location) < Square(500))
             {
-                ApplyMeleeDamage(AIC.DoorEnemy, Damage, MomentumScalar);
+                ApplyMeleeDamage(AIC.DoorEnemy, Damage, MomentumScalar, inDamageType);
                 return true;                
             }
             else
@@ -187,7 +192,7 @@ protected function bool CheckEnemyImpact(int Damage, float MomentumScalar)
                 {
                     if(KFDestructibleActor(AIC.ActorEnemy) != none)
                     {
-                        ApplyMeleeDamage(AIC.ActorEnemy, Damage, MomentumScalar);
+                        ApplyMeleeDamage(AIC.ActorEnemy, Damage, MomentumScalar, inDamageType);
                         return true;
                     }
                 }
@@ -197,7 +202,7 @@ protected function bool CheckEnemyImpact(int Damage, float MomentumScalar)
     return false;
 }
 
-protected function bool DoSwipeImpact(int Damage, optional KFPawn.EPawnOctant SwipeDir, optional float MomentumScalar, optional float Range, optional bool bPlayersOnly)
+protected function bool DoSwipeImpact(int Damage, optional KFPawn.EPawnOctant SwipeDir, optional float MomentumScalar, optional float Range, optional bool bPlayersOnly, optional class<KFDamageType> inDamageType)
 {
     local Pawn P;
     local Vector ConeDir, ConeStart;
@@ -207,6 +212,7 @@ protected function bool DoSwipeImpact(int Damage, optional KFPawn.EPawnOctant Sw
     SwipeDir = 0;
     MomentumScalar = 1;
     Range = MaxHitRange;    
+    inDamageType = MyDamageType;
     ConeDir = GetSwipeVector(SwipeDir);
     ConeStart = Outer.Location + vect(0, 0, 32);
     ConeRange = Range;
@@ -240,7 +246,7 @@ protected function bool DoSwipeImpact(int Damage, optional KFPawn.EPawnOctant Sw
             }
             continue;            
         }
-        ProcessSwipeHit(P, Damage, MomentumScalar);
+        ProcessSwipeHit(P, Damage, MomentumScalar, inDamageType);
         bFoundHit = true;        
     }    
     if(bLogMelee && bFoundHit)
@@ -283,7 +289,7 @@ protected function Vector GetSwipeVector(KFPawn.EPawnOctant SwipeDir)
     return vector(Outer.Rotation + R);
 }
 
-protected function ProcessSwipeHit(Actor A, int Damage, float MomentumScalar)
+protected function ProcessSwipeHit(Actor A, int Damage, float MomentumScalar, class<KFDamageType> inDamageType)
 {
     local KFPawn Victim;
     local int ListIdx;
@@ -314,10 +320,10 @@ protected function ProcessSwipeHit(Actor A, int Damage, float MomentumScalar)
             }
         }
     }
-    ResolvePawnMeleeDamage(Victim, Damage, MomentumScalar);
+    ResolvePawnMeleeDamage(Victim, Damage, MomentumScalar, inDamageType);
 }
 
-protected function ResolvePawnMeleeDamage(Pawn Victim, int Damage, float Momentum)
+protected function ResolvePawnMeleeDamage(Pawn Victim, int Damage, float Momentum, class<KFDamageType> inDamageType)
 {
     local DelayedMeleeInfo NewDmgInfo;
     local float RealDeltaSeconds, PingCompensation;
@@ -338,11 +344,12 @@ protected function ResolvePawnMeleeDamage(Pawn Victim, int Damage, float Momentu
             NewDmgInfo.Damage = Damage;
             NewDmgInfo.Momentum = Momentum;
             NewDmgInfo.TimeOfDamage = Outer.WorldInfo.RealTimeSeconds + PingCompensation;
+            NewDmgInfo.DamageType = inDamageType;
             PendingDamage.AddItem(NewDmgInfo;
             return;
         }
     }
-    ApplyMeleeDamage(Victim, Damage, Momentum);
+    ApplyMeleeDamage(Victim, Damage, Momentum, inDamageType);
 }
 
 event ApplyDelayedPawnDamage(int I)
@@ -357,7 +364,7 @@ event ApplyDelayedPawnDamage(int I)
             return;
         }
     }
-    ApplyMeleeDamage(PendingDamage[I].Victim, PendingDamage[I].Damage, PendingDamage[I].Momentum);
+    ApplyMeleeDamage(PendingDamage[I].Victim, PendingDamage[I].Damage, PendingDamage[I].Momentum, PendingDamage[I].DamageType);
 }
 
 defaultproperties

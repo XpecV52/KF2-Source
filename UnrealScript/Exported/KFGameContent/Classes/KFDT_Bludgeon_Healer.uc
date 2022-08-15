@@ -46,65 +46,6 @@ class KFDT_Bludgeon_Healer extends KFDT_Bludgeon_RifleButt
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -125,7 +66,7 @@ class KFDT_Bludgeon_Healer extends KFDT_Bludgeon_RifleButt
 
 defaultproperties
 {
-   AARWeaponID=51
+   WeaponDef=Class'kfgamecontent.KFWeapDef_Healer'
    Name="Default__KFDT_Bludgeon_Healer"
-   ObjectArchetype=KFDT_Bludgeon_RifleButt'KFGameContent.Default__KFDT_Bludgeon_RifleButt'
+   ObjectArchetype=KFDT_Bludgeon_RifleButt'kfgamecontent.Default__KFDT_Bludgeon_RifleButt'
 }

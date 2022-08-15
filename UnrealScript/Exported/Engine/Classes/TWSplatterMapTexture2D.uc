@@ -18,6 +18,7 @@ var bool bDirty;
 
 defaultproperties
 {
+   bNoTiling=True
    LODGroup=TEXTUREGROUP_Splattermap
    Name="Default__TWSplatterMapTexture2D"
    ObjectArchetype=Texture2D'Engine.Default__Texture2D'

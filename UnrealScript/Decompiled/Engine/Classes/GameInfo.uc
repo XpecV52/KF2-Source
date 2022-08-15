@@ -951,11 +951,16 @@ event PlayerController Login(string Portal, string Options, const UniqueNetId Un
     return NewPlayer;
 }
 
+static function bool AllowAnalyticsLogging();
+
 event bool SeatPlayer(const UniqueNetId SeatedPlayerID);
 
 event MakeReservations(const string URLOptions, const UniqueNetId PlayerID, out string OutError);
 
 event bool ConfirmReservation(const UniqueNetId PlayerID);
+
+// Export UGameInfo::execSetNeedsRestart(FFrame&, void* const)
+native function SetNeedsRestart();
 
 function StartMatch()
 {

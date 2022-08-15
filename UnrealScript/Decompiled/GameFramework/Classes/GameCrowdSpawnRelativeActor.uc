@@ -20,4 +20,5 @@ defaultproperties
     object end
     // Reference: SpriteComponent'Default__GameCrowdSpawnRelativeActor.Sprite'
     Components(0)=Sprite
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
 }

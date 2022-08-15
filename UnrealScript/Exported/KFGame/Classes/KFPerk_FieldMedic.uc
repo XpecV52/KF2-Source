@@ -202,11 +202,8 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
 	switch( DamageType.Name )
 	{
 		case 'KFDT_BloatPuke':
-			TempDamage -= TempDamage * FMin( BloatBileResistance.StartingValue * GetLevel(), BloatBileResistance.MaxValue );
-			if( TempDamage < 1.f )
-			{
-				TempDamage = 1.f;
-			}
+			TempDamage -= TempDamage * GetPassiveValue( BloatBileResistance, GetLevel() );
+			FMax( TempDamage, 1.f );
 		break;
 	}
 
@@ -651,7 +648,7 @@ defaultproperties
 {
    HealerRecharge=(Name="Healer Recharge",Increment=0.080000,StartingValue=1.000000,MaxValue=3.000000)
    HealPotency=(Name="Healer Recharge",Increment=0.020000,StartingValue=1.000000,MaxValue=1.500000)
-   BloatBileResistance=(Name="Bloat Bile Resistance",Increment=0.030000,MaxValue=0.750000)
+   BloatBileResistance=(Name="Bloat Bile Resistance",Increment=0.020000,MaxValue=0.500000)
    MovementSpeed=(Name="Movement Speed",Increment=0.010000,StartingValue=1.000000,MaxValue=1.250000)
    Armor=(Name="Armor",Increment=0.030000,StartingValue=1.000000,MaxValue=1.750000)
    VaccinationResistableDamageTypeNames(0)="KFDT_BloatPuke"
@@ -679,19 +676,19 @@ defaultproperties
    PerkSkills(0)=(Name="HealingSurge",StartingValue=1.200000,MaxValue=1.200000,IconPath="UI_PerkTalent_TEX.Medic.UI_Talents_Medic_HealingSurge")
    PerkSkills(1)=(Name="Enforcer",StartingValue=1.200000,MaxValue=1.200000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Enforcer")
    PerkSkills(2)=(Name="Combatant",StartingValue=0.600000,MaxValue=0.600000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Combatant")
-   PerkSkills(3)=(Name="Armament",StartingValue=0.100000,MaxValue=0.020000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Armament")
+   PerkSkills(3)=(Name="Armament",StartingValue=0.250000,MaxValue=0.010000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Armament")
    PerkSkills(4)=(Name="Regeneration",StartingValue=0.020000,MaxValue=0.020000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Regenerate")
    PerkSkills(5)=(Name="Lacerate",StartingValue=0.020000,MaxValue=0.020000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Lacerate")
-   PerkSkills(6)=(Name="VaccinationArmor",StartingValue=0.040000,MaxValue=0.040000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Vaccination")
+   PerkSkills(6)=(Name="VaccinationArmor",StartingValue=0.020000,MaxValue=0.020000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Vaccination")
    PerkSkills(7)=(Name="VaccinationDamageMod",StartingValue=0.750000,MaxValue=0.750000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_AcidicCompound")
    PerkSkills(8)=(Name="AirborneAgent",StartingValue=0.200000,MaxValue=0.200000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_AirborneAgent")
    PerkSkills(9)=(Name="Sedative",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Anesthetist")
    RegenerationInterval=5.000000
    RegenerationAmount=2
    VaccinationDuration=10.000000
-   PrimaryWeaponClassName="KFGameContent.KFWeap_Pistol_Medic"
-   MeleeWeaponClassName="KFGameContent.KFWeap_Knife_FieldMedic"
-   GrenadeClassName="KFGameContent.KFProj_MedicGrenade"
+   PrimaryWeaponDef=Class'KFGame.KFWeapDef_MedicPistol'
+   KnifeWeaponDef=Class'KFGame.KFWeapDef_Knife_Medic'
+   GrenadeWeaponDef=Class'KFGame.KFWeapDef_Grenade_Medic'
    Name="Default__KFPerk_FieldMedic"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

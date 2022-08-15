@@ -40,5 +40,5 @@ defaultproperties
    MaxDistanceForFlameThrower=1000
    bAllowScriptTeamCheck=True
    Name="Default__KFAIController_HuskFriendlyTest"
-   ObjectArchetype=KFAIController_ZedHusk'KFGameContent.Default__KFAIController_ZedHusk'
+   ObjectArchetype=KFAIController_ZedHusk'kfgamecontent.Default__KFAIController_ZedHusk'
 }

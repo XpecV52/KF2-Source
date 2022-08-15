@@ -9,6 +9,7 @@
 //=============================================================================
 
 class KFCharacterInfo_Human extends KFCharacterInfoBase
+	native(Pawn)
 	implements(KFUnlockableAsset)
 	hidecategories(Object);
 
@@ -38,7 +39,7 @@ var(General) bool bIsFemale;
 var(ThirdPerson) int HeadMaterialID;
 var(ThirdPerson) int BodyMaterialID;
 
-struct SkinVariant
+struct native SkinVariant
 {
 	var() const int UnlockAssetID;
 	/** The path to this skins package and texture */
@@ -47,9 +48,9 @@ struct SkinVariant
  	var() MaterialInstance Skin;
 };
 
-struct OutfitVariants
+struct native OutfitVariants
 {
-	var() const int UnlockAssetID;
+	//var() const int UnlockAssetID;
 	/** The path to this skins package and texture */
 	var() Texture UITexture;
 	/** Outfit mesh name. Must be of form PackageName.MeshName */
@@ -59,28 +60,33 @@ struct OutfitVariants
 };
 
 /** List of booleans that will effect which items can be attached with the current attachment */
-struct AttachmentOverrideList
+struct native AttachmentOverrideList
 {
 	var() bool bHat;
 	var() bool bFace;	
 	var() bool bEyes;	
 	var() bool bJaw;
+
+	/** List of cosmetic indices that this attachment will detach, if they are currently attached to a player */
+	var() array<byte> SpecialOverrideIds;
 };
 
-struct AttachmentVariants
+struct native AttachmentVariants
 {
-	var() const int UnlockAssetID;
+	//var() const int UnlockAssetID;
 	/** The path to this skins package and texture */
 	var() Texture UITexture;
 	/** Whether the attachment is a skeletal mesh. Otherwise, it is treated as a static mesh attachment.
 		Skeletal meshe animations are parented with the body mesh and must share the same skeletaon. */
 	var() bool bIsSkeletalAttachment;
+	/** If set enables the material mask parameter on the assigned head variant */
+	var() bool bMaskHeadMesh;
 	/** Attachment mesh name. Must be of form PackageName.MeshName */
 	var() string MeshName;
 	/** Name of the socket that it attaches to. The socket MUST exist in the body mesh for static mesh
 		attachments to work. SocketName is also used to resolve conflicts - when more than one attachment
 		tries to attach to the same socket, it will replace the previously existing attachment. It will keep
-		both if there is no conflict. NOTE: Skeletal meshes do not use sockets for attachment, but the socket name
+		both if there is no conflict. NOTE: Skeletal meshes do not require sockets for attachment, but the socket name
 		can still be used for conflit resolution. */
 	var() name SocketName;
 	/** Translation relative to given socket (for additional control) */
@@ -109,17 +115,17 @@ struct AttachmentVariants
 	to assemble the character, otherwise it uses the CharacterMesh
 */
 /** The outfit variants for a character. Used for Character Customization */
-var(ThirdPerson) array<OutfitVariants> BodyVariants;
+var(ThirdPerson) const array<OutfitVariants> BodyVariants;
 /** The head variants for a character. Used for Character Customization */
-var(ThirdPerson) array<OutfitVariants> HeadVariants;
+var(ThirdPerson) const array<OutfitVariants> HeadVariants;
 /** Various cosmetic variants for a character. Used for Character Customization */
-var(ThirdPerson) array<AttachmentVariants> CosmeticVariants;
+var(ThirdPerson) const array<AttachmentVariants> CosmeticVariants;
 
 /************************************************************************/
 /*  1P Character Info                                                   */
 /************************************************************************/
 
-struct FirstPersonArmVariants
+struct native FirstPersonArmVariants
 {
 	/** Mesh name. Must be of form PackageName.MeshName */
 	var() string MeshName;
@@ -145,7 +151,20 @@ var(FirstPerson) string			ArmSkinPackageName;
 
 // make sure this matches NUM_FAVE_WEAPS in KFDialogManager
 const NUM_FAVE_WEAPS = 8;
-var(FaveWeapons) name FavoriteWeaponClassNames[NUM_FAVE_WEAPS];
+var(FaveWeapons) editconst name FavoriteWeaponClassNames[NUM_FAVE_WEAPS];
+var(FaveWeapons) editoronly class<KFWeaponDefinition> FavoriteWeaponClassDefs[NUM_FAVE_WEAPS]<AllowAbstract>;
+
+/************************************************************************/
+/*  Native Functions												    */
+/************************************************************************/
+
+cpptext
+{
+	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent);
+
+	// set FavoriteWeaponClassNames from FavoriteWeaponClassDefs
+	void SetFavoriteWeaponClassNames();
+}
 
 /************************************************************************/
 /*  Script Functions												    */
@@ -166,12 +185,6 @@ function SkeletalMesh GetFirstPersonArms()
 	}
 
 	return ArmMesh;
-}
-
-/** Return the material used for the 1P arm skeletal mesh given a team */
-function MaterialInterface GetFirstPersonArmsMaterial(int TeamNum)
-{
-   return GetFirstPersonArms().Materials[0];
 }
 
 /** Return the texture portrait stored for this character */
@@ -223,7 +236,9 @@ simulated function SetCharacterFromArch( KFPawn KFP, optional KFPlayerReplicatio
 /** Sets the pawns character mesh from it's CharacterInfo, and updates instance of player in map if there is one. */
 simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplicationInfo KFPRI )
 {
-	local int AttachmentIdx;
+	local int AttachmentIdx, CosmeticMeshIdx;
+	local bool bMaskHeadMesh;
+
    	super.SetCharacterMeshFromArch( KFP, KFPRI );
 
    	if ( KFPRI == none )
@@ -236,117 +251,62 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
     SetBodyMeshAndSkin(
     	KFPRI.RepCustomizationInfo.BodyMeshIndex,
     	KFPRI.RepCustomizationInfo.BodySkinIndex,
-    	KFP, KFPRI);
+    	KFP);
 
     // Head mesh & skin. Index of 255 implies use index 0 (default).
 	SetHeadMeshAndSkin(
 		KFPRI.RepCustomizationInfo.HeadMeshIndex,
 		KFPRI.RepCustomizationInfo.HeadSkinIndex,
-		KFP, KFPRI);
+		KFP);
 
-	// Must clear all attachments before trying to attach new ones, 
-	// otherwise we might accidentally remove things we're not supposed to
-	for( AttachmentIdx=0; AttachmentIdx < `MAX_COSMETIC_ATTACHMENTS; AttachmentIdx++ )
+	// skip dedicated for purely cosmetic stuff
+	if ( KFP.WorldInfo.NetMode != NM_DedicatedServer )
 	{
-		// Clear any previous attachments from other characters
-		DetatchAttachment(AttachmentIdx, KFP);
-	}
-
-	// Cosmetic attachment mesh & skin. Index of 255 implies don't use any attachments (default)
-	for( AttachmentIdx=0; AttachmentIdx < `MAX_COSMETIC_ATTACHMENTS; AttachmentIdx++ )
-	{
-		// Attach all saved attachments to the character
-		SetAttachmentMeshAndSkin(
-			KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx],
-			KFPRI.RepCustomizationInfo.AttachmentSkinIndices[AttachmentIdx],
-			KFP, KFPRI);
-	}
-}
-
-simulated function byte GetValidVarriantIndex(out array<OutfitVariants> VarriantList, byte StartingIndex)
-{
-	local byte i;
-	local OutfitVariants CurrentBodyVariant;
-
-	for( i = 0; i < VarriantList.length; i++ )
-	{
-		CurrentBodyVariant = VarriantList[i];
-		if( class'KFUnlockManager'.static.GetAvailableOutfit(CurrentBodyVariant) )
+		// Must clear all attachments before trying to attach new ones, 
+		// otherwise we might accidentally remove things we're not supposed to
+		for( AttachmentIdx=0; AttachmentIdx < `MAX_COSMETIC_ATTACHMENTS; AttachmentIdx++ )
 		{
-			return i;
+			// Clear any previous attachments from other characters
+			DetachAttachment(AttachmentIdx, KFP);
+		}
+
+		// Cosmetic attachment mesh & skin. Index of 255 implies don't use any attachments (default)
+		for( AttachmentIdx=0; AttachmentIdx < `MAX_COSMETIC_ATTACHMENTS; AttachmentIdx++ )
+		{
+			CosmeticMeshIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx];
+			if ( CosmeticMeshIdx != `CLEARED_ATTACHMENT_INDEX )
+			{
+				bMaskHeadMesh = bMaskHeadMesh || CosmeticVariants[CosmeticMeshIdx].bMaskHeadMesh;
+
+				// Attach all saved attachments to the character
+				SetAttachmentMeshAndSkin(
+					CosmeticMeshIdx,
+					KFPRI.RepCustomizationInfo.AttachmentSkinIndices[AttachmentIdx],
+					KFP, KFPRI);
+			}
+		}
+
+		// initial mask for new MIC (also see ResetHeadMaskParam())
+		if ( bMaskHeadMesh && KFP.HeadMIC != None )
+		{
+			KFP.HeadMIC.SetScalarParameterValue('Scalar_Mask', 1.f);
 		}
 	}
-
-	return 0;
 }
 
-simulated function byte GetValidSkinIndex(out array<SkinVariant> SkinList, byte StartingIndex)
-{
-	local byte i;
-	local SkinVariant CurrentSkinVariant;
-
-	for( i = 0; i < SkinList.length; i++ )
-	{
-		CurrentSkinVariant = SkinList[i];
-		if( class'KFUnlockManager'.static.GetAvailableSkin(CurrentSkinVariant) )
-		{
-			return i;
-		}
-	}
-
-	return 0;
-}
-
-simulated function byte GetValidAttachmentIndex(out array<AttachmentVariants> AttachmentList, byte StartingIndex)
-{
-	local byte i;
-	local AttachmentVariants CurrentAttachmentVariant;
-
-	for( i = 0; i < AttachmentList.length; i++ )
-	{
-		CurrentAttachmentVariant = AttachmentList[i];
-		if( class'KFUnlockManager'.static.GetAvailableAttachment(CurrentAttachmentVariant) )
-		{
-			return i;
-		}
-	}
-
-	return 0;
-}
-
-simulated function SetBodyMeshAndSkin(
+private function SetBodyMeshAndSkin(
 	byte CurrentBodyMeshIndex,
 	byte CurrentBodySkinIndex,
-	KFPawn KFP,
-	optional KFPlayerReplicationInfo KFPRI )
+	KFPawn KFP )
 {
 	local string CharBodyMeshName;
 	local SkeletalMesh CharBodyMesh;
-	local OutfitVariants CurrentBodyVariant;
-	local SkinVariant CurrentSkinVariant;
 
 	// Character Mesh
 	if( BodyVariants.length > 0 )
 	{
 		// Assign a skin to the body mesh as a material override
 		CurrentBodyMeshIndex = (CurrentBodyMeshIndex < BodyVariants.length) ? CurrentBodyMeshIndex : 0;
-
-		CurrentBodyVariant = BodyVariants[CurrentBodyMeshIndex];
-
- 		if( !class'KFUnlockManager'.static.GetAvailableOutfit(CurrentBodyVariant) &&
-			KFP.IsLocallyControlled() )
- 		{
- 			CurrentBodyMeshIndex = GetValidVarriantIndex(BodyVariants, CurrentBodyMeshIndex);
- 			CurrentBodyVariant = BodyVariants[CurrentBodyMeshIndex];
- 		}
-
- 		CurrentSkinVariant = CurrentBodyVariant.SkinVariations[CurrentBodySkinIndex];
-
- 		if( !class'KFUnlockManager'.static.GetAvailableSkin(CurrentSkinVariant) &&
-			KFP.IsLocallyControlled() )
- 		{
- 			CurrentBodySkinIndex = GetValidSkinIndex(CurrentBodyVariant.SkinVariations, CurrentBodySkinIndex);
- 		}
 
 		// Retrieve the name of the meshes to be used from the archetype
 		CharBodyMeshName = BodyVariants[CurrentBodyMeshIndex].MeshName;
@@ -356,9 +316,6 @@ simulated function SetBodyMeshAndSkin(
 
 		// Assign the body mesh to the pawn
 		KFP.Mesh.SetSkeletalMesh(CharBodyMesh);
-
-		KFPRI.RepCustomizationInfo.BodyMeshIndex = CurrentBodyMeshIndex;
-		KFPRI.RepCustomizationInfo.BodySkinIndex = CurrentBodySkinIndex;
 
 		if (KFP.WorldInfo.NetMode != NM_DedicatedServer)
 		{
@@ -427,42 +384,19 @@ protected simulated function SetHeadSkinMaterial(OutfitVariants CurrentVariant, 
 	}
 }
 
-simulated function SetHeadMeshAndSkin(
+private function SetHeadMeshAndSkin(
 	byte CurrentHeadMeshIndex,
 	byte CurrentHeadSkinIndex,
-	KFPawn KFP,
-	optional KFPlayerReplicationInfo KFPRI )
+	KFPawn KFP )
 {
 	local string CharHeadMeshName;
 	local SkeletalMesh CharHeadMesh;
-
-	local OutfitVariants HeadVariant;
-	local SkinVariant HeadSkinVariant; 
 
 	if ( HeadVariants.length > 0 )
 	{
 		CurrentHeadMeshIndex = (CurrentHeadMeshIndex < HeadVariants.length) ? CurrentHeadMeshIndex : 0;
 
-		HeadVariant = HeadVariants[CurrentHeadMeshIndex];
-
-		if( !class'KFUnlockManager'.static.GetAvailableOutfit(HeadVariant)  &&
-			KFP.IsLocallyControlled() )
- 		{
- 			CurrentHeadMeshIndex = GetValidVarriantIndex(HeadVariants, CurrentHeadMeshIndex);
- 			HeadVariant = HeadVariants[CurrentHeadMeshIndex];
- 		}
-
-		HeadSkinVariant = HeadVariant.SkinVariations[CurrentHeadSkinIndex];
-
- 		if( !class'KFUnlockManager'.static.GetAvailableSkin(HeadSkinVariant)  &&
-			KFP.IsLocallyControlled() )
- 		{
- 			CurrentHeadSkinIndex = GetValidSkinIndex(HeadVariant.SkinVariations, CurrentHeadSkinIndex);
- 			HeadSkinVariant = HeadVariant.SkinVariations[CurrentHeadSkinIndex];
- 		}
-
 		CharHeadMeshName = HeadVariants[CurrentHeadMeshIndex].MeshName;
-
 		CharHeadMesh = SkeletalMesh(DynamicLoadObject(CharHeadMeshName, class'SkeletalMesh'));
 
 		// Parent the third person head mesh to the body mesh
@@ -479,42 +413,34 @@ simulated function SetHeadMeshAndSkin(
 		{
 			SetHeadSkinMaterial(HeadVariants[CurrentHeadMeshIndex], CurrentHeadSkinIndex, KFP);
 		}
-
-        KFPRI.RepCustomizationInfo.HeadMeshIndex = CurrentHeadMeshIndex;
-        KFPRI.RepCustomizationInfo.HeadSkinIndex = CurrentHeadSkinIndex;
 	}
 }
 
-/** Check to see if the attachment is supported for this mesh. Go through all the sockets of the mesh
-	and check if the socket for the attachment is present. If not, that attachment is not supported.
+/** 
+ * Check to see if the attachment is supported for this mesh. Go through all the sockets of the mesh
+ * and check if the socket for the attachment is present. If not, that attachment is not supported.
+ * Network: Local Player Only
  */
-function bool IsAttachmentSupported(byte CurrentAttachmentMeshIndex, KFPawn KFP)
+function bool IsAttachmentAvailable(const out AttachmentVariants Attachment, Pawn PreviewPawn)
 {
-	local name CharAttachmentSocketName;
+	if ( !class'KFUnlockManager'.static.GetAvailableAttachment(Attachment) )
+	{
+		`log("Attachment" @ Attachment.MeshName @ "is not purchased.");
+		return FALSE;
+	}
+	else if ( Attachment.bIsSkeletalAttachment && Attachment.SocketName != '' 
+		&& PreviewPawn.Mesh.GetSocketByName(Attachment.SocketName) == None )
+	{
+		`log("Attachment" @ Attachment.MeshName @ "is missing a required socket.");
+		return FALSE;
+	}
 
-	if ( CosmeticVariants.length > 0 )
-	{
-		if( CosmeticVariants[CurrentAttachmentMeshIndex].bIsSkeletalAttachment )
-		{
-			// Skeletal attachments are always supported since then don't rely on a socket
-			return true;
-		}
-		else
-		{
-			// For static attachments, check to see if the socket is present on the mesh
-			CharAttachmentSocketName = CosmeticVariants[CurrentAttachmentMeshIndex].SocketName;
-			return KFP.mesh.GetSocketByName(CharAttachmentSocketName) != none;
-		}
-	}
-	else
-	{
-		return false;
-	}
+	return TRUE;
 }
 
 protected simulated function SetAttachmentSkinMaterial(
 	int PawnAttachmentIndex,
-	AttachmentVariants CurrentVariant,
+	const out AttachmentVariants CurrentVariant,
 	byte NewSkinIndex,
 	KFPawn KFP)
 {
@@ -524,10 +450,17 @@ protected simulated function SetAttachmentSkinMaterial(
 		if( CurrentVariant.SkinVariations.length > 0 )
 		{
 			// Assign a skin to the attachment mesh as a material override
-			NewSkinIndex = (NewSkinIndex < CurrentVariant.SkinVariations.length) ? NewSkinIndex : 0;
-			KFP.ThirdPersonAttachments[PawnAttachmentIndex].SetMaterial(
-				CurrentVariant.SkinMaterialID,
-				CurrentVariant.SkinVariations[NewSkinIndex].Skin);
+			if ( NewSkinIndex < CurrentVariant.SkinVariations.length )
+			{
+				KFP.ThirdPersonAttachments[PawnAttachmentIndex].SetMaterial(
+					CurrentVariant.SkinMaterialID,
+					CurrentVariant.SkinVariations[NewSkinIndex].Skin);
+			}
+			else
+			{
+				`log("Out of bounds skin index for"@CurrentVariant.MeshName);
+				RemoveAttachmentMeshAndSkin(PawnAttachmentIndex, KFP);
+			}
 		}
 		else
 		{
@@ -541,7 +474,7 @@ protected simulated function SetAttachmentSkinMaterial(
 }
 
 /** Called on owning client to change a cosmetic attachment or on other clients via replication */
-simulated function SetAttachmentMeshAndSkin(
+private function SetAttachmentMeshAndSkin(
 	byte CurrentAttachmentMeshIndex,
 	byte CurrentAttachmentSkinIndex,
 	KFPawn KFP,
@@ -560,11 +493,13 @@ simulated function SetAttachmentMeshAndSkin(
 	local rotator AttachmentRotationRelativeToSocket;
 	local int AttachmentSlotIndex;
 
-	local AttachmentVariants AttachmentVariant;
-	local SkinVariant AttachmentSkin;
+	if (KFP.WorldInfo.NetMode == NM_DedicatedServer)
+	{
+		return;
+	}
 
 	// Clear any previously attachments for the same slot
-	DetatchConflictingAttachments(CurrentAttachmentMeshIndex, KFP, KFPRI);
+	//DetachConflictingAttachments(CurrentAttachmentMeshIndex, KFP, KFPRI);
 	// Get a slot where this attachment could fit
 	AttachmentSlotIndex = GetAttachmentSlotIndex(CurrentAttachmentMeshIndex, KFP);
 
@@ -573,24 +508,6 @@ simulated function SetAttachmentMeshAndSkin(
 	if ( CosmeticVariants.length > 0 &&
 		 CurrentAttachmentMeshIndex < CosmeticVariants.length )
 	{
-		AttachmentVariant = CosmeticVariants[CurrentAttachmentMeshIndex];
-
-		if( !class'KFUnlockManager'.static.GetAvailableAttachment(AttachmentVariant) &&
-			KFP.IsLocallyControlled() )
- 		{
- 			CurrentAttachmentMeshIndex = GetValidAttachmentIndex(CosmeticVariants, CurrentAttachmentMeshIndex);
- 			AttachmentVariant = CosmeticVariants[CurrentAttachmentMeshIndex];
- 		}
-
-		AttachmentSkin = AttachmentVariant.SkinVariations[CurrentAttachmentSkinIndex];
-
- 		if(!class'KFUnlockManager'.static.GetAvailableSkin(AttachmentSkin) &&
-			KFP.IsLocallyControlled())
- 		{
- 			CurrentAttachmentSkinIndex = GetValidSkinIndex(AttachmentVariant.SkinVariations, CurrentAttachmentSkinIndex);
- 			AttachmentSkin = AttachmentVariant.SkinVariations[CurrentAttachmentSkinIndex];
- 		}
-
 		// Cache values from character info
 		CharAttachmentMeshName = CosmeticVariants[CurrentAttachmentMeshIndex].MeshName;
 		CharAttachmentSocketName = CosmeticVariants[CurrentAttachmentMeshIndex].SocketName;
@@ -605,6 +522,17 @@ simulated function SetAttachmentMeshAndSkin(
 		{
 			if( SkeletalMeshComponent(KFP.ThirdPersonAttachments[AttachmentSlotIndex]) != none )
 			{
+				// If previously attached and we could have changed outfits (e.g. local player UI) then re-validate
+				// required skeletal mesh socket.  Must be after body mesh DLO, but before AttachComponent.
+				if ( KFP.IsLocallyControlled() )
+				{
+					if ( CharAttachmentSocketName != '' && KFP.Mesh.GetSocketByName(CharAttachmentSocketName) == None )
+					{
+						RemoveAttachmentMeshAndSkin(AttachmentSlotIndex, KFP, KFPRI);
+						return;
+					}
+				}
+
 				SkeletalAttachment = SkeletalMeshComponent(KFP.ThirdPersonAttachments[AttachmentSlotIndex]);
 			}
 			else
@@ -667,17 +595,11 @@ simulated function SetAttachmentMeshAndSkin(
 		KFP.ThirdPersonAttachmentBitMask = KFP.ThirdPersonAttachmentBitMask | (1 << AttachmentSlotIndex);
 		KFP.ThirdPersonAttachmentSocketNames[AttachmentSlotIndex] = CharAttachmentSocketName;
 
-		if (KFP.WorldInfo.NetMode != NM_DedicatedServer)
-		{
-			SetAttachmentSkinMaterial(
-				AttachmentSlotIndex,
-				CosmeticVariants[CurrentAttachmentMeshIndex],
-				CurrentAttachmentSkinIndex,
-				KFP);
-		}
-
-   		KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentSlotIndex] = CurrentAttachmentMeshIndex;
-    	KFPRI.RepCustomizationInfo.AttachmentSkinIndices[AttachmentSlotIndex] = CurrentAttachmentSkinIndex;
+		SetAttachmentSkinMaterial(
+			AttachmentSlotIndex,
+			CosmeticVariants[CurrentAttachmentMeshIndex],
+			CurrentAttachmentSkinIndex,
+			KFP);
 	}
 
 	// Treat `CLEARED_ATTACHMENT_INDEX as special value (for client detachment)
@@ -687,83 +609,75 @@ simulated function SetAttachmentMeshAndSkin(
 	}
 }
 
-simulated function ClearAllAttachments(KFPawn KFP, KFPlayerReplicationInfo KFPRI)
-{
-	local byte i;
-	for( i = 0; i < `MAX_COSMETIC_ATTACHMENTS; i++ )
-	{
-		RemoveAttachmentMeshAndSkin(i, KFP, KFPRI);
-	}
-}
-
-/** Check to see if the socket specified is already in use by another attachment.
-	If TRUE, it returns the index of the attachment with the socket conflict
+/**
+ * Removes any attachments that exist in the same socket or have overriding cases 
+ * Network: Local Player 
  */
-function bool HasSocketConflict(
-	KFPawn KFP,
-	name SocketName,
-	out int OutConflictAttachmentIndex)
+function DetachConflictingAttachments(byte NewAttachmentMeshIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI)
 {
-	local int AttachmentIdx;
-
-	for( AttachmentIdx=0; AttachmentIdx < `MAX_COSMETIC_ATTACHMENTS; AttachmentIdx++ )
-	{
-		if( KFP.ThirdPersonAttachmentSocketNames[AttachmentIdx] != '' &&
-			KFP.ThirdPersonAttachmentSocketNames[AttachmentIdx] == SocketName )
-		{
-			OutConflictAttachmentIndex = AttachmentIdx;
-			return true;
-		}
-	}
-
-	OutConflictAttachmentIndex = -1;
-	return false;
-}
-
-/** Removes any attachments that exist in the same socket or have overriding cases */
-function DetatchConflictingAttachments(byte CurrentAttachmentMeshIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI)
-{
-	local name CharAttachmentSocketName;
-	local int AttachmentIdx;
+	local name NewAttachmentSocketName;
+	local int i, CurrentAttachmentIdx;
 
 	if ( CosmeticVariants.length > 0 &&
-		 CurrentAttachmentMeshIndex < CosmeticVariants.length )
+		 NewAttachmentMeshIndex < CosmeticVariants.length )
 	{
 		// The socket that this attachment requires
-		CharAttachmentSocketName = CosmeticVariants[CurrentAttachmentMeshIndex].SocketName;
+		NewAttachmentSocketName = CosmeticVariants[NewAttachmentMeshIndex].SocketName;
 
-		for( AttachmentIdx=0; AttachmentIdx < `MAX_COSMETIC_ATTACHMENTS; AttachmentIdx++ )
+		for( i=0; i < `MAX_COSMETIC_ATTACHMENTS; i++ )
 		{
+			CurrentAttachmentIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[i];
+			if ( CurrentAttachmentIdx == `CLEARED_ATTACHMENT_INDEX )
+				continue;
+
 			// Remove the object if it is taking up our desired slot
-			if( KFP.ThirdPersonAttachmentSocketNames[AttachmentIdx] != '' &&
-				KFP.ThirdPersonAttachmentSocketNames[AttachmentIdx] == CharAttachmentSocketName )
+			if( KFP.ThirdPersonAttachmentSocketNames[i] != '' &&
+				KFP.ThirdPersonAttachmentSocketNames[i] == NewAttachmentSocketName )
 			{
-				RemoveAttachmentMeshAndSkin(AttachmentIdx, KFP, KFPRI);	
+				RemoveAttachmentMeshAndSkin(i, KFP, KFPRI);	
 				continue;
 			}
 
 			// Remove the object if it cannot exist at the same time as another equipped item
-			if( GetOverrideCase(KFP.ThirdPersonAttachmentSocketNames[AttachmentIdx], CurrentAttachmentMeshIndex) )
+			if( GetOverrideCase(CurrentAttachmentIdx, NewAttachmentMeshIndex) )
 			{
-				RemoveAttachmentMeshAndSkin(AttachmentIdx, KFP, KFPRI);	
+				RemoveAttachmentMeshAndSkin(i, KFP, KFPRI);
+				continue;
+			}
+
+			// Check inverse override
+			if( GetOverrideCase(NewAttachmentMeshIndex, CurrentAttachmentIdx) )
+			{
+				RemoveAttachmentMeshAndSkin(i, KFP, KFPRI);
+				continue;
 			}
 		}
 	}
 }
 
-function bool GetOverrideCase(name SocketName, byte AttachmentIndex)
+/**
+ * Removes any attachments that exist in the same socket or have overriding cases 
+ * Network: Local Player 
+ */
+function bool GetOverrideCase(byte AttachmentIndex1, byte AttachmentIndex2)
 {
-	switch(SocketName)
+	if ( CosmeticVariants[AttachmentIndex2].OverrideList.SpecialOverrideIds.Find(AttachmentIndex1) != INDEX_NONE )
+	{
+		return TRUE;
+	}
+
+	switch(CosmeticVariants[AttachmentIndex1].SocketName)
 	{
 		case 'Hat_Attach':
-			return CosmeticVariants[AttachmentIndex].OverrideList.bHat;
+			return CosmeticVariants[AttachmentIndex2].OverrideList.bHat;
 		case 'Face_Attach':
-			return CosmeticVariants[AttachmentIndex].OverrideList.bFace;
+			return CosmeticVariants[AttachmentIndex2].OverrideList.bFace;
 		case 'Eyes_Attach':
-			return CosmeticVariants[AttachmentIndex].OverrideList.bEyes;
+			return CosmeticVariants[AttachmentIndex2].OverrideList.bEyes;
 		case 'Jaw_Attach':
-			return CosmeticVariants[AttachmentIndex].OverrideList.bJaw;
+			return CosmeticVariants[AttachmentIndex2].OverrideList.bJaw;
 	}
+
 	return false;
 }
 
@@ -796,18 +710,17 @@ simulated function RemoveAttachmentMeshAndSkin(
 	optional KFPlayerReplicationInfo KFPRI)
 {
 	// Detach the attachment
-	DetatchAttachment(PawnAttachmentIndex, KFP);
+	DetachAttachment(PawnAttachmentIndex, KFP);
 
 	// Notify clients
 	if( KFPRI != none )
 	{
-		KFPRI.RepCustomizationInfo.AttachmentMeshIndices[PawnAttachmentIndex] = `CLEARED_ATTACHMENT_INDEX;
-        KFPRI.RepCustomizationInfo.AttachmentSkinIndices[PawnAttachmentIndex] = `CLEARED_ATTACHMENT_INDEX;        
+		KFPRI.ClearCharacterAttachment(PawnAttachmentIndex);
     }
 }
 
 /** Remove the attachment from the mesh */
-function DetatchAttachment(int PawnAttachmentIndex, KFPawn KFP)
+function DetachAttachment(int PawnAttachmentIndex, KFPawn KFP)
 {
 	// Detach the attachment
 	if( KFP.ThirdPersonAttachments[PawnAttachmentIndex] != none )
@@ -842,19 +755,17 @@ simulated function SetFirstPersonArmsFromArch( KFPawn KFP, optional KFPlayerRepl
     SetArmsMeshAndSkin(
     	KFPRI.RepCustomizationInfo.BodyMeshIndex,
     	KFPRI.RepCustomizationInfo.BodySkinIndex,
-    	KFP, KFPRI);
+    	KFP);
 }
 
 simulated function SetArmsMeshAndSkin(
 	byte ArmsMeshIndex,
 	byte ArmsSkinIndex,
-	KFPawn KFP,
-	optional KFPlayerReplicationInfo KFPRI )
+	KFPawn KFP )
 {
 	local byte CurrentArmMeshIndex, CurrentArmSkinIndex;
 	local string CharArmMeshName;
 	local SkeletalMesh CharArmMesh;
-
 
 	if (KFP.WorldInfo.NetMode != NM_DedicatedServer && KFP.IsHumanControlled() && KFP.IsLocallyControlled())
 	{

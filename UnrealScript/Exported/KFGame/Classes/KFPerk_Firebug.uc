@@ -8,7 +8,8 @@
 // Christian "schneidzekk" Schneider
 //=============================================================================
 
-class KFPerk_Firebug extends KFPerk;
+class KFPerk_Firebug extends KFPerk
+	native;
 
 
 
@@ -81,7 +82,7 @@ class KFPerk_Firebug extends KFPerk;
 
 
 
-#linenumber 13
+#linenumber 14
 
 var		const	PerkSkill 			WeaponDamage;						// 1% increased Perk weapon damage per level (max 25%)
 var 	const	PerkSkill			WeaponReload;              			// 1% faster perk weapon reload per level (max 25%)
@@ -94,8 +95,6 @@ var 	const 	int 				HeatWaveRadiusSQ;
 var		const	float 				ShrapnelChance;
 var 			GameExplosion		ExplosionTemplate;
 var 			const String		ShrapnelExplosionDamageTypeName;
-
-var		const	array<Name>			ZedTimeModifyingStates;
 
 enum EFirebugSkills
 {
@@ -389,7 +388,7 @@ simulated function float GetZedTimeModifier( KFWeapon W )
  * @brief skills and weapons can modify the stumbling power
  * @return stumpling power modifier
  */
-function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier )
+function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart )
 {
 	if( IsHeatWaveActive() && IsDamageTypeOnPerk(DamageType) && InHeatRange(KFP) )
 	{
@@ -601,10 +600,6 @@ defaultproperties
    ShrapnelChance=0.300000
    ExplosionTemplate=KFGameExplosion'KFGame.Default__KFPerk_Firebug:ExploTemplate0'
    ShrapnelExplosionDamageTypeName="KFGameContent.KFDT_Explosive_Shrapnel"
-   ZedTimeModifyingStates(0)="WeaponFiring"
-   ZedTimeModifyingStates(1)="WeaponBurstFiring"
-   ZedTimeModifyingStates(2)="WeaponSingleFiring"
-   ZedTimeModifyingStates(3)="SprayingFire"
    ProgressStatID=30
    PerkBuildStatID=31
    SecondaryXPModifier(0)=2
@@ -635,9 +630,13 @@ defaultproperties
    PerkSkills(7)=(Name="SplashDamage",StartingValue=2.000000,MaxValue=2.000000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_SplashDamage")
    PerkSkills(8)=(Name="Combustion",StartingValue=1.030000,MaxValue=1.030000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Combustion")
    PerkSkills(9)=(Name="Scorch",StartingValue=0.900000,MaxValue=0.900000,IconPath="UI_PerkTalent_TEX.Firebug.UI_Talents_Firebug_Scorch")
-   PrimaryWeaponClassName="KFGameContent.KFWeap_Flame_CaulkBurn"
-   MeleeWeaponClassName="KFGameContent.KFWeap_Knife_Firebug"
-   GrenadeClassName="KFGameContent.KFProj_MolotovGrenade"
+   ZedTimeModifyingStates(0)="WeaponFiring"
+   ZedTimeModifyingStates(1)="WeaponBurstFiring"
+   ZedTimeModifyingStates(2)="WeaponSingleFiring"
+   ZedTimeModifyingStates(3)="SprayingFire"
+   PrimaryWeaponDef=Class'KFGame.KFWeapDef_CaulkBurn'
+   KnifeWeaponDef=Class'KFGame.KFWeapDef_Knife_Firebug'
+   GrenadeWeaponDef=Class'KFGame.KFWeapDef_Grenade_Firebug'
    Name="Default__KFPerk_Firebug"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

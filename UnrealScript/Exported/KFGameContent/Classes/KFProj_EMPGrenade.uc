@@ -13,16 +13,15 @@ class KFProj_EMPGrenade extends KFProj_Grenade
 
 defaultproperties
 {
-   UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_EMPGrenade'
    ExplosionActorClass=Class'KFGame.KFExplosionActor'
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
       ExplosionEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Explosions.EMPGrenade_Explosion'
       Damage=100.000000
       DamageRadius=600.000000
       DamageFalloffExponent=2.000000
-      MyDamageType=Class'KFGameContent.KFDT_EMP_EMPGrenade'
+      MyDamageType=Class'kfgamecontent.KFDT_EMP_EMPGrenade'
       ExplosionSound=AkEvent'WW_WEP_EXP_Grenade_EMP.Play_WEP_EXP_Grenade_EMP_Explosion'
-      ExploLight=PointLightComponent'KFGameContent.Default__KFProj_EMPGrenade:ExplosionPointLight'
+      ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_EMPGrenade:ExplosionPointLight'
       ExploLightFadeOutTime=0.250000
       ExploLightStartFadeOutTime=0.500000
       ExploLightFlickerIntensity=5.000000
@@ -31,7 +30,7 @@ defaultproperties
       Name="ExploTemplate0"
       ObjectArchetype=KFGameExplosion'KFGame.Default__KFGameExplosion'
    End Object
-   ExplosionTemplate=KFGameExplosion'KFGameContent.Default__KFProj_EMPGrenade:ExploTemplate0'
+   ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFProj_EMPGrenade:ExploTemplate0'
    ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
    ProjFlightTemplate=ParticleSystem'WEP_3P_EMP_EMIT.FX_EMP_Grenade_Mesh'
    AssociatedPerkClass=Class'KFGame.KFPerk_Berserker'

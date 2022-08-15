@@ -22,12 +22,12 @@ defaultproperties
    MinSpawnSquadSizeType=EST_Medium
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
       BaseDamage=10.000000
-      MyDamageType=Class'KFGameContent.KFDT_Slashing_Gorefast'
+      MyDamageType=Class'kfgamecontent.KFDT_Slashing_Gorefast'
       MaxHitRange=192.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperAI'KFGameContent.Default__KFPawn_ZedGorefast:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedGorefast:MeleeHelper_0'
    DoshValue=12
    XPValues(0)=11.000000
    XPValues(1)=14.000000
@@ -68,7 +68,7 @@ defaultproperties
       Name="Afflictions_0"
       ObjectArchetype=KFPawnAfflictions'KFGame.Default__KFPawn_Monster:Afflictions_0'
    End Object
-   AfflictionHandler=KFPawnAfflictions'KFGameContent.Default__KFPawn_ZedGorefast:Afflictions_0'
+   AfflictionHandler=KFPawnAfflictions'kfgamecontent.Default__KFPawn_ZedGorefast:Afflictions_0'
    KnockdownImpulseScale=1.000000
    SprintSpeed=450.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:FirstPersonArms'
@@ -98,17 +98,18 @@ defaultproperties
       SpecialMoveClasses(11)=Class'KFGame.KFSM_Zed_Taunt'
       SpecialMoveClasses(12)=Class'KFGame.KFSM_Zed_WalkingTaunt'
       SpecialMoveClasses(13)=Class'KFGame.KFSM_Evade'
-      SpecialMoveClasses(14)=Class'KFGameContent.KFSM_Evade_Fear'
+      SpecialMoveClasses(14)=Class'kfgamecontent.KFSM_Evade_Fear'
       SpecialMoveClasses(15)=None
       SpecialMoveClasses(16)=None
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
-      SpecialMoveClasses(19)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(20)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(19)=None
+      SpecialMoveClasses(20)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(21)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
-   SpecialMoveHandler=KFSpecialMoveHandler'KFGameContent.Default__KFPawn_ZedGorefast:SpecialMoveHandler_0'
+   SpecialMoveHandler=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedGorefast:SpecialMoveHandler_0'
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent_1 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:AmbientAkSoundComponent_1'
       BoneName="Spine1"
       bStopWhenOwnerDestroyed=True
@@ -128,7 +129,7 @@ defaultproperties
       Name="WeaponAmbientEchoHandler_0"
       ObjectArchetype=KFWeaponAmbientEchoHandler'KFGame.Default__KFPawn_Monster:WeaponAmbientEchoHandler_0'
    End Object
-   WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'KFGameContent.Default__KFPawn_ZedGorefast:WeaponAmbientEchoHandler_0'
+   WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'kfgamecontent.Default__KFPawn_ZedGorefast:WeaponAmbientEchoHandler_0'
    Begin Object Class=AkComponent Name=FootstepAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_Monster:FootstepAkSoundComponent'
       BoneName="Root"
       bStopWhenOwnerDestroyed=True
@@ -148,7 +149,7 @@ defaultproperties
    GroundSpeed=240.000000
    MaxFallSpeed=6000.000000
    Health=200
-   ControllerClass=Class'KFGameContent.KFAIController_ZedGorefast'
+   ControllerClass=Class'kfgamecontent.KFAIController_ZedGorefast'
    Begin Object Class=KFSkeletalMeshComponent Name=KFPawnSkeletalMeshComponent Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:KFPawnSkeletalMeshComponent'
       WireframeColor=(B=0,G=255,R=255,A=255)
       MinDistFactorForKinematicUpdate=0.200000

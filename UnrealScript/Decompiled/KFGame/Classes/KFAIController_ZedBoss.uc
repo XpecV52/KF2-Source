@@ -63,6 +63,35 @@ function UpdateSprintFrustration(optional byte bForceFrustration)
 
 function PlayDamagePlayerDialog(class<DamageType> dmgType);
 
+function DebugNextPhase();
+
+function EnterZedVictoryState()
+{
+    ClearMovementInfo();
+    if(CommandList != none)
+    {
+        AbortCommand(CommandList);
+    }
+    DisableMeleeRangeEventProbing();
+    ChangeEnemy(none);
+    MyKFPawn.SetSprinting(false);
+    LockPawnRotationTo(MyKFPawn.Rotation);
+    MyKFPawn.SetRemoteViewPitch(0);
+    if(MyKFPawn.IsDoingSpecialMove())
+    {
+        MyKFPawn.EndSpecialMove();
+    }
+    GotoState('ZedVictory', 'Begin');
+}
+
+state ZedVictory
+{Begin:
+
+    Sleep(0.1);
+    Class'AICommand_BossTheatrics'.static.DoTheatrics(self, 1, -1);
+    stop;                    
+}
+
 defaultproperties
 {
     bCanTeleportCloser=false

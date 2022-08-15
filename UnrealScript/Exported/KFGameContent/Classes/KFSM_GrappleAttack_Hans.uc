@@ -303,14 +303,15 @@ defaultproperties
    MaxEnemyLifeDrawThresholdHard=0.600000
    MaxEnemyLifeDrawThresholdSuicidal=0.500000
    MaxEnemyLifeDrawThresholdHellOnEarth=0.250000
-   LifeDrainSmokeExplosionActorClass=Class'KFGameContent.KFExplosion_HansSmokeGrenade'
-   LifeDrainSmokeExplosionTemplate=KFGameExplosion'KFGameContent.Default__KFSM_GrappleAttack_Hans:ExploTemplate0'
+   LifeDrainSmokeExplosionActorClass=Class'kfgamecontent.KFExplosion_HansSmokeGrenade'
+   LifeDrainSmokeExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFSM_GrappleAttack_Hans:ExploTemplate0'
    InvulnerableEnergyFX=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Energy'
    InvulnerableEnergySocketName="Root"
    GrappleAnims(0)="Atk_DrawLife_V1"
    FollowerSpecialMove=SM_HansGrappleVictim
    bStopAlignFollowerRotationAtGoal=False
    AlignDistance=108.000000
+   bCanOnlyWanderAtEnd=True
    Name="Default__KFSM_GrappleAttack_Hans"
    ObjectArchetype=KFSM_GrappleAttack'KFGame.Default__KFSM_GrappleAttack'
 }

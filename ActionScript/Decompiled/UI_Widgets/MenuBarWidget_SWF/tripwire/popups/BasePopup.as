@@ -2,6 +2,7 @@ package tripwire.popups
 {
     import com.greensock.TweenMax;
     import com.greensock.easing.Cubic;
+    import flash.events.Event;
     import flash.external.ExternalInterface;
     import scaleform.clik.events.ButtonEvent;
     import tripwire.containers.TripContainer;
@@ -14,11 +15,20 @@ package tripwire.popups
         {
             super();
             enableInitCallback = true;
-            this.setTabIndex();
             this.openPopup();
         }
         
+        override protected function addedToStage(param1:Event) : void
+        {
+            super.addedToStage(param1);
+            this.setTabIndex();
+        }
+        
         public function setTabIndex() : *
+        {
+        }
+        
+        public function set descriptionText(param1:String) : *
         {
         }
         
@@ -27,6 +37,15 @@ package tripwire.popups
         }
         
         public function openPopup() : void
+        {
+            if(!_bOpen)
+            {
+                this.openAnimation();
+                _bOpen = true;
+            }
+        }
+        
+        override protected function openAnimation() : *
         {
             TweenMax.fromTo(this,6,{
                 "z":-128,
@@ -37,6 +56,7 @@ package tripwire.popups
                     "quality":1
                 }
             },{
+                "visible":true,
                 "z":0,
                 "autoAlpha":1,
                 "blurFilter":{
@@ -46,29 +66,34 @@ package tripwire.popups
                     "remove":true
                 },
                 "ease":Cubic.easeOut,
-                "useFrames":true
+                "useFrames":true,
+                "onComplete":onOpened
             });
         }
         
         public function onClosePopup(param1:ButtonEvent) : void
         {
-            TweenMax.fromTo(this,6,{
-                "z":0,
-                "alpha":1
-            },{
-                "visible":false,
-                "z":-128,
-                "alpha":0,
-                "blurFilter":{
-                    "blurX":12,
-                    "blurY":12,
-                    "quality":1,
-                    "remove":true
-                },
-                "ease":Cubic.easeOut,
-                "useFrames":true,
-                "onComplete":this.closePopup
-            });
+            if(_bOpen)
+            {
+                TweenMax.fromTo(this,6,{
+                    "z":0,
+                    "alpha":1
+                },{
+                    "visible":false,
+                    "z":-128,
+                    "alpha":0,
+                    "blurFilter":{
+                        "blurX":12,
+                        "blurY":12,
+                        "quality":1,
+                        "remove":true
+                    },
+                    "ease":Cubic.easeOut,
+                    "useFrames":true,
+                    "onComplete":this.closePopup
+                });
+                _bOpen = false;
+            }
         }
         
         public function closePopup() : void

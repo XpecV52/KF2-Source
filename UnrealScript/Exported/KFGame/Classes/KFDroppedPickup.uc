@@ -30,6 +30,9 @@ var const bool bEnableStaticMeshRBPhys;
 /** (TW) If set this pickups passes (and can be picked) through blocking volumes) */
 var const bool bIgnoreBlockingVolumes;
 
+/** Skin assigned from dropped weapon */
+var private int SkinItemId;
+
 // (cpptext)
 // (cpptext)
 // (cpptext)
@@ -41,6 +44,9 @@ replication
 {
 	if ( Role == ROLE_Authority )
 		RBState;
+
+	if ( bNetInitial )
+		SkinItemId;
 }
 
 /*********************************************************************************************
@@ -55,6 +61,16 @@ simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
 	local ActorComponent Comp;
 	local SkeletalMeshComponent SkelMC;
 	local StaticMeshComponent StaticMC;
+	local array<MaterialInterface> SkinMICs;
+
+	if (Role == ROLE_Authority )
+	{
+		if ( Inventory != None && Inventory.IsA('KFWeapon') )
+		{
+			SkinItemId = KFWeapon(Inventory).SkinItemId;
+		}
+		SetTimer(LifeSpan, false, nameof(TryFadeOut));
+	}
 
 	if (NewPickupMesh != None)
 	{
@@ -125,9 +141,13 @@ simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
 			}
 		}
 
-		if (Role == ROLE_Authority )
+		if ( MyMeshComp != None )
 		{
-			SetTimer(LifeSpan, false, nameof(TryFadeOut));
+			SkinMICs = class'KFWeaponSkinList'.static.GetWeaponSkin(SkinItemId, WST_Pickup);
+			if ( SkinMICs.Length > 0 )
+			{
+				MyMeshComp.SetMaterial(0, SkinMICs[0]);
+			}
 		}
 	}
 }

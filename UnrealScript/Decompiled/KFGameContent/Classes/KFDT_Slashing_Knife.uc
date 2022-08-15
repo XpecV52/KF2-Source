@@ -125,7 +125,7 @@ static simulated function ModifyDismembermentHitImpulse(KFPawn_Monster inPawn, n
 
 defaultproperties
 {
-    AARWeaponID=3
+    WeaponDef=Class'KFGame.KFweapDef_Knife_Base'
     StunPower=31
     StumblePower=40
     LegStumblePower=40

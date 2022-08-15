@@ -46,65 +46,6 @@ class KFDT_Bludgeon_RPG7 extends KFDT_Bludgeon_RifleButt
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -125,7 +66,7 @@ class KFDT_Bludgeon_RPG7 extends KFDT_Bludgeon_RifleButt
 
 defaultproperties
 {
-   AARWeaponID=18
+   WeaponDef=Class'KFGame.KFWeapDef_RPG7'
    Name="Default__KFDT_Bludgeon_RPG7"
-   ObjectArchetype=KFDT_Bludgeon_RifleButt'KFGameContent.Default__KFDT_Bludgeon_RifleButt'
+   ObjectArchetype=KFDT_Bludgeon_RifleButt'kfgamecontent.Default__KFDT_Bludgeon_RifleButt'
 }

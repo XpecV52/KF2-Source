@@ -70,6 +70,9 @@ var const localized string FoundAMapCollectibleMessage;
 var const localized string FoundAllMapCollectiblesMessage;
 var const localized string MapCollectibleName;
 var const localized string SharingContentString;
+var const localized string HeadShotAddedString;
+var const localized string HeadShotMaxString;
+var const localized string HeadShotResetString;
 
 static function string GetHexColor(int Switch)
 {
@@ -226,8 +229,8 @@ defaultproperties
     FailedDropInventoryMessage="You can't drop that here"
     PendingPerkChangesSet="Perk changes will be applied at the end of the wave."
     PendingPerkChangesApplied="Perk changes applied!"
-    KilledMessage="was eaten alive"
-    SuicideMessage="just gave up on life..."
+    KilledMessage=" was eaten alive"
+    SuicideMessage=" just gave up on life..."
     KillzedBy_HansString="'s body has been removed for further experimentation"
     KillzedBy_ZedCrawlerString="'s ankles have been chewed off"
     KillzedBy_ZedBloatString=" has drowned in bodily fluids"
@@ -244,6 +247,9 @@ defaultproperties
     FoundAllMapCollectiblesMessage="Every %x% has been found!"
     MapCollectibleName="piece of dosh bling"
     SharingContentString="is sharing content."
+    HeadShotAddedString="%x Headshot(s) - %y% Extra Damage!"
+    HeadShotMaxString="Headshot! %x% Extra Damage!"
+    HeadShotResetString="Missed Headshot. Normal Damage!"
     bIsUnique=true
     bIsConsoleMessage=false
     bBeep=true

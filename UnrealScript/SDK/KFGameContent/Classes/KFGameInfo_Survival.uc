@@ -198,7 +198,8 @@ function RestartPlayer(Controller NewPlayer)
 				}
 			}
 
-			`BalanceLog(GBE_Respawn, KFPRI, "$"$KFPRI.Score);	
+			`BalanceLog(GBE_Respawn, KFPRI, "$"$KFPRI.Score);
+			`AnalyticsLog(("respawn", KFPRI, "#"$KFPRI.Score));
 		}
 	}
 }
@@ -642,8 +643,9 @@ function StartWave()
     SetupNextTrader();
 
 	ResetAllPickups();
-
+	
 	`SafeDialogManager.SetTraderTime( false );
+
 	// first spawn and music are delayed 5 seconds (KFAISpawnManager.TimeUntilNextSpawn == 5 initially), so line up dialog with them;
 	// fixes problem of clients not being ready to receive dialog at the instant the match starts;
 	SetTimer( 5.f, false, nameof(PlayWaveStartDialog) );
@@ -709,6 +711,8 @@ function WaveStarted()
 	/* __TW_ANALYTICS_ */
 	`RecordGameIntStat(WAVE_START,WaveNum);
 
+	`AnalyticsLog(("wave_start", None, "#"$WaveNum, "#"$GetLivingPlayerCount()));
+
 	// Get the gameplay sequence.
 	GameSeq = WorldInfo.GetGameSequence();
 
@@ -762,9 +766,38 @@ function CheckWaveEnd( optional bool bForceWaveEnd = false )
 function WaveEnded(EWaveEndCondition WinCondition)
 {
 	local KFPlayerController KFPC;
+	local int i;
+	local array<WeaponDamage> Weapons;
 
 	ForEach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
 	{
+		if( !KFPC.bDemoOwner )
+		{
+			`AnalyticsLog(("pc_wave_stats",
+						   KFPC.PlayerReplicationInfo,
+						   "#"$WaveNum,
+						   "#"$WaveMax,
+						   "#"$KFPC.MatchStats.GetDamageDealtInWave(),
+						   "#"$KFPC.MatchStats.GetHeadShotsInWave(),
+						   "#"$KFPC.MatchStats.GetDoshEarnedInWave(),
+						   "#"$KFPC.MatchStats.GetDamageTakenInWave(),
+						   KFPC.GetPerk().Class.Name ));
+
+			KFPC.MatchStats.GetTopWeapons( 3, Weapons );
+
+			for ( i = 0; i < Weapons.Length; ++i )
+			{
+				`AnalyticsLog(("pc_weapon_stats",
+							   KFPC.PlayerReplicationInfo,
+							   "#"$WaveNum,
+							   Weapons[i].WeaponDef.Name,
+							   "#"$Weapons[i].DamageAmount,
+							   "#"$Weapons[i].HeadShots,
+							   "#"$Weapons[i].LargeZedKills,
+							   KFPC.GetPerk().Class.Name ));
+			}
+		}
+
 		KFPC.ClientWriteAndFlushStats();
 	}
 	MyKFGRI.NotifyWaveEnded();
@@ -773,9 +806,11 @@ function WaveEnded(EWaveEndCondition WinCondition)
 
 	/* __TW_ANALYTICS_ */
 	`RecordGameIntStat(WAVE_END, WaveNum);
-
+	
 	// IsPlayInEditor check was added to fix a scaleform crash that would call an actionscript function
-	// as scaleform was being destroyed. This issue only occurs when playing in the editor
+	// as scaleform was being destroyed. This issue only occurs when
+	// playing in the editor
+
 	if( WinCondition == WEC_TeamWipedOut && !class'WorldInfo'.static.IsPlayInEditor())
 	{
 		EndOfMatch(false);
@@ -860,7 +895,7 @@ State TraderOpen
 		{
 			if( KFPC.GetPerk() != none )
 			{
-				KFPC.GetPerk().ResetPerk();
+				KFPC.GetPerk().OnWaveEnded();
 			}
 			KFPC.ApplyPendingPerks();
 		}
@@ -967,6 +1002,8 @@ function NotifyTraderOpened()
 function EndOfMatch(bool bVictory)
 {
 	local KFPlayerController KFPC;
+
+	`AnalyticsLog(("match_end", None, "#"$WaveNum, "#"$(bVictory ? "1" : "0")));
 	
 	if(bVictory)
 	{
@@ -985,6 +1022,8 @@ function EndOfMatch(bool bVictory)
 		SetZedsToVictoryState();
 	}
 
+	WorldInfo.TWPushLogs();
+	
 	GotoState('MatchEnded');
 }
 
@@ -995,22 +1034,24 @@ function string GetNextMap()
 	local int NextMapIndex;
 
 	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-
-	if(KFGRI != none)
+	if( KFGRI != none )
 	{
 		NextMapIndex = KFGRI.VoteCollector.GetNextMap();
 	}
 
-	if(NextMapIndex != -1)
+	if( NextMapIndex != INDEX_NONE )
 	{
 		return GameMapCycles[ActiveMapCycle].Maps[NextMapIndex];
 	}
+
+	return super.GetNextMap();
 }
 
 function SetWonGameCamera()
 {
 	local KFPlayerController KFPC;
-	foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
+
+	foreach WorldInfo.AllControllers( class'KFPlayerController', KFPC )
 	{
 		KFPC.ServerCamera( 'ThirdPerson' );
 	}
@@ -1019,7 +1060,8 @@ function SetWonGameCamera()
 function SetZedsToVictoryState()
 {
 	local KFAIController KFAIC;
-	foreach WorldInfo.AllControllers(class'KFAIController', KFAIC)
+
+	foreach WorldInfo.AllControllers( class'KFAIController', KFAIC )
 	{
 		// Have the zeds enter their victory state
 		KFAIC.EnterZedVictoryState();
@@ -1151,6 +1193,7 @@ DefaultProperties
 	AIClassList(AT_Siren)=class'KFGameContent.KFPawn_ZedSiren'
 	AIClassList(AT_Husk)=class'KFGameContent.KFPawn_ZedHusk'
 	AIBossClassList.Add(class'KFGameContent.KFPawn_ZedHans')
+	AIBossClassList.Add(class'KFGameContent.KFPawn_ZedPatriarch')
 
 	TraderVoiceGroupClass=class'KFGameContent.KFTraderVoiceGroup_Default'
 }

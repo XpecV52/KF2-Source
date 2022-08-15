@@ -46,65 +46,6 @@ class KFDT_Bludgeon_PulverizerBash extends KFDT_Bludgeon_Pulverizer
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -132,5 +73,5 @@ defaultproperties
    KDamageImpulse=1600.000000
    KDeathVel=500.000000
    Name="Default__KFDT_Bludgeon_PulverizerBash"
-   ObjectArchetype=KFDT_Bludgeon_Pulverizer'KFGameContent.Default__KFDT_Bludgeon_Pulverizer'
+   ObjectArchetype=KFDT_Bludgeon_Pulverizer'kfgamecontent.Default__KFDT_Bludgeon_Pulverizer'
 }

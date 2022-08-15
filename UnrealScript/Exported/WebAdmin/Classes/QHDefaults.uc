@@ -155,6 +155,10 @@ class QHDefaults extends Object implements(IQueryHandler) config(WebAdmin)
 
 
 
+
+
+
+
 	
 
 
@@ -319,10 +323,10 @@ function bool handleQuery(WebAdminQuery q)
 			handleSettingsPasswords(q);
 			return true;
 		
-
-
-
-
+		case "/settings/welcome":
+			handleSettingsWelcome(q);
+			return true;
+		
 		case "/settings/gametypes":
 			handleSettingsGametypes(q);
 			return true;
@@ -363,8 +367,8 @@ function registerMenuItems(WebAdminMenu menu)
 	menu.addMenu("/settings", menuSettings, self, "", -50);
 	menu.addMenu("/settings/general", menuGeneral, self, menuGeneralDesc, -10);
 	
-
-
+	menu.addMenu("/settings/welcome", menuWelcome, self, menuWelcomeDesc);
+	
 	menu.addMenu("/settings/gametypes", menuGametypes, self, menuGametypesDesc);
 	
 
@@ -1185,26 +1189,42 @@ function handleSettingsGeneral(WebAdminQuery q)
 {
 	local class<WebAdminSettings> settingsClass;
 	local WebAdminSettings settings;
-
-	settingsClass = class<WebAdminSettings>(DynamicLoadObject(GeneralSettingsClass, class'class'));
-	if (settingsClass != none)
+	local float Difficulty; 
+	local int Length;
+	local bool bNoLiveAdjust;
+	local KFGameInfo KFGI;
+ 
+	settingsClass = class<WebAdminSettings>(DynamicLoadObject( GeneralSettingsClass, class'class' ));
+	if( settingsClass != none )
 	{
-		settings = getSettingsInstance(settingsClass);
+		settings = getSettingsInstance( settingsClass );
 	}
 
-	if (settings != none)
+	if( settings != none )
 	{
-		genericSettingsHandler(q, settings);
+		if( q.request.getVariable( "action" ) ~= "save" || q.request.getVariable( "action" ) ~= "save settings" )
+		{
+			KFGI = KFGameInfo(webadmin.WorldInfo.Game);
+			Difficulty = float(q.request.getVariable( "settings_GameDifficulty" ));
+			Length = int(q.request.getVariable( "settings_GameLength" ));
+			if( KFGI != none && (KFGI.GameDifficulty != Difficulty || KFGI.GameLength != Length) )
+			{
+				bNoLiveAdjust = true;
+			}
+		}
+
+		genericSettingsHandler( q, settings, bNoLiveAdjust );
 	}
-	else {
+	else 
+	{
 		LogInternal("Failed to load the general settings class "$GeneralSettingsClass,'WebAdmin');
-		webadmin.addMessage(q, msgCantLoadSettings, MT_Warning);
+		webadmin.addMessage( q, msgCantLoadSettings, MT_Warning );
 	}
 
- 	webadmin.sendPage(q, "default_settings_general.html");
+ 	webadmin.sendPage( q, "default_settings_general.html" );
 }
 
-function bool genericSettingsHandler(WebAdminQuery q, WebAdminSettings settings)
+function bool genericSettingsHandler( WebAdminQuery q, WebAdminSettings settings, optional bool bNoLiveAdjust=false )
 {
 	local ISettingsPrivileges privs;
 	local bool settingsSaved, liveAdjust;
@@ -1213,8 +1233,7 @@ function bool genericSettingsHandler(WebAdminQuery q, WebAdminSettings settings)
 
 	if (q.request.getVariable("action") ~= "save" || q.request.getVariable("action") ~= "save settings")
 	{
-		liveAdjust = q.request.getVariable("liveAdjust", "0") == "1";
-
+		liveAdjust = bNoLiveAdjust ? false : q.request.getVariable("liveAdjust", "0") == "1";
 		if (!liveAdjust) {
 			settings.setCurrentGameInfo(none);
 		}

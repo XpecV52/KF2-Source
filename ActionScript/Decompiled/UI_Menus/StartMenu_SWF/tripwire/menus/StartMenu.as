@@ -56,6 +56,7 @@ package tripwire.menus
             this.serverBrowserOverviewContainer.visible = false;
             this.showMenus(true,false,false,false);
             tabEnabled = false;
+            this._currentContainer = this.findGameContainer;
         }
         
         private function setTabIndexes() : void
@@ -133,8 +134,8 @@ package tripwire.menus
             }
             if(this._currentContainer != _loc5_)
             {
-                this.openChildContainer(this._currentContainer);
                 this.closeChildContainer(_loc5_);
+                this.openChildContainer(this._currentContainer);
             }
         }
         

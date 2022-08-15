@@ -14,10 +14,9 @@ defaultproperties
 {
    BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
    ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Metal'
-   FilterTypeUI=FT_Melee
    InventorySize=3
    GroupPriority=100.000000
-   UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Katana'
+   WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Katana'
    PlayerViewOffset=(X=2.000000,Y=0.000000,Z=0.000000)
    AttachmentArchetype=KFWeaponAttachment'WEP_Katana_ARCH.Wep_Katana_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
@@ -38,19 +37,19 @@ defaultproperties
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_Edged_Katana:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Edged_Katana:MeleeHelper_0'
    InstantHitDamage(0)=34.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=68.000000
    InstantHitDamage(4)=()
    InstantHitDamage(5)=68.000000
-   InstantHitDamageTypes(0)=Class'KFGameContent.KFDT_Slashing_Katana'
+   InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Slashing_Katana'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=()
-   InstantHitDamageTypes(3)=Class'KFGameContent.KFDT_Piercing_KatanaStab'
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Piercing_KatanaStab'
    InstantHitDamageTypes(4)=()
-   InstantHitDamageTypes(5)=Class'KFGameContent.KFDT_Slashing_KatanaHeavy'
+   InstantHitDamageTypes(5)=Class'kfgamecontent.KFDT_Slashing_KatanaHeavy'
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_MeleeBase:FirstPersonMesh'
       MinTickTimeStep=0.025000
       SkeletalMesh=SkeletalMesh'WEP_1P_KATANA_MESH.Wep_1stP_Katana_Rig'

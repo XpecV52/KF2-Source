@@ -10,5 +10,5 @@ class KFDT_Fire_Ground_CaulkNBurn extends KFDT_Fire_Ground
 
 defaultproperties
 {
-    AARWeaponID=46
+    WeaponDef=Class'KFGame.KFWeapDef_CaulkBurn'
 }

@@ -25,6 +25,8 @@ enum EUIIndex
 	UI_Start,
 	UI_Perks,
 	UI_Gear,
+	UI_Inventory,
+	UI_Store,
 	UI_OptionsSelection,
 	UI_Exit_Menu,
 	UI_OptionsControls,
@@ -33,7 +35,6 @@ enum EUIIndex
 	UI_OptionsGameSettings,
 	UI_Achievements,
 	UI_Extras,
-    UI_Store,
     UI_PostGame,
 	UI_Trader,
 	UI_ServerBrowserMenu,
@@ -50,6 +51,8 @@ var byte CurrentMenuIndex;
 var KFGfxMenu_StartGame StartMenu;
 var KFGFxMenu_Perks PerksMenu;
 var KFGFxMenu_Gear GearMenu;
+var KFGFxMenu_Inventory InventoryMenu;
+var KFGFxMenu_Store StoreMenu;
 var KFGFxOptionsMenu_Controls OptionsControlsMenu;
 var KFGFxOptionsMenu_Audio OptionsAudioMenu;
 var KFGFxOptionsMenu_Graphics OptionsGraphicsMenu;
@@ -327,6 +330,25 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 			}
 			OnMenuOpen( WidgetPath, GearMenu );
 		break;
+		case ( 'inventoryMenu' ):
+			PC = GetPC();
+			if (InventoryMenu == none)
+			{
+				InventoryMenu = KFGFxMenu_Inventory( Widget );
+				InventoryMenu.InitializeMenu(self);
+			}
+			OnMenuOpen( WidgetPath, InventoryMenu );
+		break;
+		
+		case ( 'storeMenu' ):
+			PC = GetPC();
+			if (StoreMenu == none)
+			{
+				StoreMenu = KFGFxMenu_Store( Widget );
+				StoreMenu.InitializeMenu(self);
+			}
+			OnMenuOpen( WidgetPath, StoreMenu );
+		break;
 		case ('optionsSelectionMenu'):
 			if (OptionsSelectionMenu == none)
 			{
@@ -502,6 +524,11 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 	}
 
 	WI = class'WorldInfo'.static.GetWorldInfo();
+
+	if(NewMenuIndex == UI_PostGame)
+	{
+		UnloadCurrentPopup();
+	}
 
 	if(!bMenusOpen)
 	{
@@ -730,7 +757,11 @@ function SetHUDVisiblity(bool bIsVisible)
 	}
 
 	bCaptureInput = !bIsVisible;
-	GetPC().PlayerInput.ResetInput();
+
+	if( GetPC() != none && GetPC().PlayerInput != none )
+	{
+		GetPC().PlayerInput.ResetInput();
+	}
 }
 
 
@@ -749,6 +780,18 @@ function CloseTraderMenu()
 	if(CurrentMenu == TraderMenu)
 	{
 		CloseMenus();
+	}
+}
+
+/*********************************************************************************************
+* @name Server Welcome Screen	
+********************************************************************************************* */
+
+function ShowWelcomeScreen()
+{
+	if(StartMenu != none && StartMenu.OverviewContainer != none)
+	{
+		StartMenu.OverviewContainer.ShowWelcomeScreen();
 	}
 }
 
@@ -1195,18 +1238,19 @@ defaultproperties
    MenuSWFPaths(0)="../UI_Menus/StartMenu_SWF.swf"
    MenuSWFPaths(1)="../UI_Menus/PerksMenu_SWF.swf"
    MenuSWFPaths(2)="../UI_Menus/GearMenu_SWF.swf"
-   MenuSWFPaths(3)="../UI_Menus/OptionsSelectionMenu_SWF.swf"
-   MenuSWFPaths(4)="../UI_Menus/ExitMenu_SWF.swf"
-   MenuSWFPaths(5)="../UI_Menus/OptionsControlsMenu_SWF.swf"
-   MenuSWFPaths(6)="../UI_Menus/OptionsAudioMenu_SWF.swf"
-   MenuSWFPaths(7)="../UI_Menus/OptionsGraphicsMenu_SWF.swf"
-   MenuSWFPaths(8)="../UI_Menus/OptionsGameSettingsMenu_SWF.swf"
-   MenuSWFPaths(9)=
-   MenuSWFPaths(10)=
+   MenuSWFPaths(3)="../UI_Menus/InventoryMenu_SWF.swf"
+   MenuSWFPaths(4)="../UI_Menus/StoreMenu_SWF.swf"
+   MenuSWFPaths(5)="../UI_Menus/OptionsSelectionMenu_SWF.swf"
+   MenuSWFPaths(6)="../UI_Menus/ExitMenu_SWF.swf"
+   MenuSWFPaths(7)="../UI_Menus/OptionsControlsMenu_SWF.swf"
+   MenuSWFPaths(8)="../UI_Menus/OptionsAudioMenu_SWF.swf"
+   MenuSWFPaths(9)="../UI_Menus/OptionsGraphicsMenu_SWF.swf"
+   MenuSWFPaths(10)="../UI_Menus/OptionsGameSettingsMenu_SWF.swf"
    MenuSWFPaths(11)=
-   MenuSWFPaths(12)="../UI_Menus/PostGameMenu_SWF.swf"
-   MenuSWFPaths(13)="../UI_Menus/TraderMenu_SWF.swf"
-   MenuSWFPaths(14)="../UI_Menus/ServerBrowserMenu_SWF.swf"
+   MenuSWFPaths(12)=
+   MenuSWFPaths(13)="../UI_Menus/PostGameMenu_SWF.swf"
+   MenuSWFPaths(14)="../UI_Menus/TraderMenu_SWF.swf"
+   MenuSWFPaths(15)="../UI_Menus/ServerBrowserMenu_SWF.swf"
    CurrentMenuIndex=255
    bSetGamma=True
    PopupData(0)=(SWFPath="../UI_PopUps/ConfirmationPopup_SWF.swf")
@@ -1229,8 +1273,9 @@ defaultproperties
    MovieInfo=SwfMovie'UI_Managers.LoaderManager_SWF'
    bAutoPlay=True
    bCaptureInput=True
-   SoundThemes(0)=(ThemeName="ButtonSoundTheme",Theme=UISoundTheme'SoundsShared_UI.SoundTheme_Buttons')
-   SoundThemes(1)=(ThemeName="AAR",Theme=UISoundTheme'SoundsShared_UI.SoundTheme_AAR')
+   SoundThemes(0)=(ThemeName="SoundTheme_Crate",Theme=UISoundTheme'SoundsShared_UI.SoundTheme_Crate')
+   SoundThemes(1)=(ThemeName="ButtonSoundTheme",Theme=UISoundTheme'SoundsShared_UI.SoundTheme_Buttons')
+   SoundThemes(2)=(ThemeName="AAR",Theme=UISoundTheme'SoundsShared_UI.SoundTheme_AAR')
    WidgetBindings(0)=(WidgetName="GammaPopup",WidgetClass=Class'KFGame.KFGFxPopup_Gamma')
    WidgetBindings(1)=(WidgetName="ConnectionErrorPopup",WidgetClass=Class'KFGame.KFGFxPopup_ConnectionError')
    WidgetBindings(2)=(WidgetName="ConfirmationPopup",WidgetClass=Class'KFGame.KFGFxPopup_Confirmation')
@@ -1241,15 +1286,17 @@ defaultproperties
    WidgetBindings(7)=(WidgetName="ExitMenu",WidgetClass=Class'KFGame.KFGFxMenu_Exit')
    WidgetBindings(8)=(WidgetName="PerksMenu",WidgetClass=Class'KFGame.KFGFxMenu_Perks')
    WidgetBindings(9)=(WidgetName="GearMenu",WidgetClass=Class'KFGame.KFGFxMenu_Gear')
-   WidgetBindings(10)=(WidgetName="OptionsSelectionMenu",WidgetClass=Class'KFGame.KFGFxOptionsMenu_Selection')
-   WidgetBindings(11)=(WidgetName="OptionsControlsMenu",WidgetClass=Class'KFGame.KFGFxOptionsMenu_Controls')
-   WidgetBindings(12)=(WidgetName="OptionsAudioMenu",WidgetClass=Class'KFGame.KFGFxOptionsMenu_Audio')
-   WidgetBindings(13)=(WidgetName="OptionsGameSettingsMenu",WidgetClass=Class'KFGame.KFGFxOptionsMenu_GameSettings')
-   WidgetBindings(14)=(WidgetName="PostGameMenu",WidgetClass=Class'KFGame.KFGFxMenu_PostGameReport')
-   WidgetBindings(15)=(WidgetName="TraderMenu",WidgetClass=Class'KFGame.KFGFxMenu_Trader')
-   WidgetBindings(16)=(WidgetName="ChatBoxWidget",WidgetClass=Class'KFGame.KFGFxHUD_ChatBoxWidget')
-   WidgetBindings(17)=(WidgetName="MenuBarWidget",WidgetClass=Class'KFGame.KFGFxWidget_MenuBar')
-   WidgetBindings(18)=(WidgetName="ButtonPromptWidgetContainer",WidgetClass=Class'KFGame.KFGFxWidget_ButtonPrompt')
+   WidgetBindings(10)=(WidgetName="InventoryMenu",WidgetClass=Class'KFGame.KFGFxMenu_Inventory')
+   WidgetBindings(11)=(WidgetName="StoreMenu",WidgetClass=Class'KFGame.KFGFxMenu_Store')
+   WidgetBindings(12)=(WidgetName="OptionsSelectionMenu",WidgetClass=Class'KFGame.KFGFxOptionsMenu_Selection')
+   WidgetBindings(13)=(WidgetName="OptionsControlsMenu",WidgetClass=Class'KFGame.KFGFxOptionsMenu_Controls')
+   WidgetBindings(14)=(WidgetName="OptionsAudioMenu",WidgetClass=Class'KFGame.KFGFxOptionsMenu_Audio')
+   WidgetBindings(15)=(WidgetName="OptionsGameSettingsMenu",WidgetClass=Class'KFGame.KFGFxOptionsMenu_GameSettings')
+   WidgetBindings(16)=(WidgetName="PostGameMenu",WidgetClass=Class'KFGame.KFGFxMenu_PostGameReport')
+   WidgetBindings(17)=(WidgetName="TraderMenu",WidgetClass=Class'KFGame.KFGFxMenu_Trader')
+   WidgetBindings(18)=(WidgetName="ChatBoxWidget",WidgetClass=Class'KFGame.KFGFxHUD_ChatBoxWidget')
+   WidgetBindings(19)=(WidgetName="MenuBarWidget",WidgetClass=Class'KFGame.KFGFxWidget_MenuBar')
+   WidgetBindings(20)=(WidgetName="ButtonPromptWidgetContainer",WidgetClass=Class'KFGame.KFGFxWidget_ButtonPrompt')
    Name="Default__KFGFxMoviePlayer_Manager"
    ObjectArchetype=GFxMoviePlayer'GFxUI.Default__GFxMoviePlayer'
 }

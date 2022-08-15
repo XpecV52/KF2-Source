@@ -11,12 +11,10 @@ class KFWeap_Pistol_9mm extends KFWeap_PistolBase
 
 defaultproperties
 {
-    InventoryGroup=EInventoryGroup.IG_Secondary
-    FilterTypeUI=EFilterTypeUI.FT_Pistol
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
-    bHasFlashlight=true
+    bHasFireLastAnims=true
     bIsBackupWeapon=true
     MeshFOV=96
     MeshIronSightFOV=77
@@ -24,14 +22,15 @@ defaultproperties
     IronSightPosition=(X=10,Y=0,Z=0)
     DOF_FG_FocalRadius=40
     DOF_FG_MaxNearBlurSize=3.5
-    GroupPriority=15
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_9mm'
+    GroupPriority=10
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_9mm'
     DualClass=Class'KFWeap_Pistol_Dual9mm'
     MagazineCapacity=15
-    MaxSpareAmmo=195
-    InitialSpareMags=6
+    MaxSpareAmmo=225
+    InitialSpareMags=7
     IdleFidgetAnims=/* Array type was not detected. */
     FireSightedAnims=/* Array type was not detected. */
+    BonesToLockOnEmpty=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=12,Y=12,Z=-6)

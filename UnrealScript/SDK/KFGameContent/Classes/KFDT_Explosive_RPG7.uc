@@ -32,5 +32,5 @@ defaultproperties
 
 	ObliterationHealthThreshold=-500
 	ObliterationDamageThreshold=500
-	AARWeaponID=`AAR_RPG7
+	WeaponDef=class'KFWeapDef_RPG7'
 }

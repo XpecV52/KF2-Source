@@ -48,65 +48,6 @@ class KFDT_Ballistic_MB500 extends KFDT_Ballistic_Shotgun
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -147,7 +88,7 @@ static simulated function bool CanDismemberHitZone( name InHitZoneName )
 
 defaultproperties
 {
-   AARWeaponID=36
+   WeaponDef=Class'KFGame.KFWeapDef_MB500'
    StumblePower=33
    LegStumblePower=33
    BloodSpread=0.400000
@@ -156,5 +97,5 @@ defaultproperties
    KDeathVel=10.000000
    KDeathUpKick=120.000000
    Name="Default__KFDT_Ballistic_MB500"
-   ObjectArchetype=KFDT_Ballistic_Shotgun'KFGameContent.Default__KFDT_Ballistic_Shotgun'
+   ObjectArchetype=KFDT_Ballistic_Shotgun'kfgamecontent.Default__KFDT_Ballistic_Shotgun'
 }

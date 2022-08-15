@@ -14,4 +14,8 @@ class KFDT_Slashing_Hans extends KFDT_Slashing
 defaultproperties
 {
     bExtraMomentumZ=true
+	
+	KDamageImpulse=400
+	KDeathUpKick=200
+	KDeathVel=750
 }

@@ -18,10 +18,23 @@ class MapInfo extends Object
 var bool bDefaultPawnsToOutdoor;	
 `endif
 
+// NVCHANGE_BEGIN: RLS - PhysX Triangle Collision
+/** Enable automatic triangle collision. */
+var(Flex)		bool						bUseFlexTriangleCollision;
+
 cpptext
 {
 #if WITH_EDITOR
-	virtual void CheckForErrors() {}
+	virtual void CheckForErrors() 
+	{
+		if (bUseFlexTriangleCollision == FALSE)
+			GWarn->MapCheck_Add( MCTYPE_NOTE, NULL, *FString( LocalizeUnrealEd( "MapCheck_FlexCollision" ) ), TEXT( "FlexTriangleCollision" ) );
+	}
 #endif
 }
 
+DefaultProperties
+{
+	bUseFlexTriangleCollision=TRUE
+}
+// NVCHANGE_END: RLS - PhysX Triangle Collision

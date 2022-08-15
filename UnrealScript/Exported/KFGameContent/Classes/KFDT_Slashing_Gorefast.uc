@@ -13,7 +13,9 @@ class KFDT_Slashing_Gorefast extends KFDT_Slashing
 
 defaultproperties
 {
-   KDamageImpulse=350.000000
+   KDamageImpulse=400.000000
+   KDeathVel=500.000000
+   KDeathUpKick=120.000000
    Name="Default__KFDT_Slashing_Gorefast"
    ObjectArchetype=KFDT_Slashing'KFGame.Default__KFDT_Slashing'
 }

@@ -10,6 +10,12 @@
 
 class KFWeap_Edged_Knife extends KFWeap_MeleeBase;
 
+/** Trader Menu */
+function class<KFWeaponDefinition> GetKnifeWeaponDef()
+{
+	return AssociatedPerkClass.default.KnifeWeaponDef;
+}
+
 defaultproperties
 {
    MaxChainAtkCount=4
@@ -17,10 +23,9 @@ defaultproperties
    ParryDamageMitigationPercent=0.300000
    BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
    ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
-   FilterTypeUI=FT_Melee
    bIsBackupWeapon=True
    GroupPriority=10.000000
-   UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Knife'
+   WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Knife'
    PlayerViewOffset=(X=10.000000,Y=10.000000,Z=0.000000)
    AttachmentArchetype=KFWeaponAttachment'WEP_CommandoKnife_ARCH.Wep_CommandoKnife_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
@@ -54,7 +59,7 @@ defaultproperties
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_Edged_Knife:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Edged_Knife:MeleeHelper_0'
    AssociatedPerkClass=Class'KFGame.KFPerk_Commando'
    InstantHitDamage(0)=32.000000
    InstantHitDamage(1)=()
@@ -62,12 +67,12 @@ defaultproperties
    InstantHitDamage(3)=()
    InstantHitDamage(4)=()
    InstantHitDamage(5)=64.000000
-   InstantHitDamageTypes(0)=Class'KFGameContent.KFDT_Slashing_Knife'
+   InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Slashing_Knife'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=()
-   InstantHitDamageTypes(3)=Class'KFGameContent.KFDT_Piercing_KnifeStab'
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Piercing_KnifeStab'
    InstantHitDamageTypes(4)=()
-   InstantHitDamageTypes(5)=Class'KFGameContent.KFDT_Slashing_KnifeHeavy'
+   InstantHitDamageTypes(5)=Class'kfgamecontent.KFDT_Slashing_KnifeHeavy'
    bCanThrow=False
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_MeleeBase:FirstPersonMesh'
       MinTickTimeStep=0.025000

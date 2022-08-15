@@ -46,65 +46,6 @@ class KFDT_Bludgeon_DragonsBreath extends KFDT_Bludgeon_RifleButt
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -125,7 +66,7 @@ class KFDT_Bludgeon_DragonsBreath extends KFDT_Bludgeon_RifleButt
 
 defaultproperties
 {
-   AARWeaponID=47
+   WeaponDef=Class'KFGame.KFWeapDef_DragonsBreath'
    Name="Default__KFDT_Bludgeon_DragonsBreath"
-   ObjectArchetype=KFDT_Bludgeon_RifleButt'KFGameContent.Default__KFDT_Bludgeon_RifleButt'
+   ObjectArchetype=KFDT_Bludgeon_RifleButt'kfgamecontent.Default__KFDT_Bludgeon_RifleButt'
 }

@@ -24,7 +24,7 @@ defaultproperties
 	LegStumblePower=37
 	GunHitPower=25
 
-	AARWeaponID=`AAR_Bullpup
+	WeaponDef=class'KFWeapDef_Bullpup'
 
 	//Perk
 	ModifierPerkList(0)=class'KFPerk_Commando'

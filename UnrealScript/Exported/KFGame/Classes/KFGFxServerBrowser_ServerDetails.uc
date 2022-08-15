@@ -34,6 +34,7 @@ function LocalizeText()
 	LocalizedObject.SetString("players", ServerMenu.PlayersString);
 	LocalizedObject.SetString("zedCount", ServerMenu.ZedCountString);
 	LocalizedObject.SetString("ranked", ServerMenu.RankedString);
+	LocalizedObject.SetString("unranked", ServerMenu.UnrankedString);
 	LocalizedObject.SetString("serverInfo", ServerInfoString);
 	LocalizedObject.SetString("vacSecure", ServerMenu.VACSecureString);
 	LocalizedObject.SetString("favorite", ServerMenu.FavoriteString);

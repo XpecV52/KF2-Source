@@ -49,65 +49,6 @@ class KFDT_Slashing_Knife extends KFDT_Slashing
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -125,65 +66,6 @@ class KFDT_Slashing_Knife extends KFDT_Slashing
 
 
 #linenumber 15;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -355,7 +237,7 @@ static simulated function ModifyDismembermentHitImpulse(KFPawn_Monster InPawn, n
 
 defaultproperties
 {
-   AARWeaponID=3
+   WeaponDef=Class'KFGame.KFweapDef_Knife_Base'
    StunPower=31
    StumblePower=40
    LegStumblePower=40

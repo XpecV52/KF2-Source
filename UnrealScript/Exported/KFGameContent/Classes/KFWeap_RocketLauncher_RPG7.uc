@@ -108,9 +108,7 @@ defaultproperties
    ForceReloadTime=0.400000
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Rocket'
    FireModeIconPaths(1)=()
-   FilterTypeUI=FT_Explosive
    InventorySize=10
-   EffectiveRange=100
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -121,10 +119,12 @@ defaultproperties
    FastZoomOutTime=0.200000
    DOF_FG_MaxNearBlurSize=2.500000
    GroupPriority=100.000000
-   UITexture=Texture2D'WEP_UI_RPG7_TEX.UI_WeaponSelect_RPG7'
+   WeaponSelectTexture=Texture2D'WEP_UI_RPG7_TEX.UI_WeaponSelect_RPG7'
    MagazineCapacity(0)=1
    MaxSpareAmmo(0)=11
    InitialSpareMags(0)=5
+   AmmoPickupScale(0)=2.000000
+   BonesToLockOnEmpty(0)="RW_Grenade1"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_Fire_1P')
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_DryFire'
    PlayerViewOffset=(X=10.000000,Y=10.000000,Z=-2.000000)
@@ -134,7 +134,7 @@ defaultproperties
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_GrenadeLauncher_Base:MeleeHelper_0'
    End Object
-   MeleeAttackHelper=KFMeleeHelperWeapon'KFGameContent.Default__KFWeap_RocketLauncher_RPG7:MeleeHelper_0'
+   MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_RocketLauncher_RPG7:MeleeHelper_0'
    MuzzleFlashTemplate=KFMuzzleFlash'WEP_RPG7_ARCH.Wep_RPG7_MuzzleFlash'
    maxRecoilPitch=900
    minRecoilPitch=775
@@ -163,7 +163,7 @@ defaultproperties
    WeaponFireTypes(2)=()
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
-   WeaponProjectiles(0)=Class'KFGameContent.KFProj_Rocket_RPG7'
+   WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Rocket_RPG7'
    FireInterval(0)=0.250000
    FireInterval(1)=()
    FireInterval(2)=()
@@ -174,14 +174,14 @@ defaultproperties
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=()
-   InstantHitDamageTypes(0)=Class'KFGameContent.KFDT_Ballistic_RPG7Impact'
+   InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_RPG7Impact'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=None
-   InstantHitDamageTypes(3)=Class'KFGameContent.KFDT_Bludgeon_RPG7'
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_RPG7'
    FireOffset=(X=20.000000,Y=4.000000,Z=-3.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_GrenadeLauncher_Base:FirstPersonMesh'
       SkeletalMesh=SkeletalMesh'WEP_1P_RPG7_MESH.Wep_1stP_RPG7_Rig'
-      AnimTreeTemplate=AnimTree'WEP_1P_RPG7_ANIM.WEP_1stP_RPG7_Animtree_Master'
+      AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
       AnimSets(0)=AnimSet'WEP_1P_RPG7_ANIM.Wep_1stP_RPG7_Anim'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False

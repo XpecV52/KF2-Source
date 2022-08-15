@@ -689,22 +689,22 @@ defaultproperties
    AlwaysRelevantDistanceSquared=6250000.000000
    GlassShatterType=FMGS_ShatterDamaged
    TossZ=100.000000
-   ExplosionActorClass=Class'KFGameContent.KFExplosionActorC4'
+   ExplosionActorClass=Class'kfgamecontent.KFExplosionActorC4'
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
       ExplosionEffects=KFImpactEffectInfo'WEP_C4_ARCH.C4_Explosion'
       Damage=820.000000
       DamageRadius=800.000000
       DamageFalloffExponent=2.000000
-      MyDamageType=Class'KFGameContent.KFDT_Explosive_C4'
+      MyDamageType=Class'kfgamecontent.KFDT_Explosive_C4'
       KnockDownStrength=0.000000
       ExplosionSound=AkEvent'WW_WEP_EXP_C4.Play_WEP_EXP_C4_Explosion'
-      ExploLight=PointLightComponent'KFGameContent.Default__KFProj_Thrown_C4:ExplosionPointLight'
+      ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_Thrown_C4:ExplosionPointLight'
       ExploLightFadeOutTime=0.200000
       CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
       Name="ExploTemplate0"
       ObjectArchetype=KFGameExplosion'KFGame.Default__KFGameExplosion'
    End Object
-   ExplosionTemplate=KFGameExplosion'KFGameContent.Default__KFProj_Thrown_C4:ExploTemplate0'
+   ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFProj_Thrown_C4:ExploTemplate0'
    ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
    AltExploEffects=KFImpactEffectInfo'WEP_C4_ARCH.C4_Explosion_Concussive_Force'
    Speed=1200.000000

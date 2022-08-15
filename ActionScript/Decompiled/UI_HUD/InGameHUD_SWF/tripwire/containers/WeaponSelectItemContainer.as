@@ -15,6 +15,10 @@ package tripwire.containers
         
         public var WeaponItemRedBG:MovieClip;
         
+        private var _data:Object;
+        
+        public var throwable:Boolean = false;
+        
         public function WeaponSelectItemContainer()
         {
             super();
@@ -22,8 +26,15 @@ package tripwire.containers
             this.WeaponItemRedBG.visible = false;
         }
         
+        public function get data() : Object
+        {
+            return this._data;
+        }
+        
         public function set data(param1:Object) : void
         {
+            this._data = param1;
+            this.throwable = !!param1.throwable ? Boolean(param1.throwable) : false;
             if(param1.texturePath != null && param1.texturePath != "")
             {
                 this.WeaponInfoContainer.WeaponImageLoader.source = param1.texturePath;

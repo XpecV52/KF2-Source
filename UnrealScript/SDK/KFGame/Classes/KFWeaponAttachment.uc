@@ -30,13 +30,6 @@ var transient SkeletalMeshComponent WeapMesh;
 var() bool bWeapMeshIsPawnMesh;
 
 /*********************************************************************************************
- * @name	Flashlight
-********************************************************************************************* */
-
-var() const		KFFlashlightAttachment	FlashlightArchetype;
-var transient	KFFlashlightAttachment	Flashlight;
-
-/*********************************************************************************************
  * @name	LaserSight
 ********************************************************************************************* */
 
@@ -60,15 +53,20 @@ struct native KFTracerInfo
 {
 	/** Tracer Effect */
     var() ParticleSystem      TracerTemplate;
+	/** The velocity the tracer should travel at */
+	var() int 				TracerVelocity;
 	/** Show the tracer when the weapon is firing in normal time */
 	var() bool				bDoTracerDuringNormalTime;
 	/** Show the tracer when the weapon is firing in zed time */
 	var() bool				bDoTracerDuringZedTime;
 	/** How far away the hitlocation has to be to spawn this tracer */
 	var int                 MinTracerEffectDistanceSquared;
+	/** Actual tracer velocity vector, set at runtime */
+	var vector 				VelocityVector;
 
 	structdefaultproperties
 	{
+		TracerVelocity=7000
 		bDoTracerDuringNormalTime=true
         bDoTracerDuringZedTime=false
 		MinTracerEffectDistanceSquared=40000
@@ -276,10 +274,12 @@ var transient bool bIsReloading;
 ********************************************************************************************* */
 
 /** Weapon Mesh Attachment */
-native simulated function ChangeVisibility(bool bIsVisible);
+native function ChangeVisibility(bool bIsVisible);
 
 event PreBeginPlay()
 {
+	local int i;
+
 	if ( WeapMesh != None && !bWeapMeshIsPawnMesh )
 	{
 		if ( WeaponAnimSet != None )
@@ -294,6 +294,11 @@ event PreBeginPlay()
 		}
 
 		WeapAnimNode = AnimNodeSequence(WeapMesh.Animations);
+	}
+
+	for( i = 0; i < TracerInfos.Length; ++i )
+	{
+		TracerInfos[i].VelocityVector = vect(1,0,0) * TracerInfos[i].TracerVelocity;
 	}
 
  	super.PreBeginPlay();
@@ -316,8 +321,6 @@ simulated function AttachTo(KFPawn P)
 	}
 
 	// Additional attachments
-	AttachFlashlight();
-
 	if( bHasLaserSight && !P.IsFirstPerson() )
 	{
 		AttachLaserSight();
@@ -344,10 +347,6 @@ simulated function DetachFrom(KFPawn P)
 	{
 		MuzzleFlash.DetachMuzzleFlash(WeapMesh);
 	}
-	if (Flashlight != None)
-	{
-		Flashlight.DetachFlashlight(WeapMesh);
-	}
 
 	// Finally, detach weapon mesh
 	if ( bWeapMeshIsPawnMesh )
@@ -370,21 +369,29 @@ simulated function AttachMuzzleFlash()
 	}
 }
 
-simulated function AttachFlashlight()
-{
-	if ( WeapMesh != none && Flashlight == None && FlashlightArchetype != None )
-	{
-		Flashlight = new(self) Class'KFFlashlightAttachment' (FlashlightArchetype);
-		Flashlight.AttachFlashlight(WeapMesh);
-	}
-}
-
 simulated function AttachLaserSight()
 {
 	if ( WeapMesh != none && LaserSight == None && LaserSightArchetype != None )
 	{
 		LaserSight = new(self) Class'KFLaserSightAttachment' (LaserSightArchetype);
 		LaserSight.AttachLaserSight(WeapMesh, false);
+	}
+}
+
+/** 
+ * Assign weapon skin to 3rd person mesh
+ */
+event SetWeaponSkin(int ItemId)
+{
+	local array<MaterialInterface> SkinMICs;
+
+	if ( ItemId > 0 && WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		SkinMICs = class'KFWeaponSkinList'.static.GetWeaponSkin(ItemId, WST_ThirdPerson);
+		if ( SkinMICs.Length > 0 )
+		{
+			WeapMesh.SetMaterial(0, SkinMICs[0]);
+		}
 	}
 }
 
@@ -435,6 +442,8 @@ simulated function StopFirstPersonFireEffects(Weapon W)	// Should be subclassed
 */
 simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P)
 {
+	local EAnimSlotStance AnimType;
+
     SpawnTracer(GetMuzzleLocation(), HitLocation);
 
 	// Effects below this point are culled based on visibility and distance
@@ -444,33 +453,31 @@ simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P)
 	}
 
 	// Weapon shoot anims
-	if (Instigator.FiringMode == 1 && WeaponAltFireAnim != 'None')
+	if( !bWeapMeshIsPawnMesh )
 	{
-		WeapMesh.PlayAnim(WeaponAltFireAnim,,, true);
+		PlayWeaponFireAnim();
 	}
-	else if (WeaponFireAnim != 'None')
+
+	if( P.IsDoingSpecialMove() && P.SpecialMoves[P.SpecialMove].bAllowFireAnims )
 	{
-		WeapMesh.PlayAnim(WeaponFireAnim,,, true);
+		AnimType = EAS_Additive;
+	}
+	else
+	{
+		AnimType = EAS_FullBody;
 	}
 
 	// Character shoot anims
-	if ( !P.IsDoingSpecialMove() )
+	if ( !P.IsDoingSpecialMove() || AnimType == EAS_Additive )
 	{
-		if ( P.bIsCrouched )
-		{
-			P.PlayBodyAnim(CrouchShootAnim, EAS_FullBody, 1.f, ShootBlendInTime, ShootBlendOutTime);
-		}
-		else if ( P.bIsWalking )
-		{
-			P.PlayBodyAnim(IronShootAnim, EAS_FullBody, 1.f, ShootBlendInTime, ShootBlendOutTime);
-		}
-		else
-		{
-			P.PlayBodyAnim(ShootAnim, EAS_FullBody, 1.f, ShootBlendInTime, ShootBlendOutTime);
-		}
+		PlayPawnFireAnim( P, AnimType );
 
 		// interrupt other weapon action anims (e.g. Reload)
-		P.StopBodyAnim(P.bIsCrouched ? EAS_CH_UpperBody : EAS_UpperBody, 0.1f);
+		if( !P.IsDoingSpecialMove() )
+		{
+			P.StopBodyAnim(P.bIsCrouched ? EAS_CH_UpperBody : EAS_UpperBody, 0.1f);
+		}
+
 		if ( OnWeaponStateChanged != None )
 		{
 			OnWeaponStateChanged(true);
@@ -479,6 +486,36 @@ simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P)
 
 	CauseMuzzleFlash(P.FiringMode);
 	return true;
+}
+
+/** Plays fire animation on weapon mesh */
+simulated function PlayWeaponFireAnim()
+{
+	if (Instigator.FiringMode == 1 && WeaponAltFireAnim != 'None')
+	{
+		WeapMesh.PlayAnim(WeaponAltFireAnim,,, true);
+	}
+	else if (WeaponFireAnim != 'None')
+	{
+		WeapMesh.PlayAnim(WeaponFireAnim,,, true);
+	}
+}
+
+/** Plays fire animation on pawn */
+simulated function PlayPawnFireAnim( KFPawn P, EAnimSlotStance AnimType )
+{
+	if ( P.bIsCrouched )
+	{
+		P.PlayBodyAnim(CrouchShootAnim, AnimType, 1.f, ShootBlendInTime, ShootBlendOutTime);
+	}
+	else if ( P.bIsWalking )
+	{
+		P.PlayBodyAnim(IronShootAnim, AnimType, 1.f, ShootBlendInTime, ShootBlendOutTime);
+	}
+	else
+	{
+		P.PlayBodyAnim(ShootAnim, AnimType, 1.f, ShootBlendInTime, ShootBlendOutTime);
+	}
 }
 
 simulated function StopThirdPersonFireEffects()
@@ -511,21 +548,32 @@ simulated function SpawnTracer(vector EffectLocation, vector HitLocation)
 {
 	local ParticleSystemComponent E;
 	local vector Dir;
+	local float DistSQ;
+	local float TracerDuration;
+	local KFTracerInfo TracerInfo;
 
 	if ( Instigator == None || Instigator.FiringMode >= TracerInfos.Length )
 	{
 		return;
 	}
 
-    if( ((`NotInZedTime(self) && TracerInfos[Instigator.FiringMode].bDoTracerDuringNormalTime)
-        || (`IsInZedTime(self) && TracerInfos[Instigator.FiringMode].bDoTracerDuringZedTime))
-        && TracerInfos[Instigator.FiringMode].TracerTemplate != none )
+	TracerInfo = TracerInfos[Instigator.FiringMode];
+    if( ((`NotInZedTime(self) && TracerInfo.bDoTracerDuringNormalTime)
+        || (`IsInZedTime(self) && TracerInfo.bDoTracerDuringZedTime))
+        && TracerInfo.TracerTemplate != none )
     {
         Dir = HitLocation - EffectLocation;
-    	if ( VSizeSq(Dir) > TracerInfos[Instigator.FiringMode].MinTracerEffectDistanceSquared )
+		DistSQ = VSizeSq(Dir);
+    	if ( DistSQ > TracerInfo.MinTracerEffectDistanceSquared )
     	{
-    		E = WorldInfo.MyEmitterPool.SpawnEmitter(TracerInfos[Instigator.FiringMode].TracerTemplate, EffectLocation, rotator(Dir));
-    		E.SetVectorParameter('TracerEnd', HitLocation);
+    		// Lifetime scales based on the distance from the impact point. Subtract a frame so it doesn't clip.
+			TracerDuration = fMin( (Sqrt(DistSQ) - 100.f) / TracerInfo.TracerVelocity, 1.f );
+			if( TracerDuration > 0.f )
+			{
+	    		E = WorldInfo.MyEmitterPool.SpawnEmitter( TracerInfo.TracerTemplate, EffectLocation, rotator(Dir) );  
+	 			E.SetVectorParameter( 'Tracer_Velocity', TracerInfo.VelocityVector );
+	 			E.SetFloatParameter( 'Tracer_Lifetime', TracerDuration );
+	 		}
     	}
 	}
 }
@@ -563,26 +611,22 @@ simulated function ANIMNOTIFY_ShellEject()
 	}
 }
 
-simulated function SetThirdPersonFlashlight(bool bEnabled)
-{
-	if( Flashlight != None )
-	{
-		Flashlight.SetEnabled(bEnabled);
-	}
-}
-
 /** Adds some value to this weapon's blood material parameter */
 simulated function AddBattleBlood(float InBloodParamIncrementValue)
 {
-	if ( WeaponMIC == None && WeapMesh != None )
+	// Weapon shoot anims
+	if( !bWeapMeshIsPawnMesh )
 	{
-		WeaponMIC = WeapMesh.CreateAndSetMaterialInstanceConstant(0);
-	}
+		if ( WeaponMIC == None && WeapMesh != None )
+		{
+			WeaponMIC = WeapMesh.CreateAndSetMaterialInstanceConstant(0);
+		}
 
-	if ( WeaponMIC != None )
-	{
-		BloodParamValue = FMax(BloodParamValue + InBloodParamIncrementValue, MinBloodParamValue);
-		WeaponMIC.SetScalarParameterValue(BloodParamName, BloodParamValue);
+		if ( WeaponMIC != None )
+		{
+			BloodParamValue = FMax(BloodParamValue + InBloodParamIncrementValue, MinBloodParamValue);
+			WeaponMIC.SetScalarParameterValue(BloodParamName, BloodParamValue);
+		}
 	}
 }
 
@@ -907,15 +951,19 @@ simulated function PlayWeldAnim(KFPawn P)
 
 simulated function PlayWeaponMeshAnim(name AnimName, AnimNodeSlot SyncNode, bool bLoop)
 {
-	WeapMesh.PlayAnim(AnimName, 0.f, bLoop);
-
-	// syncronize this with the character anim
-	if ( SyncNode != None )
+	// Weapon shoot anims
+	if( !bWeapMeshIsPawnMesh )
 	{
-		bSynchronizeWeaponAnim = true;
-		SyncPawnNode = SyncNode;
-		SyncAnimName = AnimName;
-		SyncAnimStartTime = WorldInfo.TimeSeconds;
+		WeapMesh.PlayAnim(AnimName, 0.f, bLoop);
+
+		// syncronize this with the character anim
+		if ( SyncNode != None )
+		{
+			bSynchronizeWeaponAnim = true;
+			SyncPawnNode = SyncNode;
+			SyncAnimName = AnimName;
+			SyncAnimStartTime = WorldInfo.TimeSeconds;
+		}
 	}
 }
 
@@ -923,7 +971,7 @@ simulated function PlayWeaponMeshAnim(name AnimName, AnimNodeSlot SyncNode, bool
 simulated event Tick( float DeltaTime )
 {
 	// If we're playing a a syncronzied weapon action, check the owner pawn's animation
-	if ( bSynchronizeWeaponAnim && SyncPawnNode != None && WeapMesh.bForceRefpose == 0 )
+	if ( !bWeapMeshIsPawnMesh && bSynchronizeWeaponAnim && SyncPawnNode != None && WeapMesh.bForceRefpose == 0 )
 	{
 		// check to see if the character anim is still playing
 		if ( !SyncPawnNode.bIsPlayingCustomAnim
@@ -942,12 +990,16 @@ simulated event Tick( float DeltaTime )
 /** Stops a currently playing 3rd person weapon animation */
 simulated function InterruptWeaponAnim()
 {
-	WeapAnimNode.StopAnim();
-
-	// Return to RefPos, because StopAnim doesn't call OnAnimEnd
-	if ( WeapAnimNode.bForceRefposeWhenNotPlaying )
+	// Weapon shoot anims
+	if( !bWeapMeshIsPawnMesh )
 	{
-		WeapMesh.SetForceRefPose(TRUE);
+		WeapAnimNode.StopAnim();
+
+		// Return to RefPos, because StopAnim doesn't call OnAnimEnd
+		if ( WeapAnimNode.bForceRefposeWhenNotPlaying )
+		{
+			WeapMesh.SetForceRefPose(TRUE);
+		}
 	}
 }
 
@@ -958,7 +1010,10 @@ simulated function InterruptWeaponAnim()
 /** Set the lighting channels on all the appropriate weapon attachment mesh(es) */
 simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingChannels)
 {
-	WeapMesh.SetLightingChannels(NewLightingChannels);
+	if( !bWeapMeshIsPawnMesh )
+	{
+		WeapMesh.SetLightingChannels(NewLightingChannels);
+	}
 }
 
 /** Debug */
@@ -1104,7 +1159,6 @@ defaultproperties
 	End Object
 	WeapMesh=SkeletalMeshComponent0
 
-	FlashlightArchetype=KFFlashlightAttachment'FX_Flashlight_ARCH.Default_Flashlight_3P'
 	LaserSightArchetype=KFLaserSightAttachment'FX_LaserSight_ARCH.Default_LaserSight_3P'
 
 	TickGroup=TG_DuringAsyncWork

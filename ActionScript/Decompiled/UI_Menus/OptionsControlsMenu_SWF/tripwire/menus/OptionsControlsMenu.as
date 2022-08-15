@@ -7,6 +7,7 @@ package tripwire.menus
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.IndexEvent;
     import scaleform.clik.ui.InputDetails;
+    import scaleform.gfx.FocusManager;
     import tripwire.containers.SectionHeaderContainer;
     import tripwire.containers.TripContainer;
     import tripwire.containers.optionsControls.ControlsInputContainer;
@@ -65,6 +66,10 @@ package tripwire.menus
             if(this.tabButtonBar.getButtonAt(1))
             {
                 this.tabButtonBar.getButtonAt(1).enabled = !bManagerUsingGamepad;
+            }
+            if(bManagerUsingGamepad)
+            {
+                FocusManager.setFocus(this.tabButtonBar.getButtonAt(0));
             }
         }
         

@@ -97,8 +97,6 @@ var 	const	float			RapidFireFiringRate;    			// Faster firing rate in %  NOTE:T
 /** Temp HUD */
 var 			Texture2d		WhiteMaterial;
 
-var		const	array<Name>		ZedTimeModifyingStates;
-
 enum ECommandoSkills
 {
 	ECommandoLargeMags,
@@ -294,7 +292,7 @@ simulated function float GetZedTimeModifier( KFWeapon W )
  * @brief skills and weapons can modify the stumbling power
  * @return stumpling power modifier
  */
-function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier )
+function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart )
 {
 	local KFWeapon KFW;
 
@@ -577,9 +575,6 @@ defaultproperties
    NightVision=(Name="Night Vision")
    RapidFireFiringRate=0.500000
    WhiteMaterial=Texture2D'EngineResources.WhiteSquareTexture'
-   ZedTimeModifyingStates(0)="WeaponFiring"
-   ZedTimeModifyingStates(1)="WeaponBurstFiring"
-   ZedTimeModifyingStates(2)="WeaponSingleFiring"
    ProgressStatID=1
    PerkBuildStatID=2
    SecondaryXPModifier(0)=3
@@ -611,10 +606,12 @@ defaultproperties
    PerkSkills(7)=(Name="Autofire",StartingValue=0.200000,MaxValue=0.200000,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_AutoFire")
    PerkSkills(8)=(Name="RapidFire",StartingValue=0.030000,MaxValue=0.030000,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_RapidFire")
    PerkSkills(9)=(Name="Professional",IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_Professional")
+   ZedTimeModifyingStates(0)="WeaponFiring"
+   ZedTimeModifyingStates(1)="WeaponBurstFiring"
+   ZedTimeModifyingStates(2)="WeaponSingleFiring"
    bCanSeeCloakedZeds=True
-   PrimaryWeaponClassName="KFGameContent.KFWeap_AssaultRifle_AR15"
-   MeleeWeaponClassName="KFGameContent.KFWeap_Knife_Commando"
-   GrenadeClassName="KFGameContent.KFProj_HEGrenade"
+   PrimaryWeaponDef=Class'KFGame.KFWeapDef_AR15'
+   GrenadeWeaponDef=Class'KFGame.KFWeapDef_Grenade_Commando'
    Name="Default__KFPerk_Commando"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

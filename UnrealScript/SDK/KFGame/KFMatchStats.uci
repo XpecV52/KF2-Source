@@ -33,65 +33,6 @@
 
 `endif
 
-`define AAR_9mm 				 0
-`define AAR_Dual9mm 			 1
-`define AAR_Katana 				 2
-`define AAR_Knife 		 		 3
-`define AAR_Crovel		 		 4
-`define AAR_NailGun		 		 5
-`define AAR_Pulverizer	 		 6
-`define AAR_Eviscerator	 		 7
-`define AAR_EMPGrenade	 		 8
-`define AAR_HEGrenade	 		 9
-`define AAR_AR15				 10
-`define AAR_Bullpup				 11
-`define AAR_Ak12				 12
-`define AAR_SCAR				 13
-`define AAR_DynamiteGrenade		 14
-`define AAR_HX25				 15
-`define AAR_C4					 16
-`define AAR_M79					 17
-`define AAR_RPG7				 18
-`define AAR_MedicGrenade		 19
-`define AAR_MedicKnife			 20 //no  longer used
-`define AAR_MedicPistol			 21
-`define AAR_MedicSMG			 22
-`define AAR_MedicShotgun		 23
-`define AAR_MedicRifle			 24
-`define AAR_GunSlingerGrenade	 25		
-`define AAR_Deagle				 26
-`define AAR_GS2					 27
-`define AAR_GS3					 28
-`define AAR_GS4					 29
-`define AAR_MartialArtistGrenade 30
-`define AAR_MartialArtist1		 31
-`define AAR_MartialArtist2		 32
-`define AAR_MartialArtist3		 33
-`define AAR_MartialArtist4		 34
-`define AAR_FragGrenade			 35
-`define AAR_MB500				 36
-`define AAR_DoubleBarrel		 37
-`define AAR_M4					 38
-`define AAR_AA12				 39
-`define AAR_SwatGrenade			 40
-`define AAR_P90					 41
-`define AAR_Swat2				 42
-`define AAR_Swat3				 43
-`define AAR_Swat4				 44
-`define AAR_MolotovGrenade		 45
-`define AAR_CaulkBurn			 46
-`define AAR_DragonsBreath		 47
-`define AAR_FlameThrower		 48
-`define AAR_MicrowaveGun		 49
-`define AAR_Zweihander			 50
-`define AAR_Healer 				 51
-`define AAR_Welder 				 52
-`define AAR_MedicDart			 53
-
-`define AAR_NONE 				 255
-
-
-
 // Change this or predefine it to your class type
 `if(`notdefined(MatchStatsClass))
 	`define MatchStatsClass class'EphemeralMatchStats'
@@ -109,5 +50,5 @@
 `define RecordSecondaryXPGain(KFPC,PerkClass,Value) if(`KFPC != none && `KFPC.MatchStats != none && `PerkClass != none){`KFPC.MatchStats.RecordSecondaryXPGain(`PerkClass,`Value);}
 `define RecordAARWaveInfo(KFPC)	if(`KFPC != none && `KFPC.MatchStats != none ){`KFPC.MatchStats.RecordWaveInfo();}
 //Each Damage Type is going to have an ID that we are setting here.  We pass this id in to the function RecordWeaponDamage.  From there it is resolved 
-`define RecordWeaponDamage(InstigatedBy,KFDT,DamageValue,TargetPawn,HitZoneIdx)	if(`KFDT != none){`MatchStatsClass.static.RecordWeaponDamage(`InstigatedBy,`KFDT.default.AARWeaponID,`DamageValue,`TargetPawn,`HitZoneIdx);}
+`define RecordWeaponDamage(InstigatedBy,KFDT,DamageValue,TargetPawn,HitZoneIdx)	if(`KFDT != none){`MatchStatsClass.static.RecordWeaponDamage(`InstigatedBy,`KFDT.default.WeaponDef,`DamageValue,`TargetPawn,`HitZoneIdx);}
 `define RecordWeaponHeadShot(PC,DT)	if(`PC != none && `DT != none){`MatchStatsClass.static.RecordWeaponHeadShot(`PC,`DT);}

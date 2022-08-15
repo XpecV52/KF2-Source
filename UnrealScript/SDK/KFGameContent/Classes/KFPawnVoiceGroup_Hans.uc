@@ -6,7 +6,6 @@ defaultproperties
 {
 	EventDataClass=class'KFPawnVoiceGroupEventData_Hans'
 
-	DialogEvents[`BOSS_Intro]=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Intro_Base')
 	DialogEvents[`BOSS_TauntBase]=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Taunt_Base')
 	DialogEvents[`BOSS_Taunt_LT50]=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Taunt50_Base')
 	DialogEvents[`BOSS_Taunt_LT25]=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Taunt25_Base')
@@ -19,7 +18,6 @@ defaultproperties
 	DialogEvents[`BOSS_TakeDmg_LT25]=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_HurtBad_Base')
 	DialogEvents[`BOSS_Death]=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Death_Base')
 	DialogEvents[`BOSS_KillBase]=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_KillPlayer_Base')
-	DialogEvents[`BOSS_Victory]=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_VictoryMono_Base')
 	DialogEvents[`BOSS_Jump]=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Jump_Base')
 	DialogEvents[`BOSS_Land]=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Landing_Base')
 
@@ -47,7 +45,6 @@ defaultproperties
 	DialogEvents[`HANS_NextBattlePhase3]=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Ph4Start_Base')
 
 `if(`notdefined(ShippingPC))
-	DialogEventNames[`BOSS_Intro]				=BOSS_Intro			
 	DialogEventNames[`BOSS_TauntBase]           =BOSS_TauntBase      
 	DialogEventNames[`BOSS_Taunt_LT50]          =BOSS_Taunt_LT50     
 	DialogEventNames[`BOSS_Taunt_LT25]          =BOSS_Taunt_LT25     
@@ -60,7 +57,6 @@ defaultproperties
 	DialogEventNames[`BOSS_TakeDmg_LT25]        =BOSS_TakeDmg_LT25   
 	DialogEventNames[`BOSS_Death]               =BOSS_Death          
 	DialogEventNames[`BOSS_KillBase]            =BOSS_KillBase       
-	DialogEventNames[`BOSS_Victory]             =BOSS_Victory        
 	DialogEventNames[`BOSS_Jump]                =BOSS_Jump           
 	DialogEventNames[`BOSS_Land]                =BOSS_Land           
 	DialogEventNames[`HANS_Taunt_LT25_RO2]      =HANS_Taunt_LT25_RO2 

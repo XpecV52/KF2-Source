@@ -9,6 +9,11 @@ class KFWeap_AssaultRifle_Medic extends KFWeap_MedicBase
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
+static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
+{
+    return 7;
+}
+
 defaultproperties
 {
     HealAmount=40
@@ -17,11 +22,9 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireMode=1
     InventorySize=7
-    EffectiveRange=70
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
-    bHasFlashlight=true
     MeshFOV=75
     MeshIronSightFOV=52
     PlayerIronSightFOV=70
@@ -29,7 +32,7 @@ defaultproperties
     DOF_FG_FocalRadius=85
     DOF_FG_MaxNearBlurSize=2.5
     GroupPriority=100
-    UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicAssault'
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicAssault'
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
     MagazineCapacity=30
     MaxSpareAmmo=300

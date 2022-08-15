@@ -50,6 +50,16 @@ struct AttackAnimInfo
 	var() const bool bOnlyWhileEnemyNotMoving;
 	/** If set, only perform this attack when surrounded */
 	var() const bool bOnlyWhileSurrounded;
+	/** If set, this pawn has cloaking */
+	var() const bool bHasCloaking;
+	/** If set, only performs this attack when cloaked */
+	var() const bool bOnlyWhileCloaked<EditCondition=bHasCloaking>;
+	/** If set, only perform this attack when uncloaked */
+	var() const bool bOnlyWhileDeCloaked<EditCondition=bHasCloaking>;
+	/** The radius around the AI pawn to determine if surrounded */
+	var() const float SurroundedRadius<EditCondition=bOnlyWhileSurrounded | ClampMin=1>;
+	/** The minimum number of players that need to surround AI pawn for this attack to be considered */
+	var() const int MinSurroundedBy<EditCondition=bOnlyWhileSurrounded | ClampMin=2>;
 	/** If set, attack only usable when AI using custom mode/ability ("e.g, FleshPound rage, siren cloak, etc.") */
 	var() const bool bOnlyWhileInSpecializedMode;
 	/** If set, attack only usable when AI NOT using custom mode/ability ("e.g, FleshPound rage, siren cloak, etc.") */
@@ -58,6 +68,12 @@ struct AttackAnimInfo
 	var() const bool bOnlyWhileHeadless;
 	/** If set, attack requires a clear path to enemy (no leg obstructions) to perform this anim */
 	var() const bool bOnlyWhilePathClear;
+	/** If set along with BattlePhaseMinimum, determines the battle phases this attack is allowed in (Bosses only) */
+	var() const bool bIsBattlePhaseAttack;
+	/** The minimum battle phase a boss must be at for this attack to be allowed */
+	var() const int BattlePhaseMinimum<EditCondition=bIsBattlePhaseAttack | ClampMin=1>;
+	/** The maximum battle phase a boss can be at to use this attack */
+	var() const int BattlePhaseMaximum<EditCondition=bIsBattlePhaseAttack>;
 
 	/** Chance this attack will be considered */
 	var() const float Chance<ClampMin=0.0>;
@@ -82,7 +98,18 @@ struct AttackAnimInfo
 	{
 		//Priority=1.f
 		Chance=1.f
+		SurroundedRadius=200.f
+		BattlePhaseMinimum=1
+		BattlePhaseMaximum=4
+		MinSurroundedBy=3
 	}
+};
+
+struct sTheatricAnimInfo
+{
+	var() const Name AnimationName;
+	var() const CameraAnim CameraAnimation;
+	var() const vector CameraAnimOffset;
 };
 
 var(Attacks) array<AttackAnimInfo> Attacks<DisplayName=MeleeAttacks>;
@@ -208,8 +235,8 @@ var(Taunt)	array<name>	TauntEnragedAnims;
 /*********************************************************************************************
  * @name	 Theatric Boss Animations
  *********************************************************************************************/
-var(BossTheatrics)	array<name>	TheatricBossEntranceAnims;
-var(BossTheatrics)	array<name>	TheatricBossVictoryAnims;
+var(BossTheatrics)	array<sTheatricAnimInfo>	TheatricBossEntranceAnimInfos;
+var(BossTheatrics)	array<sTheatricAnimInfo>	TheatricBossVictoryAnimInfos;
 
 /*********************************************************************************************
  * @name	 Melee attack anim helpers
@@ -383,6 +410,23 @@ function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
 		return false;
 	}
 
+	if( Attacks[Idx].bOnlyWhilePathClear && P.MyKFAIC.bIsBodyBlocked )
+	{
+		`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because bOnlyWhilePathClear is true but Pawn is blocked", bDebugLog );
+		return false;
+	}
+
+	if( Attacks[Idx].bHasCloaking && (Attacks[Idx].bOnlyWhileCloaked && !P.bIsCloaking) || (Attacks[Idx].bOnlyWhileDeCloaked && P.bIsCloaking) )
+	{
+		`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because it is not allowed in this cloaking state", bDebugLog );
+		return false;
+	}
+
+	if( Attacks[Idx].bIsBattlePhaseAttack && (P.GetCurrentBattlePhase() < Attacks[Idx].BattlePhaseMinimum || P.GetCurrentBattlePhase() > Attacks[Idx].BattlePhaseMaximum) )
+	{
+		`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because not allowed in this Battle Phase", bDebugLog );
+	}
+
 	if ( Attacks[Idx].GlobalCooldown > 0 && Attacks[Idx].LastTimePlayed > 0.f && (`TimeSinceEx(P, Attacks[Idx].LastTimePlayed) < Attacks[Idx].GlobalCooldown) )
 	{
 		`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because GlobalCooldown ("$Attacks[Idx].GlobalCooldown$") LastTimePlayed:"$`TimeSinceEx(P, Attacks[Idx].LastTimePlayed), bDebugLog );
@@ -399,12 +443,6 @@ function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
 		return false;
 	}
 
-	if( Attacks[Idx].bOnlyWhilePathClear && P.MyKFAIC.bIsBodyBlocked )
-	{
-		`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because bOnlyWhilePathClear is true but Pawn is blocked", bDebugLog );
-		return false;
-	}
-
 	if ( Attacks[Idx].bOnlyWhileHeadless != P.ShouldPlayHeadlessMeleeAnims() )
 	{
 		`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because bOnlyWhileHeadless is true but Pawn has a head", bDebugLog );
@@ -414,6 +452,12 @@ function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
 	if ( Attacks[Idx].InstancedCooldown > 0 && IsAttackOnCooldown(P, Attacks[Idx].Tag, Attacks[Idx].InstancedCooldown) )
 	{
 		`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because Cooldown is still active", bDebugLog );
+		return false;
+	}
+
+	if ( Attacks[Idx].bOnlyWhileSurrounded && !P.IsSurrounded(true, Attacks[Idx].MinSurroundedBy, Attacks[Idx].SurroundedRadius) )
+	{
+		`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because pawn is not surrounded", bDebugLog );
 		return false;
 	}
 
@@ -440,12 +484,6 @@ function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
 			`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because target dist is less than "$Attacks[Idx].MinDistance, bDebugLog );
 			return false;
 		}
-	}
-
-	if ( Attacks[Idx].bOnlyWhileSurrounded && !P.IsSurrounded(true) )
-	{
-		`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because target is not surrounded", bDebugLog );
-		return false;
 	}
 
 	if ( !AllowAttackByDifficulty(Idx) )

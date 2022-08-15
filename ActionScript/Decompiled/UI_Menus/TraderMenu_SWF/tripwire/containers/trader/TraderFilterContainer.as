@@ -28,7 +28,13 @@ package tripwire.containers.trader
         
         public var rightArrow:MovieClip;
         
+        public var leftTriggerIcon:MovieClip;
+        
+        public var rightTriggerIcon:MovieClip;
+        
         private var _filterIndex:int = 0;
+        
+        private var _tabIndex:int = 0;
         
         public function TraderFilterContainer()
         {
@@ -76,7 +82,12 @@ package tripwire.containers.trader
         public function set selectedTab(param1:int) : void
         {
             this.tabBar.selectedIndex = param1;
-            this.controllerIconVisibility = bManagerUsingGamepad && this.filterButtonBar.visible;
+            this._tabIndex = param1;
+        }
+        
+        public function get selectedTab() : int
+        {
+            return this._tabIndex;
         }
         
         public function set selectedFilter(param1:int) : void
@@ -97,6 +108,16 @@ package tripwire.containers.trader
             this.rightArrow.visible = param1;
         }
         
+        public function changeTabIndex(param1:int) : Boolean
+        {
+            if(param1 < 0 || param1 >= this.tabBar.dataProvider.length)
+            {
+                return false;
+            }
+            this.selectedTab = param1;
+            return true;
+        }
+        
         public function changeFilterIndex(param1:int) : Boolean
         {
             if(param1 < 0 || param1 >= this.filterButtonBar.dataProvider.length)
@@ -112,6 +133,8 @@ package tripwire.containers.trader
         {
             this.leftButtonIcon.visible = param1;
             this.rightButtonIcon.visible = param1;
+            this.leftTriggerIcon.visible = param1;
+            this.rightTriggerIcon.visible = param1;
         }
     }
 }

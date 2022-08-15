@@ -12,6 +12,18 @@ class KFGameReplicationInfo extends GameReplicationInfo
 	native(ReplicationInfo)
 	nativereplication;
 
+/*************************************
+* Pre game server welcome screen
+*************************************/
+struct native PreGameServerAdInfo
+{
+	var string     	BannerLink;             // Link to the banner image
+	var string     	ServerMOTD;             // The server message of the day string
+	var string 		WebsiteLink;			//url to the website of the server
+};
+
+var repnotify PreGameServerAdInfo ServerAdInfo;
+
 /************************************
 *  Traders
 ************************************/
@@ -190,10 +202,20 @@ var repnotify KFMusicTrackInfo  ReplicatedMusicTrackInfo;
 /** Commando Leadership skill */
 var private bool bLeadershipAvailable;
 
-
 /************************************
 *  debug
 ************************************/
+
+/************************************
+ *  Steam heartbeat
+ ************************************/
+
+const STEAM_PLAYTIME_GENERATOR_ITEM = 900000;
+   
+var private float SteamHeartbeatAccumulator;
+native function SendSteamHeartbeat();
+native function SendSteamRequestItemDrop();
+
 
 cpptext
 {
@@ -202,7 +224,12 @@ cpptext
 	virtual void TickAuthoritative( FLOAT DeltaSeconds );
 	virtual UBOOL IsUnrankedGame();
 	virtual FString GetGameBalanceCol1() { return FString::Printf(TEXT(",%i,"), WaveNum); }
+	virtual int GetWaveNum() { return WaveNum; }
+	virtual int GetWaveMax() { return WaveMax; }
+	virtual UBOOL GetWon() { return bMatchVictory; }
+	virtual void TickSpecial(FLOAT DeltaSeconds);
 }
+
 
 /************************************
 *  Replication
@@ -215,6 +242,8 @@ replication
 		bIsUnrankedGame, bLeadershipAvailable, GameSharedUnlocks;
 	if ( bNetInitial )
 		GameLength, GameDifficulty, WaveMax, bCustom;
+	if ( bNetInitial && Role == ROLE_Authority )
+		ServerAdInfo;
 
 // !SHIPPING_PC_GAME && !FINAL_RELEASE in C++
 	if ( bDebugSpawnManager && bNetDirty )
@@ -267,6 +296,10 @@ simulated event ReplicatedEvent(name VarName)
     {
     	VoteCollector.UnPackVotes();
     }
+    else if( VarName == 'ServerAdInfo')
+	{
+			ShowPreGameServerWelcomeScreen();
+	}
 	else
 	{
 		super.ReplicatedEvent(VarName);
@@ -301,6 +334,7 @@ simulated event PostBeginPlay()
 simulated function ReceivedGameClass()
 {
 	local class<KFGameInfo> KFGameClass;
+	local KFPlayerController KFPC;
 
 	KFGameClass = class<KFGameInfo>(GameClass);
 	if ( KFGameClass != None )
@@ -321,8 +355,18 @@ simulated function ReceivedGameClass()
 
 	DebugingNextTraderIndex = -1;
 
+	if( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		KFPC = KFPlayerController(GetALocalPlayerController());
+		if( KFPC != none && KFPC.MyGFxHUD != none )
+		{
+			KFPC.MyGFxHUD.UpdateWaveCount();
+		}	
+	}
+
 	Super.ReceivedGameClass();
 }
+
 
 /** Process wave end event on client */
 simulated function NotifyWaveEnded()
@@ -339,6 +383,24 @@ simulated function NotifyWaveEnded()
 	{
 		CurrentObjective.FailObjective(OF_WaveEnded);
 	}
+}
+
+/* Welcome screen shenanigans */
+exec reliable client function ShowPreGameServerWelcomeScreen()
+{
+	local KFPlayerController KFPC;
+
+	if( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		return;
+	}
+
+	KFPC = KFPlayerController(GetALocalPlayerController());
+	if(KFPC != none && KFPC.MyGFxManager != none)
+	{
+		KFPC.MyGFxManager.ShowWelcomeScreen();
+	}
+
 }
 
 simulated function GetKFPRIArray(out array<KFPlayerReplicationInfo> KFPRIArray, optional bool bGetSpectators)
@@ -359,7 +421,7 @@ simulated function GetKFPRIArray(out array<KFPlayerReplicationInfo> KFPRIArray, 
 
 simulated function OpenTrader(optional int time)
 {
-    local KFPlayerController KFPC;
+	local KFPlayerController KFPC;
 
 	if( OpenedTrader != none )
 	{
@@ -385,6 +447,10 @@ simulated function OpenTrader(optional int time)
 		if(KFPC != none && KFPC.MyGFxManager != none)
 		{
 			KFPC.MyGFxManager.OnTraderTimeStart();
+		}
+		if(KFPC.MyGFxHUD != none)
+		{
+			KFPC.MyGFxHUD.UpdateWaveCount();
 		}
 	}
 
@@ -464,13 +530,21 @@ simulated function int GetTraderTimeRemaining()
 
 //After action report
 simulated function OnOpenAfterActionReport(optional float time)
-{
+{				
 	if( time > 0 && Role == ROLE_Authority )
 	{
 		bStopCountDown = false;
         RemainingTime = time;
 		RemainingMinute = time;
 	}
+}
+
+function ProcessChanceDrop()
+{
+	`if (`__TW_STEAMWORKS_)
+	SendSteamHeartbeat(); // be sure no time is lost at the end of match
+	SendSteamRequestItemDrop(); // see if we've accumulated enough time
+	`endif	
 }
 
 simulated function int GetNextMapTimeRemaining()

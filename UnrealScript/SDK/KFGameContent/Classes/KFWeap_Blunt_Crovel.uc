@@ -45,8 +45,7 @@ defaultproperties
     // Inventory
 	GroupPriority=25
 	InventorySize=4
-	UITexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Crovel'
-	FilterTypeUI=FT_Melee 
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Crovel'
 
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
 	InstantHitDamage(DEFAULT_FIREMODE)=49
@@ -64,9 +63,6 @@ defaultproperties
 	// Block Sounds
 	BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Crovel'
 	ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Metal'
-
-	// Trader
-    EffectiveRange=3
 	
 	ParryStrength=3
 }

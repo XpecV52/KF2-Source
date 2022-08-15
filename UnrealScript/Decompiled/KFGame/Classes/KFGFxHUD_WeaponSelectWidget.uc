@@ -17,10 +17,13 @@ var const localized string PrimaryString;
 var const localized string EquiptmentString;
 var const localized string MeleeString;
 var const localized string SecondaryString;
+var const localized string ThrowString;
+var byte LastRefreshInvCount;
 
 function InitializeObject()
 {
     SetWeaponCategories();
+    SetString("throwString", ThrowString);
 }
 
 simulated function RefreshWeaponSelect()
@@ -71,21 +74,26 @@ simulated function SetWeaponGroupList(out array<KFWeapon> WeaponList, byte Group
     local bool bUsesAmmo;
 
     DataProvider = Outer.CreateArray();
+    if(DataProvider == none)
+    {
+        return;
+    }
     I = 0;
-    J0x35:
+    J0x46:
 
     if(I < WeaponList.Length)
     {
         TempObj = Outer.CreateObject("Object");
         TempObj.SetString("weaponName", WeaponList[I].ItemName);
-        TempObj.SetString("texturePath", (("img://" $ string(WeaponList[I].UITexture.GetPackageName())) $ ".") $ string(WeaponList[I].UITexture.Name));
+        TempObj.SetString("texturePath", "img://" $ PathName(WeaponList[I].WeaponSelectTexture));
         TempObj.SetInt("ammoCount", WeaponList[I].AmmoCount[0]);
         TempObj.SetInt("spareAmmoCount", WeaponList[I].SpareAmmoCount[0]);
+        TempObj.SetBool("throwable", WeaponList[I].CanThrow());
         bUsesAmmo = WeaponList[I].UsesAmmo();
         TempObj.SetBool("bUsesAmmo", bUsesAmmo);
         DataProvider.SetElementObject(I, TempObj);
         ++ I;
-        goto J0x35;
+        goto J0x46;
     }
     SetWeaponList(DataProvider, GroupIndex);
 }
@@ -102,6 +110,11 @@ function SetSelectedWeapon(int GroupIndex, int SelectedIndex)
         bChangingWeapons = true;
     }
     SendWeaponIndex(GroupIndex, SelectedIndex);
+}
+
+function Weapon GetSelectedWeapon()
+{
+    return Outer.GetPC().Pawn.InvManager.PendingWeapon;
 }
 
 function UpdateIndex()
@@ -163,8 +176,49 @@ function ShowAllHUDGroups()
     ActionScriptVoid("showAllHUDGroups");
 }
 
+function RefreshTimer()
+{
+    local Inventory Inv;
+    local int InvCount;
+
+    Inv = Outer.GetPC().Pawn.InvManager.InventoryChain;
+    J0x68:
+
+    if(Inv != none)
+    {
+        ++ InvCount;
+        Inv = Inv.Inventory;
+        goto J0x68;
+    }
+    if(InvCount != LastRefreshInvCount)
+    {
+        RefreshWeaponSelect();
+    }
+    LastRefreshInvCount = byte(InvCount);
+}
+
 function SetWeaponSwitchStayOpen(bool bStayOpen)
 {
+    local Inventory Inv;
+
+    if(bStayOpen)
+    {
+        LastRefreshInvCount = 0;
+        Inv = Outer.GetPC().Pawn.InvManager.InventoryChain;
+        J0x81:
+
+        if(Inv != none)
+        {
+            ++ LastRefreshInvCount;
+            Inv = Inv.Inventory;
+            goto J0x81;
+        }
+        Outer.GetPC().SetTimer(0.33, true, 'RefreshTimer', self);        
+    }
+    else
+    {
+        Outer.GetPC().ClearTimer('RefreshTimer', self);
+    }
     SetBool("bStayOpen", bStayOpen);
 }
 
@@ -179,4 +233,5 @@ defaultproperties
     EquiptmentString="EQUIPMENT"
     MeleeString="MELEE"
     SecondaryString="SECONDARY"
+    ThrowString="THROW WEAPON"
 }

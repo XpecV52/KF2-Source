@@ -9,8 +9,8 @@ class KFGFxMenu_Exit extends KFGFxObject_Menu within GFxMoviePlayer;
 
 enum ExitOptions
 {
-    EO_TO_OS,
     EO_TO_Main_Menu,
+    EO_TO_OS,
     EO_TO_MAX
 };
 
@@ -34,11 +34,8 @@ function OnOpen()
 function SetExitOptions()
 {
     OptionStrings.Length = 0;
+    OptionStrings.AddItem(ExitToMainMenu;
     OptionStrings.AddItem(ExitKF2;
-    if(!Class'WorldInfo'.static.IsMenuLevel())
-    {
-        OptionStrings.AddItem(ExitToMainMenu;
-    }
     SetMenuText();
 }
 
@@ -56,6 +53,14 @@ function SetMenuText()
     {
         DataObject = Outer.CreateObject("Object");
         DataObject.SetString("label", OptionStrings[I]);
+        if(OptionStrings[I] == ExitToMainMenu)
+        {
+            DataObject.SetBool("enabled", !Class'WorldInfo'.static.IsMenuLevel());            
+        }
+        else
+        {
+            DataObject.SetBool("enabled", true);
+        }
         DataProvider.SetElementObject(I, DataObject);
         ++ I;
         goto J0x66;
@@ -67,10 +72,10 @@ function Callback_MenuSelected(int MenuIndex)
 {
     switch(MenuIndex)
     {
-        case 0:
+        case 1:
             ShowExitToOSPopUp();
             break;
-        case 1:
+        case 0:
             ShowLeaveGamePopUp();
             break;
         default:

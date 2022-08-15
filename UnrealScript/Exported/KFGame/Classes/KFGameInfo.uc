@@ -322,65 +322,6 @@ class KFGameInfo extends FrameworkGame
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
@@ -444,6 +385,14 @@ var	globalconfig	bool			bDisablePickups;			// Whether or not this server allows 
 var globalconfig 	bool			bDisableMapVote;			// Turn off map voting
 var globalconfig	float			MapVotePercentage;			// Percentage of players that must vote for this map
 var globalconfig	float			MapVoteDuration;			// time till the map vote ends
+
+var globalconfig 	string 			ServerMOTD;			// Message of the day to be displayed on the server welcome screen
+var globalconfig 	Color      		ServerMOTDColor;        // The color of the server MOTD text (set in the form ServerMOTDColor=(R=0,G=0,B=0)
+var globalconfig 	string 			BannerLink;			// The url to the banner to be loaded from the magical internet
+var globalconfig 	string 			WebsiteLink;		// The url to the clan website
+var globalconfig 	Color     	 	WebLinkColor;           // The color of the web link text (set in the form WebLinkColor=(R=0,G=0,B=0)
+var globalconfig 	string 			ClanMotto;			// The server's motto of the day
+var globalconfig 	Color      		ClanMottoColor;         // The color of the clan motto text (set in the form ClanMottoColor=(R=0,G=0,B=0)
 
 /** If set, ignore blocking collision of teammates */
 var globalconfig 	bool			bDisableTeamCollision;
@@ -637,7 +586,7 @@ var bool	bIsCustomGame;
 var bool	bIsUnrankedGame;
 
 /** Whether we should check if this server is out of date and shut it down. Set in native PreBeginPlay */
-var const bool bEnableUpToDateCheck;
+var const bool bEnableServerVersionCheck;
 /** Time since we last checked for updates */
 var const float LastUpToDateCheckTime;
 
@@ -788,9 +737,11 @@ static function string StripPlayOnPrefix( String MapName )
 static function PreloadContentClasses(KFGameReplicationInfo GRI);
 
 /**
- * @brief Marks the game as running an out-of-date version of the engine
+ * @brief Marks the game as running an out-of-date version of the engine or workshop content. Designed to be callable on default object
  */
-native static function SetNeedsRestart(bool bOutOfDate);
+native function SetNeedsRestart();
+
+native static function StaticSetNeedsRestart();
 
 /************************************************************************************
  * @name		InitGame
@@ -875,6 +826,9 @@ event PreBeginPlay()
     CreateTeam(0);
     InitAIDirector();
 	InitTraderList();
+	ReplicateWelcomeScreen();
+
+	WorldInfo.TWLogsInit();
 }
 
 event PostBeginPlay()
@@ -905,6 +859,25 @@ function InitGameplayEventWriter()
    {
       LogInternal("Gameplay events will not be recorded.");
    }
+}
+
+function ReplicateWelcomeScreen()
+{
+	local WorldInfo WI;
+
+	WI = class'WorldInfo'.static.GetWorldInfo();
+
+	if(WI.NetMode != NM_DedicatedServer)
+	{
+		return;
+	}
+
+	if(MyKFGRI != none)
+	{
+		MyKFGRI.ServerAdInfo.BannerLink = BannerLink;
+		MyKFGRI.ServerAdInfo.ServerMOTD = ServerMOTD;
+		MyKFGRI.ServerAdInfo.WebsiteLink= WebsiteLink;
+	}
 }
 
 function EndLogging(string Reason)
@@ -1628,7 +1601,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 	Super.Killed( Killer, KilledPlayer, KilledPawn, DT );
 
 	/* __TW_ANALYTICS_ */
-   if(GameplayEventsWriter != None && GameplayEventsWriter.IsSessionInProgress()){GameplayEventsWriter.LogPlayerKillDeath(class'KFGameplayEventsWriter'.const.GAMEEVENT_PLAYER_KILL,class'KFGameplayEventsWriter'.const.GAMEEVENT_PLAYER_KILL_NORMAL,Killer,DT,KilledPlayer);};
+	if(GameplayEventsWriter != None && GameplayEventsWriter.IsSessionInProgress()){GameplayEventsWriter.LogPlayerKillDeath(class'KFGameplayEventsWriter'.const.GAMEEVENT_PLAYER_KILL,class'KFGameplayEventsWriter'.const.GAMEEVENT_PLAYER_KILL_NORMAL,Killer,DT,KilledPlayer);};
 
 	// Maybe do a DramaticEvent that may trigger Zedtime when someone is killed
 	if( Killer != KilledPlayer )
@@ -1644,7 +1617,6 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 		if( KFPC != none && KFPC.bIsPlayer && MonsterPawn != none )
 		{
 			//Chris: We have to do it earlier here because we need a damage type
-			//BLEED MAY BE BREAKING AAR STUFF
 			KFPC.AddZedKill( MonsterPawn.class, GameDifficulty, DT );
 
 			KFPCP = KFPC.GetPerk();
@@ -1672,7 +1644,9 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 	{
 		KilledPRI = KFPlayerReplicationInfo(KilledPlayer.PlayerReplicationInfo);
         if( KilledPRI != none )
-        {
+		{
+			if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("player_death", KilledPRI);
+			
         	PlayerScoreDelta = GetAdjustedDeathPenalty( KilledPRI );
         	if (bLogScoring) LogInternal("SCORING: Player" @ KilledPRI.PlayerName @ "next starting dosh =" @ PlayerScoreDelta + KilledPRI.score);
         	KilledPRI.AddDosh( PlayerScoreDelta );
@@ -1749,6 +1723,13 @@ function ScoreMonsterKill( Controller Killer, Controller Monster, KFPawn_Monster
 		if( KFAIC.DamageHistory.Length > 0 )
 		{
 			DistributeMoneyAndXP( MonsterPawn.class, KFAIC.DamageHistory, Killer );
+
+			if( MonsterPawn.IsStalkerClass() &&
+			 	MonsterPawn.LastStoredCC != none &&
+			 	MonsterPawn.bIsCloakingSpottedByTeam )
+			{
+				MonsterPawn.LastStoredCC.AddPlayerXP( MonsterPawn.static.GetXPValue(GameDifficulty), class'KFPerk_Commando' );
+			}
 		}
 	}
 
@@ -2234,7 +2215,7 @@ function int GetCurrentMapCycleIndex(const out array<string> MapList)
 
 exec function MaintenanceRestart()
 {
-	SetNeedsRestart(false);
+	SetNeedsRestart();
 }
 
 // Save player's stats on leave
@@ -2557,6 +2538,7 @@ function int GetAvailableReservations()
  *********************************************************************************************/
 
 static native function bool AllowBalanceLogging();
+static native function bool AllowAnalyticsLogging();
 
 /** logs what each player is carrying */
 function LogPlayersInventory()
@@ -2580,6 +2562,7 @@ function LogPlayersInventory()
 				InvString $= Item.Class.Name $ ",";
 			}
 			if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(GBE_Inventory$","$PC.PlayerReplicationInfo.PlayerName$","$InvString);
+			if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("inventory", PC.PlayerReplicationInfo, InvString);
 		}
 	}
 }
@@ -2599,6 +2582,7 @@ function LogPlayersDosh(name EventName)
 		if ( PC.PlayerReplicationInfo != None && !PC.PlayerReplicationInfo.bIsSpectator )
 		{
 			if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(EventName$","$PC.PlayerReplicationInfo.PlayerName$","$"$"$PC.PlayerReplicationInfo.Score$","$PC.GetPerk());
+			if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("dosh", PC.PlayerReplicationInfo, EventName, "#"$PC.PlayerReplicationInfo.Score, PC.GetPerk(), "#"$MyKFGRI.WaveNum );
 		}
 	}
 }
@@ -2621,6 +2605,8 @@ function LogPlayersKillCount()
 		{
 			if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(GBE_Kills$","$PRI.PlayerName$","$PRI.Kills$","$PC.GetPerk());
 			if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(GBE_Deaths$","$PRI.PlayerName$","$PRI.Deaths$","$PC.GetPerk());
+			if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("kills", PRI, "#"$PRI.Kills, PC.GetPerk());
+			if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("deaths", PRI, "#"$PRI.Deaths, PC.GetPerk());
 		}
 	}
 }
@@ -2881,6 +2867,13 @@ defaultproperties
    KickVotePercentage=0.500000
    TimeBetweenFailedVotes=10.000000
    MapVoteDuration=60.000000
+   ServerMOTD="Welcome to our server. \n \n Have fun and good luck!"
+   ServerMOTDColor=(B=254,G=254,R=254,A=192)
+   BannerLink="http://art.tripwirecdn.com/TestItemIcons/MOTDServer.png"
+   WebsiteLink="http://killingfloor2.com/"
+   WebLinkColor=(B=254,G=254,R=254,A=192)
+   ClanMotto="This is the clan motto."
+   ClanMottoColor=(B=254,G=254,R=254,A=192)
    ReconnectRespawnTime=30
    DifficultyTemplate=KFDifficultyInfo'GP_Difficulty_ARCH.Difficulty'
    DeathPenaltyModifiers(0)=0.050000
@@ -2889,13 +2882,13 @@ defaultproperties
    DeathPenaltyModifiers(3)=0.250000
    ZedTimeSlomoScale=0.200000
    ZedTimeBlendOutTime=0.500000
-   GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint"))
+   GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest"))
    DialogManagerClass=Class'KFGame.KFDialogManager'
    ActionMusicDelay=5.000000
    ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'
    ForcedMusicTracks(1)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'
    ForcedMusicTracks(2)=KFMusicTrackInfo'WW_MACT_Default.TI_SH_Boss_DieVolter'
-   ForcedMusicTracks(3)=KFMusicTrackInfo'WW_MACT_Default.TI_ID_Murderer'
+   ForcedMusicTracks(3)=KFMusicTrackInfo'WW_MACT_Default.TI_Boss_Patriarch'
    ForcedMusicTracks(4)=KFMusicTrackInfo'WW_MACT_Default.TI_ID_Murderer'
    ReservationTimeout=32
    bRestartLevel=False

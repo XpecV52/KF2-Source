@@ -108,8 +108,7 @@ defaultproperties
 	InventoryGroup=IG_Primary
 	GroupPriority=100
 	InventorySize=10
-	UITexture=Texture2D'WEP_UI_RPG7_TEX.UI_WeaponSelect_RPG7'
-	FilterTypeUI=FT_Explosive
+	WeaponSelectTexture=Texture2D'WEP_UI_RPG7_TEX.UI_WeaponSelect_RPG7'
 
     // FOV
 	MeshFOV=75
@@ -129,7 +128,6 @@ defaultproperties
 	Begin Object Name=FirstPersonMesh
 		SkeletalMesh=SkeletalMesh'WEP_1P_RPG7_MESH.Wep_1stP_RPG7_Rig'
 		AnimSets(0)=AnimSet'WEP_1P_RPG7_ANIM.Wep_1stP_RPG7_Anim'
-		AnimTreeTemplate=AnimTree'WEP_1P_RPG7_ANIM.WEP_1stP_RPG7_Animtree_Master'
 	End Object
 
 	Begin Object Name=StaticPickupComponent
@@ -145,6 +143,7 @@ defaultproperties
 	MagazineCapacity[0]=1
 	MaxSpareAmmo[0]=11
 	InitialSpareMags[0]=5
+	AmmoPickupScale[0]=2.0
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
 
@@ -199,12 +198,11 @@ defaultproperties
 	bHasFireLastAnims=true
 	IdleFidgetAnims=(Guncheck_v1, Guncheck_v2)
 
+	BonesToLockOnEmpty=(RW_Grenade1)
+
 	// Attachments
 	bHasIronSights=true
 	bHasFlashlight=false
-
-	// Trader
-    EffectiveRange=100
 
 	AssociatedPerkClass=class'KFPerk_Demolitionist'
 

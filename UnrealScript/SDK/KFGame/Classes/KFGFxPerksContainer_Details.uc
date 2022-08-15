@@ -29,11 +29,8 @@ function UpdateDetails( class<KFPerk> PerkClass)
 {
 	local GFxObject DetailsProvider;
 	local KFPlayerController KFPC;
-	local KFGameReplicationInfo KFGRI;
 	local array<string> WeaponNames;
 	local array<string> WeaponSources;
-	local string WeaponNameStringHolder;
-	local string WeaponSourceStringHolder;
 	local int i;
 
 	DetailsProvider = CreateObject( "Object" );
@@ -42,37 +39,28 @@ function UpdateDetails( class<KFPerk> PerkClass)
 
 	if ( KFPC != none)
 	{
-		KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
-		
 		if(KFPC != none)
 		{
 			DetailsProvider.SetString( "ExperienceMessage", ExperienceString @ KFPC.GetPerkXP(PerkClass) );
 		}
-
-		if(KFGRI != none)
+		
+		if(PerkClass.default.PrimaryWeaponDef != none)
 		{
-			if(PerkClass.default.PrimaryWeaponClassName != "")
-			{
-				KFGRI.TraderItems.GetItemInfo( PerkClass, PerkClass.default.PrimaryWeaponClassName, WeaponNameStringHolder, WeaponSourceStringHolder );
-				AddWeaponInfo(WeaponNames, WeaponSources, WeaponNameStringHolder, WeaponSourceStringHolder);
-			}
-			if(class'KFPerk'.default.SecondaryWeaponClassName != "")
-			{
-				KFGRI.TraderItems.GetItemInfo( PerkClass, PerkClass.default.SecondaryWeaponClassName, WeaponNameStringHolder, WeaponSourceStringHolder );
-				AddWeaponInfo(WeaponNames, WeaponSources, WeaponNameStringHolder, WeaponSourceStringHolder);
-			}
-			if(PerkClass.default.MeleeWeaponClassName != "")
-			{
-				KFGRI.TraderItems.GetItemInfo( PerkClass, PerkClass.default.MeleeWeaponClassName, WeaponNameStringHolder, WeaponSourceStringHolder );
-				AddWeaponInfo(WeaponNames, WeaponSources, WeaponNameStringHolder, WeaponSourceStringHolder);
-			}
-			if(PerkClass.default.GrenadeClassName != "")
-			{
-				KFGRI.TraderItems.GetGrenadeItemInfo( PerkClass, PerkClass.default.GrenadeClassName, WeaponNameStringHolder, WeaponSourceStringHolder );				
-				AddWeaponInfo(WeaponNames, WeaponSources, WeaponNameStringHolder, WeaponSourceStringHolder );
-			}
+			AddWeaponInfo(WeaponNames, WeaponSources, PerkClass.default.PrimaryWeaponDef.static.GetItemName(), PerkClass.default.PrimaryWeaponDef.static.GetImagePath());
 		}
-
+		if(PerkClass.default.SecondaryWeaponDef != none)
+		{
+			AddWeaponInfo(WeaponNames, WeaponSources, PerkClass.default.SecondaryWeaponDef.static.GetItemName(), PerkClass.default.SecondaryWeaponDef.static.GetImagePath());
+		}
+		if(PerkClass.default.KnifeWeaponDef != none)
+		{
+			AddWeaponInfo(WeaponNames, WeaponSources, PerkClass.default.KnifeWeaponDef.static.GetItemName(), PerkClass.default.KnifeWeaponDef.static.GetImagePath());
+		}
+		if(PerkClass.default.GrenadeWeaponDef != none)
+		{
+			AddWeaponInfo(WeaponNames, WeaponSources, PerkClass.default.GrenadeWeaponDef.static.GetItemName(), PerkClass.default.GrenadeWeaponDef.static.GetImagePath());
+		}
+		
 		for (i = 0; i < WeaponNames.length; i++)
 		{
 			DetailsProvider.SetString( "WeaponName" $ i, WeaponNames[i] );		

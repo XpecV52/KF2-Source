@@ -35,6 +35,8 @@ struct native MuzzleEffectInfo
 	/** The default socket name to attach to */
 	var() name					SocketName;
 
+	var() ESceneDepthPriorityGroup FirstPersonDepthPriorityGroup;
+
 	var const name				TimerName;
 
 	/** Transient vars used by muzzle flash instances */
@@ -44,16 +46,21 @@ struct native MuzzleEffectInfo
 
 	structdefaultproperties
 	{
-		SocketName=MuzzleFlash;
+		SocketName=MuzzleFlash
 		Duration=0.33f
+		FirstPersonDepthPriorityGroup=SDPG_World
 	}
 };
 
 var() MuzzleEffectInfo MuzzleFlash;
-var() MuzzleEffectInfo MuzzleFlashAlt<EditCondition=bEnableSecondaryMuzzleFlash>;
+
+/** If set, creates an extra set of muzzle flash data used for an effect that plays on top of the 1p gun */
+var() bool bEnableMidGunMuzzleFlash;
+var() MuzzleEffectInfo MuzzleFlashMid<EditCondition=bEnableMidGunMuzzleFlash>;
 
 /** If set, creates a second set of muzzle flash data used for alt firemode */
 var() bool bEnableSecondaryMuzzleFlash;
+var() MuzzleEffectInfo MuzzleFlashAlt<EditCondition=bEnableSecondaryMuzzleFlash>;
 
 /*********************************************************************************************
  * Advanced settings
@@ -128,6 +135,32 @@ function AttachMuzzleFlash(SkeletalMeshComponent OwnerMesh, optional name Socket
 		OwnerMesh.AttachComponentToSocket(MuzzleFlash.LightComponent, MuzzleFlash.SocketName);
 	}
 
+	if ( bEnableMidGunMuzzleFlash )
+	{
+		// Allow code to override attachment socket
+		if ( AltSocketNameOverride != 'None' )
+		{
+			MuzzleFlashMid.SocketName = AltSocketNameOverride;
+		}
+
+		// Attach the alt fire muzzle flash
+		if( MuzzleFlashMid.ParticleSystemTemplate != none )
+		{
+			// Attach MuzzleFlashAltPSC to owner
+			OwnerMesh.AttachComponentToSocket(MuzzleFlashMid.PSC, MuzzleFlashMid.SocketName);
+			MuzzleFlashMid.PSC.SetTemplate(MuzzleFlashMid.ParticleSystemTemplate);
+		}
+
+		// Initialize and attach the muzzle flash light
+		if ( MuzzleFlashMid.LightTemplate != None )
+		{
+			MuzzleFlashMid.LightComponent = new(self) class'KFExplosionLightComponent';
+			MuzzleFlashMid.LightComponent.SetTemplate(MuzzleFlashMid.LightTemplate);
+			MuzzleFlashMid.LightComponent.SetEnabled(false);
+			OwnerMesh.AttachComponentToSocket(MuzzleFlashMid.LightComponent, MuzzleFlashMid.SocketName);
+		}
+	}
+
 	if ( bEnableSecondaryMuzzleFlash )
 	{
 		// Allow code to override attachment socket
@@ -168,8 +201,15 @@ function AttachMuzzleFlash(SkeletalMeshComponent OwnerMesh, optional name Socket
 	if ( OwnerMesh.DepthPriorityGroup == SDPG_Foreground )
 	{
 		// No MuzzleFlashPSC foreground adjustment for now
-		MuzzleFlash.PSC.bDepthTestEnabled=false;
-		MuzzleFlashAlt.PSC.bDepthTestEnabled=false;
+		//MuzzleFlash.PSC.bDepthTestEnabled=false;
+		//MuzzleFlashAlt.PSC.bDepthTestEnabled=false;
+
+		MuzzleFlash.PSC.SetDepthPriorityGroup( MuzzleFlash.FirstPersonDepthPriorityGroup );
+		MuzzleFlash.PSC.bDepthTestEnabled = MuzzleFlash.FirstPersonDepthPriorityGroup == SDPG_Foreground;
+		MuzzleFlashAlt.PSC.SetDepthPriorityGroup( MuzzleFlashAlt.FirstPersonDepthPriorityGroup );
+		MuzzleFlashAlt.PSC.bDepthTestEnabled = MuzzleFlashAlt.FirstPersonDepthPriorityGroup == SDPG_Foreground;
+		MuzzleFlashMid.PSC.SetDepthPriorityGroup( MuzzleFlashMid.FirstPersonDepthPriorityGroup );
+		MuzzleFlashMid.PSC.bDepthTestEnabled = MuzzleFlashMid.FirstPersonDepthPriorityGroup == SDPG_Foreground;
 	}
 
 	// If attaching to a mesh with a custom FOV
@@ -193,12 +233,18 @@ simulated event SetFOV( float NewFOV )
 	{
 		MuzzleFlashAlt.PSC.SetFOV(NewFOV);
 	}
+
+	if( MuzzleFlashMid.PSC != None )
+	{
+		MuzzleFlashMid.PSC.SetFOV(NewFOV);
+	}
 }
 
 function DetachMuzzleFlash(SkeletalMeshComponent OwnerMesh)
 {
 	OwnerMesh.DetachComponent(MuzzleFlash.PSC);
 	OwnerMesh.DetachComponent(MuzzleFlashAlt.PSC);
+	OwnerMesh.DetachComponent(MuzzleFlashMid.PSC);
 	if ( MuzzleFlash.LightComponent != None )
 	{
 		OwnerMesh.DetachComponent(MuzzleFlash.LightComponent);
@@ -206,6 +252,10 @@ function DetachMuzzleFlash(SkeletalMeshComponent OwnerMesh)
 	if ( MuzzleFlashAlt.LightComponent != None )
 	{
 		OwnerMesh.DetachComponent(MuzzleFlashAlt.LightComponent);
+	}
+	if ( MuzzleFlashMid.LightComponent != none )
+	{
+		OwnerMesh.DetachComponent(MuzzleFlashMid.LightComponent);
 	}
 	if ( ShellEjectPSC != None )
 	{
@@ -243,9 +293,10 @@ function SetShellEjectLife(float NewLifetime=8.f)
 
 defaultproperties
 {
-   MuzzleFlash=(Duration=0.330000,SocketName="MuzzleFlash",TimerName="MuzzleFlashTimer")
-   MuzzleFlashAlt=(Duration=0.330000,SocketName="MuzzleFlash",TimerName="MuzzleFlashAltTimer")
+   MuzzleFlash=(Duration=0.330000,SocketName="MuzzleFlash",FirstPersonDepthPriorityGroup=SDPG_World,TimerName="MuzzleFlashTimer")
    bAutoActivateShellEject=True
+   MuzzleFlashMid=(Duration=0.330000,SocketName="MuzzleFlash",FirstPersonDepthPriorityGroup=SDPG_Foreground,TimerName="MuzzleFlashTimer")
+   MuzzleFlashAlt=(Duration=0.330000,SocketName="MuzzleFlash",FirstPersonDepthPriorityGroup=SDPG_World,TimerName="MuzzleFlashAltTimer")
    FireModeAlternateBothEffects=255
    FireModeFireBothEffects=255
    ShellEjectSocketName="ShellEject"

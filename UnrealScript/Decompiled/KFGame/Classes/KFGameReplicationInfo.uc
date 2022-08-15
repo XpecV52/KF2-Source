@@ -11,6 +11,22 @@ class KFGameReplicationInfo extends GameReplicationInfo
     config(Game)
     hidecategories(Navigation,Movement,Collision);
 
+const STEAM_PLAYTIME_GENERATOR_ITEM = 900000;
+
+struct native PreGameServerAdInfo
+{
+    var string BannerLink;
+    var string ServerMOTD;
+    var string WebsiteLink;
+
+    structdefaultproperties
+    {
+        BannerLink=""
+        ServerMOTD=""
+        WebsiteLink=""
+    }
+};
+
 struct native SpawnVolumeInfo
 {
     var Vector VolumeLocation;
@@ -75,6 +91,7 @@ struct native PickupInfo
     }
 };
 
+var repnotify PreGameServerAdInfo ServerAdInfo;
 var KFTraderTrigger NextTrader;
 var KFTraderTrigger OpenedTrader;
 var int DebugingNextTraderIndex;
@@ -125,6 +142,7 @@ var KFObjective CurrentObjective;
 var export editinline AkComponent MusicComp;
 var KFMusicTrackInfo CurrentMusicTrackInfo;
 var repnotify KFMusicTrackInfo ReplicatedMusicTrackInfo;
+var private float SteamHeartbeatAccumulator;
 
 replication
 {
@@ -139,6 +157,9 @@ replication
      if(bNetInitial)
         GameDifficulty, GameLength, 
         WaveMax, bCustom;
+
+     if(bNetInitial && Role == ROLE_Authority)
+        ServerAdInfo;
 
      if(bDebugSpawnManager && bNetDirty)
         CurrentAIAliveCount, CurrentMaxMonsters, 
@@ -158,6 +179,12 @@ replication
      if((VoteCollector != none) && VoteCollector.bIsVoteInProgress)
         RepKickVotes;
 }
+
+// Export UKFGameReplicationInfo::execSendSteamHeartbeat(FFrame&, void* const)
+native function SendSteamHeartbeat();
+
+// Export UKFGameReplicationInfo::execSendSteamRequestItemDrop(FFrame&, void* const)
+native function SendSteamRequestItemDrop();
 
 simulated event ReplicatedEvent(name VarName)
 {
@@ -205,7 +232,14 @@ simulated event ReplicatedEvent(name VarName)
                     }
                     else
                     {
-                        super.ReplicatedEvent(VarName);
+                        if(VarName == 'ServerAdInfo')
+                        {
+                            ShowPreGameServerWelcomeScreen();                            
+                        }
+                        else
+                        {
+                            super.ReplicatedEvent(VarName);
+                        }
                     }
                 }
             }
@@ -233,6 +267,7 @@ simulated event PostBeginPlay()
 simulated function ReceivedGameClass()
 {
     local class<KFGameInfo> KFGameClass;
+    local KFPlayerController KFPC;
 
     KFGameClass = class<KFGameInfo>(GameClass);
     if(KFGameClass != none)
@@ -248,6 +283,14 @@ simulated function ReceivedGameClass()
         }
     }
     DebugingNextTraderIndex = -1;
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        KFPC = KFPlayerController(GetALocalPlayerController());
+        if((KFPC != none) && KFPC.MyGFxHUD != none)
+        {
+            KFPC.MyGFxHUD.UpdateWaveCount();
+        }
+    }
     super.ReceivedGameClass();
 }
 
@@ -263,6 +306,21 @@ simulated function NotifyWaveEnded()
     if((CurrentObjective != none) && !CurrentObjective.bIsCoopObjective)
     {
         CurrentObjective.FailObjective(3);
+    }
+}
+
+reliable client simulated exec function ShowPreGameServerWelcomeScreen()
+{
+    local KFPlayerController KFPC;
+
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        return;
+    }
+    KFPC = KFPlayerController(GetALocalPlayerController());
+    if((KFPC != none) && KFPC.MyGFxManager != none)
+    {
+        KFPC.MyGFxManager.ShowWelcomeScreen();
     }
 }
 
@@ -311,6 +369,10 @@ simulated function OpenTrader(optional int Time)
         if((KFPC != none) && KFPC.MyGFxManager != none)
         {
             KFPC.MyGFxManager.OnTraderTimeStart();
+        }
+        if(KFPC.MyGFxHUD != none)
+        {
+            KFPC.MyGFxHUD.UpdateWaveCount();
         }
     }
 }
@@ -387,6 +449,12 @@ simulated function OnOpenAfterActionReport(optional float Time)
         RemainingTime = int(Time);
         RemainingMinute = int(Time);
     }
+}
+
+function ProcessChanceDrop()
+{
+    SendSteamHeartbeat();
+    SendSteamRequestItemDrop();
 }
 
 simulated function int GetNextMapTimeRemaining()

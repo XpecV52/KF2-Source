@@ -64,6 +64,8 @@ var const localized string PartyLeaderInOtherMenuString;
 var const localized string SearchingForGameString;
 var const localized string PartHostLeftString;
 var const localized string PartyLeaderChangedString;
+var const localized string DownLoadingString;
+var const localized string RemainingString;
 var array<string> ProfileOptions;
 var OnlineSubsystem OnlineSub;
 var TWOnlineLobby OnlineLobby;
@@ -84,6 +86,7 @@ var GFxObject ReadyButton;
 var GFxObject LeaveButton;
 var GFxObject CreatePartyButton;
 var GFxObject SquadHeader;
+var GFxObject Notification;
 var const UniqueNetId ZeroUniqueId;
 var SMemberSlot MemberSlots[6];
 
@@ -107,6 +110,7 @@ function InitializeWidget()
     CreatePartyButton = GetObject("createPartyButton");
     ReadyButton = GetObject("readyButton");
     SquadHeader = GetObject("squadHeader");
+    InitNotificationUI();
     LocalizeText();
     UpdateInLobby(Manager.IsInLobby());
     RefreshParty();
@@ -119,6 +123,28 @@ function LocalizeText()
     CreatePartyButton.SetString("label", CreatePartyString);
     SetString("deployingString", DeployingString);
     SetString("waitingString", WaitingString);
+}
+
+function InitNotificationUI()
+{
+    Notification = GetObject("Notification");
+}
+
+function ShowDownLoadNotification(string ItemName, float PercentComplete, int ItemsRemaining)
+{
+    local GFxObject NotificationInfoObject;
+
+    if(Notification == none)
+    {
+        return;
+    }
+    NotificationInfoObject = Outer.CreateObject("Object");
+    NotificationInfoObject.SetString("itemName", ItemName);
+    NotificationInfoObject.SetFloat("percent", PercentComplete * float(100));
+    NotificationInfoObject.SetInt("queue", ItemsRemaining);
+    NotificationInfoObject.SetString("downLoading", DownLoadingString);
+    NotificationInfoObject.SetString("remaining", RemainingString);
+    Notification.SetObject("notificationInfo", NotificationInfoObject);
 }
 
 function SetSearchingText(string Message);
@@ -425,6 +451,8 @@ defaultproperties
     SearchingForGameString="Searching for online game..."
     PartHostLeftString="The party host has left"
     PartyLeaderChangedString="is now the new party host."
+    DownLoadingString="Downloading:"
+    RemainingString="Remaining:"
     bReadyButtonVisible=true
     PerkPrefix="%&1&%"
     SearchingPrefix="%&2&%"

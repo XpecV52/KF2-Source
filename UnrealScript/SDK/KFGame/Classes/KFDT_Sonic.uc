@@ -27,4 +27,8 @@ defaultproperties
 	bCanObliterate=TRUE
 	ObliterationHealthThreshold=-1
 	ObliterationDamageThreshold=3
+	
+	KDamageImpulse=1400
+	KDeathUpKick=500
+	KDeathVel=700
 }

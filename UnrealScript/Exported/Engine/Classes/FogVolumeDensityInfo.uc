@@ -145,7 +145,6 @@ defaultproperties
    End Object
    Components(0)=Sprite
    Components(1)=AutomaticMeshComponent0
-   CollisionType=COLLIDE_CustomDefault
    bNoDelete=True
    Name="Default__FogVolumeDensityInfo"
    ObjectArchetype=Info'Engine.Default__Info'

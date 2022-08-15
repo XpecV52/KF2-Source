@@ -19,5 +19,5 @@ defaultproperties
     StumblePower=51
 	LegStumblePower=51
 
-    AARWeaponID=`AAR_Crovel
+    WeaponDef=class'KFWeapDef_Crovel'
 }

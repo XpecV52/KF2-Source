@@ -18,6 +18,6 @@ defaultproperties
 {
 	KnockdownPower=0
 	StumblePower=120
-
-	AARWeaponID=`AAR_EMPGrenade
+	
+	WeaponDef=class'KFWeapDef_Grenade_Berserker'
 }

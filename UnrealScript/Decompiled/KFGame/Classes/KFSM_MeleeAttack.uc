@@ -77,7 +77,7 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
     KFPM = KFPawn_Monster(KFPOwner);
     if(KFPM != none)
     {
-        if(KFPM.bCanCloak && !KFPM.bIsCloaking)
+        if((KFPM.bCanCloak && KFPM.bCloakOnMeleeEnd) && !KFPM.bIsCloaking)
         {
             KFPM.SetCloaked(true);
         }
@@ -112,6 +112,10 @@ function NotifyOwnerTakeHit(class<KFDamageType> DamageType, Vector HitLoc, Vecto
     if(bCanBeInterrupted && IsAnInterruptHit(PawnOwner, DamageType))
     {
         KFPOwner.EndSpecialMove();
+        if(AIOwner != none)
+        {
+            AIOwner.LastGetStrikeTime = -1;
+        }
     }
 }
 
@@ -128,6 +132,10 @@ function AbortedByAICommand()
             if(KFPMOwner != none)
             {
                 KFPMOwner.NotifyAnimInterrupt();
+            }
+            if(AIOwner != none)
+            {
+                AIOwner.LastGetStrikeTime = -1;
             }
         }
     }
@@ -149,12 +157,14 @@ function InterruptCheckTimer()
                 KFPMOwner.NotifyAnimInterrupt();
             }
             KFPOwner.EndSpecialMove();
+            AIOwner.LastGetStrikeTime = -1;
         }
     }
 }
 
 defaultproperties
 {
+    BlendInTime=0.2
     AbortBlendOutTime=0.5
     bDisableMovement=true
     bDisableSteering=false

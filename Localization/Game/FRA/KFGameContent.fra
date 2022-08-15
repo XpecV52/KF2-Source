@@ -78,7 +78,7 @@ ItemCategory="Assault Rifle"
 ItemDescription="• Mode de tir automatique ou semi-automatique.\n• Tir alternatif pour basculer entre les modes.\n• Le second t'emmène dans des visées métalliques.\n• Le SA80 était l'arme standard de l'armée britannique, avant qu'elle ne se fasse... dévorée."
 
 [KFWeap_Knife_Demolitionist]
-ItemName=""
+ItemName="Utility Knife"
 ItemCategory="Melee"
 ItemDescription="• Principal - attaque tranchante rapide, maintenir pour combo\n• Le Secondaire - attaque tranchante puissante \n• Alt - blocage/parade\n• C’est un cutter. Parfait pour ouvrir les boites que tu pourrais trouver sur le killing floor."
 
@@ -93,8 +93,8 @@ ItemCategory="Melee"
 ItemDescription="• Principal - attaque tranchante rapide, maintenir pour combo\n• Le Secondaire - attaque tranchante puissante \n• Alt - blocage/parade\n• C'est un couteau de pompier. T'es pompier, inutile de t'expliquer comment t'en servir."
 
 [KFWeap_Pistol_Medic]
-ItemName=""
-ItemCategory=""
+ItemName="HMTech-101 Pistol"
+ItemCategory="Pistol"
 ItemDescription="• Mode de tir semi-automatique seulement.\n• Le tir alternatif éjecte des seringues soignantes pour guérir les équipiers.\n• Utilisant des munitions sans étui, il compte les balles pour toi."
 
 [KFWeap_SMG_Medic]

@@ -20,20 +20,23 @@ var AkEvent FuseEvent;
 simulated event PostBeginPlay()
 {
     super.PostBeginPlay();
-    if(ProjFlightTemplate != none)
+    if(WorldInfo.NetMode != NM_DedicatedServer)
     {
-        ProjEffects = WorldInfo.MyEmitterPool.SpawnEmitterCustomLifetime(ProjFlightTemplate);
-        if(ProjEffects != none)
+        if(ProjFlightTemplate != none)
         {
-            ProjEffects.SetAbsolute(false, false, false);
-            ProjEffects.SetLODLevel(((WorldInfo.bDropDetail) ? 1 : 0));
-            ProjEffects.bUpdateComponentInTick = true;
-            ProjEffects.SetTranslation(vect(0, 0, 2));
-            AttachComponent(ProjEffects);
+            ProjEffects = WorldInfo.MyEmitterPool.SpawnEmitterCustomLifetime(ProjFlightTemplate);
+            if(ProjEffects != none)
+            {
+                ProjEffects.SetAbsolute(false, false, false);
+                ProjEffects.SetLODLevel(((WorldInfo.bDropDetail) ? 1 : 0));
+                ProjEffects.bUpdateComponentInTick = true;
+                ProjEffects.SetTranslation(vect(0, 0, 2));
+                AttachComponent(ProjEffects);
+            }
         }
+        LightFadePerSecond = PointLight.Brightness / LightFadeTime;
+        PlaySoundBase(FuseEvent, true,, true);
     }
-    LightFadePerSecond = PointLight.Brightness / LightFadeTime;
-    PlaySoundBase(FuseEvent, true,, true);
 }
 
 simulated event Tick(float DeltaTime)
@@ -41,6 +44,10 @@ simulated event Tick(float DeltaTime)
     local float NewBrightness;
 
     super.Tick(DeltaTime);
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        return;
+    }
     if(LifeSpan < (default.LifeSpan - LightFadeStartTime))
     {
         if(PointLight.Brightness > float(0))

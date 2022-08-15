@@ -14,7 +14,6 @@ class KFGFxHUD_ScoreboardMapInfoContainer extends GFxObject;
 
 // Cached value - Elapsed match time as of the last scoreboard tick update.
 var Protected int LastMatchTime;
-var protected int LastWaveNumber;
 var localized string WaveString;
 var localized string FinalString;
 
@@ -24,7 +23,7 @@ var bool bLocalized;
 
 function InitializeHUD()
 {
-	
+	UpdateWaveCount();
 }
 
 function LocalizeText()
@@ -81,7 +80,7 @@ function UpdateMatchInfo()
 {
 	local KFGameReplicationInfo KFGRI;
 	local int CurrentMatchTime;	
-	local int CurrentWaveNum;
+	
 
     KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
     if(KFGRI != none)
@@ -98,26 +97,34 @@ function UpdateMatchInfo()
             SetInt("timeValue" ,CurrentMatchTime);
             LastMatchTime = CurrentMatchTime;
         }
+    }
+}
 
-    	CurrentWaveNum = KFGRI.WaveNum;
-        if(CurrentWaveNum != LastWaveNumber)
-        {
-        	if(KFGRI.IsFinalWave())
-		    {
-		    	SetString("waveNumber", FinalString);
-		    }
-		    else
-		    {
-        		SetString("waveNumber" ,CurrentWaveNum $"/" $(KFGRI.WaveMax-1));
-            	LastWaveNumber = CurrentWaveNum;	
-		    }
-        	
-        }
+function UpdateWaveCount()
+{
+	local int CurrentWaveNum;
+	local KFGameReplicationInfo KFGRI;
+
+	KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
+
+	if(KFGRI == none)
+	{
+		return;
+	}
+
+	CurrentWaveNum = KFGRI.WaveNum + 1;
+    if(CurrentWaveNum == KFGRI.WaveMax-1)
+    {
+	    	SetString("waveNumber", FinalString);
+    		
+    }
+    else
+    {
+    	SetString("waveNumber" ,CurrentWaveNum $"/" $(KFGRI.WaveMax-1));    	
     }
 }
 
 defaultProperties
 {
-	LastWaveNumber=-1
 	bLocalized=false
 }
