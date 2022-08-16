@@ -56,6 +56,14 @@ function LocalizeText()
 
 }
 
+function OnInputTypeChanged(bool bGamePad)
+{
+	if(KeybindingsContainer != none)
+	{
+		KeybindingsContainer.UpdateAllBindings();
+	}
+}
+
 /** Ties unrealscript variables to the .swf components */
 event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 {

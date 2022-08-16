@@ -539,7 +539,7 @@ defaultproperties
     InteractIcon=Texture2D'UI_World_TEX.Demolitionist_Supplier_HUD'
     PerkSkills(0)=(Name="GrenadeSupplier",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_GrenadeSupplier",bActive=false)
     PerkSkills(1)=(Name="OnContact",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_OnContact",bActive=false)
-    PerkSkills(2)=(Name="ExplosiveResistance",Increment=0,Rank=0,StartingValue=1.2,MaxValue=1.2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_ExplosiveResistance",bActive=false)
+    PerkSkills(2)=(Name="ExplosiveResistance",Increment=0.02,Rank=0,StartingValue=0.1,MaxValue=0.6,ModifierValue=0,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_ExplosiveResistance",bActive=false)
     PerkSkills(3)=(Name="Sacrifice",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_Sacrifice",bActive=false)
     PerkSkills(4)=(Name="DoorTraps",Increment=0,Rank=0,StartingValue=0.3,MaxValue=0.3,ModifierValue=0,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_DoorTraps",bActive=false)
     PerkSkills(5)=(Name="SirenResistance",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_SirenResistance",bActive=false)

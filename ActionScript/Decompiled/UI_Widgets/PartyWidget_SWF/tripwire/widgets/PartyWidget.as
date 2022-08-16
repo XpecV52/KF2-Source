@@ -8,7 +8,10 @@ package tripwire.widgets
     import flash.text.TextField;
     import flash.ui.Keyboard;
     import flash.utils.Timer;
+    import scaleform.clik.constants.InputValue;
+    import scaleform.clik.constants.NavigationCode;
     import scaleform.clik.events.ButtonEvent;
+    import scaleform.clik.events.InputEvent;
     import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.FocusManager;
     import scaleform.gfx.TextFieldEx;
@@ -88,15 +91,15 @@ package tripwire.widgets
         
         public var _deployingString:String = "TEXT";
         
-        private var _bInParty:Boolean = false;
+        protected var _bInParty:Boolean = false;
         
-        private var bListsInit:Boolean = false;
+        protected var bListsInit:Boolean = false;
         
-        private const MAX_SLOTS = 6;
+        protected var MAX_SLOTS:int = 6;
         
-        private var _deployTimer:Timer;
+        protected var _deployTimer:Timer;
         
-        private var _currentTime:int;
+        protected var _currentTime:int;
         
         public function PartyWidget()
         {
@@ -106,7 +109,14 @@ package tripwire.widgets
             this.matchStartContainer.BlackBG.visible = false;
             this._deployTimer = new Timer(1000);
             this._deployTimer.addEventListener(TimerEvent.TIMER,this.countdownTimer,false,0,true);
-            defaultFirstElement = currentElement = this.squadMember0;
+            if(this._bInParty)
+            {
+                defaultFirstElement = currentElement = this.squadMember0;
+            }
+            else
+            {
+                defaultFirstElement = currentElement = this.createPartyButton;
+            }
             this.setTabIndex();
             deselectContainer();
             ANIM_OFFSET_X = 24;
@@ -169,6 +179,32 @@ package tripwire.widgets
             this.bInParty = false;
         }
         
+        override public function handleInput(param1:InputEvent) : void
+        {
+            var _loc3_:PartySlotButton = null;
+            super.handleInput(param1);
+            var _loc2_:InputDetails = param1.details;
+            if(_loc2_.value == InputValue.KEY_DOWN)
+            {
+                switch(_loc2_.navEquivalent)
+                {
+                    case NavigationCode.DOWN:
+                        if(this.createPartyButton.visible)
+                        {
+                            FocusManager.setFocus(this.createPartyButton);
+                        }
+                        else if(this.leaveButton.visible)
+                        {
+                            _loc3_ = this["squadMember" + (this.MAX_SLOTS - 1)];
+                            if(_loc3_.focused == 1)
+                            {
+                                FocusManager.setFocus(this.leaveButton);
+                            }
+                        }
+                }
+            }
+        }
+        
         public function set readyHighlight(param1:Boolean) : void
         {
             FocusManager.setFocus(this.readyButton);
@@ -210,12 +246,18 @@ package tripwire.widgets
         public function set bInParty(param1:Boolean) : void
         {
             var _loc2_:PartySlotButton = null;
+            var _loc3_:int = 0;
+            if(this._bInParty != param1)
+            {
+                this.setTabIndex();
+            }
             this._bInParty = param1;
             if(param1)
             {
                 this.createPartyButton.visible = !param1;
             }
-            var _loc3_:int = 1;
+            this["squadMember" + _loc3_].enabled = this._bInParty;
+            _loc3_ = 1;
             while(_loc3_ < this.MAX_SLOTS)
             {
                 _loc2_ = this["squadMember" + _loc3_];
@@ -265,6 +307,10 @@ package tripwire.widgets
             if(this.readyButton.visible)
             {
                 currentElement = this.readyButton;
+            }
+            else if(this.createPartyButton && this.createPartyButton.visible)
+            {
+                currentElement = this.createPartyButton;
             }
             else
             {

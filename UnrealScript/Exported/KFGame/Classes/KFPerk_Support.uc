@@ -201,7 +201,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 
 	if( DamageCauser != none )
 	{
-		if( DamageCauser.IsA( 'KFProj_Grenade ') )
+		if( ClassIsChildOf( DamageCauser.class, class'KFProj_Grenade ') )
 		{
 			TempDamage += BaseDamage * GetPassiveValue( GrenadeDamage, CurrentLevel );
 		}
@@ -765,9 +765,9 @@ defaultproperties
    Passives(2)=(Title="Perk Weapon Penetration",Description="Every level, Perk weapons gain %x% increased penetration power")
    Passives(3)=(Title="Grenade Damage",Description="Grenade damage increased by %x%")
    Passives(4)=()
-   SkillCatagories(0)="Weapon Handling"
+   SkillCatagories(0)="Supply"
    SkillCatagories(1)="Fitness"
-   SkillCatagories(2)="Supply"
+   SkillCatagories(2)="Weapon Handling"
    SkillCatagories(3)="Endurance"
    SkillCatagories(4)="Advanced Training"
    EXPAction1="Dealing Support weapon damage"

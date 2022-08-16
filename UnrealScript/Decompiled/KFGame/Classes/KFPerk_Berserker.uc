@@ -211,7 +211,7 @@ function ModifyLightAttackDamage(out int InDamage)
     {
         TempDamage *= (float(1) + (GetSkillValue(PerkSkills[6])));
     }
-    InDamage = ((TempDamage != float(InDamage)) ? Round(TempDamage) : InDamage);
+    InDamage = ((TempDamage != float(InDamage)) ? FCeil(TempDamage) : InDamage);
 }
 
 simulated function ParryTimer()

@@ -54,6 +54,7 @@ var const localized string PendingPerkChangesSet;
 var const localized string PendingPerkChangesApplied;
 var const localized string KilledMessage;
 var const localized string SuicideMessage;
+var const localized string KillzedBy_PatriarchString;
 var const localized string KillzedBy_HansString;
 var const localized string KillzedBy_ZedCrawlerString;
 var const localized string KillzedBy_ZedBloatString;
@@ -163,6 +164,8 @@ static function string GetKilledByZedMessage(Object KillerClass)
     {
         switch(KillerClass.Name)
         {
+            case 'KFAIController_ZedPatriarch':
+                return default.KillzedBy_PatriarchString;
             case 'KFAIController_Hans':
                 return default.KillzedBy_HansString;
             case 'KFAIController_ZedCrawler':
@@ -231,6 +234,7 @@ defaultproperties
     PendingPerkChangesApplied="Perk changes applied!"
     KilledMessage=" was eaten alive"
     SuicideMessage=" just gave up on life..."
+    KillzedBy_PatriarchString=" can't hurt Kevin's children anymore"
     KillzedBy_HansString="'s body has been removed for further experimentation"
     KillzedBy_ZedCrawlerString="'s ankles have been chewed off"
     KillzedBy_ZedBloatString=" has drowned in bodily fluids"

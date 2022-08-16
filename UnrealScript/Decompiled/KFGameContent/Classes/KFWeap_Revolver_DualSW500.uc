@@ -77,7 +77,7 @@ defaultproperties
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Revolver_DualSW500.FirstPersonMesh'
     Mesh=FirstPersonMesh
-    ItemName="Dual 500 Magnums"
+    ItemName="Dual .500 Magnums"
     begin object name=StaticPickupComponent class=StaticMeshComponent
         StaticMesh=StaticMesh'WEP_3P_SW_500_MESH.Wep_SW_500_Pickup'
         ReplacementPrimitive=none

@@ -3370,7 +3370,7 @@ defaultproperties
    GraphicsQualityString="Graphics Quality"
    VSyncString="Vertical Sync"
    FullscreenString="Display"
-   VariableFrameRateString="Variable Framerate"
+   VariableFrameRateString="Variable Frame Rate"
    AdjustGammaString="ADJUST GAMMA"
    FilmGrainString="Film Grain"
    EnvironmentDetailsString="Environment Detail"

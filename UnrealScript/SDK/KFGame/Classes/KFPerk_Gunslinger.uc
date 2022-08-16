@@ -184,8 +184,7 @@ simulated function bool GetUsingTactialReload( KFWeapon KFW )
  */
 function float GetKnockdownPowerModifier( optional class<DamageType> DamageType, optional byte BodyPart, optional bool bIsSprinting=false )
 {
-	if( IsDamageTypeOnPerk( class<KFDamageType>(DamageType) ) && IsLimbShotsActive() &&
-		(BodyPart == BP_LeftLeg || BodyPart == BP_RightLeg) && bIsSprinting )
+	if( IsLimbShotsActive() && (BodyPart == BP_LeftLeg || BodyPart == BP_RightLeg) && bIsSprinting )
 	{
 		`QALog( "LimbShots knocdown, Hit" @ BodyPart @ GetSkillValue( PerkSkills[EGunslingerLimbShots] ), bLogPerk );
 		return GetSkillValue( PerkSkills[EGunslingerLimbShots] );
@@ -200,8 +199,7 @@ function float GetKnockdownPowerModifier( optional class<DamageType> DamageType,
  */
 function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart )
 {
-	if( IsDamageTypeOnPerk( DamageType ) && IsCenterMassActive() && 
-		(BodyPart == BP_Torso || CheckSpecialZedBodyPart( KFP.class, BodyPart )) )
+	if( IsCenterMassActive() && (BodyPart == BP_Torso || CheckSpecialZedBodyPart( KFP.class, BodyPart )) )
 	{
 		`QALog( "CenterMass Stumble, Hit" @ BodyPart @ GetSkillValue( PerkSkills[EGunslingerCenterMass] ), bLogPerk );
         return GetSkillValue( PerkSkills[EGunslingerCenterMass] );
@@ -642,6 +640,14 @@ event Destroyed()
 	if(Role == Role_Authority)
 	{
 			ServerClearHeadShotsCombo();
+	}
+}
+
+simulated function PlayerDied()
+{
+	if(Role == Role_Authority)
+	{
+			ServerClearHeadShotsCombo();
 	}	
 }
 
@@ -708,7 +714,7 @@ DefaultProperties
 	ProgressStatID=`STATID_Guns_Progress
    	PerkBuildStatID=`STATID_Guns_Build
 
-   	ShootnMooveBobDamp=0.9f
+   	ShootnMooveBobDamp=1.11f
 
    	MaxHeadShotComboCount=7
    	RhytmMethodRTPCName="R_Method"
@@ -745,6 +751,6 @@ DefaultProperties
 	PerkSkills(EGunslingerPenetration)=(Name="Penetration",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_Penetration",Increment=0.f,Rank=0,StartingValue=1.f,MaxValue=1.f)
 	PerkSkills(EGunslingerCenterMass)=(Name="CenterMass",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_CenterMass",Increment=0.f,Rank=0,StartingValue=1.4f,MaxValue=1.4f)
 	PerkSkills(EGunslingerLimbShots)=(Name="LimbShots",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_LimbShots",Increment=0.f,Rank=0,StartingValue=3.1f,MaxValue=3.1f)
-	PerkSkills(EGunslingerFanfare)=(Name="Fanfare",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDSpeed",Increment=0.f,Rank=0,StartingValue=0.9f,MaxValue=0.9f)
+	PerkSkills(EGunslingerFanfare)=(Name="Fanfare",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDSpeed",Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
 	PerkSkills(EGunslingerUberAmmo)=(Name="UberAmmo",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDAmmo",Increment=0.f,Rank=0,StartingValue=0.0f,MaxValue=0.0f)
 }

@@ -9,6 +9,7 @@ class KFPawn_ZedScrake extends KFPawn_Monster
     config(Game)
     hidecategories(Navigation);
 
+var MaterialInstanceConstant BodyAltMIC;
 var protected export editinline AkComponent ChainsawIdleAkComponent;
 var protected AkEvent PlayChainsawIdleAkEvent;
 var protected AkEvent StopChainsawIdleAkEvent;
@@ -31,6 +32,46 @@ simulated event PostBeginPlay()
     CreateExhaustFx();
 }
 
+simulated function SetCharacterArch(KFCharacterInfoBase Info)
+{
+    super(KFPawn).SetCharacterArch(Info);
+    if((WorldInfo.NetMode != NM_DedicatedServer) && Mesh != none)
+    {
+        BodyAltMIC = Mesh.CreateAndSetMaterialInstanceConstant(2);
+    }
+}
+
+function UpdateMaterialEffect(float DeltaTime)
+{
+    local float Intensity;
+
+    if(MaterialEffectTimeRemaining > 0)
+    {
+        if(MaterialEffectTimeRemaining > DeltaTime)
+        {
+            MaterialEffectTimeRemaining -= DeltaTime;
+            Intensity = 1 - FClamp(MaterialEffectTimeRemaining / MaterialEffectDuration, 0, 1);            
+        }
+        else
+        {
+            MaterialEffectTimeRemaining = 0;
+            Intensity = 1;
+        }
+        if(BodyMIC != none)
+        {
+            BodyMIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
+        }
+        if(BodyAltMIC != none)
+        {
+            BodyAltMIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
+        }
+        if(HeadMIC != none)
+        {
+            HeadMIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
+        }
+    }
+}
+
 simulated function CreateExhaustFx()
 {
     local Vector Loc;
@@ -47,6 +88,15 @@ simulated function CreateExhaustFx()
                 Mesh.AttachComponentToSocket(ExhaustPSC, ExhaustSocketName);
             }
         }
+    }
+}
+
+simulated function GoreMeshSwapped()
+{
+    super.GoreMeshSwapped();
+    if((WorldInfo.NetMode != NM_DedicatedServer) && Mesh != none)
+    {
+        BodyAltMIC = Mesh.CreateAndSetMaterialInstanceConstant(2);
     }
 }
 
@@ -153,12 +203,12 @@ defaultproperties
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     HitZones=/* Array type was not detected. */
     PenetrationResistance=4
-    begin object name=Afflictions class=KFPawnAfflictions
+    begin object name=Afflictions class=KFPawnAfflictions_Scrake
         InstantAffl=/* Array type was not detected. */
         StackingAffl=/* Array type was not detected. */
         FireFullyCharredDuration=5
     object end
-    // Reference: KFPawnAfflictions'Default__KFPawn_ZedScrake.Afflictions'
+    // Reference: KFPawnAfflictions_Scrake'Default__KFPawn_ZedScrake.Afflictions'
     AfflictionHandler=Afflictions
     KnockdownImpulseScale=2
     SprintSpeed=600

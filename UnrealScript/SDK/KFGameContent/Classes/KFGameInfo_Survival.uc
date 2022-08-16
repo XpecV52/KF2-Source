@@ -724,7 +724,7 @@ function WaveStarted()
 						   KFPC.GetPerk().GetLevel(),
 						   "#"$KFPC.PlayerReplicationInfo.Score,
 						   KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory(),
-						   KFPC.DumpPerkLoadout() ));
+						   KFPC.GetPerk().DumpPerkLoadout() ));
 		}
 	}
 
@@ -866,8 +866,7 @@ function LogWaveEndAnalyticsFor(KFPlayerController KFPC)
 				   "#"$KFPC.GetPerk().GetLevel(),
 				   "#"$KFPC.PlayerReplicationInfo.Score,
 				   "#"$KFPC.PlayerReplicationInfo.Kills,
-				   KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory(),
-				   KFPC.DumpPerkLoadout() ));
+				   KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory() ));
 	
 	KFPC.MatchStats.GetTopWeapons( 3, Weapons );
 
@@ -957,8 +956,10 @@ State TraderOpen
 		// (player-only) Prevent enemy team kills during trader time to fix players
 		// missing the respawn and then dying from certain attacks that can do damage
 		// just after the last zed dies (e.g. explosives/husk suicide, damage over time)
-		if ( KilledPawn.Controller != None && KilledPawn.Controller.bIsPlayer &&
-			Killer != None && KilledPawn.GetTeamNum() != Killer.GetTeamNum() )
+		if ( KilledPawn.Controller != None && KilledPawn.Controller.bIsPlayer
+			&& Killer != None && KilledPawn.GetTeamNum() != Killer.GetTeamNum()
+			// @hack: Somehow we can get a suicide where Killer!=Victim?
+			&& DamageType != class'DmgType_Suicided' )
 		{
 			// sanity check - The killer pawn should be dead or are detached by now
 			if ( Killer.Pawn == None || !Killer.Pawn.IsAliveAndWell() )

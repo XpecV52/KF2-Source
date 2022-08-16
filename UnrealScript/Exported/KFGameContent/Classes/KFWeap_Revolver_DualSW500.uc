@@ -207,7 +207,7 @@ defaultproperties
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_DualBase:FirstPersonMesh'
    End Object
    Mesh=FirstPersonMesh
-   ItemName="Dual 500 Magnums"
+   ItemName="Dual .500 Magnums"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_DualBase:StaticPickupComponent'
       StaticMesh=StaticMesh'WEP_3P_SW_500_MESH.Wep_SW_500_Pickup'
       ReplacementPrimitive=None

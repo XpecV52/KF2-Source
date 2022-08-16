@@ -27,6 +27,8 @@ package tripwire.containers
         
         protected var _bOpen:Boolean = false;
         
+        protected var _bReadyForInput:Boolean = false;
+        
         protected var _defaultAlpha:Number;
         
         protected const ANIM_TIME = 6;
@@ -137,7 +139,7 @@ package tripwire.containers
             {
                 this.currentElement.tabEnabled = true;
                 this.currentElement.tabChildren = true;
-                this.currentElement.focused = 1;
+                FocusManager.setFocus(this.currentElement);
             }
         }
         
@@ -149,6 +151,7 @@ package tripwire.containers
                 this.deselectContainer();
                 this.closeAnimation();
                 stage.removeEventListener(MenuManager.INPUT_CHANGED,this.onInputChange);
+                mouseChildren = mouseEnabled = false;
                 if(this.currentElement)
                 {
                     this.currentElement = null;
@@ -207,6 +210,10 @@ package tripwire.containers
         override public function handleInput(param1:InputEvent) : void
         {
             if(param1.handled)
+            {
+                return;
+            }
+            if(!this._bReadyForInput)
             {
                 return;
             }
@@ -303,11 +310,14 @@ package tripwire.containers
         
         protected function onOpened(param1:TweenEvent = null) : void
         {
+            mouseChildren = mouseEnabled = true;
+            this._bReadyForInput = true;
             play();
         }
         
         protected function onClosed(param1:TweenEvent = null) : void
         {
+            this._bReadyForInput = false;
             visible = false;
             this._bOpen = false;
             stop();

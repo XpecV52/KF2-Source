@@ -736,7 +736,7 @@ DefaultProperties
 
 	PerkSkills(EDemoGrenadeSupplier)=(Name="GrenadeSupplier",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_GrenadeSupplier")
 	PerkSkills(EDemoOnContact)=(Name="OnContact",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_OnContact")
-	PerkSkills(EDemoExplosiveResistance)=(Name="ExplosiveResistance",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_ExplosiveResistance",Increment=0.f,Rank=0,StartingValue=1.2f,MaxValue=1.2f)
+	PerkSkills(EDemoExplosiveResistance)=(Name="ExplosiveResistance",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_ExplosiveResistance",Increment=0.02f,Rank=0,StartingValue=0.1f,MaxValue=0.6f)
 	PerkSkills(EDemoSacrifice)=(Name="Sacrifice",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_Sacrifice",Increment=0.f,Rank=0,StartingValue=2.0f,MaxValue=2.f,)
 	PerkSkills(EDemoDoorTraps)=(Name="DoorTraps",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_DoorTraps",Increment=0.f,Rank=0,StartingValue=0.3f,MaxValue=0.3f)
 	PerkSkills(EDemoSirenResistance)=(Name="SirenResistance",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_SirenResistance",Increment=0.f,Rank=0,StartingValue=0.5,MaxValue=0.5)

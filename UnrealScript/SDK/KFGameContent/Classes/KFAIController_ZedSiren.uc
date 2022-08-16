@@ -31,7 +31,12 @@ function NotifySpecialMoveEnded( KFSpecialMove SM )
 /** Executes a scream */
 function DoScream()
 {
-	if( MyKFPawn.SpecialMove == SM_None )
+	if( IsInStumble() )
+	{
+		return;
+	}
+
+	if( MyKFPawn.SpecialMove == SM_None || MyKFPawn.SpecialMove == SM_SonicAttack )
 	{
 		class'AICommand_Siren_Scream'.static.Scream( self );
 	}

@@ -635,7 +635,7 @@ function WaveStarted()
         {
             if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
             {
-                WorldInfo.TWLogEvent("pc_wave_start", KFPC.PlayerReplicationInfo, "#" $ string(WaveNum), string(KFPC.GetPerk().Class.Name), string(KFPC.GetPerk().GetLevel()), "#" $ string(KFPC.PlayerReplicationInfo.Score), KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory(), KFPC.DumpPerkLoadout());
+                WorldInfo.TWLogEvent("pc_wave_start", KFPC.PlayerReplicationInfo, "#" $ string(WaveNum), string(KFPC.GetPerk().Class.Name), string(KFPC.GetPerk().GetLevel()), "#" $ string(KFPC.PlayerReplicationInfo.Score), KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory(), KFPC.GetPerk().DumpPerkLoadout());
             }
         }        
     }    
@@ -644,7 +644,7 @@ function WaveStarted()
     {
         GameSeq.FindSeqObjectsByClass(Class'KFSeqEvent_WaveStart', true, AllWaveStartEvents);
         I = 0;
-        J0x366:
+        J0x37C:
 
         if(I < AllWaveStartEvents.Length)
         {
@@ -655,7 +655,7 @@ function WaveStarted()
                 WaveStartEvt.CheckActivate(self, self);
             }
             ++ I;
-            goto J0x366;
+            goto J0x37C;
         }
     }
     UpdateGameSettings();
@@ -750,11 +750,11 @@ function LogWaveEndAnalyticsFor(KFPlayerController KFPC)
     }
     if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
     {
-        WorldInfo.TWLogEvent("pc_wave_end", KFPC.PlayerReplicationInfo, "#" $ string(WaveNum), string(KFPC.GetPerk().Class.Name), "#" $ string(KFPC.GetPerk().GetLevel()), "#" $ string(KFPC.PlayerReplicationInfo.Score), "#" $ string(KFPC.PlayerReplicationInfo.Kills), KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory(), KFPC.DumpPerkLoadout());
+        WorldInfo.TWLogEvent("pc_wave_end", KFPC.PlayerReplicationInfo, "#" $ string(WaveNum), string(KFPC.GetPerk().Class.Name), "#" $ string(KFPC.GetPerk().GetLevel()), "#" $ string(KFPC.PlayerReplicationInfo.Score), "#" $ string(KFPC.PlayerReplicationInfo.Kills), KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory());
     }
     KFPC.MatchStats.GetTopWeapons(3, Weapons);
     I = 0;
-    J0x4C0:
+    J0x4A2:
 
     if(I < Weapons.Length)
     {
@@ -763,7 +763,7 @@ function LogWaveEndAnalyticsFor(KFPlayerController KFPC)
             WorldInfo.TWLogEvent("pc_weapon_stats", KFPC.PlayerReplicationInfo, "#" $ string(WaveNum), string(Weapons[I].WeaponDef.Name), "#" $ string(Weapons[I].DamageAmount), "#" $ string(Weapons[I].HeadShots), "#" $ string(Weapons[I].LargeZedKills));
         }
         ++ I;
-        goto J0x4C0;
+        goto J0x4A2;
     }
 }
 
@@ -981,7 +981,7 @@ state TraderOpen
 
     function bool PreventDeath(Pawn KilledPawn, Controller Killer, class<DamageType> DamageType, Vector HitLocation)
     {
-        if((((KilledPawn.Controller != none) && KilledPawn.Controller.bIsPlayer) && Killer != none) && KilledPawn.GetTeamNum() != Killer.GetTeamNum())
+        if(((((KilledPawn.Controller != none) && KilledPawn.Controller.bIsPlayer) && Killer != none) && KilledPawn.GetTeamNum() != Killer.GetTeamNum()) && DamageType != Class'DmgType_Suicided')
         {
             if((Killer.Pawn == none) || !Killer.Pawn.IsAliveAndWell())
             {

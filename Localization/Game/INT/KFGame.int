@@ -572,7 +572,7 @@ ResolutionString="Resolution"
 GraphicsQualityString="Graphics Quality"
 VSyncString="Vertical Sync"
 FullscreenString="Display"
-VariableFrameRateString="Variable Framerate"
+VariableFrameRateString="Variable Frame Rate"
 FilmGrainString="Film Grain"
 AdjustGammaString="ADJUST GAMMA"
 
@@ -857,6 +857,7 @@ HeadShotResetString="Missed Headshot. Normal Damage!"
 
 SuicideMessage=" just gave up on life..."
 KilledMessage=" was eaten alive"
+KillzedBy_PatriarchString=" can't hurt Kevin's children anymore"
 KillzedBy_HansString="'s body has been removed for further experimentation"
 KillzedBy_ZedCrawlerString="'s ankles have been chewed off"
 KillzedBy_ZedBloatString=" has drowned in bodily fluids"
@@ -976,7 +977,7 @@ Fortitude="Fortitude"
 FortitudeDescription="Give yourself a better chance: Increase Maximum and Starting Health by 75%"
 
 FuriousDefender="Furious Defender"
-FuriousDefenderDescription="They call you Berserk for a reason: Berserker melee attacks are 10% faster and all attacks do 20% more damage."
+FuriousDefenderDescription="They call you Berserk for a reason: Berserker melee attacks are 10% faster and hard attacks do 20% more damage."
 
 Block="Block"
 BlockDescription="Such skills! Blocking an attack will make your next Berserker melee attack do 50% more damage."
@@ -988,7 +989,7 @@ Smash="Smash"
 SmashDescription="Brute force it: Hard hits do 25% more damage AND hard hits to the head have a high chance to knock big Zeds down."
 
 Spartan="ZED TIME - Spartan"
-SpartanDescription="You've seen 300: Move in real-time, increase attack speed with Berserker melee weapons by 50% and any Parry will cause knockdown."
+SpartanDescription="You've seen 300: Move in real-time, increase attack speed with Berserker melee weapons by 70% and any Parry will cause knockdown."
 
 Menace="ZED TIME - Menace"
 MenaceDescription="Get really dangerous: Move in real-time, Berserker melee weapons' Stun power increased 100% to head hits and Stumble power increased by 100%."
@@ -1128,7 +1129,7 @@ VaccinationDamageMod="Acidic Compound"
 VaccinationDamageModDescription="A healer to some... death to others! Your healing darts can poison Zeds; cause enough damage and your grenades and darts cause Zeds to panic as well."
 
 AirborneAgent="ZED TIME - Airborne Agent"
-AirborneAgentDescription="They say time heals: Your medic darts will form a healing cloud for your target and nearby friends to get 10% extra healing."
+AirborneAgentDescription="They say time heals: Your medic darts will form a healing cloud for your target and nearby friends to get 20% extra healing."
 
 Sedative="ZED TIME - Sedative"
 SedativeDescription="And time stands still: Medic darts and grenades release a Zed-Sedative that can temporarily stop Zed movement."
@@ -1167,7 +1168,7 @@ HeatWave="Heat Wave"
 HeatWaveDescription="Like a Georgia summer: Enemies struck at point blank range with Fire will stumble back."
 
 ZedShrapnel="Zed Shrapnel"
-ZedShrapnelDescription="Zed goes BOOM: Any zed killed by Fire weapons has a 50% chance to explode, causing damage to nearby Zeds."
+ZedShrapnelDescription="Zed goes BOOM: Any zed killed by Fire weapons has a 30% chance to explode, causing damage to nearby Zeds."
 
 Napalm="Zed Napalm"
 NapalmDescription="Zed on FIRE: Zeds that are burning will set other zeds on fire when they make contact with them."
@@ -1201,7 +1202,7 @@ Passives[2]=(Title="Movement Speed",Description="Movement speed increased by %x%
 Passives[3]=(Title="Recoil",Description="%x% less recoil");
 
 ShootnMove="Shoot'n'Scoot"
-ShootnMoveDescription="Don't hang around to be eaten: move 50% faster in iron sights with reduced weapon bob."
+ShootnMoveDescription="Don't hang around to be eaten: move 200% faster in iron sights with reduced weapon bob."
 
 QuickSwitch="Quick Draw"
 QuickSwitchDescription="You know it: 50% faster weapon switch - and, if you keep firing when you are out of ammo, quick draw spare pistols."
@@ -1219,10 +1220,10 @@ Penetration="Penetration"
 PenetrationDescription="Line 'em up and knock 'em down: penetrate an extra Zed with every shot."
 
 CenterMass="Center Mass"
-CenterMassDescription="If you aim for the center of mass... shots to the chest have 30% more stumble power."
+CenterMassDescription="If you aim for the center of mass... shots to the chest have 40% more stumble power."
 
 LimbShots="Leg Shots"
-LimbShotsDescription="Or shoot them in the legs... shots to the legs have 30% more knockdown power when the zed is sprinting."
+LimbShotsDescription="Or shoot them in the legs... shots to the legs have 3x more knockdown power when the zed is sprinting."
 
 Fanfare="ZED TIME - Fanfire"
 FanfareDescription="Fanfire with fanfare: shoot 3x faster with Gunslinger weapons in Zed time."
@@ -1239,9 +1240,9 @@ PerkName="Sharpshooter"
 [KFPerk_Support]
 PerkName="Support"
 
-SkillCatagories[0]="Weapon Handling"
+SkillCatagories[0]="Supply"
 SkillCatagories[1]="Fitness"
-SkillCatagories[2]="Supply"
+SkillCatagories[2]="Weapon Handling"
 SkillCatagories[3]="Endurance"
 SkillCatagories[4]="Advanced Training"
 

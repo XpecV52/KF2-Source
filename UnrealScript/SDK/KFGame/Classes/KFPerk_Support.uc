@@ -130,7 +130,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 
 	if( DamageCauser != none )
 	{
-		if( DamageCauser.IsA( 'KFProj_Grenade ') )
+		if( ClassIsChildOf( DamageCauser.class, class'KFProj_Grenade ') )
 		{
 			TempDamage += BaseDamage * GetPassiveValue( GrenadeDamage, CurrentLevel );
 		}

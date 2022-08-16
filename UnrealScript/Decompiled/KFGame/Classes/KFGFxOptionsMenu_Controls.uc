@@ -51,6 +51,14 @@ function LocalizeText()
     SetObject("localizedText", LocalizedObject);
 }
 
+function OnInputTypeChanged(bool bGamepad)
+{
+    if(KeybindingsContainer != none)
+    {
+        KeybindingsContainer.UpdateAllBindings();
+    }
+}
+
 event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 {
     switch(WidgetName)

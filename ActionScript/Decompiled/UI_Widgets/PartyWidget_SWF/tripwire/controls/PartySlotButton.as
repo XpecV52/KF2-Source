@@ -117,9 +117,12 @@ package tripwire.controls
         public function set bIsOccupied(param1:Boolean) : void
         {
             this._bIsOccupied = param1;
+            if(this.BG)
+            {
+                this.BG.visible = param1;
+            }
             this.profileImageContainer.visible = param1;
             this.orangeBG.visible = param1;
-            this.BG.visible = param1;
             this.HitboxMC.visible = param1;
             this.playerNameText.visible = param1;
             this.perkIconLoader.visible = param1;
@@ -161,7 +164,10 @@ package tripwire.controls
         public function set bIsLeader(param1:Boolean) : void
         {
             this._bIsLeader = param1;
-            this.leaderIcon.visible = param1;
+            if(this.leaderIcon != null)
+            {
+                this.leaderIcon.visible = param1;
+            }
         }
         
         public function handleGamePadB() : *
@@ -289,7 +295,10 @@ package tripwire.controls
         {
             this.iconTint.setTint(param1,1);
             this.perkIconLoaderContainer.transform.colorTransform = this.iconTint;
-            this.leaderIcon.transform.colorTransform = this.iconTint;
+            if(this.leaderIcon != null)
+            {
+                this.leaderIcon.transform.colorTransform = this.iconTint;
+            }
             this.perkLevelText.textColor = param1;
         }
     }

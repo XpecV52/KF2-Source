@@ -383,7 +383,7 @@ function ModifyLightAttackDamage( out int InDamage )
 	}
 
 	;
-	InDamage = TempDamage != InDamage ? Round( TempDamage ) : InDamage;
+	InDamage = TempDamage != InDamage ? FCeil( TempDamage ) : InDamage;
 }
 
 /**

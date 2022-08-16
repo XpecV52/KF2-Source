@@ -82,8 +82,6 @@ cpptext
 	virtual void Tick(FLOAT DeltaSeconds);
 	virtual UBOOL IsTickable() const;
 
-	void DownloaderQueryDone(FOnlineAsyncTaskSteamUGCQueryCompleteReceived* Query);
-	
 	private:
 
 	void CallDownloadUpdateDelegate(FString* Name, uint64 BytesDownloaded, uint64 BytesTotal, INT ItemsLeft);

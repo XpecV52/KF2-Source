@@ -30,7 +30,6 @@ var int ServerTypeFilter;
 var int InProgressFilter;
 var int PermissionsFilter;
 var bool bModeFilterSet;
-var bool bDifficultyFilterSet;
 var bool bLengthFilterSet;
 var bool bServerTypeFilterSet;
 var bool bInProgressFilterSet;
@@ -67,6 +66,10 @@ var string PreviousMapName;
 function Initialize(KFGFxObject_Menu NewParentMenu)
 {
     super.Initialize(NewParentMenu);
+    if(SavedDifficultyIndex >= Class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray().Length)
+    {
+        SavedDifficultyIndex = 0;
+    }
     StartMenu = KFGFxMenu_StartGame(NewParentMenu);
     InitializeGameOptions();
     LocalizeArrays();
@@ -105,7 +108,7 @@ function InitializeGameOptions()
     TextObject.SetObject("modeList", CreateList(Class'KFCommon_LocalizedStrings'.static.GetGameModeStringsArray(), SavedModeIndex, true));
     TextObject.SetObject("lengthList", CreateList(Class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), SavedLengthIndex, true));
     TextObject.SetObject("mapList", CreateList(StartMenu.MapStringList, InitialMapIndex, true, true));
-    TextObject.SetObject("difficultyList", CreateList(Class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray(), SavedDifficultyIndex, true));
+    TextObject.SetObject("difficultyList", CreateList(Class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray(), SavedDifficultyIndex, false));
     TextObject.SetObject("serverTypeList", CreateList(ServerTypeStrings, SavedServerTypeIndex, true));
     TextObject.SetObject("inProgressList", CreateList(InProgessOptionStrings, SavedInProgressIndex, false));
     TextObject.SetObject("privacyList", CreateList(Class'KFCommon_LocalizedStrings'.static.GetPermissionStringsArray(), SavedPrivacyIndex, false));
@@ -265,7 +268,10 @@ function UpdateFilters()
     ModeFilter = DataObject.GetInt("mode");
     bModeFilterSet = ModeFilter < Class'KFCommon_LocalizedStrings'.static.GetGameModeStringsArray().Length;
     DifficultyFilter = DataObject.GetInt("difficulty");
-    bDifficultyFilterSet = DifficultyFilter < Class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray().Length;
+    if(DifficultyFilter >= Class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray().Length)
+    {
+        DifficultyFilter = 0;
+    }
     LengthFilter = DataObject.GetInt("length");
     bLengthFilterSet = LengthFilter < Class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray().Length;
     ServerTypeFilter = DataObject.GetInt("serverType");
@@ -303,9 +309,9 @@ function bool GetAllowInProgress()
 
 function int GetDifficulty()
 {
-    if(!bDifficultyFilterSet)
+    if(DifficultyFilter >= Class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray().Length)
     {
-        return -1;
+        DifficultyFilter = 0;
     }
     return DifficultyFilter;
 }

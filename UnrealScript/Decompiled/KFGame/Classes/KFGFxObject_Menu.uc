@@ -25,8 +25,13 @@ function OnOpen();
 
 function InitOnlineLobby()
 {
-    OnlineLobby = Outer.GetPC().OnlineSub.GetLobbyInterface();
+    if(Outer.GetPC().OnlineSub != none)
+    {
+        OnlineLobby = Outer.GetPC().OnlineSub.GetLobbyInterface();
+    }
 }
+
+function OnInputTypeChanged(bool bGamepad);
 
 function OneSecondLoop();
 

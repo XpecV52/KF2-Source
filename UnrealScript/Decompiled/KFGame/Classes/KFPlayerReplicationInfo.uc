@@ -373,8 +373,14 @@ simulated function CastMapVote(int MapIndex, bool bDoubleClick)
 reliable server function ServerCastMapVote(PlayerReplicationInfo PRI, int MapIndex)
 {
     local KFGameReplicationInfo KFGRI;
+    local KFGameInfo KFGI;
 
+    KFGI = KFGameInfo(WorldInfo.Game);
     KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if((KFGI != none) && KFGI.bDisableMapVote)
+    {
+        return;
+    }
     if(KFGRI != none)
     {
         KFGRI.ReceiveVoteMap(PRI, MapIndex);
@@ -481,6 +487,10 @@ simulated event CharacterCustomizationChanged()
     local KFPawn_Human KFP;
     local KFCharacterInfoBase NewCharArch;
 
+    if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+    {
+        WorldInfo.TWLogEvent("character_change", self, string(CharacterArchetypes[RepCustomizationInfo.CharacterIndex].Name));
+    }
     foreach WorldInfo.AllPawns(Class'KFPawn_Human', KFP)
     {
         if((KFP.PlayerReplicationInfo == self) || (KFP.DrivenVehicle != none) && KFP.DrivenVehicle.PlayerReplicationInfo == self)

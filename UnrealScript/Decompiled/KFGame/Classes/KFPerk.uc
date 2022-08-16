@@ -187,6 +187,24 @@ static final function class<KFPerk> GetPerkClass()
     return default.Class;
 }
 
+function string DumpPerkLoadout()
+{
+    local int I;
+    local string Ret;
+
+    Ret = "";
+    I = 0;
+    J0x17:
+
+    if(I < 5)
+    {        
+        Ret $= string(SelectedSkills[I]);
+        ++ I;
+        goto J0x17;
+    }
+    return Ret;
+}
+
 static function KFWeapon GetWeaponFromDamageCauser(Actor WeaponActor)
 {
     local KFWeapon KFW;

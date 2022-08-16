@@ -31,8 +31,13 @@ function OnOpen();
 
 function InitOnlineLobby()
 {
+	if(GetPC().OnlineSub != none)
+	{
 	OnlineLobby = GetPC().OnlineSub.GetLobbyInterface();
+	}
 }
+
+function OnInputTypeChanged(bool bGamePad);
 
 function OneSecondLoop();
 

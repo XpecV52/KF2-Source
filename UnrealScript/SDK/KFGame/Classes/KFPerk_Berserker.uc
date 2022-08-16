@@ -311,8 +311,8 @@ function ModifyLightAttackDamage( out int InDamage )
 		TempDamage *= 1 + GetSkillValue( PerkSkills[EBerserkerParry] );
 	}
 
-	`QALog( "Total Light Atk Dmg" @ GetPercentage( InDamage, TempDamage != InDamage ? Round( TempDamage ) : InDamage ) @ "Start/End" @ InDamage @ ( TempDamage != InDamage ? Round( TempDamage ) : InDamage ), bLogPerk );
-	InDamage = TempDamage != InDamage ? Round( TempDamage ) : InDamage;
+	`QALog( "Total Light Atk Dmg" @ GetPercentage( InDamage, TempDamage != InDamage ? FCeil( TempDamage ) : InDamage ) @ "Start/End" @ InDamage @ ( TempDamage != InDamage ? Round( TempDamage ) : InDamage ), bLogPerk );
+	InDamage = TempDamage != InDamage ? FCeil( TempDamage ) : InDamage;
 }
 
 /**

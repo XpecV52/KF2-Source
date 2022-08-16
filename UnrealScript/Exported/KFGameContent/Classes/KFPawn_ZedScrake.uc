@@ -9,6 +9,9 @@
 
 class KFPawn_ZedScrake extends KFPawn_Monster;
 
+/** Secondary body material, used in the same way BodyMIC is */
+var MaterialInstanceConstant BodyAltMIC;
+
 var protected AkComponent 	ChainsawIdleAkComponent;
 var protected AkEvent		PlayChainsawIdleAkEvent;
 var protected AkEvent		StopChainsawIdleAkEvent;
@@ -36,6 +39,57 @@ simulated event PostBeginPlay()
 	CreateExhaustFx();
 }
 
+/** Overridden to support loading the alternate body mic */
+simulated function SetCharacterArch( KFCharacterInfoBase Info )
+{
+	super.SetCharacterArch( Info );
+
+    // Set our secondary material, attach our healing syringes
+	if( WorldInfo.NetMode != NM_DedicatedServer && Mesh != None )
+	{
+		BodyAltMIC = Mesh.CreateAndSetMaterialInstanceConstant( 2 );
+	}
+}
+
+/**
+ * Update any material effects
+ * Overridden to support second body material
+ */
+function UpdateMaterialEffect(float DeltaTime)
+{
+	local float Intensity;
+
+	if( MaterialEffectTimeRemaining > 0.f )
+	{
+		if( MaterialEffectTimeRemaining > DeltaTime )
+		{
+			MaterialEffectTimeRemaining -= DeltaTime;
+			Intensity = 1.f - fClamp(MaterialEffectTimeRemaining/MaterialEffectDuration, 0.f, 1.f);
+		}
+		else
+		{
+			MaterialEffectTimeRemaining = 0.f;
+			Intensity = 1.f;
+		}
+
+		// Update the materials
+		if( BodyMIC != none )
+		{
+   			BodyMIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
+   		}
+
+   		if( BodyAltMIC != none )
+   		{
+   			BodyAltMIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
+   		}
+
+		if( HeadMIC != none )
+		{
+   			HeadMIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
+   		}
+	}
+}
+
 simulated function CreateExhaustFx()
 {
 	local vector Loc;
@@ -53,6 +107,18 @@ simulated function CreateExhaustFx()
 				Mesh.AttachComponentToSocket(ExhaustPSC, ExhaustSocketName);
 			}
 		}
+	}
+}
+
+/** Overridden to support secondary body material */
+simulated function GoreMeshSwapped()
+{
+	super.GoreMeshSwapped();
+
+    // Set our secondary MIC
+	if( WorldInfo.NetMode != NM_DedicatedServer && Mesh != None )
+	{
+		BodyAltMIC = Mesh.CreateAndSetMaterialInstanceConstant( 2 );
 	}
 }
 
@@ -198,7 +264,7 @@ defaultproperties
    HitZones(16)=()
    HitZones(17)=()
    PenetrationResistance=4.000000
-   Begin Object Class=KFPawnAfflictions Name=Afflictions_0 Archetype=KFPawnAfflictions'KFGame.Default__KFPawn_Monster:Afflictions_0'
+   Begin Object Class=KFPawnAfflictions_Scrake Name=Afflictions_0
       InstantAffl(0)=(head=55,Torso=110,Leg=110,Arm=140,LowHealthBonus=10,Cooldown=17.000000)
       InstantAffl(1)=(head=53,Torso=110,Leg=110,Arm=110,LowHealthBonus=10,Cooldown=3.000000)
       InstantAffl(2)=(head=53,Torso=53,Arm=60,LowHealthBonus=10,Cooldown=8.000000)
@@ -211,11 +277,10 @@ defaultproperties
       StackingAffl(3)=(Threshhold=7.500000,Duration=1.500000,Cooldown=20.000000)
       StackingAffl(4)=(Threshhold=0.000000,Cooldown=5.000000)
       FireFullyCharredDuration=5.000000
-      FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
-      ObjectArchetype=KFPawnAfflictions'KFGame.Default__KFPawn_Monster:Afflictions_0'
+      ObjectArchetype=KFPawnAfflictions_Scrake'kfgamecontent.Default__KFPawnAfflictions_Scrake'
    End Object
-   AfflictionHandler=KFPawnAfflictions'kfgamecontent.Default__KFPawn_ZedScrake:Afflictions_0'
+   AfflictionHandler=KFPawnAfflictions_Scrake'kfgamecontent.Default__KFPawn_ZedScrake:Afflictions_0'
    KnockdownImpulseScale=2.000000
    SprintSpeed=600.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:FirstPersonArms'

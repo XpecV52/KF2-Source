@@ -365,40 +365,6 @@ simulated event PostBeginPlay()
     MatchStats = new (self) MatchStatsClass;
 }
 
-function string DumpPerkLoadout()
-{
-    local int PerkLevel, Build;
-    local string Ret;
-    local int I;
-
-    PerkLevel = GetPerkLevelFromPerkList(GetPerk().Class);
-    Build = GetPerkBuildByPerkClass(GetPerk().Class);
-    I = 0;
-    J0x73:
-
-    if(I < 5)
-    {
-        if(I < PerkLevel)
-        {
-            if(((1 << (I << 1)) & Build) != 0)
-            {                
-                Ret $= "1";                
-            }
-            else
-            {                
-                Ret $= "2";
-            }            
-        }
-        else
-        {            
-            Ret $= "0";
-        }
-        ++ I;
-        goto J0x73;
-    }
-    return Ret;
-}
-
 simulated event ReplicatedEvent(name VarName)
 {
     super(Controller).ReplicatedEvent(VarName);
@@ -3511,7 +3477,7 @@ function NotifyChangeSpectateViewTarget()
     KFP = KFPawn_Human(ViewTarget);
     if(((MyGFxHUD != none) && MyGFxHUD.SpectatorInfoWidget != none) && KFP != none)
     {
-        if(KFP == Pawn)
+        if((KFP == Pawn) && Pawn.IsAliveAndWell())
         {
             return;
         }
@@ -3525,6 +3491,17 @@ function NotifyChangeSpectateViewTarget()
 
 reliable client simulated event ClientSetViewTarget(Actor A, optional ViewTargetTransitionParams TransitionParams)
 {
+    local Vector ViewLocation;
+    local Rotator ViewRotation;
+
+    if(IsSpectating())
+    {
+        GetPlayerViewPoint(ViewLocation, ViewRotation);
+        SetLocation(ViewLocation);
+        ViewRotation.Roll = 0;
+        SetRotation(ViewRotation);
+        ServerSetSpectatorLocation(Location);
+    }
     super(PlayerController).ClientSetViewTarget(A, TransitionParams);
     if((IsSpectating()) && ViewTarget != none)
     {
@@ -3961,6 +3938,7 @@ state Dead
         {
             KFP.Mesh.CastShadow = KFP.Mesh.default.CastShadow;
         }
+        NotifyChangeSpectateViewTarget();
     }
 
     event ResetCameraMode()

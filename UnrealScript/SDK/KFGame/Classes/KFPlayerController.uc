@@ -367,21 +367,21 @@ var private KFOnlineStatsRead  StatsRead; //Only used to read in the stats, ever
 var private KFOnlineStatsWrite StatsWrite;
 
 /*********************************************************************************************
- * @name Dialog and AAR stats 
+ * @name Dialog and AAR stats
 ********************************************************************************************* */
 
 struct native PostWaveReplicationInfo
 {
 	var Vector 	VectData1; //used for compressing data //X:HeadShots Y:Dosh Earned Z:Damage Dealt
 	var Vector 	VectData2;	//used for compressing data //Damage Taken, Heals Received, Heals Given
-	
+
 	var byte	LargeZedKills;
 	//Dialog
 	var byte	DeathStreakStartWave;
-	var byte	DeathStreakEndWave;	
-	var bool	bBestTeammate; 
-	var bool	bKilledMostZeds; 
-	var bool	bEarnedMostDosh; 
+	var byte	DeathStreakEndWave;
+	var bool	bBestTeammate;
+	var bool	bKilledMostZeds;
+	var bool	bEarnedMostDosh;
 	var bool	bAllSurvivedLastWave;
 	var bool	bSomeSurvivedLastWave;
 	var bool	bOneSurvivedLastWave;
@@ -593,7 +593,7 @@ native final simulated function KFPerk GetPerk();
 simulated event PreBeginPlay()
 {
 	super.PreBeginPlay();
-	
+
 	PostAkEvent( ResetFiltersEvent );
 }
 
@@ -602,39 +602,7 @@ simulated event PostBeginPlay()
 	super.PostBeginPlay();
 
 	MatchStats = new(Self) MatchStatsClass;
-	
-}
 
-function string DumpPerkLoadout()
-{
-	local int PerkLevel;
-	local int Build;
-	local string Ret;
-	local int i;
-
-	PerkLevel = GetPerkLevelFromPerkList( GetPerk().class );
-	Build = GetPerkBuildByPerkClass( GetPerk().class );
-
-	for( i=0; i<5; i++ )
-	{
-		if ( i<Perklevel )
-		{
-			if ( ((1 << (i<<1)) & Build) != 0 )
-			{
-				Ret $= "1";
-			}
-			else
-			{
-				Ret $= "2";
-			}
-		}
-		else
-		{
-			Ret $= "0";
-		}
-	}
-
-	return Ret;
 }
 
 simulated event ReplicatedEvent( name VarName )
@@ -947,7 +915,7 @@ function SetCinematicMode( bool bInCinematicMode, bool bHidePlayer, bool bAffect
 	super.SetCinematicMode( bInCinematicMode, bHidePlayer, bAffectsHUD, bAffectsMovement, bAffectsTurning, bAffectsButtons );
 
 	// have the server tell the clients whether their buttons should work
-	ClientSetIgnoreButtons(bAffectsButtons);		
+	ClientSetIgnoreButtons(bAffectsButtons);
 }
 
 /** Called to have all button input eaten by the HUD movie player */
@@ -967,9 +935,9 @@ reliable client function ClientSetIgnoreButtons(bool bAffectsButtons)
 	{
 		if( bAffectsButtons )
 		{
-			GFxHUDWrapper.HudMovie.HudChatBox.ClearAndCloseChat();	
+			GFxHUDWrapper.HudMovie.HudChatBox.ClearAndCloseChat();
 		}
-		
+
 		GFxHUDWrapper.HudMovie.EatMyInput(bAffectsButtons);
 	}
 }
@@ -1061,8 +1029,8 @@ function NotifyXPGain( class<KFPerk> PerkClass, int Amount )
 	{
 		MyGFxHUD.PlayerStatusContainer.UpdateXP( Amount, 0, false, PerkClass );
 	}
-	
-	`RecordAARPerkXPGain( self, PerkClass, Amount );	
+
+	`RecordAARPerkXPGain( self, PerkClass, Amount );
 }
 
 /*
@@ -1133,7 +1101,7 @@ event int GetPerkIndexFromClass( class<KFPerk> InPerkClass )
 
 /**
  * @brief The Gunslingers RM skill plays an extra sound for certain headshots
- * 
+ *
  * @param RhythmMethodSound Sound to play
  * @param RhytmMethodRTPCName The sounds RTPC name
  * @param Level Num of sound to play
@@ -1442,7 +1410,7 @@ reliable client function ClientSetCameraMode( name NewCamMode )
 	}
 	else
 	{
-		HideBossNameplate();		
+		HideBossNameplate();
 
 		if( NewCamMode == 'FirstPerson' && !PlayerReplicationInfo.bIsSpectator )
 		{
@@ -1563,7 +1531,7 @@ simulated function EnableBlur(bool bEnableBlur, float BlurAmount, float InSpeed,
 	{
 		BlurStrength = BlurAmount;
 	}
-	
+
 	BlurBlendInSpeed = InSpeed;
 	BlurBlendOutSpeed = OutSpeed;
 }
@@ -1794,7 +1762,7 @@ function ProcessAimCorrection(Pawn Target, KFWeapon W, vector StartLoc, out rota
 	}
 
 	HeadLoc	 = Target.Mesh.GetBoneLocation('head');
-	Distance = VSize(HeadLoc - StartLoc);	
+	Distance = VSize(HeadLoc - StartLoc);
 	if ( IsZero(HeadLoc) || Distance > MaxAimCorrectionDistance )
 	{
 		return;
@@ -1819,7 +1787,7 @@ function ProcessAimCorrection(Pawn Target, KFWeapon W, vector StartLoc, out rota
 	{
 		AimCorrection *= 0.5f;
 	}
-	
+
 	if ( Offset.X <= AimCorrection && Offset.Y <= AimCorrection )
 	{
 		// Skip headless.  We could try a new target behind this one, but it would affect
@@ -1900,7 +1868,7 @@ function HandleWalking()
 			Pawn.SetWalking(false);
 		}
 
-		bShouldSprint = (bRun != 0 && !IsZero(Pawn.Acceleration));		
+		bShouldSprint = (bRun != 0 && !IsZero(Pawn.Acceleration));
 		if ( bShouldSprint )
 		{
 			bDuck = 0; // sprint cancels crouch
@@ -1944,7 +1912,7 @@ function PauseMoveInput(float PauseTime=0.50)
 function TickPauseMoveInput(float DeltaTime)
 {
 	local float RealDeltaTime;
-	
+
 	if ( PauseMoveInputTimeLeft > 0.f )
 	{
 		RealDeltaTime = (DeltaTime / WorldInfo.TimeDilation);
@@ -2154,8 +2122,8 @@ simulated function StartAutoTargeting()
 /** Overloaded to make sure player is actually using gamepad */
 function bool AimingHelp(bool bInstantHit)
 {
-	if( PlayerInput != none 
-		&& PlayerInput.bUsingGamepad 
+	if( PlayerInput != none
+		&& PlayerInput.bUsingGamepad
 		&& MaxAimCorrectionDistance > 0.f
 		&& IsLocalController() )
     {
@@ -2751,7 +2719,7 @@ function UpdateLowHealthEffect(float DeltaTime)
 }
 
 /**
- * Can be used to force health FX on or off 
+ * Can be used to force health FX on or off
  * Network: Standalone + Local Client
  */
 function ToggleHealthEffects(bool bEnableFX)
@@ -3106,7 +3074,7 @@ function ShowBossNameplate( KFPawn_MonsterBoss KFBoss)
 }
 
 function HideBossNameplate()
-{	
+{
 	if(MyGFxHUD != none)
 	{
 		MyGFxHUD.HideBossNameplate();
@@ -3773,7 +3741,7 @@ function bool SetPause( bool bPause, optional delegate<CanUnpause> CanUnpauseDel
 /**
  * Attempts to pause/unpause the game when the UI opens/closes. Note: pausing
  * only happens in standalone mode
- * 
+ *
  * OVERRIDES SUPER
  *
  * @param bIsOpening whether the UI is opening or closing
@@ -4126,7 +4094,7 @@ reliable client private function ClientNotifyCheats()
 	}
 }
 
-/** Called from native (AKFCollectibleActor::OnCollect) when a collectible (except for the final one) is found 
+/** Called from native (AKFCollectibleActor::OnCollect) when a collectible (except for the final one) is found
   * @param FinderPRI: the player who found the collectible
   * @param CollectibleID: which collectible this is (same as number of collectibles found so far)
   */
@@ -5590,6 +5558,9 @@ state Dead
 		{
 			KFP.Mesh.CastShadow = KFP.Mesh.default.CastShadow;
 		}
+
+        // Show the spectating hud
+		NotifyChangeSpectateViewTarget();
 	}
 
 	/** ResetCameraMode is called from PlayerController:Dead::EndState and set the cam mode for both clients and server. We only want the server to do that. */
@@ -5741,7 +5712,7 @@ function  NotifyChangeSpectateViewTarget()
 
 	if( MyGFxHUD != none && MyGFxHUD.SpectatorInfoWidget != none && KFP != none )
 	{
-		if( KFP == Pawn )
+		if( KFP == Pawn && Pawn.IsAliveAndWell() )
 		{
 			return;
 		}
@@ -5756,6 +5727,24 @@ function  NotifyChangeSpectateViewTarget()
 
 reliable client event ClientSetViewTarget( Actor A, optional ViewTargetTransitionParams TransitionParams )
 {
+	local vector ViewLocation;
+	local rotator ViewRotation;
+
+    // Set the camera location to where we are viewing when we switch viewtargets
+    // while spectating. This fixes issues where when we switch back to viewing
+    // ourself, the camera is off in some strange area of the map, or worse
+    // the customization room
+    if( IsSpectating() )
+    {
+        GetPlayerViewPoint( ViewLocation, ViewRotation );
+
+        SetLocation(ViewLocation);
+        ViewRotation.Roll=0;
+        SetRotation(ViewRotation);
+
+        ServerSetSpectatorLocation(Location);
+    }
+
 	super.ClientSetViewTarget( A, TransitionParams);
 	if( IsSpectating() && ViewTarget != none )
 	{
@@ -5902,7 +5891,7 @@ function int GetPersonalBest(EPersonalBests PersonalBestID)
 	return StatsWrite.GetPersonalBest(PersonalBestID);
 }
 
-/** 
+/**
  * Recieve award information from server at end of match
  * @note: Could be optimized by sending data via variable rep (PRI/GRI)
  */
@@ -5919,7 +5908,7 @@ reliable client function ReceiveTopWeapons(TopWeaponReplicationInfo TopWeapons)
 
 /** Clear PWRI, but doesn't cause it to replicate */
 function ResetLastWaveInfo()
-{	
+{
 		PWRI.VectData1.X = 0;
 		PWRI.VectData1.Y = 0;
 		PWRI.VectData1.Z = 0;
@@ -6215,7 +6204,7 @@ defaultproperties
 	DOFFocusBlendRate=2.0f
 	DOFMaxFocusDepth=5000.0f // 50 meters max focal distance
 	DOFMaxEnemyAngle=15.0f // 15 degrees
-	
+
 	DOFFocalRange=0.25f
 	DOFFocalAperture=0.2f
 

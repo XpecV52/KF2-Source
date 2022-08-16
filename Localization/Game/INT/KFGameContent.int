@@ -265,12 +265,12 @@ ItemCategory="Hand Gun"
 ItemDescription="• Fire mode is semi-auto only.\n• Alt-fire switches aiming styles when in Ironsights.\n• A pair of Remington 1858 revolvers. Each can be individually sold or dropped."
 
 [KFWeap_Revolver_SW500]
-ItemName="500 Magnum Revolver"
+ItemName=".500 Magnum Revolver"
 ItemCategory="Hand Gun"
 ItemDescription="• Fire mode is single shot only.\n• True hand artillery, in the form of a long-barrelled .50-caliber 'Bone Collector' revolver, firing full-load magnum rounds. For the serious Gunslinger."
 
 [KFWeap_Revolver_DualSW500]
-ItemName="Dual 500 Magnums"
+ItemName="Dual .500 Magnums"
 ItemCategory="Hand Gun"
 ItemDescription="• Fire mode is semi-auto only.\n• Alt-fire switches aiming styles when in Ironsights.\n• A pair of .500 Magnum 'Bone Collector' revolvers. Each can be individually sold or dropped. With a big 'thud'."
 

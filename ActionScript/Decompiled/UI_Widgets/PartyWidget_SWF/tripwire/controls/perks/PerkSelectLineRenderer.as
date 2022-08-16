@@ -35,6 +35,8 @@ package tripwire.controls.perks
         
         private const AnimSelectedOffsetZ = 0;
         
+        public var SelectorArrow:MovieClip;
+        
         public var hitbox:MovieClip;
         
         public const hitboxZ:int = 32;
@@ -49,6 +51,7 @@ package tripwire.controls.perks
             {
                 this.disableButton();
             }
+            this.active = false;
         }
         
         override public function setData(param1:Object) : void
@@ -91,6 +94,14 @@ package tripwire.controls.perks
             else
             {
                 visible = false;
+            }
+        }
+        
+        public function set active(param1:Boolean) : void
+        {
+            if(this.SelectorArrow)
+            {
+                this.SelectorArrow.visible = param1;
             }
         }
         

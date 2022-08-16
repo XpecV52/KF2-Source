@@ -298,6 +298,22 @@ final static function class<KFPerk> GetPerkClass()
 	return default.class;
 }
 
+/** returns concatenated string for analytics logging */
+function string DumpPerkLoadout()
+{
+	local int i;
+	local string Ret;
+
+	Ret = "";
+
+	for( i=0; i<5; i++ )
+	{
+		Ret $= SelectedSkills[i];
+	}
+
+	return Ret;
+}
+
 /**
  * @brief Grabs the AssociatedPerkClass from an actor
  * 

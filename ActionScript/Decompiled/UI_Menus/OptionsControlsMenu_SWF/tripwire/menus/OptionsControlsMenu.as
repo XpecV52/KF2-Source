@@ -1,5 +1,6 @@
 package tripwire.menus
 {
+    import flash.events.Event;
     import flash.external.ExternalInterface;
     import flash.utils.Timer;
     import scaleform.clik.controls.ButtonBar;
@@ -73,6 +74,15 @@ package tripwire.menus
             }
         }
         
+        override protected function onInputChange(param1:Event) : *
+        {
+            super.onInputChange(param1);
+            if(this.tabButtonBar.getButtonAt(1))
+            {
+                this.tabButtonBar.getButtonAt(1).enabled = !bManagerUsingGamepad;
+            }
+        }
+        
         override public function openContainer() : void
         {
             this.tabButtonBar.selectedIndex = 0;
@@ -126,7 +136,21 @@ package tripwire.menus
         
         private function handleTabChanged(param1:IndexEvent) : void
         {
-            this.openTab(param1.index);
+            var _loc2_:int = param1.index;
+            if(param1.index == MENU_STATE_KEYBINDINGS && bManagerUsingGamepad)
+            {
+                if(this.currentIndex == MENU_STATE_INPUT)
+                {
+                    _loc2_ = MENU_STATE_CONTROLLER;
+                    this.tabButtonBar.selectedIndex = _loc2_;
+                }
+                else if(this.currentIndex == MENU_STATE_CONTROLLER)
+                {
+                    _loc2_ = MENU_STATE_INPUT;
+                    this.tabButtonBar.selectedIndex = _loc2_;
+                }
+            }
+            this.openTab(_loc2_);
         }
         
         private function openTab(param1:int) : void

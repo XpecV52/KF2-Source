@@ -822,7 +822,7 @@ defaultproperties
    InteractIcon=Texture2D'UI_World_TEX.Demolitionist_Supplier_HUD'
    PerkSkills(0)=(Name="GrenadeSupplier",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_GrenadeSupplier")
    PerkSkills(1)=(Name="OnContact",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_OnContact")
-   PerkSkills(2)=(Name="ExplosiveResistance",StartingValue=1.200000,MaxValue=1.200000,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_ExplosiveResistance")
+   PerkSkills(2)=(Name="ExplosiveResistance",Increment=0.020000,StartingValue=0.100000,MaxValue=0.600000,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_ExplosiveResistance")
    PerkSkills(3)=(Name="Sacrifice",StartingValue=2.000000,MaxValue=2.000000,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_Sacrifice")
    PerkSkills(4)=(Name="DoorTraps",StartingValue=0.300000,MaxValue=0.300000,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_DoorTraps")
    PerkSkills(5)=(Name="SirenResistance",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_SirenResistance")
