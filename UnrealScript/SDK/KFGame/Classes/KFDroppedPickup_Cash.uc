@@ -33,7 +33,7 @@ function GiveTo( Pawn P )
 		if( KFPlayerReplicationInfo(P.PlayerReplicationInfo) != none )
 		{
 			KFPlayerReplicationInfo(P.PlayerReplicationInfo).AddDosh( CashAmount );
-			`AnalyticsLog(("dosh_picked_up", KFPlayerReplicationInfo(P.PlayerReplicationInfo), "#"$CashAmount));
+			`AnalyticsLog(("dosh_picked_up", P.PlayerReplicationInfo, "#"$CashAmount));
 		}
 
 		bForceNetUpdate = true;

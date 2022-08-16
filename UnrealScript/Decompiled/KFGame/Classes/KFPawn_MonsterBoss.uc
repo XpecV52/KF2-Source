@@ -52,10 +52,19 @@ simulated event ReplicatedEvent(name VarName)
     }
 }
 
-simulated event PostBeginPlay()
+simulated event PreBeginPlay()
+{
+    super.PreBeginPlay();
+    OnBattlePhaseChanged();
+}
+
+event PostBeginPlay()
 {
     super(KFPawn).PostBeginPlay();
-    OnBattlePhaseChanged();
+    if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+    {
+        WorldInfo.TWLogEvent("boss_spawn", none, string(Class.Name));
+    }
 }
 
 function PossessedBy(Controller C, bool bVehicleTransition)

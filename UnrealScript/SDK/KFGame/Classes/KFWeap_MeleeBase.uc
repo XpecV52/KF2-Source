@@ -30,6 +30,7 @@ var byte MaxChainAtkCount;
 
 /** Minimum amount of time to go to the MeleeSustained state for */
 var float MinMeleeSustainedTime;
+/** Minimum amount of time to wait before dealing damage in the  MeleeSustained state */
 var() float MeleeSustainedWarmupTime;
 
 /*********************************************************************************************
@@ -696,6 +697,8 @@ simulated state MeleeSustained extends WeaponFiring
 	/** Performs melee hit detection and does damage */
     simulated function FireAmmunition()
 	{
+		HandleWeaponShotTaken( CurrentFireMode );
+        MeleeAttackHelper.bHitEnemyThisAttack = false;
 		MeleeAttackHelper.MeleeAttackImpact();
 
     	// Use ammunition to fire

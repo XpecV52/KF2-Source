@@ -9,6 +9,7 @@ package tripwire.containers.optionsControls
     import scaleform.clik.events.SliderEvent;
     import scaleform.clik.ui.InputDetails;
     import tripwire.containers.TripContainer;
+    import tripwire.controls.SliderOption;
     import tripwire.controls.TripCheckBox;
     
     public class ControlsInputContainer extends TripContainer
@@ -56,12 +57,12 @@ package tripwire.containers.optionsControls
             this.aimAssistSlowDownCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
             this.forceFeedbackCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
             defaultFirstElement = this.sensitivitySliderOption;
-            this.sensitivitySliderOption.slider.tabIndex = 1;
-            this.zoomSensitivitySliderOption.slider.tabIndex = 2;
+            this.sensitivitySliderOption.tabIndex = 1;
+            this.zoomSensitivitySliderOption.tabIndex = 2;
             this.invertYCheckBox.tabIndex = 3;
             this.mouseSmoothingCheckBox.tabIndex = 4;
-            this.controllerSensitivitySliderOption.slider.tabIndex = 5;
-            this.controllerZoomSensitivitySliderOption.slider.tabIndex = 6;
+            this.controllerSensitivitySliderOption.tabIndex = 5;
+            this.controllerZoomSensitivitySliderOption.tabIndex = 6;
             this.controllerInvertYCheckBox.tabIndex = 7;
             this.aimAssistZoomLockOnCheckBox.tabIndex = 8;
             this.aimAssistRotationCheckBox.tabIndex = 9;

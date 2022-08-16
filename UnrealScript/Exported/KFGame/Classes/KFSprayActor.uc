@@ -425,6 +425,19 @@ simulated function PostBeginPlay()
 	}
 }
 
+/** Notification that a direct impact has occurred. */
+event ProcessDirectImpact()
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(InstigatorController);
+
+    if( KFPC != none )
+    {
+        KFPC.AddShotsHit(1);
+    }
+}
+
 /**
  * Adjust the FOV when used in first person
  */

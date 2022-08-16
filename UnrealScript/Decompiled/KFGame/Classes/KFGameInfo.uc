@@ -123,6 +123,7 @@ var byte NumAmmoPickups;
 var const byte ForcedNumLivingPlayers;
 var array<float> DeathPenaltyModifiers;
 var array<float> MaxRespawnDosh;
+var KFGameConductor GameConductor;
 var KFAIDirector AIDirector;
 var int AIAliveCount;
 var int NumAISpawnsQueued;
@@ -326,6 +327,7 @@ event PreBeginPlay()
     MyKFGRI = KFGameReplicationInfo(GameReplicationInfo);
     InitGRIVariables();
     CreateTeam(0);
+    InitGameConductor();
     InitAIDirector();
     InitTraderList();
     ReplicateWelcomeScreen();
@@ -539,6 +541,11 @@ event InitAIDirector()
 {
     AIDirector = new (self) Class'KFAIDirector';
     AIDirector.Initialize();
+}
+
+function InitGameConductor()
+{
+    GameConductor = new (self) Class'KFGameConductor';
 }
 
 function InitGRIVariables()
@@ -867,6 +874,7 @@ function SetAIDefaults(KFPawn_Monster P)
         DamageMod = DifficultyInfo.GetBaseAIDamageModifier();
     }
     GroundSpeedMod = DifficultyInfo.GetAdjustedAIGroundSpeedMod();
+    GroundSpeedMod *= GameConductor.CurrentAIMovementSpeedMod;
     HiddenSpeedMod = DifficultyInfo.GetAIHiddenSpeedModifier(NumLivingPlayers);
     if(KFAIController_Monster(P.Controller) != none)
     {
@@ -947,6 +955,7 @@ function SetTeam(Controller Other, KFTeamInfo_Human NewTeam)
         {
             BroadcastLocalizedMessage(GameMessageClass, 3, Other.PlayerReplicationInfo, none, NewTeam);
         }
+        GameConductor.HandlePlayerChangedTeam();
     }
 }
 
@@ -1028,7 +1037,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
         }
         if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
         {
-            WorldInfo.TWLogEvent("player_death", KilledPRI, KillerLabel, string(DT.Class.Name), "#" $ string(MyKFGRI.WaveNum), KFPC.GetPerk().PerkName, string(KFPC.GetPerk().GetLevel()), KFInventoryManager(KilledPawn.InvManager).DumpInventory());
+            WorldInfo.TWLogEvent("player_death", KilledPRI, KillerLabel, string(DT.Name), "#" $ string(MyKFGRI.WaveNum), KFPC.GetPerk().PerkName, string(KFPC.GetPerk().GetLevel()), KFInventoryManager(KilledPawn.InvManager).DumpInventory());
         }
     }
     super(GameInfo).Killed(Killer, KilledPlayer, KilledPawn, DT);
@@ -1460,7 +1469,7 @@ Parameter name: index
         break;
         @NULL
         @NULL
-        Exp(@NULL, @NULL, string(GetFuncName()) $ "() Notifying ", string(AI));
+        UnresolvedNativeFunction_200(@NULL, @NULL, string(GetFuncName()) $ "() Notifying ", string(AI));
         " that navigation has changed for "        
         string(N)        
         'PathWarning'

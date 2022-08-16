@@ -92,6 +92,16 @@ var float NextAdminCmdTime;
 var config bool bHideTraderPaths;
 
 /*********************************************************************************************
+ * @name Skill Tracking
+********************************************************************************************* */
+/** The total "shots" taken during this match. This includes gun shots taken, melee attacks, damage intervals for flame weapons, etc */
+var int ShotsFired;
+/** The total "shots" that hit another pawn during this match */
+var int ShotsHit;
+/** The total "shots" that hit an another pawn in the head during this match */
+var int ShotsHitHeadshot;
+
+/*********************************************************************************************
  * @name UI
 ********************************************************************************************* */
 var KFGFxMoviePlayer_Manager			MyGFxManager;
@@ -481,6 +491,20 @@ enum ETrackingMode
 var transient ETrackingMode CurrentTrackingMode;
 
 /*********************************************************************************************
+ * @name GameConductor debug drawing
+********************************************************************************************* */
+
+enum EGameConductorDebugMode
+{
+	EGCDM_Skill,
+	EGCDM_LifeSpan,
+	EGCDM_Status
+};
+
+/** Current targeting mode for the tracking map*/
+var transient EGameConductorDebugMode CurrentGameConductorDebugMode;
+
+/*********************************************************************************************
  * @name Navigation
 ********************************************************************************************* */
 //var KFNavigationHandle MyKFNavigationHandle;
@@ -579,6 +603,38 @@ simulated event PostBeginPlay()
 
 	MatchStats = new(Self) MatchStatsClass;
 	
+}
+
+function string DumpPerkLoadout()
+{
+	local int PerkLevel;
+	local int Build;
+	local string Ret;
+	local int i;
+
+	PerkLevel = GetPerkLevelFromPerkList( GetPerk().class );
+	Build = GetPerkBuildByPerkClass( GetPerk().class );
+
+	for( i=0; i<5; i++ )
+	{
+		if ( i<Perklevel )
+		{
+			if ( ((1 << (i<<1)) & Build) != 0 )
+			{
+				Ret $= "1";
+			}
+			else
+			{
+				Ret $= "2";
+			}
+		}
+		else
+		{
+			Ret $= "0";
+		}
+	}
+
+	return Ret;
 }
 
 simulated event ReplicatedEvent( name VarName )
@@ -724,7 +780,10 @@ event InitInputSystem()
 	}
 	else
 	{
+		if(VoiceInterface != none)
+		{
 		VoiceInterface.RegisterLocalTalker(0);
+	}
 	}
 	RegisterTalkerDelegate();
 }
@@ -774,6 +833,28 @@ function NavigationPoint GetBestCustomizationStart( KFGameInfo KFGI )
 		}
 	}
 	return BestStartSpot;
+}
+
+/*********************************************************************************************
+ * @name Skill Tracking
+********************************************************************************************* */
+
+function AddShotsFired( int AddedShots )
+{
+    ShotsFired += AddedShots;
+    //`log("ShotsFired = "$ShotsFired$" accuracy % = "$(Float(ShotsHit)/Float(ShotsFired) * 100.0));
+}
+
+function AddShotsHit( int AddedHits )
+{
+    ShotsHit += AddedHits;
+    //`log("ShotsHit = "$ShotsHit$" accuracy % = "$(Float(ShotsHit)/Float(ShotsFired) * 100.0));
+}
+
+function AddHeadHit( int AddedHits )
+{
+    ShotsHitHeadshot += AddedHits;
+    //`log("ShotsHitHeadshot = "$ShotsHitHeadshot$" accuracy % = "$(Float(ShotsHitHeadshot)/Float(ShotsFired) * 100.0));
 }
 
 /*********************************************************************************************
@@ -2120,8 +2201,8 @@ static simulated function KFInterface_Usable GetCurrentUsableActor( Pawn P, opti
 
 		if( BestUsableActor != none )
 		{
-			if( bUseOnFind )
-			{
+				if( bUseOnFind )
+				{
 				BestActor.UsedBy( P );
 			}
 			return BestUsableActor;
@@ -3110,7 +3191,10 @@ function string GetSteamAvatar( UniqueNetId NetID )
 	{
 		CurrentAvatar.NetID = NetID;
 		AvatarList.AddItem(CurrentAvatar);
+		if(OnlineSub != none)
+		{
 		OnlineSub.ReadOnlineAvatar(NetID, 64, OnAvatarReceived);
+	}
 	}
 
 	return AvatarPath;
@@ -3718,7 +3802,7 @@ reliable server function ServerPause()
 			SetPause( true );
 		}
 		else
-		{
+	{
 			SetPause( false );
 		}
 	}
@@ -3773,8 +3857,11 @@ simulated function ReadStats()
 simulated function OnStatsInitialized( bool bWasSuccessful )
 {
 	local int i;
-	
+	if(OnlineSub != none)
+	{
 	OnlineSub.StatsInterface.ClearReadOnlineStatsCompleteDelegate( OnStatsInitialized );
+	}
+
 	StatsRead.OnStatsInitialized( bWasSuccessful );
 
 	if( MyGFxManager != none )
@@ -4140,6 +4227,15 @@ simulated function DisplayDebug(HUD HUD, out float out_YL, out float out_YPos)
 	   KFPlayerInput(PlayerInput).DisplayDebug(HUD, out_YL, out_YPos);
 	}
 
+	if( HUD.ShouldDisplayDebug('Conductor') )
+	{
+        KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+
+        if( KFGRI.bGameConductorGraphingEnabled )
+        {
+            DrawDebugConductor( HUD.Canvas );
+        }
+	}
 }
 
 function DrawDebugMemory( Canvas Canvas, out float out_YL, out float out_YPos)
@@ -4197,7 +4293,6 @@ function DrawDebugDifficulty( Canvas Canvas, out float out_YL, out float out_YPo
 		Canvas.DrawText( "---------- KFPlayerController: Difficulty ----------" );
 		DrawNextDebugLine( Canvas, out_YL, out_YPos, false, "Current Difficulty: " @"("$KFGI.GameDifficulty$")" );
 		DrawNextDebugLine( Canvas, out_YL, out_YPos, true, 	"Global Health Mod: " @KFGI.DifficultyInfo.GetGlobalHealthMod() );
-		DrawNextDebugLine( Canvas, out_YL, out_YPos, false, "AI Attack Mod: " @KFGI.DifficultyInfo.GetBaseAIDamageModifier() );
 		DrawNextDebugLine( Canvas, out_YL, out_YPos, true, 	"Ground Speed Mod: " @KFGI.DifficultyInfo.GetAIGroundSpeedMod() );
 		DrawNextDebugLine( Canvas, out_YL, out_YPos, false, "Difficulty Wave Count Mod: " @KFGI.DifficultyInfo.GetDifficultyMaxAIModifier() );
 		DrawNextDebugLine( Canvas, out_YL, out_YPos, true, 	"Dosh Per Kill Mod: " @KFGI.DifficultyInfo.GetKillCashModifier()  );
@@ -4806,7 +4901,258 @@ simulated function DrawMapElement(Canvas Canvas,
 `endif
 }
 
+/** Draw the tracking map */
+function DrawDebugConductor( out Canvas Canvas )
+{
 `if(`notdefined(ShippingPC))
+    local KFGameReplicationInfo KFGRI;
+	local array<vector2d> Points;
+	local int i;
+	local Float ScaleX;
+	local float UL_X, UL_Y, W, H;
+	local float MaxLifeSpan;
+
+	if( CurrentGameConductorDebugMode == EGCDM_Skill )
+	{
+        KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+
+        if( KFGRI != none )
+        {
+        	for( i = 0; i < ArrayCount(KFGRI.PlayerAccuracyTracker); i++ )
+        	{
+                Points[Points.Length] = vect2d(i * Float(ArrayCount(KFGRI.PlayerAccuracyTracker)),(100.0 - KFGRI.PlayerAccuracyTracker[i]));
+        	}
+        }
+
+        // Scale the graph to the screen size
+        ScaleX = Canvas.ClipX/1920.0;
+
+        // Set the location and size of the graph
+        UL_X = 1350 * ScaleX;
+        UL_Y = 100 * ScaleX;
+        W = 500 * ScaleX;
+        H = 250 * ScaleX;
+
+        Canvas.DrawDebugGraphBackground("Weapon Accuracy", UL_X, UL_Y, W, H);
+        Canvas.DrawDebugGraphElement(Points, UL_X, UL_Y, W, H, vect2d(0,100), vect2d(0,100), MakeColor(255, 255, 0, 255), "Hit %", 0,FFloor(KFGRI.PlayerAccuracyTracker[i-1])$"%");
+
+        if( KFGRI != none )
+        {
+        	Points.Length = 0;
+
+            for( i = 0; i < ArrayCount(KFGRI.PlayerHeadshotAccuracyTracker); i++ )
+        	{
+                Points[Points.Length] = vect2d(i * Float(ArrayCount(KFGRI.PlayerHeadshotAccuracyTracker)),(100.0 - KFGRI.PlayerHeadshotAccuracyTracker[i]));
+        	}
+        }
+
+        Canvas.DrawDebugGraphElement(Points, UL_X, UL_Y, W, H, vect2d(0,100), vect2d(0,100), MakeColor(255, 0, 0, 255), "HeadShot %", 50 * ScaleX,FFloor(KFGRI.PlayerHeadshotAccuracyTracker[i-1])$"%");
+
+        if( KFGRI != none )
+        {
+        	Points.Length = 0;
+
+            for( i = 0; i < ArrayCount(KFGRI.AggregatePlayerSkillTracker); i++ )
+        	{
+                Points[Points.Length] = vect2d(i * Float(ArrayCount(KFGRI.AggregatePlayerSkillTracker)),(100.0 - KFGRI.AggregatePlayerSkillTracker[i]));
+        	}
+        }
+
+        Canvas.DrawDebugGraphElement(Points, UL_X, UL_Y, W, H, vect2d(0,100), vect2d(0,100), MakeColor(0, 255, 255, 255), "Skill Rank %", 150 * ScaleX,FFloor(KFGRI.AggregatePlayerSkillTracker[i-1])$"%");
+
+    }
+	else if( CurrentGameConductorDebugMode == EGCDM_LifeSpan )
+	{
+        KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+
+        if( KFGRI != none )
+        {
+        	for( i = 0; i < ArrayCount(KFGRI.TotalZedLifeSpanAverageTracker); i++ )
+        	{
+                if( MaxLifeSpan < KFGRI.TotalZedLifeSpanAverageTracker[i] )
+                {
+                    MaxLifeSpan = KFGRI.TotalZedLifeSpanAverageTracker[i];
+                }
+        	}
+
+            for( i = 0; i < ArrayCount(KFGRI.CurrentWaveZedLifeSpanAverageTracker); i++ )
+        	{
+                if( MaxLifeSpan < KFGRI.CurrentWaveZedLifeSpanAverageTracker[i] )
+                {
+                    MaxLifeSpan = KFGRI.CurrentWaveZedLifeSpanAverageTracker[i];
+                }
+        	}
+
+            for( i = 0; i < ArrayCount(KFGRI.RecentZedLifeSpanAverageTracker); i++ )
+        	{
+                if( MaxLifeSpan < KFGRI.RecentZedLifeSpanAverageTracker[i] )
+                {
+                    MaxLifeSpan = KFGRI.RecentZedLifeSpanAverageTracker[i];
+                }
+        	}
+
+        	for( i = 0; i < ArrayCount(KFGRI.TotalZedLifeSpanAverageTracker); i++ )
+        	{
+                if( MaxLifeSpan < KFGRI.TotalZedLifeSpanAverageTracker[i] )
+                {
+                    MaxLifeSpan = KFGRI.TotalZedLifeSpanAverageTracker[i];
+                }
+                Points[Points.Length] = vect2d(i * Float(ArrayCount(KFGRI.TotalZedLifeSpanAverageTracker)),(MaxLifeSpan - KFGRI.TotalZedLifeSpanAverageTracker[i]));
+        	}
+        }
+
+        // Scale the graph to the screen size
+        ScaleX = Canvas.ClipX/1920.0;
+
+        // Set the location and size of the graph
+        UL_X = 1350 * ScaleX;
+        UL_Y = 100 * ScaleX;
+        W = 500 * ScaleX;
+        H = 250 * ScaleX;
+
+        Canvas.DrawDebugGraphBackground("Zed Lifespan Average", UL_X, UL_Y, W, H);
+        Canvas.DrawDebugGraphElement(Points, UL_X, UL_Y, W, H, vect2d(0,100), vect2d(0,MaxLifeSpan), MakeColor(255, 0, 0, 255), "Total", 0,KFGRI.TotalZedLifeSpanAverageTracker[i-1]$" AVG");
+
+        if( KFGRI != none )
+        {
+        	Points.Length = 0;
+
+            for( i = 0; i < ArrayCount(KFGRI.CurrentWaveZedLifeSpanAverageTracker); i++ )
+        	{
+                Points[Points.Length] = vect2d(i * Float(ArrayCount(KFGRI.CurrentWaveZedLifeSpanAverageTracker)),(MaxLifeSpan - KFGRI.CurrentWaveZedLifeSpanAverageTracker[i]));
+        	}
+        }
+
+        Canvas.DrawDebugGraphElement(Points, UL_X, UL_Y, W, H, vect2d(0,100), vect2d(0,MaxLifeSpan), MakeColor(255, 255, 0, 255), "Current Wave", 70 * ScaleX,KFGRI.CurrentWaveZedLifeSpanAverageTracker[i-1]$" AVG");
+
+        if( KFGRI != none )
+        {
+        	Points.Length = 0;
+
+            for( i = 0; i < ArrayCount(KFGRI.RecentZedLifeSpanAverageTracker); i++ )
+        	{
+                Points[Points.Length] = vect2d(i * Float(ArrayCount(KFGRI.RecentZedLifeSpanAverageTracker)),(MaxLifeSpan - KFGRI.RecentZedLifeSpanAverageTracker[i]));
+        	}
+        }
+
+        Canvas.DrawDebugGraphElement(Points, UL_X, UL_Y, W, H, vect2d(0,100), vect2d(0,MaxLifeSpan), MakeColor(0, 255, 255, 255), "Rolling AVG", 200 * ScaleX,KFGRI.RecentZedLifeSpanAverageTracker[i-1]$" AVG");
+    }
+	else if( CurrentGameConductorDebugMode == EGCDM_Status )
+	{
+        KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+
+        if( KFGRI != none )
+        {
+        	for( i = 0; i < ArrayCount(KFGRI.PlayersHealthStatusTracker); i++ )
+        	{
+                Points[Points.Length] = vect2d(i * Float(ArrayCount(KFGRI.PlayersHealthStatusTracker)),(100.0 - KFGRI.PlayersHealthStatusTracker[i] * 100.0));
+        	}
+        }
+
+        // Scale the graph to the screen size
+        ScaleX = Canvas.ClipX/1920.0;
+
+        // Set the location and size of the graph
+        UL_X = 1350 * ScaleX;
+        UL_Y = 100 * ScaleX;
+        W = 500 * ScaleX;
+        H = 250 * ScaleX;
+
+        Canvas.DrawDebugGraphBackground("Players Status", UL_X, UL_Y, W, H);
+        Canvas.DrawDebugGraphElement(Points, UL_X, UL_Y, W, H, vect2d(0,100), vect2d(0,100), MakeColor(255, 0, 0, 255), "Health Status", 0,FFloor(KFGRI.PlayersHealthStatusTracker[i-1] * 100.0)$" Health");
+
+        if( KFGRI != none )
+        {
+        	Points.Length = 0;
+
+            for( i = 0; i < ArrayCount(KFGRI.PlayersAmmoStatusTracker); i++ )
+        	{
+                Points[Points.Length] = vect2d(i * Float(ArrayCount(KFGRI.PlayersAmmoStatusTracker)),(100.0 - KFGRI.PlayersAmmoStatusTracker[i] * 100));
+        	}
+        }
+
+        Canvas.DrawDebugGraphElement(Points, UL_X, UL_Y, W, H, vect2d(0,100), vect2d(0,100), MakeColor(255, 255, 0, 255), "Ammo Status", 120 * ScaleX,FFloor(KFGRI.PlayersAmmoStatusTracker[i-1] * 100.0)$" Ammo");
+
+        if( KFGRI != none )
+        {
+        	Points.Length = 0;
+
+            for( i = 0; i < ArrayCount(KFGRI.AggregatePlayersStatusTracker); i++ )
+        	{
+                Points[Points.Length] = vect2d(i * Float(ArrayCount(KFGRI.AggregatePlayersStatusTracker)),(100.0 - KFGRI.AggregatePlayersStatusTracker[i] * 100));
+        	}
+        }
+
+        Canvas.DrawDebugGraphElement(Points, UL_X, UL_Y, W, H, vect2d(0,100), vect2d(0,100), MakeColor(0, 255, 255, 255), "Overall Status", 240 * ScaleX,FFloor(KFGRI.AggregatePlayersStatusTracker[i-1] * 100.0)$" Overall");
+    }
+
+`endif
+}
+
+`if(`notdefined(ShippingPC))
+/** Current debugging mode for the game conductor display*/
+simulated exec function NextGraphMode()
+{
+	switch ( CurrentGameConductorDebugMode )
+	{
+	case EGCDM_Skill:
+        CurrentGameConductorDebugMode = EGCDM_LifeSpan;
+		break;
+	case EGCDM_LifeSpan:
+        CurrentGameConductorDebugMode = EGCDM_Status;
+		break;
+	case EGCDM_Status:
+		CurrentGameConductorDebugMode = EGCDM_Skill;
+		break;
+	default:
+		CurrentGameConductorDebugMode = EGCDM_Skill;
+		break;
+    }
+}
+
+/** Toggle the game conductor graph */
+simulated exec function ToggleGraph()
+{
+	local KFGameReplicationInfo KFGRI;
+
+	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+	if ( KFGRI != none )
+	{
+	 	KFGRI.bGameConductorGraphingEnabled = !KFGRI.bGameConductorGraphingEnabled;
+
+        ServerEnableConductorGraph(KFGRI.bGameConductorGraphingEnabled);
+
+        if( MyHud != none )
+        {
+            MyHud.bShowDebugInfo = KFGRI.bGameConductorGraphingEnabled;
+
+            if( KFGRI.bGameConductorGraphingEnabled && !MyHud.ShouldDisplayDebug('Conductor') )
+            {
+                MyHud.DebugDisplay[MyHud.DebugDisplay.Length] = 'Conductor';
+            }
+
+            if( !KFGRI.bGameConductorGraphingEnabled && MyHud.ShouldDisplayDebug('Conductor') )
+    		{
+    			MyHud.DebugDisplay.RemoveItem('Conductor');
+    		}
+
+       		MyHud.SaveConfig();
+        }
+	}
+}
+
+/** Enable the tracking map on the server */
+reliable server function ServerEnableConductorGraph( bool bEnabled )
+{
+	local KFGameReplicationInfo KFGRI;
+
+	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+	if ( KFGRI != none )
+	{
+	 	KFGRI.bGameConductorGraphingEnabled = bEnabled;
+	}
+}
+
 /** Toggle the tracking map */
 simulated exec function ToggleTracker()
 {
@@ -5128,6 +5474,8 @@ reliable client function ClientDrawDebugCylinder(vector CylinderLocation, float 
 
 event Destroyed()
 {
+	local KFProjectile KFProj;
+
     // Stop currently playing stingers when the map is being switched
     if( StingerAkComponent != none )
     {
@@ -5137,6 +5485,15 @@ event Destroyed()
     SetRTPCValue( 'Health', 100, true );
     PostAkEvent( LowHealthStopEvent );
 	bPlayingLowHealthSFX = false;
+
+	// Update projectiles in the world
+	foreach DynamicActors( class'KFProjectile', KFProj )
+	{
+		if( KFProj.InstigatorController == self )
+		{
+			KFProj.OnInstigatorControllerLeft();
+		}
+	}
 
 	Super.Destroyed();
 }

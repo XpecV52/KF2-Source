@@ -678,6 +678,80 @@ function DrawDebugGraph(coerce string Title, float ValueX, float ValueY, float U
 	}
 }
 
+
+
+/**
+ * Draws the background for a graph.  Useful for visual debugging and tweaking.
+ *
+ * @param Title		Label to draw on the graph, or "" for none
+ * @param UL_X		X screen coord of the upper-left corner of the graph
+ * @param UL_Y		Y screen coord of the upper-left corner of the graph
+ * @param W			Width of the graph, in pixels
+ * @param H			Height of the graph, in pixels
+ */
+function DrawDebugGraphBackground(coerce string Title, float UL_X, float UL_Y, float W, float H)
+{
+	// draw graph box
+	SetDrawColor(255, 255, 255, 255);
+	SetPos(UL_X, UL_Y);
+	DrawBox(W, H);
+
+	// title
+	if (Title != "")
+	{
+		SetPos(UL_X, UL_Y-16);
+		DrawText(Title);
+	}
+}
+
+/**
+ * Draws an element of a line graph for debugging
+ *
+ * @param Points	An array of X and Y values that represents the points on the line to draw
+ * @param UL_X		X screen coord of the upper-left corner of the graph
+ * @param UL_Y		Y screen coord of the upper-left corner of the graph
+ * @param W			Width of the graph, in pixels
+ * @param H			Height of the graph, in pixels
+ * @param RangeX	Range of values expressed by the X axis of the graph
+ * @param RangeY	Range of values expressed by the Y axis of the graph
+ * @param Color 	The color to use to represent this element on the graph
+ * @param Title		Label to draw on for the key for this element, or "" for none
+ * @param KeyXOffset Offset in the X axis for the position of drawing the key for this element
+ */
+function DrawDebugGraphElement(array<vector2d> Points, float UL_X, float UL_Y, float W, float H, vector2d RangeX, vector2d RangeY, Color ElementColor, coerce string KeyString, float KeyXOffset, coerce string LineValue)
+{
+	local int X1, Y1, X2, Y2;
+	local int i;
+
+	SetPos(UL_X, UL_Y);
+    SetDrawColor(ElementColor.R,ElementColor.G, ElementColor.B, ElementColor.A);
+
+	for( i = 0; i < (Points.Length - 1); i++ )
+	{
+    	// Draw each line element
+    	X1 = UL_X + GetRangePctByValue(RangeX, Points[i].X) * W;
+    	Y1 = UL_Y + GetRangePctByValue(RangeY, Points[i].Y) * H;
+    	X2 = UL_X + GetRangePctByValue(RangeX, Points[i+1].X) * W;
+    	Y2 = UL_Y + GetRangePctByValue(RangeY, Points[i+1].Y) * H;
+
+    	Draw2DLine(X1, Y1, X2, Y2, ElementColor);
+	}
+
+	// Draw the current value for the element
+	if (LineValue != "")
+	{
+    	SetPos(UL_X+W+8, Y2);
+    	DrawText(LineValue);
+	}
+
+	// Key
+	if (KeyString != "")
+	{
+		SetPos(UL_X+KeyXOffset, UL_Y+H+4);
+		DrawText(KeyString);
+	}
+}
+
 defaultproperties
 {
    DrawColor=(B=127,G=127,R=127,A=255)

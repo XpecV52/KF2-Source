@@ -376,6 +376,7 @@ var config float TauntTeamFactor;
 var config Vector2D TauntTimeDelay;
 var config Vector2D RandomTauntTimeDelay;
 var transient array<InvalidAnchorItem> InvalidAnchorList;
+var float TimeFirstSawPlayer;
 var Vector ChargeLocation;
 var string RecentActionInfo;
 var Rotator Debug_StepRot;
@@ -423,7 +424,7 @@ native function bool IgnoreNotifies();
 native function bool IsPawnMovingAwayFromMe(Pawn CheckPawn, optional float MinSpeed);
 
 // Export UKFAIController::execGetPawnBlockingPathTo(FFrame&, void* const)
-native function KFPawn GetPawnBlockingPathTo(Pawn EnemyPawn);
+native function KFPawn GetPawnBlockingPathTo(Pawn EnemyPawn, optional bool bTestTeam);
 
 // Export UKFAIController::execLockPawnRotationTo(FFrame&, void* const)
 native function LockPawnRotationTo(Rotator NewRotation);
@@ -727,6 +728,11 @@ function PawnDied(Pawn inPawn)
     if(MyKFPawn != none)
     {
         MyKFPawn = none;
+    }
+    if(((KFPawn_Monster(Pawn) != none) && KFGameInfo(WorldInfo.Game) != none) && TimeFirstSawPlayer >= float(0))
+    {
+        KFGameInfo(WorldInfo.Game).GameConductor.HandleZedKill(FMax(WorldInfo.TimeSeconds - TimeFirstSawPlayer, 0));
+        TimeFirstSawPlayer = -1;
     }
     super.PawnDied(inPawn);
 }
@@ -3254,6 +3260,10 @@ event SeePlayer(Pawn Seen)
 {
     local float DistToEnemy, DistToSeen;
 
+    if(TimeFirstSawPlayer == float(0))
+    {
+        TimeFirstSawPlayer = WorldInfo.TimeSeconds;
+    }
     if(MyKFPawn != none)
     {
         if(!MyKFPawn.IsAliveAndWell())
@@ -4322,17 +4332,14 @@ function UpdateDamageHistory(Controller DamagerController, int Damage, Actor Dam
         }
         if((((IsAggroEnemySwitchAllowed()) && DamagerController.Pawn != Enemy) && Info.Damage >= DamageThreshold) && Info.Damage > DamageHistory[CurrentEnemysHistoryIndex].Damage)
         {
-            BlockerPawn = GetPawnBlockingPathTo(DamagerController.Pawn);
+            BlockerPawn = GetPawnBlockingPathTo(DamagerController.Pawn, true);
             if(BlockerPawn == none)
             {
                 bChangedEnemies = SetEnemy(DamagerController.Pawn);                
             }
             else
             {
-                if(BlockerPawn.GetTeamNum() != GetTeamNum())
-                {
-                    bChangedEnemies = SetEnemy(BlockerPawn);
-                }
+                bChangedEnemies = SetEnemy(BlockerPawn);
             }
         }        
     }

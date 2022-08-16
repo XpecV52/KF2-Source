@@ -16,7 +16,7 @@ const SLOW_SPEED_MOD = 0.8f;
 
 struct native VulnerableDamageTypeInfo
 {
-    /** A damage type to modify damage to this zed when it is recieved */
+    /** A damage type to modify damage to this zed when it is received */
     var() class<DamageType> DamageType;
     /** How much to modify damage to this zed from the specific damage type */
     var() float DamageScale;
@@ -115,7 +115,7 @@ var repnotify byte RepInflateMatParam;
  *  if there are other zeds in the spawn squad that are larger).
  */
 var() KFSpawnVolume.ESquadType MinSpawnSquadSizeType;
-/** Object within weapon that manages melee attacks */
+/** Object that manages melee attacks, and stores default damage */
 var(Weapon) export editinline KFMeleeHelperAI MeleeAttackHelper;
 var private const int DoshValue;
 var private const float XPValues[4];
@@ -550,6 +550,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     local class<KFDamageType> KFDT;
     local KFPlayerController KFPC;
     local KFPerk InstigatorPerk;
+    local KFAIController KFAIC;
 
     AIMonster = KFAIController_Monster(InstigatedBy);
     KFDT = class<KFDamageType>(DamageType);
@@ -557,6 +558,11 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     if(KFPC != none)
     {
         InstigatorPerk = KFPC.GetPerk();
+        KFAIC = KFAIController(Controller);
+        if((KFAIC != none) && KFAIC.TimeFirstSawPlayer == float(0))
+        {
+            KFAIC.TimeFirstSawPlayer = WorldInfo.TimeSeconds;
+        }
     }
     if(Damage <= 0)
     {
@@ -921,6 +927,11 @@ function CauseHeadTrauma(optional float BleedOutTime)
     }
     if(!bIsHeadless && !bPlayedDeath)
     {
+        if(((MyKFAIC != none) && KFGameInfo(WorldInfo.Game) != none) && MyKFAIC.TimeFirstSawPlayer >= float(0))
+        {
+            KFGameInfo(WorldInfo.Game).GameConductor.HandleZedKill(FMax(WorldInfo.TimeSeconds - MyKFAIC.TimeFirstSawPlayer, 0));
+            MyKFAIC.TimeFirstSawPlayer = -1;
+        }
         bPlayShambling = true;
         bIsHeadless = true;
         SetSprintingDisabled(true);

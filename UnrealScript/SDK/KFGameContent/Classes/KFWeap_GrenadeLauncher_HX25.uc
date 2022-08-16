@@ -47,6 +47,15 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
 	return None;
 }
 
+/** Notification that a weapon attack has has happened */
+function HandleWeaponShotTaken( byte FireMode )
+{
+    if( KFPlayer != None )
+	{
+        KFPlayer.AddShotsFired(GetNumProjectilesToFire( FireMode ));
+	}
+}
+
 /** Returns number of projectiles to fire from SpawnProjectile */
 simulated function byte GetNumProjectilesToFire(byte FireModeNum)
 {

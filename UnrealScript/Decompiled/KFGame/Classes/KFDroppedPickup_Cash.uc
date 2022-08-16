@@ -25,7 +25,7 @@ function GiveTo(Pawn P)
             KFPlayerReplicationInfo(P.PlayerReplicationInfo).AddDosh(CashAmount);
             if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
             {
-                WorldInfo.TWLogEvent("dosh_picked_up", KFPlayerReplicationInfo(P.PlayerReplicationInfo), "#" $ string(CashAmount));
+                WorldInfo.TWLogEvent("dosh_picked_up", P.PlayerReplicationInfo, "#" $ string(CashAmount));
             }
         }
         bForceNetUpdate = true;

@@ -647,6 +647,15 @@ simulated protected function SetExplosionActorClass()
     super.SetExplosionActorClass();
 }
 
+/** Called when the owning instigator controller has left a game */
+simulated function OnInstigatorControllerLeft()
+{
+	if( InstigatorController.Pawn != none && InstigatorController.Pawn.Weapon != Owner )
+	{
+		Destroy();
+	}
+}
+
 defaultproperties
 {
    StuckToBoneIdx=-1

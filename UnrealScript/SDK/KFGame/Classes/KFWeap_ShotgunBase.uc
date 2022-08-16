@@ -52,6 +52,15 @@ simulated function byte GetNumProjectilesToFire(byte FireModeNum)
 	return NumPellets[CurrentFireMode];
 }
 
+/** Notification that a weapon attack has has happened */
+function HandleWeaponShotTaken( byte FireMode )
+{
+    if( KFPlayer != None )
+	{
+        KFPlayer.AddShotsFired(GetNumProjectilesToFire( FireMode ));
+	}
+}
+
 /** Disable normal bullet spread */
 simulated function rotator AddSpread(rotator BaseAim)
 {

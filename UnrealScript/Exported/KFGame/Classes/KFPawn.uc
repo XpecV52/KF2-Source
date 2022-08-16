@@ -2991,6 +2991,12 @@ function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, clas
 	{
 		if( InstigatedBy != none )
 		{
+            // Let the accuracy tracking system know our head was hit
+            if( HitZoneIdx == HZI_HEAD && KFPlayerController(InstigatedBy) != none )
+            {
+                KFPlayerController(InstigatedBy).AddHeadHit(1);
+            }
+
 			TakeHitZoneDamage(Damage, HitFxInfo.DamageType, HitZoneIdx, InstigatedBy.Pawn.Location);
 		}
 		else
@@ -4205,9 +4211,10 @@ simulated function DisplayDebug(HUD HUD, out float out_YL, out float out_YPos)
 
 	if( HUD.ShouldDisplayDebug('physics') )
 	{
+        Canvas.SetDrawColor(0,255,255);
+        Canvas.SetPos(4,out_YPos);
 		Canvas.DrawText("Velocity:" @ VSize(Velocity)/100 @ "Meters Per Second");
 		out_YPos += out_YL;
-		Canvas.SetPos(4,out_YPos);
 	}
 
 	if (HUD.ShouldDisplayDebug('rendering'))

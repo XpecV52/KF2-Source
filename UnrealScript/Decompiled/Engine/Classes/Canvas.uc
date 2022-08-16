@@ -451,6 +451,49 @@ function DrawDebugGraph(coerce string Title, float ValueX, float ValueY, float U
     }
 }
 
+function DrawDebugGraphBackground(coerce string Title, float UL_X, float UL_Y, float W, float H)
+{
+    SetDrawColor(255, 255, 255, 255);
+    SetPos(UL_X, UL_Y);
+    DrawBox(W, H);
+    if(Title != "")
+    {
+        SetPos(UL_X, UL_Y - float(16));
+        DrawText(Title);
+    }
+}
+
+function DrawDebugGraphElement(array<Vector2D> Points, float UL_X, float UL_Y, float W, float H, Vector2D RangeX, Vector2D RangeY, Color ElementColor, coerce string KeyString, float KeyXOffset, coerce string LineValue)
+{
+    local int X1, Y1, X2, Y2, I;
+
+    SetPos(UL_X, UL_Y);
+    SetDrawColor(ElementColor.R, ElementColor.G, ElementColor.B, ElementColor.A);
+    I = 0;
+    J0xA2:
+
+    if(I < (Points.Length - 1))
+    {
+        X1 = int(UL_X + (GetRangePctByValue(RangeX, Points[I].X) * W));
+        Y1 = int(UL_Y + (GetRangePctByValue(RangeY, Points[I].Y) * H));
+        X2 = int(UL_X + (GetRangePctByValue(RangeX, Points[I + 1].X) * W));
+        Y2 = int(UL_Y + (GetRangePctByValue(RangeY, Points[I + 1].Y) * H));
+        Draw2DLine(float(X1), float(Y1), float(X2), float(Y2), ElementColor);
+        ++ I;
+        goto J0xA2;
+    }
+    if(LineValue != "")
+    {
+        SetPos((UL_X + W) + float(8), float(Y2));
+        DrawText(LineValue);
+    }
+    if(KeyString != "")
+    {
+        SetPos(UL_X + KeyXOffset, (UL_Y + H) + float(4));
+        DrawText(KeyString);
+    }
+}
+
 defaultproperties
 {
     DrawColor=(B=127,G=127,R=127,A=255)

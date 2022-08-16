@@ -31,6 +31,8 @@ var transient bool NeedsTicking;
 var float TickInterval;
 var transient float TickTime;
 
+var native transient pointer WorkshopDownloader{class USteamWorkshopDownload};
+
 delegate UGCDownloadProgressDelegate(string ItemName, Float PercentComplete, int ItemsRemaining);
 
 function SetUGCDownloadProgressDelegate(delegate<UGCDownloadProgressDelegate> InProgressDelegate)
@@ -52,7 +54,7 @@ native function Initialize();
 
 native function UpdateWorkshopFiles();
 
-native function CheckAllItemsInstalled();
+native function InstallAllItems();
 
 cpptext
 {
@@ -67,29 +69,22 @@ cpptext
 	void DownloadingItemStarted(PublishedFileId_t Id);
 	void DownloadingItemFinished(PublishedFileId_t Id);
 
-	UBOOL CheckItemInstalled(PublishedFileId_t Id);
 	UBOOL ForceItemInstall(PublishedFileId_t Id);
 
 	UBOOL CheckAppId(AppId_t AppId);
 	
 	void EnumerateClientWorkshopFiles(TArray<FUniqueNetId>& PublishedFileIds);
 	void EnumerateServerWorkshopFiles(TArray<FUniqueNetId>& PublishedFileIds);
-	void DownloadFiles(const TArray<PublishedFileId_t>& Items);
 	void ServerDownloadNextFile();
 
-//	UBOOL RequestWorkshopFileInfo(const TArray<PublishedFileId_t>& Items);
-//	void SaveWorkshopFileInfo(FOnlineAsyncTaskSteamUGCQueryCompleteReceived* QueryResult);
-
-	void ClientDownloadFinished(FOnlineAsyncEventSteamUGCDownloadComplete* DownloadTask);
 	void ServerDownloadFinished(FOnlineAsyncEventSteamUGCDownloadComplete* DownloadTask);
 
 	virtual void Tick(FLOAT DeltaSeconds);
 	virtual UBOOL IsTickable() const;
 
+	void DownloaderQueryDone(FOnlineAsyncTaskSteamUGCQueryCompleteReceived* Query);
+	
 	private:
-
-	UBOOL GetItemCurrent(PublishedFileId_t Id);
-	UBOOL DeleteItem(PublishedFileId_t Id);
 
 	void CallDownloadUpdateDelegate(FString* Name, uint64 BytesDownloaded, uint64 BytesTotal, INT ItemsLeft);
 }

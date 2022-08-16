@@ -489,6 +489,17 @@ simulated native function byte GetLevel();
 simulated native function SetLevel( byte NewLevel );
 
 /**
+ * @brief Callback that lets the perk know that its rank has been set or updated
+ */
+event PerkLevelUpdated()
+{
+    if( MyKFGI != none )
+    {
+        MyKFGI.GameConductor.HandlePerkLevelsUpdated();
+    }
+}
+
+/**
  * @brief Applies the active skills and abilities to the perk
  */
 simulated event UpdateSkills()

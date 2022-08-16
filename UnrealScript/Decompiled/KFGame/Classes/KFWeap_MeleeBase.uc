@@ -51,6 +51,7 @@ var() byte ParryStrength;
  */
 var() byte EstimatedFireRate;
 var float MinMeleeSustainedTime;
+/** Minimum amount of time to wait before dealing damage in the  MeleeSustained state */
 var() float MeleeSustainedWarmupTime;
 var array< class<DamageType> > BlockDamageType;
 /** Damage while blocking will be mitigated by this percentage */
@@ -690,6 +691,8 @@ simulated state MeleeSustained extends WeaponFiring
 
     simulated function FireAmmunition()
     {
+        HandleWeaponShotTaken(CurrentFireMode);
+        MeleeAttackHelper.bHitEnemyThisAttack = false;
         MeleeAttackHelper.MeleeAttackImpact();
         ConsumeAmmo(CurrentFireMode);
     }

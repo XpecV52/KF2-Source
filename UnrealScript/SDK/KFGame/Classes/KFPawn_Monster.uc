@@ -51,7 +51,7 @@ var	repnotify bool	bIsHeadless;
 /** If > 0, clientside head injury gore can be applied while still alive */
 var byte MaxHeadChunkGoreWhileAlive;
 
-/** Object within weapon that manages melee attacks */
+/** Object that manages melee attacks, and stores default damage */
 var(Weapon) instanced KFMeleeHelperAI MeleeAttackHelper;
 
 var protected 	bool 	bHasReducedMeleeDamage;
@@ -64,7 +64,7 @@ var private const 	float	XPValues[4];
 /** Information on vulnerable damage types */
 struct native VulnerableDamageTypeInfo
 {
-    /** A damage type to modify damage to this zed when it is recieved */
+    /** A damage type to modify damage to this zed when it is received */
 	var() class<DamageType> DamageType;
 	/** How much to modify damage to this zed from the specific damage type*/
     var() float DamageScale;
@@ -75,11 +75,11 @@ struct native VulnerableDamageTypeInfo
 	}
 };
 
-/** These damage types do increased damage */
+/** These damage types cause this zed to receive increased damage */
 var const array< VulnerableDamageTypeInfo > VulnerableDamageTypes;
 
 
-/** Information on vulnerable damage types */
+/** Information on resistant damage types */
 struct native ResistantDamageTypeInfo
 {
     /** A damage type to modify damage to this zed when it is recieved */
@@ -92,7 +92,8 @@ struct native ResistantDamageTypeInfo
         DamageScale=0.5f
 	}
 };
-/** These damage types do reduced damage */
+
+/** These damage types cause this zed to receive reduced damage */
 var const array< ResistantDamageTypeInfo > ResistantDamageTypes;
 
 /** The amount to scale damage dealt by the fleshpound */
@@ -760,6 +761,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 	local class<KFDamageType> KFDT;
 	local KFPlayerController KFPC;
 	local KFPerk InstigatorPerk;
+	local KFAIController KFAIC;
 
 	AIMonster = KFAIController_Monster(InstigatedBy);
 	KFDT = class<KFDamageType>(DamageType);
@@ -767,6 +769,14 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 	if( KFPC != none )
 	{
 		InstigatorPerk = KFPC.GetPerk();
+
+		KFAIC = KFAIController(Controller);
+
+		if( KFAIC != none && KFAIC.TimeFirstSawPlayer == 0 )
+		{
+            // If we took damage, count that as "seeing a player" for our purposes
+            KFAIC.TimeFirstSawPlayer = Worldinfo.TimeSeconds;
+        }
 	}
 
 	//Check for acidic compound dart damage
@@ -1171,6 +1181,13 @@ function CauseHeadTrauma(float BleedOutTime=5.f)
 	
 	if ( !bIsHeadless && !bPlayedDeath )
 	{
+    	if( MyKFAIC != none && KFGameInfo(WorldInfo.Game) != none && MyKFAIC.TimeFirstSawPlayer >= 0 )
+    	{
+            KFGameInfo(WorldInfo.Game).GameConductor.HandleZedKill( FMax(`TimeSince(MyKFAIC.TimeFirstSawPlayer),0.0));
+    	   	// Set this so we know we already logged a kill for our pawn
+            MyKFAIC.TimeFirstSawPlayer = -1;
+    	}
+
         bPlayShambling = true;
 		bIsHeadless = true;
 

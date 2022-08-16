@@ -152,7 +152,10 @@ package tripwire.managers
                     CLIK.queueInitCallback(this.menuList[_loc3_].menuObject);
                     this._currentMenuIndex = _loc3_;
                     this.setMenuVisibility(true);
-                    this.menuList[this._currentMenuIndex].menuObject.selectContainer();
+                    if(!this.bPopUpOpen)
+                    {
+                        this.menuList[this._currentMenuIndex].menuObject.selectContainer();
+                    }
                     this.controllerEnableWidgets(false);
                     return;
                 }
@@ -207,7 +210,10 @@ package tripwire.managers
             this.menuList.push(_loc2_);
             this._currentMenuIndex = this.menuList.length - 1;
             this.setMenuVisibility(true);
-            this.menuList[this._currentMenuIndex].menuObject.selectContainer();
+            if(!this.bPopUpOpen)
+            {
+                this.menuList[this._currentMenuIndex].menuObject.selectContainer();
+            }
             this.controllerEnableWidgets(false);
             stage.addChildAt(_loc2_.menuObject,this.MenuLayer);
             this._bLoading = false;
@@ -377,7 +383,6 @@ package tripwire.managers
             }
             this.mCursor.visible = param1 && !this.bUsingGamepad;
             this.MenuScanlines.visible = param1;
-            visible = param1;
             this.mCursor.x = mouseX;
             this.mCursor.y = mouseY;
         }

@@ -1057,6 +1057,9 @@ simulated protected function StopFlightEffects()
 	}
 }
 
+/** Called when the owning instigator controller has left a game */
+simulated function OnInstigatorControllerLeft();
+
 defaultproperties
 {
    GravityScale=1.000000

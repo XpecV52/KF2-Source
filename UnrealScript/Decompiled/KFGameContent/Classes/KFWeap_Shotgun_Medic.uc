@@ -57,6 +57,14 @@ simulated function Rotator AddMultiShotSpread(Rotator BaseAim)
     }
 }
 
+function HandleWeaponShotTaken(byte FireMode)
+{
+    if(KFPlayer != none)
+    {
+        KFPlayer.AddShotsFired(NumPellets[FireMode]);
+    }
+}
+
 static simulated function float CalculateTraderWeaponStatDamage()
 {
     local float BaseDamage, DoTDamage;

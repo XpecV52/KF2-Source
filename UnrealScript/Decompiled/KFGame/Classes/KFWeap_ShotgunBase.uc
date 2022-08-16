@@ -46,6 +46,14 @@ simulated function byte GetNumProjectilesToFire(byte FireModeNum)
     return NumPellets[CurrentFireMode];
 }
 
+function HandleWeaponShotTaken(byte FireMode)
+{
+    if(KFPlayer != none)
+    {
+        KFPlayer.AddShotsFired(GetNumProjectilesToFire(FireMode));
+    }
+}
+
 simulated function Rotator AddSpread(Rotator BaseAim)
 {
     return BaseAim;

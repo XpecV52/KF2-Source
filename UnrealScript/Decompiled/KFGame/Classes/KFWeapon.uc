@@ -186,6 +186,7 @@ var() InterpCurveFloat TargetFrictionOffsetScaleCurve;
 var() InterpCurveFloat TargetFrictionDistanceScaleCurve;
 /** Aim correction - headshot offset */
 var() const float AimCorrectionSize;
+var KFPlayerController KFPlayer;
 var Vector HiddenWeaponsOffset;
 /** The default FOV to use for this weapon when not in ironsights */
 var(Camera) float MeshFOV;
@@ -245,10 +246,10 @@ var(Inventory) Texture2D WeaponSelectTexture;
 var(Inventory) Texture2D SecondaryAmmoTexture;
 var float EquipAbortTime;
 var class<KFWeap_DualBase> DualClass;
-/** Size of the active weapon magazine */
+/** Size of the weapon magazine, i.e. how many rounds it can hold */
 var(Inventory) int MagazineCapacity[2];
 var int SpareAmmoCount[2];
-/** Maximum amount of amount that can be carried for this gun */
+/** Maximum amount of amount that can be carried for this gun, not counting what is in the magazine. Total amount this weapon can carry is MaxSpareAmmo + MagazineCapacity */
 var(Inventory) int MaxSpareAmmo[2];
 var int InitialSpareMags[2];
 /** What percentage of a full single magazine capacity to give when resupplying this weapon from an ammo pickup */
@@ -375,7 +376,7 @@ var(Weapon) float IronSightsSpreadMod;
 var(Weapon) float CrouchSpreadMod;
 /** max vertical units a weapon muzzle will climb from recoil */
 var(Recoil) int maxRecoilPitch;
-/** max vertical units a weapon muzzle will climb from recoil */
+/** min vertical units a weapon muzzle will climb from recoil */
 var(Recoil) int minRecoilPitch;
 /** max horizontal units a weapon muzzle will move from recoil */
 var(Recoil) int maxRecoilYaw;
@@ -441,7 +442,6 @@ var float LastRecoilModifier;
  */
 var(Recoil) float IronSightMeshFOVCompensationScale;
 var(Weapon) class<KFPerk> AssociatedPerkClass;
-var const int MinUberAmmoCount;
 
 replication
 {
@@ -1913,8 +1913,21 @@ simulated function byte GetCurrentMuzzleID()
     return 0;
 }
 
+simulated function CacheKFPlayerController()
+{
+    if(Instigator == none)
+    {
+        KFPlayer = none;        
+    }
+    else
+    {
+        KFPlayer = KFPlayerController(Instigator.Controller);
+    }
+}
+
 simulated function FireAmmunition()
 {
+    HandleWeaponShotTaken(CurrentFireMode);
     switch(WeaponFireTypes[CurrentFireMode])
     {
         case 0:
@@ -1939,6 +1952,14 @@ simulated function FireAmmunition()
     ConsumeAmmo(CurrentFireMode);
     NotifyWeaponFired(CurrentFireMode);
     PlayFireEffects(CurrentFireMode, vect(0, 0, 0));
+}
+
+function HandleWeaponShotTaken(byte FireMode)
+{
+    if(KFPlayer != none)
+    {
+        KFPlayer.AddShotsFired(1);
+    }
 }
 
 simulated function ImpactInfo CalcWeaponFire(Vector StartTrace, Vector EndTrace, optional out array<ImpactInfo> ImpactList, optional Vector Extent)
@@ -2208,9 +2229,11 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
     local editinline StaticMeshComponent HitStaticMesh;
     local InterpCurveFloat PenetrationCurve;
     local KFPawn KFP;
+    local float InitialPenetrationPower, OriginalPenetrationVal;
 
     if(Impact.HitActor != none)
     {
+        OriginalPenetrationVal = out_PenetrationVal;
         NumHits = Max(NumHits, 1);
         TotalDamage = int(InstantHitDamage[FiringMode] * float(NumHits));
         if(Impact.HitActor.bWorldGeometry)
@@ -2243,6 +2266,14 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
                         out_PenetrationVal -= KFP.PenetrationResistance;
                     }
                 }
+            }
+        }
+        if((KFPlayer != none) && KFPawn_Monster(Impact.HitActor) != none)
+        {
+            InitialPenetrationPower = GetInitialPenetrationPower(FiringMode);
+            if((InitialPenetrationPower <= float(0)) || OriginalPenetrationVal == InitialPenetrationPower)
+            {
+                KFPlayer.AddShotsHit(1);
             }
         }
         Impact.HitActor.TakeDamage(TotalDamage, Instigator.Controller, Impact.HitLocation, InstantHitMomentum[FiringMode] * Impact.RayDir, InstantHitDamageTypes[FiringMode], Impact.HitInfo, self);
@@ -2517,7 +2548,7 @@ simulated function ConsumeAmmo(byte FireModeNum)
 
     AmmoGroup = GetAmmoType(FireModeNum);
     InstigatorPerk = GetPerk();
-    if(((InstigatorPerk != none) && InstigatorPerk.GetIsUberAmmoActive(self)) && AmmoCount[AmmoGroup] == GetUberAmmoMinAmmo())
+    if((InstigatorPerk != none) && InstigatorPerk.GetIsUberAmmoActive(self))
     {
         return;
     }
@@ -2528,11 +2559,6 @@ simulated function ConsumeAmmo(byte FireModeNum)
             -- AmmoCount[AmmoGroup];
         }
     }
-}
-
-private final simulated function int GetUberAmmoMinAmmo()
-{
-    return default.MinUberAmmoCount;
 }
 
 function int AddAmmo(int Amount)
@@ -3708,6 +3734,10 @@ simulated state Active
 
     simulated event BeginState(name PreviousStateName)
     {
+        if(Role == ROLE_Authority)
+        {
+            CacheKFPlayerController();
+        }
         bIronSightOnBringUp = false;
         if((RecoilRate > float(0)) && RecoilBlendOutRatio > float(0))
         {
@@ -4611,7 +4641,6 @@ defaultproperties
     StanceCrouchedRecoilModifier=0.75
     LastRecoilModifier=1
     IronSightMeshFOVCompensationScale=1
-    MinUberAmmoCount=1
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */

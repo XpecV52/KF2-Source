@@ -310,11 +310,15 @@ simulated function byte GetCurrentMuzzleID()
 function SetupDroppedPickup(out DroppedPickup P, Vector StartVelocity)
 {
     local KFWeapon NewSingle;
+    local KFInventoryManager KFIM;
 
     super(KFWeapon).SetupDroppedPickup(P, StartVelocity);
     if((Instigator != none) && Instigator.InvManager != none)
     {
-        NewSingle = KFWeapon(Instigator.InvManager.CreateInventory(SingleClass, true));
+        KFIM = KFInventoryManager(Instigator.InvManager);
+        KFIM.bSuppressPickupMessages = true;
+        NewSingle = KFWeapon(KFIM.CreateInventory(SingleClass, true));
+        KFIM.bSuppressPickupMessages = false;
     }
     if(NewSingle != none)
     {
@@ -645,7 +649,6 @@ defaultproperties
     FireLastSightedAnim=Shoot_IronOG_RW_Last
     IdleSightedAnims(0)=Idle_IronOG
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_DualBase.MeleeHelper'
-    MinUberAmmoCount=2
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
         AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Dual_Animtree_Master'
         ReplacementPrimitive=none

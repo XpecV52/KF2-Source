@@ -129,6 +129,13 @@ enum EGameLength
 const MAX_GAMELENGTHS = 3;
 
 /************************************************************************************
+ * @name		Game balance
+ ***********************************************************************************/
+
+/** Game conductor which dynamically manages the difficulty and fun of the game */
+var KFGameConductor						GameConductor;
+
+/************************************************************************************
  * @name		AI
  ***********************************************************************************/
 /** Active AI Manager */
@@ -505,6 +512,7 @@ event PreBeginPlay()
 	InitGRIVariables();
 
     CreateTeam(0);
+    InitGameConductor();
     InitAIDirector();
 	InitTraderList();
 	ReplicateWelcomeScreen();
@@ -749,6 +757,12 @@ event InitAIDirector()
 {
 	AIDirector = new(self) class'KFAIDirector';
 	AIDirector.Initialize();
+}
+
+/* Initialize the Game Conductor */
+function InitGameConductor()
+{
+	GameConductor = new(self) class'KFGameConductor';
 }
 
 /* Initialize the GRI varaibles */
@@ -1115,6 +1129,7 @@ function SetAIDefaults(KFPawn_Monster P)
 	}
 
 	GroundSpeedMod = DifficultyInfo.GetAdjustedAIGroundSpeedMod();
+	GroundSpeedMod *= GameConductor.CurrentAIMovementSpeedMod;
 	HiddenSpeedMod = DifficultyInfo.GetAIHiddenSpeedModifier( NumLivingPlayers );
 
 	// scale damage
@@ -1201,6 +1216,8 @@ function SetTeam(Controller Other, KFTeamInfo_Human NewTeam)
 	{
 		if ( (NewTeam!=None) && ((WorldInfo.NetMode != NM_Standalone) || (PlayerController(Other) == None) || (PlayerController(Other).Player != None)) )
 			BroadcastLocalizedMessage( GameMessageClass, 3, Other.PlayerReplicationInfo, None, NewTeam );
+
+        GameConductor.HandlePlayerChangedTeam();
 	}
 }
 
@@ -1304,7 +1321,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 		`AnalyticsLog(("player_death",
 					   KilledPRI,
 					   KillerLabel,
-					   DT.Class.Name,
+					   DT.Name,
 					   "#"$MyKFGRI.WaveNum,
 					   KFPC.GetPerk().PerkName,
 					   KFPC.GetPerk().GetLevel(),

@@ -528,6 +528,14 @@ protected simulated function SetExplosionActorClass()
     super.SetExplosionActorClass();
 }
 
+simulated function OnInstigatorControllerLeft()
+{
+    if((InstigatorController.Pawn != none) && InstigatorController.Pawn.Weapon != Owner)
+    {
+        Destroy();
+    }
+}
+
 defaultproperties
 {
     StuckToBoneIdx=-1

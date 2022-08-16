@@ -20,6 +20,7 @@ var transient bool ServerFilesDirty;
 var transient bool NeedsTicking;
 var float TickInterval;
 var transient float TickTime;
+var native transient Pointer WorkshopDownloader;
 var delegate<UGCDownloadProgressDelegate> __UGCDownloadProgressDelegate__Delegate;
 
 delegate UGCDownloadProgressDelegate(string ItemName, float PercentComplete, int ItemsRemaining);
@@ -45,8 +46,8 @@ native function Initialize();
 // Export UKFWorkshopSteamworks::execUpdateWorkshopFiles(FFrame&, void* const)
 native function UpdateWorkshopFiles();
 
-// Export UKFWorkshopSteamworks::execCheckAllItemsInstalled(FFrame&, void* const)
-native function CheckAllItemsInstalled();
+// Export UKFWorkshopSteamworks::execInstallAllItems(FFrame&, void* const)
+native function InstallAllItems();
 
 defaultproperties
 {

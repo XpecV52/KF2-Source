@@ -306,7 +306,7 @@ var float								TimeUntilNextSpawn;
 var	int									WaveTotalAI;
 /** Maximum number of AI that can be active at one time */
 var const byte							MaxMonsters;
-/** Maximum number of AI that can be active at one time in solo */
+/** Maximum number of AI that can be active at one time in solo, by difficulty */
 var() byte							    MaxMonstersSolo[4];
 
 /** Used for arrays to modify spawn rate */
@@ -321,10 +321,17 @@ var() SpawnRateModifier 				SoloWaveSpawnRateModifier[4];
 var() float 						    EarlyWaveSpawnRateModifier[4];
 /** Waves below this index will be considered "early waves" waves after this index will be considered "later waves" */
 var	int									EarlyWaveIndex;
+/** The base SpawnTimeMod to use in early waves based on the number of players playing */
+var() float 						    EarlyWavesSpawnTimeModByPlayers[6];
+/** The base SpawnTimeMod to use in late waves based on the number of players playing */
+var() float 						    LateWavesSpawnTimeModByPlayers[6];
+
 /** The number of zeds we will spawn in a whole wave is so short, the special squad may not spawn. So force it if we need to */
 var bool                                bForceRequiredSquad;
 /** Recycle the special squad every other time through the squad list */
 var bool                                bRecycleSpecialSquad;
+/** Whether to recycle the special squad every other time through the squad list, by difficulty */
+var() array<bool>                       RecycleSpecialSquad;
 /** Recycle the special squad every other time through the squad list */
 var int                                 NumSpawnListCycles;
 /** List of available AI spawn volumes */
@@ -364,6 +371,8 @@ var array<KFAISpawnSquad>           BossMinionsSpawnSquads;
 var bool bSummoningBossMinions;
 /** Maximum number of boss minions to have active at one time for this current spawning set */
 var int MaxBossMinions;
+/** How much to scale the number of boss minions based on the number of players playing */
+var() float 						MaxBossMinionScaleByPlayers[6];
 
 /** List of currently connected players. Stored here to save time going through all controllers */
 var array <Controller>	RecentSpawnSelectedHumanControllerList;
@@ -451,11 +460,16 @@ function SetupNextWave(byte NextWaveIndex)
 	if( NextWaveIndex < Waves.Length )
 	{
         // Recycle special squads on higher difficulties
-        if( GameDifficulty == 2 || GameDifficulty >= 3) // Suicidal or Hell on Earth
-        {
-            bRecycleSpecialSquad=true;
-            //`log("Recycling the special squads!!!");
-        }
+    	if( GameDifficulty < RecycleSpecialSquad.Length )
+    	{
+    	   bRecycleSpecialSquad = RecycleSpecialSquad[GameDifficulty];
+    	   //`log("bRecycleSpecialSquad the special squads = "$bRecycleSpecialSquad);
+    	}
+    	else
+    	{
+    	   bRecycleSpecialSquad = RecycleSpecialSquad[RecycleSpecialSquad.Length - 1];
+    	   //`log("Over array size bRecycleSpecialSquad the special squads = "$bRecycleSpecialSquad);
+    	}
 
 		// Clear out any leftover spawn squads from last wave
         LeftoverSpawnSquad.Length = 0;
@@ -860,7 +874,7 @@ function float GetNextSpawnTimeMod()
 	UsedSoloWaveRateMod = 1.0;
 
     // Scale solo spawning rate by wave and difficulty
-    if( bOnePlayerAtStart )
+    if( bOnePlayerAtStart && NumLivingPlayers <= 1 )
     {
     	if( GameDifficulty < ArrayCount(SoloWaveSpawnRateModifier) )
     	{
@@ -875,7 +889,6 @@ function float GetNextSpawnTimeMod()
     	}
     	else
     	{
-
             if( MyKFGRI.WaveNum <= SoloWaveSpawnRateModifier[GameDifficulty].RateModifier.Length )
             {
                 UsedSoloWaveRateMod = SoloWaveSpawnRateModifier[ArrayCount(SoloWaveSpawnRateModifier) - 1].RateModifier[MyKFGRI.WaveNum - 1];
@@ -889,20 +902,26 @@ function float GetNextSpawnTimeMod()
 
 	if ( MyKFGRI.WaveNum < EarlyWaveIndex )
 	{
-		if ( NumLivingPlayers == 4 )
-		{
-		    SpawnTimeMod = 0.85;
-		}
-		else if ( NumLivingPlayers == 5 )
-		{
-		    SpawnTimeMod = 0.65;
-		}
-		else if ( NumLivingPlayers >= 6 )
-		{
-		    SpawnTimeMod = 0.3;
-		}
+        // Set the base SpawnTimeMod for early waves based on the number of living players
+    	if( NumLivingPlayers <= ArrayCount(EarlyWavesSpawnTimeModByPlayers) )
+    	{
+            if( NumLivingPlayers == 0 )
+            {
+                SpawnTimeMod = EarlyWavesSpawnTimeModByPlayers[NumLivingPlayers];
+            }
+            else
+            {
+                SpawnTimeMod = EarlyWavesSpawnTimeModByPlayers[NumLivingPlayers - 1];
+            }
+    	}
+    	else
+    	{
+    	   SpawnTimeMod = EarlyWavesSpawnTimeModByPlayers[ArrayCount(EarlyWavesSpawnTimeModByPlayers) - 1];
+    	}
 
-        // Scale the spawning rate of early waves (generally to make them more intense)
+        if (bLogAISpawning) LogInternal("Early Waves SpawnTimeMod = "$SpawnTimeMod$" NumLivingPlayers = "$NumLivingPlayers$" UsedSoloWaveRateMod = "$UsedSoloWaveRateMod);
+
+        // Scale the spawning rate of early waves by difficulty (generally to make them more intense)
     	if( GameDifficulty < ArrayCount(EarlyWaveSpawnRateModifier) )
     	{
     	   UsedEarlyWaveRateMod = EarlyWaveSpawnRateModifier[GameDifficulty];
@@ -915,39 +934,36 @@ function float GetNextSpawnTimeMod()
         SpawnTimeMod *= UsedEarlyWaveRateMod;
         SpawnTimeMod *= UsedSoloWaveRateMod;
 
-        return SpawnTimeMod;
+        if (bLogAISpawning) LogInternal("Early waves final SpawnTimeMod = "$SpawnTimeMod);
 	}
 	// Give a slightly bigger breather in the later waves
 	else
 	{
-		if ( NumLivingPlayers <= 3 )
-		{
-		    if( bOnePlayerAtStart )
-		    {
-                return 1.1 * UsedSoloWaveRateMod;
-		    }
-		    else
-		    {
-                return 1.1;
+        // Set the base SpawnTimeMod for late waves based on the number of living players
+        if( NumLivingPlayers <= ArrayCount(LateWavesSpawnTimeModByPlayers) )
+    	{
+            if( NumLivingPlayers == 0 )
+            {
+                SpawnTimeMod = LateWavesSpawnTimeModByPlayers[NumLivingPlayers];
             }
-		}
-		else if ( NumLivingPlayers == 4 )
-		{
-		    return 1.0;
-		}
-		else if ( NumLivingPlayers == 5 )
-		{
-		    return 0.75;
-		}
-		else if ( NumLivingPlayers >= 6 )
-		{
-		    return 0.6;
-		}
+            else
+            {
+                SpawnTimeMod = LateWavesSpawnTimeModByPlayers[NumLivingPlayers - 1];
+            }
+    	}
+    	else
+    	{
+    	   SpawnTimeMod = LateWavesSpawnTimeModByPlayers[ArrayCount(LateWavesSpawnTimeModByPlayers) - 1];
+    	}
+
+        if (bLogAISpawning) LogInternal("Late waves SpawnTimeMod = "$SpawnTimeMod$" NumLivingPlayers = "$NumLivingPlayers$" UsedSoloWaveRateMod = "$UsedSoloWaveRateMod);
+
+        SpawnTimeMod *= UsedSoloWaveRateMod;
+
+        if (bLogAISpawning) LogInternal("Late waves final  SpawnTimeMod = "$SpawnTimeMod);
 	}
 
-	SpawnTimeMod *= UsedSoloWaveRateMod;
-
-	return SpawnTimeMod;
+	return SpawnTimeMod * GameConductor.CurrentSpawnRateModification;
 }
 
 /** Modify the next spawn time based on a sine wave value */
@@ -972,6 +988,7 @@ function SetSineWaveFreq(float NewFreq)
 function SummonBossMinions( array<KFAISpawnSquad> NewMinionSquad, int NewMaxBossMinions )
 {
 	local int NumLivePlayers;
+	local float UsedMaxBossMinionsScale;
 
     // Clear out the previous boss minion spawning before adding new minions
     if( bSummoningBossMinions )
@@ -990,18 +1007,23 @@ function SummonBossMinions( array<KFAISpawnSquad> NewMinionSquad, int NewMaxBoss
     NumLivePlayers = GetLivingPlayerCount();
 
     // Scale boss minions numbers by player count
-    if( NumLivePlayers >= 6 )
-    {
-        MaxBossMinions *= 2;
-    }
-    else if( NumLivePlayers > 3 )
-    {
-        MaxBossMinions *= 1.875;
-    }
-    else if( NumLivePlayers > 1 )
-    {
-        MaxBossMinions *= 1.5;
-    }
+    if( NumLivePlayers <= ArrayCount(MaxBossMinionScaleByPlayers) )
+	{
+        if( NumLivePlayers == 0 )
+        {
+            UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[NumLivePlayers];
+        }
+        else
+        {
+            UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[NumLivePlayers - 1];
+        }
+	}
+	else
+	{
+	   UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[ArrayCount(MaxBossMinionScaleByPlayers) - 1];
+	}
+
+	MaxBossMinions *= UsedMaxBossMinionsScale;
 
     // Don't let us get more Boss minions than we allow total monsters
     MaxBossMinions = Min(MaxBossMinions, GetMaxMonsters());
@@ -1383,7 +1405,29 @@ defaultproperties
    EarlyWaveSpawnRateModifier(2)=0.800000
    EarlyWaveSpawnRateModifier(3)=0.700000
    EarlyWaveIndex=7
+   EarlyWavesSpawnTimeModByPlayers(0)=1.000000
+   EarlyWavesSpawnTimeModByPlayers(1)=1.000000
+   EarlyWavesSpawnTimeModByPlayers(2)=1.000000
+   EarlyWavesSpawnTimeModByPlayers(3)=0.850000
+   EarlyWavesSpawnTimeModByPlayers(4)=0.650000
+   EarlyWavesSpawnTimeModByPlayers(5)=0.300000
+   LateWavesSpawnTimeModByPlayers(0)=1.100000
+   LateWavesSpawnTimeModByPlayers(1)=1.100000
+   LateWavesSpawnTimeModByPlayers(2)=1.100000
+   LateWavesSpawnTimeModByPlayers(3)=1.000000
+   LateWavesSpawnTimeModByPlayers(4)=0.750000
+   LateWavesSpawnTimeModByPlayers(5)=0.600000
+   RecycleSpecialSquad(0)=False
+   RecycleSpecialSquad(1)=False
+   RecycleSpecialSquad(2)=True
+   RecycleSpecialSquad(3)=True
    ObjExtraAI=16
+   MaxBossMinionScaleByPlayers(0)=1.000000
+   MaxBossMinionScaleByPlayers(1)=1.500000
+   MaxBossMinionScaleByPlayers(2)=1.500000
+   MaxBossMinionScaleByPlayers(3)=1.875000
+   MaxBossMinionScaleByPlayers(4)=1.875000
+   MaxBossMinionScaleByPlayers(5)=2.000000
    Name="Default__KFAISpawnManager"
    ObjectArchetype=Object'Core.Default__Object'
 }

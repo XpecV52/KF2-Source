@@ -28,6 +28,9 @@ protected event TriggerDestroyedEvent( Controller EventInstigator )
 		bFound = true;
 		KFMI.OnCollectibleFound( self, EventInstigator );
 	}
+
+	// Used on network to tell clients who join late that this collectible is destroyed
+	bShutDown = true;
 }
 
 /** Overridden to prevent AI from damaging collectibles */

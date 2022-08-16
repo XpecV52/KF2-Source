@@ -527,6 +527,13 @@ struct native InvalidAnchorItem
 var transient array<InvalidAnchorItem>	InvalidAnchorList;
 
 /*********************************************************************************************
+ * @name	GameConductor balance values
+**********************************************************************************************/
+
+/** Tracks the time that this controller first saw an enemy player */
+var float	TimeFirstSawPlayer;
+
+/*********************************************************************************************
 * Debugging Related
 ********************************************************************************************* */
 var Vector			ChargeLocation;
@@ -705,7 +712,7 @@ native function bool IgnoreNotifies() const;
 /** Returns true if CheckPawn is currently moving away from my pawn, optionally at MinSpeed */
 native function bool IsPawnMovingAwayFromMe( Pawn CheckPawn, optional float MinSpeed );
 /** Returns a KFPawn if there is one blocking the path to EnemyPawn */
-native function KFPawn GetPawnBlockingPathTo( Pawn EnemyPawn );
+native function KFPawn GetPawnBlockingPathTo( Pawn EnemyPawn, optional bool bTestTeam );
 /** Lock the AI pawn rotation to a specific rotation, to unlock the pawn pass in zero */
 native function LockPawnRotationTo( Rotator NewRotation );
 /** Unlock the AI pawn's rotation */
@@ -1051,6 +1058,15 @@ function PawnDied( Pawn InPawn )
 	{
 		MyKFPawn = None;
 	}
+
+	if( KFPawn_Monster(Pawn) != none && KFGameInfo(WorldInfo.Game) != none &&
+        TimeFirstSawPlayer >= 0 )
+	{
+	   KFGameInfo(WorldInfo.Game).GameConductor.HandleZedKill( FMax(`TimeSince(TimeFirstSawPlayer),0.0));
+	   // Set this so we know we already logged a kill for our pawn
+       TimeFirstSawPlayer = -1;
+	}
+
 	Super.PawnDied( InPawn );
 }
 
@@ -4260,6 +4276,12 @@ event SeePlayer( Pawn Seen )
 // 		return;
 // 	}
 
+    // Store the time this AI first saw a player
+    if( TimeFirstSawPlayer == 0 )
+    {
+        TimeFirstSawPlayer = Worldinfo.TimeSeconds;
+    }
+
 	if( MyKFPawn != none )
 	{
 		if( !MyKFPawn.IsAliveAndWell() )
@@ -5737,12 +5759,12 @@ function UpdateDamageHistory( Controller DamagerController, int Damage, Actor Da
 			&& Info.Damage >= DamageThreshold
 			&& Info.Damage > DamageHistory[CurrentEnemysHistoryIndex].Damage )
 		{
-			BlockerPawn = GetPawnBlockingPathTo( DamagerController.Pawn );
+			BlockerPawn = GetPawnBlockingPathTo( DamagerController.Pawn, true );
 			if( BlockerPawn == none )
 			{
 				bChangedEnemies = SetEnemy(DamagerController.Pawn);
 			}
-			else if( BlockerPawn.GetTeamNum() != GetTeamNum() )
+			else
 			{
 				bChangedEnemies = SetEnemy( BlockerPawn );
 			}

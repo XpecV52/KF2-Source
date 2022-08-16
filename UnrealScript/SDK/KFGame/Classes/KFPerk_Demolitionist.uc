@@ -740,7 +740,7 @@ DefaultProperties
 	PerkSkills(EDemoSacrifice)=(Name="Sacrifice",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_Sacrifice",Increment=0.f,Rank=0,StartingValue=2.0f,MaxValue=2.f,)
 	PerkSkills(EDemoDoorTraps)=(Name="DoorTraps",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_DoorTraps",Increment=0.f,Rank=0,StartingValue=0.3f,MaxValue=0.3f)
 	PerkSkills(EDemoSirenResistance)=(Name="SirenResistance",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_SirenResistance",Increment=0.f,Rank=0,StartingValue=0.5,MaxValue=0.5)
-	PerkSkills(EDemoOffPerk)=(Name="OffPerk",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_OffPerk",Increment=0.f,Rank=0,StartingValue=0.15,MaxValue=0.15)
+	PerkSkills(EDemoOffPerk)=(Name="OffPerk",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_OffPerk",Increment=0.f,Rank=0,StartingValue=0.1f,MaxValue=0.1f)
 	PerkSkills(EDemoOnPerk)=(Name="OnPerk",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_OnPerk",Increment=0.f,Rank=0,StartingValue=0.3f,MaxValue=0.3f)
 	PerkSkills(EDemoNuke)=(Name="Nuke",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_Nuke",Increment=0.f,Rank=0,StartingValue=1.03,MaxValue=1.03)
 	PerkSkills(EDemoConcussiveForce)=(Name="ConcussiveForce",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_ConcussiveForce",Increment=0.f,Rank=0,StartingValue=1.f,MaxValue=1.f)

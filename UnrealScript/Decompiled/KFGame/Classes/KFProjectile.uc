@@ -710,6 +710,8 @@ protected simulated function StopFlightEffects()
     }
 }
 
+simulated function OnInstigatorControllerLeft();
+
 defaultproperties
 {
     GravityScale=1

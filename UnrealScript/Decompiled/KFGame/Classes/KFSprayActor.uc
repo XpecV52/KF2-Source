@@ -350,6 +350,17 @@ simulated function PostBeginPlay()
     }
 }
 
+event ProcessDirectImpact()
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(InstigatorController);
+    if(KFPC != none)
+    {
+        KFPC.AddShotsHit(1);
+    }
+}
+
 simulated function SetFOV(float NewFOV)
 {
     local int Idx;

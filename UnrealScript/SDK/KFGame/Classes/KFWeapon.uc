@@ -101,6 +101,13 @@ var() InterpCurveFloat TargetFrictionDistanceScaleCurve;
 var() const float AimCorrectionSize;
 
 /************************************************************************************
+ * @name	Player controller vars
+ ***********************************************************************************/
+
+/** Current KFPlayerController controlling this weapon */
+var KFPlayerController KFPlayer;
+
+/************************************************************************************
  * @name	Weapon positioning: Iron sights, hipped, etc
  ***********************************************************************************/
 
@@ -258,7 +265,7 @@ const SECONDARY_AMMO	= 1;
 
 /** Ammo from current magazine */
 var				byte	AmmoCount[2];
-/** Size of the active weapon magazine */
+/** Size of the weapon magazine, i.e. how many rounds it can hold */
 var(Inventory)	int		MagazineCapacity[2];
 /** Is this a no magazine/clip weapon e.g. the hunting shotgun? */
 var(Inventory)	bool 	bNoMagazine;
@@ -268,9 +275,9 @@ var(Inventory)	bool 	bNoMagazine;
 
 /** Spare ammo, contained in extra magazines (outside of what's currently in the weapon) */
 var				int		SpareAmmoCount[2];
-/** Maximum amount of amount that can be carried for this gun */
+/** Maximum amount of amount that can be carried for this gun, not counting what is in the magazine. Total amount this weapon can carry is MaxSpareAmmo + MagazineCapacity */
 var(Inventory)	int		MaxSpareAmmo[2];
-/** Number of magazines to start with */
+/** Number of additional magazines to start with. Starting ammo total is (InitialSpareMags * MagazineCapacity) + MagazineCapacity */
 var	int		InitialSpareMags[2];
 
 /** What percentage of a full single magazine capacity to give when resupplying this weapon from an ammo pickup */
@@ -587,7 +594,7 @@ var(Weapon)	float	CrouchSpreadMod;
 
 /** max vertical units a weapon muzzle will climb from recoil */
 var(Recoil)	int		maxRecoilPitch;
-/** max vertical units a weapon muzzle will climb from recoil */
+/** min vertical units a weapon muzzle will climb from recoil */
 var(Recoil)	int 	minRecoilPitch;
 /** max horizontal units a weapon muzzle will move from recoil */
 var(Recoil)	int		maxRecoilYaw;
@@ -705,7 +712,6 @@ struct native ImpactRepInfo
 /** Is this perk backup weapon? */
 var 				bool 				bIsBackupWeapon;
 var(Weapon) 		Class<KFPerk> 		AssociatedPerkClass;
-var const 			int 				MinUberAmmoCount;
 
 /*********************************************************************************************
  * @name	Debug
@@ -2681,6 +2687,19 @@ simulated function byte GetCurrentMuzzleID()
 	return 0;
 }
 
+/** Store the KFPlayerController holding this weapon so it doesn't have to be casted over and over */
+simulated function CacheKFPlayerController()
+{
+	if( Instigator == None )
+	{
+		KFPlayer = None;
+	}
+	else
+	{
+		KFPlayer = KFPlayerController(Instigator.Controller);
+	}
+}
+
 /**
  * FireAmmunition: Perform all logic associated with firing a shot
  * - Fires ammunition (instant hit or spawn projectile)
@@ -2691,6 +2710,9 @@ simulated function byte GetCurrentMuzzleID()
  */
 simulated function FireAmmunition()
 {
+    // Let the accuracy tracking system know that we fired
+    HandleWeaponShotTaken( CurrentFireMode );
+
 	// Handle the different fire types
 	switch( WeaponFireTypes[CurrentFireMode] )
 	{
@@ -2722,6 +2744,16 @@ simulated function FireAmmunition()
 
 	// Play fire effects now (don't wait for WeaponFired to replicate)
 	PlayFireEffects(CurrentFireMode, vect(0,0,0));
+}
+
+
+/** Notification that a weapon attack has has happened */
+function HandleWeaponShotTaken( byte FireMode )
+{
+    if( KFPlayer != None )
+	{
+        KFPlayer.AddShotsFired(1);
+	}
 }
 
 /**
@@ -3101,9 +3133,12 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
 	local StaticMeshComponent HitStaticMesh;
 	local InterpCurveFloat PenetrationCurve;
     local KFPawn KFP;
+    local float InitialPenetrationPower, OriginalPenetrationVal;
     
 	if (Impact.HitActor != None)
 	{
+        OriginalPenetrationVal = out_PenetrationVal;
+
 		// default damage model is just hits * base damage
 		NumHits = Max(NumHits, 1);
 		TotalDamage = InstantHitDamage[FiringMode] * NumHits;
@@ -3140,6 +3175,17 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
                     out_PenetrationVal -= KFP.PenetrationResistance;
             	}
 			}
+		}
+
+		// The the skill tracking know that we got our initial impact for this shot
+		if( KFPlayer != none && KFPawn_Monster(Impact.HitActor) != none )
+		{
+            InitialPenetrationPower = GetInitialPenetrationPower(FiringMode);
+
+            if( InitialPenetrationPower <= 0 || OriginalPenetrationVal == InitialPenetrationPower )
+            {
+                KFPlayer.AddShotsHit(1);
+            }
 		}
 
 		Impact.HitActor.TakeDamage( TotalDamage, Instigator.Controller,
@@ -3510,8 +3556,7 @@ simulated function ConsumeAmmo( byte FireModeNum )
 	AmmoGroup = GetAmmoType(FireModeNum);
 
 	InstigatorPerk = GetPerk();
-	if( InstigatorPerk != none && InstigatorPerk.GetIsUberAmmoActive( self ) && 
-		AmmoCount[AmmoGroup] == GetUberAmmoMinAmmo() )
+	if( InstigatorPerk != none && InstigatorPerk.GetIsUberAmmoActive( self ) )
 	{
 		return;
 	}
@@ -3525,11 +3570,6 @@ simulated function ConsumeAmmo( byte FireModeNum )
 			AmmoCount[AmmoGroup]--;
 		}
 	}
-}
-
-simulated final private function int GetUberAmmoMinAmmo()
-{
-	return default.MinUberAmmoCount;
 }
 
 /**
@@ -4322,6 +4362,12 @@ simulated state Active
 	/** Initialize the weapon as being active and ready to go. */
 	simulated event BeginState(Name PreviousStateName)
 	{
+		// Cache a reference to the KFPlayerController
+		if (Role == ROLE_Authority)
+		{
+			CacheKFPlayerController();
+		}
+
 		// In case this flag is still set
 		bIronSightOnBringUp = false;
 
@@ -6206,7 +6252,4 @@ defaultproperties
 
     TargetFrictionDistanceScaleCurve=(Points=((InVal=0.500000,OutVal=1.000000,ArriveTangent=0.000000,LeaveTangent=0.000000,InterpMode=CIM_CurveAuto),(InVal=0.800000,OutVal=0.800000,ArriveTangent=0.000000,LeaveTangent=0.000000,InterpMode=CIM_CurveAuto),(InVal=1.000000,OutVal=0.000000,ArriveTangent=0.000000,LeaveTangent=0.000000,InterpMode=CIM_CurveAuto)),InterpMethod=IMT_UseFixedTangentEvalAndNewAutoTangents)
     TargetFrictionOffsetScaleCurve=(Points=((InVal=0.000000,OutVal=1.000000,ArriveTangent=0.000000,LeaveTangent=0.000000,InterpMode=CIM_Linear),(InVal=0.900000,OutVal=0.900000,ArriveTangent=0.000000,LeaveTangent=0.000000,InterpMode=CIM_CurveAuto),(InVal=1.000000,OutVal=0.000000,ArriveTangent=0.000000,LeaveTangent=0.000000,InterpMode=CIM_CurveAuto)),InterpMethod=IMT_UseFixedTangentEvalAndNewAutoTangents)
-
-    MinUberAmmoCount=1
 }
-

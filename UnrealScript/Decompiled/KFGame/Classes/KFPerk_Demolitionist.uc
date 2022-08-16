@@ -543,7 +543,7 @@ defaultproperties
     PerkSkills(3)=(Name="Sacrifice",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_Sacrifice",bActive=false)
     PerkSkills(4)=(Name="DoorTraps",Increment=0,Rank=0,StartingValue=0.3,MaxValue=0.3,ModifierValue=0,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_DoorTraps",bActive=false)
     PerkSkills(5)=(Name="SirenResistance",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_SirenResistance",bActive=false)
-    PerkSkills(6)=(Name="OffPerk",Increment=0,Rank=0,StartingValue=0.15,MaxValue=0.15,ModifierValue=0,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_OffPerk",bActive=false)
+    PerkSkills(6)=(Name="OffPerk",Increment=0,Rank=0,StartingValue=0.1,MaxValue=0.1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_OffPerk",bActive=false)
     PerkSkills(7)=(Name="OnPerk",Increment=0,Rank=0,StartingValue=0.3,MaxValue=0.3,ModifierValue=0,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_OnPerk",bActive=false)
     PerkSkills(8)=(Name="Nuke",Increment=0,Rank=0,StartingValue=1.03,MaxValue=1.03,ModifierValue=0,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_Nuke",bActive=false)
     PerkSkills(9)=(Name="ConcussiveForce",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_ConcussiveForce",bActive=false)

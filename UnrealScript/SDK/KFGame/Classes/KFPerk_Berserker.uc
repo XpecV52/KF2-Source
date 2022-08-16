@@ -129,12 +129,12 @@ simulated function ModifyMeleeAttackSpeed( out float InDuration, KFWeapon KFW )
 
 	TempDuration = InDuration;
 	
+	TempDuration -= TempDuration * GetPassiveValue( MeleeAttackSpeed, CurrentLevel );
+
 	if( IsSpartanActive() )
 	{
 		TempDuration -= TempDuration * GetSkillValue( PerkSkills[EBerserkerSpartan] );
 	}
-
-	TempDuration -= TempDuration * GetPassiveValue( MeleeAttackSpeed, CurrentLevel );
 
 	if( GetParryActive() )
 	{
@@ -689,7 +689,7 @@ DefaultProperties
 	GrenadeWeaponDef=class'KFWeapDef_Grenade_Berserker'
 
 	BerserkerDamage=(Name="Berserker Damage",Increment=0.01,Rank=0,StartingValue=1.25,MaxValue=1.5f)
-	MeleeAttackSpeed=(Name="Melee Attack Speed",Increment=0.004,Rank=0,StartingValue=0.05f,MaxValue=0.1f)
+	MeleeAttackSpeed=(Name="Melee Attack Speed",Increment=0.008,Rank=0,StartingValue=0.05f,MaxValue=0.25f)
 	Movement=(Name="Movement",Increment=0.006f,Rank=0,StartingValue=1.1f,MaxValue=1.25f)
 	DamageResistance=(Name="Damage Resistance",Increment=0.01f,Rank=0,StartingValue=0.f,MaxValue=0.25f)
 	NightVision=(Name="Night Vision",Increment=0.f,Rank=0,StartingValue=0.f,MaxValue=0.f)

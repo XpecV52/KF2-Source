@@ -364,9 +364,9 @@ simulated function name GetWeaponFireAnim(byte FireModeNum)
 			{
 				return bUseAltFireMode ? FireSightedAnim_Alt : FireSightedAnims[Rand(LeftFireSightedAnims.Length)];
 			}
-		}
-		else
-		{
+	}
+	else
+	{
 			if( bPlayFireLast )
 			{
 				return FireLastAnim;
@@ -403,11 +403,11 @@ simulated function name GetLeftWeaponFireAnim(byte FireModeNum, bool bPlayFireLa
 		if( bPlayFireLast )
 		{
 			return LeftFireLastAnim;
-		}
-		else
-		{
-			return LeftFireAnim;
-		}
+	}
+	else
+	{
+		return LeftFireAnim;
+	}
 	}
 }
 
@@ -438,13 +438,13 @@ simulated event vector GetLeftMuzzleLoc()
 
 	if( Instigator != none )
 	{
-		ViewRotation = Instigator.GetViewRotation();
+            ViewRotation = Instigator.GetViewRotation();
 
-    	// Add in the free-aim rotation
-    	if ( KFPlayerController(Instigator.Controller) != None )
-    	{
-    		ViewRotation += KFPlayerController(Instigator.Controller).WeaponBufferRotation;
-    	}
+        	// Add in the free-aim rotation
+        	if ( KFPlayerController(Instigator.Controller) != None )
+        	{
+        		ViewRotation += KFPlayerController(Instigator.Controller).WeaponBufferRotation;
+        	}
 
         if( bUsingSights )
         {
@@ -546,12 +546,16 @@ simulated function byte GetCurrentMuzzleID()
 function SetupDroppedPickup( out DroppedPickup P, vector StartVelocity )
 {
 	local KFWeapon NewSingle;
+	local KFInventoryManager KFIM;
 
 	super.SetupDroppedPickup( P, StartVelocity );
 	
 	if( Instigator != None && Instigator.InvManager != None )
 	{
-		NewSingle = KFWeapon( Instigator.InvManager.CreateInventory(SingleClass, true) );
+		KFIM = KFInventoryManager( Instigator.InvManager );
+		KFIM.bSuppressPickupMessages = true;
+		NewSingle = KFWeapon( KFIM.CreateInventory(SingleClass, true) );
+		KFIM.bSuppressPickupMessages = false;
 	}
 	if( NewSingle != none )
 	{
@@ -747,9 +751,9 @@ simulated function RepositionUsedBullets( int FirstIndex, int UsedStartIdx, int 
 
 	// set the rest of the bullets to unused
 	for( i = UsedEndIdx; i > FirstIndex; i-=2 )
-	{
+		{
 		BulletMeshComponents[i].SetSkeletalMesh( UnusedBulletMeshTemplate );
-	}
+		}
 }
 
 /** Sets all bullet casing meshes back to unused state */
@@ -889,7 +893,4 @@ defaultproperties
 	InstantHitMomentum(ALTFIRE_FIREMODE)=1.0
 	PenetrationPower(ALTFIRE_FIREMODE)=0.0
 	PenetrationDamageReductionCurve(ALTFIRE_FIREMODE)=(Points=((InVal=0.f,OutVal=0.f),(InVal=1.f, OutVal=1.f)))
-
-	MinUberAmmoCount=2
 }
-

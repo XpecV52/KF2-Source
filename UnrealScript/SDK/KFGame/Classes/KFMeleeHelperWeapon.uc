@@ -74,6 +74,9 @@ var() float ImpactComplete_ActorTime;
 /** If set, this attack does damage to multiple pawns in a fan collision */
 var() transient bool bCanHitMultipleTargets;
 
+/** Stores whether or not an impact has happened this attack */
+var bool bHitEnemyThisAttack;
+
 /*********************************************************************************************
  * Animation / FX
  *********************************************************************************************/
@@ -430,6 +433,14 @@ simulated function BeginMeleeAttack(optional bool bIsChainAttack)
 
 	// initialize attack settings
 	bHasAlreadyHit = false;
+	bHitEnemyThisAttack = false;
+
+    // Let the playercontroller know we did an attack
+    if ( Instigator != None && Instigator.Controller != none &&
+        KFPlayerController(Instigator.Controller) != none )
+    {
+        KFPlayerController(Instigator.Controller).AddShotsFired(1);
+    }
 
 	// Clear reset flag (see InitAttackSequence, ContinueMeleeAttack)
 	bResetChainSequence = false;
@@ -689,6 +700,18 @@ simulated function ProcessMeleeHit(byte FiringMode, ImpactInfo Impact)
 		HitPawn = KFPawn(Impact.HitActor);
 		if ( HitPawn != None )
 		{
+			if( !bHitEnemyThisAttack && HitPawn.GetTeamNum() != Instigator.GetTeamNum() )
+			{
+                // Let the playercontroller know we did hit with this attack
+                if ( Instigator != None && Instigator.Controller != none &&
+                    KFPlayerController(Instigator.Controller) != none )
+                {
+                    KFPlayerController(Instigator.Controller).AddShotsHit(1);
+                }
+
+                bHitEnemyThisAttack = true;
+			}
+
 			HitPawn.NotifyMeleeTakeHit(Instigator.Controller, Impact.HitLocation);
 		}
 

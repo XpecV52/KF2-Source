@@ -364,9 +364,9 @@ simulated function name GetWeaponFireAnim(byte FireModeNum)
 			{
 				return bUseAltFireMode ? FireSightedAnim_Alt : FireSightedAnims[Rand(LeftFireSightedAnims.Length)];
 			}
-		}
-		else
-		{
+	}
+	else
+	{
 			if( bPlayFireLast )
 			{
 				return FireLastAnim;
@@ -403,11 +403,11 @@ simulated function name GetLeftWeaponFireAnim(byte FireModeNum, bool bPlayFireLa
 		if( bPlayFireLast )
 		{
 			return LeftFireLastAnim;
-		}
-		else
-		{
-			return LeftFireAnim;
-		}
+	}
+	else
+	{
+		return LeftFireAnim;
+	}
 	}
 }
 
@@ -438,13 +438,13 @@ simulated event vector GetLeftMuzzleLoc()
 
 	if( Instigator != none )
 	{
-		ViewRotation = Instigator.GetViewRotation();
+            ViewRotation = Instigator.GetViewRotation();
 
-    	// Add in the free-aim rotation
-    	if ( KFPlayerController(Instigator.Controller) != None )
-    	{
-    		ViewRotation += KFPlayerController(Instigator.Controller).WeaponBufferRotation;
-    	}
+        	// Add in the free-aim rotation
+        	if ( KFPlayerController(Instigator.Controller) != None )
+        	{
+        		ViewRotation += KFPlayerController(Instigator.Controller).WeaponBufferRotation;
+        	}
 
         if( bUsingSights )
         {
@@ -546,12 +546,16 @@ simulated function byte GetCurrentMuzzleID()
 function SetupDroppedPickup( out DroppedPickup P, vector StartVelocity )
 {
 	local KFWeapon NewSingle;
+	local KFInventoryManager KFIM;
 
 	super.SetupDroppedPickup( P, StartVelocity );
 	
 	if( Instigator != None && Instigator.InvManager != None )
 	{
-		NewSingle = KFWeapon( Instigator.InvManager.CreateInventory(SingleClass, true) );
+		KFIM = KFInventoryManager( Instigator.InvManager );
+		KFIM.bSuppressPickupMessages = true;
+		NewSingle = KFWeapon( KFIM.CreateInventory(SingleClass, true) );
+		KFIM.bSuppressPickupMessages = false;
 	}
 	if( NewSingle != none )
 	{
@@ -747,9 +751,9 @@ simulated function RepositionUsedBullets( int FirstIndex, int UsedStartIdx, int 
 
 	// set the rest of the bullets to unused
 	for( i = UsedEndIdx; i > FirstIndex; i-=2 )
-	{
+		{
 		BulletMeshComponents[i].SetSkeletalMesh( UnusedBulletMeshTemplate );
-	}
+		}
 }
 
 /** Sets all bullet casing meshes back to unused state */
@@ -853,7 +857,6 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_PistolBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'KFGame.Default__KFWeap_DualBase:MeleeHelper_0'
-   MinUberAmmoCount=2
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_PistolBase:FirstPersonMesh'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Dual_Animtree_Master'
       bOverrideAttachmentOwnerVisibility=True

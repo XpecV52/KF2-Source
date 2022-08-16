@@ -31,6 +31,8 @@ var transient bool NeedsTicking;
 var float TickInterval;
 var transient float TickTime;
 
+var native transient pointer WorkshopDownloader{class USteamWorkshopDownload};
+
 delegate UGCDownloadProgressDelegate(string ItemName, Float PercentComplete, int ItemsRemaining);
 
 function SetUGCDownloadProgressDelegate(delegate<UGCDownloadProgressDelegate> InProgressDelegate)
@@ -52,15 +54,8 @@ native function Initialize();
 
 native function UpdateWorkshopFiles();
 
-native function CheckAllItemsInstalled();
+native function InstallAllItems();
 
-// (cpptext)
-// (cpptext)
-// (cpptext)
-// (cpptext)
-// (cpptext)
-// (cpptext)
-// (cpptext)
 // (cpptext)
 // (cpptext)
 // (cpptext)

@@ -44,7 +44,7 @@ var float TotalWavesActiveTime;
 var float TimeUntilNextSpawn;
 var int WaveTotalAI;
 var const byte MaxMonsters;
-/** Maximum number of AI that can be active at one time in solo */
+/** Maximum number of AI that can be active at one time in solo, by difficulty */
 var() byte MaxMonstersSolo[4];
 var KFSpawnVolume.ESquadType DesiredSquadType;
 /** How much to modify the spawn rate for solo play by difficulty */
@@ -52,12 +52,18 @@ var() SpawnRateModifier SoloWaveSpawnRateModifier[4];
 /** How much to modify the spawn rate for early waves. Generally used to make early waves more intense */
 var() float EarlyWaveSpawnRateModifier[4];
 var int EarlyWaveIndex;
+/** The base SpawnTimeMod to use in early waves based on the number of players playing */
+var() float EarlyWavesSpawnTimeModByPlayers[6];
+/** The base SpawnTimeMod to use in late waves based on the number of players playing */
+var() float LateWavesSpawnTimeModByPlayers[6];
 var bool bForceRequiredSquad;
 var bool bRecycleSpecialSquad;
 var bool bSummoningBossMinions;
 var config bool bLogAISpawning;
 var config bool bLogWaveSpawnTiming;
 var config bool bLogRateVolume;
+/** Whether to recycle the special squad every other time through the squad list, by difficulty */
+var() array<bool> RecycleSpecialSquad;
 var int NumSpawnListCycles;
 var array<KFSpawnVolume> SpawnVolumes;
 var KFSpawner ActiveSpawner;
@@ -65,6 +71,8 @@ var const int ObjExtraAI;
 var array< class<KFPawn_Monster> > LeftoverSpawnSquad;
 var array<KFAISpawnSquad> BossMinionsSpawnSquads;
 var int MaxBossMinions;
+/** How much to scale the number of boss minions based on the number of players playing */
+var() float MaxBossMinionScaleByPlayers[6];
 var array<Controller> RecentSpawnSelectedHumanControllerList;
 
 static function string ZedTypeToString(KFAISpawnManager.EAIType AiTypeToConvert)
@@ -105,9 +113,13 @@ function SetupNextWave(byte NextWaveIndex)
 
     if(NextWaveIndex < Waves.Length)
     {
-        if((Outer.GameDifficulty == float(2)) || Outer.GameDifficulty >= float(3))
+        if(Outer.GameDifficulty < float(RecycleSpecialSquad.Length))
         {
-            bRecycleSpecialSquad = true;
+            bRecycleSpecialSquad = RecycleSpecialSquad[int(Outer.GameDifficulty)];            
+        }
+        else
+        {
+            bRecycleSpecialSquad = RecycleSpecialSquad[RecycleSpecialSquad.Length - 1];
         }
         LeftoverSpawnSquad.Length = 0;
         NumSpawnListCycles = 1;
@@ -478,7 +490,7 @@ function float GetNextSpawnTimeMod()
     NumLivingPlayers = byte(Outer.GetLivingPlayerCount());
     SpawnTimeMod = 1;
     UsedSoloWaveRateMod = 1;
-    if(Outer.bOnePlayerAtStart)
+    if(Outer.bOnePlayerAtStart && NumLivingPlayers <= 1)
     {
         if(Outer.GameDifficulty < float(4))
         {
@@ -505,23 +517,24 @@ function float GetNextSpawnTimeMod()
     }
     if(Outer.MyKFGRI.WaveNum < EarlyWaveIndex)
     {
-        if(NumLivingPlayers == 4)
+        if(NumLivingPlayers <= 6)
         {
-            SpawnTimeMod = 0.85;            
-        }
-        else
-        {
-            if(NumLivingPlayers == 5)
+            if(NumLivingPlayers == 0)
             {
-                SpawnTimeMod = 0.65;                
+                SpawnTimeMod = EarlyWavesSpawnTimeModByPlayers[NumLivingPlayers];                
             }
             else
             {
-                if(NumLivingPlayers >= 6)
-                {
-                    SpawnTimeMod = 0.3;
-                }
-            }
+                SpawnTimeMod = EarlyWavesSpawnTimeModByPlayers[NumLivingPlayers - 1];
+            }            
+        }
+        else
+        {
+            SpawnTimeMod = EarlyWavesSpawnTimeModByPlayers[6 - 1];
+        }
+        if(bLogAISpawning)
+        {
+            LogInternal((((("Early Waves SpawnTimeMod = " $ string(SpawnTimeMod)) $ " NumLivingPlayers = ") $ string(NumLivingPlayers)) $ " UsedSoloWaveRateMod = ") $ string(UsedSoloWaveRateMod));
         }
         if(Outer.GameDifficulty < float(4))
         {
@@ -533,45 +546,39 @@ function float GetNextSpawnTimeMod()
         }
         SpawnTimeMod *= UsedEarlyWaveRateMod;
         SpawnTimeMod *= UsedSoloWaveRateMod;
-        return SpawnTimeMod;        
+        if(bLogAISpawning)
+        {
+            LogInternal("Early waves final SpawnTimeMod = " $ string(SpawnTimeMod));
+        }        
     }
     else
     {
-        if(NumLivingPlayers <= 3)
+        if(NumLivingPlayers <= 6)
         {
-            if(Outer.bOnePlayerAtStart)
+            if(NumLivingPlayers == 0)
             {
-                return 1.1 * UsedSoloWaveRateMod;                
+                SpawnTimeMod = LateWavesSpawnTimeModByPlayers[NumLivingPlayers];                
             }
             else
             {
-                return 1.1;
+                SpawnTimeMod = LateWavesSpawnTimeModByPlayers[NumLivingPlayers - 1];
             }            
         }
         else
         {
-            if(NumLivingPlayers == 4)
-            {
-                return 1;                
-            }
-            else
-            {
-                if(NumLivingPlayers == 5)
-                {
-                    return 0.75;                    
-                }
-                else
-                {
-                    if(NumLivingPlayers >= 6)
-                    {
-                        return 0.6;
-                    }
-                }
-            }
+            SpawnTimeMod = LateWavesSpawnTimeModByPlayers[6 - 1];
+        }
+        if(bLogAISpawning)
+        {
+            LogInternal((((("Late waves SpawnTimeMod = " $ string(SpawnTimeMod)) $ " NumLivingPlayers = ") $ string(NumLivingPlayers)) $ " UsedSoloWaveRateMod = ") $ string(UsedSoloWaveRateMod));
+        }
+        SpawnTimeMod *= UsedSoloWaveRateMod;
+        if(bLogAISpawning)
+        {
+            LogInternal("Late waves final  SpawnTimeMod = " $ string(SpawnTimeMod));
         }
     }
-    SpawnTimeMod *= UsedSoloWaveRateMod;
-    return SpawnTimeMod;
+    return SpawnTimeMod * Outer.GameConductor.CurrentSpawnRateModification;
 }
 
 function float GetSineMod()
@@ -592,6 +599,7 @@ function SetSineWaveFreq(float NewFreq)
 function SummonBossMinions(array<KFAISpawnSquad> NewMinionSquad, int NewMaxBossMinions)
 {
     local int NumLivePlayers;
+    local float UsedMaxBossMinionsScale;
 
     if(bSummoningBossMinions)
     {
@@ -602,24 +610,22 @@ function SummonBossMinions(array<KFAISpawnSquad> NewMinionSquad, int NewMaxBossM
     AvailableSquads = BossMinionsSpawnSquads;
     MaxBossMinions = NewMaxBossMinions;
     NumLivePlayers = Outer.GetLivingPlayerCount();
-    if(NumLivePlayers >= 6)
+    if(NumLivePlayers <= 6)
     {
-        MaxBossMinions *= float(2);        
-    }
-    else
-    {
-        if(NumLivePlayers > 3)
+        if(NumLivePlayers == 0)
         {
-            MaxBossMinions *= 1.875;            
+            UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[NumLivePlayers];            
         }
         else
         {
-            if(NumLivePlayers > 1)
-            {
-                MaxBossMinions *= 1.5;
-            }
-        }
+            UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[NumLivePlayers - 1];
+        }        
     }
+    else
+    {
+        UsedMaxBossMinionsScale = MaxBossMinionScaleByPlayers[6 - 1];
+    }
+    MaxBossMinions *= UsedMaxBossMinionsScale;
     MaxBossMinions = Min(MaxBossMinions, GetMaxMonsters());
     if(bLogAISpawning)
     {
@@ -965,5 +971,43 @@ defaultproperties
     EarlyWaveSpawnRateModifier[2]=0.8
     EarlyWaveSpawnRateModifier[3]=0.7
     EarlyWaveIndex=7
+    EarlyWavesSpawnTimeModByPlayers[0]=1
+    EarlyWavesSpawnTimeModByPlayers[1]=1
+    EarlyWavesSpawnTimeModByPlayers[2]=1
+    EarlyWavesSpawnTimeModByPlayers[3]=0.85
+    EarlyWavesSpawnTimeModByPlayers[4]=0.65
+    EarlyWavesSpawnTimeModByPlayers[5]=0.3
+    LateWavesSpawnTimeModByPlayers[0]=1.1
+    LateWavesSpawnTimeModByPlayers[1]=1.1
+    LateWavesSpawnTimeModByPlayers[2]=1.1
+    LateWavesSpawnTimeModByPlayers[3]=1
+    LateWavesSpawnTimeModByPlayers[4]=0.75
+    LateWavesSpawnTimeModByPlayers[5]=0.6
+    RecycleSpecialSquad(0)=
+/* Exception thrown while deserializing RecycleSpecialSquad
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    RecycleSpecialSquad(1)=
+/* Exception thrown while deserializing RecycleSpecialSquad
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    RecycleSpecialSquad(2)=
+/* Exception thrown while deserializing RecycleSpecialSquad
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    RecycleSpecialSquad(3)=
+/* Exception thrown while deserializing RecycleSpecialSquad
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     ObjExtraAI=16
+    MaxBossMinionScaleByPlayers[0]=1
+    MaxBossMinionScaleByPlayers[1]=1.5
+    MaxBossMinionScaleByPlayers[2]=1.5
+    MaxBossMinionScaleByPlayers[3]=1.875
+    MaxBossMinionScaleByPlayers[4]=1.875
+    MaxBossMinionScaleByPlayers[5]=2
 }

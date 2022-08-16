@@ -42,6 +42,14 @@ simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass,
     return none;
 }
 
+function HandleWeaponShotTaken(byte FireMode)
+{
+    if(KFPlayer != none)
+    {
+        KFPlayer.AddShotsFired(GetNumProjectilesToFire(FireMode));
+    }
+}
+
 simulated function byte GetNumProjectilesToFire(byte FireModeNum)
 {
     return NumPellets[CurrentFireMode];

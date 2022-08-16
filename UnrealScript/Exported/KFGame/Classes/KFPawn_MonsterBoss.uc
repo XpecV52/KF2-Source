@@ -549,11 +549,18 @@ simulated event ReplicatedEvent(name VarName)
 	}
 }
 
-simulated event PostBeginPlay()
+// Called immediately before gameplay begins.
+simulated event PreBeginPlay()
+{
+	Super.PreBeginPlay();
+	OnBattlePhaseChanged();
+}
+
+// Mostly indistinguishable from PreBeginPlay().  Following Pawn conventions only one is 'simulated'
+event PostBeginPlay()
 {
 	Super.PostBeginPlay();
-
-	OnBattlePhaseChanged();
+	if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("boss_spawn", None, Class.Name);
 }
 
 /** Called from Possessed event when this controller has taken control of a Pawn */

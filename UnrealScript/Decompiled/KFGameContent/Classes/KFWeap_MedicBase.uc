@@ -162,6 +162,10 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
     Healer = KFPlayerController(Instigator.Controller);
     if(((FiringMode == 1) && HealTarget != none) && WorldInfo.GRI.OnSameTeam(Instigator, HealTarget))
     {
+        if(Healer != none)
+        {
+            Healer.AddShotsHit(1);
+        }
         HealTarget.HealDamage(HealAmount, Instigator.Controller, HealingDartDamageType);
         if(Healer != none)
         {

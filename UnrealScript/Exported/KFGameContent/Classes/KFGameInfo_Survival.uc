@@ -587,7 +587,6 @@ function BossDied(controller Killer)
 		}
 	}
 
-	if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogGameIntEvent(class'KFGameplayEventsWriter'.const.GAMEEVENT_MATCH_WON, 1);};
  	CheckWaveEnd( true );
 }
 
@@ -649,6 +648,11 @@ event Timer()
 	if( SpawnManager != none )
 	{
 		SpawnManager.Update();
+	}
+
+	if( GameConductor != none )
+	{
+		GameConductor.TimerUpdate();
 	}
 }
 
@@ -793,17 +797,6 @@ function RewardSurvivingPlayers()
 
 	// Reset team score afte the wave ends
 	T.Score = 0;
-}
-
-/** Log All Players on Server with Their Scoere/Dosh */
-function LogPlayerScore()
-{
-	local PlayerController PC;
-
-	foreach WorldInfo.AllControllers(class'PlayerController', PC)
-	{
-		LogInternal("[QA]" @ GetFuncName() @ "Player Name:" @ PC.PlayerReplicationInfo.PlayerName @ "Dosh" @ PC.PlayerReplicationInfo.Score);
-	}
 }
 
 /**
@@ -1038,13 +1031,12 @@ function WaveStarted()
 	local int i;
 	local KFPlayerController KFPC;
 
-	/* __TW_ANALYTICS_ */
-	if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogGameIntEvent(class'KFGameplayEventsWriter'.const.GAMEEVENT_WAVE_START,WaveNum);};
-
 	if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("wave_start",
 				   None,
 				   "#"$WaveNum,
 				   "#"$GetLivingPlayerCount());
+
+    GameConductor.ResetWaveStats();
 
 	ForEach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
 	{
@@ -1056,8 +1048,8 @@ function WaveStarted()
 						   KFPC.GetPerk().Class.Name,
 						   KFPC.GetPerk().GetLevel(),
 						   "#"$KFPC.PlayerReplicationInfo.Score,
-						   KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory()
-						  );
+						   KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory(),
+						   KFPC.DumpPerkLoadout() );
 		}
 	}
 
@@ -1080,12 +1072,6 @@ function WaveStarted()
 		}
 	}
 
-	if( bLogScoring )
-	{
-		LogInternal("[QA]" @ GetFuncName());
-		LogPlayerScore();
-	}
-	
 	//So the server browser can have our new wave information
 	UpdateGameSettings();
 }
@@ -1114,64 +1100,19 @@ function CheckWaveEnd( optional bool bForceWaveEnd = false )
 function WaveEnded(EWaveEndCondition WinCondition)
 {
 	local KFPlayerController KFPC;
-	local int i;
-	local array<WeaponDamage> Weapons;
 
-	ForEach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
-	{
-		if( !KFPC.bDemoOwner )
-		{
-			if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("pc_wave_stats",
-						   KFPC.PlayerReplicationInfo,
-						   "#"$WaveNum,
-						   "#"$KFPC.MatchStats.GetHealReceivedInWave(),
-						   "#"$KFPC.MatchStats.GetDamageDealtInWave(),
-						   "#"$KFPC.MatchStats.GetHeadShotsInWave(),
-						   "#"$KFPC.MatchStats.GetDoshEarnedInWave(),
-						   "#"$KFPC.MatchStats.GetDamageTakenInWave(),
-						   "#"$KFPC.PlayerReplicationInfo.Score );
-
-			if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("pc_wave_loadout",
-						   KFPC.PlayerReplicationInfo,
-						   "#"$WaveNum,
-						   KFPC.GetPerk().Class.Name,
-						   KFPC.GetPerk().GetLevel(),
-						   KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory()
-						  );
-
-			KFPC.MatchStats.GetTopWeapons( 3, Weapons );
-
-			for ( i = 0; i < Weapons.Length; ++i )
-			{
-				if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("pc_weapon_stats",
-							   KFPC.PlayerReplicationInfo,
-							   "#"$WaveNum,
-							   Weapons[i].WeaponDef.Name,
-							   "#"$Weapons[i].DamageAmount,
-							   "#"$Weapons[i].HeadShots,
-							   "#"$Weapons[i].LargeZedKills );
-			}
-		}
-
-		KFPC.ClientWriteAndFlushStats();
-	}
 	MyKFGRI.NotifyWaveEnded();
-
 	if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.SetTraderTime( !MyKFGRI.IsFinalWave() );
-
-	/* __TW_ANALYTICS_ */
-	if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogGameIntEvent(class'KFGameplayEventsWriter'.const.GAMEEVENT_WAVE_END,WaveNum);};
 	
-	// IsPlayInEditor check was added to fix a scaleform crash that would call an actionscript function
-	// as scaleform was being destroyed. This issue only occurs when
-	// playing in the editor
+    if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("wave_end", None, "#"$WaveNum, GetEnum(enum'EWaveEndCondition',WinCondition), "#"$GameConductor.CurrentWaveZedVisibleAverageLifeSpan);
 
+	// IsPlayInEditor check was added to fix a scaleform crash that would call an actionscript function
+	// as scaleform was being destroyed. This issue only occurs when playing in the editor
 	if( WinCondition == WEC_TeamWipedOut && !class'WorldInfo'.static.IsPlayInEditor())
 	{
 		EndOfMatch(false);
 	}
-
-	if( WinCondition == WEC_WaveWon )
+	else if( WinCondition == WEC_WaveWon )
 	{
 		RewardSurvivingPlayers();
 		UpdateWaveEndDialogInfo();
@@ -1186,38 +1127,88 @@ function WaveEnded(EWaveEndCondition WinCondition)
 		}
 	}
 
-	if( bLogScoring )
+	ForEach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
 	{
-		LogInternal("[QA]" @ GetFuncName());
-		LogPlayerScore();
-	}
+		// save online stats
+		KFPC.ClientWriteAndFlushStats();
 
-	if( WorldInfo.NetMode != NM_Standalone )
-	{
-		ForEach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
+		// log player analytics (must come before MatchStats are reset!)
+		LogWaveEndAnalyticsFor(KFPC);
+
+		// For local players we can record AAR now, otherwise replicate
+		if( !KFPC.IsLocalPlayerController() )
 		{
-			if( KFPC.Role == ROLE_Authority )
-			{
-				KFPC.ReplicatePWRI();
-			}
-
-			if( WinCondition == WEC_WaveWon && !MyKFGRI.IsFinalWave() )
-			{
-				if( WorldInfo.NetMode != NM_DedicatedServer && KFGameReplicationInfo(WorldInfo.GRI) != none && KFGameReplicationInfo(WorldInfo.GRI).TraderDialogManager != none) KFGameReplicationInfo(WorldInfo.GRI).TraderDialogManager.PlayBeginTraderTimeDialog( KFPC, WorldInfo );
-			}
+			KFPC.ReplicatePWRI();
 		}
-		SetTimer(1, false, nameof(ResetWaveReplicationInfo));
-	}
-	else
-	{
-		ForEach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
+		else
 		{
 			KFPC.MatchStats.RecordWaveInfo();
 		}
+
+		// @todo: this never worked - fixme
+		//if( WinCondition == WEC_WaveWon && !MyKFGRI.IsFinalWave() )
+		//{
+		//	`SafeTraderDialogManager.PlayBeginTraderTimeDialog( KFPC, WorldInfo );
+		//}
+
+		;
 	}
 
+	// Unless we're playing solo we'll need to reset MatchStats
+	if( WorldInfo.NetMode != NM_Standalone )
+	{
+		SetTimer(1.f, false, nameof(ResetWaveReplicationInfo));
+	}
 }
 
+/** Game Analytics */
+function LogWaveEndAnalyticsFor(KFPlayerController KFPC)
+{
+	local int i;
+	local array<WeaponDamage> Weapons;
+
+	if( KFPC.bDemoOwner )
+	{
+		return;
+	}
+
+	if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("pc_wave_stats",
+				   KFPC.PlayerReplicationInfo,
+				   "#"$WaveNum,
+				   "#"$KFPC.MatchStats.GetHealGivenInWave(),
+				   "#"$KFPC.MatchStats.GetHeadShotsInWave(),
+				   "#"$KFPC.MatchStats.GetDoshEarnedInWave(),
+				   "#"$KFPC.MatchStats.GetDamageTakenInWave(),
+				   "#"$KFPC.MatchStats.GetDamageDealtInWave(),
+				   "#"$KFPC.ShotsFired,
+				   "#"$KFPC.ShotsHit,
+				   "#"$KFPC.ShotsHitHeadshot );
+
+	if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("pc_wave_end",
+				   KFPC.PlayerReplicationInfo,
+				   "#"$WaveNum,
+				   KFPC.GetPerk().Class.Name,
+				   "#"$KFPC.GetPerk().GetLevel(),
+				   "#"$KFPC.PlayerReplicationInfo.Score,
+				   "#"$KFPC.PlayerReplicationInfo.Kills,
+				   KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory(),
+				   KFPC.DumpPerkLoadout() );
+	
+	KFPC.MatchStats.GetTopWeapons( 3, Weapons );
+
+	for ( i = 0; i < Weapons.Length; ++i )
+	{
+		if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("pc_weapon_stats",
+					   KFPC.PlayerReplicationInfo,
+					   "#"$WaveNum,
+					   Weapons[i].WeaponDef.Name,
+					   "#"$Weapons[i].DamageAmount,
+					   "#"$Weapons[i].HeadShots, 
+					   "#"$Weapons[i].LargeZedKills );
+	}
+}
+
+/** Called shortly after we call ReplicatePWRI to clear wave data after replication */
 function ResetWaveReplicationInfo()
 {
 	local KFPlayerController KFPC;
@@ -1251,10 +1242,6 @@ State TraderOpen
 			if( KFPC.GetPerk() != none )
 			{
 				KFPC.GetPerk().OnWaveEnded();
-				if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("trader_open",
-							   KFPC.PlayerReplicationInfo,
-							   "#"$MyKFGRI.WaveNum,
-							   "#"$KFPC.PlayerReplicationInfo.Score );
 			}
 			KFPC.ApplyPendingPerks();
 		}
@@ -1362,7 +1349,7 @@ function EndOfMatch(bool bVictory)
 {
 	local KFPlayerController KFPC;
 
-	if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("match_end", None, "#"$WaveNum, "#"$(bVictory ? "1" : "0"));
+	if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("match_end", None, "#"$WaveNum, "#"$(bVictory ? "1" : "0"), "#"$GameConductor.ZedVisibleAverageLifespan);
 	
 	if(bVictory)
 	{

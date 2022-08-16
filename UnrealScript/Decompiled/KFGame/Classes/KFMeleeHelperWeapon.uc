@@ -24,6 +24,7 @@ var transient bool bResetChainSequence;
 var() bool bUseMeleeHitTimer;
 /** If set, this attack does damage to multiple pawns in a fan collision */
 var() transient bool bCanHitMultipleTargets;
+var bool bHitEnemyThisAttack;
 var transient byte ChooseAtkCount;
 var private KFPawn.EPawnOctant NextAttackDir;
 var private KFMeleeHelperWeapon.EMeleeAttackType NextAttackType;
@@ -340,6 +341,11 @@ simulated function BeginMeleeAttack(optional bool bIsChainAttack)
     local float MeleeDuration;
 
     bHasAlreadyHit = false;
+    bHitEnemyThisAttack = false;
+    if(((Outer.Instigator != none) && Outer.Instigator.Controller != none) && KFPlayerController(Outer.Instigator.Controller) != none)
+    {
+        KFPlayerController(Outer.Instigator.Controller).AddShotsFired(1);
+    }
     bResetChainSequence = false;
     CurrentAttackDir = NextAttackDir;
     MeleeDuration = PlayMeleeAttackAnimation();
@@ -545,6 +551,14 @@ simulated function ProcessMeleeHit(byte FiringMode, ImpactInfo Impact)
         HitPawn = KFPawn(Impact.HitActor);
         if(HitPawn != none)
         {
+            if(!bHitEnemyThisAttack && HitPawn.GetTeamNum() != Outer.Instigator.GetTeamNum())
+            {
+                if(((Outer.Instigator != none) && Outer.Instigator.Controller != none) && KFPlayerController(Outer.Instigator.Controller) != none)
+                {
+                    KFPlayerController(Outer.Instigator.Controller).AddShotsHit(1);
+                }
+                bHitEnemyThisAttack = true;
+            }
             HitPawn.NotifyMeleeTakeHit(Outer.Instigator.Controller, Impact.HitLocation);
         }
         Momentum = Normal(Impact.RayDir) * Outer.InstantHitMomentum[FiringMode];
@@ -603,25 +617,25 @@ simulated function PlayMeleeHitEffects(Actor Target, Vector HitLocation, Vector 
 
 defaultproperties
 {
-    ChainSequence_F(0)=222
+    ChainSequence_F(0)=251
     ChainSequence_F(1)=21
     ChainSequence_F(2)=0
     ChainSequence_F(3)=0
     ChainSequence_F(4)=0
-    ChainSequence_B(0)=218
+    ChainSequence_B(0)=247
     ChainSequence_B(1)=21
     ChainSequence_B(2)=0
     ChainSequence_B(3)=0
     ChainSequence_B(4)=0
     ChainSequence_B(5)=0
     ChainSequence_B(6)=0
-    ChainSequence_L(0)=225
+    ChainSequence_L(0)=254
     ChainSequence_L(1)=21
     ChainSequence_L(2)=0
     ChainSequence_L(3)=0
     ChainSequence_L(4)=0
     ChainSequence_L(5)=0
-    ChainSequence_R(0)=222
+    ChainSequence_R(0)=251
     ChainSequence_R(1)=21
     ChainSequence_R(2)=0
     ChainSequence_R(3)=0

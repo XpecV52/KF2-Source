@@ -143,15 +143,14 @@ package tripwire.containers.serverBrowser
         {
             super.addedToStage(param1);
             this.initFocusables();
-            defaultFirstElement = this.refreshButton;
+            defaultFirstElement = this.favoriteButton;
             this.favoriteButton.preventAutosizing = true;
             this.setTabIndexes();
         }
         
         private function setTabIndexes() : *
         {
-            this.refreshButton.tabIndex = 1;
-            this.favoriteButton.tabIndex = 2;
+            this.favoriteButton.tabIndex = 1;
         }
         
         private function initFocusables() : *

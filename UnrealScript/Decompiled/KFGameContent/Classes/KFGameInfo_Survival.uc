@@ -267,10 +267,6 @@ function BossDied(Controller Killer)
             AIP.Died(none, none, AIP.Location);
         }        
     }    
-    if(((WorldInfo.Game != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress())
-    {
-        KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogGameIntEvent(1009, 1);
-    }
     CheckWaveEnd(true);
 }
 
@@ -321,6 +317,10 @@ event Timer()
     if(SpawnManager != none)
     {
         SpawnManager.Update();
+    }
+    if(GameConductor != none)
+    {
+        GameConductor.TimerUpdate();
     }
 }
 
@@ -446,16 +446,6 @@ function RewardSurvivingPlayers()
         }        
     }    
     T.Score = 0;
-}
-
-function LogPlayerScore()
-{
-    local PlayerController PC;
-
-    foreach WorldInfo.AllControllers(Class'PlayerController', PC)
-    {
-        LogInternal((((("[QA]" @ string(GetFuncName())) @ "Player Name:") @ PC.PlayerReplicationInfo.PlayerName) @ "Dosh") @ string(PC.PlayerReplicationInfo.Score));        
-    }    
 }
 
 function int GetAdjustedDeathPenalty(KFPlayerReplicationInfo KilledPlayerPRI, optional bool bLateJoiner)
@@ -634,21 +624,18 @@ function WaveStarted()
     local int I;
     local KFPlayerController KFPC;
 
-    if(((WorldInfo.Game != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress())
-    {
-        KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogGameIntEvent(1001, WaveNum);
-    }
     if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
     {
         WorldInfo.TWLogEvent("wave_start", none, "#" $ string(WaveNum), "#" $ string(GetLivingPlayerCount()));
     }
+    GameConductor.ResetWaveStats();
     foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
     {
         if(!KFPC.bDemoOwner)
         {
             if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
             {
-                WorldInfo.TWLogEvent("pc_wave_start", KFPC.PlayerReplicationInfo, "#" $ string(WaveNum), string(KFPC.GetPerk().Class.Name), string(KFPC.GetPerk().GetLevel()), "#" $ string(KFPC.PlayerReplicationInfo.Score), KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory());
+                WorldInfo.TWLogEvent("pc_wave_start", KFPC.PlayerReplicationInfo, "#" $ string(WaveNum), string(KFPC.GetPerk().Class.Name), string(KFPC.GetPerk().GetLevel()), "#" $ string(KFPC.PlayerReplicationInfo.Score), KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory(), KFPC.DumpPerkLoadout());
             }
         }        
     }    
@@ -657,7 +644,7 @@ function WaveStarted()
     {
         GameSeq.FindSeqObjectsByClass(Class'KFSeqEvent_WaveStart', true, AllWaveStartEvents);
         I = 0;
-        J0x448:
+        J0x366:
 
         if(I < AllWaveStartEvents.Length)
         {
@@ -668,13 +655,8 @@ function WaveStarted()
                 WaveStartEvt.CheckActivate(self, self);
             }
             ++ I;
-            goto J0x448;
+            goto J0x366;
         }
-    }
-    if(bLogScoring)
-    {
-        LogInternal("[QA]" @ string(GetFuncName()));
-        LogPlayerScore();
     }
     UpdateGameSettings();
 }
@@ -706,92 +688,82 @@ function CheckWaveEnd(optional bool bForceWaveEnd)
 function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
 {
     local KFPlayerController KFPC;
-    local int I;
-    local array<WeaponDamage> Weapons;
 
-    foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
-    {
-        if(!KFPC.bDemoOwner)
-        {
-            if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
-            {
-                WorldInfo.TWLogEvent("pc_wave_stats", KFPC.PlayerReplicationInfo, "#" $ string(WaveNum), "#" $ string(KFPC.MatchStats.GetHealReceivedInWave()), "#" $ string(KFPC.MatchStats.GetDamageDealtInWave()), "#" $ string(KFPC.MatchStats.GetHeadShotsInWave()), "#" $ string(KFPC.MatchStats.GetDoshEarnedInWave()), "#" $ string(KFPC.MatchStats.GetDamageTakenInWave()), "#" $ string(KFPC.PlayerReplicationInfo.Score));
-            }
-            if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
-            {
-                WorldInfo.TWLogEvent("pc_wave_loadout", KFPC.PlayerReplicationInfo, "#" $ string(WaveNum), string(KFPC.GetPerk().Class.Name), string(KFPC.GetPerk().GetLevel()), KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory());
-            }
-            KFPC.MatchStats.GetTopWeapons(3, Weapons);
-            I = 0;
-            J0x430:
-
-            if(I < Weapons.Length)
-            {
-                if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
-                {
-                    WorldInfo.TWLogEvent("pc_weapon_stats", KFPC.PlayerReplicationInfo, "#" $ string(WaveNum), string(Weapons[I].WeaponDef.Name), "#" $ string(Weapons[I].DamageAmount), "#" $ string(Weapons[I].HeadShots), "#" $ string(Weapons[I].LargeZedKills));
-                }
-                ++ I;
-                goto J0x430;
-            }
-        }
-        KFPC.ClientWriteAndFlushStats();        
-    }    
     MyKFGRI.NotifyWaveEnded();
     if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
     {
         KFGameInfo(WorldInfo.Game).DialogManager.SetTraderTime(!MyKFGRI.IsFinalWave());
     }
-    if(((WorldInfo.Game != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress())
+    if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
     {
-        KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogGameIntEvent(1002, WaveNum);
+        WorldInfo.TWLogEvent("wave_end", none, "#" $ string(WaveNum), string(GetEnum(Enum'EWaveEndCondition', WinCondition)), "#" $ string(GameConductor.CurrentWaveZedVisibleAverageLifeSpan));
     }
     if((WinCondition == 1) && !Class'WorldInfo'.static.IsPlayInEditor())
     {
-        EndOfMatch(false);
-    }
-    if(WinCondition == 0)
-    {
-        RewardSurvivingPlayers();
-        UpdateWaveEndDialogInfo();
-        if(WaveNum < WaveMax)
-        {
-            GotoState('TraderOpen');            
-        }
-        else
-        {
-            EndOfMatch(true);
-        }
-    }
-    if(bLogScoring)
-    {
-        LogInternal("[QA]" @ string(GetFuncName()));
-        LogPlayerScore();
-    }
-    if(WorldInfo.NetMode != NM_Standalone)
-    {
-        foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
-        {
-            if(KFPC.Role == ROLE_Authority)
-            {
-                KFPC.ReplicatePWRI();
-            }
-            if((WinCondition == 0) && !MyKFGRI.IsFinalWave())
-            {
-                if(((WorldInfo.NetMode != NM_DedicatedServer) && KFGameReplicationInfo(WorldInfo.GRI) != none) && KFGameReplicationInfo(WorldInfo.GRI).TraderDialogManager != none)
-                {
-                    KFGameReplicationInfo(WorldInfo.GRI).TraderDialogManager.PlayBeginTraderTimeDialog(KFPC, WorldInfo);
-                }
-            }            
-        }        
-        SetTimer(1, false, 'ResetWaveReplicationInfo');        
+        EndOfMatch(false);        
     }
     else
     {
-        foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+        if(WinCondition == 0)
         {
-            KFPC.MatchStats.RecordWaveInfo();            
-        }        
+            RewardSurvivingPlayers();
+            UpdateWaveEndDialogInfo();
+            if(WaveNum < WaveMax)
+            {
+                GotoState('TraderOpen');                
+            }
+            else
+            {
+                EndOfMatch(true);
+            }
+        }
+    }
+    foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+    {
+        KFPC.ClientWriteAndFlushStats();
+        LogWaveEndAnalyticsFor(KFPC);
+        if(!KFPC.IsLocalPlayerController())
+        {
+            KFPC.ReplicatePWRI();
+            continue;
+        }
+        KFPC.MatchStats.RecordWaveInfo();        
+    }    
+    if(WorldInfo.NetMode != NM_Standalone)
+    {
+        SetTimer(1, false, 'ResetWaveReplicationInfo');
+    }
+}
+
+function LogWaveEndAnalyticsFor(KFPlayerController KFPC)
+{
+    local int I;
+    local array<WeaponDamage> Weapons;
+
+    if(KFPC.bDemoOwner)
+    {
+        return;
+    }
+    if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+    {
+        WorldInfo.TWLogEvent("pc_wave_stats", KFPC.PlayerReplicationInfo, "#" $ string(WaveNum), "#" $ string(KFPC.MatchStats.GetHealGivenInWave()), "#" $ string(KFPC.MatchStats.GetHeadShotsInWave()), "#" $ string(KFPC.MatchStats.GetDoshEarnedInWave()), "#" $ string(KFPC.MatchStats.GetDamageTakenInWave()), "#" $ string(KFPC.MatchStats.GetDamageDealtInWave()), "#" $ string(KFPC.ShotsFired), "#" $ string(KFPC.ShotsHit), "#" $ string(KFPC.ShotsHitHeadshot));
+    }
+    if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+    {
+        WorldInfo.TWLogEvent("pc_wave_end", KFPC.PlayerReplicationInfo, "#" $ string(WaveNum), string(KFPC.GetPerk().Class.Name), "#" $ string(KFPC.GetPerk().GetLevel()), "#" $ string(KFPC.PlayerReplicationInfo.Score), "#" $ string(KFPC.PlayerReplicationInfo.Kills), KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory(), KFPC.DumpPerkLoadout());
+    }
+    KFPC.MatchStats.GetTopWeapons(3, Weapons);
+    I = 0;
+    J0x4C0:
+
+    if(I < Weapons.Length)
+    {
+        if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
+        {
+            WorldInfo.TWLogEvent("pc_weapon_stats", KFPC.PlayerReplicationInfo, "#" $ string(WaveNum), string(Weapons[I].WeaponDef.Name), "#" $ string(Weapons[I].DamageAmount), "#" $ string(Weapons[I].HeadShots), "#" $ string(Weapons[I].LargeZedKills));
+        }
+        ++ I;
+        goto J0x4C0;
     }
 }
 
@@ -844,7 +816,7 @@ function EndOfMatch(bool bVictory)
 
     if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
     {
-        WorldInfo.TWLogEvent("match_end", none, "#" $ string(WaveNum), "#" $ ((bVictory) ? "1" : "0"));
+        WorldInfo.TWLogEvent("match_end", none, "#" $ string(WaveNum), "#" $ ((bVictory) ? "1" : "0"), "#" $ string(GameConductor.ZedVisibleAverageLifespan));
     }
     if(bVictory)
     {
@@ -980,10 +952,6 @@ state TraderOpen
             if(KFPC.GetPerk() != none)
             {
                 KFPC.GetPerk().OnWaveEnded();
-                if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
-                {
-                    WorldInfo.TWLogEvent("trader_open", KFPC.PlayerReplicationInfo, "#" $ string(MyKFGRI.WaveNum), "#" $ string(KFPC.PlayerReplicationInfo.Score));
-                }
             }
             KFPC.ApplyPendingPerks();            
         }        

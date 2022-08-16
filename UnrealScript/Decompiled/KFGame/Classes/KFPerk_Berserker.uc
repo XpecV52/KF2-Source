@@ -90,11 +90,11 @@ simulated function ModifyMeleeAttackSpeed(out float InDuration, KFWeapon KFW)
         return;
     }
     TempDuration = InDuration;
+    TempDuration -= (TempDuration * (GetPassiveValue(MeleeAttackSpeed, CurrentLevel)));
     if(IsSpartanActive())
     {
         TempDuration -= (TempDuration * (GetSkillValue(PerkSkills[8])));
     }
-    TempDuration -= (TempDuration * (GetPassiveValue(MeleeAttackSpeed, CurrentLevel)));
     if(GetParryActive())
     {
         TempDuration -= (TempDuration * ParrySpeed);
@@ -427,7 +427,7 @@ simulated function LogPerkSkills()
 defaultproperties
 {
     BerserkerDamage=(Name="Berserker Damage",Increment=0.01,Rank=0,StartingValue=1.25,MaxValue=1.5,ModifierValue=0,IconPath="",bActive=false)
-    MeleeAttackSpeed=(Name="Melee Attack Speed",Increment=0.004,Rank=0,StartingValue=0.05,MaxValue=0.1,ModifierValue=0,IconPath="",bActive=false)
+    MeleeAttackSpeed=(Name="Melee Attack Speed",Increment=0.008,Rank=0,StartingValue=0.05,MaxValue=0.25,ModifierValue=0,IconPath="",bActive=false)
     Movement=(Name="Movement",Increment=0.006,Rank=0,StartingValue=1.1,MaxValue=1.25,ModifierValue=0,IconPath="",bActive=false)
     DamageResistance=(Name="Damage Resistance",Increment=0.01,Rank=0,StartingValue=0,MaxValue=0.25,ModifierValue=0,IconPath="",bActive=false)
     NightVision=(Name="Night Vision",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="",bActive=false)

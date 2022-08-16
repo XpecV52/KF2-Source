@@ -488,6 +488,16 @@ var float NextAdminCmdTime;
 var config bool bHideTraderPaths;
 
 /*********************************************************************************************
+ * @name Skill Tracking
+********************************************************************************************* */
+/** The total "shots" taken during this match. This includes gun shots taken, melee attacks, damage intervals for flame weapons, etc */
+var int ShotsFired;
+/** The total "shots" that hit another pawn during this match */
+var int ShotsHit;
+/** The total "shots" that hit an another pawn in the head during this match */
+var int ShotsHitHeadshot;
+
+/*********************************************************************************************
  * @name UI
 ********************************************************************************************* */
 var KFGFxMoviePlayer_Manager			MyGFxManager;
@@ -877,6 +887,20 @@ enum ETrackingMode
 var transient ETrackingMode CurrentTrackingMode;
 
 /*********************************************************************************************
+ * @name GameConductor debug drawing
+********************************************************************************************* */
+
+enum EGameConductorDebugMode
+{
+	EGCDM_Skill,
+	EGCDM_LifeSpan,
+	EGCDM_Status
+};
+
+/** Current targeting mode for the tracking map*/
+var transient EGameConductorDebugMode CurrentGameConductorDebugMode;
+
+/*********************************************************************************************
  * @name Navigation
 ********************************************************************************************* */
 //var KFNavigationHandle MyKFNavigationHandle;
@@ -975,6 +999,38 @@ simulated event PostBeginPlay()
 
 	MatchStats = new(Self) MatchStatsClass;
 	
+}
+
+function string DumpPerkLoadout()
+{
+	local int PerkLevel;
+	local int Build;
+	local string Ret;
+	local int i;
+
+	PerkLevel = GetPerkLevelFromPerkList( GetPerk().class );
+	Build = GetPerkBuildByPerkClass( GetPerk().class );
+
+	for( i=0; i<5; i++ )
+	{
+		if ( i<Perklevel )
+		{
+			if ( ((1 << (i<<1)) & Build) != 0 )
+			{
+				Ret $= "1";
+			}
+			else
+			{
+				Ret $= "2";
+			}
+		}
+		else
+		{
+			Ret $= "0";
+		}
+	}
+
+	return Ret;
 }
 
 simulated event ReplicatedEvent( name VarName )
@@ -1120,7 +1176,10 @@ event InitInputSystem()
 	}
 	else
 	{
+		if(VoiceInterface != none)
+		{
 		VoiceInterface.RegisterLocalTalker(0);
+	}
 	}
 	RegisterTalkerDelegate();
 }
@@ -1170,6 +1229,28 @@ function NavigationPoint GetBestCustomizationStart( KFGameInfo KFGI )
 		}
 	}
 	return BestStartSpot;
+}
+
+/*********************************************************************************************
+ * @name Skill Tracking
+********************************************************************************************* */
+
+function AddShotsFired( int AddedShots )
+{
+    ShotsFired += AddedShots;
+    //`log("ShotsFired = "$ShotsFired$" accuracy % = "$(Float(ShotsHit)/Float(ShotsFired) * 100.0));
+}
+
+function AddShotsHit( int AddedHits )
+{
+    ShotsHit += AddedHits;
+    //`log("ShotsHit = "$ShotsHit$" accuracy % = "$(Float(ShotsHit)/Float(ShotsFired) * 100.0));
+}
+
+function AddHeadHit( int AddedHits )
+{
+    ShotsHitHeadshot += AddedHits;
+    //`log("ShotsHitHeadshot = "$ShotsHitHeadshot$" accuracy % = "$(Float(ShotsHitHeadshot)/Float(ShotsFired) * 100.0));
 }
 
 /*********************************************************************************************
@@ -2516,8 +2597,8 @@ static simulated function KFInterface_Usable GetCurrentUsableActor( Pawn P, opti
 
 		if( BestUsableActor != none )
 		{
-			if( bUseOnFind )
-			{
+				if( bUseOnFind )
+				{
 				BestActor.UsedBy( P );
 			}
 			return BestUsableActor;
@@ -3506,7 +3587,10 @@ function string GetSteamAvatar( UniqueNetId NetID )
 	{
 		CurrentAvatar.NetID = NetID;
 		AvatarList.AddItem(CurrentAvatar);
+		if(OnlineSub != none)
+		{
 		OnlineSub.ReadOnlineAvatar(NetID, 64, OnAvatarReceived);
+	}
 	}
 
 	return AvatarPath;
@@ -4114,7 +4198,7 @@ reliable server function ServerPause()
 			SetPause( true );
 		}
 		else
-		{
+	{
 			SetPause( false );
 		}
 	}
@@ -4169,8 +4253,11 @@ simulated function ReadStats()
 simulated function OnStatsInitialized( bool bWasSuccessful )
 {
 	local int i;
-	
+	if(OnlineSub != none)
+	{
 	OnlineSub.StatsInterface.ClearReadOnlineStatsCompleteDelegate( OnStatsInitialized );
+	}
+
 	StatsRead.OnStatsInitialized( bWasSuccessful );
 
 	if( MyGFxManager != none )
@@ -4536,6 +4623,15 @@ simulated function DisplayDebug(HUD HUD, out float out_YL, out float out_YPos)
 	   KFPlayerInput(PlayerInput).DisplayDebug(HUD, out_YL, out_YPos);
 	}
 
+	if( HUD.ShouldDisplayDebug('Conductor') )
+	{
+        KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+
+        if( KFGRI.bGameConductorGraphingEnabled )
+        {
+            DrawDebugConductor( HUD.Canvas );
+        }
+	}
 }
 
 function DrawDebugMemory( Canvas Canvas, out float out_YL, out float out_YPos)
@@ -4593,7 +4689,6 @@ function DrawDebugDifficulty( Canvas Canvas, out float out_YL, out float out_YPo
 		Canvas.DrawText( "---------- KFPlayerController: Difficulty ----------" );
 		DrawNextDebugLine( Canvas, out_YL, out_YPos, false, "Current Difficulty: " @"("$KFGI.GameDifficulty$")" );
 		DrawNextDebugLine( Canvas, out_YL, out_YPos, true, 	"Global Health Mod: " @KFGI.DifficultyInfo.GetGlobalHealthMod() );
-		DrawNextDebugLine( Canvas, out_YL, out_YPos, false, "AI Attack Mod: " @KFGI.DifficultyInfo.GetBaseAIDamageModifier() );
 		DrawNextDebugLine( Canvas, out_YL, out_YPos, true, 	"Ground Speed Mod: " @KFGI.DifficultyInfo.GetAIGroundSpeedMod() );
 		DrawNextDebugLine( Canvas, out_YL, out_YPos, false, "Difficulty Wave Count Mod: " @KFGI.DifficultyInfo.GetDifficultyMaxAIModifier() );
 		DrawNextDebugLine( Canvas, out_YL, out_YPos, true, 	"Dosh Per Kill Mod: " @KFGI.DifficultyInfo.GetKillCashModifier()  );
@@ -5202,6 +5297,257 @@ simulated function DrawMapElement(Canvas Canvas,
 
 }
 
+/** Draw the tracking map */
+function DrawDebugConductor( out Canvas Canvas )
+{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -5524,6 +5870,8 @@ function DrawNextSpawnTimeInfo( out Canvas Canvas, /*out KFAISpawnManager KFSM,*
 
 event Destroyed()
 {
+	local KFProjectile KFProj;
+
     // Stop currently playing stingers when the map is being switched
     if( StingerAkComponent != none )
     {
@@ -5533,6 +5881,15 @@ event Destroyed()
     SetRTPCValue( 'Health', 100, true );
     PostAkEvent( LowHealthStopEvent );
 	bPlayingLowHealthSFX = false;
+
+	// Update projectiles in the world
+	foreach DynamicActors( class'KFProjectile', KFProj )
+	{
+		if( KFProj.InstigatorController == self )
+		{
+			KFProj.OnInstigatorControllerLeft();
+		}
+	}
 
 	Super.Destroyed();
 }

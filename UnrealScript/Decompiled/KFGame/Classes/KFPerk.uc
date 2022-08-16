@@ -325,6 +325,14 @@ native simulated function byte GetLevel();
 // Export UKFPerk::execSetLevel(FFrame&, void* const)
 native simulated function SetLevel(byte NewLevel);
 
+event PerkLevelUpdated()
+{
+    if(MyKFGI != none)
+    {
+        MyKFGI.GameConductor.HandlePerkLevelsUpdated();
+    }
+}
+
 simulated event UpdateSkills()
 {
     local byte I, SkillIndex;

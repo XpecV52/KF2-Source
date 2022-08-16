@@ -55,6 +55,14 @@ enum ETrackingMode
     ETM_MAX
 };
 
+enum EGameConductorDebugMode
+{
+    EGCDM_Skill,
+    EGCDM_LifeSpan,
+    EGCDM_Status,
+    EGCDM_MAX
+};
+
 struct native PerkInfo
 {
     var class<KFPerk> PerkClass;
@@ -170,10 +178,14 @@ var config byte SavedPerkIndex;
 var transient KFPlayerController.KFSpectateModes CurrentSpectateMode;
 var transient KFPlayerController.ETrackingRangeMode CurrentTrackerRangeMode;
 var transient KFPlayerController.ETrackingMode CurrentTrackingMode;
+var transient KFPlayerController.EGameConductorDebugMode CurrentGameConductorDebugMode;
 var KFPawn_Human UsablePawn;
 var KFEmit_CameraEffect CameraEffect;
 var PostProcessSettings PostProcessModifier;
 var float NextAdminCmdTime;
+var int ShotsFired;
+var int ShotsHit;
+var int ShotsHitHeadshot;
 var KFGFxMoviePlayer_Manager MyGFxManager;
 var KFGFxMoviePlayer_HUD MyGFxHUD;
 var AkEvent ZedTimeEnterSound;
@@ -353,6 +365,40 @@ simulated event PostBeginPlay()
     MatchStats = new (self) MatchStatsClass;
 }
 
+function string DumpPerkLoadout()
+{
+    local int PerkLevel, Build;
+    local string Ret;
+    local int I;
+
+    PerkLevel = GetPerkLevelFromPerkList(GetPerk().Class);
+    Build = GetPerkBuildByPerkClass(GetPerk().Class);
+    I = 0;
+    J0x73:
+
+    if(I < 5)
+    {
+        if(I < PerkLevel)
+        {
+            if(((1 << (I << 1)) & Build) != 0)
+            {                
+                Ret $= "1";                
+            }
+            else
+            {                
+                Ret $= "2";
+            }            
+        }
+        else
+        {            
+            Ret $= "0";
+        }
+        ++ I;
+        goto J0x73;
+    }
+    return Ret;
+}
+
 simulated event ReplicatedEvent(name VarName)
 {
     super(Controller).ReplicatedEvent(VarName);
@@ -459,7 +505,10 @@ event InitInputSystem()
     }
     else
     {
-        VoiceInterface.RegisterLocalTalker(0);
+        if(NotEqual_InterfaceInterface(VoiceInterface, (none)))
+        {
+            VoiceInterface.RegisterLocalTalker(0);
+        }
     }
     RegisterTalkerDelegate();
 }
@@ -502,6 +551,21 @@ function NavigationPoint GetBestCustomizationStart(KFGameInfo KFGI)
         }
     }
     return BestStartSpot;
+}
+
+function AddShotsFired(int AddedShots)
+{
+    ShotsFired += AddedShots;
+}
+
+function AddShotsHit(int AddedHits)
+{
+    ShotsHit += AddedHits;
+}
+
+function AddHeadHit(int AddedHits)
+{
+    ShotsHitHeadshot += AddedHits;
 }
 
 function RegisterTalkerDelegate()
@@ -2329,7 +2393,10 @@ function string GetSteamAvatar(UniqueNetId NetId)
     {
         CurrentAvatar.NetId = NetId;
         AvatarList.AddItem(CurrentAvatar;
-        OnlineSub.ReadOnlineAvatar(NetId, 64, OnAvatarReceived);
+        if(OnlineSub != none)
+        {
+            OnlineSub.ReadOnlineAvatar(NetId, 64, OnAvatarReceived);
+        }
     }
     return AvatarPath;
 }
@@ -2884,7 +2951,10 @@ simulated function OnStatsInitialized(bool bWasSuccessful)
 {
     local int I;
 
-    OnlineSub.StatsInterface.ClearReadOnlineStatsCompleteDelegate(OnStatsInitialized);
+    if(OnlineSub != none)
+    {
+        OnlineSub.StatsInterface.ClearReadOnlineStatsCompleteDelegate(OnStatsInitialized);
+    }
     StatsRead.OnStatsInitialized(bWasSuccessful);
     if(MyGFxManager != none)
     {
@@ -2892,7 +2962,7 @@ simulated function OnStatsInitialized(bool bWasSuccessful)
     }
     ClientInitializePerks();
     I = 0;
-    J0xB2:
+    J0xC1:
 
     if(I < PerkList.Length)
     {
@@ -2901,7 +2971,7 @@ simulated function OnStatsInitialized(bool bWasSuccessful)
             self.MatchStats.RecordPerkXPGain(PerkList[I].PerkClass, 0);
         }
         ++ I;
-        goto J0xB2;
+        goto J0xC1;
     }
 }
 
@@ -3223,6 +3293,14 @@ simulated function DisplayDebug(HUD HUD, out float out_YL, out float out_YPos)
     {
         KFPlayerInput(PlayerInput).DisplayDebug(HUD, out_YL, out_YPos);
     }
+    if(HUD.ShouldDisplayDebug('Conductor'))
+    {
+        KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+        if(KFGRI.bGameConductorGraphingEnabled)
+        {
+            DrawDebugConductor(HUD.Canvas);
+        }
+    }
 }
 
 function DrawDebugMemory(Canvas Canvas, out float out_YL, out float out_YPos)
@@ -3279,7 +3357,6 @@ function DrawDebugDifficulty(Canvas Canvas, out float out_YL, out float out_YPos
         Canvas.DrawText("---------- KFPlayerController: Difficulty ----------");
         DrawNextDebugLine(Canvas, out_YL, out_YPos, false, (("Current Difficulty: " @ "(") $ string(KFGI.GameDifficulty)) $ ")");
         DrawNextDebugLine(Canvas, out_YL, out_YPos, true, "Global Health Mod: " @ string(KFGI.DifficultyInfo.GetGlobalHealthMod()));
-        DrawNextDebugLine(Canvas, out_YL, out_YPos, false, "AI Attack Mod: " @ string(KFGI.DifficultyInfo.GetBaseAIDamageModifier()));
         DrawNextDebugLine(Canvas, out_YL, out_YPos, true, "Ground Speed Mod: " @ string(KFGI.DifficultyInfo.GetAIGroundSpeedMod()));
         DrawNextDebugLine(Canvas, out_YL, out_YPos, false, "Difficulty Wave Count Mod: " @ string(KFGI.DifficultyInfo.GetDifficultyMaxAIModifier()));
         DrawNextDebugLine(Canvas, out_YL, out_YPos, true, "Dosh Per Kill Mod: " @ string(KFGI.DifficultyInfo.GetKillCashModifier()));
@@ -3349,6 +3426,8 @@ function DrawDebugMap(out Canvas Canvas);
 
 simulated function DrawMapElement(Canvas Canvas, float ScreenScale, float AdjustedMapSize, Vector2D CenterLocation, Vector MapHolderLocation, Vector ElementLocation, class<KFPawn> ElementClass, Color IconColor, bool bUsingSuperSpeed, bool bDrawHeightArrows, optional bool BBox, optional Vector EnemyLocation, optional bool bFailed);
 
+function DrawDebugConductor(out Canvas Canvas);
+
 function DrawNextSpawnTimeInfo(out Canvas Canvas, float XPos, float YPos, float Buffer)
 {
     local KFMapInfo KFMI;
@@ -3385,6 +3464,8 @@ function DrawNextSpawnTimeInfo(out Canvas Canvas, float XPos, float YPos, float 
 
 event Destroyed()
 {
+    local KFProjectile KFProj;
+
     if(StingerAkComponent != none)
     {
         StingerAkComponent.StopEvents();
@@ -3392,6 +3473,13 @@ event Destroyed()
     SetRTPCValue('Health', 100, true);
     PostAkEvent(LowHealthStopEvent);
     bPlayingLowHealthSFX = false;
+    foreach DynamicActors(Class'KFProjectile', KFProj)
+    {
+        if(KFProj.InstigatorController == self)
+        {
+            KFProj.OnInstigatorControllerLeft();
+        }        
+    }    
     super(PlayerController).Destroyed();
 }
 

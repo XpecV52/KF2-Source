@@ -63,6 +63,15 @@ simulated function rotator AddMultiShotSpread(rotator BaseAim)
 	}
 }
 
+/** Notification that a weapon attack has has happened */
+function HandleWeaponShotTaken( byte FireMode )
+{
+    if( KFPlayer != None )
+	{
+        KFPlayer.AddShotsFired(NumPellets[FireMode]);
+	}
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 //
 // Trader

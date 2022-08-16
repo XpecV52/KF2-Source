@@ -21,6 +21,7 @@ protected event TriggerDestroyedEvent(Controller EventInstigator)
         bFound = true;
         KFMI.OnCollectibleFound(self, EventInstigator);
     }
+    bShutDown = true;
 }
 
 function AdjustDamage(out int InDamage, Controller EventInstigator, class<DamageType> DamageType)

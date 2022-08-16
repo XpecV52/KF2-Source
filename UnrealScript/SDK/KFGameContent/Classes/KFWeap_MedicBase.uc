@@ -244,6 +244,12 @@ simulated function ProcessInstantHitEx( byte FiringMode, ImpactInfo Impact, opti
 
 	if (FiringMode == ALTFIRE_FIREMODE && HealTarget != none && WorldInfo.GRI.OnSameTeam(Instigator,HealTarget) )
 	{
+        // Let the accuracy system know that we hit someone
+		if( Healer != none )
+		{
+            Healer.AddShotsHit(1);
+		}
+
     	HealTarget.HealDamage(HealAmount, Instigator.Controller, HealingDartDamageType);
 
     	if( Healer != none )

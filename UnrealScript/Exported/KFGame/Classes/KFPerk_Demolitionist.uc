@@ -826,7 +826,7 @@ defaultproperties
    PerkSkills(3)=(Name="Sacrifice",StartingValue=2.000000,MaxValue=2.000000,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_Sacrifice")
    PerkSkills(4)=(Name="DoorTraps",StartingValue=0.300000,MaxValue=0.300000,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_DoorTraps")
    PerkSkills(5)=(Name="SirenResistance",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_SirenResistance")
-   PerkSkills(6)=(Name="OffPerk",StartingValue=0.150000,MaxValue=0.150000,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_OffPerk")
+   PerkSkills(6)=(Name="OffPerk",StartingValue=0.100000,MaxValue=0.100000,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_OffPerk")
    PerkSkills(7)=(Name="OnPerk",StartingValue=0.300000,MaxValue=0.300000,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_OnPerk")
    PerkSkills(8)=(Name="Nuke",StartingValue=1.030000,MaxValue=1.030000,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_Nuke")
    PerkSkills(9)=(Name="ConcussiveForce",StartingValue=1.000000,MaxValue=1.000000,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_ConcussiveForce")

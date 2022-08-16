@@ -166,6 +166,40 @@ var PickupInfo PickupInfos[20];
 var float UpdatePickupInfoInterval;
 
 /************************************
+* GameConductor
+************************************/
+
+/** Tracking Map is Active. */
+var bool            bGameConductorGraphingEnabled;
+
+/** Keep track of the player accuracy over the last 10 secondse */
+var float           PlayerAccuracyTracker[10];
+
+/** Keep track of the player headdshot accuracy over the last 10 secondse */
+var float           PlayerHeadshotAccuracyTracker[10];
+
+/** Keep track of the aggregate player player skill over the last 10 secondse */
+var float           AggregatePlayerSkillTracker[10];
+
+/** Keep track of the zed total average lifespan over time */
+var float           TotalZedLifeSpanAverageTracker[10];
+
+/** Keep track of the zed current wave average lifespan over time */
+var float           CurrentWaveZedLifeSpanAverageTracker[10];
+
+/** Keep track of the zed average lifespan over the last 10 seconds */
+var float           RecentZedLifeSpanAverageTracker[10];
+
+/** Keep track of the players health over the last 10 seconds */
+var float           PlayersHealthStatusTracker[10];
+
+/** Keep track of the players ammo over the last 10 seconds */
+var float           PlayersAmmoStatusTracker[10];
+
+/** Keep track of the players combined status over the last 10 seconds */
+var float           AggregatePlayersStatusTracker[10];
+
+/************************************
 * Actor Iterators
 ************************************/
 
@@ -256,6 +290,12 @@ replication
 		SpawnVolumeInfos, ZedInfos, HumanInfos, FailedSpawnInfos, PickupInfos;
 	if(VoteCollector != none && VoteCollector.bIsVoteInProgress)
 		RepKickVotes;
+    if( bNetDirty )
+        bGameConductorGraphingEnabled;
+	if ( bGameConductorGraphingEnabled && bNetDirty )
+		PlayerAccuracyTracker, PlayerHeadshotAccuracyTracker, AggregatePlayerSkillTracker,
+        TotalZedLifeSpanAverageTracker, CurrentWaveZedLifeSpanAverageTracker, RecentZedLifeSpanAverageTracker,
+        PlayersHealthStatusTracker, PlayersAmmoStatusTracker, AggregatePlayersStatusTracker;
 // endif
 }
 

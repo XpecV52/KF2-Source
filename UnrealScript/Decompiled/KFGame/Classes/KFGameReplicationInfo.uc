@@ -106,6 +106,7 @@ var bool bCustom;
 var bool bCurrentSMFinishedSpawning;
 var bool bDebugSpawnManager;
 var bool bTrackingMapEnabled;
+var bool bGameConductorGraphingEnabled;
 var private bool bLeadershipAvailable;
 var repnotify byte MusicTrackRepCount;
 var repnotify byte RepKickVotes;
@@ -137,6 +138,15 @@ var HumanInfo HumanInfos[6];
 var float UpdateHumanInfoInterval;
 var PickupInfo PickupInfos[20];
 var float UpdatePickupInfoInterval;
+var float PlayerAccuracyTracker[10];
+var float PlayerHeadshotAccuracyTracker[10];
+var float AggregatePlayerSkillTracker[10];
+var float TotalZedLifeSpanAverageTracker[10];
+var float CurrentWaveZedLifeSpanAverageTracker[10];
+var float RecentZedLifeSpanAverageTracker[10];
+var float PlayersHealthStatusTracker[10];
+var float PlayersAmmoStatusTracker[10];
+var float AggregatePlayersStatusTracker[10];
 var array<KFDoorActor> DoorList;
 var KFObjective CurrentObjective;
 var export editinline AkComponent MusicComp;
@@ -178,6 +188,16 @@ replication
 
      if((VoteCollector != none) && VoteCollector.bIsVoteInProgress)
         RepKickVotes;
+
+     if(bNetDirty)
+        bGameConductorGraphingEnabled;
+
+     if(bGameConductorGraphingEnabled && bNetDirty)
+        AggregatePlayerSkillTracker, AggregatePlayersStatusTracker, 
+        CurrentWaveZedLifeSpanAverageTracker, PlayerAccuracyTracker, 
+        PlayerHeadshotAccuracyTracker, PlayersAmmoStatusTracker, 
+        PlayersHealthStatusTracker, RecentZedLifeSpanAverageTracker, 
+        TotalZedLifeSpanAverageTracker;
 }
 
 // Export UKFGameReplicationInfo::execSendSteamHeartbeat(FFrame&, void* const)

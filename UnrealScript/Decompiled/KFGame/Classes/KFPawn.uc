@@ -1928,6 +1928,10 @@ function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, clas
     {
         if(InstigatedBy != none)
         {
+            if((HitZoneIdx == 0) && KFPlayerController(InstigatedBy) != none)
+            {
+                KFPlayerController(InstigatedBy).AddHeadHit(1);
+            }
             TakeHitZoneDamage(Damage, HitFxInfo.DamageType, HitZoneIdx, InstigatedBy.Pawn.Location);            
         }
         else
@@ -2873,9 +2877,10 @@ simulated function DisplayDebug(HUD HUD, out float out_YL, out float out_YPos)
     }
     if(HUD.ShouldDisplayDebug('Physics'))
     {
+        Canvas.SetDrawColor(0, 255, 255);
+        Canvas.SetPos(4, out_YPos);
         Canvas.DrawText(("Velocity:" @ string(VSize(Velocity) / float(100))) @ "Meters Per Second");
         out_YPos += out_YL;
-        Canvas.SetPos(4, out_YPos);
     }
     if(HUD.ShouldDisplayDebug('Rendering'))
     {
