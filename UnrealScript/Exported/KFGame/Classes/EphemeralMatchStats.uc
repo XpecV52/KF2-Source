@@ -430,6 +430,7 @@ function InternalRecordWeaponDamage(class<KFWeaponDefinition> WeaponDef, int Dam
 	local WeaponDamage TempWeaponDamage;
 	local bool bLargeZedKill;
 	local bool bKilled;
+	local int PreHealth;
 
 	if(Role != ROLE_Authority || !TargetPawn.isA('KFPawn_Monster') )
 	{
@@ -449,16 +450,25 @@ function InternalRecordWeaponDamage(class<KFWeaponDefinition> WeaponDef, int Dam
 
 	if(WeaponDamageList[WeaponIndex].WeaponDef == WeaponDef)
 	{
-		if(TargetPawn.Health + Damage > 0)
+		PreHealth = TargetPawn.Health + Damage;
+		
+		if ( TargetPawn.Health > 0 ) 
 		{
+			// damage has already been applied and zed is still standing, record it all
 			RecordIntStat(MATCH_EVENT_DAMAGE_DEALT, Damage);
 			WeaponDamageList[WeaponIndex].DamageAmount += Damage;
 		}
+		else if ( PreHealth > 0 ) 
+		{
+			// Zed has taken terminal damage, only record the difference to remove overkill counting
+			RecordIntStat(MATCH_EVENT_DAMAGE_DEALT, PreHealth );
+			WeaponDamageList[WeaponIndex].DamageAmount += PreHealth;
+		}
+		
 		if(bLargeZedKill)
 		{
 			WeaponDamageList[WeaponIndex].LargeZedKills++;	
 		}
-		return;
 	}
 }
 

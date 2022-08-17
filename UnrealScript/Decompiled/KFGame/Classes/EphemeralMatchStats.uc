@@ -390,6 +390,7 @@ function InternalRecordWeaponDamage(class<KFWeaponDefinition> WeaponDef, int Dam
     local int WeaponIndex;
     local WeaponDamage TempWeaponDamage;
     local bool bLargeZedKill, bKilled;
+    local int PreHealth;
 
     if((Outer.Role != ROLE_Authority) || !TargetPawn.IsA('KFPawn_Monster'))
     {
@@ -406,16 +407,24 @@ function InternalRecordWeaponDamage(class<KFWeaponDefinition> WeaponDef, int Dam
     }
     if(WeaponDamageList[WeaponIndex].WeaponDef == WeaponDef)
     {
-        if((TargetPawn.Health + Damage) > 0)
+        PreHealth = TargetPawn.Health + Damage;
+        if(TargetPawn.Health > 0)
         {
             RecordIntStat(2, Damage);
-            WeaponDamageList[WeaponIndex].DamageAmount += Damage;
+            WeaponDamageList[WeaponIndex].DamageAmount += Damage;            
+        }
+        else
+        {
+            if(PreHealth > 0)
+            {
+                RecordIntStat(2, PreHealth);
+                WeaponDamageList[WeaponIndex].DamageAmount += PreHealth;
+            }
         }
         if(bLargeZedKill)
         {
             ++ WeaponDamageList[WeaponIndex].LargeZedKills;
         }
-        return;
     }
 }
 

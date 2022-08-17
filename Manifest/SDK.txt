@@ -1,19 +1,19 @@
 Content Manifest for Depot 232151
 
-Manifest ID / date     : 2188415846529414210 / 2/24/2016 9:47:12 PM
+Manifest ID / date     : 8948472323751049066 / 3/3/2016 12:28:00 AM
 Total number of files  : 3777
 Total number of chunks : 3839
-Total bytes on disk    : 84871998
-Total bytes compressed : 23772112
+Total bytes on disk    : 84826819
+Total bytes compressed : 23766048
 
           Size Chunks File SHA                                 Flags Name
              0      0 0000000000000000000000000000000000000000    64 Binaries
-       1592832      2 5466A0D868748612611041D4D731E63935177826     0 Binaries\UnrealEdCSharp.dll
+       1592832      2 00E297C32A6A9202F8A904BFBB78AD9A1BA03FB8     0 Binaries\UnrealEdCSharp.dll
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64
         149504      1 47D40E38D126F4782A7E5A0FA54DA435E00A2D2F     0 Binaries\Win64\Aga.Controls.dll
          81408      1 9EE1453BE1FFCCC7C3BD7D059C1C5AD8E327C166     0 Binaries\Win64\DebuggerInterface.dll
         352256      1 C70D9FFD6B361F411A1AC44FF688C9C2C83F5836     0 Binaries\Win64\ICSharpCode.TextEditor.dll
-      64495616     62 A812EF64BA26CB2FAC34B3D94A3FF4C1A97D5BCF     0 Binaries\Win64\KFEditor.exe
+      64450048     62 ED6EA5A0174F7FD8F8116FCBBC015188B438CBAD     0 Binaries\Win64\KFEditor.exe
            474      1 8FE8B25AED690CAEB4CD6AF26B55DA616D25CBE9     0 Binaries\Win64\KFEditor.exe.config
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64\Licenses
          14062      1 78DAD2CAB6D97D1178476553092C34B5A6D867A8     0 Binaries\Win64\Licenses\Aga.Controls.html
@@ -2035,7 +2035,7 @@ Total bytes compressed : 23772112
           1033      1 024108950A1715F9CE0A9A34F41B100E95760D5E     0 Development\Src\KFGame\Classes\AIDebugGoal.uc
            805      1 FD2F8D3B8EED278DAC0E8C502022CEEB3ED055AC     0 Development\Src\KFGame\Classes\ActorFactoryKFPathnode.uc
            825      1 58C454C604DA19C195B3646DB57C7A043418A544     0 Development\Src\KFGame\Classes\ActorFactoryKFWallPathNode.uc
-         30981      1 523F9AA5ABBCCD4C6CC810A21B74B15667509648     0 Development\Src\KFGame\Classes\EphemeralMatchStats.uc
+         31370      1 06805214DF4A26291D09DC7CF10BA5252453612E     0 Development\Src\KFGame\Classes\EphemeralMatchStats.uc
           1127      1 80740D5057EC647F9DB3EAD035162DA4EA00F043     0 Development\Src\KFGame\Classes\FloorToWallReachSpec.uc
           1735      1 C76A5E36A5D0C8C70C41DC205836E1D361395854     0 Development\Src\KFGame\Classes\Goal_AwayFromPosition.uc
           1765      1 5C13C9AA76B8B24CEFC4B7492E8A2346D6F27DF6     0 Development\Src\KFGame\Classes\Goal_Random.uc
