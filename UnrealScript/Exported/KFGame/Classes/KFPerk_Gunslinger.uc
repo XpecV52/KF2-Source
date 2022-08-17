@@ -85,8 +85,8 @@ class KFPerk_Gunslinger extends KFPerk
 #linenumber 14
 
 //Passives
-var			const				PerkSkill 				WeaponDamage;						
-var 		const				PerkSkill				BulletResistance;              
+var			const				PerkSkill 				WeaponDamage;
+var 		const				PerkSkill				BulletResistance;
 var 		const				PerkSkill				MovementSpeed;
 var 		const				PerkSkill				Recoil;
 
@@ -100,7 +100,8 @@ var 		protected 	const	AkEvent					RhythmMethodSoundTop;
 
 var 		protected 	const 	name 					RhytmMethodRTPCName;
 
-var			private 	const	float					ShootnMooveBobDamp;		
+/* The bob damping amount when the Shoot and Move perk skill is active */
+var			private 	const	float					ShootnMooveBobDamp;
 
 enum EGunslingerSkills
 {
@@ -119,6 +120,7 @@ enum EGunslingerSkills
 //Selectable skills
 var 		private 		int							HeadShotComboCount;
 var 		private 		int							HeadShotComboCountDisplay;
+/** The maximum number of headshots that count toward the Rhythm Method perk skill damage multiplier */
 var 		private const	int 						MaxHeadShotComboCount;
 
 /*********************************************************************************************
@@ -152,7 +154,7 @@ simulated static function int GetHeadshotXP( byte Difficulty )
  * @param DamageInstigator responsible controller (optional)
  * @param class DamageType the damage type used (optional)
  */
-simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType )
+simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx )
 {
 	local KFWeapon KFW;
 	local float TempDamage;
@@ -171,7 +173,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 		if( IsBoneBreakerActive() )
 		{
 			TempDamage += InDamage * GetSkillValue( PerkSkills[EGunslingerBoneBreaker] );
-		}  
+		}
 
 		if( IsRhythmMethodActive() && HeadShotComboCount > 0 )
 		{
@@ -207,7 +209,7 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
 
 /**
  * @brief Weapons and perk skills can affect the jog/sprint speed
- * 
+ *
  * @param Speed jog/sprint speed
   */
 function ModifySpeed( out float Speed )
@@ -222,9 +224,9 @@ function ModifySpeed( out float Speed )
 }
 
 /**
- * @brief Modifies the weapon's recoil 
- * 
- * @param CurrentRecoilModifier percent recoil lowered 
+ * @brief Modifies the weapon's recoil
+ *
+ * @param CurrentRecoilModifier percent recoil lowered
  */
 simulated function ModifyRecoil( out float CurrentRecoilModifier, KFWeapon KFW )
 {
@@ -232,7 +234,7 @@ simulated function ModifyRecoil( out float CurrentRecoilModifier, KFWeapon KFW )
 	{
 		;
 		CurrentRecoilModifier -= CurrentRecoilModifier * GetPassiveValue( Recoil, GetLevel() );
-	}	
+	}
 }
 
 /*********************************************************************************************
@@ -281,10 +283,10 @@ function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDa
 
 /**
  * @brief Some zeds have special body parts that cover the torso (FP for example)
- * 
+ *
  * @param PawnClass The zed hit
  * @param BodyPart The body part
- * 
+ *
  * @return valid body part or not
  */
 function bool CheckSpecialZedBodyPart( class<KFPawn> PawnClass, byte BodyPart )
@@ -322,7 +324,7 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 
 /**
  * @brief Checks if Uber Ammo is selected, the weapon is on perk and if we are in zed time
- * 
+ *
  * @param KFW Weapon used
  * @return true or false
  */
@@ -333,7 +335,7 @@ simulated function bool GetIsUberAmmoActive( KFWeapon KFW )
 
 /**
  * @brief A head shot happened - count it if the damage type is on perk
- * 
+ *
  * @param KFDT Damage type of the weapon used
  */
 function AddToHeadShotCombo( class<KFDamageType> KFDT, KFPawn_Monster KFPM )
@@ -359,14 +361,14 @@ function UpdatePerkHeadShots( ImpactInfo Impact, class<DamageType> DamageType, i
 {
    	local int HitZoneIdx;
    	local KFPawn_Monster KFPM;
- 	
+
    	KFPM = KFPawn_Monster(Impact.HitActor);
    	if( KFPM == none )
    	{
    		if( Numhit < 1 )
    		{
    			SubstractHeadShotCombo();
-   		} 
+   		}
 
    		return;
    	}
@@ -384,10 +386,10 @@ function UpdatePerkHeadShots( ImpactInfo Impact, class<DamageType> DamageType, i
 
 /**
  * @brief Give the use some feedback when a headshot or miss happens
- * 
+ *
  * @param HeadShotNum Number of successfull headshots in a row
  * @param bMissed If the last shot was a miss
- * 
+ *
  */
 reliable client function HeadShotMessage( byte HeadShotNum, byte DisplayValue, optional bool bMissed=false, optional KFPawn_Monster KFPM )
 {
@@ -400,8 +402,8 @@ reliable client function HeadShotMessage( byte HeadShotNum, byte DisplayValue, o
 	}
 
 	i = HeadshotNum;
-	OwnerPC.UpdateRhythmCounterWidget( DisplayValue );	
-	
+	OwnerPC.UpdateRhythmCounterWidget( DisplayValue, MaxHeadShotComboCount );
+
 	switch( i )
 	{
 		case 0:
@@ -410,7 +412,7 @@ reliable client function HeadShotMessage( byte HeadShotNum, byte DisplayValue, o
 		case 1:	case 2:	case 3:	case 4:	case 5:
 		case 6:
 			if( !bMissed )
-			{				
+			{
 				OwnerPC.ClientSpawnCameraLensEffect(class'KFCameraLensEmit_RackemHeadShot');
 				TempAkEvent = RhythmMethodSoundHit;
 			}
@@ -424,7 +426,7 @@ reliable client function HeadShotMessage( byte HeadShotNum, byte DisplayValue, o
 			}
 			break;
 	}
-	
+
 	if( TempAkEvent != none )
 	{
 		OwnerPC.PlayRMEffect( TempAkEvent, RhytmMethodRTPCName, i );
@@ -437,7 +439,7 @@ reliable client function HeadShotMessage( byte HeadShotNum, byte DisplayValue, o
 function SubstractHeadShotCombo()
 {
 	;
-	
+
 	if( IsRhythmMethodActive() && HeadShotComboCount > 0 )
 	{
 		--HeadShotComboCount;
@@ -468,10 +470,10 @@ simulated event bool GetIsHeadShotComboActive()
 
 /**
  * @brief The Quick Shot skill allows you to shoot faster
- * 
+ *
  * @param InRate delay between shots
  * @param KFW Equipped weapon
- * 
+ *
  */
 /**simulated function ModifyRateOfFire( out float InRate, KFWeapon KFW )
 {
@@ -503,19 +505,19 @@ simulated function float GetPenetrationModifier( byte Level, class<KFDamageType>
 
 /**
  * @brief The Shoot'n'move skill lets you move quicker in iron sights
- * 
+ *
  * @param KFW Weapon equipped
  * @return Speed modifier
  */
 simulated event float GetIronSightSpeedModifier( KFWeapon KFW )
-{ 
-	if( IsShootnMooveActive() && IsWeaponOnPerk( KFW ) ) 
+{
+	if( IsShootnMooveActive() && IsWeaponOnPerk( KFW ) )
 	{
 		;
 		return  GetSkillValue( PerkSkills[EGunslingerShootnMove] );
 	}
 
-	return 1.f; 
+	return 1.f;
 }
 
 simulated function ModifyWeaponBopDamping( out float BobDamping, KFWeapon PawnWeapon )
@@ -528,7 +530,7 @@ simulated function ModifyWeaponBopDamping( out float BobDamping, KFWeapon PawnWe
 
 /**
  * @brief The Quick Switch skill modifies the weapon switch speed
- * 
+ *
  * @param ModifiedSwitchTime Duration of putting down or equipping the weapon
  */
 simulated function ModifyWeaponSwitchTime( out float ModifiedSwitchTime )
@@ -541,8 +543,8 @@ simulated function ModifyWeaponSwitchTime( out float ModifiedSwitchTime )
 }
 
 simulated function bool ShouldInstantlySwitchWeapon( KFWeapon KFW )
-{ 
-	return IsQuickSwitchActive(); 
+{
+	return IsQuickSwitchActive();
 }
 
 /*********************************************************************************************
@@ -661,10 +663,10 @@ simulated function bool IsUberAmmoActive()
 /**
  * @brief Returns true if the weapon is associated with this perk
  * @details Uses WeaponPerkClass if we do not have a spawned weapon (such as in the trader menu)
- * 
+ *
  * @param W the weapon
- * @param WeaponPerkClass weapon's perk class (optional) 
- * 
+ * @param WeaponPerkClass weapon's perk class (optional)
+ *
  * @return true/false
  */
 static simulated function bool IsWeaponOnPerk( KFWeapon W, optional class<KFPerk> WeaponPerkClass )
@@ -673,13 +675,13 @@ static simulated function bool IsWeaponOnPerk( KFWeapon W, optional class<KFPerk
 	{
 		return true;
 	}
-	
+
 	return super.IsWeaponOnPerk( W, WeaponPerkClass );
 }
 
 /**
  * @brief DamageType on perk?
- * 
+ *
  * @param KFDT The damage type
  * @return true/false
  */
@@ -696,14 +698,14 @@ static function bool IsDamageTypeOnPerk( class<KFDamageType> KFDT )
 simulated protected event PostSkillUpdate()
 {
 	super.PostSkillUpdate();
-	
+
 	if(Role == Role_Authority)
 	{
 		if(IsRhythmMethodActive())
 		{
 			ServerClearHeadShotsCombo();
 		}
-	}	
+	}
 }
 
 event Destroyed()
@@ -719,7 +721,7 @@ simulated function PlayerDied()
 	if(Role == Role_Authority)
 	{
 			ServerClearHeadShotsCombo();
-	}	
+	}
 }
 
 /*********************************************************************************************
@@ -750,7 +752,7 @@ simulated static function GetPassiveStrings( out array<string> PassiveValues, ou
 /** QA Logging - Report Perk Info */
 simulated function LogPerkSkills()
 {
-	super.LogPerkSkills();    
+	super.LogPerkSkills();
 
 	if( bLogPerk )
 	{
@@ -825,6 +827,8 @@ defaultproperties
    PrimaryWeaponDef=Class'KFGame.KFWeapDef_Remington1858Dual'
    KnifeWeaponDef=Class'KFGame.KFWeapDef_Knife_Gunslinger'
    GrenadeWeaponDef=Class'KFGame.KFWeapDef_Grenade_Gunslinger'
+   HitAccuracyHandicap=-5.000000
+   HeadshotAccuracyHandicap=-8.000000
    Name="Default__KFPerk_Gunslinger"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

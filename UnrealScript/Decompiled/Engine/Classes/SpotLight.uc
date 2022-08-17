@@ -43,39 +43,28 @@ defaultproperties
     object end
     // Reference: SpriteComponent'Default__SpotLight.Sprite'
     Components(0)=Sprite
-    begin object name=LightMeshComponent0 class=StaticMeshComponent
-        ReplacementPrimitive=none
-    object end
-    // Reference: StaticMeshComponent'Default__SpotLight.LightMeshComponent0'
-    Components(1)=LightMeshComponent0
-    begin object name=LensFlareComponent0 class=LensFlareComponent
-        NextTraceTime=0.0 // Ka v oh
-        ReplacementPrimitive=none
-    object end
-    // Reference: LensFlareComponent'Default__SpotLight.LensFlareComponent0'
-    Components(2)=LensFlareComponent0
     begin object name=DrawLightRadius0 class=DrawLightRadiusComponent
         ReplacementPrimitive=none
     object end
     // Reference: DrawLightRadiusComponent'Default__SpotLight.DrawLightRadius0'
-    Components(3)=DrawLightRadius0
+    Components(1)=DrawLightRadius0
     begin object name=DrawInnerCone0 class=DrawLightConeComponent
         ReplacementPrimitive=none
     object end
     // Reference: DrawLightConeComponent'Default__SpotLight.DrawInnerCone0'
-    Components(4)=DrawInnerCone0
+    Components(2)=DrawInnerCone0
     begin object name=DrawOuterCone0 class=DrawLightConeComponent
         ConeColor=(B=255,G=255,R=200,A=255)
         ReplacementPrimitive=none
     object end
     // Reference: DrawLightConeComponent'Default__SpotLight.DrawOuterCone0'
-    Components(5)=DrawOuterCone0
+    Components(3)=DrawOuterCone0
     begin object name=DrawLightSourceRadius0 class=DrawLightRadiusComponent
         SphereColor=(B=0,G=239,R=231,A=255)
         ReplacementPrimitive=none
     object end
     // Reference: DrawLightRadiusComponent'Default__SpotLight.DrawLightSourceRadius0'
-    Components(6)=DrawLightSourceRadius0
+    Components(4)=DrawLightSourceRadius0
     begin object name=SpotLightComponent0 class=SpotLightComponent
         PreviewInnerCone=DrawLightConeComponent'Default__SpotLight.DrawInnerCone0'
         PreviewOuterCone=DrawLightConeComponent'Default__SpotLight.DrawOuterCone0'
@@ -88,7 +77,7 @@ defaultproperties
         LightAffectsClassification=ELightAffectsClassification.LAC_STATIC_AFFECTING
     object end
     // Reference: SpotLightComponent'Default__SpotLight.SpotLightComponent0'
-    Components(7)=SpotLightComponent0
+    Components(5)=SpotLightComponent0
     begin object name=ArrowComponent0 class=ArrowComponent
         ArrowColor=(B=255,G=200,R=150,A=255)
         bTreatAsASprite=true
@@ -96,7 +85,7 @@ defaultproperties
         ReplacementPrimitive=none
     object end
     // Reference: ArrowComponent'Default__SpotLight.ArrowComponent0'
-    Components(8)=ArrowComponent0
+    Components(6)=ArrowComponent0
     Rotation=(Pitch=-16384,Yaw=0,Roll=0)
     begin object name=LightMeshComponent0 class=StaticMeshComponent
         ReplacementPrimitive=none

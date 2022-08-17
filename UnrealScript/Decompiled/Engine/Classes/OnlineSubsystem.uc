@@ -135,6 +135,8 @@ enum ItemType
 {
     ITP_WeaponSkin,
     ITP_CharacterSkin,
+    ITP_KeyCrate,
+    ITP_CraftingComponent,
     ITP_Item,
     ITP_NONE,
     ITP_MAX
@@ -145,9 +147,9 @@ enum ItemRarity
     ITR_Common,
     ITR_Uncommon,
     ITR_Rare,
+    ITR_Mythical,
     ITR_Legendary,
     ITR_ExceedinglyRare,
-    ITR_Mythical,
     ITR_NONE,
     ITR_MAX
 };
@@ -648,11 +650,13 @@ struct native ExchangeRuleSets
 {
     var array<ExchangeRule> Sources;
     var int Target;
+    var OnlineSubsystem.ItemType Type;
 
     structdefaultproperties
     {
         Sources=none
         Target=0
+        Type=ItemType.ITP_WeaponSkin
     }
 };
 
@@ -1032,5 +1036,4 @@ native function bool CheckPlayerGroup(UniqueNetId Group);
 defaultproperties
 {
     NamedInterfaceDefs(0)=(InterfaceName=RecentPlayersList,InterfaceClassName="Engine.OnlineRecentPlayersList")
-    NamedInterfaceDefs(1)=(InterfaceName=AnalyticsUpload,InterfaceClassName="IpDrv.TWOnlineEventsInterface")
 }

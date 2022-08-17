@@ -1,6 +1,5 @@
 package tripwire.containers.trader
 {
-    import flash.display.MovieClip;
     import flash.events.MouseEvent;
     import flash.external.ExternalInterface;
     import scaleform.clik.constants.InputValue;
@@ -27,8 +26,6 @@ package tripwire.containers.trader
         
         public var shopHeader:SectionHeaderContainer;
         
-        public var cancelPrompt:MovieClip;
-        
         public function TraderShopContainer()
         {
             super();
@@ -45,11 +42,6 @@ package tripwire.containers.trader
         public function set shopHeaderName(param1:String) : void
         {
             this.shopHeader.text = param1;
-        }
-        
-        public function set cancelPromptName(param1:String) : void
-        {
-            this.cancelPrompt.textField.text = param1;
         }
         
         public function set selectedIndex(param1:int) : void
@@ -111,7 +103,6 @@ package tripwire.containers.trader
         
         public function updateControllerVisibility() : *
         {
-            this.cancelPrompt.visible = bManagerUsingGamepad;
             this.filterContainer.controllerIconVisibility = bManagerUsingGamepad;
         }
         
@@ -130,7 +121,6 @@ package tripwire.containers.trader
                     case NavigationCode.GAMEPAD_L1:
                         if(this.shopList.focused == 1 && this.filterContainer.changeTabIndex(this.filterContainer.selectedTab - 1))
                         {
-                            this.filterContainer.tabBar;
                             this.shopList.selectedIndex = 0;
                         }
                         break;

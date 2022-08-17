@@ -84,6 +84,7 @@ function DrawCrosshair()
 {
     local float CrosshairSize, CrossHairSpread;
     local KFWeapon KFWP;
+    local bool bMonsterPawn, bDrawCrosshairNoWeapon;
     local byte CrossHairAlpha;
     local float WeaponAccuracyAdjust, WeaponRecoilAdjust, WeaponRecoilMod;
     local KFPerk MyKFPerk;
@@ -93,32 +94,61 @@ function DrawCrosshair()
     {
         KFWP = KFWeapon(PlayerOwner.Pawn.Weapon);
         MyKFPerk = KFPlayerController(PlayerOwner).GetPerk();
-        if(((MyKFPerk == none) || KFWP == none) || !bForceDrawCrosshair && KFWP.bUsingSights)
+        bMonsterPawn = PlayerOwner.GetTeamNum() == 255;
+        bDrawCrosshairNoWeapon = KFPawn(PlayerOwner.Pawn).bNeedsCrosshair;
+        if(bMonsterPawn)
         {
-            return;
+            if(!bDrawCrosshairNoWeapon)
+            {
+                return;
+            }
         }
-        if((KFWP.Spread.Length == 0) && !bForceDrawCrosshair)
+        if(!bDrawCrosshairNoWeapon)
         {
-            return;
+            if(((!bMonsterPawn && MyKFPerk == none) || KFWP == none) || !bForceDrawCrosshair && KFWP.bUsingSights)
+            {
+                return;
+            }
+            if((KFWP.Spread.Length == 0) && !bForceDrawCrosshair)
+            {
+                return;
+            }
         }
         TargetCrossHairMod = 1;
         if(bForceDrawCrosshair)
         {
-            TargetCrossHairMod = 1E-07;
+            TargetCrossHairMod = 1E-07;            
         }
-        if(!bForceDrawCrosshair)
+        else
         {
-            WeaponAccuracyAdjust = EvalInterpCurveFloat(CrosshairAccuracyScale, KFWP.Spread[0]);
-            TargetCrossHairMod *= WeaponAccuracyAdjust;
+            if(bDrawCrosshairNoWeapon)
+            {
+                TargetCrossHairMod = 0.4;
+            }
         }
-        WeaponRecoilMod = ((KFWP.RecoilPitchPercentage > KFWP.RecoilYawPercentage) ? KFWP.RecoilPitchPercentage : KFWP.RecoilYawPercentage);
-        WeaponRecoilAdjust = Lerp(1, 2.5, WeaponRecoilMod);
-        TargetCrossHairMod *= WeaponRecoilAdjust;
-        if(!MyKFPerk.IsShootAndMoveActive())
+        if(KFWP != none)
+        {
+            if(!bForceDrawCrosshair)
+            {
+                WeaponAccuracyAdjust = EvalInterpCurveFloat(CrosshairAccuracyScale, KFWP.Spread[0]);
+                TargetCrossHairMod *= WeaponAccuracyAdjust;
+            }
+            WeaponRecoilMod = ((KFWP.RecoilPitchPercentage > KFWP.RecoilYawPercentage) ? KFWP.RecoilPitchPercentage : KFWP.RecoilYawPercentage);
+            WeaponRecoilAdjust = Lerp(1, 2.5, WeaponRecoilMod);
+            TargetCrossHairMod *= WeaponRecoilAdjust;
+        }
+        if((MyKFPerk == none) || !MyKFPerk.IsShootAndMoveActive())
         {
             if(PlayerOwner.Pawn.Physics == 2)
             {
-                TargetCrossHairMod *= KFWP.FallingRecoilModifier;                
+                if(KFWP == none)
+                {
+                    TargetCrossHairMod *= Class'KFWeapon'.default.FallingRecoilModifier;                    
+                }
+                else
+                {
+                    TargetCrossHairMod *= KFWP.FallingRecoilModifier;
+                }                
             }
             else
             {
@@ -130,13 +160,33 @@ function DrawCrosshair()
                 {
                     if(PlayerOwner.Pawn.bIsCrouched)
                     {
-                        TargetCrossHairMod *= KFWP.CrouchSpreadMod;
+                        if(KFWP == none)
+                        {
+                            TargetCrossHairMod *= Class'KFWeapon'.default.CrouchSpreadMod;                            
+                        }
+                        else
+                        {
+                            TargetCrossHairMod *= KFWP.CrouchSpreadMod;
+                        }
                     }
-                    if((VSizeSq(PlayerOwner.Pawn.Velocity) > float(50)) && !KFWP.bZoomingOut)
+                    if((VSizeSq(PlayerOwner.Pawn.Velocity) > float(50)) && (KFWP == none) || !KFWP.bZoomingOut)
                     {
-                        TargetCrossHairMod *= KFWP.JoggingRecoilModifier;
+                        if(KFWP == none)
+                        {
+                            TargetCrossHairMod *= Class'KFWeapon'.default.JoggingRecoilModifier;                            
+                        }
+                        else
+                        {
+                            if(!KFWP.bZoomingOut)
+                            {
+                                TargetCrossHairMod *= KFWP.JoggingRecoilModifier;
+                            }
+                        }
                     }
-                    MyKFPerk.ModifySpread(TargetCrossHairMod);
+                    if(MyKFPerk != none)
+                    {
+                        MyKFPerk.ModifySpread(TargetCrossHairMod);
+                    }
                 }
             }
         }
@@ -292,32 +342,35 @@ function DrawHUD()
     local Rotator ViewRotation;
 
     super.DrawHUD();
-    if(bDrawCrosshair || bForceDrawCrosshair)
+    if((bDrawCrosshair || bForceDrawCrosshair) || (KFPlayerOwner != none) && KFPlayerOwner.GetTeamNum() == 255)
     {
         if((KFPlayerOwner != none) && !KFPlayerOwner.bCinematicMode)
         {
             DrawCrosshair();
         }
     }
-    if(KFPlayerOwner != none)
+    if(PlayerOwner.GetTeamNum() == 0)
     {
-        KFPlayerOwner.GetPlayerViewPoint(ViewLocation, ViewRotation);
-    }
-    ViewVector = vector(ViewRotation);
-    Canvas.EnableStencilTest(true);
-    foreach WorldInfo.AllPawns(Class'KFPawn_Human', KFPH)
-    {
-        PlayerPartyInfoLocation = (KFPH.Location + KFPH.MTO_PhysSmoothOffset) + (KFPH.CylinderComponent.CollisionHeight * vect(0, 0, 1));
-        ThisDot = Normal(PlayerPartyInfoLocation - ViewLocation) Dot Normal(ViewVector);
-        if(KFPH.IsAliveAndWell() && KFPH != KFPlayerOwner.Pawn)
+        if(KFPlayerOwner != none)
         {
-            if(((WorldInfo.TimeSeconds - KFPH.Mesh.LastRenderTime) < 0.4) && (ThisDot > float(0)) && ThisDot < 1)
+            KFPlayerOwner.GetPlayerViewPoint(ViewLocation, ViewRotation);
+        }
+        ViewVector = vector(ViewRotation);
+        Canvas.EnableStencilTest(true);
+        foreach WorldInfo.AllPawns(Class'KFPawn_Human', KFPH)
+        {
+            PlayerPartyInfoLocation = (KFPH.Location + KFPH.MTO_PhysSmoothOffset) + (KFPH.CylinderComponent.CollisionHeight * vect(0, 0, 1));
+            ThisDot = Normal(PlayerPartyInfoLocation - ViewLocation) Dot Normal(ViewVector);
+            if(KFPH.IsAliveAndWell() && KFPH != KFPlayerOwner.Pawn)
             {
-                DrawFriendlyHUD(KFPH);
-            }
+                if(((WorldInfo.TimeSeconds - KFPH.Mesh.LastRenderTime) < 0.4) && (ThisDot > float(0)) && ThisDot < 1)
+                {
+                    DrawFriendlyHUD(KFPH);
+                }
+            }            
         }        
-    }    
-    Canvas.EnableStencilTest(false);
+        Canvas.EnableStencilTest(false);
+    }
 }
 
 simulated function DrawFriendlyHUD(KFPawn_Human KFPH)

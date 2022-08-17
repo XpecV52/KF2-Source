@@ -467,8 +467,8 @@ var(ApexClothing) float WindDirNoiseBounds;
 var(ApexClothing) float WindDirNoiseStepSize;
 /** Higher probability to stay around the center */
 var(ApexClothing) bool bWindDirNoiseCentered;
-var transient float ClothingWindCurrentStrengthNoise;
-var transient Vector ClothingWindCurrentDirNoise;
+var transient float WindCurrentStrengthNoise;
+var transient Vector WindCurrentDirNoise;
 var const transient bool bSkipInitClothing;
 var native const transient Pointer SoftBodySim;
 var native const transient int SoftBodySceneIndex;

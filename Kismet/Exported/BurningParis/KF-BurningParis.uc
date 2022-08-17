@@ -1598,3 +1598,588 @@ Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_7
    Name="SeqEvent_Touch_7"
    ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
 End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_7
+   ObjValue=StaticMeshActor'KF-BurningParis.TheWorld:PersistentLevel.StaticMeshActor_2'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=592
+   ObjPosY=2264
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_7"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_17
+   ObjValue=StaticMeshActor'KF-BurningParis.TheWorld:PersistentLevel.StaticMeshActor_7'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=600
+   ObjPosY=2736
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_17"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_1
+   SizeX=545
+   SizeY=324
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=256
+   ObjPosY=2144
+   ObjComment="Zed_NoGo_01"
+   DrawWidth=545
+   DrawHeight=324
+   Name="SequenceFrame_1"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_3
+   SizeX=569
+   SizeY=308
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=232
+   ObjPosY=2608
+   ObjComment="Zed_NoGo_02"
+   DrawWidth=569
+   DrawHeight=308
+   Name="SequenceFrame_3"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_18
+   ObjValue=StaticMeshActor'KF-BurningParis.TheWorld:PersistentLevel.StaticMeshActor_21'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=592
+   ObjPosY=3088
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_18"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_4
+   SizeX=577
+   SizeY=268
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=224
+   ObjPosY=2984
+   ObjComment="Zed_NoGo_03"
+   DrawWidth=577
+   DrawHeight=268
+   Name="SequenceFrame_4"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
+   ObjValue=StaticMeshActor'KF-BurningParis.TheWorld:PersistentLevel.StaticMeshActor_23'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=592
+   ObjPosY=3408
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_19"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_20
+   SizeX=609
+   SizeY=292
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=200
+   ObjPosY=3312
+   ObjComment="Zed_NoGo_04"
+   DrawWidth=609
+   DrawHeight=292
+   Name="SequenceFrame_20"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_20
+   ObjValue=StaticMeshActor'KF-BurningParis.TheWorld:PersistentLevel.StaticMeshActor_10'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=576
+   ObjPosY=3784
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_20"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_21
+   SizeX=681
+   SizeY=292
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=160
+   ObjPosY=3672
+   ObjComment="Zed_NoGo_Spawn_05"
+   DrawWidth=681
+   DrawHeight=292
+   Name="SequenceFrame_21"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_23
+   ObjValue=StaticMeshActor'KF-BurningParis.TheWorld:PersistentLevel.StaticMeshActor_11'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=584
+   ObjPosY=4128
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_23"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_22
+   SizeX=721
+   SizeY=300
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=128
+   ObjPosY=4016
+   ObjComment="Zed_NoGo_Spawn_06"
+   DrawWidth=721
+   DrawHeight=300
+   Name="SequenceFrame_22"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_49
+   ObjValue=StaticMeshActor'KF-BurningParis.TheWorld:PersistentLevel.StaticMeshActor_25'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=568
+   ObjPosY=4520
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_49"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_23
+   SizeX=673
+   SizeY=308
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=152
+   ObjPosY=4416
+   ObjComment="Zed_NoGo_Spawn_07"
+   DrawWidth=673
+   DrawHeight=308
+   Name="SequenceFrame_23"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_50
+   ObjValue=StaticMeshActor'KF-BurningParis.TheWorld:PersistentLevel.StaticMeshActor_27'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=584
+   ObjPosY=4912
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_50"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_24
+   SizeX=657
+   SizeY=324
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=152
+   ObjPosY=4792
+   ObjComment="Zed_NoGo_Spawn_08"
+   DrawWidth=657
+   DrawHeight=324
+   Name="SequenceFrame_24"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_51
+   ObjValue=StaticMeshActor'KF-BurningParis.TheWorld:PersistentLevel.StaticMeshActor_29'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=584
+   ObjPosY=5304
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_51"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_25
+   SizeX=657
+   SizeY=292
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=184
+   ObjPosY=5200
+   ObjComment="Zed_NoGo_Spawn_09"
+   DrawWidth=657
+   DrawHeight=292
+   Name="SequenceFrame_25"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_52
+   ObjValue=StaticMeshActor'KF-BurningParis.TheWorld:PersistentLevel.StaticMeshActor_15'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=560
+   ObjPosY=5704
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_52"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_26
+   SizeX=609
+   SizeY=332
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=168
+   ObjPosY=5576
+   ObjComment="Zed_NoGo_Spawn_10"
+   DrawWidth=609
+   DrawHeight=332
+   Name="SequenceFrame_26"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_53
+   ObjValue=StaticMeshActor'KF-BurningParis.TheWorld:PersistentLevel.StaticMeshActor_16'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=560
+   ObjPosY=6112
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_53"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_27
+   SizeX=641
+   SizeY=284
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=160
+   ObjPosY=6008
+   ObjComment="Zed_NoGo_Spawn_11"
+   DrawWidth=641
+   DrawHeight=284
+   Name="SequenceFrame_27"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_54
+   ObjValue=StaticMeshActor'KF-BurningParis.TheWorld:PersistentLevel.StaticMeshActor_31'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=552
+   ObjPosY=6464
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_54"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_28
+   SizeX=593
+   SizeY=284
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=184
+   ObjPosY=6360
+   ObjComment="Zed_NoGo_Spawn_12"
+   DrawWidth=593
+   DrawHeight=284
+   Name="SequenceFrame_28"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_55
+   ObjValue=StaticMeshActor'KF-BurningParis.TheWorld:PersistentLevel.StaticMeshActor_89'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=520
+   ObjPosY=6872
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_55"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_29
+   SizeX=561
+   SizeY=308
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=160
+   ObjPosY=6752
+   ObjComment="Zed_NoGo_13"
+   DrawWidth=561
+   DrawHeight=308
+   Name="SequenceFrame_29"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_57
+   ObjValue=StaticMeshActor'KF-BurningParis.TheWorld:PersistentLevel.StaticMeshActor_91'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=536
+   ObjPosY=7272
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_57"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_31
+   SizeX=545
+   SizeY=316
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=192
+   ObjPosY=7152
+   ObjComment="Zed_NoGo_Spawn_14"
+   DrawWidth=545
+   DrawHeight=316
+   Name="SequenceFrame_31"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_30
+   SizeX=545
+   SizeY=316
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=192
+   ObjPosY=7552
+   ObjComment="Zed_NoGo_Spawn_15"
+   DrawWidth=545
+   DrawHeight=316
+   Name="SequenceFrame_30"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_56
+   ObjValue=StaticMeshActor'KF-BurningParis.TheWorld:PersistentLevel.StaticMeshActor_93'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=552
+   ObjPosY=7680
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_56"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_58
+   ObjValue=KFVersusNoGoVolume'KF-BurningParis.TheWorld:PersistentLevel.KFVersusNoGoVolume_0'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=328
+   ObjPosY=2264
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_58"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_59
+   ObjValue=KFVersusNoGoVolume'KF-BurningParis.TheWorld:PersistentLevel.KFVersusNoGoVolume_1'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=368
+   ObjPosY=2736
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_59"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_60
+   ObjValue=KFVersusNoGoVolume'KF-BurningParis.TheWorld:PersistentLevel.KFVersusNoGoVolume_2'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=360
+   ObjPosY=3088
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_60"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_61
+   ObjValue=KFVersusNoGoVolume'KF-BurningParis.TheWorld:PersistentLevel.KFVersusNoGoVolume_3'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=320
+   ObjPosY=3416
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_61"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_62
+   ObjValue=KFVersusNoGoVolume'KF-BurningParis.TheWorld:PersistentLevel.KFVersusNoGoVolume_4'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=320
+   ObjPosY=3784
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_62"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_63
+   ObjValue=KFVersusNoGoVolume'KF-BurningParis.TheWorld:PersistentLevel.KFVersusNoGoVolume_5'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=296
+   ObjPosY=4120
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_63"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_64
+   ObjValue=KFVersusNoGoVolume'KF-BurningParis.TheWorld:PersistentLevel.KFVersusNoGoVolume_6'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=312
+   ObjPosY=4520
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_64"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_65
+   ObjValue=KFVersusNoGoVolume'KF-BurningParis.TheWorld:PersistentLevel.KFVersusNoGoVolume_7'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=312
+   ObjPosY=4920
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_65"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_66
+   ObjValue=KFVersusNoGoVolume'KF-BurningParis.TheWorld:PersistentLevel.KFVersusNoGoVolume_8'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=344
+   ObjPosY=5312
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_66"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_67
+   ObjValue=KFVersusNoGoVolume'KF-BurningParis.TheWorld:PersistentLevel.KFVersusNoGoVolume_9'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=288
+   ObjPosY=5704
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_67"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_68
+   ObjValue=KFVersusNoGoVolume'KF-BurningParis.TheWorld:PersistentLevel.KFVersusNoGoVolume_10'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=304
+   ObjPosY=6112
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_68"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_69
+   ObjValue=KFVersusNoGoVolume'KF-BurningParis.TheWorld:PersistentLevel.KFVersusNoGoVolume_11'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=312
+   ObjPosY=6464
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_69"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_70
+   ObjValue=KFVersusNoGoVolume'KF-BurningParis.TheWorld:PersistentLevel.KFVersusNoGoVolume_12'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=280
+   ObjPosY=6864
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_70"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_71
+   ObjValue=KFVersusNoGoVolume'KF-BurningParis.TheWorld:PersistentLevel.KFVersusNoGoVolume_13'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=304
+   ObjPosY=7272
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_71"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_72
+   ObjValue=KFVersusNoGoVolume'KF-BurningParis.TheWorld:PersistentLevel.KFVersusNoGoVolume_14'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-BurningParis.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=312
+   ObjPosY=7680
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_72"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object

@@ -28,7 +28,6 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
 	super.Initialize( NewParentMenu );
 	MyTraderMenu = KFGFxMenu_Trader( NewParentMenu );
 	SetString("shopHeaderName", TraderString);
-	SetString("cancelPromptName", class'KFCommon_LocalizedStrings'.default.CancelString);
 	GetPC().SetTimer(0.1f, false,'DelayedRefresh', self);
 }
 
@@ -231,9 +230,9 @@ function bool IsItemFiltered(const out STraderItem Item)
 	if ( !MyTraderMenu.IsSellable(Item) )
 		return true;
 	if ( Item.WeaponDef.default.SharedUnlockId != SCU_None && !class'KFUnlockManager'.static.IsSharedContentUnlocked(Item.WeaponDef.default.SharedUnlockId) )
-		return true;
+     	 	return true;
 
-	return false;
+   	return false;
 }
 
 // Checks if we can have enough dosh to buy this item

@@ -1,0 +1,6702 @@
+//NOTES: 
+//1. CharacterName can be changed slightly. It can run to about ?? characters (MAX), including spaces.
+//2. Description is the bio and can be edited quite happily. Limit is just over 800 characters, including spaces. 
+//3. All the rest (Skin descriptions) should be 20-21 characters, max, including spaces.
+
+//Jagerhorn
+[CHR_Jagerhorn_Archetype]
+CharacterName="Oisten Jägerhorn"
+Description="Being a big guy, from Sweden, who enjoyed beer and getting loud in bars, Jägerhorn tended to fit everyone's idea of a modern-day Viking, before the outbreak. But, after being vaguely involved in the craziness that was the Great Nordic Biker war in the 1990s, he'd decided that insane violence, directed at people, was far less fun than drinking plenty of beer and playing mediocre lead guitar for 'Metalbika' - his Metallica tribute band. \n\nOnce the outbreaks reached Scandinavia, on the other hand, insane violence became the order of the day after all. Zeds vs. People - not good karma, by Jägerhorn's standards. Big Swedish Viking Jägerhorn vs. Zeds? Bring it on!"
+BodyMesh0="Motorcu Zamanı"
+HeadMesh0="Sakal Gücü!"
+
+Attachment0="Kasket"
+Attachment1="Kevlar Kask"
+Attachment2="Gece Görüşü Maskesi"
+Attachment3="Kaynak Maskesi"
+Attachment4="Göz Bandı"
+Attachment5="Şef Şapkası"
+Attachment6="Kovboy Şapkası"
+Attachment7="Beyzbol Şapkası"
+Attachment8="Havacı"
+Attachment9="Retro Güneş Gözlüğü"
+Attachment10="Dikenli Kovboy Şapkası"
+Attachment11="Ön Koruma Açık"
+Attachment12="Ön Koruma Kapalı"
+Attachment13="Muhafız Kaskı"
+Attachment14="Charm Goggles"
+Attachment15="Aviator Goggles"
+Attachment16="Sawblade Battle Helm"
+Attachment17="Boonie Cap"
+Attachment18="Infiltrator"
+Attachment19="Mask of the Abyss"
+Attachment20="Horzine Cybernetic Gas Mask"
+Attachment21="JFront Cap"
+Attachment22="Longhorn"
+Attachment23="EMS Backpack"
+Attachment24="Motorcycle Helmet"
+Attachment25="Smashed Motorcycle Helmet"
+Attachment26="Rubber Air Filter"
+Attachment27="Russian Gas Mask"
+Attachment28="Sawtooth Mask"
+Attachment29="The Inquisitor"
+Attachment30="US Gas Mask"
+Attachment31="Bloody Games"
+Attachment32="Shattered Mask"
+Attachment33="Military Surplus Beenie"
+Attachment34="RAF Goggles"
+Attachment35="Pork Pie"
+Attachment36="Visage de Poupee"
+Attachment37="Protective Glasses"
+Attachment38="Samurai Helm"
+Attachment39="Samurai Hat"
+Attachment40="Street Punk Bandana"
+Attachment41="Street Punk Glasses"
+Attachment42="Discount T-Rex Mask"
+Attachment43="Wasteland Goggles"
+Attachment44="EMS Arm Band"
+
+[CHR_Jagerhorn_Archetype.BodyMesh0]
+BodySkin0="Giyotin"
+BodySkin1="Horzine"
+BodySkin2="DJ Scully"
+BodySkin3="Gerçek Meydan Okuma"
+BodySkin4="İblis Avcısı"
+
+[CHR_Jagerhorn_Archetype.HeadMesh0]
+HeadSkin0="İsveç Sarısı"
+HeadSkin1="Siyah Albüm"
+HeadSkin2="Kan Kırmızısı"
+
+[chr_Jagerhorn_archetype.Attachment0]
+AttachmentSkin0="Kahverengi"
+AttachmentSkin1="Siyah"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Sarı"
+AttachmentSkin4="Beyaz"
+
+[chr_Jagerhorn_archetype.Attachment1]
+AttachmentSkin0="Kamuflaj"
+
+[chr_Jagerhorn_archetype.Attachment2]
+AttachmentSkin0="Mavi Parıltı"
+
+[chr_Jagerhorn_archetype.Attachment3]
+AttachmentSkin0="Koyu Metal"
+
+[chr_Jagerhorn_archetype.Attachment4]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asyalı"
+AttachmentSkin2="Biyografi"
+AttachmentSkin3="Mavi"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Mangır"
+AttachmentSkin6="Göz"
+AttachmentSkin7="Süslü"
+AttachmentSkin8="Alev"
+AttachmentSkin9="Ekose"
+AttachmentSkin10="Mor"
+AttachmentSkin11="Kafatası"
+AttachmentSkin12="Serpilmiş"
+AttachmentSkin13="Batik"
+
+[chr_Jagerhorn_archetype.Attachment5]
+AttachmentSkin0="Beyaz"
+AttachmentSkin1="Çizgili"
+AttachmentSkin2="Kanlı"
+
+[chr_Jagerhorn_archetype.Attachment6]
+AttachmentSkin0="Kovboy Şapkası"
+
+[chr_Jagerhorn_archetype.Attachment7]
+AttachmentSkin0="Birleşik Krallık"
+AttachmentSkin1="ABD"
+AttachmentSkin2="Kanada"
+AttachmentSkin3="Almanya"
+AttachmentSkin4="Rusya"
+
+[chr_Jagerhorn_archetype.Attachment8]
+AttachmentSkin0="Beyaz Jantlar"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Kırmızı"
+
+[chr_Jagerhorn_archetype.Attachment9]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Kamuflaj"
+AttachmentSkin2="Kaplan"
+AttachmentSkin3="ABD"
+
+[chr_Jagerhorn_archetype.Attachment10]
+AttachmentSkin0="Karanlık Sürücü"
+AttachmentSkin1="Yıpranmış Deri"
+AttachmentSkin2="Temiz Karatahta"
+AttachmentSkin3="Kan Kırmızısı"
+
+[chr_Jagerhorn_archetype.Attachment11]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_Jagerhorn_archetype.Attachment12]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_Jagerhorn_archetype.Attachment13]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Altın"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Değerli Altın"
+
+[CHR_Jagerhorn_Archetype.Attachment14]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment15]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment16]
+AttachmentSkin0="Default"
+
+[CHR_Jagerhorn_Archetype.Attachment17]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[CHR_Jagerhorn_Archetype.Attachment18]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment19]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment20]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[CHR_Jagerhorn_Archetype.Attachment21]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[CHR_Jagerhorn_Archetype.Attachment22]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment23]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Jagerhorn_Archetype.Attachment24]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment25]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[CHR_Jagerhorn_Archetype.Attachment26]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[CHR_Jagerhorn_Archetype.Attachment27]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment28]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment29]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[CHR_Jagerhorn_Archetype.Attachment30]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment31]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[CHR_Jagerhorn_Archetype.Attachment32]
+AttachmentSkin0="WhiteYellow"
+
+[CHR_Jagerhorn_Archetype.Attachment33]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[CHR_Jagerhorn_Archetype.Attachment34]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[CHR_Jagerhorn_Archetype.Attachment35]
+AttachmentSkin0="Mr White"
+
+[CHR_Jagerhorn_Archetype.Attachment36]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[CHR_Jagerhorn_Archetype.Attachment37]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment38]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment39]
+AttachmentSkin0="Bushi"
+
+[CHR_Jagerhorn_Archetype.Attachment40]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[CHR_Jagerhorn_Archetype.Attachment41]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[CHR_Jagerhorn_Archetype.Attachment42]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment43]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment44]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+//DJ Scully
+
+[chr_DJSkully_archetype]
+CharacterName="DJ Scully"
+Description="Kendi jenerasyonunun en havalı Hollandalı yer altı DJ'i Scully yardım edemez ama herkes tarafından sevilir. Kadınlar ne olursa olsun onun sahip olduğu herhangi bir sağduyusunu sonuna kadar sever. Erkekler onun yalnız oluşundan nefret eder ama ortalıkta çok eğlencelidir. \n\nSalgın başladığında kuzey Londra'daki bir akıl hastanesinde canavar setini daha yeni bitirmişti. Zedlerin herkesi yemeye çalıştığı gibi ayaklarının üzerinde hızlı ve zeki ol, eğer mücadele eğitimli değilsen onu canlı tut. Scully her zaman sorunu ciddiye alırdı ve salgın bunu değiştirmedi. O, canavarları göndermede gerçekten iyi. Başka bir Scully şakası gibi eski özel kuvvetler üyesi olduğuna dair aptalca dedikodular ortaya çıkmıştı."
+BodyMesh0="Kapşonlu"
+HeadMesh0="Scully Maskesi"
+Attachment0="Scully Şapkası"
+Attachment1="Scully Kulaklıkları"
+Attachment2="Alienware"
+Attachment3="Beyzbol Şapkası"
+Attachment4="Kasket"
+Attachment5="Şef Şapkası"
+Attachment6="Kovboy Şapkası"
+Attachment7="Kevlar Kask"
+Attachment8="Gece Görüşü Maskesi"
+Attachment9="Kaynak Maskesi"
+Attachment10="Alman Gaz Maskesi"
+Attachment11="Balistik Maske"
+Attachment12="Saç Bandı"
+Attachment13="Kayak Maskesi"
+Attachment14="Havacı"
+Attachment15="Retro Güneş Gözlüğü"
+Attachment16="Güçlendirilmiş Kask"
+Attachment17="Ön Koruma Açık"
+Attachment18="Deli Maskesi"
+Attachment19="Uçuş Kaskı"
+Attachment20="Muhafız Kaskı"
+Attachment21="Flight Mask"
+Attachment22="Charm Goggles"
+Attachment23="Aviator Goggles"
+Attachment24="Sawblade Battle Helm"
+Attachment25="Boonie Cap"
+Attachment26="Infiltrator"
+Attachment27="Mask of the Abyss"
+Attachment28="Horzine Cybernetic Gas Mask"
+Attachment29="JFront Cap"
+Attachment30="Longhorn"
+Attachment31="EMS Backpack"
+Attachment32="Motorcycle Helmet"
+Attachment33="Smashed Motorcycle Helmet"
+Attachment34="Rubber Air Filter"
+Attachment35="Russian Gas Mask"
+Attachment36="Sawtooth Mask"
+Attachment37="The Inquisitor"
+Attachment38="US Gas Mask"
+Attachment39="Bloody Games"
+Attachment40="Shattered Mask"
+Attachment41="Military Surplus Beenie"
+Attachment42="RAF Goggles"
+Attachment43="Pork Pie"
+Attachment44="Visage de Poupee"
+Attachment45="Protective Glasses"
+Attachment46="Samurai Helm"
+Attachment47="Samurai Hat"
+Attachment48="Street Punk Bandana"
+Attachment49="Street Punk Glasses"
+Attachment50="Discount T-Rex Mask"
+Attachment51="Wasteland Goggles"
+Attachment52="EMS Arm Band"
+Attachment53="Tactical Backbag"
+
+[chr_DJSkully_archetype.BodyMesh0]
+BodySkin0="Simsiyah"
+BodySkin1="Xtra Kırmızı"
+BodySkin2="GearXT Sarı"
+BodySkin3="Yeşil Tehlike"
+BodySkin4="Retro Scully"
+
+[chr_DJSkully_archetype.HeadMesh0]
+HeadSkin0="Simsiyah"
+HeadSkin1="Xtra Kırmızı"
+HeadSkin2="GearXT Sarı"
+HeadSkin3="Yeşil Tehlike"
+HeadSkin4="Retro Scully"
+
+[chr_DJSkully_archetype.Attachment0]
+AttachmentSkin0="Simsiyah"
+AttachmentSkin1="Xtra Kırmızı"
+AttachmentSkin2="GearXT Sarı"
+AttachmentSkin3="Yeşil Tehlike"
+AttachmentSkin4="Retro Scully"
+
+[chr_DJSkully_archetype.Attachment1]
+AttachmentSkin0="Giyotin Kırmızısı"
+AttachmentSkin1="GearXT Sarı"
+AttachmentSkin2="Derin Mavi"
+AttachmentSkin3="Muhafız Turuncusu"
+AttachmentSkin4="Retro Scully"
+AttachmentSkin5="Horzine Beyazı"
+AttachmentSkin6="Değerli Altın"
+
+[chr_DJSkully_archetype.Attachment2]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Siyah Parıltı"
+AttachmentSkin2="Beyaz"
+AttachmentSkin3="Beyaz Parıltı"
+AttachmentSkin4="Mavi"
+AttachmentSkin5="Mavi Parıltı"
+AttachmentSkin6="Altın"
+AttachmentSkin7="Altın Parıltı"
+AttachmentSkin8="Yeşil"
+AttachmentSkin9="Yeşil Parıltı"
+
+[chr_DJSkully_archetype.Attachment3]
+AttachmentSkin0="Birleşik Krallık"
+AttachmentSkin1="ABD"
+AttachmentSkin2="CA"
+AttachmentSkin3="Almanya"
+AttachmentSkin4="Rusya"
+
+[chr_DJSkully_archetype.Attachment4]
+AttachmentSkin0="Kahverengi"
+AttachmentSkin1="Siyah"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Sarı"
+AttachmentSkin4="Beyaz"
+
+[chr_DJSkully_archetype.Attachment5]
+AttachmentSkin0="Beyaz"
+AttachmentSkin1="Çizgili"
+AttachmentSkin2="Kanlı"
+
+[chr_DJSkully_archetype.Attachment6]
+AttachmentSkin0="Kovboy Şapkası"
+
+[chr_DJSkully_archetype.Attachment7]
+AttachmentSkin0="Kamuflaj"
+
+[chr_DJSkully_archetype.Attachment8]
+AttachmentSkin0="Mavi Parıltı"
+
+[chr_DJSkully_archetype.Attachment9]
+AttachmentSkin0="Koyu Metal"
+
+[chr_DJSkully_archetype.Attachment10]
+AttachmentSkin0="Alman Gaz Maskesi"
+
+[chr_DJSkully_archetype.Attachment11]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Kırmızı"
+
+[chr_DJSkully_archetype.Attachment12]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asya Beyazı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Koyu Mor"
+AttachmentSkin6="Alev"
+AttachmentSkin7="Yeşil"
+AttachmentSkin8="Japonya"
+AttachmentSkin9="Açık Mavi"
+AttachmentSkin10="Mor"
+AttachmentSkin11="Kırmızı"
+AttachmentSkin12="Kırmızı Siyah"
+AttachmentSkin13="Kırmızı Desen"
+AttachmentSkin14="Yıldız"
+AttachmentSkin15="Çizgili"
+AttachmentSkin16="Batik"
+AttachmentSkin17="Beyaz"
+AttachmentSkin18="Sarı"
+
+[chr_DJSkully_archetype.Attachment13]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asyalı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi Yeşil"
+AttachmentSkin4="Mavi Beyaz"
+AttachmentSkin5="Mavi Sarı"
+AttachmentSkin6="Kamuflaj"
+AttachmentSkin7="Koyu Mor"
+AttachmentSkin8="Alevler"
+AttachmentSkin9="Yeşil Mavi"
+AttachmentSkin10="Yeşil Sarı"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Mor"
+AttachmentSkin13="Mor Siyah"
+AttachmentSkin14="Gökkuşağı"
+AttachmentSkin15="Kırmızı Beyaz"
+AttachmentSkin16="Beyaz Siyah"
+AttachmentSkin17="Sarı Siyah"
+
+[chr_DJSkully_archetype.Attachment14]
+AttachmentSkin0="Beyaz Jantlar"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Kırmızı"
+
+[chr_DJSkully_archetype.Attachment15]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Kamuflaj"
+AttachmentSkin2="Kaplan"
+AttachmentSkin3="ABD"
+
+[chr_DJSkully_archetype.Attachment16]
+AttachmentSkin0="Kuvvetlendirilmiş Kask"
+
+[chr_DJSkully_archetype.Attachment17]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_DJSkully_archetype.Attachment18]
+AttachmentSkin0="Deli Maskesi"
+
+[chr_DJSkully_archetype.Attachment19]
+AttachmentSkin0="Uçuş Kaskı"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_DJSkully_archetype.Attachment20]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Altın"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Değerli Altın"
+
+[chr_DJSkully_archetype.Attachment21]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_DJSkully_archetype.Attachment22]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_DJSkully_archetype.Attachment23]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_DJSkully_archetype.Attachment24]
+AttachmentSkin0="Default"
+
+[chr_DJSkully_archetype.Attachment25]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[chr_DJSkully_archetype.Attachment26]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[chr_DJSkully_archetype.Attachment27]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[chr_DJSkully_archetype.Attachment28]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[chr_DJSkully_archetype.Attachment29]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[chr_DJSkully_archetype.Attachment30]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_DJSkully_archetype.Attachment31]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_DJSkully_archetype.Attachment32]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[chr_DJSkully_archetype.Attachment33]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[chr_DJSkully_archetype.Attachment34]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[chr_DJSkully_archetype.Attachment35]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_DJSkully_archetype.Attachment36]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[chr_DJSkully_archetype.Attachment37]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[chr_DJSkully_archetype.Attachment38]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_DJSkully_archetype.Attachment39]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[chr_DJSkully_archetype.Attachment40]
+AttachmentSkin0="WhiteYellow"
+
+[chr_DJSkully_archetype.Attachment41]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[chr_DJSkully_archetype.Attachment42]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[chr_DJSkully_archetype.Attachment43]
+AttachmentSkin0="Mr White"
+
+[chr_DJSkully_archetype.Attachment44]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[chr_DJSkully_archetype.Attachment45]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[chr_DJSkully_archetype.Attachment46]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_DJSkully_archetype.Attachment47]
+AttachmentSkin0="Bushi"
+
+[chr_DJSkully_archetype.Attachment48]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[chr_DJSkully_archetype.Attachment49]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[chr_DJSkully_archetype.Attachment50]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_DJSkully_archetype.Attachment51]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_DJSkully_archetype.Attachment52]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_DJSkully_archetype.Attachment53]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
+//Police Constable Rob Briar
+
+[chr_briar_archetype]
+CharacterName="PC Rob Briar"
+Description="Rob Briar was a Police Constable from the age of 17, until the day he was called out to what seemed, to his superiors, to be some half-witted anarchist riot. We all know it wasn't, but Briar discovered that the hard way. Luckily, he wasn't just an old-fashioned "London bobby", but had spent enough time on counter-terrorism work to be familiar with a broad range of firearms. Underneath the happy-go-lucky, jokey exterior, Briar is as hard as nails. That toughness, along with the toughness of the Kevlar in his riot gear, is about all that got him through those first few days alive. Now he is continuing to do his duty, serving the public by trying to stamp out this menace with any and every weapon that comes to hand."
+BodyMesh0="Çevik Kuvvet Teçhizatı"
+BodyMesh1="Londra"
+HeadMesh0="Saç"
+Attachment0="İsyan Miğferi"
+Attachment1="S10 NBC Maskesi"
+Attachment2="Gözlük"
+Attachment3="Alienware"
+Attachment4="Muhafız Kaskı"
+Attachment5="Havacı"
+Attachment6="Balistik Maske"
+Attachment7="Beyzbol Şapkası"
+Attachment8="Kasket"
+Attachment9="Şef Şapkası"
+Attachment10="Kimyasal Gaz Maskesi"
+Attachment11="Kovboy Şapkası"
+Attachment12="Kevlar Kask"
+Attachment13="Gece Görüşü Maskesi"
+Attachment14="Göz Bandı"
+Attachment15="Kaynak Maskesi"
+Attachment16="Alman Gaz Maskesi"
+Attachment17="Saç Bandı"
+Attachment18="Retro Güneş Gözlüğü"
+Attachment19="Kayak Maskesi"
+Attachment20="Doktorun Maskesi"
+Attachment21="Ön Koruma Açık"
+Attachment22="Ön Koruma Kapalı"
+Attachment23="Deli Maskesi"
+Attachment24="Uçuş Kaskı"
+Attachment25="Kafatası Kırıcı Kask"
+Attachment26="Kafatası Kırıcı Maske"
+Attachment27="Flight Mask"
+Attachment28="Charm Goggles"
+Attachment29="Aviator Goggles"
+Attachment30="Sawblade Battle Helm"
+Attachment31="Boonie Cap"
+Attachment32="Infiltrator"
+Attachment33="Mask of the Abyss"
+Attachment34="Horzine Cybernetic Gas Mask"
+Attachment35="JFront Cap"
+Attachment36="Longhorn"
+Attachment37="EMS Backpack"
+Attachment38="Motorcycle Helmet"
+Attachment39="Smashed Motorcycle Helmet"
+Attachment40="Rubber Air Filter"
+Attachment41="Russian Gas Mask"
+Attachment42="Sawtooth Mask"
+Attachment43="The Inquisitor"
+Attachment44="US Gas Mask"
+Attachment45="Bloody Games"
+Attachment46="Shattered Mask"
+Attachment47="Military Surplus Beenie"
+Attachment48="RAF Goggles"
+Attachment49="Pork Pie"
+Attachment50="Visage de Poupee"
+Attachment51="Protective Glasses"
+Attachment52="Samurai Helm"
+Attachment53="Samurai Hat"
+Attachment54="Street Punk Bandana"
+Attachment55="Street Punk Glasses"
+Attachment56="Discount T-Rex Mask"
+Attachment57="Wasteland Goggles"
+Attachment58="EMS Arm Band"
+Attachment59="M2 Flamethrower Tank"
+Attachment60="RPG7 Backbag"
+Attachment61="Enforcer Goggles"
+Attachment62="Enforcer Helmet"
+Attachment63="Enforcer Mask"
+Attachment64="Justice Goggles"
+Attachment65="Justice Helmet"
+Attachment66="Justice Mask"
+Attachment67="Tactical Backbag"
+
+[chr_briar_archetype.BodyMesh0]
+BodySkin0="Polis Mavisi"
+BodySkin1="Gece Siyahı"
+BodySkin2="Ordu Yeşili"
+BodySkin3="SAS Kamuflajı"
+
+[chr_briar_archetype.BodyMesh1]
+BodySkin0="Metro"
+BodySkin1="Gece Siyahı"
+BodySkin2="Mavi"
+BodySkin3="Yansıtıcı"
+BodySkin4="Yansıtıcı Siyah"
+
+[chr_briar_archetype.HeadMesh0]
+HeadSkin0="Orijinal"
+HeadSkin1="Parlatılmış"
+HeadSkin2="Siyah"
+
+[chr_briar_archetype.Attachment0]
+AttachmentSkin0="Görünür Kırmızı"
+AttachmentSkin1="Polis Mavisi"
+AttachmentSkin2="Ordu Yeşili"
+AttachmentSkin3="Gece Siyahı"
+
+[chr_briar_archetype.Attachment1]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Kamuflaj"
+AttachmentSkin2="Biyolojik Tehlike"
+AttachmentSkin3="Zed Zamanı"
+AttachmentSkin4="Değerli"
+
+[CHR_briar_archetype.Attachment2]
+AttachmentSkin0="Güneş Gözlüğü"
+AttachmentSkin1="Normal Gözlük"
+
+[chr_briar_archetype.Attachment3]
+AttachmentSkin0="Black"
+AttachmentSkin1="Siyah Parıltı"
+AttachmentSkin2="Beyaz"
+AttachmentSkin3="Beyaz Parıltı"
+AttachmentSkin4="Mavi"
+AttachmentSkin5="Mavi Parıltı"
+AttachmentSkin6="Altın"
+AttachmentSkin7="Altın Parıltı"
+AttachmentSkin8="Yeşil"
+AttachmentSkin9="Yeşil Parıltı"
+
+[chr_briar_archetype.Attachment4]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Altın"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Değerli Altın"
+
+[chr_briar_archetype.Attachment5]
+AttachmentSkin0="Beyaz Jantlar"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Kırmızı"
+
+[chr_briar_archetype.Attachment6]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Kırmızı"
+
+[chr_briar_archetype.Attachment7]
+AttachmentSkin0="Birleşik Krallık"
+AttachmentSkin1="ABD"
+AttachmentSkin2="Kanada"
+AttachmentSkin3="Almanya"
+AttachmentSkin4="Rusya"
+
+[chr_briar_archetype.Attachment8]
+AttachmentSkin0="Kahverengi"
+AttachmentSkin1="Siyah"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Sarı"
+AttachmentSkin4="Beyaz"
+
+[chr_briar_archetype.Attachment9]
+AttachmentSkin0="Beyaz"
+AttachmentSkin1="Çizgili"
+AttachmentSkin2="Kanlı"
+
+[chr_briar_archetype.Attachment10]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Siyah"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Sarı"
+
+[chr_briar_archetype.Attachment11]
+AttachmentSkin0="Kovboy Şapkası"
+
+[chr_briar_archetype.Attachment12]
+AttachmentSkin0="Kamuflaj"
+
+[chr_briar_archetype.Attachment13]
+AttachmentSkin0="Mavi Parıltı"
+
+[chr_briar_archetype.Attachment14]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asyalı"
+AttachmentSkin2="Biyografi"
+AttachmentSkin3="Mavi"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Mangır"
+AttachmentSkin6="Göz"
+AttachmentSkin7="Süslü"
+AttachmentSkin8="Alev"
+AttachmentSkin9="Ekose"
+AttachmentSkin10="Mor"
+AttachmentSkin11="Kafatası"
+AttachmentSkin12="Serpilmiş"
+AttachmentSkin13="Batik"
+
+[chr_briar_archetype.Attachment15]
+AttachmentSkin0="Koyu Metal"
+
+[chr_briar_archetype.Attachment16]
+AttachmentSkin0="Alman Gaz Maskesi"
+
+[chr_briar_archetype.Attachment17]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asya Beyazı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Koyu Mor"
+AttachmentSkin6="Alev"
+AttachmentSkin7="Yeşil"
+AttachmentSkin8="Japonya"
+AttachmentSkin9="Açık Mavi"
+AttachmentSkin10="Mor"
+AttachmentSkin11="Kırmızı"
+AttachmentSkin12="Kırmızı Siyah"
+AttachmentSkin13="Kırmızı Desen"
+AttachmentSkin14="Yıldız"
+AttachmentSkin15="Çizgili"
+AttachmentSkin16="Batik"
+AttachmentSkin17="Beyaz"
+AttachmentSkin18="Sarı"
+
+[chr_briar_archetype.Attachment18]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Kamuflaj"
+AttachmentSkin2="Kaplan"
+AttachmentSkin3="ABD"
+
+[chr_briar_archetype.Attachment19]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asyalı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi Yeşil"
+AttachmentSkin4="Mavi Beyaz"
+AttachmentSkin5="Mavi Sarı"
+AttachmentSkin6="Kamuflaj"
+AttachmentSkin7="Koyu Mor"
+AttachmentSkin8="Alevler"
+AttachmentSkin9="Yeşil Mavi"
+AttachmentSkin10="Yeşil Sarı"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Mor"
+AttachmentSkin13="Mor Siyah"
+AttachmentSkin14="Gökkuşağı"
+AttachmentSkin15="Kırmızı Beyaz"
+AttachmentSkin16="Beyaz Siyah"
+AttachmentSkin17="Sarı Siyah"
+
+[chr_briar_archetype.Attachment20]
+AttachmentSkin0="Beyaz"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+
+[chr_briar_archetype.Attachment21]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_briar_archetype.Attachment22]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_briar_archetype.Attachment23]
+AttachmentSkin0="Deli Maskesi"
+
+[chr_briar_archetype.Attachment24]
+AttachmentSkin0="Uçuş Kaskı"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_briar_archetype.Attachment25]
+AttachmentSkin0="Kafatası Kırıcı Kask"
+
+[chr_briar_archetype.Attachment26]
+AttachmentSkin0="Kafatası Kırıcı Maske"
+
+[chr_briar_archetype.Attachment27]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_briar_archetype.Attachment28]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_briar_archetype.Attachment29]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_briar_archetype.Attachment30]
+AttachmentSkin0="Default"
+
+[chr_briar_archetype.Attachment31]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[chr_briar_archetype.Attachment32]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[chr_briar_archetype.Attachment33]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[chr_briar_archetype.Attachment34]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[chr_briar_archetype.Attachment35]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[chr_briar_archetype.Attachment36]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_briar_archetype.Attachment37]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_briar_archetype.Attachment38]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[chr_briar_archetype.Attachment39]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[chr_briar_archetype.Attachment40]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[chr_briar_archetype.Attachment41]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_briar_archetype.Attachment42]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[chr_briar_archetype.Attachment43]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[chr_briar_archetype.Attachment44]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_briar_archetype.Attachment45]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[chr_briar_archetype.Attachment46]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[chr_briar_archetype.Attachment47]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[chr_briar_archetype.Attachment48]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[chr_briar_archetype.Attachment49]
+AttachmentSkin0="Mr White"
+
+[chr_briar_archetype.Attachment50]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[chr_briar_archetype.Attachment51]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[chr_briar_archetype.Attachment52]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_briar_archetype.Attachment53]
+AttachmentSkin0="Bushi"
+
+[chr_briar_archetype.Attachment54]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[chr_briar_archetype.Attachment55]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[chr_briar_archetype.Attachment56]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_briar_archetype.Attachment57]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_briar_archetype.Attachment58]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_briar_archetype.Attachment59]
+AttachmentSkin0="Olive Grey"
+
+[chr_briar_archetype.Attachment60]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[chr_briar_archetype.Attachment61]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Black Coat Blue"
+AttachmentSkin2="Black Coat Red"
+AttachmentSkin3="Black Coat Green"
+AttachmentSkin4="Green Coat"
+AttachmentSkin5="Blue Coat"
+AttachmentSkin6="Red Coat"
+
+[chr_briar_archetype.Attachment62]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Green Coat"
+AttachmentSkin2="Blue Coat"
+AttachmentSkin3="Red Coat"
+
+[chr_briar_archetype.Attachment63]
+AttachmentSkin0="Black Eyes"
+AttachmentSkin1="Red Eyes"
+AttachmentSkin2="Blue Eyes"
+AttachmentSkin3="Green Eyes"
+AttachmentSkin4="Green Filter"
+AttachmentSkin5="Blue Filter"
+AttachmentSkin6="Red Filter"
+
+[chr_briar_archetype.Attachment64]
+AttachmentSkin0="Stealth Black"
+
+[chr_briar_archetype.Attachment65]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+
+[chr_briar_archetype.Attachment66]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+AttachmentSkin4="Blue Steel"
+AttachmentSkin5="Blue Magnum"
+AttachmentSkin6="Green Rally"
+AttachmentSkin7="Green Synergy"
+AttachmentSkin8="Red Face"
+AttachmentSkin9="Red Cheeks"
+AttachmentSkin10="Reaper Black"
+
+[chr_briar_archetype.Attachment67]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
+
+//Mr Foster
+
+[CHR_MrFoster_archetype]
+CharacterName="Mr. Foster"
+Description="Foster had wandered into day trading from a mediocre English private school education, with the classic "you'll never amount to anything, Foster" ringing in his ears from the school's careers officer. Not that Foster really cared. But, bizarrely, he found that day trading suited him. He started to generate large sums of money and thoroughly enjoyed it. Not that he would admit to enjoying a job, obviously. He also had a habit of verbally abusing authority figures. This led to Foster being seen as a clever, smart guy, with a sardonic sense of humor and great taste in clothes and cars. Or a jumped-up little tool. You decide."
+BodyMesh0="Deri Ceket"
+BodyMesh1="Klasik Takım Elbise"
+HeadMesh0="Gaz Maskesi"
+Attachment0="Melon Şapka"
+Attachment1="Scully Kulaklıkları"
+Attachment2="Kravat"
+Attachment3="Gevşek Kravat"
+Attachment4="Papyon"
+Attachment5="Alienware"
+Attachment6="Beyzbol Şapkası"
+Attachment7="Gevşek Kravat"
+Attachment8="Şef Şapkası"
+Attachment9="Kovboy Şapkası"
+Attachment10="Kasket"
+Attachment11="Kevlar Kask"
+Attachment12="Gece Görüşü Maskesi"
+Attachment13="Kaynak Maskesi"
+Attachment14="Alman Gaz Maskesi"
+Attachment15="Balistik Maske"
+Attachment16="Saç Bandı"
+Attachment17="Kayak Maskesi"
+Attachment18="Ön Koruma Açık"
+Attachment19="Uçuş Kaskı"
+Attachment20="Muhafız Kaskı"
+Attachment21="Flight Mask"
+Attachment22="Charm Goggles"
+Attachment23="Aviator Goggles"
+Attachment24="Sawblade Battle Helm"
+Attachment25="Boonie Cap"
+Attachment26="Infiltrator"
+Attachment27="Mask of the Abyss"
+Attachment28="Horzine Cybernetic Gas Mask"
+Attachment29="JFront Cap"
+Attachment30="Longhorn"
+Attachment31="EMS Backpack"
+Attachment32="Motorcycle Helmet"
+Attachment33="Smashed Motorcycle Helmet"
+Attachment34="Rubber Air Filter"
+Attachment35="Russian Gas Mask"
+Attachment36="Sawtooth Mask"
+Attachment37="The Inquisitor"
+Attachment38="US Gas Mask"
+Attachment39="Bloody Games"
+Attachment40="Shattered Mask"
+Attachment41="Military Surplus Beenie"
+Attachment42="RAF Goggles"
+Attachment43="Pork Pie"
+Attachment44="Visage de Poupee"
+Attachment45="Protective Glasses"
+Attachment46="Samurai Helm"
+Attachment47="Samurai Hat"
+Attachment48="Street Punk Bandana"
+Attachment49="Street Punk Glasses"
+Attachment50="Discount T-Rex Mask"
+Attachment51="Wasteland Goggles"
+Attachment52="EMS Arm Band"
+Attachment53="M2 Flamethrower Tank"
+Attachment54="RPG7 Backbag"
+Attachment55="Tactical Backbag"
+
+[CHR_MrFoster_archetype.BodyMesh0]
+BodySkin0="KF Mavi"
+BodySkin1="PCG Mangır"
+BodySkin2="Biyolojik Tehlike"
+BodySkin3="Sırf Klas"
+BodySkin4="Mağma Kırmızısı"
+
+[CHR_MrFoster_archetype.BodyMesh1]
+BodySkin0="Klasik"
+BodySkin1="Siyah"
+BodySkin2="Gomez"
+BodySkin3="İnce Çizgili"
+BodySkin4="Rox"
+BodySkin5="Vice Mavisi"
+BodySkin6="Vice"
+BodySkin7="Gazino"
+BodySkin8="Smokin'"
+
+[CHR_MrFoster_archetype.HeadMesh0]
+HeadSkin0="Orijinal Beyaz"
+HeadSkin1="PCG Kırmızı"
+HeadSkin2="Ahbapım Scully"
+HeadSkin3="Mağma Kırmızısı"
+HeadSkin4="İngiliz Klası"
+
+[CHR_MrFoster_archetype.Attachment0]
+AttachmentSkin0="Şirket Siyahı"
+AttachmentSkin1="En iyi İngiliz"
+AttachmentSkin2="Çikolata kahverengi"
+AttachmentSkin3="Alevli Kırmızı"
+AttachmentSkin4="Ciddi Mor"
+AttachmentSkin5="Performans Beyazı"
+
+[chr_MrFoster_archetype.Attachment1]
+AttachmentSkin0="Derin Mavi"
+AttachmentSkin1="Giyotin Kırmızısı"
+AttachmentSkin2="Muhafız Turuncusu"
+AttachmentSkin3="Retro Kafatası"
+AttachmentSkin4="Horzine Beyazı"
+AttachmentSkin5="GearXT Sarı"
+AttachmentSkin6="Değerli Altın"
+
+[chr_MrFoster_archetype.Attachment2]
+AttachmentSkin0="Klasik Mavi"
+AttachmentSkin1="Kırmızı Çizgili"
+AttachmentSkin2="Siyah"
+AttachmentSkin3="Siyah ve Beyaz"
+AttachmentSkin4="Gazino"
+AttachmentSkin5="Eşyalar"
+AttachmentSkin6="Mağma"
+AttachmentSkin7="PC Gamer"
+
+[chr_MrFoster_archetype.Attachment3]
+AttachmentSkin0="Klasik Mavi"
+AttachmentSkin1="Kırmızı Çizgili"
+AttachmentSkin2="Siyah"
+AttachmentSkin3="Smokin'"
+AttachmentSkin4="Gazino"
+AttachmentSkin5="Eşyalar"
+AttachmentSkin6="Mağma"
+AttachmentSkin7="PC Gamer"
+
+[chr_MrFoster_archetype.Attachment4]
+AttachmentSkin0="Klasik Mavi"
+AttachmentSkin1="Kırmızı Çizgili"
+AttachmentSkin2="Siyah"
+AttachmentSkin3="Siyah ve Beyaz"
+AttachmentSkin4="Gazino"
+AttachmentSkin5="Eşyalar"
+AttachmentSkin6="Mağma"
+AttachmentSkin7="PC Gamer"
+
+[chr_MrFoster_archetype.Attachment5]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Siyah Parıltı"
+AttachmentSkin2="Beyaz"
+AttachmentSkin3="Beyaz Parıltı"
+AttachmentSkin4="Mavi"
+AttachmentSkin5="Mavi Parıltı"
+AttachmentSkin6="Altın"
+AttachmentSkin7="Altın Parıltı"
+AttachmentSkin8="Yeşil"
+AttachmentSkin9="Yeşil Parıltı"
+
+[chr_MrFoster_archetype.Attachment6]
+AttachmentSkin0="Birleşik Krallık"
+AttachmentSkin1="ABD"
+AttachmentSkin2="Kanada"
+AttachmentSkin3="Almanya"
+AttachmentSkin4="Rusya"
+
+[chr_MrFoster_archetype.Attachment7]
+AttachmentSkin0="Klasik Mavi"
+AttachmentSkin1="Kırmızı Çizgili"
+AttachmentSkin2="Siyah"
+AttachmentSkin3="Siyah ve Beyaz"
+AttachmentSkin4="Gazino"
+AttachmentSkin5="Eşyalar"
+
+[chr_MrFoster_archetype.Attachment8]
+AttachmentSkin0="Beyaz"
+AttachmentSkin1="Çizgili"
+AttachmentSkin2="Kanlı"
+
+[chr_MrFoster_archetype.Attachment9]
+AttachmentSkin0="Kovboy Şapkası"
+
+[chr_MrFoster_archetype.Attachment10]
+AttachmentSkin0="Kahverengi"
+AttachmentSkin1="Siyah"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Sarı"
+AttachmentSkin4="Beyaz"
+
+[chr_MrFoster_archetype.Attachment11]
+AttachmentSkin0="Kamuflaj"
+
+[chr_MrFoster_archetype.Attachment12]
+AttachmentSkin0="Mavi Parıltı"
+
+[chr_MrFoster_archetype.Attachment13]
+AttachmentSkin0="Koyu Metal"
+
+[chr_MrFoster_archetype.Attachment14]
+AttachmentSkin0="Alman Gaz Maskesi"
+
+[chr_MrFoster_archetype.Attachment15]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Kırmızı"
+
+[chr_MrFoster_archetype.Attachment16]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asya Beyazı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Koyu Mor"
+AttachmentSkin6="Alev"
+AttachmentSkin7="Yeşil"
+AttachmentSkin8="Japonya"
+AttachmentSkin9="Açık Mavi"
+AttachmentSkin10="Mor"
+AttachmentSkin11="Kırmızı"
+AttachmentSkin12="Kırmızı Siyah"
+AttachmentSkin13="Kırmızı Desen"
+AttachmentSkin14="Yıldız"
+AttachmentSkin15="Çizgili"
+AttachmentSkin16="Batik"
+AttachmentSkin17="Beyaz"
+AttachmentSkin18="Sarı"
+
+[chr_MrFoster_archetype.Attachment17]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asyalı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi Yeşil"
+AttachmentSkin4="Mavi Beyaz"
+AttachmentSkin5="Mavi Sarı"
+AttachmentSkin6="Kamuflaj"
+AttachmentSkin7="Koyu Mor"
+AttachmentSkin8="Alevler"
+AttachmentSkin9="Yeşil Mavi"
+AttachmentSkin10="Yeşil Sarı"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Mor"
+AttachmentSkin13="Mor Siyah"
+AttachmentSkin14="Gökkuşağı"
+AttachmentSkin15="Kırmızı Beyaz"
+AttachmentSkin16="Beyaz Siyah"
+AttachmentSkin17="Sarı Siyah"
+
+[chr_MrFoster_archetype.Attachment18]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_MrFoster_archetype.Attachment19]
+AttachmentSkin0="Uçuş Kaskı"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_MrFoster_archetype.Attachment20]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Altın"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Değerli Altın"
+
+[chr_MrFoster_archetype.Attachment21]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[CHR_MrFoster_archetype.Attachment22]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_MrFoster_archetype.Attachment23]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_MrFoster_archetype.Attachment24]
+AttachmentSkin0="Default"
+
+[CHR_MrFoster_archetype.Attachment25]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[CHR_MrFoster_archetype.Attachment26]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[CHR_MrFoster_archetype.Attachment27]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[CHR_MrFoster_archetype.Attachment28]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[CHR_MrFoster_archetype.Attachment29]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[CHR_MrFoster_archetype.Attachment30]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_MrFoster_archetype.Attachment31]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_MrFoster_archetype.Attachment32]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[CHR_MrFoster_archetype.Attachment33]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[CHR_MrFoster_archetype.Attachment34]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[CHR_MrFoster_archetype.Attachment35]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_MrFoster_archetype.Attachment36]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[CHR_MrFoster_archetype.Attachment37]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[CHR_MrFoster_archetype.Attachment38]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_MrFoster_archetype.Attachment39]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[CHR_MrFoster_archetype.Attachment40]
+AttachmentSkin0="WhiteYellow"
+
+[CHR_MrFoster_archetype.Attachment41]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[CHR_MrFoster_archetype.Attachment42]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[CHR_MrFoster_archetype.Attachment43]
+AttachmentSkin0="Mr White"
+
+[CHR_MrFoster_archetype.Attachment44]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[CHR_MrFoster_archetype.Attachment45]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[CHR_MrFoster_archetype.Attachment46]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_MrFoster_archetype.Attachment47]
+AttachmentSkin0="Bushi"
+
+[CHR_MrFoster_archetype.Attachment48]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[CHR_MrFoster_archetype.Attachment49]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[CHR_MrFoster_archetype.Attachment50]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_MrFoster_archetype.Attachment51]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_MrFoster_archetype.Attachment52]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_MrFoster_archetype.Attachment53]
+AttachmentSkin0="Olive Grey"
+
+[CHR_MrFoster_archetype.Attachment54]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[CHR_MrFoster_archetype.Attachment55]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
+//Erskine Coleman - renamed to Donovan Neal
+
+[CHR_Coleman_archetype]
+CharacterName="Donovan Neal"
+Description="Donovan is big, tough and can handle himself in almost any situation. But he is way more than he seems to a careless glance. He wasn't just one of the guys providing close protection services to a bunch of wrestlers - he was the guy who set up, owned and ran the whole security business. Born in Atlanta, GA, he was smart and well-educated, working in law enforcement before setting up his own business.  Not just muscle - he was the brains of the operation, too. But now he's another survivor, stuck in the wrong place at the wrong time. Just say a short prayer for all the Zeds that are standing between this man and what he wants. Or get in there and help him kill them!"
+BodyMesh0="RQ Kapşonu"
+HeadMesh0="Yüz"
+Attachment0="RQ Sapkası"
+Attachment1="S10 NBC Maskesi"
+Attachment2="Gözlükler"
+Attachment3="Scully Kulaklıkları"
+Attachment4="Alienware"
+Attachment5="Havacı"
+Attachment6="Balistik Maske"
+Attachment7="Beyzbol Şapkası"
+Attachment8="Şef Şapkası"
+Attachment9="Kimyasal Gaz Maskesi"
+Attachment10="Kovboy Şapkası"
+Attachment11="Kasket"
+Attachment12="Kevlar Kask"
+Attachment13="Gece Görüşü Maskesi"
+Attachment14="Göz Bandı"
+Attachment15="Kaynak Maskesi"
+Attachment16="Alman Gaz Maskesi"
+Attachment17="Saç Bandı"
+Attachment18="Retro Güneş Gözlüğü"
+Attachment19="Kayak Maskesi"
+Attachment20="Doktorun Maskesi"
+Attachment21="Boks Başlığı"
+Attachment22="Ön Koruma Açık"
+Attachment23="Ön Koruma Kapalı"
+Attachment24="Deli Maskesi"
+Attachment25="Uçuş Kaskı"
+Attachment26="Kafatası Kırıcı Kask"
+Attachment27="Kafatası Kırıcı Maske"
+Attachment28="Muhafız Kaskı"
+Attachment29="Flight Mask"
+Attachment30="Charm Goggles"
+Attachment31="Aviator Goggles"
+Attachment32="Sawblade Battle Helm"
+Attachment33="Boonie Cap"
+Attachment34="Infiltrator"
+Attachment35="Mask of the Abyss"
+Attachment36="Horzine Cybernetic Gas Mask"
+Attachment37="JFront Cap"
+Attachment38="Longhorn"
+Attachment39="EMS Backpack"
+Attachment40="Motorcycle Helmet"
+Attachment41="Smashed Motorcycle Helmet"
+Attachment42="Rubber Air Filter"
+Attachment43="Russian Gas Mask"
+Attachment44="Sawtooth Mask"
+Attachment45="The Inquisitor"
+Attachment46="US Gas Mask"
+Attachment47="Bloody Games"
+Attachment48="Shattered Mask"
+Attachment49="Military Surplus Beenie"
+Attachment50="RAF Goggles"
+Attachment51="Pork Pie"
+Attachment52="Visage de Poupee"
+Attachment53="Protective Glasses"
+Attachment54="Samurai Helm"
+Attachment55="Samurai Hat"
+Attachment56="Street Punk Bandana"
+Attachment57="Street Punk Glasses"
+Attachment58="Discount T-Rex Mask"
+Attachment59="Wasteland Goggles"
+Attachment60="EMS Arm Band"
+Attachment61="M2 Flamethrower Tank"
+Attachment62="RPG7 Backbag"
+Attachment63="Tactical Backbag"
+
+[CHR_Coleman_archetype.BodyMesh0]
+BodySkin0="Orman Yeşili"
+BodySkin1="Paslı Kırmızı"
+BodySkin2="Havalı Gri"
+BodySkin3="Solgun Yeryüzü"
+
+[CHR_Coleman_archetype.HeadMesh0]
+HeadSkin0="Donovan"
+HeadSkin1="Dövme"
+HeadSkin2="Göz Altı Boyası"
+
+[CHR_Coleman_archetype.Attachment0]
+AttachmentSkin0="Yumuşak Sarı"
+AttachmentSkin1="Paslı Kırmızı"
+AttachmentSkin2="Vatansever"
+AttachmentSkin3="Cılız Yeşil"
+
+[CHR_Coleman_archetype.Attachment1]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Kamuflaj"
+AttachmentSkin2="Biyolojik Tehlike"
+AttachmentSkin3="Zed Zamanı"
+AttachmentSkin4="Değerli"
+
+[CHR_Coleman_archetype.Attachment2]
+AttachmentSkin0="Güneş Gözlüğü"
+AttachmentSkin1="Normal Gözlük"
+
+[chr_Coleman_archetype.Attachment3]
+AttachmentSkin0="Derin Mavi"
+AttachmentSkin1="Giyotin Kırmızısı"
+AttachmentSkin2="Muhafız Turuncusu"
+AttachmentSkin3="Retro Kafatası"
+AttachmentSkin4="Horzine Beyazı"
+AttachmentSkin5="GearXT Sarı"
+AttachmentSkin6="Değerli Altın"
+
+[chr_Coleman_archetype.Attachment4]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Siyah Parıltı"
+AttachmentSkin2="Beyaz"
+AttachmentSkin3="Beyaz Parıltı"
+AttachmentSkin4="Mavi"
+AttachmentSkin5="Mavi Parıltı"
+AttachmentSkin6="Altın"
+AttachmentSkin7="Altın Parıltı"
+AttachmentSkin8="Yeşil"
+AttachmentSkin9="Yeşil Parıltı"
+
+[chr_Coleman_archetype.Attachment5]
+AttachmentSkin0="Beyaz Jantlar"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Kırmızı"
+
+[chr_Coleman_archetype.Attachment6]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Kırmızı"
+
+[chr_Coleman_archetype.Attachment7]
+AttachmentSkin0="UK"
+AttachmentSkin1="ABD"
+AttachmentSkin2="Kanada"
+AttachmentSkin3="Almanya"
+AttachmentSkin4="Rusya"
+
+[chr_Coleman_archetype.Attachment8]
+AttachmentSkin0="Beyaz"
+AttachmentSkin1="Çizgili"
+AttachmentSkin2="Kanlı"
+
+[chr_Coleman_archetype.Attachment9]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Siyah"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Sarı"
+
+[chr_Coleman_archetype.Attachment10]
+AttachmentSkin0="Kovboy Şapkası"
+
+[chr_Coleman_archetype.Attachment11]
+AttachmentSkin0="Kahverengi"
+AttachmentSkin1="Siyah"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Sarı"
+AttachmentSkin4="Beyaz"
+
+[chr_Coleman_archetype.Attachment12]
+AttachmentSkin0="Kamuflaj"
+
+[chr_Coleman_archetype.Attachment13]
+AttachmentSkin0="Mavi Parıltı"
+
+[chr_Coleman_archetype.Attachment14]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asyalı"
+AttachmentSkin2="Biyografi"
+AttachmentSkin3="Mavi"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Mangır"
+AttachmentSkin6="Göz"
+AttachmentSkin7="Süslü"
+AttachmentSkin8="Alev"
+AttachmentSkin9="Ekose"
+AttachmentSkin10="Mor"
+AttachmentSkin11="Kafatası"
+AttachmentSkin12="Serpilmiş"
+AttachmentSkin13="Batik"
+
+[chr_Coleman_archetype.Attachment15]
+AttachmentSkin0="Koyu Metal"
+
+[chr_Coleman_archetype.Attachment16]
+AttachmentSkin0="Alman Gaz Maskesi"
+
+[chr_Coleman_archetype.Attachment17]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asya Beyazı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Koyu Mor"
+AttachmentSkin6="Alev"
+AttachmentSkin7="Yeşil"
+AttachmentSkin8="Japonya"
+AttachmentSkin9="Açık Mavi"
+AttachmentSkin10="Mor"
+AttachmentSkin11="Kırmızı"
+AttachmentSkin12="Kırmızı Siyah"
+AttachmentSkin13="Kırmızı Desen"
+AttachmentSkin14="Yıldız"
+AttachmentSkin15="Çizgili"
+AttachmentSkin16="Batik"
+AttachmentSkin17="Beyaz"
+AttachmentSkin18="Sarı"
+
+[chr_Coleman_archetype.Attachment18]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Kamuflaj"
+AttachmentSkin2="Kaplan"
+AttachmentSkin3="ABD"
+
+[chr_Coleman_archetype.Attachment19]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asyalı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi Yeşil"
+AttachmentSkin4="Mavi Beyaz"
+AttachmentSkin5="Mavi Sarı"
+AttachmentSkin6="Kamuflaj"
+AttachmentSkin7="Koyu Mor"
+AttachmentSkin8="Alevler"
+AttachmentSkin9="Yeşil Mavi"
+AttachmentSkin10="Yeşil Sarı"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Mor"
+AttachmentSkin13="Mor Siyah"
+AttachmentSkin14="Gökkuşağı"
+AttachmentSkin15="Kırmızı Beyaz"
+AttachmentSkin16="Beyaz Siyah"
+AttachmentSkin17="Sarı Siyah"
+
+[chr_Coleman_archetype.Attachment20]
+AttachmentSkin0="Beyaz"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+
+[chr_Coleman_archetype.Attachment21]
+AttachmentSkin0="Kırmızı"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Kahverengi"
+AttachmentSkin3="Sarı"
+
+[chr_Coleman_archetype.Attachment22]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_Coleman_archetype.Attachment23]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_Coleman_archetype.Attachment24]
+AttachmentSkin0="Deli Maskesi"
+
+[chr_Coleman_archetype.Attachment25]
+AttachmentSkin0="Uçuş Kaskı"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_Coleman_archetype.Attachment26]
+AttachmentSkin0="Kafatası Kırıcı Kask"
+
+[chr_Coleman_archetype.Attachment27]
+AttachmentSkin0="Kafatası Kırıcı Maske"
+
+[chr_Coleman_archetype.Attachment28]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Altın"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Değerli Altın"
+
+[chr_Coleman_archetype.Attachment29]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[CHR_Coleman_archetype.Attachment30]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Coleman_archetype.Attachment31]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Coleman_archetype.Attachment32]
+AttachmentSkin0="Default"
+
+[CHR_Coleman_archetype.Attachment33]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[CHR_Coleman_archetype.Attachment34]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[CHR_Coleman_archetype.Attachment35]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[CHR_Coleman_archetype.Attachment36]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[CHR_Coleman_archetype.Attachment37]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="White"
+
+[CHR_Coleman_archetype.Attachment38]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="Black"
+AttachmentSkin4="Precious"
+
+[CHR_Coleman_archetype.Attachment39]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Coleman_archetype.Attachment40]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[CHR_Coleman_archetype.Attachment41]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[CHR_Coleman_archetype.Attachment42]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[CHR_Coleman_archetype.Attachment43]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Coleman_archetype.Attachment44]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[CHR_Coleman_archetype.Attachment45]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[CHR_Coleman_archetype.Attachment46]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Coleman_archetype.Attachment47]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[CHR_Coleman_archetype.Attachment48]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[CHR_Coleman_archetype.Attachment49]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[CHR_Coleman_archetype.Attachment50]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[CHR_Coleman_archetype.Attachment51]
+AttachmentSkin0="Mr White"
+
+[CHR_Coleman_archetype.Attachment52]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[CHR_Coleman_archetype.Attachment53]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[CHR_Coleman_archetype.Attachment54]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Coleman_archetype.Attachment55]
+AttachmentSkin0="Bushi"
+
+[CHR_Coleman_archetype.Attachment56]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[CHR_Coleman_archetype.Attachment57]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[CHR_Coleman_archetype.Attachment58]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Coleman_archetype.Attachment59]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Coleman_archetype.Attachment60]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Coleman_archetype.Attachment61]
+AttachmentSkin0="Olive Grey"
+
+[CHR_Coleman_archetype.Attachment62]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[CHR_Coleman_archetype.Attachment63]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
+//Reverend Alberts
+
+[CHR_Alberts_archetype]
+CharacterName="Papaz Alberts"
+Description="Yarı İngiliz, yarı İskoç Alberts başkalarına yardım etme arzusu ile her zaman fiziksel olarak sertti. Bu Zor, katı, aptalca olmayan yaklaşımı Güney Londra'da 20 yıl hoşnutsuz gençler ile çalışan bir Ordu Papazı için mükemmel ölçülüydü. Kötü tarafı hayatını uzak insanları yönlendirmek için geçirmiş olması, iyi yanı ise Alberts, hayatının işini öğle sonrası çayını yok eden bir paket sinirli canavarlar varken mutlu değildi. Öğleden sonra, Alberts kafasındaki tüm kötü iğrençliklerin gazabını azaltmak için ölmekte olanlara ve ölülere tapıp uzaklaşıyordu. Ve başka vücutlara ulaşıyordu."
+BodyMesh0="Köpek Tasması"
+HeadMesh0="Saç"
+Attachment0="Fötr Şapka"
+Attachment1="Gözlükler"
+Attachment2="S10 NBC Maskesi"
+Attachment3="Melon Şapka"
+Attachment4="Alienware"
+Attachment5="Havacı"
+Attachment6="Balistik Maske"
+Attachment7="Beyzbol Şapkası"
+Attachment8="Kasket"
+Attachment9="Şef Şapkası"
+Attachment10="Kimyasal Gaz Maskesi"
+Attachment11="Kovboy Şapkası"
+Attachment12="Kevlar Kask"
+Attachment13="Gece Görüşü Maskesi"
+Attachment14="Göz Bandı"
+Attachment15="Kaynak Maskesi"
+Attachment16="Alman Gaz Maskesi"
+Attachment17="Saç Bandı"
+Attachment18="Kayak Maskesi"
+Attachment19="Retro Güneş Gözlüğü"
+Attachment20="Kutsal Gözlükler"
+Attachment21="Van Alberts Şapkası"
+Attachment22="Van Alberts Pelerini"
+Attachment23="Ön Koruma Açık"
+Attachment24="Ön Koruma Kapalı"
+Attachment25="Deli Maskesi"
+Attachment26="Uçuş Kaskı"
+Attachment27="Kafatası Kırıcı Kask"
+Attachment28="Kafatası Kırıcı Maske"
+Attachment29="Muhafız Kaskı"
+Attachment30="Flight Mask"
+Attachment31="Charm Goggles"
+Attachment32="Aviator Goggles"
+Attachment33="Sawblade Battle Helm"
+Attachment34="Boonie Cap"
+Attachment35="Infiltrator"
+Attachment36="Mask of the Abyss"
+Attachment37="Horzine Cybernetic Gas Mask"
+Attachment38="JFront Cap"
+Attachment39="Longhorn"
+Attachment40="EMS Backpack"
+Attachment41="Motorcycle Helmet"
+Attachment42="Smashed Motorcycle Helmet"
+Attachment43="Rubber Air Filter"
+Attachment44="Russian Gas Mask"
+Attachment45="Sawtooth Mask"
+Attachment46="The Inquisitor"
+Attachment47="US Gas Mask"
+Attachment48="Bloody Games"
+Attachment49="Shattered Mask"
+Attachment50="Military Surplus Beenie"
+Attachment51="RAF Goggles"
+Attachment52="Pork Pie"
+Attachment53="Visage de Poupee"
+Attachment54="Protective Glasses"
+Attachment55="Samurai Helm"
+Attachment56="Samurai Hat"
+Attachment57="Street Punk Bandana"
+Attachment58="Street Punk Glasses"
+Attachment59="Discount T-Rex Mask"
+Attachment60="Wasteland Goggles"
+Attachment61="EMS Arm Band"
+Attachment62="M2 Flamethrower Tank"
+Attachment63="RPG7 Backbag"
+Attachment64="Enforcer Goggles"
+Attachment65="Enforcer Helmet"
+Attachment66="Enforcer Mask"
+Attachment67="Justice Goggles"
+Attachment68="Justice Helmet"
+Attachment69="Justice Mask"
+Attachment70="Tactical Backbag"
+
+[CHR_Alberts_archetype.BodyMesh0]
+BodySkin0="Temel Siyah"
+BodySkin1="Yakut Kırmızısı"
+BodySkin2="Keskin Mavi"
+BodySkin3="Tropikal Beyaz"
+
+[CHR_Alberts_archetype.HeadMesh0]
+HeadSkin0="Gri"
+HeadSkin1="Kahverengi"
+HeadSkin2="Siyah"
+HeadSkin3="Beyaz"
+
+[CHR_Alberts_archetype.Attachment0]
+AttachmentSkin0="Temel Siyah"
+AttachmentSkin1="Yakut Kırmızısı"
+AttachmentSkin2="Zarif Gri"
+AttachmentSkin3="Koyu Mavi"
+
+[CHR_Alberts_archetype.Attachment1]
+AttachmentSkin0="Güneş Gözlüğü"
+AttachmentSkin1="Normal Gözlük"
+
+[CHR_Alberts_archetype.Attachment2]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Kamuflaj"
+AttachmentSkin2="Biyolojik Tehlike"
+AttachmentSkin3="Zed Zamanı"
+AttachmentSkin4="Değerli"
+
+[CHR_Alberts_archetype.Attachment3]
+AttachmentSkin0="Şirket Siyahı"
+AttachmentSkin1="En iyi İngiliz"
+AttachmentSkin2="Çikolata Kahverengi"
+AttachmentSkin3="Alevli Kırmızı"
+AttachmentSkin4="Ciddi Mor"
+AttachmentSkin5="Performans Beyazı"
+
+[chr_Alberts_archetype.Attachment4]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Siyah Parıltı"
+AttachmentSkin2="Beyaz"
+AttachmentSkin3="Beyaz Parıltı"
+AttachmentSkin4="Mavi"
+AttachmentSkin5="Mavi Parıltı"
+AttachmentSkin6="Altın"
+AttachmentSkin7="Altın Parıltı"
+AttachmentSkin8="Yeşil"
+AttachmentSkin9="Yeşil Parıltı"
+
+[chr_Alberts_archetype.Attachment5]
+AttachmentSkin0="Beyaz Jantlar"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Kırmızı"
+
+[chr_Alberts_archetype.Attachment6]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Kırmızı"
+
+[chr_Alberts_archetype.Attachment7]
+AttachmentSkin0="Birleşik Krallık"
+AttachmentSkin1="ABD"
+AttachmentSkin2="Kanada"
+AttachmentSkin3="Almanya"
+AttachmentSkin4="Rusya"
+
+[chr_Alberts_archetype.Attachment8]
+AttachmentSkin0="Kahverengi"
+AttachmentSkin1="Siyah"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Sarı"
+AttachmentSkin4="Beyaz"
+
+[chr_Alberts_archetype.Attachment9]
+AttachmentSkin0="Beyaz"
+AttachmentSkin1="Çizgili"
+AttachmentSkin2="Kanlı"
+
+[chr_Alberts_archetype.Attachment10]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Siyah"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Sarı"
+
+[chr_Alberts_archetype.Attachment11]
+AttachmentSkin0="Kovboy Şapkası"
+
+[chr_Alberts_archetype.Attachment12]
+AttachmentSkin0="Kamuflaj"
+
+[chr_Alberts_archetype.Attachment13]
+AttachmentSkin0="Mavi Parıltı"
+
+[chr_Alberts_archetype.Attachment14]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asyalı"
+AttachmentSkin2="Biyografi"
+AttachmentSkin3="Mavi"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Mangır"
+AttachmentSkin6="Göz"
+AttachmentSkin7="Süslü"
+AttachmentSkin8="Alev"
+AttachmentSkin9="Ekose"
+AttachmentSkin10="Mor"
+AttachmentSkin11="Kafatası"
+AttachmentSkin12="Serpilmiş"
+AttachmentSkin13="Batik"
+
+[chr_Alberts_archetype.Attachment15]
+AttachmentSkin0="Koyu Metal"
+
+[chr_Alberts_archetype.Attachment16]
+AttachmentSkin0="Alman Gaz Maskesi"
+
+[chr_Alberts_archetype.Attachment17]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asya Beyazı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Koyu Mor"
+AttachmentSkin6="Alev"
+AttachmentSkin7="Yeşil"
+AttachmentSkin8="Japonya"
+AttachmentSkin9="Açık Mavi"
+AttachmentSkin10="Mor"
+AttachmentSkin11="Kırmızı"
+AttachmentSkin12="Kırmızı Siyah"
+AttachmentSkin13="Kırmızı Desen"
+AttachmentSkin14="Yıldız"
+AttachmentSkin15="Çizgili"
+AttachmentSkin16="Batik"
+AttachmentSkin17="Beyaz"
+AttachmentSkin18="Sarı"
+
+[chr_Alberts_archetype.Attachment18]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asyalı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi Yeşil"
+AttachmentSkin4="Mavi Beyaz"
+AttachmentSkin5="Mavi Sarı"
+AttachmentSkin6="Kamuflaj"
+AttachmentSkin7="Koyu Mor"
+AttachmentSkin8="Alevler"
+AttachmentSkin9="Yeşil Mavi"
+AttachmentSkin10="Yeşil Sarı"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Mor"
+AttachmentSkin13="Mor Siyah"
+AttachmentSkin14="Gökkuşağı"
+AttachmentSkin15="Kırmızı Beyaz"
+AttachmentSkin16="Beyaz Siyah"
+AttachmentSkin17="Sarı Siyah"
+
+[chr_Alberts_archetype.Attachment19]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Kamuflaj"
+AttachmentSkin2="Kaplan"
+AttachmentSkin3="ABD"
+
+[chr_Alberts_archetype.Attachment20]
+AttachmentSkin0="Kutsal Gözlükler"
+
+[chr_Alberts_archetype.Attachment21]
+AttachmentSkin0="Klasik Kanunsuz"
+AttachmentSkin1="Cehennem Şarkıcısı"
+AttachmentSkin2="Başrahip"
+
+[chr_Alberts_archetype.Attachment22]
+AttachmentSkin0="Klasik Kanunsuz"
+AttachmentSkin1="Cehennem Şarkıcısı"
+AttachmentSkin2="Başrahip"
+
+[chr_Alberts_archetype.Attachment23]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_Alberts_archetype.Attachment24]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_Alberts_archetype.Attachment25]
+AttachmentSkin0="Deli Maskesi"
+
+[chr_Alberts_archetype.Attachment26]
+AttachmentSkin0="Uçuş Kaskı"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_Alberts_archetype.Attachment27]
+AttachmentSkin0="Kafatası Kırıcı Kask"
+
+[chr_Alberts_archetype.Attachment28]
+AttachmentSkin0="Kafatası Kırıcı Maske"
+
+[chr_Alberts_archetype.Attachment29]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Altın"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Değerli Altın"
+
+[chr_Alberts_archetype.Attachment30]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_Alberts_archetype.Attachment31]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_Alberts_archetype.Attachment32]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_Alberts_archetype.Attachment33]
+AttachmentSkin0="Default"
+
+[chr_Alberts_archetype.Attachment34]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[chr_Alberts_archetype.Attachment35]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[chr_Alberts_archetype.Attachment36]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[chr_Alberts_archetype.Attachment37]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[chr_Alberts_archetype.Attachment38]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[chr_Alberts_archetype.Attachment39]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_Alberts_archetype.Attachment40]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_Alberts_archetype.Attachment41]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[chr_Alberts_archetype.Attachment42]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[chr_Alberts_archetype.Attachment43]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[chr_Alberts_archetype.Attachment44]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_Alberts_archetype.Attachment45]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[chr_Alberts_archetype.Attachment46]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[chr_Alberts_archetype.Attachment47]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_Alberts_archetype.Attachment48]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[chr_Alberts_archetype.Attachment49]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[chr_Alberts_archetype.Attachment50]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[chr_Alberts_archetype.Attachment51]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[chr_Alberts_archetype.Attachment52]
+AttachmentSkin0="Mr White"
+
+[chr_Alberts_archetype.Attachment53]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[chr_Alberts_archetype.Attachment54]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[chr_Alberts_archetype.Attachment55]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_Alberts_archetype.Attachment56]
+AttachmentSkin0="Bushi"
+
+[chr_Alberts_archetype.Attachment57]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[chr_Alberts_archetype.Attachment58]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[chr_Alberts_archetype.Attachment59]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_Alberts_archetype.Attachment60]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_Alberts_archetype.Attachment61]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_Alberts_archetype.Attachment62]
+AttachmentSkin0="Olive Grey"
+
+[chr_Alberts_archetype.Attachment63]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[chr_Alberts_archetype.Attachment64]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Black Coat Blue"
+AttachmentSkin2="Black Coat Red"
+AttachmentSkin3="Black Coat Green"
+AttachmentSkin4="Green Coat"
+AttachmentSkin5="Blue Coat"
+AttachmentSkin6="Red Coat"
+
+[chr_Alberts_archetype.Attachment65]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Green Coat"
+AttachmentSkin2="Blue Coat"
+AttachmentSkin3="Red Coat"
+
+[chr_Alberts_archetype.Attachment66]
+AttachmentSkin0="Black Eyes"
+AttachmentSkin1="Red Eyes"
+AttachmentSkin2="Blue Eyes"
+AttachmentSkin3="Green Eyes"
+AttachmentSkin4="Green Filter"
+AttachmentSkin5="Blue Filter"
+AttachmentSkin6="Red Filter"
+
+[chr_Alberts_archetype.Attachment67]
+AttachmentSkin0="Stealth Black"
+
+[chr_Alberts_archetype.Attachment68]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+
+[chr_Alberts_archetype.Attachment69]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+AttachmentSkin4="Blue Steel"
+AttachmentSkin5="Blue Magnum"
+AttachmentSkin6="Green Rally"
+AttachmentSkin7="Green Synergy"
+AttachmentSkin8="Red Face"
+AttachmentSkin9="Red Cheeks"
+AttachmentSkin10="Reaper Black"
+
+[chr_Alberts_archetype.Attachment70]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
+//Start Masterson
+
+[CHR_Masterson_archetype]
+CharacterName="Tğm. Bill Masterson"
+Description="Bill Masterson had a checkered career in the Army. He wanted heroic soldiering, against bold and evil enemies of Queen and Country. What he got was a bunch of dirty terrorists. He wanted a good shooting war. What he got was leading his men through a series of stupid "police actions" in crappy parts of the world. So he quit. After a couple of worthless jobs, he woke up one morning to the Apocalypse going on in the streets of London. Masterson, now the heroic soldier he wanted to be, let himself in to the local Reserves barracks, tooled himself up and started his own shooting war. It wasn't the war he had expected or trained for, but it worked. And he is bloody good at it!"
+BodyMesh0="Savaş Elbisesi"
+HeadMesh0="Yüz"
+Attachment0="S10 NBC Maskesi"
+Attachment1="Gözlükler"
+Attachment2="Alienware"
+Attachment3="Havacı"
+Attachment4="Balistik Maske"
+Attachment5="Beyzbol Şapkası"
+Attachment6="Şef Şapkası"
+Attachment7="Kimyasal Gaz Maskesi"
+Attachment8="Kovboy Şapkası"
+Attachment9="Kasket"
+Attachment10="Kevlar Kask"
+Attachment11="Gece Görüşü Maskesi"
+Attachment12="Göz Bandı"
+Attachment13="Kaynak Maskesi"
+Attachment14="Alman Gaz Maskesi"
+Attachment15="Saç Bandı"
+Attachment16="Retro Güneş Gözlüğü"
+Attachment17="Kayak Maskesi"
+Attachment18="Doktorun Maskesi"
+Attachment19="Ön Koruma Açık"
+Attachment20="Ön Koruma Kapalı"
+Attachment21="Deli Maskesi"
+Attachment22="Uçuş Kaskı"
+Attachment23="Kafatası Kırıcı Kask"
+Attachment24="Kafatası Kırıcı Maske"
+Attachment25="Uçuş Maskesi"
+Attachment26="Muhafız Kaskı"
+Attachment27="Charm Goggles"
+Attachment28="Aviator Goggles"
+Attachment29="Sawblade Battle Helm"
+Attachment30="Boonie Cap"
+Attachment31="Infiltrator"
+Attachment32="Mask of the Abyss"
+Attachment33="Horzine Cybernetic Gas Mask"
+Attachment34="JFront Cap"
+Attachment35="Longhorn"
+Attachment36="EMS Backpack"
+Attachment37="Motorcycle Helmet"
+Attachment38="Smashed Motorcycle Helmet"
+Attachment39="Rubber Air Filter"
+Attachment40="Russian Gas Mask"
+Attachment41="Sawtooth Mask"
+Attachment42="The Inquisitor"
+Attachment43="US Gas Mask"
+Attachment44="Bloody Games"
+Attachment45="Shattered Mask"
+Attachment46="Military Surplus Beenie"
+Attachment47="RAF Goggles"
+Attachment48="Pork Pie"
+Attachment49="Visage de Poupee"
+Attachment50="Protective Glasses"
+Attachment51="Samurai Helm"
+Attachment52="Samurai Hat"
+Attachment53="Street Punk Bandana"
+Attachment54="Street Punk Glasses"
+Attachment55="Discount T-Rex Mask"
+Attachment56="Wasteland Goggles"
+Attachment57="EMS Arm Band"
+Attachment58="M2 Flamethrower Tank"
+Attachment59="RPG7 Backbag"
+Attachment60="Enforcer Goggles"
+Attachment61="Enforcer Helmet"
+Attachment62="Enforcer Mask"
+Attachment63="Justice Goggles"
+Attachment64="Justice Helmet"
+Attachment65="Justice Mask"
+Attachment66="Tactical Backbag"
+
+[CHR_Masterson_archetype.HeadMesh0]
+HeadSkin0="Temiz"
+HeadSkin1="Kamuflaj"
+
+[CHR_Masterson_archetype.BodyMesh0]
+BodySkin0="Yeşil"
+BodySkin1="Siyah"
+BodySkin2="Kar"
+BodySkin3="DPM"
+
+[CHR_Masterson_archetype.Attachment0]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Kamuflaj"
+AttachmentSkin2="Biyolojik Tehlike"
+AttachmentSkin3="Zed Zamanı"
+AttachmentSkin4="Değerli"
+
+[CHR_Masterson_archetype.Attachment1]
+AttachmentSkin0="Gölgeler"
+AttachmentSkin1="Normal Gözlük"
+
+[chr_Masterson_archetype.Attachment2]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Siyah Parıltı"
+AttachmentSkin2="Beyaz"
+AttachmentSkin3="Beyaz Parıltı"
+AttachmentSkin4="Mavi"
+AttachmentSkin5="Mavi Parıltı"
+AttachmentSkin6="Altın"
+AttachmentSkin7="Altın Parıltı"
+AttachmentSkin8="Yeşil"
+AttachmentSkin9="Yeşil Parıltı"
+
+[chr_Masterson_archetype.Attachment3]
+AttachmentSkin0="Beyaz Jantlar"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Kırmızı"
+
+[chr_Masterson_archetype.Attachment4]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Kırmızı"
+
+[chr_Masterson_archetype.Attachment5]
+AttachmentSkin0="Birleşik Krallık"
+AttachmentSkin1="ABD"
+AttachmentSkin2="Kanada"
+AttachmentSkin3="Almanya"
+AttachmentSkin4="Rusya"
+
+[chr_Masterson_archetype.Attachment6]
+AttachmentSkin0="Beyaz"
+AttachmentSkin1="Çizgili"
+AttachmentSkin2="Kanlı"
+
+[chr_Masterson_archetype.Attachment7]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Siyah"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Sarı"
+
+[chr_Masterson_archetype.Attachment8]
+AttachmentSkin0="Kovboy Şapkası"
+
+[chr_Masterson_archetype.Attachment9]
+AttachmentSkin0="Kahverengi"
+AttachmentSkin1="Siyah"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Sarı"
+AttachmentSkin4="Beyaz"
+
+[chr_Masterson_archetype.Attachment10]
+AttachmentSkin0="Kamuflaj"
+
+[chr_Masterson_archetype.Attachment11]
+AttachmentSkin0="Mavi Parıltı"
+
+[chr_Masterson_archetype.Attachment12]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asyalı"
+AttachmentSkin2="Biyografi"
+AttachmentSkin3="Mavi"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Mangır"
+AttachmentSkin6="Göz"
+AttachmentSkin7="Süslü"
+AttachmentSkin8="Alev"
+AttachmentSkin9="Ekose"
+AttachmentSkin10="Mor"
+AttachmentSkin11="Kafatası"
+AttachmentSkin12="Serpilmiş"
+AttachmentSkin13="Batik"
+
+[chr_Masterson_archetype.Attachment13]
+AttachmentSkin0="Koyu Metal"
+
+[chr_Masterson_archetype.Attachment14]
+AttachmentSkin0="Alman Gaz Mazkesi"
+
+[chr_Masterson_archetype.Attachment15]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asya Beyazı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Koyu Mor"
+AttachmentSkin6="Alev"
+AttachmentSkin7="Yeşil"
+AttachmentSkin8="Japonya"
+AttachmentSkin9="Açık Mavi"
+AttachmentSkin10="Mor"
+AttachmentSkin11="Kırmızı"
+AttachmentSkin12="Kırmızı Siyah"
+AttachmentSkin13="Kırmızı Desen"
+AttachmentSkin14="Yıldız"
+AttachmentSkin15="Çizgili"
+AttachmentSkin16="Batik"
+AttachmentSkin17="Beyaz"
+AttachmentSkin18="Sarı"
+
+[chr_Masterson_archetype.Attachment16]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Kamuflaj"
+AttachmentSkin2="Kaplan"
+AttachmentSkin3="ABD"
+
+[chr_Masterson_archetype.Attachment17]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asyalı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi Yeşil"
+AttachmentSkin4="Mavi Beyaz"
+AttachmentSkin5="Mavi Sarı"
+AttachmentSkin6="Kamuflaj"
+AttachmentSkin7="Koyu Mor"
+AttachmentSkin8="Alevler"
+AttachmentSkin9="Yeşil Mavi"
+AttachmentSkin10="Yeşil Sarı"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Mor"
+AttachmentSkin13="Mor Siyah"
+AttachmentSkin14="Gökkuşağı"
+AttachmentSkin15="Kırmızı Beyaz"
+AttachmentSkin16="Beyaz Siyah"
+AttachmentSkin17="Sarı Siyah"
+
+[chr_Masterson_archetype.Attachment18]
+AttachmentSkin0="Beyaz"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+
+[chr_Masterson_archetype.Attachment19]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_Masterson_archetype.Attachment20]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_Masterson_archetype.Attachment21]
+AttachmentSkin0="Deli Maskesi"
+
+[chr_Masterson_archetype.Attachment22]
+AttachmentSkin0="Uçuş Kaskı"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_Masterson_archetype.Attachment23]
+AttachmentSkin0="Kafatası Kırıcı Kask"
+
+[chr_Masterson_archetype.Attachment24]
+AttachmentSkin0="Kafatası Kırıcı Maske"
+
+[chr_Masterson_archetype.Attachment25]
+AttachmentSkin0="Uçuş Maskesi"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_Masterson_archetype.Attachment26]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Altın"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Değerli Altın"
+
+[CHR_Masterson_archetype.Attachment27]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Masterson_archetype.Attachment28]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Masterson_archetype.Attachment29]
+AttachmentSkin0="Default"
+
+[CHR_Masterson_archetype.Attachment30]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[CHR_Masterson_archetype.Attachment31]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[CHR_Masterson_archetype.Attachment32]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[CHR_Masterson_archetype.Attachment33]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[CHR_Masterson_archetype.Attachment34]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[CHR_Masterson_archetype.Attachment35]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Masterson_archetype.Attachment36]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Masterson_archetype.Attachment37]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[CHR_Masterson_archetype.Attachment38]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[CHR_Masterson_archetype.Attachment39]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[CHR_Masterson_archetype.Attachment40]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Masterson_archetype.Attachment41]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[CHR_Masterson_archetype.Attachment42]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[CHR_Masterson_archetype.Attachment43]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Masterson_archetype.Attachment44]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[CHR_Masterson_archetype.Attachment45]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[CHR_Masterson_archetype.Attachment46]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[CHR_Masterson_archetype.Attachment47]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[CHR_Masterson_archetype.Attachment48]
+AttachmentSkin0="Mr White"
+
+[CHR_Masterson_archetype.Attachment49]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[CHR_Masterson_archetype.Attachment50]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[CHR_Masterson_archetype.Attachment51]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Masterson_archetype.Attachment52]
+AttachmentSkin0="Bushi"
+
+[CHR_Masterson_archetype.Attachment53]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[CHR_Masterson_archetype.Attachment54]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[CHR_Masterson_archetype.Attachment55]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Masterson_archetype.Attachment56]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Masterson_archetype.Attachment57]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Masterson_archetype.Attachment58]
+AttachmentSkin0="Olive Grey"
+
+[CHR_Masterson_archetype.Attachment59]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[CHR_Masterson_archetype.Attachment60]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Black Coat Blue"
+AttachmentSkin2="Black Coat Red"
+AttachmentSkin3="Black Coat Green"
+AttachmentSkin4="Green Coat"
+AttachmentSkin5="Blue Coat"
+AttachmentSkin6="Red Coat"
+
+[CHR_Masterson_archetype.Attachment61]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Green Coat"
+AttachmentSkin2="Blue Coat"
+AttachmentSkin3="Red Coat"
+
+[CHR_Masterson_archetype.Attachment62]
+AttachmentSkin0="Black Eyes"
+AttachmentSkin1="Red Eyes"
+AttachmentSkin2="Blue Eyes"
+AttachmentSkin3="Green Eyes"
+AttachmentSkin4="Green Filter"
+AttachmentSkin5="Blue Filter"
+AttachmentSkin6="Red Filter"
+
+[CHR_Masterson_archetype.Attachment63]
+AttachmentSkin0="Stealth Black"
+
+[CHR_Masterson_archetype.Attachment64]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+
+[CHR_Masterson_archetype.Attachment65]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+AttachmentSkin4="Blue Steel"
+AttachmentSkin5="Blue Magnum"
+AttachmentSkin6="Green Rally"
+AttachmentSkin7="Green Synergy"
+AttachmentSkin8="Red Face"
+AttachmentSkin9="Red Cheeks"
+AttachmentSkin10="Reaper Black"
+
+[CHR_Masterson_archetype.Attachment66]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
+
+//Start Tanaka
+
+[CHR_Tanaka_Archetype]
+CharacterName="Hayato Tanaka"
+Description="Tanaka is a conflicted individual, with a serious death-wish problem. Born in Okinawa, he was brought up around Americans in the military. Moving to mainland Japan with his family, the Americanized Tanaka failed to fit in and took up drama classes. After college he moved to LA, playing cliched bit-parts in bad movies, before moving on to Europe trying to find more 'serious' work. All he got there were bad-guy roles in French gangster films and some tats. Now, in the apocalypse, he seems to be confusing his own reality with some of the movie parts he has played. This seems to involve visions of the Yakuza, demons and a Hollywood take on bushido."
+BodyMesh0="Havalı Öl"
+BodyMesh1="Motosiklet"
+HeadMesh0="Saç"
+Attachment0="Yüz Maskesi"
+Attachment1="S10 NBC Maskesi"
+Attachment2="Gözlükler"
+Attachment3="Scully Kulaklıkları"
+Attachment4="3D Gözlükler"
+Attachment5="Alienware"
+Attachment6="Kask"
+Attachment7="Havacı"
+Attachment8="Balistik Maske"
+Attachment9="Beyzbol Şapkası"
+Attachment10="Şef Şapkası"
+Attachment11="Kovboy Şapkası"
+Attachment12="Kasket"
+Attachment13="Kevlar Kask"
+Attachment14="Gece Görüşü Maskesi"
+Attachment15="Göz Bandı"
+Attachment16="Kaynak Maskesi"
+Attachment17="Alman Gaz Maskesi"
+Attachment18="Saç Bandı"
+Attachment19="Retro Güneş Gözlüğü"
+Attachment20="Kayak Maskesi"
+Attachment21="Doktorun Maskesi"
+Attachment22="Mempo"
+Attachment23="Ön Koruma Açık"
+Attachment24="Ön Koruma Kapalı"
+Attachment25="Deli Maskesi"
+Attachment26="Uçuş Kaskı"
+Attachment27="Muhafız Kaskı"
+Attachment28="Flight Mask"
+Attachment29="Charm Goggles"
+Attachment30="Aviator Goggles"
+Attachment31="Sawblade Battle Helm"
+Attachment32="Boonie Cap"
+Attachment33="Infiltrator"
+Attachment34="Mask of the Abyss"
+Attachment35="Horzine Cybernetic Gas Mask"
+Attachment36="JFront Cap"
+Attachment37="Longhorn"
+Attachment38="EMS Backpack"
+Attachment39="Motorcycle Helmet"
+Attachment40="Smashed Motorcycle Helmet"
+Attachment41="Rubber Air Filter"
+Attachment42="Russian Gas Mask"
+Attachment43="Sawtooth Mask"
+Attachment44="The Inquisitor"
+Attachment45="US Gas Mask"
+Attachment46="Bloody Games"
+Attachment47="Shattered Mask"
+Attachment48="Military Surplus Beenie"
+Attachment49="RAF Goggles"
+Attachment50="Pork Pie"
+Attachment51="Visage de Poupee"
+Attachment52="Protective Glasses"
+Attachment53="Samurai Helm"
+Attachment54="Samurai Hat"
+Attachment55="Street Punk Bandana"
+Attachment56="Street Punk Glasses"
+Attachment57="Discount T-Rex Mask"
+Attachment58="Wasteland Goggles"
+Attachment59="EMS Arm Band"
+Attachment60="M2 Flamethrower Tank"
+Attachment61="RPG7 Backbag"
+Attachment62="Tactical Backbag"
+
+[CHR_Tanaka_Archetype.HeadMesh0]
+HeadSkin0="Siyah"
+HeadSkin1="Sarışın"
+
+[CHR_Tanaka_Archetype.BodyMesh0]
+BodySkin0="And Classy"
+BodySkin1="Kakihara-san"
+BodySkin2="Siyahlı"
+BodySkin3="Mavi Ejderha"
+
+[CHR_Tanaka_Archetype.BodyMesh1]
+BodySkin0="Kırmızı ve Siyah"
+BodySkin1="Mastadon"
+BodySkin2="Stig"
+BodySkin3="Mavi Blur"
+BodySkin4="Ejderha"
+BodySkin5="Ölüm Oyunu"
+BodySkin6="Turna"
+
+[chr_Tanaka_archetype.Attachment0]
+AttachmentSkin0="Altın Ejderha"
+AttachmentSkin1="Kakihara-san"
+AttachmentSkin2="Hannya"
+AttachmentSkin3="Vatansever"
+
+[chr_Tanaka_archetype.Attachment1]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Kamuflaj"
+AttachmentSkin2="Biyolojik Tehlike"
+AttachmentSkin3="Zed Zamanı"
+AttachmentSkin4="Değerli"
+
+[CHR_Tanaka_archetype.Attachment2]
+AttachmentSkin0="Güneş Gözlüğü"
+AttachmentSkin1="Normal Gözlük"
+
+[chr_Tanaka_archetype.Attachment3]
+AttachmentSkin0="Derin Mavi"
+AttachmentSkin1="Giyotin Kırmızısı"
+AttachmentSkin2="Muhafız Turuncusu"
+AttachmentSkin3="Retro Kafatası"
+AttachmentSkin4="Horzine Beyazı"
+AttachmentSkin5="GearXT Sarı"
+AttachmentSkin6="Değerli Altın"
+
+[CHR_Tanaka_archetype.Attachment4]
+AttachmentSkin0="Renk Karmalı 3B"
+AttachmentSkin1="Passive Shutter"
+AttachmentSkin2="Trioscopic 3D"
+AttachmentSkin3="X-Işını Gözlükleri"
+
+[chr_Tanaka_archetype.Attachment5]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Siyah Parıltı"
+AttachmentSkin2="Beyaz"
+AttachmentSkin3="Beyaz Parıltı"
+AttachmentSkin4="Mavi"
+AttachmentSkin5="Mavi Parıltı"
+AttachmentSkin6="Altın"
+AttachmentSkin7="Altın Parıltı"
+AttachmentSkin8="Yeşil"
+AttachmentSkin9="Yeşil Parıltı"
+
+[chr_Tanaka_archetype.Attachment6]
+AttachmentSkin0="Doğan Güneş"
+AttachmentSkin1="Amerika"
+AttachmentSkin2="Siyah"
+AttachmentSkin3="Mavi Blur"
+AttachmentSkin4="Şef Yeşili"
+AttachmentSkin5="Kıyamet Grisi"
+AttachmentSkin6="Ölüm Oyunu"
+AttachmentSkin7="Beyaz"
+
+[chr_Tanaka_archetype.Attachment7]
+AttachmentSkin0="Beyaz Jantlar"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Kırmızı"
+
+[chr_Tanaka_archetype.Attachment8]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Kırmızı"
+
+[chr_Tanaka_archetype.Attachment9]
+AttachmentSkin0="Birleşik Krallık"
+AttachmentSkin1="ABD"
+AttachmentSkin2="Kanada"
+AttachmentSkin3="DE"
+AttachmentSkin4="Rusya"
+
+[chr_Tanaka_archetype.Attachment10]
+AttachmentSkin0="Beyaz"
+AttachmentSkin1="Çizgili"
+AttachmentSkin2="Kanlı"
+
+[chr_Tanaka_archetype.Attachment11]
+AttachmentSkin0="Kovboy Şapkası"
+
+[chr_Tanaka_archetype.Attachment12]
+AttachmentSkin0="Kahverengi"
+AttachmentSkin1="Siyah"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Sarı"
+AttachmentSkin4="Beyaz"
+
+[chr_Tanaka_archetype.Attachment13]
+AttachmentSkin0="Kamuflaj"
+
+[chr_Tanaka_archetype.Attachment14]
+AttachmentSkin0="Mavi Parıltı"
+
+[chr_Tanaka_archetype.Attachment15]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asyalı"
+AttachmentSkin2="Biyografi"
+AttachmentSkin3="Mavi"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Mangır"
+AttachmentSkin6="Göz"
+AttachmentSkin7="Süslü"
+AttachmentSkin8="Alev"
+AttachmentSkin9="Ekose"
+AttachmentSkin10="Mor"
+AttachmentSkin11="Kafatası"
+AttachmentSkin12="Serpilmiş"
+AttachmentSkin13="Batik"
+
+[chr_Tanaka_archetype.Attachment16]
+AttachmentSkin0="Koyu Metal"
+
+[chr_Tanaka_archetype.Attachment17]
+Attachment10="Alman Gaz Maskesi"
+
+[chr_Tanaka_archetype.Attachment18]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asya Beyazı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Koyu Mor"
+AttachmentSkin6="Alev"
+AttachmentSkin7="Yeşil"
+AttachmentSkin8="Japonya"
+AttachmentSkin9="Açık Mavi"
+AttachmentSkin10="Mor"
+AttachmentSkin11="Kırmızı"
+AttachmentSkin12="Kırmızı Siyah"
+AttachmentSkin13="Kırmızı Desen"
+AttachmentSkin14="Yıldız"
+AttachmentSkin15="Çizgili"
+AttachmentSkin16="Batik"
+AttachmentSkin17="Beyaz"
+AttachmentSkin18="Sarı"
+
+[chr_Tanaka_archetype.Attachment19]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Kamuflaj"
+AttachmentSkin2="Kaplan"
+AttachmentSkin3="ABD"
+
+[chr_Tanaka_archetype.Attachment20]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asyalı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi Yeşil"
+AttachmentSkin4="Mavi Beyaz"
+AttachmentSkin5="Mavi Sarı"
+AttachmentSkin6="Kamuflaj"
+AttachmentSkin7="Koyu Mor"
+AttachmentSkin8="Alevler"
+AttachmentSkin9="Yeşil Mavi"
+AttachmentSkin10="Yeşil Sarı"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Mor"
+AttachmentSkin13="Mor Siyah"
+AttachmentSkin14="Gökkuşağı"
+AttachmentSkin15="Kırmızı Beyaz"
+AttachmentSkin16="Beyaz Siyah"
+AttachmentSkin17="Sarı Siyah"
+
+[chr_Tanaka_archetype.Attachment21]
+AttachmentSkin0="Beyaz"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+
+[chr_Tanaka_archetype.Attachment22]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Mor"
+AttachmentSkin2="Kırmızı"
+AttachmentSkin3="Sarı"
+
+[chr_Tanaka_archetype.Attachment23]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_Tanaka_archetype.Attachment24]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_Tanaka_archetype.Attachment25]
+AttachmentSkin0="Deli Maskesi"
+
+[chr_Tanaka_archetype.Attachment26]
+AttachmentSkin0="Uçuş Kaskı"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_Tanaka_archetype.Attachment27]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Altın"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Değerli Altın"
+
+[chr_Tanaka_archetype.Attachment28]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[CHR_Tanaka_Archetype.Attachment29]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Tanaka_Archetype.Attachment30]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Tanaka_Archetype.Attachment31]
+AttachmentSkin0="Default"
+
+[CHR_Tanaka_Archetype.Attachment32]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[CHR_Tanaka_Archetype.Attachment33]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[CHR_Tanaka_Archetype.Attachment34]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[CHR_Tanaka_Archetype.Attachment35]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[CHR_Tanaka_Archetype.Attachment36]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[CHR_Tanaka_Archetype.Attachment37]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Tanaka_Archetype.Attachment38]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Tanaka_Archetype.Attachment39]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[CHR_Tanaka_Archetype.Attachment40]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[CHR_Tanaka_Archetype.Attachment41]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[CHR_Tanaka_Archetype.Attachment42]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Tanaka_Archetype.Attachment43]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[CHR_Tanaka_Archetype.Attachment44]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[CHR_Tanaka_Archetype.Attachment45]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Tanaka_Archetype.Attachment46]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[CHR_Tanaka_Archetype.Attachment47]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[CHR_Tanaka_Archetype.Attachment48]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[CHR_Tanaka_Archetype.Attachment49]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[CHR_Tanaka_Archetype.Attachment50]
+AttachmentSkin0="Mr White"
+
+[CHR_Tanaka_Archetype.Attachment51]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[CHR_Tanaka_Archetype.Attachment52]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[CHR_Tanaka_Archetype.Attachment53]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Tanaka_Archetype.Attachment54]
+AttachmentSkin0="Bushi"
+
+[CHR_Tanaka_Archetype.Attachment55]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[CHR_Tanaka_Archetype.Attachment56]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[CHR_Tanaka_Archetype.Attachment57]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Tanaka_Archetype.Attachment58]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Tanaka_Archetype.Attachment59]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Tanaka_Archetype.Attachment60]
+AttachmentSkin0="Olive Grey"
+
+[CHR_Tanaka_Archetype.Attachment61]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[CHR_Tanaka_Archetype.Attachment62]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
+//Ana
+[CHR_Ana_Archetype]
+CharacterName="Ana Larive"
+Description="She would probably be assigned to that group the establishment called "disaffected youth", except that Ana largely didn't give enough of a crap about anything except travelling around Europe indulging her passions for photographing abandoned places and for death metal bands. And now there isn't much "establishment" left, Ana cares even less. While there is now a distinct lack of bands on tour, there are ever-more abandoned places. And the sweet part about her current job is that she gets to go into those places and make them look even more abandoned. You see, she's discovered a new passion - blowing stuff up!"
+BodyMesh0="Metalcore"
+HeadMesh0="Mohavk"
+Attachment0="Eşarp"
+Attachment1="S10 NBC Maskesi"
+Attachment2="Gözlük"
+Attachment3="3D Gözlükler"
+Attachment4="Alienware"
+Attachment5="Havacı"
+Attachment6="Kasket"
+Attachment7="Şef Şapkası"
+Attachment8="Kimyasal Gaz Maskesi"
+Attachment9="Kevlar Kask"
+Attachment10="Gece Görüşü Maskesi"
+Attachment11="Göz Bandı"
+Attachment12="Kaynak Maskesi"
+Attachment13="Alman Gaz Maskesi"
+Attachment14="Kovboy Şapkası"
+Attachment15="Saç Bandı"
+Attachment16="Retro Güneş Gözlüğü"
+Attachment17="Kayak Maskesi"
+Attachment18="Doktorun Maskesi"
+Attachment19="Ön Koruma Açık"
+Attachment20="Ön Koruma Kapalı"
+Attachment21="Deli Maskesi"
+Attachment22="Uçuş Kaskı"
+Attachment23="Muhafız Kaskı"
+Attachment24="Baseball Hat"
+Attachment25="Flight Mask"
+Attachment26="Charm Goggles"
+Attachment27="Aviator Goggles"
+Attachment28="Sawblade Battle Helm"
+Attachment29="Boonie Cap"
+Attachment30="Infiltrator"
+Attachment31="Mask of the Abyss"
+Attachment32="Horzine Cybernetic Gas Mask"
+Attachment33="JFront Cap"
+Attachment34="Longhorn"
+Attachment35="EMS Backpack"
+Attachment36="Motorcycle Helmet"
+Attachment37="Smashed Motorcycle Helmet"
+Attachment38="Rubber Air Filter"
+Attachment39="Russian Gas Mask"
+Attachment40="Sawtooth Mask"
+Attachment41="The Inquisitor"
+Attachment42="US Gas Mask"
+Attachment43="Bloody Games"
+Attachment44="Shattered Mask"
+Attachment45="Military Surplus Beenie"
+Attachment46="RAF Goggles"
+Attachment47="Pork Pie"
+Attachment48="Visage de Poupee"
+Attachment49="Protective Glasses"
+Attachment50="Samurai Helm"
+Attachment51="Samurai Hat"
+Attachment52="Street Punk Bandana"
+Attachment53="Street Punk Glasses"
+Attachment54="Discount T-Rex Mask"
+Attachment55="Wasteland Goggles"
+Attachment56="EMS Arm Band"
+Attachment57="M2 Flamethrower Tank"
+Attachment58="Tactical Backbag"
+
+[CHR_Ana_Archetype.HeadMesh0]
+HeadSkin0="Ölüm Yağmuru"
+HeadSkin1="Parlak Kan"
+HeadSkin2="Bio-Kola Yeşil"
+HeadSkin3="Hoş Mavi"
+
+[CHR_Ana_Archetype.BodyMesh0]
+BodySkin0="Ölüm Yağmuru"
+BodySkin1="Parlak Kan"
+BodySkin2="Bio-Kola Yeşil"
+BodySkin3="Hoş Mavi"
+BodySkin4="Chickenator Homage"
+
+[CHR_Ana_Archetype.Attachment0]
+AttachmentSkin0="Ölüm Yağmuru"
+AttachmentSkin1="Dişi Kaplan"
+AttachmentSkin2="Bunberry"
+AttachmentSkin3="Hoş Mavi"
+
+[CHR_Ana_Archetype.Attachment1]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Kamuflaj"
+AttachmentSkin2="Biyolojik Tehlike"
+AttachmentSkin3="Zed Zamanı"
+AttachmentSkin4="Değerli"
+
+[CHR_Ana_archetype.Attachment2]
+AttachmentSkin0="Güneş Gözlüğü"
+AttachmentSkin1="Normal Gözlük"
+
+[CHR_Ana_archetype.Attachment3]
+AttachmentSkin0="Anaglif 3D"
+AttachmentSkin1="Passive Shutter"
+AttachmentSkin2="Trioscopic 3D"
+AttachmentSkin3="X-Işını Gözlükleri"
+
+[CHR_Ana_archetype.Attachment4]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Siyah Parıltı"
+AttachmentSkin2="Beyaz"
+AttachmentSkin3="Beyaz Parıltı"
+AttachmentSkin4="Mavi"
+AttachmentSkin5="Mavi Parıltı"
+AttachmentSkin6="Altın"
+AttachmentSkin7="Altın Parıltı"
+AttachmentSkin8="Yeşil"
+AttachmentSkin9="Yeşil Parıltı"
+
+[CHR_Ana_archetype.Attachment5]
+AttachmentSkin0="Beyaz Jantlar"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Kırmızı"
+
+[chr_Ana_archetype.Attachment6]
+AttachmentSkin0="Kahverengi"
+AttachmentSkin1="Siyah"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Sarı"
+AttachmentSkin4="Beyaz"
+
+[chr_Ana_archetype.Attachment7]
+AttachmentSkin0="Beyaz"
+AttachmentSkin1="Çizgili"
+AttachmentSkin2="Kanlı"
+
+[chr_Ana_archetype.Attachment8]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Siyah"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Sarı"
+
+[chr_Ana_archetype.Attachment9]
+AttachmentSkin0="Kamuflaj"
+
+[chr_Ana_archetype.Attachment10]
+AttachmentSkin0="Mavi Parıltı"
+
+[chr_Ana_archetype.Attachment11]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asyalı"
+AttachmentSkin2="Biyografi"
+AttachmentSkin3="Mavi"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Mangır"
+AttachmentSkin6="Göz"
+AttachmentSkin7="Süslü"
+AttachmentSkin8="Alev"
+AttachmentSkin9="Ekose"
+AttachmentSkin10="Mor"
+AttachmentSkin11="Kafatası"
+AttachmentSkin12="Serpilmiş"
+AttachmentSkin13="Batik"
+
+[chr_Ana_archetype.Attachment12]
+AttachmentSkin0="Koyu Metal"
+
+[chr_Ana_archetype.Attachment13]
+AttachmentSkin0="Alman Gaz Maskesi"
+
+[chr_Ana_archetype.Attachment14]
+AttachmentSkin0="Kovboy Şapkası"
+
+[chr_Ana_archetype.Attachment15]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asya Beyazı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Koyu Mor"
+AttachmentSkin6="Alev"
+AttachmentSkin7="Yeşil"
+AttachmentSkin8="Japonya"
+AttachmentSkin9="Açık Mavi"
+AttachmentSkin10="Mor"
+AttachmentSkin11="Kırmızı"
+AttachmentSkin12="Kırmızı Siyah"
+AttachmentSkin13="Kırmızı Desen"
+AttachmentSkin14="Yıldız"
+AttachmentSkin15="Çizgili"
+AttachmentSkin16="Batik"
+AttachmentSkin17="Beyaz"
+AttachmentSkin18="Sarı"
+
+[chr_Ana_archetype.Attachment16]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Kamuflaj"
+AttachmentSkin2="Kaplan"
+AttachmentSkin3="ABD"
+
+[chr_Ana_archetype.Attachment17]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asyalı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi Yeşil"
+AttachmentSkin4="Mavi Beyaz"
+AttachmentSkin5="Mavi Sarı"
+AttachmentSkin6="Kamuflaj"
+AttachmentSkin7="Koyu Mor"
+AttachmentSkin8="Alevler"
+AttachmentSkin9="Yeşil Mavi"
+AttachmentSkin10="Yeşil Sarı"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Mor"
+AttachmentSkin13="Mor Siyah"
+AttachmentSkin14="Gökkuşağı"
+AttachmentSkin15="Kırmızı Beyaz"
+AttachmentSkin16="Beyaz Siyah"
+AttachmentSkin17="Sarı Siyah"
+
+[chr_Ana_archetype.Attachment18]
+AttachmentSkin0="Beyaz"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+
+[chr_Ana_archetype.Attachment19]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_Ana_archetype.Attachment20]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_Ana_archetype.Attachment21]
+AttachmentSkin0="Deli Maskesi"
+
+[chr_Ana_archetype.Attachment22]
+AttachmentSkin0="Uçuş Kaskı"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_Ana_archetype.Attachment23]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Altın"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Değerli Altın"
+
+[chr_Ana_archetype.Attachment24]
+AttachmentSkin0="UK"
+AttachmentSkin1="USA"
+AttachmentSkin2="CA"
+AttachmentSkin3="DE"
+AttachmentSkin4="RU"
+
+[chr_Ana_archetype.Attachment25]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[CHR_Ana_Archetype.Attachment26]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Ana_Archetype.Attachment27]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Ana_Archetype.Attachment28]
+AttachmentSkin0="Default"
+
+[CHR_Ana_Archetype.Attachment29]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[CHR_Ana_Archetype.Attachment30]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[CHR_Ana_Archetype.Attachment31]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[CHR_Ana_Archetype.Attachment32]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[CHR_Ana_Archetype.Attachment33]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[CHR_Ana_Archetype.Attachment34]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Ana_Archetype.Attachment35]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Ana_Archetype.Attachment36]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[CHR_Ana_Archetype.Attachment37]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[CHR_Ana_Archetype.Attachment38]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[CHR_Ana_Archetype.Attachment39]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Ana_Archetype.Attachment40]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[CHR_Ana_Archetype.Attachment41]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[CHR_Ana_Archetype.Attachment42]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Ana_Archetype.Attachment43]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[CHR_Ana_Archetype.Attachment44]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[CHR_Ana_Archetype.Attachment45]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[CHR_Ana_Archetype.Attachment46]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[CHR_Ana_Archetype.Attachment47]
+AttachmentSkin0="Mr White"
+
+[CHR_Ana_Archetype.Attachment48]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[CHR_Ana_Archetype.Attachment49]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[CHR_Ana_Archetype.Attachment50]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Ana_Archetype.Attachment51]
+AttachmentSkin0="Bushi"
+
+[CHR_Ana_Archetype.Attachment52]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[CHR_Ana_Archetype.Attachment53]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[CHR_Ana_Archetype.Attachment54]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Ana_Archetype.Attachment55]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Ana_Archetype.Attachment56]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Ana_Archetype.Attachment57]
+AttachmentSkin0="Olive Grey"
+
+[CHR_Ana_Archetype.Attachment58]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
+
+//Classic Briar 
+
+[chr_mark_archetype]
+CharacterName="Klasik Briar"
+Description="Once upon a time, Briar got the call to suit up to handle a riot in London. But, this time, it wasn't the usual procession of hippies, environmentalists and hairy anarchists getting the rough end of Briar's nightstick. Happily, his affinity for unsolicited violence actually did get him through the next few months, before he had to abandon Blighty and move on to foreign fields.\n\nNow he can extend his good old-fashioned police methods beyond clipping errant teenagers upside the head, to controlling a horde of man-eating mutant monsters by shooting, burning and blowing them to smithereens. And his happy-go-lucky London bobby persona helps to keep the morale of the team up. Or annoy the crap out of them."
+
+BodyMesh0="İsyan Teçhizatı"
+BodyMesh1="Londra"
+HeadMesh0="Saç"
+Attachment0="İsyan Miğferi"
+Attachment1="S10 NBC Maskesi"
+Attachment2="Gözlük"
+Attachment3="Alienware"
+Attachment4="Muhafız Kaskı"
+Attachment5="Havacı"
+Attachment6="Balistik Maske"
+Attachment7="Beyzbol Şapkası"
+Attachment8="Şef Şapkası"
+Attachment9="Kimyasal Gaz Maskesi"
+Attachment10="Kovboy Şapkası"
+Attachment11="Kasket"
+Attachment12="Kevlar Kask"
+Attachment13="Gece Görüşü Maskesi"
+Attachment14="Göz Bandı"
+Attachment15="Kaynak Maskesi"
+Attachment16="Alman Gaz Maskesi"
+Attachment17="Saç Bandı"
+Attachment18="Retro Güneş Gözlüğü"
+Attachment19="Kayak Maskesi"
+Attachment20="Doktorun Maskesi"
+Attachment21="Ön Koruma Açık"
+Attachment22="Ön Koruma Kapalı"
+Attachment23="Deli Maskesi"
+Attachment24="Uçuş Kaskı"
+Attachment25="Flight Mask"
+Attachment26="Charm Goggles"
+Attachment27="Aviator Goggles"
+Attachment28="Sawblade Battle Helm"
+Attachment29="Boonie Cap"
+Attachment30="Infiltrator"
+Attachment31="Mask of the Abyss"
+Attachment32="Horzine Cybernetic Gas Mask"
+Attachment33="JFront Cap"
+Attachment34="Longhorn"
+Attachment35="EMS Backpack"
+Attachment36="Motorcycle Helmet"
+Attachment37="Smashed Motorcycle Helmet"
+Attachment38="Rubber Air Filter"
+Attachment39="Russian Gas Mask"
+Attachment40="Sawtooth Mask"
+Attachment41="The Inquisitor"
+Attachment42="US Gas Mask"
+Attachment43="Bloody Games"
+Attachment44="Shattered Mask"
+Attachment45="Military Surplus Beenie"
+Attachment46="RAF Goggles"
+Attachment47="Pork Pie"
+Attachment48="Visage de Poupee"
+Attachment49="Protective Glasses"
+Attachment50="Samurai Helm"
+Attachment51="Samurai Hat"
+Attachment52="Street Punk Bandana"
+Attachment53="Street Punk Glasses"
+Attachment54="Discount T-Rex Mask"
+Attachment55="Wasteland Goggles"
+Attachment56="EMS Arm Band"
+Attachment57="M2 Flamethrower Tank"
+Attachment58="RPG7 Backbag"
+Attachment59="Enforcer Goggles"
+Attachment60="Enforcer Helmet"
+Attachment61="Enforcer Mask"
+Attachment62="Justice Goggles"
+Attachment63="Justice Helmet"
+Attachment64="Justice Mask"
+Attachment65="Tactical Backbag"
+
+[chr_mark_archetype.BodyMesh0]
+BodySkin0="Polis Mavisi"
+BodySkin1="Gece Siyahı"
+BodySkin2="Ordu Yeşili"
+BodySkin3="SAS Kamuflajı"
+
+[chr_mark_archetype.BodyMesh1]
+BodySkin0="Metro"
+BodySkin1="Gece Siyahı"
+BodySkin2="Mavi"
+BodySkin3="Yansıtıcı"
+BodySkin4="Yansıtıcı Siyah"
+
+[chr_mark_archetype.HeadMesh0]
+HeadSkin0="Gerçek Anlaşma"
+HeadSkin1="Lanet Olası Kirli Sakal"
+HeadSkin2="A Nice Brown, Guv?"
+Headskin3="İsveç Sarısı"
+
+[chr_mark_archetype.Attachment0]
+AttachmentSkin0="Görünür Kırmızı"
+AttachmentSkin1="Polis Mavisi"
+AttachmentSkin2="Ordu Yeşili"
+AttachmentSkin3="Gece Siyahı"
+
+[chr_mark_archetype.Attachment1]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Kamuflaj"
+AttachmentSkin2="Biyolojik Tehlike"
+AttachmentSkin3="Zed Zamanı"
+AttachmentSkin4="Değerli"
+
+[CHR_mark_archetype.Attachment2]
+AttachmentSkin0="Güneş Gözlüğü"
+AttachmentSkin1="Normal Gözlük"
+
+[chr_mark_archetype.Attachment3]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Siyah Parıltı"
+AttachmentSkin2="Beyaz"
+AttachmentSkin3="Beyaz Parıltı"
+AttachmentSkin4="Mavi"
+AttachmentSkin5="Mavi Parıltı"
+AttachmentSkin6="Altın"
+AttachmentSkin7="Altın Parıltı"
+AttachmentSkin8="Yeşil"
+AttachmentSkin9="Yeşil Parıltı"
+
+[chr_mark_archetype.Attachment4]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Altın"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Değerli Altın"
+
+[chr_mark_archetype.Attachment5]
+AttachmentSkin0="Beyaz Jantlar"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Kırmızı"
+
+[chr_mark_archetype.Attachment6]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Kırmızı"
+
+[chr_mark_archetype.Attachment7]
+AttachmentSkin0="Birleşik Krallık"
+AttachmentSkin1="ABD"
+AttachmentSkin2="Kanada"
+AttachmentSkin3="Almanya"
+AttachmentSkin4="Rusya"
+
+[chr_mark_archetype.Attachment8]
+AttachmentSkin0="Beyaz"
+AttachmentSkin1="Çizgili"
+AttachmentSkin2="Kanlı"
+
+[chr_mark_archetype.Attachment9]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Siyah"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Sarı"
+
+[chr_mark_archetype.Attachment10]
+AttachmentSkin0="Kovboy Şapkası"
+
+[chr_mark_archetype.Attachment11]
+AttachmentSkin0="Kahverengi"
+AttachmentSkin1="Siyah"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Sarı"
+AttachmentSkin4="Beyaz"
+
+[chr_mark_archetype.Attachment12]
+AttachmentSkin0="Kamuflaj"
+
+[chr_mark_archetype.Attachment13]
+AttachmentSkin0="Mavi Parıltı"
+
+[chr_mark_archetype.Attachment14]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asyalı"
+AttachmentSkin2="Biyografi"
+AttachmentSkin3="Mavi"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Mangır"
+AttachmentSkin6="Göz"
+AttachmentSkin7="Süslü"
+AttachmentSkin8="Alev"
+AttachmentSkin9="Ekose"
+AttachmentSkin10="Mor"
+AttachmentSkin11="Kafatası"
+AttachmentSkin12="Serpilmiş"
+AttachmentSkin13="Batik"
+
+[chr_mark_archetype.Attachment15]
+AttachmentSkin0="Koyu Metal"
+
+[chr_mark_archetype.Attachment16]
+AttachmentSkin0="Alman Gaz Maskesi"
+
+[chr_mark_archetype.Attachment17]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asya Beyazı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Koyu Mor"
+AttachmentSkin6="Alev"
+AttachmentSkin7="Yeşil"
+AttachmentSkin8="Japonya"
+AttachmentSkin9="Açık Mavi"
+AttachmentSkin10="Mor"
+AttachmentSkin11="Kırmızı"
+AttachmentSkin12="Kırmızı Siyah"
+AttachmentSkin13="Kırmızı Desen"
+AttachmentSkin14="Yıldız"
+AttachmentSkin15="Çizgili"
+AttachmentSkin16="Batik"
+AttachmentSkin17="Beyaz"
+AttachmentSkin18="Sarı"
+
+[chr_mark_archetype.Attachment18]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Kamuflaj"
+AttachmentSkin2="Kaplan"
+AttachmentSkin3="ABD"
+
+[chr_mark_archetype.Attachment19]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asyalı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi Yeşil"
+AttachmentSkin4="Mavi Beyaz"
+AttachmentSkin5="Mavi Sarı"
+AttachmentSkin6="Kamuflaj"
+AttachmentSkin7="Koyu Mor"
+AttachmentSkin8="Alevler"
+AttachmentSkin9="Yeşil Mavi"
+AttachmentSkin10="Yeşil Sarı"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Mor"
+AttachmentSkin13="Mor Siyah"
+AttachmentSkin14="Gökkuşağı"
+AttachmentSkin15="Kırmızı Beyaz"
+AttachmentSkin16="Beyaz Siyah"
+AttachmentSkin17="Sarı Siyah"
+
+[chr_mark_archetype.Attachment20]
+AttachmentSkin0="Beyaz"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+
+[chr_mark_archetype.Attachment21]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_mark_archetype.Attachment22]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_mark_archetype.Attachment23]
+AttachmentSkin0="Deli Maskesi"
+
+[chr_mark_archetype.Attachment24]
+AttachmentSkin0="Uçuş Kaskı"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_mark_archetype.Attachment25]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_mark_archetype.Attachment26]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_mark_archetype.Attachment27]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_mark_archetype.Attachment28]
+AttachmentSkin0="Default"
+
+[chr_mark_archetype.Attachment29]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[chr_mark_archetype.Attachment30]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[chr_mark_archetype.Attachment31]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[chr_mark_archetype.Attachment32]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[chr_mark_archetype.Attachment33]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[chr_mark_archetype.Attachment34]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_mark_archetype.Attachment35]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_mark_archetype.Attachment36]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[chr_mark_archetype.Attachment37]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[chr_mark_archetype.Attachment38]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[chr_mark_archetype.Attachment39]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_mark_archetype.Attachment40]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[chr_mark_archetype.Attachment41]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[chr_mark_archetype.Attachment42]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_mark_archetype.Attachment43]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[chr_mark_archetype.Attachment44]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[chr_mark_archetype.Attachment45]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[chr_mark_archetype.Attachment46]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[chr_mark_archetype.Attachment47]
+AttachmentSkin0="Mr White"
+
+[chr_mark_archetype.Attachment48]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[chr_mark_archetype.Attachment49]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[chr_mark_archetype.Attachment50]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_mark_archetype.Attachment51]
+AttachmentSkin0="Bushi"
+
+[chr_mark_archetype.Attachment52]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[chr_mark_archetype.Attachment53]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[chr_mark_archetype.Attachment54]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_mark_archetype.Attachment55]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_mark_archetype.Attachment56]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_mark_archetype.Attachment57]
+AttachmentSkin0="Olive Grey"
+
+[chr_mark_archetype.Attachment58]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[chr_mark_archetype.Attachment59]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Black Coat Blue"
+AttachmentSkin2="Black Coat Red"
+AttachmentSkin3="Black Coat Green"
+AttachmentSkin4="Green Coat"
+AttachmentSkin5="Blue Coat"
+AttachmentSkin6="Red Coat"
+
+[chr_mark_archetype.Attachment60]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Green Coat"
+AttachmentSkin2="Blue Coat"
+AttachmentSkin3="Red Coat"
+
+[chr_mark_archetype.Attachment61]
+AttachmentSkin0="Black Eyes"
+AttachmentSkin1="Red Eyes"
+AttachmentSkin2="Blue Eyes"
+AttachmentSkin3="Green Eyes"
+AttachmentSkin4="Green Filter"
+AttachmentSkin5="Blue Filter"
+AttachmentSkin6="Red Filter"
+
+[chr_mark_archetype.Attachment62]
+AttachmentSkin0="Stealth Black"
+
+[chr_mark_archetype.Attachment63]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+
+[chr_mark_archetype.Attachment64]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+AttachmentSkin4="Blue Steel"
+AttachmentSkin5="Blue Magnum"
+AttachmentSkin6="Green Rally"
+AttachmentSkin7="Green Synergy"
+AttachmentSkin8="Red Face"
+AttachmentSkin9="Red Cheeks"
+AttachmentSkin10="Reaper Black"
+
+[chr_mark_archetype.Attachment65]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
+//Classic Masterson
+
+[chr_alan_archetype]
+CharacterName="Klasik Masterson"
+Description="No-one has ever really understood how this Masterson rose through the ranks at all, although some have suggested his richer and better-looking cousin, Captain Sir Richard Wiggins, may have had some influence. Or perhaps it was his smarter brother. But, as is always noted, he's a rough diamond, a man of few (polite) words and has an unnaturally calm demeanour in combat situations. Pretty much everyone reckons this is due to his lack of imagination, empathy and intelligence. Luckily, he directs his men decisively and always gets the job done - no matter how unsavory that job would appear to anyone with good taste or decent manners."
+
+BodyMesh0="Çevik Kuvvet Teçhizatı"
+HeadMesh0="Yüz"
+
+Attachment0="S10 NBC Maskesi"
+Attachment1="Gözlükler"
+Attachment2="Alienware"
+Attachment3="Havacı"
+Attachment4="Balistik Maske"
+Attachment5="Beyzbol Şapkası"
+Attachment6="Şef Şapkası"
+Attachment7="Kimyasal Gaz Maskesi"
+Attachment8="Kovboy Şapkası"
+Attachment9="Kasket"
+Attachment10="Kevlar Kask"
+Attachment11="Gece Görüşü Maskesi"
+Attachment12="Göz Bandı"
+Attachment13="Kaynak Maskesi"
+Attachment14="Alman Gaz Maskesi"
+Attachment15="Saç Bandı"
+Attachment16="Retro Güneş Gözlüğü"
+Attachment17="Kayak Maskesi"
+Attachment18="Doktorun Maskesi"
+Attachment19="Ön Koruma Açık"
+Attachment20="Ön Koruma Kapalı"
+Attachment21="Deli Maskesi"
+Attachment22="Uçuş Kaskı"
+Attachment23="Muhafız Kaskı"
+Attachment24="Flight Mask"
+Attachment25="Charm Goggles"
+Attachment26="Aviator Goggles"
+Attachment27="Sawblade Battle Helm"
+Attachment28="Boonie Cap"
+Attachment29="Infiltrator"
+Attachment30="Mask of the Abyss"
+Attachment31="Horzine Cybernetic Gas Mask"
+Attachment32="JFront Cap"
+Attachment33="Longhorn"
+Attachment34="EMS Backpack"
+Attachment35="Motorcycle Helmet"
+Attachment36="Smashed Motorcycle Helmet"
+Attachment37="Rubber Air Filter"
+Attachment38="Russian Gas Mask"
+Attachment39="Sawtooth Mask"
+Attachment40="The Inquisitor"
+Attachment41="US Gas Mask"
+Attachment42="Bloody Games"
+Attachment43="Shattered Mask"
+Attachment44="Military Surplus Beenie"
+Attachment45="RAF Goggles"
+Attachment46="Pork Pie"
+Attachment47="Visage de Poupee"
+Attachment48="Protective Glasses"
+Attachment49="Samurai Helm"
+Attachment50="Samurai Hat"
+Attachment51="Street Punk Bandana"
+Attachment52="Street Punk Glasses"
+Attachment53="Discount T-Rex Mask"
+Attachment54="Wasteland Goggles"
+Attachment55="EMS Arm Band"
+Attachment56="M2 Flamethrower Tank"
+Attachment57="RPG7 Backbag"
+Attachment58="Enforcer Goggles"
+Attachment59="Enforcer Helmet"
+Attachment60="Enforcer Mask"
+Attachment61="Justice Goggles"
+Attachment62="Justice Helmet"
+Attachment63="Justice Mask"
+Attachment64="Tactical Backbag"
+
+[CHR_alan_archetype.BodyMesh0]
+BodySkin0="Yeşil"
+BodySkin1="Siyah"
+BodySkin2="Kar"
+BodySkin3="DPM"
+
+[chr_alan_archetype.HeadMesh0]
+HeadSkin0="Gerçek Anlaşma"
+HeadSkin1="Zencefil! Cidden Mi?"
+HeadSkin2="Zor Bir Gün Ahbap?"
+Headskin3="Camo Up, Chaps!"
+
+[CHR_alan_archetype.Attachment0]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Kamuflaj"
+AttachmentSkin2="Biyolojik Tehlike"
+AttachmentSkin3="Zed Zamanı"
+AttachmentSkin4="Değerli"
+
+[CHR_alan_archetype.Attachment1]
+AttachmentSkin0="Güneş Gözlüğü"
+AttachmentSkin1="Normal Gözlük"
+
+[chr_alan_archetype.Attachment2]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Siyah Parıltı"
+AttachmentSkin2="Beyaz"
+AttachmentSkin3="Beyaz Parıltı"
+AttachmentSkin4="Mavi"
+AttachmentSkin5="Mavi Parıltı"
+AttachmentSkin6="Altın"
+AttachmentSkin7="Altın Parıltı"
+AttachmentSkin8="Yeşil"
+AttachmentSkin9="Yeşil Parıltı"
+
+[chr_alan_archetype.Attachment3]
+AttachmentSkin0="Beyaz Jantlar"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Kırmızı"
+
+[chr_alan_archetype.Attachment4]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Kırmızı"
+
+[chr_alan_archetype.Attachment5]
+AttachmentSkin0="Birleşik Krallık"
+AttachmentSkin1="ABD"
+AttachmentSkin2="Kanada"
+AttachmentSkin3="Almanya"
+AttachmentSkin4="RU"
+
+[chr_alan_archetype.Attachment6]
+AttachmentSkin0="Beyaz"
+AttachmentSkin1="Çizgili"
+AttachmentSkin2="Kanlı"
+
+[chr_alan_archetype.Attachment7]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Siyah"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Sarı"
+
+[chr_alan_archetype.Attachment8]
+AttachmentSkin0="Kovboy Şapkası"
+
+[chr_alan_archetype.Attachment9]
+AttachmentSkin0="Kahverengi"
+AttachmentSkin1="Siyah"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Sarı"
+AttachmentSkin4="Beyaz"
+
+[chr_alan_archetype.Attachment10]
+AttachmentSkin0="Kamuflaj"
+
+[chr_alan_archetype.Attachment11]
+AttachmentSkin0="Mavi Parıltı"
+
+[chr_alan_archetype.Attachment12]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asyalı"
+AttachmentSkin2="Biyografi"
+AttachmentSkin3="Mavi"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Mangır"
+AttachmentSkin6="Göz"
+AttachmentSkin7="Süslü"
+AttachmentSkin8="Alev"
+AttachmentSkin9="Ekose"
+AttachmentSkin10="Mor"
+AttachmentSkin11="Kafatası"
+AttachmentSkin12="Serpilmiş"
+AttachmentSkin13="Batik"
+
+[chr_alan_archetype.Attachment13]
+AttachmentSkin0="Koyu Metal"
+
+[chr_alan_archetype.Attachment14]
+AttachmentSkin0="Alman Gaz Maskesi"
+
+[chr_alan_archetype.Attachment15]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asya Beyazı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Koyu Mor"
+AttachmentSkin6="Alev"
+AttachmentSkin7="Yeşil"
+AttachmentSkin8="Japonya"
+AttachmentSkin9="Açık Mavi"
+AttachmentSkin10="Mor"
+AttachmentSkin11="Kırmızı"
+AttachmentSkin12="Kırmızı Siyah"
+AttachmentSkin13="Kırmızı Desen"
+AttachmentSkin14="Yıldız"
+AttachmentSkin15="Çizgili"
+AttachmentSkin16="Batik"
+AttachmentSkin17="Beyaz"
+AttachmentSkin18="Sarı"
+
+[chr_alan_archetype.Attachment16]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Kamuflaj"
+AttachmentSkin2="Kaplan"
+AttachmentSkin3="ABD"
+
+[chr_alan_archetype.Attachment17]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asyalı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi Yeşil"
+AttachmentSkin4="Mavi Beyaz"
+AttachmentSkin5="Mavi Sarı"
+AttachmentSkin6="Kamuflaj"
+AttachmentSkin7="Koyu Mor"
+AttachmentSkin8="Alevler"
+AttachmentSkin9="Yeşil Mavi"
+AttachmentSkin10="Yeşil Sarı"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Mor"
+AttachmentSkin13="Mor Siyah"
+AttachmentSkin14="Gökkuşağı"
+AttachmentSkin15="Kırmızı Beyaz"
+AttachmentSkin16="Beyaz Siyah"
+AttachmentSkin17="Sarı Siyah"
+
+[chr_alan_archetype.Attachment18]
+AttachmentSkin0="Beyaz"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+
+[chr_alan_archetype.Attachment19]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_alan_archetype.Attachment20]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_alan_archetype.Attachment21]
+AttachmentSkin0="Deli Maskesi"
+
+[chr_alan_archetype.Attachment22]
+AttachmentSkin0="Uçuş Kaskı"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_alan_archetype.Attachment23]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Altın"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Değerli Altın"
+
+[chr_alan_archetype.Attachment24]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_alan_archetype.Attachment25]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_alan_archetype.Attachment26]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_alan_archetype.Attachment27]
+AttachmentSkin0="Default"
+
+[chr_alan_archetype.Attachment28]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[chr_alan_archetype.Attachment29]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[chr_alan_archetype.Attachment30]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[chr_alan_archetype.Attachment31]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[chr_alan_archetype.Attachment32]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[chr_alan_archetype.Attachment33]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_alan_archetype.Attachment34]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_alan_archetype.Attachment35]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[chr_alan_archetype.Attachment36]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[chr_alan_archetype.Attachment37]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[chr_alan_archetype.Attachment38]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_alan_archetype.Attachment39]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[chr_alan_archetype.Attachment40]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[chr_alan_archetype.Attachment41]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_alan_archetype.Attachment42]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[chr_alan_archetype.Attachment43]
+AttachmentSkin0="WhiteYellow"
+
+[chr_alan_archetype.Attachment44]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[chr_alan_archetype.Attachment45]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[chr_alan_archetype.Attachment46]
+AttachmentSkin0="Mr White"
+
+[chr_alan_archetype.Attachment47]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[chr_alan_archetype.Attachment48]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[chr_alan_archetype.Attachment49]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_alan_archetype.Attachment50]
+AttachmentSkin0="Bushi"
+
+[chr_alan_archetype.Attachment51]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[chr_alan_archetype.Attachment52]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[chr_alan_archetype.Attachment53]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_alan_archetype.Attachment54]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_alan_archetype.Attachment55]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_alan_archetype.Attachment56]
+AttachmentSkin0="Olive Grey"
+
+[chr_alan_archetype.Attachment57]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[chr_alan_archetype.Attachment58]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Black Coat Blue"
+AttachmentSkin2="Black Coat Red"
+AttachmentSkin3="Black Coat Green"
+AttachmentSkin4="Green Coat"
+AttachmentSkin5="Blue Coat"
+AttachmentSkin6="Red Coat"
+
+[chr_alan_archetype.Attachment59]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Green Coat"
+AttachmentSkin2="Blue Coat"
+AttachmentSkin3="Red Coat"
+
+[chr_alan_archetype.Attachment60]
+AttachmentSkin0="Black Eyes"
+AttachmentSkin1="Red Eyes"
+AttachmentSkin2="Blue Eyes"
+AttachmentSkin3="Green Eyes"
+AttachmentSkin4="Green Filter"
+AttachmentSkin5="Blue Filter"
+AttachmentSkin6="Red Filter"
+
+[chr_alan_archetype.Attachment61]
+AttachmentSkin0="Stealth Black"
+
+[chr_alan_archetype.Attachment62]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+
+[chr_alan_archetype.Attachment63]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+AttachmentSkin4="Blue Steel"
+AttachmentSkin5="Blue Magnum"
+AttachmentSkin6="Green Rally"
+AttachmentSkin7="Green Synergy"
+AttachmentSkin8="Red Face"
+AttachmentSkin9="Red Cheeks"
+AttachmentSkin10="Reaper Black"
+
+[chr_alan_archetype.Attachment64]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
+//Anton Strasser
+
+[chr_strasser_archetype]
+CharacterName="Anton Strasser"
+Description="Strasser marched off to his first war in 1939, as a soldier in the German army invading Poland, followed by a stomp through France in 1940 and a charge into Russia in 1941. But that led to him almost freezing to death, fighting General Winter and the Red Army equally hard for his life. In 1942 Stalingrad loomed, victories ended and disillusion set in. At Gumrak airfield, he was severely concussed, but lucky. Flown out, comatose, into the waiting arms of one Hans Volter, he was quietly spirited away to Volter's lab as a wonderful subject for cryogenic tests. There he stayed, frozen and forgotten, until accidentally released by an outbreak. Bewildered, he had one brief chance to kill Volter but didn't take it. Much to his regret when he found out what was going on."
+
+BodyMesh0="RO2: Stalingrad Kahramanı"
+HeadMesh0="Saç"
+Attachment0="Alman Kepi"
+Attachment1="Alman Çeliği Miğferi"
+Attachment2="Alienware"
+Attachment3="Havacı"
+Attachment4="Balistik Maske"
+Attachment5="Beyzbol Şapkası"
+Attachment6="Şef Şapkası"
+Attachment7="Kovboy Şapkası"
+Attachment8="Kasket"
+Attachment9="Kevlar Kask"
+Attachment10="Gece Görüşü Maskesi"
+Attachment11="Göz Bandı"
+Attachment12="Kaynak Maskesi"
+Attachment13="Alman Gaz Maskesi"
+Attachment14="Saç Bandı"
+Attachment15="Retro Güneş Gözlüğü"
+Attachment16="Kayak Maskesi"
+Attachment17="Doktorun Maskesi"
+Attachment18="Alman Subayın Şapkası"
+Attachment19="Ön Koruma Açık"
+Attachment20="Ön Koruma Kapalı"
+Attachment21="Deli Maskesi"
+Attachment22="Uçuş Kaskı"
+Attachment23="Muhafız Kaskı"
+Attachment24="Flight Mask"
+Attachment25="Charm Goggles"
+Attachment26="Aviator Goggles"
+Attachment27="Sawblade Battle Helm"
+Attachment28="Boonie Cap"
+Attachment29="Infiltrator"
+Attachment30="Mask of the Abyss"
+Attachment31="Horzine Cybernetic Gas Mask"
+Attachment32="JFront Cap"
+Attachment33="Longhorn"
+Attachment34="EMS Backpack"
+Attachment35="Motorcycle Helmet"
+Attachment36="Smashed Motorcycle Helmet"
+Attachment37="Rubber Air Filter"
+Attachment38="Russian Gas Mask"
+Attachment39="Sawtooth Mask"
+Attachment40="The Inquisitor"
+Attachment41="US Gas Mask"
+Attachment42="Bloody Games"
+Attachment43="Shattered Mask"
+Attachment44="Military Surplus Beenie"
+Attachment45="RAF Goggles"
+Attachment46="Pork Pie"
+Attachment47="Visage de Poupee"
+Attachment48="Protective Glasses"
+Attachment49="Samurai Helm"
+Attachment50="Samurai Hat"
+Attachment51="Street Punk Bandana"
+Attachment52="Street Punk Glasses"
+Attachment53="Discount T-Rex Mask"
+Attachment54="Wasteland Goggles"
+Attachment55="EMS Arm Band"
+Attachment56="M2 Flamethrower Tank"
+Attachment57="RPG7 Backbag"
+Attachment58="Tactical Backbag"
+
+[CHR_strasser_archetype.BodyMesh0]
+BodySkin0="Raw Recruit"
+BodySkin1="Savaş Görmüş"
+
+[chr_strasser_archetype.HeadMesh0]
+HeadSkin0="Koyu Çelik"
+HeadSkin1="Sarı Çelik"
+
+
+[CHR_strasser_archetype.Attachment0]
+AttachmentSkin0="Gösterişli Kep"
+AttachmentSkin1="Kanlı Kep"
+
+[CHR_strasser_archetype.Attachment1]
+AttachmentSkin0="Klasik Çelik"
+AttachmentSkin1="Eskimiş Çelik"
+
+[chr_strasser_archetype.Attachment2]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Siyah Parıltı"
+AttachmentSkin2="Beyaz"
+AttachmentSkin3="Beyaz Parıltı"
+AttachmentSkin4="Mavi"
+AttachmentSkin5="Mavi Parıltı"
+AttachmentSkin6="Altın"
+AttachmentSkin7="Altın Parıltı"
+AttachmentSkin8="Yeşil"
+AttachmentSkin9="Yeşil Parıltı"
+
+[chr_strasser_archetype.Attachment3]
+AttachmentSkin0="Beyaz Jantlar"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Kırmızı"
+
+[chr_strasser_archetype.Attachment4]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Kırmızı"
+
+[chr_strasser_archetype.Attachment5]
+AttachmentSkin0="UK"
+AttachmentSkin1="ABD"
+AttachmentSkin2="CA"
+AttachmentSkin3="DE"
+AttachmentSkin4="Rusya"
+
+[chr_strasser_archetype.Attachment6]
+AttachmentSkin0="Beyaz"
+AttachmentSkin1="Çizgili"
+AttachmentSkin2="Kanlı"
+
+[chr_strasser_archetype.Attachment7]
+AttachmentSkin0="Kovboy Şapkası"
+
+[chr_strasser_archetype.Attachment8]
+AttachmentSkin0="Kahverengi"
+AttachmentSkin1="Siyah"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Sarı"
+AttachmentSkin4="Beyaz"
+
+[chr_strasser_archetype.Attachment9]
+AttachmentSkin0="Kamuflaj"
+
+[chr_strasser_archetype.Attachment10]
+AttachmentSkin0="Mavi Parıltı"
+
+[chr_strasser_archetype.Attachment11]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asyalı"
+AttachmentSkin2="Biyografi"
+AttachmentSkin3="Mavi"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Mangır"
+AttachmentSkin6="Göz"
+AttachmentSkin7="Süslü"
+AttachmentSkin8="Alev"
+AttachmentSkin9="Ekose"
+AttachmentSkin10="Mor"
+AttachmentSkin11="Kafatası"
+AttachmentSkin12="Serpilmiş"
+AttachmentSkin13="Batik"
+
+[chr_strasser_archetype.Attachment12]
+AttachmentSkin0="Koyu Metal"
+
+[chr_strasser_archetype.Attachment13]
+AttachmentSkin0="Alman Gaz Maskesi"
+
+[chr_strasser_archetype.Attachment14]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asya Beyazı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Koyu Mor"
+AttachmentSkin6="Alev"
+AttachmentSkin7="Yeşil"
+AttachmentSkin8="Japonya"
+AttachmentSkin9="Açık Mavi"
+AttachmentSkin10="Mor"
+AttachmentSkin11="Kırmızı"
+AttachmentSkin12="Kırmızı Siyah"
+AttachmentSkin13="Kırmızı Desen"
+AttachmentSkin14="Yıldız"
+AttachmentSkin15="Çizgili"
+AttachmentSkin16="Batik"
+AttachmentSkin17="Beyaz"
+AttachmentSkin18="Sarı"
+
+[chr_strasser_archetype.Attachment15]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Kamuflaj"
+AttachmentSkin2="Kaplan"
+AttachmentSkin3="ABD"
+
+[chr_strasser_archetype.Attachment16]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asyalı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi Yeşil"
+AttachmentSkin4="Mavi Beyaz"
+AttachmentSkin5="Mavi Sarı"
+AttachmentSkin6="Kamuflaj"
+AttachmentSkin7="Koyu Mor"
+AttachmentSkin8="Alevler"
+AttachmentSkin9="Yeşil Mavi"
+AttachmentSkin10="Yeşil Sarı"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Mor"
+AttachmentSkin13="Mor Siyah"
+AttachmentSkin14="Gökkuşağı"
+AttachmentSkin15="Kırmızı Beyaz"
+AttachmentSkin16="Beyaz Siyah"
+AttachmentSkin17="Sarı Siyah"
+
+[chr_strasser_archetype.Attachment17]
+AttachmentSkin0="Beyaz"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+
+[chr_strasser_archetype.Attachment18]
+AttachmentSkin0="Mavi"
+AttachmentSkin1="Yeşil"
+
+[chr_strasser_archetype.Attachment19]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_strasser_archetype.Attachment20]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_strasser_archetype.Attachment21]
+AttachmentSkin0="Deli Maskesi"
+
+[chr_strasser_archetype.Attachment22]
+AttachmentSkin0="Uçuş Kaskı"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_strasser_archetype.Attachment23]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Altın"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Değerli Altın"
+
+[chr_strasser_archetype.Attachment24]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_strasser_archetype.Attachment25]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_strasser_archetype.Attachment26]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_strasser_archetype.Attachment27]
+AttachmentSkin0="Default"
+
+[chr_strasser_archetype.Attachment28]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[chr_strasser_archetype.Attachment29]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[chr_strasser_archetype.Attachment30]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[chr_strasser_archetype.Attachment31]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[chr_strasser_archetype.Attachment32]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[chr_strasser_archetype.Attachment33]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_strasser_archetype.Attachment34]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_strasser_archetype.Attachment35]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[chr_strasser_archetype.Attachment36]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[chr_strasser_archetype.Attachment37]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[chr_strasser_archetype.Attachment38]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_strasser_archetype.Attachment39]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[chr_strasser_archetype.Attachment40]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[chr_strasser_archetype.Attachment41]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_strasser_archetype.Attachment42]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[chr_strasser_archetype.Attachment43]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[chr_strasser_archetype.Attachment44]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[chr_strasser_archetype.Attachment45]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[chr_strasser_archetype.Attachment46]
+AttachmentSkin0="Mr White"
+
+[chr_strasser_archetype.Attachment47]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[chr_strasser_archetype.Attachment48]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[chr_strasser_archetype.Attachment49]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_strasser_archetype.Attachment50]
+AttachmentSkin0="Bushi"
+
+[chr_strasser_archetype.Attachment51]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[chr_strasser_archetype.Attachment52]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[chr_strasser_archetype.Attachment53]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_strasser_archetype.Attachment54]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_strasser_archetype.Attachment55]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_strasser_archetype.Attachment56]
+AttachmentSkin0="Olive Grey"
+
+[chr_strasser_archetype.Attachment57]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[chr_strasser_archetype.Attachment58]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
+//Chivalry Knight
+
+[chr_knight_archetype]
+CharacterName="Tom Banner"
+Description="Tom Banner had obsessed about the heroics of the Middle Ages since he was a small boy. His fairly stellar career as a Management Consultant actually enabled this obsession to grow as he moved from his native Canada, via Boston, to England. He had already created his own armor and took on his new persona as a re-enactor in Merry Olde England. This move coincided with the release of 'Chivalry', which enabled him to act out the fantasy to a degree that most definitely would not be safe as a re-enactor. When the outbreak came, Tom climbed into his armor and went off to save fair maidens from monsters. For real. The fact that he refuses to take off his armor has lead to concerns that he is taking the whole medieval thing a touch too far. But who cares?"
+
+BodyMesh0="Zırh"
+HeadMesh0="Kafa"
+Attachment0="Şövalyenin Miğferi"
+Attachment1="Süvarinin Miğferi"
+Attachment2="Gazinin Miğferi"
+Attachment3="Eski İsyan Miğferi"
+Attachment4="Gözlükler"
+Attachment5="Alienware"
+Attachment6="Balistik Maske"
+Attachment7="Beyzbol Şapkası"
+Attachment8="Şef Şapkası"
+Attachment9="Kovboy Şapkası"
+Attachment10="Kasket"
+Attachment11="Kevlar Kask"
+Attachment12="Gece Görüşü Maskesi"
+Attachment13="Göz Bandı"
+Attachment14="Kaynak Maskesi"
+Attachment15="Alman Gaz Maskesi"
+Attachment16="Saç Bandı"
+Attachment17="Kayak Maskesi"
+Attachment18="Havacı"
+Attachment19="Retro Güneş Gözlüğü"
+Attachment20="Ön Koruma Açık"
+Attachment21="Ön Koruma Kapalı"
+Attachment22="Deli Maskesi"
+Attachment23="Uçuş Kaskı"
+Attachment24="Muhafız Kaskı"
+Attachment25="Flight Mask"
+Attachment26="Charm Goggles"
+Attachment27="Aviator Goggles"
+Attachment28="Sawblade Battle Helm"
+Attachment29="Boonie Cap"
+Attachment30="Infiltrator"
+Attachment31="Mask of the Abyss"
+Attachment32="Horzine Cybernetic Gas Mask"
+Attachment33="JFront Cap"
+Attachment34="Longhorn"
+Attachment35="EMS Backpack"
+Attachment36="Motorcycle Helmet"
+Attachment37="Smashed Motorcycle Helmet"
+Attachment38="Rubber Air Filter"
+Attachment39="Russian Gas Mask"
+Attachment40="Sawtooth Mask"
+Attachment41="The Inquisitor"
+Attachment42="US Gas Mask"
+Attachment43="Bloody Games"
+Attachment44="Shattered Mask"
+Attachment45="Military Surplus Beenie"
+Attachment46="RAF Goggles"
+Attachment47="Pork Pie"
+Attachment48="Visage de Poupee"
+Attachment49="Protective Glasses"
+Attachment50="Samurai Helm"
+Attachment51="Samurai Hat"
+Attachment52="Street Punk Bandana"
+Attachment53="Street Punk Glasses"
+Attachment54="Discount T-Rex Mask"
+Attachment55="Wasteland Goggles"
+Attachment56="EMS Arm Band"
+Attachment57="M2 Flamethrower Tank"
+Attachment58="RPG7 Backbag"
+Attachment59="Tactical Backbag"
+
+[CHR_knight_archetype.BodyMesh0]
+BodySkin0="Agatha"
+BodySkin1="Cleese"
+BodySkin2="Perceval"
+BodySkin3="Jaime"
+
+[chr_knight_archetype.HeadMesh0]
+HeadSkin0="Savaşa!"
+HeadSkin1="Özgürlük!"
+HeadSkin2="Savaşa!"
+HeadSkin3="Valhalla!"
+
+[CHR_knight_archetype.Attachment0]
+AttachmentSkin0="Agatha"
+AttachmentSkin1="Cleese"
+AttachmentSkin2="Perceval"
+AttachmentSkin3="Jaime"
+
+
+[CHR_knight_archetype.Attachment1]
+AttachmentSkin0="Agatha"
+AttachmentSkin1="Cleese"
+AttachmentSkin2="Perceval"
+AttachmentSkin3="Jaime"
+
+[CHR_knight_archetype.Attachment2]
+AttachmentSkin0="Agatha"
+AttachmentSkin1="Cleese"
+AttachmentSkin2="Perceval"
+AttachmentSkin3="Jaime"
+
+[chr_knight_archetype.Attachment3]
+AttachmentSkin0="Kral Kırmızısı"
+AttachmentSkin1="Şövalye Mavisi"
+AttachmentSkin2="Kibirli Yeşil"
+AttachmentSkin3="Siyah Gece"
+
+[CHR_knight_archetype.Attachment4]
+AttachmentSkin0="Güneş'i gölgele"
+AttachmentSkin1="Daha iyi görünüyor"
+
+[chr_knight_archetype.Attachment5]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Siyah Parıltı"
+AttachmentSkin2="Beyaz"
+AttachmentSkin3="Beyaz Parıltı"
+AttachmentSkin4="Mavi"
+AttachmentSkin5="Mavi Parıltı"
+AttachmentSkin6="Altın"
+AttachmentSkin7="Altın Parıltı"
+AttachmentSkin8="Yeşil"
+AttachmentSkin9="Yeşil Parıltı"
+
+[chr_knight_archetype.Attachment6]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Kırmızı"
+
+[chr_knight_archetype.Attachment7]
+AttachmentSkin0="Birleşik Krallık"
+AttachmentSkin1="ABD"
+AttachmentSkin2="Kanada"
+AttachmentSkin3="Almanya"
+AttachmentSkin4="Rusya"
+
+[chr_knight_archetype.Attachment8]
+AttachmentSkin0="Beyaz"
+AttachmentSkin1="Çizgili"
+AttachmentSkin2="Kanlı"
+
+[chr_knight_archetype.Attachment9]
+AttachmentSkin0="Kovboy Şapkası"
+
+[chr_knight_archetype.Attachment10]
+AttachmentSkin0="Kahverengi"
+AttachmentSkin1="Siyah"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Sarı"
+AttachmentSkin4="Beyaz"
+
+[chr_knight_archetype.Attachment11]
+AttachmentSkin0="Kamuflaj"
+
+[chr_knight_archetype.Attachment12]
+AttachmentSkin0="Mavi Parıltı"
+
+[chr_knight_archetype.Attachment13]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asyalı"
+AttachmentSkin2="Biyografi"
+AttachmentSkin3="Mavi"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Mangır"
+AttachmentSkin6="Göz"
+AttachmentSkin7="Süslü"
+AttachmentSkin8="Alev"
+AttachmentSkin9="Ekose"
+AttachmentSkin10="Mor"
+AttachmentSkin11="Kafatası"
+AttachmentSkin12="Serpilmiş"
+AttachmentSkin13="Batik"
+
+[chr_knight_archetype.Attachment14]
+AttachmentSkin0="Koyu Metal"
+
+[chr_knight_archetype.Attachment15]
+AttachmentSkin0="Alman Gaz Maskesi"
+
+[chr_knight_archetype.Attachment16]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asya Beyazı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Koyu Mor"
+AttachmentSkin6="Alev"
+AttachmentSkin7="Yeşil"
+AttachmentSkin8="Japonya"
+AttachmentSkin9="Açık Mavi"
+AttachmentSkin10="Mor"
+AttachmentSkin11="Kırmızı"
+AttachmentSkin12="Kırmızı Siyah"
+AttachmentSkin13="Kırmızı Desen"
+AttachmentSkin14="Yıldız"
+AttachmentSkin15="Çizgili"
+AttachmentSkin16="Batik"
+AttachmentSkin17="Beyaz"
+AttachmentSkin18="Sarı"
+
+[chr_knight_archetype.Attachment17]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Asyalı"
+AttachmentSkin2="Siyah Kırmızı"
+AttachmentSkin3="Mavi Yeşil"
+AttachmentSkin4="Mavi Beyaz"
+AttachmentSkin5="Mavi Sarı"
+AttachmentSkin6="Kamuflaj"
+AttachmentSkin7="Koyu Mor"
+AttachmentSkin8="Alevler"
+AttachmentSkin9="Yeşil Mavi"
+AttachmentSkin10="Yeşil Sarı"
+AttachmentSkin11="Pastel"
+AttachmentSkin12="Mor"
+AttachmentSkin13="Mor Siyah"
+AttachmentSkin14="Gökkuşağı"
+AttachmentSkin15="Kırmızı Beyaz"
+AttachmentSkin16="Beyaz Siyah"
+AttachmentSkin17="Sarı Siyah"
+
+[chr_knight_archetype.Attachment18]
+AttachmentSkin0="Beyaz Jantlar"
+AttachmentSkin1="Mavi"
+AttachmentSkin2="Yeşil"
+AttachmentSkin3="Kırmızı"
+
+[chr_knight_archetype.Attachment19]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Kamuflaj"
+AttachmentSkin2="Kaplan"
+AttachmentSkin3="ABD"
+
+[chr_knight_archetype.Attachment20]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_knight_archetype.Attachment21]
+AttachmentSkin0="Standart"
+AttachmentSkin1="Biyolojik Tehlike"
+AttachmentSkin2="Katliam"
+AttachmentSkin3="İngiliz Kaynakçı Kaskı"
+AttachmentSkin4="Kamuflaj"
+AttachmentSkin5="Alman Spreyi"
+AttachmentSkin6="Skulltacular"
+AttachmentSkin7="Lekeli"
+
+[chr_knight_archetype.Attachment22]
+AttachmentSkin0="Deli Maskesi"
+
+[chr_knight_archetype.Attachment23]
+AttachmentSkin0="Uçuş Kaskı"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_knight_archetype.Attachment24]
+AttachmentSkin0="Siyah"
+AttachmentSkin1="Altın"
+AttachmentSkin2="Mavi"
+AttachmentSkin3="Değerli Altın"
+
+[chr_knight_archetype.Attachment25]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_knight_archetype.Attachment26]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_knight_archetype.Attachment27]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_knight_archetype.Attachment28]
+AttachmentSkin0="Default"
+
+[chr_knight_archetype.Attachment29]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[chr_knight_archetype.Attachment30]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[chr_knight_archetype.Attachment31]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[chr_knight_archetype.Attachment32]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[chr_knight_archetype.Attachment33]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[chr_knight_archetype.Attachment34]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_knight_archetype.Attachment35]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_knight_archetype.Attachment36]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[chr_knight_archetype.Attachment37]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[chr_knight_archetype.Attachment38]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[chr_knight_archetype.Attachment39]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_knight_archetype.Attachment40]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[chr_knight_archetype.Attachment41]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[chr_knight_archetype.Attachment42]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_knight_archetype.Attachment43]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[chr_knight_archetype.Attachment44]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[chr_knight_archetype.Attachment45]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[chr_knight_archetype.Attachment46]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[chr_knight_archetype.Attachment47]
+AttachmentSkin0="Mr White"
+
+[chr_knight_archetype.Attachment48]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[chr_knight_archetype.Attachment49]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[chr_knight_archetype.Attachment50]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_knight_archetype.Attachment51]
+AttachmentSkin0="Bushi"
+
+[chr_knight_archetype.Attachment52]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[chr_knight_archetype.Attachment53]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[chr_knight_archetype.Attachment54]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_knight_archetype.Attachment55]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_knight_archetype.Attachment56]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_knight_archetype.Attachment57]
+AttachmentSkin0="Olive Grey"
+
+[chr_knight_archetype.Attachment58]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[chr_knight_archetype.Attachment59]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"

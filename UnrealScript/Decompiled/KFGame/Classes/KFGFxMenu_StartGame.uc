@@ -77,7 +77,10 @@ function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
     {
         SearchDataStore = KFDataStore_OnlineGameSearch(DSClient.FindDataStore(SearchDSName));
     }
-    GameInterface = Class'GameEngine'.static.GetOnlineSubsystem().GameInterface;
+    if(Class'GameEngine'.static.GetOnlineSubsystem() != none)
+    {
+        GameInterface = Class'GameEngine'.static.GetOnlineSubsystem().GameInterface;
+    }
 }
 
 event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
@@ -129,9 +132,12 @@ function SetOverview(optional bool bInitialize)
         OverviewContainer.UpdateOverviewInGame();
     }
     MyUID = Outer.GetPC().PlayerReplicationInfo.UniqueId;
-    OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
-    bCurrentlyLeader = MyUID == AdminId;
-    bCurrentlyInParty = OnlineLobby.IsInLobby();
+    if(OnlineLobby != none)
+    {
+        OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
+        bCurrentlyLeader = MyUID == AdminId;
+        bCurrentlyInParty = OnlineLobby.IsInLobby();
+    }
     if((((bIsLeader != bCurrentlyLeader) || bCurrentlyInParty != bIsInParty) || bInitialize) || bLeaderInServerBrowser != bLeaderWasInServerBrowser)
     {
         bIsLeader = bCurrentlyLeader;
@@ -263,7 +269,7 @@ function UpdateMenu()
 {
     local UniqueNetId AdminId, LoggedInPlayer;
 
-    if(Class'WorldInfo'.static.IsMenuLevel() && OnlineLobby.IsInLobby())
+    if((Class'WorldInfo'.static.IsMenuLevel() && OnlineLobby != none) && OnlineLobby.IsInLobby())
     {
         OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
         OnlineLobby.Outer.GetUniquePlayerId(0, LoggedInPlayer);
@@ -302,7 +308,7 @@ function ReceiveLeaderOptions()
     local int OptionIndex;
 
     OptionIndex = int(OnlineLobby.GetLobbyData(0, ModeKey));
-    OverviewContainer.UpdateGameMode(Class'KFCommon_LocalizedStrings'.static.GetGameModeString(float(OptionIndex)));
+    OverviewContainer.UpdateGameMode(Class'KFCommon_LocalizedStrings'.static.GetGameModeString(OptionIndex));
     OptionIndex = int(OnlineLobby.GetLobbyData(0, GameLengthKey));
     OverviewContainer.UpdateLength(Class'KFCommon_LocalizedStrings'.static.GetLengthString(float(OptionIndex)));
     OptionIndex = int(OnlineLobby.GetLobbyData(0, ServerTypeKey));
@@ -477,9 +483,9 @@ function SetLobbyData(string KeyName, string ValueData)
     OnlineLobby.SetLobbyData(KeyName, ValueData);
 }
 
-function string MakeMapURL(string MapName, float GameDifficulty, byte GameLength)
+function string MakeMapURL(KFGFxStartGameContainer_Options InOptionsComponent)
 {
-    return (((MapName $ "?Difficulty=") $ string(GameDifficulty)) $ "?GameLength=") $ string(GameLength);
+    return (((((InOptionsComponent.SavedMapString $ "?Game=") $ Class'KFGameInfo'.static.GetGameModeClassFromNum(InOptionsComponent.SavedModeIndex)) $ "?Difficulty=") $ string(Class'KFDifficultyInfo'.static.GetDifficultyValue(InOptionsComponent.SavedDifficultyIndex))) $ "?GameLength=") $ string(InOptionsComponent.SavedLengthIndex);
 }
 
 // Export UKFGFxMenu_StartGame::execGetSearchComplete(FFrame&, void* const)
@@ -531,7 +537,10 @@ native function SortServers(OnlineGameSearch Search);
 
 function OnJoinGameComplete(name SessionName, bool bSuccessful)
 {
-    GameInterface.ClearJoinOnlineGameCompleteDelegate(OnJoinGameComplete);
+    if(NotEqual_InterfaceInterface(GameInterface, (none)))
+    {
+        GameInterface.ClearJoinOnlineGameCompleteDelegate(OnJoinGameComplete);
+    }
     if(!bSuccessful)
     {
         AttemptingJoin = false;
@@ -626,8 +635,11 @@ event OnClose()
         OverviewContainer.ActionScriptVoid("hideSharedContentList");
     }
     KFGameEngine(Class'Engine'.static.GetEngine()).OnHandshakeComplete = None;
-    GameInterface.ClearFindOnlineGamesCompleteDelegate(OnFindGameServerComplete);
-    GameInterface.ClearJoinOnlineGameCompleteDelegate(OnJoinGameComplete);
+    if(NotEqual_InterfaceInterface(GameInterface, (none)))
+    {
+        GameInterface.ClearFindOnlineGamesCompleteDelegate(OnFindGameServerComplete);
+        GameInterface.ClearJoinOnlineGameCompleteDelegate(OnJoinGameComplete);
+    }
 }
 
 function AddLobbyFilter(out array<LobbyFilter> Filters, bool bIsSet, string Key, coerce string Val, bool bNumeric)
@@ -647,7 +659,7 @@ function AddLobbyFilter(out array<LobbyFilter> Filters, bool bIsSet, string Key,
 function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGameContainer_Options Options, OnlineGameSearch Search)
 {
     local string MapName;
-    local int GameDifficulty, GameLength;
+    local int GameMode, GameDifficulty, GameLength;
     local bool AllowInProgress;
     local string GameTagFilters;
     local int bCustom, bRanked;
@@ -667,6 +679,11 @@ function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGa
     else
     {
         GameInterfaceSteam.AddServerFilter(Search, "notfull", "");
+    }
+    GameMode = OptionsComponent.SavedModeIndex;
+    if(GameMode >= 0)
+    {
+        GameInterfaceSteam.AddGametagFilter(GameTagFilters, 'Mode', string(GameMode));
     }
     GameDifficulty = OptionsComponent.GetDifficulty();
     if(GameDifficulty >= 0)
@@ -701,21 +718,21 @@ function Callback_StartGame()
 
 function Callback_StartOfflineGame()
 {
-    local string MapName;
-    local float GameDifficulty;
-    local byte GameLength;
-
-    MapName = OptionsComponent.SavedMapString;
-    GameDifficulty = Class'KFDifficultyInfo'.static.GetDifficultyValue(OptionsComponent.SavedDifficultyIndex);
-    GameLength = OptionsComponent.SavedLengthIndex;
-    Outer.ConsoleCommand("open" @ (MakeMapURL(MapName, GameDifficulty, GameLength)));
+    Outer.ConsoleCommand("open" @ (MakeMapURL(OptionsComponent)));
 }
 
 function Callback_StartOnlineGame()
 {
+    OptionsComponent.UpdateFilters();
+    if(OptionsComponent.GetServerTypeListen())
+    {
+        LogInternal(("******open" @ (MakeMapURL(OptionsComponent))) $ "?listen?steamsockets");
+        Outer.ConsoleCommand(("open" @ (MakeMapURL(OptionsComponent))) $ "?listen?steamsockets");
+        OnlineLobby.LobbyJoinGame();
+        return;
+    }
     GameInterface.SetMatchmakingTypeMode(2);
     CurrentSearchIndex = 0;
-    OptionsComponent.UpdateFilters();
     BuildServerFilters(GameInterface, OptionsComponent, SearchDataStore.GetCurrentGameSearch());
     SearchDataStore.GetCurrentGameSearch().MaxSearchResults = MaxResultsToTry;
     GameInterface.AddFindOnlineGamesCompleteDelegate(OnFindGameServerComplete);

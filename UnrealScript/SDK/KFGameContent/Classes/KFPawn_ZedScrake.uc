@@ -29,6 +29,8 @@ var(RageCharge) float       RageHealthThresholdHard;
 var(RageCharge) float       RageHealthThresholdSuicidal;
 /** Threshold of health below which the Scrake will start rage charging on hell on earth */
 var(RageCharge) float       RageHealthThresholdHellOnEarth;
+/** Threshold of health below which the Scrake will start rage charging (determined by difficulty) */
+var(RageCharge) float       RageHealthThreshold;
 
 // handle chainsaw idle here instead of through an anim-notify so that we can actually turn it off
 simulated event PostBeginPlay()
@@ -40,7 +42,7 @@ simulated event PostBeginPlay()
 }
 
 /** Overridden to support loading the alternate body mic */
-simulated function SetCharacterArch( KFCharacterInfoBase Info )
+simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bForce )
 {
 	super.SetCharacterArch( Info );
 
@@ -48,6 +50,58 @@ simulated function SetCharacterArch( KFCharacterInfoBase Info )
 	if( WorldInfo.NetMode != NM_DedicatedServer && Mesh != None )
 	{
 		BodyAltMIC = Mesh.CreateAndSetMaterialInstanceConstant( 2 );
+	}
+}
+
+function PossessedBy( Controller C, bool bVehicleTransition )
+{
+	local KFAIController_Monster KFAICM;
+
+	super.PossessedBy( C, bVehicleTransition );
+
+	if( !IsHumanControlled() )
+	{
+		KFAICM = KFAIController_Monster( C );
+
+		if( KFAICM != none )
+		{
+	        // Determine what rage health threshold to use
+	        if( KFAICM.Skill == class'KFDifficultyInfo'.static.GetDifficultyValue(0) ) // Normal
+	        {
+	            RageHealthThreshold = RageHealthThresholdNormal;
+	        }
+	        else if( KFAICM.Skill <= class'KFDifficultyInfo'.static.GetDifficultyValue(1) ) // Hard
+	        {
+	            RageHealthThreshold = RageHealthThresholdHard;
+	        }
+	        else if( KFAICM.Skill <= class'KFDifficultyInfo'.static.GetDifficultyValue(2) ) // Suicidal
+	        {
+	            RageHealthThreshold = RageHealthThresholdSuicidal;
+	        }
+	        else // Hell on Earth
+	        {
+	            RageHealthThreshold = RageHealthThresholdHellOnEarth;
+	        }
+	    }
+	}
+	else
+	{
+		if( WorldInfo.Game.GameDifficulty == 0 )
+		{
+            RageHealthThreshold = RageHealthThresholdNormal;
+		}
+		else if( WorldInfo.Game.GameDifficulty == 1 )
+		{
+            RageHealthThreshold = RageHealthThresholdHard;
+		}
+		else if( WorldInfo.Game.GameDifficulty == 2 )
+		{
+            RageHealthThreshold = RageHealthThresholdSuicidal;
+		}
+		else
+		{
+            RageHealthThreshold = RageHealthThresholdHellOnEarth;
+		}
 	}
 }
 
@@ -110,10 +164,20 @@ simulated function CreateExhaustFx()
 	}
 }
 
-/** Overridden to support secondary body material */
-simulated function GoreMeshSwapped()
+event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
 {
-	super.GoreMeshSwapped();
+	super.TakeDamage( Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser );
+
+	if( bCanRage && !bPlayedDeath && GetHealthPercentage() < RageHealthThreshold )
+	{
+		bIsEnraged = true;
+	}
+}
+
+/** Overridden to support secondary body material */
+simulated event NotifyGoreMeshActive()
+{
+	super.NotifyGoreMeshActive();
 
     // Set our secondary MIC
 	if( WorldInfo.NetMode != NM_DedicatedServer && Mesh != None )
@@ -225,18 +289,20 @@ defaultproperties
 		SpecialMoveClasses(SM_Evade)=class'KFSM_Evade'
 	End Object
 
+    InstantIncaps(IAF_Stun)=(Head=65,Torso=120,Leg=120,Arm=120,LowHealthBonus=10,Cooldown=3.0)
+    InstantIncaps(IAF_Knockdown)=(Head=55,Torso=110,Leg=110,Arm=140,LowHealthBonus=10,Cooldown=17.0)
+    InstantIncaps(IAF_Stumble)=(Head=53,Torso=53,Arm=60,LowHealthBonus=10,Cooldown=8.0)
+    InstantIncaps(IAF_LegStumble)=(Leg=54,LowHealthBonus=10,Cooldown=3.0)
+    InstantIncaps(IAF_GunHit)=(Head=134,Torso=134,Leg=134,Arm=134,LowHealthBonus=10,Cooldown=3.0)
+    InstantIncaps(IAF_MeleeHit)=(Head=29,Torso=40,Leg=40,Arm=40,LowHealthBonus=10,Cooldown=4.0)
+    StackingIncaps(SAF_Poison)=(Threshhold=5.0,Duration=1.5,Cooldown=20.0,DissipationRate=1.00)
+    StackingIncaps(SAF_Microwave)=(Threshhold=7.5,Duration=1.5,Cooldown=20.0,DissipationRate=1.00)
+    StackingIncaps(SAF_FirePanic)=(Threshhold=12.0,Duration=2.0,Cooldown=5.0,DissipationRate=1.0)
+    StackingIncaps(SAF_EMPPanic)=(Threshhold=2.0,Duration=5.0,Cooldown=5.0,DissipationRate=0.5)
+    StackingIncaps(SAF_EMPDisrupt)=(Threshhold=0.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.0)
+    StackingIncaps(SAF_Freeze)=(Threshhold=3.0,Duration=1.0,Cooldown=5.0,DissipationRate=0.33)
+
 	Begin Object Class=KFPawnAfflictions_Scrake Name=Afflictions_0
-        InstantAffl(IAF_Stun)=(Head=53,Torso=110,Leg=110,Arm=110,LowHealthBonus=10,Cooldown=3.0)
-        InstantAffl(IAF_Knockdown)=(Head=55,Torso=110,Leg=110,Arm=140,LowHealthBonus=10,Cooldown=17.0)
-        InstantAffl(IAF_Stumble)=(Head=53,Torso=53,Arm=60,LowHealthBonus=10,Cooldown=8.0)
-        InstantAffl(IAF_LegStumble)=(Leg=54,LowHealthBonus=10,Cooldown=3.0)
-        InstantAffl(IAF_GunHit)=(Head=134,Torso=134,Leg=134,Arm=134,LowHealthBonus=10,Cooldown=3.0)
-        InstantAffl(IAF_MeleeHit)=(Head=29,Torso=40,Leg=40,Arm=40,LowHealthBonus=10,Cooldown=4.0)
-        StackingAffl(SAF_Poison)=(Threshhold=5.0,Duration=1.5,Cooldown=20.0,DissipationRate=1.00)
-        StackingAffl(SAF_Microwave)=(Threshhold=7.5,Duration=1.5,Cooldown=20.0,DissipationRate=1.00)
-        StackingAffl(SAF_FirePanic)=(Threshhold=12.0,Duration=2.0,Cooldown=5.0,DissipationRate=1.0)
-        StackingAffl(SAF_EMPPanic)=(Threshhold=2.0,Duration=5.0,Cooldown=5.0,DissipationRate=0.5)
-        StackingAffl(SAF_EMPDisrupt)=(Threshhold=0.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.0)
         FireFullyCharredDuration=5
     End Object
 	AfflictionHandler=Afflictions_0
@@ -251,6 +317,7 @@ defaultproperties
 	Begin Object Name=MeleeHelper_0
 		BaseDamage=30.f
 		MaxHitRange=200.f
+		MomentumTransfer=45000.f
 		MyDamageType=class'KFGameContent.KFDT_Slashing_Scrake'
 	End Object
 
@@ -292,7 +359,8 @@ defaultproperties
 	DamageRecoveryTimeHeavy=0.2f
 	DamageRecoveryTimeMedium=0.09f
 
-
+	bCanRage=true
+	bIsEnraged=false
 	RageHealthThresholdNormal=0.5
     RageHealthThresholdHard=0.75
     RageHealthThresholdSuicidal=0.75
@@ -300,7 +368,7 @@ defaultproperties
 
 	// Sound
 	Begin Object Class=AkComponent name=ChainsawAkComponent0
-		BoneName=Root
+		BoneName=dummy
 		bStopWhenOwnerDestroyed=true
 		bForceOcclusionUpdateInterval=true
 		OcclusionUpdateInterval=0.2f

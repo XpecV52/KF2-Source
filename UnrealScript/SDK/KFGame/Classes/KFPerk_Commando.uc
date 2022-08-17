@@ -53,7 +53,7 @@ enum ECommandoSkills
  * @param DamageInstigator responsible controller (optional)
  * @param class DamageType the damage type used (optional)
  */
-simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType)
+simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx )
 {
 	local KFWeapon KFW;
 	local float TempDamage;
@@ -533,11 +533,15 @@ DefaultProperties
 	PerkSkills(ECommandoBackup)=(Name="Backup",IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_Backup",Increment=0.f,Rank=0,StartingValue=0.6f,MaxValue=0.6f)
 	PerkSkills(ECommandoImpact)=(Name="Impact",IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_Impact",Increment=0.f,Rank=0,StartingValue=0.3f,MaxValue=0.3f)
 	PerkSkills(ECommandoTacticalReload)=(Name="TacticalReload",IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_TacticalReload",Increment=0.f,Rank=0,StartingValue=0.f,MaxValue=0.f)
-	PerkSkills(ECommandoLeadership)=(Name="Leadership",IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_Nightvision",Increment=0.f,Rank=0,StartingValue=0.1f,MaxValue=0.1f)	
+	PerkSkills(ECommandoLeadership)=(Name="Leadership",IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_Nightvision",Increment=0.f,Rank=0,StartingValue=0.1f,MaxValue=0.1f)
 	PerkSkills(ECommandoCallOut)=(Name="CallOut",IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_CallOut")
 	PerkSkills(ECommandoSingleFire)=(Name="SingleFire",IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_SingleFire",Increment=0.f,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
 	PerkSkills(ECommandoAutoFire)=(Name="Autofire",IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_AutoFire",Increment=0.f,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
 	PerkSkills(ECommandoRapidFire)=(Name="RapidFire",IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_RapidFire",Increment=0.f,Rank=0,StartingValue=0.03,MaxValue=0.03)
 	PerkSkills(ECommandoProfessional)=(Name="Professional",IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_Professional")
+
+    // Skill tracking
+	HitAccuracyHandicap=0.0
+	HeadshotAccuracyHandicap=-3.0
 }
 

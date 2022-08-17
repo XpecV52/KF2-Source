@@ -38,6 +38,7 @@ defaultproperties
 {
     FuseTime=1
     bAllowTossDuringZedGrabRotation=true
+    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicGrenade'
     ExplosionActorClass=Class'KFExplosion_MedicGrenade'
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Explosions.MedicGrenade_Explosion'

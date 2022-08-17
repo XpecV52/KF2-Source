@@ -8,13 +8,15 @@
 // Copyright (C) 2015 Tripwire Interactive LLC
 //  - Greg Felber 2/5/2014
 //=============================================================================
-
 class KFSM_Stunned extends KFSpecialMove;
 
-var()	name		StunnedAnim;
-var()	array<name>	WakeupAnims;
+var	name		StunnedAnim;
+var	array<name>	WakeupAnims;
 
-var() 	float StunDuration;
+var float StunDuration;
+
+var vector2D PlayerStunDurationRange;
+var vector2D StunDurationRange;
 
 /** Notification called when Special Move starts */
 function SpecialMoveStarted(bool bForced, Name PrevMove )
@@ -26,11 +28,19 @@ function SpecialMoveStarted(bool bForced, Name PrevMove )
 /** Stop the movement and play the stun animation for all clients */
 function DoStun()
 {
-	if ( KFPOwner.Role == ROLE_Authority )
+	if( KFPOwner.Role == ROLE_Authority )
 	{
 		// Disable Movement by using the DefaultAICommandClass to call LockdownAI()
-		StunDuration = default.StunDuration + ( default.StunDuration * FRand() );
-		KFPOwner.SetTimer(StunDuration, false, nameof(DoWakeup), self);
+		if( KFPOwner.IsHumanControlled() )
+		{
+			StunDuration = RandRange( PlayerStunDurationRange.X, PlayerStunDurationRange.Y );		
+		}			
+		else
+		{
+			StunDuration = RandRange( StunDurationRange.X, StunDurationRange.Y );		
+		}
+
+		KFPOwner.SetTimer( StunDuration, false, nameof(DoWakeup), self );
 	}
 
 	PlaySpecialMoveAnim( StunnedAnim, EAS_FullBody, 0.4f, 0.3f, 1.f, true );
@@ -40,7 +50,7 @@ function DoStun()
 function DoWakeup()
 {
 	// replicate to all clients
-	if ( KFPOwner.Role == ROLE_Authority )
+	if( KFPOwner.Role == ROLE_Authority )
 	{
 		KFPOwner.SpecialMoveFlags = 1;
 		KFPOwner.ReplicatedSpecialMove.Flags = 1;
@@ -54,7 +64,7 @@ function PlayWakeupAnimation()
 	local byte WakeupIndex;
 
 	WakeupIndex = Rand( WakeupAnims.Length );
-	PlaySpecialMoveAnim(WakeupAnims[WakeupIndex], EAS_FullBody, 0.2f, 0.3f, 1.f, false);
+	PlaySpecialMoveAnim( WakeupAnims[WakeupIndex], EAS_FullBody, 0.2f, 0.3f, 1.f, false );
 }
 
 /* Play the wakeup animation for all clients */
@@ -69,7 +79,7 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 	super.SpecialMoveEnded( PrevMove, NextMove );
 
 	// Enable movement
-	if ( KFPOwner.MyKFAIC != None )
+	if( KFPOwner.MyKFAIC != None )
 	{
 		KFPOwner.MyKFAIC.bPreparingMove = false;
 	}
@@ -84,7 +94,9 @@ defaultproperties
 	WakeupAnims.Add(Stun_Wakeup_V2)
 	WakeupAnims.Add(Stun_Wakeup_V3)
 
-	StunDuration=2
+	StunDurationRange=(X=2.f, Y=4.f)
+	PlayerStunDurationRange=(X=1.f, Y=1.5f)
+
 	bAllowHitReactions=true
 	bDisableMovement=TRUE
 	bLockPawnRotation=TRUE

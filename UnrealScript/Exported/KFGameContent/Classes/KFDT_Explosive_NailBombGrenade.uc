@@ -63,7 +63,6 @@ class KFDT_Explosive_NailBombGrenade extends KFDT_Explosive
 
 
 
-
 #linenumber 14;
 
 defaultproperties

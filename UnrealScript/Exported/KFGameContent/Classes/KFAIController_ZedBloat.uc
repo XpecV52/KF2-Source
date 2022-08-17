@@ -15,6 +15,7 @@ defaultproperties
    bIsProbingMeleeRangeEvents=True
    SprintWithinEnemyRange=(X=520.000000,Y=1200.000000)
    EvadeGrenadeChance=0.600000
+   LowIntensityAttackCooldown=3.000000
    Name="Default__KFAIController_ZedBloat"
    ObjectArchetype=KFAIController_Monster'KFGame.Default__KFAIController_Monster'
 }

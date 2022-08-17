@@ -33,7 +33,7 @@ var bool bIsEnraged;
 /** Ticked to determine when we should start and end rage mode */
 event TickRage()
 {
-	if( bIsEnraged && !bEnemyIsVisible && `TimeSince(LastEnemySightedTime) > MaxEnemyNotVisibleRageTime && !IsFrustrated() )
+	if( bIsEnraged && !bEnemyIsVisible && `TimeSince(LastEnemySightedTime) > MaxEnemyNotVisibleRageTime )
 	{
 		EndRage();
 	}

@@ -57,12 +57,9 @@ defaultproperties
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedSiren.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     HitZones=/* Array type was not detected. */
-    begin object name=Afflictions class=KFPawnAfflictions
-        InstantAffl=/* Array type was not detected. */
-        StackingAffl=/* Array type was not detected. */
-    object end
-    // Reference: KFPawnAfflictions'Default__KFPawn_ZedSiren.Afflictions'
-    AfflictionHandler=Afflictions
+    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedSiren.Afflictions'
+    InstantIncaps=/* Array type was not detected. */
+    StackingIncaps=/* Array type was not detected. */
     PhysRagdollImpulseScale=0.5
     KnockdownImpulseScale=0.5
     SprintSpeed=200

@@ -29,6 +29,8 @@ package tripwire.managers
         private static var _manager:MenuManager;
         
         public static var INPUT_CHANGED:String = "INPUT_CHANGED";
+        
+        public static var PROMPT_CHANGED:String = "PROMPT_CHANGED";
          
         
         public var __animFactory_MenuBackgroundaf1:AnimatorFactory3D;
@@ -65,6 +67,8 @@ package tripwire.managers
         
         private var _bUsingGamepad:Boolean;
         
+        private var _bConsoleBuild:Boolean;
+        
         private var _bMenuOpen:Boolean;
         
         private var _bWidgetsVisible:Boolean;
@@ -88,6 +92,8 @@ package tripwire.managers
         private var _pendingPopupMiddleButtonString:String;
         
         private var _currentPopUp:BasePopup;
+        
+        private var _numPrompts:int = 2;
         
         private var menuList:Array;
         
@@ -168,28 +174,60 @@ package tripwire.managers
         
         public function set bUsingGamepad(param1:Boolean) : void
         {
-            if(this._bUsingGamepad != param1)
+            if(!this._bConsoleBuild)
             {
-                this._bUsingGamepad = param1;
-                if(stage != null)
+                if(this._bUsingGamepad != param1)
                 {
-                    stage.dispatchEvent(new Event(INPUT_CHANGED));
-                }
-                this.controllerEnableWidgets(false);
-                if(this.bPopUpOpen && this._currentPopUp != null)
-                {
-                    this._currentPopUp.openPopup();
-                }
-                else
-                {
-                    this.menuList[this._currentMenuIndex].menuObject.selectContainer();
-                }
-                this.mCursor.visible = !param1;
-                if(!this._bUsingGamepad)
-                {
-                    FocusManager.setFocus(null);
+                    this._bUsingGamepad = param1;
+                    if(stage != null)
+                    {
+                        stage.dispatchEvent(new Event(INPUT_CHANGED));
+                    }
+                    this.controllerEnableWidgets(false);
+                    if(this.bPopUpOpen && this._currentPopUp != null)
+                    {
+                        this._currentPopUp.openPopup();
+                    }
+                    else if(this.menuList.length > this._currentMenuIndex)
+                    {
+                        this.menuList[this._currentMenuIndex].menuObject.selectContainer();
+                    }
+                    this.mCursor.visible = !this._bUsingGamepad;
+                    if(!this._bUsingGamepad)
+                    {
+                        FocusManager.setFocus(null);
+                    }
                 }
             }
+        }
+        
+        public function get bConsoleBuild() : Boolean
+        {
+            return this._bConsoleBuild;
+        }
+        
+        public function set bConsoleBuild(param1:Boolean) : *
+        {
+            if(this._bConsoleBuild != param1)
+            {
+                this.bUsingGamepad = param1;
+                this._bConsoleBuild = param1;
+            }
+        }
+        
+        public function get numPrompts() : int
+        {
+            return this._numPrompts;
+        }
+        
+        public function set numPrompts(param1:int) : *
+        {
+            if(this._numPrompts == param1)
+            {
+                return;
+            }
+            this._numPrompts = param1;
+            stage.dispatchEvent(new Event(PROMPT_CHANGED));
         }
         
         public function loadCurrentMenu(param1:String, param2:Boolean) : void
@@ -246,7 +284,10 @@ package tripwire.managers
             this._pendingPopupMiddleButtonString = param6;
             this._pendingPopupRightButtonString = param5;
             this._popupLoader.load(new URLRequest(param1));
-            this.menuList[this._currentMenuIndex].menuObject.focusGroupOut();
+            if(this.menuList.length > this._currentMenuIndex)
+            {
+                this.menuList[this._currentMenuIndex].menuObject.focusGroupOut();
+            }
             this.bPopUpOpen = true;
         }
         
@@ -265,7 +306,10 @@ package tripwire.managers
             this.menuList.push(_loc2_);
             this._currentMenuIndex = this.menuList.length - 1;
             this.setMenuVisibility(true);
-            this.menuList[this._currentMenuIndex].menuObject.selectContainer();
+            if(!this.bPopUpOpen)
+            {
+                this.menuList[this._currentMenuIndex].menuObject.selectContainer();
+            }
             this.controllerEnableWidgets(false);
             stage.addChildAt(_loc2_.menuObject,this.MenuLayer);
             this._bLoading = false;
@@ -350,8 +394,11 @@ package tripwire.managers
                 switch(param1.details.navEquivalent)
                 {
                     case NavigationCode.GAMEPAD_L2:
-                        this.menuList[this._currentMenuIndex].menuObject.focusGroupIn();
-                        this.controllerEnableWidgets(false);
+                        if(!this.menuList[this._currentMenuIndex].menuObject.bSelected)
+                        {
+                            this.menuList[this._currentMenuIndex].menuObject.focusGroupIn();
+                            this.controllerEnableWidgets(false);
+                        }
                         break;
                     case NavigationCode.GAMEPAD_R2:
                         this.menuList[this._currentMenuIndex].menuObject.focusGroupOut();
@@ -466,6 +513,12 @@ package tripwire.managers
                 stage.removeEventListener(Event.ADDED,this.changeMouseLayer);
                 stage.removeEventListener(InputEvent.INPUT,this.handleControllerInput);
             }
+        }
+        
+        public function currentFocus() : void
+        {
+            trace("Bryan: MenuManager currentFocus:: " + FocusManager.getFocus());
+            trace("Bryan: MenuManager modalClip:: " + FocusManager.getModalClip());
         }
         
         protected function controllerEnableWidgets(param1:Boolean) : void

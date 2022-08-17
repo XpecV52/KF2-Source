@@ -63,6 +63,8 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 
 	MyPatPawn = KFPawn_ZedPatriarch(KFPOwner);
 
+	MissileClass = GetProjectileClass();
+
 	// Set load anim
 	if( MyPatPawn.SpecialMoveFlags == 1 )
 	{
@@ -90,6 +92,12 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 	{
 		MyPatPawn.SetTimer( KFSkeletalMeshComponent(MyPatPawn.Mesh).GetAnimInterruptTime(LoadAnim), false, nameOf(StartGunTracking), self );
 	}
+}
+
+/** Retrieve the projectile class */
+function class<KFProj_Missile_Patriarch> GetProjectileClass()
+{
+	return MyPatPawn.GetMissileClass();	
 }
 
 /** Overridden to do nothing */
@@ -143,49 +151,7 @@ function PlayFireAnimation()
 /** Retrieves the aim direction and target location for each missile */
 function GetAimDirAndTargetLoc( int MissileNum, vector MissileLoc, rotator MissileRot, out vector AimDir, out vector TargetLoc )
 {
-	local vector X,Y,Z;
-	local Pawn EnemyPawn;
-	local int EnemyIndex;
-
-	// Get the best location to aim at
-	EnemyPawn = MyPatPawn.Controller.Enemy;
-	if( MyPatController != none && !MyPatController.CanSee(EnemyPawn) )
-	{
-		EnemyIndex = MyPatController.RecentlySeenEnemyList.Find( 'TrackedEnemy', KFPawn(EnemyPawn) );
-		if( EnemyIndex != INDEX_NONE )
-		{
-			TargetLoc = MyPatController.RecentlySeenEnemyList[EnemyIndex].LastVisibleLocation;
-		}
-		else
-		{
-			EnemyIndex = MyPatController.HiddenEnemies.Find( 'TrackedEnemy', KFPawn(EnemyPawn) );
-			if( EnemyIndex != INDEX_NONE )
-			{
-				TargetLoc = MyPatController.HiddenEnemies[EnemyIndex].LastVisibleLocation;
-			}
-			else
-			{
-				TargetLoc = EnemyPawn.Location;
-			}
-		}
-	}
-	else
-	{
-		TargetLoc = EnemyPawn.Location;
-	}
-
-	// Try to aim somewhat for the feet
-	TargetLoc += (vect(0,0,-1) * (EnemyPawn.GetCollisionHeight() * 0.25f));
-
-	// If no LOS, aim higher
-	if( !MyPatPawn.FastTrace(TargetLoc, MissileLoc,, true) )
-	{
-		TargetLoc = EnemyPawn.Location + (vect(0,0,1) * EnemyPawn.BaseEyeHeight);
-	}
-
-	// Nudge the spread a tiny bit to make the missiles less concentrated on a single point
-	GetAxes( MissileRot, X,Y,Z );
-	AimDir = Normal( (TargetLoc - MissileLoc) + (Z*6.f) );
+	MyPatPawn.GetMissileAimDirAndTargetLoc( MissileNum, MissileLoc, MissileRot, AimDir, TargetLoc );
 }
 
 /** Fire our three missiles */
@@ -301,7 +267,6 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
 
 defaultproperties
 {
-   MissileClass=Class'kfgamecontent.KFProj_Missile_Patriarch'
    LoadAnimNames(0)="Rocket_TO_Load"
    LoadAnimNames(1)="Rocket_TO_LoadQ"
    WindDownAnimName="Rocket_TO_Idle"

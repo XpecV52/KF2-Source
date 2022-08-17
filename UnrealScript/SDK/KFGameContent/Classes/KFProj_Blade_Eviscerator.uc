@@ -31,7 +31,7 @@ var(Projectile) ParticleSystem ProjPickupTemplate;
 /** Sound to play when picking up ammo */
 var() AkEvent AmmoPickupSound;
 
-/** This is what LifeSpan is set to after Stick() is called. 
+/** This is what LifeSpan is set to after Stick() is called.
 	Allows us to set a much shorter LifeSpan to prevent fly-away blades living a long time. */
 var float LifeSpanAfterStick;
 
@@ -279,11 +279,51 @@ Begin:
 // Overriden to get nails bouncing off of destructible meshes
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
 {
+    local KFPawn KFP;
+    local bool bPassThrough;
+
 	if ( Other != Instigator && !Other.bWorldGeometry && Other.bCanBeDamaged )
 	{
 		if ( Pawn(other) != None )
 		{
-            Super.ProcessTouch(Other, HitLocation, HitNormal);
+			if( Physics != Phys_Falling )
+			{
+                // check/ignore repeat touch events
+    			if( CheckRepeatingTouch(Other) )
+    			{
+    				return;
+    			}
+
+    			ProcessBulletTouch(Other, HitLocation, HitNormal);
+
+    		    // Keep going if we need to keep penetrating
+    			if( PenetrationPower > 0 || PassThroughDamage(Other) )
+    			{
+                    // Reduce penetration power for every KFPawn penetrated
+                    KFP = KFPawn(Other);
+                	if ( KFP != none )
+                	{
+                        PenetrationPower -= KFP.PenetrationResistance;
+                	}
+    				bPassThrough = TRUE;
+    			}
+
+
+                if ( !bPassThrough )
+                {
+            		// Turn off the corona when it stops
+                	if ( WorldInfo.NetMode != NM_DedicatedServer && ProjEffects!=None )
+                	{
+                        ProjEffects.DeactivateSystem();
+                        ProjEffects.SetVectorParameter('Rotation', vect(0,0,0));
+                    }
+
+                    // Make the blade fall to the ground if it his something it can't penetrate
+                    Velocity = vect(0,0,0);
+                    BouncesLeft=0;
+                    SetPhysics(PHYS_Falling);
+                }
+            }
 		}
 		else
 		{

@@ -133,11 +133,9 @@ function NotifyMeleeDamageDealt()
 {
 	super.NotifyMeleeDamageDealt();
 
-	// Don't end rage mode if in wave frustration mode. RAGE FOREVER ROWR!
-	if( !IsFrustrated() && RagePlugin != none )
+	if( RagePlugin != none )
 	{
-		// unless fp was stumbled (e.g. successful parry), or attacked a door,
-		// end rage and clear frustration
+		// unless fp was stumbled (e.g. successful parry), or attacked a door, end rage
 		if ( MyKFPawn.SpecialMove != SM_Stumble && MyKFPawn.SpecialMove != SM_MeleeAttackDoor )
 		{
 			RagePlugin.EndRage();
@@ -283,19 +281,8 @@ function NotifyEnraged( bool bEnraged )
 }
 
 /** Frustration mode should not change sprint settings on FP */
-function UpdateSprintFrustration( optional byte bForceFrustration=255 )
+function UpdateSprintFrustration( optional byte bForceFrustrationState=255 )
 {
-}
-
-/** We only want the FP to never stop raging once it starts in frustration mode */
-function bool IsFrustrated()
-{
-	if( FrustrationThreshold > 0 && MyKFGameInfo.MyKFGRI != None && MyKFGameInfo.MyKFGRI.AIRemaining <= FrustrationThreshold )
-	{
-		return true;
-	}
-
-	return false;
 }
 
 defaultproperties
@@ -312,9 +299,11 @@ defaultproperties
    DefaultCommandClass=Class'KFGame.AICommand_Base_Fleshpound'
    MeleeCommandClass=Class'KFGame.AICommand_Base_Fleshpound'
    SprintWithinEnemyRange=(X=0.000000,Y=1500.000000)
+   FrustrationThreshold=0
    TeleportCooldown=10.000000
    HiddenRelocateTeleportThreshold=7.000000
    EvadeGrenadeChance=0.600000
+   LowIntensityAttackCooldown=5.000000
    bNotifyApex=True
    MinHitWall=-0.420000
    Name="Default__KFAIController_ZedFleshpound"

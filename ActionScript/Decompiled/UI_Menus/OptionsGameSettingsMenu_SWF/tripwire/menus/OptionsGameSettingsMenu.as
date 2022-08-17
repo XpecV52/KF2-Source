@@ -52,12 +52,16 @@ package tripwire.menus
         
         public var classicWeaponSelectCheckBox:TripCheckBox;
         
+        public var killTickerCheckBox:TripCheckBox;
+        
         public function OptionsGameSettingsMenu()
         {
             super();
             enableInitCallback = true;
             this.setTabIndex();
-            defaultFirstElement = this.fovSlider.slider;
+            defaultFirstElement = this.fovSlider;
+            sectionHeader = this.header;
+            defaultNumPrompts = 2;
         }
         
         public function setTabIndex() : *
@@ -67,7 +71,8 @@ package tripwire.menus
             this.friendlyHudSlider.tabIndex = 3;
             this.crosshairCheckBox.tabIndex = 4;
             this.classicWeaponSelectCheckBox.tabIndex = 5;
-            this.closeButton.tabIndex = 6;
+            this.killTickerCheckBox.tabIndex = 6;
+            this.closeButton.tabIndex = 7;
         }
         
         public function set localizedText(param1:Object) : void
@@ -86,6 +91,7 @@ package tripwire.menus
             this.classicWeaponSelectCheckBox.label = !!param1.classicWeaponSelect ? param1.classicWeaponSelect : "";
             this.fovMinimumText.text = !!param1.normal ? param1.normal : "";
             this.fovMaximumText.text = !!param1.wider ? param1.wider : "";
+            this.killTickerCheckBox.label = !!param1.killTicker ? param1.killTicker : "";
         }
         
         public function set dataValues(param1:Object) : void
@@ -95,6 +101,7 @@ package tripwire.menus
             this.friendlyHudScale = !!param1.friendlyHud ? Number(param1.friendlyHud) : Number(0);
             this.crosshairCheckBox.selected = !!param1.crosshair ? Boolean(param1.crosshair) : false;
             this.classicWeaponSelectCheckBox.selected = !!param1.classicWeaponSelect ? Boolean(param1.classicWeaponSelect) : false;
+            this.killTickerCheckBox.selected = !!param1.killTicker ? Boolean(param1.killTicker) : false;
         }
         
         override protected function addedToStage(param1:Event) : void
@@ -112,6 +119,7 @@ package tripwire.menus
             this.friendlyHudSlider.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged,false,0,true);
             this.crosshairCheckBox.addEventListener(Event.SELECT,this.onCrosshairChanged,false,0,true);
             this.classicWeaponSelectCheckBox.addEventListener(Event.SELECT,this.onWeaponSelectChanged,false,0,true);
+            this.killTickerCheckBox.addEventListener(Event.SELECT,this.onTickerClicked,false,0,true);
             this.closeButton.addEventListener(ButtonEvent.PRESS,this.onButtonClick,false,0,true);
         }
         
@@ -128,7 +136,13 @@ package tripwire.menus
             this.friendlyHudSlider.slider.removeEventListener(SliderEvent.VALUE_CHANGE,this.onSliderChanged);
             this.crosshairCheckBox.removeEventListener(Event.SELECT,this.onCrosshairChanged);
             this.classicWeaponSelectCheckBox.removeEventListener(Event.SELECT,this.onWeaponSelectChanged);
+            this.killTickerCheckBox.removeEventListener(Event.SELECT,this.onTickerClicked);
             this.closeButton.removeEventListener(ButtonEvent.PRESS,this.onButtonClick);
+        }
+        
+        public function onTickerClicked(param1:Event) : void
+        {
+            ExternalInterface.call("Callback_KillTickerChanged",this.killTickerCheckBox.selected);
         }
         
         public function set goreOptions(param1:Array) : void

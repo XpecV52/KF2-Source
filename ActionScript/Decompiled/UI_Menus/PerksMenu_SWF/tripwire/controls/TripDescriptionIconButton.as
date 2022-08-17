@@ -33,41 +33,41 @@ package tripwire.controls
             preventAutosizing = true;
         }
         
-        public function setData(param1:Object) : void
+        public function setData(data:Object) : void
         {
             this.unhighlightButton();
-            this.icon = !!param1.iconSource ? param1.iconSource : "";
-            this.TitleText = !!param1.label ? param1.label : "";
-            this.DescriptionText = !!param1.description ? param1.description : "";
+            this.icon = !!data.iconSource ? data.iconSource : "";
+            this.TitleText = !!data.label ? data.label : "";
+            this.DescriptionText = !!data.description ? data.description : "";
         }
         
-        override protected function addedToStage(param1:Event) : void
+        override protected function addedToStage(e:Event) : void
         {
-            super.addedToStage(param1);
+            super.addedToStage(e);
             this.active = false;
         }
         
-        public function set icon(param1:String) : void
+        public function set icon(value:String) : void
         {
-            if(param1 != null && param1 != "")
+            if(value != null && value != "")
             {
-                this.iconLoader.source = param1;
+                this.iconLoader.source = value;
             }
         }
         
-        public function set TitleText(param1:String) : void
+        public function set TitleText(value:String) : void
         {
-            label = param1;
+            label = value;
         }
         
-        public function set DescriptionText(param1:String) : void
+        public function set DescriptionText(value:String) : void
         {
-            this.descriptionTextfield.text = param1;
+            this.descriptionTextfield.text = value;
         }
         
-        public function set active(param1:*) : void
+        public function set active(value:*) : void
         {
-            this.activeIndicator.visible = param1;
+            this.activeIndicator.visible = value;
             this.unhighlightButton();
         }
         
@@ -100,10 +100,10 @@ package tripwire.controls
             }
         }
         
-        override public function set enabled(param1:Boolean) : void
+        override public function set enabled(value:Boolean) : void
         {
-            super.enabled = param1;
-            if(!param1)
+            super.enabled = value;
+            if(!value)
             {
                 this.iconColor.setTint(this.disabledColor,1);
                 this.iconLoader.transform.colorTransform = this.iconColor;

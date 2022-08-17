@@ -4,7 +4,7 @@
 // Patriarch's minigun barrage attack
 //=============================================================================
 // Killing Floor 2
-// Copyright (C) 2015 Tripwire Interactive LLC
+// Copyright (C) 2016 Tripwire Interactive LLC
 //=============================================================================
 
 class KFSM_Patriarch_MinigunBarrage extends KFSM_PlaySingleAnim;
@@ -79,6 +79,8 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 		{
 			MyPatPawn.SetGunTracking( true );
 		}
+
+		AnimName = default.AnimName;
 	}
 
 	// Clear the special move flags now so that SpecialMoveFlagsUpdated never fails
@@ -105,7 +107,6 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 	bObstructed = false;
 	bInterrupted = false;
 }
-
 
 /** Overridden to do nothing */
 function PlayAnimation() {}
@@ -154,6 +155,10 @@ function SpecialMoveFlagsUpdated()
 	        {
 	        	MyPatPawn.StopBodyAnim( EAS_UpperBody, 0.1f );
 		    }
+		   	else
+		   	{
+		   		MyPatPawn.StopBodyAnim( EAS_FullBody, 0.1f );
+		   	}
        		PlayWindDownAnim();
        		break;
 
@@ -181,8 +186,9 @@ function PlayFireAnim()
 		MyPatPawn.bDisableTurnInPlace = true;
 		bUseRootMotion = true;
 		MyPatPawn.Mesh.RootMotionMode = RMM_Accel;
-		MyPatPawn.BodyStanceNodes[EAS_FullBody].SetRootBoneAxisOption(RBA_Translate, RBA_Translate, RBA_Translate);
-		PlaySpecialMoveAnim( AnimName, EAS_FullBody, 0.1f, 0.2f );
+		AnimStance = EAS_FullBody;
+		MyPatPawn.BodyStanceNodes[AnimStance].SetRootBoneAxisOption(RBA_Translate, RBA_Translate, RBA_Translate);
+		PlaySpecialMoveAnim( AnimName, AnimStance, 0.1f, 0.2f );
 	}
 	else
 	{
@@ -190,26 +196,29 @@ function PlayFireAnim()
 		MyPatPawn.Mesh.RootMotionMode = KFPOwner.Mesh.default.RootMotionMode;
 		MyPatPawn.RotationRate = FocusFireRotationRate;
 		MyPatPawn.bDisableTurnInPlace = false;
+		AnimStance = EAS_UpperBody;
 		MyPatPawn.BodyStanceNodes[EAS_FullBody].SetRootBoneAxisOption(RBA_Discard, RBA_Discard, RBA_Discard);
-		PlaySpecialMoveAnim( AnimName, EAS_UpperBody, BlendInTime, BlendOutTime, 1.f );
+		PlaySpecialMoveAnim( AnimName, AnimStance, BlendInTime, BlendOutTime, 1.f );
 	}
 
 	// Zero movement
 	MyPatPawn.ZeroMovementVariables();
 
 	// Start firing
+	if( MyPatPawn.Role == ROLE_Authority || MyPatPawn.IsLocallyControlled() )
+	{
+		MyPatPawn.Weapon.StartFire( 0 );
+	}
+
+	// Set a timer
 	if( MyPatPawn.Role == ROLE_Authority )
 	{
-		MyPatPawn.StartFire( 0 );
-
 		if( !bIsFanFire && !MyPatPawn.IsHumanControlled() )
 		{
 			MyPatPawn.SetTimer( 0.06f, true, nameOf(Timer_CheckIfFireAllowed), self );
 			MyPatPawn.SetTimer( 2.0f, true, nameOf(Timer_SearchForMinigunTargets), self );
 		}
 	}
-
-
 }
 
 /** Starts and stops minigun fire depending on whether pawn is directly facing enemy */
@@ -218,6 +227,19 @@ function Timer_CheckIfFireAllowed()
 	local KFPawn KFP;
 	local vector Projection, OtherProjection, PawnRot2D;
 	local float DistSQ;
+
+	if( MyPatController.Enemy == none || !MyPatController.Enemy.IsAliveAndWell() )
+	{
+		Timer_SearchForMinigunTargets();
+	}
+
+	// If for whatever reason we have no enemy, or enemy is dead, stop firing
+	if( MyPatController.Enemy == none || !MyPatController.Enemy.IsAliveAndWell() )
+	{
+		MyPatPawn.SpecialMoveFlags = 64;
+		SpecialMoveFlagsUpdated();
+		return;
+	}
 
 	Projection = MyPatController.Enemy.Location - MyPatPawn.Location;
 	DistSQ = VSizeSQ( Projection );
@@ -238,7 +260,7 @@ function Timer_CheckIfFireAllowed()
 			MyPatPawn.SetGunTracking( true );
 			if( !MyPatPawn.IsFiring() )
 			{
-				MyPatPawn.StartFire( 0 );
+				MyPatPawn.Weapon.StartFire( 0 );
 			}
 			return;
 		}
@@ -248,11 +270,11 @@ function Timer_CheckIfFireAllowed()
 	{
 		PawnRot2D = vector( MyPatPawn.Rotation );
 		PawnRot2D.Z = 0.f;
-		if( PawnRot2D dot Normal2D(Projection) >= 0.9f )
+		if( PawnRot2D dot Normal2D(Projection) >= 0.68f )
 		{
 			if( !MyPatPawn.IsFiring() )
 			{
-				MyPatPawn.StartFire( 0 );
+				MyPatPawn.Weapon.StartFire( 0 );
 			}
 			return;
 		}
@@ -273,7 +295,7 @@ function Timer_SearchForMinigunTargets()
 	}
 
 	// Try to find a new enemy
-	if( MyPatController.CheckForEnemiesInFOV(4000.f, 0.6f, 1.f, true, false) != none )
+	if( MyPatController.CheckForEnemiesInFOV(4000.f, 0.3f, 1.f, true, false) != none )
 	{
 		MyPatPawn.SetGunTracking( true );
 		return;
@@ -349,6 +371,16 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
 	    {
 	    	MyPatPawn.StartWeaponCooldown();
 	    }
+
+	    // Stop body anims if this move was interrupted
+		if( MyPatPawn.IsFiring() )
+		{
+			// If still playing an upperbody or fullbody animation allow it to be interrupted
+		 	if( KFPOwner.BodyStanceNodes[AnimStance].bIsPlayingCustomAnim )
+		 	{
+				KFPOwner.StopBodyAnim( AnimStance, AbortBlendOutTime );
+			}
+		}
 
 		// Sync weapon state
 		if( MyPatPawn.Weapon != none && !MyPatPawn.Weapon.IsInState('Active') )

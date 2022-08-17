@@ -1,15 +1,29 @@
 //=============================================================================
 // KFPawn_Customization
 //=============================================================================
-// Class Description
+// Customization pawn, allows previewing characters before play
 //=============================================================================
 // Killing Floor 2
 // Copyright (C) 2015 Tripwire Interactive LLC
-//  - Author 1/21/2014
 //=============================================================================
 
 class KFPawn_Customization extends KFPawn_Human
 	native(Pawn);
+
+struct native sReplicatedMovementData
+{
+	var vector NewLocation;
+	var int NewRotationYaw;
+};
+
+/** Post-spawn replicated location (we skip actor property replication, this allows us to update after spawn) */
+var repnotify sReplicatedMovementData ReplicatedMovementData;
+
+/** Post-spawn replicated hidden status, controlled by the server */
+var repnotify bool bServerHidden;
+
+/** Local hidden variable, OR'd with bServerHidden */
+var bool bLocalHidden;
 
 var AnimSet MaleCustomizationAnimSet;
 var AnimSet FemaleCustomizationAnimSet;
@@ -20,6 +34,80 @@ var bool bUsingCustomizationPoint; // This is true if we have been placed on a K
 // (cpptext)
 // (cpptext)
 // (cpptext)
+// (cpptext)
+
+replication
+{
+	if( bNetInitial || bNetDirty )
+		ReplicatedMovementData, bServerHidden;
+}
+
+/** Updates visiblity of surrounding customization pawns so that none overlap */
+native function UpdateCustomizationPawnVisibility();
+
+/** Updates location and rotation on client */
+simulated event ReplicatedEvent( name VarName )
+{
+	if( VarName == nameOf(ReplicatedMovementData) )
+	{
+		OnMovementDataUpdated();
+	}
+	else if( VarName == nameOf(bServerHidden) )
+	{
+		SetHidden( bServerHidden || bLocalHidden );
+		UpdateCustomizationPawnVisibility();
+	}
+	else
+	{
+		super.ReplicatedEvent( VarName );
+	}
+}
+
+/** Sets our post-spawn location and rotation */
+function SetUpdatedMovementData( vector NewLoc, rotator NewRot )
+{
+	ReplicatedMovementData.NewLocation = NewLoc;
+	ReplicatedMovementData.NewRotationYaw = NewRot.Yaw;
+
+	// Set directly on listen server
+	OnMovementDataUpdated();
+
+	// Update on network immediately
+	bForceNetUpdate = true;
+}
+
+/** Sets our updated movement data on client/listen server */
+simulated function OnMovementDataUpdated()
+{
+	local rotator TempRotation;
+
+	SetLocation( ReplicatedMovementData.NewLocation );
+	TempRotation.Yaw = ReplicatedMovementData.NewRotationYaw;
+	SetRotation( TempRotation );
+
+	// Update visibility on listen server/clients
+	if( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		UpdateCustomizationPawnVisibility();
+	}
+}
+
+/** Sets the server-controlled hidden status (we only care about bServerHidden=true) */
+function SetServerHidden( bool bNewHidden )
+{
+	bServerHidden = bNewHidden;
+
+	// Set directly on listen server
+	if( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		// Only hide if the server tells us to
+		SetHidden( bServerHidden || bLocalHidden );
+		UpdateCustomizationPawnVisibility();		
+	}
+
+	// Update on network immediately
+	bForceNetUpdate = true;
+}
 
 /*********************************************************************************************
 Initialization
@@ -129,7 +217,7 @@ simulated function NotifyTeamChanged()
 }
 
 /** If the customization point is created after the pawn, relocate our customization pawn to a customization point */
-function MoveToCustomizationPoint()
+function bool MoveToCustomizationPoint()
 {
 	local NavigationPoint BestStartSpot;
 	local KFGameInfo KFGI;
@@ -139,23 +227,28 @@ function MoveToCustomizationPoint()
 
     PC = PlayerController( Controller );
 
-	if ( PC != none )
+	if( PC != none )
 	{
 		BestStartSpot = KFGI.FindCustomizationStart( PC );
 
-		// if a customization point wasn't found or if SetLocation fails, exit.
-		if ( BestStartSpot == None || !SetLocation( BestStartSpot.Location ) )
+		// If a customization point wasn't found or if SetLocation fails, exit.
+		if( BestStartSpot == none )
 		{
-		 	return;
+		 	return false;
 		}
 
- 		SetRotation( BestStartSpot.Rotation );
+		// Update our location/rotation data
+		SetUpdatedMovementData( BestStartSpot.Location, BestStartSpot.Rotation );
 
 		// initialize and start it up
 		KFPlayerCamera(PC.PlayerCamera).CustomizationCam.bInitialize = false;
 
 		bUsingCustomizationPoint = true;
+
+		return true;
 	}
+
+	return false;
 }
 
 /** Customization Pawns cannot take damage */
@@ -206,8 +299,6 @@ defaultproperties
    bEnableAimOffset=False
    bDisableTurnInPlace=True
    Begin Object Class=KFPawnAfflictions Name=Afflictions_0 Archetype=KFPawnAfflictions'KFGame.Default__KFPawn_Human:Afflictions_0'
-      StackingAffl(0)=(Cooldown=5.000000,DissipationRate=0.500000)
-      StackingAffl(1)=(Threshhold=0.200000,Duration=1.000000,DissipationRate=0.200000)
       bNoBurnedMatBeforeDeath=True
       FireFullyCharredDuration=2.500000
       FireCharPercentThreshhold=0.250000
@@ -248,21 +339,29 @@ defaultproperties
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
       SpecialMoveClasses(19)=None
-      SpecialMoveClasses(20)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(21)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(20)=None
+      SpecialMoveClasses(21)=None
+      SpecialMoveClasses(22)=None
+      SpecialMoveClasses(23)=None
+      SpecialMoveClasses(24)=None
+      SpecialMoveClasses(25)=None
+      SpecialMoveClasses(26)=None
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Human:SpecialMoveHandler_0'
    End Object
    SpecialMoveHandler=KFSpecialMoveHandler'KFGame.Default__KFPawn_Customization:SpecialMoveHandler_0'
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent_1 Archetype=AkComponent'KFGame.Default__KFPawn_Human:AmbientAkSoundComponent_1'
-      BoneName="Spine1"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       Name="AmbientAkSoundComponent_1"
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Human:AmbientAkSoundComponent_1'
    End Object
    AmbientAkComponent=AmbientAkSoundComponent_1
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent_0 Archetype=AkComponent'KFGame.Default__KFPawn_Human:AmbientAkSoundComponent_0'
-      BoneName="RW_Weapon"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True
       Name="AmbientAkSoundComponent_0"
@@ -275,7 +374,7 @@ defaultproperties
    End Object
    WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'KFGame.Default__KFPawn_Customization:WeaponAmbientEchoHandler_0'
    Begin Object Class=AkComponent Name=FootstepAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_Human:FootstepAkSoundComponent'
-      BoneName="Root"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True
       Name="FootstepAkSoundComponent"
@@ -283,7 +382,7 @@ defaultproperties
    End Object
    FootstepAkComponent=FootstepAkSoundComponent
    Begin Object Class=AkComponent Name=DialogAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_Human:DialogAkSoundComponent'
-      BoneName="head"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       Name="DialogAkSoundComponent"
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Human:DialogAkSoundComponent'
@@ -354,6 +453,7 @@ defaultproperties
    Components(7)=DialogAkSoundComponent
    Components(8)=TraderDialogAkSoundComponent
    Physics=PHYS_Walking
+   bSkipActorPropertyReplication=True
    CollisionComponent=CollisionCylinder
    Name="Default__KFPawn_Customization"
    ObjectArchetype=KFPawn_Human'KFGame.Default__KFPawn_Human'

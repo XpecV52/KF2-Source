@@ -236,6 +236,16 @@ var int							MaxGrenadeCount;
 var array<name>	BackupWeaponDamageTypeNames;
 
 /*********************************************************************************************
+* Player Skill Trakcing
+********************************************************************************************* */
+
+/** How much to handicap this perk when calculating the player's accuracy */
+var float 						HitAccuracyHandicap;
+
+/** How much to handicap this perk when calculating the player's headshot accuracy */
+var float 						HeadshotAccuracyHandicap;
+
+/*********************************************************************************************
 * Caching
 ********************************************************************************************* */
 var 		KFPlayerReplicationInfo	MyPRI;
@@ -316,12 +326,12 @@ function string DumpPerkLoadout()
 
 /**
  * @brief Grabs the AssociatedPerkClass from an actor
- * 
+ *
  * @param WeaponActor Weapon or projectile
  * @return Weapon used
  */
 static function KFWeapon GetWeaponFromDamageCauser( Actor WeaponActor )
-{ 
+{
 	local KFWeapon KFW;
 
 	if( WeaponActor != none )
@@ -347,7 +357,7 @@ static function KFWeapon GetWeaponFromDamageCauser( Actor WeaponActor )
 
 /**
  * @brief Grabs the AssociatedPerkClass from an actor
- * 
+ *
  * @param WeaponActor The used weapon or projectile
  * @return the weapon's or projectile's perk class
  */
@@ -370,19 +380,19 @@ static function class<KFPerk> GetPerkFromDamageCauser( Actor WeaponActor )
 			return GetPerkFromProjectile( WeaponActor );
 		}
 		else if( WeaponActor.IsA( 'SprayActor_Flame' ) )
-		{
+			{
 			return class'KFPerk_Firebug';
 		}
 		else if( WeaponActor.IsA( 'KFDoorActor' ) )
-		{
+				{
 			return class'KFPerk_Demolitionist';
+			}
 		}
-	}
 
-	if( KFW != none ) // avoid accessed none if killed from cheat (killzeds, etc.)
-	{
-		return KFW.default.AssociatedPerkClass;
-	}
+		if( KFW != none ) // avoid accessed none if killed from cheat (killzeds, etc.)
+		{
+			return KFW.default.AssociatedPerkClass;
+		}
 
 	return none;
 }
@@ -396,17 +406,17 @@ static function class<KFPerk> GetPerkFromProjectile( Actor WeaponActor  )
 	{
 		return Proj.default.AssociatedPerkClass;
 	}
-	
+
 	return none;
 }
 
 /**
  * @brief Returns true if the weapon is associated with this perk
  * @details Uses WeaponPerkClass if we do not have a spawned weapon (such as in the trader menu)
- * 
+ *
  * @param W the weapon
- * @param WeaponPerkClass weapon's perk class (optional) 
- * 
+ * @param WeaponPerkClass weapon's perk class (optional)
+ *
  * @return true/false
  */
 static simulated function bool IsWeaponOnPerk( KFWeapon W, optional class<KFPerk> WeaponPerkClass )
@@ -425,7 +435,7 @@ static simulated function bool IsWeaponOnPerk( KFWeapon W, optional class<KFPerk
 
 /**
  * @brief DamageType on perk?
- * 
+ *
  * @param KFDT The damage type
  * @return true/false
  */
@@ -441,7 +451,7 @@ static function bool IsDamageTypeOnPerk( class<KFDamageType> KFDT )
 
 /**
  * @brief Checks if a damage type is from valid perk backup weapon
- * 
+ *
  * @param DT the damage type
  * @return true if valid damage type
  */
@@ -451,13 +461,13 @@ static function bool IsBackupDamageTypeOnPerk( class<DamageType> DT )
 	{
 		return default.BackupWeaponDamageTypeNames.Find( DT.name ) > INDEX_NONE;
 	}
-	
+
 	return false;
 }
 
 /**
  * @brief DamageType on passed in perk?
- * 
+ *
  * @param KFDT The damage type
  * @param PerkClass The perk we are chking for
  * @return true/false
@@ -468,8 +478,8 @@ static function bool IsDamageTypeOnThisPerk( class<KFDamageType> KFDT, class<KFP
 }
 
 /**
- * @brief Multiplies the XP to get the right amount for a certain perk 
- * 
+ * @brief Multiplies the XP to get the right amount for a certain perk
+ *
  * @param XP XP modified
  */
 static function MultiplySecondaryXPPoints( out int XP, byte Difficulty )
@@ -479,7 +489,7 @@ static function MultiplySecondaryXPPoints( out int XP, byte Difficulty )
 
 /**
  * @brief Return if a weapon qualifies a as backup weapon (9mm etc)
- * 
+ *
  * @param KFW Weapon to check
  * @return true if backup weapon
  */
@@ -499,7 +509,7 @@ simulated native function byte GetLevel();
 
 /**
  * @brief Sets a perk's level
-  * 
+  *
  * @param NewLevel The new level
   */
 simulated native function SetLevel( byte NewLevel );
@@ -541,7 +551,7 @@ simulated event UpdateSkills()
 /**
  * @brief Updates the selected perk
  * @details  Updates selected skills, packs them, sends it to the server, and saves to the cloud
- * 
+ *
  * @param InSelectedSkills The skill array
  * @param PerkClass The perk's class
  */
@@ -553,14 +563,14 @@ simulated event UpdatePerkBuild( const out byte InSelectedSkills[5], class<KFPer
 	{
   		PackPerkBuild( NewPerkBuild, InSelectedSkills );
 		ServerSetPerkBuild( NewPerkBuild, CurrentLevel);
-		SaveBuildToStats( PerkClass, NewPerkBuild );		
+		SaveBuildToStats( PerkClass, NewPerkBuild );
 		SavePerkDataToConfig( PerkClass, NewPerkBuild );
 	}
 }
 
 /**
  * @brief Packs the slected skills into an int
- * 
+ *
  * @param NewPerkBuild The new packed perk build
  * @param SelectedSkillsHolder Array of the perk's skills
  */
@@ -575,7 +585,7 @@ simulated event PackPerkBuild( out int NewPerkBuild, const out byte SelectedSkil
 
 /**
  * @brief Packs 2 skills into an updated perk build int
- * 
+ *
  * @param NewPerkBuild The updated perk build
  * @param SkillIndex Skil pair (0-4)
  * @param SkillFlag1 "left" skill
@@ -595,7 +605,7 @@ simulated event PackSkill( out int NewPerkBuild, byte SkillIndex, int SkillFlag1
 
 /**
  * @brief Set the bytes for SelectedSkills and AbilityRanks on initialization of the perk
- * 
+ *
  * @param NewPerkBuild The new passed in perk build
  */
 simulated event SetPerkBuild( int NewPerkBuild )
@@ -611,12 +621,12 @@ simulated event SetPerkBuild( int NewPerkBuild )
     UnpackSkill( CurrentLevel, NewPerkBuild, 3, SKILLFLAG_6, SKILLFLAG_7, SelectedSkills );
     UnpackSkill( CurrentLevel, NewPerkBuild, 4, SKILLFLAG_8, SKILLFLAG_9, SelectedSkills );
 
-   	UpdateSkills();	
+   	UpdateSkills();
 }
 
 /**
  * @brief Get an unpacked array of skills
- * 
+ *
  * @param PerkClass The perk class
  * @param NewPerkBuild passed in packed perk build
  * @param SelectedSkillsHolder array of skills
@@ -636,12 +646,12 @@ simulated event GetUnpackedSkillsArray( Class<KFPerk> PerkClass, int NewPerkBuil
 	UnpackSkill( PerkLevel, NewPerkBuild, 1, SKILLFLAG_2, SKILLFLAG_3, SelectedSkillsHolder );
 	UnpackSkill( PerkLevel, NewPerkBuild, 2, SKILLFLAG_4, SKILLFLAG_5, SelectedSkillsHolder );
 	UnpackSkill( PerkLevel, NewPerkBuild, 3, SKILLFLAG_6, SKILLFLAG_7, SelectedSkillsHolder );
-	UnpackSkill( PerkLevel, NewPerkBuild, 4, SKILLFLAG_8, SKILLFLAG_9, SelectedSkillsHolder );	
+	UnpackSkill( PerkLevel, NewPerkBuild, 4, SKILLFLAG_8, SKILLFLAG_9, SelectedSkillsHolder );
 }
 
 /**
  * @brief Unpacks an individual skill from the SelectedSkills array to use
- * 
+ *
  * @param PerkLevel Current perk level
  * @param NewPerkBuild The new perk build
  * @param SkillTier Skil pair (0-4)
@@ -714,7 +724,7 @@ static simulated function float GetSkillValue( const PerkSkill Skill )
 
 static simulated function float GetPassiveValue( const out PerkSkill Skill, byte Level, optional float Divider=1.f)
 {
-	return FMin(Skill.MaxValue, Skill.StartingValue + (float(Level) * Skill.Increment) / Divider);
+	return FMin(Skill.MaxValue, Skill.StartingValue +  (float(Level) * Skill.Increment) / Divider);
 }
 
 static simulated event string GetPerkIconPath()
@@ -770,7 +780,7 @@ event NotifyPerkModified()
 
 private simulated final function PerkSetOwnerHealthAndArmor( optional bool bModifyHealth )
 {
-	// don't allow clients to set health, since health/healthmax/playerhealth/playerhealthmax is replicated
+	// don't allow clients to set health, since health/healthmax/playerhealth/playerhealthpercent is replicated
 	if( Role != ROLE_Authority )
 	{
 		return;
@@ -797,7 +807,7 @@ private simulated final function PerkSetOwnerHealthAndArmor( optional bool bModi
 		if( MyPRI != none )
 		{
 			MyPRI.PlayerHealth = OwnerPawn.Health;
-			MyPRI.PlayerHealthMax = OwnerPawn.HealthMax;
+			MyPRI.PlayerHealthPercent = FloatToByte( float(OwnerPawn.Health) / float(OwnerPawn.HealthMax) );
 		}
 
 		OwnerPawn.MaxArmor = OwnerPawn.default.MaxArmor;
@@ -813,7 +823,7 @@ function ApplySkillsToPawn()
 
 	if( CheckOwnerPawn() )
 	{
-		OwnerPawn.UpdateGroundSpeed();
+	OwnerPawn.UpdateGroundSpeed();
 		OwnerPawn.bMovesFastInZedTime = false;
 
 		if( MyPRI == none )
@@ -826,7 +836,7 @@ function ApplySkillsToPawn()
 		MyPRI.bNukeActive = false;
 		MyPRI.bConcussiveActive = false;
 		MyPRI.bPerkCanSupply = false;
-		
+
 		KFIM = KFInventoryManager(OwnerPawn.InvManager);
 		if( KFIM != none )
 		{
@@ -853,7 +863,7 @@ simulated function NotifyPawnTeamChanged()
 simulated event PostLevelUp()
 {
 	PerkSetOwnerHealthAndArmor();
-	PostSkillUpdate();	
+	PostSkillUpdate();
 	ApplySkillsToPawn();
 }
 
@@ -991,7 +1001,7 @@ function ModifySpeed( out float Speed );
 /** Kickback - recaoil bonus */
 simulated function ModifyRecoil( out float CurrentRecoilModifier, KFWeapon KFW );
 /** Allow perk to adjust damage given */
-function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType );
+function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx );
 function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageType, optional Controller InstigatedBy );
 /** Ammunition capacity and mag count increased */
 simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out int MagazineCapacity, optional Class<KFPerk> WeaponPerkClass );
@@ -1073,12 +1083,13 @@ simulated function bool ShouldSacrifice(){ return false; }
 simulated function bool ShouldRandSirenResist(){ return false; }
 simulated function bool CanExplosiveWeld(){ return false; }
 
-/** Gunslinger functions */
+/** "Rack 'em Up" perk skill functions (Gunslinger, Sharpshooter) */
 simulated function bool GetIsUberAmmoActive( KFWeapon KFW ){ return false; }
 function UpdatePerkHeadShots( ImpactInfo Impact, class<DamageType> DamageType, int NumHit );
 function AddToHeadShotCombo( class<KFDamageType> KFDT, KFPawn_Monster KFPM );
 function ResetHeadShotCombo();
 simulated event bool GetIsHeadShotComboActive(){ return false; }
+reliable private final server event ServerResetHeadShotCombo();
 simulated function ModifyRateOfFire( out float InRate, KFWeapon KFW );
 simulated event float GetIronSightSpeedModifier( KFWeapon KFW ){ return 1.f; }
 simulated function ModifyWeaponSwitchTime( out float ModifiedSwitchTime );
@@ -1102,12 +1113,14 @@ function ModifyBloatBileDoT( out float DoTScaler )
 function KFWeapon GetOwnerWeapon()
 {
 	local KFWeapon KFW;
-	
-	CheckOwnerPawn();
+
+	if( CheckOwnerPawn() )
+	{
 	KFW = KFWeapon(OwnerPawn.Weapon);
 	if( KFW != none )
 	{
 		return KFW;
+	}
 	}
 
 	return none;
@@ -1131,6 +1144,11 @@ function OnWaveEnded()
  */
 reliable protected client function ClientOnWaveEnded()
 {
+	if( MyPRI == none )
+	{
+		MyPRI = KFPlayerReplicationInfo(OwnerPawn.PlayerReplicationInfo);
+	}
+	
 	MyPRI.ResetSupplierUsed();
 }
 
@@ -1184,6 +1202,7 @@ function TickRegen( float DeltaTime )
 			if( KFPRI != none )
 			{
 				KFPRI.PlayerHealth = OwnerPawn.Health;
+				KFPRI.PlayerHealthPercent = FloatToByte( float(OwnerPawn.Health) / float(OwnerPawn.HealthMax) );;
 			}
 
 			if( OldHealth <= OwnerPawn.HealthMax * 0.25f && OwnerPawn.Health >= OwnerPawn.HealthMax * 0.25f )
@@ -1267,6 +1286,11 @@ simulated function LogPerkSkills()
        		LogInternal("--Selected Skill:" @ SelectedSkills[i]);
        	}
 	}
+}
+
+simulated function FormatPerkSkills()
+{
+
 }
 
 simulated function PlayerDied(){}

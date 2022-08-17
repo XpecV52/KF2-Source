@@ -79,6 +79,8 @@ var	float AnnouncementDelay;
 //@comment
 var const string SayColor;
 //@comment
+var const string TeamSayColor;
+//@comment
 var const string NonAffialiatedColor;
 //@comment
 var const string EventColor;
@@ -274,6 +276,7 @@ defaultproperties
 	AnnouncementVolume=2.0
 
     SayColor = "FFFFFF";
+    TeamSayColor = "00FFFF";
     NonAffialiatedColor = "000000";
     EventColor = "0099FF";
     GameColor = "00FF00";

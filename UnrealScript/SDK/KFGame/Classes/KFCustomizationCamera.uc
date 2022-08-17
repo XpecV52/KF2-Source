@@ -44,6 +44,14 @@ function UpdateCamera(Pawn P, GamePlayerCamera CameraActor, float DeltaTime, out
 		SetCustomizationView( CameraActor, OutVT, CharacterOffset, CharacterDistance );
 		bInitialize = true;
 	}
+
+	if( PlayerCamera.PCOwner.Pawn != none )
+	{
+		PlayerCamera.PCOwner.SetViewTarget( PlayerCamera.PCOwner.Pawn );	
+	}
+
+	// cameraanims, fades, etc
+	PlayerCamera.ApplyCameraModifiers( DeltaTime, OutVT.POV );
 }
 
 function SetBodyView( byte Index, optional bool bForceView = false )
@@ -150,6 +158,16 @@ function FadeCameraRotation()
 	}
 	
 	UpdateRotation( NewRotation );
+}
+
+
+/** Called when the camera becomes inactive */
+function OnBecomeInActive( GameCameraBase NewCamera )
+{
+	super.OnBecomeInActive( NewCamera );
+
+	bInitialize = false;
+	LastRotation = 0;
 }
 
 defaultproperties

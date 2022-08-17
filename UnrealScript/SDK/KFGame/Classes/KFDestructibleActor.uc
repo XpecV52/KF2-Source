@@ -744,8 +744,8 @@ function AdjustDamage(out int InDamage, Controller EventInstigator, class<Damage
 			}
 		}
 
-		// Check if this damage should be ignored completely
-		if ( bIgnorePlayerDamage && EventInstigator.bIsPlayer )
+		// Check if this damage should be ignored completely (update: human team only)
+		if ( bIgnorePlayerDamage && EventInstigator.bIsPlayer && EventInstigator.GetTeamNum() == 0)
 		{
 			InDamage = 0;
 			return;
@@ -844,14 +844,10 @@ event Bump(Actor Other, PrimitiveComponent OtherComp, Vector HitNormal)
 		}
 		LastBumpCheckTime = WorldInfo.TimeSeconds;
 
+		// changed from AI Controlled to AI Team (3/9/2016)
 		P = KFPawn_Monster(Other);
-		if ( P != none && !P.IsHumanControlled() && P.MyKFAIC != none )
+		if ( P != none && P.Controller != None && P.GetTeamNum() == 255 )
 		{
-			// @todo: fix NotifyAttackActor for different sized destructibles and different zeds
-			// This addition makes the Zed treat the destructible like a real attack target so that the damage will be applied
-			// through the animation notify rather than immediately on Bump().
-			//P.MyKFAIC.NotifyAttackActor(self);
-
 
 			// Call TakeDamage with 0 because we only want to take bump damage if it is in the array of InstaKillDamageTypes
 			TakeDamage(0, P.Controller, P.Location, vect(0,0,0), P.BumpDamageType,, P );

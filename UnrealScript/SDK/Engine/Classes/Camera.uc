@@ -664,9 +664,20 @@ function UpdateViewTarget(out TViewTarget OutVT, float DeltaTime)
 										{
 											Rot = PCOwner.Rotation;
 										}
+`if(`__TW_)
+										if( OutVT.Target != PCOwner )
+										{
+											Loc += FreeCamOffset >> Rot;
+											Pos = Loc - Vector(Rot) * FreeCamDistance;
+										}
+										else
+										{
+											Pos = Loc;
+										}
+`else
 										Loc += FreeCamOffset >> Rot;
-
 										Pos = Loc - Vector(Rot) * FreeCamDistance;
+`endif
 										// @fixme, respect BlockingVolume.bBlockCamera=false
 										HitActor = Trace(HitLocation, HitNormal, Pos, Loc, FALSE, vect(12,12,12));
 										OutVT.POV.Location = (HitActor == None) ? Pos : HitLocation;

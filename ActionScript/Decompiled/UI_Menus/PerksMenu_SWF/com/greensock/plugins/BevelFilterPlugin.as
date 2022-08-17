@@ -16,9 +16,9 @@ package com.greensock.plugins
             super("bevelFilter");
         }
         
-        override public function _onInitTween(param1:Object, param2:*, param3:TweenLite) : Boolean
+        override public function _onInitTween(target:Object, value:*, tween:TweenLite) : Boolean
         {
-            return _initFilter(param1,param2,param3,BevelFilter,new BevelFilter(0,0,16777215,0.5,0,0.5,2,2,0,int(param2.quality) || 2),_propNames);
+            return _initFilter(target,value,tween,BevelFilter,new BevelFilter(0,0,16777215,0.5,0,0.5,2,2,0,int(value.quality) || 2),_propNames);
         }
     }
 }

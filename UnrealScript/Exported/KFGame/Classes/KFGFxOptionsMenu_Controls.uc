@@ -249,6 +249,15 @@ function Callback_CloseMenu()
 	Manager.OpenMenu( UI_OptionsSelection );
 }
 
+function Callback_UpdateControllerPreset(int PresetIndex)
+{
+	if(ControllerPresetsContainer != none)
+	{
+		ControllerPresetsContainer.UpdateCurrentPresetArray(PresetIndex);
+	}
+
+}
+
 defaultproperties
 {
    MinControllerLookSensitivity=0.400000

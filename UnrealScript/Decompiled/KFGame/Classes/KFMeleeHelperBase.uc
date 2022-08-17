@@ -20,7 +20,7 @@ struct native MeleeHitboxInfo
     }
 };
 
-/** The maximum rrange at which this attack can be used */
+/** The maximum range at which this attack can be used */
 var() const float MaxHitRange;
 /** Optional dot product check for melee hit detection */
 var() const float DefaultFOVCosine;
@@ -40,10 +40,23 @@ var bool bDebugShowCollision;
 var const array<Actor> ActorsCollidedWith;
 /** This is the camera shake that we play when we hit a melee attack */
 var() const CameraShake MeleeVictimCamShake;
+/** This is the camera shake that we play when we hit a melee attack */
+var() const CameraShake MeleeImpactCamShake;
 
 simulated function Vector GetMeleeStartTraceLocation()
 {
     return Outer.Instigator.Location + (vect(0, 0, 1) * Outer.Instigator.BaseEyeHeight);
+}
+
+simulated function Rotator GetMeleeAimRotation()
+{
+    local Rotator R;
+
+    if(Outer.Instigator != none)
+    {
+        R = Outer.Instigator.GetBaseAimRotation();
+    }
+    return R;
 }
 
 simulated function float GetMeleeRange()
@@ -61,25 +74,24 @@ function DoWeaponInstantTrace(Vector StartTrace, Vector EndTrace, optional out I
     }
 }
 
-simulated function KFPawn FindVictimByFOV(Vector StartTrace, Vector EndTrace, optional float Range, optional float FOVCosine, optional out array<KFPawn> VictimList, optional bool bGetMultipleTargets)
+// Export UKFMeleeHelperBase::execTraceNoPawns(FFrame&, void* const)
+native function Actor TraceNoPawns(out Vector HitLocation, out Vector HitNormal, Vector TraceEnd, Vector TraceStart);
+
+simulated function Pawn FindVictimByFOV(Vector StartTrace, Vector EndTrace, optional float Range, optional float FOVCosine)
 {
-    local KFPawn KFP, BestVictim;
+    local Pawn P, BestVictim;
     local float NewRating, BestRating;
 
     Range = MaxHitRange;
-    FOVCosine = DefaultFOVCosine;        
+    FOVCosine = DefaultFOVCosine;
     BestRating = 0;
-    foreach Outer.WorldInfo.AllPawns(Class'KFPawn', KFP, StartTrace, Range)
+    foreach Outer.WorldInfo.AllPawns(Class'Pawn', P, StartTrace, Range)
     {
-        NewRating = RateMeleeVictim(KFP, StartTrace, EndTrace, Range, FOVCosine, ((bGetMultipleTargets) ? 0 : BestRating));
+        NewRating = RateMeleeVictim(P, StartTrace, EndTrace, Range, FOVCosine, BestRating);
         if(NewRating > BestRating)
         {
-            BestVictim = KFP;
+            BestVictim = P;
             BestRating = NewRating;
-        }
-        if(bGetMultipleTargets && NewRating > float(0))
-        {
-            VictimList[VictimList.Length] = KFP;
         }        
     }    
     if(bLogMelee)
@@ -89,7 +101,7 @@ simulated function KFPawn FindVictimByFOV(Vector StartTrace, Vector EndTrace, op
     return BestVictim;
 }
 
-simulated function float RateMeleeVictim(KFPawn Victim, Vector StartTrace, Vector EndTrace, float Range, float FOVCosine, optional float RatingToBeat)
+simulated function float RateMeleeVictim(Pawn Victim, Vector StartTrace, Vector EndTrace, float Range, float FOVCosine, optional float RatingToBeat)
 {
     local float VictimRating;
     local Vector VictimLocation, DirToVictim, AimDir;
@@ -102,7 +114,7 @@ simulated function float RateMeleeVictim(KFPawn Victim, Vector StartTrace, Vecto
     {
         LogInternal("Melee considering:" @ string(Victim));
     }
-    VictimLocation = Victim.GetMeleeHitTestLocation();
+    VictimLocation = GetMeleeHitTestLocation(Victim);
     if(Abs(VictimLocation.Z - Outer.Instigator.Location.Z) > (Outer.Instigator.CylinderComponent.CollisionHeight * 1.5))
     {
         if(bLogMelee)
@@ -124,13 +136,21 @@ simulated function float RateMeleeVictim(KFPawn Victim, Vector StartTrace, Vecto
     if(FOVCosine > 0)
     {
         AimDir = Normal(EndTrace - StartTrace);
-        if((Normal(VictimLocation - StartTrace) Dot AimDir) < FOVCosine)
+        DirToVictim = Normal(VictimLocation - StartTrace);
+        if((DirToVictim Dot AimDir) < FOVCosine)
         {
             if(bLogMelee)
             {
                 LogInternal((("rejected:" @ string(Victim)) @ "dot:") @ string(DirToVictim Dot AimDir));
             }
-            return -1;
+            return -1;            
+        }
+        else
+        {
+            if(bLogMelee)
+            {
+                LogInternal((("accepted:" @ string(Victim)) @ "dot:") @ string(DirToVictim Dot AimDir));
+            }
         }
     }
     if(!Outer.FastTrace(EndTrace, StartTrace))
@@ -144,25 +164,27 @@ simulated function float RateMeleeVictim(KFPawn Victim, Vector StartTrace, Vecto
     return VictimRating;
 }
 
-simulated function bool TraceMeleeAttackHitZones(KFPawn KFP, Vector StartTrace, Vector EndTrace, optional out ImpactInfo out_Impact, optional name BoneName)
+simulated function Vector GetMeleeHitTestLocation(Pawn P)
+{
+    return P.Location;
+}
+
+simulated function bool TraceMeleeAttackHitZones(Pawn P, Vector StartTrace, Vector EndTrace, optional out ImpactInfo out_Impact, optional name BoneName)
 {
     local array<ImpactInfo> ImpactList;
 
     if(BoneName != 'None')
     {
-        EndTrace = KFP.Mesh.GetBoneLocation(BoneName);
+        EndTrace = P.Mesh.GetBoneLocation(BoneName);
     }
-    if(!Outer.TraceAllPhysicsAssetInteractions(KFP.Mesh, EndTrace, StartTrace, ImpactList, vect(0, 0, 0), true))
+    if(!Outer.TraceAllPhysicsAssetInteractions(P.Mesh, EndTrace, StartTrace, ImpactList, vect(0, 0, 0), true))
     {
-        if(KFP.TorsoBoneName != 'None')
+        EndTrace = P.Mesh.GetBoneLocation(Class'KFPawn'.default.TorsoBoneName);
+        if(IsZero(EndTrace))
         {
-            EndTrace = KFP.Mesh.GetBoneLocation(KFP.TorsoBoneName);            
+            EndTrace = P.Location;
         }
-        else
-        {
-            EndTrace = KFP.Location;
-        }
-        Outer.TraceAllPhysicsAssetInteractions(KFP.Mesh, EndTrace, StartTrace, ImpactList, vect(0, 0, 0), true);
+        Outer.TraceAllPhysicsAssetInteractions(P.Mesh, EndTrace, StartTrace, ImpactList, vect(0, 0, 0), true);
     }
     if(ImpactList.Length > 0)
     {
@@ -204,11 +226,12 @@ event ProcessHitboxCollision(Actor HitActor, Vector StartTrace, Vector EndTrace,
 
 event InitWorldTraceForHitboxCollision();
 
-simulated function PlayMeleeHitEffects(Actor Target, Vector HitLocation, Vector HitDirection)
+simulated function PlayMeleeHitEffects(Actor Target, Vector HitLocation, Vector HitDirection, optional bool bShakeInstigatorCamera)
 {
     local Pawn Victim;
     local PlayerController PC;
 
+    bShakeInstigatorCamera = true;
     if(Target.IsA('Pawn'))
     {
         Victim = Pawn(Target);
@@ -238,4 +261,5 @@ defaultproperties
     object end
     // Reference: CameraShake'Default__KFMeleeHelperBase.MeleeImpactCamShake0'
     MeleeVictimCamShake=MeleeImpactCamShake0
+    MeleeImpactCamShake=KFCameraShake'FX_CameraShake_Arch.Melee.Default_Melee'
 }

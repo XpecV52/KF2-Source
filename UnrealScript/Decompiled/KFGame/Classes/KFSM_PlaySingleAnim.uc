@@ -65,9 +65,9 @@ static function bool IsAnInterruptHit(Pawn P, class<KFDamageType> DamageType)
 {
     local KFPawn_Monster KFPM;
     local byte HitZoneIdx;
-    local KFPawn.EHitZoneBodyPart BodyPart;
+    local KFPawnAfflictions.EHitZoneBodyPart BodyPart;
 
-    if(DamageType != none)
+    if((DamageType != none) && !P.IsHumanControlled())
     {
         KFPM = KFPawn_Monster(P);
         if(KFPM != none)

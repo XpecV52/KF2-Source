@@ -73,7 +73,7 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
 
 function SetGrabEffect(KFPlayerController KFPC, bool bValue)
 {
-    KFPC.SetGrabEffect(bValue);
+    KFPC.SetGrabEffect(bValue, (Leader != none) && Leader.IsHumanControlled());
 }
 
 defaultproperties

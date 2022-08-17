@@ -7,6 +7,21 @@
  *******************************************************************************/
 class KFThirdPersonCamera extends GameThirdPersonCamera;
 
+simulated function SetViewOffset(ViewOffsetData NewViewOffset, optional bool bInterpolate, optional float InterpTime)
+{
+    if(bInterpolate)
+    {
+        ThirdPersonCamDefault.bInterpViewOffsetOnlyForCamTransition = false;
+        ThirdPersonCamDefault.BlendTime = InterpTime;        
+    }
+    else
+    {
+        ThirdPersonCamDefault.bInterpViewOffsetOnlyForCamTransition = true;
+        ThirdPersonCamDefault.BlendTime = ThirdPersonCamDefault.default.BlendTime;
+    }
+    ThirdPersonCamDefault.super(KFThirdPersonCamera).SetViewOffset(NewViewOffset);
+}
+
 defaultproperties
 {
     ThirdPersonCamDefaultClass=Class'KFThirdPersonCameraMode'

@@ -22,6 +22,7 @@ class KFPawn_Monster extends KFPawn
  ************************************/
 
 var bool bLargeZed;
+var bool bVersusZed;
 
 /************************************
  * @name	Spawning vars
@@ -31,6 +32,9 @@ var private const KFCharacterInfo_Monster CharacterMonsterArch;
 
 var const bool bForceUseOfDebugCharInfo;
 var private const KFCharacterInfo_Monster CharacterMonsterArchDebug;
+
+/** Custom third person camera offsets */
+var() ViewOffsetData	ThirdPersonViewOffset;
 
 /*********************************************************************************************
  * @name	Combat
@@ -42,6 +46,10 @@ var(Combat) bool	bCanGrabAttack;
 /** Odds (0-1) of evaluating whether to do a grab attack instead of a basic melee attack */
 var(Combat) float	GrabAttackFrequency;
 var(Combat) bool	bCanMeleeAttack;
+var(Combat) bool 	bHasExtraSprintJumpVelocity;
+
+/** The amount to scale this Zed's damage based on difficulty */
+var(Combat) float	DifficultyDamageMod;
 
 /** Time until death after head is taken off */
 var(Combat) float	HeadlessBleedOutTime;
@@ -93,6 +101,31 @@ struct native ResistantDamageTypeInfo
 	}
 };
 
+/** Special move cooldown info */
+struct native SpecialMoveCooldownInfo
+{
+	var float CooldownTime;
+	var transient float LastUsedTime;
+	var ESpecialMove SMHandle;
+	/** Used by UI */
+	var Texture2D SpecialMoveIcon;
+	var int Charges;
+
+	var string NameLocalizationKey;
+	var string GBA_Name;
+	var string ALT_GBA_NAME;
+	var bool bShowOnHud;
+
+	structdefaultproperties
+	{
+		SMHandle=SM_None
+		bShowOnHud=true
+		LastUsedTime=0.f
+		SpecialMoveIcon=Texture2D'UI_Widgets.MenuBarWidget_SWF_IF'
+		Charges=-1
+	}
+};
+
 /** These damage types cause this zed to receive reduced damage */
 var const array< ResistantDamageTypeInfo > ResistantDamageTypes;
 
@@ -103,6 +136,21 @@ var bool 	bShowHealth;
 
 /** Set only while inside AdjustDamage when calculating extra head explosion damage*/
 var transient bool bCheckingExtraHeadDamage;
+
+/** Base human-controlled melee damage */
+var(Combat) float HumanBaseMeleeDamage;
+
+/*********************************************************************************************
+ * @name	Player-controlled
+********************************************************************************************* */
+
+/** Cooldown times for each special move ability */
+var protected array<SpecialMoveCooldownInfo> SpecialMoveCooldowns;
+
+/** Flag set after executing a jump */
+var bool bJumped;
+
+var transient float LastAttackHumanWarningTime;
 
 /*********************************************************************************************
  * @name	Hit Reactions
@@ -125,6 +173,9 @@ var repnotify byte	RepInflateMatParam;
 /** Cached health before taking damage for status effect resistance */
 var transient int OldHealth;
 
+/** Replicated material parameter for frozen */
+var repnotify byte RepFrozenMatParam;
+
 /*********************************************************************************************
  * @name	Anim Tree Controls
 ********************************************************************************************* */
@@ -140,20 +191,18 @@ var KFAnim_RandomScripted WalkBlendList;
 /*********************************************************************************************
  * @name	Special Abilities
 ********************************************************************************************* */
-
-/** This monster has the capability to sprint in general */
-var				bool				bCanSprint;
-/** This monster has the capability to sprint when damaged */
-var				bool				bCanSprintWhenDamaged;
-/** This monster's ability to sprint is currently disabled */
-var             bool    			bSprintingDisabled;
-var				float				KnockedDownBySonicWaveOdds;
+var				float	KnockedDownBySonicWaveOdds;
 var 			bool 				bCloakOnMeleeEnd;
-var				bool				bIsCloakingSpottedByLP;
-var	repnotify	bool				bIsCloakingSpottedByTeam;
-var				float				LastSpottedStatusUpdate;
+var				bool	bIsCloakingSpottedByLP;
+var	repnotify	bool	bIsCloakingSpottedByTeam;
+var				float	LastSpottedStatusUpdate;
 /** The most recent controller that made the pawn visible for other players */
 var 			KFPlayerController	LastStoredCC;
+/** Rage flags */
+var				bool 	bCanRage;
+var repnotify	bool	bIsEnraged;
+/** Particle system component for player alpha rally effect */
+var transient 	ParticleSystemComponent RallyPSC;
 
 /*********************************************************************************************
  * @name	Perks
@@ -169,6 +218,8 @@ var private		bool 	bIsFleshpoundClass;
 
 /** The difficulty adjusted original GroundSpeed for this character */
 var transient float	NormalGroundSpeed;
+/** The difficulty adjusted original SprintSpeed for this character */
+var transient float	NormalSprintSpeed;
 /** Time interval for HiddenGroundSpeed check */
 var	transient float	LastAISpeedCheckTime;
 /** The last time this Zed was network relevant to someone, or had line of sight to someone */
@@ -195,15 +246,25 @@ var bool		bRestoreCollisionOnLand;
 /** Damage type applied to destructible actors when bumped */
 var class<KFDamageType> BumpDamageType;
 
+/** Damagetype applied to human players when hitting them in mid-air */
+var class<KFDamageType> JumpBumpDamageType;
+
 /** Footstep shakes activated in footstep sound animnotify */
 var protected const float FootstepCameraShakeInnerRadius;
 var protected const float FootstepCameraShakeOuterRadius;
 var CameraShake	FootstepCameraShake;
 
+/** A ground speed this pawn has been set to blend to */
+var float DesiredAdjustedGroundSpeed;
+/** A sprint speed this pawn has been set to blend to */
+var float DesiredAdjustedSprintSpeed;
+/** The rate to transition speeds when blending to new movement speeds */
+var float SpeedAdjustTransitionRate;
+
 /*********************************************************************************************
  * @name	Dismemberment / Gore
 ********************************************************************************************* */
- /** True if switched to Gore Skeleton/Physics Asset */
+/** True if switched to Gore Skeleton/Physics Asset */
 var const bool bIsGoreMesh;
 
 /** The explosion effect should only be played once */
@@ -255,13 +316,6 @@ var KFTrigger_ChokePoint  CurrentChokePointTrigger;
 var bool                bReducedZedOnZedPinchPointCollisionStateActive;
 var const float			CollisionRadiusForReducedZedOnZedPinchPointCollisionState;
 
-/** Per hitzone incap effect resistances */
-struct native DoorSoundFx
-{
-	var() AkEvent Metal;
-	var() AkEvent Wood;
-};
-
 /*********************************************************************************************
  * @name	Spawning
 ********************************************************************************************* */
@@ -283,9 +337,11 @@ replication
 	// Replicated to ALL
 	if (bNetDirty)
 		bIsHeadless, bIsPoisoned, bPlayPanicked, bPlayShambling, MaxHeadChunkGoreWhileAlive,
-		bShowHealth, RepInflateMatParam;
+		bShowHealth, RepInflateMatParam, RepFrozenMatParam;
 	if ( bNetDirty && bCanCloak )
 		bIsCloakingSpottedByTeam;
+	if ( bNetDirty && bCanRage )
+		bIsEnraged;
 }
 
 cpptext
@@ -309,6 +365,7 @@ cpptext
 	virtual void NotifyBumpLevel(AActor* Wall, const FVector &HitLocation, const FVector& HitNormal);
 	virtual void OnRigidBodyCollision(const FRigidBodyCollisionInfo& MyInfo, const FRigidBodyCollisionInfo& OtherInfo, const FCollisionImpactData& RigidCollisionData);
 	virtual UBOOL ShouldTrace(UPrimitiveComponent* Primitive,AActor *SourceActor, DWORD TraceFlags);
+	virtual void physicsRotation(FLOAT deltaTime, FVector OldVelocity);
 }
 
 native function bool SpiderPhysicsWallAdjust( vector HitNormal, actor HitActor );
@@ -337,6 +394,23 @@ simulated event ReplicatedEvent(name VarName)
 
 	case nameof(RepInflateMatParam):
 		AfflictionHandler.SetMicrowaveParameter(ByteToFloat(RepInflateMatParam));
+		break;
+
+	case nameof(RepFrozenMatParam):
+		AfflictionHandler.SetFrozenParameter(ByteToFloat(RepFrozenMatParam));
+		break;
+
+	case nameof(Controller):
+		// Set audio switch based on AI or player-controlled
+		SetSwitch( 'Player_Zed', IsHumanControlled() ? 'Player' : 'NotPlayer' );
+		break;
+
+	case nameof(bEmpDisrupted):
+		if( bEmpDisrupted )
+		{
+			// If this pawn was disrupted, put all of its moves on cooldown
+			PutAllMovesOnCooldown();
+		}
 		break;
 	}
 
@@ -388,12 +462,23 @@ simulated event PreBeginPlay()
 		Destroy();
 	}
 	NormalGroundSpeed = default.GroundSpeed;
+	NormalSprintSpeed = default.SprintSpeed;
+}
+
+//update the portrait when we get a PRI
+simulated function NotifyTeamChanged()
+{
+	if(CharacterArch != none)
+	{
+		CharacterArch.SetCharacterFromArch( self, KFPlayerReplicationInfo(PlayerReplicationInfo) );
+	}
 }
 
 /** Called from Possessed event when this controller has taken control of a Pawn */
 function PossessedBy( Controller C, bool bVehicleTransition )
 {
 	local string NPCName;
+	local KFPlayerReplicationInfo KFPRI;
 
 	Super.PossessedBy( C, bVehicleTransition );
 
@@ -407,19 +492,38 @@ function PossessedBy( Controller C, bool bVehicleTransition )
 	//CollisionRadiusBeforeReducedZedOnZedPinchPointCollisionState = CollisionCylinderReducedPercentForSameTeamCollision;
 
 	// Turn off air control for AI because it can mess up landing.
-	if( !IsHumanControlled() )
+	if( IsHumanControlled() )
+	{
+		KFPRI = KFPlayerReplicationInfo(C.PlayerReplicationInfo);
+		if(KFPRI != none)
+		{
+			KFPRI.PlayerHealth 	= Health;
+			KFPRI.PlayerHealthPercent = FloatToByte( float(Health) / float(HealthMax) );
+			SetCharacterArch(CharacterMonsterArch, true);
+		}
+
+		if( Role == ROLE_Authority )
+		{
+			LastAttackHumanWarningTime = WorldInfo.TimeSeconds;
+		}
+	}
+	else
 	{
 		AirControl = AIAirControl;
-		KFGameInfo(WorldInfo.Game).SetAIDefaults(self);
 	}
 
-	if( MyKFAIC.PlayerReplicationInfo != None )
+	KFGameInfo(WorldInfo.Game).SetMonsterDefaults( self );
+
+	if( MyKFAIC != none && MyKFAIC.PlayerReplicationInfo != None )
 	{
 		NPCName = string(self);
 		NPCName = Repl(NPCName,"KFPawn_Zed","",false);
 		PlayerReplicationInfo.PlayerName = NPCName;
 		MyKFAIC.PlayerReplicationInfo.PlayerName = NPCName;
 	}
+
+	// Set audio switch based on AI or player-controlled
+	SetSwitch( 'Player_Zed', IsHumanControlled() ? 'Player' : 'NotPlayer' );
 }
 
 simulated event FellOutOfWorld(class<DamageType> dmgType)
@@ -456,17 +560,6 @@ event BaseChange()
 	super.BaseChange();
 }
 
-simulated function KFCharacterInfo_Monster GetCharacterMonsterInfo()
-{
-	// if CharacterMonsterArch is assigned, we can skip casting
-	if ( CharacterArch == CharacterMonsterArch )
-	{
-		return CharacterMonsterArch;
-	}
-
-	return KFCharacterInfo_Monster( GetCharacterInfo() );
-}
-
 simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 {
 	Super.PostInitAnimTree(SkelComp);
@@ -481,8 +574,27 @@ function ApplySpecialZoneHealthMod(float HealthMod)
 }
 
 /*********************************************************************************************
+ * @name	Character Info Methods
+********************************************************************************************* */
+
+native function KFCharacterInfo_Monster GetCharacterMonsterInfo();
+
+/** If true, assign custom player controlled skin when available */
+simulated function bool UsePlayerControlledZedSkin()
+{
+	return bVersusZed;
+}
+
+/*********************************************************************************************
  * @name	Movement Methods
 ********************************************************************************************* */
+
+/** Set a desired movement speed adjustment that will blend in over time */
+function AdjustMovementSpeed(float SpeedAdjust)
+{
+    DesiredAdjustedGroundSpeed = NormalGroundSpeed * SpeedAdjust;
+    DesiredAdjustedSprintSpeed = NormalSprintSpeed * SpeedAdjust;
+}
 
 /** Overridden to cause slight camera shakes when walking. */
 simulated event PlayFootStepSound(int FootDown)
@@ -502,6 +614,7 @@ event SpiderBumpLevel( vector HitLocation, vector HitNormal, optional actor Wall
 simulated event Bump( Actor Other, PrimitiveComponent OtherComp, Vector HitNormal )
 {
 	local KFPawn_Monster KFPM;
+	local KFPawn_Human KFPH;
 	local byte DoTIndex;
 
 	Super.Bump( Other, OtherComp, HitNormal );
@@ -521,6 +634,21 @@ simulated event Bump( Actor Other, PrimitiveComponent OtherComp, Vector HitNorma
 			{
 				CheckForNapalmInfect( KFPM, DoTIndex );
 			}
+		}
+	}
+
+	// Check for a midair bump
+	if( JumpBumpDamageType != none )
+	{
+	    KFPH = KFPawn_Human(Other);
+
+	    if( KFPH != none && Physics == Phys_Falling && VSize2D(Velocity) > (GroundSpeed * 1.1) )
+	    {
+			KFPH.TakeDamage( MeleeAttackHelper.BaseDamage,
+				 Controller,
+				 KFPH.Location,
+				 Normal(Velocity),
+				 JumpBumpDamageType );
 		}
 	}
 }
@@ -550,44 +678,14 @@ simulated event Touch(Actor Other, PrimitiveComponent OtherComp, vector HitLocat
 	Super.Touch(Other, OtherComp, HitLocation, HitNormal);
 }
 
-/** Determines if we can even consider sprinting */
-function SetCanSprint( bool bNewSprintStatus )
-{
-	bCanSprint = bNewSprintStatus;
-
-	if ( !bCanSprint || bSprintingDisabled )
-	{
-		bIsSprinting = false;
-	}
-}
-
-/** Determines if we can't at the moment */
-function SetSprintingDisabled( bool bNewSprintStatus )
-{
-	bSprintingDisabled = bNewSprintStatus;
-
-	if ( !bCanSprint || bSprintingDisabled )
-	{
-		bIsSprinting = false;
-	}
-}
-
-/** Determines if we can sprint when damaged */
-function SetCanSprintWhenDamaged( bool bNewSprintDamagedStatus )
-{
-	bCanSprintWhenDamaged = bNewSprintDamagedStatus;
-
-	if ( (!bCanSprint && !bCanSprintWhenDamaged) || bSprintingDisabled )
-	{
-		bIsSprinting = false;
-	}
-}
-
 function SetSprinting( bool bNewSprintStatus )
 {
-	if ( bNewSprintStatus && ( (!bCanSprint && !bCanSprintWhenDamaged) || bSprintingDisabled) )
+	if( MyKFAIC != none )
 	{
-	 	return;
+		if( !MyKFAIC.CanSetSprinting(bNewSprintStatus) )
+		{
+			return;
+		}
 	}
 
 	super.SetSprinting(bNewSprintStatus);
@@ -605,6 +703,84 @@ event StuckOnPawn (Pawn OtherPawn)
 	}
 }
 
+/** Monster jumped */
+function bool DoJump( bool bUpdating )
+{
+    local vector JumpVelocity;
+    local rotator ViewRotation;
+    local vector ViewDirection;
+
+    if( IsHumanControlled() )
+    {
+		if ( IsDoingSpecialMove() )
+		{
+			return false;
+		}
+
+	    ViewRotation = GetViewRotation();
+	    ViewDirection = Normal(Vector(ViewRotation));
+
+		if (bJumpCapable && !bIsCrouched && !bWantsToCrouch && (Physics == PHYS_Walking || Physics == PHYS_Ladder || Physics == PHYS_Spider))
+		{
+			if ( Physics == PHYS_Spider )
+	`if(`__TW_PATHFINDING_)
+				Velocity = Velocity + (GetJumpZ() * Floor);
+	`else
+				Velocity = GetJumpZ() * Floor;
+	`endif
+			else if ( Physics == PHYS_Ladder )
+				Velocity.Z = 0;
+			else if ( bIsWalking )
+			{
+				Velocity.Z = default.JumpZ;
+			}
+			else
+			{
+				if( bIsSprinting && bHasExtraSprintJumpVelocity )
+				{
+	                JumpVelocity = GetSprintJumpVelocity( ViewDirection );
+	                JumpVelocity.Z = GetJumpZ();
+	                Velocity += JumpVelocity;
+	            }
+	            else
+	            {
+	                Velocity.Z = GetJumpZ();
+	            }
+			}
+			if (Base != None && !Base.bWorldGeometry && Base.Velocity.Z > 0.f)
+			{
+				Velocity.Z += Base.Velocity.Z;
+			}
+			SetPhysics(PHYS_Falling);
+			bJumped = true;
+			return true;
+		}
+		return false;
+	}
+	else
+	{
+		return super.DoJump( bUpdating );
+	}
+}
+
+/** Returns the Z force used for a jump. Different move/physics states can return different values. */
+simulated function float GetJumpZ()
+{
+	return JumpZ;
+}
+
+/** Returns the sprint jump velocity, used in modifying jump mechanics while sprinting */
+simulated function vector GetSprintJumpVelocity( vector ViewDirection )
+{
+	return ViewDirection * GetJumpZ() * GetDirectionalJumpScale();
+}
+
+/** Determines how much a directional jump's velocity is scaled */
+simulated function float GetDirectionalJumpScale()
+{
+	return 1.f;
+}
+
 /** Overridden to access specific bumping damage types like the fleshpounds enraged hit */
 function class<KFDamageType> GetBumpAttackDamageType();
 
@@ -616,6 +792,7 @@ function TakeFallingDamage()
 event Landed( vector HitNormal, Actor FloorActor )
 {
 	local Controller StoredLastHitBy;
+	local int SMIndex;
 
 	StoredLastHitBy = LastHitBy;
 
@@ -624,6 +801,20 @@ event Landed( vector HitNormal, Actor FloorActor )
 		bRestoreCollisionOnLand = false;
 		SetCollisionSize( default.CylinderComponent.CollisionRadius, default.CylinderComponent.CollisionHeight );
 		FitCollision();
+	}
+
+	if( IsHumanControlled() )
+	{
+		if( bJumped && IsLocallyControlled() )
+		{
+			SMIndex = SpecialMoveCooldowns.Find( 'SMHandle', SM_Jump );
+			if( SMIndex != INDEX_NONE )
+			{
+				SpecialMoveCooldowns[SMIndex].LastUsedTime = WorldInfo.TimeSeconds;
+			}
+		}
+
+		bJumped = false;
 	}
 
 	super.Landed( HitNormal, FloorActor );
@@ -674,7 +865,7 @@ simulated function MeleeImpactNotify(KFAnimNotify_MeleeImpact Notify)
 	}
 
 	// check to see if our enemy was killed
-	if ( MyKFAIC.Enemy != None && MyKFAIC.Enemy.Health <= 0 )
+	if ( MyKFAIC != none && MyKFAIC.Enemy != None && MyKFAIC.Enemy.Health <= 0 )
 	{
 		ClearHeadTrackTarget(Controller.Enemy);
 		// TODO: Below command aborts could be problematic, but this code is pretty old- keep an eye on it
@@ -684,6 +875,9 @@ simulated function MeleeImpactNotify(KFAnimNotify_MeleeImpact Notify)
 		class'AICommand_TauntEnemy'.static.Taunt( KFAIController( Controller ),, TAUNT_EnemyKilled );
 	}
 }
+
+/** Called from MeleeHelper when damage is done to another pawn */
+function NotifyMeleeDamageDealt();
 
 /** Am I within range to perform an attack in the AttackTag category? (see PawnAnimInfo) */
 event bool IsInAttackTagRange( vector TestLocation, name AttackTag )
@@ -732,6 +926,236 @@ event bool IsInAnyAttackTagRange( vector TestLocation, out name outAttackTag )
 	return false;
 }
 
+/**
+ * Pawn starts firing!
+ * Called from PlayerController::StartFiring
+ * Network: Local Player
+ *
+ * @param	FireModeNum		fire mode number
+ */
+simulated function StartFire(byte FireModeNum)
+{
+    local ESpecialMove DesiredSpecialMove;
+    local byte SMFlags;
+
+    if ( !IsHumanControlled() )
+    {
+    	Super.StartFire(FireModeNum);
+    	return;
+    }
+
+    // Early out if there's no specialmove cooldown for this firemode
+    if( FireModeNum >= SpecialMoveCooldowns.Length || SpecialMoveCooldowns[FireModeNum].SMHandle == SM_None )
+    {
+    	return;
+    }
+
+	switch (FireModeNum)
+	{
+		case 0:
+			DesiredSpecialMove = SM_PlayerZedAttack1;
+			break;
+
+		case 1:
+			DesiredSpecialMove = SM_PlayerZedAttack2;
+        	break;
+
+        case 2:
+        	DesiredSpecialMove = SM_Taunt;
+        	break;
+
+		case 3:
+			DesiredSpecialMove = SM_PlayerZedSpecial1;
+        	break;
+
+        case 4:
+			DesiredSpecialMove = SM_PlayerZedSpecial2;
+        	break;
+
+        case 5:
+			DesiredSpecialMove = SM_PlayerZedSpecial3;
+        	break;
+
+        case 6:
+			DesiredSpecialMove = SM_PlayerZedSpecial4;
+        	break;
+	}
+
+	// If there's a mismatch between the move and the cooldown handle, do some error handling
+	if( SpecialMoveCooldowns[FireModeNum].SMHandle != DesiredSpecialMove )
+	{
+		`Warn("FireMode/SpecialMoveCooldown mismatch. Attempted"@DesiredSpecialMove@"with FireMode"@FireModeNum$", but cooldown SM handle is"@SpecialMoveCooldowns[FireModeNum].SMHandle$"!");
+		return;
+	}
+
+	if( DesiredSpecialMove != SM_None )
+	{
+		// Make sure attack is off cooldown
+		if( GetSpecialMoveCooldownTimeRemaining(SpecialMoveCooldowns[FireModeNum]) > 0.f )
+		{
+			return;
+		}
+
+		// Tell our currently-running special move to retrigger the button press if it was released mid-move
+		if( SpecialMove == DesiredSpecialMove )
+		{
+			SpecialMoves[SpecialMove].SpecialMoveButtonRetriggered();
+		}
+	    else if( CanDoSpecialMove(DesiredSpecialMove) )
+	    {
+	    	SMFlags = SpecialMoveHandler.SpecialMoveClasses[DesiredSpecialMove].static.PackFlagsBase(self);
+			DoSpecialMove(DesiredSpecialMove, true, InteractionPawn, SMFlags);
+			if ( Role < ROLE_Authority && IsDoingSpecialMove(DesiredSpecialMove) )
+			{
+				ServerDoSpecialMove(DesiredSpecialMove, true, InteractionPawn, SMFlags);
+			}
+		}
+	}
+}
+
+/**
+ * Pawn stops firing!
+ * i.e. player releases fire button, this may not stop weapon firing right away. (for example press button once for a burst fire)
+ * Network: Local Player
+ *
+ * @param	FireModeNum		fire mode number
+ */
+simulated function StopFire(byte FireModeNum)
+{
+    local ESpecialMove DesiredSpecialMove;
+
+	if( !IsHumanControlled() )
+	{
+		super.StopFire( FireModeNum );
+		return;
+	}
+
+	if( !IsDoingSpecialMove() )
+	{
+		return;
+	}
+
+	switch (FireModeNum)
+	{
+		case 0:
+			DesiredSpecialMove = SM_PlayerZedAttack1;
+			break;
+
+		case 1:
+			DesiredSpecialMove = SM_PlayerZedAttack2;
+        	break;
+
+        case 2:
+        	DesiredSpecialMove = SM_Taunt;
+        	break;
+
+		case 3:
+			DesiredSpecialMove = SM_PlayerZedSpecial1;
+        	break;
+
+		case 4:
+			DesiredSpecialMove = SM_PlayerZedSpecial2;
+        	break;
+	}
+
+	if( SpecialMove == DesiredSpecialMove )
+	{
+		SpecialMoves[SpecialMove].SpecialMoveButtonReleased();
+	}
+}
+
+/** Called from KFSpecialMove::SpecialMoveEnded */
+simulated function NotifySpecialMoveEnded( KFSpecialMove FinishedMove, ESpecialMove SMHandle )
+{
+	local byte SMIndex;
+
+	if( IsHumanControlled() && IsLocallyControlled() )
+	{
+		SMIndex = SpecialMoveCooldowns.Find( 'SMHandle', SMHandle );
+		if( SMIndex != INDEX_NONE )
+		{
+			SpecialMoveCooldowns[SMIndex].LastUsedTime = WorldInfo.TimeSeconds;
+		}
+	}
+}
+
+/** Returns cooldown time of a special move */
+function float GetSpecialMoveCooldownPercent( SpecialMoveCooldownInfo Cooldown )
+{
+	local float CDTime;
+
+	if( Cooldown.SMHandle != SM_None)
+	{
+		if( Cooldown.LastUsedTime > 0.f && Cooldown.CooldownTime > 0.f )
+		{
+			CDTime = (!bEmpDisrupted) ? Cooldown.CooldownTime : AfflictionHandler.GetAfflictionDuration(SAF_EMPDisrupt);
+			return fClamp( (WorldInfo.TimeSeconds - Cooldown.LastUsedTime) / CDTime, 0.f, 1.f );
+		}
+	}
+
+	return 1.f;
+}
+
+/** Returns amount of time remaining in cooldown */
+function float GetSpecialMoveCooldownTimeRemaining( SpecialMoveCooldownInfo Cooldown )
+{
+	local float CDTime;
+
+	if( Cooldown.SMHandle != SM_None )
+	{
+		if( Cooldown.LastUsedTime > 0.f && Cooldown.CooldownTime > 0.f )
+		{
+			CDTime = (!bEmpDisrupted) ? Cooldown.CooldownTime : AfflictionHandler.GetAfflictionDuration(SAF_EMPDisrupt);
+			return CDTime - fMin( WorldInfo.TimeSeconds - Cooldown.LastUsedTime, CDTime );
+		}
+	}
+
+	return 0.f;
+}
+
+/** Returns last used time of a special move */
+function float GetSpecialMoveCooldownTimeRemainingByHandle( ESpecialMove SMHandle )
+{
+	local byte SMIndex;
+
+	// Cooldown check
+	SMIndex = SpecialMoveCooldowns.Find( 'SMHandle', SMHandle );
+	if( SMIndex != INDEX_NONE )
+	{
+		return GetSpecialMoveCooldownTimeRemaining( SpecialMoveCooldowns[SMIndex] );
+	}
+
+	return 0.f;
+}
+
+function Byte GetSMHandleFireMode(ESpecialMove SMHandle)
+{
+	return SpecialMoveCooldowns.Find('SMHandle', SMHandle);
+}
+
+/** Allows access to the cooldowns array without being able to modify it */
+simulated function array<SpecialMoveCooldownInfo> GetSpecialMoveCooldowns()
+{
+	return SpecialMoveCooldowns;
+}
+
+/** Puts all moves on this pawn on cooldown */
+function PutAllMovesOnCooldown()
+{
+	local int i;
+
+	if( IsHumanControlled() && IsLocallyControlled() )
+	{
+		for( i = 0; i < SpecialMoveCooldowns.Length; ++i )
+		{
+			if( SpecialMoveCooldowns[i].SMHandle != SM_None )
+			{
+				SpecialMoveCooldowns[i].LastUsedTime = WorldInfo.TimeSeconds;
+			}
+		}
+	}
+}
+
 /*********************************************************************************************
  * @name	Damage/Death Methods
 ********************************************************************************************* */
@@ -748,9 +1172,35 @@ State Dying
 			KFPH = KFPawn_Human( InstigatedBy.Pawn );
 			if( KFPH != none )
 			{
-				`SafeDialogManager.PlayBeatDeadHorseDialog( KFPH, self );
+				`DialogManager.PlayBeatDeadHorseDialog( KFPH, self );
 			}
 		}
+	}
+
+	simulated function bool CalcCamera( float fDeltaTime, out vector out_CamLoc, out rotator out_CamRot, out float out_FOV )
+	{
+		local PlayerController PC;
+		local matrix HeadMatrix;
+		local vector HeadLoc;
+		//local rotator HeadRot;
+
+		PC = GetALocalPlayerController();
+
+		if( PC != none && !PC.IsSpectating() && PC.ViewTarget == self )
+		{
+			HeadMatrix = Mesh.GetBoneMatrix( Mesh.MatchRefBone('head') );
+			HeadLoc = MatrixGetOrigin( HeadMatrix );
+			//HeadMatrix = MakeRotationMatrix( rot(0, -16383, 16383) ) * HeadMatrix;
+			//HeadRot = MatrixGetRotator( HeadMatrix );
+			//DrawDebugLine(HeadLoc, HeadLoc + 100*vector(HeadRot), 0, 255, 0);
+
+			//out_CamLoc = VInterpTo( out_CamLoc, HeadLoc, fDeltaTime, 10.0 );
+			out_CamRot = RInterpTo( out_CamRot, rotator(HeadLoc - out_CamLoc), fDeltaTime, 10.0 );
+
+			return true;
+		}
+
+		return Global.CalcCamera( fDeltaTime, out_CamLoc, out_CamRot, out_FOV );
 	}
 };
 
@@ -761,6 +1211,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 	local class<KFDamageType> KFDT;
 	local KFPlayerController KFPC;
 	local KFPerk InstigatorPerk;
+	local KfPlayerReplicationInfo KFPRI;
 	local KFAIController KFAIC;
 
 	AIMonster = KFAIController_Monster(InstigatedBy);
@@ -821,6 +1272,13 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 		bShowHealth = true;
 		SetTimer(2.f, false, nameOf(ResetHealthVisibilty));
 	}
+
+	KFPRI = KFPlayerReplicationInfo( PlayerReplicationInfo );
+	if( KFPRI != none )
+	{
+		KFPRI.PlayerHealth = Health;
+		KFPRI.PlayerHealthPercent = FloatToByte( float(Health) / float(HealthMax) );
+	}
 }
 
 /** Disable falling damage */
@@ -833,6 +1291,7 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	local int ExtraHeadDamage;
 	local KFPerk InstigatorPerk;
 	local float DamageMod;
+	local class<KFDamageType> KFDT;
 
 	Super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
 
@@ -854,6 +1313,9 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 		InDamage *= DamageMod;
 	}
 
+	// Cached hit params
+	HitZoneIdx = HitZones.Find('ZoneName', HitInfo.BoneName);
+
 	// Let the instigator's perk adjust the damage
 	KFPC = KFPlayerController(InstigatedBy);
 	if( KFPC != none )
@@ -861,7 +1323,7 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 		InstigatorPerk = KFPC.GetPerk();
 		if( InstigatorPerk != none )
 		{
-			InstigatorPerk.ModifyDamageGiven( InDamage, DamageCauser, self, KFPC, class<KFDamageType>(DamageType) );
+			InstigatorPerk.ModifyDamageGiven( InDamage, DamageCauser, self, KFPC, class<KFDamageType>(DamageType), HitZoneIdx );
 		}
 
 		if( KFPC.Pawn != none )
@@ -876,9 +1338,6 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 		}
 	}
 
-	// Cached hit params
-	HitZoneIdx = HitZones.Find('ZoneName', HitInfo.BoneName);
-
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
 	if( WorldInfo.Game != none && KFGameInfo(WorldInfo.Game).bNVAlwaysHeadshot )
 	{
@@ -890,6 +1349,14 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	if( !bCheckingExtraHeadDamage && HitZoneIdx == HZI_Head &&
         HitZones[HZI_Head].GoreHealth > 0 && InDamage > HitZones[HZI_Head].GoreHealth )
 	{
+        KFDT = class<KFDamageType>(DamageType);
+
+		// For certain weapons do even more damage on blowing the head off
+        if( KFDT != none )
+        {
+            InDamage *= KFDT.default.HeadDestructionDamageScale;
+        }
+
         ExtraHeadDamage = InDamage + HealthMax * 0.25;
 
         bCheckingExtraHeadDamage = true;
@@ -926,7 +1393,7 @@ function bool IsVulnerableTo(class<DamageType> DT, optional out float DamageMod)
 		if ( ClassIsChildOf(DT, VulnerableDamageTypes[Idx].DamageType) )
 		{
 			DamageMod = VulnerableDamageTypes[Idx].DamageScale;
-            return true;
+			return true;
 		}
 	}
 
@@ -943,7 +1410,7 @@ function bool IsResistantTo(class<DamageType> DT, optional out float DamageMod)
 		if ( ClassIsChildOf(DT, ResistantDamageTypes[Idx].DamageType) )
 		{
 			DamageMod = ResistantDamageTypes[Idx].DamageScale;
-            return true;
+			return true;
 		}
 	}
 
@@ -952,7 +1419,7 @@ function bool IsResistantTo(class<DamageType> DT, optional out float DamageMod)
 
 event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageType, optional bool bRepairArmor=true, optional bool bMessageHealer=true)
 {
-	`SafeDialogManager.PlaySpotZedHealingDialog( self );
+	`DialogManager.PlaySpotZedHealingDialog( self );
 	Super.HealDamage(Amount, Healer, DamageType);
 	return true;
 }
@@ -976,7 +1443,7 @@ function NotifyTakeHit(Controller InstigatedBy, vector HitLocation, int Damage, 
 		KFPH_Instigator = KFPawn_Human( InstigatedBy.Pawn );
 		if( KFPH_Instigator != none )
 		{
-			`SafeDialogManager.PlayDamageZedContinuousDialog( KFPH_Instigator, self );
+			`DialogManager.PlayDamageZedContinuousDialog( KFPH_Instigator, self );
 		}
 	}
 
@@ -1001,7 +1468,7 @@ function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, clas
 		KFPH_Instigator = KFPawn_Human( InstigatedBy.Pawn );
 		if( KFPH_Instigator != none )
 		{
-			`SafeDialogManager.PlayDamagedZedDialog( KFPH_Instigator, self, DamageType );
+			`DialogManager.PlayDamagedZedDialog( KFPH_Instigator, self, DamageType );
 		}
 	}
 }
@@ -1021,16 +1488,36 @@ function BleedOutTimer()
 	}
 }
 
+/** Spawns and attaches the rally effect to a specified bone */
+simulated function SpawnRallyEffect( ParticleSystem RallyEffect, name EffectBoneName, vector EffectOffset )
+{
+	if( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		if( RallyPSC != none )
+		{
+			RallyPSC.DeactivateSystem();
+			DetachComponent( RallyPSC );
+		}
+
+		RallyPSC = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment( RallyEffect, Mesh, EffectBoneName, false, EffectOffset );
+	}
+}
+
 function bool Died(Controller Killer, class<DamageType> DamageType, vector HitLocation)
 {
 	local KFPlayerController KFPC;
 	local KFPerk InstigatorPerk;
 
+	if(Killer != none)
+	{
+		BroadcastDeathMessage(Killer);
+	}
+
 	if ( super.Died(Killer, damageType, HitLocation) )
 	{
 	 	if( Killer != none && Killer.Pawn != none && KFPawn_Human(Killer.Pawn) != none )
 		{
-			`SafeDialogManager.PlayKilledZedDialog( KFPawn_Human(Killer.Pawn), self, DamageType, IsDoingSpecialMove(SM_Knockdown) || IsDoingSpecialMove(SM_RecoverFromRagdoll) );
+			`DialogManager.PlayKilledZedDialog( KFPawn_Human(Killer.Pawn), self, DamageType, IsDoingSpecialMove(SM_Knockdown) || IsDoingSpecialMove(SM_RecoverFromRagdoll) );
 		}
 
 		if( bCouldTurnIntoShrapnel )
@@ -1067,16 +1554,13 @@ simulated event Destroyed()
 event OnRigidBodyLinearConstraintViolated(name StretchedBoneName)
 {
 	local KFGoreManager GoreManager;
-	local KFCharacterInfo_Monster MonsterInfo;
 
 	GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
-	if( CanSwapToGoreMesh() && GoreManager != none && GoreManager.AllowMutilation() )
+	if( GoreManager != none && GoreManager.AllowMutilation() )
 	{
-		MonsterInfo = GetCharacterMonsterInfo();
-		if( !bIsGoreMesh && MonsterInfo != none )
+		if( !bIsGoreMesh )
 		{
-			SwitchToGoreMesh(MonsterInfo.GoreMesh, MonsterInfo.CharacterGoreMaterialID);
-			GoreMeshSwapped();
+			SwitchToGoreMesh();
 		}
 	}
 
@@ -1105,13 +1589,13 @@ function CheckForNapalmInfect( KFPawn_Monster KFPM, byte DoTIndex )
 	{
 		return;
 	}
-	
+
 	KFPC = KFPlayerController(DamageOverTimeArray[DotIndex].InstigatedBy);
 	if( KFPC != none )
 	{
 		InstigatorPerk = KFPC.GetPerk();
 		if( InstigatorPerk != none && InstigatorPerk.CanSpreadNapalm() )
-		{
+        {
 			KFPM.TakeDamage( 10,
 					 DamageOverTimeArray[DotIndex].InstigatedBy,
 					 vect(0,0,0),
@@ -1143,7 +1627,7 @@ function ShrapnelExplode( Controller Killer )
 	// explode using the given template
 	ExploActor = Spawn(class'KFExplosionActorReplicated', InstigatorActor,, Location,,, true);
 	if( ExploActor != None )
-	{
+		{
 		ExploActor.InstigatorController = Killer;
 
 		if( Killer.Pawn != none )
@@ -1154,7 +1638,7 @@ function ShrapnelExplode( Controller Killer )
 		ExplosionTemplate = class'KFPerk_Firebug'.static.GetExplosionTemplate();
 		ExplosionTemplate.MyDamageType = class'KFPerk_Firebug'.static.GetShrapnelDamageTypeClass();
 		ExploActor.Explode( ExplosionTemplate );
-	}
+		}
 }
 
 /*********************************************************************************************
@@ -1178,7 +1662,7 @@ function CauseHeadTrauma(float BleedOutTime=5.f)
 			`RecordWeaponHeadShot(KFPC, HitFxInfo.DamageType)
 		}
 	}
-	
+
 	if ( !bIsHeadless && !bPlayedDeath )
 	{
     	if( MyKFAIC != none && KFGameInfo(WorldInfo.Game) != none && MyKFAIC.TimeFirstSawPlayer >= 0 )
@@ -1191,7 +1675,10 @@ function CauseHeadTrauma(float BleedOutTime=5.f)
         bPlayShambling = true;
 		bIsHeadless = true;
 
-		SetSprintingDisabled(true);		
+		if( MyKFAIC != none )
+		{
+			MyKFAIC.SetSprintingDisabled(true);
+		}
 
         // No more auto aiming to this zed
         bCanBeAdheredTo=false;
@@ -1263,7 +1750,10 @@ function CausePanicWander()
 			return;
 		}
 
-		SetSprintingDisabled(true);
+		if( MyKFAIC != none )
+		{
+			MyKFAIC.SetSprintingDisabled(true);
+		}
 
 		// initiate the "EMP wander" AICommand
 		if( IsAliveAndWell() && MyKFAIC != none )
@@ -1276,7 +1766,10 @@ function CausePanicWander()
 /** Called on server when pawn should stop doing EMP Wandering */
 function EndPanicWander()
 {
-	SetSprintingDisabled(false);
+	if( MyKFAIC != none )
+	{
+		MyKFAIC.SetSprintingDisabled(false);
+	}
 
 	// stop the "EMP wander" AICommand
 	if( IsAliveAndWell() && MyKFAIC != none )
@@ -1310,13 +1803,14 @@ simulated function SetGameplayMICParams()
 	if ( AfflictionHandler != None )
 	{
 		AfflictionHandler.SetPoisonedOverlay( bIsPoisoned );
+		AfflictionHandler.SetFrozenParameter(ByteToFloat(RepFrozenMatParam));
 
 		// Turn off inflated if we are using the gore mic
         if( GoreMIC != none )
-		{
+	    {
             AfflictionHandler.SetMicrowaveParameter(0.f);
-		}
-	}
+        }
+    }
 	super.SetGameplayMICParams();
 }
 
@@ -1324,9 +1818,9 @@ simulated function SetGameplayMICParams()
 function bool NotifyAttackParried(Pawn InstigatedBy, byte InParryStrength)
 {
 	if ( InParryStrength < ParryResistance  )
-	{
+    	{
 		return FALSE; // resisted
-	}
+    }
 
 	return Super.NotifyAttackParried(InstigatedBy, InParryStrength);
 }
@@ -1341,7 +1835,7 @@ function SetCloaked(bool bNewCloaking)
 	if( bNewCloaking )
 	{
 		ClearBloodDecals();
-	}
+    }
 }
 
 function CallOutCloaking( optional KFPlayerController CallOutController );
@@ -1458,10 +1952,14 @@ simulated function StopLookingAtPawn( optional Pawn P )
  *
  * 	@param   GoreLODIndex		 LOD index for the gore LOD
  */
-native final simulated function bool SwitchToGoreLOD(int GoreLODIndex);
-native final simulated function bool SwitchToGoreMesh(SkeletalMesh GoreSkelMesh, int GoreMaterialID);
-simulated function GoreMeshSwapped();
-simulated function bool CanSwapToGoreMesh() { return true; }
+native final simulated function bool SwitchToGoreMesh();
+
+/** Called when SwitchToGoreMesh is successful */
+simulated event NotifyGoreMeshActive()
+{
+    // Need to reset material params since our BodyMIC could have changed
+	SetGameplayMICParams();
+}
 
 /** Returns n closest bones to the TestLocation that belong to the physics asset of the mesh */
 simulated function GetClosestHitBones(int NumBones, vector TestLocation, out array<name> OutHitBoneList)
@@ -1570,12 +2068,12 @@ simulated function PlayDeadHitEffects(vector HitLocation, vector HitDirection, i
 
 	    	// If there was no dismemberment, explode head instead
 	    	if  ( !bIsDismemberingHit && (InjuredHitZones & (1 << HZI_Head)) > 0 )
-	    	{
-	    		PlayHeadAsplode();
-	    		// Set bIsDismemberingHit to true to add an impulse to the neck
-	    		bIsDismemberingHit = true;
-	    	}
-		}
+    		{
+    			PlayHeadAsplode();
+    			// Set bIsDismemberingHit to true to add an impulse to the neck
+    			bIsDismemberingHit = true;
+    		}
+	    }
 
 		if( HitFxInfo.bObliterated )
 		{
@@ -1641,21 +2139,31 @@ simulated function HandleRagdollImpulseEffects( vector HitLocation, vector HitDi
 		RBBoneName = GetRBBoneFromBoneName(HitBoneName);
 	}
 
-	// Apply impulse to hit bone. This can be for an alive zed (on death shot) or a dismembered limb
-	// In case of explosives, this applies an impulse to the body and not the gibs.
-	// Impulse to the gibs is handled separately in CauseGibsAndApplyImpulse()
-	ApplyRagdollImpulse(DmgType, HitLocation, ImpulseDir, RBBoneName, ImpulseScale);
+		// Apply impulse to hit bone. This can be for an alive zed (on death shot) or a dismembered limb
+		// In case of explosives, this applies an impulse to the body and not the gibs.
+		// Impulse to the gibs is handled separately in CauseGibsAndApplyImpulse()
+		ApplyRagdollImpulse(DmgType, HitLocation, ImpulseDir, RBBoneName, ImpulseScale);
 
-	// Apply another impulse to parent bone when a limb gets dismembered for the first time. Skip if parent is the root bone.
-	if( bIsDismemberingHit && ParentImpulseScale > 0 )
-	{
-		HitBoneParentName = mesh.GetParentBone(HitBoneName);
-		// Do not apply an additional impulse to the parent bone on for a dismembering shot if it'st he same as oru RB bone
-		if( RBBoneName != HitBoneParentName && Mesh.PhysicsAsset.FindBodyIndex(HitBoneParentName) != INDEX_NONE )
+		// Apply another impulse to parent bone when a limb gets dismembered for the first time. Skip if parent is the root bone.
+		if( bIsDismemberingHit && ParentImpulseScale > 0 )
 		{
-			ApplyRagdollImpulse(DmgType, HitLocation, ParentImpulseDir, HitBoneParentName, ParentImpulseScale);
+			HitBoneParentName = mesh.GetParentBone(HitBoneName);
+
+            // Add additional force if we blew the head off if needed
+            if( (HitBoneName == 'head' || HitBoneParentName == 'neck') && DmgType != none )
+            {
+                ParentImpulseScale *= DmgType.default.HeadDestructionImpulseForceScale;
+            }
+
+			// Grab the rigid body bone name so we know which one to apply RB force to
+			HitBoneParentName = GetRBBoneFromBoneName(HitBoneParentName);
+
+			// Do not apply an additional impulse to the parent bone on for a dismembering shot if it'st he same as oru RB bone
+            if( RBBoneName != HitBoneParentName && Mesh.PhysicsAsset.FindBodyIndex(HitBoneParentName) != INDEX_NONE )
+			{
+				ApplyRagdollImpulse(DmgType, HitLocation, ParentImpulseDir, HitBoneParentName, ParentImpulseScale);
+			}
 		}
-	}
 }
 
 /** Hit effects for a living zed */
@@ -1902,7 +2410,7 @@ simulated function bool TryPlayHitReactionAnim(vector HitDirection, class<KFDama
 
 	if ( !bOnlyAdditiveHits )
 	{
-		HitReactionType = AfflictionHandler.GetPredictedHitReaction(DamageType, BodyPart);
+		HitReactionType = EHitReactionAnimType(AfflictionHandler.GetPredictedHitReaction(DamageType, BodyPart));
 	}
 
 	switch (BodyPart)
@@ -1942,7 +2450,7 @@ simulated function ApplyBloodDecals(int HitZoneIndex, vector HitLocation, vector
 		// Spawn wound decal on the damaged pawn
 		if( !bWasObliterated && !bIsCloaking )
 		{
-			GoreManager.LeaveABodyWoundDecal(self, HitLocation, HitDirection, HitZoneName, HitBoneName, DmgType);
+		GoreManager.LeaveABodyWoundDecal(self, HitLocation, HitDirection, HitZoneName, HitBoneName, DmgType);
 		}
 
         // Spawn blood splatter decal effect behind the damaged pawn
@@ -1973,20 +2481,18 @@ simulated function HandlePartialGoreAndGibs(
 
 	if( DmgType != none && GoreManager != none )
 	{
-		if( CanSwapToGoreMesh() && GoreManager.AllowMutilation() )
+		if( GoreManager.AllowMutilation() )
 		{
-			MonsterInfo = GetCharacterMonsterInfo();
-
 			// Enable alternate bone weighting and gore skeleton
-			if( !bIsGoreMesh && MonsterInfo != none )
+			if( !bIsGoreMesh )
 			{
-				SwitchToGoreMesh(MonsterInfo.GoreMesh, MonsterInfo.CharacterGoreMaterialID);
-				GoreMeshSwapped();
+				SwitchToGoreMesh();
 			}
 
 			// Apply gore only if we were able to successfully switch to the gore mesh
 			if( bIsGoreMesh )
 			{
+				MonsterInfo = GetCharacterMonsterInfo();
 				// Try to apply exlosion gore first
 				if( HitFxInfo.bRadialDamage )
 				{
@@ -2098,20 +2604,22 @@ simulated function ApplyTakeHitFxGore(
 simulated function ApplyHeadChunkGore(class<KFDamageType> DmgType, vector HitLocation, vector HitDirection)
 {
 	local KFGoreManager GoreManager;
-	local KFCharacterInfo_Monster MonsterInfo;
+
+	if( bCanCloak && IsAliveAndWell() )
+	{
+		return;
+	}
 
 	GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
 
 	if( DmgType != none && GoreManager != none )
 	{
-		if( CanSwapToGoreMesh() && GoreManager.AllowMutilation() )
+		if( GoreManager.AllowMutilation() )
 		{
-			MonsterInfo = GetCharacterMonsterInfo();
 			// Enable alternate bone weighting and gore skeleton
-			if( !bIsGoreMesh && MonsterInfo != none )
+			if( !bIsGoreMesh )
 			{
-				SwitchToGoreMesh(MonsterInfo.GoreMesh, MonsterInfo.CharacterGoreMaterialID);
-				GoreMeshSwapped();
+				SwitchToGoreMesh();
 			}
 
 			if ( !bPlayedDeath )
@@ -2127,7 +2635,7 @@ simulated function ApplyHeadChunkGore(class<KFDamageType> DmgType, vector HitLoc
 /** Reliably play any gore effects related to a zone/limb being dismembered */
 simulated function HitZoneInjured(optional int HitZoneIdx=INDEX_None)
 {
-	// --------------------------------------------------------------
+    // --------------------------------------------------------------
 	// Network: Server (Also called on clients after TearOff)
 	// --------------------------------------------------------------
 	if ( Role == ROLE_Authority && HitZoneIdx != INDEX_None )
@@ -2157,8 +2665,8 @@ simulated function HitZoneInjured(optional int HitZoneIdx=INDEX_None)
 	    	// If there was no dismemberment, explode head instead
 	    	if  ( !HitZones[HZI_Head].bPlayedInjury )
 	    	{
-    			PlayHeadAsplode();
-	    	}
+				PlayHeadAsplode();
+			}
 		}
 	}
 }
@@ -2166,7 +2674,6 @@ simulated function HitZoneInjured(optional int HitZoneIdx=INDEX_None)
 simulated function PlayHeadAsplode()
 {
 	local KFGoreManager GoreManager;
-	local KFCharacterInfo_Monster MonsterInfo;
 	local name BoneName;
 
 	if( HitZones[HZI_Head].bPlayedInjury )
@@ -2184,13 +2691,11 @@ simulated function PlayHeadAsplode()
 
     // Enable alternate bone weighting and gore skeleton
 	GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
-	if( CanSwapToGoreMesh() && GoreManager != none && GoreManager.AllowHeadless() )
+	if( GoreManager != none && GoreManager.AllowHeadless() )
 	{
-		MonsterInfo = GetCharacterMonsterInfo();
-		if( !bIsGoreMesh && MonsterInfo != none )
+		if( !bIsGoreMesh )
 		{
-			SwitchToGoreMesh(MonsterInfo.GoreMesh, MonsterInfo.CharacterGoreMaterialID);
-			GoreMeshSwapped();
+			SwitchToGoreMesh();
 		}
 	}
 
@@ -2211,7 +2716,6 @@ simulated function bool PlayDismemberment(int InHitZoneIndex, class<KFDamageType
 {
 	local KFGoreManager GoreManager;
 	local name BreakBoneName;
-	local KFCharacterInfo_Monster MonsterInfo;
 
 	// Bail out if the hit zone has already been dismembered
 	if( HitZones[InHitZoneIndex].bPlayedInjury )
@@ -2227,13 +2731,11 @@ simulated function bool PlayDismemberment(int InHitZoneIndex, class<KFDamageType
 
     // Enable alternate bone weighting and gore skeleton
 	GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
-	if( CanSwapToGoreMesh() && GoreManager != none && GoreManager.AllowMutilation() )
+	if( GoreManager != none && GoreManager.AllowMutilation() )
 	{
-		MonsterInfo = GetCharacterMonsterInfo();
-		if( !bIsGoreMesh && MonsterInfo != none )
+		if( !bIsGoreMesh )
 		{
-			SwitchToGoreMesh(MonsterInfo.GoreMesh, MonsterInfo.CharacterGoreMaterialID);
-			GoreMeshSwapped();
+			SwitchToGoreMesh();
 		}
 	}
 
@@ -2337,6 +2839,42 @@ simulated event bool HasMouth()
 	return !Mesh.IsBrokenConstraint( 'head' ) && !Mesh.IsBoneHidden( Mesh.MatchRefBone('gore_jaw') );
 }
 
+/** Breaks all joint constraints using dependent gore system */
+simulated function ForceBreakAllConstraints()
+{
+	local int i;
+	local KFGoreManager GoreManager;
+
+	bHasBrokenConstraints = TRUE;
+
+	// Enable alternate bone weighting and gore skeleton
+	GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
+	if( GoreManager == none )
+	{
+		return;
+	}
+
+	if( GoreManager.AllowMutilation() )
+	{
+		if( !bIsGoreMesh )
+		{
+			SwitchToGoreMesh();
+		}
+	}
+
+	for( i = 0; i < HitZones.length; ++i )
+	{
+		// Bail out if the hit zone has already been dismembered
+		if( HitZones[i].bPlayedInjury )
+		{
+			continue;
+		}
+
+		// breaks joint and all dependent joints
+		GoreManager.BreakConstraint( self, HitZones[i].BoneName );
+	}
+}
+
 function NotifyMeleeAttackFinished();
 
 /** Checks if we're able to reduce or restore our collision size if we're going through
@@ -2392,7 +2930,6 @@ simulated event UpdateSpottedStatus();
 static function bool IsStalkerClass(){ return default.bIsStalkerClass; }
 static function bool IsCrawlerClass(){ return default.bIsCrawlerClass; }
 static function bool IsFleshpoundClass(){ return default.bIsFleshpoundClass; }
-
 
 function float GetPerkDoTScaler( optional Controller InstigatedBy, optional class<KFDamageType> KFDT )
 {
@@ -2802,6 +3339,52 @@ static function int GetTraderAdviceID()
 function PlayLeapedDialog();
 function PlayLandedDialog();
 
+function MotivatePlayerToAttack( float Percentage, class<DamageType> AntiGriefDamageTypeClass )
+{
+    local PlayerController PC;
+
+    PC = PlayerController(Controller);
+    if( PC != none && WorldInfo.TimeSeconds - LastAttackHumanWarningTime > 9 )
+    {
+        PC.ReceiveLocalizedMessage( class'KFLocalMessage_Priority', GMT_AttackHumanPlayers );
+        LastAttackHumanWarningTime = WorldInfo.TimeSeconds;
+    }
+
+    TakeDamage( int(float(HealthMax) * 0.05f), none, Location + vRand()*5.f, vRand(), AntiGriefDamageTypeClass );
+}
+
+/*********************************************************************************************
+ * @name    UI / Localization
+ ********************************************************************************************* */
+/**Looks up and returns localized name */
+
+//called on server
+simulated function BroadcastDeathMessage( Controller Killer )
+{
+	if( Killer != none && Killer != Controller)
+	{
+		if(IsHumanControlled())
+		{
+			BroadcastLocalizedMessage( class'KFLocalMessage_PlayerKills', KMT_PlayerKillPlayer, Killer.PlayerReplicationInfo, PlayerReplicationInfo);
+		}
+		//do not replicate this there is no need
+		/*else
+		{
+			BroadcastLocalizedMessage( class'KFLocalMessage_PlayerKills', KMT_PLayerKillZed, Killer.PlayerReplicationInfo, none, Class);
+		}*/
+	}
+}
+
+function string GetLocalizedName()
+{
+	local string MonsterName;
+
+	MonsterName = Localize("Zeds", String(LocalizationKey), "KFGame");
+
+    return MonsterName;
+}
+
+
 DefaultProperties
 {
 	bLargeZed=false
@@ -2841,20 +3424,18 @@ DefaultProperties
 		SpecialMoveClasses(SM_Knockdown)		 =class'KFSM_RagdollKnockdown'
 		SpecialMoveClasses(SM_DeathAnim)		 =class'KFSM_DeathAnim'
 		SpecialMoveClasses(SM_Stunned)			 =class'KFSM_Stunned'
+		SpecialMoveClasses(SM_Frozen)			 =class'KFSM_Frozen'
 		SpecialMoveClasses(SM_Taunt)			 =class'KFGame.KFSM_Zed_Taunt'
 		SpecialMoveClasses(SM_WalkingTaunt)		 =class'KFGame.KFSM_Zed_WalkingTaunt'
 	End Object
 
-	Begin Object Name=Afflictions_0
-		StackingAffl(SAF_Poison)=(Threshhold=3.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.00)
-		StackingAffl(SAF_Microwave)=(Threshhold=3.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.00)
-	End Object
+	StackingIncaps(SAF_Poison)=(Threshhold=3.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.00)
+	StackingIncaps(SAF_Microwave)=(Threshhold=3.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.00)
+	StackingIncaps(SAF_Freeze)=(Threshhold=1.0,Duration=1.0,Cooldown=5.0,DissipationRate=0.33)
 
 	// ---------------------------------------------
 	// Movement / Physics
 	bCanCrouch=false
-	bCanSprint=false
-	bSprintingDisabled=false
 	AccelRate=+02048.000000
 	JumpZ=750.f
 	HiddenGroundSpeed=600.f	// same speed for all monsters
@@ -2864,6 +3445,7 @@ DefaultProperties
 	BumpDamageType=class'KFDT_NPCBump'
 	BumpFrequency=0.5f
 	bLimitFallAccel=TRUE
+	SpeedAdjustTransitionRate=100.f
 
 	// ---------------------------------------------
 	// Spawning
@@ -2877,12 +3459,15 @@ DefaultProperties
 	End Object
 	MeleeAttackHelper=MeleeHelper_0
 
+	bHasExtraSprintJumpVelocity=false
+	bCanRage=false
 	bCanGrabAttack=false
 	bCanMeleeAttack=true
 	ReachedEnemyThresholdScale=1.f
 	ZedBumpDamageScale=1.f
 	HeadlessBleedOutTime=5.f
 	ParryResistance=1
+	DifficultyDamageMod=1.0
 
 	bIsStalkerClass=false
 	bIsCrawlerClass=false

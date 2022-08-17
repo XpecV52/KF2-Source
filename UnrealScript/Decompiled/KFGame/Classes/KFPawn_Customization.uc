@@ -10,9 +10,85 @@ class KFPawn_Customization extends KFPawn_Human
     config(Game)
     hidecategories(Navigation);
 
+struct native sReplicatedMovementData
+{
+    var Vector NewLocation;
+    var int NewRotationYaw;
+
+    structdefaultproperties
+    {
+        NewLocation=(X=0,Y=0,Z=0)
+        NewRotationYaw=0
+    }
+};
+
+var repnotify sReplicatedMovementData ReplicatedMovementData;
+var repnotify bool bServerHidden;
+var bool bLocalHidden;
+var bool bUsingCustomizationPoint;
 var AnimSet MaleCustomizationAnimSet;
 var AnimSet FemaleCustomizationAnimSet;
-var bool bUsingCustomizationPoint;
+
+replication
+{
+     if(bNetInitial || bNetDirty)
+        ReplicatedMovementData, bServerHidden;
+}
+
+// Export UKFPawn_Customization::execUpdateCustomizationPawnVisibility(FFrame&, void* const)
+native function UpdateCustomizationPawnVisibility();
+
+simulated event ReplicatedEvent(name VarName)
+{
+    if(VarName == 'ReplicatedMovementData')
+    {
+        OnMovementDataUpdated();        
+    }
+    else
+    {
+        if(VarName == 'bServerHidden')
+        {
+            SetHidden(bServerHidden || bLocalHidden);
+            UpdateCustomizationPawnVisibility();            
+        }
+        else
+        {
+            super.ReplicatedEvent(VarName);
+        }
+    }
+}
+
+function SetUpdatedMovementData(Vector NewLoc, Rotator NewRot)
+{
+    ReplicatedMovementData.NewLocation = NewLoc;
+    ReplicatedMovementData.NewRotationYaw = NewRot.Yaw;
+    OnMovementDataUpdated();
+    bForceNetUpdate = true;
+}
+
+simulated function OnMovementDataUpdated()
+{
+    local Rotator TempRotation;
+
+    SetLocation(ReplicatedMovementData.NewLocation);
+    TempRotation.Yaw = ReplicatedMovementData.NewRotationYaw;
+    SetRotation(TempRotation);
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        UpdateCustomizationPawnVisibility();
+    }
+}
+
+function SetServerHidden(bool bNewHidden)
+{
+    bServerHidden = bNewHidden;
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        SetHidden(bServerHidden || bLocalHidden);
+        UpdateCustomizationPawnVisibility();
+    }
+    bForceNetUpdate = true;
+}
 
 simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 {
@@ -95,7 +171,7 @@ simulated function NotifyTeamChanged()
     }
 }
 
-function MoveToCustomizationPoint()
+function bool MoveToCustomizationPoint()
 {
     local NavigationPoint BestStartSpot;
     local KFGameInfo KFGI;
@@ -106,14 +182,16 @@ function MoveToCustomizationPoint()
     if(PC != none)
     {
         BestStartSpot = KFGI.FindCustomizationStart(PC);
-        if((BestStartSpot == none) || !SetLocation(BestStartSpot.Location))
+        if(BestStartSpot == none)
         {
-            return;
+            return false;
         }
-        SetRotation(BestStartSpot.Rotation);
+        SetUpdatedMovementData(BestStartSpot.Location, BestStartSpot.Rotation);
         KFPlayerCamera(PC.PlayerCamera).CustomizationCam.bInitialize = false;
         bUsingCustomizationPoint = true;
+        return true;
     }
+    return false;
 }
 
 event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
@@ -210,6 +288,7 @@ defaultproperties
     Components(7)=AkComponent'Default__KFPawn_Customization.DialogAkSoundComponent'
     Components(8)=AkComponent'Default__KFPawn_Customization.TraderDialogAkSoundComponent'
     Physics=EPhysics.PHYS_Walking
+    bSkipActorPropertyReplication=true
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

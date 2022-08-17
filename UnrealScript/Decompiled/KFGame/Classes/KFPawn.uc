@@ -16,19 +16,6 @@ const MAX_ADDED_HITFX = 7;
 const MAX_GET_RBBONE_CHECKS = 3;
 const AIAirControl = 0.35;
 
-enum EHitZoneBodyPart
-{
-    BP_None,
-    BP_Head,
-    BP_Torso,
-    BP_LeftArm,
-    BP_RightArm,
-    BP_LeftLeg,
-    BP_RightLeg,
-    BP_Special,
-    BP_MAX
-};
-
 enum EHitZoneIndex
 {
     HZI_HEAD,
@@ -73,18 +60,27 @@ enum ESpecialMove
     SM_Knockdown,
     SM_DeathAnim,
     SM_Stunned,
+    SM_Frozen,
     SM_Emerge,
+    SM_Jump,
     SM_Taunt,
     SM_WalkingTaunt,
     SM_Evade,
     SM_Evade_Fear,
     SM_Heal,
     SM_SonicAttack,
-    SM_StandAndShotAttack,
+    SM_StandAndShootAttack,
     SM_HoseWeaponAttack,
     SM_Suicide,
+    SM_PlayerZedAttack1,
+    SM_PlayerZedAttack2,
+    SM_PlayerZedSpecial1,
+    SM_PlayerZedSpecial2,
+    SM_PlayerZedSpecial3,
+    SM_PlayerZedSpecial4,
     SM_GrappleVictim,
     SM_HansGrappleVictim,
+    SM_SirenVortexVictim,
     SM_BossTheatrics,
     SM_ChangeStance,
     SM_Hans_ThrowGrenade,
@@ -107,10 +103,10 @@ struct native HitZoneInfo
     var() name BoneName;
     /** Name of the bone that corresponds to this hitzone */
     var() int GoreHealth;
-    /** The amount of health this zone has left (Not Replicated) */
+    /** The base amount of health for this hitzone, and stores health this zone has left (Not Replicated) */
     var() float DmgScale;
-    /** Damage Multiplier */
-    var() KFPawn.EHitZoneBodyPart Limb;
+    /** Damage multiplier for damage taken on this hitzone */
+    var() KFPawnAfflictions.EHitZoneBodyPart Limb;
     /** Group zones together for hit reactions */
     var() byte SkinID;
     var transient bool bPlayedInjury;
@@ -233,6 +229,7 @@ struct native LookAtInfo
     var float BlendOut;
     var Vector TargetOffset;
     var float LookAtPct;
+    var Vector ForcedLookAtLocation;
 
     structdefaultproperties
     {
@@ -242,6 +239,7 @@ struct native LookAtInfo
         BlendOut=0
         TargetOffset=(X=0,Y=0,Z=0)
         LookAtPct=0
+        ForcedLookAtLocation=(X=0,Y=0,Z=0)
     }
 };
 
@@ -263,6 +261,8 @@ var KFCharacterInfoBase CharacterArch;
 var KFPawnSoundGroup SoundGroupArch;
 var class<KFPawnVoiceGroup> VoiceGroupArch;
 var KFPawnAnimInfo PawnAnimInfo;
+var name LocalizationKey;
+var Texture2D CharacterPortrait;
 var transient LightingChannelContainer PawnLightingChannel;
 var export editinline SkeletalMeshComponent ThirdPersonHeadMeshComponent;
 var int ThirdPersonAttachmentBitMask;
@@ -289,6 +289,7 @@ var bool bUpdateEyeheight;
 var bool bJustLanded;
 var bool bLandRecovery;
 var bool bWeaponAttachmentVisible;
+var bool bNeedsCrosshair;
 var bool bEnableAimOffset;
 /** If set, turns off KFAnim_TurnInPlace (and related) nodes */
 var(animation) bool bDisableTurnInPlace;
@@ -323,6 +324,7 @@ var transient float TimeOfDeath;
 var() float PenetrationResistance;
 var array<DamageOverTimeInfo> DamageOverTimeArray;
 var array<ExplosiveStackInfo> RecentExplosiveStacks;
+var transient float LastTimeDamageHappened;
 var repnotify KFHitFxInfo HitFxInfo;
 var KFRadialHitFxInfo HitFxRadialInfo;
 var Pawn HitFxInstigator;
@@ -357,6 +359,8 @@ var name TorsoBoneName;
 var name PelvisBoneName;
 var transient float LastGibCollisionTime;
 var export editinline KFPawnAfflictions AfflictionHandler;
+var protected array<IncapResist> InstantIncaps;
+var protected array<StackingIncapInfo> StackingIncaps;
 var repnotify int InjuredHitZones;
 var float LastImpactParticleEffectTime;
 var float LastImpactSoundTime;
@@ -378,7 +382,7 @@ var(Physics) float KnockdownImpulseScale;
 var const float NextRagdollFailsafeTime;
 var const Vector LastRootRigidBodyTestLoc;
 var float SprintSpeed;
-var float BackPedalSpeedMod;
+var float SprintStrafeSpeed;
 var repnotify Vector ReplicatedFloor;
 var float TeammateCollisionRadiusPercent;
 /** Base crouched eye height from bottom of the collision cylinder. */
@@ -647,12 +651,12 @@ simulated function InitRBSettings()
     UpdateMeshForFleXCollision();
 }
 
-simulated function SetCharacterArch(KFCharacterInfoBase Info)
+simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bForce)
 {
     local KFPlayerReplicationInfo KFPRI;
 
     KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
-    if(Info != CharacterArch)
+    if((Info != CharacterArch) || bForce)
     {
         CharacterArch = Info;
         CharacterArch.SetCharacterFromArch(self, KFPRI);
@@ -697,6 +701,15 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info)
     }
 }
 
+simulated function ProcessViewRotation(float DeltaTime, out Rotator out_ViewRotation, out Rotator out_DeltaRot)
+{
+    super(Pawn).ProcessViewRotation(DeltaTime, out_ViewRotation, out_DeltaRot);
+    if((SpecialMove != 0) && SpecialMoves[SpecialMove] != none)
+    {
+        SpecialMoves[SpecialMove].ProcessViewRotation(DeltaTime, out_ViewRotation, out_DeltaRot);
+    }
+}
+
 simulated function SetCharacterAnimationInfo()
 {
     if(CharacterArch.PhysAsset != Mesh.PhysicsAsset)
@@ -732,10 +745,7 @@ simulated function SetGameplayMICParams()
     }
 }
 
-simulated event NotifyGoreLODActive()
-{
-    SetGameplayMICParams();
-}
+simulated function bool UsePlayerControlledZedSkin();
 
 simulated function bool CalcCamera(float fDeltaTime, out Vector out_CamLoc, out Rotator out_CamRot, out float out_FOV)
 {
@@ -1176,9 +1186,60 @@ final simulated function bool CanReloadWeapon()
     return true;
 }
 
-simulated function Vector GetMeleeHitTestLocation()
+function ThrowActiveWeapon(optional bool bDestroyWeap)
 {
-    return Location;
+    local float BestPrimaryRating, BestSecondaryRating, BestMeleeRating;
+    local KFWeapon BestWeapon, BestPrimary, BestSecondary, BestMelee, TempWeapon;
+
+    if(Role < ROLE_Authority)
+    {
+        return;
+    }
+    if(((InvManager != none) && Health <= 0) && ((Weapon == none) || !Weapon.bDropOnDeath) || !Weapon.CanThrow())
+    {
+        foreach InvManager.InventoryActors(Class'KFWeapon', TempWeapon)
+        {
+            if(!TempWeapon.bDropOnDeath || !TempWeapon.CanThrow())
+            {
+                continue;                
+            }
+            if(TempWeapon.InventoryGroup == 0)
+            {
+                if((BestPrimaryRating == 0) || TempWeapon.GroupPriority > BestPrimaryRating)
+                {
+                    BestPrimary = TempWeapon;
+                    BestPrimaryRating = TempWeapon.GroupPriority;
+                }
+                continue;
+            }
+            if(TempWeapon.InventoryGroup == 1)
+            {
+                if((BestSecondaryRating == 0) || TempWeapon.GroupPriority > BestSecondaryRating)
+                {
+                    BestSecondary = TempWeapon;
+                    BestSecondaryRating = TempWeapon.GroupPriority;
+                }
+                continue;
+            }
+            if(TempWeapon.InventoryGroup == 2)
+            {
+                if((BestMeleeRating == 0) || TempWeapon.GroupPriority > BestMeleeRating)
+                {
+                    BestMelee = TempWeapon;
+                    BestMeleeRating = TempWeapon.GroupPriority;
+                }
+            }            
+        }        
+        BestWeapon = ((BestPrimary != none) ? BestPrimary : ((BestSecondary != none) ? BestSecondary : BestMelee));
+        if(BestWeapon != none)
+        {
+            TossInventory(BestWeapon);
+        }        
+    }
+    else
+    {
+        super(Pawn).ThrowActiveWeapon(bDestroyWeap);
+    }
 }
 
 function bool ShouldPlayHeadlessMeleeAnims();
@@ -1293,7 +1354,7 @@ function SetSprinting(bool bNewSprintStatus)
 
 function bool DoJump(bool bUpdating)
 {
-    if(super(Pawn).DoJump(bUpdating))
+    if(super(Pawn).DoJump(bUpdating) && !IsDoingSpecialMove())
     {
         if((MyKFWeapon != none) && MyKFWeapon.bUsingSights)
         {
@@ -1591,13 +1652,13 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
     {
         MyKFWeapon.AdjustDamage(InDamage, DamageType, DamageCauser);
     }
-    if((((InDamage > 0) && InstigatedBy != none) && !InstigatedBy.bIsPlayer) && KFAIController_Monster(InstigatedBy) != none)
+    if(((InDamage > 0) && InstigatedBy != none) && KFPawn_Monster(InstigatedBy.Pawn) != none)
     {
         if(bLogTakeDamage)
         {
-            LogInternal(((string(self) @ string(GetFuncName())) @ " Difficulty Damage Mod =") $ string(KFAIController_Monster(InstigatedBy).DifficultyDamageMod));
+            LogInternal(((string(self) @ string(GetFuncName())) @ " Difficulty Damage Mod =") $ string(KFPawn_Monster(InstigatedBy.Pawn).DifficultyDamageMod));
         }
-        InDamage = Max(int(float(InDamage) * KFAIController_Monster(InstigatedBy).DifficultyDamageMod), 1);
+        InDamage = Max(int(float(InDamage) * KFPawn_Monster(InstigatedBy.Pawn).DifficultyDamageMod), 1);
     }
     HitZoneIdx = HitZones.Find('ZoneName', HitInfo.BoneName;
     if(HitZoneIdx != -1)
@@ -1608,6 +1669,11 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
     {
         LogInternal(((((((((string(self) @ string(GetFuncName())) @ " After KFPawn adjustment Damage=") $ string(InDamage)) @ "Momentum=") $ string(Momentum)) @ "Zone=") $ string(HitInfo.BoneName)) @ "DamageType=") $ string(DamageType));
     }
+}
+
+function UpdateLastTimeDamageHappened()
+{
+    LastTimeDamageHappened = WorldInfo.TimeSeconds;
 }
 
 function AdjustRadiusDamage(out float InBaseDamage, float DamageScale, Vector HurtOrigin)
@@ -1945,10 +2011,6 @@ function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, clas
     }
     bNeedsProcessHitFx = true;
     LastPainTime = WorldInfo.TimeSeconds;
-    if(((WorldInfo.Game != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress())
-    {
-        KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogKFDamageEvent(1200, InstigatedBy, self, HitZoneIdx, int(Damage), DamageType);
-    }
     if(KFDT != none)
     {
         Class'EphemeralMatchStats'.static.RecordWeaponDamage(InstigatedBy, KFDT.default.WeaponDef, int(Damage), self, HitZoneIdx);
@@ -2012,8 +2074,27 @@ function bool CanInjureHitZone(class<DamageType> DamageType, int HitZoneIdx)
 
 simulated function PlayTakeHitEffects(Vector HitDirection, Vector HitLocation)
 {
+    local KFPlayerController KFPC;
+    local class<KFDamageType> dmgType;
     local KFPawn InstigatedBy;
 
+    dmgType = HitFxInfo.DamageType;
+    if(IsLocallyControlled() && !Controller.bGodMode)
+    {
+        KFPC = KFPlayerController(Controller);
+        if((KFPC != none) && dmgType != none)
+        {
+            KFPC.PlayScreenHitFX(dmgType, true);
+            if(dmgType.default.RadialDamageImpulse > float(0))
+            {
+                KFPC.PlayEarRingEffect(ByteToFloat(HitFxRadialInfo.RadiusDamageScale));
+            }
+        }
+        if(MyKFWeapon != none)
+        {
+            MyKFWeapon.PlayTakeHitEffects(HitFxInfo.HitLocation, HitFxInstigator);
+        }
+    }
     if(HitFxInfo.DamageType != none)
     {
         HitFxInfo.DamageType.static.PlayImpactHitEffects(self, HitLocation, HitDirection, HitFxInfo.HitBoneIndex, HitFxInstigator);
@@ -2378,6 +2459,21 @@ final simulated function SetAimOffsetNodesProfile(name NewProfileName)
     }
 }
 
+final simulated function SetDefaultAimOffsetNodesProfile()
+{
+    local int I;
+
+    I = 0;
+    J0x0B:
+
+    if(I < AimOffsetNodes.Length)
+    {
+        AimOffsetNodes[I].SetActiveProfileByIndex(0);
+        ++ I;
+        goto J0x0B;
+    }
+}
+
 simulated function name GetSpecialMoveTag()
 {
     local byte AtkIndex;
@@ -2608,6 +2704,10 @@ simulated event Tick(float DeltaTime)
             UpdateMaterialEffect(DeltaTime);
         }
     }
+    if((SpecialMove != 0) && SpecialMoves[SpecialMove] != none)
+    {
+        SpecialMoves[SpecialMove].Tick(DeltaTime);
+    }
     bNeedsProcessHitFx = false;
 }
 
@@ -2772,6 +2872,11 @@ simulated event DoSpecialMove(KFPawn.ESpecialMove NewMove, optional bool bForceM
     }
 }
 
+reliable server final function ServerDoSpecialMove(KFPawn.ESpecialMove NewMove, optional bool bForceMove, optional Pawn InInteractionPawn, optional byte InSpecialMoveFlags, optional bool bSkipReplication)
+{
+    DoSpecialMove(NewMove, bForceMove, InInteractionPawn, InSpecialMoveFlags, bSkipReplication);
+}
+
 final simulated event EndSpecialMove(optional KFPawn.ESpecialMove SpecialMoveToEnd, optional bool bForceNetSync)
 {
     if(SpecialMoveHandler != none)
@@ -2785,6 +2890,8 @@ simulated event bool CanDoSpecialMove(KFPawn.ESpecialMove AMove, optional bool b
     return SpecialMoveHandler.super(KFPawn).CanDoSpecialMove(AMove, bForceCheck);
 }
 
+simulated function NotifySpecialMoveEnded(KFSpecialMove FinishedMove, KFPawn.ESpecialMove SMHandle);
+
 simulated event bool IsMovementDisabledDuringSpecialMove()
 {
     if(IsDoingSpecialMove())
@@ -2796,11 +2903,11 @@ simulated event bool IsMovementDisabledDuringSpecialMove()
 
 function bool CanBeGrabbed(KFPawn GrabbingPawn, optional bool bIgnoreFalling)
 {
-    if((((Health <= 0) || (Physics == 2) && !bIgnoreFalling) || IsSameTeam(GrabbingPawn)) || IsDoingSpecialMove(20))
+    if((((Health <= 0) || (Physics == 2) && !bIgnoreFalling) || IsSameTeam(GrabbingPawn)) || IsDoingSpecialMove(28))
     {
         return false;
     }
-    if((GrabbingPawn.bWeakZedGrab && WeakZedGrabCooldown > float(0)) && (WorldInfo.TimeSeconds - WeakZedGrabCooldown) < float(0))
+    if((((GrabbingPawn.MyKFAIC != none) && GrabbingPawn.bWeakZedGrab) && WeakZedGrabCooldown > float(0)) && (WorldInfo.TimeSeconds - WeakZedGrabCooldown) < float(0))
     {
         return false;
     }
@@ -2942,6 +3049,11 @@ native static function bool ShouldCorpseCollideWithDeadAfterSleep();
 // Export UKFPawn::execShouldCorpseCollideWithLivingAfterSleep(FFrame&, void* const)
 native static function bool ShouldCorpseCollideWithLivingAfterSleep();
 
+function string GetLocalizedName()
+{
+    return "";
+}
+
 simulated function DetachEmitter(out ParticleSystemComponent Emitter)
 {
     if(Emitter != none)
@@ -3057,18 +3169,17 @@ defaultproperties
     TorsoBoneName=Spine2
     PelvisBoneName=Spine
     begin object name=Afflictions class=KFPawnAfflictions
-        StackingAffl(0)=(Threshhold=1,Duration=5,Cooldown=5,DissipationRate=0.5)
-        StackingAffl(1)=(Threshhold=10,Duration=5,Cooldown=5,DissipationRate=1)
         FireFullyCharredDuration=2.5
         FireCharPercentThreshhold=0.25
     object end
     // Reference: KFPawnAfflictions'Default__KFPawn.Afflictions'
     AfflictionHandler=Afflictions
+    StackingIncaps(0)=(Threshhold=1,Duration=5,Cooldown=5,DissipationRate=0.5,LastStartTime=0,StackedPower=0)
+    StackingIncaps(1)=(Threshhold=10,Duration=5,Cooldown=5,DissipationRate=1,LastStartTime=0,StackedPower=0)
     PhysicsHitReactionImpulseScale=1
     PhysicsImpactBlendOutTime=0.45
     PhysRagdollImpulseScale=1
     SprintSpeed=460
-    BackPedalSpeedMod=1
     TeammateCollisionRadiusPercent=0.8
     BaseCrouchEyeHeight=48
     Bob=0.01
@@ -3105,19 +3216,27 @@ defaultproperties
         SpecialMoveClasses(17)=none
         SpecialMoveClasses(18)=none
         SpecialMoveClasses(19)=none
-        SpecialMoveClasses(20)=class'KFSM_GrappleVictim'
-        SpecialMoveClasses(21)=class'KFSM_HansGrappleVictim'
+        SpecialMoveClasses(20)=none
+        SpecialMoveClasses(21)=none
+        SpecialMoveClasses(22)=none
+        SpecialMoveClasses(23)=none
+        SpecialMoveClasses(24)=none
+        SpecialMoveClasses(25)=none
+        SpecialMoveClasses(26)=none
+        SpecialMoveClasses(27)=none
+        SpecialMoveClasses(28)=class'KFSM_GrappleVictim'
+        SpecialMoveClasses(29)=class'KFSM_HansGrappleVictim'
     object end
     // Reference: KFSpecialMoveHandler'Default__KFPawn.SpecialMoveHandler'
     SpecialMoveHandler=SpecialMoveHandler
     begin object name=AmbientAkSoundComponent_1 class=AkComponent
-        BoneName=Spine1
+        BoneName=Dummy
         bStopWhenOwnerDestroyed=true
     object end
     // Reference: AkComponent'Default__KFPawn.AmbientAkSoundComponent_1'
     AmbientAkComponent=AmbientAkSoundComponent_1
     begin object name=AmbientAkSoundComponent class=AkComponent
-        BoneName=RW_Weapon
+        BoneName=Dummy
         bStopWhenOwnerDestroyed=true
         bForceOcclusionUpdateInterval=true
     object end
@@ -3125,14 +3244,14 @@ defaultproperties
     WeaponAkComponent=AmbientAkSoundComponent
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn.WeaponAmbientEchoHandler'
     begin object name=FootstepAkSoundComponent class=AkComponent
-        BoneName=Root
+        BoneName=Dummy
         bStopWhenOwnerDestroyed=true
         bForceOcclusionUpdateInterval=true
     object end
     // Reference: AkComponent'Default__KFPawn.FootstepAkSoundComponent'
     FootstepAkComponent=FootstepAkSoundComponent
     begin object name=DialogAkSoundComponent class=AkComponent
-        BoneName=head
+        BoneName=Dummy
         bStopWhenOwnerDestroyed=true
     object end
     // Reference: AkComponent'Default__KFPawn.DialogAkSoundComponent'
@@ -3243,27 +3362,27 @@ defaultproperties
     // Reference: KFSkeletalMeshComponent'Default__KFPawn.KFPawnSkeletalMeshComponent'
     Components(3)=KFPawnSkeletalMeshComponent
     begin object name=AmbientAkSoundComponent class=AkComponent
-        BoneName=RW_Weapon
+        BoneName=Dummy
         bStopWhenOwnerDestroyed=true
         bForceOcclusionUpdateInterval=true
     object end
     // Reference: AkComponent'Default__KFPawn.AmbientAkSoundComponent'
     Components(4)=AmbientAkSoundComponent
     begin object name=AmbientAkSoundComponent_1 class=AkComponent
-        BoneName=Spine1
+        BoneName=Dummy
         bStopWhenOwnerDestroyed=true
     object end
     // Reference: AkComponent'Default__KFPawn.AmbientAkSoundComponent_1'
     Components(5)=AmbientAkSoundComponent_1
     begin object name=FootstepAkSoundComponent class=AkComponent
-        BoneName=Root
+        BoneName=Dummy
         bStopWhenOwnerDestroyed=true
         bForceOcclusionUpdateInterval=true
     object end
     // Reference: AkComponent'Default__KFPawn.FootstepAkSoundComponent'
     Components(6)=FootstepAkSoundComponent
     begin object name=DialogAkSoundComponent class=AkComponent
-        BoneName=head
+        BoneName=Dummy
         bStopWhenOwnerDestroyed=true
     object end
     // Reference: AkComponent'Default__KFPawn.DialogAkSoundComponent'

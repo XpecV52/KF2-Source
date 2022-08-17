@@ -328,6 +328,8 @@ function GiveTo( Pawn P )
 			if ( KFW != none)
 			{
 				KFW.SetOriginalValuesFromPickup( KFWeapon(Inventory) );
+				KFW = KFIM.CombineWeaponsOnPickup( KFW );
+				KFW.NotifyPickedUp();
 			}
 			
 			Destroy();

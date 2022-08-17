@@ -112,7 +112,7 @@ function UpdateWaveCount()
 		return;
 	}
 
-	CurrentWaveNum = KFGRI.WaveNum + 1;
+	CurrentWaveNum = KFGRI.WaveNum;
     if(CurrentWaveNum == KFGRI.WaveMax-1)
     {
 	    	SetString("waveNumber", FinalString);

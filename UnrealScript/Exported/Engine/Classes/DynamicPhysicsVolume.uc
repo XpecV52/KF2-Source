@@ -44,7 +44,6 @@ defaultproperties
    BrushComponent=BrushComponent0
    Components(0)=BrushComponent0
    Physics=PHYS_Interpolating
-   CollisionType=COLLIDE_CustomDefault
    bStatic=False
    CollisionComponent=BrushComponent0
    Name="Default__DynamicPhysicsVolume"

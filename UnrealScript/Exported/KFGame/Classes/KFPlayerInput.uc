@@ -22,7 +22,7 @@ var transient float PressedJumpTime;
 
 /** Unlike other weapons states ironsights doesn't use PendingFire (see InventoryManager).
  This concept is useful for Ironsights(HOLD), which is accomplished by this bool. */
-var transient bool bPendingIronsights;
+var transient bool bIronsightsHeld;
 
 /** cached magnitude of 2d input move vector */
 var transient float RawJoyMagnitude;
@@ -48,20 +48,17 @@ var config float GamepadButtonHoldTime;
 /** Amount thumbstick should be pressed to activate sprint */
 var config float SprintAnalogThreshold;
 
-/** Amount thumbstick should be pressed to activate crouch */
-var config float SkipCrouchAnalogThreshold;
-
-/** How long has the stick been under the gamepad sprint threshold **/
-var config float TimeBelowThresholdToStopSprint;
+/** On tap weapon switch: TRUE for last weapon, FALSE for cycle next */
+var config bool bUseGamepadLastWeapon;
 
 /** Doing gamepad sprinting that requires the stick to be held most of the way to the side **/
 var transient bool bExtendedSprinting;
 
-/** Used to give a short delay for taking the player out of sprint when using a gamepad and sweeping the stick from one side to the other **/
-var transient float SprintTimeBelowThreshold;
+/** Radial distance from analog center when sprint is pressed */
+var transient float GamepadSprintAnalogStart;
 
-/** Time when left-thumbstick was pressed in */
-var transient float LastGamepadSprintPressTime;
+/** The index of the preset layout to use for controller mappings. Used with GamepadLayoutManager */
+var config int CurrentLayoutIndex;
 
 /*********************************************************************************************
  * @name Aim assists
@@ -224,7 +221,7 @@ native function GetKeyBindFromCommand( out KeyBind MyKeyBind, String BindCommand
 native function SwapBind( out KeyBind MainKeyBind, out KeyBind AltKeyBind );
 
 /** Sets the given keybinds command, to command */
-native function SetKeyBind( out KeyBind MyKeyBind, string Command );
+native function SetKeyBind( out KeyBind MyKeyBind, string Command,  bool overwritePrevCommand );
 
 /** Removes this command from KFInput.ini */
 native function RemoveCommandFromBind( out KeyBind MyKeyBind, string CommandToRemove );
@@ -235,11 +232,14 @@ native function int GetBindingsIndex( out KeyBind MyKeyBind );
 /** resets the KFInput.ini */
 native static function ResetKeysToDefault();
 
+native exec function SetGamepadLayout(int layoutIndex);
+
 /** Used to display in-game controls */
 native function string GetBindDisplayName(out KeyBind MyKeyBind);
 
 /** Used to display in-game controls */
 native function string GetGameBindableAction(const out Name Key);
+
 
 /*********************************************************************************************
 * @name	Debugging
@@ -323,7 +323,7 @@ function EDoubleClickDir CheckForDoubleClickMove(float DeltaTime)
 	local int MappedOutput;
 	local float MinCurveOut, MaxCurveOut, CurveOut, CurvePct;
 
-	if( !bUsingGamepad )
+	if( !bUsingGamepad || bRun > 0 )
 	{
 		// max speed (modifer will be 1)
 		return EDoubleClickDir( 0 );
@@ -561,7 +561,8 @@ function BindKey(KeyBind NewKeyBind, string BindCommand, bool bIsAlt)
 	}
 
 	// Set new key binding to a command.  If no matching key is found creates a new array entry
-	SetKeyBind(NewKeyBind, BindCommand);
+	SetKeyBind(NewKeyBind, BindCommand, false);
+	SaveConfig();
 
 	// if the main key is higher than the alternate key in Game.ini swap there positions
 	SwapPositions(NewKeyBind, BindCommand, bIsAlt);
@@ -605,7 +606,7 @@ exec function GamepadSprint()
 {
 	bRun = 0;
 	bExtendedSprinting = false;
-	LastGamepadSprintPressTime = WorldInfo.TimeSeconds;
+	GamepadSprintAnalogStart = GetLeftAnalogDistance();
 
 	GamepadSprintTimer();
 	if ( bRun == 0 )
@@ -617,8 +618,8 @@ exec function GamepadSprint()
 /** Keep checking if thumbstick has exceeded sprint threshold */
 function GamepadSprintTimer()
 {
-	if ( IsDirectingJoyStick(SkipCrouchAnalogThreshold) )
-	{
+	if ( ShouldActivateGamepadSprint() )
+	{		
 		bRun = 1;
 		ClearTimer(nameof(GamepadSprintTimer), self);
 	}
@@ -627,19 +628,49 @@ function GamepadSprintTimer()
 /** On release: Crouch or switch to 'ExtendedSprint' */
 exec function GamepadSprintRelease()
 {
-	if( IsDirectingJoyStick(SkipCrouchAnalogThreshold) )
+	if( ShouldActivateGamepadSprint() )
 	{
 		// end sprint; begin extended (non-pressed) sprint
 		bExtendedSprinting = true;
-		SprintTimeBelowThreshold = 0;
 	}
-	else if ( bRun == 0 && (WorldInfo.TimeSeconds - LastGamepadSprintPressTime) < GamepadButtonHoldTime )
+	else if ( bRun == 0 )
 	{
 		ToggleCrouch();
 	}
 
 	bRun = 0;
 	ClearTimer(nameof(GamepadSprintTimer), self);
+}
+
+/** Returns a radial distance from center */
+function float GetLeftAnalogDistance()
+{
+	local vector vAnalog;
+
+	// Take 2d vector mag to get (more) circular threshold. Inputs don't make an
+	// exact circle however. They are wide at diagonals and vary by hardware.
+	vAnalog.x = RawJoyRight;
+	vAnalog.y = RawJoyUp;
+
+	return VSize2D(vAnalog);
+}
+
+/** Determine whether the player is trying to sprint or crouch */
+function bool ShouldActivateGamepadSprint()
+{
+	local float Distance, Bias, Delta;
+
+	Distance = GetLeftAnalogDistance();
+	Delta = Distance - GamepadSprintAnalogStart;
+
+	// sprint bias down to original 0.3 threshold
+	if ( Delta > 0.2 )
+	{
+		Bias = 0.3f;
+	}
+
+	//`log("current:"$Distance@"Delta:"$Delta@"Bias:"$Bias);
+	return (Distance + Bias) > SprintAnalogThreshold;
 }
 
 /*********************************************************************************************
@@ -710,6 +741,32 @@ exec function GamepadCrouchRelease()
 /** empty function for timer */
 function GamepadCrouchTimer();
 
+/** 
+ * GBA_Jump_Gamepad
+ * Tap: Jump
+ * Hold: Toggle crouch
+ */
+exec function GamepadJump()
+{
+	SetTimer(GamepadButtonHoldTime, false, nameof(GamepadJumpTimer), self);
+}
+
+/** Tap function for GBA_Jump_Gamepad */
+exec function GamepadJumpRelease()
+{
+	if ( IsTimerActive(nameof(GamepadJumpTimer), self) )
+	{
+		Jump();
+		ClearTimer(nameof(GamepadJumpTimer), self);
+	}
+}
+
+/** Hold function for GBA_Jump_Gamepad */
+function GamepadJumpTimer()
+{
+	ToggleCrouch();
+}
+
 /*********************************************************************************************
 * @name	Ironsights
 ********************************************************************************************* */
@@ -723,7 +780,13 @@ simulated exec function IronSights(optional bool bHoldButtonMode)
 
 	if ( bHoldButtonMode )
 	{
-		bPendingIronsights = true;
+		bIronsightsHeld = true;
+	}
+
+	if ( bExtendedSprinting )
+	{
+		bRun = 0;
+		bExtendedSprinting = false;
 	}
 
 	if( Pawn != none )
@@ -745,7 +808,7 @@ simulated exec function IronSightsRelease(optional bool bHoldButtonMode)
 
 	if ( bHoldButtonMode )
 	{
-		bPendingIronsights = false;
+		bIronsightsHeld = false;
 	}
 
 	if( Pawn != none )
@@ -785,100 +848,82 @@ simulated exec function ToggleFlashlight()
 	KFP = KFPawn_Human(Pawn);
 	if( KFP != None && KFP.MyKFWeapon != None )
 	{
-		if( bPerkHasNightVision )
+		// if anything is on, tap to turn off 
+		if( bNightVisionActive )
 		{
-			ToggleNightVision( KFP );
+			InternalToggleNightVision(); 
 		}
+		// if able to use NVG, handle hold press
+		else if( bPerkHasNightVision )
+		{
+			SetTimer(GamepadButtonHoldTime, false, nameof(FlashlightTimer), self);
+		}
+		// if unable to use NVG, simply tap to toggle flashlight
 		else
 		{
-			KFP.ToggleEquipment();
-			PlayFlashlightNVSounds( KFP, bPerkHasNightVision );
+			InternalToggleFlashlight();
 		}
 	}
 }
 
-simulated function ToggleNightVIsion( KFPawn_Human KFP )
+/** Tap function for GBA_ToggleFlashlight */
+exec function FlashlightRelease()
 {
-	local bool bPerkHasNightVision;
-	
-	bPerkHasNightVision = GetPerk().HasNightVision();
-
-	if( !bNightVisionActive && !KFP.bFlashlightOn )
+	if ( IsTimerActive(nameof(FlashlightTimer), self) )
 	{
-		if( IsTimerActive( nameOf(NightVisionTimer), self ) )
-		{
-			ClearTimer( nameOf(NightVisionTimer), self );				
-			KFP.ToggleEquipment();
-			PlayFlashlightNVSounds( KFP, bPerkHasNightVision );
-		}
-		else
-		{				
-			SetTimer( DoubleTapDelay, false, nameOf(NightVisionTimer), self );
-		}
-	}
-	else if( bNightVisionActive )
-	{
-		if( IsTimerActive( nameOf(NightVisionTimer), self ) )
-		{
-			ClearTimer( nameOf(NightVisionTimer),self );
-			SetNightVision( !bNightVisionActive );
-			PlayFlashlightNVSounds( KFP, bPerkHasNightVision );
-			KFP.ToggleEquipment();
-		}
-		else
-		{
-			SetTimer( DoubleTapDelay, false, nameOf(NightVisionTimer), self );
-		}
-	}
-	else if( KFP.bFlashlightOn )
-	{
-		PlayFlashlightNVSounds( KFP, bPerkHasNightVision );
-		KFP.ToggleEquipment();
+		ClearTimer(nameof(FlashlightTimer), self);
+		InternalToggleFlashlight();
 	}
 }
 
+/** Hold function for GBA_ToggleFlashlight */
+function FlashlightTimer()
+{
+	InternalToggleNightVision();
+}
 
-
-/**
- * @brief Toggles the night vision on or off
- * 
- * @param KFP Our pawn
+/** 
+ * Actually pass the toggle flashlight command onto the pawn.  Seperated to simplify and
+ * alleviate confusion between flashlight/equipment/nightvision terminology in legacy code.
  */
-simulated function NightVisionTimer()
+function InternalToggleFlashlight()
 {
 	local KFPawn_Human KFP;
 
 	KFP = KFPawn_Human(Pawn);
 	if( KFP != None )
 	{
-		SetNightVision( !bNightVisionActive );	
-		PlayFlashlightNVSounds( KFP, GetPerk().HasNightVision() );
-	}
-}
+		if( bNightVisionActive )
+		{
+			SetNightVision( false );
+			KFP.PlaySoundBase(NightVisionOffEvent);
+		}
 
-/**
- * @brief Plays flashlight/night vision related sounds
- * @details Moved this out of ToggleEquipment()
- * 
- * @param KFP Player's pawn
- * @param bPerkHasNightVision Perk has nigh vision or not
- */
-simulated function PlayFlashlightNVSounds( KFPawn_Human KFP, bool bPerkHasNightVision )
-{
-	if( bPerkHasNightVision && !KFP.bFlashlightOn )
-	{
-		bNightVisionActive ? KFP.PlaySoundBase( NightVisionOnEvent ) : KFP.PlaySoundBase( NightVisionOffEvent );
-	}
-	else if( !bNightVisionActive )
-	{
-		KFP.bFlashlightOn ? KFP.PlaySoundBase( FlashlightOnEvent ) : KFP.PlaySoundBase( FlashlightOffEvent );
+		KFP.ToggleEquipment();
+		KFP.PlaySoundBase((KFP.bFlashlightOn) ? FlashlightOnEvent : FlashlightOffEvent); 
 	}
 }
 
 /** 
- * @brief Empty function used for as timer check (night vision double tap to flashlight)
+ * Actually pass the toggle night vision command onto the controller.  Seperated to simplify and
+ * alleviate confusion between flashlight/equipment/nightvision terminology in legacy code.
  */
-simulated function NighVisionTapDelayTimer();
+function InternalToggleNightVision()
+{
+	local KFPawn_Human KFP;
+
+	KFP = KFPawn_Human(Pawn);
+	if( KFP != None )
+	{
+		if( KFP.bFlashlightOn )
+		{
+			InternalToggleFlashlight();
+		}
+
+		SetNightVision( !bNightVisionActive );
+		KFP.PlaySoundBase((bNightVisionActive) ? NightVisionOnEvent : NightVisionOffEvent); 
+	}
+}
 
 /*********************************************************************************************
 * @name	Special weapon firemodes
@@ -977,11 +1022,14 @@ exec function GamepadGrenade()
 	{
 		if ( bGamepadWeaponSelectOpen )
 		{
-			W = MyGFxHUD.WeaponSelectWidget.GetSelectedWeapon();
-			if ( W != None )
+			if(MyGFxHUD.WeaponSelectWidget != none)
 			{
-				ServerThrowOtherWeapon(W);
-				//ThrowWeapon();
+				W = MyGFxHUD.WeaponSelectWidget.GetSelectedWeapon();
+				if ( W != None )
+				{
+					ServerThrowOtherWeapon(W);
+					//ThrowWeapon();
+				}
 			}
 		}
 		else
@@ -1139,7 +1187,7 @@ exec function ReleaseGamepadWeaponSelect()
 	local KFWeapon KFW;
 
 	// close menu
-	if ( bGamepadWeaponSelectOpen )
+	if ( bGamepadWeaponSelectOpen && MyGFxHUD.WeaponSelectWidget != none )
 	{
 		MyGFxHUD.WeaponSelectWidget.SetWeaponSwitchStayOpen(false);
 		bGamepadWeaponSelectOpen = false;
@@ -1151,21 +1199,32 @@ exec function ReleaseGamepadWeaponSelect()
         KFW = KFWeapon(Pawn.Weapon);
     	if ( KFW == None || KFW.CanSwitchWeapons())
 		{
+			KFIM = KFInventoryManager(Pawn.InvManager);
+
 		    // On button tap, cycle weapons
 		    if (IsTimerActive(nameof(GamepadWeaponMenuTimer), self))
 		    {
+				ClearTimer(nameof(GamepadWeaponMenuTimer), self);
+
 		    	// once per match show hint for the hold function
 		    	if ( bShowGamepadWeaponSelectHint )
 		    	{
 		    		ReceiveLocalizedMessage( class'KFLocalMessage_Interaction', IMT_GamepadWeaponSelectHint);
 		    	}
-		    	KFINventoryManager(Pawn.InvManager).GamePadNextWeapon();
-			    ClearTimer(nameof(GamepadWeaponMenuTimer), self);
+
+				// perform tap weapon switch action
+				if ( bUseGamepadLastWeapon )
+				{
+					KFIM.SwitchToLastWeapon();
+				}
+				else
+				{
+		    		KFIM.GamePadNextWeapon();
+				}			    
 		    }
-		    // Switch to selected weapon
+		    // Switch to selected weapon from the UI
 		    else
 		    {
-			    KFIM = KFInventoryManager(Pawn.InvManager);
 			    KFIM.SetCurrentWeapon(KFIM.PendingWeapon);
 		    }
 		}
@@ -1193,9 +1252,12 @@ function GamepadWeaponMenuTimer()
     	   return;
     	}
 
-		bGamepadWeaponSelectOpen = true;
-		MyGFxHUD.WeaponSelectWidget.SetWeaponSwitchStayOpen(true);
-		KFInventoryManager(Pawn.InvManager).HighlightWeapon(Pawn.Weapon);
+    	if ( MyGFxHUD.WeaponSelectWidget != None )
+    	{
+			bGamepadWeaponSelectOpen = true;
+			MyGFxHUD.WeaponSelectWidget.SetWeaponSwitchStayOpen(true);
+			KFInventoryManager(Pawn.InvManager).HighlightWeapon(Pawn.Weapon);
+		}
 	}
 }
 
@@ -1236,6 +1298,10 @@ exec function SwitchWeaponGroup( byte GroupID )
 			if (bGamepadWeaponSelectOpen)
 			{
 				KFIM.HighlightWeapon(NextGroupedWeapon);
+			}
+			else
+			{
+				KFIM.SetCurrentWeapon(NextGroupedWeapon);
 			}
 		}
 		else
@@ -1346,7 +1412,7 @@ exec function GamepadDpadRight()
 	}
 	else
 	{
-		ShowVoiceComms();
+		TossMoney();
 	}
 }
 
@@ -1362,8 +1428,15 @@ exec function GamepadDpadUp()
 	}
 	else
 	{
-		TossMoney();
-		//SetTimer( GamepadButtonHoldTime, false, nameof(GamepadDpadUpTimer), self );
+		// toggle between healer and last weapon
+		if ( Pawn != None && Pawn.Weapon != None && Pawn.Weapon.IsA('KFWeap_HealerBase') )
+		{
+			KFInventoryManager( Pawn.InvManager ).SwitchToLastWeapon();
+		}
+		else
+		{
+			SwitchWeaponGroup(3);
+		}
 	}
 }
 
@@ -1379,7 +1452,6 @@ exec function HideVoiceComms()
 {
 	if(MyGFxHUD != none && MyGFxHUD.VoiceCommsWidget != none)
 	{
-		SetCinematicMode(false, false, false, false, true, false);
 		MyGFxHUD.ShowVoiceComms(false);
 	}
 }
@@ -1456,10 +1528,20 @@ exec function InteractTimer()
 * @name	VOIP
 ********************************************************************************************* */
 
-exec function StartVoiceChat()
+exec function StartVoiceChat(optional bool bPublicChat)
 {
+	LogInternal("VOICE CHAT!");
 	if(bRequiresPushToTalk)
 	{
+		if(bPublicChat)
+		{
+			CurrentVoiceChannel = EVC_ALL;
+		}
+		else
+		{
+			CurrentVoiceChannel = EVC_TEAM;	
+		}
+
 		ClearTimer('ClientStopNetworkedVoice');
 		ClientStartNetworkedVoice();
 	}
@@ -1482,35 +1564,22 @@ exec function StopVoiceChat()
  */
 function PreProcessInput( float DeltaTime )
 {
+	Super.PreProcessInput(DeltaTime);
+
+	if ( Pawn != None && bUsingGamepad )
+	{
+		PreProcessGamepadInput(DeltaTime);
+	}
+}
+
+/** Tick gamepad aim assist, extended sprint, etc... */
+function PreProcessGamepadInput( float DeltaTime )
+{
 	local KFWeapon KFW;
 	local float FOVScale;
-
 	local float ScaledJoyMagnitude;
 
-	Super.PreProcessInput(DeltaTime);
-	//`log( " RawJoyUp: " $ RawJoyUp $ " RawJoyRight: " $ RawJoyRight );
-
-	if( Pawn == none || Pawn.Weapon == none )
-	{
-		return;
-	}
-
-	//`log( "bUsingGamepad: " $ bUsingGamepad );
-	// whenever a player uses a non Gamepad for input the input for that frame is set to:  bUsingGamepad=false  so we do not even attempt
-	// to do any input help
-	if ( !bUsingGamepad )
-	{
-		return;
-	}
-
-	KFW = KFWeapon(Pawn.Weapon);
-
-    if( KFW.ShouldOwnerWalk() )
-    {
-        bRun = 0;
-        bExtendedSprinting = false;
-    }
-	else if( bExtendedSprinting )
+	if( bExtendedSprinting )
     {
 		// Handle sprinting with joysticks and clicks
 		UpdateExtendedSprint( DeltaTime );
@@ -1540,9 +1609,14 @@ function PreProcessInput( float DeltaTime )
 		ViewAccel_BlendTimer = 0;
 	}
 
-	if( IsAimAssistFrictionEnabled() && KFW != none )
+	// Apply friction (right-stick aim assist).  Adhesion is handled in the PC
+	if ( Pawn.Weapon != None )
 	{
-		ApplyTargetFriction( DeltaTime, KFW );
+		KFW = KFWeapon(Pawn.Weapon);
+		if( IsAimAssistFrictionEnabled() && KFW != none )
+		{
+			ApplyTargetFriction( DeltaTime, KFW );
+		}
 	}
 
 	// Apply FOV zoomed/iron sight sensitivity scaling
@@ -1583,32 +1657,23 @@ function PreProcessInput( float DeltaTime )
 /** Called from PreProcessInput when bExtendedSprinting=TRUE */
 function UpdateExtendedSprint( float DeltaTime )
 {
-    // If we've clicked the sprint button, and have the stick pressed
-    // most of the way to the side, keep sprinting
-    if( IsDirectingJoyStick(SprintAnalogThreshold) )
-    {
-        bRun = 1;
-        SprintTimeBelowThreshold = 0;
-    }
-    else if( bRun > 0 )
-    {
-        // Give the player a chance to sweep the stick from one side
-        // to the other and keep sprinting. Use a short threshold to
-        // determine its not a sweep, and they actually want to stop
-        if( SprintTimeBelowThreshold > TimeBelowThresholdToStopSprint )
-        {
-            bRun = 0;
-            bExtendedSprinting = false;
-        }
-        else
-        {
-            SprintTimeBelowThreshold += DeltaTime;
-        }
-    }
-    else
-    {
-        bExtendedSprinting = false;
-    }
+	// extended sprint cannot be activated during ironsights
+	if ( bRun == 0 && Pawn.Weapon != None && Pawn.Weapon.ShouldOwnerWalk() )
+	{
+		bRun = 0;
+		bExtendedSprinting = false;
+	}
+	// If we've clicked the sprint button, and have the stick pressed
+	// most of the way to the side, keep sprinting
+	else if( IsDirectingJoyStick(SprintAnalogThreshold) )
+	{
+		bRun = 1;
+	}
+	else
+	{
+		bRun = 0;
+		bExtendedSprinting = false;
+	}
 }
 
 /** Returns true if we are pressing the joystick in a direction */
@@ -1633,20 +1698,20 @@ function bool IsDirectingJoyStick(float Threshold)
  **/
 function ApplyViewAcceleration( float DeltaTime )
 {
-	ViewAccel_BlendTimer += DeltaTime;
-	if( ViewAccel_BlendTimer >= ViewAccel_BlendTime )
-	{
-		ViewAccel_BlendTimer = ViewAccel_BlendTime;
-	}
+		ViewAccel_BlendTimer += DeltaTime;
+		if( ViewAccel_BlendTimer >= ViewAccel_BlendTime )
+		{
+			ViewAccel_BlendTimer = ViewAccel_BlendTime;
+		}
 
-	if( CurrTurn > 0 )
-	{
-		CurrTurn = Lerp( CurrTurn, ViewAccel_MaxTurnSpeed, ViewAccel_BlendTimer / ViewAccel_BlendTime );
-	}
-	else
-	{
-		CurrTurn = Lerp( CurrTurn, -ViewAccel_MaxTurnSpeed, ViewAccel_BlendTimer / ViewAccel_BlendTime );
-	}
+		if( CurrTurn > 0 )
+		{
+			CurrTurn = Lerp( CurrTurn, ViewAccel_MaxTurnSpeed, ViewAccel_BlendTimer / ViewAccel_BlendTime );
+		}
+		else
+		{
+			CurrTurn = Lerp( CurrTurn, -ViewAccel_MaxTurnSpeed, ViewAccel_BlendTimer / ViewAccel_BlendTime );
+		}
 }
 
 function bool CanApplyViewAcceleration()
@@ -2044,6 +2109,18 @@ function ApplyForceLookAtPawn( float DeltaTime, out int out_YawRot, out int out_
 	}
 }
 
+/** Returns true if our local player pawn is currently sprinting */
+function bool IsPawnSprinting()
+{
+	if ( Pawn == None )
+	{
+		return FALSE;
+	}
+
+	// Check bRun first as an early out, but we should cast the KFP to make sure
+	return (bRun > 0 && KFPawn(Pawn).bIsSprinting);
+}
+
 /**
  * This will attempt to keep the player aiming at the target.  It will forcibly aim the player at the target.
  *
@@ -2058,13 +2135,21 @@ function ApplyTargetAdhesion( float DeltaTime, KFWeapon W, out int out_YawRot, o
 	local vector 	AdhesionTargetVel, AdhesionPawnVel, AdhesionTargetRelVel, AdhesionViewOffset;
 
 	// No adhesion without a gamepad!
-    if (!bUsingGamepad)
+    if ( !bUsingGamepad )
 	{
 		return;
 	}
 
 	if( W == None || !W.bTargetAdhesionEnabled )
 	{
+		return;
+	}
+
+	if( IsPawnSprinting() )
+	{
+		// keep track of player location either way
+		AdhesionPawnLastLoc = Pawn.Location;
+		LastAdhesionTarget = none;
 		return;
 	}
 
@@ -2083,6 +2168,7 @@ function ApplyTargetAdhesion( float DeltaTime, KFWeapon W, out int out_YawRot, o
 	{
 		// keep track of player location either way
 		AdhesionPawnLastLoc = Pawn.Location;
+		LastAdhesionTarget = none;
 		return;
 	}
 
@@ -2102,6 +2188,13 @@ function ApplyTargetAdhesion( float DeltaTime, KFWeapon W, out int out_YawRot, o
 
 			// Get player's velocity based on current and previous position
 			AdhesionPawnVel = IsZero(AdhesionPawnLastLoc) ? vect(0,0,0) : ((Pawn.Location - AdhesionPawnLastLoc) / DeltaTime);
+
+			// re-add a percentage of the speed taken away due to "walking" (iron sights)
+			if( Pawn != none && Pawn.bIsWalking )
+			{
+				AdhesionPawnVel.X = Lerp(AdhesionPawnVel.X, AdhesionPawnVel.X / Pawn.WalkingPct, 0.20f);
+				AdhesionPawnVel.Y = Lerp(AdhesionPawnVel.Y, AdhesionPawnVel.Y / Pawn.WalkingPct, 0.20f);
+			}
 
 			// Calculate relative velocity between player and target and scale by distance scale curve
 			AdhesionTargetRelVel = (AdhesionTargetVel - AdhesionPawnVel) * EvalInterpCurveFloat(W.TargetAdhesionDistanceScaleCurve, DistToTarget / W.TargetAdhesionDistanceMax);
@@ -2134,10 +2227,7 @@ function ApplyTargetFriction( float DeltaTime, KFWeapon W )
  	local Rotator CamRot;
  	local float DistToTarget, TargetRadius, TargetHeight, FrictionMultiplier;
 
-	//	local float Time;
-	//	CLOCK_CYCLES(time);
-
-	if( Pawn == None || !W.bTargetFrictionEnabled )
+	if( Pawn == None || !W.bTargetFrictionEnabled || IsPawnSprinting() )
 	{
 		//`log( "ApplyTargetFriction returning: W.bTargetFrictionEnabled: " $ W.bTargetFrictionEnabled $ " Pawn: " $ Pawn $ " W: " $ W );
 		return;
@@ -2440,9 +2530,7 @@ defaultproperties
    bAutoTargetEnabled=True
    bForceFeedbackEnabled=True
    GamepadButtonHoldTime=0.250000
-   SprintAnalogThreshold=0.700000
-   SkipCrouchAnalogThreshold=0.300000
-   TimeBelowThresholdToStopSprint=-1.000000
+   SprintAnalogThreshold=0.600000
    LookSensitivityScaleCurve=(Points=((ArriveTangent=0.500000,LeaveTangent=0.500000,InterpMode=CIM_CurveAuto),(InVal=0.800000,OutVal=0.600000,ArriveTangent=2.000000,LeaveTangent=2.000000,InterpMode=CIM_CurveAuto),(InVal=1.000000,OutVal=1.300000,ArriveTangent=8.000000,LeaveTangent=8.000000,InterpMode=CIM_CurveAuto)))
    MoveSensitivityScaleCurve=(Points=((OutVal=0.300000,InterpMode=CIM_Constant),(InVal=0.300000,OutVal=0.300000),(InVal=0.900000,OutVal=1.000000)))
    GamepadSensitivityScale=1.000000
@@ -2459,7 +2547,7 @@ defaultproperties
    FrictionAngleCurve=(Points=(,(InVal=2500.000000)))
    ViewAccelerationFrictionScale=0.850000
    AdhesionAngleCurve=(Points=((OutVal=0.950000),(InVal=2000.000000,OutVal=0.980000)))
-   AdhesionFactor=20.000000
+   AdhesionFactor=16.000000
    AutoTargetTimeLeft=0.100000
    AutoTargetAngleCurve=(Points=((OutVal=0.939700),(InVal=1500.000000,OutVal=0.984800),(InVal=6000.000000,OutVal=1.000000)))
    AutoTargetWeakspotCurve=(Points=((OutVal=0.996200),(InVal=1000.000000,OutVal=0.999400),(InVal=2000.000000,OutVal=1.000000)))

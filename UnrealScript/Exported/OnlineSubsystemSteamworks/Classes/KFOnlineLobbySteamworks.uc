@@ -12,6 +12,8 @@ class KFOnlineLobbySteamworks extends OnlineLobbyInterfaceSteamworks within Onli
 	config(Engine)
 	native;
 
+
+
 /** Steam's Id for this lobby */
 var UniqueNetId CurrentLobbyId;
 /** Empty Id to test for comparision with initialized ids */

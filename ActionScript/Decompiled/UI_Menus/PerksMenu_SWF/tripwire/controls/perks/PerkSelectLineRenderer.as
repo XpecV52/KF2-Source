@@ -54,24 +54,24 @@ package tripwire.controls.perks
             this.active = false;
         }
         
-        override public function setData(param1:Object) : void
+        override public function setData(data:Object) : void
         {
-            this.data = param1;
-            if(param1)
+            this.data = data;
+            if(data)
             {
                 visible = true;
-                label = !!param1.Title ? param1.Title : "";
+                label = !!data.Title ? data.Title : "";
                 if(label == "")
                 {
                     visible = false;
                 }
                 if(this.perkLevelText != null)
                 {
-                    this._perkLevelStr = !!param1.PerkLevel ? param1.PerkLevel : "0";
+                    this._perkLevelStr = !!data.PerkLevel ? data.PerkLevel : "0";
                     this.perkLevelText.text = this._perkLevelStr;
                 }
-                enabled = !!param1.unlocked ? Boolean(param1.unlocked) : true;
-                this.bTierUnlocked = !!param1.bTierUnlocked ? Boolean(param1.bTierUnlocked) : false;
+                enabled = !!data.unlocked ? Boolean(data.unlocked) : true;
+                this.bTierUnlocked = !!data.bTierUnlocked ? Boolean(data.bTierUnlocked) : false;
                 if(this.bTierUnlocked)
                 {
                     if(this.alertBG != null)
@@ -83,11 +83,11 @@ package tripwire.controls.perks
                 {
                     this.alertBG.gotoAndStop("Off");
                 }
-                if(param1.iconSource != null && param1.iconSource != "")
+                if(data.iconSource != null && data.iconSource != "")
                 {
                     if(this.iconLoader != null)
                     {
-                        this.iconLoader.source = param1.iconSource;
+                        this.iconLoader.source = data.iconSource;
                     }
                 }
             }
@@ -97,11 +97,11 @@ package tripwire.controls.perks
             }
         }
         
-        public function set active(param1:Boolean) : void
+        public function set active(value:Boolean) : void
         {
             if(this.SelectorArrow)
             {
-                this.SelectorArrow.visible = param1;
+                this.SelectorArrow.visible = value;
             }
         }
         
@@ -114,7 +114,7 @@ package tripwire.controls.perks
             }
         }
         
-        protected function handleFocusIn(param1:FocusEvent) : *
+        protected function handleFocusIn(e:FocusEvent) : *
         {
             addEventListener(FocusEvent.FOCUS_OUT,this.handleFocusOut,false,0,true);
             removeEventListener(FocusEvent.FOCUS_IN,this.handleFocusIn);
@@ -124,7 +124,7 @@ package tripwire.controls.perks
             }
         }
         
-        protected function handleFocusOut(param1:FocusEvent) : *
+        protected function handleFocusOut(e:FocusEvent) : *
         {
             addEventListener(FocusEvent.FOCUS_IN,this.handleFocusIn,false,0,true);
             removeEventListener(FocusEvent.FOCUS_OUT,this.handleFocusOut);
@@ -134,28 +134,28 @@ package tripwire.controls.perks
             }
         }
         
-        override protected function handleMouseRollOver(param1:MouseEvent) : void
+        override protected function handleMouseRollOver(event:MouseEvent) : void
         {
-            super.handleMouseRollOver(param1);
+            super.handleMouseRollOver(event);
             if(!selected)
             {
                 this.highlightButton();
             }
         }
         
-        override protected function handleMouseRollOut(param1:MouseEvent) : void
+        override protected function handleMouseRollOut(event:MouseEvent) : void
         {
-            super.handleMouseRollOut(param1);
+            super.handleMouseRollOut(event);
             if(!selected)
             {
                 this.unhighlightButton();
             }
         }
         
-        override public function set selected(param1:Boolean) : void
+        override public function set selected(value:Boolean) : void
         {
-            super.selected = param1;
-            if(param1)
+            super.selected = value;
+            if(value)
             {
                 this.highlightButton();
             }

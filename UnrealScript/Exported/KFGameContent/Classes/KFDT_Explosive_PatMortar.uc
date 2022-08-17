@@ -370,8 +370,6 @@ class KFDT_Explosive_PatMortar extends KFDT_Explosive
 
 
 
-
-
 	
 
 
@@ -423,6 +421,7 @@ class KFDT_Explosive_PatMortar extends KFDT_Explosive
 
 
 	
+
 
 
 
@@ -502,7 +501,7 @@ class KFDT_Explosive_PatMortar extends KFDT_Explosive
 
 static function int GetKillerDialogID()
 {
-	return 41;
+	return 20;
 }
 
 defaultproperties

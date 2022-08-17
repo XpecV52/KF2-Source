@@ -103,7 +103,10 @@ function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 	{
 		SearchDataStore = KFDataStore_OnlineGameSearch(DSClient.FindDataStore(SearchDSName));
 	}
+	if(class'GameEngine'.static.GetOnlineSubsystem() != none)
+	{
 	GameInterface = class'GameEngine'.static.GetOnlineSubsystem().GameInterface;
+	}
 }
 
 /** Ties the GFxClikWidget variables to the .swf components and handles events */
@@ -157,10 +160,13 @@ function SetOverview(optional bool bInitialize)
 	}
 
 	MyUID = GetPC().PlayerReplicationInfo.UniqueId;
+	if(OnlineLobby != none)
+	{
 	OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
 	
 	bCurrentlyLeader = (MyUID == AdminId);
 	bCurrentlyInParty = OnlineLobby.IsInLobby();
+	}
 		
     // Update what our start game looks like if any important options have changed
 	if ( bIsLeader != bCurrentlyLeader || bCurrentlyInParty != bIsInParty || bInitialize || bLeaderInServerBrowser != bLeaderWasInServerBrowser )
@@ -311,7 +317,7 @@ function UpdateMenu()
 	local UniqueNetId AdminId;
 	local UniqueNetId LoggedInPlayer;
 
-	if ( class'WorldInfo'.static.IsMenuLevel() && OnlineLobby.IsInLobby() )
+	if ( class'WorldInfo'.static.IsMenuLevel() && OnlineLobby != none && OnlineLobby.IsInLobby() )
 	{
 		OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId );
 		OnlineLobby.outer.GetUniquePlayerId(0, LoggedInPlayer);
@@ -552,9 +558,12 @@ function SetLobbyData( string KeyName, string ValueData )
     OnlineLobby.SetLobbyData( KeyName, ValueData );
 }
 
-function string MakeMapURL(string MapName, float GameDifficulty, byte GameLength)
+function string MakeMapURL(KFGFxStartGameContainer_Options InOptionsComponent)
 {
-	return MapName$"?Difficulty="$GameDifficulty $"?GameLength="$GameLength;
+	return InOptionsComponent.SavedMapString
+		$"?Game="$class'KFGameInfo'.static.GetGameModeClassFromNum(InOptionsComponent.SavedModeIndex)
+	       $"?Difficulty="$class'KFDifficultyInfo'.static.GetDifficultyValue( InOptionsComponent.SavedDifficultyIndex )
+		   $"?GameLength="$InOptionsComponent.SavedLengthIndex;
 }
 
 native function bool GetSearchComplete(KFOnlineGameSearch GameSearch);
@@ -566,7 +575,7 @@ event OpenNotFoundPopup()
 
 	KFPC = KFPlayerController(GetPC());
 	`log("KFGFxMenu_StartGame.OpenNotFoundPopup: No servers found, giving up.");
-	KFPC.MyGFxManager.OpenPopup(ENotification, CouldNotFindGameTitleString, CouldNotFindGameDescriptionString, class'KFCommon_LocalizedStrings'.default.OKString);
+			KFPC.MyGFxManager.OpenPopup(ENotification, CouldNotFindGameTitleString, CouldNotFindGameDescriptionString, class'KFCommon_LocalizedStrings'.default.OKString);
 }
 
 event int GetLobbySize()
@@ -574,7 +583,7 @@ event int GetLobbySize()
 	local ActiveLobbyInfo LobbyInfo;
 
 	if ( !OnlineLobby.GetCurrentLobby(LobbyInfo) )
-	{
+		{
 		return 0;
 	}
 	else
@@ -598,7 +607,11 @@ native function SortServers(OnlineGameSearch Search);
 
 function OnJoinGameComplete(name SessionName, bool bSuccessful)
 {
+	if(GameInterface != none)
+	{
 	GameInterface.ClearJoinOnlineGameCompleteDelegate(OnJoinGameComplete);
+	}
+	
 	if (!bSuccessful)
 	{
 		AttemptingJoin = false;
@@ -676,8 +689,11 @@ event OnClose()
 		OverviewContainer.ActionScriptVoid("hideSharedContentList");
 	}
 	KFGameEngine(Class'Engine'.static.GetEngine()).OnHandshakeComplete = None;
+	if(GameInterface != none)
+	{
 	GameInterface.ClearFindOnlineGamesCompleteDelegate(OnFindGameServerComplete);
 	GameInterface.ClearJoinOnlineGameCompleteDelegate(OnJoinGameComplete);
+	}
 }
 
 function AddLobbyFilter(out array<LobbyFilter> Filters, bool bIsSet, string Key, coerce String Val, bool bNumeric)
@@ -702,6 +718,7 @@ function AddLobbyFilter(out array<LobbyFilter> Filters, bool bIsSet, string Key,
 function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGameContainer_Options Options, OnlineGameSearch Search)
 {
 	local string MapName;
+	local int 	GameMode;
 	local int	GameDifficulty;
 	local int	GameLength;
 	local bool  AllowInProgress;
@@ -727,6 +744,13 @@ function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGa
 	{
 		GameInterfaceSteam.AddServerFilter(Search, "notfull", "");
 	}
+
+	GameMode = OptionsComponent.SavedModeIndex;
+	if( GameMode >= 0 )
+	{
+		GameInterfaceSteam.AddGametagFilter( GameTagFilters, 'Mode', string(GameMode) );
+	}
+
 	GameDifficulty = OptionsComponent.GetDifficulty();
 	if (GameDifficulty >= 0)
 	{
@@ -738,7 +762,7 @@ function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGa
 	{
 		GameInterfaceSteam.AddGametagFilter(GameTagFilters, 'NumWaves', string(GameLength));
 	}
-
+	
 	GameInterfaceSteam.TestAddBoolGametagFilter(GameTagFilters, true, 'bRequiresPassword', 0);
 
 	AllowInProgress = OptionsComponent.GetAllowInProgress();
@@ -767,24 +791,26 @@ function Callback_StartGame()
 
 function Callback_StartOfflineGame()
 {
-	local string MapName;
-	local float	GameDifficulty;
-	local byte	GameLength;
-
-	MapName = OptionsComponent.SavedMapString;
-	GameDifficulty = class'KFDifficultyInfo'.static.GetDifficultyValue( OptionsComponent.SavedDifficultyIndex );
-	GameLength = OptionsComponent.SavedLengthIndex;
-
-	ConsoleCommand("open" @ MakeMapURL(MapName, GameDifficulty, GameLength));
+	ConsoleCommand("open" @ MakeMapURL(OptionsComponent));
 }
 
 function Callback_StartOnlineGame()
 {
+	OptionsComponent.UpdateFilters();
+
+	if (OptionsComponent.GetServerTypeListen())
+	{
+		`log("******open" @ MakeMapURL(OptionsComponent)$"?listen?steamsockets");
+		ConsoleCommand("open" @ MakeMapURL(OptionsComponent)$"?listen?steamsockets");
+		OnlineLobby.LobbyJoinGame();
+
+		return;
+	}
+
 	GameInterface.SetMatchmakingTypeMode(SMT_Internet);
 
 	CurrentSearchIndex = 0;
 
-	OptionsComponent.UpdateFilters();
 	BuildServerFilters(GameInterface, OptionsComponent, SearchDataStore.GetCurrentGameSearch());
 	SearchDataStore.GetCurrentGameSearch().MaxSearchResults = MaxResultsToTry;
 
@@ -800,9 +826,9 @@ function Callback_StartOnlineGame()
 	{
 		bPauseTryingServers = true;
 		Manager.TimerHelper.SetTimer(InitialSearchPause, false, nameof(UnpauseTryingServers), self);
-		bSearchingForGame = true;
+	bSearchingForGame = true;
 
-		OptionsComponent.SetSearching(bSearchingForGame);
+	OptionsComponent.SetSearching(bSearchingForGame);
 	}
 }
 

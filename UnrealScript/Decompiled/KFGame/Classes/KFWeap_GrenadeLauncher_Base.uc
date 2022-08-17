@@ -9,28 +9,8 @@ class KFWeap_GrenadeLauncher_Base extends KFWeapon
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
-/** How long the to wait after firing to force zoom out */
-var(IronSight) float ForceZoomOutTime;
-/** How long the to wait after firing to force zoom out */
+/** How long to wait after firing to force reload */
 var() float ForceReloadTime;
-
-simulated function bool ShouldPlayFireLast(byte FireModeNum)
-{
-    if(SpareAmmoCount[GetAmmoType(FireModeNum)] == 0)
-    {
-        return true;
-    }
-    return false;
-}
-
-simulated function name GetReloadAnimName(bool bTacticalReload)
-{
-    if(AmmoCount[0] > 0)
-    {
-        WarnInternal("Grenade launcher reloading with non-empty mag");
-    }
-    return 'Reload_Empty';
-}
 
 static simulated function float CalculateTraderWeaponStatDamage()
 {
@@ -53,17 +33,27 @@ static simulated event KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
     return 6;
 }
 
-simulated state WeaponSingleFiring
+simulated function float GetForceReloadDelay()
 {
-    simulated function PlayFireEffects(byte FireModeNum, optional Vector HitLocation)
+    return FMax(ForceReloadTime - FireInterval[CurrentFireMode], 0);
+}
+
+simulated function bool ShouldPlayFireLast(byte FireModeNum)
+{
+    if(SpareAmmoCount[GetAmmoType(FireModeNum)] == 0)
     {
-        super(KFWeapon).PlayFireEffects(FireModeNum, HitLocation);
-        if(Instigator.IsLocallyControlled())
-        {
-            SetTimer(ForceReloadTime, false, 'ForceReload');
-        }
+        return true;
     }
-    stop;    
+    return false;
+}
+
+simulated function name GetReloadAnimName(bool bTacticalReload)
+{
+    if(AmmoCount[0] > 0)
+    {
+        WarnInternal("Grenade launcher reloading with non-empty mag");
+    }
+    return 'Reload_Empty';
 }
 
 defaultproperties
@@ -71,6 +61,7 @@ defaultproperties
     ForceReloadTime=0.3
     bAllowClientAmmoTracking=false
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_GrenadeLauncher_Base.MeleeHelper'
+    FiringStatesArray=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

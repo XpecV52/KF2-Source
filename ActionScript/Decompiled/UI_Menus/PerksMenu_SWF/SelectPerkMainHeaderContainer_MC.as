@@ -1,6 +1,6 @@
 package
 {
-    import tripwire.containers.perks.PerksHeaderContainer;
+    import tripwire.containers.Perks.PerksHeaderContainer;
     
     public dynamic class SelectPerkMainHeaderContainer_MC extends PerksHeaderContainer
     {

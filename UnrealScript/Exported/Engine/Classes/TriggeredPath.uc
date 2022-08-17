@@ -133,7 +133,6 @@ defaultproperties
       ObjectArchetype=PathRenderingComponent'Engine.Default__NavigationPoint:PathRenderer'
    End Object
    Components(4)=PathRenderer
-   CollisionType=COLLIDE_CustomDefault
    CollisionComponent=CollisionCylinder
    Name="Default__TriggeredPath"
    ObjectArchetype=NavigationPoint'Engine.Default__NavigationPoint'

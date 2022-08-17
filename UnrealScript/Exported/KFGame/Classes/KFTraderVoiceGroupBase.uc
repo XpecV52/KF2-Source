@@ -358,8 +358,6 @@ class KFTraderVoiceGroupBase extends Object;
 
 
 
-
-
 	
 
 
@@ -411,6 +409,7 @@ class KFTraderVoiceGroupBase extends Object;
 
 
 	
+
 
 
 

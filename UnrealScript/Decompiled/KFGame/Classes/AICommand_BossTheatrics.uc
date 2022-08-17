@@ -91,7 +91,7 @@ state Command_SpecialMove
 
     function KFPawn.ESpecialMove GetSpecialMove()
     {
-        return 22;
+        return 31;
     }
     stop;    
 }

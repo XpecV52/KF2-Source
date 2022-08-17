@@ -1,0 +1,1569 @@
+[KFCommon_LocalizedStrings]
+DifficultyStrings[0]="Звичайний"
+DifficultyStrings[1]="Складний"
+DifficultyStrings[2]="Суїцидальний"
+DifficultyStrings[3]="Пекло на Землі"
+
+LengthStrings[0]="Коротка (4 хвилі)"
+LengthStrings[1]="Середня (7 хвиль)"
+LengthStrings[2]="Довга (10 хвиль)"
+
+ServerTypeStrings[0]="Рейтинговий"
+ServerTypeStrings[1]="Рейтинговий — Нестандартний"
+;ServerTypeStrings[2]="Не рейтинговий"
+
+PermissionStrings[0]="Для всіх"
+PermissionStrings[1]="Лише друзі"
+PermissionStrings[2]="Приватний"
+
+ModeStrings[0]="Виживання"
+ModeStrings[1]="VS Survival"
+
+NoPreferenceString="Байдуже"
+OKString="OK"
+ConfirmString="ПІДТВЕРДИТИ"
+CancelString="СКАСУВАТИ"
+BackString="НАЗАД"
+AcceptString="Прийняти"
+DeclineString="Відхилити"
+NoticeString="УВАГА!"
+PerkUpdateNoticeString="Перк можна змінити раз за хвилю!"
+YesString="Так"
+NoString="Ні"
+
+DisbandPartyString="РОЗПУСТИТИ ГРУПУ"
+LeaveCurrentMenuString="Покинути це меню?"
+ZedString="ZED"
+
+
+[KFGFxMoviePlayer_Manager]
+FailedSearchTitleString="НЕ ВДАЛОСЯ ЗНАЙТИ МАТЧ"
+FailedSearchString="Пошук матчів зазнав невдачі з обраними параметрами. Будь ласка, змініть параметри пошуку, або використайте пошук серверів для знаходження матчів."
+BrowseServersString="ПОШУК СЕРВЕРІВ"
+HasInvitedToGameString=" запросив вас до гри."
+JoinGameString="Приєднатися до гри?"
+
+
+[KFGFxObject_Menu]
+LeavePartyTitleString="ПОКИНУТИ ГРУПУ"
+LeavePartyDescriptionString="Ви впевнені, що хочете покинути цю мережеву групу?"
+LeaveString="ПОКИНУТИ"
+
+[KFDoorActor]
+WeldIntegrityString="Міцність зварки:"
+ExplosiveString="Дверна пастка:"
+
+[KFGFxMenu_StartGame]
+CreateMatchString="СТВОРИТИ МАТЧ"
+MatchmakingString="ПОШУК МАТЧУ У МЕРЕЖІ"
+ServerBrowserString="Знайти сервери"
+
+DifficultyTitle="СКЛАДНІСТЬ"
+GameModeTitle="РЕЖИМ ГРИ"
+ServerTypeString="ТИП СЕРВЕРУ"
+PermissionsTitle="ДОЗВОЛИ"
+WhiteListedTitle="СТАТИСТИКА УВІМКНЕНА"
+LengthTitle="ТРИВАЛІСТЬ"
+MapTitle="ПОЧАТКОВА МАПА"
+MutatorTitle="МУТАТОРИ"
+InfoTitle="ІНФОРМАЦІЯ"
+InProgressString="РОЗПОЧАТО"
+
+WhiteListedStrings[0]="ТАК"
+WhiteListedStrings[1]="НІ"
+
+FindGameString="ГОЛОВНА"
+LeaveMenuString="Залишення пошуку матчів розпустить ваше лобі. Перейти до пошуку серверів?"
+
+CouldNotFindGameTitleString="Неможливо знайти матч"
+CouldNotFindGameDescriptionString="Не знайдено жодного сервера, за вашими критеріями. Спробуйте інші фільтри чи скористуйтеся пошуком сервера."
+
+[KFGFxStartGameContainer_FindGame]
+MultiplayerString="Пошук матчів у мережі"
+SoloString="Грати наодинці офлайн"
+
+[KFGFxStartGameContainer_Options]
+BackString="НАЗАД"
+StartGameString="ПОЧАТИ ГРУ"
+LaunchGameString="ЗАПУСТИТИ ГРУ"
+InProgressString="ПЕРЕБІГ ГРИ"
+SoloGameString="САМІТНЯ ГРА"
+LeaveMatchMakingString="ПОКИНУТИ"
+MultiplayerLaunchString="ГРАТИ ОНЛАЙН"
+SearchingString="СКАСУВАТИ ПОШУК"
+ServerTypeString="ТИП СЕРВЕРУ"
+StandardServerString="Звичайний"
+UnrankedServerString="Без рейтингу"
+CustomServerString="Власний"
+AllowInProgressString="Дозволити розпочаті ігри"
+NotStartedString="Лише нові ігри"
+
+
+[KFGFxStartContainer_MatchMaking]
+OptionsHeaderString="ПОШУК МАТЧУ"
+BackString="НАЗАД"
+FindGameString="ЗНАЙТИ ГРУ"
+
+[KFGFxStartContainer_InGameOverview]
+OverviewString="ОГЛЯД МАТЧУ"
+ChangeString="ЗМІНИТИ"
+SharedByString="Поділився:"
+SharedContentString="ВМІСТ"
+
+[KFGFxStartContainer_ServerBrowserOverview]
+OverviewString="ОГЛЯД МАТЧУ"
+DescriptionString="здійснює пошук гри у пошуку сервера..."
+
+[KFGFxTraderContainer_GameInfo]
+TimeLeftString="ЛИШИЛОСЯ ЧАСУ"
+WaveString="ХВИЛЯ"
+BossWaveString="БОС"
+
+[KFPawn_MonsterBoss]
+BossName="Бос"
+BossCaptionStrings[0]="Репліка боса 1"
+BossCaptionStrings[1]="Репліка боса 2"
+
+[KFGFxTraderContainer_PlayerInfo]
+PlayerHeaderString="ІНВЕНТАР"
+SelectPerkString="ВИБРАТИ НАВИК"
+
+[KFGFxMenu_ServerBrowser]
+FavoriteString="УЛЮБЛЕНЕ"
+MultiplayerMenuString="ПОШУК МАТЧУ"
+LeaveMenuString="Після виходу з цього меню ви розпустите вашу групу. Перейти в меню пошуку гри?"
+NameString="НАЗВА"
+RefreshString="ОНОВИТИ"
+GamesFoundString="ІГОР ЗНАЙДЕНО:"
+
+ServerBrowserString="ПОШУК СЕРВЕРІВ"
+
+JoinString="ПРИЄДНАТИСЯ"
+PasswordPromptString="УВЕДІТЬ ПАРОЛЬ"
+
+RankedString="СТАТИСТИКА УВІМКНЕНА"
+UnrankedString="СТАТИСТИКА ВИМКНУТА"
+DedicatedString="ВИДІЛЕНИЙ"
+VACSecureString="ЗАХИЩЕНО VAC"
+InLobbyString="У ЛОБІ"
+InProgressString="У ГРІ"
+
+BackString="НАЗАД"
+ApplyString="ЗАСТОСУВАТИ"
+ResetString="СКИНУТИ"
+
+PingString="ПІНҐ"
+LengthString="ТРИВАЛІСТЬ"
+DifficultyString="СКЛАДНІСТЬ"
+MapString="МАПА"
+GameModeString="РЕЖИМ"
+WaveString="ХВИЛЯ"
+PlayersString="ГРАВЦІ"
+ZedCountString="КІЛЬКІСТЬ ЗЕДІВ"
+FiltersString="ФІЛЬТРИ"
+
+SearchString="ПОШУК"
+
+PingOptionStrings[0]="< 50 МС"
+PingOptionStrings[1]="< 100 МС"
+PingOptionStrings[2]="< 150 МС"
+PingOptionStrings[3]="< 200 МС"
+
+TabStrings[0]="ОГЛЯНУТИ"
+TabStrings[1]="УЛЮБЛЕНІ"
+TabStrings[2]="ДРУЗІ"
+TabStrings[3]="ІСТОРІЯ"
+TabStrings[4]="LAN"
+
+[KFGFxServerBrowser_Filters]
+NoPasswordString="БЕЗ ПАРОЛЯ"
+NoMutatorsString="БЕЗ МУТАТОРІВ"
+NotFullString="НЕ ЗАПОВНЕНИЙ"
+NotEmptyString="НЕ ПОРОЖНІЙ"
+NoStatsEnabledString="БЕЗ РЕЙТИНГОВИХ СЕРВЕРІВ (стандартних)"
+NoRankedCustomString="ЖОДНИХ НЕСТАНДАРТНИХ СЕРВЕРІВ"
+NoUnrankedString="ЖОДНИХ НЕРЕЙТИНГОВИХ СЕРВЕРІВ"
+DedicatedString="ВИДІЛЕНИЙ СЕРВЕР"
+VACSecureString="ЗАХИЩЕНО VAC"
+InLobbyString="У ЛОБІ"
+InProgressString="ВЖЕ ТРИВАЄ"
+OnlyStockMapsString="ТІЛЬКИ СТАНДАРТНІ МАПИ"
+OnlyCustomMapsString="ТІЛЬКИ НЕСТАНДАТНІ МАПИ"
+LimitServerResultsString="ОБМЕЖИТИ РЕЗУЛЬТАТИ:"
+
+[KFGFxServerBrowser_ServerDetails]
+MutatorsString="МУТАТОРИ"
+JoinGameString="ПРИЄДНАТИСЯ ДО ГРИ"
+SpectateGameString="СПОСТЕРІГАТИ"
+ServerInfoString="ІНФОРМАЦІЯ ПРО СЕРВЕР"
+UnfavoriteString="ПРИБРАТИ З УЛЮБЛЕНИХ"
+
+[KFGFxMenu_Trader]
+ExitMenuString="ВИЙТИ З МЕНЮ"
+
+[KFGFxTraderContainer_Store]
+TraderString="ПРИДБАТИ СПОРЯДЖЕННЯ"
+
+[KFGFxServerBrowser_ServerList]
+LeaveServerBrowserString="ПОКИНУТИ ПОШУК СЕРВЕРІВ"
+DetailsString="ПРО СЕРВЕР"
+SpectateString="СПОСТЕРІГАТИ"
+
+[KFGFxTraderContainer_ItemDetails]
+DamageTitle="ШКОДА"
+FireRateTitle="ШВИДКОСТРІЛЬНІСТЬ"
+PenetrationTitle="ПРОНИКНЕННЯ"
+RangeTitle="ВІДСТАНЬ"
+BlockTitle="БЛОКУВАННЯ"
+ParryTitle="ПАРИРУВАННЯ"
+AccuracyTitle="ТОЧНІСТЬ"
+CapacityTitle="МІСТКІСТЬ НАБОЇВ"
+MagTitle="РОЗМІР МАГАЗИНУ"
+HealAmountTitle="СИЛА ЗЦІЛЕННЯ"
+HealRechargeTitle="ЧАС ПЕРЕЗАРЯДКИ"
+BuyString="ПРИДБАТИ"
+SellString="ПРОДАТИ"
+CannotSellString="НЕМОЖЛИВО ПРОДАТИ"
+CannotBuyString="НЕМОЖЛИВО ПРИДБАТИ"
+FavoriteString="УЛЮБЛЕНЕ"
+UnfavoriteString="ПРИБРАТИ"
+
+[KFGFxTraderContainer_PlayerInventory]
+FillString="ПОВН."
+MagString="МАГ"
+BuyGrenadeString="1X"
+AutoFillString="АВТОЗАПОВНЕННЯ"
+ArmorString="Бойова броня"
+ChangePerkString="ЗМІНИТИ НАВИК"
+
+[KFGFxTraderContainer_Filter]
+TabsArray[0]="НАВИКИ"
+TabsArray[1]="ТИП"
+TabsArray[2]="УЛЮБЛЕНЕ"
+TabsArray[3]="УСІ"
+
+WeaponTypeStrings[0]="Пістолети"
+WeaponTypeStrings[1]="Рушниці"
+WeaponTypeStrings[2]="Гвинтівки"
+WeaponTypeStrings[3]="Снаряди"
+WeaponTypeStrings[4]="Запальна зброя"
+WeaponTypeStrings[5]="Електрична зброя"
+WeaponTypeStrings[6]="Вибухівка"
+WeaponTypeStrings[7]="Штурмові гвинтівки"
+WeaponTypeStrings[8]="Холодна зброя"
+WeaponTypeStrings[9]="Пістолети-кулемети"
+
+OffPerkString="Вимк. перк"
+
+[KFGFxMenu_PostGameReport]
+MapVoteString="ГОЛОСУВАННЯ ЗА МАПУ"
+PlayerStatsString="СТАТИСТИКА ГРАВЦІВ"
+TeamAwardsString="НАГОРОДИ"
+PostGameReportString="РЕЗУЛЬТАТИ ГРИ"
+NextMapString="Наступна мапа через:"
+WaveString="ХВИЛЯ"
+XPString="Досвід"
+VictoryString="Перемога"
+DefeatString="Поразка"
+ItemDropTitleString="ЗДОБУТО НОВИЙ ПРЕДМЕТ!"
+
+[EphemeralMatchStats]
+MedicineMaster="Медмайстер"
+MedicineMasterValue="Здоров’я"
+ZedSlayer="Винищувач зедів"
+ZedSlayerValue="Убивства"
+Enforcer="Убивця"
+EnforcerValue="Підмог"
+Destroyer="Руйнівник"
+DestroyerValue="Пошкодження"
+GiantSlayer="Винищувач гігантів"
+GiantSlayerValue="Великих зедів"
+MoneyBags="Товстосум"
+MoneyBagsValue="Лавандос"
+HeadPopper="Мисливець за головами"
+HeadPopperValue="Пострілів у голову"
+Dominator="Домінатор"
+DominatorValue="Бос"
+
+EPB_Healing="Лікування"
+EPB_Kills="Убивств"
+EPB_Assists="Підмог"
+EPB_LargeZedKill="Убито великих зедів"
+EPB_Dosh="Зароблено"
+EPB_HeadShots="Влучень у голову"
+EPB_KnifeKills="Убивств ножем"
+EPB_PistolKills="Убивств пістолетом"
+EPB_DoorWelding="Зварювання дверей"
+
+EPB_HealingValue="Здоров’я"
+EPB_KillsValue="Убивств"
+EPB_AssistsValue="Підмог"
+EPB_LargeZedKillValue="Великих зедів"
+EPB_DoshValue="Лавандос"
+EPB_HeadShotsValue="У голову"
+EPB_KnifeKillsValue="Убивств"
+EPB_PistolKillsValue="Убивств"
+EPB_DoorWeldingValue="Очки за зварювання"
+
+[KFGFxPostGameContainer_TeamAwards]
+TeamAwardsString="КОМАНДНІ НАГОРОДИ"
+PersonalBestsString="ОСОБИСТІ РЕКОРДИ"
+NoTeamAwardsGivenString="БЕЗ НАГОРОД"
+
+[KFGFxPostGameContainer_MapVote]
+YourVoteString="ВАШ ГОЛОС"
+TopVotesString="НАЙКРАЩІ ГОЛОСИ"
+
+[KFGFxPostGameContainer_PlayerStats]
+AchievementsString="Досягнення"
+KnifeString="Ніж"
+TopWeaponsString="НАЙКРАЩА ЗБРОЯ"
+ZedKillsString="УБИВСТВА ЗЕДІВ"
+TotalDamageDealtString="Всього нанесено шкоди:"
+HeadShotsString="У голову:"
+LargeZedKillsString="Убито великих зедів:"
+TotalDoshEarnedString="Усього зароблено:"
+TotalKillsString="Усього вбивств:"
+AssistsString="Підмог:"
+DamageDealtString="Завдано шкоди:"
+
+
+
+[KFGFxWidget_BaseParty]
+PlayerReadyString="[ ГОТОВО ]"
+WaitingString="ОЧІКУЄМО НА ГРАВЦІВ"
+DeployingString="РОЗГОРТАННЯ ЧЕРЕЗ"
+CreatePartyString="ЗАПРОСИТИ ДРУЗІВ"
+ReadyString="ПРИГОТУВАТИСЯ"
+LeaveString="ПОКИНУТИ ГРУПУ"
+SquadString="ЗАГІН"
+SoloString="СОЛО"
+DefaultPlayerName="Гравець"
+
+PartyLeaderSearchingForMatchString="пошук гри…"
+PartyLeaderIsUpdatingMatchOptionsString="налаштувує опції матчу…"
+PartyLeaderInServerBrowserString="шукає сервери…"
+PartyLeaderInOtherMenuString="в іншому меню…"
+SearchingForGameString="Пошук мережевої гри..."
+
+PartHostLeftString="Лідер групи покинув гру"
+PartyLeaderChangedString="тепер новий лідер групи."
+
+MuteString="Приглушити гравця"
+UnmuteString="Усунути приглушення гравця"
+AddFriendString="Додати друга"
+RemoveFriendString="Видалити друга"
+VoteKickString="Вигнати гравця"
+ViewProfileString="Переглянути профіль"
+
+RemainingString="Залишилось:"
+DownLoadingString="Downloading:"
+PartyLeaderString="Leader"
+
+[KFGFxWidget_PartyInGame_Versus]
+SwitchTeamsString="Switch Teams"
+balanceWarningString="WARNING: Teams will be auto-balanced"
+
+[KFGFxMenu_Gear]
+GearHeaderString="НАЛАШТУВАТИ СПОРЯДЖЕННЯ"
+BioString="БІОГРАФІЯ"
+CharacterString="ПЕРСОНАЖ"
+HeadString="ГОЛОВА"
+BodyString="ТІЛО"
+SkinsString="СКІНИ"
+AttachmentsString="АКСЕСУАРИ"
+BackString="НАЗАД"
+NoneString="НІЧОГО"
+WeaponsString="Зброя"
+WeaponsInfoString="Налаштувати"
+
+[KFGFxMenu_Inventory]
+InventoryString="ІНВЕНТАР"
+UseString="Застосувати"
+EquipString="СПОРЯДИТИ"
+UnequipString="ЗНЯТИ"
+AllString="УСЕ"
+WeaponSkinString="РОЗФАРБУВАННЯ ЗБРОЇ"
+CosmeticString="ПРИНАДА"
+CraftingMatsString="Crafting"
+ItemString="ПРЕДМЕТИ"
+FiltersString="Фільтри"
+MoreItemsString="Необхідно ще один предмет для використання цього предмету."
+FailedToExchangeString="ОБМІНЯТИ НЕ ВДАЛОСЯ"
+RecycleString="RECYCLE"
+CraftString="CRAFT"
+CraftCosmeticString="Cosmetic Crafting"
+CraftWeaponString="Weapon Skin Crafting"
+CraftWeaponStrings[0]="Uncommon Weapon Skin"
+CraftWeaponStrings[1]="Rare Weapon Skin"
+CraftWeaponStrings[2]="Exceptional Weapon Skin"
+CraftWeaponStrings[3]="Master Crafted Weapon Skin"
+CraftCosmeticStrings[0]="Uncommon Cosmetic"
+CraftCosmeticStrings[1]="Rare Cosmetic"
+CraftCosmeticStrings[2]="Exceptional Cosmetic"
+CraftCosmeticStrings[3]="Master Crafted Cosmetic"
+RecycleWarningString="Warning, this cannot be undone. This will destroy the selected item and replace it with a crafting material item"
+RecycleItemString="Recycle Item?"
+ConfirmCraftItemString="Crafting this item will use resources and cannot be undone"
+CraftItemString="Confirm Craft Item?"
+FailedToCraftItemString="Failed to Craft Item"
+CraftRequirementString="Insufficient quantity of required crafting materials"
+CraftCosmeticDescriptionString="You can craft new cosmetic items from this menu out of cosmetic material. You can obtain cosmetic material by recycling existing cosmetic items. To recycle, select an item and press recycle"
+CraftWeaponDescriptionString="You can craft new weapon skin items from this menu out of weapon skin material. You can obtain weapon skin material by recycling existing weapon skin items. To recycle, select an item and press recycle"
+RequiresString="Requires: "
+
+[KFGFxPerksContainer]
+LevelString=""
+
+[KFGFxPerksContainer_Header]
+ExperienceString="Досвід"
+PrestigeLevelString="Престиж"
+
+[KFGFxPerksContainer_SkillsSummary]
+ConfigureString="НАЛАШТУВАТИ"
+SkillsString="ЗДІБНОСТІ"
+
+[KFGFxMenu_Perks]
+TierUnlockedText="Розблоковано нові ступені!"
+TierUnlockedSecondaryText="Ви розблокували нову ступінь для таких навиків:"
+
+
+[KFGFxPerksContainer_Details]
+ObjectivesString="ЦІЛІ ДОСВІДУ"
+PerkBonusesString="БОНУСИ ПЕРКІВ"
+BasicLoadoutString="ПОЧАТКОВЕ СПОРЯДЖЕННЯ"
+
+[KFGFxPerksContainer_Skills]
+ConfigureSkillsString="НАЛАШТУВАТИ НАВИКИ"
+BackButtonString="<< НАЗАД"
+
+[KFGFxPerksContainer_Selection]
+HeaderTitle="ОБРАТИ ПЕРК"
+EndOfWaveString="Усі зміни у перках будуть застосовані наприкінці хвилі!"
+ChangesAppliedOnCloseString="Усі зміни у перках будуть застосовані після закриття цього меню"
+OncePerWaveString="Змінювати перки можна лише один раз за хвилю!"
+
+[KFGFxMenu_Store]
+StoreString="КРАМНИЦЯ"
+
+[KFGFxStoreContainer_Cart]
+CartString="Кошик"
+TotalString="Усього"
+CheckOutString=Check Out
+
+[KFGFxStoreContainer_Main]
+NewReleasesString="Нові релізи"
+CartString="Кошик"
+ToolsString="Інструменти"
+WeaponSkinsString="Розфарбування зброї"
+CharactersString="Персонажі"
+
+[KFGFxStoreContainer_Details]
+AddToCartString="Купити предмет"
+PreviewString="Попередній перегляд"
+
+
+[KFGFxWidget_ButtonPrompt]
+CancelString="НАЗАД"
+ConfirmString="ОБРАТИ"
+
+[KFGFxWidget_MenuBar]
+MenuStrings[0]="ГОЛОВНА"
+MenuStrings[1]="НАВИКИ"
+MenuStrings[2]="СПОРЯДЖЕННЯ"
+MenuStrings[3]="ІНВЕНТАР"
+MenuStrings[4]="КРАМНИЦЯ"
+MenuStrings[5]="НАЛАШТУВАННЯ"
+MenuStrings[6]="ВИХІД"
+
+ServerBrowserString="СПИСОК СЕРВЕРІВ"
+MatchmakingString="ПОШУК ГРИ"
+SoloString="САМІТНЯ ГРА"
+OverviewString="ОГЛЯД МАТЧУ"
+
+TitleStrings[0]="Що, вже стомилися боротися?"
+TitleStrings[1]="Вже йдете?"
+TitleStrings[2]="Стомилися боротися за своє життя?"
+
+DescriptionStrings[0]="Ну й добре, біжіть до свого нікчемного життя. У Killing Floor ви й пʼяти хвилин не протрималися б."
+DescriptionStrings[1]="Лише памʼятайте, що кожної секунди без вас тут орудують зграї покручів, яким не терпиться поласувати вашими друзями. Ви покинете своїх друзів?"
+DescriptionStrings[2]="Вони вас знайдуть у будь-якому разі… Знайдуть і розірвуть вас на шмаття, залишивши ваше закривавлене серце на десерт."
+
+ExitString="ВИХІД"
+CancelString="СКАСУВАТИ"
+
+[KFGFxWidget_LevelUpNotification]
+LevelUpString="ПІДВИЩЕННЯ РІВНЯ"
+TierUnlockedString="РОЗБЛОКОВАНО НОВІ ЗДІБНОСТІ"
+
+[KFGFxHUD_WaveInfo]
+WaveString="ХВИЛЯ"
+BossWaveString="БОС"
+FinalWaveString="ОСТАННЯ"
+
+[KFGFxHUD_TraderCompass]
+TraderString="ТОРГОВЕЦЬ"
+
+[KFGFxHUD_SpectatorInfo]
+PrevPlayerString="НАСТУПНИЙ ГРАВЕЦЬ"
+NextPlayerString="ПОПЕРЕДНІЙ ГРАВЕЦЬ"
+ChangeCameraString="ЗМІНИТИ КАМЕРУ"
+
+[KFGFxHUD_ScoreboardWidget]
+PlayerString="ГРАВЕЦЬ"
+DoshString="ЛАВАНДОС"
+KillsString="УБИВСТВ"
+AssistsString="ПІДМОГИ"
+PingString="ПІНҐ"
+
+[KFGFxHUD_PlayerStatus]
+EXPString="ОД"
+
+
+[KFGFxHUD_ScoreboardMapInfoContainer]
+WaveString="ХВИЛЯ"
+FinalString="Підсумок"
+
+[KFGFxHUD_WeaponSelectWidget]
+PrimaryString="ОСНОВНЕ"
+EquiptmentString="СПОРЯДЖЕННЯ"
+MeleeString="БЛИЖНІЙ БІЙ"
+SecondaryString="ДОПОМІЖНА"
+ThrowString="ВИКИНУТИ ЗБРОЮ"
+
+[KFGFxWidget_KickVote]
+VoteKickString="Вигнати гравця?"
+
+[KFLocalMessage_PlayerKills]
+KilledString="killed"
+ZedString=ZEDs
+
+[KFLocalMessage_VoiceComms]
+VoiceCommsOptionStrings[0]="ТРЕБА ЛІКУВАННЯ"
+VoiceCommsOptionStrings[1]="ЗАПИТАТИ ЛАВАНДОС"
+VoiceCommsOptionStrings[2]="REQUEST HELP"
+VoiceCommsOptionStrings[3]="TAUNT ZEDS"
+VoiceCommsOptionStrings[4]="ЗА МНОЮ"
+VoiceCommsOptionStrings[5]="GET TO THE TRADER"
+VoiceCommsOptionStrings[6]="ЗГОДЕН"
+VoiceCommsOptionStrings[7]="НЕ ЗГОДЕН"
+
+[KFGFxMenu_Exit]
+HeaderString="ВИЙТИ З ГРИ"
+ExitToMainDescription="Залишити поточну гру і перейти до головного екрану?"
+ExitToMainMenu="Вийти до головного екрану"
+ExitKF2="Вийти до робочого столу"
+
+[KFGFxOptionsMenu_Selection]
+HeaderString="ПАРАМЕТРИ"
+OptionStrings[0]="Відео"
+OptionStrings[1]="Звук"
+OptionStrings[2]="Керування"
+OptionStrings[3]="Геймплей"
+OptionStrings[4]="Титри"
+
+[KFGFxOptionsMenu_Audio]
+AudioString="ПАРАМЕТРИ ЗВУКУ"
+SectionNameString="ГУЧНІСТЬ"
+OptionsString="ПАРАМЕТРИ"
+MasterVolumeString="Загальна гучність"
+DialogVolumeString="Гучність діалогу"
+MusicString="ГУЧНІСТЬ МУЗИКИ У ГРІ"
+SFxString="Гучність ефектів"
+VOIPVolumeString="Гучність повідомлень у чаті"
+ConfigureMicString="НАЛАШТУВАТИ МІКРОФОН"
+VocalsString="Музика"
+BattleChatterString="Приглушити балаканину"
+PushToVoIPString="За допомогою VoIP"
+
+[KFGFxOptionsMenu_Graphics]
+KeepSettingsPromptString="Застосувати ці параметри відео?"
+WarningPromptString="ПОПЕРЕДЖЕННЯ"
+WillExpireString="Параметри відновляться через %x% с."
+SingleWarningString="Деякі з цих параметрів можуть %x%"
+DoubleWarningString="Деякі з цих параметрів можуть %x% і %y%"
+PerformanceDescString[0]="несприятливо впливає на швидкодію"
+PerformanceDescString[1]="суттєво впливає на швидкодію"
+RestartDescString="вимагати перезавантаження"
+OKString="OK"
+CancelString="СКАСУВАТИ"
+UnsavedChangesString="Ви не зберегли зміни"
+SaveChangesString="Бажаєте їх зберегти зараз?"
+ContinueString="Бажаєте продовжити?"
+
+AdjustGammaDescription="Налаштовуйте, доки монстра ліворуч буде ледь видно, а монстра праворуч буде видно чітко."
+ResetGammaString="СКИНУТИ"
+SetGammaString="ПРИЙНЯТИ"
+
+
+GraphicsString="ГРАФІКА"
+BasicString="Основні"
+AdvancedString="Розширені"
+EffectsString="Ефекти"
+
+AspectRatioString="Формат екрана"
+ResolutionString="Роздільність"
+GraphicsQualityString="Якість графіки"
+VSyncString="Вертикальна синхронізація"
+FullscreenString="Екран"
+VariableFrameRateString="Частота кадрів"
+FilmGrainString="Зернистість"
+AdjustGammaString="НАЛАШТУВАННЯ ГАМИ"
+
+PhysicsLevelString="NVIDIA® FleX"
+
+PhysicsLevelOptionStrings[0]="Вимк."
+PhysicsLevelOptionStrings[1]="Кишки*"
+PhysicsLevelOptionStrings[2]="Gibs AND Fluids*"
+
+PhysicsLevelSuggestionStrings[0]=""
+PhysicsLevelSuggestionStrings[1]="*Рекомендовано GeForce® GTX™ 770, або новішу модель"
+PhysicsLevelSuggestionStrings[2]="*Рекомендовано GeForce® GTX™ 980, або кращу"
+
+FlexPopUpString="Технологія NVIDIA® FleX дозволяє симулювати кров і рідини. Цей параметр може змінити продуктивність і потребує перевантаження."
+
+EnvironmentDetailsString="Деталі оточення"
+FoliageString="Деталізація листя"
+CharacterDetailString="Деталізація персонажа"
+FXString="FX"
+TextureResolutionString="Роздільна здатність текстур"
+TextureFilteringString="Фільтр текстур"
+ShadowsString="Якість тіней"
+RealtimeReflectionsString="Відображення в реальному часі"
+AntiAliasingString="Згладжування"
+BloomString="Освітлення"
+MotionBlurString="Розмитість руху"
+AmbientOcclusionString="Розсіяне затінювання"
+DepthOfFieldString="Глибина різкості"
+
+
+VolumetricLightingString="Об’ємне освітлення FX"
+LensFlaresString="Бліки"
+LightShaftsString="Об’ємні тіні"
+CustomString="Персоналізація"
+IniOverrideString="Перерозподіл INI"
+
+ApplyString="ЗАСТОСУВАТИ"
+CancelString="СКАСУВАТИ"
+DefaultString="СТАНДАРТНІ"
+
+AspectRatioString_All="Усі"
+StandardAspectRatioString_4_3="0.16875"
+StandardAspectRatioString_5_4="0.211111111111111"
+StandardAspectRatioString_3_2="0.126388888888889"
+WideAspectRatioString_16_9="0.672916666666667"
+WideAspectRatioString_16_10="0.673611111111111"
+ExtraWideAspectRatioString_2_1="8.40277777777778E-02"
+ExtraWideAspectRatioString_21_9="0.88125"
+MultiMonitorAspectRatioString="Декілька моніторів"
+
+FullScreenStringOptions[0]="У вікні"
+FullScreenStringOptions[1]="Без рамок"
+FullScreenStringOptions[2]="На весь екран"
+
+OffOnStringOptions[0]="Вимк."
+OffOnStringOptions[1]="Увімк."
+
+GraphicsQualityStringOptions[0]="Низька"
+GraphicsQualityStringOptions[1]="Середня"
+GraphicsQualityStringOptions[2]="Висока"
+GraphicsQualityStringOptions[3]="Ультра"
+
+VSyncStringOptions[0]="Вимкн."
+VSyncStringOptions[1]="Увімкн."
+;VSyncStringOptions[2]="Потрійна буферація"
+
+EnvironmentDetailsStringOptions[0]="Низька"
+EnvironmentDetailsStringOptions[1]="Середня"
+EnvironmentDetailsStringOptions[2]="Висока"
+EnvironmentDetailsStringOptions[3]="Ультра"
+
+FoliageStringOptions[0]="Низька"
+FoliageStringOptions[1]="Середня"
+FoliageStringOptions[2]="Висока"
+
+CharacterDetailStringOptions[0]="Низька"
+CharacterDetailStringOptions[1]="Висока"
+CharacterDetailStringOptions[2]="Ультра"
+
+FXStringOptions[0]="Низька"
+FXStringOptions[1]="Середня"
+FXStringOptions[2]="Висока"
+FXStringOptions[3]="Ультра"
+
+TextureResolutionStringOptions[0]="Низька"
+TextureResolutionStringOptions[1]="Середня"
+TextureResolutionStringOptions[2]="Висока"
+TextureResolutionStringOptions[3]="Ультра"
+
+TextureFilteringStringOptions[0]="Білінійна"
+TextureFilteringStringOptions[1]="Трилінійна"
+TextureFilteringStringOptions[2]="4x анізотропна"
+TextureFilteringStringOptions[3]="16x анізотропна"
+
+ShadowsStringOptions[0]="Низько"
+ShadowsStringOptions[1]="Середньо"
+ShadowsStringOptions[2]="Високо"
+ShadowsStringOptions[3]="Ультра"
+
+PhysicsStringOptions[0]="Вимк."
+PhysicsStringOptions[1]="Звичайно"
+PhysicsStringOptions[2]="Високо"
+
+RealtimeReflectionsStringOptions[0]="Вимкн."
+RealtimeReflectionsStringOptions[1]="Увімкн."
+
+AntiAliasingStringOptions[0]="Вимк."
+AntiAliasingStringOptions[1]="FXAA"
+
+BloomStringOptions[0]="Вимк."
+BloomStringOptions[1]="Низько"
+BloomStringOptions[2]="Високо"
+
+MotionBlurStringOptions[0]="Вимк."
+MotionBlurStringOptions[1]="Звичайно"
+MotionBlurStringOptions[2]="Високо"
+
+AmbientOcclusionStringOptions[0]="Вимк."
+AmbientOcclusionStringOptions[1]="SSAO"
+AmbientOcclusionStringOptions[2]="HBAO+"
+
+DepthOfFieldStringOptions[0]="Вимк."
+DepthOfFieldStringOptions[1]="SAT DOF"
+
+[KFGFxOptionsMenu_Graphics_DX10]
+AmbientOcclusionStringOptions_DX10[0]="Вимк."
+AmbientOcclusionStringOptions_DX10[1]="SSAO"
+
+[KFGFxOptionsMenu_Controls]
+TabStrings[0]="ВВІД"
+TabStrings[1]="НАЛАШТУВАННЯ КЛАВІШ"
+TabStrings[2]="КОНТРОЛЕРИ"
+HeaderText="ПАРАМЕТРИ КЕРУВАННЯ"
+
+[KFGFxOptionsMenu_GameSettings]
+SectionNameString="ПАРАМЕТРИ"
+GameSettingsString="НАЛАШТУВАННЯ ГРИ"
+FOVString="ПЗ"
+GoreString="Рівень насилля"
+ShowCrosshairString="Показати перехрестя"
+ClassicWeaponSelectString="Швидкий вибір зброї"
+GoreOptionStrings[0]="Без насилля"
+GoreOptionStrings[1]="Низька кількість"
+GoreOptionStrings[2]="Криваво"
+NormalString="Звичайні"
+WiderString="Ширше"
+FriendlyHudScaleString="Зручний масштаб інтерфейсу"
+
+[LocalizedControls]
+ControllerLayoutDefault="Default"
+ControllerLayoutJumper="Jumper"
+ControllerLayoutQuickDraw="Quick Draw"
+ControllerLayoutSouthPaw="South Paw"
+
+GBA_WeaponSelect_Gamepad="Меню вибору зброї (утримуйте)"
+GBA_Reload_Gamepad="Reload"
+GBA_StrafeLeft_Gamepad="Movement Control"
+GBA_MoveForward_Gamepad="Move Forward"
+GBA_Look_Gamepad="Look Control"
+GBA_Grenade_Gamepad="Throw Grenade"
+GBA_TurnLeft_Gamepad="Look Control"
+GBA_Look_Gamepad="Look Control"
+GBA_DPad_Left_Gamepad="Voice Comms"
+GBA_DPad_Up_Gamepad="Equip Healer"
+GBA_DPad_Right_Gamepad="Throw Dosh"
+GBA_DPad_Down_Gamepad="Toggle Flashlight"
+
+
+GBA_MoveForward="Рух уперед"
+GBA_StrafeLeft="Рух ліворуч"
+GBA_Backward="Рух назад"
+GBA_StrafeRight="Рух праворуч"
+GBA_Jump="Стрибок"
+GBA_Sprint="Біг"
+GBA_CrouchToggle="Присісти (переключіть)"
+GBA_CrouchHold="Присісти (утримуйте)"
+GBA_SprintAndCrouch="Скрадатися / бігти"
+GBA_SprintAndMelee="Melee / Sprint"
+GBA_ShowMenu="Toggle In Game Menu"
+
+GBA_Use="Застосувати / Швидке зварювання (утримуйте)"
+GBA_Talk="Говорити"
+GBA_TeamTalk="Team Talk"
+GBA_VoiceChat="Голосовий чат"
+GBA_PublicVoiceChat="Public Voice"
+GBA_ShowVoiceComms="Голосові команди"
+GBA_ShowScores="Показати таблицю результатів"
+GBA_TossMoney="Викинути лавандос"
+GBA_DropWeapon="Викинути зброю"
+
+GBA_Fire="Стріляти"
+GBA_IronSightsToggle="Механічний приціл (переключіть)"
+GBA_IronsightsHold="Механічний приціл (утримуйте)"
+GBA_Reload="Перезарядити"
+GBA_Grenade="Кинути гранату"
+GBA_QuickHeal="Швидке зцілення"
+GBA_SwitchFireMode="Дод. вогонь / блокувати"
+GBA_TertiaryFire="Рукопашний бій"
+GBA_ToggleFlashlight="Переключити ліхтарик"
+GBA_AltFire="Дод. вогонь / блокувати"
+
+GBA_WeaponSelect_Gamepad="Меню вибору зброї (утримуйте)"
+GBA_NextWeapon="Наступна зброя"
+GBA_PrevWeapon="Попередня зброя"
+GBA_LastWeapon="Остання використана зброя"
+GBA_SwitchWeapon1="Основна зброя"
+GBA_SwitchWeapon2="Допоміжна зброя"
+GBA_SwitchWeapon3="Зброя ближнього бою"
+GBA_SwitchWeapon4="Спорядження"
+GBA_VoteYes="Голосувати за (утримувати)"
+GBA_VoteNo="Голосувати проти (утримувати)"
+
+[KFGFxControlsContainer_Input]
+SensitivityString="Чутливість"
+InvertedString="Інверсія по Y"
+ControllerString="Контролер"
+ControllerSensitivityString="Чутливість огляду"
+MouseString="Миша"
+MouseSmoothingString="Згладжування миші"
+ZoomSensitivityString="Чутливість наближення"
+ControllerZoomSensitivityString="Чутливість наближення"
+AimAssistLockOnString="Aim Assist Zoom Lock-On"
+AimAssistRotationString="Aim Assist Rotation"
+AimAssistSlowDownString="Aim Assist Slowdown"
+ForceFeedbackString="Вібрація контролера"
+
+[KFGFxControlsContainer_Keybinding]
+SectionHeaders[0]="Переміщення"
+SectionHeaders[1]="Взаємодія"
+SectionHeaders[2]="Бій"
+SectionHeaders[3]="Вибір зброї"
+
+ResetString="СКИНУТИ ВСЕ"
+ApplyString="ЗАСТОСУВАТИ"
+PressKeyString="[НАТИСНІТЬ]"
+WarningString="ПОПЕРЕДЖЕННЯ"
+KeyAlreadyBoundString="Кнопка <%x%> вже прив’язана до:"
+RebindString="Прив’язати до:"
+ClearedString="(Попередня прив’язка буде скасована)"
+CancelString="СКАСУВАТИ"
+AcceptString="ПРИЙНЯТИ"
+IgnoredKeyString="може бути не прив’язано до ігнорованої клавіші"
+
+[KFGFxControlsContainer_ControllerPresets]
+MovementString="Контроль руху"
+LookString="Перегляд управління"
+WeaponSelectMenuString="Меню вибору зброї (утримуйте)"
+ShowScoardBoardString="Показати таблицю результатів"
+ShowIngameMenuString="Перемикання в ігровому меню"
+CurrentControllerPresetString="Current Controller Preset"
+
+BashString="Ударити"
+BlockString="Блокувати (утримувати)"
+HoldString="(Утримуйте)"
+
+[KFInventoryManager]
+FullHealthMsg="Повне здоров’я"
+
+[KFLocalMessage]
+SystemString="Система:"
+AdminString ="(Адміністратор)"
+LoggedInAsAdminString=" увійшов як адміністратор серверу"
+LoggedOutAsAdminString=" вийшов як адміністратор серверу"
+MustLoginToCheatString="Щоб увімкнути чіти, вам необхідно увійти."
+CheatsEnabledString=" увімкнув чіти. Статистику вимкнено до кінця цієї сесії."
+ServerMaintenanceString="Сервер буде вимкнено з технічних причин після завершення гри"
+KickVoteStartedString="Почалося голосування за вигнання:"
+KickVoteSucceededString="Результат голосування — вигнати гравця:"
+KickVoteFailedString="Голосуванням не вдалося вигнати:"
+KickVoteRejectedString="Минуло недостатньо часу від останнього невдалого голосування. Будь ласка, зачекайте, а тоді спробуйте знову."
+KickVoteInProgressString="Не можна розпочинати нове голосування, поки є активне."
+KickVoteDisabledString="Голосування за вигнання не доступне на цьому сервері"
+KickVoteYesReceivedString="Ви проголосували за вигнання:"
+KickVoteNoReceivedString="Ви проголосували, щоб не виганяти:"
+KickVoteKickAdminString="Ви не можете вигнати адміністратора сервера."
+KickVoteActiveTimeString="З початку гри пройшло занадто мало часу для запуску голосування."
+KickVoteMatchNotStartedString="Голосування не можна запустити до початку гри."
+KickVoteMaxKicksReachedString="Ви більше не можете запускати голосування в цій грі."
+KickVoteNotEnoughPlayersString="Недостатньо гравців для запуску голосування."
+KickVoteNoSpectatorsString="Глядачі не можуть запускати голосування."
+KickedFromServerString="Вас вигнали з сервара."
+BannedFromServerString="Вас вигнали з серверу. Ви не можете перезайти у цей момент."
+
+[KFLocalMessage_Game]
+ReceivedAmmoFromMessage="Ви отримали набої від"
+GaveAmmoToMessage="Ви передали набої до"
+PendingPerkChangesSet="Зміна навику відбудеться після завершення хвилі."
+PendingPerkChangesApplied="Навик змінено!"
+HealedByMessage="Вас вилікував"
+HealedMessage="Ви вилікували"
+YourselfString="самого себе."
+PickedupArmorMessage="Ви підібрали броню"
+FullArmorMessage="Ваша броня вже заповнена"
+PickupAmmoMessage="Ви підібрали набої"
+AmmoFullMessage="Your ammo is full"
+PickupWeaponAmmoMessage="Ви підібрали набої для %x%"
+AlreadyCarryingWeaponMessage="У вас вже є ця зброя"
+PickupMessage="Ви підібрали"
+TooMuchWeightMessage="Ця зброя занадто важка. Спробуйте скинути, або продати свою зброю."
+FailedDropInventoryMessage="Ви не можете викинути це тут"
+ReceivedGrenadesFromMessage="Ви отримали гранати від"
+GaveGrenadesToMessage="Ви передали гранати"
+SharingContentString="ділиться вмістом."
+HeadShotAddedString="%x влучань у голову — %y% дод. шкоди!"
+HeadShotMaxString="Headshot! %x% Extra Damage!"
+HeadShotResetString="Missed Headshot. Normal Damage!"
+
+SuicideMessage="прощається з життям…"
+KilledMessage="— з’їдено живцем"
+KillzedBy_PatriarchString=" can't hurt Kevin's children anymore"
+KillzedBy_HansString="— тіло забрали для проведення експериментів"
+KillzedBy_ZedCrawlerString="— повідкушувано щиколотки"
+KillzedBy_ZedBloatString=" тоне у виділеннях тіла"
+KillzedBy_ZedFleshpoundString=" — подрібнено на порох"
+KillzedBy_ZedGorefastString=" лишається без шкіри"
+KillzedBy_ZedHuskString=" спопеляється"
+KillzedBy_ZedScrakeString=" — порізано на шмаття"
+KillzedBy_ZedSirenString="лишається без вух — смертельно"
+KillzedBy_ZedStalkerString="навіть і не підозрював, що його чекало"
+KillzedBy_ZedClot_CystString=" зазнає приголомшливої смерті"
+KillzedBy_ZedClot_AlphaString=" — схоплено у непристойному місці"
+KillzedBy_ZedClot_SlasherString=" більше не любитиме криваві страшилки"
+
+FoundAMapCollectibleMessage="%x% знаходить %y%. %z%…"
+FoundAllMapCollectiblesMessage="Кожен %x% було знайдено!"
+MapCollectibleName="шмат лавандосу"
+
+[KFLocalMessage_Priority]
+WaveStartMessage="Х В И Л Я  Н А Б Л И Ж А Є Т Ь С Я"
+WaveEndMessage="Х В И Л Я З А В Е Р Ш Е Н А"
+GetToTraderMessage="Дійти до лавки торговки"
+YouLostMessage="П О Р А З К А"
+YouWonMessage="П Е Р Е М О Г А"
+SquadWipedOutMessage="Ваш загін був знищений"
+SquadSurvivedMessage="Ваш загін вижив"
+ObjectiveStartMessage="Місія розпочалася!"
+ObjectiveWonMessage="Ви виконали місію!"
+ObjectiveEndedMessage="Місія закінчилася!"
+ObjectiveLostMessage="Ви провалили місію!"
+ObjNotEnoughPlayersMessage="Недостатньо гравців!"
+ObjTimeRanOutMessage="Ваш час минув!"
+HumansLoseMessage="Humans squad wiped out!"
+HumansWinMessage="Humans squad survived!"
+AttackHumanPlayersString="Attack the Human Players!"
+ZedGroupRegroupingString="Zed Horde regrouping!"
+
+[KFLocalMessage_Interaction]
+UseTraderMessage="Натисніть <%x%> для обміну"
+UseDoorMessage="<%x%> Open/Close     (HOLD) <%x%> equip welder"
+UseDoorWeldedMessage="(HOLD) <%x%> equip welder"
+ZedUseDoorMessage="<%x%> Open/Close"
+ZedUseDoorWeldedMessage=""
+AcceptObjectiveMessage="Натисніть <%x%>, щоб прийняти завдання"
+ReceiveAmmoMessage="Натисніть <%x%>, щоб отримати боєприпаси від постачальника"
+ReceiveGrenadesMessage="Натисніть <%x%>, щоб отримати гранати від постачальника"
+HealSelfWarning="<%x%> лікувати себе."
+HealSelfGamepadWarning="(УТРИМУВАТИ) <%x%> самозцілення"
+PressToBashWarning="<%x%> відштовхнути"
+GamepadWeaponSelectHint="(УТРИМУВАТИ) <%x%> вибір зброї"
+PlayerClotGrabWarningMessage="Kill zed to break free!"
+
+[KFLocalMessage_ServerNotification]
+TeamPendingBalanceMessage="Teams are unbalanced and will be adjusted"
+
+[KFGfxPerkComp_Abilities]
+RankNames[0]="І ранг"
+RankNames[1]="ІІ ранг"
+RankNames[2]="III ранг"
+
+[KFPerk]
+SkillCatagories[0]=""
+SkillCatagories[1]=""
+SkillCatagories[2]=""
+SkillCatagories[3]=""
+SkillCatagories[4]=""
+
+LevelString="Рівень"
+
+SpecialAbilityName="Підпис"
+SpecialAbilityDescription=""
+
+Passives[0]=(Title="",Description="");
+Passives[1]=(Title="",Description="");
+Passives[2]=(Title="",Description="");
+Passives[3]=(Title="",Description="");
+Passives[4]=(Title="",Description="");
+
+SkillSlots0[0]=(Title="",Description="")
+SkillSlots0[1]=(Title="",Description="")
+
+SkillSlots1[0]=(Title="",Description="")
+SkillSlots1[1]=(Title="",Description="")
+
+SkillSlots2[0]=(Title="",Description="")
+SkillSlots2[1]=(Title="",Description="")
+
+SkillSlots3[0]=(Title="",Description="")
+SkillSlots3[1]=(Title="",Description="")
+
+SkillSlots4[0]=(Title="",Description="")
+SkillSlots4[1]=(Title="",Description="")
+
+WeaponDroppedMessage="Ви викинули%%%% через зміну максимальної ваги!"
+
+[KFPerk_Berserker]
+PerkName="Берсерк"
+
+SkillCatagories[0]="Опір"
+SkillCatagories[1]="Виживання"
+SkillCatagories[2]="Ближній бій"
+SkillCatagories[3]="Потужність"
+SkillCatagories[4]="Посилене тренування"
+
+Passives[0]=(Title="Шкода від зброї Перків",Description="Втрати від зброї Берсерка підвищується на 25% і на x%x з кожним рівнем");
+Passives[1]=(Title="Швидкість рукопашної атаки",Description="Швидкість атаки ближнього бою підвищується на x%x з кожним рівнем");
+Passives[2]=(Title="Швидкість руху",Description="Швидкість руху зі зброєю ближнього бою підвищується на 10% і на x%x з кожним рівнем");
+Passives[3]=(Title="Опір шкоді",Description="Вхідна шкода знижена на %x%");
+Passives[4]=(Title="Нічне бачення",Description="Ліхтарики і прилад нічного бачення")
+Passives[5]=(Title="Опір захопленню зомбі",Description=" Зомбі не можуть втримати Берсеркера.")
+
+EXPAction1="Нанесення шкоди зброєю Берсеркера"
+EXPAction2="Вбивство Зедів поруч з гравцем зброєю Перків"
+
+PoisonResistance="Опір отруті"
+PoisonResistanceDescription="Плював я на вашу отруту: Зменшення шкоди, одержуваної вами від отрути на 40%."
+
+SonicResistance="Опір звуку"
+SonicResistanceDescription="Не чую! Зменшення шкоди, одержуваної вами від звукових атак на 40%"
+
+Vampire="Вампір"
+VampireDescription="Little suckers: Horzine nano-tech sucks 4 points of life from every Zed you kill with a Berserker weapon attack and applies it to you."
+
+Fortitude="Стійкість"
+FortitudeDescription="Збільшіть свої шанси: Збільшіть максимальне і початкове здоров’я на 100%."
+
+FuriousDefender="Лютий захисник"
+FuriousDefenderDescription="Недаремно вас називають Берсерком: Берсеркові атаки ближнього бою на 10% швидші, і всі атаки завдають на 20% більше шкоди."
+
+Block="Блокування"
+BlockDescription="Майстер своєї справи! Блокування атаки змусить вашу наступну атаку Берсерка ближнього бою нанести на 50% більше шкоди."
+
+Parry="Parry"
+ParryDescription="Навик і сила в одному флаконі: Відбиті атаки збільшуть швидкість атаки в ближньому бою на 15% і шкоду легких атак на 30% протягом 4 секунд."
+
+Smash="Нищівний удар"
+SmashDescription="Brute force it: Hard hits do 25% more damage AND hard hits to the head have a high chance to knock big Zeds down."
+
+Spartan="ZED TIME - Spartan"
+SpartanDescription="You've seen 300: Move in real-time, increase attack speed with Berserker melee weapons by 70% and any Parry will cause knockdown."
+
+Menace="ZED TIME - Menace"
+MenaceDescription="Get really dangerous: Move in real-time, Berserker melee weapons' Stun power increased 100% to head hits and Stumble power increased by 100%."
+
+[KFPerk_Commando]
+PerkName="Коммандо"
+
+SkillCatagories[0]="Supply"
+SkillCatagories[1]="Weapon Handling"
+SkillCatagories[2]="Awareness"
+SkillCatagories[3]="Спеціаліст по зброї"
+SkillCatagories[4]="Посилене тренування"
+
+Passives[0]=(Title="Шкода від зброї Перків",Description="Шкода від зброї Командоса збільшується на %x%.");
+Passives[1]=(Title="Розпізнавання замаскованого ворога",Description="Розпізнавання замаскованого ворога збільшено на %x%");
+Passives[2]=(Title="Health Bar Detection",Description="Health bar detection increased by %x%");
+Passives[3]=(Title="Zed Time Extension",Description="Zed time lasts %x%");
+Passives[4]=(Title="Health Increase",Description="Health increased by %x%");
+Passives[5]=(Title="Нічне бачення",Description="Ліхтарики і прилад нічного бачення");
+
+EXPAction1="Нанесення шкоди зброєю Командоса"
+EXPAction2="Вбивство Сталкерів за допомогою зброї Командоса"
+
+LargeMags="Великі магазини"
+LargeMagsDescription="Серйозніше треба. Збільшення місткості магазину зброї Командос на 50%."
+
+Backup="Про запас"
+BackupDescription="Підвищіть шкоду пістолета і ножа на 60% - коли-небудь обов’язково знадобиться!"
+
+Impact="Вплив"
+ImpactDescription="Pack more punch and knock 'em down. Increase your chance to stumble a Zed by 30% with all Commando weapons."
+
+TacticalReload="Tactical Reload"
+TacticalReloadDescription="Be cool. Be quick. Reload faster with perk weapons AND look more elite while you're at it."
+
+Leadership="Лідерство"
+LeadershipDescription="Your leadership calms and soothes your team-mates, making them more efficient. Team-mates reload 10% faster."
+
+CallOut="Call Out"
+CallOutDescription="Give team-mates the ability to see cloaked enemies as well as you can. They'll thank you for it AND you get the same XP as they do for the kills!"
+
+SingleFire="Single Fire"
+SingleFireDescription="Reward careful shooting! Give your Commando weapons 20% more damage when in Single Shot mode."
+
+Autofire="Автоматична стрільба"
+AutofireDescription="Why be subtle? Do 20% more damage with Commando weapons using Full Auto or Burst fire modes."
+
+RapidFire="ZED TIME - Rapid Fire"
+RapidFireDescription="When the world slows down, do more hurt: Do 3% more damage with Commando weapons and shoot 3 times faster with all guns."
+
+Professional="ZED TIME - Professional"
+ProfessionalDescription="When the world slows down, you don't. Reload weapons at full speed - switch weapons twice as fast!"
+
+[KFPerk_Demolitionist]
+PerkName="Підривник"
+EXPAction1="Dealing Demolitionist weapon damage"
+EXPAction2="Killing Fleshpounds with Demolitionist weapons"
+
+SkillCatagories[0]="Прийом"
+SkillCatagories[1]="Resistance"
+SkillCatagories[2]="Розширені прийоми"
+SkillCatagories[3]="Weapon Techniques"
+SkillCatagories[4]="Покращене володіння вибухівкою"
+
+Passives[0]=(Title="Perk Weapon Damage",Description="Perk weapon damage increased by %x%");
+Passives[1]=(Title="Explosive Resistance",Description="%x% resistance to explosive damage");
+Passives[2]=(Title="Extra Explosive Ammo",Description="%x% more starting explosive ammo");
+
+GrenadeSupplier="Grenade Supplier"
+GrenadeSupplierDescription="They'll love you for it: Team-mates can get an extra grenade from you, once per wave."
+
+OnContact="On Contact"
+OnContactDescription="In your face, pal: your dynamite sticks will blow up when they make contact with a Zed."
+
+ExplosiveResistance="Explosive Resistance"
+ExplosiveResistanceDescription="Toughen up the team: Reduce damage taken by you by 30% - and your team-mates, if they are close enough!"
+
+Sacrifice="Reactive Armor"
+SacrificeDescription="Be the bomb: Once per wave, a blow that should kill causes an explosion, damaging Zeds around you and leaving you with just 5 health."
+
+DoorTraps="Door Traps"
+DoorTrapsDescription="Blow that door: You weld 30% slower, but doors you weld explode when broken down. The more you weld of the door, the bigger the explosion."
+
+SirenResistance="Siren Resistance"
+SirenResistanceDescription="Shut your mouth, Zed: Your grenades have a 100% chance of getting past sonic damage and actually exploding."
+
+OffPerk="Вимк. перк"
+OffPerkDescription="Off again: Do 10% extra damage with any Off-Perk weapon."
+
+OnPerk="On Perk"
+OnPerkDescription="On again: Increase all reaction, stumble and knockdown power by 30% for Demo weapons."
+
+Nuke="ZED TIME - Nuke"
+NukeDescription="Nukem: Your explosives dish out massive radiation damage in Zed Time, poisoning Zeds."
+
+ConcussiveForce="ZED TIME - Concussive Force"
+ConcussiveForceDescription="Bowl them over: Your explosions have massive knockdown force against Zeds in Zed Time."
+
+
+[KFPerk_FieldMedic]
+PerkName="Польовий медик"
+
+SkillCatagories[0]="Conditioning"
+SkillCatagories[1]="Медтехнік"
+SkillCatagories[2]="Weapon Handling"
+SkillCatagories[3]="Combat Technician"
+SkillCatagories[4]="Посилене тренування"
+
+Passives[0]=(Title="Syringe Recharge Rate",Description="%x% increase in weapon damage");
+Passives[1]=(Title="Syringe Potency",Description="Cloaked detection increased by %x%");
+Passives[2]=(Title="Bloat Bile Resistance",Description="Health bar detection increased by %x%");
+Passives[3]=(Title="Movement Speed",Description="Zed time lasts %x%");
+Passives[4]=(Title="Armor Bonus",Description="Health increased by %x%");
+
+HealingSurge="Healing Surge"
+HealingSurgeDescription="Put that Medic knowledge to proper use: Increase Health by 20%."
+
+Enforcer="Enforcer"
+EnforcerDescription="Enough focus on caring: Increase your starting ammo capacity by 20% for your Perk and Backup weapons."
+
+Combatant="Combatant"
+CombatantDescription="Don't just be a Medic - be the Combat Medic you always wanted to be with free, starting body armor & a 60% discount on all armor purchases!"
+
+Armament="Armament"
+ArmamentDescription="Don't just repair people: Lose 25% of your healing effectiveness on teammates, but repair 1% of their max body armor each time, instead!"
+
+Regeneration="Regeneration"
+RegenerationDescription="Dose yourself up: Your health regenerates slowly over time, thanks to Horzine nano-bots."
+
+Lacerate="Lacerate"
+LacerateDescription="Watch it with that scalpel: You cause Zeds to bleed more after damage with all Perk weapons."
+
+VaccinationArmor="Vaccination"
+VaccinationArmorDescription="Help prevent the spread of death: Your healing grants 2% of max armor as a repair to teammates, plus temporary resistance to Bloat Bile."
+
+VaccinationDamageMod="Acidic Compound"
+VaccinationDamageModDescription="A healer to some... death to others! Your healing darts can poison Zeds; cause enough damage and your grenades and darts cause Zeds to panic as well."
+
+AirborneAgent="ZED TIME - Airborne Agent"
+AirborneAgentDescription="They say time heals: Your medic darts will form a healing cloud for your target and nearby friends to get 20% extra healing."
+
+Sedative="ZED TIME - Sedative"
+SedativeDescription="And time stands still: Medic darts and grenades release a Zed-Sedative that can temporarily stop Zed movement."
+
+
+EXPAction1="Dealing Medic weapon damage"
+EXPAction2="Healing team-mates"
+
+[KFPerk_Firebug]
+PerkName="Палій"
+EXPAction1="Dealing Firebug weapon damage"
+EXPAction2="Killing Crawlers with Firebug weapons"
+
+SkillCatagories[0]="Supplies"
+SkillCatagories[1]="Spicy"
+SkillCatagories[2]="Burn"
+SkillCatagories[3]="Flame"
+SkillCatagories[4]="Посилене тренування"
+
+Passives[0]=(Title="Ураження від зброї навиків",Description="Ураження від зброї навиків збільшено до %x%");
+Passives[1]=(Title="Перезарядження зброї навиків",Description="Швидкість перезарядження зброї навиків збільшено до %x%");
+Passives[2]=(Title="Опір ушкодженню вогнем від зедів",Description="Опір ушкодження вогнем %x%");
+Passives[3]=(Title="Імунітет до свого вогню",Description="Імунітет до ушкодження від власного вогню %x%");
+Passives[4]=(Title="Початкові набої",Description="Початковий комплект збільшено до %x%");
+
+FullyStocked="Fully Stocked"
+FullyStockedDescription="What it says on the can: Firebug weapons start at maximum ammo capacity at the Trader."
+
+FlarotovCoctail="Коктель Фларотова"
+FlarotovCoctailDescription="It's in the name: Shove a Flare in your Molotov Cocktail - you get a Flare that lights up the environment for 30 seconds AND your flame burns for twice as long."
+
+Fuse="Fuse"
+FuseDescription="A nice slow-burner: Firebug weapons burn effect lingers 70% longer adding to damage over time."
+
+HeatWave="Heat Wave"
+HeatWaveDescription="Like a Georgia summer: Enemies struck at point blank range with Fire will stumble back."
+
+ZedShrapnel="Zed Shrapnel"
+ZedShrapnelDescription="Zed goes BOOM: Any zed killed by Fire weapons has a 30% chance to explode, causing damage to nearby Zeds."
+
+Napalm="Zed Napalm"
+NapalmDescription="Zed on FIRE: Zeds that are burning will set other zeds on fire when they make contact with them."
+
+Range="Range"
+RangeDescription="Increase range of all Fire weapons. Go on - you know you want to."
+
+SplashDamage="Splash Damage"
+SplashDamageDescription="Or increase the splash damage of Fire weapon impacts. Decisions, decisions!"
+
+Combustion="ZED TIME - Combustion"
+CombustionDescription="Shrapnel + Napalm = Combustion. Sort of. Any zed that dies from your Fire weapons in Zed Time will explode into a fireball setting anything in the explosion on fire."
+
+Scorch="ZED TIME - Scorch"
+ScorchDescription="You're on fire! Well, not literally. Perk weapons used in Zed Time will fire close to real-time speed."
+
+[KFPerk_Gunslinger]
+PerkName="Стрілець"
+EXPAction1="Dealing Gunslinger weapon damage"
+EXPAction2="Head shots with Gunslinger weapons"
+
+SkillCatagories[0]="Прийом"
+SkillCatagories[1]="Вміння"
+SkillCatagories[2]="Розширені прийоми"
+SkillCatagories[3]="Критичні влучення"
+SkillCatagories[4]="Майстерні прийоми"
+
+Passives[0]=(Title="Perk Weapon Damage",Description="Perk weapon damage increased by %x%");
+Passives[1]=(Title="Bullet Resistance",Description="Resistance to projectile damage increased by %x%");
+Passives[2]=(Title="Швидкість руху",Description="Швидкість руху збільшена на %x%");
+Passives[3]=(Title="Віддача",Description="%x% менше віддачі");
+
+ShootnMove="Біжи і стріляй"
+ShootnMoveDescription="Не дайте з’їсти себе заживо: рухайтеся на 50% швидше під час прицілювання зі зменшеним коливанням зброї."
+
+QuickSwitch="Quick Draw"
+QuickSwitchDescription="You know it: 50% faster weapon switch - and, if you keep firing when you are out of ammo, quick draw spare pistols."
+
+RhythmMethod="Rack 'em Up"
+RhythmMethodDescription="Rack up the headshots: each consecutive headshot increases damage by 10% up to 70% with Gunslinger weapons."
+
+BoneBreaker="Костолом"
+BoneBreakerDescription="Не рахуй їм кістки, а ламай їх: наноси на 20% більше шкоди зі зброї Досвідченого Стрілка."
+
+SpeedReload="Speed-loader"
+SpeedReloadDescription="Крутіше, швидше, смертельніше: перезаряжайтеся на 20% швидше зброєю стрілка та виглядайте крутіше."
+
+Penetration="Проникнення"
+PenetrationDescription="Одним пострілом двох Зедів: пробивайте додаткового Зеда кожним пострілом."
+
+CenterMass="Центр маси"
+CenterMassDescription="Якщо ви цілитеся в центр маси... постріли в корпус мають на 30% більше зупиняючого ефекту."
+
+LimbShots="Стрілянина по ногах"
+LimbShotsDescription="Стріляйте по ногах... постріли в ноги збивають Зедів на 30% краще, якщо ті біжать."
+
+Fanfare="ZED TIME - Fanfire"
+FanfareDescription="Fanfire with fanfare: shoot 3x faster with Gunslinger weapons in Zed time."
+
+UberAmmo="ZED TIME - Uber Ammo"
+UberAmmoDescription="Uber it up: you can’t run out of ammo with Gunslinger weapons during Zed time."
+
+[KFPerk_MartialArtist]
+PerkName="Майстер бойових мистецтв"
+
+[KFPerk_Sharpshooter]
+PerkName="Sharpshooter"
+
+[KFPerk_Support]
+PerkName="Підтримка"
+
+SkillCatagories[0]="Supply"
+SkillCatagories[1]="Fitness"
+SkillCatagories[2]="Постачання"
+SkillCatagories[3]="Витривалість"
+SkillCatagories[4]="Додаткове тренування"
+
+Passives[0]=(Title="Навик зварювання",Description="Швидкість зварювання збільшено на %x%");
+Passives[1]=(Title="Perk Weapon Damage",Description="Perk weapon damage increased by %x%");
+Passives[2]=(Title="Perk Weapon Penetration",Description="Every level, Perk weapons gain %x% increased penetration power");
+Passives[3]=(Title="Ураження від гранати",Description="Ураження від гранати збільшено на %x%");
+Passives[4]=(Title="",Description="");
+
+;Passives[0]=(Title="Навик зварювання",Description="Швидкість зварювання збільшено на 2% (Макс. 50%")");
+;Passives[1]=(Title="Ураження від рушниці",Description="Ураження від рушниці збільшено на 2% (Макс. 50%")");
+;Passives[2]=(Title="Shotgun Penetration",Description="Every level, shotguns gain 25% increased penetration power");
+;Passives[3]=(Title="Ураження від гранати",Description="Ураження від гранати збільшено на 2% (Макс. 50%")");
+;Passives[4]=(Title="",Description="");
+
+EXPAction1="Нанесення шкоди зброєю підтримки"
+EXPAction2="Зварювання дверей"
+
+Ammo="Набої"
+AmmoDescription="Пора братися до справи серйозно: збільшіть початкову кількість набоїв на 20%."
+
+Supplier="Постачальник"
+SupplierDescription="Будьте улюбленцем усіх: Носіть з собою рюкзак, з якого гравці можуть отримати боєприпаси раз за хвилю."
+
+Fortitude="Стійкість"
+FortitudeDescription="Збільшіть свої шанси: Збільшіть своє здоров’я на 50%."
+
+Regeneration="Регенерація"
+RegenerationDescription="Залиште медиків без роботи: ваше здоров’я регенерується повільно протягом певного часу, дякуючи нано-ботам Горизонта."
+
+Bombard="Бомбардування"
+BombardDescription="Put some power into it: Increase your chance of causing a specimen to stumble by 60% with ranged Support weapons."
+
+TacticalReload="Тактична перезарядка"
+TacticalReloadDescription="Be cool. Be quick. Reload faster with perk weapons AND look more elite while you're at it."
+
+Strength="Сила"
+StrengthDescription="Get down to the gym. Bulk up and increase your carrying capacity by 5."
+
+Tenacity="Завзятість"
+TenacityDescription="Spend the time to improve and do 10% more damage with Support weapons."
+
+Safeguard="ZED TIME - Safeguard"
+SafeguardDescription="Wade right in with 5% improved armor for you AND your nearby friends!"
+
+Barrage="ZED TIME - Barrage"
+BarrageDescription="Make the most of the time with a 15% increase to all damage for you AND your friends nearby!"
+
+[KFPerk_Sharpshooter]
+PerkName="Sharpshooter"
+
+[KFPerk_SWAT]
+PerkName="SWAT"
+
+[Fonts]
+Bicubik="Bicubik"
+
+[KFObjective]
+ObjectiveDifficulties[0]="ЛЕГКИЙ РІВЕНЬ"
+ObjectiveDifficulties[1]="СЕРЕДНІЙ РІВЕНЬ"
+ObjectiveDifficulties[2]="СКЛАДНИЙ РІВЕНЬ"
+ObjectiveStartTitle="Follow the trail to the start location"
+ObjectiveWaitingString="ОЧІКУЄМО НА ГРАВЦІВ!"
+ObjectiveWonString="ГОТОВО!"
+ObjectiveFailedString="НЕВДАЧА!"
+ObjectiveEndedString="ЗАВЕРШЕНО!"
+ObjectiveFailReasons[0]="ЛІМІТ ЧАСУ ВИЙШОВ!"
+ObjectiveFailReasons[1]="КОМАНДА ЗНИЩЕНА"
+ObjectiveFailReasons[2]="ГРАВЕЦЬ З НИЗЬКИМ РІВНЕМ ЗДОРОВ’ЯМ ЗАГИНУВ"
+ObjectiveFailReasons[3]="ХВИЛЯ ЗАКІНЧИЛАСЯ"
+ObjectiveFailReasons[4]="МІСІЯ ЗАВЕРШЕНА"
+ObjectiveFailReasons[5]="НЕ ЛИШИЛОСЯ ГРАВЦІВ З МАЛОЮ КІЛЬКІСТЮ ГРОШЕЙ"
+ObjectiveFailReasons[6]="НЕДОСТАТНЬО ГРАВЦІВ!"
+ObjectiveXPString="ОЧ. ДОСВІДУ:"
+ObjectiveTimeLimitString="ЛІМІТ ЧАСУ:"
+ObjectiveTimeUnit="с"
+ObjectiveStatusString="СТАТУС МІСІЇ"
+
+[KFObj_Wave]
+ObjectiveAvailableString="ЗАВДАННЯ ДОСТУПНЕ"
+
+[KFObj_Wave_Defend]
+ObjectiveTypeString="ЗАХИСТ"
+ObjectiveTargetTitle="Забезпечити захист від віруса!"
+ObjectiveStatusTitle="СТАН ЗАВАНТАЖЕННЯ ПОСИЛАННЯ"
+
+[KFObj_Coop_Healer]
+ObjectiveTypeString="ЦІЛИТЕЛЬ"
+ObjectiveTargetTitle="ЛІКУВАТИ ГРАВЦЯ З НИЗЬКИМ ЗАПАСОМ ЗДОРОВ’Я"
+ObjectiveStatusTitle="ГРАВЦЯ ВИЛІКУВАНО"
+ObjectiveTimeString="s LEFT"
+
+[KFObj_Coop_PayDay]
+ObjectiveTypeString="ДЕНЬ РОЗПЛАТИ"
+ObjectiveTargetTitle="ДАТИ ВІДРОЖЕНИМ ГРАВЦЯМ ЛАВАНДОС"
+ObjectiveStatusTitle="ПОВЕРНУТИ 30% ГОТІВКИ"
+ObjectiveTimeString="s LEFT"
+
+[KFGameViewportClient]
+RandomLoadingStrings[0]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 0"
+RandomLoadingStrings[1]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 1"
+RandomLoadingStrings[2]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 2"
+RandomLoadingStrings[3]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 3"
+RandomLoadingStrings[4]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 4"
+RandomLoadingStrings[5]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 5"
+
+[Zeds]
+KFPawn_ZedBloat="Товстун"
+KFPawn_ZedClot="Clot"
+KFPawn_ZedCrawler="Плазун"
+KFPawn_ZedFleshPound="Fleshpound"
+KFPawn_ZedGorefast="Gorefast"
+KFPawn_ZedHans="Доктор Ганс Вольтер"
+KFPawn_ZedHusk="Husk"
+KFPawn_ZedStalker="Stalker"
+KFPawn_ZedClot_Cyst="Cyst"
+KFPawn_ZedClot_Slasher="Slasher"
+KFPawn_ZedClot_Alpha="Alpha Clot"
+KFPawn_ZedScrake="Scrake"
+KFPawn_ZedSiren="Siren"
+KFPawn_ZedPatriarch="Patriarch"
+
+[ZedMoves]
+Melee="Melee"
+Rally="Rally"
+Grab="Grab"
+Light="Light"
+Heavy="Heavy"
+Spin="Spin"
+Evade="Evade"
+Jump="Jump"
+Puke="Puke"
+Mine="Mine"
+Bite="Bite"
+Scream="Scream"
+Vortex="Vortex"
+Shoot="Shoot"
+Flame="Flame"
+Suicide="Suicide"
+Rage="Rage"
+Minigun="Minigun"
+Rocket="Rocket"
+Mortar="Mortar"
+Heal="Heal"
+
+[Keybinds]
+CtrlCombo="Ctrl + "
+ShiftCombo="Shift + "
+AltCombo="Alt + "
+LeftMouseButton="Лівий потиск"
+MiddleMouseButton="Середній потиск"
+RightMouseBUtton="ПКМ"
+ThumbMouseButton1="Дод. кнопка миші 1"
+ThumbMouseButton2="Дод. кнопка миші 2"
+MouseScrollDown="Колесо миші вниз"
+MouseScrollUp="Колесо миші вгору"
+CapsLock="Caps Lock"
+Tab="Tab"
+BackSpace="Backspace"
+SpaceBar="Пробіл"
+LeftShift="Лівий Shift"
+RightSift="Правий Shift"
+LeftCtrl="Лівий Ctrl"
+RightCtrl="Правий Ctrl"
+LeftAlt="Лівий Alt"
+RightAlt="Правий Alt"
+BackSlash="\\ "
+Slash="/"
+RightBracket="]"
+LeftBracket="["
+Quote="'"
+SemiColon=";"
+Period="."
+Comma=","
+Subtract="-"
+Add="+"
+Equals="="
+Multiply="*"
+Divide="Num Pad /"
+Underscore="-"
+NumPadZero=""
+NumPadOne="1"
+NumPadTwo="2"
+NumPadThree="3"
+NumPadFour="4"
+NumPadFive="5"
+NumPadSix="6"
+NumPadSeven="7"
+NumPadEight="8"
+NumPadNine="9"
+Decimal="Num Pad ."
+NumLock="Num Lock"
+PageUp="Page Up"
+PageDown="Page Down"
+Home="Home"
+End="End"
+Insert="Insert"
+Delete="Delete"
+Up="Up"
+Down="Down"
+Left="Left"
+Right="Right"
+ScrollLock="Scroll Lock"
+Pause="Pause"
+Enter="Enter"
+one="1"
+two="2"
+three="3"
+four="4"
+five="5"
+six="6"
+seven="7"
+eight="8"
+nine="9"
+zero=""
+
+[SharedUnlocks]
+KFWeap_Zweihander="Акція «Лицарство»"
+
+SharedUnlocks
+Source0="Акція «Лицарство»"
+;============================================
+; Map Localization
+;============================================
+[KF-BioticsLab KFMapSummary]
+DisplayName="Біолабораторія"
+
+[KF-Outpost KFMapSummary]
+DisplayName="Форпост"
+
+[KF-BurningParis KFMapSummary]
+DisplayName="Burning Paris"
+
+[Survival KFGameInfoSummary]
+GameName="Виживання"
+
+[KF-VolterManor KFMapSummary]
+DisplayName="Маєток Вольтера"
+
+[KF-Catacombs KFMapSummary]
+DisplayName="Катакомби"
+
+[KF-EvacuationPoint KFMapSummary]
+DisplayName="Точка евакуації"
+
+[KF-Farmhouse KFMapSummary]
+DisplayName="Садиба"
+
+[KF-BlackForest KFMapSummary]
+DisplayName="Чорний ліс"
+
+[KF-Prison KFMapSummary]
+DisplayName="Prison"
+
+[KFMapInfo]
+; defaults
+FoundCollectibleString="%x% found a collectible. %y% left to find..."
+FoundAllCollectiblesString="Every collectible has been found!"

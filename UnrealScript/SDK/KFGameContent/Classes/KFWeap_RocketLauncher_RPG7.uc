@@ -122,7 +122,6 @@ defaultproperties
 
 	// Zooming/Position
 	PlayerViewOffset=(X=10.0,Y=10,Z=-2)
-	ForceZoomOutTime=0.3
 	FastZoomOutTime=0.2
 
 	Begin Object Name=FirstPersonMesh
@@ -168,7 +167,7 @@ defaultproperties
 
 	// DEFAULT_FIREMODE
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'UI_FireModes_TEX.UI_FireModeSelect_Rocket'
-	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
+	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFireAndReload
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Custom
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Rocket_RPG7'
 	FireInterval(DEFAULT_FIREMODE)=+0.25

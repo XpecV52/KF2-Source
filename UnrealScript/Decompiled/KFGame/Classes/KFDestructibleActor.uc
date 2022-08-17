@@ -646,7 +646,7 @@ function AdjustDamage(out int InDamage, Controller EventInstigator, class<Damage
                 return;
             }
         }
-        if(bIgnorePlayerDamage && EventInstigator.bIsPlayer)
+        if((bIgnorePlayerDamage && EventInstigator.bIsPlayer) && EventInstigator.GetTeamNum() == 0)
         {
             InDamage = 0;
             return;
@@ -730,7 +730,7 @@ event Bump(Actor Other, PrimitiveComponent OtherComp, Vector HitNormal)
         }
         LastBumpCheckTime = WorldInfo.TimeSeconds;
         P = KFPawn_Monster(Other);
-        if(((P != none) && !P.IsHumanControlled()) && P.MyKFAIC != none)
+        if(((P != none) && P.Controller != none) && P.GetTeamNum() == 255)
         {
             TakeDamage(0, P.Controller, P.Location, vect(0, 0, 0), P.BumpDamageType,, P);
         }

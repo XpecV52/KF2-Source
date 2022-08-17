@@ -11,7 +11,7 @@ class KFWeap_ScopedBase extends KFWeapon
 	abstract;
 
 /** component that renders the scene to a texture */
-var(Scope) const SceneCapture2DComponent SceneCapture;
+var(Scope) const TWSceneCapture2DDPGComponent SceneCapture;
 
 /** Ratio of the scope texture relative to screen resolution (Should be between 0.0-1.0) */
 var (Scope) float ScopeTextureScale;
@@ -42,6 +42,45 @@ var MaterialInstanceConstant ScopeLenseMIC;
 var int CurrentScopeTextureSize;
 
 var(Scope) float ScopedSensitivityMod;
+
+
+simulated exec function ScopeFOV( float NewFOV )
+{
+//SetCaptureParameters( optional TextureRenderTarget2D NewTextureTarget = TextureTarget,
+//							optional float NewFOV = FieldOfView, optional float NewNearPlane = NearPlane,
+//							optional float NewFarPlane = FarPlane );
+    SceneCapture.SetCaptureParameters(,NewFOV);
+}
+
+/** Returns trader filter index based on weapon type (copied from riflebase) */
+static simulated event EFilterTypeUI GetTraderFilter()
+{
+    if( default.FiringStatesArray[DEFAULT_FIREMODE] == 'WeaponFiring' || default.FiringStatesArray[DEFAULT_FIREMODE] == 'WeaponBurstFiring' )
+    {
+        return FT_Assault;
+    }
+    else // if( FiringStatesArray[DEFAULT_FIREMODE] == 'WeaponSingleFiring')
+    {
+        return FT_Rifle;
+    }
+}
+
+/**
+ * See Pawn.ProcessInstantHit
+ * @param DamageReduction: Custom KF parameter to handle penetration damage reduction
+ */
+simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optional int NumHits, optional out float out_PenetrationVal, optional int ImpactNum )
+{
+    local KFPerk InstigatorPerk;
+
+    InstigatorPerk = GetPerk();
+    if( InstigatorPerk != none )
+    {
+        InstigatorPerk.UpdatePerkHeadShots( Impact, InstantHitDamageTypes[FiringMode], ImpactNum );
+    }
+
+    super.ProcessInstantHitEx( FiringMode, Impact, NumHits, out_PenetrationVal, ImpactNum );
+}
 
 /**
  * Initialize the FOV settings for this weapon, adjusting for aspect ratio
@@ -180,7 +219,7 @@ simulated event Tick(float DeltaTime)
 
     if( Instigator != none && Instigator.Controller != none && Instigator.IsHumanControlled() )
     {
-        if( bZoomingOut && ZoomStartOffset!=IronSightPosition )
+        if( bZoomingOut )
         {
             InterpValue = ZoomTime/default.ZoomOutTime;
             ScopeLenseMIC.SetScalarParameterValue(InterpParamName, InterpValue);
@@ -232,6 +271,8 @@ simulated function ZoomIn(bool bAnimateTransition, float ZoomTimeToGo)
         SceneCapture.bEnabled=true;
         SceneCapture.SetFrameRate(SceneCapture.default.FrameRate);
     }
+
+    ClearTimer(nameof(ZoomOutFastFinished));
 }
 
 /**
@@ -243,26 +284,47 @@ simulated function ZoomIn(bool bAnimateTransition, float ZoomTimeToGo)
 simulated function ZoomOut(bool bAnimateTransition, float ZoomTimeToGo)
 {
     super.ZoomOut(bAnimateTransition, ZoomTimeToGo);
-    if( SceneCapture != none && Instigator != none && !Instigator.PlayerReplicationInfo.bBot )
+
+    if( !bAnimateTransition )
     {
-        SceneCapture.bEnabled=false;
-        SceneCapture.SetFrameRate(0.0);
+        SetTimer(ZoomTimeToGo + 0.01,false,nameof(ZoomOutFastFinished));
+    }
+    else
+    {
+        if( SceneCapture != none && Instigator != none && !Instigator.PlayerReplicationInfo.bBot )
+        {
+            SceneCapture.bEnabled=false;
+            SceneCapture.SetFrameRate(0.0);
+        }
+    }
+}
+
+/**
+ * Handles zoom out cleanup/finish after a "quick" zoom out, which doesn't normally do notifies
+ */
+simulated function ZoomOutFastFinished()
+{
+    // Finish blacking out the lense when the fast zoom out finishes
+    if( ScopeLenseMIC != none )
+    {
+        ScopeLenseMIC.SetScalarParameterValue(InterpParamName, 0.0);
     }
 }
 
 defaultproperties
 {
-   Begin Object Class=SceneCapture2DComponent Name=SceneCapture2DComponent0
+   Begin Object Class=TWSceneCapture2DDPGComponent Name=SceneCapture2DComponent0
+      bRenderForegroundDPG=False
       FieldOfView=6.000000
       NearPlane=10.000000
-      FarPlane=1000000000.000000
+      FarPlane=0.000000
       bUpdateMatrices=False
       bEnabled=False
       bEnableFog=True
       ViewMode=SceneCapView_Lit
       FrameRate=60.000000
       Name="SceneCapture2DComponent0"
-      ObjectArchetype=SceneCapture2DComponent'Engine.Default__SceneCapture2DComponent'
+      ObjectArchetype=TWSceneCapture2DDPGComponent'Engine.Default__TWSceneCapture2DDPGComponent'
    End Object
    SceneCapture=SceneCapture2DComponent0
    ScopeTextureScale=0.500000

@@ -236,69 +236,23 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
     }
 }
 
-simulated function ProcessBulletTouch(Actor Other, Vector HitLocation, Vector HitNormal)
+simulated function bool TraceProjHitZones(Pawn P, Vector EndTrace, Vector StartTrace, out array<ImpactInfo> out_Hits)
 {
-    local Pawn Victim;
-    local array<ImpactInfo> HitZoneImpactList;
-    local Vector StartTrace, EndTrace, Direction;
-    local TraceHitInfo HitInfo;
-    local Vector ClosestHit;
+    local Vector ClosestHit, Direction;
 
-    if(WorldInfo.NetMode != NM_DedicatedServer)
+    super.TraceProjHitZones(P, EndTrace, StartTrace, out_Hits);
+    if(bDud && out_Hits.Length == 0)
     {
-        KFImpactEffectManager(WorldInfo.MyImpactEffectManager).PlayImpactEffects(HitLocation, Instigator,, ImpactEffects);
-    }
-    if(!Other.IsA('Pawn'))
-    {
-        if(bDamageDestructiblesOnTouch && Other.bCanBeDamaged)
+        P.Mesh.FindClosestBone(StartTrace, ClosestHit);
+        if(!IsZero(ClosestHit))
         {
-            HitInfo.HitComponent = LastTouchComponent;
-            HitInfo.Item = -1;
-            Other.TakeDamage(int(Damage), InstigatorController, Location, MomentumTransfer * Normal(Velocity), MyDamageType, HitInfo, self);
-        }
-        if(InteractiveFoliageActor(Other) == none)
-        {
-            PenetrationPower = 0;
-            return;
+            StartTrace = ClosestHit;
+            Direction = Normal(ClosestHit - StartTrace);
+            EndTrace = StartTrace + (Direction * (P.CylinderComponent.CollisionRadius * 6));
+            super.TraceProjHitZones(P, EndTrace, StartTrace, out_Hits);
         }
     }
-    Victim = Pawn(Other);
-    if(Victim != none)
-    {
-        StartTrace = HitLocation;
-        Direction = Normal(Velocity);
-        EndTrace = StartTrace + (Direction * (Victim.CylinderComponent.CollisionRadius * 6));
-        TraceProjHitZones(Victim, EndTrace, StartTrace, HitZoneImpactList);
-        if(bDud && HitZoneImpactList.Length == 0)
-        {
-            Victim.Mesh.FindClosestBone(StartTrace, ClosestHit);
-            if(!IsZero(ClosestHit))
-            {
-                StartTrace = ClosestHit;
-                Direction = Normal(ClosestHit - HitLocation);
-                EndTrace = StartTrace + (Direction * (Victim.CylinderComponent.CollisionRadius * 6));
-                TraceProjHitZones(Victim, EndTrace, StartTrace, HitZoneImpactList);
-            }
-        }
-        if(HitZoneImpactList.Length > 0)
-        {
-            HitZoneImpactList[0].RayDir = Direction;
-            if(bReplicateClientHitsAsFragments)
-            {
-                if((Instigator != none) && KFWeapon(Instigator.Weapon) != none)
-                {
-                    KFWeapon(Instigator.Weapon).HandleGrenadeProjectileImpact(HitZoneImpactList[0], Class);
-                }                
-            }
-            else
-            {
-                if((Owner != none) && KFWeapon(Owner) != none)
-                {
-                    KFWeapon(Owner).HandleProjectileImpact(HitZoneImpactList[0], PenetrationPower);
-                }
-            }
-        }
-    }
+    return out_Hits.Length > 0;
 }
 
 protected simulated function PrepareExplosionTemplate()
@@ -368,7 +322,7 @@ defaultproperties
     GlassShatterType=FracturedMeshGlassShatterType.FMGS_ShatterAll
     ExtraLineCollisionOffsets(0)=
 /* Exception thrown while deserializing ExtraLineCollisionOffsets
-System.ArgumentException: Requested value '!=_6787' was not found.
+System.ArgumentException: Requested value '!=_7020' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

@@ -11,13 +11,6 @@ class KFWeap_ShotgunBase extends KFWeapon
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
 var(Weapon) array<byte> NumPellets;
-/** Reload open that also inserts one shell, played when gun is empty */
-var(Animations) const editconst name ReloadOpenInsertAnim;
-var(Animations) const editconst name ReloadOpenInsertEliteAnim;
-/** Shoot animation to play when reload is interrupted */
-var(Animations) const editconst name FireOneHandAnim;
-var(Animations) const editconst name FireOneHandLastAnim;
-var transient float LastReloadAbortTime;
 
 simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass, Vector RealStartLoc, Vector AimDir)
 {
@@ -78,31 +71,6 @@ simulated function Rotator AddMultiShotSpread(Rotator BaseAim)
     }
 }
 
-simulated function name GetReloadAnimName(bool bTacticalReload)
-{
-    if(!bReloadFromMagazine && ReloadStatus == 1)
-    {
-        if(AmmoCount[0] == 0)
-        {
-            ReloadStatus = GetNextReloadStatus();
-            return ((bTacticalReload) ? ReloadOpenInsertEliteAnim : ReloadOpenInsertAnim);
-        }
-    }
-    return super.GetReloadAnimName(bTacticalReload);
-}
-
-simulated function name GetWeaponFireAnim(byte FireModeNum)
-{
-    if(!bReloadFromMagazine && LastReloadAbortTime == WorldInfo.TimeSeconds)
-    {
-        if(!bUsingSights)
-        {
-            return ((ShouldPlayFireLast(FireModeNum)) ? FireOneHandLastAnim : FireOneHandAnim);
-        }
-    }
-    return super.GetWeaponFireAnim(FireModeNum);
-}
-
 static simulated function float CalculateTraderWeaponStatDamage()
 {
     local float BaseDamage, DoTDamage;
@@ -122,24 +90,10 @@ static simulated event KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
     return 1;
 }
 
-simulated state Reloading
-{
-    simulated function AbortReload()
-    {
-        LastReloadAbortTime = WorldInfo.TimeSeconds;
-        super.AbortReload();
-    }
-    stop;    
-}
-
 defaultproperties
 {
     NumPellets(0)=7
     NumPellets(1)=7
-    ReloadOpenInsertAnim=Reload_Open_Shell
-    ReloadOpenInsertEliteAnim=Reload_Open_Shell_Elite
-    FireOneHandAnim=Shoot_OneHand
-    FireOneHandLastAnim=Shoot_OneHand_Last
     bHasFireLastAnims=true
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_ShotgunBase.MeleeHelper'
     Spread=/* Array type was not detected. */

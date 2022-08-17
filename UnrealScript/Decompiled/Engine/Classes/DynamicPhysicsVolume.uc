@@ -34,7 +34,6 @@ defaultproperties
     // Reference: BrushComponent'Default__DynamicPhysicsVolume.BrushComponent0'
     Components(0)=BrushComponent0
     Physics=EPhysics.PHYS_Interpolating
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
     bStatic=false
     begin object name=BrushComponent0 class=BrushComponent
         ReplacementPrimitive=none

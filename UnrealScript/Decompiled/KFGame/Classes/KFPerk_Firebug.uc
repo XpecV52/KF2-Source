@@ -45,7 +45,7 @@ function ApplySkillsToPawn()
     }
 }
 
-simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType)
+simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx)
 {
     local KFWeapon KFW;
     local float TempDamage;
@@ -362,4 +362,6 @@ defaultproperties
     PrimaryWeaponDef=Class'KFWeapDef_CaulkBurn'
     KnifeWeaponDef=Class'KFWeapDef_Knife_Firebug'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Firebug'
+    HitAccuracyHandicap=-2
+    HeadshotAccuracyHandicap=5
 }

@@ -18,6 +18,9 @@ class KFPawn_ZedHusk extends KFPawn_Monster;
 /** Fireball projectile attack */
 var const class<KFProjectile>		FireballClass;
 
+/** Player-controlled offset for firing fireballs. */
+var vector PlayerFireOffset;
+
 /** HitZoneIndex of backpack zone */
 const BackpackZoneIndex = 3;
 
@@ -64,21 +67,56 @@ function NotifyAnimInterrupt( optional AnimNodeSequence SeqNode )
 
 function ANIMNOTIFY_WarnZedsOfFireball()
 {
+	local Actor HitActor;
+	local PlayerController PC;
 	local KFPawn_Monster HitMonster;
-	local vector HitLocation, HitNormal;
+	local vector FireLocation;
+	local vector TraceStart, TraceEnd, HitLocation, HitNormal;
 	local vector DangerPoint, AimDirection;
 
-	AimDirection = MyKFAIC.Enemy.Location - Location;
-
-	foreach TraceActors(class'KFPawn_Monster', HitMonster, HitLocation, HitNormal, MyKFAIC.Enemy.Location, Location, vect(50,50,50))
+	if( Role == ROLE_Authority )
 	{
-		// Get the closest point from the hit monster to the line trace to determine which way it should evade
-		PointDistToLine(HitMonster.Location, AimDirection, Location, DangerPoint);
-
-		if( HitMonster.MyKFAIC != none )
+		if( IsHumanControlled() )
 		{
-			// Tell the zed to evade away from the DangerPoint
-			HitMonster.MyKFAIC.ReceiveLocationalWarning(DangerPoint);
+			PC = PlayerController( Controller );
+			if( PC == none )
+			{
+				return;
+			}
+
+		    FireLocation = GetPawnViewLocation() + (PlayerFireOffset >> GetViewRotation());
+
+		    TraceStart = PC.PlayerCamera.CameraCache.POV.Location;
+		    TraceEnd = PC.PlayerCamera.CameraCache.POV.Location + vector(PC.PlayerCamera.CameraCache.POV.Rotation)*100000;
+
+		    HitActor = Trace( HitLocation, HitNormal, TraceEnd, TraceStart, TRUE,,,TRACEFLAG_Bullet );
+
+		    if( HitActor != none )
+		    {
+		        AimDirection = HitLocation - FireLocation;
+		        TraceEnd = HitLocation;
+		    }
+		    else
+		    {
+			   AimDirection = TraceEnd - FireLocation;
+			}		
+		}
+		else
+		{
+			AimDirection = MyKFAIC.Enemy.Location - Location;
+			FireLocation = MyKFAIC.Enemy.Location;
+		}
+
+		foreach TraceActors(class'KFPawn_Monster', HitMonster, HitLocation, HitNormal, FireLocation, Location, vect(50,50,50))
+		{
+			if( HitMonster.MyKFAIC != none )
+			{
+				// Get the closest point from the hit monster to the line trace to determine which way it should evade
+				PointDistToLine(HitMonster.Location, AimDirection, Location, DangerPoint);
+
+				// Tell the zed to evade away from the DangerPoint
+				HitMonster.MyKFAIC.ReceiveLocationalWarning(DangerPoint);
+			}
 		}
 	}
 }
@@ -167,39 +205,49 @@ simulated function HitZoneInjured(optional int HitZoneIdx=INDEX_None)
 function TriggerExplosion(optional bool bIgnoreHumans)
 {
 	local KFExplosionActorReplicated ExploActor;
-	local Controller DamageInstigator;
+	local Controller DamageInstigator, OldController;
 
 	// Only living husks can explode... and only once
 	if ( !bHasExploded && !bPlayedDeath )
 	{
-		// explode using the given template
-		ExploActor = Spawn(class'KFExplosionActorReplicated', self);
-		if (ExploActor != None)
-		{
-			DamageInstigator = (bIgnoreHumans && LastHitBy != none && KFPlayerController(LastHitBy) != none) ? LastHitBy : MyKFAIC;
-			ExploActor.InstigatorController = DamageInstigator;
-			ExploActor.Instigator = self;
+		OldController = Controller;
 
-			// Force ourselves to get hit.  These settings are not replicated,
-			// but they only really make a difference on the server anyway.
-			ExploActor.Attachee = self;
-			if ( bIgnoreHumans )
+		if( Role == ROLE_Authority )
+		{
+			// explode using the given template
+			ExploActor = Spawn(class'KFExplosionActorReplicated', self);
+			if (ExploActor != None)
 			{
-				ExplosionTemplate.ActorClassToIgnoreForDamage = class'KFPawn_Human';
+				DamageInstigator = (bIgnoreHumans && LastHitBy != none && KFPlayerController(LastHitBy) != none) ? LastHitBy : MyKFAIC;
+				ExploActor.InstigatorController = DamageInstigator;
+				ExploActor.Instigator = self;
+
+				// Force ourselves to get hit.  These settings are not replicated,
+				// but they only really make a difference on the server anyway.
+				ExploActor.Attachee = self;
+				if ( bIgnoreHumans )
+				{
+					ExplosionTemplate.ActorClassToIgnoreForDamage = class'KFPawn_Human';
+				}
+
+				ExploActor.Explode(ExplosionTemplate, vect(0,0,1));
 			}
 
-			ExploActor.Explode(ExplosionTemplate, vect(0,0,1));
+			// Make sure we're dead!
+			if( !bPlayedDeath )
+			{
+				TakeRadiusDamage(DamageInstigator, 10000, ExplosionTemplate.DamageRadius, ExplosionTemplate.MyDamageType, ExplosionTemplate.MomentumTransferScale, Location, true, self);
+			}
 		}
 
-		// Make sure we're dead!
-		if( !bPlayedDeath )
-		{
-			TakeRadiusDamage(DamageInstigator, 10000, ExplosionTemplate.DamageRadius, ExplosionTemplate.MyDamageType, ExplosionTemplate.MomentumTransferScale, Location, true, self);
-		}
+		OnExploded( OldController );
 
 	    bHasExploded = true;
 	}
 }
+
+/** Do any explosion death-related actions */
+simulated function OnExploded( Controller SuicideController );
 
 /*********************************************************************************************
 * Damage handling
@@ -267,7 +315,7 @@ function OnStackingAfflictionChanged(byte Id)
 
 	if ( bEMPDisrupted )
 	{
-		if( IsDoingSpecialMove(SM_StandAndShotAttack) || IsDoingSpecialMove(SM_HoseWeaponAttack) )
+		if( IsDoingSpecialMove(SM_StandAndShootAttack) || IsDoingSpecialMove(SM_HoseWeaponAttack) )
 		{
 		    EndSpecialMove();
 		}
@@ -336,22 +384,24 @@ DefaultProperties
 		SpecialMoveClasses(SM_Suicide)		 = class'KFSM_Husk_Suicide'
 		SpecialMoveClasses(SM_Evade)		 = class'KFSM_Evade'
 		SpecialMoveClasses(SM_Evade_Fear)	 = class'KFSM_Evade_Fear'
-		SpecialMoveClasses(SM_StandAndShotAttack)= class'KFSM_Husk_FireBallAttack'
+		SpecialMoveClasses(SM_StandAndShootAttack)= class'KFSM_Husk_FireBallAttack'
 		SpecialMoveClasses(SM_HoseWeaponAttack)= class'KFSM_Husk_FlameThrowerAttack'
 	End Object
 
+	InstantIncaps(IAF_Stun)=(Head=62,Torso=120,Leg=120,Arm=120,LowHealthBonus=10,Cooldown=3.0)
+	InstantIncaps(IAF_Knockdown)=(Head=50,Torso=80,Leg=80,Arm=80,Special=50,LowHealthBonus=10,Cooldown=10.0)
+	InstantIncaps(IAF_Stumble)=(Head=44,Torso=50,Arm=50,Special=43,LowHealthBonus=10,Cooldown=2.0)
+	InstantIncaps(IAF_LegStumble)=(Leg=44,LowHealthBonus=10,Cooldown=2.0)
+	InstantIncaps(IAF_GunHit)=(Head=110,Torso=110,Leg=110,Arm=110,LowHealthBonus=10,Cooldown=0.5)
+	InstantIncaps(IAF_MeleeHit)=(Head=23,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=0.35)
+	StackingIncaps(SAF_Poison)=(Threshhold=3.0,Duration=4.0,Cooldown=8.5,DissipationRate=1.00)
+	StackingIncaps(SAF_Microwave)=(Threshhold=3.0,Duration=4.0,Cooldown=8.5,DissipationRate=1.00)
+	StackingIncaps(SAF_FirePanic)=(Threshhold=12.0,Duration=2.0,Cooldown=5.0,DissipationRate=1.0)
+	StackingIncaps(SAF_EMPPanic)=(Threshhold=1.5,Duration=5.0,Cooldown=5.0,DissipationRate=0.5)
+	StackingIncaps(SAF_EMPDisrupt)=(Threshhold=0.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.0)
+	StackingIncaps(SAF_Freeze)=(Threshhold=5.0,Duration=1.0,Cooldown=5.0,DissipationRate=0.33)
+
 	Begin Object Name=Afflictions_0
-		InstantAffl(IAF_Stun)=(Head=44,Torso=80,Leg=80,Arm=80,LowHealthBonus=10,Cooldown=3.0)
-		InstantAffl(IAF_Knockdown)=(Head=50,Torso=80,Leg=80,Arm=80,Special=50,LowHealthBonus=10,Cooldown=10.0)
-		InstantAffl(IAF_Stumble)=(Head=44,Torso=50,Arm=50,Special=43,LowHealthBonus=10,Cooldown=2.0)
-		InstantAffl(IAF_LegStumble)=(Leg=44,LowHealthBonus=10,Cooldown=2.0)
-		InstantAffl(IAF_GunHit)=(Head=110,Torso=110,Leg=110,Arm=110,LowHealthBonus=10,Cooldown=0.5)
-		InstantAffl(IAF_MeleeHit)=(Head=23,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=0.35)
-		StackingAffl(SAF_Poison)=(Threshhold=3.0,Duration=4.0,Cooldown=8.5,DissipationRate=1.00)
-		StackingAffl(SAF_Microwave)=(Threshhold=3.0,Duration=4.0,Cooldown=8.5,DissipationRate=1.00)
-		StackingAffl(SAF_FirePanic)=(Threshhold=12.0,Duration=2.0,Cooldown=5.0,DissipationRate=1.0)
-		StackingAffl(SAF_EMPPanic)=(Threshhold=1.5,Duration=5.0,Cooldown=5.0,DissipationRate=0.5)
-		StackingAffl(SAF_EMPDisrupt)=(Threshhold=0.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.0)
 		FireFullyCharredDuration=5
 	End Object
 
@@ -377,6 +427,7 @@ DefaultProperties
 	Begin Object Name=MeleeHelper_0
 		BaseDamage=15.f
 		MaxHitRange=180.f
+		MomentumTransfer=25000.f
 		MyDamageType=class'KFDT_Slashing_ZedWeak'
 	End Object
 

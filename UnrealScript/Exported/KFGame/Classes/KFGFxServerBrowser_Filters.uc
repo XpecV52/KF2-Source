@@ -50,10 +50,38 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
 {
 	super.Initialize( NewParentMenu );
 	ServerMenu = KFGFxMenu_ServerBrowser(NewParentMenu);
+	SavedGameModeIndexPending = SavedGameModeIndex;
+	AdjustSavedFiltersToMode();
 	ServerMenu.Manager.StartMenu.GetMapList(MapList);
 	InitFiltersArray();
 	LocalizeText();
 	ClearPendingValues();
+}
+
+function int GetUsableGameMode(int ModeIndex)
+{
+	if (ModeIndex >= class'KFGameInfo'.default.GameModes.length)
+	{
+		return 0;
+	}
+	else
+	{
+		return ModeIndex;
+	}
+}
+
+function AdjustSavedFiltersToMode()
+{
+	if (SavedDifficultyIndex >= class'KFGameInfo'.default.GameModes[GetUsableGameMode(SavedGameModeIndex)].DifficultyLevels)
+	{
+		SavedDifficultyIndex = 255;
+	}
+	SavedDifficultyIndexPending = SavedDifficultyIndex;
+	if (SavedLengthIndex >= class'KFGameInfo'.default.GameModes[GetUsableGameMode(SavedGameModeIndex)].Lengths)
+	{
+		SavedLengthIndex = 255;
+	}
+	SavedLengthIndexPending = SavedLengthIndex;
 }
 
 exec function string GetSelectedMap()
@@ -131,8 +159,9 @@ function LocalizeText()
 
 	CreateList("gameModeScrollingList", class'KFCommon_LocalizedStrings'.static.GetGameModeStringsArray(), SavedGameModeIndex);
 	CreateList("mapScrollingList", MapList, savedMapIndex);
-	CreateList("difficultyScrollingList", class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray(), SavedDifficultyIndex);
-	CreateList("lengthScrollingList", class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), SavedLengthIndex);
+	SetModeMenus("difficultyScrollingList", "lengthScrollingList", SavedGameModeIndexPending);
+	//CreateList("difficultyScrollingList", class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray(), SavedDifficultyIndex);
+	//CreateList("lengthScrollingList", class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), SavedLengthIndex);
 	CreateList("pingScrollingList", ServerMenu.PingOptionStrings, SavedPingIndex);
 
 	LocalizeCheckBoxes();
@@ -158,17 +187,68 @@ function LocalizeCheckBoxes()
 	SetObject("filterLabels", FiltersArray);
 }
 
-function CreateList( string ListString, array<string> TextArray, int SelectedIndex)
+function SetModeMenus(string DifficultyListString, string LengthListString, int ModeIndex)
 {
-	local byte i;
+	local int NewDifficultyIndex, NewLengthIndex;
+	local int UseModeIndex;
+	local GFxObject DifficultyDataProvider, LengthDataProvider;
+	local int i;
+
+	DifficultyDataProvider = GetObject(DifficultyListString).GetObject("dataProvider");
+	LengthDataProvider = GetObject(LengthListString).GetObject("dataProvider");
+	for (i = 0; i < 5; ++i)
+	{
+		DifficultyDataProvider.SetElementObject(i, None);
+		LengthDataProvider.SetElementObject(i, None);
+	}	
+	if (SavedDifficultyIndexPending >= class'KFGameInfo'.default.GameModes[UseModeIndex].DifficultyLevels)
+	{
+		NewDifficultyIndex = 255;
+	}
+	else
+	{
+		NewDifficultyIndex = SavedDifficultyIndexPending;
+	}
+	if (SavedLengthIndexPending >= class'KFGameInfo'.default.GameModes[UseModeIndex].Lengths)
+	{
+		NewDifficultyIndex = 255;
+	}
+	else
+	{
+		NewLengthIndex = SavedLengthIndexPending;
+	}
+	UseModeIndex = GetUsableGameMode(ModeIndex);
+	//`log("ModeIndex:"$ModeIndex$", UseModeIndex:"$UseModeIndex);
+	CreateList(DifficultyListString, class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray(), NewDifficultyIndex, class'KFGameInfo'.default.GameModes[UseModeIndex].DifficultyLevels);
+	CreateList(LengthListString, class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), NewLengthIndex, class'KFGameInfo'.default.GameModes[UseModeIndex].Lengths);
+}
+
+function CreateList( string ListString, array<string> TextArray, int SelectedIndex, optional int MaxListLength)
+{
+	local int i;
 	local GFxObject OptionList;
 	local GFxObject DataProvider;
 	local GFxObject ItemSlot;
 	local string 	TempString, ButtonLabel;
+	local int ListLength;
+
 	OptionList = GetObject(ListString);	
 	DataProvider = OptionList.GetObject("dataProvider");
 
-	for ( i = 0; i < TextArray.length; i++ )
+	//`log("MaxListLength:"$MaxListLength$", Length:"$TextArray.length);
+	if (MaxListLength > 0)
+	{
+		ListLength = Min(MaxListLength, TextArray.length);
+	}
+	else
+	{
+		ListLength = TextArray.length;
+	}
+	if (MaxListLength >= ListLength)
+	{
+		SelectedIndex = 255;
+	}
+	for ( i = 0; i < ListLength; i++ )
 	{
 		ItemSlot = CreateObject( "Object" );
 		TempString = TextArray[i];
@@ -185,7 +265,7 @@ function CreateList( string ListString, array<string> TextArray, int SelectedInd
 		OptionList.SetInt("selectedIndex", SelectedIndex);
 	}
 	OptionList.SetObject("dataProvider", DataProvider);
-	if(SelectedIndex < TextArray.length)
+	if(SelectedIndex < ListLength)
 	{
 		ButtonLabel = TextArray[SelectedIndex];
 	}
@@ -200,6 +280,10 @@ function CreateList( string ListString, array<string> TextArray, int SelectedInd
 function ModeChanged(int index)
 {
 	SavedGameModeIndexPending = index;
+	//`log("Adjusting difficulty");
+	AdjustSavedFiltersToMode();
+	//`log("Localizing text");
+	LocalizeText();
 }
 
 function MapChanged(int index)

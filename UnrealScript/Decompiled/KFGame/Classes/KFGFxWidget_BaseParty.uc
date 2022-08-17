@@ -27,6 +27,7 @@ struct SMemberSlot
     var UniqueNetId PlayerUID;
     var transient GFxObject MemberSlotObject;
     var transient GFxObject PlayerNameTextField;
+    var PlayerReplicationInfo PRI;
 
     structdefaultproperties
     {
@@ -39,6 +40,7 @@ struct SMemberSlot
         PlayerUID=(Uid=none)
         MemberSlotObject=none
         PlayerNameTextField=none
+        PRI=none
     }
 };
 
@@ -51,6 +53,7 @@ var const localized string CreatePartyString;
 var const localized string WaitingString;
 var const localized string DeployingString;
 var const localized string PlayerReadyString;
+var const localized string PartyLeaderString;
 var const localized string MuteString;
 var const localized string UnmuteString;
 var const localized string AddFriendString;
@@ -87,8 +90,9 @@ var GFxObject LeaveButton;
 var GFxObject CreatePartyButton;
 var GFxObject SquadHeader;
 var GFxObject Notification;
+var int PlayerSlots;
 var const UniqueNetId ZeroUniqueId;
-var SMemberSlot MemberSlots[6];
+var SMemberSlot MemberSlots[12];
 
 function InitializeWidget()
 {
@@ -96,15 +100,18 @@ function InitializeWidget()
 
     KFPC = KFPlayerController(Outer.GetPC());
     OnlineSub = KFPC.OnlineSub;
-    OnlineLobby = OnlineSub.GetLobbyInterface();
+    if(OnlineSub != none)
+    {
+        OnlineLobby = OnlineSub.GetLobbyInterface();
+    }
     SlotIndex = 0;
-    J0x8E:
+    J0x9D:
 
-    if(SlotIndex < 6)
+    if(SlotIndex < PlayerSlots)
     {
         InitializeMemberSlot(SlotIndex);
         ++ SlotIndex;
-        goto J0x8E;
+        goto J0x9D;
     }
     LeaveButton = GetObject("leaveButton");
     CreatePartyButton = GetObject("createPartyButton");
@@ -153,6 +160,7 @@ function InitializeMemberSlot(int SlotIndex)
 {
     MemberSlots[SlotIndex].MemberSlotObject = GetObject("squadMember" $ string(SlotIndex));
     MemberSlots[SlotIndex].PlayerNameTextField = MemberSlots[SlotIndex].MemberSlotObject.GetObject("playerNameText");
+    MemberSlots[SlotIndex].MemberSlotObject.SetString("leaderText", PartyLeaderString);
     if(KFPC != none)
     {
         CreatePerkList(MemberSlots[SlotIndex].MemberSlotObject.GetObject("perksList"));
@@ -327,6 +335,7 @@ function UpdateVOIP(PlayerReplicationInfo PRI, bool bIsTalking);
 function RefreshParty()
 {
     OccupiedSlots = 0;
+    UpdateLock();
 }
 
 function StatsInit()
@@ -341,7 +350,7 @@ function EmptySlot(int SlotIndex)
 {
     MemberSlots[SlotIndex].PlayerUID = ZeroUniqueId;
     MemberSlots[SlotIndex].bIsSlotTaken = false;
-    UpdatePlayerName(SlotIndex, "");
+    UpdatePlayerName(SlotIndex, DefaultPlayerName $ string(SlotIndex));
     SlotChanged(SlotIndex, false, false, false);
 }
 
@@ -437,6 +446,7 @@ defaultproperties
     WaitingString="WAITING FOR PLAYERS"
     DeployingString="DEPLOYING IN "
     PlayerReadyString="[ READY ]"
+    PartyLeaderString="Leader"
     MuteString="Mute Player"
     UnmuteString="Unmute Player"
     AddFriendString="Add Friend"
@@ -459,4 +469,5 @@ defaultproperties
     SearchingForGame="SearchingForGame"
     UpdatingOptions="UpdatingOptions"
     InOtherMenu="InOtherMenu"
+    PlayerSlots=6
 }

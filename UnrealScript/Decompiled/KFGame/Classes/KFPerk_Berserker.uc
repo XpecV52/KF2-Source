@@ -49,7 +49,7 @@ function ApplySkillsToPawn()
     }
 }
 
-simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType)
+simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx)
 {
     local KFWeapon MyKFWeapon;
     local float TempDamage;
@@ -470,4 +470,6 @@ defaultproperties
     PerkSkills(9)=(Name="Menace",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Menace",bActive=false)
     PrimaryWeaponDef=Class'KFWeapDef_Crovel'
     KnifeWeaponDef=Class'KFweapDef_Knife_Berserker'
+    HitAccuracyHandicap=2.5
+    HeadshotAccuracyHandicap=-2
 }

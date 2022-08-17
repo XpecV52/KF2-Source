@@ -60,6 +60,10 @@ var bool                                bForceRequiredSquad;
 var bool                                bRecycleSpecialSquad;
 /** Whether to recycle the special squad every other time through the squad list, by difficulty */
 var() array<bool>                       RecycleSpecialSquad;
+/** Limits the number of times we can recycle the special squad */
+var int                                 MaxSpecialSquadRecycles;
+/** The number of times we've recycled special squads this wave */
+var int                                 NumSpecialSquadRecycles;
 /** Recycle the special squad every other time through the squad list */
 var int                                 NumSpawnListCycles;
 /** List of available AI spawn volumes */
@@ -205,11 +209,14 @@ function SetupNextWave(byte NextWaveIndex)
         // Initialize the spawn list cycles
         NumSpawnListCycles=1;
 
+        // Initialize our recycle number
+        NumSpecialSquadRecycles = 0;
+
         // Scale the number of zeds if the wave can be recycled
         if( Waves[NextWaveIndex].bRecycleWave )
         {
         	WaveTotalAI =	Waves[NextWaveIndex].MaxAI *
-							DifficultyInfo.GetPlayerNumMaxAIModifier( GetNumPlayers() ) *
+							DifficultyInfo.GetPlayerNumMaxAIModifier( GetNumHumanTeamPlayers() ) *
 							DifficultyInfo.GetDifficultyMaxAIModifier();
         }
         else
@@ -229,7 +236,7 @@ function SetupNextWave(byte NextWaveIndex)
         }
 
     	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    	if( KFGRI != none && KFGRI.bDebugSpawnManager )
+    	if( KFGRI != none && (KFGRI.bDebugSpawnManager || KFGRI.bGameConductorGraphingEnabled) )
     	{
     		KFGRI.CurrentSineMod = GetSineMod();
     		KFGRI.CurrentNextSpawnTime = TimeUntilNextSpawn;
@@ -276,6 +283,9 @@ function GetAvailableSquads(byte MyWaveIndex, optional bool bNeedsSpecialSquad=f
 		}
 	}
 }
+
+/** Spawns in our remaining reserved zeds */
+function SpawnRemainingReservedZeds( optional bool bSpawnAllReservedZeds );
 
 /** When we recycle a squad/have a leftover squad, make sure it knows what size
 *   Volume it can spawn in. If for instance a larger zed has been removed from
@@ -391,10 +401,11 @@ function array< class<KFPawn_Monster> > GetNextSpawnList()
     		if( !bSummoningBossMinions )
     		{
                 // WaveNum Displays 1 - Length, Squads are ordered 0 - (Length - 1)
-                if( bRecycleSpecialSquad && NumSpawnListCycles %2 == 1 )
+                if( bRecycleSpecialSquad && NumSpawnListCycles % 2 == 1 && (MaxSpecialSquadRecycles == -1 || NumSpecialSquadRecycles < MaxSpecialSquadRecycles) )
                 {
                     //`log("Recycling special squad!!! NumSpawnListCycles: "$NumSpawnListCycles);
                     GetAvailableSquads(MyKFGRI.WaveNum - 1, true);
+                    ++NumSpecialSquadRecycles;
                 }
                 else
                 {
@@ -478,8 +489,16 @@ function array< class<KFPawn_Monster> > GetNextSpawnList()
     	LogMonsterList(LeftoverSpawnSquad, "LeftoverSpawnSquad");
     }
 
+    if( bIsVersusGame )
+    {
+        AssignZedsToPlayers( NewSquad );
+    }
+
 	return NewSquad;
 }
+
+/** Assign and reserve zed squad members for human players if this is a versus game */
+function AssignZedsToPlayers( out array<class<KFPawn_Monster> > NewZeds );
 
 /** Print out a list of monsters */
 function LogMonsterList(array< class<KFPawn_Monster> >  MonsterList, String ListName)
@@ -572,7 +591,7 @@ function float CalcNextGroupSpawnTime()
     	NextSpawnDelay += SineMod * (NextSpawnDelay * 2);
 
     	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    	if( KFGRI != none && KFGRI.bDebugSpawnManager )
+    	if( KFGRI != none && (KFGRI.bDebugSpawnManager || KFGRI.bGameConductorGraphingEnabled) )
     	{
     		KFGRI.CurrentSineMod = SineMod;
     		KFGRI.CurrentNextSpawnTime = NextSpawnDelay;
@@ -768,7 +787,7 @@ function StopSummoningBossMinions()
 }
 
 /** Find best spawn location and spawn a squad there */
-function int SpawnSquad( array< class<KFPawn_Monster> > AIToSpawn )
+function int SpawnSquad( array< class<KFPawn_Monster> > AIToSpawn, optional bool bSkipHumanZedSpawning=false )
 {
 	local KFSpawnVolume KFSV;
 	local int SpawnerAmount, VolumeAmount, FinalAmount, i;
@@ -803,7 +822,20 @@ function int SpawnSquad( array< class<KFPawn_Monster> > AIToSpawn )
     			LogMonsterList(AIToSpawn, "SpawnSquad Pre Spawning");
             }
 
-			VolumeAmount = KFSV.SpawnWave(AIToSpawn, true);
+            if( !bIsVersusGame || MyKFGRI.WaveNum < MyKFGRI.WaveMax )
+            {
+    			VolumeAmount = KFSV.SpawnWave(AIToSpawn, true);
+            }
+
+            if( bIsVersusGame && !bSkipHumanZedSpawning )
+            {
+                if( MyKFGRI.WaveNum == MyKFGRI.WaveMax )
+                {
+                    AIToSpawn.Length = 0;
+                }
+                RespawnZedHumanPlayers( KFSV );
+            }
+
 		    `log("KFAISpawnManager.SpawnAI() AIs spawned:" @ VolumeAmount @ "in Volume:" @ KFSV, bLogAISpawning);
 
             if( bLogAISpawning )
@@ -828,7 +860,12 @@ function int SpawnSquad( array< class<KFPawn_Monster> > AIToSpawn )
 	}
 
 	FinalAmount = VolumeAmount + SpawnerAmount;
-	RefreshMonsterAliveCount();
+
+    // Versus games already do this after players are spawned, no need to run this iterator again
+    if( !bIsVersusGame )
+    {
+    	RefreshMonsterAliveCount();
+    }
 
 	if( AIToSpawn.Length > 0 )
 	{
@@ -971,7 +1008,7 @@ function int GetNumAINeeded()
     }
     else
     {
-        AINeeded = UsedMaxMonsters - AIAliveCount;
+        AINeeded = UsedMaxMonsters - GetAIAliveCount();
     }
 
     if( !bSummoningBossMinions )
@@ -991,6 +1028,13 @@ function int GetNumAINeeded()
 
 	return AINeeded;
 }
+
+/** Returns the number of alive AI */
+function int GetAIAliveCount()
+{
+    return AIAliveCount;
+}
+
 
 /** Initialize the list of Human team Controllers to use for spawn selection*/
 function InitControllerList()
@@ -1041,7 +1085,7 @@ function InitControllerList()
     }
 }
 
-function KFSpawnVolume GetBestSpawnVolume( array< class<KFPawn_Monster> > AIToSpawn, optional Controller OverrideController, optional bool bTeleporting, optional float MinDistSquared )
+function KFSpawnVolume GetBestSpawnVolume( optional array< class<KFPawn_Monster> > AIToSpawn, optional Controller OverrideController, optional Controller OtherController, optional bool bTeleporting, optional float MinDistSquared )
 {
 	local int VolumeIndex, BestIndex, ControllerIndex;
 	local float BestRating, CurrentRating;
@@ -1078,7 +1122,7 @@ function KFSpawnVolume GetBestSpawnVolume( array< class<KFPawn_Monster> > AIToSp
 
 	for ( VolumeIndex = 0; VolumeIndex < SpawnVolumes.Length; VolumeIndex++ )
 	{
-		CurrentRating = SpawnVolumes[VolumeIndex].RateVolume( DesiredSquadType, RateController, BestRating, bTeleporting, MinDistSquared );
+		CurrentRating = SpawnVolumes[VolumeIndex].RateVolume( DesiredSquadType, RateController, OtherController, BestRating, bTeleporting, MinDistSquared );
 		if( CurrentRating > BestRating )
 		{
 			BestRating = CurrentRating;
@@ -1115,6 +1159,9 @@ function ResetSpawnCurveIntensity()
 {
 	SetSineWaveFreq(default.SineWaveFreq);
 }
+
+/** Respawn dead human player zeds. Overridden in subclasses */
+function RespawnZedHumanPlayers( KFSpawnVolume SpawnVolume );
 
 defaultproperties
 {
@@ -1180,6 +1227,8 @@ defaultproperties
 	RecycleSpecialSquad(1)=false   // Hard
 	RecycleSpecialSquad(2)=true    // Suicidal
 	RecycleSpecialSquad(3)=true    // Hell on Earth
+
+    MaxSpecialSquadRecycles=-1
 
 	MaxBossMinionScaleByPlayers(0)=1.0      // 1 player
 	MaxBossMinionScaleByPlayers(1)=1.5      // 2 players

@@ -7,9 +7,11 @@
  *******************************************************************************/
 class KFSM_Stunned extends KFSpecialMove;
 
-var() name StunnedAnim;
-var() array<name> WakeupAnims;
-var() float StunDuration;
+var name StunnedAnim;
+var array<name> WakeupAnims;
+var float StunDuration;
+var Vector2D PlayerStunDurationRange;
+var Vector2D StunDurationRange;
 
 function SpecialMoveStarted(bool bForced, name PrevMove)
 {
@@ -21,7 +23,14 @@ function DoStun()
 {
     if(KFPOwner.Role == ROLE_Authority)
     {
-        StunDuration = default.StunDuration + (default.StunDuration * FRand());
+        if(KFPOwner.IsHumanControlled())
+        {
+            StunDuration = RandRange(PlayerStunDurationRange.X, PlayerStunDurationRange.Y);            
+        }
+        else
+        {
+            StunDuration = RandRange(StunDurationRange.X, StunDurationRange.Y);
+        }
         KFPOwner.SetTimer(StunDuration, false, 'DoWakeup', self);
     }
     PlaySpecialMoveAnim(StunnedAnim, 0, 0.4, 0.3, 1, true);
@@ -65,7 +74,8 @@ defaultproperties
     WakeupAnims(0)=Stun_Wakeup_V1
     WakeupAnims(1)=Stun_Wakeup_V2
     WakeupAnims(2)=Stun_Wakeup_V3
-    StunDuration=2
+    PlayerStunDurationRange=(X=1,Y=1.5)
+    StunDurationRange=(X=2,Y=4)
     bAllowHitReactions=true
     bCanOnlyWanderAtEnd=true
     bDisablesWeaponFiring=true

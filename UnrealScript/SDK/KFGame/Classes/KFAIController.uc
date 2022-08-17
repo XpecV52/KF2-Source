@@ -129,6 +129,13 @@ var bool		    bShouldOffsetCorners;
 /** If this is on, NPC will always be willing to accept partial paths when using movement AICommands */
 var bool		bAlwaysAcceptPartialPaths;
 
+/** This monster has the capability to sprint in general */
+var				bool	bCanSprint;
+/** This monster has the capability to sprint when damaged */
+var				bool	bCanSprintWhenDamaged;
+/** This monster's ability to sprint is currently disabled */
+var             bool    bSprintingDisabled;
+
 var config Color PathNodeShowRouteCacheColor;
 var config vector PathNodeShowRouteCacheCrossOffset;
 var config float PathNodeShowRouteCacheCrossSize;
@@ -437,12 +444,14 @@ var float 		EvadeGrenadeChance;
 /** If true, will continually rotate to enemy during non-rootmotion melee attacks */
 var bool		bUseDesiredRotationForMelee;
 /** The last time we tried to get a new move */
-var float 		LastGetStrikeTime;
+var float		LastGetStrikeTime;
 /** How long we need to wait before picking another move */
-var const float	MaxGetStrikeTime;
+var const float MaxGetStrikeTime;
 /** The movement system has done its best to get me to my enemy but can not get me any closer, the attack behavior needs to come up with something */
 var bool bIamAsClosesToTheEnemyAsICanGet;
 
+/** Force frustration on, regardless of frustration threshold settings */
+var(Frustration) bool bForceFrustration;
 /** The minimum number of zeds remaining before frustration mode (sprint) is activated */
 var(Frustration) byte 	FrustrationThreshold;
 /** The amount of time to delay zeds from entering frustration mode after it's first detected */
@@ -462,6 +471,12 @@ struct native CooldownData
 
 /** List of active attack cooldown timers */
 var array<CooldownData> CooldownTimers;
+
+/** Store info for an overall attack cooldown timer so we can throttle all attacks by this zed in certain circumstances */
+var() CooldownData      OverallAttackCooldownTimer;
+
+/** Attack cooldown time to use when throttling all attacks by this zed in certain circumstances */
+var() float             LowIntensityAttackCooldown;
 
 //var KFAiBallisticProjectileFireBehavior BallisticProjectileFireBehavior;
 var KFAiDirectProjectileFireBehavior DirectProjectileFireBehavior;
@@ -637,19 +652,6 @@ struct native DamageInfo
 
 /** List of PRIs who damaged the specimen */
 var	array<DamageInfo> DamageHistory;
-
-enum EEvadeDir
-{
-	EVADE_None,
-	EVADE_Forward,
-	EVADE_Backward,
-	EVADE_Left,
-	EVADE_Right,
-	EVADE_ForwardLeft,
-	EVADE_ForwardRight,
-	EVADE_BackwardLeft,
-	EVADE_BackwardRight,
-};
 
 cpptext
 {
@@ -2185,6 +2187,25 @@ function AddCooldownTimer(name CooldownTag, float CooldownTime)
 	CooldownTimers[i].ActivationTime = WorldInfo.TimeSeconds;
 }
 
+/** Set overall attack cooldown timer */
+function SetOverallCooldownTimer(float CooldownTime)
+{
+	OverallAttackCooldownTimer.Duration = CooldownTime;
+	OverallAttackCooldownTimer.ActivationTime = WorldInfo.TimeSeconds;
+}
+
+/** Returns false if the overall attacks are still on cooldown */
+function bool CheckOverallCooldownTimer()
+{
+	if ( OverallAttackCooldownTimer.Duration > 0 &&
+        `TimeSince(OverallAttackCooldownTimer.ActivationTime) < OverallAttackCooldownTimer.Duration )
+	{
+		return false;
+	}
+
+	return true;
+}
+
 /*---------------------------------------------------------
   Combat transitions
 ---------------------------------------------------------*/
@@ -2550,7 +2571,7 @@ function DoPauseAI( float InDuration, optional bool bStopMovement, optional bool
             bWasFalling = true;
         }
 
-        AbortMovementCommands();
+		AbortMovementCommands();
 		AbortMovementPlugIns();
 
         // Set our old velocity if we zeroed our movement while falling (probably from being pushed by weapon physics)
@@ -2574,7 +2595,7 @@ function DoWander( optional actor WanderGoal, optional float WanderDuration=-1.f
 {
 	class'AICommand_Hide'.static.HideFrom( self, HideFrom, HideDuration, HideDistance );
 
-	`SafeDialogManager.PlaySpotRunAwayDialog( MyKFPawn );
+	`DialogManager.PlaySpotRunAwayDialog( MyKFPawn );
 }*/
 
 /* Starts Flee AICommand, with optional duration and distance */
@@ -2708,7 +2729,7 @@ final function DoProjectileEvade()
 		!IsZero(PendingEvadeProjectile.Velocity) && CanEvade() )
 	{
 		BestDir = GetBestEvadeDir( PendingEvadeProjectile.Location, PendingEvadeProjectile.Instigator );
-		if( BestDir != EVADE_None )
+		if( BestDir != DIR_None )
 		{
 			DoEvade( BestDir, PendingEvadeProjectile, 0.1f + FRand() * 0.2f, true );
 		}
@@ -2933,6 +2954,49 @@ function float GetMoveTimeOutDuration(vector dest, bool bDoingLeadInOutWalk)
 	return Duration;
 }
 
+/** Determines if we can even consider sprinting */
+function SetCanSprint( bool bNewSprintStatus )
+{
+	bCanSprint = bNewSprintStatus;
+
+	if ( !bCanSprint || bSprintingDisabled )
+	{
+		MyKFPawn.bIsSprinting = false;
+	}
+}
+
+/** Determines if we can't at the moment */
+function SetSprintingDisabled( bool bNewSprintStatus )
+{
+	bSprintingDisabled = bNewSprintStatus;
+
+	if ( !bCanSprint || bSprintingDisabled )
+	{
+		MyKFPawn.bIsSprinting = false;
+	}
+}
+
+/** Determines if we can sprint when damaged */
+function SetCanSprintWhenDamaged( bool bNewSprintDamagedStatus )
+{
+	bCanSprintWhenDamaged = bNewSprintDamagedStatus;
+
+	if ( (!bCanSprint && !bCanSprintWhenDamaged) || bSprintingDisabled )
+	{
+		MyKFPawn.bIsSprinting = false;
+	}
+}
+
+function bool CanSetSprinting( bool bNewSprintStatus )
+{
+	if ( bNewSprintStatus && ( (!bCanSprint && !bCanSprintWhenDamaged) || bSprintingDisabled) )
+	{
+	 	return false;
+	}
+
+	return true;
+}
+
 /** Timer function called during latent moves that determines whether NPC should sprint or stop sprinting. This is often
 	overridden in child classes */
 function bool ShouldSprint()
@@ -2996,18 +3060,18 @@ function bool ShouldSprint()
 /**
  * Update sprint settings based on Frustration
  */
-function UpdateSprintFrustration( optional byte bForceFrustration=255 )
+function UpdateSprintFrustration( optional byte bForceFrustrationState=255 )
 {
-	if( FrustrationThreshold > 0 && MyKFPawn != None )
+	if( FrustrationThreshold > 0 )
 	{
-		if( bForceFrustration == 1 || (IsFrustrated() && bForceFrustration != 0) )
+		if( bForceFrustrationState == 1 || (IsFrustrated() && bForceFrustrationState != 0) )
 		{
-			MyKFPawn.bCanSprint = true;
+			bCanSprint = true;
 		}
 		else
 		{
 			// can't use true default as it's modified by difficulty
-			MyKFPawn.bCanSprint = bDefaultCanSprint;
+			bCanSprint = bDefaultCanSprint;
 		}
 	}
 }
@@ -3016,6 +3080,12 @@ function bool IsFrustrated()
 {
 	// Forced frustration, controlled by AI director
 	if( MyAIDirector.bForceFrustration )
+	{
+		return true;
+	}
+
+	// Forced frustration, controlled by individual AI
+	if( bForceFrustration )
 	{
 		return true;
 	}
@@ -3347,8 +3417,8 @@ event bool NotifyLanded( vector HitNormal, Actor FloorActor )
 		if( bPreparingMove )
 		{
 			Pawn.Acceleration = vect(0,0,0);
-		}
-	}
+    }
+    }
 
 	bPlannedJump	= false;
 	// Reset NotifyJumpApex event notification, turned off by PHYS_Falling
@@ -3720,16 +3790,16 @@ function EvaluateStuckPossibility(float DeltaTime)
         	if( MyKFGameInfo.MyKFGRI.AIRemaining > 5 || TotalStuckCheckCloseRangeTime < 5.0f )
         	{
 		        if( LastStuckCheckCloseRangeTime > 0.f )
-		        {
+        {
 		        	TotalStuckCheckCloseRangeTime += `TimeSince(LastStuckCheckCloseRangeTime);
 		        }
 		        LastStuckCheckCloseRangeTime = WorldInfo.TimeSeconds;
 
-	            StuckPossiblity=0;
-	            bTryingToGetUnstuck=false;
-	            return;
-	        }
+            StuckPossiblity=0;
+            bTryingToGetUnstuck=false;
+            return;
         }
+    }
         else
         {
 			TotalStuckCheckCloseRangeTime = 0.f;
@@ -3975,11 +4045,11 @@ function bool StuckTeleportToSpawnVolume()
 
         if( Enemy != none && Enemy.Controller != none )
         {
-            KFSV = SpawnManager.GetBestSpawnVolume(AIToTeleport, Enemy.Controller, True );
+            KFSV = SpawnManager.GetBestSpawnVolume(AIToTeleport, Enemy.Controller,, True );
         }
         else
         {
-            KFSV = SpawnManager.GetBestSpawnVolume(AIToTeleport,, True );
+            KFSV = SpawnManager.GetBestSpawnVolume(AIToTeleport,,, True );
         }
 
     	if( KFSV != None )
@@ -4036,7 +4106,7 @@ function RelocateTeleport()
         {
             DistToEnemySquared = VSizeSq(Pawn.Location - Enemy.Location);
 
-            KFSV = SpawnManager.GetBestSpawnVolume(AIToTeleport, Enemy.Controller, True, DistToEnemySquared );
+            KFSV = SpawnManager.GetBestSpawnVolume(AIToTeleport, Enemy.Controller,, True, DistToEnemySquared );
         }
 //        else
 //        {
@@ -4304,7 +4374,7 @@ event SeePlayer( Pawn Seen )
 
 		if( MyKFPawn != none && MyKFPawn.IsAliveAndWell() )
 		{
-			`SafeDialogManager.CheckSpotMonsterDialog( Enemy, MyKFPawn );
+			`DialogManager.CheckSpotMonsterDialog( Enemy, MyKFPawn );
 			// Store the last time we saw the enemy
 			if( Enemy == Seen )
 			{
@@ -4448,7 +4518,7 @@ event bool NotifyBump( Actor Other, vector HitNormal )
 	KFPM = KFPawn_Monster( Other );
 	if( bSpecialBumpHandling )
 	{
-		if( MyKFPawn != none && KFPM != none && KFPM.Health > 0 && !KFPM.IsDoingSpecialMove(SM_MeleeAttack) && KFPM.MyKFAIC.DoorEnemy == none && !IsZero(KFPM.Acceleration) )
+		if( MyKFPawn != none && KFPM != none && KFPM.Health > 0 && !KFPM.IsDoingSpecialMove(SM_MeleeAttack) && KFPM.MyKFAIC != none && KFPM.MyKFAIC.DoorEnemy == none && !IsZero(KFPM.Acceleration) )
 		{
 			bInPartialCollisionReductionTrigger = MyKFPawn.CurrentChokePointTrigger != none && MyKFPawn.CurrentChokePointTrigger.PartialReduceTeammateCollision();
 
@@ -5806,10 +5876,10 @@ function bool GetDamageHistory( Controller DamagerController, out DamageInfo InI
 	// Check if this controller is already in our Damage History
 	InHistoryIndex = DamageHistory.Find( 'DamagerController', DamagerController );
 	if( InHistoryIndex != INDEX_NONE )
-	{
-		InInfo = DamageHistory[InHistoryIndex];
-		return true;
-	}
+		{
+			InInfo = DamageHistory[InHistoryIndex];
+			return true;
+		}
 
 	InHistoryIndex = 0;
 	return false;
@@ -5867,13 +5937,13 @@ function class<KFPerk> GetUsedWeaponPerk( Controller DamagerController, Actor Da
 		{
 			KFW = KFWeapon(KFPC.Pawn.Weapon);
 			if( KFW != none )
-			{
+		{
 				WeaponPerk = class'KFPerk'.static.GetPerkFromDamageCauser( KFW );
-			}
 		}
+	}
 
 		if( WeaponPerk == none && KFW != none && class'KFPerk'.static.IsBackupWeapon( KFW ) )
-		{
+	{
 			WeaponPerk = KFPC.GetPerk().GetPerkClass();
 		}
 	}
@@ -6049,7 +6119,7 @@ function ReceiveLocationalWarning(vector DangerPoint)
 	if( MyKFPawn != none )
 	{
 		BestDir = GetBestEvadeDir( DangerPoint, , false );
-		if( BestDir != EVADE_None )
+		if( BestDir != DIR_None )
 		{
 			DoEvade( BestDir, , FRand() * 0.2f, true );
 		}
@@ -6118,7 +6188,7 @@ final function Timer_DoProjectileEvade()
 	{
 		/** Find the safest direction to evade in - away from the threat and hopefully not into a larger threat or obstruction. */
 		BestDir = GetBestEvadeDir( PendingEvadeProjectile.Location, PendingEvadeProjectile.Instigator );
-		if( BestDir != EVADE_None )
+		if( BestDir != DIR_None )
 		{
 			DoEvade( BestDir, PendingEvadeProjectile, 0.1f + FRand() * 0.2f, true );
 		}
@@ -6158,41 +6228,41 @@ final function byte GetBestEvadeDir( Vector DangerPoint, optional Pawn ThreatPaw
 	switch( EvadeDir )
 	{
 	case DIR_ForwardLeft:
-		return EVADE_ForwardLeft;
+		return DIR_ForwardLeft;
 	case DIR_ForwardRight:
-		return EVADE_ForwardRight;
+		return DIR_ForwardRight;
 	case DIR_BackwardLeft:
-		return EVADE_BackwardLeft;
+		return DIR_BackwardLeft;
 	case DIR_BackwardRight:
-		return EVADE_BackwardRight;
+		return DIR_BackwardRight;
 
 	case DIR_Forward:
 		if( !bUseFastTrace || FastActorTrace( Pawn.Location + 256.f * X, Pawn.Location, Pawn.GetCollisionExtent() * 0.5f ) )
 		{
-			return EVADE_Forward;
+			return DIR_Forward;
 		}
 		break;
 	case DIR_Backward:
 		if( !bUseFastTrace || FastActorTrace( Pawn.Location - 256.f * X, Pawn.Location, Pawn.GetCollisionExtent() * 0.5f ) )
 		{
-			return EVADE_Backward;
+			return DIR_Backward;
 		}
 		break;
 	case DIR_Left:
 		if( !bUseFastTrace || FastActorTrace( Pawn.Location - 256.f * Y, Pawn.Location, Pawn.GetCollisionExtent() * 0.5f ) )
 		{
-			return EVADE_Left;
+			return DIR_Left;
 		}
 		break;
 	case DIR_Right:
 		if( !bUseFastTrace || FastActorTrace( Pawn.Location + 256.f * Y, Pawn.Location, Pawn.GetCollisionExtent() * 0.5f ) )
 		{
-			return EVADE_Right;
+			return DIR_Right;
 		}
 		break;
 	}
 
-	if( EvadeDir == EVADE_None && ThreatPawn != none )
+	if( EvadeDir == DIR_None && ThreatPawn != none )
 	{
 		CheckHeight = (MyKFPawn.GetCollisionHeight() * 0.5) + MyKFPawn.MaxStepHeight;
 		GetAxes( MyKFPawn.Rotation, X, Y, Z );
@@ -6210,14 +6280,14 @@ final function byte GetBestEvadeDir( Vector DangerPoint, optional Pawn ThreatPaw
 
 			if( bBackOpen && DotX >= 0.7071 )
 			{
-				return EVADE_Backward;
+				return DIR_Backward;
 			}
 
 			EvadeLocation = Pawn.Location + Offset;
 			bFrontOpen = CanReachEvadeLocation( EvadeLocation, CheckHeight, Extent );
 			if( bFrontOpen && DotX <= -0.7071 )
 			{
-				return EVADE_Forward;
+				return DIR_Forward;
 			}
 		}
 		else
@@ -6227,18 +6297,18 @@ final function byte GetBestEvadeDir( Vector DangerPoint, optional Pawn ThreatPaw
 			bRightOpen = CanReachEvadeLocation( EvadeLocation, CheckHeight, Extent );
 			if( bRightOpen )
 			{
-				return EVADE_Right;
+				return DIR_Right;
 			}
 
 			EvadeLocation = Pawn.Location - Offset;
 			bLeftOpen = CanReachEvadeLocation( EvadeLocation, CheckHeight, Extent );
 			if( bLeftOpen )
 			{
-				return EVADE_Left;
+				return DIR_Left;
 			}
 		}
 	}
-	return EVADE_None;
+	return DIR_None;
 }
 
 /** Checks to see if a potential location to evade to is obstructed */
@@ -7215,6 +7285,7 @@ DefaultProperties
 	FrustrationThreshold=5.f
 	FrustrationDelay=2.5f
 	LastFrustrationCheckTime=0.f
+	LowIntensityAttackCooldown=2.0
 	//bUseOldAttackDecisions=true
 
 	// ---------------------------------------------

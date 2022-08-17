@@ -128,7 +128,7 @@ var(Firing)	    float			LostSightStopFireDelay;
 var             float           LastFireMode;
 /** How long to wait after starting to draw our guns to fire */
 var(Firing)	    float			DrawGunFireDelay;
-/** How long to wait after staring to see an enemy to fire */
+/** How long to wait after starting to see an enemy to fire */
 var(Firing)	    float			TargetAquisitionDelay;
 /** How long this gun attack should last at the max */
 var(Firing)	    float			MaxGunAttackLength;
@@ -1047,7 +1047,7 @@ function TickGunSystem()
             else if( HansPawn.bGunsEquipped && HansPawn.CanUseGunsInThisPhase()
                 && CanPerformShotAttack(true) )
             {
-            	//`SafeDialogManager.PlayBeingShotAtDialog( KFPawn_Human(Enemy), HansPawn );
+            	//`DialogManager.PlayBeingShotAtDialog( KFPawn_Human(Enemy), HansPawn );
                 StartFireTiming();
             }
         }
@@ -1370,6 +1370,10 @@ function DoStrike()
 		{
 			if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayHansFrenzyDialog( MyHansPawn );
 		}
+        else if( AttackName == 'AOE' )
+        {
+            if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayHansAOEDialog( MyHansPawn );
+        }
 	}
 
 	super.DoStrike();

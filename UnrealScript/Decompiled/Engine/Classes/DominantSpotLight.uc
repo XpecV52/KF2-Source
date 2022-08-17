@@ -31,43 +31,32 @@ defaultproperties
     object end
     // Reference: SpriteComponent'Default__DominantSpotLight.Sprite'
     Components(0)=Sprite
-    begin object name=LightMeshComponent0 class=StaticMeshComponent
-        ReplacementPrimitive=none
-    object end
-    // Reference: StaticMeshComponent'Default__DominantSpotLight.LightMeshComponent0'
-    Components(1)=LightMeshComponent0
-    begin object name=LensFlareComponent0 class=LensFlareComponent
-        NextTraceTime=0.0 // Ka v oh
-        ReplacementPrimitive=none
-    object end
-    // Reference: LensFlareComponent'Default__DominantSpotLight.LensFlareComponent0'
-    Components(2)=LensFlareComponent0
     begin object name=DrawLightRadius0 class=DrawLightRadiusComponent
         ReplacementPrimitive=none
     object end
     // Reference: DrawLightRadiusComponent'Default__DominantSpotLight.DrawLightRadius0'
-    Components(3)=DrawLightRadius0
+    Components(1)=DrawLightRadius0
     begin object name=DrawInnerCone0 class=DrawLightConeComponent
         ReplacementPrimitive=none
     object end
     // Reference: DrawLightConeComponent'Default__DominantSpotLight.DrawInnerCone0'
-    Components(4)=DrawInnerCone0
+    Components(2)=DrawInnerCone0
     begin object name=DrawOuterCone0 class=DrawLightConeComponent
         ReplacementPrimitive=none
     object end
     // Reference: DrawLightConeComponent'Default__DominantSpotLight.DrawOuterCone0'
-    Components(5)=DrawOuterCone0
+    Components(3)=DrawOuterCone0
     begin object name=DrawLightSourceRadius0 class=DrawLightRadiusComponent
         ReplacementPrimitive=none
     object end
     // Reference: DrawLightRadiusComponent'Default__DominantSpotLight.DrawLightSourceRadius0'
-    Components(6)=DrawLightSourceRadius0
+    Components(4)=DrawLightSourceRadius0
     begin object name=ArrowComponent0 class=ArrowComponent
         ReplacementPrimitive=none
     object end
     // Reference: ArrowComponent'Default__DominantSpotLight.ArrowComponent0'
-    Components(7)=ArrowComponent0
-    Components(8)=DominantSpotLightComponent'Default__DominantSpotLight.DominantSpotLightComponent0'
+    Components(5)=ArrowComponent0
+    Components(6)=DominantSpotLightComponent'Default__DominantSpotLight.DominantSpotLightComponent0'
     bHardAttach=true
     begin object name=LightMeshComponent0 class=StaticMeshComponent
         ReplacementPrimitive=none

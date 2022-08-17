@@ -40,6 +40,7 @@ var config float GammaMultiplier;	// a value between 0-1 that scales the gamma t
 var config bool  bMusicVocalsEnabled;
 var config bool  bMinimalChatter;
 var config float FOVOptionsPercentageValue;
+var config bool  bShowKillTicker;
 
 var private config bool bShowCrossHair;
 /** Crossair for console builds (default on).  No config since it won't save */

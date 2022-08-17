@@ -1,0 +1,286 @@
+//=============================================================================
+// KFPlayerZedWaitingCamera
+//=============================================================================
+// Camera class for waiting zed players
+//=============================================================================
+// Killing Floor 2
+// Copyright (C) 2015 Tripwire Interactive LLC
+// Matt "Squirrlz" Farber
+//=============================================================================
+class KFPlayerZedWaitingCamera extends GameFixedCamera;
+
+/** Actor we're currently using as an anchor for our fixed camera */
+var Actor FocalPoint;
+
+/** Array of player starts, filled when the camera goes live */
+var array<Actor> AvailableFocalPoints;
+
+/** Location offset from focal point base */
+var vector CameraOffset;
+
+/** Angle to pitch the camera at */
+var int CameraPitchAngle;
+
+/** How long the camera should linger on a focal point */
+var float CameraLingerDuration;
+
+/** Last time we changed camera focal points */
+var float LastCameraChangeTime;
+
+/** FOV angle used for this camera mode */
+var float CameraFOV;
+
+/** Interpolated camera yaw value */
+var float CameraYaw;
+
+/** Multiplier used to control how fast the camera pans */
+var float CameraPanSpeed;
+
+/** Color to use when fading between camera points */
+var color FadeColor;
+
+/** Fade time */
+var float FadeTime;
+
+/** Whether we've played a camera fade out before swapping focal points or not */
+var bool bPlayedCameraFade;
+
+/** Color to fade out with when switching away from this camera mode */
+var color ExitFadeColor;
+
+/** Whether we've played our camera swap fade */
+var bool bPlayedExitFade;
+
+/** Light component for our focal point */
+var	PointLightComponent CameraLightTemplate;
+var transient PointLightComponent CameraLight;
+
+/** Called when the camera becomes active */
+function OnBecomeActive( GameCameraBase OldCamera )
+{
+	super.OnBecomeActive( OldCamera );
+
+	// Fade in
+	if( PlayerCamera != none && PlayerCamera.PCOwner != none )
+	{
+		PlayerCamera.PCOwner.ClientSetCameraFade( true, FadeColor, vect2d(1.f, 0.f), FadeTime, true );
+	}
+
+	CameraOffset = default.CameraOffset;
+	bPlayedCameraFade = false;
+	bPlayedExitFade = false;
+
+	// Create our light
+	if( CameraLight == none && CameraLightTemplate != none )
+	{
+		CameraLight = new(self) class'PointLightComponent'( CameraLightTemplate );
+	}
+
+	// Pick a focal point
+	UpdateCameraFocalPoint();
+}
+
+/** Fills our array of focal points */
+function PopulateFocalPoints()
+{
+	local KFPlayerStart KFPS;
+	local KFTraderTrigger KFTT;
+	local KFPathnode KFPN;
+
+	// Fill out focal points array with player starts
+	foreach PlayerCamera.WorldInfo.AllActors( class'KFPlayerStart', KFPS )
+	{
+		AvailableFocalPoints[AvailableFocalPoints.Length] = KFPS;
+	}
+
+	// Fill out focal points array with path nodes near trader triggers
+	foreach PlayerCamera.AllActors( class'KFPathnode', KFPN )
+	{
+		foreach PlayerCamera.AllActors( class'KFTraderTrigger', KFTT )
+		{
+			if( VSizeSQ(KFTT.Location - KFPN.Location) <= 160000.f )
+			{
+				AvailableFocalPoints[AvailableFocalPoints.Length] = KFPN;
+				break;
+			}
+		}
+	}
+}
+
+/** Gets a new focal point for the camera */
+function UpdateCameraFocalPoint()
+{
+	local int FocalPointNum;
+	local vector HitLocation, HitNormal;
+	local vector Projection;
+	local KFTraderTrigger KFTT;
+
+	if( PlayerCamera != none && PlayerCamera.PCOwner != none && PlayerCamera.WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		if( AvailableFocalPoints.Length == 0 )
+		{
+			PopulateFocalPoints();
+		}
+
+		if( FocalPoint != none )
+		{
+			// Make sure our current focal point is not the next one chosen
+			FocalPointNum = AvailableFocalPoints.Find( FocalPoint );
+			if( FocalPointNum != INDEX_NONE )
+			{
+				AvailableFocalPoints.Remove( FocalPointNum, 1 );
+			}
+
+			// Detach our ambient light
+			FocalPoint.DetachComponent( CameraLight );
+		}
+
+		LastCameraChangeTime = PlayerCamera.WorldInfo.TimeSeconds;
+
+		FocalPoint = AvailableFocalPoints[Rand(AvailableFocalPoints.Length)];
+
+		// Set our initial rotation to face away from the trader (if we're a pathnode)
+		foreach FocalPoint.AllActors( class'KFTraderTrigger', KFTT )
+		{
+			Projection = FocalPoint.Location - KFTT.Location;
+			if( VSizeSQ(Projection) <= 160000.f )
+			{
+				CameraYaw = ( rotator(Projection).Yaw + (8192 - Rand(16384)) ) & 65535;
+				break;
+			}
+		}
+
+		PlayerCamera.PCOwner.SetViewTarget( FocalPoint );
+
+		if( FocalPoint != none )
+		{
+			// Make sure the camera is in a valid location
+			FocalPoint.Trace( HitLocation, HitNormal, FocalPoint.Location + (vect(0,0,1) * (default.CameraOffset.Z + 30.f)), FocalPoint.Location, false,,, FocalPoint.TRACEFLAG_Bullet );
+			
+			// Offset it if we would have been inside geometry
+			if( !IsZero(HitLocation) )
+			{
+				CameraOffset.Z = VSize( HitLocation - FocalPoint.Location ) - 30.f;
+			}
+			else
+			{
+				CameraOffset = default.CameraOffset;
+			}
+
+			// Attach our ambient light
+			FocalPoint.AttachComponent( CameraLight );
+			CameraLight.SetEnabled( true );
+		}
+
+		// Play a camera fade
+		PlayerCamera.PCOwner.ClientSetCameraFade( true, FadeColor, vect2d(1.f, 0.f), FadeTime, true );
+		bPlayedCameraFade = false;		
+	}
+	else if( FocalPoint != none )
+	{
+		FocalPoint.DetachComponent( CameraLight );
+		FocalPoint = none;
+	}
+}
+
+/** Expected to fill in OutVT with new camera pos/loc/fov. */
+simulated function UpdateCamera( Pawn P, GamePlayerCamera CameraActor, float DeltaTime, out TViewTarget OutVT )
+{
+	if( PlayerCamera != none
+		&& (PlayerCamera.WorldInfo.TimeSeconds - LastCameraChangeTime) >= (CameraLingerDuration - FadeTime) )
+	{
+		if( !bPlayedCameraFade )
+		{
+			// Play a camera fade
+			PlayerCamera.PCOwner.ClientSetCameraFade( true, FadeColor, vect2d(0.f, 1.f), FadeTime, true );
+			bPlayedCameraFade = true;
+		}
+
+		if( PlayerCamera.WorldInfo.TimeSeconds - LastCameraChangeTime >= CameraLingerDuration )
+		{
+			UpdateCameraFocalPoint();
+		}
+	}
+
+	if( FocalPoint != none )
+	{
+		// Set location and rotation
+		OutVT.POV.Location = FocalPoint.Location + CameraOffset;
+		OutVT.POV.Rotation.Pitch = CameraPitchAngle;
+		CameraYaw = ( CameraYaw + (CameraPanSpeed * DeltaTime) ) & 65535;
+		OutVT.POV.Rotation.Yaw = CameraYaw;
+
+		// Set FOV
+		OutVT.POV.FOV = CameraFOV;
+
+		// cameraanims, fades, etc
+		PlayerCamera.ApplyCameraModifiers( DeltaTime, OutVT.POV );
+	}
+
+	// if we had to reset camera interpolation, then turn off flag once it's been processed.
+	bResetCameraInterpolation = false;
+
+	super(GameCameraBase).UpdateCamera( P, CameraActor, DeltaTime, OutVT );
+}
+
+/** Fades out when leaving this camera mode */
+function PlayExitFade()
+{
+	if( !bPlayedExitFade )
+	{
+		PlayerCamera.PCOwner.ClientSetCameraFade( true, ExitFadeColor, vect2d(1.f, 0.f), FadeTime, true );
+		bPlayedExitFade = true;
+	}
+}
+
+/** Called when the camera becomes inactive */
+function OnBecomeInActive( GameCameraBase NewCamera )
+{
+	super.OnBecomeInActive( NewCamera );
+
+	// Detach and de-reference our light
+	if( CameraLight != none )
+	{
+		if( FocalPoint != none )
+		{
+			FocalPoint.DetachComponent( CameraLight );
+		}
+		CameraLight.SetEnabled( false );
+		CameraLight = none;
+	}
+
+	// Fade out our camera transition
+	PlayExitFade();
+
+	// Restore defaults
+	CameraOffset = default.CameraOffset;
+	FocalPoint = none;
+	bPlayedCameraFade = false;
+}
+
+defaultproperties
+{
+   CameraOffset=(X=0.000000,Y=0.000000,Z=300.000000)
+   CameraPitchAngle=-3072
+   CameraLingerDuration=12.000000
+   CameraFOV=160.000000
+   CameraPanSpeed=256.000000
+   FadeTime=1.000000
+   ExitFadeColor=(B=255,G=255,R=255,A=0)
+   Begin Object Class=PointLightComponent Name=PointLightTemplate_0
+      Radius=2000.000000
+      FalloffExponent=10.000000
+      Brightness=0.200000
+      LightColor=(B=235,G=255,R=230,A=255)
+      bEnabled=False
+      CastShadows=False
+      CastStaticShadows=False
+      CastDynamicShadows=False
+      LightingChannels=(Outdoor=True)
+      Name="PointLightTemplate_0"
+      ObjectArchetype=PointLightComponent'Engine.Default__PointLightComponent'
+   End Object
+   CameraLightTemplate=PointLightTemplate_0
+   Name="Default__KFPlayerZedWaitingCamera"
+   ObjectArchetype=GameFixedCamera'GameFramework.Default__GameFixedCamera'
+}

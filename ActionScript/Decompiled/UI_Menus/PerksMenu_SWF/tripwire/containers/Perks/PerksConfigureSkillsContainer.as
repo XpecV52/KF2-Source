@@ -1,4 +1,4 @@
-package tripwire.containers.perks
+package tripwire.containers.Perks
 {
     import com.greensock.TweenMax;
     import com.greensock.easing.*;
@@ -7,9 +7,9 @@ package tripwire.containers.perks
     import flash.external.ExternalInterface;
     import flash.text.TextField;
     import scaleform.clik.controls.Button;
-    import tripwire.containers.TripContainer;
+    import tripwire.managers.MenuManager;
     
-    public class PerksConfigureSkillsContainer extends TripContainer
+    public class PerksConfigureSkillsContainer extends PerkContainerBase
     {
          
         
@@ -40,35 +40,34 @@ package tripwire.containers.perks
             visible = false;
             defaultFirstElement = this.tier0.skillButton0;
             ANIM_OFFSET_X = 0;
+            defaultNumPrompts = 2;
         }
         
-        override protected function addedToStage(param1:Event) : void
+        override protected function addedToStage(e:Event) : void
         {
-            super.addedToStage(param1);
+            super.addedToStage(e);
             this.initTierList();
         }
         
         private function initTierList() : void
         {
-            var _loc1_:int = 0;
-            while(_loc1_ < this.NUM_TIERS)
+            for(var i:int = 0; i < this.NUM_TIERS; i++)
             {
-                this.tierList.push(this["tier" + _loc1_]);
-                _loc1_++;
+                this.tierList.push(this["tier" + i]);
             }
         }
         
-        public function set skillList(param1:Array) : void
+        public function set skillList(data:Array) : void
         {
-            var _loc3_:Object = null;
-            var _loc2_:int = 0;
-            for each(_loc3_ in param1)
+            var tempObj:Object = null;
+            var tempIndex:int = 0;
+            for each(tempObj in data)
             {
-                this.tierList[_loc2_].setData(_loc3_);
-                this.tierList[_loc2_].tier = _loc2_;
-                this.tierList[_loc2_].skillButton0.tabIndex = ++this.tabIndexHelper;
-                this.tierList[_loc2_].skillButton1.tabIndex = ++this.tabIndexHelper;
-                _loc2_++;
+                this.tierList[tempIndex].setData(tempObj);
+                this.tierList[tempIndex].tier = tempIndex;
+                this.tierList[tempIndex].skillButton0.tabIndex = ++this.tabIndexHelper;
+                this.tierList[tempIndex].skillButton1.tabIndex = ++this.tabIndexHelper;
+                tempIndex++;
             }
         }
         
@@ -103,9 +102,27 @@ package tripwire.containers.perks
             });
         }
         
-        override protected function onOpened(param1:TweenEvent = null) : void
+        override public function selectContainer() : void
         {
-            super.onOpened(param1);
+            super.selectContainer();
+            this.updateControllerIconVisibility();
+            trace("Bryan: " + this + " selectContainer:: defaultPromptNum: " + defaultNumPrompts + " manager numprompts: " + MenuManager.manager.numPrompts);
+        }
+        
+        override protected function onInputChange(e:Event) : *
+        {
+            super.onInputChange(e);
+            this.updateControllerIconVisibility();
+        }
+        
+        private function updateControllerIconVisibility() : void
+        {
+            this.confirmButton.visible = !bManagerUsingGamepad;
+        }
+        
+        override protected function onOpened(e:TweenEvent = null) : void
+        {
+            super.onOpened(e);
             ExternalInterface.call("Callback_SkillSelectionOpened");
         }
     }

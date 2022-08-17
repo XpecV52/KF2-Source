@@ -55,6 +55,10 @@ struct native AttachmentOverrideList
     var() bool bEyes;
     /** List of booleans that will effect which items can be attached with the current attachment */
     var() bool bJaw;
+    /** List of booleans that will effect which items can be attached with the current attachment */
+    var() bool bArmband;
+    /** List of booleans that will effect which items can be attached with the current attachment */
+    var() bool bBackpack;
     /** List of cosmetic indices that this attachment will detach, if they are currently attached to a player */
     var() array<byte> SpecialOverrideIds;
 
@@ -64,6 +68,8 @@ struct native AttachmentOverrideList
         bFace=false
         bEyes=false
         bJaw=false
+        bArmband=false
+        bBackpack=false
         SpecialOverrideIds=none
     }
 };
@@ -117,7 +123,7 @@ struct native AttachmentVariants
         MaxDrawDistance=0
         SkinMaterialID=0
         SkinVariations=none
-        OverrideList=(bHat=false,bFace=false,bEyes=false,bJaw=false,SpecialOverrideIds=none)
+        OverrideList=(bHat=false,bFace=false,bEyes=false,bJaw=false,bArmband=false,bBackpack=false,SpecialOverrideIds=none)
     }
 };
 
@@ -136,14 +142,8 @@ struct native FirstPersonArmVariants
 };
 
 var() const int UnlockAssetID;
-var(General) Texture DefaultHeadPortrait;
-var(General) array<Texture> DefaultTeamHeadPortrait;
-/** Matches the FamilyID in the CustomCharData */
-var(General) string FamilyID;
-/** Faction that this family belongs to. */
-var(General) string Faction;
 /** Whether these are female characters */
-var(General) bool bIsFemale;
+var() bool bIsFemale;
 /** The material ID for the skin in the mesh */
 var(ThirdPerson) int HeadMaterialID;
 var(ThirdPerson) int BodyMaterialID;
@@ -178,11 +178,6 @@ function SkeletalMesh GetFirstPersonArms()
     return ArmMesh;
 }
 
-function Texture GetCharPortrait(int TeamNum)
-{
-    return ((TeamNum < DefaultTeamHeadPortrait.Length) ? DefaultTeamHeadPortrait[TeamNum] : DefaultHeadPortrait);
-}
-
 function int GetFavoriteWeaponIndexOf(Weapon W)
 {
     local int I;
@@ -210,7 +205,6 @@ simulated function SetCharacterFromArch(KFPawn KFP, optional KFPlayerReplication
         WarnInternal("Does not have a KFPRI" @ string(self));
         return;
     }
-    KFPRI.CharPortrait = GetCharPortrait(KFPRI.GetTeamNum());
     if(bIsFemale)
     {
         KFPRI.TTSSpeaker = byte(Rand(4));        
@@ -572,6 +566,10 @@ function bool GetOverrideCase(byte AttachmentIndex1, byte AttachmentIndex2)
             return CosmeticVariants[AttachmentIndex2].OverrideList.bEyes;
         case 'Jaw_Attach':
             return CosmeticVariants[AttachmentIndex2].OverrideList.bJaw;
+        case 'Armband_Attach':
+            return CosmeticVariants[AttachmentIndex2].OverrideList.bArmband;
+        case 'Backpack_Attach':
+            return CosmeticVariants[AttachmentIndex2].OverrideList.bBackpack;
         default:
             return false;
             break;

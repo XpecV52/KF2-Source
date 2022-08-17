@@ -493,7 +493,6 @@ defaultproperties
       ObjectArchetype=ParticleSystemComponent'Engine.Default__ParticleSystemComponent'
    End Object
    PSC_EndSpray=FlameEndSpray0
-   CollisionType=COLLIDE_CustomDefault
    Name="Default__KFWeapAttach_SprayBase"
    ObjectArchetype=KFWeaponAttachment'KFGame.Default__KFWeaponAttachment'
 }

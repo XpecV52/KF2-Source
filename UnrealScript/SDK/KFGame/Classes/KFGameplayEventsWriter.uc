@@ -19,39 +19,9 @@ class KFGameplayEventsWriter extends GameplayEventsWriter
  * Gameplay
  */
 
-/* Wave/Match Events */
-const GAMEEVENT_WAVE_START = 					1001;
-const GAMEEVENT_WAVE_END = 						1002;
-const GAMEEVENT_SURVIVAL_INFO =					1003;
-const GAMEEVENT_MATCH_WON = 					1009;
-
 /* Zed events*/
 const GAMEEVENT_ZED_DIED =						1010;
 const GAMEEVENT_ZED_SPAWNED =					1011;
-
-/* Player events */
-const GAMEEVENT_PLAYER_RELOAD = 				1100;
-const GAMEEVENT_PLAYER_PERK_CHANGED = 			1101;
-const GAMEEVENT_GRENADE_THROWN = 				1102;
-
-/* Damage Events */
-const GAMEEVENT_DAMAGE_GENERIC =				1200;
-const GAMEEVENT_PLAYER_HEAL =					1201;
-const GAMEEVENT_DOOR_WELD = 					1202;
-/* TODO: Populate damage list */
-
-/* XP Events */
-const GAMEEVENT_PLAYER_XP_HEAL = 				1300;
-const GAMEEVENT_PLAYER_XP_WELD = 				1301;
-const GAMEEVENT_PLAYER_XP_SMALL_RADIUS = 		1302;
-const GAMEEVENT_PLAYER_XP_STALKER = 			1303;
-
-/* Trader Events */
-const GAMEEVENT_PURCHASE_WEAP =					1400;
-const GAMEEVENT_PURCHASE_AMMO =					1401;
-const GAMEEVENT_PURCHASE_ARMOR =				1402;
-const GAMEEVENT_SELL_WEAP =						1403;
-const GAMEEVENT_PLAYER_DOSH_DELTA =				1404;
 
 /*
  * Debugging
@@ -89,24 +59,17 @@ const GAMEEVENT_AI_PATHGOALEVAL_ABORT =			2122;
 const GAMEEVENT_AI_PATH_FAILURE =				2123;
 
 var globalconfig bool bRecordAIDebugInfo;
-var globalconfig bool bRecordDamageEvents;
-var globalconfig bool bRecordZedEvents;
-var globalconfig bool bUploadPerformanceEvents;
 
 /** Index of file in use by this writer */
 var int StatsFileIndex;
 
 /** Emulate a singleton/static variable for the event */
-var transient KFAnalyticsZedDeathEvent DeathEvent;
 var transient Controller LastDiedController;
 
 cpptext
 {
 	/** Cleanup the native memory allocations */
 	virtual void BeginDestroy();
-
-	/** Turn hit zones into index */
-	INT ResolveHitZoneIndex(FHitZoneInfo* HZ);
 };
 
 /*
@@ -139,163 +102,6 @@ native function bool OpenStatsFile(string Filename);
  *   Can the writer get access to a file to write to (XBOX specific)
  */
 native function bool CanAcquireFile();
-
-/**
- * Generates the script wrapper around the native zed death struct
- * @return KFAnalyticsZedDeathEvent or None
- */
-native function KFAnalyticsZedDeathEvent GetZedDeathEvent();
-
-/*********************************************************************************************
-* @name Match/Wave Event Info
-**********************************************************************************************/
-
-function LogSurvivalInfo(int GameDifficulty, int GameLength)
-{
-	local GenericParamListStatEntry PLE;
-
-	PLE = GetGenericParamListEntry();
-	PLE.AddInt('EventID', `StatID(SURVIVAL_INFO));
-	PLE.AddInt('GameDifficulty', GameDifficulty);
-	PLE.AddInt('GameLength', GameLength);
-
-	PLE.CommitToDisk();
-}
-
-
-/*********************************************************************************************
-* @name Player/Zed specific gameplay events
-**********************************************************************************************/
-
-native function LogKFDamageEvent(int EventID, Controller Instigator, KFPawn Victim, int HitZone, int Damage, class<DamageType> DamageType);
-
-native function LogKFPlayerPerk(int EventID, Controller Player, class<KFPerk> PerkClass);
-
-function LogZedKilled(Controller Killer, Controller Monster, KFPawn_Monster MonsterPawn)
-{
-	if (DeathEvent == None)
-	{
-		DeathEvent = GetZedDeathEvent();
-		if (DeathEvent != None)
-		{
-			DeathEvent.SetBasicInfo(Killer, Monster, MonsterPawn);
-		}
-	}
-	else
-	{
-		`warn("Calling LogZedKilled() without committing previous context!");
-		DeathEvent = None;
-		LogZedKilled(Killer, Monster, MonsterPawn);
-	}
-}
-
-function LogZedKilledPerPlayer(Controller Player, float DamageDealt, int ReceivedExp, int ReceivedDosh, class<KFPerk> Perk)
-{
-	if (DeathEvent != None)
-	{
-		DeathEvent.AddPerPlayer(Player, DamageDealt, ReceivedExp, ReceivedDosh, Perk);
-	}
-	else
-	{
-		`warn("Calling LogZedKilledPerPlayer() without an initialized context!");
-	}
-}
-
-function LogPlayerWeaponReload(KFWeapon Weap, Controller Player)
-{
-	local GenericParamListStatEntry PLE;
-
-	PLE = GetGenericParamListEntry();
-	PLE.AddInt('EventID', `StatID(PLAYER_RELOAD));
-	PLE.AddInt('PlayerIndex', ResolvePlayerIndex(Player));
-	PLE.AddInt('WeaponName', ResolveWeaponClassIndex(Weap.class));
-	PLE.AddVector('PlayerLocation', Player.Location);
-	PLE.AddInt('AmmoCount', Weap.AmmoCount[0]);
-	PLE.AddInt('SpareAmmoCount', Weap.SpareAmmoCount[0]);
-	PLE.AddInt('MagazineCapacity', Weap.MagazineCapacity[0]);
-
-	PLE.CommitToDisk();
-}
-
-function LogPlayerHealEvent(int Amount, Controller Healer, class<DamageType> DamageType, Controller Recipient, int DoshEarned)
-{
-	local GenericParamListStatEntry PLE;
-
-	PLE = GetGenericParamListEntry();
-	PLE.AddInt('EventID', `StatID(PLAYER_HEAL));
-	PLE.AddInt('Amount', Amount);
-	PLE.AddInt('DoshEarned', DoshEarned);
-	PLE.AddInt('HealerIndex', ResolvePlayerIndex(Healer));
-	PLE.AddInt('RecipientIndex', ResolvePlayerIndex(Recipient));
-	PLE.AddInt('DamageClassIndex', ResolveDamageClassIndex(DamageType));
-
-	PLE.CommitToDisk();
-}
-
-function LogDoorWeldEvent(int Amount, int MaxWeldIntegrity, int PostWeldIntegrity, Controller Welder, Controller Damager, Actor Door)
-{
-	local GenericParamListStatEntry PLE;
-
-	PLE = GetGenericParamListEntry();
-	PLE.AddInt('EventID', `StatID(DOOR_WELD));
-	PLE.AddInt('Amount', Amount);
-	PLE.AddInt('MaxWeldIntegrity', MaxWeldIntegrity);
-	PLE.AddInt('PostWeldIntegrity', PostWeldIntegrity);
-	PLE.AddInt('Welder', ResolvePlayerIndex(Welder));
-	PLE.AddInt('Damager', ResolvePlayerIndex(Damager));
-	PLE.AddInt('DoorActor', ResolveActorIndex(Door));
-
-	PLE.CommitToDisk();
-}
-
-/* Log How Much Dosh was Spent/Earned at the Trader  */
-function LogPlayerDoshDelta( Controller Player, int DoshDelta )
-{
-	local GenericParamListStatEntry PLE;
-
-	PLE = GetGenericParamListEntry();
-	PLE.AddInt( 'EventID', `StatID(PLAYER_DOSH_DELTA) );
-	PLE.AddInt( 'PlayerIndex', ResolvePlayerIndex(Player) );
-	PLE.AddInt( 'DoshDelta', DoshDelta );
-
-	PLE.CommitToDisk();
-}
-
-/* Log what the player purchased/sold and how much ammo when applicable */
-function LogTraderTransactions( int EventID, Controller Player, class<Actor> TraderItem, optional int AmmoPurchased, optional bool bSecondaryAmmo = false )
-{
-	local GenericParamListStatEntry PLE;
-
-	PLE = GetGenericParamListEntry();
-	PLE.AddInt( 'EventID', EventID );
-	PLE.AddInt( 'PlayerIndex', ResolvePlayerIndex(Player) );
-	PLE.AddInt( 'WeaponName', ResolveWeaponClassIndex(TraderItem) );
-	PLE.AddInt( 'AmmoPurchased', AmmoPurchased );
-	PLE.AddString( 'SecondaryAmmo', bSecondaryAmmo );
-
-	PLE.CommitToDisk();
-}
-
-/* Log how much armor the player purchased */
-function LogArmorPurchase( int EventID, Controller Player, int ArmorPurchased )
-{
-	local GenericParamListStatEntry PLE;
-
-	PLE = GetGenericParamListEntry();
-	PLE.AddInt( 'EventID', EventID );
-	PLE.AddInt( 'PlayerIndex', ResolvePlayerIndex(Player) );
-	PLE.AddInt( 'ArmorPurchased', ArmorPurchased );
-
-	PLE.CommitToDisk();
-}
-
-
-/**
-* Logs the location of all players when this event occurred
-*
-* @param EventId the event being logged
-*/
-native function LogAllPlayerPositionsEvent(int EventId);
 
 function LogSpawnVolumeRating( KFSpawnVolume SpawnVolume, float FinalRating, float UsageRating, float LocationRating )
 {

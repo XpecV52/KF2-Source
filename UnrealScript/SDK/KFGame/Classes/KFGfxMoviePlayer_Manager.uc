@@ -65,6 +65,8 @@ var KFGFxMenu_Exit ExitMenu;
 
 var bool bPostGameState;
 
+var class<KFGFxWidget_PartyInGame> InGamePartyWidgetClass;
+
 /** Connects the different layers of the start menu with an index */
 enum EStartMenuState
 {
@@ -183,8 +185,11 @@ function Init(optional LocalPlayer LocPlay)
 
 	super.Init( LocPlay );
 
+	if(OnlineSub != none)
+	{
 	OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
 	OnlineLobby = OnlineSub.GetLobbyInterface();
+	}
 
 	TimerHelper.SetTimer( 1.0, true, nameof(OneSecondLoop), self );
 	SetTimingMode(TM_Real);
@@ -211,7 +216,7 @@ function LaunchMenus( optional bool bForceSkipLobby )
 	else
 	{
 		bSkippedLobby = bForceSkipLobby || CheckSkipLobby();
-		WidgetBinding.WidgetClass = class'KFGFxWidget_PartyInGame';
+		WidgetBinding.WidgetClass = InGamePartyWidgetClass;
 		ManagerObject.SetBool("backgroundVisible", false);
 		if(bSkippedLobby)
 		{
@@ -275,6 +280,9 @@ function bool CheckSkipLobby()
 event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 {
 	local PlayerController PC;
+	local bool bHandled;
+
+	bHandled = true;
 
 	`log("WidgetInitialized - Menu: " @WidgetName,,'DevGFxUI');
 	switch ( WidgetName )
@@ -283,6 +291,8 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 			if ( ManagerObject == none )
 			{
 				ManagerObject = Widget;
+				// Let the menuManager know if we are on console.
+				ManagerObject.SetBool("bConsoleBuild",class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis));
 			}
 		break;
 		case ( 'exitMenu' ):
@@ -437,10 +447,13 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 			}
 		break;
 		case ( 'ChatBoxWidget' ):
-			if(PartyWidget.PartyChatWidget == none)
+			if(PartyWidget != none)
 			{
-				PartyWidget.PartyChatWidget = KFGFxHUD_ChatBoxWidget(Widget);
-				PartyWidget.PartyChatWidget.Init();
+				if(PartyWidget.PartyChatWidget == none)
+				{
+					PartyWidget.PartyChatWidget = KFGFxHUD_ChatBoxWidget(Widget);
+					PartyWidget.PartyChatWidget.Init();
+				}
 			}
 		break;
         case  'GammaPopup':
@@ -449,9 +462,11 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
         case  'InputPromptPopup':
             InitializePopup( WidgetPath, KFGFxObject_Popup( Widget ) );
         break;
+		default:
+			bHandled = false;
 	}
 
-	return true;
+	return bHandled;
 }
 
 function StatsInitialized()
@@ -555,6 +570,12 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 	{
 		PlaySoundFromTheme('TraderMenu_Open', SoundThemeName);
 
+		// fix for auto-close when use/close are bound to the same key
+		if( PC != none && PC.PlayerInput != none )
+		{
+			PC.PlayerInput.ResetInput();
+		}
+
 		// The trader menu is not opened through ToggleMenus, set the timer to mark when the menu is completely open
 		bCanCloseMenu = false;
 		TimerHelper.SetTimer( 0.5, false, nameof(AllowCloseMenu), self );
@@ -630,7 +651,7 @@ function CloseMenus(optional bool bForceClose=false)
 	if (bMenusOpen || bForceClose)
 	{
 		UnloadCurrentPopup();
-		if ( !bAfterLobby && PartyWidget != none || GetPC().WorldInfo.GRI.bMatchIsOver )
+		if ( !bAfterLobby && PartyWidget != none || GetPC() == none || GetPC().WorldInfo.GRI == none || GetPC().WorldInfo.GRI.bMatchIsOver )
 		{
 			PartyWidget.SetReadyButtonVisibility(false);
 		 	bAfterLobby = true;
@@ -676,14 +697,14 @@ function bool ToggleMenus()
 	if (!bMenusOpen || HUD.bShowHUD)
 	{
 		if (CurrentMenuIndex >= MenuSWFPaths.length)
-		{
+	{
 			LaunchMenus();
-		}
+	}
 		else
-		{
+	{
 			OpenMenu(UI_Perks);
 			UpdateMenuBar();
-		}
+	}
 
 		// set the timer to mark when the menu is completely open and we can close the menu down
 		bCanCloseMenu = false;
@@ -693,30 +714,30 @@ function bool ToggleMenus()
 	else if(bCanCloseMenu) //check to make sure
 	{
 		if(GetPC().WorldInfo.GRI.bMatchIsOver && !bAfterLobby)
-		{
+	{
 			return false; // we are still in the lobby and the game has not proceeded to a point where we can use the esc key
-		}
+	}
 
 		if (CurrentMenu != TraderMenu)
-		{
+	{
 			PlaySoundFromTheme('MainMenu_Close', SoundThemeName);
-		}
+	}
 
     	CloseMenus();
 	}
 	else if(bPostGameState)
 	{
 		if(CurrentMenu == PostGameMenu)
-		{
+	{
 			bMenusOpen = false;
 			OpenMenu(UI_Perks);
 			SetWidgetsVisible(true);
-		}
+	}
 		else
-		{
+	{
 			OpenMenu(UI_PostGame);
 			SetWidgetsVisible(false);
-		}
+	}
 	}
 
 	return false;
@@ -938,14 +959,14 @@ function ConditionalPauseGame(bool bPause)
 		// Uses PlayersOnly instead of the normal PauseGame so that we can still use the gear menu.
 		if ( bPause )
 		{
-			if ( WI.IsMenuLevel() || !bAfterLobby || CurrentMenu == TraderMenu || GetPC().WorldInfo.GRI.bMatchIsOver )
+			if ( WI.IsMenuLevel() || !bAfterLobby || CurrentMenu == TraderMenu || GetPC() == none || GetPC().WorldInfo.GRI.bMatchIsOver )
 			{
 				return;
 			}
 
 			GetPC().SetPause(true);
 		}
-		else
+		else if( GetPC() != none )
 		{
 			GetPC().SetPause(false);
 		}
@@ -1069,7 +1090,10 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, EInputEvent Inpu
 	if ( CurrentMenu != none )
 	{
 		CurrentMenu.FilterButtonInput( ControllerId, ButtonName, InputEvent );
-    	CheckIfUsingGamepad();
+		if ( !class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) )
+    	{
+			CheckIfUsingGamepad();
+		}
 	}
 
  	return false;
@@ -1105,7 +1129,7 @@ function bool GetUsingGamepad()
 	{
 		return false;
 	}
-
+	// Always using the gamepad if we are on console.
     return PC.PlayerInput.bUsingGamepad;
 }
 
@@ -1233,8 +1257,14 @@ function CastNoVote()
 	}
 }
 
+function currentFocus()
+{
+	ManagerObject.ActionScriptVoid("currentFocus");
+}
+
 defaultproperties
 {
+	InGamePartyWidgetClass=class'KFGFxWidget_PartyInGame'
 	BackgroundMovie=TextureMovie'UI_Managers.MenuBG'
     MovieInfo=SwfMovie'UI_Managers.LoaderManager_SWF'
 	bCaptureInput=true

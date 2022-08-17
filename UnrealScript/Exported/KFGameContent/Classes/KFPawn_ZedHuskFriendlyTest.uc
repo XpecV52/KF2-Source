@@ -39,6 +39,7 @@ defaultproperties
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedHusk:MeleeHelper_0'
       BaseDamage=15.000000
       MyDamageType=Class'kfgamecontent.KFDT_Slashing_ZedWeak'
+      MomentumTransfer=25000.000000
       MaxHitRange=180.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedHusk:MeleeHelper_0'
@@ -52,17 +53,6 @@ defaultproperties
    End Object
    ThirdPersonHeadMeshComponent=ThirdPersonHead0
    Begin Object Class=KFPawnAfflictions Name=Afflictions_0 Archetype=KFPawnAfflictions'kfgamecontent.Default__KFPawn_ZedHusk:Afflictions_0'
-      InstantAffl(0)=(head=50,Torso=80,Leg=80,Arm=80,Special=50,LowHealthBonus=10,Cooldown=10.000000)
-      InstantAffl(1)=(head=44,Torso=80,Leg=80,Arm=80,LowHealthBonus=10,Cooldown=3.000000)
-      InstantAffl(2)=(head=44,Torso=50,Arm=50,Special=43,LowHealthBonus=10)
-      InstantAffl(3)=(Leg=44,LowHealthBonus=10)
-      InstantAffl(4)=(head=23,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=0.350000)
-      InstantAffl(5)=(head=110,Torso=110,Leg=110,Arm=110,LowHealthBonus=10,Cooldown=0.500000)
-      StackingAffl(0)=(Threshhold=1.500000,Cooldown=5.000000,DissipationRate=0.500000)
-      StackingAffl(1)=(Threshhold=12.000000,Duration=2.000000,Cooldown=5.000000)
-      StackingAffl(2)=(Threshhold=3.000000,Duration=4.000000,Cooldown=8.500000)
-      StackingAffl(3)=(Threshhold=3.000000,Duration=4.000000,Cooldown=8.500000)
-      StackingAffl(4)=(Threshhold=0.000000,Cooldown=5.000000)
       FireFullyCharredDuration=5.000000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
@@ -92,31 +82,39 @@ defaultproperties
       SpecialMoveClasses(7)=Class'KFGame.KFSM_RagdollKnockdown'
       SpecialMoveClasses(8)=Class'KFGame.KFSM_DeathAnim'
       SpecialMoveClasses(9)=Class'KFGame.KFSM_Stunned'
-      SpecialMoveClasses(10)=None
-      SpecialMoveClasses(11)=Class'KFGame.KFSM_Zed_Taunt'
-      SpecialMoveClasses(12)=Class'KFGame.KFSM_Zed_WalkingTaunt'
-      SpecialMoveClasses(13)=Class'KFGame.KFSM_Evade'
-      SpecialMoveClasses(14)=Class'kfgamecontent.KFSM_Evade_Fear'
-      SpecialMoveClasses(15)=None
-      SpecialMoveClasses(16)=None
-      SpecialMoveClasses(17)=Class'kfgamecontent.KFSM_Husk_FireBallAttack'
-      SpecialMoveClasses(18)=Class'kfgamecontent.KFSM_Husk_FlameThrowerAttack'
-      SpecialMoveClasses(19)=Class'kfgamecontent.KFSM_Husk_Suicide'
-      SpecialMoveClasses(20)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(21)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(10)=Class'KFGame.KFSM_Frozen'
+      SpecialMoveClasses(11)=None
+      SpecialMoveClasses(12)=None
+      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_Taunt'
+      SpecialMoveClasses(14)=Class'KFGame.KFSM_Zed_WalkingTaunt'
+      SpecialMoveClasses(15)=Class'KFGame.KFSM_Evade'
+      SpecialMoveClasses(16)=Class'kfgamecontent.KFSM_Evade_Fear'
+      SpecialMoveClasses(17)=None
+      SpecialMoveClasses(18)=None
+      SpecialMoveClasses(19)=Class'kfgamecontent.KFSM_Husk_FireBallAttack'
+      SpecialMoveClasses(20)=Class'kfgamecontent.KFSM_Husk_FlameThrowerAttack'
+      SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_Husk_Suicide'
+      SpecialMoveClasses(22)=None
+      SpecialMoveClasses(23)=None
+      SpecialMoveClasses(24)=None
+      SpecialMoveClasses(25)=None
+      SpecialMoveClasses(26)=None
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedHusk:SpecialMoveHandler_0'
    End Object
    SpecialMoveHandler=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedHuskFriendlyTest:SpecialMoveHandler_0'
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent_1 Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedHusk:AmbientAkSoundComponent_1'
-      BoneName="Spine1"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       Name="AmbientAkSoundComponent_1"
       ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedHusk:AmbientAkSoundComponent_1'
    End Object
    AmbientAkComponent=AmbientAkSoundComponent_1
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent_0 Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedHusk:AmbientAkSoundComponent_0'
-      BoneName="RW_Weapon"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True
       Name="AmbientAkSoundComponent_0"
@@ -129,7 +127,7 @@ defaultproperties
    End Object
    WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'kfgamecontent.Default__KFPawn_ZedHuskFriendlyTest:WeaponAmbientEchoHandler_0'
    Begin Object Class=AkComponent Name=FootstepAkSoundComponent Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedHusk:FootstepAkSoundComponent'
-      BoneName="Root"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True
       Name="FootstepAkSoundComponent"
@@ -137,7 +135,7 @@ defaultproperties
    End Object
    FootstepAkComponent=FootstepAkSoundComponent
    Begin Object Class=AkComponent Name=DialogAkSoundComponent Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedHusk:DialogAkSoundComponent'
-      BoneName="head"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       Name="DialogAkSoundComponent"
       ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedHusk:DialogAkSoundComponent'

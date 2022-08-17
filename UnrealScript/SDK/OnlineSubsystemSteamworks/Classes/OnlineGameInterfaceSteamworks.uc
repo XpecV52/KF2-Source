@@ -28,7 +28,7 @@ struct native ServerQueryToPingResponseMapping
 	var native pointer Response{FOnlineAsyncTaskSteamServerPingRequest};
 };
 
-`if (`__TW_STEAMWORKS_)
+`if (`__TW_NETWORKING_)
 struct native ServerQueryToPlayerListResponseMapping
 {
 	/** The Steam query handle */
@@ -41,17 +41,6 @@ struct native ServerQueryToPlayerListResponseMapping
 		Query = -1;
 	}
 };
-
-`else
-
-/** The type of server search we're doing at the moment. */
-enum ESteamMatchmakingType
-{
-	SMT_Invalid,
-	SMT_LAN,
-	SMT_Internet
-};
-
 `endif
 
 /** Struct representing a bunch of clientside filters which are combined with the OR '||' operator */
@@ -76,7 +65,7 @@ struct native MatchmakingQueryState
 	/** Stores in-progress Steam query handles */
 	var array<ServerQueryToPingResponseMapping>		QueryToPingResponseMap;
 
-`if (`__TW_STEAMWORKS_)
+`if (`__TW_NETWORKING_)
 	/** Stores the in-progress Steam player list query */
 	var ServerQueryToPlayerListResponseMapping     PlayerListQuery;
 `endif
@@ -183,7 +172,7 @@ struct native FilterKeyToSteamKeyMapping
 var config array<FilterKeyToSteamKeyMapping> FilterKeyToSteamKeyMap;
 
 
-`if (`__TW_STEAMWORKS_)
+`if (`__TW_NETWORKING_)
 
 /** Type that next search will be */
 var ESteamMatchmakingType				MatchmakingTypeMode;
@@ -509,7 +498,9 @@ function bool QueryNonAdvertisedData(int StartAt,int NumberToQuery)
 function ClearOnlineDelegates()
 {
 	UnregisterPlayerCompleteDelegates.Length = 0;
+`if(`__TW_NETWORKING_)
 	GetPlayerListCompleteDelegates.Length = 0;
+`endif
 	GameInviteAcceptedDelegates.Length = 0;
 	RegisterPlayerCompleteDelegates.Length = 0;
 	CreateOnlineGameCompleteDelegates.Length = 0;
@@ -520,5 +511,7 @@ function ClearOnlineDelegates()
 
 defaultproperties
 {
+`if(`__TW_NETWORKING_)
 	MatchmakingTypeMode=SMT_Internet
+`endif
 }

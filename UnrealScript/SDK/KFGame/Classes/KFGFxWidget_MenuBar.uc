@@ -41,6 +41,11 @@ function  UpdateMenu(byte CurrentMenuIndex)
 
 	for (i = 0; i < MenuStrings.length; i++)
 	{
+		if ( i == MenuStrings.length -1 && class'WorldInfo'.static.IsMenuLevel() && class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) )
+		{
+			// Console doesn't show exit game in the main menu.
+			break;
+		}
 	    TempObj = CreateObject( "Object" );
 	    
 		

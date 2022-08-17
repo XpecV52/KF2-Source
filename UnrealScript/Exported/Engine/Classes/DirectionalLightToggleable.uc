@@ -48,7 +48,6 @@ defaultproperties
    Begin Object Class=StaticMeshComponent Name=LightMeshComponent0 Archetype=StaticMeshComponent'Engine.Default__DirectionalLight:LightMeshComponent0'
       ReplacementPrimitive=None
       bAllowApproximateOcclusion=True
-      LightingChannels=(bInitialized=True,Indoor=True,Outdoor=True)
       bOverridePrecomputedShadowOcclusion=True
       Name="LightMeshComponent0"
       ObjectArchetype=StaticMeshComponent'Engine.Default__DirectionalLight:LightMeshComponent0'
@@ -73,9 +72,7 @@ defaultproperties
       ObjectArchetype=SpriteComponent'Engine.Default__DirectionalLight:Sprite'
    End Object
    Components(0)=Sprite
-   Components(1)=LightMeshComponent0
-   Components(2)=LensFlareComponent0
-   Components(3)=DirectionalLightComponent0
+   Components(1)=DirectionalLightComponent0
    Begin Object Class=ArrowComponent Name=ArrowComponent0 Archetype=ArrowComponent'Engine.Default__DirectionalLight:ArrowComponent0'
       ArrowColor=(B=255,G=200,R=150,A=255)
       bTreatAsASprite=True
@@ -84,7 +81,7 @@ defaultproperties
       Name="ArrowComponent0"
       ObjectArchetype=ArrowComponent'Engine.Default__DirectionalLight:ArrowComponent0'
    End Object
-   Components(4)=ArrowComponent0
+   Components(2)=ArrowComponent0
    TickGroup=TG_DuringAsyncWork
    bHardAttach=True
    CollisionComponent=LightMeshComponent0

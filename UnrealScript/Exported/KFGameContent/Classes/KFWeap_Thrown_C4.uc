@@ -204,9 +204,9 @@ simulated function Detonate()
 	// auto switch weapon when out of ammo and after detonating the last deployed charge
 	if( Role == ROLE_Authority )
 	{
-		if( DeployedCharges.Length > 0 )
-		{
-			DeployedCharges[0].Detonate();
+	if( DeployedCharges.Length > 0 )
+	{
+		DeployedCharges[0].Detonate();
 			RemoveDeployedCharge( 0 );
 		}
 
@@ -228,7 +228,7 @@ function RemoveDeployedCharge( optional int ChargeIndex = INDEX_NONE, optional A
 		if( ChargeActor != none )
 		{
 			ChargeIndex = DeployedCharges.Find( ChargeActor );
-		}
+	}
 	}
 
 	if( ChargeIndex != INDEX_NONE )
@@ -255,7 +255,7 @@ function SetOriginalValuesFromPickup( KFWeapon PickedUpWeapon )
 		// charge alerts (beep, light) need current instigator
 		DeployedCharges[i].Instigator = Instigator;
 		if( Instigator.Controller != none )
-		{
+	{
 			DeployedCharges[i].InstigatorController = Instigator.Controller;
 		}
 	}
@@ -319,7 +319,7 @@ simulated state WeaponDetonating
 		AnimDuration = MySkelMesh.GetAnimLength( DetonateAnimName );
 
 		if( WorldInfo.NetMode != NM_DedicatedServer )
-		{
+	{
 			if( NumDeployedCharges > 0 )
 			{
 				PlaySoundBase( DetonateAkEvent, true );
@@ -327,7 +327,7 @@ simulated state WeaponDetonating
 			else
 			{
 				PlaySoundBase( DryFireAkEvent, true );
-			}
+	}
 
 			PlayAnimation( DetonateAnimName );
 		}

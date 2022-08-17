@@ -34,7 +34,6 @@ defaultproperties
    Begin Object Class=StaticMeshComponent Name=LightMeshComponent0 Archetype=StaticMeshComponent'Engine.Default__PointLight:LightMeshComponent0'
       ReplacementPrimitive=None
       bAllowApproximateOcclusion=True
-      LightingChannels=(bInitialized=True,Indoor=True,Outdoor=True)
       bOverridePrecomputedShadowOcclusion=True
       Name="LightMeshComponent0"
       ObjectArchetype=StaticMeshComponent'Engine.Default__PointLight:LightMeshComponent0'
@@ -59,22 +58,20 @@ defaultproperties
       ObjectArchetype=SpriteComponent'Engine.Default__PointLight:Sprite'
    End Object
    Components(0)=Sprite
-   Components(1)=LightMeshComponent0
-   Components(2)=LensFlareComponent0
    Begin Object Class=DrawLightRadiusComponent Name=DrawLightRadius0 Archetype=DrawLightRadiusComponent'Engine.Default__PointLight:DrawLightRadius0'
       ReplacementPrimitive=None
       Name="DrawLightRadius0"
       ObjectArchetype=DrawLightRadiusComponent'Engine.Default__PointLight:DrawLightRadius0'
    End Object
-   Components(3)=DrawLightRadius0
+   Components(1)=DrawLightRadius0
    Begin Object Class=DrawLightRadiusComponent Name=DrawLightSourceRadius0 Archetype=DrawLightRadiusComponent'Engine.Default__PointLight:DrawLightSourceRadius0'
       SphereColor=(B=0,G=239,R=231,A=255)
       ReplacementPrimitive=None
       Name="DrawLightSourceRadius0"
       ObjectArchetype=DrawLightRadiusComponent'Engine.Default__PointLight:DrawLightSourceRadius0'
    End Object
-   Components(4)=DrawLightSourceRadius0
-   Components(5)=DominantPointLightComponent0
+   Components(2)=DrawLightSourceRadius0
+   Components(3)=DominantPointLightComponent0
    bHardAttach=True
    CollisionComponent=LightMeshComponent0
    Name="Default__DominantPointLight"

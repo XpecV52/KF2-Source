@@ -134,6 +134,16 @@ var string DownloadableContentEnumeratorClassName;
 var const transient DownloadableContentManager DLCManager;
 
 
+	var bool bSaveBenchmarkGraphs;
+	struct native transient BenchmarkSample
+	{
+		var float AppTime, RenderThreadTime, GameThreadTime, GPUFrameTime;
+	};
+	
+	var array<BenchmarkSample> BenchmarkSamples;
+
+
+
 var string DownloadableContentManagerClassName;
 
 
@@ -304,6 +314,14 @@ native function TakeoverServer( string InHostStr, string InUrlStr );
 native static function int GetWebAdminPort();
 
 
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
 // (cpptext)
 // (cpptext)
 // (cpptext)

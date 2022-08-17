@@ -31,35 +31,41 @@ function StartInteraction()
 {
 	local KFAIDirector AIDirector;
 
-	// Try to let the game's KFAIDirector know about the successful grab, so it can alert nearby Zeds
-	// TODO: Might want to move this to a timer so other zeds aren't alerted until the grapple anim actively looping
-	if( Follower != none && KFPOwner != none && KFPOwner.MyKFAIC != none )
+	if( Follower != none && KFPOwner != none )
 	{
-		AIDirector = KFPOwner.MyKFAIC.MyAIDirector;
+	    // Prevent grenade throwing for a short time after being grabbed to prevent players blowing themselves up
+	    if( KFWeapon(Follower.Weapon) != none )
+	    {
+	        KFWeapon(Follower.Weapon).ZedGrabGrenadeTossCooldown = Follower.WorldInfo.TimeSeconds + 0.35;
+	    }
 
-		//Let the AI controller know the initial attack succeeded
-		if( KFAIController_Monster(KFPOwner.MyKFAIC) != none )
+	    // Force the player to look at the zed if grabbed
+	    if( Follower.Controller != none && KFPlayerController(Follower.Controller) != none )
+	    {
+	        KFPlayerController(Follower.Controller).ForceLookAtPawn = KFPOwner;
+	        KFPlayerController(Follower.Controller).bLockToForceLookAtPawn = true;
+	    }
+
+		// Try to let the game's KFAIDirector know about the successful grab, so it can alert nearby Zeds
+		// TODO: Might want to move this to a timer so other zeds aren't alerted until the grapple anim actively looping
+		if( KFPOwner.MyKFAIC != none )
 		{
-            KFAIController_Monster(KFPOwner.MyKFAIC).bCompletedInitialGrabAttack = true;
-        }
+			AIDirector = KFPOwner.MyKFAIC.MyAIDirector;
 
-        // Prevent grenade throwing for a short time after being grabbed to prevent players blowing themselves up
-        if( Follower != none && KFWeapon(Follower.Weapon) != none )
-        {
-            KFWeapon(Follower.Weapon).ZedGrabGrenadeTossCooldown = Follower.WorldInfo.TimeSeconds + 0.35;
-        }
-
-        // Force the player to look at the zed if grabbed
-        if( Follower != none && Follower.Controller != none && KFPlayerController(Follower.Controller) != none )
-        {
-            KFPlayerController(Follower.Controller).ForceLookAtPawn = KFPOwner;
-            KFPlayerController(Follower.Controller).bLockToForceLookAtPawn = true;
-        }
-
-		if( AIDirector != none )
+			//Let the AI controller know the initial attack succeeded
+			if( KFAIController_Monster(KFPOwner.MyKFAIC) != none )
+			{
+	            KFAIController_Monster(KFPOwner.MyKFAIC).bCompletedInitialGrabAttack = true;
+	        }
+		}
+		else if ( KFPOwner.WorldInfo.Game != None )
 		{
-			// We currently don't notify if/when the player breaks away from the grab
-			AIDirector.NotifyPawnGrabbed( Follower, KFPOwner );
+			AIDirector = KFGameInfo( KFPOwner.WorldInfo.Game ).GetAIDirector();
+			if ( AIDirector != None )
+			{
+				// We currently don't notify if/when the player breaks away from the grab
+				AIDirector.NotifyPawnGrabbed( Follower, KFPOwner );
+			}
 		}
 	}
 }
@@ -106,7 +112,14 @@ function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessT
 /** When the grapple animation ends, continue it with a different grapple anim */
 function SpecialMoveFlagsUpdated()
 {
-	PlayGrappleAnim();
+	if( KFPOwner.SpecialMoveFlags == FLAG_SpecialMoveButtonReleased )
+	{
+		KFPOwner.EndSpecialMove();
+	}
+	else
+	{
+		PlayGrappleAnim();
+	}	
 }
 
 /** Notification when Follower is leaving his FollowerSpecialMove */
@@ -153,6 +166,15 @@ function NotifyOwnerTakeHit(class<KFDamageType> DamageType, vector HitLoc, vecto
 	}
 }
 
+function SpecialMoveButtonReleased()
+{
+	KFPOwner.DoSpecialMove( KFPOwner.SpecialMove, true,, FLAG_SpecialMoveButtonReleased );
+	if( KFPOwner.Role < ROLE_Authority && KFPOwner.IsLocallyControlled() )
+	{
+		KFPOwner.ServerDoSpecialMove( KFPOwner.SpecialMove, true,, FLAG_SpecialMoveButtonReleased );
+	}
+}
+
 defaultproperties
 {
    GrappleAnims(0)="Grab_Attack_V1"
@@ -165,6 +187,7 @@ defaultproperties
    AlignDistance=92.000000
    AlignFollowerInterpSpeed=22.000000
    bDisableMovement=True
+   bServerOnlyPhysics=True
    Handle="SM_GrappleAttack"
    Name="Default__KFSM_GrappleAttack"
    ObjectArchetype=KFSM_InteractionPawnLeader'KFGame.Default__KFSM_InteractionPawnLeader'

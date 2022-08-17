@@ -47,7 +47,7 @@ function Pushed()
 function Popped()
 {
     Outer.AIActionStatus = "Finished Mortar Attack AICommand";
-    Outer.ClearMortarTargets();
+    Outer.MyPatPawn.ClearMortarTargets();
     super.Popped();
 }
 
@@ -80,7 +80,7 @@ state Command_SpecialMove
 
     function KFGame.KFPawn.ESpecialMove GetSpecialMove()
     {
-        return 16;
+        return 18;
     }
     stop;    
 }

@@ -14,7 +14,6 @@ package
             this.__setProp_headButton_GearMenuMC_Head_0();
             this.__setProp_bioTextArea_GearMenuMC_Bio_0();
             this.__setProp_characterButton_GearMenuMC_Character_0();
-            this.__setProp_weaponsButton_GearMenuMC_weapons_0();
         }
         
         function __setProp_attachmentButton_GearMenuMC_Accessory_0() : *
@@ -162,35 +161,6 @@ package
             try
             {
                 characterButton["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
-        }
-        
-        function __setProp_weaponsButton_GearMenuMC_weapons_0() : *
-        {
-            try
-            {
-                weaponsButton["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            weaponsButton.autoRepeat = false;
-            weaponsButton.autoSize = "none";
-            weaponsButton.data = "";
-            weaponsButton.enabled = true;
-            weaponsButton.enableInitCallback = false;
-            weaponsButton.focusable = true;
-            weaponsButton.infoString = "INFO";
-            weaponsButton.label = "TITLE";
-            weaponsButton.selected = false;
-            weaponsButton.toggle = false;
-            weaponsButton.visible = true;
-            try
-            {
-                weaponsButton["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

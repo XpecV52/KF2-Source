@@ -136,6 +136,8 @@ package tripwire.menus
             super();
             defaultFirstElement = this.resolutionDropDown;
             this.filmGrainSlider.slider.snapInterval = 0.1;
+            sectionHeader = this.header;
+            defaultNumPrompts = 2;
         }
         
         public function set localizedText(param1:Object) : void

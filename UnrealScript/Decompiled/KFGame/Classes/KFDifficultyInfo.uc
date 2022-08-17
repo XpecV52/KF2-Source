@@ -32,11 +32,10 @@ struct NumPlayerMods
 
 struct DifficultySettings
 {
+    /** How long trader time is */
     var() int TraderTime<ClampMin=0.0>;
     /** Multiplier for the total health of all zeds */
     var() float GlobalHealthMod<ClampMin=0.0>;
-    /** Multiplier for the damage a zed can deliver */
-    var() float AttackDamageMod<ClampMin=0.0>;
     /** Multiplier for the movement speed of a zed */
     var() float MovementSpeedMod<ClampMin=0.0>;
     /** Multiplier for the number of zeds in a wave */
@@ -51,11 +50,11 @@ struct DifficultySettings
     var() float AmmoPickupsMod<ClampMin=0.0|ClampMax=1.0>;
     /** Modify the number of weapon pickups that will be active at once */
     var() float ItemPickupsMod<ClampMin=0.0|ClampMax=1.0>;
-    /** Modify the number of weapon pickups that will be active at once */
+    /** The chance that a zed will perform a weak attack at this difficulty level */
     var() float WeakAttackChance<ClampMin=0.0|ClampMax=1.0>;
-    /** Modify the number of weapon pickups that will be active at once */
+    /** The chance that a zed will perform a medium attack at this difficulty level */
     var() float MediumAttackChance<ClampMin=0.0|ClampMax=1.0>;
-    /** Modify the number of weapon pickups that will be active at once */
+    /** The chance that a zed will perform a hard attack at this difficulty level */
     var() float HardAttackChance<ClampMin=0.0|ClampMax=1.0>;
     /** Modify the damage dealt by self inflicted radial damage (Ex. Grenade) */
     var() float SelfInflictedDamageMod<ClampMin=0.0|ClampMax=1.0>;
@@ -64,7 +63,6 @@ struct DifficultySettings
     {
         TraderTime=60
         GlobalHealthMod=1
-        AttackDamageMod=1
         MovementSpeedMod=1
         WaveCountMod=1
         DoshKillMod=1
@@ -85,11 +83,15 @@ var(NumPlayers) NumPlayerMods NumPlayers_WaveSize;
 var(NumPlayers) NumPlayerMods NumPlayers_AIHiddenSpeed;
 /** Time until a weapon will respawn after being picked up depending on the number of players */
 var(NumPlayers) NumPlayerMods NumPlayers_WeaponPickupRespawnTime;
-/** Time until a ammo will respawn after being picked up depending on the number of players */
+/** Time until ammo will respawn after being picked up depending on the number of players */
 var(NumPlayers) NumPlayerMods NumPlayers_AmmoPickupRespawnTime;
+/** DifficultySettings struct for Normal difficulty level */
 var(Normal) DifficultySettings Normal;
+/** DifficultySettings struct for Hard difficulty level */
 var(Hard) DifficultySettings Hard;
+/** DifficultySettings struct for Suicidal difficulty level */
 var(Suicidal) DifficultySettings Suicidal;
+/** DifficultySettings struct for HellOnEarth difficulty level */
 var(HellOnEarth) DifficultySettings HellOnEarth;
 var private DifficultySettings CurrentSettings;
 
@@ -136,10 +138,25 @@ function GetAIHealthModifier(const out KFCharacterInfo_Monster InMonsterInfo, fl
     }
 }
 
+function GetVersusHealthModifier(const out KFCharacterInfo_Monster InMonsterInfo, byte NumLivingPlayers, out float HealthMod, out float HeadHealthMod)
+{
+    if(InMonsterInfo != none)
+    {
+        HealthMod = GetGlobalHealthMod();
+        HeadHealthMod = GetGlobalHealthMod();
+        HealthMod *= (1 + (GetNumPlayersHealthMod(NumLivingPlayers, InMonsterInfo.NumPlayersScale_BodyHealth_Versus)));
+        HeadHealthMod *= (1 + (GetNumPlayersHealthMod(NumLivingPlayers, InMonsterInfo.NumPlayersScale_HeadHealth_Versus)));
+    }
+}
+
 function float GetNumPlayersHealthMod(byte NumLivingPlayers, float HealthScale)
 {
     local float StartingLerp, LerpRate;
 
+    if(NumLivingPlayers <= 0)
+    {
+        return 0;
+    }
     if(NumLivingPlayers <= 6)
     {
         return float(NumLivingPlayers - 1) * HealthScale;        
@@ -301,21 +318,12 @@ function float GetAIDamageModifier(const out KFCharacterInfo_Monster InMonsterIn
             }
         }
     }
-    return (CurrentSettings.AttackDamageMod * PerZedDamageMod) * SoloPlayDamageMod;
+    return PerZedDamageMod * SoloPlayDamageMod;
 }
 
-function float GetBaseAIDamageModifier()
+function float GetAIRandomSpeedMod()
 {
-    return CurrentSettings.AttackDamageMod;
-}
-
-function float GetAdjustedAIGroundSpeedMod()
-{
-    local float SpeedModifier;
-
-    SpeedModifier = GetAIGroundSpeedMod();
-    SpeedModifier *= RandRange(0.9, 1.1);
-    return SpeedModifier;
+    return RandRange(0.9, 1.1);
 }
 
 function float GetAIGroundSpeedMod()
@@ -448,9 +456,9 @@ defaultproperties
     NumPlayers_AIHiddenSpeed=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2)
     NumPlayers_WeaponPickupRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2)
     NumPlayers_AmmoPickupRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2)
-    Normal=(TraderTime=60,GlobalHealthMod=1,AttackDamageMod=1,MovementSpeedMod=1,WaveCountMod=1,DoshKillMod=1,StartingDosh=250,RespawnDosh=250,AmmoPickupsMod=0.5,ItemPickupsMod=0.3,WeakAttackChance=1,MediumAttackChance=0,HardAttackChance=0,SelfInflictedDamageMod=1)
-    Hard=(TraderTime=60,GlobalHealthMod=1,AttackDamageMod=1,MovementSpeedMod=1,WaveCountMod=1,DoshKillMod=1,StartingDosh=250,RespawnDosh=250,AmmoPickupsMod=0.5,ItemPickupsMod=0.3,WeakAttackChance=1,MediumAttackChance=0,HardAttackChance=0,SelfInflictedDamageMod=1)
-    Suicidal=(TraderTime=60,GlobalHealthMod=1,AttackDamageMod=1,MovementSpeedMod=1,WaveCountMod=1,DoshKillMod=1,StartingDosh=250,RespawnDosh=250,AmmoPickupsMod=0.5,ItemPickupsMod=0.3,WeakAttackChance=1,MediumAttackChance=0,HardAttackChance=0,SelfInflictedDamageMod=1)
-    HellOnEarth=(TraderTime=60,GlobalHealthMod=1,AttackDamageMod=1,MovementSpeedMod=1,WaveCountMod=1,DoshKillMod=1,StartingDosh=250,RespawnDosh=250,AmmoPickupsMod=0.5,ItemPickupsMod=0.3,WeakAttackChance=1,MediumAttackChance=0,HardAttackChance=0,SelfInflictedDamageMod=1)
-    CurrentSettings=(TraderTime=60,GlobalHealthMod=1,AttackDamageMod=1,MovementSpeedMod=1,WaveCountMod=1,DoshKillMod=1,StartingDosh=250,RespawnDosh=250,AmmoPickupsMod=0.5,ItemPickupsMod=0.3,WeakAttackChance=1,MediumAttackChance=0,HardAttackChance=0,SelfInflictedDamageMod=1)
+    Normal=(TraderTime=60,GlobalHealthMod=1,MovementSpeedMod=1,WaveCountMod=1,DoshKillMod=1,StartingDosh=250,RespawnDosh=250,AmmoPickupsMod=0.5,ItemPickupsMod=0.3,WeakAttackChance=1,MediumAttackChance=0,HardAttackChance=0,SelfInflictedDamageMod=1)
+    Hard=(TraderTime=60,GlobalHealthMod=1,MovementSpeedMod=1,WaveCountMod=1,DoshKillMod=1,StartingDosh=250,RespawnDosh=250,AmmoPickupsMod=0.5,ItemPickupsMod=0.3,WeakAttackChance=1,MediumAttackChance=0,HardAttackChance=0,SelfInflictedDamageMod=1)
+    Suicidal=(TraderTime=60,GlobalHealthMod=1,MovementSpeedMod=1,WaveCountMod=1,DoshKillMod=1,StartingDosh=250,RespawnDosh=250,AmmoPickupsMod=0.5,ItemPickupsMod=0.3,WeakAttackChance=1,MediumAttackChance=0,HardAttackChance=0,SelfInflictedDamageMod=1)
+    HellOnEarth=(TraderTime=60,GlobalHealthMod=1,MovementSpeedMod=1,WaveCountMod=1,DoshKillMod=1,StartingDosh=250,RespawnDosh=250,AmmoPickupsMod=0.5,ItemPickupsMod=0.3,WeakAttackChance=1,MediumAttackChance=0,HardAttackChance=0,SelfInflictedDamageMod=1)
+    CurrentSettings=(TraderTime=60,GlobalHealthMod=1,MovementSpeedMod=1,WaveCountMod=1,DoshKillMod=1,StartingDosh=250,RespawnDosh=250,AmmoPickupsMod=0.5,ItemPickupsMod=0.3,WeakAttackChance=1,MediumAttackChance=0,HardAttackChance=0,SelfInflictedDamageMod=1)
 }

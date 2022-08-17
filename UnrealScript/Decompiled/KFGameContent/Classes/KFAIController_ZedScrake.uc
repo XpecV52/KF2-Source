@@ -17,36 +17,6 @@ function bool AmIAllowedToSuicideWhenStuck()
     return false;
 }
 
-event Possess(Pawn inPawn, bool bVehicleTransition)
-{
-    if(KFPawn_ZedScrake(inPawn) != none)
-    {
-        if(Skill == Class'KFDifficultyInfo'.static.GetDifficultyValue(0))
-        {
-            RageHealthThreshold = KFPawn_ZedScrake(inPawn).RageHealthThresholdNormal;            
-        }
-        else
-        {
-            if(Skill <= Class'KFDifficultyInfo'.static.GetDifficultyValue(1))
-            {
-                RageHealthThreshold = KFPawn_ZedScrake(inPawn).RageHealthThresholdHard;                
-            }
-            else
-            {
-                if(Skill <= Class'KFDifficultyInfo'.static.GetDifficultyValue(2))
-                {
-                    RageHealthThreshold = KFPawn_ZedScrake(inPawn).RageHealthThresholdSuicidal;                    
-                }
-                else
-                {
-                    RageHealthThreshold = KFPawn_ZedScrake(inPawn).RageHealthThresholdHellOnEarth;
-                }
-            }
-        }
-    }
-    super.Possess(inPawn, bVehicleTransition);
-}
-
 function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, class<DamageType> DamageType, Vector Momentum)
 {
     if((ShouldSprint()) && MyKFPawn != none)
@@ -62,27 +32,16 @@ function bool ShouldSprint()
     {
         return false;
     }
-    if((IsEnraged()) || IsFrustrated())
+    if(MyKFPawn.bIsEnraged)
     {
         return true;
     }
     return false;
 }
 
-function bool IsEnraged()
+function UpdateSprintFrustration(optional byte bForceFrustrationState)
 {
-    return GetHealthPercentage() < RageHealthThreshold;
-}
-
-function UpdateSprintFrustration(optional byte bForceFrustration)
-{
-    bForceFrustration = 255;
-    super(KFAIController).UpdateSprintFrustration(((IsEnraged()) ? 1 : bForceFrustration));
-}
-
-function bool IsFrustrated()
-{
-    return (IsEnraged()) || super(KFAIController).IsFrustrated();
+    bForceFrustrationState = 255;
 }
 
 function bool CanEvadeGrenade()
@@ -97,8 +56,10 @@ function bool CanEvadeGrenade()
 defaultproperties
 {
     bCanTeleportCloser=false
+    FrustrationThreshold=0
     TeleportCooldown=10
     HiddenRelocateTeleportThreshold=7
     EvadeGrenadeChance=0.75
     FrustrationDelay=5
+    LowIntensityAttackCooldown=5
 }

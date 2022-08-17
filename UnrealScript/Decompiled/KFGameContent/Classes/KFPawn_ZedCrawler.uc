@@ -110,7 +110,7 @@ function int GetSpotterDialogID()
 {
     local int EmergeType;
 
-    if(IsDoingSpecialMove(10))
+    if(IsDoingSpecialMove(11))
     {
         EmergeType = SpecialMoveFlags & 15;
         switch(EmergeType)
@@ -153,6 +153,7 @@ defaultproperties
     begin object name=MeleeHelper class=KFMeleeHelperAI
         BaseDamage=7
         MyDamageType=Class'KFDT_Slashing_ZedWeak'
+        MomentumTransfer=25000
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedCrawler.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
@@ -172,12 +173,9 @@ defaultproperties
     bDisableTurnInPlace=true
     bUseQuadrupedFloorConform=true
     PenetrationResistance=0.5
-    begin object name=Afflictions class=KFPawnAfflictions
-        InstantAffl=/* Array type was not detected. */
-        StackingAffl=/* Array type was not detected. */
-    object end
-    // Reference: KFPawnAfflictions'Default__KFPawn_ZedCrawler.Afflictions'
-    AfflictionHandler=Afflictions
+    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedCrawler.Afflictions'
+    InstantIncaps=/* Array type was not detected. */
+    StackingIncaps=/* Array type was not detected. */
     KnockdownImpulseScale=1
     SprintSpeed=500
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent

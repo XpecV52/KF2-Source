@@ -145,7 +145,7 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
         }
         if(((CachedFollower != none) && HansPawn != none) && KFPOwner.MyKFAIC != none)
         {
-            if((KFPOwner.MyKFAIC.Enemy == none) && HansPawn.CanDoSpecialMove(11))
+            if((KFPOwner.MyKFAIC.Enemy == none) && HansPawn.CanDoSpecialMove(13))
             {
                 Class'AICommand_TauntEnemy'.static.Taunt(KFPOwner.MyKFAIC, CachedFollower, 0);
             }
@@ -163,7 +163,7 @@ function Timer_DrainHealth()
 {
     local KFPawn_ZedHansBase HansPawn;
 
-    if(((((KFPOwner != none) && KFPOwner.Health > 0) && Follower != none) && Follower.Health >= 0) && Follower.IsDoingSpecialMove(21))
+    if(((((KFPOwner != none) && KFPOwner.Health > 0) && Follower != none) && Follower.Health >= 0) && Follower.IsDoingSpecialMove(29))
     {
         if(Follower.GetHealthPercentage() > EnemyDrawLifeThreshold)
         {

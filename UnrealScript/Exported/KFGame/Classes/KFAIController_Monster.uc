@@ -36,25 +36,7 @@ class KFAIController_Monster extends KFAIController
 
 
 
-
-
-
-
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
  
@@ -282,7 +264,7 @@ class KFAIController_Monster extends KFAIController
 
 
 
-#linenumber 70;
+#linenumber 52;
 
 #linenumber 15;
 
@@ -297,9 +279,6 @@ var float		LastAttackTime_Grab;
 var bool		bPathAroundDestructiblesICantBreak;
 /** Determines if a zed should try to force a repath if they cannot execute a valid strike */
 var bool 		bRepathOnInvalidStrike;
-
-/** The amount to scale this Zed's damage based on difficulty */
-var(Combat) float	DifficultyDamageMod;
 
 /*********************************************************************************************
 * RunOverWarning (warns Zeds nearby that my pawn's about to run into them)
@@ -371,10 +350,52 @@ event Possess( Pawn inPawn, bool bVehicleTransition )
 
 	super.Possess( inPawn, bVehicleTransition );
 
-	if ( MyKFPawn != None )
+	SetPawnDefaults();
+}
+
+function SetPawnDefaults()
+{
+	local float SprintChance;
+	local float SprintDamagedChance;
+	local float HiddenSpeedMod;
+
+	local KFCharacterInfo_Monster MonsterInfo;
+
+	local float GameDifficulty;
+	local KFDifficultyInfo DifficultyInfo;
+	local KFGameInfo KFGI;
+
+	KFGI = KFGameInfo( WorldInfo.Game );
+
+    MonsterInfo = MyKFPawn.GetCharacterMonsterInfo();
+    GameDifficulty = KFGI.GameDifficulty;
+    DifficultyInfo = KFGI.DifficultyInfo;
+
+    if( MonsterInfo != none )
+    {
+		SprintChance = DifficultyInfo.GetCharSprintChanceByDifficulty( MonsterInfo, GameDifficulty );
+		SprintDamagedChance = DifficultyInfo.GetCharSprintWhenDamagedChanceByDifficulty( MonsterInfo, GameDifficulty );
+	}
+
+	HiddenSpeedMod = DifficultyInfo.GetAIHiddenSpeedModifier( KFGI.GetLivingPlayerCount() );
+	MyKFPawn.HiddenGroundSpeed = MyKFPawn.default.HiddenGroundSpeed * HiddenSpeedMod;
+
+	if ( MyKFPawn.PawnAnimInfo != none )
 	{
-		// store difficulty based sprint status for frustration mechanic
-		bDefaultCanSprint = MyKFPawn.bCanSprint;
+		MyKFPawn.PawnAnimInfo.SetDifficultyValues( DifficultyInfo );
+	}
+
+	// Each zed has a chance he will sprint at a certain difficulty
+	// NOTE: Some zeds now bypass this check because they need to sprint under certain conditions regardless of
+	//	difficulty!  Search the code for bIsSprinting = true.  Evil, yes, but necessary
+	SetCanSprint( FRand() <= SprintChance );
+	SetCanSprintWhenDamaged( FRand() <= SprintDamagedChance );
+
+	bDefaultCanSprint = bCanSprint;
+
+	if( KFGI.BaseMutator != None )
+	{
+		KFGI.BaseMutator.ModifyAI( Pawn );
 	}
 }
 
@@ -418,6 +439,18 @@ event ReadyToMelee()
 	if( bRepathOnInvalidStrike && (bFailedToMoveToEnemy || (!bMovingToGoal && !bMovingToEnemy)) )
 	{
 		SetEnemyMoveGoal(self, true,,, true);
+	}
+	// If we can't attack, and are close to the enemy, do a taunt so we don't just stand there
+	else if( !CheckOverallCooldownTimer() && Enemy != none && Pawn != none && Pawn.IsAliveAndWell() )
+	{
+        if( VSize(Enemy.Location - Pawn.Location) < MyKFPawn.CylinderComponent.CollisionRadius * 3.0 )
+		{
+			if( MyKFPawn.CanDoSpecialMove(SM_Taunt) && (WorldInfo.TimeSeconds - LastTauntTime) > 2.f )
+			{
+				AILog_Internal(GetFuncName()$" starting taunt command",'CantMelee',);
+				class'AICommand_TauntEnemy'.static.Taunt( self, KFPawn(Enemy), TAUNT_Standard );
+			}
+		}
 	}
 }
 
@@ -487,7 +520,7 @@ event bool CanGrabAttack()
 	local KFPerk EnemyPerk;
 	local KFPawn KFPawnEnemy;
 	local float DistSq;
-	local vector HitLocation, HitNormal;
+	local vector Extent, HitLocation, HitNormal;
 	local Actor HitActor;
 
 	// If I'm dead, incapable of grabbing, or have no enemy, or my enemy is a player, or I'm busy doing a melee attack, refuse.
@@ -522,7 +555,7 @@ event bool CanGrabAttack()
 	if( !bCompletedInitialGrabAttack || (LastAttackTime_Grab == 0.f || ((WorldInfo.TimeSeconds - LastAttackTime_Grab) > MinTimeBetweenGrabAttacks)) )
 	{
         // Make sure the enemy's center of mass (location) is within my collision cylinder
-		if( Abs(Enemy.Location.Z - Pawn.Location.Z) > Pawn.CylinderComponent.CollisionHeight )
+		if( Abs(Enemy.Location.Z - Pawn.Location.Z) > class'KFSM_GrappleStart'.default.MaxVictimZOffset )
 		{
 			return false;
 		}
@@ -532,8 +565,14 @@ event bool CanGrabAttack()
 		{
 			return false;
 		}
+
+		// Set our extent
+		Extent.X = Pawn.GetCollisionRadius() * 0.5f;
+		Extent.Y = Extent.X;
+		Extent.Z = Pawn.GetCollisionHeight() * 0.5f;
+
         // Do the same kind of trace we do in KFSM_GrappleStart
-		HitActor = Trace(HitLocation, HitNormal, Enemy.Location, Pawn.Location, true);
+		HitActor = Trace(HitLocation, HitNormal, Enemy.Location, Pawn.Location, true, Extent);
 		if ( HitActor != None && HitActor != Enemy )
 		{
             return false;
@@ -561,7 +600,7 @@ function bool CanDoStrike()
 	// Used by KFPawnAnimInfo to determine if an attack can be performed if legs are blocked (lunges, etc)
 	bIsBodyBlocked = false;
 
-	// Check if a wall or another Zed is blocking my pawn from performing a melee attack, ignore zed collision if bCanStrikeThroughEnemies is true, 
+	// Check if a wall or another Zed is blocking my pawn from performing a melee attack, ignore zed collision if bCanStrikeThroughEnemies is true,
 	TraceStepLocation = Pawn.Location + (vect(0,0,-1) * (Pawn.CylinderComponent.CollisionHeight * 0.5f));
 	HitActor = Pawn.Trace( HitLocation, HitNormal, Enemy.Location, TraceStepLocation, !bCanStrikeThroughEnemies );
 	if( HitActor != None && HitActor != Enemy )
@@ -711,7 +750,6 @@ defaultproperties
 {
    MinDistanceToPerformGrabAttack=188.000000
    MinTimeBetweenGrabAttacks=5.000000
-   DifficultyDamageMod=1.000000
    DefaultCommandClass=Class'KFGame.AICommand_Base_Zed'
    bIsPlayer=False
    SightCounterInterval=0.350000

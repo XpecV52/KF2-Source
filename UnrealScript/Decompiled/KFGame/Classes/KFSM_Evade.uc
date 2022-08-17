@@ -18,7 +18,6 @@ enum EEvadeDir
 };
 
 var array<AnimVariants> EvadeAnims;
-var byte NumBodyVariants;
 
 static function byte PackAnimFlag(byte EvadeDir)
 {
@@ -42,27 +41,27 @@ static function byte GetEvadeDirection(KFPawn CheckPawn, Vector EvadePoint, opti
             GetAxes(CheckPawn.Rotation, X, Y, Z);
             if((vector(Attacker.Rotation) Dot Y) > 0)
             {
-                return 3;                
+                return 2;                
             }
             else
             {
-                return 4;
+                return 3;
             }
         }
     }
     switch(EvadeDir)
     {
         case 0:
-            EvadeDir = 1;
+            EvadeDir = 0;
             break;
         case 1:
-            EvadeDir = 2;
+            EvadeDir = 1;
             break;
         case 2:
-            EvadeDir = 3;
+            EvadeDir = 2;
             break;
         case 3:
-            EvadeDir = 4;
+            EvadeDir = 3;
             break;
         default:
             break;
@@ -87,16 +86,14 @@ function PlayAnimation()
 
 defaultproperties
 {
-    EvadeAnims(0)=(Anims=none)
-    EvadeAnims(1)=(Anims=(Evade_F_V1,Evade_F_V2))
-    EvadeAnims(2)=(Anims=(Evade_B_V1,Evade_B_V2))
-    EvadeAnims(3)=(Anims=(Evade_L_V1,Evade_L_V2))
-    EvadeAnims(4)=(Anims=(Evade_R_V1,Evade_R_V2))
-    EvadeAnims(5)=(Anims=(Evade_FL_V1,Evade_FL_V2))
-    EvadeAnims(6)=(Anims=(Evade_FR_V1,Evade_FR_V2))
-    EvadeAnims(7)=(Anims=(Evade_BL_V1,Evade_BL_V2))
-    EvadeAnims(8)=(Anims=(Evade_BR_V1,Evade_BR_V2))
-    NumBodyVariants=2
+    EvadeAnims(0)=(Anims=(Evade_F_V1,Evade_F_V2))
+    EvadeAnims(1)=(Anims=(Evade_B_V1,Evade_B_V2))
+    EvadeAnims(2)=(Anims=(Evade_L_V1,Evade_L_V2))
+    EvadeAnims(3)=(Anims=(Evade_R_V1,Evade_R_V2))
+    EvadeAnims(4)=(Anims=(Evade_FL_V1,Evade_FL_V2))
+    EvadeAnims(5)=(Anims=(Evade_FR_V1,Evade_FR_V2))
+    EvadeAnims(6)=(Anims=(Evade_BL_V1,Evade_BL_V2))
+    EvadeAnims(7)=(Anims=(Evade_BR_V1,Evade_BR_V2))
     bUseRootMotion=true
     bDisablesWeaponFiring=true
     bPawnRotationLocked=true

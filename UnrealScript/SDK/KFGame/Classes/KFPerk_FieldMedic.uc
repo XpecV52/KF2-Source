@@ -22,8 +22,11 @@ var() 	const	PerkSkill		Armor;                				// 3% more armor each level (m
 
 var 	array<name>				VaccinationResistableDamageTypeNames;
 
+/** How much additional damage to add to the "toxic" healing dart when acidic compound is active */
 const							ToxicDartDamage 	=	15;
-const 							AARangeSq			=	250000;		// Airborne Agent radius squared
+/** Airborne Agent radius squared, extra healing range */
+const 							AARangeSq			=	250000;
+/** How much to reduce the damage of a "vaccinated" teammate when the skill is active */
 const							VaccinationResist 	= 	0.25;
 
 enum EMedicPerkSkills
@@ -72,7 +75,7 @@ simulated protected event PostSkillUpdate()
 ********************************************************************************************* */
 /**
  * @brief Changes the damage of the "toxic" healing dart when acidic compound is active
- * 
+ *
  * @param InDamage the damage amount
  */
 function ModifyACDamage( out int InDamage )
@@ -85,21 +88,21 @@ function ModifyACDamage( out int InDamage )
 
 /**
  * @brief Modifies how long one recharge cycle takes
- * 
- * @param RechargeRate charging rate per sec 
+ *
+ * @param RechargeRate charging rate per sec
   */
 simulated function ModifyHealerRechargeTime( out float RechargeRate )
 {
     local float HealerRechargeTimeMod;
-    						
+
     HealerRechargeTimeMod = GetPassiveValue( HealerRecharge, GetLevel() );
     `QALog( "HealerRecharge" @ HealerRechargeTimeMod, bLogPerk );
-	RechargeRate /= HealerRechargeTimeMod;	
+	RechargeRate /= HealerRechargeTimeMod;
 }
 
 /**
  * @brief Modifies how potent one healing shot is
- * 
+ *
  * @param HealAmount healthg repaired
  * @return true if Armament is active to repair armor if possible
  */
@@ -118,7 +121,7 @@ function bool ModifyHealAmount( out float HealAmount )
 
 /**
  * @brief Modifies the damage taken
- * 
+ *
  * @param InDamage damage
  * @param DamageType the damage type used (optional)
  */
@@ -142,7 +145,7 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
 
 /**
  * @brief Weapons and perk skills can affect the jog/sprint speed
- * 
+ *
  * @param Speed jog/sprint speed
   */
 function ModifySpeed( out float Speed )
@@ -153,7 +156,7 @@ function ModifySpeed( out float Speed )
 
 /**
  * @brief Modifies the pawn's MaxArmor
- * 
+ *
  * @param MaxArmor the maximum armor value
  */
 function ModifyArmor( out byte MaxArmor )
@@ -172,7 +175,7 @@ function ModifyArmor( out byte MaxArmor )
 
 /**
  * @brief modifies the players health
- * 
+ *
  * @param InHealth health
   */
 function ModifyHealth( out int InHealth )
@@ -190,7 +193,7 @@ function ModifyHealth( out int InHealth )
 
 /**
  * @brief Modifies starting spare ammo
- * 
+ *
  * @param KFW The weapon
  * @param PrimarySpareAmmo ammo amount
  * @param TraderItem the weapon's associated trader item info
@@ -208,7 +211,7 @@ simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo
 	{
 		WeaponPerkClass = KFW.AssociatedPerkClass;
 	}
-	
+
 	if( IsEnforcerActive() && (IsWeaponOnPerk( KFW, WeaponPerkClass ) || IsBackupWeapon( KFW )) )
 	{
 		TempAmmo = PrimarySpareAmmo;
@@ -220,7 +223,7 @@ simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo
 
 /**
  * @brief Modifies the armor price
- * 
+ *
  * @param ArmorPrice armomr price
  * @todo: Greg, use this for the trader
  */
@@ -235,7 +238,7 @@ simulated function float GetArmorDiscountMod()
 
 /**
  * @brief Do we need to tick the perk?
- * 
+ *
  * @return true if perk needs to be ticked
  */
 simulated function bool PerkNeedsTick()
@@ -245,7 +248,7 @@ simulated function bool PerkNeedsTick()
 
 /**
  * @brief Armament skill can repairs armor
- * 
+ *
  * @param HealTarget the pawn we are healing
  * @return true if armomr was repaired
  */
@@ -288,7 +291,7 @@ function bool RepairArmor( Pawn HealTarget )
 
 /**
  * @brief Checks if any armor repairing skills are available
- * 
+ *
  * @return true if armor repairing skills are available
  */
 simulated function bool CanRepairArmor()
@@ -300,7 +303,7 @@ simulated function bool CanRepairArmor()
 /** Takes the weapons primary damage and calculates the bleeding over time value */
 /**
  * @brief  Takes the weapons primary damage and calculates the bleeding over time value
- * 
+ *
  * @param BleedDamage the bleeding damage
  */
 static function ModifyBleedDmg( out int BleedDamage )
@@ -313,7 +316,7 @@ static function ModifyBleedDmg( out int BleedDamage )
 
 /**
  * @brief script tick (server)
-  * 
+  *
  * @param DeltaTime time since the last tick
  */
 event Tick( float DeltaTime )
@@ -328,7 +331,7 @@ event Tick( float DeltaTime )
 
 /**
  * @brief Modifies dealt damage with vaccination skill
- * 
+ *
  * @param InDamage damage
  */
 static function ModifyVaccinationDamage( out float InDamage, class<DamageType> DmgType, optional int MedicLevel = -1 )
@@ -347,7 +350,7 @@ static function ModifyVaccinationDamage( out float InDamage, class<DamageType> D
 }
 
 /**
- * @brief Give benefits when Airborne Agent skill is active  
+ * @brief Give benefits when Airborne Agent skill is active
  * @param HealTarget The pawn we want to give some extra health
  */
 function CheckForAirborneAgent( KFPawn HealTarget, class<DamageType> DamType, int HealAmount )
@@ -371,12 +374,12 @@ private final function GiveMedicAirborneAgentHealth( KFPawn HealTarget, class<Da
 
 	foreach WorldInfo.Allpawns(class'KFPawn', KFP)
 	{
-		if( VSizeSQ( KFP.Location - HealTarget.Location ) <= AARangeSq && 
+		if( VSizeSQ( KFP.Location - HealTarget.Location ) <= AARangeSq &&
 			KFP.IsAliveAndWell() && WorldInfo.GRI.OnSameTeam( HealTarget, KFP ) )
-		{					
+		{
 			if ( HealTarget == KFP )
 			{
-				KFP.HealDamage( RoundedExtraHealAmount, OwnerPawn.Controller, DamType );	
+				KFP.HealDamage( RoundedExtraHealAmount, OwnerPawn.Controller, DamType );
 				`QALog( "AirborneAgent Heal Damage - KFP == HealTarget. Extra HealAmount =" @ PerkSkills[EMedicAirborneAgent].StartingValue @ "% rounded up of" @ HealAmount @ "=" @ RoundedExtraHealAmount, bLogPerk );
 			}
 			else
@@ -432,8 +435,8 @@ function bool IsAcidicCompoundActive()
 
 /**
  * @brief  Can we give bleeding damage over time?
- * 
- * @return true if we have the skill and the currently used weapon can let zeds bleed 
+ *
+ * @return true if we have the skill and the currently used weapon can let zeds bleed
  */
 function bool IsBleedDmgActive()
 {
@@ -442,7 +445,7 @@ function bool IsBleedDmgActive()
 
 /**
  * @brief Checks if the enforcer skill is active
- * 
+ *
  * @return true if we have the skill enabled
  */
 simulated private final function bool IsEnforcerActive()
@@ -452,7 +455,7 @@ simulated private final function bool IsEnforcerActive()
 
 /**
  * @brief Checks if the combatant skill is active Network: client and server.
- * 
+ *
  * @return true if we have the skill enabled
  */
 simulated private final function bool IsCombatantActive()
@@ -462,7 +465,7 @@ simulated private final function bool IsCombatantActive()
 
 /**
  * @brief Checks if the regeneration skill is active
- * 
+ *
  * @return true if we have the skill enabled
  */
 private final function bool IsRegenerationActive()
@@ -472,7 +475,7 @@ private final function bool IsRegenerationActive()
 
 /**
  * @brief Checks if the healing surge skill is active
- * 
+ *
  * @return true if we have the skill enabled
  */
 private final function bool IsHealingSurgeActive()
@@ -482,7 +485,7 @@ private final function bool IsHealingSurgeActive()
 
 /**
  * @brief Checks if the Armament skill is active
- * 
+ *
  * @return true if we have the skill enabled
  */
 simulated private final function bool IsArmamentActive()
@@ -492,7 +495,7 @@ simulated private final function bool IsArmamentActive()
 
 /**
  * @brief Checks if the lacerate skill is active
- * 
+ *
  * @return true if we have the skill enabled
  */
 private final function bool IsLacerateActive()
@@ -502,7 +505,7 @@ private final function bool IsLacerateActive()
 
 /**
  * @brief Checks if the Vaccination skill is active
- * 
+ *
  * @return true if we have the skill enabled
  */
 simulated private final function bool IsVaccinationActive()
@@ -548,7 +551,7 @@ simulated static function GetPassiveStrings( out array<string> PassiveValues, ou
 /** QA Logging - Report Perk Info */
 simulated function LogPerkSkills()
 {
-	super.LogPerkSkills();    
+	super.LogPerkSkills();
 
 	if( bLogPerk )
 	{
@@ -596,7 +599,7 @@ DefaultProperties
 	BloatBileResistance=(Name="Bloat Bile Resistance",Increment=0.02,Rank=0,StartingValue=0.f,MaxValue=0.5f)
 	MovementSpeed=(Name="Movement Speed",Increment=0.01f,Rank=0,StartingValue=1.0f,MaxValue=1.25f)
 	Armor=(Name="Armor",Increment=0.03f,Rank=0,StartingValue=1.f,MaxValue=1.75f)
-																
+
 	PerkSkills(EMedicHealingSurge)=(Name="HealingSurge",IconPath="UI_PerkTalent_TEX.Medic.UI_Talents_Medic_HealingSurge", Increment=0.f,Rank=0,StartingValue=1.2f,MaxValue=1.2f)
 	PerkSkills(EMedicEnforcer)=(Name="Enforcer",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Enforcer", Increment=0.f,Rank=0,StartingValue=1.2f,MaxValue=1.2f)
 	PerkSkills(EMedicCombatant)=(Name="Combatant",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Combatant", Increment=0.f,Rank=0,StartingValue=0.6f,MaxValue=0.6f)
@@ -610,9 +613,13 @@ DefaultProperties
 
 	BleedDmgTypeClass=KFDT_Bleeding
 	VaccinationDuration=10.f
-	
+
 	SecondaryXPModifier[0]=2
 	SecondaryXPModifier[1]=2
 	SecondaryXPModifier[2]=3
 	SecondaryXPModifier[3]=4
+
+    // Skill tracking
+	HitAccuracyHandicap=5.0
+	HeadshotAccuracyHandicap=-0.75
 }

@@ -80,7 +80,6 @@ defaultproperties
 {
     ExplosionTemplate=KFGameExplosion'WEP_RPG7_ARCH.Wep_RPG7_BackBlastExplosion'
     BackBlastOffset=(X=-20,Y=4,Z=-3)
-    ForceZoomOutTime=0.3
     ForceReloadTime=0.4
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=10

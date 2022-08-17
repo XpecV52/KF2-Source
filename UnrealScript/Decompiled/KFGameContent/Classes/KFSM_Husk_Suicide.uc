@@ -9,6 +9,10 @@ class KFSM_Husk_Suicide extends KFSM_PlaySingleAnim;
 
 protected function bool InternalCanDoSpecialMove()
 {
+    if(KFPOwner.IsHumanControlled())
+    {
+        return KFPOwner.IsAliveAndWell();
+    }
     if(((AIOwner == none) || AIOwner.MyKFPawn == none) || AIOwner.Enemy == none)
     {
         return false;

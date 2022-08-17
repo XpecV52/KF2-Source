@@ -88,3 +88,16 @@ auto State PendingMatch
 	}
 }
 
+exec function FinishCraft ()
+{
+	local KFPlayerController KFPC;
+	`log("!!!!!!!!!!!!!!!!!!!!!!!!!");
+	foreach LocalPlayerControllers(class'KFPlayerController', KFPC)
+	{
+		if(KFPC.MyGfxManager != none && KFPC.MyGFxManager.InventoryMenu != none)
+		{
+			KFPC.MyGFxManager.InventoryMenu.FinishCraft();
+		}
+	}
+}
+

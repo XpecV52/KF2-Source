@@ -83,8 +83,6 @@ defaultproperties
     ExplosionTemplate=ExploTemplate0
     PostExplosionLifetime=2.5
     AltExploEffects=KFImpactEffectInfo'WEP_Flamethrower_ARCH.GroundFire_Splash_Impacts'
-    AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_Flamethrower.Play_WEP_SA_Flamethrower_Residual_Fire_Loop'
-    AmbientSoundStopEvent=AkEvent'WW_WEP_SA_Flamethrower.Stop_WEP_SA_Flamethrower_Residual_Fire_Loop'
     begin object name=AmbientAkSoundComponent class=AkComponent
         bStopWhenOwnerDestroyed=true
         bForceOcclusionUpdateInterval=true

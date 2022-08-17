@@ -16,10 +16,17 @@ package tripwire.managers
     import scaleform.clik.layout.LayoutData;
     import scaleform.gfx.Extensions;
     import tripwire.containers.TripContainer;
+    import tripwire.controls.HudBarkMessage;
     import tripwire.widgets.BossNameplateWidget;
+    import tripwire.widgets.ControllerWeaponSelectWidget;
+    import tripwire.widgets.NonCriticalGameMessageWidget;
+    import tripwire.widgets.PlayerStatWidget;
+    import tripwire.widgets.WeaponSelectWidget;
     
     public class HudManager extends UIComponent
     {
+        
+        private static var _manager:HudManager;
          
         
         public var __animFactory_BossNamePlateaf1:AnimatorFactory3D;
@@ -36,9 +43,9 @@ package tripwire.managers
         
         public var ChatBoxWidget:UIComponent;
         
-        public var PlayerStatWidget:UIComponent;
+        public var PlayerStatWidgetMC:PlayerStatWidget;
         
-        public var WeaponSelectContainer:UIComponent;
+        public var WeaponSelectContainer:WeaponSelectWidget;
         
         public var ScoreboardWidgetMC:TripContainer;
         
@@ -60,11 +67,23 @@ package tripwire.managers
         
         public var BossNamePlate:BossNameplateWidget;
         
-        public var NonCriticalGameMessageWidget;
+        public var NonCriticalMessageWidget:NonCriticalGameMessageWidget;
         
         public var MusicNotification:MusicNotificationWidget;
         
         public var RhythmCounter:RhythmCounterWidget;
+        
+        public var ControllerWeaponSelectContainer:ControllerWeaponSelectWidget;
+        
+        public var barkNode:UIComponent;
+        
+        public var barkCount:int = 0;
+        
+        public var barkIndex:int = 0;
+        
+        public var maxBarkCount:int = 15;
+        
+        public var barkOffset:Number = 0.69;
         
         public var sw:Number;
         
@@ -76,7 +95,7 @@ package tripwire.managers
         
         public var newScale:Number = 1;
         
-        private var _bSpectating:Boolean = false;
+        protected var _bSpectating:Boolean = false;
         
         public const ORIGINAL_STAGE_WIDTH:Number = 1920;
         
@@ -88,11 +107,14 @@ package tripwire.managers
         
         public var centerPoint:Point;
         
+        private var _bConsoleBuild:Boolean;
+        
         public function HudManager()
         {
             addFrameScript(0,this.frame1);
             super();
             this.SpectatorInfoWidget.visible = false;
+            _manager = this;
             addEventListener(Event.ADDED_TO_STAGE,this.__setPerspectiveProjection_);
             if(this.__animFactory_BossNamePlateaf1 == null)
             {
@@ -134,6 +156,11 @@ package tripwire.managers
             this.__setProp_voipWidget_Scene1_VOIPList_0();
         }
         
+        public static function get manager() : HudManager
+        {
+            return _manager;
+        }
+        
         public function __setPerspectiveProjection_(param1:Event) : void
         {
             root.transform.perspectiveProjection.fieldOfView = 32;
@@ -145,11 +172,24 @@ package tripwire.managers
             super.addedToStage(param1);
         }
         
+        public function get bConsoleBuild() : Boolean
+        {
+            return this._bConsoleBuild;
+        }
+        
+        public function set bConsoleBuild(param1:Boolean) : *
+        {
+            if(this._bConsoleBuild != param1)
+            {
+                this._bConsoleBuild = param1;
+            }
+        }
+        
         public function set bSpectating(param1:Boolean) : void
         {
             this._bSpectating = param1;
             this.PlayerBackpackWidget.visible = !param1;
-            this.PlayerStatWidget.visible = !param1;
+            this.PlayerStatWidgetMC.visible = !param1;
             if(this.SpectatorInfoWidget.visible)
             {
                 this.SpectatorInfoWidget.visible = param1;
@@ -164,8 +204,12 @@ package tripwire.managers
         {
             this.WaveCompassWidget.visible = false;
             this.ChatBoxWidget.visible = false;
-            this.PlayerStatWidget.visible = false;
+            this.PlayerStatWidgetMC.visible = false;
             this.WeaponSelectContainer.visible = false;
+            if(this.ControllerWeaponSelectContainer)
+            {
+                this.ControllerWeaponSelectContainer.visible = false;
+            }
             this.ScoreboardWidgetMC.visible = false;
             this.PriorityMsgWidget.visible = false;
             this.PlayerBackpackWidget.visible = false;
@@ -175,7 +219,7 @@ package tripwire.managers
             this.interactionMsgWidget.visible = false;
             this.SpectatorInfoWidget.visible = false;
             this.KickVoteWidget.visible = false;
-            this.NonCriticalGameMessageWidget.visible = false;
+            this.NonCriticalMessageWidget.visible = false;
             this.MusicNotification.visible = false;
             this.BossNamePlate.setText(!!param1.bossName ? param1.bossName : "",!!param1.subString ? param1.subString : "");
         }
@@ -184,7 +228,7 @@ package tripwire.managers
         {
             this.WaveCompassWidget.visible = true;
             this.ChatBoxWidget.visible = true;
-            this.PlayerStatWidget.visible = true;
+            this.PlayerStatWidgetMC.visible = true;
             this.PlayerBackpackWidget.visible = true;
             this.voipWidget.visible = true;
             this.VoiceCommsWidget.visible = true;
@@ -196,6 +240,11 @@ package tripwire.managers
         {
             this.centerPoint = new Point(stage.stageWidth / 2,stage.stageHeight / 2);
             root.transform.perspectiveProjection.projectionCenter = this.centerPoint;
+            this.barkNode.layoutData = new LayoutData();
+            this.barkNode.layoutData.alignV = "center";
+            this.barkNode.layoutData.alignH = "right";
+            this.barkNode.layoutData.offsetH = 0;
+            this.barkNode.layoutData.offsetV = -128;
             this.WaveCompassWidget.layoutData = new LayoutData();
             this.WaveCompassWidget.layoutData.alignV = "top";
             this.WaveCompassWidget.layoutData.alignH = "left";
@@ -226,21 +275,21 @@ package tripwire.managers
             this.PlayerBackpackWidget.layoutData.alignH = "right";
             this.PlayerBackpackWidget.layoutData.offsetH = -20;
             this.PlayerBackpackWidget.layoutData.offsetV = -16;
-            this.PlayerStatWidget.layoutData = new LayoutData();
-            this.PlayerStatWidget.layoutData.alignV = "bottom";
-            this.PlayerStatWidget.layoutData.alignH = "left";
-            this.PlayerStatWidget.layoutData.offsetH = 16;
-            this.PlayerStatWidget.layoutData.offsetV = -16;
+            this.PlayerStatWidgetMC.layoutData = new LayoutData();
+            this.PlayerStatWidgetMC.layoutData.alignV = "bottom";
+            this.PlayerStatWidgetMC.layoutData.alignH = "left";
+            this.PlayerStatWidgetMC.layoutData.offsetH = 16;
+            this.PlayerStatWidgetMC.layoutData.offsetV = -16;
             this.PriorityMsgWidget.layoutData = new LayoutData();
             this.PriorityMsgWidget.layoutData.alignV = "center";
             this.PriorityMsgWidget.layoutData.alignH = "center";
             this.PriorityMsgWidget.layoutData.offsetH = 0;
             this.PriorityMsgWidget.layoutData.offsetV = 0;
-            this.NonCriticalGameMessageWidget.layoutData = new LayoutData();
-            this.NonCriticalGameMessageWidget.layoutData.alignV = "bottom";
-            this.NonCriticalGameMessageWidget.layoutData.alignH = "center";
-            this.NonCriticalGameMessageWidget.layoutData.offsetH = 0;
-            this.NonCriticalGameMessageWidget.layoutData.offsetV = -64;
+            this.NonCriticalMessageWidget.layoutData = new LayoutData();
+            this.NonCriticalMessageWidget.layoutData.alignV = "bottom";
+            this.NonCriticalMessageWidget.layoutData.alignH = "center";
+            this.NonCriticalMessageWidget.layoutData.offsetH = 0;
+            this.NonCriticalMessageWidget.layoutData.offsetV = -64;
             this.interactionMsgWidget.layoutData = new LayoutData();
             this.interactionMsgWidget.layoutData.alignV = "bottom";
             this.interactionMsgWidget.layoutData.alignH = "center";
@@ -266,6 +315,19 @@ package tripwire.managers
             this.ScoreboardWidgetMC.layoutData.alignH = "center";
             this.ScoreboardWidgetMC.layoutData.offsetH = 0;
             this.ScoreboardWidgetMC.layoutData.offsetV = 0;
+            if(this.ControllerWeaponSelectContainer)
+            {
+                this.ControllerWeaponSelectContainer.layoutData = new LayoutData();
+                this.ControllerWeaponSelectContainer.layoutData.alignV = "center";
+                this.ControllerWeaponSelectContainer.layoutData.alignH = "center";
+                this.ControllerWeaponSelectContainer.layoutData.offsetV = 0;
+                this.ControllerWeaponSelectContainer.layoutData.offsetH = 0;
+            }
+            this.WeaponSelectContainer.layoutData = new LayoutData();
+            this.WeaponSelectContainer.layoutData.alignV = "top";
+            this.WeaponSelectContainer.layoutData.alignH = "center";
+            this.WeaponSelectContainer.layoutData.offsetV = 0;
+            this.WeaponSelectContainer.layoutData.offsetH = 0;
             this.MusicNotification.layoutData = new LayoutData();
             this.MusicNotification.layoutData.alignV = "top";
             this.MusicNotification.layoutData.alignH = "right";
@@ -298,9 +360,37 @@ package tripwire.managers
         
         function showLocalizedMessage(param1:String) : void
         {
-            if(this.NonCriticalGameMessageWidget)
+            if(this.NonCriticalMessageWidget)
             {
-                this.NonCriticalGameMessageWidget.ShowMessage(param1);
+                this.NonCriticalMessageWidget.message = param1;
+            }
+        }
+        
+        public function set newBark(param1:Object) : void
+        {
+            if(this.barkCount >= this.maxBarkCount)
+            {
+                return;
+            }
+            var _loc2_:HudBarkMessage = new HudBarkMC() as HudBarkMessage;
+            this.barkNode.addChild(_loc2_);
+            this.scaleChild(_loc2_);
+            _loc2_.y = _loc2_.height + _loc2_.height * this.barkOffset * (this.barkIndex % this.maxBarkCount);
+            _loc2_.addEventListener("onTweenComplete",this.removeUsedBark,false,0,true);
+            _loc2_.text = param1;
+            ++this.barkCount;
+            ++this.barkIndex;
+        }
+        
+        public function removeUsedBark(param1:Event) : void
+        {
+            var _loc2_:HudBarkMessage = null;
+            _loc2_ = param1.currentTarget as HudBarkMessage;
+            if(_loc2_ != null)
+            {
+                _loc2_.removeEventListener("onTweenComplete",this.removeUsedBark);
+                this.barkNode.removeChild(_loc2_);
+                --this.barkCount;
             }
         }
         
@@ -324,8 +414,8 @@ package tripwire.managers
             }
             stage.transform.perspectiveProjection.projectionCenter = new Point(this.sw / 2,this.sh / 2);
             this.UpdateElementScales();
-            this.NonCriticalGameMessageWidget.messag = "";
-            TweenMax.to(this.PlayerStatWidget,3,{
+            this.NonCriticalMessageWidget.message = "";
+            TweenMax.to(this.PlayerStatWidgetMC,3,{
                 "onComplete":this.start3d,
                 "useFrames":true
             });
@@ -353,13 +443,12 @@ package tripwire.managers
         public function UpdateElementScales() : void
         {
             this.scaleChild(this.WeaponSelectContainer);
-            this.WeaponSelectContainer.x = (stage.stageWidth - this.WeaponSelectContainer.width) / 2;
-            this.WeaponSelectContainer.y = 0;
+            this.scaleChild(this.ControllerWeaponSelectContainer);
             this.scaleChild(this.ChatBoxWidget);
             this.scaleChild(this.voipWidget);
             this.scaleChild(this.ScoreboardWidgetMC);
             this.scaleChild(this.WaveCompassWidget);
-            this.scaleChild(this.PlayerStatWidget);
+            this.scaleChild(this.PlayerStatWidgetMC);
             this.scaleChild(this.VoiceCommsWidget);
             this.scaleChild(this.PlayerBackpackWidget);
             this.scaleChild(this.PriorityMsgWidget);
@@ -367,7 +456,7 @@ package tripwire.managers
             this.scaleChild(this.LevelUpNotificationWidget);
             this.scaleChild(this.SpectatorInfoWidget);
             this.scaleChild(this.MusicNotification);
-            this.scaleChild(this.NonCriticalGameMessageWidget);
+            this.scaleChild(this.NonCriticalMessageWidget);
             this.scaleChild(this.KickVoteWidget);
             this.scaleChild(this.BossNamePlate);
             this.scaleChild(this.RhythmCounter);
@@ -381,7 +470,9 @@ package tripwire.managers
         
         public function start3d() : void
         {
-            this.apply3d(this.PlayerStatWidget,0,-24,0,"bottom","left");
+            this.apply3d(this.WeaponSelectContainer,0,0,0,"center","center");
+            this.apply3d(this.ControllerWeaponSelectContainer,0,0,0,"center","center");
+            this.apply3d(this.PlayerStatWidgetMC,0,-24,0,"bottom","left");
             this.apply3d(this.PlayerBackpackWidget,0,24,0,"bottom","right");
             this.apply3d(this.KickVoteWidget,0,24,0,"bottom","right");
             this.apply3d(this.BossNamePlate,0,0,0,"bottom","right");
@@ -391,10 +482,11 @@ package tripwire.managers
             this.apply3d(this.interactionMsgWidget,0,0,288,"center","center");
             this.apply3d(this.ChatBoxWidget,0,-24,0,"top","left");
             this.apply3d(this.voipWidget,0,-24,0,"top","left");
+            this.apply3d(this.barkNode,0,24,0,"bottom","right");
             this.apply3d(this.PriorityMsgWidget,0,0,288,"center","center");
             this.apply3d(this.VoiceCommsWidget,0,0,288,"center","center");
             this.apply3d(this.ScoreboardWidgetMC,0,0,288,"center","center");
-            this.apply3d(this.NonCriticalGameMessageWidget,0,0,0,"center","center");
+            this.apply3d(this.NonCriticalMessageWidget,0,0,0,"center","center");
             this.apply3d(this.MusicNotification,0,24,0,"top","right");
             this.apply3d(this.RhythmCounter,0,0,288,"top","center");
         }

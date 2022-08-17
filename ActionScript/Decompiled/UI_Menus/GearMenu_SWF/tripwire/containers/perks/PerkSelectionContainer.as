@@ -1,4 +1,4 @@
-package tripwire.containers.perks
+package tripwire.containers.Perks
 {
     import com.greensock.TweenMax;
     import flash.events.Event;
@@ -6,13 +6,12 @@ package tripwire.containers.perks
     import scaleform.clik.controls.ScrollingList;
     import scaleform.clik.data.DataProvider;
     import scaleform.clik.events.ListEvent;
-    import scaleform.gfx.FocusManager;
+    import scaleform.clik.managers.FocusHandler;
     import tripwire.containers.SectionHeaderContainer;
-    import tripwire.containers.TripContainer;
     import tripwire.controls.perks.PerkSelectLineRenderer;
     import tripwire.managers.MenuManager;
     
-    public class PerkSelectionContainer extends TripContainer
+    public class PerkSelectionContainer extends PerkContainerBase
     {
          
         
@@ -25,6 +24,8 @@ package tripwire.containers.perks
         public var header:SectionHeaderContainer;
         
         public var currentPerk:int = 1;
+        
+        private var _bLostFocus:Boolean = false;
         
         public function PerkSelectionContainer()
         {
@@ -55,6 +56,7 @@ package tripwire.containers.perks
                 this.pendingPerkBox.visible = false;
             }
             this.perkScrollingList.addEventListener(ListEvent.ITEM_CLICK,this.onPerkClick,false,0,true);
+            this.perkScrollingList.addEventListener(ListEvent.INDEX_CHANGE,this.onPerkChanged,false,0,true);
         }
         
         public function setPendingPerkChanges(param1:String, param2:String, param3:String) : void
@@ -79,14 +81,37 @@ package tripwire.containers.perks
             {
                 TweenMax.killTweensOf(this);
                 this.perkScrollingList.selectedIndex = param1.index;
+                if(bManagerUsingGamepad)
+                {
+                    this.swapPerkInfo(param1.index,true);
+                }
+                else
+                {
+                    TweenMax.to(this,ANIM_TIME,{
+                        "useFrames":true,
+                        "onComplete":this.swapPerkInfo,
+                        "onCompleteParams":[param1.index,true]
+                    });
+                    dispatchEvent(new Event("changePerk",true));
+                }
+                FocusHandler.getInstance().setFocus(this.perkScrollingList);
+            }
+        }
+        
+        public function onPerkChanged(param1:ListEvent) : *
+        {
+            if(bManagerUsingGamepad && this.perkScrollingList.hasFocus && !this._bLostFocus)
+            {
+                TweenMax.killTweensOf(this);
                 TweenMax.to(this,ANIM_TIME,{
                     "useFrames":true,
                     "onComplete":this.swapPerkInfo,
-                    "onCompleteParams":[param1.index]
+                    "onCompleteParams":[param1.index,false]
                 });
                 dispatchEvent(new Event("changePerk",true));
-                FocusManager.setFocus(this.perkScrollingList);
+                FocusHandler.getInstance().setFocus(this.perkScrollingList);
             }
+            this._bLostFocus = !this.perkScrollingList.hasFocus;
         }
         
         public function set SelectedIndex(param1:int) : *
@@ -101,7 +126,7 @@ package tripwire.containers.perks
                     _loc2_.active = true;
                     if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
                     {
-                        FocusManager.setFocus(_loc2_);
+                        FocusHandler.getInstance().setFocus(_loc2_);
                     }
                 }
                 else
@@ -121,9 +146,9 @@ package tripwire.containers.perks
             this.perkScrollingList.scrollBar.visible = this.perkScrollingList.dataProvider.length > this.perkScrollingList.rowCount;
         }
         
-        public function swapPerkInfo(param1:int) : void
+        public function swapPerkInfo(param1:int, param2:Boolean) : void
         {
-            ExternalInterface.call("Callback_PerkSelected",param1);
+            ExternalInterface.call("Callback_PerkSelected",param1,param2);
         }
     }
 }

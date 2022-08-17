@@ -65,7 +65,7 @@ function DoMeleeAttack( optional Pawn NewEnemy, optional Actor InTarget, optiona
 		// Only Pack flags if 255 was initially passed in
 		if( AttackFlags == 255 )
 		{
-			AttackFlags = ChooseStrikeAnimation();	
+			AttackFlags = ChooseStrikeAnimation();
 		}
 
 		if( AttackFlags != 255 )
@@ -100,7 +100,8 @@ DefaultProperties
 	MeleeCommandClass=class'AICommand_Base_Zed'
 	DefaultCommandClass=class'AICommand_Base_Zed'
 	bIsProbingMeleeRangeEvents=true
-	
+	LowIntensityAttackCooldown=7.0
+
 	//DefaultBehavior="SirenMain"
 	//UsedETQQueries[ENQ_EnemySelection]="BaseZedEnemySelection"
 }

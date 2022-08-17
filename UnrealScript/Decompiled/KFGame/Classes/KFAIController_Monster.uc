@@ -18,8 +18,6 @@ var bool bUseRunOverWarning;
 var float MinDistanceToPerformGrabAttack;
 var float MinTimeBetweenGrabAttacks;
 var float LastAttackTime_Grab;
-/** The amount to scale this Zed's damage based on difficulty */
-var(Combat) float DifficultyDamageMod;
 var float MinRunOverSpeed;
 var float LastRunOverWarningTime;
 var float MinRunOverWarningAim;
@@ -62,9 +60,38 @@ event Possess(Pawn inPawn, bool bVehicleTransition)
         WarnInternal(((string(GetFuncName()) $ "() attempting to possess ") $ string(inPawn)) $ ", but it's not a KFPawn_Monster class! MyKFPawn variable will not be valid.");
     }
     super.Possess(inPawn, bVehicleTransition);
-    if(MyKFPawn != none)
+    SetPawnDefaults();
+}
+
+function SetPawnDefaults()
+{
+    local float SprintChance, SprintDamagedChance, HiddenSpeedMod;
+    local KFCharacterInfo_Monster MonsterInfo;
+    local float GameDifficulty;
+    local KFDifficultyInfo DifficultyInfo;
+    local KFGameInfo KFGI;
+
+    KFGI = KFGameInfo(WorldInfo.Game);
+    MonsterInfo = MyKFPawn.GetCharacterMonsterInfo();
+    GameDifficulty = KFGI.GameDifficulty;
+    DifficultyInfo = KFGI.DifficultyInfo;
+    if(MonsterInfo != none)
     {
-        bDefaultCanSprint = MyKFPawn.bCanSprint;
+        SprintChance = DifficultyInfo.GetCharSprintChanceByDifficulty(MonsterInfo, GameDifficulty);
+        SprintDamagedChance = DifficultyInfo.GetCharSprintWhenDamagedChanceByDifficulty(MonsterInfo, GameDifficulty);
+    }
+    HiddenSpeedMod = DifficultyInfo.GetAIHiddenSpeedModifier(KFGI.GetLivingPlayerCount());
+    MyKFPawn.HiddenGroundSpeed = MyKFPawn.default.HiddenGroundSpeed * HiddenSpeedMod;
+    if(MyKFPawn.PawnAnimInfo != none)
+    {
+        MyKFPawn.PawnAnimInfo.SetDifficultyValues(DifficultyInfo);
+    }
+    SetCanSprint(FRand() <= SprintChance);
+    SetCanSprintWhenDamaged(FRand() <= SprintDamagedChance);
+    bDefaultCanSprint = bCanSprint;
+    if(KFGI.BaseMutator != none)
+    {
+        KFGI.BaseMutator.ModifyAI(Pawn);
     }
 }
 
@@ -94,7 +121,21 @@ event ReadyToMelee()
     }
     if(bRepathOnInvalidStrike && bFailedToMoveToEnemy || !bMovingToGoal && !bMovingToEnemy)
     {
-        SetEnemyMoveGoal(self, true,,, true);
+        SetEnemyMoveGoal(self, true,,, true);        
+    }
+    else
+    {
+        if(((!CheckOverallCooldownTimer() && Enemy != none) && Pawn != none) && Pawn.IsAliveAndWell())
+        {
+            if(VSize(Enemy.Location - Pawn.Location) < (MyKFPawn.CylinderComponent.CollisionRadius * 3))
+            {
+                if(MyKFPawn.CanDoSpecialMove(13) && (WorldInfo.TimeSeconds - LastTauntTime) > 2)
+                {
+                    AILog_Internal(string(GetFuncName()) $ " starting taunt command", 'CantMelee');
+                    Class'AICommand_TauntEnemy'.static.Taunt(self, KFPawn(Enemy), 0);
+                }
+            }
+        }
     }
 }
 
@@ -150,7 +191,7 @@ event bool CanGrabAttack()
     local KFPerk EnemyPerk;
     local KFPawn KFPawnEnemy;
     local float DistSq;
-    local Vector HitLocation, HitNormal;
+    local Vector Extent, HitLocation, HitNormal;
     local Actor HitActor;
 
     if(((((MyKFPawn == none) || !MyKFPawn.bCanGrabAttack) || MyKFPawn.Health <= 0) || Enemy == none) || (Enemy != none) && Pawn.IsSameTeam(Enemy))
@@ -177,7 +218,7 @@ event bool CanGrabAttack()
     }
     if(!bCompletedInitialGrabAttack || (LastAttackTime_Grab == 0) || (WorldInfo.TimeSeconds - LastAttackTime_Grab) > MinTimeBetweenGrabAttacks)
     {
-        if(Abs(Enemy.Location.Z - Pawn.Location.Z) > Pawn.CylinderComponent.CollisionHeight)
+        if(Abs(Enemy.Location.Z - Pawn.Location.Z) > Class'KFSM_GrappleStart'.default.MaxVictimZOffset)
         {
             return false;
         }
@@ -186,7 +227,10 @@ event bool CanGrabAttack()
         {
             return false;
         }
-        HitActor = Trace(HitLocation, HitNormal, Enemy.Location, Pawn.Location, true);
+        Extent.X = Pawn.GetCollisionRadius() * 0.5;
+        Extent.Y = Extent.X;
+        Extent.Z = Pawn.GetCollisionHeight() * 0.5;
+        HitActor = Trace(HitLocation, HitNormal, Enemy.Location, Pawn.Location, true, Extent);
         if((HitActor != none) && HitActor != Enemy)
         {
             return false;
@@ -278,7 +322,7 @@ function bool HandleZedBlockedPath()
         }
         if((VSize(Enemy.Location - Pawn.Location) < AttackRange) && bDirectMoveToGoal)
         {
-            if((MyKFPawn.CanDoSpecialMove(11) && FRand() < 0.32) && (WorldInfo.TimeSeconds - LastTauntTime) > 2)
+            if((MyKFPawn.CanDoSpecialMove(13) && FRand() < 0.32) && (WorldInfo.TimeSeconds - LastTauntTime) > 2)
             {
                 AILog_Internal(string(GetFuncName()) $ " starting taunt command", 'ReachedEnemy');
                 Class'AICommand_TauntEnemy'.static.Taunt(self, KFPawn(Enemy), 0);                
@@ -298,7 +342,6 @@ defaultproperties
 {
     MinDistanceToPerformGrabAttack=188
     MinTimeBetweenGrabAttacks=5
-    DifficultyDamageMod=1
     DefaultCommandClass=Class'AICommand_Base_Zed'
     bIsPlayer=false
     SightCounterInterval=0.35

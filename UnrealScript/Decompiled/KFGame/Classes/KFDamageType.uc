@@ -44,6 +44,8 @@ var bool bCanObliterate;
 var bool bNoPain;
 var bool bIgnoreSelfInflictedScale;
 var bool bIgnoreZedOnZedScaling;
+var float HeadDestructionDamageScale;
+var float HeadDestructionImpulseForceScale;
 var KFDamageType.EDamageOverTimeGroup DoT_Type;
 var byte StunPower;
 var byte KnockdownPower;
@@ -60,6 +62,7 @@ var float BurnPower;
 var float EMPPower;
 var float PoisonPower;
 var float MicrowavePower;
+var float FreezePower;
 var array< class<KFPerk> > ModifierPerkList;
 var array<MaterialInstance> BodyWoundDecalMaterials;
 var float BodyWoundDecalWidth;
@@ -75,6 +78,7 @@ var float BloodSpread;
 var float BloodScale<ClampMin=0.0|ClampMax=1.0>;
 var name DeathMaterialEffectParamName;
 var float DeathMaterialEffectDuration;
+var ParticleSystem OverrideImpactEffect;
 var AkEvent OverrideImpactSound;
 
 static simulated function AddBloodSpread(KFPawn_Monster inPawn, Vector HitDirection, out array<Vector> HitSpread, bool bIsDismemberingHit, bool bWasObliterated)
@@ -157,7 +161,14 @@ static function PlayImpactHitEffects(KFPawn P, Vector HitLocation, Vector HitDir
         SkinType = P.GetHitZoneSkinTypeEffects(HitZoneIndex);
         if(SkinType != none)
         {
-            SkinType.PlayImpactParticleEffect(P, HitLocation, HitDirection, HitZoneIndex, default.EffectGroup);
+            if(default.OverrideImpactEffect != none)
+            {
+                P.WorldInfo.MyEmitterPool.SpawnEmitter(default.OverrideImpactEffect, HitLocation, rotator(-HitDirection), P);                
+            }
+            else
+            {
+                SkinType.PlayImpactParticleEffect(P, HitLocation, HitDirection, HitZoneIndex, default.EffectGroup);
+            }
             if(default.OverrideImpactSound != none)
             {
                 P.PlaySoundBase(default.OverrideImpactSound, true,,, HitLocation);                
@@ -166,7 +177,16 @@ static function PlayImpactHitEffects(KFPawn P, Vector HitLocation, Vector HitDir
             {
                 SkinType.PlayTakeHitSound(P, HitLocation, HitInstigator, default.EffectGroup);
             }
+            return;
         }
+    }
+    if(default.OverrideImpactEffect != none)
+    {
+        P.WorldInfo.MyEmitterPool.SpawnEmitter(default.OverrideImpactEffect, HitLocation, rotator(-HitDirection), P);
+    }
+    if(default.OverrideImpactSound != none)
+    {
+        P.PlaySoundBase(default.OverrideImpactSound, true,,, HitLocation);
     }
 }
 
@@ -186,6 +206,8 @@ static function bool CheckObliterate(Pawn P, int Damage)
 
 defaultproperties
 {
+    HeadDestructionDamageScale=1
+    HeadDestructionImpulseForceScale=1
     EffectGroup=EEffectDamageGroup.None
     BodyWoundDecalWidth=20
     BodyWoundDecalHeight=20

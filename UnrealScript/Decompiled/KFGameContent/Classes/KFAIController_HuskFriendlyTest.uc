@@ -23,7 +23,7 @@ function bool CanDoFireball(float DistToTargetSq)
 
 function bool CanDoFlamethrower(float DistToTargetSq)
 {
-    if((((WorldInfo.TimeSeconds - LastFlameThrowerTime) > TimeBetweenFlameThrower) && DistToTargetSq <= float(MaxDistanceForFlameThrower * MaxDistanceForFlameThrower)) && MyKFPawn.CanDoSpecialMove(18))
+    if((((WorldInfo.TimeSeconds - LastFlameThrowerTime) > TimeBetweenFlameThrower) && DistToTargetSq <= float(MaxDistanceForFlameThrower * MaxDistanceForFlameThrower)) && MyKFPawn.CanDoSpecialMove(20))
     {
         return true;
     }

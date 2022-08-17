@@ -561,7 +561,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 	InPassword = WorldInfo.Game.ParseOption(Options, "Password");
 
 	// Check server capacity and passwords
-`if (`__TW_STEAMWORKS_)
+`if (`__TW_NETWORKING_)
 	if (WorldInfo.NetMode != NM_Standalone && WorldInfo.Game.AtCapacity(bSpectator, UniqueId))
 `else
 	if (WorldInfo.NetMode != NM_Standalone && WorldInfo.Game.AtCapacity(bSpectator))
@@ -598,7 +598,7 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 		if (OnlineSub != None && OnlineSub.GameInterface != None)
 		{
 			GameSettings = OnlineSub.GameInterface.GetGameSettings(WorldInfo.Game.PlayerReplicationInfoClass.default.SessionName);
-`if(`__TW_STEAMWORKS_)
+`if(`__TW_NETWORKING_)
 			//If we're connecting locally, don't even bother with the authentication stuff in the rest of the function
 			if (Address == "127.0.0.1")
 			{

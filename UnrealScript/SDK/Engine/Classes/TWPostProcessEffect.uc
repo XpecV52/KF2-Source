@@ -124,6 +124,34 @@ var(AntiAliasing) float EdgeDetectionThreshold;
 /** Allows to specify the postprocess antialiasing method (affects quality and performace). */
 var(AntiAliasing) EPostProcessAAType PostProcessAAType;
 
+/* ***********************************************************************
+ * DISTANCE FOG
+ * ***********************************************************************/
+
+/** Distance from the camera at which the fog kicks in (World Space Units) */
+var(DistanceFog) float Fog_Start_Distance<DisplayName=Start Distance | UIMin=0.0 | ClampMin=0.0>;
+
+/** Distance from the camera at which max fog kicks in (World Space Units).
+	This is the distance at which the interp ends - max fog will be in effect past this distance. 
+	This should be greater than Fog Start Distance.
+*/
+var(DistanceFog) float Fog_MaxStrength_Distance<DisplayName=MaxStrength Distance | UIMin=0.0 | ClampMin=0.0>;
+
+/** Distance at which the perlin noise based fog animation will give way to a solid fog color.
+	This should be greater than Fog Start Distance. Clamp at 30000 uu as noise samples get bunched together 
+	at a distance creating a salt and pepper  pattern since the sampling is not perspective correct
+*/
+var(DistanceFog) float Fog_AnimationCutoff_Distance<UIMin=0.0 | ClampMin=0.0 | ClampMax=30000.0>;
+
+/** 0-1 value that controls how much fog to apply. 0 - No fog, 1 - Full fog */
+var(DistanceFog) float Fog_Intensity<DisplayName=Intensity | UIMin=0.0 | UIMax=1.0>;
+
+/** 0-1 value that specifies the lower bound on the amount of fog. This will be modulated by Fog_Intesity. */
+var(DistanceFog) float Fog_MinAmount<DisplayName=Min Fog | UIMin=0.0 | UIMax=1.0>;
+
+/** Fog Color */
+var(DistanceFog) color Fog_Color<DisplayName=Color>;
+
 cpptext
 {
 	// UPostProcessEffect interface
@@ -204,6 +232,13 @@ defaultproperties
 	Bloom_Threshold=0.6
 	Bloom_Tint=(R=255,G=255,B=255)
 	Bloom_ScreenBlendThreshold=10
+
+	Fog_Start_Distance=0.0
+	Fog_MaxStrength_Distance=10000.0
+	Fog_AnimationCutoff_Distance=8000.0
+	Fog_Intensity=0.3
+	Fog_Color=(R=255, G=255, B=255)
+
 
 	SceneShadows=(X=0.0,Y=0.0,Z=-0.003);
     SceneHighLights=(X=0.8,Y=0.8,Z=0.8);

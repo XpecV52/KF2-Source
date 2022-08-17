@@ -22,41 +22,41 @@ package com.greensock.easing
         
         public var _calcEnd:Boolean;
         
-        public function Ease(param1:Function = null, param2:Array = null, param3:Number = 0, param4:Number = 0)
+        public function Ease(func:Function = null, extraParams:Array = null, type:Number = 0, power:Number = 0)
         {
             super();
-            this._func = param1;
-            this._params = !!param2 ? _baseParams.concat(param2) : _baseParams;
-            this._type = param3;
-            this._power = param4;
+            this._func = func;
+            this._params = !!extraParams ? _baseParams.concat(extraParams) : _baseParams;
+            this._type = type;
+            this._power = power;
         }
         
-        public function getRatio(param1:Number) : Number
+        public function getRatio(p:Number) : Number
         {
-            var _loc2_:Number = NaN;
+            var r:Number = NaN;
             if(this._func != null)
             {
-                this._params[0] = param1;
+                this._params[0] = p;
                 return this._func.apply(null,this._params);
             }
-            _loc2_ = this._type == 1 ? Number(1 - param1) : (this._type == 2 ? Number(param1) : (param1 < 0.5 ? Number(param1 * 2) : Number((1 - param1) * 2)));
+            r = this._type == 1 ? Number(1 - p) : (this._type == 2 ? Number(p) : (p < 0.5 ? Number(p * 2) : Number((1 - p) * 2)));
             if(this._power == 1)
             {
-                _loc2_ *= _loc2_;
+                r *= r;
             }
             else if(this._power == 2)
             {
-                _loc2_ *= _loc2_ * _loc2_;
+                r *= r * r;
             }
             else if(this._power == 3)
             {
-                _loc2_ *= _loc2_ * _loc2_ * _loc2_;
+                r *= r * r * r;
             }
             else if(this._power == 4)
             {
-                _loc2_ *= _loc2_ * _loc2_ * _loc2_ * _loc2_;
+                r *= r * r * r * r;
             }
-            return this._type == 1 ? Number(1 - _loc2_) : (this._type == 2 ? Number(_loc2_) : (param1 < 0.5 ? Number(_loc2_ / 2) : Number(1 - _loc2_ / 2)));
+            return this._type == 1 ? Number(1 - r) : (this._type == 2 ? Number(r) : (p < 0.5 ? Number(r / 2) : Number(1 - r / 2)));
         }
     }
 }

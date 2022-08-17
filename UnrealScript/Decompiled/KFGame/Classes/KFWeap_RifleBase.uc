@@ -22,6 +22,18 @@ static simulated event KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
     }
 }
 
+simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optional int NumHits, optional out float out_PenetrationVal, optional int ImpactNum)
+{
+    local KFPerk InstigatorPerk;
+
+    InstigatorPerk = GetPerk();
+    if(InstigatorPerk != none)
+    {
+        InstigatorPerk.UpdatePerkHeadShots(Impact, InstantHitDamageTypes[FiringMode], ImpactNum);
+    }
+    super.ProcessInstantHitEx(FiringMode, Impact, NumHits, out_PenetrationVal, ImpactNum);
+}
+
 defaultproperties
 {
     AimCorrectionSize=40

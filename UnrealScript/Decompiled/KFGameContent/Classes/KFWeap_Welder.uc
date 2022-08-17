@@ -9,6 +9,8 @@ class KFWeap_Welder extends KFWeapon
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
+/** If set, automatically equip the previous weapon when leaving a door trigger */
+var() bool bAutoUnequip;
 /** Maximum range to find Door */
 var() float WeldingRange;
 /** How many points to add to a door's weld integrity per use (use rate determined by FireInterval) */
@@ -384,6 +386,24 @@ simulated function bool PlayReadyTransition(KFDoorActor PreviousTarget)
     return false;
 }
 
+simulated function bool TickAutoUnequip()
+{
+    local KFDoorTrigger Trigger;
+    local KFInventoryManager KFIM;
+
+    foreach Instigator.TouchingActors(Class'KFDoorTrigger', Trigger)
+    {        
+        return false;        
+    }    
+    KFIM = KFInventoryManager(Instigator.InvManager);
+    if(KFIM != none)
+    {
+        KFIM.SwitchToLastWeapon();
+        return true;
+    }
+    return false;
+}
+
 auto state Inactive
 {
     simulated function BeginState(name PreviousStateName)
@@ -404,8 +424,15 @@ simulated state Active
     simulated event Tick(float DeltaTime)
     {
         global.Tick(DeltaTime);
-        TickWeldTarget();
-        UpdateScreenUI();
+        if((Instigator != none) && Instigator.IsLocallyControlled())
+        {
+            TickWeldTarget();
+            UpdateScreenUI();
+            if(bAutoUnequip)
+            {
+                TickAutoUnequip();
+            }
+        }
     }
 
     simulated event OnAnimEnd(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime)
@@ -465,6 +492,7 @@ simulated state WeaponWelding extends WeaponFiring
 
 defaultproperties
 {
+    bAutoUnequip=true
     WeldingRange=100
     FastenRate=68
     UnfastenRate=-110
@@ -476,7 +504,7 @@ defaultproperties
     WeldCloseAnim=Weld_Off
     ScreenUIClass=Class'KFGame.KFGFxWorld_WelderScreen'
     FireModeIconPaths=/* Array type was not detected. */
-    InventoryGroup=EInventoryGroup.IG_Equipment
+    InventoryGroup=EInventoryGroup.IG_None
     bTargetAdhesionEnabled=false
     bInfiniteSpareAmmo=true
     bAllowClientAmmoTracking=false

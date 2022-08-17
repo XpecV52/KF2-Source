@@ -62,7 +62,6 @@ class KFDT_Fire_FlameThrower extends KFDT_Fire
 
 
 
-
 #linenumber 13;
 
 static function int GetKillerDialogID()

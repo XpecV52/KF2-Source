@@ -90,7 +90,7 @@ function NotifyTakeHit(Controller InstigatedBy, vector HitLocation, int Damage, 
 {
 	Super.NotifyTakeHit(InstigatedBy, HitLocation, Damage, DamageType, Momentum, DamageCauser);
 
-	`SafeDialogManager.PlayBossTakeDamageDialog( self );
+	`DialogManager.PlayBossTakeDamageDialog( self );
 }
 
 
@@ -177,6 +177,12 @@ function bool Died( Controller Killer, class<DamageType> DamageType, vector HitL
 	return result;
 }
 
+/** Used by subclasses to determine if the boss icon can be rendered */
+function bool ShouldDrawBossIcon()
+{
+	return false;
+}
+
 /** Play music for this boss (overridden for each boss) */
 function PlayBossMusic();
 
@@ -186,27 +192,27 @@ simulated function PlayHeadAsplode();
 
 function PlayMonologue( byte MonologueType )
 {
-	//`SafeDialogManager.PlayBossMonologue( self, MonologueType );
+	//`DialogManager.PlayBossMonologue( self, MonologueType );
 }
 
 function PlayGrabDialog()
 {
-	`SafeDialogManager.PlayBossGrabDialog( self );
+	`DialogManager.PlayBossGrabDialog( self );
 }
 
 function PlayHealDialog()
 {
-	`SafeDialogManager.PlayBossHealDialog( self );
+	`DialogManager.PlayBossHealDialog( self );
 }
 
 function PlayLeapedDialog()
 {
-	`SafeDialogManager.PlayBossLeapedDialog( self );
+	`DialogManager.PlayBossLeapedDialog( self );
 }
 
 function PlayLandedDialog()
 {
-	`SafeDialogManager.PlayBossLandedDialog( self );
+	`DialogManager.PlayBossLandedDialog( self );
 }
 
 function PlayGrabbedPlayerDialog( KFPawn_Human Target );

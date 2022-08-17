@@ -11,9 +11,6 @@
 class KFAnimNotify_MeleeImpact_1P extends AnimNotify
 	native(Anim);
 
-/** Used by sweeping attacks with large weapons */
-var bool bCanHitMultipleTargets;
-
 /** If set, use hit box collision detection for this weapon */
 var() bool bAdvancedCollisionDetection;
 

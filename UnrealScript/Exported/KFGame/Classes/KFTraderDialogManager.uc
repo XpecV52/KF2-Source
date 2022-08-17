@@ -369,8 +369,6 @@ class KFTraderDialogManager extends Actor
 
 
 
-
-
 	
 
 
@@ -422,6 +420,7 @@ class KFTraderDialogManager extends Actor
 
 
 	
+
 
 
 
@@ -524,6 +523,11 @@ var float	NeedHealPct;
 var float 	TeammateNeedsHealPct;
 var int 	ShareDoshAmount;
 var int		LowDoshAmount;
+
+/** Delay trader open dialog a short time so we don't overlap wave end sounds */
+var float 	WaveClearDialogDelay;
+/** Event to play at end of delay.  Cached after MatchStats are recieved, but before they are reset */
+var int 	DelayedWaveClearEventID;
 
 /** Used as SetTimer callback. Set by PlayDialog. */
 simulated function EndOfDialogTimer()
@@ -737,7 +741,7 @@ simulated function AddRandomOption( int OptionID, out byte NumOptions, out int B
 	//`log("JDR: KFTraderDialogManager::AddRandomOption "$default.EventNames[OptionID]);
 
 	NumOptions++;
-	if( Frand() <= 1.f / float(NumOptions) ) 
+	if( Frand() <= 1.f / float(NumOptions) )
 	{
 		BestOptionID = OptionID;
 	}
@@ -764,7 +768,7 @@ simulated function PlayTraderTickDialog( int RemainingTime, Controller C, WorldI
 		PlayDialog( 7, C );
 		return;
 	}
-	
+
 	if( RemainingTime == 10 )
 	{
 		PlayDialog( 8, C );
@@ -842,20 +846,20 @@ simulated function PlayTraderTickDialog( int RemainingTime, Controller C, WorldI
 }
 
 /** Plays dialog when trader time begins based on performance last wave */
-simulated function PlayBeginTraderTimeDialog( KFPlayerController KFPC, WorldInfo WI )
+simulated function PlayBeginTraderTimeDialog( KFPlayerController KFPC )
 {
 	if( !default.bEnabled )
 	{
 		return;
 	}
 
-	if( KFGameReplicationInfo(WI.GRI) != none && KFPC.PWRI.DeathStreakEndWave == KFGameReplicationInfo(WI.GRI).WaveNum )
+	if( KFPC.PWRI.bDiedDuringWave )
 	{
 		PlayPlayerDiedLastWaveDialog( KFPC );
 	}
 	else
 	{
-		PlayPlayerSurvivedLastWaveDialog( KFPC, WI );
+		PlayPlayerSurvivedLastWaveDialog( KFPC  );
 	}
 }
 
@@ -873,7 +877,7 @@ simulated function PlayPlayerDiedLastWaveDialog( KFPlayerController KFPC )
 		AddRandomOption( KFPC.PWRI.ClassKilledByLastWave.static.GetTraderAdviceID(), NumOptions, BestOptionID );
 	}
 
-	if( KFPC.PWRI.DeathStreakEndWave - KFPC.PWRI.DeathStreakStartWave >= 3 )
+	if( KFPC.MatchStats.DeathStreak >= 3 )
 	{
 		// keep dying
 		AddRandomOption( 24, NumOptions, BestOptionID );
@@ -884,46 +888,19 @@ simulated function PlayPlayerDiedLastWaveDialog( KFPlayerController KFPC )
 		AddRandomOption( 20, NumOptions, BestOptionID );
 	}
 
-	PlayDialog( BestOptionID, KFPC );
+	PlayWaveClearDialog(BestOptionID, KFPC);
 }
 
 /** Called from PlayBeginTraderTimeDialog if player survived last wave */
-simulated function PlayPlayerSurvivedLastWaveDialog( KFPlayerController KFPC, WorldInfo WI )
+simulated function PlayPlayerSurvivedLastWaveDialog( KFPlayerController KFPC )
 {
 	local int BestOptionID;
 	local byte NumOptions;
-	local KFGameReplicationInfo KFGRI;
 	local KFPawn_Human KFPH;
 
 	BestOptionID = -1;
 
-	KFGRI = KFGameReplicationInfo(WI.GRI);
-
 	KFPH = KFPawn_Human( KFPC.Pawn );
-
-	if( KFPC.PWRI.bKilledMostZeds )
-	{
-		// killed most zeds
-		AddRandomOption( 21, NumOptions, BestOptionID );
-	}
-
-	if( KFPC.PWRI.bEarnedMostDosh )
-	{
-		// earned most dosh last wave
-		AddRandomOption( 31, NumOptions, BestOptionID );
-	}
-
-	if( KFPC.PWRI.bBestTeammate )
-	{
-		// earned most dosh last wave
-		AddRandomOption( 22, NumOptions, BestOptionID );
-	}
-
-	if( KFPH.PlayerReplicationInfo.Score >= default.ShareDoshAmount )
-	{
-		// you're rich, share dosh
-		AddRandomOption( 17, NumOptions, BestOptionID );
-	}
 
 	if( KFPC.MatchStats.GetHealGivenInWave() >= 200 )
 	{
@@ -931,7 +908,7 @@ simulated function PlayPlayerSurvivedLastWaveDialog( KFPlayerController KFPC, Wo
 		AddRandomOption( 18, NumOptions, BestOptionID );
 	}
 
-	if( KFGRI.WaveNum - KFPC.PWRI.DeathStreakEndWave >= 3 )
+	if( KFPC.MatchStats.SurvivedStreak >= 3 )
 	{
 		// didn't die multiple waves
 		AddRandomOption( 23, NumOptions, BestOptionID );
@@ -960,22 +937,6 @@ simulated function PlayPlayerSurvivedLastWaveDialog( KFPlayerController KFPC, Wo
 		AddRandomOption( 30, NumOptions, BestOptionID );
 	}
 
-	if( KFPC.PWRI.bAllSurvivedLastWave )
-	{
-		// no one died
-		AddRandomOption( 25, NumOptions, BestOptionID );
-	}
-	else if( KFPC.PWRI.bSomeSurvivedLastWave )
-	{
-		// a view teammates died
-		AddRandomOption( 27, NumOptions, BestOptionID );
-	}
-	else if( KFPC.PWRI.bOneSurvivedLastWave )
-	{
-		// whole team died except you
-		AddRandomOption( 19, NumOptions, BestOptionID );
-	}
-
 	if( KFPC.PWRI.bKilledFleshpoundLastWave )
 	{
 		// killed fp
@@ -994,7 +955,95 @@ simulated function PlayPlayerSurvivedLastWaveDialog( KFPlayerController KFPC, Wo
 		AddRandomOption( 34, NumOptions, BestOptionID );
 	}
 
-	PlayDialog( BestOptionID, KFPC );
+	// Team based dialog options (skip in solo)
+	if ( !IsSoloHumanPlayer() )
+	{
+		if( KFPC.PWRI.bKilledMostZeds )
+		{
+			// killed most zeds
+			AddRandomOption( 21, NumOptions, BestOptionID );
+		}
+
+		if( KFPC.PWRI.bEarnedMostDosh )
+		{
+			// earned most dosh last wave
+			AddRandomOption( 31, NumOptions, BestOptionID );
+		}
+
+		if( KFPC.PWRI.bBestTeammate )
+		{
+			AddRandomOption( 22, NumOptions, BestOptionID );
+		}
+
+		if( KFPH.PlayerReplicationInfo.Score >= default.ShareDoshAmount )
+		{
+			// you're rich, share dosh
+			AddRandomOption( 17, NumOptions, BestOptionID );
+		}
+
+		if( KFPC.PWRI.bAllSurvivedLastWave )
+		{
+			// no one died
+			AddRandomOption( 25, NumOptions, BestOptionID );
+		}
+		else if( KFPC.PWRI.bSomeSurvivedLastWave )
+		{
+			// a view teammates died
+			AddRandomOption( 27, NumOptions, BestOptionID );
+		}
+		else if( KFPC.PWRI.bOneSurvivedLastWave )
+		{
+			// whole team died except you
+			AddRandomOption( 19, NumOptions, BestOptionID );
+		}		
+	}
+
+	PlayWaveClearDialog(BestOptionID, KFPC);
+}
+
+/** Helper function to count human team players on the client */
+function bool IsSoloHumanPlayer()
+{
+    local int i, NumHumans;
+    local PlayerReplicationInfo PRI;
+
+    // trivial case
+    if ( WorldInfo.NetMode == NM_StandAlone )
+    {
+    	return true;
+    }
+
+    // Count human team members by adding up active PRI's. TeamInfo.Size not replicated?
+	for ( i = 0; i < WorldInfo.GRI.PRIArray.Length && NumHumans < 2; i++)
+    {
+    	PRI = WorldInfo.GRI.PRIArray[i];
+		if ( PRI != None && !PRI.bOnlySpectator && PRI.GetTeamNum() == 0 )
+		{
+			NumHumans++;
+		}
+	}
+
+    return (NumHumans == 1);
+}
+
+/**
+ * Trigger a delayed dialog event when trader opens. Delay should be long enough to bypass
+ * wave end sounds.  Need to cache the EventId, because MatchStats may not have valid data
+ * by the time the timer expires.
+ */
+simulated function PlayWaveClearDialog( int EventID, Controller C )
+{
+	if( C != None && C.IsLocalController() )
+	{
+		DelayedWaveClearEventID = EventID;
+		SetTimer(WaveClearDialogDelay, false, nameof(WaveClearDialogTimer));
+	}
+}
+
+/** Actually play sound after timer expires */
+simulated function WaveClearDialogTimer()
+{
+	PlayDialog( DelayedWaveClearEventID, WorldInfo.GetALocalPlayerController() );
 }
 
 /** Plays dialog when player "uses" trader and opens trader menu */
@@ -1082,6 +1131,7 @@ defaultproperties
    TeammateNeedsHealPct=0.500000
    ShareDoshAmount=2000
    LowDoshAmount=200
+   WaveClearDialogDelay=7.000000
    CollisionType=COLLIDE_CustomDefault
    Name="Default__KFTraderDialogManager"
    ObjectArchetype=Actor'Engine.Default__Actor'

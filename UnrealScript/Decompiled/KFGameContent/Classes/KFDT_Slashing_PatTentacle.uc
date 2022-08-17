@@ -10,7 +10,7 @@ class KFDT_Slashing_PatTentacle extends KFDT_Slashing
 
 static function int GetKillerDialogID()
 {
-    return 43;
+    return 22;
 }
 
 defaultproperties

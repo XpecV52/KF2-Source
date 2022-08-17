@@ -39,25 +39,7 @@ class KFDoorActor extends Actor
 
 
 
-
-
-
-
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
  
@@ -285,7 +267,7 @@ class KFDoorActor extends Actor
 
 
 
-#linenumber 70;
+#linenumber 52;
 
 #linenumber 18;
 
@@ -453,7 +435,7 @@ const HumanPushDistance = 40;
 const SlidingPushForce = 750;
 
 /** Adjusts the "push" plane of the door (the threshold for pushing forward or backward) along its X-axis */
-var() float PushOriginOffset;
+//var() float PushOriginOffset;
 
 /*********************************************************************************************
  * @name	Effects
@@ -947,7 +929,7 @@ private function TryPushPawns()
     GetAxes(Rotation, DoorX, DoorY, DoorZ);
 	DoorYRot = rotator(DoorY);
 
-	OffsetLocation = Location + DoorX * PushOriginOffset;
+	OffsetLocation = Location + DoorX;// * PushOriginOffset;
 
 	foreach WorldInfo.AllPawns( class'Pawn', P, Location, DoorWidth )
 	{
@@ -1005,9 +987,8 @@ event TakeDamage(int Damage, Controller EventInstigator, vector HitLocation, vec
 	// call Actor's version to handle any SeqEvent_TakeDamage for scripting
 	Super.TakeDamage(Damage, EventInstigator, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
 
-    // Check for AI damage
-	if ( bIsDestroyed || EventInstigator == none ||
-		( EventInstigator.bIsPlayer && class<KFDT_Explosive>(DamageType) == none ) )	// If the player deals any damage other than explosive return
+    // check can be damaged
+	if ( bIsDestroyed || !AllowDamageFrom(EventInstigator, DamageType) )
 	{
 		return;
 	}
@@ -1054,8 +1035,6 @@ event TakeDamage(int Damage, Controller EventInstigator, vector HitLocation, vec
 			}
 		}
 
-		if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogDoorWeldEvent(Damage,MaxWeldIntegrity,WeldIntegrity,None,EventInstigator,self);};
-
 		if ( !bIsDestroyed )
 		{
 			IncrementHitCount( EventInstigator.Pawn );
@@ -1072,6 +1051,17 @@ event TakeDamage(int Damage, Controller EventInstigator, vector HitLocation, vec
 	{
 		OpenDoor(EventInstigator.Pawn);
 	}
+}
+
+/** Returns true if the specificed damage causer can damage this door */
+function bool AllowDamageFrom(Controller EventInstigator, class<DamageType> DamageType)
+{
+	// Human team (0) can only do explosive damage
+	if ( EventInstigator == none || (EventInstigator.GetTeamNum() == 0 && class<KFDT_Explosive>(DamageType) == none) )
+	{
+		return false;
+	}
+	return true;
 }
 
 /** Increase the weld integrity - Network: Server only */
@@ -1160,12 +1150,6 @@ function FastenDoor(int Amount, optional KFPawn Welder)
 	else if ( bIsDoorOpen )
 	{
 		CloseDoor();
-	}
-
-	/* __TW_ANALYTICS_ */
-	if ( !bIsDoorOpen )
-	{
-		if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogDoorWeldEvent(Amount,MaxWeldIntegrity,WeldIntegrity,Welder.Controller,None,self);}
 	}
 }
 
@@ -1747,7 +1731,6 @@ defaultproperties
       bUsePrecomputedShadows=True
       CollideActors=False
       BlockRigidBody=False
-      LightingChannels=(bInitialized=True,Indoor=True,Outdoor=True)
       Name="StaticMeshComponent2"
       ObjectArchetype=StaticMeshComponent'Engine.Default__StaticMeshComponent'
    End Object

@@ -84,7 +84,6 @@ defaultproperties
    End Object
    Components(0)=Sprite
    Components(1)=CollisionCylinder
-   CollisionType=COLLIDE_CustomDefault
    CollisionComponent=CollisionCylinder
    SupportedEvents(0)=Class'Engine.SeqEvent_LOS'
    Name="Default__Trigger_LOS"

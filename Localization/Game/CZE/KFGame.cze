@@ -1,0 +1,1569 @@
+[KFCommon_LocalizedStrings]
+DifficultyStrings[0]="Normální"
+DifficultyStrings[1]="Vysoká"
+DifficultyStrings[2]="Sebevražedná"
+DifficultyStrings[3]="Pekelná"
+
+LengthStrings[0]="Krátká (4 vlny)"
+LengthStrings[1]="Střední (7 vln)"
+LengthStrings[2]="Dlouhá (10 vln)"
+
+ServerTypeStrings[0]="Hodnocený"
+ServerTypeStrings[1]="Hodnocený – uživatelský"
+;ServerTypeStrings[2]="Nehodnocený"
+
+PermissionStrings[0]="Veřejná"
+PermissionStrings[1]="Pouze pro přátele"
+PermissionStrings[2]="Soukromá"
+
+ModeStrings[0]="Přežití"
+ModeStrings[1]="VS Survival"
+
+NoPreferenceString="NEROZHODUJE"
+OKString="OK"
+ConfirmString="POTVRDIT"
+CancelString="ZRUŠIT"
+BackString="ZPĚT"
+AcceptString="Přijmout"
+DeclineString="Odmítnout"
+NoticeString="UPOZORNĚNÍ!"
+PerkUpdateNoticeString="Třídu můžeš změnit pouze jednou za vlnu!"
+YesString="Ano"
+NoString="Ne"
+
+DisbandPartyString="ROZPUSTIT"
+LeaveCurrentMenuString="Chceš opustit momentální nabídku?"
+ZedString="ZED"
+
+
+[KFGFxMoviePlayer_Manager]
+FailedSearchTitleString="NEPODAŘILO SE NALÉZT HRU"
+FailedSearchString="Nepodařilo se nám nalézt hru odpovídající zadaným parametrům. Zkus upravit parametry vyhledávání nebo pro nalezení hry použij prohlížeč serverů."
+BrowseServersString="PROCHÁZET SERVERY"
+HasInvitedToGameString=" tě pozval do hry."
+JoinGameString="Připojit se do hry?"
+
+
+[KFGFxObject_Menu]
+LeavePartyTitleString="OPUŠTĚNÍ SKUPINY"
+LeavePartyDescriptionString="Opravdu chceš opustit tuto skupinu?"
+LeaveString="ANO"
+
+[KFDoorActor]
+WeldIntegrityString="Výdrž svaru:"
+ExplosiveString="Past:"
+
+[KFGFxMenu_StartGame]
+CreateMatchString="VYTVOŘIT HRU"
+MatchmakingString="VYHLEDÁVÁNÍ HER"
+ServerBrowserString="Procházet servery"
+
+DifficultyTitle="OBTÍŽNOST"
+GameModeTitle="HERNÍ MÓD"
+ServerTypeString="TYP SERVERU"
+PermissionsTitle="TYP SKUPINY"
+WhiteListedTitle="STATISTIKY POVOLENY"
+LengthTitle="DÉLKA HRY"
+MapTitle="POČÁTEČNÍ MAPA"
+MutatorTitle="MUTACE"
+InfoTitle="INFORMACE"
+InProgressString="PROBÍHÁ"
+
+WhiteListedStrings[0]="ANO"
+WhiteListedStrings[1]="NE"
+
+FindGameString="HRÁT"
+LeaveMenuString="Opuštěním vyhledávání rozpustíš svoji skupinu. Opravdu chceš přejít do prohlížeče serverů?"
+
+CouldNotFindGameTitleString="Nepodařilo se nalézt hru"
+CouldNotFindGameDescriptionString="Nebyly nalezeny servery odpovídající zadaným parametrům. Uprav parametry nebo použij prohlížeč serverů."
+
+[KFGFxStartGameContainer_FindGame]
+MultiplayerString="Vyhledávání her"
+SoloString="Hrát offline"
+
+[KFGFxStartGameContainer_Options]
+BackString="ZPĚT"
+StartGameString="ZAČÍT HRU"
+LaunchGameString="SPUSTIT HRU"
+InProgressString="STAV HRY"
+SoloGameString="SÓLO HRA"
+LeaveMatchMakingString="OPUSTIT VYHLEDÁVÁNÍ"
+MultiplayerLaunchString="HRÁT ONLINE"
+SearchingString="ZRUŠIT VYHLEDÁVÁNÍ"
+ServerTypeString="TYP SERVERU"
+StandardServerString="Standardní"
+UnrankedServerString="Nehodnocený"
+CustomServerString="Uživatelský"
+AllowInProgressString="I probíhající hry"
+NotStartedString="Pouze nové hry"
+
+
+[KFGFxStartContainer_MatchMaking]
+OptionsHeaderString="VYHLEDÁVÁNÍ HER"
+BackString="ZPĚT"
+FindGameString="NAJÍT HRU"
+
+[KFGFxStartContainer_InGameOverview]
+OverviewString="PŘEHLED HRY"
+ChangeString="ZMĚNIT"
+SharedByString="Sdílí:"
+SharedContentString="SDÍLENÝ OBSAH"
+
+[KFGFxStartContainer_ServerBrowserOverview]
+OverviewString="PŘEHLED HRY"
+DescriptionString="hledá hru v prohlížeči serverů..."
+
+[KFGFxTraderContainer_GameInfo]
+TimeLeftString="ZBÝVAJÍCÍ ČAS"
+WaveString="VLNA"
+BossWaveString="BOSS"
+
+[KFPawn_MonsterBoss]
+BossName="Boss"
+BossCaptionStrings[0]="Tip pro bosse 1"
+BossCaptionStrings[1]="Tip pro bosse 2"
+
+[KFGFxTraderContainer_PlayerInfo]
+PlayerHeaderString="INVENTÁŘ"
+SelectPerkString="ZVOLIT TŘÍDU"
+
+[KFGFxMenu_ServerBrowser]
+FavoriteString="OZNAČIT"
+MultiplayerMenuString="VYHLEDÁVÁNÍ HER"
+LeaveMenuString="Opuštěním této nabídky rozpustíš svoji skupinu. Opravdu chceš přejít do vyhledávání her?"
+NameString="NÁZEV"
+RefreshString="OBNOVIT"
+GamesFoundString="NALEZENÝCH HER:"
+
+ServerBrowserString="PROHLÍŽEČ SERVERŮ"
+
+JoinString="PŘIPOJIT"
+PasswordPromptString="ZADAT HESLO"
+
+RankedString="POVOLENÉ STATISTIKY"
+UnrankedString="STATISTIKY ZAKÁZÁNY"
+DedicatedString="VYHRAZENÝ"
+VACSecureString="ZABEZPEČENÝ"
+InLobbyString="V LOBBY"
+InProgressString="PROBÍHÁ"
+
+BackString="ZPĚT"
+ApplyString="POUŽÍT"
+ResetString="OBNOVIT"
+
+PingString="ODEZVA"
+LengthString="DÉLKA HRY"
+DifficultyString="OBTÍŽNOST"
+MapString="MAPA"
+GameModeString="MÓD"
+WaveString="VLNA"
+PlayersString="HRÁČI"
+ZedCountString="POČET ZEDŮ"
+FiltersString="FILTRY"
+
+SearchString="HLEDAT"
+
+PingOptionStrings[0]="< 50 ms"
+PingOptionStrings[1]="< 100 ms"
+PingOptionStrings[2]="< 150 ms"
+PingOptionStrings[3]="< 200 ms"
+
+TabStrings[0]="PROCHÁZET"
+TabStrings[1]="OZNAČENÉ"
+TabStrings[2]="PŘÁTELÉ"
+TabStrings[3]="HISTORIE"
+TabStrings[4]="MÍSTNÍ"
+
+[KFGFxServerBrowser_Filters]
+NoPasswordString="BEZ HESLA"
+NoMutatorsString="BEZ MUTACÍ"
+NotFullString="NENÍ PLNÝ"
+NotEmptyString="NENÍ PRÁZDNÝ"
+NoStatsEnabledString="NENÍ HODNOCENÝ (Standardní servery)"
+NoRankedCustomString="NENÍ UŽIVATELSKÝ"
+NoUnrankedString="JE HODNOCENÝ"
+DedicatedString="DEDIKOVANÝ SERVER"
+VACSecureString="ZABEZPEČENÝ"
+InLobbyString="V LOBBY"
+InProgressString="PROBÍHÁ"
+OnlyStockMapsString="POUZE VÝCHOZÍ MAPY"
+OnlyCustomMapsString="POUZE UŽIVATELSKÉ MAPY"
+LimitServerResultsString="OMEZENÍ POČTU VÝSLEDKŮ:"
+
+[KFGFxServerBrowser_ServerDetails]
+MutatorsString="MUTACE"
+JoinGameString="PŘIPOJIT"
+SpectateGameString="SLEDOVAT"
+ServerInfoString="INFORMACE"
+UnfavoriteString="ODZNAČIT"
+
+[KFGFxMenu_Trader]
+ExitMenuString="ZAVŘÍT"
+
+[KFGFxTraderContainer_Store]
+TraderString="NÁKUP VYBAVENÍ"
+
+[KFGFxServerBrowser_ServerList]
+LeaveServerBrowserString="OPUSTIT PROHLÍŽEČ"
+DetailsString="DETAILY"
+SpectateString="SLEDOVAT"
+
+[KFGFxTraderContainer_ItemDetails]
+DamageTitle="POŠKOZENÍ"
+FireRateTitle="KADENCE"
+PenetrationTitle="PRŮRAZNOST"
+RangeTitle="DOSAH"
+BlockTitle="BLOKOVÁNÍ"
+ParryTitle="VYKRÝVÁNÍ"
+AccuracyTitle="PŘESNOST"
+CapacityTitle="POČET NÁBOJŮ"
+MagTitle="VELIKOST ZÁSOBNÍKU"
+HealAmountTitle="VÝŠE LÉČENÍ"
+HealRechargeTitle="ČAS PRO OBNOVENÍ"
+BuyString="KOUPIT"
+SellString="PRODAT"
+CannotSellString="NELZE PRODAT"
+CannotBuyString="NELZE KOUPIT"
+FavoriteString="OZNAČIT"
+UnfavoriteString="ODZNAČIT"
+
+[KFGFxTraderContainer_PlayerInventory]
+FillString="DOPLNIT"
+MagString="ZÁS."
+BuyGrenadeString="1×"
+AutoFillString="DOPLNIT"
+ArmorString="Neprůstřelná vesta"
+ChangePerkString="ZMĚNIT TŘÍDU"
+
+[KFGFxTraderContainer_Filter]
+TabsArray[0]="TŘÍDY"
+TabsArray[1]="TYPY"
+TabsArray[2]="OZNAČENÉ"
+TabsArray[3]="VŠE"
+
+WeaponTypeStrings[0]="Pistole"
+WeaponTypeStrings[1]="Brokovnice"
+WeaponTypeStrings[2]="Pušky"
+WeaponTypeStrings[3]="Projektilové zbraně"
+WeaponTypeStrings[4]="Ohnivé zbraně"
+WeaponTypeStrings[5]="Elektrické zbraně"
+WeaponTypeStrings[6]="Výbušniny"
+WeaponTypeStrings[7]="Útočné pušky"
+WeaponTypeStrings[8]="Na blízko"
+WeaponTypeStrings[9]="Samopaly"
+
+OffPerkString="Nezařazené"
+
+[KFGFxMenu_PostGameReport]
+MapVoteString="HLASOVÁNÍ O MAPĚ"
+PlayerStatsString="TVOJE STATISTIKY"
+TeamAwardsString="OCENĚNÍ"
+PostGameReportString="ZHODNOCENÍ HRY"
+NextMapString="Další mapa za:"
+WaveString="VLNA"
+XPString="TŘÍDY"
+VictoryString="Vítězství"
+DefeatString="Prohra"
+ItemDropTitleString="ZÍSKAL JSI NOVÝ PŘEDMĚT!"
+
+[EphemeralMatchStats]
+MedicineMaster="Pan doktor"
+MedicineMasterValue="bodů zdraví"
+ZedSlayer="Stroj na zabíjení"
+ZedSlayerValue="zabití"
+Enforcer="Spolujezdec"
+EnforcerValue="asistencí"
+Destroyer="Ničitel"
+DestroyerValue="bodů poškození"
+GiantSlayer="Biblický David"
+GiantSlayerValue="zabití velkých Zedů"
+MoneyBags="Skrblík"
+MoneyBagsValue="prachů"
+HeadPopper="Ostrostřelec"
+HeadPopperValue="headshotů"
+Dominator="Přeborník"
+DominatorValue="boss"
+
+EPB_Healing="Léčení"
+EPB_Kills="Zabití"
+EPB_Assists="Asistence"
+EPB_LargeZedKill="Zabití velkých Zedů"
+EPB_Dosh="Prachy"
+EPB_HeadShots="Headshoty"
+EPB_KnifeKills="Zabití nožem"
+EPB_PistolKills="Zabití pistolí"
+EPB_DoorWelding="Svařování"
+
+EPB_HealingValue="bodů zdraví"
+EPB_KillsValue="zabití"
+EPB_AssistsValue="asistencí"
+EPB_LargeZedKillValue="velkých Zedů"
+EPB_DoshValue="prachů"
+EPB_HeadShotsValue="headshotů"
+EPB_KnifeKillsValue="zabití"
+EPB_PistolKillsValue="zabití"
+EPB_DoorWeldingValue="bodů za svařování"
+
+[KFGFxPostGameContainer_TeamAwards]
+TeamAwardsString="OCENĚNÍ HRÁČŮ"
+PersonalBestsString="TVOJE REKORDY"
+NoTeamAwardsGivenString="NEBYLA UDĚLENA ŽÁDNÁ OCENĚNÍ"
+
+[KFGFxPostGameContainer_MapVote]
+YourVoteString="TVŮJ HLAS"
+TopVotesString="NEJVÍCE HLASŮ"
+
+[KFGFxPostGameContainer_PlayerStats]
+AchievementsString="Achievementy"
+KnifeString="Nůž"
+TopWeaponsString="NEJÚSPĚŠNĚJŠÍ ZBRANĚ"
+ZedKillsString="ZABITÍ ZEDOVÉ"
+TotalDamageDealtString="Celkově uděleného poškození:"
+HeadShotsString="Headshotů:"
+LargeZedKillsString="Zabití velkých Zedů:"
+TotalDoshEarnedString="Celkem získaných prachů:"
+TotalKillsString="Celkem zabití:"
+AssistsString="Asistence:"
+DamageDealtString="Udělené poškození:"
+
+
+
+[KFGFxWidget_BaseParty]
+PlayerReadyString="[ PŘIPRAVEN ]"
+WaitingString="ČEKÁ SE NA HRÁČE"
+DeployingString="NASAZENÍ ZA "
+CreatePartyString="POZVAT PŘÁTELE"
+ReadyString="PŘIPRAVIT SE"
+LeaveString="OPUSTIT SKUPINU"
+SquadString="JEDNOTKA"
+SoloString="SÓLO"
+DefaultPlayerName="Hráč"
+
+PartyLeaderSearchingForMatchString="hledá hru..."
+PartyLeaderIsUpdatingMatchOptionsString="nastavuje hru..."
+PartyLeaderInServerBrowserString="hledá v prohlížeči serverů..."
+PartyLeaderInOtherMenuString="je v jiné nabídce..."
+SearchingForGameString="Probíhá vyhledávání hry..."
+
+PartHostLeftString="Hostitel opustil skupinu"
+PartyLeaderChangedString="je novým hostitelem v této skupině."
+
+MuteString="Umlčet hráče"
+UnmuteString="Odmlčet hráče"
+AddFriendString="Přidat do přátel"
+RemoveFriendString="Odebrat přítele"
+VoteKickString="Vykopnout hráče"
+ViewProfileString="Zobrazit profil"
+
+RemainingString="Zbývá:"
+DownLoadingString="Stahování:"
+PartyLeaderString="Leader"
+
+[KFGFxWidget_PartyInGame_Versus]
+SwitchTeamsString="Switch Teams"
+balanceWarningString="WARNING: Teams will be auto-balanced"
+
+[KFGFxMenu_Gear]
+GearHeaderString="UPRAVIT VZHLED"
+BioString="PŘÍBĚH"
+CharacterString="POSTAVA"
+HeadString="HLAVA"
+BodyString="TĚLO"
+SkinsString="DRUHY"
+AttachmentsString="DOPLŇKY"
+BackString="ZPĚT"
+NoneString="ŽÁDNÉ"
+WeaponsString="Zbraně"
+WeaponsInfoString="Upravit"
+
+[KFGFxMenu_Inventory]
+InventoryString="INVENTÁŘ"
+UseString="Použít"
+EquipString="VYBAVIT"
+UnequipString="SUNDAT"
+AllString="VŠE"
+WeaponSkinString="SKINY ZBRANÍ"
+CosmeticString="KOSMETICKÉ"
+CraftingMatsString="Crafting"
+ItemString="PŘEDMĚTY"
+FiltersString="Filtry"
+MoreItemsString="Pro použití tohoto předmětu potřebuješ jiný předmět."
+FailedToExchangeString="VÝMĚNA NEPROBĚHLA"
+RecycleString="RECYCLE"
+CraftString="CRAFT"
+CraftCosmeticString="Cosmetic Crafting"
+CraftWeaponString="Weapon Skin Crafting"
+CraftWeaponStrings[0]="Uncommon Weapon Skin"
+CraftWeaponStrings[1]="Rare Weapon Skin"
+CraftWeaponStrings[2]="Exceptional Weapon Skin"
+CraftWeaponStrings[3]="Master Crafted Weapon Skin"
+CraftCosmeticStrings[0]="Uncommon Cosmetic"
+CraftCosmeticStrings[1]="Rare Cosmetic"
+CraftCosmeticStrings[2]="Exceptional Cosmetic"
+CraftCosmeticStrings[3]="Master Crafted Cosmetic"
+RecycleWarningString="Warning, this cannot be undone. This will destroy the selected item and replace it with a crafting material item"
+RecycleItemString="Recycle Item?"
+ConfirmCraftItemString="Crafting this item will use resources and cannot be undone"
+CraftItemString="Confirm Craft Item?"
+FailedToCraftItemString="Failed to Craft Item"
+CraftRequirementString="Insufficient quantity of required crafting materials"
+CraftCosmeticDescriptionString="You can craft new cosmetic items from this menu out of cosmetic material. You can obtain cosmetic material by recycling existing cosmetic items. To recycle, select an item and press recycle"
+CraftWeaponDescriptionString="You can craft new weapon skin items from this menu out of weapon skin material. You can obtain weapon skin material by recycling existing weapon skin items. To recycle, select an item and press recycle"
+RequiresString="Requires: "
+
+[KFGFxPerksContainer]
+LevelString=""
+
+[KFGFxPerksContainer_Header]
+ExperienceString="Zkušenosti"
+PrestigeLevelString="Prestiž"
+
+[KFGFxPerksContainer_SkillsSummary]
+ConfigureString="UPRAVIT"
+SkillsString="SCHOPNOSTI"
+
+[KFGFxMenu_Perks]
+TierUnlockedText="Odemknul jsi novou úroveň!"
+TierUnlockedSecondaryText="Odemknul jsi novou úroveň pro následující třídy:"
+
+
+[KFGFxPerksContainer_Details]
+ObjectivesString="ZÍSKÁVÁNÍ ZKUŠENOSTÍ"
+PerkBonusesString="BONUSY TŘÍDY"
+BasicLoadoutString="POČÁTEČNÍ VYBAVENÍ"
+
+[KFGFxPerksContainer_Skills]
+ConfigureSkillsString="DOSTUPNÉ SCHOPNOSTI"
+BackButtonString="<< ZPĚT"
+
+[KFGFxPerksContainer_Selection]
+HeaderTitle="VÝBĚR TŘÍDY"
+EndOfWaveString="Změna třídy bude provedena na konci vlny!"
+ChangesAppliedOnCloseString="Změna třídy bude provedena po zavření této nabídky"
+OncePerWaveString="Třídu lze změnit pouze jednou za vlnu!"
+
+[KFGFxMenu_Store]
+StoreString="OBCHOD"
+
+[KFGFxStoreContainer_Cart]
+CartString="Košík"
+TotalString="Celkem"
+CheckOutString="Pokladna"
+
+[KFGFxStoreContainer_Main]
+NewReleasesString="Nově vydané"
+CartString="Košík"
+ToolsString="Nástroje"
+WeaponSkinsString="Skiny zbraní"
+CharactersString="Postavy"
+
+[KFGFxStoreContainer_Details]
+AddToCartString="Koupit"
+PreviewString="Náhled"
+
+
+[KFGFxWidget_ButtonPrompt]
+CancelString="ZPĚT"
+ConfirmString="VYBRAT"
+
+[KFGFxWidget_MenuBar]
+MenuStrings[0]="HRÁT"
+MenuStrings[1]="TŘÍDY"
+MenuStrings[2]="POSTAVY"
+MenuStrings[3]="INVENTÁŘ"
+MenuStrings[4]="OBCHOD"
+MenuStrings[5]="MOŽNOSTI"
+MenuStrings[6]="KONEC"
+
+ServerBrowserString="PROHLÍŽEČ SERVERŮ"
+MatchmakingString="VYHLEDÁVÁ NÍ HER"
+SoloString="SÓLO"
+OverviewString="PŘEHLED HRY"
+
+TitleStrings[0]="Co to, že tak brzy?"
+TitleStrings[1]="Ty už odcházíš?"
+TitleStrings[2]="Už tě nebaví prohrávat?"
+
+DescriptionStrings[0]="Jen uteč zpět do reálného života. Ale nečekej, že bude jednodušší než Killing Floor."
+DescriptionStrings[1]="Tvoji přátelé volají o pomoc, protože si na nich právě pochutnávají mutanti. A ty se k nim chceš obrátit zády?"
+DescriptionStrings[2]="Stejně si tě najdou. A pak si dají tvoje srabácké srdce k svačině."
+
+ExitString="UKONČIT HRU"
+CancelString="ZRUŠIT"
+
+[KFGFxWidget_LevelUpNotification]
+LevelUpString="NOVÁ ÚROVEŇ"
+TierUnlockedString="NOVÉ SCHOPNOSTI"
+
+[KFGFxHUD_WaveInfo]
+WaveString="VLNA"
+BossWaveString="BOSS"
+FinalWaveString="FINÁLE"
+
+[KFGFxHUD_TraderCompass]
+TraderString="OBCHODNÍK"
+
+[KFGFxHUD_SpectatorInfo]
+PrevPlayerString="NÁSL. HRÁČ"
+NextPlayerString="PŘED. HRÁČ"
+ChangeCameraString="ZMĚNIT KAMERU"
+
+[KFGFxHUD_ScoreboardWidget]
+PlayerString="HRÁČ"
+DoshString="PRACHY"
+KillsString="ZABITÍ"
+AssistsString="ASISTENCE"
+PingString="ODEZVA"
+
+[KFGFxHUD_PlayerStatus]
+EXPString=" ZK."
+
+
+[KFGFxHUD_ScoreboardMapInfoContainer]
+WaveString="VLNA"
+FinalString="Finále"
+
+[KFGFxHUD_WeaponSelectWidget]
+PrimaryString="PRIMÁRNÍ"
+EquiptmentString="NÁSTROJE"
+MeleeString="NA BLÍZKO"
+SecondaryString="SEKUNDÁRNÍ"
+ThrowString="ODHODIT ZBRAŇ"
+
+[KFGFxWidget_KickVote]
+VoteKickString="Vykopnout hráče?"
+
+[KFLocalMessage_PlayerKills]
+KilledString="killed"
+ZedString=ZEDs
+
+[KFLocalMessage_VoiceComms]
+VoiceCommsOptionStrings[0]="ŘÍCT SI O LÉČENÍ"
+VoiceCommsOptionStrings[1]="ŘÍCT SI O PRACHY"
+VoiceCommsOptionStrings[2]="ŘÍCT SI O POMOC"
+VoiceCommsOptionStrings[3]="VYSMÁT SE ZEDŮM"
+VoiceCommsOptionStrings[4]="„ZA MNOU“"
+VoiceCommsOptionStrings[5]="„RYCHLE K OBCHODNÍKOVI“"
+VoiceCommsOptionStrings[6]="„ROZUMÍM“"
+VoiceCommsOptionStrings[7]="„NE“"
+
+[KFGFxMenu_Exit]
+HeaderString="OPUSTIT HRU"
+ExitToMainDescription="Opravdu chceš opustit momentální hru a vrátit se do hlavní nabídky?"
+ExitToMainMenu="Do hlavní nabídky"
+ExitKF2="Zpět na plochu"
+
+[KFGFxOptionsMenu_Selection]
+HeaderString="NASTAVENÍ"
+OptionStrings[0]="Grafika"
+OptionStrings[1]="Zvuk"
+OptionStrings[2]="Ovládání"
+OptionStrings[3]="Hratelnost"
+OptionStrings[4]="Autoři"
+
+[KFGFxOptionsMenu_Audio]
+AudioString="ZVUK"
+SectionNameString="HLASITOST"
+OptionsString="MOŽNOSTI"
+MasterVolumeString="Celková hlasitost"
+DialogVolumeString="Hlasitost hlášek"
+MusicString="Hlasitost hudby"
+SFxString="Hlasitost efektů"
+VOIPVolumeString="Hlasitost hlasové konverzace"
+ConfigureMicString="NASTAVIT MIKROFON"
+VocalsString="Vokály v písních"
+BattleChatterString="Méně hlášek postav"
+PushToVoIPString="Mluvení po stisku tlačítka"
+
+[KFGFxOptionsMenu_Graphics]
+KeepSettingsPromptString="Použít toto nastavení grafiky?"
+WarningPromptString="UPOZORNĚNÍ"
+WillExpireString="Změny budou navráceny za %x% sekund."
+SingleWarningString="Některé ze změn nastavení mohou %x%"
+DoubleWarningString="Některé ze změn nastavení mohou %x% a %y%"
+PerformanceDescString[0]="nepříznivě ovlivnit výkon"
+PerformanceDescString[1]="vážně ovlivnit výkon"
+RestartDescString="vyžadovat restart hry"
+OKString="OK"
+CancelString="ZRUŠIT"
+UnsavedChangesString="Nebyly uloženy všechny změny"
+SaveChangesString="Chceš je uložit nyní?"
+ContinueString="Opravdu chceš pokračovat?"
+
+AdjustGammaDescription="Nastav posuvník tak, aby monstrum vlevo bylo sotva viditelné a monstrum vpravo zřetelně viditelné."
+ResetGammaString="OBNOVIT"
+SetGammaString="POUŽÍT"
+
+
+GraphicsString="GRAFIKA"
+BasicString="Základní"
+AdvancedString="Pokročilé"
+EffectsString="Efekty"
+
+AspectRatioString="Poměr stran"
+ResolutionString="Rozlišení"
+GraphicsQualityString="Kvalita grafiky"
+VSyncString="Vertikální synchronizace"
+FullscreenString="Režim zobrazení"
+VariableFrameRateString="Nestálá snímková frekvence"
+FilmGrainString="Filmové zrnění"
+AdjustGammaString="UPRAVIT JAS"
+
+PhysicsLevelString="NVIDIA® FleX"
+
+PhysicsLevelOptionStrings[0]="Vypnutý"
+PhysicsLevelOptionStrings[1]="Části těl*"
+PhysicsLevelOptionStrings[2]="Části těl a tekutiny*"
+
+PhysicsLevelSuggestionStrings[0]=""
+PhysicsLevelSuggestionStrings[1]="*Je doporučena grafická karta GeForce® GTX™ 770 nebo lepší"
+PhysicsLevelSuggestionStrings[2]="*Je doporučena grafická karta GeForce® GTX™ 980 nebo lepší"
+
+FlexPopUpString="NVIDIA® FleX poskytuje lepší simulaci částí těl a tekutin. Zapnutí tohoto fyzikálního enginu může nepříznivě ovlivnit výkon hry a vyžaduje její restart."
+
+EnvironmentDetailsString="Detaily prostředí"
+FoliageString="Detaily flóry"
+CharacterDetailString="Detaily postav"
+FXString="Detaily efektů"
+TextureResolutionString="Rozlišení textur"
+TextureFilteringString="Filtrování textur"
+ShadowsString="Kvalita stínů"
+RealtimeReflectionsString="Odrazy v reálném čase"
+AntiAliasingString="Vyhlazování"
+BloomString="Bloom"
+MotionBlurString="Rozmazání pohybu"
+AmbientOcclusionString="Zastínění okolím"
+DepthOfFieldString="Hloubka ostrosti"
+
+
+VolumetricLightingString="Volumetrické nasvícení"
+LensFlaresString="Odlesky objektivu"
+LightShaftsString="Paprsky světel"
+CustomString="Vlastní"
+IniOverrideString="Přepsáno v INI souboru"
+
+ApplyString="POUŽÍT"
+CancelString="ZRUŠIT"
+DefaultString="VÝCHOZÍ"
+
+AspectRatioString_All="Všechny"
+StandardAspectRatioString_4_3="0.16875"
+StandardAspectRatioString_5_4="0.211111111111111"
+StandardAspectRatioString_3_2="0.126388888888889"
+WideAspectRatioString_16_9="0.672916666666667"
+WideAspectRatioString_16_10="0.673611111111111"
+ExtraWideAspectRatioString_2_1="8.40277777777778E-02"
+ExtraWideAspectRatioString_21_9="0.88125"
+MultiMonitorAspectRatioString="Více monitorů"
+
+FullScreenStringOptions[0]="V okně (s okrajem)"
+FullScreenStringOptions[1]="V okně (bez okraje)"
+FullScreenStringOptions[2]="Celá obrazovka"
+
+OffOnStringOptions[0]="Vypnuté"
+OffOnStringOptions[1]="Zapnuté"
+
+GraphicsQualityStringOptions[0]="Nízká"
+GraphicsQualityStringOptions[1]="Střední"
+GraphicsQualityStringOptions[2]="Vysoká"
+GraphicsQualityStringOptions[3]="Ultra"
+
+VSyncStringOptions[0]="Vypnuta"
+VSyncStringOptions[1]="Zapnuta"
+;VSyncStringOptions[2]="Trojité vyrovnávání"
+
+EnvironmentDetailsStringOptions[0]="Nízké"
+EnvironmentDetailsStringOptions[1]="Střední"
+EnvironmentDetailsStringOptions[2]="Vysoké"
+EnvironmentDetailsStringOptions[3]="Ultra"
+
+FoliageStringOptions[0]="Nízké"
+FoliageStringOptions[1]="Střední"
+FoliageStringOptions[2]="Vysoké"
+
+CharacterDetailStringOptions[0]="Nízké"
+CharacterDetailStringOptions[1]="Vysoké"
+CharacterDetailStringOptions[2]="Ultra"
+
+FXStringOptions[0]="Nízké"
+FXStringOptions[1]="Střední"
+FXStringOptions[2]="Vysoké"
+FXStringOptions[3]="Ultra"
+
+TextureResolutionStringOptions[0]="Nízké"
+TextureResolutionStringOptions[1]="Střední"
+TextureResolutionStringOptions[2]="Vysoké"
+TextureResolutionStringOptions[3]="Ultra"
+
+TextureFilteringStringOptions[0]="Bilineární"
+TextureFilteringStringOptions[1]="Trilineární"
+TextureFilteringStringOptions[2]="Anizotropní 4×"
+TextureFilteringStringOptions[3]="Anizotropní 16×"
+
+ShadowsStringOptions[0]="Nízká"
+ShadowsStringOptions[1]="Střední"
+ShadowsStringOptions[2]="Vysoká"
+ShadowsStringOptions[3]="Ultra"
+
+PhysicsStringOptions[0]="Vypnuté"
+PhysicsStringOptions[1]="Normální"
+PhysicsStringOptions[2]="Vysoké"
+
+RealtimeReflectionsStringOptions[0]="Vypnuté"
+RealtimeReflectionsStringOptions[1]="Zapnuté"
+
+AntiAliasingStringOptions[0]="Vypnuté"
+AntiAliasingStringOptions[1]="FXAA"
+
+BloomStringOptions[0]="Vypnutý"
+BloomStringOptions[1]="Nízký"
+BloomStringOptions[2]="Vysoký"
+
+MotionBlurStringOptions[0]="Vypnuté"
+MotionBlurStringOptions[1]="Normální"
+MotionBlurStringOptions[2]="Vysoké"
+
+AmbientOcclusionStringOptions[0]="Vypnuté"
+AmbientOcclusionStringOptions[1]="SSAO"
+AmbientOcclusionStringOptions[2]="HBAO+"
+
+DepthOfFieldStringOptions[0]="Vypnutá"
+DepthOfFieldStringOptions[1]="SAT DOF"
+
+[KFGFxOptionsMenu_Graphics_DX10]
+AmbientOcclusionStringOptions_DX10[0]="Vypnuté"
+AmbientOcclusionStringOptions_DX10[1]="SSAO"
+
+[KFGFxOptionsMenu_Controls]
+TabStrings[0]="VSTUP"
+TabStrings[1]="KLÁVESNICE"
+TabStrings[2]="OVLADAČ"
+HeaderText="NASTAVENÍ OVLÁDÁNÍ"
+
+[KFGFxOptionsMenu_GameSettings]
+SectionNameString="MOŽNOSTI"
+GameSettingsString="NASTAVENÍ HRY"
+FOVString="Zorné pole"
+GoreString="Krvavost hry"
+ShowCrosshairString="Zaměřovač"
+ClassicWeaponSelectString="Rychlý výběr zbraní"
+GoreOptionStrings[0]="Nulová"
+GoreOptionStrings[1]="Minimální"
+GoreOptionStrings[2]="Maximální"
+NormalString="Normální"
+WiderString="Širší"
+FriendlyHudScaleString="Velikost ukazatelů spoluhráčů"
+
+[LocalizedControls]
+ControllerLayoutDefault="Default"
+ControllerLayoutJumper="Jumper"
+ControllerLayoutQuickDraw="Quick Draw"
+ControllerLayoutSouthPaw="South Paw"
+
+GBA_WeaponSelect_Gamepad="Výběr zbraní (držení)"
+GBA_Reload_Gamepad="Reload"
+GBA_StrafeLeft_Gamepad="Movement Control"
+GBA_MoveForward_Gamepad="Move Forward"
+GBA_Look_Gamepad="Look Control"
+GBA_Grenade_Gamepad="Throw Grenade"
+GBA_TurnLeft_Gamepad="Look Control"
+GBA_Look_Gamepad="Look Control"
+GBA_DPad_Left_Gamepad="Voice Comms"
+GBA_DPad_Up_Gamepad="Equip Healer"
+GBA_DPad_Right_Gamepad="Throw Dosh"
+GBA_DPad_Down_Gamepad="Toggle Flashlight"
+
+
+GBA_MoveForward="Pohyb vpřed"
+GBA_StrafeLeft="Úkrok doleva"
+GBA_Backward="Pohyb vzad"
+GBA_StrafeRight="Úkrok doprava"
+GBA_Jump="Skok"
+GBA_Sprint="Sprint"
+GBA_CrouchToggle="Přikrčení (stisk)"
+GBA_CrouchHold="Přikrčení (držení)"
+GBA_SprintAndCrouch="Přikrčení/sprint"
+GBA_SprintAndMelee="Melee / Sprint"
+GBA_ShowMenu="Toggle In Game Menu"
+
+GBA_Use="Použití/svařování (držení)"
+GBA_Talk="Mluvení"
+GBA_TeamTalk="Team Talk"
+GBA_VoiceChat="Hlasová konverzace"
+GBA_PublicVoiceChat="Public Voice"
+GBA_ShowVoiceComms="Hlasové příkazy"
+GBA_ShowScores="Tabulka skóre"
+GBA_TossMoney="Odhodit prachy"
+GBA_DropWeapon="Odhodit zbraň"
+
+GBA_Fire="Střelba/útok"
+GBA_IronSightsToggle="Mířidla (stisk)"
+GBA_IronsightsHold="Mířidla (držení)"
+GBA_Reload="Přebití"
+GBA_Grenade="Hození granátu"
+GBA_QuickHeal="Rychlé vyléčení"
+GBA_SwitchFireMode="Alt. útok/blokování"
+GBA_TertiaryFire="Odstrčení"
+GBA_ToggleFlashlight="Svítilna"
+GBA_AltFire="Alt. útok/blokování"
+
+GBA_WeaponSelect_Gamepad="Výběr zbraní (držení)"
+GBA_NextWeapon="Následující zbraň"
+GBA_PrevWeapon="Předchozí zbraň"
+GBA_LastWeapon="Poslední použitá zbraň"
+GBA_SwitchWeapon1="Primární zbraň"
+GBA_SwitchWeapon2="Sekundární zbraň"
+GBA_SwitchWeapon3="Zbraň na blízko"
+GBA_SwitchWeapon4="Nástroje"
+GBA_VoteYes="Hlasovat pro Ano (držení)"
+GBA_VoteNo="Hlasovat pro Ne (držení)"
+
+[KFGFxControlsContainer_Input]
+SensitivityString="Citlivost"
+InvertedString="Obrátit osu Y"
+ControllerString="Ovladač"
+ControllerSensitivityString="Citlivost pohledu"
+MouseString="Myš"
+MouseSmoothingString="Vyhlazování myši"
+ZoomSensitivityString="Citlivost přiblížení"
+ControllerZoomSensitivityString="Citlivost přiblížení"
+AimAssistLockOnString="Automatické míření – zacílení"
+AimAssistRotationString="Automatické míření – otáčení"
+AimAssistSlowDownString="Automatické míření – zpomalení"
+ForceFeedbackString="Vibrace ovladače"
+
+[KFGFxControlsContainer_Keybinding]
+SectionHeaders[0]="Pohyb"
+SectionHeaders[1]="Interakce"
+SectionHeaders[2]="Boj"
+SectionHeaders[3]="Výběr zbraní"
+
+ResetString="OBNOVIT VŠE"
+ApplyString="POUŽÍT"
+PressKeyString="[STISKNI KLÁVESU]"
+WarningString="UPOZORNĚNÍ"
+KeyAlreadyBoundString="Klávesa <%x%> je již přiřazena k akci:"
+RebindString="Přiřadit k akci:"
+ClearedString="(Předchozí nastavení bude přepsáno)"
+CancelString="ZRUŠIT"
+AcceptString="PŘIJMOUT"
+IgnoredKeyString="nelze přiřadit k ignorované klávese"
+
+[KFGFxControlsContainer_ControllerPresets]
+MovementString="Ovládání pohybu"
+LookString="Ovládání pohledu"
+WeaponSelectMenuString="Výběr zbraní (držení)"
+ShowScoardBoardString="Tabulka skóre"
+ShowIngameMenuString="Herní nabídka"
+CurrentControllerPresetString="Current Controller Preset"
+
+BashString="Odstrčení"
+BlockString="Blokování (držení)"
+HoldString="(držení)"
+
+[KFInventoryManager]
+FullHealthMsg="Máš plné zdraví"
+
+[KFLocalMessage]
+SystemString="Systém:"
+AdminString ="(Admin)"
+LoggedInAsAdminString=" se přihlásil na pozici administrátora serveru"
+LoggedOutAsAdminString=" se odhlásil z pozice administrátora serveru"
+MustLoginToCheatString="Pro povolení cheatů musíš být přihlášen."
+CheatsEnabledString=" povolil cheaty. Pro tuto hru byly zakázány statistiky."
+ServerMaintenanceString="Z důvodu údržby se server na konci hry vypne"
+KickVoteStartedString="Bylo zahájeno hlasování o vykopnutí hráče:"
+KickVoteSucceededString="Bylo rozhodnuto o vykopnutí hráče:"
+KickVoteFailedString="Nebylo rozhodnuto o vykopnutí hráče:"
+KickVoteRejectedString="Od předchozího neúspěšného hlasování neuplynul dostatek času. Zkus to znovu za chvíli."
+KickVoteInProgressString="Nelze zahájit hlasování o vykopnutí hráče, protože jedno právě probíhá."
+KickVoteDisabledString="Na tomto serveru nelze zahájit hlasování o vykopnutí hráče."
+KickVoteYesReceivedString="Hlasoval jsi pro vykopnutí hráče:"
+KickVoteNoReceivedString="Hlasoval jsi proti vykopnutí hráče:"
+KickVoteKickAdminString="Administrátora serveru není možné vykopnout."
+KickVoteActiveTimeString="Hra neběží dostatečně dlouho na to, aby bylo možné zahájit hlasování o vykopnutí hráče."
+KickVoteMatchNotStartedString="Hlasování o vykopnutí hráče lze zahájit až po začátku hry."
+KickVoteMaxKicksReachedString="Během této hry již není možné zahájit další hlasování o vykopnutí hráče."
+KickVoteNotEnoughPlayersString="Pro zahájení hlasování o vykopnutí hráče není na serveru dostatek lidí."
+KickVoteNoSpectatorsString="Diváci nemohou zahájit hlasování o vykopnutí hráče."
+KickedFromServerString="Byl jsi vykopnut ze serveru."
+BannedFromServerString="Byl jsi vykopnut z tohoto serveru. Momentálně se nemůžeš opětovně připojit."
+
+[KFLocalMessage_Game]
+ReceivedAmmoFromMessage="Obdržel jsi náboje od:"
+GaveAmmoToMessage="Daroval jsi náboje:"
+PendingPerkChangesSet="Změna třídy bude provedena na konci vlny."
+PendingPerkChangesApplied="Tvoje třída byla změněna!"
+HealedByMessage="Vyléčil tě:"
+HealedMessage="Vyléčil jsi:"
+YourselfString="sebe."
+PickedupArmorMessage="Sebral jsi vestu"
+FullArmorMessage="Tvoje vesta je už plná"
+PickupAmmoMessage="Sebral jsi náboje"
+AmmoFullMessage="Your ammo is full"
+PickupWeaponAmmoMessage="Sebral jsi náboje do zbraně %x%"
+AlreadyCarryingWeaponMessage="Tuto zbraň už máš"
+PickupMessage="Sebral jsi:"
+TooMuchWeightMessage="Tato zbraň je příliš těžká. Zahoď nebo prodej nějakou ze svých současných zbraní."
+FailedDropInventoryMessage="Tady nemůžeš nic zahodit"
+ReceivedGrenadesFromMessage="Obdržel jsi granáty od:"
+GaveGrenadesToMessage="Daroval jsi granáty:"
+SharingContentString="sdílí obsah."
+HeadShotAddedString="%x headshot/ů = %y% navýšení poškození!"
+HeadShotMaxString="Headshot = %x% navýšení poškození"
+HeadShotResetString="Netrefil jsi hlavu = normální poškození"
+
+SuicideMessage="ukončil svoje trápení..."
+KilledMessage="byl sežrán zaživa"
+KillzedBy_PatriarchString=" can't hurt Kevin's children anymore"
+KillzedBy_HansString="bude po smrti sloužit k šíleným experimentům"
+KillzedBy_ZedCrawlerString="se chytil do pavučiny"
+KillzedBy_ZedBloatString=" byl rozežrán žlučí"
+KillzedBy_ZedFleshpoundString=" byl zatlučen do země"
+KillzedBy_ZedGorefastString=" byl zaživa stažen z kůže"
+KillzedBy_ZedHuskString=" se obrátil v prach"
+KillzedBy_ZedScrakeString=" byl naporcován na kostičky"
+KillzedBy_ZedSirenString="podlehl volání Sirén"
+KillzedBy_ZedStalkerString=" ani neviděl, co ho zabilo"
+KillzedBy_ZedClot_CystString=" byl ve vývojovém žebříčku posunut o příčku dolů"
+KillzedBy_ZedClot_AlphaString=" dostal smrtící objetí"
+KillzedBy_ZedClot_SlasherString=" byl rozškrábán na cucky"
+
+FoundAMapCollectibleMessage="%x% nalezl %y%. Zbývá nalézt ještě %z%..."
+FoundAllMapCollectiblesMessage="Byl nalezen každý %x%!"
+MapCollectibleName="nesmírně cool náhrdelník"
+
+[KFLocalMessage_Priority]
+WaveStartMessage="B L Í Ž Í  S E  V L N A"
+WaveEndMessage="V L N A  D O K O N Č E N A"
+GetToTraderMessage="Dostaň se k obchodníkovu modulu"
+YouLostMessage="P R O H R A"
+YouWonMessage="V Í T Ě Z S T V Í"
+SquadWipedOutMessage="Tvoje jednotka byla rozprášena"
+SquadSurvivedMessage="Tvoje jednotka přežila"
+ObjectiveStartMessage="Úkol byl započat!"
+ObjectiveWonMessage="Úkol byl dokončen!"
+ObjectiveEndedMessage="Úkol už neplatí!"
+ObjectiveLostMessage="Úkol nebyl dokončen!"
+ObjNotEnoughPlayersMessage="Nedostatek hráčů!"
+ObjTimeRanOutMessage="Byl dosažen časový limit!"
+HumansLoseMessage="Humans squad wiped out!"
+HumansWinMessage="Humans squad survived!"
+AttackHumanPlayersString="Attack the Human Players!"
+ZedGroupRegroupingString="Zed Horde regrouping!"
+
+[KFLocalMessage_Interaction]
+UseTraderMessage="STISKEM <%x%> ZAČNEŠ NAKUPOVAT"
+UseDoorMessage="Otevři/zavři STISKEM <%x%>\nPODRŽ <%x%> pro vytažení svářečky"
+UseDoorWeldedMessage="(HOLD) <%x%> equip welder"
+ZedUseDoorMessage="<%x%> Open/Close"
+ZedUseDoorWeldedMessage=""
+AcceptObjectiveMessage="Stiskem <%x%> přijmeš úkol"
+ReceiveAmmoMessage="Stiskem <%x%> si vezmeš náboje"
+ReceiveGrenadesMessage="Stiskem <%x%> si vezmeš granáty"
+HealSelfWarning="Stiskem <%x%> se vyléčíš"
+HealSelfGamepadWarning="PODRŽENÍM <%x%> se vyléčíš"
+PressToBashWarning="Stiskem <%x%> odstrčíš nepřítele"
+GamepadWeaponSelectHint="PODRŽ <%x%> pro výběr zbraní"
+PlayerClotGrabWarningMessage="Kill zed to break free!"
+
+[KFLocalMessage_ServerNotification]
+TeamPendingBalanceMessage="Teams are unbalanced and will be adjusted"
+
+[KFGfxPerkComp_Abilities]
+RankNames[0]="Hodnost I"
+RankNames[1]="Hodnost II"
+RankNames[2]="Hodnost III"
+
+[KFPerk]
+SkillCatagories[0]=""
+SkillCatagories[1]=""
+SkillCatagories[2]=""
+SkillCatagories[3]=""
+SkillCatagories[4]=""
+
+LevelString="Úroveň"
+
+SpecialAbilityName="Zvláštní schopnost"
+SpecialAbilityDescription=""
+
+Passives[0]=(Title="",Description="");
+Passives[1]=(Title="",Description="");
+Passives[2]=(Title="",Description="");
+Passives[3]=(Title="",Description="");
+Passives[4]=(Title="",Description="");
+
+SkillSlots0[0]=(Title="",Description="")
+SkillSlots0[1]=(Title="",Description="")
+
+SkillSlots1[0]=(Title="",Description="")
+SkillSlots1[1]=(Title="",Description="")
+
+SkillSlots2[0]=(Title="",Description="")
+SkillSlots2[1]=(Title="",Description="")
+
+SkillSlots3[0]=(Title="",Description="")
+SkillSlots3[1]=(Title="",Description="")
+
+SkillSlots4[0]=(Title="",Description="")
+SkillSlots4[1]=(Title="",Description="")
+
+WeaponDroppedMessage="Kvůli změně nosnosti batohu jsi zahodil: %%%%"
+
+[KFPerk_Berserker]
+PerkName="Berserker"
+
+SkillCatagories[0]="Výdrž"
+SkillCatagories[1]="Přežití"
+SkillCatagories[2]="Boj na blízko"
+SkillCatagories[3]="Síla"
+SkillCatagories[4]="Pokročilý výcvik"
+
+Passives[0]=(Title="Poškození zbraní třídy",Description="25% navýšení poškození zbraní třídy + x%x za každou úroveň");
+Passives[1]=(Title="Rychlost útoku na blízko",Description="0% navýšení rychlosti útoku na blízko + x%x za každou úroveň");
+Passives[2]=(Title="Rychlost pohybu se zbraní",Description="10% navýšení rychlosti pohybu při nesení zbraně na blízko + x%x za každou úroveň");
+Passives[3]=(Title="Odolnost",Description="Utržené poškození sníženo o %x%");
+Passives[4]=(Title="+ schopnost vidět ve tmě",Description="Svítilny a brýle pro noční vidění")
+Passives[5]=(Title="+ Cloti tě nemohou chytit",Description="Cloti nemohou chytit Berserkera.")
+
+EXPAction1="Udělováním poškození zbraněmi své třídy"
+EXPAction2="Zabíjením zbraněmi své třídy poblíž spoluhráčů"
+
+PoisonResistance="Odolnost vůči jedovatým útokům"
+PoisonResistanceDescription="Je Poison Ivy tvojí nemesis? Tak se neboj, poškození od jedovatých útoků bude sníženo o 40 %."
+
+SonicResistance="Odolnost vůči sonickým útokům"
+SonicResistanceDescription="I nedoslýchavost má svoje výhody, poškození od sonických útoků (např. řevu) bude sníženo o 40 %."
+
+Vampire="Krvežíznivost"
+VampireDescription="Nanoboti společnosti Horzine vysají z každého Zeda, kterého zabiješ zbraní svojí třídy, 3 body zdraví a přidají je tobě."
+
+Fortitude="Odvaha"
+FortitudeDescription="Nebaví tě umírat? Navyš o 100 % svoje počáteční a maximální zdraví."
+
+FuriousDefender="Rychle a zběsile"
+FuriousDefenderDescription="Zrychlí útoky na blízko o 10 % a navýší poškození všech útoků o 20 %. Dostůj svému jménu!"
+
+Block="Odveta"
+BlockDescription="Když zablokuješ útok nepřítele, udělí tvůj následující útok zbraní na blízko o 50 % vyšší poškození."
+
+Parry="Chytrá síla"
+ParryDescription="Vykrytím útoku na 4 sekundy zrychlíš svoje útoky na blízko o 15 % a tvoje lehké zbraně budou udílet o 30 % vyšší poškození."
+
+Smash="Hrubá síla"
+SmashDescription="Útoky těžkými zbraněmi budou udílet o 100 % vyšší poškození a budou mít vysokou šanci na odhození velkých Zedů."
+
+Spartan="ZED TIME – Sparťan"
+SpartanDescription="Zpomalení času tě nijak nezasáhne, útoky zbraněmi na blízko tvojí třídy budou udílet o 50 % vyšší poškození a vykrytím odhodíš nepřítele."
+
+Menace="ZED TIME – Postrach"
+MenaceDescription="Zpomalení času tě nijak nezasáhne a zbraně na blízko tvojí třídy budou mít o 100 % vyšší šanci na omráčení a odražení."
+
+[KFPerk_Commando]
+PerkName="Commando"
+
+SkillCatagories[0]="Zásobení"
+SkillCatagories[1]="Ovládání zbraní"
+SkillCatagories[2]="Přehled"
+SkillCatagories[3]="Odborný výcvik"
+SkillCatagories[4]="Pokročilý výcvik"
+
+Passives[0]=(Title="Poškození zbraní třídy",Description="Poškození zbraní třídy zvýšeno o %x%");
+Passives[1]=(Title="Detekce neviditelnosti",Description="Detekce neviditelných nepřátel zvýšena o %x%");
+Passives[2]=(Title="Detekce zdraví",Description="Detekce zdraví nepřátel zvýšena o %x%");
+Passives[3]=(Title="Delší Zed time",Description="Zed time trvá %x%");
+Passives[4]=(Title="Zdraví",Description="Zdraví zvýšeno o %x%");
+Passives[5]=(Title="+ schopnost vidět ve tmě",Description="Svítilny a brýle pro noční vidění");
+
+EXPAction1="Udělováním poškození zbraněmi své třídy"
+EXPAction2="Zabíjením Stalkerů zbraněmi své třídy"
+
+LargeMags="Zásobené zásobníky"
+LargeMagsDescription="Vylepší kapacitu zásobníků zbraní tvé třídy o 50 %."
+
+Backup="Plán B"
+BackupDescription="Navýší poškození pistole a nože o 60 %. Nikdy nevíš, kdy se ocitneš v bezvýchodné situaci!"
+
+Impact="Postrach okolí"
+ImpactDescription="Zvýší tvoji šanci na odražení Zedů o 30 % při používání zbraní tvé třídy. Věř, že se ti pak začnou vyhýbat obloukem."
+
+TacticalReload="Taktické přebíjení"
+TacticalReloadDescription="Umožní ti přebíjet zbraně tvé třídy mnohem rychleji a vypadat při tom jako rozený profesionál."
+
+Leadership="Rozený vůdce"
+LeadershipDescription="Vědomí toho, že je vede někdo jako ty, uklidní tvoje spoluhráče a učiní je mnohem efektivnějšími. Spoluhráči budou přebíjet o 10 % rychleji."
+
+CallOut="Šokující odhalení"
+CallOutDescription="Umožní spoluhráčům vidět neviditelné nepřátele stejně jako to umíš ty. Určitě ti poděkují a ty ještě ke všemu získáš stejné množství zkušeností jako oni!"
+
+SingleFire="Přesné míření"
+SingleFireDescription="Odměň se za přesnou střelbu! Zbraně tvojí třídy budou v režimu jednotlivých ran udílet o 20 % vyšší poškození."
+
+Autofire="Střelba naslepo"
+AutofireDescription="Už tě nebaví mířit přesně? Zbraně tvojí třídy budou udělovat o 20 % vyšší poškození v plně automatickém režimu i režimu dávek o 3 či více ranách."
+
+RapidFire="ZED TIME – Pekelné tempo"
+RapidFireDescription="Když se svět zpomalí, staň se nebezpečnějším, uděluj o 3 % vyšší poškození zbraněmi své třídy a střílej trojnásobně rychleji všemi zbraněmi."
+
+Professional="ZED TIME – Adrenalin"
+ProfessionalDescription="Když se svět zpomalí, nevšímej si toho a přebíjej zbraně plnou rychlostí a měň zbraně dvakrát rychleji než normálně!"
+
+[KFPerk_Demolitionist]
+PerkName="Demolitionist"
+EXPAction1="Udělováním poškození zbraněmi své třídy"
+EXPAction2="Zabíjením Fleshpoundů zbraněmi své třídy"
+
+SkillCatagories[0]="Technika"
+SkillCatagories[1]="Odolnost"
+SkillCatagories[2]="Pokročilá technika"
+SkillCatagories[3]="Ovládání zbraní"
+SkillCatagories[4]="Výbušná nauka"
+
+Passives[0]=(Title="Poškození zbraní třídy",Description="Poškození zbraní třídy zvýšeno o %x%");
+Passives[1]=(Title="Odolnost vůči výbuchům",Description="%x% odolnost vůči výbuchům");
+Passives[2]=(Title="Výbušné náboje navíc",Description="Počáteční množství výbušných nábojů navýšeno o %x%");
+
+GrenadeSupplier="Chlápek přes granáty"
+GrenadeSupplierDescription="Spoluhráči si od tebe mohou jednou za vlnu vzít jeden granát. Určitě si tak uděláš nové přátele!"
+
+OnContact="Nášlapné dynamity"
+OnContactDescription="Tvoje dynamity vybuchnou, jakmile se dotknou Zeda."
+
+ExplosiveResistance="Odolná morálka"
+ExplosiveResistanceDescription="Sníží utržené poškození o 30 %. Funguje i na spoluhráčích, pokud jsou dostatečně blízko u tebe."
+
+Sacrifice="Kamikaze"
+SacrificeDescription="Staň se bombou. Jednou za vlnu způsobí nepřátelský útok, který by tě jinak zabil, explozi, jež udělí poškození Zedům kolem a zanechá tě s 5 body zdraví."
+
+DoorTraps="Pasti na dveřích"
+DoorTrapsDescription="Budeš svařovat o 30 % pomaleji, ale tebou svařené dveře po prolomení vybuchnou. Čím víc dveře svaříš, tím větší bude výbuch."
+
+SirenResistance="Sireny nejsou vítány"
+SirenResistanceDescription="Tvoje granáty mají o 100 % vyšší šanci na to, že proniknou skrze sonické vlny a vybuchnou. To budou Sireny koukat!"
+
+OffPerk="Nezařazený bojovník"
+OffPerkDescription="Budeš udělovat o 10 % vyšší poškození nezařazenými zbraněmi."
+
+OnPerk="Zařazený bojovník"
+OnPerkDescription="Navýší sílu výbuchů, odražení a odhození zbraní třídy o 30 %."
+
+Nuke="ZED TIME – Radioaktivita"
+NukeDescription="Tebou způsobené výbuchy během Zed timu udělí i vysoké radioaktivní poškození, jež otráví Zedy."
+
+ConcussiveForce="ZED TIME – Masivní síla"
+ConcussiveForceDescription="Tebou způsobené výbuchy během Zed timu bez milosti odhodí Zedy do dáli."
+
+
+[KFPerk_FieldMedic]
+PerkName="Field Medic"
+
+SkillCatagories[0]="Kondička"
+SkillCatagories[1]="Znalost medicíny"
+SkillCatagories[2]="Ovládání zbraní"
+SkillCatagories[3]="Znalost boje"
+SkillCatagories[4]="Pokročilý výcvik"
+
+Passives[0]=(Title="Rychlost obnovení jehly",Description="Poškození zbraní zvýšeno o %x%");
+Passives[1]=(Title="Výše uzdravení",Description="Detekce neviditelných nepřátel zvýšena o %x%");
+Passives[2]=(Title="Odolnost vůči žluči",Description="Detekce zdraví nepřátel zvýšena o %x%");
+Passives[3]=(Title="Rychlost pohybu",Description="Zed time trvá %x%");
+Passives[4]=(Title="Bonus k vestě",Description="Zdraví zvýšeno o %x%");
+
+HealingSurge="Atestace"
+HealingSurgeDescription="Využij svoje znalosti medicíny a navyš svoje zdraví o 20 %."
+
+Enforcer="Brašna"
+EnforcerDescription="Navýší počet nábojů do začáku o 20 % pro všechny zbraně tvé třídy i zbraně záložní."
+
+Combatant="Polní doktor"
+CombatantDescription="Nebuď jen doktor, buď polní doktor, kterým jsi vždy určitě chtěl být! Neprůstřelná vesta do začátku zdarma a 60% sleva na její doplnění součástí balení!"
+
+Armament="Jiný lékař"
+ArmamentDescription="Neopravuj jenom lidi. Vyměň 10 % účinnosti svého léčení za schopnost doplnit 2 % neprůstřelné vesty při každém vyléčení spoluhráče."
+
+Regeneration="Sobecký doktor"
+RegenerationDescription="Tvoje zdraví se díky nanobotům společnosti Horzine bude pomalu samo obnovovat."
+
+Lacerate="Praktikant"
+LacerateDescription="Teď to trochu píchne! Zedi budou po zásahu zbraní tvé třídy více krvácet."
+
+VaccinationArmor="Vakcína"
+VaccinationArmorDescription="Obrň spoluhráče vůči viru. Tvoje léčení navýší maximální hodnotu neprůstřelné vesty a zajistí dočasnou odolnost vůči Bloatově žluči."
+
+VaccinationDamageMod="Šílený laborant"
+VaccinationDamageModDescription="Ordinace je otevřená pro lidi, ne pro Zedy. Tvoje léčivé šipky otráví Zedy a jak šipky, tak tvoje granáty mohou přinutit Zedy panikařit."
+
+AirborneAgent="ZED TIME – Experiment"
+AirborneAgentDescription="Léčivé šipky kolem tvého cíle vytvoří kouř, který okolním spoluhráčům vyléčí 10 % zdraví navíc."
+
+Sedative="ZED TIME – Sedativum"
+SedativeDescription="Šipky a granáty vypustí sedativum, které může dočasně zastavit pohyb Zedů."
+
+
+EXPAction1="Udělováním poškození zbraněmi své třídy"
+EXPAction2="Léčením spoluhráčů"
+
+[KFPerk_Firebug]
+PerkName="Firebug"
+EXPAction1="Udělováním poškození zbraněmi své třídy"
+EXPAction2="Zabíjením Crawlerů zbraněmi své třídy"
+
+SkillCatagories[0]="Zásoby"
+SkillCatagories[1]="Zbraně"
+SkillCatagories[2]="Oheň"
+SkillCatagories[3]="Plamen"
+SkillCatagories[4]="Pokročilý výcvik"
+
+Passives[0]=(Title="Poškození zbraní třídy",Description="Poškození zbraní třídy zvýšeno o %x%");
+Passives[1]=(Title="Přebíjení zbraní třídy",Description="Zbraně třídy se přebíjí o %x% rychleji");
+Passives[2]=(Title="Odolnost vůči ohni",Description="%x% odolnost vůči ohnivému poškození");
+Passives[3]=(Title="Imunita vůči vlastnímu ohni",Description="%x% odolnost vůči tebou vytvořenému ohnivému poškození");
+Passives[4]=(Title="Náboje do začátku",Description="Množství nábojů do začátku zvýšeno o %x%");
+
+FullyStocked="Plnou, prosím"
+FullyStockedDescription="Zbraně tvojí třídy budou mít po zakoupení maximální množství nábojů."
+
+FlarotovCoctail="Světlicový koktejl"
+FlarotovCoctailDescription="Přimíchá do tvého Molotovova koktejlu světlici. Získáš tak šanci osvětlit prostředí na 30 sekund a plameny koktejlu na zemi zůstanou dvakrát tak dlouho."
+
+Fuse="Lesní požár"
+FuseDescription="Hoření od zbraní třídy trvá o 70 % déle a jeho poškození se postupně navyšuje."
+
+HeatWave="Vlna veder"
+HeatWaveDescription="Nepřátelé zasažení ohněm zblízka budou odraženi."
+
+ZedShrapnel="Výbušní Zedi"
+ZedShrapnelDescription="Každý Zed zabitý ohnivou zbraní má 50% šanci na to, že exploduje a udělí tak poškození okolním Zedům."
+
+Napalm="Ohniví Zedi"
+NapalmDescription="Hořící Zedové zapálí ostatní Zedy, kterých se dotknou. Takové hezké ohnivé domino."
+
+Range="Dosah zbraní"
+RangeDescription="Navýší dosah všech ohnivých zbraní. Teď už ti nikdo neunikne."
+
+SplashDamage="Okolní poškození"
+SplashDamageDescription="Navýší okolní poškození, které způsobí zásah ohnivých zbraní. Teď ti možná někdo unikne, ale až ho dostaneš, bude to bolet i ostatní."
+
+Combustion="ZED TIME – Výbušná vznětlivost"
+CombustionDescription="Každý Zed, kterého zabiješ ohnivou zbraní během Zed timu, vybuchne a tím zapálí okolní nepřátele. Silvestr o něco dříve, proč ne?"
+
+Scorch="ZED TIME – Žár v srdci"
+ScorchDescription="Zbraně třídy budou během Zed timu střílet skoro stejně rychle jako jindy."
+
+[KFPerk_Gunslinger]
+PerkName="Gunslinger"
+EXPAction1="Udělováním poškození zbraněmi své třídy"
+EXPAction2="Udělováním headshotů zbraněmi své třídy"
+
+SkillCatagories[0]="Technika"
+SkillCatagories[1]="Schopnosti"
+SkillCatagories[2]="Pokročilá technika"
+SkillCatagories[3]="Kritické zásahy"
+SkillCatagories[4]="Mistrovská technika"
+
+Passives[0]=(Title="Poškození zbraní třídy",Description="Poškození zbraní třídy zvýšeno o %x%");
+Passives[1]=(Title="Odolnost vůči kulkám",Description="Odolnost vůči poškození projektilů zvýšena o %x%");
+Passives[2]=(Title="Rychlost pohybu",Description="Rychlost pohybu zvýšena o %x%");
+Passives[3]=(Title="Zpětný ráz",Description="O %x% menší zpětný ráz");
+
+ShootnMove="Běžec"
+ShootnMoveDescription="Při přiblížení se budeš pohybovat o 50 % rychleji a zbraň sebou nebude tak házet."
+
+QuickSwitch="Pistolník"
+QuickSwitchDescription="Budeš měnit zbraně o 50 % rychleji, a pokud budeš pokračovat ve střelbě i poté, co ti dojdou náboje, rychle vytáhneš záložní pistole."
+
+RhythmMethod="Sečteno"
+RhythmMethodDescription="Každý další headshot bez minutí navýší poškození zbraní tvojí třídy o 5 %. Maximální navýšení je 75 %."
+
+BoneBreaker="Podtrženo"
+BoneBreakerDescription="Pokud si nevěříš na headshoty, jednoduše navyš poškození všech zbraní svojí třídy o 20 %."
+
+SpeedReload="Nabíječ"
+SpeedReloadDescription="Umožní ti přebíjet zbraně tvé třídy o 20 % rychleji a vypadat při tom jako rozený profesionál."
+
+Penetration="Penetrátor"
+PenetrationDescription="Přidá každé tvojí střele schopnost prostřelit jednoho Zeda navíc."
+
+CenterMass="Nepřesný zásah"
+CenterMassDescription="Zásahy do hrudi odrazí Zedy o 30 % silněji."
+
+LimbShots="Přesný zásah"
+LimbShotsDescription="Pokud trefíš běžícího Zeda do nohy, odhodí jej zásah o 30 % silněji než normálně."
+
+Fanfare="ZED TIME – Rychlý"
+FanfareDescription="Během Zed timu budeš se zbraněmi svojí třídy střílet třikrát rychleji."
+
+UberAmmo="ZED TIME – Zásobený"
+UberAmmoDescription="Během Zed timu ti nemohou dojít náboje do zbraní tvojí třídy."
+
+[KFPerk_MartialArtist]
+PerkName="Martial Artist"
+
+[KFPerk_Sharpshooter]
+PerkName="Sharpshooter"
+
+[KFPerk_Support]
+PerkName="Support"
+
+SkillCatagories[0]="Ovládání zbraní"
+SkillCatagories[1]="Kondička"
+SkillCatagories[2]="Zásoby"
+SkillCatagories[3]="Výdrž"
+SkillCatagories[4]="Pokročilý výcvik"
+
+Passives[0]="Title=Svařování,Description=Rychlost svařování zvýšena o %x%);"
+Passives[1]=(Title="Poškození zbraní třídy",Description="Poškození zbraní třídy zvýšeno o %x%");
+Passives[2]=(Title="Průraznost zbraní třídy",Description="S každou úrovní získají zbraně třídy %x% k průraznosti");
+Passives[3]=(Title="Poškození granátů",Description="Poškození granátů zvýšeno o %x%");
+Passives[4]=(Title="",Description="");
+
+;Passives[0]=(Title="Svařování",Description="Rychlost svařování zvýšena o 2 % (max. 50 %")");
+;Passives[1]=(Title="Poškození brokovnic",Description="Poškození brokovnic zvýšeno o 2 % (max. 50 %")");
+;Passives[2]=(Title="Průraznost brokovnic",Description="S každou úrovní získají brokovnice 25 % k průraznosti");
+;Passives[3]=(Title="Poškození granátů",Description="Poškození granátů zvýšeno o 2 % (max. 50 %")");
+;Passives[4]=(Title="",Description="");
+
+EXPAction1="Udělováním poškození zbraněmi své třídy"
+EXPAction2="Svařováním dveří"
+
+Ammo="Připravenost"
+AmmoDescription="Navyší celkové i počáteční množství nábojů o 20 %."
+
+Supplier="Ohleduplnost"
+SupplierDescription="Staň se středem pozornosti, staň se zásobitelem! Vezmi si batoh, ze kterého si spoluhráči jednou za vlnu mohou doplnit náboje."
+
+Fortitude="Výdrž"
+FortitudeDescription="Zvyší tvoje zdraví o 50 %."
+
+Regeneration="Regenerace"
+RegenerationDescription="Odhlas se od svého felčara. Tvoje zdraví se díky nanobotům společnosti Horzine bude pomalu samo obnovovat."
+
+Bombard="Neústupnost"
+BombardDescription="Opři se do toho a zvyš svoji šanci na odražení Zedů o 60 % při používání zbraní své třídy."
+
+TacticalReload="Praxe"
+TacticalReloadDescription="Umožní ti přebíjet zbraně tvé třídy mnohem rychleji a vypadat při tom jako rozený profesionál."
+
+Strength="Síla"
+StrengthDescription="Zvýší nosnost tvého batohu o 5."
+
+Tenacity="Houževnatost"
+TenacityDescription="Zvýší poškození zbraní tvé třídy o 10 %."
+
+Safeguard="ZED TIME – Bezpečnost"
+SafeguardDescription="Neboj se přistoupit blíž, jelikož ty a tví spoluhráči poblíž budete mít o 5 % lepší neprůstřelné vesty!"
+
+Barrage="ZED TIME – Nabuzenost"
+BarrageDescription="Ani na vteřinu neváhej a společně s poblíž se nacházejícími spoluhráči během Zed time udílej o 15 % vyšší poškození!"
+
+[KFPerk_Sharpshooter]
+PerkName="Sharpshooter"
+
+[KFPerk_SWAT]
+PerkName="SWAT"
+
+[Fonts]
+Bicubik="Bicubik"
+
+[KFObjective]
+ObjectiveDifficulties[0]="JEDNODUCHÝ"
+ObjectiveDifficulties[1]="OBTÍŽNĚJŠÍ"
+ObjectiveDifficulties[2]="NEJOBTÍŽNĚJŠÍ"
+ObjectiveStartTitle="Sleduj stopu až na její začátek"
+ObjectiveWaitingString="ČEKÁ SE NA VÍCE HRÁČŮ!"
+ObjectiveWonString="ÚKOL SPLNĚN!"
+ObjectiveFailedString="ÚKOL NESPLNĚN!"
+ObjectiveEndedString="ÚKOL SKONČIL!"
+ObjectiveFailReasons[0]="VYPRŠEL ČASOVÝ LIMIT!"
+ObjectiveFailReasons[1]="JEDNOTKA BYLA ROZPRÁŠENA"
+ObjectiveFailReasons[2]="HRÁČ S NÍZKÝM ZDRAVÍM ZEMŘEL"
+ObjectiveFailReasons[3]="SKONČILA VLNA"
+ObjectiveFailReasons[4]="SKONČIL ÚKOL"
+ObjectiveFailReasons[5]="NEZBYL ŽÁDNÝ HRÁČ S MÁLO PRACHY"
+ObjectiveFailReasons[6]="NEDOSTATEK HRÁČŮ!"
+ObjectiveXPString=" ZK.:"
+ObjectiveTimeLimitString="ČASOVÝ LIMIT:"
+ObjectiveTimeUnit="s"
+ObjectiveStatusString="STAV ÚKOLU"
+
+[KFObj_Wave]
+ObjectiveAvailableString="JE DOSTUPNÝ ÚKOL"
+
+[KFObj_Wave_Defend]
+ObjectiveTypeString="OBRANA"
+ObjectiveTargetTitle="Ubraň nahrávání viru!"
+ObjectiveStatusTitle="STAV NAHRÁVÁNÍ"
+
+[KFObj_Coop_Healer]
+ObjectiveTypeString="LÉČITEL"
+ObjectiveTargetTitle="LÉČI HRÁČE S NÍZKÝM ZDRAVÍM"
+ObjectiveStatusTitle="VYLÉČENÝCH HRÁČŮ"
+ObjectiveTimeString="s ZBÝVÁ"
+
+[KFObj_Coop_PayDay]
+ObjectiveTypeString="VÝPLATA"
+ObjectiveTargetTitle="DÁVEJ PRACHY OBŽIVNUTÝM HRÁČŮM"
+ObjectiveStatusTitle="ZÍSKEJ 30 % PENĚZ NAZPĚT"
+ObjectiveTimeString="s ZBÝVÁ"
+
+[KFGameViewportClient]
+RandomLoadingStrings[0]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 0"
+RandomLoadingStrings[1]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 1"
+RandomLoadingStrings[2]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 2"
+RandomLoadingStrings[3]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 3"
+RandomLoadingStrings[4]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 4"
+RandomLoadingStrings[5]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 5"
+
+[Zeds]
+KFPawn_ZedBloat="Bloat"
+KFPawn_ZedClot="Clot"
+KFPawn_ZedCrawler="Crawler"
+KFPawn_ZedFleshPound="Fleshpound"
+KFPawn_ZedGorefast="Gorefast"
+KFPawn_ZedHans="Dr. Hans Volter"
+KFPawn_ZedHusk="Husk"
+KFPawn_ZedStalker="Stalker"
+KFPawn_ZedClot_Cyst="Cyst"
+KFPawn_ZedClot_Slasher="Slasher"
+KFPawn_ZedClot_Alpha="Alpha Clot"
+KFPawn_ZedScrake="Scrake"
+KFPawn_ZedSiren="Siren"
+KFPawn_ZedPatriarch="Patriarch"
+
+[ZedMoves]
+Melee="Melee"
+Rally="Rally"
+Grab="Grab"
+Light="Light"
+Heavy="Heavy"
+Spin="Spin"
+Evade="Evade"
+Jump="Jump"
+Puke="Puke"
+Mine="Mine"
+Bite="Bite"
+Scream="Scream"
+Vortex="Vortex"
+Shoot="Shoot"
+Flame="Flame"
+Suicide="Suicide"
+Rage="Rage"
+Minigun="Minigun"
+Rocket="Rocket"
+Mortar="Mortar"
+Heal="Heal"
+
+[Keybinds]
+CtrlCombo="Ctrl + "
+ShiftCombo="Shift + "
+AltCombo="Alt + "
+LeftMouseButton="Levé tlačítko myši"
+MiddleMouseButton="Prostřední tlačítko myši"
+RightMouseBUtton="Pravé tlačítko myši"
+ThumbMouseButton1="Postranní tlačítko myši 1"
+ThumbMouseButton2="Postranní tlačítko myši 2"
+MouseScrollDown="Kolečko myši – dolů"
+MouseScrollUp="Kolečko myši – nahoru"
+CapsLock="Caps Lock"
+Tab="Tab"
+BackSpace="Backspace"
+SpaceBar="Mezerník"
+LeftShift="Levý Shift"
+RightSift="Pravý Shift"
+LeftCtrl="Levý Ctrl"
+RightCtrl="Pravý Ctrl"
+LeftAlt="Levý Alt"
+RightAlt="Pravý Alt"
+BackSlash="\\ "
+Slash="/"
+RightBracket="]"
+LeftBracket="["
+Quote="'"
+SemiColon=";"
+Period="."
+Comma=","
+Subtract="−"
+Add="+"
+Equals="="
+Multiply="*"
+Divide="Num Pad /"
+Underscore="-"
+NumPadZero="0"
+NumPadOne="1"
+NumPadTwo="2"
+NumPadThree="3"
+NumPadFour="4"
+NumPadFive="5"
+NumPadSix="6"
+NumPadSeven="7"
+NumPadEight="8"
+NumPadNine="9"
+Decimal="Num Pad ."
+NumLock="Num Lock"
+PageUp="Page Up"
+PageDown="Page Down"
+Home="Home"
+End="End"
+Insert="Insert"
+Delete="Delete"
+Up="Šipka nahoru"
+Down="Šipka dolů"
+Left="Šipka doleva"
+Right="Šipka doprava"
+ScrollLock="Scroll Lock"
+Pause="Pause"
+Enter="Enter"
+one="1"
+two="2"
+three="3"
+four="4"
+five="5"
+six="6"
+seven="7"
+eight="8"
+nine="9"
+zero="0"
+
+[SharedUnlocks]
+KFWeap_Zweihander="Promo ze hry Chivalry"
+
+SharedUnlocks
+Source0="Promo ze hry Chivalry"
+;============================================
+; Map Localization
+;============================================
+[KF-BioticsLab KFMapSummary]
+DisplayName="Biotics Lab"
+
+[KF-Outpost KFMapSummary]
+DisplayName="Outpost"
+
+[KF-BurningParis KFMapSummary]
+DisplayName="Burning Paris"
+
+[Survival KFGameInfoSummary]
+GameName="Přežití"
+
+[KF-VolterManor KFMapSummary]
+DisplayName="Volter Manor"
+
+[KF-Catacombs KFMapSummary]
+DisplayName="Catacombs"
+
+[KF-EvacuationPoint KFMapSummary]
+DisplayName="Evacuation Point"
+
+[KF-Farmhouse KFMapSummary]
+DisplayName="Farmhouse"
+
+[KF-BlackForest KFMapSummary]
+DisplayName="Black Forest"
+
+[KF-Prison KFMapSummary]
+DisplayName="Prison"
+
+[KFMapInfo]
+; defaults
+FoundCollectibleString="%x% found a collectible. %y% left to find..."
+FoundAllCollectiblesString="Every collectible has been found!"

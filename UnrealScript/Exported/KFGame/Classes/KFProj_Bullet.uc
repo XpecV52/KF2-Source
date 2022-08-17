@@ -18,6 +18,7 @@ var float ProjEffectsScale;
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
 {
     local KFPawn KFP;
+    local bool bPassThrough;
 
 	if (Other != Instigator)
 	{
@@ -40,22 +41,36 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
             	{
                     PenetrationPower -= KFP.PenetrationResistance;
             	}
-				return; // skip super/shutdown
+				bPassThrough = TRUE;
 			}
 		}
+        // handle water pass through damage/hitfx
+        else if ( DamageRadius == 0.f && !Other.bBlockActors && Other.IsA('KFWaterMeshActor') )
+        {
+            if ( WorldInfo.NetMode != NM_DedicatedServer )
+            {
+                KFImpactEffectManager(WorldInfo.MyImpactEffectManager).PlayImpactEffects(HitLocation, Instigator,, ImpactEffects);
+            }
+            bPassThrough = TRUE;
+        }
 
-		Super.ProcessTouch(Other, HitLocation, HitNormal);
+        if ( !bPassThrough )
+        {
+    		Super.ProcessTouch(Other, HitLocation, HitNormal);
+        }
 	}
 }
 
-/** Damage without stopping the projectile */
+/** Damage without stopping the projectile (see also Weapon.PassThroughDamage)*/
 simulated function bool PassThroughDamage(Actor HitActor)
 {
     // Don't stop this projectile for interactive foliage
-    if( InteractiveFoliageActor(HitActor) != None )
+	if ( !HitActor.bBlockActors && HitActor.IsA('InteractiveFoliageActor') )
+	{
 		return true;
-    else
-	   return FALSE;
+	}
+
+	return FALSE;
 }
 
 /**

@@ -37,10 +37,13 @@ exec native final function ResetPerkLevels();
 exec native function ReadGlobalStat(string statId, optional int HistoryNumDays);
 
 /** Helps to identify all the translucent materials that are tagged with bTranslucencyInheritDominantShadowsFromOpaque
-    for performance reasons. Having this checked will activate the "CopyToTranslucencyAttenTex" code path whenever 
+    for performance reasons. Having this checked will activate the "CopyToTranslucencyAttenTex" code path whenever
     the material is in view.
     */
 exec native final function FindTranslucencyInheritDominantShadowMaterials();
+
+/** Create and save an empty upk */
+native final function MakeEmptyPackage();
 
 /*********************************************************************************************
  * script cheats
@@ -744,6 +747,7 @@ simulated exec function Sharpshooter()
     GiveWeapon( "KFGameContent.KFWeap_Rifle_Winchester1894" );
     GiveWeapon( "KFGameContent.KFWeap_Bow_Crossbow" );
     GiveWeapon( "KFGameContent.KFWeap_Rifle_M14EBR" );
+    GiveWeapon( "KFGameContent.KFWeap_Rifle_RailGun" );
 }
 
 /**
@@ -1050,7 +1054,7 @@ exec function HurtMe(optional int DamageAmount=50)
 {
 	if ( Pawn != none  )
 	{
-		Pawn.TakeDamage(DamageAmount, Pawn.Controller, vect(0,0,0), vect(0,0,0), none);
+		Pawn.TakeDamage(DamageAmount, none, vect(0,0,0), vect(0,0,0), none);
 	}
 }
 
@@ -3186,7 +3190,7 @@ exec function DebugNextPhase()
     local KFAIController_ZedBoss KFAICB;
 
     foreach AllActors( class'KFAIController_ZedBoss', KFAICB )
-    {
+	{
         KFAICB.DebugNextPhase();
     }
 }
@@ -3675,8 +3679,11 @@ exec function KillZeds( optional float KillDistance=0.f, optional bool LogKilled
 
 
 
+				if( PlayerController(AIP.Controller) == none )
+				{
 				AIP.Died(none , none, AIP.Location);
 			}
+		}
 		}
 
 
@@ -4172,89 +4179,196 @@ simulated function KFPawn SpawnAIZed(string ZedName, float Distance, optional na
 	return Zed;
 }
 
+/** Spawns a versus zed with name ZedName, and optionally possesses them */
+exec function SpawnZedV( string ZedName, optional bool bPossess=true )
+{
+    local class<KFPawn_Monster> MonsterClass;
+    local vector SpawnLoc;
+    local rotator SpawnRot;
+    local KFPawn KFP;
+
+    if( !WorldInfo.Game.IsA('KFGameInfo_VersusSurvival') )
+    {
+        ClientMessage("This cheat command is only valid in Versus Survival mode!", CheatType );
+        return;
+    }
+
+    MonsterClass = LoadMonsterByName( ZedName, true );
+
+    if( MonsterClass != none )
+    {
+        // The ZED should be spawned X units in front of the view location
+        if( Pawn != None )
+        {
+            SpawnLoc = Pawn.Location;
+        }
+        else
+        {
+            SpawnLoc = Location;
+        }
+
+        SpawnLoc += 200.f * vector(Rotation) + vect(0,0,1) * 15.f;
+        SpawnRot.Yaw = Rotation.Yaw + 32768;
+
+        KFP = Spawn( MonsterClass,,, SpawnLoc, SpawnRot,, false );
+        if( KFP != none )
+        {
+            if( bPossess )
+            {
+                if( Pawn != none )
+                {
+                    Pawn.Destroy();
+                }
+
+                if( KFP.Controller != none )
+                {
+                    KFP.Controller.Destroy();
+                }
+                KFGameInfo(WorldInfo.Game).SetTeam( KFPlayerController(Outer), KFGameInfo(WorldInfo.Game).Teams[1] );
+                Possess( KFP, false );
+                ServerCamera( 'ThirdPerson' );
+            }
+
+            KFP.SetPhysics( PHYS_Falling );
+        }
+        else
+        {
+            ClientMessage(" Could not spawn Versus ZED ["$ZedName$"]. Please make sure that the ZED name to archetype mapping is set up correctly.", CheatType );
+        }
+    }
+}
+
+exec function GoHumanV()
+{
+    local class<KFPawn_Human> HumanClass;
+    local KFPawn_Human KFPH;
+    local vector SpawnLoc;
+    local rotator SpawnRot;
+
+    if( !WorldInfo.Game.IsA('KFGameInfo_VersusSurvival') )
+    {
+        ClientMessage("This cheat command is only valid in Versus Survival mode!", CheatType );
+        return;
+    }
+
+    if( Pawn != none )
+    {
+        SpawnLoc = Pawn.Location;
+        Pawn.Destroy();
+    }
+    else
+    {
+        SpawnLoc = Location;
+    }
+
+    SpawnRot.Yaw = Rotation.Yaw + 32768;
+
+    HumanClass = class<KFPawn_Human>(DynamicLoadObject("KFGameContent.KFPawn_Human_Versus", class'Class'));
+
+    KFPH = Spawn( HumanClass,,, SpawnLoc, SpawnRot,, false );
+
+    if( KFPH != none )
+    {
+        KFGameInfo(WorldInfo.Game).SetTeam( KFPlayerController(Outer), KFGameInfo(WorldInfo.Game).Teams[0] );
+        KFPH.AddDefaultInventory();
+        Possess( KFPH, false );
+        ServerCamera( 'FirstPerson' );
+        KFPH.SetPhysics( PHYS_Falling );
+    }
+    else
+    {
+        ClientMessage("Could not spawn Versus Human.", CheatType );
+    }
+}
+
 exec function SetBossNum( int PosInBossArray )
 {
     ConsoleCommand("SETNOPEC KFAISpawnManager ForcedBossNum"@PosInBossArray);
 }
 
 /** Get a zed class from the name */
-function class<KFPawn_Monster> LoadMonsterByName(string ZedName)
+function class<KFPawn_Monster> LoadMonsterByName(string ZedName, optional bool bIsVersusPawn )
 {
+    local string VersusSuffix;
+
+    VersusSuffix = bIsVersusPawn ? "_Versus" : "";
+
 	// Get the correct archetype for the ZED
 	if( Left(ZedName, 5) ~= "ClotA" )
 	{
-		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedClot_Alpha", class'Class'));
+		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedClot_Alpha"$VersusSuffix, class'Class'));
 	}
 	else if( Left(ZedName, 5) ~= "ClotS" )
 	{
-		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedClot_Slasher", class'Class'));
+		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedClot_Slasher"$VersusSuffix, class'Class'));
 	}
 	else if( Left(ZedName, 5) ~= "ClotC" )
 	{
-		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedClot_Cyst", class'Class'));
+		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedClot_Cyst"$VersusSuffix, class'Class'));
 	}
 	else if( ZedName ~= "CLOT" )
 	{
-		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedClot_Cyst", class'Class'));
+		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedClot_Cyst"$VersusSuffix, class'Class'));
 	}
 	else if( Left(ZedName, 3) ~= "FHa" )
 	{
-		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedHansFriendlyTest", class'Class'));
+		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedHansFriendlyTest"$VersusSuffix, class'Class'));
 	}
 	else if( Left(ZedName, 3) ~= "FHu" )
 	{
-		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedHuskFriendlyTest", class'Class'));
+		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedHuskFriendlyTest"$VersusSuffix, class'Class'));
 	}
 	else if( Left(ZedName, 1) ~= "F" )
 	{
-		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedFleshpound", class'Class'));
+		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedFleshpound"$VersusSuffix, class'Class'));
 	}
 	else if( Left(ZedName, 1) ~= "G" )
 	{
-		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedGorefast", class'Class'));
+		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedGorefast"$VersusSuffix, class'Class'));
 	}
 	else if( Left(ZedName, 2) ~= "St" )
 	{
-		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedStalker", class'Class'));
+		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedStalker"$VersusSuffix, class'Class'));
 	}
 	else if( Left(ZedName, 1) ~= "B" )
 	{
-		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedBloat", class'Class'));
+		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedBloat"$VersusSuffix, class'Class'));
 	}
 	else if( Left(ZedName, 2) ~= "Sc" )
 	{
-		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedScrake", class'Class'));
+		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedScrake"$VersusSuffix, class'Class'));
 	}
 	else if( Left(ZedName, 2) ~= "Pa" )
 	{
-		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedPatriarch", class'Class'));
+		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedPatriarch"$VersusSuffix, class'Class'));
 	}
 	else if( Left(ZedName, 2) ~= "Cr" )
 	{
-		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedCrawler", class'Class'));
+		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedCrawler"$VersusSuffix, class'Class'));
 	}
 	else if( Left(ZedName, 2) ~= "Hu" )
 	{
-		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedHusk", class'Class'));
+		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedHusk"$VersusSuffix, class'Class'));
 	}
 	else if( Left(ZedName, 8) ~= "TestHusk" )
 	{
-		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedHusk_New", class'Class'));
+		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedHusk_New"$VersusSuffix, class'Class'));
 	}
 	else if( Left(ZedName, 2) ~= "Ha" )
 	{
-		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedHans", class'Class'));
+		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedHans"$VersusSuffix, class'Class'));
 	}
 	else if( Left(ZedName, 2) ~= "Si" )
 	{
-		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedSiren", class'Class'));
+		return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedSiren"$VersusSuffix, class'Class'));
 	}
     else if( Left(ZedName, 1) ~= "P")
     {
-        return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedPatriarch", class'Class'));
+        return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedPatriarch"$VersusSuffix, class'Class'));
     }
-
+    
 	ClientMessage("Could not spawn ZED ["$ZedName$"]. Please make sure you specified a valid ZED name (ClotA, ClotS, ClotC, etc.) and that the ZED has a valid archetype setup.", CheatType );
+    return none;
 }
 
 exec function SpawnHumanPawn(optional bool bEnemy, optional bool bUseGodMode, optional int CharIndex)
@@ -4316,8 +4430,8 @@ exec function SpawnHumanPawn(optional bool bEnemy, optional bool bUseGodMode, op
 
 	if( KFPRI != none )
 	{
-		KFPRI.PLayerHealth = KFPH.Health;
-		KFPRI.PlayerHealthMax = KFPH.HealthMax;
+		KFPRI.PLayerHealthPercent = FloatToByte( float(KFPH.Health) / float(KFPH.HealthMax) );
+        KFPRI.PLayerHealth = KFPH.Health;
 	}
 	//KFPRI.CurrentPerkLevel = 0;
 
@@ -4382,11 +4496,7 @@ simulated exec function KFPawn SpawnZed(string ZedName, optional float Distance 
 	if ( KFP != None )
 	{
 		KFP.SetPhysics(PHYS_Falling);
-
-    	if( KFGameInfo(WorldInfo.Game) != none )
-    	{
-           KFGameInfo(WorldInfo.Game).SetAIDefaults(KFPawn_Monster(KFP));
-    	}
+		KFGameInfo(WorldInfo.Game).SetMonsterDefaults( KFPawn_Monster(KFP));
 	}
 	else
 	{
@@ -4446,8 +4556,7 @@ simulated exec function SpawnZedGroup(
 					KFPM = KFPawn_Monster(KFP);
 					if( KFPM != none )
 					{
-                        KFPM.SwitchToGoreMesh(KFPM.GetCharacterMonsterInfo().GoreMesh, KFPM.GetCharacterMonsterInfo().CharacterGoreMaterialID);
-                        KFPM.GoreMeshSwapped();
+                        KFPM.SwitchToGoreMesh();
 					}
 					else
 					{
@@ -5092,13 +5201,15 @@ exec function ToggleSplatterGun()
         if(!bUsingSplatterGun && KFPlayerInput(PlayerInput) != none)
         {
             KFInput.RemoveCommandFromBind(TempKeyBind, "GBA_Fire");
-            KFInput.SetKeyBind(TempKeyBind, "SplatterFire");
+            KFInput.SetKeyBind(TempKeyBind, "SplatterFire", false);
+			KFInput.SaveConfig();
             bUsingSplatterGun = true;
         }
         else
         {
             KFInput.RemoveCommandFromBind(TempKeyBind, "SplatterFire");
-            KFInput.SetKeyBind(TempKeyBind, "GBA_Fire");
+            KFInput.SetKeyBind(TempKeyBind, "GBA_Fire", false);
+			KFInput.SaveConfig();
             bUsingSplatterGun = false;
         }
     }
@@ -5207,13 +5318,14 @@ exec function ToggleAIDefaultsLog()
 }
 
 /** Forces the game to think this many players are alive */
-exec function SetLivingPlayers( byte NewLivingPlayers )
+exec function SetLivingPlayers( byte NewLivingPlayers, optional bool bSoloMode = false )
 {
 	local KFGameInfo KFGI;
 
 	KFGI = KFGameInfo(WorldInfo.Game);
   	if( KFGI != none )
 	{
+       KFGI.bOnePlayerAtStart = bSoloMode;
        KFGI.ForceLivingPlayerCount( NewLivingPlayers );
 	}
 }
@@ -5630,6 +5742,7 @@ exec function SetWeaponSkin(int MaterialIndex, string MaterialName)
 /** DemiGod Mode (prevents death, but not damage) */
 exec function DemiGod()
 {
+
     if ( bDemiGodMode )
     {
         bDemiGodMode = false;
@@ -5639,6 +5752,7 @@ exec function DemiGod()
 
     bDemiGodMode = true;
     ClientMessage("Demi God Mode on");
+
 }
 
 /** Play grapple move if available */
@@ -5654,6 +5768,100 @@ exec function TestGrapple()
         }
     }
 }
+
+exec function SpawnHumanPawnV(optional bool bEnemy, optional bool bUseGodMode, optional int CharIndex)
+{
+    local PlayerController PC;
+    local KFAIController KFBot;
+    local KFPlayerReplicationInfo KFPRI;
+    local vector                    CamLoc;
+    local rotator                   CamRot;
+    Local KFPawn_Human KFPH;
+    local Vector HitLocation, HitNormal;
+    local Actor TraceOwner;
+    local class<KFPawn_Human> PawnClass;
+
+    PC = GetALocalPlayerController();
+
+    if( PC != none )
+    {
+        PC.GetPlayerViewPoint(CamLoc, CamRot);
+
+        if( PC.Pawn != none )
+        {
+            TraceOwner = PC.Pawn;
+        }
+        else
+        {
+            TraceOwner = PC;
+        }
+
+        TraceOwner.Trace( HitLocation, HitNormal, CamLoc + Vector(CamRot) * 250000, CamLoc, TRUE, vect(0,0,0) );
+
+        HitLocation.Z += 100;
+    //  FlushPersistentDebugLines();
+    //    DrawDebugSphere( HitLocation, 100, 12, 0, 255, 0, TRUE );
+
+        PawnClass = class<KFPawn_Human>( DynamicLoadObject("KFGameContent.KFPawn_Human_Versus", class'Class') );
+        KFPH = Spawn(PawnClass, , , HitLocation);
+        KFPH.SetPhysics(PHYS_Falling);
+
+        // Create a new Controller for this Bot
+        KFBot = Spawn(class'KFAIController');
+
+        // Silly name for now
+        WorldInfo.Game.ChangeName(KFBot, "Braindead Human", false);
+
+        // Add them to the Team they selected
+        if( !bEnemy )
+        {
+           KFGameInfo(WorldInfo.Game).SetTeam(KFBot, KFGameInfo(WorldInfo.Game).Teams[0]);
+        }
+
+        KFBot.Possess(KFPH, false);
+
+        if( bUseGodMode )
+        {
+           KFBot.bGodMode = true;
+        }
+
+        KFPRI = KFPlayerReplicationInfo( KFBot.PlayerReplicationInfo );
+
+        // Set perk stuff
+        //KFPRI.SetCharacter(CharIndex);
+        KFPRI.CurrentPerkClass = Class'KFPlayerController'.default.PerkList[1].PerkClass;
+        KFPRI.NetPerkIndex = 1;
+
+        if( KFPRI != none )
+        {
+            KFPRI.PLayerHealthPercent = FloatToByte( float(KFPH.Health) / float(KFPH.HealthMax) );
+            KFPRI.PLayerHealth = KFPH.Health;
+        }
+        //KFPRI.CurrentPerkLevel = 0;
+
+        KFPH.AddDefaultInventory();
+    }
+}
+
+/** For Accessory Testing, stop player on Gear Menu */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // NVCHANGE_BEGIN - RLS - Debugging Effects (do not merge)
 

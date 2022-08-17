@@ -37,24 +37,13 @@ defaultproperties
     object end
     // Reference: SpriteComponent'Default__DirectionalLight.Sprite'
     Components(0)=Sprite
-    begin object name=LightMeshComponent0 class=StaticMeshComponent
-        ReplacementPrimitive=none
-    object end
-    // Reference: StaticMeshComponent'Default__DirectionalLight.LightMeshComponent0'
-    Components(1)=LightMeshComponent0
-    begin object name=LensFlareComponent0 class=LensFlareComponent
-        NextTraceTime=0.0 // Ka v oh
-        ReplacementPrimitive=none
-    object end
-    // Reference: LensFlareComponent'Default__DirectionalLight.LensFlareComponent0'
-    Components(2)=LensFlareComponent0
     begin object name=DirectionalLightComponent0 class=DirectionalLightComponent
         UseDirectLightMap=true
         LightingChannels=(Outdoor=true)
         LightAffectsClassification=ELightAffectsClassification.LAC_DYNAMIC_AND_STATIC_AFFECTING
     object end
     // Reference: DirectionalLightComponent'Default__DirectionalLight.DirectionalLightComponent0'
-    Components(3)=DirectionalLightComponent0
+    Components(1)=DirectionalLightComponent0
     begin object name=ArrowComponent0 class=ArrowComponent
         ArrowColor=(B=255,G=200,R=150,A=255)
         bTreatAsASprite=true
@@ -62,7 +51,7 @@ defaultproperties
         ReplacementPrimitive=none
     object end
     // Reference: ArrowComponent'Default__DirectionalLight.ArrowComponent0'
-    Components(4)=ArrowComponent0
+    Components(2)=ArrowComponent0
     Rotation=(Pitch=-16384,Yaw=0,Roll=0)
     begin object name=LightMeshComponent0 class=StaticMeshComponent
         ReplacementPrimitive=none

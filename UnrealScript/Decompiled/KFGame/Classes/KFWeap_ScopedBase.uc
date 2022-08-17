@@ -11,7 +11,7 @@ class KFWeap_ScopedBase extends KFWeapon
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
 /** component that renders the scene to a texture */
-var(Scope) const export editinline SceneCapture2DComponent SceneCapture;
+var(Scope) const export editinline TWSceneCapture2DDPGComponent SceneCapture;
 /** Ratio of the scope texture relative to screen resolution (Should be between 0.0-1.0) */
 var(Scope) float ScopeTextureScale;
 var int MaxSceneCaptureSize;
@@ -28,6 +28,35 @@ var const MaterialInstanceConstant ScopeLenseMICTemplate;
 var MaterialInstanceConstant ScopeLenseMIC;
 var int CurrentScopeTextureSize;
 var(Scope) float ScopedSensitivityMod;
+
+simulated exec function ScopeFOV(float NewFOV)
+{
+    SceneCapture.SetCaptureParameters(,, NewFOV);
+}
+
+static simulated event KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
+{
+    if((default.FiringStatesArray[0] == 'WeaponFiring') || default.FiringStatesArray[0] == 'WeaponBurstFiring')
+    {
+        return 7;        
+    }
+    else
+    {
+        return 2;
+    }
+}
+
+simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optional int NumHits, optional out float out_PenetrationVal, optional int ImpactNum)
+{
+    local KFPerk InstigatorPerk;
+
+    InstigatorPerk = GetPerk();
+    if(InstigatorPerk != none)
+    {
+        InstigatorPerk.UpdatePerkHeadShots(Impact, InstantHitDamageTypes[FiringMode], ImpactNum);
+    }
+    super.ProcessInstantHitEx(FiringMode, Impact, NumHits, out_PenetrationVal, ImpactNum);
+}
 
 simulated function InitFOV(float SizeX, float SizeY, float DefaultPlayerFOV)
 {
@@ -123,7 +152,7 @@ simulated event Tick(float DeltaTime)
     }
     if(((Instigator != none) && Instigator.Controller != none) && Instigator.IsHumanControlled())
     {
-        if(bZoomingOut && ZoomStartOffset != IronSightPosition)
+        if(bZoomingOut)
         {
             InterpValue = ZoomTime / default.ZoomOutTime;
             ScopeLenseMIC.SetScalarParameterValue(InterpParamName, InterpValue);            
@@ -166,31 +195,48 @@ simulated function ZoomIn(bool bAnimateTransition, float ZoomTimeToGo)
         SceneCapture.bEnabled = true;
         SceneCapture.SetFrameRate(SceneCapture.default.FrameRate);
     }
+    ClearTimer('ZoomOutFastFinished');
 }
 
 simulated function ZoomOut(bool bAnimateTransition, float ZoomTimeToGo)
 {
     super.ZoomOut(bAnimateTransition, ZoomTimeToGo);
-    if(((SceneCapture != none) && Instigator != none) && !Instigator.PlayerReplicationInfo.bBot)
+    if(!bAnimateTransition)
     {
-        SceneCapture.bEnabled = false;
-        SceneCapture.SetFrameRate(0);
+        SetTimer(ZoomTimeToGo + 0.01, false, 'ZoomOutFastFinished');        
+    }
+    else
+    {
+        if(((SceneCapture != none) && Instigator != none) && !Instigator.PlayerReplicationInfo.bBot)
+        {
+            SceneCapture.bEnabled = false;
+            SceneCapture.SetFrameRate(0);
+        }
+    }
+}
+
+simulated function ZoomOutFastFinished()
+{
+    if(ScopeLenseMIC != none)
+    {
+        ScopeLenseMIC.SetScalarParameterValue(InterpParamName, 0);
     }
 }
 
 defaultproperties
 {
-    begin object name=SceneCapture2DComponent0 class=SceneCapture2DComponent
+    begin object name=SceneCapture2DComponent0 class=TWSceneCapture2DDPGComponent
+        bRenderForegroundDPG=false
         FieldOfView=6
         NearPlane=10
-        FarPlane=1E+09
+        FarPlane=0
         bUpdateMatrices=false
         bEnabled=false
         bEnableFog=true
         ViewMode=ESceneCaptureViewMode.SceneCapView_Lit
         FrameRate=60
     object end
-    // Reference: SceneCapture2DComponent'Default__KFWeap_ScopedBase.SceneCapture2DComponent0'
+    // Reference: TWSceneCapture2DDPGComponent'Default__KFWeap_ScopedBase.SceneCapture2DComponent0'
     SceneCapture=SceneCapture2DComponent0
     ScopeTextureScale=0.5
     MaxSceneCaptureSize=1024
@@ -213,16 +259,17 @@ defaultproperties
     object end
     // Reference: StaticMeshComponent'Default__KFWeap_ScopedBase.StaticPickupComponent'
     PickupFactoryMesh=StaticPickupComponent
-    begin object name=SceneCapture2DComponent0 class=SceneCapture2DComponent
+    begin object name=SceneCapture2DComponent0 class=TWSceneCapture2DDPGComponent
+        bRenderForegroundDPG=false
         FieldOfView=6
         NearPlane=10
-        FarPlane=1E+09
+        FarPlane=0
         bUpdateMatrices=false
         bEnabled=false
         bEnableFog=true
         ViewMode=ESceneCaptureViewMode.SceneCapView_Lit
         FrameRate=60
     object end
-    // Reference: SceneCapture2DComponent'Default__KFWeap_ScopedBase.SceneCapture2DComponent0'
+    // Reference: TWSceneCapture2DDPGComponent'Default__KFWeap_ScopedBase.SceneCapture2DComponent0'
     Components(0)=SceneCapture2DComponent0
 }

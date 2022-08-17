@@ -8,9 +8,9 @@
 class AICommand_Stumble extends AICommand_PushedBySM within KFAIController;
 
 var Vector Momentum;
-var KFPawn.EHitZoneBodyPart HitZoneLimb;
+var KFPawnAfflictions.EHitZoneBodyPart HitZoneLimb;
 
-static function bool Stumble(KFAIController AI, Vector InMomentum, KFPawn.EHitZoneBodyPart InHitZoneLimb)
+static function bool Stumble(KFAIController AI, Vector InMomentum, KFPawnAfflictions.EHitZoneBodyPart InHitZoneLimb)
 {
     local AICommand_Stumble Cmd;
 

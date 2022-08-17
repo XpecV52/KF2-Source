@@ -74,7 +74,7 @@ function SetDetails(KFOnlineGameSettings ServerResult)
         Ping = TempOnlingGamesSettings.PingInMs;
         TempObj.SetString("ping", ((Ping < 0) ? "-" : string(Ping)));
         TempObj.SetString("difficulty", Class'KFCommon_LocalizedStrings'.static.GetDifficultyString(float(TempOnlingGamesSettings.Difficulty)));
-        TempObj.SetString("mode", TempOnlingGamesSettings.Mode);
+        TempObj.SetString("mode", Class'KFCommon_LocalizedStrings'.static.GetGameModeString(TempOnlingGamesSettings.Mode));
         TempObj.SetString("map", TempOnlingGamesSettings.MapName);
         TempObj.SetString("mapImagePath", GetMapSource(TempOnlingGamesSettings.MapName));
         TempObj.SetString("gameStatus", string(TempOnlingGamesSettings.GameState));

@@ -37,25 +37,7 @@ class KFSpawnVolume extends Volume
 
 
 
-
-
-
-
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
  
@@ -283,7 +265,7 @@ class KFSpawnVolume extends Volume
 
 
 
-#linenumber 70;
+#linenumber 52;
 
 #linenumber 16;
 
@@ -301,11 +283,14 @@ struct native SpawnMarkerInfo
 	var vector			Location;
 	/** If true, will forcibly disable spawning for this spawn marker. It will still be visible, but will use a different icon */
 	var() editconst bool				bSpawnDisabled;
+	/** Last time this spawn marker was used */
+	var transient float LastUsedTime;
 	/** This changes the color of the spawn location cylinder matching the index you're currently editing */
 	var color				SpawnMarkerColor;
 
 	structdefaultproperties
 	{
+		LastUsedTime=0.f
 		SpawnMarkerColor=(R=50,G=205,B=50,A=255)
 	}
 };
@@ -329,6 +314,9 @@ struct native DoorListInfo
 };
 /** Spawn marker info created during the AI pathbuilding process and used in-game when determining AI spawn locations within this volume. */
 var() array< DoorListInfo > DoorList;
+
+/** Rotation to use when spawning pawns from this volume */
+var() rotator 				SpawnRotation;
 
 /*********************************************************************************************
  Rendering in Game ("show SpawnVolumes" and Editor (when volume is selected)
@@ -373,7 +361,8 @@ enum ESquadType
 	EST_Small,
 	EST_Crawler,
 };
-
+/** If set, players cannot spawn here, only AI (Versus) */
+var() bool bNoPlayers;
 /** Largest type of squad that this volume is capable of spawning (checked vs SquadType in KFAISpawnSquad) */
 var() ESquadType LargestSquadType;
 /** Scales up (or reduces) base desireability to weight certain volumes differently if needed  */
@@ -459,6 +448,8 @@ var int VolumeChosenCount;
 // (cpptext)
 // (cpptext)
 // (cpptext)
+// (cpptext)
+// (cpptext)
 
 /*********************************************************************************************
  Native SpawnVolume rating functions
@@ -466,7 +457,10 @@ var int VolumeChosenCount;
 /** Attempts to spawn the pawn classes in the SpawnList array. bAllOrNothing is to be determined */
 native final function int SpawnWave( out array< class<KFPawn_Monster> > SpawnList, bool bAllOrNothing );
 /** Attempts to find a place to teleport the pawn class within this spawn volume */
-native final function vector FindTeleportLocation( class<KFPawn_Monster> TeleportMonsterClass );
+native final function vector FindTeleportLocation( class<KFPawn_Monster> TeleportMonsterClass, optional int ForcedMarkerIdx=0 );
+/** Attempts to find an open marker to spawn the pawn class within this spawn volume */
+native final function vector FindSpawnLocation( class<KFPawn> SpawnPawnClass );
+
 /** Get average visibility/distance rating by checking all human players */
 native function float ScoreLocation(Controller ControllerToScoreAgainst, Float BestRating, Float BestPossibleRating);
 /** Get distance based score from one human player */
@@ -498,7 +492,7 @@ event UnTouch(Actor Other)
  *  complete override in script.
  *
  *  Returning -1 means this volume is not to be considered at all, otherwise the volume's overall rating is returned */
-function float RateVolume( ESquadType DesiredSquadType, Controller RateController , float BestRating, optional bool bTeleporting, optional float MinDistSquared )
+function float RateVolume( ESquadType DesiredSquadType, Controller RateController, Controller OtherController, float BestRating, optional bool bTeleporting, optional float MinDistSquared )
 {
 	local float UsageRating, LocationRating, FinalRating;
 	local String DebugText;
@@ -509,6 +503,11 @@ function float RateVolume( ESquadType DesiredSquadType, Controller RateControlle
 
 	// This volume is disabled
 	if( SpawnMarkerInfoList.Length == 0 )
+	{
+		return -1.f;
+	}
+	// This volume can't be used by players
+	if( bNoPlayers && OtherController != none && OtherController.bIsPlayer )
 	{
 		return -1.f;
 	}

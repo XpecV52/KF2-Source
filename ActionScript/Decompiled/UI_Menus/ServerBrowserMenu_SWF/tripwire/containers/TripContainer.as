@@ -10,6 +10,7 @@ package tripwire.containers
     import scaleform.clik.constants.NavigationCode;
     import scaleform.clik.core.UIComponent;
     import scaleform.clik.events.InputEvent;
+    import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.Extensions;
     import scaleform.gfx.FocusManager;
@@ -24,6 +25,8 @@ package tripwire.containers
         public var currentElement:UIComponent;
         
         public var defaultFirstElement:UIComponent;
+        
+        public var defaultNumPrompts:int = 1;
         
         protected var _bOpen:Boolean = false;
         
@@ -59,6 +62,8 @@ package tripwire.containers
         
         public var bSelected:Boolean = false;
         
+        public var sectionHeader:SectionHeaderContainer;
+        
         public function TripContainer()
         {
             super();
@@ -76,6 +81,14 @@ package tripwire.containers
                 return MenuManager.manager.bUsingGamepad;
             }
             return false;
+        }
+        
+        public function set containerDisplayPrompts(param1:int) : void
+        {
+            if(MenuManager.manager != null && MenuManager.manager.numPrompts != param1)
+            {
+                MenuManager.manager.numPrompts = param1;
+            }
         }
         
         override protected function addedToStage(param1:Event) : void
@@ -115,7 +128,7 @@ package tripwire.containers
                         "onComplete":this.openAnimation
                     });
                 }
-                else if(!isNaN(this.ANIM_START_X))
+                else
                 {
                     this.alpha = 0;
                     this.openAnimation();
@@ -135,12 +148,17 @@ package tripwire.containers
             {
                 stage.addEventListener(InputEvent.INPUT,this.handleInput,false,0,true);
             }
-            if(this.bManagerUsingGamepad && this.currentElement)
+            if(this.bManagerUsingGamepad && this.currentElement && !MenuManager.manager.bPopUpOpen)
             {
                 this.currentElement.tabEnabled = true;
                 this.currentElement.tabChildren = true;
-                FocusManager.setFocus(this.currentElement);
+                FocusHandler.getInstance().setFocus(this.currentElement);
             }
+            if(this.sectionHeader != null)
+            {
+                this.sectionHeader.controllerIconVisible = !this.bSelected;
+            }
+            this.containerDisplayPrompts = this.defaultNumPrompts;
         }
         
         public function closeContainer() : void
@@ -173,11 +191,17 @@ package tripwire.containers
             {
                 this.currentElement.focused = 0;
             }
+            if(this.sectionHeader != null && this.bOpen)
+            {
+                this.sectionHeader.controllerIconVisible = !this.bSelected;
+            }
         }
         
         public function focusGroupIn() : void
         {
+            var _loc1_:* = visible;
             this.selectContainer();
+            visible = _loc1_;
         }
         
         public function focusGroupOut() : void
@@ -195,10 +219,11 @@ package tripwire.containers
             }
         }
         
-        function onFocusIn(param1:FocusEvent) : *
+        public function onFocusIn(param1:FocusEvent) : *
         {
             if(this.bManagerUsingGamepad)
             {
+                trace("Bryan: " + this + " onFocusIn:: currentElement: " + this.currentElement + " target: " + param1.target);
                 this.currentElement = param1.target as UIComponent;
             }
         }

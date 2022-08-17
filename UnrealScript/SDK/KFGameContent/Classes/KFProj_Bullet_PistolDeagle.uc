@@ -8,7 +8,7 @@
 // Jeff Robinson
 //=============================================================================
 
-class KFProj_Bullet_PistolDeagle extends KFProj_Bullet_Gunslinger
+class KFProj_Bullet_PistolDeagle extends KFProj_Bullet_RackEmUp
 	hidedropdown;
 
 defaultproperties

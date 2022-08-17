@@ -157,6 +157,8 @@ function UpdateWeaponList()
         goto J0xC9;
     }
     SetObject("weaponArray", DataProvider);
+    KFPC = KFPlayerController(Outer.GetPC());
+    KFPC.SaveConfig();
 }
 
 function UpdateWeaponVariants(class<KFWeaponDefinition> WeaponDef, out GFxObject MeshObject)
@@ -198,6 +200,7 @@ function UpdateCharacterList()
     local byte I, ItemIndex;
     local GFxObject DataProvider, SlotObject;
     local string TexturePath;
+    local KFPlayerController KFPC;
 
     ItemIndex = 0;
     DataProvider = Outer.CreateArray();
@@ -225,6 +228,8 @@ function UpdateCharacterList()
         goto J0x41;
     }
     SetObject("characterArray", DataProvider);
+    KFPC = KFPlayerController(Outer.GetPC());
+    KFPC.SaveConfig();
 }
 
 function UpdateGear()
@@ -370,6 +375,7 @@ function SetGearButtons(byte MeshIndex, byte SkinIndex, string MeshKey, string S
 {
     local string SectionPath, CurrentMesh, SkinName, MeshName;
     local GFxObject DataObject;
+    local KFPlayerController KFPC;
 
     DataObject = Outer.CreateObject("Object");
     if(MeshIndex == 255)
@@ -388,6 +394,8 @@ function SetGearButtons(byte MeshIndex, byte SkinIndex, string MeshKey, string S
     DataObject.SetInt(sectionFunctionName $ "Index", MeshIndex);
     DataObject.SetInt(sectionFunctionName $ "SkinIndex", SkinIndex);
     SetObject(sectionFunctionName, DataObject);
+    KFPC = KFPlayerController(Outer.GetPC());
+    KFPC.SaveConfig();
 }
 
 function SetAttachmentButtons(string AttachmentMeshKey, string sectionFunctionName)
@@ -395,6 +403,7 @@ function SetAttachmentButtons(string AttachmentMeshKey, string sectionFunctionNa
     local string CurrentMesh, FinishedString;
     local GFxObject DataObject;
     local byte I, AttachmentIndex;
+    local KFPlayerController KFPC;
 
     DataObject = Outer.CreateObject("Object");
     I = 0;
@@ -419,6 +428,8 @@ function SetAttachmentButtons(string AttachmentMeshKey, string sectionFunctionNa
     }
     DataObject.SetString(sectionFunctionName, FinishedString);
     SetObject(sectionFunctionName, DataObject);
+    KFPC = KFPlayerController(Outer.GetPC());
+    KFPC.SaveConfig();
 }
 
 event OnClose()
@@ -427,7 +438,7 @@ event OnClose()
 
     super.OnClose();
     Outer.GetGameViewportClient().__HandleInputAxis__Delegate = None;
-    if(Class'WorldInfo'.static.IsMenuLevel())
+    if(Class'WorldInfo'.static.IsMenuLevel() && !Class'WorldInfo'.static.IsConsoleBuild(8))
     {
         Manager.ManagerObject.SetBool("backgroundVisible", true);
     }

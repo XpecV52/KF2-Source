@@ -70,42 +70,39 @@ function RecieveTopMaps(const out TopVotes VoteObject)
 {
 	//For array of objects based on the index pass for map at position.
 	local GFxObject MapList;
-	local array<string> TopMapList;
 	local KFGameReplicationInfo KFGRI;
 
 	KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
 
 	if(KFGRI != none && KFGRI.VoteCollector != none)
 	{
-		TopMapList = KFGRI.VoteCollector.MapList;
-
 		//gfx
 		MapList = CreateArray();
-		if(VoteObject.Map1Index != 255 && VoteObject.Map1Votes > 0)
+		if(VoteObject.Map1Name != "" && VoteObject.Map1Votes > 0)
 		{
-			MapList.SetElementObject(0, IndexToTopMapObject(TopMapList, VoteObject.Map1Index, VoteObject.Map1Votes));	
+			MapList.SetElementObject(0, IndexToTopMapObject(VoteObject.Map1Name, VoteObject.Map1Votes));	
 		}
-		if(VoteObject.Map2Index != 255 && VoteObject.Map2Votes > 0)
+		if(VoteObject.Map2Name != "" && VoteObject.Map2Votes > 0)
 		{
-			MapList.SetElementObject(1, IndexToTopMapObject(TopMapList, VoteObject.Map2Index, VoteObject.Map2Votes));	
+			MapList.SetElementObject(1, IndexToTopMapObject(VoteObject.Map2Name, VoteObject.Map2Votes));	
 		}
-		if(VoteObject.Map3Index != 255 && VoteObject.Map3Votes > 0)
+		if(VoteObject.Map3Name != "" && VoteObject.Map3Votes > 0)
 		{
-			MapList.SetElementObject(2, IndexToTopMapObject(TopMapList, VoteObject.Map3Index, VoteObject.Map3Votes));	
+			MapList.SetElementObject(2, IndexToTopMapObject(VoteObject.Map3Name, VoteObject.Map3Votes));	
 		}		
 	}
 
 	SetObject("currentVotes", MapList);
 }
 
-function GFxObject IndexToTopMapObject(const out array<String> TopMapList, int MapIndex, int VoteCount)
+function GFxObject IndexToTopMapObject(string MapName, int VoteCount)
 {
 	local GFxObject MapObject;
 
 	MapObject = CreateObject("Object");
-	MapObject.SetString("label", TopMapList[MapIndex]);
+	MapObject.SetString("label", MapName);
 	MapObject.SetString("secondaryText", String(VoteCount));
-	MapObject.SetString("mapSource", GetMapSource(TopMapList[MapIndex]));
+	MapObject.SetString("mapSource", GetMapSource(MapName));
 		
 	return MapObject;
 }

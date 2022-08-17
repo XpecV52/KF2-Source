@@ -29,7 +29,6 @@ defaultproperties
       ObjectArchetype=SpriteComponent'Engine.Default__SpriteComponent'
    End Object
    Components(1)=Sprite
-   CollisionType=COLLIDE_CustomDefault
    Name="Default__RadialBlurActor"
    ObjectArchetype=Actor'Engine.Default__Actor'
 }

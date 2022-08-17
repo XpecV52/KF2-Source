@@ -225,7 +225,6 @@ defaultproperties
     MaxSpareAmmo=20
     InitialSpareMags=2
     AmmoPickupScale[1]=0.2
-    MeleeImpactCamShake=KFCameraShake'FX_CameraShake_Arch.Melee.Eviscerator'
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */
     MeleeAttackAnims=/* Array type was not detected. */
@@ -237,6 +236,7 @@ defaultproperties
     begin object name=MeleeHelper class=KFMeleeHelperWeapon
         WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Bladed_melee_impact'
         MaxHitRange=180
+        MeleeImpactCamShake=KFCameraShake'FX_CameraShake_Arch.Melee.Eviscerator'
     object end
     // Reference: KFMeleeHelperWeapon'Default__KFWeap_Eviscerator.MeleeHelper'
     MeleeAttackHelper=MeleeHelper

@@ -49,16 +49,15 @@ var(NumPlayers) NumPlayerMods NumPlayers_AIHiddenSpeed;
 /** Time until a weapon will respawn after being picked up depending on the number of players*/
 var(NumPlayers) NumPlayerMods NumPlayers_WeaponPickupRespawnTime;
 
-/** Time until a ammo will respawn after being picked up depending on the number of players*/
+/** Time until ammo will respawn after being picked up depending on the number of players*/
 var(NumPlayers) NumPlayerMods NumPlayers_AmmoPickupRespawnTime;
 
 struct DifficultySettings
 {
-	var() int TraderTime<ClampMin = 0.0>;
+	/** How long trader time is */
+    var() int TraderTime<ClampMin = 0.0>;
 	/** Multiplier for the total health of all zeds */
 	var() float GlobalHealthMod<ClampMin = 0.0>;
-	/** Multiplier for the damage a zed can deliver */
-	var() float AttackDamageMod<ClampMin = 0.0>;
 	/** Multiplier for the movement speed of a zed */
 	var() float MovementSpeedMod<ClampMin = 0.0>;
 	/** Multiplier for the number of zeds in a wave */
@@ -76,9 +75,11 @@ struct DifficultySettings
 	/** Modify the number of weapon pickups that will be active at once */
 	var() float ItemPickupsMod<ClampMin = 0.0 | ClampMax = 1.0>;
 
-	/** Modify the number of weapon pickups that will be active at once */
+	/** The chance that a zed will perform a weak attack at this difficulty level */
 	var() float WeakAttackChance<ClampMin = 0.0 | ClampMax = 1.0>;
+	/** The chance that a zed will perform a medium attack at this difficulty level */
 	var() float MediumAttackChance<ClampMin = 0.0 | ClampMax = 1.0>;
+	/** The chance that a zed will perform a hard attack at this difficulty level */
 	var() float HardAttackChance<ClampMin = 0.0 | ClampMax = 1.0>;
 
 	/** Modify the damage dealt by self inflicted radial damage (Ex. Grenade) */
@@ -88,7 +89,6 @@ struct DifficultySettings
 	{
 		TraderTime=60
 		GlobalHealthMod=1.f
-		AttackDamageMod=1.f
 		MovementSpeedMod=1.f
 		WaveCountMod=1.f
 		DoshKillMod=1.f
@@ -105,9 +105,13 @@ struct DifficultySettings
 	}
 };
 
+/** DifficultySettings struct for Normal difficulty level */
 var(Normal) DifficultySettings Normal;
+/** DifficultySettings struct for Hard difficulty level */
 var(Hard) DifficultySettings Hard;
+/** DifficultySettings struct for Suicidal difficulty level */
 var(Suicidal) DifficultySettings Suicidal;
+/** DifficultySettings struct for HellOnEarth difficulty level */
 var(HellOnEarth) DifficultySettings HellOnEarth;
 
 /** A cached version of the DifficultySettings we are currently using */
@@ -137,9 +141,10 @@ function GetAIHealthModifier(const out KFCharacterInfo_Monster InMonsterInfo, fl
 	if ( InMonsterInfo != none )
 	{
 		// Global mod * character mod
-	    HealthMod = GetGlobalHealthMod() * GetCharHealthModDifficulty(InMonsterInfo, GameDifficulty);
+    	HealthMod = GetGlobalHealthMod() * GetCharHealthModDifficulty(InMonsterInfo, GameDifficulty);
 		HeadHealthMod = GetGlobalHealthMod() * GetCharHeadHealthModDifficulty(InMonsterInfo, GameDifficulty);
 
+		// invalid scaling?
 		if ( HealthMod <= 0 )
 		{
 			HealthMod = 1.f;
@@ -156,10 +161,31 @@ function GetAIHealthModifier(const out KFCharacterInfo_Monster InMonsterInfo, fl
 	}
 }
 
-/** Scale health by the number of players */
+/** Scales the health this Player (versus mode) Zed has by number of human players */
+function GetVersusHealthModifier(const out KFCharacterInfo_Monster InMonsterInfo, byte NumLivingPlayers, out float HealthMod, out float HeadHealthMod)
+{
+	if ( InMonsterInfo != none )
+	{
+		HealthMod = GetGlobalHealthMod();
+		HeadHealthMod = GetGlobalHealthMod();
+
+	    // Add another multiplier based on the number of players and the zeds character info scalers
+		HealthMod *= 1.0 + (GetNumPlayersHealthMod( NumLivingPlayers, InMonsterInfo.NumPlayersScale_BodyHealth_Versus ));
+		HeadHealthMod *= 1.0 + (GetNumPlayersHealthMod( NumLivingPlayers, InMonsterInfo.NumPlayersScale_HeadHealth_Versus ));
+	}
+}
+
+/** Scale health by the number of players.  This is applied as a bonus (zero is valid) for each player behind one */
 function float GetNumPlayersHealthMod( byte NumLivingPlayers, float HealthScale )
 {
 	local float StartingLerp, LerpRate;
+
+	// Early out if we have no living players
+	if( NumLivingPlayers <= 0 )
+	{
+		return 0;
+	}
+
 	/** Scale the body health based on the number of players */
 	if ( NumLivingPlayers <= `KF_MAX_PLAYERS )
 	{
@@ -187,7 +213,7 @@ function float GetCharHealthModDifficulty( const out KFCharacterInfo_Monster InM
 		return InMonsterInfo.HellOnEarth.HealthMod;
 	}
 	else if ( GameDifficulty >= `DIFFICULTY_SUICIDAL )
-	{	
+	{
 		return InMonsterInfo.Suicidal.HealthMod;
 	}
 	else if ( GameDifficulty >= `DIFFICULTY_HARD )
@@ -249,7 +275,7 @@ function float GetCharSprintWhenDamagedChanceByDifficulty( const out KFCharacter
 	return InMonsterInfo.Normal.DamagedSprintChance;
 }
 
-/**	Scales the damage this Zed deals by the difficulty level */
+/**	Get the trader time by the difficulty level */
 function float GetTraderTimeByDifficulty()
 {
 	return CurrentSettings.TraderTime;
@@ -300,30 +326,19 @@ function float GetAIDamageModifier(const out KFCharacterInfo_Monster InMonsterIn
     	}
 	}
 
-	//`log("DamageMod: "$CurrentSettings.AttackDamageMod * PerZedDamageMod * SoloPlayDamageMod$" Difficulty DamageMod = "$CurrentSettings.AttackDamageMod$" Per Zed Difficulty DamageMod "$PerZedDamageMod$" bSoloPlay = "$bSoloPlay$" SoloPlayDamageMod = "$SoloPlayDamageMod/*, bLogAIDefaults*/);
+	//`log("DamageMod: "$PerZedDamageMod * SoloPlayDamageMod$" Per Zed Difficulty DamageMod "$PerZedDamageMod$" bSoloPlay = "$bSoloPlay$" SoloPlayDamageMod = "$SoloPlayDamageMod/*, bLogAIDefaults*/);
 
-	return CurrentSettings.AttackDamageMod * PerZedDamageMod * SoloPlayDamageMod;
+	return PerZedDamageMod * SoloPlayDamageMod;
 }
 
-/**	Scales the damage this Zed deals by the difficulty level without any per zed scaling */
-function float GetBaseAIDamageModifier()
+/** Gives the random range of AI speed modification */
+function float GetAIRandomSpeedMod()
 {
-	return CurrentSettings.AttackDamageMod;
+	// randomize by +/- 10%
+	return RandRange(0.9f, 1.1f);
 }
 
 /** Scales the movement speed of this Zed by the difficulty level */
-function float GetAdjustedAIGroundSpeedMod()
-{
-	local float SpeedModifier;
-
-	SpeedModifier = GetAIGroundSpeedMod();
-
-	// randomize by +/- 10%
-	SpeedModifier *= RandRange(0.9f, 1.1f);
-
-	return SpeedModifier;
-}
-
 function float GetAIGroundSpeedMod()
 {
 	return CurrentSettings.MovementSpeedMod;

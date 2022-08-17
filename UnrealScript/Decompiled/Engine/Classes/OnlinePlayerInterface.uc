@@ -151,7 +151,10 @@ function ClearReadFriendsCompleteDelegate(byte LocalUserNum, delegate<OnReadFrie
 
 function OnlineSubsystem.EOnlineEnumerationReadState GetFriendsList(byte LocalUserNum, out array<OnlineFriend> Friends, optional int Count, optional int StartingAt);
 
-function SetOnlineStatus(byte LocalUserNum, int StatusId, const out array<LocalizedStringSetting> LocalizedStringSettings, const out array<SettingsProperty> Properties);
+function SetOnlineStatus(byte LocalUserNum, string StatusString, optional bool PlayerActive)
+{
+    PlayerActive = true;
+}
 
 function bool ShowKeyboardUI(byte LocalUserNum, string TitleText, string DescriptionText, optional bool bIsPassword, optional bool bShouldValidate, optional string DefaultText, optional int MaxResultLength)
 {

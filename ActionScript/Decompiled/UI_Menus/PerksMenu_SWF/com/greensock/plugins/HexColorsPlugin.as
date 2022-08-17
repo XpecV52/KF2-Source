@@ -17,62 +17,62 @@ package com.greensock.plugins
             this._colors = [];
         }
         
-        override public function _onInitTween(param1:Object, param2:*, param3:TweenLite) : Boolean
+        override public function _onInitTween(target:Object, value:*, tween:TweenLite) : Boolean
         {
-            var _loc4_:* = null;
-            for(_loc4_ in param2)
+            var p:* = null;
+            for(p in value)
             {
-                this._initColor(param1,_loc4_,uint(param2[_loc4_]));
+                this._initColor(target,p,uint(value[p]));
             }
             return true;
         }
         
-        public function _initColor(param1:Object, param2:String, param3:uint) : void
+        public function _initColor(target:Object, p:String, end:uint) : void
         {
-            var _loc6_:uint = 0;
-            var _loc7_:uint = 0;
-            var _loc8_:uint = 0;
-            var _loc5_:uint;
-            var _loc4_:*;
-            if((_loc5_ = !(_loc4_ = typeof param1[param2] == "function") ? uint(param1[param2]) : uint(param1[param2.indexOf("set") || !("get" + param2.substr(3) in param1) ? param2 : "get" + param2.substr(3)]())) != param3)
+            var r:uint = 0;
+            var g:uint = 0;
+            var b:uint = 0;
+            var isFunc:* = typeof target[p] == "function";
+            var start:uint = !isFunc ? uint(target[p]) : uint(target[p.indexOf("set") || !("get" + p.substr(3) in target) ? p : "get" + p.substr(3)]());
+            if(start != end)
             {
-                _loc6_ = _loc5_ >> 16;
-                _loc7_ = _loc5_ >> 8 & 255;
-                _loc8_ = _loc5_ & 255;
-                this._colors[this._colors.length] = new ColorProp(param1,param2,_loc4_,_loc6_,(param3 >> 16) - _loc6_,_loc7_,(param3 >> 8 & 255) - _loc7_,_loc8_,(param3 & 255) - _loc8_);
-                _overwriteProps[_overwriteProps.length] = param2;
+                r = start >> 16;
+                g = start >> 8 & 255;
+                b = start & 255;
+                this._colors[this._colors.length] = new ColorProp(target,p,isFunc,r,(end >> 16) - r,g,(end >> 8 & 255) - g,b,(end & 255) - b);
+                _overwriteProps[_overwriteProps.length] = p;
             }
         }
         
-        override public function _kill(param1:Object) : Boolean
+        override public function _kill(lookup:Object) : Boolean
         {
-            var _loc2_:int = this._colors.length;
-            while(_loc2_--)
+            var i:int = this._colors.length;
+            while(i--)
             {
-                if(param1[this._colors[_loc2_].p] != null)
+                if(lookup[this._colors[i].p] != null)
                 {
-                    this._colors.splice(_loc2_,1);
+                    this._colors.splice(i,1);
                 }
             }
-            return super._kill(param1);
+            return super._kill(lookup);
         }
         
-        override public function setRatio(param1:Number) : void
+        override public function setRatio(v:Number) : void
         {
-            var _loc3_:ColorProp = null;
-            var _loc4_:Number = NaN;
-            var _loc2_:int = this._colors.length;
-            while(--_loc2_ > -1)
+            var clr:ColorProp = null;
+            var val:Number = NaN;
+            var i:int = this._colors.length;
+            while(--i > -1)
             {
-                _loc3_ = this._colors[_loc2_];
-                _loc4_ = _loc3_.rs + param1 * _loc3_.rc << 16 | _loc3_.gs + param1 * _loc3_.gc << 8 | _loc3_.bs + param1 * _loc3_.bc;
-                if(_loc3_.f)
+                clr = this._colors[i];
+                val = clr.rs + v * clr.rc << 16 | clr.gs + v * clr.gc << 8 | clr.bs + v * clr.bc;
+                if(clr.f)
                 {
-                    _loc3_.t[_loc3_.p](_loc4_);
+                    clr.t[clr.p](val);
                 }
                 else
                 {
-                    _loc3_.t[_loc3_.p] = _loc4_;
+                    clr.t[clr.p] = val;
                 }
             }
         }
@@ -101,17 +101,17 @@ class ColorProp
     
     public var bc:int;
     
-    function ColorProp(param1:Object, param2:String, param3:Boolean, param4:int, param5:int, param6:int, param7:int, param8:int, param9:int)
+    function ColorProp(t:Object, p:String, f:Boolean, rs:int, rc:int, gs:int, gc:int, bs:int, bc:int)
     {
         super();
-        this.t = param1;
-        this.p = param2;
-        this.f = param3;
-        this.rs = param4;
-        this.rc = param5;
-        this.gs = param6;
-        this.gc = param7;
-        this.bs = param8;
-        this.bc = param9;
+        this.t = t;
+        this.p = p;
+        this.f = f;
+        this.rs = rs;
+        this.rc = rc;
+        this.gs = gs;
+        this.gc = gc;
+        this.bs = bs;
+        this.bc = bc;
     }
 }

@@ -159,36 +159,39 @@ function UpdatePlayerData()
     local int I;
     local KFPlayerReplicationInfo KFPRI;
     local KFPlayerController KFPC;
+    local int PlayerIndex;
 
     KFPC = KFPlayerController(Outer.GetPC());
+    PlayerIndex = 0;
     DataProvider = Outer.CreateArray();
     I = 0;
-    J0x66:
+    J0x71:
 
     if(I < CurrentPlayerList.Length)
     {
         KFPRI = CurrentPlayerList[I];
-        TempData = Outer.CreateObject("Object");
-        TempData.SetString("playername", KFPRI.PlayerName);
-        TempData.SetInt("dosh", int(KFPRI.Score));
-        TempData.SetInt("assists", KFPRI.Assists);
-        TempData.SetInt("kills", KFPRI.Kills);
-        TempData.SetInt("ping", int(float(KFPRI.Ping) * 4));
-        TempData.SetInt("perkLevel", KFPRI.GetActivePerkLevel());
-        if(KFPRI.CurrentPerkClass != none)
+        if(KFPRI.GetTeamNum() != 255)
         {
-            TempData.SetString("perkName", KFPRI.CurrentPerkClass.default.PerkName);
-            TempData.SetString("iconPath", "img://" $ KFPRI.CurrentPerkClass.static.GetPerkIconPath());
+            TempData = Outer.CreateObject("Object");
+            TempData.SetString("playername", KFPRI.PlayerName);
+            TempData.SetInt("dosh", int(KFPRI.Score));
+            TempData.SetInt("assists", KFPRI.Assists);
+            TempData.SetInt("kills", KFPRI.Kills);
+            TempData.SetInt("ping", int(float(KFPRI.Ping) * 4));
+            TempData.SetInt("perkLevel", KFPRI.GetActivePerkLevel());
+            if(KFPRI.CurrentPerkClass != none)
+            {
+                TempData.SetString("perkName", KFPRI.CurrentPerkClass.default.PerkName);
+                TempData.SetString("iconPath", "img://" $ KFPRI.CurrentPerkClass.static.GetPerkIconPath());
+            }
+            TempData.SetString("avatar", KFPC.GetSteamAvatar(KFPRI.UniqueId));
+            TempData.SetFloat("health", float(KFPRI.PlayerHealth));
+            TempData.SetFloat("healthPercent", ByteToFloat(KFPRI.PlayerHealthPercent) * float(100));
+            DataProvider.SetElementObject(PlayerIndex, TempData);
+            ++ PlayerIndex;
         }
-        TempData.SetString("avatar", KFPC.GetSteamAvatar(KFPRI.UniqueId));
-        TempData.SetFloat("health", float(KFPRI.PlayerHealth));
-        if(float(KFPRI.PlayerHealthMax) != float(0))
-        {
-            TempData.SetFloat("healthPercent", (float(KFPRI.PlayerHealth) / float(KFPRI.PlayerHealthMax)) * float(100));
-        }
-        DataProvider.SetElementObject(I, TempData);
         ++ I;
-        goto J0x66;
+        goto J0x71;
     }
     SetObject("playerData", DataProvider);
 }

@@ -63,7 +63,6 @@ class KFDT_Fire_Ground_CaulkNBurn extends KFDT_Fire_Ground
 
 
 
-
 #linenumber 14;
 
 defaultproperties

@@ -16,4 +16,5 @@ defaultproperties
 	KDamageImpulse=400
 	KDeathUpKick=120
 	KDeathVel=500
+	bExtraMomentumZ=true
 }

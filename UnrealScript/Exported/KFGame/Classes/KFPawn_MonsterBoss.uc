@@ -369,8 +369,6 @@ class KFPawn_MonsterBoss extends KFPawn_Monster
 
 
 
-
-
 	
 
 
@@ -422,6 +420,7 @@ class KFPawn_MonsterBoss extends KFPawn_Monster
 
 
 	
+
 
 
 
@@ -663,6 +662,12 @@ function bool Died( Controller Killer, class<DamageType> DamageType, vector HitL
 	return result;
 }
 
+/** Used by subclasses to determine if the boss icon can be rendered */
+function bool ShouldDrawBossIcon()
+{
+	return false;
+}
+
 /** Play music for this boss (overridden for each boss) */
 function PlayBossMusic();
 
@@ -672,7 +677,7 @@ simulated function PlayHeadAsplode();
 
 function PlayMonologue( byte MonologueType )
 {
-	//`SafeDialogManager.PlayBossMonologue( self, MonologueType );
+	//`DialogManager.PlayBossMonologue( self, MonologueType );
 }
 
 function PlayGrabDialog()
@@ -721,10 +726,6 @@ defaultproperties
    ThirdPersonHeadMeshComponent=ThirdPersonHead0
    bWeakZedGrab=False
    Begin Object Class=KFPawnAfflictions Name=Afflictions_0 Archetype=KFPawnAfflictions'KFGame.Default__KFPawn_Monster:Afflictions_0'
-      StackingAffl(0)=(Cooldown=5.000000,DissipationRate=0.500000)
-      StackingAffl(1)=(Threshhold=10.000000,Cooldown=5.000000)
-      StackingAffl(2)=(Threshhold=3.000000,Cooldown=5.000000)
-      StackingAffl(3)=(Threshhold=3.000000,Cooldown=5.000000)
       FireFullyCharredDuration=2.500000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
@@ -754,32 +755,41 @@ defaultproperties
       SpecialMoveClasses(7)=Class'KFGame.KFSM_RagdollKnockdown'
       SpecialMoveClasses(8)=Class'KFGame.KFSM_DeathAnim'
       SpecialMoveClasses(9)=Class'KFGame.KFSM_Stunned'
-      SpecialMoveClasses(10)=None
-      SpecialMoveClasses(11)=Class'KFGame.KFSM_Zed_Taunt'
-      SpecialMoveClasses(12)=Class'KFGame.KFSM_Zed_WalkingTaunt'
-      SpecialMoveClasses(13)=None
-      SpecialMoveClasses(14)=None
+      SpecialMoveClasses(10)=Class'KFGame.KFSM_Frozen'
+      SpecialMoveClasses(11)=None
+      SpecialMoveClasses(12)=None
+      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_Taunt'
+      SpecialMoveClasses(14)=Class'KFGame.KFSM_Zed_WalkingTaunt'
       SpecialMoveClasses(15)=None
       SpecialMoveClasses(16)=None
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
       SpecialMoveClasses(19)=None
-      SpecialMoveClasses(20)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(21)=Class'KFGame.KFSM_HansGrappleVictim'
-      SpecialMoveClasses(22)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(20)=None
+      SpecialMoveClasses(21)=None
+      SpecialMoveClasses(22)=None
+      SpecialMoveClasses(23)=None
+      SpecialMoveClasses(24)=None
+      SpecialMoveClasses(25)=None
+      SpecialMoveClasses(26)=None
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(30)=None
+      SpecialMoveClasses(31)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
    SpecialMoveHandler=KFSpecialMoveHandler'KFGame.Default__KFPawn_MonsterBoss:SpecialMoveHandler_0'
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent_1 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:AmbientAkSoundComponent_1'
-      BoneName="Spine1"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       Name="AmbientAkSoundComponent_1"
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:AmbientAkSoundComponent_1'
    End Object
    AmbientAkComponent=AmbientAkSoundComponent_1
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent_0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:AmbientAkSoundComponent_0'
-      BoneName="RW_Weapon"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True
       Name="AmbientAkSoundComponent_0"
@@ -792,7 +802,7 @@ defaultproperties
    End Object
    WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'KFGame.Default__KFPawn_MonsterBoss:WeaponAmbientEchoHandler_0'
    Begin Object Class=AkComponent Name=FootstepAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_Monster:FootstepAkSoundComponent'
-      BoneName="Root"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True
       Name="FootstepAkSoundComponent"
@@ -800,7 +810,7 @@ defaultproperties
    End Object
    FootstepAkComponent=FootstepAkSoundComponent
    Begin Object Class=AkComponent Name=DialogAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_Monster:DialogAkSoundComponent'
-      BoneName="head"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       Name="DialogAkSoundComponent"
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:DialogAkSoundComponent'

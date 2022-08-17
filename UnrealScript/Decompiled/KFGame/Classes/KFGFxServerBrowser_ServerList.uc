@@ -173,7 +173,7 @@ function RefreshServerList(int InPlayerIndex)
 function BuildServerFilters(KFGFxServerBrowser_Filters Filters, OnlineGameSearch Search)
 {
     local string GametagSearch, MapName;
-    local int Difficulty, Length;
+    local int Mode, Difficulty, Length;
 
     GameInterface.ClearServerFilters(Search);
     GameInterface.AddServerFilter(Search, "version_match", string(Class'KFGameEngine'.static.GetKFGameVersion()));
@@ -189,6 +189,11 @@ function BuildServerFilters(KFGFxServerBrowser_Filters Filters, OnlineGameSearch
     GameInterface.TestAddBoolGametagFilter(GametagSearch, Filters.bInProgress, 'bInProgress', 1);
     GameInterface.TestAddBoolGametagFilter(GametagSearch, Filters.bInLobby, 'bInLobby', 1);
     GameInterface.TestAddBoolGametagFilter(GametagSearch, Filters.bNoPassword, 'bRequiresPassword', 0);
+    Mode = Filters.SavedGameModeIndex;
+    if((Mode >= 0) && Mode < 255)
+    {
+        GameInterface.AddGametagFilter(GametagSearch, 'Mode', string(Mode));
+    }
     Difficulty = Filters.GetSelectedDifficulty();
     if(Difficulty >= 0)
     {
@@ -549,7 +554,7 @@ function UpdateListDataProvider()
     local GFxObject TempObj;
     local KFOnlineGameSearch LatestGameSearch;
     local int Ping;
-    local KFOnlineGameSettings TempOnlingGamesSettings;
+    local KFOnlineGameSettings TempOnlineGamesSettings;
 
     LatestGameSearch = KFOnlineGameSearch(SearchDataStore.GetActiveGameSearch());
     if((LatestGameSearch != none) && DataProvider != none)
@@ -564,30 +569,30 @@ function UpdateListDataProvider()
                 if(NewServerCount > 10)
                 {
                     ServerMenu.Manager.TimerHelper.SetTimer(0.01, false, 'UpdateListDataProvider', self);
-                    goto J0x921;
+                    goto J0x940;
                 }
-                TempOnlingGamesSettings = KFOnlineGameSettings(LatestGameSearch.Results[I].GameSettings);
+                TempOnlineGamesSettings = KFOnlineGameSettings(LatestGameSearch.Results[I].GameSettings);
                 TempObj = Outer.CreateObject("Object");
-                TempObj.SetString("serverName", TempOnlingGamesSettings.OwningPlayerName);
-                TempObj.SetFloat("playerCount", float((TempOnlingGamesSettings.NumPublicConnections - TempOnlingGamesSettings.NumOpenPublicConnections) - TempOnlingGamesSettings.NumSpectators));
-                TempObj.SetFloat("maxPlayerCount", float(TempOnlingGamesSettings.NumPublicConnections));
-                TempObj.SetFloat("waveCount", float(TempOnlingGamesSettings.CurrentWave));
-                TempObj.SetFloat("maxWaveCount", float(TempOnlingGamesSettings.NumWaves));
-                TempObj.SetFloat("zedCount", float(TempOnlingGamesSettings.ZedCount));
-                TempObj.SetFloat("maxZedCount", float(TempOnlingGamesSettings.MaxZedCount));
-                TempObj.SetBool("vacEnable", TempOnlingGamesSettings.bAntiCheatProtected);
-                TempObj.SetBool("mutators", TempOnlingGamesSettings.bMutators);
-                TempObj.SetBool("bRanked", TempOnlingGamesSettings.bUsesStats);
-                TempObj.SetBool("bCustom", TempOnlingGamesSettings.bCustom);
-                Ping = TempOnlingGamesSettings.PingInMs;
+                TempObj.SetString("serverName", TempOnlineGamesSettings.OwningPlayerName);
+                TempObj.SetFloat("playerCount", float((TempOnlineGamesSettings.NumPublicConnections - TempOnlineGamesSettings.NumOpenPublicConnections) - TempOnlineGamesSettings.NumSpectators));
+                TempObj.SetFloat("maxPlayerCount", float(TempOnlineGamesSettings.NumPublicConnections));
+                TempObj.SetFloat("waveCount", float(TempOnlineGamesSettings.CurrentWave));
+                TempObj.SetFloat("maxWaveCount", float(TempOnlineGamesSettings.NumWaves));
+                TempObj.SetFloat("zedCount", float(TempOnlineGamesSettings.ZedCount));
+                TempObj.SetFloat("maxZedCount", float(TempOnlineGamesSettings.MaxZedCount));
+                TempObj.SetBool("vacEnable", TempOnlineGamesSettings.bAntiCheatProtected);
+                TempObj.SetBool("mutators", TempOnlineGamesSettings.bMutators);
+                TempObj.SetBool("bRanked", TempOnlineGamesSettings.bUsesStats);
+                TempObj.SetBool("bCustom", TempOnlineGamesSettings.bCustom);
+                Ping = TempOnlineGamesSettings.PingInMs;
                 TempObj.SetString("ping", ((Ping < 0) ? "-" : string(Ping)));
-                TempObj.SetString("difficulty", Class'KFCommon_LocalizedStrings'.static.GetDifficultyString(float(TempOnlingGamesSettings.Difficulty)));
-                TempObj.SetString("mode", TempOnlingGamesSettings.Mode);
-                TempObj.SetString("map", TempOnlingGamesSettings.MapName);
-                TempObj.SetBool("locked", TempOnlingGamesSettings.bRequiresPassword);
-                TempObj.SetString("gameStatus", string(TempOnlingGamesSettings.GameState));
+                TempObj.SetString("difficulty", Class'KFCommon_LocalizedStrings'.static.GetDifficultyString(float(TempOnlineGamesSettings.Difficulty)));
+                TempObj.SetString("mode", Class'KFCommon_LocalizedStrings'.static.GetGameModeString(TempOnlineGamesSettings.Mode));
+                TempObj.SetString("map", TempOnlineGamesSettings.MapName);
+                TempObj.SetBool("locked", TempOnlineGamesSettings.bRequiresPassword);
+                TempObj.SetString("gameStatus", string(TempOnlineGamesSettings.GameState));
                 GFxServerObjects.AddItem(TempObj;
-                TempOnlingGamesSettings.GfxID = GFxServerObjects.Length - 1;
+                TempOnlineGamesSettings.GfxID = GFxServerObjects.Length - 1;
                 ++ NewServerCount;
             }
             if(LatestGameSearch.Results[I].GameSettings.ElementIdx != I)
@@ -598,7 +603,7 @@ function UpdateListDataProvider()
             ++ I;
             goto J0x5D;
         }
-        J0x921:
+        J0x940:
 
         SetObject("dataProvider", DataProvider);
     }

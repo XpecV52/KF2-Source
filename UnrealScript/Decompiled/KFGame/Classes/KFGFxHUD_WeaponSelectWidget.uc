@@ -8,10 +8,7 @@
 class KFGFxHUD_WeaponSelectWidget extends GFxObject within GFxMoviePlayer;
 
 const MAX_WEAPON_GROUPS = 4;
-const KEYBOARD_STATE = "keyboard";
-const CONTROLLER_STATE = "controller";
 
-var string CurrentState;
 var bool bChangingWeapons;
 var const localized string PrimaryString;
 var const localized string EquiptmentString;
@@ -123,15 +120,6 @@ function UpdateIndex()
     bChangingWeapons = false;
 }
 
-function SetState(string StrState)
-{
-    if(CurrentState != StrState)
-    {
-        CurrentState = StrState;
-        ActionScriptVoid("setState");
-    }
-}
-
 function Hide()
 {
     SetWeaponSwitchStayOpen(false);
@@ -152,17 +140,6 @@ function SetWeaponCategories()
 
 function SendWeaponIndex(int GroupIndex, int SelectedIndex)
 {
-    local bool bIsUsingGamepad;
-
-    bIsUsingGamepad = Class'KFPlayerInput'.static.GetUsingGamepad(Outer.GetPC());
-    if(bIsUsingGamepad)
-    {
-        SetState("controller");        
-    }
-    else
-    {
-        SetState("keyboard");
-    }
     ActionScriptVoid("setSelectedIndex");
 }
 

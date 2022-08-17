@@ -19,17 +19,8 @@ class KFCharacterInfo_Human extends KFCharacterInfoBase
 
 var() const int UnlockAssetID;
 
-var(General) Texture DefaultHeadPortrait;
-var(General) array<Texture> DefaultTeamHeadPortrait;
-
-/** Matches the FamilyID in the CustomCharData */
-var(General) string FamilyID;
-
-/** Faction that this family belongs to. */
-var(General) string Faction;
-
 /** Whether these are female characters */
-var(General) bool bIsFemale;
+var() bool bIsFemale;
 
 /************************************************************************/
 /*  3P Mesh Info							                            */
@@ -66,6 +57,8 @@ struct native AttachmentOverrideList
 	var() bool bFace;	
 	var() bool bEyes;	
 	var() bool bJaw;
+	var() bool bArmband;
+	var() bool bBackpack;
 
 	/** List of cosmetic indices that this attachment will detach, if they are currently attached to a player */
 	var() array<byte> SpecialOverrideIds;
@@ -188,10 +181,10 @@ function SkeletalMesh GetFirstPersonArms()
 }
 
 /** Return the texture portrait stored for this character */
-function Texture GetCharPortrait(int TeamNum)
+/*function Texture GetCharPortrait(int TeamNum)
 {
 	return (TeamNum < DefaultTeamHeadPortrait.length) ? DefaultTeamHeadPortrait[TeamNum] : DefaultHeadPortrait;
-}
+}*/
 
 function int GetFavoriteWeaponIndexOf( Weapon W )
 {
@@ -219,10 +212,7 @@ simulated function SetCharacterFromArch( KFPawn KFP, optional KFPlayerReplicatio
 	 	return;
 	}
 
-	// Assign fallback portrait.
-	KFPRI.CharPortrait = GetCharPortrait( KFPRI.GetTeamNum() );
-
-	// a little hacky, relies on presumption that enum vals 0-3 are male, 4-8 are female
+   	// a little hacky, relies on presumption that enum vals 0-3 are male, 4-8 are female
 	if ( bIsFemale )
 	{
 		KFPRI.TTSSpeaker = ETTSSpeaker(Rand(4));
@@ -264,18 +254,18 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 	{
 		// Must clear all attachments before trying to attach new ones, 
 		// otherwise we might accidentally remove things we're not supposed to
-		for( AttachmentIdx=0; AttachmentIdx < 3; AttachmentIdx++ )
-		{
+	for( AttachmentIdx=0; AttachmentIdx < 3; AttachmentIdx++ )
+	{
 			// Clear any previous attachments from other characters
 			DetachAttachment(AttachmentIdx, KFP);
-		}
+	}
 
 		// Cosmetic attachment mesh & skin. Index of 255 implies don't use any attachments (default)
 		for( AttachmentIdx=0; AttachmentIdx < 3; AttachmentIdx++ )
-		{
+	{
 			CosmeticMeshIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx];
 			if ( CosmeticMeshIdx != 255)
-			{
+		{
 				bMaskHeadMesh = bMaskHeadMesh || CosmeticVariants[CosmeticMeshIdx].bMaskHeadMesh;
 
 				// Attach all saved attachments to the character
@@ -283,8 +273,8 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 					CosmeticMeshIdx,
 					KFPRI.RepCustomizationInfo.AttachmentSkinIndices[AttachmentIdx],
 					KFP, KFPRI);
-			}
 		}
+	}
 
 		// initial mask for new MIC (also see ResetHeadMaskParam())
 		if ( bMaskHeadMesh && KFP.HeadMIC != None )
@@ -424,13 +414,13 @@ private function SetHeadMeshAndSkin(
 function bool IsAttachmentAvailable(const out AttachmentVariants Attachment, Pawn PreviewPawn)
 {
 	if ( !class'KFUnlockManager'.static.GetAvailableAttachment(Attachment) )
-	{
+		{
 		LogInternal("Attachment" @ Attachment.MeshName @ "is not purchased.");
 		return FALSE;
-	}
+		}
 	else if ( Attachment.bIsSkeletalAttachment && Attachment.SocketName != '' 
 		&& PreviewPawn.Mesh.GetSocketByName(Attachment.SocketName) == None )
-	{
+		{
 		LogInternal("Attachment" @ Attachment.MeshName @ "is missing a required socket.");
 		return FALSE;
 	}
@@ -452,12 +442,12 @@ protected simulated function SetAttachmentSkinMaterial(
 			// Assign a skin to the attachment mesh as a material override
 			if ( NewSkinIndex < CurrentVariant.SkinVariations.length )
 			{
-				KFP.ThirdPersonAttachments[PawnAttachmentIndex].SetMaterial(
-					CurrentVariant.SkinMaterialID,
-					CurrentVariant.SkinVariations[NewSkinIndex].Skin);
-			}
-			else
-			{
+			KFP.ThirdPersonAttachments[PawnAttachmentIndex].SetMaterial(
+				CurrentVariant.SkinMaterialID,
+				CurrentVariant.SkinVariations[NewSkinIndex].Skin);
+		}
+		else
+		{
 				LogInternal("Out of bounds skin index for"@CurrentVariant.MeshName);
 				RemoveAttachmentMeshAndSkin(PawnAttachmentIndex, KFP);
 			}
@@ -527,7 +517,7 @@ private function SetAttachmentMeshAndSkin(
 				if ( KFP.IsLocallyControlled() )
 				{
 					if ( CharAttachmentSocketName != '' && KFP.Mesh.GetSocketByName(CharAttachmentSocketName) == None )
-					{
+			{
 						RemoveAttachmentMeshAndSkin(AttachmentSlotIndex, KFP, KFPRI);
 						return;
 					}
@@ -595,12 +585,12 @@ private function SetAttachmentMeshAndSkin(
 		KFP.ThirdPersonAttachmentBitMask = KFP.ThirdPersonAttachmentBitMask | (1 << AttachmentSlotIndex);
 		KFP.ThirdPersonAttachmentSocketNames[AttachmentSlotIndex] = CharAttachmentSocketName;
 
-		SetAttachmentSkinMaterial(
+			SetAttachmentSkinMaterial(
 			AttachmentSlotIndex,
-			CosmeticVariants[CurrentAttachmentMeshIndex],
-			CurrentAttachmentSkinIndex,
-			KFP);
-	}
+				CosmeticVariants[CurrentAttachmentMeshIndex],
+				CurrentAttachmentSkinIndex,
+				KFP);
+		}
 
 	// Treat `CLEARED_ATTACHMENT_INDEX as special value (for client detachment)
 	if( CurrentAttachmentMeshIndex == 255)
@@ -647,7 +637,7 @@ function DetachConflictingAttachments(byte NewAttachmentMeshIndex, KFPawn KFP, o
 
 			// Check inverse override
 			if( GetOverrideCase(NewAttachmentMeshIndex, CurrentAttachmentIdx) )
-			{
+	{
 				RemoveAttachmentMeshAndSkin(i, KFP, KFPRI);
 				continue;
 			}
@@ -676,6 +666,10 @@ function bool GetOverrideCase(byte AttachmentIndex1, byte AttachmentIndex2)
 			return CosmeticVariants[AttachmentIndex2].OverrideList.bEyes;
 		case 'Jaw_Attach':
 			return CosmeticVariants[AttachmentIndex2].OverrideList.bJaw;
+		case 'Armband_Attach':
+			return CosmeticVariants[AttachmentIndex2].OverrideList.bArmband;
+		case 'Backpack_Attach':
+			return CosmeticVariants[AttachmentIndex2].OverrideList.bBackpack; 
 	}
 
 	return false;
@@ -691,14 +685,14 @@ function int GetAttachmentSlotIndex(
 	KFPawn KFP)
 {
 	local int AttachmentIdx;
-	// Otherwise, return the next available attachment index
-	for( AttachmentIdx=0; AttachmentIdx < 3; AttachmentIdx++ )
-	{
-		if( (KFP.ThirdPersonAttachmentBitMask & (1 << AttachmentIdx) ) == 0 )
+		// Otherwise, return the next available attachment index
+		for( AttachmentIdx=0; AttachmentIdx < 3; AttachmentIdx++ )
 		{
-			return AttachmentIdx;
+			if( (KFP.ThirdPersonAttachmentBitMask & (1 << AttachmentIdx) ) == 0 )
+			{
+				return AttachmentIdx;
+			}
 		}
-	}
 }
 
 /** Called on owning client directly to remove a cosmetic attachment, or by

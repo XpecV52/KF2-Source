@@ -11,6 +11,7 @@ package
             super();
             this.__setProp_crosshairCheckBox_GameSettomgsContainerMC_test_0();
             this.__setProp_classicWeaponSelectCheckBox_GameSettomgsContainerMC_test_0();
+            this.__setProp_killTickerCheckBox_GameSettomgsContainerMC_test_0();
             this.__setProp_closeButton_GameSettomgsContainerMC_header_0();
         }
         
@@ -60,6 +61,32 @@ package
             try
             {
                 classicWeaponSelectCheckBox["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        
+        function __setProp_killTickerCheckBox_GameSettomgsContainerMC_test_0() : *
+        {
+            try
+            {
+                killTickerCheckBox["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            killTickerCheckBox.autoSize = "none";
+            killTickerCheckBox.data = "";
+            killTickerCheckBox.enabled = true;
+            killTickerCheckBox.enableInitCallback = false;
+            killTickerCheckBox.focusable = true;
+            killTickerCheckBox.label = "Music Vocals";
+            killTickerCheckBox.selected = false;
+            killTickerCheckBox.visible = true;
+            try
+            {
+                killTickerCheckBox["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

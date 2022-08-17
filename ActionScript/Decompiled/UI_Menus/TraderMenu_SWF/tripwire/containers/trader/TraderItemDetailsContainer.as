@@ -37,6 +37,10 @@ package tripwire.containers.trader
         
         private var _unfavoriteString:String;
         
+        private var cachedFavorite_X:Number;
+        
+        private var cachedItemData:Object;
+        
         public function TraderItemDetailsContainer()
         {
             this._iconColor = new Color();
@@ -63,10 +67,12 @@ package tripwire.containers.trader
             this.detailedStats.magTitle.text = param1.magTitle;
             this._favoriteString = param1.favorite;
             this._unfavoriteString = param1.unfavorite;
+            this.cachedFavorite_X = this.detailedStats.favoriteTextField.x;
         }
         
         public function set itemData(param1:Object) : void
         {
+            this.cachedItemData = param1;
             if(!visible)
             {
                 visible = true;
@@ -89,12 +95,14 @@ package tripwire.containers.trader
             if(MenuManager.manager && MenuManager.manager.bUsingGamepad)
             {
                 this.buySellButton.controllerIcon.visible = param1.bCanBuyOrSell;
-                this.detailedStats.favoriteControllerIcon.visible = param1.bCanBuyOrSell;
+                this.detailedStats.favoriteControllerIcon.visible = param1.bCanFavorite;
+                this.detailedStats.favoriteTextField.x = this.cachedFavorite_X - (this.detailedStats.favoriteControllerIcon.width + 5);
             }
             else
             {
                 this.buySellButton.controllerIcon.visible = false;
                 this.detailedStats.favoriteControllerIcon.visible = false;
+                this.detailedStats.favoriteTextField.x = this.cachedFavorite_X;
             }
             this.weaponLoader.source = !!param1.texturePath ? param1.texturePath : "";
             this.weaponLoader.visible = true;
@@ -145,8 +153,15 @@ package tripwire.containers.trader
         public function updateControllerVisibility() : *
         {
             this.buySellButton.controllerIcon.visible = bManagerUsingGamepad;
-            this.detailedStats.favoriteControllerIcon.visible = bManagerUsingGamepad;
-            this.detailedStats.favoriteTextField.visible = !bManagerUsingGamepad;
+            this.detailedStats.favoriteControllerIcon.visible = bManagerUsingGamepad && this.cachedItemData && this.cachedItemData.bCanFavorite;
+            if(bManagerUsingGamepad && this.cachedItemData && this.cachedItemData.bCanFavorite)
+            {
+                this.detailedStats.favoriteTextField.x = this.cachedFavorite_X - this.detailedStats.favoriteControllerIcon.width;
+            }
+            else
+            {
+                this.detailedStats.favoriteTextField.x = this.cachedFavorite_X;
+            }
         }
         
         public function favoriteItem() : *

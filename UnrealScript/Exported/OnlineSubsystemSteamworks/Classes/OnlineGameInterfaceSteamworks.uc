@@ -43,17 +43,6 @@ struct native ServerQueryToPlayerListResponseMapping
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
 /** Struct representing a bunch of clientside filters which are combined with the OR '||' operator */
 struct native ClientFilterORClause
 {
@@ -509,7 +498,9 @@ function bool QueryNonAdvertisedData(int StartAt,int NumberToQuery)
 function ClearOnlineDelegates()
 {
 	UnregisterPlayerCompleteDelegates.Length = 0;
+
 	GetPlayerListCompleteDelegates.Length = 0;
+
 	GameInviteAcceptedDelegates.Length = 0;
 	RegisterPlayerCompleteDelegates.Length = 0;
 	CreateOnlineGameCompleteDelegates.Length = 0;

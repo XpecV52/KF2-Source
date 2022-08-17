@@ -7,9 +7,18 @@
  *******************************************************************************/
 class KFGameConductor extends Object within KFGameInfo;
 
+enum EGameConductorStatus
+{
+    GCS_Normal,
+    GCS_ForceLull,
+    GCS_MAX
+};
+
 var float PlayersHealthStatus;
 var float PlayersAmmoStatus;
 var float AggregatePlayersStatus;
+/** Team low health threshold for determining gameplay changes */
+var() float PlayersLowHealthThreshold;
 var float ZedVisibleAverageLifespan;
 var float TotalZedVisibleLifespan;
 var int TotalZedsKilled;
@@ -24,18 +33,78 @@ var float RecentZedKillTotalTracker[10];
 var float AggregatePlayerSkill;
 var float PlayersAverageAccuracy;
 var float PlayersAverageHeadshotAccuracy;
+var float ParShotAccuracy;
+var float ParHeadshotAccuracy;
+/** What percentage above BaseLinePlayerShootingSkill to consider a players shooting accuracy "highly skilled" */
+var() float HighlySkilledAccuracyMod;
+/** What percentage above BaseLinePlayerShootingSkill to use as the max value for calculating the skill modifer */
+var() float HighlySkilledAccuracyModMax;
+/** What percentage below BaseLinePlayerShootingSkill to consider a players shooting accuracy "less skilled" */
+var() float LessSkilledAccuracyMod;
+/** What percentage below BaseLinePlayerShootingSkill to use as the min value for calculating the skill modifer */
+var() float LessSkilledAccuracyModMin;
+var float BaseLinePlayerShootingSkill;
+/** What percentage weight should general shooting accuracy have for the BaseLinePlayerShootingSkill */
+var() float ShootingAccuracySkillWeight;
+/** What percentage weight should headshot accuracy have for the BaseLinePlayerShootingSkill */
+var() float HeadShootingAccuracySkillWeight;
+var float ParZedLifeSpan[4];
+var float ParZedLifeSpanSolo[4];
+/** What percentage of ParZedLifeSpan to consider how quickly zeds are being killed as "highly skilled" */
+var() float ZedLifeSpanHighlySkilledThreshold;
+/** What percentage of ParZedLifeSpan to use as the min value for calculating the skill modife */
+var() float ZedLifeSpanHighlySkilledThresholdMin;
+/** What percentage of ParZedLifeSpan to consider how quickly zeds are being killed as "less skilled" */
+var() float ZedLifeSpanLessSkilledThreshold;
+/** What percentage of ParZedLifeSpan to use as the max value for calculating the skill modifer */
+var() float ZedLifeSpanLessSkilledThresholdMax;
+var float OverallRankAndSkillModifier;
+/** What percentage of OverallRankAndSkillModifier does PerkRank count toward */
+var() float PerkRankPercentOfOverallSkill;
+/** What percentage of OverallRankAndSkillModifier does shooting accuracy count toward */
+var() float AccuracyPercentOfOverallSkill;
+/** What percentage of OverallRankAndSkillModifier does zed lifespan count toward */
+var() float ZedLifeSpanPercentOfOverallSkill;
+var KFGameConductor.EGameConductorStatus GameConductorStatus;
+/** How long to force a low intensity lull for if a player dies */
+var() float PlayerDeathForceLullLength;
+/** When we lasted forced a low intensity lull for a player dying */
+var() float PlayerDeathForceLullTime;
 var float AveragePlayerPerkRank;
 /** The target perk range for each difficulty level */
 var() Vector2D TargetPerkRankRange[4];
 var float CurrentTargetPerkRank;
-/** How much the spawn rate can be modified by difficulty based on perk rank and how well the team is doing */
-var() Vector2D SpawnRateModificationRange[4];
+/** How much the spawn rate can be modified by difficulty based on perk rank and how well the team is doing. At 0 it will be as slow is you want it to go, at 1.0 as fast as you want it to go, and at 0.5 should be no change */
+var() InterpCurveFloat SpawnRateModificationRangeCurve[4];
 /** Current spawn rate modification */
 var() float CurrentSpawnRateModification;
-/** How much the ai movement speed can be modified by difficulty based on perk rank and how well the team is doing */
+/**  
+ *What percentage of the difference between the zed movement speed on the current
+ *  difficulty, and the zed movement speed on the next highest difficulty, do we want
+ *  to add/subtract to the movement speed based on how well/poorly a team is doing.
+ *  X = the % difference to use for slowing zeds down if a team is doing poorly,
+ *  Y =  the % difference to use for speeding up zeds if the team is doing well.
+ *  Valid values for X are between 0 (no change) and 0.9. Valid values for Y are
+ *  between 0 (no change) and 1.0. For example, using 0.5 for X and Y would give
+ *  you an increase or decrease in movement speed halfway in between the speed of
+ *  the zeds on the current difficulty, and the speed of the zeds on the next higher
+ *  difficulty.
+ */
 var() Vector2D AIMovementSpeedModificationRange[4];
-/** Current AI Movement speed modifier */
-var() float CurrentAIMovementSpeedMod;
+var float CurrentAIMovementSpeedMod;
+var float CurrentVersusZedHealthMod;
+var float CurrentVersusZedDamageMod;
+/** Whether or not this game difficulty allows low intensity zed mode when players get low on health, forced lull, etc */
+var() int AllowLowIntensityZedModeByDifficulty[4];
+/** Whether or not to log Game Conductor activity */
+var() bool bLogGameConductor;
+/** When true bypass the game conductor making any adjustments */
+var() bool bBypassGameConductor;
+
+function Initialize()
+{
+    BaseLinePlayerShootingSkill = (ParShotAccuracy * ShootingAccuracySkillWeight) + (ParHeadshotAccuracy * HeadShootingAccuracySkillWeight);
+}
 
 function HandleZedKill(float ZedVisibleTimeAlive)
 {
@@ -47,6 +116,19 @@ function HandleZedKill(float ZedVisibleTimeAlive)
     CurrentWaveZedVisibleAverageLifeSpan = CurrentWaveTotalZedVisibleLifeSpan / float(CurrentWaveTotalZedsKilled);
     ++ RecentTotalZedsKilled;
     RecentTotalZedVisibleLifeSpan += ZedVisibleTimeAlive;
+}
+
+function NotifyHumanTeamPlayerDeath()
+{
+    if(!Outer.MyKFGRI.IsFinalWave())
+    {
+        if(bLogGameConductor)
+        {
+            LogInternal(("Human team player died, forcing a lull for " $ string(PlayerDeathForceLullLength)) $ " seconds!");
+        }
+        GameConductorStatus = 1;
+        PlayerDeathForceLullTime = Outer.WorldInfo.TimeSeconds;
+    }
 }
 
 function ResetWaveStats()
@@ -92,6 +174,9 @@ function TimerUpdate()
     UpdateZedLifespanStats();
     UpdatePlayersStatus();
     UpdatePlayersAggregateSkill();
+    UpdateOverallStatus();
+    EvaluateSpawnRateModification();
+    EvaluateAIMovementSpeedModification();
 }
 
 function UpdatePlayersStatus()
@@ -129,7 +214,7 @@ function UpdatePlayersStatus()
                 KFPRI = KFPlayerReplicationInfo(C.PlayerReplicationInfo);
                 if(KFPRI != none)
                 {
-                    TotalHealth += (ByteToFloat(KFPRI.PlayerHealth) / ByteToFloat(KFPRI.PlayerHealthMax));
+                    TotalHealth += ByteToFloat(KFPRI.PlayerHealthPercent);
                     NumHumanPlayers += 1;
                 }
             }
@@ -153,7 +238,7 @@ function UpdatePlayersStatus()
     }
     AggregatePlayersStatus = (PlayersHealthStatus * 0.5) + (PlayersAmmoStatus * 0.5);
     I = 0;
-    J0x3CF:
+    J0x3A4:
 
     if(I < (10 - 1))
     {
@@ -161,7 +246,7 @@ function UpdatePlayersStatus()
         Outer.MyKFGRI.PlayersAmmoStatusTracker[I] = Outer.MyKFGRI.PlayersAmmoStatusTracker[I + 1];
         Outer.MyKFGRI.AggregatePlayersStatusTracker[I] = Outer.MyKFGRI.AggregatePlayersStatusTracker[I + 1];
         ++ I;
-        goto J0x3CF;
+        goto J0x3A4;
     }
     Outer.MyKFGRI.PlayersHealthStatusTracker[10 - 1] = PlayersHealthStatus;
     Outer.MyKFGRI.PlayersAmmoStatusTracker[10 - 1] = PlayersAmmoStatus;
@@ -194,25 +279,25 @@ function UpdatePlayerAccuracyStats()
 
     foreach Outer.WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
     {
-        if(KFPC.GetTeamNum() == 0)
+        if((KFPC.GetTeamNum() == 0) && KFPC.GetPerk() != none)
         {
             ++ NumHumanTeamPlayers;
             if(KFPC.ShotsFired > 0)
             {
-                TotalAccuracy += ((float(KFPC.ShotsHit) / float(KFPC.ShotsFired)) * 100);
-                TotalHeadShotAccuracy += ((float(KFPC.ShotsHitHeadshot) / float(KFPC.ShotsFired)) * 100);
+                TotalAccuracy += (((float(KFPC.ShotsHit) / float(KFPC.ShotsFired)) * 100) + KFPC.GetPerk().HitAccuracyHandicap);
+                TotalHeadShotAccuracy += (((float(KFPC.ShotsHitHeadshot) / float(KFPC.ShotsFired)) * 100) + KFPC.GetPerk().HeadshotAccuracyHandicap);
             }
         }        
     }    
     I = 0;
-    J0x157:
+    J0x1EA:
 
     if(I < (10 - 1))
     {
         Outer.MyKFGRI.PlayerAccuracyTracker[I] = Outer.MyKFGRI.PlayerAccuracyTracker[I + 1];
         Outer.MyKFGRI.PlayerHeadshotAccuracyTracker[I] = Outer.MyKFGRI.PlayerHeadshotAccuracyTracker[I + 1];
         ++ I;
-        goto J0x157;
+        goto J0x1EA;
     }
     if(NumHumanTeamPlayers > 0)
     {
@@ -228,6 +313,7 @@ function UpdateZedLifespanStats()
     local int I;
     local float CurrentTotalLifeSpan;
     local int CurrentTotalKills;
+    local float TotalRecentAverageLifespan;
 
     I = 0;
     J0x0B:
@@ -236,6 +322,10 @@ function UpdateZedLifespanStats()
     {
         CurrentTotalLifeSpan += RecentZedLifeSpanTotalTracker[I];
         CurrentTotalKills += int(RecentZedKillTotalTracker[I]);
+        if(I > 6)
+        {
+            TotalRecentAverageLifespan += Outer.MyKFGRI.RecentZedLifeSpanAverageTracker[I + 1];
+        }
         Outer.MyKFGRI.TotalZedLifeSpanAverageTracker[I] = Outer.MyKFGRI.TotalZedLifeSpanAverageTracker[I + 1];
         Outer.MyKFGRI.CurrentWaveZedLifeSpanAverageTracker[I] = Outer.MyKFGRI.CurrentWaveZedLifeSpanAverageTracker[I + 1];
         Outer.MyKFGRI.RecentZedLifeSpanAverageTracker[I] = Outer.MyKFGRI.RecentZedLifeSpanAverageTracker[I + 1];
@@ -253,87 +343,293 @@ function UpdateZedLifespanStats()
     if(CurrentTotalKills > 0)
     {
         RecentZedVisibleAverageLifeSpan = CurrentTotalLifeSpan / float(CurrentTotalKills);
-        Outer.MyKFGRI.RecentZedLifeSpanAverageTracker[10 - 1] = RecentZedVisibleAverageLifeSpan;        
+        TotalRecentAverageLifespan += RecentZedVisibleAverageLifeSpan;
+        Outer.MyKFGRI.RecentZedLifeSpanAverageTracker[10 - 1] = TotalRecentAverageLifespan / 3;        
     }
     else
     {
-        RecentZedVisibleAverageLifeSpan = Outer.MyKFGRI.RecentZedLifeSpanAverageTracker[10 - 2] * 0.9;
+        RecentZedVisibleAverageLifeSpan = Outer.MyKFGRI.RecentZedLifeSpanAverageTracker[10 - 2];
         Outer.MyKFGRI.RecentZedLifeSpanAverageTracker[10 - 1] = RecentZedVisibleAverageLifeSpan;
     }
     RecentTotalZedVisibleLifeSpan = 0;
     RecentTotalZedsKilled = 0;
 }
 
-function EvaluateSpawnRateModification()
+function float GetParZedLifeSpan()
 {
-    local float RangePercent;
+    if(!Outer.bOnePlayerAtStart)
+    {
+        return ParZedLifeSpan[int(Outer.GameDifficulty)];        
+    }
+    else
+    {
+        return ParZedLifeSpanSolo[int(Outer.GameDifficulty)];
+    }
+}
 
+function UpdateOverallStatus()
+{
+    local float PerkRankModifier, SkillModifier, LifeSpanModifier, HighlySkilledAccuracy, LessSkilledAccuracy, HighlySkilledZedLifespan,
+	    LessSkilledZedLifespan;
+
+    local int I;
+
+    if((GameConductorStatus == 1) && (Outer.WorldInfo.TimeSeconds - PlayerDeathForceLullTime) > PlayerDeathForceLullLength)
+    {
+        GameConductorStatus = 0;
+        if(bLogGameConductor)
+        {
+            LogInternal("Forced lull completed");
+        }
+    }
+    Outer.MyKFGRI.CurrentGameConductorStatus = GameConductorStatus;
+    Outer.MyKFGRI.CurrentParZedLifeSpan = GetParZedLifeSpan();
+    I = 0;
+    J0x11B:
+
+    if(I < (10 - 1))
+    {
+        Outer.MyKFGRI.OverallRankAndSkillModifierTracker[I] = Outer.MyKFGRI.OverallRankAndSkillModifierTracker[I + 1];
+        ++ I;
+        goto J0x11B;
+    }
+    if(bBypassGameConductor || Outer.MyKFGRI.IsFinalWave())
+    {
+        OverallRankAndSkillModifier = 0.5;
+        if(bLogGameConductor)
+        {
+            LogInternal("Bypassing GameConductor adjustment OverallRankAndSkillModifier = " $ string(OverallRankAndSkillModifier));
+        }
+        Outer.MyKFGRI.OverallRankAndSkillModifierTracker[10 - 1] = OverallRankAndSkillModifier;
+        return;
+    }
+    if((GameConductorStatus == 1) || PlayersHealthStatus < PlayersLowHealthThreshold)
+    {
+        OverallRankAndSkillModifier = 0;
+        if(bLogGameConductor)
+        {
+            LogInternal((("Players low on health PlayersHealthStatus: " $ string(PlayersHealthStatus)) $ " chilling things out, OverallRankAndSkillModifier= ") $ string(OverallRankAndSkillModifier));
+        }
+        Outer.MyKFGRI.OverallRankAndSkillModifierTracker[10 - 1] = OverallRankAndSkillModifier;
+        return;
+    }
     if(WithinRange(TargetPerkRankRange[int(Outer.GameDifficulty)], AveragePlayerPerkRank))
     {
-        RangePercent = GetRangePctByValue(TargetPerkRankRange[int(Outer.GameDifficulty)], AveragePlayerPerkRank);        
+        PerkRankModifier = GetRangePctByValue(TargetPerkRankRange[int(Outer.GameDifficulty)], AveragePlayerPerkRank);        
     }
     else
     {
         if(AveragePlayerPerkRank < TargetPerkRankRange[int(Outer.GameDifficulty)].X)
         {
-            RangePercent = 0;            
+            PerkRankModifier = 0;            
         }
         else
         {
-            RangePercent = 1;
+            PerkRankModifier = 1;
         }
     }
-    CurrentSpawnRateModification = GetRangeValueByPct(SpawnRateModificationRange[int(Outer.GameDifficulty)], RangePercent);
+    if(((Outer.MyKFGRI != none) && Outer.MyKFGRI.ElapsedTime > 15) && AggregatePlayerSkill != float(0))
+    {
+        HighlySkilledAccuracy = BaseLinePlayerShootingSkill * HighlySkilledAccuracyMod;
+        LessSkilledAccuracy = BaseLinePlayerShootingSkill * LessSkilledAccuracyMod;
+        if(AggregatePlayerSkill > HighlySkilledAccuracy)
+        {
+            SkillModifier = Lerp(0.51, 1, FMin(1, (AggregatePlayerSkill - HighlySkilledAccuracy) / ((BaseLinePlayerShootingSkill * HighlySkilledAccuracyModMax) - HighlySkilledAccuracy)));            
+        }
+        else
+        {
+            if(AggregatePlayerSkill < LessSkilledAccuracy)
+            {
+                SkillModifier = Lerp(0.49, 0, FMax(0, (LessSkilledAccuracy - AggregatePlayerSkill) / (LessSkilledAccuracy - (BaseLinePlayerShootingSkill * LessSkilledAccuracyModMin))));                
+            }
+            else
+            {
+                SkillModifier = 0.5;
+            }
+        }        
+    }
+    else
+    {
+        SkillModifier = 0.5;
+    }
+    if(RecentZedVisibleAverageLifeSpan > float(0))
+    {
+        HighlySkilledZedLifespan = (GetParZedLifeSpan()) * ZedLifeSpanHighlySkilledThreshold;
+        LessSkilledZedLifespan = (GetParZedLifeSpan()) * ZedLifeSpanLessSkilledThreshold;
+        if(RecentZedVisibleAverageLifeSpan < HighlySkilledZedLifespan)
+        {
+            LifeSpanModifier = Lerp(0.51, 1, FMin(1, (HighlySkilledZedLifespan - RecentZedVisibleAverageLifeSpan) / (HighlySkilledZedLifespan - ((GetParZedLifeSpan()) * ZedLifeSpanHighlySkilledThresholdMin))));            
+        }
+        else
+        {
+            if(RecentZedVisibleAverageLifeSpan > LessSkilledZedLifespan)
+            {
+                LifeSpanModifier = Lerp(0.49, 0, FMin(1, (RecentZedVisibleAverageLifeSpan - LessSkilledZedLifespan) / (((GetParZedLifeSpan()) * ZedLifeSpanLessSkilledThresholdMax) - LessSkilledZedLifespan)));                
+            }
+            else
+            {
+                LifeSpanModifier = 0.5;
+            }
+        }        
+    }
+    else
+    {
+        LifeSpanModifier = 0.5;
+    }
+    OverallRankAndSkillModifier = ((PerkRankModifier * PerkRankPercentOfOverallSkill) + (SkillModifier * AccuracyPercentOfOverallSkill)) + (LifeSpanModifier * ZedLifeSpanPercentOfOverallSkill);
+    Outer.MyKFGRI.OverallRankAndSkillModifierTracker[10 - 1] = OverallRankAndSkillModifier;
+    if(bLogGameConductor)
+    {
+        LogInternal((((((((("PerkRankModifier = " $ string(PerkRankModifier)) $ " SkillModifier = ") $ string(SkillModifier)) $ " LifeSpanModifier = ") $ string(LifeSpanModifier)) $ " OverallRankAndSkillModifier= ") $ string(OverallRankAndSkillModifier)) $ " GetParZedLifeSpan() = ") $ string(GetParZedLifeSpan()));
+    }
+}
+
+function UpdateOverallAttackCoolDowns(KFAIController KFAIC)
+{
+    local bool bAllowLowZedIntensity;
+
+    if(Outer.GameDifficulty < float(4))
+    {
+        bAllowLowZedIntensity = AllowLowIntensityZedModeByDifficulty[int(Outer.GameDifficulty)] == 1;        
+    }
+    else
+    {
+        bAllowLowZedIntensity = AllowLowIntensityZedModeByDifficulty[4 - 1] == 1;
+    }
+    if((!bBypassGameConductor && bAllowLowZedIntensity) && !Outer.MyKFGRI.IsFinalWave())
+    {
+        if((GameConductorStatus == 1) || OverallRankAndSkillModifier == float(0))
+        {
+            KFAIC.SetOverallCooldownTimer(KFAIC.LowIntensityAttackCooldown);            
+        }
+        else
+        {
+            KFAIC.SetOverallCooldownTimer(0);
+        }
+    }
+}
+
+function EvaluateSpawnRateModification()
+{
+    local int I;
+
+    CurrentSpawnRateModification = EvalInterpCurveFloat(SpawnRateModificationRangeCurve[int(Outer.GameDifficulty)], OverallRankAndSkillModifier);
+    if(Outer.MyKFGRI.bGameConductorGraphingEnabled)
+    {
+        I = 0;
+        J0x89:
+
+        if(I < (10 - 1))
+        {
+            Outer.MyKFGRI.ZedSpawnRateModifierTracker[I] = Outer.MyKFGRI.ZedSpawnRateModifierTracker[I + 1];
+            Outer.MyKFGRI.ZedSpawnRateTracker[I] = Outer.MyKFGRI.ZedSpawnRateTracker[I + 1];
+            ++ I;
+            goto J0x89;
+        }
+        Outer.MyKFGRI.ZedSpawnRateModifierTracker[10 - 1] = CurrentSpawnRateModification;
+        Outer.MyKFGRI.ZedSpawnRateTracker[10 - 1] = Outer.MyKFGRI.CurrentNextSpawnTime;
+    }
+    if(bLogGameConductor)
+    {
+        LogInternal((("CurrentSpawnRateModification = " $ string(CurrentSpawnRateModification)) $ " MyKFGRI.ElapsedTime ") $ string(Outer.MyKFGRI.ElapsedTime));
+    }
 }
 
 function EvaluateAIMovementSpeedModification()
 {
-    local float RangePercent, DifficultySpeedAdjustMod;
+    local float DifficultySpeedAdjustMod, BaseGroundSpeedMod;
+    local KFPawn_Monster KFPM;
+    local float UsedMovementSpeedPercentIncrease, UsedMovementSpeedPercentDecrease, UsedMovementSpeedPercent;
+    local int I;
 
-    if(WithinRange(TargetPerkRankRange[int(Outer.GameDifficulty)], AveragePlayerPerkRank))
+    if(Outer.GameDifficulty < float(4))
     {
-        RangePercent = GetRangePctByValue(TargetPerkRankRange[int(Outer.GameDifficulty)], AveragePlayerPerkRank);        
+        UsedMovementSpeedPercentDecrease = AIMovementSpeedModificationRange[int(Outer.GameDifficulty)].X;
+        UsedMovementSpeedPercentIncrease = AIMovementSpeedModificationRange[int(Outer.GameDifficulty)].Y;        
     }
     else
     {
-        if(AveragePlayerPerkRank < TargetPerkRankRange[int(Outer.GameDifficulty)].X)
-        {
-            RangePercent = 0;            
-        }
-        else
-        {
-            RangePercent = 1;
-        }
+        UsedMovementSpeedPercentDecrease = AIMovementSpeedModificationRange[4 - 1].X;
+        UsedMovementSpeedPercentIncrease = AIMovementSpeedModificationRange[4 - 1].Y;
     }
-    if(Outer.GameDifficulty <= float(0))
+    UsedMovementSpeedPercentDecrease = FClamp(UsedMovementSpeedPercentDecrease, 0, 0.9);
+    UsedMovementSpeedPercentIncrease = FClamp(UsedMovementSpeedPercentIncrease, 0, 1);
+    BaseGroundSpeedMod = Outer.DifficultyInfo.GetAIGroundSpeedMod();
+    if(OverallRankAndSkillModifier < 0.5)
     {
-        DifficultySpeedAdjustMod = (Outer.DifficultyInfo.Hard.MovementSpeedMod - Outer.DifficultyInfo.Normal.MovementSpeedMod) * 0.5;        
+        UsedMovementSpeedPercent = UsedMovementSpeedPercentDecrease;        
     }
     else
     {
-        if(Outer.GameDifficulty <= float(1))
+        if(OverallRankAndSkillModifier > 0.5)
         {
-            DifficultySpeedAdjustMod = (Outer.DifficultyInfo.Suicidal.MovementSpeedMod - Outer.DifficultyInfo.Hard.MovementSpeedMod) * 0.5;            
+            UsedMovementSpeedPercent = UsedMovementSpeedPercentIncrease;            
         }
         else
         {
-            DifficultySpeedAdjustMod = (Outer.DifficultyInfo.HellOnEarth.MovementSpeedMod - Outer.DifficultyInfo.Suicidal.MovementSpeedMod) * 0.5;
+            UsedMovementSpeedPercent = 0;
         }
     }
-    if(RangePercent < 0.5)
+    if(UsedMovementSpeedPercent > float(0))
     {
-        CurrentAIMovementSpeedMod = 1 - ((DifficultySpeedAdjustMod * (0.5 - RangePercent)) * 2);        
+        if(Outer.GameDifficulty <= float(0))
+        {
+            DifficultySpeedAdjustMod = (Outer.DifficultyInfo.Hard.MovementSpeedMod - Outer.DifficultyInfo.Normal.MovementSpeedMod) * UsedMovementSpeedPercent;            
+        }
+        else
+        {
+            if(Outer.GameDifficulty <= float(1))
+            {
+                DifficultySpeedAdjustMod = (Outer.DifficultyInfo.Suicidal.MovementSpeedMod - Outer.DifficultyInfo.Hard.MovementSpeedMod) * UsedMovementSpeedPercent;                
+            }
+            else
+            {
+                DifficultySpeedAdjustMod = (Outer.DifficultyInfo.HellOnEarth.MovementSpeedMod - Outer.DifficultyInfo.Suicidal.MovementSpeedMod) * UsedMovementSpeedPercent;
+            }
+        }
+        if(OverallRankAndSkillModifier < 0.5)
+        {
+            CurrentAIMovementSpeedMod = BaseGroundSpeedMod - ((DifficultySpeedAdjustMod * (0.5 - OverallRankAndSkillModifier)) * 2);            
+        }
+        else
+        {
+            if(OverallRankAndSkillModifier > 0.5)
+            {
+                CurrentAIMovementSpeedMod = BaseGroundSpeedMod + ((DifficultySpeedAdjustMod * (OverallRankAndSkillModifier - 0.5)) * 2);                
+            }
+            else
+            {
+                CurrentAIMovementSpeedMod = BaseGroundSpeedMod;
+            }
+        }        
     }
     else
     {
-        if(RangePercent > 0.5)
+        CurrentAIMovementSpeedMod = BaseGroundSpeedMod;
+    }
+    if(Outer.MyKFGRI.bGameConductorGraphingEnabled)
+    {
+        I = 0;
+        J0x53E:
+
+        if(I < (10 - 1))
         {
-            CurrentAIMovementSpeedMod = 1 + ((DifficultySpeedAdjustMod * (RangePercent - 0.5)) * 2);            
+            Outer.MyKFGRI.ZedMovementSpeedModifierTracker[I] = Outer.MyKFGRI.ZedMovementSpeedModifierTracker[I + 1];
+            ++ I;
+            goto J0x53E;
         }
-        else
+        Outer.MyKFGRI.ZedMovementSpeedModifierTracker[10 - 1] = CurrentAIMovementSpeedMod / BaseGroundSpeedMod;
+    }
+    foreach Outer.WorldInfo.AllPawns(Class'KFPawn_Monster', KFPM)
+    {
+        if(KFPM.Health > 0)
         {
-            CurrentAIMovementSpeedMod = 1;
-        }
+            KFPM.AdjustMovementSpeed(CurrentAIMovementSpeedMod);
+        }        
+    }    
+    if(bLogGameConductor)
+    {
+        LogInternal((("CurrentAIMovementSpeedMod = " $ string(CurrentAIMovementSpeedMod)) $ " DifficultyInfo.GetAIGroundSpeedMod() = ") $ string(Outer.DifficultyInfo.GetAIGroundSpeedMod()));
     }
 }
 
@@ -348,18 +644,48 @@ function bool WithinRange(Vector2D Range, float TestValue)
 
 defaultproperties
 {
+    PlayersLowHealthThreshold=0.5
+    ParShotAccuracy=48
+    ParHeadshotAccuracy=10
+    HighlySkilledAccuracyMod=1.25
+    HighlySkilledAccuracyModMax=1.5
+    LessSkilledAccuracyMod=0.75
+    LessSkilledAccuracyModMin=0.5
+    ShootingAccuracySkillWeight=0.25
+    HeadShootingAccuracySkillWeight=0.75
+    ParZedLifeSpan[0]=35
+    ParZedLifeSpan[1]=32
+    ParZedLifeSpan[2]=28
+    ParZedLifeSpan[3]=22
+    ParZedLifeSpanSolo[0]=23
+    ParZedLifeSpanSolo[1]=23
+    ParZedLifeSpanSolo[2]=22
+    ParZedLifeSpanSolo[3]=17
+    ZedLifeSpanHighlySkilledThreshold=0.75
+    ZedLifeSpanHighlySkilledThresholdMin=0.5
+    ZedLifeSpanLessSkilledThreshold=1.25
+    ZedLifeSpanLessSkilledThresholdMax=1.5
+    PerkRankPercentOfOverallSkill=0.25
+    AccuracyPercentOfOverallSkill=0.25
+    ZedLifeSpanPercentOfOverallSkill=0.5
+    PlayerDeathForceLullLength=15
     TargetPerkRankRange[0]=(X=0,Y=7)
     TargetPerkRankRange[1]=(X=0,Y=12)
     TargetPerkRankRange[2]=(X=12,Y=25)
-    TargetPerkRankRange[3]=(X=25,Y=25)
-    SpawnRateModificationRange[0]=(X=1.25,Y=0.75)
-    SpawnRateModificationRange[1]=(X=1.25,Y=0.75)
-    SpawnRateModificationRange[2]=(X=1.25,Y=0.75)
-    SpawnRateModificationRange[3]=(X=1.25,Y=0.75)
+    TargetPerkRankRange[3]=(X=24.999,Y=25)
+    SpawnRateModificationRangeCurve[0]=(Points=/* Array type was not detected. */,InVal=0,OutVal=1.25,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
+    SpawnRateModificationRangeCurve[1]=(Points=/* Array type was not detected. */,InVal=0,OutVal=1.25,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
+    SpawnRateModificationRangeCurve[2]=(Points=/* Array type was not detected. */,InVal=0,OutVal=1.25,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
+    SpawnRateModificationRangeCurve[3]=(Points=/* Array type was not detected. */,InVal=0,OutVal=1,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
     CurrentSpawnRateModification=1
-    AIMovementSpeedModificationRange[0]=(X=0.75,Y=1.25)
-    AIMovementSpeedModificationRange[1]=(X=0.75,Y=1.25)
-    AIMovementSpeedModificationRange[2]=(X=0.75,Y=1.25)
-    AIMovementSpeedModificationRange[3]=(X=0.75,Y=1.25)
+    AIMovementSpeedModificationRange[0]=(X=0.5,Y=0.5)
+    AIMovementSpeedModificationRange[1]=(X=0.5,Y=0.5)
+    AIMovementSpeedModificationRange[2]=(X=0.5,Y=0.65)
+    AIMovementSpeedModificationRange[3]=(X=0,Y=0.5)
     CurrentAIMovementSpeedMod=1
+    CurrentVersusZedHealthMod=1
+    CurrentVersusZedDamageMod=1
+    AllowLowIntensityZedModeByDifficulty[0]=1
+    AllowLowIntensityZedModeByDifficulty[1]=1
+    AllowLowIntensityZedModeByDifficulty[2]=1
 }

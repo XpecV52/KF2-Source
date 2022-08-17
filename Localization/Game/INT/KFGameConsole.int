@@ -1,0 +1,21 @@
+
+[Presence]
+KFMainMenu="Main Menu"
+KF-Bioticslab="Playing Biotics Lab"
+KF-BlackForest="Playing Black Forest"
+KF-BurningParis="Playing Burnig Paris"
+KF-Catacombs="Playing Catacombs"
+KF-EvacuationPoint="Playing Evacuation Point"
+KF-Farmhouse="Playing Farmhouse"
+KF-Manor="Playing Manor"
+KF-MineShaft="Playing Mine Shaft"
+KF-Outpost="Playing Outpost"
+
+[ActivityFeed en]
+PerkLevelUpCondensedCaption="Level up!"
+PerkLevelUpCaption="%s Perk leveled up to %i"
+FinishGameCondensedCaptionWin="$USER_NAME_OR_ID destroyed the Zed on %s!"
+FinishGameCondensedCaptionLose="$USER_NAME_OR_ID was defeated on %s!"
+FinishGameCaptionWin="$USER_NAME_OR_ID destroyed the Zed on %s with %i kills, %i deaths, and %i assists"
+FinishGameCaptionLose="$USER_NAME_OR_ID was defeated on %s with %i kills, %i deaths, and %i assists"
+

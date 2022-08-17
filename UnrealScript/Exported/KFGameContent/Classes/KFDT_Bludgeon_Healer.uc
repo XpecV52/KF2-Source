@@ -61,12 +61,11 @@ class KFDT_Bludgeon_Healer extends KFDT_Bludgeon_RifleButt
 
 
 
-
 #linenumber 12;
 
 defaultproperties
 {
-   WeaponDef=Class'kfgamecontent.KFWeapDef_Healer'
+   WeaponDef=Class'KFGame.KFWeapDef_Healer'
    Name="Default__KFDT_Bludgeon_Healer"
    ObjectArchetype=KFDT_Bludgeon_RifleButt'kfgamecontent.Default__KFDT_Bludgeon_RifleButt'
 }

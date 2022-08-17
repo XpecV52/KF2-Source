@@ -63,7 +63,6 @@ class KFDT_Piercing_NadeFragment extends KFDT_Piercing
 
 
 
-
 #linenumber 14;
 
 /** Allows the damage type to customize exactly which hit zones it can dismember */

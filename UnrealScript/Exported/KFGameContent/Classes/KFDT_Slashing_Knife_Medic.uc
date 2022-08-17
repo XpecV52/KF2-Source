@@ -64,7 +64,6 @@ class KFDT_Slashing_Knife_Medic extends KFDT_Slashing_Knife
 
 
 
-
 #linenumber 15;
 
 /** Whether this damage type can apply damage over time */

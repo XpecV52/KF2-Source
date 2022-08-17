@@ -37,7 +37,7 @@ function LocalizeText()
     SlotIndex = 0;
     J0x15:
 
-    if(SlotIndex < 6)
+    if(SlotIndex < PlayerSlots)
     {
         MemberSlots[SlotIndex].MemberSlotObject.SetString("readyText", PlayerReadyString);
         ++ SlotIndex;
@@ -81,7 +81,7 @@ function UpdateVOIP(PlayerReplicationInfo PRI, bool bIsTalking)
     I = 0;
     J0x27:
 
-    if(I < 6)
+    if(I < PlayerSlots)
     {
         if(MemberSlots[I].PlayerUID == KFPRI.UniqueId)
         {
@@ -129,7 +129,7 @@ function RefreshParty()
     SlotIndex = 0;
     J0xA0:
 
-    if(SlotIndex < 6)
+    if(SlotIndex < PlayerSlots)
     {
         if(SlotIndex < KFPRIArray.Length)
         {
@@ -180,7 +180,14 @@ function RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
         PlayerID = KFPRI.UniqueId;
         MemberSlots[SlotIndex].PlayerUID = PlayerID;
         OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
-        bIsLeader = PlayerID == AdminId;
+        if(Class'WorldInfo'.static.IsConsoleBuild(8))
+        {
+            bIsLeader = PlayerID == AdminId && Outer.GetPC().WorldInfo.NetMode != NM_Standalone;            
+        }
+        else
+        {
+            bIsLeader = PlayerID == AdminId;
+        }
         bIsMyPlayer = Outer.GetPC().PlayerReplicationInfo.UniqueId == PlayerID;
         PlayerName = KFPRI.PlayerName;
         UpdatePlayerName(SlotIndex, PlayerName);

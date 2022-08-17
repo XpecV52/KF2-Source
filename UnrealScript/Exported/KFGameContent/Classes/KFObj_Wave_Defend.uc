@@ -62,7 +62,6 @@ class KFObj_Wave_Defend extends KFObj_Wave;
 
 
 
-
 #linenumber 13;
 
 var float				HaxorPower;

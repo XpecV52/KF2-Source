@@ -13,9 +13,10 @@ class KFSpecialMove extends GameSpecialMove
 
 /** Owner of this special move */
 var KFPawn				KFPOwner;
-var PlayerController	PCOwner;
+var KFPlayerController	PCOwner;
 var KFAIController		AIOwner;
 var transient Object AISpecialOwner;
+var transient ESpecialMove SMIndex;
 
 /*********************************************************************************************
  * Animation
@@ -53,6 +54,23 @@ var bool bOnlyInteractionPawnCanDamageMe;
 /** Can change InteractionPawn before execution (InternalCanDoSpecialMove) */
 var bool bCanModifyInteractionPawn;
 
+/** Can be used by input functions */
+var bool bPendingStopFire;
+
+/** Flags used by button-activated special moves */
+const FLAG_SpecialMoveButtonPressed = 253;
+const FLAG_SpecialMoveButtonReleased = 254;
+
+/** Sets a custom interpolated 3rd person view offset if we've got a third person camera */
+var bool bUseCustomThirdPersonViewOffset;
+var ViewOffsetData CustomThirdPersonViewOffset;
+var float ViewOffsetInterpTime;
+var bool bRestoredCameraDefaults;
+
+/** Custom interpolated camera FOV */
+var float CustomCameraFOV;
+var float CameraFOVTransitionTime;
+
 /*********************************************************************************************
  * GearSpecialMove
  *********************************************************************************************/
@@ -62,7 +80,7 @@ var const           bool    bDisableHeadTracking;
 /** AI should ignore notifications */
 var	const			bool	bDisableAI;
 /** Disable movement (but doesn't necessarily stop physics, just blocks inputs). */
-var	const			bool	bDisableMovement;
+var					bool	bDisableMovement;
 var             	bool	bMovementDisabled;
 /** Lock Pawn Rotation, prevent it from being affects by Controller.Rotation */
 var	const			bool	bLockPawnRotation;
@@ -77,6 +95,8 @@ var					bool	bDisableSteering;
 /** If TRUE, disables turning in place animations & code. Pawn will always face his rotation. */
 var const			bool	bDisableTurnInPlace;
 var	const			bool	bDisablePhysics;
+/** If TRUE, disables physics adjustments on the clients. Where drastic velocity changes are needed, this can help with rubberbanding */
+var const 			bool 	bServerOnlyPhysics;
 var 				bool 	bAllowFireAnims;
 var	AICommand_PushedBySM	AICommand;
 /** Default AICommand to push on AI when SpecialMove starts */
@@ -94,11 +114,22 @@ cpptext
  * Functions
  *********************************************************************************************/
 
+/** Uses traceflags identical to pawn moves, checks to see if the path is clear for pawns to move through */
+native static function bool IsPawnPathClear( Actor TraceInstigator, Pawn TraceToPawn, vector TraceEnd, vector TraceStart, optional vector TraceExtent, optional bool bIgnorePawns, optional bool bTraceComplex );
+
+/** Generic PackFlags to be implemented by subclasses.  (see also PackSMFlags for advanced moves) */
+static function byte PackFlagsBase(KFPawn P);
+
 /** Overridden to lock desired rotation (see GOW3) */
 //native function ForcePawnRotation(Pawn P, Rotator NewRotation);
 
 function bool NotifyBump(Actor Other, vector HitNormal);
-event byte PackFlags();
+/** Called when the interaction pawn is updated after the special move has started */
+function InteractionPawnUpdated(); 
+/** Called on some player-controlled moves when a firemode input has been pressed */
+function SpecialMoveButtonRetriggered();
+/** Called on some player-controlled moves when a firemode input has been released */
+function SpecialMoveButtonReleased();
 
 /**
  * Checks to see if this Special Move can be done.
@@ -115,17 +146,32 @@ function InitSpecialMove( Pawn InPawn, Name InHandle )
 	KFPOwner = KFPawn(InPawn);
 	if ( PawnOwner.Controller != none )
 	{
-		PCOwner = PlayerController(PawnOwner.Controller);
+		PCOwner = KFPlayerController(PawnOwner.Controller);
 		if( PCOwner == none )
 		{
 			AIOwner = KFAIController(PawnOwner.Controller);
 		}
 	}
+
+	bPendingStopFire = false;
 }
 
 function SpecialMoveStarted( bool bForced, Name PrevMove )
 {
 	local AICommand AIOwnerActiveCommand;
+	local KFWeapon KFW;
+
+	// Make sure we're taken out of ironsights
+	if( PCOwner != none && KFPOwner != none && KFPOwner.Weapon != none )
+	{
+		KFW = KFWeapon( KFPOwner.Weapon );
+		if( KFW != none )
+		{
+			KFW.SetIronSights( false );
+		}
+	}
+
+	SMIndex = KFPOwner.SpecialMove;
 
 	// Push AICommand if it is defined.
 	if( AIOwner != None && DefaultAICommandClass != None && AIOwner.MyKFPawn != None )
@@ -144,6 +190,20 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 		{
 			PCOwner.IgnoreLookInput(TRUE);
 		}
+
+		// Set camera offset
+		if( bUseCustomThirdPersonViewOffset && PCOwner.PlayerCamera != none && PCOwner.PlayerCamera.CameraStyle == 'ThirdPerson' )
+		{
+			KFThirdPersonCamera(KFPlayerCamera(PCOwner.PlayerCamera).ThirdPersonCam).SetViewOffset( CustomThirdPersonViewOffset, true, ViewOffsetInterpTime );
+		}
+
+		// Set camera FOV
+		if( CustomCameraFOV > 0.f )
+		{
+			PCOwner.HandleTransitionFOV( CustomCameraFOV, CameraFOVTransitionTime );
+		}
+
+		bRestoredCameraDefaults = false;
 	}
 
 	if( bDisableWeaponInteraction && KFPOwner != none && KFPOwner.Weapon != none
@@ -180,6 +240,9 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 
 function SpecialMoveEnded(Name PrevMove, Name NextMove)
 {
+	// Clear pending stop fire flag
+	bPendingStopFire = false;
+
 	// Clear timers.
 	PawnOwner.ClearTimer(nameof(AbortSpecialMove), Self);
 
@@ -201,6 +264,13 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 		{
 			PCOwner.IgnoreLookInput(FALSE);
 		}
+
+		RestoreCameraDefaults();
+	}
+
+	if( KFPOwner != none )
+	{
+		KFPOwner.NotifySpecialMoveEnded( self, SMIndex );
 	}
 
 	if( bDisableWeaponInteraction && KFPOwner != none && KFPOwner.Weapon != none
@@ -208,7 +278,6 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 	{
         KFWeapon(KFPOwner.Weapon).SetSimplePutDown(false);
 	}
-
 
 	if ( bDisablePhysics && (PawnOwner.Role == ROLE_Authority || PawnOwner.IsLocallyControlled()) )
 	{
@@ -261,6 +330,31 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 	}
 }
 
+/** Restores camera to its previous values */
+function RestoreCameraDefaults()
+{
+	if( bRestoredCameraDefaults || PCOwner == none )
+	{
+		return;
+	}
+
+	if( bUseCustomThirdPersonViewOffset && PCOwner.PlayerCamera != none && PCOwner.PlayerCamera.CameraStyle == 'ThirdPerson' )
+	{
+		if( KFPawn_Monster(KFPOwner) != none )
+		{
+			KFThirdPersonCamera(KFPlayerCamera(PCOwner.PlayerCamera).ThirdPersonCam).SetViewOffset( KFPawn_Monster(KFPOwner).ThirdPersonViewOffset, true, ViewOffsetInterpTime );
+		}
+	}
+
+	// Return camera fov to default
+	if( CustomCameraFOV > 0.f )
+	{
+		PCOwner.HandleTransitionFOV( PCOwner.DefaultFOV, CameraFOVTransitionTime );
+	}
+
+	bRestoredCameraDefaults = true;
+}
+
 /** Locks or Unlocks Pawn movement */
 final function SetMovementLock(bool bEnable)
 {
@@ -306,6 +400,9 @@ final function SetLockPawnRotation(bool bLock)
 		}
 	}
 }
+
+/** Allows special moves to alter view rotation */
+function ProcessViewRotation( float DeltaTime, out rotator out_ViewRotation, out Rotator out_DeltaRot );
 
 /** Play a CameraAnim */
 function CameraAnimInst PlayCameraAnim
@@ -405,6 +502,15 @@ function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessT
 /** Notification from the pawn that damage was taken during move */
 function NotifyOwnerTakeHit(class<KFDamageType> DamageType, vector HitLoc, vector HitDir, Controller InstigatedBy);
 
+/** Server notification that the pawn has been EMP disrupted */
+function OnEMPDisrupted()
+{
+	if( KFPOwner != none && KFPOwner.IsHumanControlled() )
+	{
+		KFPOwner.EndSpecialMove();
+	}
+}
+
 /** Used for changing attack target (non claimable, switch to other enemy) */
 event ModifyInteractionPawn(out KFPawn OtherPawn);
 
@@ -415,4 +521,9 @@ defaultproperties
 	bDisableAIAttackRangeChecks=true
 	bAllowHitReactions=false
 	bCanOnlyWanderAtEnd=false
+
+	// Camera view offset/FOV
+	bUseCustomThirdPersonViewOffset=false
+	CustomCameraFOV=0.f
+	CameraFOVTransitionTime=1.f
 }

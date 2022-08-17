@@ -27,47 +27,16 @@ function OnStatsInitialized(bool bWasSuccessful)
     }
 }
 
+// Export UKFOnlineStatsRead::execNativeOnReadComplete(FFrame&, void* const)
+native function NativeOnReadComplete();
+
 event OnReadComplete()
 {
-    local int J;
-    local float FloatValue;
-
+    NativeOnReadComplete();
     if(bLogStatsRead)
     {
-        LogInternal("KFOnlineStatsRead: OnReadComplete called, Rows[0].Columns.Length=" $ string(Rows[0].Columns.Length), 'DevOnline');
+        LogInternal(((("KFOnlineStatsRead: OnReadComplete called, Rows[0].Columns.Length=" $ string(Rows[0].Columns.Length)) @ "self:'") $ string(self)) $ "'", 'DevOnline');
     }
-    J = 0;
-    J0x89:
-
-    if(J < Rows[0].Columns.Length)
-    {
-        switch(Rows[0].Columns[J].StatValue.Type)
-        {
-            case 1:
-                LinkedWriteObject.SetIntStat(ColumnIds[J], Rows[0].Columns[J].StatValue.Value1);
-                FloatValue = float(Rows[0].Columns[J].StatValue.Value1);
-                if(bLogStatsRead)
-                {
-                    LogInternal(((((("OnReadComplete - " @ string(J)) @ "IntStat[") $ string(ColumnIds[J])) $ "]=") $ string(Rows[0].Columns[J].StatValue.Value1)) @ string(LinkedWriteObject.Properties[J].Data.Value1));
-                }
-                break;
-            case 5:
-                GetFloatStatValueForPlayer(Rows[0].PlayerID, J, FloatValue);
-                LinkedWriteObject.SetFloatStat(ColumnIds[J], FloatValue);
-                if(bLogStatsRead)
-                {
-                    LogInternal((("OnReadComplete - FloatStat[" $ string(ColumnIds[J])) $ "]=") $ string(FloatValue));
-                }
-                break;
-            default:
-                break;
-        }
-        LinkedWriteObject.CacheStatsValue(ColumnIds[J], FloatValue);
-        ++ J;
-        goto J0x89;
-    }
-    LinkedWriteObject.GetAchievements();
-    LinkedWriteObject.MyKFPC.ClientInitializePerks();
 }
 
 defaultproperties

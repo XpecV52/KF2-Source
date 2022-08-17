@@ -95,7 +95,7 @@ simulated function rotator AddMultiShotSpread(rotator BaseAim)
 //
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-/** Allows weapon to calculate its own damage for display in trader 
+/** Allows weapon to calculate its own damage for display in trader
   * Overridden to multiply damage by number of pellets.
   */
 static simulated function float CalculateTraderWeaponStatDamage()
@@ -121,7 +121,6 @@ static simulated function float CalculateTraderWeaponStatDamage()
 defaultproperties
 {
    NumPellets(0)=7
-   ForceZoomOutTime=0.300000
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
    FireModeIconPaths(1)=()
    InventoryGroup=IG_Secondary
@@ -169,7 +168,6 @@ defaultproperties
    HippedRecoilModifier=1.250000
    FallingRecoilModifier=1.500000
    AssociatedPerkClass=Class'KFGame.KFPerk_Demolitionist'
-   FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()

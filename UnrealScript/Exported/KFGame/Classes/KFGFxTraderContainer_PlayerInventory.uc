@@ -106,6 +106,7 @@ function RefreshPlayerInventory()
 
 	    if( !ItemInfo.bIsSecondaryAmmo )
 		{
+			if (MyTraderMenu.MyKFIM.bLogInventory) LogInternal("RefreshPlayerInventory: Slot="$SlotIndex @ "ItemInfo="$ItemInfo.DefaultItem.ClassName);
 			// @temp: Use LastPerkClass to determine correct knife image
 			TextureLocation = ItemInfo.DefaultItem.WeaponDef.static.GetImagePath();
 			AmmoCount = ItemInfo.SpareAmmoCount;
@@ -357,11 +358,11 @@ function float FillAmmo( out SItemInformation ItemInfo, optional bool bIsGrenade
 
 	if( bIsGrenade )
     {
-		MyTraderMenu.BoughtAmmo(MissingAmmo, FillAmmoCost, IT_Grenade);
+		MyTraderMenu.BoughtAmmo(MissingAmmo, FillAmmoCost, EIT_Grenade);
     }
     else
     {
-		MyTraderMenu.BoughtAmmo(MissingAmmo, FillAmmoCost, IT_Weapon, ItemInfo.DefaultItem.ClassName, ItemInfo.bIsSecondaryAmmo);
+		MyTraderMenu.BoughtAmmo(MissingAmmo, FillAmmoCost, EIT_Weapon, ItemInfo.DefaultItem.ClassName, ItemInfo.bIsSecondaryAmmo);
     }
 
     return FillAmmoCost;
@@ -386,7 +387,7 @@ function int FillArmor( out SItemInformation ArmorInfo )
     }
 
     ArmorInfo.SpareAmmoCount = FMin(ArmorInfo.SpareAmmoCount + PercentArmorBought, ArmorInfo.MaxSpareAmmo);
-	MyTraderMenu.BoughtAmmo(PercentArmorBought, FillCost, IT_Armor);
+	MyTraderMenu.BoughtAmmo(PercentArmorBought, FillCost, EIT_Armor);
 
 	return FillCost;
 }
@@ -423,7 +424,7 @@ function int BuyGrenade( out SItemInformation ItemInfo  )
 
         ItemInfo.SpareAmmoCount += 1;
 
-		MyTraderMenu.BoughtAmmo(1, MagAmmoCost, IT_Grenade);
+		MyTraderMenu.BoughtAmmo(1, MagAmmoCost, EIT_Grenade);
     }
     return MagAmmoCost;
 }
@@ -451,7 +452,7 @@ function int BuyItemMagazine( out SItemInformation ItemInfo )
         ItemInfo.SpareAmmoCount += ItemInfo.DefaultItem.MagazineCapacity;
         ItemInfo.SpareAmmoCount = Min( ItemInfo.MaxSpareAmmo, ItemInfo.SpareAmmoCount );
 
-		MyTraderMenu.BoughtAmmo(ItemInfo.DefaultItem.MagazineCapacity, MagAmmoCost, IT_Weapon, ItemInfo.DefaultItem.ClassName, ItemInfo.bIsSecondaryAmmo);
+		MyTraderMenu.BoughtAmmo(ItemInfo.DefaultItem.MagazineCapacity, MagAmmoCost, EIT_Weapon, ItemInfo.DefaultItem.ClassName, ItemInfo.bIsSecondaryAmmo);
     }
 
     return MagAmmoCost;
@@ -481,7 +482,7 @@ function int BuySecondaryAmmoMag( out SItemInformation ItemInfo  )
         ItemInfo.SecondaryAmmoCount += AddedAmmo;
         ItemInfo.SecondaryAmmoCount = Min( ItemInfo.MaxSecondaryAmmoCount, ItemInfo.SecondaryAmmoCount );
 
-		MyTraderMenu.BoughtAmmo(AddedAmmo, MagAmmoCost, IT_Weapon, ItemInfo.DefaultItem.ClassName, ItemInfo.bIsSecondaryAmmo);
+		MyTraderMenu.BoughtAmmo(AddedAmmo, MagAmmoCost, EIT_Weapon, ItemInfo.DefaultItem.ClassName, ItemInfo.bIsSecondaryAmmo);
     }
 
     return MagAmmoCost;
@@ -622,7 +623,7 @@ function bool AttemptBuyArmorChunk( out SItemInformation ArmorInfo, out int InAu
 		InAutoFillDosh -= ChunkCost;
 
 	    ArmorInfo.SpareAmmoCount = FMin(ArmorInfo.SpareAmmoCount + PercentArmorBought, ArmorInfo.MaxSpareAmmo);
-		MyTraderMenu.BoughtAmmo(PercentArmorBought, ChunkCost, IT_Armor);
+		MyTraderMenu.BoughtAmmo(PercentArmorBought, ChunkCost, EIT_Armor);
 	}
 	return (PercentArmorBought > 0);
 }

@@ -23,6 +23,7 @@ defaultproperties
         ChainSequence_B=/* Array type was not detected. */
         ChainSequence_L=/* Array type was not detected. */
         ChainSequence_R=/* Array type was not detected. */
+        MeleeImpactCamShakeScale=0.4
         HitboxChain=/* Array type was not detected. */
     object end
     // Reference: KFMeleeHelperWeapon'Default__KFWeap_Blunt_Crovel.MeleeHelper'

@@ -11,7 +11,7 @@ class KFAIController_ZedClot_Slasher extends KFAIController_ZedClot
 
 function bool ShouldSprint()
 {
-    if(MyKFPawn.bCanSprint || MyKFPawn.bCanSprintWhenDamaged && MyKFPawn.Health < MyKFPawn.HealthMax)
+    if(bCanSprint || bCanSprintWhenDamaged && MyKFPawn.Health < MyKFPawn.HealthMax)
     {
         return true;        
     }

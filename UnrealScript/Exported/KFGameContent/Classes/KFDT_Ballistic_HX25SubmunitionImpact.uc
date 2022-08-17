@@ -64,7 +64,6 @@ class KFDT_Ballistic_HX25SubmunitionImpact extends KFDT_Ballistic_Shotgun
 
 
 
-
 #linenumber 15;
 
 /** Allows the damage type to customize exactly which hit zones it can dismember */

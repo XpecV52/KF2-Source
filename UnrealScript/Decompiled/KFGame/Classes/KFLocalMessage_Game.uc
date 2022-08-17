@@ -19,6 +19,7 @@ enum EGameMessageType
     GMT_FullArmor,
     GMT_Ammo,
     GMT_PickedupWeaponAmmo,
+    GMT_AmmoIsFull,
     GMT_AlreadyCarryingWeapon,
     GMT_PickedupItem,
     GMT_TooMuchWeight,
@@ -42,6 +43,7 @@ var const localized string HealedMessage;
 var const localized string PickedupArmorMessage;
 var const localized string FullArmorMessage;
 var const localized string PickupAmmoMessage;
+var const localized string AmmoFullMessage;
 var const localized string AlreadyCarryingWeaponMessage;
 var const localized string PickupWeaponAmmoMessage;
 var const localized string PickupMessage;
@@ -87,13 +89,14 @@ static function string GetHexColor(int Switch)
         case 6:
         case 7:
         case 8:
-        case 9:
         case 10:
+        case 9:
         case 11:
-        case 13:
+        case 12:
         case 14:
-        case 16:
+        case 15:
         case 17:
+        case 18:
             return default.GameColor;
         default:
             return "00FF00";
@@ -113,9 +116,9 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
             return default.ReceivedAmmoFromMessage @ RelatedPRI_1.PlayerName;
         case 2:
             return default.HealedByMessage @ RelatedPRI_1.PlayerName;
-        case 13:
-            return default.PendingPerkChangesSet;
         case 14:
+            return default.PendingPerkChangesSet;
+        case 15:
             return default.PendingPerkChangesApplied;
         case 3:
             return default.HealedMessage @ RelatedPRI_1.PlayerName;
@@ -127,30 +130,32 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
             return default.FullArmorMessage;
         case 8:
             return default.PickupAmmoMessage;
+        case 10:
+            return default.AmmoFullMessage;
         case 9:
             TempString = Repl(default.PickupWeaponAmmoMessage, "%x%", class<Inventory>(OptionalObject).default.ItemName, true);
             return TempString;
-        case 10:
-            return default.AlreadyCarryingWeaponMessage;
         case 11:
-            return default.PickupMessage @ Inventory(OptionalObject).ItemName;
+            return default.AlreadyCarryingWeaponMessage;
         case 12:
+            return default.PickupMessage @ Inventory(OptionalObject).ItemName;
+        case 13:
             return default.TooMuchWeightMessage;
-        case 15:
-            return default.FailedDropInventoryMessage;
-        case 17:
-            return default.GaveGrenadesToMessage @ RelatedPRI_1.PlayerName;
         case 16:
-            return default.ReceivedGrenadesFromMessage @ RelatedPRI_1.PlayerName;
+            return default.FailedDropInventoryMessage;
         case 18:
-            return default.FoundAMapCollectibleMessage;
+            return default.GaveGrenadesToMessage @ RelatedPRI_1.PlayerName;
+        case 17:
+            return default.ReceivedGrenadesFromMessage @ RelatedPRI_1.PlayerName;
         case 19:
-            return default.FoundAllMapCollectiblesMessage;
+            return default.FoundAMapCollectibleMessage;
         case 20:
-            return RelatedPRI_1.PlayerName @ default.SharingContentString;
+            return default.FoundAllMapCollectiblesMessage;
         case 21:
-            return RelatedPRI_1.PlayerName $ (GetKilledByZedMessage(OptionalObject));
+            return RelatedPRI_1.PlayerName @ default.SharingContentString;
         case 22:
+            return RelatedPRI_1.PlayerName $ (GetKilledByZedMessage(OptionalObject));
+        case 23:
             return RelatedPRI_1.PlayerName @ default.SuicideMessage;
         default:
             return "";
@@ -204,8 +209,8 @@ static function float GetPos(int Switch, HUD myHUD)
 {
     switch(Switch)
     {
-        case 21:
         case 22:
+        case 23:
             return 0.1;
         default:
             return 0.8;
@@ -222,6 +227,7 @@ defaultproperties
     PickedupArmorMessage="You picked up armor"
     FullArmorMessage="Your armor is already full"
     PickupAmmoMessage="You picked up ammo"
+    AmmoFullMessage="Your ammo is full"
     AlreadyCarryingWeaponMessage="You already have this weapon"
     PickupWeaponAmmoMessage="You picked up %x% ammo"
     PickupMessage="You picked up a"

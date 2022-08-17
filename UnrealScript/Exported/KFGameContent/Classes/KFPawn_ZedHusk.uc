@@ -18,6 +18,9 @@ class KFPawn_ZedHusk extends KFPawn_Monster;
 /** Fireball projectile attack */
 var const class<KFProjectile>		FireballClass;
 
+/** Player-controlled offset for firing fireballs. */
+var vector PlayerFireOffset;
+
 /** HitZoneIndex of backpack zone */
 const BackpackZoneIndex = 3;
 
@@ -64,21 +67,56 @@ function NotifyAnimInterrupt( optional AnimNodeSequence SeqNode )
 
 function ANIMNOTIFY_WarnZedsOfFireball()
 {
+	local Actor HitActor;
+	local PlayerController PC;
 	local KFPawn_Monster HitMonster;
-	local vector HitLocation, HitNormal;
+	local vector FireLocation;
+	local vector TraceStart, TraceEnd, HitLocation, HitNormal;
 	local vector DangerPoint, AimDirection;
 
-	AimDirection = MyKFAIC.Enemy.Location - Location;
-
-	foreach TraceActors(class'KFPawn_Monster', HitMonster, HitLocation, HitNormal, MyKFAIC.Enemy.Location, Location, vect(50,50,50))
+	if( Role == ROLE_Authority )
 	{
-		// Get the closest point from the hit monster to the line trace to determine which way it should evade
-		PointDistToLine(HitMonster.Location, AimDirection, Location, DangerPoint);
-
-		if( HitMonster.MyKFAIC != none )
+		if( IsHumanControlled() )
 		{
-			// Tell the zed to evade away from the DangerPoint
-			HitMonster.MyKFAIC.ReceiveLocationalWarning(DangerPoint);
+			PC = PlayerController( Controller );
+			if( PC == none )
+			{
+				return;
+			}
+
+		    FireLocation = GetPawnViewLocation() + (PlayerFireOffset >> GetViewRotation());
+
+		    TraceStart = PC.PlayerCamera.CameraCache.POV.Location;
+		    TraceEnd = PC.PlayerCamera.CameraCache.POV.Location + vector(PC.PlayerCamera.CameraCache.POV.Rotation)*100000;
+
+		    HitActor = Trace( HitLocation, HitNormal, TraceEnd, TraceStart, TRUE,,,TRACEFLAG_Bullet );
+
+		    if( HitActor != none )
+		    {
+		        AimDirection = HitLocation - FireLocation;
+		        TraceEnd = HitLocation;
+		    }
+		    else
+		    {
+			   AimDirection = TraceEnd - FireLocation;
+			}		
+		}
+		else
+		{
+			AimDirection = MyKFAIC.Enemy.Location - Location;
+			FireLocation = MyKFAIC.Enemy.Location;
+		}
+
+		foreach TraceActors(class'KFPawn_Monster', HitMonster, HitLocation, HitNormal, FireLocation, Location, vect(50,50,50))
+		{
+			if( HitMonster.MyKFAIC != none )
+			{
+				// Get the closest point from the hit monster to the line trace to determine which way it should evade
+				PointDistToLine(HitMonster.Location, AimDirection, Location, DangerPoint);
+
+				// Tell the zed to evade away from the DangerPoint
+				HitMonster.MyKFAIC.ReceiveLocationalWarning(DangerPoint);
+			}
 		}
 	}
 }
@@ -167,39 +205,49 @@ simulated function HitZoneInjured(optional int HitZoneIdx=INDEX_None)
 function TriggerExplosion(optional bool bIgnoreHumans)
 {
 	local KFExplosionActorReplicated ExploActor;
-	local Controller DamageInstigator;
+	local Controller DamageInstigator, OldController;
 
 	// Only living husks can explode... and only once
 	if ( !bHasExploded && !bPlayedDeath )
 	{
-		// explode using the given template
-		ExploActor = Spawn(class'KFExplosionActorReplicated', self);
-		if (ExploActor != None)
-		{
-			DamageInstigator = (bIgnoreHumans && LastHitBy != none && KFPlayerController(LastHitBy) != none) ? LastHitBy : MyKFAIC;
-			ExploActor.InstigatorController = DamageInstigator;
-			ExploActor.Instigator = self;
+		OldController = Controller;
 
-			// Force ourselves to get hit.  These settings are not replicated,
-			// but they only really make a difference on the server anyway.
-			ExploActor.Attachee = self;
-			if ( bIgnoreHumans )
+		if( Role == ROLE_Authority )
+		{
+			// explode using the given template
+			ExploActor = Spawn(class'KFExplosionActorReplicated', self);
+			if (ExploActor != None)
 			{
-				ExplosionTemplate.ActorClassToIgnoreForDamage = class'KFPawn_Human';
+				DamageInstigator = (bIgnoreHumans && LastHitBy != none && KFPlayerController(LastHitBy) != none) ? LastHitBy : MyKFAIC;
+				ExploActor.InstigatorController = DamageInstigator;
+				ExploActor.Instigator = self;
+
+				// Force ourselves to get hit.  These settings are not replicated,
+				// but they only really make a difference on the server anyway.
+				ExploActor.Attachee = self;
+				if ( bIgnoreHumans )
+				{
+					ExplosionTemplate.ActorClassToIgnoreForDamage = class'KFPawn_Human';
+				}
+
+				ExploActor.Explode(ExplosionTemplate, vect(0,0,1));
 			}
 
-			ExploActor.Explode(ExplosionTemplate, vect(0,0,1));
+			// Make sure we're dead!
+			if( !bPlayedDeath )
+			{
+				TakeRadiusDamage(DamageInstigator, 10000, ExplosionTemplate.DamageRadius, ExplosionTemplate.MyDamageType, ExplosionTemplate.MomentumTransferScale, Location, true, self);
+			}
 		}
 
-		// Make sure we're dead!
-		if( !bPlayedDeath )
-		{
-			TakeRadiusDamage(DamageInstigator, 10000, ExplosionTemplate.DamageRadius, ExplosionTemplate.MyDamageType, ExplosionTemplate.MomentumTransferScale, Location, true, self);
-		}
+		OnExploded( OldController );
 
 	    bHasExploded = true;
 	}
 }
+
+/** Do any explosion death-related actions */
+simulated function OnExploded( Controller SuicideController );
 
 /*********************************************************************************************
 * Damage handling
@@ -267,7 +315,7 @@ function OnStackingAfflictionChanged(byte Id)
 
 	if ( bEMPDisrupted )
 	{
-		if( IsDoingSpecialMove(SM_StandAndShotAttack) || IsDoingSpecialMove(SM_HoseWeaponAttack) )
+		if( IsDoingSpecialMove(SM_StandAndShootAttack) || IsDoingSpecialMove(SM_HoseWeaponAttack) )
 		{
 		    EndSpecialMove();
 		}
@@ -290,6 +338,7 @@ defaultproperties
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
       BaseDamage=15.000000
       MyDamageType=Class'kfgamecontent.KFDT_Slashing_ZedWeak'
+      MomentumTransfer=25000.000000
       MaxHitRange=180.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
@@ -329,23 +378,24 @@ defaultproperties
    HitZones(17)=()
    PenetrationResistance=2.000000
    Begin Object Class=KFPawnAfflictions Name=Afflictions_0 Archetype=KFPawnAfflictions'KFGame.Default__KFPawn_Monster:Afflictions_0'
-      InstantAffl(0)=(head=50,Torso=80,Leg=80,Arm=80,Special=50,LowHealthBonus=10,Cooldown=10.000000)
-      InstantAffl(1)=(head=44,Torso=80,Leg=80,Arm=80,LowHealthBonus=10,Cooldown=3.000000)
-      InstantAffl(2)=(head=44,Torso=50,Arm=50,Special=43,LowHealthBonus=10)
-      InstantAffl(3)=(Leg=44,LowHealthBonus=10)
-      InstantAffl(4)=(head=23,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=0.350000)
-      InstantAffl(5)=(head=110,Torso=110,Leg=110,Arm=110,LowHealthBonus=10,Cooldown=0.500000)
-      StackingAffl(0)=(Threshhold=1.500000,Cooldown=5.000000,DissipationRate=0.500000)
-      StackingAffl(1)=(Threshhold=12.000000,Duration=2.000000,Cooldown=5.000000)
-      StackingAffl(2)=(Threshhold=3.000000,Duration=4.000000,Cooldown=8.500000)
-      StackingAffl(3)=(Threshhold=3.000000,Duration=4.000000,Cooldown=8.500000)
-      StackingAffl(4)=(Threshhold=0.000000,Cooldown=5.000000)
       FireFullyCharredDuration=5.000000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
       ObjectArchetype=KFPawnAfflictions'KFGame.Default__KFPawn_Monster:Afflictions_0'
    End Object
    AfflictionHandler=KFPawnAfflictions'kfgamecontent.Default__KFPawn_ZedHusk:Afflictions_0'
+   InstantIncaps(0)=(head=50,Torso=80,Leg=80,Arm=80,Special=50,LowHealthBonus=10,Cooldown=10.000000)
+   InstantIncaps(1)=(head=62,Torso=120,Leg=120,Arm=120,LowHealthBonus=10,Cooldown=3.000000)
+   InstantIncaps(2)=(head=44,Torso=50,Arm=50,Special=43,LowHealthBonus=10)
+   InstantIncaps(3)=(Leg=44,LowHealthBonus=10)
+   InstantIncaps(4)=(head=23,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=0.350000)
+   InstantIncaps(5)=(head=110,Torso=110,Leg=110,Arm=110,LowHealthBonus=10,Cooldown=0.500000)
+   StackingIncaps(0)=(Threshhold=1.500000)
+   StackingIncaps(1)=(Threshhold=12.000000,Duration=2.000000)
+   StackingIncaps(2)=(Duration=4.000000,Cooldown=8.500000)
+   StackingIncaps(3)=(Duration=4.000000,Cooldown=8.500000)
+   StackingIncaps(4)=(Threshhold=0.000000,Cooldown=5.000000)
+   StackingIncaps(5)=(Threshhold=5.000000)
    KnockdownImpulseScale=1.000000
    SprintSpeed=450.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:FirstPersonArms'
@@ -371,31 +421,39 @@ defaultproperties
       SpecialMoveClasses(7)=Class'KFGame.KFSM_RagdollKnockdown'
       SpecialMoveClasses(8)=Class'KFGame.KFSM_DeathAnim'
       SpecialMoveClasses(9)=Class'KFGame.KFSM_Stunned'
-      SpecialMoveClasses(10)=None
-      SpecialMoveClasses(11)=Class'KFGame.KFSM_Zed_Taunt'
-      SpecialMoveClasses(12)=Class'KFGame.KFSM_Zed_WalkingTaunt'
-      SpecialMoveClasses(13)=Class'KFGame.KFSM_Evade'
-      SpecialMoveClasses(14)=Class'kfgamecontent.KFSM_Evade_Fear'
-      SpecialMoveClasses(15)=None
-      SpecialMoveClasses(16)=None
-      SpecialMoveClasses(17)=Class'kfgamecontent.KFSM_Husk_FireBallAttack'
-      SpecialMoveClasses(18)=Class'kfgamecontent.KFSM_Husk_FlameThrowerAttack'
-      SpecialMoveClasses(19)=Class'kfgamecontent.KFSM_Husk_Suicide'
-      SpecialMoveClasses(20)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(21)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(10)=Class'KFGame.KFSM_Frozen'
+      SpecialMoveClasses(11)=None
+      SpecialMoveClasses(12)=None
+      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_Taunt'
+      SpecialMoveClasses(14)=Class'KFGame.KFSM_Zed_WalkingTaunt'
+      SpecialMoveClasses(15)=Class'KFGame.KFSM_Evade'
+      SpecialMoveClasses(16)=Class'kfgamecontent.KFSM_Evade_Fear'
+      SpecialMoveClasses(17)=None
+      SpecialMoveClasses(18)=None
+      SpecialMoveClasses(19)=Class'kfgamecontent.KFSM_Husk_FireBallAttack'
+      SpecialMoveClasses(20)=Class'kfgamecontent.KFSM_Husk_FlameThrowerAttack'
+      SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_Husk_Suicide'
+      SpecialMoveClasses(22)=None
+      SpecialMoveClasses(23)=None
+      SpecialMoveClasses(24)=None
+      SpecialMoveClasses(25)=None
+      SpecialMoveClasses(26)=None
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
    SpecialMoveHandler=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedHusk:SpecialMoveHandler_0'
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent_1 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:AmbientAkSoundComponent_1'
-      BoneName="Spine1"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       Name="AmbientAkSoundComponent_1"
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:AmbientAkSoundComponent_1'
    End Object
    AmbientAkComponent=AmbientAkSoundComponent_1
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent_0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:AmbientAkSoundComponent_0'
-      BoneName="RW_Weapon"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True
       Name="AmbientAkSoundComponent_0"
@@ -408,7 +466,7 @@ defaultproperties
    End Object
    WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'kfgamecontent.Default__KFPawn_ZedHusk:WeaponAmbientEchoHandler_0'
    Begin Object Class=AkComponent Name=FootstepAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_Monster:FootstepAkSoundComponent'
-      BoneName="Root"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True
       Name="FootstepAkSoundComponent"
@@ -416,7 +474,7 @@ defaultproperties
    End Object
    FootstepAkComponent=FootstepAkSoundComponent
    Begin Object Class=AkComponent Name=DialogAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_Monster:DialogAkSoundComponent'
-      BoneName="head"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       Name="DialogAkSoundComponent"
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:DialogAkSoundComponent'

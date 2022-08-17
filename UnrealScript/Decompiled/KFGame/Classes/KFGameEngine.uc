@@ -37,6 +37,7 @@ var config float MasterVolumeMultiplier;
 var config float GammaMultiplier;
 var config bool bMusicVocalsEnabled;
 var config bool bMinimalChatter;
+var config bool bShowKillTicker;
 var private config bool bShowCrossHair;
 var private bool bShowCrossHairConsole;
 var config bool bMuteOnLossOfFocus;

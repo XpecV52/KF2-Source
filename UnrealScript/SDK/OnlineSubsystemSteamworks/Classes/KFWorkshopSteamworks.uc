@@ -69,7 +69,10 @@ cpptext
 	void DownloadingItemStarted(PublishedFileId_t Id);
 	void DownloadingItemFinished(PublishedFileId_t Id);
 
-	UBOOL ForceItemInstall(PublishedFileId_t Id);
+	UBOOL InstallItem(PublishedFileId_t Id);
+	UBOOL InstallConfig(const FString& WorkshopItemPath);
+	UBOOL InstallLocalization(const FString& WorkshopItemPath);
+	UBOOL InstallPackages(const FString& WorkshopItemPath, PublishedFileId_t Id);
 
 	UBOOL CheckAppId(AppId_t AppId);
 	

@@ -13,9 +13,6 @@ class KFPawn_ZedFleshpound extends KFPawn_Monster;
 var AkEvent RageStartSound;
 var AkEvent RageStopSound;
 
-/** Enraged mode status */
-var repnotify bool bIsEnraged;
-
 /** Material parameters for rage light glow */
 var LinearColor DefaultGlowColor;
 var LinearColor EnragedGlowColor;
@@ -28,13 +25,6 @@ var name BattlePhaseLightFrontSocketName;
 var transient PointLightComponent BattlePhaseLightTemplateYellow;
 var transient PointLightComponent BattlePhaseLightTemplateRed;
 var transient PointLightComponent BattlePhaseLightFront;
-
-replication
-{
-	// Replicated to ALL
-	if( bNetDirty )
-		bIsEnraged;
-}
 
 /*********************************************************************************************
 * Initialization
@@ -173,7 +163,7 @@ simulated event bool IsEnraged()
 /** Enrage this FleshPound! */
 simulated function SetEnraged( bool bNewEnraged )
 {
-	if( Role == ROLE_Authority && bNewEnraged == bIsEnraged )
+	if( !bCanRage || (Role == ROLE_Authority && bNewEnraged == bIsEnraged) )
 	{
 		return;
 	}
@@ -323,6 +313,7 @@ defaultproperties
    RageBumpDamageType=Class'kfgamecontent.KFDT_HeavyZedBump'
    BattlePhaseLightFrontSocketName="Light"
    bLargeZed=True
+   bCanRage=True
    bIsFleshpoundClass=True
    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Fleshpound_ARCH.ZED_Fleshpound_Archetype'
    HeadlessBleedOutTime=7.000000
@@ -331,7 +322,7 @@ defaultproperties
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
       BaseDamage=55.000000
       MyDamageType=Class'kfgamecontent.KFDT_Bludgeon_Fleshpound'
-      MomentumTransfer=100000.000000
+      MomentumTransfer=55000.000000
       MaxHitRange=250.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
@@ -380,23 +371,24 @@ defaultproperties
    HitZones(17)=()
    PenetrationResistance=5.000000
    Begin Object Class=KFPawnAfflictions Name=Afflictions_0 Archetype=KFPawnAfflictions'KFGame.Default__KFPawn_Monster:Afflictions_0'
-      InstantAffl(0)=(head=65,Torso=140,Leg=140,Arm=140,Special=65,LowHealthBonus=10,Cooldown=25.000000)
-      InstantAffl(1)=(head=60,Torso=65,Leg=50,Arm=65,Special=53,LowHealthBonus=10,Cooldown=12.000000)
-      InstantAffl(2)=(head=60,Torso=65,Arm=65,Special=53,LowHealthBonus=10,Cooldown=10.000000)
-      InstantAffl(3)=(Leg=60,LowHealthBonus=10,Cooldown=9.000000)
-      InstantAffl(4)=(head=25,Torso=50,Leg=50,Arm=50,LowHealthBonus=10,Cooldown=1.200000)
-      InstantAffl(5)=(head=150,Torso=150,Leg=150,Arm=150,LowHealthBonus=10,Cooldown=20.000000)
-      StackingAffl(0)=(Threshhold=2.000000,Duration=3.000000,Cooldown=10.000000,DissipationRate=0.500000)
-      StackingAffl(1)=(Threshhold=13.000000,Duration=1.500000,Cooldown=8.000000)
-      StackingAffl(2)=(Threshhold=5.000000,Duration=1.500000,Cooldown=20.000000)
-      StackingAffl(3)=(Threshhold=10.000000,Duration=1.500000,Cooldown=20.000000)
-      StackingAffl(4)=(Threshhold=1.500000,Duration=2.000000,Cooldown=10.000000,DissipationRate=0.500000)
       FireFullyCharredDuration=5.000000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
       ObjectArchetype=KFPawnAfflictions'KFGame.Default__KFPawn_Monster:Afflictions_0'
    End Object
    AfflictionHandler=KFPawnAfflictions'kfgamecontent.Default__KFPawn_ZedFleshpound:Afflictions_0'
+   InstantIncaps(0)=(head=65,Torso=140,Leg=140,Arm=140,Special=65,LowHealthBonus=10,Cooldown=25.000000)
+   InstantIncaps(1)=(head=75,Torso=120,Leg=120,Arm=120,Special=65,LowHealthBonus=10,Cooldown=10.000000)
+   InstantIncaps(2)=(head=60,Torso=65,Arm=65,Special=53,LowHealthBonus=10,Cooldown=10.000000)
+   InstantIncaps(3)=(Leg=60,LowHealthBonus=10,Cooldown=9.000000)
+   InstantIncaps(4)=(head=25,Torso=50,Leg=50,Arm=50,LowHealthBonus=10,Cooldown=1.200000)
+   InstantIncaps(5)=(head=150,Torso=150,Leg=150,Arm=150,LowHealthBonus=10,Cooldown=20.000000)
+   StackingIncaps(0)=(Threshhold=2.000000,Duration=3.000000,Cooldown=10.000000)
+   StackingIncaps(1)=(Threshhold=13.000000,Duration=1.500000,Cooldown=8.000000)
+   StackingIncaps(2)=(Threshhold=5.000000,Duration=1.500000,Cooldown=20.000000)
+   StackingIncaps(3)=(Threshhold=10.000000,Duration=1.500000,Cooldown=20.000000)
+   StackingIncaps(4)=(Threshhold=1.500000,Duration=2.000000,Cooldown=10.000000,DissipationRate=0.500000)
+   StackingIncaps(5)=(Threshhold=3.000000)
    PhysRagdollImpulseScale=1.500000
    KnockdownImpulseScale=2.000000
    SprintSpeed=725.000000
@@ -423,31 +415,39 @@ defaultproperties
       SpecialMoveClasses(7)=Class'KFGame.KFSM_RagdollKnockdown'
       SpecialMoveClasses(8)=Class'KFGame.KFSM_DeathAnim'
       SpecialMoveClasses(9)=Class'KFGame.KFSM_Stunned'
-      SpecialMoveClasses(10)=None
-      SpecialMoveClasses(11)=Class'KFGame.KFSM_Zed_Taunt'
-      SpecialMoveClasses(12)=Class'KFGame.KFSM_Zed_WalkingTaunt'
-      SpecialMoveClasses(13)=Class'KFGame.KFSM_Evade'
-      SpecialMoveClasses(14)=None
-      SpecialMoveClasses(15)=None
+      SpecialMoveClasses(10)=Class'KFGame.KFSM_Frozen'
+      SpecialMoveClasses(11)=None
+      SpecialMoveClasses(12)=None
+      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_Taunt'
+      SpecialMoveClasses(14)=Class'KFGame.KFSM_Zed_WalkingTaunt'
+      SpecialMoveClasses(15)=Class'KFGame.KFSM_Evade'
       SpecialMoveClasses(16)=None
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
       SpecialMoveClasses(19)=None
-      SpecialMoveClasses(20)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(21)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(20)=None
+      SpecialMoveClasses(21)=None
+      SpecialMoveClasses(22)=None
+      SpecialMoveClasses(23)=None
+      SpecialMoveClasses(24)=None
+      SpecialMoveClasses(25)=None
+      SpecialMoveClasses(26)=None
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
    SpecialMoveHandler=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedFleshpound:SpecialMoveHandler_0'
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent_1 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:AmbientAkSoundComponent_1'
-      BoneName="Spine1"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       Name="AmbientAkSoundComponent_1"
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:AmbientAkSoundComponent_1'
    End Object
    AmbientAkComponent=AmbientAkSoundComponent_1
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent_0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:AmbientAkSoundComponent_0'
-      BoneName="RW_Weapon"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True
       Name="AmbientAkSoundComponent_0"
@@ -460,7 +460,7 @@ defaultproperties
    End Object
    WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'kfgamecontent.Default__KFPawn_ZedFleshpound:WeaponAmbientEchoHandler_0'
    Begin Object Class=AkComponent Name=FootstepAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_Monster:FootstepAkSoundComponent'
-      BoneName="Root"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True
       Name="FootstepAkSoundComponent"
@@ -468,7 +468,7 @@ defaultproperties
    End Object
    FootstepAkComponent=FootstepAkSoundComponent
    Begin Object Class=AkComponent Name=DialogAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_Monster:DialogAkSoundComponent'
-      BoneName="head"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       Name="DialogAkSoundComponent"
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:DialogAkSoundComponent'

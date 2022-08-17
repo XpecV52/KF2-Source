@@ -46,6 +46,8 @@ static function float GetGoreDamageScale(Vector Location, Vector InstigatorLocat
 
 defaultproperties
 {
+    HeadDestructionDamageScale=7
+    HeadDestructionImpulseForceScale=7
     GoreDamageGroup=EGoreDamageGroup.DGT_Shotgun
     ModifierPerkList=/* Array type was not detected. */
 }

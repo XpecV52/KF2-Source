@@ -95,7 +95,7 @@ simulated function rotator AddMultiShotSpread(rotator BaseAim)
 //
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-/** Allows weapon to calculate its own damage for display in trader 
+/** Allows weapon to calculate its own damage for display in trader
   * Overridden to multiply damage by number of pellets.
   */
 static simulated function float CalculateTraderWeaponStatDamage()
@@ -139,7 +139,6 @@ defaultproperties
 
 	// Zooming/Position
 	PlayerViewOffset=(X=13.0,Y=13,Z=-4)
-	ForceZoomOutTime=0.3
 	FastZoomOutTime=0.2
 
 	Begin Object Name=FirstPersonMesh
@@ -185,7 +184,7 @@ defaultproperties
 
 	// DEFAULT_FIREMODE
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
-	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
+	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFireAndReload
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_ExplosiveSubMunition_HX25'
 	InstantHitDamage(DEFAULT_FIREMODE)=10.0

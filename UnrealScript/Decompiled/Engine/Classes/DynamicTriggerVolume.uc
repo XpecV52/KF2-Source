@@ -32,7 +32,6 @@ defaultproperties
     object end
     // Reference: BrushComponent'Default__DynamicTriggerVolume.BrushComponent0'
     Components(0)=BrushComponent0
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
     bStatic=false
     bAlwaysRelevant=true
     bOnlyDirtyReplication=true

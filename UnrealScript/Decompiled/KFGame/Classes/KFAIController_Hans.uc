@@ -76,7 +76,7 @@ var(Firing) float LostSightStopFireDelay;
 var float LastFireMode;
 /** How long to wait after starting to draw our guns to fire */
 var(Firing) float DrawGunFireDelay;
-/** How long to wait after staring to see an enemy to fire */
+/** How long to wait after starting to see an enemy to fire */
 var(Firing) float TargetAquisitionDelay;
 /** How long this gun attack should last at the max */
 var(Firing) float MaxGunAttackLength;
@@ -704,7 +704,7 @@ function TickGunSystem()
             }
             return;
         }
-        if((HansPawn != none) && (curMove == none) || !MyKFPawn.IsDoingSpecialMove(23) && !MyKFPawn.IsDoingSpecialMove(22))
+        if((HansPawn != none) && (curMove == none) || !MyKFPawn.IsDoingSpecialMove(32) && !MyKFPawn.IsDoingSpecialMove(31))
         {
             if((Pawn.IsFiring() || IsTimerActive('FireTimer', self)) || IsTimerActive('StartFireTiming', self))
             {
@@ -806,7 +806,7 @@ function DrawRangedAttackInfo(HUD HUD)
     DrawDebugText(HUD, "Battle Phase: " $ string(MyHansPawn.CurrentBattlePhase));
     DrawDebugText(HUD, "--Guns--");
     DrawDebugText(HUD, (("Guns Equipped: " $ string(MyHansPawn.bGunsEquipped)) $ " Can Use Guns In This Phase: ") $ string(MyHansPawn.CanUseGunsInThisPhase()));
-    DrawDebugText(HUD, (((("Stance Changing: " $ string(MyKFPawn.IsDoingSpecialMove(23))) $ " CurrentMove: ") $ string(curMove)) $ " bDisablesWeaponFiring: ") $ string(bMoveDisablesFiring));
+    DrawDebugText(HUD, (((("Stance Changing: " $ string(MyKFPawn.IsDoingSpecialMove(32))) $ " CurrentMove: ") $ string(curMove)) $ " bDisablesWeaponFiring: ") $ string(bMoveDisablesFiring));
     if((WorldInfo.TimeSeconds - StartDrawGunsTime) > DrawGunFireDelay)
     {
         UsedDrawGunsCooldown = 0;        
@@ -966,7 +966,7 @@ function bool GrenadeAttackInterruptGuns()
 
 function bool SetupGrenadeAttack()
 {
-    if(((((((MyHansPawn != none) && Enemy != none) && !MyHansPawn.IsDoingSpecialMove(23)) && !MyHansPawn.IsThrowingGrenade()) && !MyHansPawn.bGunsEquipped) && CanSeeByPoints(Pawn.GetPawnViewLocation(), Enemy.Location, rotator(Enemy.Location - Pawn.GetPawnViewLocation()))) && MyHansPawn.CacheGrenadeThrowLocation())
+    if(((((((MyHansPawn != none) && Enemy != none) && !MyHansPawn.IsDoingSpecialMove(32)) && !MyHansPawn.IsThrowingGrenade()) && !MyHansPawn.bGunsEquipped) && CanSeeByPoints(Pawn.GetPawnViewLocation(), Enemy.Location, rotator(Enemy.Location - Pawn.GetPawnViewLocation()))) && MyHansPawn.CacheGrenadeThrowLocation())
     {
         CurrentNadeAttackType = 0;
         if(!IsWithinAttackRange())
@@ -1044,6 +1044,16 @@ function DoStrike()
             if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
             {
                 KFGameInfo(WorldInfo.Game).DialogManager.PlayHansFrenzyDialog(MyHansPawn);
+            }            
+        }
+        else
+        {
+            if(AttackName == 'AOE')
+            {
+                if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
+                {
+                    KFGameInfo(WorldInfo.Game).DialogManager.PlayHansAOEDialog(MyHansPawn);
+                }
             }
         }
     }
@@ -1103,7 +1113,7 @@ event bool CanGrabAttack()
         return false;
     }
     KFPawnEnemy = KFPawn(Enemy);
-    if(((KFPawnEnemy != none) && KFPawnEnemy.IsDoingSpecialMove(20)) && VSizeSq(MyHansPawn.Location - Enemy.Location) < float(250000))
+    if(((KFPawnEnemy != none) && KFPawnEnemy.IsDoingSpecialMove(28)) && VSizeSq(MyHansPawn.Location - Enemy.Location) < float(250000))
     {
         KFPawnEnemy.InteractionPawn.EndSpecialMove();
     }
@@ -1148,7 +1158,7 @@ function bool CanTargetBeGrabbed(KFPawn TargetKFP)
 {
     local KFAIController OtherKFAIC;
 
-    if((((TargetKFP == none) || TargetKFP.Health <= 0) || TargetKFP.IsDoingSpecialMove(20)) || TargetKFP.Physics == 2)
+    if((((TargetKFP == none) || TargetKFP.Health <= 0) || TargetKFP.IsDoingSpecialMove(28)) || TargetKFP.Physics == 2)
     {
         return false;
     }

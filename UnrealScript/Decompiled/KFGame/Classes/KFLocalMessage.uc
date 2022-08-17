@@ -61,6 +61,7 @@ var bool bShowPortrait;
 var float AnnouncementVolume;
 var float AnnouncementDelay;
 var const string SayColor;
+var const string TeamSayColor;
 var const string NonAffialiatedColor;
 var const string EventColor;
 var const string GameColor;
@@ -242,6 +243,7 @@ defaultproperties
     MessageArea=1
     AnnouncementVolume=2
     SayColor="FFFFFF"
+    TeamSayColor="00FFFF"
     NonAffialiatedColor="000000"
     EventColor="0099FF"
     GameColor="00FF00"

@@ -11,7 +11,6 @@ class KFGameInfo extends FrameworkGame
     hidecategories(Navigation,Movement,Collision);
 
 const TeamDeathPenaltyPerc = 0.05f;
-const MAX_GAMELENGTHS = 3;
 const GBE_Inventory = 'Inventory';
 const GBE_TraderOpen = 'TraderOpen';
 const GBE_WaveStart = 'WaveStart';
@@ -27,7 +26,6 @@ enum EGameLength
     GL_Short,
     GL_Normal,
     GL_Long,
-    GL_Custom,
     GL_MAX
 };
 
@@ -39,6 +37,26 @@ enum EForcedMusicType
     EFM_Boss2,
     EFM_Boss3,
     EFM_MAX
+};
+
+struct native sGameMode
+{
+    var string FriendlyName;
+    var string ClassNameAndPath;
+    var bool bSoloPlaySupported;
+    var int DifficultyLevels;
+    var int Lengths;
+    var int LocalizeID;
+
+    structdefaultproperties
+    {
+        FriendlyName=""
+        ClassNameAndPath=""
+        bSoloPlaySupported=false
+        DifficultyLevels=0
+        Lengths=0
+        LocalizeID=0
+    }
 };
 
 struct native GameMapCycle
@@ -77,19 +95,22 @@ var globalconfig bool bPartitionSpectators;
 var globalconfig bool bDisablePickups;
 var globalconfig bool bDisableMapVote;
 var globalconfig bool bDisableTeamCollision;
-var bool bEnableDeadToDeadVOIP;
+var globalconfig bool bEnableDeadToVOIP;
+var globalconfig bool bDisablePublicVOIPChannel;
 var const bool bCanPerkAlwaysChange;
 var bool bZedTimeBlendingOut;
 var config bool bEnableGameAnalytics;
-var config bool bEnableDevAnalytics;
+var config bool bRecordGameStatsFile;
 var globalconfig bool bUseMapList;
 var config bool bLogScoring;
 var config bool bLogAIDefaults;
 var bool bLogReservations;
 var bool bLogAnalytics;
+var config bool bLogAICount;
 var bool bIsCustomGame;
 var bool bIsUnrankedGame;
 var const bool bEnableServerVersionCheck;
+var bool bIsVersusGame;
 var bool bNVAlwaysDramatic;
 var bool bNVBlockDramatic;
 var bool bNVAlwaysHeadshot;
@@ -100,6 +121,7 @@ var config int MinNetPlayers;
 var config int ReadyUpDelay;
 var config int GameStartDelay;
 var config int EndOfGameDelay;
+var config array<config sGameMode> GameModes;
 var globalconfig float KickVotePercentage;
 var globalconfig float TimeBetweenFailedVotes;
 var globalconfig float MapVotePercentage;
@@ -123,7 +145,10 @@ var byte NumAmmoPickups;
 var const byte ForcedNumLivingPlayers;
 var array<float> DeathPenaltyModifiers;
 var array<float> MaxRespawnDosh;
+var int MaxGameDifficulty;
+var array< class<KFAISpawnManager> > SpawnManagerClasses;
 var KFGameConductor GameConductor;
+var class<KFGameConductor> GameConductorClass;
 var KFAIDirector AIDirector;
 var int AIAliveCount;
 var int NumAISpawnsQueued;
@@ -139,10 +164,10 @@ var int ZedTimeExtensionsUsed;
 var float LastZedTimeEvent;
 var class<KFGameplayEventsWriter> GameplayEventsWriterClass;
 var transient KFGameplayEventsWriter GameplayEventsWriter;
-var transient KFGameStatsUploader MCPUploader;
 var globalconfig array<config GameMapCycle> GameMapCycles;
 var globalconfig int ActiveMapCycle;
 var globalconfig int MapCycleIndex;
+var config array<config string> InValidMaps;
 var KFDialogManager DialogManager;
 var class<KFDialogManager> DialogManagerClass;
 var class<KFTraderVoiceGroupBase> TraderVoiceGroupClass;
@@ -269,6 +294,36 @@ static function string StripPlayOnPrefix(string MapName)
 
 static function PreloadContentClasses(KFGameReplicationInfo GRI);
 
+static function string GetGameModeFriendlyNameFromNum(int GameModeNum)
+{
+    return default.GameModes[Max(GameModeNum, 0)].FriendlyName;
+}
+
+static function string GetGameModeFriendlyNameFromClass(string GameModeClassString)
+{
+    return default.GameModes[Max(default.GameModes.Find('ClassNameAndPath', GameModeClassString, 0)].FriendlyName;
+}
+
+static function int GetGameModeNumFromClass(string GameModeClassString)
+{
+    return default.GameModes.Find('ClassNameAndPath', GameModeClassString;
+}
+
+static function string GetGameModeClassFromNum(int GameModeNum)
+{
+    return default.GameModes[Max(GameModeNum, 0)].ClassNameAndPath;
+}
+
+static function int GetLocalizeIDFromFriendlyName(string FriendlyNameString)
+{
+    return default.GameModes[Max(default.GameModes.Find('FriendlyName', FriendlyNameString, 0)].LocalizeID;
+}
+
+static function bool IsGameModeSoloPlayAllowed(int GameModeNum)
+{
+    return default.GameModes[GameModeNum].bSoloPlaySupported;
+}
+
 // Export UKFGameInfo::execSetNeedsRestart(FFrame&, void* const)
 native function SetNeedsRestart();
 
@@ -281,7 +336,8 @@ native static function StaticSetNeedsRestart();
 event InitGame(string Options, out string ErrorMessage)
 {
     super(GameInfo).InitGame(Options, ErrorMessage);
-    GameLength = Clamp(GetIntOption(Options, "GameLength", GameLength), 0, 3);
+    GameLength = Clamp(GetIntOption(Options, "GameLength", GameLength), 0, SpawnManagerClasses.Length - 1);
+    GameDifficulty = float(Clamp(int(GameDifficulty), 0, MaxGameDifficulty));
     OnlineSub.GetLobbyInterface().LobbyJoinGame();
     if(Role == ROLE_Authority)
     {
@@ -321,6 +377,7 @@ protected function bool CheckForCustomSettings()
 
 event PreBeginPlay()
 {
+    WorldInfo.TWApplyTweaks();
     super(GameInfo).PreBeginPlay();
     DifficultyInfo = new (self) Class'KFDifficultyInfo' (DifficultyTemplate);
     DifficultyInfo.SetDifficultySettings(GameDifficulty);
@@ -343,7 +400,7 @@ event PostBeginPlay()
 
 function InitGameplayEventWriter()
 {
-    if(bEnableGameAnalytics && GameplayEventsWriterClass != none)
+    if(bRecordGameStatsFile && GameplayEventsWriterClass != none)
     {
         LogInternal("Recording game events with" @ string(GameplayEventsWriterClass));
         GameplayEventsWriter = new (self) GameplayEventsWriterClass;        
@@ -368,108 +425,6 @@ function ReplicateWelcomeScreen()
         MyKFGRI.ServerAdInfo.BannerLink = BannerLink;
         MyKFGRI.ServerAdInfo.ServerMOTD = ServerMOTD;
         MyKFGRI.ServerAdInfo.WebsiteLink = WebsiteLink;
-    }
-}
-
-function EndLogging(string Reason)
-{
-    local WorldInfo WI;
-
-    if((bEnableGameAnalytics && GameplayEventsWriter != none) && GameplayEventsWriter.IsSessionInProgress())
-    {
-        GameplayEventsWriter.EndLogging();
-        WI = Class'WorldInfo'.static.GetWorldInfo();
-        if(OnlineSub != none)
-        {
-            UploadGameplayStats();            
-        }
-        else
-        {
-            if(bLogAnalytics)
-            {
-                LogInternal((("Stats upload skipped. OnlineSub:" @ string(OnlineSub)) @ "NetMode:") @ string(WI.NetMode));
-            }
-        }        
-    }
-    else
-    {
-        if(bLogAnalytics)
-        {
-            LogInternal((((("End logging skipped for stats. bLog:" @ string(bEnableGameAnalytics)) @ "Writer:") @ string(GameplayEventsWriter)) @ "InProgress:") @ ((GameplayEventsWriter != none) ? string(GameplayEventsWriter.IsSessionInProgress()) : "False"));
-        }
-    }
-    super(GameInfo).EndLogging(Reason);
-}
-
-function UploadGameplayStats()
-{
-    local TWOnlineEventsInterface MCPInterface;
-    local WorldInfo WI;
-
-    if(((bEnableGameAnalytics && GameplayEventsWriter != none) && OnlineSub != none) && MCPUploader == none)
-    {
-        MCPInterface = TWOnlineEventsInterface(OnlineSub.GetNamedInterface('AnalyticsUpload'));
-        WI = Class'WorldInfo'.static.GetWorldInfo();
-        if(MCPInterface != none)
-        {
-            MCPUploader = new (none) Class'KFGameStatsUploader';
-            MCPUploader.Init(GameplayEventsWriter);
-            if((((WI.NetMode == NM_DedicatedServer) && MCPUploader.bUploadDedicatedServer) || (WI.NetMode == NM_ListenServer) && MCPUploader.bUploadListenServer) || (WI.NetMode == NM_Standalone) && MCPUploader.bUploadOfflineGame)
-            {
-                UploadGameplayStatsInternal();                
-            }
-            else
-            {
-                if(bLogAnalytics)
-                {
-                    LogInternal("Upload disabled for NetMode:" @ string(WI.NetMode));
-                }
-            }            
-        }
-        else
-        {
-            if(bLogAnalytics)
-            {
-                LogInternal("Upload skipped for stats. No MCPInterface.");
-            }
-        }        
-    }
-    else
-    {
-        if(bLogAnalytics)
-        {
-            LogInternal((((((("Upload skipped for stats. bLog:" @ string(bEnableGameAnalytics)) @ "Writer:") @ string(GameplayEventsWriter)) @ "Uploader:") @ string(MCPUploader)) @ "InProgress:") @ string(GameplayEventsWriter.IsSessionInProgress()));
-        }
-    }
-}
-
-function UploadGameplayStatsInternal()
-{
-    local TWOnlineEventsInterface MCPInterface;
-
-    MCPInterface = TWOnlineEventsInterface(OnlineSub.GetNamedInterface('AnalyticsUpload'));
-    if(MCPInterface != none)
-    {
-        if(MCPUploader.IsFinishedFlushing())
-        {
-            MCPUploader.UploadGameplayStats(MCPInterface);
-            MCPUploader = none;            
-        }
-        else
-        {
-            if(bLogAnalytics)
-            {
-                LogInternal("Waiting for MCPUploader.IsFinishedFlushing()");
-            }
-            SetTimer(0.2, false, 'UploadGameplayStatsInternal');
-        }        
-    }
-    else
-    {
-        if(bLogAnalytics)
-        {
-            LogInternal("No MCP Interface found for upload.");
-        }
     }
 }
 
@@ -516,10 +471,26 @@ event PostLogin(PlayerController NewPlayer)
         }
         else
         {
-            KFPC.ClientSetFrontEnd(KFGFxManagerClass, false);
-            if(!Class'Engine'.static.IsEditor() && !Class'KFGameEngine'.static.CheckSkipLobby())
+            if(KFPC.GetTeamNum() == 255)
             {
-                KFPC.CreateCustomizationPawn();
+                if(!Class'Engine'.static.IsEditor() && !Class'KFGameEngine'.static.CheckSkipLobby())
+                {
+                    KFPC.CreateCustomizationPawn();
+                }
+                if((KFPC.Pawn != none) && KFPawn_Customization(KFPC.Pawn) != none)
+                {
+                    KFPawn_Customization(KFPC.Pawn).SetServerHidden(true);
+                }
+                KFPC.ClientSetFrontEnd(KFGFxManagerClass, false);
+                KFPC.SetCameraMode('PlayerZedWaiting');                
+            }
+            else
+            {
+                KFPC.ClientSetFrontEnd(KFGFxManagerClass, false);
+                if(!Class'Engine'.static.IsEditor() && !Class'KFGameEngine'.static.CheckSkipLobby())
+                {
+                    KFPC.CreateCustomizationPawn();
+                }
             }
         }
     }
@@ -545,13 +516,15 @@ event InitAIDirector()
 
 function InitGameConductor()
 {
-    GameConductor = new (self) Class'KFGameConductor';
+    GameConductor = new (self) GameConductorClass;
+    GameConductor.Initialize();
 }
 
 function InitGRIVariables()
 {
     MyKFGRI.GameDifficulty = byte(GameDifficulty);
     MyKFGRI.GameLength = byte(GameLength);
+    MyKFGRI.bVersusGame = bIsVersusGame;
 }
 
 function bool AllowCheats(PlayerController P)
@@ -756,7 +729,7 @@ function StartHumans()
             }
             else
             {
-                if(P.CanRestartPlayer())
+                if(P.CanRestartPlayer() && P.GetTeamNum() != 255)
                 {
                     RestartPlayer(P);
                 }
@@ -779,11 +752,14 @@ function RestartPlayer(Controller NewPlayer)
         NewPlayer.Pawn.Destroy();
     }
     super(GameInfo).RestartPlayer(NewPlayer);
-    SetTeam(NewPlayer, Teams[0]);
-    KFPC = KFPlayerController(NewPlayer);
-    if(KFPC != none)
+    if(NewPlayer.Pawn != none)
     {
-        KFPC.InitGameplayPostProcessFX();
+        KFPC = KFPlayerController(NewPlayer);
+        if(KFPC != none)
+        {
+            KFPC.InitGameplayPostProcessFX();
+            KFPC.ClientSetCameraFade(true, MakeColor(255, 255, 255, 255), vect2d(1, 0), 0.6, true);
+        }
     }
 }
 
@@ -806,11 +782,11 @@ function KFCustomizationPoint FindCustomizationStart(Controller Player)
     foreach AllActors(Class'KFCustomizationPoint', CP)
     {
         if(CheckPointCollision(CP, Player))
-        {
-            break;
+        {            
+            return CP;
         }        
     }    
-    return CP;
+    return none;
 }
 
 function bool CheckPointCollision(NavigationPoint P, Controller Player)
@@ -819,7 +795,7 @@ function bool CheckPointCollision(NavigationPoint P, Controller Player)
 
     foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
     {
-        if((KFPC != Player) && KFPC.Pawn != none)
+        if(((KFPC != Player) && KFPC.Pawn != none) && !KFPC.Pawn.bHidden)
         {
             if(VSizeSq(KFPC.Pawn.Location - P.Location) < Square(2.1 * KFPC.Pawn.GetCollisionRadius()))
             {                
@@ -852,38 +828,44 @@ function SetPlayerDefaults(Pawn PlayerPawn)
 
 function bool IsWaveActive();
 
-function SetAIDefaults(KFPawn_Monster P)
+function SetMonsterDefaults(KFPawn_Monster P)
 {
-    local float HealthMod, HeadHealthMod, GroundSpeedMod, HiddenSpeedMod, DamageMod, SprintChance,
-	    SprintDamagedChance;
+    local float HealthMod, HeadHealthMod, GroundSpeedMod, RandomSpeedMod, DamageMod;
 
-    local byte NumLivingPlayers;
     local KFCharacterInfo_Monster MonsterInfo;
 
-    NumLivingPlayers = byte(GetLivingPlayerCount());
     MonsterInfo = P.GetCharacterMonsterInfo();
+    DamageMod = 1;
+    HealthMod = 1;
+    HeadHealthMod = 1;
     if(MonsterInfo != none)
     {
-        DifficultyInfo.GetAIHealthModifier(MonsterInfo, GameDifficulty, NumLivingPlayers, HealthMod, HeadHealthMod);
-        SprintChance = DifficultyInfo.GetCharSprintChanceByDifficulty(MonsterInfo, GameDifficulty);
-        SprintDamagedChance = DifficultyInfo.GetCharSprintWhenDamagedChanceByDifficulty(MonsterInfo, GameDifficulty);
-        DamageMod = DifficultyInfo.GetAIDamageModifier(MonsterInfo, GameDifficulty, bOnePlayerAtStart);        
+        if(!P.bVersusZed)
+        {
+            DifficultyInfo.GetAIHealthModifier(MonsterInfo, GameDifficulty, byte(GetLivingPlayerCount()), HealthMod, HeadHealthMod);
+            DamageMod = DifficultyInfo.GetAIDamageModifier(MonsterInfo, GameDifficulty, bOnePlayerAtStart);            
+        }
+        else
+        {
+            DifficultyInfo.GetVersusHealthModifier(MonsterInfo, byte(GetLivingPlayerCount()), HealthMod, HeadHealthMod);
+        }
+    }
+    RandomSpeedMod = DifficultyInfo.GetAIRandomSpeedMod();
+    GroundSpeedMod = GameConductor.CurrentAIMovementSpeedMod * RandomSpeedMod;
+    if(P.bVersusZed)
+    {
+        HealthMod *= GameConductor.CurrentVersusZedHealthMod;
+        HeadHealthMod *= GameConductor.CurrentVersusZedHealthMod;
+        P.DifficultyDamageMod = DamageMod * GameConductor.CurrentVersusZedDamageMod;        
     }
     else
     {
-        DamageMod = DifficultyInfo.GetBaseAIDamageModifier();
+        P.DifficultyDamageMod = P.default.DifficultyDamageMod;
     }
-    GroundSpeedMod = DifficultyInfo.GetAdjustedAIGroundSpeedMod();
-    GroundSpeedMod *= GameConductor.CurrentAIMovementSpeedMod;
-    HiddenSpeedMod = DifficultyInfo.GetAIHiddenSpeedModifier(NumLivingPlayers);
-    if(KFAIController_Monster(P.Controller) != none)
-    {
-        KFAIController_Monster(P.Controller).DifficultyDamageMod = DamageMod;
-    }
-    P.HiddenGroundSpeed = P.default.HiddenGroundSpeed * HiddenSpeedMod;
     P.GroundSpeed = P.default.GroundSpeed * GroundSpeedMod;
     P.SprintSpeed = P.default.SprintSpeed * GroundSpeedMod;
     P.NormalGroundSpeed = P.GroundSpeed;
+    P.NormalSprintSpeed = P.SprintSpeed;
     P.Health = int(float(P.default.Health) * HealthMod);
     if(P.default.HealthMax == 0)
     {
@@ -894,19 +876,9 @@ function SetAIDefaults(KFPawn_Monster P)
         P.HealthMax = int(float(P.default.HealthMax) * HealthMod);
     }
     P.ApplySpecialZoneHealthMod(HeadHealthMod);
-    if(P.PawnAnimInfo != none)
-    {
-        P.PawnAnimInfo.SetDifficultyValues(DifficultyInfo);
-    }
-    P.SetCanSprint(FRand() <= SprintChance);
-    P.SetCanSprintWhenDamaged(FRand() <= SprintDamagedChance);
-    if(BaseMutator != none)
-    {
-        BaseMutator.ModifyAI(P);
-    }
     if(bLogAIDefaults)
     {
-        LogInternal(("==== SetAIDefaults for pawn: " @ string(P)) @ "====");
+        LogInternal(("==== SetMonsterDefaults for pawn: " @ string(P)) @ "====");
     }
     if(bLogAIDefaults)
     {
@@ -922,25 +894,17 @@ function SetAIDefaults(KFPawn_Monster P)
     }
     if(bLogAIDefaults)
     {
-        LogInternal((("HiddenSpeedMod: " @ string(HiddenSpeedMod)) @ " Final Hidden Speed = ") @ string(P.HiddenGroundSpeed));
-    }
-    if(bLogAIDefaults)
-    {
         LogInternal((("SprintSpeedMod: " @ string(GroundSpeedMod)) @ " Final Sprint Speed = ") @ string(P.SprintSpeed));
     }
     if(bLogAIDefaults)
     {
         LogInternal((("DamageMod: " @ string(DamageMod)) @ " Final Melee Damage = ") @ string(P.MeleeAttackHelper.BaseDamage * DamageMod));
     }
-    if(bLogAIDefaults)
-    {
-        LogInternal((("bCanSprint: " @ string(P.bCanSprint)) @ " from SprintChance: ") @ string(SprintChance));
-    }
 }
 
 function SetTeam(Controller Other, KFTeamInfo_Human NewTeam)
 {
-    if(Other.PlayerReplicationInfo == none)
+    if((Other.PlayerReplicationInfo == none) || Other.PlayerReplicationInfo.bOnlySpectator)
     {
         return;
     }
@@ -968,6 +932,21 @@ function CreateTeam(int TeamIndex)
 function byte PickTeam(byte Current, Controller C)
 {
     return 0;
+}
+
+function bool ChangeTeam(Controller Other, int N, bool bNewTeam)
+{
+    if(PlayerController(Other) == none)
+    {
+        SetTeam(Other, Teams[N]);
+        return true;
+    }
+    if(((Other.PlayerReplicationInfo != none) && !Other.PlayerReplicationInfo.bOnlySpectator) && Other.PlayerReplicationInfo.Team != Teams[0])
+    {
+        SetTeam(Other, Teams[0]);
+        return true;
+    }
+    return false;
 }
 
 function bool CanSpectate(PlayerController Viewer, PlayerReplicationInfo ViewTarget)
@@ -1018,8 +997,11 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 
     if((KilledPlayer != none) && KilledPlayer.bIsPlayer)
     {
+        if(((KilledPlayer.GetTeamNum() == 0) && Killer != none) && Killer.GetTeamNum() == 255)
+        {
+            GameConductor.NotifyHumanTeamPlayerDeath();
+        }
         KilledPRI = KFPlayerReplicationInfo(KilledPlayer.PlayerReplicationInfo);
-        KFPC = KFPlayerController(KilledPlayer);
         if(KilledPRI != none)
         {
             if(KilledPlayer == Killer)
@@ -1035,9 +1017,10 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
                 }
             }
         }
+        KFPC = KFPlayerController(KilledPlayer);
         if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
         {
-            WorldInfo.TWLogEvent("player_death", KilledPRI, KillerLabel, string(DT.Name), "#" $ string(MyKFGRI.WaveNum), KFPC.GetPerk().PerkName, string(KFPC.GetPerk().GetLevel()), KFInventoryManager(KilledPawn.InvManager).DumpInventory());
+            WorldInfo.TWLogEvent("player_death", KilledPRI, KillerLabel, string(DT.Name), "#" $ string(MyKFGRI.WaveNum), KFPC.GetPerk().PerkName, string(KFPC.GetPerk().GetLevel()), (((KilledPawn != none) && KilledPawn.InvManager != none) ? KFInventoryManager(KilledPawn.InvManager).DumpInventory() : ""));
         }
     }
     super(GameInfo).Killed(Killer, KilledPlayer, KilledPawn, DT);
@@ -1049,47 +1032,65 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
     {
         CheckZedTimeOnKill(Killer, KilledPlayer, KilledPawn, DT);
     }
-    if(KilledPawn.IsA('KFPawn_Monster'))
+    if((KilledPawn != none) && KilledPawn.GetTeamNum() == 255)
     {
-        KFPC = KFPlayerController(Killer);
-        MonsterPawn = KFPawn_Monster(KilledPawn);
-        if(((KFPC != none) && KFPC.bIsPlayer) && MonsterPawn != none)
+        if(Killer != none)
         {
-            KFPC.AddZedKill(MonsterPawn.Class, byte(GameDifficulty), DT);
-            KFPCP = KFPC.GetPerk();
-            if(KFPCP != none)
+            KFPC = KFPlayerController(Killer);
+            MonsterPawn = KFPawn_Monster(KilledPawn);
+            if((KFPC != none) && MonsterPawn != none)
             {
-                if(KFPCP.CanEarnSmallRadiusKillXP(DT))
+                KFPC.AddZedKill(MonsterPawn.Class, byte(GameDifficulty), DT);
+                KFPCP = KFPC.GetPerk();
+                if(KFPCP != none)
                 {
-                    CheckForBerserkerSmallRadiusKill(MonsterPawn, KFPC);
+                    if(KFPCP.CanEarnSmallRadiusKillXP(DT))
+                    {
+                        CheckForBerserkerSmallRadiusKill(MonsterPawn, KFPC);
+                    }
+                    KFPCP.AddVampireHealth(KFPC, DT);
                 }
-                KFPCP.AddVampireHealth(KFPC, DT);
             }
         }
-        AIAliveCount = GetMonsterAliveCount();
+        RefreshMonsterAliveCount();
         if(SpawnManager != none)
         {
             -- MyKFGRI.AIRemaining;
+            if(bLogAICount)
+            {
+                LogInternal("@@@@ ZED COUNT DEBUG: MyKFGRI.AIRemaining =" @ string(MyKFGRI.AIRemaining));
+            }
+            if(bLogAICount)
+            {
+                LogInternal("@@@@ ZED COUNT DEBUG: AIAliveCount =" @ string(AIAliveCount));
+            }
         }
     }
     if((KilledPlayer != none) && KilledPlayer.bIsPlayer)
     {
-        KilledPRI = KFPlayerReplicationInfo(KilledPlayer.PlayerReplicationInfo);
-        if(KilledPRI != none)
+        if(KilledPlayer.PlayerReplicationInfo != none)
         {
-            PlayerScoreDelta = GetAdjustedDeathPenalty(KilledPRI);
-            if(bLogScoring)
+            KilledPRI = KFPlayerReplicationInfo(KilledPlayer.PlayerReplicationInfo);
+            if(KilledPRI != none)
             {
-                LogInternal((("SCORING: Player" @ KilledPRI.PlayerName) @ "next starting dosh =") @ string(float(PlayerScoreDelta) + KilledPRI.Score));
+                PlayerScoreDelta = GetAdjustedDeathPenalty(KilledPRI);
+                if(bLogScoring)
+                {
+                    LogInternal((("SCORING: Player" @ KilledPRI.PlayerName) @ "next starting dosh =") @ string(float(PlayerScoreDelta) + KilledPRI.Score));
+                }
+                KilledPRI.AddDosh(PlayerScoreDelta);
+                TeamPenalty = GetAdjustedTeamDeathPenalty(KilledPRI);
+                if(KilledPRI.Team != none)
+                {
+                    KilledPRI.Team.Score -= float(TeamPenalty);
+                    if(bLogScoring)
+                    {
+                        LogInternal(("SCORING: Team lost" @ string(TeamPenalty)) @ "dosh for a player dying");
+                    }
+                }
+                KilledPRI.PlayerHealth = 0;
+                KilledPRI.PlayerHealthPercent = 0;
             }
-            KilledPRI.AddDosh(PlayerScoreDelta);
-            TeamPenalty = GetAdjustedTeamDeathPenalty(KilledPRI);
-            KilledPRI.Team.Score -= float(TeamPenalty);
-            if(bLogScoring)
-            {
-                LogInternal(("SCORING: Team lost" @ string(TeamPenalty)) @ "dosh for a player dying");
-            }
-            KilledPRI.PlayerHealth = 0;
         }
         KFPawn_Human(KilledPawn).BroadcastDeathMessage(Killer);
     }
@@ -1145,10 +1146,6 @@ function ScoreMonsterKill(Controller Killer, Controller Monster, KFPawn_Monster 
             }
         }
     }
-    if((GameplayEventsWriter != none) && GameplayEventsWriter.IsSessionInProgress())
-    {
-        GameplayEventsWriter.LogZedKilled(Killer, Monster, MonsterPawn);
-    }
     if(WorldInfo.NetMode == NM_DedicatedServer)
     {
         if((KFPlayerController(Killer) != none) && KFPlayerController(Killer).MatchStats != none)
@@ -1172,10 +1169,6 @@ function CheckForBerserkerSmallRadiusKill(KFPawn_Monster MonsterPawn, KFPlayerCo
         {
             if(VSizeSq(KFPH.Location - MonsterPawn.Location) <= float(Class'KFPerk_Berserker'.static.GetSmallRadiusKillDistanceSQ()))
             {
-                if((GameplayEventsWriter != none) && GameplayEventsWriter.IsSessionInProgress())
-                {
-                    GameplayEventsWriter.LogPlayerIntEvent(1302, KFPC, Class'KFPerk_Berserker'.static.GetSmallRadiusKillXP(byte(GameDifficulty)));
-                }
                 KFPC.AddSmallRadiusKill(byte(GameDifficulty));
                 break;
             }
@@ -1204,6 +1197,23 @@ function ModifyAIDoshValueForPlayerCount(out float ModifiedValue)
 function int GetNumPlayers()
 {
     return super(GameInfo).GetNumPlayers();
+}
+
+function int GetNumHumanTeamPlayers()
+{
+    local PlayerController P;
+    local int TotalPlayers, ZedTeamPlayers, HumanTeamPlayers;
+
+    foreach WorldInfo.AllControllers(Class'PlayerController', P)
+    {
+        if(P.bIsPlayer && P.GetTeamNum() == 255)
+        {
+            ++ ZedTeamPlayers;
+        }        
+    }    
+    TotalPlayers = GetNumPlayers();
+    HumanTeamPlayers = TotalPlayers - ZedTeamPlayers;
+    return HumanTeamPlayers;
 }
 
 function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, const out array<DamageInfo> DamageHistory, Controller Killer)
@@ -1267,10 +1277,6 @@ function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, const out arra
                             if(J < DamageHistory[I].DamagePerks.Length)
                             {
                                 KFPC.AddPlayerXP(FCeil(XP), DamageHistory[I].DamagePerks[J]);
-                                if((GameplayEventsWriter != none) && GameplayEventsWriter.IsSessionInProgress())
-                                {
-                                    GameplayEventsWriter.LogZedKilledPerPlayer(KFPC, float(TotalDamage), int(XP), EarnedDosh, DamageHistory[I].DamagePerks[J]);
-                                }
                                 ++ J;
                                 goto J0x494;
                             }
@@ -1281,10 +1287,6 @@ function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, const out arra
         }
         ++ I;
         goto J0x10F;
-    }
-    if((GameplayEventsWriter != none) && GameplayEventsWriter.IsSessionInProgress())
-    {
-        GameplayEventsWriter.DeathEvent.CommitToDisk();
     }
 }
 
@@ -1458,52 +1460,41 @@ function NotifyNavigationChanged(NavigationPoint N)
     local KFAIController AI;
     local int Idx;
 
-
-    /* Statement decompilation error: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-        
-    */
-    /*@Error*/
-    foreach WorldInfo.AllControllers(Class'KFAIController', AI)
+    if(N.bBlocked)
     {
-        break;
-        @NULL
-        @NULL
-        UnresolvedNativeFunction_200(@NULL, @NULL, string(GetFuncName()) $ "() Notifying ", string(AI));
-        " that navigation has changed for "        
-        string(N)        
-        'PathWarning'
-        ,
-        ,
-        ,        
-        if(!AI.bMovingToGoal)
+        foreach WorldInfo.AllControllers(Class'KFAIController', AI)
         {
-            if(AI != none)
+            @NULL == AILog_Internal((((string(GetFuncName()) $ "() Notifying ") $ string(AI)) $ " that navigation has changed for ") $ string(N), 'PathWarning');
+            if(!AI.bMovingToGoal)
             {
-                AI.AILog_Internal((((string(GetFuncName()) $ "() ** Skipping notification for ") $ string(AI)) $ " because bMovingToGoal was false. bPreparingMove? : ") $ string(AI.bPreparingMove), 'PathWarning');
-                continue;
-                goto J0x441;
+                if(AI != none)
+                {
+                    AI.AILog_Internal((((string(GetFuncName()) $ "() ** Skipping notification for ") $ string(AI)) $ " because bMovingToGoal was false. bPreparingMove? : ") $ string(AI.bPreparingMove), 'PathWarning');
+                    continue;
+                    goto J0x441;
+                }
                 Idx = AI.RouteCache.Find(N;
             }
-        }
-        if(Idx >= 0)
-        {
-            if(AI != none)
+            if(Idx >= 0)
             {
-                AI.AILog_Internal((((string(GetFuncName()) $ "() setting bReEvaluatePath to true for ") $ string(AI)) $ " thanks to ") $ string(N), 'PathWarning');
-                AI.bReevaluatePath = true;
-            }
-            AI.MoveTimer = -1;
-            AI.ForcePauseAndRepath();
-            goto J0x440;
-            /* Statement decompilation error: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-                
-            */
+                if(AI != none)
+                {
+                    AI.AILog_Internal((((string(GetFuncName()) $ "() setting bReEvaluatePath to true for ") $ string(AI)) $ " thanks to ") $ string(N), 'PathWarning');
+                    AI.bReevaluatePath = true;
+                }
+                AI.MoveTimer = -1;
+                AI.ForcePauseAndRepath();
+                goto J0x440;
+                if(AI != none)
+                {
+                }
+                AI.AILog_Internal((((((((("** WARNING ** " $ string(GetFuncName())) $ " for ") $ string(N)) $ " not telling ") $ string(AI)) $ " to reevaluate path because I couldn't find ") $ string(N)) $ " in the routecache! bPreparingMove: ") $ string(AI.bPreparingMove), 'PathWarning');                                
+                J0x440:
 
-            /*@Error*/
-            AI.AILog_Internal((((((((("** WARNING ** " $ string(GetFuncName())) $ " for ") $ string(N)) $ " not telling ") $ string(AI)) $ " to reevaluate path because I couldn't find ") $ string(N)) $ " in the routecache! bPreparingMove: ") $ string(AI.bPreparingMove), 'PathWarning');
-        }                
+                J0x441:
+
+            }
+        }
     }
 }
 
@@ -1988,10 +1979,6 @@ function LogPlayersInventory()
             {
                 WorldInfo.LogGameBalance((((string('Inventory') $ ",") $ PC.PlayerReplicationInfo.PlayerName) $ ",") $ InvString);
             }
-            if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
-            {
-                WorldInfo.TWLogEvent("inventory", PC.PlayerReplicationInfo, InvString);
-            }
         }        
     }    
 }
@@ -2085,8 +2072,6 @@ function CheckServerUnlock()
 
 function StartMatch()
 {
-    local KFPlayerController PC;
-
     super(GameInfo).StartMatch();
     bDelayedStart = false;
     MyKFGRI.RemainingTime = 0;
@@ -2096,17 +2081,6 @@ function StartMatch()
     if(GameplayEventsWriter != none)
     {
         GameplayEventsWriter.StartLogging(0);
-        if((GameplayEventsWriter != none) && GameplayEventsWriter.IsSessionInProgress())
-        {
-            GameplayEventsWriter.LogSurvivalInfo(int(GameDifficulty), int(GameDifficulty));
-        }
-        foreach WorldInfo.AllControllers(Class'KFPlayerController', PC)
-        {
-            if((GameplayEventsWriter != none) && GameplayEventsWriter.IsSessionInProgress())
-            {
-                GameplayEventsWriter.LogKFPlayerPerk(1101, PC, PC.CurrentPerk.Class);
-            }            
-        }        
     }
 }
 
@@ -2147,8 +2121,12 @@ function bool MajorityPlayersReady()
     local float readyPercent;
 
     MyKFGRI.GetKFPRIArray(KFPRIArray);
+    if(KFPRIArray.Length == 0)
+    {
+        return false;
+    }
     I = 0;
-    J0x34:
+    J0x46:
 
     if(I < KFPRIArray.Length)
     {
@@ -2157,7 +2135,11 @@ function bool MajorityPlayersReady()
             ++ readyPlayers;
         }
         ++ I;
-        goto J0x34;
+        goto J0x46;
+    }
+    if(readyPlayers == 0)
+    {
+        return false;
     }
     readyPercent = float(readyPlayers) / float(KFPRIArray.Length);
     return readyPercent >= 0.5;
@@ -2186,23 +2168,7 @@ function bool AnyPlayerReady()
 
 function bool IsPlayerReady(KFPlayerReplicationInfo PRI)
 {
-    local KFPlayerController KFPC;
-
-    if(Class'KFGameEngine'.static.CheckSkipLobby() || Class'Engine'.static.IsEditor())
-    {
-        return true;
-    }
-    if(PRI.bReadyToPlay)
-    {
-        KFPC = KFPlayerController(PRI.Owner);
-        if((KFPC != none) && (KFPC.CurrentPerk == none) || !KFPC.CurrentPerk.bInitialized)
-        {
-            LogInternal(("ERROR: Failed to load perk for:" @ string(KFPC)) @ string(KFPC.CurrentPerk));
-            return false;
-        }
-        return true;
-    }
-    return false;
+    return PRI.bReadyToPlay;
 }
 
 function UpdateCurrentMapVoteTime(byte NewTime, optional bool bStartTime);
@@ -2283,6 +2249,8 @@ defaultproperties
     ReadyUpDelay=120
     GameStartDelay=4
     EndOfGameDelay=15
+    GameModes(0)=(FriendlyName="Survival",ClassNameAndPath="KFGameContent.KFGameInfo_Survival",bSoloPlaySupported=true,DifficultyLevels=0,Lengths=0,LocalizeID=0)
+    GameModes(1)=(FriendlyName="Versus",ClassNameAndPath="KFGameContent.KFGameInfo_VersusSurvival",bSoloPlaySupported=false,DifficultyLevels=0,Lengths=0,LocalizeID=1)
     KickVotePercentage=0.5
     TimeBetweenFailedVotes=10
     MapVoteDuration=60
@@ -2299,9 +2267,10 @@ defaultproperties
     DeathPenaltyModifiers(1)=0.1
     DeathPenaltyModifiers(2)=0.2
     DeathPenaltyModifiers(3)=0.25
+    GameConductorClass=Class'KFGameConductor'
     ZedTimeSlomoScale=0.2
     ZedTimeBlendOutTime=0.5
-    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest"))
+    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison"))
     DialogManagerClass=Class'KFDialogManager'
     ActionMusicDelay=5
     ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

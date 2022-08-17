@@ -368,8 +368,6 @@ class KFPawnVoiceGroupEventData_Hans extends KFPawnVoiceGroupEventData;
 
 
 
-
-
 	
 
 
@@ -421,6 +419,7 @@ class KFPawnVoiceGroupEventData_Hans extends KFPawnVoiceGroupEventData;
 
 
 	
+
 
 
 
@@ -536,6 +535,7 @@ defaultproperties
    Events(34)=(EventID=34,Priority=1,Chance=1.000000,bCanBeMinimized=0)
    Events(35)=(EventID=35,Priority=1,Chance=1.000000,bCanBeMinimized=0)
    Events(36)=(EventID=36,Priority=1,Chance=1.000000,bCanBeMinimized=0)
+   Events(37)=(EventID=37,Priority=1,Chance=1.000000,bCanBeMinimized=0)
    Name="Default__KFPawnVoiceGroupEventData_Hans"
    ObjectArchetype=KFPawnVoiceGroupEventData'KFGame.Default__KFPawnVoiceGroupEventData'
 }

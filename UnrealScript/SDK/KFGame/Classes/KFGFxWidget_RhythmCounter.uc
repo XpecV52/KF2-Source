@@ -12,10 +12,10 @@
 
 class KFGFxWidget_RhythmCounter extends GFxObject;
 
-function SetCount( int Count )
+function SetCount( int Count, int Max )
 {
 	SetInt("count", Count);
-	SetBonusPercentage(float(Count) / float(class'KFPerk_Gunslinger'.static.GetMaxHeadShotsValue()));
+	SetBonusPercentage(float(Min(Max,Count)) / float(Max));
 }
 
 function SetBonusPercentage( float NewValue )

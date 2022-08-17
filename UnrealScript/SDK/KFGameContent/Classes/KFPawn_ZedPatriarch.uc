@@ -9,6 +9,12 @@
 
 class KFPawn_ZedPatriarch extends KFPawn_MonsterBoss;
 
+struct Patriarch_MortarTarget
+{
+	var KFPawn TargetPawn;
+	var vector TargetVelocity;
+};
+
 /*********************************************************************************************
 * Content
 **********************************************************************************************/
@@ -203,6 +209,19 @@ var bool bGunTracking;
 /** The target to use for tracking */
 var repnotify Actor GunTarget;
 
+/** The projectile class used for the missile attack */
+var class<KFProj_Missile_Patriarch> MissileProjectileClass;
+
+/** The projectile class used for the mortar attack */
+var class<KFProj_Missile_Patriarch> MortarProjectileClass;
+
+/** Targets chosen for mortar attack */
+var array<Patriarch_MortarTarget> MortarTargets;
+
+/** Mortar distance values */
+var float MinMortarRangeSQ;
+var float MaxMortarRangeSQ;
+
 /*********************************************************************************************
 * Flee and heal mode
 **********************************************************************************************/
@@ -278,7 +297,7 @@ simulated event PostBeginPlay()
 }
 
 /** Overloaded to support loading the alternate body mic */
-simulated function SetCharacterArch( KFCharacterInfoBase Info )
+simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bForce )
 {
 	local int i;
 
@@ -362,6 +381,42 @@ simulated function SetFleeAndHealMode( bool bNewFleeAndHealStatus )
         bHealedThisPhase = false;
     }
 }
+
+/** Summon some children */
+function SummonChildren()
+{
+    local KFAIWaveInfo MinionWave;
+    local KFGameInfo MyKFGameInfo;
+
+	MyKFGameInfo = KFGameInfo(WorldInfo.Game);
+
+    // Force frustration mode on
+    MyKFGameInfo.GetAIDirector().bForceFrustration = true;
+
+    // Select the correct batch of zeds to spawn during this battle phase
+    if( CurrentBattlePhase == 1 )
+    {
+        MinionWave = SummonWaves[MyKFGameInfo.GameDifficulty].PhaseOneWave;
+    }
+    else if( CurrentBattlePhase == 2 )
+    {
+        MinionWave = SummonWaves[MyKFGameInfo.GameDifficulty].PhaseTwoWave;
+    }
+    else if( CurrentBattlePhase == 3 )
+    {
+        MinionWave = SummonWaves[MyKFGameInfo.GameDifficulty].PhaseThreeWave;
+    }
+
+    if( MinionWave != none )
+    {
+		if( MyKFGameInfo.SpawnManager != none )
+		{
+			MyKFGameInfo.SpawnManager.LeftoverSpawnSquad.Length = 0;
+		 	MyKFGameInfo.SpawnManager.SummonBossMinions( MinionWave.Squads, NumMinionsToSpawn );
+		}
+	}
+}
+
 
 /** Heal animnotify to move the syringe */
 simulated function ANIMNOTIFY_GrabSyringe()
@@ -619,9 +674,206 @@ simulated function Rotator GetAdjustedAimFor( Weapon W, vector StartFireLoc )
 	return super.GetAdjustedAimFor( W, StartFireLoc );
 }
 
+/** Retrieves the projectile class used for the missile attack. Called from SpecialMove */
+function class<KFProj_Missile_Patriarch> GetMissileClass()
+{
+	return MissileProjectileClass;
+}
+
+/** Retrieves the aim direction and target location for each missile. Called from SpecialMove */
+function GetMissileAimDirAndTargetLoc( int MissileNum, vector MissileLoc, rotator MissileRot, out vector AimDir, out vector TargetLoc )
+{
+	local vector X,Y,Z;
+	local Pawn EnemyPawn;
+	local int EnemyIndex;
+	local KFAIController_ZedPatriarch MyPatController;
+
+	// Get the best location to aim at
+	EnemyPawn = Controller.Enemy;
+	MyPatController = KFAIController_ZedPatriarch( Controller );
+	if( MyPatController != none && !MyPatController.CanSee(EnemyPawn) )
+	{
+		EnemyIndex = MyPatController.RecentlySeenEnemyList.Find( 'TrackedEnemy', KFPawn(EnemyPawn) );
+		if( EnemyIndex != INDEX_NONE )
+		{
+			TargetLoc = MyPatController.RecentlySeenEnemyList[EnemyIndex].LastVisibleLocation;
+		}
+		else
+		{
+			EnemyIndex = MyPatController.HiddenEnemies.Find( 'TrackedEnemy', KFPawn(EnemyPawn) );
+			if( EnemyIndex != INDEX_NONE )
+			{
+				TargetLoc = MyPatController.HiddenEnemies[EnemyIndex].LastVisibleLocation;
+			}
+			else
+			{
+				TargetLoc = EnemyPawn.Location;
+			}
+		}
+	}
+	else
+	{
+		TargetLoc = EnemyPawn.Location;
+	}
+
+	// Try to aim somewhat for the feet
+	TargetLoc += (vect(0,0,-1) * (EnemyPawn.GetCollisionHeight() * 0.25f));
+
+	// If no LOS, aim higher
+	if( !FastTrace(TargetLoc, MissileLoc,, true) )
+	{
+		TargetLoc = EnemyPawn.Location + (vect(0,0,1) * EnemyPawn.BaseEyeHeight);
+	}
+
+	// Nudge the spread a tiny bit to make the missiles less concentrated on a single point
+	GetAxes( MissileRot, X,Y,Z );
+	AimDir = Normal( (TargetLoc - MissileLoc) + (Z*6.f) );
+}
+
+/** Retrieves the projectile class used for the mortar attack. Called from SpecialMove */
+function class<KFProj_Missile_Patriarch> GetMortarClass()
+{
+	return MortarProjectileClass;
+}
+
+/** Tries to set our mortar targets */
+function bool CollectMortarTargets( optional bool bInitialTarget, optional bool bForceInitialTarget )
+{
+	local int NumTargets, i;
+	local KFPawn KFP;
+	local float TargetDistSQ;
+	local vector MortarVelocity, MortarStartLoc, TargetLoc, TargetProjection;
+	local KFAIController_ZedPatriarch MyPatController;
+
+	MyPatController = KFAIController_ZedPatriarch( Controller );
+   	MortarStartLoc = Location + vect(0,0,1)*GetCollisionHeight();
+    NumTargets = bInitialTarget ? 0 : 1;
+	for( i = 0; i < MyPatController.HiddenEnemies.Length; ++i )
+	{
+		KFP = MyPatController.HiddenEnemies[i].TrackedEnemy;
+		if( !KFP.IsAliveAndWell() || MortarTargets.Find('TargetPawn', KFP) != INDEX_NONE )
+		{
+			continue;
+		}
+
+		// Make sure target is in range
+		TargetLoc = KFP.Location + (vect(0,0,-1)*(KFP.GetCollisionHeight()*0.8f));
+		TargetProjection = MortarStartLoc - TargetLoc;
+		TargetDistSQ = VSizeSQ( TargetProjection );
+		if( TargetDistSQ > MinMortarRangeSQ && TargetDistSQ < MaxMortarRangeSQ )
+		{
+			TargetLoc += Normal(TargetProjection)*KFP.GetCollisionRadius();
+			if( SuggestTossVelocity(MortarVelocity, TargetLoc, MortarStartLoc, MortarProjectileClass.default.Speed, 500.f, 1.f, vect(0,0,0),, GetGravityZ()*0.8f) )
+			{
+				// Make sure upward arc path is clear
+				if( !FastTrace(MortarStartLoc + (Normal(vect(0,0,1) + (Normal(TargetLoc - MortarStartLoc)*0.9f))*fMax(VSize(MortarVelocity)*0.55f, 800.f)), MortarStartLoc,, true) )
+				{
+					continue;
+				}
+
+				MortarTargets.Insert( NumTargets, 1 );
+				MortarTargets[NumTargets].TargetPawn = KFP;
+				MortarTargets[NumTargets].TargetVelocity = MortarVelocity;
+
+				if( bInitialTarget || NumTargets == 2 )
+				{
+					return true;
+				}
+
+				NumTargets++;
+			}
+		}
+	}
+
+	// Fall back on visible enemies
+	if( (bForceInitialTarget || !bInitialTarget) && NumTargets < 2 && MyPatController.RecentlySeenEnemyList.Length > 0 )
+	{
+		for( i = 0; i < MyPatController.RecentlySeenEnemyList.Length && NumTargets < 3; ++i )
+		{
+			KFP = MyPatController.RecentlySeenEnemyList[i].TrackedEnemy;
+			if( !KFP.IsAliveAndWell() || MortarTargets.Find('TargetPawn', KFP) != INDEX_NONE )
+			{
+				continue;
+			}
+
+			// Make sure target is in range
+			TargetLoc = KFP.Location + (vect(0,0,-1)*(KFP.GetCollisionHeight()*0.8f));
+			TargetProjection = MortarStartLoc - TargetLoc;
+			TargetDistSQ = VSizeSQ( TargetProjection );
+			if( TargetDistSQ > MinMortarRangeSQ && TargetDistSQ < MaxMortarRangeSQ )
+			{
+				TargetLoc += Normal(TargetProjection)*KFP.GetCollisionRadius();
+				if( SuggestTossVelocity(MortarVelocity, TargetLoc, MortarStartLoc, MortarProjectileClass.default.Speed, 500.f, 1.f, vect(0,0,0),, GetGravityZ()*0.8f) )
+				{
+					// Make sure upward arc path is clear
+					if( !FastTrace(MortarStartLoc + (Normal(vect(0,0,1) + (Normal(TargetLoc - MortarStartLoc)*0.9f))*fMax(VSize(MortarVelocity)*0.55f, 800.f)), MortarStartLoc,, true) )
+					{
+						continue;
+					}
+
+					MortarTargets.Insert( NumTargets, 1 );
+					MortarTargets[NumTargets].TargetPawn = KFP;
+					MortarTargets[NumTargets].TargetVelocity = MortarVelocity;
+
+					if( bInitialTarget )
+					{
+						return true;
+					}
+
+					NumTargets++;
+				}
+			}
+		}
+	}
+
+	return false;
+}
+
+/** Allows pawn to do any pre-mortar attack prep */
+function PreMortarAttack();
+
+/** Clears mortar targets */
+function ClearMortarTargets()
+{
+	MortarTargets.Length = 0;
+}
+
+/** Returns the mortar target for the associated projectile number */
+function Patriarch_MortarTarget GetMortarTarget( int MortarNum )
+{
+	if( MortarNum >= MortarTargets.Length )
+	{
+		return MortarTargets[Rand(MortarTargets.Length)];
+	}
+
+	return MortarTargets[MortarNum];
+}
+
+/** Retrieves the aim direction and target location for each mortar. Called from SpecialMove */
+function GetMortarAimDirAndTargetLoc( int MissileNum, vector MissileLoc, rotator MissileRot, out vector AimDir, out vector TargetLoc, out float MissileSpeed )
+{
+	local Patriarch_MortarTarget MissileTarget;
+	local vector X,Y,Z;
+
+	GetAxes( MissileRot, X,Y,Z );
+
+	// Each missile can possibly target a separate player
+	MissileTarget = GetMortarTarget(MissileNum);
+	
+	// Aim at the feet
+	TargetLoc = MissileTarget.TargetPawn.Location + (vect(0,0,-1)*MissileTarget.TargetPawn.GetCollisionHeight());
+
+	// Nudge the spread a tiny bit to make the missiles less concentrated on a single point
+	AimDir = Normal( vect(0,0,1) + Normal(MissileTarget.TargetVelocity) );
+
+	// Set the missile speed
+	MissileSpeed = VSize( MissileTarget.TargetVelocity );
+}
+
 /** Update our barrel spin skel control */
 simulated event Tick( float DeltaTime )
 {
+	local float MinCloakPct;
 	local float Intensity, BoilPulseSin;
 	local LinearColor ActualBoilColor;
 
@@ -652,19 +904,8 @@ simulated event Tick( float DeltaTime )
 			}
 		}
 
-		// Track the player with the gun arm
-		if( GunTrackingSkelCtrl != none )
-		{
-			if( bGunTracking && GunTarget != None )
-			{
-				GunTrackingSkelCtrl.DesiredTargetLocation = GunTarget.Location;
-				GunTrackingSkelCtrl.InterpolateTargetLocation( DeltaTime );
-			}
-			else
-			{
-				GunTrackingSkelCtrl.SetSkelControlActive( false );
-			}
-		}
+		// Update our gun tracking skeletal controller
+		UpdateGunTrackingSkelCtrl( DeltaTime );
 
 		// Update syringe material scalars
 		if( ActiveSyringe > -1 && HealingSyringeMICs[ActiveSyringe] != none && SyringeInjectTimeRemaining > 0.f )
@@ -696,11 +937,13 @@ simulated event Tick( float DeltaTime )
 
 		if( BodyMIC.Parent != SpottedMaterial )
 		{
+			MinCloakPct = GetMinCloakPct();
+
 			if( !bIsCloaking )
 			{
 				if( CloakPercent < 1.0f )
 				{
-					CloakPercent = fMin( CloakPercent + DeltaTime*DeCloakSpeed, 1.0f );
+					CloakPercent = fMin( CloakPercent + DeltaTime*DeCloakSpeed, 1.f );
 
 					if( CloakPercent == 1.0f )
 					{
@@ -724,9 +967,9 @@ simulated event Tick( float DeltaTime )
 					BoilLightComponent.SetLightProperties( BoilLightBrightness[CurrentBattlePhase-1] * BoilPulseSin );
 				}
 			}
-			else if( CloakPercent > 0.f )
+			else if( CloakPercent > MinCloakPct )
 			{
-				CloakPercent = fMax( CloakPercent - DeltaTime*CloakSpeed, 0.f );
+				CloakPercent = fMax( CloakPercent - DeltaTime*CloakSpeed, MinCloakPct );
 				BodyMIC.SetScalarParameterValue( 'Transparency', CloakPercent );
 				BodyAltMIC.SetScalarParameterValue( 'Transparency', CloakPercent );
 
@@ -745,6 +988,30 @@ simulated event Tick( float DeltaTime )
 			}
 		}
 	}
+}
+
+/** Updates our gun tracking skeletal control */
+simulated function UpdateGunTrackingSkelCtrl( float DeltaTime )
+{
+	// Track the player with the gun arm
+	if( GunTrackingSkelCtrl != none )
+	{
+		if( bGunTracking && GunTarget != None )
+		{
+			GunTrackingSkelCtrl.DesiredTargetLocation = GunTarget.Location;
+			GunTrackingSkelCtrl.InterpolateTargetLocation( DeltaTime );
+		}
+		else
+		{
+			GunTrackingSkelCtrl.SetSkelControlActive( false );
+		}
+	}	
+}
+
+/** Gets the minimum cloaked amount based on the viewer */
+simulated protected function float GetMinCloakPct()
+{
+	return 0.f;
 }
 
 /** Updates healing syringe transparency based on cloak settings */
@@ -769,14 +1036,15 @@ simulated function UpdateHealingSyringeTransparency()
 * Cloaking
 **********************************************************************************************/
 
-simulated function GoreMeshSwapped()
+simulated event NotifyGoreMeshActive()
 {
     // Set our secondary MIC
 	if( WorldInfo.NetMode != NM_DedicatedServer && Mesh != None )
 	{
 		BodyMIC = Mesh.CreateAndSetMaterialInstanceConstant( 0 );
 		BodyAltMIC = Mesh.CreateAndSetMaterialInstanceConstant( 1 );
-		SetGameplayMICParams();
+
+		Super.NotifyGoreMeshActive();
 	}
 }
 
@@ -792,7 +1060,7 @@ function SetCloaked(bool bNewCloaking)
 
 		if( MaxHeadChunkGoreWhileAlive == 0 && bIsCloaking != bNewCloaking && IsAliveAndWell() )
 		{
-			`SafeDialogManager.PlaySpotCloakDialog( self, bNewCloaking );
+			`DialogManager.PlaySpotCloakDialog( self, bNewCloaking );
 		}
 
 		bIsCloaking = bNewCloaking;
@@ -981,6 +1249,7 @@ simulated function SetGameplayMICParams()
 {
 	local int i;
 	local bool bIsSpotted;
+	local bool bWasCloaked;
 
 	super.SetGameplayMICParams();
 
@@ -992,6 +1261,8 @@ simulated function SetGameplayMICParams()
 
 		if( (!bIsCloaking || IsImpaired()) && BodyMIC.Parent != BodyMaterial )
 		{
+			bWasCloaked = BodyMIC.Parent == SpottedMaterial || BodyMIC.Parent == CloakedBodyMaterial;
+
 			BodyMIC.SetParent( BodyMaterial );
 			BodyAltMIC.SetParent( BodyAltMaterial );
 	   		for( i = 0; i < HealingSyringeMICs.Length; ++i )
@@ -1001,13 +1272,19 @@ simulated function SetGameplayMICParams()
 	   				HealingSyringeMICs[i].SetParent( default.HealingSyringeMeshes[i].Materials[0] );
 	   			}
 	   		}
-			PlayStealthSoundLoopEnd();
+
 			Mesh.AttachComponentToSocket( BoilLightComponent, BoilLightSocketName );
 			BoilLightComponent.SetEnabled( true );
-			DoCloakFX();
 			Mesh.CastShadow = true;
 			Mesh.SetPerObjectShadows( true );
-			SetDamageFXActive( true );
+
+			// Needed to avoid effects occurring on gore mesh swap
+	   		if( bWasCloaked )
+	   		{
+				SetDamageFXActive( true );
+				PlayStealthSoundLoopEnd();
+				DoCloakFX();
+			}
 		}
 		else if ( bIsCloaking && bIsSpotted && BodyMIC.Parent != SpottedMaterial )
 		{
@@ -1280,12 +1557,6 @@ simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects( int HitZoneIdx )
 	return super.GetHitZoneSkinTypeEffects( HitZoneIdx );
 }
 
-/** Patty can only be gored after death */
-simulated function bool CanSwapToGoreMesh()
-{
-	return false;
-}
-
 /** Overridden so that patty doesn't attempt dismemberment while he's alive */
 function bool CanInjureHitZone(class<DamageType> DamageType, int HitZoneIdx)
 {
@@ -1343,6 +1614,9 @@ simulated function PlayDying( class<DamageType> DamageType, vector HitLoc )
 
 	Super.PlayDying(DamageType, HitLoc);
 
+	// Empty mortar targets array
+	ClearMortarTargets();
+
 	if( WorldInfo.NetMode != NM_DedicatedServer )
 	{
 		SetDamageFXActive( false );
@@ -1386,17 +1660,6 @@ function CauseHeadTrauma( float BleedOutTime=5.f )
 	}
 }
 
-/** Overridden to allow swapping to gore mesh after death */
-State Dying
-{
-	ignores Bump, HitWall, HeadVolumeChange, PhysicsVolumeChange, Falling, BreathTimer, FellOutOfWorld;
-
-	simulated function bool CanSwapToGoreMesh()
-	{
-		return true;
-	}
-}
-
 /*********************************************************************************************
 * Audio
 **********************************************************************************************/
@@ -1436,18 +1699,18 @@ simulated function PlayStealthSoundLoopEnd()
 
 function PlayMinigunWarnDialog()
 {
-	`SafeDialogManager.PlayPattyMinigunWarnDialog( self );
+	`DialogManager.PlayPattyMinigunWarnDialog( self );
 }
 
 function PlayMinigunAttackDialog()
 {
-	`SafeDialogManager.PlayPattyMinigunAttackDialog( self );
+	`DialogManager.PlayPattyMinigunAttackDialog( self );
 }
 
 function PlayGrabbedPlayerDialog( KFPawn_Human Target )
 {
-	`SafeDialogManager.PlayPattyTentaclePullDialog( self );
-	`SafeDialogManager.PlayPlayerGrabbedByPatriarchDialog( Target );
+	`DialogManager.PlayPattyTentaclePullDialog( self );
+	`DialogManager.PlayPlayerGrabbedByPatriarchDialog( Target );
 }
 
 /** Play music for this boss (overridden for each boss) */
@@ -1630,26 +1893,32 @@ defaultproperties
 		SpecialMoveClasses(SM_Heal)=class'KFSM_Patriarch_Heal'
 		SpecialMoveClasses(SM_HoseWeaponAttack)=class'KFSM_Patriarch_MinigunBarrage'
         SpecialMoveClasses(SM_GrabAttack)=class'KFSM_Patriarch_Grapple'
-		SpecialMoveClasses(SM_StandAndShotAttack)=class'KFSM_Patriarch_MissileAttack'
+		SpecialMoveClasses(SM_StandAndShootAttack)=class'KFSM_Patriarch_MissileAttack'
 		SpecialMoveClasses(SM_SonicAttack)=class'KFSM_Patriarch_MortarAttack'
 	End Object
 
+    InstantIncaps(IAF_Stun)=(Head=85,Torso=120,Arm=120,Special=85,LowHealthBonus=10,Cooldown=10.0)
+    InstantIncaps(IAF_Knockdown)=(Head=65,Torso=150,Leg=150,Special=65,LowHealthBonus=10,Cooldown=40.0)
+    InstantIncaps(IAF_Stumble)=(Head=79,Torso=130,Arm=130,Special=20,LowHealthBonus=10,Cooldown=8.0)
+    InstantIncaps(IAF_LegStumble)=(Leg=130,LowHealthBonus=10,Cooldown=8.0)
+    InstantIncaps(IAF_GunHit)=(Head=29,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=10.0)
+    InstantIncaps(IAF_MeleeHit)=(Head=29,Torso=35,Leg=35,Arm=35,LowHealthBonus=10,Cooldown=3.0)
+    StackingIncaps(SAF_Poison)=(Threshhold=5000.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.00)
+    StackingIncaps(SAF_Microwave)=(Threshhold=40.0,Duration=3.0,Cooldown=10.0,DissipationRate=1.00)
+    StackingIncaps(SAF_FirePanic)=(Threshhold=15,Duration=1.2,Cooldown=15.0,DissipationRate=1.0)
+    StackingIncaps(SAF_EMPPanic)=(Threshhold=1.15,Duration=2.25,Cooldown=12.0,DissipationRate=0.5)
+	StackingIncaps(SAF_EMPDisrupt)=(Threshhold=1.0,Duration=2.0,Cooldown=12.0,DissipationRate=0.5)
+
 	Begin Object Class=KFPawnAfflictions_Patriarch Name=Afflictions_0
-        InstantAffl(IAF_Stun)=(Head=79,Torso=130,Arm=130,Special=53,LowHealthBonus=10,Cooldown=6.0)
-        InstantAffl(IAF_Knockdown)=(Head=65,Torso=150,Leg=150,Special=65,LowHealthBonus=10,Cooldown=40.0)
-        InstantAffl(IAF_Stumble)=(Head=79,Torso=130,Arm=130,Special=20,LowHealthBonus=10,Cooldown=8.0)
-        InstantAffl(IAF_LegStumble)=(Leg=130,LowHealthBonus=10,Cooldown=8.0)
-        InstantAffl(IAF_GunHit)=(Head=29,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=10.0)
-        InstantAffl(IAF_MeleeHit)=(Head=29,Torso=35,Leg=35,Arm=35,LowHealthBonus=10,Cooldown=3.0)
-        StackingAffl(SAF_Poison)=(Threshhold=5000.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.00)
-        StackingAffl(SAF_Microwave)=(Threshhold=40.0,Duration=3.0,Cooldown=10.0,DissipationRate=1.00)
-        StackingAffl(SAF_FirePanic)=(Threshhold=15,Duration=1.2,Cooldown=15.0,DissipationRate=1.0)
-        StackingAffl(SAF_EMPPanic)=(Threshhold=1.15,Duration=2.25,Cooldown=12.0,DissipationRate=0.5)
-		StackingAffl(SAF_EMPDisrupt)=(Threshhold=1.0,Duration=2.0,Cooldown=12.0,DissipationRate=0.5)
 		FireFullyCharredDuration=50.f
    	 	FireCharPercentThreshhold=0.35f
     End Object
 	AfflictionHandler=Afflictions_0
+
+	MissileProjectileClass=class'KFProj_Missile_Patriarch'
+	MortarProjectileClass=class'KFProj_Mortar_Patriarch'
+	MinMortarRangeSQ=160000.f
+	MaxMortarRangeSQ=6000000.f
 
 	ParryResistance=4
 

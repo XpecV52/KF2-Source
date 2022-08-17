@@ -30,6 +30,9 @@ var() vector LandedTranslationOffset;
 /** Whether or not we want to prevent this grenade from being tossed during the initial zed grab rotation. If the nade can insta kill the player, set to false */
 var(Grab) bool bAllowTossDuringZedGrabRotation;
 
+///** The UI image for this grenade.  Needed so the images have a reference and are cooked into packages. */
+var() Texture2D WeaponSelectTexture;
+
 /**
  * Set the initial velocity and cook time
  */

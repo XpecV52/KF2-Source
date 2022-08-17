@@ -11,7 +11,6 @@ class KFPawn_ZedFleshpound extends KFPawn_Monster
 
 var AkEvent RageStartSound;
 var AkEvent RageStopSound;
-var repnotify bool bIsEnraged;
 var LinearColor DefaultGlowColor;
 var LinearColor EnragedGlowColor;
 var() LinearColor DeadGlowColor;
@@ -20,12 +19,6 @@ var name BattlePhaseLightFrontSocketName;
 var export editinline transient PointLightComponent BattlePhaseLightTemplateYellow;
 var export editinline transient PointLightComponent BattlePhaseLightTemplateRed;
 var export editinline transient PointLightComponent BattlePhaseLightFront;
-
-replication
-{
-     if(bNetDirty)
-        bIsEnraged;
-}
 
 simulated event PreBeginPlay()
 {
@@ -56,9 +49,9 @@ function OnStackingAfflictionChanged(byte Id)
     super.OnStackingAfflictionChanged(Id);
     if((bEmpDisrupted && MyKFAIC != none) && IsAliveAndWell())
     {
-        if(IsDoingSpecialMove(11))
+        if(IsDoingSpecialMove(13))
         {
-            EndSpecialMove(11);
+            EndSpecialMove(13);
         }
         FpAIC = KFAIController_ZedFleshpound(MyKFAIC);
         if((FpAIC != none) && FpAIC.RagePlugin != none)
@@ -128,7 +121,7 @@ simulated event bool IsEnraged()
 
 simulated function SetEnraged(bool bNewEnraged)
 {
-    if((Role == ROLE_Authority) && bNewEnraged == bIsEnraged)
+    if(!bCanRage || (Role == ROLE_Authority) && bNewEnraged == bIsEnraged)
     {
         return;
     }
@@ -269,6 +262,7 @@ defaultproperties
     // Reference: PointLightComponent'Default__KFPawn_ZedFleshpound.PointLightComponent2'
     BattlePhaseLightTemplateRed=PointLightComponent2
     bLargeZed=true
+    bCanRage=true
     bIsFleshpoundClass=true
     CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Fleshpound_ARCH.ZED_Fleshpound_Archetype'
     HeadlessBleedOutTime=7
@@ -277,7 +271,7 @@ defaultproperties
     begin object name=MeleeHelper class=KFMeleeHelperAI
         BaseDamage=55
         MyDamageType=Class'KFDT_Bludgeon_Fleshpound'
-        MomentumTransfer=100000
+        MomentumTransfer=55000
         MaxHitRange=250
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedFleshpound.MeleeHelper'
@@ -310,12 +304,12 @@ defaultproperties
     HitZones=/* Array type was not detected. */
     PenetrationResistance=5
     begin object name=Afflictions class=KFPawnAfflictions
-        InstantAffl=/* Array type was not detected. */
-        StackingAffl=/* Array type was not detected. */
         FireFullyCharredDuration=5
     object end
     // Reference: KFPawnAfflictions'Default__KFPawn_ZedFleshpound.Afflictions'
     AfflictionHandler=Afflictions
+    InstantIncaps=/* Array type was not detected. */
+    StackingIncaps=/* Array type was not detected. */
     PhysRagdollImpulseScale=1.5
     KnockdownImpulseScale=2
     SprintSpeed=725

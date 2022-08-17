@@ -1,13 +1,12 @@
-package tripwire.containers.perks
+package tripwire.containers.Perks
 {
     import com.greensock.TweenMax;
     import com.greensock.easing.Linear;
     import flash.display.MovieClip;
     import flash.text.TextField;
     import scaleform.clik.controls.UILoader;
-    import tripwire.containers.TripContainer;
     
-    public class PerksHeaderContainer extends TripContainer
+    public class PerksHeaderContainer extends PerkContainerBase
     {
          
         
@@ -35,36 +34,36 @@ package tripwire.containers.perks
             ANIM_OFFSET_X = 0;
         }
         
-        public function set perkData(param1:Object) : void
+        public function set perkData(value:Object) : void
         {
-            var _loc2_:String = null;
-            this.data = param1;
+            var tempSource:String = null;
+            this.data = value;
             if(this.data != null)
             {
                 this.perkXPTextField.text = (!!this.data.xpString ? this.data.xpString : "") + " XP";
                 this.progressBarWidth = !!this.data.xpPercent ? Number(this.data.xpPercent) : Number(0);
                 this.perkNameTextfield.text = !!this.data.perkTitle ? this.data.perkTitle : "";
                 this.perkLevelTextfield.text = !!this.data.perkLevel ? this.data.perkLevel : "";
-                _loc2_ = !!this.data.iconSource ? this.data.iconSource : "";
-                if(_loc2_ != "")
+                tempSource = !!this.data.iconSource ? this.data.iconSource : "";
+                if(tempSource != "")
                 {
-                    this.perkIcon.source = _loc2_;
+                    this.perkIcon.source = tempSource;
                 }
                 this.perkRankTextField.text = !!this.data.prestigeLevel ? this.data.prestigeLevel : "";
             }
         }
         
-        protected function set progressBarWidth(param1:Number) : void
+        protected function set progressBarWidth(value:Number) : void
         {
-            if(param1 < 0)
+            if(value < 0)
             {
-                param1 = 0;
+                value = 0;
             }
-            if(param1 > 1)
+            if(value > 1)
             {
-                param1 = 1;
+                value = 1;
             }
-            this.progressNum = 100 * param1 + 1;
+            this.progressNum = 100 * value + 1;
             this.progressBar.gotoAndStop(this.progressNum);
         }
         

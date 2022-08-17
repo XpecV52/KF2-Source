@@ -195,6 +195,7 @@ struct native ShadowQualitySetting
 struct native FXQualitySetting
 {
     var int ParticleLODBias;
+    var int DistanceFogQuality;
     var bool Distortion;
     var bool FilteredDistortion;
     var bool DropParticleDistortion;
@@ -217,6 +218,7 @@ struct native FXQualitySetting
     structdefaultproperties
     {
         ParticleLODBias=0
+        DistanceFogQuality=0
         Distortion=false
         FilteredDistortion=false
         DropParticleDistortion=false
@@ -434,7 +436,7 @@ struct native GFXSettings
         Flex=(FlexLevel=0)
         EnvironmentDetail=(DetailMode=0,AllowLightFunctions=false,bDisableCanBecomeDynamicWakeup=false,MakeDynamicCollisionThreshold=0,DestructionLifetimeScale=0)
         CharacterDetail=(SkeletalMeshLODBias=0,AllowSubsurfaceScattering=false,KinematicUpdateDistFactorScale=0,ShouldCorpseCollideWithDead=false,ShouldCorpseCollideWithLiving=false,ShouldCorpseCollideWithDeadAfterSleep=false,MaxBodyWoundDecals=0,MaxDeadBodies=0,bAllowPhysics=false)
-        FX=(ParticleLODBias=0,Distortion=false,FilteredDistortion=false,DropParticleDistortion=false,AllowSecondaryBloodEffects=false,EmitterPoolScale=0,ShellEjectLifetime=0,AllowExplosionLights=false,AllowSprayActorLights=false,AllowFootstepSounds=false,AllowBloodSplatterDecals=false,AllowRagdollAndGoreOnDeadBodies=false,AllowPilotLights=false,MaxImpactEffectDecals=0,MaxExplosionDecals=0,GoreFXLifetimeMultiplier=0,MaxBloodEffects=0,MaxGoreEffects=0,MaxPersistentSplatsPerFrame=0)
+        FX=(ParticleLODBias=0,DistanceFogQuality=0,Distortion=false,FilteredDistortion=false,DropParticleDistortion=false,AllowSecondaryBloodEffects=false,EmitterPoolScale=0,ShellEjectLifetime=0,AllowExplosionLights=false,AllowSprayActorLights=false,AllowFootstepSounds=false,AllowBloodSplatterDecals=false,AllowRagdollAndGoreOnDeadBodies=false,AllowPilotLights=false,MaxImpactEffectDecals=0,MaxExplosionDecals=0,GoreFXLifetimeMultiplier=0,MaxBloodEffects=0,MaxGoreEffects=0,MaxPersistentSplatsPerFrame=0)
         TextureResolution=(UIBias=0,ShadowmapBias=0,CharacterBias=0,Weapon1stBias=0,Weapon3rdBias=0,EnvironmentBias=0,FXBias=0)
         TextureFiltering=(MinMagFilter=None,MipFilter=None,MaxAnisotropy=0)
         Shadows=(bAllowWholeSceneDominantShadows=false,bOverrideMapWholeSceneDominantShadowSetting=false,bAllowDynamicShadows=false,bAllowPerObjectShadows=false,MaxWholeSceneDominantShadowResolution=0,MaxShadowResolution=0,ShadowFadeResolution=0,MinShadowResolution=0,ShadowTexelsPerPixel=0,GlobalShadowDistanceScale=0,AllowForegroundPreshadows=false)
@@ -2539,7 +2541,7 @@ defaultproperties
     AmbientOcclusionStringOptions(1)="SSAO"
     AmbientOcclusionStringOptions(2)="HBAO+"
     DepthOfFieldStringOptions(0)="Off"
-    DepthOfFieldStringOptions(1)="SAT DOF"
+    DepthOfFieldStringOptions(1)="On"
     OffOnStringOptions(0)="Off"
     OffOnStringOptions(1)="On"
     GraphicsQualityPresets(0)=(EnvironmentDetailIndex=0,CharacterDetailIndex=0,FXQualityIndex=0,TextureResolutionIndex=0,TextureFilteringIndex=0,ShadowQualityIndex=0,RealtimeReflectionsIndex=0,LightShafts=false,VolumetricLighting=false,LensFlares=false,AntiAliasingIndex=0,BloomIndex=0,MotionBlurIndex=0,AmbientOcclusionIndex=0,DOFIndex=0,FlexIndex=0)
@@ -2569,10 +2571,10 @@ defaultproperties
     ShadowQualityPresets(1)=(bAllowWholeSceneDominantShadows=true,bOverrideMapWholeSceneDominantShadowSetting=false,bAllowDynamicShadows=true,bAllowPerObjectShadows=true,MaxWholeSceneDominantShadowResolution=1204,MaxShadowResolution=1024,ShadowFadeResolution=128,MinShadowResolution=64,ShadowTexelsPerPixel=1,GlobalShadowDistanceScale=0.75,AllowForegroundPreshadows=false)
     ShadowQualityPresets(2)=(bAllowWholeSceneDominantShadows=true,bOverrideMapWholeSceneDominantShadowSetting=false,bAllowDynamicShadows=true,bAllowPerObjectShadows=true,MaxWholeSceneDominantShadowResolution=1280,MaxShadowResolution=1024,ShadowFadeResolution=128,MinShadowResolution=64,ShadowTexelsPerPixel=1.3,GlobalShadowDistanceScale=1,AllowForegroundPreshadows=true)
     ShadowQualityPresets(3)=(bAllowWholeSceneDominantShadows=true,bOverrideMapWholeSceneDominantShadowSetting=true,bAllowDynamicShadows=true,bAllowPerObjectShadows=true,MaxWholeSceneDominantShadowResolution=2048,MaxShadowResolution=1536,ShadowFadeResolution=64,MinShadowResolution=32,ShadowTexelsPerPixel=2,GlobalShadowDistanceScale=1.5,AllowForegroundPreshadows=true)
-    FXQualityPresets(0)=(ParticleLODBias=1,Distortion=false,FilteredDistortion=false,DropParticleDistortion=true,AllowSecondaryBloodEffects=false,EmitterPoolScale=0.25,ShellEjectLifetime=2,AllowExplosionLights=false,AllowSprayActorLights=false,AllowFootstepSounds=false,AllowBloodSplatterDecals=false,AllowRagdollAndGoreOnDeadBodies=false,AllowPilotLights=false,MaxImpactEffectDecals=8,MaxExplosionDecals=8,GoreFXLifetimeMultiplier=0.5,MaxBloodEffects=12,MaxGoreEffects=8,MaxPersistentSplatsPerFrame=25)
-    FXQualityPresets(1)=(ParticleLODBias=0,Distortion=false,FilteredDistortion=false,DropParticleDistortion=true,AllowSecondaryBloodEffects=false,EmitterPoolScale=0.5,ShellEjectLifetime=5,AllowExplosionLights=true,AllowSprayActorLights=false,AllowFootstepSounds=true,AllowBloodSplatterDecals=false,AllowRagdollAndGoreOnDeadBodies=true,AllowPilotLights=true,MaxImpactEffectDecals=15,MaxExplosionDecals=12,GoreFXLifetimeMultiplier=0.75,MaxBloodEffects=15,MaxGoreEffects=8,MaxPersistentSplatsPerFrame=50)
-    FXQualityPresets(2)=(ParticleLODBias=0,Distortion=true,FilteredDistortion=true,DropParticleDistortion=false,AllowSecondaryBloodEffects=true,EmitterPoolScale=1,ShellEjectLifetime=10,AllowExplosionLights=true,AllowSprayActorLights=true,AllowFootstepSounds=true,AllowBloodSplatterDecals=true,AllowRagdollAndGoreOnDeadBodies=true,AllowPilotLights=true,MaxImpactEffectDecals=20,MaxExplosionDecals=15,GoreFXLifetimeMultiplier=1,MaxBloodEffects=25,MaxGoreEffects=10,MaxPersistentSplatsPerFrame=75)
-    FXQualityPresets(3)=(ParticleLODBias=0,Distortion=true,FilteredDistortion=true,DropParticleDistortion=false,AllowSecondaryBloodEffects=true,EmitterPoolScale=2,ShellEjectLifetime=20,AllowExplosionLights=true,AllowSprayActorLights=true,AllowFootstepSounds=true,AllowBloodSplatterDecals=true,AllowRagdollAndGoreOnDeadBodies=true,AllowPilotLights=true,MaxImpactEffectDecals=40,MaxExplosionDecals=20,GoreFXLifetimeMultiplier=1.2,MaxBloodEffects=40,MaxGoreEffects=15,MaxPersistentSplatsPerFrame=100)
+    FXQualityPresets(0)=(ParticleLODBias=1,DistanceFogQuality=0,Distortion=false,FilteredDistortion=false,DropParticleDistortion=true,AllowSecondaryBloodEffects=false,EmitterPoolScale=0.25,ShellEjectLifetime=2,AllowExplosionLights=false,AllowSprayActorLights=false,AllowFootstepSounds=false,AllowBloodSplatterDecals=false,AllowRagdollAndGoreOnDeadBodies=false,AllowPilotLights=false,MaxImpactEffectDecals=8,MaxExplosionDecals=8,GoreFXLifetimeMultiplier=0.5,MaxBloodEffects=12,MaxGoreEffects=8,MaxPersistentSplatsPerFrame=25)
+    FXQualityPresets(1)=(ParticleLODBias=0,DistanceFogQuality=0,Distortion=false,FilteredDistortion=false,DropParticleDistortion=true,AllowSecondaryBloodEffects=false,EmitterPoolScale=0.5,ShellEjectLifetime=5,AllowExplosionLights=true,AllowSprayActorLights=false,AllowFootstepSounds=true,AllowBloodSplatterDecals=false,AllowRagdollAndGoreOnDeadBodies=true,AllowPilotLights=true,MaxImpactEffectDecals=15,MaxExplosionDecals=12,GoreFXLifetimeMultiplier=0.75,MaxBloodEffects=15,MaxGoreEffects=8,MaxPersistentSplatsPerFrame=50)
+    FXQualityPresets(2)=(ParticleLODBias=0,DistanceFogQuality=1,Distortion=true,FilteredDistortion=true,DropParticleDistortion=false,AllowSecondaryBloodEffects=true,EmitterPoolScale=1,ShellEjectLifetime=10,AllowExplosionLights=true,AllowSprayActorLights=true,AllowFootstepSounds=true,AllowBloodSplatterDecals=true,AllowRagdollAndGoreOnDeadBodies=true,AllowPilotLights=true,MaxImpactEffectDecals=20,MaxExplosionDecals=15,GoreFXLifetimeMultiplier=1,MaxBloodEffects=25,MaxGoreEffects=10,MaxPersistentSplatsPerFrame=75)
+    FXQualityPresets(3)=(ParticleLODBias=0,DistanceFogQuality=1,Distortion=true,FilteredDistortion=true,DropParticleDistortion=false,AllowSecondaryBloodEffects=true,EmitterPoolScale=2,ShellEjectLifetime=20,AllowExplosionLights=true,AllowSprayActorLights=true,AllowFootstepSounds=true,AllowBloodSplatterDecals=true,AllowRagdollAndGoreOnDeadBodies=true,AllowPilotLights=true,MaxImpactEffectDecals=40,MaxExplosionDecals=20,GoreFXLifetimeMultiplier=1.2,MaxBloodEffects=40,MaxGoreEffects=15,MaxPersistentSplatsPerFrame=100)
     RealtimeReflectionsPresets(0)=(bAllowScreenSpaceReflections=false,bUseHighQualityReflections=false)
     RealtimeReflectionsPresets(1)=(bAllowScreenSpaceReflections=true,bUseHighQualityReflections=false)
     CharacterDetailPresets(0)=(SkeletalMeshLODBias=1,AllowSubsurfaceScattering=false,KinematicUpdateDistFactorScale=3,ShouldCorpseCollideWithDead=false,ShouldCorpseCollideWithLiving=false,ShouldCorpseCollideWithDeadAfterSleep=false,MaxBodyWoundDecals=2,MaxDeadBodies=8,bAllowPhysics=false)

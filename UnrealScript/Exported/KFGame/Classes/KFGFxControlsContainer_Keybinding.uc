@@ -82,7 +82,7 @@ function InitalizeCommandList( out array<string> BindList )
 	{
 		DataProvider = CreateArray();
 		DataProvider.SetInt("sectionIndex", TotalBindSections);
-		DataProvider.SetString("sectionHeader", SectionHeaders[TotalBindSections]);
+		DataProvider.SetString("bindingHeader", SectionHeaders[TotalBindSections]); 
 		DataProvider.SetString("pressKeyString", PressKeyString);
 		for (i = 0; i < BindList.Length; i++)
 		{
@@ -326,13 +326,14 @@ defaultproperties
    WeaponSelectBindList(6)="GBA_LastWeapon"
    InteractionBindList(0)="GBA_Use"
    InteractionBindList(1)="GBA_Talk"
-   InteractionBindList(2)="GBA_VoiceChat"
-   InteractionBindList(3)="GBA_ShowVoiceComms"
-   InteractionBindList(4)="GBA_ShowScores"
-   InteractionBindList(5)="GBA_TossMoney"
-   InteractionBindList(6)="GBA_DropWeapon"
-   InteractionBindList(7)="GBA_VoteYes"
-   InteractionBindList(8)="GBA_VoteNo"
+   InteractionBindList(2)="GBA_TeamTalk"
+   InteractionBindList(3)="GBA_VoiceChat"
+   InteractionBindList(4)="GBA_ShowVoiceComms"
+   InteractionBindList(5)="GBA_ShowScores"
+   InteractionBindList(6)="GBA_TossMoney"
+   InteractionBindList(7)="GBA_DropWeapon"
+   InteractionBindList(8)="GBA_VoteYes"
+   InteractionBindList(9)="GBA_VoteNo"
    SectionName="LocalizedControls"
    SectionHeaders(0)="Movement"
    SectionHeaders(1)="Interaction"

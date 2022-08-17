@@ -3,6 +3,7 @@ package tripwire.menus
     import com.greensock.TweenMax;
     import com.greensock.easing.Linear;
     import com.greensock.events.TweenEvent;
+    import flash.display.MovieClip;
     import flash.events.Event;
     import flash.events.FocusEvent;
     import flash.external.ExternalInterface;
@@ -11,6 +12,7 @@ package tripwire.menus
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.IndexEvent;
     import scaleform.clik.events.InputEvent;
+    import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
     import tripwire.containers.TripContainer;
     import tripwire.containers.trader.TraderItemDetailsContainer;
@@ -34,6 +36,8 @@ package tripwire.menus
         
         public var exitButton:TripButton;
         
+        public var cancelPrompt:MovieClip;
+        
         private const SELECTED_ALPHA = 1;
         
         private const UNSELECTED_ALPHA = 0.5;
@@ -55,7 +59,6 @@ package tripwire.menus
             super.addedToStage(param1);
             stage.addEventListener(InputEvent.INPUT,this.handleControllerInput,false,0,true);
             this.playerInventoryContainer.addEventListener(IndexEvent.INDEX_CHANGE,this.selectedItemChanged,false,0,true);
-            this.shopContainer.addEventListener(IndexEvent.INDEX_CHANGE,this.selectedItemChanged,false,0,true);
             this.playerInventoryContainer.addEventListener(FocusEvent.FOCUS_IN,this.containerFocusIn,false,0,true);
             this.shopContainer.addEventListener(FocusEvent.FOCUS_IN,this.containerFocusIn,false,0,true);
             this.exitButton.focusable = false;
@@ -64,6 +67,7 @@ package tripwire.menus
                 this.shopContainer.deselectContainer();
                 this.playerInventoryContainer.selectContainer();
             }
+            this.updateControllerVisibility();
         }
         
         public function set selectedMenuIndex(param1:int) : void
@@ -77,13 +81,11 @@ package tripwire.menus
                     this.shopContainer.leaveList();
                     this.playerInventoryContainer.selectContainer();
                     this.setSelectedContainer(false,true);
-                    this.itemDetailsContainer.visible = false;
                     break;
                 case this.StoreContainer:
                     this.playerInventoryContainer.deselectContainer();
                     this.shopContainer.selectContainer();
                     this.setSelectedContainer(true,false);
-                    this.itemDetailsContainer.visible = false;
             }
         }
         
@@ -95,6 +97,20 @@ package tripwire.menus
         public function set exitMenuString(param1:String) : void
         {
             this.exitButton.label = param1;
+        }
+        
+        public function set cancelPromptName(param1:String) : void
+        {
+            this.cancelPrompt.textField.text = param1;
+        }
+        
+        public function updateControllerVisibility() : *
+        {
+            this.cancelPrompt.visible = bManagerUsingGamepad;
+            this.exitButton.visible = !bManagerUsingGamepad;
+            this.shopContainer.updateControllerVisibility();
+            this.playerInventoryContainer.updateControllerVisibility();
+            this.itemDetailsContainer.updateControllerVisibility();
         }
         
         protected function containerFocusIn(param1:FocusEvent) : void
@@ -167,9 +183,7 @@ package tripwire.menus
                 this.shopContainer.deselectContainer();
                 this.playerInventoryContainer.deselectContainer();
             }
-            this.shopContainer.updateControllerVisibility();
-            this.playerInventoryContainer.updateControllerVisibility();
-            this.itemDetailsContainer.updateControllerVisibility();
+            this.updateControllerVisibility();
         }
         
         private function setSelectedContainer(param1:Boolean, param2:Boolean) : void
@@ -201,6 +215,10 @@ package tripwire.menus
             this.exitButton.addEventListener(ButtonEvent.PRESS,this.exitMenu,false,0,true);
             mouseEnabled = mouseChildren = true;
             stage.addEventListener(InputEvent.INPUT,this.handleControllerInput,false,0,true);
+            if(bManagerUsingGamepad)
+            {
+                this.selectedMenuIndex = this.PlayerInventory;
+            }
         }
         
         override protected function onClosed(param1:TweenEvent = null) : void
@@ -209,6 +227,14 @@ package tripwire.menus
             this.playerInventoryContainer.bCanUseMenu = false;
             this.exitButton.removeEventListener(ButtonEvent.PRESS,this.exitMenu);
             stage.removeEventListener(InputEvent.INPUT,this.handleControllerInput);
+            if(bManagerUsingGamepad)
+            {
+                this.selectedMenuIndex = this.PlayerInventory;
+            }
+            this.shopContainer.deselectContainer();
+            this.playerInventoryContainer.deselectContainer();
+            currentElement = null;
+            FocusHandler.getInstance().setFocus(null);
         }
         
         override protected function openAnimation() : *

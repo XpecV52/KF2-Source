@@ -64,7 +64,6 @@ class KFDT_Ballistic_M79Impact extends KFDT_Ballistic
 
 
 
-
 #linenumber 15;
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )

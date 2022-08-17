@@ -64,7 +64,6 @@ class KFDT_Ballistic_HX25Impact extends KFDT_Ballistic
 
 
 
-
 #linenumber 15;
 
 /** Allows the damage type to customize exactly which hit zones it can dismember */

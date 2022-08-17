@@ -113,6 +113,8 @@ var int     IdleHighAmmoPctThreshold;
 // sprinting
 var float   TimeUntilStartSprintPanting;
 
+// global AkEvents
+var AkEvent StopBreathingAkEvent;
 
 /** Same as defined in KFPawn_HUman. This one should always match that one. */
 delegate OnFinishedDialog( const out DialogResponseInfo ResponseInfo );
@@ -585,7 +587,7 @@ function PlayDialogEvent( KFPawn Speaker, int EventID )
 
     if( EventInfo.bOnlyPlayLocally )
     {
-        if( KFPlayerController(Speaker.Controller) != none )
+        if( Speaker.IsLocallyControlled() )
         {
             KFPlayerController(Speaker.Controller).ClientHearDialog( Speaker, EventAudioCue, EventInfo.bCanBeMinimized );
         }
@@ -1059,32 +1061,36 @@ function PlayJumpDialog( KFPawn Speaker )
  * Sprint Dialog
  ************************************************/
 
-function PlaySprintingDialog( KFPawn_Human Speaker, bool bSprinting )
-{
-    if( Speaker.VoiceGroupArch == none || Speaker.VoiceGroupArch.default.EventDataClass == none )
-    {
-        return;
-    }
-
-    if( bSprinting )
-    {
-        PlayDialogEvent( Speaker, `ACT_Sprint );
-    }
-
-    // if sprint audio is lengthy, then we'll want to stop when we stop sprinting
-}
-
 function PlaySprintPantingDialog( KFPawn_Human Speaker, bool bNewSprintStatus )
 {
     if( bNewSprintStatus && !Speaker.bIsSprinting )
     {
         Speaker.SprintStartTime = WorldInfo.TimeSeconds;
     }
+    else if ( !bNewSprintStatus )
+    {
+        StopBreathingDialog(Speaker);
+    }
 
     if( `TimeSince(Speaker.SprintStartTime) > TimeUntilStartSprintPanting )
     {
         Speaker.SprintStartTime = WorldInfo.TimeSeconds;
         PlayDialogEvent( Speaker, `ACT_Sprint );
+    }
+}
+
+/** 
+ * A stop event for sprinting and ironsight breathing.  The breathing sounds also have a max duration,
+ * so even though this event is not perfect (changing controllers, etc...) it won't break anything.
+ */
+function StopBreathingDialog(KFPawn Speaker)
+{
+    if( Speaker.IsSpeaking() )
+    {
+        if ( Speaker.CurrDialogEventID == `ACT_Sprint || Speaker.CurrDialogEventID == `ACT_Ironsights )
+        {
+            KFPlayerController(Speaker.Controller).ClientHearDialog( Speaker, StopBreathingAkEvent, 0 );
+        }
     }
 }
 
@@ -2666,6 +2672,11 @@ function PlayHansFrenzyDialog( KFPawn Hans )
     PlayDialogEvent( Hans, `HANS_Frenzy );
 }
 
+function PlayHansAOEDialog( KFPawn Hans )
+{
+    PlayDialogEvent( Hans, `HANS_AOE );
+}
+
 function PlayHansBattlePhaseDialog( KFPawn Hans, int CurrBattlePhase )
 {
     if( !Hans.IsAliveAndWell() )
@@ -2752,6 +2763,11 @@ function PlayPattyBattlePhaseDialog( KFPawn Patty, int CurrBattlePhase )
     };
 }
 
+function PlayPattyWhirlwindDialog( KFPawn Patty )
+{
+    PlayDialogEvent( Patty, `PATTY_WhirlwindAttack );
+}
+
 DefaultProperties
 {
     bEnabled=true
@@ -2802,4 +2818,7 @@ DefaultProperties
     IdleHighAmmoPctThreshold=0.3
 
     TimeUntilStartSprintPanting=3.0
+
+    // global ak events
+    StopBreathingAkEvent=AkEvent'WW_GLO_Runtime.Stop_Breathing'
 }

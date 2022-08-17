@@ -64,7 +64,6 @@ class KFDT_Dart_Toxic extends KFDT_Toxic
 
 
 
-
 #linenumber 15;
 
 /** If true, damage zeds when the acidic compund perk is active 
@@ -77,7 +76,7 @@ static function bool IsToxicDartWithACMedicPerk()
 
 defaultproperties
 {
-   WeaponDef=Class'kfgamecontent.KFWeapDef_Healer'
+   WeaponDef=Class'KFGame.KFWeapDef_Healer'
    Name="Default__KFDT_Dart_Toxic"
    ObjectArchetype=KFDT_Toxic'KFGame.Default__KFDT_Toxic'
 }

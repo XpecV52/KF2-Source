@@ -1,0 +1,324 @@
+//NOTES: 
+//1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
+//2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
+//3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
+//ItemDescription="Double-barreled, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest zeds will stagger when hit with both barrels. We found it in an old farm-house and //canned it for the Trader Pod. Hope you live longer than the farmer."
+
+[Armor]
+ItemName="Бронежилет"
+ItemCategory="Equipment"
+ItemDescription="• Бронежилет захищає вас від різноманітних пошкоджень, але він з часом зношується\n• Придбайте новий чи полагодьте старий в Крамниці\n\nЦе куртка, оснащена комбінацією пластин із високотехнологічного волокна та вольфрамової сталі."
+
+[KFProj_DynamiteGrenade]
+ItemName="1/2 динаміту"
+ItemCategory ="Вибухівки"
+ItemDescription="• Лишень шматочок динаміту з приєднаним запалом.\n• Може нашкодити і вам, тож будьте з ним обережні!"
+
+[KFProj_MedicGrenade]
+ItemName="Медична граната"
+ItemCategory ="Вибухівки"
+ItemDescription="• Випускає газ, що отруює Зедів, та при цьому лікує людей\n• Для лікування стійте у хмарі синього газу\n\nЗі слів одного з наших науковців: «Діючий компонент у цих гранатах регенерує гомінід виду Homo Sapiens, при цьому евтаназуючи осіб виду Homo Zedicus». Сподіваємося, вам тепер все зрозуміло."
+
+[KFProj_MolotovGrenade]
+ItemName="Коктейль Молотова"
+ItemCategory="Вибухівки"
+ItemDescription="• Якщо простіше, то це вогняна граната, що смажить Зедів.\n• Але стережіться, бо ви теж можете постраждати!\n\nГлузливо названа так фінами під час Зимової війни 1939-40 рр., після того як В’ячеслав Михайлович Молотов, міністр іноземних справ СРСР за часів Сталіна... Перепрошуємо, хіба вас не цікавила історична довідка?"
+
+[KFProj_EMPGrenade]
+ItemName="ЕМІ-граната"
+ItemCategory="Вибухівки"
+ItemDescription="• Генерує електричний імпульс, який не тільки вразить Зедів, а може й приголомшити їх на короткий час.\n\nЯкщо хочете більше деталей - при детонації вона генерує наносекундний електромангітний імпульс, що зруйнує електричні системи неподалік. Особливо ті, що всередині Зедів. А це зручно."
+
+[KFProj_HEGrenade]
+ItemName="Ручна граната"
+ItemCategory="Вибухівки"
+ItemDescription="• Дуже простий фугасний снаряд. Завдає болю Зедам, як і людям.\n\nПростіше й справді нікуди. Це граната, значить вона робить БУМ і здіймає все в повітря. Невже ми справді маємо це вам пояснювати?"
+
+[KFProj_FragGrenade]
+ItemName="Уламкова граната"
+ItemCategory="Вибухівки"
+ItemDescription="• Класична уламкова граната: розкидає маленькі шматочки мерзенного металу, зачіпаючи все навколо.\n\nЯ не сумнваюся, що ви всі грали в досить багато ігор ще до Outbreak, отож знаєте достеменно добре, що таке уламкова граната. І досить вдавати, що це не так. Вам тут ніхто не повірить."
+
+[KFProj_NailBombGrenade]
+ItemName="Бомба з гвіздками"
+ItemCategory =" Вибухівки"
+ItemDescription="• Просто каністра з купою гвіздків і невеликою вибухівкою всередині.\n\nНе самий приємний і зручний спосіб боротьби із зедами. Та інших і не буває, чи не так?"
+
+[KFWeap_Healer_Syringe]
+ItemName="Медичний шприц"
+ItemCategory="Спорядження"
+
+[KFWeap_Welder]
+ItemName="Зварювач"
+ItemCategory="Спорядження"
+
+[KFWeap_Pistol_9mm]
+ItemName="Пістолет 9 мм"
+ItemCategory="Пістолет"
+ItemDescription="• Режим вогню тільки напівавтоматичний.\n• Це стандартний пістолет 9 мм. Простий та дешевий (відверто, дуже дешевий для вас), це основний підручний засіб оперативників Horzine."
+
+[KFWeap_Pistol_Deagle]
+ItemName="Desert Eagle .50"
+ItemCategory="Пістолет"
+ItemDescription="• Режим вогню тільки напівавтоматичний.\n• Desert Eagle — це монстр серед пістолетів, тому його і називають ручною гарматою."
+
+[KFWeap_AssaultRifle_AR15]
+ItemName="Мисливська рушниця AR-15"
+ItemCategory="Штурмова гвинтівка"
+ItemDescription="• Вибір між потрійним чи одиночним режимами пострілу.\n• Альтернативний вогонь перемикає режими.\n• Ця річ для Зедів, а не «полювання»."
+
+[KFWeap_AssaultRifle_SCAR]
+ItemName="Штурмова гвинтівка SCAR-H"
+ItemCategory="Штурмова гвинтівка"
+ItemDescription="• Вибір між автоматичним чи напівавтоматичним режимами стрільби.\n• Альтернативний вогонь перемикає режими.\n• Початково розроблена для спецоперацій США, вона дійсно особлива!"
+
+[KFWeap_AssaultRifle_AK12]
+ItemName="Калашников AK-12"
+ItemCategory="Штурмова гвинтівка"
+ItemDescription="• Вибір між автоматичним чи потрійним режимами стрільби.\n• Альтернативний вогонь перемикає режими.\n• Цей AK-12 було взято з тіла мертвого російського оперативника спецназу для сканування."
+
+[KFWeap_AssaultRifle_Bullpup]
+ItemName="Булпап SA80 L85A2"
+ItemCategory="Штурмова гвинтівка"
+ItemDescription="• Вибір між автоматичним чи напівавтоматичним режимами стрільби.\n• Альтернативний вогонь перемикає режими.\n• SA80 була стандартною гвинтівкою британської армії до того, як армію було, ну, з’їдено."
+
+[KFWeap_Knife_Demolitionist]
+ItemName="Канцелярський ніж"
+ItemCategory="Ближній бій"
+ItemDescription="• Основна атака — швидкий поріз, утримуйте для комбо-атаки.\n• Додаткова — тяжкий поріз.\n• Альтернативний режим блокує або парирує удар.\n• Ним ріжуть коробки. Ідеально підходить для усіх тих коробок, які ви можете знайти в Killing Floor."
+
+[KFWeap_Knife_FieldMedic]
+ItemName="Скальпель"
+ItemCategory="Ближній бій"
+ItemDescription="• Основна атака — швидкий поріз, утримуйте для комбо-атаки.\n• Додаткова — важкий поріз.\n• Альтернативний режим блокує або парирує удар.\n• Це скальпель. Ви медик, тож ми робимо висновок, що вам не потрібно пояснювати, як ним користуватися."
+
+[KFWeap_Knife_Firebug]
+ItemName="Ніж пожежника"
+ItemCategory="Ближній бій"
+ItemDescription="• Основна атака — швидкий поріз, утримуйте для комбо-атаки. \n• Додаткова — тяжкий поріз.\n• Альтернативний режим блокує або парирує удар.\n• Це ніж пожежника. Ви пожежник, тож ми робимо висновок, що вам не потрібно пояснювати, як ним користуватися."
+
+[KFWeap_Knife_Gunslinger]
+ItemName="Ніж Боуї"
+ItemCategory="Ближній бій"
+ItemDescription="• Основна атака — швидкий поріз, утримуйте для комбо-атаки.\n• Додаткова — тяжкий поріз.\n• Альтернативний режим блокує або парирує удар.\n• Чималенький ніж зі Старого Заходу. Чудовий, щоб різати і рубати зедів тут і тепер."
+
+[KFWeap_Knife_Sharpshooter]
+ItemName="Kukri"
+ItemCategory="Melee"
+ItemDescription=""
+
+[KFWeap_Pistol_Medic]
+ItemName="П-К HMTech-101"
+ItemCategory="Пістолет"
+ItemDescription="• Режим вогню тільки напівавтоматичний.\n• Альтернативний вогонь дозволяє кидати лікувальні дротики для лікування товаришів.\n• Використовує безгільзові набої, тож підраховує кулі за вас."
+
+[KFWeap_SMG_Medic]
+ItemName="П-К HMTech-201"
+ItemCategory="Пістолет-кулемет"
+ItemDescription="• Режим вогню тільки автоматичний.\n• Альтернативний вогонь дозволяє кидати лікувальні дротики для лікування товаришів.\n• Ваш пістолет, але покращений!"
+
+[KFWeap_Shotgun_Medic]
+ItemName="Рушниця HMTech-301"
+ItemCategory="Рушниця"
+ItemDescription="• Режим вогню тільки напівавтоматичний.\n• Альтернативний вогонь дозволяє кидати лікувальні дротики для лікування товаришів.\n• Бойова рушниця спеціально для медика."
+
+[KFWeap_AssaultRifle_Medic]
+ItemName="Штурмова гвинтівка HMTech-401"
+ItemCategory="Штурмова гвинтівка"
+ItemDescription="• Режим вогню тільки автоматичний.\n• Альтернативний вогонь дозволяє кидати лікувальні дротики для лікування товаришів.\n• Найпотужніший варіант штурмової гвинтівки."
+
+[KFWeap_Shotgun_DoubleBarrel]
+ItemName="Двостволка"
+ItemCategory="Рушниця"
+ItemDescription="• Основний вогонь використовує лише один ствол.\n• Альтернативний режим дозволяє стріляти з обох стволів одразу.\n•Двоствольна зброя калібру 12. Ідеально підходить для ближнього бою. Навіть найкрупніші зеди закачаються!"
+
+[KFWeap_Shotgun_AA12]
+ItemName="Автоматична рушниця AA-12"
+ItemCategory="Рушниця"
+ItemDescription="• Вибір між автоматичним чи напівавтоматичним режимами стрільби.\n• Альтернативний вогонь перемикає режими.\n• AA-12 — автоматична рушниця. Дуже потужна зброя на середній дистанції, але вкрай швидко з’їдає набої!"
+
+[KFWeap_Shotgun_MB500]
+ItemName="Помпова рушниця SG 500"
+ItemCategory="Рушниця"
+ItemDescription="• Режим вогню тільки помповий.\n• Помпова рушниця «Моссберґ» SG 500 з пістолетним руків’ям чудово підходить, щоб косити зедів зблизька. Просто й ефективно."
+
+[KFWeap_Shotgun_M4]
+ItemName="Рушниця M4 Combat"
+ItemCategory="Рушниця"
+ItemDescription="• Режим вогню тільки напівавтоматичний.\n• Компанія «Бенеллі» розробила бойову рушницю M4 для американських військових. Напівавтоматична система забезпечує непогану і постійну швидкість стрільби."
+
+[KFWeap_Knife_Berserker]
+ItemName="Лезо газонокосарки"
+ItemCategory="Ближній бій"
+ItemDescription="• Основна атака — швидкий поріз, утримуйте для комбо-атаки.\n• Додаткова — тяжкий поріз.\n• Альтернативний режим блокує або парирує удар.\n• Так, це дійсно лезо газонокосарки. Насолоджуйтеся!"
+
+[KFWeap_Knife_Commando]
+ItemName="Ніж KF-BAR"
+ItemCategory="Ближній бій"
+ItemDescription="• Основна атака — швидкий поріз, утримуйте для комбо-атаки.\n• Додаткова — тяжкий поріз.\n• Альтернативний режим блокує або парирує удар.\n• Версія класичного ножа десантника у виконанні Горизонту."
+
+[KFWeap_Knife_Support]
+ItemName="Мачете"
+ItemCategory="Ближній бій"
+ItemDescription="• Основна атака — швидкий поріз, утримуйте для комбо-атаки.\n• Додаткова — тяжкий поріз.\n• Альтернативний режим блокує або парирує удар.\n• Не зазнавайтеся через те, що вам дали найбільший ніж."
+
+[KFWeap_Edged_Katana]
+ItemName="Катана"
+ItemCategory="Ближній бій"
+ItemDescription="• Основна атака — швидкий поріз, утримуйте для комбо-атаки.\n• Додаткова — тяжкий поріз.\n• Альтернативний режим блокує або парирує удар.\n• Виявіть повагу до зброї такого класу."
+
+[KFWeap_Blunt_Crovel]
+ItemName="Саперна лопата"
+ItemCategory="Ближній бій"
+ItemDescription="• Основна атака — швидкий поріз, утримуйте для комбо-атаки.\n• Додаткова — тяжкий удар.\n• Альтернативний режим блокує або парирує удар.\n• Наполовину лом, наполовину лопата, й обидві частини цілком смертельні."
+
+[KFWeap_Shotgun_Nailgun]
+ItemName="Гвіздкомет VLAD-1000"
+ItemCategory="Рушниця"
+ItemDescription="• Вибір між режимами стрільби одним гвіздком чи чергою.\n•Альтернативний вогонь перемикає режими.\n• Очевидно, що якийсь учений Горизонту позичив оригінальний гвіздкомет у (мертвого) механіка."
+
+[KFWeap_Blunt_Pulverizer]
+ItemName="Пульверизатор"
+ItemCategory="Ближній бій"
+ItemDescription="• Основна атака — швидкий удар, утримуйте для комбо-атаки.\n• Додаткова атака дозволяє стріляти вибуховими снарядами, а коли набоїв немає, то завдає сильний удар ближнього бою, тож не забувайте перезаряджатися!\n• Альтернативний режим блокує або парирує удар."
+
+[KFWeap_Eviscerator]
+ItemName="Потрошитель"
+ItemCategory="Особлива зброя"
+ItemDescription="• Основний вогонь — стрільба лезами пилок.\n• Альтернативний режим — атака ближнього бою, яка споживає багато палива.\n• Розроблено спеціалістами Горизонту. Напевно, тоді вони були не при собі. Це справжній звір."
+SecondaryAmmo="Паливо"
+
+[KFWeap_Edged_Zweihander]
+ItemName="Дворучник"
+ItemCategory="Ближній бій"
+ItemDescription="• Основна атака — середній або тяжкий удар з можливістю керування рухом груп зедів.\n• Додаткова — повільніша, але завдає більше шкоди.\n• Альтернативний режим блокує або парирує удар.\n• При рухові вперед шкода зростає."
+SharedUnlockSource="Chivalry: Medieval Warfare"
+
+[KFWeap_Flame_CaulkBurn]
+ItemName="Підпалювач"
+ItemCategory="Вогнемети"
+ItemDescription="• Режим вогню випускає струмінь полум’я.\n• Саморобний ручний вогнемет. Будь ласка, не випробовуйте це вдома."
+
+[KFWeap_Shotgun_DragonsBreath]
+ItemName="Запалювальний пістолет"
+ItemCategory="Рушниця"
+ItemDescription="• Режим вогню тільки помповий.\n• Рушниця із запальними набоями «Подих дракона». Смертельна краса."
+
+[KFWeap_Flame_Flamethrower]
+ItemName="Вогнемет"
+ItemCategory="Вогнемети"
+ItemDescription="• Режим вогню випускає струмінь полум’я. Саме так.\n• Класика для усіх поколінь. Якщо сумнівається, просто спаліть усе навкруги."
+
+[KFWeap_Beam_Microwave]
+ItemName="Мікрохвильова гармата"
+ItemCategory="Вогнемети"
+ItemDescription="• Режим вогню застосовує мікрохвилі, щоб нагріти Зедів з відстані, спалюючи їх зсередини та зовні.\n• Альт. вогонь вмикає заряд мікрохвиль близького радіусу дії.\n• Дива сучасних технологій. Ручна Зед-кухня."
+
+[KFWeap_Thrown_C4]
+ItemName="Вибухівка C4"
+ItemCategory="Вибухівки"
+ItemDescription="• Режим вогню розміщує заряд C4.\n• Альтернативний вогонь підриває заряди C4 у тому порядку, в якому ви їх розмістили.\n• Пакет C4 із дротом для детонації з відстані."
+
+[KFWeap_GrenadeLauncher_HX25]
+ItemName="Гранатний пістолет HX25"
+ItemCategory="Вибухівки"
+ItemDescription="• Режим вогню стріляє кількома дрібнокаліберними снарядами, що вибухають при контакті."
+
+[KFWeap_GrenadeLauncher_M79]
+ItemName="Гранатомет M79"
+ItemCategory="Вибухівки"
+ItemDescription="• Режим вогню запускає гранату.\n• Гранати вибухають, коли торкаються поверхні.\n• Детонатор активується лише за декілька метрів від пострілу, аби ви не знесли собі довбешку."
+
+[KFWeap_RocketLauncher_RPG7]
+ItemName="RPG-7"
+ItemCategory="Вибухівки"
+ItemDescription="• Режим вогню запускає снаряд.\n• Снаряди вибухають, коли торкаються поверхні.\n• Детонатор активується лише за декілька метрів від пострілу, аби ви не знесли собі довбешку.\n• І не забувайте про вибухову хвилю!"
+
+[KFWeap_Pistol_Dual9mm]
+ItemName="Подвійний пістолет 9 мм"
+ItemCategory="Пістолет"
+ItemDescription="• Режим вогню тільки напівавтоматичний.\n• Альтернативний вогонь перемикає способи прицілювання.\n•Пара стандартних пістолетів 9 мм. Ви можете продати один (лише один), якщо захочете."
+
+[KFWeap_Pistol_Colt1911]
+ItemName="Пістолет M1911"
+ItemCategory="Пістолет"
+ItemDescription="• Режим вогню тільки напівавтоматичний.\n• Класичний напівавтоматичний пістолет «Кольт» 1911."
+
+[KFWeap_Pistol_DualColt1911]
+ItemName="Подвійний пістолет M1911"
+ItemCategory="Пістолет"
+ItemDescription="• Режим вогню тільки напівавтоматичний.\n• Альтернативний вогонь перемикає способи прицілювання.\n•Пара напівавтоматичних пістолетів «Кольт» 1911. Кожен окремо можна продати або викинути."
+
+[KFWeap_Pistol_Deagle]
+ItemName="Desert Eagle .50"
+ItemCategory="Пістолет"
+ItemDescription="• Режим вогню тільки напівавтоматичний.\n• Desert Eagle — це монстр серед пістолетів, тому його і називають ручною гарматою."
+
+[KFWeap_Pistol_DualDeagle]
+ItemName="Подвійний «Desert Eagle» .50"
+ItemCategory="Пістолет"
+ItemDescription="• Режим вогню тільки напівавтоматичний.\n• Альтернативний вогонь перемикає способи прицілювання.\n•Пара пістолетів «Пустельний орел». Кожен окремо можна продати або викинути."
+
+[KFWeap_Revolver_Rem1858]
+ItemName="Револьвер 1858"
+ItemCategory="Пістолет"
+ItemDescription="• Режим вогню тільки окремими пострілами.\n• Чудовий екземпляр армійського пістолету «Ремінґтон» 1858 року з шістьма набоями калібру .44. Стародавній, але все ще спроможний убивати."
+
+[KFWeap_Revolver_DualRem1858]
+ItemName="Подвійний револьвер 1858"
+ItemCategory="Пістолет"
+ItemDescription="• Режим вогню тільки напівавтоматичний.\n• Альтернативний вогонь перемикає способи прицілювання.\n•Пара револьверів «Ремінґтон» 1858. Кожен окремо можна продати або викинути."
+
+[KFWeap_Revolver_SW500]
+ItemName="Револьвер «Магнум» .500"
+ItemCategory="Пістолет"
+ItemDescription="• Режим вогню тільки окремими пострілами.\n• Справжня ручна артилерія у вигляді довгоствольного револьверу «Маґнум» калібру .50, якого ще звуть «збирачем кісток». Для серйозних стрільців."
+
+[KFWeap_Revolver_DualSW500]
+ItemName="Подвійний «Магнум» .500"
+ItemCategory="Пістолет"
+ItemDescription="• Режим вогню тільки напівавтоматичний.\n• Альтернативний вогонь перемикає способи прицілювання.\n•Пара револьверів «Маґнум» .500, яких звуть «збирачами кісток». Кожен окремо можна продати або викинути. З гучним торохкотінням."
+
+[KFWeap_Rifle_Winchester1894]
+ItemName="Winchester 1894"
+ItemCategory="Rifle"
+ItemDescription="• Fire mode is single shot only.\n• The classic Model 1894 Winchester lever-action rifle."
+
+[KFWeap_Bow_Crossbow]
+ItemName="Crossbow"
+ItemCategory="Bow"
+ItemDescription="• Fire mode is single shot only.\n• Crossbow bolts are often recoverable!\n• A high-powered hunting crossbow, giving good penetration and good stopping power!"
+
+//BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
+[KFPawn_ZedHans]
+BossName="Доктор Ганс Вольтер"
+BossCaptionStrings[0]="Ганс практично невразливий під час фази лікування і димових гранат. Не витрачайте набої!"
+BossCaptionStrings[1]="Слідкуйте за його енергетичним ядром: Ганс стає більш агресивним, коли воно змінює колір."
+BossCaptionStrings[2]="Цільтеся в енергетичне ядро. Це вразливе місце."
+BossCaptionStrings[3]="Газ від гранат Вольтера липне до вас мов жовч Товстуна. Старайтеся уникати його!"
+BossCaptionStrings[4]="Його рубаючі атаки занадто сильні для парування. Ви все одно отримаєте повну шкоду."
+BossCaptionStrings[5]="Спостерігайте за червоними попереджувальними індикаторами гранат, які підкажуть вам де ті впадуть."
+BossCaptionStrings[6]="Коли Ганс дістає свої рушниці, тримайтеся подалі від його поля зору. Банально, але важливо!"
+
+[KFPawn_ZedPatriarch]
+BossName="The Patriarch"
+BossCaptionStrings[0]="Kevin Clamely was once a brilliant scientist, until he became his own greatest creation."
+BossCaptionStrings[1]="The Patriarch is staggeringly arrogant - he is likely to tell you which attack he will use next."
+BossCaptionStrings[2]="Hiding behind even big objects won't help as much as you'd hope. The Patriarch has an answer for that!"
+BossCaptionStrings[3]="Running off on your own isn't an escape - it makes you easy prey he will target first."
+BossCaptionStrings[4]="Yes, the Patriarch can still cloak, go invisible, run off and heal himself. Some things don't change."
+BossCaptionStrings[5]="While you won't get much choice about it, killing The Patriarch's 'children' just makes him mad(der)."
+
+[KFGameInfo_Survival]
+GameName="Виживання"
+
+[KFGameInfo_VersusSurvival]
+GameName="VS Survival"
+
+[KFPawn_ZedPatriarch_Versus]
+NoHealsRemainingMsg="No Heals Remaining"
+LowHealthMsg="Health Is Critical! Heal Now!"
+NoMortarTargetsMsg="No Valid Mortar Targets"
+
+[KFSM_PlayerSiren_VortexVictim]
+VortexGrabTeamWarningMsg="%x% is trapped by a Siren!"

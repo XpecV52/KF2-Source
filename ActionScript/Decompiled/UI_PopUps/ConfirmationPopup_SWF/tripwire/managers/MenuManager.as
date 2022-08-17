@@ -14,6 +14,7 @@ package tripwire.managers
     import scaleform.clik.core.CLIK;
     import scaleform.clik.core.UIComponent;
     import scaleform.clik.events.InputEvent;
+    import scaleform.clik.managers.PopUpManager;
     import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.FocusManager;
     import tripwire.containers.TripContainer;
@@ -50,6 +51,8 @@ package tripwire.managers
         private var _bLoading:Boolean;
         
         private var _bUsingGamepad:Boolean;
+        
+        private var _bConsoleBuild:Boolean;
         
         private var _bMenuOpen:Boolean;
         
@@ -110,27 +113,44 @@ package tripwire.managers
         
         public function set bUsingGamepad(param1:Boolean) : void
         {
-            if(this._bUsingGamepad != param1)
+            if(!this._bConsoleBuild)
             {
-                this._bUsingGamepad = param1;
-                if(stage != null)
+                if(this._bUsingGamepad != param1)
                 {
-                    stage.dispatchEvent(new Event(INPUT_CHANGED));
+                    this._bUsingGamepad = param1;
+                    if(stage != null)
+                    {
+                        stage.dispatchEvent(new Event(INPUT_CHANGED));
+                    }
+                    this.controllerEnableWidgets(false);
+                    if(this.bPopUpOpen && this._currentPopUp != null)
+                    {
+                        this._currentPopUp.openPopup();
+                    }
+                    else if(this.menuList.length > this._currentMenuIndex)
+                    {
+                        this.menuList[this._currentMenuIndex].menuObject.selectContainer();
+                    }
+                    this.mCursor.visible = !this._bUsingGamepad;
+                    if(!this._bUsingGamepad)
+                    {
+                        FocusManager.setFocus(null);
+                    }
                 }
-                this.controllerEnableWidgets(false);
-                if(this.bPopUpOpen && this._currentPopUp != null)
-                {
-                    this._currentPopUp.openPopup();
-                }
-                else
-                {
-                    this.menuList[this._currentMenuIndex].menuObject.selectContainer();
-                }
-                this.mCursor.visible = !param1;
-                if(!this._bUsingGamepad)
-                {
-                    FocusManager.setFocus(null);
-                }
+            }
+        }
+        
+        public function get bConsoleBuild() : Boolean
+        {
+            return this._bConsoleBuild;
+        }
+        
+        public function set bConsoleBuild(param1:Boolean) : *
+        {
+            if(this._bConsoleBuild != param1)
+            {
+                this.bUsingGamepad = param1;
+                this._bConsoleBuild = param1;
             }
         }
         
@@ -188,7 +208,10 @@ package tripwire.managers
             this._pendingPopupMiddleButtonString = param6;
             this._pendingPopupRightButtonString = param5;
             this._popupLoader.load(new URLRequest(param1));
-            this.menuList[this._currentMenuIndex].menuObject.focusGroupOut();
+            if(this.menuList.length > this._currentMenuIndex)
+            {
+                this.menuList[this._currentMenuIndex].menuObject.focusGroupOut();
+            }
             this.bPopUpOpen = true;
         }
         
@@ -269,6 +292,7 @@ package tripwire.managers
             this._widgets = new Vector.<TripContainer>();
             this._widgetLoader = new Loader();
             this._widgetLoader.contentLoaderInfo.addEventListener(Event.COMPLETE,this.widgetLoaderComplete);
+            PopUpManager.init(stage);
             this._popupLoader = new Loader();
             this._popupLoader.contentLoaderInfo.addEventListener(Event.COMPLETE,this.popupLoaderComplete);
         }
@@ -408,6 +432,11 @@ package tripwire.managers
                 stage.removeEventListener(Event.ADDED,this.changeMouseLayer);
                 stage.removeEventListener(InputEvent.INPUT,this.handleControllerInput);
             }
+        }
+        
+        public function currentFocus() : void
+        {
+            trace("Bryan: MenuManager currentFocus:: " + FocusManager.getFocus());
         }
         
         protected function controllerEnableWidgets(param1:Boolean) : void

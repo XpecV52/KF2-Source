@@ -1,6 +1,6 @@
 package
 {
-    import tripwire.containers.perks.PerksConfigureSkillsContainer;
+    import tripwire.containers.Perks.PerksConfigureSkillsContainer;
     
     public dynamic class ConfigureSkillsContainerMC extends PerksConfigureSkillsContainer
     {

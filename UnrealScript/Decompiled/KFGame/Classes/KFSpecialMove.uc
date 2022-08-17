@@ -9,10 +9,14 @@ class KFSpecialMove extends GameSpecialMove
     abstract
     native(SpecialMoves);
 
+const FLAG_SpecialMoveButtonPressed = 253;
+const FLAG_SpecialMoveButtonReleased = 254;
+
 var KFPawn KFPOwner;
-var PlayerController PCOwner;
+var KFPlayerController PCOwner;
 var KFAIController AIOwner;
 var transient Object AISpecialOwner;
+var transient KFPawn.ESpecialMove SMIndex;
 var AnimNodeSlot ActiveSlotNode;
 var bool bOverridePawnSpeedModifier;
 var bool bAllowHitReactions;
@@ -22,9 +26,12 @@ var bool bAllowThirdPersonWeaponAnims;
 var bool bDisablesWeaponFiring;
 var bool bOnlyInteractionPawnCanDamageMe;
 var bool bCanModifyInteractionPawn;
+var bool bPendingStopFire;
+var bool bUseCustomThirdPersonViewOffset;
+var bool bRestoredCameraDefaults;
 var const bool bDisableHeadTracking;
 var const bool bDisableAI;
-var const bool bDisableMovement;
+var bool bDisableMovement;
 var bool bMovementDisabled;
 var const bool bLockPawnRotation;
 var bool bPawnRotationLocked;
@@ -34,14 +41,28 @@ var bool bDisableAIAttackRangeChecks;
 var bool bDisableSteering;
 var const bool bDisableTurnInPlace;
 var const bool bDisablePhysics;
+var const bool bServerOnlyPhysics;
 var bool bAllowFireAnims;
+var ViewOffsetData CustomThirdPersonViewOffset;
+var float ViewOffsetInterpTime;
+var float CustomCameraFOV;
+var float CameraFOVTransitionTime;
 var float AITimeout;
 var AICommand_PushedBySM AICommand;
 var class<AICommand_PushedBySM> DefaultAICommandClass;
 
+// Export UKFSpecialMove::execIsPawnPathClear(FFrame&, void* const)
+native static function bool IsPawnPathClear(Actor TraceInstigator, Pawn TraceToPawn, Vector TraceEnd, Vector TraceStart, optional Vector TraceExtent, optional bool bIgnorePawns, optional bool bTraceComplex);
+
+static function byte PackFlagsBase(KFPawn P);
+
 function bool NotifyBump(Actor Other, Vector HitNormal);
 
-event byte PackFlags();
+function InteractionPawnUpdated();
+
+function SpecialMoveButtonRetriggered();
+
+function SpecialMoveButtonReleased();
 
 protected function bool InternalCanDoSpecialMove()
 {
@@ -54,18 +75,29 @@ function InitSpecialMove(Pawn inPawn, name InHandle)
     KFPOwner = KFPawn(inPawn);
     if(PawnOwner.Controller != none)
     {
-        PCOwner = PlayerController(PawnOwner.Controller);
+        PCOwner = KFPlayerController(PawnOwner.Controller);
         if(PCOwner == none)
         {
             AIOwner = KFAIController(PawnOwner.Controller);
         }
     }
+    bPendingStopFire = false;
 }
 
 function SpecialMoveStarted(bool bForced, name PrevMove)
 {
     local AICommand AIOwnerActiveCommand;
+    local KFWeapon KFW;
 
+    if(((PCOwner != none) && KFPOwner != none) && KFPOwner.Weapon != none)
+    {
+        KFW = KFWeapon(KFPOwner.Weapon);
+        if(KFW != none)
+        {
+            KFW.SetIronSights(false);
+        }
+    }
+    SMIndex = KFPOwner.SpecialMove;
     if(((AIOwner != none) && DefaultAICommandClass != none) && AIOwner.MyKFPawn != none)
     {
         AIOwnerActiveCommand == AICommand(AIOwner.GetActiveCommand());
@@ -80,6 +112,15 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
         {
             PCOwner.IgnoreLookInput(true);
         }
+        if((bUseCustomThirdPersonViewOffset && PCOwner.PlayerCamera != none) && PCOwner.PlayerCamera.CameraStyle == 'ThirdPerson')
+        {
+            KFThirdPersonCamera(KFPlayerCamera(PCOwner.PlayerCamera).ThirdPersonCam).SetViewOffset(CustomThirdPersonViewOffset, true, ViewOffsetInterpTime);
+        }
+        if(CustomCameraFOV > 0)
+        {
+            PCOwner.HandleTransitionFOV(CustomCameraFOV, CameraFOVTransitionTime);
+        }
+        bRestoredCameraDefaults = false;
     }
     if(((bDisableWeaponInteraction && KFPOwner != none) && KFPOwner.Weapon != none) && KFWeapon(KFPOwner.Weapon) != none)
     {
@@ -109,6 +150,7 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
 
 function SpecialMoveEnded(name PrevMove, name NextMove)
 {
+    bPendingStopFire = false;
     PawnOwner.ClearTimer('AbortSpecialMove', self);
     if(((AIOwner != none) && DefaultAICommandClass != none) && AICommand != none)
     {
@@ -125,6 +167,11 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
         {
             PCOwner.IgnoreLookInput(false);
         }
+        RestoreCameraDefaults();
+    }
+    if(KFPOwner != none)
+    {
+        KFPOwner.NotifySpecialMoveEnded(self, SMIndex);
     }
     if(((bDisableWeaponInteraction && KFPOwner != none) && KFPOwner.Weapon != none) && KFWeapon(KFPOwner.Weapon) != none)
     {
@@ -172,6 +219,26 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
     }
 }
 
+function RestoreCameraDefaults()
+{
+    if(bRestoredCameraDefaults || PCOwner == none)
+    {
+        return;
+    }
+    if((bUseCustomThirdPersonViewOffset && PCOwner.PlayerCamera != none) && PCOwner.PlayerCamera.CameraStyle == 'ThirdPerson')
+    {
+        if(KFPawn_Monster(KFPOwner) != none)
+        {
+            KFThirdPersonCamera(KFPlayerCamera(PCOwner.PlayerCamera).ThirdPersonCam).SetViewOffset(KFPawn_Monster(KFPOwner).ThirdPersonViewOffset, true, ViewOffsetInterpTime);
+        }
+    }
+    if(CustomCameraFOV > 0)
+    {
+        PCOwner.HandleTransitionFOV(PCOwner.DefaultFOV, CameraFOVTransitionTime);
+    }
+    bRestoredCameraDefaults = true;
+}
+
 final function SetMovementLock(bool bEnable)
 {
     if(bMovementDisabled != bEnable)
@@ -204,6 +271,8 @@ final function SetLockPawnRotation(bool bLock)
         }
     }
 }
+
+function ProcessViewRotation(float DeltaTime, out Rotator out_ViewRotation, out Rotator out_DeltaRot);
 
 function CameraAnimInst PlayCameraAnim(Pawn PawnToPlay, CameraAnim InCameraAnim, optional float Rate, optional float Scale, optional float BlendInTime, optional float BlendOutTime, optional bool bLoop, optional bool bRandomStartTime, optional float Duration, optional bool bSingleInstance, optional bool bSkipSpaceCheck)
 {
@@ -268,11 +337,20 @@ function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessT
 
 function NotifyOwnerTakeHit(class<KFDamageType> DamageType, Vector HitLoc, Vector HitDir, Controller InstigatedBy);
 
+function OnEMPDisrupted()
+{
+    if((KFPOwner != none) && KFPOwner.IsHumanControlled())
+    {
+        KFPOwner.EndSpecialMove();
+    }
+}
+
 event ModifyInteractionPawn(out KFPawn OtherPawn);
 
 defaultproperties
 {
     bDisableAIAttackRangeChecks=true
     bDisableSteering=true
+    CameraFOVTransitionTime=1
     Handle=KFSpecialMove
 }

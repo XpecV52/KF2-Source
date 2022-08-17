@@ -11,7 +11,6 @@ class KFWeap_GrenadeLauncher_M79 extends KFWeap_GrenadeLauncher_Base
 
 defaultproperties
 {
-    ForceZoomOutTime=0.3
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=6
     bHasIronSights=true

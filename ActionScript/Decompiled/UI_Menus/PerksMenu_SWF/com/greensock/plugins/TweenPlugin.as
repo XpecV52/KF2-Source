@@ -19,174 +19,174 @@ package com.greensock.plugins
         
         protected var _firstPT:PropTween;
         
-        public function TweenPlugin(param1:String = "", param2:int = 0)
+        public function TweenPlugin(props:String = "", priority:int = 0)
         {
             super();
-            this._overwriteProps = param1.split(",");
+            this._overwriteProps = props.split(",");
             this._propName = this._overwriteProps[0];
-            this._priority = int(param2) || 0;
+            this._priority = int(priority) || 0;
         }
         
-        private static function _onTweenEvent(param1:String, param2:TweenLite) : Boolean
+        private static function _onTweenEvent(type:String, tween:TweenLite) : Boolean
         {
-            var _loc4_:Boolean = false;
-            var _loc5_:PropTween = null;
-            var _loc6_:PropTween = null;
-            var _loc7_:PropTween = null;
-            var _loc8_:PropTween = null;
-            var _loc3_:PropTween = param2._firstPT;
-            if(param1 == "_onInitAllProps")
+            var changed:Boolean = false;
+            var pt2:PropTween = null;
+            var first:PropTween = null;
+            var last:PropTween = null;
+            var next:PropTween = null;
+            var pt:PropTween = tween._firstPT;
+            if(type == "_onInitAllProps")
             {
-                while(_loc3_)
+                while(pt)
                 {
-                    _loc8_ = _loc3_._next;
-                    _loc5_ = _loc6_;
-                    while(_loc5_ && _loc5_.pr > _loc3_.pr)
+                    next = pt._next;
+                    pt2 = first;
+                    while(pt2 && pt2.pr > pt.pr)
                     {
-                        _loc5_ = _loc5_._next;
+                        pt2 = pt2._next;
                     }
-                    if(_loc3_._prev = !!_loc5_ ? _loc5_._prev : _loc7_)
+                    if(pt._prev = !!pt2 ? pt2._prev : last)
                     {
-                        _loc3_._prev._next = _loc3_;
-                    }
-                    else
-                    {
-                        _loc6_ = _loc3_;
-                    }
-                    if(_loc3_._next = _loc5_)
-                    {
-                        _loc5_._prev = _loc3_;
+                        pt._prev._next = pt;
                     }
                     else
                     {
-                        _loc7_ = _loc3_;
+                        first = pt;
                     }
-                    _loc3_ = _loc8_;
+                    if(pt._next = pt2)
+                    {
+                        pt2._prev = pt;
+                    }
+                    else
+                    {
+                        last = pt;
+                    }
+                    pt = next;
                 }
-                _loc3_ = param2._firstPT = _loc6_;
+                pt = tween._firstPT = first;
             }
-            while(_loc3_)
+            while(pt)
             {
-                if(_loc3_.pg)
+                if(pt.pg)
                 {
-                    if(param1 in _loc3_.t)
+                    if(type in pt.t)
                     {
-                        if(_loc3_.t[param1]())
+                        if(pt.t[type]())
                         {
-                            _loc4_ = true;
+                            changed = true;
                         }
                     }
                 }
-                _loc3_ = _loc3_._next;
+                pt = pt._next;
             }
-            return _loc4_;
+            return changed;
         }
         
-        public static function activate(param1:Array) : Boolean
+        public static function activate(plugins:Array) : Boolean
         {
             TweenLite._onPluginEvent = TweenPlugin._onTweenEvent;
-            var _loc2_:int = param1.length;
-            while(--_loc2_ > -1)
+            var i:int = plugins.length;
+            while(--i > -1)
             {
-                if(param1[_loc2_].API == TweenPlugin.API)
+                if(plugins[i].API == TweenPlugin.API)
                 {
-                    TweenLite._plugins[new (param1[_loc2_] as Class)()._propName] = param1[_loc2_];
+                    TweenLite._plugins[new (plugins[i] as Class)()._propName] = plugins[i];
                 }
             }
             return true;
         }
         
-        public function _onInitTween(param1:Object, param2:*, param3:TweenLite) : Boolean
+        public function _onInitTween(target:Object, value:*, tween:TweenLite) : Boolean
         {
             return false;
         }
         
-        protected function _addTween(param1:Object, param2:String, param3:Number, param4:*, param5:String = null, param6:Boolean = false) : PropTween
+        protected function _addTween(target:Object, propName:String, start:Number, end:*, overwriteProp:String = null, round:Boolean = false) : PropTween
         {
-            var _loc7_:Number = NaN;
-            if(param4 != null && (_loc7_ = typeof param4 === "number" || param4.charAt(1) !== "=" ? Number(Number(param4) - param3) : Number(int(param4.charAt(0) + "1") * Number(param4.substr(2)))))
+            var c:Number = NaN;
+            if(end != null && (c = typeof end === "number" || end.charAt(1) !== "=" ? Number(Number(end) - start) : Number(int(end.charAt(0) + "1") * Number(end.substr(2)))))
             {
-                this._firstPT = new PropTween(param1,param2,param3,_loc7_,param5 || param2,false,this._firstPT);
-                this._firstPT.r = param6;
+                this._firstPT = new PropTween(target,propName,start,c,overwriteProp || propName,false,this._firstPT);
+                this._firstPT.r = round;
                 return this._firstPT;
             }
             return null;
         }
         
-        public function setRatio(param1:Number) : void
+        public function setRatio(v:Number) : void
         {
-            var _loc3_:Number = NaN;
-            var _loc2_:PropTween = this._firstPT;
-            while(_loc2_)
+            var val:Number = NaN;
+            var pt:PropTween = this._firstPT;
+            while(pt)
             {
-                _loc3_ = _loc2_.c * param1 + _loc2_.s;
-                if(_loc2_.r)
+                val = pt.c * v + pt.s;
+                if(pt.r)
                 {
-                    _loc3_ = _loc3_ + (_loc3_ > 0 ? 0.5 : -0.5) | 0;
+                    val = val + (val > 0 ? 0.5 : -0.5) | 0;
                 }
-                if(_loc2_.f)
+                if(pt.f)
                 {
-                    _loc2_.t[_loc2_.p](_loc3_);
+                    pt.t[pt.p](val);
                 }
                 else
                 {
-                    _loc2_.t[_loc2_.p] = _loc3_;
+                    pt.t[pt.p] = val;
                 }
-                _loc2_ = _loc2_._next;
+                pt = pt._next;
             }
         }
         
-        public function _roundProps(param1:Object, param2:Boolean = true) : void
+        public function _roundProps(lookup:Object, value:Boolean = true) : void
         {
-            var _loc3_:PropTween = this._firstPT;
-            while(_loc3_)
+            var pt:PropTween = this._firstPT;
+            while(pt)
             {
-                if(this._propName in param1 || _loc3_.n != null && _loc3_.n.split(this._propName + "_").join("") in param1)
+                if(this._propName in lookup || pt.n != null && pt.n.split(this._propName + "_").join("") in lookup)
                 {
-                    _loc3_.r = param2;
+                    pt.r = value;
                 }
-                _loc3_ = _loc3_._next;
+                pt = pt._next;
             }
         }
         
-        public function _kill(param1:Object) : Boolean
+        public function _kill(lookup:Object) : Boolean
         {
-            var _loc3_:int = 0;
-            if(this._propName in param1)
+            var i:int = 0;
+            if(this._propName in lookup)
             {
                 this._overwriteProps = [];
             }
             else
             {
-                _loc3_ = this._overwriteProps.length;
-                while(--_loc3_ > -1)
+                i = this._overwriteProps.length;
+                while(--i > -1)
                 {
-                    if(this._overwriteProps[_loc3_] in param1)
+                    if(this._overwriteProps[i] in lookup)
                     {
-                        this._overwriteProps.splice(_loc3_,1);
+                        this._overwriteProps.splice(i,1);
                     }
                 }
             }
-            var _loc2_:PropTween = this._firstPT;
-            while(_loc2_)
+            var pt:PropTween = this._firstPT;
+            while(pt)
             {
-                if(_loc2_.n in param1)
+                if(pt.n in lookup)
                 {
-                    if(_loc2_._next)
+                    if(pt._next)
                     {
-                        _loc2_._next._prev = _loc2_._prev;
+                        pt._next._prev = pt._prev;
                     }
-                    if(_loc2_._prev)
+                    if(pt._prev)
                     {
-                        _loc2_._prev._next = _loc2_._next;
-                        _loc2_._prev = null;
+                        pt._prev._next = pt._next;
+                        pt._prev = null;
                     }
-                    else if(this._firstPT == _loc2_)
+                    else if(this._firstPT == pt)
                     {
-                        this._firstPT = _loc2_._next;
+                        this._firstPT = pt._next;
                     }
                 }
-                _loc2_ = _loc2_._next;
+                pt = pt._next;
             }
             return false;
         }

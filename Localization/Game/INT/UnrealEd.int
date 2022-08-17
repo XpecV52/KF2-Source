@@ -37,6 +37,7 @@ ObjectContext_GenerateDefaultSettings="Generate Default Settings"
 CheckingForShadowOcclusion="Checking for shadow occlusion `~"
 CheckForShadowOcclusion="Check For Shadow Occlusion [TW]"
 MapCheck_Message_LightingVolumeError="Map has both Indoor and Outdoor Lighting Volumes. Only one type is allowed [TW]"
+MapCheck_Message_PointLightDynamicShadows=`~ : Point Light actor is casting whole scene dynamic shadows - please turn off dynamic shadow or consiver swapping it with a Spot Light
 ScreenSpaceReflectionsSF="Screen Space Reflections [TW]"
 UseGPUAcceleration="Use GPU Acceleration [TW]"
 PrecomputedVisibilityBuild="Precomputed Visibility"

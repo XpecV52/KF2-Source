@@ -50,6 +50,7 @@ defaultproperties
 
 	ProjFlightTemplate=ParticleSystem'WEP_3P_Medic_Grenade_EMIT.FX_Medic_Grenade_Mesh'
 	ExplosionActorClass=class'KFExplosion_MedicGrenade'
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicGrenade'
 
 	// Grenade explosion light
 	Begin Object Name=ExplosionPointLight

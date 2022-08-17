@@ -10,6 +10,9 @@
 class KFWeap_Welder extends KFWeapon
 	hidedropdown;
 
+/** If set, automatically equip the previous weapon when leaving a door trigger */
+var() bool bAutoUnequip;
+
 /*********************************************************************************************
  @name Firing
 ********************************************************************************************* */
@@ -506,9 +509,17 @@ simulated state Active
 		// Caution - Super will skip our global, but global will skip super's state function!
 		Global.Tick(DeltaTime);
 
-		// local player - find nearbydoors
-		TickWeldTarget();	// will trace each call, but it's decently fast (zero-extent)
-		UpdateScreenUI();
+		if ( Instigator != none && Instigator.IsLocallyControlled() )
+		{
+			// local player - find nearbydoors
+			TickWeldTarget();	// will trace each call, but it's decently fast (zero-extent)
+			UpdateScreenUI();
+
+			if ( bAutoUnequip )
+			{
+				TickAutoUnequip();
+			}
+		}
 	}
 
 	simulated event OnAnimEnd(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime)
@@ -547,6 +558,27 @@ simulated state Active
 	}
 }
 
+/** Automatically equip previous weapon when leaving a door trigger */
+simulated function bool TickAutoUnequip()
+{
+	local KFDoorTrigger Trigger;
+	local KFInventoryManager KFIM;
+
+	ForEach Instigator.TouchingActors(class'KFDoorTrigger', Trigger)
+	{
+		return FALSE;
+	}
+
+	KFIM = KFInventoryManager( Instigator.InvManager );
+	if ( KFIM != None )
+	{
+		KFIM.SwitchToLastWeapon();
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
 /*********************************************************************************************
  * state WeaponWelding
  * This is the default Firing State.  It's performed on both the client and the server.
@@ -574,9 +606,10 @@ simulated state WeaponWelding extends WeaponFiring
 
 defaultproperties
 {
-	InventoryGroup=IG_Equipment
+	InventoryGroup=IG_None
 	bCanThrow=false
 	bDropOnDeath=false
+	bAutoUnequip=true
 
 	PlayerViewOffset=(X=20.0,Y=10,Z=-10)
 

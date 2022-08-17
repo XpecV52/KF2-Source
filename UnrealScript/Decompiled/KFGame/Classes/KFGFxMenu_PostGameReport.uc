@@ -138,10 +138,20 @@ function SetPlayerInfo()
 
     KFPC = KFPlayerController(Outer.GetPC());
     TextObject = Outer.CreateObject("Object");
-    TextObject.SetString("playerName", KFPC.PlayerReplicationInfo.PlayerName);
-    TextObject.SetString("perkIcon", "img://" $ KFPC.CurrentPerk.GetPerkIconPath());
-    TextObject.SetString("perkName", KFPC.CurrentPerk.default.PerkName);
-    TextObject.SetInt("perkLevel", KFPC.GetLevel());
+    if(KFPC.PlayerReplicationInfo.GetTeamNum() != 255)
+    {
+        TextObject.SetString("playerName", KFPC.PlayerReplicationInfo.PlayerName);
+        TextObject.SetString("perkIcon", "img://" $ KFPC.CurrentPerk.GetPerkIconPath());
+        TextObject.SetString("perkName", KFPC.CurrentPerk.default.PerkName);
+        TextObject.SetInt("perkLevel", KFPC.GetLevel());        
+    }
+    else
+    {
+        TextObject.SetString("playerName", KFPC.PlayerReplicationInfo.PlayerName);
+        TextObject.SetString("perkIcon", "img://" $ PathName(Class'KFGFxWidget_PartyInGame_Versus'.default.ZedIConTexture));
+        TextObject.SetString("perkName", Class'KFCommon_LocalizedStrings'.default.ZedString);
+        TextObject.SetInt("perkLevel", 0);
+    }
     SetObject("playerInfo", TextObject);
 }
 

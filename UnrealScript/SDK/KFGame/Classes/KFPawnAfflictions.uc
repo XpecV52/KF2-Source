@@ -9,6 +9,19 @@
 class KFPawnAfflictions extends Object within KFPawn
 	native(Pawn);
 
+/** Abstracted body parts that can be associated with multiple zones */
+enum EHitZoneBodyPart
+{
+	BP_None,
+	BP_Head,
+	BP_Torso,
+	BP_LeftArm,
+	BP_RightArm,
+	BP_LeftLeg,
+	BP_RightLeg,
+	BP_Special,
+};
+
 /** Per hitzone incap effect resistances */
 struct native IncapResist
 {
@@ -21,7 +34,7 @@ struct native IncapResist
 	/** Additional resist applied as health approaches zero */
 	var() const byte LowHealthBonus;
 
-	/** prevent incap spamming */
+	/** How long after this incap occurs can it happen again. Prevents pawns from getting spammed with incaps */
 	var() const   float Cooldown;
 	var transient float LastStartTime;
 
@@ -37,7 +50,8 @@ struct native IncapResist
 	}
 };
 
-enum EInstantAfflictions
+/* Types of instant afflictions that are used to index the InstantIncaps array */
+enum EInstantIncaps
 {
 	/* special move afflictions */
 	IAF_Knockdown,
@@ -80,7 +94,8 @@ struct native StackingIncapInfo
 	}
 };
 
-enum EStackingAfflictions
+/* Types of stacking afflictions that are used to index the StackingIncaps array */
+enum EStackingIncaps
 {
 	/** All Pawns */
 	SAF_EMPPanic,
@@ -90,18 +105,12 @@ enum EStackingAfflictions
 	SAF_Poison,
 	SAF_Microwave,
 	SAF_EMPDisrupt,
+	SAF_Freeze,
 
 	SAF_Custom1,
 	SAF_Custom2,
 	SAF_Custom3
 };
-
-
-/** Afflications that are either hit or miss (e.g. Knockdown, Stumble)*/
-var protected array<IncapResist> 		InstantAffl;
-
-/** Afflications that accumlate/decay over time and can stack with eachother (e.g. Panic, Burning) */
-var protected array<StackingIncapInfo> 	StackingAffl;
 
 /** Debug logging */
 var protected bool bDebugLog;
@@ -193,7 +202,7 @@ cpptext
 * @name		Take Damage
 ********************************************************************************************* */
 
-/** Check, and if needed activate afflications after being hit (Server only) */
+/** Check, and if needed activate afflictions after being hit (Server only) */
 function NotifyTakeHit(Controller DamageInstigator, vector HitDir, class<KFDamageType> DamageType)
 {
 	local KFPerk InstigatorPerk;
@@ -210,7 +219,7 @@ function NotifyTakeHit(Controller DamageInstigator, vector HitDir, class<KFDamag
 	}
 
     // For now all below effects are for Zeds
-    if ( !IsHumanControlled() && !bPlayedDeath )
+    if( GetTeamNum() > 254 && !bPlayedDeath )
     {
         CheckSpecialMoveAfflictions(InstigatorPerk, HitDir, DamageType);
         CheckHitReactionAfflictions(DamageType);
@@ -220,10 +229,10 @@ function NotifyTakeHit(Controller DamageInstigator, vector HitDir, class<KFDamag
 }
 
 /**
- * Clientside test to predict whether or not DoPauseAI is called.  May not always
+ * Client side test to predict whether or not DoPauseAI is called.  May not always
  * be correct but as long as we use split-body anims it will still look okay
  */
-function EHitReactionAnimType GetPredictedHitReaction(class<KFDamageType> DamageType, EHitZoneBodyPart BodyPart)
+function byte GetPredictedHitReaction(class<KFDamageType> DamageType, EHitZoneBodyPart BodyPart)
 {
 	// This may not always match the server's result, but as long
 	// as we avoid playing FullBody anims it should look okay even if DoPauseAI is skipped.
@@ -245,7 +254,7 @@ function EHitReactionAnimType GetPredictedHitReaction(class<KFDamageType> Damage
 * @name		Internal (On Hit)
 ********************************************************************************************* */
 
-/** Afflications which activate special moves */
+/** Afflictions which activate special moves */
 protected function CheckSpecialMoveAfflictions(KFPerk InstigatorPerk, vector HitDir, class<KFDamageType> DamageType)
 {
 	local EHitZoneBodyPart BodyPart;
@@ -253,7 +262,7 @@ protected function CheckSpecialMoveAfflictions(KFPerk InstigatorPerk, vector Hit
 	local vector HitLoc;
 	local float KnockdownPowerModifier, StumblePowerModifier, StunPowerModifier;
 	local float StumbleCooldownModifier;
-	local bool bForceStumble;
+	local bool bForceKnockdown, bForceStumble, bForceStun;
 
 	// This is for damage over time, DoT shall never have momentum
 	if( IsZero( HitDir ) )
@@ -279,21 +288,33 @@ protected function CheckSpecialMoveAfflictions(KFPerk InstigatorPerk, vector Hit
         StunPowerModifier = InstigatorPerk.GetStunPowerModifier( DamageType, HitZoneIdx );
     }
 
+    // If knockdown power would equal or exceed max resistance, always knockdown
+    if( KnockdownPowerModifier >= 255.f )
+    {
+    	bForceKnockdown = true;
+    }
+
     // If stumble power would equal or exceed max resistance, always stumble
     if( StumblePowerModifier >= 255.f )
     {
     	bForceStumble = true;
     }
 
+    // If stun power would equal or exceed max resistance, always stun
+    if( StunPowerModifier >= 255.f )
+    {
+    	bForceStun = true;
+    }
+
 	// Check knockdown
-	if ( DamageType.default.KnockdownPower > 0 && CanDoSpecialmove(SM_Knockdown)
-		&& ShouldApply(IAF_Knockdown, BodyPart, DamageType.default.KnockdownPower * KnockdownPowerModifier) )
+	if ( (bForceKnockdown || DamageType.default.KnockdownPower > 0) && CanDoSpecialmove(SM_Knockdown)
+		&& ShouldApply(IAF_Knockdown, BodyPart, bForceKnockdown ? 256 : int(DamageType.default.KnockdownPower * KnockdownPowerModifier)) )
 	{
 		ActivateKnockdown(DamageType, HitLoc, HitDir, HitZoneIdx);
 	}
 	// Check stun
-	else if ( DamageType.default.StunPower > 0 && CanDoSpecialmove(SM_Stunned)
-		&& ShouldApply(IAF_Stun, BodyPart, DamageType.default.StunPower * StunPowerModifier) )
+	else if ( (bForceStun || DamageType.default.StunPower > 0) && CanDoSpecialmove(SM_Stunned)
+		&& ShouldApply(IAF_Stun, BodyPart, bForceStun ? 256 : int(DamageType.default.StunPower * StunPowerModifier)) )
 	{
 		DoSpecialMove(SM_Stunned);
 	}
@@ -393,6 +414,12 @@ protected function CheckStackingAfflictions(KFPerk InstigatorPerk, class<KFDamag
 		SetMicrowavePanicked(true);
 	}
 
+	if ( DamageType.default.FreezePower > 0
+		&& AccrueStackingAffliction(SAF_Freeze, DamageType.default.FreezePower) )
+	{
+		SetFrozen(true);
+	}
+
     // Apply the Disruption EMP effects if they are over the threshhold
     if( DamageType.default.EMPPower > 0
     	&& AccrueStackingAffliction(SAF_EMPDisrupt, DamageType.default.EMPPower) )
@@ -406,7 +433,7 @@ protected function CheckStackingAfflictions(KFPerk InstigatorPerk, class<KFDamag
 ********************************************************************************************* */
 
 /** Returns true if the threshold is exceeded */
-protected function bool ShouldApply(EInstantAfflictions Id, EHitZoneBodyPart BodyPart, int InPower, optional float CooldownModifier=1.0, optional bool bTestOnly)
+protected function bool ShouldApply(EInstantIncaps Id, EHitZoneBodyPart BodyPart, int InPower, optional float CooldownModifier=1.0, optional bool bTestOnly)
 {
 	local byte BaseResistValue;
 	local float PercentHealth;
@@ -416,29 +443,29 @@ protected function bool ShouldApply(EInstantAfflictions Id, EHitZoneBodyPart Bod
 		return false;
 	}
 
-	if ( Id >= InstantAffl.Length )
+	if ( Id >= InstantIncaps.Length )
 	{
 		return false; // immune
 	}
 
 	switch ( BodyPart )
 	{
-	case BP_Head: 		BaseResistValue = InstantAffl[Id].Head; break;
-	case BP_Torso:		BaseResistValue = InstantAffl[Id].Torso; break;
-	case BP_LeftArm:	BaseResistValue = InstantAffl[Id].Arm; break;
-	case BP_RightArm:	BaseResistValue = InstantAffl[Id].Arm; break;
-	case BP_LeftLeg:	BaseResistValue = InstantAffl[Id].Leg; break;
-	case BP_RightLeg:	BaseResistValue = InstantAffl[Id].Leg; break;
-	case BP_Special:	BaseResistValue = InstantAffl[Id].Special; break;
+	case BP_Head: 		BaseResistValue = InstantIncaps[Id].Head; break;
+	case BP_Torso:		BaseResistValue = InstantIncaps[Id].Torso; break;
+	case BP_LeftArm:	BaseResistValue = InstantIncaps[Id].Arm; break;
+	case BP_RightArm:	BaseResistValue = InstantIncaps[Id].Arm; break;
+	case BP_LeftLeg:	BaseResistValue = InstantIncaps[Id].Leg; break;
+	case BP_RightLeg:	BaseResistValue = InstantIncaps[Id].Leg; break;
+	case BP_Special:	BaseResistValue = InstantIncaps[Id].Special; break;
 	default:
 		return FALSE;
 	}
 
 	if ( BaseResistValue < 255 )
 	{
-		`log(Id@self@"Resistance is Base:"@BaseResistValue@"LowHealthBonus:"@InstantAffl[Id].LowHealthBonus@"Power: "$InPower, bDebugLog, 'StatusEffect');
+		`log(Id@self@"Resistance is Base:"@BaseResistValue@"LowHealthBonus:"@InstantIncaps[Id].LowHealthBonus@"Power: "$InPower, bDebugLog, 'StatusEffect');
 
-		if ( `TimeSince(InstantAffl[Id].LastStartTime) < (InstantAffl[Id].Cooldown*CooldownModifier) )
+		if ( `TimeSince(InstantIncaps[Id].LastStartTime) < (InstantIncaps[Id].Cooldown*CooldownModifier) )
 		{
 			`log(Id@"rejected because of cooldown", bDebugLog, 'StatusEffect');
 			return FALSE;
@@ -450,11 +477,11 @@ protected function bool ShouldApply(EInstantAfflictions Id, EHitZoneBodyPart Bod
 			return FALSE;
 		}
 
-		if ( InPower < BaseResistValue + InstantAffl[Id].LowHealthBonus )
+		if ( InPower < BaseResistValue + InstantIncaps[Id].LowHealthBonus )
 		{
 			// Use OldHealth to get pre-damage percentage
 			PercentHealth = GetOwnerHealthPercent();
-			if ( InPower < (BaseResistValue + (1.f - PercentHealth) * InstantAffl[Id].LowHealthBonus) )
+			if ( InPower < (BaseResistValue + (1.f - PercentHealth) * InstantIncaps[Id].LowHealthBonus) )
 			{
 				`log(Id@"resisted because Health is at"@PercentHealth$"%", bDebugLog, 'StatusEffect');
 				return FALSE;
@@ -463,7 +490,7 @@ protected function bool ShouldApply(EInstantAfflictions Id, EHitZoneBodyPart Bod
 
 		if ( !bTestOnly )
 		{
-			InstantAffl[Id].LastStartTime = WorldInfo.TimeSeconds;
+			InstantIncaps[Id].LastStartTime = WorldInfo.TimeSeconds;
 		}
 		`log(Id@"applied >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", bDebugLog, 'StatusEffect');
 		return TRUE;
@@ -494,30 +521,30 @@ function float GetOwnerHealthPercent()
  * Adds StackedPower
  * @return true if the affliction effect should be applied
  */
-function bool AccrueStackingAffliction(EStackingAfflictions Id, float InPower)
+function bool AccrueStackingAffliction(EStackingIncaps Id, float InPower)
 {
-	if ( Id >= StackingAffl.Length || InPower <= 0 || StackingAffl[Id].Duration <= 0)
+	if ( Id >= StackingIncaps.Length || InPower <= 0 || StackingIncaps[Id].Duration <= 0)
 	{
 		return FALSE; // immune
 	}
 
-	if ( `TimeSince(StackingAffl[Id].LastStartTime) < StackingAffl[Id].Cooldown )
+	if ( `TimeSince(StackingIncaps[Id].LastStartTime) < StackingIncaps[Id].Cooldown )
 	{
 		`log(GetFuncName()@"rejected because of cooldown:"$Id, bDebugLog);
 		return false;
 	}
 
-	StackingAffl[Id].StackedPower += InPower;
+	StackingIncaps[Id].StackedPower += InPower;
 
-	`log(GetFuncName()@Id@"Threshold:"$StackingAffl[Id].Threshhold@"Power:"$StackingAffl[Id].StackedPower, bDebugLog);
+	`log(GetFuncName()@Id@"Threshold:"$StackingIncaps[Id].Threshhold@"Power:"$StackingIncaps[Id].StackedPower, bDebugLog);
 
-	if ( StackingAffl[Id].Threshhold > StackingAffl[Id].StackedPower )
+	if ( StackingIncaps[Id].Threshhold > StackingIncaps[Id].StackedPower )
 	{
 		`log(GetFuncName()@"rejected because of threshold:"$Id, bDebugLog);
 		return FALSE;
 	}
 
-	StackingAffl[Id].LastStartTime = WorldInfo.TimeSeconds;
+	StackingIncaps[Id].LastStartTime = WorldInfo.TimeSeconds;
 	`log(GetFuncName()@"accepted:"$Id, bDebugLog);
 	return TRUE;
 }
@@ -589,6 +616,13 @@ event SetEMPDisrupted(bool bEnabled)
     	}
 
         bEmpDisrupted = bEnabled;
+
+        // Notify special moves that they've been disrupted
+	    if( IsDoingSpecialMove() )
+	    {
+	    	SpecialMoves[SpecialMove].OnEMPDisrupted();
+	   	}
+
         OnStackingAfflictionChanged(SAF_EMPDisrupt);
     }
     SetEMPEffects(bEmpDisrupted, bEmpPanicked);
@@ -685,7 +719,7 @@ event SetFirePanicked(bool bEnabled)
     else if( bEnabled )
     {
         // So the client knows when to stop burning
-		StackingAffl[SAF_FirePanic].LastStartTime = WorldInfo.TimeSeconds;
+		StackingIncaps[SAF_FirePanic].LastStartTime = WorldInfo.TimeSeconds;
     }
 
     SetFirePanicEffects(bEnabled);
@@ -711,7 +745,7 @@ function SetBurnedParameter(float BurnedAmount, optional bool bViaReplication)
 /** On death send FirePanic strength to all clients so they can continue to burn */
 function TearOffFirePanic(byte ServerFirePct)
 {
-	StackingAffl[SAF_FirePanic].StackedPower = ByteToFloat(ServerFirePct) * StackingAffl[SAF_FirePanic].Threshhold;
+	StackingIncaps[SAF_FirePanic].StackedPower = ByteToFloat(ServerFirePct) * StackingIncaps[SAF_FirePanic].Threshhold;
 }
 
 /** Set whether or not this pawn is doing the burning effects */
@@ -781,7 +815,7 @@ protected event UpdateBurnedMatParam( float DeltaTime )
     }
 
 	// Add additional char to the skin if we're over the threshhold
-    if( (bPlayedDeath || StackingAffl[SAF_FirePanic].StackedPower > (StackingAffl[SAF_FirePanic].Threshhold * FireCharPercentThreshhold)) && FireBurnedAmount < FireFullyCharredDuration )
+    if( (bPlayedDeath || StackingIncaps[SAF_FirePanic].StackedPower > (StackingIncaps[SAF_FirePanic].Threshhold * FireCharPercentThreshhold)) && FireBurnedAmount < FireFullyCharredDuration )
     {
         FireBurnedAmount = FMin(FireBurnedAmount + DeltaTime, FireFullyCharredDuration);
 
@@ -828,7 +862,7 @@ protected event UpdateBurnedMatParam( float DeltaTime )
         }
     }
 
-    DeathFireStackedPower = FloatToByte(StackingAffl[SAF_FirePanic].StackedPower/StackingAffl[SAF_FirePanic].Threshhold);
+    DeathFireStackedPower = FloatToByte(StackingIncaps[SAF_FirePanic].StackedPower/StackingIncaps[SAF_FirePanic].Threshhold);
 }
 
 /*********************************************************************************************
@@ -875,6 +909,37 @@ function SetPoisonedOverlay( bool bEnabled )
 }
 
 /*********************************************************************************************
+* @name		Frozen
+********************************************************************************************* */
+
+/** Set the freeze functionality */
+event SetFrozen(bool bEnabled)
+{
+	if( !IsAliveAndWell() )
+	{
+		return;
+	}
+
+    if( Role == ROLE_Authority )
+    {
+        OnStackingAfflictionChanged(SAF_Freeze);
+        DoSpecialMove( SM_Frozen, true );
+    }
+}
+
+/** Enable/Disable the Frozen material effect */
+function SetFrozenParameter(float FreezeAmount)
+{
+	local MaterialInstanceConstant MIC;
+
+	if ( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		MIC = (GoreMIC != None) ? GoreMIC : BodyMIC;
+        MIC.SetScalarParameterValue( 'Scalar_Freeze', FreezeAmount );
+    }
+}
+
+/*********************************************************************************************
 * @name		Microwave Inflate
 ********************************************************************************************* */
 
@@ -915,7 +980,7 @@ protected event UpdateMicrowaveMatParam( float DeltaTime )
 	// Set the inflate to our incap power
 	else
 	{
-        ParamValue = FMin(StackingAffl[SAF_Microwave].StackedPower / StackingAffl[SAF_Microwave].Threshhold, 1.f);
+        ParamValue = FMin(StackingIncaps[SAF_Microwave].StackedPower / StackingIncaps[SAF_Microwave].Threshhold, 1.f);
 	}
 
     // Deflating over time
@@ -964,7 +1029,7 @@ protected event UpdateMicrowaveMatParam( float DeltaTime )
     }
 
     // Update the burned parameter if we're not on fire already
-    if( StackingAffl[SAF_FirePanic].StackedPower <= 0 && !bFirePanicked )
+    if( StackingIncaps[SAF_FirePanic].StackedPower <= 0 && !bFirePanicked )
     {
         UpdateBurnedMatParam( DeltaTime );
     }
@@ -1041,6 +1106,16 @@ protected function SetMicrowaveSteamEffects(bool bEnabled)
         }
 
         PlaySoundBase( OnSteamEndSound, true, true );
+	}
+}
+
+
+/** Accessor to get affliction duration */
+function float GetAfflictionDuration( EStackingIncaps AfflictionId )
+{
+	if( AfflictionId < StackingIncaps.Length )
+	{
+		return StackingIncaps[AfflictionId].Duration;
 	}
 }
 

@@ -25,6 +25,12 @@ struct {QWORD} qword
 	var() native int A, B;
 };
 
+struct {DWORD} dword
+{
+	var() native int A;
+};
+
+
 //=============================================================================
 // UObject variables.
 

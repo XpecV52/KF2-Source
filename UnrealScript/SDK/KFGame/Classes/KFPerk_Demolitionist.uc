@@ -21,10 +21,14 @@ var						Array<KFPawn_Human>			SuppliedPawnList;
 
 var 	private const   float 						SharedExplosiveResistance;
 var 	private const 	class<Damagetype>			ExplosiveResistableDamageTypeSuperClass;
+/** the radius in within the shared explosive resistance works */
 var 	private const 	float 						ExplosiveResistanceRadius;
 
+/** Template for explosion when you die with the Sacrifice perk skill*/
 var 					KFGameExplosion				SacrificeExplosionTemplate;
+/** Template for explosion when do an explosion with the Nuke perk skill*/
 var 					KFGameExplosion				NukeExplosionTemplate;
+/** Template for explosion when a door is opened by zeds that has been welded when you have the Door Trap perk skill*/
 var 					KFGameExplosion				DoorTrapExplosionTemplate;
 var 					String 						NukeExplosionActorClassName;
 var						String						NukeExplosionDamageTypeName;
@@ -32,7 +36,9 @@ var						String 						NukeProjectileClassName;
 var 					String 						SacrificeExplosionDamageTypeName;
 var 					String 						DoorTrapsExplosionDamageTypeName;
 var 					array<name>					NukeIgnoredProjectileNames;
+/** How much to modify a projectile's damage when the nuke skill is active */
 var 	private const 	float 						NukeDamageModifier;
+/** How much to modify a projectile's damage radius when the nuke skill is active */
 var 	private const 	float 						NukeRadiusModifier;
 
 var 					AkEvent 					ConcussiveExplosionSound;
@@ -94,7 +100,7 @@ function OnWaveEnded()
  * @param DamageInstigator responsible controller (optional)
  * @param class DamageType the damage type used (optional)
  */
-simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType )
+simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx )
 {
 	local KFWeapon KFW;
 	local float TempDamage;
@@ -137,7 +143,7 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
 
 	if( ClassIsChildOf( DamageType, class'KFDT_Explosive' ) )
 	{
-		TempDamage *= 1 - GetPassiveValue( ExplosiveResistance, CurrentLevel );		
+		TempDamage *= 1 - GetPassiveValue( ExplosiveResistance, CurrentLevel );
 	}
 
 	`QALog( "Total Damage Resistance" @ DamageType @ GetPercentage(InDamage, Round(TempDamage)), bLogPerk );
@@ -166,7 +172,7 @@ simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo
 		WeaponPerkClass = KFW.AssociatedPerkClass;
 		bUsesAmmo = KFW.UsesAmmo();
 	}
-	
+
 	if( bUsesAmmo && IsWeaponOnPerk( KFW, WeaponPerkClass ) )
 	{
 		`QALog( "StartingAmmo" @ KFW @ "New" @ PrimarySpareAmmo + GetExtraAmmo( CurrentLevel ) @ "Old" @ PrimarySpareAmmo, bLogPerk );
@@ -206,13 +212,13 @@ simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo,
 
 /**
  * @brief Calculates the additional ammo per perk level
- * 
+ *
  * @param Level Current perk level
  * @return additional ammo
  */
 simulated static private final function int GetExtraAmmo( int Level )
 {
-	return default.ExplosiveAmmo.Increment * FFloor( float( Level ) / 5.f );	
+	return default.ExplosiveAmmo.Increment * FFloor( float( Level ) / 5.f );
 }
 
 /*********************************************************************************************
@@ -284,7 +290,7 @@ simulated function Interact( KFPawn_Human KFPH )
 		{
 			OwnerPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_GaveGrenadesTo, KFPC.PlayerReplicationInfo );
 			KFPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_ReceivedGrenadesFrom, OwnerPC.PlayerReplicationInfo );
-			
+
 			UserPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
 			OwnerPRI = KFPlayerReplicationInfo(OwnerPC.PlayerReplicationInfo);
 			if( UserPRI != none && OwnerPRI != none )
@@ -317,7 +323,7 @@ simulated function bool CanInteract( KFPawn_HUman MyKFPH )
 
 /**
  * @brief Modifies the damage if the shared explosive resistance skill is selected
- * 
+ *
  * @param InDamage the damage to modify
  */
 simulated static function ModifyExplosiveDamage( out float InDamage )
@@ -327,11 +333,11 @@ simulated static function ModifyExplosiveDamage( out float InDamage )
 
 /**
  * @brief Checks if we should blow up on death
- * 
+ *
  * @return kaboom or not.
  */
 simulated function bool ShouldSacrifice()
-{ 
+{
 	return IsSacrificeActive() && !bUsedSacrifice;
 }
 
@@ -368,12 +374,12 @@ simulated function bool CanExplosiveWeld()
 
 /**
  * @brief Checks if the projectile should be immune to the pesky siren effects
- * 
+ *
  * @return Immune or not
  */
 simulated function bool ShouldRandSirenResist()
 {
-	return IsSirenResistanceActive() /*&& FRand() <= GetSkillValue( PerkSkills[EDemoSirenResistance] )*/; 
+	return IsSirenResistanceActive() /*&& FRand() <= GetSkillValue( PerkSkills[EDemoSirenResistance] )*/;
 }
 
 /**
@@ -413,7 +419,7 @@ function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDa
 
 /**
  * @brief skills and weapons can modify the stun power chance
- * 
+ *
  * @return stun power modifier
  */
 function float GetStunPowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
@@ -452,7 +458,7 @@ simulated function bool IsSupplierActive()
  * @return true if we have the skill enabled
  */
 simulated function bool IsOnContactActive()
-{ 
+{
 	return PerkSkills[EDemoOnContact].bActive;
 }
 
@@ -481,9 +487,9 @@ simulated static function float GetExplosiveResistanceRadius()
 
 /**
  * @brief Shared explosive resistance obviously opnly works with explosives
- * 
+ *
  * @param DmgType Damage type to test
- * 
+ *
  * @return true if resistable
  */
 static function bool IsDmgTypeExplosiveResistable( class<DamageType> DmgType )
@@ -564,7 +570,7 @@ simulated private final function bool IsSirenResistanceActive()
  */
 simulated private final function bool IsOnPerkActive()
 {
-	return PerkSkills[EDemoOnPerk].bActive;	
+	return PerkSkills[EDemoOnPerk].bActive;
 }
 
 /**
@@ -574,7 +580,7 @@ simulated private final function bool IsOnPerkActive()
  */
 simulated private final function bool IsOffPerkActive()
 {
-	return PerkSkills[EDemoOffPerk].bActive;	
+	return PerkSkills[EDemoOffPerk].bActive;
 }
 
 /**
@@ -671,7 +677,7 @@ simulated static function int GetFleshpoundKillXP( byte Difficulty )
 simulated static function GetPassiveStrings( out array<string> PassiveValues, out array<string> Increments, byte Level )
 {
 	PassiveValues[0] = Round((GetPassiveValue( default.ExplosiveDamage, Level ) * 100) - 100) $ "%";
-	PassiveValues[1] = Round(GetPassiveValue( default.ExplosiveResistance, Level ) * 100) $ "%";		
+	PassiveValues[1] = Round(GetPassiveValue( default.ExplosiveResistance, Level ) * 100) $ "%";
 	PassiveValues[2] = string(GetExtraAmmo( Level ));
 
 	Increments[0] = "[" @ Round(default.ExplosiveDamage.Increment * 100)  $ "% /" @ default.LevelString @ "]";
@@ -685,7 +691,7 @@ simulated static function GetPassiveStrings( out array<string> PassiveValues, ou
 /** QA Logging - Report Perk Info */
 simulated function LogPerkSkills()
 {
-	super.LogPerkSkills();    
+	super.LogPerkSkills();
 
 	if( bLogPerk )
 	{
@@ -709,7 +715,7 @@ simulated function LogPerkSkills()
 }
 
 DefaultProperties
-{	
+{
 	SharedExplosiveResistance=0.3f
 
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Demolition'
@@ -831,5 +837,9 @@ DefaultProperties
 	NukeRadiusModifier=1.25
 
 	ConcussiveExplosionSound=AkEvent'WW_GLO_Runtime.Play_WEP_Demo_Conc'
+
+    // Skill tracking
+	HitAccuracyHandicap=2.0
+	HeadshotAccuracyHandicap=0.0
 }
 

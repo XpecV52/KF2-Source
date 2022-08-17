@@ -11,8 +11,8 @@ package tripwire.containers
     import scaleform.clik.events.IndexEvent;
     import scaleform.clik.events.ListEvent;
     import scaleform.clik.interfaces.IDataProvider;
+    import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
-    import scaleform.gfx.FocusManager;
     import tripwire.controls.CategoryButton;
     import tripwire.controls.TripButton;
     import tripwire.controls.TripScrollingList;
@@ -92,6 +92,8 @@ package tripwire.containers
         {
             super();
             currentElement = defaultFirstElement = this.startGameButton;
+            sectionHeader = this.optionsHeader;
+            defaultNumPrompts = 2;
         }
         
         public function set localizedText(param1:Object) : void
@@ -268,7 +270,7 @@ package tripwire.containers
             stage.addEventListener(KeyboardEvent.KEY_UP,this.onUserKeyUp,false,0,true);
             if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
             {
-                FocusManager.setFocus(this.startGameButton);
+                FocusHandler.getInstance().setFocus(this.startGameButton);
             }
         }
         

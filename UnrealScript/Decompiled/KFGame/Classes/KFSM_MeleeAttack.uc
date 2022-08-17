@@ -10,22 +10,22 @@ class KFSM_MeleeAttack extends KFSM_PlaySingleAnim
 
 var transient bool bCannotBeParried;
 
-event byte PackFlags()
+static function byte PackFlagsBase(KFPawn P)
 {
     local byte StrikeFlags;
     local KFPawn_Monster KFPM;
 
-    KFPM = KFPawn_Monster(KFPOwner);
-    if(KFPM == none)
+    KFPM = KFPawn_Monster(P);
+    if((KFPM == none) || P.MyKFAIC == none)
     {
         return 255;
     }
     if((KFPM != none) && KFPM.PawnAnimInfo != none)
     {
-        StrikeFlags = KFPM.PawnAnimInfo.GetStrikeFlags(AIOwner.PendingAnimStrikeIndex);
+        StrikeFlags = KFPM.PawnAnimInfo.GetStrikeFlags(P.MyKFAIC.PendingAnimStrikeIndex);
         if(StrikeFlags != 255)
         {
-            AIOwner.UpdatePendingStrike();
+            P.MyKFAIC.UpdatePendingStrike();
         }
     }
     return StrikeFlags;

@@ -16,4 +16,5 @@ defaultproperties
     bIsProbingMeleeRangeEvents=true
     SprintWithinEnemyRange=(X=520,Y=1200)
     EvadeGrenadeChance=0.6
+    LowIntensityAttackCooldown=3
 }

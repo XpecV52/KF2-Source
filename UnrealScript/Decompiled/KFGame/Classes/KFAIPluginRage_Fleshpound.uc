@@ -19,7 +19,7 @@ var bool bIsEnraged;
 
 event TickRage()
 {
-    if(((bIsEnraged && !Outer.bEnemyIsVisible) && (Outer.WorldInfo.TimeSeconds - Outer.LastEnemySightedTime) > MaxEnemyNotVisibleRageTime) && !Outer.IsFrustrated())
+    if((bIsEnraged && !Outer.bEnemyIsVisible) && (Outer.WorldInfo.TimeSeconds - Outer.LastEnemySightedTime) > MaxEnemyNotVisibleRageTime)
     {
         EndRage();        
     }

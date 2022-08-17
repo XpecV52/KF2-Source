@@ -41,17 +41,15 @@ defaultproperties
 	GrabAttackFrequency=0.8f
 	KnockedDownBySonicWaveOdds=0.35f
 
-	Begin Object Name=Afflictions_0
-		InstantAffl(IAF_Stun)=(Head=43,Torso=43,Leg=43,Arm=43,LowHealthBonus=10,Cooldown=3.0)
-		InstantAffl(IAF_Knockdown)=(Head=40,Torso=50,Leg=50,Arm=50,LowHealthBonus=10,Cooldown=8.0)
-	    InstantAffl(IAF_Stumble)=(Head=43,Torso=43,Arm=43,LowHealthBonus=10,Cooldown=0.5)
-		InstantAffl(IAF_LegStumble)=(Leg=26,LowHealthBonus=10,Cooldown=0.5)
-		InstantAffl(IAF_GunHit)=(Head=98,Torso=98,Leg=98,Arm=98,LowHealthBonus=10,Cooldown=0.0)
-		InstantAffl(IAF_MeleeHit)=(Head=20,Torso=20,Leg=20,Arm=20,LowHealthBonus=10,Cooldown=0.0)
-		StackingAffl(SAF_Poison)=(Threshhold=1.0,Duration=4.5,Cooldown=8.0,DissipationRate=1.00)
-		StackingAffl(SAF_Microwave)=(Threshhold=1.0,Duration=4.5,Cooldown=8.0,DissipationRate=1.00)
-		StackingAffl(SAF_FirePanic)=(Threshhold=0.9,Duration=5,Cooldown=7.0,DissipationRate=0.07)
-	End Object
+	InstantIncaps(IAF_Stun)=(Head=43,Torso=45,Leg=50,Arm=50,LowHealthBonus=10,Cooldown=3.0)
+	InstantIncaps(IAF_Knockdown)=(Head=40,Torso=50,Leg=50,Arm=50,LowHealthBonus=10,Cooldown=8.0)
+    InstantIncaps(IAF_Stumble)=(Head=43,Torso=43,Arm=43,LowHealthBonus=10,Cooldown=0.5)
+	InstantIncaps(IAF_LegStumble)=(Leg=26,LowHealthBonus=10,Cooldown=0.5)
+	InstantIncaps(IAF_GunHit)=(Head=98,Torso=98,Leg=98,Arm=98,LowHealthBonus=10,Cooldown=0.0)
+	InstantIncaps(IAF_MeleeHit)=(Head=20,Torso=20,Leg=20,Arm=20,LowHealthBonus=10,Cooldown=0.0)
+	StackingIncaps(SAF_Poison)=(Threshhold=1.0,Duration=4.5,Cooldown=8.0,DissipationRate=1.00)
+	StackingIncaps(SAF_Microwave)=(Threshhold=1.0,Duration=4.5,Cooldown=8.0,DissipationRate=1.00)
+	StackingIncaps(SAF_FirePanic)=(Threshhold=0.9,Duration=5,Cooldown=7.0,DissipationRate=0.07)
 
     ParryResistance=0	
 

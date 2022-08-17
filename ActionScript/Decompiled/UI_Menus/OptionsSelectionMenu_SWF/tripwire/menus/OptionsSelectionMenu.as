@@ -29,6 +29,7 @@ package tripwire.menus
             defaultFirstElement = this.buttonBar;
             this.buttonBar.tabIndex = 1;
             visible = false;
+            sectionHeader = this.header;
         }
         
         public function set buttonNames(param1:Array) : void

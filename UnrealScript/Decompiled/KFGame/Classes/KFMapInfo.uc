@@ -16,6 +16,7 @@ enum ECollectibleType
     ECT_MAX
 };
 
+/** Base value to use for how long to wait between spawning groups of AI. Turn this number down to make zeds spawn faster and the map harder, turn it up to make zeds spawn slower and the map easier */
 var(Spawning) float WaveSpawnPeriod;
 /** list of destructibles that require replicated damage states in this map */
 var() array<KFDestructibleActor> DestructibleActors;

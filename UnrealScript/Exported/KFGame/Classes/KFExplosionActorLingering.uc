@@ -10,9 +10,9 @@
 
 class KFExplosionActorLingering extends KFExplosionActor;
 
-/** How often to do burn damage */
+/** How often to do damage */
 var() float Interval;
-/** How long to burn for */
+/** How long to do damage for total */
 var() float MaxTime;
 /** Use an AllPawns check rather than CollidingActors */
 var() bool bOnlyDamagePawns;
@@ -20,6 +20,8 @@ var() bool bOnlyDamagePawns;
 var() bool bSkipLineCheckForPawns;
 /** if true, damage will ignore fall off */
 var() bool bDoFullDamage;
+
+var bool bWasFadedOut;
 
 var AkEvent LoopStartEvent;
 var AkEvent LoopStopEvent;
@@ -36,6 +38,7 @@ simulated function Explode(GameExplosion NewExplosionTemplate, optional vector D
 	super.Explode(NewExplosionTemplate, Direction);
 
 	LifeSpan = MaxTime;
+
 	if (Role == Role_Authority)
 	{
 		//DelayedExplosionDamage();
@@ -65,14 +68,32 @@ simulated function StartLoopingParticleEffect()
 	SetTimer( Max(MaxTime - 0.5f, 0.1f), false, nameof(StopLoopingParticleEffect), self);
 }
 
-event Destroyed()
+/** Fades explosion actor out over a couple seconds */
+simulated function FadeOut( optional bool bDestroyImmediately )
 {
+	if( bWasFadedOut )
+	{
+		return;
+	}
+
+	bWasFadedOut = true;
+
 	if( WorldInfo.NetMode != NM_DedicatedServer && LoopStopEvent != none )
 	{
 		PlaySoundBase( LoopStopEvent, true );
 	}
 
 	StopLoopingParticleEffect();
+
+	if( !bDeleteMe && !bPendingDelete )
+	{
+		SetTimer( 2.f, false, nameOf(Destroy) );
+	}
+}
+
+simulated event Destroyed()
+{
+	FadeOut();
 
 	super.Destroyed();
 }
@@ -93,11 +114,16 @@ simulated function StopLoopingParticleEffect()
   */
 protected simulated function bool DoExplosionDamage(bool bCauseDamage, bool bCauseEffects)
 {
+	if( bWasFadedOut || bDeleteMe || bPendingDelete )
+	{
+		return false;
+	}
+
 	if(bOnlyDamagePawns)
 	{
 		return ExplodePawns();
 	}
-		
+
 	return super.DoExplosionDamage(bCauseDamage, bCauseEffects);
 }
 
@@ -110,7 +136,12 @@ protected simulated function bool ExplodePawns()
 	local Actor		HitActor;
 	local vector	BBoxCenter;
 	local float 	DamageScale;
-	local Box BBox;	
+	local Box BBox;
+
+	if( bWasFadedOut || bDeleteMe || bPendingDelete )
+	{
+		return false;
+	}
 
 	// determine radius to check
 	CheckRadius = GetEffectCheckRadius(true, false, false);
@@ -153,6 +184,10 @@ protected simulated function bool ExplodePawns()
 
 protected simulated function AffectsPawn(Pawn Victim, float DamageScale)
 {
+	if( bWasFadedOut|| bDeleteMe || bPendingDelete )
+	{
+		return;
+	}
 
 	Victim.TakeRadiusDamage(InstigatorController, ExplosionTemplate.Damage * DamageScale, ExplosionTemplate.DamageRadius,
 		ExplosionTemplate.MyDamageType, ExplosionTemplate.MomentumTransferScale, Location, bDoFullDamage,

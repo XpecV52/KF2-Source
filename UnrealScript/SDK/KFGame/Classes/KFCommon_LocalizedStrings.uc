@@ -32,6 +32,9 @@ var localized string NoString;
 
 var localized string DisbandPartyString;
 var localized string LeaveCurrentMenuString;
+var localized string ZedString;
+var localized string HumanString;
+var localized string SpectatorString;
 
 static function array<string> GetDifficultyStringsArray()
 {
@@ -93,7 +96,7 @@ static function array<string> GetGameModeStringsArray()
 	return default.ModeStrings;
 }
 
-static function string GetGameModeString( float GameModeIndex )
+static function string GetGameModeString( int GameModeIndex )
 {
 	if( 0 < default.ModeStrings.length && GameModeIndex < default.ModeStrings.length )
 	{

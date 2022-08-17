@@ -14,7 +14,6 @@ package tripwire.menus
     import tripwire.containers.GearListContainer;
     import tripwire.containers.SectionHeaderContainer;
     import tripwire.containers.TripContainer;
-    import tripwire.containers.gear.GearPerkSelectionContainer;
     import tripwire.controls.CategoryButton;
     import tripwire.controls.TripButton;
     import tripwire.controls.TripTextArea;
@@ -41,8 +40,6 @@ package tripwire.menus
         public var bodyButton:CategoryButton;
         
         public var attachmentButton:CategoryButton;
-        
-        public var weaponsButton:CategoryButton;
         
         public var rotateCameraWindow:MovieClip;
         
@@ -98,8 +95,6 @@ package tripwire.menus
         
         private var _bRotating:Boolean;
         
-        public var perkSelectionContainer:GearPerkSelectionContainer;
-        
         public function GearMenu()
         {
             super();
@@ -107,6 +102,7 @@ package tripwire.menus
             this.bodyArray = new Array();
             this.attachmentsArray = new Array();
             this.setTabIndexes();
+            sectionHeader = this.gearHeader;
         }
         
         public function set weaponArray(param1:Array) : void
@@ -222,8 +218,6 @@ package tripwire.menus
             this._skinsString = param1.skinsString;
             this._attachmentString = param1.attachmentsString;
             this.attachmentButton.label = this._attachmentString;
-            this.weaponsButton.label = !!param1.weapons ? param1.weapons : "";
-            this.weaponsButton.infoString = !!param1.weaponsInfo ? param1.weaponsInfo : "";
         }
         
         override public function selectContainer() : void
@@ -305,11 +299,9 @@ package tripwire.menus
         protected function setTabIndexes() : *
         {
             this.characterButton.tabIndex = 1;
-            this.weaponsButton.tabIndex = 2;
             this.headButton.tabIndex = 3;
             this.bodyButton.tabIndex = 4;
             this.attachmentButton.tabIndex = 5;
-            this.perkSelectionContainer.tabIndex = 6;
         }
         
         override protected function addedToStage(param1:Event) : void
@@ -319,8 +311,6 @@ package tripwire.menus
             this.headButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.bodyButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.attachmentButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
-            this.weaponsButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
-            this.perkSelectionContainer.weaponBackButton.addEventListener(ButtonEvent.PRESS,this.hideWeaponOptions,false,0,true);
             this.rotateCameraWindow.addEventListener(MouseEvent.MOUSE_DOWN,this.startRotate,false,0,true);
             this.gearList.addEventListener(IndexEvent.INDEX_CHANGE,this.listSelect,false,0,true);
             this.skinList.addEventListener(IndexEvent.INDEX_CHANGE,this.listSelect,false,0,true);
@@ -328,7 +318,6 @@ package tripwire.menus
             this.skinList.visible = false;
             this.hideWeaponOptions();
             this.testMenu();
-            this.weaponsButton.visible = false;
         }
         
         protected function handleButtonEvent(param1:ButtonEvent) : void
@@ -377,9 +366,6 @@ package tripwire.menus
                     {
                         this.gearList.tileList.selectedIndex = this._selectedAttachmentIndex;
                     }
-                    break;
-                case this.weaponsButton:
-                    this.showWeaponOptions();
             }
         }
         
@@ -398,6 +384,10 @@ package tripwire.menus
         protected function setOptionList(param1:GearListContainer, param2:Array, param3:String) : void
         {
             this.deselectContainer();
+            if(sectionHeader != null && bOpen)
+            {
+                sectionHeader.controllerIconVisible = false;
+            }
             param1.dataProvider = new DataProvider(param2);
             param1.listTitle = param3;
             param1.openContainer();
@@ -448,9 +438,6 @@ package tripwire.menus
                         break;
                     case this.attachmentButton:
                         this.chosenItem(this._attachments,param1.index,"Callback_Attachment");
-                        break;
-                    case this.weaponsButton:
-                        this.chosenItem(this._weapons,param1.index,"Callback_Weapon");
                 }
             }
             else
@@ -507,7 +494,6 @@ package tripwire.menus
         {
             this.skinList.closeContainer();
             this.gearList.closeContainer();
-            this.perkSelectionContainer.visible = true;
             this.characterButton.visible = false;
             this.bioTextArea.visible = false;
             this.headButton.visible = false;
@@ -519,7 +505,6 @@ package tripwire.menus
         {
             this.skinList.closeContainer();
             this.gearList.closeContainer();
-            this.perkSelectionContainer.visible = false;
             this.characterButton.visible = true;
             this.bioTextArea.visible = true;
             this.headButton.visible = true;

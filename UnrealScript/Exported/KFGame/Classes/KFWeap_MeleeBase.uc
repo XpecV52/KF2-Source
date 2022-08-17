@@ -124,7 +124,7 @@ var name			  BlockEffectsSocketName;
 
 /** Estimated attack rate for this weapon, taking chaining, etc. into account.
   * Basically, just eyeball the animations and take an average.
-  */
+ */
 var() byte EstimatedFireRate;
 
 // (cpptext)
@@ -686,7 +686,7 @@ simulated state MeleeSustained extends WeaponFiring
 	{
 		// Do the first damage right away, we've already waited for the warmup time
 		FireAmmunition();
-        TimeWeaponFiring(CurrentFireMode);
+		TimeWeaponFiring(CurrentFireMode);
 
 		if ( MinMeleeSustainedTime > 0.f )
 		{
@@ -699,7 +699,7 @@ simulated state MeleeSustained extends WeaponFiring
 	{
 		HandleWeaponShotTaken( CurrentFireMode );
         MeleeAttackHelper.bHitEnemyThisAttack = false;
-		MeleeAttackHelper.MeleeAttackImpact();
+        MeleeAttackHelper.MeleeAttackImpact();
 
     	// Use ammunition to fire
     	ConsumeAmmo( CurrentFireMode );
@@ -762,7 +762,7 @@ reliable client function ClientPlayParryEffects(bool bInterruptSuccess)
 	else
 	{
 		PlayLocalBlockEffects(BlockSound, BlockParticleSystem);
-	}	
+	}
 }
 
 simulated state MeleeBlocking
@@ -935,10 +935,11 @@ simulated state MeleeBlocking
 	reliable client function ClientPlayParryEffects(bool bInterruptSuccess)
 	{
 		Global.ClientPlayParryEffects(bInterruptSuccess);
-		if ( !bInterruptSuccess )
+		if ( !bInterruptSuccess && Instigator.IsLocallyControlled() )
 		{
-			ClearPendingFire(BLOCK_FIREMODE);
-			GotoState('BlockingCooldown');
+			// force a replicated stop fire when zed is playing
+			// an uninterruptible special move
+			StopFire(BLOCK_FIREMODE);
 		}
 	}
 }

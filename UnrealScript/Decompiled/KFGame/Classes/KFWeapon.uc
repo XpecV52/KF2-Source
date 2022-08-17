@@ -26,14 +26,18 @@ const ReloadEmptyMagEliteAnim = 'Reload_Empty_Elite';
 const ReloadNonEmptyMagEliteAnim = 'Reload_Half_Elite';
 const ReloadOpenAnim = 'Reload_Open';
 const ReloadSingleAnim = 'Reload_Insert';
+const ReloadOpenInsertAnim = 'Reload_Open_Shell';
 const ReloadCloseAnim = 'Reload_Close';
 const ReloadOpenEliteAnim = 'Reload_Open_Elite';
 const ReloadSingleEliteAnim = 'Reload_Insert_Elite';
+const ReloadOpenInsertEliteAnim = 'Reload_Open_Shell_Elite';
 const ReloadCloseEliteAnim = 'Reload_Close_Elite';
 const GrenadeThrowAnim = 'Nade_Throw';
 const SprintStartAnim = 'Sprint_In';
 const SprintLoopAnim = 'Sprint_Loop';
 const SprintEndAnim = 'Sprint_Out';
+const FireOneHandAnim = 'Shoot_OneHand';
+const FireOneHandLastAnim = 'Shoot_OneHand_Last';
 const BloodParamName = 'Scalar_Blood_Contrast';
 const MinBloodParamValue = 0.20f;
 const MaxAimAdjust_Angle = 0.1f;
@@ -45,6 +49,7 @@ enum EInventoryGroup
     IG_Secondary,
     IG_Melee,
     IG_Equipment,
+    IG_None,
     IG_MAX
 };
 
@@ -98,6 +103,7 @@ var byte AmmoCount[2];
 var KFWeapon.EReloadStatus ReloadStatus;
 var byte ReloadAmountLeft;
 var bool bUseAltFireMode;
+var transient bool bStopAltFireOnNextRelease;
 /** Target friction enabled? */
 var() bool bTargetFrictionEnabled;
 /** Target adhesion enabled? */
@@ -118,7 +124,7 @@ var bool bZoomOutInterrupted;
 var bool bFastZoomOut;
 var bool bHasScopePosition;
 var bool bUsingScopePosition;
-var(DeptoOfField) bool DOF_bOverrideEnvironmentDOF;
+var(DepthOfField) bool DOF_bOverrideEnvironmentDOF;
 /** The weapon is using the sights to aim */
 var(Positioning) bool bWeaponNeedsServerPosition;
 /** If true, weapon position should follow camera anims played on the weapon AnimSeq */
@@ -254,14 +260,13 @@ var(Inventory) int MaxSpareAmmo[2];
 var int InitialSpareMags[2];
 /** What percentage of a full single magazine capacity to give when resupplying this weapon from an ammo pickup */
 var(Inventory) float AmmoPickupScale[2];
+var transient float LastReloadAbortTime;
 var array<CameraAnim> FireCameraAnim;
 /** How much to scale the FireCameraAnim when in ironsights */
 var(Camera) float ShakeScaleSighted;
 /** Controller rumble to play when firing. */
 var(Camera) float ShakeScaleStandard;
 var ForceFeedbackWaveform WeaponFireWaveForm;
-/** This is the camera shake that we play when we hit a melee attack */
-var(Camera) const CameraShake MeleeImpactCamShake;
 var KFAnimSeq_Tween WeaponAnimSeqNode;
 var AnimNodeAdditiveBlending IdleBobBlendNode;
 var AnimNodeBlendPerBone EmptyMagBlendNode;
@@ -557,8 +562,6 @@ private reliable server native final event ServerUpdateWeaponSkin(int ItemId);
 // Export UKFWeapon::execClearSkinItemId(FFrame&, void* const)
 private native final function ClearSkinItemId();
 
-function class<KFWeaponDefinition> GetKnifeWeaponDef();
-
 function GivenTo(Pawn thisPawn, optional bool bDoNotActivate)
 {
     super(Inventory).GivenTo(thisPawn, bDoNotActivate);
@@ -740,7 +743,7 @@ function DropFrom(Vector StartLocation, Vector StartVelocity)
     P = Spawn(DroppedPickupClass,,, StartLocation,,, true);
     if(P == none)
     {
-        PlayerController(Instigator.Controller).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 15);
+        PlayerController(Instigator.Controller).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 16);
         return;
     }
     if((Instigator != none) && Instigator.InvManager != none)
@@ -828,9 +831,33 @@ function bool DenyPickupQuery(class<Inventory> ItemClass, Actor Pickup)
     return false;
 }
 
-static simulated function bool IsInventoryWeapon()
+function NotifyPickedUp()
 {
-    return default.InventoryGroup == 3;
+    ClientNotifyPickedUp();
+}
+
+reliable client simulated function ClientNotifyPickedUp()
+{
+    local KFPlayerController KFPC;
+    local KFGFxMenu_Trader TraderMenu;
+
+    KFPC = KFPlayerController(Instigator.Controller);
+    if(KFPC != none)
+    {
+        if(KFPC.MyGFxManager != none)
+        {
+            TraderMenu = KFGFxMenu_Trader(KFPC.MyGFxManager.CurrentMenu);
+            if(TraderMenu != none)
+            {
+                TraderMenu.GiveExternalWeapon(self);
+            }
+        }
+    }
+}
+
+static simulated function bool DenyPerkResupply()
+{
+    return default.InventoryGroup >= 3;
 }
 
 static simulated function bool IsMeleeWeapon()
@@ -1008,16 +1035,16 @@ simulated function ZoomIn(bool bAnimateTransition, float ZoomTimeToGo)
         }
         bZoomingIn = true;
     }
-    if((WorldInfo.NetMode != NM_DedicatedServer) && Instigator != none)
+    if((Instigator != none) && Instigator.IsLocallyControlled())
     {
         EnablePlayerZoom(true);
         EnableIronSightsDoF(true);
+        if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
+        {
+            KFGameInfo(WorldInfo.Game).DialogManager.PlayIronsightsDialog(KFPawn(Instigator));
+        }
     }
     bUsingSights = true;
-    if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
-    {
-        KFGameInfo(WorldInfo.Game).DialogManager.PlayIronsightsDialog(KFPawn(Instigator));
-    }
 }
 
 private reliable server final function ServerZoomIn(bool bAnimateTransition)
@@ -1075,10 +1102,14 @@ simulated function ZoomOut(bool bAnimateTransition, float ZoomTimeToGo)
     {
         ZoomWeaponFOVStart = MeshIronSightFOV;
     }
-    if((WorldInfo.NetMode != NM_DedicatedServer) && Instigator != none)
+    if((Instigator != none) && Instigator.IsLocallyControlled())
     {
         EnableIronSightsDoF(false);
         EnablePlayerZoom(false);
+        if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
+        {
+            KFGameInfo(WorldInfo.Game).DialogManager.StopBreathingDialog(KFPawn(Instigator));
+        }
     }
     bUsingSights = false;
 }
@@ -1137,15 +1168,18 @@ simulated function StopPawnSprint(bool bClearPlayerInput)
         if(KFP.IsLocallyControlled())
         {
             PC = PlayerController(Instigator.Controller);
-            if((PC != none) && bClearPlayerInput)
+            if(PC != none)
             {
-                PC.bRun = 0;
-            }
-            Input = KFPlayerInput(PC.PlayerInput);
-            if((Input != none) && Input.bExtendedSprinting)
-            {
-                PC.bRun = 0;
-                Input.bExtendedSprinting = false;
+                if(bClearPlayerInput)
+                {
+                    PC.bRun = 0;
+                }
+                Input = KFPlayerInput(PC.PlayerInput);
+                if((Input != none) && Input.bExtendedSprinting)
+                {
+                    PC.bRun = 0;
+                    Input.bExtendedSprinting = false;
+                }
             }
         }
     }
@@ -1166,7 +1200,7 @@ simulated function PlayAnimation(name Sequence, optional float fDesiredDuration,
 {
     BlendInTime = 0.1;
     BlendOutTime = 0;
-    if((Sequence == 'None') || Instigator == none)
+    if(((Sequence == 'None') || Instigator == none) || WeaponAnimSeqNode == none)
     {
         return;
     }
@@ -1303,14 +1337,11 @@ simulated function name GetWeaponFireAnim(byte FireModeNum)
         }
         else
         {
-            if(bPlayFireLast && FireLastAnim != 'None')
+            if(!bReloadFromMagazine && LastReloadAbortTime == WorldInfo.TimeSeconds)
             {
-                return FireLastAnim;                
+                return ((bPlayFireLast) ? 'Shoot_OneHand_Last' : 'Shoot_OneHand');
             }
-            else
-            {
-                return FireAnim;
-            }
+            return ((bPlayFireLast && FireLastAnim != 'None') ? FireLastAnim : FireAnim);
         }
     }
 }
@@ -1564,19 +1595,22 @@ simulated function PlayFireEffects(byte FireModeNum, optional Vector HitLocation
         StartLoopingFireSound(FireModeNum);
     }
     PlayFiringSound(CurrentFireMode);
-    if((Instigator != none) && Instigator.IsFirstPerson())
+    if((Instigator != none) && Instigator.IsLocallyControlled())
     {
-        if(!bPlayingLoopingFireAnim)
+        if(Instigator.IsFirstPerson())
         {
-            WeaponFireAnimName = GetWeaponFireAnim(FireModeNum);
-            if(WeaponFireAnimName != 'None')
+            if(!bPlayingLoopingFireAnim)
             {
-                PlayAnimation(WeaponFireAnimName, MySkelMesh.GetAnimLength(WeaponFireAnimName),, FireTweenTime);
+                WeaponFireAnimName = GetWeaponFireAnim(FireModeNum);
+                if(WeaponFireAnimName != 'None')
+                {
+                    PlayAnimation(WeaponFireAnimName, MySkelMesh.GetAnimLength(WeaponFireAnimName),, FireTweenTime);
+                }
             }
+            CauseMuzzleFlash(FireModeNum);
         }
         HandleRecoil();
         ShakeView();
-        CauseMuzzleFlash(FireModeNum);
     }
 }
 
@@ -1795,9 +1829,11 @@ simulated function StartFire(byte FireModeNum)
             FireModeNum = 2;
         }
     }
-    if((FireModeNum == 0) && bUseAltFireMode)
+    bStopAltFireOnNextRelease = false;
+    if(((FireModeNum == 0) && bUseAltFireMode) && !IsUsingGamepad())
     {
         FireModeNum = 1;
+        bStopAltFireOnNextRelease = true;
     }
     if(FireModeNum == 2)
     {
@@ -1824,11 +1860,27 @@ simulated function BeginFire(byte FireModeNum)
 
 simulated function StopFire(byte FireModeNum)
 {
-    if((FireModeNum == 0) && bUseAltFireMode)
+    if((FireModeNum == 0) && bStopAltFireOnNextRelease)
     {
+        bStopAltFireOnNextRelease = false;
         FireModeNum = 1;
     }
     super.StopFire(FireModeNum);
+}
+
+simulated function bool IsUsingGamepad()
+{
+    local PlayerController PC;
+
+    if((Instigator != none) && Instigator.IsLocallyControlled())
+    {
+        PC = PlayerController(Instigator.Controller);
+        if(((PC != none) && PC.PlayerInput != none) && PC.PlayerInput.bUsingGamepad)
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 simulated function AltFireMode()
@@ -1965,12 +2017,28 @@ function HandleWeaponShotTaken(byte FireMode)
 simulated function ImpactInfo CalcWeaponFire(Vector StartTrace, Vector EndTrace, optional out array<ImpactInfo> ImpactList, optional Vector Extent)
 {
     local ImpactInfo CurrentImpact;
+    local int I;
+    local Actor HitActor;
+    local bool bFirst;
 
+    bFirst = ImpactList.Length == 0;
     CurrentImpact = super.CalcWeaponFire(StartTrace, EndTrace, ImpactList, Extent);
-    if(CurrentImpact.HitLocation == ImpactList[0].HitLocation)
+    if(bFirst)
     {
         TraceImpactHitZones(StartTrace, EndTrace, ImpactList);
-        return ImpactList[0];
+        I = 0;
+        J0x8F:
+
+        if(I < ImpactList.Length)
+        {
+            HitActor = ImpactList[I].HitActor;
+            if(((HitActor != none) && !HitActor.bBlockActors) && HitActor.IsA('KFWaterMeshActor'))
+            {
+                return ImpactList[I];
+            }
+            ++ I;
+            goto J0x8F;
+        }
     }
     return CurrentImpact;
 }
@@ -1985,13 +2053,13 @@ simulated function TraceImpactHitZones(Vector StartTrace, Vector EndTrace, out a
 
     if(I < ImpactList.Length)
     {
-        if((ImpactList[I].HitActor != none) && ImpactList[I].HitActor.IsA('KFPawn'))
+        if(((ImpactList[I].HitActor != none) && ImpactList[I].HitActor.bCanBeDamaged) && ImpactList[I].HitActor.IsA('KFPawn'))
         {
             TraceAllPhysicsAssetInteractions(SkeletalMeshComponent(ImpactList[I].HitInfo.HitComponent), EndTrace, StartTrace, HitZoneImpactList, vect(0, 0, 0), true);
             if(HitZoneImpactList.Length > 0)
             {
                 HitZoneImpactList[0].RayDir = ImpactList[I].RayDir;
-                ImpactList[I] = HitZoneImpactList[0];                
+                ImpactList[I] = HitZoneImpactList[0];
             }
         }
         ++ I;
@@ -2003,13 +2071,16 @@ simulated function bool PassThroughDamage(Actor HitActor)
 {
     local KFPawn KFP;
 
-    KFP = KFPawn(HitActor);
-    if((PenetrationPowerRemaining > float(0)) && KFP != none)
+    if(HitActor.bBlockActors)
     {
-        PenetrationPowerRemaining -= KFP.PenetrationResistance;
-        return true;
+        KFP = KFPawn(HitActor);
+        if((PenetrationPowerRemaining > float(0)) && KFP != none)
+        {
+            PenetrationPowerRemaining -= KFP.PenetrationResistance;
+            return true;
+        }
     }
-    return (!HitActor.bBlockActors && HitActor.IsA('Trigger') || HitActor.IsA('TriggerVolume')) || HitActor.IsA('InteractiveFoliageActor');
+    return !HitActor.bBlockActors && ((HitActor.IsA('Trigger') || HitActor.IsA('TriggerVolume')) || HitActor.IsA('InteractiveFoliageActor')) || HitActor.IsA('KFWaterMeshActor');
 }
 
 simulated function Rotator AddSpread(Rotator BaseAim)
@@ -2548,7 +2619,7 @@ simulated function ConsumeAmmo(byte FireModeNum)
 
     AmmoGroup = GetAmmoType(FireModeNum);
     InstigatorPerk = GetPerk();
-    if((InstigatorPerk != none) && InstigatorPerk.GetIsUberAmmoActive(self))
+    if(((InstigatorPerk != none) && InstigatorPerk.GetIsUberAmmoActive(self)) && AmmoCount[AmmoGroup] > 0)
     {
         return;
     }
@@ -3127,7 +3198,7 @@ simulated function CheckPendingIronsights()
         PC = PlayerController(Instigator.Controller);
         if((PC != none) && PC.PlayerInput != none)
         {
-            if(KFPlayerInput(PC.PlayerInput).bPendingIronsights)
+            if(KFPlayerInput(PC.PlayerInput).bIronsightsHeld)
             {
                 SetIronSights(true);
             }
@@ -3255,7 +3326,10 @@ simulated function TimeWeaponFiring(byte FireModeNum)
 
 private reliable server final function ServerGotoGrenadeFiring()
 {
-    SendToFiringState(4);
+    if(HasAmmo(4))
+    {
+        SendToFiringState(4);
+    }
 }
 
 function SetWeakZedGrabCooldownOnPawn(float WeakZedGrabCooldown)
@@ -3434,6 +3508,11 @@ simulated function name GetReloadAnimName(bool bTacticalReload)
         switch(ReloadStatus)
         {
             case 1:
+                if(AmmoCount[0] == 0)
+                {
+                    ReloadStatus = GetNextReloadStatus();
+                    return ((bTacticalReload) ? 'Reload_Open_Shell_Elite' : 'Reload_Open_Shell');
+                }
                 return ((bTacticalReload) ? 'Reload_Open_Elite' : 'Reload_Open');
             case 3:
                 return ((bTacticalReload) ? 'Reload_Close_Elite' : 'Reload_Close');
@@ -3620,6 +3699,29 @@ simulated function PlayMeleeAnimation(name AnimName, out float out_Rate, float B
 simulated function int GetMeleeDamage(byte FireModeNum, optional Vector RayDir)
 {
     return int(InstantHitDamage[FireModeNum]);
+}
+
+simulated function float GetForceReloadDelay();
+
+private reliable server final function ServerSyncWeaponFiring(byte FireModeNum)
+{
+    if(IsInState('Reloading'))
+    {
+        if((GetNextReloadStatus() == 4) && GetRemainingTimeForTimer('ReloadStatusTimer') > ((float(Instigator.PlayerReplicationInfo.Ping) * 4) * 0.001))
+        {
+            return;
+        }
+        if((ReloadStatus == 2) && IsTimerActive('ReloadAmmoTimer'))
+        {
+            PerformReload();
+            ClearTimer('ReloadAmmoTimer');
+        }
+        ReloadStatus = 4;
+        if(HasAmmo(FireModeNum))
+        {
+            SendToFiringState(FireModeNum);
+        }
+    }
 }
 
 static simulated event SetTraderWeaponStats(out array<STraderItemWeaponStats> WeaponStats)
@@ -3934,7 +4036,11 @@ simulated state WeaponEquipping
         if(bIronSightOnBringUp && bHasIronSights)
         {
             bIronSightOnBringUp = false;
-            SetIronSights(true);
+            SetIronSights(true);            
+        }
+        else
+        {
+            CheckPendingIronsights();
         }
         InstigatorPerk = GetPerk();
         if(InstigatorPerk != none)
@@ -3990,7 +4096,7 @@ simulated state WeaponPuttingDown
 
 simulated state WeaponDownSimple
 {
-    ignores CanThrow, SetIronSights, OnAnimEnd;
+    ignores SetIronSights, OnAnimEnd;
 
     simulated function bool CanTransitionToIronSights()
     {
@@ -4005,6 +4111,11 @@ simulated state WeaponDownSimple
     simulated function bool CanReload()
     {
         return false;
+    }
+
+    simulated function bool CanThrow()
+    {
+        return (Instigator == none) || Instigator.Health <= 0;
     }
 
     simulated function bool CanSwitchWeapons()
@@ -4238,11 +4349,7 @@ simulated state GrenadeFiring extends WeaponSingleFiring
         ClearPendingFire(CurrentFireMode);
         if((Role == ROLE_Authority) && KFInventoryManager(InvManager) != none)
         {
-            KFInventoryManager(InvManager).ConsumeGrenades();
-            if(((WorldInfo.Game != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress())
-            {
-                KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogPlayerIntEvent(1102, Instigator.Controller, KFInventoryManager(InvManager).GrenadeCount);
-            }            
+            KFInventoryManager(InvManager).ConsumeGrenades();            
         }
         else
         {
@@ -4336,10 +4443,6 @@ simulated state Reloading
         ReloadStatus = 0;
         TimeWeaponReloading();
         NotifyBeginState();
-        if(((WorldInfo.Game != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress())
-        {
-            KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogPlayerWeaponReload(self, Instigator.Controller);
-        }
         if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
         {
             KFGameInfo(WorldInfo.Game).DialogManager.PlayReloadDialog(KFPawn(Instigator));
@@ -4416,6 +4519,7 @@ simulated state Reloading
 
     simulated function AbortReload()
     {
+        LastReloadAbortTime = WorldInfo.TimeSeconds;
         GotoState('Active');
     }
     stop;    
@@ -4517,6 +4621,36 @@ simulated state MeleeAttackBasic
     stop;    
 }
 
+simulated state WeaponSingleFireAndReload extends WeaponSingleFiring
+{
+    simulated function FireAmmunition()
+    {
+        local float ReloadDelay;
+
+        super.FireAmmunition();
+        if(Instigator.IsLocallyControlled())
+        {
+            if(HasSpareAmmo())
+            {
+                ReloadDelay = GetForceReloadDelay();
+                if(ReloadDelay > 0)
+                {
+                    SetTimer(ReloadDelay + FireInterval[CurrentFireMode], false, 'ForceReload');                    
+                }
+                else
+                {
+                    StartFire(2);
+                }
+            }
+            if(Instigator.Role < ROLE_Authority)
+            {
+                ServerSyncWeaponFiring(CurrentFireMode);
+            }
+        }
+    }
+    stop;    
+}
+
 defaultproperties
 {
     FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
@@ -4570,7 +4704,6 @@ defaultproperties
     ShakeScaleSighted=0.4
     ShakeScaleStandard=1
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Default_Recoil'
-    MeleeImpactCamShake=KFCameraShake'FX_CameraShake_Arch.Melee.Default_Melee'
     FireTweenTime=0.05
     FireAnim=Shoot
     FireLoopAnim=ShootLoop
@@ -4637,7 +4770,7 @@ defaultproperties
     HippedRecoilModifier=1.75
     JoggingRecoilModifier=1.5
     WalkingRecoilModifier=1.25
-    FallingRecoilModifier=3
+    FallingRecoilModifier=1
     StanceCrouchedRecoilModifier=0.75
     LastRecoilModifier=1
     IronSightMeshFOVCompensationScale=1

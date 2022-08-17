@@ -32,6 +32,7 @@ defaultproperties
       ChainSequence_R(3)=DIR_Right
       ChainSequence_R(4)=()
       WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Bladed_melee_impact'
+      MeleeImpactCamShakeScale=0.200000
       MaxHitRange=220.000000
       HitboxChain(0)=(BoneOffset=(X=0.000000,Y=3.000000,Z=125.000000))
       HitboxChain(1)=(BoneOffset=(X=0.000000,Y=-3.000000,Z=100.000000))

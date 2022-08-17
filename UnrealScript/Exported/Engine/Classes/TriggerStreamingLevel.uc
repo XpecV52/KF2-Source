@@ -78,7 +78,6 @@ defaultproperties
    End Object
    Components(0)=Sprite
    Components(1)=CollisionCylinder
-   CollisionType=COLLIDE_CustomDefault
    CollisionComponent=CollisionCylinder
    Name="Default__TriggerStreamingLevel"
    ObjectArchetype=Trigger'Engine.Default__Trigger'

@@ -16,9 +16,9 @@ package com.greensock.plugins
             super("blurFilter");
         }
         
-        override public function _onInitTween(param1:Object, param2:*, param3:TweenLite) : Boolean
+        override public function _onInitTween(target:Object, value:*, tween:TweenLite) : Boolean
         {
-            return _initFilter(param1,param2,param3,BlurFilter,new BlurFilter(0,0,int(param2.quality) || 2),_propNames);
+            return _initFilter(target,value,tween,BlurFilter,new BlurFilter(0,0,int(value.quality) || 2),_propNames);
         }
     }
 }

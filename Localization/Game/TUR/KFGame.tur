@@ -1,0 +1,1569 @@
+[KFCommon_LocalizedStrings]
+DifficultyStrings[0]="Normal"
+DifficultyStrings[1]="Zor"
+DifficultyStrings[2]="Ölümcül"
+DifficultyStrings[3]="Dünya'daki Cehennem"
+
+LengthStrings[0]="Kısa (4 Dalga)"
+LengthStrings[1]="Orta (7 Dalga)"
+LengthStrings[2]="Uzun (10 Dalga)"
+
+ServerTypeStrings[0]="Dereceli"
+ServerTypeStrings[1]="Dereceli - Özel"
+;ServerTypeStrings[2]="Derecesiz"
+
+PermissionStrings[0]="Herkese Açık"
+PermissionStrings[1]="Sadece Arkadaşlar"
+PermissionStrings[2]="Özel"
+
+ModeStrings[0]="Hayatta Kalma"
+ModeStrings[1]="VS Survival"
+
+NoPreferenceString="HERHANGİ"
+OKString="TAMAM"
+ConfirmString="ONAYLA"
+CancelString="İPTAL"
+BackString="GERİ"
+AcceptString="Kabul Et"
+DeclineString="Reddet"
+NoticeString="UYARI!"
+PerkUpdateNoticeString="Özellikler dalga başına bir kez güncellenebilir!"
+YesString="Evet"
+NoString="Hayır"
+
+DisbandPartyString="PARTİYİ DAĞIT"
+LeaveCurrentMenuString="Mevcut menüden ayrıl?"
+ZedString="ZED"
+
+
+[KFGFxMoviePlayer_Manager]
+FailedSearchTitleString="MAÇ BULMA BAŞARISIZ"
+FailedSearchString="Seçili filtrelerle uyumlu bir maç bulunamadı. Lütfen arama kriterlerini genişletin veya maç bulmak için sunucu sayfasını kullanın."
+BrowseServersString="SUNUCULARA GÖZ AT"
+HasInvitedToGameString="seni bir oyuna davet etti."
+JoinGameString="Oyuna Katıl?"
+
+
+[KFGFxObject_Menu]
+LeavePartyTitleString="PARTİ TERK EDİLİYOR"
+LeavePartyDescriptionString="Bu çevrimiçi takımı terk etmek istediğine emin misin?"
+LeaveString="AYRIL"
+
+[KFDoorActor]
+WeldIntegrityString="Kaynak Sağlamlığı:"
+ExplosiveString="Kapı Tuzağı:"
+
+[KFGFxMenu_StartGame]
+CreateMatchString="MAÇ OLUŞTUR"
+MatchmakingString="ÇEVRİMİÇİ EŞLEŞTİRME"
+ServerBrowserString="Sunuculara Göz At"
+
+DifficultyTitle="ZORLUK"
+GameModeTitle="OYUN MODU"
+ServerTypeString="SUNUCU TÜRÜ"
+PermissionsTitle="İZİNLER"
+WhiteListedTitle="İSTATİSTİKLER ETKİNLEŞTİRİLDİ"
+LengthTitle="UZUNLUK"
+MapTitle="BAŞLANGIÇ HARİTASI"
+MutatorTitle="MUTATÖRLER"
+InfoTitle="BİLGİ"
+InProgressString="DEVAM ETMEKTE"
+
+WhiteListedStrings[0]="EVET"
+WhiteListedStrings[1]="HAYIR"
+
+FindGameString="ANASAYFA"
+LeaveMenuString="Eşleştirmeyi terk etmek partinizi dağıtacak. Bunun yerine sunucu tarayıcısına gidin?"
+
+CouldNotFindGameTitleString="Maç Bulunamıyor"
+CouldNotFindGameDescriptionString="Arama ayarlarıyla eşleşen sunucu bulunamadı. Farklı filtreler deneyin veya sunucu tarayıcısını kullanın."
+
+[KFGFxStartGameContainer_FindGame]
+MultiplayerString="Çevrimiçi Eşleştirme"
+SoloString="Çevrimdışı Tek Kişi Oyna"
+
+[KFGFxStartGameContainer_Options]
+BackString="GERİ"
+StartGameString="OYUNU BAŞLAT"
+LaunchGameString="OYUNU BAŞLAT"
+InProgressString="OYUN İLERLEMESİ"
+SoloGameString="TEK KİŞİLİK OYUN"
+LeaveMatchMakingString="EŞLEŞTİRMEDEN AYRIL"
+MultiplayerLaunchString="ŞİMDİ ÇEVRİMİÇİ OYNA"
+SearchingString="ARAMAYI İPTAL ET"
+ServerTypeString="SUNUCU TÜRÜ"
+StandardServerString="Standart"
+UnrankedServerString="Derecesiz"
+CustomServerString="Özel"
+AllowInProgressString="İlerlemedeki Oyunlara İzin Ver"
+NotStartedString="Yalnızca Yeni Oyunlar"
+
+
+[KFGFxStartContainer_MatchMaking]
+OptionsHeaderString="EŞLEŞTİRME"
+BackString="GERİ"
+FindGameString="OYUN BUL"
+
+[KFGFxStartContainer_InGameOverview]
+OverviewString="MAÇ GENEL BAKIŞI"
+ChangeString="DEĞİŞTİR"
+SharedByString="Tarafından paylaşıldı:"
+SharedContentString="PAYLAŞILAN İÇERİKLER"
+
+[KFGFxStartContainer_ServerBrowserOverview]
+OverviewString="MAÇ GENEL BAKIŞI"
+DescriptionString="sunucu tarayıcısından oyun aranıyor..."
+
+[KFGFxTraderContainer_GameInfo]
+TimeLeftString="KALAN SÜRE"
+WaveString="DALGA"
+BossWaveString="BÖLÜM SONU CANAVARI"
+
+[KFPawn_MonsterBoss]
+BossName="Bölüm Sonu Canavarı"
+BossCaptionStrings[0]="Boss altyazısı 1"
+BossCaptionStrings[1]="Boss altyazısı 2"
+
+[KFGFxTraderContainer_PlayerInfo]
+PlayerHeaderString="ENVANTER"
+SelectPerkString="ÖZELLİK SEÇİN"
+
+[KFGFxMenu_ServerBrowser]
+FavoriteString="FAVORİ"
+MultiplayerMenuString="EŞLEŞTİRME"
+LeaveMenuString="Bu menüyü terk etmek partinizi dağıtacak. Bunun yerine eşleştirmeye gidin?"
+NameString="İSİM"
+RefreshString="YENİLE"
+GamesFoundString="BULUNAN OYUN:"
+
+ServerBrowserString="SUNUCU TARAYICISI"
+
+JoinString="KATIL"
+PasswordPromptString="PAROLAYI GİRİN"
+
+RankedString="İSTATİSTİKLER ETKİN"
+UnrankedString="İSTATİSTİKLER DEVRE DIŞI"
+DedicatedString="ÖZEL"
+VACSecureString="VAC KORUMALI"
+InLobbyString="LOBİDE"
+InProgressString="DEVAM ETMEKTE"
+
+BackString="GERİ"
+ApplyString="UYGULA"
+ResetString="SIFIRLA"
+
+PingString="GECİKME"
+LengthString="UZUNLUK"
+DifficultyString="ZORLUK"
+MapString="HARİTA"
+GameModeString="MOD"
+WaveString="DALGA"
+PlayersString="OYUNCU"
+ZedCountString="ZED SAYISI"
+FiltersString="FİLTRELER"
+
+SearchString="ARAMA"
+
+PingOptionStrings[0]="< 50 MS"
+PingOptionStrings[1]="< 100 MS"
+PingOptionStrings[2]="< 150 MS"
+PingOptionStrings[3]="< 200 MS"
+
+TabStrings[0]="GÖZ AT"
+TabStrings[1]="FAVORİLER"
+TabStrings[2]="ARKADAŞLAR"
+TabStrings[3]="GEÇMİŞ"
+TabStrings[4]="LAN"
+
+[KFGFxServerBrowser_Filters]
+NoPasswordString="PAROLASIZ"
+NoMutatorsString="MUTATÖRSÜZ"
+NotFullString="DOLU OLMAYAN"
+NotEmptyString="BOŞ OLMAYAN"
+NoStatsEnabledString="DERECELİ (Standart) Sunucu YOK"
+NoRankedCustomString="ÖZEL SUNUCU YOK"
+NoUnrankedString="DERECESİZ SUNUCU YOK"
+DedicatedString="ÖZELLEŞTİRİLMİŞ SUNUCU"
+VACSecureString="VAC KORUMALI"
+InLobbyString="LOBİDE"
+InProgressString="DEVAM ETMEKTE"
+OnlyStockMapsString="SADECE STANDART HARİTALAR"
+OnlyCustomMapsString="SADECE ÖZEL HARİTALAR"
+LimitServerResultsString="SONUÇLARI SINIRLA:"
+
+[KFGFxServerBrowser_ServerDetails]
+MutatorsString="MUTATÖRLER"
+JoinGameString="OYUNA KATIL"
+SpectateGameString="İZLE"
+ServerInfoString="SUNUCU BİLGİLERİ"
+UnfavoriteString="FAVORİLERDEN ÇIKAR"
+
+[KFGFxMenu_Trader]
+ExitMenuString="MENÜDEN ÇIK"
+
+[KFGFxTraderContainer_Store]
+TraderString="TEÇHİZAT SATIN AL"
+
+[KFGFxServerBrowser_ServerList]
+LeaveServerBrowserString="SUNUCU TARAYICISINDAN ÇIK"
+DetailsString="SUNUCU DETAYLARI"
+SpectateString="İZLE"
+
+[KFGFxTraderContainer_ItemDetails]
+DamageTitle="HASAR"
+FireRateTitle="ATIŞ HIZI"
+PenetrationTitle="DELME"
+RangeTitle="MENZİL"
+BlockTitle="ENGELLE"
+ParryTitle="SAVUŞTUR"
+AccuracyTitle="İSABET ORANI"
+CapacityTitle="MERMİ KAPASİTESİ"
+MagTitle="ŞARJÖR BOYUTU"
+HealAmountTitle="İYİLEŞTİRME MİKTARI"
+HealRechargeTitle="YENİDEN ŞARJ OLMA SÜRESİ"
+BuyString="SATIN AL"
+SellString="SAT"
+CannotSellString="SATILAMAZ"
+CannotBuyString="SATIN ALINAMAZ"
+FavoriteString="FAVORİ"
+UnfavoriteString="FAVORİLERDEN ÇIKAR"
+
+[KFGFxTraderContainer_PlayerInventory]
+FillString="DOLDUR"
+MagString="ŞARJÖR"
+BuyGrenadeString="1X"
+AutoFillString="OTOMATİK DOLDUR"
+ArmorString="Savaş Zırhı"
+ChangePerkString="ÖZELLİK DEĞİŞTİR"
+
+[KFGFxTraderContainer_Filter]
+TabsArray[0]="ÖZELLİKLER"
+TabsArray[1]="TÜR"
+TabsArray[2]="FAVORİLER"
+TabsArray[3]="TÜMÜ"
+
+WeaponTypeStrings[0]="Tabancalar"
+WeaponTypeStrings[1]="Pompalılar"
+WeaponTypeStrings[2]="Tüfekler"
+WeaponTypeStrings[3]="Mermiler"
+WeaponTypeStrings[4]="Alev Silahları"
+WeaponTypeStrings[5]="Elektrik Silahları"
+WeaponTypeStrings[6]="Patlayıcılar"
+WeaponTypeStrings[7]="Saldırı Tüfekleri"
+WeaponTypeStrings[8]="Yakın Silahlar"
+WeaponTypeStrings[9]="SMGler"
+
+OffPerkString="Kapalı Özellik"
+
+[KFGFxMenu_PostGameReport]
+MapVoteString="HARİTA OYLAMA"
+PlayerStatsString="OYUNCU İSTATİSTİKLERİ"
+TeamAwardsString="ÖDÜLLER"
+PostGameReportString="OYUN SONU RAPORU"
+NextMapString="Sıradaki haritaya son:"
+WaveString="DALGA"
+XPString="XP"
+VictoryString="Zafer"
+DefeatString="Yenilgi"
+ItemDropTitleString="YENİ ÖĞE ELDE EDİLDİ!"
+
+[EphemeralMatchStats]
+MedicineMaster="İlaç Ustası"
+MedicineMasterValue="Sağlık"
+ZedSlayer="Zed Kesici"
+ZedSlayerValue="Leşler"
+Enforcer="İnfazcı"
+EnforcerValue="Asistler"
+Destroyer="Yok Edici"
+DestroyerValue="Hasar"
+GiantSlayer="Dev Kesici"
+GiantSlayerValue="Büyük Zedler"
+MoneyBags="Para Çantaları"
+MoneyBagsValue="Mangır"
+HeadPopper="Kafa Patlatıcı"
+HeadPopperValue="Kafadan Vuruşlar"
+Dominator="Hükmedici"
+DominatorValue="Bölüm Sonu Canavarı"
+
+EPB_Healing="İyileştirme"
+EPB_Kills="Leşler"
+EPB_Assists="Asistler"
+EPB_LargeZedKill="Büyük Zed Öldürme"
+EPB_Dosh="Mangır Kazanıldı"
+EPB_HeadShots="Kafadan Vuruşlar"
+EPB_KnifeKills="Bıçak Leşleri"
+EPB_PistolKills="Pistol Leşleri"
+EPB_DoorWelding="Kapı Kaynaklama"
+
+EPB_HealingValue="Sağlık"
+EPB_KillsValue="Leşler"
+EPB_AssistsValue="Asistler"
+EPB_LargeZedKillValue="Büyük Zedler"
+EPB_DoshValue="Mangır"
+EPB_HeadShotsValue="Kafadan Vuruşlar"
+EPB_KnifeKillsValue="Leşler"
+EPB_PistolKillsValue="Leşler"
+EPB_DoorWeldingValue="Kaynak Noktaları"
+
+[KFGFxPostGameContainer_TeamAwards]
+TeamAwardsString="TAKIM ÖDÜLLERİ"
+PersonalBestsString="KİŞİSEL EN İYİLER"
+NoTeamAwardsGivenString="HİÇ ÖDÜL VERİLMEDİ"
+
+[KFGFxPostGameContainer_MapVote]
+YourVoteString="OYUNUZ"
+TopVotesString="EN ÇOK OYLANANLAR"
+
+[KFGFxPostGameContainer_PlayerStats]
+AchievementsString="Başarımlar"
+KnifeString="Bıçak"
+TopWeaponsString="EN İYİ SİLAHLAR"
+ZedKillsString="ZED LEŞLERİ"
+TotalDamageDealtString="Toplam Verilen Hasar:"
+HeadShotsString="Kafadan Vuruşlar:"
+LargeZedKillsString="Büyük Zed Leşleri:"
+TotalDoshEarnedString="Kazanılan Toplam Mangır:"
+TotalKillsString="Toplam Öldürmeler:"
+AssistsString="Asistler:"
+DamageDealtString="Verilen Hasar:"
+
+
+
+[KFGFxWidget_BaseParty]
+PlayerReadyString="[ HAZIR ]"
+WaitingString="OYUNCULAR BEKLENİYOR"
+DeployingString="BAŞLAMAYA SON"
+CreatePartyString="ARKADAŞLARINI DAVET ET"
+ReadyString="HAZIR"
+LeaveString="PARTİDEN AYRIL"
+SquadString="TAKIM"
+SoloString="TEK KİŞİ"
+DefaultPlayerName="Oyuncu"
+
+PartyLeaderSearchingForMatchString="bir maç arıyor..."
+PartyLeaderIsUpdatingMatchOptionsString="maç ayarlarını ayarlıyor..."
+PartyLeaderInServerBrowserString="sunucu tarayıcısında arıyor..."
+PartyLeaderInOtherMenuString="başka bir menüde..."
+SearchingForGameString="Çevrimiçi oyun aranıyor..."
+
+PartHostLeftString="Parti kurucusu terk etti"
+PartyLeaderChangedString="şimdi yeni parti kurucusu."
+
+MuteString="Oyuncuyu Sustur"
+UnmuteString="Oyuncunun Sesini Aç"
+AddFriendString="Arkadaş Ekle"
+RemoveFriendString="Arkadaşı Kaldır"
+VoteKickString="Oyuncuyu At"
+ViewProfileString="Profili Görüntüle"
+
+RemainingString="Kalan:"
+DownLoadingString="İndiriliyor:"
+PartyLeaderString="Leader"
+
+[KFGFxWidget_PartyInGame_Versus]
+SwitchTeamsString="Switch Teams"
+balanceWarningString="WARNING: Teams will be auto-balanced"
+
+[KFGFxMenu_Gear]
+GearHeaderString="TEÇHİZATI ÖZELLEŞTİR"
+BioString="BIO"
+CharacterString="KARAKTER"
+HeadString="KAFA"
+BodyString="GÖVDE"
+SkinsString="GÖRÜNÜMLER"
+AttachmentsString="AKSESUARLAR"
+BackString="SIRT"
+NoneString="YOK"
+WeaponsString="Silahlar"
+WeaponsInfoString="Özelleştir"
+
+[KFGFxMenu_Inventory]
+InventoryString="ENVANTER"
+UseString="Kullan"
+EquipString="KUŞAN"
+UnequipString="ÇIKART"
+AllString="TÜMÜ"
+WeaponSkinString="SİLAH KAPLAMALARI"
+CosmeticString="KOZMETİK"
+CraftingMatsString="Crafting"
+ItemString="ÖĞELER"
+FiltersString="Filtreler"
+MoreItemsString="Bu ögeyi kullanmak için başka bir öğe gerekli."
+FailedToExchangeString="ÖDEME BAŞARISIZ"
+RecycleString="RECYCLE"
+CraftString="CRAFT"
+CraftCosmeticString="Cosmetic Crafting"
+CraftWeaponString="Weapon Skin Crafting"
+CraftWeaponStrings[0]="Uncommon Weapon Skin"
+CraftWeaponStrings[1]="Rare Weapon Skin"
+CraftWeaponStrings[2]="Exceptional Weapon Skin"
+CraftWeaponStrings[3]="Master Crafted Weapon Skin"
+CraftCosmeticStrings[0]="Uncommon Cosmetic"
+CraftCosmeticStrings[1]="Rare Cosmetic"
+CraftCosmeticStrings[2]="Exceptional Cosmetic"
+CraftCosmeticStrings[3]="Master Crafted Cosmetic"
+RecycleWarningString="Warning, this cannot be undone. This will destroy the selected item and replace it with a crafting material item"
+RecycleItemString="Recycle Item?"
+ConfirmCraftItemString="Crafting this item will use resources and cannot be undone"
+CraftItemString="Confirm Craft Item?"
+FailedToCraftItemString="Failed to Craft Item"
+CraftRequirementString="Insufficient quantity of required crafting materials"
+CraftCosmeticDescriptionString="You can craft new cosmetic items from this menu out of cosmetic material. You can obtain cosmetic material by recycling existing cosmetic items. To recycle, select an item and press recycle"
+CraftWeaponDescriptionString="You can craft new weapon skin items from this menu out of weapon skin material. You can obtain weapon skin material by recycling existing weapon skin items. To recycle, select an item and press recycle"
+RequiresString="Requires: "
+
+[KFGFxPerksContainer]
+LevelString=""
+
+[KFGFxPerksContainer_Header]
+ExperienceString="Deneyim"
+PrestigeLevelString="Saygınlık"
+
+[KFGFxPerksContainer_SkillsSummary]
+ConfigureString="YAPILANDIR"
+SkillsString="YETENEKLER"
+
+[KFGFxMenu_Perks]
+TierUnlockedText="Yeni Katman Açıldı!"
+TierUnlockedSecondaryText="Aşağıdaki özellikler için yeni bir katman kilidi açtın:"
+
+
+[KFGFxPerksContainer_Details]
+ObjectivesString="XP GÖREVLERİ"
+PerkBonusesString="ÖZELLİK BONUSLARI"
+BasicLoadoutString="BAŞLANGIÇ EKİPMANI"
+
+[KFGFxPerksContainer_Skills]
+ConfigureSkillsString="YETENEKLERİ YAPILANDIR"
+BackButtonString="<< GERİ"
+
+[KFGFxPerksContainer_Selection]
+HeaderTitle="ÖZELLİK SEÇİN"
+EndOfWaveString="Özellik değişiklikleri dalga sonunda uygulanacak!"
+ChangesAppliedOnCloseString="Özellik değişiklikleri bu menü kapatıldığında uygulanacak"
+OncePerWaveString="Özellik değişiklikleri her dalga için bir kez yapılabilir!"
+
+[KFGFxMenu_Store]
+StoreString="MAĞAZA"
+
+[KFGFxStoreContainer_Cart]
+CartString="Sepet"
+TotalString="Toplam"
+CheckOutString="Ödeme Yap"
+
+[KFGFxStoreContainer_Main]
+NewReleasesString="Yeni Yayınlananlar"
+CartString="Sepet"
+ToolsString="Araçlar"
+WeaponSkinsString="Silah Kaplamaları"
+CharactersString="Karakterler"
+
+[KFGFxStoreContainer_Details]
+AddToCartString="Öğe Satın Al"
+PreviewString="Önizle"
+
+
+[KFGFxWidget_ButtonPrompt]
+CancelString="GERİ"
+ConfirmString="SEÇ"
+
+[KFGFxWidget_MenuBar]
+MenuStrings[0]="ANA SAYFA"
+MenuStrings[1]="ÖZELLİKLER"
+MenuStrings[2]="TEÇHİZAT"
+MenuStrings[3]="ENVANTER"
+MenuStrings[4]="MAĞAZA"
+MenuStrings[5]="AYARLAR"
+MenuStrings[6]="ÇIKIŞ"
+
+ServerBrowserString="SUNUCU TARAYICISI"
+MatchmakingString="EŞLEŞTİRME"
+SoloString="TEK KİŞİ"
+OverviewString="MAÇA GENEL BAKIŞ"
+
+TitleStrings[0]="Şimdiden savaşı mı terk ediyoruz?"
+TitleStrings[1]="Bu kadar erken mi ayrılıyoruz?"
+TitleStrings[2]="Çiğnenmekten sıkıldın mı?"
+
+DescriptionStrings[0]="Pekala, böyle devam et ve acınası hayatını kurtarmaya çalış. Killing Floor'da 5 dakika bile dayanamazsın."
+DescriptionStrings[1]="Burada olmadığın her saniye başka bir ucube sürüsü arkadaşlarını ziyafet olarak yemek için doğuyor. Onları öylece bırakıp mı gideceksin?"
+DescriptionStrings[2]="Onlar sizi öyle ya da böyle bulacak. Sizi bulacaklar ve kalbinizi yiyecekler, etli küçük bir atıştırma gibi."
+
+ExitString="ÇIKIŞ"
+CancelString="İPTAL"
+
+[KFGFxWidget_LevelUpNotification]
+LevelUpString="SEVİYE ATLANDI"
+TierUnlockedString="YENİ YETENEKLER AÇILDI"
+
+[KFGFxHUD_WaveInfo]
+WaveString="DALGA"
+BossWaveString="BOSS"
+FinalWaveString="FİNAL"
+
+[KFGFxHUD_TraderCompass]
+TraderString="TÜCCAR"
+
+[KFGFxHUD_SpectatorInfo]
+PrevPlayerString="SONRAKİ OYUNCU"
+NextPlayerString="ÖNCEKİ OYUNCU"
+ChangeCameraString="KAMERAYI DEĞİŞTİR"
+
+[KFGFxHUD_ScoreboardWidget]
+PlayerString="OYUNCU"
+DoshString="MANGIR"
+KillsString="LEŞLER"
+AssistsString="ASİSTLER"
+PingString="PING"
+
+[KFGFxHUD_PlayerStatus]
+EXPString="XP"
+
+
+[KFGFxHUD_ScoreboardMapInfoContainer]
+WaveString="DALGA"
+FinalString="Final"
+
+[KFGFxHUD_WeaponSelectWidget]
+PrimaryString="BİRİNCİL"
+EquiptmentString="EKİPMAN"
+MeleeString="YAKIN DÖVÜŞ"
+SecondaryString="İKİNCİL"
+ThrowString="SİLAH FIRLAT"
+
+[KFGFxWidget_KickVote]
+VoteKickString="Oyuncuyu At?"
+
+[KFLocalMessage_PlayerKills]
+KilledString="killed"
+ZedString=ZEDs
+
+[KFLocalMessage_VoiceComms]
+VoiceCommsOptionStrings[0]="İYİLEŞTİRME İSTE"
+VoiceCommsOptionStrings[1]="MANGIR İSTE"
+VoiceCommsOptionStrings[2]="YARDIM İSTE"
+VoiceCommsOptionStrings[3]="ZEDLERE LAF AT"
+VoiceCommsOptionStrings[4]="BENİ TAKİP ET"
+VoiceCommsOptionStrings[5]="TÜCCARA GİT"
+VoiceCommsOptionStrings[6]="OLUMLU"
+VoiceCommsOptionStrings[7]="OLUMSUZ"
+
+[KFGFxMenu_Exit]
+HeaderString="OYUNDAN ÇIK"
+ExitToMainDescription="Şimdiki oyundan çıkıp menü ekranına dön?"
+ExitToMainMenu="Ana Menüye Dön"
+ExitKF2="Masaüstüne Çık"
+
+[KFGFxOptionsMenu_Selection]
+HeaderString="AYARLAR"
+OptionStrings[0]="Video"
+OptionStrings[1]="Ses"
+OptionStrings[2]="Kontroller"
+OptionStrings[3]="Oynanış"
+OptionStrings[4]="Jenerik"
+
+[KFGFxOptionsMenu_Audio]
+AudioString="SES AYARLARI"
+SectionNameString="SES DÜZEYİ"
+OptionsString="AYARLAR"
+MasterVolumeString="Ana Ses"
+DialogVolumeString="Diyalog Sesi"
+MusicString="Oyun-İçi Müzik Sesi"
+SFxString="Ses Efekt Düzeyi"
+VOIPVolumeString="Alınan Sohbet Ses Düzeyi"
+ConfigureMicString="MİKROFONU AYARLA"
+VocalsString="Müzik Vokalleri"
+BattleChatterString="Savaş Sohbet Kutusunu Küçült"
+PushToVoIPString="Bas Konuş"
+
+[KFGFxOptionsMenu_Graphics]
+KeepSettingsPromptString="Bu video ayarlarını kullan?"
+WarningPromptString="UYARI"
+WillExpireString="Ayarlar %x% saniye içinde önceki haline dönecek."
+SingleWarningString="Bazı ayarlar %x% tarafından seçilmiş olabilir"
+DoubleWarningString="Seçili bazı ayarlar %x% ve %y% olabilir"
+PerformanceDescString[0]="performansı olumsuz etkiler"
+PerformanceDescString[1]="performansı ağır etkiler"
+RestartDescString="yeniden başlatma gerektirir"
+OKString="TAMAM"
+CancelString="İPTAL"
+UnsavedChangesString="Kaydedilmemiş değişikliklerin var"
+SaveChangesString="Bunları şimdi kaydetmek istiyor musunuz?"
+ContinueString="Devam etmek istiyor musunuz?"
+
+AdjustGammaDescription="Soldaki yaratık zor görünür ve sağdaki yaratık açıkça görünür oluncaya kadar kaydırma çubuğunu ayarlayın."
+ResetGammaString="SIFIRLA"
+SetGammaString="UYGULA"
+
+
+GraphicsString="GRAFİKLER"
+BasicString="Temel"
+AdvancedString="Gelişmiş"
+EffectsString="Efektler"
+
+AspectRatioString="Görüntü Oranı"
+ResolutionString="Çözünürlük"
+GraphicsQualityString="Grafik Kalitesi"
+VSyncString="Dikey Eşitleme"
+FullscreenString="Görüntü"
+VariableFrameRateString="Değişken Kare Hızı"
+FilmGrainString="Film Efekti"
+AdjustGammaString="KONTRAST AYARI"
+
+PhysicsLevelString="NVIDIA® FleX"
+
+PhysicsLevelOptionStrings[0]="Kapalı"
+PhysicsLevelOptionStrings[1]="Bağırsaklar*"
+PhysicsLevelOptionStrings[2]="Bağırsaklar ve Sıvıları*"
+
+PhysicsLevelSuggestionStrings[0]=""
+PhysicsLevelSuggestionStrings[1]="*GeForce® GTX™ 770 ya da yükseği önerilir"
+PhysicsLevelSuggestionStrings[2]="*GeForce® GTX™ 980 ya da yükseği önerilir"
+
+FlexPopUpString="NVIDIA® FleX sahte kan ve sıvıları etkinleştirir. Bu ayar performansı olumsuz etkileyebilir ve yeniden başlatma gerektirir."
+
+EnvironmentDetailsString="Çevre Detayı"
+FoliageString="Yeşillik Detayı"
+CharacterDetailString="Karakter Detayı"
+FXString="FX"
+TextureResolutionString="Doku Çözünürlüğü"
+TextureFilteringString="Doku Filtreleme"
+ShadowsString="Gölge Kalitesi"
+RealtimeReflectionsString="Gerçek Zamanlı Yansımalar"
+AntiAliasingString="Keskinliği Yumuşatma"
+BloomString="Parıldama"
+MotionBlurString="Hareket İzi"
+AmbientOcclusionString="Çevre Emilimi"
+DepthOfFieldString="Alan Derinliği"
+
+
+VolumetricLightingString="Hacimsel Aydınlatma FX"
+LensFlaresString="Objektif Parıltısı"
+LightShaftsString="Işık Işınları"
+CustomString="Özel"
+IniOverrideString="INI Kapat"
+
+ApplyString="UYGULA"
+CancelString="İPTAL"
+DefaultString="VARSAYILAN"
+
+AspectRatioString_All="Tümü"
+StandardAspectRatioString_4_3="0.16875"
+StandardAspectRatioString_5_4="0.211111111111111"
+StandardAspectRatioString_3_2="0.126388888888889"
+WideAspectRatioString_16_9="0.672916666666667"
+WideAspectRatioString_16_10="0.673611111111111"
+ExtraWideAspectRatioString_2_1="8.40277777777778E-02"
+ExtraWideAspectRatioString_21_9="0.88125"
+MultiMonitorAspectRatioString="Çoklu Ekran"
+
+FullScreenStringOptions[0]="Pencereli"
+FullScreenStringOptions[1]="Çerçevesiz Pencere"
+FullScreenStringOptions[2]="Tam Ekran"
+
+OffOnStringOptions[0]="Kapalı"
+OffOnStringOptions[1]="Açık"
+
+GraphicsQualityStringOptions[0]="Düşük"
+GraphicsQualityStringOptions[1]="Orta"
+GraphicsQualityStringOptions[2]="Yüksek"
+GraphicsQualityStringOptions[3]="Ultra"
+
+VSyncStringOptions[0]="Kapalı"
+VSyncStringOptions[1]="Açık"
+;VSyncStringOptions[2]="Üçlü Arabellekleme"
+
+EnvironmentDetailsStringOptions[0]="Düşük"
+EnvironmentDetailsStringOptions[1]="Orta"
+EnvironmentDetailsStringOptions[2]="Yüksek"
+EnvironmentDetailsStringOptions[3]="Ultra"
+
+FoliageStringOptions[0]="Düşük"
+FoliageStringOptions[1]="Orta"
+FoliageStringOptions[2]="Yüksek"
+
+CharacterDetailStringOptions[0]="Düşük"
+CharacterDetailStringOptions[1]="Yüksek"
+CharacterDetailStringOptions[2]="Ultra"
+
+FXStringOptions[0]="Düşük"
+FXStringOptions[1]="Orta"
+FXStringOptions[2]="Yüksek"
+FXStringOptions[3]="Ultra"
+
+TextureResolutionStringOptions[0]="Düşük"
+TextureResolutionStringOptions[1]="Orta"
+TextureResolutionStringOptions[2]="Yüksek"
+TextureResolutionStringOptions[3]="Ultra"
+
+TextureFilteringStringOptions[0]="İki Doğrusal Süzme"
+TextureFilteringStringOptions[1]="Üç Doğrusal Süzme"
+TextureFilteringStringOptions[2]="Eşyönsüz Süzme 4x"
+TextureFilteringStringOptions[3]="Eşyönsüz Süzme 16x"
+
+ShadowsStringOptions[0]="Düşük"
+ShadowsStringOptions[1]="Orta"
+ShadowsStringOptions[2]="Yüksek"
+ShadowsStringOptions[3]="Ultra"
+
+PhysicsStringOptions[0]="Kapalı"
+PhysicsStringOptions[1]="Normal"
+PhysicsStringOptions[2]="Yüksek"
+
+RealtimeReflectionsStringOptions[0]="Kapalı"
+RealtimeReflectionsStringOptions[1]="Açık"
+
+AntiAliasingStringOptions[0]="Kapalı"
+AntiAliasingStringOptions[1]="FXAA"
+
+BloomStringOptions[0]="Kapalı"
+BloomStringOptions[1]="Düşük"
+BloomStringOptions[2]="Yüksek"
+
+MotionBlurStringOptions[0]="Kapalı"
+MotionBlurStringOptions[1]="Normal"
+MotionBlurStringOptions[2]="Yüksek"
+
+AmbientOcclusionStringOptions[0]="Kapalı"
+AmbientOcclusionStringOptions[1]="SSAO"
+AmbientOcclusionStringOptions[2]="HBAO+"
+
+DepthOfFieldStringOptions[0]="Kapalı"
+DepthOfFieldStringOptions[1]="SAT Derinlik"
+
+[KFGFxOptionsMenu_Graphics_DX10]
+AmbientOcclusionStringOptions_DX10[0]="Kapalı"
+AmbientOcclusionStringOptions_DX10[1]="SSAO"
+
+[KFGFxOptionsMenu_Controls]
+TabStrings[0]="GİRDİ"
+TabStrings[1]="TUŞ SEÇENEKLERİ"
+TabStrings[2]="OYUN KUMANDALARI"
+HeaderText="KONTROL AYARLARI"
+
+[KFGFxOptionsMenu_GameSettings]
+SectionNameString="AYARLAR"
+GameSettingsString="OYUN AYARLARI"
+FOVString="Görüş Açısı"
+GoreString="Kan Yoğunluğu"
+ShowCrosshairString="Nişangâhı Göster"
+ClassicWeaponSelectString="Hızlı Silah Seçimi"
+GoreOptionStrings[0]="Kan Yok"
+GoreOptionStrings[1]="Az Kan"
+GoreOptionStrings[2]="Kanlı"
+NormalString="Normal"
+WiderString="Geniş"
+FriendlyHudScaleString="Kullanıcı Dostu Gösterge Ölçeği"
+
+[LocalizedControls]
+ControllerLayoutDefault="Default"
+ControllerLayoutJumper="Jumper"
+ControllerLayoutQuickDraw="Quick Draw"
+ControllerLayoutSouthPaw="South Paw"
+
+GBA_WeaponSelect_Gamepad="Silah Seçme Menüsü (Basılı Tut)"
+GBA_Reload_Gamepad="Reload"
+GBA_StrafeLeft_Gamepad="Movement Control"
+GBA_MoveForward_Gamepad="Move Forward"
+GBA_Look_Gamepad="Look Control"
+GBA_Grenade_Gamepad="Throw Grenade"
+GBA_TurnLeft_Gamepad="Look Control"
+GBA_Look_Gamepad="Look Control"
+GBA_DPad_Left_Gamepad="Voice Comms"
+GBA_DPad_Up_Gamepad="Equip Healer"
+GBA_DPad_Right_Gamepad="Throw Dosh"
+GBA_DPad_Down_Gamepad="Toggle Flashlight"
+
+
+GBA_MoveForward="İleri Yürü"
+GBA_StrafeLeft="Sola Gitme"
+GBA_Backward="Geri Yürü"
+GBA_StrafeRight="Sağa Gitme"
+GBA_Jump="Zıpla"
+GBA_Sprint="Koş"
+GBA_CrouchToggle="Çömelme (Geçiş Yapma)"
+GBA_CrouchHold="Çömel (Basılı Tut)"
+GBA_SprintAndCrouch="Çömel / Koş"
+GBA_SprintAndMelee="Melee / Sprint"
+GBA_ShowMenu="Toggle In Game Menu"
+
+GBA_Use="Kullan / Hızlı Kaynak (Basılı Tut)"
+GBA_Talk="Konuş"
+GBA_TeamTalk="Team Talk"
+GBA_VoiceChat="Sesli Sohbet"
+GBA_PublicVoiceChat="Public Voice"
+GBA_ShowVoiceComms="Ses Komutları"
+GBA_ShowScores="Skor tablosunu göster"
+GBA_TossMoney="Mangır Fırlat"
+GBA_DropWeapon="Silah Fırlat"
+
+GBA_Fire="Ateş"
+GBA_IronSightsToggle="Nişangah (Aç/Kapa)"
+GBA_IronsightsHold="Nişangah (Basılı Tut)"
+GBA_Reload="Tekrar Doldur"
+GBA_Grenade="El Bombası Fırlat"
+GBA_QuickHeal="Hızlı İyileşme"
+GBA_SwitchFireMode="Alt. Ateş / Engelleme"
+GBA_TertiaryFire="Yakın Darbe"
+GBA_ToggleFlashlight="Fener Aç/Kapa"
+GBA_AltFire="Alt. Ateş / Engelleme"
+
+GBA_WeaponSelect_Gamepad="Silah Seçme Menüsü (Basılı Tut)"
+GBA_NextWeapon="Sonraki Silah"
+GBA_PrevWeapon="Önceki Silah"
+GBA_LastWeapon="Son Kullanılan Silah"
+GBA_SwitchWeapon1="Birincil Silah"
+GBA_SwitchWeapon2="İkincil Silah"
+GBA_SwitchWeapon3="Yakın Dövüş Silahı"
+GBA_SwitchWeapon4="Ekipman"
+GBA_VoteYes="Evet Oyla (Basılı Tut)"
+GBA_VoteNo="Hayır Oyla (Basılı Tut)"
+
+[KFGFxControlsContainer_Input]
+SensitivityString="Hassasiyet"
+InvertedString="Diket Ekseni Tersine Çevir"
+ControllerString="Oyun Kumandası"
+ControllerSensitivityString="Bakış Hassasiyeti"
+MouseString="Fare"
+MouseSmoothingString="Fare Yumuşaklığı"
+ZoomSensitivityString="Büyütme Hassasiyeti"
+ControllerZoomSensitivityString="Büyütme Hassasiyeti"
+AimAssistLockOnString="Aim Assist Zoom Lock-On"
+AimAssistRotationString="Aim Assist Rotation"
+AimAssistSlowDownString="Aim Assist Slowdown"
+ForceFeedbackString="Kontrolcü Titreşimi"
+
+[KFGFxControlsContainer_Keybinding]
+SectionHeaders[0]="Hareket"
+SectionHeaders[1]="Etkileşim"
+SectionHeaders[2]="Savaş"
+SectionHeaders[3]="Silah Seçimi"
+
+ResetString="TÜMÜNÜ SIFIRLA"
+ApplyString="UYGULA"
+PressKeyString="[TUŞA TIKLA]"
+WarningString="UYARI"
+KeyAlreadyBoundString="<%x%> tuşu zaten şuna bağlı:"
+RebindString="Atanacak tuş:"
+ClearedString="(Bir önceki atama silinecek)"
+CancelString="İPTAL"
+AcceptString="KABUL ET"
+IgnoredKeyString="may not be bound to ignored key"
+
+[KFGFxControlsContainer_ControllerPresets]
+MovementString="Hareket Kontrolü"
+LookString="Bakış Kontrolü"
+WeaponSelectMenuString="Silah Seçim Menüsü (Basılı Tut)"
+ShowScoardBoardString="Skor Tablosunu Görüntüle"
+ShowIngameMenuString="Oyun Menüsüne Geç"
+CurrentControllerPresetString="Current Controller Preset"
+
+BashString="Yakın Darbe"
+BlockString="Engelle (Basılı Tut)"
+HoldString="(Basılı Tut)"
+
+[KFInventoryManager]
+FullHealthMsg="Sağlık Dolu"
+
+[KFLocalMessage]
+SystemString="Sistem:"
+AdminString ="(Yönetici)"
+LoggedInAsAdminString=" Sunucu Yöneticisi olarak giriş yaptı"
+LoggedOutAsAdminString="Sunucu Yöneticisi olarak çıkış yaptı"
+MustLoginToCheatString="Hileleri etkinleştirmek için giriş yapmalısın."
+CheatsEnabledString=" hileleri etkinleştirdi. İstatistikler bu oturum için devre dışı bırakıldı."
+ServerMaintenanceString="Sunucu oyunun sonunda bakım için kapatılacak"
+KickVoteStartedString="Atma oylaması başlatıldı:"
+KickVoteSucceededString="Atma oylaması başarılı:"
+KickVoteFailedString="Atma oylaması başarısız:"
+KickVoteRejectedString="Son başarısız oylamanın üzerinden yeterince zaman geçmedi. Lütfen bekledikten sonra tekrar deneyin."
+KickVoteInProgressString="Birisi zaten aktif iken başka bir atma oylaması başlatamazsın."
+KickVoteDisabledString="Atma oylaması bu sunucu için devre dışı"
+KickVoteYesReceivedString="Atmak için oyladın:"
+KickVoteNoReceivedString="Atmamak için oyladın:"
+KickVoteKickAdminString="Sunucu yöneticisini atamayabilirsin."
+KickVoteActiveTimeString="Maç, atma oylaması başlatmak için yeterince uzun süre aktif değil."
+KickVoteMatchNotStartedString="Atma oylaması maçtan önce başlamamış olabilir."
+KickVoteMaxKicksReachedString="Bu maç süresince daha fazla atma oylaması başlatamazsın."
+KickVoteNotEnoughPlayersString="Atma oylaması başlatmak için yeterince oyuncu yok."
+KickVoteNoSpectatorsString="İzleyiciler atma oylaması başlatamayabilir."
+KickedFromServerString="Sunucudan kaldırıldın."
+BannedFromServerString="Bu sunucudan kaldırıldın. Şu anda yeniden katılamazsın."
+
+[KFLocalMessage_Game]
+ReceivedAmmoFromMessage="Cephane aldığınız kişi"
+GaveAmmoToMessage="Cephane verdiğiniz kişi"
+PendingPerkChangesSet="Özellik değişiklikleri dalganın sonunda uygulanacak."
+PendingPerkChangesApplied="Özellik değişiklikleri uygulandı!"
+HealedByMessage="Sizi iyileştiren kişi"
+HealedMessage="İyileştirdin"
+YourselfString="kendiniz."
+PickedupArmorMessage="Zırh aldın"
+FullArmorMessage="Zırhın zaten tam"
+PickupAmmoMessage="Mermi aldın"
+AmmoFullMessage="Your ammo is full"
+PickupWeaponAmmoMessage="%x% mermi aldın"
+AlreadyCarryingWeaponMessage="Bu silaha zaten sahipsin"
+PickupMessage="Yerden alındı:"
+TooMuchWeightMessage="Bu silah çok ağır. Bir silah bırakmayı veya satmayı dene."
+FailedDropInventoryMessage="Bunu buraya bırakamazsın"
+ReceivedGrenadesFromMessage="Bomba aldığınız kişi"
+GaveGrenadesToMessage="Bomba verdiğiniz kişi"
+SharingContentString="içerik paylaşıyor."
+HeadShotAddedString="%x Kafadan Vuruş(lar) - %y% Ekstra Hasar!"
+HeadShotMaxString="Tam kafadan! %x% Ekstra Hasar!"
+HeadShotResetString="Kaçırılan Kafadan Vuruşlar. Normal Hasar!"
+
+SuicideMessage="az önce hayatından vazgeçti..."
+KilledMessage="canlı canlı yendi"
+KillzedBy_PatriarchString=" can't hurt Kevin's children anymore"
+KillzedBy_HansString="in cesedi üzerinde ileri deneyler yapılmak üzere kaldırıldı"
+KillzedBy_ZedCrawlerString="oyuncusunun ayak bilekleri çiğnendi"
+KillzedBy_ZedBloatString="vücut sıvısıyla boğuldu"
+KillzedBy_ZedFleshpoundString="püre haline geldi"
+KillzedBy_ZedGorefastString="canlı canlı derisi yüzüldü"
+KillzedBy_ZedHuskString="kömürleşerek öldü"
+KillzedBy_ZedScrakeString="zerrelerine ayrıldı"
+KillzedBy_ZedSirenString="oyuncusunun kulakları patladı - ölümcül bir şekilde"
+KillzedBy_ZedStalkerString=" geldiğini görmedim"
+KillzedBy_ZedClot_CystString=" etkileyici olmayan bir ölüme maruz kaldı"
+KillzedBy_ZedClot_AlphaString=" uygunsuz bir şekilde yakalandı"
+KillzedBy_ZedClot_SlasherString=" artık korku filmlerini sevmiyor"
+
+FoundAMapCollectibleMessage="%x% bir tane %y% buldu. Kalan %z%..."
+FoundAllMapCollectiblesMessage="Her %x% bulundu!"
+MapCollectibleName="mangır mücevher parçası"
+
+[KFLocalMessage_Priority]
+WaveStartMessage="D A L G A G E L İ Y O R"
+WaveEndMessage="D A L G A T A M A M L A N D I"
+GetToTraderMessage="Tüccar odasına git"
+YouLostMessage="Y E N İ L G İ"
+YouWonMessage="Z A F E R"
+SquadWipedOutMessage="Takımın yok edildi"
+SquadSurvivedMessage="Takımın hayatta kaldı"
+ObjectiveStartMessage="Görev Başladı!"
+ObjectiveWonMessage="Görev Kazanıldı!"
+ObjectiveEndedMessage="Görev Sona Erdi!"
+ObjectiveLostMessage="Görev Kaybedildi!"
+ObjNotEnoughPlayersMessage="Yeterli Oyuncu Yok!"
+ObjTimeRanOutMessage="Süre Limitine Ulaşıldı!"
+HumansLoseMessage="Humans squad wiped out!"
+HumansWinMessage="Humans squad survived!"
+AttackHumanPlayersString="Attack the Human Players!"
+ZedGroupRegroupingString="Zed Horde regrouping!"
+
+[KFLocalMessage_Interaction]
+UseTraderMessage="<%x%> TÜCCARI KULLAN"
+UseDoorMessage="Kaynak makinesini Açmak/Kapamak için <%x%>, kuşanmak için <%x%> BASILI tutun"
+UseDoorWeldedMessage="(HOLD) <%x%> equip welder"
+ZedUseDoorMessage="<%x%> Open/Close"
+ZedUseDoorWeldedMessage=""
+AcceptObjectiveMessage="<%x%> görevi kabul et"
+ReceiveAmmoMessage="<%x%> cephane tedarik et"
+ReceiveGrenadesMessage="<%x%> bomba tedarik et"
+HealSelfWarning="<%x%> kendini iyileştir."
+HealSelfGamepadWarning="(BASILI TUT) <%x%> kendini iyileştir"
+PressToBashWarning="<%x%> darbe"
+GamepadWeaponSelectHint="(BASILI TUT) <%x%> silah seç"
+PlayerClotGrabWarningMessage="Kill zed to break free!"
+
+[KFLocalMessage_ServerNotification]
+TeamPendingBalanceMessage="Teams are unbalanced and will be adjusted"
+
+[KFGfxPerkComp_Abilities]
+RankNames[0]="Rütbe I"
+RankNames[1]="Rütbe II"
+RankNames[2]="Rütbe III"
+
+[KFPerk]
+SkillCatagories[0]=""
+SkillCatagories[1]=""
+SkillCatagories[2]=""
+SkillCatagories[3]=""
+SkillCatagories[4]=""
+
+LevelString="Seviye"
+
+SpecialAbilityName="Alametifarika Yeteneği"
+SpecialAbilityDescription=""
+
+Passives[0]=(Title="",Description="");
+Passives[1]=(Title="",Description="");
+Passives[2]=(Title="",Description="");
+Passives[3]=(Title="",Description="");
+Passives[4]=(Title="",Description="");
+
+SkillSlots0[0]=(Title="",Description="")
+SkillSlots0[1]=(Title="",Description="")
+
+SkillSlots1[0]=(Title="",Description="")
+SkillSlots1[1]=(Title="",Description="")
+
+SkillSlots2[0]=(Title="",Description="")
+SkillSlots2[1]=(Title="",Description="")
+
+SkillSlots3[0]=(Title="",Description="")
+SkillSlots3[1]=(Title="",Description="")
+
+SkillSlots4[0]=(Title="",Description="")
+SkillSlots4[1]=(Title="",Description="")
+
+WeaponDroppedMessage="Yeni taşıma kapasitenden dolayı %%%%bıraktın!"
+
+[KFPerk_Berserker]
+PerkName="Savaşçı"
+
+SkillCatagories[0]="Dayanıklılık"
+SkillCatagories[1]="Hayatta Kalma"
+SkillCatagories[2]="Yakın Dövüş"
+SkillCatagories[3]="Güç"
+SkillCatagories[4]="Gelişmiş Eğitim"
+
+Passives[0]=(Title="Özellik Silah Hasarı",Description="Savaşçı silah hasarını 25% artırır, her seviyede artı x%x");
+Passives[1]=(Title="Yakın Dövüş Saldırı Hızı",Description="Yakın dövüş saldırı hızını 0% artırır, her seviyede x%x artış");
+Passives[2]=(Title="Yakın Dövüş Hareket Hızı",Description="Yakın dövüş silahı tutulurken hareket hızında 10%, her seviyede artı x%x");
+Passives[3]=(Title="Hasar Direnci",Description="Gelen hasar %x% azalır");
+Passives[4]=(Title="+Gece Görüş Kabiliyeti",Description="Fenerler - VE Gece Görüş Gözlükleri")
+Passives[5]=(Title="+Pıhtılar seni yakalayamaz",Description="Pıhtılar bir Savaşçıyı tutamaz.")
+
+EXPAction1="Savaşçı silahıyla hasar vermek"
+EXPAction2="Oyuncu yakınındaki zedleri Özellik silahıyla öldür"
+
+PoisonResistance="Zehir Direnci"
+PoisonResistanceDescription="Senin zehrini tükürüyorum: Zehir saldırılarından alacağın hasarı %40 azaltır."
+
+SonicResistance="Sonik Direnci"
+SonicResistanceDescription="Seni duyamıyorum! Sonik saldırılarda aldığın hasar %40 oranında azalır"
+
+Vampire="Vampir"
+VampireDescription="Küçük vantuzlar: Horzine nano teknolojisi bir Berserker silahıyla öldürdüğün her Zed'den 3 sağlık puanı emer ve sana uygular."
+
+Fortitude="Cesaret"
+FortitudeDescription="Kendine daha iyi bir şans ver: Başlangıç ve maksimum sağlığını %100 artırır."
+
+FuriousDefender="Öfkeli Savunucu"
+FuriousDefenderDescription="Sana bir sebepten dolayı Savaşçı diyorlar: Savaşçı yakın dövüş saldırıları %10 daha hızlı ve %20 daha fazla hasar verir."
+
+Block="Engelle"
+BlockDescription="Ne kadar yetenekli! Bir saldırıyı engellemek bir sonraki Savaşçı saldırısında %50 daha fazla hasar verir."
+
+Parry="Savuştur"
+ParryDescription="Yeteneği ve gücü birleştir: Bir saldırıyı savuşturmak yakın dövüş saldırı hızını %15 azaltır ve hafif saldırı hasarı 4 saniyeliğine %30 artar."
+
+Smash="Parçala"
+SmashDescription="Ona kaba kuvvet uygula: Sert isabetler %100 daha fazla hasar verir VE kafaya yapılan sert isabetler büyük bir şansla büyük Zedleri yere serebilir."
+
+Spartan="ZED ZAMANI - Spartalı"
+SpartanDescription="300'ü gördün: Gerçek zamanlı hareket et, Savaşçı yakın dövüş silahı saldırı hızını %50 artırır ve herhangi bir Savuşturma yere sermeye sebep olabilir."
+
+Menace="ZED ZAMANI - Afacan"
+MenaceDescription="Gerçekten tehlikeli ol: Gerçek zamanlı hareket et, Savaşçı yakın dövüş silahlarıyla kafaya yapılan isabetlerde Sersemletme gücünde %100 artış ve Tökezleme gücünde %100 artış."
+
+[KFPerk_Commando]
+PerkName="Komando"
+
+SkillCatagories[0]="Erzak"
+SkillCatagories[1]="Silah Tutuşu"
+SkillCatagories[2]="Farkındalık"
+SkillCatagories[3]="Silah Uzmanı"
+SkillCatagories[4]="Gelişmiş Eğitim"
+
+Passives[0]=(Title="Özellik Silah Hasarı",Description="Komando silah hasarında %x% artış.");
+Passives[1]=(Title="Gizlenmiş Düşman Algılama",Description="Gizli algılamada %x% artış");
+Passives[2]=(Title="Sağlık Barı Algılama",Description="Sağlık barı algılamada %x% artış");
+Passives[3]=(Title="Zed Zamanı Uzatımı",Description="Zed zamanı %x% sürer");
+Passives[4]=(Title="Sağlık Artışı",Description="Sağlık %x% artar");
+Passives[5]=(Title="+Gece Görüş Kabiliyeti",Description="Fenerler - VE Gece Görüş Gözlükleri");
+
+EXPAction1="Komando silahıyla hasar vermek"
+EXPAction2="Komando silahıyla öldürülen Stalkerlar"
+
+LargeMags="Büyük Şarjörler"
+LargeMagsDescription="Biraz daha ciddi ol - Komando silahlarının şarjör kapasitesini %50 yükselt."
+
+Backup="Yedek"
+BackupDescription="Gerçekten ihtiyacınız olduğunda yedek Tabanca ve Bıçağınıza %60 fazladan hasar!"
+
+Impact="Darbe"
+ImpactDescription="Daha da kuvvetlenin ve onları yere serin. Zed tökezletme şansı tüm Komando silahlarında %30 artış."
+
+TacticalReload="Taktiksel Şarjör Değiştirme"
+TacticalReloadDescription="Rahat ol. Hızlı ol. Özellik silahlarında daha hızlı şarjör değiştir VE olduğundan daha elit görün."
+
+Leadership="Liderlik"
+LeadershipDescription="Liderliğin takım arkadaşlarını sakinleştirir, rahatlatır ve onları daha etkili yapar. Takım arkadaşları %10 daha hızlı şarjör değiştirir."
+
+CallOut="Ortaya Çıkar"
+CallOutDescription="Takım arkadaşlarına senin gibi düşmanı görme yeteneğini ver. Sana teşekkür edecekler VE öldürdüklerinden aynı XP'yi kazanacaklar."
+
+SingleFire="Tekli Atış"
+SingleFireDescription="Dikkatli atış ödüllendirmesi! Tekli atış modundayken Komando silahlarında %20 daha fazla hasar ver."
+
+Autofire="Otomatik Atış"
+AutofireDescription="Neden kurnaz olacakmışsınız ki? Komando silahlarıyla Tam Otomatik ve Yarı Otomatik atış modlarını kullanırken %20 daha fazla hasar ver."
+
+RapidFire="ZED ZAMANI - Seri Ateş"
+RapidFireDescription="Dünya yavaşladığında, daha çok hasar ver: Komando silahlarında %3 daha fazla hasar ver ve tüm silahlarda 3 kere daha hızlı ateş et."
+
+Professional="ZED ZAMANI - Profesyonel"
+ProfessionalDescription="Dünya yavaşladığında sen yavaşlama. Tam hızla silah doldurma - silah geçişinde iki kat hız!"
+
+[KFPerk_Demolitionist]
+PerkName="Yıkıcı"
+EXPAction1="Yıkıcı silahıyla hasar vermek"
+EXPAction2="Yıkıcı silahları ile öldürülen Fleshpoundlar"
+
+SkillCatagories[0]="Teknik"
+SkillCatagories[1]="Dayanıklık"
+SkillCatagories[2]="Gelişmiş Teknikler"
+SkillCatagories[3]="Silah Teknikleri"
+SkillCatagories[4]="Gelişmiş Patlayıcılar"
+
+Passives[0]=(Title="Özellik Silah Hasarı",Description="Özellik silah hasarında %x% artış");
+Passives[1]=(Title="Patlayıcı Direnci",Description="patlayıcı hasarına karşı %x% direnç");
+Passives[2]=(Title="Fazladan Patlayıcı Mermi",Description="%x% daha fazla başlangıç patlayıcı mermisi");
+
+GrenadeSupplier="Bomba Tedarikçisi"
+GrenadeSupplierDescription="Seni bunun için sevecekler: Takım arkadaşların her dalgada senden fazladan el bombası alacak."
+
+OnContact="Etkileşimde"
+OnContactDescription="Bu da sana kapak olsun: dinamit çubuklarına Zed dokunduğunda patlayacak."
+
+ExplosiveResistance="Patlayıcı Koruması"
+ExplosiveResistanceDescription="Toughen up the team: Reduce damage taken by you by 30% - and your team-mates, if they are close enough!"
+
+Sacrifice="Tepkisel Zırh"
+SacrificeDescription="Bomba ol: Her dalgada bir kez, öldürmeye sebep olacak bir patlama darbesi etrafındaki Zedlere hasar verir ve sende sadece 5 can bırakır."
+
+DoorTraps="Kapı Tuzakları"
+DoorTrapsDescription="Bu kapıyı patlat: %30 daha yavaş kaynak yaparsın fakat kaynakladığın kapılar kırıldığında patlar. Kapıya yapılan daha fazla kaynak, daha fazla patlama."
+
+SirenResistance="Siren Koruması"
+SirenResistanceDescription="Shut your mouth, Zed: Your grenades have a 100% chance of getting past sonic damage and actually exploding."
+
+OffPerk="Kapalı Özellik"
+OffPerkDescription="Off again: Do 10% extra damage with any Off-Perk weapon."
+
+OnPerk="Açık Özellik"
+OnPerkDescription="On again: Increase all reaction, stumble and knockdown power by 30% for Demo weapons."
+
+Nuke="ZED ZAMANI - Atom Bombası"
+NukeDescription="Nukem: Your explosives dish out massive radiation damage in Zed Time, poisoning Zeds."
+
+ConcussiveForce="ZED ZAMANI - Sarsıcı Güç"
+ConcussiveForceDescription="Bowl them over: Your explosions have massive knockdown force against Zeds in Zed Time."
+
+
+[KFPerk_FieldMedic]
+PerkName="Sıhhiye"
+
+SkillCatagories[0]="Conditioning"
+SkillCatagories[1]="Tıbbi Teknisyen"
+SkillCatagories[2]="Silah Tutuşu"
+SkillCatagories[3]="Savaş Teknikeri"
+SkillCatagories[4]="Gelişmiş Eğitim"
+
+Passives[0]=(Title="Şırınga Şarj Oranı",Description="Silah hasarında %x% artış");
+Passives[1]=(Title="Şırınga Etkisi",Description="Görünmez algılamada %x% artış");
+Passives[2]=(Title="Bloat'un Safra Direnci",Description="Sağlık barı algılamada %x% artış");
+Passives[3]=(Title="Hareket Hızı",Description="Zed zamanı %x% sürer");
+Passives[4]=(Title="Zırh Bonusu",Description="Sağlık %x% artar");
+
+HealingSurge="Şifa Dalgası"
+HealingSurgeDescription="Doğru kullanım için bu Doktorun bilgilerini koy: Sağlık %20 artar."
+
+Enforcer="İnfazcı"
+EnforcerDescription="Enough focus on caring: Increase your starting ammo capacity by 20% for your Perk and Backup weapons."
+
+Combatant="Savaşçı"
+CombatantDescription="Don't just be a Medic - be the Combat Medic you always wanted to be with free, starting body armor & a 60% discount on all armor purchases!"
+
+Armament="Silahlanma"
+ArmamentDescription="Yalnızca insanları iyileştirme: Takım arkadaşlarına verdiğin şifa etkisinin %10'unu kaybedersin, ama bunun yerine onların zırhlarını her seferinde %2 oranında arttırırsın!"
+
+Regeneration="Yenilenme"
+RegenerationDescription="Kendine bir doz aşıla: Sağlığın Horzine nano-botları sayesinde zamanla yavaş yavaş yenilenir."
+
+Lacerate="Yarala"
+LacerateDescription="O neştere dikkat et: Tüm Özellik silahlarıyla Zedlere verilen hasar kanamaya sebep olur."
+
+VaccinationArmor="Aşılama"
+VaccinationArmorDescription="Ölümün yayılmasını önlemeye yardım et: İyileştirdiğin takım arkadaşının maksimum zırhı %4 onarılır, artı olarak Bloat'ın Safrasına karşı geçici direnç."
+
+VaccinationDamageMod="Asidik Bileşik"
+VaccinationDamageModDescription="Bazıları için şifacı... diğerleri için ölüm! İyileştirici dartların Zedleri zehirler; bombaların ve dartların Zedlere yeterince hasar verir ve hatta Zedlerin panik olmasına sebep olur."
+
+AirborneAgent="ZED ZAMANI - Havadan Taşınan Etken Madde"
+AirborneAgentDescription="Zaman iyileştirir derler: İyileştirici dartlarınız hedefiniz ve yakınındaki arkadaşlarınız için bir iyileştirme bulutu oluşturur ve 10% ekstra iyileştirme almalarını sağlar."
+
+Sedative="ZED ZAMANI - Yatıştırıcı"
+SedativeDescription="Ve zaman durur: Doktor bombaları ve dartları Zedin hareketini geçici olarak durduracak Zed-Yatıştırıcı salgılar."
+
+
+EXPAction1="Doktor silahıyla hasar vermek"
+EXPAction2="Takım arkadaşlarını iyileştirme"
+
+[KFPerk_Firebug]
+PerkName="Kundakçı"
+EXPAction1="Kundakçı silahıyla hasar vermek"
+EXPAction2="Kundakçı silahları ile ile Crawler'ları öldürmek"
+
+SkillCatagories[0]="Erzaklar"
+SkillCatagories[1]="Acılı"
+SkillCatagories[2]="Alev"
+SkillCatagories[3]="Alev"
+SkillCatagories[4]="Gelişmiş Eğitim"
+
+Passives[0]=(Title="Özellik Silah Hasarı",Description="Özellik silah hasarında %x% artış");
+Passives[1]=(Title="Özellik Silah Doldurma",Description="Özellik silah doldurma hızında %x% artış");
+Passives[2]=(Title="Zed Ateş Hasarı Direnci",Description="%x% ateş direnci");
+Passives[3]=(Title="Kendi ateşine bağışıklık",Description="Kişisel ateş hasarına karşı %x% direnç");
+Passives[4]=(Title="Başlangıç Cephanesi",Description="%x% daha fazla başlangıç cephanesi");
+
+FullyStocked="Tamamen Dolu"
+FullyStockedDescription="What it says on the can: Firebug weapons start at maximum ammo capacity at the Trader."
+
+FlarotovCoctail="Flarotov Kokteyli"
+FlarotovCoctailDescription="It's in the name: Shove a Flare in your Molotov Cocktail - you get a Flare that lights up the environment for 30 seconds AND your flame burns for twice as long."
+
+Fuse="Fünye"
+FuseDescription="Güzel bir yavaş yakıcı: Kundakçı silahlarının alev etkisi zamanla hasarını artırarak %70 daha uzun süre yakar."
+
+HeatWave="Isı Dalgası"
+HeatWaveDescription="Like a Georgia summer: Enemies struck at point blank range with Fire will stumble back."
+
+ZedShrapnel="Zed Şarapneli"
+ZedShrapnelDescription="Zed PATLAYACAK: Alev silahları ile öldürülen herhangi bir zed %50 şans ile patlar, yakınındaki Zedlere hasar verir."
+
+Napalm="Zed Napalmi"
+NapalmDescription="ALEVLİ Zed: Yanan Zedler diğer zedlere dokunduğunda onları da ateşe verir."
+
+Range="Menzil"
+RangeDescription="Bütün Alev silahlarının menzilini artır. Haydi - istediğini sen de biliyorsun."
+
+SplashDamage="Sıçrama Hasarı"
+SplashDamageDescription="Veya Alev silahı darbelerinin sıçrama hasarını artırır. Kararlar, kararlar!"
+
+Combustion="ZED ZAMANI - Yanma"
+CombustionDescription="Shrapnel + Napalm = Combustion. Sort of. Any zed that dies from your Fire weapons in Zed Time will explode into a fireball setting anything in the explosion on fire."
+
+Scorch="ZED ZAMANI - Yakım"
+ScorchDescription="Yanıyorsun! Peki, tam olarak değil. Zed Zamanında kullanılan özellik silahları gerçek zamana yakın hızla ateşlenir."
+
+[KFPerk_Gunslinger]
+PerkName="Silahşör"
+EXPAction1="Dealing Gunslinger weapon damage"
+EXPAction2="Head shots with Gunslinger weapons"
+
+SkillCatagories[0]="Teknik"
+SkillCatagories[1]="Yetenek"
+SkillCatagories[2]="Gelişmiş Teknikler"
+SkillCatagories[3]="Kritik isabetler"
+SkillCatagories[4]="Usta Teknikleri"
+
+Passives[0]=(Title="Özellik Silah Hasarı",Description="Özellik silah hasarında %x% artış");
+Passives[1]=(Title="Mermi Direnci",Description="Mermi hasarı direncinde %x% artış");
+Passives[2]=(Title="Hareket Hızı",Description="Hareket hızında %x% artış");
+Passives[3]=(Title="Geri Tepme",Description="%x% az geri tepme");
+
+ShootnMove="Shoot'n'Scoot"
+ShootnMoveDescription="Don't hang around to be eaten: move 200% faster in iron sights with reduced weapon bob."
+
+QuickSwitch="Hızlı Çekiş"
+QuickSwitchDescription="Bunu biliyorsun: Silah geçişi %50 daha hızlı - ve eğer mermin bittiğinde ateş etmeye devam edersen yedek silahlarına hızlı geçiş yaparsın."
+
+RhythmMethod="Rack 'em Up"
+RhythmMethodDescription="Rack up the headshots: each consecutive headshot increases damage by 10% up to 70% with Gunslinger weapons."
+
+BoneBreaker="Kemik Kırıcı"
+BoneBreakerDescription="Don't just collect them, break them too: do 20% more damage with Gunslinger weapons."
+
+SpeedReload="Speed-loader"
+SpeedReloadDescription="Cooler, quicker, deadlier: reload 20% faster with Gunslinger weapons AND look more elite while you're at it."
+
+Penetration="Penetration"
+PenetrationDescription="Line 'em up and knock 'em down: penetrate an extra Zed with every shot."
+
+CenterMass="Center Mass"
+CenterMassDescription="If you aim for the center of mass... shots to the chest have 40% more stumble power."
+
+LimbShots="Leg Shots"
+LimbShotsDescription="Or shoot them in the legs... shots to the legs have 3x more knockdown power when the zed is sprinting."
+
+Fanfare="ZED TIME - Fanfire"
+FanfareDescription="Fanfire with fanfare: shoot 3x faster with Gunslinger weapons in Zed time."
+
+UberAmmo="ZED ZAMANI - Über Mermi"
+UberAmmoDescription="Uber it up: you can’t run out of ammo with Gunslinger weapons during Zed time."
+
+[KFPerk_MartialArtist]
+PerkName="Dövüş Sanatçısı"
+
+[KFPerk_Sharpshooter]
+PerkName="Keskin Nişancı"
+
+[KFPerk_Support]
+PerkName="Destek"
+
+SkillCatagories[0]="Silah Taşıma"
+SkillCatagories[1]="Fitness"
+SkillCatagories[2]="Erzak"
+SkillCatagories[3]="Dayanıklılık"
+SkillCatagories[4]="Gelişmiş Eğitim"
+
+Passives[0]=(Title="Kaynak Ustalığı",Description="Kaynak hızında %x% artış");
+Passives[1]=(Title="Özellik Silah Hasarı",Description="Özellik silah hasarında %x% artış");
+Passives[2]=(Title="Özellik Silah Delişi",Description="Her seviyede, Özellik silahlarının deliş gücünde %x% artış");
+Passives[3]=(Title="Bomba Hasarı",Description="Bomba hasarında %x% artış");
+Passives[4]=(Title="",Description="");
+
+;Passives[0]=(Title="Kaynak Ustalığı",Description="Kaynak hızında %2 artış (Maks %50")");
+;Passives[1]=(Title="Av Tüfeği Hasarı",Description="Av Tüfeği hasarında %2 artış (Maks %50")");
+;Passives[2]=(Title="Av Tüfeği Delişi",Description="Her seviyede, av tüfeklerinin deliş gücünde %25 artış");
+;Passives[3]=(Title="Bomba Hasarı",Description="Bomba hasarında %2 artış (Maks %50")");
+;Passives[4]=(Title="",Description="");
+
+EXPAction1="Destek silahıyla hasar vermek"
+EXPAction2="Kaynaklanan kapılar"
+
+Ammo="Cephane"
+AmmoDescription="Ciddi olmaya başla: Mermi kapasiteni ve başlangıç mermini %20 yükselt."
+
+Supplier="Tedarikçi"
+SupplierDescription="Herkesin sevdiği kişi ol: Tüm oyuncuların dalga başına bir kez cephane alabileceğiniz bir sırt çantası taşı."
+
+Fortitude="Cesaret"
+FortitudeDescription="Kendinize iyi bir şans verin: Sağlığınızı %50 artırır."
+
+Regeneration="Yenilenme"
+RegenerationDescription="Doktorların işine son ver: Sağlığın Horzine nano-botları sayesinde zamanla yavaş yavaş yenilenir."
+
+Bombard="Bombardıman"
+BombardDescription="Put some power into it: Increase your chance of causing a specimen to stumble by 60% with ranged Support weapons."
+
+TacticalReload="Taktiksel Şarjör Değiştirme"
+TacticalReloadDescription="Rahat ol. Hızlı ol. Sınıfa ait silahlarla daha hızlı şarjör değiştir VE bunu yaparken daha elit görün."
+
+Strength="Güç"
+StrengthDescription="Get down to the gym. Bulk up and increase your carrying capacity by 5."
+
+Tenacity="Tenacity"
+TenacityDescription="Destek silahlarını geliştirmek ve %10 daha fazla hasar vermek için zaman harca."
+
+Safeguard="ZED ZAMANI - Koruma"
+SafeguardDescription="Wade right in with 5% improved armor for you AND your nearby friends!"
+
+Barrage="ZED ZAMANI - Baraj"
+BarrageDescription="Make the most of the time with a 15% increase to all damage for you AND your friends nearby!"
+
+[KFPerk_Sharpshooter]
+PerkName="Keskin Nişancı"
+
+[KFPerk_SWAT]
+PerkName="SWAT"
+
+[Fonts]
+Bicubik="Bicubik"
+
+[KFObjective]
+ObjectiveDifficulties[0]="KOLAY"
+ObjectiveDifficulties[1]="ORTA"
+ObjectiveDifficulties[2]="ZOR"
+ObjectiveStartTitle="Başlangıç konumuna kadar izleri takip edin"
+ObjectiveWaitingString="DAHA FAZLA OYUNCU BEKLENİYOR!"
+ObjectiveWonString="TAMAMLANDI!"
+ObjectiveFailedString="BAŞARISIZ!"
+ObjectiveEndedString="SONA ERDİ!"
+ObjectiveFailReasons[0]="SÜRE LİMİTİ TÜKENDİ!"
+ObjectiveFailReasons[1]="TAKIM YOK EDİLDİ"
+ObjectiveFailReasons[2]="DÜŞÜK SAĞLIKLI OYUNCU ÖLDÜ"
+ObjectiveFailReasons[3]="DALGA SONA ERDİ"
+ObjectiveFailReasons[4]="GÖREV SONA ERDİ"
+ObjectiveFailReasons[5]="DÜŞÜK MANGIRLI OYUNCU YOK"
+ObjectiveFailReasons[6]="YETERİNCE OYUNCU YOK!"
+ObjectiveXPString="XP:"
+ObjectiveTimeLimitString="SÜRE LİMİTİ:"
+ObjectiveTimeUnit="s"
+ObjectiveStatusString="GÖREV DURUMU"
+
+[KFObj_Wave]
+ObjectiveAvailableString="GÖREV MEVCUT"
+
+[KFObj_Wave_Defend]
+ObjectiveTypeString="SAVUN"
+ObjectiveTargetTitle="Virüs yüklemesini savun!"
+ObjectiveStatusTitle="İNDİRME DURUMU"
+
+[KFObj_Coop_Healer]
+ObjectiveTypeString="İYİLEŞTİRİCİ"
+ObjectiveTargetTitle="SAĞLIĞI DÜŞÜK OYUNCUYU İYİLEŞTİR"
+ObjectiveStatusTitle="OYUNCULAR İYİLEŞTİRİLDİ"
+ObjectiveTimeString="s KALDI"
+
+[KFObj_Coop_PayDay]
+ObjectiveTypeString="ÖDEME GÜNÜ"
+ObjectiveTargetTitle="CANLANMIŞ OYUNCULARA MANGIR VER"
+ObjectiveStatusTitle="PARANIN %30'UNU GERİ AL"
+ObjectiveTimeString="s KALDI"
+
+[KFGameViewportClient]
+RandomLoadingStrings[0]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 0"
+RandomLoadingStrings[1]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 1"
+RandomLoadingStrings[2]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 2"
+RandomLoadingStrings[3]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 3"
+RandomLoadingStrings[4]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 4"
+RandomLoadingStrings[5]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 5"
+
+[Zeds]
+KFPawn_ZedBloat="Bloat"
+KFPawn_ZedClot="Pıhtı"
+KFPawn_ZedCrawler="Crawler"
+KFPawn_ZedFleshPound="Fleshpound"
+KFPawn_ZedGorefast="Gorefast"
+KFPawn_ZedHans="Dr. Hans Volter"
+KFPawn_ZedHusk="Kabuk"
+KFPawn_ZedStalker="Stalker"
+KFPawn_ZedClot_Cyst="Kist"
+KFPawn_ZedClot_Slasher="Slasher"
+KFPawn_ZedClot_Alpha="Alfa Pıhtı"
+KFPawn_ZedScrake="Scrake"
+KFPawn_ZedSiren="Siren"
+KFPawn_ZedPatriarch="Patriarch"
+
+[ZedMoves]
+Melee="Melee"
+Rally="Rally"
+Grab="Grab"
+Light="Light"
+Heavy="Heavy"
+Spin="Spin"
+Evade="Evade"
+Jump="Jump"
+Puke="Puke"
+Mine="Mine"
+Bite="Bite"
+Scream="Scream"
+Vortex="Vortex"
+Shoot="Shoot"
+Flame="Flame"
+Suicide="Suicide"
+Rage="Rage"
+Minigun="Minigun"
+Rocket="Rocket"
+Mortar="Mortar"
+Heal="Heal"
+
+[Keybinds]
+CtrlCombo="Ctrl + "
+ShiftCombo="Shift + "
+AltCombo="Alt + "
+LeftMouseButton="Sol Tık"
+MiddleMouseButton="Orta Tık"
+RightMouseBUtton="Sağ Tık"
+ThumbMouseButton1="Mouse 4"
+ThumbMouseButton2="Mouse 5"
+MouseScrollDown="Fare Tekeri Aşağı"
+MouseScrollUp="Fare Tekeri Yukarı"
+CapsLock="Caps Lock"
+Tab="Tab"
+BackSpace="Backspace"
+SpaceBar="Boşluk"
+LeftShift="Sol Shift"
+RightSift="Sağ Shift"
+LeftCtrl="Sol Ctrl"
+RightCtrl="Sağ Ctrl"
+LeftAlt="Sol Alt"
+RightAlt="Sağ Alt"
+BackSlash="\\ "
+Slash="/"
+RightBracket="]"
+LeftBracket="["
+Quote="'"
+SemiColon=";"
+Period="."
+Comma=","
+Subtract="-"
+Add="+"
+Equals="="
+Multiply="*"
+Divide="Num Pad /"
+Underscore="-"
+NumPadZero="0"
+NumPadOne="1"
+NumPadTwo="2"
+NumPadThree="3"
+NumPadFour="4"
+NumPadFive="5"
+NumPadSix="6"
+NumPadSeven="7"
+NumPadEight="8"
+NumPadNine="9"
+Decimal="Num Pad ."
+NumLock="Num Lock"
+PageUp="Page Up"
+PageDown="Page Down"
+Home="Home"
+End="End"
+Insert="Insert"
+Delete="Delete"
+Up="Yukarı"
+Down="Aşağı"
+Left="Sol"
+Right="Sağ"
+ScrollLock="Scroll Lock"
+Pause="Pause"
+Enter="Enter"
+one="1"
+two="2"
+three="3"
+four="4"
+five="5"
+six="6"
+seven="7"
+eight="8"
+nine="9"
+zero="0"
+
+[SharedUnlocks]
+KFWeap_Zweihander="Chivalry Promosyonu"
+
+SharedUnlocks
+Source0="Chivalry Promosyonu"
+;============================================
+; Map Localization
+;============================================
+[KF-BioticsLab KFMapSummary]
+DisplayName="Biyotik Laboratuvar"
+
+[KF-Outpost KFMapSummary]
+DisplayName="Karakol"
+
+[KF-BurningParis KFMapSummary]
+DisplayName="Paris Yanarken"
+
+[Survival KFGameInfoSummary]
+GameName="Hayatta Kalma"
+
+[KF-VolterManor KFMapSummary]
+DisplayName="Volter Malikânesi"
+
+[KF-Catacombs KFMapSummary]
+DisplayName="Yeraltı Mezarlığı"
+
+[KF-EvacuationPoint KFMapSummary]
+DisplayName="Tahliye Noktası"
+
+[KF-Farmhouse KFMapSummary]
+DisplayName="Çiftlik evi"
+
+[KF-BlackForest KFMapSummary]
+DisplayName="Kara Orman"
+
+[KF-Prison KFMapSummary]
+DisplayName="Prison"
+
+[KFMapInfo]
+; defaults
+FoundCollectibleString="%x% found a collectible. %y% left to find..."
+FoundAllCollectiblesString="Every collectible has been found!"

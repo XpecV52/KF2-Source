@@ -4,7 +4,7 @@ package tripwire.containers.gear
     import flash.external.ExternalInterface;
     import scaleform.clik.controls.Button;
     import scaleform.clik.events.ListEvent;
-    import tripwire.containers.perks.PerkSelectionContainer;
+    import tripwire.containers.Perks.PerkSelectionContainer;
     
     public class GearPerkSelectionContainer extends PerkSelectionContainer
     {

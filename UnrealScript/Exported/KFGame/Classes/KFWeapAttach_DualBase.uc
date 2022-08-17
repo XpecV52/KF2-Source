@@ -88,8 +88,8 @@ simulated function AttachTo(KFPawn P)
 	{
 		if( LeftHandSkelMesh == none )
 		{
-			// Create a duplicate of the right-hand weapn mesh
-			LeftWeapMesh = new(self) Class'SkeletalMeshComponent'(WeapMesh);
+		// Create a duplicate of the right-hand weapn mesh
+		LeftWeapMesh = new(self) Class'SkeletalMeshComponent'(WeapMesh);
 		}
 
 		// Attach Weapon mesh to player skel mesh
@@ -198,9 +198,9 @@ simulated function PlayWeaponFireAnim()
 			LeftWeapMesh.PlayAnim(WeaponAltFireAnim_L,,, true);
 		}
 		else
-		{
+	{
 			WeapMesh.PlayAnim(WeaponAltFireAnim_R,,, true);
-		}
+	}
 	}
 	else if (WeaponFireAnim != 'None')
 	{
@@ -275,8 +275,8 @@ simulated function vector GetMuzzleLocation(optional byte MuzzleID)
 		if( LeftMuzzleFlash != none )
 		{
 	        LeftWeapMesh.GetSocketWorldLocationAndRotation(LeftMuzzleFlash.GetSocketName(), SocketLocation);
-			return SocketLocation;
-		}
+		return SocketLocation;
+	}
 	}
 
 	return Super.GetMuzzleLocation(MuzzleID);

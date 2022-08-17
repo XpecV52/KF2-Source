@@ -2,6 +2,7 @@ package tripwire.popups
 {
     import com.greensock.TweenMax;
     import com.greensock.easing.Cubic;
+    import flash.display.MovieClip;
     import flash.events.Event;
     import flash.external.ExternalInterface;
     import scaleform.clik.events.ButtonEvent;
@@ -10,6 +11,8 @@ package tripwire.popups
     public class BasePopup extends TripContainer
     {
          
+        
+        public var modalMC:MovieClip;
         
         public function BasePopup()
         {

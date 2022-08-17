@@ -246,7 +246,7 @@ simulated function SyncOriginalLocation()
         if(IsZero(Velocity))
         {
             SetPhysics(default.Physics);
-            SetCollision(true, true);
+            SetCollision(default.bCollideActors, default.bBlockActors);
         }
         Velocity = Speed * Normal(AimDir);        
     }
@@ -263,7 +263,7 @@ simulated function SyncOriginalLocation()
                     AimDir = vector(Rotation);
                 }
                 Velocity = Speed * AimDir;
-                SetCollision(true, true);
+                SetCollision(default.bCollideActors, default.bBlockActors);
             }
             SetLocation(OriginalLocation);
         }

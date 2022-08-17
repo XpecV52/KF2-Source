@@ -358,8 +358,6 @@ class KFTraderVoiceGroup_Default extends KFTraderVoiceGroupBase;
 
 
 
-
-
 	
 
 
@@ -411,6 +409,7 @@ class KFTraderVoiceGroup_Default extends KFTraderVoiceGroupBase;
 
 
 	
+
 
 
 

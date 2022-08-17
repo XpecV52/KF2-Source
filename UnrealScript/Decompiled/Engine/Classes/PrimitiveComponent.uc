@@ -376,6 +376,7 @@ var() const Vector Scale3D;
 var() const float BoundsScale<UIMin=1|UIMax=10.0>;
 var const transient float LastSubmitTime;
 var transient float LastRenderTime;
+var transient float LastShadowRenderTime;
 var float ScriptRigidBodyCollisionThreshold;
 /** Offsets foot IK collision.  Useful for non-solid surfaces (e.g. Snow, Mud) */
 var(Collision) const float FootPlacementZOffset<EditCondition=bBlockFootPlacement>;

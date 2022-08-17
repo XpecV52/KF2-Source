@@ -10,6 +10,7 @@ package tripwire.containers
     import scaleform.clik.constants.NavigationCode;
     import scaleform.clik.core.UIComponent;
     import scaleform.clik.events.InputEvent;
+    import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.Extensions;
     import scaleform.gfx.FocusManager;
@@ -26,6 +27,8 @@ package tripwire.containers
         public var defaultFirstElement:UIComponent;
         
         protected var _bOpen:Boolean = false;
+        
+        protected var _bReadyForInput:Boolean = false;
         
         protected var _defaultAlpha:Number;
         
@@ -113,7 +116,7 @@ package tripwire.containers
                         "onComplete":this.openAnimation
                     });
                 }
-                else if(!isNaN(this.ANIM_START_X))
+                else
                 {
                     this.alpha = 0;
                     this.openAnimation();
@@ -133,11 +136,11 @@ package tripwire.containers
             {
                 stage.addEventListener(InputEvent.INPUT,this.handleInput,false,0,true);
             }
-            if(this.bManagerUsingGamepad && this.currentElement)
+            if(this.bManagerUsingGamepad && this.currentElement && !MenuManager.manager.bPopUpOpen)
             {
                 this.currentElement.tabEnabled = true;
                 this.currentElement.tabChildren = true;
-                FocusManager.setFocus(this.currentElement);
+                FocusHandler.getInstance().setFocus(this.currentElement);
             }
         }
         
@@ -149,6 +152,7 @@ package tripwire.containers
                 this.deselectContainer();
                 this.closeAnimation();
                 stage.removeEventListener(MenuManager.INPUT_CHANGED,this.onInputChange);
+                mouseChildren = mouseEnabled = false;
                 if(this.currentElement)
                 {
                     this.currentElement = null;
@@ -174,7 +178,9 @@ package tripwire.containers
         
         public function focusGroupIn() : void
         {
+            var _loc1_:* = visible;
             this.selectContainer();
+            visible = _loc1_;
         }
         
         public function focusGroupOut() : void
@@ -207,6 +213,10 @@ package tripwire.containers
         override public function handleInput(param1:InputEvent) : void
         {
             if(param1.handled)
+            {
+                return;
+            }
+            if(!this._bReadyForInput)
             {
                 return;
             }
@@ -303,11 +313,14 @@ package tripwire.containers
         
         protected function onOpened(param1:TweenEvent = null) : void
         {
+            mouseChildren = mouseEnabled = true;
+            this._bReadyForInput = true;
             play();
         }
         
         protected function onClosed(param1:TweenEvent = null) : void
         {
+            this._bReadyForInput = false;
             visible = false;
             this._bOpen = false;
             stop();

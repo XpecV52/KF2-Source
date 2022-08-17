@@ -11,6 +11,7 @@ class KFDT_Slashing_Scrake extends KFDT_Slashing
 
 defaultproperties
 {
+   bExtraMomentumZ=True
    KDamageImpulse=400.000000
    KDeathVel=750.000000
    KDeathUpKick=200.000000

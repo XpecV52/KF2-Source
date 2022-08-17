@@ -6,13 +6,13 @@ package tripwire.menus
     import flash.external.ExternalInterface;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.ui.InputDetails;
+    import tripwire.containers.Perks.PerkDetailsContainer;
+    import tripwire.containers.Perks.PerkSelectionContainer;
+    import tripwire.containers.Perks.PerksConfigureSkillsContainer;
+    import tripwire.containers.Perks.PerksHeaderContainer;
+    import tripwire.containers.Perks.PerksNextRankContainer;
+    import tripwire.containers.Perks.PerksSkillsSummaryContainer;
     import tripwire.containers.TripContainer;
-    import tripwire.containers.perks.PerkDetailsContainer;
-    import tripwire.containers.perks.PerkSelectionContainer;
-    import tripwire.containers.perks.PerksConfigureSkillsContainer;
-    import tripwire.containers.perks.PerksHeaderContainer;
-    import tripwire.containers.perks.PerksNextRankContainer;
-    import tripwire.containers.perks.PerksSkillsSummaryContainer;
     
     public class PerkSelectMenu extends TripContainer
     {
@@ -42,14 +42,14 @@ package tripwire.menus
             defaultFirstElement = this.SelectionContainer.perkScrollingList;
         }
         
-        override protected function addedToStage(param1:Event) : void
+        override protected function addedToStage(e:Event) : void
         {
-            super.addedToStage(param1);
+            super.addedToStage(e);
             this.SelectedPerkSummaryContainer.configureButton.addEventListener(ButtonEvent.CLICK,this.onButtonClick,false,0,true);
             this.SelectedPerkSummaryContainer.configureButton.clickSoundEffect = "Button_Selected";
             this.SkillsContainer.confirmButton.addEventListener(ButtonEvent.CLICK,this.onButtonClick,false,0,true);
             this.addEventListener("changePerk",this.swapPerk);
-            this.SkillsContainer.closeContainer();
+            sectionHeader = this.SelectionContainer.header;
             this.SelectionContainer.selectContainer();
             this.openPerkDetails();
             currentElement = this.SelectionContainer.perkScrollingList;
@@ -62,6 +62,7 @@ package tripwire.menus
             {
                 this.SelectionContainer.perkScrollingList.selectedIndex = this._tempSelected;
             }
+            this.SelectionContainer.header.controllerIconVisible = !bSelected;
         }
         
         override public function focusGroupOut() : void
@@ -69,6 +70,7 @@ package tripwire.menus
             super.focusGroupOut();
             this._tempSelected = this.SelectionContainer.perkScrollingList.selectedIndex;
             this.SelectionContainer.perkScrollingList.selectedIndex = -1;
+            this.SelectionContainer.header.controllerIconVisible = !bSelected;
         }
         
         override public function openContainer() : void
@@ -78,9 +80,9 @@ package tripwire.menus
             this.openPerkDetails();
         }
         
-        override protected function onOpened(param1:TweenEvent = null) : void
+        override protected function onOpened(e:TweenEvent = null) : void
         {
-            super.onOpened(param1);
+            super.onOpened(e);
             this.bCanUseMenu = true;
         }
         
@@ -89,15 +91,16 @@ package tripwire.menus
             super.closeContainer();
             this.bCanUseMenu = false;
             this.SkillsContainer.closeContainer();
+            this.SelectionContainer.closeContainer();
         }
         
-        public function set locked(param1:Boolean) : void
+        public function set locked(value:Boolean) : void
         {
-            this._bLocked = param1;
-            this.SelectionContainer.perkSelectBlocker.visible = param1;
-            this.SelectionContainer.perkScrollingList.enabled = !param1;
-            this.SelectedPerkSummaryContainer.configureButton.enabled = !param1;
-            if(param1)
+            this._bLocked = value;
+            this.SelectionContainer.perkSelectBlocker.visible = value;
+            this.SelectionContainer.perkScrollingList.enabled = !value;
+            this.SelectedPerkSummaryContainer.configureButton.enabled = !value;
+            if(value)
             {
                 this.closeSkillConfigure();
             }
@@ -108,9 +111,9 @@ package tripwire.menus
             return this._bLocked;
         }
         
-        override protected function onBPressed(param1:InputDetails) : void
+        override protected function onBPressed(details:InputDetails) : void
         {
-            super.onBPressed(param1);
+            super.onBPressed(details);
             if(this.SkillsContainer.bOpen)
             {
                 this.closeSkillConfigure();
@@ -158,13 +161,13 @@ package tripwire.menus
             this.SelectedPerkSummaryContainer.closeContainer();
         }
         
-        public function onButtonClick(param1:ButtonEvent) : void
+        public function onButtonClick(e:ButtonEvent) : void
         {
             if(!this.bCanUseMenu)
             {
                 return;
             }
-            switch(param1.currentTarget)
+            switch(e.currentTarget)
             {
                 case this.SelectedPerkSummaryContainer.configureButton:
                     this.openSkillConfigure();
@@ -174,7 +177,7 @@ package tripwire.menus
             }
         }
         
-        public function swapPerk(param1:Event) : void
+        public function swapPerk(event:Event) : void
         {
             if(this.DetailsContainer.visible)
             {
@@ -191,6 +194,19 @@ package tripwire.menus
                     "useFrames":true,
                     "onComplete":this.SkillsContainer.openContainer
                 });
+            }
+        }
+        
+        override public function selectContainer() : void
+        {
+            super.selectContainer();
+            if(_bOpen)
+            {
+                this.SelectionContainer.header.controllerIconVisible = !bSelected;
+                if(this.SkillsContainer.bSelected)
+                {
+                    this.SkillsContainer.selectContainer();
+                }
             }
         }
     }

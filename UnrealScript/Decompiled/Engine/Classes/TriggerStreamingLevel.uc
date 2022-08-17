@@ -70,7 +70,6 @@ defaultproperties
     object end
     // Reference: CylinderComponent'Default__TriggerStreamingLevel.CollisionCylinder'
     Components(1)=CollisionCylinder
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

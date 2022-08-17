@@ -37,22 +37,19 @@ struct MapVote
 
 struct TopVotes
 {
-	var byte Map1Index;
+	var string Map1Name;
 	var byte Map1Votes;
 
-	var byte Map2Index;
+	var string Map2Name;
 	var byte Map2Votes;
 
-	var byte Map3Index;
+	var string Map3Name;
 	var byte Map3Votes;
 
 	StructDefaultProperties
 	{
-		Map1Index=255
 		Map1Votes=255
-		Map2Index=255
 		Map2Votes=255
-		Map3Index=255
 		Map3Votes=255
 	}
 };
@@ -65,7 +62,7 @@ var array<string> MapList;
 // @name Kick Vote
 //==============================================================
 
-reliable server function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplicationInfo PRI_Kicker)
+function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplicationInfo PRI_Kicker)
 {
 	local int i;
 	local array<KFPlayerReplicationInfo> PRIs;
@@ -261,12 +258,12 @@ function bool ShouldConcludeVote()
 		}
 	}
 
-	GetKFPRIArray(PRIs);
+		GetKFPRIArray(PRIs);
 	NumPRIs = PRIs.Length;
 
 	// Current Kickee PRI should not count towards vote percentage
 	if( PRIs.Find(CurrentVote.PlayerPRI) != INDEX_NONE )
-	{
+		{
 		NumPRIs--;
 	}
 
@@ -330,7 +327,7 @@ reliable server function ConcludeVoteKick()
 		{
 			// See if kicked player has left
 			if( CurrentVote.PlayerPRI == none || CurrentVote.PlayerPRI.bPendingDelete )
-			{
+		{
 				for( i = 0; i < WorldInfo.Game.InactivePRIArray.Length; i++ )
 				{
 					if( WorldInfo.Game.InactivePRIArray[i].UniqueId == CurrentVote.PlayerID )
@@ -412,6 +409,7 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
 	local bool bMapFound;
 	local MapVote TempMapVote;
 	local array<KFPlayerReplicationInfo> PRIs;
+	local KFGameInfo KFGI;
 
 	GetKFPRIArray(PRIs);
 
@@ -441,6 +439,7 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
 	//Sort Map list 
 	MapVoteList.Sort(MapVoteSort);
 
+	KFGI = KFGameInfo(WorldInfo.Game);
 	for (i = 0; i < TopResultsToShow; i++)
 	{
 		if(i < MapVoteList.length)
@@ -449,17 +448,17 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
 			{
 				case 0:
 					TopVotesObject.Map1Votes = MapVoteList[i].VoterPRIList.length;
-					TopVotesObject.Map1Index = MapVoteList[i].MapIndex;
+					TopVotesObject.Map1Name = KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[MapVoteList[i].MapIndex];
 					break;
 			
 				case 1:
 					TopVotesObject.Map2Votes = MapVoteList[i].VoterPRIList.length;
-					TopVotesObject.Map2Index = MapVoteList[i].MapIndex;
+					TopVotesObject.Map2Name = KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[MapVoteList[i].MapIndex];
 					break;
 					
 				case 2:
 					TopVotesObject.Map3Votes = MapVoteList[i].VoterPRIList.length;
-					TopVotesObject.Map3Index = MapVoteList[i].MapIndex;
+					TopVotesObject.Map3Name = KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[MapVoteList[i].MapIndex];
 					break;					
 			}
 		}

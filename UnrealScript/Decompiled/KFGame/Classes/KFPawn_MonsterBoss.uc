@@ -144,6 +144,11 @@ function bool Died(Controller Killer, class<DamageType> DamageType, Vector HitLo
     return Result;
 }
 
+function bool ShouldDrawBossIcon()
+{
+    return false;
+}
+
 function PlayBossMusic();
 
 function CauseHeadTrauma(optional float BleedOutTime)
@@ -221,19 +226,28 @@ defaultproperties
         SpecialMoveClasses(7)=class'KFSM_RagdollKnockdown'
         SpecialMoveClasses(8)=class'KFSM_DeathAnim'
         SpecialMoveClasses(9)=class'KFSM_Stunned'
-        SpecialMoveClasses(10)=none
-        SpecialMoveClasses(11)=class'KFSM_Zed_Taunt'
-        SpecialMoveClasses(12)=class'KFSM_Zed_WalkingTaunt'
-        SpecialMoveClasses(13)=none
-        SpecialMoveClasses(14)=none
+        SpecialMoveClasses(10)=class'KFSM_Frozen'
+        SpecialMoveClasses(11)=none
+        SpecialMoveClasses(12)=none
+        SpecialMoveClasses(13)=class'KFSM_Zed_Taunt'
+        SpecialMoveClasses(14)=class'KFSM_Zed_WalkingTaunt'
         SpecialMoveClasses(15)=none
         SpecialMoveClasses(16)=none
         SpecialMoveClasses(17)=none
         SpecialMoveClasses(18)=none
         SpecialMoveClasses(19)=none
-        SpecialMoveClasses(20)=class'KFSM_GrappleVictim'
-        SpecialMoveClasses(21)=class'KFSM_HansGrappleVictim'
-        SpecialMoveClasses(22)=class'KFSM_Zed_Boss_Theatrics'
+        SpecialMoveClasses(20)=none
+        SpecialMoveClasses(21)=none
+        SpecialMoveClasses(22)=none
+        SpecialMoveClasses(23)=none
+        SpecialMoveClasses(24)=none
+        SpecialMoveClasses(25)=none
+        SpecialMoveClasses(26)=none
+        SpecialMoveClasses(27)=none
+        SpecialMoveClasses(28)=class'KFSM_GrappleVictim'
+        SpecialMoveClasses(29)=class'KFSM_HansGrappleVictim'
+        SpecialMoveClasses(30)=none
+        SpecialMoveClasses(31)=class'KFSM_Zed_Boss_Theatrics'
     object end
     // Reference: KFSpecialMoveHandler'Default__KFPawn_MonsterBoss.SpecialMoveHandler'
     SpecialMoveHandler=SpecialMoveHandler

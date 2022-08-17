@@ -10,6 +10,7 @@ package tripwire.containers
     import scaleform.clik.constants.NavigationCode;
     import scaleform.clik.core.UIComponent;
     import scaleform.clik.events.InputEvent;
+    import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.Extensions;
     import scaleform.gfx.FocusManager;
@@ -115,7 +116,7 @@ package tripwire.containers
                         "onComplete":this.openAnimation
                     });
                 }
-                else if(!isNaN(this.ANIM_START_X))
+                else
                 {
                     this.alpha = 0;
                     this.openAnimation();
@@ -135,11 +136,11 @@ package tripwire.containers
             {
                 stage.addEventListener(InputEvent.INPUT,this.handleInput,false,0,true);
             }
-            if(this.bManagerUsingGamepad && this.currentElement)
+            if(this.bManagerUsingGamepad && this.currentElement && !MenuManager.manager.bPopUpOpen)
             {
                 this.currentElement.tabEnabled = true;
                 this.currentElement.tabChildren = true;
-                FocusManager.setFocus(this.currentElement);
+                FocusHandler.getInstance().setFocus(this.currentElement);
             }
         }
         
@@ -177,12 +178,21 @@ package tripwire.containers
         
         public function focusGroupIn() : void
         {
-            this.selectContainer();
+            var _loc1_:* = undefined;
+            if(!this.bSelected)
+            {
+                _loc1_ = visible;
+                this.selectContainer();
+                visible = _loc1_;
+            }
         }
         
         public function focusGroupOut() : void
         {
-            this.deselectContainer();
+            if(this.bSelected)
+            {
+                this.deselectContainer();
+            }
         }
         
         public function pushToBackground() : void

@@ -64,7 +64,6 @@ class KFDT_Explosive_Sacrifice extends KFDT_Explosive
 
 
 
-
 #linenumber 15;
 
 defaultproperties

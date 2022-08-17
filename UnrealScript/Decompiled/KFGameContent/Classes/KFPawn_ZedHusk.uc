@@ -12,12 +12,13 @@ class KFPawn_ZedHusk extends KFPawn_Monster
 const BackpackZoneIndex = 3;
 
 var const class<KFProjectile> FireballClass;
+var Vector PlayerFireOffset;
 var KFGameExplosion ExplosionTemplate;
 var transient bool bHasExploded;
 
 simulated function ANIMNOTIFY_FlameThrowerOn()
 {
-    if(IsDoingSpecialMove(18))
+    if(IsDoingSpecialMove(20))
     {
         KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]).TurnOnFlamethrower();
     }
@@ -25,7 +26,7 @@ simulated function ANIMNOTIFY_FlameThrowerOn()
 
 simulated function ANIMNOTIFY_FlameThrowerOff()
 {
-    if(IsDoingSpecialMove(18))
+    if(IsDoingSpecialMove(20))
     {
         KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]).TurnOffFlamethrower();
     }
@@ -41,18 +42,49 @@ function NotifyAnimInterrupt(optional AnimNodeSequence SeqNode)
 
 function ANIMNOTIFY_WarnZedsOfFireball()
 {
+    local Actor HitActor;
+    local PlayerController PC;
     local KFPawn_Monster HitMonster;
-    local Vector HitLocation, HitNormal, DangerPoint, AimDirection;
+    local Vector FireLocation, TraceStart, TraceEnd, HitLocation, HitNormal, DangerPoint,
+	    AimDirection;
 
-    AimDirection = MyKFAIC.Enemy.Location - Location;
-    foreach TraceActors(Class'KFPawn_Monster', HitMonster, HitLocation, HitNormal, MyKFAIC.Enemy.Location, Location, vect(50, 50, 50))
+    if(Role == ROLE_Authority)
     {
-        PointDistToLine(HitMonster.Location, AimDirection, Location, DangerPoint);
-        if(HitMonster.MyKFAIC != none)
+        if(IsHumanControlled())
         {
-            HitMonster.MyKFAIC.ReceiveLocationalWarning(DangerPoint);
+            PC = PlayerController(Controller);
+            if(PC == none)
+            {
+                return;
+            }
+            FireLocation = (GetPawnViewLocation()) + (PlayerFireOffset >> (GetViewRotation()));
+            TraceStart = PC.PlayerCamera.CameraCache.POV.Location;
+            TraceEnd = PC.PlayerCamera.CameraCache.POV.Location + (vector(PC.PlayerCamera.CameraCache.POV.Rotation) * float(100000));
+            HitActor = Trace(HitLocation, HitNormal, TraceEnd, TraceStart, true,,, 1);
+            if(HitActor != none)
+            {
+                AimDirection = HitLocation - FireLocation;
+                TraceEnd = HitLocation;                
+            }
+            else
+            {
+                AimDirection = TraceEnd - FireLocation;
+            }            
+        }
+        else
+        {
+            AimDirection = MyKFAIC.Enemy.Location - Location;
+            FireLocation = MyKFAIC.Enemy.Location;
+        }
+        foreach TraceActors(Class'KFPawn_Monster', HitMonster, HitLocation, HitNormal, FireLocation, Location, vect(50, 50, 50))
+        {
+            if(HitMonster.MyKFAIC != none)
+            {
+                PointDistToLine(HitMonster.Location, AimDirection, Location, DangerPoint);
+                HitMonster.MyKFAIC.ReceiveLocationalWarning(DangerPoint);
+            }            
         }        
-    }    
+    }
 }
 
 function ANIMNOTIFY_HuskFireballAttack()
@@ -89,7 +121,7 @@ simulated event Vector GetWeaponStartTraceLocation(optional Weapon CurrentWeapon
 
 simulated function TerminateEffectsOnDeath()
 {
-    if(IsDoingSpecialMove(18))
+    if(IsDoingSpecialMove(20))
     {
         SpecialMoveHandler.EndSpecialMove();
     }
@@ -124,35 +156,42 @@ simulated function HitZoneInjured(optional int HitZoneIdx)
 function TriggerExplosion(optional bool bIgnoreHumans)
 {
     local KFExplosionActorReplicated ExploActor;
-    local Controller DamageInstigator;
+    local Controller DamageInstigator, OldController;
 
     if(!bHasExploded && !bPlayedDeath)
     {
-        ExploActor = Spawn(Class'KFExplosionActorReplicated', self);
-        if(ExploActor != none)
+        OldController = Controller;
+        if(Role == ROLE_Authority)
         {
-            DamageInstigator = (((bIgnoreHumans && LastHitBy != none) && KFPlayerController(LastHitBy) != none) ? LastHitBy : MyKFAIC);
-            ExploActor.InstigatorController = DamageInstigator;
-            ExploActor.Instigator = self;
-            ExploActor.Attachee = self;
-            if(bIgnoreHumans)
+            ExploActor = Spawn(Class'KFExplosionActorReplicated', self);
+            if(ExploActor != none)
             {
-                ExplosionTemplate.ActorClassToIgnoreForDamage = Class'KFPawn_Human';
+                DamageInstigator = (((bIgnoreHumans && LastHitBy != none) && KFPlayerController(LastHitBy) != none) ? LastHitBy : MyKFAIC);
+                ExploActor.InstigatorController = DamageInstigator;
+                ExploActor.Instigator = self;
+                ExploActor.Attachee = self;
+                if(bIgnoreHumans)
+                {
+                    ExplosionTemplate.ActorClassToIgnoreForDamage = Class'KFPawn_Human';
+                }
+                ExploActor.Explode(ExplosionTemplate, vect(0, 0, 1));
             }
-            ExploActor.Explode(ExplosionTemplate, vect(0, 0, 1));
+            if(!bPlayedDeath)
+            {
+                TakeRadiusDamage(DamageInstigator, 10000, ExplosionTemplate.DamageRadius, ExplosionTemplate.MyDamageType, ExplosionTemplate.MomentumTransferScale, Location, true, self);
+            }
         }
-        if(!bPlayedDeath)
-        {
-            TakeRadiusDamage(DamageInstigator, 10000, ExplosionTemplate.DamageRadius, ExplosionTemplate.MyDamageType, ExplosionTemplate.MomentumTransferScale, Location, true, self);
-        }
+        OnExploded(OldController);
         bHasExploded = true;
     }
 }
 
+simulated function OnExploded(Controller SuicideController);
+
 function AdjustDamage(out int InDamage, out Vector Momentum, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, TraceHitInfo HitInfo, Actor DamageCauser)
 {
     super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
-    if((((MyKFAIC != none) && MyKFAIC.IsSuicidal()) && InstigatedBy == MyKFAIC) && IsDoingSpecialMove(19))
+    if((((MyKFAIC != none) && MyKFAIC.IsSuicidal()) && InstigatedBy == MyKFAIC) && IsDoingSpecialMove(21))
     {
         InDamage = 10000;
     }
@@ -186,7 +225,7 @@ function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, 
 function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, Vector Momentum, TraceHitInfo HitInfo)
 {
     super.PlayHit(Damage, InstigatedBy, HitLocation, DamageType, Momentum, HitInfo);
-    if(bEmpDisrupted && IsDoingSpecialMove(19))
+    if(bEmpDisrupted && IsDoingSpecialMove(21))
     {
         Died(InstigatedBy, DamageType, HitLocation);
     }
@@ -201,7 +240,7 @@ function OnStackingAfflictionChanged(byte Id)
     }
     if(bEmpDisrupted)
     {
-        if(IsDoingSpecialMove(17) || IsDoingSpecialMove(18))
+        if(IsDoingSpecialMove(19) || IsDoingSpecialMove(20))
         {
             EndSpecialMove();
         }
@@ -235,6 +274,7 @@ defaultproperties
     begin object name=MeleeHelper class=KFMeleeHelperAI
         BaseDamage=15
         MyDamageType=Class'KFDT_Slashing_ZedWeak'
+        MomentumTransfer=25000
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedHusk.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
@@ -253,12 +293,12 @@ defaultproperties
     HitZones=/* Array type was not detected. */
     PenetrationResistance=2
     begin object name=Afflictions class=KFPawnAfflictions
-        InstantAffl=/* Array type was not detected. */
-        StackingAffl=/* Array type was not detected. */
         FireFullyCharredDuration=5
     object end
     // Reference: KFPawnAfflictions'Default__KFPawn_ZedHusk.Afflictions'
     AfflictionHandler=Afflictions
+    InstantIncaps=/* Array type was not detected. */
+    StackingIncaps=/* Array type was not detected. */
     KnockdownImpulseScale=1
     SprintSpeed=450
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent

@@ -70,7 +70,7 @@ package tripwire.containers.optionsControls
         {
             var _loc2_:BindingSection = new BindingSection();
             _loc2_.sectionIndex = param1.sectionIndex;
-            _loc2_.sectionHeader = param1.sectionHeader;
+            _loc2_.bindingHeader = param1.bindingHeader;
             _loc2_.pressKeyString = param1.pressKeyString;
             _loc2_.setCommandData(param1);
             _loc2_.addEventListener(DISABLE_LISTS,this.onDisableLists,false,0,true);

@@ -487,7 +487,7 @@ simulated state SprayingFire extends WeaponFiring
 		global.ConsumeAmmo(FireMode);
 
 		AmmoConsumed++;
-	}
+		}
 
 	/**
 	 * Check if current fire mode can/should keep on firing.
@@ -499,10 +499,10 @@ simulated state SprayingFire extends WeaponFiring
 	 * @return	true to fire again, false to stop firing and return to Active State.
 	 */
 	simulated function bool ShouldRefire()
-	{
+		{
 		// if doesn't have ammo to keep on firing, then stop
 		if( !HasAmmo( CurrentFireMode ) )
-		{
+			{
 			return false;
 		}
 

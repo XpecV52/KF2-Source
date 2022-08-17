@@ -10,9 +10,9 @@ package tripwire.containers
     import scaleform.clik.constants.NavigationCode;
     import scaleform.clik.core.UIComponent;
     import scaleform.clik.events.InputEvent;
+    import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.Extensions;
-    import scaleform.gfx.FocusManager;
     import tripwire.managers.MenuManager;
     
     public class TripContainer extends UIComponent
@@ -26,6 +26,8 @@ package tripwire.containers
         public var defaultFirstElement:UIComponent;
         
         protected var _bOpen:Boolean = false;
+        
+        protected var _bReadyForInput:Boolean = false;
         
         protected var _defaultAlpha:Number;
         
@@ -56,6 +58,8 @@ package tripwire.containers
         public var ANIM_OFFSET_X:Number = -24;
         
         public var bSelected:Boolean = false;
+        
+        public var sectionHeader:SectionHeaderContainer;
         
         public function TripContainer()
         {
@@ -113,7 +117,7 @@ package tripwire.containers
                         "onComplete":this.openAnimation
                     });
                 }
-                else if(!isNaN(this.ANIM_START_X))
+                else
                 {
                     this.alpha = 0;
                     this.openAnimation();
@@ -133,11 +137,15 @@ package tripwire.containers
             {
                 stage.addEventListener(InputEvent.INPUT,this.handleInput,false,0,true);
             }
-            if(this.bManagerUsingGamepad && this.currentElement)
+            if(this.bManagerUsingGamepad && this.currentElement && !MenuManager.manager.bPopUpOpen)
             {
                 this.currentElement.tabEnabled = true;
                 this.currentElement.tabChildren = true;
-                this.currentElement.focused = 1;
+                FocusHandler.getInstance().setFocus(this.currentElement);
+            }
+            if(this.sectionHeader != null)
+            {
+                this.sectionHeader.controllerIconVisible = !this.bSelected;
             }
         }
         
@@ -149,6 +157,7 @@ package tripwire.containers
                 this.deselectContainer();
                 this.closeAnimation();
                 stage.removeEventListener(MenuManager.INPUT_CHANGED,this.onInputChange);
+                mouseChildren = mouseEnabled = false;
                 if(this.currentElement)
                 {
                     this.currentElement = null;
@@ -170,11 +179,17 @@ package tripwire.containers
             {
                 this.currentElement.focused = 0;
             }
+            if(this.sectionHeader != null && this.bOpen)
+            {
+                this.sectionHeader.controllerIconVisible = !this.bSelected;
+            }
         }
         
         public function focusGroupIn() : void
         {
+            var _loc1_:* = visible;
             this.selectContainer();
+            visible = _loc1_;
         }
         
         public function focusGroupOut() : void
@@ -207,6 +222,10 @@ package tripwire.containers
         override public function handleInput(param1:InputEvent) : void
         {
             if(param1.handled)
+            {
+                return;
+            }
+            if(!this._bReadyForInput)
             {
                 return;
             }
@@ -278,7 +297,7 @@ package tripwire.containers
                 "useFrames":true,
                 "onComplete":this.onClosed
             });
-            FocusManager.setFocus(null);
+            FocusHandler.getInstance().setFocus(null);
         }
         
         protected function pushToBackAnimation() : *
@@ -303,11 +322,14 @@ package tripwire.containers
         
         protected function onOpened(param1:TweenEvent = null) : void
         {
+            mouseChildren = mouseEnabled = true;
+            this._bReadyForInput = true;
             play();
         }
         
         protected function onClosed(param1:TweenEvent = null) : void
         {
+            this._bReadyForInput = false;
             visible = false;
             this._bOpen = false;
             stop();

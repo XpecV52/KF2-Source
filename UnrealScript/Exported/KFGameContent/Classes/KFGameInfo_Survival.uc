@@ -33,25 +33,7 @@ class KFGameInfo_Survival extends KFGameInfo;
 
 
 
-
-
-
-
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
  
@@ -279,7 +261,7 @@ class KFGameInfo_Survival extends KFGameInfo;
 
 
 
-#linenumber 70;
+#linenumber 52;
 
 #linenumber 12;
 
@@ -334,7 +316,6 @@ class KFGameInfo_Survival extends KFGameInfo;
 
 
 
-
 #linenumber 13;
 
 enum EWaveEndCondition
@@ -355,7 +336,7 @@ var const float							EndCinematicDelay;		// time between the game ending, and t
 /************************************************************************************
  * AAR
  ***********************************************************************************/
-var const float							AARDisplayDelay;		
+var const float							AARDisplayDelay;
 
 var Array<AARAWard> TeamAwardList;
 
@@ -364,12 +345,6 @@ var Array<AARAWard> TeamAwardList;
  ***********************************************************************************/
 var	byte								WaveMax;	// The "end" wave
 var	int									WaveNum;	// The wave we are currently in
-
-/************************************************************************************
- * Spawning
- ***********************************************************************************/
-/** Available spawn managers (game length) */
-var	array< class<KFAISpawnManager> >   	SpawnManagerClasses;
 
 /************************************************************************************
  * Objectives
@@ -430,7 +405,7 @@ function StartMatch()
 		GotoState('DebugSuspendWave');
 	}
 	else
-	{	
+	{
 		GotoState('PlayingWave');
 	}
 }
@@ -475,6 +450,41 @@ function byte GetGameIntensityForMusic()
 	};
 
 	return 255;
+}
+
+function bool IsPlayerReady( KFPlayerReplicationInfo PRI )
+{
+	local KFPlayerController KFPC;
+
+	// Spawn our player even if we don't have a perk while using the editor or skip lobby
+	if (class'KFGameEngine'.static.CheckSkipLobby() || class'Engine'.static.IsEditor())
+ 	{
+ 		return true;
+ 	}
+
+	if( super.IsPlayerReady(PRI) )
+	{
+		KFPC = KFPlayerController(PRI.Owner);
+		if ( KFPC != None && (KFPC.CurrentPerk == None || !KFPC.CurrentPerk.bInitialized) )
+		{
+			// HSL - BWJ - 3-16-16 - console doesn't read stats yet, so no perk support. Adding this hack in for now so we can spawn in
+			if( WorldInfo.IsConsoleDedicatedServer() || WorldInfo.IsConsoleBuild() )
+			{
+				WarnInternal("TODO: Need perk support for console");
+				return true;
+			}
+			else
+			{
+				LogInternal("ERROR: Failed to load perk for:"@KFPC@KFPC.CurrentPerk);
+				//ForceKickPlayer(KFPC, "Failed to find perk");
+				return false; // critical error
+			}
+		}
+
+		return true;
+	}
+
+	return false;
 }
 
 function bool PlayerCanRestart( PlayerController aPlayer )
@@ -603,6 +613,7 @@ function UpdateGameSettings()
 			//Ensure bug-for-bug compatibility with KF1
 			if (KFGameSettings != None)
 			{
+				KFGameSettings.Mode = GetGameModeNum();
 				KFGameSettings.Difficulty = GameDifficulty;
 				//Ensure bug-for-bug compatibility with KF1
 				if (WaveNum == 0)
@@ -619,7 +630,7 @@ function UpdateGameSettings()
 				KFGameSettings.NumWaves = WaveMax - 1;
 				KFGameSettings.OwningPlayerName = class'GameReplicationInfo'.default.ServerName;
 
-				KFGameSettings.NumPublicConnections = MaxPlayers;
+				KFGameSettings.NumPublicConnections = MaxPlayersAllowed;
 				KFGameSettings.bRequiresPassword = RequiresPassword();
 				KFGameSettings.bCustom = bIsCustomGame;
 				KFGameSettings.bUsesStats = !bIsUnrankedGame;
@@ -635,6 +646,45 @@ function UpdateGameSettings()
 		}
 	}
 }
+
+function int GetGameModeNum()
+{
+	return class'KFGameInfo'.static.GetGameModeNumFromClass( PathName(default.class) );
+}
+
+function int GetNumHumanTeamPlayers()
+{
+	local PlayerController P;
+	local int TotalPlayers, ZedTeamPlayers, HumanTeamPlayers;
+
+	// We call PreClientTravel directly on any local PlayerPawns (ie listen server)
+	foreach WorldInfo.AllControllers(class'PlayerController', P)
+	{
+        //`log(GetFuncName()@P$" team = "$P.PlayerReplicationInfo.Team$" team index = "$P.PlayerReplicationInfo.Team.TeamIndex$" P.GetTeamNum() = "$P.GetTeamNum()$" P.bIsPlayer = "$P.bIsPlayer);
+        if( P.bIsPlayer && P.GetTeamNum() == 255 )
+        {
+            ZedTeamPlayers++;
+        }
+	}
+
+    TotalPlayers = GetNumPlayers();
+    HumanTeamPlayers = TotalPlayers - ZedTeamPlayers;
+    //`log(GetFuncName()$" TotalPlayers: "$TotalPlayers$" ZedTeamPlayers: "$ZedTeamPlayers$" HumanTeamPlayers: "$HumanTeamPlayers);
+    return HumanTeamPlayers;
+}
+
+/**
+ * Return whether Viewer is allowed to spectate from ViewTarget's PoV.
+ *   Used to prevent players from spectating zeds when the DummyPRI is active.
+ *
+ */
+function bool CanSpectate( PlayerController Viewer, PlayerReplicationInfo ViewTarget )
+{
+    // Normal PRI's should be replicatable, DummyPRI is not, indicating a zed
+    return ( super.CanSpectate(Viewer, ViewTarget)
+    		&& (Viewer.PlayerReplicationInfo.bOnlySpectator || Viewer.GetTeamNum() == ViewTarget.GetTeamNum() || MyKFGRI.bTraderIsOpen) );
+}
+
 
 /************************************************************************************
  * Timers
@@ -955,6 +1005,11 @@ function StartWave()
 	NumAISpawnsQueued = 0;
 	AIAliveCount = 0;
 
+	if( WorldInfo.NetMode != NM_DedicatedServer && Role == ROLE_Authority )
+	{
+		MyKFGRI.UpdateHUDWaveCount();
+	}
+
 	WaveStarted();
 
 	MyKFGRI.AIRemaining = SpawnManager.WaveTotalAI;
@@ -965,7 +1020,7 @@ function StartWave()
     SetupNextTrader();
 
 	ResetAllPickups();
-	
+
 	if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.SetTraderTime( false );
 
 	// first spawn and music are delayed 5 seconds (KFAISpawnManager.TimeUntilNextSpawn == 5 initially), so line up dialog with them;
@@ -983,7 +1038,7 @@ function ResetPickups( array<KFPickupFactory> PickupList, int NumPickups )
 	{
 		NumPickups = 1;
 	}
-	
+
 	super.ResetPickups( PickupList, NumPickups );
 }
 
@@ -991,7 +1046,7 @@ function ResetPickups( array<KFPickupFactory> PickupList, int NumPickups )
 function SetupNextTrader()
 {
 	local byte NextTraderIndex;
-	
+
 	if( TraderList.Length > 0 )
 	{
 		NextTraderIndex = DetermineNextTraderIndex();
@@ -1015,10 +1070,12 @@ function byte DetermineNextTraderIndex()
 
 	NextTraderIndex = Rand( TraderList.Length );
 
+
 	if( BaseMutator != none )
 	{
 		BaseMutator.ModifyNextTraderIndex( NextTraderIndex );
 	}
+
 
 	return NextTraderIndex;
 }
@@ -1048,10 +1105,15 @@ function WaveStarted()
 						   KFPC.GetPerk().Class.Name,
 						   KFPC.GetPerk().GetLevel(),
 						   "#"$KFPC.PlayerReplicationInfo.Score,
-						   KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory(),
-						   KFPC.GetPerk().DumpPerkLoadout() );
+						   KFPC.Pawn != none ? KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory() : "",
+						   KFPC.GetPerk().DumpPerkLoadout(),
+						   KFPC.PlayerReplicationInfo.GetTeamNum()
+						  );
 		}
+
+		;
 	}
+
 
 	// Get the gameplay sequence.
 	GameSeq = WorldInfo.GetGameSequence();
@@ -1100,10 +1162,11 @@ function CheckWaveEnd( optional bool bForceWaveEnd = false )
 function WaveEnded(EWaveEndCondition WinCondition)
 {
 	local KFPlayerController KFPC;
+	local bool bOpeningTrader;
 
 	MyKFGRI.NotifyWaveEnded();
 	if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.SetTraderTime( !MyKFGRI.IsFinalWave() );
-	
+
     if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("wave_end", None, "#"$WaveNum, GetEnum(enum'EWaveEndCondition',WinCondition), "#"$GameConductor.CurrentWaveZedVisibleAverageLifeSpan);
 
 	// IsPlayInEditor check was added to fix a scaleform crash that would call an actionscript function
@@ -1120,6 +1183,7 @@ function WaveEnded(EWaveEndCondition WinCondition)
 		if( WaveNum < WaveMax )
 		{
 			GotoState('TraderOpen');
+			bOpeningTrader = true;
 		}
 		else
 		{
@@ -1132,32 +1196,13 @@ function WaveEnded(EWaveEndCondition WinCondition)
 		// save online stats
 		KFPC.ClientWriteAndFlushStats();
 
-		// log player analytics (must come before MatchStats are reset!)
+		// submit online player analytics
 		LogWaveEndAnalyticsFor(KFPC);
 
-		// For local players we can record AAR now, otherwise replicate
-		if( !KFPC.IsLocalPlayerController() )
-		{
-			KFPC.ReplicatePWRI();
-		}
-		else
-		{
-			KFPC.MatchStats.RecordWaveInfo();
-		}
-
-		// @todo: this never worked - fixme
-		//if( WinCondition == WEC_WaveWon && !MyKFGRI.IsFinalWave() )
-		//{
-		//	`SafeTraderDialogManager.PlayBeginTraderTimeDialog( KFPC, WorldInfo );
-		//}
+		// submit aar/dialog stats
+		KFPC.SubmitPostWaveStats(bOpeningTrader);
 
 		;
-	}
-
-	// Unless we're playing solo we'll need to reset MatchStats
-	if( WorldInfo.NetMode != NM_Standalone )
-	{
-		SetTimer(1.f, false, nameof(ResetWaveReplicationInfo));
 	}
 }
 
@@ -1191,8 +1236,8 @@ function LogWaveEndAnalyticsFor(KFPlayerController KFPC)
 				   "#"$KFPC.GetPerk().GetLevel(),
 				   "#"$KFPC.PlayerReplicationInfo.Score,
 				   "#"$KFPC.PlayerReplicationInfo.Kills,
-				   KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory() );
-	
+				   KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory());
+
 	KFPC.MatchStats.GetTopWeapons( 3, Weapons );
 
 	for ( i = 0; i < Weapons.Length; ++i )
@@ -1204,20 +1249,6 @@ function LogWaveEndAnalyticsFor(KFPlayerController KFPC)
 					   "#"$Weapons[i].DamageAmount,
 					   "#"$Weapons[i].HeadShots, 
 					   "#"$Weapons[i].LargeZedKills );
-	}
-}
-
-/** Called shortly after we call ReplicatePWRI to clear wave data after replication */
-function ResetWaveReplicationInfo()
-{
-	local KFPlayerController KFPC;
-
-	ForEach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
-	{
-		if( KFPC.Role == ROLE_Authority )
-		{
-			KFPC.ResetLastWaveInfo();
-		}
 	}
 }
 
@@ -1250,7 +1281,7 @@ State TraderOpen
 
 		MyKFGRI.OpenTrader(TimeBetweenWaves);
 		NotifyTraderOpened();
-		
+
 		BroadcastLocalizedMessage(class'KFLocalMessage_Priority', GMT_WaveEnd);
 
 		if ( AllowBalanceLogging() )
@@ -1340,9 +1371,18 @@ function NotifyTraderOpened()
 		{
 			LogPlayersKillCount();
 		}
-		
+
 		SetTimer(1, false, nameof(ProcessAwards));
 		SetTimer(AARDisplayDelay, false, nameof(ShowPostGameMenu));
+	}
+
+	event Timer()
+	{
+		global.Timer();
+		if (NumPlayers == 0)
+		{
+			RestartGame();
+		}
 	}
  }
 
@@ -1351,7 +1391,7 @@ function EndOfMatch(bool bVictory)
 	local KFPlayerController KFPC;
 
 	if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("match_end", None, "#"$WaveNum, "#"$(bVictory ? "1" : "0"), "#"$GameConductor.ZedVisibleAverageLifespan);
-	
+
 	if(bVictory)
 	{
 		SetTimer(EndCinematicDelay, false, nameof(SetWonGameCamera));
@@ -1365,16 +1405,18 @@ function EndOfMatch(bool bVictory)
 	}
 	else
 	{
-		BroadcastLocalizedMessage(class'KFLocalMessage_Priority',GMT_MatchLost);
+		BroadcastLocalizedMessage(class'KFLocalMessage_Priority', GMT_MatchLost);
 		SetZedsToVictoryState();
 	}
 
+
+	WorldInfo.TWRefreshTweakParams();
 	WorldInfo.TWPushLogs();
-	
+
 	GotoState('MatchEnded');
 }
 
-//Get Top voted map 
+//Get Top voted map
 function string GetNextMap()
 {
 	local KFGameReplicationInfo KFGRI;
@@ -1419,7 +1461,7 @@ function ShowPostGameMenu()
 {
 	local KFGameReplicationInfo KFGRI;
 
-	bEnableDeadToDeadVOIP=true; //Being dead at this point is irrelevant.  Allow players to talk about AAR -ZG
+	bEnableDeadToVOIP=true; //Being dead at this point is irrelevant.  Allow players to talk about AAR -ZG
 	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
 
 	if(KFGRI != none)
@@ -1428,7 +1470,7 @@ function ShowPostGameMenu()
 	}
 
 	class'EphemeralMatchStats'.Static.SendMapOptionsAndOpenAARMenu();
-	
+
 	UpdateCurrentMapVoteTime(MapVoteDuration, true);
 }
 
@@ -1442,10 +1484,11 @@ function UpdateCurrentMapVoteTime(byte NewTime, optional bool bStartTime)
 	if(WorldInfo.GRI.RemainingTime > NewTime || bStartTime)
 	{
 		ClearTimer(nameof(RestartGame));
-		SetTimer(NewTime, false, nameof(RestartGame));	
+		SetTimer(NewTime, false, nameof(RestartGame));
 		WorldInfo.GRI.RemainingMinute = NewTime;
 		WorldInfo.GRI.RemainingTime  = NewTime;
 	}
+
 	//in the case that the server has a 0 for the time we still want to be able to trigger a server travel.
 	if(NewTime <= 0 || WorldInfo.GRI.RemainingTime <= 0)
 	{
@@ -1478,11 +1521,11 @@ function UpdateCurrentMapVoteTime(byte NewTime, optional bool bStartTime)
 		foreach WorldInfo.AllControllers(class'PlayerController', PC)
 		{
  			PC.ClientMessage("Survival: Spawn resumed");
- 		}
+		}
 	}
 }
 
-/** 
+/**
  * Invoke the CheatManager function.  For some reason calling
  * ConsoleCommand directly on the GI does not follow through, so
  * as a workaround just find a PC and assume they have cheats on
@@ -1506,19 +1549,18 @@ defaultproperties
    TimeBetweenWaves=60
    EndCinematicDelay=4.000000
    AARDisplayDelay=15.000000
-   SpawnManagerClasses(0)=Class'KFGame.KFAISpawnManager_Short'
-   SpawnManagerClasses(1)=Class'KFGame.KFAISpawnManager_Normal'
-   SpawnManagerClasses(2)=Class'KFGame.KFAISpawnManager_Long'
-   SpawnManagerClasses(3)=Class'KFGame.KFAISpawnManager_Normal'
    ObjectiveCheckIntervall=30.000000
    MinAIAlivePercReqForObjStart=0.300000
    bCanPerkAlwaysChange=False
    bEnableGameAnalytics=True
-   bEnableDevAnalytics=True
    MaxRespawnDosh(0)=1750.000000
    MaxRespawnDosh(1)=1550.000000
    MaxRespawnDosh(2)=1550.000000
    MaxRespawnDosh(3)=1000.000000
+   MaxGameDifficulty=3
+   SpawnManagerClasses(0)=Class'KFGame.KFAISpawnManager_Short'
+   SpawnManagerClasses(1)=Class'KFGame.KFAISpawnManager_Normal'
+   SpawnManagerClasses(2)=Class'KFGame.KFAISpawnManager_Long'
    AIClassList(0)=Class'kfgamecontent.KFPawn_ZedClot_Cyst'
    AIClassList(1)=Class'kfgamecontent.KFPawn_ZedClot_Slasher'
    AIClassList(2)=Class'kfgamecontent.KFPawn_ZedClot_Alpha'
@@ -1534,6 +1576,7 @@ defaultproperties
    AIBossClassList(1)=Class'kfgamecontent.KFPawn_ZedPatriarch'
    GameplayEventsWriterClass=Class'KFGame.KFGameplayEventsWriter'
    TraderVoiceGroupClass=Class'kfgamecontent.KFTraderVoiceGroup_Default'
+   MaxPlayers=6
    GameName="Survival"
    Name="Default__KFGameInfo_Survival"
    ObjectArchetype=KFGameInfo'KFGame.Default__KFGameInfo'

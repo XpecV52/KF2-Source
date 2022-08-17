@@ -45,12 +45,14 @@ package tripwire.menus
         public function OptionsControlsMenu()
         {
             super();
+            defaultNumPrompts = 2;
             enableInitCallback = true;
             defaultFirstElement = this.tabButtonBar;
             this.closeButton.addEventListener(ButtonEvent.PRESS,this.closeMenu,false,0,true);
             this.keybindingsContainer.visible = false;
             this.inputContainer.visible = false;
             this.controllerPresetsContainer.visible = false;
+            sectionHeader = this.header;
         }
         
         public function set localizedText(param1:Object) : void
@@ -166,12 +168,6 @@ package tripwire.menus
                     }
                     this._currentContainer = this.getContainer(this.currentIndex);
                     this._currentContainer.openContainer();
-                    this._currentContainer.deselectContainer();
-                    this.selectContainer();
-                    if(!bManagerUsingGamepad)
-                    {
-                        this.tabSelect();
-                    }
                 }
             }
         }
@@ -191,16 +187,12 @@ package tripwire.menus
                 this._currentContainer = this.getContainer(this.currentIndex);
                 if(this._currentContainer)
                 {
-                    this.deselectContainer();
                     tabEnabled = true;
                     tabChildren = true;
-                    if(currentElement)
+                    if(sectionHeader != null && bOpen)
                     {
-                        currentElement.focused = 0;
-                        currentElement.tabEnabled = false;
-                        currentElement.tabChildren = false;
+                        sectionHeader.controllerIconVisible = false;
                     }
-                    this._currentContainer.selectContainer();
                     this._currentContainer.addEventListener(IndexEvent.INDEX_CHANGE,this.listenForContainer,false,0,true);
                 }
             }

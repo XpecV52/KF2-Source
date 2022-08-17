@@ -1,0 +1,324 @@
+//NOTES: 
+//1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
+//2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
+//3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
+//ItemDescription="Double-barreled, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest zeds will stagger when hit with both barrels. We found it in an old farm-house and //canned it for the Trader Pod. Hope you live longer than the farmer."
+
+[Armor]
+ItemName="Savaş Zırhı"
+ItemCategory="Equipment"
+ItemDescription="• Savaş zırhı sizi birçok hasar çeşidinden korur fakat bu süreçte etkisi düşer\n• Yeni bir zırh alın veya hasarlı zırhınızı Tüccarda tamir ettirin\n\nBu ceket, yüksek teknoloji fiber ve tungsten çeliğinden yapılmış levhalardan oluşturulmuştur."
+
+[KFProj_DynamiteGrenade]
+ItemName="1/2 Dinamit"
+ItemCategory =" Patlayıcılar"
+ItemDescription="• Bir fünye eklenmiş küçük bir parça dinamit.\n• Ayrıca sana da zarar verir bu yüzden dikkatli ol!"
+
+[KFProj_MedicGrenade]
+ItemName="Doktor Bombası"
+ItemCategory =" Patlayıcılar"
+ItemDescription="• Zedleri zehirleyen bir gaz salar ama aynı zamanda insanları da iyileştirir\n• İyileşmek için mavi gaz bulutunun içinde dur\n\nBilim adamlarımızdan birinden alıntı yaparsak: 'Bu bombalardan yayılan katkı maddesi insan ırkını canlandırırken zed ırkına ötanazi yapacak.' Umarım yardımı dokunur."
+
+[KFProj_MolotovGrenade]
+ItemName="Molotof Kokteyli"
+ItemCategory="Patlayıcılar"
+ItemDescription="• Oldukça basit, Zedleri yakan bir alev bombası. \n• Unutma ki sana da zarar verebilir!\n\n Finlandiyalılar tarafından 1929-40 Kış Savaşları esnasında, hakaret edercesine Stalin'in dönemindeki Sovyet Dışişleri Bakanı Vyacheslav Mikhailovich Molotov'un ardından isimlendirilmiş olup... Pardon, tarih dersi istememiş miydiniz?"
+
+[KFProj_EMPGrenade]
+ItemName="EMP Bombası"
+ItemCategory="Patlayıcılar"
+ItemDescription="• Zedlere hem hasar veren hem de onları kısa bir süreliğine şaşırtabilecek bir elektrik darbesi oluşturur.\n\nDaha fazla detay istiyorsan - patlama esnasında, kısa bir süre içinde elektrik sistemlerini bozacak bir nanosaniyelik elektromanyetik darbe üretir. Özellikle Zedler için kullanışlı."
+
+[KFProj_HEGrenade]
+ItemName="YP El Bombası"
+ItemCategory="Patlayıcılar"
+ItemDescription="• Çok basit, yüksek patlayıcı el bombası. Hem Zedlerin hem de insanların canını yakar.\n\nGerçekten daha basit olamaz. YP - Yüksek Patlayıcı- GÜM olur ve bir şeyler patlar. Sana gerçekten açıklamak zorunda mıyız?"
+
+[KFProj_FragGrenade]
+ItemName="Parça Tesirli El Bombası"
+ItemCategory="Patlayıcılar"
+ItemDescription="• Klasik şarapnel bombası: etrafına küçük kötü metal parçacıklar fırlatır, her şeye zarar verir.\n\nHepinizin Salgın öncesi yeterince video oyunları oynadığına eminim, bu yüzden şarapnel bombasının ne olduğunu gayet iyi bildiğinizi biliyorum. Ve bilmediğini söylemekten vazgeç. Burada hiç kimse sana inanmayacak."
+
+[KFProj_NailBombGrenade]
+ItemName="Çivi Bombası"
+ItemCategory =" Patlayıcılar"
+ItemDescription="• Ortasında ufak bir patlayıcı olan, eski çivilerle dolu basit bir kutu.\n\nZed'lerle başa çıkmanın en zarif veya hoş yolu değil ancak Zed'lerin ne zarif ne de hoş yanları var, değil mi?"
+
+[KFWeap_Healer_Syringe]
+ItemName="Tıbbi Şırınga"
+ItemCategory="Ekipman"
+
+[KFWeap_Welder]
+ItemName="Kaynak Makinesi"
+ItemCategory="Ekipman"
+
+[KFWeap_Pistol_9mm]
+ItemName="9mm Tabanca"
+ItemCategory="El Silahı"
+ItemDescription="• Atış modu sadece yarı otomatik.\n• Bu standart 9mm pistoldür. Basit ve ucuz (çok ucuz, harbiden, senin için) bu tüm Horzine operatörleri için temel yedek silahtır."
+
+[KFWeap_Pistol_Deagle]
+ItemName=".50 Desert Eagle"
+ItemCategory="El Silahı"
+ItemDescription="• Atış modu sadece yarı otomatik.\n• Çöl Kartalı, el silahlarının en iyisi olduğundan hepimiz onu 'El Topu' olarak biliyoruz."
+
+[KFWeap_AssaultRifle_AR15]
+ItemName="AR-15 Varmint Tüfeği"
+ItemCategory="Saldırı Tüfeği"
+ItemDescription="• Seçime bağlı üçlü veya tekli atış modları vardır.\n• Alternatif atış tuşu bu modlar arasında geçiş yapar.\n• Bu zedler içindir, ayak takımı için değil."
+
+[KFWeap_AssaultRifle_SCAR]
+ItemName="SCAR-H Saldırı Tüfeği"
+ItemCategory="Saldırı Tüfeği"
+ItemDescription="• Seçime bağlı tam otomatik veya yarı otomatik atış modları vardır.\n• Alternatif atış tuşu bu modlar arasında geçiş yapar.\n• Amerikan Özel Operasyon Birliği için özel olarak geliştirilmiştir. Kesinlikle çok özeldir!"
+
+[KFWeap_AssaultRifle_AK12]
+ItemName="Kalaşnikov AK-12"
+ItemCategory="Saldırı Tüfeği"
+ItemDescription="• Seçime bağlı Tam otomatik veya üçlü atış modları vardır.\n• Alternatif atış tuşu bu modlar arasında geçiş yapar.\n• Bu AK-12 inceleme amacıyla ölü bir Rus Spetsnaz operatöründen alınmıştır."
+
+[KFWeap_AssaultRifle_Bullpup]
+ItemName="SA80 L85A2 Bullpup"
+ItemCategory="Saldırı Tüfeği"
+ItemDescription="• Tam otomatik ve yarı otomatik atış modu seçimi.\n• Alternatif atış modlar arasında geçiş yapar.\n• İngiliz Ordusu yenmeden önce SA80 İngiliz Ordusu'nun standart silahıydı."
+
+[KFWeap_Knife_Demolitionist]
+ItemName="Maket Bıçağı"
+ItemCategory="Yakın Dövüş"
+ItemDescription="• Birincil - hızlı kesici saldırı, Kombo saldırılar için basılı tutun.\n• İkincil - ağır kesici saldırı\n• Alternatif - engelleme/savuşturma\n• Bu bir kutu kesici. Killing Floor'da rastladığınız herhangi bir kutuyu açmak için mükemmel."
+
+[KFWeap_Knife_FieldMedic]
+ItemName="Neşter"
+ItemCategory="Yakın Dövüş"
+ItemDescription="• Birincil - hızlı kesici saldırı, Kombo saldırı için basılı tutun.\n• İkincil - ağır kesici saldırı\n• Alternatif - engelleme/savuşturma\n• Bu bir neşter. Sen bir doktorsun, bu yüzden bunu nasıl kullanacağını sana açıklamaya gerek olmadığını düşünüyoruz."
+
+[KFWeap_Knife_Firebug]
+ItemName="İtfaiyeci Bıçağı"
+ItemCategory="Yakın Dövüş"
+ItemDescription="• Birincil - hızlı kesici saldırı, Kombo saldırı için basılı tutun.\n• İkincil - ağır kesici saldırı\n• Alternatif - engelleme/savuşturma\n• Bu bir itfaiyeci bıçağı. Sen bir itfaiyecisin, bu yüzden bunu nasıl kullanacağını sana açıklamaya gerek olmadığını düşünüyoruz."
+
+[KFWeap_Knife_Gunslinger]
+ItemName="Eğri Av Bıçağı"
+ItemCategory="Yakın Dövüş"
+ItemDescription="• Birincil - hızlı kesici saldırı, Kombo saldırı için basılı tutun.\n• İkincil - ağır kesici saldırı\n• Alternatif - engelleme/savuşturma\n• Eski Batı'nın büyük boy bıçağı. Dilimleme ve şimdi burada Zedleri küp küp doğramak için için mükemmeldir."
+
+[KFWeap_Knife_Sharpshooter]
+ItemName="Kukri"
+ItemCategory="Melee"
+ItemDescription=""
+
+[KFWeap_Pistol_Medic]
+ItemName="HMTech-101 Tabanca"
+ItemCategory="Tabanca"
+ItemDescription="• Atış modu sadece yarı otomatik.\n• Alternatif atış takım üyelerini iyileştirmek için iyileştirici dart fırlatır.\n• Kovansız mühimmat kullanarak sizin için mermi sayar."
+
+[KFWeap_SMG_Medic]
+ItemName="HMTech-201 SMG"
+ItemCategory="Hafif Makineli Silah"
+ItemDescription="• Atış modu sadece tam otomatiktik.\n• Alternatif atış takım arkadaşlarını iyileştirmek için iyileştiren dartlar atar.\n• Tabancan güçlendirildi!"
+
+[KFWeap_Shotgun_Medic]
+ItemName="HMTech-301 Av Tüfeği"
+ItemCategory="Av Tüfeği"
+ItemDescription="• Atış modu sadece yarı otomatik.\n• Alternatif atış takım üyeleri iyileşmek için iyileştirici dart ateş eder.\n• Medic için savaş av tüfeği versiyonu."
+
+[KFWeap_AssaultRifle_Medic]
+ItemName="HMTech-401 Saldırı Tüfeği"
+ItemCategory="Saldırı Tüfeği"
+ItemDescription="• Atış modu sadece tam otomatik.\n• Alternatif atış ekip üyelerini iyileştirmek için iyileştirici dart ateşler.\n• Tam gelişmiş saldırı tüfeği versiyonu."
+
+[KFWeap_Shotgun_DoubleBarrel]
+ItemName="Çift Namlulu Pompalı"
+ItemCategory="Av Tüfeği"
+ItemDescription="• Birincil sadece tek namlu kullanır.\n• Alternatif atış aynı anda iki namlu ateşler.\n• Çift Namlulu, yan yana 12-kalibreli av tüfeği. Yakın mesafeli savaş için idealdir. Hatta en büyük zedleri bile bocalatır!"
+
+[KFWeap_Shotgun_AA12]
+ItemName="AA-12 Otomatik Av Tüfeği"
+ItemCategory="Av Tüfeği"
+ItemDescription="• Tam otomatik ve yarı otomatik atış modu seçimi.\n• Alternatif atış, atış modları arası geçiş yapar.\n• AA-12 otomatik bir pompalıdır. Orta mesafede yıkıcı bir güce sahip ama tam otomatik bir şekilde mermi tüketir."
+
+[KFWeap_Shotgun_MB500]
+ItemName="SG 500 Pompalı"
+ItemCategory="Av Tüfeği"
+ItemDescription="• Atış modu sadece pompalı.\n• Tabanca kabzalı pompalı Mossberg SG 500 yakın kesimlerde harika bir Zed öldürücüdür. Basit ve etkili."
+
+[KFWeap_Shotgun_M4]
+ItemName="M4 Savaş Tüfeği"
+ItemCategory="Av Tüfeği"
+ItemDescription="• Atış modu sadece yarı otomatik.\n• Benelli, ABD Ordusu için M4 Combat Av Tüfeği olarak tasarlandı. Yarı otomatik için iyi, sabit bir atış oranı sağlar."
+
+[KFWeap_Knife_Berserker]
+ItemName="Çim Biçme Bıçağı"
+ItemCategory="Yakın Dövüş"
+ItemDescription="• Birincil - hızlı kesici saldırı, Kombo saldırı için basılı tutun.\n• İkincil - ağır kesici saldırı\n• Alternatif - engelleme/savuşturma\n• Evet, aslında bu bir çim biçme makinesi bıçak. Tadını çıkar!"
+
+[KFWeap_Knife_Commando]
+ItemName="KF-BAR"
+ItemCategory="Yakın Dövüş"
+ItemDescription="• Birincil - hızlı kesici saldırı, Kombo saldırı için basılı tutun.\n• İkincil - ağır kesici saldırı\n• Alternatif - engelleme/savuşturma\n• Klasik komando bıçağının horizon versiyonu."
+
+[KFWeap_Knife_Support]
+ItemName="Pala"
+ItemCategory="Yakın Dövüş"
+ItemDescription="• Birincil - hızlı kesici saldırı, Kombo için birincile basılı tutun\n• İkincil - Ağır kesici saldırı\n• Alternatif - engelleme/savuşturma\n• Sırf size en büyük bıçağı verdik diye kendinizi özel hissetmeyin."
+
+[KFWeap_Edged_Katana]
+ItemName="Katana"
+ItemCategory="Yakın Dövüş"
+ItemDescription="• Birincil - hızlı kesici saldırı, Kombo saldırı için basılı tutun.\n• İkincil - ağır kesici saldırı\n• Alternatif - engelleme/savuşturma\n• Deneyin ve bu sınıf için biraz saygı gösterin."
+
+[KFWeap_Blunt_Crovel]
+ItemName="Crovel Hayatta Kalma Aleti"
+ItemCategory="Yakın Dövüş"
+ItemDescription="• Birincil - hızlı kesici saldırı, Kombo saldırı için basılı tutun.\n• İkincil - ağır köreltilmiş saldırı\n• Alternatif - engelleme/savuşturma\n• Levye parçası, kürek parçası , tamamen öldürücü."
+
+[KFWeap_Shotgun_Nailgun]
+ItemName="VLAD-1000 Çivi Tabancası"
+ItemCategory="Av Tüfeği"
+ItemDescription="• Tekli veya çoklu çivi atış modu.\n• Alternatif Atış atış modları arasında geçiş yapar.\n• Bir Horzine bilim adamının orijinal çivi tabancasını (ölü) tamirciden ödünç aldığını biliyoruz."
+
+[KFWeap_Blunt_Pulverizer]
+ItemName="Öğütücü"
+ItemCategory="Yakın Dövüş"
+ItemDescription="• Birincil - hızlı köreltilmiş saldırı, Kombo saldırı için Birincile basılı tutun\n• İkincil patlayıcı mermiler ateşler. Boş olduğunda, İkincil ağır köreltilmiş saldırı yapar - yani silahı doldurmayı unutma!\n• Alternatif - engelleme/savuşturma"
+
+[KFWeap_Eviscerator]
+ItemName="Bağırsak Deşici"
+ItemCategory="Özel"
+ItemDescription="• Birincil testere bıçakları ateşler.\n• Alternatif Atış yakın dövüş saldırısı yapar fakat yakıtı hızlı kullanır.\n• Horzine'nin SDS grubunun orijinal tasarımı, vahşi oldukları anda, bu canavar hoş olmaz."
+SecondaryAmmo="Benzin"
+
+[KFWeap_Edged_Zweihander]
+ItemName="Zweihänder"
+ItemCategory="Yakın Dövüş"
+ItemDescription="• Birincil - Biraz karışık kontrollü orta/ağır hasar.\n• İkincil - Daha fazla hasar ama daha yavaş.\n• Alternatif - engelleme/savuşturma\n• İleri hareket ederken daha fazla hasar verirsin."
+SharedUnlockSource="Chivalry Medieval Warfare"
+
+[KFWeap_Flame_CaulkBurn]
+ItemName="Alev Püskürtücü"
+ItemCategory="Alevliler"
+ItemDescription="• Atış modu alev püskürtür.\n• Elle tutulan ev yapımı alev silahı. Lütfen bunu evde DENEMEYİN."
+
+[KFWeap_Shotgun_DragonsBreath]
+ItemName="Yanıcı Pompalı"
+ItemCategory="Av Tüfeği"
+ItemDescription="• Atış modu sadece pompalı.\n• Ejderha'nın Nefesi Yanıcı Mermilerini kullanan bir av tüfeği. Sadece ölümcül değil, harika da görünüyor."
+
+[KFWeap_Flame_Flamethrower]
+ItemName="Alev Püskürtücü"
+ItemCategory="Alevliler"
+ItemDescription="• Atış modu alev püskürtür. Bu kadar.\n• Herhangi bir nesilin klasiği. Şüpheniz varsa, sadece her şeyi yakın."
+
+[KFWeap_Beam_Microwave]
+ItemName="Mikrodalga Silahı"
+ItemCategory="Alevliler"
+ItemDescription="• Atış modu mesafeli olarak Zedlerin içini ve dışını yakmak için mikrodalga kullanır.\n• Alternatif atış yakın mesafeli mikrodalga patlaması oluşturur.\n• Teknolojinin harikaları. Bir elli Zed ocağı."
+
+[KFWeap_Thrown_C4]
+ItemName="C4 Patlayıcı"
+ItemCategory="Patlayıcılar"
+ItemDescription="• Birincil ateş C4 yerleştirir.\n• Alternatif ateş C4'lerinizi yerleştirdiğiniz sıra ile patlatır.\n• Arzu edildiğinde uzaktan patlatılmaya ayarlanmış bir kalıp C4."
+
+[KFWeap_GrenadeLauncher_HX25]
+ItemName="HX25 Bomba Tabancası"
+ItemCategory="Patlayıcılar"
+ItemDescription="• Atış modu temas halinde patlayacak birden fazla misket bombası ateşler."
+
+[KFWeap_GrenadeLauncher_M79]
+ItemName="M79 Bomba Atar"
+ItemCategory="Patlayıcılar"
+ItemDescription="• Atış modu bomba fırlatır.\n• Bomba isabet halinde patlar.\n• Sadece yüzünü patlatmamak için kollarını birkaç metre aşağıda tut."
+
+[KFWeap_RocketLauncher_RPG7]
+ItemName="RPG-7"
+ItemCategory="Patlayıcılar"
+ItemDescription="• Atış modu roket fırlatır.\n• Roket isabet halinde patlar.\n• Sadece yüzünü patlatmamak için kollarını birkaç metre aşağıda tut.\n• Ve arkadaki patlamayı izle!"
+
+[KFWeap_Pistol_Dual9mm]
+ItemName="Çift 9mm Tabanca"
+ItemCategory="El Silahı"
+ItemDescription="• Sadece yarı-otomatik atış modu.\n• Nişan alırken alternatif ateş tuşu nişan biçimlerini değiştirir.\n• Bir çift 9mm tabanca. İhtiyacınız olduğunda (sadece) birini satabilirsiniz."
+
+[KFWeap_Pistol_Colt1911]
+ItemName="M1911 Tabanca"
+ItemCategory="El Silahı"
+ItemDescription="• Atış modu sadece yarı otomatik.\n• Klasik Colt 1911 yarı otomatik tabanca."
+
+[KFWeap_Pistol_DualColt1911]
+ItemName="Çift M1911 Tabanca"
+ItemCategory="El Silahı"
+ItemDescription="• Atış modu sadece yarı otomatik.\n• Alternatif atış, gez ve arpacıktan bakarken nişan alma tarzını değiştirir.\n• Bu bir çift yarı otomatik Colt 1911 tabancaları. Her biri tekil olarak satılabilir ya da yere bırakılabilir."
+
+[KFWeap_Pistol_Deagle]
+ItemName=".50 Desert Eagle"
+ItemCategory="El Silahı"
+ItemDescription="• Atış modu sadece yarı otomatik.\n• Çöl Kartalı, el silahlarının en iyisi olduğundan hepimiz onu 'El Topu' olarak biliyoruz."
+
+[KFWeap_Pistol_DualDeagle]
+ItemName="Çift .50 Desert Eagle"
+ItemCategory="El Silahı"
+ItemDescription="• Atış modu sadece yarı otomatik.\n• Alternatif atış, gez ve arpacıktan bakarken nişan alma tarzını değiştirir.\n• Bir çift el topu Desert Eagle. Her biri tekil olarak satılabilir ya da yere bırakılabilir."
+
+[KFWeap_Revolver_Rem1858]
+ItemName="1858 Altıpatlar"
+ItemCategory="El Silahı"
+ItemDescription="• Atış modu sadece tek atış.\n• 6 atışlı tek eylemli Ordu altıpatları Remington 'Model 1858' .44 kalibreli harika bir örnek. Eski ama yine de güçlü."
+
+[KFWeap_Revolver_DualRem1858]
+ItemName="Çift 1858 Altıpatlar"
+ItemCategory="El Silahı"
+ItemDescription="• Atış modu sadece yarı otomatik.\n• Alternatif atış, gez ve arpacıktan bakarken nişan alma tarzını değiştirir.\n• Bir çift altı patlar Remington 1858. Her biri tekil olarak satılabilir ya da yere bırakılabilir."
+
+[KFWeap_Revolver_SW500]
+ItemName="500 Magnum Altıpatlar"
+ItemCategory="El Silahı"
+ItemDescription="• Atış modu her defasında sadece bir mermi atılabilir.\n• Uzun namlulu, tam yüklü magnum mermilerini ateşleyen, .50 kalibrelik 'Kemik Koleksiyoncusu' altı patları şeklinde olan gerçek bir el topu. Sadece ciddi silahşorlar için."
+
+[KFWeap_Revolver_DualSW500]
+ItemName="Çift 500 Magnum"
+ItemCategory="El Silahı"
+ItemDescription="• Atış modu sadece yarı otomatik.\n• Alternatif atış, gez ve arpacıktan bakarken nişan alma tarzını değiştirir.\n• Bir çift altı patlar .500 Magnum 'Kemik Koleksiyoncusu'. Her biri tekil olarak satılabilir ya da yere bırakılabilir... büyük bir 'küt' sesiyle."
+
+[KFWeap_Rifle_Winchester1894]
+ItemName="Winchester 1894"
+ItemCategory="Rifle"
+ItemDescription="• Fire mode is single shot only.\n• The classic Model 1894 Winchester lever-action rifle."
+
+[KFWeap_Bow_Crossbow]
+ItemName="Crossbow"
+ItemCategory="Bow"
+ItemDescription="• Fire mode is single shot only.\n• Crossbow bolts are often recoverable!\n• A high-powered hunting crossbow, giving good penetration and good stopping power!"
+
+//BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
+[KFPawn_ZedHans]
+BossName="Dr. Hans Volter"
+BossCaptionStrings[0]="Hans sis bombası iyileştirme aşamasında neredeyse dokunulmaz olur. Cephanenizi harcamayın!"
+BossCaptionStrings[1]="Onun güç çekirdeğine dikkat et: Hans, renk değiştirdiğinde daha agresif olur."
+BossCaptionStrings[2]="Güç yayan çekirdeğine nişan al. Orası savunmasız bölgesi."
+BossCaptionStrings[3]="Hans'ın bombalarından çıkan gaz üstünüze yapışır, tıpkı Bloat'un safrası gibi. Ondan kaçınmaya çalışın!"
+BossCaptionStrings[4]="Acımasız saldırıları savuşturmak için çok güçlü. Hâlâ tam hasar alacaksın."
+BossCaptionStrings[5]="Kırmızı bomba uyarılarına dikkat etmen nerede olduklarını görmene yardım edebilir."
+BossCaptionStrings[6]="Hans silahını çektiğinde görüş açısından uzak durun. Bariz ama önemli!"
+
+[KFPawn_ZedPatriarch]
+BossName="The Patriarch"
+BossCaptionStrings[0]="Kevin Clamely was once a brilliant scientist, until he became his own greatest creation."
+BossCaptionStrings[1]="The Patriarch is staggeringly arrogant - he is likely to tell you which attack he will use next."
+BossCaptionStrings[2]="Hiding behind even big objects won't help as much as you'd hope. The Patriarch has an answer for that!"
+BossCaptionStrings[3]="Running off on your own isn't an escape - it makes you easy prey he will target first."
+BossCaptionStrings[4]="Yes, the Patriarch can still cloak, go invisible, run off and heal himself. Some things don't change."
+BossCaptionStrings[5]="While you won't get much choice about it, killing The Patriarch's 'children' just makes him mad(der)."
+
+[KFGameInfo_Survival]
+GameName="Hayatta Kalma"
+
+[KFGameInfo_VersusSurvival]
+GameName="VS Survival"
+
+[KFPawn_ZedPatriarch_Versus]
+NoHealsRemainingMsg="No Heals Remaining"
+LowHealthMsg="Health Is Critical! Heal Now!"
+NoMortarTargetsMsg="No Valid Mortar Targets"
+
+[KFSM_PlayerSiren_VortexVictim]
+VortexGrabTeamWarningMsg="%x% is trapped by a Siren!"

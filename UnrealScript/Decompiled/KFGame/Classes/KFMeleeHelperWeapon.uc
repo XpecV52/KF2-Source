@@ -22,8 +22,6 @@ var() bool bHasChainAttacks;
 var transient bool bResetChainSequence;
 /** Should use timer instead of anim notifies for melee hits? */
 var() bool bUseMeleeHitTimer;
-/** If set, this attack does damage to multiple pawns in a fan collision */
-var() transient bool bCanHitMultipleTargets;
 var bool bHitEnemyThisAttack;
 var transient byte ChooseAtkCount;
 var private KFPawn.EPawnOctant NextAttackDir;
@@ -46,6 +44,7 @@ var() float ImpactRetryDuration;
 var() float ImpactComplete_ActorTime;
 var KFImpactEffectInfo WorldImpactEffects;
 var InterpCurveFloat FatigueCurve;
+var float MeleeImpactCamShakeScale;
 
 simulated function MeleeImpactNotify(KFAnimNotify_MeleeImpact_1P Notify)
 {
@@ -53,7 +52,6 @@ simulated function MeleeImpactNotify(KFAnimNotify_MeleeImpact_1P Notify)
 
     if(!bHasAlreadyHit && !bUseMeleeHitTimer)
     {
-        bCanHitMultipleTargets = Notify.bCanHitMultipleTargets;
         bResult = MeleeAttackImpact();
         if(!bResult && Outer.Instigator.Role == ROLE_Authority)
         {
@@ -121,32 +119,18 @@ simulated function bool MeleeAttackImpact()
     return bHasAnyHit;
 }
 
-simulated function Rotator GetMeleeAimRotation()
-{
-    local Rotator R;
-
-    if(Outer.Instigator != none)
-    {
-        R = Outer.Instigator.GetBaseAimRotation();
-    }
-    return R;
-}
-
 simulated function ImpactInfo CalcWeaponMeleeAttack(Vector StartTrace, Vector EndTrace, optional out array<ImpactInfo> ImpactList, optional Vector Extent)
 {
-    local KFPawn BestVictim;
+    local Pawn BestVictim;
     local ImpactInfo CurrentImpact;
-    local array<KFPawn> VictimList;
+    local array<Pawn> VictimList;
     local Vector RayDir;
 
     RayDir = GetAdjustedRayDir(EndTrace - StartTrace);
-    BestVictim = FindVictimByFOV(StartTrace, EndTrace,,, VictimList, bCanHitMultipleTargets);
+    BestVictim = FindVictimByFOV(StartTrace, EndTrace);
     if(BestVictim != none)
     {
-        if(!bCanHitMultipleTargets)
-        {
-            VictimList[0] = BestVictim;
-        }
+        VictimList[0] = BestVictim;
         CalcVictimImpactList(VictimList, StartTrace, EndTrace, RayDir, ImpactList);        
     }
     else
@@ -177,22 +161,18 @@ simulated function ImpactInfo CalcWeaponMeleeAttack(Vector StartTrace, Vector En
     return CurrentImpact;
 }
 
-simulated function CalcVictimImpactList(array<KFPawn> VictimList, Vector StartTrace, Vector EndTrace, Vector RayDir, optional out array<ImpactInfo> ImpactList, optional bool bGetMultipleTargets)
+simulated function CalcVictimImpactList(array<Pawn> VictimList, Vector StartTrace, Vector EndTrace, Vector RayDir, optional out array<ImpactInfo> ImpactList)
 {
     local ImpactInfo HitZoneImpact;
     local int I;
 
     I = 0;
-    J0x0D:
+    J0x0C:
 
     if(I < VictimList.Length)
     {
         if(TraceMeleeAttackHitZones(VictimList[I], StartTrace, EndTrace, HitZoneImpact))
         {
-            if(bGetMultipleTargets)
-            {
-                RayDir *= (GetDamageScaleByAngle(HitZoneImpact.HitLocation));
-            }
             HitZoneImpact.RayDir = RayDir;
             ImpactList[ImpactList.Length] = HitZoneImpact;
             if(bLogMelee)
@@ -205,7 +185,7 @@ simulated function CalcVictimImpactList(array<KFPawn> VictimList, Vector StartTr
             LogInternal(string(GetFuncName()) @ "HitVictimCheck missed all hit zones");
         }
         ++ I;
-        goto J0x0D;
+        goto J0x0C;
     }
 }
 
@@ -596,13 +576,14 @@ simulated function float GetDamageScaleByAngle(Vector HitLoc)
     }
 }
 
-simulated function PlayMeleeHitEffects(Actor Target, Vector HitLocation, Vector HitDirection)
+simulated function PlayMeleeHitEffects(Actor Target, Vector HitLocation, Vector HitDirection, optional bool bShakeInstigatorCamera)
 {
+    bShakeInstigatorCamera = true;
     if(Outer.WorldInfo.NetMode != NM_DedicatedServer)
     {
         if(Outer.Instigator.IsFirstPerson())
         {
-            PlayerController(Outer.Instigator.Controller).ClientPlayCameraShake(Outer.MeleeImpactCamShake, 1, true, 2, rotator(-HitDirection));
+            PlayerController(Outer.Instigator.Controller).ClientPlayCameraShake(MeleeImpactCamShake, MeleeImpactCamShakeScale, true, 2, rotator(-HitDirection));
             if(Target.IsA('Pawn'))
             {
                 Outer.AddBlood(0.01, 0.1);
@@ -617,26 +598,26 @@ simulated function PlayMeleeHitEffects(Actor Target, Vector HitLocation, Vector 
 
 defaultproperties
 {
-    ChainSequence_F(0)=250
-    ChainSequence_F(1)=21
+    ChainSequence_F(0)=175
+    ChainSequence_F(1)=22
     ChainSequence_F(2)=0
     ChainSequence_F(3)=0
     ChainSequence_F(4)=0
-    ChainSequence_B(0)=246
-    ChainSequence_B(1)=21
+    ChainSequence_B(0)=171
+    ChainSequence_B(1)=22
     ChainSequence_B(2)=0
     ChainSequence_B(3)=0
     ChainSequence_B(4)=0
     ChainSequence_B(5)=0
     ChainSequence_B(6)=0
-    ChainSequence_L(0)=253
-    ChainSequence_L(1)=21
+    ChainSequence_L(0)=178
+    ChainSequence_L(1)=22
     ChainSequence_L(2)=0
     ChainSequence_L(3)=0
     ChainSequence_L(4)=0
     ChainSequence_L(5)=0
-    ChainSequence_R(0)=250
-    ChainSequence_R(1)=21
+    ChainSequence_R(0)=175
+    ChainSequence_R(1)=22
     ChainSequence_R(2)=0
     ChainSequence_R(3)=0
     ChainSequence_R(4)=0
@@ -645,6 +626,7 @@ defaultproperties
     ImpactRetryDuration=0.2
     WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Blunted_melee_impact'
     FatigueCurve=(Points=/* Array type was not detected. */,InVal=2,OutVal=1,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
+    MeleeImpactCamShakeScale=1
     bHitboxPawnsOnly=true
     MeleeVictimCamShake=CameraShake'Default__KFMeleeHelperWeapon.MeleeImpactCamShake0'
 }

@@ -43,6 +43,7 @@ defaultproperties
 	DialogEvents[`HANS_NextBattlePhase1]=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Ph2Start_Base')
 	DialogEvents[`HANS_NextBattlePhase2]=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Ph3Start_Base')
 	DialogEvents[`HANS_NextBattlePhase3]=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Ph4Start_Base')
+	DialogEvents[`HANS_AOE]=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Nerve2_Base')
 
 `if(`notdefined(ShippingPC))
 	DialogEventNames[`BOSS_TauntBase]           =BOSS_TauntBase      
@@ -79,5 +80,6 @@ defaultproperties
 	DialogEventNames[`HANS_NextBattlePhase1]    =HANS_NextBattlePhase1
 	DialogEventNames[`HANS_NextBattlePhase2]    =HANS_NextBattlePhase2
 	DialogEventNames[`HANS_NextBattlePhase3]    =HANS_NextBattlePhase3
+	DialogEventNames[`HANS_AOE]    				=HANS_AOE
 `endif
 }

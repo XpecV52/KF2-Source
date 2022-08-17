@@ -64,7 +64,6 @@ class KFDT_Explosive_HEGrenade extends KFDT_Explosive
 
 
 
-
 #linenumber 15;
 
 defaultproperties

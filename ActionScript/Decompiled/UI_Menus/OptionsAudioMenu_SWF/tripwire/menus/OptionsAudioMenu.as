@@ -51,6 +51,8 @@ package tripwire.menus
             enableInitCallback = true;
             this.setTabIndex();
             defaultFirstElement = this.sFxSlider;
+            sectionHeader = this.header;
+            defaultNumPrompts = 2;
         }
         
         public function setTabIndex() : *

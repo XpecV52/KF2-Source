@@ -28,7 +28,9 @@ var float TimeBetweenFlameThrower;
 
 var float FireballRandomizedValue;
 
+/** The maximum distance an enemy can be from our pawn for us to be able to do a flamethrower attack */
 var int MaxDistanceForFlameThrower;
+/** The maximum distance an enemy can be from our pawn for us to be able to do a fireball attack */
 var int MaxDistanceForFireBall;
 
 var bool bCanUseFlameThrower;
@@ -38,22 +40,34 @@ var float CheckSpecialMoveTime;
 
 /** Fireball projectile attack */
 var name							FireballSocketName;
+/** Accuracy spread of fireball aim attack */
 var const	float					FireballAimError;
+/** Accuracy spread of leading a target for fireball aim attack */
 var const	float					FireballLeadTargetAimError;
 var const	bool					bDebugAimError;
 var const	bool					bCanLeadTarget;
 var const	float					FireballSpeed;
 
-/** Fireball projectile attack difficulty scalars */
+/** Chance to aim fireballs for splash damage on Normal difficulty */
 var const	float					SplashAimChanceNormal;
+/** Chance to aim fireballs for splash damage on Hard difficulty */
 var const	float					SplashAimChanceHard;
+/** Chance to aim fireballs for splash damage on Suicide difficulty */
 var const	float					SplashAimChanceSuicidal;
+/** Chance to aim fireballs for splash damage on Hell On Earth difficulty */
 var const	float					SplashAimChanceHellOnEarth;
 
+/** The base time to wait between firing fireballs on Normal difficulty */
 var const float					FireballFireIntervalNormal;
+/** The base time to wait between firing fireballs on Hard difficulty */
 var const float					FireballFireIntervalHard;
+/** The base time to wait between firing fireballs on Suicidal difficulty */
 var const float					FireballFireIntervalSuicidal;
+/** The base time to wait between firing fireballs on Hell On Earth difficulty */
 var const float					FireballFireIntervalHellOnEarth;
+
+/** How much to scale the used FireballInterval to get the low intensity attack scale */
+var const float                 LowIntensityAttackScaleOfFireballInterval;
 
 /** Offset for firing fireballs. */
 var vector							FireOffset;
@@ -123,6 +137,9 @@ event PostBeginPlay()
         BaseTimeBetweenFireBalls = FireballFireIntervalHellOnEarth;
     }
 
+    // Set the low intensity attack cooldown based off the current fireball interval
+    LowIntensityAttackCooldown = BaseTimeBetweenFireBalls * LowIntensityAttackScaleOfFireballInterval;
+
 	TimeBetweenFireBalls = BaseTimeBetweenFireBalls + RandRange(-FireballRandomizedValue, FireballRandomizedValue);
 }
 
@@ -155,11 +172,21 @@ simulated function Tick( FLOAT DeltaTime )
 					// Check if i can use my flamethrower
 					else if( CanDoFlamethrower(DistToTargetSq) )
 					{
+                    	if( KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).GameConductor != none )
+                    	{
+                    	   KFGameInfo(WorldInfo.Game).GameConductor.UpdateOverallAttackCoolDowns(self);
+                    	}
+
 						class'AICommand_HuskFlameThrowerAttack'.static.FlameThrowerAttack(self);
 					}
 					// Check if i can use my projectile
 					else if( CanDoFireball(DistToTargetSq) )
 					{
+                    	if( KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).GameConductor != none )
+                    	{
+                    	   KFGameInfo(WorldInfo.Game).GameConductor.UpdateOverallAttackCoolDowns(self);
+                    	}
+
 						class'AICommand_HuskFireBallAttack'.static.FireBallAttack(self);
 						// Randomize the next fireball time
 						TimeBetweenFireBalls = BaseTimeBetweenFireBalls + RandRange(-FireballRandomizedValue, FireballRandomizedValue);
@@ -192,6 +219,11 @@ function bool CanDoSuicide( float DistToTargetSq )
 
 function bool CanDoFlamethrower( float DistToTargetSq )
 {
+    if( !CheckOverallCooldownTimer() )
+    {
+        return false;
+    }
+
 	 if( bCanUseFlameThrower &&
 		(LastFlameThrowerTime == 0 || ((WorldInfo.TimeSeconds - LastFlameThrowerTime) > TimeBetweenFlameThrower)) &&
 		DistToTargetSq <= MaxDistanceForFlameThrower * MaxDistanceForFlameThrower &&
@@ -204,9 +236,14 @@ function bool CanDoFlamethrower( float DistToTargetSq )
 
 function bool CanDoFireball( float DistToTargetSq )
 {
+    if( !CheckOverallCooldownTimer() )
+    {
+        return false;
+    }
+
 	 if( (LastFireBallTime == 0 || ((WorldInfo.TimeSeconds - LastFireBallTime) > TimeBetweenFireBalls)) &&
 		  DistToTargetSq <= MaxDistanceForFireBall * MaxDistanceForFireBall &&
-		  MyKFPawn.CanDoSpecialMove(SM_StandAndShotAttack))
+		  MyKFPawn.CanDoSpecialMove(SM_StandAndShootAttack))
 	 {
 		 return true;
 	 }
@@ -216,7 +253,7 @@ function bool CanDoFireball( float DistToTargetSq )
 /** Overridden so the husk will not change to an enemy outside his view while doing the fireball attack */
 event bool SetEnemy( Pawn NewEnemy )
 {
-	if( MyKFPawn == none || MyKFPawn.IsDoingSpecialMove(SM_StandAndShotAttack) )
+	if( MyKFPawn == none || MyKFPawn.IsDoingSpecialMove(SM_StandAndShootAttack) )
 	{
 		if( MyKFPawn.NeedToTurn(NewEnemy.Location) )
 		{
@@ -273,7 +310,7 @@ function ShootFireball(class<KFProjectile> FireballClass)
 	}
 
 	SocketLocation = MyKFPawn.GetPawnViewLocation() + (FireOffset >> Pawn.GetViewRotation());
-	if( MyKFPawn.Health > 0.f && Role == ROLE_Authority && MyKFPawn.IsDoingSpecialMove(SM_StandAndShotAttack) )
+	if( MyKFPawn.Health > 0.f && Role == ROLE_Authority && MyKFPawn.IsDoingSpecialMove(SM_StandAndShootAttack) )
 	{
         AimLocation = Enemy.Location;
 
@@ -349,7 +386,7 @@ function ShootFireball(class<KFProjectile> FireballClass)
 				//DrawDebugStar( HitLocation, 50, 255, 0, 0, true );
 
 				if( self!= None ) { self.AILog_Internal(GetFuncName() @ " HitActor: " @ HitActor @ " Is NOT My Enemy: " @ Enemy @ " and distanceToHitLoc: " @ distanceToHitLoc @ " is too close so not firing!!!",'FireBall'); };
-				MyKFPawn.SpecialMoves[ SM_StandAndShotAttack ].AbortedByAICommand();
+				MyKFPawn.SpecialMoves[ SM_StandAndShootAttack ].AbortedByAICommand();
 				LastFireBallTime = WorldInfo.TimeSeconds;
 				return;
 			}
@@ -428,6 +465,7 @@ defaultproperties
    FireballFireIntervalHard=4.500000
    FireballFireIntervalSuicidal=4.000000
    FireballFireIntervalHellOnEarth=3.500000
+   LowIntensityAttackScaleOfFireballInterval=1.250000
    FireOffset=(X=15.000000,Y=32.000000,Z=-12.000000)
    bCanTeleportCloser=False
    bUseDesiredRotationForMelee=False

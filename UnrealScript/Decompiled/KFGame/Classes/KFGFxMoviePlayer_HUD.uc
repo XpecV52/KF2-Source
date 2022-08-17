@@ -14,6 +14,8 @@ var KFGFxHUD_PlayerBackpack PlayerBackpackContainer;
 var GFxObject PriorityMessageContainer;
 var GFxObject BossNameplateContainer;
 var GFxObject InteractionMessageContainer;
+var KFGFxHUD_WeaponSelectWidget KeyboardWeaponSelectWidget;
+var KFGFxHUD_WeaponSelectWidget ControllerWeaponSelectWidget;
 var KFGFxHUD_WeaponSelectWidget WeaponSelectWidget;
 var KFGFxHUD_TraderCompass TraderCompassWidget;
 var KFGFxHUD_WaveInfo WaveInfoWidget;
@@ -44,7 +46,22 @@ function Init(optional LocalPlayer LocPlay)
     KFPC.SetGFxHUD(self);
     super.Init(LocPlay);
     KFGXHUDManager = GetVariableObject("root");
+    UpdateRatio();
     UpdateScale();
+    KFGXHUDManager.SetBool("bConsoleBuild", Class'WorldInfo'.static.IsConsoleBuild(8));
+}
+
+function UpdateRatio()
+{
+    local GFxObject GFxStage;
+    local float ScaleStage;
+
+    ScaleStage = Class'Engine'.static.GetTitleSafeArea();
+    GFxStage = KFGXHUDManager.GetObject("stage");
+    GFxStage.SetFloat("x", (GFxStage.GetFloat("width") * (1 - ScaleStage)) / float(2));
+    GFxStage.SetFloat("y", (GFxStage.GetFloat("height") * (1 - ScaleStage)) / float(2));
+    GFxStage.SetFloat("scaleX", ScaleStage);
+    GFxStage.SetFloat("scaleY", ScaleStage);
 }
 
 event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
@@ -67,7 +84,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
                 SpectatorInfoWidget.InitializeHUD();
             }
             break;
-        case 'PlayerStatWidget':
+        case 'PlayerStatWidgetMC':
             if(PlayerStatusContainer == none)
             {
                 PlayerStatusContainer = KFGFxHUD_PlayerStatus(Widget);
@@ -105,11 +122,27 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             }
             break;
         case 'WeaponSelectContainer':
-            if(WeaponSelectWidget == none)
+            if(KeyboardWeaponSelectWidget == none)
             {
-                WeaponSelectWidget = KFGFxHUD_WeaponSelectWidget(Widget);
-                WeaponSelectWidget.RefreshWeaponSelect();
-                WeaponSelectWidget.InitializeObject();
+                KeyboardWeaponSelectWidget = KFGFxHUD_WeaponSelectWidget(Widget);
+                KeyboardWeaponSelectWidget.RefreshWeaponSelect();
+                KeyboardWeaponSelectWidget.InitializeObject();
+                if(!bUsingGamepad)
+                {
+                    WeaponSelectWidget = KeyboardWeaponSelectWidget;
+                }
+            }
+            break;
+        case 'ControllerWeaponSelectContainer':
+            if(ControllerWeaponSelectWidget == none)
+            {
+                ControllerWeaponSelectWidget = KFGFxHUD_WeaponSelectWidget(Widget);
+                ControllerWeaponSelectWidget.RefreshWeaponSelect();
+                ControllerWeaponSelectWidget.InitializeObject();
+                if(bUsingGamepad)
+                {
+                    WeaponSelectWidget = ControllerWeaponSelectWidget;
+                }
             }
             break;
         case 'CompassContainer':
@@ -172,7 +205,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
                 MusicNotification.InitializeHUD();
             }
             break;
-        case 'NonCriticalGameMessageWidget':
+        case 'NonCriticalMessageWidget':
             if(NonCriticalGameMessageWidget == none)
             {
                 NonCriticalGameMessageWidget = KFGFxWidget_NonCriticalGameMessage(Widget);
@@ -188,6 +221,26 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             break;
     }
     return true;
+}
+
+function UpdateWeaponSelect()
+{
+    if(bUsingGamepad)
+    {
+        WeaponSelectWidget = ControllerWeaponSelectWidget;
+        if(KeyboardWeaponSelectWidget != none)
+        {
+            KeyboardWeaponSelectWidget.Hide();
+        }        
+    }
+    else
+    {
+        WeaponSelectWidget = KeyboardWeaponSelectWidget;
+        if(ControllerWeaponSelectWidget != none)
+        {
+            ControllerWeaponSelectWidget.Hide();
+        }
+    }
 }
 
 function TickHud(float DeltaTime)
@@ -208,6 +261,7 @@ function TickHud(float DeltaTime)
     {
         bUsingGamepad = PC.PlayerInput.bUsingGamepad;
         UpdateUsingGamepad();
+        UpdateWeaponSelect();
     }
     if(bIsSpectating)
     {
@@ -303,7 +357,10 @@ function ShowVoiceComms(bool bShowComms)
         {
             VoiceCommsWidget.EnableComm();
             ShowScoreboard(false);
-            WeaponSelectWidget.Hide();            
+            if(WeaponSelectWidget != none)
+            {
+                WeaponSelectWidget.Hide();
+            }            
         }
         else
         {
@@ -339,6 +396,19 @@ function NotifyHUDofPRIDestroyed(KFPlayerReplicationInfo KFPRI)
     if(VOIPWidget != none)
     {
         VOIPWidget.VOIPEventTriggered(KFPRI, false);
+    }
+}
+
+function ShowKillMessage(string Value, string colorValue)
+{
+    local GFxObject DataObject;
+
+    if(KFGXHUDManager != none)
+    {
+        DataObject = CreateObject("Object");
+        DataObject.SetString("text", Value);
+        DataObject.SetString("textColor", colorValue);
+        KFGXHUDManager.SetObject("newBark", DataObject);
     }
 }
 
@@ -434,11 +504,11 @@ function ShowNonCriticalMessage(string LocalizedMessage)
     }
 }
 
-function UpdateRhythmCounterWidget(int Value)
+function UpdateRhythmCounterWidget(int Value, int Max)
 {
     if(RhythmCounterWidget != none)
     {
-        RhythmCounterWidget.SetCount(Value);
+        RhythmCounterWidget.SetCount(Value, Max);
     }
 }
 
@@ -532,7 +602,14 @@ function Callback_BroadcastChatMessage(string NewMessage)
     {
         if(NewMessage != "")
         {
-            GetPC().Say(NewMessage);
+            if(KFPC.CurrentTextChatChannel == 1)
+            {
+                GetPC().TeamSay(NewMessage);                
+            }
+            else
+            {
+                GetPC().Say(NewMessage);
+            }
         }
     }
 }

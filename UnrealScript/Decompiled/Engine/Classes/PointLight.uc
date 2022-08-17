@@ -40,28 +40,17 @@ defaultproperties
     object end
     // Reference: SpriteComponent'Default__PointLight.Sprite'
     Components(0)=Sprite
-    begin object name=LightMeshComponent0 class=StaticMeshComponent
-        ReplacementPrimitive=none
-    object end
-    // Reference: StaticMeshComponent'Default__PointLight.LightMeshComponent0'
-    Components(1)=LightMeshComponent0
-    begin object name=LensFlareComponent0 class=LensFlareComponent
-        NextTraceTime=0.0 // Ka v oh
-        ReplacementPrimitive=none
-    object end
-    // Reference: LensFlareComponent'Default__PointLight.LensFlareComponent0'
-    Components(2)=LensFlareComponent0
     begin object name=DrawLightRadius0 class=DrawLightRadiusComponent
         ReplacementPrimitive=none
     object end
     // Reference: DrawLightRadiusComponent'Default__PointLight.DrawLightRadius0'
-    Components(3)=DrawLightRadius0
+    Components(1)=DrawLightRadius0
     begin object name=DrawLightSourceRadius0 class=DrawLightRadiusComponent
         SphereColor=(B=0,G=239,R=231,A=255)
         ReplacementPrimitive=none
     object end
     // Reference: DrawLightRadiusComponent'Default__PointLight.DrawLightSourceRadius0'
-    Components(4)=DrawLightSourceRadius0
+    Components(2)=DrawLightSourceRadius0
     begin object name=PointLightComponent0 class=PointLightComponent
         PreviewLightRadius=DrawLightRadiusComponent'Default__PointLight.DrawLightRadius0'
         PreviewLightSourceRadius=DrawLightRadiusComponent'Default__PointLight.DrawLightSourceRadius0'
@@ -72,7 +61,7 @@ defaultproperties
         LightAffectsClassification=ELightAffectsClassification.LAC_STATIC_AFFECTING
     object end
     // Reference: PointLightComponent'Default__PointLight.PointLightComponent0'
-    Components(5)=PointLightComponent0
+    Components(3)=PointLightComponent0
     begin object name=LightMeshComponent0 class=StaticMeshComponent
         ReplacementPrimitive=none
     object end

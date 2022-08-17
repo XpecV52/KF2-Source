@@ -9,6 +9,7 @@
 
 class KFSM_Siren_Scream extends KFSM_PlaySingleAnim;
 
+/** The frequency to do scream damage at */
 var float			ScreamDamageFrequency;
 
 /** The number of times damage has been dealt by a single scream */
@@ -48,11 +49,11 @@ function SpecialMoveStarted( bool bForced, name PrevMove )
 {
 	local float ShieldDestroyTime;
 
-	super.SpecialMoveStarted( bForced, PrevMove );	
+	super.SpecialMoveStarted( bForced, PrevMove );
 
 	ShieldDestroyTime = KFSkeletalMeshComponent(KFPOwner.Mesh).GetAnimInterruptTime( AnimName );
 	KFPOwner.SetTimer( ShieldDestroyTime, false, nameof(Timer_DestroyProjectileShield), self );
-	
+
 	if( AIOwner != none )
 	{
 		if( AIOwner!= None ) { AIOwner.AILog_Internal(KFPOwner@"started for"@AIOwner,'Siren'); };
@@ -152,7 +153,7 @@ function ScreamExplosion()
 function SpecialMoveEnded(Name PrevMove, Name NextMove)
 {
 	super.SpecialMoveEnded( PrevMove, NextMove );
-	
+
 	KFPOwner.ClearTimer(nameof(ScreamExplosion), self);
 	ScreamCount = 0;
 

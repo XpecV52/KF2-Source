@@ -8,6 +8,7 @@ package tripwire.containers.inventory
     import scaleform.clik.data.DataProvider;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.ListEvent;
+    import scaleform.clik.managers.FocusHandler;
     import scaleform.gfx.FocusManager;
     import tripwire.containers.TripContainer;
     import tripwire.controls.TripButton;
@@ -34,6 +35,12 @@ package tripwire.containers.inventory
         
         public var consumablesButton:TripButton;
         
+        public var craftingMatsButton:TripButton;
+        
+        public var craftWeaponsButton:TripButton;
+        
+        public var craftCosmeticsButton:TripButton;
+        
         public var buttonList:Vector.<TripButton>;
         
         public function InventoryItemListContainer()
@@ -46,7 +53,7 @@ package tripwire.containers.inventory
         override public function selectContainer() : void
         {
             super.selectContainer();
-            FocusManager.setFocus(currentElement);
+            FocusHandler.getInstance().setFocus(currentElement);
         }
         
         public function set localizedText(param1:Object) : void
@@ -58,13 +65,16 @@ package tripwire.containers.inventory
                 this.weaponSkinsButton.label = !!param1.weaponSkins ? param1.weaponSkins : "";
                 this.cosmeticsButton.label = !!param1.cosmetics ? param1.cosmetics : "";
                 this.consumablesButton.label = !!param1.items ? param1.items : "";
+                this.craftingMatsButton.label = !!param1.craftingMats ? param1.craftingMats : "";
+                this.craftWeaponsButton.label = !!param1.craftWeapon ? param1.craftWeapon : "";
+                this.craftCosmeticsButton.label = !!param1.craftCosmetic ? param1.craftCosmetic : "";
             }
         }
         
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
-            this.buttonList.push(this.allButton,this.weaponSkinsButton,this.cosmeticsButton,this.consumablesButton);
+            this.buttonList.push(this.allButton,this.weaponSkinsButton,this.cosmeticsButton,this.consumablesButton,this.craftingMatsButton);
             var _loc2_:int = 0;
             while(_loc2_ < this.buttonList.length)
             {
@@ -75,7 +85,10 @@ package tripwire.containers.inventory
             this.weaponSkinsButton.tabIndex = 2;
             this.cosmeticsButton.tabIndex = 3;
             this.consumablesButton.tabIndex = 4;
-            this.inventoryItemScrollingList.tabIndex = 5;
+            this.craftingMatsButton.tabIndex = 5;
+            this.inventoryItemScrollingList.tabIndex = 6;
+            this.craftWeaponsButton.tabIndex = 7;
+            this.craftCosmeticsButton.tabIndex = 8;
             if(bManagerUsingGamepad)
             {
                 this.inventoryItemScrollingList.selectedIndex = 1;

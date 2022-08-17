@@ -65,19 +65,18 @@ defaultproperties
 		SpecialMoveClasses(SM_Evade_Fear)=class'KFSM_Evade_Fear'
 	End Object
 
-	Begin Object Name=Afflictions_0
-		InstantAffl(IAF_Stun)=(Head=44,Torso=50,Leg=44,Arm=50,Special=43,LowHealthBonus=10,Cooldown=3.0)
-		InstantAffl(IAF_Knockdown)=(Head=50,Torso=80,Leg=80,Arm=80,Special=50,LowHealthBonus=10,Cooldown=9.0)
-		InstantAffl(IAF_Stumble)=(Head=44,Torso= 50,Arm=50,LowHealthBonus=10,Cooldown=2.0)
-		InstantAffl(IAF_LegStumble)=(Leg=44,LowHealthBonus=10,Cooldown=2.0)
-		InstantAffl(IAF_GunHit)=(Head=105,Torso=105,Leg=105,Arm=105,LowHealthBonus=10,Cooldown=0.5)
-		InstantAffl(IAF_MeleeHit)=(Head=23,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=0.35)
-		StackingAffl(SAF_Poison)=(Threshhold=3.0,Duration=4.0,Cooldown=8.5,DissipationRate=1.00)
-		StackingAffl(SAF_Microwave)=(Threshhold=3.0,Duration=4.0,Cooldown=8.5,DissipationRate=1.00)
-		StackingAffl(SAF_FirePanic)=(Threshhold=12.0,Duration=2.0,Cooldown=5.0,DissipationRate=1.0)
-		StackingAffl(SAF_EMPPanic)=(Threshhold=1.5,Duration=5.0,Cooldown=5.0,DissipationRate=0.5)
-		StackingAffl(SAF_EMPDisrupt)=(Threshhold=0.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.0)
-	End Object
+	InstantIncaps(IAF_Stun)=(Head=62,Torso=120,Leg=120,Arm=120,Special=45,LowHealthBonus=10,Cooldown=3.0)
+	InstantIncaps(IAF_Knockdown)=(Head=50,Torso=80,Leg=80,Arm=80,Special=50,LowHealthBonus=10,Cooldown=9.0)
+	InstantIncaps(IAF_Stumble)=(Head=44,Torso= 50,Arm=50,LowHealthBonus=10,Cooldown=2.0)
+	InstantIncaps(IAF_LegStumble)=(Leg=44,LowHealthBonus=10,Cooldown=2.0)
+	InstantIncaps(IAF_GunHit)=(Head=105,Torso=105,Leg=105,Arm=105,LowHealthBonus=10,Cooldown=0.5)
+	InstantIncaps(IAF_MeleeHit)=(Head=23,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=0.35)
+	StackingIncaps(SAF_Poison)=(Threshhold=3.0,Duration=4.0,Cooldown=8.5,DissipationRate=1.00)
+	StackingIncaps(SAF_Microwave)=(Threshhold=3.0,Duration=4.0,Cooldown=8.5,DissipationRate=1.00)
+	StackingIncaps(SAF_FirePanic)=(Threshhold=12.0,Duration=2.0,Cooldown=5.0,DissipationRate=1.0)
+	StackingIncaps(SAF_EMPPanic)=(Threshhold=1.5,Duration=5.0,Cooldown=5.0,DissipationRate=0.5)
+	StackingIncaps(SAF_EMPDisrupt)=(Threshhold=0.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.0)
+	StackingIncaps(SAF_Freeze)=(Threshhold=2.0,Duration=1.0,Cooldown=5.0,DissipationRate=0.33)
 
 	ParryResistance=1
 

@@ -90,7 +90,7 @@ var class<HUD> SecondaryHUDType;
 var globalconfig int MaxSpectators;
 var int MaxSpectatorsAllowed;
 var int NumSpectators;
-var globalconfig int MaxPlayers;
+var config int MaxPlayers;
 var int MaxPlayersAllowed;
 var int NumPlayers;
 var int NumBots;
@@ -1358,7 +1358,7 @@ event PostLogin(PlayerController NewPlayer)
             NewPlayer.ClientRegisterHostStatGuid(StatGuid);
         }
     }
-    if(bRequiresPushToTalk)
+    if(bRequiresPushToTalk && !WorldInfo.IsConsoleDedicatedServer())
     {
         NewPlayer.ClientStopNetworkedVoice();        
     }
@@ -1375,13 +1375,13 @@ event PostLogin(PlayerController NewPlayer)
     {
         GameSeq.FindSeqObjectsByClass(Class'SeqAct_Interp', true, AllInterpActions);
         I = 0;
-        J0x4C2:
+        J0x4E8:
 
         if(I < AllInterpActions.Length)
         {
             SeqAct_Interp(AllInterpActions[I]).AddPlayerToDirectorTracks(NewPlayer);
             ++ I;
-            goto J0x4C2;
+            goto J0x4E8;
         }
     }
     if(ShouldStartInCinematicMode(HidePlayer, HideHUD, DisableMovement, DisableTurning, DisableInput))
@@ -2838,7 +2838,7 @@ defaultproperties
     HUDType=Class'HUD'
     MaxSpectators=2
     MaxSpectatorsAllowed=32
-    MaxPlayers=6
+    MaxPlayers=12
     MaxPlayersAllowed=32
     CurrentID=1
     DefaultPlayerName="Player"
@@ -2860,8 +2860,7 @@ defaultproperties
     MinDynamicBandwidth=4000
     MaxDynamicBandwidth=7000
     StreamingPauseIcon=Material'EngineResources.M_StreamingPause'
-    DefaultGameType="KFGame.KFGameInfo"
-    DefaultMapPrefixes(0)=(Prefix="KF",bUsesCommonPackage=false,GameType="KFGameContent.KFGameInfo_Survival",AdditionalGameTypes=none,ForcedObjects=none)
+    DefaultGameType="KFGameContent.KFGameInfo_Survival"
     Components=none
     CollisionType=ECollisionType.COLLIDE_CustomDefault
 }

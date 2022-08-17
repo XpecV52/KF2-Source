@@ -39,7 +39,7 @@ simulated function name GetWeaponFireAnim(byte FireModeNum)
 {
     if(FireModeNum == 0)
     {
-        return super.GetWeaponFireAnim(FireModeNum);
+        return super(KFWeapon).GetWeaponFireAnim(FireModeNum);
     }
     if(bUsingSights)
     {

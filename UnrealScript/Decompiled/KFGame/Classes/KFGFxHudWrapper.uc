@@ -12,6 +12,7 @@ class KFGFxHudWrapper extends KFHUDBase
 
 var class<KFGFxMoviePlayer_HUD> HUDClass;
 var KFGFxMoviePlayer_HUD HudMovie;
+var KFPawn_MonsterBoss BossPawn;
 
 simulated function PostBeginPlay()
 {

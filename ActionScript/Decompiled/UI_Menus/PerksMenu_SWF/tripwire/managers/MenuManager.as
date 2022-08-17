@@ -25,6 +25,8 @@ package tripwire.managers
         private static var _manager:MenuManager;
         
         public static var INPUT_CHANGED:String = "INPUT_CHANGED";
+        
+        public static var PROMPT_CHANGED:String = "PROMPT_CHANGED";
          
         
         public var mCursor:MovieClip;
@@ -51,6 +53,8 @@ package tripwire.managers
         
         private var _bUsingGamepad:Boolean;
         
+        private var _bConsoleBuild:Boolean;
+        
         private var _bMenuOpen:Boolean;
         
         private var _bWidgetsVisible:Boolean;
@@ -75,6 +79,8 @@ package tripwire.managers
         
         private var _currentPopUp:BasePopup;
         
+        private var _numPrompts:int = 2;
+        
         private var menuList:Array;
         
         public function MenuManager()
@@ -83,10 +89,10 @@ package tripwire.managers
             stage.scaleMode = StageScaleMode.SHOW_ALL;
             this.initializeManager();
             this.setMenuVisibility(true);
-            var _loc1_:PerspectiveProjection = new PerspectiveProjection();
-            _loc1_.fieldOfView = 30;
-            _loc1_.projectionCenter = new Point(960,540);
-            stage.transform.perspectiveProjection = _loc1_;
+            var persp:PerspectiveProjection = new PerspectiveProjection();
+            persp.fieldOfView = 30;
+            persp.projectionCenter = new Point(960,540);
+            stage.transform.perspectiveProjection = persp;
             addChild(this.MenuScanlines);
             this.MenuScanlines.mouseEnabled = false;
             this.MenuScanlines.mouseChildren = false;
@@ -98,9 +104,9 @@ package tripwire.managers
             return _manager;
         }
         
-        public function set backgroundVisible(param1:Boolean) : void
+        public function set backgroundVisible(value:Boolean) : void
         {
-            this.renderTexture.visible = param1;
+            this.renderTexture.visible = value;
         }
         
         public function get bUsingGamepad() : Boolean
@@ -108,91 +114,122 @@ package tripwire.managers
             return this._bUsingGamepad;
         }
         
-        public function set bUsingGamepad(param1:Boolean) : void
+        public function set bUsingGamepad(value:Boolean) : void
         {
-            if(this._bUsingGamepad != param1)
+            if(!this._bConsoleBuild)
             {
-                this._bUsingGamepad = param1;
-                if(stage != null)
+                if(this._bUsingGamepad != value)
                 {
-                    stage.dispatchEvent(new Event(INPUT_CHANGED));
-                }
-                this.controllerEnableWidgets(false);
-                if(this.bPopUpOpen && this._currentPopUp != null)
-                {
-                    this._currentPopUp.openPopup();
-                }
-                else
-                {
-                    this.menuList[this._currentMenuIndex].menuObject.selectContainer();
-                }
-                this.mCursor.visible = !param1;
-                if(!this._bUsingGamepad)
-                {
-                    FocusManager.setFocus(null);
+                    this._bUsingGamepad = value;
+                    if(stage != null)
+                    {
+                        stage.dispatchEvent(new Event(INPUT_CHANGED));
+                    }
+                    this.controllerEnableWidgets(false);
+                    if(this.bPopUpOpen && this._currentPopUp != null)
+                    {
+                        this._currentPopUp.openPopup();
+                    }
+                    else if(this.menuList.length > this._currentMenuIndex)
+                    {
+                        this.menuList[this._currentMenuIndex].menuObject.selectContainer();
+                    }
+                    this.mCursor.visible = !this._bUsingGamepad;
+                    if(!this._bUsingGamepad)
+                    {
+                        FocusManager.setFocus(null);
+                    }
                 }
             }
         }
         
-        public function loadCurrentMenu(param1:String, param2:Boolean) : void
+        public function get bConsoleBuild() : Boolean
+        {
+            return this._bConsoleBuild;
+        }
+        
+        public function set bConsoleBuild(value:Boolean) : *
+        {
+            if(this._bConsoleBuild != value)
+            {
+                this.bUsingGamepad = value;
+                this._bConsoleBuild = value;
+            }
+        }
+        
+        public function get numPrompts() : int
+        {
+            return this._numPrompts;
+        }
+        
+        public function set numPrompts(value:int) : *
+        {
+            if(this._numPrompts == value)
+            {
+                return;
+            }
+            this._numPrompts = value;
+            stage.dispatchEvent(new Event(PROMPT_CHANGED));
+        }
+        
+        public function loadCurrentMenu(URL:String, bShowWidgets:Boolean) : void
         {
             if(this._bLoading)
             {
                 return;
             }
-            this._bWidgetsVisible = param2;
-            var _loc3_:int = 0;
-            while(_loc3_ < this.menuList.length)
+            this._bWidgetsVisible = bShowWidgets;
+            for(var i:int = 0; i < this.menuList.length; i++)
             {
-                if(this.menuList[_loc3_].URL == param1)
+                if(this.menuList[i].URL == URL)
                 {
                     this.menuList[this._currentMenuIndex].menuObject.closeContainer();
-                    this.menuList[_loc3_].menuObject.openContainer();
-                    this.menuList[_loc3_].menuObject.enableInitCallback = true;
-                    CLIK.queueInitCallback(this.menuList[_loc3_].menuObject);
-                    this._currentMenuIndex = _loc3_;
+                    this.menuList[i].menuObject.openContainer();
+                    this.menuList[i].menuObject.enableInitCallback = true;
+                    CLIK.queueInitCallback(this.menuList[i].menuObject);
+                    this._currentMenuIndex = i;
                     this.setMenuVisibility(true);
                     this.menuList[this._currentMenuIndex].menuObject.selectContainer();
                     this.controllerEnableWidgets(false);
                     return;
                 }
-                _loc3_++;
             }
-            this._menuLoader.load(new URLRequest(param1));
-            this._currentURL = param1;
+            this._menuLoader.load(new URLRequest(URL));
+            this._currentURL = URL;
             this._bLoading = true;
         }
         
-        public function loadWidgets(param1:Array) : void
+        public function loadWidgets(Paths:Array) : void
         {
-            var _loc2_:int = 0;
-            while(_loc2_ < param1.length)
+            for(var i:int = 0; i < Paths.length; i++)
             {
-                this._widgetLoader.load(new URLRequest(param1[_loc2_]));
-                _loc2_++;
+                this._widgetLoader.load(new URLRequest(Paths[i]));
             }
         }
         
-        public function widgetLoaderComplete(param1:Event) : void
+        public function widgetLoaderComplete(evt:Event) : void
         {
-            var _loc2_:TripContainer = param1.target.content.getChildAt(0) as TripContainer;
-            this._widgets.push(_loc2_);
-            stage.addChildAt(_loc2_,stage.numChildren - 1);
+            var MenuMC:TripContainer = evt.target.content.getChildAt(0) as TripContainer;
+            this._widgets.push(MenuMC);
+            stage.addChildAt(MenuMC,stage.numChildren - 1);
         }
         
-        public function loadCurrentPopup(param1:String, param2:String, param3:String, param4:String, param5:String, param6:String) : void
+        public function loadCurrentPopup(URL:String, newPopupTitle:String, newPopupDescription:String, newPopupLeftButtonString:String, newPopupRightButtonString:String, newPopupMiddleButtonString:String) : void
         {
-            this._pendingPopupTitle = param2;
-            this._pendingPopupDescription = param3;
-            this._pendingPopupLeftButtonString = param4;
-            this._pendingPopupMiddleButtonString = param6;
-            this._pendingPopupRightButtonString = param5;
-            this._popupLoader.load(new URLRequest(param1));
-            this.menuList[this._currentMenuIndex].menuObject.focusGroupOut();
+            this._pendingPopupTitle = newPopupTitle;
+            this._pendingPopupDescription = newPopupDescription;
+            this._pendingPopupLeftButtonString = newPopupLeftButtonString;
+            this._pendingPopupMiddleButtonString = newPopupMiddleButtonString;
+            this._pendingPopupRightButtonString = newPopupRightButtonString;
+            this._popupLoader.load(new URLRequest(URL));
+            if(this.menuList.length > this._currentMenuIndex)
+            {
+                this.menuList[this._currentMenuIndex].menuObject.focusGroupOut();
+            }
             this.bPopUpOpen = true;
         }
         
-        protected function loaderComplete(param1:Event) : void
+        protected function loaderComplete(evt:Event) : void
         {
             if(this._currentMenuIndex < this.menuList.length)
             {
@@ -201,22 +238,25 @@ package tripwire.managers
                     this.menuList[this._currentMenuIndex].menuObject.closeContainer();
                 }
             }
-            var _loc2_:Object = new Object();
-            _loc2_.URL = this._currentURL;
-            _loc2_.menuObject = param1.target.content.getChildAt(0) as TripContainer;
-            this.menuList.push(_loc2_);
+            var NewMenu:Object = new Object();
+            NewMenu.URL = this._currentURL;
+            NewMenu.menuObject = evt.target.content.getChildAt(0) as TripContainer;
+            this.menuList.push(NewMenu);
             this._currentMenuIndex = this.menuList.length - 1;
             this.setMenuVisibility(true);
-            this.menuList[this._currentMenuIndex].menuObject.selectContainer();
+            if(!this.bPopUpOpen)
+            {
+                this.menuList[this._currentMenuIndex].menuObject.selectContainer();
+            }
             this.controllerEnableWidgets(false);
-            stage.addChildAt(_loc2_.menuObject,this.MenuLayer);
+            stage.addChildAt(NewMenu.menuObject,this.MenuLayer);
             this._bLoading = false;
         }
         
-        protected function popupLoaderComplete(param1:Event) : void
+        protected function popupLoaderComplete(evt:Event) : void
         {
-            this._currentPopUp = param1.target.content.getChildAt(0) as BasePopup;
-            stage.addChild(param1.target.content);
+            this._currentPopUp = evt.target.content.getChildAt(0) as BasePopup;
+            stage.addChild(evt.target.content);
             this._currentPopUp.setPopupText(this._pendingPopupTitle,this._pendingPopupDescription,this._pendingPopupLeftButtonString,this._pendingPopupRightButtonString,this._pendingPopupMiddleButtonString);
             this.mCursor.visible = !this.bUsingGamepad;
             if(!this._bMenuOpen)
@@ -250,9 +290,9 @@ package tripwire.managers
             }
         }
         
-        override protected function addedToStage(param1:Event) : void
+        override protected function addedToStage(e:Event) : void
         {
-            super.addedToStage(param1);
+            super.addedToStage(e);
         }
         
         protected function initializeManager() : void
@@ -273,27 +313,30 @@ package tripwire.managers
             this._popupLoader.contentLoaderInfo.addEventListener(Event.COMPLETE,this.popupLoaderComplete);
         }
         
-        protected function contentLoadError(param1:IOErrorEvent) : void
+        protected function contentLoadError(e:IOErrorEvent) : void
         {
-            trace("CONTENT LOAD ERROR: " + param1.toString());
+            trace("CONTENT LOAD ERROR: " + e.toString());
         }
         
-        protected function loadError(param1:IOErrorEvent) : void
+        protected function loadError(e:IOErrorEvent) : void
         {
-            trace("LOAD ERROR: " + param1.toString());
+            trace("LOAD ERROR: " + e.toString());
         }
         
-        protected function handleControllerInput(param1:InputEvent) : void
+        protected function handleControllerInput(e:InputEvent) : void
         {
-            super.handleInput(param1);
-            var _loc2_:InputDetails = param1.details;
-            if(this._bWidgetsVisible && _loc2_.value == InputValue.KEY_DOWN && !this.bPopUpOpen)
+            super.handleInput(e);
+            var details:InputDetails = e.details;
+            if(this._bWidgetsVisible && details.value == InputValue.KEY_DOWN && !this.bPopUpOpen)
             {
-                switch(param1.details.navEquivalent)
+                switch(e.details.navEquivalent)
                 {
                     case NavigationCode.GAMEPAD_L2:
-                        this.menuList[this._currentMenuIndex].menuObject.focusGroupIn();
-                        this.controllerEnableWidgets(false);
+                        if(!this.menuList[this._currentMenuIndex].menuObject.bSelected)
+                        {
+                            this.menuList[this._currentMenuIndex].menuObject.focusGroupIn();
+                            this.controllerEnableWidgets(false);
+                        }
                         break;
                     case NavigationCode.GAMEPAD_R2:
                         this.menuList[this._currentMenuIndex].menuObject.focusGroupOut();
@@ -308,65 +351,59 @@ package tripwire.managers
             this.controllerEnableWidgets(true);
         }
         
-        public function setWidgetsVisiblity(param1:Boolean) : void
+        public function setWidgetsVisiblity(value:Boolean) : void
         {
-            var _loc2_:int = 0;
-            while(_loc2_ < this._widgets.length)
+            for(var i:int = 0; i < this._widgets.length; i++)
             {
-                if(param1)
+                if(value)
                 {
-                    this._widgets[_loc2_].openContainer();
+                    this._widgets[i].openContainer();
                 }
                 else
                 {
-                    this._widgets[_loc2_].closeContainer();
+                    this._widgets[i].closeContainer();
                 }
-                _loc2_++;
             }
         }
         
-        public function setMenuVisibility(param1:Boolean) : void
+        public function setMenuVisibility(value:Boolean) : void
         {
-            var _loc2_:int = 0;
-            if(param1 && !this._bMenuOpen)
+            var i:int = 0;
+            if(value && !this._bMenuOpen)
             {
                 this.MenuBackground.gotoAndPlay("open");
                 this.MenuBackground.visible = true;
             }
-            else if(!param1 && this._bMenuOpen)
+            else if(!value && this._bMenuOpen)
             {
                 this.MenuBackground.gotoAndPlay("close");
             }
-            this._bMenuOpen = param1;
-            this.setMenuEvents(param1);
+            this._bMenuOpen = value;
+            this.setMenuEvents(value);
             if(this._bWidgetsVisible)
             {
-                _loc2_ = 0;
-                while(_loc2_ < this._widgets.length)
+                for(i = 0; i < this._widgets.length; i++)
                 {
-                    if(param1)
+                    if(value)
                     {
-                        this._widgets[_loc2_].openContainer();
+                        this._widgets[i].openContainer();
                     }
                     else
                     {
-                        this._widgets[_loc2_].closeContainer();
+                        this._widgets[i].closeContainer();
                     }
-                    _loc2_++;
                 }
             }
             else if(this._bMenuOpen)
             {
-                _loc2_ = 0;
-                while(_loc2_ < this._widgets.length)
+                for(i = 0; i < this._widgets.length; i++)
                 {
-                    this._widgets[_loc2_].closeContainer();
-                    _loc2_++;
+                    this._widgets[i].closeContainer();
                 }
             }
             if(this._currentMenuIndex < this.menuList.length)
             {
-                if(param1)
+                if(value)
                 {
                     this.menuList[this._currentMenuIndex].menuObject.openContainer();
                 }
@@ -375,8 +412,8 @@ package tripwire.managers
                     this.menuList[this._currentMenuIndex].menuObject.closeContainer();
                 }
             }
-            this.mCursor.visible = param1 && !this.bUsingGamepad;
-            this.MenuScanlines.visible = param1;
+            this.mCursor.visible = value && !this.bUsingGamepad;
+            this.MenuScanlines.visible = value;
             this.mCursor.x = mouseX;
             this.mCursor.y = mouseY;
         }
@@ -394,9 +431,9 @@ package tripwire.managers
             }
         }
         
-        public function setMenuEvents(param1:Boolean) : void
+        public function setMenuEvents(value:Boolean) : void
         {
-            if(param1)
+            if(value)
             {
                 stage.addEventListener(MouseEvent.MOUSE_MOVE,this.handleMouseMove);
                 stage.addEventListener(Event.ADDED,this.changeMouseLayer,false,0,true);
@@ -410,32 +447,36 @@ package tripwire.managers
             }
         }
         
-        protected function controllerEnableWidgets(param1:Boolean) : void
+        public function currentFocus() : void
         {
-            var _loc2_:int = 0;
-            while(_loc2_ < this._widgets.length)
+            trace("Bryan: MenuManager currentFocus:: " + FocusManager.getFocus());
+            trace("Bryan: MenuManager modalClip:: " + FocusManager.getModalClip());
+        }
+        
+        protected function controllerEnableWidgets(value:Boolean) : void
+        {
+            for(var i:int = 0; i < this._widgets.length; i++)
             {
-                if(param1)
+                if(value)
                 {
-                    this._widgets[_loc2_].selectContainer();
+                    this._widgets[i].selectContainer();
                 }
                 else
                 {
-                    this._widgets[_loc2_].deselectContainer();
+                    this._widgets[i].deselectContainer();
                 }
-                _loc2_++;
             }
         }
         
-        protected function handleMouseMove(param1:MouseEvent) : void
+        protected function handleMouseMove(e:MouseEvent) : void
         {
-            this.mCursor.x = param1.stageX;
-            this.mCursor.y = param1.stageY;
+            this.mCursor.x = e.stageX;
+            this.mCursor.y = e.stageY;
         }
         
-        protected function changeMouseLayer(param1:Event) : void
+        protected function changeMouseLayer(e:Event) : void
         {
-            if(param1.target != this.mCursor)
+            if(e.target != this.mCursor)
             {
                 stage.removeChild(this.mCursor);
                 stage.addChild(this.mCursor);
@@ -444,8 +485,8 @@ package tripwire.managers
         
         private function testMenus() : void
         {
-            var _loc1_:Array = new Array("../UI_Widgets/PartyWidget_SWF.swf","../UI_Widgets/MenuBarWidget_SWF.swf");
-            this.loadWidgets(_loc1_);
+            var Paths:Array = new Array("../UI_Widgets/PartyWidget_SWF.swf","../UI_Widgets/MenuBarWidget_SWF.swf");
+            this.loadWidgets(Paths);
             this.loadCurrentMenu("../UI_Menus/GearMenu_SWF.swf",false);
         }
     }

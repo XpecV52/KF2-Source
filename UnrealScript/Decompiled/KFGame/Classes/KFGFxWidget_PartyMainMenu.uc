@@ -11,7 +11,7 @@ var bool bIsInParty;
 
 function OneSecondLoop()
 {
-    if(OnlineLobby.IsInLobby())
+    if((OnlineLobby != none) && OnlineLobby.IsInLobby())
     {
         SendMyOptions();
         SendSearching();
@@ -40,7 +40,7 @@ function SendSearching()
     {
         return;
     }
-    if(OnlineLobby.IsInLobby())
+    if((OnlineLobby != none) && OnlineLobby.IsInLobby())
     {
         OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
         bIsLeader = Outer.GetPC().PlayerReplicationInfo.UniqueId == AdminId;
@@ -98,9 +98,11 @@ function RefreshParty()
     local UniqueNetId AdminId;
     local int SlotIndex;
     local bool bInParty;
+    local PlayerController PC;
+    local string PlayerName, ReadablePlayerName;
 
     super.RefreshParty();
-    if(OnlineLobby.GetCurrentLobby(LobbyInfo))
+    if((OnlineLobby != none) && OnlineLobby.GetCurrentLobby(LobbyInfo))
     {
         OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
         if(PartyChatWidget != none)
@@ -119,9 +121,9 @@ function RefreshParty()
             bIsInParty = bInParty;
         }
         SlotIndex = 0;
-        J0x18C:
+        J0x19D:
 
-        if(SlotIndex < 6)
+        if(SlotIndex < PlayerSlots)
         {
             if(SlotIndex < LobbyInfo.Members.Length)
             {
@@ -135,32 +137,38 @@ function RefreshParty()
                 }
             }
             ++ SlotIndex;
-            goto J0x18C;
+            goto J0x19D;
         }        
     }
     else
     {
-        RefreshSlot(0, Outer.GetPC().PlayerReplicationInfo.UniqueId);
+        PC = Outer.GetPC();
+        RefreshSlot(0, PC.PlayerReplicationInfo.UniqueId);
         InitializePerk();
         bInParty = false || bInLobby;
         bIsInParty = bInParty;
         SetSearchingText("");
-        UpdatePlayerName(0, OnlineLobby.GetFriendNickname(Outer.GetPC().PlayerReplicationInfo.UniqueId));
+        ReadablePlayerName = PC.PlayerReplicationInfo.GetHumanReadableName();
+        if(OnlineLobby != none)
+        {
+            PlayerName = OnlineLobby.GetFriendNickname(PC.PlayerReplicationInfo.UniqueId);
+        }
+        UpdatePlayerName(0, ((PlayerName != "") ? PlayerName : ((ReadablePlayerName == DefaultPlayerName) ? DefaultPlayerName $ "0" : ReadablePlayerName)));
         if(PartyChatWidget != none)
         {
             PartyChatWidget.SetLobbyChatVisible(false);
         }
         SlotIndex = 1;
-        J0x3AC:
+        J0x463:
 
-        if(SlotIndex < 6)
+        if(SlotIndex < PlayerSlots)
         {
             if(MemberSlots[SlotIndex].bIsSlotTaken)
             {
                 EmptySlot(SlotIndex);
             }
             ++ SlotIndex;
-            goto J0x3AC;
+            goto J0x463;
         }
     }
     UpdateSoloSquadText();
@@ -170,6 +178,10 @@ function HandleLeaderChange(UniqueNetId AdminId)
 {
     local string HostName;
 
+    if(OnlineLobby != none)
+    {
+        HostName = OnlineLobby.GetFriendNickname(AdminId);
+    }
     HostName = OnlineLobby.GetFriendNickname(AdminId);
     Manager.HandleSteamLobbyLeaderTakeOver(AdminId);
     if(LastLeaderID != ZeroUniqueId)
@@ -181,21 +193,38 @@ function HandleLeaderChange(UniqueNetId AdminId)
 
 function RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
 {
-    local string PlayerName;
+    local string PlayerName, ReadablePlayerName;
     local UniqueNetId AdminId;
     local bool bIsLeader, bIsMyPlayer;
+    local PlayerController PC;
 
-    OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
-    bIsLeader = PlayerUID == AdminId;
+    PC = Outer.GetPC();
+    if(OnlineLobby != none)
+    {
+        OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
+    }
+    if(Class'WorldInfo'.static.IsConsoleBuild(8))
+    {
+        bIsLeader = PlayerUID == AdminId && (Manager.StartMenuState != 2) && Manager.StartMenuState != 255;        
+    }
+    else
+    {
+        bIsLeader = PlayerUID == AdminId;
+    }
     MemberSlots[SlotIndex].bIsSlotTaken = true;
     MemberSlots[SlotIndex].bIsLeader = bIsLeader;
     MemberSlots[SlotIndex].PlayerUID = PlayerUID;
-    bIsMyPlayer = Outer.GetPC().PlayerReplicationInfo.UniqueId == PlayerUID;
-    PlayerName = OnlineLobby.GetFriendNickname(PlayerUID);
+    bIsMyPlayer = PC.PlayerReplicationInfo.UniqueId == PlayerUID;
+    if(OnlineLobby != none)
+    {
+        PlayerName = OnlineLobby.GetFriendNickname(PlayerUID);
+    }
     if(PlayerName == "")
     {
-        PlayerName = DefaultPlayerName;
+        ReadablePlayerName = PC.PlayerReplicationInfo.GetHumanReadableName();
+        PlayerName = ((ReadablePlayerName == DefaultPlayerName) ? DefaultPlayerName $ string(SlotIndex) : ReadablePlayerName);
     }
+    UpdatePlayerName(SlotIndex, PlayerName);
     SlotChanged(SlotIndex, true, bIsMyPlayer, bIsLeader);
     CreatePlayerOptions(PlayerUID, SlotIndex);
     MemberSlots[SlotIndex].MemberSlotObject.SetString("profileImageSource", KFPC.GetSteamAvatar(PlayerUID));
@@ -237,10 +266,14 @@ function UpdatePerks(string Message)
     PerkName = KFPC.PerkList[PerkIndex].PerkClass.default.PerkName;
     IconPath = "img://" $ KFPC.PerkList[PerkIndex].PerkClass.static.GetPerkIconPath();
     PerkLevel = PlayerInfoStrings[2];
+    if(OnlineLobby == none)
+    {
+        return;
+    }
     if(OnlineLobby.GetCurrentLobby(LobbyInfo))
     {
         I = 0;
-        J0x176:
+        J0x187:
 
         if(I < LobbyInfo.Members.Length)
         {
@@ -250,7 +283,7 @@ function UpdatePerks(string Message)
                 UpdatePerk(I, PerkName, PerkLevel, IconPath);
             }
             ++ I;
-            goto J0x176;
+            goto J0x187;
         }
     }
 }
@@ -260,8 +293,11 @@ function UpdateSearching(string Message)
     local string SearchingText, PartyLeaderName;
     local UniqueNetId AdminId;
 
-    OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
-    PartyLeaderName = OnlineLobby.GetFriendNickname(AdminId);
+    if(OnlineLobby != none)
+    {
+        OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
+        PartyLeaderName = OnlineLobby.GetFriendNickname(AdminId);
+    }
     switch(Message)
     {
         case InOtherMenu:
@@ -355,5 +391,8 @@ function SendMyOptions()
     CurrentLevel = string(KFPC.GetLevel());
     UIDStrings = Class'OnlineSubsystem'.static.UniqueNetIdToString(Outer.GetPC().PlayerReplicationInfo.UniqueId);
     PerkMessage = ((((PerkPrefix $ UIDStrings) $ "/") $ string(PerkIndex)) $ "/") $ CurrentLevel;
-    OnlineLobby.LobbyMessage(PerkMessage);
+    if(OnlineLobby != none)
+    {
+        OnlineLobby.LobbyMessage(PerkMessage);
+    }
 }

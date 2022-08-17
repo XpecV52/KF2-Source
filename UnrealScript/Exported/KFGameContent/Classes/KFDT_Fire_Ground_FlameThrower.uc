@@ -63,7 +63,6 @@ class KFDT_Fire_Ground_FlameThrower extends KFDT_Fire_Ground
 
 
 
-
 #linenumber 14;
 
 defaultproperties

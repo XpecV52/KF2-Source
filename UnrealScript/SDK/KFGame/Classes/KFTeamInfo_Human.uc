@@ -10,6 +10,15 @@
 //=============================================================================
 class KFTeamInfo_Human extends TeamInfo;
 
+function PostBeginPlay()
+{
+	super.PostBeginPlay();
+	//force a replication since we are putting team index in default properties.
+	bForceNetUpdate = true;
+	bNetDirty = true;
+}
+
+
 DefaultProperties
 {
 	TeamIndex=0

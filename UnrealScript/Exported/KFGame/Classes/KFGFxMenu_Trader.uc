@@ -15,17 +15,18 @@
 
 class KFGFxMenu_Trader extends KFGFxObject_Menu
 	config(Game)
-	DependsOn(KFGFxObject_TraderItems);
+	DependsOn(KFGFxObject_TraderItems)
+	native(UI);
 
 enum EItemType
 {
-  	IT_Weapon,
-  	IT_Armor,
-  	IT_NonSellable,
-  	IT_Grenade,
+  	EIT_Weapon,
+  	EIT_Armor,
+  	EIT_NonSellable,
+  	EIT_Grenade,
 };
 
-struct SItemInformation
+struct native SItemInformation
 {
 	/** True if this item is being used to hold secondary ammo info */
 	var bool bIsSecondaryAmmo;
@@ -108,6 +109,7 @@ function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 	super.InitializeMenu(InManager);
 	MyKFPC = KFPlayerController ( GetPC() );
 	SetString("exitMenuString", ExitMenuString);
+	SetString("cancelPromptName", ExitMenuString);
 }
 
 function OnOpen()
@@ -222,7 +224,10 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 event OnClose()
 {
 	MyKFIM.ServerCloseTraderMenu();
-	MyKFPC.MyGFxHUD.WeaponSelectWidget.RefreshWeaponSelect();
+	if(MyKFPC.MyGFxHUD.WeaponSelectWidget != none)
+	{
+		MyKFPC.MyGFxHUD.WeaponSelectWidget.RefreshWeaponSelect();
+	}
 
     OwnedItemList.length = 0;
 	TotalDosh = 0;
@@ -307,8 +312,8 @@ function UpdatePlayerInfo()
 			PlayerInfoContainer.SetPerkList();
 			LastPerkClass = MyKFPC.CurrentPerk;
 
-			// Refresh the UI
 			RefreshItemComponents();
+			OnOpen();
 		}
 	}
 }
@@ -393,7 +398,6 @@ function GiveExternalWeapon(KFWeapon KFW)
 function SetWeaponInformation( KFWeapon KFW )
 {
 	local int i;
-	local STraderItem KnifeItem;
 
 	for (i = 0; i < TraderItems.SaleItems.Length; i++)
 	{
@@ -402,17 +406,6 @@ function SetWeaponInformation( KFWeapon KFW )
     		SetWeaponInfo(KFW, TraderItems.SaleItems[i]);
     		return;
     	}
-    }
-
-    // If we're not listed, check for knife and generate item using perk def
-    if ( KFW.GetKnifeWeaponDef() != None )
-    {
-    	KnifeItem.WeaponDef = KFW.GetKnifeWeaponDef();
-    	// @temp: fill in stuff that is normally serialized in the archetype
-    	KnifeItem.WeaponStats = TraderItems.KnifeStats;
-    	KnifeItem.AssociatedPerkClass = KFW.AssociatedPerkClass;
-    	KnifeItem.ClassName = KFW.Class.Name;
-    	SetWeaponInfo(KFW, KnifeItem);
     }
 }
 
@@ -433,12 +426,19 @@ function SetWeaponInfo(out KFWeapon KFW, STraderItem DefaultItem)
 	WeaponInfo.AmmoPricePerMagazine = DefaultItem.WeaponDef.default.AmmoPricePerMag;
 	WeaponInfo.SellPrice = MyKFIM.GetAdjustedSellPriceFor( DefaultItem, KFW );
 
-    OwnedItemList.AddItem(WeaponInfo);
+    AddItemByPriority( WeaponInfo );
 
    	if( DefaultItem.WeaponDef.static.UsesSecondaryAmmo() )
    	{
    		WeaponInfo.bIsSecondaryAmmo = true;
+		if (MyKFIM.bLogInventory) LogInternal("SetWeaponInfo: Adding" @ DefaultItem.ClassName @ "to OwnedItemList");
 		OwnedItemList.AddItem( WeaponInfo );
+   	}
+
+   	// if adding a dual, remove the related single
+   	if( DefaultItem.SingleClassName != '' )
+   	{
+   		RemoveWeaponFromOwnedItemList( , DefaultItem.SingleClassName, true );
    	}
 }
 
@@ -452,10 +452,12 @@ function int AddWeaponToOwnedItemList( STraderItem DefaultItem, optional bool bD
 	local SItemInformation WeaponInfo;
 	local KFPerk CurrentPerk;
 	local byte ItemIndex;
-	local int DefaultMagazineCapacity, AddedWeaponIndex;
-	local bool bShouldMagSizeModifySpareAmmo;
+	local int DefaultMagazineCapacity, AddedWeaponIndex, OwnedSingleIdx, SingleDualAmmoDiff;
+	local bool bShouldMagSizeModifySpareAmmo, bAddingDual;
 
 	CurrentPerk = MyKFPC.CurrentPerk;
+
+	if (MyKFIM.bLogInventory) LogInternal("AddWeaponToOwnedItemList: DefaultItem="$DefaultItem.ClassName);
 
 	// Magazine capacity affects both spare ammo and max spare ammo. modify this first
    	WeaponInfo.MagazineCapacity = DefaultItem.MagazineCapacity;
@@ -470,6 +472,21 @@ function int AddWeaponToOwnedItemList( STraderItem DefaultItem, optional bool bD
 	WeaponInfo.SpareAmmoCount = DefaultItem.InitialSpareMags * DefaultItem.MagazineCapacity;
 	CurrentPerk.ModifySpareAmmoAmount(none, WeaponInfo.SpareAmmoCount, DefaultItem);
 	WeaponInfo.SpareAmmoCount += bShouldMagSizeModifySpareAmmo ? WeaponInfo.MagazineCapacity : DefaultMagazineCapacity;
+
+	// if adding a dual, adjust the displayed ammo count to reflect ammo of single
+	bAddingDual = DefaultItem.SingleClassName != '';
+	if( bAddingDual )
+	{
+		for( OwnedSingleIdx = 0; OwnedSingleIdx < OwnedItemList.Length; ++OwnedSingleIdx )
+		{
+			if( OwnedItemList[OwnedSingleIdx].DefaultItem.ClassName == DefaultItem.SingleClassName )
+			{
+				SingleDualAmmoDiff = OwnedItemList[OwnedSingleIdx].SpareAmmoCount - WeaponInfo.SpareAmmoCount;
+				WeaponInfo.SpareAmmoCount = OwnedItemList[OwnedSingleIdx].SpareAmmoCount /*+ WeaponInfo.MagazineCapacity/2*/; // can't add mag/2 ammo here because it makes buying two singles better than buying a dual
+				break;
+			}
+		}
+	}
 
 	// allow perk to set spare ammo to max (uses different params than ModifySpareAmmoAmount)
 	// mostly just used for firebug
@@ -490,6 +507,7 @@ function int AddWeaponToOwnedItemList( STraderItem DefaultItem, optional bool bD
 
    	if( !bDoNotBuy )
    	{
+		if (MyKFIM.bLogInventory) LogInternal("AddWeaponToOwnedItemList: Calling ServerBuyWeapon on" @ DefaultItem.ClassName);
 	    // Tell the server to buy the weapon using its trader archetype info
 		TraderItems.GetItemIndicesFromArche( ItemIndex, DefaultItem.ClassName );
 		MyKFIM.ServerBuyWeapon(ItemIndex);
@@ -498,13 +516,15 @@ function int AddWeaponToOwnedItemList( STraderItem DefaultItem, optional bool bD
 	{
 		// Tell the server to add the weapon (without buying) using its trader archetype info
 		TraderItems.GetItemIndicesFromArche( ItemIndex, DefaultItem.ClassName );
+		if (MyKFIM.bLogInventory) LogInternal("AddWeaponToOwnedItemList: Calling ServerAddTransactionItem on" @ DefaultItem.ClassName);
 		MyKFIM.ServerAddTransactionItem(ItemIndex);
 		AddBlocks( DefaultItem.BlocksRequired );
 	}
 
-	// if adding a dual, removed owned single
-   	if( DefaultItem.SingleClassName != '' )
+	// if adding a dual, set its transaction ammo (given at trader close) to reflect the single it's replacing
+   	if( bAddingDual )
    	{
+   		AddTransactionAmmo( ItemIndex, SingleDualAmmoDiff /*+ WeaponInfo.MagazineCapacity/2*/, false );
    		RemoveWeaponFromOwnedItemList( , DefaultItem.SingleClassName, true );
    	}
 
@@ -516,9 +536,9 @@ function RemoveWeaponFromOwnedItemList( optional int OwnedListIdx = INDEX_NONE, 
 {
 	local SItemInformation ItemInfo;
 	local byte ItemIndex;
-	local KFWeapon DualKFW;
 	local int SingleOwnedIndex;
 
+	if (MyKFIM.bLogInventory) LogInternal("RemoveWeaponFromOwnedItemList: OwnedListIdx="$OwnedListIdx @ "ClassName="$ClassName @ "bDoNotSell="$bDoNotSell);
 	if( OwnedListIdx == INDEX_NONE && ClassName != '' )
 	{
 		for( OwnedListIdx = 0; OwnedListIdx < OwnedItemList.length; ++OwnedListIdx )
@@ -529,37 +549,40 @@ function RemoveWeaponFromOwnedItemList( optional int OwnedListIdx = INDEX_NONE, 
 			}
 		}
 	}
-
+	if (MyKFIM.bLogInventory) LogInternal("RemoveWeaponFromOwnedItemList: OwnedItemList.length="$OwnedItemList.length);
 	if( OwnedListIdx >= OwnedItemList.length )
 	{
 		return;
 	}
 
 	ItemInfo = OwnedItemList[OwnedListIdx];
-
-	// cache weapon before we remove it from inventory/transaction
-	MyKFIM.GetWeaponFromClass(DualKFW, ItemInfo.DefaultItem.ClassName);
+	if (MyKFIM.bLogInventory) LogInternal("RemoveWeaponFromOwnedItemList: ItemInfo.ClassName="$ItemInfo.DefaultItem.ClassName @ "ItemInfo.SingleClassName="$ItemInfo.DefaultItem.SingleClassName @ "ItemInfo.DualClassName="$ItemInfo.DefaultItem.DualClassName);
 
 	if( !bDoNotSell )
 	{
 		// Sell the weapon from our inventory immediately
 		TraderItems.GetItemIndicesFromArche( ItemIndex, ItemInfo.DefaultItem.ClassName );
+		if (MyKFIM.bLogInventory) LogInternal("RemoveWeaponFromOwnedItemList: Calling ServerSellWeapon on" @ ItemInfo.DefaultItem.ClassName);
 		MyKFIM.ServerSellWeapon(ItemIndex);
 	}
 	else
 	{
 		// Remove the weapon from our inventory immediately (without selling)
 		TraderItems.GetItemIndicesFromArche( ItemIndex, ItemInfo.DefaultItem.ClassName );
+		if (MyKFIM.bLogInventory) LogInternal("RemoveWeaponFromOwnedItemList: Calling ServerRemoveTransactionItem on" @ ItemInfo.DefaultItem.ClassName);
 		MyKFIM.ServerRemoveTransactionItem( ItemIndex );
 		AddBlocks( -ItemInfo.DefaultItem.BlocksRequired );
 	}
+	if (MyKFIM.bLogInventory) LogInternal("RemoveWeaponFromOwnedItemList: OwnedListIdx="$OwnedListIdx @ "OwnedItemList[OwnedListIdx]="$OwnedItemList[OwnedListIdx].DefaultItem.ClassName);
 
 	// If we try to sell a weapons secondary ammo slot
 	if( OwnedItemList[OwnedListIdx].bIsSecondaryAmmo )
 	{
+		if (MyKFIM.bLogInventory) LogInternal("RemoveWeaponFromOwnedItemList: Removing" @ OwnedItemList[OwnedListIdx].DefaultItem.ClassName @ "from OwnedItemList");
 		OwnedItemList.Remove( OwnedListIdx, 1 );
 		if( OwnedListIdx - 1 >= 0 )
     	{
+			if (MyKFIM.bLogInventory) LogInternal("RemoveWeaponFromOwnedItemList: Removing" @ OwnedItemList[OwnedListIdx-1].DefaultItem.ClassName @ "from OwnedItemList");
     		OwnedItemList.Remove( OwnedListIdx - 1, 1 );
     	}
 	}
@@ -568,14 +591,19 @@ function RemoveWeaponFromOwnedItemList( optional int OwnedListIdx = INDEX_NONE, 
 	{
     	if( OwnedListIdx + 1 < OwnedItemList.Length )
     	{
+			if (MyKFIM.bLogInventory) LogInternal("RemoveWeaponFromOwnedItemList: Removing" @ OwnedItemList[OwnedListIdx+1].DefaultItem.ClassName @ "from OwnedItemList");
     		OwnedItemList.Remove( OwnedListIdx + 1, 1 );
+			if (MyKFIM.bLogInventory) LogInternal("RemoveWeaponFromOwnedItemList: Removing" @ OwnedItemList[OwnedListIdx].DefaultItem.ClassName @ "from OwnedItemList");
 			OwnedItemList.Remove( OwnedListIdx, 1 );
     	}
 	}
 	else
 	{
+		if (MyKFIM.bLogInventory) LogInternal("RemoveWeaponFromOwnedItemList: Removing" @ OwnedItemList[OwnedListIdx].DefaultItem.ClassName @ "from OwnedItemList");
 		OwnedItemList.Remove( OwnedListIdx, 1 );
 	}
+
+	if (MyKFIM.bLogInventory) LogInternal("RemoveWeaponFromOwnedItemList: ItemInfo.DefaultItem.SingleClassName="$ItemInfo.DefaultItem.SingleClassName);
 
 	// add a single to owned items when removing a dual
 	if( ItemInfo.DefaultItem.SingleClassName != '' )
@@ -583,22 +611,21 @@ function RemoveWeaponFromOwnedItemList( optional int OwnedListIdx = INDEX_NONE, 
 		// When removing a dual, always add a single to the owned list so that it shows up in the player inventory UI. 
 		// If we don't own the single, then also buy it (add it to the transaction list).
 
-		// assumes singles and duals belong to same perk
 		if( TraderItems.GetItemIndicesFromArche( ItemIndex, ItemInfo.DefaultItem.SingleClassName) )
 		{
 			SingleOwnedIndex = AddWeaponToOwnedItemList( TraderItems.SaleItems[ItemIndex], true );
 
-			if( KFWeap_DualBase(DualKFW) != none )
-			{
-				// modify default single ammo based on how much ammo dual had when sold
-				KFWeap_DualBase(DualKFW).AddAmmoToSingleOnSell( MyKFIM, OwnedItemList[SingleOwnedIndex].SpareAmmoCount, ItemIndex );
+			// modify default single ammo based on how much ammo dual had when sold
+			AddTransactionAmmo( ItemIndex, OwnedItemList[OwnedListIdx].SpareAmmoCount - OwnedItemList[SingleOwnedIndex].SpareAmmoCount, false );
 
-				// update the values in the trader UI
-				OwnedItemList[SingleOwnedIndex].SpareAmmoCount = DualKFW.AmmoCount[0] + DualKFW.SpareAmmoCount[0];
-			}
+			// update the values in the trader UI
+			OwnedItemList[SingleOwnedIndex].SpareAmmoCount = OwnedItemList[OwnedListIdx].SpareAmmoCount;
 		}
 	}
 }
+
+/** Adds (or subtracts) ammo from a weapon transaction */
+native private final function AddTransactionAmmo( byte ItemIndex, int Amount, bool bSecondaryAmmo );
 
 function int AddItemByPriority( out SItemInformation WeaponInfo )
 {
@@ -641,12 +668,12 @@ function int AddItemByPriority( out SItemInformation WeaponInfo )
 		}
 	}
 
+	if (MyKFIM.bLogInventory) LogInternal("AddItemByPriority: Inserting" @ WeaponInfo.DefaultItem.ClassName @ "into OwnedItemList");
 	OwnedItemList.InsertItem( BestIndex, WeaponInfo );
 	// Add secondary ammo immediately after the main weapon
 	if( WeaponInfo.DefaultItem.WeaponDef.static.UsesSecondaryAmmo() )
    	{
    		WeaponInfo.bIsSecondaryAmmo = true;
-		OwnedItemList.InsertItem( BestIndex + 1, WeaponInfo );
    	}
 
    	return BestIndex;
@@ -738,7 +765,7 @@ function BoughtAmmo(int AmountPurchased, int Price, EItemType ItemType, optional
 	local byte ItemIndex;
     AddDosh( -Price );
 
-    if( ItemType == IT_Weapon )
+    if( ItemType == EIT_Weapon )
     {
         // Get the proper weapon prices from the servers trader archetype
     	TraderItems.GetItemIndicesFromArche(ItemIndex, ClassName);
@@ -904,6 +931,7 @@ function Callback_BuyOrSellItem()
 			AddDosh(-GetAdjustedBuyPriceFor(ShopItem));
 			AddBlocks( ShopItem.BlocksRequired );
 
+			if (MyKFIM.bLogInventory) LogInternal("Callback_BuyOrSellItem: ShopItem="$ShopItem.ClassName);
 			AddWeaponToOwnedItemList(ShopItem);
 
 			RefreshItemComponents();
@@ -913,7 +941,10 @@ function Callback_BuyOrSellItem()
 		}
 		else
 		{
+			if (MyKFIM.bLogInventory) LogInternal("Callback_BuyOrSellItem: SelectedItemIndex="$SelectedItemIndex);
 			ItemInfo = OwnedItemList[SelectedItemIndex];
+
+			if (MyKFIM.bLogInventory) LogInternal("Callback_BuyOrSellItem: ItemInfo="$ItemInfo.DefaultItem.ClassName);
 
 		    AddDosh(ItemInfo.SellPrice);
 		   	AddBlocks( -ItemInfo.DefaultItem.BlocksRequired );

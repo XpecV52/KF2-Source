@@ -16,9 +16,9 @@ package tripwire.containers.trader
     import scaleform.clik.events.IndexEvent;
     import scaleform.clik.events.InputEvent;
     import scaleform.clik.events.ListEvent;
+    import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.Extensions;
-    import scaleform.gfx.FocusManager;
     import tripwire.containers.TripContainer;
     import tripwire.controls.TripScrollingList;
     import tripwire.controls.trader.TraderArmorItem;
@@ -80,13 +80,13 @@ package tripwire.containers.trader
             this.magList.addEventListener(IndexEvent.INDEX_CHANGE,this.buyMag,false,0,true);
             this.fillButtonList.addEventListener(IndexEvent.INDEX_CHANGE,this.fillAmmo,false,0,true);
             this.autoFillButton.addEventListener(FocusEvent.FOCUS_IN,this.changeFocusIn,false,0,true);
-            this.grenadeItem.grenadeInfoContainer.addEventListener(FocusEvent.FOCUS_IN,this.changeFocusIn,false,0,true);
-            this.armorItem.armorInfoContainer.addEventListener(FocusEvent.FOCUS_IN,this.changeFocusIn,false,0,true);
+            this.grenadeItem.addEventListener(FocusEvent.FOCUS_IN,this.changeFocusIn,false,0,true);
+            this.armorItem.addEventListener(FocusEvent.FOCUS_IN,this.changeFocusIn,false,0,true);
             this.autoFillButton.addEventListener(FocusEvent.FOCUS_OUT,this.changeFocusOut,false,0,true);
-            this.grenadeItem.grenadeInfoContainer.addEventListener(FocusEvent.FOCUS_OUT,this.changeFocusOut,false,0,true);
-            this.armorItem.armorInfoContainer.addEventListener(FocusEvent.FOCUS_OUT,this.changeFocusOut,false,0,true);
-            this.grenadeItem.grenadeInfoContainer.addEventListener(ButtonEvent.PRESS,this.grenadeSelected,false,0,true);
-            this.armorItem.armorInfoContainer.addEventListener(ButtonEvent.PRESS,this.armorSelected,false,0,true);
+            this.grenadeItem.addEventListener(FocusEvent.FOCUS_OUT,this.changeFocusOut,false,0,true);
+            this.armorItem.addEventListener(FocusEvent.FOCUS_OUT,this.changeFocusOut,false,0,true);
+            this.grenadeItem.addEventListener(ButtonEvent.PRESS,this.grenadeSelected,false,0,true);
+            this.armorItem.addEventListener(ButtonEvent.PRESS,this.armorSelected,false,0,true);
             this.infoList.addEventListener(FocusEvent.FOCUS_IN,this.changeFocusIn,false,0,true);
             this.playerInfoContainer.addEventListener(IndexEvent.INDEX_CHANGE,this.onTogglePlayerInfoMenu,false,0,true);
             this.changePerkButton.tabIndex = 1;
@@ -127,19 +127,23 @@ package tripwire.containers.trader
                 this.grenadeItem.focused = 0;
                 this.grenadeItem.grenadeInfoContainer.focused = 0;
                 this.grenadeItem.grenadeInfoContainer.selected = false;
-                FocusManager.setFocus(this.armorItem);
-                this.armorItem.armorInfoContainer.focused = 1;
-                this.armorItem.armorInfoContainer.selected = true;
+                FocusHandler.getInstance().setFocus(this.armorItem);
+                this.infoList.focused = 0;
+                this.infoList.selectedIndex = -1;
             }
         }
         
         override public function deselectContainer() : void
         {
-            FocusManager.setFocus(this.armorItem);
+            this.infoList.focused = 0;
+            this.infoList.selectedIndex = -1;
             this.autoFillButton.selected = false;
             this.armorItem.armorInfoContainer.selected = false;
+            this.armorItem.armorInfoContainer.focused = 0;
             this.grenadeItem.grenadeInfoContainer.selected = false;
+            this.grenadeItem.grenadeInfoContainer.focused = 0;
             super.deselectContainer();
+            currentElement = null;
         }
         
         override public function closeContainer() : void
@@ -150,6 +154,7 @@ package tripwire.containers.trader
                 this.playerInfoContainer.closeList();
             }
             super.closeContainer();
+            currentElement = null;
         }
         
         public function set bCanUseMenu(param1:Boolean) : void
@@ -335,11 +340,11 @@ package tripwire.containers.trader
                 this.updateFocusableOnInfoList(!param1);
                 if(param1)
                 {
-                    FocusManager.setFocus(this.armorItem.armorInfoContainer);
+                    FocusHandler.getInstance().setFocus(this.armorItem.armorInfoContainer);
                 }
                 else
                 {
-                    FocusManager.setFocus(this.infoList);
+                    FocusHandler.getInstance().setFocus(this.infoList);
                 }
             }
         }
@@ -503,12 +508,12 @@ package tripwire.containers.trader
         
         protected function changeFocusIn(param1:FocusEvent) : void
         {
-            if(param1.target == this.armorItem.armorInfoContainer)
+            if(param1.target == this.armorItem)
             {
                 this.armorItem.armorInfoContainer.selected = true;
                 ExternalInterface.call("Callback_ArmorItemSelected");
             }
-            else if(param1.target == this.grenadeItem.grenadeInfoContainer)
+            else if(param1.target == this.grenadeItem)
             {
                 this.grenadeItem.grenadeInfoContainer.selected = true;
                 ExternalInterface.call("Callback_GrenadeItemSelected");
@@ -543,7 +548,7 @@ package tripwire.containers.trader
         {
             if(param1.target == this.armorItem.armorInfoContainer)
             {
-                FocusManager.setFocus(this.armorItem.armorInfoContainer);
+                FocusHandler.getInstance().setFocus(this.armorItem);
             }
         }
         
@@ -551,7 +556,7 @@ package tripwire.containers.trader
         {
             if(param1.target == this.grenadeItem.grenadeInfoContainer)
             {
-                FocusManager.setFocus(this.grenadeItem.grenadeInfoContainer);
+                FocusHandler.getInstance().setFocus(this.grenadeItem);
             }
         }
         

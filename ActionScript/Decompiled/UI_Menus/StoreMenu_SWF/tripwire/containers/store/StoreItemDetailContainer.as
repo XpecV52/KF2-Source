@@ -36,6 +36,7 @@ package tripwire.containers.store
             super();
             enableInitCallback = true;
             defaultFirstElement = this.addCartButton;
+            defaultNumPrompts = 2;
         }
         
         public function set localizedText(param1:Object) : void

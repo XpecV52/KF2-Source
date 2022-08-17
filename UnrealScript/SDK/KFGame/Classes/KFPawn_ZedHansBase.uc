@@ -73,7 +73,7 @@ var             bool            bHealedThisPhase;
 /** In the mode to hunt players and try and heal */
 var repnotify   bool            bInHuntAndHealMode;
 
-/** How much to reduce Hans' damage he recieves when he is in hunt and heal mode */
+/** How much to reduce Hans' damage he receives when he is in hunt and heal mode */
 var()           float           HuntAndHealModeDamageReduction;
 
 /*********************************************************************************************
@@ -326,7 +326,7 @@ function SetActiveGrenadeClassNerveGas()
 
 function PlayDrawGunsDialog()
 {
-    `SafeDialogManager.PlayHansDrawGunsDialog( self );
+    `DialogManager.PlayHansDrawGunsDialog( self );
 }
 
 function PlayGrenadeDialog( bool bBarrage )
@@ -334,15 +334,15 @@ function PlayGrenadeDialog( bool bBarrage )
     switch( ActiveGrenadeClass )
     {
     case ExplosiveGrenadeClass:
-        `SafeDialogManager.PlayHansNadeDialog( self, bBarrage );
+        `DialogManager.PlayHansNadeDialog( self, bBarrage );
         break;
 
     case SmokeGrenadeClass:
-        `SafeDialogManager.PlayHansSmokeDialog( self, bBarrage );
+        `DialogManager.PlayHansSmokeDialog( self, bBarrage );
         break;
 
     case NerveGasGrenadeClass:
-        `SafeDialogManager.PlayHansGasDialog( self, bBarrage );
+        `DialogManager.PlayHansGasDialog( self, bBarrage );
         break;
     };
 }
@@ -362,7 +362,7 @@ simulated function SetHuntAndHealMode( bool bOn )
         {
             ClearTimer(nameof(HuntAndHealBump));
 
-            `SafeDialogManager.PlayHansBattlePhaseDialog( self, CurrentBattlePhase );
+            `DialogManager.PlayHansBattlePhaseDialog( self, CurrentBattlePhase );
         }
     }
 

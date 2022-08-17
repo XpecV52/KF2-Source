@@ -19,4 +19,5 @@ DefaultProperties
 	// Combat
 	bIsProbingMeleeRangeEvents=true
 	bCanStrikeThroughEnemies=true
+	LowIntensityAttackCooldown=3.0
 }

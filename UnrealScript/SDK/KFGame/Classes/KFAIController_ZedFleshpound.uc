@@ -133,11 +133,9 @@ function NotifyMeleeDamageDealt()
 {
 	super.NotifyMeleeDamageDealt();
 
-	// Don't end rage mode if in wave frustration mode. RAGE FOREVER ROWR!
-	if( !IsFrustrated() && RagePlugin != none )
+	if( RagePlugin != none )
 	{
-		// unless fp was stumbled (e.g. successful parry), or attacked a door,
-		// end rage and clear frustration
+		// unless fp was stumbled (e.g. successful parry), or attacked a door, end rage
 		if ( MyKFPawn.SpecialMove != SM_Stumble && MyKFPawn.SpecialMove != SM_MeleeAttackDoor )
 		{
 			RagePlugin.EndRage();
@@ -262,7 +260,7 @@ function DoRageTauntAt( optional KFPawn Target )
 {
 	if( Role == ROLE_Authority )
 	{
-		`SafeDialogManager.PlaySpotEnragedDialog( MyKFPawn );
+		`DialogManager.PlaySpotEnragedDialog( MyKFPawn );
 	}
 
 	`AILog( GetFuncName()$"() at "$Target, 'Command_Rage' );
@@ -283,19 +281,8 @@ function NotifyEnraged( bool bEnraged )
 }
 
 /** Frustration mode should not change sprint settings on FP */
-function UpdateSprintFrustration( optional byte bForceFrustration=255 )
+function UpdateSprintFrustration( optional byte bForceFrustrationState=255 )
 {
-}
-
-/** We only want the FP to never stop raging once it starts in frustration mode */
-function bool IsFrustrated()
-{
-	if( FrustrationThreshold > 0 && MyKFGameInfo.MyKFGRI != None && MyKFGameInfo.MyKFGRI.AIRemaining <= FrustrationThreshold )
-	{
-		return true;
-	}
-
-	return false;
 }
 
 DefaultProperties
@@ -313,7 +300,7 @@ DefaultProperties
 	MinRunOverSpeed=150.f
 	MinRunOverWarningAim=0.88f
 	EvadeGrenadeChance=0.6f
-	FrustrationThreshold=5
+	FrustrationThreshold=0
 
 	//DefaultBehavior="FleshpoundMain2"
 	//UsedETQQueries[ENQ_EnemySelection]="BaseZedEnemySelection"
@@ -334,4 +321,5 @@ DefaultProperties
 
 	TeleportCooldown=10.0
 	HiddenRelocateTeleportThreshold=7.0
+	LowIntensityAttackCooldown=5.0
 }

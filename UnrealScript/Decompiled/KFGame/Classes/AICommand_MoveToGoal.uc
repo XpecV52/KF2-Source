@@ -759,7 +759,7 @@ function bool NotifyBump(Actor Other, Vector HitNormal)
                     return true;
                 }
             }
-            if(((((KFP.MyKFAIC.Enemy != none) && Outer.Enemy != none) && KFP.MyKFAIC.Enemy == Outer.Enemy) && KFP.MyKFAIC.IsDoingLatentMove()) && VSize(Outer.Enemy.Location - KFP.Location) < 160000)
+            if((((((KFP.MyKFAIC != none) && KFP.MyKFAIC.Enemy != none) && Outer.Enemy != none) && KFP.MyKFAIC.Enemy == Outer.Enemy) && KFP.MyKFAIC.IsDoingLatentMove()) && VSizeSq(Outer.Enemy.Location - KFP.Location) < 160000)
             {
                 return false;
             }

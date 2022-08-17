@@ -46,7 +46,7 @@ static simulated function int GetHeadshotXP(byte Difficulty)
     return default.SecondaryXPModifier[Difficulty];
 }
 
-simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType)
+simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx)
 {
     local KFWeapon KFW;
     local float TempDamage;
@@ -210,7 +210,7 @@ reliable client simulated function HeadShotMessage(byte HeadShotNum, byte Displa
         return;
     }
     I = HeadShotNum;
-    OwnerPC.UpdateRhythmCounterWidget(DisplayValue);
+    OwnerPC.UpdateRhythmCounterWidget(DisplayValue, MaxHeadShotComboCount);
     switch(I)
     {
         case 0:
@@ -504,4 +504,6 @@ defaultproperties
     PrimaryWeaponDef=Class'KFWeapDef_Remington1858Dual'
     KnifeWeaponDef=Class'KFWeapDef_Knife_Gunslinger'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Gunslinger'
+    HitAccuracyHandicap=-5
+    HeadshotAccuracyHandicap=-8
 }

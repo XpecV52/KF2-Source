@@ -45,9 +45,9 @@ package scaleform.clik.controls
             return this._autoSize;
         }
         
-        public function set autoSize(param1:Boolean) : void
+        public function set autoSize(value:Boolean) : void
         {
-            this._autoSize = param1;
+            this._autoSize = value;
             invalidateSize();
         }
         
@@ -56,19 +56,19 @@ package scaleform.clik.controls
             return this._source;
         }
         
-        public function set source(param1:String) : void
+        public function set source(value:String) : void
         {
-            if(this._source == param1)
+            if(this._source == value)
             {
                 return;
             }
-            if((param1 == "" || param1 == null) && this.loader.content == null)
+            if((value == "" || value == null) && this.loader.content == null)
             {
                 this.unload();
             }
             else
             {
-                this.load(param1);
+                this.load(value);
             }
         }
         
@@ -77,9 +77,9 @@ package scaleform.clik.controls
             return this._maintainAspectRatio;
         }
         
-        public function set maintainAspectRatio(param1:Boolean) : void
+        public function set maintainAspectRatio(value:Boolean) : void
         {
-            this._maintainAspectRatio = param1;
+            this._maintainAspectRatio = value;
             invalidateSize();
         }
         
@@ -102,15 +102,15 @@ package scaleform.clik.controls
             return super.visible;
         }
         
-        override public function set visible(param1:Boolean) : void
+        override public function set visible(value:Boolean) : void
         {
             if(this._isLoading)
             {
-                this._visiblilityBeforeLoad = param1;
+                this._visiblilityBeforeLoad = value;
             }
             else
             {
-                super.visible = param1;
+                super.visible = value;
             }
         }
         
@@ -146,14 +146,14 @@ package scaleform.clik.controls
             }
         }
         
-        protected function load(param1:String) : void
+        protected function load(url:String) : void
         {
-            if(param1 == "")
+            if(url == "")
             {
                 return;
             }
             this.unload();
-            this._source = param1;
+            this._source = url;
             this._visiblilityBeforeLoad = this.visible;
             this.visible = false;
             if(this.loader == null)
@@ -214,36 +214,36 @@ package scaleform.clik.controls
             }
         }
         
-        protected function handleLoadIOError(param1:Event) : void
+        protected function handleLoadIOError(ioe:Event) : void
         {
             this.visible = this._visiblilityBeforeLoad;
-            dispatchEvent(param1);
+            dispatchEvent(ioe);
         }
         
-        protected function handleLoadOpen(param1:Event) : void
+        protected function handleLoadOpen(e:Event) : void
         {
-            dispatchEvent(param1);
+            dispatchEvent(e);
         }
         
-        protected function handleLoadInit(param1:Event) : void
+        protected function handleLoadInit(e:Event) : void
         {
-            dispatchEvent(param1);
+            dispatchEvent(e);
         }
         
-        protected function handleLoadProgress(param1:ProgressEvent) : void
+        protected function handleLoadProgress(pe:ProgressEvent) : void
         {
-            this.bytesLoaded = param1.bytesLoaded;
-            this.bytesTotal = param1.bytesTotal;
-            dispatchEvent(param1);
+            this.bytesLoaded = pe.bytesLoaded;
+            this.bytesTotal = pe.bytesTotal;
+            dispatchEvent(pe);
         }
         
-        protected function handleLoadComplete(param1:Event) : void
+        protected function handleLoadComplete(e:Event) : void
         {
             this._loadOK = true;
             this._isLoading = false;
             invalidateSize();
             validateNow();
-            dispatchEvent(param1);
+            dispatchEvent(e);
         }
     }
 }

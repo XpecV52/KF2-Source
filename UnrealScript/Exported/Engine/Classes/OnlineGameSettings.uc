@@ -110,7 +110,7 @@ struct native PlayerResult
 /** List of players in this game */
 var array<PlayerResult> PlayersInGame;
 
-//__TW_STEAMWORKS_
+//__TW_ONLINESUBSYSTEM_
 
 defaultproperties
 {

@@ -12,9 +12,6 @@
 class KFGFxHUD_WeaponSelectWidget extends GFxObject;
 
 const MAX_WEAPON_GROUPS = 4;
-const KEYBOARD_STATE = "keyboard";
-const CONTROLLER_STATE = "controller";
-var string CurrentState;
 var bool bChangingWeapons;
 var localized string			PrimaryString;
 var localized string			EquiptmentString;
@@ -121,15 +118,6 @@ function UpdateIndex()
 	bChangingWeapons = false;
 }
 
-function SetState( string StrState )
-{
-	if(CurrentState != StrState)
-	{
-		CurrentState = StrState;
-		ActionScriptVoid("setState");
-	}
-}
-
 function Hide()
 {
 	SetWeaponSwitchStayOpen(false);
@@ -152,16 +140,6 @@ function SetWeaponCategories( )
 
 function SendWeaponIndex( int GroupIndex, int SelectedIndex )
 {
-	local bool bIsUsingGamePad;
-	bIsUsingGamePad = class'KFPlayerInput'.static.GetUsingGamePad(GetPC());
-	if(bIsUsingGamePad)
-	{
-		SetState(CONTROLLER_STATE);
-	}
-	else
-	{
-		SetState(KEYBOARD_STATE);
-	}
 	ActionScriptVoid("setSelectedIndex");
 }
 

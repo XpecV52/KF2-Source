@@ -17,6 +17,7 @@ PermissionStrings[1]="Friends only"
 PermissionStrings[2]="Private"
 
 ModeStrings[0]="Survival"
+ModeStrings[1]="VS Survival"
 
 NoPreferenceString="ANY"
 OKString="OK"
@@ -32,6 +33,10 @@ NoString="No"
 
 DisbandPartyString="DISBAND PARTY"
 LeaveCurrentMenuString="Leave current menu?"
+ZedString="ZED"
+HumanString="SURVIVOR"
+SpectatorString="SPECTATOR"
+
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="FAILED TO FIND MATCH"
@@ -355,6 +360,11 @@ ViewProfileString="View Profile"
 
 RemainingString="Remaining:"
 DownLoadingString="Downloading:"
+PartyLeaderString="Leader"
+
+[KFGFxWidget_PartyInGame_Versus]
+SwitchTeamsString="Switch Teams"
+balanceWarningString="WARNING: Teams will be auto-balanced"
 
 [KFGFxMenu_Gear]
 GearHeaderString="CUSTOMIZE GEAR"
@@ -377,10 +387,32 @@ UnequipString="UNEQUIP"
 AllString="All"
 WeaponSkinString="Weapon Skins"
 CosmeticString="Cosmetics"
+CraftingMatsString="Crafting"
 ItemString="Items"
 FiltersString="Filters"
 MoreItemsString="You require a matching key and crate. You can purchase a key from the in game store."
 FailedToExchangeString="CANNOT OPEN CRATE"
+RecycleString="RECYCLE"
+CraftString="CRAFT"
+CraftCosmeticString="Cosmetic Crafting"
+CraftWeaponString="Weapon Skin Crafting"
+CraftWeaponStrings[0]="Uncommon Weapon Skin"
+CraftWeaponStrings[1]="Rare Weapon Skin"
+CraftWeaponStrings[2]="Exceptional Weapon Skin"
+CraftWeaponStrings[3]="Master Crafted Weapon Skin"
+CraftCosmeticStrings[0]="Uncommon Cosmetic"
+CraftCosmeticStrings[1]="Rare Cosmetic"
+CraftCosmeticStrings[2]="Exceptional Cosmetic"
+CraftCosmeticStrings[3]="Master Crafted Cosmetic"
+RecycleWarningString="Warning, this cannot be undone. This will destroy the selected item and replace it with a crafting material item"
+RecycleItemString="Recycle Item?"
+ConfirmCraftItemString="Crafting this item will use resources and cannot be undone"
+CraftItemString="Confirm Craft Item?"
+FailedToCraftItemString="Failed to Craft Item"
+CraftRequirementString="Insufficient quantity of required crafting materials"
+CraftCosmeticDescriptionString="You can craft new cosmetic items from this menu out of cosmetic material. You can obtain cosmetic material by recycling existing cosmetic items. To recycle, select an item and press recycle"
+CraftWeaponDescriptionString="You can craft new weapon skin items from this menu out of weapon skin material. You can obtain weapon skin material by recycling existing weapon skin items. To recycle, select an item and press recycle"
+RequiresString="Requires: "
 
 [KFGFxPerksContainer]
 LevelString=""
@@ -447,7 +479,7 @@ MenuStrings[5]="OPTIONS"
 MenuStrings[6]="EXIT"
 
 ServerBrowserString="SERVER BROWSER"
-MatchmakingString="MATCH MAKING"
+MatchmakingString="MATCHMAKING"
 SoloString="SOLO"
 OverviewString="MATCH OVERVIEW"
 
@@ -503,6 +535,10 @@ ThrowString="THROW WEAPON"
 
 [KFGFxWidget_KickVote]
 VoteKickString="Kick Player?"
+
+[KFLocalMessage_PlayerKills]
+KilledString="killed"
+ZedString=ZEDs
 
 [KFLocalMessage_VoiceComms]
 VoiceCommsOptionStrings[0]="REQUEST HEALING"
@@ -695,7 +731,7 @@ AmbientOcclusionStringOptions[1]="SSAO"
 AmbientOcclusionStringOptions[2]="HBAO+"
 
 DepthOfFieldStringOptions[0]="Off"
-DepthOfFieldStringOptions[1]="SAT DOF"
+DepthOfFieldStringOptions[1]="On"
 
 [KFGFxOptionsMenu_Graphics_DX10]
 AmbientOcclusionStringOptions_DX10[0]="Off"
@@ -720,8 +756,28 @@ GoreOptionStrings[2]="Gory"
 NormalString=Normal
 WiderString=Wider
 FriendlyHudScaleString="Friendly HUD Scale"
+KillTickerString="Kill Ticker"
 
 [LocalizedControls]
+ControllerLayoutDefault="Default"
+ControllerLayoutJumper="Jumper"
+ControllerLayoutQuickDraw="Quick Draw"
+ControllerLayoutSouthPaw="South Paw"
+
+GBA_WeaponSelect_Gamepad="Weapon Select (Hold)"
+GBA_Reload_Gamepad="Reload"
+GBA_StrafeLeft_Gamepad="Movement Control"
+GBA_MoveForward_Gamepad="Move Forward"
+GBA_Look_Gamepad="Look Control"
+GBA_Grenade_Gamepad="Throw Grenade"
+GBA_TurnLeft_Gamepad="Look Control"
+GBA_Look_Gamepad="Look Control"
+GBA_DPad_Left_Gamepad="Voice Comms"
+GBA_DPad_Up_Gamepad="Equip Healer"
+GBA_DPad_Right_Gamepad="Throw Dosh"
+GBA_DPad_Down_Gamepad="Toggle Flashlight"
+
+
 GBA_MoveForward="Move Forward"
 GBA_StrafeLeft="Strafe Left"
 GBA_Backward="Move Backward"
@@ -731,10 +787,14 @@ GBA_Sprint="Sprint"
 GBA_CrouchToggle="Crouch (Toggle)"
 GBA_CrouchHold="Crouch (Hold)"
 GBA_SprintAndCrouch="Crouch / Sprint"
+GBA_SprintAndMelee="Melee / Sprint"
+GBA_ShowMenu="Toggle In Game Menu"
 
 GBA_Use="Use / Quick Weld (Hold)"
 GBA_Talk="Talk"
-GBA_VoiceChat="Voice Chat"
+GBA_TeamTalk="Team Talk"
+GBA_VoiceChat="Team Voice"
+GBA_PublicVoiceChat="Public Voice"
 GBA_ShowVoiceComms="Voice Commands"
 GBA_ShowScores="Show Scoreboard"
 GBA_TossMoney="Throw Dosh"
@@ -799,6 +859,7 @@ LookString="Look Control"
 WeaponSelectMenuString="Weapon Select Menu (Hold)"
 ShowScoardBoardString="Show Scoreboard"
 ShowIngameMenuString="Toggle In Game Menu"
+CurrentControllerPresetString="Current Controller Preset"
 
 BashString="Melee Bash"
 BlockString="Block (Hold)"
@@ -843,6 +904,7 @@ YourselfString="yourself."
 PickedupArmorMessage="You picked up armor"
 FullArmorMessage="Your armor is already full"
 PickupAmmoMessage="You picked up ammo"
+AmmoFullMessage="Your ammo is full"
 PickupWeaponAmmoMessage="You picked up %x% ammo"
 AlreadyCarryingWeaponMessage="You already have this weapon"
 PickupMessage="You picked up a"
@@ -889,14 +951,17 @@ ObjectiveEndedMessage="Objective Ended!"
 ObjectiveLostMessage="Objective Lost!"
 ObjNotEnoughPlayersMessage="Not Enough Players!"
 ObjTimeRanOutMessage="Time Limit Reached!"
-
-[KFGameInfo_Survival]
-GameName="Survival"
+HumansLoseMessage="Humans squad wiped out!"
+HumansWinMessage="Humans squad survived!"
+AttackHumanPlayersString="Attack the Human Players!"
+ZedGroupRegroupingString="Zed Horde regrouping!"
 
 [KFLocalMessage_Interaction]
 UseTraderMessage="<%x%> USE TRADER"
 UseDoorMessage="<%x%> Open/Close     (HOLD) <%x%> equip welder"
 UseDoorWeldedMessage="(HOLD) <%x%> equip welder"
+ZedUseDoorMessage="<%x%> Open/Close"
+ZedUseDoorWeldedMessage="Door welded, break it down!"
 AcceptObjectiveMessage="<%x%> accept objective"
 ReceiveAmmoMessage="<%x%> receive ammo"
 ReceiveGrenadesMessage="<%x%> receive grenades"
@@ -904,6 +969,10 @@ HealSelfWarning="<%x%> heal self."
 HealSelfGamepadWarning="(HOLD) <%x%> heal self"
 PressToBashWarning="<%x%> bash"
 GamepadWeaponSelectHint="(HOLD) <%x%> weapon select"
+PlayerClotGrabWarningMessage="Kill zed to break free!"
+
+[KFLocalMessage_ServerNotification]
+TeamPendingBalanceMessage="Teams are unbalanced and will be adjusted"
 
 [KFGfxPerkComp_Abilities]
 RankNames[0]="Rank I"
@@ -917,7 +986,7 @@ SkillCatagories[2]=""
 SkillCatagories[3]=""
 SkillCatagories[4]=""
 
-LevelString=Level
+LevelString="Level"
 
 SpecialAbilityName="Signature Ability"
 SpecialAbilityDescription=""
@@ -1237,6 +1306,51 @@ PerkName="Martial Artist"
 [KFPerk_Sharpshooter]
 PerkName="Sharpshooter"
 
+EXPAction1="Dealing Gunslinger weapon damage"
+EXPAction2="Head shots with Gunslinger weapons"
+
+SkillCatagories[0]="Movement"
+SkillCatagories[1]="Basic Technique"
+SkillCatagories[2]="Skill"
+SkillCatagories[3]="Equipment"
+SkillCatagories[4]="Master Techniques"
+
+Passives[0]=(Title="Headshot Damage",Description="Headshot damage increased by %x%");
+Passives[1]=(Title="Recoil",Description="%x% less recoil");
+Passives[2]=(Title="Weapon Switch",Description="Weapon switch speed increased by %x%");
+
+StationaryAim="Stationary Aim
+StationaryAimDescription="10% more damage while stationary."
+
+Trigger="Trigger"
+TriggerDescription="Shoot speed and movement speed increased by 10%."
+
+CrouchAim="Crouch Aim"
+CrouchAimDescription="10% more damage while crouched."
+
+Stun="Stun"
+StunDescription="30% more stun power with perk weapons."
+
+RhythmMethod="Rack 'em Up"
+RhythmMethodDescription="Rack up the headshots: each consecutive headshot increases damage by 17% up to 68% with Gunslinger weapons."
+
+TacticalReload="Tactical Reload"
+TacticalReloadDescription="Be cool. Be quick. Reload faster with perk weapons AND look more elite while you're at it."
+
+Scoped="Scoped"
+ScopedDescription="Recoil reduced 10%, headshot damage increased 10% when using scope or ironsights."
+
+AmmoPouch="Ammo Pouch"
+AmmoPouchDescription="25% more ammo and grenades."
+
+ZTKnockdown="ZED TIME - Knockdown"
+ZTKnockdownDescription="Headshots with perk weapons will knock down any zed."
+
+ZTStun="ZED TIME - Stun"
+ZTStunDescription="Headshots with perk weapons will stun any zed."
+
+
+
 [KFPerk_Support]
 PerkName="Support"
 
@@ -1364,28 +1478,66 @@ KFPawn_ZedClot_Alpha="Alpha Clot"
 KFPawn_ZedScrake="Scrake"
 KFPawn_ZedSiren="Siren"
 KFPawn_ZedPatriarch="Patriarch"
+;Human zeds
+KFPawn_ZedBloat_Versus="Bloat - Player"
+KFPawn_ZedClot_Versus="Clot - Player"
+KFPawn_ZedCrawler_Versus="Crawler - Player"
+KFPawn_ZedFleshPound_Versus="Fleshpound - Player"
+KFPawn_ZedGorefast_Versus="Gorefast - Player"
+KFPawn_ZedHans_Versus="Dr. Hans Volter - Player"
+KFPawn_ZedHusk_Versus="Husk - Player"
+KFPawn_ZedStalker_Versus="Stalker - Player"
+KFPawn_ZedClot_Cyst_Versus="Cyst - Player"
+KFPawn_ZedClot_Slasher_Versus="Slasher - Player"
+KFPawn_ZedClot_Alpha_Versus="Alpha Clot - Player"
+KFPawn_ZedScrake_Versus="Scrake - Player"
+KFPawn_ZedSiren_Versus="Siren - Player"
+KFPawn_ZedPatriarch_Versus="Patriarch - Player"
+
+[ZedMoves]
+Melee="Melee"
+Rally="Rally"
+Grab="Grab"
+Light="Light"
+Heavy="Heavy"
+Spin="Spin"
+Evade="Evade"
+Jump="Jump"
+Puke="Puke"
+Mine="Mine"
+Bite="Bite"
+Scream="Scream"
+Vortex="Vortex"
+Shoot="Shoot"
+Flame="Flame"
+Suicide="Suicide"
+Rage="Rage"
+Minigun="Minigun"
+Rocket="Rocket"
+Mortar="Mortar"
+Heal="Heal"
 
 [Keybinds]
-CtrlCombo="Ctrl + "
-ShiftCombo="Shift + "
-AltCombo="Alt + "
-LeftMouseButton="Left Click"
-MiddleMouseButton="Middle Click"
-RightMouseBUtton="Right Click"
-ThumbMouseButton1="Mouse Thumb 1"
-ThumbMouseButton2="Mouse Thumb 2"
-MouseScrollDown="Mouse Wheel Down"
-MouseScrollUp="Mouse Wheel Up"
-CapsLock="Caps Lock"
+CtrlCombo="Ctrl-"
+ShiftCombo="Shift-"
+AltCombo="Alt-"
+LeftMouseButton="LMB"
+MiddleMouseButton="MMB"
+RightMouseBUtton="RMB"
+ThumbMouseButton="Mouse 4"
+ThumbMouseButton2="Mouse 5"
+MouseScrollDown="M Wheel Down"
+MouseScrollUp="M Wheel Up"
+CapsLock="CapsLock"
 Tab="Tab"
 BackSpace="Backspace"
-SpaceBar="Spacebar"
-LeftShift="Left Shift"
-RightSift="Right Shift"
-LeftCtrl="Left Ctrl"
-RightCtrl="Right Ctrl"
-LeftAlt="Left Alt"
-RightAlt="Right Alt"
+SpaceBar="Space"
+LeftShift="L Shift"
+RightSift="R Shift"
+LeftCtrl="L Ctrl"
+RightCtrl="R Ctrl"
+LeftAlt="L Alt"
+RightAlt="R Alt"
 BackSlash="\"
 Slash="/"
 RightBracket="]"
@@ -1470,6 +1622,9 @@ DisplayName="Farmhouse"
 
 [KF-BlackForest KFMapSummary]
 DisplayName="Black Forest"
+
+[KF-Prison KFMapSummary]
+DisplayName="Prison"
 
 [KFMapInfo]
 ; defaults

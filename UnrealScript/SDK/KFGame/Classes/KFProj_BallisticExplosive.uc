@@ -362,85 +362,32 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 	}
 }
 
-/** Handle bullet collision and damage. Overridden to handle finding a nearby hit on the body when hitting the big collision cylinder */
-simulated function ProcessBulletTouch(Actor Other, Vector HitLocation, Vector HitNormal)
+/** Returns a list of hitzone impacts for a collision with a given pawn
+* @note: To trace the PhysicsAsset the pawn cylinder should have BlockZeroExtent=FALSE
+*/
+simulated function bool TraceProjHitZones(Pawn P, vector EndTrace, vector StartTrace, out array<ImpactInfo> out_Hits)
 {
-	local Pawn Victim;
-	local array<ImpactInfo> HitZoneImpactList;
-	local vector StartTrace, EndTrace, Direction;
-	local TraceHitInfo HitInfo;
-	local vector ClosestHit;
+	local vector ClosestHit, Direction;
 
-	// Do the impact effects
-    if ( WorldInfo.NetMode != NM_DedicatedServer )
+	Super.TraceProjHitZones(P, EndTrace, StartTrace, out_Hits);
+
+	// If we didn't hit anything, that means we hit the big cylinder but
+	// missed the body. Just grab the nearest bone and hit that
+    if( bDud && out_Hits.length == 0 )
 	{
-		// Use ImpactEffectManager to handle material based impacts
-		`ImpactEffectManager.PlayImpactEffects(HitLocation, Instigator,, ImpactEffects);
-	}
+		P.Mesh.FindClosestBone(StartTrace, ClosestHit);
 
-	if ( !Other.IsA('Pawn') )
-	{
-		if ( bDamageDestructiblesOnTouch && Other.bCanBeDamaged )
+		if( !IsZero(ClosestHit) )
 		{
-			HitInfo.HitComponent = LastTouchComponent;
-			HitInfo.Item = INDEX_None;	// force TraceComponent on fractured meshes
-			Other.TakeDamage(Damage, InstigatorController, Location, MomentumTransfer * Normal(Velocity), MyDamageType, HitInfo, self);
-		}
+            StartTrace = ClosestHit;
+			Direction = Normal(ClosestHit-StartTrace);
+			EndTrace = StartTrace + Direction * (P.CylinderComponent.CollisionRadius * 6.0);
 
-		// Reduce the penetration power to zero if we hit something other than a pawn or foliage actor
-		if( InteractiveFoliageActor(Other) == None )
-		{
-    		PenetrationPower = 0;
-    		return;
+			Super.TraceProjHitZones(P, EndTrace, StartTrace, out_Hits);
 		}
 	}
 
-	Victim = Pawn(Other);
-	if( Victim != none )
-	{
-		StartTrace = HitLocation;
-		Direction = Normal(Velocity);
-		EndTrace = StartTrace + Direction * (Victim.CylinderComponent.CollisionRadius * 6.0);
-
-		TraceProjHitZones(Victim, EndTrace, StartTrace, HitZoneImpactList);
-
-        // If we didn't hit anything, that means we hit the big cylinder but
-        // missed the body. Just grab the nearest bone and hit that
-        if( bDud && HitZoneImpactList.length == 0 )
-        {
-            Victim.Mesh.FindClosestBone(StartTrace, ClosestHit);
-
-            if( !IsZero(ClosestHit) )
-            {
-        		StartTrace = ClosestHit;
-        		Direction = Normal(ClosestHit-HitLocation);
-        		EndTrace = StartTrace + Direction * (Victim.CylinderComponent.CollisionRadius * 6.0);
-
-                TraceProjHitZones(Victim, EndTrace, StartTrace, HitZoneImpactList);
-            }
-        }
-
-		// Right now we just send the first impact. TODO: Figure out what the
-		// most "important" or high damage impact is and send that one! Or,
-		// if we need the info on the server send the whole thing - Ramm
-		if ( HitZoneImpactList.length > 0 )
-		{
-            HitZoneImpactList[0].RayDir	= Direction;
-
-			if( bReplicateClientHitsAsFragments )
-			{
-				if( Instigator != none && KFWeapon(Instigator.Weapon) != none )
-				{
-				   KFWeapon(Instigator.Weapon).HandleGrenadeProjectileImpact(HitZoneImpactList[0], class);
-				}
-			}
-			// Owner is none on a remote client, or the weapon on the server/local player
-			else if( Owner != none && KFWeapon( Owner ) != none )
-			{
-                KFWeapon(Owner).HandleProjectileImpact(HitZoneImpactList[0], PenetrationPower);
-			}
-		}
-	}
+    return out_Hits.Length > 0;
 }
 
 // for nukes && concussive force

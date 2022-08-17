@@ -278,6 +278,7 @@ defaultproperties
       ChainSequence_R(2)=()
       ChainSequence_R(3)=DIR_Right
       ChainSequence_R(4)=()
+      MeleeImpactCamShakeScale=0.500000
       MaxHitRange=190.000000
       HitboxChain(0)=(BoneOffset=(X=0.000000,Y=-3.000000,Z=170.000000))
       HitboxChain(1)=(BoneOffset=(X=0.000000,Y=3.000000,Z=150.000000))

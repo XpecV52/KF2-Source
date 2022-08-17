@@ -138,6 +138,8 @@ var array<AARAward> TeamAwardList;
 var array<AARAward> PersonalBestList;
 var TopWeaponReplicationInfo TWRI;
 var int ZedsKilledLastWave;
+var byte DeathStreak;
+var byte SurvivedStreak;
 var int TotalHeadShots;
 var int TotalDoshEarned;
 var int TotalDamageDealt;
@@ -240,16 +242,46 @@ function int GetHealGivenInWave()
 
 function RecordWaveInfo()
 {
+    if(Outer.IsTimerActive('ResetLastWaveInfo', self))
+    {
+        ResetLastWaveInfo();
+    }
     TotalHeadShots += (GetHeadShotsInWave());
     TotalDoshEarned += (GetDoshEarnedInWave());
     TotalAmountHealGiven += (GetHealGivenInWave());
     TotalAmountHealReceived += (GetHealReceivedInWave());
     TotalDamageTaken += (GetDamageTakenInWave());
     TotalDamageDealt += (GetDamageDealtInWave());
-    if(Outer.IsLocalPlayerController())
+    if(Outer.PWRI.bDiedDuringWave)
     {
-        Outer.ResetLastWaveInfo();
+        ++ DeathStreak;
+        SurvivedStreak = 0;        
     }
+    else
+    {
+        DeathStreak = 0;
+        ++ SurvivedStreak;
+    }
+    Outer.SetTimer(1, false, 'ResetLastWaveInfo', self);
+}
+
+function ResetLastWaveInfo()
+{
+    Outer.PWRI.VectData1.X = 0;
+    Outer.PWRI.VectData1.Y = 0;
+    Outer.PWRI.VectData1.Z = 0;
+    Outer.PWRI.VectData2.X = 0;
+    Outer.PWRI.VectData2.Y = 0;
+    Outer.PWRI.VectData2.Z = 0;
+    Outer.PWRI.bKilledMostZeds = false;
+    Outer.PWRI.bKilledFleshpoundLastWave = false;
+    Outer.PWRI.bKilledScrakeLastWave = false;
+    Outer.PWRI.ClassKilledByLastWave = none;
+    Outer.PWRI.bAllSurvivedLastWave = false;
+    Outer.PWRI.bSomeSurvivedLastWave = false;
+    Outer.PWRI.bOneSurvivedLastWave = false;
+    Outer.PWRI.bDiedDuringWave = false;
+    ZedsKilledLastWave = 0;
 }
 
 function RecordPerkXPGain(class<KFPerk> PerkClass, int XPDelta)
@@ -615,7 +647,10 @@ static function SendMapOptionsAndOpenAARMenu()
         {
             if(KFPRI != none)
             {
-                KFPRI.RecieveAARMapOption(KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[I]);
+                if(KFGI.IsMapAllowedInCycle(KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[I]))
+                {
+                    KFPRI.RecieveAARMapOption(KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[I]);
+                }
             }
             ++ I;
             goto J0xCA;

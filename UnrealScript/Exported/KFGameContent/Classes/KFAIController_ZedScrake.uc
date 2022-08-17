@@ -17,39 +17,6 @@ function bool AmIAllowedToSuicideWhenStuck()
 }
 
 /* epic ===============================================
-* ::Possess
-*
-* Overridden set the rage health threshold
-*
-* =====================================================
-*/
-event Possess( Pawn inPawn, bool bVehicleTransition )
-{
-    if( KFPawn_ZedScrake(inPawn) != none )
-    {
-        // Determine what rage health threshold to use
-        if( Skill == class'KFDifficultyInfo'.static.GetDifficultyValue(0) ) // Normal
-        {
-            RageHealthThreshold = KFPawn_ZedScrake(inPawn).RageHealthThresholdNormal;
-        }
-        else if( Skill <= class'KFDifficultyInfo'.static.GetDifficultyValue(1) ) // Hard
-        {
-            RageHealthThreshold = KFPawn_ZedScrake(inPawn).RageHealthThresholdHard;
-        }
-        else if( Skill <= class'KFDifficultyInfo'.static.GetDifficultyValue(2) ) // Suicidal
-        {
-            RageHealthThreshold = KFPawn_ZedScrake(inPawn).RageHealthThresholdSuicidal;
-        }
-        else // Hell on Earth
-        {
-            RageHealthThreshold = KFPawn_ZedScrake(inPawn).RageHealthThresholdHellOnEarth;
-        }
-    }
-
-	super.Possess( inPawn, bVehicleTransition );
-}
-
-/* epic ===============================================
 * ::NotifyTakeHit
 *
 * Notification from pawn that it has received damage
@@ -76,7 +43,7 @@ function bool ShouldSprint()
 		return false;
 	}
 
-	if( IsEnraged() || IsFrustrated() )
+	if( MyKFPawn.bIsEnraged )
 	{
 		return true;
 	}
@@ -84,22 +51,9 @@ function bool ShouldSprint()
 	return false;
 }
 
-function bool IsEnraged()
+/** Frustration mode should not change sprint settings on Scrake */
+function UpdateSprintFrustration( optional byte bForceFrustrationState=255 )
 {
-    return ( GetHealthPercentage() < RageHealthThreshold );
-}
-
-/**
- * Update sprint settings based on Frustration
- */
-function UpdateSprintFrustration( optional byte bForceFrustration=255 )
-{
-    super.UpdateSprintFrustration( (IsEnraged() ? 1 : bForceFrustration) );
-}
-
-function bool IsFrustrated()
-{
-    return ( IsEnraged() || super.IsFrustrated() );
 }
 
 function bool CanEvadeGrenade()
@@ -114,10 +68,12 @@ function bool CanEvadeGrenade()
 defaultproperties
 {
    bCanTeleportCloser=False
+   FrustrationThreshold=0
    TeleportCooldown=10.000000
    HiddenRelocateTeleportThreshold=7.000000
    EvadeGrenadeChance=0.750000
    FrustrationDelay=5.000000
+   LowIntensityAttackCooldown=5.000000
    Name="Default__KFAIController_ZedScrake"
    ObjectArchetype=KFAIController_Monster'KFGame.Default__KFAIController_Monster'
 }

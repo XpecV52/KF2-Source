@@ -8,6 +8,13 @@
 class KFTeamInfo_Human extends TeamInfo
     hidecategories(Navigation,Movement,Collision);
 
+function PostBeginPlay()
+{
+    super(Actor).PostBeginPlay();
+    bForceNetUpdate = true;
+    bNetDirty = true;
+}
+
 defaultproperties
 {
     TeamIndex=0

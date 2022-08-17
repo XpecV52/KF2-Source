@@ -33,7 +33,6 @@ defaultproperties
    Begin Object Class=StaticMeshComponent Name=LightMeshComponent0 Archetype=StaticMeshComponent'Engine.Default__SkyLight:LightMeshComponent0'
       ReplacementPrimitive=None
       bAllowApproximateOcclusion=True
-      LightingChannels=(bInitialized=True,Indoor=True,Outdoor=True)
       bOverridePrecomputedShadowOcclusion=True
       Name="LightMeshComponent0"
       ObjectArchetype=StaticMeshComponent'Engine.Default__SkyLight:LightMeshComponent0'
@@ -58,9 +57,7 @@ defaultproperties
       ObjectArchetype=SpriteComponent'Engine.Default__SkyLight:Sprite'
    End Object
    Components(0)=Sprite
-   Components(1)=LightMeshComponent0
-   Components(2)=LensFlareComponent0
-   Components(3)=SkyLightComponent0
+   Components(1)=SkyLightComponent0
    TickGroup=TG_DuringAsyncWork
    bHardAttach=True
    BlockRigidBody=False

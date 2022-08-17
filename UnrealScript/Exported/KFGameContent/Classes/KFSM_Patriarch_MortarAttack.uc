@@ -31,32 +31,28 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 	}
 
 	NumBarrages = 0;
+
+	// Do pre-mortar prep if needed
+	MyPatPawn.PreMortarAttack();
+}
+
+/** Retrieve the projectile class */
+function class<KFProj_Missile_Patriarch> GetProjectileClass()
+{
+	return MyPatPawn.GetMortarClass();
 }
 
 /** Retrieves the aim direction and target location for each missile */
 function GetAimDirAndTargetLoc( int MissileNum, vector MissileLoc, rotator MissileRot, out vector AimDir, out vector TargetLoc )
 {
-	local Patriarch_MortarTarget MissileTarget;
-	local vector X,Y,Z;
-
-	GetAxes( MissileRot, X,Y,Z );
-
-	// Each missile can possibly target a separate player
-	MissileTarget = MyPatController.GetMortarTarget(MissileNum);
-	
-	// Aim at the feet
-	TargetLoc = MissileTarget.TargetPawn.Location + (vect(0,0,-1)*MissileTarget.TargetPawn.GetCollisionHeight());
-
-	// Nudge the spread a tiny bit to make the missiles less concentrated on a single point
-	AimDir = Normal( vect(0,0,1) + Normal(MissileTarget.TargetVelocity) );
-
-	// Set the missile speed
-	InitialMissileSpeed = VSize( MissileTarget.TargetVelocity );
+	MyPatPawn.GetMortarAimDirAndTargetLoc( MissileNum, MissileLoc, MissileRot, AimDir, TargetLoc, InitialMissileSpeed );
 }
 
 /** Play the fire animation */
 function PlayFireAnimation()
 {
+	local AnimNodeSequence AnimNodeSeq;
+
 	if( MyPatPawn == none )
 	{
 		return;
@@ -74,7 +70,11 @@ function PlayFireAnimation()
 	PlaySpecialMoveAnim( AnimName, EAS_UpperBody, 0.f, BlendOutTime, 1.f );
 
 	// Force animation to first frame so we have an accurate fire start point
-	MyPatPawn.BodyStanceNodes[EAS_UpperBody].GetCustomAnimNodeSeq().SetPosition( 0.f, false );
+	AnimNodeSeq = MyPatPawn.BodyStanceNodes[EAS_UpperBody].GetCustomAnimNodeSeq();
+	if( AnimNodeSeq != none )
+	{
+		AnimNodeSeq.SetPosition( 0.f, false );
+	}
 
 	// Shoot some missiles on the server
 	if( MyPatPawn.Role == ROLE_Authority )
@@ -96,17 +96,17 @@ function PlayFireAnimation()
 /** Fire our three missiles */
 function FireMissiles()
 {
-	if( MyPatController != none )
+	if( MyPatPawn != none )
 	{
 		if( !bIsBarrage )
 		{
-			MyPatController.ClearMortarTargets();
-			MyPatController.CollectMortarTargets( true, true );
+			MyPatPawn.ClearMortarTargets();
+			MyPatPawn.CollectMortarTargets( true, true );
 		}
 
-		MyPatController.CollectMortarTargets();
+		MyPatPawn.CollectMortarTargets();
 
-		if( MyPatController.MortarTargets.Length == 0 )
+		if( MyPatPawn.MortarTargets.Length == 0 )
 		{
 			MyPatPawn.EndSpecialMove();
 			return;
@@ -115,7 +115,7 @@ function FireMissiles()
 
 	super.FireMissiles();
 
-	MyPatController.ClearMortarTargets();
+	MyPatPawn.ClearMortarTargets();
 }
 
 /** Fires off another mortar barrage */
@@ -123,11 +123,7 @@ function Timer_FireBarrage()
 {
 	NumBarrages++;
 
-	if( MyPatController != none )
-	{
-		MyPatController = KFAIController_ZedPatriarch( MyPatPawn.Controller );
-		MyPatController.CollectMortarTargets( true, true );
-	}
+	MyPatPawn.CollectMortarTargets( true, true );
 
 	if( NumBarrages >= MaxBarrages )
 	{
@@ -158,6 +154,7 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
 	{
 		MyPatPawn.ClearTimer( nameOf(Timer_FireBarrage), self );
 		MyPatPawn.RotationRate = MyPatPawn.default.RotationRate;
+		MyPatPawn.ClearMortarTargets();
 	}
 
 	Super.SpecialMoveEnded( PrevMove, NextMove );

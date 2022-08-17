@@ -35,25 +35,7 @@ class KFAIPluginRage_Fleshpound extends AITickablePlugin
 
 
 
-
-
-
-
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
  
@@ -281,7 +263,7 @@ class KFAIPluginRage_Fleshpound extends AITickablePlugin
 
 
 
-#linenumber 70;
+#linenumber 52;
 
 #linenumber 14;
 
@@ -305,7 +287,7 @@ var bool bIsEnraged;
 /** Ticked to determine when we should start and end rage mode */
 event TickRage()
 {
-	if( bIsEnraged && !bEnemyIsVisible && (WorldInfo.TimeSeconds - LastEnemySightedTime) > MaxEnemyNotVisibleRageTime && !IsFrustrated() )
+	if( bIsEnraged && !bEnemyIsVisible && (WorldInfo.TimeSeconds - LastEnemySightedTime) > MaxEnemyNotVisibleRageTime )
 	{
 		EndRage();
 	}

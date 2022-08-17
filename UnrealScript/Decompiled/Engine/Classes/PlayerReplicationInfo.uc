@@ -420,6 +420,7 @@ simulated function RegisterPlayerWithSession()
     local OnlineSubsystem Online;
     local OnlineRecentPlayersList PlayersList;
     local UniqueNetId ZeroId;
+    local PlayerController LocalPC;
 
     Online = Class'GameEngine'.static.GetOnlineSubsystem();
     if((((UniqueId != ZeroId && Online != none) && NotEqual_InterfaceInterface(Online.GameInterface, (none))) && SessionName != 'None') && Online.GameInterface.GetGameSettings(SessionName) != none)
@@ -434,12 +435,18 @@ simulated function RegisterPlayerWithSession()
             }
         }
     }
+    LocalPC = GetALocalPlayerController();
+    if(((((LocalPC != none) && LocalPC.PlayerReplicationInfo != none) && LocalPC.PlayerReplicationInfo != self) && WorldInfo.IsConsoleBuild()) && UniqueId != ZeroId)
+    {
+        Online.VoiceInterface.RegisterRemoteTalker(UniqueId);
+    }
 }
 
 simulated function UnregisterPlayerFromSession()
 {
     local OnlineSubsystem OnlineSub;
     local UniqueNetId ZeroId;
+    local PlayerController LocalPC;
 
     if((UniqueId != ZeroId && WorldInfo.NetMode == NM_Client) && SessionName != 'None')
     {
@@ -448,6 +455,11 @@ simulated function UnregisterPlayerFromSession()
         {
             OnlineSub.GameInterface.UnregisterPlayer(SessionName, UniqueId);
         }
+    }
+    LocalPC = GetALocalPlayerController();
+    if(((((LocalPC != none) && LocalPC.PlayerReplicationInfo != none) && LocalPC.PlayerReplicationInfo != self) && WorldInfo.IsConsoleBuild()) && UniqueId != ZeroId)
+    {
+        OnlineSub.VoiceInterface.UnregisterRemoteTalker(UniqueId);
     }
 }
 

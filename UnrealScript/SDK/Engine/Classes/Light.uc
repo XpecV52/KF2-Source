@@ -223,12 +223,19 @@ event PostBeginPlay()
 	local float DummyValue;
 	local bool bVolumetricLightMesh;
 
+	if (WorldInfo.NetMode == NM_DedicatedServer)
+ 	{
+		SetTickIsDisabled(true);
+		return;
+ 	}
+
 	// Disable and destroy light if the light has a light function
 	// and light functions are not supported
 	if( !AreLightFunctionsSupported() && LightComponent.Function != none )
 	{
-		LightComponent.SetEnabled(false);
-		Destroy();
+		// disable tick must come first to ensure component reattach
+		SetTickIsDisabled(true);
+		LightComponent.SetEnabled(false);	
 		return;
 	}
 
@@ -301,11 +308,6 @@ event PostBeginPlay()
 			}
 		}
 	}
-
- 	if (WorldInfo.NetMode == NM_DedicatedServer)
- 	{
-		SetTickIsDisabled(true);
- 	}
 }
 
 /** Called when light flickers on to activate kismet seq events */
@@ -357,13 +359,11 @@ defaultproperties
 	End Object
 	CollisionComponent=LightMeshComponent0
 	LightMesh=LightMeshComponent0
-	Components.Add(LightMeshComponent0)
 
 	// Lens flare
 	Begin Object Class=LensFlareComponent Name=LensFlareComponent0
 	End Object
 	LensFlareComp=LensFlareComponent0
-	Components.Add(LensFlareComponent0)
 
 	// kismet
 	SupportedEvents.Empty

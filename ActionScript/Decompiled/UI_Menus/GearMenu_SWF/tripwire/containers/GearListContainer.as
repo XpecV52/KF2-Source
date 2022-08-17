@@ -23,6 +23,7 @@ package tripwire.containers
             this.setTabIndexes();
             ANIM_START_X = 576;
             ANIM_OFFSET_X = 0;
+            defaultNumPrompts = 2;
         }
         
         private function setTabIndexes() : *

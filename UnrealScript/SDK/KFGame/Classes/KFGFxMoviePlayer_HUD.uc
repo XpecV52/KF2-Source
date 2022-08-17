@@ -25,6 +25,10 @@ var GfxObject BossNameplateContainer;
 // Container for interaction local message broadcasts.
 var GfxObject InteractionMessageContainer;
 // Widget for selecting your current weapon
+var KFGFxHUD_WeaponSelectWidget KeyboardWeaponSelectWidget;
+// Widget for selecting your current weapon
+var KFGFxHUD_WeaponSelectWidget ControllerWeaponSelectWidget;
+// This is the holder so that we keep track of one weaponselect container depending on user input type
 var KFGFxHUD_WeaponSelectWidget WeaponSelectWidget;
 // Widget for showing you were the trader is
 var KFGFxHUD_TraderCompass TraderCompassWidget;
@@ -78,7 +82,22 @@ function Init(optional LocalPlayer LocPlay)
 	KFPC.SetGFxHUD( self );
 	super.Init( LocPlay );
 	KFGXHUDManager = GetVariableObject("root");
+	UpdateRatio();
 	UpdateScale();
+	// Let the HUD Manager know if we are in a console build of the game.
+	KFGXHUDManager.SetBool("bConsoleBuild",class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis));
+}
+
+function UpdateRatio()
+{
+	local GfxObject GFxStage;
+	local float ScaleStage;
+	ScaleStage = class'Engine'.static.GetTitleSafeArea();
+	GFxStage = KFGXHUDManager.GetObject("stage");
+	GFxStage.SetFloat("x", (GFxStage.GetFloat("width") * (1.0f - ScaleStage)) / 2 );
+	GFxStage.SetFloat("y", (GFxStage.GetFloat("height") * (1.0f - ScaleStage)) / 2 );
+	GFxStage.SetFloat("scaleX", ScaleStage);
+	GFxStage.SetFloat("scaleY", ScaleStage);
 }
 
 /** Ties the GFxClikWidget variables to the .swf components and handles events */
@@ -102,7 +121,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 			SpectatorInfoWidget.InitializeHUD();
 		}
 		break;
-	case 'PlayerStatWidget':
+	case 'PlayerStatWidgetMC':
 		if ( PlayerStatusContainer == none )
 		{
 			PlayerStatusContainer = KFGFxHUD_PlayerStatus(Widget);
@@ -140,11 +159,27 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 		}
 		break;
 	case 'WeaponSelectContainer':
-		if ( WeaponSelectWidget == none )
+		if ( KeyboardWeaponSelectWidget == none )
 		{
-			WeaponSelectWidget = KFGFxHUD_WeaponSelectWidget(Widget);
-			WeaponSelectWidget.RefreshWeaponSelect();
-			WeaponSelectWidget.InitializeObject();
+			KeyboardWeaponSelectWidget = KFGFxHUD_WeaponSelectWidget(Widget);
+			KeyboardWeaponSelectWidget.RefreshWeaponSelect();
+			KeyboardWeaponSelectWidget.InitializeObject();
+			if(!bUsingGamepad)
+			{
+				WeaponSelectWidget = KeyboardWeaponSelectWidget;
+			}
+		}
+		break;
+	case 'ControllerWeaponSelectContainer':
+		if ( ControllerWeaponSelectWidget == none )
+		{
+			ControllerWeaponSelectWidget = KFGFxHUD_WeaponSelectWidget(Widget);
+			ControllerWeaponSelectWidget.RefreshWeaponSelect();
+			ControllerWeaponSelectWidget.InitializeObject();
+			if(bUsingGamepad)
+			{
+				WeaponSelectWidget = ControllerWeaponSelectWidget;
+			}
 		}
 		break;
 	case 'CompassContainer':
@@ -207,7 +242,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 			MusicNotification.InitializeHUD();
 		}
 		break;
-	case 'NonCriticalGameMessageWidget':
+	case 'NonCriticalMessageWidget':
 		if(NonCriticalGameMessageWidget == none)
 		{
 			NonCriticalGameMessageWidget = KFGFxWidget_NonCriticalGameMessage(Widget);
@@ -215,13 +250,33 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 		break;
 	case 'RhythmCounter':
 		if(RhythmCounterWidget == none)
-		{
+	{
 			RhythmCounterWidget = KFGFxWidget_RhythmCounter(Widget);
-		}
+	}
 		break;
 	}
 
 	return true;
+}
+
+function UpdateWeaponSelect()
+{
+	if(bUsingGamepad)
+	{
+		WeaponSelectWidget = ControllerWeaponSelectWidget;
+		if(KeyboardWeaponSelectWidget != none)
+		{
+			KeyboardWeaponSelectWidget.Hide();
+		}
+	}
+	else
+	{
+		WeaponSelectWidget = KeyboardWeaponSelectWidget;
+		if(ControllerWeaponSelectWidget != none)
+		{
+			ControllerWeaponSelectWidget.Hide();
+		}
+	}
 }
 
 /** Update all the unique HUD pieces */
@@ -248,6 +303,7 @@ function TickHud(float DeltaTime)
     {
     	bUsingGamepad = PC.PlayerInput.bUsingGamepad;
     	UpdateUsingGamepad();
+    	UpdateWeaponSelect();
     }
         
 	if( bIsSpectating )
@@ -361,7 +417,10 @@ function ShowVoiceComms(bool bShowComms)
 		{
 			VoiceCommsWidget.EnableComm();
 			ShowScoreboard(false);
-			WeaponSelectWidget.Hide();
+			if(WeaponSelectWidget != none)
+			{
+				WeaponSelectWidget.Hide();
+			}
 		}
 		else
 		{
@@ -409,6 +468,19 @@ function NotifyHUDofPRIDestroyed(KFPlayerReplicationInfo KFPRI)
 // Localized Message rendering
 //==============================================================
 
+function ShowKillMessage(string Value, string colorValue)
+{
+	local GFxObject DataObject;
+
+	if( KFGXHUDManager != none )
+	{
+		DataObject = CreateObject("Object");
+		DataObject.SetString("text", value);
+		DataObject.SetString("textColor", colorValue);
+		KFGXHUDManager.SetObject("newBark", DataObject);
+	}
+}
+
 function ShowBossNameplate(string BossName, string InSecondaryMessageString)
 {
 	local GFxObject TempObject;
@@ -445,39 +517,39 @@ function DisplayInteractionMessage( string MessageString, int MessageIndex, opti
 {
 	if( InteractionMessageContainer != none )
 	{
-	    if( MessageIndex == IMT_None )
-	    {
-		    HideInteractionMessage();
-	    }
-	    // allow messages of the same priority to replace each other (unless it's the same message)
-	    else if( MessageIndex != CurrentInteractionIndex && GetInteractionMessagePriority(MessageIndex) >= GetInteractionMessagePriority(CurrentInteractionIndex) )
-	    {
-            MessageString = Caps(MessageString);
-		    if ( KFPC != None )
-		    {
-			    KFPC.ClearTimer(nameOf(HideInteractionMessage), self);
-			    if ( Duration > 0.f )
-			    {
-				    KFPC.SetTimer(Duration, false, nameOf(HideInteractionMessage), self);
-			    }
-		    }
-    
-		    //Check to see if removing the controller prefix will result in a single character.  If we send a single character
-		    // bad things will happen. 
-		    if(class'Actor'.static.Len(ButtonName) - class'Actor'.static.Len(ControllerStringPrefix) > 1)
-		    {
-			    //Image Replacing a string in AS3 cannot take a substring larger than 15 characters.  We remove the prefix for controllers
-			    //because these are common accross all controller inputs.  
-			    class'Actor'.static.ReplaceText(ButtonName, ControllerStringPrefix, "" );
-		    }
-		    // Put the command into the string so that it can be replaced  Scaleform will not try to image replace a keyboard command unless
-		    // we actually put an icon and object for it. 
-		    class'Actor'.static.ReplaceText(MessageString, "<%X%>", ButtonName );
-		    
-		    SendInteractionMessageToGFX(MessageString);
-		    CurrentInteractionIndex = MessageIndex;
+			if( MessageIndex == IMT_None )
+			{
+				HideInteractionMessage();
+			}
+		// allow messages of the same priority to replace each other (unless it's the same message)
+		else if( MessageIndex != CurrentInteractionIndex && GetInteractionMessagePriority(MessageIndex) >= GetInteractionMessagePriority(CurrentInteractionIndex) )
+			{
+            	MessageString = Caps(MessageString);
+				if ( KFPC != None )
+				{
+					KFPC.ClearTimer(nameOf(HideInteractionMessage), self);
+					if ( Duration > 0.f )
+					{
+						KFPC.SetTimer(Duration, false, nameOf(HideInteractionMessage), self);
+					}
+				}
+
+				//Check to see if removing the controller prefix will result in a single character.  If we send a single character
+				// bad things will happen. 
+				if(class'Actor'.static.Len(ButtonName) - class'Actor'.static.Len(ControllerStringPrefix) > 1)
+				{
+					//Image Replacing a string in AS3 cannot take a substring larger than 15 characters.  We remove the prefix for controllers
+					//because these are common accross all controller inputs.  
+					class'Actor'.static.ReplaceText(ButtonName, ControllerStringPrefix, "" );
+				}
+				// Put the command into the string so that it can be replaced  Scaleform will not try to image replace a keyboard command unless
+				// we actually put an icon and object for it. 
+				class'Actor'.static.ReplaceText(MessageString, "<%X%>", ButtonName );
+				
+				SendInteractionMessageToGFX(MessageString);
+			CurrentInteractionIndex = MessageIndex;
+			}
 		}
-	}
 }
 
 /** Allows client to group message indices together in the same priority (e.g. all usable trigger messages get same priority even though enum id is different) */
@@ -517,11 +589,11 @@ function ShowNonCriticalMessage(string LocalizedMessage)
 }
 
 
-function UpdateRhythmCounterWidget(int value)
+function UpdateRhythmCounterWidget(int value, int max)
 {
 	if(RhythmCounterWidget != none)
 	{
-		RhythmCounterWidget.SetCount(value);
+		RhythmCounterWidget.SetCount(value, max);
 	}
 }
 
@@ -642,7 +714,14 @@ function Callback_BroadcastChatMessage(string NewMessage)
 	{
 		if(NewMessage != "")
 		{
-			GetPC().Say(NewMessage);
+    		if(KFPC.CurrentTextChatChannel == ETCC_TEAM)
+    		{
+    			GetPC().TeamSay(NewMessage);	
+    		}
+    		else
+    		{
+    			GetPC().Say(NewMessage);	
+    		}
 		}
 	}
 }
@@ -708,11 +787,12 @@ DefaultProperties
 	bIsSpectating=false
 
 	WidgetBindings.Add((WidgetName="SpectatorInfoWidget",WidgetClass=class'KFGFxHUD_SpectatorInfo'))
-	WidgetBindings.Add((WidgetName="PlayerStatWidget",WidgetClass=class'KFGFxHUD_PlayerStatus'))
+	WidgetBindings.Add((WidgetName="PlayerStatWidgetMC",WidgetClass=class'KFGFxHUD_PlayerStatus'))
 	WidgetBindings.Add((WidgetName="PlayerBackpackWidget",WidgetClass=class'KFGFxHUD_PlayerBackpack'))
 	WidgetBindings.Add((WidgetName="PriorityMsgWidget",WidgetClass=class'GfxObject'))
 	WidgetBindings.Add((WidgetName="BossNamePlate",WidgetClass=class'GfxObject'))
 	WidgetBindings.Add((WidgetName="interactionMsgWidget",WidgetClass=class'GfxObject'))
+	WidgetBindings.Add((WidgetName="ControllerWeaponSelectContainer",WidgetClass=class'KFGFxHUD_WeaponSelectWidget'))
 	WidgetBindings.Add((WidgetName="WeaponSelectContainer",WidgetClass=class'KFGFxHUD_WeaponSelectWidget'))
 	WidgetBindings.Add((WidgetName="CompassContainer",WidgetClass=class'KFGFxHUD_TraderCompass'))
 	WidgetBindings.Add((WidgetName="WaveInfoContainer",WidgetClass=class'KFGFxHUD_WaveInfo'))
@@ -723,7 +803,7 @@ DefaultProperties
 	WidgetBindings.Add((WidgetName="VoiceCommsWidget", WidgetClass=class'KFGFxWidget_VoiceComms'))
 	WidgetBindings.Add((WidgetName="KickVoteWidget", WidgetClass=class'KFGFxWidget_KickVote'))
 	WidgetBindings.Add((WidgetName="MusicNotification", WidgetClass=class'KFGFxWidget_MusicNotification'))
-	WidgetBindings.Add((WidgetName="NonCriticalGameMessageWidget", WidgetClass=class'KFGFxWidget_NonCriticalGameMessage'))
+	WidgetBindings.Add((WidgetName="NonCriticalMessageWidget", WidgetClass=class'KFGFxWidget_NonCriticalGameMessage'))
 	WidgetBindings.Add((WidgetName="RhythmCounter", WidgetClass=class'KFGFxWidget_RhythmCounter'))
 
 }

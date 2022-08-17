@@ -13,10 +13,11 @@ class KFPlayerInput extends MobilePlayerInput within KFPlayerController
 
 var config bool bRequiresPushToTalk;
 var config bool bQuickWeaponSelect;
-var transient bool bPendingIronsights;
+var transient bool bIronsightsHeld;
 var bool bGamepadWeaponSelectOpen;
 var bool bShowGamepadWeaponSelectHint;
 var config bool bInvertController;
+var config bool bUseGamepadLastWeapon;
 var transient bool bExtendedSprinting;
 /** Toggles for all aim assists (friction, adhesion, lock-on) */
 var(AimAssistGlobal) config bool bAimAssistEnabled;
@@ -39,10 +40,8 @@ var transient float RawJoyMagnitude;
 var transient float RawJoyLookMagnitude;
 var config float GamepadButtonHoldTime;
 var config float SprintAnalogThreshold;
-var config float SkipCrouchAnalogThreshold;
-var config float TimeBelowThresholdToStopSprint;
-var transient float SprintTimeBelowThreshold;
-var transient float LastGamepadSprintPressTime;
+var transient float GamepadSprintAnalogStart;
+var config int CurrentLayoutIndex;
 /** Interp curve that allows for piece wise functions for the TargetFrictionDistance amount at different ranges */
 var(Sensitivity) InterpCurveFloat LookSensitivityScaleCurve;
 var(Sensitivity) InterpCurveFloat MoveSensitivityScaleCurve;
@@ -114,13 +113,13 @@ var(AutoTarget) float ForceLookAtPawnDampenedRotationRate;
 var const float DoubleTapDelay;
 
 // Export UKFPlayerInput::execGetKeyBindFromCommand(FFrame&, void* const)
-native function GetKeyBindFromCommand(out KeyBind MyKeyBind, string BindCommand, optional bool bAlt);
+native function GetKeyBindFromCommand(out KeyBind MyKeyBind, string bindCommand, optional bool bAlt);
 
 // Export UKFPlayerInput::execSwapBind(FFrame&, void* const)
 native function SwapBind(out KeyBind MainKeyBind, out KeyBind AltKeyBind);
 
 // Export UKFPlayerInput::execSetKeyBind(FFrame&, void* const)
-native function SetKeyBind(out KeyBind MyKeyBind, string Command);
+native function SetKeyBind(out KeyBind MyKeyBind, string Command, bool overwritePrevCommand);
 
 // Export UKFPlayerInput::execRemoveCommandFromBind(FFrame&, void* const)
 native function RemoveCommandFromBind(out KeyBind MyKeyBind, string CommandToRemove);
@@ -130,6 +129,9 @@ native function int GetBindingsIndex(out KeyBind MyKeyBind);
 
 // Export UKFPlayerInput::execResetKeysToDefault(FFrame&, void* const)
 native static function ResetKeysToDefault();
+
+// Export UKFPlayerInput::execSetGamepadLayout(FFrame&, void* const)
+native exec function SetGamepadLayout(int layoutIndex);
 
 // Export UKFPlayerInput::execGetBindDisplayName(FFrame&, void* const)
 native function string GetBindDisplayName(out KeyBind MyKeyBind);
@@ -206,7 +208,7 @@ function Engine.Actor.EDoubleClickDir CheckForDoubleClickMove(float DeltaTime)
     local int MappedOutput;
     local float MinCurveOut, MaxCurveOut, CurveOut, CurvePct;
 
-    if(!bUsingGamepad)
+    if(!bUsingGamepad || Outer.bRun > 0)
     {
         return 0;
     }
@@ -366,31 +368,32 @@ function AdjustMouseSensitivity(float FOVScale)
     super(PlayerInput).AdjustMouseSensitivity(FOVScale);
 }
 
-function BindKey(KeyBind NewKeyBind, string BindCommand, bool bIsAlt)
+function BindKey(KeyBind NewKeyBind, string bindCommand, bool bIsAlt)
 {
     local KeyBind CurrentKeyBind;
 
-    GetKeyBindFromCommand(CurrentKeyBind, BindCommand, bIsAlt);
+    GetKeyBindFromCommand(CurrentKeyBind, bindCommand, bIsAlt);
     if(CurrentKeyBind.Name != 'None')
     {
-        RemoveCommandFromBind(CurrentKeyBind, BindCommand);
+        RemoveCommandFromBind(CurrentKeyBind, bindCommand);
         if(NewKeyBind.Name == 'Delete')
         {
             return;
         }
     }
-    SetKeyBind(NewKeyBind, BindCommand);
-    SwapPositions(NewKeyBind, BindCommand, bIsAlt);
+    SetKeyBind(NewKeyBind, bindCommand, false);
+    SaveConfig();
+    SwapPositions(NewKeyBind, bindCommand, bIsAlt);
 }
 
-function SwapPositions(KeyBind MyKeyBind, string BindCommand, bool bIsAlt)
+function SwapPositions(KeyBind MyKeyBind, string bindCommand, bool bIsAlt)
 {
     local KeyBind NewKeyBind;
 
-    GetKeyBindFromCommand(NewKeyBind, BindCommand, false);
+    GetKeyBindFromCommand(NewKeyBind, bindCommand, false);
     if(bIsAlt && MyKeyBind.Name == NewKeyBind.Name)
     {
-        GetKeyBindFromCommand(NewKeyBind, BindCommand, true);
+        GetKeyBindFromCommand(NewKeyBind, bindCommand, true);
         SwapBind(MyKeyBind, NewKeyBind);        
     }
     else
@@ -415,7 +418,7 @@ exec function GamepadSprint()
 {
     Outer.bRun = 0;
     bExtendedSprinting = false;
-    LastGamepadSprintPressTime = Outer.WorldInfo.TimeSeconds;
+    GamepadSprintAnalogStart = GetLeftAnalogDistance();
     GamepadSprintTimer();
     if(Outer.bRun == 0)
     {
@@ -425,7 +428,7 @@ exec function GamepadSprint()
 
 function GamepadSprintTimer()
 {
-    if(IsDirectingJoyStick(SkipCrouchAnalogThreshold))
+    if(ShouldActivateGamepadSprint())
     {
         Outer.bRun = 1;
         Outer.ClearTimer('GamepadSprintTimer', self);
@@ -434,20 +437,41 @@ function GamepadSprintTimer()
 
 exec function GamepadSprintRelease()
 {
-    if(IsDirectingJoyStick(SkipCrouchAnalogThreshold))
+    if(ShouldActivateGamepadSprint())
     {
-        bExtendedSprinting = true;
-        SprintTimeBelowThreshold = 0;        
+        bExtendedSprinting = true;        
     }
     else
     {
-        if((Outer.bRun == 0) && (Outer.WorldInfo.TimeSeconds - LastGamepadSprintPressTime) < GamepadButtonHoldTime)
+        if(Outer.bRun == 0)
         {
             ToggleCrouch();
         }
     }
     Outer.bRun = 0;
     Outer.ClearTimer('GamepadSprintTimer', self);
+}
+
+function float GetLeftAnalogDistance()
+{
+    local Vector vAnalog;
+
+    vAnalog.X = RawJoyRight;
+    vAnalog.Y = RawJoyUp;
+    return VSize2D(vAnalog);
+}
+
+function bool ShouldActivateGamepadSprint()
+{
+    local float Distance, Bias, Delta;
+
+    Distance = GetLeftAnalogDistance();
+    Delta = Distance - GamepadSprintAnalogStart;
+    if(Delta > 0.2)
+    {
+        Bias = 0.3;
+    }
+    return (Distance + Bias) > SprintAnalogThreshold;
 }
 
 exec function Jump()
@@ -503,13 +527,37 @@ exec function GamepadCrouchRelease()
 
 function GamepadCrouchTimer();
 
+exec function GamepadJump()
+{
+    Outer.SetTimer(GamepadButtonHoldTime, false, 'GamepadJumpTimer', self);
+}
+
+exec function GamepadJumpRelease()
+{
+    if(Outer.IsTimerActive('GamepadJumpTimer', self))
+    {
+        Jump();
+        Outer.ClearTimer('GamepadJumpTimer', self);
+    }
+}
+
+function GamepadJumpTimer()
+{
+    ToggleCrouch();
+}
+
 simulated exec function IronSights(optional bool bHoldButtonMode)
 {
     local KFWeapon KFW;
 
     if(bHoldButtonMode)
     {
-        bPendingIronsights = true;
+        bIronsightsHeld = true;
+    }
+    if(bExtendedSprinting)
+    {
+        Outer.bRun = 0;
+        bExtendedSprinting = false;
     }
     if(Outer.Pawn != none)
     {
@@ -527,7 +575,7 @@ simulated exec function IronSightsRelease(optional bool bHoldButtonMode)
 
     if(bHoldButtonMode)
     {
-        bPendingIronsights = false;
+        bIronsightsHeld = false;
     }
     if(Outer.Pawn != none)
     {
@@ -555,91 +603,70 @@ simulated exec function ToggleFlashlight()
     KFP = KFPawn_Human(Outer.Pawn);
     if((KFP != none) && KFP.MyKFWeapon != none)
     {
-        if(bPerkHasNightVision)
-        {
-            ToggleNightVIsion(KFP);            
-        }
-        else
-        {
-            KFP.ToggleEquipment();
-            PlayFlashlightNVSounds(KFP, bPerkHasNightVision);
-        }
-    }
-}
-
-simulated function ToggleNightVIsion(KFPawn_Human KFP)
-{
-    local bool bPerkHasNightVision;
-
-    bPerkHasNightVision = Outer.GetPerk().HasNightVision();
-    if(!Outer.bNightVisionActive && !KFP.bFlashlightOn)
-    {
-        if(Outer.IsTimerActive('NightVisionTimer', self))
-        {
-            Outer.ClearTimer('NightVisionTimer', self);
-            KFP.ToggleEquipment();
-            PlayFlashlightNVSounds(KFP, bPerkHasNightVision);            
-        }
-        else
-        {
-            Outer.SetTimer(DoubleTapDelay, false, 'NightVisionTimer', self);
-        }        
-    }
-    else
-    {
         if(Outer.bNightVisionActive)
         {
-            if(Outer.IsTimerActive('NightVisionTimer', self))
+            InternalToggleNightVision();            
+        }
+        else
+        {
+            if(bPerkHasNightVision)
             {
-                Outer.ClearTimer('NightVisionTimer', self);
-                Outer.SetNightVision(!Outer.bNightVisionActive);
-                PlayFlashlightNVSounds(KFP, bPerkHasNightVision);
-                KFP.ToggleEquipment();                
+                Outer.SetTimer(GamepadButtonHoldTime, false, 'FlashlightTimer', self);                
             }
             else
             {
-                Outer.SetTimer(DoubleTapDelay, false, 'NightVisionTimer', self);
-            }            
-        }
-        else
-        {
-            if(KFP.bFlashlightOn)
-            {
-                PlayFlashlightNVSounds(KFP, bPerkHasNightVision);
-                KFP.ToggleEquipment();
+                InternalToggleFlashlight();
             }
         }
     }
 }
 
-simulated function NightVisionTimer()
+exec function FlashlightRelease()
+{
+    if(Outer.IsTimerActive('FlashlightTimer', self))
+    {
+        Outer.ClearTimer('FlashlightTimer', self);
+        InternalToggleFlashlight();
+    }
+}
+
+function FlashlightTimer()
+{
+    InternalToggleNightVision();
+}
+
+function InternalToggleFlashlight()
 {
     local KFPawn_Human KFP;
 
     KFP = KFPawn_Human(Outer.Pawn);
     if(KFP != none)
     {
-        Outer.SetNightVision(!Outer.bNightVisionActive);
-        PlayFlashlightNVSounds(KFP, Outer.GetPerk().HasNightVision());
-    }
-}
-
-simulated function PlayFlashlightNVSounds(KFPawn_Human KFP, bool bPerkHasNightVision)
-{
-    if(bPerkHasNightVision && !KFP.bFlashlightOn)
-    {
-        ((Outer.bNightVisionActive) ? KFP.PlaySoundBase(Outer.NightVisionOnEvent) : KFP.PlaySoundBase(Outer.NightVisionOffEvent));        
-    }
-    else
-    {
-        if(!Outer.bNightVisionActive)
+        if(Outer.bNightVisionActive)
         {
-            ((KFP.bFlashlightOn) ? KFP.PlaySoundBase(Outer.FlashlightOnEvent) : KFP.PlaySoundBase(Outer.FlashlightOffEvent));
+            Outer.SetNightVision(false);
+            KFP.PlaySoundBase(Outer.NightVisionOffEvent);
         }
+        KFP.ToggleEquipment();
+        KFP.PlaySoundBase(((KFP.bFlashlightOn) ? Outer.FlashlightOnEvent : Outer.FlashlightOffEvent));
     }
 }
 
-simulated function NighVisionTapDelayTimer();
+function InternalToggleNightVision()
+{
+    local KFPawn_Human KFP;
+
+    KFP = KFPawn_Human(Outer.Pawn);
+    if(KFP != none)
+    {
+        if(KFP.bFlashlightOn)
+        {
+            InternalToggleFlashlight();
+        }
+        Outer.SetNightVision(!Outer.bNightVisionActive);
+        KFP.PlaySoundBase(((Outer.bNightVisionActive) ? Outer.NightVisionOnEvent : Outer.NightVisionOffEvent));
+    }
+}
 
 exec function StartTertiaryFire()
 {
@@ -720,10 +747,13 @@ exec function GamepadGrenade()
     {
         if(bGamepadWeaponSelectOpen)
         {
-            W = Outer.MyGFxHUD.WeaponSelectWidget.GetSelectedWeapon();
-            if(W != none)
+            if(Outer.MyGFxHUD.WeaponSelectWidget != none)
             {
-                Outer.ServerThrowOtherWeapon(W);
+                W = Outer.MyGFxHUD.WeaponSelectWidget.GetSelectedWeapon();
+                if(W != none)
+                {
+                    Outer.ServerThrowOtherWeapon(W);
+                }
             }            
         }
         else
@@ -852,7 +882,7 @@ exec function ReleaseGamepadWeaponSelect()
     local KFInventoryManager KFIM;
     local KFWeapon KFW;
 
-    if(bGamepadWeaponSelectOpen)
+    if(bGamepadWeaponSelectOpen && Outer.MyGFxHUD.WeaponSelectWidget != none)
     {
         Outer.MyGFxHUD.WeaponSelectWidget.SetWeaponSwitchStayOpen(false);
         bGamepadWeaponSelectOpen = false;
@@ -862,18 +892,25 @@ exec function ReleaseGamepadWeaponSelect()
         KFW = KFWeapon(Outer.Pawn.Weapon);
         if((KFW == none) || KFW.CanSwitchWeapons())
         {
+            KFIM = KFInventoryManager(Outer.Pawn.InvManager);
             if(Outer.IsTimerActive('GamepadWeaponMenuTimer', self))
             {
+                Outer.ClearTimer('GamepadWeaponMenuTimer', self);
                 if(bShowGamepadWeaponSelectHint)
                 {
                     Outer.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 7);
                 }
-                KFInventoryManager(Outer.Pawn.InvManager).GamePadNextWeapon();
-                Outer.ClearTimer('GamepadWeaponMenuTimer', self);                
+                if(bUseGamepadLastWeapon)
+                {
+                    KFIM.SwitchToLastWeapon();                    
+                }
+                else
+                {
+                    KFIM.GamepadNextWeapon();
+                }                
             }
             else
             {
-                KFIM = KFInventoryManager(Outer.Pawn.InvManager);
                 KFIM.SetCurrentWeapon(KFIM.PendingWeapon);
             }
         }
@@ -896,9 +933,12 @@ function GamepadWeaponMenuTimer()
         {
             return;
         }
-        bGamepadWeaponSelectOpen = true;
-        Outer.MyGFxHUD.WeaponSelectWidget.SetWeaponSwitchStayOpen(true);
-        KFInventoryManager(Outer.Pawn.InvManager).HighlightWeapon(Outer.Pawn.Weapon);
+        if(Outer.MyGFxHUD.WeaponSelectWidget != none)
+        {
+            bGamepadWeaponSelectOpen = true;
+            Outer.MyGFxHUD.WeaponSelectWidget.SetWeaponSwitchStayOpen(true);
+            KFInventoryManager(Outer.Pawn.InvManager).HighlightWeapon(Outer.Pawn.Weapon);
+        }
     }
 }
 
@@ -928,7 +968,11 @@ exec function SwitchWeaponGroup(byte GroupID)
         {
             if(bGamepadWeaponSelectOpen)
             {
-                KFIM.HighlightWeapon(NextGroupedWeapon);
+                KFIM.HighlightWeapon(NextGroupedWeapon);                
+            }
+            else
+            {
+                KFIM.SetCurrentWeapon(NextGroupedWeapon);
             }            
         }
         else
@@ -1021,7 +1065,7 @@ exec function GamepadDpadRight()
         }
         else
         {
-            ShowVoiceComms();
+            TossMoney();
         }
     }
 }
@@ -1034,7 +1078,14 @@ exec function GamepadDpadUp()
     }
     else
     {
-        TossMoney();
+        if(((Outer.Pawn != none) && Outer.Pawn.Weapon != none) && Outer.Pawn.Weapon.IsA('KFWeap_HealerBase'))
+        {
+            KFInventoryManager(Outer.Pawn.InvManager).SwitchToLastWeapon();            
+        }
+        else
+        {
+            SwitchWeaponGroup(3);
+        }
     }
 }
 
@@ -1050,7 +1101,6 @@ exec function HideVoiceComms()
 {
     if((Outer.MyGFxHUD != none) && Outer.MyGFxHUD.VoiceCommsWidget != none)
     {
-        Outer.SetCinematicMode(false, false, false, false, true, false);
         Outer.MyGFxHUD.ShowVoiceComms(false);
     }
 }
@@ -1115,10 +1165,19 @@ exec function InteractTimer()
     }
 }
 
-exec function StartVoiceChat()
+exec function StartVoiceChat(optional bool bPublicChat)
 {
+    LogInternal("VOICE CHAT!");
     if(bRequiresPushToTalk)
     {
+        if(bPublicChat)
+        {
+            Outer.CurrentVoiceChannel = 0;            
+        }
+        else
+        {
+            Outer.CurrentVoiceChannel = 1;
+        }
         Outer.ClearTimer('ClientStopNetworkedVoice');
         Outer.ClientStartNetworkedVoice();
     }
@@ -1134,30 +1193,21 @@ exec function StopVoiceChat()
 
 function PreProcessInput(float DeltaTime)
 {
+    super(PlayerInput).PreProcessInput(DeltaTime);
+    if((Outer.Pawn != none) && bUsingGamepad)
+    {
+        PreProcessGamepadInput(DeltaTime);
+    }
+}
+
+function PreProcessGamepadInput(float DeltaTime)
+{
     local KFWeapon KFW;
     local float FOVScale, ScaledJoyMagnitude;
 
-    super(PlayerInput).PreProcessInput(DeltaTime);
-    if((Outer.Pawn == none) || Outer.Pawn.Weapon == none)
+    if(bExtendedSprinting)
     {
-        return;
-    }
-    if(!bUsingGamepad)
-    {
-        return;
-    }
-    KFW = KFWeapon(Outer.Pawn.Weapon);
-    if(KFW.ShouldOwnerWalk())
-    {
-        Outer.bRun = 0;
-        bExtendedSprinting = false;        
-    }
-    else
-    {
-        if(bExtendedSprinting)
-        {
-            UpdateExtendedSprint(DeltaTime);
-        }
+        UpdateExtendedSprint(DeltaTime);
     }
     CurrTurn = 0;
     CurrLookUp = 0;
@@ -1175,9 +1225,13 @@ function PreProcessInput(float DeltaTime)
     {
         ViewAccel_BlendTimer = 0;
     }
-    if((IsAimAssistFrictionEnabled()) && KFW != none)
+    if(Outer.Pawn.Weapon != none)
     {
-        ApplyTargetFriction(DeltaTime, KFW);
+        KFW = KFWeapon(Outer.Pawn.Weapon);
+        if((IsAimAssistFrictionEnabled()) && KFW != none)
+        {
+            ApplyTargetFriction(DeltaTime, KFW);
+        }
     }
     FOVScale = GetFOVAdjustedControllerSensitivity();
     CurrTurn *= FOVScale;
@@ -1201,27 +1255,20 @@ function PreProcessInput(float DeltaTime)
 
 function UpdateExtendedSprint(float DeltaTime)
 {
-    if(IsDirectingJoyStick(SprintAnalogThreshold))
+    if(((Outer.bRun == 0) && Outer.Pawn.Weapon != none) && Outer.Pawn.Weapon.ShouldOwnerWalk())
     {
-        Outer.bRun = 1;
-        SprintTimeBelowThreshold = 0;        
+        Outer.bRun = 0;
+        bExtendedSprinting = false;        
     }
     else
     {
-        if(Outer.bRun > 0)
+        if(IsDirectingJoyStick(SprintAnalogThreshold))
         {
-            if(SprintTimeBelowThreshold > TimeBelowThresholdToStopSprint)
-            {
-                Outer.bRun = 0;
-                bExtendedSprinting = false;                
-            }
-            else
-            {
-                SprintTimeBelowThreshold += DeltaTime;
-            }            
+            Outer.bRun = 1;            
         }
         else
         {
+            Outer.bRun = 0;
             bExtendedSprinting = false;
         }
     }
@@ -1573,6 +1620,15 @@ function ApplyForceLookAtPawn(float DeltaTime, out int out_YawRot, out int out_P
     }
 }
 
+function bool IsPawnSprinting()
+{
+    if(Outer.Pawn == none)
+    {
+        return false;
+    }
+    return (Outer.bRun > 0) && KFPawn(Outer.Pawn).bIsSprinting;
+}
+
 function ApplyTargetAdhesion(float DeltaTime, KFWeapon W, out int out_YawRot, out int out_PitchRot)
 {
     local Vector CamLoc, X, Y, Z;
@@ -1589,6 +1645,12 @@ function ApplyTargetAdhesion(float DeltaTime, KFWeapon W, out int out_YawRot, ou
     {
         return;
     }
+    if(IsPawnSprinting())
+    {
+        AdhesionPawnLastLoc = Outer.Pawn.Location;
+        LastAdhesionTarget = none;
+        return;
+    }
     Outer.GetPlayerViewPoint(CamLoc, CamRot);
     GetAxes(CamRot, X, Y, Z);
     AdhesionTarget = LastFrictionTarget;
@@ -1599,6 +1661,7 @@ function ApplyTargetAdhesion(float DeltaTime, KFWeapon W, out int out_YawRot, ou
     if(AdhesionTarget == none)
     {
         AdhesionPawnLastLoc = Outer.Pawn.Location;
+        LastAdhesionTarget = none;
         return;
     }
     if(((AdhesionTarget.Health > 0) && KFPawn_Monster(AdhesionTarget) != none) && !KFPawn_Monster(AdhesionTarget).bIsHeadless)
@@ -1609,6 +1672,11 @@ function ApplyTargetAdhesion(float DeltaTime, KFWeapon W, out int out_YawRot, ou
         {
             AdhesionTargetVel = ((AdhesionTarget != LastAdhesionTarget) ? vect(0, 0, 0) : (AdhesionTarget.Location - AdhesionTargetLastLoc) / DeltaTime);
             AdhesionPawnVel = ((IsZero(AdhesionPawnLastLoc)) ? vect(0, 0, 0) : (Outer.Pawn.Location - AdhesionPawnLastLoc) / DeltaTime);
+            if((Outer.Pawn != none) && Outer.Pawn.bIsWalking)
+            {
+                AdhesionPawnVel.X = Lerp(AdhesionPawnVel.X, AdhesionPawnVel.X / Outer.Pawn.WalkingPct, 0.2);
+                AdhesionPawnVel.Y = Lerp(AdhesionPawnVel.Y, AdhesionPawnVel.Y / Outer.Pawn.WalkingPct, 0.2);
+            }
             AdhesionTargetRelVel = (AdhesionTargetVel - AdhesionPawnVel) * EvalInterpCurveFloat(W.TargetAdhesionDistanceScaleCurve, DistToTarget / W.TargetAdhesionDistanceMax);
             AdhesionScale = AdhesionFactor * DeltaTime;
             out_YawRot += int(((AdhesionTargetRelVel Dot Y) * AdhesionScale) * EvalInterpCurveFloat(W.TargetAdhesionOffsetScaleCurve, AdhesionViewOffset.Y / TargetRadius));
@@ -1628,7 +1696,7 @@ function ApplyTargetFriction(float DeltaTime, KFWeapon W)
     local Rotator CamRot;
     local float DistToTarget, TargetRadius, TargetHeight, FrictionMultiplier;
 
-    if((Outer.Pawn == none) || !W.bTargetFrictionEnabled)
+    if(((Outer.Pawn == none) || !W.bTargetFrictionEnabled) || IsPawnSprinting())
     {
         return;
     }
@@ -1895,9 +1963,7 @@ defaultproperties
     bAutoTargetEnabled=true
     bForceFeedbackEnabled=true
     GamepadButtonHoldTime=0.25
-    SprintAnalogThreshold=0.7
-    SkipCrouchAnalogThreshold=0.3
-    TimeBelowThresholdToStopSprint=-1
+    SprintAnalogThreshold=0.6
     LookSensitivityScaleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0,ArriveTangent=0.5,LeaveTangent=0.5,InterpMode=EInterpCurveMode.CIM_CurveAuto)
     MoveSensitivityScaleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.3,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Constant)
     GamepadSensitivityScale=1
@@ -1914,7 +1980,7 @@ defaultproperties
     FrictionAngleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
     ViewAccelerationFrictionScale=0.85
     AdhesionAngleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.95,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
-    AdhesionFactor=20
+    AdhesionFactor=16
     AutoTargetTimeLeft=0.1
     AutoTargetAngleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.9397,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
     AutoTargetWeakspotCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.9962,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)

@@ -89,7 +89,7 @@ protected simulated event PostSkillUpdate()
     SetTickIsDisabled(!IsRegenerationActive());
 }
 
-simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType)
+simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx)
 {
     local KFWeapon MyKFWeapon;
     local float TempDamage, BaseDamage, ShotgunDamageMod;
@@ -327,7 +327,7 @@ simulated function Interact(KFPawn_Human KFPH)
     }
     foreach KFPH.InvManager.InventoryActors(Class'KFWeapon', KFW)
     {
-        if(KFW.IsInventoryWeapon())
+        if(KFW.DenyPerkResupply())
         {
             continue;            
         }
@@ -516,4 +516,6 @@ defaultproperties
     PrimaryWeaponDef=Class'KFWeapDef_MB500'
     KnifeWeaponDef=Class'KFWeapDef_Knife_Support'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Support'
+    HitAccuracyHandicap=-6
+    HeadshotAccuracyHandicap=-3
 }

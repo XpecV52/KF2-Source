@@ -10,16 +10,17 @@ class KFPawn_ZedStalker extends KFPawn_Monster
     hidecategories(Navigation);
 
 var MaterialInstanceConstant SpottedMaterial;
-var MaterialInstanceConstant CloakedMaterial;
 var AkBaseSoundObject CloakedLoop;
 var AkBaseSoundObject CloakedLoopEnd;
 var float CloakPercent;
+var KFPlayerController ViewerPlayer;
 var float CloakSpeed;
 var float DeCloakSpeed;
 
 simulated event PostBeginPlay()
 {
     super(KFPawn).PostBeginPlay();
+    SetCloaked(true);
     PlayStealthSoundLoop();
 }
 
@@ -88,18 +89,18 @@ simulated function SetGameplayMICParams()
         }
         else
         {
-            if(BodyMIC.Parent != CloakedMaterial)
+            if(BodyMIC.Parent == SpottedMaterial)
             {
-                BodyMIC.SetParent(CloakedMaterial);
+                BodyMIC.SetParent(Mesh.SkeletalMesh.Materials[0]);
                 PlayStealthSoundLoop();
             }
         }
     }
 }
 
-simulated event NotifyGoreLODActive()
+simulated event NotifyGoreMeshActive()
 {
-    super(KFPawn).NotifyGoreLODActive();
+    super.NotifyGoreMeshActive();
     if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
     {
         KFGameInfo(WorldInfo.Game).DialogManager.PlaySpotCloakDialog(self, false);
@@ -119,9 +120,16 @@ simulated function PlayStealthSoundLoopEnd()
 
 simulated event Tick(float DeltaTime)
 {
+    local float MinCloakPct;
+
     super(KFPawn).Tick(DeltaTime);
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
+        if(ViewerPlayer == none)
+        {
+            ViewerPlayer = KFPlayerController(WorldInfo.GetALocalPlayerController());
+        }
+        MinCloakPct = GetMinCloakPct();
         if(!bIsCloaking)
         {
             if(CloakPercent < 1)
@@ -132,13 +140,22 @@ simulated event Tick(float DeltaTime)
         }
         else
         {
-            if(CloakPercent > 0)
+            if(CloakPercent > MinCloakPct)
             {
-                CloakPercent = FMax(CloakPercent - (DeltaTime * CloakSpeed), 0);
+                CloakPercent = FMax(CloakPercent - (DeltaTime * CloakSpeed), MinCloakPct);
                 BodyMIC.SetScalarParameterValue('Transparency', CloakPercent);
             }
         }
     }
+}
+
+protected simulated function float GetMinCloakPct()
+{
+    if((ViewerPlayer != none) && (ViewerPlayer.GetTeamNum() == GetTeamNum()) || ViewerPlayer.PlayerReplicationInfo.bOnlySpectator)
+    {
+        return 0.5;
+    }
+    return 0;
 }
 
 simulated event UpdateSpottedStatus()
@@ -154,21 +171,24 @@ simulated event UpdateSpottedStatus()
     }
     bOldSpottedByLP = bIsCloakingSpottedByLP;
     bIsCloakingSpottedByLP = false;
-    LocalPC = KFPlayerController(GetALocalPlayerController());
-    if(LocalPC != none)
+    if(!IsHumanControlled() || bIsSprinting)
     {
-        LocalPerk = LocalPC.GetPerk();
-    }
-    if((((((LocalPC != none) && LocalPC.Pawn != none) && LocalPC.Pawn.IsAliveAndWell()) && LocalPerk != none) && LocalPerk.bCanSeeCloakedZeds) && (WorldInfo.TimeSeconds - LastRenderTime) < 1)
-    {
-        DistanceSq = VSizeSq(LocalPC.Pawn.Location - Location);
-        Range = LocalPerk.GetCloakDetectionRange();
-        if(DistanceSq < Square(Range))
+        LocalPC = KFPlayerController(GetALocalPlayerController());
+        if(LocalPC != none)
         {
-            bIsCloakingSpottedByLP = true;
-            if(LocalPerk.IsCallOutActive())
+            LocalPerk = LocalPC.GetPerk();
+        }
+        if((((((LocalPC != none) && LocalPC.Pawn != none) && LocalPC.Pawn.IsAliveAndWell()) && LocalPerk != none) && LocalPerk.bCanSeeCloakedZeds) && (WorldInfo.TimeSeconds - LastRenderTime) < 1)
+        {
+            DistanceSq = VSizeSq(LocalPC.Pawn.Location - Location);
+            Range = LocalPerk.GetCloakDetectionRange();
+            if(DistanceSq < Square(Range))
             {
-                LocalPC.ServerCallOutPawnCloaking(self);
+                bIsCloakingSpottedByLP = true;
+                if(LocalPerk.IsCallOutActive())
+                {
+                    LocalPC.ServerCallOutPawnCloaking(self);
+                }
             }
         }
     }
@@ -194,6 +214,21 @@ function CallOutCloakingExpired()
     bIsCloakingSpottedByTeam = false;
     LastStoredCC = none;
     SetGameplayMICParams();
+}
+
+simulated function SpawnRallyEffect(ParticleSystem RallyEffect, name EffectBoneName, Vector EffectOffset)
+{
+    local PlayerController PC;
+
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        PC = WorldInfo.GetALocalPlayerController();
+        if(((((bIsCloaking && !bIsCloakingSpottedByLP) && !bIsCloakingSpottedByTeam) && PC.GetTeamNum() < 255) && PC.Pawn != none) && PC.Pawn.IsAliveAndWell())
+        {
+            return;
+        }
+    }
+    super.SpawnRallyEffect(RallyEffect, EffectBoneName, EffectOffset);
 }
 
 simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
@@ -271,7 +306,6 @@ static function int GetTraderAdviceID()
 defaultproperties
 {
     SpottedMaterial=MaterialInstanceConstant'ZED_Stalker_MAT.ZED_Stalker_Visible_MAT'
-    CloakedMaterial=MaterialInstanceConstant'ZED_Stalker_MAT.ZED_Stalker_MAT'
     CloakedLoop=AkEvent'WW_ZED_Stalker.ZED_Stalker_SFX_Stealth_LP'
     CloakedLoopEnd=AkEvent'WW_ZED_Stalker.ZED_Stalker_SFX_Stealth_LP_Stop'
     CloakPercent=1
@@ -283,6 +317,7 @@ defaultproperties
     begin object name=MeleeHelper class=KFMeleeHelperAI
         BaseDamage=9
         MyDamageType=Class'KFDT_Slashing_ZedWeak'
+        MomentumTransfer=25000
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedStalker.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
@@ -301,12 +336,9 @@ defaultproperties
     bCanCloak=true
     bIsCloaking=true
     PenetrationResistance=0.5
-    begin object name=Afflictions class=KFPawnAfflictions
-        InstantAffl=/* Array type was not detected. */
-        StackingAffl=/* Array type was not detected. */
-    object end
-    // Reference: KFPawnAfflictions'Default__KFPawn_ZedStalker.Afflictions'
-    AfflictionHandler=Afflictions
+    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedStalker.Afflictions'
+    InstantIncaps=/* Array type was not detected. */
+    StackingIncaps=/* Array type was not detected. */
     PhysRagdollImpulseScale=0.9
     KnockdownImpulseScale=0.9
     SprintSpeed=500

@@ -99,7 +99,11 @@ var	  class<HUD>			  SecondaryHUDType;			// Secondary HUD class this game uses.
 var   globalconfig int	      MaxSpectators;			// Maximum number of spectators allowed by this server.
 var	  int					  MaxSpectatorsAllowed;		// Maximum number of spectators ever allowed (MaxSpectators is clamped to this in initgame()
 var	  int					  NumSpectators;			// Current number of spectators.
-var   globalconfig int		  MaxPlayers;				// Maximum number of players allowed by this server.
+
+var   config int		      MaxPlayers;				// Maximum number of players allowed by this server.
+
+
+
 var	  int					  MaxPlayersAllowed;		// Maximum number of players ever allowed (MaxPlayers is clamped to this in initgame()
 var   int					  NumPlayers;				// number of human players
 var	  int					  NumBots;					// number of non-human players (AI controlled but participating as a player)
@@ -1895,8 +1899,9 @@ event PostLogin( PlayerController NewPlayer )
 		}
 	}
 
+	// HSL - BWJ - 3-18-16 - Push to talk for non console build sonly
 	// Tell the player to disable voice by default and use the push to talk method
-	if (bRequiresPushToTalk)
+	if (bRequiresPushToTalk && !WorldInfo.IsConsoleDedicatedServer())
 	{
 		NewPlayer.ClientStopNetworkedVoice();
 	}
@@ -3896,7 +3901,7 @@ defaultproperties
    HUDType=Class'Engine.HUD'
    MaxSpectators=2
    MaxSpectatorsAllowed=32
-   MaxPlayers=6
+   MaxPlayers=12
    MaxPlayersAllowed=32
    CurrentID=1
    DefaultPlayerName="Player"
@@ -3918,8 +3923,7 @@ defaultproperties
    MinDynamicBandwidth=4000
    MaxDynamicBandwidth=7000
    StreamingPauseIcon=Material'EngineResources.M_StreamingPause'
-   DefaultGameType="KFGame.KFGameInfo"
-   DefaultMapPrefixes(0)=(Prefix="KF",GameType="KFGameContent.KFGameInfo_Survival")
+   DefaultGameType="KFGameContent.KFGameInfo_Survival"
    CollisionType=COLLIDE_CustomDefault
    Name="Default__GameInfo"
    ObjectArchetype=Info'Engine.Default__Info'

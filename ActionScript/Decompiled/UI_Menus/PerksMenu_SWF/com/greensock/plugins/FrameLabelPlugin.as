@@ -15,29 +15,29 @@ package com.greensock.plugins
             _propName = "frameLabel";
         }
         
-        override public function _onInitTween(param1:Object, param2:*, param3:TweenLite) : Boolean
+        override public function _onInitTween(target:Object, value:*, tween:TweenLite) : Boolean
         {
-            if(!param3.target is MovieClip)
+            if(!tween.target is MovieClip)
             {
                 return false;
             }
-            _target = param1 as MovieClip;
+            _target = target as MovieClip;
             this.frame = _target.currentFrame;
-            var _loc4_:Array = _target.currentLabels;
-            var _loc5_:String = param2;
-            var _loc6_:int = _target.currentFrame;
-            var _loc7_:int = _loc4_.length;
-            while(--_loc7_ > -1)
+            var labels:Array = _target.currentLabels;
+            var label:String = value;
+            var endFrame:int = _target.currentFrame;
+            var i:int = labels.length;
+            while(--i > -1)
             {
-                if(_loc4_[_loc7_].name == _loc5_)
+                if(labels[i].name == label)
                 {
-                    _loc6_ = _loc4_[_loc7_].frame;
+                    endFrame = labels[i].frame;
                     break;
                 }
             }
-            if(this.frame != _loc6_)
+            if(this.frame != endFrame)
             {
-                _addTween(this,"frame",this.frame,_loc6_,"frame",true);
+                _addTween(this,"frame",this.frame,endFrame,"frame",true);
             }
             return true;
         }

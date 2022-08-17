@@ -82,7 +82,7 @@ function InitalizeCommandList( out array<string> BindList )
 	{
 		DataProvider = CreateArray();
 		DataProvider.SetInt("sectionIndex", TotalBindSections);
-		DataProvider.SetString("sectionHeader", SectionHeaders[TotalBindSections]);
+		DataProvider.SetString("bindingHeader", SectionHeaders[TotalBindSections]); 
 		DataProvider.SetString("pressKeyString", PressKeyString);
 		for (i = 0; i < BindList.Length; i++)
 		{

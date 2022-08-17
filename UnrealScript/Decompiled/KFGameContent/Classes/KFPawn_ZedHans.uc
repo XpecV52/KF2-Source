@@ -89,7 +89,7 @@ simulated event ReplicatedEvent(name VarName)
 {
     if(VarName == 'bGunsEquipped')
     {
-        if(SpecialMove != 23)
+        if(SpecialMove != 32)
         {
             SetWeaponStance(bGunsEquipped);
         }        
@@ -450,7 +450,7 @@ function bool IsThrowingGrenade()
     {
         return false;
     }
-    return (IsDoingSpecialMove(24) || IsDoingSpecialMove(26)) || AICommand_ThrowGrenade(MyKFAIC.GetActiveCommand()) != none;
+    return (IsDoingSpecialMove(33) || IsDoingSpecialMove(35)) || AICommand_ThrowGrenade(MyKFAIC.GetActiveCommand()) != none;
 }
 
 function DrawDebugOverheadText(KFHUDBase HUD, out Vector2D ScreenPos)
@@ -949,12 +949,9 @@ defaultproperties
     bEnableAimOffset=true
     HitZones=/* Array type was not detected. */
     PenetrationResistance=4
-    begin object name=Afflictions class=KFPawnAfflictions
-        InstantAffl=/* Array type was not detected. */
-        StackingAffl=/* Array type was not detected. */
-    object end
-    // Reference: KFPawnAfflictions'Default__KFPawn_ZedHans.Afflictions'
-    AfflictionHandler=Afflictions
+    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedHans.Afflictions'
+    InstantIncaps=/* Array type was not detected. */
+    StackingIncaps=/* Array type was not detected. */
     KnockdownImpulseScale=1
     SprintSpeed=650
     DefaultInventory=/* Array type was not detected. */

@@ -16,30 +16,21 @@ class KFCharacterInfoBase extends Object
 /** Mesh scaling */
 var(ThirdPerson) float DefaultMeshScale;
 
-/** When not in a team game, this is the color to use for glowy bits. */
-var(ThirdPerson) LinearColor			NonTeamEmissiveColor;
-/** When not in a team game, this is the color to tint character at a distance. */
-var(ThirdPerson) LinearColor			NonTeamTintColor;
-
 /************************************************************************/
 /*  Animation Info                                                   */
 /************************************************************************/
 
 /** Animation tree to use for a character in this 'family' */
-var(Anim) AnimTree			AnimTreeTemplate;
+var(ThirdPerson) AnimTree			AnimTreeTemplate;
 
 /** Animation sets to use for a character in this 'family' */
-var(Anim) array<AnimSet>	AnimSets;
+var(ThirdPerson) array<AnimSet>	AnimSets;
 
 /** This pawn's anim info class based on character info */
-var(Anim) KFPawnAnimInfo	AnimArchetype;
-
-/************************************************************************/
-/*  Physics Info						                                    */
-/************************************************************************/
+var(ThirdPerson) KFPawnAnimInfo	AnimArchetype;
 
 /** Physics Asset to use  */
-var(Physics) PhysicsAsset		PhysAsset;
+var(ThirdPerson) PhysicsAsset		PhysAsset;
 
 /************************************************************************/
 /*  Effects					                                    */
@@ -57,6 +48,14 @@ var(Effects) array<KFSkinTypeEffects> ImpactSkins;
 	vertically downwards. If not specified, the root bone (index 0) will be used as blood pool origin */
 var(Gore) name BloodPoolOriginBoneName;
 
+
+/************************************************************************/
+/* Character Portrait
+*************************************************************************/
+
+var(Portrait) Texture DefaultHeadPortrait;
+var(Portrait) array<Texture> DefaultTeamHeadPortrait;
+
 /************************************************************************/
 /*  Native Functions												    */
 /************************************************************************/
@@ -70,9 +69,24 @@ var(Gore) name BloodPoolOriginBoneName;
 /************************************************************************/
 /*  Script Functions												    */
 /************************************************************************/
+/** Return the texture portrait stored for this character */
+function Texture GetCharPortrait()
+{
+	return DefaultHeadPortrait;
+}
 
 /** Sets misc. properties from the character info */
-simulated function SetCharacterFromArch( KFPawn KFP, optional KFPlayerReplicationInfo KFPRI );
+simulated function SetCharacterFromArch( KFPawn KFP, optional KFPlayerReplicationInfo KFPRI )
+{
+	if ( KFPRI == none)
+	{
+	 	return;
+	}
+
+	// Assign fallback portrait.
+	KFPRI.CharPortrait = GetCharPortrait();
+	KFPRI.bNetDirty = true;
+}
 
 /** Sets the pawns character mesh from it's CharacterInfo, and updates instance of player in map if there is one. */
 simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplicationInfo KFPRI );
@@ -86,8 +100,6 @@ function SetFirstPersonArmsFromArch( KFPawn KFP, optional KFPlayerReplicationInf
 defaultproperties
 {
    DefaultMeshScale=1.000000
-   NonTeamEmissiveColor=(R=10.000000,G=0.200000,B=0.200000,A=1.000000)
-   NonTeamTintColor=(R=4.000000,G=2.000000,B=0.500000,A=1.000000)
    AnimArchetype=KFPawnAnimInfo'ZED_Clot_Anim.AlphaClot_AnimGroup'
    SoundGroupArch=KFPawnSoundGroup'FX_Pawn_Sounds_ARCH.DefaultPawnSounds'
    ImpactSkins(0)=KFSkinTypeEffects'FX_Impacts_ARCH.SkinTypes.Flesh'

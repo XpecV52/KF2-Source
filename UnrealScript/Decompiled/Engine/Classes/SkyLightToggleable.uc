@@ -30,18 +30,7 @@ defaultproperties
     object end
     // Reference: SpriteComponent'Default__SkyLightToggleable.Sprite'
     Components(0)=Sprite
-    begin object name=LightMeshComponent0 class=StaticMeshComponent
-        ReplacementPrimitive=none
-    object end
-    // Reference: StaticMeshComponent'Default__SkyLightToggleable.LightMeshComponent0'
-    Components(1)=LightMeshComponent0
-    begin object name=LensFlareComponent0 class=LensFlareComponent
-        NextTraceTime=0.0 // Ka v oh
-        ReplacementPrimitive=none
-    object end
-    // Reference: LensFlareComponent'Default__SkyLightToggleable.LensFlareComponent0'
-    Components(2)=LensFlareComponent0
-    Components(3)=SkyLightComponent'Default__SkyLightToggleable.SkyLightComponent0'
+    Components(1)=SkyLightComponent'Default__SkyLightToggleable.SkyLightComponent0'
     TickGroup=ETickingGroup.TG_DuringAsyncWork
     bHardAttach=true
     BlockRigidBody=false

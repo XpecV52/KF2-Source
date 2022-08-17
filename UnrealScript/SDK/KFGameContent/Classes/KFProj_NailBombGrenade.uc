@@ -17,6 +17,7 @@ defaultproperties
 
 	ProjFlightTemplate=ParticleSystem'WEP_Nailbomb_EMIT.FX_Nailbomb_Mesh'
 	ExplosionActorClass=class'KFExplosionActor'
+	WeaponSelectTexture=Texture2D'wep_ui_nailbomb_tex.UI_WeaponSelect_GunslingerGrenade'
 
 	FuseTime=2.0
 	DampenFactor=0.40000

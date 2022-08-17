@@ -21,22 +21,23 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
         AnimName = BarrageFireAnimName;
     }
     NumBarrages = 0;
+    MyPatPawn.PreMortarAttack();
+}
+
+function class<KFProj_Missile_Patriarch> GetProjectileClass()
+{
+    return MyPatPawn.GetMortarClass();
 }
 
 function GetAimDirAndTargetLoc(int MissileNum, Vector MissileLoc, Rotator MissileRot, out Vector AimDir, out Vector TargetLoc)
 {
-    local Patriarch_MortarTarget MissileTarget;
-    local Vector X, Y, Z;
-
-    GetAxes(MissileRot, X, Y, Z);
-    MissileTarget = MyPatController.GetMortarTarget(MissileNum);
-    TargetLoc = MissileTarget.TargetPawn.Location + (vect(0, 0, -1) * MissileTarget.TargetPawn.GetCollisionHeight());
-    AimDir = Normal(vect(0, 0, 1) + Normal(MissileTarget.TargetVelocity));
-    InitialMissileSpeed = VSize(MissileTarget.TargetVelocity);
+    MyPatPawn.GetMortarAimDirAndTargetLoc(MissileNum, MissileLoc, MissileRot, AimDir, TargetLoc, InitialMissileSpeed);
 }
 
 function PlayFireAnimation()
 {
+    local AnimNodeSequence AnimNodeSeq;
+
     if(MyPatPawn == none)
     {
         return;
@@ -50,7 +51,11 @@ function PlayFireAnimation()
     MyPatPawn.RotationRate = MissileFireRotationRate;
     MyPatPawn.BodyStanceNodes[0].SetRootBoneAxisOption(1, 1, 1);
     PlaySpecialMoveAnim(AnimName, 1, 0, BlendOutTime, 1);
-    MyPatPawn.BodyStanceNodes[1].GetCustomAnimNodeSeq().SetPosition(0, false);
+    AnimNodeSeq = MyPatPawn.BodyStanceNodes[1].GetCustomAnimNodeSeq();
+    if(AnimNodeSeq != none)
+    {
+        AnimNodeSeq.SetPosition(0, false);
+    }
     if(MyPatPawn.Role == ROLE_Authority)
     {
         FireMissiles();
@@ -65,32 +70,28 @@ function PlayFireAnimation()
 
 function FireMissiles()
 {
-    if(MyPatController != none)
+    if(MyPatPawn != none)
     {
         if(!bIsBarrage)
         {
-            MyPatController.ClearMortarTargets();
-            MyPatController.CollectMortarTargets(true, true);
+            MyPatPawn.ClearMortarTargets();
+            MyPatPawn.CollectMortarTargets(true, true);
         }
-        MyPatController.CollectMortarTargets();
-        if(MyPatController.MortarTargets.Length == 0)
+        MyPatPawn.CollectMortarTargets();
+        if(MyPatPawn.MortarTargets.Length == 0)
         {
             MyPatPawn.EndSpecialMove();
             return;
         }
     }
     super.FireMissiles();
-    MyPatController.ClearMortarTargets();
+    MyPatPawn.ClearMortarTargets();
 }
 
 function Timer_FireBarrage()
 {
     ++ NumBarrages;
-    if(MyPatController != none)
-    {
-        MyPatController = KFAIController_ZedPatriarch(MyPatPawn.Controller);
-        MyPatController.CollectMortarTargets(true, true);
-    }
+    MyPatPawn.CollectMortarTargets(true, true);
     if(NumBarrages >= MaxBarrages)
     {
         MyPatPawn.ClearTimer('Timer_FireBarrage', self);
@@ -116,6 +117,7 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
     {
         MyPatPawn.ClearTimer('Timer_FireBarrage', self);
         MyPatPawn.RotationRate = MyPatPawn.default.RotationRate;
+        MyPatPawn.ClearMortarTargets();
     }
     super.SpecialMoveEnded(PrevMove, NextMove);
 }

@@ -54,7 +54,6 @@ package tripwire.menus
             this.gameOptionsContainer.visible = false;
             this.overviewContainer.visible = false;
             this.serverBrowserOverviewContainer.visible = false;
-            this.showMenus(true,false,false,false);
             tabEnabled = false;
             this._currentContainer = this.findGameContainer;
         }
@@ -68,18 +67,6 @@ package tripwire.menus
         {
             this.gameOptionsContainer.bIsSoloGame = false;
             this.showMenus(false,true,false,false);
-        }
-        
-        override protected function onInputChange(param1:Event) : *
-        {
-            super.onInputChange(param1);
-            if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
-            {
-                if(this._currentContainer != null)
-                {
-                    this._currentContainer.selectContainer();
-                }
-            }
         }
         
         public function showOverview(param1:Boolean, param2:Boolean, param3:Boolean = false, param4:Boolean = false) : void
@@ -201,6 +188,22 @@ package tripwire.menus
             if(this.menuState == this.ServerBrowserOverviewState && bManagerUsingGamepad)
             {
                 MenuManager.manager.setFocusToPartyWidget();
+            }
+            if(this._currentContainer != null)
+            {
+                this._currentContainer.selectContainer();
+            }
+        }
+        
+        override public function deselectContainer() : void
+        {
+            super.deselectContainer();
+            if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
+            {
+                if(this._currentContainer != null)
+                {
+                    this._currentContainer.deselectContainer();
+                }
             }
         }
         

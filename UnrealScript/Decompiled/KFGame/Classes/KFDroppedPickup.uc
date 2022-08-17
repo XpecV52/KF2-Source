@@ -215,7 +215,7 @@ function GiveTo(Pawn P)
             {
                 if(KFW.DualClass == none)
                 {
-                    PlayerController(P.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 10);                    
+                    PlayerController(P.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 11);                    
                     return;
                 }
                 break;
@@ -223,7 +223,7 @@ function GiveTo(Pawn P)
             }
             if((KFWInvClass != none) && KFW.Class == KFWInvClass.default.DualClass)
             {
-                PlayerController(P.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 10);                
+                PlayerController(P.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 11);                
                 return;
             }            
         }        
@@ -234,6 +234,8 @@ function GiveTo(Pawn P)
             if(KFW != none)
             {
                 KFW.SetOriginalValuesFromPickup(KFWeapon(Inventory));
+                KFW = KFIM.CombineWeaponsOnPickup(KFW);
+                KFW.NotifyPickedUp();
             }
             Destroy();
         }

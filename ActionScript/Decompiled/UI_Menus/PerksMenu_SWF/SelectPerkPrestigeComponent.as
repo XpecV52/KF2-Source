@@ -1,6 +1,6 @@
 package
 {
-    import tripwire.containers.perks.PerksNextRankContainer;
+    import tripwire.containers.Perks.PerksNextRankContainer;
     
     public dynamic class SelectPerkPrestigeComponent extends PerksNextRankContainer
     {

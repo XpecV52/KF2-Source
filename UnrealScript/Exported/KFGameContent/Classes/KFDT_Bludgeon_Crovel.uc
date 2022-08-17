@@ -61,7 +61,6 @@ class KFDT_Bludgeon_Crovel extends KFDT_Bludgeon
 
 
 
-
 #linenumber 12;
 
 defaultproperties

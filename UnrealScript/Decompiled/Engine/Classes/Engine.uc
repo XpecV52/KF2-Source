@@ -355,6 +355,9 @@ native static final function string GetDeviceUUID();
 // Export UEngine::execGetOSVersion(FFrame&, void* const)
 native static final function float GetOSVersion();
 
+// Export UEngine::execGetTitleSafeArea(FFrame&, void* const)
+native static final function float GetTitleSafeArea();
+
 // Export UEngine::execGetDevicePushNotificationToken(FFrame&, void* const)
 native static final function string GetDevicePushNotificationToken();
 

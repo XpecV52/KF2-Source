@@ -11,7 +11,6 @@ class KFAnimNotify_MeleeImpact_1P extends AnimNotify
     collapsecategories
     hidecategories(Object);
 
-var bool bCanHitMultipleTargets;
 /** If set, use hit box collision detection for this weapon */
 var() bool bAdvancedCollisionDetection;
 

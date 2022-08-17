@@ -174,17 +174,23 @@ function bool IsMatchStarted()
     return (KFGRI != none) && KFGRI.bMatchHasBegun;
 }
 
-function PerkChanged(byte NewPerkIndex)
+function PerkChanged(byte NewPerkIndex, bool bClickedIndex)
 {
     if(KFPC != none)
     {
-        SavePerkData();
+        if(bClickedIndex)
+        {
+            SavePerkData();
+        }
         UpdateSkillsHolder(KFPC.PerkList[NewPerkIndex].PerkClass);
         LastPerkIndex = NewPerkIndex;
         bChangesMadeDuringLobby = !IsMatchStarted();
         bModifiedPerk = true;
-        SelectionContainer.SavePerk(NewPerkIndex);
-        UpdateContainers(KFPC.PerkList[NewPerkIndex].PerkClass);
+        if(bClickedIndex)
+        {
+            SelectionContainer.SavePerk(NewPerkIndex);
+        }
+        UpdateContainers(KFPC.PerkList[NewPerkIndex].PerkClass, bClickedIndex);
     }
 }
 
@@ -218,8 +224,9 @@ function UpdateLock()
     }
 }
 
-function UpdateContainers(class<KFPerk> PerkClass)
+function UpdateContainers(class<KFPerk> PerkClass, optional bool bClickedIndex)
 {
+    bClickedIndex = true;
     if(KFPC != none)
     {
         if(HeaderContainer != none)
@@ -231,7 +238,7 @@ function UpdateContainers(class<KFPerk> PerkClass)
             DetailsContainer.UpdateDetails(PerkClass);
             DetailsContainer.UpdatePassives(PerkClass);
         }
-        if(SelectionContainer != none)
+        if((SelectionContainer != none) && bClickedIndex)
         {
             SelectionContainer.UpdatePerkSelection(KFPC.SavedPerkIndex);
         }
@@ -255,6 +262,10 @@ function UpdateSkillsHolder(class<KFPerk> PerkClass)
 {
     local int PerkBuild;
 
+    if(KFPC == none)
+    {
+        KFPC = KFPlayerController(Outer.GetPC());
+    }
     PerkBuild = KFPC.GetPerkBuildByPerkClass(PerkClass);
     KFPC.GetPerk().GetUnpackedSkillsArray(PerkClass, PerkBuild, SelectedSkillsHolder);
 }
@@ -282,11 +293,11 @@ function Callback_ReadyClicked(bool bReady)
     super.Callback_ReadyClicked(bReady);
 }
 
-function Callback_PerkSelected(byte NewPerkIndex)
+function Callback_PerkSelected(byte NewPerkIndex, bool bClickedIndex)
 {
-    if(LastPerkIndex != NewPerkIndex)
+    if((LastPerkIndex != NewPerkIndex) || bClickedIndex)
     {
-        PerkChanged(NewPerkIndex);
+        PerkChanged(NewPerkIndex, bClickedIndex);
     }
 }
 

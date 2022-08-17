@@ -133,6 +133,8 @@ simulated function float GetModifiedFOVAngle()
         return PlayerController(Instigator.Controller).GetFOVAngle();
     }
 }
+/** Used by KFPlayerInputVersus to route startfire calls to the correct class */
+simulated function bool ShouldWeaponIgnoreStartFire() { return false; }
 
 
 /*********************************************************************************************

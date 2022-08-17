@@ -229,7 +229,7 @@ simulated function TryStick(Vector HitNormal, optional Vector HitLocation, optio
 {
     local TraceHitInfo HitInfo;
 
-    if((Instigator == none) || !Instigator.IsLocallyControlled())
+    if(((Instigator == none) || !Instigator.IsLocallyControlled()) || (Physics == 0) && StuckToActor != none)
     {
         return;
     }
@@ -549,7 +549,7 @@ defaultproperties
         ReplacementPrimitive=none
         bCastDynamicShadow=false
         CollideActors=false
-        LightingChannels=(bInitialized=true,Dynamic=true,Indoor=true,Outdoor=true)
+        LightingChannels=(Dynamic=true)
     object end
     // Reference: StaticMeshComponent'Default__KFProj_Thrown_C4.StaticMeshComponent0'
     ChargeMesh=StaticMeshComponent0
@@ -631,7 +631,7 @@ defaultproperties
         ReplacementPrimitive=none
         bCastDynamicShadow=false
         CollideActors=false
-        LightingChannels=(bInitialized=true,Dynamic=true,Indoor=true,Outdoor=true)
+        LightingChannels=(Dynamic=true)
     object end
     // Reference: StaticMeshComponent'Default__KFProj_Thrown_C4.StaticMeshComponent0'
     Components(2)=StaticMeshComponent0

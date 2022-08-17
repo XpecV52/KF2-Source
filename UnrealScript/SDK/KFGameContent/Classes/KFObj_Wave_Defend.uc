@@ -35,7 +35,7 @@ function UpdateObjective()
 		 StartVolume.GetNumPlayersActive() @ "Total Progress:" @ ObjectiveProgress @
 		 "Progress / second" @ HaxorPower * StartVolume.GetNumPlayersActive(), bLogObjective);
 
-		`SafeDialogManager.PlayDefendObjDialog( PrevObjProg, ObjectiveProgress );
+		`DialogManager.PlayDefendObjDialog( PrevObjProg, ObjectiveProgress );
 	}
 
 	super.UpdateObjective();
@@ -48,7 +48,7 @@ simulated function StartObjective()
 	PlayerNumModifier = GetNumPlayersAccepted();
 	HaxorPower = GetHaxPower(float(TimeLimit), DfficultyModifier[ObjectiveDifficulty], PlayerNumModifier);
 
-	`SafeDialogManager.PlayDefendObjDialog( -1, 0 );
+	`DialogManager.PlayDefendObjDialog( -1, 0 );
 }
 
 // Get the "hacking" "power" per player
@@ -73,7 +73,7 @@ function WinObjective()
 
 	super.WinObjective();
 
-	`SafeDialogManager.PlayDefendObjDialog( 99, 100 );
+	`DialogManager.PlayDefendObjDialog( 99, 100 );
 }
 
 /************************************************************

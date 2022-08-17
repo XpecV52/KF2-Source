@@ -88,17 +88,17 @@ state Command_SpecialMove
     {
         if(GrenadeBarrage == 0)
         {
-            return 24;            
+            return 33;            
         }
         else
         {
             if(GrenadeBarrage == 1)
             {
-                return 25;                
+                return 34;                
             }
             else
             {
-                return 26;
+                return 35;
             }
         }
     }

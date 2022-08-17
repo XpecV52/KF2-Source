@@ -28,6 +28,7 @@ package tripwire.containers.store
             super();
             this.total = 15.03213123;
             enableInitCallback = true;
+            defaultNumPrompts = 2;
         }
         
         public function set localizedText(param1:Object) : void

@@ -200,7 +200,7 @@ var(HitReaction) const array<AnimVariants> MediumHitAnims<DisplayName=GunHitAnim
 var(HitReaction) const array<AnimVariants> HeavyHitAnims<DisplayName=MeleeHitAnims>;
 var(HitReaction) const array<name> DmgOverTimeHitAnims;
 /**  
- *Anims for stumble special move 
+ *Anims for stumble special move
  *       0: Body_Forward,
  *       1: Body_Backward,
  *       2: Body_Left,
@@ -258,6 +258,11 @@ function name ChooseAttackByName(name AttackName, optional KFPawn_Monster Instig
     Idx = Attacks.Find('Tag', AttackName;
     if(Idx != -1)
     {
+        if(Class'WorldInfo'.static.GetWorldInfo().TimeSeconds < Attacks[Idx].LastTimePlayed)
+        {
+            LogInternal("[ANIMINFO] WorldInfo.TimeSeconds mismatch! Resetting cooldowns.");
+            Attacks[Idx].LastTimePlayed = 0;
+        }
         if((Instigator != none) && !CanDoAttackAnim(Idx, Instigator, Target))
         {
             return 'None';
@@ -307,6 +312,10 @@ function UpdateAttackCooldown(KFAIController KFAIC, byte DesiredStrikeIndex)
     if(Attacks[DesiredStrikeIndex].InstancedCooldown > float(0))
     {
         KFAIC.AddCooldownTimer(Attacks[DesiredStrikeIndex].Tag, Attacks[DesiredStrikeIndex].InstancedCooldown);
+    }
+    if(((KFAIC != none) && KFGameInfo(KFAIC.WorldInfo.Game) != none) && KFGameInfo(KFAIC.WorldInfo.Game).GameConductor != none)
+    {
+        KFGameInfo(KFAIC.WorldInfo.Game).GameConductor.UpdateOverallAttackCoolDowns(KFAIC);
     }
 }
 
@@ -373,12 +382,15 @@ function byte GetStrikeFlags(int DesiredStrikeIndex)
 
 function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
 {
-    if(Attacks[Idx].Anims.Length <= 0)
+    local AttackAnimInfo Attack;
+
+    Attack = Attacks[Idx];
+    if(Attack.Anims.Length <= 0)
     {
         LogInternal((string(self) @ "CanDoAttackAnim missing attack anim names for") @ string(Attacks[Idx].Tag));
         return false;
     }
-    if(Attacks[Idx].bOnlyWhilePathClear && P.MyKFAIC.bIsBodyBlocked)
+    if(Attack.bOnlyWhilePathClear && P.MyKFAIC.bIsBodyBlocked)
     {
         if(bDebugLog)
         {
@@ -386,7 +398,7 @@ function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
         }
         return false;
     }
-    if((Attacks[Idx].bHasCloaking && Attacks[Idx].bOnlyWhileCloaked && !P.bIsCloaking) || Attacks[Idx].bOnlyWhileDeCloaked && P.bIsCloaking)
+    if((Attack.bHasCloaking && Attack.bOnlyWhileCloaked && !P.bIsCloaking) || Attack.bOnlyWhileDeCloaked && P.bIsCloaking)
     {
         if(bDebugLog)
         {
@@ -394,26 +406,34 @@ function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
         }
         return false;
     }
-    if(Attacks[Idx].bIsBattlePhaseAttack && (P.GetCurrentBattlePhase() < Attacks[Idx].BattlePhaseMinimum) || P.GetCurrentBattlePhase() > Attacks[Idx].BattlePhaseMaximum)
+    if(Attack.bIsBattlePhaseAttack && (P.GetCurrentBattlePhase() < Attack.BattlePhaseMinimum) || P.GetCurrentBattlePhase() > Attack.BattlePhaseMaximum)
     {
         if(bDebugLog)
         {
             LogInternal((((string(P) @ string(GetFuncName())) $ "() rejecting attack idx ") $ string(Idx)) $ " because not allowed in this Battle Phase");
         }
     }
-    if(((Attacks[Idx].GlobalCooldown > float(0)) && Attacks[Idx].LastTimePlayed > 0) && (P.WorldInfo.TimeSeconds - Attacks[Idx].LastTimePlayed) < Attacks[Idx].GlobalCooldown)
+    if((P.MyKFAIC != none) && !P.MyKFAIC.CheckOverallCooldownTimer())
     {
-        if(bDebugLog)
+        if(P.MyKFAIC != none)
         {
-            LogInternal(((((((string(P) @ string(GetFuncName())) $ "() rejecting attack idx ") $ string(Idx)) $ " because GlobalCooldown (") $ string(Attacks[Idx].GlobalCooldown)) $ ") LastTimePlayed:") $ string(P.WorldInfo.TimeSeconds - Attacks[Idx].LastTimePlayed));
+            P.MyKFAIC.AILog_Internal(((string(GetFuncName()) $ "() PREVENTING attack ") $ string(Attack.Tag)) $ " because Overall Cooldown is active", 'Command_Attack_Melee');
         }
         return false;
     }
-    if((Attacks[Idx].Chance < 1) && FRand() > Attacks[Idx].Chance)
+    if(((Attack.GlobalCooldown > float(0)) && Attack.LastTimePlayed > 0) && (P.WorldInfo.TimeSeconds - Attack.LastTimePlayed) < Attack.GlobalCooldown)
     {
         if(bDebugLog)
         {
-            LogInternal((((((string(P) @ string(GetFuncName())) $ "() rejecting attack idx ") $ string(Idx)) $ " because random chance missed (Chance:") $ string(Attacks[Idx].Chance)) $ ")");
+            LogInternal(((((((string(P) @ string(GetFuncName())) $ "() rejecting attack idx ") $ string(Idx)) $ " because GlobalCooldown (") $ string(Attack.GlobalCooldown)) $ ") LastTimePlayed:") $ string(P.WorldInfo.TimeSeconds - Attack.LastTimePlayed));
+        }
+        return false;
+    }
+    if((Attack.Chance < 1) && FRand() > Attack.Chance)
+    {
+        if(bDebugLog)
+        {
+            LogInternal((((((string(P) @ string(GetFuncName())) $ "() rejecting attack idx ") $ string(Idx)) $ " because random chance missed (Chance:") $ string(Attack.Chance)) $ ")");
         }
         return false;
     }
@@ -421,7 +441,7 @@ function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
     {
         return false;
     }
-    if(Attacks[Idx].bOnlyWhileHeadless != P.ShouldPlayHeadlessMeleeAnims())
+    if(Attack.bOnlyWhileHeadless != P.ShouldPlayHeadlessMeleeAnims())
     {
         if(bDebugLog)
         {
@@ -429,7 +449,7 @@ function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
         }
         return false;
     }
-    if((Attacks[Idx].InstancedCooldown > float(0)) && IsAttackOnCooldown(P, Attacks[Idx].Tag, Attacks[Idx].InstancedCooldown))
+    if((Attack.InstancedCooldown > float(0)) && IsAttackOnCooldown(P, Attack.Tag, Attack.InstancedCooldown))
     {
         if(bDebugLog)
         {
@@ -437,7 +457,7 @@ function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
         }
         return false;
     }
-    if(Attacks[Idx].bOnlyWhileSurrounded && !P.IsSurrounded(true, Attacks[Idx].MinSurroundedBy, Attacks[Idx].SurroundedRadius))
+    if(Attack.bOnlyWhileSurrounded && !P.IsSurrounded(true, Attack.MinSurroundedBy, Attack.SurroundedRadius))
     {
         if(bDebugLog)
         {
@@ -447,7 +467,7 @@ function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
     }
     if(Target != none)
     {
-        if(Attacks[Idx].bOnlyWhileEnemyMoving && IsZero(Target.Velocity))
+        if(Attack.bOnlyWhileEnemyMoving && IsZero(Target.Velocity))
         {
             if(bDebugLog)
             {
@@ -457,7 +477,7 @@ function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
         }
         else
         {
-            if(Attacks[Idx].bOnlyWhileEnemyNotMoving && !IsZero(Target.Velocity))
+            if(Attack.bOnlyWhileEnemyNotMoving && !IsZero(Target.Velocity))
             {
                 if(bDebugLog)
                 {
@@ -466,19 +486,19 @@ function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
                 return false;
             }
         }
-        if((Attacks[Idx].MaxDistance > float(0)) && VSizeSq(P.Location - Target.Location) > Square(Attacks[Idx].MaxDistance))
+        if((Attack.MaxDistance > float(0)) && VSizeSq(P.Location - Target.Location) > Square(Attack.MaxDistance))
         {
             if(bDebugLog)
             {
-                LogInternal(((((((string(P) @ string(GetFuncName())) $ "() rejecting attack idx ") $ string(Idx)) $ " because target dist (") $ string(VSize(P.Location - Target.Location))) $ ") is greater than ") $ string(Attacks[Idx].MaxDistance));
+                LogInternal(((((((string(P) @ string(GetFuncName())) $ "() rejecting attack idx ") $ string(Idx)) $ " because target dist (") $ string(VSize(P.Location - Target.Location))) $ ") is greater than ") $ string(Attack.MaxDistance));
             }
             return false;
         }
-        if((Attacks[Idx].MinDistance > float(0)) && VSizeSq(P.Location - Target.Location) < Square(Attacks[Idx].MinDistance))
+        if((Attack.MinDistance > float(0)) && VSizeSq(P.Location - Target.Location) < Square(Attack.MinDistance))
         {
             if(bDebugLog)
             {
-                LogInternal(((((string(P) @ string(GetFuncName())) $ "() rejecting attack idx ") $ string(Idx)) $ " because target dist is less than ") $ string(Attacks[Idx].MinDistance));
+                LogInternal(((((string(P) @ string(GetFuncName())) $ "() rejecting attack idx ") $ string(Idx)) $ " because target dist is less than ") $ string(Attack.MinDistance));
             }
             return false;
         }
@@ -489,7 +509,7 @@ function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
         {
             if(P.MyKFAIC != none)
             {
-                P.MyKFAIC.AILog_Internal((((string(GetFuncName()) $ "() PREVENTING attack ") $ string(Attacks[Idx].Tag)) $ " because it has a DifficultyRating of ") $ string(Attacks[Idx].DifficultyRating), 'Command_Attack_Melee');
+                P.MyKFAIC.AILog_Internal((((string(GetFuncName()) $ "() PREVENTING attack ") $ string(Attack.Tag)) $ " because it has a DifficultyRating of ") $ string(Attack.DifficultyRating), 'Command_Attack_Melee');
             }
         }
         return false;

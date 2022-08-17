@@ -27,7 +27,7 @@ function UpdateGameInfo()
     {
         if((KFGRI.WaveNum + 1) < KFGRI.WaveMax)
         {
-            FinalWaveString = ((WaveString @ string(KFGRI.WaveNum + 1)) $ "/") $ string(KFGRI.WaveMax - 1);            
+            FinalWaveString = ((WaveString @ string(KFGRI.WaveNum)) $ "/") $ string(KFGRI.WaveMax - 1);            
         }
         else
         {

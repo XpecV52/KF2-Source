@@ -1,6 +1,6 @@
 package
 {
-    import tripwire.containers.perks.PerkDetailsContainer;
+    import tripwire.containers.Perks.PerkDetailsContainer;
     
     public dynamic class DetailsContainer_MC extends PerkDetailsContainer
     {

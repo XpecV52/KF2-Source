@@ -369,8 +369,6 @@ class KFDT_EMP extends KFDamageType
 
 
 
-
-
 	
 
 
@@ -422,6 +420,7 @@ class KFDT_EMP extends KFDamageType
 
 
 	
+
 
 
 

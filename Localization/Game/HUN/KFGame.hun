@@ -1,0 +1,1569 @@
+[KFCommon_LocalizedStrings]
+DifficultyStrings[0]="Normál"
+DifficultyStrings[1]="Nehéz"
+DifficultyStrings[2]="Öngyilkos"
+DifficultyStrings[3]="Földi pokol"
+
+LengthStrings[0]="Rövid (4 hullám)"
+LengthStrings[1]="Közepes (7 hullám)"
+LengthStrings[2]="Hosszú (10 hullám)"
+
+ServerTypeStrings[0]="Rangsorolt"
+ServerTypeStrings[1]="Rangsorolt - Egyéni"
+;ServerTypeStrings[2]="Rangsorolatlan"
+
+PermissionStrings[0]="Nyilvános"
+PermissionStrings[1]="Csak barátok"
+PermissionStrings[2]="Privát"
+
+ModeStrings[0]="Túlélő mód"
+ModeStrings[1]="VS Survival"
+
+NoPreferenceString="BÁRMELY"
+OKString="OK"
+ConfirmString="MEGERŐSÍT"
+CancelString="MÉGSE"
+BackString="VISSZA"
+AcceptString="Elfogad"
+DeclineString="Elutasít"
+NoticeString="MEGJEGYZÉS!"
+PerkUpdateNoticeString="Perket hullámonként egyszer lehet frissíteni!"
+YesString="Igen"
+NoString="Nem"
+
+DisbandPartyString="FELOSZLATÁS"
+LeaveCurrentMenuString="Elhagyod a jelenlegi menüt?"
+ZedString="ZED"
+
+
+[KFGFxMoviePlayer_Manager]
+FailedSearchTitleString="NEM SIKERÜLT MECCSET TALÁLNI"
+FailedSearchString="A meccskereső nem tudott a megadott beállításoknak megfelelő meccset találni. Kérjük, bővítsd a keresésedet, vagy vedd fontolóra a szerverböngésző használatát meccskereséshez."
+BrowseServersString="SZERVEREK BÖNGÉSZÉSE"
+HasInvitedToGameString=" meghívott téged egy játékba."
+JoinGameString="Csatlakozás a játékhoz?"
+
+
+[KFGFxObject_Menu]
+LeavePartyTitleString="TÁRSASÁG ELHAGYÁSA"
+LeavePartyDescriptionString="Biztosan el akarod hagyni ezt az online társaságot?"
+LeaveString="ELHAGYÁS"
+
+[KFDoorActor]
+WeldIntegrityString="Hegesztés épsége:"
+ExplosiveString="Ajtócsapda:"
+
+[KFGFxMenu_StartGame]
+CreateMatchString="MECCS LÉTREHOZÁSA"
+MatchmakingString="ONLINE MECCSKERESÉS"
+ServerBrowserString="Szerverek böngészése"
+
+DifficultyTitle="NEHÉZSÉG"
+GameModeTitle="JÁTÉKMÓD"
+ServerTypeString="SZERVERFAJTA"
+PermissionsTitle="ENGEDÉLYEK"
+WhiteListedTitle="STATISZTIKÁK BEKAPCSOLVA"
+LengthTitle="HOSSZ"
+MapTitle="PÁLYA INDÍTÁSA"
+MutatorTitle="MUTÁTOROK"
+InfoTitle="INFORMÁCIÓ"
+InProgressString="FOLYAMATBAN"
+
+WhiteListedStrings[0]="IGEN"
+WhiteListedStrings[1]="NEM"
+
+FindGameString="FŐOLDAL"
+LeaveMenuString="A meccskeresés elhagyása feloszlatja a társaságodat. Átlépsz inkább a szerverböngészőbe?"
+
+CouldNotFindGameTitleString="Meccskeresés sikertelen"
+CouldNotFindGameDescriptionString="Nem található a keresési beállításoknak megfelelő szerver. Próbálkozz más szűrőkkel, vagy használd a szerverböngészőt."
+
+[KFGFxStartGameContainer_FindGame]
+MultiplayerString="Online meccskeresés"
+SoloString="Egyjátékos játék offline"
+
+[KFGFxStartGameContainer_Options]
+BackString="VISSZA"
+StartGameString="JÁTÉK KEZDÉSE"
+LaunchGameString="JÁTÉK INDÍTÁSA"
+InProgressString="JÁTÉKÁLLAPOT"
+SoloGameString="SZÓLÓ JÁTÉK"
+LeaveMatchMakingString="MECCSKERESÉS ELHAGYÁSA"
+MultiplayerLaunchString="JÁTSSZ ONLINE MOST"
+SearchingString="KERESÉS LEÁLLÍTÁSA"
+ServerTypeString="SZERVERFAJTA"
+StandardServerString="Hagyományos"
+UnrankedServerString="Rangsorolatlan"
+CustomServerString="Egyéni"
+AllowInProgressString="Folyamatban lévő játékok is"
+NotStartedString="Csak új játékok"
+
+
+[KFGFxStartContainer_MatchMaking]
+OptionsHeaderString="MECCSKERESÉS"
+BackString="VISSZA"
+FindGameString="JÁTÉK KERESÉSE"
+
+[KFGFxStartContainer_InGameOverview]
+OverviewString="MECCSÁTTEKINTÉS"
+ChangeString="VÁLTOZTAT"
+SharedByString="Megosztotta:"
+SharedContentString="MEGOSZTOTT TARTALOM"
+
+[KFGFxStartContainer_ServerBrowserOverview]
+OverviewString="MECCSÁTTEKINTÉS"
+DescriptionString="játékot keres a szerverböngészőben..."
+
+[KFGFxTraderContainer_GameInfo]
+TimeLeftString="MARADT MÉG"
+WaveString="HULLÁM:"
+BossWaveString="FŐELLENSÉG"
+
+[KFPawn_MonsterBoss]
+BossName="Főellenség"
+BossCaptionStrings[0]="Főellenség leírás 1"
+BossCaptionStrings[1]="Főellenség leírás 2"
+
+[KFGFxTraderContainer_PlayerInfo]
+PlayerHeaderString="FELSZERELÉS"
+SelectPerkString="PERKVÁLASZTÁS"
+
+[KFGFxMenu_ServerBrowser]
+FavoriteString="KEDVENC"
+MultiplayerMenuString="MECCSKERESÉS"
+LeaveMenuString="E menü elhagyása feloszlatja a társaságodat. Átlépsz inkább a meccskeresésbe?"
+NameString="NÉV"
+RefreshString="FRISSÍTÉS"
+GamesFoundString="TALÁLT JÁTÉKOK:"
+
+ServerBrowserString="SZERVERBÖNGÉSZŐ"
+
+JoinString="CSATLAKOZÁS"
+PasswordPromptString="JELSZÓ MEGADÁSA"
+
+RankedString="STATISZTIKÁK BEKAPCSOLVA"
+UnrankedString="STATISZTIKÁK KIKAPCSOLVA"
+DedicatedString="DEDIKÁLT"
+VACSecureString="VAC-VÉDETT"
+InLobbyString="VÁRÓBAN"
+InProgressString="FOLYAMATBAN"
+
+BackString="VISSZA"
+ApplyString="ALKALMAZ"
+ResetString="VISSZAÁLLÍT"
+
+PingString="PING"
+LengthString="HOSSZ"
+DifficultyString="NEHÉZSÉG"
+MapString="PÁLYA"
+GameModeString="MÓD"
+WaveString="HULLÁM"
+PlayersString="JÁTÉKOSOK"
+ZedCountString="ZÉ-SZÁM"
+FiltersString="SZŰRŐK"
+
+SearchString="KERESÉS"
+
+PingOptionStrings[0]="< 50 MS"
+PingOptionStrings[1]="< 100 MS"
+PingOptionStrings[2]="< 150 MS"
+PingOptionStrings[3]="< 200 MS"
+
+TabStrings[0]="BÖNGÉSZÉS"
+TabStrings[1]="KEDVENCEK"
+TabStrings[2]="BARÁTOK"
+TabStrings[3]="ELŐZMÉNYEK"
+TabStrings[4]="LAN"
+
+[KFGFxServerBrowser_Filters]
+NoPasswordString="NINCS JELSZÓ"
+NoMutatorsString="NINCS MUTÁTOR"
+NotFullString="NINCS TELE"
+NotEmptyString="NEM ÜRES"
+NoStatsEnabledString="RANGSOROLATLAN (hagyományos) szerverek"
+NoRankedCustomString="NEM EGYÉNI SZERVEREK"
+NoUnrankedString="CSAK RANGSOROLT SZERVER"
+DedicatedString="DEDIKÁLT SZERVER"
+VACSecureString="VAC-VÉDETT"
+InLobbyString="VÁRÓBAN"
+InProgressString="FOLYAMATBAN"
+OnlyStockMapsString="CSAK ALAP PÁLYÁK"
+OnlyCustomMapsString="CSAK EGYEDI PÁLYÁK"
+LimitServerResultsString="TALÁLATOK KORLÁTOZÁSA:"
+
+[KFGFxServerBrowser_ServerDetails]
+MutatorsString="MUTÁTOROK"
+JoinGameString="CSATLAKOZÁS A JÁTÉKHOZ"
+SpectateGameString="MEGFIGYELÉS"
+ServerInfoString="SZERVERINFORMÁCIÓ"
+UnfavoriteString="KEDVENCBŐL KI"
+
+[KFGFxMenu_Trader]
+ExitMenuString="MENÜ ELHAGYÁSA"
+
+[KFGFxTraderContainer_Store]
+TraderString="FELSZERELÉSVÁSÁRLÁS"
+
+[KFGFxServerBrowser_ServerList]
+LeaveServerBrowserString="SZERVERBÖNGÉSZŐ ELHAGYÁSA"
+DetailsString="SZERVERADATOK"
+SpectateString="MEGFIGYELÉS"
+
+[KFGFxTraderContainer_ItemDetails]
+DamageTitle="SEBZÉS"
+FireRateTitle="TŰZGYORSASÁG"
+PenetrationTitle="ÁTHATOLÁS"
+RangeTitle="LŐTÁV"
+BlockTitle="BLOKKOLÁS"
+ParryTitle="KIVÉDÉS"
+AccuracyTitle="PONTOSSÁG"
+CapacityTitle="LŐSZERKAPACITÁS"
+MagTitle="TÁRMÉRET"
+HealAmountTitle="GYÓGYÍTÁS MÉRTÉKE"
+HealRechargeTitle="ÚJRATÖLTŐDÉSI IDŐ"
+BuyString="VÉTEL"
+SellString="ELADÁS"
+CannotSellString="NEM ADHATÓ EL"
+CannotBuyString="NEM VEHETŐ MEG"
+FavoriteString="KEDVENC"
+UnfavoriteString="KEDVENCBŐL KI"
+
+[KFGFxTraderContainer_PlayerInventory]
+FillString="TELE"
+MagString="TÁR"
+BuyGrenadeString="1X"
+AutoFillString="MINDENT TELE"
+ArmorString="Harci páncél"
+ChangePerkString="PERKVÁLTOZTATÁS"
+
+[KFGFxTraderContainer_Filter]
+TabsArray[0]="PERKEK"
+TabsArray[1]="TÍPUS"
+TabsArray[2]="KEDVENCEK"
+TabsArray[3]="MIND"
+
+WeaponTypeStrings[0]="Pisztolyok"
+WeaponTypeStrings[1]="Sörétes puskák"
+WeaponTypeStrings[2]="Puskák"
+WeaponTypeStrings[3]="Lövedék szerint"
+WeaponTypeStrings[4]="Lángfegyverek"
+WeaponTypeStrings[5]="Elektromos fegyverek"
+WeaponTypeStrings[6]="Robbanószerek"
+WeaponTypeStrings[7]="Gépkarabélyok"
+WeaponTypeStrings[8]="Közelharci fegyverek"
+WeaponTypeStrings[9]="Géppisztolyok"
+
+OffPerkString="Perk-független"
+
+[KFGFxMenu_PostGameReport]
+MapVoteString="PÁLYASZAVAZÁS"
+PlayerStatsString="JÁTÉKOS-STATISZTIKÁK"
+TeamAwardsString="KITÜNTETÉSEK"
+PostGameReportString="JÁTÉKVÉGI JELENTÉS"
+NextMapString="A következő pályáig:"
+WaveString="HULLÁM"
+XPString="TP"
+VictoryString="Győzelem"
+DefeatString="Vereség"
+ItemDropTitleString="ÚJ MEGSZERZETT TÁRGY!"
+
+[EphemeralMatchStats]
+MedicineMaster="Gyógyszermester"
+MedicineMasterValue="életerő"
+ZedSlayer="Zé-ölő"
+ZedSlayerValue="ölés"
+Enforcer="Erőember"
+EnforcerValue="segítés"
+Destroyer="Pusztító"
+DestroyerValue="sebzés"
+GiantSlayer="Óriásölő"
+GiantSlayerValue="nagy zé"
+MoneyBags="Pénzeszsák"
+MoneyBagsValue="lóvé"
+HeadPopper="Fejpukkasztó"
+HeadPopperValue="fejlövés"
+Dominator="Uralomra törő"
+DominatorValue="főellenség"
+
+EPB_Healing="Gyógyítás"
+EPB_Kills="Ölések"
+EPB_Assists="Segítések"
+EPB_LargeZedKill="Nagy zé ölések"
+EPB_Dosh="Megkeresett lóvé"
+EPB_HeadShots="Fejlövések"
+EPB_KnifeKills="Ölések késsel"
+EPB_PistolKills="Ölések pisztollyal"
+EPB_DoorWelding="Ajtóhegesztés"
+
+EPB_HealingValue="életerő"
+EPB_KillsValue="ölés"
+EPB_AssistsValue="segítés"
+EPB_LargeZedKillValue="nagy zé"
+EPB_DoshValue="lóvé"
+EPB_HeadShotsValue="fejlövés"
+EPB_KnifeKillsValue="ölés"
+EPB_PistolKillsValue="ölés"
+EPB_DoorWeldingValue="pontnyi hegesztés"
+
+[KFGFxPostGameContainer_TeamAwards]
+TeamAwardsString="CSAPATKITÜNTETÉSEK"
+PersonalBestsString="EGYÉNI LEGJOBBAK"
+NoTeamAwardsGivenString="NINCSENEK KITÜNTETÉSEK"
+
+[KFGFxPostGameContainer_MapVote]
+YourVoteString="A TE SZAVAZATOD"
+TopVotesString="LEGTÖBB SZAVAZAT"
+
+[KFGFxPostGameContainer_PlayerStats]
+AchievementsString="Teljesítmények"
+KnifeString="Kés"
+TopWeaponsString="LEGJOBB FEGYVEREK"
+ZedKillsString="ZÉ ÖLÉSEK"
+TotalDamageDealtString="Összes okozott sebzés:"
+HeadShotsString="Fejlövés:"
+LargeZedKillsString="Megölt nagy zék:"
+TotalDoshEarnedString="Összes szerzett lóvé:"
+TotalKillsString="Összes ölés:"
+AssistsString="Segítés:"
+DamageDealtString="Okozott sebzés:"
+
+
+
+[KFGFxWidget_BaseParty]
+PlayerReadyString="[ KÉSZ ]"
+WaitingString="VÁRAKOZÁS JÁTÉKOSOKRA"
+DeployingString="BEVETÉSIG:"
+CreatePartyString="BARÁTOK MEGHÍVÁSA"
+ReadyString="FELKÉSZÜLÉS"
+LeaveString="TÁRSASÁG ELHAGYÁSA"
+SquadString="OSZTAG"
+SoloString="EGYJÁTÉKOS"
+DefaultPlayerName="Játékos"
+
+PartyLeaderSearchingForMatchString="játékot keres..."
+PartyLeaderIsUpdatingMatchOptionsString="a meccsbeállításokat szerkeszti..."
+PartyLeaderInServerBrowserString="a szerverböngészőben keres..."
+PartyLeaderInOtherMenuString="egy másik menüben van..."
+SearchingForGameString="Online játék keresése..."
+
+PartHostLeftString="A meccs házigazdája kilépett."
+PartyLeaderChangedString="lett a társaság új házigazdája."
+
+MuteString="Játékos némítása"
+UnmuteString="Némítás feloldása"
+AddFriendString="Felvétel barátként"
+RemoveFriendString="Barát eltávolítása"
+VoteKickString="Játékos kirúgása"
+ViewProfileString="Profil megnézése"
+
+RemainingString="Hátralevő:"
+DownLoadingString="Letöltődik:"
+PartyLeaderString="Leader"
+
+[KFGFxWidget_PartyInGame_Versus]
+SwitchTeamsString="Switch Teams"
+balanceWarningString="WARNING: Teams will be auto-balanced"
+
+[KFGFxMenu_Gear]
+GearHeaderString="FELSZERELÉS TESTRESZABÁSA"
+BioString="ÉLETRAJZ"
+CharacterString="KARAKTER"
+HeadString="FEJ"
+BodyString="TEST"
+SkinsString="KÜLSŐK"
+AttachmentsString="KIEGÉSZÍTŐK"
+BackString="HÁT"
+NoneString="SEMMI"
+WeaponsString="Fegyverek"
+WeaponsInfoString="Testreszabás"
+
+[KFGFxMenu_Inventory]
+InventoryString="FELSZERELÉS"
+UseString="Használ"
+EquipString="FELSZEREL"
+UnequipString="LESZEREL"
+AllString="MIND"
+WeaponSkinString="FEGYVERKÜLSŐK"
+CosmeticString="DÍSZÍTŐ"
+CraftingMatsString="Crafting"
+ItemString="TÁRGYAK"
+FiltersString="Szűrők"
+MoreItemsString="E tárgy használatához szükséges egy másik tárgy."
+FailedToExchangeString="BECSERÉLÉS SIKERTELEN"
+RecycleString="RECYCLE"
+CraftString="CRAFT"
+CraftCosmeticString="Cosmetic Crafting"
+CraftWeaponString="Weapon Skin Crafting"
+CraftWeaponStrings[0]="Uncommon Weapon Skin"
+CraftWeaponStrings[1]="Rare Weapon Skin"
+CraftWeaponStrings[2]="Exceptional Weapon Skin"
+CraftWeaponStrings[3]="Master Crafted Weapon Skin"
+CraftCosmeticStrings[0]="Uncommon Cosmetic"
+CraftCosmeticStrings[1]="Rare Cosmetic"
+CraftCosmeticStrings[2]="Exceptional Cosmetic"
+CraftCosmeticStrings[3]="Master Crafted Cosmetic"
+RecycleWarningString="Warning, this cannot be undone. This will destroy the selected item and replace it with a crafting material item"
+RecycleItemString="Recycle Item?"
+ConfirmCraftItemString="Crafting this item will use resources and cannot be undone"
+CraftItemString="Confirm Craft Item?"
+FailedToCraftItemString="Failed to Craft Item"
+CraftRequirementString="Insufficient quantity of required crafting materials"
+CraftCosmeticDescriptionString="You can craft new cosmetic items from this menu out of cosmetic material. You can obtain cosmetic material by recycling existing cosmetic items. To recycle, select an item and press recycle"
+CraftWeaponDescriptionString="You can craft new weapon skin items from this menu out of weapon skin material. You can obtain weapon skin material by recycling existing weapon skin items. To recycle, select an item and press recycle"
+RequiresString="Requires: "
+
+[KFGFxPerksContainer]
+LevelString=""
+
+[KFGFxPerksContainer_Header]
+ExperienceString="Tapasztalat"
+PrestigeLevelString="Presztízs"
+
+[KFGFxPerksContainer_SkillsSummary]
+ConfigureString="TESTRESZABÁS"
+SkillsString="KÉPESSÉGEK"
+
+[KFGFxMenu_Perks]
+TierUnlockedText="Új fokozat feloldva!"
+TierUnlockedSecondaryText="Új fokozatot oldottál fel az alábbi perkekhez:"
+
+
+[KFGFxPerksContainer_Details]
+ObjectivesString="CÉLOK TP-SZERZÉSHEZ"
+PerkBonusesString="PERK BÓNUSZOK"
+BasicLoadoutString="KEZDŐFELSZERELÉS"
+
+[KFGFxPerksContainer_Skills]
+ConfigureSkillsString="KÉPESSÉGEK TESTRESZABÁSA"
+BackButtonString="<< VISSZA"
+
+[KFGFxPerksContainer_Selection]
+HeaderTitle="VÁLASSZ PERKET"
+EndOfWaveString="A perkváltozások a hullám végén lépnek életbe."
+ChangesAppliedOnCloseString="A perkváltozások e menü bezárásával lépnek életbe."
+OncePerWaveString="Perket hullámonként egyszer lehet változtatni!"
+
+[KFGFxMenu_Store]
+StoreString="BOLT"
+
+[KFGFxStoreContainer_Cart]
+CartString="Kosár"
+TotalString="Összesen"
+CheckOutString="Kassza"
+
+[KFGFxStoreContainer_Main]
+NewReleasesString="Új megjelenések"
+CartString="Kosár"
+ToolsString="Eszközök"
+WeaponSkinsString="Fegyverkülsők"
+CharactersString="Karakterek"
+
+[KFGFxStoreContainer_Details]
+AddToCartString="Megvásárlás"
+PreviewString="Előnézet"
+
+
+[KFGFxWidget_ButtonPrompt]
+CancelString="VISSZA"
+ConfirmString="KIVÁLASZT"
+
+[KFGFxWidget_MenuBar]
+MenuStrings[0]="FŐOLDAL"
+MenuStrings[1]="PERKEK"
+MenuStrings[2]="FELSZERELÉS"
+MenuStrings[3]="FELSZERELÉS"
+MenuStrings[4]="BOLT"
+MenuStrings[5]="BEÁLLÍTÁSOK"
+MenuStrings[6]="KILÉPÉS"
+
+ServerBrowserString="SZERVERBÖNGÉSZŐ"
+MatchmakingString="MECCSKERESÉS"
+SoloString="EGYJÁTÉKOS"
+OverviewString="MECCSÁTTEKINTÉS"
+
+TitleStrings[0]="Máris feladod a harcot?"
+TitleStrings[1]="Ilyen hamar lelépsz?"
+TitleStrings[2]="Meguntad, hogy folyton megesznek?"
+
+DescriptionStrings[0]="Jó, eredj, fuss csak a szánalmas kis életedért. Öt percig se húznád a Killing Floorban."
+DescriptionStrings[1]="Minden másodpercben, amit mással töltesz, a szörnyek újabb hordája születik, hogy barátaidból lakmározzon. Csak így magukra hagyod őket?"
+DescriptionStrings[2]="Úgyis rád fognak találni. Rád fognak találni és megeszik a szívedet, mint valami húsos nassolni valót."
+
+ExitString="KILÉPÉS"
+CancelString="MÉGSE"
+
+[KFGFxWidget_LevelUpNotification]
+LevelUpString="SZINTET LÉPTÉL"
+TierUnlockedString="ÚJ KÉPESSÉGEK FELOLDVA"
+
+[KFGFxHUD_WaveInfo]
+WaveString="HULLÁM"
+BossWaveString="FŐELLENSÉG"
+FinalWaveString="UTOLSÓ"
+
+[KFGFxHUD_TraderCompass]
+TraderString="ÁRUS"
+
+[KFGFxHUD_SpectatorInfo]
+PrevPlayerString="KÖVETKEZŐ JÁTÉKOS"
+NextPlayerString="ELŐZŐ JÁTÉKOS"
+ChangeCameraString="KAMERAVÁLTÁS"
+
+[KFGFxHUD_ScoreboardWidget]
+PlayerString="JÁTÉKOS"
+DoshString="LÓVÉ"
+KillsString="ÖLÉSEK"
+AssistsString="SEGÍTÉSEK"
+PingString="PING"
+
+[KFGFxHUD_PlayerStatus]
+EXPString="TP"
+
+
+[KFGFxHUD_ScoreboardMapInfoContainer]
+WaveString="HULLÁM"
+FinalString="Utolsó"
+
+[KFGFxHUD_WeaponSelectWidget]
+PrimaryString="ELSŐDLEGES"
+EquiptmentString="FELSZERELÉS"
+MeleeString="KÖZELHARCI"
+SecondaryString="MÁSODLAGOS"
+ThrowString="FEGYVER DOBÁSA"
+
+[KFGFxWidget_KickVote]
+VoteKickString="Játékos kirúgása?"
+
+[KFLocalMessage_PlayerKills]
+KilledString="killed"
+ZedString=ZEDs
+
+[KFLocalMessage_VoiceComms]
+VoiceCommsOptionStrings[0]="GYÓGYÍTÁS KÉRÉSE"
+VoiceCommsOptionStrings[1]="LÓVÉ KÉRÉSE"
+VoiceCommsOptionStrings[2]="SEGÍTSÉG KÉRÉSE"
+VoiceCommsOptionStrings[3]="ZÉK GÚNYOLÁSA"
+VoiceCommsOptionStrings[4]="UTÁNAM"
+VoiceCommsOptionStrings[5]="GYERÜNK AZ ÁRUSHOZ"
+VoiceCommsOptionStrings[6]="VETTEM"
+VoiceCommsOptionStrings[7]="NEGATÍV"
+
+[KFGFxMenu_Exit]
+HeaderString="KILÉPÉS A JÁTÉKBÓL"
+ExitToMainDescription="Kilépsz a jelenlegi játékból és visszatérsz a főmenübe?"
+ExitToMainMenu="Vissza a főmenübe"
+ExitKF2="Kilépés az asztalra"
+
+[KFGFxOptionsMenu_Selection]
+HeaderString="BEÁLLÍTÁSOK"
+OptionStrings[0]="Kép"
+OptionStrings[1]="Hang"
+OptionStrings[2]="Irányítás"
+OptionStrings[3]="Játékmenet"
+OptionStrings[4]="Készítők"
+
+[KFGFxOptionsMenu_Audio]
+AudioString="HANGBEÁLLÍTÁSOK"
+SectionNameString="HANGERŐ"
+OptionsString="BEÁLLÍTÁSOK"
+MasterVolumeString="Fő hangerő"
+DialogVolumeString="Beszéd hangereje"
+MusicString="Játékbeli zene hangereje"
+SFxString="Effekthangerő"
+VOIPVolumeString="Bejövő hangos csevegés hangereje"
+ConfigureMicString="MIKROFON KONFIGURÁLÁSA"
+VocalsString="Zenei vokálok"
+BattleChatterString="Minimális fecsegés harc közben"
+PushToVoIPString="Hangos csevegés gombnyomással"
+
+[KFGFxOptionsMenu_Graphics]
+KeepSettingsPromptString="Megtartod ezeket a képbeállításokat?"
+WarningPromptString="FIGYELEM!"
+WillExpireString="A beállítások %x% másodperc múlva visszaállítódnak."
+SingleWarningString="Néhány kiválasztott beállítás esetleg %x%."
+DoubleWarningString="Néhány kiválasztott beállítás esetleg %x% és %y%."
+PerformanceDescString[0]="visszavetheti a teljesítményt"
+PerformanceDescString[1]="nagyban befolyásolhatja a teljesítményt"
+RestartDescString="újraindítást igényelhet"
+OKString="OK"
+CancelString="MÉGSE"
+UnsavedChangesString="Nem mentetted el a változtatásokat."
+SaveChangesString="Akarod most menteni őket?"
+ContinueString="Szeretnéd folytatni?"
+
+AdjustGammaDescription="Húzd addig a csúszkát, amíg a baloldali teremtmény alig kivehető, de a jobboldali teremtmény tisztán látható."
+ResetGammaString="VISSZAÁLLÍT"
+SetGammaString="ALKALMAZ"
+
+
+GraphicsString="GRAFIKA"
+BasicString="Alap"
+AdvancedString="Haladó"
+EffectsString="Hatások"
+
+AspectRatioString="Képarány"
+ResolutionString="Felbontás"
+GraphicsQualityString="Grafikai minőség"
+VSyncString="Vertikális szinkronizáció"
+FullscreenString="Megjelenítés"
+VariableFrameRateString="Változó képkockaszám"
+FilmGrainString="Szemcsésség"
+AdjustGammaString="GAMMA BEÁLLÍTÁSA"
+
+PhysicsLevelString="NVIDIA® FleX"
+
+PhysicsLevelOptionStrings[0]="Ki"
+PhysicsLevelOptionStrings[1]="Testrészek*"
+PhysicsLevelOptionStrings[2]="Testrészek ÉS folyadékok*"
+
+PhysicsLevelSuggestionStrings[0]=""
+PhysicsLevelSuggestionStrings[1]="*GeForce® GTX™ 770 vagy jobb ajánlott"
+PhysicsLevelSuggestionStrings[2]="*GeForce® GTX™ 980 vagy jobb ajánlott"
+
+FlexPopUpString="Az NVIDIA® FleX lehetővé teszi vér és egyéb folyadékok szimulálását. Ez a beállítási visszavetheti a teljesítményt és újraindítást igényel."
+
+EnvironmentDetailsString="Környezet részletessége"
+FoliageString="Lombozat részletessége"
+CharacterDetailString="Karakterek részletessége"
+FXString="EFFEKT"
+TextureResolutionString="Textúrafelbontás"
+TextureFilteringString="Textúraszűrés"
+ShadowsString="Árnyékminőség"
+RealtimeReflectionsString="Valósidejű tükröződések"
+AntiAliasingString="Élsimítás"
+BloomString="Kisugárzás"
+MotionBlurString="Mozgási elmosódás"
+AmbientOcclusionString="Szórtfény-árnyékolás"
+DepthOfFieldString="Mélységélesség"
+
+
+VolumetricLightingString="Volumetrikus fényhatás"
+LensFlaresString="Becsillanás"
+LightShaftsString="Fénysugarak"
+CustomString="Egyéni"
+IniOverrideString=".ini felülbírálás"
+
+ApplyString="ALKALMAZ"
+CancelString="MÉGSE"
+DefaultString="ALAPÉRTELMEZETT"
+
+AspectRatioString_All="Mind"
+StandardAspectRatioString_4_3="0.16875"
+StandardAspectRatioString_5_4="0.211111111111111"
+StandardAspectRatioString_3_2="0.126388888888889"
+WideAspectRatioString_16_9="0.672916666666667"
+WideAspectRatioString_16_10="0.673611111111111"
+ExtraWideAspectRatioString_2_1="8.40277777777778E-02"
+ExtraWideAspectRatioString_21_9="0.88125"
+MultiMonitorAspectRatioString="Többmonitoros"
+
+FullScreenStringOptions[0]="Ablak"
+FullScreenStringOptions[1]="Keret nélkül"
+FullScreenStringOptions[2]="Teljes képernyő"
+
+OffOnStringOptions[0]="Ki"
+OffOnStringOptions[1]="Be"
+
+GraphicsQualityStringOptions[0]="Alacsony"
+GraphicsQualityStringOptions[1]="Közepes"
+GraphicsQualityStringOptions[2]="Magas"
+GraphicsQualityStringOptions[3]="Ultra"
+
+VSyncStringOptions[0]="Ki"
+VSyncStringOptions[1]="Be"
+;VSyncStringOptions[2]="Hármas pufferelés"
+
+EnvironmentDetailsStringOptions[0]="Alacsony"
+EnvironmentDetailsStringOptions[1]="Közepes"
+EnvironmentDetailsStringOptions[2]="Magas"
+EnvironmentDetailsStringOptions[3]="Ultra"
+
+FoliageStringOptions[0]="Alacsony"
+FoliageStringOptions[1]="Közepes"
+FoliageStringOptions[2]="Magas"
+
+CharacterDetailStringOptions[0]="Alacsony"
+CharacterDetailStringOptions[1]="Magas"
+CharacterDetailStringOptions[2]="Ultra"
+
+FXStringOptions[0]="Alacsony"
+FXStringOptions[1]="Közepes"
+FXStringOptions[2]="Magas"
+FXStringOptions[3]="Ultra"
+
+TextureResolutionStringOptions[0]="Alacsony"
+TextureResolutionStringOptions[1]="Közepes"
+TextureResolutionStringOptions[2]="Magas"
+TextureResolutionStringOptions[3]="Ultra"
+
+TextureFilteringStringOptions[0]="Bilineáris"
+TextureFilteringStringOptions[1]="Trilineáris"
+TextureFilteringStringOptions[2]="4x anizotropikus"
+TextureFilteringStringOptions[3]="16x anizotropikus"
+
+ShadowsStringOptions[0]="Alacsony"
+ShadowsStringOptions[1]="Közepes"
+ShadowsStringOptions[2]="Magas"
+ShadowsStringOptions[3]="Ultra"
+
+PhysicsStringOptions[0]="Ki"
+PhysicsStringOptions[1]="Normál"
+PhysicsStringOptions[2]="Magas"
+
+RealtimeReflectionsStringOptions[0]="Ki"
+RealtimeReflectionsStringOptions[1]="Be"
+
+AntiAliasingStringOptions[0]="Ki"
+AntiAliasingStringOptions[1]="FXAA"
+
+BloomStringOptions[0]="Ki"
+BloomStringOptions[1]="Alacsony"
+BloomStringOptions[2]="Magas"
+
+MotionBlurStringOptions[0]="Ki"
+MotionBlurStringOptions[1]="Normál"
+MotionBlurStringOptions[2]="Magas"
+
+AmbientOcclusionStringOptions[0]="Ki"
+AmbientOcclusionStringOptions[1]="SSAO"
+AmbientOcclusionStringOptions[2]="HBAO+"
+
+DepthOfFieldStringOptions[0]="Ki"
+DepthOfFieldStringOptions[1]="SAT DOF"
+
+[KFGFxOptionsMenu_Graphics_DX10]
+AmbientOcclusionStringOptions_DX10[0]="Ki"
+AmbientOcclusionStringOptions_DX10[1]="SSAO"
+
+[KFGFxOptionsMenu_Controls]
+TabStrings[0]="BEMENET"
+TabStrings[1]="BILLENTYŰKIOSZTÁS"
+TabStrings[2]="JÁTÉKVEZÉRLŐK"
+HeaderText="IRÁNYÍTÁSI BEÁLLÍTÁSOK"
+
+[KFGFxOptionsMenu_GameSettings]
+SectionNameString="BEÁLLÍTÁSOK"
+GameSettingsString="JÁTÉKBEÁLLÍTÁSOK"
+FOVString="LÁTÓTÉR"
+GoreString="Véresség intenzitása"
+ShowCrosshairString="Célkereszt mutatása"
+ClassicWeaponSelectString="Gyors fegyverválasztás"
+GoreOptionStrings[0]="Nincs vér"
+GoreOptionStrings[1]="Kevés vér"
+GoreOptionStrings[2]="Véres"
+NormalString="Normál"
+WiderString="Szélesebb"
+FriendlyHudScaleString="Felhasználóbarát HUD-méret"
+
+[LocalizedControls]
+ControllerLayoutDefault="Default"
+ControllerLayoutJumper="Jumper"
+ControllerLayoutQuickDraw="Quick Draw"
+ControllerLayoutSouthPaw="South Paw"
+
+GBA_WeaponSelect_Gamepad="Fegyverválasztó menü (tartva)"
+GBA_Reload_Gamepad="Reload"
+GBA_StrafeLeft_Gamepad="Movement Control"
+GBA_MoveForward_Gamepad="Move Forward"
+GBA_Look_Gamepad="Look Control"
+GBA_Grenade_Gamepad="Throw Grenade"
+GBA_TurnLeft_Gamepad="Look Control"
+GBA_Look_Gamepad="Look Control"
+GBA_DPad_Left_Gamepad="Voice Comms"
+GBA_DPad_Up_Gamepad="Equip Healer"
+GBA_DPad_Right_Gamepad="Throw Dosh"
+GBA_DPad_Down_Gamepad="Toggle Flashlight"
+
+
+GBA_MoveForward="Előre"
+GBA_StrafeLeft="Balra oldalazás"
+GBA_Backward="Hátra"
+GBA_StrafeRight="Jobbra oldalazás"
+GBA_Jump="Ugrás"
+GBA_Sprint="Futás"
+GBA_CrouchToggle="Guggolás (váltás)"
+GBA_CrouchHold="Guggolás (tartva)"
+GBA_SprintAndCrouch="Guggolás / Futás"
+GBA_SprintAndMelee="Melee / Sprint"
+GBA_ShowMenu="Toggle In Game Menu"
+
+GBA_Use="Használat / Gyors hegesztés (tartva)"
+GBA_Talk="Beszéd"
+GBA_TeamTalk="Team Talk"
+GBA_VoiceChat="Hangos csevegés"
+GBA_PublicVoiceChat="Public Voice"
+GBA_ShowVoiceComms="Hangparancsok"
+GBA_ShowScores="Eredménytábla mutatása"
+GBA_TossMoney="Lóvé dobása"
+GBA_DropWeapon="Fegyver eldobása"
+
+GBA_Fire="Lövés"
+GBA_IronSightsToggle="Irányzék (váltás)"
+GBA_IronsightsHold="Irányzék (tartva)"
+GBA_Reload="Újratöltés"
+GBA_Grenade="Gránátdobás"
+GBA_QuickHeal="Gyorsgyógyítás"
+GBA_SwitchFireMode="Alt. tüzelés / Blokkolás"
+GBA_TertiaryFire="Közelharci ütés"
+GBA_ToggleFlashlight="Zseblámpa be/kikapcsolása"
+GBA_AltFire="Alt. tüzelés / Blokkolás"
+
+GBA_WeaponSelect_Gamepad="Fegyverválasztó menü (tartva)"
+GBA_NextWeapon="Következő fegyver"
+GBA_PrevWeapon="Előző fegyver"
+GBA_LastWeapon="Legutóbb használt fegyver"
+GBA_SwitchWeapon1="Elsődleges fegyver"
+GBA_SwitchWeapon2="Másodlagos fegyver"
+GBA_SwitchWeapon3="Közelharci fegyver"
+GBA_SwitchWeapon4="Felszerelés"
+GBA_VoteYes="„Igen” szavazat (tartva)"
+GBA_VoteNo="„Nem” szavazat (tartva)"
+
+[KFGFxControlsContainer_Input]
+SensitivityString="Érzékenység"
+InvertedString="Függőleges megfordítása"
+ControllerString="Játékvezérlő"
+ControllerSensitivityString="Nézés érzékenysége"
+MouseString="Egér"
+MouseSmoothingString="Egérsimítás"
+ZoomSensitivityString="Ráközelítési érzékenység"
+ControllerZoomSensitivityString="Ráközelítési érzékenység"
+AimAssistLockOnString="Célzássegítő ráközelítési befogás"
+AimAssistRotationString="Célzássegítő forgatás"
+AimAssistSlowDownString="Célzássegítő lassítás"
+ForceFeedbackString="Játékvezérlő rezgés"
+
+[KFGFxControlsContainer_Keybinding]
+SectionHeaders[0]="Mozgás"
+SectionHeaders[1]="Interakció"
+SectionHeaders[2]="Harc"
+SectionHeaders[3]="Fegyverválasztás"
+
+ResetString="ALAPÁLLAPOT"
+ApplyString="ALKALMAZ"
+PressKeyString="[NYOMJ EGY GOMBOT]"
+WarningString="FIGYELEM!"
+KeyAlreadyBoundString="A(z) <%x%> gomb már hozzá van rendelve ehhez:"
+RebindString="Újra kiosztás ehhez:"
+ClearedString="(A korábbi kiosztás törölve lesz.)"
+CancelString="MÉGSE"
+AcceptString="ELFOGAD"
+IgnoredKeyString="nem osztható ki erre a gombra"
+
+[KFGFxControlsContainer_ControllerPresets]
+MovementString="Mozgás irányítása"
+LookString="Nézés irányítása"
+WeaponSelectMenuString="Fegyverválasztó menü (tartva)"
+ShowScoardBoardString="Eredménytábla mutatása"
+ShowIngameMenuString="Játékbeli menü ki/be"
+CurrentControllerPresetString="Current Controller Preset"
+
+BashString="Közelharci ütés"
+BlockString="Blokkolás (tartva)"
+HoldString="(tartva)"
+
+[KFInventoryManager]
+FullHealthMsg="Életerő tele"
+
+[KFLocalMessage]
+SystemString="Rendszer:"
+AdminString ="(Admin)"
+LoggedInAsAdminString=" bejelentkezett szerveradminként."
+LoggedOutAsAdminString=" feladta szerveradmin státuszát."
+MustLoginToCheatString="Csalások engedélyezéséhez be kell jelentkezned."
+CheatsEnabledString=" engedélyezte a csalásokat. A statisztikák kikapcsolásra kerültek erre a játékmenetre."
+ServerMaintenanceString="A játék végén a szerver karbantartás miatt le fog állni."
+KickVoteStartedString="Szavazás indult e játékos kirúgására:"
+KickVoteSucceededString="Indítvány elfogadva e játékos kirúgására:"
+KickVoteFailedString="Indítvány elutasítva e játékos kirúgására:"
+KickVoteRejectedString="Nem telt el elég idő az utolsó sikertelen szavazás óta. Vár egy kicsit, majd próbáld újra."
+KickVoteInProgressString="Nem indítható kirúgási szavazás, már folyamatban van egy."
+KickVoteDisabledString="A kirúgási szavazás ezen a szerveren tiltva van."
+KickVoteYesReceivedString="E játékos kirúgására szavaztál:"
+KickVoteNoReceivedString="E játékos kirúgása ellen szavaztál:"
+KickVoteKickAdminString="Szerveradmint nem lehet kirúgni."
+KickVoteActiveTimeString="Még nem tart elég ideje a játék kirúgási szavazás indításához."
+KickVoteMatchNotStartedString="Nem indítható kirúgási szavazás a játék kezdete előtt."
+KickVoteMaxKicksReachedString="Nem kezdeményezhetsz több kirúgást e játék során."
+KickVoteNotEnoughPlayersString="Nincs elég játékos kirúgási szavazás kezdeményezéséhez."
+KickVoteNoSpectatorsString="Nézők nem kezdeményezhetnek kirúgási szavazást."
+KickedFromServerString="El lettél távolítva a szerverről."
+BannedFromServerString="El lettél távolítva erről a szerverről. Jelenleg nem csatlakozhatsz újra."
+
+[KFLocalMessage_Game]
+ReceivedAmmoFromMessage="Lőszert kaptál tőle:"
+GaveAmmoToMessage="Lőszert adtál neki:"
+PendingPerkChangesSet="A perkváltozások a hullám végén lépnek életbe."
+PendingPerkChangesApplied="Perkváltozások végrehajtva."
+HealedByMessage="Meggyógyított:"
+HealedMessage="Meggyógyítottad:"
+YourselfString="magadat."
+PickedupArmorMessage="Páncélt vettél fel."
+FullArmorMessage="A páncélod már tele van."
+PickupAmmoMessage="Lőszert vettél fel."
+AmmoFullMessage="Your ammo is full"
+PickupWeaponAmmoMessage="%x% lőszert vettél fel."
+AlreadyCarryingWeaponMessage="Már megvan ez a fegyver."
+PickupMessage="Ezt vetted fel:"
+TooMuchWeightMessage="Ez a fegyver túl nehéz. Próbálj meg eldobni, vagy eladni egy fegyvert."
+FailedDropInventoryMessage="Azt nem dobhatod el itt."
+ReceivedGrenadesFromMessage="Gránátot kaptál tőle:"
+GaveGrenadesToMessage="Gránátot adtál neki:"
+SharingContentString="tartalmat oszt meg."
+HeadShotAddedString="%x fejlövés - %y% extra sebzés!"
+HeadShotMaxString="Fejlövés! %x% extra sebzés!"
+HeadShotResetString="Elvétett fejlövés. Normál sebzés!"
+
+SuicideMessage="lemondott az életéről..."
+KilledMessage="vacsora lett."
+KillzedBy_PatriarchString=" can't hurt Kevin's children anymore"
+KillzedBy_HansString=" teste eltávolításra került további kísérletek céljából."
+KillzedBy_ZedCrawlerString=" lábfejeit lerágták."
+KillzedBy_ZedBloatString="testnedvekbe fulladt."
+KillzedBy_ZedFleshpoundString="péppé zúzódott."
+KillzedBy_ZedGorefastString="bőrét lenyúzták."
+KillzedBy_ZedHuskString=" szénné égett."
+KillzedBy_ZedScrakeString=" élete teljében lett levágva."
+KillzedBy_ZedSirenString=" dobhártyái beszakadtak. Halálosan..."
+KillzedBy_ZedStalkerString=" ezt nem látta előre."
+KillzedBy_ZedClot_CystString=" csalódást keltő halált halt."
+KillzedBy_ZedClot_AlphaString=" illetlen helyen lett megmarkolva."
+KillzedBy_ZedClot_SlasherString=" már nem szereti a kaszabolós horrorfilmeket."
+
+FoundAMapCollectibleMessage="%x% megtalált egy %y%. Még %z% maradt..."
+FoundAllMapCollectiblesMessage="Az összes %x% sikerült megtalálni!"
+MapCollectibleName="lóvés nyakláncot"
+
+[KFLocalMessage_Priority]
+WaveStartMessage="H U L L Á M  K Ö Z E L E D I K"
+WaveEndMessage="H U L L Á M  T E L J E S Í T V E"
+GetToTraderMessage="Irány az árus bódé!"
+YouLostMessage="V E R E S É G"
+YouWonMessage="G Y Ő Z E L E M"
+SquadWipedOutMessage="Az osztagodat kiirtották."
+SquadSurvivedMessage="Az osztagod túlélte."
+ObjectiveStartMessage="Feladat megkezdve!"
+ObjectiveWonMessage="Feladat teljesítve!"
+ObjectiveEndedMessage="A feladat véget ért!"
+ObjectiveLostMessage="Feladat elbukva!"
+ObjNotEnoughPlayersMessage="Nincs elég játékos!"
+ObjTimeRanOutMessage="Lejárt az idő!"
+HumansLoseMessage="Humans squad wiped out!"
+HumansWinMessage="Humans squad survived!"
+AttackHumanPlayersString="Attack the Human Players!"
+ZedGroupRegroupingString="Zed Horde regrouping!"
+
+[KFLocalMessage_Interaction]
+UseTraderMessage="<%x%> KERESKEDŐ HASZNÁLATA"
+UseDoorMessage="<%x%> Kinyit/Becsuk (TARTVA) <%x%> Hegesztő kézbe vétele"
+UseDoorWeldedMessage="(HOLD) <%x%> equip welder"
+ZedUseDoorMessage="<%x%> Open/Close"
+ZedUseDoorWeldedMessage=""
+AcceptObjectiveMessage="<%x%> Feladat elfogadása"
+ReceiveAmmoMessage="<%x%> Lőszer elfogadása"
+ReceiveGrenadesMessage="<%x%> Gránátok elfogadása"
+HealSelfWarning="<%x%> Öngyógyítás"
+HealSelfGamepadWarning="<%x%> (TARTVA) öngyógyítás"
+PressToBashWarning="<%x%> Ütés"
+GamepadWeaponSelectHint="<%x%> (TARTVA) fegyverválasztás"
+PlayerClotGrabWarningMessage="Kill zed to break free!"
+
+[KFLocalMessage_ServerNotification]
+TeamPendingBalanceMessage="Teams are unbalanced and will be adjusted"
+
+[KFGfxPerkComp_Abilities]
+RankNames[0]="I-es rangú"
+RankNames[1]="II-es rangú"
+RankNames[2]="III-as rangú"
+
+[KFPerk]
+SkillCatagories[0]=""
+SkillCatagories[1]=""
+SkillCatagories[2]=""
+SkillCatagories[3]=""
+SkillCatagories[4]=""
+
+LevelString="Szint"
+
+SpecialAbilityName="Jellemző képesség"
+SpecialAbilityDescription=""
+
+Passives[0]=(Title="",Description="");
+Passives[1]=(Title="",Description="");
+Passives[2]=(Title="",Description="");
+Passives[3]=(Title="",Description="");
+Passives[4]=(Title="",Description="");
+
+SkillSlots0[0]=(Title="",Description="")
+SkillSlots0[1]=(Title="",Description="")
+
+SkillSlots1[0]=(Title="",Description="")
+SkillSlots1[1]=(Title="",Description="")
+
+SkillSlots2[0]=(Title="",Description="")
+SkillSlots2[1]=(Title="",Description="")
+
+SkillSlots3[0]=(Title="",Description="")
+SkillSlots3[1]=(Title="",Description="")
+
+SkillSlots4[0]=(Title="",Description="")
+SkillSlots4[1]=(Title="",Description="")
+
+WeaponDroppedMessage="Új teherbírási kapacitásod miatt eldobtad ezt: %%%%!"
+
+[KFPerk_Berserker]
+PerkName="Dühöngő"
+
+SkillCatagories[0]="Ellenállás"
+SkillCatagories[1]="Túlélés"
+SkillCatagories[2]="Közelharc"
+SkillCatagories[3]="Erő"
+SkillCatagories[4]="Haladó kiképzés"
+
+Passives[0]=(Title="Perk-fegyver sebzés",Description="+25% Dühöngő-fegyver sebzés, +x%x szintenként.");
+Passives[1]=(Title="Közelharci támadósebesség",Description="+0% közelharci támadósebesség, +x%x szintenként.");
+Passives[2]=(Title="Közelharci mozgási sebesség",Description="10%-kal gyorsabb mozgás közelharci fegyverrel a kézben, +x%x szintenként.");
+Passives[3]=(Title="Sebzésellenállás",Description="%x%-kal kevesebb beérkező sebzés.");
+Passives[4]=(Title="+Éjjellátó képesség",Description="Zseblámpák ÉS éjjellátó szemüvegek.")
+Passives[5]=(Title="+Clotok nem tudnak megragadni",Description="A clotok nem tudják megragadni a Dühöngőt.")
+
+EXPAction1="Sebzés Dühöngő-fegyverekkel"
+EXPAction2="Zék megölése más játékos közelében perk-fegyverrel"
+
+PoisonResistance="Méregellenállás"
+PoisonResistanceDescription="Köpök a mérgedre: 40%-kal csökkenti a sebzést, amit méregtámadásoktól szenvedsz el."
+
+SonicResistance="Hangellenállás"
+SonicResistanceDescription="Nem hallak! 40%-kal csökkenti a sebzést, amit hangtámadásoktól szenvedsz el."
+
+Vampire="Vámpír"
+VampireDescription="Az élet szívás: a Horzine nanotechnika 3 életpontot szív el minden Dühöngő fegyverrel megölt zéből, és a te életedhez adja."
+
+Fortitude="Állhatatosság"
+FortitudeDescription="Adj jobb esélyt magadnak: növeld 100%-kal a maximális és kezdeti életerőt."
+
+FuriousDefender="Ádáz védekező"
+FuriousDefenderDescription="Okkal hívnak Dühöngőnek: közelharci támadásaid 10%-kal gyorsabbak, és minden támadás 20%-kal több sebzést okoz."
+
+Block="Blokkolás"
+BlockDescription="Micsoda ügyesség! Dühöngőként egy támadás blokkolása 50%-kal erősebbé teszi a következő közelharci támadásodat."
+
+Parry="Kivédés"
+ParryDescription="Ötvözd ügyességed és erőd: egy támadás kivédése 4 másodpercig 15%-kal növeli közelharci támadási sebességedet és 30%-kal könnyű támadási sebzésedet."
+
+Smash="Zúzás"
+SmashDescription="Erőből: a kemény ütések 100%-kal nagyobb sebzést okoznak ÉS ha fejre viszed be őket, nagy esélyt adnak a nagy zék feldöntésére."
+
+Spartan="ZÉ IDŐ - A spártai"
+SpartanDescription="Láttad a 300-at: mozogj valós időben, növeld a közelharci Dühöngő-fegyverek támadási sebességét 50%-kal és okozz minden kivédéssel feldöntést."
+
+Menace="ZÉ IDŐ - Fenyegetés"
+MenaceDescription="Válj igazán veszélyessé: mozogj valós időben, növeld 100%-kal közelharci Dühöngő-fegyvereid bénítási erejét fejtalálatokkor, valamint megingatási erődet 100%-kal."
+
+[KFPerk_Commando]
+PerkName="Kommandós"
+
+SkillCatagories[0]="Ellátmány"
+SkillCatagories[1]="Fegyverkezelés"
+SkillCatagories[2]="Figyelem"
+SkillCatagories[3]="Fegyverspecialista"
+SkillCatagories[4]="Haladó kiképzés"
+
+Passives[0]=(Title="Perk-fegyver sebzés",Description="+%x% Kommandós-fegyver sebzés.");
+Passives[1]=(Title="Álcázott ellenségek észlelése",Description="+%x% álcázás-észlelési távolság.");
+Passives[2]=(Title="Életerőcsík észlelése",Description="+%x% életerőcsík-észlelési távolság.");
+Passives[3]=(Title="Zé idő-elnyújtás",Description="A Zé idő %x% hosszú.");
+Passives[4]=(Title="Életerő növekedés",Description="+%x% életerő.");
+Passives[5]=(Title="+Éjjellátó képesség",Description="Zseblámpák ÉS éjjellátó szemüvegek.");
+
+EXPAction1="Sebzés Kommandós-fegyverekkel"
+EXPAction2="Stalkerek ölése Kommandós-fegyverekkel"
+
+LargeMags="Nagy tárak"
+LargeMagsDescription="Legyél kicsit komolyabb - növeld Kommandós-fegyvereid tárkapacitását 50%-kal."
+
+Backup="Tartalék"
+BackupDescription="Biztosíts 60%-os többletsebzést tartalék pisztolyodnak és késednek azokra a pillanatokra, amikor igazán szükség van rájuk!"
+
+Impact="Becsapódás"
+ImpactDescription="Lőj erősebben és döntsd fel őket. Növeld 30%-kal a zék megingatásának esélyét minden Kommandós-fegyverrel."
+
+TacticalReload="Taktikai újratöltés"
+TacticalReloadDescription="Legyél menő. Legyél gyors. Tölts újra gyorsabban perk-fegyvereiddel ÉS tűnj közben elitebbnek."
+
+Leadership="Vezetői erély"
+LeadershipDescription="Vezetői erélyed megnyugtatja és lecsillapítja csapattársaidat, hatékonyabbá téve őket. A csapattársak 10%-kal gyorsabban töltenek újra."
+
+CallOut="Figyelemfelkeltés"
+CallOutDescription="Add meg csapattársaidnak is a képességet, hogy ugyanolyan jól láthassák az álcázott ellenségeket, mint te. Meg fogják köszönni ÉS az ölésekért te is megkapod azt a TP-t, amit ők."
+
+SingleFire="Egyetlen lövés"
+SingleFireDescription="Jutalmazzuk a takarékos tüzelést! Kommandós-fegyvereidnek 20%-kal nagyobb sebzést ad, amikor egylövéses módban vannak."
+
+Autofire="Automata tüzelés"
+AutofireDescription="Miért finomkodnál? Okozz 20%-kal nagyobb sebzést Kommandós-fegyvereiddel teljes- vagy rövid sorozat módot használva."
+
+RapidFire="ZÉ IDŐ - Gyorstüzelés"
+RapidFireDescription="Okozz nagyobb fájdalmat, amikor a világ lelassul: 3%-kal nagyobb sebzés Kommandós-fegyverekkel, és 3-szor gyorsabb tüzelés minden fegyverrel."
+
+Professional="ZÉ IDŐ - A profi"
+ProfessionalDescription="Amikor a világ lelassul, te nem. Töltsd újra a fegyvereket valós sebességgel - válts fegyvereket kétszer olyan gyorsan!"
+
+[KFPerk_Demolitionist]
+PerkName="Robbantó"
+EXPAction1="Sebzés Robbantó-fegyverekkel"
+EXPAction2="Fleshpoundok ölése Robbantó-fegyverekkel"
+
+SkillCatagories[0]="Módszeresség"
+SkillCatagories[1]="Ellenállás"
+SkillCatagories[2]="Fejlettebb módszerek"
+SkillCatagories[3]="Fegyverkezelés"
+SkillCatagories[4]="Fejlettebb robbanószerek"
+
+Passives[0]=(Title="Perk-fegyver sebzés",Description="+%x% perk-fegyver sebzés.");
+Passives[1]=(Title="Robbanás-ellenállás",Description="+%x% ellenállás a robbanási sebzéssel szemben.");
+Passives[2]=(Title="Extra robbanólőszer",Description="+%x% kezdő robbanólőszer.");
+
+GrenadeSupplier="Gránátellátó"
+GrenadeSupplierDescription="Imádni fognak érte: csapattársaid egy extra gránátot kaphatnak tőled, hullámonként egyszer."
+
+OnContact="Becsapódás"
+OnContactDescription="A képedbe, öreg: dinamitrúdjaid felrobbannak, amikor egy zével érintkeznek."
+
+ExplosiveResistance="Robbanás-ellenállás"
+ExplosiveResistanceDescription="Erősítsd a csapatot: csökkentsd 30%-kal az elszenvedett sebzésedet - és a csapattársaidét is, ha elég közel vannak hozzád!"
+
+Sacrifice="Reaktív páncél"
+SacrificeDescription="Legyél te a bomba: hullámonként egyszer, egy támadás, ami egyébként végezne veled, robbanást okoz, sebezve a körülötted lévő zéket, téged pedig 5 életponton hagyva."
+
+DoorTraps="Ajtócsapdák"
+DoorTrapsDescription="Robbantsd be az ajtót: 30%-kal lassabban hegesztesz, de az általad behegesztett ajtók berobbannak, amikor betörik őket. Minél többet hegesztettél az ajtón, annál nagyobbat robban."
+
+SirenResistance="Siren-ellenállás"
+SirenResistanceDescription="Fogd be a szád, zé: gránátjaidnak 100%-os esélye van túlélni a hangsebzést, és ténylegesen felrobbanni."
+
+OffPerk="Perken kívül"
+OffPerkDescription="Már megint nem: okozz 10% többletsebzést bármely perken kívüli fegyverrel."
+
+OnPerk="Perken belül"
+OnPerkDescription="Már megint igen: növeld 30%-kal Robbantó-fegyvereid reakció, megingató és feldöntő erejét."
+
+Nuke="ZÉ IDŐ - Atom"
+NukeDescription="Atomot nekik: robbanószereid erős radioaktív sebzést okoznak Zé időben, mérgezve a zéket."
+
+ConcussiveForce="ZÉ IDŐ - Megrázó erő"
+ConcussiveForceDescription="Döntsd fel őket: robbanásaidnak erős feldöntő erejük van a zék ellen Zé időben."
+
+
+[KFPerk_FieldMedic]
+PerkName="Felcser"
+
+SkillCatagories[0]="Felkészítés"
+SkillCatagories[1]="Orvostechnikus"
+SkillCatagories[2]="Fegyverkezelés"
+SkillCatagories[3]="Harci technikus"
+SkillCatagories[4]="Haladó kiképzés"
+
+Passives[0]=(Title="Fecskendő újratöltődési sebessége",Description="%x%-kal gyorsabb fecskendő újratöltődés szintenként.");
+Passives[1]=(Title="Fecskendő hatékonysága",Description="+%x% fecskendő hatékonyság szintenként.");
+Passives[2]=(Title="Bloat-okádék ellenállás",Description="+%x% Bloat-okádék ellenállás szintenként.");
+Passives[3]=(Title="Mozgási sebesség",Description="+%x%-kal gyorsabb mozgási sebesség szintenként.");
+Passives[4]=(Title="Páncélbónusz",Description="+%x% páncélnövekedés szintenként.");
+
+HealingSurge="Gyógyerő"
+HealingSurgeDescription="Használd ki rendesen felcser tudásodat: növeld 20%-kal életerődet."
+
+Enforcer="Erőember"
+EnforcerDescription="Elég az ápolásból: növeld 20%-kal perk- és tartalékfegyvereid kezdő tárkapacitását."
+
+Combatant="Harcos"
+CombatantDescription="Ne csak felcser legyél, hanem az a harci orvos, aki mindig is lenni akartál, ingyen kezdő testpáncéllal és 60%-os kedvezménnyel minden páncélvételre!"
+
+Armament="Hadi felszerelés"
+ArmamentDescription="Ne csak embereket hozz rendbe: mondj le gyógyító hatékonyságod 10%-áról csapattársaidon, de helyette minden alkalommal javíts testpáncéljukon a maximális érték 2%-ával."
+
+Regeneration="Regeneráció"
+RegenerationDescription="Lődd be magad: az életed időarányosan, lassan regenerálódik a Horzine nano-botoknak köszönhetően."
+
+Lacerate="Gyötrelem"
+LacerateDescription="Vigyázz azzal a szikével: a zék jobban fognak vérezni, ha a perk-fegyvereiddel sebzed meg őket."
+
+VaccinationArmor="Védőoltás"
+VaccinationArmorDescription="Segíts megelőzni a halál terjedését: gyógyításod a maximális érték 4%-ával javítja csapattársaid páncélját, plusz ideglenes Bloat-okádék ellenállást ad."
+
+VaccinationDamageMod="Savas elegy"
+VaccinationDamageModDescription="Van, akiket gyógyít... másokra halált hoz! Gyógyító nyilaid megmérgezhetik a zéket; ha elég sebzést okozol, gránátjaid és nyilaid pánikot is keltenek a zékben."
+
+AirborneAgent="ZÉ IDŐ - Levegőben terjedő"
+AirborneAgentDescription="Az idő begyógyítja a sebeket: nyilaid gyógyító felhőt képeznek célpontod és a közeli társak számára 10%-os extra gyógyításért."
+
+Sedative="ZÉ IDŐ - Nyugtató"
+SedativeDescription="És megáll az idő: nyilaid és gránátjaid zé-nyugtatót bocsátanak ki, ami átmenetileg megállíthatja a zék mozgását."
+
+
+EXPAction1="Sebzés Felcser-fegyverekkel"
+EXPAction2="Csapattársak gyógyítása"
+
+[KFPerk_Firebug]
+PerkName="Tűzköpő"
+EXPAction1="Sebzés Tűzköpő-fegyverekkel"
+EXPAction2="Crawlerek ölése Tűzköpő-fegyverekkel"
+
+SkillCatagories[0]="Ellátmány"
+SkillCatagories[1]="Pikáns"
+SkillCatagories[2]="Égés"
+SkillCatagories[3]="Lángok"
+SkillCatagories[4]="Haladó kiképzés"
+
+Passives[0]=(Title="Perk-fegyver sebzés",Description="+%x% perk-fegyver sebzés.");
+Passives[1]=(Title="Perk-fegyver újratöltés",Description="%x%-kal gyorsabb újratöltési sebesség perk-fegyverek esetében.");
+Passives[2]=(Title="Ellenállás a zék tűzsebzése ellen",Description="%x%-os tűzsebzés-ellenállás.");
+Passives[3]=(Title="Ellenállás a saját tüzeddel szemben",Description="%x%-os ellenállás saját tűzsebzéssel szemben.");
+Passives[4]=(Title="Kezdőlőszer",Description="%x%-kal több kezdőlőszer.");
+
+FullyStocked="Csurig töltve"
+FullyStockedDescription="Ahogy a tartályon is áll: a Tűzköpő-fegyverek maximum lőszerkapacitással vehetők meg az Árustól."
+
+FlarotovCoctail="Fénypatron-koktél"
+FlarotovCoctailDescription="A nevében is benne van: dugj egy fénypatront a Molotov-koktélodba - egy olyan fénypatront kapsz, ami 30 másodpercig megvilágítja a környezetét ÉS a lángjaid kétszer annyi ideig égnek a földön."
+
+Fuse="Gyutacs"
+FuseDescription="Szép, lassú égés: a Tűzköpő-fegyverek égési hatása 70%-kal hosszabb ideig marad meg, növelve az időarányos sebzést."
+
+HeatWave="Hőhullám"
+HeatWaveDescription="Mint egy forró nyár: a közvetlen közelről tűzzel meglőtt ellenségek hátratántorodnak."
+
+ZedShrapnel="Zé-repeszek"
+ZedShrapnelDescription="Felrobbanó zék: bármely, tűzzel megölt zének 50% esélye van felrobbanni, sebzést okozva a közeli zéknek."
+
+Napalm="Zé-napalm"
+NapalmDescription="Tüzes zék: az égő zék a többi zét is felgyújtják, amikor hozzájuk érnek."
+
+Range="Hatótáv"
+RangeDescription="Növeli minden lángfegyver hatótávját. Hajrá! Tudod, hogy ki akarod próbálni."
+
+SplashDamage="Területi sebzés"
+SplashDamageDescription="Vagy növeld a lángfegyverek területi sebzését találatkor. Nehéz döntés..."
+
+Combustion="ZÉ IDŐ - Tűzvész"
+CombustionDescription="Repesz + napalm = tűzvész. Fogjuk rá... Bármely zé, ami a lángfegyvereid által hal meg a Zé idő alatt, tűzlabdaként robban fel, mindent felgyújtva maga körül."
+
+Scorch="ZÉ IDŐ - Fáklya"
+ScorchDescription="Ég a kezed alatt a munka! És a munka alatt a zéket értjük. A perk-fegyvereid Zé idő alatt szinte valós sebességgel tüzelnek."
+
+[KFPerk_Gunslinger]
+PerkName="Pisztolyhős"
+EXPAction1="Pisztolyhős fegyversebzés okozása"
+EXPAction2="Fejlövés Pisztolyhős fegyverekkel"
+
+SkillCatagories[0]="Technika"
+SkillCatagories[1]="Ügyesség"
+SkillCatagories[2]="Haladó technika"
+SkillCatagories[3]="Kritikus találatok"
+SkillCatagories[4]="Mesteri technika"
+
+Passives[0]=(Title="Perk-fegyver sebzés",Description="+%x% perk-fegyver sebzés.");
+Passives[1]=(Title="Golyóállóság",Description="+%x% lövedéksebzés-ellenállás.");
+Passives[2]=(Title="Mozgási sebesség",Description="+%x% mozgási sebesség.");
+Passives[3]=(Title="Visszarúgás",Description="-%x% visszarúgás.");
+
+ShootnMove="Lövés és spuri"
+ShootnMoveDescription="Ne ácsorogj, várva, hogy megegyenek: irányzékkal célozva 50%-kal gyorsabban mozogsz, és enyhébb a fegyver-kilengés."
+
+QuickSwitch="Villámkezű"
+QuickSwitchDescription="Megy ez neked: 50%-kal gyorsabb fegyverváltás, és ha tovább lősz, miközben kifogyott a lőszer, automatikusan a tartalék pisztolyra váltasz."
+
+RhythmMethod="Rakásra"
+RhythmMethodDescription="Fejlövések sorjában: Pisztolyhős fegyverekkel minden egymást követő fejlövés sebzése 5%-kal nő maximum 75%-ig."
+
+BoneBreaker="Csonttörő"
+BoneBreakerDescription="Ne csak gyűjtsd, törd is őket: Pisztolyhős fegyverekkel 20%-kal többet sebzel."
+
+SpeedReload="Gyorstöltő"
+SpeedReloadDescription="Menőbb, gyorsabb, halálosabb: Pisztolyhős fegyverekkel 20%-kal gyorsabban töltesz újra, ÉS még menőbbnek is látszol közben."
+
+Penetration="Áthatolás"
+PenetrationDescription="Sorakoztasd fel, majd döntsd le őket: minden lövésed egyel több zén hatol át."
+
+CenterMass="Tömegközéppont"
+CenterMassDescription="Ha a tömegközéppontra célzol... a mellkaslövéseknek 30%-kal nagyobb feldöntőereje van."
+
+LimbShots="Láblövés"
+LimbShotsDescription="Vagy lődd őket lábon... a láblövéseknek 30%-kal nagyobb feldöntő ereje van, amikor a zé fut."
+
+Fanfare="ZÉ IDŐ - Sebesség"
+FanfareDescription="Sebesen sebző: Pisztolyhős fegyverekkel Zé időben háromszor gyorsabban lősz."
+
+UberAmmo="ZÉ IDŐ - Menő lőszer"
+UberAmmoDescription="Menőzés: Pisztolyhős fegyverekkel Zé időben nem fogy ki a lőszered."
+
+[KFPerk_MartialArtist]
+PerkName="Harcművész"
+
+[KFPerk_Sharpshooter]
+PerkName="Mesterlövész"
+
+[KFPerk_Support]
+PerkName="Támogató"
+
+SkillCatagories[0]="Fegyverkezelés"
+SkillCatagories[1]="Erőnlét"
+SkillCatagories[2]="Ellátás"
+SkillCatagories[3]="Állóképesség"
+SkillCatagories[4]="Haladó kiképzés"
+
+Passives[0]=(Title="Hegesztési hatékonyság",Description="%x%-kal nagyobb hegesztési sebesség.");
+Passives[1]=(Title="Perk-fegyver sebzés",Description="+%x% perk-fegyver sebzés.");
+Passives[2]=(Title="Perk-fegyver áthatolás",Description="A perk-fegyverek minden szinttel %x%-kal nagyobb áthatolási erőt kapnak.");
+Passives[3]=(Title="Gránátsebzés",Description="+%x% gránátsebzés.");
+Passives[4]=(Title="",Description="");
+
+;Passives[0]=(Title="Hegesztési hatékonyság",Description="2%-os hegesztési sebesség-növekedés (max. 50%").");
+;Passives[1]=(Title="Sörétes sebzés",Description="2%-os sörétes sebzés-növekedés (max. 50%").");
+;Passives[2]=(Title="Sörétes áthatolás",Description="A sörétes puskák minden szinttel 25%-kal nagyobb áthatolási erőt kapnak.");
+;Passives[3]=(Title="Gránátsebzés",Description="2%-kal nagyobb gránátsebzés (max. 50%").");
+;Passives[4]=(Title="",Description="");
+
+EXPAction1="Sebzés Támogató-fegyverekkel"
+EXPAction2="Ajtók hegesztése"
+
+Ammo="Lőszer"
+AmmoDescription="Kezdj komollyá válni: növeld lőszerkapacitásod és kezdőlőszered mennyiségét 20%-kal."
+
+Supplier="Ellátó"
+SupplierDescription="Légy a legközkedveltebb: hordj hátizsákot, amiből minden játékos hullámonként egyszer lőszert vehet."
+
+Fortitude="Állhatatosság"
+FortitudeDescription="Adj jobb esélyt magadnak: növeld 50%-kal az életerődet."
+
+Regeneration="Regeneráció"
+RegenerationDescription="Tedd szükségtelenné a Felcsereket: az életed időarányosan, lassan regenerálódik a Horzine nano-botoknak köszönhetően."
+
+Bombard="Ostrom"
+BombardDescription="Adj bele egy kis erőt: növeld 60%-kal esélyedet, hogy távolsági Támogató-fegyverekkel megingatod a zéket."
+
+TacticalReload="Taktikai újratöltés"
+TacticalReloadDescription="Legyél menő. Legyél gyors. Tölts újra gyorsabban perk-fegyvereiddel ÉS tűnj közben elitebbnek."
+
+Strength="Erő"
+StrengthDescription="Ugorj be kondizni. Gyúrd ki magad és növeld 5-tel teherbírási kapacitásod."
+
+Tenacity="Szívósság"
+TenacityDescription="Fordítsd az idődet fejlődésre és okozz 10%-kal több sebzést Támogató-fegyverekkel."
+
+Safeguard="ZÉ IDŐ - Oltalom"
+SafeguardDescription="Lendülj támadásba 5%-kal jobb páncéllal saját magad ÉS közeli társaid számára!"
+
+Barrage="ZÉ IDŐ - Zárótűz"
+BarrageDescription="Hozd ki a legtöbbet a Zé időből 15%-os általános sebzésnövekedéssel saját magad ÉS közeli társaid számára!"
+
+[KFPerk_Sharpshooter]
+PerkName="Mesterlövész"
+
+[KFPerk_SWAT]
+PerkName="SWAT"
+
+[Fonts]
+Bicubik="Bicubik"
+
+[KFObjective]
+ObjectiveDifficulties[0]="KÖNNYŰ"
+ObjectiveDifficulties[1]="KÖZEPES"
+ObjectiveDifficulties[2]="NEHÉZ"
+ObjectiveStartTitle="Kövesd a jelzést a kezdőpontra."
+ObjectiveWaitingString="VÁRAKOZÁS TOVÁBBI JÁTÉKOSOKRA!"
+ObjectiveWonString="TELJESÍTVE!"
+ObjectiveFailedString="NEM SIKERÜLT!"
+ObjectiveEndedString="VÉGET ÉRT!"
+ObjectiveFailReasons[0]="LEJÁRT AZ IDŐ!"
+ObjectiveFailReasons[1]="A CSAPATOT KIIRTOTTÁK"
+ObjectiveFailReasons[2]="MEGHALT AZ ALACSONY ÉLETEREJŰ JÁTÉKOS"
+ObjectiveFailReasons[3]="VÉGET ÉRT A HULLÁM"
+ObjectiveFailReasons[4]="VÉGET ÉRT A FELADAT"
+ObjectiveFailReasons[5]="NEM MARADT SZEGÉNY JÁTÉKOS"
+ObjectiveFailReasons[6]="NINCS ELÉG JÁTÉKOS!"
+ObjectiveXPString="TP:"
+ObjectiveTimeLimitString="IDŐKORLÁT:"
+ObjectiveTimeUnit="mp"
+ObjectiveStatusString="FELADAT ÁLLAPOTA"
+
+[KFObj_Wave]
+ObjectiveAvailableString="FELADAT ÉRHETŐ EL"
+
+[KFObj_Wave_Defend]
+ObjectiveTypeString="VÉDEKEZÉS"
+ObjectiveTargetTitle="Védd a vírusfeltöltést!"
+ObjectiveStatusTitle="LETÖLTÉS ÁLLAPOTA"
+
+[KFObj_Coop_Healer]
+ObjectiveTypeString="GYÓGYÍTÁS"
+ObjectiveTargetTitle="GYÓGYÍTS ALACSONY ÉLETEREJŰ JÁTÉKOST"
+ObjectiveStatusTitle="MEGGYÓGYÍTOTT JÁTÉKOS"
+ObjectiveTimeString="mp VAN HÁTRA"
+
+[KFObj_Coop_PayDay]
+ObjectiveTypeString="FIZETÉSNAP"
+ObjectiveTargetTitle="ADJ LÓVÉT ÚJRASZÜLETETT JÁTÉKOSNAK"
+ObjectiveStatusTitle="A LÓVÉ 30%-ÁT VISSZAKAPOD"
+ObjectiveTimeString="mp VAN HÁTRA"
+
+[KFGameViewportClient]
+RandomLoadingStrings[0]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 0"
+RandomLoadingStrings[1]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 1"
+RandomLoadingStrings[2]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 2"
+RandomLoadingStrings[3]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 3"
+RandomLoadingStrings[4]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 4"
+RandomLoadingStrings[5]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 5"
+
+[Zeds]
+KFPawn_ZedBloat="Bloat"
+KFPawn_ZedClot="Clot"
+KFPawn_ZedCrawler="Crawler"
+KFPawn_ZedFleshPound="Fleshpound"
+KFPawn_ZedGorefast="Gorefast"
+KFPawn_ZedHans="Dr. Hans Volter"
+KFPawn_ZedHusk="Husk"
+KFPawn_ZedStalker="Stalker"
+KFPawn_ZedClot_Cyst="Cyst"
+KFPawn_ZedClot_Slasher="Slasher"
+KFPawn_ZedClot_Alpha="Alpha Clot"
+KFPawn_ZedScrake="Scrake"
+KFPawn_ZedSiren="Siren"
+KFPawn_ZedPatriarch="Patriarch"
+
+[ZedMoves]
+Melee="Melee"
+Rally="Rally"
+Grab="Grab"
+Light="Light"
+Heavy="Heavy"
+Spin="Spin"
+Evade="Evade"
+Jump="Jump"
+Puke="Puke"
+Mine="Mine"
+Bite="Bite"
+Scream="Scream"
+Vortex="Vortex"
+Shoot="Shoot"
+Flame="Flame"
+Suicide="Suicide"
+Rage="Rage"
+Minigun="Minigun"
+Rocket="Rocket"
+Mortar="Mortar"
+Heal="Heal"
+
+[Keybinds]
+CtrlCombo="Ctrl + "
+ShiftCombo="Shift + "
+AltCombo="Alt + "
+LeftMouseButton="Bal kattintás"
+MiddleMouseButton="Középső kattintás"
+RightMouseBUtton="Jobb kattintás"
+ThumbMouseButton1="Oldal-egérgomb 1"
+ThumbMouseButton2="Oldal-egérgomb 2"
+MouseScrollDown="Egérgörgő le"
+MouseScrollUp="Egérgörgő fel"
+CapsLock="Caps Lock"
+Tab="Tab"
+BackSpace="Backspace"
+SpaceBar="Szóköz"
+LeftShift="Bal Shift"
+RightSift="Jobb Shift"
+LeftCtrl="Bal Ctrl"
+RightCtrl="Jobb Ctrl"
+LeftAlt="Bal Alt"
+RightAlt="Jobb Alt"
+BackSlash="\\ "
+Slash="/"
+RightBracket="]"
+LeftBracket="["
+Quote="'"
+SemiColon=";"
+Period="."
+Comma=","
+Subtract="-"
+Add="+"
+Equals="="
+Multiply="*"
+Divide="Num Pad /"
+Underscore="-"
+NumPadZero="0"
+NumPadOne="1"
+NumPadTwo="2"
+NumPadThree="3"
+NumPadFour="4"
+NumPadFive="5"
+NumPadSix="6"
+NumPadSeven="7"
+NumPadEight="8"
+NumPadNine="9"
+Decimal="Num Pad ."
+NumLock="Num Lock"
+PageUp="Page Up"
+PageDown="Page Down"
+Home="Home"
+End="End"
+Insert="Insert"
+Delete="Delete"
+Up="Fel"
+Down="Le"
+Left="Balra"
+Right="Jobbra"
+ScrollLock="Scroll Lock"
+Pause="Pause"
+Enter="Enter"
+one="1"
+two="2"
+three="3"
+four="4"
+five="5"
+six="6"
+seven="7"
+eight="8"
+nine="9"
+zero="0"
+
+[SharedUnlocks]
+KFWeap_Zweihander="Chivalry Promóció"
+
+SharedUnlocks
+Source0="Chivalry Promóció"
+;============================================
+; Map Localization
+;============================================
+[KF-BioticsLab KFMapSummary]
+DisplayName="Biotics Lab"
+
+[KF-Outpost KFMapSummary]
+DisplayName="Outpost"
+
+[KF-BurningParis KFMapSummary]
+DisplayName="Burning Paris"
+
+[Survival KFGameInfoSummary]
+GameName="Túlélő mód"
+
+[KF-VolterManor KFMapSummary]
+DisplayName="Volter Manor"
+
+[KF-Catacombs KFMapSummary]
+DisplayName="Catacombs"
+
+[KF-EvacuationPoint KFMapSummary]
+DisplayName="Evacuation Point"
+
+[KF-Farmhouse KFMapSummary]
+DisplayName="Farmhouse"
+
+[KF-BlackForest KFMapSummary]
+DisplayName="Black Forest"
+
+[KF-Prison KFMapSummary]
+DisplayName="Prison"
+
+[KFMapInfo]
+; defaults
+FoundCollectibleString="%x% found a collectible. %y% left to find..."
+FoundAllCollectiblesString="Every collectible has been found!"

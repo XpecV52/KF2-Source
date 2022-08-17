@@ -61,7 +61,6 @@ class KFDT_Bludgeon_SMG_Medic extends KFDT_Bludgeon_RifleButt
 
 
 
-
 #linenumber 12;
 
 defaultproperties

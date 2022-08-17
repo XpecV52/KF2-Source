@@ -90,8 +90,10 @@ var 	const	PerkSkill			FireResistance;            			// 30% resistance to fire, 
 var 	const	PerkSkill			OwnFireResistance;           		// 25% resistance to personal fire damage (max 100%)
 var 	const	PerkSkill			StartingAmmo;   	        		// 5% more starting ammo for every 5 levels (max 25%)
 
+ /** The range that an enemy needs to be within for the "Heat Wave" skill to function */
 var 	const 	int 				HeatWaveRadiusSQ;
 
+/** Chance that zeds will explode from the Shrapnel skill */
 var		const	float 				ShrapnelChance;
 var 			GameExplosion		ExplosionTemplate;
 var 			const String		ShrapnelExplosionDamageTypeName;
@@ -140,7 +142,7 @@ function ApplySkillsToPawn()
  * @param DamageInstigator responsible controller (optional)
  * @param class DamageType the damage type used (optional)
  */
-simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType )
+simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx )
 {
 	local KFWeapon KFW;
 	local float TempDamage;
@@ -222,7 +224,7 @@ simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo
 	{
 		WeaponPerkClass = KFW.AssociatedPerkClass;
 	}
-	
+
 	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) )
 	{
 		if( KFW != none && IsFullyStockedActive() )
@@ -637,6 +639,8 @@ defaultproperties
    PrimaryWeaponDef=Class'KFGame.KFWeapDef_CaulkBurn'
    KnifeWeaponDef=Class'KFGame.KFWeapDef_Knife_Firebug'
    GrenadeWeaponDef=Class'KFGame.KFWeapDef_Grenade_Firebug'
+   HitAccuracyHandicap=-2.000000
+   HeadshotAccuracyHandicap=5.000000
    Name="Default__KFPerk_Firebug"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

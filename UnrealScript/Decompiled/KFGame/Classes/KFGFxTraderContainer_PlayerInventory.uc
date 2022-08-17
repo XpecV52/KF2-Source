@@ -86,6 +86,10 @@ function RefreshPlayerInventory()
         FillAmmoCost = GetFillAmmoCost(ItemInfo);
         if(!ItemInfo.bIsSecondaryAmmo)
         {
+            if(MyTraderMenu.MyKFIM.bLogInventory)
+            {
+                LogInternal((("RefreshPlayerInventory: Slot=" $ string(SlotIndex)) @ "ItemInfo=") $ string(ItemInfo.DefaultItem.ClassName));
+            }
             TextureLocation = ItemInfo.DefaultItem.WeaponDef.static.GetImagePath();
             AmmoCount = ItemInfo.SpareAmmoCount;
             MaxAmmoCount = ItemInfo.MaxSpareAmmo;

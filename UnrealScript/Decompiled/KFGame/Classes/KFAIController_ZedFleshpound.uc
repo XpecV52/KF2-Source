@@ -85,7 +85,7 @@ event bool FindNewEnemy()
 function NotifyMeleeDamageDealt()
 {
     super(KFAIController).NotifyMeleeDamageDealt();
-    if(!IsFrustrated() && RagePlugin != none)
+    if(RagePlugin != none)
     {
         if((MyKFPawn.SpecialMove != 5) && MyKFPawn.SpecialMove != 2)
         {
@@ -199,18 +199,9 @@ function NotifyEnRaged(bool bEnraged)
     }
 }
 
-function UpdateSprintFrustration(optional byte bForceFrustration)
+function UpdateSprintFrustration(optional byte bForceFrustrationState)
 {
-    bForceFrustration = 255;
-}
-
-function bool IsFrustrated()
-{
-    if(((FrustrationThreshold > 0) && MyKFGameInfo.MyKFGRI != none) && MyKFGameInfo.MyKFGRI.AIRemaining <= FrustrationThreshold)
-    {
-        return true;
-    }
-    return false;
+    bForceFrustrationState = 255;
 }
 
 defaultproperties
@@ -227,9 +218,11 @@ defaultproperties
     DefaultCommandClass=Class'AICommand_Base_Fleshpound'
     MeleeCommandClass=Class'AICommand_Base_Fleshpound'
     SprintWithinEnemyRange=(X=0,Y=1500)
+    FrustrationThreshold=0
     TeleportCooldown=10
     HiddenRelocateTeleportThreshold=7
     EvadeGrenadeChance=0.6
+    LowIntensityAttackCooldown=5
     bNotifyApex=true
     MinHitWall=-0.42
 }

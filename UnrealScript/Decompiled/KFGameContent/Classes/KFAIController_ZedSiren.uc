@@ -11,7 +11,7 @@ class KFAIController_ZedSiren extends KFAIController_Monster
 
 function PreMoveToEnemy()
 {
-    if((MyKFPawn.SpecialMove == 16) || (MyKFPawn.SpecialMove == 0) && !IsTimerActive('DoScream'))
+    if((MyKFPawn.SpecialMove == 18) || (MyKFPawn.SpecialMove == 0) && !IsTimerActive('DoScream'))
     {
         DoScream();
     }
@@ -31,7 +31,7 @@ function DoScream()
     {
         return;
     }
-    if((MyKFPawn.SpecialMove == 0) || MyKFPawn.SpecialMove == 16)
+    if((MyKFPawn.SpecialMove == 0) || MyKFPawn.SpecialMove == 18)
     {
         Class'AICommand_Siren_Scream'.static.Scream(self);
     }
@@ -58,4 +58,5 @@ defaultproperties
 {
     bIsProbingMeleeRangeEvents=true
     SprintWithinEnemyRange=(X=600,Y=1200)
+    LowIntensityAttackCooldown=7
 }

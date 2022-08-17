@@ -1,0 +1,324 @@
+//NOTES: 
+//1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
+//2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
+//3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
+//ItemDescription="Double-barreled, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest zeds will stagger when hit with both barrels. We found it in an old farm-house and //canned it for the Trader Pod. Hope you live longer than the farmer."
+
+[Armor]
+ItemName="Harci páncél"
+ItemCategory="Felszerelés"
+ItemDescription="• A harci páncél védelmet nyújt különféle sebzésfajtától, de közben elhasználódik.\n• Vásárolj új páncélt, vagy javítsd meg a rongálódottat az árusnál.\n\nCsúcstechnológiás üvegszál és wolframacél kombinálásával készült lemezekkel ellátott kabát."
+
+[KFProj_DynamiteGrenade]
+ItemName="Fél dinamitrúd"
+ItemCategory =" Robbanóanyagok"
+ItemDescription="• Csak egy kis darab dinamit gyújtózsinórral.\n• Téged is megsebezhet, ezért óvatosan bánj vele!"
+
+[KFProj_MedicGrenade]
+ItemName="Felcser gránát"
+ItemCategory =" Robbanóanyagok"
+ItemDescription="• Olyan gázt bocsát ki, amely a zéket mérgezi, az embereket viszont gyógyítja.\n• Állj a kék gázfelhőben a gyógyuláshoz.\n\nEgyik tudósunkat idézve: „Az ezen gránátokból kibocsájtott hatóanyag a Homo Sapienst újraéleszti, a Homo Zedicust viszont elaltatja.” Reméljük, hogy ez segít."
+
+[KFProj_MolotovGrenade]
+ItemName="Molotov-koktél"
+ItemCategory="Robbanóanyagok"
+ItemDescription="• Nagyon egyszerűen egy lánggránát, ami felperzseli a zéket.\n• Tudj róla, hogy neked is árthat!\n\nAz 1939-1940. közötti téli háborúban a finnek nevezték el, sértően, a Sztálin alatt szolgáló szovjet külügyminiszter, Vjacseszlav Mihajlovics Molotov után... Bocsánat, nem akartál történelemleckét?"
+
+[KFProj_EMPGrenade]
+ItemName="EMP gránát"
+ItemCategory="Robbanóanyagok"
+ItemDescription="• Elektromos impulzust generál, amely sebzi a zéket, és rövid időre el is kábíthatja azokat.\n\nHa több részletet akarsz: robbanáskor nanoszekundumos elektromágneses impulzust hoz létre, ami rövid távolságon belül megzavarja az elektromos rendszereket. Különösen a zékben lévőket. Hasznos cucc."
+
+[KFProj_HEGrenade]
+ItemName="Robbanógránát"
+ItemCategory="Robbanóanyagok"
+ItemDescription="• Egy nagyon egyszerű nagy hatóerejű gránát. A zéket és az embereket egyaránt sebzi.\n\nEnnél egyszerűbb nem is lehet. NH (nagy hatóerejű): úgy csinál, hogy BUMM és felrobbant dolgokat. Most tényleg muszáj ezt magyarázgatnunk?"
+
+[KFProj_FragGrenade]
+ItemName="Repeszgránát"
+ItemCategory="Robbanóanyagok"
+ItemDescription="• A klasszikus repeszgránát: utálatos kis fémdarabokat szór szét, mindenkit sebezve.\n\nBiztos vagyok benne, hogy mindnyájan játszottatok elég videojátékkal a járvány előtt, így tökéletesen tudjátok mi a repeszgránát. És ne tegyetek úgy, mintha nem játszottatok volna. Úgyse fogja itt elhinni senki."
+
+[KFProj_NailBombGrenade]
+ItemName="Szögbomba"
+ItemCategory =" Robbanóanyagok"
+ItemDescription="• Csak egy régi szögekkel megtöltött doboz, középen egy kis robbanótöltettel.\n\nNem a legkellemesebb vagy legkifinomultabb módja a zék elintézésének. De nincs is a zékben semmi kellemes vagy kifinomult, nem igaz?"
+
+[KFWeap_Healer_Syringe]
+ItemName="Orvosi fecskendő"
+ItemCategory="Felszerelés"
+
+[KFWeap_Welder]
+ItemName="Hegesztő"
+ItemCategory="Felszerelés"
+
+[KFWeap_Pistol_9mm]
+ItemName="9 milliméteres pisztoly"
+ItemCategory="Maroklőfegyver"
+ItemDescription="• Csak félautomata tüzelési mód.\n• Ez a szabványos 9 mm-es pisztoly. Egyszerű és olcsó (őszintén, számodra nagyon olcsó), ez minden Horzine alkalmazott alapvető oldalfegyvere."
+
+[KFWeap_Pistol_Deagle]
+ItemName=".50 Desert Eagle"
+ItemCategory="Maroklőfegyver"
+ItemDescription="• Csak félautomata tüzelési mód.\n• A Desert Eagle a maroklőfegyverek bestiája, ezért ismerjük mindannyian „kézi ágyúként”."
+
+[KFWeap_AssaultRifle_AR15]
+ItemName="AR-15 kártevő-puska"
+ItemCategory="Gépkarabély"
+ItemDescription="• 3 lövéses sorozat és egylövéses tüzelési módok.\n• Alternatív tüzelés a tüzelési módok közötti váltogatásához.\n• Ez zék ellen készült, nem „kártevők” ellen."
+
+[KFWeap_AssaultRifle_SCAR]
+ItemName="SCAR-H gépkarabély"
+ItemCategory="Gépkarabély"
+ItemDescription="• Teljes automata és félautomata tüzelési módok.\n• Alternatív tüzelés a tüzelési módok közötti váltogatásához.\n• Eredetileg az amerikai Special Operations Commandnak készült, így valóban különleges!"
+
+[KFWeap_AssaultRifle_AK12]
+ItemName="Kalasnyikov AK-12"
+ItemCategory="Gépkarabély"
+ItemDescription="• Teljes automata és 3 lövéses sorozat módok.\n• Alternatív tüzelés a tüzelési módok közötti váltogatásához.\n• Ezt az AK-12-est egy halott orosz szpecnaz ügynöktől vették el letapogatásra."
+
+[KFWeap_AssaultRifle_Bullpup]
+ItemName="SA80 L85A2 hátsótáras"
+ItemCategory="Gépkarabély"
+ItemDescription="• Teljes automata és félautomata tüzelési módok.\n• Alternatív tüzelés a tüzelési módok közötti váltogatásához.\n• Az SA80 volt a brit haderő szabványosított fegyvere, mielőtt a hadsereget, hát, megették."
+
+[KFWeap_Knife_Demolitionist]
+ItemName="Dobozvágó kés"
+ItemCategory="Közelharci"
+ItemDescription="• Elsődleges: gyors vágó támadás, kombinált támadáshoz tartsd lenyomva.\n• Másodlagos: erős vágó támadás.\n• Alternatív: blokkolás/kivédés.\n• Ez egy dobozvágó. Tökéletes bármely doboz kinyitásához, amivel mészárlás közben találkozhatsz."
+
+[KFWeap_Knife_FieldMedic]
+ItemName="Szike"
+ItemCategory="Közelharci"
+ItemDescription="• Elsődleges: gyors vágó támadás, kombinált támadáshoz tartsd lenyomva.\n• Másodlagos: erős vágó támadás.\n• Alternatív: blokkolás/kivédés.\n• Ez egy szike. Felcser vagy, tehát feltételezzük, hogy nem kell elmagyaráznunk, hogyan használd."
+
+[KFWeap_Knife_Firebug]
+ItemName="Tűzoltókés"
+ItemCategory="Közelharci"
+ItemDescription="• Elsődleges: gyors vágó támadás, kombinált támadáshoz tartsd lenyomva.\n• Másodlagos: erős vágó támadás.\n• Alternatív: blokkolás/kivédés.\n• Ez egy tűzoltókés. Tűzoltó vagy, tehát feltételezzük, hogy nem kell elmagyaráznunk, hogyan használd."
+
+[KFWeap_Knife_Gunslinger]
+ItemName="Vadászkés"
+ItemCategory="Közelharci"
+ItemDescription="• Elsődleges: gyors vágó támadás, kombinált támadáshoz tartsd lenyomva.\n• Másodlagos: erős vágó támadás.\n• Alternatív: blokkolás/kivédés.\n• A vadnyugat túlméretezett kése. Tökéletes a zék darabolásához még manapság is."
+
+[KFWeap_Knife_Sharpshooter]
+ItemName="Kukri"
+ItemCategory="Melee"
+ItemDescription=""
+
+[KFWeap_Pistol_Medic]
+ItemName="HMTech-101 pisztoly"
+ItemCategory="Pisztoly"
+ItemDescription="• Csak félautomata tüzelési mód.\n• Az alternatív tüzelés gyógyító nyilakat lő ki csapattársaid gyógyítására.\n• Hüvely nélküli lőszert használ, és számolja helyetted a töltényeket."
+
+[KFWeap_SMG_Medic]
+ItemName="HMTech-201 géppisztoly"
+ItemCategory="Géppisztoly"
+ItemDescription="• Csak teljes automata tüzelési mód.\n• Az alternatív tüzelés gyógyító nyilakat lő ki csapattársaid gyógyítására.\n• A pisztolyod, csak feljavítva!"
+
+[KFWeap_Shotgun_Medic]
+ItemName="HMTech-301 sörétes puska"
+ItemCategory="Sörétes puska"
+ItemDescription="• Csak félautomata tüzelési mód.\n• Az alternatív tüzelés gyógyító nyilakat lő ki csapattársaid gyógyítására.\n• A harci sörétes puska Felcsernek szánt verziója."
+
+[KFWeap_AssaultRifle_Medic]
+ItemName="HMTech-401 gépkarabély"
+ItemCategory="Gépkarabély"
+ItemDescription="• Csak félautomata tüzelési mód.\n• Az alternatív tüzelés gyógyító nyilakat lő ki csapattársaid gyógyítására.\n• A teljes értékű gépkarabély verzió."
+
+[KFWeap_Shotgun_DoubleBarrel]
+ItemName="Duplacsövű sörétes"
+ItemCategory="Sörétes puska"
+ItemDescription="• Az elsődleges tűz csak az egyik csövet használja.\n• Az alternatív tüzelés mindét csővel egyszerre lő.\n• Egymás melletti dupla csöves, 12-es kaliberű sörétes puska. Ideális közelharci ütközetekre. Még a legnagyobb zék is meg fognak tántorodni!"
+
+[KFWeap_Shotgun_AA12]
+ItemName="AA-12 automata sörétes puska"
+ItemCategory="Sörétes puska"
+ItemDescription="• Teljes automata és félautomata tüzelési módok.\n• Alternatív tüzelés a tüzelési módok közötti váltogatásához.\n• Az AA-12 egy automata sörétes puska. Pusztító tűzerő rövid és közepes hatótávon, de teljes automata módban eszi a lőszert!"
+
+[KFWeap_Shotgun_MB500]
+ItemName="SG 500 pumpamechanikás sörétes"
+ItemCategory="Sörétes puska"
+ItemDescription="• Csak pumpamechanikás tüzelési mód.\n• A pumpamechanikás, pisztolymarkolatú Mossberg SG 500 csodálatos közelharci zé-ölő. Egyszerű és hatásos."
+
+[KFWeap_Shotgun_M4]
+ItemName="M4 harci sörétes puska"
+ItemCategory="Sörétes puska"
+ItemDescription="• Csak félautomata tüzelési mód.\n• A Benelli az M4 harci sörétes puskát az amerikai hadseregnek tervezte. Félautomata, ezzel jó és egyenletes tűzgyorsaságot ad."
+
+[KFWeap_Knife_Berserker]
+ItemName="Fűnyírópenge"
+ItemCategory="Közelharci"
+ItemDescription="• Elsődleges: gyors vágó támadás, kombinált támadáshoz tartsd lenyomva.\n• Másodlagos: erős vágó támadás.\n• Alternatív: blokkolás/kivédés.\n• Igen, ez valóban egy fűnyírópenge. Jó szórakozást!"
+
+[KFWeap_Knife_Commando]
+ItemName="KF-BAR"
+ItemCategory="Közelharci"
+ItemDescription="• Elsődleges: gyors vágó támadás, kombinált támadáshoz tartsd lenyomva.\n• Másodlagos: erős vágó támadás.\n• Alternatív: blokkolás/kivédés.\n• A klasszikus kommandós kés Horzine-féle változata."
+
+[KFWeap_Knife_Support]
+ItemName="Macheta"
+ItemCategory="Közelharci"
+ItemDescription="• Elsődleges: gyors vágó támadás, kombinált támadáshoz tartsd lenyomva.\n• Másodlagos: erős vágó támadás.\n• Alternatív: blokkolás/kivédés.\n• Ne érezd magad teljesen különlegesnek csak azért, mert a legnagyobb kést adtuk neked."
+
+[KFWeap_Edged_Katana]
+ItemName="Katana"
+ItemCategory="Közelharci"
+ItemDescription="• Elsődleges: gyors vágó támadás, kombinált támadáshoz tartsd lenyomva.\n• Másodlagos: erős vágó támadás.\n• Alternatív: blokkolás/kivédés.\n• Próbálj egy kis tiszteletet mutatni a presztízse iránt."
+
+[KFWeap_Blunt_Crovel]
+ItemName="Feszpát túlélőeszköz"
+ItemCategory="Közelharci"
+ItemDescription="• Elsődleges: gyors vágó támadás, kombinált támadáshoz tartsd lenyomva.\n• Másodlagos: erős zúzó támadás.\n• Alternatív: blokkolás/kivédés.\n• Részben feszítővas, részben lapát, egészen halálos."
+
+[KFWeap_Shotgun_Nailgun]
+ItemName="VLAD-1000 szögbelövő"
+ItemCategory="Sörétes puska"
+ItemDescription="• Egy- vagy többlövetű szögtüzelő módok.\n• Alternatív tüzelés a tüzelési módok közötti váltogatásához.\n• Úgy tudjuk, hogy az egyik Horzine-os tudós az eredeti szögbelövőt egy (halott) karbantartótól vette kölcsön."
+
+[KFWeap_Blunt_Pulverizer]
+ItemName="Pépesítő"
+ItemCategory="Közelharci"
+ItemDescription="• Elsődleges: gyors tompa támadás, kombinált támadáshoz tartsd lenyomva.\n• A másodlagos támadás érintkezéskor kilő egy robbanó lövedéket is. Amikor üres, a másodlagos egy erős zúzó támadás, úgyhogy ne felejts el újratölteni!\n• Alternatív: blokkolás/kivédés."
+
+[KFWeap_Eviscerator]
+ItemName="Kizsigerelő"
+ItemCategory="Speciális"
+ItemDescription="• Elsődleges tüzelési módja fűrészlapokat lő ki.\n• Az alternatív tüzelés közelharci támadás, de gyorsan használja az üzemanyagot.\n• Eredetileg a Horzine SDS csoportja tervezte az egyik vadabb pillanatában; ez a bestia nem finomkodik."
+SecondaryAmmo="Benzin"
+
+[KFWeap_Edged_Zweihander]
+ItemName="Kétkezes"
+ItemCategory="Közelharci"
+ItemDescription="• Elsődleges: közepes/komoly sebzés egy kis tömegoszlatással.\n• Másodlagos: lassabb, több sebzéssel.\n• Alternatív: blokkolás/kivédés.\n• Még több sebzést okozol, amikor előre haladsz."
+SharedUnlockSource="Chivalry Medieval Warfare"
+
+[KFWeap_Flame_CaulkBurn]
+ItemName="Tömít 's Éget"
+ItemCategory="Lángfegyver"
+ItemDescription="• Lángokat szóró tüzelési mód.\n• Kézi, házilag készített lángszóró. Kérjük, NE próbáld ki otthon."
+
+[KFWeap_Shotgun_DragonsBreath]
+ItemName="Gyújtólőszeres sörétes puska"
+ItemCategory="Sörétes puska"
+ItemDescription="• Csak pumpamechanikás tüzelési mód.\n• „Sárkánylehelet” gyújtólőszert használó sörétes puska. Nem csak halálos, de csodálatosan is néz ki."
+
+[KFWeap_Flame_Flamethrower]
+ItemName="Lángszóró"
+ItemCategory="Lángfegyver"
+ItemDescription="• Lángokat szóró tüzelési mód. Ennyi.\n• Egy klasszikus minden generáció számára. Ha kétségeid vannak, egyszerűen égess fel mindent."
+
+[KFWeap_Beam_Microwave]
+ItemName="Mikrohullámú puska"
+ItemCategory="Lángfegyver"
+ItemDescription="• Tüzelési módja mikrohullámokat használ a zék távolból való felmelegítésére, kívül-belül megégetve őket.\n• Az alternatív tüzelés rövid hatósugarú mikrohullám-lökést bocsát ki.\n• A modern technika csodái. Egy kézi zé-sütő."
+
+[KFWeap_Thrown_C4]
+ItemName="C4 robbanóanyag"
+ItemCategory="Robbanóanyagok"
+ItemDescription="• Tüzelési módja lehelyezi a C4-töltetet.\n• Az alternatív tüzelés felrobbantja C4-tölteteidet, abban a sorrendben, melyben lehelyezted őket.\n• Egy tömb C4, igény szerinti távoli robbantásra drótozva."
+
+[KFWeap_GrenadeLauncher_HX25]
+ItemName="HX25 gránátpisztoly"
+ItemCategory="Robbanóanyagok"
+ItemDescription="• A tüzelési mód több, becsapódáskor robbanó résztöltetet lő ki."
+
+[KFWeap_GrenadeLauncher_M79]
+ItemName="M79 gránátvető"
+ItemCategory="Robbanóanyagok"
+ItemDescription="• Gránátvető tüzelési mód.\n• A gránát becsapódáskor robban.\n• Csak néhány méternyi megtett út után élesíti magát, hogy ne robbantsd pofán saját magad."
+
+[KFWeap_RocketLauncher_RPG7]
+ItemName="RPG-7"
+ItemCategory="Robbanóanyagok"
+ItemDescription="• Rakétakilövő tüzelési mód.\n• A rakéta becsapódáskor robban.\n• Csak néhány méternyi megtett út után élesíti magát, hogy ne robbantsd pofán saját magad.\n• És vigyázz a kifújással!"
+
+[KFWeap_Pistol_Dual9mm]
+ItemName="Dupla 9 milliméteres pisztoly"
+ItemCategory="Maroklőfegyver"
+ItemDescription="• Csak félautomata tüzelési mód.\n• Az alternatív tűz célzási stílusok között vált irányzékos célzásnál.\n• Egy pár szabványos 9mm-es pisztoly. Ha szükséges, eladhatsz egyet (csak egyet)."
+
+[KFWeap_Pistol_Colt1911]
+ItemName="M1911 pisztoly"
+ItemCategory="Maroklőfegyver"
+ItemDescription="• Csak félautomata tüzelési mód.\n• A klasszikus Colt 1911 félautomata pisztoly."
+
+[KFWeap_Pistol_DualColt1911]
+ItemName="Dupla M1911 pisztoly"
+ItemCategory="Maroklőfegyver"
+ItemDescription="• Csak félautomata tüzelési mód.\n• Az alternatív tűz célzási stílusok között vált irányzékos célzásnál.\n• Egy pár Colt 1911 félautomata pisztoly. Külön-külön eladhatók vagy eldobhatók."
+
+[KFWeap_Pistol_Deagle]
+ItemName=".50 Desert Eagle"
+ItemCategory="Maroklőfegyver"
+ItemDescription="• Csak félautomata tüzelési mód.\n• A Desert Eagle a maroklőfegyverek bestiája, ezért ismerjük mindannyian „kézi ágyúként”."
+
+[KFWeap_Pistol_DualDeagle]
+ItemName="Dupla .50 Desert Eagle"
+ItemCategory="Maroklőfegyver"
+ItemDescription="• Csak félautomata tüzelési mód.\n• Az alternatív tűz célzási stílusok között vált irányzékos célzásnál.\n• Egy pár Desert Eagle kéziágyú. Külön-külön eladhatók vagy eldobhatók."
+
+[KFWeap_Revolver_Rem1858]
+ItemName="1858 Revolver"
+ItemCategory="Maroklőfegyver"
+ItemDescription="• Csak egylövéses tüzelési mód.\n• A Remington Model 1858 .44-es kaliberű, hatlövetű, egyszeres működésű katonai revolver csodás példánya. Ősrégi, de még mindig hatásos."
+
+[KFWeap_Revolver_DualRem1858]
+ItemName="Dupla 1858 Revolver"
+ItemCategory="Maroklőfegyver"
+ItemDescription="• Csak félautomata tüzelési mód.\n• Az alternatív tűz célzási stílusok között vált irányzékos célzásnál.\n• Egy pár Remington 1858 revolver. Külön-külön eladhatók vagy eldobhatók."
+
+[KFWeap_Revolver_SW500]
+ItemName="500 Magnum revolver"
+ItemCategory="Maroklőfegyver"
+ItemDescription="• Csak egylövéses tüzelési mód.\n• Igazi kézi löveg egy hosszú csövű .50 kaliberű „Bone Collector” revolver képében, amely teljes töltetű Magnum lőszert tüzel. A komoly pisztolyforgatóknak."
+
+[KFWeap_Revolver_DualSW500]
+ItemName="Dupla 500 Magnum"
+ItemCategory="Maroklőfegyver"
+ItemDescription="• Csak félautomata tüzelési mód.\n• Az alternatív tűz célzási stílusok között vált irányzékos célzásnál.\n• Egy pár .500 Magnum „Bone Collector” revolver. Külön-külön eladhatók vagy eldobhatók... nagyot koppanva."
+
+[KFWeap_Rifle_Winchester1894]
+ItemName="Winchester 1894"
+ItemCategory="Rifle"
+ItemDescription="• Fire mode is single shot only.\n• The classic Model 1894 Winchester lever-action rifle."
+
+[KFWeap_Bow_Crossbow]
+ItemName="Crossbow"
+ItemCategory="Bow"
+ItemDescription="• Fire mode is single shot only.\n• Crossbow bolts are often recoverable!\n• A high-powered hunting crossbow, giving good penetration and good stopping power!"
+
+//BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
+[KFPawn_ZedHans]
+BossName="Dr. Hans Volter"
+BossCaptionStrings[0]="Hans csaknem sérthetetlen füstgránátos, gyógyító fázisában. Ne pazarold a lőszert."
+BossCaptionStrings[1]="Figyelj az energiacella színére: Hans agresszívabb lesz, ahogy a színe változik."
+BossCaptionStrings[2]="Célozz a fénylő energiacellájára. Ott sebezhetőbb."
+BossCaptionStrings[3]="Hans gránátjainak a gáza rád ragad, mint a Bloat okádéka. Próbáld elkerülni!"
+BossCaptionStrings[4]="Kaszaboló támadásai túl erősek, hogy kivédd őket, így teljes sebzést szenvedsz."
+BossCaptionStrings[5]="Figyelj a vörös gránátjelző fényekre, amik segíthetnek kiszúrni, hol érnek földet."
+BossCaptionStrings[6]="Amikor Hans előkapja a fegyvereit, ne maradj a látóterében. Nyilvánvaló, de fontos!"
+
+[KFPawn_ZedPatriarch]
+BossName="The Patriarch"
+BossCaptionStrings[0]="Kevin Clamely was once a brilliant scientist, until he became his own greatest creation."
+BossCaptionStrings[1]="The Patriarch is staggeringly arrogant - he is likely to tell you which attack he will use next."
+BossCaptionStrings[2]="Hiding behind even big objects won't help as much as you'd hope. The Patriarch has an answer for that!"
+BossCaptionStrings[3]="Running off on your own isn't an escape - it makes you easy prey he will target first."
+BossCaptionStrings[4]="Yes, the Patriarch can still cloak, go invisible, run off and heal himself. Some things don't change."
+BossCaptionStrings[5]="While you won't get much choice about it, killing The Patriarch's 'children' just makes him mad(der)."
+
+[KFGameInfo_Survival]
+GameName="Túlélő mód"
+
+[KFGameInfo_VersusSurvival]
+GameName="VS Survival"
+
+[KFPawn_ZedPatriarch_Versus]
+NoHealsRemainingMsg="No Heals Remaining"
+LowHealthMsg="Health Is Critical! Heal Now!"
+NoMortarTargetsMsg="No Valid Mortar Targets"
+
+[KFSM_PlayerSiren_VortexVictim]
+VortexGrabTeamWarningMsg="%x% is trapped by a Siren!"

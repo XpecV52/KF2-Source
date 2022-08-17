@@ -135,11 +135,41 @@ simulated function Stick(ImpactInfo MyStickInfo, bool bReplicated)
 
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
 {
+    local KFPawn KFP;
+    local bool bPassThrough;
+
     if(((Other != Instigator) && !Other.bWorldGeometry) && Other.bCanBeDamaged)
     {
         if(Pawn(Other) != none)
         {
-            super(KFProj_Bullet).ProcessTouch(Other, HitLocation, HitNormal);            
+            if(Physics != 2)
+            {
+                if(CheckRepeatingTouch(Other))
+                {
+                    return;
+                }
+                ProcessBulletTouch(Other, HitLocation, HitNormal);
+                if((PenetrationPower > float(0)) || PassThroughDamage(Other))
+                {
+                    KFP = KFPawn(Other);
+                    if(KFP != none)
+                    {
+                        PenetrationPower -= KFP.PenetrationResistance;
+                    }
+                    bPassThrough = true;
+                }
+                if(!bPassThrough)
+                {
+                    if((WorldInfo.NetMode != NM_DedicatedServer) && ProjEffects != none)
+                    {
+                        ProjEffects.DeactivateSystem();
+                        ProjEffects.SetVectorParameter('Rotation', vect(0, 0, 0));
+                    }
+                    Velocity = vect(0, 0, 0);
+                    BouncesLeft = 0;
+                    SetPhysics(2);
+                }
+            }            
         }
         else
         {

@@ -2,14 +2,18 @@ package tripwire.popups
 {
     import com.greensock.TweenMax;
     import com.greensock.easing.Cubic;
+    import flash.display.Sprite;
     import flash.events.Event;
     import flash.external.ExternalInterface;
     import scaleform.clik.events.ButtonEvent;
+    import scaleform.gfx.FocusManager;
     import tripwire.containers.TripContainer;
     
     public class BasePopup extends TripContainer
     {
          
+        
+        protected var _prevModalClip:Sprite;
         
         public function BasePopup()
         {
@@ -18,9 +22,9 @@ package tripwire.popups
             this.openPopup();
         }
         
-        override protected function addedToStage(param1:Event) : void
+        override protected function addedToStage(event:Event) : void
         {
-            super.addedToStage(param1);
+            super.addedToStage(event);
             this.setTabIndex();
         }
         
@@ -28,11 +32,11 @@ package tripwire.popups
         {
         }
         
-        public function set descriptionText(param1:String) : void
+        public function set descriptionText(value:String) : void
         {
         }
         
-        public function setPopupText(param1:String, param2:String, param3:String, param4:String, param5:String) : *
+        public function setPopupText(Title:String, Description:String, LeftButtonText:String, RightButtonText:String, MiddleButtonText:String) : *
         {
         }
         
@@ -42,6 +46,8 @@ package tripwire.popups
             {
                 this.openAnimation();
                 _bOpen = true;
+                this._prevModalClip = FocusManager.getModalClip();
+                FocusManager.setModalClip(this);
             }
         }
         
@@ -71,7 +77,7 @@ package tripwire.popups
             });
         }
         
-        public function onClosePopup(param1:ButtonEvent) : void
+        public function onClosePopup(e:ButtonEvent) : void
         {
             if(_bOpen)
             {
@@ -92,6 +98,7 @@ package tripwire.popups
                     "useFrames":true,
                     "onComplete":this.closePopup
                 });
+                FocusManager.setModalClip(this._prevModalClip);
                 _bOpen = false;
             }
         }

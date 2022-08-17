@@ -64,7 +64,6 @@ class EphemeralMatchStats extends Object within KFPlayerController
 
 
 
-
 #linenumber 15;
 
 
@@ -128,6 +127,9 @@ var TopWeaponReplicationInfo TWRI;
 **********************************************/
 var int 	ZedsKilledLastWave;
 
+var byte    DeathStreak;
+var byte    SurvivedStreak;
+
 /**********************************************
 // @AAR
 **********************************************/
@@ -154,9 +156,9 @@ struct ZedKillType
 struct WeaponDamage
 {
 	var class<KFWeaponDefinition> 	WeaponDef;
-	var int 						DamageAmount;
-	var int 						HeadShots;
-	var int 						LargeZedKills;
+	var int DamageAmount;
+	var int HeadShots;
+	var int LargeZedKills;
 	var int 						Kills; //This var is client side only
 };
 
@@ -269,17 +271,53 @@ function int GetHealGivenInWave()
 //Called at the end of the wave. @Note - End of wave is also called with the loss condition is met.  This includes at trader time.  
 function RecordWaveInfo()
 {
-	
-		TotalHeadShots			+= GetHeadShotsInWave();
-		TotalDoshEarned 		+= GetDoshEarnedInWave();
-		TotalAmountHealGiven 	+= GetHealGivenInWave();
-	    TotalAmountHealReceived	+= GetHealReceivedInWave();
-	    TotalDamageTaken 		+= GetDamageTakenInWave();;
-	    TotalDamageDealt 		+= GetDamageDealtInWave();
-	if(IsLocalPlayerController())
+	// If reset is pending, clear it now!
+	if ( Outer.IsTimerActive(nameof(ResetLastWaveInfo), self) )
 	{
-	    ResetLastWaveInfo();
+		ResetLastWaveInfo();
 	}
+
+	TotalHeadShots			+= GetHeadShotsInWave();
+	TotalDoshEarned 		+= GetDoshEarnedInWave();
+	TotalAmountHealGiven 	+= GetHealGivenInWave();
+    TotalAmountHealReceived	+= GetHealReceivedInWave();
+    TotalDamageTaken 		+= GetDamageTakenInWave();
+    TotalDamageDealt 		+= GetDamageDealtInWave();
+
+    if ( PWRI.bDiedDuringWave )
+    {
+	   	DeathStreak++;
+    	SurvivedStreak = 0;
+    }
+    else
+    {
+    	DeathStreak = 0;
+    	SurvivedStreak++;
+    }
+
+    // After accumulating stats, clear back to zero for next wave.
+    // Delayed long enough for replication to occur.
+   	Outer.SetTimer(1.f, false, nameof(ResetLastWaveInfo), self);
+}
+
+/** Clear PWRI, but doesn't cause it to replicate */
+function ResetLastWaveInfo()
+{
+	PWRI.VectData1.X = 0;
+	PWRI.VectData1.Y = 0;
+	PWRI.VectData1.Z = 0;
+	PWRI.VectData2.X = 0;
+	PWRI.VectData2.Y = 0;
+	PWRI.VectData2.Z = 0;
+    PWRI.bKilledMostZeds = false;
+    PWRI.bKilledFleshpoundLastWave = false;
+    PWRI.bKilledScrakeLastWave = false;
+    PWRI.ClassKilledByLastWave = none;
+    PWRI.bAllSurvivedLastWave = false;
+    PWRI.bSomeSurvivedLastWave = false;
+    PWRI.bOneSurvivedLastWave = false;
+    PWRI.bDiedDuringWave = false;
+    ZedsKilledLastWave = 0;
 }
 
 function RecordPerkXPGain(class<KFPerk> PerkClass, int XPDelta)
@@ -451,7 +489,7 @@ function InternalRecordWeaponDamage(class<KFWeaponDefinition> WeaponDef, int Dam
 	if(WeaponDamageList[WeaponIndex].WeaponDef == WeaponDef)
 	{
 		PreHealth = TargetPawn.Health + Damage;
-		
+
 		if ( TargetPawn.Health > 0 ) 
 		{
 			// damage has already been applied and zed is still standing, record it all
@@ -601,8 +639,7 @@ function GetTopWeapons(int AmountToGrab, out array<WeaponDamage> TopWeaponList)
 			{
 				TopWeaponList.AddItem(WeaponDamageList[i]);
 			}
-		}
-		
+		}		
 	}
 }
 											
@@ -672,7 +709,10 @@ static function SendMapOptionsAndOpenAARMenu()
 	    {	
 			if(KFPRI != none)
 			{
-				KFPRI.RecieveAARMapOption(KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[i]);
+				if (KFGI.IsMapAllowedInCycle(KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[i]))
+				{
+					KFPRI.RecieveAARMapOption(KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[i]);
+				}
 			}
 		}
 		KFPC.ClientOpenPostGameMenu();

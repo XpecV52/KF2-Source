@@ -36,7 +36,7 @@ var databinding string MapName;
 var databinding int Difficulty;
 
 /** The number of waves in the match */
-var databinding string Mode;
+var databinding int Mode;
 
 /** Have mutators been applied to this server? **/
 var databinding bool bMutators;
@@ -61,14 +61,14 @@ var databinding int NumSpectators;
 defaultproperties
 {
 	GfxID=INDEX_NONE
-	Mode = "Survival";
-	Difficulty = 0;
+	Mode=0
+	Difficulty=0
 	MapName="KF-BurningParis"
-	CurrentWave = 1;
-	NumWaves = 6;
-    NumPublicConnections = 6
-    ZedCount = 10;
-    MaxZedCount = 100;
-    bIsLanMatch = false
-	bUsedForTakeover = false
+	CurrentWave=1
+	NumWaves=6
+    NumPublicConnections=`KF_MAX_PLAYERS
+    ZedCount=10
+    MaxZedCount=100
+    bIsLanMatch=false
+	bUsedForTakeover=false
 }

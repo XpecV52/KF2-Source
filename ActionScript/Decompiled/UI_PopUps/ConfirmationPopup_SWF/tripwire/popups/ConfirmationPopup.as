@@ -4,6 +4,7 @@ package tripwire.popups
     import flash.external.ExternalInterface;
     import flash.text.TextField;
     import scaleform.clik.events.ButtonEvent;
+    import scaleform.clik.managers.FocusHandler;
     import scaleform.gfx.FocusManager;
     import scaleform.gfx.TextFieldEx;
     import tripwire.controls.TripButton;
@@ -60,7 +61,7 @@ package tripwire.popups
             super.openPopup();
             if(bManagerUsingGamepad)
             {
-                FocusManager.setFocus(this.leftButton);
+                FocusHandler.getInstance().setFocus(currentElement);
             }
             else
             {

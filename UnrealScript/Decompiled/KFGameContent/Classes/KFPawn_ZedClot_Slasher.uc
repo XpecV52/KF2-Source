@@ -30,12 +30,9 @@ defaultproperties
     object end
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedClot_Slasher.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
-    begin object name=Afflictions class=KFPawnAfflictions
-        InstantAffl=/* Array type was not detected. */
-        StackingAffl=/* Array type was not detected. */
-    object end
-    // Reference: KFPawnAfflictions'Default__KFPawn_ZedClot_Slasher.Afflictions'
-    AfflictionHandler=Afflictions
+    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedClot_Slasher.Afflictions'
+    InstantIncaps=/* Array type was not detected. */
+    StackingIncaps=/* Array type was not detected. */
     KnockdownImpulseScale=1
     SprintSpeed=500
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent

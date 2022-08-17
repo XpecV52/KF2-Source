@@ -6,9 +6,9 @@ package
     {
          
         
-        public function XboxTypeS_LeftTrigger(param1:int = 128, param2:int = 128)
+        public function XboxTypeS_LeftTrigger(w:int = 128, h:int = 128)
         {
-            super(param1,param2);
+            super(w,h);
         }
     }
 }

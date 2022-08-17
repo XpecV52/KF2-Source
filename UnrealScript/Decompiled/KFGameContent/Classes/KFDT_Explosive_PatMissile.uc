@@ -10,7 +10,7 @@ class KFDT_Explosive_PatMissile extends KFDT_Explosive
 
 static function int GetKillerDialogID()
 {
-    return 40;
+    return 19;
 }
 
 defaultproperties

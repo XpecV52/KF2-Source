@@ -6,9 +6,9 @@ package
     {
          
         
-        public function $scanlines_512(param1:int = 512, param2:int = 512)
+        public function $scanlines_512(w:int = 512, h:int = 512)
         {
-            super(param1,param2);
+            super(w,h);
         }
     }
 }

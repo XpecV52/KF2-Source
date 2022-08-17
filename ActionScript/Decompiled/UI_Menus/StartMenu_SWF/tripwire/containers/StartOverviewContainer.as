@@ -43,6 +43,7 @@ package tripwire.containers
             this.sharedContentListContainer.sharedContentConfirmButton.focusable = true;
             this.sharedContentButton.tabIndex = 1;
             this.sharedContentListContainer.sharedContentConfirmButton.tabIndex = 2;
+            sectionHeader = this.overviewHeader;
         }
         
         override public function selectContainer() : void

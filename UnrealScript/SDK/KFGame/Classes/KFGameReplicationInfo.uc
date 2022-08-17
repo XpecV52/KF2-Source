@@ -59,7 +59,7 @@ var bool bMatchVictory;
 * Spawning
 ************************************/
 var					byte						WaveMax;	// The "end" wave
-var 				byte						WaveNum; 	// The wave we are currently in
+var repnotify		byte						WaveNum; 	// The wave we are currently in
 var					int							AIRemaining;
 var					int							WaveTotalAICount;
 
@@ -74,7 +74,7 @@ var    				byte						GameDifficulty;
 var 				bool 						bCustom;
 
  /** Combined from the PRI unlocks, but does not subtract logged out players */
- var private const byte		GameSharedUnlocks;	
+ var private const byte		GameSharedUnlocks;
 
 /************************************
 * Wave Debugging
@@ -199,6 +199,39 @@ var float           PlayersAmmoStatusTracker[10];
 /** Keep track of the players combined status over the last 10 seconds */
 var float           AggregatePlayersStatusTracker[10];
 
+/** The current baseline for how long zeds should live */
+var float           CurrentParZedLifeSpan;
+
+/** Keep track of the overall rank and skill modifier the game conductor is using over the last 10 seconds */
+var float           OverallRankAndSkillModifierTracker[10];
+
+/** Keep track of the overall rank and skill modifier the game conductor is using over the last 10 seconds */
+var float           ZedMovementSpeedModifierTracker[10];
+
+/** Keep track of the overall rank and skill modifier the game conductor is using over the last 10 seconds */
+var float           ZedSpawnRateModifierTracker[10];
+
+/** Keep track of the overall rank and skill modifier the game conductor is using over the last 10 seconds */
+var float           ZedSpawnRateTracker[10];
+
+/** Replicate the current game conductor status */
+var byte            CurrentGameConductorStatus;
+
+/** The current baseline for how long zeds should live */
+var float           VersusZedHealthMod;
+
+/** The current baseline for how long zeds should live */
+var float           VersusZedDamageMod;
+
+/** The current game is a versus game */
+var bool            bVersusGame;
+
+/************************************
+* Team Management
+************************************/
+var bool bAllowSwitchTeam;
+
+
 /************************************
 * Actor Iterators
 ************************************/
@@ -244,8 +277,6 @@ var private bool bLeadershipAvailable;
  *  Steam heartbeat
  ************************************/
 
-const STEAM_PLAYTIME_GENERATOR_ITEM = 900000;
-   
 var private float SteamHeartbeatAccumulator;
 native function SendSteamHeartbeat();
 native function SendSteamRequestItemDrop();
@@ -272,10 +303,10 @@ replication
 {
 	if ( bNetDirty )
 		bTraderIsOpen, NextTrader, WaveNum, AIRemaining, WaveTotalAICount,
-		CurrentObjective, MusicIntensity, ReplicatedMusicTrackInfo, MusicTrackRepCount, 
+		CurrentObjective, MusicIntensity, ReplicatedMusicTrackInfo, MusicTrackRepCount,
 		bIsUnrankedGame, bLeadershipAvailable, GameSharedUnlocks;
 	if ( bNetInitial )
-		GameLength, GameDifficulty, WaveMax, bCustom;
+		GameLength, GameDifficulty, WaveMax, bCustom, bVersusGame;
 	if ( bNetInitial && Role == ROLE_Authority )
 		ServerAdInfo;
 
@@ -295,7 +326,12 @@ replication
 	if ( bGameConductorGraphingEnabled && bNetDirty )
 		PlayerAccuracyTracker, PlayerHeadshotAccuracyTracker, AggregatePlayerSkillTracker,
         TotalZedLifeSpanAverageTracker, CurrentWaveZedLifeSpanAverageTracker, RecentZedLifeSpanAverageTracker,
-        PlayersHealthStatusTracker, PlayersAmmoStatusTracker, AggregatePlayersStatusTracker;
+        PlayersHealthStatusTracker, PlayersAmmoStatusTracker, AggregatePlayersStatusTracker,
+        CurrentParZedLifeSpan, OverallRankAndSkillModifierTracker, ZedMovementSpeedModifierTracker,
+        ZedSpawnRateModifierTracker, ZedSpawnRateTracker, CurrentGameConductorStatus;
+
+	if ( bGameConductorGraphingEnabled && bNetDirty && bVersusGame )
+		VersusZedHealthMod, VersusZedDamageMod;
 // endif
 }
 
@@ -340,6 +376,10 @@ simulated event ReplicatedEvent(name VarName)
 	{
 			ShowPreGameServerWelcomeScreen();
 	}
+	else if( VarName == 'WaveNum')
+	{
+			UpdateHUDWaveCount();
+	}
 	else
 	{
 		super.ReplicatedEvent(VarName);
@@ -374,7 +414,6 @@ simulated event PostBeginPlay()
 simulated function ReceivedGameClass()
 {
 	local class<KFGameInfo> KFGameClass;
-	local KFPlayerController KFPC;
 
 	KFGameClass = class<KFGameInfo>(GameClass);
 	if ( KFGameClass != None )
@@ -395,18 +434,22 @@ simulated function ReceivedGameClass()
 
 	DebugingNextTraderIndex = -1;
 
+	Super.ReceivedGameClass();
+}
+
+simulated function UpdateHUDWaveCount()
+{
+	local KFPlayerController KFPC;
+
 	if( WorldInfo.NetMode != NM_DedicatedServer )
 	{
 		KFPC = KFPlayerController(GetALocalPlayerController());
 		if( KFPC != none && KFPC.MyGFxHUD != none )
 		{
 			KFPC.MyGFxHUD.UpdateWaveCount();
-		}	
+		}
 	}
-
-	Super.ReceivedGameClass();
 }
-
 
 /** Process wave end event on client */
 simulated function NotifyWaveEnded()
@@ -461,7 +504,7 @@ simulated function GetKFPRIArray(out array<KFPlayerReplicationInfo> KFPRIArray, 
 
 simulated function OpenTrader(optional int time)
 {
-	local KFPlayerController KFPC;
+    local KFPlayerController KFPC;
 
 	if( OpenedTrader != none )
 	{
@@ -481,19 +524,21 @@ simulated function OpenTrader(optional int time)
 	{
 		OpenedTrader.OpenTrader();
 
-		`SafeTraderDialogManager.PlayOpenTraderDialog( WaveNum, WaveMax, GetALocalPlayerController() );
+		`TraderDialogManager.PlayOpenTraderDialog( WaveNum, WaveMax, GetALocalPlayerController() );
 
 		KFPC = KFPlayerController(GetALocalPlayerController());
-		if(KFPC != none && KFPC.MyGFxManager != none)
+		if( KFPC != none )
 		{
-			KFPC.MyGFxManager.OnTraderTimeStart();
-		}
-		if(KFPC.MyGFxHUD != none)
-		{
-			KFPC.MyGFxHUD.UpdateWaveCount();
+			if( KFPC.MyGFxManager != none )
+			{
+				KFPC.MyGFxManager.OnTraderTimeStart();
+			}
+			if( KFPC.MyGFxHUD != none )
+			{
+				KFPC.MyGFxHUD.UpdateWaveCount();
+			}
 		}
 	}
-
 }
 
 /** Cheat/Debugging */
@@ -536,7 +581,7 @@ simulated function OpenTraderNext(optional int time)
 	OpenedTrader = NextTrader;
 	OpenedTrader.OpenTrader();
 
-	`SafeTraderDialogManager.PlayOpenTraderDialog( WaveNum, WaveMax, GetALocalPlayerController() );
+	`TraderDialogManager.PlayOpenTraderDialog( WaveNum, WaveMax, GetALocalPlayerController() );
 }
 
 simulated function CloseTrader()
@@ -552,7 +597,7 @@ simulated function CloseTrader()
 		OpenedTrader.CloseTrader();
 		OpenedTrader = none;
 
-		`SafeTraderDialogManager.PlayCloseTraderDialog( LocalPC );
+		`TraderDialogManager.PlayCloseTraderDialog( LocalPC );
 	}
 
     //KFPC.bPlayerUsedUpdatePerk should always be set to false here
@@ -570,7 +615,7 @@ simulated function int GetTraderTimeRemaining()
 
 //After action report
 simulated function OnOpenAfterActionReport(optional float time)
-{				
+{
 	if( time > 0 && Role == ROLE_Authority )
 	{
 		bStopCountDown = false;
@@ -581,10 +626,10 @@ simulated function OnOpenAfterActionReport(optional float time)
 
 simulated function ProcessChanceDrop()
 {
-	`if (`__TW_STEAMWORKS_)
+	`if (`__TW_NETWORKING_)
 	SendSteamHeartbeat(); // be sure no time is lost at the end of match
 	SendSteamRequestItemDrop(); // see if we've accumulated enough time
-	`endif	
+	`endif
 }
 
 simulated function int GetNextMapTimeRemaining()
@@ -600,6 +645,7 @@ function SetWaveActive(bool bWaveActive, optional byte NewMusicIntensity)
     // set up music intensity for this wave
     MusicIntensity = NewMusicIntensity;
 	bTraderIsOpen = !bWaveActive && bMatchHasBegun;
+	bForceNetUpdate = true;
 
     //  replicate track change
     MusicTrackRepCount++;
@@ -676,7 +722,7 @@ simulated event Timer()
 
 	if( WorldInfo.NetMode != NM_DedicatedServer && OpenedTrader != none && RemainingTime > 0 )
 	{
-		`SafeTraderDialogManager.PlayTraderTickDialog( RemainingTime, GetALocalPlayerController(), WorldInfo );
+		`TraderDialogManager.PlayTraderTickDialog( RemainingTime, GetALocalPlayerController(), WorldInfo );
 	}
 
     // set in native AK callback (ExitCueCallback)
@@ -1242,7 +1288,7 @@ simulated function ForceNewMusicTrack( KFMusicTrackInfo ForcedTrackInfo )
 @name Voting
 ************************************************************/
 
-reliable server function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplicationInfo PRI_Kicker)
+function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplicationInfo PRI_Kicker)
 {
 	if(VoteCollector != none)
 	{
@@ -1278,6 +1324,12 @@ final private event NotifyGameUnranked()
 	}
 }
 
+
+/***********************************************************
+@name Team management
+************************************************************/
+simulated function bool AreTeamsOutOfBalanced();
+
 defaultproperties
 {
 	TraderItems=KFGFxObject_TraderItems'GP_Trader_ARCH.DefaultTraderItems'
@@ -1288,4 +1340,5 @@ defaultproperties
 	UpdateHumanInfoInterval=0.5
 	UpdatePickupInfoInterval=1.0
 	WaveMax=255
+	bAllowSwitchTeam=false
 }

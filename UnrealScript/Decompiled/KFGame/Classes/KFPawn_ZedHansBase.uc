@@ -64,7 +64,7 @@ var repnotify bool bInHuntAndHealMode;
 var bool bPendingSmokeGrenadeBarrage;
 var bool bDoingBarrage;
 var array<HansBattlePhaseInfo> BattlePhases;
-/** How much to reduce Hans' damage he recieves when he is in hunt and heal mode */
+/** How much to reduce Hans' damage he receives when he is in hunt and heal mode */
 var() float HuntAndHealModeDamageReduction;
 var class<KFProj_Grenade> ActiveGrenadeClass;
 var const class<KFProj_Grenade> ExplosiveGrenadeClass;

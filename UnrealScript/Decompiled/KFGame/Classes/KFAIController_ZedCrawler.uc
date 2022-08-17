@@ -46,7 +46,7 @@ function bool AmIAllowedToStillUsePathNodes()
 
 function bool ShouldSprint()
 {
-    if(MyKFPawn.bCanSprint || MyKFPawn.bCanSprintWhenDamaged && MyKFPawn.Health < MyKFPawn.HealthMax)
+    if(bCanSprint || bCanSprintWhenDamaged && MyKFPawn.Health < MyKFPawn.HealthMax)
     {
         return true;
     }

@@ -15,6 +15,7 @@ var float ProjEffectsScale;
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
 {
     local KFPawn KFP;
+    local bool bPassThrough;
 
     if(Other != Instigator)
     {
@@ -32,23 +33,34 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
                 {
                     PenetrationPower -= KFP.PenetrationResistance;
                 }
-                return;
+                bPassThrough = true;
+            }            
+        }
+        else
+        {
+            if(((DamageRadius == 0) && !Other.bBlockActors) && Other.IsA('KFWaterMeshActor'))
+            {
+                if(WorldInfo.NetMode != NM_DedicatedServer)
+                {
+                    KFImpactEffectManager(WorldInfo.MyImpactEffectManager).PlayImpactEffects(HitLocation, Instigator,, ImpactEffects);
+                }
+                bPassThrough = true;
             }
         }
-        super.ProcessTouch(Other, HitLocation, HitNormal);
+        if(!bPassThrough)
+        {
+            super.ProcessTouch(Other, HitLocation, HitNormal);
+        }
     }
 }
 
 simulated function bool PassThroughDamage(Actor HitActor)
 {
-    if(InteractiveFoliageActor(HitActor) != none)
+    if(!HitActor.bBlockActors && HitActor.IsA('InteractiveFoliageActor'))
     {
-        return true;        
+        return true;
     }
-    else
-    {
-        return false;
-    }
+    return false;
 }
 
 simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor HitActor)

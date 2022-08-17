@@ -9,6 +9,18 @@ class KFPawn_ZedPatriarch extends KFPawn_MonsterBoss
     config(Game)
     hidecategories(Navigation);
 
+struct Patriarch_MortarTarget
+{
+    var KFPawn TargetPawn;
+    var Vector TargetVelocity;
+
+    structdefaultproperties
+    {
+        TargetPawn=none
+        TargetVelocity=(X=0,Y=0,Z=0)
+    }
+};
+
 struct PatriarchBattlePhaseInfo
 {
     var bool bAllowedToSprint;
@@ -123,6 +135,11 @@ var class<KFDamageType> TentacleDamageType;
 var class<KFDamageType> HeavyBumpDamageType;
 var float BarrelSpinSpeed;
 var repnotify Actor GunTarget;
+var class<KFProj_Missile_Patriarch> MissileProjectileClass;
+var class<KFProj_Missile_Patriarch> MortarProjectileClass;
+var array<Patriarch_MortarTarget> MortarTargets;
+var float MinMortarRangeSQ;
+var float MaxMortarRangeSQ;
 var float FleeSprintSpeedModifier;
 var float CloakPercent;
 var float CloakSpeed;
@@ -170,7 +187,7 @@ simulated event PostBeginPlay()
     SetPawnAmbientSound(AmbientBreathingEvent);
 }
 
-simulated function SetCharacterArch(KFCharacterInfoBase Info)
+simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bForce)
 {
     local int I;
 
@@ -179,7 +196,7 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info)
     {
         BodyAltMIC = Mesh.CreateAndSetMaterialInstanceConstant(1);
         I = 0;
-        J0x82:
+        J0x84:
 
         if(I < 3)
         {
@@ -187,7 +204,7 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info)
             HealingSyringeMeshes[I].SetShadowParent(Mesh);
             Mesh.AttachComponent(HealingSyringeMeshes[I], name("SyringeAttach0" $ string(I + 1)));
             ++ I;
-            goto J0x82;
+            goto J0x84;
         }
         Mesh.AttachComponentToSocket(BoilLightComponent, BoilLightSocketName);
         UpdateBattlePhaseLights();
@@ -238,6 +255,41 @@ simulated function SetFleeAndHealMode(bool bNewFleeAndHealStatus)
     if(!bNewFleeAndHealStatus)
     {
         bHealedThisPhase = false;
+    }
+}
+
+function SummonChildren()
+{
+    local KFAIWaveInfo MinionWave;
+    local KFGameInfo MyKFGameInfo;
+
+    MyKFGameInfo = KFGameInfo(WorldInfo.Game);
+    MyKFGameInfo.GetAIDirector().bForceFrustration = true;
+    if(CurrentBattlePhase == 1)
+    {
+        MinionWave = SummonWaves[int(MyKFGameInfo.GameDifficulty)].PhaseOneWave;        
+    }
+    else
+    {
+        if(CurrentBattlePhase == 2)
+        {
+            MinionWave = SummonWaves[int(MyKFGameInfo.GameDifficulty)].PhaseTwoWave;            
+        }
+        else
+        {
+            if(CurrentBattlePhase == 3)
+            {
+                MinionWave = SummonWaves[int(MyKFGameInfo.GameDifficulty)].PhaseThreeWave;
+            }
+        }
+    }
+    if(MinionWave != none)
+    {
+        if(MyKFGameInfo.SpawnManager != none)
+        {
+            MyKFGameInfo.SpawnManager.LeftoverSpawnSquad.Length = 0;
+            MyKFGameInfo.SpawnManager.SummonBossMinions(MinionWave.Squads, NumMinionsToSpawn);
+        }
     }
 }
 
@@ -313,7 +365,7 @@ function FleeAndHealBump()
     local float ClosestDist;
     local KFAIController_ZedPatriarch KFAICP;
 
-    if(((MyKFAIC == none) || MyKFAIC.Enemy == none) || IsDoingSpecialMove(15))
+    if(((MyKFAIC == none) || MyKFAIC.Enemy == none) || IsDoingSpecialMove(17))
     {
         return;
     }
@@ -454,9 +506,184 @@ simulated function Rotator GetAdjustedAimFor(Weapon W, Vector StartFireLoc)
     return super(KFPawn).GetAdjustedAimFor(W, StartFireLoc);
 }
 
+function class<KFProj_Missile_Patriarch> GetMissileClass()
+{
+    return MissileProjectileClass;
+}
+
+function GetMissileAimDirAndTargetLoc(int MissileNum, Vector MissileLoc, Rotator MissileRot, out Vector AimDir, out Vector TargetLoc)
+{
+    local Vector X, Y, Z;
+    local Pawn EnemyPawn;
+    local int EnemyIndex;
+    local KFAIController_ZedPatriarch MyPatController;
+
+    EnemyPawn = Controller.Enemy;
+    MyPatController = KFAIController_ZedPatriarch(Controller);
+    if((MyPatController != none) && !MyPatController.CanSee(EnemyPawn))
+    {
+        EnemyIndex = MyPatController.RecentlySeenEnemyList.Find('TrackedEnemy', KFPawn(EnemyPawn);
+        if(EnemyIndex != -1)
+        {
+            TargetLoc = MyPatController.RecentlySeenEnemyList[EnemyIndex].LastVisibleLocation;            
+        }
+        else
+        {
+            EnemyIndex = MyPatController.HiddenEnemies.Find('TrackedEnemy', KFPawn(EnemyPawn);
+            if(EnemyIndex != -1)
+            {
+                TargetLoc = MyPatController.HiddenEnemies[EnemyIndex].LastVisibleLocation;                
+            }
+            else
+            {
+                TargetLoc = EnemyPawn.Location;
+            }
+        }        
+    }
+    else
+    {
+        TargetLoc = EnemyPawn.Location;
+    }
+    TargetLoc += (vect(0, 0, -1) * (EnemyPawn.GetCollisionHeight() * 0.25));
+    if(!FastTrace(TargetLoc, MissileLoc,, true))
+    {
+        TargetLoc = EnemyPawn.Location + (vect(0, 0, 1) * EnemyPawn.BaseEyeHeight);
+    }
+    GetAxes(MissileRot, X, Y, Z);
+    AimDir = Normal((TargetLoc - MissileLoc) + (Z * 6));
+}
+
+function class<KFProj_Missile_Patriarch> GetMortarClass()
+{
+    return MortarProjectileClass;
+}
+
+function bool CollectMortarTargets(optional bool bInitialTarget, optional bool bForceInitialTarget)
+{
+    local int NumTargets, I;
+    local KFPawn KFP;
+    local float TargetDistSQ;
+    local Vector MortarVelocity, MortarStartLoc, TargetLoc, TargetProjection;
+    local KFAIController_ZedPatriarch MyPatController;
+
+    MyPatController = KFAIController_ZedPatriarch(Controller);
+    MortarStartLoc = Location + (vect(0, 0, 1) * (GetCollisionHeight()));
+    NumTargets = ((bInitialTarget) ? 0 : 1);
+    I = 0;
+    J0x72:
+
+    if(I < MyPatController.HiddenEnemies.Length)
+    {
+        KFP = MyPatController.HiddenEnemies[I].TrackedEnemy;
+        if(!KFP.IsAliveAndWell() || MortarTargets.Find('TargetPawn', KFP != -1)
+        {            
+        }
+        else
+        {
+            TargetLoc = KFP.Location + (vect(0, 0, -1) * (KFP.GetCollisionHeight() * 0.8));
+            TargetProjection = MortarStartLoc - TargetLoc;
+            TargetDistSQ = VSizeSq(TargetProjection);
+            if((TargetDistSQ > MinMortarRangeSQ) && TargetDistSQ < MaxMortarRangeSQ)
+            {
+                TargetLoc += (Normal(TargetProjection) * KFP.GetCollisionRadius());
+                if(SuggestTossVelocity(MortarVelocity, TargetLoc, MortarStartLoc, MortarProjectileClass.default.Speed, 500, 1, vect(0, 0, 0),, (GetGravityZ()) * 0.8))
+                {
+                    if(!FastTrace(MortarStartLoc + (Normal(vect(0, 0, 1) + (Normal(TargetLoc - MortarStartLoc) * 0.9)) * FMax(VSize(MortarVelocity) * 0.55, 800)), MortarStartLoc,, true))
+                    {                        
+                    }
+                    else
+                    {
+                        MortarTargets.Insert(NumTargets, 1;
+                        MortarTargets[NumTargets].TargetPawn = KFP;
+                        MortarTargets[NumTargets].TargetVelocity = MortarVelocity;
+                        if(bInitialTarget || NumTargets == 2)
+                        {
+                            return true;
+                        }
+                        ++ NumTargets;
+                    }
+                }
+            }
+        }
+        ++ I;
+        goto J0x72;
+    }
+    if(((bForceInitialTarget || !bInitialTarget) && NumTargets < 2) && MyPatController.RecentlySeenEnemyList.Length > 0)
+    {
+        I = 0;
+        J0x41A:
+
+        if((I < MyPatController.RecentlySeenEnemyList.Length) && NumTargets < 3)
+        {
+            KFP = MyPatController.RecentlySeenEnemyList[I].TrackedEnemy;
+            if(!KFP.IsAliveAndWell() || MortarTargets.Find('TargetPawn', KFP != -1)
+            {                
+            }
+            else
+            {
+                TargetLoc = KFP.Location + (vect(0, 0, -1) * (KFP.GetCollisionHeight() * 0.8));
+                TargetProjection = MortarStartLoc - TargetLoc;
+                TargetDistSQ = VSizeSq(TargetProjection);
+                if((TargetDistSQ > MinMortarRangeSQ) && TargetDistSQ < MaxMortarRangeSQ)
+                {
+                    TargetLoc += (Normal(TargetProjection) * KFP.GetCollisionRadius());
+                    if(SuggestTossVelocity(MortarVelocity, TargetLoc, MortarStartLoc, MortarProjectileClass.default.Speed, 500, 1, vect(0, 0, 0),, (GetGravityZ()) * 0.8))
+                    {
+                        if(!FastTrace(MortarStartLoc + (Normal(vect(0, 0, 1) + (Normal(TargetLoc - MortarStartLoc) * 0.9)) * FMax(VSize(MortarVelocity) * 0.55, 800)), MortarStartLoc,, true))
+                        {                            
+                        }
+                        else
+                        {
+                            MortarTargets.Insert(NumTargets, 1;
+                            MortarTargets[NumTargets].TargetPawn = KFP;
+                            MortarTargets[NumTargets].TargetVelocity = MortarVelocity;
+                            if(bInitialTarget)
+                            {
+                                return true;
+                            }
+                            ++ NumTargets;
+                        }
+                    }
+                }
+            }
+            ++ I;
+            goto J0x41A;
+        }
+    }
+    return false;
+}
+
+function PreMortarAttack();
+
+function ClearMortarTargets()
+{
+    MortarTargets.Length = 0;
+}
+
+function Patriarch_MortarTarget GetMortarTarget(int MortarNum)
+{
+    if(MortarNum >= MortarTargets.Length)
+    {
+        return MortarTargets[Rand(MortarTargets.Length)];
+    }
+    return MortarTargets[MortarNum];
+}
+
+function GetMortarAimDirAndTargetLoc(int MissileNum, Vector MissileLoc, Rotator MissileRot, out Vector AimDir, out Vector TargetLoc, out float MissileSpeed)
+{
+    local Patriarch_MortarTarget MissileTarget;
+    local Vector X, Y, Z;
+
+    GetAxes(MissileRot, X, Y, Z);
+    MissileTarget = GetMortarTarget(MissileNum);
+    TargetLoc = MissileTarget.TargetPawn.Location + (vect(0, 0, -1) * MissileTarget.TargetPawn.GetCollisionHeight());
+    AimDir = Normal(vect(0, 0, 1) + Normal(MissileTarget.TargetVelocity));
+    MissileSpeed = VSize(MissileTarget.TargetVelocity);
+}
+
 simulated event Tick(float DeltaTime)
 {
-    local float Intensity, BoilPulseSin;
+    local float MinCloakPct, Intensity, BoilPulseSin;
     local LinearColor ActualBoilColor;
 
     super(KFPawn).Tick(DeltaTime);
@@ -485,18 +712,7 @@ simulated event Tick(float DeltaTime)
                 }
             }
         }
-        if(GunTrackingSkelCtrl != none)
-        {
-            if(bGunTracking && GunTarget != none)
-            {
-                GunTrackingSkelCtrl.DesiredTargetLocation = GunTarget.Location;
-                GunTrackingSkelCtrl.InterpolateTargetLocation(DeltaTime);                
-            }
-            else
-            {
-                GunTrackingSkelCtrl.SetSkelControlActive(false);
-            }
-        }
+        UpdateGunTrackingSkelCtrl(DeltaTime);
         if(((ActiveSyringe > -1) && HealingSyringeMICs[ActiveSyringe] != none) && SyringeInjectTimeRemaining > 0)
         {
             SyringeInjectTimeRemaining -= DeltaTime;
@@ -524,6 +740,7 @@ simulated event Tick(float DeltaTime)
         }
         if(BodyMIC.Parent != SpottedMaterial)
         {
+            MinCloakPct = GetMinCloakPct();
             if(!bIsCloaking)
             {
                 if(CloakPercent < 1)
@@ -554,9 +771,9 @@ simulated event Tick(float DeltaTime)
             }
             else
             {
-                if(CloakPercent > 0)
+                if(CloakPercent > MinCloakPct)
                 {
-                    CloakPercent = FMax(CloakPercent - (DeltaTime * CloakSpeed), 0);
+                    CloakPercent = FMax(CloakPercent - (DeltaTime * CloakSpeed), MinCloakPct);
                     BodyMIC.SetScalarParameterValue('Transparency', CloakPercent);
                     BodyAltMIC.SetScalarParameterValue('Transparency', CloakPercent);
                     if(BoilLightComponent.bEnabled)
@@ -575,6 +792,27 @@ simulated event Tick(float DeltaTime)
     }
 }
 
+simulated function UpdateGunTrackingSkelCtrl(float DeltaTime)
+{
+    if(GunTrackingSkelCtrl != none)
+    {
+        if(bGunTracking && GunTarget != none)
+        {
+            GunTrackingSkelCtrl.DesiredTargetLocation = GunTarget.Location;
+            GunTrackingSkelCtrl.InterpolateTargetLocation(DeltaTime);            
+        }
+        else
+        {
+            GunTrackingSkelCtrl.SetSkelControlActive(false);
+        }
+    }
+}
+
+protected simulated function float GetMinCloakPct()
+{
+    return 0;
+}
+
 simulated function UpdateHealingSyringeTransparency()
 {
     if(HealingSyringeMICs[0] != none)
@@ -591,13 +829,13 @@ simulated function UpdateHealingSyringeTransparency()
     }
 }
 
-simulated function GoreMeshSwapped()
+simulated event NotifyGoreMeshActive()
 {
     if((WorldInfo.NetMode != NM_DedicatedServer) && Mesh != none)
     {
         BodyMIC = Mesh.CreateAndSetMaterialInstanceConstant(0);
         BodyAltMIC = Mesh.CreateAndSetMaterialInstanceConstant(1);
-        SetGameplayMICParams();
+        super(KFPawn_Monster).NotifyGoreMeshActive();
     }
 }
 
@@ -766,7 +1004,7 @@ function UpdateMaterialEffect(float DeltaTime)
 simulated function SetGameplayMICParams()
 {
     local int I;
-    local bool bIsSpotted;
+    local bool bIsSpotted, bWasCloaked;
 
     super.SetGameplayMICParams();
     if(WorldInfo.NetMode != NM_DedicatedServer)
@@ -774,10 +1012,11 @@ simulated function SetGameplayMICParams()
         bIsSpotted = bIsCloakingSpottedByLP || bIsCloakingSpottedByTeam;
         if((!bIsCloaking || IsImpaired()) && BodyMIC.Parent != BodyMaterial)
         {
+            bWasCloaked = (BodyMIC.Parent == SpottedMaterial) || BodyMIC.Parent == CloakedBodyMaterial;
             BodyMIC.SetParent(BodyMaterial);
             BodyAltMIC.SetParent(BodyAltMaterial);
             I = 0;
-            J0xFE:
+            J0x160:
 
             if(I < HealingSyringeMICs.Length)
             {
@@ -786,15 +1025,18 @@ simulated function SetGameplayMICParams()
                     HealingSyringeMICs[I].SetParent(default.HealingSyringeMeshes[I].Materials[0]);
                 }
                 ++ I;
-                goto J0xFE;
+                goto J0x160;
             }
-            PlayStealthSoundLoopEnd();
             Mesh.AttachComponentToSocket(BoilLightComponent, BoilLightSocketName);
             BoilLightComponent.SetEnabled(true);
-            DoCloakFX();
             Mesh.CastShadow = true;
             Mesh.SetPerObjectShadows(true);
-            SetDamageFXActive(true);            
+            if(bWasCloaked)
+            {
+                SetDamageFXActive(true);
+                PlayStealthSoundLoopEnd();
+                DoCloakFX();
+            }            
         }
         else
         {
@@ -804,7 +1046,7 @@ simulated function SetGameplayMICParams()
                 BodyMIC.SetParent(SpottedMaterial);
                 BodyAltMIC.SetParent(SpottedMaterial);
                 I = 0;
-                J0x2F8:
+                J0x367:
 
                 if(I < HealingSyringeMICs.Length)
                 {
@@ -813,7 +1055,7 @@ simulated function SetGameplayMICParams()
                         HealingSyringeMICs[I].SetParent(SpottedMaterial);
                     }
                     ++ I;
-                    goto J0x2F8;
+                    goto J0x367;
                 }
                 Mesh.CastShadow = false;
                 Mesh.SetPerObjectShadows(false);
@@ -826,7 +1068,7 @@ simulated function SetGameplayMICParams()
                     BodyMIC.SetParent(CloakedBodyMaterial);
                     BodyAltMIC.SetParent(CloakedBodyAltMaterial);
                     I = 0;
-                    J0x45F:
+                    J0x4CE:
 
                     if(I < HealingSyringeMICs.Length)
                     {
@@ -835,7 +1077,7 @@ simulated function SetGameplayMICParams()
                             HealingSyringeMICs[I].SetParent(CloakedBodyAltMaterial);
                         }
                         ++ I;
-                        goto J0x45F;
+                        goto J0x4CE;
                     }
                     PlayStealthSoundLoop();
                     DoCloakFX();
@@ -1063,11 +1305,6 @@ simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects(int HitZoneIdx)
     return super(KFPawn).GetHitZoneSkinTypeEffects(HitZoneIdx);
 }
 
-simulated function bool CanSwapToGoreMesh()
-{
-    return false;
-}
-
 function bool CanInjureHitZone(class<DamageType> DamageType, int HitZoneIdx)
 {
     local class<KFDamageType> KFDmgType;
@@ -1118,6 +1355,7 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
         }
     }
     super.PlayDying(DamageType, HitLoc);
+    ClearMortarTargets();
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
         SetDamageFXActive(false);
@@ -1218,18 +1456,6 @@ function PlayBossMusic()
     }
 }
 
-state Dying
-{
-    ignores Bump, HitWall, HeadVolumeChange, PhysicsVolumeChange, Falling, BreathTimer, 
-	    FellOutOfWorld;
-
-    simulated function bool CanSwapToGoreMesh()
-    {
-        return true;
-    }
-    stop;    
-}
-
 defaultproperties
 {
     CloakedLoop=AkEvent'WW_ZED_Patriarch.Play_Patriarch_Cloak'
@@ -1250,7 +1476,6 @@ defaultproperties
         CollideActors=false
         BlockRigidBody=false
         AlwaysLoadOnServer=false
-        LightingChannels=(bInitialized=true,Outdoor=true)
         Rotation=(Pitch=16384,Yaw=0,Roll=0)
         PerObjectShadowCullDistance=4000
         bAllowPerObjectShadows=true
@@ -1269,7 +1494,6 @@ defaultproperties
         CollideActors=false
         BlockRigidBody=false
         AlwaysLoadOnServer=false
-        LightingChannels=(bInitialized=true,Outdoor=true)
         Rotation=(Pitch=16384,Yaw=0,Roll=0)
         PerObjectShadowCullDistance=4000
         bAllowPerObjectShadows=true
@@ -1288,7 +1512,6 @@ defaultproperties
         CollideActors=false
         BlockRigidBody=false
         AlwaysLoadOnServer=false
-        LightingChannels=(bInitialized=true,Outdoor=true)
         Rotation=(Pitch=16384,Yaw=0,Roll=0)
         PerObjectShadowCullDistance=4000
         bAllowPerObjectShadows=true
@@ -1351,6 +1574,10 @@ defaultproperties
     BattlePhases(3)=(bAllowedToSprint=true,SprintCooldownTime=1.5,bCanTentacleGrab=true,TentacleGrabCooldownTime=7,bCanUseMissiles=true,MissileAttackCooldownTime=5,bCanUseMortar=true,MortarAttackCooldownTime=7,bCanDoMortarBarrage=true,bCanChargeAttack=true,ChargeAttackCooldownTime=7,MaxRageAttacks=6,TentacleDamage=10,MinigunAttackCooldownTime=1.25,bCanSummonMinions=true,HealAmounts=none)
     TentacleDamageType=Class'KFDT_Slashing_PatTentacle'
     HeavyBumpDamageType=Class'KFDT_HeavyZedBump'
+    MissileProjectileClass=Class'KFProj_Missile_Patriarch'
+    MortarProjectileClass=Class'KFProj_Mortar_Patriarch'
+    MinMortarRangeSQ=160000
+    MaxMortarRangeSQ=6000000
     FleeSprintSpeedModifier=1.25
     CloakPercent=1
     CloakSpeed=3
@@ -1405,13 +1632,13 @@ defaultproperties
     HitZones=/* Array type was not detected. */
     PenetrationResistance=4
     begin object name=Afflictions class=KFPawnAfflictions_Patriarch
-        InstantAffl=/* Array type was not detected. */
-        StackingAffl=/* Array type was not detected. */
         FireFullyCharredDuration=50
         FireCharPercentThreshhold=0.35
     object end
     // Reference: KFPawnAfflictions_Patriarch'Default__KFPawn_ZedPatriarch.Afflictions'
     AfflictionHandler=Afflictions
+    InstantIncaps=/* Array type was not detected. */
+    StackingIncaps=/* Array type was not detected. */
     KnockdownImpulseScale=1
     SprintSpeed=650
     DefaultInventory=/* Array type was not detected. */

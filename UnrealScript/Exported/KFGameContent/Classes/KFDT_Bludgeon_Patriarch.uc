@@ -369,8 +369,6 @@ class KFDT_Bludgeon_Patriarch extends KFDT_Bludgeon
 
 
 
-
-
 	
 
 
@@ -422,6 +420,7 @@ class KFDT_Bludgeon_Patriarch extends KFDT_Bludgeon
 
 
 	
+
 
 
 

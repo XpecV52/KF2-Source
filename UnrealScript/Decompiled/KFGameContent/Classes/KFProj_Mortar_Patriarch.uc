@@ -13,7 +13,7 @@ function InitEx(Vector AimDir, float CurlForceMultiplier, Vector TargetLoc, floa
     super.InitEx(AimDir, CurlForceMultiplier, TargetLoc, InitialMissileSpeed, NewSeekDelay, NewSeekForce, NewGravForce, NewDistToApplyGravitySQ);
     Velocity.X *= 0.2;
     Velocity.Y *= 0.2;
-    Velocity.Z *= 1.25;
+    Velocity.Z *= 1.3;
 }
 
 defaultproperties

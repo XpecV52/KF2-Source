@@ -42,7 +42,6 @@ struct native GameplayEventsHeader
 {
     var const int EngineVersion;
     var const int StatsWriterVersion;
-    var const int KFGameVersion;
     var const int StreamOffset;
     var const int AggregateOffset;
     var const int FooterOffset;
@@ -55,7 +54,6 @@ struct native GameplayEventsHeader
     {
         EngineVersion=0
         StatsWriterVersion=0
-        KFGameVersion=0
         StreamOffset=0
         AggregateOffset=0
         FooterOffset=0
@@ -192,16 +190,6 @@ struct native PawnClassEventData
     }
 };
 
-struct native HitZoneEventData
-{
-    var name ZoneName;
-
-    structdefaultproperties
-    {
-        ZoneName=None
-    }
-};
-
 var native const Pointer Archive;
 var private const string StatsFileName;
 var GameplayEventsHeader Header;
@@ -215,7 +203,6 @@ var array<ProjectileClassEventData> ProjectileClassArray;
 var array<PawnClassEventData> PawnClassArray;
 var array<string> ActorArray;
 var array<string> SoundCueArray;
-var array<HitZoneEventData> HitZoneArray;
 
 function bool OpenStatsFile(string Filename);
 

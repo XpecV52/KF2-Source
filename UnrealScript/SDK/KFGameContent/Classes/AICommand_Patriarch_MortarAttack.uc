@@ -55,7 +55,7 @@ function Pushed()
 function Popped()
 {
 	AIActionStatus = "Finished Mortar Attack AICommand";
-	ClearMortarTargets();
+	MyPatPawn.ClearMortarTargets();
 	Super.Popped();
 }
 

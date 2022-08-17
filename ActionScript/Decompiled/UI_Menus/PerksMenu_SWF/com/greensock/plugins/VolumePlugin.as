@@ -18,21 +18,21 @@ package com.greensock.plugins
             super("volume");
         }
         
-        override public function _onInitTween(param1:Object, param2:*, param3:TweenLite) : Boolean
+        override public function _onInitTween(target:Object, value:*, tween:TweenLite) : Boolean
         {
-            if(isNaN(param2) || param1.hasOwnProperty("volume") || !param1.hasOwnProperty("soundTransform"))
+            if(isNaN(value) || target.hasOwnProperty("volume") || !target.hasOwnProperty("soundTransform"))
             {
                 return false;
             }
-            this._target = param1;
+            this._target = target;
             this._st = this._target.soundTransform;
-            _addTween(this._st,"volume",this._st.volume,param2,"volume");
+            _addTween(this._st,"volume",this._st.volume,value,"volume");
             return true;
         }
         
-        override public function setRatio(param1:Number) : void
+        override public function setRatio(v:Number) : void
         {
-            super.setRatio(param1);
+            super.setRatio(v);
             this._target.soundTransform = this._st;
         }
     }

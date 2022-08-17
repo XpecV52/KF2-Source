@@ -10,7 +10,7 @@ class KFDT_Ballistic_PatMinigun extends KFDT_Ballistic_AssaultRifle
 
 static function int GetKillerDialogID()
 {
-    return 39;
+    return 18;
 }
 
 defaultproperties

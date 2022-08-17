@@ -124,7 +124,7 @@ enum ECommandoSkills
  * @param DamageInstigator responsible controller (optional)
  * @param class DamageType the damage type used (optional)
  */
-simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType)
+simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx )
 {
 	local KFWeapon KFW;
 	local float TempDamage;
@@ -615,6 +615,7 @@ defaultproperties
    bCanSeeCloakedZeds=True
    PrimaryWeaponDef=Class'KFGame.KFWeapDef_AR15'
    GrenadeWeaponDef=Class'KFGame.KFWeapDef_Grenade_Commando'
+   HeadshotAccuracyHandicap=-3.000000
    Name="Default__KFPerk_Commando"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

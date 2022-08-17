@@ -16,7 +16,7 @@ function InitEx( vector AimDir, float CurlForceMultiplier, vector TargetLoc, flo
 
 	Velocity.X *= 0.2f;
 	Velocity.Y *= 0.2f;
-	Velocity.Z *= 1.25f;
+	Velocity.Z *= 1.3f;
 }
 
 defaultproperties

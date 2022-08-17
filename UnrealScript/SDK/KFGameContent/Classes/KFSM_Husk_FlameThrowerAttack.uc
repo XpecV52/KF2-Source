@@ -28,6 +28,11 @@ protected function bool InternalCanDoSpecialMove()
 	local vector HitLocation, HitNormal;
 	local Actor HitActor;
 
+	if( KFPOwner.IsHumanControlled() )
+	{
+		return KFPOwner.IsAliveAndWell();
+	}
+
 	if( AIOwner == none || AIOwner.MyKFPawn == none || AIOwner.Enemy == none )
 	{
 		return false;
@@ -99,7 +104,7 @@ simulated function TurnOnFlamethrower()
 
 	bFlameThrowerActive = true;
 
-    if( HuskOwner.Role == ROLE_Authority )
+    if( HuskOwner.Role == ROLE_Authority || HuskOwner.IsLocallyControlled() )
     {
         HuskOwner.SetWeaponAmbientSound(FlameAttackPlayEvent);
     }
@@ -136,7 +141,7 @@ simulated function TurnOffFlamethrower()
 
     bFlameThrowerActive = false;
 
-    if( HuskOwner.Role == ROLE_Authority )
+    if( HuskOwner.Role == ROLE_Authority || HuskOwner.IsLocallyControlled() )
     {
     	HuskOwner.SetWeaponAmbientSound(FlameAttackStopEvent);
     }
@@ -169,7 +174,7 @@ function bool CanOverrideMoveWith( Name NewMove )
 DefaultProperties
 {
 	// SpecialMove
-	AnimName=Atk_Flame_V1
+	AnimName=Player_Flame
 	Handle=KFSM_Husk_FlameThrowerAttack
 	bDisableSteering=false
 	bDisableMovement=true

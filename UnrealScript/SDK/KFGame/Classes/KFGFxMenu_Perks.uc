@@ -145,19 +145,21 @@ function CheckTiersForPopup()
 
 event OnClose()
 {
-  	if ( KFPC != none )
+  	if( KFPC != none )
   	{
   		if( bModifiedPerk || bModifiedSkills )
   		{
-			SavePerkData();	
-			if(KFPC.CanUpdatePerkInfo())
-  			{
-  				if(!bChangesMadeDuringLobby)
+			SavePerkData();
+
+			if( KFPC.CanUpdatePerkInfo() )  
+			{
+  				if( !bChangesMadeDuringLobby )
   				{
   					KFPC.NotifyPerkUpdated();
   				}
   			}
-  			if(IsMatchStarted())
+
+  			if( IsMatchStarted() )
   			{
   				KFPC.SetHaveUpdatePerk(true);
   			}
@@ -166,6 +168,7 @@ event OnClose()
   			bModifiedSkills = false;
   		}
   	}
+
 	super.OnClose();
 }
 
@@ -183,17 +186,28 @@ function bool IsMatchStarted()
 	return KFGRI != none && KFGRI.bMatchHasBegun;
 }
 
-function PerkChanged( byte NewPerkIndex )
+function PerkChanged( byte NewPerkIndex, bool bClickedIndex)
 {
-  	if ( KFPC != none )
+  	if( KFPC != none )
   	{
-		SavePerkData();
-		UpdateSkillsHolder(KFPC.PerkList[NewPerkIndex].PerkClass);
+		// We aren't actually changing our selected perk so don't save stuff.
+		if( bClickedIndex )
+		{
+			SavePerkData();
+		}
+
+		UpdateSkillsHolder( KFPC.PerkList[NewPerkIndex].PerkClass );
   		LastPerkIndex = NewPerkIndex;
   		bChangesMadeDuringLobby = !IsMatchStarted();
   		bModifiedPerk = true;
-  		SelectionContainer.SavePerk( NewPerkIndex );
-  		UpdateContainers(KFPC.PerkList[NewPerkIndex].PerkClass);
+		
+		// Again don't save stuff if we are only looking at another perk.
+		if( bClickedIndex )
+		{
+  			SelectionContainer.SavePerk( NewPerkIndex );
+		}
+
+  		UpdateContainers( KFPC.PerkList[NewPerkIndex].PerkClass, bClickedIndex );
 	}
 }
 
@@ -229,7 +243,7 @@ function UpdateLock()
 	}
 }
 
-function UpdateContainers( class<KFPerk> PerkClass )
+function UpdateContainers( class<KFPerk> PerkClass, optional bool bClickedIndex=true )
 {
 	if ( KFPC != none )
 	{
@@ -242,7 +256,8 @@ function UpdateContainers( class<KFPerk> PerkClass )
 			DetailsContainer.UpdateDetails( PerkClass );
 			DetailsContainer.UpdatePassives( PerkClass );
 		}
-		if ( SelectionContainer != none )
+		// Don't change the perk selection since we just selected another index to look at.
+		if ( SelectionContainer != none && bClickedIndex )
 		{
 			SelectionContainer.UpdatePerkSelection(KFPC.SavedPerkIndex);
 		}
@@ -269,6 +284,11 @@ function UpdateSkillsHolder(class<KFPerk> PerkClass)
 {
 	local int PerkBuild;
 
+	if( KFPC == none )
+	{
+		KFPC = KFPlayerController( GetPC() );
+	}
+
 	PerkBuild = KFPC.GetPerkBuildByPerkClass( PerkClass );	
 	KFPC.GetPerk().GetUnpackedSkillsArray( PerkClass, PerkBuild,  SelectedSkillsHolder);
 }
@@ -276,21 +296,22 @@ function UpdateSkillsHolder(class<KFPerk> PerkClass)
 /** Saves the modified perk data */
 function SavePerkData()
 {
-	if ( KFPC != none )
+	if( KFPC != none )
   	{
-		if(bModifiedSkills)
+		if( bModifiedSkills )
 		{
 			// Update our previous build
-			KFPC.CurrentPerk.UpdatePerkBuild(SelectedSkillsHolder, KFPC.PerkList[LastPerkIndex].PerkClass);
+			KFPC.CurrentPerk.UpdatePerkBuild( SelectedSkillsHolder, KFPC.PerkList[LastPerkIndex].PerkClass );
 
 			// Send a notify if we can't currently switch our build
-			if(!KFPC.CanUpdatePerkInfo())
+			if( !KFPC.CanUpdatePerkInfo() )
 			{
 				KFPC.NotifyPendingPerkChanges();
 			}
 			
 			bModifiedSkills = false;
 		}
+
   		KFPC.ClientWriteAndFlushStats();
 	}
 }
@@ -305,11 +326,12 @@ function Callback_ReadyClicked( bool bReady )
 	super.Callback_ReadyClicked( bReady );
 }
 
-function Callback_PerkSelected(byte NewPerkIndex)
+function Callback_PerkSelected(byte NewPerkIndex, bool bClickedIndex)
 {
-	if(LastPerkIndex != NewPerkIndex)
+	// bClickedIndex let's us know if the index was clicked and needs to be changed or if it was just selected and we should look at other perk info.
+	if(LastPerkIndex != NewPerkIndex || bClickedIndex)
 	{
-		PerkChanged(NewPerkIndex);
+		PerkChanged(NewPerkIndex,bClickedIndex);
 	}
 }
 

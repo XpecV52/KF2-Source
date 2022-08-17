@@ -15,25 +15,25 @@ class KFSM_MeleeAttack extends KFSM_PlaySingleAnim
 /** If Interruptible, is this attack affected by parry stumble */
 var transient bool bCannotBeParried;
 
-event byte PackFlags()
+static function byte PackFlagsBase(KFPawn P)
 {
 	local byte StrikeFlags;
 	local KFPawn_Monster KFPM;
 
-	KFPM = KFPawn_Monster(KFPOwner);
-	if ( KFPM == none )
+	KFPM = KFPawn_Monster(P);
+	if ( KFPM == none || P.MyKFAIC == none )
 	{
 		return 255;
 	}
 
 	if( KFPM != none && KFPM.PawnAnimInfo != none )
 	{
-		StrikeFlags = KFPM.PawnAnimInfo.GetStrikeFlags(AIOwner.PendingAnimStrikeIndex);
+		StrikeFlags = KFPM.PawnAnimInfo.GetStrikeFlags(P.MyKFAIC.PendingAnimStrikeIndex);
 
 		if( StrikeFlags != 255 )
 		{
 			//class'AICommand_Attack_Melee'.static.Melee( self, Enemy, StrikeFlags );
-			AIOwner.UpdatePendingStrike();
+			P.MyKFAIC.UpdatePendingStrike();
 		}
 	}
 	return StrikeFlags;

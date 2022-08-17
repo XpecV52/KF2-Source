@@ -66,7 +66,7 @@ package tripwire.controls
         
         override public function handleInput(param1:InputEvent) : void
         {
-            if(param1.handled)
+            if(param1.handled || !enabled)
             {
                 return;
             }

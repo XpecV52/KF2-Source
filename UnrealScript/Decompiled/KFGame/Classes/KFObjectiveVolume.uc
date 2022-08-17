@@ -197,7 +197,6 @@ defaultproperties
         BlockZeroExtent=false
         BlockRigidBody=false
         bDisableAllRigidBody=true
-        LightingChannels=(bInitialized=true,Indoor=true,Outdoor=true)
     object end
     // Reference: StaticMeshComponent'Default__KFObjectiveVolume.MeshComponent'
     ObjectiveMesh=MeshComponent
@@ -225,7 +224,6 @@ defaultproperties
         BlockZeroExtent=false
         BlockRigidBody=false
         bDisableAllRigidBody=true
-        LightingChannels=(bInitialized=true,Indoor=true,Outdoor=true)
     object end
     // Reference: StaticMeshComponent'Default__KFObjectiveVolume.MeshComponent'
     Components(1)=MeshComponent

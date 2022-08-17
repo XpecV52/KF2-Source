@@ -203,7 +203,7 @@ state Command_SpecialMove `DEBUGSTATE
 	{
 		if( MyKFPawn != none && MyKFPawn.CanDoSpecialMove(InSpecialMove) )
 		{
-			return MyKFPawn.SpecialMoves[InSpecialMove].PackFlags();
+			return MyKFPawn.SpecialMoves[InSpecialMove].PackFlagsBase(MyKFPawn);
 		}
 		return 255;
 	}

@@ -128,7 +128,7 @@ var(Firing)	    float			LostSightStopFireDelay;
 var             float           LastFireMode;
 /** How long to wait after starting to draw our guns to fire */
 var(Firing)	    float			DrawGunFireDelay;
-/** How long to wait after staring to see an enemy to fire */
+/** How long to wait after starting to see an enemy to fire */
 var(Firing)	    float			TargetAquisitionDelay;
 /** How long this gun attack should last at the max */
 var(Firing)	    float			MaxGunAttackLength;
@@ -182,7 +182,7 @@ function PawnDied( Pawn InPawn )
 {
 	if( MyHansPawn != none )
 	{
-		`SafeDialogManager.PlayBossDeathDialog( MyHansPawn );
+		`DialogManager.PlayBossDeathDialog( MyHansPawn );
 		MyHansPawn = None;
 	}
 	Super.PawnDied( InPawn );
@@ -596,7 +596,7 @@ function FireTimer()
 		SetTimer(Pawn.Weapon.FireInterval[LastFireMode] * BurstAmount, false, nameof(FireTimer), self);
 		BurstAmount = 0;
 
-		`SafeDialogManager.PlayBeingShotAtDialog( KFPawn_Human(Enemy), MyKFPawn );
+		`DialogManager.PlayBeingShotAtDialog( KFPawn_Human(Enemy), MyKFPawn );
 	}
 	else
 	{
@@ -1047,7 +1047,7 @@ function TickGunSystem()
             else if( HansPawn.bGunsEquipped && HansPawn.CanUseGunsInThisPhase()
                 && CanPerformShotAttack(true) )
             {
-            	//`SafeDialogManager.PlayBeingShotAtDialog( KFPawn_Human(Enemy), HansPawn );
+            	//`DialogManager.PlayBeingShotAtDialog( KFPawn_Human(Enemy), HansPawn );
                 StartFireTiming();
             }
         }
@@ -1368,8 +1368,12 @@ function DoStrike()
 		// @todo: figure out a way to make this less hard-coded? (see also KFDialogManager::PlayHansKilledDialog)
 		if( AttackName == 'Frenzy_Lunge' )
 		{
-			`SafeDialogManager.PlayHansFrenzyDialog( MyHansPawn );
+			`DialogManager.PlayHansFrenzyDialog( MyHansPawn );
 		}
+        else if( AttackName == 'AOE' )
+        {
+            `DialogManager.PlayHansAOEDialog( MyHansPawn );
+        }
 	}
 
 	super.DoStrike();
@@ -1767,13 +1771,13 @@ function NotifyKilled(Controller Killer, Controller Killed, pawn KilledPawn, cla
 {
 	if( self == Killer )
 	{
-		`SafeDialogManager.PlayHansKilledDialog( MyHansPawn, damageType );
+		`DialogManager.PlayHansKilledDialog( MyHansPawn, damageType );
 	}
 }
 
 function PlayDamagePlayerDialog( class<DamageType> DmgType )
 {
-	`SafeDialogManager.PlayHansDamagePlayerDialog( MyHansPawn, DmgType );
+	`DialogManager.PlayHansDamagePlayerDialog( MyHansPawn, DmgType );
 }
 
 DefaultProperties

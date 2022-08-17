@@ -110,6 +110,23 @@ simulated function PlayImpactEffects(const vector HitLocation, const Pawn Effect
 		// figure out the impact sound to use
 		GetImpactEffect(HitInfo.PhysMaterial, ImpactEffect, ImpactEffectInfo);
 
+		// Allow phys materials to override default impact effects
+		if( ImpactEffect == ImpactEffectInfo.DefaultImpactEffect
+			&& HitInfo.PhysMaterial != none )
+		{
+			// Impact effect override
+			if( HitInfo.PhysMaterial.ImpactEffect != none )
+			{
+				ImpactEffect.ParticleTemplate = HitInfo.PhysMaterial.ImpactEffect;
+			}				
+
+			// Sound override
+			if( HitInfo.PhysMaterial.ImpactSound != none )
+			{
+				ImpactEffect.Sound = HitInfo.PhysMaterial.ImpactSound;
+			}
+		}
+
 		// Pawns handle their own hit effects
 		if ( HitActor != None &&
 			 (Pawn(HitActor) == None || Vehicle(HitActor) != None) &&

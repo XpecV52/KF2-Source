@@ -160,6 +160,7 @@ defaultproperties
     begin object name=MeleeHelper class=KFMeleeHelperAI
         BaseDamage=14
         MyDamageType=Class'KFDT_Slashing_ZedWeak'
+        MomentumTransfer=25000
         MaxHitRange=250
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedBloat.MeleeHelper'
@@ -181,12 +182,12 @@ defaultproperties
     HitZones=/* Array type was not detected. */
     PenetrationResistance=3
     begin object name=Afflictions class=KFPawnAfflictions
-        InstantAffl=/* Array type was not detected. */
-        StackingAffl=/* Array type was not detected. */
         FireFullyCharredDuration=3.5
     object end
     // Reference: KFPawnAfflictions'Default__KFPawn_ZedBloat.Afflictions'
     AfflictionHandler=Afflictions
+    InstantIncaps=/* Array type was not detected. */
+    StackingIncaps=/* Array type was not detected. */
     PhysRagdollImpulseScale=1.5
     KnockdownImpulseScale=1.5
     SprintSpeed=260

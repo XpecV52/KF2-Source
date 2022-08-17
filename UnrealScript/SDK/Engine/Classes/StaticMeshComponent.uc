@@ -171,6 +171,12 @@ defaultproperties
 	bCanHighlightSelectedSections=false;
 	StreamingDistanceMultiplier=1.0
 
+`if(`__TW_LIGHTING_MODIFICATIONS_)
+	// Defaults are needed for editor copy/paste to work correctly.
+	// Was causing a bug where moving SM actors between sublevels was resetting the lighting channels.
+	LightingChannels=(Indoor=TRUE,Outdoor=TRUE,bInitialized=TRUE) 	
+`endif
+
 `if(`__TW_PERSISTENT_SPLATTER_SYSTEM_)
 	bAllowPersistentSplatters=TRUE
 `endif

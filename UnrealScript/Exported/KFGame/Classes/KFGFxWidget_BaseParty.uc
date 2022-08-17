@@ -10,7 +10,7 @@
 
 class KFGFxWidget_BaseParty extends KFGFxObject_Container;
 
-var localized string ReadyString, LeaveString, DefaultPlayerName, SquadString, SoloString, CreatePartyString, WaitingString, DeployingString, PlayerReadyString;
+var localized string ReadyString, LeaveString, DefaultPlayerName, SquadString, SoloString, CreatePartyString, WaitingString, DeployingString, PlayerReadyString, PartyLeaderString;
 var localized string MuteString, UnmuteString, AddFriendString, RemoveFriendString, ViewProfileString, VoteKickString;// Profile options
 var localized string PartyLeaderSearchingForMatchString, PartyLeaderIsUpdatingMatchOptionsString, PartyLeaderInServerBrowserString, PartyLeaderInOtherMenuString, SearchingForGameString;
 var localized string PartHostLeftString, PartyLeaderChangedString;
@@ -34,6 +34,8 @@ var GFxObject CreatePartyButton;
 var GFxObject SquadHeader;
 var GFxObject Notification;
 
+var int PlayerSlots;
+
 var const UniqueNetId ZeroUniqueId;
 
 enum EProfileOption
@@ -55,20 +57,24 @@ struct SMemberSlot
 	var UniqueNetId	PlayerUID;
 	var transient GFxObject MemberSlotObject;
 	var transient GFxObject PlayerNameTextField;
+	var PlayerReplicationInfo PRI;
 };
 
 var bool bReadyButtonVisible;
 
-var SMemberSlot MemberSlots[6];
+var SMemberSlot MemberSlots[12];
 
 function InitializeWidget()
 {
 	local int SlotIndex;
 	KFPC = KFPlayerController(GetPC());
 	OnlineSub = KFPC.OnlineSub;
-    OnlineLobby = OnlineSub.GetLobbyInterface();
+	if(OnlineSub != none)
+    {
+                OnlineLobby = OnlineSub.GetLobbyInterface();
+	}
 
-	for ( SlotIndex = 0; SlotIndex < 6; SlotIndex++ )
+	for ( SlotIndex = 0; SlotIndex < PlayerSlots; SlotIndex++ )
 	{
 		InitializeMemberSlot(SlotIndex);
 	}
@@ -129,6 +135,8 @@ function InitializeMemberSlot( int SlotIndex )
 {
 	MemberSlots[SlotIndex].MemberSlotObject = GetObject("squadMember" $ SlotIndex);
 	MemberSlots[SlotIndex].PlayerNameTextField = MemberSlots[SlotIndex].MemberSlotObject.GetObject("playerNameText");	
+
+	MemberSlots[SlotIndex].MemberSlotObject.SetString("leaderText",PartyLeaderString);
 
 	if (KFPC != none)
 	{
@@ -339,6 +347,7 @@ function UpdateVOIP(PlayerReplicationInfo PRI, bool bIsTalking);
 function RefreshParty()
 {
 	OccupiedSlots = 0;
+	UpdateLock();
 }
 
 function StatsInit()
@@ -355,7 +364,7 @@ function EmptySlot( int SlotIndex )
 {
 	MemberSlots[SlotIndex].PlayerUID = ZeroUniqueId;
    	MemberSlots[SlotIndex].bIsSlotTaken = false;
-	UpdatePlayerName( SlotIndex, "" );
+	UpdatePlayerName( SlotIndex, DefaultPlayerName$SlotIndex );
     SlotChanged( SlotIndex, false, false, false );
 }
 
@@ -459,6 +468,7 @@ defaultproperties
    WaitingString="WAITING FOR PLAYERS"
    DeployingString="DEPLOYING IN "
    PlayerReadyString="[ READY ]"
+   PartyLeaderString="Leader"
    MuteString="Mute Player"
    UnmuteString="Unmute Player"
    AddFriendString="Add Friend"
@@ -481,6 +491,7 @@ defaultproperties
    SearchingForGame="SearchingForGame"
    UpdatingOptions="UpdatingOptions"
    InOtherMenu="InOtherMenu"
+   PlayerSlots=6
    Name="Default__KFGFxWidget_BaseParty"
    ObjectArchetype=KFGFxObject_Container'KFGame.Default__KFGFxObject_Container'
 }

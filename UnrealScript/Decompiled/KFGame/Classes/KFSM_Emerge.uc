@@ -134,7 +134,7 @@ function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessT
     {
         KFPOwner.Knockdown(PawnOwner.Velocity, vect(1, 1, 1));
     }
-    if(KFPOwner.SpecialMove == 10)
+    if(KFPOwner.SpecialMove == 11)
     {
         KFPOwner.EndSpecialMove();
     }

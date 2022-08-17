@@ -19,7 +19,7 @@ enum EServerType
 {
     E_Standard,
     E_Custom,
-    E_Unranked,
+    E_Listen,
     E_MAX
 };
 
@@ -66,19 +66,39 @@ var string PreviousMapName;
 function Initialize(KFGFxObject_Menu NewParentMenu)
 {
     super.Initialize(NewParentMenu);
-    if(SavedDifficultyIndex >= Class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray().Length)
-    {
-        SavedDifficultyIndex = 0;
-    }
+    ClampSavedFiltersToMode();
     StartMenu = KFGFxMenu_StartGame(NewParentMenu);
     InitializeGameOptions();
     LocalizeArrays();
     SetOptions();
 }
 
+function ClampSavedFiltersToMode()
+{
+    SavedDifficultyIndex = byte(Clamp(SavedDifficultyIndex, 0, Class'KFGameInfo'.default.GameModes[SavedModeIndex].DifficultyLevels));
+    if(SavedLengthIndex >= Class'KFGameInfo'.default.GameModes[SavedModeIndex].Lengths)
+    {
+        SavedLengthIndex = 0;
+    }
+}
+
+function SetModeMenus(GFxObject TextObject, int ModeIndex)
+{
+    local int DifficultyLevels, Lengths, NewDifficultyIndex, NewLengthIndex;
+
+    DifficultyLevels = Class'KFGameInfo'.default.GameModes[ModeIndex].DifficultyLevels;
+    Lengths = Class'KFGameInfo'.default.GameModes[ModeIndex].Lengths;
+    NewDifficultyIndex = Clamp(NewDifficultyIndex, 0, DifficultyLevels);
+    NewLengthIndex = Clamp(NewLengthIndex, 0, Lengths);
+    TextObject.SetObject("difficultyList", CreateList(Class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray(), byte(NewDifficultyIndex), false, false, byte(DifficultyLevels)));
+    TextObject.SetObject("lengthList", CreateList(Class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), SavedLengthIndex, true, false, byte(Lengths)));
+}
+
 function InitializeGameOptions()
 {
     local GFxObject TextObject;
+    local array<string> SupportedGameModeStrings;
+    local int I;
 
     bIsSoloGame = GetBool("bIsSoloGame");
     InitialMapIndex = byte(StartMenu.MapStringList.Find(SavedMapString);
@@ -105,10 +125,26 @@ function InitializeGameOptions()
     {
         AdjustSavedIndexesForSoloGame();
     }
-    TextObject.SetObject("modeList", CreateList(Class'KFCommon_LocalizedStrings'.static.GetGameModeStringsArray(), SavedModeIndex, true));
-    TextObject.SetObject("lengthList", CreateList(Class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), SavedLengthIndex, true));
+    SupportedGameModeStrings = Class'KFCommon_LocalizedStrings'.static.GetGameModeStringsArray();
+    if(bIsSoloGame)
+    {
+        I = 0;
+        J0x4A1:
+
+        if(I < SupportedGameModeStrings.Length)
+        {
+            if(!Class'KFGameInfo'.static.IsGameModeSoloPlayAllowed(I))
+            {
+                SupportedGameModeStrings.Remove(I, 1;
+                -- I;
+            }
+            ++ I;
+            goto J0x4A1;
+        }
+    }
+    TextObject.SetObject("modeList", CreateList(SupportedGameModeStrings, byte(Min(SavedModeIndex, SupportedGameModeStrings.Length - 1)), true));
+    SetModeMenus(TextObject, Min(SavedModeIndex, SupportedGameModeStrings.Length - 1));
     TextObject.SetObject("mapList", CreateList(StartMenu.MapStringList, InitialMapIndex, true, true));
-    TextObject.SetObject("difficultyList", CreateList(Class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray(), SavedDifficultyIndex, false));
     TextObject.SetObject("serverTypeList", CreateList(ServerTypeStrings, SavedServerTypeIndex, true));
     TextObject.SetObject("inProgressList", CreateList(InProgessOptionStrings, SavedInProgressIndex, false));
     TextObject.SetObject("privacyList", CreateList(Class'KFCommon_LocalizedStrings'.static.GetPermissionStringsArray(), SavedPrivacyIndex, false));
@@ -120,6 +156,7 @@ function LocalizeArrays()
 {
     ServerTypeStrings[0] = Localize("KFGFxStartGameContainer_Options", "StandardServerString", "KFGame");
     ServerTypeStrings[1] = Localize("KFGFxStartGameContainer_Options", "CustomServerString", "KFGame");
+    ServerTypeStrings[2] = "Listen";
     InProgessOptionStrings[0] = Localize("KFGFxStartGameContainer_Options", "AllowInProgressString", "KFGame");
     InProgessOptionStrings[1] = Localize("KFGFxStartGameContainer_Options", "NotStartedString", "KFGame");
 }
@@ -144,25 +181,34 @@ function AdjustSavedIndexesForSoloGame()
     }
 }
 
-function GFxObject CreateList(array<string> TextArray, byte SelectedIndex, bool bAddNoPrefString, optional bool bIsMapList)
+function GFxObject CreateList(array<string> TextArray, byte SelectedIndex, bool bAddNoPrefString, optional bool bIsMapList, optional byte MaxLength)
 {
     local byte I;
     local GFxObject OptionList, DataProvider, ItemSlot;
     local string TempString;
+    local byte ArrayLen;
 
     OptionList = Outer.CreateObject("Object");
     DataProvider = Outer.CreateArray();
+    if(MaxLength > 0)
+    {
+        ArrayLen = byte(Min(MaxLength, TextArray.Length));        
+    }
+    else
+    {
+        ArrayLen = byte(TextArray.Length);
+    }
     I = 0;
-    J0x69:
+    J0xBA:
 
-    if(I < TextArray.Length)
+    if(I < ArrayLen)
     {
         ItemSlot = Outer.CreateObject("Object");
         TempString = ((bIsMapList) ? StartMenu.GetFriendlyMapName(TextArray[I]) : TextArray[I]);
         ItemSlot.SetString("label", TempString);
         DataProvider.SetElementObject(I, ItemSlot);
         ++ I;
-        goto J0x69;
+        goto J0xBA;
     }
     if(bAddNoPrefString && !GetBool("bIsSoloGame"))
     {
@@ -205,6 +251,8 @@ function SetSearching(bool bSearching)
 function ModeChanged(int Index)
 {
     SavedModeIndex = byte(Index);
+    ClampSavedFiltersToMode();
+    InitializeGameOptions();
     SaveConfig();
 }
 
@@ -355,6 +403,11 @@ function GetServerTypeBools(out int bCustom, out int bRanked)
             break;
     }
     return;
+}
+
+function bool GetServerTypeListen()
+{
+    return SavedServerTypeIndex == 2;
 }
 
 defaultproperties

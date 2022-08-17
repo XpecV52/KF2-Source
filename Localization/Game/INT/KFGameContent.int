@@ -102,6 +102,11 @@ ItemName="Bowie Knife"
 ItemCategory="Melee"
 ItemDescription="• Primary - fast slash attack, Hold for combo attack.\n• Secondary - heavy slash attack\n• Alt - block/parry\n• The over-sized knife of the Old West. Perfect for slicing and dicing Zeds in the here and now."
 
+[KFWeap_Knife_Sharpshooter]
+ItemName="Kukri"
+ItemCategory="Melee"
+ItemDescription=""
+
 [KFWeap_Pistol_Medic]
 ItemName="HMTech-101 Pistol"
 ItemCategory="Pistol"
@@ -274,6 +279,16 @@ ItemName="Dual .500 Magnums"
 ItemCategory="Hand Gun"
 ItemDescription="• Fire mode is semi-auto only.\n• Alt-fire switches aiming styles when in Ironsights.\n• A pair of .500 Magnum 'Bone Collector' revolvers. Each can be individually sold or dropped. With a big 'thud'."
 
+[KFWeap_Rifle_Winchester1894]
+ItemName="Winchester 1894"
+ItemCategory="Rifle"
+ItemDescription="• Fire mode is single shot only.\n• The classic Model 1894 Winchester lever-action rifle."
+
+[KFWeap_Bow_Crossbow]
+ItemName="Crossbow"
+ItemCategory="Bow"
+ItemDescription="• Fire mode is single shot only.\n• Crossbow bolts are often recoverable!\n• A high-powered hunting crossbow, giving good penetration and good stopping power!"
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"
@@ -296,3 +311,14 @@ BossCaptionStrings[5]="While you won't get much choice about it, killing The Pat
 
 [KFGameInfo_Survival]
 GameName="Survival"
+
+[KFGameInfo_VersusSurvival]
+GameName="VS Survival"
+
+[KFPawn_ZedPatriarch_Versus]
+NoHealsRemainingMsg="No Heals Remaining"
+LowHealthMsg="Health Is Critical! Heal Now!"
+NoMortarTargetsMsg="No Valid Mortar Targets"
+
+[KFSM_PlayerSiren_VortexVictim]
+VortexGrabTeamWarningMsg="%x% is trapped by a Siren!"

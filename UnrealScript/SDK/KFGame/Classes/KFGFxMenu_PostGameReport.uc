@@ -174,12 +174,21 @@ function SetPlayerInfo()
 	KFPC = KFPlayerController(GetPC());
 
 	TextObject = CreateObject("Object");
-
-	TextObject.SetString("playerName", KFPC.PlayerReplicationInfo.PlayerName);
-	TextObject.SetString("perkIcon", "img://"$KFPC.CurrentPerk.GetPerkIconPath());
-	TextObject.SetString("perkName", KFPC.CurrentPerk.default.PerkName);
-	TextObject.SetInt("perkLevel", KFPC.GetLevel());
-
+	if(KFPC.PlayerReplicationInfo.GetTeamNum() != 255)
+	{
+		TextObject.SetString("playerName", KFPC.PlayerReplicationInfo.PlayerName);
+		TextObject.SetString("perkIcon", "img://"$KFPC.CurrentPerk.GetPerkIconPath());
+		TextObject.SetString("perkName", KFPC.CurrentPerk.default.PerkName);
+		TextObject.SetInt("perkLevel", KFPC.GetLevel());
+	}
+	else
+	{
+		TextObject.SetString("playerName", KFPC.PlayerReplicationInfo.PlayerName);
+		TextObject.SetString("perkIcon", "img://"$PathName(class'KFGFxWidget_PartyInGame_Versus'.default.ZedIConTexture));
+		TextObject.SetString("perkName", class'KFCommon_LocalizedStrings'.default.ZedString);
+		TextObject.SetInt("perkLevel", 0);	
+	}
+	
 	SetObject("playerInfo", TextObject);
 }
 
@@ -324,7 +333,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
                 teamAwardsContainer = KFGFxPostGameContainer_TeamAwards(Widget);
                 teamAwardsContainer.Initialize( self );
             }
-            break;
+        break;
        case 'playerXPContainer':
 	    	if(playerXPContainer == none)
 	        {

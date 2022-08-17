@@ -79,7 +79,7 @@ state Command_SpecialMove
 
 	function ESpecialMove GetSpecialMove()
 	{
-		return SM_StandAndShotAttack;
+		return SM_StandAndShootAttack;
 	}
 }
 

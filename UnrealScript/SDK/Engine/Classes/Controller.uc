@@ -35,7 +35,7 @@ var const private Controller			NextController;					// chained Controller list
 var		bool        					bIsPlayer;						// Pawn is a player or a player-bot.
 var		bool							bGodMode;		   				// cheat - when true, can't be killed or hurt
 
-`if(`__TW_SDK_)
+`if(`__TW_)
 var     bool                            bDemiGodMode;                   /** It forces the pawn to not be able to die */
 `endif
 

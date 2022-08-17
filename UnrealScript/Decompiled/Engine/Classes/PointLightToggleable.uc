@@ -66,27 +66,16 @@ defaultproperties
     object end
     // Reference: SpriteComponent'Default__PointLightToggleable.Sprite'
     Components(0)=Sprite
-    begin object name=LightMeshComponent0 class=StaticMeshComponent
-        ReplacementPrimitive=none
-    object end
-    // Reference: StaticMeshComponent'Default__PointLightToggleable.LightMeshComponent0'
-    Components(1)=LightMeshComponent0
-    begin object name=LensFlareComponent0 class=LensFlareComponent
-        NextTraceTime=0.0 // Ka v oh
-        ReplacementPrimitive=none
-    object end
-    // Reference: LensFlareComponent'Default__PointLightToggleable.LensFlareComponent0'
-    Components(2)=LensFlareComponent0
     begin object name=DrawLightRadius0 class=DrawLightRadiusComponent
         ReplacementPrimitive=none
     object end
     // Reference: DrawLightRadiusComponent'Default__PointLightToggleable.DrawLightRadius0'
-    Components(3)=DrawLightRadius0
+    Components(1)=DrawLightRadius0
     begin object name=DrawLightSourceRadius0 class=DrawLightRadiusComponent
         ReplacementPrimitive=none
     object end
     // Reference: DrawLightRadiusComponent'Default__PointLightToggleable.DrawLightSourceRadius0'
-    Components(4)=DrawLightSourceRadius0
+    Components(2)=DrawLightSourceRadius0
     begin object name=PointLightComponent0 class=PointLightComponent
         PreviewLightRadius=DrawLightRadiusComponent'Default__PointLightToggleable.DrawLightRadius0'
         LightmassSettings=(IndirectLightingScale=0)
@@ -95,7 +84,7 @@ defaultproperties
         UseDirectLightMap=false
     object end
     // Reference: PointLightComponent'Default__PointLightToggleable.PointLightComponent0'
-    Components(5)=PointLightComponent0
+    Components(3)=PointLightComponent0
     TickGroup=ETickingGroup.TG_DuringAsyncWork
     bHardAttach=true
     begin object name=LightMeshComponent0 class=StaticMeshComponent

@@ -22,26 +22,8 @@
 
 `endif
 
-`define RecordSurvivalInfo(Difficulty, Length) if(`ValidStatsContext){`StatsContext.LogSurvivalInfo(`Difficulty, `Length);}
-`define RecordGameVictory() if(`ValidStatsContext){`StatsContext.LogGameIntEvent(`StatId(MATCH_WON), 1);}
-`define RecordKFPlayerPerk(Player, Perk) if(`ValidStatsContext){`StatsContext.LogKFPlayerPerk(`StatId(PLAYER_PERK_CHANGED), `Player, `Perk); }
-
 /** Gameplay */
-`define RecordZedKilledEvent(Killer,Monster,MonsterPawn)  if(`ValidStatsContext){`StatsContext.LogZedKilled(`Killer,`Monster,`MonsterPawn);}
-`define RecordZedKilledPerPlayerEvent(KFPC,TotalDamage,Exp,EarnedDosh,Perk) if(`ValidStatsContext){`StatsContext.LogZedKilledPerPlayer(`KFPC,`TotalDamage,`Exp,`EarnedDosh,`Perk);}
 `define RecordZedSpawn(KFPC) if(`ValidStatsContext){`StatsContext.LogPlayerIntEvent(`StatId(ZED_SPAWNED),`KFPC,0);}
-
-`define RecordPlayerReload(Weapon,Player) if(`ValidStatsContext){`StatsContext.LogPlayerWeaponReload(`Weapon,`Player);}
-`define RecordPlayerXP(ID,KFPC,Amount) if(`ValidStatsContext){`StatsContext.LogPlayerIntEvent(`ID,`KFPC,`Amount);}
-`define RecordGrenadeThrown(KFPC,GrenadesLeft) if(`ValidStatsContext){`StatsContext.LogPlayerIntEvent(`StatId(GRENADE_THROWN),`KFPC,`GrenadesLeft);}
-
-`define RecordKFDamage(EventID,Instigator,Victim,HitZone,Damage,DamageType) if(`ValidStatsContext){`StatsContext.LogKFDamageEvent(`EventID,`Instigator,`Victim,`HitZone,`Damage,`DamageType);}
-`define RecordKFPlayerHeal(Amount,Healer,DamageType,Recipient,DoshEarned) if(`ValidStatsContext){`StatsContext.LogPlayerHealEvent(`Amount,`Healer,`DamageType,`Recipient,`DoshEarned);}
-`define RecordKFDoorWeld(Amount,MaxWeldIntegrity,PostWeldIntegrity,Welder,Damager,Door) if(`ValidStatsContext){`StatsContext.LogDoorWeldEvent(`Amount,`MaxWeldIntegrity,`PostWeldIntegrity,`Welder,`Damager,`Door);}
-
-`define RecordPlayerDoshDelta(Player,DoshDelta) if(`ValidStatsContext){`StatsContext.LogPlayerDoshDelta(`Player,`DoshDelta);}
-`define RecordTraderTransactions(EventID,Player,TraderItem,AmmoPurchased,bSecondaryAmmo) if(`ValidStatsContext){`StatsContext.LogTraderTransactions(`EventID,`Player,`TraderItem,`AmmoPurchased,`bSecondaryAmmo);}
-`define RecordArmorPurchase(EventID,Player,ArmorPurchased) if(`ValidStatsContext){`StatsContext.LogArmorPurchase(`EventID,`Player,`ArmorPurchased);}
 
 /** AI */
 `define RecordSpawnVolumeRating(SpawnVolume,FinalRating,UsageRating,LocationRating) if(`ValidStatsContext){`StatsContext.LogSpawnVolumeRating(`SpawnVolume,`FinalRating,`UsageRating,`LocationRating);}

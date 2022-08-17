@@ -64,9 +64,7 @@ class KFDT_Slashing_Knife extends KFDT_Slashing
 
 
 
-
 #linenumber 15;
-
 
 
 

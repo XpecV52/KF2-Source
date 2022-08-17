@@ -65,7 +65,7 @@ function DoMeleeAttack( optional Pawn NewEnemy, optional Actor InTarget, optiona
 		// Only Pack flags if 255 was initially passed in
 		if( AttackFlags == 255 )
 		{
-			AttackFlags = ChooseStrikeAnimation();	
+			AttackFlags = ChooseStrikeAnimation();
 		}
 
 		if( AttackFlags != 255 )
@@ -97,6 +97,7 @@ defaultproperties
 {
    bIsProbingMeleeRangeEvents=True
    SprintWithinEnemyRange=(X=600.000000,Y=1200.000000)
+   LowIntensityAttackCooldown=7.000000
    Name="Default__KFAIController_ZedSiren"
    ObjectArchetype=KFAIController_Monster'KFGame.Default__KFAIController_Monster'
 }

@@ -61,7 +61,6 @@ class KFDT_Slashing_Eviscerator extends KFDT_Slashing
 
 
 
-
 #linenumber 12;
 
 static simulated function bool CanDismemberHitZone( name InHitZoneName )

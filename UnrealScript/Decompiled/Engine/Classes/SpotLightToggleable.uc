@@ -68,37 +68,26 @@ defaultproperties
     object end
     // Reference: SpriteComponent'Default__SpotLightToggleable.Sprite'
     Components(0)=Sprite
-    begin object name=LightMeshComponent0 class=StaticMeshComponent
-        ReplacementPrimitive=none
-    object end
-    // Reference: StaticMeshComponent'Default__SpotLightToggleable.LightMeshComponent0'
-    Components(1)=LightMeshComponent0
-    begin object name=LensFlareComponent0 class=LensFlareComponent
-        NextTraceTime=0.0 // Ka v oh
-        ReplacementPrimitive=none
-    object end
-    // Reference: LensFlareComponent'Default__SpotLightToggleable.LensFlareComponent0'
-    Components(2)=LensFlareComponent0
     begin object name=DrawLightRadius0 class=DrawLightRadiusComponent
         ReplacementPrimitive=none
     object end
     // Reference: DrawLightRadiusComponent'Default__SpotLightToggleable.DrawLightRadius0'
-    Components(3)=DrawLightRadius0
+    Components(1)=DrawLightRadius0
     begin object name=DrawInnerCone0 class=DrawLightConeComponent
         ReplacementPrimitive=none
     object end
     // Reference: DrawLightConeComponent'Default__SpotLightToggleable.DrawInnerCone0'
-    Components(4)=DrawInnerCone0
+    Components(2)=DrawInnerCone0
     begin object name=DrawOuterCone0 class=DrawLightConeComponent
         ReplacementPrimitive=none
     object end
     // Reference: DrawLightConeComponent'Default__SpotLightToggleable.DrawOuterCone0'
-    Components(5)=DrawOuterCone0
+    Components(3)=DrawOuterCone0
     begin object name=DrawLightSourceRadius0 class=DrawLightRadiusComponent
         ReplacementPrimitive=none
     object end
     // Reference: DrawLightRadiusComponent'Default__SpotLightToggleable.DrawLightSourceRadius0'
-    Components(6)=DrawLightSourceRadius0
+    Components(4)=DrawLightSourceRadius0
     begin object name=SpotLightComponent0 class=SpotLightComponent
         PreviewInnerCone=DrawLightConeComponent'Default__SpotLightToggleable.DrawInnerCone0'
         PreviewOuterCone=DrawLightConeComponent'Default__SpotLightToggleable.DrawOuterCone0'
@@ -109,12 +98,12 @@ defaultproperties
         UseDirectLightMap=false
     object end
     // Reference: SpotLightComponent'Default__SpotLightToggleable.SpotLightComponent0'
-    Components(7)=SpotLightComponent0
+    Components(5)=SpotLightComponent0
     begin object name=ArrowComponent0 class=ArrowComponent
         ReplacementPrimitive=none
     object end
     // Reference: ArrowComponent'Default__SpotLightToggleable.ArrowComponent0'
-    Components(8)=ArrowComponent0
+    Components(6)=ArrowComponent0
     TickGroup=ETickingGroup.TG_DuringAsyncWork
     bHardAttach=true
     begin object name=LightMeshComponent0 class=StaticMeshComponent

@@ -10,7 +10,6 @@ Description="Being a big guy, from Sweden, who enjoyed beer and getting loud in 
 BodyMesh0="Biker Time"
 HeadMesh0="Beard Power!"
 
-
 Attachment0="Flatcap"
 Attachment1="Kevlar Helmet"
 Attachment2="Nightvision Helmet"
@@ -25,6 +24,37 @@ Attachment10="Spiky Cowboy Hat"
 Attachment11="Front Row Protection Up"
 Attachment12="Front Row Protection Down"
 Attachment13="Custodian Helmet"
+Attachment14="Charm Goggles"
+Attachment15="Aviator Goggles"
+Attachment16="Sawblade Battle Helm"
+Attachment17="Boonie Cap"
+Attachment18="Infiltrator"
+Attachment19="Mask of the Abyss"
+Attachment20="Cybernetic Gas Mask"
+Attachment21="JFront Cap"
+Attachment22="Longhorn"
+Attachment23="EMS Backpack"
+Attachment24="Motorcycle Helmet"
+Attachment25="Smashed Motorcycle Helmet"
+Attachment26="Rubber Air Filter"
+Attachment27="Russian Gas Mask"
+Attachment28="Sawtooth Mask"
+Attachment29="The Inquisitor"
+Attachment30="US Gas Mask"
+Attachment31="Bloody Games"
+Attachment32="Shattered Mask"
+Attachment33="Military Surplus Beanie"
+Attachment34="RAF Goggles"
+Attachment35="Pork Pie"
+Attachment36="Visage de Poupee"
+Attachment37="Protective Glasses"
+Attachment38="Samurai Mask"
+Attachment39="Samurai Helm"
+Attachment40="Street Punk Bandana"
+Attachment41="Street Punk Glasses"
+Attachment42="Discount T-Rex Mask"
+Attachment43="Wasteland Goggles"
+Attachment44="EMS Arm Band"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
 BodySkin0="Guillotine"
@@ -37,7 +67,6 @@ BodySkin4="Demon Hunter"
 HeadSkin0="Swedish Blonde"
 HeadSkin1="The Black Album"
 HeadSkin2="Blood Red"
-
 
 [chr_Jagerhorn_archetype.Attachment0]
 AttachmentSkin0="Olde English"
@@ -130,6 +159,212 @@ AttachmentSkin1="Gold"
 AttachmentSkin2="Blue"
 AttachmentSkin3="Precious Gold"
 
+[CHR_Jagerhorn_Archetype.Attachment14]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment15]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment16]
+AttachmentSkin0="Default"
+
+[CHR_Jagerhorn_Archetype.Attachment17]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[CHR_Jagerhorn_Archetype.Attachment18]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment19]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment20]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[CHR_Jagerhorn_Archetype.Attachment21]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[CHR_Jagerhorn_Archetype.Attachment22]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment23]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Jagerhorn_Archetype.Attachment24]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment25]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[CHR_Jagerhorn_Archetype.Attachment26]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[CHR_Jagerhorn_Archetype.Attachment27]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment28]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment29]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[CHR_Jagerhorn_Archetype.Attachment30]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment31]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[CHR_Jagerhorn_Archetype.Attachment32]
+AttachmentSkin0="WhiteYellow"
+
+[CHR_Jagerhorn_Archetype.Attachment33]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[CHR_Jagerhorn_Archetype.Attachment34]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[CHR_Jagerhorn_Archetype.Attachment35]
+AttachmentSkin0="Mr White"
+
+[CHR_Jagerhorn_Archetype.Attachment36]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[CHR_Jagerhorn_Archetype.Attachment37]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment38]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment39]
+AttachmentSkin0="Bushi"
+
+[CHR_Jagerhorn_Archetype.Attachment40]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[CHR_Jagerhorn_Archetype.Attachment41]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[CHR_Jagerhorn_Archetype.Attachment42]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment43]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment44]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
 //DJ Scully
 
 [chr_DJSkully_archetype]
@@ -159,6 +394,38 @@ Attachment18="Criminally Insane Mask"
 Attachment19="Flight Helmet"
 Attachment20="Custodian Helmet"
 Attachment21="Flight Mask"
+Attachment22="Charm Goggles"
+Attachment23="Aviator Goggles"
+Attachment24="Sawblade Battle Helm"
+Attachment25="Boonie Cap"
+Attachment26="Infiltrator"
+Attachment27="Mask of the Abyss"
+Attachment28="Cybernetic Gas Mask"
+Attachment29="JFront Cap"
+Attachment30="Longhorn"
+Attachment31="EMS Backpack"
+Attachment32="Motorcycle Helmet"
+Attachment33="Smashed Motorcycle Helmet"
+Attachment34="Rubber Air Filter"
+Attachment35="Russian Gas Mask"
+Attachment36="Sawtooth Mask"
+Attachment37="The Inquisitor"
+Attachment38="US Gas Mask"
+Attachment39="Bloody Games"
+Attachment40="Shattered Mask"
+Attachment41="Military Surplus Beanie"
+Attachment42="RAF Goggles"
+Attachment43="Pork Pie"
+Attachment44="Visage de Poupee"
+Attachment45="Protective Glasses"
+Attachment46="Samurai Mask"
+Attachment47="Samurai Helm"
+Attachment48="Street Punk Bandana"
+Attachment49="Street Punk Glasses"
+Attachment50="Discount T-Rex Mask"
+Attachment51="Wasteland Goggles"
+Attachment52="EMS Arm Band"
+Attachment53="Tactical Backbag"
 
 [chr_DJSkully_archetype.BodyMesh0]
 BodySkin0="Blackest Black"
@@ -333,6 +600,220 @@ AttachmentSkin3="Crimson Sky"
 AttachmentSkin4="Flame"
 AttachmentSkin5="Ninja"
 
+[chr_DJSkully_archetype.Attachment22]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_DJSkully_archetype.Attachment23]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_DJSkully_archetype.Attachment24]
+AttachmentSkin0="Default"
+
+[chr_DJSkully_archetype.Attachment25]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[chr_DJSkully_archetype.Attachment26]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[chr_DJSkully_archetype.Attachment27]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[chr_DJSkully_archetype.Attachment28]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[chr_DJSkully_archetype.Attachment29]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[chr_DJSkully_archetype.Attachment30]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_DJSkully_archetype.Attachment31]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_DJSkully_archetype.Attachment32]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[chr_DJSkully_archetype.Attachment33]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[chr_DJSkully_archetype.Attachment34]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[chr_DJSkully_archetype.Attachment35]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_DJSkully_archetype.Attachment36]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[chr_DJSkully_archetype.Attachment37]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[chr_DJSkully_archetype.Attachment38]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_DJSkully_archetype.Attachment39]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[chr_DJSkully_archetype.Attachment40]
+AttachmentSkin0="WhiteYellow"
+
+[chr_DJSkully_archetype.Attachment41]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[chr_DJSkully_archetype.Attachment42]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[chr_DJSkully_archetype.Attachment43]
+AttachmentSkin0="Mr White"
+
+[chr_DJSkully_archetype.Attachment44]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[chr_DJSkully_archetype.Attachment45]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[chr_DJSkully_archetype.Attachment46]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_DJSkully_archetype.Attachment47]
+AttachmentSkin0="Bushi"
+
+[chr_DJSkully_archetype.Attachment48]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[chr_DJSkully_archetype.Attachment49]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[chr_DJSkully_archetype.Attachment50]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_DJSkully_archetype.Attachment51]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_DJSkully_archetype.Attachment52]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_DJSkully_archetype.Attachment53]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
 //Police Constable Rob Briar
 
 [chr_briar_archetype]
@@ -368,7 +849,47 @@ Attachment23="Criminally Insane Mask"
 Attachment24="Flight Helmet"
 Attachment25="Skull Breaker Helmet"
 Attachment26="Skull Breaker Mask"
-Attachment27="Flight Helmet"
+Attachment27="Flight Mask"
+Attachment28="Charm Goggles"
+Attachment29="Aviator Goggles"
+Attachment30="Sawblade Battle Helm"
+Attachment31="Boonie Cap"
+Attachment32="Infiltrator"
+Attachment33="Mask of the Abyss"
+Attachment34="Cybernetic Gas Mask"
+Attachment35="JFront Cap"
+Attachment36="Longhorn"
+Attachment37="EMS Backpack"
+Attachment38="Motorcycle Helmet"
+Attachment39="Smashed Motorcycle Helmet"
+Attachment40="Rubber Air Filter"
+Attachment41="Russian Gas Mask"
+Attachment42="Sawtooth Mask"
+Attachment43="The Inquisitor"
+Attachment44="US Gas Mask"
+Attachment45="Bloody Games"
+Attachment46="Shattered Mask"
+Attachment47="Military Surplus Beanie"
+Attachment48="RAF Goggles"
+Attachment49="Pork Pie"
+Attachment50="Visage de Poupee"
+Attachment51="Protective Glasses"
+Attachment52="Samurai Mask"
+Attachment53="Samurai Helm"
+Attachment54="Street Punk Bandana"
+Attachment55="Street Punk Glasses"
+Attachment56="Discount T-Rex Mask"
+Attachment57="Wasteland Goggles"
+Attachment58="EMS Arm Band"
+Attachment59="M2 Flamethrower Tank"
+Attachment60="RPG7 Backbag"
+Attachment61="Enforcer Goggles"
+Attachment62="Enforcer Helmet"
+Attachment63="Enforcer Mask"
+Attachment64="Justice Goggles"
+Attachment65="Justice Helmet"
+Attachment66="Justice Mask"
+Attachment67="Tactical Backbag"
 
 [chr_briar_archetype.BodyMesh0]
 BodySkin0="Police Blue"
@@ -588,6 +1109,283 @@ AttachmentSkin3="Crimson Sky"
 AttachmentSkin4="Flame"
 AttachmentSkin5="Ninja"
 
+[chr_briar_archetype.Attachment28]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_briar_archetype.Attachment29]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_briar_archetype.Attachment30]
+AttachmentSkin0="Default"
+
+[chr_briar_archetype.Attachment31]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[chr_briar_archetype.Attachment32]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[chr_briar_archetype.Attachment33]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[chr_briar_archetype.Attachment34]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[chr_briar_archetype.Attachment35]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[chr_briar_archetype.Attachment36]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_briar_archetype.Attachment37]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_briar_archetype.Attachment38]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[chr_briar_archetype.Attachment39]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[chr_briar_archetype.Attachment40]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[chr_briar_archetype.Attachment41]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_briar_archetype.Attachment42]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[chr_briar_archetype.Attachment43]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[chr_briar_archetype.Attachment44]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_briar_archetype.Attachment45]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[chr_briar_archetype.Attachment46]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[chr_briar_archetype.Attachment47]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[chr_briar_archetype.Attachment48]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[chr_briar_archetype.Attachment49]
+AttachmentSkin0="Mr White"
+
+[chr_briar_archetype.Attachment50]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[chr_briar_archetype.Attachment51]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[chr_briar_archetype.Attachment52]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_briar_archetype.Attachment53]
+AttachmentSkin0="Bushi"
+
+[chr_briar_archetype.Attachment54]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[chr_briar_archetype.Attachment55]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[chr_briar_archetype.Attachment56]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_briar_archetype.Attachment57]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_briar_archetype.Attachment58]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_briar_archetype.Attachment59]
+AttachmentSkin0="Olive Grey"
+
+[chr_briar_archetype.Attachment60]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[chr_briar_archetype.Attachment61]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Black Coat Blue"
+AttachmentSkin2="Black Coat Red"
+AttachmentSkin3="Black Coat Green"
+AttachmentSkin4="Green Coat"
+AttachmentSkin5="Blue Coat"
+AttachmentSkin6="Red Coat"
+
+[chr_briar_archetype.Attachment62]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Green Coat"
+AttachmentSkin2="Blue Coat"
+AttachmentSkin3="Red Coat"
+
+[chr_briar_archetype.Attachment63]
+AttachmentSkin0="Black Eyes"
+AttachmentSkin1="Red Eyes"
+AttachmentSkin2="Blue Eyes"
+AttachmentSkin3="Green Eyes"
+AttachmentSkin4="Green Filter"
+AttachmentSkin5="Blue Filter"
+AttachmentSkin6="Red Filter"
+
+[chr_briar_archetype.Attachment64]
+AttachmentSkin0="Stealth Black"
+
+[chr_briar_archetype.Attachment65]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+
+[chr_briar_archetype.Attachment66]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+AttachmentSkin4="Blue Steel"
+AttachmentSkin5="Blue Magnum"
+AttachmentSkin6="Green Rally"
+AttachmentSkin7="Green Synergy"
+AttachmentSkin8="Red Face"
+AttachmentSkin9="Red Cheeks"
+AttachmentSkin10="Reaper Black"
+
+[chr_briar_archetype.Attachment67]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
 
 //Mr Foster
 
@@ -619,6 +1417,40 @@ Attachment18="Front Row Protection Up"
 Attachment19="Flight Helmet"
 Attachment20="Custodian Helmet"
 Attachment21="Flight Mask"
+Attachment22="Charm Goggles"
+Attachment23="Aviator Goggles"
+Attachment24="Sawblade Battle Helm"
+Attachment25="Boonie Cap"
+Attachment26="Infiltrator"
+Attachment27="Mask of the Abyss"
+Attachment28="Cybernetic Gas Mask"
+Attachment29="JFront Cap"
+Attachment30="Longhorn"
+Attachment31="EMS Backpack"
+Attachment32="Motorcycle Helmet"
+Attachment33="Smashed Motorcycle Helmet"
+Attachment34="Rubber Air Filter"
+Attachment35="Russian Gas Mask"
+Attachment36="Sawtooth Mask"
+Attachment37="The Inquisitor"
+Attachment38="US Gas Mask"
+Attachment39="Bloody Games"
+Attachment40="Shattered Mask"
+Attachment41="Military Surplus Beanie"
+Attachment42="RAF Goggles"
+Attachment43="Pork Pie"
+Attachment44="Visage de Poupee"
+Attachment45="Protective Glasses"
+Attachment46="Samurai Mask"
+Attachment47="Samurai Helm"
+Attachment48="Street Punk Bandana"
+Attachment49="Street Punk Glasses"
+Attachment50="Discount T-Rex Mask"
+Attachment51="Wasteland Goggles"
+Attachment52="EMS Arm Band"
+Attachment53="M2 Flamethrower Tank"
+Attachment54="RPG7 Backbag"
+Attachment55="Tactical Backbag"
 
 [CHR_MrFoster_archetype.BodyMesh0]
 BodySkin0="KF Blue"
@@ -825,6 +1657,232 @@ AttachmentSkin3="Crimson Sky"
 AttachmentSkin4="Flame"
 AttachmentSkin5="Ninja"
 
+[CHR_MrFoster_archetype.Attachment22]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_MrFoster_archetype.Attachment23]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_MrFoster_archetype.Attachment24]
+AttachmentSkin0="Default"
+
+[CHR_MrFoster_archetype.Attachment25]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[CHR_MrFoster_archetype.Attachment26]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[CHR_MrFoster_archetype.Attachment27]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[CHR_MrFoster_archetype.Attachment28]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[CHR_MrFoster_archetype.Attachment29]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[CHR_MrFoster_archetype.Attachment30]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_MrFoster_archetype.Attachment31]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_MrFoster_archetype.Attachment32]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[CHR_MrFoster_archetype.Attachment33]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[CHR_MrFoster_archetype.Attachment34]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[CHR_MrFoster_archetype.Attachment35]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_MrFoster_archetype.Attachment36]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[CHR_MrFoster_archetype.Attachment37]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[CHR_MrFoster_archetype.Attachment38]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_MrFoster_archetype.Attachment39]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[CHR_MrFoster_archetype.Attachment40]
+AttachmentSkin0="WhiteYellow"
+
+[CHR_MrFoster_archetype.Attachment41]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[CHR_MrFoster_archetype.Attachment42]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[CHR_MrFoster_archetype.Attachment43]
+AttachmentSkin0="Mr White"
+
+[CHR_MrFoster_archetype.Attachment44]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[CHR_MrFoster_archetype.Attachment45]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[CHR_MrFoster_archetype.Attachment46]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_MrFoster_archetype.Attachment47]
+AttachmentSkin0="Bushi"
+
+[CHR_MrFoster_archetype.Attachment48]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[CHR_MrFoster_archetype.Attachment49]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[CHR_MrFoster_archetype.Attachment50]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_MrFoster_archetype.Attachment51]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_MrFoster_archetype.Attachment52]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_MrFoster_archetype.Attachment53]
+AttachmentSkin0="Olive Grey"
+
+[CHR_MrFoster_archetype.Attachment54]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[CHR_MrFoster_archetype.Attachment55]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
 //Erskine Coleman - renamed to Donovan Neal
 
 [CHR_Coleman_archetype]
@@ -862,6 +1920,40 @@ Attachment26="Skull Breaker Helmet"
 Attachment27="Skull Breaker Mask"
 Attachment28="Custodian Helmet"
 Attachment29="Flight Mask"
+Attachment30="Charm Goggles"
+Attachment31="Aviator Goggles"
+Attachment32="Sawblade Battle Helm"
+Attachment33="Boonie Cap"
+Attachment34="Infiltrator"
+Attachment35="Mask of the Abyss"
+Attachment36="Cybernetic Gas Mask"
+Attachment37="JFront Cap"
+Attachment38="Longhorn"
+Attachment39="EMS Backpack"
+Attachment40="Motorcycle Helmet"
+Attachment41="Smashed Motorcycle Helmet"
+Attachment42="Rubber Air Filter"
+Attachment43="Russian Gas Mask"
+Attachment44="Sawtooth Mask"
+Attachment45="The Inquisitor"
+Attachment46="US Gas Mask"
+Attachment47="Bloody Games"
+Attachment48="Shattered Mask"
+Attachment49="Military Surplus Beanie"
+Attachment50="RAF Goggles"
+Attachment51="Pork Pie"
+Attachment52="Visage de Poupee"
+Attachment53="Protective Glasses"
+Attachment54="Samurai Mask"
+Attachment55="Samurai Helm"
+Attachment56="Street Punk Bandana"
+Attachment57="Street Punk Glasses"
+Attachment58="Discount T-Rex Mask"
+Attachment59="Wasteland Goggles"
+Attachment60="EMS Arm Band"
+Attachment61="M2 Flamethrower Tank"
+Attachment62="RPG7 Backbag"
+Attachment63="Tactical Backbag"
 
 [CHR_Coleman_archetype.BodyMesh0]
 BodySkin0="Racing Green"
@@ -1089,6 +2181,237 @@ AttachmentSkin3="Crimson Sky"
 AttachmentSkin4="Flame"
 AttachmentSkin5="Ninja"
 
+[CHR_Coleman_archetype.Attachment30]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Coleman_archetype.Attachment31]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Coleman_archetype.Attachment32]
+AttachmentSkin0="Default"
+
+[CHR_Coleman_archetype.Attachment33]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[CHR_Coleman_archetype.Attachment34]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[CHR_Coleman_archetype.Attachment35]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[CHR_Coleman_archetype.Attachment36]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[CHR_Coleman_archetype.Attachment37]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="White"
+
+[CHR_Coleman_archetype.Attachment38]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="Black"
+AttachmentSkin4="Precious"
+
+[CHR_Coleman_archetype.Attachment39]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Coleman_archetype.Attachment40]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[CHR_Coleman_archetype.Attachment41]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[CHR_Coleman_archetype.Attachment42]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[CHR_Coleman_archetype.Attachment43]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Coleman_archetype.Attachment44]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[CHR_Coleman_archetype.Attachment45]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[CHR_Coleman_archetype.Attachment46]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Coleman_archetype.Attachment47]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[CHR_Coleman_archetype.Attachment48]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[CHR_Coleman_archetype.Attachment49]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[CHR_Coleman_archetype.Attachment50]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[CHR_Coleman_archetype.Attachment51]
+AttachmentSkin0="Mr White"
+
+[CHR_Coleman_archetype.Attachment52]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[CHR_Coleman_archetype.Attachment53]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[CHR_Coleman_archetype.Attachment54]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Coleman_archetype.Attachment55]
+AttachmentSkin0="Bushi"
+
+[CHR_Coleman_archetype.Attachment56]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[CHR_Coleman_archetype.Attachment57]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[CHR_Coleman_archetype.Attachment58]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Coleman_archetype.Attachment59]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Coleman_archetype.Attachment60]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Coleman_archetype.Attachment61]
+AttachmentSkin0="Olive Grey"
+
+[CHR_Coleman_archetype.Attachment62]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[CHR_Coleman_archetype.Attachment63]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
 //Reverend Alberts
 
 [CHR_Alberts_archetype]
@@ -1127,6 +2450,46 @@ Attachment27="Skull Breaker Helmet"
 Attachment28="Skull Breaker Mask"
 Attachment29="Custodian Helmet"
 Attachment30="Flight Mask"
+Attachment31="Charm Goggles"
+Attachment32="Aviator Goggles"
+Attachment33="Sawblade Battle Helm"
+Attachment34="Boonie Cap"
+Attachment35="Infiltrator"
+Attachment36="Mask of the Abyss"
+Attachment37="Cybernetic Gas Mask"
+Attachment38="JFront Cap"
+Attachment39="Longhorn"
+Attachment40="EMS Backpack"
+Attachment41="Motorcycle Helmet"
+Attachment42="Smashed Motorcycle Helmet"
+Attachment43="Rubber Air Filter"
+Attachment44="Russian Gas Mask"
+Attachment45="Sawtooth Mask"
+Attachment46="The Inquisitor"
+Attachment47="US Gas Mask"
+Attachment48="Bloody Games"
+Attachment49="Shattered Mask"
+Attachment50="Military Surplus Beanie"
+Attachment51="RAF Goggles"
+Attachment52="Pork Pie"
+Attachment53="Visage de Poupee"
+Attachment54="Protective Glasses"
+Attachment55="Samurai Mask"
+Attachment56="Samurai Helm"
+Attachment57="Street Punk Bandana"
+Attachment58="Street Punk Glasses"
+Attachment59="Discount T-Rex Mask"
+Attachment60="Wasteland Goggles"
+Attachment61="EMS Arm Band"
+Attachment62="M2 Flamethrower Tank"
+Attachment63="RPG7 Backbag"
+Attachment64="Enforcer Goggles"
+Attachment65="Enforcer Helmet"
+Attachment66="Enforcer Mask"
+Attachment67="Justice Goggles"
+Attachment68="Justice Helmet"
+Attachment69="Justice Mask"
+Attachment70="Tactical Backbag"
 
 [CHR_Alberts_archetype.BodyMesh0]
 BodySkin0="Basic Black"
@@ -1356,6 +2719,283 @@ AttachmentSkin3="Crimson Sky"
 AttachmentSkin4="Flame"
 AttachmentSkin5="Ninja"
 
+[chr_Alberts_archetype.Attachment31]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_Alberts_archetype.Attachment32]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_Alberts_archetype.Attachment33]
+AttachmentSkin0="Default"
+
+[chr_Alberts_archetype.Attachment34]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[chr_Alberts_archetype.Attachment35]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[chr_Alberts_archetype.Attachment36]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[chr_Alberts_archetype.Attachment37]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[chr_Alberts_archetype.Attachment38]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[chr_Alberts_archetype.Attachment39]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_Alberts_archetype.Attachment40]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_Alberts_archetype.Attachment41]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[chr_Alberts_archetype.Attachment42]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[chr_Alberts_archetype.Attachment43]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[chr_Alberts_archetype.Attachment44]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_Alberts_archetype.Attachment45]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[chr_Alberts_archetype.Attachment46]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[chr_Alberts_archetype.Attachment47]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_Alberts_archetype.Attachment48]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[chr_Alberts_archetype.Attachment49]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[chr_Alberts_archetype.Attachment50]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[chr_Alberts_archetype.Attachment51]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[chr_Alberts_archetype.Attachment52]
+AttachmentSkin0="Mr White"
+
+[chr_Alberts_archetype.Attachment53]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[chr_Alberts_archetype.Attachment54]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[chr_Alberts_archetype.Attachment55]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_Alberts_archetype.Attachment56]
+AttachmentSkin0="Bushi"
+
+[chr_Alberts_archetype.Attachment57]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[chr_Alberts_archetype.Attachment58]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[chr_Alberts_archetype.Attachment59]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_Alberts_archetype.Attachment60]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_Alberts_archetype.Attachment61]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_Alberts_archetype.Attachment62]
+AttachmentSkin0="Olive Grey"
+
+[chr_Alberts_archetype.Attachment63]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[chr_Alberts_archetype.Attachment64]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Black Coat Blue"
+AttachmentSkin2="Black Coat Red"
+AttachmentSkin3="Black Coat Green"
+AttachmentSkin4="Green Coat"
+AttachmentSkin5="Blue Coat"
+AttachmentSkin6="Red Coat"
+
+[chr_Alberts_archetype.Attachment65]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Green Coat"
+AttachmentSkin2="Blue Coat"
+AttachmentSkin3="Red Coat"
+
+[chr_Alberts_archetype.Attachment66]
+AttachmentSkin0="Black Eyes"
+AttachmentSkin1="Red Eyes"
+AttachmentSkin2="Blue Eyes"
+AttachmentSkin3="Green Eyes"
+AttachmentSkin4="Green Filter"
+AttachmentSkin5="Blue Filter"
+AttachmentSkin6="Red Filter"
+
+[chr_Alberts_archetype.Attachment67]
+AttachmentSkin0="Stealth Black"
+
+[chr_Alberts_archetype.Attachment68]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+
+[chr_Alberts_archetype.Attachment69]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+AttachmentSkin4="Blue Steel"
+AttachmentSkin5="Blue Magnum"
+AttachmentSkin6="Green Rally"
+AttachmentSkin7="Green Synergy"
+AttachmentSkin8="Red Face"
+AttachmentSkin9="Red Cheeks"
+AttachmentSkin10="Reaper Black"
+
+[chr_Alberts_archetype.Attachment70]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
 //Start Masterson
 
 [CHR_Masterson_archetype]
@@ -1390,6 +3030,46 @@ Attachment23="Skull Breaker Helmet"
 Attachment24="Skull Breaker Mask"
 Attachment25="Flight Mask"
 Attachment26="Custodian Helmet"
+Attachment27="Charm Goggles"
+Attachment28="Aviator Goggles"
+Attachment29="Sawblade Battle Helm"
+Attachment30="Boonie Cap"
+Attachment31="Infiltrator"
+Attachment32="Mask of the Abyss"
+Attachment33="Cybernetic Gas Mask"
+Attachment34="JFront Cap"
+Attachment35="Longhorn"
+Attachment36="EMS Backpack"
+Attachment37="Motorcycle Helmet"
+Attachment38="Smashed Motorcycle Helmet"
+Attachment39="Rubber Air Filter"
+Attachment40="Russian Gas Mask"
+Attachment41="Sawtooth Mask"
+Attachment42="The Inquisitor"
+Attachment43="US Gas Mask"
+Attachment44="Bloody Games"
+Attachment45="Shattered Mask"
+Attachment46="Military Surplus Beanie"
+Attachment47="RAF Goggles"
+Attachment48="Pork Pie"
+Attachment49="Visage de Poupee"
+Attachment50="Protective Glasses"
+Attachment51="Samurai Mask"
+Attachment52="Samurai Helm"
+Attachment53="Street Punk Bandana"
+Attachment54="Street Punk Glasses"
+Attachment55="Discount T-Rex Mask"
+Attachment56="Wasteland Goggles"
+Attachment57="EMS Arm Band"
+Attachment58="M2 Flamethrower Tank"
+Attachment59="RPG7 Backbag"
+Attachment60="Enforcer Goggles"
+Attachment61="Enforcer Helmet"
+Attachment62="Enforcer Mask"
+Attachment63="Justice Goggles"
+Attachment64="Justice Helmet"
+Attachment65="Justice Mask"
+Attachment66="Tactical Backbag"
 
 [CHR_Masterson_archetype.HeadMesh0]
 HeadSkin0="Clean"
@@ -1595,6 +3275,283 @@ AttachmentSkin1="Gold"
 AttachmentSkin2="Blue"
 AttachmentSkin3="Precious Gold"
 
+[CHR_Masterson_archetype.Attachment27]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Masterson_archetype.Attachment28]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Masterson_archetype.Attachment29]
+AttachmentSkin0="Default"
+
+[CHR_Masterson_archetype.Attachment30]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[CHR_Masterson_archetype.Attachment31]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[CHR_Masterson_archetype.Attachment32]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[CHR_Masterson_archetype.Attachment33]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[CHR_Masterson_archetype.Attachment34]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[CHR_Masterson_archetype.Attachment35]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Masterson_archetype.Attachment36]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Masterson_archetype.Attachment37]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[CHR_Masterson_archetype.Attachment38]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[CHR_Masterson_archetype.Attachment39]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[CHR_Masterson_archetype.Attachment40]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Masterson_archetype.Attachment41]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[CHR_Masterson_archetype.Attachment42]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[CHR_Masterson_archetype.Attachment43]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Masterson_archetype.Attachment44]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[CHR_Masterson_archetype.Attachment45]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[CHR_Masterson_archetype.Attachment46]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[CHR_Masterson_archetype.Attachment47]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[CHR_Masterson_archetype.Attachment48]
+AttachmentSkin0="Mr White"
+
+[CHR_Masterson_archetype.Attachment49]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[CHR_Masterson_archetype.Attachment50]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[CHR_Masterson_archetype.Attachment51]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Masterson_archetype.Attachment52]
+AttachmentSkin0="Bushi"
+
+[CHR_Masterson_archetype.Attachment53]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[CHR_Masterson_archetype.Attachment54]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[CHR_Masterson_archetype.Attachment55]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Masterson_archetype.Attachment56]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Masterson_archetype.Attachment57]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Masterson_archetype.Attachment58]
+AttachmentSkin0="Olive Grey"
+
+[CHR_Masterson_archetype.Attachment59]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[CHR_Masterson_archetype.Attachment60]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Black Coat Blue"
+AttachmentSkin2="Black Coat Red"
+AttachmentSkin3="Black Coat Green"
+AttachmentSkin4="Green Coat"
+AttachmentSkin5="Blue Coat"
+AttachmentSkin6="Red Coat"
+
+[CHR_Masterson_archetype.Attachment61]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Green Coat"
+AttachmentSkin2="Blue Coat"
+AttachmentSkin3="Red Coat"
+
+[CHR_Masterson_archetype.Attachment62]
+AttachmentSkin0="Black Eyes"
+AttachmentSkin1="Red Eyes"
+AttachmentSkin2="Blue Eyes"
+AttachmentSkin3="Green Eyes"
+AttachmentSkin4="Green Filter"
+AttachmentSkin5="Blue Filter"
+AttachmentSkin6="Red Filter"
+
+[CHR_Masterson_archetype.Attachment63]
+AttachmentSkin0="Stealth Black"
+
+[CHR_Masterson_archetype.Attachment64]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+
+[CHR_Masterson_archetype.Attachment65]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+AttachmentSkin4="Blue Steel"
+AttachmentSkin5="Blue Magnum"
+AttachmentSkin6="Green Rally"
+AttachmentSkin7="Green Synergy"
+AttachmentSkin8="Red Face"
+AttachmentSkin9="Red Cheeks"
+AttachmentSkin10="Reaper Black"
+
+[CHR_Masterson_archetype.Attachment66]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
 
 //Start Tanaka
 
@@ -1633,6 +3590,40 @@ Attachment25="Criminally Insane Mask"
 Attachment26="Flight Helmet"
 Attachment27="Custodian Helmet"
 Attachment28="Flight Mask"
+Attachment29="Charm Goggles"
+Attachment30="Aviator Goggles"
+Attachment31="Sawblade Battle Helm"
+Attachment32="Boonie Cap"
+Attachment33="Infiltrator"
+Attachment34="Mask of the Abyss"
+Attachment35="Cybernetic Gas Mask"
+Attachment36="JFront Cap"
+Attachment37="Longhorn"
+Attachment38="EMS Backpack"
+Attachment39="Motorcycle Helmet"
+Attachment40="Smashed Motorcycle Helmet"
+Attachment41="Rubber Air Filter"
+Attachment42="Russian Gas Mask"
+Attachment43="Sawtooth Mask"
+Attachment44="The Inquisitor"
+Attachment45="US Gas Mask"
+Attachment46="Bloody Games"
+Attachment47="Shattered Mask"
+Attachment48="Military Surplus Beanie"
+Attachment49="RAF Goggles"
+Attachment50="Pork Pie"
+Attachment51="Visage de Poupee"
+Attachment52="Protective Glasses"
+Attachment53="Samurai Mask"
+Attachment54="Samurai Helm"
+Attachment55="Street Punk Bandana"
+Attachment56="Street Punk Glasses"
+Attachment57="Discount T-Rex Mask"
+Attachment58="Wasteland Goggles"
+Attachment59="EMS Arm Band"
+Attachment60="M2 Flamethrower Tank"
+Attachment61="RPG7 Backbag"
+Attachment62="Tactical Backbag"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
 HeadSkin0="Black"
@@ -1872,6 +3863,236 @@ AttachmentSkin3="Crimson Sky"
 AttachmentSkin4="Flame"
 AttachmentSkin5="Ninja"
 
+[CHR_Tanaka_Archetype.Attachment29]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Tanaka_Archetype.Attachment30]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Tanaka_Archetype.Attachment31]
+AttachmentSkin0="Default"
+
+[CHR_Tanaka_Archetype.Attachment32]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[CHR_Tanaka_Archetype.Attachment33]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[CHR_Tanaka_Archetype.Attachment34]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[CHR_Tanaka_Archetype.Attachment35]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[CHR_Tanaka_Archetype.Attachment36]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[CHR_Tanaka_Archetype.Attachment37]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Tanaka_Archetype.Attachment38]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Tanaka_Archetype.Attachment39]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[CHR_Tanaka_Archetype.Attachment40]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[CHR_Tanaka_Archetype.Attachment41]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[CHR_Tanaka_Archetype.Attachment42]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Tanaka_Archetype.Attachment43]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[CHR_Tanaka_Archetype.Attachment44]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[CHR_Tanaka_Archetype.Attachment45]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Tanaka_Archetype.Attachment46]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[CHR_Tanaka_Archetype.Attachment47]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[CHR_Tanaka_Archetype.Attachment48]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[CHR_Tanaka_Archetype.Attachment49]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[CHR_Tanaka_Archetype.Attachment50]
+AttachmentSkin0="Mr White"
+
+[CHR_Tanaka_Archetype.Attachment51]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[CHR_Tanaka_Archetype.Attachment52]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[CHR_Tanaka_Archetype.Attachment53]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Tanaka_Archetype.Attachment54]
+AttachmentSkin0="Bushi"
+
+[CHR_Tanaka_Archetype.Attachment55]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[CHR_Tanaka_Archetype.Attachment56]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[CHR_Tanaka_Archetype.Attachment57]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Tanaka_Archetype.Attachment58]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Tanaka_Archetype.Attachment59]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Tanaka_Archetype.Attachment60]
+AttachmentSkin0="Olive Grey"
+
+[CHR_Tanaka_Archetype.Attachment61]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[CHR_Tanaka_Archetype.Attachment62]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
 
 //Ana
 [CHR_Ana_Archetype]
@@ -1905,6 +4126,39 @@ Attachment22="Flight Helmet"
 Attachment23="Custodian Helmet"
 Attachment24="Baseball Hat"
 Attachment25="Flight Mask"
+Attachment26="Charm Goggles"
+Attachment27="Aviator Goggles"
+Attachment28="Sawblade Battle Helm"
+Attachment29="Boonie Cap"
+Attachment30="Infiltrator"
+Attachment31="Mask of the Abyss"
+Attachment32="Cybernetic Gas Mask"
+Attachment33="JFront Cap"
+Attachment34="Longhorn"
+Attachment35="EMS Backpack"
+Attachment36="Motorcycle Helmet"
+Attachment37="Smashed Motorcycle Helmet"
+Attachment38="Rubber Air Filter"
+Attachment39="Russian Gas Mask"
+Attachment40="Sawtooth Mask"
+Attachment41="The Inquisitor"
+Attachment42="US Gas Mask"
+Attachment43="Bloody Games"
+Attachment44="Shattered Mask"
+Attachment45="Military Surplus Beanie"
+Attachment46="RAF Goggles"
+Attachment47="Pork Pie"
+Attachment48="Visage de Poupee"
+Attachment49="Protective Glasses"
+Attachment50="Samurai Mask"
+Attachment51="Samurai Helm"
+Attachment52="Street Punk Bandana"
+Attachment53="Street Punk Glasses"
+Attachment54="Discount T-Rex Mask"
+Attachment55="Wasteland Goggles"
+Attachment56="EMS Arm Band"
+Attachment57="M2 Flamethrower Tank"
+Attachment58="Tactical Backbag"
 
 [CHR_Ana_Archetype.HeadMesh0]
 HeadSkin0="Death Rain"
@@ -2113,6 +4367,229 @@ AttachmentSkin3="Crimson Sky"
 AttachmentSkin4="Flame"
 AttachmentSkin5="Ninja"
 
+[CHR_Ana_Archetype.Attachment26]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Ana_Archetype.Attachment27]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Ana_Archetype.Attachment28]
+AttachmentSkin0="Default"
+
+[CHR_Ana_Archetype.Attachment29]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[CHR_Ana_Archetype.Attachment30]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[CHR_Ana_Archetype.Attachment31]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[CHR_Ana_Archetype.Attachment32]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[CHR_Ana_Archetype.Attachment33]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[CHR_Ana_Archetype.Attachment34]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Ana_Archetype.Attachment35]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Ana_Archetype.Attachment36]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[CHR_Ana_Archetype.Attachment37]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[CHR_Ana_Archetype.Attachment38]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[CHR_Ana_Archetype.Attachment39]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Ana_Archetype.Attachment40]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[CHR_Ana_Archetype.Attachment41]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[CHR_Ana_Archetype.Attachment42]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Ana_Archetype.Attachment43]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[CHR_Ana_Archetype.Attachment44]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[CHR_Ana_Archetype.Attachment45]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[CHR_Ana_Archetype.Attachment46]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[CHR_Ana_Archetype.Attachment47]
+AttachmentSkin0="Mr White"
+
+[CHR_Ana_Archetype.Attachment48]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[CHR_Ana_Archetype.Attachment49]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[CHR_Ana_Archetype.Attachment50]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Ana_Archetype.Attachment51]
+AttachmentSkin0="Bushi"
+
+[CHR_Ana_Archetype.Attachment52]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[CHR_Ana_Archetype.Attachment53]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[CHR_Ana_Archetype.Attachment54]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Ana_Archetype.Attachment55]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Ana_Archetype.Attachment56]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Ana_Archetype.Attachment57]
+AttachmentSkin0="Olive Grey"
+
+[CHR_Ana_Archetype.Attachment58]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
+
 //Classic Briar 
 
 [chr_mark_archetype]
@@ -2148,6 +4625,46 @@ Attachment22="Front Row Protection Down"
 Attachment23="Criminally Insane Mask"
 Attachment24="Flight Helmet"
 Attachment25="Flight Mask"
+Attachment26="Charm Goggles"
+Attachment27="Aviator Goggles"
+Attachment28="Sawblade Battle Helm"
+Attachment29="Boonie Cap"
+Attachment30="Infiltrator"
+Attachment31="Mask of the Abyss"
+Attachment32="Cybernetic Gas Mask"
+Attachment33="JFront Cap"
+Attachment34="Longhorn"
+Attachment35="EMS Backpack"
+Attachment36="Motorcycle Helmet"
+Attachment37="Smashed Motorcycle Helmet"
+Attachment38="Rubber Air Filter"
+Attachment39="Russian Gas Mask"
+Attachment40="Sawtooth Mask"
+Attachment41="The Inquisitor"
+Attachment42="US Gas Mask"
+Attachment43="Bloody Games"
+Attachment44="Shattered Mask"
+Attachment45="Military Surplus Beanie"
+Attachment46="RAF Goggles"
+Attachment47="Pork Pie"
+Attachment48="Visage de Poupee"
+Attachment49="Protective Glasses"
+Attachment50="Samurai Mask"
+Attachment51="Samurai Helm"
+Attachment52="Street Punk Bandana"
+Attachment53="Street Punk Glasses"
+Attachment54="Discount T-Rex Mask"
+Attachment55="Wasteland Goggles"
+Attachment56="EMS Arm Band"
+Attachment57="M2 Flamethrower Tank"
+Attachment58="RPG7 Backbag"
+Attachment59="Enforcer Goggles"
+Attachment60="Enforcer Helmet"
+Attachment61="Enforcer Mask"
+Attachment62="Justice Goggles"
+Attachment63="Justice Helmet"
+Attachment64="Justice Mask"
+Attachment65="Tactical Backbag"
 
 [chr_mark_archetype.BodyMesh0]
 BodySkin0="Police Blue"
@@ -2362,6 +4879,282 @@ AttachmentSkin3="Crimson Sky"
 AttachmentSkin4="Flame"
 AttachmentSkin5="Ninja"
 
+[chr_mark_archetype.Attachment26]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_mark_archetype.Attachment27]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_mark_archetype.Attachment28]
+AttachmentSkin0="Default"
+
+[chr_mark_archetype.Attachment29]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[chr_mark_archetype.Attachment30]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[chr_mark_archetype.Attachment31]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[chr_mark_archetype.Attachment32]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[chr_mark_archetype.Attachment33]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[chr_mark_archetype.Attachment34]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_mark_archetype.Attachment35]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_mark_archetype.Attachment36]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[chr_mark_archetype.Attachment37]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[chr_mark_archetype.Attachment38]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[chr_mark_archetype.Attachment39]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_mark_archetype.Attachment40]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[chr_mark_archetype.Attachment41]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[chr_mark_archetype.Attachment42]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_mark_archetype.Attachment43]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[chr_mark_archetype.Attachment44]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[chr_mark_archetype.Attachment45]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[chr_mark_archetype.Attachment46]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[chr_mark_archetype.Attachment47]
+AttachmentSkin0="Mr White"
+
+[chr_mark_archetype.Attachment48]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[chr_mark_archetype.Attachment49]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[chr_mark_archetype.Attachment50]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_mark_archetype.Attachment51]
+AttachmentSkin0="Bushi"
+
+[chr_mark_archetype.Attachment52]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[chr_mark_archetype.Attachment53]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[chr_mark_archetype.Attachment54]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_mark_archetype.Attachment55]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_mark_archetype.Attachment56]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_mark_archetype.Attachment57]
+AttachmentSkin0="Olive Grey"
+
+[chr_mark_archetype.Attachment58]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[chr_mark_archetype.Attachment59]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Black Coat Blue"
+AttachmentSkin2="Black Coat Red"
+AttachmentSkin3="Black Coat Green"
+AttachmentSkin4="Green Coat"
+AttachmentSkin5="Blue Coat"
+AttachmentSkin6="Red Coat"
+
+[chr_mark_archetype.Attachment60]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Green Coat"
+AttachmentSkin2="Blue Coat"
+AttachmentSkin3="Red Coat"
+
+[chr_mark_archetype.Attachment61]
+AttachmentSkin0="Black Eyes"
+AttachmentSkin1="Red Eyes"
+AttachmentSkin2="Blue Eyes"
+AttachmentSkin3="Green Eyes"
+AttachmentSkin4="Green Filter"
+AttachmentSkin5="Blue Filter"
+AttachmentSkin6="Red Filter"
+
+[chr_mark_archetype.Attachment62]
+AttachmentSkin0="Stealth Black"
+
+[chr_mark_archetype.Attachment63]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+
+[chr_mark_archetype.Attachment64]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+AttachmentSkin4="Blue Steel"
+AttachmentSkin5="Blue Magnum"
+AttachmentSkin6="Green Rally"
+AttachmentSkin7="Green Synergy"
+AttachmentSkin8="Red Face"
+AttachmentSkin9="Red Cheeks"
+AttachmentSkin10="Reaper Black"
+
+[chr_mark_archetype.Attachment65]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
 
 //Classic Masterson
 
@@ -2371,6 +5164,7 @@ Description="No-one has ever really understood how this Masterson rose through t
 
 BodyMesh0="Riot Gear"
 HeadMesh0="Face"
+
 Attachment0="S10 NBC Mask"
 Attachment1="Glasses"
 Attachment2="Alienware"
@@ -2396,6 +5190,46 @@ Attachment21="Criminally Insane Mask"
 Attachment22="Flight Helmet"
 Attachment23="Custodian Helmet"
 Attachment24="Flight Mask"
+Attachment25="Charm Goggles"
+Attachment26="Aviator Goggles"
+Attachment27="Sawblade Battle Helm"
+Attachment28="Boonie Cap"
+Attachment29="Infiltrator"
+Attachment30="Mask of the Abyss"
+Attachment31="Cybernetic Gas Mask"
+Attachment32="JFront Cap"
+Attachment33="Longhorn"
+Attachment34="EMS Backpack"
+Attachment35="Motorcycle Helmet"
+Attachment36="Smashed Motorcycle Helmet"
+Attachment37="Rubber Air Filter"
+Attachment38="Russian Gas Mask"
+Attachment39="Sawtooth Mask"
+Attachment40="The Inquisitor"
+Attachment41="US Gas Mask"
+Attachment42="Bloody Games"
+Attachment43="Shattered Mask"
+Attachment44="Military Surplus Beanie"
+Attachment45="RAF Goggles"
+Attachment46="Pork Pie"
+Attachment47="Visage de Poupee"
+Attachment48="Protective Glasses"
+Attachment49="Samurai Mask"
+Attachment50="Samurai Helm"
+Attachment51="Street Punk Bandana"
+Attachment52="Street Punk Glasses"
+Attachment53="Discount T-Rex Mask"
+Attachment54="Wasteland Goggles"
+Attachment55="EMS Arm Band"
+Attachment56="M2 Flamethrower Tank"
+Attachment57="RPG7 Backbag"
+Attachment58="Enforcer Goggles"
+Attachment59="Enforcer Helmet"
+Attachment60="Enforcer Mask"
+Attachment61="Justice Goggles"
+Attachment62="Justice Helmet"
+Attachment63="Justice Mask"
+Attachment64="Tactical Backbag"
 
 [CHR_alan_archetype.BodyMesh0]
 BodySkin0="Green"
@@ -2589,7 +5423,6 @@ AttachmentSkin1="Gold"
 AttachmentSkin2="Blue"
 AttachmentSkin3="Precious Gold"
 
-
 [chr_alan_archetype.Attachment24]
 AttachmentSkin0="Flight Mask"
 AttachmentSkin1="Bloody Mask"
@@ -2597,6 +5430,278 @@ AttachmentSkin2="Bubble Yum"
 AttachmentSkin3="Crimson Sky"
 AttachmentSkin4="Flame"
 AttachmentSkin5="Ninja"
+
+[chr_alan_archetype.Attachment25]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_alan_archetype.Attachment26]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_alan_archetype.Attachment27]
+AttachmentSkin0="Default"
+
+[chr_alan_archetype.Attachment28]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[chr_alan_archetype.Attachment29]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[chr_alan_archetype.Attachment30]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[chr_alan_archetype.Attachment31]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[chr_alan_archetype.Attachment32]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[chr_alan_archetype.Attachment33]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_alan_archetype.Attachment34]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_alan_archetype.Attachment35]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[chr_alan_archetype.Attachment36]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[chr_alan_archetype.Attachment37]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[chr_alan_archetype.Attachment38]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_alan_archetype.Attachment39]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[chr_alan_archetype.Attachment40]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[chr_alan_archetype.Attachment41]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_alan_archetype.Attachment42]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[chr_alan_archetype.Attachment43]
+AttachmentSkin0="WhiteYellow"
+
+[chr_alan_archetype.Attachment44]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[chr_alan_archetype.Attachment45]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[chr_alan_archetype.Attachment46]
+AttachmentSkin0="Mr White"
+
+[chr_alan_archetype.Attachment47]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[chr_alan_archetype.Attachment48]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[chr_alan_archetype.Attachment49]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_alan_archetype.Attachment50]
+AttachmentSkin0="Bushi"
+
+[chr_alan_archetype.Attachment51]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[chr_alan_archetype.Attachment52]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[chr_alan_archetype.Attachment53]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_alan_archetype.Attachment54]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_alan_archetype.Attachment55]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_alan_archetype.Attachment56]
+AttachmentSkin0="Olive Grey"
+
+[chr_alan_archetype.Attachment57]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[chr_alan_archetype.Attachment58]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Black Coat Blue"
+AttachmentSkin2="Black Coat Red"
+AttachmentSkin3="Black Coat Green"
+AttachmentSkin4="Green Coat"
+AttachmentSkin5="Blue Coat"
+AttachmentSkin6="Red Coat"
+
+[chr_alan_archetype.Attachment59]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Green Coat"
+AttachmentSkin2="Blue Coat"
+AttachmentSkin3="Red Coat"
+
+[chr_alan_archetype.Attachment60]
+AttachmentSkin0="Black Eyes"
+AttachmentSkin1="Red Eyes"
+AttachmentSkin2="Blue Eyes"
+AttachmentSkin3="Green Eyes"
+AttachmentSkin4="Green Filter"
+AttachmentSkin5="Blue Filter"
+AttachmentSkin6="Red Filter"
+
+[chr_alan_archetype.Attachment61]
+AttachmentSkin0="Stealth Black"
+
+[chr_alan_archetype.Attachment62]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+
+[chr_alan_archetype.Attachment63]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+AttachmentSkin4="Blue Steel"
+AttachmentSkin5="Blue Magnum"
+AttachmentSkin6="Green Rally"
+AttachmentSkin7="Green Synergy"
+AttachmentSkin8="Red Face"
+AttachmentSkin9="Red Cheeks"
+AttachmentSkin10="Reaper Black"
+
+[chr_alan_archetype.Attachment64]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
 
 //Anton Strasser
 
@@ -2631,6 +5736,40 @@ Attachment21="Criminally Insane Mask"
 Attachment22="Flight Helmet"
 Attachment23="Custodian Helmet"
 Attachment24="Flight Mask"
+Attachment25="Charm Goggles"
+Attachment26="Aviator Goggles"
+Attachment27="Sawblade Battle Helm"
+Attachment28="Boonie Cap"
+Attachment29="Infiltrator"
+Attachment30="Mask of the Abyss"
+Attachment31="Cybernetic Gas Mask"
+Attachment32="JFront Cap"
+Attachment33="Longhorn"
+Attachment34="EMS Backpack"
+Attachment35="Motorcycle Helmet"
+Attachment36="Smashed Motorcycle Helmet"
+Attachment37="Rubber Air Filter"
+Attachment38="Russian Gas Mask"
+Attachment39="Sawtooth Mask"
+Attachment40="The Inquisitor"
+Attachment41="US Gas Mask"
+Attachment42="Bloody Games"
+Attachment43="Shattered Mask"
+Attachment44="Military Surplus Beanie"
+Attachment45="RAF Goggles"
+Attachment46="Pork Pie"
+Attachment47="Visage de Poupee"
+Attachment48="Protective Glasses"
+Attachment49="Samurai Mask"
+Attachment50="Samurai Helm"
+Attachment51="Street Punk Bandana"
+Attachment52="Street Punk Glasses"
+Attachment53="Discount T-Rex Mask"
+Attachment54="Wasteland Goggles"
+Attachment55="EMS Arm Band"
+Attachment56="M2 Flamethrower Tank"
+Attachment57="RPG7 Backbag"
+Attachment58="Tactical Backbag"
 
 [CHR_strasser_archetype.BodyMesh0]
 BodySkin0="Raw Recruit"
@@ -2824,6 +5963,237 @@ AttachmentSkin3="Crimson Sky"
 AttachmentSkin4="Flame"
 AttachmentSkin5="Ninja"
 
+[chr_strasser_archetype.Attachment25]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_strasser_archetype.Attachment26]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_strasser_archetype.Attachment27]
+AttachmentSkin0="Default"
+
+[chr_strasser_archetype.Attachment28]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[chr_strasser_archetype.Attachment29]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[chr_strasser_archetype.Attachment30]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[chr_strasser_archetype.Attachment31]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[chr_strasser_archetype.Attachment32]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[chr_strasser_archetype.Attachment33]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_strasser_archetype.Attachment34]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_strasser_archetype.Attachment35]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[chr_strasser_archetype.Attachment36]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[chr_strasser_archetype.Attachment37]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[chr_strasser_archetype.Attachment38]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_strasser_archetype.Attachment39]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[chr_strasser_archetype.Attachment40]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[chr_strasser_archetype.Attachment41]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_strasser_archetype.Attachment42]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[chr_strasser_archetype.Attachment43]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[chr_strasser_archetype.Attachment44]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[chr_strasser_archetype.Attachment45]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[chr_strasser_archetype.Attachment46]
+AttachmentSkin0="Mr White"
+
+[chr_strasser_archetype.Attachment47]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[chr_strasser_archetype.Attachment48]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[chr_strasser_archetype.Attachment49]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_strasser_archetype.Attachment50]
+AttachmentSkin0="Bushi"
+
+[chr_strasser_archetype.Attachment51]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[chr_strasser_archetype.Attachment52]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[chr_strasser_archetype.Attachment53]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_strasser_archetype.Attachment54]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_strasser_archetype.Attachment55]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_strasser_archetype.Attachment56]
+AttachmentSkin0="Olive Grey"
+
+[chr_strasser_archetype.Attachment57]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[chr_strasser_archetype.Attachment58]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
 //Chivalry Knight
 
 [chr_knight_archetype]
@@ -2858,6 +6228,40 @@ Attachment22="Criminally Insane Mask"
 Attachment23="Flight Helmet"
 Attachment24="Custodian Helmet"
 Attachment25="Flight Mask"
+Attachment26="Charm Goggles"
+Attachment27="Aviator Goggles"
+Attachment28="Sawblade Battle Helm"
+Attachment29="Boonie Cap"
+Attachment30="Infiltrator"
+Attachment31="Mask of the Abyss"
+Attachment32="Cybernetic Gas Mask"
+Attachment33="JFront Cap"
+Attachment34="Longhorn"
+Attachment35="EMS Backpack"
+Attachment36="Motorcycle Helmet"
+Attachment37="Smashed Motorcycle Helmet"
+Attachment38="Rubber Air Filter"
+Attachment39="Russian Gas Mask"
+Attachment40="Sawtooth Mask"
+Attachment41="The Inquisitor"
+Attachment42="US Gas Mask"
+Attachment43="Bloody Games"
+Attachment44="Shattered Mask"
+Attachment45="Military Surplus Beanie"
+Attachment46="RAF Goggles"
+Attachment47="Pork Pie"
+Attachment48="Visage de Poupee"
+Attachment49="Protective Glasses"
+Attachment50="Samurai Mask"
+Attachment51="Samurai Helm"
+Attachment52="Street Punk Bandana"
+Attachment53="Street Punk Glasses"
+Attachment54="Discount T-Rex Mask"
+Attachment55="Wasteland Goggles"
+Attachment56="EMS Arm Band"
+Attachment57="M2 Flamethrower Tank"
+Attachment58="RPG7 Backbag"
+Attachment59="Tactical Backbag"
 
 [CHR_knight_archetype.BodyMesh0]
 BodySkin0="Agatha"
@@ -2870,7 +6274,6 @@ HeadSkin0="To Battle!"
 HeadSkin1="Freedom!"
 HeadSkin2="To War!"
 HeadSkin3="Valhalla!"
-
 
 [CHR_knight_archetype.Attachment0]
 AttachmentSkin0="Agatha"
@@ -3066,3 +6469,234 @@ AttachmentSkin2="Bubble Yum"
 AttachmentSkin3="Crimson Sky"
 AttachmentSkin4="Flame"
 AttachmentSkin5="Ninja"
+
+[chr_knight_archetype.Attachment26]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_knight_archetype.Attachment27]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_knight_archetype.Attachment28]
+AttachmentSkin0="Default"
+
+[chr_knight_archetype.Attachment29]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[chr_knight_archetype.Attachment30]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[chr_knight_archetype.Attachment31]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[chr_knight_archetype.Attachment32]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[chr_knight_archetype.Attachment33]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[chr_knight_archetype.Attachment34]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_knight_archetype.Attachment35]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_knight_archetype.Attachment36]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[chr_knight_archetype.Attachment37]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[chr_knight_archetype.Attachment38]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[chr_knight_archetype.Attachment39]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_knight_archetype.Attachment40]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[chr_knight_archetype.Attachment41]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[chr_knight_archetype.Attachment42]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_knight_archetype.Attachment43]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[chr_knight_archetype.Attachment44]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[chr_knight_archetype.Attachment45]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[chr_knight_archetype.Attachment46]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[chr_knight_archetype.Attachment47]
+AttachmentSkin0="Mr White"
+
+[chr_knight_archetype.Attachment48]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[chr_knight_archetype.Attachment49]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[chr_knight_archetype.Attachment50]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_knight_archetype.Attachment51]
+AttachmentSkin0="Bushi"
+
+[chr_knight_archetype.Attachment52]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[chr_knight_archetype.Attachment53]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[chr_knight_archetype.Attachment54]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_knight_archetype.Attachment55]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_knight_archetype.Attachment56]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_knight_archetype.Attachment57]
+AttachmentSkin0="Olive Grey"
+
+[chr_knight_archetype.Attachment58]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[chr_knight_archetype.Attachment59]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"

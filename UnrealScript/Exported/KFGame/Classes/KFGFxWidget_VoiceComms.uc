@@ -55,7 +55,7 @@ function EnableComm()
 	{
 		bActive = true;
 		//Disable player rotate and click
-		PC.SetCinematicMode(true, false, false, false, true, false);
+		PC.IgnoreLookInput( true );  // Calling this instead of SetCinematicMode so we can avoid the Performance issue associated with opening comms on Console.
 		GetGameViewportClient().HandleInputAxis = OnAxisModified;
 		SetBool("bUsingGamePad", PC.PlayerInput.bUsingGamepad);
 		ActionScriptVoid("enableComm");
@@ -67,6 +67,7 @@ function DisableComm()
 	if(bActive)
 	{
 		bActive = false;
+		PC.IgnoreLookInput( false );  // Since we are no longer toggling CinematicMode return lookInput to normal.
 		GetGameViewportClient().HandleInputAxis = None;
 		ActionScriptVoid("disableComm");
 	}
@@ -82,7 +83,8 @@ function bool OnAxisModified( int ControllerId, name Key, float Delta, float Del
 	if ( PC.PlayerInput.bUsingGamepad )
 	{
 	 	UpdateJoystickDirection( Key, Delta );
-	 	UpdateUICursorPosition(RawJoyVector.X * ControllerDampening, RawJoyVector.Y * ControllerDampening);
+		// Pass the raw values and let scaleform determine the position of the selector. -HSL_BB
+		UpdateUICursorPosition(RawJoyVector.X, RawJoyVector.Y, false);
 	}
 	else
 	{
@@ -95,7 +97,7 @@ function bool OnAxisModified( int ControllerId, name Key, float Delta, float Del
 			MouseVector.Y = Delta;
 		}
 		
-		UpdateUICursorPosition( MouseVector.X * MouseDampening, -MouseVector.Y * MouseDampening);
+		UpdateUICursorPosition( MouseVector.X * MouseDampening, -MouseVector.Y * MouseDampening,true);
 	}
 	return false;
 }
@@ -112,7 +114,7 @@ function UpdateJoystickDirection( name Key, float Delta )
 	}
 }
 
-function UpdateUICursorPosition(float newX, float newY)
+function UpdateUICursorPosition(float newX, float newY, bool bMouseInput)
 {
 	ActionScriptVoid("setNormalizedMousePosition");
 }

@@ -14,7 +14,7 @@ var bool bIsInParty;
 
 function OneSecondLoop()
 {
-	if ( OnlineLobby.IsInLobby())
+	if ( OnlineLobby != none && OnlineLobby.IsInLobby())
 	{
 	    SendMyOptions();
 	    SendSearching();
@@ -45,7 +45,7 @@ function SendSearching()
 		return;
 	}
 
-	if(OnlineLobby.IsInLobby())
+	if(OnlineLobby != none && OnlineLobby.IsInLobby())
 	{
 		OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId);
 		bIsLeader = GetPC().PlayerReplicationInfo.UniqueId  == AdminId;	
@@ -100,9 +100,12 @@ function RefreshParty()
 	local UniqueNetId AdminId;
 	local int SlotIndex;
 	local bool bInParty;
+	local PlayerController PC;
+	local string PlayerName, ReadablePlayerName;
 	super.RefreshParty();
 
-	if ( OnlineLobby.GetCurrentLobby(LobbyInfo) )
+	
+	if ( OnlineLobby != none && OnlineLobby.GetCurrentLobby(LobbyInfo) )
 	{		
 		OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId);
 
@@ -125,7 +128,7 @@ function RefreshParty()
 			bIsInParty = bInParty;	
 		}
 
-		for ( SlotIndex = 0; SlotIndex < `KF_MAX_PLAYERS; SlotIndex++ )
+		for ( SlotIndex = 0; SlotIndex < PlayerSlots; SlotIndex++ )
 		{
 			if ( SlotIndex < LobbyInfo.Members.Length )
 			{
@@ -140,18 +143,27 @@ function RefreshParty()
 	// If we are not in a party, only add our name to the party list
 	else
 	{
-	    RefreshSlot(0, GetPC().PlayerReplicationInfo.UniqueId);
+		PC = GetPC();
+	    RefreshSlot(0, PC.PlayerReplicationInfo.UniqueId);
 	    InitializePerk();
 	    bInParty = false || bInLobby;
 		bIsInParty = bInParty;
 	    SetSearchingText("");
-	    UpdatePlayerName(0, OnlineLobby.GetFriendNickname(GetPC().PlayerReplicationInfo.UniqueId));
+		ReadablePlayerName = PC.PlayerReplicationInfo.GetHumanReadableName();
+	    if(OnlineLobby != none)
+	    {
+			PlayerName = OnlineLobby.GetFriendNickname(PC.PlayerReplicationInfo.UniqueId);
+	    }
+
+	    UpdatePlayerName(0, PlayerName != "" ? PlayerName : ReadablePlayerName == DefaultPlayerName ? DefaultPlayerName$"0" : ReadablePlayerName );
+
+	    
 	    if(PartyChatWidget != none)
 		{
 	    	PartyChatWidget.SetLobbyChatVisible(false);	
 		}
 	    // Clear out the rest of the list if we are not in a lobby
-	    for ( SlotIndex = 1; SlotIndex < `KF_MAX_PLAYERS; SlotIndex++ )
+	    for ( SlotIndex = 1; SlotIndex < PlayerSlots; SlotIndex++ )
 		{
 			if ( MemberSlots[SlotIndex].bIsSlotTaken )
 			{
@@ -165,6 +177,10 @@ function RefreshParty()
 function HandleLeaderChange(UniqueNetId AdminId)
 {
 	local string HostName;
+	if(OnlineLobby != none)
+	{
+		HostName = OnlineLobby.GetFriendNickname(AdminId);
+	}
 	
 	HostName = OnlineLobby.GetFriendNickname(AdminId);
 	Manager.HandleSteamLobbyLeaderTakeOver(AdminId);	
@@ -178,25 +194,46 @@ function HandleLeaderChange(UniqueNetId AdminId)
 // Check which aspect of the slot has changed and update it
 function RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
 {
-	local string PlayerName;	
+	local string PlayerName,ReadablePlayerName;	
 	local UniqueNetId AdminId;
 	local bool bIsLeader;
 	local bool bIsMyPlayer;
+	local PlayerController PC;
 
+	PC = GetPC();
+
+	if(OnlineLobby != none)
+	{
 	OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId);
-	bIsLeader = (PlayerUID == AdminId);
+	}
+	
+	if( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) )
+	{
+		// Console check to make sure we aren't in a solo game or the basic start menu.
+		bIsLeader = (PlayerUID == AdminId) && (Manager.StartMenuState != ESoloGame && Manager.StartMenuState != 255);
+	}
+	else
+	{
+		bIsLeader = (PlayerUID == AdminId);
+	}
 
 	MemberSlots[SlotIndex].bIsSlotTaken = true;
 	MemberSlots[SlotIndex].bIsLeader = bIsLeader;
 	MemberSlots[SlotIndex].PlayerUID = PlayerUID;
 
-	bIsMyPlayer = (GetPC().PlayerReplicationInfo.UniqueId == PlayerUID);
-
+	bIsMyPlayer = (PC.PlayerReplicationInfo.UniqueId == PlayerUID);
+	if(OnlineLobby != none)
+	{
 	PlayerName = OnlineLobby.GetFriendNickname(PlayerUID);
+	}
+	
 	if (PlayerName == "")
 	{
-		PlayerName = DefaultPlayerName;
+		ReadablePlayerName = PC.PlayerReplicationInfo.GetHumanReadableName();
+		PlayerName = ReadablePlayerName == DefaultPlayerName ? DefaultPlayerName$SlotIndex : ReadablePlayerName;
 	}
+	// Make sure to use the name you just looked up.  -HSL_BB
+	UpdatePlayerName(SlotIndex,PlayerName);
 	
 	SlotChanged( SlotIndex, true, bIsMyPlayer, bIsLeader );
 	
@@ -248,6 +285,11 @@ function UpdatePerks(string Message)
 	IconPath = "img://"$KFPC.PerkList[PerkIndex].PerkClass.static.GetPerkIconPath();
 	PerkLevel = PlayerInfoStrings[2];
 
+        if(OnlineLobby == none)
+	{
+		return;
+	}
+
 	if (OnlineLobby.GetCurrentLobby(LobbyInfo))
 	{
 		for (i = 0; i < LobbyInfo.Members.Length; i++)
@@ -267,9 +309,12 @@ function UpdateSearching(string Message)
 	local string PartyLeaderName;
 	local UniqueNetId AdminId;
 		
-
+	if(OnlineLobby != none)
+	{
 	OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId);
 	PartyLeaderName = OnlineLobby.GetFriendNickname(AdminId);
+	}
+
 	switch (Message)
 	{
 		case InOtherMenu:
@@ -375,7 +420,10 @@ function SendMyOptions()
 
 	UIDStrings = class'OnlineSubsystem'.static.UniqueNetIdToString(GetPC().PlayerReplicationInfo.UniqueId);
 	PerkMessage = PerkPrefix$UIDStrings$"/"$string(PerkIndex)$"/"$CurrentLevel;
+        if(OnlineLobby != none)
+	{
 	OnlineLobby.LobbyMessage(PerkMessage);   	
+	}
 }
 
 defaultproperties

@@ -1,4 +1,4 @@
-package tripwire.containers.perks
+package tripwire.containers.Perks
 {
     import com.greensock.TweenMax;
     import com.greensock.easing.Linear;
@@ -12,11 +12,10 @@ package tripwire.containers.perks
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.InputEvent;
     import scaleform.clik.ui.InputDetails;
-    import tripwire.containers.TripContainer;
     import tripwire.controls.TripButton;
     import tripwire.managers.MenuManager;
     
-    public class PerksSkillsSummaryContainer extends TripContainer
+    public class PerksSkillsSummaryContainer extends PerkContainerBase
     {
          
         
@@ -39,9 +38,9 @@ package tripwire.containers.perks
             this.skillList.mouseEnabled = false;
         }
         
-        override protected function addedToStage(param1:Event) : void
+        override protected function addedToStage(event:Event) : void
         {
-            super.addedToStage(param1);
+            super.addedToStage(event);
             this.setTabIndex();
         }
         
@@ -59,9 +58,9 @@ package tripwire.containers.perks
             this.updateControllerIconVisibility();
         }
         
-        override protected function onInputChange(param1:Event) : *
+        override protected function onInputChange(e:Event) : *
         {
-            super.onInputChange(param1);
+            super.onInputChange(e);
             this.updateControllerIconVisibility();
         }
         
@@ -70,17 +69,17 @@ package tripwire.containers.perks
             this.controllerIconContainer.visible = bManagerUsingGamepad;
         }
         
-        override public function handleInput(param1:InputEvent) : void
+        override public function handleInput(event:InputEvent) : void
         {
-            super.handleInput(param1);
-            if(param1.handled || !visible)
+            super.handleInput(event);
+            if(event.handled || !visible)
             {
                 return;
             }
-            var _loc2_:InputDetails = param1.details;
-            if(_loc2_.value == InputValue.KEY_DOWN && !MenuManager.manager.bPopUpOpen)
+            var details:InputDetails = event.details;
+            if(details.value == InputValue.KEY_DOWN && !MenuManager.manager.bPopUpOpen)
             {
-                switch(_loc2_.navEquivalent)
+                switch(details.navEquivalent)
                 {
                     case NavigationCode.GAMEPAD_X:
                         this.configureButton.dispatchEvent(new ButtonEvent(ButtonEvent.CLICK));
@@ -88,27 +87,27 @@ package tripwire.containers.perks
             }
         }
         
-        public function set bTierUnlocked(param1:Boolean) : *
+        public function set bTierUnlocked(value:Boolean) : *
         {
-            var _loc2_:MovieClip = this.configureButton.getChildByName("highlightBG") as MovieClip;
-            if(param1)
+            var highlightBG:MovieClip = this.configureButton.getChildByName("highlightBG") as MovieClip;
+            if(value)
             {
-                _loc2_.gotoAndPlay("Glow");
+                highlightBG.gotoAndPlay("Glow");
             }
             else
             {
-                _loc2_.gotoAndStop("Off");
+                highlightBG.gotoAndStop("Off");
             }
         }
         
-        public function set skillsData(param1:Array) : *
+        public function set skillsData(data:Array) : *
         {
-            if(param1 != null)
+            if(data != null)
             {
-                this.skillList.dataProvider = new DataProvider(param1);
+                this.skillList.dataProvider = new DataProvider(data);
                 if(this.skillList.scrollBar != null)
                 {
-                    this.skillList.scrollBar.visible = param1.length - 1 > this.skillList.rowCount;
+                    this.skillList.scrollBar.visible = data.length - 1 > this.skillList.rowCount;
                 }
             }
         }

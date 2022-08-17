@@ -95,6 +95,7 @@ var bool bSearchingForGame;
 var bool bCanCloseMenu;
 var bool bPlayerInLobby;
 var config bool bSetGamma;
+var class<KFGFxWidget_PartyInGame> InGamePartyWidgetClass;
 var KFGFxObject_Popup CurrentPopup;
 var protected array<SPopupData> PopupData;
 var const localized string FailedSearchTitleString;
@@ -135,8 +136,11 @@ function Init(optional LocalPlayer LocPlay)
     Class'KFUIDataStore_GameResource'.static.InitializeProviders();
     HUD = KFHUDBase(GetPC().myHUD);
     super.Init(LocPlay);
-    OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
-    OnlineLobby = OnlineSub.GetLobbyInterface();
+    if(OnlineSub != none)
+    {
+        OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+        OnlineLobby = OnlineSub.GetLobbyInterface();
+    }
     TimerHelper.SetTimer(1, true, 'OneSecondLoop', self);
     SetTimingMode(1);
     UpdateDynamicIgnoreKeys();
@@ -157,7 +161,7 @@ function LaunchMenus(optional bool bForceSkipLobby)
     else
     {
         bSkippedLobby = bForceSkipLobby || CheckSkipLobby();
-        WidgetBinding.WidgetClass = Class'KFGFxWidget_PartyInGame';
+        WidgetBinding.WidgetClass = InGamePartyWidgetClass;
         ManagerObject.SetBool("backgroundVisible", false);
         if(bSkippedLobby)
         {
@@ -213,7 +217,9 @@ function bool CheckSkipLobby()
 event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 {
     local PlayerController PC;
+    local bool bHandled;
 
+    bHandled = true;
     LogInternal("WidgetInitialized - Menu: " @ string(WidgetName), 'DevGFxUI');
     switch(WidgetName)
     {
@@ -221,6 +227,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             if(ManagerObject == none)
             {
                 ManagerObject = Widget;
+                ManagerObject.SetBool("bConsoleBuild", Class'WorldInfo'.static.IsConsoleBuild(8));
             }
             break;
         case 'ExitMenu':
@@ -259,7 +266,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             PC = GetPC();
             if(PC.PlayerReplicationInfo.bReadyToPlay && PC.WorldInfo.GRI.bMatchHasBegun)
             {
-                goto J0xAA5;
+                goto J0xB1B;
             }
             if(GearMenu == none)
             {
@@ -374,10 +381,13 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             }
             break;
         case 'ChatBoxWidget':
-            if(PartyWidget.PartyChatWidget == none)
+            if(PartyWidget != none)
             {
-                PartyWidget.PartyChatWidget = KFGFxHUD_ChatBoxWidget(Widget);
-                PartyWidget.PartyChatWidget.Init();
+                if(PartyWidget.PartyChatWidget == none)
+                {
+                    PartyWidget.PartyChatWidget = KFGFxHUD_ChatBoxWidget(Widget);
+                    PartyWidget.PartyChatWidget.Init();
+                }
             }
             break;
         case 'GammaPopup':
@@ -387,11 +397,12 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             InitializePopup(WidgetPath, KFGFxObject_Popup(Widget));
             break;
         default:
+            bHandled = false;
             break;
     }
-    J0xAA5:
+    J0xB1B:
 
-    return true;
+    return bHandled;
 }
 
 function StatsInitialized()
@@ -480,6 +491,10 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
     else
     {
         PlaySoundFromTheme('TraderMenu_Open', SoundThemeName);
+        if((PC != none) && PC.PlayerInput != none)
+        {
+            PC.PlayerInput.ResetInput();
+        }
         bCanCloseMenu = false;
         TimerHelper.SetTimer(0.5, false, 'AllowCloseMenu', self);
     }
@@ -550,7 +565,7 @@ function CloseMenus(optional bool bForceClose)
     if(bMenusOpen || bForceClose)
     {
         UnloadCurrentPopup();
-        if((!bAfterLobby && PartyWidget != none) || GetPC().WorldInfo.GRI.bMatchIsOver)
+        if((((!bAfterLobby && PartyWidget != none) || (GetPC()) == none) || GetPC().WorldInfo.GRI == none) || GetPC().WorldInfo.GRI.bMatchIsOver)
         {
             PartyWidget.SetReadyButtonVisibility(false);
             bAfterLobby = true;
@@ -812,7 +827,7 @@ function ConditionalPauseGame(bool bPause)
     {
         if(bPause)
         {
-            if(((WI.IsMenuLevel() || !bAfterLobby) || CurrentMenu == TraderMenu) || GetPC().WorldInfo.GRI.bMatchIsOver)
+            if((((WI.IsMenuLevel() || !bAfterLobby) || CurrentMenu == TraderMenu) || (GetPC()) == none) || GetPC().WorldInfo.GRI.bMatchIsOver)
             {
                 return;
             }
@@ -820,7 +835,10 @@ function ConditionalPauseGame(bool bPause)
         }
         else
         {
-            GetPC().SetPause(false);
+            if((GetPC()) != none)
+            {
+                GetPC().SetPause(false);
+            }
         }
     }
 }
@@ -918,7 +936,10 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, Core.Object.EInp
     if(CurrentMenu != none)
     {
         CurrentMenu.FilterButtonInput(ControllerId, ButtonName, InputEvent);
-        CheckIfUsingGamepad();
+        if(!Class'WorldInfo'.static.IsConsoleBuild(8))
+        {
+            CheckIfUsingGamepad();
+        }
     }
     return false;
 }
@@ -1062,6 +1083,11 @@ function CastNoVote()
     }
 }
 
+function currentFocus()
+{
+    ManagerObject.ActionScriptVoid("currentFocus");
+}
+
 defaultproperties
 {
     MenuSWFPaths(0)="../UI_Menus/StartMenu_SWF.swf"
@@ -1081,6 +1107,7 @@ defaultproperties
     MenuSWFPaths(14)="../UI_Menus/TraderMenu_SWF.swf"
     MenuSWFPaths(15)="../UI_Menus/ServerBrowserMenu_SWF.swf"
     CurrentMenuIndex=255
+    InGamePartyWidgetClass=Class'KFGFxWidget_PartyInGame'
     PopupData(0)=(SWFPath="../UI_PopUps/ConfirmationPopup_SWF.swf",TitleStrings=none,DescriptionStrings=none,LeftButtonString="",RightButtonString="")
     PopupData(1)=(SWFPath="../UI_PopUps/GammaPopup_SWF.swf",TitleStrings=none,DescriptionStrings=none,LeftButtonString="",RightButtonString="")
     PopupData(2)=(SWFPath="../UI_PopUps/ConnectionErrorPopup_SWF.swf",TitleStrings=none,DescriptionStrings=none,LeftButtonString="",RightButtonString="")

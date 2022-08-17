@@ -11,12 +11,12 @@
 class KFDT_Ballistic_Shotgun extends KFDT_Ballistic
 	abstract
 	hidedropdown;
-	
+
 /** Allows the damage type to map a hit zone to a different bone for dismemberment purposes. */
 static simulated function GetBoneToDismember(KFPawn_Monster InPawn, vector HitDirection, name InHitZoneName, out name OutBoneName)
 {
 	local KFCharacterInfo_Monster MonsterInfo;
-	
+
 	MonsterInfo = InPawn.GetCharacterMonsterInfo();
     if ( MonsterInfo != none )
 	{
@@ -57,6 +57,8 @@ static function float GetGoreDamageScale(vector Location, vector InstigatorLocat
 
 defaultproperties
 {
+   HeadDestructionDamageScale=7.000000
+   HeadDestructionImpulseForceScale=7.000000
    GoreDamageGroup=DGT_Shotgun
    ModifierPerkList(0)=Class'KFGame.KFPerk_Support'
    Name="Default__KFDT_Ballistic_Shotgun"

@@ -36,7 +36,7 @@ package
             shopList.rowHeight = 0;
             shopList.scrollBar = "shopScrollBar";
             shopList.visible = true;
-            shopList.wrapping = "normal";
+            shopList.wrapping = "wrap";
             try
             {
                 shopList["componentInspectorSetting"] = false;

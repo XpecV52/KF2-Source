@@ -17,39 +17,6 @@ function bool AmIAllowedToSuicideWhenStuck()
 }
 
 /* epic ===============================================
-* ::Possess
-*
-* Overridden set the rage health threshold
-*
-* =====================================================
-*/
-event Possess( Pawn inPawn, bool bVehicleTransition )
-{
-    if( KFPawn_ZedScrake(inPawn) != none )
-    {
-        // Determine what rage health threshold to use
-        if( Skill == class'KFDifficultyInfo'.static.GetDifficultyValue(0) ) // Normal
-        {
-            RageHealthThreshold = KFPawn_ZedScrake(inPawn).RageHealthThresholdNormal;
-        }
-        else if( Skill <= class'KFDifficultyInfo'.static.GetDifficultyValue(1) ) // Hard
-        {
-            RageHealthThreshold = KFPawn_ZedScrake(inPawn).RageHealthThresholdHard;
-        }
-        else if( Skill <= class'KFDifficultyInfo'.static.GetDifficultyValue(2) ) // Suicidal
-        {
-            RageHealthThreshold = KFPawn_ZedScrake(inPawn).RageHealthThresholdSuicidal;
-        }
-        else // Hell on Earth
-        {
-            RageHealthThreshold = KFPawn_ZedScrake(inPawn).RageHealthThresholdHellOnEarth;
-        }
-    }
-
-	super.Possess( inPawn, bVehicleTransition );
-}
-
-/* epic ===============================================
 * ::NotifyTakeHit
 *
 * Notification from pawn that it has received damage
@@ -76,7 +43,7 @@ function bool ShouldSprint()
 		return false;
 	}
 
-	if( IsEnraged() || IsFrustrated() )
+	if( MyKFPawn.bIsEnraged )
 	{
 		return true;
 	}
@@ -84,22 +51,9 @@ function bool ShouldSprint()
 	return false;
 }
 
-function bool IsEnraged()
+/** Frustration mode should not change sprint settings on Scrake */
+function UpdateSprintFrustration( optional byte bForceFrustrationState=255 )
 {
-    return ( GetHealthPercentage() < RageHealthThreshold );
-}
-
-/**
- * Update sprint settings based on Frustration
- */
-function UpdateSprintFrustration( optional byte bForceFrustration=255 )
-{
-    super.UpdateSprintFrustration( (IsEnraged() ? 1 : bForceFrustration) );
-}
-
-function bool IsFrustrated()
-{
-    return ( IsEnraged() || super.IsFrustrated() );
 }
 
 function bool CanEvadeGrenade()
@@ -117,6 +71,7 @@ DefaultProperties
     EvadeGrenadeChance=0.75f
 	TeleportCooldown=10.0
 	HiddenRelocateTeleportThreshold=7.0
-    //FrustrationThreshold=0
+    FrustrationThreshold=0
     FrustrationDelay=5.0
+    LowIntensityAttackCooldown=5.0
 }

@@ -317,6 +317,7 @@ defaultproperties
    bAllowCullDistanceVolume=False
    bUseAsOccluder=True
    bAcceptsStaticDecals=True
+   CastShadow=True
    bForceDirectLightMap=True
    bAcceptsLights=True
    bUsePrecomputedShadows=True

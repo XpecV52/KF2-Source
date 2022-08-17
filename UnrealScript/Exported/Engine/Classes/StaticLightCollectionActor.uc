@@ -43,7 +43,6 @@ defaultproperties
    Begin Object Class=StaticMeshComponent Name=LightMeshComponent0 Archetype=StaticMeshComponent'Engine.Default__Light:LightMeshComponent0'
       ReplacementPrimitive=None
       bAllowApproximateOcclusion=True
-      LightingChannels=(bInitialized=True,Indoor=True,Outdoor=True)
       bOverridePrecomputedShadowOcclusion=True
       Name="LightMeshComponent0"
       ObjectArchetype=StaticMeshComponent'Engine.Default__Light:LightMeshComponent0'

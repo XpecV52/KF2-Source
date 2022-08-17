@@ -11,6 +11,7 @@ class KFDT_Bludgeon_Fleshpound extends KFDT_Bludgeon
 
 defaultproperties
 {
+   bExtraMomentumZ=True
    KDamageImpulse=700.000000
    KDeathVel=980.000000
    KDeathUpKick=200.000000

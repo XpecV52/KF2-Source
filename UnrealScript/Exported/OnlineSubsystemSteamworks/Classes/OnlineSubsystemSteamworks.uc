@@ -2123,7 +2123,9 @@ function EOnlineEnumerationReadState GetTitleFileState(string FileName);
  * @param LocalizedStringSettings the list of localized string settings to set
  * @param Properties the list of properties to set
  */
-native function SetOnlineStatus(byte LocalUserNum,int StatusId,const out array<LocalizedStringSetting> LocalizedStringSettings,const out array<SettingsProperty> Properties);
+//@HSL_BEGIN - JRO - 3/14/2016 - Changing signature so we can easily pass the useful info
+native function SetOnlineStatus(byte LocalUserNum,string StatusString,optional bool PlayerActive=true);
+//@HSL_END
 
 /**
  * Displays the UI that shows the keyboard for inputing text
@@ -3234,13 +3236,11 @@ event bool SetLobbyInterface(object NewInterface)
 }
 
 
-
 function TWOnlineLobby GetLobbyInterface()
 {
 	return LobbyInterface;
 }
-
-//(`__TW_STEAMWORKS_)
+//(`__TW_NETWORKING_)
 
 //(`STEAM_MATCHMAKING_LOBBY)
 

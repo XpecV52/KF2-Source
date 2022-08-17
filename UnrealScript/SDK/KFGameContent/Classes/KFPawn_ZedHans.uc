@@ -111,17 +111,17 @@ var KFSkinTypeEffects ShieldImpactEffects;
 simulated event ReplicatedEvent(name VarName)
 {
 	if( VarName == nameof(bGunsEquipped) )
-    {
+	{
 		// Replicated for the case when SM_ChangeWeapons is skipped on the client.
 		// If the special move is in progress, delay until SpecialMoveEnded
 		if ( SpecialMove != SM_ChangeStance )
 		{
 			SetWeaponStance(bGunsEquipped);
 		}
-    }
+	}
     else
     {
-        Super.ReplicatedEvent(VarName);   
+        Super.ReplicatedEvent(VarName);
     }
 }
 
@@ -526,7 +526,7 @@ simulated function bool ThrowGrenade()
 
 	BarrageTossCount++;
 
-	`SafeDialogManager.PlaySpotGrenadeDialog( self );
+	`DialogManager.PlaySpotGrenadeDialog( self );
 
 	return true;
 }
@@ -632,7 +632,7 @@ simulated function Tick( float DeltaTime )
 		// don't start saying random stuff right away... we need to wait a little bit to make sure our monologue goes off
 	    if( `TimeSince(SpawnTime) > 2.f && IsAliveAndWell() && !IsDoingSpecialMove() )
 	    {
-	        `SafeDialogManager.PlayHansTickDialog( self );
+	        `DialogManager.PlayHansTickDialog( self );
 	    }
 	}
 }
@@ -983,17 +983,17 @@ DefaultProperties
 	XPValues(2)=1790
 	XPValues(3)=1843
 
-    // ---------------------------------------------
-    // Content
-    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Hans_ARCH.ZED_Hans_Archetype'
-    PawnAnimInfo=KFPawnAnimInfo'ZED_Hans_ANIM.Hans_AnimGroup'
-    MeleeAnimSet=AnimSet'ZED_Hans_ANIM.Hans_Melee_Master'
-    GunsAnimSet=AnimSet'ZED_Hans_ANIM.Hans_Gun_Master'
-    ExplosiveGrenadeClass=class'KFGameContent.KFProj_HansHEGrenade'
-    NerveGasGrenadeClass=class'KFGameContent.KFProj_HansNerveGasGrenade'
-    SmokeGrenadeClass=class'KFGameContent.KFProj_HansSmokeGrenade'
+	// ---------------------------------------------
+	// Content
+	CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Hans_ARCH.ZED_Hans_Archetype'
+	PawnAnimInfo=KFPawnAnimInfo'ZED_Hans_ANIM.Hans_AnimGroup'
+	MeleeAnimSet=AnimSet'ZED_Hans_ANIM.Hans_Melee_Master'
+	GunsAnimSet=AnimSet'ZED_Hans_ANIM.Hans_Gun_Master'
+	ExplosiveGrenadeClass=class'KFGameContent.KFProj_HansHEGrenade'
+	NerveGasGrenadeClass=class'KFGameContent.KFProj_HansNerveGasGrenade'
+	SmokeGrenadeClass=class'KFGameContent.KFProj_HansSmokeGrenade'
 
-    HeavyBumpDamageType=class'KFGameContent.KFDT_HeavyZedBump'
+	HeavyBumpDamageType=class'KFGameContent.KFDT_HeavyZedBump'
 
     TheatricCameraSocketName=TheatricCameraRootSocket
 
@@ -1008,18 +1008,16 @@ DefaultProperties
 		SpecialMoveClasses(SM_Hans_GrenadeBarrage)=class'KFSM_Hans_GrenadeBarrage'
 	End Object
 
-    Begin Object Name=Afflictions_0
-        InstantAffl(IAF_Stun)=(Head=79,Torso=130,Arm=130,Special=53,LowHealthBonus=10,Cooldown=6.0)
-        InstantAffl(IAF_Knockdown)=(Head=65,Torso=150,Leg=150,Special=65,LowHealthBonus=10,Cooldown=40.0)
-        InstantAffl(IAF_Stumble)=(Head=79,Torso=130,Arm=130,Special=53,LowHealthBonus=10,Cooldown=8.0)
-        InstantAffl(IAF_LegStumble)=(Leg=130,LowHealthBonus=10,Cooldown=8.0)
-        InstantAffl(IAF_GunHit)=(Head=29,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=10.0)
-        InstantAffl(IAF_MeleeHit)=(Head=29,Torso=35,Leg=35,Arm=35,LowHealthBonus=10,Cooldown=3.0)
-        StackingAffl(SAF_Poison)=(Threshhold=5000.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.00)
-        StackingAffl(SAF_Microwave)=(Threshhold=40.0,Duration=3.0,Cooldown=10.0,DissipationRate=1.00)
-        StackingAffl(SAF_FirePanic)=(Threshhold=15,Duration=1.2,Cooldown=15.0,DissipationRate=1.0)
-        StackingAffl(SAF_EMPPanic)=(Threshhold=6.0,Duration=3.0,Cooldown=30.0,DissipationRate=0.5)
-    End Object
+    InstantIncaps(IAF_Stun)=(Head=85,Torso=120,Arm=120,Special=75,LowHealthBonus=10,Cooldown=10.0)
+    InstantIncaps(IAF_Knockdown)=(Head=65,Torso=150,Leg=150,Special=65,LowHealthBonus=10,Cooldown=40.0)
+    InstantIncaps(IAF_Stumble)=(Head=79,Torso=130,Arm=130,Special=53,LowHealthBonus=10,Cooldown=8.0)
+    InstantIncaps(IAF_LegStumble)=(Leg=130,LowHealthBonus=10,Cooldown=8.0)
+    InstantIncaps(IAF_GunHit)=(Head=29,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=10.0)
+    InstantIncaps(IAF_MeleeHit)=(Head=29,Torso=35,Leg=35,Arm=35,LowHealthBonus=10,Cooldown=3.0)
+    StackingIncaps(SAF_Poison)=(Threshhold=5000.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.00)
+    StackingIncaps(SAF_Microwave)=(Threshhold=40.0,Duration=3.0,Cooldown=10.0,DissipationRate=1.00)
+    StackingIncaps(SAF_FirePanic)=(Threshhold=15,Duration=1.2,Cooldown=15.0,DissipationRate=1.0)
+    StackingIncaps(SAF_EMPPanic)=(Threshhold=6.0,Duration=3.0,Cooldown=30.0,DissipationRate=0.5)
 
 	ParryResistance=4
 
@@ -1144,7 +1142,7 @@ DefaultProperties
 	// hunt and heal backpack effects
     BackPackSmokeEffectTemplate=ParticleSystem'ZED_Hans_EMIT.FX_Life_Drain_Smoke_01'
 
-    // explosion
+    /** Used for nerve gas attack explosions */
     Begin Object Class=KFGameExplosion Name=ExploTemplate0
         Damage=50
         DamageRadius=450
@@ -1186,7 +1184,7 @@ DefaultProperties
         LightingChannels=(Indoor=TRUE,Outdoor=TRUE,bInitialized=TRUE)
     End Object
 
-    // Nerve gas AoE explosion template
+    /** Used for nerve gas AOE attack "explosion" template */
     Begin Object Class=KFGameExplosion Name=ExploTemplate1
         Damage=8
         DamageRadius=450

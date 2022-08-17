@@ -11,6 +11,15 @@ var float MaxGrabDistance;
 var float MaxVictimZOffset;
 var bool bCanBeBlocked;
 
+protected function bool InternalCanDoSpecialMove()
+{
+    if(PawnOwner.IsHumanControlled() && PawnOwner.Physics == 2)
+    {
+        return false;
+    }
+    return super(KFSpecialMove).InternalCanDoSpecialMove();
+}
+
 function bool CanOverrideMoveWith(name NewMove)
 {
     if(!bUseRootMotion && (NewMove == 'KFSM_Stunned') || NewMove == 'KFSM_Stumble')
@@ -24,7 +33,7 @@ function PlayAnimation()
 {
     local float GrabCheckTime;
 
-    if((PawnOwner.Role == ROLE_Authority) && AIOwner != none)
+    if(PawnOwner.Role == ROLE_Authority)
     {
         GrabCheckTime = KFSkeletalMeshComponent(PawnOwner.Mesh).GetAnimInterruptTime(AnimName);
         if(GrabCheckTime <= float(0))
@@ -40,15 +49,38 @@ function PlayAnimation()
 
 function CheckGrapple()
 {
-    local Vector ToEnemy, Extent, HitLocation, HitNormal;
+    local Vector ToEnemy, Extent, EndTrace, HitLocation, HitNormal;
+
     local Actor HitActor;
     local KFPawn Victim;
     local byte SpecialMoveFlags;
 
-    if(((AIOwner != none) && AIOwner.Enemy != none) && AIOwner.Enemy.IsAliveAndWell())
+    if(bPendingStopFire)
     {
-        ToEnemy = PawnOwner.Location - AIOwner.Enemy.Location;
-        Victim = KFPawn(AIOwner.Enemy);
+        return;
+    }
+    Extent.X = PawnOwner.GetCollisionRadius() * 0.5;
+    Extent.Y = Extent.X;
+    Extent.Z = PawnOwner.GetCollisionHeight() * 0.5;
+    if(KFPOwner.IsHumanControlled())
+    {
+        EndTrace = KFPOwner.Location + (vector(KFPOwner.Rotation) * MaxGrabDistance);
+        HitActor = KFPOwner.Trace(HitLocation, HitNormal, EndTrace, KFPOwner.Location, true, Extent);
+        if(HitActor != none)
+        {
+            Victim = KFPawn(HitActor);
+        }        
+    }
+    else
+    {
+        if(AIOwner != none)
+        {
+            Victim = KFPawn(AIOwner.Enemy);
+        }
+    }
+    if(((Victim != none) && Victim.IsAliveAndWell()) && Victim.GetTeamNum() != KFPOwner.GetTeamNum())
+    {
+        ToEnemy = PawnOwner.Location - Victim.Location;
         if(((Victim != none) && (bCanBeBlocked && Victim.MyKFWeapon != none) && Victim.MyKFWeapon.IsGrappleBlocked(PawnOwner)) || !Victim.CanBeGrabbed(KFPOwner, true))
         {
             return;
@@ -57,17 +89,18 @@ function CheckGrapple()
         {
             return;
         }
-        Extent.X = PawnOwner.GetCollisionRadius() * 0.5;
-        Extent.Y = Extent.X;
-        Extent.Z = PawnOwner.GetCollisionHeight() * 0.5;
         if(VSizeSq(ToEnemy) <= Square(MaxGrabDistance))
         {
-            HitActor = PawnOwner.Trace(HitLocation, HitNormal, AIOwner.Enemy.Location, PawnOwner.Location, true, Extent);
-            if((HitActor == none) || HitActor == AIOwner.Enemy)
+            if(!KFPOwner.IsHumanControlled())
             {
-                SpecialMoveFlags = Class'KFSM_GrappleAttack'.static.PackSMFlags();
-                KFPOwner.DoSpecialMove(4, true, AIOwner.Enemy, SpecialMoveFlags);
+                HitActor = PawnOwner.Trace(HitLocation, HitNormal, Victim.Location, PawnOwner.Location, true, Extent);
+                if((HitActor != none) && HitActor != Victim)
+                {
+                    return;
+                }
             }
+            SpecialMoveFlags = Class'KFSM_GrappleAttack'.static.PackSMFlags();
+            KFPOwner.DoSpecialMove(4, true, Victim, SpecialMoveFlags);
         }
     }
 }
@@ -85,6 +118,43 @@ function NotifyOwnerTakeHit(class<KFDamageType> DamageType, Vector HitLoc, Vecto
         if(KFPOwner.CanDoSpecialMove(5))
         {
             KFPOwner.DoSpecialMove(5,,, Class'KFSM_Stumble'.static.PackBodyHitSMFlags(KFPOwner, HitDir));
+        }
+    }
+}
+
+function SpecialMoveButtonRetriggered()
+{
+    KFPOwner.DoSpecialMove(KFPOwner.SpecialMove, true,, 253);
+    if((KFPOwner.Role < ROLE_Authority) && KFPOwner.IsLocallyControlled())
+    {
+        KFPOwner.ServerDoSpecialMove(KFPOwner.SpecialMove, true,, 253);
+    }
+}
+
+function SpecialMoveButtonReleased()
+{
+    KFPOwner.DoSpecialMove(KFPOwner.SpecialMove, true,, 254);
+    if((KFPOwner.Role < ROLE_Authority) && KFPOwner.IsLocallyControlled())
+    {
+        KFPOwner.ServerDoSpecialMove(KFPOwner.SpecialMove, true,, 254);
+    }
+}
+
+function SpecialMoveFlagsUpdated()
+{
+    if(KFPOwner.SpecialMoveFlags == 253)
+    {
+        bPendingStopFire = false;        
+    }
+    else
+    {
+        if(KFPOwner.SpecialMoveFlags == 254)
+        {
+            bPendingStopFire = true;            
+        }
+        else
+        {
+            super(GameSpecialMove).SpecialMoveFlagsUpdated();
         }
     }
 }

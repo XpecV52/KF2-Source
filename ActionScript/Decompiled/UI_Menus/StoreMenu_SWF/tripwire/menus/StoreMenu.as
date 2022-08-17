@@ -23,6 +23,7 @@ package tripwire.menus
         {
             super();
             enableInitCallback = true;
+            sectionHeader = this.storeHeader;
         }
         
         override protected function onBPressed(param1:InputDetails) : void

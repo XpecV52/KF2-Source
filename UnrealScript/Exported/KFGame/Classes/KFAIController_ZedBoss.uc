@@ -58,7 +58,7 @@ event bool SetEnemy( Pawn NewEnemy )
 }
 
 /** Bosses should not be processed in frustration mode */
-function UpdateSprintFrustration( optional byte bForceFrustration=255 )
+function UpdateSprintFrustration( optional byte bForceFrustrationState=255 )
 {
 }
 
@@ -106,6 +106,7 @@ defaultproperties
 {
    bCanTeleportCloser=False
    FrustrationThreshold=0
+   LowIntensityAttackCooldown=0.000000
    Name="Default__KFAIController_ZedBoss"
    ObjectArchetype=KFAIController_Monster'KFGame.Default__KFAIController_Monster'
 }

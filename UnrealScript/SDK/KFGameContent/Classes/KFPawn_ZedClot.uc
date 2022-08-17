@@ -75,6 +75,7 @@ DefaultProperties
 	Begin Object Name=MeleeHelper_0
 		BaseDamage=6.f
 		MaxHitRange=172.f
+		MomentumTransfer=25000.f
 		MyDamageType=class'KFDT_Slashing_ZedWeak'
 	End Object
 	Health=100 // 67% KF1 scale
@@ -98,15 +99,13 @@ DefaultProperties
 		SpecialMoveClasses(SM_Evade_Fear)=class'KFSM_Evade_Fear'
 	End Object
 
-	Begin Object Name=Afflictions_0
-		InstantAffl(IAF_Stun)=(Head=100,Torso=100,Leg=100,Arm=100,Cooldown=3.0)
-		InstantAffl(IAF_Knockdown)=(Head=100,Torso=100,Leg=100,Arm=100,Cooldown=8.0)
-		InstantAffl(IAF_Stumble)=(Head=100,Torso=100,Arm=100,Cooldown=1.0)
-		InstantAffl(IAF_LegStumble)=(Leg=100,Cooldown=1.0)
-		InstantAffl(IAF_GunHit)=(Head=100,Torso=100,Leg=100,Arm=100,Cooldown=1.0)
-		InstantAffl(IAF_MeleeHit)=(Head=100,Torso=100,Leg=100,Arm=100,Cooldown=1.0)
-		StackingAffl(SAF_FirePanic)=(Threshhold=1.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.0)
-	End Object
+	InstantIncaps(IAF_Stun)=(Head=100,Torso=100,Leg=100,Arm=100,Cooldown=3.0)
+	InstantIncaps(IAF_Knockdown)=(Head=100,Torso=100,Leg=100,Arm=100,Cooldown=8.0)
+	InstantIncaps(IAF_Stumble)=(Head=100,Torso=100,Arm=100,Cooldown=1.0)
+	InstantIncaps(IAF_LegStumble)=(Leg=100,Cooldown=1.0)
+	InstantIncaps(IAF_GunHit)=(Head=100,Torso=100,Leg=100,Arm=100,Cooldown=1.0)
+	InstantIncaps(IAF_MeleeHit)=(Head=100,Torso=100,Leg=100,Arm=100,Cooldown=1.0)
+	StackingIncaps(SAF_FirePanic)=(Threshhold=1.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.0)
 
     ResistantDamageTypes.Add((DamageType=class'KFDT_Microwave'))
 

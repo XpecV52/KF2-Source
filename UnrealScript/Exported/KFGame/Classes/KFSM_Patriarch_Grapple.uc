@@ -42,14 +42,6 @@ var transient bool bTentacleCtrlStarted;
 var int TentacleDamage;
 var class<KFDamageType> TentacleDmgType;
 
-// Simple state flags for multi-stage special move
-enum EGrappleState
-{
-    EGS_GrabAttempt,
-    EGS_GrabSuccess,
-    EGS_GrabMiss,
-};
-
 // (cpptext)
 // (cpptext)
 // (cpptext)
@@ -65,7 +57,7 @@ function SpecialMoveStarted(bool bForced, Name PrevMove)
 
     Follower = KFPOwner.InteractionPawn;
 
-    if( Follower == none || !Follower.IsAliveAndWell() )
+    if( Follower != none && !Follower.IsAliveAndWell() )
     {
         KFPOwner.EndSpecialMove();
         return;
@@ -76,15 +68,23 @@ function SpecialMoveStarted(bool bForced, Name PrevMove)
     bGrabMissed = false;
 
     // On the server start a timer to check collision
-    if ( PawnOwner.Role == ROLE_Authority )
+    if ( KFPOwner.Role == ROLE_Authority )
     {
-        PawnOwner.SetTimer(TentacleGrabTime, FALSE, nameof(CheckGrapple), Self);
+        // Start the grapple check
+        KFPOwner.SetTimer(TentacleGrabTime, FALSE, nameof(CheckGrapple), Self);
+        
+        // Stop cloaking
+        KFPawn_Monster(KFPOwner).SetCloaked( false );
     }
 
-    KFPawn_Monster(PawnOwner).BumpFrequency = 0.f;
-    KFPawn_MonsterBoss(PawnOwner).PlayGrabDialog();
-    PawnOwner.SetTimer(TentacleStartTime, FALSE, nameof(BeginTentacleControls), Self);
-    DetachDistance = KFPOwner.CylinderComponent.CollisionRadius + Follower.CylinderComponent.CollisionRadius + default.DetachDistance;
+    KFPawn_Monster(KFPOwner).BumpFrequency = 0.f;
+    KFPawn_MonsterBoss(KFPOwner).PlayGrabDialog();
+    KFPOwner.SetTimer(TentacleStartTime, FALSE, nameof(BeginTentacleControls), Self);
+    if( Follower != none )
+    {
+        DetachDistance = KFPOwner.CylinderComponent.CollisionRadius + Follower.CylinderComponent.CollisionRadius + default.DetachDistance;
+    }
+
     PlayGrappleAnim();
 }
 
@@ -306,13 +306,17 @@ function NotifyOwnerTakeHit(class<KFDamageType> DamageType, vector HitLoc, vecto
     return; // no interruption
 }
 
-/** Disable skel controls */
-function SpecialMoveEnded(Name PrevMove, Name NextMove)
+/** Follower has left special move */
+function OnFollowerLeavingSpecialMove()
 {
-    PawnOwner.ClearTimer(nameof(CheckGrapple), Self);
-    PawnOwner.ClearTimer(nameof(BeginTentacleControls), Self);
+    super.OnFollowerLeavingSpecialMove();
 
-    // Return follower physics to normal
+    ResetFollowerPhysics();
+}
+
+/** Resets physics values on follower */
+function ResetFollowerPhysics()
+{
     if( Follower != none )
     {
         Follower.AirSpeed = Follower.default.AirSpeed;
@@ -320,7 +324,21 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
         {
             Follower.SetPhysics( PHYS_Falling );
         }
+    }   
+}
+
+/** Disable skel controls */
+function SpecialMoveEnded(Name PrevMove, Name NextMove)
+{
+    if( PawnOwner != none )
+    {
+        PawnOwner.ClearTimer(nameof(CheckGrapple), Self);
+        PawnOwner.ClearTimer(nameof(BeginTentacleControls), Self);
+        KFPawn_Monster(PawnOwner).BumpFrequency = KFPawn_Monster(PawnOwner).default.BumpFrequency;
     }
+    
+    // Return follower physics to normal
+    ResetFollowerPhysics();
 
     SetSkelControlsActive(false);
     Super.SpecialMoveEnded(PrevMove, NextMove);

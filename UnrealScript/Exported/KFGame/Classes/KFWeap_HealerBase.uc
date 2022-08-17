@@ -472,7 +472,7 @@ simulated event Tick(float DeltaTime)
 	if( Instigator != none && Instigator.WorldInfo.TimeSeconds - LastUIUpdateTime > UIUpdateInterval )
     {
         LastUIUpdateTime = Instigator.WorldInfo.TimeSeconds;   // throttle the updates so we're not spamming Actionscript with data.
-		UpdateInteractionMessage();	
+	UpdateInteractionMessage();	
 	}
 
 	UpdateScreenUI();
@@ -486,10 +486,10 @@ simulated function UpdateInteractionMessage()
 	//Update Interaction message	
 	if( Instigator != none && Instigator.IsLocallyControlled() && Instigator.Health > 0 )
 	{
-		InstigatorKFPC = KFPlayerController( Instigator.Controller );
+	InstigatorKFPC = KFPlayerController( Instigator.Controller );
 
 		if(InstigatorKFPC == none)
-		{
+	{
 			return;
 		}
 
@@ -503,13 +503,13 @@ simulated function UpdateInteractionMessage()
 	 		}
 	 	}
 	 	
- 		//We use AmmoCount[0] since the healer weapon only uses this ammo.  AmmoCost[ALTFIRE_FIREMODE] is the cost to heal yourself
-	   	if( Instigator.Health <= InstigatorKFPC.LowHealthThreshold && AmmoCount[0] >= AmmoCost[ALTFIRE_FIREMODE] )
-	   	{
-	   		bIsQuickHealMessageShowing = true;
- 			InstigatorKFPC.ReceiveLocalizedMessage(class'KFLocalMessage_Interaction', IMT_HealSelfWarning);
-	   	}
-	}
+	 		//We use AmmoCount[0] since the healer weapon only uses this ammo.  AmmoCost[ALTFIRE_FIREMODE] is the cost to heal yourself
+		   	if( Instigator.Health <= InstigatorKFPC.LowHealthThreshold && AmmoCount[0] >= AmmoCost[ALTFIRE_FIREMODE] )
+		   	{
+		   		bIsQuickHealMessageShowing = true;
+	 			InstigatorKFPC.ReceiveLocalizedMessage(class'KFLocalMessage_Interaction', IMT_HealSelfWarning);
+		   	}
+	 	}
 }
 
 /** Only update the screen screen if we have the healer equipped and it's value is different than our AmmoCount */

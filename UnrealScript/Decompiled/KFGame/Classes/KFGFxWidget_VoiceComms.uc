@@ -51,7 +51,7 @@ function EnableComm()
     if(!PC.IsDead() && PC.Pawn != none)
     {
         bActive = true;
-        PC.SetCinematicMode(true, false, false, false, true, false);
+        PC.IgnoreLookInput(true);
         Outer.GetGameViewportClient().__HandleInputAxis__Delegate = OnAxisModified;
         SetBool("bUsingGamePad", PC.PlayerInput.bUsingGamepad);
         ActionScriptVoid("enableComm");
@@ -63,6 +63,7 @@ function DisableComm()
     if(bActive)
     {
         bActive = false;
+        PC.IgnoreLookInput(false);
         Outer.GetGameViewportClient().__HandleInputAxis__Delegate = None;
         ActionScriptVoid("disableComm");
     }
@@ -75,7 +76,7 @@ function bool OnAxisModified(int ControllerId, name Key, float Delta, float Delt
     if(PC.PlayerInput.bUsingGamepad)
     {
         UpdateJoystickDirection(Key, Delta);
-        UpdateUICursorPosition(RawJoyVector.X * ControllerDampening, RawJoyVector.Y * ControllerDampening);        
+        UpdateUICursorPosition(RawJoyVector.X, RawJoyVector.Y, false);        
     }
     else
     {
@@ -90,7 +91,7 @@ function bool OnAxisModified(int ControllerId, name Key, float Delta, float Delt
                 MouseVector.Y = Delta;
             }
         }
-        UpdateUICursorPosition(MouseVector.X * MouseDampening, -MouseVector.Y * MouseDampening);
+        UpdateUICursorPosition(MouseVector.X * MouseDampening, -MouseVector.Y * MouseDampening, true);
     }
     return false;
 }
@@ -107,7 +108,7 @@ function UpdateJoystickDirection(name Key, float Delta)
     }
 }
 
-function UpdateUICursorPosition(float newX, float newY)
+function UpdateUICursorPosition(float newX, float newY, bool bMouseInput)
 {
     ActionScriptVoid("setNormalizedMousePosition");
 }

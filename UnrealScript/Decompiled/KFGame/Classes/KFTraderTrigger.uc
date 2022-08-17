@@ -17,6 +17,8 @@ var() SkeletalMeshActor TraderMeshActor;
 var() name OpenAnimName;
 /** Looping anim to play while trader is open */
 var() name IdleLoopAnimName;
+var AkEvent TraderOpenSound;
+var AkEvent TraderCloseSound;
 var transient bool bOpened;
 var config bool bLogTrader;
 var const float DistanceOffNavMeshTheTragerIsAllowedToBe;
@@ -89,6 +91,7 @@ simulated function OpenTrader()
             TraderMeshActor.SkeletalMeshComponent.PlayAnim(OpenAnimName);
             AnimDuration = TraderMeshActor.SkeletalMeshComponent.GetAnimLength(OpenAnimName);
             WorldInfo.GRI.SetTimer(AnimDuration, false, 'StartTraderLoopAnim', self);
+            TraderMeshActor.PlaySoundBase(TraderOpenSound);
         }
         ShowTraderPath();
     }
@@ -116,7 +119,7 @@ simulated function ShowTraderPath()
     {
         foreach LocalPlayerControllers(Class'KFPlayerController', KFPC)
         {
-            if(KFPC.Pawn == none)
+            if((KFPC.Pawn == none) || KFPC.GetTeamNum() == 255)
             {
                 continue;                
             }
@@ -167,6 +170,7 @@ simulated function CloseTrader()
         if(TraderMeshActor != none)
         {
             TraderMeshActor.SkeletalMeshComponent.PlayAnim(OpenAnimName,,,,, true);
+            TraderMeshActor.PlaySoundBase(TraderCloseSound);
         }
         foreach LocalPlayerControllers(Class'KFPlayerController', KFPC)
         {
@@ -193,6 +197,8 @@ defaultproperties
 {
     OpenAnimName=Open
     IdleLoopAnimName=Printing
+    TraderOpenSound=AkEvent'WW_UI_Menu.Play_UI_Trader_Build_Start'
+    TraderCloseSound=AkEvent'WW_UI_Menu.Play_UI_Trader_Build_Stop'
     DistanceOffNavMeshTheTragerIsAllowedToBe=500
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionHeight=160

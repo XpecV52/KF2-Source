@@ -1,10 +1,9 @@
-package tripwire.containers.perks
+package tripwire.containers.Perks
 {
     import flash.text.TextField;
     import scaleform.clik.controls.Button;
-    import tripwire.containers.TripContainer;
     
-    public class PerksNextRankContainer extends TripContainer
+    public class PerksNextRankContainer extends PerkContainerBase
     {
          
         

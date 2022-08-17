@@ -17,6 +17,11 @@ enum ETauntType
 
 var byte CurrentTauntType;
 
+static function byte PackFlagsBase(KFPawn P)
+{
+    return PackSMFlags(P, 0);
+}
+
 static function byte PackSMFlags(KFPawn P, byte InTauntType)
 {
     local byte Variant;

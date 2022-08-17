@@ -36,25 +36,7 @@ class KFPawn_Human extends KFPawn
 
 
 
-
-
-
-
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
  
@@ -282,7 +264,7 @@ class KFPawn_Human extends KFPawn
 
 
 
-#linenumber 70;
+#linenumber 52;
 
 #linenumber 15;
 
@@ -323,7 +305,6 @@ class KFPawn_Human extends KFPawn
 
 
 	
-
 
 
 
@@ -625,7 +606,7 @@ simulated event Destroyed()
 }
 
 /** Set various basic properties for this KFPawn based on the character class metadata */
-simulated function SetCharacterArch( KFCharacterInfoBase Info )
+simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bForce )
 {
 	Super.SetCharacterArch(Info);
 
@@ -836,8 +817,6 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 				InstigatorPC.AddHealPoints( UsedHealAmount );
 			}
 
-			if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogPlayerHealEvent(Amount,Healer,DamageType,self.Controller,DoshEarned);};
-
 			if( Healer.bIsPlayer )
 			{
 				if( Healer != Controller )
@@ -854,15 +833,15 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 				{
 					if( bMessageHealer )
 					{
-						InstigatorPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_HealedSelf, PlayerReplicationInfo );
-					}
+					InstigatorPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_HealedSelf, PlayerReplicationInfo );
 				}
+			}
 			}
 
 			// don't play dialog for healing done through perk skills (e.g. berserker vampire skill)
 			if( bMessageHealer )
 			{
-				if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayHealingDialog( KFPawn(Healer.Pawn), self, float(Health + HealthToRegen) / float(HealthMax) );
+			if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayHealingDialog( KFPawn(Healer.Pawn), self, float(Health + HealthToRegen) / float(HealthMax) );
 			}
 
             // Reduce burn duration and damage in half if you heal while burning
@@ -897,6 +876,7 @@ function GiveHealthOverTime()
 		if( KFPRI != none )
 		{
 			KFPRI.PlayerHealth = Health;
+			KFPRI.PlayerHealthPercent = FloatToByte( float(Health) / float(HealthMax) );
 		}
 	}
 	else
@@ -970,34 +950,11 @@ simulated function LeaveBloodPool()
 
 simulated function PlayTakeHitEffects( vector HitDirection, vector HitLocation )
 {
-	local KFPlayerController KFPC;
 	local class<KFDamageType> DmgType;
 	local name HitBoneName, RBBoneName;
 	local int HitZoneIndex;
 
 	DmgType = HitFxInfo.DamageType;
-
-	if( IsLocallyControlled() && !Controller.bGodMode )
-	{
-		// Apply gameplay post process effects
-		KFPC = KFPlayerController(Controller);
-		if( KFPC != none && DmgType != None )
-		{
-			KFPC.PlayScreenHitFX(DmgType, true);
-
-			// assumes all types with radial impulse (which include husk fireball) are "explosive"
-			if( Dmgtype.default.RadialDamageImpulse > 0 )
-			{
-				KFPC.PlayEarRingEffect( ByteToFloat(HitFxRadialInfo.RadiusDamageScale) );
-			}
-		}
-
-		// Allow weapon to play additional special effects
-		if( MyKFWeapon != None )
-		{
-			MyKFWeapon.PlayTakeHitEffects(HitFxInfo.HitLocation, HitFxInstigator);
-		}
-	}
 
 	if( WorldInfo.TimeSeconds > PainSoundLastPlayedTime + PainSoundCoolDown )
 	{
@@ -1010,6 +967,7 @@ simulated function PlayTakeHitEffects( vector HitDirection, vector HitLocation )
 
 	Super.PlayTakeHitEffects( HitDirection, HitLocation );
 
+	// @TODO Move to PlayDying()
 	// Add some death ragdoll velocity
 	if( DmgType != none )
 	{
@@ -1160,35 +1118,9 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 
 function bool Died(Controller Killer, class<DamageType> damageType, vector HitLocation)
 {
-	local int WaveNum;
-	local KFPlayerController KFPC;
-
 	if( Super.Died( Killer, DamageType, HitLocation ) )
 	{
 		if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayPlayerDeathDialog( self );
-
-		WaveNum = KFGameReplicationInfo( WorldInfo.GRI ).WaveNum;
-		KFPC = KFPlayerController(Controller);
-
-		if( KFPC != none )
-		{
-    		if( KFPC.PWRI.DeathStreakEndWave != (WaveNum-1) )
-    		{
-    			// reset start of streak
-    			KFPC.PWRI.DeathStreakStartWave = WaveNum;
-    		}
-
-    		// update end of streak
-    		KFPC.PWRI.DeathStreakEndWave = WaveNum;
-
-    		if( Killer.Pawn != none )
-    		{
-    			KFPC.PWRI.ClassKilledByLastWave = class< KFPawn_Monster >( Killer.Pawn.Class );
-    		}
-    		//clear any interaction messages
-    		KFPC.ReceiveLocalizedMessage(class'KFLocalMessage_Interaction', IMT_None);
-		}
-
 		//ProTip: No, you do not have a PRI anymore.
 		return true;
 	}
@@ -1198,9 +1130,17 @@ function bool Died(Controller Killer, class<DamageType> damageType, vector HitLo
 
 simulated function BroadcastDeathMessage( Controller Killer )
 {
-	if( Killer != none && Killer.IsA('KFAIController') )
+	if( Killer != none && Killer != Controller)
 	{
-		BroadcastLocalizedMessage( class'KFLocalMessage_Game', KMT_Killed, PlayerReplicationInfo, none, Killer.Class );
+		if(Killer.IsA('KFAIController'))
+		{
+			BroadcastLocalizedMessage( class'KFLocalMessage_Game', KMT_Killed, PlayerReplicationInfo, none, Killer.Class );
+		}
+		else
+		{
+			BroadcastLocalizedMessage( class'KFLocalMessage_PlayerKills', KMT_PlayerKillPlayer, Killer.PlayerReplicationInfo, PlayerReplicationInfo);
+		}
+		
 	}
 	else
 	{
@@ -1237,7 +1177,7 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 			class'KFPerk_FieldMedic'.static.ModifyVaccinationDamage( TempDamage, DamageType, MyMedicPerk.GetLevel() );
 		}
 		else
-		{
+	{
 			class'KFPerk_FieldMedic'.static.ModifyVaccinationDamage( TempDamage, DamageType );
 		}
 
@@ -1267,6 +1207,7 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	if (bLogTakeDamage) LogInternal(self @ GetFuncName()@"Adjusted Damage AFTER =" @ InDamage);
 
 	// (Cheats) Dont allow dying if demigod mode is enabled
+
 	if ( Controller != none &&  Controller.bDemiGodMode && InDamage >= Health )
 	{
 		// Increase your health when you are going to get killed... so the amount of damage in semigod is not always just 1...
@@ -1280,6 +1221,7 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 			InDamage = Health - 1;
 		}
 	}
+
 }
 
 event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
@@ -1314,6 +1256,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 	if( KFPRI != none )
 	{
 		KFPRI.PlayerHealth = Health;
+		KFPRI.PlayerHealthPercent = FloatToByte( float(Health) / float(HealthMax) );
 	}
 
 	ResetIdleStartTime();
@@ -1684,12 +1627,9 @@ function bool DoJump( bool bUpdating )
 */
 simulated function ToggleEquipment()
 {
-	local bool bIsEnabled;
-
 	if( IsLocallyControlled() && !bPlayedDeath )
 	{
-		bIsEnabled = (Flashlight != None && Flashlight.bEnabled);
-		SetFlashlight(!bIsEnabled, true);
+		SetFlashlight(!bFlashlightOn, true);
 	}
 }
 
@@ -1710,7 +1650,7 @@ simulated function SetFlashlight(bool bEnabled, optional bool bReplicate)
 	// always use the 1st person flashlight for the local player
 	if ( !bPlayedDeath )
 	{
-		Flashlight.SetEnabled(bEnabled);
+		Flashlight.UpdateFlashlightFor(self);
 	}
 
 	// replicate for third person flashlight
@@ -1950,8 +1890,6 @@ defaultproperties
    DeathMaterialEffectParamName="scalar_dead"
    DeathMaterialEffectDuration=0.100000
    Begin Object Class=KFPawnAfflictions Name=Afflictions_0 Archetype=KFPawnAfflictions'KFGame.Default__KFPawn:Afflictions_0'
-      StackingAffl(0)=(Cooldown=5.000000,DissipationRate=0.500000)
-      StackingAffl(1)=(Threshhold=0.200000,Duration=1.000000,DissipationRate=0.200000)
       bNoBurnedMatBeforeDeath=True
       FireFullyCharredDuration=2.500000
       FireCharPercentThreshhold=0.250000
@@ -1959,6 +1897,7 @@ defaultproperties
       ObjectArchetype=KFPawnAfflictions'KFGame.Default__KFPawn:Afflictions_0'
    End Object
    AfflictionHandler=KFPawnAfflictions'KFGame.Default__KFPawn_Human:Afflictions_0'
+   StackingIncaps(1)=(Threshhold=0.200000,Duration=1.000000,Cooldown=0.000000,DissipationRate=0.200000)
    TeammateCollisionRadiusPercent=0.500000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True
@@ -1993,21 +1932,29 @@ defaultproperties
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
       SpecialMoveClasses(19)=None
-      SpecialMoveClasses(20)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(21)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(20)=None
+      SpecialMoveClasses(21)=None
+      SpecialMoveClasses(22)=None
+      SpecialMoveClasses(23)=None
+      SpecialMoveClasses(24)=None
+      SpecialMoveClasses(25)=None
+      SpecialMoveClasses(26)=None
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn:SpecialMoveHandler_0'
    End Object
    SpecialMoveHandler=KFSpecialMoveHandler'KFGame.Default__KFPawn_Human:SpecialMoveHandler_0'
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent_1 Archetype=AkComponent'KFGame.Default__KFPawn:AmbientAkSoundComponent_1'
-      BoneName="Spine1"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       Name="AmbientAkSoundComponent_1"
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn:AmbientAkSoundComponent_1'
    End Object
    AmbientAkComponent=AmbientAkSoundComponent_1
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent_0 Archetype=AkComponent'KFGame.Default__KFPawn:AmbientAkSoundComponent_0'
-      BoneName="RW_Weapon"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True
       Name="AmbientAkSoundComponent_0"
@@ -2020,7 +1967,7 @@ defaultproperties
    End Object
    WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'KFGame.Default__KFPawn_Human:WeaponAmbientEchoHandler_0'
    Begin Object Class=AkComponent Name=FootstepAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn:FootstepAkSoundComponent'
-      BoneName="Root"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True
       Name="FootstepAkSoundComponent"
@@ -2028,7 +1975,7 @@ defaultproperties
    End Object
    FootstepAkComponent=FootstepAkSoundComponent
    Begin Object Class=AkComponent Name=DialogAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn:DialogAkSoundComponent'
-      BoneName="head"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       Name="DialogAkSoundComponent"
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn:DialogAkSoundComponent'

@@ -1,0 +1,324 @@
+//NOTES: 
+//1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
+//2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
+//3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
+//ItemDescription="Double-barreled, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest zeds will stagger when hit with both barrels. We found it in an old farm-house and //canned it for the Trader Pod. Hope you live longer than the farmer."
+
+[Armor]
+ItemName="Kamprustning"
+ItemCategory="Udstyr"
+ItemDescription="• Kamprustning beskytter dig mod adskillige typer skade men ødelægges undervejs\n• Køb ny rustning eller reparer skadet rustning hos handleren\n\nDet er en jakke udstyret med plader lavet af en kombination af højteknologisk fiber og wolframstål."
+
+[KFProj_DynamiteGrenade]
+ItemName="1/2 stang dynamit"
+ItemCategory =" Sprængstoffer"
+ItemDescription="• Bare et lille stykke dynamit med en lunte.\n• Den kan også skade dig så vær forsigtig!"
+
+[KFProj_MedicGrenade]
+ItemName="Lægegranat"
+ItemCategory =" Sprængstoffer"
+ItemDescription="• Udsender en gas som forgifter zeds men også heler holdkammerater\n• Stå i den blå gassky for at blive helet\n\nFor at citere en af vores videnskabsmænd: \Midlet, der udsendes fra disse granater, genopfrisker Homo Sapiens alt imens den afliver Homo Zedicus.\" Vi håber, det hjælper.""
+
+[KFProj_MolotovGrenade]
+ItemName="Molotovcocktail"
+ItemCategory="Sprængstoffer"
+ItemDescription="• Meget simpelt: En flammegranat som brænder zeds .\n• Vær opmærksom på at den også kan skade dig!\n\nFornærmende navngivet af finnerne i løbet af Vinterkrigen i 1939-40 efter Vyacheslav Mikhailovich Molotov, den sovjetiske udenrigsminister underkastet af Stalin... Undskyld, du ville måske ikke have en historietime?"
+
+[KFProj_EMPGrenade]
+ItemName="EMP-granat"
+ItemCategory="Sprængstoffer"
+ItemDescription="• Genererer en elektrisk impuls som både skader zeds og muligvis også lammer dem i kort tid.\n\nHvis du vil have flere oplysninger: Ved detonation genererer den på et nanosekund en elektromagnetisk impuls som afbryder elektriske systemer inden for kort afstand. Især dem inde i zeds. Praktisk, må man indrømme."
+
+[KFProj_HEGrenade]
+ItemName="HE-granat"
+ItemCategory="Sprængstoffer"
+ItemDescription="• En meget simpel højeksplosiv granat. Skader både zeds og mennesker.\n\nDet bliver ikke rigtig simplere. HE - Højeksplosiv - Den siger BOOM og sprænger ting i luften. Skal vi virkelig forklare det for dig?"
+
+[KFProj_FragGrenade]
+ItemName="Fragmentationsgranat"
+ItemCategory="Sprængstoffer"
+ItemDescription="• Den klassiske fragmentationsgranat: Den eksploderer med ubehagelige, små stykker metal, hvilket skader alt.\n\nJeg er ret sikker på, I alle spillede nok videospil før udbruddet skete, så du ved udmærket godt, hvad en fragmentationsgranat er. Og lad være med at lade som om, du ikke gør. Ingen her vil tro på dig."
+
+[KFProj_NailBombGrenade]
+ItemName="Sømbombe"
+ItemCategory ="Sprængstoffer"
+ItemDescription="• En simpel cylinder, fuld af gamle søm, med en lille eksplosiv ladning i midten.\n\nIkke den mest behagelige eller diskrete måde at tage sig af zeds på, men der er ikke noget behageligt eller diskret ved zeds, er der?"
+
+[KFWeap_Healer_Syringe]
+ItemName="Medicsprøjte"
+ItemCategory="Udstyr"
+
+[KFWeap_Welder]
+ItemName="Svejser"
+ItemCategory="Udstyr"
+
+[KFWeap_Pistol_9mm]
+ItemName="9mm pistol"
+ItemCategory="Håndvåben"
+ItemDescription="• Kun semiautomatisk skydetilstand.\n• Dette er den almindelige 9mm pistol. Simpel og billig (meget billigt for jer, ærlig talt). Det er den elementære pistol til alle Horzine-agenter."
+
+[KFWeap_Pistol_Deagle]
+ItemName=".50 Desert Eagle"
+ItemCategory="Håndvåben"
+ItemDescription="• Kun semiautomatisk skydetilstand.\n• Desert Eagle er bæstet over alle håndvåben, hvilket er grunden til, vi alle kender den som en \Håndkanon\" eller \"Hand Cannon\".""
+
+[KFWeap_AssaultRifle_AR15]
+ItemName="AR-15 jagtriffel"
+ItemCategory="Stormgevær"
+ItemDescription="• Vælg mellem 3-skudssalve og enkelskudstilstand.\n• Alternativ affyring: Skift mellem affyringstilstande.\n• Til at udrydde zeds, ikke \labaner\".""
+
+[KFWeap_AssaultRifle_SCAR]
+ItemName="SCAR-H-stormgevær"
+ItemCategory="Stormgevær"
+ItemDescription="• Vælg mellem fuldautomatisk og semiautomatisk skudtilstand.\n• Alternativ affyring: Skift mellem affyringstilstande.\n• Idet den oprindeligt lavet til United States Special Operations Command, er den, ganske vist, speciel!"
+
+[KFWeap_AssaultRifle_AK12]
+ItemName="Kalashnikov AK-12"
+ItemCategory="Stormgevær"
+ItemDescription="• Vælg mellem fuldautomatisk og 3-skudssalvetilstand.\n• Alternativ affyring: Skift mellem affyringstilstande.\n• Denne AK-12 blev taget fra en død russisk Spetsnaz-soldat til skanning."
+
+[KFWeap_AssaultRifle_Bullpup]
+ItemName="SA80 L85A2 Bullpup"
+ItemCategory="Stormgevær"
+ItemDescription="• Vælg mellem fuldautomatisk og semiautomatisk skudtilstand.\n• Alternativ affyring: Skift mellem affyringstilstande.\n• SA80 var den britiske hærs standardvåben, før hæren blev, tja, ædt."
+
+[KFWeap_Knife_Demolitionist]
+ItemName="Hobbykniv"
+ItemCategory="Nærkamp"
+ItemDescription="• Primær: Hurtigt snitteangreb, holde nede for komboangreb.\n• Sekundær: Stærkt snitteangreb\n• Alternativt angreb: Bloker/parer\n• Det er en hobbykniv. Perfekt til at åbne enhver kasse du støder på."
+
+[KFWeap_Knife_FieldMedic]
+ItemName="Skalpel"
+ItemCategory="Nærkamp"
+ItemDescription="• Primær: Hurtigt snitteangreb, holde nede for komboangreb.\n• Sekundær: Stærkt snitteangreb\n• Alternativt angreb: Bloker/parer\n• Det er en skalpel. Du er en læge, så vi antager, vi ikke behøver at forklare dig, hvordan man bruger den."
+
+[KFWeap_Knife_Firebug]
+ItemName="Brandmandskniv"
+ItemCategory="Nærkamp"
+ItemDescription="• Primær: Hurtigt snitteangreb, holde nede for komboangreb.\n• Sekundær: Stærkt snitteangreb\n• Alternativt angreb: Bloker/parer\n• Det er en brandmandskniv. Du er en brandman, så vi antager, vi ikke behøver at forklare dig, hvordan man bruger den."
+
+[KFWeap_Knife_Gunslinger]
+ItemName="Bowiekniv"
+ItemCategory="Nærkamp"
+ItemDescription="• Primær: Hurtigt snitteangreb, holde nede for komboangreb.\n• Sekundær: Stærkt snitteangreb\n• Alternativt angreb: Bloker/parer\n• Det Vilde Vestens alt for store kniv. Perfekt til at skære zeds i strimler og terner i nutiden."
+
+[KFWeap_Knife_Sharpshooter]
+ItemName="Kukri"
+ItemCategory="Melee"
+ItemDescription=""
+
+[KFWeap_Pistol_Medic]
+ItemName="HMTech-101-pistol"
+ItemCategory="Pistol"
+ItemDescription="• Kun semiautomatisk skydetilstand.\n• Alternativt angreb: Skyder helende pile som heler holdkammerater.\n• Idet den bruger hylsterløs ammunition, så tæller den patronerne for dig."
+
+[KFWeap_SMG_Medic]
+ItemName="HMTech-201-maskinpistol"
+ItemCategory="Maskinpistol"
+ItemDescription="• Kun fuldautomatisk skydetilstand.\n• Alternativt angreb: Skyder helende pile som heler holdkammerater.\n• Din pistol, forstærket!"
+
+[KFWeap_Shotgun_Medic]
+ItemName="HMTech-301-haglgevær"
+ItemCategory="Haglgevær"
+ItemDescription="• Kun semiautomatisk skydetilstand.\n• Alternativt angreb: Skyder helende pile som heler holdkammerater.\n• Lægeudgaven af kamphaglgeværet."
+
+[KFWeap_AssaultRifle_Medic]
+ItemName="HMTech-401-stormgevær"
+ItemCategory="Stormgevær"
+ItemDescription="• Kun fuldautomatisk skydetilstand.\n• Alternativt angreb: Skyder helende pile som heler holdkammerater.\n• Den fuldtudviklede stormgeværsversion."
+
+[KFWeap_Shotgun_DoubleBarrel]
+ItemName="Dobbeltløbet oversavet haglgevær"
+ItemCategory="Haglgevær"
+ItemDescription="• Primær: Affyr ét løb.\n• Alternativt angreb: Affyr begge løb på en gang.\n• Et dobbeltløbet haglgevær i kaliber 12. Ideelt til kamp inden for kort afstand. Får selv de største zeds til at vakle!"
+
+[KFWeap_Shotgun_AA12]
+ItemName="AA-12-autohaglgevær"
+ItemCategory="Haglgevær"
+ItemDescription="• Vælg mellem fuldautomatisk og semiautomatisk skudtilstand.\n• Alternativ affyring: Skift mellem affyringstilstande.\n• AA-12 er et automatisk haglgevær. Altødelæggende ildkraft ved tæt til medium afstand men opbruger hurtigt ammunition i fuldautomatisk tilstand!"
+
+[KFWeap_Shotgun_MB500]
+ItemName="SG 500 Pump-Action"
+ItemCategory="Haglgevær"
+ItemDescription="• Kun pumpemekanisk skydetilstand.\n• Pump-action Mossberg SG 500, med pistolgreb, er en vidunderlig zed-dræber på nært hold. Simpel og effektiv."
+
+[KFWeap_Shotgun_M4]
+ItemName="M4-kamphaglgevær"
+ItemCategory="Haglgevær"
+ItemDescription="• Kun semiautomatisk skydetilstand.\n• Benelli byggede M4-kamphaglgeværet til det amerikanske militær. Den er semiautomatisk hvilket muliggør en god, stabil skudhastighed."
+
+[KFWeap_Knife_Berserker]
+ItemName="Plæneklipperklinge"
+ItemCategory="Nærkamp"
+ItemDescription="• Primær: Hurtigt snitteangreb, holde nede for komboangreb.\n• Sekundær: Stærkt snitteangreb\n• Alternativt angreb: Bloker/parer\n• Ja, det er rent faktisk en plæneklipperklinge. Nyd den!"
+
+[KFWeap_Knife_Commando]
+ItemName="KF-BAR"
+ItemCategory="Nærkamp"
+ItemDescription="• Primær: Hurtigt snitteangreb, holde nede for komboangreb.\n• Sekundær: Stærkt snitteangreb\n• Alternativt angreb: Bloker/parer\n• Horzines udgave af den klassiske kommandokniv."
+
+[KFWeap_Knife_Support]
+ItemName="Machete"
+ItemCategory="Nærkamp"
+ItemDescription="• Primær: Hurtigt snitteangreb, holde nede for komboangreb.\n• Sekundær: Stærkt snitteangreb\n• Alternativt angreb: Bloker/parer\n• Føl dig nu ikke helt særlig bare fordi vi gav dig den største kniv."
+
+[KFWeap_Edged_Katana]
+ItemName="Katana"
+ItemCategory="Nærkamp"
+ItemDescription="• Primær: Hurtigt snitteangreb, holde nede for komboangreb.\n• Sekundær: Stærkt snitteangreb\n• Alternativt angreb: Bloker/parer\n• Vis lidt respekt for dens slags."
+
+[KFWeap_Blunt_Crovel]
+ItemName="Crovel-overlevelsesværktøj"
+ItemCategory="Nærkamp"
+ItemDescription="• Primær: Hurtigt snitteangreb, holde nede for komboangreb.\n• Sekundær: Stærkt slagangreb\n• Alternativt angreb: Bloker/parer\n• Delvis koben, delvis skovel; begge ganske livsfarlige."
+
+[KFWeap_Shotgun_Nailgun]
+ItemName="VLAD-1000-sømpistol"
+ItemCategory="Haglgevær"
+ItemDescription="• Vælg mellem at skyde enkelte søm og adskillige søm.\n• Alternativ affyring: Skift mellem affyringstilstande.\n• Vi erfarer, at en af Horzine-videnskabsmændene lånte den originale sømpistol fra en (død) servicetekniker."
+
+[KFWeap_Blunt_Pulverizer]
+ItemName="Pulverisator"
+ItemCategory="Nærkamp"
+ItemDescription="• Primær: Hurtigt slagangreb, holde nede for komboangreb.\n• Sekundær: Affyrer også et eksplosivt skud når våbnet rammer. Når der ikke er mere ammunition, fungerer Sekunder som et stærkt slagangreb så husk at genlade!\n• Alternativt angreb: Bloker/parer."
+
+[KFWeap_Eviscerator]
+ItemName="Udhuler"
+ItemCategory="Speciel"
+ItemDescription="• Primær: Affyr savklinger.\n• Alternativt angreb: Nærkampsangreb men opbruger hurtigt brændstof.\n• Idet den oprindeligt blev konstrueret af Horzines SDS-gruppe, i et af deres mere vilde øjeblikke, er dette bæst ikke ligefremt diskret."
+SecondaryAmmo="Benzin"
+
+[KFWeap_Edged_Zweihander]
+ItemName="Zweihänder"
+ItemCategory="Nærkamp"
+ItemDescription="• Primær: Medium/stærk skade med en vis kontrol over større grupper.\n• Sekundær: Langsommere angreb men mere skade\n• Alternativt angreb: Bloker/parer\n• Du gør endnu mere skade, når du også bevæger dig fremad."
+SharedUnlockSource="Chivalry: Medieval Warfare"
+
+[KFWeap_Flame_CaulkBurn]
+ItemName="Caulk n' Burn"
+ItemCategory="Flammer"
+ItemDescription="• Skyder med flammer.\n• Håndholdt, hjemmelavet flammekaster. Prøv IKKE dette derhjemme."
+
+[KFWeap_Shotgun_DragonsBreath]
+ItemName="Ildsættende Trench Gun"
+ItemCategory="Haglgevær"
+ItemDescription="• Kun pumpemekanisk skydetilstand.\n• Et haglgevær som bruger \Dragon's Breath\"-brandammunition. Ammunitionen er ikke kun dødbringende men ser også vidunderlig ud.""
+
+[KFWeap_Flame_Flamethrower]
+ItemName="Flammekaster"
+ItemCategory="Flammer"
+ItemDescription="• Skyder med flammer. Det er vist det hele.\n• En klassiker for enhver generation. Hvis i tvivl så bare brænd alt ned."
+
+[KFWeap_Beam_Microwave]
+ItemName="Mikrobølgevåben"
+ItemCategory="Flammer"
+ItemDescription="• Skydetilstand bruger mikrobølger til at opvarme zeds fra afstand, hvilket brænder dem indefra.\n• Alternativt angreb: Frigiver et mikrobølgetryk med kort rækkevidde.\n• Den moderne teknologis vidundere. Et håndholdt zed-kogeapparat."
+
+[KFWeap_Thrown_C4]
+ItemName="C4-sprængstof"
+ItemCategory="Sprængstoffer"
+ItemDescription="• Tryk for at anbring din C4-ladning.\n• Alternativt angreb: Detoner dine C4-ladninger i den rækkefølge, du anbragte dem.\n• En blok C4, trådarmere for for fjerndetonation ved behov."
+
+[KFWeap_GrenadeLauncher_HX25]
+ItemName="HX25-granatpistol"
+ItemCategory="Sprængstoffer"
+ItemDescription="• Affyrer adskillige subammunitioner som eksploderer ved kontakt."
+
+[KFWeap_GrenadeLauncher_M79]
+ItemName="M79-granatkaster"
+ItemCategory="Sprængstoffer"
+ItemDescription="• Tryk for at affyre en granat.\n• Granaten eksploderer ved kontakt.\n• Armerer først sig selv efter et par meter, så du ikke sprænger dit eget ansigt af."
+
+[KFWeap_RocketLauncher_RPG7]
+ItemName="RPG-7"
+ItemCategory="Sprængstoffer"
+ItemDescription="• Tryk for at affyre raketten.\n• Raketten eksploderer ved kontakt.\n• Armerer først sig selv efter et par meter, så du ikke sprænger dit eget ansigt af.\n• Og pas på den bagvedkommende eksplosion!"
+
+[KFWeap_Pistol_Dual9mm]
+ItemName="Dobbelt 9mm pistol"
+ItemCategory="Håndvåben"
+ItemDescription="• Kun semiautomatisk skydetilstand.\n• Alternativt angreb: Skift sigtestil, når der kigges ned ad sigtekornene.\n• Dette er et par almindelige 9mm-pistoler. Du kan (kun) sælge én af dem, hvis du får brug for det."
+
+[KFWeap_Pistol_Colt1911]
+ItemName="M1911-pistol"
+ItemCategory="Håndvåben"
+ItemDescription="• Kun semiautomatisk skydetilstand.\n• Den klassiske, semiautomatisk Colt 1911-pistol"
+
+[KFWeap_Pistol_DualColt1911]
+ItemName="Dobbelt M1911-pistoler"
+ItemCategory="Håndvåben"
+ItemDescription="• Kun semiautomatisk skydetilstand.\n• Alternativt angreb: Skift sigtestil, når der kigges ned ad sigtekornene.\n• Dette er et par semiautomatiske Colt 1911-pistoler. De kan begge sælges eller smides individuelt."
+
+[KFWeap_Pistol_Deagle]
+ItemName=".50 Desert Eagle"
+ItemCategory="Håndvåben"
+ItemDescription="• Kun semiautomatisk skydetilstand.\n• Desert Eagle er bæstet over alle håndvåben, hvilket er grunden til, vi alle kender den som en \Håndkanon\" eller \"Hand Cannon\".""
+
+[KFWeap_Pistol_DualDeagle]
+ItemName="Dobbelt .50 Desert Eagle"
+ItemCategory="Håndvåben"
+ItemDescription="• Kun semiautomatisk skydetilstand.\n• Alternativt angreb: Skift sigtestil, når der kigges ned ad sigtekornene.\n• Et par Desert Eagle-håndkanoner. De kan begge sælges eller smides individuelt."
+
+[KFWeap_Revolver_Rem1858]
+ItemName="1858 Revolver"
+ItemCategory="Håndvåben"
+ItemDescription="• Kun enkeltskudstilstand.\n• Et vidunderligt eksempel på Remington 'Model 1858' .44-kaliber, 6-skud Army single-action-revolveren. Gammeldags men stadig magtfuld."
+
+[KFWeap_Revolver_DualRem1858]
+ItemName="Dobbelt 1858-revolvere"
+ItemCategory="Håndvåben"
+ItemDescription="• Kun semiautomatisk skydetilstand.\n• Alternativt angreb: Skift sigtestil, når der kigges ned ad sigtekornene.\n• Et par Remington 1858-revolvere. De kan begge sælges eller smides individuelt."
+
+[KFWeap_Revolver_SW500]
+ItemName="500 Magnum-revolver"
+ItemCategory="Håndvåben"
+ItemDescription="• Kun enkeltskudstilstand.\n• Ægte håndholdt artilleri, i form af en .50-caliber \Bone Collector\"-revolver med langt løb, som affyrer fuldladte magnum-skud. Til den seriøse revolvermand.""
+
+[KFWeap_Revolver_DualSW500]
+ItemName="Dobbelt 500 Magnum-revolvere"
+ItemCategory="Håndvåben"
+ItemDescription="• Kun semiautomatisk skydetilstand.\n• Alternativt angreb: Skifter sigtestil, når der kigges ned ad sigtekornene.\n• Et par .500 Magnum 'Bone Collector'-revolvere. De kan begge sælges eller smides individuelt - med lyden af et stort \bump\".""
+
+[KFWeap_Rifle_Winchester1894]
+ItemName="Winchester 1894"
+ItemCategory="Rifle"
+ItemDescription="• Fire mode is single shot only.\n• The classic Model 1894 Winchester lever-action rifle."
+
+[KFWeap_Bow_Crossbow]
+ItemName="Crossbow"
+ItemCategory="Bow"
+ItemDescription="• Fire mode is single shot only.\n• Crossbow bolts are often recoverable!\n• A high-powered hunting crossbow, giving good penetration and good stopping power!"
+
+//BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
+[KFPawn_ZedHans]
+BossName="Dr. Hans Volter"
+BossCaptionStrings[0]="Hans er nærmest udødelig under sin røggranat-helingsfase. Lad være med at spilde ammunition!"
+BossCaptionStrings[1]="Hold øje med hans kraftkerne: Hans er mere aggressiv, når den ændrer farve."
+BossCaptionStrings[2]="Sigt efter hans emmisionskraftkerne. Det er et sårbart område."
+BossCaptionStrings[3]="Gas fra Hans' granat klamrer sig til dig ligesom Bloat-opkast. Prøv at undgå det!"
+BossCaptionStrings[4]="Hans skærende angreb er for stærke til at parere. Du kommer stadig til at tage fuld skade."
+BossCaptionStrings[5]="Hold øje med granaters røde advarselsindikatorer. De kan hjælpe dig med at se, hvor de lander."
+BossCaptionStrings[6]="Når Hans trækker sine våben frem, så lad ham ikke se dig. Åbenlyst, men vigtigt!"
+
+[KFPawn_ZedPatriarch]
+BossName="The Patriarch"
+BossCaptionStrings[0]="Kevin Clamely was once a brilliant scientist, until he became his own greatest creation."
+BossCaptionStrings[1]="The Patriarch is staggeringly arrogant - he is likely to tell you which attack he will use next."
+BossCaptionStrings[2]="Hiding behind even big objects won't help as much as you'd hope. The Patriarch has an answer for that!"
+BossCaptionStrings[3]="Running off on your own isn't an escape - it makes you easy prey he will target first."
+BossCaptionStrings[4]="Yes, the Patriarch can still cloak, go invisible, run off and heal himself. Some things don't change."
+BossCaptionStrings[5]="While you won't get much choice about it, killing The Patriarch's 'children' just makes him mad(der)."
+
+[KFGameInfo_Survival]
+GameName="Overlevelse"
+
+[KFGameInfo_VersusSurvival]
+GameName="VS Survival"
+
+[KFPawn_ZedPatriarch_Versus]
+NoHealsRemainingMsg="No Heals Remaining"
+LowHealthMsg="Health Is Critical! Heal Now!"
+NoMortarTargetsMsg="No Valid Mortar Targets"
+
+[KFSM_PlayerSiren_VortexVictim]
+VortexGrabTeamWarningMsg="%x% is trapped by a Siren!"

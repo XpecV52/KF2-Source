@@ -43,7 +43,6 @@ function GiveTo( Pawn P )
 		{
 			`BalanceLog(class'KFGameInfo'.const.GBE_Pickup, P.PlayerReplicationInfo, "Ammo");
 			`AnalyticsLog(( "pickup", P.PlayerReplicationInfo, "ammo"));
-
 			PickedUpBy( P );
 		}
 	}

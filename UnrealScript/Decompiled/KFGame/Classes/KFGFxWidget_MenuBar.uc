@@ -35,12 +35,18 @@ function UpdateMenu(byte CurrentMenuIndex)
 
     if(I < MenuStrings.Length)
     {
+        if(((I == (MenuStrings.Length - 1)) && Class'WorldInfo'.static.IsMenuLevel()) && Class'WorldInfo'.static.IsConsoleBuild(8))
+        {
+            goto J0x189;
+        }
         TempObj = Outer.CreateObject("Object");
         HandleButtonSpecialCase(I, TempObj);
         DataProvider.SetElementObject(I, TempObj);
         ++ I;
         goto J0x74;
     }
+    J0x189:
+
     DataProvider.SetInt("selectedIndex", CurrentMenuIndex);
     SetObject("dataObject", DataProvider);
 }
@@ -152,7 +158,7 @@ defaultproperties
     ExitString="EXIT"
     CancelString="CANCEL"
     ServerBrowserString="SERVER BROWSER"
-    MatchmakingString="MATCH MAKING"
+    MatchmakingString="MATCHMAKING"
     SoloString="SOLO"
     OverviewString="MATCH OVERVIEW"
     TitleStrings(0)="Abandoning the fight already?"

@@ -6,7 +6,20 @@
  * All rights belong to their respective owners.
  *******************************************************************************/
 class KFCharacterInfo_Monster extends KFCharacterInfoBase
+    native(Pawn)
     hidecategories(Object);
+
+struct native DoorSoundFx
+{
+    var() AkEvent Metal;
+    var() AkEvent Wood;
+
+    structdefaultproperties
+    {
+        Metal=none
+        Wood=none
+    }
+};
 
 struct native ZedDifficultySettings
 {
@@ -58,26 +71,30 @@ struct native MeleeSpecialDismembermentInfo
 };
 
 /** Character mesh to use */
-var(Display) SkeletalMesh CharacterMesh<DisplayName=Body Mesh>;
-/** The material ID for the body */
-var(Display) int CharacterSkinMaterialID<DisplayName=Body Material ID>;
-/** (optional) Randomly selected material override applied to body mesh */
-var(Display) array<MaterialInterface> CharacterSkinVariants<DisplayName=Character Skins>;
+var(ThirdPerson) SkeletalMesh CharacterMesh<DisplayName=Body Mesh>;
+var(Versus) array<MaterialInterface> PlayerControlledSkins;
+var(Versus) array<MaterialInterface> PlayerControlledGoreSkins;
 /** Aggressively optimized mesh for the server with minimal bones */
 var(Performance) SkeletalMesh ServerMesh;
 var(Audio) DoorSoundFx DoorHitSound;
+/** ZedDifficultySettings struct for Normal difficulty level */
 var(Difficulty) ZedDifficultySettings Normal;
+/** ZedDifficultySettings struct for Hard difficulty level */
 var(Difficulty) ZedDifficultySettings Hard;
+/** ZedDifficultySettings struct for Suicidal difficulty level */
 var(Difficulty) ZedDifficultySettings Suicidal;
+/** ZedDifficultySettings struct for HellOnEarth difficulty level */
 var(Difficulty) ZedDifficultySettings HellOnEarth;
-/** [KF1] Used to scale the health of certain zed types based on player count */
+/** Add an additional percentage of body health per player beyond 1 player. */
 var(Difficulty) float NumPlayersScale_BodyHealth;
+/** Add an additional percentage of head health per player beyond 1 player. */
 var(Difficulty) float NumPlayersScale_HeadHealth;
+/** Alterantive health scaling for player controlled zeds (versus mode */
+var(Versus) float NumPlayersScale_BodyHealth_Versus;
+var(Versus) float NumPlayersScale_HeadHealth_Versus;
 var MaterialInstance BloodSplatterDecalMaterial;
 /** Gore mesh with alternate bone weights */
 var(Gore) SkeletalMesh GoreMesh;
-/** Alternate material ID for the body used for gore */
-var(Gore) int CharacterGoreMaterialID<DisplayName=Gore Material ID>;
 /**  
  *Gore settings for bones that can be dismembered.
  *       ALL HITZONE BONES MUST BE INCLUDED EVEN IF THEY CANNOT BE DISMEMBERED
@@ -109,7 +126,7 @@ var(Gore) float ExplosionImpulseScale<DisplayName=Gib Impulse Scale|UIMin=0|Clam
 
 simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplicationInfo KFPRI)
 {
-    local int I, BodyMICIndex;
+    local int I;
 
     super.SetCharacterMeshFromArch(KFP, KFPRI);
     if(CharacterMesh != none)
@@ -133,37 +150,31 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
             KFP.Mesh.SetSkeletalMesh(CharacterMesh);
         }
         KFP.Mesh.SetScale(DefaultMeshScale);
-        BodyMICIndex = CharacterSkinMaterialID;
-        if(CharacterSkinVariants.Length > 0)
-        {
-            KFP.Mesh.SetMaterial(CharacterSkinMaterialID, CharacterSkinVariants[Rand(CharacterSkinVariants.Length)]);            
-        }
-        else
+        if(KFP.UsePlayerControlledZedSkin())
         {
             I = 0;
-            J0x268:
+            J0x211:
 
-            if(I < KFP.Mesh.GetNumElements())
+            if(I < PlayerControlledSkins.Length)
             {
-                KFP.Mesh.SetMaterial(I, none);
+                KFP.Mesh.SetMaterial(I, PlayerControlledSkins[I]);
                 ++ I;
-                goto J0x268;
+                goto J0x211;
             }
         }
     }
     if((KFP.WorldInfo.NetMode != NM_DedicatedServer) && KFP.Mesh != none)
     {
-        KFP.BodyMIC = KFP.Mesh.CreateAndSetMaterialInstanceConstant(BodyMICIndex);
+        KFP.BodyMIC = KFP.Mesh.CreateAndSetMaterialInstanceConstant(0);
     }
 }
 
 defaultproperties
 {
-    Normal=(HealthMod=1,HeadHealthMod=1,SprintChance=0,DamagedSprintChance=0,DamageMod=1,SoloDamageMod=1)
+    Normal=(HealthMod=1,HeadHealthMod=1,SprintChance=0,DamagedSprintChance=0,DamageMod=0.5,SoloDamageMod=1)
     Hard=(HealthMod=1,HeadHealthMod=1,SprintChance=0,DamagedSprintChance=0,DamageMod=1,SoloDamageMod=1)
-    Suicidal=(HealthMod=1,HeadHealthMod=1,SprintChance=0,DamagedSprintChance=0,DamageMod=1,SoloDamageMod=1)
-    HellOnEarth=(HealthMod=1,HeadHealthMod=1,SprintChance=0,DamagedSprintChance=0,DamageMod=1,SoloDamageMod=1)
-    NumPlayersScale_BodyHealth=1
+    Suicidal=(HealthMod=1,HeadHealthMod=1,SprintChance=0,DamagedSprintChance=0,DamageMod=1.25,SoloDamageMod=1)
+    HellOnEarth=(HealthMod=1,HeadHealthMod=1,SprintChance=0,DamagedSprintChance=0,DamageMod=1.75,SoloDamageMod=1)
     ExplosionGibScale=1
     ExplosionImpulseScale=1
 }

@@ -64,7 +64,6 @@ class KFDT_Explosive_DynamiteGrenade extends KFDT_Explosive
 
 
 
-
 #linenumber 15;
 
 defaultproperties

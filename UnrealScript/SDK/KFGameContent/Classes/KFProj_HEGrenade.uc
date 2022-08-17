@@ -17,6 +17,7 @@ defaultproperties
 
 	ProjFlightTemplate=ParticleSystem'WEP_3P_MK3_EMIT.FX_MK3_Grenade_Mesh'
 	ExplosionActorClass=class'KFExplosionActor'
+	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MK3_Grenade'
 
 	// explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0

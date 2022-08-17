@@ -127,30 +127,30 @@ simulated event ReplicatedEvent(name VarName)
 		// Clear the lock if we lost our LockedTarget and don't have a new PendingLockedTarget
 		if( OpticsUI != none )
 		{
-			if (LockedTarget == none && PendingLockedTarget == none)
-			{
-				OpticsUI.ClearLockOn();
-			}
-			else if (LockedTarget != none)
-			{
-				OpticsUI.LockedOn();
-			}
+		if (LockedTarget == none && PendingLockedTarget == none)
+		{
+			OpticsUI.ClearLockOn();
 		}
+		else if (LockedTarget != none)
+		{
+			OpticsUI.LockedOn();
+		}
+	}
 	}
 	else if (VarName == nameof(PendingLockedTarget))
 	{
 		// Clear the lock if we lost our LockedTarget and don't have a new PendingLockedTarget
 		if( OpticsUI != none )
 		{
-			if (PendingLockedTarget == none && LockedTarget == none)
-			{
-				OpticsUI.ClearLockOn();
-			}
-			else if (PendingLockedTarget != none)
-			{
-				OpticsUI.StartLockOn();
-			}
+		if (PendingLockedTarget == none && LockedTarget == none)
+		{
+			OpticsUI.ClearLockOn();
 		}
+		else if (PendingLockedTarget != none)
+		{
+			OpticsUI.StartLockOn();
+		}
+	}
 	}
 	else
 	{
@@ -292,7 +292,7 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
  * State WeaponSingleFiring
  * Fire must be released between every shot.
  *********************************************************************************************/
- 
+
 simulated state WeaponSingleFiring
 {
 	/** Handle ClearPendingFire */

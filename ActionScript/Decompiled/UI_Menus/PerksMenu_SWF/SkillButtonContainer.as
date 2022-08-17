@@ -1,6 +1,6 @@
 package
 {
-    import tripwire.containers.perks.PerkSkillButtonContainer;
+    import tripwire.containers.Perks.PerkSkillButtonContainer;
     
     public dynamic class SkillButtonContainer extends PerkSkillButtonContainer
     {

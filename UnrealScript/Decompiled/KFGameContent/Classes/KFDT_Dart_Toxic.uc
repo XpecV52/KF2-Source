@@ -15,5 +15,5 @@ static function bool IsToxicDartWithACMedicPerk()
 
 defaultproperties
 {
-    WeaponDef=Class'KFWeapDef_Healer'
+    WeaponDef=Class'KFGame.KFWeapDef_Healer'
 }

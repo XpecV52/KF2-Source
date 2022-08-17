@@ -64,7 +64,6 @@ class KFDT_Fire_MolotovGrenade extends KFDT_Fire
 
 
 
-
 #linenumber 15;
 
 defaultproperties

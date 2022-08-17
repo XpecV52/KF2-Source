@@ -25,7 +25,7 @@ enum EStubmleAnim
     ESA_MAX
 };
 
-static function bool ShouldDoLegStumble(KFPawn P, KFPawn.EHitZoneBodyPart HitZoneLimb)
+static function bool ShouldDoLegStumble(KFPawn P, KFPawnAfflictions.EHitZoneBodyPart HitZoneLimb)
 {
     if((HitZoneLimb == 5) || HitZoneLimb == 6)
     {

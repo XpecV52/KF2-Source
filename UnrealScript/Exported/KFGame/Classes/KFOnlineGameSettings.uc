@@ -36,7 +36,7 @@ var databinding string MapName;
 var databinding int Difficulty;
 
 /** The number of waves in the match */
-var databinding string Mode;
+var databinding int Mode;
 
 /** Have mutators been applied to this server? **/
 var databinding bool bMutators;
@@ -65,7 +65,6 @@ defaultproperties
    ZedCount=10
    MaxZedCount=100
    MapName="KF-BurningParis"
-   Mode="Survival"
    NumPublicConnections=6
    Name="Default__KFOnlineGameSettings"
    ObjectArchetype=OnlineGameSettings'Engine.Default__OnlineGameSettings'

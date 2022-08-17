@@ -21,6 +21,7 @@ package tripwire.containers
         {
             super.addedToStage(param1);
             TextFieldEx.setVerticalAlign(this.descriptionTextField,TextFieldEx.VALIGN_CENTER);
+            sectionHeader = this.overviewHeader;
         }
         
         public function set descriptionString(param1:String) : void

@@ -23,7 +23,7 @@ struct FootstepSoundInfo
 
 struct ImpactSoundCoolDownInfo
 {
-    var KFPawn.EHitZoneBodyPart Limb;
+    var KFPawnAfflictions.EHitZoneBodyPart Limb;
     var name BoneName;
     var float LastImpactSoundTime;
 

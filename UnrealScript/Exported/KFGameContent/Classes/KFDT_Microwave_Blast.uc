@@ -63,7 +63,6 @@ class KFDT_Microwave_Blast extends KFDT_Microwave
 
 
 
-
 #linenumber 14;
 
 defaultproperties

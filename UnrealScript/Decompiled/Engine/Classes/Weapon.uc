@@ -71,6 +71,11 @@ simulated function float GetModifiedFOVAngle()
     }
 }
 
+simulated function bool ShouldWeaponIgnoreStartFire()
+{
+    return false;
+}
+
 simulated event Destroyed()
 {
     DetachWeapon();

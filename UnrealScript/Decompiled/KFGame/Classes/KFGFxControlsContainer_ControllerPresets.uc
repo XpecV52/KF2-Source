@@ -5,8 +5,7 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFGFxControlsContainer_ControllerPresets extends KFGFxObject_Container within GFxMoviePlayer
-    config(UI);
+class KFGFxControlsContainer_ControllerPresets extends KFGFxObject_Container within GFxMoviePlayer;
 
 struct KeyBinding
 {
@@ -29,58 +28,104 @@ var const localized string LookString;
 var const localized string ShowScoardBoardString;
 var const localized string ShowIngameMenuString;
 var const localized string HoldString;
-var config array<config KeyBinding> ControllerPreset0;
+var const localized string CurrentControllerPresetString;
+var int numGamepadLayouts;
 var byte CurrentLocalizedIndex;
 var byte CurrentPresetIndex;
 
 function Initialize(KFGFxObject_Menu NewParentMenu)
 {
     super.Initialize(NewParentMenu);
-    UpdateCurrentPresetArray(0);
+    CurrentPresetIndex = byte(KFPlayerInput(Outer.GetPC().PlayerInput).CurrentLayoutIndex);
+    UpdateCurrentPresetArray(CurrentPresetIndex);
 }
 
 function UpdateCurrentPresetArray(byte PresetIndex)
 {
-    if(PresetIndex != CurrentPresetIndex)
+    local KFPlayerInput KFPlayerInput, KFPI;
+
+    CurrentPresetIndex = PresetIndex;
+    numGamepadLayouts = Class'KFGamepadLayoutManager'.static.GetNumLayouts();
+    if(CurrentPresetIndex >= numGamepadLayouts)
     {
-        CurrentPresetIndex = PresetIndex;
-        switch(CurrentPresetIndex)
-        {
-            case 0:
-                LocalizeText(ControllerPreset0);
-                break;
-            default:
-                break;
-        }
+        CurrentPresetIndex = 0;        
     }
     else
     {
+        if(CurrentPresetIndex < 0)
+        {
+            CurrentPresetIndex = byte(numGamepadLayouts - 1);
+        }
+    }
+    KFPlayerInput = KFPlayerInput(Outer.GetPC().PlayerInput);
+    KFPlayerInput.SetGamepadLayout(CurrentPresetIndex);
+    LocalizeText();
+    UpdateButtonDescriptions();
+    KFPI = KFPlayerInput(Outer.GetPC().PlayerInput);
+    KFPI.CurrentLayoutIndex = CurrentPresetIndex;
+    KFPI.SaveConfig();
+}
+
+function LocalizeText()
+{
+    local GFxObject TextField, PresetArray, StepperOption;
+    local int I;
+
+    TextField = GetObject("CurrentPresetTextfield");
+    PresetArray = Outer.CreateArray();
+    I = 0;
+    J0x61:
+
+    if(I < numGamepadLayouts)
+    {
+        StepperOption = Outer.CreateObject("Object");
+        StepperOption.SetString("label", string(I));
+        PresetArray.SetElementObject(I, StepperOption);
+        ++ I;
+        goto J0x61;
+    }
+    SetObject("presetOptions", PresetArray);
+    SetInt("currentPreset", CurrentPresetIndex);
+    if(TextField != none)
+    {
+        TextField.SetText(CurrentControllerPresetString);
     }
 }
 
-function LocalizeText(out array<KeyBinding> PresetArray)
+function UpdateButtonDescriptions()
 {
-    local GFxObject LocalizedObject, BindingsArray;
+    local GFxObject LocalizedObject;
+    local name GamepadButtonNames[20];
+    local KFPlayerInput KFPlayerInput;
     local byte I;
+    local string bindCommand;
+    local GFxObject TempTextField;
+    local string TextFieldName, localizedCommand;
 
     CurrentLocalizedIndex = 0;
     LocalizedObject = Outer.CreateObject("Object");
-    BindingsArray = Outer.CreateArray();
     LocalizedObject.SetString("leftThumbstick", MovementString);
     LocalizedObject.SetString("rightThumbstick", LookString);
     LocalizedObject.SetString("back", ShowScoardBoardString);
     LocalizedObject.SetString("start", ShowIngameMenuString);
+    KFPlayerInput = KFPlayerInput(Outer.GetPC().PlayerInput);
+    Class'KFGamepadLayoutManager'.static.GetGamepadButtonNames(GamepadButtonNames);
     I = 0;
-    J0x146:
+    J0x18C:
 
-    if(I < ControllerPreset0.Length)
+    if(I < 20)
     {
-        AddBindingToGFxObject(BindingsArray, PresetArray[I].Key, PresetArray[I].Command, PresetArray[I].HoldCommand, I);
+        TextFieldName = string(GamepadButtonNames[I]) $ "Textfield";
+        TempTextField = GetObject(TextFieldName);
+        if(TempTextField != none)
+        {
+            bindCommand = KFPlayerInput.GetGameBindableAction(GamepadButtonNames[I]);
+            localizedCommand = Localize(InputSectionName, bindCommand, PackageName);
+            TempTextField.SetText(localizedCommand);
+        }
         ++ I;
-        goto J0x146;
+        goto J0x18C;
     }
-    LocalizedObject.SetObject("bindings", BindingsArray);
-    SetObject("localizedText", LocalizedObject);
 }
 
 function AddBindingToGFxObject(out GFxObject ObjectArray, string Key, string Command, string HoldCommand, byte I)
@@ -111,19 +156,5 @@ defaultproperties
     ShowScoardBoardString="Show Scoreboard"
     ShowIngameMenuString="Toggle In Game Menu"
     HoldString="(Hold)"
-    ControllerPreset0(0)=(Key="rightTrigger",Command="GBA_Fire",HoldCommand="")
-    ControllerPreset0(1)=(Key="leftTrigger",Command="GBA_IronSightsToggle",HoldCommand="GBA_IronSightsHold")
-    ControllerPreset0(2)=(Key="rightBumper",Command="GBA_AltFire",HoldCommand="")
-    ControllerPreset0(3)=(Key="leftBumper",Command="GBA_Grenade",HoldCommand="")
-    ControllerPreset0(4)=(Key="l3",Command="GBA_SprintAndCrouch",HoldCommand="")
-    ControllerPreset0(5)=(Key="r3",Command="GBA_Use",HoldCommand="")
-    ControllerPreset0(6)=(Key="a",Command="GBA_Jump",HoldCommand="")
-    ControllerPreset0(7)=(Key="b",Command="GBA_TertiaryFire",HoldCommand="")
-    ControllerPreset0(8)=(Key="x",Command="GBA_Reload",HoldCommand="GBA_QuickHeal")
-    ControllerPreset0(9)=(Key="y",Command="GBA_NextWeapon",HoldCommand="GBA_WeaponSelect_Gamepad")
-    ControllerPreset0(10)=(Key="left",Command="GBA_ShowVoiceComms",HoldCommand="")
-    ControllerPreset0(11)=(Key="right",Command="GBA_ShowVoiceComms",HoldCommand="")
-    ControllerPreset0(12)=(Key="up",Command="GBA_TossMoney",HoldCommand="")
-    ControllerPreset0(13)=(Key="down",Command="GBA_ToggleFlashlight",HoldCommand="")
-    CurrentPresetIndex=255
+    CurrentControllerPresetString="Current Controller Preset"
 }

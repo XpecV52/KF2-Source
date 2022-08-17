@@ -19,7 +19,7 @@ var databinding int ZedCount;
 var databinding int MaxZedCount;
 var databinding string MapName;
 var databinding int Difficulty;
-var databinding string Mode;
+var databinding int Mode;
 var databinding int NumSpectators;
 
 defaultproperties
@@ -29,6 +29,5 @@ defaultproperties
     ZedCount=10
     MaxZedCount=100
     MapName="KF-BurningParis"
-    Mode="Survival"
     NumPublicConnections=6
 }

@@ -10,9 +10,11 @@ class KFPawnBlockingVolume extends BlockingVolume
     hidecategories(Navigation,Object,Movement,Display);
 
 /** whether to block PCs */
-var() bool bBlockPlayers;
+var() bool bBlockPlayers<EditCondition=!bBlockZedPlayers|DisplayName=bBlockHumanPlayers>;
+/** whether to block PC controlled zeds (team == 255) */
+var() bool bBlockZedPlayers<EditCondition=!bBlockPlayers>;
 /** whether to block NPCs */
-var() bool bBlockMonsters;
+var() bool bBlockMonsters<DisplayName=bBlockAI>;
 
 defaultproperties
 {

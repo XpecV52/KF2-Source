@@ -151,7 +151,7 @@ var(HitReaction) const array<name> DmgOverTimeHitAnims;
 
 var(HitReaction) bool bCanPlayAnimHitReactions;
 
-/** Anims for stumble special move 
+/** Anims for stumble special move
 	0: Body_Forward,
 	1: Body_Backward,
 	2: Body_Left,
@@ -275,6 +275,13 @@ function Name ChooseAttackByName(name AttackName, optional KFPawn_Monster Instig
 
 	if ( idx != INDEX_NONE )
 	{
+		// Solve edge case where world time has reset but cooldowns haven't
+		if( class'WorldInfo'.static.GetWorldInfo().TimeSeconds < Attacks[Idx].LastTimePlayed )
+		{
+			`log("[ANIMINFO] WorldInfo.TimeSeconds mismatch! Resetting cooldowns.");
+			Attacks[Idx].LastTimePlayed = 0.f;
+		}
+
 		// if there is an instigator, check to see if this is a valid attack
 		if ( Instigator != None && !CanDoAttackAnim(idx, Instigator, Target) )
 		{
@@ -334,6 +341,12 @@ function UpdateAttackCooldown( KFAIController KFAIC, byte DesiredStrikeIndex )
 	{
 		/** Once attack has been selected activate a cooldown time on the owning pawn */
 		KFAIC.AddCooldownTimer(Attacks[DesiredStrikeIndex].Tag, Attacks[DesiredStrikeIndex].InstancedCooldown);
+	}
+
+	// Let the Game Conductor know an attack happened
+	if( KFAIC != none && KFGameInfo(KFAIC.WorldInfo.Game) != none && KFGameInfo(KFAIC.WorldInfo.Game).GameConductor != none )
+	{
+	   KFGameInfo(KFAIC.WorldInfo.Game).GameConductor.UpdateOverallAttackCoolDowns(KFAIC);
 	}
 }
 
@@ -404,37 +417,48 @@ function byte GetStrikeFlags(int DesiredStrikeIndex)
 /** Checks the AttackAnimInfo to see if this attack is valid to perform */
 function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
 {
-	if ( Attacks[Idx].Anims.Length <= 0 )
+	local AttackAnimInfo Attack;
+
+	Attack = Attacks[Idx];
+
+	if ( Attack.Anims.Length <= 0 )
 	{
 		`log(self@"CanDoAttackAnim missing attack anim names for"@Attacks[Idx].Tag);
 		return false;
 	}
 
-	if( Attacks[Idx].bOnlyWhilePathClear && P.MyKFAIC.bIsBodyBlocked )
+	if( Attack.bOnlyWhilePathClear && P.MyKFAIC.bIsBodyBlocked )
 	{
 		`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because bOnlyWhilePathClear is true but Pawn is blocked", bDebugLog );
 		return false;
 	}
 
-	if( Attacks[Idx].bHasCloaking && (Attacks[Idx].bOnlyWhileCloaked && !P.bIsCloaking) || (Attacks[Idx].bOnlyWhileDeCloaked && P.bIsCloaking) )
+	if( Attack.bHasCloaking && (Attack.bOnlyWhileCloaked && !P.bIsCloaking) || (Attack.bOnlyWhileDeCloaked && P.bIsCloaking) )
 	{
 		`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because it is not allowed in this cloaking state", bDebugLog );
 		return false;
 	}
 
-	if( Attacks[Idx].bIsBattlePhaseAttack && (P.GetCurrentBattlePhase() < Attacks[Idx].BattlePhaseMinimum || P.GetCurrentBattlePhase() > Attacks[Idx].BattlePhaseMaximum) )
+	if( Attack.bIsBattlePhaseAttack && (P.GetCurrentBattlePhase() < Attack.BattlePhaseMinimum || P.GetCurrentBattlePhase() > Attack.BattlePhaseMaximum) )
 	{
 		`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because not allowed in this Battle Phase", bDebugLog );
 	}
 
-	if ( Attacks[Idx].GlobalCooldown > 0 && Attacks[Idx].LastTimePlayed > 0.f && (`TimeSinceEx(P, Attacks[Idx].LastTimePlayed) < Attacks[Idx].GlobalCooldown) )
+	if( P.MyKFAIC != none && !P.MyKFAIC.CheckOverallCooldownTimer())
 	{
-		`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because GlobalCooldown ("$Attacks[Idx].GlobalCooldown$") LastTimePlayed:"$`TimeSinceEx(P, Attacks[Idx].LastTimePlayed), bDebugLog );
+		`AILog_Ext( GetFuncName()$"() PREVENTING attack "$Attack.Tag$" because Overall Cooldown is active", 'Command_Attack_Melee', P.MyKFAIC );
 		return false;
 	}
-	if ( Attacks[Idx].Chance < 1.f && FRand() > Attacks[Idx].Chance )
+
+	if ( Attack.GlobalCooldown > 0 && Attack.LastTimePlayed > 0.f
+		&& `TimeSinceEx(P, Attack.LastTimePlayed) < Attack.GlobalCooldown )
 	{
-		`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because random chance missed (Chance:"$Attacks[Idx].Chance$")", bDebugLog );
+		`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because GlobalCooldown ("$Attack.GlobalCooldown$") LastTimePlayed:"$`TimeSinceEx(P, Attack.LastTimePlayed), bDebugLog );
+		return false;
+	}
+	if ( Attack.Chance < 1.f && FRand() > Attack.Chance )
+	{
+		`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because random chance missed (Chance:"$Attack.Chance$")", bDebugLog );
 		return false;
 	}
 
@@ -443,19 +467,19 @@ function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
 		return false;
 	}
 
-	if ( Attacks[Idx].bOnlyWhileHeadless != P.ShouldPlayHeadlessMeleeAnims() )
+	if ( Attack.bOnlyWhileHeadless != P.ShouldPlayHeadlessMeleeAnims() )
 	{
 		`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because bOnlyWhileHeadless is true but Pawn has a head", bDebugLog );
 		return false;
 	}
 
-	if ( Attacks[Idx].InstancedCooldown > 0 && IsAttackOnCooldown(P, Attacks[Idx].Tag, Attacks[Idx].InstancedCooldown) )
+	if ( Attack.InstancedCooldown > 0 && IsAttackOnCooldown(P, Attack.Tag, Attack.InstancedCooldown) )
 	{
 		`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because Cooldown is still active", bDebugLog );
 		return false;
 	}
 
-	if ( Attacks[Idx].bOnlyWhileSurrounded && !P.IsSurrounded(true, Attacks[Idx].MinSurroundedBy, Attacks[Idx].SurroundedRadius) )
+	if ( Attack.bOnlyWhileSurrounded && !P.IsSurrounded(true, Attack.MinSurroundedBy, Attack.SurroundedRadius) )
 	{
 		`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because pawn is not surrounded", bDebugLog );
 		return false;
@@ -463,25 +487,25 @@ function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
 
 	if ( Target != None )
 	{
-		if ( Attacks[Idx].bOnlyWhileEnemyMoving && IsZero(Target.Velocity) )
+		if ( Attack.bOnlyWhileEnemyMoving && IsZero(Target.Velocity) )
 		{
 			`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because target velocity is 0", bDebugLog );
 			return false;
 		}
-		else if ( Attacks[Idx].bOnlyWhileEnemyNotMoving && !IsZero(Target.Velocity) )
+		else if ( Attack.bOnlyWhileEnemyNotMoving && !IsZero(Target.Velocity) )
 		{
 			`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because target velocity is not 0", bDebugLog );
 			return false;
 		}
 
-		if ( Attacks[Idx].MaxDistance > 0 && VSizeSq(P.Location - Target.Location) > Square(Attacks[Idx].MaxDistance) )
+		if ( Attack.MaxDistance > 0 && VSizeSq(P.Location - Target.Location) > Square(Attack.MaxDistance) )
 		{
-			`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because target dist ("$VSize(P.Location - Target.Location)$") is greater than "$Attacks[Idx].MaxDistance, bDebugLog );
+			`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because target dist ("$VSize(P.Location - Target.Location)$") is greater than "$Attack.MaxDistance, bDebugLog );
 			return false;
 		}
-		if ( Attacks[Idx].MinDistance > 0 && VSizeSq(P.Location - Target.Location) < Square(Attacks[Idx].MinDistance) )
+		if ( Attack.MinDistance > 0 && VSizeSq(P.Location - Target.Location) < Square(Attack.MinDistance) )
 		{
-			`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because target dist is less than "$Attacks[Idx].MinDistance, bDebugLog );
+			`log( P@GetFuncName()$"() rejecting attack idx "$idx$" because target dist is less than "$Attack.MinDistance, bDebugLog );
 			return false;
 		}
 	}
@@ -490,7 +514,7 @@ function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
 	{
 		if( P.MyKFAIC != none )
 		{
-			`AILog_Ext( GetFuncName()$"() PREVENTING attack "$Attacks[idx].Tag$" because it has a DifficultyRating of "$Attacks[idx].DifficultyRating, 'Command_Attack_Melee', P.MyKFAIC );
+			`AILog_Ext( GetFuncName()$"() PREVENTING attack "$Attack.Tag$" because it has a DifficultyRating of "$Attack.DifficultyRating, 'Command_Attack_Melee', P.MyKFAIC );
 		}
 		return false; // do this last so perf is consistant
 	}

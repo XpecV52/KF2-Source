@@ -129,6 +129,17 @@ function Callback_MenuBarTabChanged( int NewMenuIndex )
 	}
 }
 
+function Callback_RequestTeamSwitch()
+{
+	local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(GetPC());
+	if ( KFPC != none )
+	{
+		KFPC.RequestSwitchTeam();
+	}
+}
+
 function Callback_ReadyClicked( bool bReady )
 {
 	local KFPlayerReplicationInfo KFPRI;
@@ -147,9 +158,9 @@ function Callback_ReadyClicked( bool bReady )
 	    else if (Manager != none )
 	    {
 	    	if(Manager.PartyWidget !=none)
-	    	{
-	    		Manager.PartyWidget.RefreshParty();
-	    	}
+	    {
+			Manager.PartyWidget.RefreshParty();
+		}
 			if(Manager.StartMenu != none && bReady)
 			{
 				Manager.StartMenu.OnPlayerReadiedUp();
@@ -265,10 +276,18 @@ function Callback_BroadcastChatMessage(string Message)
 			{
 				OnlineLobby.LobbyMessage(ChatMessage);
 			}
+			}
+    	else
+    	{
+    		//game has started
+    		if(Manager.bAfterLobby)
+    		{
+    			GetPC().TeamSay(Message);	
     	}
     	else
     	{
     		GetPC().Say(Message);	
+    		}
     	} 
     }
 }

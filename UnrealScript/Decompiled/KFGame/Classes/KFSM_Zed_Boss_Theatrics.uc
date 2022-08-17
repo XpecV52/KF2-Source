@@ -25,7 +25,17 @@ protected function bool InternalCanDoSpecialMove()
 {
     local KFGameReplicationInfo KFGRI;
 
-    KFGRI = KFGameReplicationInfo(AIOwner.WorldInfo.GRI);
+    if(PCOwner != none)
+    {
+        KFGRI = KFGameReplicationInfo(PCOwner.WorldInfo.GRI);        
+    }
+    else
+    {
+        if(AIOwner != none)
+        {
+            KFGRI = KFGameReplicationInfo(AIOwner.WorldInfo.GRI);
+        }
+    }
     if((KFGRI != none) && !KFGRI.IsFinalWave())
     {
         return false;
@@ -71,6 +81,10 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
 {
     super.SpecialMoveStarted(bForced, PrevMove);
     KFPOwner.BodyStanceNodes[0].SetRootBoneAxisOption(0, 0, 0);
+    if(KFPOwner.WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        KFGFxHudWrapper(KFPOwner.WorldInfo.GetALocalPlayerController().myHUD).BossPawn = KFPawn_MonsterBoss(KFPOwner);
+    }
 }
 
 function PlayAnimation()
@@ -117,13 +131,27 @@ function PlayAnimation()
             foreach AIOwner.WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
             {
                 KFPC.SetBossCamera(none);                
-            }            
+            }                        
+        }
+        else
+        {
+            if((PCOwner != none) && PCOwner.Role == ROLE_Authority)
+            {
+                foreach PCOwner.WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+                {
+                    KFPC.SetBossCamera(none);                    
+                }                
+            }
         }
         return;
     }
+    if((BossPawn.Role == ROLE_Authority) && BossPawn.IsHumanControlled())
+    {
+        KFPlayerController(BossPawn.Controller).ServerCamera('Boss');
+    }
     if(BossPawn.WorldInfo.NetMode != NM_DedicatedServer)
     {
-        KFPC = KFPlayerController(BossPawn.GetALocalPlayerController());
+        KFPC = GetALocalKFPlayerController();
         KFPC.ClientSetCameraFade(true, FadeInColor, vect2d(1, 0), FadeInTime, true);
         KFPC.SetViewTarget(BossPawn);
         KFPC.ClientSetCameraMode('Boss');
@@ -147,6 +175,7 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
     local KFPawn_MonsterBoss BossPawn;
 
     BossPawn = KFPawn_MonsterBoss(KFPOwner);
+    KFPC = GetALocalKFPlayerController();
     if(BossPawn != none)
     {
         BossPawn.bUseAnimatedTheatricCamera = false;
@@ -155,11 +184,11 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
         {
             if(CurrentTheatricType == 0)
             {
-                BossPawn.GetALocalPlayerController().ClientSetCameraFade(true, FadeOutColor, vect2d(1, 0), FadeOutTime, true);
+                KFPC.ClientSetCameraFade(true, FadeOutColor, vect2d(1, 0), FadeOutTime, true);
             }
             if(CameraAnim != none)
             {
-                BossPawn.GetALocalPlayerController().ClientStopCameraAnim(CameraAnim);
+                KFPC.ClientStopCameraAnim(CameraAnim);
             }
         }
         if(BossPawn.BodyStanceNodes[AnimStance].bIsPlayingCustomAnim)
@@ -183,11 +212,42 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
                     KFPC.ServerCamera('FirstPerson');
                     KFPC.SetCinematicMode(false, false, true, true, true, false);                    
                 }                
+            }            
+        }
+        else
+        {
+            if(PCOwner != none)
+            {
+                if(PCOwner.Role == ROLE_Authority)
+                {
+                    foreach PCOwner.WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+                    {
+                        if(KFPC.Pawn != none)
+                        {
+                            KFPC.SetViewTarget(KFPC.Pawn);
+                        }
+                        if(((KFPC != PCOwner) && KFPC.Pawn != none) && KFPC.GetTeamNum() == 0)
+                        {
+                            KFPC.ServerCamera('FirstPerson');                            
+                        }
+                        else
+                        {
+                            if(KFPC == PCOwner)
+                            {
+                                KFPC.ServerCamera('ThirdPerson');                                
+                            }
+                            else
+                            {
+                                KFPC.ServerCamera('FreeCam');
+                            }
+                        }
+                        KFPC.SetCinematicMode(false, false, true, true, true, false);                        
+                    }                    
+                }
             }
         }
         if(BossPawn.WorldInfo.NetMode != NM_DedicatedServer)
         {
-            KFPC = KFPlayerController(BossPawn.GetALocalPlayerController());
             KFPC.SetCinematicMode(false, false, true, true, true, false);
             if(KFPC.Pawn != none)
             {
@@ -196,6 +256,20 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
         }
     }
     super.SpecialMoveEnded(PrevMove, NextMove);
+}
+
+function KFPlayerController GetALocalKFPlayerController()
+{
+    local KFPlayerController KFPC;
+
+    foreach KFPOwner.WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+    {
+        if(KFPC.IsLocalPlayerController())
+        {            
+            return KFPC;
+        }        
+    }    
+    return KFPlayerController(KFPOwner.GetALocalPlayerController());
 }
 
 defaultproperties

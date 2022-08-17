@@ -9,6 +9,7 @@ package tripwire.containers.inventory
     import flash.display.MovieClip;
     import flash.events.Event;
     import flash.events.KeyboardEvent;
+    import flash.external.ExternalInterface;
     import flash.text.TextField;
     import flash.ui.Keyboard;
     import scaleform.clik.events.ButtonEvent;
@@ -126,6 +127,7 @@ package tripwire.containers.inventory
             super();
             defaultFirstElement = currentElement = this.confirmButton;
             visible = false;
+            defaultNumPrompts = 2;
             TweenPlugin.activate([ScrambleTextPlugin]);
             TweenPlugin.activate([TypewriterPlugin]);
         }
@@ -348,10 +350,7 @@ package tripwire.containers.inventory
         
         public function playEndAnimationSound() : void
         {
-            if(Extensions.gfxProcessSound != null)
-            {
-                Extensions.gfxProcessSound(this,"SoundTheme_Crate","Crate_End");
-            }
+            ExternalInterface.call("Callback_CrateOpenComplete",this.itemObject.rarity);
         }
         
         public function setCrateDecTimeline() : void

@@ -6,11 +6,12 @@
 // Killing Floor 2
 // Copyright (C) 2015 Tripwire Interactive LLC
 //=============================================================================
-
 class KFPawn_ZedBloat extends KFPawn_Monster;
 
 var name  PukeSocketName;
+/** How far away the bloat's vomit can damage enemies */
 var float VomitRange;
+/** At a base level how much damage this zed's vomit will do */
 var int	  VomitDamage;
 var bool bHasExploded;
 
@@ -196,16 +197,17 @@ DefaultProperties
 		SpecialMoveClasses(SM_Evade_Fear)=class'KFSM_Evade_Fear'
 	End Object
 
+	InstantIncaps(IAF_Stun)=(Head=49,Torso=51,Leg=51,Arm=51,LowHealthBonus=10,Cooldown=3.0)
+	InstantIncaps(IAF_Knockdown)=(Head=50,Torso=100,Leg=55,Arm=120,LowHealthBonus=10,Cooldown=10.0)
+	InstantIncaps(IAF_Stumble)=(Head=49,Torso=51,Arm=51,LowHealthBonus=10,Cooldown=2.5)
+	InstantIncaps(IAF_LegStumble)=(Leg=49,LowHealthBonus=10,Cooldown=1.0)
+	InstantIncaps(IAF_GunHit)=(Head=110,Torso=110,Leg=110,Arm=110,LowHealthBonus=10,Cooldown=0.5)
+	InstantIncaps(IAF_MeleeHit)=(Head=20,Torso=30,Leg=27,Arm=30,LowHealthBonus=10,Cooldown=0.3)
+	StackingIncaps(SAF_Poison)=(Threshhold=20.0,Duration=5.0,Cooldown=20.5,DissipationRate=1.00)
+	StackingIncaps(SAF_Microwave)=(Threshhold=20.0,Duration=5.0,Cooldown=20.5,DissipationRate=1.00)
+	StackingIncaps(SAF_FirePanic)=(Threshhold=12.0,Duration=2.0,Cooldown=5.0,DissipationRate=1.0)
+
 	Begin Object Name=Afflictions_0
-		InstantAffl(IAF_Stun)=(Head=49,Torso=51,Leg=49,Arm=51,LowHealthBonus=10,Cooldown=3.0)
-		InstantAffl(IAF_Knockdown)=(Head=50,Torso=100,Leg=55,Arm=120,LowHealthBonus=10,Cooldown=10.0)
-		InstantAffl(IAF_Stumble)=(Head=49,Torso=51,Arm=51,LowHealthBonus=10,Cooldown=2.5)
-		InstantAffl(IAF_LegStumble)=(Leg=49,LowHealthBonus=10,Cooldown=1.0)
-		InstantAffl(IAF_GunHit)=(Head=110,Torso=110,Leg=110,Arm=110,LowHealthBonus=10,Cooldown=0.5)
-		InstantAffl(IAF_MeleeHit)=(Head=20,Torso=30,Leg=27,Arm=30,LowHealthBonus=10,Cooldown=0.3)
-		StackingAffl(SAF_Poison)=(Threshhold=20.0,Duration=5.0,Cooldown=20.5,DissipationRate=1.00)
-		StackingAffl(SAF_Microwave)=(Threshhold=20.0,Duration=5.0,Cooldown=20.5,DissipationRate=1.00)
-		StackingAffl(SAF_FirePanic)=(Threshhold=12.0,Duration=2.0,Cooldown=5.0,DissipationRate=1.0)
 		FireFullyCharredDuration=3.5
 	End Object
 
@@ -219,6 +221,7 @@ DefaultProperties
 	Begin Object Name=MeleeHelper_0
 		BaseDamage=14.f
 		MaxHitRange=250.f
+		MomentumTransfer=25000.f
 		MyDamageType=class'KFDT_Slashing_ZedWeak'
 	End Object
 

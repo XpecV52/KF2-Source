@@ -19,6 +19,9 @@ var localized string LookString;
 var localized string ShowScoardBoardString;
 var localized string ShowIngameMenuString;
 var localized string HoldString;
+var localized string CurrentControllerPresetString;
+
+var int numGamepadLayouts;
 
 struct KeyBinding
 {
@@ -27,55 +30,123 @@ struct KeyBinding
 	var string HoldCommand;
 };
 
-var config array<KeyBinding> ControllerPreset0;
-
 var byte CurrentLocalizedIndex;
 var byte CurrentPresetIndex;
 
 function Initialize( KFGFxObject_Menu NewParentMenu )
 {
 	super.Initialize( NewParentMenu );
-	UpdateCurrentPresetArray(0);
+	CurrentPresetIndex = KFPlayerInput(GetPC().PlayerInput).CurrentLayoutIndex;
+	UpdateCurrentPresetArray(CurrentPresetIndex);
 }
 
+/**
+*	This is function will tell KFPlayerInput to update gamepad button mappings
+*	and then update the UI.
+*
+*	PresetIndex - the index of the controller layout we want applied to the game.
+*/
 function UpdateCurrentPresetArray(byte PresetIndex)
 {
-	if( PresetIndex != CurrentPresetIndex )
+	local KFPlayerInput kfPlayerInput;
+	local KFPlayerInput KFPI;
+
+	CurrentPresetIndex = PresetIndex;
+	numGamepadLayouts = class'KFGamepadLayoutManager'.static.GetNumLayouts();
+
+	// Wrap around for the index.
+	if(CurrentPresetIndex >= numGamepadLayouts)
 	{
-		CurrentPresetIndex = PresetIndex;
-		switch (CurrentPresetIndex)
-		{
-			case 0:
-				LocalizeText(ControllerPreset0);	
-			break;		
-		}
+		CurrentPresetIndex = 0;
+	}
+	else if( CurrentPresetIndex < 0)
+	{
+		CurrentPresetIndex = numGamepadLayouts -1;
+	}
+
+	// Tell the player input to update the actual controls.
+	KFPlayerInput = KFPlayerInput(GetPC().PlayerInput);
+	KFPlayerInput.SetGamepadLayout(CurrentPresetIndex);
+
+	// Update the GUI with the new button layout descriptions.
+	LocalizeText();
+	UpdateButtonDescriptions();
+	KFPI = KFPlayerInput(GetPC().PlayerInput);
+
+	KFPI.CurrentLayoutIndex = CurrentPresetIndex;
+	KFPI.SaveConfig();	
+}
+
+function LocalizeText()
+{
+	local GfxObject TextField;
+	local GFxObject PresetArray;
+	local GfxObject StepperOption;
+	local int i;
+
+	TextField = GetObject("CurrentPresetTextfield");
+
+	PresetArray = CreateArray();
+
+	for (i = 0; i < numGamepadLayouts; i++)
+	{
+		StepperOption = CreateObject("Object");
+		StepperOption.SetString("label", string(i));
+		PresetArray.SetElementObject(i, StepperOption);
+	}
+	SetObject("presetOptions",PresetArray);
+	SetInt("currentPreset", CurrentPresetIndex);
+
+	if(TextField != none)
+	{
+		Textfield.SetText(CurrentControllerPresetString);
 	}
 }
 
-function LocalizeText(out array<KeyBinding> PresetArray)
+/**
+*	This is function updates all the button descriptions based off of the
+*	current key bindings in KFPlayerInput.
+*/
+function UpdateButtonDescriptions( )
 {
-	local GFxObject LocalizedObject, BindingsArray;
+	local GFxObject LocalizedObject;
+	local name gamepadButtonNames[20];
+	local KFPlayerInput kfPlayerInput;
 	local byte i;
+	local string bindCommand;
+	local GfxObject TempTextField;
+	local string TextFieldName;
+	local string localizedCommand;
+	//local string localizedLayoutName;
 
 	CurrentLocalizedIndex = 0;
 
 	LocalizedObject = CreateObject( "Object" );
-
-	BindingsArray = CreateArray();
 	
 	LocalizedObject.SetString("leftThumbstick", 				MovementString);
 	LocalizedObject.SetString("rightThumbstick", 				LookString);
 	LocalizedObject.SetString("back", 							ShowScoardBoardString);
 	LocalizedObject.SetString("start", 							ShowIngameMenuString);
 
-	for (i = 0; i < ControllerPreset0.length; i++)
-	{
-		AddBindingToGFxObject(BindingsArray, PresetArray[i].Key, PresetArray[i].Command, PresetArray[i].HoldCommand, i);
-	}
+	kfPlayerInput = KFPlayerInput(GetPC().PlayerInput);
+	class'KFGamepadLayoutManager'.static.GetGamepadButtonNames(gamepadButtonNames);
 
-	LocalizedObject.SetObject("bindings", BindingsArray);
-	
-	SetObject("localizedText", LocalizedObject);
+	//localizedLayoutName = class'KFGamepadLayoutManager'.static.GetLayoutName(CurrentPresetIndex);
+
+	for (i = 0; i < 20; i++)
+	{
+		TextFieldName = gamepadButtonNames[i]  $"Textfield";
+		TempTextField = GetObject(TextFieldName);
+		
+		if(TempTextField != none)
+		{
+			// Find out the localized display name of the action assigned to this button.
+			bindCommand = kfPlayerInput.GetGameBindableAction( gamepadButtonNames[i]);
+			localizedCommand = Localize(InputSectionName,  bindCommand,  PackageName);
+
+			TempTextField.SetText(localizedCommand);
+		}
+	}
 }
 
 function AddBindingToGFxObject(out GFxObject ObjectArray, string Key, string Command, string HoldCommand, byte i)
@@ -104,5 +175,5 @@ DefaultProperties
 {
 	InputSectionName="LocalizedControls"
 	PackageName="KFGame"
-	CurrentPresetIndex=255
+	CurrentPresetIndex=0
 }

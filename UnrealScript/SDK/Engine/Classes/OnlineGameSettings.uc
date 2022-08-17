@@ -110,12 +110,14 @@ struct native PlayerResult
 /** List of players in this game */
 var array<PlayerResult> PlayersInGame;
 
-`endif //__TW_STEAMWORKS_
+`endif //__TW_ONLINESUBSYSTEM_
 
 defaultproperties
 {
+`if(`__TW_ONLINESUBSYSTEM_)
 	GfxID=INDEX_NONE
 	ElementIdx=INDEX_NONE
+`endif
 	bAllowJoinInProgress=true
 	bUsesStats=true
 	bShouldAdvertise=true

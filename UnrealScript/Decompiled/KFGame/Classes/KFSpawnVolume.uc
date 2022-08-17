@@ -26,6 +26,7 @@ struct native SpawnMarkerInfo
     var Vector Location;
     /** If true, will forcibly disable spawning for this spawn marker. It will still be visible, but will use a different icon */
     var() editconst bool bSpawnDisabled;
+    var transient float LastUsedTime;
     var Color SpawnMarkerColor;
 
     structdefaultproperties
@@ -34,6 +35,7 @@ struct native SpawnMarkerInfo
         Height=0
         Location=(X=0,Y=0,Z=0)
         bSpawnDisabled=false
+        LastUsedTime=0
         SpawnMarkerColor=(B=50,G=205,R=50,A=255)
     }
 };
@@ -58,6 +60,8 @@ var() editconst array<editconst SpawnMarkerInfo> SpawnMarkerInfoList;
 var() int MaxSpawnMarkers<ClampMin=1>;
 /** Spawn marker info created during the AI pathbuilding process and used in-game when determining AI spawn locations within this volume. */
 var() array<DoorListInfo> DoorList;
+/** Rotation to use when spawning pawns from this volume */
+var() Rotator SpawnRotation;
 var Color DefaultSpawnMarkerColor;
 var Color SpawnInteriorBoxColor;
 var bool bNoCollisionFailForSpawn;
@@ -67,6 +71,8 @@ var bool bDebugVisibilityChecks;
 var bool bDebugRatingChecks;
 var bool bMinimalDebugRatingChecks;
 var bool bDebugSpawning;
+/** If set, players cannot spawn here, only AI (Versus) */
+var() bool bNoPlayers;
 /** If true, no height-based rating penalty will be applied to this volume. This also overrides MaxHeightDifference. */
 var() bool bNoZAxisDistPenalty;
 /** If set, this volume never performs visibility checks */
@@ -102,7 +108,13 @@ var int VolumeChosenCount;
 native final function int SpawnWave(out array< class<KFPawn_Monster> > SpawnList, bool bAllOrNothing);
 
 // Export UKFSpawnVolume::execFindTeleportLocation(FFrame&, void* const)
-native final function Vector FindTeleportLocation(class<KFPawn_Monster> TeleportMonsterClass);
+native final function Vector FindTeleportLocation(class<KFPawn_Monster> TeleportMonsterClass, optional int ForcedMarkerIdx)
+{
+    ForcedMarkerIdx = 0;                
+}
+
+// Export UKFSpawnVolume::execFindSpawnLocation(FFrame&, void* const)
+native final function Vector FindSpawnLocation(class<KFPawn> SpawnPawnClass);
 
 // Export UKFSpawnVolume::execScoreLocation(FFrame&, void* const)
 native function float ScoreLocation(Controller ControllerToScoreAgainst, float BestRating, float BestPossibleRating);
@@ -131,7 +143,7 @@ event UnTouch(Actor Other)
     }
 }
 
-function float RateVolume(KFSpawnVolume.ESquadType DesiredSquadType, Controller RateController, float BestRating, optional bool bTeleporting, optional float MinDistSquared)
+function float RateVolume(KFSpawnVolume.ESquadType DesiredSquadType, Controller RateController, Controller OtherController, float BestRating, optional bool bTeleporting, optional float MinDistSquared)
 {
     local float UsageRating, LocationRating, FinalRating;
     local string DebugText;
@@ -141,6 +153,10 @@ function float RateVolume(KFSpawnVolume.ESquadType DesiredSquadType, Controller 
     local float DistSquared;
 
     if(SpawnMarkerInfoList.Length == 0)
+    {
+        return -1;
+    }
+    if((bNoPlayers && OtherController != none) && OtherController.bIsPlayer)
     {
         return -1;
     }
@@ -185,7 +201,7 @@ function float RateVolume(KFSpawnVolume.ESquadType DesiredSquadType, Controller 
         }
     }
     I = 0;
-    J0x3E6:
+    J0x42E:
 
     if(I < DoorList.Length)
     {
@@ -194,7 +210,7 @@ function float RateVolume(KFSpawnVolume.ESquadType DesiredSquadType, Controller 
             return -1;
         }
         ++ I;
-        goto J0x3E6;
+        goto J0x42E;
     }
     UsageRating = 1;
     if((NextSpawnTime > 0) && NextSpawnTime > WorldInfo.TimeSeconds)

@@ -364,9 +364,9 @@ simulated function name GetWeaponFireAnim(byte FireModeNum)
 			{
 				return bUseAltFireMode ? FireSightedAnim_Alt : FireSightedAnims[Rand(LeftFireSightedAnims.Length)];
 			}
-	}
-	else
-	{
+		}
+		else
+		{
 			if( bPlayFireLast )
 			{
 				return FireLastAnim;
@@ -554,7 +554,9 @@ function SetupDroppedPickup( out DroppedPickup P, vector StartVelocity )
 	{
 		KFIM = KFInventoryManager( Instigator.InvManager );
 		KFIM.bSuppressPickupMessages = true;
+		KFIM.bInfiniteWeight = true; // force CanCarryWeapon() to succeed
 		NewSingle = KFWeapon( KFIM.CreateInventory(SingleClass, true) );
+		KFIM.bInfiniteWeight = false;
 		KFIM.bSuppressPickupMessages = false;
 	}
 	if( NewSingle != none )
@@ -823,6 +825,22 @@ simulated function AltFireMode()
 {
 	super.AltFireMode();
 	PlayIdleAnim();
+}
+
+/**
+ * @see Weapon::StartFire
+ */
+simulated function StartFire(byte FireModeNum)
+{
+	// These weapons only have a mode toggle, so if we have alt-fire 
+	// bound (e.g. gamepad, custom bindings) then perform the  toggle
+	if( FireModeNum == ALTFIRE_FIREMODE )
+	{
+		AltFireMode();
+		return;
+	}
+
+	Super.StartFire(FireModeNum);
 }
 
 defaultproperties

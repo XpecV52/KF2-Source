@@ -51,7 +51,7 @@ package tripwire.containers.optionsControls
             this._sectionIndex = param1;
         }
         
-        public function set sectionHeader(param1:String) : void
+        public function set bindingHeader(param1:String) : void
         {
             this.sectionTextField.text = param1;
         }

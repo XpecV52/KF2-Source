@@ -16,38 +16,38 @@ package tripwire.controls
             super();
         }
         
-        override public function set source(param1:String) : void
+        override public function set source(value:String) : void
         {
-            if(!param1)
+            if(!value)
             {
                 return;
             }
-            if(_source == param1)
+            if(_source == value)
             {
                 return;
             }
-            if((param1 == "" || param1 == null) && loader.content == null)
+            if((value == "" || value == null) && loader.content == null)
             {
                 unload();
             }
             else
             {
-                this.load(param1);
+                this.load(value);
             }
         }
         
-        override protected function load(param1:String) : void
+        override protected function load(url:String) : void
         {
-            if(!param1)
+            if(!url)
             {
                 return;
             }
-            if(param1 == "")
+            if(url == "")
             {
                 return;
             }
             unload();
-            _source = param1;
+            _source = url;
             if(!_isLoading)
             {
                 _visiblilityBeforeLoad = visible;

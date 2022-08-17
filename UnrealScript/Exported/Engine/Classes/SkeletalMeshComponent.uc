@@ -668,8 +668,8 @@ var(ApexClothing) float					WindDirNoiseStepSize;
 var(ApexClothing) bool					bWindDirNoiseCentered;
 
 /** State of the wind noise */
-var transient float						ClothingWindCurrentStrengthNoise;
-var transient vector					ClothingWindCurrentDirNoise;
+var transient float						WindCurrentStrengthNoise;
+var transient vector					WindCurrentDirNoise;
 // NVCHANGE_END: hlanker - Add wind noise
 
 /** Don't attempt to initialize clothing when component is attached */

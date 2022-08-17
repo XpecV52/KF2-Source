@@ -3,7 +3,7 @@ package tripwire.containers
     import flash.events.Event;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.IndexEvent;
-    import scaleform.gfx.FocusManager;
+    import scaleform.clik.managers.FocusHandler;
     import tripwire.controls.TripButton;
     import tripwire.managers.MenuManager;
     
@@ -24,7 +24,8 @@ package tripwire.containers
         public function StartFindGameContainer()
         {
             super();
-            defaultFirstElement = this.matchMakingButton;
+            defaultFirstElement = currentElement = this.matchMakingButton;
+            sectionHeader = this.findGameHeader;
         }
         
         public function set localizedText(param1:Object) : void
@@ -41,7 +42,7 @@ package tripwire.containers
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
-            defaultFirstElement = this.matchMakingButton;
+            defaultFirstElement = currentElement = this.matchMakingButton;
             this.setTabIndexes();
         }
         
@@ -53,7 +54,7 @@ package tripwire.containers
             this.serverBrowserButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
             {
-                FocusManager.setFocus(defaultFirstElement);
+                FocusHandler.getInstance().setFocus(currentElement);
             }
         }
         

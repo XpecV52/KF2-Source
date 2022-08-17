@@ -64,7 +64,6 @@ class KFDT_Toxic_MedicGrenade extends KFDT_Toxic
 
 
 
-
 #linenumber 15;
 
 defaultproperties

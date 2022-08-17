@@ -34,7 +34,7 @@ var const PerkSkill NightVision;
 var const float RapidFireFiringRate;
 var Texture2D WhiteMaterial;
 
-simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType)
+simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx)
 {
     local KFWeapon KFW;
     local float TempDamage;
@@ -373,4 +373,5 @@ defaultproperties
     bCanSeeCloakedZeds=true
     PrimaryWeaponDef=Class'KFWeapDef_AR15'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Commando'
+    HeadshotAccuracyHandicap=-3
 }

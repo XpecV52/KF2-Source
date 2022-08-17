@@ -1,7 +1,14 @@
 package tripwire.containers.optionsControls
 {
     import flash.events.Event;
+    import flash.events.FocusEvent;
+    import flash.external.ExternalInterface;
     import flash.text.TextField;
+    import scaleform.clik.controls.OptionStepper;
+    import scaleform.clik.data.DataProvider;
+    import scaleform.clik.events.IndexEvent;
+    import scaleform.clik.events.InputEvent;
+    import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.TextFieldEx;
     import tripwire.containers.TripContainer;
     
@@ -9,73 +16,95 @@ package tripwire.containers.optionsControls
     {
          
         
-        public var backTextfield:TextField;
+        public var XboxTypeS_BackTextfield:TextField;
         
-        public var startTextfield:TextField;
+        public var XboxTypeS_StartTextfield:TextField;
         
-        public var leftTriggerTextfield:TextField;
+        public var XboxTypeS_LeftTriggerTextfield:TextField;
         
-        public var rightTriggerTextfield:TextField;
+        public var XboxTypeS_RightTriggerTextfield:TextField;
         
-        public var leftBumperTextfield:TextField;
+        public var XboxTypeS_LeftShoulderTextfield:TextField;
         
-        public var rightBumperTextfield:TextField;
+        public var XboxTypeS_RightShoulderTextfield:TextField;
         
-        public var leftThumbstickTextfield:TextField;
+        public var XboxTypeS_LeftXTextfield:TextField;
         
-        public var rightThumbstickTextfield:TextField;
+        public var XboxTypeS_RightXTextfield:TextField;
         
-        public var l3Textfield:TextField;
+        public var XboxTypeS_LeftThumbStickTextfield:TextField;
         
-        public var r3Textfield:TextField;
+        public var XboxTypeS_RightThumbStickTextfield:TextField;
         
-        public var yTextfield:TextField;
+        public var XboxTypeS_YTextfield:TextField;
         
-        public var xTextfield:TextField;
+        public var XboxTypeS_XTextfield:TextField;
         
-        public var bTextfield:TextField;
+        public var XboxTypeS_BTextfield:TextField;
         
-        public var aTextfield:TextField;
+        public var XboxTypeS_ATextfield:TextField;
         
-        public var upTextfield:TextField;
+        public var XboxTypeS_DPad_UpTextfield:TextField;
         
-        public var downTextfield:TextField;
+        public var XboxTypeS_DPad_DownTextfield:TextField;
         
-        public var leftTextfield:TextField;
+        public var XboxTypeS_DPad_LeftTextfield:TextField;
         
-        public var rightTextfield:TextField;
+        public var XboxTypeS_DPad_RightTextfield:TextField;
+        
+        public var CurrentPresetTextfield:TextField;
+        
+        public var presetStepper:OptionStepper;
         
         public function ControllerPresetsContainer()
         {
             super();
+            defaultFirstElement = this.presetStepper;
         }
         
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
+            this.presetStepper.tabIndex = 1;
+            this.presetStepper.addEventListener(IndexEvent.INDEX_CHANGE,this.onPrefixChanged,false,0,true);
             this.formatTextfields();
+        }
+        
+        public function set currentPreset(param1:int) : void
+        {
+            this.presetStepper.selectedIndex = param1;
+        }
+        
+        public function set presetOptions(param1:Array) : void
+        {
+            this.presetStepper.dataProvider = new DataProvider(param1);
+        }
+        
+        public function onPrefixChanged(param1:IndexEvent) : void
+        {
+            ExternalInterface.call("Callback_UpdateControllerPreset",param1.index);
         }
         
         public function formatTextfields() : void
         {
-            TextFieldEx.setVerticalAlign(this.backTextfield,TextFieldEx.VALIGN_CENTER);
-            TextFieldEx.setVerticalAlign(this.startTextfield,TextFieldEx.VALIGN_CENTER);
-            TextFieldEx.setVerticalAlign(this.leftTriggerTextfield,TextFieldEx.VALIGN_CENTER);
-            TextFieldEx.setVerticalAlign(this.rightTriggerTextfield,TextFieldEx.VALIGN_CENTER);
-            TextFieldEx.setVerticalAlign(this.leftBumperTextfield,TextFieldEx.VALIGN_CENTER);
-            TextFieldEx.setVerticalAlign(this.rightBumperTextfield,TextFieldEx.VALIGN_CENTER);
-            TextFieldEx.setVerticalAlign(this.leftThumbstickTextfield,TextFieldEx.VALIGN_CENTER);
-            TextFieldEx.setVerticalAlign(this.rightThumbstickTextfield,TextFieldEx.VALIGN_CENTER);
-            TextFieldEx.setVerticalAlign(this.l3Textfield,TextFieldEx.VALIGN_CENTER);
-            TextFieldEx.setVerticalAlign(this.r3Textfield,TextFieldEx.VALIGN_CENTER);
-            TextFieldEx.setVerticalAlign(this.yTextfield,TextFieldEx.VALIGN_CENTER);
-            TextFieldEx.setVerticalAlign(this.xTextfield,TextFieldEx.VALIGN_CENTER);
-            TextFieldEx.setVerticalAlign(this.bTextfield,TextFieldEx.VALIGN_CENTER);
-            TextFieldEx.setVerticalAlign(this.aTextfield,TextFieldEx.VALIGN_CENTER);
-            TextFieldEx.setVerticalAlign(this.upTextfield,TextFieldEx.VALIGN_CENTER);
-            TextFieldEx.setVerticalAlign(this.downTextfield,TextFieldEx.VALIGN_CENTER);
-            TextFieldEx.setVerticalAlign(this.leftTextfield,TextFieldEx.VALIGN_CENTER);
-            TextFieldEx.setVerticalAlign(this.rightTextfield,TextFieldEx.VALIGN_CENTER);
+            TextFieldEx.setVerticalAlign(this.XboxTypeS_BackTextfield,TextFieldEx.VALIGN_CENTER);
+            TextFieldEx.setVerticalAlign(this.XboxTypeS_StartTextfield,TextFieldEx.VALIGN_CENTER);
+            TextFieldEx.setVerticalAlign(this.XboxTypeS_LeftTriggerTextfield,TextFieldEx.VALIGN_CENTER);
+            TextFieldEx.setVerticalAlign(this.XboxTypeS_RightTriggerTextfield,TextFieldEx.VALIGN_CENTER);
+            TextFieldEx.setVerticalAlign(this.XboxTypeS_LeftShoulderTextfield,TextFieldEx.VALIGN_CENTER);
+            TextFieldEx.setVerticalAlign(this.XboxTypeS_RightShoulderTextfield,TextFieldEx.VALIGN_CENTER);
+            TextFieldEx.setVerticalAlign(this.XboxTypeS_LeftXTextfield,TextFieldEx.VALIGN_CENTER);
+            TextFieldEx.setVerticalAlign(this.XboxTypeS_RightXTextfield,TextFieldEx.VALIGN_CENTER);
+            TextFieldEx.setVerticalAlign(this.XboxTypeS_LeftThumbStickTextfield,TextFieldEx.VALIGN_CENTER);
+            TextFieldEx.setVerticalAlign(this.XboxTypeS_RightThumbStickTextfield,TextFieldEx.VALIGN_CENTER);
+            TextFieldEx.setVerticalAlign(this.XboxTypeS_YTextfield,TextFieldEx.VALIGN_CENTER);
+            TextFieldEx.setVerticalAlign(this.XboxTypeS_XTextfield,TextFieldEx.VALIGN_CENTER);
+            TextFieldEx.setVerticalAlign(this.XboxTypeS_BTextfield,TextFieldEx.VALIGN_CENTER);
+            TextFieldEx.setVerticalAlign(this.XboxTypeS_ATextfield,TextFieldEx.VALIGN_CENTER);
+            TextFieldEx.setVerticalAlign(this.XboxTypeS_DPad_UpTextfield,TextFieldEx.VALIGN_CENTER);
+            TextFieldEx.setVerticalAlign(this.XboxTypeS_DPad_DownTextfield,TextFieldEx.VALIGN_CENTER);
+            TextFieldEx.setVerticalAlign(this.XboxTypeS_DPad_LeftTextfield,TextFieldEx.VALIGN_CENTER);
+            TextFieldEx.setVerticalAlign(this.XboxTypeS_DPad_RightTextfield,TextFieldEx.VALIGN_CENTER);
         }
         
         public function set localizedText(param1:Object) : void
@@ -86,12 +115,8 @@ package tripwire.containers.optionsControls
             {
                 for each(_loc2_ in param1)
                 {
-                    trace(_loc2_);
+                    trace("Preset containter:",_loc2_);
                 }
-                this.backTextfield.text = !!param1.back ? param1.back : "";
-                this.startTextfield.text = !!param1.start ? param1.start : "";
-                this.leftThumbstickTextfield.text = !!param1.leftThumbstick ? param1.leftThumbstick : "";
-                this.rightThumbstickTextfield.text = !!param1.rightThumbstick ? param1.rightThumbstick : "";
                 if(param1.bindings)
                 {
                     for each(_loc3_ in param1.bindings)
@@ -119,6 +144,24 @@ package tripwire.containers.optionsControls
         
         override protected function pushToBackAnimation() : *
         {
+        }
+        
+        override protected function onBPressed(param1:InputDetails) : void
+        {
+            dispatchEvent(new IndexEvent(IndexEvent.INDEX_CHANGE,false,true,CANCELLED_INDEX));
+        }
+        
+        override public function selectContainer() : void
+        {
+            visible = true;
+            tabEnabled = true;
+            tabChildren = true;
+            bSelected = true;
+            addEventListener(FocusEvent.FOCUS_IN,onFocusIn,false,0,true);
+            if(stage)
+            {
+                stage.addEventListener(InputEvent.INPUT,handleInput,false,0,true);
+            }
         }
     }
 }

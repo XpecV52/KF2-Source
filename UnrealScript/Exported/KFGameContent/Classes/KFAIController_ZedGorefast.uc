@@ -37,7 +37,7 @@ function bool ShouldSprint()
 
 event EnemyNotVisible()
 {
-	if( MyKFPawn.bIsSprinting && MyKFGameInfo.MyKFGRI.AIRemaining > FrustrationThreshold )  // don't stop sprinting if we're in frustration mode
+	if( MyKFPawn.bIsSprinting && !bForceFrustration && MyKFGameInfo.MyKFGRI.AIRemaining > FrustrationThreshold )  // don't stop sprinting if we're in frustration mode
 	{
 		MyKFPawn.SetSprinting( false );
 	}
@@ -60,20 +60,33 @@ event EnemyNotVisible()
 /**
  * Update sprint settings based on Frustration
  */
-function UpdateSprintFrustration( optional byte bForceFrustration=255 )
+function UpdateSprintFrustration( optional byte bForceFrustrationState=255 )
 {
-	// Do nothing here, gorefast will sprint on its own
+	if( bForceFrustration )
+	{
+		bCanSprint = true;
+	}
 }
 
 function bool IsFrustrated()
 {
-	// Do nothing here, gorefast will sprint on its own
+	if( bForceFrustration )
+	{
+		return true;
+	}
+
+	return false;
 }
 
 /** Test code, mirrors KF1 Gorefast sprint decisions (also done in Tick) */
 simulated function Tick( float DeltaTime )
 {
 	super.Tick( DeltaTime );
+
+	if( bForceFrustration )
+	{
+		return;
+	}
 
 	// @todo: why is this sprint code gorefast specific?
 	if( MyKFPawn != none && !bHasDebugCommand && (LastSprintChangeTime == 0.f || (WorldInfo.TimeSeconds - LastSprintChangeTime) > 1.f) )
@@ -150,6 +163,7 @@ defaultproperties
    StrikeRangePercentage=0.750000
    MaxMeleeHeightAngle=0.680000
    EvadeGrenadeChance=0.750000
+   LowIntensityAttackCooldown=3.000000
    Name="Default__KFAIController_ZedGorefast"
    ObjectArchetype=KFAIController_Monster'KFGame.Default__KFAIController_Monster'
 }

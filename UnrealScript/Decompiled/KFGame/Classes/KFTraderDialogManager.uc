@@ -34,6 +34,8 @@ var float NeedHealPct;
 var float TeammateNeedsHealPct;
 var int ShareDoshAmount;
 var int LowDoshAmount;
+var float WaveClearDialogDelay;
+var int DelayedWaveClearEventID;
 
 simulated function EndOfDialogTimer()
 {
@@ -315,19 +317,19 @@ simulated function PlayTraderTickDialog(int RemainingTime, Controller C, WorldIn
     PlayDialog(BestOptionID, C);
 }
 
-simulated function PlayBeginTraderTimeDialog(KFPlayerController KFPC, WorldInfo WI)
+simulated function PlayBeginTraderTimeDialog(KFPlayerController KFPC)
 {
     if(!default.bEnabled)
     {
         return;
     }
-    if((KFGameReplicationInfo(WI.GRI) != none) && KFPC.PWRI.DeathStreakEndWave == KFGameReplicationInfo(WI.GRI).WaveNum)
+    if(KFPC.PWRI.bDiedDuringWave)
     {
         PlayPlayerDiedLastWaveDialog(KFPC);        
     }
     else
     {
-        PlayPlayerSurvivedLastWaveDialog(KFPC, WI);
+        PlayPlayerSurvivedLastWaveDialog(KFPC);
     }
 }
 
@@ -341,7 +343,7 @@ simulated function PlayPlayerDiedLastWaveDialog(KFPlayerController KFPC)
     {
         AddRandomOption(KFPC.PWRI.ClassKilledByLastWave.static.GetTraderAdviceID(), NumOptions, BestOptionID);
     }
-    if((KFPC.PWRI.DeathStreakEndWave - KFPC.PWRI.DeathStreakStartWave) >= 3)
+    if(KFPC.MatchStats.DeathStreak >= 3)
     {
         AddRandomOption(24, NumOptions, BestOptionID);        
     }
@@ -349,40 +351,22 @@ simulated function PlayPlayerDiedLastWaveDialog(KFPlayerController KFPC)
     {
         AddRandomOption(20, NumOptions, BestOptionID);
     }
-    PlayDialog(BestOptionID, KFPC);
+    PlayWaveClearDialog(BestOptionID, KFPC);
 }
 
-simulated function PlayPlayerSurvivedLastWaveDialog(KFPlayerController KFPC, WorldInfo WI)
+simulated function PlayPlayerSurvivedLastWaveDialog(KFPlayerController KFPC)
 {
     local int BestOptionID;
     local byte NumOptions;
-    local KFGameReplicationInfo KFGRI;
     local KFPawn_Human KFPH;
 
     BestOptionID = -1;
-    KFGRI = KFGameReplicationInfo(WI.GRI);
     KFPH = KFPawn_Human(KFPC.Pawn);
-    if(KFPC.PWRI.bKilledMostZeds)
-    {
-        AddRandomOption(21, NumOptions, BestOptionID);
-    }
-    if(KFPC.PWRI.bEarnedMostDosh)
-    {
-        AddRandomOption(31, NumOptions, BestOptionID);
-    }
-    if(KFPC.PWRI.bBestTeammate)
-    {
-        AddRandomOption(22, NumOptions, BestOptionID);
-    }
-    if(KFPH.PlayerReplicationInfo.Score >= float(default.ShareDoshAmount))
-    {
-        AddRandomOption(17, NumOptions, BestOptionID);
-    }
     if(KFPC.MatchStats.GetHealGivenInWave() >= 200)
     {
         AddRandomOption(18, NumOptions, BestOptionID);
     }
-    if((KFGRI.WaveNum - KFPC.PWRI.DeathStreakEndWave) >= 3)
+    if(KFPC.MatchStats.SurvivedStreak >= 3)
     {
         AddRandomOption(23, NumOptions, BestOptionID);
     }
@@ -405,24 +389,6 @@ simulated function PlayPlayerSurvivedLastWaveDialog(KFPlayerController KFPC, Wor
     {
         AddRandomOption(30, NumOptions, BestOptionID);
     }
-    if(KFPC.PWRI.bAllSurvivedLastWave)
-    {
-        AddRandomOption(25, NumOptions, BestOptionID);        
-    }
-    else
-    {
-        if(KFPC.PWRI.bSomeSurvivedLastWave)
-        {
-            AddRandomOption(27, NumOptions, BestOptionID);            
-        }
-        else
-        {
-            if(KFPC.PWRI.bOneSurvivedLastWave)
-            {
-                AddRandomOption(19, NumOptions, BestOptionID);
-            }
-        }
-    }
     if(KFPC.PWRI.bKilledFleshpoundLastWave)
     {
         AddRandomOption(32, NumOptions, BestOptionID);
@@ -435,7 +401,83 @@ simulated function PlayPlayerSurvivedLastWaveDialog(KFPlayerController KFPC, Wor
     {
         AddRandomOption(34, NumOptions, BestOptionID);
     }
-    PlayDialog(BestOptionID, KFPC);
+    if(!IsSoloHumanPlayer())
+    {
+        if(KFPC.PWRI.bKilledMostZeds)
+        {
+            AddRandomOption(21, NumOptions, BestOptionID);
+        }
+        if(KFPC.PWRI.bEarnedMostDosh)
+        {
+            AddRandomOption(31, NumOptions, BestOptionID);
+        }
+        if(KFPC.PWRI.bBestTeammate)
+        {
+            AddRandomOption(22, NumOptions, BestOptionID);
+        }
+        if(KFPH.PlayerReplicationInfo.Score >= float(default.ShareDoshAmount))
+        {
+            AddRandomOption(17, NumOptions, BestOptionID);
+        }
+        if(KFPC.PWRI.bAllSurvivedLastWave)
+        {
+            AddRandomOption(25, NumOptions, BestOptionID);            
+        }
+        else
+        {
+            if(KFPC.PWRI.bSomeSurvivedLastWave)
+            {
+                AddRandomOption(27, NumOptions, BestOptionID);                
+            }
+            else
+            {
+                if(KFPC.PWRI.bOneSurvivedLastWave)
+                {
+                    AddRandomOption(19, NumOptions, BestOptionID);
+                }
+            }
+        }
+    }
+    PlayWaveClearDialog(BestOptionID, KFPC);
+}
+
+function bool IsSoloHumanPlayer()
+{
+    local int I, NumHumans;
+    local PlayerReplicationInfo PRI;
+
+    if(WorldInfo.NetMode == NM_Standalone)
+    {
+        return true;
+    }
+    I = 0;
+    J0x36:
+
+    if((I < WorldInfo.GRI.PRIArray.Length) && NumHumans < 2)
+    {
+        PRI = WorldInfo.GRI.PRIArray[I];
+        if(((PRI != none) && !PRI.bOnlySpectator) && PRI.GetTeamNum() == 0)
+        {
+            ++ NumHumans;
+        }
+        ++ I;
+        goto J0x36;
+    }
+    return NumHumans == 1;
+}
+
+simulated function PlayWaveClearDialog(int EventID, Controller C)
+{
+    if((C != none) && C.IsLocalController())
+    {
+        DelayedWaveClearEventID = EventID;
+        SetTimer(WaveClearDialogDelay, false, 'WaveClearDialogTimer');
+    }
+}
+
+simulated function WaveClearDialogTimer()
+{
+    PlayDialog(DelayedWaveClearEventID, WorldInfo.GetALocalPlayerController());
 }
 
 simulated function PlayOpenTraderMenuDialog(KFPlayerController KFPC)
@@ -510,5 +552,6 @@ defaultproperties
     TeammateNeedsHealPct=0.5
     ShareDoshAmount=2000
     LowDoshAmount=200
+    WaveClearDialogDelay=7
     CollisionType=ECollisionType.COLLIDE_CustomDefault
 }

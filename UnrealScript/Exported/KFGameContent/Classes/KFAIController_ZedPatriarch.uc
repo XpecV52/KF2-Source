@@ -51,12 +51,6 @@ struct Patriarch_TrackedEnemyInfo
 	var int 			AggroDamage;
 };
 
-struct Patriarch_MortarTarget
-{
-	var KFPawn TargetPawn;
-	var vector TargetVelocity;
-};
-
 /** List of tracked enemies that have recently been seen */
 var array<Patriarch_TrackedEnemyInfo> RecentlySeenEnemyList;
 
@@ -108,15 +102,8 @@ var float LastMissileAttackTime;
 /** Min distance an enemy can be for a missile attack */
 var float MinMissileRangeSQ;
 
-/** Targets chosen for mortar attack */
-var array<Patriarch_MortarTarget> MortarTargets;
-
 /** Last time we executed a mortar attack */
 var float LastMortarAttackTime;
-
-/** Mortar distance values */
-var float MinMortarRangeSQ;
-var float MaxMortarRangeSQ;
 
 /** Last time we successfully hit an enemy with a melee attack */
 var float LastSuccessfulAttackTime;
@@ -259,7 +246,7 @@ function PawnDied( Pawn InPawn )
 {
 	if( MyPatPawn != none )
 	{
-		//`SafeDialogManager.PlayBossDeathDialog( MyHansPawn );
+		//`DialogManager.PlayBossDeathDialog( MyHansPawn );
 		MyPatPawn = None;
 	}
 	Super.PawnDied( InPawn );
@@ -269,8 +256,11 @@ function PawnDied( Pawn InPawn )
 	TBD: Look into using Unpossessed() to do this! */
 simulated event Destroyed()
 {
+	if( MyPatPawn != none )
+	{
+		MyPatPawn.ClearMortarTargets();
+	}
 	MyPatPawn = None;
-	ClearMortarTargets();
 	MyKFGameInfo.SpawnManager.StopSummoningBossMinions();
 
 	super.Destroyed();
@@ -280,6 +270,14 @@ simulated event Destroyed()
 * Enemy and Attack Handling
 ********************************************************************************************* */
 
+/** We can't allow aggro enemy switches during certain special moves */
+function bool IsAggroEnemySwitchAllowed()
+{
+	return ( !MyPatPawn.IsDoingSpecialMove(SM_StandAndShootAttack)
+			&& !MyPatPawn.IsDoingSpecialMove(SM_HoseWeaponAttack)
+			&& !MyPatPawn.IsDoingSpecialMove(SM_GrabAttack) );
+}
+
 /** Whether enemy switch commands can be run */
 function bool CanSwitchEnemies()
 {
@@ -288,7 +286,7 @@ function bool CanSwitchEnemies()
 			&& MyPatPawn != none
 			&& !MyPatPawn.bIsCloaking
 			&& !MyPatPawn.IsDoingSpecialMove(SM_Heal)
-			&& !MyPatPawn.IsDoingSpecialMove(SM_StandAndShotAttack)
+			&& !MyPatPawn.IsDoingSpecialMove(SM_StandAndShootAttack)
 			&& !MyPatPawn.IsDoingSpecialMove(SM_SonicAttack)
 			&& !MyPatPawn.IsDoingSpecialMove(SM_GrabAttack);
 }
@@ -370,22 +368,13 @@ event ChangeEnemy( Pawn NewEnemy, optional bool bCanTaunt = true )
 
 	OldEnemy = Enemy;
 
-	super.ChangeEnemy( NewEnemy, MyPatPawn.bIsCloaking );
+	super.ChangeEnemy( NewEnemy, !MyPatPawn.bIsCloaking && bCanTaunt );
 
 	if( OldEnemy != Enemy )
 	{
 		LastRetargetTime = WorldInfo.TimeSeconds;
 	}
 }
-
-/** We can't allow aggro enemy switches during certain special moves */
-function bool IsAggroEnemySwitchAllowed()
-{
-	return ( !MyPatPawn.IsDoingSpecialMove(SM_StandAndShotAttack)
-			&& !MyPatPawn.IsDoingSpecialMove(SM_HoseWeaponAttack)
-			&& !MyPatPawn.IsDoingSpecialMove(SM_GrabAttack) );
-}
-
 
 /** Sets the enemy to the best target, based on several factors */
 function bool SetBestTarget( out array<KFPawn> RecentTargets,
@@ -538,7 +527,7 @@ function KFPawn CheckForEnemiesInFOV( float MaxRange,
 									optional bool bTauntNewEnemy=true )
 {
 	local vector PawnDir, Projection;
-	local float FOVDot, MaxRangeSQ, TempDistSQ, BestDistSQ;
+	local float FOVDot, TempDistSQ, BestDistSQ;
 	local KFPawn KFP, BestTarget;
 
 	if( MyPatPawn == none )
@@ -547,7 +536,6 @@ function KFPawn CheckForEnemiesInFOV( float MaxRange,
 	}
 
 	PawnDir = vector( MyPatPawn.Rotation );
-	MaxRangeSQ = Square( MaxRange );
 
 	foreach MyPatPawn.OverlappingActors( class'KFPawn', KFP, MaxRange )
 	{
@@ -563,13 +551,6 @@ function KFPawn CheckForEnemiesInFOV( float MaxRange,
 
 		Projection = KFP.Location - MyPatPawn.Location;
 
-		// Make sure enemy isn't too far away
-		TempDistSQ = VSizeSQ( Projection );
-		if( TempDistSQ > MaxRangeSQ )
-		{
-			continue;
-		}
-
 		// Only care about players within the FOV range
 		FOVDot = PawnDir dot Normal( Projection );
 		if( FOVDot < MinFOV || FOVDot > MaxFOV )
@@ -582,6 +563,9 @@ function KFPawn CheckForEnemiesInFOV( float MaxRange,
 		{
 			continue;
 		}
+
+		// Make sure enemy isn't too far away
+		TempDistSQ = VSizeSQ( Projection );
 
 		// Scales distance by aggro rating (0.0 - 1.0)
 		TempDistSQ *= 1.f - GetAggroRating( KFP );
@@ -820,12 +804,12 @@ function EvaluateAttacks( float DeltaTime )
 			if( MyPatPawn.CanDoMortarBarrage() && fRand() < 0.2f )
 			{
 				bMortarBarrage = true;
-				bShouldFireMortar = CollectMortarTargets( true, true );
+				bShouldFireMortar = MyPatPawn.CollectMortarTargets( true, true );
 			}
 			else if( HiddenEnemies.Length > 0 )
 			{
 				bMortarBarrage = false;
-				bShouldFireMortar = SomeEnemiesAreHidden() && CollectMortarTargets( true );
+				bShouldFireMortar = SomeEnemiesAreHidden() && MyPatPawn.CollectMortarTargets( true );
 			}
 			else
 			{
@@ -892,6 +876,24 @@ function Rotator GetAdjustedAimFor( Weapon W, vector StartFireLoc )
 	}
 
 	return super.GetAdjustedAimFor( W, StartFireLoc );
+}
+
+function DoStrike()
+{
+	local name AttackName;
+
+	if( MyPatPawn != none && MyPatPawn.PawnAnimInfo != none )
+	{
+		AttackName = MyPatPawn.PawnAnimInfo.Attacks[PendingAnimStrikeIndex].Tag;
+
+		// @todo: figure out a way to make this less hard-coded? (see also KFDialogManager::PlayHansKilledDialog)
+		if( AttackName == 'Radial' )
+		{
+			if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayPattyWhirlwindDialog( MyPatPawn );
+		}
+	}
+
+	super.DoStrike();
 }
 
 /*********************************************************************************************
@@ -1000,7 +1002,7 @@ function bool SomeEnemiesAreHidden()
 
 		// Too close or too far
 		TargetDist = VSizeSQ(KFP.Location - MyPatPawn.Location);
-		if( TargetDist < MinMortarRangeSQ || TargetDist > MaxMortarRangeSQ )
+		if( TargetDist < MyPatPawn.MinMortarRangeSQ || TargetDist > MyPatPawn.MaxMortarRangeSQ )
 		{
 			continue;
 		}
@@ -1015,114 +1017,6 @@ function bool SomeEnemiesAreHidden()
 	}
 
 	return false;
-}
-
-/** Tries to set our mortar targets */
-function bool CollectMortarTargets( optional bool bInitialTarget, optional bool bForceInitialTarget )
-{
-	local int NumTargets, i;
-	local KFPawn KFP;
-	local float TargetDistSQ;
-	local vector MortarVelocity, MortarStartLoc, TargetLoc, TargetProjection;
-
-   	MortarStartLoc = MyPatPawn.Location + vect(0,0,1)*MyPatPawn.GetCollisionHeight();
-    NumTargets = bInitialTarget ? 0 : 1;
-	for( i = 0; i < HiddenEnemies.Length; ++i )
-	{
-		KFP = HiddenEnemies[i].TrackedEnemy;
-		if( !KFP.IsAliveAndWell() || MortarTargets.Find('TargetPawn', KFP) != INDEX_NONE )
-		{
-			continue;
-		}
-
-		// Make sure target is in range
-		TargetLoc = KFP.Location + (vect(0,0,-1)*(KFP.GetCollisionHeight()*0.8f));
-		TargetProjection = MortarStartLoc - TargetLoc;
-		TargetDistSQ = VSizeSQ( TargetProjection );
-		if( TargetDistSQ > MinMortarRangeSQ && TargetDistSQ < MaxMortarRangeSQ )
-		{
-			TargetLoc += Normal(TargetProjection)*KFP.GetCollisionRadius();
-			if( SuggestTossVelocity(MortarVelocity, TargetLoc, MortarStartLoc, class'KFProj_Mortar_Patriarch'.default.Speed, 500.f, 1.f, vect(0,0,0),, MyPatPawn.GetGravityZ()*0.8f) )
-			{
-				// Make sure upward arc path is clear
-				if( !MyPatPawn.FastTrace(MortarStartLoc + (Normal(vect(0,0,1) + (Normal(TargetLoc - MortarStartLoc)*0.9f))*fMax(VSize(MortarVelocity)*0.55f, 800.f)), MortarStartLoc,, true) )
-				{
-					continue;
-				}
-
-				MortarTargets.Insert( NumTargets, 1 );
-				MortarTargets[NumTargets].TargetPawn = KFP;
-				MortarTargets[NumTargets].TargetVelocity = MortarVelocity;
-
-				if( bInitialTarget || NumTargets == 2 )
-				{
-					return true;
-				}
-
-				NumTargets++;
-			}
-		}
-	}
-
-	// Fall back on visible enemies
-	if( (bForceInitialTarget || !bInitialTarget) && NumTargets < 2 && RecentlySeenEnemyList.Length > 0 )
-	{
-		for( i = 0; i < RecentlySeenEnemyList.Length && NumTargets < 3; ++i )
-		{
-			KFP = RecentlySeenEnemyList[i].TrackedEnemy;
-			if( !KFP.IsAliveAndWell() || MortarTargets.Find('TargetPawn', KFP) != INDEX_NONE )
-			{
-				continue;
-			}
-
-			// Make sure target is in range
-			TargetLoc = KFP.Location + (vect(0,0,-1)*(KFP.GetCollisionHeight()*0.8f));
-			TargetProjection = MortarStartLoc - TargetLoc;
-			TargetDistSQ = VSizeSQ( TargetProjection );
-			if( TargetDistSQ > MinMortarRangeSQ && TargetDistSQ < MaxMortarRangeSQ )
-			{
-				TargetLoc += Normal(TargetProjection)*KFP.GetCollisionRadius();
-				if( SuggestTossVelocity(MortarVelocity, TargetLoc, MortarStartLoc, class'KFProj_Mortar_Patriarch'.default.Speed, 500.f, 1.f, vect(0,0,0),, MyPatPawn.GetGravityZ()*0.8f) )
-				{
-					// Make sure upward arc path is clear
-					if( !MyPatPawn.FastTrace(MortarStartLoc + (Normal(vect(0,0,1) + (Normal(TargetLoc - MortarStartLoc)*0.9f))*fMax(VSize(MortarVelocity)*0.55f, 800.f)), MortarStartLoc,, true) )
-					{
-						continue;
-					}
-
-					MortarTargets.Insert( NumTargets, 1 );
-					MortarTargets[NumTargets].TargetPawn = KFP;
-					MortarTargets[NumTargets].TargetVelocity = MortarVelocity;
-
-					if( bInitialTarget )
-					{
-						return true;
-					}
-
-					NumTargets++;
-				}
-			}
-		}
-	}
-
-	return false;
-}
-
-/** Clears mortar targets */
-function ClearMortarTargets()
-{
-	MortarTargets.Length = 0;
-}
-
-/** Returns the mortar target for the associated projectile number */
-function Patriarch_MortarTarget GetMortarTarget( int MortarNum )
-{
-	if( MortarNum >= MortarTargets.Length )
-	{
-		return MortarTargets[Rand(MortarTargets.Length)];
-	}
-
-	return MortarTargets[MortarNum];
 }
 
 /*********************************************************************************************
@@ -1435,7 +1329,7 @@ function NotifyTakeHit( Controller InstigatedBy, vector HitLocation, int Damage,
 		}
 	}
 
-    // When our health gets low, go hunt a player to draw life and enter the next battle phase
+    // When our health gets low, summon zeds and escape from the battle to heal
     if( !bWantsToFlee && !bFleeing && MyPatPawn != None && !MyPatPawn.bHealedThisPhase && MyPatPawn.CurrentBattlePhase < 4
     	&& !MyPatPawn.IsDoingSpecialMove(SM_Heal) )
     {
@@ -1501,7 +1395,7 @@ function StartPaternalInstinct()
 	SetTimer( RageTimeOut, false, nameOf(Timer_RageTimeOut) );
 
 	/*// Do our mortar rage if the ceiling is clear
-	if( !MyPatPawn.IsDoingSpecialMove(SM_StandAndShotAttack) && !MyPatPawn.IsDoingSpecialMove(SM_SonicAttack) )
+	if( !MyPatPawn.IsDoingSpecialMove(SM_StandAndShootAttack) && !MyPatPawn.IsDoingSpecialMove(SM_SonicAttack) )
 	{
 		if( IsCeilingClear() && CollectMortarTargets(true, true) )
 		{
@@ -1650,36 +1544,12 @@ function bool AmIAllowedToSuicideWhenStuck()
 /** Summon some children */
 function SummonChildren()
 {
-    local KFAIWaveInfo MinionWave;
-	local int BattlePhase;
-
     if( MyPatPawn == none )
     {
         return;
     }
 
-    // Select the correct batch of zeds to spawn during this battle phase
-    BattlePhase = MyPatPawn.CurrentBattlePhase;
-    if( BattlePhase == 1 )
-    {
-        MinionWave = MyPatPawn.SummonWaves[MyKFGameInfo.GameDifficulty].PhaseOneWave;
-    }
-    else if( BattlePhase == 2 )
-    {
-        MinionWave = MyPatPawn.SummonWaves[MyKFGameInfo.GameDifficulty].PhaseTwoWave;
-    }
-    else if( BattlePhase == 3 )
-    {
-        MinionWave = MyPatPawn.SummonWaves[MyKFGameInfo.GameDifficulty].PhaseThreeWave;
-    }
-
-    if( MinionWave != none )
-    {
-		if( MyKFGameInfo.SpawnManager != none )
-		{
-		 	MyKFGameInfo.SpawnManager.SummonBossMinions( MinionWave.Squads, MyPatPawn.NumMinionsToSpawn );
-		}
-	}
+    MyPatPawn.SummonChildren();
 }
 
 /** Stop summoning children */
@@ -1746,7 +1616,7 @@ function Timer_SearchForFleeObstructions()
 		EnableMeleeRangeEventProbing();
 
 		// Give the patty a little bit of time to flee after this attack
-		SetTimer( 5.0f, false, nameOf(Timer_SearchForFleeObstructions) );
+		SetTimer( 3.0f, false, nameOf(Timer_SearchForFleeObstructions) );
 	}
 	else
 	{
@@ -1917,8 +1787,8 @@ function Flee()
 	DisableMeleeRangeEventProbing();
 
 	FleeDuration = fMax( MaxFleeDuration - TotalFleeTime, 6.f );
-	LogInternal("[FLEE] FleeDuration:"@FleeDuration);
-	LogInternal("[FLEE] FleeStartTime:"@WorldInfo.TimeSeconds);
+	//`log("[FLEE] FleeDuration:"@FleeDuration);
+	//`log("[FLEE] FleeStartTime:"@WorldInfo.TimeSeconds);
 	FleeStartLocation = MyPatPawn.Location;
 	FleeStartTime = WorldInfo.TimeSeconds;
 	DoFleeFrom( FleeFromTarget, FleeDuration, MaxFleeDistance + Rand(MaxFleeDistance * 0.25f), true );
@@ -1945,10 +1815,10 @@ function NotifyFleeFinished()
 		ClearTimer( nameOf(Timer_SearchForFleeObstructions) );
 
 		// Flee debug
-		LogInternal("[HEAL] FleeDuration:"@fMax(MaxFleeDuration - TotalFleeTime, 6.f));
-		LogInternal("[HEAL] FleeEndTime:"@WorldInfo.TimeSeconds);
-		LogInternal("[HEAL] FleeDistance:"@VSize(FleeStartLocation - MyPatPawn.Location));
-		scripttrace();
+		//`log("[HEAL] FleeDuration:"@fMax(MaxFleeDuration - TotalFleeTime, 6.f));
+		//`log("[HEAL] FleeEndTime:"@WorldInfo.TimeSeconds);
+		//`log("[HEAL] FleeDistance:"@VSize(FleeStartLocation - MyPatPawn.Location));
+		//scripttrace();
 
 		// End flee state
 		bWantsToFlee = false;
@@ -2009,7 +1879,7 @@ Begin:
 
 function PlayDamagePlayerDialog( class<DamageType> DmgType )
 {
-	//`SafeDialogManager.PlayHansDamagePlayerDialog( MyHansPawn, DmgType );
+	//`DialogManager.PlayHansDamagePlayerDialog( MyHansPawn, DmgType );
 }
 
 /*********************************************************************************************
@@ -2050,8 +1920,6 @@ defaultproperties
    MinChargeRangeSQ=810000.000000
    MinTentacleRangeSQ=90000.000000
    MinMissileRangeSQ=360000.000000
-   MinMortarRangeSQ=160000.000000
-   MaxMortarRangeSQ=6000000.000000
    LastRecentSeenEnemyListUpdateTime=0.100000
    RetargetWaitTime=5.000000
    MaxRageRangeSQ=1440000.000000

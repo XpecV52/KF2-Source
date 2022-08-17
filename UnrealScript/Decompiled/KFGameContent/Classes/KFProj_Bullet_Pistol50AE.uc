@@ -5,7 +5,7 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFProj_Bullet_Pistol50AE extends KFProj_Bullet_Gunslinger
+class KFProj_Bullet_Pistol50AE extends KFProj_Bullet_RackEmUp
     hidecategories(Navigation);
 
 defaultproperties

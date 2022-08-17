@@ -126,7 +126,6 @@ defaultproperties
       bAllowApproximateOcclusion=True
       bForceDirectLightMap=True
       bUsePrecomputedShadows=True
-      LightingChannels=(bInitialized=True,Indoor=True,Outdoor=True)
       RBCollideWithChannels=(Visibility=True)
       bAcceptReflections=True
       Name="StaticMeshComponent0"

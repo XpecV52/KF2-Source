@@ -1290,6 +1290,10 @@ native simulated function string GetLocalURL() const;
 //
 native simulated static final function bool IsDemoBuild() const;  // True if this is a demo build.
 
+//@HSL_BEGIN - BWJ - 3-16-16 - Support for console dedicated servers
+native static final function bool IsConsoleDedicatedServer() const;
+//@HSL_END
+
 /**
  * Returns whether we are running on a console platform or on the PC.
  * @param ConsoleType - if specified, only returns true if we're running on the specified platform
@@ -1782,6 +1786,10 @@ native function TWLogEvent( string EventName,
 							optional coerce string P9 );
 
 native function TWPushLogs();
+
+// make sure our current tweak values are up-to-date with global
+native function TWRefreshTweakParams(); 
+native function TWApplyTweaks();
 
 `endif
 

@@ -62,7 +62,8 @@ state Command_SpecialMove
 
 		if( Enemy != none && SpecialMove != SM_None && (!bShouldCheckSpecialMove || MyKFPawn.CanDoSpecialMove( SpecialMove )) )
 		{
-			if( WorldInfo.TimeSeconds - LastScreamTime < ScreamCooldown )
+			if( WorldInfo.TimeSeconds - LastScreamTime < ScreamCooldown
+                || !CheckOverallCooldownTimer() )
 			{
 				return false;
 			}
@@ -81,6 +82,10 @@ state Command_SpecialMove
 				&& Trace(HitL, HitN, EnemyLocation, MyEyeLocation, FALSE,,,TRACEFLAG_Bullet) == none )
 			{
 				LastScreamTime = WorldInfo.TimeSeconds;
+            	if( KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).GameConductor != none )
+            	{
+            	   KFGameInfo(WorldInfo.Game).GameConductor.UpdateOverallAttackCoolDowns(Outer);
+            	}
 				return true;
 			}
 		}

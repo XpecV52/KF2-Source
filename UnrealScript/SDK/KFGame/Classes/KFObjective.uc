@@ -147,7 +147,7 @@ simulated event Initialize()
 
 	if( WorldInfo.NetMode != NM_DedicatedServer )
 	{
-		`SafeTraderDialogManager.PlayObjectiveDialog( GetALocalPlayerController(), GetTraderDialogStartIndex() );
+		`TraderDialogManager.PlayObjectiveDialog( GetALocalPlayerController(), GetTraderDialogStartIndex() );
 	}
 }
 
@@ -462,7 +462,7 @@ simulated function DoObjFailNotify()
 
 	if( WorldInfo.NetMode != NM_DedicatedServer )
 	{
-		`SafeTraderDialogManager.PlayObjectiveDialog( GetALocalPlayerController(), GetTraderDialogStartIndex() + 3 );
+		`TraderDialogManager.PlayObjectiveDialog( GetALocalPlayerController(), GetTraderDialogStartIndex() + 3 );
 	}
 }
 
@@ -480,7 +480,7 @@ simulated function DoObjWinNotify()
 
 	if( WorldInfo.NetMode != NM_DedicatedServer )
 	{
-		`SafeTraderDialogManager.PlayObjectiveDialog( GetALocalPlayerController(), GetTraderDialogStartIndex() + 1 );
+		`TraderDialogManager.PlayObjectiveDialog( GetALocalPlayerController(), GetTraderDialogStartIndex() + 1 );
 	}
 }
 

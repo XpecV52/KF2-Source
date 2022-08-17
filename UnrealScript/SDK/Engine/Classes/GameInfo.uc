@@ -99,7 +99,11 @@ var	  class<HUD>			  SecondaryHUDType;			// Secondary HUD class this game uses.
 var   globalconfig int	      MaxSpectators;			// Maximum number of spectators allowed by this server.
 var	  int					  MaxSpectatorsAllowed;		// Maximum number of spectators ever allowed (MaxSpectators is clamped to this in initgame()
 var	  int					  NumSpectators;			// Current number of spectators.
+`if (`__TW_)
+var   config int		      MaxPlayers;				// Maximum number of players allowed by this server.
+`else
 var   globalconfig int		  MaxPlayers;				// Maximum number of players allowed by this server.
+`endif
 var	  int					  MaxPlayersAllowed;		// Maximum number of players ever allowed (MaxPlayers is clamped to this in initgame()
 var   int					  NumPlayers;				// number of human players
 var	  int					  NumBots;					// number of non-human players (AI controlled but participating as a player)
@@ -1895,8 +1899,9 @@ event PostLogin( PlayerController NewPlayer )
 		}
 	}
 
+	// HSL - BWJ - 3-18-16 - Push to talk for non console build sonly
 	// Tell the player to disable voice by default and use the push to talk method
-	if (bRequiresPushToTalk)
+	if (bRequiresPushToTalk && !WorldInfo.IsConsoleDedicatedServer())
 	{
 		NewPlayer.ClientStopNetworkedVoice();
 	}

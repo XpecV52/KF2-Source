@@ -175,14 +175,14 @@ function GiveWeapon(Pawn P)
         {
             if(KFW.DualClass == none)
             {
-                PlayerController(P.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 10);                
+                PlayerController(P.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 11);                
                 return;
             }
             continue;
         }
         if((KFWeaponClass != none) && KFW.Class == KFWeaponClass.default.DualClass)
         {
-            PlayerController(P.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 10);            
+            PlayerController(P.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 11);            
             return;
         }        
     }    
@@ -194,6 +194,8 @@ function GiveWeapon(Pawn P)
         if(KFW != none)
         {
             KFW.bGivenAtStart = true;
+            KFW = KFIM.CombineWeaponsOnPickup(KFW);
+            KFW.NotifyPickedUp();
         }
         ActivateNewPickup(P);
         if(Class'KFGameInfo'.static.AllowBalanceLogging())

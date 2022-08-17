@@ -14,13 +14,13 @@ class KFFlashlightAttachment extends Object
 	native(Effect);
 
 /** Cached parent (attachment) mesh */
-var transient SkeletalMeshComponent OwnerMesh;
+var protected transient SkeletalMeshComponent OwnerMesh;
 
 /** Is this flashlight turned on? */
-var transient bool bEnabled;
+var protected transient bool bEnabled;
 
 /** Initialized the first time the light is turned on */
-var transient bool bLightInitialized;
+var protected transient bool bLightInitialized;
 
 /*********************************************************************************************
  * @name	Attachments
@@ -40,6 +40,13 @@ var transient StaticMeshComponent	AttachmentMeshComp;
 
 /** Socket name to attach the flashlight to */
 var() name FlashlightSocketName;
+
+/** Within this radius don't turn off a teammate's flashlight unless ours is turned on */
+var float TeammateSwitchRadius;
+var float TeammateSwitchTimer;
+
+/** Debug logging */
+var bool bDebug;
 
 /** Create/Attach flashlight components */
 function AttachFlashlight(SkeletalMeshComponent Mesh, optional name SocketNameOverride)
@@ -103,7 +110,7 @@ function DetachFlashlight()
 }
 
 /** Toggle flash light components */
-function SetEnabled(bool bNewEnabled)
+protected function SetEnabled(bool bNewEnabled)
 {
 	if ( bNewEnabled && !bLightInitialized )
 	{
@@ -121,10 +128,12 @@ function SetEnabled(bool bNewEnabled)
 	}
 
 	bEnabled = bNewEnabled;
+
+	`log("Turning flashlight"@bNewEnabled@"for teammate:"@OwnerMesh.Outer, bDebug);
 }
 
 /** Called once the first time the light is activated.  Seperated from AttachFlashlight and the AttachmentMesh */
-private function InitializeLight()
+protected function InitializeLight()
 {
 	if ( OwnerMesh == None )
 	{
@@ -158,14 +167,6 @@ private function AttachFlashlightComponent(SkeletalMeshComponent ParentMesh, Act
 	ParentMesh.AttachComponentToSocket(Attachment, FlashlightSocketName);
 }
 
-/** attachment helper */
-private function bool IsOwnerFirstPerson()
-{
-	local Pawn P;
-	P = Pawn(OwnerMesh.Outer);
-	return (P != None) ? P.IsFirstPerson() : false;
-}
-
 /** Cleanup */
 simulated function OwnerDied()
 {
@@ -179,6 +180,27 @@ simulated function OwnerDied()
 	{
 		Light.DetachFromAny();
 	}
+}
+
+/** Set the lighting channels on all the appropriate pawn meshes */
+simulated function SetLightingChannels(const out LightingChannelContainer NewLightingChannels)
+{
+	if ( AttachmentMeshComp != None )
+	{
+		AttachmentMeshComp.SetLightingChannels(NewLightingChannels);
+	}
+}
+
+/*********************************************************************************************
+ * @name	1st person attachment
+ ********************************************************************************************* */
+
+/** attachment helper */
+private function bool IsOwnerFirstPerson()
+{
+	local Pawn P;
+	P = Pawn(OwnerMesh.Outer);
+	return (P != None) ? P.IsFirstPerson() : false;
 }
 
 /** Special handling for components attached to character mesh while in 1st person */
@@ -219,12 +241,125 @@ simulated function SetFirstPersonVisibility(bool bFirstPerson)
 	}
 }
 
-/** Set the lighting channels on all the appropriate pawn meshes */
-simulated function SetLightingChannels(const out LightingChannelContainer NewLightingChannels)
+/*********************************************************************************************
+ * @name	Limit 1 flashlight per client
+ ********************************************************************************************* */
+
+simulated function UpdateFlashlightFor(KFPawn_Human InPawn)
 {
-	if ( AttachmentMeshComp != None )
+	local PlayerController PC;
+	local KFPawn_Human P;
+
+	if ( !InPawn.bFlashlightOn )
 	{
-		AttachmentMeshComp.SetLightingChannels(NewLightingChannels);
+		// If the active flashlight is being turned off, choose another
+		if ( InPawn.Flashlight.bEnabled )
+		{
+			InPawn.Flashlight.SetEnabled(false);
+			ChooseBestFlashlight();
+		}
+	}
+	else
+	{
+		PC = class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController();
+		if ( PC == None )
+		{
+			return;
+		}
+
+		// If local player (or spectator) uses flashlight turn off all others
+		if ( PC.ViewTarget == InPawn )
+		{
+			foreach PC.WorldInfo.AllPawns( class'KFPawn_Human', P )
+			{
+				if ( P.Flashlight.bEnabled )
+				{
+					P.Flashlight.SetEnabled(false);
+				}
+			}
+
+			InPawn.Flashlight.SetEnabled(true);
+		}
+		// If nobody else has a flash light choose one now
+		else if ( !PC.IsTimerActive(nameof(ChooseBestFlashlightTimer), self) )
+		{
+			ChooseBestFlashlight();
+			PC.SetTimer(TeammateSwitchTimer, true, nameof(ChooseBestFlashlightTimer), self);
+		}
+		else
+		{
+			// timer is already going... just wait
+		}
+	}
+}
+
+/** Called by local player on looping timer while another teammate has light on */
+simulated function ChooseBestFlashlightTimer()
+{
+	ChooseBestFlashlight();
+}
+
+/** Choose a nearby teammate to enable flashlight for */
+simulated function ChooseBestFlashlight()
+{
+	local PlayerController PC;
+	local KFPawn_Human P, BestPawn;
+	local array<KFPawn_Human> DisableList;
+	local float BestDistSq, DistSq;
+	local float TeammateSwitchRadiusSq;
+	local int i;
+
+	TeammateSwitchRadiusSq = Square(TeammateSwitchRadius);
+	PC = class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController();
+
+	// find other players that are using their flashlight and choose the nearest
+	// @todo: move to native for performance, or better yet add a AllHumans iterator
+	foreach PC.WorldInfo.AllPawns( class'KFPawn_Human', P )
+	{
+		if ( !P.bFlashlightOn || !P.IsAliveAndWell() )
+			continue;
+
+		DistSq = VSizeSq(P.Location - PC.ViewTarget.Location);
+
+		// if pawn has flashlight on we may be done
+		if ( P.Flashlight.bEnabled )
+		{
+			if ( PC.ViewTarget == P )
+			{
+				`log("Flashlight staying on for view target", bDebug);
+				return; // leave flashlight on
+			}
+			else if ( DistSq < TeammateSwitchRadiusSq )
+			{
+				`log("Flashlight staying on for"@P, bDebug);
+				return; // leave flashlight on
+			}
+
+			DisableList.AddItem(P);
+		}
+
+		// rate by distance
+		if ( BestPawn == None || DistSq < BestDistSq )
+		{
+			BestPawn = P;
+			BestDistSq = DistSq;
+		}
+	}
+
+	// If no players have their light on we can stop the timer
+	if ( BestPawn == None )
+	{
+		PC.ClearTimer(nameof(ChooseBestFlashlightTimer), self);
+	}
+	// Enable flashlight on bestPawn and disable on others
+	else if ( BestPawn != None && !BestPawn.Flashlight.bEnabled )
+	{
+		BestPawn.Flashlight.SetEnabled(true);
+		// Disable others (Length "should" always be 1)
+		for(i = 0; i < DisableList.Length; i++)
+		{
+			DisableList[i].Flashlight.SetEnabled(false);
+		}
 	}
 }
 
@@ -239,10 +374,10 @@ defaultproperties
 		InnerConeAngle=20
 		OuterConeAngle=30
 		Radius=3000
-		CastShadows=TRUE
+		CastShadows=FALSE
 		CastStaticShadows=FALSE
-		CastDynamicShadows=TRUE
-		ForceCastDynamicShadows=TRUE
+		CastDynamicShadows=FALSE
+		ForceCastDynamicShadows=FALSE
 		Function=FlashLightFunction_0
 		LightingChannels=(Indoor=TRUE,Outdoor=TRUE,bInitialized=TRUE)
 		bEnabled=FALSE
@@ -256,4 +391,7 @@ defaultproperties
 	LightConeMeshComp=LightConeComp_0
 
 	FlashlightSocketName=FlashLight
+
+	TeammateSwitchRadius=1500 // 15m
+	TeammateSwitchTimer=10.f
 }

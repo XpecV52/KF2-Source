@@ -67,10 +67,10 @@ simulated state WeaponDoubleBarrelFiring extends WeaponSingleFiring
     simulated function ConsumeAmmo( byte FireModeNum )
     {
 `if(`notdefined(ShippingPC))
-	    if( bInfiniteAmmo )
-	    {
-	        return;
-	    }
+        if( bInfiniteAmmo )
+        {
+            return;
+        }
 `endif
 
     	// If AmmoCount is being replicated, don't allow the client to modify it here

@@ -203,6 +203,17 @@ simulated private function ReassignSpecialMove(Pawn InInteractionPawn, int InSpe
 	{
 		if (bLogSpecialMove) LogInternal("- updating interaction pawn");
 		InteractionPawn = KFPawn(InInteractionPawn);
+
+		if( Role == ROLE_Authority && !bSkipReplication )
+		{
+			ReplicatedSpecialMove.InteractionPawn = InteractionPawn;
+			bForceNetUpdate = true;
+		}
+
+		if( SpecialMove != SM_None )
+		{
+			SpecialMoves[SpecialMove].InteractionPawnUpdated();
+		}
 	}
 
 	if (bLogSpecialMove) LogInternal("- ignoring redundant call");

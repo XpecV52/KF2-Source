@@ -130,7 +130,6 @@ defaultproperties
     object end
     // Reference: PathRenderingComponent'Default__TriggeredPath.PathRenderer'
     Components(4)=PathRenderer
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

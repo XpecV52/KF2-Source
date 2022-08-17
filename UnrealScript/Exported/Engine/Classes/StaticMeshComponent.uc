@@ -162,6 +162,7 @@ defaultproperties
    BlockZeroExtent=True
    BlockNonZeroExtent=True
    BlockRigidBody=True
+   LightingChannels=(bInitialized=True,Indoor=True,Outdoor=True)
    bAllowPreshadows=False
    bAllowPersistentSplatters=True
    TickGroup=TG_PreAsyncWork

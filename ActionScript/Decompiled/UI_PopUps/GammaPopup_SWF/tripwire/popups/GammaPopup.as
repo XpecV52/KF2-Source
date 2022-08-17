@@ -5,7 +5,7 @@ package tripwire.popups
     import flash.text.TextField;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.SliderEvent;
-    import scaleform.gfx.FocusManager;
+    import scaleform.clik.managers.FocusHandler;
     import tripwire.controls.TripButton;
     import tripwire.controls.TripSlider;
     import tripwire.controls.TripUILoader;
@@ -32,10 +32,10 @@ package tripwire.popups
             this.mainSlider.addEventListener(SliderEvent.VALUE_CHANGE,this.onGammaSliderChanged);
             this.DefaultButton.addEventListener(ButtonEvent.PRESS,this.onResetGamma);
             this.ApplyButton.addEventListener(ButtonEvent.PRESS,this.onApplyGamma);
-            defaultFirstElement = currentElement = this.ApplyButton;
+            defaultFirstElement = currentElement = this.mainSlider;
         }
         
-        override public function setTabIndex() : *
+        override public function setTabIndex() : void
         {
             super.setTabIndex();
             this.mainSlider.tabIndex = 1;
@@ -68,7 +68,7 @@ package tripwire.popups
             this.gammaDescriptionTxt.text = param2;
             this.DefaultButton.label = param3;
             this.ApplyButton.label = param4;
-            FocusManager.setFocus(this.mainSlider);
+            FocusHandler.getInstance().setFocus(currentElement);
         }
     }
 }

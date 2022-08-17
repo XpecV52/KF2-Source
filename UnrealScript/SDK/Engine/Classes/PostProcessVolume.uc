@@ -218,67 +218,119 @@ struct native MobilePostProcessSettings
 `if(`__TW_POSTPROCESS_)
 struct native TWPostProcessSettings
 {
+	/** Whether the post process volume is allowed to override the DOF_FocalDistance setting */
+	var bool bOverride_DOF_FocalDistance;
 	/** Fixed distance to the in-focus plane */
-	var(DepthOfField) interp float DOF_FocalDistance;
+	var(DepthOfField) interp float DOF_FocalDistance<editcondition=bOverride_DOF_FocalDistance>;
 
+	/** Whether the post process volume is allowed to override the DOF_SharpRadius setting */
+	var bool bOverride_DOF_SharpRadius;
 	/** [World] World-unit radius around the focal point that is unblurred. */
-	var(DepthOfField) float DOF_SharpRadius;
+	var(DepthOfField) interp float DOF_SharpRadius<editcondition=bOverride_DOF_SharpRadius>;
 
+	/** Whether the post process volume is allowed to override the DOF_FocalRadius setting */
+	var bool bOverride_DOF_FocalRadius;
 	/** [World] World-unit focal radius that defines how far away from the focal plane ( +/- sharp radius ) the maximum far/near blur radius is reached. */
-	var(DepthOfField) float DOF_FocalRadius;
+	var(DepthOfField) interp float DOF_FocalRadius<editcondition=bOverride_DOF_FocalRadius>;
 
+	/** Whether the post process volume is allowed to override the DOF_MinBlurSize setting */
+	var bool bOverride_DOF_MinBlurSize;
 	/** [World] Minimum blur size. */
-	var(DepthOfField) float DOF_MinBlurSize;
+	var(DepthOfField) interp float DOF_MinBlurSize<editcondition=bOverride_DOF_MinBlurSize>;
 
+	/** Whether the post process volume is allowed to override the DOF_MaxNearBlurSize setting */
+	var bool bOverride_DOF_MaxNearBlurSize;
 	/** [World] Maximum blur size for near-field (objects closer than focal point). */
-	var(DepthOfField) float DOF_MaxNearBlurSize;
+	var(DepthOfField) interp float DOF_MaxNearBlurSize<editcondition=bOverride_DOF_MaxNearBlurSize>;
 
+	/** Whether the post process volume is allowed to override the DOF_MaxFarBlurSize setting */
+	var bool bOverride_DOF_MaxFarBlurSize;
 	/** [World] Maximum blur size for far-field (objects more distance than focal point). */
-	var(DepthOfField) float DOF_MaxFarBlurSize;
+	var(DepthOfField) interp float DOF_MaxFarBlurSize<editcondition=bOverride_DOF_MaxFarBlurSize>;
 
+	/** Whether the post process volume is allowed to override the DOF_ExpFalloff setting */
+	var bool bOverride_DOF_ExpFalloff;
 	/** [World] Exponent that is used to transition to max blur size inside the focal radius. */
     /**     1 -> linear transition */
 	/**   > 1 slower than linear transition */
     /**   < 1 faster than linear transition */
-	var(DepthOfField) float DOF_ExpFalloff;
+	var(DepthOfField) interp float DOF_ExpFalloff<editcondition=bOverride_DOF_ExpFalloff>;
 
-	/** [Foreground] World-unit radius around the focal point that is unblurred. */
-	var(DepthOfField) float DOF_FG_SharpRadius;
+	/** Foreground versions of above settings. Deliberately not exposed. These are set by weapon directly */
+	var float DOF_FG_SharpRadius;
+	var float DOF_FG_FocalRadius;
+	var float DOF_FG_MinBlurSize;
+	var float DOF_FG_MaxNearBlurSize;
+	var float DOF_FG_ExpFalloff;
 
-	/** [Foreground] World-unit focal radius that defines how far away from the focal plane ( +/- sharp radius ) the maximum far/near blur radius is reached. */
-	var(DepthOfField) float DOF_FG_FocalRadius;
 
-	/** [Foreground] Minimum blur size. */
-	var(DepthOfField) float DOF_FG_MinBlurSize;
-
-	/** [Foreground] Maximum blur size for near-field (objects closer than focal point). */
-	var(DepthOfField) float DOF_FG_MaxNearBlurSize;
-
-	/** [Foreground] Exponent that is used to transition to max blur size inside the focal radius. */
-    /**     1 -> linear transition */
-	/**   > 1 slower than linear transition */
-    /**   < 1 faster than linear transition */
-	var(DepthOfField) float DOF_FG_ExpFalloff;
-
+	/** Whether the post process volume is allowed to override the Bloom_Intensity setting */
+	var bool bOverride_Bloom_Intensity;
 	/** Scales the final bloom color before applying to the scene */
-	var(Bloom) interp float Bloom_Intensity;
+	var(Bloom) interp float Bloom_Intensity<editcondition=bOverride_Bloom_Intensity>;
 
+	/** Whether the post process volume is allowed to override the Bloom_Width setting */
+	var bool bOverride_Bloom_Width;
 	/** Width multiplier for the blur kernel.  Larger values equal width bloom. */
-	var(Bloom) interp float Bloom_Width;
+	var(Bloom) interp float Bloom_Width<editcondition=bOverride_Bloom_Width>;
 
+	/** Whether the post process volume is allowed to override the Bloom_Exposure setting */
+	var bool bOverride_Bloom_Exposure;
 	/** During the bright-pass phase, the candidate color at each pixel is scaled by this
 	 *  value before applying the threshold. */
-	var(Bloom) interp float Bloom_Exposure;
+	var(Bloom) interp float Bloom_Exposure<editcondition=bOverride_Bloom_Exposure>;
 
+	/** Whether the post process volume is allowed to override the Bloom_Threshold setting */
+	var bool bOverride_Bloom_Threshold;
 	/** Threshold value for determining which pixels contribute to bloom.  Pixel colors
 	 *  are scaled by Exposure before applying the threshold. */
-	var(Bloom) interp float Bloom_Threshold;
+	var(Bloom) interp float Bloom_Threshold<editcondition=bOverride_Bloom_Threshold>;
 
 	/** Duration over which to interpolate values to.												*/
-	var(Bloom) interp float Bloom_InterpolationDuration;
+	var float Bloom_InterpolationDuration;
 
 	/** Controls the film-grain noise intensity (TW post process effect only) */
 	var(Noise) interp float NoiseIntensity;
+
+	/** Whether the post process volume is allowed to override the Fog_Start_Distance setting from previously set value e.g. through WorldSettings */
+	var bool bOverride_Fog_Start_Distance;
+	/** Distance from the camera at which the fog kicks in (World Space Units) */
+	var(DistanceFog) interp float Fog_Start_Distance<UIMin=0.0 | ClampMin=0.0 | editcondition=bOverride_Fog_Start_Distance>;
+
+
+	/** Whether the post process volume is allowed to override the Fog_MaxStrength_Distance setting from previously set value e.g. through WorldSettings */
+	var bool bOverride_Fog_MaxStrength_Distance;
+	/** Distance from the camera at which max fog kicks in (World Space Units).
+		This is the distance at which the interp ends - max fog will be in effect past this distance. 
+		This should be greater than Fog Start Distance.
+	*/
+	var(DistanceFog) interp float Fog_MaxStrength_Distance<UIMin=0.0 | ClampMin=0.0 | editcondition=bOverride_Fog_MaxStrength_Distance>;
+
+	/** Whether the post process volume is allowed to override the Fog_AnimationCutoff_Distance setting from previously set value e.g. through WorldSettings */
+	var bool bOverride_Fog_AnimationCutoff_Distance;
+	/** Distance at which the perlin noise based fog animation will give way to a solid fog color.
+		This should be greater than Fog Start Distance. Clamp at 30000 uu as noise samples get bunched together 
+		at a distance creating a salt and pepper  pattern since the sampling is not perspective correct
+	*/
+	var(DistanceFog) interp float Fog_AnimationCutoff_Distance<UIMin=0.0 | ClampMin=0.0 | ClampMax=30000.0 | editcondition=bOverride_Fog_AnimationCutoff_Distance>;
+
+	/** Whether the post process volume is allowed to override the Fog_Intensity setting from previously set value e.g. through WorldSettings */
+	var bool bOverride_Fog_Intensity;
+	/** 0-1 value that controls how much fog to apply. 0 - No fog, 1 - Full fog */
+	var(DistanceFog) interp float Fog_Intensity<UIMin=0.0 | UIMax=1.0 | ClampMin=0.0 | ClampMax=1.0 | editcondition=bOverride_Fog_Intensity>;
+
+	/** Whether the post process volume is allowed to override the Fog_MinAmount setting from previously set value e.g. through WorldSettings */
+	var bool bOverride_Fog_MinAmount;
+	/** 0-1 value that specifies the lower bound on the amount of fog. This will be modulated by Fog_Intesity. */
+	var(DistanceFog) interp float Fog_MinAmount<UIMin=0.0 | UIMax=1.0 | ClampMin=0.0 | ClampMax=1.0 | editcondition=bOverride_Fog_MinAmount>;
+
+	/** Whether the post process volume is allowed to override the Fog_Color setting from previously set value e.g. through WorldSettings */
+	var bool bOverride_Fog_Color;
+	/** Fog Color */
+	var(DistanceFog) LinearColor Fog_Color<editcondition=bOverride_Fog_Color>;
+
+	/** Duration over which to interpolate values to */
+	var float Fog_InterpolationDuration;
 
 	/** Whether to use tile-max motion blur */
 	var bool MB_TileMaxEnabled;
@@ -337,6 +389,14 @@ struct native TWPostProcessSettings
 			Bloom_Threshold = 0.6f;
 			Bloom_InterpolationDuration = 1.0f;
 
+			Fog_Start_Distance=0.0;
+			Fog_MaxStrength_Distance=10000.0;
+			Fog_AnimationCutoff_Distance=8000.0;
+			Fog_Intensity=0.3;
+			Fog_MinAmount=0.1;
+			Fog_Color= FLinearColor(1.0, 1.0, 1.0);
+			Fog_InterpolationDuration=3.f;
+
 			NoiseIntensity = 1.0f;
 
 			bBlurEnabled = FALSE;
@@ -369,6 +429,14 @@ struct native TWPostProcessSettings
 		Bloom_Exposure=1.25
 		Bloom_Threshold=0.6
 		Bloom_InterpolationDuration=1.0
+
+		Fog_Start_Distance=0.0
+		Fog_MaxStrength_Distance=10000.0
+		Fog_AnimationCutoff_Distance=8000.0
+		Fog_Intensity=0.3
+		Fog_MinAmount=0.1
+		Fog_Color=(R=1.0, G=1.0, B=1.0)
+		Fog_InterpolationDuration=3.f
 
 		NoiseIntensity=1.0
 
@@ -530,6 +598,11 @@ struct native PostProcessSettings
 	
 	/** Determines if bOverrideRimShaderColor variable will be overridden. */
 	var	bool			bOverride_OverrideRimShaderColor;
+
+`if(`__TW_POSTPROCESS_)	
+	/** Whether the post process volume is allowed to override the bEnableDistanceFog setting */
+	var 	bool 			bOverride_EnableDistanceFog;
+`endif
 	
 	/** Determines if Bloom_Scale variable will be overridden. */
 	var	bool			bOverride_Bloom_Scale;
@@ -650,6 +723,11 @@ struct native PostProcessSettings
 	/** Whether to override the rim shader color.													*/
 	var(RimShader)	bool		bOverrideRimShaderColor<editcondition=bOverride_OverrideRimShaderColor>;
 
+`if(`__TW_POSTPROCESS_)	
+	/** Whether distance fog is enabled or not */
+	var(DistanceFog) bool 		bEnableDistanceFog<editcondition=bOverride_EnableDistanceFog>;
+`endif
+
 `if(`__TW_POSTPROCESS_)
 	/** Settings specific to the custom TWPostProcess effect. */
 	var() TWPostProcessSettings TripwireSettings;
@@ -767,12 +845,14 @@ struct native PostProcessSettings
 		:	MobilePostProcess(A)
 #endif
 		{
-			bOverride_EnableBloom = TRUE;
-			bOverride_EnableDOF = TRUE;
-			bOverride_EnableMotionBlur = TRUE;
-			bOverride_EnableSceneEffect = TRUE;
-			bOverride_AllowAmbientOcclusion = TRUE;
-			bOverride_OverrideRimShaderColor = TRUE;
+			// TW - Set overrides to FALSE instead of TRUE
+			bOverride_EnableBloom = FALSE;
+			bOverride_EnableDOF = FALSE;
+			bOverride_EnableMotionBlur = FALSE;
+			bOverride_EnableSceneEffect = FALSE;
+			bOverride_AllowAmbientOcclusion = FALSE;
+			bOverride_OverrideRimShaderColor = FALSE;
+			// End TW
 
 			bOverride_Bloom_Scale = TRUE;
 			bOverride_Bloom_Threshold = TRUE;
@@ -819,13 +899,19 @@ struct native PostProcessSettings
 			bAllowAmbientOcclusion=TRUE;
 			bOverrideRimShaderColor=FALSE;
 
-#if !__TW_POSTPROCESS_
+		#if __TW_POSTPROCESS_
+			bEnableDistanceFog=FALSE;
+		#endif
+
+		#if !__TW_POSTPROCESS_
 			Bloom_Scale=1;
 			Bloom_Threshold=1;
-#endif
+		#endif
+
 			Bloom_Tint=FColor(255,255,255);
 			Bloom_ScreenBlendThreshold=10;
-#if !__TW_POSTPROCESS_
+
+		#if !__TW_POSTPROCESS_
 			Bloom_InterpolationDuration=1;
 
 			DOF_FalloffExponent=4;
@@ -845,23 +931,24 @@ struct native PostProcessSettings
 			MotionBlur_CameraRotationThreshold=90.0f;
 			MotionBlur_CameraTranslationThreshold=10000.0f;
 			MotionBlur_InterpolationDuration=1;
-#endif
+		#endif
 
 			Scene_Desaturation=0;
 			Scene_Colorize=FVector(1,1,1);
 			Scene_TonemapperScale=1.0f;
-#if !__TW_POSTPROCESS_
+
+		#if !__TW_POSTPROCESS_
 			Scene_ImageGrainScale=0.0f;
-#endif
+		#endif
 			Scene_HighLights=FVector(1,1,1);
 			Scene_MidTones=FVector(1,1,1);
 			Scene_Shadows=FVector(0,0,0);
 			Scene_InterpolationDuration=1;
 
-#if !__TW_POSTPROCESS_
+		#if !__TW_POSTPROCESS_
 			RimShader_Color=FLinearColor(0.470440f,0.585973f,0.827726f,1.0f);
 			RimShader_InterpolationDuration=1;
-#endif
+		#endif
 		}
 
 		/**
@@ -945,6 +1032,17 @@ struct native PostProcessSettings
 			bOverrideRimShaderColor = TRUE;
 		}
 
+	#if __TW_POSTPROCESS_
+		/**
+		 * Enables distance fog for the post process settings.
+		 */
+		FORCEINLINE void EnableDistanceFog()
+		{
+			bOverride_EnableDistanceFog = TRUE;
+			bEnableDistanceFog = TRUE;
+		}
+	#endif
+
 		/**
 		 * Disables the override to enable bloom if no overrides are set for bloom settings.
 		 */
@@ -979,6 +1077,13 @@ struct native PostProcessSettings
 		 * Disables the override to enable mobile DOF if no DOF overrides are set.
 		 */
 		void DisableMobileDOFOverrideConditional();
+
+#if __TW_POSTPROCESS_
+		/**
+		 * Disables the override to enable distance fog if no overrides are set for fog settings.
+		 */
+		void DisableDistanceFogOverrideConditional();
+#endif		
 	}
 
 	/**
@@ -987,12 +1092,15 @@ struct native PostProcessSettings
 	 */
 	structdefaultproperties
 	{
-		bOverride_EnableBloom=TRUE
-		bOverride_EnableDOF=TRUE
-		bOverride_EnableMotionBlur=TRUE
-		bOverride_EnableSceneEffect=TRUE
-		bOverride_AllowAmbientOcclusion=TRUE
-		bOverride_OverrideRimShaderColor=TRUE
+		// TW - Set overrides to FALSE instead of TRUE
+		bOverride_EnableBloom=FALSE
+		bOverride_EnableDOF=FALSE
+		bOverride_EnableMotionBlur=FALSE
+		bOverride_EnableSceneEffect=FALSE
+		bOverride_AllowAmbientOcclusion=FALSE
+		bOverride_OverrideRimShaderColor=FALSE
+		// End TW
+		
 		bOverride_Bloom_Scale=TRUE
 		bOverride_Bloom_Threshold=TRUE
 		bOverride_Bloom_Tint=TRUE
@@ -1035,6 +1143,10 @@ struct native PostProcessSettings
 		bEnableSceneEffect=TRUE
 		bAllowAmbientOcclusion=TRUE
 		bOverrideRimShaderColor=FALSE
+
+	`if(`__TW_POSTPROCESS_)
+		bEnableDistanceFog=FALSE
+	`endif
 		
 `if(`__TW_POSTPROCESS_)
 `else

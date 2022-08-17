@@ -13,8 +13,8 @@ class KFInventoryManager extends InventoryManager
 
 `include(KFGame\KFGameAnalytics.uci);
 
-/** Weapon we had equipped before the current one. */
-var transient Weapon PreviousEquippedWeapon;
+/** LIFO (aka stack) history of previously equipped weapons */
+var transient Weapon PreviousEquippedWeapons[2];
 
 /** reference to the currently equipped healer weapon */
 var transient KFWeap_HealerBase HealerWeapon;
@@ -71,6 +71,9 @@ struct native TransactionItem
 /** Keeps track of the items we are planning on buying, while in the trader */
 var array<TransactionItem> TransactionItems;
 
+/** Whether to log all the Inventory stuff */
+var bool bLogInventory;
+
 //
 // Network replication.
 //
@@ -124,7 +127,7 @@ simulated function float GetPrimaryAmmoPercentage()
 	while( InventoryItem != none )
 	{
 		Weapon = KFWeapon( InventoryItem );
-		if ( Weapon != none && !Weapon.bIsBackupWeapon /*&& Weapon.InventoryGroup != IG_None*/
+		if ( Weapon != none && !Weapon.bIsBackupWeapon && Weapon.InventoryGroup != IG_None
             && Weapon.InventoryGroup != IG_Equipment )
 		{
         	// For weapons that have no primary ammo such as melee weapons, just return 1/1.
@@ -230,8 +233,6 @@ simulated function bool AddInventory(Inventory NewItem, optional bool bDoNotActi
 		NewItem.InvManager = Self;
 		NewItem.GivenTo( Instigator, bDoNotActivate);
 
-		CombineWeaponsOnAdd( KFW );
-
 		// Trigger inventory event
 		Instigator.TriggerEventClass(class'SeqEvent_GetInventory', NewItem);
 
@@ -325,9 +326,14 @@ simulated function RemoveFromInventory(Inventory ItemToRemove)
 		return;
 	}
 
-	if ( PreviousEquippedWeapon == ItemToRemove )
+	// make sure we're not holding old refs from GC
+	if ( PreviousEquippedWeapons[0] == ItemToRemove )
 	{
-		PreviousEquippedWeapon = none;
+		PreviousEquippedWeapons[0] = none;
+	}
+	if ( PreviousEquippedWeapons[1] == ItemToRemove )
+	{
+		PreviousEquippedWeapons[1] = none;
 	}
 
 	if ( PendingWeapon == ItemToRemove )
@@ -444,26 +450,38 @@ function bool ClassIsInInventory( class<Inventory> ItemClass )
 simulated function SwitchToLastWeapon()
 {
 	local Weapon CurrentWeapon;
+	local Weapon DesiredWeapon;
 
-	if (PreviousEquippedWeapon == none)
+	// Check to see if we are in the process of switching to a new weapon during this move
+	CurrentWeapon = (PendingWeapon != none) ? PendingWeapon : Instigator.Weapon;
+
+	// Choose best from inventory history.  We need two because of auto-use equipement.  For example:
+	// GunA -> cycle to GunB -> quick heal to Healer -> auto return to GunB -> press switch last to GunA (not healer)
+	if ( PreviousEquippedWeapons[0] != None
+		&& PreviousEquippedWeapons[0] != CurrentWeapon )
+	{
+		DesiredWeapon = PreviousEquippedWeapons[0];
+	}
+	else if ( PreviousEquippedWeapons[1] != None
+		&& PreviousEquippedWeapons[1] != CurrentWeapon )
+	{
+		DesiredWeapon = PreviousEquippedWeapons[1];
+	}
+	else
 	{
 		return;
 	}
 
-	// Check to see if we are in the process of switching to a new weapon during this move
-	CurrentWeapon = (PendingWeapon != none) ? PendingWeapon : Instigator.Weapon;
 	bAutoswitchWeapon = true;
 	//ShowAllHUDGroups();
-	SetCurrentWeapon(PreviousEquippedWeapon);
-
-	PreviousEquippedWeapon = CurrentWeapon;
+	SetCurrentWeapon(DesiredWeapon);
 	bAutoSwitchWeapon = false;
 }
 
 /**
  * @brief Picks the best next available and per weapon with ammo
- * 
- * @param PerkClass Currently selected perk 
+ *
+ * @param PerkClass Currently selected perk
  * @param bBackupIfEmpty Return the backup pistol if no perk weapon available
  * @return Next best weapon with ammo
  */
@@ -579,7 +597,78 @@ simulated function HighlightPrevWeapon()
 	HighlightWeapon(CandidateWeapon);
 }
 
-simulated function GamePadNextWeapon()
+/**
+ * Switches to Previous weapon
+ * Network: Client
+ */
+simulated function PrevWeapon()
+{
+	InternalPrevWeapon(false);
+}
+
+/**
+ * Switches to Next weapon
+ * Network: Client
+ */
+simulated function NextWeapon()
+{
+	InternalNextWeapon(false);
+}
+
+/**
+ * Switches to Next weapon
+ * Network: Client
+ */
+simulated function GamepadNextWeapon()
+{
+	InternalNextWeapon(true);
+}
+
+simulated function InternalPrevWeapon(bool bGamepad)
+{
+	local Weapon	CandidateWeapon, StartWeapon, W;
+
+	StartWeapon = Instigator.Weapon;
+	if ( PendingWeapon != None )
+	{
+		StartWeapon = PendingWeapon;
+	}
+
+	// Get previous
+	ForEach InventoryActors( class'Weapon', W )
+	{
+		if ( W == StartWeapon )
+		{
+			break;
+		}
+		if ( !ShouldSkipCycleWeapon(W, bGamepad) )
+		{
+			CandidateWeapon = W;
+		}
+	}
+
+	// if none found, get last
+	if ( CandidateWeapon == None )
+	{
+		ForEach InventoryActors( class'Weapon', W )
+		{
+			if ( !ShouldSkipCycleWeapon(W, bGamepad) )
+			{
+				CandidateWeapon = W;
+			}
+		}
+	}
+
+	// If same weapon, do not change
+	if ( CandidateWeapon == Instigator.Weapon )
+	{
+		return;
+	}
+
+	SetCurrentWeapon(CandidateWeapon);
+}
+
+simulated function InternalNextWeapon(bool bGamepad)
 {
 	local Weapon	StartWeapon, CandidateWeapon, W;
 	local bool		bBreakNext;
@@ -594,7 +683,7 @@ simulated function GamePadNextWeapon()
 	{
 		if( bBreakNext || (StartWeapon == None) )
 		{
-			if(!ShouldSkipGamePadNextWeapon(W))
+			if( !ShouldSkipCycleWeapon(W, bGamepad) )
 			{
 				CandidateWeapon = W;
 				break;
@@ -610,7 +699,7 @@ simulated function GamePadNextWeapon()
 	{
 		ForEach InventoryActors( class'Weapon', W )
 		{
-			if(!ShouldSkipGamePadNextWeapon(W))
+			if( !ShouldSkipCycleWeapon(W, bGamepad) )
 			{
 				CandidateWeapon = W;
 				break;
@@ -627,14 +716,27 @@ simulated function GamePadNextWeapon()
 	SetCurrentWeapon(CandidateWeapon);
 }
 
-function bool ShouldSkipGamePadNextWeapon(Weapon CandidateWeapon)
+/** Returns true if we should skip over the candidate weapon while cycling through inventory */
+simulated function bool ShouldSkipCycleWeapon(Weapon CandidateWeapon, bool bGamepad)
 {
 	local KFWeapon KFW;
 
 	KFW = KFWeapon(CandidateWeapon);
 	if(KFW != none)
 	{
+		if(KFW.InventoryGroup == IG_None)
+		{
+			return true;
+		}
+
+		if (bGamepad)
+		{
 			if(KFW.InventoryGroup == IG_Equipment)
+			{
+				return true;
+			}
+
+			if (KFW.InventoryGroup == IG_Melee && KFW.bIsBackupWeapon)
 			{
 				return true;
 			}
@@ -644,6 +746,7 @@ function bool ShouldSkipGamePadNextWeapon(Weapon CandidateWeapon)
 				return true;
 			}
 		}
+	}
 	//out of ammo or equipment
 	return false;
 }
@@ -717,15 +820,15 @@ reliable server function ServerSetCurrentWeapon(Weapon DesiredWeapon)
 /** Overridden to give a temporary equip message */
 reliable client function SetCurrentWeapon(Weapon DesiredWeapon)
 {
-	local Weapon CurrentWeapon;
+	local KFWeapon CurrentKFW;
 	local bool bCurrentWeaponUsingSights;
 	local KFWeapon DesiredKFW;
 
-	CurrentWeapon = Instigator.Weapon;
-	if ( KFWeapon(CurrentWeapon) != none )
+	CurrentKFW = KFWeapon(Instigator.Weapon);
+	if ( CurrentKFW != none )
 	{
 		// Set the flag to switch to ironsights when the weapon is brought up
-        bCurrentWeaponUsingSights = KFWeapon(CurrentWeapon).bUsingSights;
+        bCurrentWeaponUsingSights = CurrentKFW.bUsingSights;
     }
 
 	// Only change your weapon if it is different or we weant to equip the weapon we are currently putting down
@@ -735,18 +838,46 @@ reliable client function SetCurrentWeapon(Weapon DesiredWeapon)
 	{
 		if ( DesiredKFW.bHasIronSights )
 		{
-			DesiredKFW.bIronSightOnBringUp = (bCurrentWeaponUsingSights);
+			if ( bCurrentWeaponUsingSights && !IsUsingIronsightHoldKey() )
+			{
+				DesiredKFW.bIronSightOnBringUp = true;
+			}
+			else
+			{
+				DesiredKFW.bIronSightOnBringUp = false;
+			}
 		}
 
-		// Cache previously equipped weapon for SwitchToLastWeapon
-		if ( DesiredKFW.InventoryGroup != IG_Equipment || PreviousEquippedWeapon == None )
+		// Store last two uniqiue, non-equipment, equipped weapons (see SwitchToLastWeapon)
+		if ( CurrentKFW != none && CurrentKFW.InventoryGroup < IG_Equipment && CurrentKFW != PreviousEquippedWeapons[0] )
 		{
-			PreviousEquippedWeapon = CurrentWeapon;
+			PreviousEquippedWeapons[1] = PreviousEquippedWeapons[0];
+			PreviousEquippedWeapons[0] = CurrentKFW;
 		}
 
 		super.SetCurrentWeapon(DesiredWeapon);
 		UpdateHUD();
 	}
+}
+
+/** Helper for bIronSightOnBringUp */
+simulated function bool IsUsingIronsightHoldKey()
+{
+	local PlayerController PC;
+
+	if ( Instigator.IsLocallyControlled() )
+	{
+		PC = PlayerController(Instigator.Controller);
+		if ( PC != None && PC.PlayerInput != None )
+		{
+			if ( KFPlayerInput(PC.PlayerInput).bIronsightsHeld )
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
 }
 
 /**
@@ -807,7 +938,8 @@ simulated function UpdateHUD()
 		KFPendingWeapon = KFWeapon( Instigator.Weapon );
 	}
 
-	if (KFPendingWeapon == none)
+	// IG_None should be ignored by all UI!  Passing this through to the widget will break selection highlights.
+	if ( KFPendingWeapon == none || KFPendingWeapon.InventoryGroup == IG_None )
 	{
 		return;
 	}
@@ -897,7 +1029,6 @@ simulated function AttemptQuickHeal()
 	{
 		if ( W != Instigator.Weapon && W.HasAmmo(1) )
 		{
-			PreviousEquippedWeapon = Instigator.Weapon;
 			W.bQuickHealMode = true;
 			SetCurrentWeapon(W);
 			//ShowAllHUDGroups();
@@ -943,7 +1074,7 @@ simulated function bool QuickWeld()
 				// return success if we already have the welder
 				if ( Instigator.Weapon != None && Instigator.Weapon.IsA('KFWeap_Welder') )
 				{
-					return true; 
+					return true;
 				}
 
 				// attempt to equip the welder from our inventory
@@ -1180,10 +1311,10 @@ function bool GiveWeaponsAmmo( bool bIncludeGrenades )
 		PlayerController( Instigator.Owner ).ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_Ammo );
 		PlayGiveInventorySound( AmmoPickupSound );
 	}
-	/*else
+	else
 	{
-		PlayerController( Instigator.Owner ).ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_AmmoIsFull );	
-	}*/
+		PlayerController( Instigator.Owner ).ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_AmmoIsFull );
+	}
 
 	return bAddedAmmo;
 }
@@ -1224,9 +1355,8 @@ simulated function float GetEncumbranceSpeedMod()
 	return Lerp(1.f, 0.92, CarryPercent);
 }
 
-/** Called from AddInventory when adding a dual-able single or a dual.
-  * Combines ammo and removes singles / creates dual as necessary. */
-function CombineWeaponsOnAdd( KFWeapon AddedWeapon )
+/** Combines ammo and removes singles / creates dual as necessary. */
+function KFWeapon CombineWeaponsOnPickup( KFWeapon AddedWeapon )
 {
 	local KFWeapon InvWeap;
 	local KFWeap_DualBase AddedDual, NewDual;
@@ -1300,12 +1430,16 @@ function CombineWeaponsOnAdd( KFWeapon AddedWeapon )
 					{
 						SetCurrentWeapon( NewDual );
 					}
+
+					AddedWeapon = NewDual;
 				}
 
 				break;
 			}
 		}
 	}
+
+	return AddedWeapon;
 }
 
 /*********************************************************************************************
@@ -1345,25 +1479,41 @@ reliable server function ServerCloseTraderMenu()
 /** Find out what type of ammo we are buying and ask the server for it */
 simulated function final BuyAmmo( int AmountPurchased, EItemType ItemType, optional byte ItemIndex, optional bool bSecondaryAmmo )
 {
-	if ( ItemType == IT_Weapon )
+	local STraderItem WeaponItem;
+	local KFWeapon KFW;
+	local byte MagAmmoCount;
+
+	MagAmmoCount = 255;
+
+	if ( ItemType == EIT_Weapon )
+	{
+		// get the client's ammo count and send it to server (in case they're out of sync)
+		if( GetTraderItemFromWeaponLists(WeaponItem, ItemIndex) )
+		{
+			if( GetWeaponFromClass(KFW, WeaponItem.ClassName) )
 			{
-		ServerBuyAmmo(AmountPurchased, ItemIndex, bSecondaryAmmo);
+				MagAmmoCount = bSecondaryAmmo ? KFW.AmmoCount[1] : KFW.AmmoCount[0];
 			}
- 	else if ( ItemType == IT_Armor )
+		}
+
+		ServerBuyAmmo(AmountPurchased, MagAmmoCount, ItemIndex, bSecondaryAmmo);
+	}
+ 	else if ( ItemType == EIT_Armor )
  	{
 		ServerBuyArmor(AmountPurchased);
  	}
- 	else if ( ItemType == IT_Grenade )
+ 	else if ( ItemType == EIT_Grenade )
  	{
 		ServerBuyGrenade(AmountPurchased);
  	}
 }
 
 /** Receive weapon ammo */
-reliable server final private function ServerBuyAmmo(int AmountPurchased, byte ItemIndex, bool bSecondaryAmmo)
+reliable server final private function ServerBuyAmmo(int AmountPurchased, byte ClientAmmoCount, byte ItemIndex, bool bSecondaryAmmo)
 {
 	local STraderItem WeaponItem;
 	local KFWeapon KFW;
+	local int ClientMaxMagCapacity;
 
 	if( Role == ROLE_Authority && bServerTraderMenuOpen )
 	{
@@ -1374,19 +1524,30 @@ reliable server final private function ServerBuyAmmo(int AmountPurchased, byte I
 				return;
 			}
 
-			GetWeaponFromClass(KFW, WeaponItem.ClassName);
-			if( KFW != none )
+			if( GetWeaponFromClass(KFW, WeaponItem.ClassName) )
 			{
 				if( bSecondaryAmmo )
 				{
 		    		KFW.AddSecondaryAmmo( AmountPurchased );
-		    	
+
 		    		/* __TW_ Analytics */
 					`BalanceLog(class'KFGameInfo'.const.GBE_Buy, Instigator.PlayerReplicationInfo, "S.Ammo,"@KFW.class$","@AmountPurchased);
 					`AnalyticsLog(("buy", Instigator.PlayerReplicationInfo, "S.ammo", KFW.class, "#"$AmountPurchased));
 				}
 				else
 				{
+					// AddAmmo takes AmmoCount into account, but AmmoCount can be out of sync between client and server,
+					// so sync server with passed-in client value
+					if( ClientAmmoCount != 255 )
+					{
+						ClientMaxMagCapacity = KFW.default.MagazineCapacity[0];
+						if( KFW.GetPerk() != none )
+						{
+							// account for perks that potentially increase mag size, like commando
+							KFW.GetPerk().ModifyMagSizeAndNumber( KFW, ClientMaxMagCapacity );
+						}
+						KFW.AmmoCount[0] = Clamp( ClientAmmoCount, 0, ClientMaxMagCapacity );
+					}
 		    		KFW.AddAmmo( AmountPurchased );
 
 		    		/* __TW_ Analytics */
@@ -1469,7 +1630,7 @@ reliable server final private function ServerBuyGrenade( int AmountPurchased )
 		if(ProcessGrenadeDosh(AmountPurchased))
 		{
 	    	AddGrenades( AmountPurchased );
-	    	
+
 	    	/* __TW_ Analytics */
 			`BalanceLog(class'KFGameInfo'.const.GBE_Buy, Instigator.PlayerReplicationInfo, "Grenades(s),"$","@AmountPurchased);
 			`AnalyticsLog(("buy", Instigator.PlayerReplicationInfo, "grenades", "#"$AmountPurchased));
@@ -1495,7 +1656,7 @@ reliable server final function ServerBuyWeapon( byte ItemIndex )
 	    	{
 	    		return;
 	    	}
-
+			`log("ServerBuyWeapon: Adding transaction item" @ PurchasedItem.ClassName, bLogInventory);
 			AddTransactionItem( PurchasedItem );
 		}
 	}
@@ -1523,7 +1684,7 @@ final function AddTransactionItem( const out STraderItem ItemToAdd )
 	NewTransactionItem.AddedAmmo[1] = 0;
 
 	TransactionItems.AddItem( NewTransactionItem );
-	
+
 	AddCurrentCarryBlocks( ItemToAdd.BlocksRequired );
 }
 
@@ -1558,10 +1719,10 @@ reliable server final function ServerSellWeapon( byte ItemIndex )
         // Get the Sold Item info using the Item indicies
 		if( KFPRI != none && GetTraderItemFromWeaponLists(SoldItem, ItemIndex) )
 		{
-			GetWeaponFromClass(KFW, SoldItem.ClassName);
             // If the weapon is in our inventory, sell it immediately
-	    	if( KFW != none )
+	    	if( GetWeaponFromClass(KFW, SoldItem.ClassName) )
 	    	{
+				`log("ServerSellWeapon: Calling ServerRemoveFromInventory on" @ SoldItem.ClassName, bLogInventory);
 	    		SellPrice = GetAdjustedSellPriceFor( SoldItem, KFW );
 
 				KFPRI.AddDosh(SellPrice);
@@ -1571,12 +1732,14 @@ reliable server final function ServerSellWeapon( byte ItemIndex )
 	    	else   // Otherwise it's a transaction item that needs to be removed
 	    	{
 				TransactionIndex = GetTransactionItemIndex(SoldItem.ClassName);
+				`log("ServerSellWeapon: SoldItem="$SoldItem.ClassName @ "TransactionIndex="$TransactionIndex, bLogInventory);
 				if( TransactionIndex != INDEX_NONE )
 				{
 					SellPrice = GetAdjustedSellPriceFor( SoldItem );
 
 					KFPRI.AddDosh(SellPrice);
-					
+
+					`log("ServerSellWeapon: Calling RemoveTransactionItem on" @ SoldItem.ClassName, bLogInventory);
 					RemoveTransactionItem( SoldItem );
 				}
 	    	}
@@ -1588,17 +1751,34 @@ reliable server final function ServerSellWeapon( byte ItemIndex )
 final function RemoveTransactionItem( const out STraderItem ItemToRemove )
 {
 	local int TransactionIndex;
+	local int i;
 
+	`log("RemoveTransactionItem: ItemToRemove="$ItemToRemove.ClassName, bLogInventory);
 	if( Role < ROLE_Authority || !bServerTraderMenuOpen )
 	{
 		return;
 	}
 
 	TransactionIndex = GetTransactionItemIndex( ItemToRemove.ClassName );
+	`log("RemoveTransactionItem: TransactionIndex="$TransactionIndex, bLogInventory);
+	if (bLogInventory)
+	{
+		for (i = 0; i < TransactionItems.length; ++i)
+		{
+			`log("RemoveTransactionItem: TransactionItems["$i$"]="$TransactionItems[i].ClassName, bLogInventory);
+		}
+	}
 	if( TransactionIndex != INDEX_NONE )
 	{
 		AddCurrentCarryBlocks( -ItemToRemove.BlocksRequired );
 		TransactionItems.Remove( TransactionIndex, 1 );
+	}
+	if (bLogInventory)
+	{
+		for (i = 0; i < TransactionItems.length; ++i)
+		{
+			`log("RemoveTransactionItem: TransactionItems["$i$"]="$TransactionItems[i].ClassName, bLogInventory);
+		}
 	}
 }
 
@@ -1615,8 +1795,7 @@ reliable server final function ServerRemoveTransactionItem( int ItemIndex )
 			RemoveTransactionItem( ItemToRemove );
 
 			// remove from inventory if necessary (like after buying a dual when owning a single)
-			GetWeaponFromClass( InvWeap, ItemToRemove.ClassName );
-			if( InvWeap != none )
+			if( GetWeaponFromClass(InvWeap, ItemToRemove.ClassName) )
 			{
 				RemoveFromInventory( InvWeap );
 			}
@@ -1640,7 +1819,7 @@ final function int GetTransactionItemIndex(name ClassName)
 }
 
 /** Get a KFWeapon from our inventory using its weapon class */
-final simulated function GetWeaponFromClass( out KFWeapon KFW, name ClassName )
+final simulated function bool GetWeaponFromClass( out KFWeapon KFW, name ClassName )
 {
 	local Inventory Item;
 	// Skip if already in the inventory.
@@ -1649,8 +1828,11 @@ final simulated function GetWeaponFromClass( out KFWeapon KFW, name ClassName )
 		if( Item.class.name == ClassName )
 		{
 			KFW = KFWeapon(Item);
+			return KFW != none;
 		}
 	}
+
+	return false;
 }
 
 private final function bool ProcessWeaponDosh(out STraderItem PurchasedItem)
@@ -1672,7 +1854,7 @@ private final function bool ProcessWeaponDosh(out STraderItem PurchasedItem)
 		}
 	}
 
-	`log("Server failed to process " @PurchasedItem.ClassName);
+	`log("Server failed to process " @PurchasedItem.ClassName, bLogInventory);
 	return false;
 }
 
@@ -1709,7 +1891,7 @@ private final function bool ProcessAmmoDosh(out STraderItem PurchasedItem, int A
 		}
 	}
 
-	`log("Server failed to process " @PurchasedItem.ClassName @"Ammo");
+	`log("Server failed to process " @PurchasedItem.ClassName @"Ammo", bLogInventory);
 	return false;
 }
 
@@ -1774,7 +1956,7 @@ private final function bool ProcessArmorDosh(int PercentPurchased)
 	return false;
 }
 
-private final function bool GetTraderItemFromWeaponLists(out STraderItem TraderItem, byte ItemIndex )
+private final simulated function bool GetTraderItemFromWeaponLists(out STraderItem TraderItem, byte ItemIndex )
 {
 	local KFGFxObject_TraderItems TraderItemsObject;
 
@@ -1860,7 +2042,7 @@ simulated function int GetDisplayedBlocksRequiredFor( const out STraderItem Shop
 	{
 		return ShopItem.BlocksRequired;
 	}
-	
+
 	// display half weight of dual if player owns single
 	if( GetIsOwned(ShopItem.SingleClassName) )
 	{
@@ -1868,7 +2050,7 @@ simulated function int GetDisplayedBlocksRequiredFor( const out STraderItem Shop
 	}
 
 	return ShopItem.BlocksRequired;
-} 
+}
 
 /** Check if a given class is currently "owned" (in inventory or transaction list) */
 simulated function bool GetIsOwned( name ClassName )
@@ -1880,6 +2062,7 @@ simulated function bool GetIsOwned( name ClassName )
 	{
 		if( Inv.Class.Name == ClassName )
 		{
+			`log("GetIsOwned: ClassName="$ClassName @ "InventoryActors true", bLogInventory);
 			return true;
 		}
 	}
@@ -1888,10 +2071,12 @@ simulated function bool GetIsOwned( name ClassName )
 	{
 		if( TransactionItems[i].ClassName == ClassName )
 		{
+			`log("GetIsOwned: i="$i @ "ClassName="$ClassName @ "TransactionItems true", bLogInventory);
 			return true;
 		}
 	}
 
+	`log("GetIsOwned: ClassName="$ClassName @ "false", bLogInventory);
 	return false;
 }
 
@@ -1936,4 +2121,6 @@ defaultproperties
     ItemPickupSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Weapon'
     ArmorPickupSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Armor'
 	SwitchFireModeEvent=AkEvent'WW_UI_PlayerCharacter.Play_WEP_ModeSwitch'
+
+	bLogInventory=false
 }

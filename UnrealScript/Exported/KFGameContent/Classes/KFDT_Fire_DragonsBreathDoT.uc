@@ -64,7 +64,6 @@ class KFDT_Fire_DragonsBreathDoT extends KFDT_Fire
 
 
 
-
 #linenumber 15;
 
 static function int GetKillerDialogID()

@@ -38,25 +38,7 @@ class KFWeapon extends Weapon
 
 
 
-
-
-
-
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
  
@@ -284,7 +266,7 @@ class KFWeapon extends Weapon
 
 
 
-#linenumber 70;
+#linenumber 52;
 
 #linenumber 17;
 
@@ -321,6 +303,8 @@ var byte SingleFireMode;
 
 /** Alt-fire mode is selected, all default fires will be converted */
 var bool bUseAltFireMode;
+/** Flag to make sure we stop the correct FireMode when using alt-fire toggle */
+var transient bool bStopAltFireOnNextRelease;
 
 /** Holds the min. amount of refire time that has to pass before you can switch */
 var float MinFiringPutDownPct;
@@ -459,7 +443,7 @@ var(Positioning)	vector		ScopePosition;
 /** Currently zoomed into the scope position */
 var             bool        bUsingScopePosition;
 
-var(DeptoOfField) bool DOF_bOverrideEnvironmentDOF;
+var(DepthOfField) bool DOF_bOverrideEnvironmentDOF;
 var(DepthOfField) float DOF_SharpRadius;
 var(DepthOfField) float DOF_FocalRadius;
 var(DepthOfField) float DOF_MinBlurSize;
@@ -496,6 +480,7 @@ enum EInventoryGroup
 	IG_Secondary,
 	IG_Melee,
 	IG_Equipment,
+	IG_None
 };
 
 /** Determines which group a weapon falls into in weapon select */
@@ -580,6 +565,9 @@ var bool bInfiniteAmmo;
 /** If FALSE, AmmoCount is server authoritative and should not be modified on the client */
 var const bool bAllowClientAmmoTracking;
 
+/** Last time 'AbortReload' was called */
+var transient float LastReloadAbortTime;
+
 /*********************************************************************************************
  * @name  Fire Effects
  ******************************************************************************************* */
@@ -595,9 +583,6 @@ var ForceFeedbackWaveform WeaponFireWaveForm;
 
 var	bool	bPlayingLoopingFireSnd;
 var bool	bPlayingLoopingFireAnim;
-
-/** This is the camera shake that we play when we hit a melee attack **/
-var(Camera) const CameraShake MeleeImpactCamShake;
 
 /*********************************************************************************************
  * @name	Animations (const names reduce instanced data)
@@ -678,9 +663,11 @@ const ReloadNonEmptyMagEliteAnim = 'Reload_Half_Elite';
 
 const ReloadOpenAnim = 'Reload_Open';
 const ReloadSingleAnim = 'Reload_Insert';
+const ReloadOpenInsertAnim = 'Reload_Open_Shell';
 const ReloadCloseAnim = 'Reload_Close';
 const ReloadOpenEliteAnim = 'Reload_Open_Elite';
 const ReloadSingleEliteAnim = 'Reload_Insert_Elite';
+const ReloadOpenInsertEliteAnim = 'Reload_Open_Shell_Elite';
 const ReloadCloseEliteAnim = 'Reload_Close_Elite';
 
 // Grenades
@@ -691,6 +678,10 @@ const GrenadeThrowAnim = 'Nade_Throw';
 const SprintStartAnim = 'Sprint_In';
 const SprintLoopAnim = 'Sprint_Loop';
 const SprintEndAnim = 'Sprint_Out';
+
+// Shoot animation to play when reload is interrupted when bReloadFromMagazine = false
+const FireOneHandAnim = 'Shoot_OneHand';
+const FireOneHandLastAnim = 'Shoot_OneHand_Last';
 
 /** Camera anim played when sprinting */
 var(Camera)		CameraAnim		SprintCameraAnim;
@@ -1172,9 +1163,6 @@ native reliable client private function ClientSetFirstPersonSkin(int ItemId);
 native reliable server private event ServerUpdateWeaponSkin(int ItemId);
 native private function ClearSkinItemId();
 
-/** Trader Menu */
-function class<KFWeaponDefinition> GetKnifeWeaponDef();
-
 /**
  * This Inventory Item has just been given to this Pawn
  * (server only)
@@ -1524,9 +1512,35 @@ function bool DenyPickupQuery(class<Inventory> ItemClass, Actor Pickup)
 	return false;
 }
 
-simulated static function bool IsInventoryWeapon()
+function NotifyPickedUp()
 {
-	return default.InventoryGroup == IG_Equipment;
+	ClientNotifyPickedUp();
+}
+
+reliable client function ClientNotifyPickedUp()
+{
+	local KFPlayerController KFPC;
+	local KFGFxMenu_Trader TraderMenu;
+
+	// tell the trader we picked up a new weapon so it can update its display
+	KFPC = KFPlayerController(Instigator.Controller);
+	if( KFPC != none )
+	{
+		if( KFPC.MyGFxManager != none )
+		{
+			TraderMenu = KFGFxMenu_Trader(KFPC.MyGFxManager.CurrentMenu);
+			if( TraderMenu != none )
+			{
+				TraderMenu.GiveExternalWeapon( self );
+			}
+		}
+	}
+}
+
+/** Treat as non-standard equipment item for */
+simulated static function bool DenyPerkResupply()
+{
+	return default.InventoryGroup >= IG_Equipment;
 }
 
 simulated static function bool IsMeleeWeapon()
@@ -1763,15 +1777,15 @@ simulated function ZoomIn(bool bAnimateTransition, float ZoomTimeToGo)
 		bZoomingIn=true;
 	}
 
-	if( WorldInfo.NetMode != NM_DedicatedServer && Instigator != none )
+	if( Instigator != none && Instigator.IsLocallyControlled() )
 	{
         EnablePlayerZoom(true);
 		EnableIronSightsDoF(true);
+
+		if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayIronsightsDialog( KFPawn(Instigator) );
 	}
 
 	bUsingSights = true;
-
-	if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayIronsightsDialog( KFPawn(Instigator) );
 }
 
 /**
@@ -1857,10 +1871,12 @@ simulated function ZoomOut(bool bAnimateTransition, float ZoomTimeToGo)
 		ZoomWeaponFOVStart=MeshIronSightFOV;
 	}
 
-	if( WorldInfo.NetMode != NM_DedicatedServer && Instigator != none )
+	if( Instigator != none && Instigator.IsLocallyControlled() )
 	{
 		EnableIronSightsDoF(false);
 		EnablePlayerZoom(false);
+
+		if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.StopBreathingDialog( KFPawn(Instigator) );
 	}
 
 	bUsingSights = false;
@@ -1944,17 +1960,20 @@ simulated function StopPawnSprint(bool bClearPlayerInput)
 		if ( KFP.IsLocallyControlled() )
 		{
 			PC = PlayerController(Instigator.Controller);
-			if ( PC != none && bClearPlayerInput )
+			if ( PC != none )
 			{
-				PC.bRun = 0;
-			}
+				if( bClearPlayerInput )
+				{
+					PC.bRun = 0;
+				}
 
-			// always stop ExtendedSprint
-			Input = KFPlayerInput(PC.PlayerInput);
-			if ( Input != None && Input.bExtendedSprinting )
-			{
-				PC.bRun = 0;
-				Input.bExtendedSprinting = false;
+				// always stop ExtendedSprint
+				Input = KFPlayerInput(PC.PlayerInput);
+				if ( Input != None && Input.bExtendedSprinting )
+				{
+					PC.bRun = 0;
+					Input.bExtendedSprinting = false;
+				}
 			}
 		}
 	}
@@ -1982,7 +2001,7 @@ simulated function PlayTakeHitEffects(vector HitLocation, Actor DamageCauser);
  */
 simulated function PlayAnimation(name Sequence, optional float fDesiredDuration, optional bool bLoop, optional float BlendInTime=0.1, optional float BlendOutTime=0.0)
 {
-	if ( Sequence == '' || Instigator == None )
+	if ( Sequence == '' || Instigator == None || WeaponAnimSeqNode == none )
 	{
 		return;
 	}
@@ -1995,6 +2014,7 @@ simulated function PlayAnimation(name Sequence, optional float fDesiredDuration,
         // Do the blends in the same length of real world time so that things don't
         // end up blending over really long periods of real time and looking wierd - Ramm
         BlendInTime *= WorldInfo.TimeDilation * CustomTimeDilation;
+
 		WeaponAnimSeqNode.SetTweenTime(BlendInTime);
 	}
 
@@ -2143,14 +2163,12 @@ simulated function name GetWeaponFireAnim(byte FireModeNum)
 	}
 	else
 	{
-		if( bPlayFireLast && FireLastAnim != '' )
-        {
-            return FireLastAnim;
-        }
-        else
-        {
-            return FireAnim;
-        }
+		if( !bReloadFromMagazine && LastReloadAbortTime == WorldInfo.TimeSeconds )
+		{
+			return bPlayFireLast ? FireOneHandLastAnim : FireOneHandAnim;
+		}
+
+		return (bPlayFireLast && FireLastAnim != '') ? FireLastAnim : FireAnim;
 	}
 }
 
@@ -2265,7 +2283,7 @@ simulated function UpdateOutOfAmmoEffects(float BlendTime)
 
 	if( EmptyMagBlendNode != None )
 	{
-		// For now just update the lock to fix edge case with newly picked up weapon until 
+		// For now just update the lock to fix edge case with newly picked up weapon until
 		// AnimNotify system is completely removed.  Only supported for client-side ammo
 		if ( AmmoCount[0] == 0 )
 		{
@@ -2474,24 +2492,26 @@ simulated function PlayFireEffects( byte FireModeNum, optional vector HitLocatio
 
 	PlayFiringSound(CurrentFireMode);
 
-	if( Instigator != none && Instigator.IsFirstPerson() )
+	if( Instigator != none && Instigator.IsLocallyControlled() )
 	{
-	    if ( !bPlayingLoopingFireAnim )
-	    {
-		    WeaponFireAnimName = GetWeaponFireAnim(FireModeNum);
+		if( Instigator.IsFirstPerson() )
+		{
+			if ( !bPlayingLoopingFireAnim )
+			{
+				WeaponFireAnimName = GetWeaponFireAnim(FireModeNum);
 
-		    if ( WeaponFireAnimName != '' )
-		    {
-			    PlayAnimation(WeaponFireAnimName, MySkelMesh.GetAnimLength(WeaponFireAnimName),,FireTweenTime);
-		    }
-	    }
+				if ( WeaponFireAnimName != '' )
+				{
+					PlayAnimation(WeaponFireAnimName, MySkelMesh.GetAnimLength(WeaponFireAnimName),,FireTweenTime);
+				}
+			}
+
+			// Start muzzle flash effect
+			CauseMuzzleFlash(FireModeNum);
+		}
 
 		HandleRecoil();
-
-	    ShakeView();
-
-	    // Start muzzle flash effect
-	    CauseMuzzleFlash(FireModeNum);
+		ShakeView();
 	}
 }
 
@@ -2787,9 +2807,11 @@ simulated function StartFire(byte FireModeNum)
 	}
 
 	// Convert to altfire if we have alt fire mode active
-	if ( FireModeNum == DEFAULT_FIREMODE && bUseAltFireMode )
+	bStopAltFireOnNextRelease = false;
+	if ( FireModeNum == DEFAULT_FIREMODE && bUseAltFireMode && !IsUsingGamepad() )
 	{
 		FireModeNum = ALTFIRE_FIREMODE;
+		bStopAltFireOnNextRelease = true;
 	}
 
 	if ( FireModeNum == RELOAD_FIREMODE )
@@ -2810,7 +2832,7 @@ simulated function StartFire(byte FireModeNum)
 simulated function BeginFire( Byte FireModeNum )
 {
 	local KFPerk_Gunslinger GunslingerPerk;
-	
+
 	super.BeginFire( FireModeNum );
 
 	if( Role == Role_Authority )
@@ -2829,12 +2851,29 @@ simulated function BeginFire( Byte FireModeNum )
 simulated function StopFire(byte FireModeNum)
 {
 	// Convert to altfire if we have alt fire mode active
-	if ( FireModeNum == DEFAULT_FIREMODE && bUseAltFireMode )
+	if ( FireModeNum == DEFAULT_FIREMODE && bStopAltFireOnNextRelease )
 	{
+		bStopAltFireOnNextRelease = false;
 		FireModeNum = ALTFIRE_FIREMODE;
 	}
 
 	Super.StopFire(FireModeNum);
+}
+
+/** Helper for AltFireMode() */
+simulated function bool IsUsingGamepad()
+{
+	local PlayerController PC;
+	if ( Instigator != None && Instigator.IsLocallyControlled() )
+	{
+		PC = PlayerController(Instigator.Controller);
+		if ( PC != None && PC.PlayerInput != None && PC.PlayerInput.bUsingGamepad )
+		{
+			return TRUE;
+		}
+	}
+
+	return FALSE;
 }
 
 /**
@@ -3036,14 +3075,30 @@ function HandleWeaponShotTaken( byte FireMode )
 simulated function ImpactInfo CalcWeaponFire(vector StartTrace, vector EndTrace, optional out array<ImpactInfo> ImpactList, optional vector Extent)
 {
 	local ImpactInfo CurrentImpact;
+	local int i;
+	local Actor HitActor;
+	local bool bFirst;
 
+	bFirst = (ImpactList.Length == 0);
 	CurrentImpact = Super.CalcWeaponFire(StartTrace, EndTrace, ImpactList, Extent);
 
-	// When recursion is finished (CurrentImpact == ImpactList[0]) find hit zones
-	if ( CurrentImpact.HitLocation == ImpactList[0].HitLocation )
+	// When recursion is finished process all impacts to find hit zones
+	if ( bFirst )
 	{
+		// For pawn hits calculate an improved hit zone and direction.  The return, CurrentImpact, is
+		// unaffected which is fine since it's only used for it's HitLocation and not by ProcessInstantHit()
 		TraceImpactHitZones(StartTrace, EndTrace, ImpactList);
-		return ImpactList[0];
+
+		// Iterate though ImpactList, find water, return water Impact as 'realImpact'
+		// This is needed for impact effects on non-blocking water
+		for (i = 0; i < ImpactList.Length; i++)
+		{
+			HitActor = ImpactList[i].HitActor;
+			if ( HitActor != None && !HitActor.bBlockActors && HitActor.IsA('KFWaterMeshActor')  )
+			{
+				return ImpactList[i];
+			}
+		}
 	}
 
 	return CurrentImpact;
@@ -3057,20 +3112,19 @@ simulated function TraceImpactHitZones(vector StartTrace, vector EndTrace, out a
 
 	for (i = 0; i < ImpactList.Length; i++)
 	{
-		if ( ImpactList[i].HitActor != None && ImpactList[i].HitActor.IsA('KFPawn') )
+		if ( ImpactList[i].HitActor != None
+			&& ImpactList[i].HitActor.bCanBeDamaged
+			&& ImpactList[i].HitActor.IsA('KFPawn') )
 		{
 			// Getting the SkelMeshComp here requires (BlockZeroExtent && CollideActors && !Cylinder.BlockZeroExtent)
 			TraceAllPhysicsAssetInteractions(SkeletalMeshComponent(ImpactList[i].HitInfo.HitComponent), EndTrace, StartTrace, HitZoneImpactList, vect(0,0,0), true);
 
-			// replace impact entry with the first hitzone impact
+			// replace impact entry with the first hitzone impact, if the list is empty we
+			// missed all hit zones.  Handle in KFPawn.AdjustDamage().
 			if ( HitZoneImpactList.Length > 0 )
 			{
 				HitZoneImpactList[0].RayDir = ImpactList[i].RayDir;
 				ImpactList[i] = HitZoneImpactList[0];
-			}
-			else
-			{
-				// Hit the Mesh, but missed all hit zones.  Handle in KFPawn.AdjustDamage().
 			}
 		}
 	}
@@ -3081,15 +3135,18 @@ simulated function bool PassThroughDamage(Actor HitActor)
 {
     local KFPawn KFP;
 
-    KFP = KFPawn(HitActor);
-	if ( PenetrationPowerRemaining > 0 && KFP != none )
+	if ( HitActor.bBlockActors )
 	{
-		PenetrationPowerRemaining -= KFP.PenetrationResistance;
-		return true;
+		KFP = KFPawn(HitActor);
+		if ( PenetrationPowerRemaining > 0 && KFP != none )
+		{
+			PenetrationPowerRemaining -= KFP.PenetrationResistance;
+			return true;
+		}
 	}
 
-	return (!HitActor.bBlockActors && (HitActor.IsA('Trigger') || HitActor.IsA('TriggerVolume')))
-		|| HitActor.IsA('InteractiveFoliageActor');
+	return (!HitActor.bBlockActors && (HitActor.IsA('Trigger') || HitActor.IsA('TriggerVolume')
+		|| HitActor.IsA('InteractiveFoliageActor') || HitActor.IsA('KFWaterMeshActor')));
 }
 
 /**
@@ -3406,12 +3463,12 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
 	local InterpCurveFloat PenetrationCurve;
     local KFPawn KFP;
     local float InitialPenetrationPower, OriginalPenetrationVal;
-    
+
 	if (Impact.HitActor != None)
 	{
         OriginalPenetrationVal = out_PenetrationVal;
 
-		// default damage model is just hits * base damage
+        // default damage model is just hits * base damage
 		NumHits = Max(NumHits, 1);
 		TotalDamage = InstantHitDamage[FiringMode] * NumHits;
 
@@ -3799,7 +3856,7 @@ function ReInitializeAmmoCounts(KFPerk CurrentPerk)
 		else
 		{
 			MaxSpareAmmo[0] = default.MaxSpareAmmo[0] + default.MagazineCapacity[0];
-			MaxSpareAmmo[1] = default.MaxSpareAmmo[1] + default.MagazineCapacity[1];			
+			MaxSpareAmmo[1] = default.MaxSpareAmmo[1] + default.MagazineCapacity[1];
 		}
 
 		CurrentPerk.ModifyMaxSpareAmmoAmount( self, MaxSpareAmmo[0] );
@@ -3828,7 +3885,8 @@ simulated function ConsumeAmmo( byte FireModeNum )
 	AmmoGroup = GetAmmoType(FireModeNum);
 
 	InstigatorPerk = GetPerk();
-	if( InstigatorPerk != none && InstigatorPerk.GetIsUberAmmoActive( self ) )
+	if( InstigatorPerk != none && InstigatorPerk.GetIsUberAmmoActive( self ) &&
+		 AmmoCount[AmmoGroup] > 0 )
 	{
 		return;
 	}
@@ -3886,7 +3944,7 @@ function AddTransactionAmmo( int TransactionPrimaryAmmo, int TransactionSecondar
 		// only subtract as much spare ammo as the gun actually has
 		// (the passed-in values are from the trader/UI and include default spare and main ammo)
 		SpareAmmoToAdd = Max( -SpareAmmoCount[0], TransactionPrimaryAmmo );
-		
+
 		// if there isn't enough spare ammo to subtract, keep track of the extra and subtract it from the main ammo
 		ExtraTransactionAmmo = TransactionPrimaryAmmo - SpareAmmoToAdd;
 
@@ -3932,15 +3990,15 @@ function int AddSecondaryAmmo(int Amount)
 	return AmmoCount[1] - OldAmmo;
 }
 
-/** 
- * Force client to match server ammo counts 
- * 
+/**
+ * Force client to match server ammo counts
+ *
  * @param	bAmmoSync	- If performing a sync the lowest value is typically the most correct
  */
 reliable client function ClientForceAmmoUpdate(byte NewAmmoCount, int NewSpareAmmoCount, optional bool bAmmoSync)
 {
 	if ( Role < ROLE_Authority )
-	{		
+	{
 		if ( bAmmoSync )
 		{
 			// detect sync errors
@@ -4169,7 +4227,7 @@ simulated function bool ShouldAutoReloadGunslinger( byte FireModeNum )
     bHasAmmo = HasAmmo( FireModeNum );
 
 	InstigatorPerk = GetPerk();
-	if( !bHasAmmo &&  CanSwitchWeapons() && InstigatorPerk != none && 
+	if( !bHasAmmo &&  CanSwitchWeapons() && InstigatorPerk != none &&
 		InstigatorPerk.ShouldInstantlySwitchWeapon( self ) )
 	{
 		KFIM = KFInventoryManager(InvManager);
@@ -4202,7 +4260,7 @@ simulated function bool ShouldAutoReloadGunslinger( byte FireModeNum )
 		else
 		{
 			WeaponPlaySound( WeaponDryFireSnd[FireModeNum] );
-			
+
 			if( Role < ROLE_Authority )
 			{
 				ServerPlayDryFireSound(FireModeNum);
@@ -4803,7 +4861,7 @@ simulated state Active
 
 	/** called during the settle portion of certain weapon actions */
 	simulated function ANIMNOTIFY_EnableAdditiveBob()
-	{		
+	{
 		if ( !bUsingSights )
 		{
 			ToggleAdditiveBobAnim(true, 0.3f);
@@ -4839,13 +4897,13 @@ simulated state Active
 simulated function CheckPendingIronsights()
 {
 	local PlayerController PC;
-	
+
 	if ( Instigator.IsLocallyControlled() )
 	{
 		PC = PlayerController(Instigator.Controller);
 		if ( PC != None && PC.PlayerInput != None )
 		{
-			if ( KFPlayerInput(PC.PlayerInput).bPendingIronsights )
+			if ( KFPlayerInput(PC.PlayerInput).bIronsightsHeld )
 			{
 				SetIronsights(true);
 			}
@@ -4893,10 +4951,16 @@ simulated state WeaponEquipping
 
 		super.BeginState(PreviousStateName);
 
+		// see if we need to start in ironsights
 		if( bIronSightOnBringUp && bHasIronSights )
 		{
 			bIronSightOnBringUp = false;
 			SetIronSights(true);
+		}
+		else
+		{
+			// handle the bindable button hold version
+			CheckPendingIronsights();
 		}
 
 		InstigatorPerk = GetPerk();
@@ -5019,13 +5083,16 @@ simulated function bool CanSwitchWeapons()
 *********************************************************************************************/
 simulated state WeaponDownSimple
 {
-	ignores CanThrow;
-
 	simulated function bool CanTransitionToIronSights() {return false;}
 	simulated function bool DenyClientWeaponSet() {return true;}
 	simulated function bool CanReload() {return false;}
     simulated function SetIronSights(bool bNewIronSights){}
 	simulated event OnAnimEnd(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime){}
+
+	simulated function bool CanThrow()
+	{
+		return (Instigator == none || Instigator.Health <= 0);
+	}
 
     simulated function bool CanSwitchWeapons()
     {
@@ -5420,7 +5487,10 @@ simulated state WeaponSingleFiring extends WeaponFiring
 /** Synchronize the server if it's not quite finished with another state */
 reliable server private function ServerGotoGrenadeFiring()
 {
-	SendToFiringState(GRENADE_FIREMODE);
+	if( HasAmmo(GRENADE_FIREMODE) )
+	{
+		SendToFiringState(GRENADE_FIREMODE);
+	}
 }
 
 /** Set the cooldown time for weak zed grab for the pawn holding this weapon */
@@ -5463,9 +5533,6 @@ simulated state GrenadeFiring extends WeaponSingleFiring
 		if ( Role == ROLE_Authority && KFInventoryManager(InvManager) != none )
         {
             KFInventoryManager(InvManager).ConsumeGrenades();
-
-            // __TW_ANALYTICS_
-            if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogPlayerIntEvent(class'KFGameplayEventsWriter'.const.GAMEEVENT_GRENADE_THROWN,Instigator.Controller,KFInventoryManager(InvManager).GrenadeCount);};
         }
 		else if ( Role < ROLE_Authority && Instigator.IsLocallyControlled() )
 		{
@@ -5483,7 +5550,7 @@ simulated state GrenadeFiring extends WeaponSingleFiring
 		Super.EndState(NextStateName);
 		NotifyEndState();
 
-		// ProjectileFire needs GRENADE_FIREMODE.  Could be something else if we're 
+		// ProjectileFire needs GRENADE_FIREMODE.  Could be something else if we're
 		// going directly (rare) to another firing state.
 		FireModeSwap = CurrentFireMode;
 		CurrentFireMode = GRENADE_FIREMODE;
@@ -5633,7 +5700,6 @@ simulated state Reloading
 
 		NotifyBeginState();
 
-		if(WorldInfo.Game != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != None && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()){KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogPlayerWeaponReload(self,Instigator.Controller);};
 		if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayReloadDialog( KFPawn(Instigator) );
 	}
 
@@ -5724,6 +5790,8 @@ simulated state Reloading
 	/** Called when reload animation is interrupted */
 	simulated function AbortReload()
 	{
+		LastReloadAbortTime = WorldInfo.TimeSeconds;
+
 		// we're done, leave state and go back to active
 		GotoState('Active');
 	}
@@ -5876,6 +5944,12 @@ simulated function name GetReloadAnimName( bool bTacticalReload )
 		switch ( ReloadStatus )
 		{
 			case RS_OpeningBolt:
+				if ( AmmoCount[0] == 0 )
+				{
+					// immediately skip reload status so that we start getting ammo
+					ReloadStatus = GetNextReloadStatus();
+					return bTacticalReload ? ReloadOpenInsertEliteAnim : ReloadOpenInsertAnim;
+				}
 				return (bTacticalReload) ? ReloadOpenEliteAnim : ReloadOpenAnim;
 			case RS_ClosingBolt:
 				return (bTacticalReload) ? ReloadCloseEliteAnim : ReloadCloseAnim;
@@ -5955,7 +6029,7 @@ simulated function PerformReload()
 	}
 }
 
-/** 
+/**
  * Called on reload end state if this weapon has unlocked the bolt
  * during reload.  If reload was interrupted before ammo was give
  * the bolt should revert to previous state
@@ -6230,6 +6304,80 @@ simulated function int GetMeleeDamage(byte FireModeNum, optional vector RayDir)
 	return InstantHitDamage[FireModeNum];
 }
 
+/*********************************************************************************************
+ * State WeaponSingleFireAndReload
+ * Fires a single shot and then calls ForceReload(). For server-side projectiles we also
+ * sync the firing state because of ammo/state sync issues.
+ *********************************************************************************************/
+
+simulated function float GetForceReloadDelay();
+
+/** Detect/fix single fire projectile weapon network synchronization errors */
+reliable private server function ServerSyncWeaponFiring( byte FireModeNum )
+{
+	if( IsInState('Reloading') )
+	{
+		//`log("[SERVERSYNCWEAPONFIRING]"@getnextreloadstatus()@GetRemainingTimeForTimer(nameOf(ReloadStatusTimer))@((Instigator.PlayerReplicationInfo.Ping*`PING_SCALE) * 0.001f));
+
+		// Only allow immediate switch to the fire state if we are near the end of a reload and it's
+		// within an acceptable length of time from the end of the reload sequence
+		if( GetNextReloadStatus() == RS_Complete
+			&& GetRemainingTimeForTimer(nameOf(ReloadStatusTimer)) > ((Instigator.PlayerReplicationInfo.Ping * 4.f)*0.001f) )
+		{
+			//`log("[SERVERSYNCWEAPONFIRING] Player likely tried to cheat!");
+			return;
+		}
+
+		// Perform our reload if we haven't yet
+		if( ReloadStatus == RS_Reloading && IsTimerActive(nameOf(ReloadAmmoTimer)) )
+		{
+			PerformReload();
+			ClearTimer( nameOf(ReloadAmmoTimer) );
+		}
+
+		// Flag reload as complete
+		ReloadStatus = RS_Complete;
+
+		// Move immediately to the firing state, as long as we have ammo
+		if( HasAmmo(FireModeNum) )
+		{
+			SendToFiringState( FireModeNum );
+		}
+	}
+}
+
+simulated state WeaponSingleFireAndReload extends WeaponSingleFiring
+{
+ 	simulated function FireAmmunition()
+	{
+		local float ReloadDelay;
+
+		Super.FireAmmunition();
+
+		if( Instigator.IsLocallyControlled() )
+		{
+			if( HasSpareAmmo() )
+			{
+				ReloadDelay = GetForceReloadDelay();
+				if ( ReloadDelay > 0.f )
+				{
+					SetTimer( ReloadDelay + FireInterval[CurrentFireMode], false, nameOf(ForceReload) );
+				}
+				else
+				{
+					// Reload after every shot, sets PendingFire for next 'active' state entry
+					StartFire( RELOAD_FIREMODE );
+				}
+			}
+
+			if( Instigator.Role < ROLE_Authority )
+			{
+				ServerSyncWeaponFiring( CurrentFireMode );
+			}
+		}
+	}
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 //
 // Trader
@@ -6335,7 +6483,6 @@ defaultproperties
    ShakeScaleSighted=0.400000
    ShakeScaleStandard=1.000000
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Default_Recoil'
-   MeleeImpactCamShake=KFCameraShake'FX_CameraShake_Arch.Melee.Default_Melee'
    FireTweenTime=0.050000
    FireAnim="Shoot"
    FireLoopAnim="ShootLoop"
@@ -6402,7 +6549,7 @@ defaultproperties
    HippedRecoilModifier=1.750000
    JoggingRecoilModifier=1.500000
    WalkingRecoilModifier=1.250000
-   FallingRecoilModifier=3.000000
+   FallingRecoilModifier=1.000000
    StanceCrouchedRecoilModifier=0.750000
    LastRecoilModifier=1.000000
    IronSightMeshFOVCompensationScale=1.000000

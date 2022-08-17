@@ -64,7 +64,7 @@ function OnWaveEnded()
     ResetSupplier();
 }
 
-simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType)
+simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx)
 {
     local KFWeapon KFW;
     local float TempDamage;
@@ -200,8 +200,8 @@ simulated function Interact(KFPawn_Human KFPH)
         KFPC = KFPlayerController(KFPH.Controller);
         if(KFPC != none)
         {
-            OwnerPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 17, KFPC.PlayerReplicationInfo);
-            KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 16, OwnerPC.PlayerReplicationInfo);
+            OwnerPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 18, KFPC.PlayerReplicationInfo);
+            KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 17, OwnerPC.PlayerReplicationInfo);
             UserPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
             OwnerPRI = KFPlayerReplicationInfo(OwnerPC.PlayerReplicationInfo);
             if((UserPRI != none) && OwnerPRI != none)
@@ -550,4 +550,5 @@ defaultproperties
     PrimaryWeaponDef=Class'KFWeapDef_HX25'
     KnifeWeaponDef=Class'KFWeapDef_Knife_Demo'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Demo'
+    HitAccuracyHandicap=2
 }

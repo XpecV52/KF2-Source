@@ -19,6 +19,10 @@ protected function bool InternalCanDoSpecialMove()
     local Vector HitLocation, HitNormal;
     local Actor HitActor;
 
+    if(KFPOwner.IsHumanControlled())
+    {
+        return KFPOwner.IsAliveAndWell();
+    }
     if(((AIOwner == none) || AIOwner.MyKFPawn == none) || AIOwner.Enemy == none)
     {
         return false;
@@ -77,7 +81,7 @@ simulated function TurnOnFlamethrower()
         }
     }
     bFlameThrowerActive = true;
-    if(HuskOwner.Role == ROLE_Authority)
+    if((HuskOwner.Role == ROLE_Authority) || HuskOwner.IsLocallyControlled())
     {
         HuskOwner.SetWeaponAmbientSound(FlameAttackPlayEvent);
     }
@@ -110,7 +114,7 @@ simulated function TurnOffFlamethrower()
         return;
     }
     bFlameThrowerActive = false;
-    if(HuskOwner.Role == ROLE_Authority)
+    if((HuskOwner.Role == ROLE_Authority) || HuskOwner.IsLocallyControlled())
     {
         HuskOwner.SetWeaponAmbientSound(FlameAttackStopEvent);
     }
@@ -145,7 +149,7 @@ defaultproperties
     PSC_EndSpray=FlameEndSpray0
     FlameAttackPlayEvent=AkEvent'WW_ZED_Husk.ZED_Husk_SFX_Flamethrower_LP'
     FlameAttackStopEvent=AkEvent'WW_ZED_Husk.ZED_Husk_SFX_Flamethrower_Stop'
-    AnimName=Atk_Flame_V1
+    AnimName=Player_Flame
     bCanBeInterrupted=true
     bDisableMovement=true
     bDisableSteering=false

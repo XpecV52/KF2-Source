@@ -18,7 +18,6 @@ defaultproperties
    EvadeAnims(5)=()
    EvadeAnims(6)=()
    EvadeAnims(7)=()
-   EvadeAnims(8)=()
    Handle="SM_Evade_Fear"
    Name="Default__KFSM_Evade_Fear"
    ObjectArchetype=KFSM_Evade'KFGame.Default__KFSM_Evade'

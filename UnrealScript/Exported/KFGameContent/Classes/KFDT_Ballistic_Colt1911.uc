@@ -64,7 +64,6 @@ class KFDT_Ballistic_Colt1911 extends KFDT_Ballistic_Handgun
 
 
 
-
 #linenumber 15;
 
 defaultproperties

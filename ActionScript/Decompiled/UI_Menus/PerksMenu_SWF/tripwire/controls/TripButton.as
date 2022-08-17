@@ -29,7 +29,7 @@ package tripwire.controls
             addEventListener(FocusEvent.FOCUS_IN,this.handleFocusIn,false,0,true);
         }
         
-        protected function handleFocusIn(param1:FocusEvent) : *
+        protected function handleFocusIn(e:FocusEvent) : *
         {
             addEventListener(FocusEvent.FOCUS_OUT,this.handleFocusOut,false,0,true);
             removeEventListener(FocusEvent.FOCUS_IN,this.handleFocusIn);
@@ -39,7 +39,7 @@ package tripwire.controls
             }
         }
         
-        protected function handleFocusOut(param1:FocusEvent) : *
+        protected function handleFocusOut(e:FocusEvent) : *
         {
             addEventListener(FocusEvent.FOCUS_IN,this.handleFocusIn,false,0,true);
             removeEventListener(FocusEvent.FOCUS_OUT,this.handleFocusOut);
@@ -49,46 +49,46 @@ package tripwire.controls
             }
         }
         
-        override protected function handleMouseRollOver(param1:MouseEvent) : void
+        override protected function handleMouseRollOver(event:MouseEvent) : void
         {
-            super.handleMouseRollOver(param1);
+            super.handleMouseRollOver(event);
             if(!selected)
             {
                 this.highlightButton();
             }
         }
         
-        override protected function handleMouseRollOut(param1:MouseEvent) : void
+        override protected function handleMouseRollOut(event:MouseEvent) : void
         {
-            super.handleMouseRollOut(param1);
+            super.handleMouseRollOut(event);
             if(!selected)
             {
                 this.unhighlightButton();
             }
         }
         
-        override protected function handleMousePress(param1:MouseEvent) : void
+        override protected function handleMousePress(event:MouseEvent) : void
         {
-            super.handleMousePress(param1);
+            super.handleMousePress(event);
             if(Extensions.gfxProcessSound != null)
             {
                 Extensions.gfxProcessSound(this,"ButtonSoundTheme",this.clickSoundEffect);
             }
         }
         
-        override protected function handlePress(param1:uint = 0) : void
+        override protected function handlePress(controllerIndex:uint = 0) : void
         {
-            super.handlePress(param1);
+            super.handlePress(controllerIndex);
             if(Extensions.gfxProcessSound != null)
             {
                 Extensions.gfxProcessSound(this,"ButtonSoundTheme",this.clickSoundEffect);
             }
         }
         
-        override public function set selected(param1:Boolean) : void
+        override public function set selected(value:Boolean) : void
         {
-            super.selected = param1;
-            if(!param1)
+            super.selected = value;
+            if(!value)
             {
                 this.unhighlightButton();
             }

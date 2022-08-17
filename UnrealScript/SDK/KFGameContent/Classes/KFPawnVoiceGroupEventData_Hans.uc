@@ -55,6 +55,7 @@ defaultproperties
 	Events[`HANS_NextBattlePhase1]= (EventID=`HANS_NextBattlePhase1,Priority=1, Weight=1, 	Chance=1.00,	CoolDownTime=3.00,		Delay=0.f,			bCanBeMinimized=0)
 	Events[`HANS_NextBattlePhase2]= (EventID=`HANS_NextBattlePhase2,Priority=1, Weight=1, 	Chance=1.00,	CoolDownTime=3.00,		Delay=0.f,			bCanBeMinimized=0)
 	Events[`HANS_NextBattlePhase3]= (EventID=`HANS_NextBattlePhase3,Priority=1, Weight=1, 	Chance=1.00,	CoolDownTime=3.00,		Delay=0.f,			bCanBeMinimized=0)
+	Events[`HANS_AOE]= 				(EventID=`HANS_AOE,				Priority=1, Weight=1, 	Chance=1.00,	CoolDownTime=3.00,		Delay=0.f,			bCanBeMinimized=0)
 
 	//@todo: These always play (are never interrupted), so they function more as ambient audio than dialog (triggered in KFPawn_ZedHans::PostBeginPlay/TakeDamage/HealDamage),
 	// but that could change if it's annoying

@@ -40,7 +40,7 @@ function LocalizeText()
 
 	super.LocalizeText();
 
-	for ( SlotIndex = 0; SlotIndex < 6; SlotIndex++ )
+	for ( SlotIndex = 0; SlotIndex < PlayerSlots; SlotIndex++ )
 	{
 		 MemberSlots[SlotIndex].MemberSlotObject.SetString("readyText", PlayerReadyString);
 	}
@@ -86,7 +86,7 @@ function UpdateVOIP(PlayerReplicationInfo PRI, bool bIsTalking)
 
 	KFPRI = KFPlayerReplicationInfo(PRI);
 
-	for (i = 0; i < 6; i++)
+	for (i = 0; i < PlayerSlots; i++)
 	{
 		if(MemberSlots[i].PlayerUID == KFPRI.UniqueId)
 		{
@@ -140,7 +140,7 @@ function RefreshParty()
 
 	OccupiedSlots = KFPRIArray.Length;
 	
-	for ( SlotIndex = 0; SlotIndex < 6; SlotIndex++ )
+	for ( SlotIndex = 0; SlotIndex < PlayerSlots; SlotIndex++ )
 	{
 		if ( SlotIndex < KFPRIArray.Length )
 		{
@@ -199,7 +199,15 @@ function RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
 		PlayerID = KFPRI.UniqueId;
 		MemberSlots[SlotIndex].PlayerUID = PlayerID;
 		OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId);
-		bIsLeader = (PlayerID == AdminId);
+		if ( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) )
+		{
+			// Console check to make sure we aren't in a solo game
+			bIsLeader = (PlayerID == AdminId) && ( GetPC().WorldInfo.NetMode != NM_Standalone );
+		}
+		else
+		{
+			bIsLeader = (PlayerID == AdminId);
+		}
 
 		// Check if this is our player we are updating
 		bIsMyPlayer = (GetPC().PlayerReplicationInfo.UniqueId == PlayerID);

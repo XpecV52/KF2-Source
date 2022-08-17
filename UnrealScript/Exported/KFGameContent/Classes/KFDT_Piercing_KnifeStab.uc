@@ -61,7 +61,6 @@ class KFDT_Piercing_KnifeStab extends KFDT_Piercing
 
 
 
-
 #linenumber 12;
 
 defaultproperties

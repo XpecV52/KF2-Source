@@ -35,7 +35,10 @@ function SetExitOptions()
 {
     OptionStrings.Length = 0;
     OptionStrings.AddItem(ExitToMainMenu;
-    OptionStrings.AddItem(ExitKF2;
+    if(!Class'WorldInfo'.static.IsConsoleBuild(8))
+    {
+        OptionStrings.AddItem(ExitKF2;
+    }
     SetMenuText();
 }
 

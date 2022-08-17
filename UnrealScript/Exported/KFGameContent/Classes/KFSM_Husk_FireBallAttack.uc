@@ -11,6 +11,12 @@ class KFSM_Husk_FireBallAttack extends KFSM_PlaySingleAnim;
 
 protected function bool InternalCanDoSpecialMove()
 {
+	// Case for player-controlled Husk
+	if( KFPOwner.Controller != none && AIOwner == none )
+	{
+		return KFPOwner.IsAliveAndWell();
+	}
+
 	if( AIOwner == none || AIOwner.MyKFPawn == none || AIOwner.Enemy == none )
 	{
 		return false;

@@ -1133,7 +1133,10 @@ native function bool GetTitleFileContents(string Filename, out array<byte> FileC
 function Engine.OnlineSubsystem.EOnlineEnumerationReadState GetTitleFileState(string Filename);
 
 // Export UOnlineSubsystemSteamworks::execSetOnlineStatus(FFrame&, void* const)
-native function SetOnlineStatus(byte LocalUserNum, int StatusId, const out array<LocalizedStringSetting> LocalizedStringSettings, const out array<SettingsProperty> Properties);
+native function SetOnlineStatus(byte LocalUserNum, string StatusString, optional bool PlayerActive)
+{
+    PlayerActive = true;                    
+}
 
 function bool ShowKeyboardUI(byte LocalUserNum, string TitleText, string DescriptionText, optional bool bIsPassword, optional bool bShouldValidate, optional string DefaultText, optional int MaxResultLength)
 {

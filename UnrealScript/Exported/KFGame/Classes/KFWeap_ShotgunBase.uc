@@ -11,16 +11,6 @@ class KFWeap_ShotgunBase extends KFWeapon
 
 var(Weapon) array<byte>	NumPellets;
 
-/** Reload open that also inserts one shell, played when gun is empty */
-var(Animations) const editconst name	ReloadOpenInsertAnim;
-var(Animations) const editconst name	ReloadOpenInsertEliteAnim;
-/** Shoot animation to play when reload is interrupted */
-var(Animations) const editconst	name	FireOneHandAnim;
-var(Animations) const editconst	name	FireOneHandLastAnim;
-
-/** Last time 'AbortReload' was called */
-var transient float LastReloadAbortTime;
-
 /*********************************************************************************************
  Firing / Projectile
 ********************************************************************************************* */
@@ -89,52 +79,6 @@ simulated function rotator AddMultiShotSpread(rotator BaseAim)
 }
 
 /*********************************************************************************************
- * State Reloading
- * This is the default Reloading State.  It's performed on both the client and the server.
- *********************************************************************************************/
-
-simulated state Reloading
-{
-	/** Called when reload animation is interrupted */
-	simulated function AbortReload()
-	{
-		LastReloadAbortTime = WorldInfo.TimeSeconds;
-		Super.AbortReload();
-	}
-}
-
-/** Handle ReloadOpenInsertAnim */
-simulated function name GetReloadAnimName( bool bTacticalReload )
-{
-	if ( !bReloadFromMagazine && ReloadStatus == RS_OpeningBolt )
-	{
-		if ( AmmoCount[0] == 0 )
-		{
-			// immediately skip reload status so that we start getting ammo
-			ReloadStatus = GetNextReloadStatus();
-			return bTacticalReload ? ReloadOpenInsertEliteAnim : ReloadOpenInsertAnim;
-		}
-	}
-
-	return Super.GetReloadAnimName(bTacticalReload);
-}
-
-/** Handle one-hand fire anims */
-simulated function name GetWeaponFireAnim(byte FireModeNum)
-{
-	// if reload was just interrupted, then use the one-hand shoots
-	if ( !bReloadFromMagazine && LastReloadAbortTime == WorldInfo.TimeSeconds )
-	{
-		if ( !bUsingSights )
-		{
-			return ShouldPlayFireLast(FireModeNum) ? FireOneHandLastAnim : FireOneHandAnim;
-		}
-	}
-
-	return Super.GetWeaponFireAnim(FireModeNum);
-}
-
-/*********************************************************************************************
  * @name	Trader
  *********************************************************************************************/
 
@@ -167,10 +111,6 @@ defaultproperties
 {
    NumPellets(0)=7
    NumPellets(1)=7
-   ReloadOpenInsertAnim="Reload_Open_Shell"
-   ReloadOpenInsertEliteAnim="Reload_Open_Shell_Elite"
-   FireOneHandAnim="Shoot_OneHand"
-   FireOneHandLastAnim="Shoot_OneHand_Last"
    bHasFireLastAnims=True
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
       MaxHitRange=175.000000

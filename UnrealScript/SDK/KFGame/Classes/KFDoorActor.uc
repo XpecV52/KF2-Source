@@ -181,7 +181,7 @@ const HumanPushDistance = 40;
 const SlidingPushForce = 750;
 
 /** Adjusts the "push" plane of the door (the threshold for pushing forward or backward) along its X-axis */
-var() float PushOriginOffset;
+//var() float PushOriginOffset;
 
 /*********************************************************************************************
  * @name	Effects
@@ -675,7 +675,7 @@ private function TryPushPawns()
     GetAxes(Rotation, DoorX, DoorY, DoorZ);
 	DoorYRot = rotator(DoorY);
 
-	OffsetLocation = Location + DoorX * PushOriginOffset;
+	OffsetLocation = Location + DoorX;// * PushOriginOffset;
 
 	foreach WorldInfo.AllPawns( class'Pawn', P, Location, DoorWidth )
 	{
@@ -733,9 +733,8 @@ event TakeDamage(int Damage, Controller EventInstigator, vector HitLocation, vec
 	// call Actor's version to handle any SeqEvent_TakeDamage for scripting
 	Super.TakeDamage(Damage, EventInstigator, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
 
-    // Check for AI damage
-	if ( bIsDestroyed || EventInstigator == none ||
-		( EventInstigator.bIsPlayer && class<KFDT_Explosive>(DamageType) == none ) )	// If the player deals any damage other than explosive return
+    // check can be damaged
+	if ( bIsDestroyed || !AllowDamageFrom(EventInstigator, DamageType) )
 	{
 		return;
 	}
@@ -782,15 +781,13 @@ event TakeDamage(int Damage, Controller EventInstigator, vector HitLocation, vec
 			}
 		}
 
-		`RecordKFDoorWeld(Damage, MaxWeldIntegrity, WeldIntegrity, None, EventInstigator, self);
-
 		if ( !bIsDestroyed )
 		{
 			IncrementHitCount( EventInstigator.Pawn );
 			PlayTakeHitEffects();
 		}
 
-		`SafeDialogManager.PlayDoorTakeDamageDialog( self );
+		`DialogManager.PlayDoorTakeDamageDialog( self );
 
 		LastHitTime = WorldInfo.TimeSeconds;
 		bForceNetUpdate = true;
@@ -800,6 +797,17 @@ event TakeDamage(int Damage, Controller EventInstigator, vector HitLocation, vec
 	{
 		OpenDoor(EventInstigator.Pawn);
 	}
+}
+
+/** Returns true if the specificed damage causer can damage this door */
+function bool AllowDamageFrom(Controller EventInstigator, class<DamageType> DamageType)
+{
+	// Human team (0) can only do explosive damage
+	if ( EventInstigator == none || (EventInstigator.GetTeamNum() == 0 && class<KFDT_Explosive>(DamageType) == none) )
+	{
+		return false;
+	}
+	return true;
 }
 
 /** Increase the weld integrity - Network: Server only */
@@ -830,7 +838,7 @@ function FastenDoor(int Amount, optional KFPawn Welder)
 				}
 			}
 
-			`SafeDialogManager.PlayUnweldDialog( Welder, self, WelderPawn );
+			`DialogManager.PlayUnweldDialog( Welder, self, WelderPawn );
 
 			if( WelderPawn == Welder )
 			{
@@ -878,7 +886,7 @@ function FastenDoor(int Amount, optional KFPawn Welder)
 			}
 		}
 
-		`SafeDialogManager.PlayWeldDialog( Welder, self, WelderPawn );
+		`DialogManager.PlayWeldDialog( Welder, self, WelderPawn );
 
 		if( WelderPawn == Welder )
 		{
@@ -888,12 +896,6 @@ function FastenDoor(int Amount, optional KFPawn Welder)
 	else if ( bIsDoorOpen )
 	{
 		CloseDoor();
-	}
-
-	/* __TW_ANALYTICS_ */
-	if ( !bIsDoorOpen )
-	{
-		`RecordKFDoorWeld(Amount, MaxWeldIntegrity, WeldIntegrity, Welder.Controller, None, self)
 	}
 }
 
@@ -1553,7 +1555,7 @@ defaultproperties
 		BlockActors=TRUE
 		BlockRigidBody=TRUE
 		RBChannel=RBCC_GameplayPhysics
-		RBCollideWithChannels=(Default=TRUE,GameplayPhysics=TRUE,EffectPhysics=TRUE,DeadPawn=TRUE,Pickup=TRUE,FlexAsset=TRUE)
+		RBCollideWithChannels=(Default=TRUE,GameplayPhysics=TRUE,EffectPhysics=TRUE,DeadPawn=TRUE,Pickup=TRUE,FlexAsset=FALSE)
 	End Object
 
 	Begin Object Class=StaticMeshComponent Name=StaticMeshComponent1
@@ -1567,7 +1569,7 @@ defaultproperties
 		BlockActors=TRUE
 		BlockRigidBody=TRUE
 		RBChannel=RBCC_GameplayPhysics
-		RBCollideWithChannels=(Default=TRUE,GameplayPhysics=TRUE,EffectPhysics=TRUE,DeadPawn=TRUE,Pickup=TRUE,FlexAsset=TRUE)
+		RBCollideWithChannels=(Default=TRUE,GameplayPhysics=TRUE,EffectPhysics=TRUE,DeadPawn=TRUE,Pickup=TRUE,FlexAsset=FALSE)
 	End Object
 
 	Begin Object Class=StaticMeshComponent Name=StaticMeshComponent2

@@ -20,11 +20,11 @@ enum EFlexAssetType
 /** The asset type, can either be a thin shell (cloth), or a solid (rigid body) */
 var(Common) FlexAsset.EFlexAssetType Type;
 /** The flex container this asset will use. This container can be overwritten by the FlexActor's container */
-var(Common) notforconsole FlexContainer FlexAssetContainerTemplate;
+var(Common) FlexContainer FlexAssetContainerTemplate;
 /** The phase-id to assign to particles spawned for this mesh. This can be overwritten by the FlexActor's FlexComponentPhaseId */
-var(Common) notforconsole int FlexAssetPhaseId;
+var(Common) int FlexAssetPhaseId;
 /** If true then the particles will be auto-assigned a positive phase-id. This bool can be overwritten by the FlexActor's bFlexComponentAutoAssignPhase */
-var(Common) notforconsole bool bFlexAssetAutoAssignPhase;
+var(Common) bool bFlexAssetAutoAssignPhase;
 /** Can be enabled for closed meshes, a volume conserving constraint will be added to the simulation */
 var(Inflatable) bool bEnableInflatable;
 /** The per-particle mass to use for the particles, for clothing this value be multiplied by 0-1 dependent on the vertex color */
@@ -53,7 +53,7 @@ var array<float> SpringCoefficients;
 var array<float> SpringRestLengths;
 var array<int> Triangles;
 var array<int> VertexToParticleMap;
-var notforconsole native const transient Pointer Object;
+var native const transient Pointer Object;
 
 defaultproperties
 {

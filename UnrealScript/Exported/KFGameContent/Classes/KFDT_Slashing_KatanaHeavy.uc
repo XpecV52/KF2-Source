@@ -61,7 +61,6 @@ class KFDT_Slashing_KatanaHeavy extends KFDT_Slashing_Katana
 
 
 
-
 #linenumber 12;
 
 /** Allows the damage type to customize exactly which hit zones it can dismember */

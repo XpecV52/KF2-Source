@@ -200,7 +200,7 @@ simulated event Destroyed()
     super.Destroyed();
 }
 
-simulated function SetCharacterArch(KFCharacterInfoBase Info)
+simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bForce)
 {
     super.SetCharacterArch(Info);
     if(WorldInfo.NetMode != NM_DedicatedServer)
@@ -354,10 +354,6 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
                 InstigatorPRI.AddDosh(Max(DoshEarned, 0), true);
                 InstigatorPC.AddHealPoints(int(UsedHealAmount));
             }
-            if(((WorldInfo.Game != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress())
-            {
-                KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogPlayerHealEvent(Amount, Healer, DamageType, self.Controller, DoshEarned);
-            }
             if(Healer.bIsPlayer)
             {
                 if(Healer != Controller)
@@ -391,7 +387,7 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
                 }
             }
             I = 0;
-            J0x83C:
+            J0x6F1:
 
             if(I < DamageOverTimeArray.Length)
             {
@@ -399,12 +395,12 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
                 {
                     DamageOverTimeArray[I].Duration *= 0.5;
                     DamageOverTimeArray[I].Damage *= 0.5;
-                    goto J0x8ED;
+                    goto J0x7A2;
                 }
                 ++ I;
-                goto J0x83C;
+                goto J0x6F1;
             }
-            J0x8ED:
+            J0x7A2:
 
             return true;
         }
@@ -424,6 +420,7 @@ function GiveHealthOverTime()
         if(KFPRI != none)
         {
             KFPRI.PlayerHealth = byte(Health);
+            KFPRI.PlayerHealthPercent = FloatToByte(float(Health) / float(HealthMax));
         }        
     }
     else
@@ -486,28 +483,11 @@ simulated function LeaveBloodPool()
 
 simulated function PlayTakeHitEffects(Vector HitDirection, Vector HitLocation)
 {
-    local KFPlayerController KFPC;
     local class<KFDamageType> dmgType;
     local name HitBoneName, RBBoneName;
     local int HitZoneIndex;
 
     dmgType = HitFxInfo.DamageType;
-    if(IsLocallyControlled() && !Controller.bGodMode)
-    {
-        KFPC = KFPlayerController(Controller);
-        if((KFPC != none) && dmgType != none)
-        {
-            KFPC.PlayScreenHitFX(dmgType, true);
-            if(dmgType.default.RadialDamageImpulse > float(0))
-            {
-                KFPC.PlayEarRingEffect(ByteToFloat(HitFxRadialInfo.RadiusDamageScale));
-            }
-        }
-        if(MyKFWeapon != none)
-        {
-            MyKFWeapon.PlayTakeHitEffects(HitFxInfo.HitLocation, HitFxInstigator);
-        }
-    }
     if(WorldInfo.TimeSeconds > (PainSoundLastPlayedTime + PainSoundCoolDown))
     {
         if(PainSoundChanceOnHit >= (1 - FRand()))
@@ -627,29 +607,11 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 
 function bool Died(Controller Killer, class<DamageType> DamageType, Vector HitLocation)
 {
-    local int WaveNum;
-    local KFPlayerController KFPC;
-
     if(super.Died(Killer, DamageType, HitLocation))
     {
         if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
         {
             KFGameInfo(WorldInfo.Game).DialogManager.PlayPlayerDeathDialog(self);
-        }
-        WaveNum = KFGameReplicationInfo(WorldInfo.GRI).WaveNum;
-        KFPC = KFPlayerController(Controller);
-        if(KFPC != none)
-        {
-            if(KFPC.PWRI.DeathStreakEndWave != (WaveNum - 1))
-            {
-                KFPC.PWRI.DeathStreakStartWave = byte(WaveNum);
-            }
-            KFPC.PWRI.DeathStreakEndWave = byte(WaveNum);
-            if(Killer.Pawn != none)
-            {
-                KFPC.PWRI.ClassKilledByLastWave = class<KFPawn_Monster>(Killer.Pawn.Class);
-            }
-            KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 0);
         }
         return true;
     }
@@ -658,13 +620,20 @@ function bool Died(Controller Killer, class<DamageType> DamageType, Vector HitLo
 
 simulated function BroadcastDeathMessage(Controller Killer)
 {
-    if((Killer != none) && Killer.IsA('KFAIController'))
+    if((Killer != none) && Killer != Controller)
     {
-        BroadcastLocalizedMessage(Class'KFLocalMessage_Game', 21, PlayerReplicationInfo, none, Killer.Class);        
+        if(Killer.IsA('KFAIController'))
+        {
+            BroadcastLocalizedMessage(Class'KFLocalMessage_Game', 22, PlayerReplicationInfo, none, Killer.Class);            
+        }
+        else
+        {
+            BroadcastLocalizedMessage(Class'KFLocalMessage_PlayerKills', 0, Killer.PlayerReplicationInfo, PlayerReplicationInfo);
+        }        
     }
     else
     {
-        BroadcastLocalizedMessage(Class'KFLocalMessage_Game', 22, PlayerReplicationInfo);
+        BroadcastLocalizedMessage(Class'KFLocalMessage_Game', 23, PlayerReplicationInfo);
     }
 }
 
@@ -768,6 +737,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     if(KFPRI != none)
     {
         KFPRI.PlayerHealth = byte(Health);
+        KFPRI.PlayerHealthPercent = FloatToByte(float(Health) / float(HealthMax));
     }
     ResetIdleStartTime();
 }
@@ -1095,12 +1065,9 @@ function bool DoJump(bool bUpdating)
 
 simulated function ToggleEquipment()
 {
-    local bool bIsEnabled;
-
     if(IsLocallyControlled() && !bPlayedDeath)
     {
-        bIsEnabled = (FlashLight != none) && FlashLight.bEnabled;
-        SetFlashlight(!bIsEnabled, true);
+        SetFlashlight(!bFlashlightOn, true);
     }
 }
 
@@ -1113,7 +1080,7 @@ simulated function SetFlashlight(bool bEnabled, optional bool bReplicate)
     }
     if(!bPlayedDeath)
     {
-        FlashLight.SetEnabled(bEnabled);
+        FlashLight.UpdateFlashlightFor(self);
     }
     if(bReplicate && Role == ROLE_AutonomousProxy)
     {
@@ -1320,12 +1287,12 @@ defaultproperties
     DeathMaterialEffectParamName=scalar_dead
     DeathMaterialEffectDuration=0.1
     begin object name=Afflictions class=KFPawnAfflictions
-        StackingAffl(0)=(Threshhold=1,Duration=5,Cooldown=5,DissipationRate=0.5)
-        StackingAffl(1)=(Threshhold=0.2,Duration=1,Cooldown=0,DissipationRate=0.2)
         bNoBurnedMatBeforeDeath=true
     object end
     // Reference: KFPawnAfflictions'Default__KFPawn_Human.Afflictions'
     AfflictionHandler=Afflictions
+    StackingIncaps(0)=(Threshhold=1,Duration=5,Cooldown=5,DissipationRate=0.5,LastStartTime=0,StackedPower=0)
+    StackingIncaps(1)=(Threshhold=0.2,Duration=1,Cooldown=0,DissipationRate=0.2,LastStartTime=0,StackedPower=0)
     TeammateCollisionRadiusPercent=0.5
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none

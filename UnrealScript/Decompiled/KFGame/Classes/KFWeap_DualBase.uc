@@ -317,7 +317,9 @@ function SetupDroppedPickup(out DroppedPickup P, Vector StartVelocity)
     {
         KFIM = KFInventoryManager(Instigator.InvManager);
         KFIM.bSuppressPickupMessages = true;
+        KFIM.bInfiniteWeight = true;
         NewSingle = KFWeapon(KFIM.CreateInventory(SingleClass, true));
+        KFIM.bInfiniteWeight = false;
         KFIM.bSuppressPickupMessages = false;
     }
     if(NewSingle != none)
@@ -518,6 +520,16 @@ simulated function AltFireMode()
 {
     super(KFWeapon).AltFireMode();
     PlayIdleAnim();
+}
+
+simulated function StartFire(byte FireModeNum)
+{
+    if(FireModeNum == 1)
+    {
+        AltFireMode();
+        return;
+    }
+    super(KFWeapon).StartFire(FireModeNum);
 }
 
 simulated state Active

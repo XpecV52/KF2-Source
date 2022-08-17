@@ -64,7 +64,6 @@ class KFDT_Explosive_C4 extends KFDT_Explosive
 
 
 
-
 #linenumber 15;
 
 defaultproperties

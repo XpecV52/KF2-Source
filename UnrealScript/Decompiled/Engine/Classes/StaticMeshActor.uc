@@ -51,7 +51,6 @@ defaultproperties
         bAllowApproximateOcclusion=true
         bForceDirectLightMap=true
         bUsePrecomputedShadows=true
-        LightingChannels=(bInitialized=true,Indoor=true,Outdoor=true)
         RBCollideWithChannels=(Visibility=true)
         bAcceptReflections=true
     object end
@@ -63,7 +62,6 @@ defaultproperties
         bAllowApproximateOcclusion=true
         bForceDirectLightMap=true
         bUsePrecomputedShadows=true
-        LightingChannels=(bInitialized=true,Indoor=true,Outdoor=true)
         RBCollideWithChannels=(Visibility=true)
         bAcceptReflections=true
     object end
@@ -76,7 +74,6 @@ defaultproperties
         bAllowApproximateOcclusion=true
         bForceDirectLightMap=true
         bUsePrecomputedShadows=true
-        LightingChannels=(bInitialized=true,Indoor=true,Outdoor=true)
         RBCollideWithChannels=(Visibility=true)
         bAcceptReflections=true
     object end

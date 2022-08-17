@@ -123,6 +123,11 @@ struct QWord
     var() native int B;
 };
 
+struct dword
+{
+    var() native int A;
+};
+
 struct Double
 {
     var native const int A;

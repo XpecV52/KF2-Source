@@ -92,7 +92,7 @@ struct native LobbyFilter
 struct native LobbySortFilter
 {
 	var string	Key;		// The key to use for sorting
-`if(`__TW_STEAMWORKS_)
+`if(`__TW_NETWORKING_)
 	var int		TargetVal;	// The other name is decapitalized by the script compiler because Unrealscript is god damned stupid
 `else
 	var int		TargetValue;	// The value to sort upon (the closer a key is to this value, the higher up in the results)
@@ -182,7 +182,7 @@ var array<delegate<OnLobbyInvite> > LobbyInviteDelegates;
 // @todo Steam: Add bools here, which locks the arrays being passed as out parameters, and spits out a log warning if anything tries to modify them
 //		while they are being accessed like this (this is important, even though you are not doing a compiler hack to pass array elements)
 
-`if(`__TW_STEAMWORKS_)
+`if(`__TW_NETWORKING_)
 	var bool CommandLineLobbyJoined;
 
 	function Initialize() {}

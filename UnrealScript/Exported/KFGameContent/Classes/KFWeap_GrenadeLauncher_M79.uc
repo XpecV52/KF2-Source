@@ -12,7 +12,6 @@ class KFWeap_GrenadeLauncher_M79 extends KFWeap_GrenadeLauncher_Base;
 
 defaultproperties
 {
-   ForceZoomOutTime=0.300000
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
    FireModeIconPaths(1)=()
    InventorySize=6
@@ -57,7 +56,6 @@ defaultproperties
    HippedRecoilModifier=1.250000
    FallingRecoilModifier=1.500000
    AssociatedPerkClass=Class'KFGame.KFPerk_Demolitionist'
-   FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()

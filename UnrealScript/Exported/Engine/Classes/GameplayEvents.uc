@@ -250,9 +250,6 @@ struct native GameplayEventsHeader
 	/** Version of the stats format at the time of writing the file */
 	var const int StatsWriterVersion;
 
-	/** Build version of the game at time of writing file */
-	var const int KFGameVersion;
-
 	/** Offset into the file for the stream data */
 	var const int StreamOffset;
 
@@ -445,25 +442,6 @@ struct native PawnClassEventData
 	}
 };
 
- // __TW_ANALYTICS_
-struct native HitZoneEventData
-{
-	var name ZoneName;
-
-	structcpptext
-	{
-		friend FArchive& operator<<( FArchive& Ar, FHitZoneEventData& T );
-	}
-};
-
-
-// (cpptext)
-// (cpptext)
-// (cpptext)
-// (cpptext)
-// (cpptext)
-// (cpptext)
-// (cpptext)
 // (cpptext)
 // (cpptext)
 // (cpptext)
@@ -552,11 +530,6 @@ var array<String> ActorArray;
 
 /** The set of sound cues encountered during gameplay */
 var array<String> SoundCueArray;
-
- // __TW_ANALYTICS_
-/** Set of all hit zones encountered during gameplay */
-var array<HitZoneEventData> HitZoneArray;
-
 
 /**
  *   Creates the archive that we are going to be manipulating

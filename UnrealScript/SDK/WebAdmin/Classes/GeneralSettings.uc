@@ -183,7 +183,7 @@ defaultproperties
 
 	// Connection settings
 	Properties.Add((PropertyId=101,Data=(Type=SDT_Int32)))
- 	PropertyMappings.Add((Id=101,name="MaxPlayers",MappingType=PVMT_Ranged,MinVal=0,MaxVal=6,RangeIncrement=1))
+ 	PropertyMappings.Add((Id=101,name="MaxPlayers",MappingType=PVMT_Ranged,MinVal=0,MaxVal=12,RangeIncrement=1))
  	Properties.Add((PropertyId=102,Data=(Type=SDT_Float)))
  	PropertyMappings.Add((Id=102,name="MaxIdleTime",MappingType=PVMT_Ranged,MinVal=0,MaxVal=300,RangeIncrement=5))
 

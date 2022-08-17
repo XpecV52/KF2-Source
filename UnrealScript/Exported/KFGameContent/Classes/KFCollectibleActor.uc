@@ -70,7 +70,7 @@ defaultproperties
       StaticMesh=StaticMesh'ENV_Collectible_MESH.Env_Dosh_Collectible'
       bNeverBecomeDynamic=True
       ReplacementPrimitive=None
-      LightingChannels=(bInitialized=True,Dynamic=True,Indoor=True,Outdoor=True)
+      LightingChannels=(Dynamic=True)
       Name="StaticMeshComponent0"
       ObjectArchetype=StaticMeshComponent'Engine.Default__StaticMeshComponent'
    End Object

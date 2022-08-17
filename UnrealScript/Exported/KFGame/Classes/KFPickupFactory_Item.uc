@@ -164,7 +164,6 @@ function GiveArmor( Pawn P )
   
 		if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Pickup$","$P.PlayerReplicationInfo.PlayerName$","$"Armor");
 		if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("pickup", P.PlayerReplicationInfo, "armor");
-
 	}
 }
 
@@ -208,12 +207,13 @@ function GiveWeapon( Pawn P )
         if( KFW != none )
         {
             KFW.bGivenAtStart = true;
+            KFW = KFIM.CombineWeaponsOnPickup( KFW );
+            KFW.NotifyPickedUp();
 		}
         ActivateNewPickup(P);
 
 		if(class'KFGameInfo'.static.AllowBalanceLogging()) WorldInfo.LogGameBalance(class'KFGameInfo'.const.GBE_Pickup$","$P.PlayerReplicationInfo.PlayerName$","$InventoryClass);
 		if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("pickup", P.PlayerReplicationInfo, InventoryClass);
-
 	}
 }
 

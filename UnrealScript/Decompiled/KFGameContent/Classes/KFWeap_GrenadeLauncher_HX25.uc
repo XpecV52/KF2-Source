@@ -98,7 +98,6 @@ static simulated function float CalculateTraderWeaponStatDamage()
 defaultproperties
 {
     NumPellets(0)=7
-    ForceZoomOutTime=0.3
     FireModeIconPaths=/* Array type was not detected. */
     InventoryGroup=EInventoryGroup.IG_Secondary
     InventorySize=4

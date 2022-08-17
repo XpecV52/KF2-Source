@@ -300,7 +300,7 @@ simulated event Destroyed()
 }
 
 /** Set various basic properties for this KFPawn based on the character class metadata */
-simulated function SetCharacterArch( KFCharacterInfoBase Info )
+simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bForce )
 {
 	Super.SetCharacterArch(Info);
 
@@ -357,7 +357,7 @@ simulated function PlayWeaponSwitch(Weapon OldWeapon, Weapon NewWeapon)
 		// Update GroundSpeed on weapon switch in case our perk
 		// has a weapon specific movement bonus
 		UpdateGroundSpeed();
-		`SafeDialogManager.PlaySwitchToFavoriteWeaponDialog( self );
+		`DialogManager.PlaySwitchToFavoriteWeaponDialog( self );
 	}
 }
 
@@ -511,8 +511,6 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 				InstigatorPC.AddHealPoints( UsedHealAmount );
 			}
 
-			`RecordKFPlayerHeal(Amount,Healer,DamageType,self.Controller,DoshEarned);
-
 			if( Healer.bIsPlayer )
 			{
 				if( Healer != Controller )
@@ -529,15 +527,15 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 				{
 					if( bMessageHealer )
 					{
-						InstigatorPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_HealedSelf, PlayerReplicationInfo );
-					}
+					InstigatorPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_HealedSelf, PlayerReplicationInfo );
 				}
+			}
 			}
 
 			// don't play dialog for healing done through perk skills (e.g. berserker vampire skill)
 			if( bMessageHealer )
 			{
-				`SafeDialogManager.PlayHealingDialog( KFPawn(Healer.Pawn), self, float(Health + HealthToRegen) / float(HealthMax) );
+			`DialogManager.PlayHealingDialog( KFPawn(Healer.Pawn), self, float(Health + HealthToRegen) / float(HealthMax) );
 			}
 
             // Reduce burn duration and damage in half if you heal while burning
@@ -572,6 +570,7 @@ function GiveHealthOverTime()
 		if( KFPRI != none )
 		{
 			KFPRI.PlayerHealth = Health;
+			KFPRI.PlayerHealthPercent = FloatToByte( float(Health) / float(HealthMax) );
 		}
 	}
 	else
@@ -645,34 +644,11 @@ simulated function LeaveBloodPool()
 
 simulated function PlayTakeHitEffects( vector HitDirection, vector HitLocation )
 {
-	local KFPlayerController KFPC;
 	local class<KFDamageType> DmgType;
 	local name HitBoneName, RBBoneName;
 	local int HitZoneIndex;
 
 	DmgType = HitFxInfo.DamageType;
-
-	if( IsLocallyControlled() && !Controller.bGodMode )
-	{
-		// Apply gameplay post process effects
-		KFPC = KFPlayerController(Controller);
-		if( KFPC != none && DmgType != None )
-		{
-			KFPC.PlayScreenHitFX(DmgType, true);
-
-			// assumes all types with radial impulse (which include husk fireball) are "explosive"
-			if( Dmgtype.default.RadialDamageImpulse > 0 )
-			{
-				KFPC.PlayEarRingEffect( ByteToFloat(HitFxRadialInfo.RadiusDamageScale) );
-			}
-		}
-
-		// Allow weapon to play additional special effects
-		if( MyKFWeapon != None )
-		{
-			MyKFWeapon.PlayTakeHitEffects(HitFxInfo.HitLocation, HitFxInstigator);
-		}
-	}
 
 	if( WorldInfo.TimeSeconds > PainSoundLastPlayedTime + PainSoundCoolDown )
 	{
@@ -685,6 +661,7 @@ simulated function PlayTakeHitEffects( vector HitDirection, vector HitLocation )
 
 	Super.PlayTakeHitEffects( HitDirection, HitLocation );
 
+	// @TODO Move to PlayDying()
 	// Add some death ragdoll velocity
 	if( DmgType != none )
 	{
@@ -835,35 +812,9 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 
 function bool Died(Controller Killer, class<DamageType> damageType, vector HitLocation)
 {
-	local int WaveNum;
-	local KFPlayerController KFPC;
-
 	if( Super.Died( Killer, DamageType, HitLocation ) )
 	{
-		`SafeDialogManager.PlayPlayerDeathDialog( self );
-
-		WaveNum = KFGameReplicationInfo( WorldInfo.GRI ).WaveNum;
-		KFPC = KFPlayerController(Controller);
-
-		if( KFPC != none )
-		{
-    		if( KFPC.PWRI.DeathStreakEndWave != (WaveNum-1) )
-    		{
-    			// reset start of streak
-    			KFPC.PWRI.DeathStreakStartWave = WaveNum;
-    		}
-
-    		// update end of streak
-    		KFPC.PWRI.DeathStreakEndWave = WaveNum;
-
-    		if( Killer.Pawn != none )
-    		{
-    			KFPC.PWRI.ClassKilledByLastWave = class< KFPawn_Monster >( Killer.Pawn.Class );
-    		}
-    		//clear any interaction messages
-    		KFPC.ReceiveLocalizedMessage(class'KFLocalMessage_Interaction', IMT_None);
-		}
-
+		`DialogManager.PlayPlayerDeathDialog( self );
 		//ProTip: No, you do not have a PRI anymore.
 		return true;
 	}
@@ -873,9 +824,17 @@ function bool Died(Controller Killer, class<DamageType> damageType, vector HitLo
 
 simulated function BroadcastDeathMessage( Controller Killer )
 {
-	if( Killer != none && Killer.IsA('KFAIController') )
+	if( Killer != none && Killer != Controller)
 	{
-		BroadcastLocalizedMessage( class'KFLocalMessage_Game', KMT_Killed, PlayerReplicationInfo, none, Killer.Class );
+		if(Killer.IsA('KFAIController'))
+		{
+			BroadcastLocalizedMessage( class'KFLocalMessage_Game', KMT_Killed, PlayerReplicationInfo, none, Killer.Class );
+		}
+		else
+		{
+			BroadcastLocalizedMessage( class'KFLocalMessage_PlayerKills', KMT_PlayerKillPlayer, Killer.PlayerReplicationInfo, PlayerReplicationInfo);
+		}
+		
 	}
 	else
 	{
@@ -912,7 +871,7 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 			class'KFPerk_FieldMedic'.static.ModifyVaccinationDamage( TempDamage, DamageType, MyMedicPerk.GetLevel() );
 		}
 		else
-		{
+	{
 			class'KFPerk_FieldMedic'.static.ModifyVaccinationDamage( TempDamage, DamageType );
 		}
 
@@ -942,6 +901,7 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	`log(self @ GetFuncName()@"Adjusted Damage AFTER =" @ InDamage, bLogTakeDamage);
 
 	// (Cheats) Dont allow dying if demigod mode is enabled
+`if(`__TW_SDK_)
 	if ( Controller != none &&  Controller.bDemiGodMode && InDamage >= Health )
 	{
 		// Increase your health when you are going to get killed... so the amount of damage in semigod is not always just 1...
@@ -955,6 +915,7 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 			InDamage = Health - 1;
 		}
 	}
+`endif
 }
 
 event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
@@ -975,7 +936,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 
 	if( ActualDamageTaken > 0 && IsAliveAndWell() )
 	{
-		`SafeDialogManager.PlayPlayerDamageDialog( self, DamageType, ActualDamageTaken );
+		`DialogManager.PlayPlayerDamageDialog( self, DamageType, ActualDamageTaken );
 
 		InstigatedByBoss = KFAIController_ZedBoss( InstigatedBy );
 		if( InstigatedByBoss != none )
@@ -989,6 +950,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 	if( KFPRI != none )
 	{
 		KFPRI.PlayerHealth = Health;
+		KFPRI.PlayerHealthPercent = FloatToByte( float(Health) / float(HealthMax) );
 	}
 
 	ResetIdleStartTime();
@@ -1234,7 +1196,7 @@ function UpdateDoshCaught( int Amount, PlayerReplicationInfo Tosser )
 
 function CaughtDoshDialogTimer()
 {
-	`SafeDialogManager.PlayDoshCaughtDialog( self );
+	`DialogManager.PlayDoshCaughtDialog( self );
 	ClearTimer( nameof(CaughtDoshDialogTimer) );
 }
 
@@ -1333,7 +1295,7 @@ function SetSprinting(bool bNewSprintStatus)
 {
 	if( bIsSprinting || bNewSprintStatus )
 	{
-		`SafeDialogManager.PlaySprintPantingDialog( self, bNewSprintStatus );
+		`DialogManager.PlaySprintPantingDialog( self, bNewSprintStatus );
 	}
 
 	super.SetSprinting( bNewSprintStatus );
@@ -1343,7 +1305,7 @@ function bool DoJump( bool bUpdating )
 {
 	if( super.DoJump(bUpdating) )
 	{
-		`SafeDialogManager.PlayJumpDialog( self );
+		`DialogManager.PlayJumpDialog( self );
 		return true;
 	}
 
@@ -1359,12 +1321,9 @@ function bool DoJump( bool bUpdating )
 */
 simulated function ToggleEquipment()
 {
-	local bool bIsEnabled;
-
 	if( IsLocallyControlled() && !bPlayedDeath )
 	{
-		bIsEnabled = (Flashlight != None && Flashlight.bEnabled);
-		SetFlashlight(!bIsEnabled, true);
+		SetFlashlight(!bFlashlightOn, true);
 	}
 }
 
@@ -1385,7 +1344,7 @@ simulated function SetFlashlight(bool bEnabled, optional bool bReplicate)
 	// always use the 1st person flashlight for the local player
 	if ( !bPlayedDeath )
 	{
-		Flashlight.SetEnabled(bEnabled);
+		Flashlight.UpdateFlashlightFor(self);
 	}
 
 	// replicate for third person flashlight
@@ -1659,12 +1618,13 @@ defaultproperties
 	BatteryRechargeRate=4.f
 	NVGBatteryDrainRate=4.f
 
+	StackingIncaps(SAF_FirePanic)=(Threshhold=0.2,Duration=1.0,Cooldown=0.0,DissipationRate=0.2)	
+
 	Begin Object Name=Afflictions_0
 		// We just catch on fire visually, and do burn fx for 1 second every time we
 	    // get the impact (1 second = 0.2 threshold dissipating at 0.2 units per second).
 	    // Have to do it this way because fire incap power is .25 and if we're not under
 	    // the threshold we won't catch fire.
-	    StackingAffl(SAF_FirePanic)=(Threshhold=0.2,Duration=1.0,Cooldown=0.0,DissipationRate=0.2)
 	    bNoBurnedMatBeforeDeath=true
 	End Object
 

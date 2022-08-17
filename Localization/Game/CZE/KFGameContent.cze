@@ -1,0 +1,324 @@
+//NOTES: 
+//1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
+//2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
+//3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
+//ItemDescription="Double-barreled, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest zeds will stagger when hit with both barrels. We found it in an old farm-house and //canned it for the Trader Pod. Hope you live longer than the farmer."
+
+[Armor]
+ItemName="Neprůstřelná vesta"
+ItemCategory="Vybavení"
+ItemDescription="• Neprůstřelná vesta tě chrání před všemožným poškozením, čímž se ale také opotřebovává\n• U obchodníka si můžeš koupit buď novou vestu, nebo si nechat opravit poškozenou\n\nVesta je vyplněná pláty ze slitiny moderních vláken a wolframové oceli"
+
+[KFProj_DynamiteGrenade]
+ItemName="Dynamit"
+ItemCategory ="Výbušnina"
+ItemDescription="• Malý kousek dynamitu s přidělanou rozbuškou\n• Jeho výbuch může pocuchat fasádu i tobě, tak s ním buď opatrný!"
+
+[KFProj_MedicGrenade]
+ItemName="Léčivý granát"
+ItemCategory ="Výbušnina"
+ItemDescription="• Vypustí jed, který otráví Zedy, ale vyléčí lidi\n• Pro vyléčení se postav do modrého kouře\n\nCitujme jednoho z našich vědců: „Látky uvolňované z těchto granátů mají léčivé účinky na Homo Erectus a smrtící účinky na Homo Zedicus.“ Teď už to snad chápou všichni"
+
+[KFProj_MolotovGrenade]
+ItemName="Molotovův koktejl"
+ItemCategory="Výbušnina"
+ItemDescription="• Je to jednoduché – ohnivý granát, který zapálí Zedy\n• Ale pozor, pálí i hodné, tedy i tebe!\n\nMolotovův koktejl se jmenuje po Vjačeslavu Michajlovičovi Molotovovi, sovětském ministrovi zahraničí sloužícím pod Stalinem. Granát tak pojmenovali Finové během Zimní války... Cože? Ty ses nechtěl dozvědět něco z historie?"
+
+[KFProj_EMPGrenade]
+ItemName="EMP granát"
+ItemCategory="Výbušnina"
+ItemDescription="• Vygeneruje elektrický impuls, který Zedům jak udělí poškození, tak je může na chvíli omráčit\n\nKdyby tě zajímaly detaily – při detonaci granát vygeneruje nanosekundu trvající elektromagnetický impuls, který přeruší chod elektrických zařízení v dosahu. A těch jsou Zedi naštěstí plní"
+
+[KFProj_HEGrenade]
+ItemName="HE granát"
+ItemCategory="Výbušnina"
+ItemDescription="• Velmi jednoduchý vysoce výbušný granát. Ublíží jak Zedům, tak lidem\n\nNechápeš? HE = High Explosive = vysoce výbušný = BUM = mrtví Zedi. Víc už to zjednodušit nejde"
+
+[KFProj_FragGrenade]
+ItemName="Granát"
+ItemCategory="Výbušnina"
+ItemDescription="• Klasický granát – vytáhneš pojistku, hodíš na nepřítele, granát vybuchne a kolem něj se rozletí malé kousky kovu, které všem ublíží\n\nUrčitě jsi hrál i jiné hry, takže moc dobře víš, co to je granát. Ale no tak, nelži, beztak ti to nikdo nevěří"
+
+[KFProj_NailBombGrenade]
+ItemName="Hřebíková bomba"
+ItemCategory ="Výbušnina"
+ItemDescription="• Nádobka plná starých zrezivělých hřebíků s přidanou třaskavinou.\n\nNa koleni spíchnutý granát, za který by se nestyděl ani Kevin. K tobě do baráku se rozhodně nikdo nedostane!"
+
+[KFWeap_Healer_Syringe]
+ItemName="Léčivá injekce"
+ItemCategory="Vybavení"
+
+[KFWeap_Welder]
+ItemName="Svářečka"
+ItemCategory="Vybavení"
+
+[KFWeap_Pistol_9mm]
+ItemName="9mm pistole"
+ItemCategory="Pistole"
+ItemDescription="• Pouze poloautomatický režim střelby\n• Standardní pistole ráže 9 mm. Jednoduchá a levná (pro tebe, upřímně řečeno, až moc). Jedná se o základní součást výbavy agentů společnosti Horzine"
+
+[KFWeap_Pistol_Deagle]
+ItemName=".50 Desert Eagle"
+ItemCategory="Pistole"
+ItemDescription="• Pouze poloautomatický režim střelby\n• Desert Eagle je světoznámý příruční kanón a Cadillac mezi pistolemi"
+
+[KFWeap_AssaultRifle_AR15]
+ItemName="Útočná puška AR-15"
+ItemCategory="Útočná puška"
+ItemDescription="• Disponuje 2 režimy střelby: tříranná dávka či jednotlivé rány\n• Alt. útok – přepínání mezi režimy\n• Civilní verze jedné z nejslavnějších zbraní, M16"
+
+[KFWeap_AssaultRifle_SCAR]
+ItemName="Útočná puška SCAR-H"
+ItemCategory="Útočná puška"
+ItemDescription="• Disponuje plně automatickým i poloautomatickým režimem střelby\n• Alt. útok – přepínání mezi režimy\n• Původně byla navržena pro americké speciální jednotky a je vskutku speciální!"
+
+[KFWeap_AssaultRifle_AK12]
+ItemName="Kalashnikov AK-12"
+ItemCategory="Útočná puška"
+ItemDescription="• Disponuje jak plně automatickým režimem, tak možností střílet třírannými dávkami\n• Alt. útok – přepínání mezi režimy\n• Tato zbraň byla odebrána mrtvému členovi ruských Specnaz pro účely výzkumu"
+
+[KFWeap_AssaultRifle_Bullpup]
+ItemName="Útočná puška SA80 L85A2"
+ItemCategory="Útočná puška"
+ItemDescription="• Disponuje plně automatickým i poloautomatickým režimem střelby\n• Alt. útok – přepínání mezi režimy\n• SA80 byla standardní zbraní britské armády do té doby, než byla armáda sežrána"
+
+[KFWeap_Knife_Demolitionist]
+ItemName="Univerzální nůž"
+ItemCategory="Na blízko"
+ItemDescription="• Primární útok – rychlé seknutí, držením tlačítka lze vytvářet komba\n• Sekundární útok – pomalé silnější seknutí\n• Alt. útok – blok/vykrytí\n• Ať už potřebuješ otevřít dopis nebo břicho Zeda, je tu pro tebe"
+
+[KFWeap_Knife_FieldMedic]
+ItemName="Skalpel"
+ItemCategory="Na blízko"
+ItemDescription="• Primární útok – rychlé seknutí, držením tlačítka lze vytvářet komba\n• Sekundární útok – pomalé silnější seknutí\n• Alt. útok – blok/vykrytí\n• Skalpel, taková ta věc, kterou lze někoho zabít, a pak se v něm s ní rýpat. A vůbec, tohle bys měl vědět, ty jsi tady doktor"
+
+[KFWeap_Knife_Firebug]
+ItemName="Požárnický nůž"
+ItemCategory="Na blízko"
+ItemDescription="• Primární útok – rychlé seknutí, držením tlačítka lze vytvářet komba\n• Sekundární útok – pomalé silnější seknutí\n• Alt. útok – blok/vykrytí\n• Název je zavádějící, oheň s ním neuhasíš, ale touhu po krvi ano"
+
+[KFWeap_Knife_Gunslinger]
+ItemName="Lovecký nůž"
+ItemCategory="Na blízko"
+ItemDescription="• Primární útok – rychlé seknutí, držením tlačítka lze vytvářet komba\n• Sekundární útok – pomalé silnější seknutí\n• Alt. útok – blok/vykrytí\n• Velký masivní nůž, který bez keců krájí jak velké, tak masivní"
+
+[KFWeap_Knife_Sharpshooter]
+ItemName="Kukri"
+ItemCategory="Melee"
+ItemDescription=""
+
+[KFWeap_Pistol_Medic]
+ItemName="Pistole HMTech-101"
+ItemCategory="Pistole"
+ItemDescription="• Disponuje pouze poloautomatickým režimem střelby\n• Alt. útok – vystřeluje léčivé šipky\n• Na zaměřovači ti ukazuje, kolik ti v zásobníku zbývá speciálních nábojů"
+
+[KFWeap_SMG_Medic]
+ItemName="Samopal HMTech-201"
+ItemCategory="Samopal"
+ItemDescription="• Disponuje pouze poloautomatickým režimem střelby\n• Alt. útok – vystřeluje léčivé šipky\n• Pro doktory s licencí i bez!"
+
+[KFWeap_Shotgun_Medic]
+ItemName="Brokovnice HMTech-301"
+ItemCategory="Brokovnice"
+ItemDescription="• Disponuje pouze poloautomatickým režimem střelby\n• Alt. útok – vystřeluje léčivé šipky\n• Brokovnice pro lékaře, kteří preferují intimnější přístup"
+
+[KFWeap_AssaultRifle_Medic]
+ItemName="Útočná puška HMTech-401"
+ItemCategory="Útočná puška"
+ItemDescription="• Disponuje pouze poloautomatickým režimem střelby\n• Alt. útok – vystřeluje léčivé šipky\n• Útočná puška, která umí zabíjet i léčit. Co víc si přát?"
+
+[KFWeap_Shotgun_DoubleBarrel]
+ItemName="Dvouhlavňová brokovnice"
+ItemCategory="Brokovnice"
+ItemDescription="• Primární střelbou vyprázdníš jednu hlaveň\n• Alternativní střelbou vyprázdníš obě hlavně zároveň\n• Před touhle kráskou poklekli i splozenci pekla, takže se Zedy nebude mít problém"
+
+[KFWeap_Shotgun_AA12]
+ItemName="Brokovnice AA-12"
+ItemCategory="Brokovnice"
+ItemDescription="• Disponuje plně automatickým i poloautomatickým režimem střelby\n• Alt. útok – přepínání mezi režimy\n• AA-12 je devastujícím nástrojem pro použití na krátkou či střední vzdálenost"
+
+[KFWeap_Shotgun_MB500]
+ItemName="Brokovnice SG 500"
+ItemCategory="Brokovnice"
+ItemDescription="• Disponuje pouze pumpovacím režimem střelby\n• Pumpovací brokovnice Mossberg SG 500 s rukojetí od pistole je ideálním pomocníkem při sbližování se se Zedy"
+
+[KFWeap_Shotgun_M4]
+ItemName="Brokovnice M4"
+ItemCategory="Brokovnice"
+ItemDescription="• Disponuje pouze poloautomatickým režimem střelby\n• Společnost Benelli navrhla útočnou brokovnici M4 pro americkou armádu, ale rozhodně se neztratí ani na evropském bojišti"
+
+[KFWeap_Knife_Berserker]
+ItemName="Čepel ze sekačky"
+ItemCategory="Na blízko"
+ItemDescription="• Primární útok – rychlé seknutí, držením tlačítka lze vytvářet komba\n• Sekundární útok – pomalé silnější seknutí\n• Alt. útok – blok/vykrytí\n• Ano, skutečně se jedná o čepel ze sekačky na trávu!"
+
+[KFWeap_Knife_Commando]
+ItemName="KF-BAR"
+ItemCategory="Na blízko"
+ItemDescription="• Primární útok – rychlé seknutí, držením tlačítka lze vytvářet komba\n• Sekundární útok – pomalé silnější seknutí\n• Alt. útok – blok/vykrytí\n• Klasický armádní nůž, s ním se nikdy nic nezkazí!"
+
+[KFWeap_Knife_Support]
+ItemName="Mačeta"
+ItemCategory="Na blízko"
+ItemDescription="• Primární útok – rychlé seknutí, držením tlačítka lze vytvářet komba\n• Sekundární útok – pomalé silnější seknutí\n• Alt. útok – blok/vykrytí\n• Krokodýl Dundee se může jít zahrabat!"
+
+[KFWeap_Edged_Katana]
+ItemName="Katana"
+ItemCategory="Na blízko"
+ItemDescription="• Primární útok – rychlé seknutí, držením tlačítka lze vytvářet komba\n• Sekundární útok – pomalé silnější seknutí\n• Alt. útok – blok/vykrytí\n• Sice není od Hattoriho Hanzy, ale Zedy krájí jak sýr"
+
+[KFWeap_Blunt_Crovel]
+ItemName="Lopáčidlo"
+ItemCategory="Na blízko"
+ItemDescription="• Primární útok – rychlé seknutí, držením tlačítka lze vytvářet komba\n• Sekundární útok – silný tupý úder\n• Alt. útok – blok/vykrytí\n• Z poloviny páčidlo, z poloviny lopata. Protřepejte, nemíchejte a vznikne Lopáčidlo"
+
+[KFWeap_Shotgun_Nailgun]
+ItemName="Hřebíkomet VLAD-1000"
+ItemCategory="Brokovnice"
+ItemDescription="• Disponuje 2 režimy střelby: dávka několika hřebíků nebo vystřelení pouze 1 hřebíku\n• Alt. útok – přepínání mezi režimy\n• Upravená verze hřebíkovače, která disponuje takovou silou, že bys s ní obrázek připevnil na 2 zdi najednou"
+
+[KFWeap_Blunt_Pulverizer]
+ItemName="Rozprašovač"
+ItemCategory="Na blízko"
+ItemDescription="• Primární útok – rychlý tupý úder, držením tlačítka lze vytvářet komba\n• Sekundární útok po styku s nepřítelem odpálí výbušninu na konci. Když chybí výbušnina, uděluje sekundární útok silné tupé údery. Tak nezapomeň přebíjet!\n• Alt. útok – blok/vykrytí"
+
+[KFWeap_Eviscerator]
+ItemName="Vykuchávač"
+ItemCategory="Speciální zbraň"
+ItemDescription="• Primární útok – vystřelí pilový kotouč\n• Alternativní útok je útok na blízko, který ale žere jak tank\n• Mazlík, se kterým si vytvoříš respekt a 5 metrů velký osobní prostor. A i ten můžeš ještě rozšířit. Krása, že?"
+SecondaryAmmo="Gasoline"
+
+[KFWeap_Edged_Zweihander]
+ItemName="Obouručák"
+ItemCategory="Na blízko"
+ItemDescription="• Primární útok – středně až velmi silné seknutí, které zasáhne více nepřátel\n• Sekundární útok – pomalé, ale o dost silnější seknutí.\n• Alt. útok – blok/vykrytí\n• Pokud se s ním rozeběhneš vstříc Zedům, napácháš ještě větší škody"
+SharedUnlockSource="Chivalry Medieval Warfare"
+
+[KFWeap_Flame_CaulkBurn]
+ItemName="Podpalovač"
+ItemCategory="Ohnivá zbraň"
+ItemDescription="• Tlačítkem pro střelbu chrlí oheň\n• Podomácku vyrobený plamenomet. Ale sami to nezkoušejte, nebo půjdeme do vězení"
+
+[KFWeap_Shotgun_DragonsBreath]
+ItemName="Zápalná brokovnice"
+ItemCategory="Brokovnice"
+ItemDescription="• Disponuje pouze pumpovacím režimem střelby\n• Do téhle krásky naláduješ zápalné náboje Dračí dech a pak už se jen kocháš"
+
+[KFWeap_Flame_Flamethrower]
+ItemName="Plamenomet"
+ItemCategory="Ohnivá zbraň"
+ItemDescription="• Tlačítkem pro střelbu chrlí oheň. Jak prosté\n• Ať už potřebuješ připálit doutník nebo Zeda, plamenomet tě nenechá na holičkách!"
+
+[KFWeap_Beam_Microwave]
+ItemName="Mikrovlnka"
+ItemCategory="Ohnivá zbraň"
+ItemDescription="• Primárně používá mikrovlnné záření pro uvaření Zedů na dálku\n• Alt. útok – vystřeluje mikrovlnné paprsky na krátkou vzdálenost\n• Dá si někdo středně propečeného Zeda?"
+
+[KFWeap_Thrown_C4]
+ItemName="Výbušnina C4"
+ItemCategory="Výbušnina"
+ItemDescription="• Tlačítkem pro střelbu hodíš jednu nálož\n• Alt. útok – postupně nálože aktivuje, a to v pořadí, v jakém jsi je položil\n• Balíček plastické trhaviny. Nesmírně užitečný pomocník, když si zapomeneš klíče od baráku"
+
+[KFWeap_GrenadeLauncher_HX25]
+ItemName="Granátomet HX25"
+ItemCategory="Výbušnina"
+ItemDescription="• Primární útok – vystřelí několik submunic, které při zásahu vybuchnou"
+
+[KFWeap_GrenadeLauncher_M79]
+ItemName="Granátomet M79"
+ItemCategory="Výbušnina"
+ItemDescription="• Primární útok – vystřelí granát\n• Granáty vybuchnou při nárazu\n• Dávej si setsakramentsky bacha, kde s tímhle mazlíkem vystřelíš. Tvůj obličej ti poděkuje"
+
+[KFWeap_RocketLauncher_RPG7]
+ItemName="RPG-7"
+ItemCategory="Výbušnina"
+ItemDescription="• Primární útok – vystřelí raketu\n• Rakety vybuchnou při nárazu\n• Dávej si setsakramentsky bacha, kde s tímhle mazlíkem vystřelíš. Tvůj obličej ti poděkuje\n• Jo a pozor na zpětný výšleh!"
+
+[KFWeap_Pistol_Dual9mm]
+ItemName="Dvě 9mm pistole"
+ItemCategory="Pistole"
+ItemDescription="• Pouze poloautomatický režim střelby\n• Alt. útok – přepínání mezi styly míření\n• Dvě standardní pistole ráže 9 mm. Pokud budeš potřebovat, můžeš jednu z nich prodat"
+
+[KFWeap_Pistol_Colt1911]
+ItemName="Pistole M1911"
+ItemCategory="Pistole"
+ItemDescription="• Pouze poloautomatický režim střelby\n• Klasický poloautomatický Colt 1911"
+
+[KFWeap_Pistol_DualColt1911]
+ItemName="Dvě pistole M1911"
+ItemCategory="Pistole"
+ItemDescription="• Pouze poloautomatický režim střelby\n• Alt. útok – přepínání mezi styly míření\n• Dvě klasické pistole Colt 1911. Pokud budeš potřebovat, můžeš jednu z nich prodat nebo odhodit"
+
+[KFWeap_Pistol_Deagle]
+ItemName=".50 Desert Eagle"
+ItemCategory="Pistole"
+ItemDescription="• Pouze poloautomatický režim střelby\n• Desert Eagle je světoznámý příruční kanón a Cadillac mezi pistolemi"
+
+[KFWeap_Pistol_DualDeagle]
+ItemName="Dvě pistole .50 Desert Eagle"
+ItemCategory="Pistole"
+ItemDescription="• Pouze poloautomatický režim střelby\n• Alt. útok – přepínání mezi styly míření\n• Dva příruční kanóny Desert Eagle. Pokud budeš potřebovat, můžeš jeden z nich prodat nebo odhodit"
+
+[KFWeap_Revolver_Rem1858]
+ItemName="Revolver 1858"
+ItemCategory="Pistole"
+ItemDescription="• Pouze režim jednotlivých ran\n• Překrásný jednočinný revolver Remington, model 1858 ráže .44 se zásobníkem na 6 nábojů. Dokázali bychom ho opěvovat celé dny"
+
+[KFWeap_Revolver_DualRem1858]
+ItemName="Dva revolvery 1858"
+ItemCategory="Pistole"
+ItemDescription="• Pouze režim jednotlivých ran\n• Alt. útok – přepínání mezi styly míření\n• Dva revolvery Remington 1858. Pokud budeš potřebovat, můžeš jeden z nich prodat nebo odhodit"
+
+[KFWeap_Revolver_SW500]
+ItemName="Revolver 500 Magnum"
+ItemCategory="Pistole"
+ItemDescription="• Pouze režim jednotlivých ran\n• A pro pistolníky, kteří to myslí vážně, tu máme kapesní dělo ráže .50 střílející masivní náboje, kterými skolíš i slona. Tak si představ, co to asi udělá se Zedy..."
+
+[KFWeap_Revolver_DualSW500]
+ItemName="Dva revolvery 500 Magnum"
+ItemCategory="Pistole"
+ItemDescription="• Pouze režim jednotlivých ran\n• Alt. útok – přepínání mezi styly míření\n• Dvě kapesní děla ráže .50. Pokud budeš potřebovat, můžeš jedno z nich prodat nebo odhodit, ale bacha, ať neuděláš díru do země"
+
+[KFWeap_Rifle_Winchester1894]
+ItemName="Winchester 1894"
+ItemCategory="Rifle"
+ItemDescription="• Fire mode is single shot only.\n• The classic Model 1894 Winchester lever-action rifle."
+
+[KFWeap_Bow_Crossbow]
+ItemName="Crossbow"
+ItemCategory="Bow"
+ItemDescription="• Fire mode is single shot only.\n• Crossbow bolts are often recoverable!\n• A high-powered hunting crossbow, giving good penetration and good stopping power!"
+
+//BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
+[KFPawn_ZedHans]
+BossName="Dr. Hans Volter"
+BossCaptionStrings[0]="Když Hanse léčí jeho dýmovnice, je takřka nezranitelný. Neplýtvej na něj proto náboji!"
+BossCaptionStrings[1]="Sleduj Hansovo mechanické srdce. Mění barvy podle toho, jak je agresivní."
+BossCaptionStrings[2]="Snaž se mířit na jeho mechanické srdce. Tam je nejzranitelnější."
+BossCaptionStrings[3]="Kouř z Hansových granátů se tě jen tak nepustí, stejně jako Bloatova žluč. Raději se mu proto vyhni."
+BossCaptionStrings[4]="Hansovy útoky na blízko jsou moc silné, takže se je ani nepokoušej vykrýt."
+BossCaptionStrings[5]="Když poblíž tebe dopadne granát, hra ti to dá najevo varovnou ikonkou. Hned vezmi nohy na ramena!"
+BossCaptionStrings[6]="Jakmile Hans vytáhne svoje zbraně, někam se schovej. Pro jistotu ti to připomínáme."
+
+[KFPawn_ZedPatriarch]
+BossName="The Patriarch"
+BossCaptionStrings[0]="Kevin Clamely was once a brilliant scientist, until he became his own greatest creation."
+BossCaptionStrings[1]="The Patriarch is staggeringly arrogant - he is likely to tell you which attack he will use next."
+BossCaptionStrings[2]="Hiding behind even big objects won't help as much as you'd hope. The Patriarch has an answer for that!"
+BossCaptionStrings[3]="Running off on your own isn't an escape - it makes you easy prey he will target first."
+BossCaptionStrings[4]="Yes, the Patriarch can still cloak, go invisible, run off and heal himself. Some things don't change."
+BossCaptionStrings[5]="While you won't get much choice about it, killing The Patriarch's 'children' just makes him mad(der)."
+
+[KFGameInfo_Survival]
+GameName="Přežití"
+
+[KFGameInfo_VersusSurvival]
+GameName="VS Survival"
+
+[KFPawn_ZedPatriarch_Versus]
+NoHealsRemainingMsg="No Heals Remaining"
+LowHealthMsg="Health Is Critical! Heal Now!"
+NoMortarTargetsMsg="No Valid Mortar Targets"
+
+[KFSM_PlayerSiren_VortexVictim]
+VortexGrabTeamWarningMsg="%x% is trapped by a Siren!"

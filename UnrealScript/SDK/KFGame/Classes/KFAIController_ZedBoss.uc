@@ -39,8 +39,8 @@ event EnemyNotVisible()
 		HumanEnemy = KFPawn_Human(Enemy);
 		if( HumanEnemy != none )
 		{
-			`SafeDialogManager.PlayLoseSightOfBossDialog( MyKFPawn, HumanEnemy );
-			`SafeDialogManager.PlayBossLoseSightOfDialog( MyKFPawn, HumanEnemy );
+			`DialogManager.PlayLoseSightOfBossDialog( MyKFPawn, HumanEnemy );
+			`DialogManager.PlayBossLoseSightOfDialog( MyKFPawn, HumanEnemy );
 		}
 	}
 
@@ -51,14 +51,14 @@ event bool SetEnemy( Pawn NewEnemy )
 {
 	if( NewEnemy != Enemy )
 	{
-		`SafeDialogManager.PlayBossChallengeDialog( MyKFPawn );
+		`DialogManager.PlayBossChallengeDialog( MyKFPawn );
 	}
 
 	return super.SetEnemy( NewEnemy );
 }
 
 /** Bosses should not be processed in frustration mode */
-function UpdateSprintFrustration( optional byte bForceFrustration=255 )
+function UpdateSprintFrustration( optional byte bForceFrustrationState=255 )
 {
 }
 
@@ -105,5 +105,6 @@ Begin:
 DefaultProperties
 {
 	FrustrationThreshold=0
-    bCanTeleportCloser=false	
+    bCanTeleportCloser=false
+    LowIntensityAttackCooldown=0
 }

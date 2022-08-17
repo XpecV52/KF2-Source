@@ -15,6 +15,8 @@ package tripwire.containers
         
         public var textField:TextField;
         
+        private var _controllerIconVisible:Boolean = true;
+        
         public function SectionHeaderContainer()
         {
             super();
@@ -43,12 +45,27 @@ package tripwire.containers
             return this.textField.text;
         }
         
+        public function get controllerIconVisible() : Boolean
+        {
+            return this._controllerIconVisible;
+        }
+        
+        public function set controllerIconVisible(param1:Boolean) : *
+        {
+            if(this._controllerIconVisible == param1)
+            {
+                return;
+            }
+            this._controllerIconVisible = param1;
+            this.updateIconVisibility();
+        }
+        
         public function updateIconVisibility() : void
         {
-            this.headerIcon.visible = !bManagerUsingGamepad;
+            this.headerIcon.visible = !bManagerUsingGamepad || !this._controllerIconVisible;
             if(this.leftTriggerIcon)
             {
-                this.leftTriggerIcon.visible = bManagerUsingGamepad;
+                this.leftTriggerIcon.visible = bManagerUsingGamepad && this._controllerIconVisible;
             }
         }
     }

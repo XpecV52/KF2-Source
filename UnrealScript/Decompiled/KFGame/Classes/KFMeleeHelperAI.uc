@@ -42,22 +42,28 @@ struct native DelayedMeleeInfo
 var() float BaseDamage;
 /** Default DamageType class */
 var() const class<KFDamageType> MyDamageType;
-/** how much knockback an attack could cause */
+/** How much base physics push force an attack will cause */
 var() float MomentumTransfer;
 var transient array<SwipeHitActorData> SwipedActors;
 var bool bTrackSwipeHits;
+var float PlayerDoorDamageMultiplier;
+var float PlayerControlledFOV;
+var float MeleeImpactCamScale;
 var array<DelayedMeleeInfo> PendingDamage;
 var int MaxPingCompensation;
 var float PingCompensationScale;
 
-function ApplyMeleeDamage(Actor Victim, int Damage, optional float InMomentum, optional class<KFDamageType> inDamageType)
+function ApplyMeleeDamage(Actor Victim, int Damage, optional float InMomentum, optional class<KFDamageType> inDamageType, optional Vector HitLocation)
 {
-    local Vector HitLocation, HitDirection;
+    local Vector HitDirection;
     local KFPawn_Monster InstigatorPawn;
 
-    InMomentum = 1;    
-    HitLocation = Victim.Location;
-    HitLocation.Z += FRand();
+    InMomentum = 1;        
+    if(IsZero(HitLocation))
+    {
+        HitLocation = Victim.Location;
+        HitLocation.Z += FRand();
+    }
     HitDirection = Normal(HitLocation - Outer.Instigator.Location);
     Damage = Max(Damage, 1);
     Victim.TakeDamage(Damage, Outer.Instigator.Controller, HitLocation, HitDirection * InMomentum, inDamageType,, Outer);
@@ -65,7 +71,11 @@ function ApplyMeleeDamage(Actor Victim, int Damage, optional float InMomentum, o
     InstigatorPawn = KFPawn_Monster(Outer.Instigator);
     if(InstigatorPawn != none)
     {
-        InstigatorPawn.MyKFAIC.NotifyMeleeDamageDealt();
+        InstigatorPawn.NotifyMeleeDamageDealt();
+        if(InstigatorPawn.MyKFAIC != none)
+        {
+            InstigatorPawn.MyKFAIC.NotifyMeleeDamageDealt();
+        }
     }
     if(bLogMelee)
     {
@@ -118,13 +128,66 @@ function bool DoAreaImpact(int Damage, optional float MomentumScalar, optional c
         {
             continue;            
         }
-        if((RateMeleeVictim(KFP, Outer.Location, KFP.Location, Range, InFOVCosine)) > 0)
+        if((RateMeleeVictim(KFP, Outer.Location, Outer.Location + (Normal(vector(Outer.Instigator.Rotation)) * Range), Range, InFOVCosine)) > 0)
         {
-            ApplyMeleeDamage(KFP, Damage, MomentumScalar, DamageType);
+            if(Outer.Instigator.IsHumanControlled())
+            {
+                ResolvePawnMeleeDamage(KFP, Damage, MomentumScalar, DamageType);                
+            }
+            else
+            {
+                ApplyMeleeDamage(KFP, Damage, MomentumScalar, DamageType);
+            }
             bFoundHit = true;
         }        
     }    
     return bFoundHit;
+}
+
+function bool DoPlayerControlledImpact(int Damage, optional float MomentumScalar, optional class<KFDamageType> DamageType)
+{
+    local bool bHitPawn;
+
+    MomentumScalar = 1;
+    DamageType = MyDamageType;
+    bHitPawn = DoAreaImpact(Damage, MomentumScalar, DamageType,, PlayerControlledFOV);
+    if(!bHitPawn)
+    {
+        DoPlayerWorldTrace(Damage, MomentumScalar, MyDamageType);
+    }
+    return bHitPawn;
+}
+
+function bool DoPlayerWorldTrace(int Damage, optional float MomentumScalar, optional class<KFDamageType> DamageType)
+{
+    local Vector StartTrace, EndTrace, HitLocation, HitNormal;
+    local Actor HitActor;
+
+    MomentumScalar = 1;
+    DamageType = MyDamageType;
+    StartTrace = GetMeleeStartTraceLocation();
+    EndTrace = StartTrace + (vector(GetMeleeAimRotation()) * MaxHitRange);
+    HitActor = TraceNoPawns(HitLocation, HitNormal, EndTrace, StartTrace);
+    if(HitActor != none)
+    {
+        if(HitActor.bCanBeDamaged && HitActor.IsA('KFDoorActor'))
+        {
+            Damage *= PlayerDoorDamageMultiplier;
+        }
+        ApplyMeleeDamage(HitActor, Damage, MomentumScalar, DamageType, HitLocation);
+        return true;
+    }
+    return false;
+}
+
+simulated function PlayMeleeHitEffects(Actor Target, Vector HitLocation, Vector HitDirection, optional bool bShakeInstigatorCamera)
+{
+    bShakeInstigatorCamera = true;
+    super.PlayMeleeHitEffects(Target, HitLocation, HitDirection);
+    if(bShakeInstigatorCamera && Outer.Instigator.IsHumanControlled())
+    {
+        PlayerController(Outer.Instigator.Controller).ClientPlayCameraShake(MeleeImpactCamShake, MeleeImpactCamScale, true, 2, rotator(-HitDirection));
+    }
 }
 
 function MeleeImpactNotify(KFAnimNotify_MeleeImpact Notify)
@@ -134,6 +197,10 @@ function MeleeImpactNotify(KFAnimNotify_MeleeImpact Notify)
     local bool bDealtDmg;
     local class<KFDamageType> CurrentDamageType;
 
+    if((Outer.Instigator == none) || Outer.Instigator.Role < ROLE_Authority)
+    {
+        return;
+    }
     MomentumScalar = ((Notify.bCanDoKnockback) ? Notify.MomentumTransferScale * MomentumTransfer : 1);
     KFAIC = KFAIController(Outer.Instigator.Controller);
     CurrentDamageType = ((Notify.CustomDamageType != none) ? Notify.CustomDamageType : MyDamageType);
@@ -155,7 +222,14 @@ function MeleeImpactNotify(KFAnimNotify_MeleeImpact Notify)
             }
             else
             {
-                bDealtDmg = CheckEnemyImpact(int(Notify.DamageScale * BaseDamage), MomentumScalar, CurrentDamageType, ((Notify.AttackReachOverride > 0) ? Notify.AttackReachOverride : MaxHitRange));
+                if(Outer.Instigator.IsHumanControlled())
+                {
+                    bDealtDmg = DoPlayerControlledImpact(int(Notify.DamageScale * BaseDamage), MomentumScalar, CurrentDamageType);                    
+                }
+                else
+                {
+                    bDealtDmg = CheckEnemyImpact(int(Notify.DamageScale * BaseDamage), MomentumScalar, CurrentDamageType, ((Notify.AttackReachOverride > 0) ? Notify.AttackReachOverride : MaxHitRange));
+                }
             }
         }
     }
@@ -205,6 +279,8 @@ protected function bool CheckEnemyImpact(int Damage, float MomentumScalar, optio
 protected function bool DoSwipeImpact(int Damage, optional KFPawn.EPawnOctant SwipeDir, optional float MomentumScalar, optional float Range, optional bool bPlayersOnly, optional class<KFDamageType> inDamageType)
 {
     local Pawn P;
+    local Vector HitLoc, HitNorm;
+    local Actor HitActor;
     local Vector ConeDir, ConeStart;
     local float ConeRange;
     local bool bFoundHit;
@@ -234,21 +310,26 @@ protected function bool DoSwipeImpact(int Damage, optional KFPawn.EPawnOctant Sw
         {
             if(bLogMelee)
             {
-                LogInternal((("rejected:" @ string(P)) @ "dot:") @ string(Normal(P.Location - ConeStart) Dot ConeDir));
+                LogInternal((((string(GetFuncName()) @ "rejected:") @ string(P)) $ ", dot:") @ string(Normal(P.Location - ConeStart) Dot ConeDir));
             }
             continue;            
         }
-        if(!Outer.FastTrace(P.Location, Outer.Location))
+        HitActor = Outer.Trace(HitLoc, HitNorm, P.Location + (P.BaseEyeHeight * vect(0, 0, 1)), Outer.Location, false,,, Outer.8);
+        if((HitActor != none) && HitActor != P)
         {
             if(bLogMelee)
             {
-                LogInternal(((string(GetFuncName()) @ "rejected:") @ string(P)) @ "melee obstruction: ");
+                LogInternal((((string(GetFuncName()) @ "rejected:") @ string(P)) $ ", melee obstruction:") @ string(HitActor));
             }
             continue;            
         }
         ProcessSwipeHit(P, Damage, MomentumScalar, inDamageType);
         bFoundHit = true;        
     }    
+    if((!bFoundHit && SwipeDir == 0) && Outer.Instigator.IsHumanControlled())
+    {
+        DoPlayerWorldTrace(Damage, MomentumScalar, MyDamageType);
+    }
     if(bLogMelee && bFoundHit)
     {
         Outer.DrawDebugCone(ConeStart, ConeDir, ConeRange, Acos(0.7071), Acos(0.7071), 16, MakeColor(255, 0, 0, 255), true);
@@ -371,6 +452,9 @@ defaultproperties
 {
     MyDamageType=Class'KFDT_Slashing'
     bTrackSwipeHits=true
+    PlayerDoorDamageMultiplier=5
+    PlayerControlledFOV=0.15
+    MeleeImpactCamScale=1
     MaxPingCompensation=200
     PingCompensationScale=0.5
     DefaultFOVCosine=0

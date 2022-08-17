@@ -64,7 +64,6 @@ class KFDT_Slashing_KnifeHeavy extends KFDT_Slashing_Knife
 
 
 
-
 #linenumber 15;
 
 /** Allows the damage type to customize exactly which hit zones it can dismember */

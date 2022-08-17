@@ -63,7 +63,6 @@ class KFGFxPostGameContainer_PlayerStats extends KFGFxObject_Container
 
 
 
-
 #linenumber 14;
 
 var localized string AchievementsString, ZedKillsString, TopWeaponsString;

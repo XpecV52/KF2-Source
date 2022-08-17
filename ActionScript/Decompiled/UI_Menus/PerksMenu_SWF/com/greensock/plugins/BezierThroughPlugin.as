@@ -14,14 +14,14 @@ package com.greensock.plugins
             _propName = "bezierThrough";
         }
         
-        override public function _onInitTween(param1:Object, param2:*, param3:TweenLite) : Boolean
+        override public function _onInitTween(target:Object, value:*, tween:TweenLite) : Boolean
         {
-            if(param2 is Array)
+            if(value is Array)
             {
-                param2 = {"values":param2};
+                value = {"values":value};
             }
-            param2.type = "thru";
-            return super._onInitTween(param1,param2,param3);
+            value.type = "thru";
+            return super._onInitTween(target,value,tween);
         }
     }
 }

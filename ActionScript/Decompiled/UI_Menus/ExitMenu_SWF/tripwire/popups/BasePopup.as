@@ -2,27 +2,37 @@ package tripwire.popups
 {
     import com.greensock.TweenMax;
     import com.greensock.easing.Cubic;
+    import flash.display.Sprite;
+    import flash.events.Event;
     import flash.external.ExternalInterface;
     import scaleform.clik.events.ButtonEvent;
+    import scaleform.gfx.FocusManager;
     import tripwire.containers.TripContainer;
     
     public class BasePopup extends TripContainer
     {
          
         
+        protected var _prevModalClip:Sprite;
+        
         public function BasePopup()
         {
             super();
             enableInitCallback = true;
-            this.setTabIndex();
             this.openPopup();
         }
         
-        public function setTabIndex() : *
+        override protected function addedToStage(param1:Event) : void
+        {
+            super.addedToStage(param1);
+            this.setTabIndex();
+        }
+        
+        public function setTabIndex() : void
         {
         }
         
-        public function set descriptionText(param1:String) : *
+        public function set descriptionText(param1:String) : void
         {
         }
         
@@ -36,6 +46,8 @@ package tripwire.popups
             {
                 this.openAnimation();
                 _bOpen = true;
+                this._prevModalClip = FocusManager.getModalClip();
+                FocusManager.setModalClip(this);
             }
         }
         
@@ -86,6 +98,7 @@ package tripwire.popups
                     "useFrames":true,
                     "onComplete":this.closePopup
                 });
+                FocusManager.setModalClip(this._prevModalClip);
                 _bOpen = false;
             }
         }

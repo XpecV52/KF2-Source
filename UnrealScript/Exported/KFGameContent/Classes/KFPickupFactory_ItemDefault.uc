@@ -18,6 +18,10 @@ defaultproperties
    ItemPickups(3)=(ItemClass=Class'kfgamecontent.KFWeap_Blunt_Crovel')
    ItemPickups(4)=(ItemClass=Class'kfgamecontent.KFWeap_Edged_Katana')
    ItemPickups(5)=(ItemClass=Class'kfgamecontent.KFWeap_Pistol_9mm')
+   ItemPickups(6)=(ItemClass=Class'kfgamecontent.KFWeap_Revolver_Rem1858')
+   ItemPickups(7)=(ItemClass=Class'kfgamecontent.KFWeap_Rifle_Winchester1894')
+   ItemPickups(8)=(ItemClass=Class'kfgamecontent.KFWeap_Pistol_Medic')
+   ItemPickups(9)=(ItemClass=Class'kfgamecontent.KFWeap_Flame_CaulkBurn')
    Begin Object Class=StaticMeshComponent Name=StaticMeshComponent0 Archetype=StaticMeshComponent'KFGame.Default__KFPickupFactory_Item:StaticMeshComponent0'
       StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_AR15_Pickup'
       ReplacementPrimitive=None

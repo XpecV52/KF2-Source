@@ -26,6 +26,7 @@ enum EInteractionMessageType
 	IMT_GamepadWeaponSelectHint,
 	IMT_HealSelfWarning,
 	IMT_ClotGrabWarning,
+	IMT_PlayerClotGrabWarning,
 };
 
 var localized string			UseTraderMessage;
@@ -38,6 +39,9 @@ var localized string			HealSelfWarning;
 var localized string			HealSelfGamepadWarning;
 var localized string 			PressToBashWarning;
 var localized string 			GamepadWeaponSelectHint;
+var localized string 			ZedUseDoorMessage;
+var localized string 			ZedUseDoorWeldedMessage;
+var localized string 			PlayerClotGrabWarningMessage;
 
 var const string USE_COMMAND;
 var const string HEAL_COMMAND;
@@ -136,14 +140,22 @@ static function string GetString(
 	)
 {
 	local PlayerInput Input;
-
+	
 	switch ( Switch )
 	{
 		case IMT_UseTrader:
 			return default.UseTraderMessage;
 		case IMT_UseDoor:
+			if(class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController().PlayerReplicationInfo.GetTeamNum() == 255)
+			{
+				return default.ZedUseDoorMessage;
+			}
 			return default.UseDoorMessage;
 		case IMT_UseDoorWelded:
+			if(class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController().PlayerReplicationInfo.GetTeamNum() == 255)
+			{
+				return default.ZedUseDoorWeldedMessage;
+			}
 			return default.UseDoorWeldedMessage;
 		case IMT_AcceptObjective:
 			return default.AcceptObjectiveMessage;
@@ -156,6 +168,8 @@ static function string GetString(
 			return (Input != None && Input.bUsingGamepad) ? default.HealSelfGamepadWarning : default.HealSelfWarning;
 		case IMT_ClotGrabWarning:
 			return default.PressToBashWarning;
+		case IMT_PlayerClotGrabWarning:
+			return default.PlayerClotGrabWarningMessage;
 		case IMT_GamepadWeaponSelectHint:
 			return default.GamepadWeaponSelectHint;
 		default:
@@ -186,6 +200,9 @@ defaultproperties
    HealSelfGamepadWarning="(HOLD) <%x%> heal self"
    PressToBashWarning="<%x%> bash"
    GamepadWeaponSelectHint="(HOLD) <%x%> weapon select"
+   ZedUseDoorMessage="<%x%> Open/Close"
+   ZedUseDoorWeldedMessage="Door welded, break it down!"
+   PlayerClotGrabWarningMessage="Kill zed to break free!"
    USE_COMMAND="GBA_Use"
    HEAL_COMMAND="GBA_QuickHeal"
    HEAL_COMMAND_CONTROLLER="GBA_Reload_Gamepad"

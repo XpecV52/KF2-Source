@@ -29,10 +29,12 @@ function InitMutator(string Options, out string ErrorMessage)
 /** Allows mutator to modify which trader opens next, if any */
 function ModifyNextTraderIndex( out byte NextTraderIndex )
 {
+
 	if( NextMutator != None )
 	{
 		NextMutator.ModifyNextTraderIndex( NextTraderIndex );
 	}
+
 }
 
 /**********
@@ -42,19 +44,23 @@ function ModifyNextTraderIndex( out byte NextTraderIndex )
 /** Allows mutator to modify AI pawn*/
 function ModifyAI( Pawn AIPawn )
 {
+
 	if( NextMutator != none )
 	{
 		NextMutator.ModifyAI( AIPawn );
 	}
+
 }
 
 /** Allows mutator to modify an AI's target enemy upon choosing one */
 function ModifyAIEnemy( AIController AI, Pawn Enemy )
 {
+
 	if( NextMutator != none )
 	{
 		NextMutator.ModifyAIEnemy( AI, Enemy );
 	}
+
 }
 
 /************
@@ -64,10 +70,12 @@ function ModifyAIEnemy( AIController AI, Pawn Enemy )
 /** Allows mutator to modify how likely, how long, and how frequently zed time occurs (zed time scalar and blend-out can be set in InitMutator) */
 function ModifyZedTime( out float out_TimeSinceLastEvent, out float out_ZedTimeChance, out float out_Duration )
 {
+
 	if( NextMutator != none )
     {
     	NextMutator.ModifyZedTime( out_TimeSinceLastEvent, out_ZedTimeChance, out_Duration );
     }
+
 }
 
 /************
@@ -77,19 +85,23 @@ function ModifyZedTime( out float out_TimeSinceLastEvent, out float out_ZedTimeC
 /** Allows mutator to modify the initial state of all pickup factories */
 function ModifyPickupFactories()
 {
+
 	if( NextMutator != None )
 	{
 		NextMutator.ModifyPickupFactories();
 	}
+
 }
 
 /** Allows mutator to modify a newly activated pickup factory */
 function ModifyActivatedPickupFactory( PickupFactory out_ActivatedFactory, out float out_RespawnDelay )
 {
+
 	if( NextMutator != None )
 	{
 		NextMutator.ModifyActivatedPickupFactory( out_ActivatedFactory, out_RespawnDelay );
 	}
+
 }
 
 defaultproperties

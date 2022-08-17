@@ -13,6 +13,7 @@ class KFDT_Slashing_Gorefast extends KFDT_Slashing
 
 defaultproperties
 {
+   bExtraMomentumZ=True
    KDamageImpulse=400.000000
    KDeathVel=500.000000
    KDeathUpKick=120.000000

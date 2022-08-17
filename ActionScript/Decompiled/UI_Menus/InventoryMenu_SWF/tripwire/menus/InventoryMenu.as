@@ -3,6 +3,7 @@ package tripwire.menus
     import com.greensock.TweenMax;
     import com.greensock.easing.Cubic;
     import com.greensock.events.TweenEvent;
+    import flash.display.MovieClip;
     import flash.events.Event;
     import flash.events.KeyboardEvent;
     import flash.external.ExternalInterface;
@@ -11,6 +12,7 @@ package tripwire.menus
     import scaleform.clik.ui.InputDetails;
     import tripwire.containers.SectionHeaderContainer;
     import tripwire.containers.TripContainer;
+    import tripwire.containers.inventory.CraftingContainer;
     import tripwire.containers.inventory.InventoryItemDetailsContainer;
     import tripwire.containers.inventory.InventoryItemListContainer;
     import tripwire.containers.inventory.OpenCrateContainer;
@@ -27,17 +29,36 @@ package tripwire.menus
         
         public var openCrateContainer:OpenCrateContainer;
         
+        public var craftingPanelContainer:CraftingContainer;
+        
+        public var coverBG:MovieClip;
+        
+        public var coverBGTween:TweenMax;
+        
         public function InventoryMenu()
         {
             super();
+            sectionHeader = this.header;
         }
         
         override protected function onBPressed(param1:InputDetails) : void
         {
             super.onBPressed(param1);
-            if(this.itemDetailsContainer.bOpen)
+            if(this.coverBGTween.progress() == 1)
             {
-                this.itemDetailsContainer.closeContainer();
+                this.coverBGTween.reverse();
+                if(this.itemDetailsContainer.bOpen)
+                {
+                    this.itemDetailsContainer.closeContainer();
+                }
+                else if(this.openCrateContainer.bOpen)
+                {
+                    this.openCrateContainer.closeContainer();
+                }
+                else if(this.craftingPanelContainer.bOpen)
+                {
+                    this.craftingPanelContainer.closeContainer();
+                }
                 this.inventoryListContainer.selectContainer();
             }
         }
@@ -48,14 +69,34 @@ package tripwire.menus
             if(this.itemDetailsContainer.bOpen)
             {
                 this.itemDetailsContainer.selectContainer();
+                if(this.coverBGTween != null && this.coverBGTween.progress() < 1)
+                {
+                    this.coverBGTween.play();
+                }
             }
             else if(this.openCrateContainer.bOpen)
             {
                 this.openCrateContainer.selectContainer();
+                if(this.coverBGTween != null && this.coverBGTween.progress() < 1)
+                {
+                    this.coverBGTween.play();
+                }
+            }
+            else if(this.craftingPanelContainer.bOpen)
+            {
+                this.craftingPanelContainer.selectContainer();
+                if(this.coverBGTween != null && this.coverBGTween.progress() < 1)
+                {
+                    this.coverBGTween.play();
+                }
             }
             else
             {
                 this.inventoryListContainer.selectContainer();
+                if(this.coverBGTween != null)
+                {
+                    this.coverBGTween.reverse();
+                }
             }
         }
         
@@ -63,11 +104,20 @@ package tripwire.menus
         {
             super.addedToStage(param1);
             this.inventoryListContainer.inventoryItemScrollingList.addEventListener(ListEvent.ITEM_PRESS,this.onItemPress,false,0,true);
+            this.inventoryListContainer.craftWeaponsButton.addEventListener(ButtonEvent.PRESS,this.onCraftWeaponClicked,false,0,true);
+            this.inventoryListContainer.craftCosmeticsButton.addEventListener(ButtonEvent.PRESS,this.onCraftCosmeticClicked,false,0,true);
             this.itemDetailsContainer.cancelButton.addEventListener(ButtonEvent.CLICK,this.onCancelPressed,false,0,true);
             this.itemDetailsContainer.equipButton.addEventListener(ButtonEvent.CLICK,this.onCancelPressed,false,0,true);
             this.itemDetailsContainer.addEventListener("detailsClosed",this.onSubContainerClosed,false,0,true);
             this.openCrateContainer.addEventListener("containerClosed",this.onCrateContainerClosed,false,0,true);
-            this.itemDetailsContainer.previewButton.visible = false;
+            this.craftingPanelContainer.addEventListener("containerClosed",this.onSubContainerClosed,false,0,true);
+            this.itemDetailsContainer.recycleButton.visible = false;
+            this.coverBGTween = new TweenMax(this.coverBG,8,{
+                "autoAlpha":1,
+                "ease":Cubic.easeOut,
+                "useFrames":true,
+                "paused":true
+            });
         }
         
         override protected function onOpened(param1:TweenEvent = null) : void
@@ -88,17 +138,32 @@ package tripwire.menus
         
         public function onCancelPressed(param1:ButtonEvent) : void
         {
+            this.coverBGTween.reverse();
             this.itemDetailsContainer.closeContainer();
             this.inventoryListContainer.selectContainer();
         }
         
+        public function onCraftWeaponClicked(param1:ButtonEvent) : void
+        {
+            this.coverBGTween.play();
+            ExternalInterface.call("CallBack_RequestWeaponCraftInfo");
+        }
+        
+        public function onCraftCosmeticClicked(param1:ButtonEvent) : void
+        {
+            this.coverBGTween.play();
+            ExternalInterface.call("CallBack_RequestCosmeticCraftInfo");
+        }
+        
         public function onSubContainerClosed(param1:Event) : void
         {
+            this.coverBGTween.reverse();
             this.inventoryListContainer.selectContainer();
         }
         
         public function onCrateContainerClosed(param1:Event) : void
         {
+            this.coverBGTween.reverse();
             this.inventoryListContainer.selectContainer();
             TweenMax.to(this.inventoryListContainer,8,{
                 "delay":8,
@@ -112,6 +177,7 @@ package tripwire.menus
         {
             if(param1.itemData)
             {
+                this.coverBGTween.play();
                 this.inventoryListContainer.deselectContainer();
                 this.inventoryListContainer.itemDetails = param1.itemData;
                 this.itemDetailsContainer.details = param1.itemData;
@@ -127,12 +193,35 @@ package tripwire.menus
                 this.openCrateContainer.confirmButton.label = !!param1.ok ? param1.ok : "";
                 this.itemDetailsContainer.localizedText = param1;
                 this.inventoryListContainer.localizedText = param1;
+                this.craftingPanelContainer.localizedText = param1;
             }
         }
         
         public function set inventoryList(param1:Array) : void
         {
             this.inventoryListContainer.inventoryList = param1;
+        }
+        
+        public function set details(param1:Object) : void
+        {
+            if(this.itemDetailsContainer != null)
+            {
+                this.itemDetailsContainer.details = param1;
+            }
+        }
+        
+        public function set menuHidden(param1:Boolean) : void
+        {
+            visible = param1;
+        }
+        
+        public function set craftOptions(param1:Object) : void
+        {
+            if(this.craftingPanelContainer != null)
+            {
+                this.inventoryListContainer.deselectContainer();
+                this.craftingPanelContainer.craftIngData = param1;
+            }
         }
         
         public function set crateOpen(param1:Object) : void
@@ -155,6 +244,7 @@ package tripwire.menus
         {
             if(this.itemDetailsContainer.bOpen)
             {
+                this.coverBGTween.reverse();
                 this.itemDetailsContainer.closeContainer();
                 this.inventoryListContainer.selectContainer();
             }

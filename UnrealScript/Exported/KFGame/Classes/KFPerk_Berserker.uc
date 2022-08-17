@@ -87,10 +87,10 @@ class KFPerk_Berserker extends KFPerk
 var	const				PerkSkill 	BerserkerDamage;					// 25% increase in Berserker weapon damage, plus 1% each additional level. Max 50%
 var	const				PerkSkill	MeleeAttackSpeed;              		// 5% increase in melee attack speed - Max 30%
 var const				PerkSkill	Movement;                 			// 10% faster movement when wielding a melee weapon, plus +0.6% each level - Max 25%
-var const				PerkSkill	DamageResistance;                   // 0% resistance to all damage â€“ Max 25% 
+var const				PerkSkill	DamageResistance;                   // 0% resistance to all damage – Max 25%
 var const				PerkSkill	NightVision;
 
-var const 	private 	int 		SmallRadiusSizeSQ;
+var 	const private 	int 		SmallRadiusSizeSQ;
 var 		private		bool		bBlockActive;
 var 		private		bool		bParryActive;
 var const 	private  	float 		ParryDuration;
@@ -150,7 +150,7 @@ function ApplySkillsToPawn()
 * @param DamageInstigator responsible controller (optional)
 * @param class DamageType the damage type used (optional)
 */
-simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType )
+simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx )
 {
 	local KFWeapon MyKFWeapon;
 	local float TempDamage;
@@ -174,9 +174,9 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 
 			if( MyKFWeapon.IsMeleeWeapon() && GetBlockActive() )
 			{
-				TempDamage += (InDamage * (1 + GetSkillValue( PerkSkills[EBerserkerBlock] ))) - InDamage;	
+				TempDamage += (InDamage * (1 + GetSkillValue( PerkSkills[EBerserkerBlock] ))) - InDamage;
 				bBlockActive = false;
-			} 
+			}
 		}
 	}
 
@@ -199,7 +199,7 @@ simulated function ModifyMeleeAttackSpeed( out float InDuration, KFWeapon KFW )
 	}
 
 	TempDuration = InDuration;
-	
+
 	TempDuration -= TempDuration * GetPassiveValue( MeleeAttackSpeed, CurrentLevel );
 
 	if( IsSpartanActive() )
@@ -266,9 +266,9 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
 	}
 
 	if( IsSonicResistanceActive() && ClassIsChildOf( Damagetype,  class'KFDT_Sonic' ) )
-	{
+			{
 		TempDamage -= InDamage * GetSkillValue( PerkSkills[EBerserkerSonicResistance] );
-	}
+			}
 
 	TempDamage -= InDamage * GetPassiveValue( DamageResistance,  CurrentLevel );
 
@@ -287,8 +287,8 @@ function ModifyBloatBileDoT( out float DoTScaler )
 simulated static function GetPassiveStrings( out array<string> PassiveValues, out array<string> Increments, byte Level )
 {
 	PassiveValues[0] = Round((GetPassiveValue( default.BerserkerDamage, Level ) * 100) - 100) $ "%";
-	PassiveValues[1] = Round(GetPassiveValue( default.MeleeAttackSpeed, Level ) * 100) $ "%";		
-	PassiveValues[2] = Round((GetPassiveValue( default.Movement, Level ) - 1) * 100) $ "%";	
+	PassiveValues[1] = Round(GetPassiveValue( default.MeleeAttackSpeed, Level ) * 100) $ "%";
+	PassiveValues[2] = Round((GetPassiveValue( default.Movement, Level ) - 1) * 100) $ "%";
 	PassiveValues[3] = Round((GetPassiveValue(default.DamageResistance, Level)) * 100) $ "%";
 	PassiveValues[4] = "";
 	PassiveValues[5] = "";
@@ -315,7 +315,7 @@ static final function float GetPoisonResistance()
 
 /**
  * @brief Adds health oints earnt by killing with the vampire skill
- * 
+ *
  * @param KFPC Owning controller
  */
 function AddVampireHealth( KFPlayerController KFPC, class<DamageType> DT )
@@ -331,7 +331,7 @@ function AddVampireHealth( KFPlayerController KFPC, class<DamageType> DT )
  * @brief modifies the players health
  *
  * @param InHealth health
-  */
+ */
 function ModifyHealth( out int InHealth )
 {
 	if( IsFortitudeActive() )
@@ -343,7 +343,7 @@ function ModifyHealth( out int InHealth )
 
 /**
  * @brief Skills can effect the hard (seconday) melee attack damage
- * 
+ *
  * @param int The damage to modify
  */
 function ModifyHardAttackDamage( out int InDamage )
@@ -355,10 +355,10 @@ function ModifyHardAttackDamage( out int InDamage )
 	if( IsFuriousDefenderActive() )
 	{
 		TempDamage += InDamage * GetSkillValue( PerkSkills[EBerserkerFuriousDefender] );
-	}
+		}
 
 	if( IsSmashActive() )
-	{
+		{
 		TempDamage += InDamage * GetSkillValue( PerkSkills[EBerserkerSmash] );
 	}
 
@@ -368,7 +368,7 @@ function ModifyHardAttackDamage( out int InDamage )
 
 /**
  * @brief Skills can effect the light melee attack damage
- * 
+ *
  * @param int The damage to modify
  */
 function ModifyLightAttackDamage( out int InDamage )
@@ -394,7 +394,7 @@ simulated function ParryTimer()
 	bParryActive = false;
 	SetTickIsDisabled( true );
 
-	if( OwnerPC != none ) 
+	if( OwnerPC != none )
 	{
 		OwnerPC.SetPerkEffect( false );
 	}
@@ -502,7 +502,7 @@ function bool ShouldKnockdown()
 simulated function float GetSirenScreamStrength()
 {
 	if( IsSonicResistanceActive() )
-	{
+		{
 		return GetSkillValue( PerkSkills[EBerserkerSonicResistance] );
 	}
 
@@ -520,7 +520,7 @@ simulated function float GetSirenScreamStrength()
  */
 simulated final private function bool IsPoisonResistanceActive()
 {
-	return PerkSkills[EBerserkerPoisonResistance].bActive;	
+	return PerkSkills[EBerserkerPoisonResistance].bActive;
 }
 
 /**
@@ -530,7 +530,7 @@ simulated final private function bool IsPoisonResistanceActive()
  */
 simulated final private function bool IsSonicResistanceActive()
 {
-	return PerkSkills[EBerserkerSonicResistance].bActive;	
+	return PerkSkills[EBerserkerSonicResistance].bActive;
 }
 
 /**
@@ -540,7 +540,7 @@ simulated final private function bool IsSonicResistanceActive()
  */
 final private function bool IsVampireActive()
 {
-	return PerkSkills[EBerserkerVampire].bActive;	
+	return PerkSkills[EBerserkerVampire].bActive;
 }
 
 /**
@@ -571,7 +571,7 @@ simulated function SetSuccessFullBlock()
  */
 simulated function bool IsBlockActive()
 {
-	return PerkSkills[EBerserkerBlock].bActive;	
+	return PerkSkills[EBerserkerBlock].bActive;
 }
 
 /**
@@ -594,7 +594,7 @@ simulated function SetSuccessfullParry()
 		SetTickIsDisabled( false );
 		SetTimer( ParryDuration, false, nameOf( ParryTimer ));
 
-		if( OwnerPC != none ) 
+		if( OwnerPC != none )
 		{
 			OwnerPC.SetPerkEffect( true );
 		}
@@ -610,7 +610,7 @@ simulated function SetSuccessfullParry()
  */
 simulated function bool IsParryActive()
 {
-	return PerkSkills[EBerserkerParry].bActive;	
+	return PerkSkills[EBerserkerParry].bActive;
 }
 
 /**
@@ -683,12 +683,12 @@ simulated final private event bool IsMenaceActive()
 
 /**
  * @brief Menace and Spartan resist zed time. You move at normal speed.
- * 
+ *
  * @return true if Menace or Spartan are active
  */
 function bool IsFastInZedTime()
-{ 
-	return PerkSkills[EBerserkerMenace].bActive || PerkSkills[EBerserkerSpartan].bActive; 
+{
+	return PerkSkills[EBerserkerMenace].bActive || PerkSkills[EBerserkerSpartan].bActive;
 }
 
 /*********************************************************************************************
@@ -781,6 +781,8 @@ defaultproperties
    PerkSkills(9)=(Name="Menace",StartingValue=1.000000,MaxValue=1.000000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Menace")
    PrimaryWeaponDef=Class'KFGame.KFWeapDef_Crovel'
    KnifeWeaponDef=Class'KFGame.KFweapDef_Knife_Berserker'
+   HitAccuracyHandicap=2.500000
+   HeadshotAccuracyHandicap=-2.000000
    Name="Default__KFPerk_Berserker"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

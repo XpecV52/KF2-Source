@@ -13,9 +13,6 @@ class KFPawn_ZedFleshpound extends KFPawn_Monster;
 var AkEvent RageStartSound;
 var AkEvent RageStopSound;
 
-/** Enraged mode status */
-var repnotify bool bIsEnraged;
-
 /** Material parameters for rage light glow */
 var LinearColor DefaultGlowColor;
 var LinearColor EnragedGlowColor;
@@ -28,13 +25,6 @@ var name BattlePhaseLightFrontSocketName;
 var transient PointLightComponent BattlePhaseLightTemplateYellow;
 var transient PointLightComponent BattlePhaseLightTemplateRed;
 var transient PointLightComponent BattlePhaseLightFront;
-
-replication
-{
-	// Replicated to ALL
-	if( bNetDirty )
-		bIsEnraged;
-}
 
 /*********************************************************************************************
 * Initialization
@@ -173,7 +163,7 @@ simulated event bool IsEnraged()
 /** Enrage this FleshPound! */
 simulated function SetEnraged( bool bNewEnraged )
 {
-	if( Role == ROLE_Authority && bNewEnraged == bIsEnraged )
+	if( !bCanRage || (Role == ROLE_Authority && bNewEnraged == bIsEnraged) )
 	{
 		return;
 	}
@@ -348,6 +338,7 @@ DefaultProperties
 
 	// ---------------------------------------------
 	// Gameplay
+	bCanRage=true
 	bCanMeleeAttack=true
 	ZedBumpDamageScale=0.f
 	RageBumpDamageType=class'KFGameContent.KFDT_HeavyZedBump'
@@ -355,7 +346,7 @@ DefaultProperties
 	Begin Object Name=MeleeHelper_0
 		BaseDamage=55.f
 		MaxHitRange=250.f
-		MomentumTransfer=100000.f // for kick
+	    MomentumTransfer=55000.f
 		MyDamageType=class'KFDT_Bludgeon_Fleshpound'
 	End Object
 
@@ -408,19 +399,21 @@ DefaultProperties
 		SpecialMoveClasses(SM_Evade)=class'KFSM_Evade'
 	End Object
 	RotationRate=(Pitch=50000,Yaw=40000,Roll=50000)
-
-  	Begin Object Name=Afflictions_0
-		InstantAffl(IAF_Stun)=(Head=60,Torso=65,Leg=50,Arm=65,Special=53,LowHealthBonus=10,Cooldown=12.0)
-		InstantAffl(IAF_Knockdown)=(Head=65,Torso=140,Leg=140,Arm=140,Special=65,LowHealthBonus=10,Cooldown=25.0)
-		InstantAffl(IAF_Stumble)=(Head=60,Torso=65,Arm=65,Special=53,LowHealthBonus=10,Cooldown=10.0)
-		InstantAffl(IAF_LegStumble)=(Leg=60,LowHealthBonus=10,Cooldown=9.0)
-		InstantAffl(IAF_GunHit)=(Head=150,Torso=150,Leg=150,Arm=150,LowHealthBonus=10,Cooldown=20)
-		InstantAffl(IAF_MeleeHit)=(Head=25,Torso=50,Leg=50,Arm=50,LowHealthBonus=10,Cooldown=1.2)
-		StackingAffl(SAF_Poison)=(Threshhold=5.0,Duration=1.5,Cooldown=20.0,DissipationRate=1.00)
-		StackingAffl(SAF_Microwave)=(Threshhold=10.0,Duration=1.5,Cooldown=20.0,DissipationRate=1.00)
-		StackingAffl(SAF_FirePanic)=(Threshhold=13.0,Duration=1.5,Cooldown=8.0,DissipationRate=1.0)
-		StackingAffl(SAF_EMPPanic)=(Threshhold=2.0,Duration=3.0,Cooldown=10.0,DissipationRate=0.5)
-		StackingAffl(SAF_EMPDisrupt)=(Threshhold=1.5,Duration=2.0,Cooldown=10.0,DissipationRate=0.5)
+  	
+	InstantIncaps(IAF_Stun)=(Head=75,Torso=120,Leg=120,Arm=120,Special=65,LowHealthBonus=10,Cooldown=10.0)
+	InstantIncaps(IAF_Knockdown)=(Head=65,Torso=140,Leg=140,Arm=140,Special=65,LowHealthBonus=10,Cooldown=25.0)
+	InstantIncaps(IAF_Stumble)=(Head=60,Torso=65,Arm=65,Special=53,LowHealthBonus=10,Cooldown=10.0)
+	InstantIncaps(IAF_LegStumble)=(Leg=60,LowHealthBonus=10,Cooldown=9.0)
+	InstantIncaps(IAF_GunHit)=(Head=150,Torso=150,Leg=150,Arm=150,LowHealthBonus=10,Cooldown=20)
+	InstantIncaps(IAF_MeleeHit)=(Head=25,Torso=50,Leg=50,Arm=50,LowHealthBonus=10,Cooldown=1.2)
+	StackingIncaps(SAF_Poison)=(Threshhold=5.0,Duration=1.5,Cooldown=20.0,DissipationRate=1.00)
+	StackingIncaps(SAF_Microwave)=(Threshhold=10.0,Duration=1.5,Cooldown=20.0,DissipationRate=1.00)
+	StackingIncaps(SAF_FirePanic)=(Threshhold=13.0,Duration=1.5,Cooldown=8.0,DissipationRate=1.0)
+	StackingIncaps(SAF_EMPPanic)=(Threshhold=2.0,Duration=3.0,Cooldown=10.0,DissipationRate=0.5)
+	StackingIncaps(SAF_EMPDisrupt)=(Threshhold=1.5,Duration=2.0,Cooldown=10.0,DissipationRate=0.5)
+	StackingIncaps(SAF_Freeze)=(Threshhold=3.0,Duration=1.0,Cooldown=5.0,DissipationRate=0.33)
+	
+	Begin Object Name=Afflictions_0
 		FireFullyCharredDuration=5
 	End Object
 

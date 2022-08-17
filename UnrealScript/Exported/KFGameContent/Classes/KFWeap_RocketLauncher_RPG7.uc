@@ -104,7 +104,6 @@ defaultproperties
 {
    ExplosionTemplate=KFGameExplosion'WEP_RPG7_ARCH.Wep_RPG7_BackBlastExplosion'
    BackBlastOffset=(X=-20.000000,Y=4.000000,Z=-3.000000)
-   ForceZoomOutTime=0.300000
    ForceReloadTime=0.400000
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Rocket'
    FireModeIconPaths(1)=()
@@ -153,7 +152,6 @@ defaultproperties
    HippedRecoilModifier=1.250000
    FallingRecoilModifier=1.500000
    AssociatedPerkClass=Class'KFGame.KFPerk_Demolitionist'
-   FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()

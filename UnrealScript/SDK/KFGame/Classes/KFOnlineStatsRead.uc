@@ -35,36 +35,16 @@ function OnStatsInitialized(bool bWasSuccessful)
 		OnReadComplete();
 	}
 }
+//@HSL_MOD_BEGIN - amiller 3/30/2016 - Adding support for saving Stats object to SaveData
+native function NativeOnReadComplete();
 
 event OnReadComplete()
 {
-	local int j;
-	local float FloatValue;
+	NativeOnReadComplete();
+	`log("KFOnlineStatsRead: OnReadComplete called, Rows[0].Columns.Length=" $ Rows[0].Columns.Length @ `showvar(self), bLogStatsRead, 'DevOnline');
 
-	`log("KFOnlineStatsRead: OnReadComplete called, Rows[0].Columns.Length=" $ Rows[0].Columns.Length, bLogStatsRead, 'DevOnline');
-	for ( j = 0; j < Rows[0].Columns.Length; j++ )
-	{
-		switch(Rows[0].Columns[j].StatValue.Type)
-		{
-			case SDT_Int32:
-				LinkedWriteObject.SetIntStat(ColumnIds[j], Rows[0].Columns[j].StatValue.Value1);
-				FloatValue = Rows[0].Columns[j].StatValue.Value1;
-				`log("OnReadComplete - " @ j @ "IntStat["$ColumnIds[j]$"]="$Rows[0].Columns[j].StatValue.Value1 @ LinkedWriteObject.Properties[j].Data.Value1, bLogStatsRead);
-				break;
-
-			case SDT_Float:
-				GetFloatStatValueForPlayer(Rows[0].PlayerId, j, FloatValue);
-				LinkedWriteObject.SetFloatStat(ColumnIds[j], FloatValue);
-				`log("OnReadComplete - FloatStat["$ColumnIds[j]$"]="$FloatValue, bLogStatsRead);
-				break;
-		}
-
-		LinkedWriteObject.CacheStatsValue(ColumnIds[j], FloatValue);
-	}
-
-	LinkedWriteObject.GetAchievements();
-	LinkedWriteObject.MyKFPC.ClientInitializePerks();
 }
+//@HSL_MOD_END
 
 defaultproperties
 {

@@ -963,6 +963,11 @@ native static final function string GetDeviceUUID();
 native static final function float GetOSVersion();
 
 /**
+ * Return TitleSafe Area Scale.
+ */
+native static final function float GetTitleSafeArea();
+
+/**
  * Returns the push notification token for the device + application
  */
 native static final function string GetDevicePushNotificationToken();

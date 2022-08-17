@@ -64,7 +64,6 @@ class KFDT_Ballistic_Bullpup extends KFDT_Ballistic_AssaultRifle
 
 
 
-
 #linenumber 15;
 
 defaultproperties

@@ -110,48 +110,80 @@ struct native MobilePostProcessSettings
 
 struct native TWPostProcessSettings
 {
+    var bool bOverride_DOF_FocalDistance;
     /** Fixed distance to the in-focus plane */
-    var(DepthOfField) interp float DOF_FocalDistance;
+    var(DepthOfField) interp float DOF_FocalDistance<EditCondition=bOverride_DOF_FocalDistance>;
+    var bool bOverride_DOF_SharpRadius;
     /** [World] World-unit radius around the focal point that is unblurred. */
-    var(DepthOfField) float DOF_SharpRadius;
+    var(DepthOfField) interp float DOF_SharpRadius<EditCondition=bOverride_DOF_SharpRadius>;
+    var bool bOverride_DOF_FocalRadius;
     /** [World] World-unit focal radius that defines how far away from the focal plane ( +/- sharp radius ) the maximum far/near blur radius is reached. */
-    var(DepthOfField) float DOF_FocalRadius;
+    var(DepthOfField) interp float DOF_FocalRadius<EditCondition=bOverride_DOF_FocalRadius>;
+    var bool bOverride_DOF_MinBlurSize;
     /** [World] Minimum blur size. */
-    var(DepthOfField) float DOF_MinBlurSize;
+    var(DepthOfField) interp float DOF_MinBlurSize<EditCondition=bOverride_DOF_MinBlurSize>;
+    var bool bOverride_DOF_MaxNearBlurSize;
     /** [World] Maximum blur size for near-field (objects closer than focal point). */
-    var(DepthOfField) float DOF_MaxNearBlurSize;
+    var(DepthOfField) interp float DOF_MaxNearBlurSize<EditCondition=bOverride_DOF_MaxNearBlurSize>;
+    var bool bOverride_DOF_MaxFarBlurSize;
     /** [World] Maximum blur size for far-field (objects more distance than focal point). */
-    var(DepthOfField) float DOF_MaxFarBlurSize;
+    var(DepthOfField) interp float DOF_MaxFarBlurSize<EditCondition=bOverride_DOF_MaxFarBlurSize>;
+    var bool bOverride_DOF_ExpFalloff;
     /** < 1 faster than linear transition */
-    var(DepthOfField) float DOF_ExpFalloff;
-    /** [Foreground] World-unit radius around the focal point that is unblurred. */
-    var(DepthOfField) float DOF_FG_SharpRadius;
-    /** [Foreground] World-unit focal radius that defines how far away from the focal plane ( +/- sharp radius ) the maximum far/near blur radius is reached. */
-    var(DepthOfField) float DOF_FG_FocalRadius;
-    /** [Foreground] Minimum blur size. */
-    var(DepthOfField) float DOF_FG_MinBlurSize;
-    /** [Foreground] Maximum blur size for near-field (objects closer than focal point). */
-    var(DepthOfField) float DOF_FG_MaxNearBlurSize;
-    /** < 1 faster than linear transition */
-    var(DepthOfField) float DOF_FG_ExpFalloff;
+    var(DepthOfField) interp float DOF_ExpFalloff<EditCondition=bOverride_DOF_ExpFalloff>;
+    var float DOF_FG_SharpRadius;
+    var float DOF_FG_FocalRadius;
+    var float DOF_FG_MinBlurSize;
+    var float DOF_FG_MaxNearBlurSize;
+    var float DOF_FG_ExpFalloff;
+    var bool bOverride_Bloom_Intensity;
     /** Scales the final bloom color before applying to the scene */
-    var(Bloom) interp float Bloom_Intensity;
+    var(Bloom) interp float Bloom_Intensity<EditCondition=bOverride_Bloom_Intensity>;
+    var bool bOverride_Bloom_Width;
     /** Width multiplier for the blur kernel.  Larger values equal width bloom. */
-    var(Bloom) interp float Bloom_Width;
+    var(Bloom) interp float Bloom_Width<EditCondition=bOverride_Bloom_Width>;
+    var bool bOverride_Bloom_Exposure;
     /**  
      *During the bright-pass phase, the candidate color at each pixel is scaled by this
      *         value before applying the threshold.
      */
-    var(Bloom) interp float Bloom_Exposure;
+    var(Bloom) interp float Bloom_Exposure<EditCondition=bOverride_Bloom_Exposure>;
+    var bool bOverride_Bloom_Threshold;
     /**  
      *Threshold value for determining which pixels contribute to bloom.  Pixel colors
      *         are scaled by Exposure before applying the threshold.
      */
-    var(Bloom) interp float Bloom_Threshold;
-    /** Duration over which to interpolate values to. */
-    var(Bloom) interp float Bloom_InterpolationDuration;
+    var(Bloom) interp float Bloom_Threshold<EditCondition=bOverride_Bloom_Threshold>;
+    var float Bloom_InterpolationDuration;
     /** Controls the film-grain noise intensity (TW post process effect only) */
     var(Noise) interp float NoiseIntensity;
+    var bool bOverride_Fog_Start_Distance;
+    /** Distance from the camera at which the fog kicks in (World Space Units) */
+    var(DistanceFog) interp float Fog_Start_Distance<UIMin=0.0|ClampMin=0.0|EditCondition=bOverride_Fog_Start_Distance>;
+    var bool bOverride_Fog_MaxStrength_Distance;
+    /**  
+     *Distance from the camera at which max fog kicks in (World Space Units).
+     *               This is the distance at which the interp ends - max fog will be in effect past this distance. 
+     *               This should be greater than Fog Start Distance.
+     */
+    var(DistanceFog) interp float Fog_MaxStrength_Distance<UIMin=0.0|ClampMin=0.0|EditCondition=bOverride_Fog_MaxStrength_Distance>;
+    var bool bOverride_Fog_AnimationCutoff_Distance;
+    /**  
+     *Distance at which the perlin noise based fog animation will give way to a solid fog color.
+     *               This should be greater than Fog Start Distance. Clamp at 30000 uu as noise samples get bunched together 
+     *               at a distance creating a salt and pepper  pattern since the sampling is not perspective correct
+     */
+    var(DistanceFog) interp float Fog_AnimationCutoff_Distance<UIMin=0.0|ClampMin=0.0|ClampMax=30000.0|EditCondition=bOverride_Fog_AnimationCutoff_Distance>;
+    var bool bOverride_Fog_Intensity;
+    /** 0-1 value that controls how much fog to apply. 0 - No fog, 1 - Full fog */
+    var(DistanceFog) interp float Fog_Intensity<UIMin=0.0|UIMax=1.0|ClampMin=0.0|ClampMax=1.0|EditCondition=bOverride_Fog_Intensity>;
+    var bool bOverride_Fog_MinAmount;
+    /** 0-1 value that specifies the lower bound on the amount of fog. This will be modulated by Fog_Intesity. */
+    var(DistanceFog) interp float Fog_MinAmount<UIMin=0.0|UIMax=1.0|ClampMin=0.0|ClampMax=1.0|EditCondition=bOverride_Fog_MinAmount>;
+    var bool bOverride_Fog_Color;
+    /** Fog Color */
+    var(DistanceFog) LinearColor Fog_Color<EditCondition=bOverride_Fog_Color>;
+    var float Fog_InterpolationDuration;
     var bool MB_TileMaxEnabled;
     var bool bForceGameplayDOF;
     var bool bForceGameplayBloom;
@@ -164,24 +196,48 @@ struct native TWPostProcessSettings
 
     structdefaultproperties
     {
+        bOverride_DOF_FocalDistance=false
         DOF_FocalDistance=1000
+        bOverride_DOF_SharpRadius=false
         DOF_SharpRadius=800
+        bOverride_DOF_FocalRadius=false
         DOF_FocalRadius=1200
+        bOverride_DOF_MinBlurSize=false
         DOF_MinBlurSize=0
+        bOverride_DOF_MaxNearBlurSize=false
         DOF_MaxNearBlurSize=0
+        bOverride_DOF_MaxFarBlurSize=false
         DOF_MaxFarBlurSize=0
+        bOverride_DOF_ExpFalloff=false
         DOF_ExpFalloff=1
         DOF_FG_SharpRadius=75
         DOF_FG_FocalRadius=150
         DOF_FG_MinBlurSize=0
         DOF_FG_MaxNearBlurSize=0
         DOF_FG_ExpFalloff=1
+        bOverride_Bloom_Intensity=false
         Bloom_Intensity=1.05
+        bOverride_Bloom_Width=false
         Bloom_Width=4
+        bOverride_Bloom_Exposure=false
         Bloom_Exposure=1.25
+        bOverride_Bloom_Threshold=false
         Bloom_Threshold=0.6
         Bloom_InterpolationDuration=1
         NoiseIntensity=1
+        bOverride_Fog_Start_Distance=false
+        Fog_Start_Distance=0
+        bOverride_Fog_MaxStrength_Distance=false
+        Fog_MaxStrength_Distance=10000
+        bOverride_Fog_AnimationCutoff_Distance=false
+        Fog_AnimationCutoff_Distance=8000
+        bOverride_Fog_Intensity=false
+        Fog_Intensity=0.3
+        bOverride_Fog_MinAmount=false
+        Fog_MinAmount=0.1
+        bOverride_Fog_Color=false
+        Fog_Color=(R=1,G=1,B=1,A=1)
+        Fog_InterpolationDuration=3
         MB_TileMaxEnabled=true
         bForceGameplayDOF=false
         bForceGameplayBloom=false
@@ -287,6 +343,7 @@ struct native PostProcessSettings
     var bool bOverride_EnableSceneEffect;
     var bool bOverride_AllowAmbientOcclusion;
     var bool bOverride_OverrideRimShaderColor;
+    var bool bOverride_EnableDistanceFog;
     var bool bOverride_Bloom_Scale;
     var bool bOverride_Bloom_Threshold;
     var bool bOverride_Bloom_Tint;
@@ -334,6 +391,8 @@ struct native PostProcessSettings
     var() bool bAllowAmbientOcclusion<EditCondition=bOverride_AllowAmbientOcclusion>;
     /** Whether to override the rim shader color. */
     var(RimShader) bool bOverrideRimShaderColor<EditCondition=bOverride_OverrideRimShaderColor>;
+    /** Whether distance fog is enabled or not */
+    var(DistanceFog) bool bEnableDistanceFog<EditCondition=bOverride_EnableDistanceFog>;
     /** Settings specific to the custom TWPostProcess effect. */
     var() TWPostProcessSettings TripwireSettings;
     /** Legacy settings used by the UberPostProcess effect. */
@@ -362,12 +421,13 @@ struct native PostProcessSettings
 
     structdefaultproperties
     {
-        bOverride_EnableBloom=true
-        bOverride_EnableDOF=true
-        bOverride_EnableMotionBlur=true
-        bOverride_EnableSceneEffect=true
-        bOverride_AllowAmbientOcclusion=true
-        bOverride_OverrideRimShaderColor=true
+        bOverride_EnableBloom=false
+        bOverride_EnableDOF=false
+        bOverride_EnableMotionBlur=false
+        bOverride_EnableSceneEffect=false
+        bOverride_AllowAmbientOcclusion=false
+        bOverride_OverrideRimShaderColor=false
+        bOverride_EnableDistanceFog=false
         bOverride_Bloom_Scale=true
         bOverride_Bloom_Threshold=true
         bOverride_Bloom_Tint=true
@@ -409,7 +469,8 @@ struct native PostProcessSettings
         bEnableSceneEffect=true
         bAllowAmbientOcclusion=true
         bOverrideRimShaderColor=false
-        TripwireSettings=(DOF_FocalDistance=1000,DOF_SharpRadius=800,DOF_FocalRadius=1200,DOF_MinBlurSize=0,DOF_MaxNearBlurSize=0,DOF_MaxFarBlurSize=0,DOF_ExpFalloff=1,DOF_FG_SharpRadius=75,DOF_FG_FocalRadius=150,DOF_FG_MinBlurSize=0,DOF_FG_MaxNearBlurSize=0,DOF_FG_ExpFalloff=1,Bloom_Intensity=1.05,Bloom_Width=4,Bloom_Exposure=1.25,Bloom_Threshold=0.6,Bloom_InterpolationDuration=1,NoiseIntensity=1,MB_TileMaxEnabled=true,bForceGameplayDOF=false,bForceGameplayBloom=false,bForceGameplayImageGrain=false,bForceGameplayTranslucencyTint=false,bEnableScreenSpaceReflections=true,bBlurEnabled=false,BlurStrength=0)
+        bEnableDistanceFog=false
+        TripwireSettings=(bOverride_DOF_FocalDistance=false,DOF_FocalDistance=1000,bOverride_DOF_SharpRadius=false,DOF_SharpRadius=800,bOverride_DOF_FocalRadius=false,DOF_FocalRadius=1200,bOverride_DOF_MinBlurSize=false,DOF_MinBlurSize=0,bOverride_DOF_MaxNearBlurSize=false,DOF_MaxNearBlurSize=0,bOverride_DOF_MaxFarBlurSize=false,DOF_MaxFarBlurSize=0,bOverride_DOF_ExpFalloff=false,DOF_ExpFalloff=1,DOF_FG_SharpRadius=75,DOF_FG_FocalRadius=150,DOF_FG_MinBlurSize=0,DOF_FG_MaxNearBlurSize=0,DOF_FG_ExpFalloff=1,bOverride_Bloom_Intensity=false,Bloom_Intensity=1.05,bOverride_Bloom_Width=false,Bloom_Width=4,bOverride_Bloom_Exposure=false,Bloom_Exposure=1.25,bOverride_Bloom_Threshold=false,Bloom_Threshold=0.6,Bloom_InterpolationDuration=1,NoiseIntensity=1,bOverride_Fog_Start_Distance=false,Fog_Start_Distance=0,bOverride_Fog_MaxStrength_Distance=false,Fog_MaxStrength_Distance=10000,bOverride_Fog_AnimationCutoff_Distance=false,Fog_AnimationCutoff_Distance=8000,bOverride_Fog_Intensity=false,Fog_Intensity=0.3,bOverride_Fog_MinAmount=false,Fog_MinAmount=0.1,bOverride_Fog_Color=false,Fog_Color=(R=1,G=1,B=1,A=1),Fog_InterpolationDuration=3,MB_TileMaxEnabled=true,bForceGameplayDOF=false,bForceGameplayBloom=false,bForceGameplayImageGrain=false,bForceGameplayTranslucencyTint=false,bEnableScreenSpaceReflections=true,bBlurEnabled=false,BlurStrength=0)
         LegacySettings=(Bloom_Scale=1,Bloom_Threshold=1,Bloom_InterpolationDuration=1,DOF_BlurBloomKernelSize=16,DOF_FalloffExponent=4,DOF_BlurKernelSize=16,DOF_MaxNearBlurAmount=1,DOF_MinBlurAmount=0,DOF_MaxFarBlurAmount=1,DOF_FocusType=EFocusType.FOCUS_Distance,DOF_FocusInnerRadius=2000,DOF_FocusDistance=0,DOF_FocusPosition=(X=0,Y=0,Z=0),DOF_InterpolationDuration=1,DOF_BokehTexture=none,MotionBlur_MaxVelocity=1,MotionBlur_Amount=0.5,MotionBlur_FullMotionBlur=true,MotionBlur_CameraRotationThreshold=45,MotionBlur_CameraTranslationThreshold=10000,MotionBlur_InterpolationDuration=1,RimShader_Color=(R=0.47044,G=0.585973,B=0.827726,A=1),RimShader_InterpolationDuration=1,Scene_ImageGrainScale=0,MobileColorGrading=(TransitionTime=1,Blend=0,Desaturation=0,HighLights=(R=0.7,G=0.7,B=0.7,A=1),MidTones=(R=0,G=0,B=0,A=1),Shadows=(R=0,G=0,B=0,A=1)),MobilePostProcess=(bOverride_Mobile_BlurAmount=false,bOverride_Mobile_TransitionTime=false,bOverride_Mobile_Bloom_Scale=false,bOverride_Mobile_Bloom_Threshold=false,bOverride_Mobile_Bloom_Tint=false,bOverride_Mobile_DOF_Distance=false,bOverride_Mobile_DOF_MinRange=false,bOverride_Mobile_DOF_MaxRange=false,bOverride_Mobile_DOF_FarBlurFactor=false,Mobile_BlurAmount=16,Mobile_TransitionTime=1,Mobile_Bloom_Scale=0.5,Mobile_Bloom_Threshold=0.75,Mobile_Bloom_Tint=(R=1,G=1,B=1,A=1),Mobile_DOF_Distance=1500,Mobile_DOF_MinRange=600,Mobile_DOF_MaxRange=1200,Mobile_DOF_FarBlurFactor=1))
         Bloom_Tint=(B=255,G=255,R=255,A=0)
         Bloom_ScreenBlendThreshold=10
@@ -475,7 +536,7 @@ simulated function OnToggle(SeqAct_Toggle Action)
 defaultproperties
 {
     bEnabled=true
-    Settings=(bOverride_EnableBloom=true,bOverride_EnableDOF=true,bOverride_EnableMotionBlur=true,bOverride_EnableSceneEffect=true,bOverride_AllowAmbientOcclusion=true,bOverride_OverrideRimShaderColor=true,bOverride_Bloom_Scale=true,bOverride_Bloom_Threshold=true,bOverride_Bloom_Tint=true,bOverride_Bloom_ScreenBlendThreshold=true,bOverride_Bloom_InterpolationDuration=true,bOverride_DOF_FalloffExponent=true,bOverride_DOF_BlurKernelSize=true,bOverride_DOF_BlurBloomKernelSize=true,bOverride_DOF_MaxNearBlurAmount=true,bOverride_DOF_MinBlurAmount=false,bOverride_DOF_MaxFarBlurAmount=true,bOverride_DOF_FocusType=true,bOverride_DOF_FocusInnerRadius=true,bOverride_DOF_FocusDistance=true,bOverride_DOF_FocusPosition=true,bOverride_DOF_InterpolationDuration=true,bOverride_DOF_BokehTexture=false,bOverride_MotionBlur_MaxVelocity=false,bOverride_MotionBlur_Amount=false,bOverride_MotionBlur_FullMotionBlur=false,bOverride_MotionBlur_CameraRotationThreshold=false,bOverride_MotionBlur_CameraTranslationThreshold=false,bOverride_MotionBlur_InterpolationDuration=false,bOverride_Scene_Desaturation=true,bOverride_Scene_Colorize=false,bOverride_Scene_TonemapperScale=false,bOverride_Scene_ImageGrainScale=false,bOverride_Scene_HighLights=true,bOverride_Scene_MidTones=true,bOverride_Scene_Shadows=true,bOverride_Scene_InterpolationDuration=true,bOverride_Scene_ColorGradingLUT=false,bOverride_RimShader_Color=true,bOverride_RimShader_InterpolationDuration=true,bOverride_MobileColorGrading=false,bEnableBloom=true,bEnableDOF=false,bEnableMotionBlur=true,bEnableSceneEffect=true,bAllowAmbientOcclusion=true,bOverrideRimShaderColor=false,TripwireSettings=(DOF_FocalDistance=1000,DOF_SharpRadius=800,DOF_FocalRadius=1200,DOF_MinBlurSize=0,DOF_MaxNearBlurSize=0,DOF_MaxFarBlurSize=0,DOF_ExpFalloff=1,DOF_FG_SharpRadius=75,DOF_FG_FocalRadius=150,DOF_FG_MinBlurSize=0,DOF_FG_MaxNearBlurSize=0,DOF_FG_ExpFalloff=1,Bloom_Intensity=1.05,Bloom_Width=4,Bloom_Exposure=1.25,Bloom_Threshold=0.6,Bloom_InterpolationDuration=1,NoiseIntensity=1,MB_TileMaxEnabled=true,bForceGameplayDOF=false,bForceGameplayBloom=false,bForceGameplayImageGrain=false,bForceGameplayTranslucencyTint=false,bEnableScreenSpaceReflections=true,bBlurEnabled=false,BlurStrength=0),LegacySettings=(Bloom_Scale=1,Bloom_Threshold=1,Bloom_InterpolationDuration=1,DOF_BlurBloomKernelSize=16,DOF_FalloffExponent=4,DOF_BlurKernelSize=16,DOF_MaxNearBlurAmount=1,DOF_MinBlurAmount=0,DOF_MaxFarBlurAmount=1,DOF_FocusType=EFocusType.FOCUS_Distance,DOF_FocusInnerRadius=2000,DOF_FocusDistance=0,DOF_FocusPosition=(X=0,Y=0,Z=0),DOF_InterpolationDuration=1,DOF_BokehTexture=none,MotionBlur_MaxVelocity=1,MotionBlur_Amount=0.5,MotionBlur_FullMotionBlur=true,MotionBlur_CameraRotationThreshold=45,MotionBlur_CameraTranslationThreshold=10000,MotionBlur_InterpolationDuration=1,RimShader_Color=(R=0.47044,G=0.585973,B=0.827726,A=1),RimShader_InterpolationDuration=1,Scene_ImageGrainScale=0,MobileColorGrading=(TransitionTime=1,Blend=0,Desaturation=0,HighLights=(R=0.7,G=0.7,B=0.7,A=1),MidTones=(R=0,G=0,B=0,A=1),Shadows=(R=0,G=0,B=0,A=1)),MobilePostProcess=(bOverride_Mobile_BlurAmount=false,bOverride_Mobile_TransitionTime=false,bOverride_Mobile_Bloom_Scale=false,bOverride_Mobile_Bloom_Threshold=false,bOverride_Mobile_Bloom_Tint=false,bOverride_Mobile_DOF_Distance=false,bOverride_Mobile_DOF_MinRange=false,bOverride_Mobile_DOF_MaxRange=false,bOverride_Mobile_DOF_FarBlurFactor=false,Mobile_BlurAmount=16,Mobile_TransitionTime=1,Mobile_Bloom_Scale=0.5,Mobile_Bloom_Threshold=0.75,Mobile_Bloom_Tint=(R=1,G=1,B=1,A=1),Mobile_DOF_Distance=1500,Mobile_DOF_MinRange=600,Mobile_DOF_MaxRange=1200,Mobile_DOF_FarBlurFactor=1)),Bloom_Tint=(B=255,G=255,R=255,A=0),Bloom_ScreenBlendThreshold=10,Scene_Desaturation=0,Scene_Colorize=(X=1,Y=1,Z=1),Scene_TonemapperScale=1,Scene_HighLights=(X=1,Y=1,Z=1),Scene_MidTones=(X=1,Y=1,Z=1),Scene_Shadows=(X=0,Y=0,Z=0),Scene_InterpolationDuration=0,ColorGrading_LookupTable=none,ColorGradingLUT=(LUTTextures=none,LUTWeights=none))
+    Settings=(bOverride_EnableBloom=false,bOverride_EnableDOF=false,bOverride_EnableMotionBlur=false,bOverride_EnableSceneEffect=false,bOverride_AllowAmbientOcclusion=false,bOverride_OverrideRimShaderColor=false,bOverride_EnableDistanceFog=false,bOverride_Bloom_Scale=true,bOverride_Bloom_Threshold=true,bOverride_Bloom_Tint=true,bOverride_Bloom_ScreenBlendThreshold=true,bOverride_Bloom_InterpolationDuration=true,bOverride_DOF_FalloffExponent=true,bOverride_DOF_BlurKernelSize=true,bOverride_DOF_BlurBloomKernelSize=true,bOverride_DOF_MaxNearBlurAmount=true,bOverride_DOF_MinBlurAmount=false,bOverride_DOF_MaxFarBlurAmount=true,bOverride_DOF_FocusType=true,bOverride_DOF_FocusInnerRadius=true,bOverride_DOF_FocusDistance=true,bOverride_DOF_FocusPosition=true,bOverride_DOF_InterpolationDuration=true,bOverride_DOF_BokehTexture=false,bOverride_MotionBlur_MaxVelocity=false,bOverride_MotionBlur_Amount=false,bOverride_MotionBlur_FullMotionBlur=false,bOverride_MotionBlur_CameraRotationThreshold=false,bOverride_MotionBlur_CameraTranslationThreshold=false,bOverride_MotionBlur_InterpolationDuration=false,bOverride_Scene_Desaturation=true,bOverride_Scene_Colorize=false,bOverride_Scene_TonemapperScale=false,bOverride_Scene_ImageGrainScale=false,bOverride_Scene_HighLights=true,bOverride_Scene_MidTones=true,bOverride_Scene_Shadows=true,bOverride_Scene_InterpolationDuration=true,bOverride_Scene_ColorGradingLUT=false,bOverride_RimShader_Color=true,bOverride_RimShader_InterpolationDuration=true,bOverride_MobileColorGrading=false,bEnableBloom=true,bEnableDOF=false,bEnableMotionBlur=true,bEnableSceneEffect=true,bAllowAmbientOcclusion=true,bOverrideRimShaderColor=false,bEnableDistanceFog=false,TripwireSettings=(bOverride_DOF_FocalDistance=false,DOF_FocalDistance=1000,bOverride_DOF_SharpRadius=false,DOF_SharpRadius=800,bOverride_DOF_FocalRadius=false,DOF_FocalRadius=1200,bOverride_DOF_MinBlurSize=false,DOF_MinBlurSize=0,bOverride_DOF_MaxNearBlurSize=false,DOF_MaxNearBlurSize=0,bOverride_DOF_MaxFarBlurSize=false,DOF_MaxFarBlurSize=0,bOverride_DOF_ExpFalloff=false,DOF_ExpFalloff=1,DOF_FG_SharpRadius=75,DOF_FG_FocalRadius=150,DOF_FG_MinBlurSize=0,DOF_FG_MaxNearBlurSize=0,DOF_FG_ExpFalloff=1,bOverride_Bloom_Intensity=false,Bloom_Intensity=1.05,bOverride_Bloom_Width=false,Bloom_Width=4,bOverride_Bloom_Exposure=false,Bloom_Exposure=1.25,bOverride_Bloom_Threshold=false,Bloom_Threshold=0.6,Bloom_InterpolationDuration=1,NoiseIntensity=1,bOverride_Fog_Start_Distance=false,Fog_Start_Distance=0,bOverride_Fog_MaxStrength_Distance=false,Fog_MaxStrength_Distance=10000,bOverride_Fog_AnimationCutoff_Distance=false,Fog_AnimationCutoff_Distance=8000,bOverride_Fog_Intensity=false,Fog_Intensity=0.3,bOverride_Fog_MinAmount=false,Fog_MinAmount=0.1,bOverride_Fog_Color=false,Fog_Color=(R=1,G=1,B=1,A=1),Fog_InterpolationDuration=3,MB_TileMaxEnabled=true,bForceGameplayDOF=false,bForceGameplayBloom=false,bForceGameplayImageGrain=false,bForceGameplayTranslucencyTint=false,bEnableScreenSpaceReflections=true,bBlurEnabled=false,BlurStrength=0),LegacySettings=(Bloom_Scale=1,Bloom_Threshold=1,Bloom_InterpolationDuration=1,DOF_BlurBloomKernelSize=16,DOF_FalloffExponent=4,DOF_BlurKernelSize=16,DOF_MaxNearBlurAmount=1,DOF_MinBlurAmount=0,DOF_MaxFarBlurAmount=1,DOF_FocusType=EFocusType.FOCUS_Distance,DOF_FocusInnerRadius=2000,DOF_FocusDistance=0,DOF_FocusPosition=(X=0,Y=0,Z=0),DOF_InterpolationDuration=1,DOF_BokehTexture=none,MotionBlur_MaxVelocity=1,MotionBlur_Amount=0.5,MotionBlur_FullMotionBlur=true,MotionBlur_CameraRotationThreshold=45,MotionBlur_CameraTranslationThreshold=10000,MotionBlur_InterpolationDuration=1,RimShader_Color=(R=0.47044,G=0.585973,B=0.827726,A=1),RimShader_InterpolationDuration=1,Scene_ImageGrainScale=0,MobileColorGrading=(TransitionTime=1,Blend=0,Desaturation=0,HighLights=(R=0.7,G=0.7,B=0.7,A=1),MidTones=(R=0,G=0,B=0,A=1),Shadows=(R=0,G=0,B=0,A=1)),MobilePostProcess=(bOverride_Mobile_BlurAmount=false,bOverride_Mobile_TransitionTime=false,bOverride_Mobile_Bloom_Scale=false,bOverride_Mobile_Bloom_Threshold=false,bOverride_Mobile_Bloom_Tint=false,bOverride_Mobile_DOF_Distance=false,bOverride_Mobile_DOF_MinRange=false,bOverride_Mobile_DOF_MaxRange=false,bOverride_Mobile_DOF_FarBlurFactor=false,Mobile_BlurAmount=16,Mobile_TransitionTime=1,Mobile_Bloom_Scale=0.5,Mobile_Bloom_Threshold=0.75,Mobile_Bloom_Tint=(R=1,G=1,B=1,A=1),Mobile_DOF_Distance=1500,Mobile_DOF_MinRange=600,Mobile_DOF_MaxRange=1200,Mobile_DOF_FarBlurFactor=1)),Bloom_Tint=(B=255,G=255,R=255,A=0),Bloom_ScreenBlendThreshold=10,Scene_Desaturation=0,Scene_Colorize=(X=1,Y=1,Z=1),Scene_TonemapperScale=1,Scene_HighLights=(X=1,Y=1,Z=1),Scene_MidTones=(X=1,Y=1,Z=1),Scene_Shadows=(X=0,Y=0,Z=0),Scene_InterpolationDuration=0,ColorGrading_LookupTable=none,ColorGradingLUT=(LUTTextures=none,LUTWeights=none))
     begin object name=BrushComponent0 class=BrushComponent
         ReplacementPrimitive=none
         CollideActors=false

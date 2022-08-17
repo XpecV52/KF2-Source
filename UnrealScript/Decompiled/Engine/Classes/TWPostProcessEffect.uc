@@ -81,6 +81,26 @@ var(Tonemapper) float TonemapperScale;
 var(Noise) float NoiseIntensity;
 /** Only used if PostProcessAAType is MLAA */
 var(AntiAliasing) float EdgeDetectionThreshold;
+/** Distance from the camera at which the fog kicks in (World Space Units) */
+var(DistanceFog) float Fog_Start_Distance<DisplayName=Start Distance|UIMin=0.0|ClampMin=0.0>;
+/**  
+ *Distance from the camera at which max fog kicks in (World Space Units).
+ *       This is the distance at which the interp ends - max fog will be in effect past this distance. 
+ *       This should be greater than Fog Start Distance.
+ */
+var(DistanceFog) float Fog_MaxStrength_Distance<DisplayName=MaxStrength Distance|UIMin=0.0|ClampMin=0.0>;
+/**  
+ *Distance at which the perlin noise based fog animation will give way to a solid fog color.
+ *       This should be greater than Fog Start Distance. Clamp at 30000 uu as noise samples get bunched together 
+ *       at a distance creating a salt and pepper  pattern since the sampling is not perspective correct
+ */
+var(DistanceFog) float Fog_AnimationCutoff_Distance<UIMin=0.0|ClampMin=0.0|ClampMax=30000.0>;
+/** 0-1 value that controls how much fog to apply. 0 - No fog, 1 - Full fog */
+var(DistanceFog) float Fog_Intensity<DisplayName=Intensity|UIMin=0.0|UIMax=1.0>;
+/** 0-1 value that specifies the lower bound on the amount of fog. This will be modulated by Fog_Intesity. */
+var(DistanceFog) float Fog_MinAmount<DisplayName=Min Fog|UIMin=0.0|UIMax=1.0>;
+/** Fog Color */
+var(DistanceFog) Color Fog_Color<DisplayName=Color>;
 
 defaultproperties
 {
@@ -113,4 +133,8 @@ defaultproperties
     TonemapperScale=1
     NoiseIntensity=1
     EdgeDetectionThreshold=12
+    Fog_MaxStrength_Distance=10000
+    Fog_AnimationCutoff_Distance=8000
+    Fog_Intensity=0.3
+    Fog_Color=(B=255,G=255,R=255,A=0)
 }

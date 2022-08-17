@@ -1,0 +1,6702 @@
+//NOTES: 
+//1. CharacterName can be changed slightly. It can run to about ?? characters (MAX), including spaces.
+//2. Description is the bio and can be edited quite happily. Limit is just over 800 characters, including spaces. 
+//3. All the rest (Skin descriptions) should be 20-21 characters, max, including spaces.
+
+//Jagerhorn
+[CHR_Jagerhorn_Archetype]
+CharacterName="Ойстен Яґергорн"
+Description="Яґергорн — міцний хлопака зі Швеції, який до початку нашестя полюбляв випивати пиво та горланити у барах, наче справжній сучасний вікінг. Проте, після кривавої північної війни байкерів у дев’яностих, він зрозумів, що безжалісне насильство проти людей є значно менш веселим заняттям, аніж багацько випивати та невміло грати на головній гітарі у групі «Metalbika», власній триб’ют-групі, яку він присвятив Металіці. \n\nКоли нашестя досягло Скандинавії, то божевільне насильство стало невід’ємною частиною повсякденності. За принципами Яґергорна, зеди проти людей — це погано для карми. Міцний шведський вікінг Ойстен Яґергорн проти зедів? Те, що треба!"
+BodyMesh0="Час байкерів"
+HeadMesh0="Сила бороди!"
+
+Attachment0="Плоский кашкет"
+Attachment1="Кевларовий шолом"
+Attachment2="Шолом з приладом нічного бачення"
+Attachment3="Маска зварювальника"
+Attachment4="Пов’язка на око"
+Attachment5="Ковпак кухаря"
+Attachment6="Ковбойський капелюх"
+Attachment7="Бейсболка"
+Attachment8="Авіатори"
+Attachment9="Ретро-окуляри"
+Attachment10="Колючий ковбойський капелюх"
+Attachment11="Забрало шолома піднято"
+Attachment12="Забрало шолома опущено"
+Attachment13="Поліцейський шолом"
+Attachment14="Charm Goggles"
+Attachment15="Aviator Goggles"
+Attachment16="Sawblade Battle Helm"
+Attachment17="Boonie Cap"
+Attachment18="Infiltrator"
+Attachment19="Mask of the Abyss"
+Attachment20="Horzine Cybernetic Gas Mask"
+Attachment21="JFront Cap"
+Attachment22="Longhorn"
+Attachment23="EMS Backpack"
+Attachment24="Motorcycle Helmet"
+Attachment25="Smashed Motorcycle Helmet"
+Attachment26="Rubber Air Filter"
+Attachment27="Russian Gas Mask"
+Attachment28="Sawtooth Mask"
+Attachment29="The Inquisitor"
+Attachment30="US Gas Mask"
+Attachment31="Bloody Games"
+Attachment32="Shattered Mask"
+Attachment33="Military Surplus Beenie"
+Attachment34="RAF Goggles"
+Attachment35="Pork Pie"
+Attachment36="Visage de Poupee"
+Attachment37="Protective Glasses"
+Attachment38="Samurai Helm"
+Attachment39="Samurai Hat"
+Attachment40="Street Punk Bandana"
+Attachment41="Street Punk Glasses"
+Attachment42="Discount T-Rex Mask"
+Attachment43="Wasteland Goggles"
+Attachment44="EMS Arm Band"
+
+[CHR_Jagerhorn_Archetype.BodyMesh0]
+BodySkin0="Гільйотина"
+BodySkin1="Horzine"
+BodySkin2="Ді-джей Скаллі"
+BodySkin3="Справжня непокора"
+BodySkin4="Мисливець на демонів"
+
+[CHR_Jagerhorn_Archetype.HeadMesh0]
+HeadSkin0="Шведський блондин"
+HeadSkin1="Чорний альбом"
+HeadSkin2="Криваво-червоний"
+
+[chr_Jagerhorn_archetype.Attachment0]
+AttachmentSkin0="Коричневий"
+AttachmentSkin1="Чорний"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Жовтий"
+AttachmentSkin4="Білий"
+
+[chr_Jagerhorn_archetype.Attachment1]
+AttachmentSkin0="Камуфляжний"
+
+[chr_Jagerhorn_archetype.Attachment2]
+AttachmentSkin0="Синє сяйво"
+
+[chr_Jagerhorn_archetype.Attachment3]
+AttachmentSkin0="Темно-металевий"
+
+[chr_Jagerhorn_archetype.Attachment4]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський"
+AttachmentSkin2="Біо"
+AttachmentSkin3="Синій"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Лавандос"
+AttachmentSkin6="Око"
+AttachmentSkin7="Екстравагантного вигляду"
+AttachmentSkin8="Полум’я"
+AttachmentSkin9="У клітинку"
+AttachmentSkin10="Пурпуровий"
+AttachmentSkin11="Череп"
+AttachmentSkin12="Бризки"
+AttachmentSkin13="Спіраль"
+
+[chr_Jagerhorn_archetype.Attachment5]
+AttachmentSkin0="Білий"
+AttachmentSkin1="Смугастий"
+AttachmentSkin2="Закривавлений"
+
+[chr_Jagerhorn_archetype.Attachment6]
+AttachmentSkin0="Ковбойський капелюх"
+
+[chr_Jagerhorn_archetype.Attachment7]
+AttachmentSkin0="Велика Британія"
+AttachmentSkin1="США"
+AttachmentSkin2="Канада"
+AttachmentSkin3="Німеччина"
+AttachmentSkin4="Росія"
+
+[chr_Jagerhorn_archetype.Attachment8]
+AttachmentSkin0="Білі краї"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Червоний"
+
+[chr_Jagerhorn_archetype.Attachment9]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Камуфляжний"
+AttachmentSkin2="Тигровий"
+AttachmentSkin3="США"
+
+[chr_Jagerhorn_archetype.Attachment10]
+AttachmentSkin0="Темний вершник"
+AttachmentSkin1="Зношена шкіра"
+AttachmentSkin2="Бездоганна репутація"
+AttachmentSkin3="Криваво-червоний"
+
+[chr_Jagerhorn_archetype.Attachment11]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_Jagerhorn_archetype.Attachment12]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_Jagerhorn_archetype.Attachment13]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Золотий"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Коштовний золотий"
+
+[CHR_Jagerhorn_Archetype.Attachment14]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment15]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment16]
+AttachmentSkin0="Default"
+
+[CHR_Jagerhorn_Archetype.Attachment17]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[CHR_Jagerhorn_Archetype.Attachment18]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment19]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment20]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[CHR_Jagerhorn_Archetype.Attachment21]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[CHR_Jagerhorn_Archetype.Attachment22]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment23]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Jagerhorn_Archetype.Attachment24]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment25]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[CHR_Jagerhorn_Archetype.Attachment26]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[CHR_Jagerhorn_Archetype.Attachment27]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment28]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment29]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[CHR_Jagerhorn_Archetype.Attachment30]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment31]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[CHR_Jagerhorn_Archetype.Attachment32]
+AttachmentSkin0="WhiteYellow"
+
+[CHR_Jagerhorn_Archetype.Attachment33]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[CHR_Jagerhorn_Archetype.Attachment34]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[CHR_Jagerhorn_Archetype.Attachment35]
+AttachmentSkin0="Mr White"
+
+[CHR_Jagerhorn_Archetype.Attachment36]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[CHR_Jagerhorn_Archetype.Attachment37]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment38]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment39]
+AttachmentSkin0="Bushi"
+
+[CHR_Jagerhorn_Archetype.Attachment40]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[CHR_Jagerhorn_Archetype.Attachment41]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[CHR_Jagerhorn_Archetype.Attachment42]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment43]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Jagerhorn_Archetype.Attachment44]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+//DJ Scully
+
+[chr_DJSkully_archetype]
+CharacterName="Ді-джей Скаллі"
+Description="Скаллі — найкрутіший ді-джей голландського андеґраунду. Він подобається всім без винятку, а особливо — дівчатам. Вони просто шаленіють від нього. І вже з цієї причини чоловіки повинні його зненавидіти, але надто вже він потішний та цікавий парубок. \n\nЩойно закінчився його убивчо-крутезний концерт у закинутій божевільні на північ від Лондона, як сталося нашестя. Коли збіговисько зедів увірвалося й почало дерти всіх на шмаття, його кмітливість, прудкість, ну і ще трішечки спецпідготовки, допомогли врятуватися. Скаллі ніколи не ставився до життя серйозно, тому зомбі-апокаліпсис його анітрохи не змінив. Він так квапно розбивав зедам довбешки, що з’явилися чутки, ніби Скаллі колишній спецпризначенець. Хоча, можливо, це й не чутки…"
+BodyMesh0="Толстовка"
+HeadMesh0="Маска Скаллі"
+Attachment0="Кашкет Скаллі"
+Attachment1="Навушники Скаллі"
+Attachment2="Alienware"
+Attachment3="Бейсболка"
+Attachment4="Плоский кашкет"
+Attachment5="Ковпак кухаря"
+Attachment6="Ковбойський капелюх"
+Attachment7="Кевларовий шолом"
+Attachment8="Шолом з приладом нічного бачення"
+Attachment9="Маска зварювальника"
+Attachment10="Німецький протигаз"
+Attachment11="Балістична маска"
+Attachment12="Головна пов’язка"
+Attachment13="Балаклава"
+Attachment14="Авіатори"
+Attachment15="Ретро-окуляри"
+Attachment16="Шолом підвищеної міцності"
+Attachment17="Забрало шолома піднято"
+Attachment18="Маска божевільного маніяка"
+Attachment19="Шолом льотчика"
+Attachment20="Поліцейський шолом"
+Attachment21="Flight Mask"
+Attachment22="Charm Goggles"
+Attachment23="Aviator Goggles"
+Attachment24="Sawblade Battle Helm"
+Attachment25="Boonie Cap"
+Attachment26="Infiltrator"
+Attachment27="Mask of the Abyss"
+Attachment28="Horzine Cybernetic Gas Mask"
+Attachment29="JFront Cap"
+Attachment30="Longhorn"
+Attachment31="EMS Backpack"
+Attachment32="Motorcycle Helmet"
+Attachment33="Smashed Motorcycle Helmet"
+Attachment34="Rubber Air Filter"
+Attachment35="Russian Gas Mask"
+Attachment36="Sawtooth Mask"
+Attachment37="The Inquisitor"
+Attachment38="US Gas Mask"
+Attachment39="Bloody Games"
+Attachment40="Shattered Mask"
+Attachment41="Military Surplus Beenie"
+Attachment42="RAF Goggles"
+Attachment43="Pork Pie"
+Attachment44="Visage de Poupee"
+Attachment45="Protective Glasses"
+Attachment46="Samurai Helm"
+Attachment47="Samurai Hat"
+Attachment48="Street Punk Bandana"
+Attachment49="Street Punk Glasses"
+Attachment50="Discount T-Rex Mask"
+Attachment51="Wasteland Goggles"
+Attachment52="EMS Arm Band"
+Attachment53="Tactical Backbag"
+
+[chr_DJSkully_archetype.BodyMesh0]
+BodySkin0="Чорний як смола"
+BodySkin1="Яскраво-червоний"
+BodySkin2="Брудно-жовтий"
+BodySkin3="Ядуче-зелений"
+BodySkin4="У стилі ретро"
+
+[chr_DJSkully_archetype.HeadMesh0]
+HeadSkin0="Чорний як смола"
+HeadSkin1="Яскраво-червоний"
+HeadSkin2="Брудно-жовтий"
+HeadSkin3="Ядуче-зелений"
+HeadSkin4="У стилі ретро"
+
+[chr_DJSkully_archetype.Attachment0]
+AttachmentSkin0="Чорний як смола"
+AttachmentSkin1="Яскраво-червоний"
+AttachmentSkin2="Брудно-жовтий"
+AttachmentSkin3="Ядуче-зелений"
+AttachmentSkin4="У стилі ретро"
+
+[chr_DJSkully_archetype.Attachment1]
+AttachmentSkin0="Гільйотинно-червоний"
+AttachmentSkin1="Брудно-жовтий"
+AttachmentSkin2="Темно-синій"
+AttachmentSkin3="Захисний помаранчевий"
+AttachmentSkin4="У стилі ретро"
+AttachmentSkin5="Білий Horzine"
+AttachmentSkin6="Коштовний золотий"
+
+[chr_DJSkully_archetype.Attachment2]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Чорне сяйво"
+AttachmentSkin2="Білий"
+AttachmentSkin3="Біле сяйво"
+AttachmentSkin4="Синій"
+AttachmentSkin5="Синє сяйво"
+AttachmentSkin6="Золотий"
+AttachmentSkin7="Золоте сяйво"
+AttachmentSkin8="Зелений"
+AttachmentSkin9="Зелене сяйво"
+
+[chr_DJSkully_archetype.Attachment3]
+AttachmentSkin0="Велика Британія"
+AttachmentSkin1="США"
+AttachmentSkin2="Канада"
+AttachmentSkin3="Німеччина"
+AttachmentSkin4="Росія"
+
+[chr_DJSkully_archetype.Attachment4]
+AttachmentSkin0="Коричневий"
+AttachmentSkin1="Чорний"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Жовтий"
+AttachmentSkin4="Білий"
+
+[chr_DJSkully_archetype.Attachment5]
+AttachmentSkin0="Білий"
+AttachmentSkin1="Смугастий"
+AttachmentSkin2="Закривавлений"
+
+[chr_DJSkully_archetype.Attachment6]
+AttachmentSkin0="Ковбойський капелюх"
+
+[chr_DJSkully_archetype.Attachment7]
+AttachmentSkin0="Камуфляжний"
+
+[chr_DJSkully_archetype.Attachment8]
+AttachmentSkin0="Синє сяйво"
+
+[chr_DJSkully_archetype.Attachment9]
+AttachmentSkin0="Темно-металевий"
+
+[chr_DJSkully_archetype.Attachment10]
+AttachmentSkin0="Німецький протигаз"
+
+[chr_DJSkully_archetype.Attachment11]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Червоний"
+
+[chr_DJSkully_archetype.Attachment12]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський білий"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синій"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Темно-пурпуровий"
+AttachmentSkin6="Полум’я"
+AttachmentSkin7="Зелений"
+AttachmentSkin8="Японія"
+AttachmentSkin9="Світло-синій"
+AttachmentSkin10="Пурпуровий"
+AttachmentSkin11="Червоний"
+AttachmentSkin12="Червоно-чорний"
+AttachmentSkin13="Червона текстура"
+AttachmentSkin14="Зірка"
+AttachmentSkin15="Пасмо"
+AttachmentSkin16="Спіраль"
+AttachmentSkin17="Білий"
+AttachmentSkin18="Жовтий"
+
+[chr_DJSkully_archetype.Attachment13]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синьо-зелений"
+AttachmentSkin4="Синьо-білий"
+AttachmentSkin5="Синьо-жовтий"
+AttachmentSkin6="Камуфляжний"
+AttachmentSkin7="Темно-пурпуровий"
+AttachmentSkin8="Вогники"
+AttachmentSkin9="Зелено-синій"
+AttachmentSkin10="Зелено-жовтий"
+AttachmentSkin11="Пастельний"
+AttachmentSkin12="Пурпуровий"
+AttachmentSkin13="Пурпурово-чорний"
+AttachmentSkin14="Веселка"
+AttachmentSkin15="Червоно-білий"
+AttachmentSkin16="Білий та чорний"
+AttachmentSkin17="Жовто-чорний"
+
+[chr_DJSkully_archetype.Attachment14]
+AttachmentSkin0="Білі краї"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Червоний"
+
+[chr_DJSkully_archetype.Attachment15]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Камуфляжний"
+AttachmentSkin2="Тигровий"
+AttachmentSkin3="США"
+
+[chr_DJSkully_archetype.Attachment16]
+AttachmentSkin0="Шолом підвищеної міцності"
+
+[chr_DJSkully_archetype.Attachment17]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_DJSkully_archetype.Attachment18]
+AttachmentSkin0="Маска божевільного маніяка"
+
+[chr_DJSkully_archetype.Attachment19]
+AttachmentSkin0="Шолом льотчика"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_DJSkully_archetype.Attachment20]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Золотий"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Коштовний золотий"
+
+[chr_DJSkully_archetype.Attachment21]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_DJSkully_archetype.Attachment22]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_DJSkully_archetype.Attachment23]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_DJSkully_archetype.Attachment24]
+AttachmentSkin0="Default"
+
+[chr_DJSkully_archetype.Attachment25]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[chr_DJSkully_archetype.Attachment26]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[chr_DJSkully_archetype.Attachment27]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[chr_DJSkully_archetype.Attachment28]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[chr_DJSkully_archetype.Attachment29]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[chr_DJSkully_archetype.Attachment30]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_DJSkully_archetype.Attachment31]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_DJSkully_archetype.Attachment32]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[chr_DJSkully_archetype.Attachment33]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[chr_DJSkully_archetype.Attachment34]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[chr_DJSkully_archetype.Attachment35]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_DJSkully_archetype.Attachment36]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[chr_DJSkully_archetype.Attachment37]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[chr_DJSkully_archetype.Attachment38]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_DJSkully_archetype.Attachment39]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[chr_DJSkully_archetype.Attachment40]
+AttachmentSkin0="WhiteYellow"
+
+[chr_DJSkully_archetype.Attachment41]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[chr_DJSkully_archetype.Attachment42]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[chr_DJSkully_archetype.Attachment43]
+AttachmentSkin0="Mr White"
+
+[chr_DJSkully_archetype.Attachment44]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[chr_DJSkully_archetype.Attachment45]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[chr_DJSkully_archetype.Attachment46]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_DJSkully_archetype.Attachment47]
+AttachmentSkin0="Bushi"
+
+[chr_DJSkully_archetype.Attachment48]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[chr_DJSkully_archetype.Attachment49]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[chr_DJSkully_archetype.Attachment50]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_DJSkully_archetype.Attachment51]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_DJSkully_archetype.Attachment52]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_DJSkully_archetype.Attachment53]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
+//Police Constable Rob Briar
+
+[chr_briar_archetype]
+CharacterName="Констебль Роб Браяр"
+Description="З 17 років Роб Браяр працював поліцейським констеблем, аж до дня, коли його не викликали на придушення бунту пришелепкуватих анархістів, як тоді вважало його керівництво. Усі ми знаємо, що то був за бунт, але Робу довелося пройти крізь це все самому. На щастя, він був не просто старомодним лондонським поліцейським! Браяр активно брав участь у антитерористичних операціях та вміло поводився із вогнепальною зброєю. Спершу вам може здатися, що Браяр — безтурботний реготун. Насправді ж — він ще той міцний горішок! У перші дні нашестя саме твердий, як сталь, характер, серйозна підготовка і міцне кевларове спорядження допомогли йому побороти це все. Роб виконує свій обов'язок і донині. І прагне викорінити нову загрозу усіма можливими способами та засобами."
+BodyMesh0="Бойове спорядження"
+BodyMesh1="Лондон"
+HeadMesh0="Волосся"
+Attachment0="Бойовий шолом"
+Attachment1="Протигаз S10"
+Attachment2="Окуляри"
+Attachment3="Alienware"
+Attachment4="Поліцейський шолом"
+Attachment5="Авіатори"
+Attachment6="Балістична маска"
+Attachment7="Бейсболка"
+Attachment8="Плоский кашкет"
+Attachment9="Ковпак кухаря"
+Attachment10="Респіратор"
+Attachment11="Ковбойський капелюх"
+Attachment12="Кевларовий шолом"
+Attachment13="Шолом з приладом нічного бачення"
+Attachment14="Пов’язка на око"
+Attachment15="Маска зварювальника"
+Attachment16="Німецький протигаз"
+Attachment17="Головна пов’язка"
+Attachment18="Ретро-окуляри"
+Attachment19="Балаклава"
+Attachment20="Маска лікаря"
+Attachment21="Забрало шолома піднято"
+Attachment22="Забрало шолома опущено"
+Attachment23="Маска божевільного маніяка"
+Attachment24="Шолом льотчика"
+Attachment25="Шолом руйнівника черепів"
+Attachment26="Маска руйнівника черепів"
+Attachment27="Flight Mask"
+Attachment28="Charm Goggles"
+Attachment29="Aviator Goggles"
+Attachment30="Sawblade Battle Helm"
+Attachment31="Boonie Cap"
+Attachment32="Infiltrator"
+Attachment33="Mask of the Abyss"
+Attachment34="Horzine Cybernetic Gas Mask"
+Attachment35="JFront Cap"
+Attachment36="Longhorn"
+Attachment37="EMS Backpack"
+Attachment38="Motorcycle Helmet"
+Attachment39="Smashed Motorcycle Helmet"
+Attachment40="Rubber Air Filter"
+Attachment41="Russian Gas Mask"
+Attachment42="Sawtooth Mask"
+Attachment43="The Inquisitor"
+Attachment44="US Gas Mask"
+Attachment45="Bloody Games"
+Attachment46="Shattered Mask"
+Attachment47="Military Surplus Beenie"
+Attachment48="RAF Goggles"
+Attachment49="Pork Pie"
+Attachment50="Visage de Poupee"
+Attachment51="Protective Glasses"
+Attachment52="Samurai Helm"
+Attachment53="Samurai Hat"
+Attachment54="Street Punk Bandana"
+Attachment55="Street Punk Glasses"
+Attachment56="Discount T-Rex Mask"
+Attachment57="Wasteland Goggles"
+Attachment58="EMS Arm Band"
+Attachment59="M2 Flamethrower Tank"
+Attachment60="RPG7 Backbag"
+Attachment61="Enforcer Goggles"
+Attachment62="Enforcer Helmet"
+Attachment63="Enforcer Mask"
+Attachment64="Justice Goggles"
+Attachment65="Justice Helmet"
+Attachment66="Justice Mask"
+Attachment67="Tactical Backbag"
+
+[chr_briar_archetype.BodyMesh0]
+BodySkin0="Поліцейський синій"
+BodySkin1="Чорний як ніч"
+BodySkin2="Зелений армійський"
+BodySkin3="Камуфляж SAS"
+
+[chr_briar_archetype.BodyMesh1]
+BodySkin0="Метро"
+BodySkin1="Чорний як ніч"
+BodySkin2="Синій"
+BodySkin3="Блискучий"
+BodySkin4="Блискучий чорний"
+
+[chr_briar_archetype.HeadMesh0]
+HeadSkin0="Оригінал"
+HeadSkin1="Мелірований"
+HeadSkin2="Чорний"
+
+[chr_briar_archetype.Attachment0]
+AttachmentSkin0="Яскраво-червоний"
+AttachmentSkin1="Поліцейський синій"
+AttachmentSkin2="Зелений армійський"
+AttachmentSkin3="Чорний як ніч"
+
+[chr_briar_archetype.Attachment1]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Камуфляжний"
+AttachmentSkin2="Біологічна небезпека"
+AttachmentSkin3="Зед Тайм"
+AttachmentSkin4="Коштовний"
+
+[CHR_briar_archetype.Attachment2]
+AttachmentSkin0="Сонцезахисні окуляри"
+AttachmentSkin1="Звичайні окуляри"
+
+[chr_briar_archetype.Attachment3]
+AttachmentSkin0="Black"
+AttachmentSkin1="Чорне сяйво"
+AttachmentSkin2="Білий"
+AttachmentSkin3="Біле сяйво"
+AttachmentSkin4="Синій"
+AttachmentSkin5="Синє сяйво"
+AttachmentSkin6="Золотий"
+AttachmentSkin7="Золоте сяйво"
+AttachmentSkin8="Зелений"
+AttachmentSkin9="Зелене сяйво"
+
+[chr_briar_archetype.Attachment4]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Золотий"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Коштовний золотий"
+
+[chr_briar_archetype.Attachment5]
+AttachmentSkin0="Білі краї"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Червоний"
+
+[chr_briar_archetype.Attachment6]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Червоний"
+
+[chr_briar_archetype.Attachment7]
+AttachmentSkin0="Велика Британія"
+AttachmentSkin1="США"
+AttachmentSkin2="Канада"
+AttachmentSkin3="Німеччина"
+AttachmentSkin4="Росія"
+
+[chr_briar_archetype.Attachment8]
+AttachmentSkin0="Коричневий"
+AttachmentSkin1="Чорний"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Жовтий"
+AttachmentSkin4="Білий"
+
+[chr_briar_archetype.Attachment9]
+AttachmentSkin0="Білий"
+AttachmentSkin1="Смугастий"
+AttachmentSkin2="Закривавлений"
+
+[chr_briar_archetype.Attachment10]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Чорний"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Жовтий"
+
+[chr_briar_archetype.Attachment11]
+AttachmentSkin0="Ковбойський капелюх"
+
+[chr_briar_archetype.Attachment12]
+AttachmentSkin0="Камуфляжний"
+
+[chr_briar_archetype.Attachment13]
+AttachmentSkin0="Синє сяйво"
+
+[chr_briar_archetype.Attachment14]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський"
+AttachmentSkin2="Біо"
+AttachmentSkin3="Синій"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Лавандос"
+AttachmentSkin6="Око"
+AttachmentSkin7="Екстравагантного вигляду"
+AttachmentSkin8="Полум’я"
+AttachmentSkin9="У клітинку"
+AttachmentSkin10="Пурпуровий"
+AttachmentSkin11="Череп"
+AttachmentSkin12="Бризки"
+AttachmentSkin13="Спіраль"
+
+[chr_briar_archetype.Attachment15]
+AttachmentSkin0="Темно-металевий"
+
+[chr_briar_archetype.Attachment16]
+AttachmentSkin0="Німецький протигаз"
+
+[chr_briar_archetype.Attachment17]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський білий"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синій"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Темно-пурпуровий"
+AttachmentSkin6="Полум’я"
+AttachmentSkin7="Зелений"
+AttachmentSkin8="Японія"
+AttachmentSkin9="Світло-синій"
+AttachmentSkin10="Пурпуровий"
+AttachmentSkin11="Червоний"
+AttachmentSkin12="Червоно-чорний"
+AttachmentSkin13="Червона текстура"
+AttachmentSkin14="Зірка"
+AttachmentSkin15="Пасмо"
+AttachmentSkin16="Спіраль"
+AttachmentSkin17="Білий"
+AttachmentSkin18="Жовтий"
+
+[chr_briar_archetype.Attachment18]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Камуфляжний"
+AttachmentSkin2="Тигровий"
+AttachmentSkin3="США"
+
+[chr_briar_archetype.Attachment19]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синьо-зелений"
+AttachmentSkin4="Синьо-білий"
+AttachmentSkin5="Синьо-жовтий"
+AttachmentSkin6="Камуфляжний"
+AttachmentSkin7="Темно-пурпуровий"
+AttachmentSkin8="Вогники"
+AttachmentSkin9="Зелено-синій"
+AttachmentSkin10="Зелено-жовтий"
+AttachmentSkin11="Пастельний"
+AttachmentSkin12="Пурпуровий"
+AttachmentSkin13="Пурпурово-чорний"
+AttachmentSkin14="Веселка"
+AttachmentSkin15="Червоно-білий"
+AttachmentSkin16="Білий та чорний"
+AttachmentSkin17="Жовто-чорний"
+
+[chr_briar_archetype.Attachment20]
+AttachmentSkin0="Білий"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+
+[chr_briar_archetype.Attachment21]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_briar_archetype.Attachment22]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_briar_archetype.Attachment23]
+AttachmentSkin0="Маска божевільного маніяка"
+
+[chr_briar_archetype.Attachment24]
+AttachmentSkin0="Шолом льотчика"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_briar_archetype.Attachment25]
+AttachmentSkin0="Шолом руйнівника черепів"
+
+[chr_briar_archetype.Attachment26]
+AttachmentSkin0="Маска руйнівника черепів"
+
+[chr_briar_archetype.Attachment27]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_briar_archetype.Attachment28]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_briar_archetype.Attachment29]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_briar_archetype.Attachment30]
+AttachmentSkin0="Default"
+
+[chr_briar_archetype.Attachment31]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[chr_briar_archetype.Attachment32]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[chr_briar_archetype.Attachment33]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[chr_briar_archetype.Attachment34]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[chr_briar_archetype.Attachment35]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[chr_briar_archetype.Attachment36]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_briar_archetype.Attachment37]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_briar_archetype.Attachment38]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[chr_briar_archetype.Attachment39]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[chr_briar_archetype.Attachment40]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[chr_briar_archetype.Attachment41]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_briar_archetype.Attachment42]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[chr_briar_archetype.Attachment43]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[chr_briar_archetype.Attachment44]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_briar_archetype.Attachment45]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[chr_briar_archetype.Attachment46]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[chr_briar_archetype.Attachment47]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[chr_briar_archetype.Attachment48]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[chr_briar_archetype.Attachment49]
+AttachmentSkin0="Mr White"
+
+[chr_briar_archetype.Attachment50]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[chr_briar_archetype.Attachment51]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[chr_briar_archetype.Attachment52]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_briar_archetype.Attachment53]
+AttachmentSkin0="Bushi"
+
+[chr_briar_archetype.Attachment54]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[chr_briar_archetype.Attachment55]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[chr_briar_archetype.Attachment56]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_briar_archetype.Attachment57]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_briar_archetype.Attachment58]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_briar_archetype.Attachment59]
+AttachmentSkin0="Olive Grey"
+
+[chr_briar_archetype.Attachment60]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[chr_briar_archetype.Attachment61]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Black Coat Blue"
+AttachmentSkin2="Black Coat Red"
+AttachmentSkin3="Black Coat Green"
+AttachmentSkin4="Green Coat"
+AttachmentSkin5="Blue Coat"
+AttachmentSkin6="Red Coat"
+
+[chr_briar_archetype.Attachment62]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Green Coat"
+AttachmentSkin2="Blue Coat"
+AttachmentSkin3="Red Coat"
+
+[chr_briar_archetype.Attachment63]
+AttachmentSkin0="Black Eyes"
+AttachmentSkin1="Red Eyes"
+AttachmentSkin2="Blue Eyes"
+AttachmentSkin3="Green Eyes"
+AttachmentSkin4="Green Filter"
+AttachmentSkin5="Blue Filter"
+AttachmentSkin6="Red Filter"
+
+[chr_briar_archetype.Attachment64]
+AttachmentSkin0="Stealth Black"
+
+[chr_briar_archetype.Attachment65]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+
+[chr_briar_archetype.Attachment66]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+AttachmentSkin4="Blue Steel"
+AttachmentSkin5="Blue Magnum"
+AttachmentSkin6="Green Rally"
+AttachmentSkin7="Green Synergy"
+AttachmentSkin8="Red Face"
+AttachmentSkin9="Red Cheeks"
+AttachmentSkin10="Reaper Black"
+
+[chr_briar_archetype.Attachment67]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
+
+//Mr Foster
+
+[CHR_MrFoster_archetype]
+CharacterName="Містер Фостер"
+Description="Фостер долучився до світу торгівлі одразу, як закінчив посередню приватну англійську школу, де вчителі йому завжди втовкмачували, що він пустоголовий. Втім, Фостеру було начхати на їхню куцу думку. З часом Фостер зрозумів, що фондова біржа йому й справді до душі. Він почав багацько заробляти і це йому шалено подобалося. Правду кажучи, грошики він любив набагато більше, ніж свою роботу. Фостер часто полюбляв картати знавців своєї справи. Таким чином він заслужив репутацію кмітливого та дотепного чолов’яги з гострим почуттям гумору та досконалим смаком у вбранні й автомобілях. Ну, або зарозумілого самозванця. Вирішувати вам."
+BodyMesh0="Шкіряний жакет"
+BodyMesh1="Класичний костюм"
+HeadMesh0="Протигаз"
+Attachment0="Капелюх-котелок"
+Attachment1="Навушники Скаллі"
+Attachment2="Зав’язана краватка"
+Attachment3="Розв’язана краватка"
+Attachment4="Краватка"
+Attachment5="Alienware"
+Attachment6="Бейсболка"
+Attachment7="Розв’язана краватка"
+Attachment8="Ковпак кухаря"
+Attachment9="Ковбойський капелюх"
+Attachment10="Плоский кашкет"
+Attachment11="Кевларовий шолом"
+Attachment12="Шолом з приладом нічного бачення"
+Attachment13="Маска зварювальника"
+Attachment14="Німецький протигаз"
+Attachment15="Балістична маска"
+Attachment16="Головна пов’язка"
+Attachment17="Балаклава"
+Attachment18="Забрало шолома піднято"
+Attachment19="Шолом льотчика"
+Attachment20="Поліцейський шолом"
+Attachment21="Flight Mask"
+Attachment22="Charm Goggles"
+Attachment23="Aviator Goggles"
+Attachment24="Sawblade Battle Helm"
+Attachment25="Boonie Cap"
+Attachment26="Infiltrator"
+Attachment27="Mask of the Abyss"
+Attachment28="Horzine Cybernetic Gas Mask"
+Attachment29="JFront Cap"
+Attachment30="Longhorn"
+Attachment31="EMS Backpack"
+Attachment32="Motorcycle Helmet"
+Attachment33="Smashed Motorcycle Helmet"
+Attachment34="Rubber Air Filter"
+Attachment35="Russian Gas Mask"
+Attachment36="Sawtooth Mask"
+Attachment37="The Inquisitor"
+Attachment38="US Gas Mask"
+Attachment39="Bloody Games"
+Attachment40="Shattered Mask"
+Attachment41="Military Surplus Beenie"
+Attachment42="RAF Goggles"
+Attachment43="Pork Pie"
+Attachment44="Visage de Poupee"
+Attachment45="Protective Glasses"
+Attachment46="Samurai Helm"
+Attachment47="Samurai Hat"
+Attachment48="Street Punk Bandana"
+Attachment49="Street Punk Glasses"
+Attachment50="Discount T-Rex Mask"
+Attachment51="Wasteland Goggles"
+Attachment52="EMS Arm Band"
+Attachment53="M2 Flamethrower Tank"
+Attachment54="RPG7 Backbag"
+Attachment55="Tactical Backbag"
+
+[CHR_MrFoster_archetype.BodyMesh0]
+BodySkin0="Синій KF"
+BodySkin1="Містер Лавандос"
+BodySkin2="Біологічна небезпека"
+BodySkin3="Елегантний"
+BodySkin4="Пекучий червоний"
+
+[CHR_MrFoster_archetype.BodyMesh1]
+BodySkin0="Класичний"
+BodySkin1="Чорний"
+BodySkin2="Гомез"
+BodySkin3="Рубці"
+BodySkin4="Рудий"
+BodySkin5="Лазуритний"
+BodySkin6="Замісник"
+BodySkin7="Ігровий"
+BodySkin8="Курець"
+
+[CHR_MrFoster_archetype.HeadMesh0]
+HeadSkin0="Оригінальний білий"
+HeadSkin1="Червоний PCG"
+HeadSkin2="Мій побратим Скаллі"
+HeadSkin3="Пекучий червоний"
+HeadSkin4="Британський піжон"
+
+[CHR_MrFoster_archetype.Attachment0]
+AttachmentSkin0="Діловий чорний"
+AttachmentSkin1="Найкращий з британського"
+AttachmentSkin2="Шоколадно-коричневий"
+AttachmentSkin3="Палаючо-червоний"
+AttachmentSkin4="Насичений пурпуровий"
+AttachmentSkin5="Практичний білий"
+
+[chr_MrFoster_archetype.Attachment1]
+AttachmentSkin0="Темно-синій"
+AttachmentSkin1="Гільйотинно-червоний"
+AttachmentSkin2="Захисний помаранчевий"
+AttachmentSkin3="У ретро стилі"
+AttachmentSkin4="Білий Horzine"
+AttachmentSkin5="Брудно-жовтий"
+AttachmentSkin6="Коштовний золотий"
+
+[chr_MrFoster_archetype.Attachment2]
+AttachmentSkin0="Класичний синій"
+AttachmentSkin1="Червона лінія"
+AttachmentSkin2="Чорний"
+AttachmentSkin3="Чорний та білий"
+AttachmentSkin4="Ігровий"
+AttachmentSkin5="Мотлох"
+AttachmentSkin6="Магма"
+AttachmentSkin7="PC Gamer"
+
+[chr_MrFoster_archetype.Attachment3]
+AttachmentSkin0="Класичний синій"
+AttachmentSkin1="Червона лінія"
+AttachmentSkin2="Чорний"
+AttachmentSkin3="Курець"
+AttachmentSkin4="Ігровий"
+AttachmentSkin5="Мотлох"
+AttachmentSkin6="Магма"
+AttachmentSkin7="PC Gamer"
+
+[chr_MrFoster_archetype.Attachment4]
+AttachmentSkin0="Класичний синій"
+AttachmentSkin1="Червона лінія"
+AttachmentSkin2="Чорний"
+AttachmentSkin3="Чорний та білий"
+AttachmentSkin4="Ігровий"
+AttachmentSkin5="Мотлох"
+AttachmentSkin6="Магма"
+AttachmentSkin7="PC Gamer"
+
+[chr_MrFoster_archetype.Attachment5]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Чорне сяйво"
+AttachmentSkin2="Білий"
+AttachmentSkin3="Біле сяйво"
+AttachmentSkin4="Синій"
+AttachmentSkin5="Синє сяйво"
+AttachmentSkin6="Золотий"
+AttachmentSkin7="Золоте сяйво"
+AttachmentSkin8="Зелений"
+AttachmentSkin9="Зелене сяйво"
+
+[chr_MrFoster_archetype.Attachment6]
+AttachmentSkin0="Велика Британія"
+AttachmentSkin1="США"
+AttachmentSkin2="Канада"
+AttachmentSkin3="Німеччина"
+AttachmentSkin4="Росія"
+
+[chr_MrFoster_archetype.Attachment7]
+AttachmentSkin0="Класичний синій"
+AttachmentSkin1="Червона лінія"
+AttachmentSkin2="Чорний"
+AttachmentSkin3="Чорний та білий"
+AttachmentSkin4="Ігровий"
+AttachmentSkin5="Мотлох"
+
+[chr_MrFoster_archetype.Attachment8]
+AttachmentSkin0="Білий"
+AttachmentSkin1="Смугастий"
+AttachmentSkin2="Закривавлений"
+
+[chr_MrFoster_archetype.Attachment9]
+AttachmentSkin0="Ковбойський капелюх"
+
+[chr_MrFoster_archetype.Attachment10]
+AttachmentSkin0="Коричневий"
+AttachmentSkin1="Чорний"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Жовтий"
+AttachmentSkin4="Білий"
+
+[chr_MrFoster_archetype.Attachment11]
+AttachmentSkin0="Камуфляжний"
+
+[chr_MrFoster_archetype.Attachment12]
+AttachmentSkin0="Синє сяйво"
+
+[chr_MrFoster_archetype.Attachment13]
+AttachmentSkin0="Темно-металевий"
+
+[chr_MrFoster_archetype.Attachment14]
+AttachmentSkin0="Німецький протигаз"
+
+[chr_MrFoster_archetype.Attachment15]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Червоний"
+
+[chr_MrFoster_archetype.Attachment16]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський білий"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синій"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Темно-пурпуровий"
+AttachmentSkin6="Полум’я"
+AttachmentSkin7="Зелений"
+AttachmentSkin8="Японія"
+AttachmentSkin9="Світло-синій"
+AttachmentSkin10="Пурпуровий"
+AttachmentSkin11="Червоний"
+AttachmentSkin12="Червоно-чорний"
+AttachmentSkin13="Червона текстура"
+AttachmentSkin14="Зірка"
+AttachmentSkin15="Пасмо"
+AttachmentSkin16="Спіраль"
+AttachmentSkin17="Білий"
+AttachmentSkin18="Жовтий"
+
+[chr_MrFoster_archetype.Attachment17]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синьо-зелений"
+AttachmentSkin4="Синьо-білий"
+AttachmentSkin5="Синьо-жовтий"
+AttachmentSkin6="Камуфляжний"
+AttachmentSkin7="Темно-пурпуровий"
+AttachmentSkin8="Вогники"
+AttachmentSkin9="Зелено-синій"
+AttachmentSkin10="Зелено-жовтий"
+AttachmentSkin11="Пастельний"
+AttachmentSkin12="Пурпуровий"
+AttachmentSkin13="Пурпурово-чорний"
+AttachmentSkin14="Веселка"
+AttachmentSkin15="Червоно-білий"
+AttachmentSkin16="Білий та чорний"
+AttachmentSkin17="Жовто-чорний"
+
+[chr_MrFoster_archetype.Attachment18]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_MrFoster_archetype.Attachment19]
+AttachmentSkin0="Шолом льотчика"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_MrFoster_archetype.Attachment20]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Золотий"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Коштовний золотий"
+
+[chr_MrFoster_archetype.Attachment21]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[CHR_MrFoster_archetype.Attachment22]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_MrFoster_archetype.Attachment23]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_MrFoster_archetype.Attachment24]
+AttachmentSkin0="Default"
+
+[CHR_MrFoster_archetype.Attachment25]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[CHR_MrFoster_archetype.Attachment26]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[CHR_MrFoster_archetype.Attachment27]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[CHR_MrFoster_archetype.Attachment28]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[CHR_MrFoster_archetype.Attachment29]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[CHR_MrFoster_archetype.Attachment30]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_MrFoster_archetype.Attachment31]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_MrFoster_archetype.Attachment32]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[CHR_MrFoster_archetype.Attachment33]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[CHR_MrFoster_archetype.Attachment34]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[CHR_MrFoster_archetype.Attachment35]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_MrFoster_archetype.Attachment36]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[CHR_MrFoster_archetype.Attachment37]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[CHR_MrFoster_archetype.Attachment38]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_MrFoster_archetype.Attachment39]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[CHR_MrFoster_archetype.Attachment40]
+AttachmentSkin0="WhiteYellow"
+
+[CHR_MrFoster_archetype.Attachment41]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[CHR_MrFoster_archetype.Attachment42]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[CHR_MrFoster_archetype.Attachment43]
+AttachmentSkin0="Mr White"
+
+[CHR_MrFoster_archetype.Attachment44]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[CHR_MrFoster_archetype.Attachment45]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[CHR_MrFoster_archetype.Attachment46]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_MrFoster_archetype.Attachment47]
+AttachmentSkin0="Bushi"
+
+[CHR_MrFoster_archetype.Attachment48]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[CHR_MrFoster_archetype.Attachment49]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[CHR_MrFoster_archetype.Attachment50]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_MrFoster_archetype.Attachment51]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_MrFoster_archetype.Attachment52]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_MrFoster_archetype.Attachment53]
+AttachmentSkin0="Olive Grey"
+
+[CHR_MrFoster_archetype.Attachment54]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[CHR_MrFoster_archetype.Attachment55]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
+//Erskine Coleman - renamed to Donovan Neal
+
+[CHR_Coleman_archetype]
+CharacterName="Донован Ніл"
+Description="Донован — високий та дужий парубок, який може знайти вихід із будь-якого становища. Але не так просто, як може здатися. Ніл був не просто охоронцем, який працював на знаменитостей та бізнесменів — він заснував, розвивав та керував своєю справою з надання послуг безпеки. Народився в Атланті, штат Джорджія, отримав гарну освіту, добре тямив у різних сферах . Перш ніж розпочав свій бізнес, працював у правоохоронних органах. Донован не тільки стожильний, але ще й мізкуватий… Але тепер він — лишень ще один із тих, хто вижили. Донован просто опинився не в той час і не в тому місці. Моліться за зедів, які перестрілись на його шляху. А краще — допоможіть зносити їм макітри, як Донован!"
+BodyMesh0="Толстовка RQ"
+HeadMesh0="Обличчя"
+Attachment0="Кашкет RQ"
+Attachment1="Протигаз S10"
+Attachment2="Окуляри"
+Attachment3="Навушники Скаллі"
+Attachment4="Alienware"
+Attachment5="Авіатори"
+Attachment6="Балістична маска"
+Attachment7="Бейсболка"
+Attachment8="Ковпак кухаря"
+Attachment9="Респіратор"
+Attachment10="Ковбойський капелюх"
+Attachment11="Плоский кашкет"
+Attachment12="Кевларовий шолом"
+Attachment13="Шолом з приладом нічного бачення"
+Attachment14="Пов’язка на око"
+Attachment15="Маска зварювальника"
+Attachment16="Німецький протигаз"
+Attachment17="Головна пов’язка"
+Attachment18="Ретро-окуляри"
+Attachment19="Балаклава"
+Attachment20="Маска лікаря"
+Attachment21="Боксерський головний убір"
+Attachment22="Забрало шолома піднято"
+Attachment23="Забрало шолома опущено"
+Attachment24="Маска божевільного маніяка"
+Attachment25="Шолом льотчика"
+Attachment26="Шолом руйнівника черепів"
+Attachment27="Маска руйнівника черепів"
+Attachment28="Поліцейський шолом"
+Attachment29="Flight Mask"
+Attachment30="Charm Goggles"
+Attachment31="Aviator Goggles"
+Attachment32="Sawblade Battle Helm"
+Attachment33="Boonie Cap"
+Attachment34="Infiltrator"
+Attachment35="Mask of the Abyss"
+Attachment36="Horzine Cybernetic Gas Mask"
+Attachment37="JFront Cap"
+Attachment38="Longhorn"
+Attachment39="EMS Backpack"
+Attachment40="Motorcycle Helmet"
+Attachment41="Smashed Motorcycle Helmet"
+Attachment42="Rubber Air Filter"
+Attachment43="Russian Gas Mask"
+Attachment44="Sawtooth Mask"
+Attachment45="The Inquisitor"
+Attachment46="US Gas Mask"
+Attachment47="Bloody Games"
+Attachment48="Shattered Mask"
+Attachment49="Military Surplus Beenie"
+Attachment50="RAF Goggles"
+Attachment51="Pork Pie"
+Attachment52="Visage de Poupee"
+Attachment53="Protective Glasses"
+Attachment54="Samurai Helm"
+Attachment55="Samurai Hat"
+Attachment56="Street Punk Bandana"
+Attachment57="Street Punk Glasses"
+Attachment58="Discount T-Rex Mask"
+Attachment59="Wasteland Goggles"
+Attachment60="EMS Arm Band"
+Attachment61="M2 Flamethrower Tank"
+Attachment62="RPG7 Backbag"
+Attachment63="Tactical Backbag"
+
+[CHR_Coleman_archetype.BodyMesh0]
+BodySkin0="Яскраво-зелений"
+BodySkin1="Стильний червоний"
+BodySkin2="Класний сірий"
+BodySkin3="Блідо-пісочний"
+
+[CHR_Coleman_archetype.HeadMesh0]
+HeadSkin0="Донован"
+HeadSkin1="Тату"
+HeadSkin2="Чорні лінії"
+
+[CHR_Coleman_archetype.Attachment0]
+AttachmentSkin0="Насичений жовтий"
+AttachmentSkin1="Стильний червоний"
+AttachmentSkin2="Правдиво синій"
+AttachmentSkin3="Яскраво-зелений"
+
+[CHR_Coleman_archetype.Attachment1]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Камуфляжний"
+AttachmentSkin2="Біологічна небезпека"
+AttachmentSkin3="Зед Тайм"
+AttachmentSkin4="Коштовний"
+
+[CHR_Coleman_archetype.Attachment2]
+AttachmentSkin0="Сонцезахисні окуляри"
+AttachmentSkin1="Звичайні окуляри"
+
+[chr_Coleman_archetype.Attachment3]
+AttachmentSkin0="Темно-синій"
+AttachmentSkin1="Гільйотинно-червоний"
+AttachmentSkin2="Захисний помаранчевий"
+AttachmentSkin3="У ретро стилі"
+AttachmentSkin4="Білий Horzine"
+AttachmentSkin5="Брудно-жовтий"
+AttachmentSkin6="Коштовний золотий"
+
+[chr_Coleman_archetype.Attachment4]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Чорне сяйво"
+AttachmentSkin2="Білий"
+AttachmentSkin3="Біле сяйво"
+AttachmentSkin4="Синій"
+AttachmentSkin5="Синє сяйво"
+AttachmentSkin6="Золотий"
+AttachmentSkin7="Золоте сяйво"
+AttachmentSkin8="Зелений"
+AttachmentSkin9="Зелене сяйво"
+
+[chr_Coleman_archetype.Attachment5]
+AttachmentSkin0="Білі краї"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Червоний"
+
+[chr_Coleman_archetype.Attachment6]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Червоний"
+
+[chr_Coleman_archetype.Attachment7]
+AttachmentSkin0="Велика Британія"
+AttachmentSkin1="США"
+AttachmentSkin2="Канада"
+AttachmentSkin3="Німеччина"
+AttachmentSkin4="Росія"
+
+[chr_Coleman_archetype.Attachment8]
+AttachmentSkin0="Білий"
+AttachmentSkin1="Смугастий"
+AttachmentSkin2="Закривавлений"
+
+[chr_Coleman_archetype.Attachment9]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Чорний"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Жовтий"
+
+[chr_Coleman_archetype.Attachment10]
+AttachmentSkin0="Ковбойський капелюх"
+
+[chr_Coleman_archetype.Attachment11]
+AttachmentSkin0="Коричневий"
+AttachmentSkin1="Чорний"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Жовтий"
+AttachmentSkin4="Білий"
+
+[chr_Coleman_archetype.Attachment12]
+AttachmentSkin0="Камуфляжний"
+
+[chr_Coleman_archetype.Attachment13]
+AttachmentSkin0="Синє сяйво"
+
+[chr_Coleman_archetype.Attachment14]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський"
+AttachmentSkin2="Біо"
+AttachmentSkin3="Синій"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Лавандос"
+AttachmentSkin6="Око"
+AttachmentSkin7="Екстравагантного вигляду"
+AttachmentSkin8="Полум’я"
+AttachmentSkin9="У клітинку"
+AttachmentSkin10="Пурпуровий"
+AttachmentSkin11="Череп"
+AttachmentSkin12="Бризки"
+AttachmentSkin13="Спіраль"
+
+[chr_Coleman_archetype.Attachment15]
+AttachmentSkin0="Темно-металевий"
+
+[chr_Coleman_archetype.Attachment16]
+AttachmentSkin0="Німецький протигаз"
+
+[chr_Coleman_archetype.Attachment17]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський білий"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синій"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Темно-пурпуровий"
+AttachmentSkin6="Полум’я"
+AttachmentSkin7="Зелений"
+AttachmentSkin8="Японія"
+AttachmentSkin9="Світло-синій"
+AttachmentSkin10="Пурпуровий"
+AttachmentSkin11="Червоний"
+AttachmentSkin12="Червоно-чорний"
+AttachmentSkin13="Червона текстура"
+AttachmentSkin14="Зірка"
+AttachmentSkin15="Пасмо"
+AttachmentSkin16="Спіраль"
+AttachmentSkin17="Білий"
+AttachmentSkin18="Жовтий"
+
+[chr_Coleman_archetype.Attachment18]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Камуфляжний"
+AttachmentSkin2="Тигровий"
+AttachmentSkin3="США"
+
+[chr_Coleman_archetype.Attachment19]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синьо-зелений"
+AttachmentSkin4="Синьо-білий"
+AttachmentSkin5="Синьо-жовтий"
+AttachmentSkin6="Камуфляжний"
+AttachmentSkin7="Темно-пурпуровий"
+AttachmentSkin8="Вогники"
+AttachmentSkin9="Зелено-синій"
+AttachmentSkin10="Зелено-жовтий"
+AttachmentSkin11="Пастельний"
+AttachmentSkin12="Пурпуровий"
+AttachmentSkin13="Пурпурово-чорний"
+AttachmentSkin14="Веселка"
+AttachmentSkin15="Червоно-білий"
+AttachmentSkin16="Білий та чорний"
+AttachmentSkin17="Жовто-чорний"
+
+[chr_Coleman_archetype.Attachment20]
+AttachmentSkin0="Білий"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+
+[chr_Coleman_archetype.Attachment21]
+AttachmentSkin0="Червоний"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Коричневий"
+AttachmentSkin3="Жовтий"
+
+[chr_Coleman_archetype.Attachment22]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_Coleman_archetype.Attachment23]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_Coleman_archetype.Attachment24]
+AttachmentSkin0="Маска божевільного маніяка"
+
+[chr_Coleman_archetype.Attachment25]
+AttachmentSkin0="Шолом льотчика"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_Coleman_archetype.Attachment26]
+AttachmentSkin0="Шолом руйнівника черепів"
+
+[chr_Coleman_archetype.Attachment27]
+AttachmentSkin0="Маска руйнівника черепів"
+
+[chr_Coleman_archetype.Attachment28]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Золотий"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Коштовний золотий"
+
+[chr_Coleman_archetype.Attachment29]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[CHR_Coleman_archetype.Attachment30]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Coleman_archetype.Attachment31]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Coleman_archetype.Attachment32]
+AttachmentSkin0="Default"
+
+[CHR_Coleman_archetype.Attachment33]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[CHR_Coleman_archetype.Attachment34]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[CHR_Coleman_archetype.Attachment35]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[CHR_Coleman_archetype.Attachment36]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[CHR_Coleman_archetype.Attachment37]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="White"
+
+[CHR_Coleman_archetype.Attachment38]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="Black"
+AttachmentSkin4="Precious"
+
+[CHR_Coleman_archetype.Attachment39]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Coleman_archetype.Attachment40]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[CHR_Coleman_archetype.Attachment41]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[CHR_Coleman_archetype.Attachment42]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[CHR_Coleman_archetype.Attachment43]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Coleman_archetype.Attachment44]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[CHR_Coleman_archetype.Attachment45]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[CHR_Coleman_archetype.Attachment46]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Coleman_archetype.Attachment47]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[CHR_Coleman_archetype.Attachment48]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[CHR_Coleman_archetype.Attachment49]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[CHR_Coleman_archetype.Attachment50]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[CHR_Coleman_archetype.Attachment51]
+AttachmentSkin0="Mr White"
+
+[CHR_Coleman_archetype.Attachment52]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[CHR_Coleman_archetype.Attachment53]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[CHR_Coleman_archetype.Attachment54]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Coleman_archetype.Attachment55]
+AttachmentSkin0="Bushi"
+
+[CHR_Coleman_archetype.Attachment56]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[CHR_Coleman_archetype.Attachment57]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[CHR_Coleman_archetype.Attachment58]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Coleman_archetype.Attachment59]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Coleman_archetype.Attachment60]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Coleman_archetype.Attachment61]
+AttachmentSkin0="Olive Grey"
+
+[CHR_Coleman_archetype.Attachment62]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[CHR_Coleman_archetype.Attachment63]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
+//Reverend Alberts
+
+[CHR_Alberts_archetype]
+CharacterName="Преподобний Альбертс"
+Description="Наполовину англієць, наполовину шотландець — Альберт завжди був фізично міцнющим і готовий допомогти нужденним. Жорсткий, стійкий та безкомпромісний підхід до життя ідеально підходив для його роботи армійським капеланом. Після армії він 20 років працював з важкими підлітками у південному Лондоні. Альберт усе своє життя провів, допомагаючи людям стати на істинний шлях. Коли сталося нашестя, його робота була зведена нанівець, і через це він сильно затужив. Цього дня Альберт забув про церковну службу і вивергнув увесь свій гнів на довбешки нечистивих диявольських покручів. Ну, не лишень на довбешки, на всі частини тіла, які траплялись під його гарячу руку."
+BodyMesh0="Комірець"
+HeadMesh0="Волосся"
+Attachment0="Фетровий капелюх"
+Attachment1="Окуляри"
+Attachment2="Протигаз S10"
+Attachment3="Капелюх-котелок"
+Attachment4="Alienware"
+Attachment5="Авіатори"
+Attachment6="Балістична маска"
+Attachment7="Бейсболка"
+Attachment8="Плоский кашкет"
+Attachment9="Ковпак кухаря"
+Attachment10="Респіратор"
+Attachment11="Ковбойський капелюх"
+Attachment12="Кевларовий шолом"
+Attachment13="Шолом з приладом нічного бачення"
+Attachment14="Пов’язка на око"
+Attachment15="Маска зварювальника"
+Attachment16="Німецький протигаз"
+Attachment17="Головна пов’язка"
+Attachment18="Балаклава"
+Attachment19="Ретро-окуляри"
+Attachment20="Святі окуляри"
+Attachment21="Капелюх Ван Альберта"
+Attachment22="Плащ Ван Альберта"
+Attachment23="Забрало шолома піднято"
+Attachment24="Забрало шолома опущено"
+Attachment25="Маска божевільного маніяка"
+Attachment26="Шолом льотчика"
+Attachment27="Шолом руйнівника черепів"
+Attachment28="Маска руйнівника черепів"
+Attachment29="Поліцейський шолом"
+Attachment30="Flight Mask"
+Attachment31="Charm Goggles"
+Attachment32="Aviator Goggles"
+Attachment33="Sawblade Battle Helm"
+Attachment34="Boonie Cap"
+Attachment35="Infiltrator"
+Attachment36="Mask of the Abyss"
+Attachment37="Horzine Cybernetic Gas Mask"
+Attachment38="JFront Cap"
+Attachment39="Longhorn"
+Attachment40="EMS Backpack"
+Attachment41="Motorcycle Helmet"
+Attachment42="Smashed Motorcycle Helmet"
+Attachment43="Rubber Air Filter"
+Attachment44="Russian Gas Mask"
+Attachment45="Sawtooth Mask"
+Attachment46="The Inquisitor"
+Attachment47="US Gas Mask"
+Attachment48="Bloody Games"
+Attachment49="Shattered Mask"
+Attachment50="Military Surplus Beenie"
+Attachment51="RAF Goggles"
+Attachment52="Pork Pie"
+Attachment53="Visage de Poupee"
+Attachment54="Protective Glasses"
+Attachment55="Samurai Helm"
+Attachment56="Samurai Hat"
+Attachment57="Street Punk Bandana"
+Attachment58="Street Punk Glasses"
+Attachment59="Discount T-Rex Mask"
+Attachment60="Wasteland Goggles"
+Attachment61="EMS Arm Band"
+Attachment62="M2 Flamethrower Tank"
+Attachment63="RPG7 Backbag"
+Attachment64="Enforcer Goggles"
+Attachment65="Enforcer Helmet"
+Attachment66="Enforcer Mask"
+Attachment67="Justice Goggles"
+Attachment68="Justice Helmet"
+Attachment69="Justice Mask"
+Attachment70="Tactical Backbag"
+
+[CHR_Alberts_archetype.BodyMesh0]
+BodySkin0="Класичний чорний"
+BodySkin1="Рубіновий"
+BodySkin2="Яскраво-синій"
+BodySkin3="Тропічно-білий"
+
+[CHR_Alberts_archetype.HeadMesh0]
+HeadSkin0="Сірий"
+HeadSkin1="Коричневий"
+HeadSkin2="Чорний"
+HeadSkin3="Білий"
+
+[CHR_Alberts_archetype.Attachment0]
+AttachmentSkin0="Класичний чорний"
+AttachmentSkin1="Рубіновий"
+AttachmentSkin2="Елегантно-сірий"
+AttachmentSkin3="Темно-синій"
+
+[CHR_Alberts_archetype.Attachment1]
+AttachmentSkin0="Сонцезахисні окуляри"
+AttachmentSkin1="Звичайні окуляри"
+
+[CHR_Alberts_archetype.Attachment2]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Камуфляжний"
+AttachmentSkin2="Біологічна небезпека"
+AttachmentSkin3="Зед Тайм"
+AttachmentSkin4="Коштовний"
+
+[CHR_Alberts_archetype.Attachment3]
+AttachmentSkin0="Діловий чорний"
+AttachmentSkin1="Найкращий з британського"
+AttachmentSkin2="Шоколадно-коричневий"
+AttachmentSkin3="Палаючо-червоний"
+AttachmentSkin4="Насичений пурпуровий"
+AttachmentSkin5="Практичний білий"
+
+[chr_Alberts_archetype.Attachment4]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Чорне сяйво"
+AttachmentSkin2="Білий"
+AttachmentSkin3="Біле сяйво"
+AttachmentSkin4="Синій"
+AttachmentSkin5="Синє сяйво"
+AttachmentSkin6="Золотий"
+AttachmentSkin7="Золоте сяйво"
+AttachmentSkin8="Зелений"
+AttachmentSkin9="Зелене сяйво"
+
+[chr_Alberts_archetype.Attachment5]
+AttachmentSkin0="Білі краї"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Червоний"
+
+[chr_Alberts_archetype.Attachment6]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Червоний"
+
+[chr_Alberts_archetype.Attachment7]
+AttachmentSkin0="Велика Британія"
+AttachmentSkin1="США"
+AttachmentSkin2="Канада"
+AttachmentSkin3="Німеччина"
+AttachmentSkin4="Росія"
+
+[chr_Alberts_archetype.Attachment8]
+AttachmentSkin0="Коричневий"
+AttachmentSkin1="Чорний"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Жовтий"
+AttachmentSkin4="Білий"
+
+[chr_Alberts_archetype.Attachment9]
+AttachmentSkin0="Білий"
+AttachmentSkin1="Смугастий"
+AttachmentSkin2="Закривавлений"
+
+[chr_Alberts_archetype.Attachment10]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Чорний"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Жовтий"
+
+[chr_Alberts_archetype.Attachment11]
+AttachmentSkin0="Ковбойський капелюх"
+
+[chr_Alberts_archetype.Attachment12]
+AttachmentSkin0="Камуфляжний"
+
+[chr_Alberts_archetype.Attachment13]
+AttachmentSkin0="Синє сяйво"
+
+[chr_Alberts_archetype.Attachment14]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський"
+AttachmentSkin2="Біо"
+AttachmentSkin3="Синій"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Лавандос"
+AttachmentSkin6="Око"
+AttachmentSkin7="Екстравагантного вигляду"
+AttachmentSkin8="Полум’я"
+AttachmentSkin9="У клітинку"
+AttachmentSkin10="Пурпуровий"
+AttachmentSkin11="Череп"
+AttachmentSkin12="Бризки"
+AttachmentSkin13="Спіраль"
+
+[chr_Alberts_archetype.Attachment15]
+AttachmentSkin0="Темно-металевий"
+
+[chr_Alberts_archetype.Attachment16]
+AttachmentSkin0="Німецький протигаз"
+
+[chr_Alberts_archetype.Attachment17]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський білий"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синій"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Темно-пурпуровий"
+AttachmentSkin6="Полум’я"
+AttachmentSkin7="Зелений"
+AttachmentSkin8="Японія"
+AttachmentSkin9="Світло-синій"
+AttachmentSkin10="Пурпуровий"
+AttachmentSkin11="Червоний"
+AttachmentSkin12="Червоно-чорний"
+AttachmentSkin13="Червона текстура"
+AttachmentSkin14="Зірка"
+AttachmentSkin15="Пасмо"
+AttachmentSkin16="Спіраль"
+AttachmentSkin17="Білий"
+AttachmentSkin18="Жовтий"
+
+[chr_Alberts_archetype.Attachment18]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синьо-зелений"
+AttachmentSkin4="Синьо-білий"
+AttachmentSkin5="Синьо-жовтий"
+AttachmentSkin6="Камуфляжний"
+AttachmentSkin7="Темно-пурпуровий"
+AttachmentSkin8="Вогники"
+AttachmentSkin9="Зелено-синій"
+AttachmentSkin10="Зелено-жовтий"
+AttachmentSkin11="Пастельний"
+AttachmentSkin12="Пурпуровий"
+AttachmentSkin13="Пурпурово-чорний"
+AttachmentSkin14="Веселка"
+AttachmentSkin15="Червоно-білий"
+AttachmentSkin16="Білий та чорний"
+AttachmentSkin17="Жовто-чорний"
+
+[chr_Alberts_archetype.Attachment19]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Камуфляжний"
+AttachmentSkin2="Тигровий"
+AttachmentSkin3="США"
+
+[chr_Alberts_archetype.Attachment20]
+AttachmentSkin0="Святі окуляри"
+
+[chr_Alberts_archetype.Attachment21]
+AttachmentSkin0="Класичний злочинець"
+AttachmentSkin1="Пекельний співак"
+AttachmentSkin2="Жрець"
+
+[chr_Alberts_archetype.Attachment22]
+AttachmentSkin0="Класичний злочинець"
+AttachmentSkin1="Пекельний співак"
+AttachmentSkin2="Жрець"
+
+[chr_Alberts_archetype.Attachment23]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_Alberts_archetype.Attachment24]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_Alberts_archetype.Attachment25]
+AttachmentSkin0="Маска божевільного маніяка"
+
+[chr_Alberts_archetype.Attachment26]
+AttachmentSkin0="Шолом льотчика"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_Alberts_archetype.Attachment27]
+AttachmentSkin0="Шолом руйнівника черепів"
+
+[chr_Alberts_archetype.Attachment28]
+AttachmentSkin0="Маска руйнівника черепів"
+
+[chr_Alberts_archetype.Attachment29]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Золотий"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Коштовний золотий"
+
+[chr_Alberts_archetype.Attachment30]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_Alberts_archetype.Attachment31]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_Alberts_archetype.Attachment32]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_Alberts_archetype.Attachment33]
+AttachmentSkin0="Default"
+
+[chr_Alberts_archetype.Attachment34]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[chr_Alberts_archetype.Attachment35]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[chr_Alberts_archetype.Attachment36]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[chr_Alberts_archetype.Attachment37]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[chr_Alberts_archetype.Attachment38]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[chr_Alberts_archetype.Attachment39]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_Alberts_archetype.Attachment40]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_Alberts_archetype.Attachment41]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[chr_Alberts_archetype.Attachment42]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[chr_Alberts_archetype.Attachment43]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[chr_Alberts_archetype.Attachment44]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_Alberts_archetype.Attachment45]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[chr_Alberts_archetype.Attachment46]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[chr_Alberts_archetype.Attachment47]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_Alberts_archetype.Attachment48]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[chr_Alberts_archetype.Attachment49]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[chr_Alberts_archetype.Attachment50]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[chr_Alberts_archetype.Attachment51]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[chr_Alberts_archetype.Attachment52]
+AttachmentSkin0="Mr White"
+
+[chr_Alberts_archetype.Attachment53]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[chr_Alberts_archetype.Attachment54]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[chr_Alberts_archetype.Attachment55]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_Alberts_archetype.Attachment56]
+AttachmentSkin0="Bushi"
+
+[chr_Alberts_archetype.Attachment57]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[chr_Alberts_archetype.Attachment58]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[chr_Alberts_archetype.Attachment59]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_Alberts_archetype.Attachment60]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_Alberts_archetype.Attachment61]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_Alberts_archetype.Attachment62]
+AttachmentSkin0="Olive Grey"
+
+[chr_Alberts_archetype.Attachment63]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[chr_Alberts_archetype.Attachment64]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Black Coat Blue"
+AttachmentSkin2="Black Coat Red"
+AttachmentSkin3="Black Coat Green"
+AttachmentSkin4="Green Coat"
+AttachmentSkin5="Blue Coat"
+AttachmentSkin6="Red Coat"
+
+[chr_Alberts_archetype.Attachment65]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Green Coat"
+AttachmentSkin2="Blue Coat"
+AttachmentSkin3="Red Coat"
+
+[chr_Alberts_archetype.Attachment66]
+AttachmentSkin0="Black Eyes"
+AttachmentSkin1="Red Eyes"
+AttachmentSkin2="Blue Eyes"
+AttachmentSkin3="Green Eyes"
+AttachmentSkin4="Green Filter"
+AttachmentSkin5="Blue Filter"
+AttachmentSkin6="Red Filter"
+
+[chr_Alberts_archetype.Attachment67]
+AttachmentSkin0="Stealth Black"
+
+[chr_Alberts_archetype.Attachment68]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+
+[chr_Alberts_archetype.Attachment69]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+AttachmentSkin4="Blue Steel"
+AttachmentSkin5="Blue Magnum"
+AttachmentSkin6="Green Rally"
+AttachmentSkin7="Green Synergy"
+AttachmentSkin8="Red Face"
+AttachmentSkin9="Red Cheeks"
+AttachmentSkin10="Reaper Black"
+
+[chr_Alberts_archetype.Attachment70]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
+//Start Masterson
+
+[CHR_Masterson_archetype]
+CharacterName="Лейтенант Білл Мастерсон"
+Description="Армійська кар’єра Біла Мастерсона була не надто вдалою. Він бажав стати героєм та відважно боротися проти зухвалих і зловісних ворогів Британії та Її Величності Королеви. Але єдині, з ким він боровся, була купка нікчемних терористів. Він хотів справжньої війни — такої, де можна було би вдосталь настрілятися. Проте єдине, що він робив, це волочився світом, точніше по його найзлиденніших та найпаскудніших закутках, зі своїми бойовими побратимами. Потім він пішов з армії. Змінивши декілька нікчемних робіт, одного не надто гарного ранку Біл прокинувся та побачив, що на вулицях Лондона апокаліпсис. І ось нарешті він стає солдатом-героєм, яким завжди так сильно хотів стати. Діставшись до казарм місцевих резервних військ, Біл файно озброївся та почав свою власну війну. Він не очікував такої кривавої війни і не проходив спеціальну підготовку до неї, але все ж це війна. І він вельми хвацько з нею ладнає!"
+BodyMesh0="Воєнний дрес-код"
+HeadMesh0="Обличчя"
+Attachment0="Протигаз S10"
+Attachment1="Окуляри"
+Attachment2="Alienware"
+Attachment3="Авіатори"
+Attachment4="Балістична маска"
+Attachment5="Бейсболка"
+Attachment6="Ковпак кухаря"
+Attachment7="Респіратор"
+Attachment8="Ковбойський капелюх"
+Attachment9="Плоский кашкет"
+Attachment10="Кевларовий шолом"
+Attachment11="Шолом з приладом нічного бачення"
+Attachment12="Пов’язка на око"
+Attachment13="Маска зварювальника"
+Attachment14="Німецький протигаз"
+Attachment15="Головна пов’язка"
+Attachment16="Ретро-окуляри"
+Attachment17="Балаклава"
+Attachment18="Маска лікаря"
+Attachment19="Забрало шолома піднято"
+Attachment20="Забрало шолома опущено"
+Attachment21="Маска божевільного маніяка"
+Attachment22="Шолом льотчика"
+Attachment23="Шолом руйнівника черепів"
+Attachment24="Маска руйнівника черепів"
+Attachment25="Маска пілота"
+Attachment26="Поліцейський шолом"
+Attachment27="Charm Goggles"
+Attachment28="Aviator Goggles"
+Attachment29="Sawblade Battle Helm"
+Attachment30="Boonie Cap"
+Attachment31="Infiltrator"
+Attachment32="Mask of the Abyss"
+Attachment33="Horzine Cybernetic Gas Mask"
+Attachment34="JFront Cap"
+Attachment35="Longhorn"
+Attachment36="EMS Backpack"
+Attachment37="Motorcycle Helmet"
+Attachment38="Smashed Motorcycle Helmet"
+Attachment39="Rubber Air Filter"
+Attachment40="Russian Gas Mask"
+Attachment41="Sawtooth Mask"
+Attachment42="The Inquisitor"
+Attachment43="US Gas Mask"
+Attachment44="Bloody Games"
+Attachment45="Shattered Mask"
+Attachment46="Military Surplus Beenie"
+Attachment47="RAF Goggles"
+Attachment48="Pork Pie"
+Attachment49="Visage de Poupee"
+Attachment50="Protective Glasses"
+Attachment51="Samurai Helm"
+Attachment52="Samurai Hat"
+Attachment53="Street Punk Bandana"
+Attachment54="Street Punk Glasses"
+Attachment55="Discount T-Rex Mask"
+Attachment56="Wasteland Goggles"
+Attachment57="EMS Arm Band"
+Attachment58="M2 Flamethrower Tank"
+Attachment59="RPG7 Backbag"
+Attachment60="Enforcer Goggles"
+Attachment61="Enforcer Helmet"
+Attachment62="Enforcer Mask"
+Attachment63="Justice Goggles"
+Attachment64="Justice Helmet"
+Attachment65="Justice Mask"
+Attachment66="Tactical Backbag"
+
+[CHR_Masterson_archetype.HeadMesh0]
+HeadSkin0="Чистий"
+HeadSkin1="Камуфляжний"
+
+[CHR_Masterson_archetype.BodyMesh0]
+BodySkin0="Зелений"
+BodySkin1="Чорний"
+BodySkin2="Сніжно-білий"
+BodySkin3="Камуфляж"
+
+[CHR_Masterson_archetype.Attachment0]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Камуфляжний"
+AttachmentSkin2="Біологічна небезпека"
+AttachmentSkin3="Зед Тайм"
+AttachmentSkin4="Коштовний"
+
+[CHR_Masterson_archetype.Attachment1]
+AttachmentSkin0="Сонцезахисні окуляри"
+AttachmentSkin1="Звичайні окуляри"
+
+[chr_Masterson_archetype.Attachment2]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Чорне сяйво"
+AttachmentSkin2="Білий"
+AttachmentSkin3="Біле сяйво"
+AttachmentSkin4="Синій"
+AttachmentSkin5="Синє сяйво"
+AttachmentSkin6="Золотий"
+AttachmentSkin7="Золоте сяйво"
+AttachmentSkin8="Зелений"
+AttachmentSkin9="Зелене сяйво"
+
+[chr_Masterson_archetype.Attachment3]
+AttachmentSkin0="Білі краї"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Червоний"
+
+[chr_Masterson_archetype.Attachment4]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Червоний"
+
+[chr_Masterson_archetype.Attachment5]
+AttachmentSkin0="Велика Британія"
+AttachmentSkin1="США"
+AttachmentSkin2="Канада"
+AttachmentSkin3="Німеччина"
+AttachmentSkin4="Росія"
+
+[chr_Masterson_archetype.Attachment6]
+AttachmentSkin0="Білий"
+AttachmentSkin1="Смугастий"
+AttachmentSkin2="Закривавлений"
+
+[chr_Masterson_archetype.Attachment7]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Чорний"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Жовтий"
+
+[chr_Masterson_archetype.Attachment8]
+AttachmentSkin0="Ковбойський капелюх"
+
+[chr_Masterson_archetype.Attachment9]
+AttachmentSkin0="Коричневий"
+AttachmentSkin1="Чорний"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Жовтий"
+AttachmentSkin4="Білий"
+
+[chr_Masterson_archetype.Attachment10]
+AttachmentSkin0="Камуфляжний"
+
+[chr_Masterson_archetype.Attachment11]
+AttachmentSkin0="Синє сяйво"
+
+[chr_Masterson_archetype.Attachment12]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський"
+AttachmentSkin2="Біо"
+AttachmentSkin3="Синій"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Лавандос"
+AttachmentSkin6="Око"
+AttachmentSkin7="Екстравагантного вигляду"
+AttachmentSkin8="Полум’я"
+AttachmentSkin9="У клітинку"
+AttachmentSkin10="Пурпуровий"
+AttachmentSkin11="Череп"
+AttachmentSkin12="Бризки"
+AttachmentSkin13="Спіраль"
+
+[chr_Masterson_archetype.Attachment13]
+AttachmentSkin0="Темно-металевий"
+
+[chr_Masterson_archetype.Attachment14]
+AttachmentSkin0="Німецький протигаз"
+
+[chr_Masterson_archetype.Attachment15]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський білий"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синій"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Темно-пурпуровий"
+AttachmentSkin6="Полум’я"
+AttachmentSkin7="Зелений"
+AttachmentSkin8="Японія"
+AttachmentSkin9="Світло-синій"
+AttachmentSkin10="Пурпуровий"
+AttachmentSkin11="Червоний"
+AttachmentSkin12="Червоно-чорний"
+AttachmentSkin13="Червона текстура"
+AttachmentSkin14="Зірка"
+AttachmentSkin15="Пасмо"
+AttachmentSkin16="Спіраль"
+AttachmentSkin17="Білий"
+AttachmentSkin18="Жовтий"
+
+[chr_Masterson_archetype.Attachment16]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Камуфляжний"
+AttachmentSkin2="Тигровий"
+AttachmentSkin3="США"
+
+[chr_Masterson_archetype.Attachment17]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синьо-зелений"
+AttachmentSkin4="Синьо-білий"
+AttachmentSkin5="Синьо-жовтий"
+AttachmentSkin6="Камуфляжний"
+AttachmentSkin7="Темно-пурпуровий"
+AttachmentSkin8="Вогники"
+AttachmentSkin9="Зелено-синій"
+AttachmentSkin10="Зелено-жовтий"
+AttachmentSkin11="Пастельний"
+AttachmentSkin12="Пурпуровий"
+AttachmentSkin13="Пурпурово-чорний"
+AttachmentSkin14="Веселка"
+AttachmentSkin15="Червоно-білий"
+AttachmentSkin16="Білий та чорний"
+AttachmentSkin17="Жовто-чорний"
+
+[chr_Masterson_archetype.Attachment18]
+AttachmentSkin0="Білий"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+
+[chr_Masterson_archetype.Attachment19]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_Masterson_archetype.Attachment20]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_Masterson_archetype.Attachment21]
+AttachmentSkin0="Маска божевільного маніяка"
+
+[chr_Masterson_archetype.Attachment22]
+AttachmentSkin0="Шолом льотчика"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_Masterson_archetype.Attachment23]
+AttachmentSkin0="Шолом руйнівника черепів"
+
+[chr_Masterson_archetype.Attachment24]
+AttachmentSkin0="Маска руйнівника черепів"
+
+[chr_Masterson_archetype.Attachment25]
+AttachmentSkin0="Маска пілота"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_Masterson_archetype.Attachment26]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Золотий"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Коштовний золотий"
+
+[CHR_Masterson_archetype.Attachment27]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Masterson_archetype.Attachment28]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Masterson_archetype.Attachment29]
+AttachmentSkin0="Default"
+
+[CHR_Masterson_archetype.Attachment30]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[CHR_Masterson_archetype.Attachment31]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[CHR_Masterson_archetype.Attachment32]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[CHR_Masterson_archetype.Attachment33]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[CHR_Masterson_archetype.Attachment34]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[CHR_Masterson_archetype.Attachment35]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Masterson_archetype.Attachment36]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Masterson_archetype.Attachment37]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[CHR_Masterson_archetype.Attachment38]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[CHR_Masterson_archetype.Attachment39]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[CHR_Masterson_archetype.Attachment40]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Masterson_archetype.Attachment41]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[CHR_Masterson_archetype.Attachment42]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[CHR_Masterson_archetype.Attachment43]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Masterson_archetype.Attachment44]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[CHR_Masterson_archetype.Attachment45]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[CHR_Masterson_archetype.Attachment46]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[CHR_Masterson_archetype.Attachment47]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[CHR_Masterson_archetype.Attachment48]
+AttachmentSkin0="Mr White"
+
+[CHR_Masterson_archetype.Attachment49]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[CHR_Masterson_archetype.Attachment50]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[CHR_Masterson_archetype.Attachment51]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Masterson_archetype.Attachment52]
+AttachmentSkin0="Bushi"
+
+[CHR_Masterson_archetype.Attachment53]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[CHR_Masterson_archetype.Attachment54]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[CHR_Masterson_archetype.Attachment55]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Masterson_archetype.Attachment56]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Masterson_archetype.Attachment57]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Masterson_archetype.Attachment58]
+AttachmentSkin0="Olive Grey"
+
+[CHR_Masterson_archetype.Attachment59]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[CHR_Masterson_archetype.Attachment60]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Black Coat Blue"
+AttachmentSkin2="Black Coat Red"
+AttachmentSkin3="Black Coat Green"
+AttachmentSkin4="Green Coat"
+AttachmentSkin5="Blue Coat"
+AttachmentSkin6="Red Coat"
+
+[CHR_Masterson_archetype.Attachment61]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Green Coat"
+AttachmentSkin2="Blue Coat"
+AttachmentSkin3="Red Coat"
+
+[CHR_Masterson_archetype.Attachment62]
+AttachmentSkin0="Black Eyes"
+AttachmentSkin1="Red Eyes"
+AttachmentSkin2="Blue Eyes"
+AttachmentSkin3="Green Eyes"
+AttachmentSkin4="Green Filter"
+AttachmentSkin5="Blue Filter"
+AttachmentSkin6="Red Filter"
+
+[CHR_Masterson_archetype.Attachment63]
+AttachmentSkin0="Stealth Black"
+
+[CHR_Masterson_archetype.Attachment64]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+
+[CHR_Masterson_archetype.Attachment65]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+AttachmentSkin4="Blue Steel"
+AttachmentSkin5="Blue Magnum"
+AttachmentSkin6="Green Rally"
+AttachmentSkin7="Green Synergy"
+AttachmentSkin8="Red Face"
+AttachmentSkin9="Red Cheeks"
+AttachmentSkin10="Reaper Black"
+
+[CHR_Masterson_archetype.Attachment66]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
+
+//Start Tanaka
+
+[CHR_Tanaka_Archetype]
+CharacterName="Хаято Танака"
+Description="Хаято Танака — дуже злісний та недоброзичливий чолов’яга, одержимий бажанням померти. Народився в Окінаві, де виріс серед американських військових. Згодом Хаято разом зі сім’єю переїхав до центральної частини Японії. Він глибоко перейнявся американською культурою і йому не вдалося прижитися на новому місці, тому він записався на театральні курси. Закінчивши коледж, він переїхав жити до Лос-Анджелеса, де грав незначні ролі у другосортних фільмах. Потім він вирішив перебратися до Європи та знайти більш серйозну роботу. Але йому вдалося лише зіграти роль поганого хлопаки в кількох французьких ґанґстерських фільмах і засвітитися у дешевій рекламі. Тепер посеред зомбі-апокаліпсису він, схоже, почав плутати реальність з деякими зі своїх ролей. Судячи з усього, йому вижається суміш японської мафії, навали зловісних почвар та голівудських фільмів про самураїв."
+BodyMesh0="Смертельний холод"
+BodyMesh1="Мотоцикл"
+HeadMesh0="Волосся"
+Attachment0="Бандана"
+Attachment1="Протигаз S10"
+Attachment2="Окуляри"
+Attachment3="Навушники Скаллі"
+Attachment4="Стерео-окуляри"
+Attachment5="Alienware"
+Attachment6="Шолом"
+Attachment7="Авіатори"
+Attachment8="Балістична маска"
+Attachment9="Бейсболка"
+Attachment10="Ковпак кухаря"
+Attachment11="Ковбойський капелюх"
+Attachment12="Плоский кашкет"
+Attachment13="Кевларовий шолом"
+Attachment14="Шолом з приладом нічного бачення"
+Attachment15="Пов’язка на око"
+Attachment16="Маска зварювальника"
+Attachment17="Німецький протигаз"
+Attachment18="Головна пов’язка"
+Attachment19="Ретро-окуляри"
+Attachment20="Балаклава"
+Attachment21="Маска лікаря"
+Attachment22="Mempo"
+Attachment23="Забрало шолома піднято"
+Attachment24="Забрало шолома опущено"
+Attachment25="Маска божевільного маніяка"
+Attachment26="Шолом льотчика"
+Attachment27="Поліцейський шолом"
+Attachment28="Flight Mask"
+Attachment29="Charm Goggles"
+Attachment30="Aviator Goggles"
+Attachment31="Sawblade Battle Helm"
+Attachment32="Boonie Cap"
+Attachment33="Infiltrator"
+Attachment34="Mask of the Abyss"
+Attachment35="Horzine Cybernetic Gas Mask"
+Attachment36="JFront Cap"
+Attachment37="Longhorn"
+Attachment38="EMS Backpack"
+Attachment39="Motorcycle Helmet"
+Attachment40="Smashed Motorcycle Helmet"
+Attachment41="Rubber Air Filter"
+Attachment42="Russian Gas Mask"
+Attachment43="Sawtooth Mask"
+Attachment44="The Inquisitor"
+Attachment45="US Gas Mask"
+Attachment46="Bloody Games"
+Attachment47="Shattered Mask"
+Attachment48="Military Surplus Beenie"
+Attachment49="RAF Goggles"
+Attachment50="Pork Pie"
+Attachment51="Visage de Poupee"
+Attachment52="Protective Glasses"
+Attachment53="Samurai Helm"
+Attachment54="Samurai Hat"
+Attachment55="Street Punk Bandana"
+Attachment56="Street Punk Glasses"
+Attachment57="Discount T-Rex Mask"
+Attachment58="Wasteland Goggles"
+Attachment59="EMS Arm Band"
+Attachment60="M2 Flamethrower Tank"
+Attachment61="RPG7 Backbag"
+Attachment62="Tactical Backbag"
+
+[CHR_Tanaka_Archetype.HeadMesh0]
+HeadSkin0="Чорний"
+HeadSkin1="Блонд"
+
+[CHR_Tanaka_Archetype.BodyMesh0]
+BodySkin0="Стильний"
+BodySkin1="Какігара-сан"
+BodySkin2="У чорному"
+BodySkin3="Синій дракон"
+
+[CHR_Tanaka_Archetype.BodyMesh1]
+BodySkin0="Червоний та чорний"
+BodySkin1="Мастадонт"
+BodySkin2="Стіг"
+BodySkin3="Синій туман"
+BodySkin4="Дракон"
+BodySkin5="Смертельна гра"
+BodySkin6="Кран"
+
+[chr_Tanaka_archetype.Attachment0]
+AttachmentSkin0="Золотий дракон"
+AttachmentSkin1="Какігара-сан"
+AttachmentSkin2="Ганя"
+AttachmentSkin3="Правдиво синій"
+
+[chr_Tanaka_archetype.Attachment1]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Камуфляжний"
+AttachmentSkin2="Біологічна небезпека"
+AttachmentSkin3="Зед Тайм"
+AttachmentSkin4="Коштовний"
+
+[CHR_Tanaka_archetype.Attachment2]
+AttachmentSkin0="Сонцезахисні окуляри"
+AttachmentSkin1="Звичайні окуляри"
+
+[chr_Tanaka_archetype.Attachment3]
+AttachmentSkin0="Темно-синій"
+AttachmentSkin1="Гільйотинно-червоний"
+AttachmentSkin2="Захисний помаранчевий"
+AttachmentSkin3="У ретро стилі"
+AttachmentSkin4="Білий Horzine"
+AttachmentSkin5="Брудно-жовтий"
+AttachmentSkin6="Коштовний золотий"
+
+[CHR_Tanaka_archetype.Attachment4]
+AttachmentSkin0="Анагліф"
+AttachmentSkin1="Пасивний затвор"
+AttachmentSkin2="Стерео-окуляри"
+AttachmentSkin3="Рентгенівські окуляри"
+
+[chr_Tanaka_archetype.Attachment5]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Чорне сяйво"
+AttachmentSkin2="Білий"
+AttachmentSkin3="Біле сяйво"
+AttachmentSkin4="Синій"
+AttachmentSkin5="Синє сяйво"
+AttachmentSkin6="Золотий"
+AttachmentSkin7="Золоте сяйво"
+AttachmentSkin8="Зелений"
+AttachmentSkin9="Зелене сяйво"
+
+[chr_Tanaka_archetype.Attachment6]
+AttachmentSkin0="Сонце, що сходить"
+AttachmentSkin1="Америка"
+AttachmentSkin2="Чорний"
+AttachmentSkin3="Синій туман"
+AttachmentSkin4="Ніжно-зелений"
+AttachmentSkin5="Убивчий сірий"
+AttachmentSkin6="Смертельна гра"
+AttachmentSkin7="Білий"
+
+[chr_Tanaka_archetype.Attachment7]
+AttachmentSkin0="Білі краї"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Червоний"
+
+[chr_Tanaka_archetype.Attachment8]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Червоний"
+
+[chr_Tanaka_archetype.Attachment9]
+AttachmentSkin0="Велика Британія"
+AttachmentSkin1="США"
+AttachmentSkin2="Канада"
+AttachmentSkin3="Німеччина"
+AttachmentSkin4="Росія"
+
+[chr_Tanaka_archetype.Attachment10]
+AttachmentSkin0="Білий"
+AttachmentSkin1="Смугастий"
+AttachmentSkin2="Закривавлений"
+
+[chr_Tanaka_archetype.Attachment11]
+AttachmentSkin0="Ковбойський капелюх"
+
+[chr_Tanaka_archetype.Attachment12]
+AttachmentSkin0="Коричневий"
+AttachmentSkin1="Чорний"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Жовтий"
+AttachmentSkin4="Білий"
+
+[chr_Tanaka_archetype.Attachment13]
+AttachmentSkin0="Камуфляжний"
+
+[chr_Tanaka_archetype.Attachment14]
+AttachmentSkin0="Синє сяйво"
+
+[chr_Tanaka_archetype.Attachment15]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський"
+AttachmentSkin2="Біо"
+AttachmentSkin3="Синій"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Лавандос"
+AttachmentSkin6="Око"
+AttachmentSkin7="Екстравагантного вигляду"
+AttachmentSkin8="Полум’я"
+AttachmentSkin9="У клітинку"
+AttachmentSkin10="Пурпуровий"
+AttachmentSkin11="Череп"
+AttachmentSkin12="Бризки"
+AttachmentSkin13="Спіраль"
+
+[chr_Tanaka_archetype.Attachment16]
+AttachmentSkin0="Темно-металевий"
+
+[chr_Tanaka_archetype.Attachment17]
+Attachment10="Німецький протигаз"
+
+[chr_Tanaka_archetype.Attachment18]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський білий"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синій"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Темно-пурпуровий"
+AttachmentSkin6="Полум’я"
+AttachmentSkin7="Зелений"
+AttachmentSkin8="Японія"
+AttachmentSkin9="Світло-синій"
+AttachmentSkin10="Пурпуровий"
+AttachmentSkin11="Червоний"
+AttachmentSkin12="Червоно-чорний"
+AttachmentSkin13="Червона текстура"
+AttachmentSkin14="Зірка"
+AttachmentSkin15="Пасмо"
+AttachmentSkin16="Спіраль"
+AttachmentSkin17="Білий"
+AttachmentSkin18="Жовтий"
+
+[chr_Tanaka_archetype.Attachment19]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Камуфляжний"
+AttachmentSkin2="Тигровий"
+AttachmentSkin3="США"
+
+[chr_Tanaka_archetype.Attachment20]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синьо-зелений"
+AttachmentSkin4="Синьо-білий"
+AttachmentSkin5="Синьо-жовтий"
+AttachmentSkin6="Камуфляжний"
+AttachmentSkin7="Темно-пурпуровий"
+AttachmentSkin8="Вогники"
+AttachmentSkin9="Зелено-синій"
+AttachmentSkin10="Зелено-жовтий"
+AttachmentSkin11="Пастельний"
+AttachmentSkin12="Пурпуровий"
+AttachmentSkin13="Пурпурово-чорний"
+AttachmentSkin14="Веселка"
+AttachmentSkin15="Червоно-білий"
+AttachmentSkin16="Білий та чорний"
+AttachmentSkin17="Жовто-чорний"
+
+[chr_Tanaka_archetype.Attachment21]
+AttachmentSkin0="Білий"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+
+[chr_Tanaka_archetype.Attachment22]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Пурпуровий"
+AttachmentSkin2="Червоний"
+AttachmentSkin3="Жовтий"
+
+[chr_Tanaka_archetype.Attachment23]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_Tanaka_archetype.Attachment24]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_Tanaka_archetype.Attachment25]
+AttachmentSkin0="Маска божевільного маніяка"
+
+[chr_Tanaka_archetype.Attachment26]
+AttachmentSkin0="Шолом льотчика"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_Tanaka_archetype.Attachment27]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Золотий"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Коштовний золотий"
+
+[chr_Tanaka_archetype.Attachment28]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[CHR_Tanaka_Archetype.Attachment29]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Tanaka_Archetype.Attachment30]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Tanaka_Archetype.Attachment31]
+AttachmentSkin0="Default"
+
+[CHR_Tanaka_Archetype.Attachment32]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[CHR_Tanaka_Archetype.Attachment33]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[CHR_Tanaka_Archetype.Attachment34]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[CHR_Tanaka_Archetype.Attachment35]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[CHR_Tanaka_Archetype.Attachment36]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[CHR_Tanaka_Archetype.Attachment37]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Tanaka_Archetype.Attachment38]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Tanaka_Archetype.Attachment39]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[CHR_Tanaka_Archetype.Attachment40]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[CHR_Tanaka_Archetype.Attachment41]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[CHR_Tanaka_Archetype.Attachment42]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Tanaka_Archetype.Attachment43]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[CHR_Tanaka_Archetype.Attachment44]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[CHR_Tanaka_Archetype.Attachment45]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Tanaka_Archetype.Attachment46]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[CHR_Tanaka_Archetype.Attachment47]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[CHR_Tanaka_Archetype.Attachment48]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[CHR_Tanaka_Archetype.Attachment49]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[CHR_Tanaka_Archetype.Attachment50]
+AttachmentSkin0="Mr White"
+
+[CHR_Tanaka_Archetype.Attachment51]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[CHR_Tanaka_Archetype.Attachment52]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[CHR_Tanaka_Archetype.Attachment53]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Tanaka_Archetype.Attachment54]
+AttachmentSkin0="Bushi"
+
+[CHR_Tanaka_Archetype.Attachment55]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[CHR_Tanaka_Archetype.Attachment56]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[CHR_Tanaka_Archetype.Attachment57]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Tanaka_Archetype.Attachment58]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Tanaka_Archetype.Attachment59]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Tanaka_Archetype.Attachment60]
+AttachmentSkin0="Olive Grey"
+
+[CHR_Tanaka_Archetype.Attachment61]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[CHR_Tanaka_Archetype.Attachment62]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
+//Ana
+[CHR_Ana_Archetype]
+CharacterName="Ана Ларів"
+Description="Аню можна віднести до так званої «альтернативної молоді». Їй було повністю начхати на все довкола, крім подорожей Європою, у яких вона віддавалася своїй пристрасті до дез-метал гуртів та знимкування різних ґетто і закинутих місцин. А тепер, коли світ сколихнула анархія та безлад, Ані взагалі усе байдуже. І якщо метал-концертів більше немає, то напівзруйнованих будівель та закинутих місцин тепер повно. І найбільше її радує те, що є можливість безперешкодно їх відвідувати та робити їх ще більш паскуднішими. Аня знайшла покликання свого життя — підривати усю цю хрінь до дітька!"
+BodyMesh0="Металкор"
+HeadMesh0="Ірокез"
+Attachment0="Шарф"
+Attachment1="Протигаз S10"
+Attachment2="Окуляри"
+Attachment3="Стерео-окуляри"
+Attachment4="Alienware"
+Attachment5="Авіатори"
+Attachment6="Плоский кашкет"
+Attachment7="Ковпак кухаря"
+Attachment8="Респіратор"
+Attachment9="Кевларовий шолом"
+Attachment10="Шолом з приладом нічного бачення"
+Attachment11="Пов’язка на око"
+Attachment12="Маска зварювальника"
+Attachment13="Німецький протигаз"
+Attachment14="Ковбойський капелюх"
+Attachment15="Головна пов’язка"
+Attachment16="Ретро-окуляри"
+Attachment17="Балаклава"
+Attachment18="Маска лікаря"
+Attachment19="Забрало шолома піднято"
+Attachment20="Забрало шолома опущено"
+Attachment21="Маска божевільного маніяка"
+Attachment22="Шолом льотчика"
+Attachment23="Поліцейський шолом"
+Attachment24="Baseball Hat"
+Attachment25="Flight Mask"
+Attachment26="Charm Goggles"
+Attachment27="Aviator Goggles"
+Attachment28="Sawblade Battle Helm"
+Attachment29="Boonie Cap"
+Attachment30="Infiltrator"
+Attachment31="Mask of the Abyss"
+Attachment32="Horzine Cybernetic Gas Mask"
+Attachment33="JFront Cap"
+Attachment34="Longhorn"
+Attachment35="EMS Backpack"
+Attachment36="Motorcycle Helmet"
+Attachment37="Smashed Motorcycle Helmet"
+Attachment38="Rubber Air Filter"
+Attachment39="Russian Gas Mask"
+Attachment40="Sawtooth Mask"
+Attachment41="The Inquisitor"
+Attachment42="US Gas Mask"
+Attachment43="Bloody Games"
+Attachment44="Shattered Mask"
+Attachment45="Military Surplus Beenie"
+Attachment46="RAF Goggles"
+Attachment47="Pork Pie"
+Attachment48="Visage de Poupee"
+Attachment49="Protective Glasses"
+Attachment50="Samurai Helm"
+Attachment51="Samurai Hat"
+Attachment52="Street Punk Bandana"
+Attachment53="Street Punk Glasses"
+Attachment54="Discount T-Rex Mask"
+Attachment55="Wasteland Goggles"
+Attachment56="EMS Arm Band"
+Attachment57="M2 Flamethrower Tank"
+Attachment58="Tactical Backbag"
+
+[CHR_Ana_Archetype.HeadMesh0]
+HeadSkin0="Смертельний дощ"
+HeadSkin1="Яскрава кров"
+HeadSkin2="Зелена хімія"
+HeadSkin3="Приємно синій"
+
+[CHR_Ana_Archetype.BodyMesh0]
+BodySkin0="Смертельний дощ"
+BodySkin1="Яскрава кров"
+BodySkin2="Зелена хімія"
+BodySkin3="Приємно синій"
+BodySkin4="Хвала Чікенатору"
+
+[CHR_Ana_Archetype.Attachment0]
+AttachmentSkin0="Смертельний дощ"
+AttachmentSkin1="Тигриця"
+AttachmentSkin2="Банберрі"
+AttachmentSkin3="Приємно синій"
+
+[CHR_Ana_Archetype.Attachment1]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Камуфляжний"
+AttachmentSkin2="Біологічна небезпека"
+AttachmentSkin3="Зед Тайм"
+AttachmentSkin4="Коштовний"
+
+[CHR_Ana_archetype.Attachment2]
+AttachmentSkin0="Сонцезахисні окуляри"
+AttachmentSkin1="Звичайні окуляри"
+
+[CHR_Ana_archetype.Attachment3]
+AttachmentSkin0="Анагліф"
+AttachmentSkin1="Пасивний затвор"
+AttachmentSkin2="Стерео-окуляри"
+AttachmentSkin3="Рентгенівські окуляри"
+
+[CHR_Ana_archetype.Attachment4]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Чорне сяйво"
+AttachmentSkin2="Білий"
+AttachmentSkin3="Біле сяйво"
+AttachmentSkin4="Синій"
+AttachmentSkin5="Синє сяйво"
+AttachmentSkin6="Золотий"
+AttachmentSkin7="Золоте сяйво"
+AttachmentSkin8="Зелений"
+AttachmentSkin9="Зелене сяйво"
+
+[CHR_Ana_archetype.Attachment5]
+AttachmentSkin0="Білі краї"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Червоний"
+
+[chr_Ana_archetype.Attachment6]
+AttachmentSkin0="Коричневий"
+AttachmentSkin1="Чорний"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Жовтий"
+AttachmentSkin4="Білий"
+
+[chr_Ana_archetype.Attachment7]
+AttachmentSkin0="Білий"
+AttachmentSkin1="Смугастий"
+AttachmentSkin2="Закривавлений"
+
+[chr_Ana_archetype.Attachment8]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Чорний"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Жовтий"
+
+[chr_Ana_archetype.Attachment9]
+AttachmentSkin0="Камуфляжний"
+
+[chr_Ana_archetype.Attachment10]
+AttachmentSkin0="Синє сяйво"
+
+[chr_Ana_archetype.Attachment11]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський"
+AttachmentSkin2="Біо"
+AttachmentSkin3="Синій"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Лавандос"
+AttachmentSkin6="Око"
+AttachmentSkin7="Екстравагантного вигляду"
+AttachmentSkin8="Полум’я"
+AttachmentSkin9="У клітинку"
+AttachmentSkin10="Пурпуровий"
+AttachmentSkin11="Череп"
+AttachmentSkin12="Бризки"
+AttachmentSkin13="Спіраль"
+
+[chr_Ana_archetype.Attachment12]
+AttachmentSkin0="Темно-металевий"
+
+[chr_Ana_archetype.Attachment13]
+AttachmentSkin0="Німецький протигаз"
+
+[chr_Ana_archetype.Attachment14]
+AttachmentSkin0="Ковбойський капелюх"
+
+[chr_Ana_archetype.Attachment15]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський білий"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синій"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Темно-пурпуровий"
+AttachmentSkin6="Полум’я"
+AttachmentSkin7="Зелений"
+AttachmentSkin8="Японія"
+AttachmentSkin9="Світло-синій"
+AttachmentSkin10="Пурпуровий"
+AttachmentSkin11="Червоний"
+AttachmentSkin12="Червоно-чорний"
+AttachmentSkin13="Червона текстура"
+AttachmentSkin14="Зірка"
+AttachmentSkin15="Пасмо"
+AttachmentSkin16="Спіраль"
+AttachmentSkin17="Білий"
+AttachmentSkin18="Жовтий"
+
+[chr_Ana_archetype.Attachment16]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Камуфляжний"
+AttachmentSkin2="Тигровий"
+AttachmentSkin3="США"
+
+[chr_Ana_archetype.Attachment17]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синьо-зелений"
+AttachmentSkin4="Синьо-білий"
+AttachmentSkin5="Синьо-жовтий"
+AttachmentSkin6="Камуфляжний"
+AttachmentSkin7="Темно-пурпуровий"
+AttachmentSkin8="Вогники"
+AttachmentSkin9="Зелено-синій"
+AttachmentSkin10="Зелено-жовтий"
+AttachmentSkin11="Пастельний"
+AttachmentSkin12="Пурпуровий"
+AttachmentSkin13="Пурпурово-чорний"
+AttachmentSkin14="Веселка"
+AttachmentSkin15="Червоно-білий"
+AttachmentSkin16="Білий та чорний"
+AttachmentSkin17="Жовто-чорний"
+
+[chr_Ana_archetype.Attachment18]
+AttachmentSkin0="Білий"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+
+[chr_Ana_archetype.Attachment19]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_Ana_archetype.Attachment20]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_Ana_archetype.Attachment21]
+AttachmentSkin0="Маска божевільного маніяка"
+
+[chr_Ana_archetype.Attachment22]
+AttachmentSkin0="Шолом льотчика"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_Ana_archetype.Attachment23]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Золотий"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Коштовний золотий"
+
+[chr_Ana_archetype.Attachment24]
+AttachmentSkin0="UK"
+AttachmentSkin1="USA"
+AttachmentSkin2="CA"
+AttachmentSkin3="DE"
+AttachmentSkin4="RU"
+
+[chr_Ana_archetype.Attachment25]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[CHR_Ana_Archetype.Attachment26]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Ana_Archetype.Attachment27]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Ana_Archetype.Attachment28]
+AttachmentSkin0="Default"
+
+[CHR_Ana_Archetype.Attachment29]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[CHR_Ana_Archetype.Attachment30]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[CHR_Ana_Archetype.Attachment31]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[CHR_Ana_Archetype.Attachment32]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[CHR_Ana_Archetype.Attachment33]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[CHR_Ana_Archetype.Attachment34]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[CHR_Ana_Archetype.Attachment35]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Ana_Archetype.Attachment36]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[CHR_Ana_Archetype.Attachment37]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[CHR_Ana_Archetype.Attachment38]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[CHR_Ana_Archetype.Attachment39]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Ana_Archetype.Attachment40]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[CHR_Ana_Archetype.Attachment41]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[CHR_Ana_Archetype.Attachment42]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Ana_Archetype.Attachment43]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[CHR_Ana_Archetype.Attachment44]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[CHR_Ana_Archetype.Attachment45]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[CHR_Ana_Archetype.Attachment46]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[CHR_Ana_Archetype.Attachment47]
+AttachmentSkin0="Mr White"
+
+[CHR_Ana_Archetype.Attachment48]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[CHR_Ana_Archetype.Attachment49]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[CHR_Ana_Archetype.Attachment50]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Ana_Archetype.Attachment51]
+AttachmentSkin0="Bushi"
+
+[CHR_Ana_Archetype.Attachment52]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[CHR_Ana_Archetype.Attachment53]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[CHR_Ana_Archetype.Attachment54]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[CHR_Ana_Archetype.Attachment55]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[CHR_Ana_Archetype.Attachment56]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[CHR_Ana_Archetype.Attachment57]
+AttachmentSkin0="Olive Grey"
+
+[CHR_Ana_Archetype.Attachment58]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
+
+//Classic Briar 
+
+[chr_mark_archetype]
+CharacterName="Старий Бріан"
+Description="Якось, одного не дуже гарного дня, Браяру поручили розібратися з безладами та погромами у Лондоні. Проте, цього разу, розігнати та надавати підсрачників треба було не якимсь там патлатим хіппі, бунтівникам чи активістам Ґрінпісу. На щастя, його нестримна тяга до насильства дала змогу стримувати нашестя декілька місяців, але згодом він був змушений залишити Англію та перебратися за кордон.\n\nПройшли ті добрі часи, коли Браяр роздавав підсрачники патлатим шмаркачам. Тепер він використовує усі свої поліцейські, і не дуже, прийоми для шматування, спалювання, підривання та відстрілювання клятих почвар-людожерів. А його веселий характер та британський гумор піднімає бойовий дух побратимів. Чи просто до дідька дратує їх."
+
+BodyMesh0="Бойове спорядження"
+BodyMesh1="Лондон"
+HeadMesh0="Волосся"
+Attachment0="Бойовий шолом"
+Attachment1="Протигаз S10"
+Attachment2="Окуляри"
+Attachment3="Alienware"
+Attachment4="Поліцейський шолом"
+Attachment5="Авіатори"
+Attachment6="Балістична маска"
+Attachment7="Бейсболка"
+Attachment8="Ковпак кухаря"
+Attachment9="Респіратор"
+Attachment10="Ковбойський капелюх"
+Attachment11="Плоский кашкет"
+Attachment12="Кевларовий шолом"
+Attachment13="Шолом з приладом нічного бачення"
+Attachment14="Пов’язка на око"
+Attachment15="Маска зварювальника"
+Attachment16="Німецький протигаз"
+Attachment17="Головна пов’язка"
+Attachment18="Ретро-окуляри"
+Attachment19="Балаклава"
+Attachment20="Маска лікаря"
+Attachment21="Забрало шолома піднято"
+Attachment22="Забрало шолома опущено"
+Attachment23="Маска божевільного маніяка"
+Attachment24="Шолом льотчика"
+Attachment25="Flight Mask"
+Attachment26="Charm Goggles"
+Attachment27="Aviator Goggles"
+Attachment28="Sawblade Battle Helm"
+Attachment29="Boonie Cap"
+Attachment30="Infiltrator"
+Attachment31="Mask of the Abyss"
+Attachment32="Horzine Cybernetic Gas Mask"
+Attachment33="JFront Cap"
+Attachment34="Longhorn"
+Attachment35="EMS Backpack"
+Attachment36="Motorcycle Helmet"
+Attachment37="Smashed Motorcycle Helmet"
+Attachment38="Rubber Air Filter"
+Attachment39="Russian Gas Mask"
+Attachment40="Sawtooth Mask"
+Attachment41="The Inquisitor"
+Attachment42="US Gas Mask"
+Attachment43="Bloody Games"
+Attachment44="Shattered Mask"
+Attachment45="Military Surplus Beenie"
+Attachment46="RAF Goggles"
+Attachment47="Pork Pie"
+Attachment48="Visage de Poupee"
+Attachment49="Protective Glasses"
+Attachment50="Samurai Helm"
+Attachment51="Samurai Hat"
+Attachment52="Street Punk Bandana"
+Attachment53="Street Punk Glasses"
+Attachment54="Discount T-Rex Mask"
+Attachment55="Wasteland Goggles"
+Attachment56="EMS Arm Band"
+Attachment57="M2 Flamethrower Tank"
+Attachment58="RPG7 Backbag"
+Attachment59="Enforcer Goggles"
+Attachment60="Enforcer Helmet"
+Attachment61="Enforcer Mask"
+Attachment62="Justice Goggles"
+Attachment63="Justice Helmet"
+Attachment64="Justice Mask"
+Attachment65="Tactical Backbag"
+
+[chr_mark_archetype.BodyMesh0]
+BodySkin0="Поліцейський синій"
+BodySkin1="Чорний як ніч"
+BodySkin2="Зелений армійський"
+BodySkin3="Камуфляж SAS"
+
+[chr_mark_archetype.BodyMesh1]
+BodySkin0="Метро"
+BodySkin1="Чорний як ніч"
+BodySkin2="Синій"
+BodySkin3="Блискучий"
+BodySkin4="Блискучий чорний"
+
+[chr_mark_archetype.HeadMesh0]
+HeadSkin0="Крутий чувак"
+HeadSkin1="Кривавий час"
+HeadSkin2="Класно-коричневий"
+Headskin3="Шведський блондин"
+
+[chr_mark_archetype.Attachment0]
+AttachmentSkin0="Яскраво-червоний"
+AttachmentSkin1="Поліцейський синій"
+AttachmentSkin2="Зелений армійський"
+AttachmentSkin3="Чорний як ніч"
+
+[chr_mark_archetype.Attachment1]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Камуфляжний"
+AttachmentSkin2="Біологічна небезпека"
+AttachmentSkin3="Зед Тайм"
+AttachmentSkin4="Коштовний"
+
+[CHR_mark_archetype.Attachment2]
+AttachmentSkin0="Сонцезахисні окуляри"
+AttachmentSkin1="Звичайні окуляри"
+
+[chr_mark_archetype.Attachment3]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Чорне сяйво"
+AttachmentSkin2="Білий"
+AttachmentSkin3="Біле сяйво"
+AttachmentSkin4="Синій"
+AttachmentSkin5="Синє сяйво"
+AttachmentSkin6="Золотий"
+AttachmentSkin7="Золоте сяйво"
+AttachmentSkin8="Зелений"
+AttachmentSkin9="Зелене сяйво"
+
+[chr_mark_archetype.Attachment4]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Золотий"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Коштовний золотий"
+
+[chr_mark_archetype.Attachment5]
+AttachmentSkin0="Білі краї"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Червоний"
+
+[chr_mark_archetype.Attachment6]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Червоний"
+
+[chr_mark_archetype.Attachment7]
+AttachmentSkin0="Велика Британія"
+AttachmentSkin1="США"
+AttachmentSkin2="Канада"
+AttachmentSkin3="Німеччина"
+AttachmentSkin4="Росія"
+
+[chr_mark_archetype.Attachment8]
+AttachmentSkin0="Білий"
+AttachmentSkin1="Смугастий"
+AttachmentSkin2="Закривавлений"
+
+[chr_mark_archetype.Attachment9]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Чорний"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Жовтий"
+
+[chr_mark_archetype.Attachment10]
+AttachmentSkin0="Ковбойський капелюх"
+
+[chr_mark_archetype.Attachment11]
+AttachmentSkin0="Коричневий"
+AttachmentSkin1="Чорний"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Жовтий"
+AttachmentSkin4="Білий"
+
+[chr_mark_archetype.Attachment12]
+AttachmentSkin0="Камуфляжний"
+
+[chr_mark_archetype.Attachment13]
+AttachmentSkin0="Синє сяйво"
+
+[chr_mark_archetype.Attachment14]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський"
+AttachmentSkin2="Біо"
+AttachmentSkin3="Синій"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Лавандос"
+AttachmentSkin6="Око"
+AttachmentSkin7="Екстравагантного вигляду"
+AttachmentSkin8="Полум’я"
+AttachmentSkin9="У клітинку"
+AttachmentSkin10="Пурпуровий"
+AttachmentSkin11="Череп"
+AttachmentSkin12="Бризки"
+AttachmentSkin13="Спіраль"
+
+[chr_mark_archetype.Attachment15]
+AttachmentSkin0="Темно-металевий"
+
+[chr_mark_archetype.Attachment16]
+AttachmentSkin0="Німецький протигаз"
+
+[chr_mark_archetype.Attachment17]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський білий"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синій"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Темно-пурпуровий"
+AttachmentSkin6="Полум’я"
+AttachmentSkin7="Зелений"
+AttachmentSkin8="Японія"
+AttachmentSkin9="Світло-синій"
+AttachmentSkin10="Пурпуровий"
+AttachmentSkin11="Червоний"
+AttachmentSkin12="Червоно-чорний"
+AttachmentSkin13="Червона текстура"
+AttachmentSkin14="Зірка"
+AttachmentSkin15="Пасмо"
+AttachmentSkin16="Спіраль"
+AttachmentSkin17="Білий"
+AttachmentSkin18="Жовтий"
+
+[chr_mark_archetype.Attachment18]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Камуфляжний"
+AttachmentSkin2="Тигровий"
+AttachmentSkin3="США"
+
+[chr_mark_archetype.Attachment19]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синьо-зелений"
+AttachmentSkin4="Синьо-білий"
+AttachmentSkin5="Синьо-жовтий"
+AttachmentSkin6="Камуфляжний"
+AttachmentSkin7="Темно-пурпуровий"
+AttachmentSkin8="Вогники"
+AttachmentSkin9="Зелено-синій"
+AttachmentSkin10="Зелено-жовтий"
+AttachmentSkin11="Пастельний"
+AttachmentSkin12="Пурпуровий"
+AttachmentSkin13="Пурпурово-чорний"
+AttachmentSkin14="Веселка"
+AttachmentSkin15="Червоно-білий"
+AttachmentSkin16="Білий та чорний"
+AttachmentSkin17="Жовто-чорний"
+
+[chr_mark_archetype.Attachment20]
+AttachmentSkin0="Білий"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+
+[chr_mark_archetype.Attachment21]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_mark_archetype.Attachment22]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_mark_archetype.Attachment23]
+AttachmentSkin0="Маска божевільного маніяка"
+
+[chr_mark_archetype.Attachment24]
+AttachmentSkin0="Шолом льотчика"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_mark_archetype.Attachment25]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_mark_archetype.Attachment26]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_mark_archetype.Attachment27]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_mark_archetype.Attachment28]
+AttachmentSkin0="Default"
+
+[chr_mark_archetype.Attachment29]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[chr_mark_archetype.Attachment30]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[chr_mark_archetype.Attachment31]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[chr_mark_archetype.Attachment32]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[chr_mark_archetype.Attachment33]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[chr_mark_archetype.Attachment34]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_mark_archetype.Attachment35]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_mark_archetype.Attachment36]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[chr_mark_archetype.Attachment37]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[chr_mark_archetype.Attachment38]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[chr_mark_archetype.Attachment39]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_mark_archetype.Attachment40]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[chr_mark_archetype.Attachment41]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[chr_mark_archetype.Attachment42]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_mark_archetype.Attachment43]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[chr_mark_archetype.Attachment44]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[chr_mark_archetype.Attachment45]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[chr_mark_archetype.Attachment46]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[chr_mark_archetype.Attachment47]
+AttachmentSkin0="Mr White"
+
+[chr_mark_archetype.Attachment48]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[chr_mark_archetype.Attachment49]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[chr_mark_archetype.Attachment50]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_mark_archetype.Attachment51]
+AttachmentSkin0="Bushi"
+
+[chr_mark_archetype.Attachment52]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[chr_mark_archetype.Attachment53]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[chr_mark_archetype.Attachment54]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_mark_archetype.Attachment55]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_mark_archetype.Attachment56]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_mark_archetype.Attachment57]
+AttachmentSkin0="Olive Grey"
+
+[chr_mark_archetype.Attachment58]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[chr_mark_archetype.Attachment59]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Black Coat Blue"
+AttachmentSkin2="Black Coat Red"
+AttachmentSkin3="Black Coat Green"
+AttachmentSkin4="Green Coat"
+AttachmentSkin5="Blue Coat"
+AttachmentSkin6="Red Coat"
+
+[chr_mark_archetype.Attachment60]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Green Coat"
+AttachmentSkin2="Blue Coat"
+AttachmentSkin3="Red Coat"
+
+[chr_mark_archetype.Attachment61]
+AttachmentSkin0="Black Eyes"
+AttachmentSkin1="Red Eyes"
+AttachmentSkin2="Blue Eyes"
+AttachmentSkin3="Green Eyes"
+AttachmentSkin4="Green Filter"
+AttachmentSkin5="Blue Filter"
+AttachmentSkin6="Red Filter"
+
+[chr_mark_archetype.Attachment62]
+AttachmentSkin0="Stealth Black"
+
+[chr_mark_archetype.Attachment63]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+
+[chr_mark_archetype.Attachment64]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+AttachmentSkin4="Blue Steel"
+AttachmentSkin5="Blue Magnum"
+AttachmentSkin6="Green Rally"
+AttachmentSkin7="Green Synergy"
+AttachmentSkin8="Red Face"
+AttachmentSkin9="Red Cheeks"
+AttachmentSkin10="Reaper Black"
+
+[chr_mark_archetype.Attachment65]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
+//Classic Masterson
+
+[chr_alan_archetype]
+CharacterName="Старий Мастерсон"
+Description="Ніхто так і не зміг довідатися, як Мастерсон досяг таких високих посад. Ходять чутки, що до цього причетний його красивий та багатенький двоюрідний брат, капітан Сер Річард Віґінс. А дехто каже, що то постарався його кмітливий рідний брат. Проте більшість говорять, що Мастерсон — це такий собі неполірований алмаз, ввічливий та невелемовний чоловік, який виважено поводиться у бою. Деякі вважають, що йому просто бракує уяви, співчуття та глузду. На щастя, він рішуче та вміло командує бойовими побратимами. Мастерсон завжди доводить усі справи до логічного кінця, якими би відразливими вони не здавалися інтелігентним людям."
+
+BodyMesh0="Бойове спорядження"
+HeadMesh0="Обличчя"
+
+Attachment0="Протигаз S10"
+Attachment1="Окуляри"
+Attachment2="Alienware"
+Attachment3="Авіатори"
+Attachment4="Балістична маска"
+Attachment5="Бейсболка"
+Attachment6="Ковпак кухаря"
+Attachment7="Респіратор"
+Attachment8="Ковбойський капелюх"
+Attachment9="Плоский кашкет"
+Attachment10="Кевларовий шолом"
+Attachment11="Шолом з приладом нічного бачення"
+Attachment12="Пов’язка на око"
+Attachment13="Маска зварювальника"
+Attachment14="Німецький протигаз"
+Attachment15="Головна пов’язка"
+Attachment16="Ретро-окуляри"
+Attachment17="Балаклава"
+Attachment18="Маска лікаря"
+Attachment19="Забрало шолома піднято"
+Attachment20="Забрало шолома опущено"
+Attachment21="Маска божевільного маніяка"
+Attachment22="Шолом льотчика"
+Attachment23="Поліцейський шолом"
+Attachment24="Flight Mask"
+Attachment25="Charm Goggles"
+Attachment26="Aviator Goggles"
+Attachment27="Sawblade Battle Helm"
+Attachment28="Boonie Cap"
+Attachment29="Infiltrator"
+Attachment30="Mask of the Abyss"
+Attachment31="Horzine Cybernetic Gas Mask"
+Attachment32="JFront Cap"
+Attachment33="Longhorn"
+Attachment34="EMS Backpack"
+Attachment35="Motorcycle Helmet"
+Attachment36="Smashed Motorcycle Helmet"
+Attachment37="Rubber Air Filter"
+Attachment38="Russian Gas Mask"
+Attachment39="Sawtooth Mask"
+Attachment40="The Inquisitor"
+Attachment41="US Gas Mask"
+Attachment42="Bloody Games"
+Attachment43="Shattered Mask"
+Attachment44="Military Surplus Beenie"
+Attachment45="RAF Goggles"
+Attachment46="Pork Pie"
+Attachment47="Visage de Poupee"
+Attachment48="Protective Glasses"
+Attachment49="Samurai Helm"
+Attachment50="Samurai Hat"
+Attachment51="Street Punk Bandana"
+Attachment52="Street Punk Glasses"
+Attachment53="Discount T-Rex Mask"
+Attachment54="Wasteland Goggles"
+Attachment55="EMS Arm Band"
+Attachment56="M2 Flamethrower Tank"
+Attachment57="RPG7 Backbag"
+Attachment58="Enforcer Goggles"
+Attachment59="Enforcer Helmet"
+Attachment60="Enforcer Mask"
+Attachment61="Justice Goggles"
+Attachment62="Justice Helmet"
+Attachment63="Justice Mask"
+Attachment64="Tactical Backbag"
+
+[CHR_alan_archetype.BodyMesh0]
+BodySkin0="Зелений"
+BodySkin1="Чорний"
+BodySkin2="Сніжно-білий"
+BodySkin3="Камуфляж"
+
+[chr_alan_archetype.HeadMesh0]
+HeadSkin0="Крутий чувак"
+HeadSkin1="Рудий! Серйозно?"
+HeadSkin2="Важкий день, чуваче?"
+Headskin3="Одягаємо камуфляж, хлопаки!"
+
+[CHR_alan_archetype.Attachment0]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Камуфляжний"
+AttachmentSkin2="Біологічна небезпека"
+AttachmentSkin3="Зед Тайм"
+AttachmentSkin4="Коштовний"
+
+[CHR_alan_archetype.Attachment1]
+AttachmentSkin0="Сонцезахисні окуляри"
+AttachmentSkin1="Звичайні окуляри"
+
+[chr_alan_archetype.Attachment2]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Чорне сяйво"
+AttachmentSkin2="Білий"
+AttachmentSkin3="Біле сяйво"
+AttachmentSkin4="Синій"
+AttachmentSkin5="Синє сяйво"
+AttachmentSkin6="Золотий"
+AttachmentSkin7="Золоте сяйво"
+AttachmentSkin8="Зелений"
+AttachmentSkin9="Зелене сяйво"
+
+[chr_alan_archetype.Attachment3]
+AttachmentSkin0="Білі краї"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Червоний"
+
+[chr_alan_archetype.Attachment4]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Червоний"
+
+[chr_alan_archetype.Attachment5]
+AttachmentSkin0="Велика Британія"
+AttachmentSkin1="США"
+AttachmentSkin2="Канада"
+AttachmentSkin3="Німеччина"
+AttachmentSkin4="Росія"
+
+[chr_alan_archetype.Attachment6]
+AttachmentSkin0="Білий"
+AttachmentSkin1="Смугастий"
+AttachmentSkin2="Закривавлений"
+
+[chr_alan_archetype.Attachment7]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Чорний"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Жовтий"
+
+[chr_alan_archetype.Attachment8]
+AttachmentSkin0="Ковбойський капелюх"
+
+[chr_alan_archetype.Attachment9]
+AttachmentSkin0="Коричневий"
+AttachmentSkin1="Чорний"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Жовтий"
+AttachmentSkin4="Білий"
+
+[chr_alan_archetype.Attachment10]
+AttachmentSkin0="Камуфляжний"
+
+[chr_alan_archetype.Attachment11]
+AttachmentSkin0="Синє сяйво"
+
+[chr_alan_archetype.Attachment12]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський"
+AttachmentSkin2="Біо"
+AttachmentSkin3="Синій"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Лавандос"
+AttachmentSkin6="Око"
+AttachmentSkin7="Екстравагантного вигляду"
+AttachmentSkin8="Полум’я"
+AttachmentSkin9="У клітинку"
+AttachmentSkin10="Пурпуровий"
+AttachmentSkin11="Череп"
+AttachmentSkin12="Бризки"
+AttachmentSkin13="Спіраль"
+
+[chr_alan_archetype.Attachment13]
+AttachmentSkin0="Темно-металевий"
+
+[chr_alan_archetype.Attachment14]
+AttachmentSkin0="Німецький протигаз"
+
+[chr_alan_archetype.Attachment15]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський білий"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синій"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Темно-пурпуровий"
+AttachmentSkin6="Полум’я"
+AttachmentSkin7="Зелений"
+AttachmentSkin8="Японія"
+AttachmentSkin9="Світло-синій"
+AttachmentSkin10="Пурпуровий"
+AttachmentSkin11="Червоний"
+AttachmentSkin12="Червоно-чорний"
+AttachmentSkin13="Червона текстура"
+AttachmentSkin14="Зірка"
+AttachmentSkin15="Пасмо"
+AttachmentSkin16="Спіраль"
+AttachmentSkin17="Білий"
+AttachmentSkin18="Жовтий"
+
+[chr_alan_archetype.Attachment16]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Камуфляжний"
+AttachmentSkin2="Тигровий"
+AttachmentSkin3="США"
+
+[chr_alan_archetype.Attachment17]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синьо-зелений"
+AttachmentSkin4="Синьо-білий"
+AttachmentSkin5="Синьо-жовтий"
+AttachmentSkin6="Камуфляжний"
+AttachmentSkin7="Темно-пурпуровий"
+AttachmentSkin8="Вогники"
+AttachmentSkin9="Зелено-синій"
+AttachmentSkin10="Зелено-жовтий"
+AttachmentSkin11="Пастельний"
+AttachmentSkin12="Пурпуровий"
+AttachmentSkin13="Пурпурово-чорний"
+AttachmentSkin14="Веселка"
+AttachmentSkin15="Червоно-білий"
+AttachmentSkin16="Білий та чорний"
+AttachmentSkin17="Жовто-чорний"
+
+[chr_alan_archetype.Attachment18]
+AttachmentSkin0="Білий"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+
+[chr_alan_archetype.Attachment19]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_alan_archetype.Attachment20]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_alan_archetype.Attachment21]
+AttachmentSkin0="Маска божевільного маніяка"
+
+[chr_alan_archetype.Attachment22]
+AttachmentSkin0="Шолом льотчика"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_alan_archetype.Attachment23]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Золотий"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Коштовний золотий"
+
+[chr_alan_archetype.Attachment24]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_alan_archetype.Attachment25]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_alan_archetype.Attachment26]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_alan_archetype.Attachment27]
+AttachmentSkin0="Default"
+
+[chr_alan_archetype.Attachment28]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[chr_alan_archetype.Attachment29]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[chr_alan_archetype.Attachment30]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[chr_alan_archetype.Attachment31]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[chr_alan_archetype.Attachment32]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[chr_alan_archetype.Attachment33]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_alan_archetype.Attachment34]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_alan_archetype.Attachment35]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[chr_alan_archetype.Attachment36]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[chr_alan_archetype.Attachment37]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[chr_alan_archetype.Attachment38]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_alan_archetype.Attachment39]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[chr_alan_archetype.Attachment40]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[chr_alan_archetype.Attachment41]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_alan_archetype.Attachment42]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[chr_alan_archetype.Attachment43]
+AttachmentSkin0="WhiteYellow"
+
+[chr_alan_archetype.Attachment44]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[chr_alan_archetype.Attachment45]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[chr_alan_archetype.Attachment46]
+AttachmentSkin0="Mr White"
+
+[chr_alan_archetype.Attachment47]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[chr_alan_archetype.Attachment48]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[chr_alan_archetype.Attachment49]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_alan_archetype.Attachment50]
+AttachmentSkin0="Bushi"
+
+[chr_alan_archetype.Attachment51]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[chr_alan_archetype.Attachment52]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[chr_alan_archetype.Attachment53]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_alan_archetype.Attachment54]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_alan_archetype.Attachment55]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_alan_archetype.Attachment56]
+AttachmentSkin0="Olive Grey"
+
+[chr_alan_archetype.Attachment57]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[chr_alan_archetype.Attachment58]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Black Coat Blue"
+AttachmentSkin2="Black Coat Red"
+AttachmentSkin3="Black Coat Green"
+AttachmentSkin4="Green Coat"
+AttachmentSkin5="Blue Coat"
+AttachmentSkin6="Red Coat"
+
+[chr_alan_archetype.Attachment59]
+AttachmentSkin0="Black Coat"
+AttachmentSkin1="Green Coat"
+AttachmentSkin2="Blue Coat"
+AttachmentSkin3="Red Coat"
+
+[chr_alan_archetype.Attachment60]
+AttachmentSkin0="Black Eyes"
+AttachmentSkin1="Red Eyes"
+AttachmentSkin2="Blue Eyes"
+AttachmentSkin3="Green Eyes"
+AttachmentSkin4="Green Filter"
+AttachmentSkin5="Blue Filter"
+AttachmentSkin6="Red Filter"
+
+[chr_alan_archetype.Attachment61]
+AttachmentSkin0="Stealth Black"
+
+[chr_alan_archetype.Attachment62]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+
+[chr_alan_archetype.Attachment63]
+AttachmentSkin0="Stealth Black"
+AttachmentSkin1="Tactical Green"
+AttachmentSkin2="Savage Red"
+AttachmentSkin3="Miami Blue"
+AttachmentSkin4="Blue Steel"
+AttachmentSkin5="Blue Magnum"
+AttachmentSkin6="Green Rally"
+AttachmentSkin7="Green Synergy"
+AttachmentSkin8="Red Face"
+AttachmentSkin9="Red Cheeks"
+AttachmentSkin10="Reaper Black"
+
+[chr_alan_archetype.Attachment64]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
+//Anton Strasser
+
+[chr_strasser_archetype]
+CharacterName="Антон Штрасер"
+Description="На свою першу війну Штрассер потрапив у 1939 році. Будучи простим рядовим німецької армії, він брав участь у вторгненні до Польщі, у 1940 до Франції та до Радянського союзу в 1941. У зимових боях з радянською армією та генералом Холодом він ледь не задубів до смерті. Пізніше, у важких та кривавих боях за Сталінград 42-го року ілюзії про перемогу у війні розвіялися, німецькі війська почали відступати. У боях за литовище Гумрак його було серйозно поранено, але йому пощастило вижити. Поки Антон був у комі, його доправили літаком до якогось Ганза Фольтера, де він став піддослідним щурем в області кріотехніки. Там його заморозили та забули. Аж під час нашестя зедів його випадково розморозили. Будучи спантеличеним, у нього була можливість вбити Фольтера, але він її прогавив. На превеликий жаль, він зрозумів, що коїться довкола."
+
+BodyMesh0="RO2: Hero of Stalingrad"
+HeadMesh0="Волосся"
+Attachment0="Німецька пілотка"
+Attachment1="Німецький стальний шолом"
+Attachment2="Alienware"
+Attachment3="Авіатори"
+Attachment4="Балістична маска"
+Attachment5="Бейсболка"
+Attachment6="Ковпак кухаря"
+Attachment7="Ковбойський капелюх"
+Attachment8="Плоский кашкет"
+Attachment9="Кевларовий шолом"
+Attachment10="Шолом з приладом нічного бачення"
+Attachment11="Пов’язка на око"
+Attachment12="Маска зварювальника"
+Attachment13="Німецький протигаз"
+Attachment14="Головна пов’язка"
+Attachment15="Ретро-окуляри"
+Attachment16="Балаклава"
+Attachment17="Маска лікаря"
+Attachment18="Німецький офіцерський кашкет"
+Attachment19="Забрало шолома піднято"
+Attachment20="Забрало шолома опущено"
+Attachment21="Маска божевільного маніяка"
+Attachment22="Шолом льотчика"
+Attachment23="Поліцейський шолом"
+Attachment24="Flight Mask"
+Attachment25="Charm Goggles"
+Attachment26="Aviator Goggles"
+Attachment27="Sawblade Battle Helm"
+Attachment28="Boonie Cap"
+Attachment29="Infiltrator"
+Attachment30="Mask of the Abyss"
+Attachment31="Horzine Cybernetic Gas Mask"
+Attachment32="JFront Cap"
+Attachment33="Longhorn"
+Attachment34="EMS Backpack"
+Attachment35="Motorcycle Helmet"
+Attachment36="Smashed Motorcycle Helmet"
+Attachment37="Rubber Air Filter"
+Attachment38="Russian Gas Mask"
+Attachment39="Sawtooth Mask"
+Attachment40="The Inquisitor"
+Attachment41="US Gas Mask"
+Attachment42="Bloody Games"
+Attachment43="Shattered Mask"
+Attachment44="Military Surplus Beenie"
+Attachment45="RAF Goggles"
+Attachment46="Pork Pie"
+Attachment47="Visage de Poupee"
+Attachment48="Protective Glasses"
+Attachment49="Samurai Helm"
+Attachment50="Samurai Hat"
+Attachment51="Street Punk Bandana"
+Attachment52="Street Punk Glasses"
+Attachment53="Discount T-Rex Mask"
+Attachment54="Wasteland Goggles"
+Attachment55="EMS Arm Band"
+Attachment56="M2 Flamethrower Tank"
+Attachment57="RPG7 Backbag"
+Attachment58="Tactical Backbag"
+
+[CHR_strasser_archetype.BodyMesh0]
+BodySkin0="Новобранець"
+BodySkin1="Ветеран"
+
+[chr_strasser_archetype.HeadMesh0]
+HeadSkin0="Темна сталь"
+HeadSkin1="Світла сталь"
+
+
+[CHR_strasser_archetype.Attachment0]
+AttachmentSkin0="Парадний кашкет"
+AttachmentSkin1="Закривавлений кашкет"
+
+[CHR_strasser_archetype.Attachment1]
+AttachmentSkin0="Класичний сталевий"
+AttachmentSkin1="Потерта сталь"
+
+[chr_strasser_archetype.Attachment2]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Чорне сяйво"
+AttachmentSkin2="Білий"
+AttachmentSkin3="Біле сяйво"
+AttachmentSkin4="Синій"
+AttachmentSkin5="Синє сяйво"
+AttachmentSkin6="Золотий"
+AttachmentSkin7="Золоте сяйво"
+AttachmentSkin8="Зелений"
+AttachmentSkin9="Зелене сяйво"
+
+[chr_strasser_archetype.Attachment3]
+AttachmentSkin0="Білі краї"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Червоний"
+
+[chr_strasser_archetype.Attachment4]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Червоний"
+
+[chr_strasser_archetype.Attachment5]
+AttachmentSkin0="Велика Британія"
+AttachmentSkin1="США"
+AttachmentSkin2="Канада"
+AttachmentSkin3="Німеччина"
+AttachmentSkin4="Росія"
+
+[chr_strasser_archetype.Attachment6]
+AttachmentSkin0="Білий"
+AttachmentSkin1="Смугастий"
+AttachmentSkin2="Закривавлений"
+
+[chr_strasser_archetype.Attachment7]
+AttachmentSkin0="Ковбойський капелюх"
+
+[chr_strasser_archetype.Attachment8]
+AttachmentSkin0="Коричневий"
+AttachmentSkin1="Чорний"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Жовтий"
+AttachmentSkin4="Білий"
+
+[chr_strasser_archetype.Attachment9]
+AttachmentSkin0="Камуфляжний"
+
+[chr_strasser_archetype.Attachment10]
+AttachmentSkin0="Синє сяйво"
+
+[chr_strasser_archetype.Attachment11]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський"
+AttachmentSkin2="Біо"
+AttachmentSkin3="Синій"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Лавандос"
+AttachmentSkin6="Око"
+AttachmentSkin7="Екстравагантного вигляду"
+AttachmentSkin8="Полум’я"
+AttachmentSkin9="У клітинку"
+AttachmentSkin10="Пурпуровий"
+AttachmentSkin11="Череп"
+AttachmentSkin12="Бризки"
+AttachmentSkin13="Спіраль"
+
+[chr_strasser_archetype.Attachment12]
+AttachmentSkin0="Темно-металевий"
+
+[chr_strasser_archetype.Attachment13]
+AttachmentSkin0="Німецький протигаз"
+
+[chr_strasser_archetype.Attachment14]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський білий"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синій"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Темно-пурпуровий"
+AttachmentSkin6="Полум’я"
+AttachmentSkin7="Зелений"
+AttachmentSkin8="Японія"
+AttachmentSkin9="Світло-синій"
+AttachmentSkin10="Пурпуровий"
+AttachmentSkin11="Червоний"
+AttachmentSkin12="Червоно-чорний"
+AttachmentSkin13="Червона текстура"
+AttachmentSkin14="Зірка"
+AttachmentSkin15="Пасмо"
+AttachmentSkin16="Спіраль"
+AttachmentSkin17="Білий"
+AttachmentSkin18="Жовтий"
+
+[chr_strasser_archetype.Attachment15]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Камуфляжний"
+AttachmentSkin2="Тигровий"
+AttachmentSkin3="США"
+
+[chr_strasser_archetype.Attachment16]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синьо-зелений"
+AttachmentSkin4="Синьо-білий"
+AttachmentSkin5="Синьо-жовтий"
+AttachmentSkin6="Камуфляжний"
+AttachmentSkin7="Темно-пурпуровий"
+AttachmentSkin8="Вогники"
+AttachmentSkin9="Зелено-синій"
+AttachmentSkin10="Зелено-жовтий"
+AttachmentSkin11="Пастельний"
+AttachmentSkin12="Пурпуровий"
+AttachmentSkin13="Пурпурово-чорний"
+AttachmentSkin14="Веселка"
+AttachmentSkin15="Червоно-білий"
+AttachmentSkin16="Білий та чорний"
+AttachmentSkin17="Жовто-чорний"
+
+[chr_strasser_archetype.Attachment17]
+AttachmentSkin0="Білий"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+
+[chr_strasser_archetype.Attachment18]
+AttachmentSkin0="Синій"
+AttachmentSkin1="Зелений"
+
+[chr_strasser_archetype.Attachment19]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_strasser_archetype.Attachment20]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_strasser_archetype.Attachment21]
+AttachmentSkin0="Маска божевільного маніяка"
+
+[chr_strasser_archetype.Attachment22]
+AttachmentSkin0="Шолом льотчика"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_strasser_archetype.Attachment23]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Золотий"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Коштовний золотий"
+
+[chr_strasser_archetype.Attachment24]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_strasser_archetype.Attachment25]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_strasser_archetype.Attachment26]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_strasser_archetype.Attachment27]
+AttachmentSkin0="Default"
+
+[chr_strasser_archetype.Attachment28]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[chr_strasser_archetype.Attachment29]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[chr_strasser_archetype.Attachment30]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[chr_strasser_archetype.Attachment31]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[chr_strasser_archetype.Attachment32]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[chr_strasser_archetype.Attachment33]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_strasser_archetype.Attachment34]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_strasser_archetype.Attachment35]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[chr_strasser_archetype.Attachment36]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[chr_strasser_archetype.Attachment37]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[chr_strasser_archetype.Attachment38]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_strasser_archetype.Attachment39]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[chr_strasser_archetype.Attachment40]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[chr_strasser_archetype.Attachment41]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_strasser_archetype.Attachment42]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[chr_strasser_archetype.Attachment43]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[chr_strasser_archetype.Attachment44]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[chr_strasser_archetype.Attachment45]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[chr_strasser_archetype.Attachment46]
+AttachmentSkin0="Mr White"
+
+[chr_strasser_archetype.Attachment47]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[chr_strasser_archetype.Attachment48]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[chr_strasser_archetype.Attachment49]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_strasser_archetype.Attachment50]
+AttachmentSkin0="Bushi"
+
+[chr_strasser_archetype.Attachment51]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[chr_strasser_archetype.Attachment52]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[chr_strasser_archetype.Attachment53]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_strasser_archetype.Attachment54]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_strasser_archetype.Attachment55]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_strasser_archetype.Attachment56]
+AttachmentSkin0="Olive Grey"
+
+[chr_strasser_archetype.Attachment57]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[chr_strasser_archetype.Attachment58]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"
+
+//Chivalry Knight
+
+[chr_knight_archetype]
+CharacterName="Том Банер"
+Description="З дитячих років Том Банер мріяв про героїчні подвиги середньовічних лицарів. Його вдала кар’єра консультанта з менеджменту дозволила його пристрасті вирости у щось набагато більше, щойно він переїхав з рідної Канади через Бостон до Англії. Він викував свої власні обладунки та став реконструктором старої доброї Англії. Ця подія співпала з релізом гри «Chivalry», яка дозволила йому втілювати свої фантазії на найнебезпечнішому для реконструктора рівні. Щойно почалося нашестя зедів, Том одягнув свої обладунки і відправився рятувати принцес від кровожерливих монстрів. Той факт, що він відмовляється знімати обладунки наштовхує на висновок, що він сприймає всю цю середньовічну тематику занадто серйозно. Але кого це хвилює?"
+
+BodyMesh0="Броня"
+HeadMesh0="Голова"
+Attachment0="Шолом лицаря"
+Attachment1="Шолом вершника"
+Attachment2="Шолом ветерана"
+Attachment3="Шолом старого вояка"
+Attachment4="Біноклі"
+Attachment5="Alienware"
+Attachment6="Балістична маска"
+Attachment7="Бейсболка"
+Attachment8="Ковпак кухаря"
+Attachment9="Ковбойський капелюх"
+Attachment10="Плоский кашкет"
+Attachment11="Кевларовий шолом"
+Attachment12="Шолом з приладом нічного бачення"
+Attachment13="Пов’язка на око"
+Attachment14="Маска зварювальника"
+Attachment15="Німецький протигаз"
+Attachment16="Головна пов’язка"
+Attachment17="Балаклава"
+Attachment18="Авіатори"
+Attachment19="Ретро-окуляри"
+Attachment20="Забрало шолома піднято"
+Attachment21="Забрало шолома опущено"
+Attachment22="Маска божевільного маніяка"
+Attachment23="Шолом льотчика"
+Attachment24="Поліцейський шолом"
+Attachment25="Flight Mask"
+Attachment26="Charm Goggles"
+Attachment27="Aviator Goggles"
+Attachment28="Sawblade Battle Helm"
+Attachment29="Boonie Cap"
+Attachment30="Infiltrator"
+Attachment31="Mask of the Abyss"
+Attachment32="Horzine Cybernetic Gas Mask"
+Attachment33="JFront Cap"
+Attachment34="Longhorn"
+Attachment35="EMS Backpack"
+Attachment36="Motorcycle Helmet"
+Attachment37="Smashed Motorcycle Helmet"
+Attachment38="Rubber Air Filter"
+Attachment39="Russian Gas Mask"
+Attachment40="Sawtooth Mask"
+Attachment41="The Inquisitor"
+Attachment42="US Gas Mask"
+Attachment43="Bloody Games"
+Attachment44="Shattered Mask"
+Attachment45="Military Surplus Beenie"
+Attachment46="RAF Goggles"
+Attachment47="Pork Pie"
+Attachment48="Visage de Poupee"
+Attachment49="Protective Glasses"
+Attachment50="Samurai Helm"
+Attachment51="Samurai Hat"
+Attachment52="Street Punk Bandana"
+Attachment53="Street Punk Glasses"
+Attachment54="Discount T-Rex Mask"
+Attachment55="Wasteland Goggles"
+Attachment56="EMS Arm Band"
+Attachment57="M2 Flamethrower Tank"
+Attachment58="RPG7 Backbag"
+Attachment59="Tactical Backbag"
+
+[CHR_knight_archetype.BodyMesh0]
+BodySkin0="Агата"
+BodySkin1="Кліз"
+BodySkin2="Персіваль"
+BodySkin3="Джеймі"
+
+[chr_knight_archetype.HeadMesh0]
+HeadSkin0="До битви!"
+HeadSkin1="Свобода!"
+HeadSkin2="На війну!"
+HeadSkin3="Вальгалла!"
+
+[CHR_knight_archetype.Attachment0]
+AttachmentSkin0="Агата"
+AttachmentSkin1="Кліз"
+AttachmentSkin2="Персіваль"
+AttachmentSkin3="Джеймі"
+
+
+[CHR_knight_archetype.Attachment1]
+AttachmentSkin0="Агата"
+AttachmentSkin1="Кліз"
+AttachmentSkin2="Персіваль"
+AttachmentSkin3="Джеймі"
+
+[CHR_knight_archetype.Attachment2]
+AttachmentSkin0="Агата"
+AttachmentSkin1="Кліз"
+AttachmentSkin2="Персіваль"
+AttachmentSkin3="Джеймі"
+
+[chr_knight_archetype.Attachment3]
+AttachmentSkin0="Королівський червоний"
+AttachmentSkin1="Королівський синій"
+AttachmentSkin2="Розкішний зелений"
+AttachmentSkin3="Чорний як ніч"
+
+[CHR_knight_archetype.Attachment4]
+AttachmentSkin0="Сонячне затемнення"
+AttachmentSkin1="Щоб гарніше виглядав"
+
+[chr_knight_archetype.Attachment5]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Чорне сяйво"
+AttachmentSkin2="Білий"
+AttachmentSkin3="Біле сяйво"
+AttachmentSkin4="Синій"
+AttachmentSkin5="Синє сяйво"
+AttachmentSkin6="Золотий"
+AttachmentSkin7="Золоте сяйво"
+AttachmentSkin8="Зелений"
+AttachmentSkin9="Зелене сяйво"
+
+[chr_knight_archetype.Attachment6]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Червоний"
+
+[chr_knight_archetype.Attachment7]
+AttachmentSkin0="Велика Британія"
+AttachmentSkin1="США"
+AttachmentSkin2="Канада"
+AttachmentSkin3="Німеччина"
+AttachmentSkin4="Росія"
+
+[chr_knight_archetype.Attachment8]
+AttachmentSkin0="Білий"
+AttachmentSkin1="Смугастий"
+AttachmentSkin2="Закривавлений"
+
+[chr_knight_archetype.Attachment9]
+AttachmentSkin0="Ковбойський капелюх"
+
+[chr_knight_archetype.Attachment10]
+AttachmentSkin0="Коричневий"
+AttachmentSkin1="Чорний"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Жовтий"
+AttachmentSkin4="Білий"
+
+[chr_knight_archetype.Attachment11]
+AttachmentSkin0="Камуфляжний"
+
+[chr_knight_archetype.Attachment12]
+AttachmentSkin0="Синє сяйво"
+
+[chr_knight_archetype.Attachment13]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський"
+AttachmentSkin2="Біо"
+AttachmentSkin3="Синій"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Лавандос"
+AttachmentSkin6="Око"
+AttachmentSkin7="Екстравагантного вигляду"
+AttachmentSkin8="Полум’я"
+AttachmentSkin9="У клітинку"
+AttachmentSkin10="Пурпуровий"
+AttachmentSkin11="Череп"
+AttachmentSkin12="Бризки"
+AttachmentSkin13="Спіраль"
+
+[chr_knight_archetype.Attachment14]
+AttachmentSkin0="Темно-металевий"
+
+[chr_knight_archetype.Attachment15]
+AttachmentSkin0="Німецький протигаз"
+
+[chr_knight_archetype.Attachment16]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський білий"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синій"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Темно-пурпуровий"
+AttachmentSkin6="Полум’я"
+AttachmentSkin7="Зелений"
+AttachmentSkin8="Японія"
+AttachmentSkin9="Світло-синій"
+AttachmentSkin10="Пурпуровий"
+AttachmentSkin11="Червоний"
+AttachmentSkin12="Червоно-чорний"
+AttachmentSkin13="Червона текстура"
+AttachmentSkin14="Зірка"
+AttachmentSkin15="Пасмо"
+AttachmentSkin16="Спіраль"
+AttachmentSkin17="Білий"
+AttachmentSkin18="Жовтий"
+
+[chr_knight_archetype.Attachment17]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Азійський"
+AttachmentSkin2="Чорно-червоний"
+AttachmentSkin3="Синьо-зелений"
+AttachmentSkin4="Синьо-білий"
+AttachmentSkin5="Синьо-жовтий"
+AttachmentSkin6="Камуфляжний"
+AttachmentSkin7="Темно-пурпуровий"
+AttachmentSkin8="Вогники"
+AttachmentSkin9="Зелено-синій"
+AttachmentSkin10="Зелено-жовтий"
+AttachmentSkin11="Пастельний"
+AttachmentSkin12="Пурпуровий"
+AttachmentSkin13="Пурпурово-чорний"
+AttachmentSkin14="Веселка"
+AttachmentSkin15="Червоно-білий"
+AttachmentSkin16="Білий та чорний"
+AttachmentSkin17="Жовто-чорний"
+
+[chr_knight_archetype.Attachment18]
+AttachmentSkin0="Білі краї"
+AttachmentSkin1="Синій"
+AttachmentSkin2="Зелений"
+AttachmentSkin3="Червоний"
+
+[chr_knight_archetype.Attachment19]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Камуфляжний"
+AttachmentSkin2="Тигровий"
+AttachmentSkin3="США"
+
+[chr_knight_archetype.Attachment20]
+AttachmentSkin0="Стандартний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_knight_archetype.Attachment21]
+AttachmentSkin0="Звичайний"
+AttachmentSkin1="Біологічна небезпека"
+AttachmentSkin2="Кривава бійня"
+AttachmentSkin3="Британський шолом"
+AttachmentSkin4="Камуфляжний"
+AttachmentSkin5="Німецький спрей"
+AttachmentSkin6="Черепокруть"
+AttachmentSkin7="Закривавлений"
+
+[chr_knight_archetype.Attachment22]
+AttachmentSkin0="Маска божевільного маніяка"
+
+[chr_knight_archetype.Attachment23]
+AttachmentSkin0="Шолом льотчика"
+AttachmentSkin1="Bloody Helmet"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_knight_archetype.Attachment24]
+AttachmentSkin0="Чорний"
+AttachmentSkin1="Золотий"
+AttachmentSkin2="Синій"
+AttachmentSkin3="Коштовний золотий"
+
+[chr_knight_archetype.Attachment25]
+AttachmentSkin0="Flight Mask"
+AttachmentSkin1="Bloody Mask"
+AttachmentSkin2="Bubble Yum"
+AttachmentSkin3="Crimson Sky"
+AttachmentSkin4="Flame"
+AttachmentSkin5="Ninja"
+
+[chr_knight_archetype.Attachment26]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_knight_archetype.Attachment27]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Green"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_knight_archetype.Attachment28]
+AttachmentSkin0="Default"
+
+[chr_knight_archetype.Attachment29]
+AttachmentSkin0="The Boonies"
+AttachmentSkin1="Red Digi"
+AttachmentSkin2="Red Tiger"
+AttachmentSkin3="Green"
+AttachmentSkin4="Green Digi"
+AttachmentSkin5="Blue Digi"
+AttachmentSkin6="Blue Tiger"
+
+[chr_knight_archetype.Attachment30]
+AttachmentSkin0="Red"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Precious"
+
+[chr_knight_archetype.Attachment31]
+AttachmentSkin0="Ph'nglui"
+AttachmentSkin1="Mglw'nafh "
+AttachmentSkin2="Wgah'nagl"
+AttachmentSkin3="Fhtagn"
+AttachmentSkin4="Precious"
+
+[chr_knight_archetype.Attachment32]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Pink"
+
+[chr_knight_archetype.Attachment33]
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Black"
+
+[chr_knight_archetype.Attachment34]
+AttachmentSkin0="Black"
+AttachmentSkin1="Brown"
+AttachmentSkin2="Red"
+AttachmentSkin3="White"
+AttachmentSkin4="Precious"
+
+[chr_knight_archetype.Attachment35]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_knight_archetype.Attachment36]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+AttachmentSkin9="Precious"
+
+[chr_knight_archetype.Attachment37]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Orange"
+AttachmentSkin3="Orange Fade"
+AttachmentSkin4="Purple Fade"
+AttachmentSkin5="Red"
+AttachmentSkin6="Red White"
+AttachmentSkin7="Silver"
+AttachmentSkin8="Teal White"
+
+[chr_knight_archetype.Attachment38]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Green"
+AttachmentSkin3="Skull"
+
+[chr_knight_archetype.Attachment39]
+AttachmentSkin0="Black"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_knight_archetype.Attachment40]
+AttachmentSkin0="Jawsome"
+AttachmentSkin1="Redtooth"
+AttachmentSkin2="Wasp"
+AttachmentSkin3="Precious"
+
+[chr_knight_archetype.Attachment41]
+AttachmentSkin0="Leather"
+AttachmentSkin1="White"
+
+[chr_knight_archetype.Attachment42]
+AttachmentSkin0="Black"
+AttachmentSkin1="Blue"
+AttachmentSkin2="Green"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_knight_archetype.Attachment43]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Black"
+AttachmentSkin2="Red"
+AttachmentSkin3="Yellow"
+
+[chr_knight_archetype.Attachment44]
+AttachmentSkin0="WhiteYellow"
+AttachmentSkin1="Geisha"
+AttachmentSkin2="Metal"
+AttachmentSkin3="Sugar Purple"
+AttachmentSkin4="Sugar Red"
+AttachmentSkin5="Skin"
+
+[chr_knight_archetype.Attachment45]
+AttachmentSkin0="Beige"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Red"
+AttachmentSkin4="Green"
+
+[chr_knight_archetype.Attachment46]
+AttachmentSkin0="Glow Blue"
+AttachmentSkin1="Glow Orange"
+AttachmentSkin2="Black"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Green Blue"
+AttachmentSkin5="Brown"
+
+[chr_knight_archetype.Attachment47]
+AttachmentSkin0="Mr White"
+
+[chr_knight_archetype.Attachment48]
+AttachmentSkin0="Doll Face"
+AttachmentSkin1="Squares"
+AttachmentSkin2="Harlequin"
+AttachmentSkin3="Bloody"
+AttachmentSkin4="Muerto"
+AttachmentSkin5="Skelington"
+AttachmentSkin6="Zed"
+
+[chr_knight_archetype.Attachment49]
+AttachmentSkin0="Orange"
+AttachmentSkin1="Red"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Green"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Precious"
+
+[chr_knight_archetype.Attachment50]
+AttachmentSkin0="Bushi"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_knight_archetype.Attachment51]
+AttachmentSkin0="Bushi"
+
+[chr_knight_archetype.Attachment52]
+AttachmentSkin0="Red"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Black"
+AttachmentSkin3="White"
+AttachmentSkin4="Green"
+AttachmentSkin5="Blue"
+AttachmentSkin6="El Knifo"
+
+[chr_knight_archetype.Attachment53]
+AttachmentSkin0="RedX"
+AttachmentSkin1="PurpleX"
+AttachmentSkin2="WhiteX"
+AttachmentSkin3="GreenX"
+AttachmentSkin4="BlueX"
+AttachmentSkin5="Red"
+AttachmentSkin6="Purple"
+AttachmentSkin7="Black"
+AttachmentSkin8="Green"
+AttachmentSkin9="Blue"
+AttachmentSkin10="Precious"
+AttachmentSkin11="PreciousX"
+
+[chr_knight_archetype.Attachment54]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Green"
+AttachmentSkin2="Red"
+AttachmentSkin3="Precious"
+
+[chr_knight_archetype.Attachment55]
+AttachmentSkin0="Bone"
+AttachmentSkin1="Coal"
+AttachmentSkin2="Frost"
+AttachmentSkin3="Red"
+AttachmentSkin4="Precious"
+
+[chr_knight_archetype.Attachment56]
+AttachmentSkin0="Blue"
+AttachmentSkin1="Red"
+
+[chr_knight_archetype.Attachment57]
+AttachmentSkin0="Olive Grey"
+
+[chr_knight_archetype.Attachment58]
+AttachmentSkin0="Sierra Camo"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Desert Camo"
+AttachmentSkin3="Backwoods Camo"
+AttachmentSkin4="Zebrastripe Camo"
+AttachmentSkin5="Green Camo"
+AttachmentSkin6="Black Camo"
+
+[chr_knight_archetype.Attachment59]
+AttachmentSkin0="Black"
+AttachmentSkin1="Forest Camo"
+AttachmentSkin2="Backwoods Camo"
+AttachmentSkin3="Desert Camo"
+AttachmentSkin4="Sierra Camo"
+AttachmentSkin5="Olive Camo"

@@ -433,7 +433,7 @@ simulated function SyncOriginalLocation()
         if( IsZero(Velocity) )
         {
             SetPhysics(default.Physics);
-            SetCollision(true,true);
+            SetCollision( default.bCollideActors, default.bBlockActors );
         }
 
         // Adjust the velocity of the projectile so it will hit where
@@ -462,7 +462,7 @@ simulated function SyncOriginalLocation()
             }
 
             Velocity = Speed * AimDir;
-            SetCollision(true,true);
+            SetCollision( default.bCollideActors, default.bBlockActors );
         }
 
         SetLocation(OriginalLocation);

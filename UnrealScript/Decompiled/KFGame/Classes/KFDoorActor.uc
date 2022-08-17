@@ -122,8 +122,6 @@ var NavigationPoint MyMarker;
 var() float BrokenDoorImpulse;
 /** The maximum angular velocity applied to a broken hinged door */
 var() float MaxAngularVelocity;
-/** Adjusts the "push" plane of the door (the threshold for pushing forward or backward) along its X-axis */
-var() float PushOriginOffset;
 /** sound played when the mover is interpolated forward */
 var(Sound) AkBaseSoundObject OpenSound;
 /** looping sound while opening */
@@ -547,7 +545,7 @@ private final function TryPushPawns()
 
     GetAxes(Rotation, DoorX, DoorY, DoorZ);
     DoorYRot = rotator(DoorY);
-    OffsetLocation = Location + (DoorX * PushOriginOffset);
+    OffsetLocation = Location + DoorX;
     foreach WorldInfo.AllPawns(Class'Pawn', P, Location, 200)
     {
         if(!P.IsAliveAndWell())
@@ -595,7 +593,7 @@ event TakeDamage(int Damage, Controller EventInstigator, Vector HitLocation, Vec
         return;
     }
     super.TakeDamage(Damage, EventInstigator, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
-    if((bIsDestroyed || EventInstigator == none) || EventInstigator.bIsPlayer && class<KFDT_Explosive>(DamageType) == none)
+    if(bIsDestroyed || !AllowDamageFrom(EventInstigator, DamageType))
     {
         return;
     }
@@ -633,10 +631,6 @@ event TakeDamage(int Damage, Controller EventInstigator, Vector HitLocation, Vec
                 NotifyAIDoorOpened();
             }
         }
-        if(((WorldInfo.Game != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress())
-        {
-            KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogDoorWeldEvent(Damage, MaxWeldIntegrity, WeldIntegrity, none, EventInstigator, self);
-        }
         if(!bIsDestroyed)
         {
             IncrementHitCount(EventInstigator.Pawn);
@@ -656,6 +650,15 @@ event TakeDamage(int Damage, Controller EventInstigator, Vector HitLocation, Vec
             OpenDoor(EventInstigator.Pawn);
         }
     }
+}
+
+function bool AllowDamageFrom(Controller EventInstigator, class<DamageType> DamageType)
+{
+    if((EventInstigator == none) || (EventInstigator.GetTeamNum() == 0) && class<KFDT_Explosive>(DamageType) == none)
+    {
+        return false;
+    }
+    return true;
 }
 
 function FastenDoor(int Amount, optional KFPawn Welder)
@@ -740,13 +743,6 @@ function FastenDoor(int Amount, optional KFPawn Welder)
             {
                 CloseDoor();
             }
-        }
-    }
-    if(!bIsDoorOpen)
-    {
-        if(((WorldInfo.Game != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress())
-        {
-            KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogDoorWeldEvent(Amount, MaxWeldIntegrity, WeldIntegrity, Welder.Controller, none, self);
         }
     }
 }
@@ -1263,7 +1259,6 @@ defaultproperties
         bUsePrecomputedShadows=true
         CollideActors=false
         BlockRigidBody=false
-        LightingChannels=(bInitialized=true,Indoor=true,Outdoor=true)
     object end
     // Reference: StaticMeshComponent'Default__KFDoorActor.StaticMeshComponent2'
     CenterWeldComponent=StaticMeshComponent2

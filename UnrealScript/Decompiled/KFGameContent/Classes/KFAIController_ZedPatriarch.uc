@@ -27,18 +27,6 @@ struct Patriarch_TrackedEnemyInfo
     }
 };
 
-struct Patriarch_MortarTarget
-{
-    var KFPawn TargetPawn;
-    var Vector TargetVelocity;
-
-    structdefaultproperties
-    {
-        TargetPawn=none
-        TargetVelocity=(X=0,Y=0,Z=0)
-    }
-};
-
 var KFPawn_ZedPatriarch MyPatPawn;
 var bool bCanEvaluateAttacks;
 var bool bDoingChargeAttack;
@@ -71,10 +59,7 @@ var float MinTentacleRangeSQ;
 var array<KFPawn> LastMissileEnemies;
 var float LastMissileAttackTime;
 var float MinMissileRangeSQ;
-var array<Patriarch_MortarTarget> MortarTargets;
 var float LastMortarAttackTime;
-var float MinMortarRangeSQ;
-var float MaxMortarRangeSQ;
 var float LastSuccessfulAttackTime;
 /** How often to update RecentlySeenEnemyList */
 var() float RecentSeenEnemyListUpdateInterval;
@@ -130,15 +115,23 @@ function PawnDied(Pawn inPawn)
 
 simulated event Destroyed()
 {
+    if(MyPatPawn != none)
+    {
+        MyPatPawn.ClearMortarTargets();
+    }
     MyPatPawn = none;
-    ClearMortarTargets();
     MyKFGameInfo.SpawnManager.StopSummoningBossMinions();
     super(KFAIController).Destroyed();
 }
 
+function bool IsAggroEnemySwitchAllowed()
+{
+    return (!MyPatPawn.IsDoingSpecialMove(19) && !MyPatPawn.IsDoingSpecialMove(20)) && !MyPatPawn.IsDoingSpecialMove(4);
+}
+
 function bool CanSwitchEnemies()
 {
-    return ((((((!bWantsToFlee && !bFleeing) && MyPatPawn != none) && !MyPatPawn.bIsCloaking) && !MyPatPawn.IsDoingSpecialMove(15)) && !MyPatPawn.IsDoingSpecialMove(17)) && !MyPatPawn.IsDoingSpecialMove(16)) && !MyPatPawn.IsDoingSpecialMove(4);
+    return ((((((!bWantsToFlee && !bFleeing) && MyPatPawn != none) && !MyPatPawn.bIsCloaking) && !MyPatPawn.IsDoingSpecialMove(17)) && !MyPatPawn.IsDoingSpecialMove(19)) && !MyPatPawn.IsDoingSpecialMove(18)) && !MyPatPawn.IsDoingSpecialMove(4);
 }
 
 function float GetAggroRating(KFPawn KFP)
@@ -210,16 +203,11 @@ event ChangeEnemy(Pawn NewEnemy, optional bool bCanTaunt)
         return;
     }
     OldEnemy = Enemy;
-    super(KFAIController).ChangeEnemy(NewEnemy, MyPatPawn.bIsCloaking);
+    super(KFAIController).ChangeEnemy(NewEnemy, !MyPatPawn.bIsCloaking && bCanTaunt);
     if(OldEnemy != Enemy)
     {
         LastRetargetTime = WorldInfo.TimeSeconds;
     }
-}
-
-function bool IsAggroEnemySwitchAllowed()
-{
-    return (!MyPatPawn.IsDoingSpecialMove(17) && !MyPatPawn.IsDoingSpecialMove(18)) && !MyPatPawn.IsDoingSpecialMove(4);
 }
 
 function bool SetBestTarget(out array<KFPawn> RecentTargets, optional float MinDistSQ, optional float MaxDistSQ, optional float ClampFOV, optional bool bPreferFurtherTargets, optional bool bIsWeaponAttack)
@@ -325,7 +313,7 @@ function bool SetBestTarget(out array<KFPawn> RecentTargets, optional float MinD
 function KFPawn CheckForEnemiesInFOV(float MaxRange, float MinFOV, float MaxFOV, optional bool bForceRetarget, optional bool bTauntNewEnemy)
 {
     local Vector PawnDir, Projection;
-    local float FOVDot, MaxRangeSQ, TempDistSQ, BestDistSq;
+    local float FOVDot, TempDistSQ, BestDistSq;
     local KFPawn KFP, BestTarget;
 
     bTauntNewEnemy = true;
@@ -334,7 +322,6 @@ function KFPawn CheckForEnemiesInFOV(float MaxRange, float MinFOV, float MaxFOV,
         return none;
     }
     PawnDir = vector(MyPatPawn.Rotation);
-    MaxRangeSQ = Square(MaxRange);
     foreach MyPatPawn.OverlappingActors(Class'KFPawn', KFP, MaxRange)
     {
         if(bForceRetarget && Enemy == KFP)
@@ -346,11 +333,6 @@ function KFPawn CheckForEnemiesInFOV(float MaxRange, float MinFOV, float MaxFOV,
             continue;            
         }
         Projection = KFP.Location - MyPatPawn.Location;
-        TempDistSQ = VSizeSq(Projection);
-        if(TempDistSQ > MaxRangeSQ)
-        {
-            continue;            
-        }
         FOVDot = PawnDir Dot Normal(Projection);
         if((FOVDot < MinFOV) || FOVDot > MaxFOV)
         {
@@ -360,6 +342,7 @@ function KFPawn CheckForEnemiesInFOV(float MaxRange, float MinFOV, float MaxFOV,
         {
             continue;            
         }
+        TempDistSQ = VSizeSq(Projection);
         TempDistSQ *= (1 - (GetAggroRating(KFP)));
         if((BestTarget == none) || TempDistSQ < BestDistSq)
         {
@@ -541,14 +524,14 @@ function EvaluateAttacks(float DeltaTime)
             if(MyPatPawn.CanDoMortarBarrage() && FRand() < 0.2)
             {
                 bMortarBarrage = true;
-                bShouldFireMortar = CollectMortarTargets(true, true);                
+                bShouldFireMortar = MyPatPawn.CollectMortarTargets(true, true);                
             }
             else
             {
                 if(HiddenEnemies.Length > 0)
                 {
                     bMortarBarrage = false;
-                    bShouldFireMortar = (SomeEnemiesAreHidden()) && CollectMortarTargets(true);                    
+                    bShouldFireMortar = (SomeEnemiesAreHidden()) && MyPatPawn.CollectMortarTargets(true);                    
                 }
                 else
                 {
@@ -605,6 +588,24 @@ function Rotator GetAdjustedAimFor(Weapon W, Vector StartFireLoc)
         return rotator(Enemy.Location - StartFireLoc);
     }
     return super(Controller).GetAdjustedAimFor(W, StartFireLoc);
+}
+
+function DoStrike()
+{
+    local name AttackName;
+
+    if((MyPatPawn != none) && MyPatPawn.PawnAnimInfo != none)
+    {
+        AttackName = MyPatPawn.PawnAnimInfo.Attacks[PendingAnimStrikeIndex].Tag;
+        if(AttackName == 'Radial')
+        {
+            if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
+            {
+                KFGameInfo(WorldInfo.Game).DialogManager.PlayPattyWhirlwindDialog(MyPatPawn);
+            }
+        }
+    }
+    super(KFAIController_Monster).DoStrike();
 }
 
 function EvaluateSprinting()
@@ -685,7 +686,7 @@ function bool SomeEnemiesAreHidden()
         else
         {
             TargetDist = VSizeSq(KFP.Location - MyPatPawn.Location);
-            if((TargetDist < MinMortarRangeSQ) || TargetDist > MaxMortarRangeSQ)
+            if((TargetDist < MyPatPawn.MinMortarRangeSQ) || TargetDist > MyPatPawn.MaxMortarRangeSQ)
             {                
             }
             else
@@ -701,113 +702,6 @@ function bool SomeEnemiesAreHidden()
         goto J0x0B;
     }
     return false;
-}
-
-function bool CollectMortarTargets(optional bool bInitialTarget, optional bool bForceInitialTarget)
-{
-    local int NumTargets, I;
-    local KFPawn KFP;
-    local float TargetDistSQ;
-    local Vector MortarVelocity, MortarStartLoc, TargetLoc, TargetProjection;
-
-    MortarStartLoc = MyPatPawn.Location + (vect(0, 0, 1) * MyPatPawn.GetCollisionHeight());
-    NumTargets = ((bInitialTarget) ? 0 : 1);
-    I = 0;
-    J0x80:
-
-    if(I < HiddenEnemies.Length)
-    {
-        KFP = HiddenEnemies[I].TrackedEnemy;
-        if(!KFP.IsAliveAndWell() || MortarTargets.Find('TargetPawn', KFP != -1)
-        {            
-        }
-        else
-        {
-            TargetLoc = KFP.Location + (vect(0, 0, -1) * (KFP.GetCollisionHeight() * 0.8));
-            TargetProjection = MortarStartLoc - TargetLoc;
-            TargetDistSQ = VSizeSq(TargetProjection);
-            if((TargetDistSQ > MinMortarRangeSQ) && TargetDistSQ < MaxMortarRangeSQ)
-            {
-                TargetLoc += (Normal(TargetProjection) * KFP.GetCollisionRadius());
-                if(SuggestTossVelocity(MortarVelocity, TargetLoc, MortarStartLoc, Class'KFProj_Mortar_Patriarch'.default.Speed, 500, 1, vect(0, 0, 0),, MyPatPawn.GetGravityZ() * 0.8))
-                {
-                    if(!MyPatPawn.FastTrace(MortarStartLoc + (Normal(vect(0, 0, 1) + (Normal(TargetLoc - MortarStartLoc) * 0.9)) * FMax(VSize(MortarVelocity) * 0.55, 800)), MortarStartLoc,, true))
-                    {                        
-                    }
-                    else
-                    {
-                        MortarTargets.Insert(NumTargets, 1;
-                        MortarTargets[NumTargets].TargetPawn = KFP;
-                        MortarTargets[NumTargets].TargetVelocity = MortarVelocity;
-                        if(bInitialTarget || NumTargets == 2)
-                        {
-                            return true;
-                        }
-                        ++ NumTargets;
-                    }
-                }
-            }
-        }
-        ++ I;
-        goto J0x80;
-    }
-    if(((bForceInitialTarget || !bInitialTarget) && NumTargets < 2) && RecentlySeenEnemyList.Length > 0)
-    {
-        I = 0;
-        J0x413:
-
-        if((I < RecentlySeenEnemyList.Length) && NumTargets < 3)
-        {
-            KFP = RecentlySeenEnemyList[I].TrackedEnemy;
-            if(!KFP.IsAliveAndWell() || MortarTargets.Find('TargetPawn', KFP != -1)
-            {                
-            }
-            else
-            {
-                TargetLoc = KFP.Location + (vect(0, 0, -1) * (KFP.GetCollisionHeight() * 0.8));
-                TargetProjection = MortarStartLoc - TargetLoc;
-                TargetDistSQ = VSizeSq(TargetProjection);
-                if((TargetDistSQ > MinMortarRangeSQ) && TargetDistSQ < MaxMortarRangeSQ)
-                {
-                    TargetLoc += (Normal(TargetProjection) * KFP.GetCollisionRadius());
-                    if(SuggestTossVelocity(MortarVelocity, TargetLoc, MortarStartLoc, Class'KFProj_Mortar_Patriarch'.default.Speed, 500, 1, vect(0, 0, 0),, MyPatPawn.GetGravityZ() * 0.8))
-                    {
-                        if(!MyPatPawn.FastTrace(MortarStartLoc + (Normal(vect(0, 0, 1) + (Normal(TargetLoc - MortarStartLoc) * 0.9)) * FMax(VSize(MortarVelocity) * 0.55, 800)), MortarStartLoc,, true))
-                        {                            
-                        }
-                        else
-                        {
-                            MortarTargets.Insert(NumTargets, 1;
-                            MortarTargets[NumTargets].TargetPawn = KFP;
-                            MortarTargets[NumTargets].TargetVelocity = MortarVelocity;
-                            if(bInitialTarget)
-                            {
-                                return true;
-                            }
-                            ++ NumTargets;
-                        }
-                    }
-                }
-            }
-            ++ I;
-            goto J0x413;
-        }
-    }
-    return false;
-}
-
-function ClearMortarTargets()
-{
-    MortarTargets.Length = 0;
-}
-
-function Patriarch_MortarTarget GetMortarTarget(int MortarNum)
-{
-    if(MortarNum >= MortarTargets.Length)
-    {
-        return MortarTargets[Rand(MortarTargets.Length)];
-    }
-    return MortarTargets[MortarNum];
 }
 
 function NotifyAttackDoor(KFDoorActor door)
@@ -1002,7 +896,7 @@ function NotifyKilled(Controller Killer, Controller Killed, Pawn KilledPawn, cla
     }
     else
     {
-        if((((((!bWantsToFlee && !bFleeing) && !bRagedThisPhase) && MyPatPawn.MaxRageAttacks > 0) && !MyPatPawn.IsDoingSpecialMove(15)) && Killed != self) && Killed.GetTeamNum() == GetTeamNum())
+        if((((((!bWantsToFlee && !bFleeing) && !bRagedThisPhase) && MyPatPawn.MaxRageAttacks > 0) && !MyPatPawn.IsDoingSpecialMove(17)) && Killed != self) && Killed.GetTeamNum() == GetTeamNum())
         {
             if(CanSee(KilledPawn))
             {
@@ -1015,9 +909,9 @@ function NotifyKilled(Controller Killer, Controller Killed, Pawn KilledPawn, cla
         }
         else
         {
-            if((Killed.Pawn == Enemy) && MyPatPawn.IsDoingSpecialMove(18))
+            if((Killed.Pawn == Enemy) && MyPatPawn.IsDoingSpecialMove(20))
             {
-                KFSM_Patriarch_MinigunBarrage(MyPatPawn.SpecialMoves[18]).Timer_SearchForMinigunTargets();
+                KFSM_Patriarch_MinigunBarrage(MyPatPawn.SpecialMoves[20]).Timer_SearchForMinigunTargets();
             }
         }
     }
@@ -1066,7 +960,7 @@ function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, 
             }
         }
     }
-    if(((((!bWantsToFlee && !bFleeing) && MyPatPawn != none) && !MyPatPawn.bHealedThisPhase) && MyPatPawn.CurrentBattlePhase < 4) && !MyPatPawn.IsDoingSpecialMove(15))
+    if(((((!bWantsToFlee && !bFleeing) && MyPatPawn != none) && !MyPatPawn.bHealedThisPhase) && MyPatPawn.CurrentBattlePhase < 4) && !MyPatPawn.IsDoingSpecialMove(17))
     {
         if(!bSummonedThisPhase && GetHealthPercentage() < (FleeHealthThreshold + 0.075))
         {
@@ -1074,7 +968,7 @@ function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, 
             MyAIDirector.bForceFrustration = true;
             SummonChildren();
         }
-        if(!MyPatPawn.IsDoingSpecialMove(11) && GetHealthPercentage() < FleeHealthThreshold)
+        if(!MyPatPawn.IsDoingSpecialMove(13) && GetHealthPercentage() < FleeHealthThreshold)
         {
             if(MyPatPawn.IsDoingSpecialMove())
             {
@@ -1205,39 +1099,11 @@ function bool AmIAllowedToSuicideWhenStuck()
 
 function SummonChildren()
 {
-    local KFAIWaveInfo MinionWave;
-    local int BattlePhase;
-
     if(MyPatPawn == none)
     {
         return;
     }
-    BattlePhase = MyPatPawn.CurrentBattlePhase;
-    if(BattlePhase == 1)
-    {
-        MinionWave = MyPatPawn.SummonWaves[int(MyKFGameInfo.GameDifficulty)].PhaseOneWave;        
-    }
-    else
-    {
-        if(BattlePhase == 2)
-        {
-            MinionWave = MyPatPawn.SummonWaves[int(MyKFGameInfo.GameDifficulty)].PhaseTwoWave;            
-        }
-        else
-        {
-            if(BattlePhase == 3)
-            {
-                MinionWave = MyPatPawn.SummonWaves[int(MyKFGameInfo.GameDifficulty)].PhaseThreeWave;
-            }
-        }
-    }
-    if(MinionWave != none)
-    {
-        if(MyKFGameInfo.SpawnManager != none)
-        {
-            MyKFGameInfo.SpawnManager.SummonBossMinions(MinionWave.Squads, MyPatPawn.NumMinionsToSpawn);
-        }
-    }
+    MyPatPawn.SummonChildren();
 }
 
 function Timer_StopSummoningChildren()
@@ -1281,7 +1147,7 @@ function Timer_SearchForFleeObstructions()
         bSprintUntilAttack = true;
         SetEnemyMoveGoal(self, true);
         EnableMeleeRangeEventProbing();
-        SetTimer(5, false, 'Timer_SearchForFleeObstructions');        
+        SetTimer(3, false, 'Timer_SearchForFleeObstructions');        
     }
     else
     {
@@ -1410,8 +1276,6 @@ function Flee()
     MyPatPawn.SetSprinting(true);
     DisableMeleeRangeEventProbing();
     FleeDuration = FMax(MaxFleeDuration - TotalFleeTime, 6);
-    LogInternal("[FLEE] FleeDuration:" @ string(FleeDuration));
-    LogInternal("[FLEE] FleeStartTime:" @ string(WorldInfo.TimeSeconds));
     FleeStartLocation = MyPatPawn.Location;
     FleeStartTime = WorldInfo.TimeSeconds;
     DoFleeFrom(FleeFromTarget, FleeDuration, MaxFleeDistance + float(Rand(int(MaxFleeDistance * 0.25))), true);
@@ -1429,13 +1293,9 @@ function NotifyFleeFinished()
         MyPatPawn.SetCloaked(false);
         SetTimer(4, false, 'Timer_StopSummoningChildren');
         ClearTimer('Timer_SearchForFleeObstructions');
-        LogInternal("[HEAL] FleeDuration:" @ string(FMax(MaxFleeDuration - TotalFleeTime, 6)));
-        LogInternal("[HEAL] FleeEndTime:" @ string(WorldInfo.TimeSeconds));
-        LogInternal("[HEAL] FleeDistance:" @ string(VSize(FleeStartLocation - MyPatPawn.Location)));
-        ScriptTrace();
         bWantsToFlee = false;
         bFleeing = false;
-        MyPatPawn.DoSpecialMove(15,,, Class'KFSM_Patriarch_Heal'.static.PackSMFlags(MyPatPawn.CurrentBattlePhase - 1));
+        MyPatPawn.DoSpecialMove(17,,, Class'KFSM_Patriarch_Heal'.static.PackSMFlags(MyPatPawn.CurrentBattlePhase - 1));
     }
     EnableMeleeRangeEventProbing();
 }
@@ -1510,8 +1370,6 @@ defaultproperties
     MinChargeRangeSQ=810000
     MinTentacleRangeSQ=90000
     MinMissileRangeSQ=360000
-    MinMortarRangeSQ=160000
-    MaxMortarRangeSQ=6000000
     LastRecentSeenEnemyListUpdateTime=0.1
     RetargetWaitTime=5
     MaxRageRangeSQ=1440000

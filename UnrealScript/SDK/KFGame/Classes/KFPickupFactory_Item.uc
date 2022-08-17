@@ -164,7 +164,6 @@ function GiveArmor( Pawn P )
   
 		`BalanceLog(class'KFGameInfo'.const.GBE_Pickup, P.PlayerReplicationInfo, "Armor");
 		`AnalyticsLog(("pickup", P.PlayerReplicationInfo, "armor"));
-
 	}
 }
 
@@ -208,12 +207,13 @@ function GiveWeapon( Pawn P )
         if( KFW != none )
         {
             KFW.bGivenAtStart = true;
+            KFW = KFIM.CombineWeaponsOnPickup( KFW );
+            KFW.NotifyPickedUp();
 		}
         ActivateNewPickup(P);
 
 		`BalanceLog(class'KFGameInfo'.const.GBE_Pickup, P.PlayerReplicationInfo, InventoryClass);
 		`AnalyticsLog(("pickup", P.PlayerReplicationInfo, InventoryClass));
-
 	}
 }
 

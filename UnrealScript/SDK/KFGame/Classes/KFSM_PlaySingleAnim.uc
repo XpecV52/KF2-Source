@@ -88,8 +88,8 @@ static function bool IsAnInterruptHit(Pawn P, class<KFDamageType> DamageType)
 	local byte HitZoneIdx;
 	local EHitZoneBodyPart BodyPart;
 
-	// only non-RM attacks can be aborted
-	if ( DamageType != None )
+	// only AI can be interrupted by hit reaction hits
+	if ( DamageType != None && !P.IsHumanControlled() )
 	{
 		KFPM = KFPawn_Monster(P);
 		if ( KFPM != None )

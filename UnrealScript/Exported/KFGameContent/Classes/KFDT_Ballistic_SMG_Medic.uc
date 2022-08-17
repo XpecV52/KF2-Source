@@ -64,7 +64,6 @@ class KFDT_Ballistic_SMG_Medic extends KFDT_Ballistic_Submachinegun
 
 
 
-
 #linenumber 15;
 
 /** Whether this damage type can apply damage over time */

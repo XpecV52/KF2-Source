@@ -86,7 +86,7 @@ function PlayImpactParticleEffect(KFPawn P, vector HitLocation, vector HitDirect
 	local ParticleSystem ParticleTemplate;
 
 	ParticleTemplate = GetImpactParticleEffect(EffectGroup);
-	
+
 	if ( ImpactFX[EffectGroup].bAttachParticle ) // Spawn effect and attach to bone
 	{
 		AttachEffectToBone( P, ParticleTemplate, HitZoneIndex );
@@ -149,11 +149,11 @@ function AttachEffectToHitLocation( KFPawn P, ParticleSystem ParticleTemplate, i
 			EmitterLocationOffset = BoneSpaceHitLocation;	
 
 			PSC = P.WorldInfo.ImpactFXEmitterPool.SpawnEmitterMeshAttachment(
-												ParticleTemplate, 
-												P.Mesh, 
-												HitBoneName, 
-												false, 
-												EmitterLocationOffset);
+				ParticleTemplate, 
+				P.Mesh, 
+				HitBoneName, 
+				false, 
+				EmitterLocationOffset);
 
 			if( PSC != none )
 			{
@@ -222,11 +222,11 @@ function PlayTakeHitSound(KFPawn P, vector HitLocation, Pawn DamageCauser, EEffe
 
 		ImpactSound = GetImpactSound(EffectGroup, DamageCauser);
 
-        if( ImpactSound != none )
-        {
+		if( ImpactSound != none )
+		{
 			P.LastImpactSoundTime = P.WorldInfo.TimeSeconds;
-            P.PlaySoundBase(ImpactSound, true,,, HitLocation);
-        }
+			P.PlaySoundBase(ImpactSound, true,,, HitLocation);
+		}
 	}
 }
 

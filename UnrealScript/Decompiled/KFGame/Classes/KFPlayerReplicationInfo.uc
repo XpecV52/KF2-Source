@@ -44,7 +44,7 @@ var repnotify byte VOIPStatus;
 var byte NetPerkIndex;
 var private byte ActivePerkLevel;
 var byte PlayerHealth;
-var byte PlayerHealthMax;
+var byte PlayerHealthPercent;
 var byte SharedUnlocks;
 var const array<KFCharacterInfo_Human> CharacterArchetypes;
 var repnotify const CustomizationInfo RepCustomizationInfo;
@@ -63,12 +63,12 @@ replication
 {
      if(bNetDirty)
         ActivePerkLevel, Assists, 
-        CurrentPerkClass, NetPerkIndex, 
-        PlayerHealth, PlayerHealthMax, 
-        RepCustomizationInfo, bConcussiveActive, 
-        bExtraFireRange, bNukeActive, 
-        bObjectivePlayer, bPerkCanSupply, 
-        bSplashActive;
+        CharPortrait, CurrentPerkClass, 
+        NetPerkIndex, PlayerHealth, 
+        PlayerHealthPercent, RepCustomizationInfo, 
+        bConcussiveActive, bExtraFireRange, 
+        bNukeActive, bObjectivePlayer, 
+        bPerkCanSupply, bSplashActive;
 
      if(bNetDirty && !bNetOwner || bDemoRecording)
         SharedUnlocks, VOIPStatus;
@@ -94,12 +94,71 @@ simulated event ReplicatedEvent(name VarName)
             }
         }
     }
+    if(VarName == 'Team')
+    {
+        ClientRecieveNewTeam();
+    }
     super.ReplicatedEvent(VarName);
 }
 
 simulated event PostBeginPlay()
 {
     super.PostBeginPlay();
+}
+
+reliable server function ServerSwitchTeam()
+{
+    local KFGameInfo MyGameInfo;
+    local KFGameReplicationInfo KFGRI;
+
+    MyGameInfo = KFGameInfo(WorldInfo.Game);
+    if(MyGameInfo == none)
+    {
+        return;
+    }
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if((KFGRI == none) || !KFGRI.bAllowSwitchTeam)
+    {
+        return;
+    }
+    if(KFGRI.bMatchHasBegun)
+    {
+        PlayerController(Owner).Pawn.Suicide();
+    }
+    switch(GetTeamNum())
+    {
+        case byte(MyGameInfo.Teams[0].TeamIndex):
+            MyGameInfo.SetTeam(PlayerController(Owner), MyGameInfo.Teams[1]);
+            break;
+        case byte(MyGameInfo.Teams[1].TeamIndex):
+            MyGameInfo.SetTeam(PlayerController(Owner), MyGameInfo.Teams[0]);
+            break;
+        default:
+            LogInternal("Function: KFPlayerReplicationInfo::ServerSwitchTeam Team index not accounted for - " @ string(GetTeamNum()));
+            break;
+    }
+}
+
+reliable client simulated function ClientRecieveNewTeam()
+{
+    local KFGameReplicationInfo KFGRI;
+    local KFGFxHudWrapper MyGFxHUD;
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(Owner);
+    if((KFPC != none) && KFPC.IsLocalController())
+    {
+        MyGFxHUD = KFGFxHudWrapper(KFPC.myHUD);        
+    }
+    else
+    {
+        return;
+    }
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if(KFGRI.bMatchHasBegun)
+    {
+        MyGFxHUD.CreateHUDMovie();
+    }
 }
 
 simulated function byte GetActivePerkLevel()
@@ -111,33 +170,24 @@ reliable server function ServerNotifyStartVoip()
 {
     local int I;
     local KFPlayerController KFPC;
-    local KFGameInfo KFGI;
 
     KFPC = KFPlayerController(Owner);
-    if(KFPC == none)
-    {
-        return;
-    }
-    KFGI = KFGameInfo(WorldInfo.Game);
-    if(KFGI == none)
-    {
-    }
-    if(!KFGI.bDisableVOIP)
+    if(!KFGameInfo(WorldInfo.Game).bDisableVOIP && !KFGameInfo(WorldInfo.Game).bDisablePublicVOIPChannel)
     {
         if(!bOnlySpectator)
         {
-            VOIPStatus = 1;
             bNetDirty = true;
             bForceNetUpdate = true;
             if(!KFPC.IsLocalController())
             {
                 VOIPStatusChanged(self, true);
             }
+            VOIPStatus = 1;
             KFPC.VoiceReceivers.Remove(0, KFPC.VoiceReceivers.Length;
             if((KFPC.Pawn != none) && KFPC.Pawn.Health > 0)
             {
                 I = 0;
-                J0x19E:
+                J0x1AF:
 
                 if(I < WorldInfo.GRI.PRIArray.Length)
                 {
@@ -150,15 +200,15 @@ reliable server function ServerNotifyStartVoip()
                         }
                     }
                     ++ I;
-                    goto J0x19E;
+                    goto J0x1AF;
                 }                
             }
             else
             {
-                if(KFGI.bEnableDeadToDeadVOIP)
+                if(KFGameInfo(WorldInfo.Game).bEnableDeadToVOIP)
                 {
                     I = 0;
-                    J0x3C8:
+                    J0x3F7:
 
                     if(I < WorldInfo.GRI.PRIArray.Length)
                     {
@@ -171,17 +221,7 @@ reliable server function ServerNotifyStartVoip()
                             }
                         }
                         ++ I;
-                        goto J0x3C8;
-                    }                    
-                }
-                else
-                {
-                    VOIPStatus = 0;
-                    bNetDirty = true;
-                    bForceNetUpdate = true;
-                    if(!KFPC.IsLocalController())
-                    {
-                        VOIPStatusChanged(self, false);
+                        goto J0x3F7;
                     }
                 }
             }
@@ -197,13 +237,84 @@ reliable server function ServerNotifyStartVoip()
     }
     else
     {
-        VOIPStatus = 0;
-        bNetDirty = true;
-        bForceNetUpdate = true;
-        if(!KFPC.IsLocalController())
+        KFPC.VoiceReceivers.Remove(0, KFPC.VoiceReceivers.Length;
+        KFPC.VoiceReceivers.AddItem(UniqueId;
+    }
+}
+
+reliable server function ServerNotifyStartTeamVoip()
+{
+    local byte TeamIndex;
+    local int I;
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(Owner);
+    if(!KFGameInfo(WorldInfo.Game).bDisableVOIP)
+    {
+        TeamIndex = GetTeamNum();
+        if(!bOnlySpectator)
         {
-            VOIPStatusChanged(self, false);
+            bNetDirty = true;
+            bForceNetUpdate = true;
+            if(!KFPC.IsLocalController())
+            {
+                VOIPStatusChanged(self, true);
+            }
+            VOIPStatus = 2;
+            KFPC.VoiceReceivers.Remove(0, KFPC.VoiceReceivers.Length;
+            if((KFPC.Pawn != none) && KFPC.Pawn.Health > 0)
+            {
+                I = 0;
+                J0x17F:
+
+                if(I < WorldInfo.GRI.PRIArray.Length)
+                {
+                    if(!WorldInfo.GRI.PRIArray[I].bBot && ((WorldInfo.GRI.PRIArray[I].GetTeamNum() == TeamIndex) || !WorldInfo.GRI.bMatchHasBegun) || WorldInfo.GRI.bMatchIsOver)
+                    {
+                        KFPC.VoiceReceivers.AddItem(WorldInfo.GRI.PRIArray[I].UniqueId;
+                        if(PlayerController(WorldInfo.GRI.PRIArray[I].Owner) != none)
+                        {
+                            PlayerController(WorldInfo.GRI.PRIArray[I].Owner).VoiceSenders.AddItem(UniqueId;
+                        }
+                    }
+                    ++ I;
+                    goto J0x17F;
+                }                
+            }
+            else
+            {
+                if(KFGameInfo(WorldInfo.Game).bEnableDeadToVOIP)
+                {
+                    I = 0;
+                    J0x4A2:
+
+                    if(I < WorldInfo.GRI.PRIArray.Length)
+                    {
+                        if(!WorldInfo.GRI.PRIArray[I].bBot && ((WorldInfo.GRI.PRIArray[I].GetTeamNum() == TeamIndex) || !WorldInfo.GRI.bMatchHasBegun) || WorldInfo.GRI.bMatchIsOver)
+                        {
+                            KFPC.VoiceReceivers.AddItem(WorldInfo.GRI.PRIArray[I].UniqueId;
+                            if(PlayerController(WorldInfo.GRI.PRIArray[I].Owner) != none)
+                            {
+                                PlayerController(WorldInfo.GRI.PRIArray[I].Owner).VoiceSenders.AddItem(UniqueId;
+                            }
+                        }
+                        ++ I;
+                        goto J0x4A2;
+                    }
+                }
+            }
+            if(KFPC.VoiceReceivers.Length <= 0)
+            {
+                KFPC.VoiceReceivers.AddItem(UniqueId;
+            }            
         }
+        else
+        {
+            ServerStartSpectatorVoiceChat();
+        }        
+    }
+    else
+    {
         KFPC.VoiceReceivers.Remove(0, KFPC.VoiceReceivers.Length;
         KFPC.VoiceReceivers.AddItem(UniqueId;
     }
@@ -359,7 +470,7 @@ simulated function CastMapVote(int MapIndex, bool bDoubleClick)
 {
     local KFGameInfo KFGI;
 
-    ServerCastMapVote(self, MapIndex);
+    ServerCastMapVote(self, KFGameReplicationInfo(WorldInfo.GRI).VoteCollector.MapList[MapIndex]);
     if(WorldInfo.NetMode == NM_Standalone)
     {
         KFGI = KFGameInfo(WorldInfo.Game);
@@ -370,7 +481,7 @@ simulated function CastMapVote(int MapIndex, bool bDoubleClick)
     }
 }
 
-reliable server function ServerCastMapVote(PlayerReplicationInfo PRI, int MapIndex)
+reliable server function ServerCastMapVote(PlayerReplicationInfo PRI, string MapName)
 {
     local KFGameReplicationInfo KFGRI;
     local KFGameInfo KFGI;
@@ -383,7 +494,7 @@ reliable server function ServerCastMapVote(PlayerReplicationInfo PRI, int MapInd
     }
     if(KFGRI != none)
     {
-        KFGRI.ReceiveVoteMap(PRI, MapIndex);
+        KFGRI.ReceiveVoteMap(PRI, KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps.Find(MapName);
     }
 }
 
@@ -513,7 +624,7 @@ private reliable server final event ServerAnnounceNewSharedContent()
 {
     if((WorldInfo.GRI != none) && WorldInfo.GRI.bMatchHasBegun)
     {
-        BroadcastLocalizedMessage(Class'KFLocalMessage_Game', 20, self);
+        BroadcastLocalizedMessage(Class'KFLocalMessage_Game', 21, self);
     }
 }
 

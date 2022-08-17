@@ -277,7 +277,7 @@ simulated function TryStick( vector HitNormal, optional vector HitLocation, opti
 {
 	local TraceHitInfo HitInfo;
 
-	if( Instigator == None || !Instigator.IsLocallyControlled() )
+	if( Instigator == None || !Instigator.IsLocallyControlled() || (Physics == PHYS_None && StuckToActor != none) )
 	{
 		return;
 	}

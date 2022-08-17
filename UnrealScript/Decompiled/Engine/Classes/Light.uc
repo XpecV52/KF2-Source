@@ -120,10 +120,15 @@ event PostBeginPlay()
     local float DummyValue;
     local bool bVolumetricLightMesh;
 
+    if(WorldInfo.NetMode == NM_DedicatedServer)
+    {
+        SetTickIsDisabled(true);
+        return;
+    }
     if(!AreLightFunctionsSupported() && LightComponent.Function != none)
     {
+        SetTickIsDisabled(true);
         LightComponent.SetEnabled(false);
-        Destroy();
         return;
     }
     if(LightMesh != none)
@@ -136,7 +141,7 @@ event PostBeginPlay()
         if(LightMesh != none)
         {
             I = 0;
-            J0xCC:
+            J0x10A:
 
             if(I < LightMesh.GetNumElements())
             {
@@ -147,7 +152,7 @@ event PostBeginPlay()
                     LightMeshMICs.AddItem(NewMIC;
                 }
                 ++ I;
-                goto J0xCC;
+                goto J0x10A;
             }
         }        
     }
@@ -165,7 +170,7 @@ event PostBeginPlay()
     if(BaseSkelComponent != none)
     {
         I = 0;
-        J0x24E:
+        J0x28C:
 
         if(I < BaseSkelComponent.GetNumElements())
         {
@@ -176,14 +181,14 @@ event PostBeginPlay()
                 BaseMeshMICs.AddItem(NewMIC;
             }
             ++ I;
-            goto J0x24E;
+            goto J0x28C;
         }
     }
     LensFlareMICs.Remove(0, LensFlareMICs.Length;
     if(LensFlareComp != none)
     {
         I = 0;
-        J0x38D:
+        J0x3CB:
 
         if(I < LensFlareComp.GetNumMaterials())
         {
@@ -194,12 +199,8 @@ event PostBeginPlay()
                 LensFlareMICs.AddItem(NewMIC;
             }
             ++ I;
-            goto J0x38D;
+            goto J0x3CB;
         }
-    }
-    if(WorldInfo.NetMode == NM_DedicatedServer)
-    {
-        SetTickIsDisabled(true);
     }
 }
 
@@ -215,7 +216,6 @@ defaultproperties
     begin object name=LightMeshComponent0 class=StaticMeshComponent
         ReplacementPrimitive=none
         bAllowApproximateOcclusion=true
-        LightingChannels=(bInitialized=true,Indoor=true,Outdoor=true)
         bOverridePrecomputedShadowOcclusion=true
     object end
     // Reference: StaticMeshComponent'Default__Light.LightMeshComponent0'
@@ -238,20 +238,6 @@ defaultproperties
     object end
     // Reference: SpriteComponent'Default__Light.Sprite'
     Components(0)=Sprite
-    begin object name=LightMeshComponent0 class=StaticMeshComponent
-        ReplacementPrimitive=none
-        bAllowApproximateOcclusion=true
-        LightingChannels=(bInitialized=true,Indoor=true,Outdoor=true)
-        bOverridePrecomputedShadowOcclusion=true
-    object end
-    // Reference: StaticMeshComponent'Default__Light.LightMeshComponent0'
-    Components(1)=LightMeshComponent0
-    begin object name=LensFlareComponent0 class=LensFlareComponent
-        NextTraceTime=0.0 // Ka v oh
-        ReplacementPrimitive=none
-    object end
-    // Reference: LensFlareComponent'Default__Light.LensFlareComponent0'
-    Components(2)=LensFlareComponent0
     CollisionType=ECollisionType.COLLIDE_CustomDefault
     bNoDelete=true
     bRouteBeginPlayEvenIfStatic=false
@@ -260,7 +246,6 @@ defaultproperties
     begin object name=LightMeshComponent0 class=StaticMeshComponent
         ReplacementPrimitive=none
         bAllowApproximateOcclusion=true
-        LightingChannels=(bInitialized=true,Indoor=true,Outdoor=true)
         bOverridePrecomputedShadowOcclusion=true
     object end
     // Reference: StaticMeshComponent'Default__Light.LightMeshComponent0'

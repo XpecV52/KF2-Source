@@ -9,9 +9,10 @@ class KFFlashlightAttachment extends Object
     native(Effect)
     hidecategories(Object);
 
-var export editinline transient SkeletalMeshComponent OwnerMesh;
-var transient bool bEnabled;
-var transient bool bLightInitialized;
+var protected export editinline transient SkeletalMeshComponent OwnerMesh;
+var protected transient bool bEnabled;
+var protected transient bool bLightInitialized;
+var bool bDebug;
 /** Spot Light */
 var() export editinline SpotLightComponent LightTemplate;
 var export editinline transient SpotLightComponent Light;
@@ -23,6 +24,8 @@ var() StaticMesh AttachmentMesh;
 var export editinline transient StaticMeshComponent AttachmentMeshComp;
 /** Socket name to attach the flashlight to */
 var() name FlashlightSocketName;
+var float TeammateSwitchRadius;
+var float TeammateSwitchTimer;
 
 function AttachFlashlight(SkeletalMeshComponent Mesh, optional name SocketNameOverride)
 {
@@ -72,7 +75,7 @@ function DetachFlashlight()
     }
 }
 
-function SetEnabled(bool bNewEnabled)
+protected function SetEnabled(bool bNewEnabled)
 {
     if(bNewEnabled && !bLightInitialized)
     {
@@ -87,9 +90,13 @@ function SetEnabled(bool bNewEnabled)
         LightConeMeshComp.SetHidden(!bNewEnabled || IsOwnerFirstPerson());
     }
     bEnabled = bNewEnabled;
+    if(bDebug)
+    {
+        LogInternal((("Turning flashlight" @ string(bNewEnabled)) @ "for teammate:") @ string(OwnerMesh.Outer));
+    }
 }
 
-private final function InitializeLight()
+protected function InitializeLight()
 {
     if(OwnerMesh == none)
     {
@@ -118,14 +125,6 @@ private final function AttachFlashlightComponent(SkeletalMeshComponent ParentMes
     ParentMesh.AttachComponentToSocket(Attachment, FlashlightSocketName);
 }
 
-private final function bool IsOwnerFirstPerson()
-{
-    local Pawn P;
-
-    P = Pawn(OwnerMesh.Outer);
-    return ((P != none) ? P.IsFirstPerson() : false);
-}
-
 simulated function OwnerDied()
 {
     if(bEnabled)
@@ -136,6 +135,22 @@ simulated function OwnerDied()
     {
         Light.DetachFromAny();
     }
+}
+
+simulated function SetLightingChannels(const out LightingChannelContainer NewLightingChannels)
+{
+    if(AttachmentMeshComp != none)
+    {
+        AttachmentMeshComp.super(KFFlashlightAttachment).SetLightingChannels(NewLightingChannels);
+    }
+}
+
+private final function bool IsOwnerFirstPerson()
+{
+    local Pawn P;
+
+    P = Pawn(OwnerMesh.Outer);
+    return ((P != none) ? P.IsFirstPerson() : false);
 }
 
 simulated function SetFirstPersonVisibility(bool bFirstPerson)
@@ -170,11 +185,118 @@ simulated function SetFirstPersonVisibility(bool bFirstPerson)
     }
 }
 
-simulated function SetLightingChannels(const out LightingChannelContainer NewLightingChannels)
+simulated function UpdateFlashlightFor(KFPawn_Human inPawn)
 {
-    if(AttachmentMeshComp != none)
+    local PlayerController PC;
+    local KFPawn_Human P;
+
+    if(!inPawn.bFlashlightOn)
     {
-        AttachmentMeshComp.super(KFFlashlightAttachment).SetLightingChannels(NewLightingChannels);
+        if(inPawn.FlashLight.bEnabled)
+        {
+            inPawn.FlashLight.SetEnabled(false);
+            ChooseBestFlashlight();
+        }        
+    }
+    else
+    {
+        PC = Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController();
+        if(PC == none)
+        {
+            return;
+        }
+        if(PC.ViewTarget == inPawn)
+        {
+            foreach PC.WorldInfo.AllPawns(Class'KFPawn_Human', P)
+            {
+                if(P.FlashLight.bEnabled)
+                {
+                    P.FlashLight.SetEnabled(false);
+                }                
+            }            
+            inPawn.FlashLight.SetEnabled(true);            
+        }
+        else
+        {
+            if(!PC.IsTimerActive('ChooseBestFlashlightTimer', self))
+            {
+                ChooseBestFlashlight();
+                PC.SetTimer(TeammateSwitchTimer, true, 'ChooseBestFlashlightTimer', self);                
+            }
+        }
+    }
+}
+
+simulated function ChooseBestFlashlightTimer()
+{
+    ChooseBestFlashlight();
+}
+
+simulated function ChooseBestFlashlight()
+{
+    local PlayerController PC;
+    local KFPawn_Human P, BestPawn;
+    local array<KFPawn_Human> DisableList;
+    local float BestDistSq, DistSq, TeammateSwitchRadiusSq;
+    local int I;
+
+    TeammateSwitchRadiusSq = Square(TeammateSwitchRadius);
+    PC = Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController();
+    foreach PC.WorldInfo.AllPawns(Class'KFPawn_Human', P)
+    {
+        if(!P.bFlashlightOn || !P.IsAliveAndWell())
+        {
+            continue;            
+        }
+        DistSq = VSizeSq(P.Location - PC.ViewTarget.Location);
+        if(P.FlashLight.bEnabled)
+        {
+            if(PC.ViewTarget == P)
+            {
+                if(bDebug)
+                {
+                    LogInternal("Flashlight staying on for view target");
+                }                
+                return;                
+            }
+            else
+            {
+                if(DistSq < TeammateSwitchRadiusSq)
+                {
+                    if(bDebug)
+                    {
+                        LogInternal("Flashlight staying on for" @ string(P));
+                    }                    
+                    return;
+                }
+            }
+            DisableList.AddItem(P;
+        }
+        if((BestPawn == none) || DistSq < BestDistSq)
+        {
+            BestPawn = P;
+            BestDistSq = DistSq;
+        }        
+    }    
+    if(BestPawn == none)
+    {
+        PC.ClearTimer('ChooseBestFlashlightTimer', self);        
+    }
+    else
+    {
+        if((BestPawn != none) && !BestPawn.FlashLight.bEnabled)
+        {
+            BestPawn.FlashLight.SetEnabled(true);
+            I = 0;
+            J0x369:
+
+            if(I < DisableList.Length)
+            {
+                DisableList[I].FlashLight.SetEnabled(false);
+                ++ I;
+                goto J0x369;
+            }
+        }
     }
 }
 
@@ -187,8 +309,9 @@ defaultproperties
         Brightness=2
         Function=LightFunction'Default__KFFlashlightAttachment.FlashLightFunction'
         bEnabled=false
+        CastShadows=false
         CastStaticShadows=false
-        ForceCastDynamicShadows=true
+        CastDynamicShadows=false
         bUpdateOwnerRenderTime=true
         LightingChannels=(Outdoor=true)
     object end
@@ -201,4 +324,6 @@ defaultproperties
     // Reference: StaticMeshComponent'Default__KFFlashlightAttachment.LightConeComp'
     LightConeMeshComp=LightConeComp
     FlashlightSocketName=FlashLight
+    TeammateSwitchRadius=1500
+    TeammateSwitchTimer=10
 }

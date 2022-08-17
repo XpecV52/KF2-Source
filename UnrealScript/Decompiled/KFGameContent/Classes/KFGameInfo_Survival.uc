@@ -25,7 +25,6 @@ var const float AARDisplayDelay;
 var array<AARAward> TeamAwardList;
 var byte WaveMax;
 var int WaveNum;
-var array< class<KFAISpawnManager> > SpawnManagerClasses;
 var int PlayedObjectives;
 var float ObjectiveCheckIntervall;
 var bool bObjectivePlayed;
@@ -164,6 +163,35 @@ function byte GetGameIntensityForMusic()
     }
 }
 
+function bool IsPlayerReady(KFPlayerReplicationInfo PRI)
+{
+    local KFPlayerController KFPC;
+
+    if(Class'KFGameEngine'.static.CheckSkipLobby() || Class'Engine'.static.IsEditor())
+    {
+        return true;
+    }
+    if(super.IsPlayerReady(PRI))
+    {
+        KFPC = KFPlayerController(PRI.Owner);
+        if((KFPC != none) && (KFPC.CurrentPerk == none) || !KFPC.CurrentPerk.bInitialized)
+        {
+            if(WorldInfo.IsConsoleDedicatedServer() || WorldInfo.IsConsoleBuild())
+            {
+                WarnInternal("TODO: Need perk support for console");
+                return true;                
+            }
+            else
+            {
+                LogInternal(("ERROR: Failed to load perk for:" @ string(KFPC)) @ string(KFPC.CurrentPerk));
+                return false;
+            }
+        }
+        return true;
+    }
+    return false;
+}
+
 function bool PlayerCanRestart(PlayerController aPlayer)
 {
     return !IsWaveActive() && MyKFGRI.bMatchHasBegun;
@@ -283,6 +311,7 @@ function UpdateGameSettings()
             KFGameSettings = KFOnlineGameSettings(GameInterface.GetGameSettings(SessionName));
             if(KFGameSettings != none)
             {
+                KFGameSettings.Mode = GetGameModeNum();
                 KFGameSettings.Difficulty = int(GameDifficulty);
                 if(WaveNum == 0)
                 {
@@ -296,7 +325,7 @@ function UpdateGameSettings()
                 }
                 KFGameSettings.NumWaves = WaveMax - 1;
                 KFGameSettings.OwningPlayerName = Class'GameReplicationInfo'.default.ServerName;
-                KFGameSettings.NumPublicConnections = MaxPlayers;
+                KFGameSettings.NumPublicConnections = MaxPlayersAllowed;
                 KFGameSettings.bRequiresPassword = RequiresPassword();
                 KFGameSettings.bCustom = bIsCustomGame;
                 KFGameSettings.bUsesStats = !bIsUnrankedGame;
@@ -309,6 +338,33 @@ function UpdateGameSettings()
             }
         }
     }
+}
+
+function int GetGameModeNum()
+{
+    return Class'KFGameInfo'.static.GetGameModeNumFromClass(PathName(default.Class));
+}
+
+function int GetNumHumanTeamPlayers()
+{
+    local PlayerController P;
+    local int TotalPlayers, ZedTeamPlayers, HumanTeamPlayers;
+
+    foreach WorldInfo.AllControllers(Class'PlayerController', P)
+    {
+        if(P.bIsPlayer && P.GetTeamNum() == 255)
+        {
+            ++ ZedTeamPlayers;
+        }        
+    }    
+    TotalPlayers = GetNumPlayers();
+    HumanTeamPlayers = TotalPlayers - ZedTeamPlayers;
+    return HumanTeamPlayers;
+}
+
+function bool CanSpectate(PlayerController Viewer, PlayerReplicationInfo ViewTarget)
+{
+    return super.CanSpectate(Viewer, ViewTarget) && (Viewer.PlayerReplicationInfo.bOnlySpectator || Viewer.GetTeamNum() == ViewTarget.GetTeamNum()) || MyKFGRI.bTraderIsOpen;
 }
 
 event Timer()
@@ -562,6 +618,10 @@ function StartWave()
     MyKFGRI.WaveNum = byte(WaveNum);
     NumAISpawnsQueued = 0;
     AIAliveCount = 0;
+    if((WorldInfo.NetMode != NM_DedicatedServer) && Role == ROLE_Authority)
+    {
+        MyKFGRI.UpdateHUDWaveCount();
+    }
     WaveStarted();
     MyKFGRI.AIRemaining = SpawnManager.WaveTotalAI;
     MyKFGRI.WaveTotalAICount = SpawnManager.WaveTotalAI;
@@ -635,7 +695,7 @@ function WaveStarted()
         {
             if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
             {
-                WorldInfo.TWLogEvent("pc_wave_start", KFPC.PlayerReplicationInfo, "#" $ string(WaveNum), string(KFPC.GetPerk().Class.Name), string(KFPC.GetPerk().GetLevel()), "#" $ string(KFPC.PlayerReplicationInfo.Score), KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory(), KFPC.GetPerk().DumpPerkLoadout());
+                WorldInfo.TWLogEvent("pc_wave_start", KFPC.PlayerReplicationInfo, "#" $ string(WaveNum), string(KFPC.GetPerk().Class.Name), string(KFPC.GetPerk().GetLevel()), "#" $ string(KFPC.PlayerReplicationInfo.Score), ((KFPC.Pawn != none) ? KFInventoryManager(KFPC.Pawn.InvManager).DumpInventory() : ""), KFPC.GetPerk().DumpPerkLoadout(), string(KFPC.PlayerReplicationInfo.GetTeamNum()));
             }
         }        
     }    
@@ -644,7 +704,7 @@ function WaveStarted()
     {
         GameSeq.FindSeqObjectsByClass(Class'KFSeqEvent_WaveStart', true, AllWaveStartEvents);
         I = 0;
-        J0x37C:
+        J0x3D9:
 
         if(I < AllWaveStartEvents.Length)
         {
@@ -655,7 +715,7 @@ function WaveStarted()
                 WaveStartEvt.CheckActivate(self, self);
             }
             ++ I;
-            goto J0x37C;
+            goto J0x3D9;
         }
     }
     UpdateGameSettings();
@@ -688,6 +748,7 @@ function CheckWaveEnd(optional bool bForceWaveEnd)
 function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
 {
     local KFPlayerController KFPC;
+    local bool bOpeningTrader;
 
     MyKFGRI.NotifyWaveEnded();
     if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
@@ -710,7 +771,8 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
             UpdateWaveEndDialogInfo();
             if(WaveNum < WaveMax)
             {
-                GotoState('TraderOpen');                
+                GotoState('TraderOpen');
+                bOpeningTrader = true;                
             }
             else
             {
@@ -722,17 +784,8 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
     {
         KFPC.ClientWriteAndFlushStats();
         LogWaveEndAnalyticsFor(KFPC);
-        if(!KFPC.IsLocalPlayerController())
-        {
-            KFPC.ReplicatePWRI();
-            continue;
-        }
-        KFPC.MatchStats.RecordWaveInfo();        
+        KFPC.SubmitPostWaveStats(bOpeningTrader);        
     }    
-    if(WorldInfo.NetMode != NM_Standalone)
-    {
-        SetTimer(1, false, 'ResetWaveReplicationInfo');
-    }
 }
 
 function LogWaveEndAnalyticsFor(KFPlayerController KFPC)
@@ -765,19 +818,6 @@ function LogWaveEndAnalyticsFor(KFPlayerController KFPC)
         ++ I;
         goto J0x4A2;
     }
-}
-
-function ResetWaveReplicationInfo()
-{
-    local KFPlayerController KFPC;
-
-    foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
-    {
-        if(KFPC.Role == ROLE_Authority)
-        {
-            KFPC.ResetLastWaveInfo();
-        }        
-    }    
 }
 
 function CloseTraderTimer();
@@ -832,6 +872,7 @@ function EndOfMatch(bool bVictory)
         BroadcastLocalizedMessage(Class'KFLocalMessage_Priority', 3);
         SetZedsToVictoryState();
     }
+    WorldInfo.TWRefreshTweakParams();
     WorldInfo.TWPushLogs();
     GotoState('MatchEnded');
 }
@@ -877,7 +918,7 @@ function ShowPostGameMenu()
 {
     local KFGameReplicationInfo KFGRI;
 
-    bEnableDeadToDeadVOIP = true;
+    bEnableDeadToVOIP = true;
     KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
     if(KFGRI != none)
     {
@@ -1006,6 +1047,15 @@ state MatchEnded
         SetTimer(1, false, 'ProcessAwards');
         SetTimer(AARDisplayDelay, false, 'ShowPostGameMenu');
     }
+
+    event Timer()
+    {
+        global.Timer();
+        if(NumPlayers == 0)
+        {
+            RestartGame();
+        }
+    }
     stop;    
 }
 
@@ -1039,19 +1089,17 @@ defaultproperties
     TimeBetweenWaves=60
     EndCinematicDelay=4
     AARDisplayDelay=15
-    SpawnManagerClasses(0)=class'KFAISpawnManager_Short'
-    SpawnManagerClasses(1)=class'KFAISpawnManager_Normal'
-    SpawnManagerClasses(2)=class'KFAISpawnManager_Long'
-    SpawnManagerClasses(3)=class'KFAISpawnManager_Normal'
     ObjectiveCheckIntervall=30
     MinAIAlivePercReqForObjStart=0.3
     bCanPerkAlwaysChange=false
     bEnableGameAnalytics=true
-    bEnableDevAnalytics=true
     MaxRespawnDosh=/* Array type was not detected. */
+    MaxGameDifficulty=3
+    SpawnManagerClasses=/* Array type was not detected. */
     AIClassList=/* Array type was not detected. */
     AIBossClassList=/* Array type was not detected. */
     GameplayEventsWriterClass=Class'KFGame.KFGameplayEventsWriter'
     TraderVoiceGroupClass=Class'KFTraderVoiceGroup_Default'
+    MaxPlayers=6
     GameName="Survival"
 }

@@ -90,13 +90,13 @@ function UpdateCamera(Pawn P, GamePlayerCamera CameraActor, float DeltaTime, out
 	else
 	{
 		FinalOffsets = ( P != none && P.IsAliveAndWell() ) ? BaseOffsets : DeadOffsets;
-		if( !GetOffsets(OutVT.Target, CameraActor, FinalOffsets, Loc, Rot) )
-		{
-			GetOffsets(OutVT.Target, CameraActor, BackupOffsets, Loc, Rot);
-		}
+	if( !GetOffsets(OutVT.Target, CameraActor, FinalOffsets, Loc, Rot) )
+	{
+		GetOffsets(OutVT.Target, CameraActor, BackupOffsets, Loc, Rot);
+	}
 
-		OutVT.POV.Location = Loc;
-		OutVT.POV.Rotation = Rot;
+	OutVT.POV.Location = Loc;
+	OutVT.POV.Rotation = Rot;
 	}
 }
 

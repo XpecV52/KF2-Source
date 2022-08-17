@@ -119,7 +119,7 @@ simulated protected event PostSkillUpdate()
  * @param DamageInstigator responsible controller (optional)
  * @param class DamageType the damage type used (optional)
  */
-simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType )
+simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx )
 {
 	local KFWeapon MyKFWeapon;
 	local float TempDamage, BaseDamage;
@@ -222,7 +222,7 @@ simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo
 	{
 		WeaponPerkClass = KFW.AssociatedPerkClass;
 	}
-	
+
 	if( IsAmmoActive() && IsWeaponOnPerk( KFW, WeaponPerkClass ) )
 	{
 		TempSpareAmmoAmount = PrimarySpareAmmo;
@@ -381,7 +381,7 @@ function ResetPlayerBuffs()
 		{
 			BuffedPlayerInfos[i].BuffedPawn.SetSupportSafeguardBuff( false );
 		}
-		
+
 		if( IsBarrageActive() )
 		{
 			BuffedPlayerInfos[i].BuffedPawn.SetSupportBarrageBuff( false );
@@ -438,7 +438,7 @@ simulated function Interact( KFPawn_Human KFPH )
 
 	foreach KFPH.InvManager.InventoryActors( class'KFWeapon', KFW )
 	{
-		if( KFW.static.IsInventoryWeapon() )
+		if( KFW.static.DenyPerkResupply() )
 		{
 			continue;
 		}
@@ -712,4 +712,8 @@ DefaultProperties
 	SecondaryXPModifier[1]=8
 	SecondaryXPModifier[2]=10
 	SecondaryXPModifier[3]=14
+
+    // Skill tracking
+	HitAccuracyHandicap=-6.0
+	HeadshotAccuracyHandicap=-3.0
 }

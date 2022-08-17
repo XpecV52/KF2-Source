@@ -12,6 +12,7 @@ class KFDT_Slashing_ZedWeak extends KFDT_Slashing
 
 defaultproperties
 {
+   bExtraMomentumZ=True
    KDamageImpulse=400.000000
    KDeathVel=200.000000
    KDeathUpKick=50.000000

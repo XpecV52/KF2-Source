@@ -358,8 +358,6 @@ class KFPawnVoiceGroup_MrFoster extends KFPawnVoiceGroup;
 
 
 
-
-
 	
 
 
@@ -411,6 +409,7 @@ class KFPawnVoiceGroup_MrFoster extends KFPawnVoiceGroup;
 
 
 	
+
 
 
 

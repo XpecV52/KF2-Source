@@ -10,12 +10,14 @@
 class KFPawn_ZedStalker extends KFPawn_Monster;
 
 var MaterialInstanceConstant SpottedMaterial;
-var MaterialInstanceConstant CloakedMaterial;
 
 var AkBaseSoundObject CloakedLoop;
 var AkBaseSoundObject CloakedLoopEnd;
 
 var float CloakPercent;
+
+/** The local player controller viewing this pawn */
+var KFPlayerController ViewerPlayer;
 
 /** Cloak speeds */
 var float CloakSpeed;
@@ -24,6 +26,8 @@ var float DeCloakSpeed;
 simulated event PostBeginPlay()
 {
 	super.PostBeginPlay();
+
+	SetCloaked( true );
 	PlayStealthSoundLoop();
 }
 
@@ -57,7 +61,7 @@ function SetCloaked(bool bNewCloaking)
 
 		if( MaxHeadChunkGoreWhileAlive == 0 && bIsCloaking != bNewCloaking && IsAliveAndWell() )
 		{
-			`SafeDialogManager.PlaySpotCloakDialog( self, bNewCloaking );
+			`DialogManager.PlaySpotCloakDialog( self, bNewCloaking );
 		}
 
 		bIsCloaking = bNewCloaking;
@@ -104,20 +108,20 @@ simulated function SetGameplayMICParams()
 		{
 			BodyMIC.SetParent(SpottedMaterial);
 		}
-		else if( BodyMIC.Parent != CloakedMaterial )
+		else if( BodyMIC.Parent == SpottedMaterial )
 		{
-			BodyMIC.SetParent(CloakedMaterial);
+			BodyMIC.SetParent(Mesh.SkeletalMesh.Materials[0]);
 			PlayStealthSoundLoop();
 		}
 	}
 }
 
 /** Called when SwitchToGoreLOD is successful */
-simulated event NotifyGoreLODActive()
+simulated event NotifyGoreMeshActive()
 {
-	super.NotifyGoreLODActive();
+	super.NotifyGoreMeshActive();
 
-	`SafeDialogManager.PlaySpotCloakDialog( self, false );
+	`DialogManager.PlaySpotCloakDialog( self, false );
 
 	PlayStealthSoundLoopEnd();
 }
@@ -135,24 +139,45 @@ simulated function PlayStealthSoundLoopEnd()
 /** Overridden to support transparency scalar */
 simulated event Tick( float DeltaTime )
 {
+	local float MinCloakPct;
+
 	super.Tick( DeltaTime );
 
 	if( WorldInfo.NetMode != NM_DedicatedServer )
 	{
+		if( ViewerPlayer == none )
+		{
+			ViewerPlayer = KFPlayerController( WorldInfo.GetALocalPlayerController() );
+		}
+
+		MinCloakPct = GetMinCloakPct();
+
 		if( !bIsCloaking )
 		{
 			if( CloakPercent < 1.0f )
 			{
-				CloakPercent = FMin(CloakPercent + DeltaTime*DeCloakSpeed, 1.0f);
-				BodyMIC.SetScalarParameterValue('Transparency', CloakPercent);
+				CloakPercent = fMin( CloakPercent + DeltaTime*DeCloakSpeed, 1.0f );
+				BodyMIC.SetScalarParameterValue( 'Transparency', CloakPercent );
 			}
 		}
-		else if( CloakPercent > 0.f )
+		else if( CloakPercent > MinCloakPct )
 		{
-			CloakPercent = FMax(CloakPercent - DeltaTime*CloakSpeed, 0.f);
-			BodyMIC.SetScalarParameterValue('Transparency', CloakPercent);
+			CloakPercent = fMax( CloakPercent - DeltaTime*CloakSpeed, MinCloakPct );
+			BodyMIC.SetScalarParameterValue( 'Transparency', CloakPercent );
 		}
 	}
+}
+
+
+/** Gets the minimum cloaked amount based on the viewer */
+simulated protected function float GetMinCloakPct()
+{
+	if( ViewerPlayer != none && (ViewerPlayer.GetTeamNum() == GetTeamNum() || ViewerPlayer.PlayerReplicationInfo.bOnlySpectator) )
+	{
+		return 0.5f;
+	}
+
+	return 0.f;
 }
 
 /*********************************************************************************************
@@ -178,29 +203,32 @@ simulated event UpdateSpottedStatus()
 	bOldSpottedByLP = bIsCloakingSpottedByLP;
 	bIsCloakingSpottedByLP = false;
 
-	LocalPC = KFPlayerController(GetALocalPlayerController());
-	if( LocalPC != none )
-	{
-		LocalPerk = LocalPC.GetPerk();
-	}
-
-	if ( LocalPC != none && LocalPC.Pawn != None && LocalPC.Pawn.IsAliveAndWell() && LocalPerk != none &&
-		 LocalPerk.bCanSeeCloakedZeds && `TimeSince( LastRenderTime ) < 1.f )
-	{
-		DistanceSq = VSizeSq(LocalPC.Pawn.Location - Location);
-		Range = LocalPerk.GetCloakDetectionRange();
-
-		if ( DistanceSq < Square(Range) )
+    if( !IsHumanControlled() || bIsSprinting )
+    {
+		LocalPC = KFPlayerController(GetALocalPlayerController());
+		if( LocalPC != none )
 		{
-			bIsCloakingSpottedByLP = true;
-			if ( LocalPerk.IsCallOutActive() )
+			LocalPerk = LocalPC.GetPerk();
+		}
+
+		if ( LocalPC != none && LocalPC.Pawn != None && LocalPC.Pawn.IsAliveAndWell() && LocalPerk != none &&
+			 LocalPerk.bCanSeeCloakedZeds && `TimeSince( LastRenderTime ) < 1.f )
+		{
+			DistanceSq = VSizeSq(LocalPC.Pawn.Location - Location);
+			Range = LocalPerk.GetCloakDetectionRange();
+
+			if ( DistanceSq < Square(Range) )
 			{
-				// Beware of server spam.  This RPC is marked unreliable and UpdateSpottedStatus has it's own cooldown timer
-				LocalPC.ServerCallOutPawnCloaking(self);
+				bIsCloakingSpottedByLP = true;
+				if ( LocalPerk.IsCallOutActive() )
+				{
+					// Beware of server spam.  This RPC is marked unreliable and UpdateSpottedStatus has it's own cooldown timer
+					LocalPC.ServerCallOutPawnCloaking(self);
+				}
 			}
 		}
 	}
-
+	
 	// If spotted by team already, there is no point in trying to update the MIC here
 	if ( !bIsCloakingSpottedByTeam )
 	{
@@ -226,6 +254,30 @@ function CallOutCloakingExpired()
 	bIsCloakingSpottedByTeam = false;
 	LastStoredCC = none;
 	SetGameplayMICParams();
+}
+
+/** Spawns and attaches the rally effect to a specified bone */
+simulated function SpawnRallyEffect( ParticleSystem RallyEffect, name EffectBoneName, vector EffectOffset )
+{
+	local PlayerController PC;
+
+	if( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		PC = WorldInfo.GetALocalPlayerController();
+
+		// Don't spawn rally effect if cloaking but not spotted
+		if( bIsCloaking
+			&& !bIsCloakingSpottedByLP
+			&& !bIsCloakingSpottedByTeam
+			&& PC.GetTeamNum() < 255
+			&& PC.Pawn != none
+			&& PC.Pawn.IsAliveAndWell() )
+		{
+			return;
+		}
+	}
+
+	super.SpawnRallyEffect( RallyEffect, EffectBoneName, EffectOffset );
 }
 
 /* PlayDying() is called on server/standalone game when killed
@@ -338,7 +390,6 @@ DefaultProperties
 	CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Stalker_ARCH.ZED_Stalker_Archetype'
 	PawnAnimInfo=KFPawnAnimInfo'ZED_Stalker_ANIM.Stalker_AnimGroup'
 	SpottedMaterial=MaterialInstanceConstant'ZED_Stalker_MAT.ZED_Stalker_Visible_MAT'
-	CloakedMaterial=MaterialInstanceConstant'ZED_Stalker_MAT.ZED_Stalker_MAT'
 
 	// ---------------------------------------------
 	// Special Moves
@@ -348,17 +399,15 @@ DefaultProperties
 		SpecialMoveClasses(SM_Emerge)				=class'KFSM_Emerge'
 	End Object
 
-	Begin Object Name=Afflictions_0
-		InstantAffl(IAF_Stun)=(Head=43,Torso=46,Leg=46,Arm=46,LowHealthBonus=10,Cooldown=3.0)
-		InstantAffl(IAF_Knockdown)=(Head=50,Torso=75,Leg=75,Arm=75,LowHealthBonus=10,Cooldown=9.0)
-		InstantAffl(IAF_Stumble)=(Head=43,Torso=46,Arm=46,LowHealthBonus=10,Cooldown=2.0)
-		InstantAffl(IAF_LegStumble)=(Leg=46,LowHealthBonus=10,Cooldown=1.0)
-		InstantAffl(IAF_GunHit)=(Head=106,Torso=106,Leg=106,Arm=106,LowHealthBonus=10,Cooldown=1.0)
-		InstantAffl(IAF_MeleeHit)=(Head=23,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=0.35)
-		StackingAffl(SAF_Poison)=(Threshhold=6.0,Duration=5.0,Cooldown=20.5,DissipationRate=1.00)
-		StackingAffl(SAF_Microwave)=(Threshhold=3.0,Duration=5.0,Cooldown=20.5,DissipationRate=1.00)
-		StackingAffl(SAF_FirePanic)=(Threshhold=2.0,Duration=2.5,Cooldown=5.0,DissipationRate=0.05)
-	End Object
+	InstantIncaps(IAF_Stun)=(Head=43,Torso=45,Leg=60,Arm=60,LowHealthBonus=10,Cooldown=3.0)
+	InstantIncaps(IAF_Knockdown)=(Head=50,Torso=75,Leg=75,Arm=75,LowHealthBonus=10,Cooldown=9.0)
+	InstantIncaps(IAF_Stumble)=(Head=43,Torso=46,Arm=46,LowHealthBonus=10,Cooldown=2.0)
+	InstantIncaps(IAF_LegStumble)=(Leg=46,LowHealthBonus=10,Cooldown=1.0)
+	InstantIncaps(IAF_GunHit)=(Head=106,Torso=106,Leg=106,Arm=106,LowHealthBonus=10,Cooldown=1.0)
+	InstantIncaps(IAF_MeleeHit)=(Head=23,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=0.35)
+	StackingIncaps(SAF_Poison)=(Threshhold=6.0,Duration=5.0,Cooldown=20.5,DissipationRate=1.00)
+	StackingIncaps(SAF_Microwave)=(Threshhold=3.0,Duration=5.0,Cooldown=20.5,DissipationRate=1.00)
+	StackingIncaps(SAF_FirePanic)=(Threshhold=2.0,Duration=2.5,Cooldown=5.0,DissipationRate=0.05)
 
 	ParryResistance=1
 
@@ -370,6 +419,7 @@ DefaultProperties
 	Begin Object Name=MeleeHelper_0
 		BaseDamage=9.f
 		MaxHitRange=180.f
+		MomentumTransfer=25000.f
 		MyDamageType=class'KFDT_Slashing_ZedWeak'
 	End Object
 

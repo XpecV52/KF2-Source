@@ -16,8 +16,8 @@ class KFMeleeHelperBase extends Object within Actor
 
 /// ABOUT HIT DETECTION
 /** #1 FOV (aka Area, Cone) Hit Detection
- * @brief: Optimized method that iterates through pawns and rates them based on 
- *		distance to the center of the cone.  Highly flexible, works well for single 
+ * @brief: Optimized method that iterates through pawns and rates them based on
+ *		distance to the center of the cone.  Highly flexible, works well for single
  *		impact weapons (e.g. pistol whip). Single or multiple targets.
  * @see: FindVictimByFOV, RateMeleeVictim, TraceMeleeAttackHitZones
  */
@@ -28,7 +28,7 @@ class KFMeleeHelperBase extends Object within Actor
  * @see: DoWeaponInstantTrace
  */
 /** #3 Hitbox Collision Detection
- * @brief: Advanced type that follows the attack animation with moving hit boxes.  Maintains a 
+ * @brief: Advanced type that follows the attack animation with moving hit boxes.  Maintains a
  *		list of actors that have been hit which resets with each new attack.  Multiple targets.
  * @see: TickHitboxCollisionDetection, ProcessHitboxCollision
  */
@@ -46,7 +46,7 @@ class KFMeleeHelperBase extends Object within Actor
  * FOV (aka Area, Cone) Hit Detection
  *********************************************************************************************/
 
-/** The maximum rrange at which this attack can be used **/
+/** The maximum range at which this attack can be used **/
 var() const float		MaxHitRange;
 /** Optional dot product check for melee hit detection */
 var() const float		DefaultFOVCosine;
@@ -91,6 +91,9 @@ var const array<Actor> ActorsCollidedWith;
 /** This is the camera shake that we play when we hit a melee attack **/
 var() const CameraShake MeleeVictimCamShake;
 
+/** This is the camera shake that we play when we hit a melee attack **/
+var() const CameraShake MeleeImpactCamShake;
+
 /**	If TRUE, meleeing a FSM with this weapons will cause fracture. */
 var bool bAllowMeleeToFracture;
 /** If TRUE, this attack animation already hit something */
@@ -122,6 +125,23 @@ simulated function vector GetMeleeStartTraceLocation()
 }
 
 /**
+ * GetAdjustedAim begins a chain of function class that allows the weapon, the pawn and the controller to make
+ * on the fly adjustments to where this weapon is pointing.
+ */
+simulated function Rotator GetMeleeAimRotation()
+{
+	local rotator R;
+
+	// Start the chain, see Pawn.GetAdjustedAimFor()
+	if( Instigator != None )
+	{
+		R = Instigator.GetBaseAimRotation();
+	}
+
+	return R;
+}
+
+/**
  * Returns the default melee attack hit detection range for this helper
  */
 simulated function float GetMeleeRange()
@@ -142,6 +162,8 @@ function DoWeaponInstantTrace(vector StartTrace, vector EndTrace, optional out I
 {
 	if ( Instigator != None && Instigator.Weapon != None )
 	{
+		// @note: the return has not been processed for hit zones, but we're
+		// only using this for simplified world traces so it works.
 		out_Impact = Instigator.Weapon.CalcWeaponFire(StartTrace, EndTrace);
 	}
 }
@@ -150,11 +172,14 @@ function DoWeaponInstantTrace(vector StartTrace, vector EndTrace, optional out I
  * FOV (aka Area, Cone) Hit Detection
  *********************************************************************************************/
 
+/** Custom trace that excludes pawns, but not other actors.  Useful for destructibles. */
+native function Actor TraceNoPawns(out vector HitLocation, out vector HitNormal, vector TraceEnd, vector TraceStart);
+
 /** Returns a victim used to apply melee damage to */
-simulated function KFPawn FindVictimByFOV(vector StartTrace, vector EndTrace, optional float Range=MaxHitRange, optional float FOVCosine=DefaultFOVCosine, optional out array<KFPawn> VictimList, optional bool bGetMultipleTargets)
+simulated function Pawn FindVictimByFOV(vector StartTrace, vector EndTrace, optional float Range=MaxHitRange, optional float FOVCosine=DefaultFOVCosine)
 {
-	local KFPawn			KFP, BestVictim;
-	local float				NewRating, BestRating;
+	local Pawn			P, BestVictim;
+	local float			NewRating, BestRating;
 
 	BestRating = 0.f;
 
@@ -163,19 +188,13 @@ simulated function KFPawn FindVictimByFOV(vector StartTrace, vector EndTrace, op
 	// - Use CollidingActors when we need to hit pawns and/or world objects
 	// - Use TraceActors sparingly! (may give better results than CollidingActors)
 	// - Avoid VisibleCollidingActors (RateMeleeVictim handles this)
-	foreach WorldInfo.AllPawns( class'KFPawn', KFP, StartTrace, Range )
+	foreach WorldInfo.AllPawns( class'Pawn', P, StartTrace, Range )
 	{
-		NewRating = RateMeleeVictim(KFP, StartTrace, EndTrace, Range, FOVCosine, bGetMultipleTargets ? 0.f : BestRating);
+		NewRating = RateMeleeVictim(P, StartTrace, EndTrace, Range, FOVCosine, BestRating);
 		if ( NewRating > BestRating )
 		{
-			BestVictim = KFP;
+			BestVictim = P;
 			BestRating = NewRating;
-		}
-
-		// If we're returning multiple targets, then add it to the list
-		if ( bGetMultipleTargets && NewRating > 0 )
-		{
-			VictimList[VictimList.Length] = KFP;
 		}
 	}
 
@@ -188,7 +207,7 @@ simulated function KFPawn FindVictimByFOV(vector StartTrace, vector EndTrace, op
 }
 
 /** Returns a victim used to apply melee damage to */
-simulated function float RateMeleeVictim(KFPawn Victim, vector StartTrace, vector EndTrace, float Range, float FOVCosine, optional float RatingToBeat)
+simulated function float RateMeleeVictim(Pawn Victim, vector StartTrace, vector EndTrace, float Range, float FOVCosine, optional float RatingToBeat)
 {
 	local float VictimRating;
 	local vector VictimLocation, DirToVictim, AimDir;
@@ -200,7 +219,7 @@ simulated function float RateMeleeVictim(KFPawn Victim, vector StartTrace, vecto
 	`log("Melee considering:"@Victim, bLogMelee);
 
 	// Discard if the z-distance is too great
-	VictimLocation = Victim.GetMeleeHitTestLocation();
+	VictimLocation = GetMeleeHitTestLocation(Victim);
 	if ( Abs(VictimLocation.Z - Instigator.Location.Z) > Instigator.CylinderComponent.CollisionHeight * 1.5 )
 	{
 		`log("rejected within vertical melee range", bLogMelee);
@@ -222,12 +241,17 @@ simulated function float RateMeleeVictim(KFPawn Victim, vector StartTrace, vecto
 	if( FOVCosine > 0.f )
 	{
 		AimDir = Normal(EndTrace - StartTrace);
+        DirToVictim = Normal(VictimLocation - StartTrace);
 
 		// Make sure victim is in FOV
-		if( Normal(VictimLocation - StartTrace) dot AimDir < FOVCosine )
+		if( DirToVictim dot AimDir < FOVCosine )
 		{
-			`log("rejected:"@Victim@"dot:"@DirToVictim dot AimDir, bLogMelee);
+            `log("rejected:"@Victim@"dot:"@DirToVictim dot AimDir, bLogMelee);
 			return -1.f;
+		}
+		else
+		{
+            `log("accepted:"@Victim@"dot:"@DirToVictim dot AimDir, bLogMelee);
 		}
 	}
 
@@ -242,32 +266,39 @@ simulated function float RateMeleeVictim(KFPawn Victim, vector StartTrace, vecto
 }
 
 /**
+ * Returns location to use when testing if this pawn was hit by a melee attack.  Useful to override, e.g., for
+ * small creatures close to the ground.
+ */
+simulated function vector GetMeleeHitTestLocation(Pawn P)
+{
+	return P.Location;
+}
+
+/**
  * Brute force method to find a valid ImpactList for this victim.
  */
-simulated function bool TraceMeleeAttackHitZones(KFPawn KFP, vector StartTrace, vector EndTrace, optional out ImpactInfo out_Impact, optional name BoneName)
+simulated function bool TraceMeleeAttackHitZones(Pawn P, vector StartTrace, vector EndTrace, optional out ImpactInfo out_Impact, optional name BoneName)
 {
 	local array<ImpactInfo> ImpactList;
 
 	// if we have a bone name (e.g zero-extent hitboxes) we can improve the results by using the bone loc
 	if ( BoneName != '' )
 	{
-		EndTrace = KFP.Mesh.GetBoneLocation(BoneName);
+		EndTrace = P.Mesh.GetBoneLocation(BoneName);
 	}
 
 	// First, trace once along the supplied vector to try and find a hit zone
-	if ( !TraceAllPhysicsAssetInteractions(KFP.Mesh, EndTrace, StartTrace, ImpactList, vect(0,0,0), true) )
+	if ( !TraceAllPhysicsAssetInteractions(P.Mesh, EndTrace, StartTrace, ImpactList, vect(0,0,0), true) )
 	{
 		// As a fallback trace to a generic location on the mesh
-		if ( KFP.TorsoBoneName != '' )
+		EndTrace = P.Mesh.GetBoneLocation(class'KFPawn'.default.TorsoBoneName);		
+
+		if ( IsZero(EndTrace) )
 		{
-			EndTrace = KFP.Mesh.GetBoneLocation(KFP.TorsoBoneName);
-		}
-		else
-		{
-			EndTrace = KFP.Location;
+			EndTrace = P.Location;
 		}
 
-		TraceAllPhysicsAssetInteractions(KFP.Mesh, EndTrace, StartTrace, ImpactList, vect(0,0,0), true);
+		TraceAllPhysicsAssetInteractions(P.Mesh, EndTrace, StartTrace, ImpactList, vect(0,0,0), true);
 	}
 
 	if ( ImpactList.Length > 0 )
@@ -299,7 +330,7 @@ event ProcessHitboxCollision(Actor HitActor, vector StartTrace, vector EndTrace,
 	if( HitActor == None )
 	{
 		return;
-	}	
+	}
 
 	// Convert Trace Information to ImpactInfo type.
 	Impact.HitActor		= HitActor;
@@ -323,7 +354,7 @@ event InitWorldTraceForHitboxCollision();
  * Called by ProcessMeleeHit to spawn effects
  * Network: Local Player and Server
  */
-simulated function PlayMeleeHitEffects(Actor Target, vector HitLocation, vector HitDirection)
+simulated function PlayMeleeHitEffects(Actor Target, vector HitLocation, vector HitDirection, optional bool bShakeInstigatorCamera=true)
 {
 	local Pawn Victim;
 	local PlayerController PC;
@@ -366,4 +397,6 @@ defaultproperties
 	HitboxBoneAxis=AXIS_Z
 	bDoHitboxObstructionTrace=TRUE
 	//bDebugShowCollision=TRUE
+
+	MeleeImpactCamShake=CameraShake'FX_CameraShake_Arch.Melee.Default_Melee'
 }

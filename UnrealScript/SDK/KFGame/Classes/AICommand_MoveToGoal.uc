@@ -1769,8 +1769,8 @@ function bool NotifyBump( Actor Other, Vector HitNormal )
 				}
 			}
 			// Skip if closer than 400uu to enemy and bumped Zed's enemy matches mine
- 			if(KFP.MyKFAIC.Enemy != none && Enemy != none && KFP.MyKFAIC.Enemy == Enemy
-                && KFP.MyKFAIC.IsDoingLatentMove() && VSize(Enemy.Location - KFP.Location) < 160000.f )
+ 			if( KFP.MyKFAIC != none && KFP.MyKFAIC.Enemy != none && Enemy != none && KFP.MyKFAIC.Enemy == Enemy
+                && KFP.MyKFAIC.IsDoingLatentMove() && VSizeSQ(Enemy.Location - KFP.Location) < 160000.f )
 			{
 				return false;
 			}

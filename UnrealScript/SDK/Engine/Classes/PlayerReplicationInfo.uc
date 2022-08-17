@@ -547,6 +547,7 @@ simulated function RegisterPlayerWithSession()
 	local OnlineSubsystem Online;
 	local OnlineRecentPlayersList PlayersList;
 	local UniqueNetId ZeroId;
+	local PlayerController LocalPC;
 
 	Online = class'GameEngine'.static.GetOnlineSubsystem();
 	if (UniqueId != ZeroId &&
@@ -567,6 +568,18 @@ simulated function RegisterPlayerWithSession()
 			}
 		}
 	}
+
+//@HSL_BEGIN - BWJ - 3-18-16 - Register remote talker for console
+	LocalPC = GetALocalPlayerController();
+	if( LocalPC != None && 
+		LocalPC.PlayerReplicationInfo != None &&
+		LocalPC.PlayerReplicationInfo != self &&
+		WorldInfo.IsConsoleBuild() &&
+		UniqueId != ZeroId )
+	{
+		Online.VoiceInterface.RegisterRemoteTalker( UniqueId );
+	}
+//@HSL_END
 }
 
 /**
@@ -577,6 +590,7 @@ simulated function UnregisterPlayerFromSession()
 {
 	local OnlineSubsystem OnlineSub;
 	local UniqueNetId ZeroId;
+	local PlayerController LocalPC;
 
 	// If there is a game and we are a client, unregister this remote player
 	if (UniqueId != ZeroId &&
@@ -594,6 +608,18 @@ simulated function UnregisterPlayerFromSession()
 			OnlineSub.GameInterface.UnregisterPlayer(SessionName,UniqueId);
 		}
 	}
+
+//@HSL_BEGIN - BWJ - 3-18-16 - Register remote talker for console
+	LocalPC = GetALocalPlayerController();
+	if( LocalPC != None && 
+		LocalPC.PlayerReplicationInfo != None &&
+		LocalPC.PlayerReplicationInfo != self &&
+		WorldInfo.IsConsoleBuild() &&
+		UniqueId != ZeroId )
+	{
+		OnlineSub.VoiceInterface.UnregisterRemoteTalker( UniqueId );
+	}
+//@HSL_END
 }
 
 /** return TRUE if PRI is primary (ie. non-splitscreen) player */

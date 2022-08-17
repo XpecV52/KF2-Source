@@ -16,6 +16,8 @@ var class<KFGFxMoviePlayer_HUD> HUDClass;
 /** Main Heads Up Display Flash movie */
 var KFGFxMoviePlayer_HUD   HudMovie;
 
+/** Cached reference to the boss pawn */
+var KFPawn_MonsterBoss BossPawn;
 
 /*********************************************************************************************
 `* Initialization

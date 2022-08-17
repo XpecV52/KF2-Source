@@ -38,7 +38,11 @@ function SetExitOptions()
 {
 	OptionStrings.Length = 0;
 	OptionStrings.AddItem(ExitToMainMenu);
-	OptionStrings.AddItem(ExitKF2);
+	if ( !class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis))
+	{
+		// Console shouldn't have exit to desktop option.
+		OptionStrings.AddItem(ExitKF2);
+	}
 
 	SetMenuText();
 }

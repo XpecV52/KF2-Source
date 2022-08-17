@@ -417,4 +417,6 @@ defaultproperties
     PrimaryWeaponDef=Class'KFWeapDef_MedicPistol'
     KnifeWeaponDef=Class'KFWeapDef_Knife_Medic'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Medic'
+    HitAccuracyHandicap=5
+    HeadshotAccuracyHandicap=-0.75
 }

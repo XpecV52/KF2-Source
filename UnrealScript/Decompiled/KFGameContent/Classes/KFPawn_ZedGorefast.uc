@@ -22,6 +22,7 @@ defaultproperties
     begin object name=MeleeHelper class=KFMeleeHelperAI
         BaseDamage=10
         MyDamageType=Class'KFDT_Slashing_Gorefast'
+        MomentumTransfer=25000
         MaxHitRange=192
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedGorefast.MeleeHelper'
@@ -39,12 +40,9 @@ defaultproperties
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     HitZones=/* Array type was not detected. */
     PenetrationResistance=1.5
-    begin object name=Afflictions class=KFPawnAfflictions
-        InstantAffl=/* Array type was not detected. */
-        StackingAffl=/* Array type was not detected. */
-    object end
-    // Reference: KFPawnAfflictions'Default__KFPawn_ZedGorefast.Afflictions'
-    AfflictionHandler=Afflictions
+    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedGorefast.Afflictions'
+    InstantIncaps=/* Array type was not detected. */
+    StackingIncaps=/* Array type was not detected. */
     KnockdownImpulseScale=1
     SprintSpeed=450
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent

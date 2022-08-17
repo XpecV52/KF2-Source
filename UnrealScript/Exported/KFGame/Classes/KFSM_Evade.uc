@@ -19,8 +19,6 @@ enum EEvadeDir
 
 /** Animation to play */
 var array<AnimVariants> EvadeAnims;
-/** Number of variants for each direction */
-var byte NumBodyVariants;
 
 static function byte PackAnimFlag( byte EvadeDir )
 {
@@ -39,21 +37,19 @@ static function byte GetEvadeDirection( KFPawn CheckPawn, vector EvadePoint, opt
 
 	if( Attacker != none && Attacker.Health > 0 && CheckPawn.MyKFAIC != none && CheckPawn.MyKFAIC.CanSee( Attacker ) && VSize(Attacker.Location - CheckPawn.Location) < 1024.f )
 	{
-
 		EvadeDir = class'KFPawn'.static.CalcQuadRegion( CheckPawn.GetViewRotation(), (CheckPawn.Location - Attacker.Location) );
 
 		if( CheckPawn.MyKFAIC != none && Attacker != none && CheckPawn.MyKFAIC.PendingEvadeProjectile != none )
 		{
 			GetAxes( CheckPawn.Rotation, X, Y, Z );
 
-
 			if( (vector(Attacker.Rotation) DOT Y) > 0.f )
 			{
-				return EVADE_Left;
+				return DIR_Left;
 			}
 			else
 			{
-				return EVADE_Right;
+				return DIR_Right;
 			}
 		}
 	}
@@ -61,16 +57,16 @@ static function byte GetEvadeDirection( KFPawn CheckPawn, vector EvadePoint, opt
 	switch( EvadeDir )
 	{
 		case DIR_Forward:
-			EvadeDir = EVADE_Forward;
+			EvadeDir = DIR_Forward;
 			break;
 		case DIR_Backward:
-			EvadeDir = EVADE_Backward;
+			EvadeDir = DIR_Backward;
 			break;
 		case DIR_Left:
-			EvadeDir = EVADE_Left;
+			EvadeDir = DIR_Left;
 			break;
 		case DIR_Right:
-			EvadeDir = EVADE_Right;
+			EvadeDir = DIR_Right;
 			break;
 	}
 	return EvadeDir;
@@ -100,15 +96,14 @@ function PlayAnimation()
 
 defaultproperties
 {
-   EvadeAnims(1)=(Anims=("Evade_F_V1","Evade_F_V2"))
-   EvadeAnims(2)=(Anims=("Evade_B_V1","Evade_B_V2"))
-   EvadeAnims(3)=(Anims=("Evade_L_V1","Evade_L_V2"))
-   EvadeAnims(4)=(Anims=("Evade_R_V1","Evade_R_V2"))
-   EvadeAnims(5)=(Anims=("Evade_FL_V1","Evade_FL_V2"))
-   EvadeAnims(6)=(Anims=("Evade_FR_V1","Evade_FR_V2"))
-   EvadeAnims(7)=(Anims=("Evade_BL_V1","Evade_BL_V2"))
-   EvadeAnims(8)=(Anims=("Evade_BR_V1","Evade_BR_V2"))
-   NumBodyVariants=2
+   EvadeAnims(0)=(Anims=("Evade_F_V1","Evade_F_V2"))
+   EvadeAnims(1)=(Anims=("Evade_B_V1","Evade_B_V2"))
+   EvadeAnims(2)=(Anims=("Evade_L_V1","Evade_L_V2"))
+   EvadeAnims(3)=(Anims=("Evade_R_V1","Evade_R_V2"))
+   EvadeAnims(4)=(Anims=("Evade_FL_V1","Evade_FL_V2"))
+   EvadeAnims(5)=(Anims=("Evade_FR_V1","Evade_FR_V2"))
+   EvadeAnims(6)=(Anims=("Evade_BL_V1","Evade_BL_V2"))
+   EvadeAnims(7)=(Anims=("Evade_BR_V1","Evade_BR_V2"))
    bUseRootMotion=True
    bDisablesWeaponFiring=True
    bPawnRotationLocked=True

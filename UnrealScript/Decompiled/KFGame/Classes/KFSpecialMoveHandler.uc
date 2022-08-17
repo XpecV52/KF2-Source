@@ -178,6 +178,15 @@ private final simulated function ReassignSpecialMove(Pawn InInteractionPawn, int
             LogInternal("- updating interaction pawn");
         }
         Outer.InteractionPawn = KFPawn(InInteractionPawn);
+        if((Outer.Role == ROLE_Authority) && !bSkipReplication)
+        {
+            Outer.ReplicatedSpecialMove.InteractionPawn = Outer.InteractionPawn;
+            Outer.bForceNetUpdate = true;
+        }
+        if(Outer.SpecialMove != 0)
+        {
+            Outer.SpecialMoves[Outer.SpecialMove].InteractionPawnUpdated();
+        }
     }
     if(Outer.bLogSpecialMove)
     {

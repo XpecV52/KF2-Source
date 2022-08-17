@@ -408,7 +408,7 @@ defaultproperties
    Properties(15)=(PropertyId=601,Data=(Type=SDT_Float))
    Properties(16)=(PropertyId=602,Data=(Type=SDT_Float))
    PropertyMappings(0)=(Name="ServerName",ColumnHeaderText="Server Name",MaxVal=256.000000)
-   PropertyMappings(1)=(Id=101,Name="MaxPlayers",ColumnHeaderText="Maximum Players",MappingType=PVMT_Ranged,MaxVal=6.000000,RangeIncrement=1.000000)
+   PropertyMappings(1)=(Id=101,Name="MaxPlayers",ColumnHeaderText="Maximum Players",MappingType=PVMT_Ranged,MaxVal=12.000000,RangeIncrement=1.000000)
    PropertyMappings(2)=(Id=102,Name="MaxIdleTime",ColumnHeaderText="Maximum Idle Time",MappingType=PVMT_Ranged,MaxVal=300.000000,RangeIncrement=5.000000)
    PropertyMappings(3)=(Id=200,Name="bAntiCheatProtected",ColumnHeaderText="Cheat Protection (VAC)",MappingType=PVMT_IdMapped,ValueMappings=((Name="Disabled"),(Id=1,Name="Enabled")))
    PropertyMappings(4)=(Id=302,Name="bDisableTeamCollision",ColumnHeaderText="Team Collision",MappingType=PVMT_IdMapped,ValueMappings=((Name="Enabled"),(Id=1,Name="Disabled")))

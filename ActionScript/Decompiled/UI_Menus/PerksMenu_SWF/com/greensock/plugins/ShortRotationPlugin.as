@@ -14,36 +14,36 @@ package com.greensock.plugins
             _overwriteProps.pop();
         }
         
-        override public function _onInitTween(param1:Object, param2:*, param3:TweenLite) : Boolean
+        override public function _onInitTween(target:Object, value:*, tween:TweenLite) : Boolean
         {
-            var _loc5_:Number = NaN;
-            var _loc6_:* = null;
-            if(typeof param2 == "number")
+            var start:Number = NaN;
+            var p:* = null;
+            if(typeof value == "number")
             {
                 return false;
             }
-            var _loc4_:Boolean = Boolean(param2.useRadians == true);
-            for(_loc6_ in param2)
+            var useRadians:Boolean = Boolean(value.useRadians == true);
+            for(p in value)
             {
-                if(_loc6_ != "useRadians")
+                if(p != "useRadians")
                 {
-                    _loc5_ = param1[_loc6_] is Function ? Number(param1[_loc6_.indexOf("set") || !("get" + _loc6_.substr(3) in param1) ? _loc6_ : "get" + _loc6_.substr(3)]()) : Number(param1[_loc6_]);
-                    this._initRotation(param1,_loc6_,_loc5_,typeof param2[_loc6_] == "number" ? Number(Number(param2[_loc6_])) : Number(_loc5_ + Number(param2[_loc6_].split("=").join(""))),_loc4_);
+                    start = target[p] is Function ? Number(target[p.indexOf("set") || !("get" + p.substr(3) in target) ? p : "get" + p.substr(3)]()) : Number(target[p]);
+                    this._initRotation(target,p,start,typeof value[p] == "number" ? Number(Number(value[p])) : Number(start + Number(value[p].split("=").join(""))),useRadians);
                 }
             }
             return true;
         }
         
-        public function _initRotation(param1:Object, param2:String, param3:Number, param4:Number, param5:Boolean = false) : void
+        public function _initRotation(target:Object, p:String, start:Number, end:Number, useRadians:Boolean = false) : void
         {
-            var _loc6_:Number = !!param5 ? Number(Math.PI * 2) : Number(360);
-            var _loc7_:Number = (param4 - param3) % _loc6_;
-            if(_loc7_ != _loc7_ % (_loc6_ / 2))
+            var cap:Number = !!useRadians ? Number(Math.PI * 2) : Number(360);
+            var dif:Number = (end - start) % cap;
+            if(dif != dif % (cap / 2))
             {
-                _loc7_ = _loc7_ < 0 ? Number(_loc7_ + _loc6_) : Number(_loc7_ - _loc6_);
+                dif = dif < 0 ? Number(dif + cap) : Number(dif - cap);
             }
-            _addTween(param1,param2,param3,param3 + _loc7_,param2);
-            _overwriteProps[_overwriteProps.length] = param2;
+            _addTween(target,p,start,start + dif,p);
+            _overwriteProps[_overwriteProps.length] = p;
         }
     }
 }

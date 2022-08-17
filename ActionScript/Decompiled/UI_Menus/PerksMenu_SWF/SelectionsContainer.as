@@ -1,6 +1,6 @@
 package
 {
-    import tripwire.containers.perks.PerkSelectionContainer;
+    import tripwire.containers.Perks.PerkSelectionContainer;
     
     public dynamic class SelectionsContainer extends PerkSelectionContainer
     {

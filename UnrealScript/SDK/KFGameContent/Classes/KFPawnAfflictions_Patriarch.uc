@@ -101,6 +101,17 @@ function SetMicrowaveParameter(float ParamValue)
     }
 }
 
+/** Enable/Disable the Frozen material effect */
+function SetFrozenParameter(float FreezeAmount)
+{
+
+    if ( WorldInfo.NetMode != NM_DedicatedServer )
+    {
+        BodyMIC.SetScalarParameterValue( 'Scalar_Freeze', FreezeAmount );
+        BodyAltMIC.SetScalarParameterValue( 'Scalar_Freeze', FreezeAmount );
+    }
+}
+
 defaultproperties
 {
 	//defaults

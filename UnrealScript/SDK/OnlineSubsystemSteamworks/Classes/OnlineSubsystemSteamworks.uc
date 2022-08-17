@@ -138,7 +138,7 @@ struct native LocalTalkerSteam extends LocalTalker
 /** Holds the local talker information for the single signed in player */
 var LocalTalkerSteam CurrentLocalTalker;
 
-`if(`__TW_STEAMWORKS_)
+`if(`__TW_NETWORKING_)
 /** Used to check when to verify connection status */
 var const float LastLocalTalkerElapsedTime;
 // Used to keep track of the last time the local player talked
@@ -1896,7 +1896,7 @@ delegate OnExternalUIChange(bool bIsOpening);
  *
  * @param ExternalUIDelegate the delegate to use for notifications
  */
-`if(`__TW_STEAMWORKS_)
+`if(`__TW_NETWORKING_)
 function AddExternalUIChangeDelegate(delegate<OnExternalUIChange> ExternalUIDelegate)
 {
 	local int AddIndex;
@@ -1917,7 +1917,7 @@ function AddExternalUIChangeDelegate(delegate<OnExternalUIChange> ExternalUIDele
  *
  * @param ExternalUIDelegate the delegate to remove
  */
-`if(`__TW_STEAMWORKS_)
+`if(`__TW_NETWORKING_)
 function ClearExternalUIChangeDelegate(delegate<OnExternalUIChange> ExternalUIDelegate)
 {
 	local int RemoveIndex;
@@ -2123,7 +2123,9 @@ function EOnlineEnumerationReadState GetTitleFileState(string FileName);
  * @param LocalizedStringSettings the list of localized string settings to set
  * @param Properties the list of properties to set
  */
-native function SetOnlineStatus(byte LocalUserNum,int StatusId,const out array<LocalizedStringSetting> LocalizedStringSettings,const out array<SettingsProperty> Properties);
+//@HSL_BEGIN - JRO - 3/14/2016 - Changing signature so we can easily pass the useful info
+native function SetOnlineStatus(byte LocalUserNum,string StatusString,optional bool PlayerActive=true);
+//@HSL_END
 
 /**
  * Displays the UI that shows the keyboard for inputing text
@@ -3226,21 +3228,19 @@ event bool SetLobbyInterface(object NewInterface)
 	//LobbyInterface = NewInterface;
 
 	LobbyInterface = OnlineLobbyInterfaceSteamworks(NewInterface);
-`if (`__TW_STEAMWORKS_)
+`if (`__TW_NETWORKING_)
 		LobbyInterface.Initialize();
 `endif
 	// Will return false if the interface isn't supported
 	return LobbyInterface != none;
 }
 
-`if(`__TW_STEAMWORKS_)
-
+`if(`__TW_NETWORKING_)
 function TWOnlineLobby GetLobbyInterface()
 {
 	return LobbyInterface;
 }
-
-`endif //(`__TW_STEAMWORKS_)
+`endif //(`__TW_NETWORKING_)
 
 `endif //(`STEAM_MATCHMAKING_LOBBY)
 
@@ -3672,7 +3672,7 @@ function ClearAllDelegates()
 	DeleteUserFileCompleteDelegates.length = 0;
 }
 
-`if (`__TW_STEAMWORKS_)
+`if (`__TW_NETWORKING_)
 	
 // VoIP
 native function SetVoIPVolume(float Volume);
@@ -3717,7 +3717,7 @@ defaultproperties
 {
 	LoggedInPlayerName="Local Profile"
 	ConnectionPresenceTimeInterval=0.5
-`if(`__TW_STEAMWORKS_)
+`if(`__TW_NETWORKING_)
 	TalkTimeOutValue = .5
 `endif
 }

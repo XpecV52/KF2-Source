@@ -159,6 +159,7 @@ defaultproperties
 
 	ProjFlightTemplate=ParticleSystem'WEP_3P_Molotov_EMIT.FX_Molotov_Grenade_Mesh'
 	ExplosionActorClass=class'KFExplosionActor'
+	WeaponSelectTexture=Texture2D'wep_ui_molotov_tex.UI_WeaponSelect_MolotovCocktail'
 
 	ResidualFlameProjClass=class'KFProj_MolotovSplash'
 	NumResidualFlames=4

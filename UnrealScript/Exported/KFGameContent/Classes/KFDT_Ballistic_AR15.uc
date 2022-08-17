@@ -64,7 +64,6 @@ class KFDT_Ballistic_AR15 extends KFDT_Ballistic_AssaultRifle
 
 
 
-
 #linenumber 15;
 
 defaultproperties

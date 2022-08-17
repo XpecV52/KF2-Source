@@ -1,11 +1,13 @@
 package tripwire.containers.optionsControls
 {
+    import flash.events.FocusEvent;
     import flash.external.ExternalInterface;
     import flash.text.TextField;
     import scaleform.clik.controls.CheckBox;
     import scaleform.clik.controls.Slider;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.IndexEvent;
+    import scaleform.clik.events.InputEvent;
     import scaleform.clik.events.SliderEvent;
     import scaleform.clik.ui.InputDetails;
     import tripwire.containers.TripContainer;
@@ -181,6 +183,19 @@ package tripwire.containers.optionsControls
             mouseEnabled = mouseChildren = false;
             _bReadyForInput = false;
             visible = false;
+        }
+        
+        override public function selectContainer() : void
+        {
+            visible = true;
+            tabEnabled = true;
+            tabChildren = true;
+            bSelected = true;
+            addEventListener(FocusEvent.FOCUS_IN,onFocusIn,false,0,true);
+            if(stage)
+            {
+                stage.addEventListener(InputEvent.INPUT,handleInput,false,0,true);
+            }
         }
         
         override protected function pushToBackAnimation() : *

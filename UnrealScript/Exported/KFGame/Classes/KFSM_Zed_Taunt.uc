@@ -18,6 +18,12 @@ enum ETauntType
 
 var byte CurrentTauntType;
 
+/** Generic flags for player controlled zeds (versus) */
+static function byte PackFlagsBase(KFPawn P)
+{
+	return PackSMFlags(P, TAUNT_Standard);
+}
+
 static function byte PackSMFlags( KFPawn P, byte InTauntType )
 {
 	local byte Variant;

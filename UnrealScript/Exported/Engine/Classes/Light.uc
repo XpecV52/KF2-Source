@@ -223,12 +223,19 @@ event PostBeginPlay()
 	local float DummyValue;
 	local bool bVolumetricLightMesh;
 
+	if (WorldInfo.NetMode == NM_DedicatedServer)
+ 	{
+		SetTickIsDisabled(true);
+		return;
+ 	}
+
 	// Disable and destroy light if the light has a light function
 	// and light functions are not supported
 	if( !AreLightFunctionsSupported() && LightComponent.Function != none )
 	{
-		LightComponent.SetEnabled(false);
-		Destroy();
+		// disable tick must come first to ensure component reattach
+		SetTickIsDisabled(true);
+		LightComponent.SetEnabled(false);	
 		return;
 	}
 
@@ -301,11 +308,6 @@ event PostBeginPlay()
 			}
 		}
 	}
-
- 	if (WorldInfo.NetMode == NM_DedicatedServer)
- 	{
-		SetTickIsDisabled(true);
- 	}
 }
 
 /** Called when light flickers on to activate kismet seq events */
@@ -324,7 +326,6 @@ defaultproperties
    Begin Object Class=StaticMeshComponent Name=LightMeshComponent0
       ReplacementPrimitive=None
       bAllowApproximateOcclusion=True
-      LightingChannels=(bInitialized=True,Indoor=True,Outdoor=True)
       bOverridePrecomputedShadowOcclusion=True
       Name="LightMeshComponent0"
       ObjectArchetype=StaticMeshComponent'Engine.Default__StaticMeshComponent'
@@ -349,8 +350,6 @@ defaultproperties
       ObjectArchetype=SpriteComponent'Engine.Default__SpriteComponent'
    End Object
    Components(0)=Sprite
-   Components(1)=LightMeshComponent0
-   Components(2)=LensFlareComponent0
    CollisionType=COLLIDE_CustomDefault
    bNoDelete=True
    bRouteBeginPlayEvenIfStatic=False

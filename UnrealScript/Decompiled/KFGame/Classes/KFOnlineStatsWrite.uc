@@ -117,6 +117,11 @@ const KFACHID_FarmhouseHard = 100;
 const KFACHID_FarmhouseSuicidal = 101;
 const KFACHID_FarmhouseHellOnEarth = 102;
 const KFACHID_FarmhouseCollectibles = 103;
+const KFACHID_PrisonNormal = 104;
+const KFACHID_PrisonHard = 105;
+const KFACHID_PrisonSuicidal = 106;
+const KFACHID_PrisonHellOnEarth = 107;
+const KFACHID_PrisonCollectibles = 108;
 
 var KFPlayerController MyKFPC;
 var private int Kills;
@@ -687,6 +692,10 @@ private final event AddToKills(class<KFPawn_Monster> MonsterClass, byte Difficul
 {
     IncrementIntStat(200, 1);
     ++ Kills;
+    if(!MonsterClass.default.bVersusZed)
+    {
+        MyKFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_PlayerKills', 1, MyKFPC.PlayerReplicationInfo, none, MonsterClass);
+    }
     if(IsStalkerKill(MonsterClass, DT))
     {
         AddStalkerKill(Difficulty);        

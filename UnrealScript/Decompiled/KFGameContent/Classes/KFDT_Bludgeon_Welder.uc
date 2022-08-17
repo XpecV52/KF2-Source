@@ -10,5 +10,5 @@ class KFDT_Bludgeon_Welder extends KFDT_Bludgeon_RifleButt
 
 defaultproperties
 {
-    WeaponDef=Class'KFWeapDef_Welder'
+    WeaponDef=Class'KFGame.KFWeapDef_Welder'
 }

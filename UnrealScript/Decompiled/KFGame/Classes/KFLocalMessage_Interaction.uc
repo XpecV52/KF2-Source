@@ -19,6 +19,7 @@ enum EInteractionMessageType
     IMT_GamepadWeaponSelectHint,
     IMT_HealSelfWarning,
     IMT_ClotGrabWarning,
+    IMT_PlayerClotGrabWarning,
     IMT_MAX
 };
 
@@ -32,6 +33,9 @@ var const localized string HealSelfWarning;
 var const localized string HealSelfGamepadWarning;
 var const localized string PressToBashWarning;
 var const localized string GamepadWeaponSelectHint;
+var const localized string ZedUseDoorMessage;
+var const localized string ZedUseDoorWeldedMessage;
+var const localized string PlayerClotGrabWarningMessage;
 var const string USE_COMMAND;
 var const string HEAL_COMMAND;
 var const string HEAL_COMMAND_CONTROLLER;
@@ -122,8 +126,16 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
         case 4:
             return default.UseTraderMessage;
         case 5:
+            if(Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController().PlayerReplicationInfo.GetTeamNum() == 255)
+            {
+                return default.ZedUseDoorMessage;
+            }
             return default.UseDoorMessage;
         case 6:
+            if(Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController().PlayerReplicationInfo.GetTeamNum() == 255)
+            {
+                return default.ZedUseDoorWeldedMessage;
+            }
             return default.UseDoorWeldedMessage;
         case 1:
             return default.AcceptObjectiveMessage;
@@ -136,6 +148,8 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
             return (((Input != none) && Input.bUsingGamepad) ? default.HealSelfGamepadWarning : default.HealSelfWarning);
         case 9:
             return default.PressToBashWarning;
+        case 10:
+            return default.PlayerClotGrabWarningMessage;
         case 7:
             return default.GamepadWeaponSelectHint;
         default:
@@ -166,6 +180,9 @@ defaultproperties
     HealSelfGamepadWarning="(HOLD) <%x%> heal self"
     PressToBashWarning="<%x%> bash"
     GamepadWeaponSelectHint="(HOLD) <%x%> weapon select"
+    ZedUseDoorMessage="<%x%> Open/Close"
+    ZedUseDoorWeldedMessage="Door welded, break it down!"
+    PlayerClotGrabWarningMessage="Kill zed to break free!"
     USE_COMMAND="GBA_Use"
     HEAL_COMMAND="GBA_QuickHeal"
     HEAL_COMMAND_CONTROLLER="GBA_Reload_Gamepad"

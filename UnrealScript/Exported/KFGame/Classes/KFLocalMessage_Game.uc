@@ -22,6 +22,7 @@ enum EGameMessageType
 	GMT_FullArmor,
 	GMT_Ammo,
 	GMT_PickedupWeaponAmmo,
+	GMT_AmmoIsFull,
 	GMT_AlreadyCarryingWeapon,
 	GMT_PickedupItem,
 	GMT_TooMuchWeight,
@@ -47,6 +48,7 @@ var localized string			HealedMessage;
 var localized string			PickedupArmorMessage;
 var localized string			FullArmorMessage;
 var localized string			PickupAmmoMessage;
+var localized string 			AmmoFullMessage;
 var localized string			AlreadyCarryingWeaponMessage;
 var localized string			PickupWeaponAmmoMessage;
 var localized string			PickupMessage;
@@ -62,19 +64,19 @@ var localized string 			PendingPerkChangesApplied;
 var localized string			KilledMessage;
 var localized string			SuicideMessage;
 
-var localized string KillzedBy_PatriarchString;
-var localized string KillzedBy_HansString;
-var localized string KillzedBy_ZedCrawlerString;
-var localized string KillzedBy_ZedBloatString;
-var localized string KillzedBy_ZedFleshpoundString;
-var localized string KillzedBy_ZedGorefastString;
-var localized string KillzedBy_ZedHuskString;
-var localized string KillzedBy_ZedScrakeString;
-var localized string KillzedBy_ZedSirenString;
-var localized string KillzedBy_ZedStalkerString;
-var localized string KillzedBy_ZedClot_CystString;
-var localized string KillzedBy_ZedClot_AlphaString;
-var localized string KillzedBy_ZedClot_SlasherString;
+var localized string 			KillzedBy_PatriarchString;
+var localized string 			KillzedBy_HansString;
+var localized string 			KillzedBy_ZedCrawlerString;
+var localized string 			KillzedBy_ZedBloatString;
+var localized string 			KillzedBy_ZedFleshpoundString;
+var localized string 			KillzedBy_ZedGorefastString;
+var localized string 			KillzedBy_ZedHuskString;
+var localized string 			KillzedBy_ZedScrakeString;
+var localized string 			KillzedBy_ZedSirenString;
+var localized string 			KillzedBy_ZedStalkerString;
+var localized string 			KillzedBy_ZedClot_CystString;
+var localized string 			KillzedBy_ZedClot_AlphaString;
+var localized string 			KillzedBy_ZedClot_SlasherString;
 
 var localized string 			FoundAMapCollectibleMessage;
 var localized string			FoundAllMapCollectiblesMessage;
@@ -98,6 +100,7 @@ static function string GetHexColor(int Switch)
         case GMT_PickedupArmor:
         case GMT_FullArmor:
         case GMT_Ammo:
+        case GMT_AmmoIsFull:
         case GMT_PickedupWeaponAmmo:
         case GMT_AlreadyCarryingWeapon:
         case GMT_PickedupItem:
@@ -143,6 +146,8 @@ static function string GetString(
 			return default.FullArmorMessage;
 		case GMT_Ammo:
 			return default.PickupAmmoMessage;
+		case GMT_AmmoIsFull:
+			return default.AmmoFullMessage;
 		case GMT_PickedupWeaponAmmo:
 			TempString = Repl(default.PickupWeaponAmmoMessage, "%x%", class<Inventory>( OptionalObject ).default.ItemName, true);
 			return TempString;
@@ -233,6 +238,7 @@ defaultproperties
    PickedupArmorMessage="You picked up armor"
    FullArmorMessage="Your armor is already full"
    PickupAmmoMessage="You picked up ammo"
+   AmmoFullMessage="Your ammo is full"
    AlreadyCarryingWeaponMessage="You already have this weapon"
    PickupWeaponAmmoMessage="You picked up %x% ammo"
    PickupMessage="You picked up a"

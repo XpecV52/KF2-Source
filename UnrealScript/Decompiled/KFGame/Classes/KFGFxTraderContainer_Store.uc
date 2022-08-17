@@ -16,7 +16,6 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
     super.Initialize(NewParentMenu);
     MyTraderMenu = KFGFxMenu_Trader(NewParentMenu);
     SetString("shopHeaderName", TraderString);
-    SetString("cancelPromptName", Class'KFCommon_LocalizedStrings'.default.CancelString);
     Outer.GetPC().SetTimer(0.1, false, 'DelayedRefresh', self);
 }
 

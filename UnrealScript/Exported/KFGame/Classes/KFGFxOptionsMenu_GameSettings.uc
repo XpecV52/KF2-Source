@@ -19,6 +19,7 @@ var localized string ShowCrosshairString;
 var localized string WiderString;
 var localized string NormalString;
 var localized string ClassicWeaponSelectString;
+var localized string KillTickerString;
 
 var localized array<string> GoreOptionStrings;
 
@@ -58,6 +59,7 @@ function LocalizeText()
     LocalizedObject.SetObject("goreOptions", GoreOptions);
     LocalizedObject.SetString("wider", WiderString);
     LocalizedObject.SetString("normal", NormalString);
+    LocalizedObject.SetString("killTicker", KillTickerString);
     LocalizedObject.SetString("close", Class'KFCommon_LocalizedStrings'.default.BackString);
 
     SetObject("localizedText", LocalizedObject);
@@ -76,6 +78,7 @@ function  InitValues()
  	DataObject.SetFloat("friendlyHud", 			GetFriendlyHudScale());
  	DataObject.SetBool("crosshair", 			Class'KFGameEngine'.static.IsCrosshairEnabled());
  	DataObject.SetBool("classicWeaponSelect",	Class'KFPlayerInput'.default.bQuickWeaponSelect);
+ 	DataObject.SetBool("killTicker",			Class'KFGameEngine'.default.bShowKillTicker);
 
  	SetObject("dataValues", DataObject);
 }
@@ -196,6 +199,18 @@ function Callback_WeaponSelectChanged(bool bActive)
 	KFPI.SaveConfig();
 }
 
+function Callback_KillTickerChanged(bool bActive)
+{
+	local KFGameEngine KFGE;
+
+	KFGE = KFGameEngine(Class'Engine'.static.GetEngine());
+	KFGE.bShowKillTicker = bActive;
+	KFGE.SaveConfig();
+
+	class'KFGameEngine'.default.bShowKillTicker = bActive;
+	class'KFGameEngine'.static.StaticSaveConfig();
+}
+
 function Callback_GoreChanged( byte NewGoreLevel )
 {
 	local KFGameInfo KFGI; 
@@ -227,6 +242,7 @@ defaultproperties
    WiderString="Wider"
    NormalString="Normal"
    ClassicWeaponSelectString="Weapon Quick Select"
+   KillTickerString="Kill Ticker"
    GoreOptionStrings(0)="No Gore"
    GoreOptionStrings(1)="Low Gore"
    GoreOptionStrings(2)="Gory"

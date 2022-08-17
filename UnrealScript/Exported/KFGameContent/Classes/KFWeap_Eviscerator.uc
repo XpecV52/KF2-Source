@@ -11,7 +11,7 @@
 class KFWeap_Eviscerator extends KFWeap_MeleeBase;
 
 /** Anim names */
-const IdleNoGasAnim			= 'Idle_NoGas';
+const IdleNoGasAnim = 'Idle_NoGas';
 const BlockLoopNoGasAnim	= 'Brace_loop_NoGas';
 
 /** BlendNode that's active while weapon has fuel */
@@ -73,13 +73,13 @@ simulated function bool HasAmmo( byte FireModeNum, optional int Amount )
 simulated function int GetAmmoType(byte FiringMode)
 {
     if( FiringMode == HEAVY_ATK_FIREMODE )
-    {
+	{
         return 1;
-    }
+	}
     else
-    {
+	{
         return 0;
-    }
+	}
 }
 
 /*********************************************************************************************
@@ -320,7 +320,6 @@ defaultproperties
    MaxSpareAmmo(0)=20
    InitialSpareMags(0)=2
    AmmoPickupScale(1)=0.200000
-   MeleeImpactCamShake=KFCameraShake'FX_CameraShake_Arch.Melee.Eviscerator'
    bLoopingFireAnim(0)=False
    bLoopingFireAnim(1)=False
    bLoopingFireAnim(2)=False
@@ -353,6 +352,7 @@ defaultproperties
       bHasChainAttacks=True
       WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Bladed_melee_impact'
       MaxHitRange=180.000000
+      MeleeImpactCamShake=KFCameraShake'FX_CameraShake_Arch.Melee.Eviscerator'
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
    End Object

@@ -21,6 +21,9 @@ enum EGameMessageType
     GMT_LevelUp,
     GMT_TierUnlocked,
     GMT_Died,
+    GMT_ZedsWin,
+    GMT_HumansWin,
+    GMT_AttackHumanPlayers,
     GMT_MAX
 };
 
@@ -37,6 +40,10 @@ var const localized string ObjectiveLostMessage;
 var const localized string ObjectiveEndedMessage;
 var const localized string ObjNotEnoughPlayersMessage;
 var const localized string ObjTimeRanOutMessage;
+var const localized string HumansLoseMessage;
+var const localized string HumansWinMessage;
+var const localized string AttackHumanPlayersString;
+var const localized string ZedGroupRegroupingString;
 
 static function ClientReceive(PlayerController P, optional int Switch, optional PlayerReplicationInfo RelatedPRI_1, optional PlayerReplicationInfo RelatedPRI_2, optional Object OptionalObject)
 {
@@ -44,7 +51,7 @@ static function ClientReceive(PlayerController P, optional int Switch, optional 
     local KFGFxMoviePlayer_HUD MyGFxHUD;
     local KFGameReplicationInfo KFGRI;
 
-    MessageString = GetMessageString(Switch, SecondaryMessageString);
+    MessageString = GetMessageString(Switch, SecondaryMessageString, P.PlayerReplicationInfo.GetTeamNum());
     if((MessageString != "") && KFGFxHudWrapper(P.myHUD) != none)
     {
         MyGFxHUD = KFGFxHudWrapper(P.myHUD).HudMovie;
@@ -72,6 +79,31 @@ static function ClientReceive(PlayerController P, optional int Switch, optional 
         case 3:
             Class'KFMusicStingerHelper'.static.PlayMatchLostStinger(P);
             break;
+        case 13:
+            KFGRI = KFGameReplicationInfo(P.WorldInfo.GRI);
+            if(KFGRI != none)
+            {
+                KFGRI.bMatchVictory = true;
+            }
+            if(P.PlayerReplicationInfo.GetTeamNum() == 255)
+            {
+                Class'KFMusicStingerHelper'.static.PlayMatchLostStinger(P);                
+            }
+            else
+            {
+                Class'KFMusicStingerHelper'.static.PlayMatchWonStinger(P);
+            }
+            break;
+        case 12:
+            if(P.PlayerReplicationInfo.GetTeamNum() == 255)
+            {
+                Class'KFMusicStingerHelper'.static.PlayMatchWonStinger(P);                
+            }
+            else
+            {
+                Class'KFMusicStingerHelper'.static.PlayMatchLostStinger(P);
+            }
+            break;
         case 9:
             Class'KFMusicStingerHelper'.static.PlayLevelUpStinger(P);
             break;
@@ -92,15 +124,43 @@ static function ClientReceive(PlayerController P, optional int Switch, optional 
     }
 }
 
-static function string GetMessageString(int Switch, optional out string SecondaryString)
+static function string GetMessageString(int Switch, optional out string SecondaryString, optional byte TeamIndex)
 {
+    SecondaryString = "";
     switch(Switch)
     {
+        case 13:
+            SecondaryString = default.HumansWinMessage;
+            if(TeamIndex == 255)
+            {
+                return default.YouLostMessage;                
+            }
+            else
+            {
+                return default.YouWonMessage;
+            }
+        case 12:
+            SecondaryString = default.HumansLoseMessage;
+            if(TeamIndex == 255)
+            {
+                return default.YouWonMessage;                
+            }
+            else
+            {
+                return default.YouLostMessage;
+            }
         case 0:
             return default.WaveStartMessage;
         case 1:
-            SecondaryString = default.GetToTraderMessage;
-            return default.WaveEndMessage;
+            if(TeamIndex == 255)
+            {
+                return default.ZedGroupRegroupingString;                
+            }
+            else
+            {
+                SecondaryString = default.GetToTraderMessage;
+                return default.WaveEndMessage;
+            }
         case 2:
             SecondaryString = default.SquadSurvivedMessage;
             return default.YouWonMessage;
@@ -125,6 +185,8 @@ static function string GetMessageString(int Switch, optional out string Secondar
         case 10:
             SecondaryString = "";
             return "";
+        case 14:
+            return default.AttackHumanPlayersString;
         default:
             return "";
             break;
@@ -149,6 +211,8 @@ static function float GetMessageLifeTime(int Switch)
         case 2:
         case 3:
             return 0;
+        case 14:
+            return 2;
         default:
             return default.Lifetime;
             break;
@@ -170,4 +234,8 @@ defaultproperties
     ObjectiveEndedMessage="Objective Ended!"
     ObjNotEnoughPlayersMessage="Not Enough Players!"
     ObjTimeRanOutMessage="Time Limit Reached!"
+    HumansLoseMessage="Humans squad wiped out!"
+    HumansWinMessage="Humans squad survived!"
+    AttackHumanPlayersString="Attack the Human Players!"
+    ZedGroupRegroupingString="Zed Horde regrouping!"
 }

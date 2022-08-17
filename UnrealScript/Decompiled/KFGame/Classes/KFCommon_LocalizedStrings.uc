@@ -25,6 +25,9 @@ var const localized string YesString;
 var const localized string NoString;
 var const localized string DisbandPartyString;
 var const localized string LeaveCurrentMenuString;
+var const localized string ZedString;
+var const localized string HumanString;
+var const localized string SpectatorString;
 
 static function array<string> GetDifficultyStringsArray()
 {
@@ -85,11 +88,11 @@ static function array<string> GetGameModeStringsArray()
     return default.ModeStrings;
 }
 
-static function string GetGameModeString(float GameModeIndex)
+static function string GetGameModeString(int GameModeIndex)
 {
-    if((0 < default.ModeStrings.Length) && GameModeIndex < float(default.ModeStrings.Length))
+    if((0 < default.ModeStrings.Length) && GameModeIndex < default.ModeStrings.Length)
     {
-        return default.ModeStrings[int(GameModeIndex)];
+        return default.ModeStrings[GameModeIndex];
     }
     return default.NoPreferenceString;
 }
@@ -109,6 +112,7 @@ defaultproperties
     PermissionStrings(1)="Friends only"
     PermissionStrings(2)="Private"
     ModeStrings(0)="Survival"
+    ModeStrings(1)="VS Survival"
     NoPreferenceString="ANY"
     OKString="OK"
     ConfirmString="CONFIRM"
@@ -122,4 +126,7 @@ defaultproperties
     NoString="No"
     DisbandPartyString="DISBAND PARTY"
     LeaveCurrentMenuString="Leave current menu?"
+    ZedString="ZED"
+    HumanString="SURVIVOR"
+    SpectatorString="SPECTATOR"
 }

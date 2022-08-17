@@ -134,6 +134,16 @@ var config string DownloadableContentEnumeratorClassName;
 var const transient DownloadableContentManager DLCManager;
 
 `if(`__TW_)
+	var bool bSaveBenchmarkGraphs;
+	struct native transient BenchmarkSample
+	{
+		var float AppTime, RenderThreadTime, GameThreadTime, GPUFrameTime;
+	};
+	
+	var array<BenchmarkSample> BenchmarkSamples;
+`endif
+
+`if(`__TW_)
 var string DownloadableContentManagerClassName;
 `else
 /** The name of the class to use for the DLC manager */
@@ -532,4 +542,12 @@ cpptext
 	 * Closes all secondary viewports opened with CreateSecondaryViewport
 	 */
 	void CloseSecondaryViewports();
+
+	/**
+	 * When enabled, this will save the profile stats to file which can be used for
+	 */
+	#if __TW_
+		void UpdateBenchmarkStats();
+		void SaveBenchmarkStats();
+	#endif
 }

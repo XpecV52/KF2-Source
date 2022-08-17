@@ -11,8 +11,6 @@ class KFGameReplicationInfo extends GameReplicationInfo
     config(Game)
     hidecategories(Navigation,Movement,Collision);
 
-const STEAM_PLAYTIME_GENERATOR_ITEM = 900000;
-
 struct native PreGameServerAdInfo
 {
     var string BannerLink;
@@ -107,14 +105,17 @@ var bool bCurrentSMFinishedSpawning;
 var bool bDebugSpawnManager;
 var bool bTrackingMapEnabled;
 var bool bGameConductorGraphingEnabled;
+var bool bVersusGame;
+var bool bAllowSwitchTeam;
 var private bool bLeadershipAvailable;
 var repnotify byte MusicTrackRepCount;
 var repnotify byte RepKickVotes;
 var byte WaveMax;
-var byte WaveNum;
+var repnotify byte WaveNum;
 var byte GameLength;
 var byte GameDifficulty;
 var private const byte GameSharedUnlocks;
+var byte CurrentGameConductorStatus;
 var byte MusicIntensity;
 var int AIRemaining;
 var int WaveTotalAICount;
@@ -147,6 +148,13 @@ var float RecentZedLifeSpanAverageTracker[10];
 var float PlayersHealthStatusTracker[10];
 var float PlayersAmmoStatusTracker[10];
 var float AggregatePlayersStatusTracker[10];
+var float CurrentParZedLifeSpan;
+var float OverallRankAndSkillModifierTracker[10];
+var float ZedMovementSpeedModifierTracker[10];
+var float ZedSpawnRateModifierTracker[10];
+var float ZedSpawnRateTracker[10];
+var float VersusZedHealthMod;
+var float VersusZedDamageMod;
 var array<KFDoorActor> DoorList;
 var KFObjective CurrentObjective;
 var export editinline AkComponent MusicComp;
@@ -166,7 +174,8 @@ replication
 
      if(bNetInitial)
         GameDifficulty, GameLength, 
-        WaveMax, bCustom;
+        WaveMax, bCustom, 
+        bVersusGame;
 
      if(bNetInitial && Role == ROLE_Authority)
         ServerAdInfo;
@@ -194,10 +203,16 @@ replication
 
      if(bGameConductorGraphingEnabled && bNetDirty)
         AggregatePlayerSkillTracker, AggregatePlayersStatusTracker, 
-        CurrentWaveZedLifeSpanAverageTracker, PlayerAccuracyTracker, 
-        PlayerHeadshotAccuracyTracker, PlayersAmmoStatusTracker, 
-        PlayersHealthStatusTracker, RecentZedLifeSpanAverageTracker, 
-        TotalZedLifeSpanAverageTracker;
+        CurrentGameConductorStatus, CurrentParZedLifeSpan, 
+        CurrentWaveZedLifeSpanAverageTracker, OverallRankAndSkillModifierTracker, 
+        PlayerAccuracyTracker, PlayerHeadshotAccuracyTracker, 
+        PlayersAmmoStatusTracker, PlayersHealthStatusTracker, 
+        RecentZedLifeSpanAverageTracker, TotalZedLifeSpanAverageTracker, 
+        ZedMovementSpeedModifierTracker, ZedSpawnRateModifierTracker, 
+        ZedSpawnRateTracker;
+
+     if((bGameConductorGraphingEnabled && bNetDirty) && bVersusGame)
+        VersusZedDamageMod, VersusZedHealthMod;
 }
 
 // Export UKFGameReplicationInfo::execSendSteamHeartbeat(FFrame&, void* const)
@@ -258,7 +273,14 @@ simulated event ReplicatedEvent(name VarName)
                         }
                         else
                         {
-                            super.ReplicatedEvent(VarName);
+                            if(VarName == 'WaveNum')
+                            {
+                                UpdateHUDWaveCount();                                
+                            }
+                            else
+                            {
+                                super.ReplicatedEvent(VarName);
+                            }
                         }
                     }
                 }
@@ -287,7 +309,6 @@ simulated event PostBeginPlay()
 simulated function ReceivedGameClass()
 {
     local class<KFGameInfo> KFGameClass;
-    local KFPlayerController KFPC;
 
     KFGameClass = class<KFGameInfo>(GameClass);
     if(KFGameClass != none)
@@ -303,6 +324,13 @@ simulated function ReceivedGameClass()
         }
     }
     DebugingNextTraderIndex = -1;
+    super.ReceivedGameClass();
+}
+
+simulated function UpdateHUDWaveCount()
+{
+    local KFPlayerController KFPC;
+
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
         KFPC = KFPlayerController(GetALocalPlayerController());
@@ -311,7 +339,6 @@ simulated function ReceivedGameClass()
             KFPC.MyGFxHUD.UpdateWaveCount();
         }
     }
-    super.ReceivedGameClass();
 }
 
 simulated function NotifyWaveEnded()
@@ -386,13 +413,16 @@ simulated function OpenTrader(optional int Time)
             KFGameReplicationInfo(WorldInfo.GRI).TraderDialogManager.PlayOpenTraderDialog(WaveNum, WaveMax, GetALocalPlayerController());
         }
         KFPC = KFPlayerController(GetALocalPlayerController());
-        if((KFPC != none) && KFPC.MyGFxManager != none)
+        if(KFPC != none)
         {
-            KFPC.MyGFxManager.OnTraderTimeStart();
-        }
-        if(KFPC.MyGFxHUD != none)
-        {
-            KFPC.MyGFxHUD.UpdateWaveCount();
+            if(KFPC.MyGFxManager != none)
+            {
+                KFPC.MyGFxManager.OnTraderTimeStart();
+            }
+            if(KFPC.MyGFxHUD != none)
+            {
+                KFPC.MyGFxHUD.UpdateWaveCount();
+            }
         }
     }
 }
@@ -487,6 +517,7 @@ function SetWaveActive(bool bWaveActive, optional byte NewMusicIntensity)
     CheckGlobalPerkSkills(bWaveActive);
     MusicIntensity = NewMusicIntensity;
     bTraderIsOpen = !bWaveActive && bMatchHasBegun;
+    bForceNetUpdate = true;
     ++ MusicTrackRepCount;
     if(!IsFinalWave() && WorldInfo.NetMode != NM_DedicatedServer)
     {
@@ -1083,7 +1114,7 @@ simulated function ForceNewMusicTrack(KFMusicTrackInfo ForcedTrackInfo)
     UpdateMusicTrack(ForcedTrackInfo, Class'KFGameEngine'.default.bMusicVocalsEnabled);
 }
 
-reliable server function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplicationInfo PRI_Kicker)
+function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplicationInfo PRI_Kicker)
 {
     if(VoteCollector != none)
     {
@@ -1114,6 +1145,8 @@ private final event NotifyGameUnranked()
         WorldInfo.Game.UpdateGameSettings();
     }
 }
+
+simulated function bool AreTeamsOutOfBalanced();
 
 defaultproperties
 {

@@ -10,5 +10,5 @@ class KFDT_Bludgeon_Healer extends KFDT_Bludgeon_RifleButt
 
 defaultproperties
 {
-    WeaponDef=Class'KFWeapDef_Healer'
+    WeaponDef=Class'KFGame.KFWeapDef_Healer'
 }

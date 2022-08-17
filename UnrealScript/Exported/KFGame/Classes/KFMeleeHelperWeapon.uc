@@ -71,9 +71,6 @@ var() float ImpactRetryDuration;
 /** World time to stop retrying traces for melee impact */
 var() float ImpactComplete_ActorTime;
 
-/** If set, this attack does damage to multiple pawns in a fan collision */
-var() transient bool bCanHitMultipleTargets;
-
 /** Stores whether or not an impact has happened this attack */
 var bool bHitEnemyThisAttack;
 
@@ -87,6 +84,8 @@ var KFImpactEffectInfo WorldImpactEffects;
 /** Scale animation playrate by fatigue level */
 var InterpCurveFloat FatigueCurve;
 
+/** Scale parameter for ClientPlayCameraShake */
+var float MeleeImpactCamShakeScale;
 
 /*********************************************************************************************
  * Anim Notify / Impact Timing
@@ -99,8 +98,6 @@ simulated function MeleeImpactNotify(KFAnimNotify_MeleeImpact_1P Notify)
 
 	if ( !bHasAlreadyHit && !bUseMeleeHitTimer )
 	{
-		bCanHitMultipleTargets = Notify.bCanHitMultipleTargets;
-
 		// Check impacts for players first
 		bResult = MeleeAttackImpact();
 		// If no impact with player occurs
@@ -197,47 +194,26 @@ simulated function bool MeleeAttackImpact()
  *********************************************************************************************/
 
 /**
- * GetAdjustedAim begins a chain of function class that allows the weapon, the pawn and the controller to make
- * on the fly adjustments to where this weapon is pointing.
- */
-simulated function Rotator GetMeleeAimRotation()
-{
-	local rotator R;
-
-	// Start the chain, see Pawn.GetAdjustedAimFor()
-	if( Instigator != None )
-	{
-		R = Instigator.GetBaseAimRotation();
-	}
-
-	return R;
-}
-
-/**
  * CalcWeaponMeleeAttack: Simulate an instant hit melee attack.
  * This doesn't deal any damage nor trigger any effect. It just simulates a shot and returns
  * the hit information, to be post-processed later.
  */
 simulated function ImpactInfo CalcWeaponMeleeAttack(vector StartTrace, vector EndTrace, optional out array<ImpactInfo> ImpactList, optional vector Extent)
 {
-	local KFPawn			BestVictim;
+	local Pawn				BestVictim;
 	local ImpactInfo		CurrentImpact;
-	local array<KFPawn>		VictimList;
+	local array<Pawn>		VictimList;
 	local vector			RayDir;
 
 	// nudge impact direction (momentum) based on attack type
 	RayDir = GetAdjustedRayDir(EndTrace - StartTrace);
 
 	// first find nearby pawn targets - in the future we may want to calculate multiple victim impacts
-	BestVictim = FindVictimByFOV(StartTrace, EndTrace,,, VictimList, bCanHitMultipleTargets);
+	BestVictim = FindVictimByFOV(StartTrace, EndTrace);
 
 	if ( BestVictim != None )
 	{
-		if ( !bCanHitMultipleTargets )
-		{
-			VictimList[0] = BestVictim;
-		}
-
+		VictimList[0] = BestVictim;
 		CalcVictimImpactList(VictimList, StartTrace, EndTrace, RayDir, ImpactList);
 	}
 	else if ( Instigator.Weapon != None )
@@ -270,7 +246,7 @@ simulated function ImpactInfo CalcWeaponMeleeAttack(vector StartTrace, vector En
 }
 
 /** Converts a KFPawn list into a ImpactInfo list */
-simulated function CalcVictimImpactList(array<KFPawn> VictimList, vector StartTrace, vector EndTrace, vector RayDir, optional out array<ImpactInfo> ImpactList, optional bool bGetMultipleTargets)
+simulated function CalcVictimImpactList(array<Pawn> VictimList, vector StartTrace, vector EndTrace, vector RayDir, optional out array<ImpactInfo> ImpactList)
 {
 	local ImpactInfo HitZoneImpact;
 	local int i;
@@ -279,12 +255,6 @@ simulated function CalcVictimImpactList(array<KFPawn> VictimList, vector StartTr
 	{
 		if ( TraceMeleeAttackHitZones(VictimList[i], StartTrace, EndTrace, HitZoneImpact) )
 		{
-			if ( bGetMultipleTargets )
-			{
-				// encode damage scale based on fan collision into the raydir
-				RayDir *= GetDamageScaleByAngle(HitZoneImpact.HitLocation);
-			}
-
 			HitZoneImpact.RayDir = RayDir; // not set by TraceAllPhysicsAssetInteractions
 			ImpactList[ImpactList.Length] = HitZoneImpact;
 			if (bLogMelee) LogInternal(GetFuncName()@"HitZone:"$ImpactList[0].HitInfo.BoneName@"DmgScale:"$VSize(RayDir)@"HitActor:"$VictimList[i]);
@@ -712,7 +682,7 @@ simulated function ProcessMeleeHit(byte FiringMode, ImpactInfo Impact)
                 bHitEnemyThisAttack = true;
 			}
 
-			HitPawn.NotifyMeleeTakeHit(Instigator.Controller, Impact.HitLocation);
+            HitPawn.NotifyMeleeTakeHit(Instigator.Controller, Impact.HitLocation);
 		}
 
 		// Get momentum transfer from the owning weapon
@@ -768,7 +738,7 @@ simulated function float GetDamageScaleByAngle(vector HitLoc)
  * Called by ProcessMeleeHit to spawn effects
  * Network: Local Player and Server
  */
-simulated function PlayMeleeHitEffects(Actor Target, vector HitLocation, vector HitDirection)
+simulated function PlayMeleeHitEffects(Actor Target, vector HitLocation, vector HitDirection, optional bool bShakeInstigatorCamera=true)
 {
 	// @todo: all super does is add camera shake, which we don't want for player-against-player melee.
 	// we'll need to re-add camera shake some other way if/when we add PvP.
@@ -779,7 +749,7 @@ simulated function PlayMeleeHitEffects(Actor Target, vector HitLocation, vector 
 		// first person (local) fire effects
 		if ( Instigator.IsFirstPerson() )
 		{
-			PlayerController(Instigator.Controller).ClientPlayCameraShake(MeleeImpactCamShake, 1.f, true, CAPS_UserDefined, rotator(-HitDirection));
+			PlayerController(Instigator.Controller).ClientPlayCameraShake(MeleeImpactCamShake, MeleeImpactCamShakeScale, true, CAPS_UserDefined, rotator(-HitDirection));
 
 			if ( Target.IsA('Pawn') )
 			{
@@ -827,6 +797,7 @@ defaultproperties
    ImpactRetryDuration=0.200000
    WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Blunted_melee_impact'
    FatigueCurve=(Points=((InVal=2.000000,OutVal=1.000000),(InVal=15.000000,OutVal=1.500000)))
+   MeleeImpactCamShakeScale=1.000000
    bHitboxPawnsOnly=True
    MeleeVictimCamShake=CameraShake'KFGame.Default__KFMeleeHelperWeapon:MeleeImpactCamShake0'
    Name="Default__KFMeleeHelperWeapon"

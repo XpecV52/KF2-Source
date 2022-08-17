@@ -485,6 +485,13 @@ var const transient float	LastSubmitTime;
  */
 var transient float	LastRenderTime;
 
+`if(`__TW_LIGHTING_MODIFICATIONS_)
+/** Same as LastRenderTime but for shadows. 
+ * Splitting into its own variable to prevent any side effects from modifyint the LastRenderTime.
+ */
+var transient float LastShadowRenderTime;
+`endif
+
 
 //=============================================================================
 // Physics.

@@ -2,14 +2,18 @@ package tripwire.popups
 {
     import com.greensock.TweenMax;
     import com.greensock.easing.Cubic;
+    import flash.display.Sprite;
     import flash.events.Event;
     import flash.external.ExternalInterface;
     import scaleform.clik.events.ButtonEvent;
+    import scaleform.gfx.FocusManager;
     import tripwire.containers.TripContainer;
     
     public class BasePopup extends TripContainer
     {
          
+        
+        protected var _prevModalClip:Sprite;
         
         public function BasePopup()
         {
@@ -42,6 +46,8 @@ package tripwire.popups
             {
                 this.openAnimation();
                 _bOpen = true;
+                this._prevModalClip = FocusManager.getModalClip();
+                FocusManager.setModalClip(this);
             }
         }
         
@@ -92,6 +98,7 @@ package tripwire.popups
                     "useFrames":true,
                     "onComplete":this.closePopup
                 });
+                FocusManager.setModalClip(this._prevModalClip);
                 _bOpen = false;
             }
         }

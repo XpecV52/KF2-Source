@@ -596,7 +596,9 @@ function EOnlineEnumerationReadState GetFriendsList(byte LocalUserNum,out array<
  * @param LocalizedStringSettings the list of localized string settings to set
  * @param Properties the list of properties to set
  */
-function SetOnlineStatus(byte LocalUserNum,int StatusId,const out array<LocalizedStringSetting> LocalizedStringSettings,const out array<SettingsProperty> Properties);
+//@HSL_BEGIN - JRO - 3/14/2016 - Changing signature so we can easily pass the useful info
+function SetOnlineStatus(byte LocalUserNum,string StatusString,optional bool PlayerActive=true);
+//@HSL_END
 
 /**
  * Displays the UI that shows the keyboard for inputing text

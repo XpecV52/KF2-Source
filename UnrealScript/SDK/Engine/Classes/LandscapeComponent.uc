@@ -306,11 +306,7 @@ defaultproperties
 	BlockZeroExtent=TRUE
 	BlockNonZeroExtent=TRUE
 	BlockRigidBody=TRUE
-`if(`__TW_LIGHTING_MODIFICATIONS_)
-	CastShadow=FALSE
-`else
 	CastShadow=TRUE
-`endif
 	bAcceptsLights=TRUE
 	bAcceptsDecals=TRUE
 	bAcceptsStaticDecals=TRUE

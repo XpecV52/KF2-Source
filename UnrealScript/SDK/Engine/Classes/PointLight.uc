@@ -11,7 +11,16 @@ cpptext
 #if WITH_EDITOR
 	// AActor interface.
 	virtual void EditorApplyScale(const FVector& DeltaScale, const FMatrix& ScaleMatrix, const FVector* PivotLocation, UBOOL bAltDown, UBOOL bShiftDown, UBOOL bCtrlDown);
+
+	/**
+	* Function that gets called from within Map_Check to allow this actor to check itself
+	* for any potential errors and register them with map check dialog.
+	*/
+	#if __TW_
+		virtual void CheckForErrors();
+	#endif
 #endif
+
 	/**
 	 * This will determine which icon should be displayed for this light.
 	 **/

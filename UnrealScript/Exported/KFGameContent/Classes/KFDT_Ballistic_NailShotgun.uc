@@ -63,7 +63,6 @@ class KFDT_Ballistic_NailShotgun extends KFDT_Ballistic_Shotgun
 
 
 
-
 #linenumber 14;
 
 /**
@@ -85,8 +84,8 @@ defaultproperties
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
    BloodSpread=0.400000
    BloodScale=0.600000
-   KDamageImpulse=550.000000
-   KDeathVel=35.000000
+   KDamageImpulse=400.000000
+   KDeathVel=15.000000
    KDeathUpKick=120.000000
    Name="Default__KFDT_Ballistic_NailShotgun"
    ObjectArchetype=KFDT_Ballistic_Shotgun'kfgamecontent.Default__KFDT_Ballistic_Shotgun'

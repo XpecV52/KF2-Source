@@ -20,6 +20,10 @@ var() name OpenAnimName;
 /** Looping anim to play while trader is open */
 var() name IdleLoopAnimName;
 
+/** Sounds for Trader Pod */
+var 	AkEvent					TraderOpenSound;
+var 	AkEvent					TraderCloseSound;
+
 /** current state of the trader */
 var	transient bool  bOpened;
 
@@ -113,6 +117,7 @@ simulated function OpenTrader()
 			AnimDuration = TraderMeshActor.SkeletalMeshComponent.GetAnimLength(OpenAnimName);
 			// Need to run this timer on the GRI since this trigger doesn't tick on clients.
 			WorldInfo.GRI.SetTimer(AnimDuration, false, nameof(StartTraderLoopAnim), self);
+			TraderMeshActor.PlaySoundBase( TraderOpenSound );
 		}
 
 		ShowTraderPath();
@@ -144,14 +149,17 @@ simulated function ShowTraderPath()
 	{
 		foreach LocalPlayerControllers(class'KFPlayerController', KFPC)
 		{
-			if( KFPC.Pawn == none )
+			if( KFPC.Pawn == none || KFPC.GetTeamNum() == 255 )
 			{
 				continue;
 			}
 
 			OldSearchType = KFPC.Pawn.PathSearchType;
+
+			// @todo: PST_Constraint and ToTrader() appear to be legacy and frivolous?
 			KFPC.Pawn.PathSearchType = PST_Constraint;
 			class'Path_ToTrader'.static.ToTrader( KFPC.Pawn );
+
 			class'Goal_AtActor'.static.AtActor( KFPC.Pawn, self,, false );
 
 			nodePathRoot = KFPC.FindPathToward(self);
@@ -200,6 +208,7 @@ simulated function CloseTrader()
 		if ( TraderMeshActor != None )
 		{
 			TraderMeshActor.SkeletalMeshComponent.PlayAnim(OpenAnimName,,,,, true);
+			TraderMeshActor.PlaySoundBase( TraderCloseSound );
 		}
 		foreach LocalPlayerControllers(class'KFPlayerController', KFPC)
 		{
@@ -235,4 +244,6 @@ defaultproperties
 	OpenAnimName=Open
 	IdleLoopAnimName=Printing
 	DistanceOffNavMeshTheTragerIsAllowedToBe=500
+	TraderOpenSound=AkEvent'WW_UI_Menu.Play_UI_Trader_Build_Start'
+	TraderCloseSound=AkEvent'WW_UI_Menu.Play_UI_Trader_Build_Stop'
 }

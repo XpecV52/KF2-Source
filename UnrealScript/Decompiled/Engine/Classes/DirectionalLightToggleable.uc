@@ -36,28 +36,17 @@ defaultproperties
     object end
     // Reference: SpriteComponent'Default__DirectionalLightToggleable.Sprite'
     Components(0)=Sprite
-    begin object name=LightMeshComponent0 class=StaticMeshComponent
-        ReplacementPrimitive=none
-    object end
-    // Reference: StaticMeshComponent'Default__DirectionalLightToggleable.LightMeshComponent0'
-    Components(1)=LightMeshComponent0
-    begin object name=LensFlareComponent0 class=LensFlareComponent
-        NextTraceTime=0.0 // Ka v oh
-        ReplacementPrimitive=none
-    object end
-    // Reference: LensFlareComponent'Default__DirectionalLightToggleable.LensFlareComponent0'
-    Components(2)=LensFlareComponent0
     begin object name=DirectionalLightComponent0 class=DirectionalLightComponent
         LightmassSettings=(IndirectLightingScale=0)
         UseDirectLightMap=false
     object end
     // Reference: DirectionalLightComponent'Default__DirectionalLightToggleable.DirectionalLightComponent0'
-    Components(3)=DirectionalLightComponent0
+    Components(1)=DirectionalLightComponent0
     begin object name=ArrowComponent0 class=ArrowComponent
         ReplacementPrimitive=none
     object end
     // Reference: ArrowComponent'Default__DirectionalLightToggleable.ArrowComponent0'
-    Components(4)=ArrowComponent0
+    Components(2)=ArrowComponent0
     TickGroup=ETickingGroup.TG_DuringAsyncWork
     bHardAttach=true
     begin object name=LightMeshComponent0 class=StaticMeshComponent

@@ -15,7 +15,7 @@ package tripwire.containers.inventory
     {
          
         
-        public var previewButton:TripButton;
+        public var recycleButton:TripButton;
         
         public var cancelButton:TripButton;
         
@@ -48,13 +48,14 @@ package tripwire.containers.inventory
             super();
             enableInitCallback = true;
             defaultFirstElement = this.equipButton;
+            defaultNumPrompts = 2;
         }
         
         public function set localizedText(param1:Object) : void
         {
-            this.previewButton.label = !!param1.preview ? param1.preview : "check it";
+            this.recycleButton.label = !!param1.recycle ? param1.recycle : "deconstruct";
             this.cancelButton.label = !!param1.cancel ? param1.cancel : "forget it";
-            this.equipButton.label = !!param1.equip ? param1.aequip : "put it";
+            this.equipButton.label = !!param1.equip ? param1.equip : "put it";
             this.useString = !!param1.useString ? param1.useString : "";
             this.equipString = !!param1.equip ? param1.equip : "";
             this.unequipString = !!param1.unequip ? param1.unequip : "";
@@ -65,7 +66,7 @@ package tripwire.containers.inventory
         {
             super.addedToStage(param1);
             visible = false;
-            this.previewButton.addEventListener(ButtonEvent.CLICK,this.previewClicked,false,0,true);
+            this.recycleButton.addEventListener(ButtonEvent.CLICK,this.recycleClicked,false,0,true);
             this.cancelButton.addEventListener(ButtonEvent.CLICK,this.cancelClicked,false,0,true);
             this.equipButton.addEventListener(ButtonEvent.CLICK,this.equipClicked,false,0,true);
             this.setTabIndex();
@@ -73,7 +74,7 @@ package tripwire.containers.inventory
         
         protected function setTabIndex() : *
         {
-            this.previewButton.tabIndex = 1;
+            this.recycleButton.tabIndex = 1;
             this.cancelButton.tabIndex = 2;
             this.equipButton.tabIndex = 3;
         }
@@ -96,11 +97,12 @@ package tripwire.containers.inventory
             closeContainer();
         }
         
-        public function previewClicked(param1:ButtonEvent) : void
+        public function recycleClicked(param1:ButtonEvent) : void
         {
             if(this.currentItemDataObject != null)
             {
-                ExternalInterface.call("Callback_PreviewItem",this.currentItemDataObject.definition);
+                ExternalInterface.call("Callback_RecycleItem",this.currentItemDataObject.definition);
+                closeContainer();
             }
         }
         
@@ -109,7 +111,7 @@ package tripwire.containers.inventory
             openContainer();
             this.currentItemDataObject = param1;
             this.itemNameText.text = param1.label;
-            this.itemDescText.text = param1.description;
+            this.itemDescText.htmlText = param1.description;
             this.equipButton.visible = param1.type == this.ITP_WeaponSkin || param1.exchangeable;
             if(param1.type == this.ITP_WeaponSkin)
             {
@@ -119,6 +121,7 @@ package tripwire.containers.inventory
             {
                 this.equipButton.label = this.useString;
             }
+            this.recycleButton.visible = param1.recyclable;
             if(param1.iconURLLarge && param1.iconURLLarge != "")
             {
                 this.imageLoader.source = param1.iconURLLarge;
@@ -132,7 +135,7 @@ package tripwire.containers.inventory
         
         override protected function openAnimation() : *
         {
-            TweenMax.fromTo(this,6,{
+            TweenMax.fromTo(this,8,{
                 "z":-128,
                 "autoAlpha":0,
                 "blurFilter":{
@@ -157,7 +160,7 @@ package tripwire.containers.inventory
         
         override protected function closeAnimation() : *
         {
-            TweenMax.fromTo(this,6,{
+            TweenMax.fromTo(this,8,{
                 "z":0,
                 "alpha":1
             },{

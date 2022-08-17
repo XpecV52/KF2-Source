@@ -200,7 +200,6 @@ defaultproperties
       BlockZeroExtent=False
       BlockRigidBody=False
       bDisableAllRigidBody=True
-      LightingChannels=(bInitialized=True,Indoor=True,Outdoor=True)
       Name="MeshComponent"
       ObjectArchetype=StaticMeshComponent'Engine.Default__StaticMeshComponent'
    End Object

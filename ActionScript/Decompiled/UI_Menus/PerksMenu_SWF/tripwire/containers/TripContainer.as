@@ -10,6 +10,7 @@ package tripwire.containers
     import scaleform.clik.constants.NavigationCode;
     import scaleform.clik.core.UIComponent;
     import scaleform.clik.events.InputEvent;
+    import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.Extensions;
     import scaleform.gfx.FocusManager;
@@ -24,6 +25,8 @@ package tripwire.containers
         public var currentElement:UIComponent;
         
         public var defaultFirstElement:UIComponent;
+        
+        public var defaultNumPrompts:int = 1;
         
         protected var _bOpen:Boolean = false;
         
@@ -59,6 +62,8 @@ package tripwire.containers
         
         public var bSelected:Boolean = false;
         
+        public var sectionHeader:SectionHeaderContainer;
+        
         public function TripContainer()
         {
             super();
@@ -78,9 +83,17 @@ package tripwire.containers
             return false;
         }
         
-        override protected function addedToStage(param1:Event) : void
+        public function set containerDisplayPrompts(value:int) : void
         {
-            super.addedToStage(param1);
+            if(MenuManager.manager != null && MenuManager.manager.numPrompts != value)
+            {
+                MenuManager.manager.numPrompts = value;
+            }
+        }
+        
+        override protected function addedToStage(event:Event) : void
+        {
+            super.addedToStage(event);
             this.ANIM_START_X = x;
             if(this.bSelected)
             {
@@ -115,7 +128,7 @@ package tripwire.containers
                         "onComplete":this.openAnimation
                     });
                 }
-                else if(!isNaN(this.ANIM_START_X))
+                else
                 {
                     this.alpha = 0;
                     this.openAnimation();
@@ -135,12 +148,17 @@ package tripwire.containers
             {
                 stage.addEventListener(InputEvent.INPUT,this.handleInput,false,0,true);
             }
-            if(this.bManagerUsingGamepad && this.currentElement)
+            if(this.bManagerUsingGamepad && this.currentElement && !MenuManager.manager.bPopUpOpen)
             {
                 this.currentElement.tabEnabled = true;
                 this.currentElement.tabChildren = true;
-                FocusManager.setFocus(this.currentElement);
+                FocusHandler.getInstance().setFocus(this.currentElement);
             }
+            if(this.sectionHeader != null)
+            {
+                this.sectionHeader.controllerIconVisible = !this.bSelected;
+            }
+            this.containerDisplayPrompts = this.defaultNumPrompts;
         }
         
         public function closeContainer() : void
@@ -173,11 +191,17 @@ package tripwire.containers
             {
                 this.currentElement.focused = 0;
             }
+            if(this.sectionHeader != null && this.bOpen)
+            {
+                this.sectionHeader.controllerIconVisible = !this.bSelected;
+            }
         }
         
         public function focusGroupIn() : void
         {
+            var bPreviousVisible:* = visible;
             this.selectContainer();
+            visible = bPreviousVisible;
         }
         
         public function focusGroupOut() : void
@@ -195,21 +219,22 @@ package tripwire.containers
             }
         }
         
-        function onFocusIn(param1:FocusEvent) : *
+        public function onFocusIn(event:FocusEvent) : *
         {
             if(this.bManagerUsingGamepad)
             {
-                this.currentElement = param1.target as UIComponent;
+                trace("Bryan: " + this + " onFocusIn:: currentElement: " + this.currentElement + " target: " + event.target);
+                this.currentElement = event.target as UIComponent;
             }
         }
         
-        protected function onInputChange(param1:Event) : *
+        protected function onInputChange(e:Event) : *
         {
         }
         
-        override public function handleInput(param1:InputEvent) : void
+        override public function handleInput(event:InputEvent) : void
         {
-            if(param1.handled)
+            if(event.handled)
             {
                 return;
             }
@@ -217,22 +242,22 @@ package tripwire.containers
             {
                 return;
             }
-            super.handleInput(param1);
-            var _loc2_:InputDetails = param1.details;
-            if(_loc2_.value == InputValue.KEY_DOWN)
+            super.handleInput(event);
+            var details:InputDetails = event.details;
+            if(details.value == InputValue.KEY_DOWN)
             {
-                switch(_loc2_.navEquivalent)
+                switch(details.navEquivalent)
                 {
                     case NavigationCode.GAMEPAD_B:
-                        if(_loc2_.code == 97)
+                        if(details.code == 97)
                         {
-                            this.onBPressed(_loc2_);
+                            this.onBPressed(details);
                         }
                 }
             }
         }
         
-        protected function onBPressed(param1:InputDetails) : void
+        protected function onBPressed(details:InputDetails) : void
         {
         }
         
@@ -308,14 +333,14 @@ package tripwire.containers
             });
         }
         
-        protected function onOpened(param1:TweenEvent = null) : void
+        protected function onOpened(e:TweenEvent = null) : void
         {
             mouseChildren = mouseEnabled = true;
             this._bReadyForInput = true;
             play();
         }
         
-        protected function onClosed(param1:TweenEvent = null) : void
+        protected function onClosed(e:TweenEvent = null) : void
         {
             this._bReadyForInput = false;
             visible = false;

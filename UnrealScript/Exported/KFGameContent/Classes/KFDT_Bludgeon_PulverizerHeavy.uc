@@ -61,7 +61,6 @@ class KFDT_Bludgeon_PulverizerHeavy extends KFDT_Bludgeon_Pulverizer
 
 
 
-
 #linenumber 12;
 
 defaultproperties

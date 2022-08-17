@@ -5,6 +5,7 @@ package tripwire.popups
     import flash.events.Event;
     import flash.external.ExternalInterface;
     import scaleform.clik.events.ButtonEvent;
+    import scaleform.gfx.FocusManager;
     import tripwire.containers.TripContainer;
     
     public class BasePopup extends TripContainer
@@ -24,11 +25,11 @@ package tripwire.popups
             this.setTabIndex();
         }
         
-        public function setTabIndex() : *
+        public function setTabIndex() : void
         {
         }
         
-        public function set descriptionText(param1:String) : *
+        public function set descriptionText(param1:String) : void
         {
         }
         
@@ -42,6 +43,7 @@ package tripwire.popups
             {
                 this.openAnimation();
                 _bOpen = true;
+                FocusManager.setModalClip(this,0);
             }
         }
         
@@ -92,6 +94,7 @@ package tripwire.popups
                     "useFrames":true,
                     "onComplete":this.closePopup
                 });
+                FocusManager.setModalClip(null,0);
                 _bOpen = false;
             }
         }

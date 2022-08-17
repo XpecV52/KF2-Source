@@ -79,6 +79,7 @@ var int IdleHighDoshThreshold;
 var int IdleLowAmmoPctThreshold;
 var int IdleHighAmmoPctThreshold;
 var float TimeUntilStartSprintPanting;
+var AkEvent StopBreathingAkEvent;
 var delegate<OnFinishedDialog> __OnFinishedDialog__Delegate;
 
 delegate OnFinishedDialog(const out DialogResponseInfo ResponseInfo);
@@ -411,7 +412,7 @@ function bool DialogEventCanBePlayed(KFPawn KFP, const out DialogEventInfo Event
         }
         return false;
     }
-    if((KFP.SpecialMove == 21) && EventInfo.Priority > InterruptPriorityThreshold)
+    if((KFP.SpecialMove == 29) && EventInfo.Priority > InterruptPriorityThreshold)
     {
         if(bLogDialog)
         {
@@ -495,7 +496,7 @@ function PlayDialogEvent(KFPawn Speaker, int EventID)
     }
     if(EventInfo.bOnlyPlayLocally)
     {
-        if(KFPlayerController(Speaker.Controller) != none)
+        if(Speaker.IsLocallyControlled())
         {
             KFPlayerController(Speaker.Controller).ClientHearDialog(Speaker, EventAudioCue, EventInfo.bCanBeMinimized);
         }        
@@ -919,28 +920,34 @@ function PlayJumpDialog(KFPawn Speaker)
     PlayDialogEvent(Speaker, 53);
 }
 
-function PlaySprintingDialog(KFPawn_Human Speaker, bool bSprinting)
-{
-    if((Speaker.VoiceGroupArch == none) || Speaker.VoiceGroupArch.default.EventDataClass == none)
-    {
-        return;
-    }
-    if(bSprinting)
-    {
-        PlayDialogEvent(Speaker, 50);
-    }
-}
-
 function PlaySprintPantingDialog(KFPawn_Human Speaker, bool bNewSprintStatus)
 {
     if(bNewSprintStatus && !Speaker.bIsSprinting)
     {
-        Speaker.SprintStartTime = WorldInfo.TimeSeconds;
+        Speaker.SprintStartTime = WorldInfo.TimeSeconds;        
+    }
+    else
+    {
+        if(!bNewSprintStatus)
+        {
+            StopBreathingDialog(Speaker);
+        }
     }
     if((WorldInfo.TimeSeconds - Speaker.SprintStartTime) > TimeUntilStartSprintPanting)
     {
         Speaker.SprintStartTime = WorldInfo.TimeSeconds;
         PlayDialogEvent(Speaker, 50);
+    }
+}
+
+function StopBreathingDialog(KFPawn Speaker)
+{
+    if(Speaker.IsSpeaking())
+    {
+        if((Speaker.CurrDialogEventID == 50) || Speaker.CurrDialogEventID == 52)
+        {
+            KFPlayerController(Speaker.Controller).ClientHearDialog(Speaker, StopBreathingAkEvent, 0);
+        }
     }
 }
 
@@ -2364,6 +2371,11 @@ function PlayHansFrenzyDialog(KFPawn Hans)
     PlayDialogEvent(Hans, 21);
 }
 
+function PlayHansAOEDialog(KFPawn Hans)
+{
+    PlayDialogEvent(Hans, 37);
+}
+
 function PlayHansBattlePhaseDialog(KFPawn Hans, int CurrBattlePhase)
 {
     if(!Hans.IsAliveAndWell())
@@ -2388,22 +2400,22 @@ function PlayHansBattlePhaseDialog(KFPawn Hans, int CurrBattlePhase)
 
 function PlayPattyMinigunWarnDialog(KFPawn Patty)
 {
-    PlayDialogEvent(Patty, 37);
+    PlayDialogEvent(Patty, 16);
 }
 
 function PlayPattyMinigunAttackDialog(KFPawn Patty)
 {
-    PlayDialogEvent(Patty, 38);
+    PlayDialogEvent(Patty, 17);
 }
 
 function PlayPattyTentaclePullDialog(KFPawn Patty)
 {
-    PlayDialogEvent(Patty, 42);
+    PlayDialogEvent(Patty, 21);
 }
 
 function PlayPattyChildKilledDialog(KFPawn Patty)
 {
-    PlayDialogEvent(Patty, 46);
+    PlayDialogEvent(Patty, 25);
 }
 
 function PlayPattyKilledDialog(KFPawn Patty, class<DamageType> dmgType)
@@ -2428,17 +2440,22 @@ function PlayPattyBattlePhaseDialog(KFPawn Patty, int CurrBattlePhase)
     switch(CurrBattlePhase)
     {
         case 2:
-            PlayDialogEvent(Patty, 47);
+            PlayDialogEvent(Patty, 26);
             break;
         case 3:
-            PlayDialogEvent(Patty, 48);
+            PlayDialogEvent(Patty, 27);
             break;
         case 4:
-            PlayDialogEvent(Patty, 49);
+            PlayDialogEvent(Patty, 28);
             break;
         default:
             break;
     }
+}
+
+function PlayPattyWhirlwindDialog(KFPawn Patty)
+{
+    PlayDialogEvent(Patty, 36);
 }
 
 defaultproperties
@@ -2473,5 +2490,6 @@ defaultproperties
     IdleLowDoshThreshold=350
     IdleHighDoshThreshold=3500
     TimeUntilStartSprintPanting=3
+    StopBreathingAkEvent=AkEvent'WW_GLO_Runtime.Stop_Breathing'
     CollisionType=ECollisionType.COLLIDE_CustomDefault
 }

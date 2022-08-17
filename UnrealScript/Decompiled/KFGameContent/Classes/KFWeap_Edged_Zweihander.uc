@@ -23,6 +23,7 @@ defaultproperties
         ChainSequence_F=/* Array type was not detected. */
         ChainSequence_B=/* Array type was not detected. */
         WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Bladed_melee_impact'
+        MeleeImpactCamShakeScale=0.5
         MaxHitRange=400
         HitboxChain=/* Array type was not detected. */
     object end

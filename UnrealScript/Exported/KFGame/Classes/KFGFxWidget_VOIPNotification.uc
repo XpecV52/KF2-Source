@@ -35,6 +35,10 @@ function VOIPEventTriggered(PlayerReplicationInfo TalkerPRI, bool bIsTalking)
 		}
 		if(!GetPC().IsPlayerMuted(KFPRI.UniqueId))
 		{
+			if(TalkerPRI.Team != none && KFPlayerReplicationInfo(TalkerPRI).VOIPStatus == 2 && TalkerPRI.Team.TeamIndex != GetPC().PlayerReplicationInfo.Team.TeamIndex)
+			{
+				return;
+			}
 			TalkerPRIs.AddItem(KFPRI);
 		}
 	}

@@ -61,12 +61,11 @@ class KFDT_Bludgeon_Welder extends KFDT_Bludgeon_RifleButt
 
 
 
-
 #linenumber 12;
 
 defaultproperties
 {
-   WeaponDef=Class'kfgamecontent.KFWeapDef_Welder'
+   WeaponDef=Class'KFGame.KFWeapDef_Welder'
    Name="Default__KFDT_Bludgeon_Welder"
    ObjectArchetype=KFDT_Bludgeon_RifleButt'kfgamecontent.Default__KFDT_Bludgeon_RifleButt'
 }

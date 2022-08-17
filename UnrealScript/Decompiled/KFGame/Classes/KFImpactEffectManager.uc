@@ -79,6 +79,17 @@ simulated function PlayImpactEffects(const Vector HitLocation, const Pawn Effect
             }
         }
         GetImpactEffect(HitInfo.PhysMaterial, ImpactEffect, ImpactEffectInfo);
+        if(ImpactEffect == ImpactEffectInfo.DefaultImpactEffect && HitInfo.PhysMaterial != none)
+        {
+            if(HitInfo.PhysMaterial.ImpactEffect != none)
+            {
+                ImpactEffect.ParticleTemplate = HitInfo.PhysMaterial.ImpactEffect;
+            }
+            if(HitInfo.PhysMaterial.ImpactSound != none)
+            {
+                ImpactEffect.Sound = HitInfo.PhysMaterial.ImpactSound;
+            }
+        }
         if(((HitActor != none) && (Pawn(HitActor) == none) || Vehicle(HitActor) != none) && AllowImpactEffects(HitActor, HitLocation, HitNormal))
         {
             if(ImpactEffect.ParticleTemplate != none)

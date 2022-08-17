@@ -118,7 +118,7 @@ package tripwire.widgets
                 defaultFirstElement = currentElement = this.createPartyButton;
             }
             this.setTabIndex();
-            deselectContainer();
+            this.deselectContainer();
             ANIM_OFFSET_X = 24;
         }
         
@@ -239,8 +239,8 @@ package tripwire.widgets
         
         public function updateControllerIconVisibility() : *
         {
-            this.headerIcon.visible = !bManagerUsingGamepad;
-            this.controllerIcon.visible = bManagerUsingGamepad;
+            this.headerIcon.visible = !bManagerUsingGamepad || bSelected;
+            this.controllerIcon.visible = bManagerUsingGamepad && !bSelected;
         }
         
         public function set bInParty(param1:Boolean) : void
@@ -317,6 +317,13 @@ package tripwire.widgets
                 currentElement = this.squadMember0;
             }
             super.selectContainer();
+            this.updateControllerIconVisibility();
+        }
+        
+        override public function deselectContainer() : void
+        {
+            super.deselectContainer();
+            this.updateControllerIconVisibility();
         }
         
         public function startCountdown(param1:int, param2:Boolean) : void

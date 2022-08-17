@@ -27,25 +27,35 @@ function StartInteraction()
 {
     local KFAIDirector AIDirector;
 
-    if(((Follower != none) && KFPOwner != none) && KFPOwner.MyKFAIC != none)
+    if((Follower != none) && KFPOwner != none)
     {
-        AIDirector = KFPOwner.MyKFAIC.MyAIDirector;
-        if(KFAIController_Monster(KFPOwner.MyKFAIC) != none)
-        {
-            KFAIController_Monster(KFPOwner.MyKFAIC).bCompletedInitialGrabAttack = true;
-        }
-        if((Follower != none) && KFWeapon(Follower.Weapon) != none)
+        if(KFWeapon(Follower.Weapon) != none)
         {
             KFWeapon(Follower.Weapon).ZedGrabGrenadeTossCooldown = Follower.WorldInfo.TimeSeconds + 0.35;
         }
-        if(((Follower != none) && Follower.Controller != none) && KFPlayerController(Follower.Controller) != none)
+        if((Follower.Controller != none) && KFPlayerController(Follower.Controller) != none)
         {
             KFPlayerController(Follower.Controller).ForceLookAtPawn = KFPOwner;
             KFPlayerController(Follower.Controller).bLockToForceLookAtPawn = true;
         }
-        if(AIDirector != none)
+        if(KFPOwner.MyKFAIC != none)
         {
-            AIDirector.NotifyPawnGrabbed(Follower, KFPOwner);
+            AIDirector = KFPOwner.MyKFAIC.MyAIDirector;
+            if(KFAIController_Monster(KFPOwner.MyKFAIC) != none)
+            {
+                KFAIController_Monster(KFPOwner.MyKFAIC).bCompletedInitialGrabAttack = true;
+            }            
+        }
+        else
+        {
+            if(KFPOwner.WorldInfo.Game != none)
+            {
+                AIDirector = KFGameInfo(KFPOwner.WorldInfo.Game).GetAIDirector();
+                if(AIDirector != none)
+                {
+                    AIDirector.NotifyPawnGrabbed(Follower, KFPOwner);
+                }
+            }
         }
     }
 }
@@ -83,7 +93,14 @@ function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessT
 
 function SpecialMoveFlagsUpdated()
 {
-    PlayGrappleAnim();
+    if(KFPOwner.SpecialMoveFlags == 254)
+    {
+        KFPOwner.EndSpecialMove();        
+    }
+    else
+    {
+        PlayGrappleAnim();
+    }
 }
 
 function OnFollowerLeavingSpecialMove()
@@ -121,6 +138,15 @@ function NotifyOwnerTakeHit(class<KFDamageType> DamageType, Vector HitLoc, Vecto
     }
 }
 
+function SpecialMoveButtonReleased()
+{
+    KFPOwner.DoSpecialMove(KFPOwner.SpecialMove, true,, 254);
+    if((KFPOwner.Role < ROLE_Authority) && KFPOwner.IsLocallyControlled())
+    {
+        KFPOwner.ServerDoSpecialMove(KFPOwner.SpecialMove, true,, 254);
+    }
+}
+
 defaultproperties
 {
     GrappleAnims(0)=Grab_Attack_V1
@@ -133,5 +159,6 @@ defaultproperties
     AlignDistance=92
     AlignFollowerInterpSpeed=22
     bDisableMovement=true
+    bServerOnlyPhysics=true
     Handle=SM_GrappleAttack
 }

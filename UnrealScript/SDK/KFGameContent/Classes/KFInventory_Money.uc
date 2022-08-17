@@ -67,10 +67,9 @@ function DropFrom(vector StartLocation, vector StartVelocity)
 	if( KFPlayerReplicationInfo(PRI) != none )
 	{
 		KFPlayerReplicationInfo(PRI).AddDosh( -Amount );
-		//`AnalyticsLog(("dosh_tossed", KFPlayerReplicationInfo(PRI), "#"$Amount));
 	}
 
-	`SafeDialogManager.PlayDoshTossDialog( KFPawn(Instigator) );
+	`DialogManager.PlayDoshTossDialog( KFPawn(Instigator) );
 }
 
 /** DenyPickupQuery

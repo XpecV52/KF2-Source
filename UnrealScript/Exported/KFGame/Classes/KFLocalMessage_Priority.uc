@@ -23,6 +23,10 @@ var localized string            ObjectiveLostMessage;
 var localized string            ObjectiveEndedMessage;
 var localized string            ObjNotEnoughPlayersMessage;
 var localized string            ObjTimeRanOutMessage;
+var localized string            HumansLoseMessage;
+var localized string            HumansWinMessage;
+var localized string			AttackHumanPlayersString;
+var localized string			ZedGroupRegroupingString;
 
 enum EGameMessageType
 {
@@ -37,7 +41,10 @@ enum EGameMessageType
 	GMT_ObjEndTimeLimit,
 	GMT_LevelUp,
 	GMT_TierUnlocked,
-	GMT_Died
+	GMT_Died,
+	GMT_ZedsWin,
+	GMT_HumansWin,
+	GMT_AttackHumanPlayers
 };
 
 static function ClientReceive(
@@ -52,7 +59,7 @@ static function ClientReceive(
 	local KFGFxMoviePlayer_HUD myGfxHUD;
 	local KFGameReplicationInfo KFGRI;
 
-	MessageString = static.GetMessageString(Switch,SecondaryMessageString);
+	MessageString = static.GetMessageString(Switch,SecondaryMessageString, P.PlayerReplicationInfo.GetTeamNum());
 	if ( MessageString != "" && KFGFxHudWrapper(p.myHUD) != none)
 	{
 	    myGfxHUD = KFGFxHudWrapper(p.myHUD).HudMovie;
@@ -64,60 +71,119 @@ static function ClientReceive(
 
 	switch( Switch )
 	{
-	case GMT_WaveStart:
-		class'KFMusicStingerHelper'.static.PlayWaveStartStinger( P );
-		break;
-	case GMT_WaveEnd:
-		class'KFMusicStingerHelper'.static.PlayWaveCompletedStinger( P );
-		break;
+		case GMT_WaveStart:
+			class'KFMusicStingerHelper'.static.PlayWaveStartStinger( P );
+			break;
+		case GMT_WaveEnd:
+			class'KFMusicStingerHelper'.static.PlayWaveCompletedStinger( P );
+			break;
 
-	case GMT_MatchWon:
-		KFGRI = KFGameReplicationInfo(P.WorldInfo.GRI);
-		if(KFGRI != none)
-		{
-			KFGRI.bMatchVictory = true;
-		}
-		class'KFMusicStingerHelper'.static.PlayMatchWonStinger( P );
-		break;
+		case GMT_MatchWon:
+			KFGRI = KFGameReplicationInfo(P.WorldInfo.GRI);
+			if(KFGRI != none)
+			{
+				KFGRI.bMatchVictory = true;
+			}
+			class'KFMusicStingerHelper'.static.PlayMatchWonStinger( P );
+			break;
 
-	case GMT_MatchLost:
-		class'KFMusicStingerHelper'.static.PlayMatchLostStinger( P );
-		break;
+		case GMT_MatchLost:
+			class'KFMusicStingerHelper'.static.PlayMatchLostStinger( P );
+			break;
 
-	// make sure only local player
-	case GMT_LevelUp:
-		class'KFMusicStingerHelper'.static.PlayLevelUpStinger( P );
-		break;
+		case GMT_HumansWin:
+			KFGRI = KFGameReplicationInfo(P.WorldInfo.GRI);
+			if(KFGRI != none)
+			{
+				KFGRI.bMatchVictory = true;
+			}
+			if(P.PlayerReplicationInfo.GetTeamNum() == 255)
+			{
+				class'KFMusicStingerHelper'.static.PlayMatchLostStinger( P );
+			}
+			else
+			{
+				class'KFMusicStingerHelper'.static.PlayMatchWonStinger( P );
+			}
+			
+			break;
 
-	// make sure only local player
-	case GMT_TierUnlocked:
-		class'KFMusicStingerHelper'.static.PlayTierUnlockedStinger( P );
-		break;
+		case GMT_ZedsWin:
+			if(P.PlayerReplicationInfo.GetTeamNum() == 255)
+			{
+				class'KFMusicStingerHelper'.static.PlayMatchWonStinger( P );
+			}
+			else
+			{
+				class'KFMusicStingerHelper'.static.PlayMatchLostStinger( P );
+			}
+			
+			break;
 
-	case GMT_ObjectiveWon:
-		class'KFMusicStingerHelper'.static.PlayObjectiveWonStinger( P );
-		break;
+		// make sure only local player
+		case GMT_LevelUp:
+			class'KFMusicStingerHelper'.static.PlayLevelUpStinger( P );
+			break;
 
-	case GMT_ObjectiveLost:
-		class'KFMusicStingerHelper'.static.PlayObjectiveLostStinger( P );
-		break;
+		// make sure only local player
+		case GMT_TierUnlocked:
+			class'KFMusicStingerHelper'.static.PlayTierUnlockedStinger( P );
+			break;
 
-	// make sure only local player
-	case GMT_Died:
-		class'KFMusicStingerHelper'.static.PlayPlayerDiedStinger( P );
-		break;
+		case GMT_ObjectiveWon:
+			class'KFMusicStingerHelper'.static.PlayObjectiveWonStinger( P );
+			break;
+
+		case GMT_ObjectiveLost:
+			class'KFMusicStingerHelper'.static.PlayObjectiveLostStinger( P );
+			break;
+
+		// make sure only local player
+		case GMT_Died:
+			class'KFMusicStingerHelper'.static.PlayPlayerDiedStinger( P );
+			break;
 	};
 }
 
-static function string GetMessageString(int Switch, optional out String SecondaryString)
+static function string GetMessageString(int Switch, optional out String SecondaryString, optional byte TeamIndex)
 {
+	SecondaryString = "";
+
 	switch ( Switch )
 	{
+		case GMT_HumansWin:
+			SecondaryString = default.HumansWinMessage;
+			if(TeamIndex == 255)
+			{
+				return default.YouLostMessage;
+			}
+			else
+			{
+				return default.YouWonMessage;
+			}
+			
+		case GMT_ZedsWin:
+			SecondaryString = default.HumansLoseMessage;
+			if(TeamIndex == 255)
+			{
+				return default.YouWonMessage;
+			}
+			else
+			{
+				return default.YouLostMessage;
+			}			
 		case GMT_WaveStart:
 			return default.WaveStartMessage;
 		case GMT_WaveEnd:
-		    SecondaryString = default.GetToTraderMessage;
-			return default.WaveEndMessage;
+		    if(TeamIndex == 255)
+			{
+				return default.ZedGroupRegroupingString;
+			}
+			else
+			{
+				SecondaryString = default.GetToTraderMessage;
+				return default.WaveEndMessage;
+			}
 		case GMT_MatchWon:
 		     SecondaryString = default.SquadSurvivedMessage;
 			return default.YouWonMessage;
@@ -142,6 +208,8 @@ static function string GetMessageString(int Switch, optional out String Secondar
 		case GMT_TierUnlocked:
 			SecondaryString =""; //TODO: Remove this hard coded test message when we add the pop up in. ZG
 			return "";
+		case GMT_AttackHumanPlayers:
+			return default.AttackHumanPlayersString;
 		default:
 			return "";
 	}
@@ -165,6 +233,8 @@ static function float GetMessageLifeTime(int Switch)
 	 	case GMT_MatchWon:
 		case GMT_MatchLost:
 			return 0.f;
+		case GMT_AttackHumanPlayers:
+			return 2.f;
 	}
 
     return default.LifeTime;
@@ -185,6 +255,10 @@ defaultproperties
    ObjectiveEndedMessage="Objective Ended!"
    ObjNotEnoughPlayersMessage="Not Enough Players!"
    ObjTimeRanOutMessage="Time Limit Reached!"
+   HumansLoseMessage="Humans squad wiped out!"
+   HumansWinMessage="Humans squad survived!"
+   AttackHumanPlayersString="Attack the Human Players!"
+   ZedGroupRegroupingString="Zed Horde regrouping!"
    Name="Default__KFLocalMessage_Priority"
    ObjectArchetype=KFLocalMessage'KFGame.Default__KFLocalMessage'
 }

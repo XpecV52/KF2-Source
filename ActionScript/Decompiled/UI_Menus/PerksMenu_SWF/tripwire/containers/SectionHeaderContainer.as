@@ -15,27 +15,29 @@ package tripwire.containers
         
         public var textField:TextField;
         
+        private var _controllerIconVisible:Boolean = true;
+        
         public function SectionHeaderContainer()
         {
             super();
         }
         
-        override protected function addedToStage(param1:Event) : void
+        override protected function addedToStage(event:Event) : void
         {
-            super.addedToStage(param1);
+            super.addedToStage(event);
             this.updateIconVisibility();
             stage.addEventListener(MenuManager.INPUT_CHANGED,this.onInputChange,false,0,true);
         }
         
-        override protected function onInputChange(param1:Event) : *
+        override protected function onInputChange(e:Event) : *
         {
-            super.onInputChange(param1);
+            super.onInputChange(e);
             this.updateIconVisibility();
         }
         
-        public function set text(param1:String) : void
+        public function set text(value:String) : void
         {
-            this.textField.text = param1;
+            this.textField.text = value;
         }
         
         public function get text() : String
@@ -43,12 +45,27 @@ package tripwire.containers
             return this.textField.text;
         }
         
+        public function get controllerIconVisible() : Boolean
+        {
+            return this._controllerIconVisible;
+        }
+        
+        public function set controllerIconVisible(value:Boolean) : *
+        {
+            if(this._controllerIconVisible == value)
+            {
+                return;
+            }
+            this._controllerIconVisible = value;
+            this.updateIconVisibility();
+        }
+        
         public function updateIconVisibility() : void
         {
-            this.headerIcon.visible = !bManagerUsingGamepad;
+            this.headerIcon.visible = !bManagerUsingGamepad || !this._controllerIconVisible;
             if(this.leftTriggerIcon)
             {
-                this.leftTriggerIcon.visible = bManagerUsingGamepad;
+                this.leftTriggerIcon.visible = bManagerUsingGamepad && this._controllerIconVisible;
             }
         }
     }

@@ -8,14 +8,6 @@
 class KFSM_Patriarch_Grapple extends KFSM_GrappleAttack
     native(SpecialMoves);
 
-enum EGrappleState
-{
-    EGS_GrabAttempt,
-    EGS_GrabSuccess,
-    EGS_GrabMiss,
-    EGS_MAX
-};
-
 var float TentacleStartTime;
 var float TentacleGrabTime;
 var float MaxRange;
@@ -41,7 +33,7 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
     bAlignFollowerLookSameDirAsMe = default.bAlignFollowerLookSameDirAsMe;
     bAlignFollowerRotation = default.bAlignFollowerRotation;
     Follower = KFPOwner.InteractionPawn;
-    if((Follower == none) || !Follower.IsAliveAndWell())
+    if((Follower != none) && !Follower.IsAliveAndWell())
     {
         KFPOwner.EndSpecialMove();
         return;
@@ -49,14 +41,18 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
     bAlignPawns = false;
     bTentacleCtrlStarted = false;
     bGrabMissed = false;
-    if(PawnOwner.Role == ROLE_Authority)
+    if(KFPOwner.Role == ROLE_Authority)
     {
-        PawnOwner.SetTimer(TentacleGrabTime, false, 'CheckGrapple', self);
+        KFPOwner.SetTimer(TentacleGrabTime, false, 'CheckGrapple', self);
+        KFPawn_Monster(KFPOwner).SetCloaked(false);
     }
-    KFPawn_Monster(PawnOwner).BumpFrequency = 0;
-    KFPawn_MonsterBoss(PawnOwner).PlayGrabDialog();
-    PawnOwner.SetTimer(TentacleStartTime, false, 'BeginTentacleControls', self);
-    DetachDistance = (KFPOwner.CylinderComponent.CollisionRadius + Follower.CylinderComponent.CollisionRadius) + default.DetachDistance;
+    KFPawn_Monster(KFPOwner).BumpFrequency = 0;
+    KFPawn_MonsterBoss(KFPOwner).PlayGrabDialog();
+    KFPOwner.SetTimer(TentacleStartTime, false, 'BeginTentacleControls', self);
+    if(Follower != none)
+    {
+        DetachDistance = (KFPOwner.CylinderComponent.CollisionRadius + Follower.CylinderComponent.CollisionRadius) + default.DetachDistance;
+    }
     PlayGrappleAnim();
 }
 
@@ -252,10 +248,14 @@ function NotifyOwnerTakeHit(class<KFDamageType> DamageType, Vector HitLoc, Vecto
     return;
 }
 
-function SpecialMoveEnded(name PrevMove, name NextMove)
+function OnFollowerLeavingSpecialMove()
 {
-    PawnOwner.ClearTimer('CheckGrapple', self);
-    PawnOwner.ClearTimer('BeginTentacleControls', self);
+    super.OnFollowerLeavingSpecialMove();
+    ResetFollowerPhysics();
+}
+
+function ResetFollowerPhysics()
+{
     if(Follower != none)
     {
         Follower.AirSpeed = Follower.default.AirSpeed;
@@ -264,6 +264,17 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
             Follower.SetPhysics(2);
         }
     }
+}
+
+function SpecialMoveEnded(name PrevMove, name NextMove)
+{
+    if(PawnOwner != none)
+    {
+        PawnOwner.ClearTimer('CheckGrapple', self);
+        PawnOwner.ClearTimer('BeginTentacleControls', self);
+        KFPawn_Monster(PawnOwner).BumpFrequency = KFPawn_Monster(PawnOwner).default.BumpFrequency;
+    }
+    ResetFollowerPhysics();
     SetSkelControlsActive(false);
     super.SpecialMoveEnded(PrevMove, NextMove);
 }

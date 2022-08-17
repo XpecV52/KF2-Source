@@ -876,6 +876,8 @@ enum ItemType
 {
 	ITP_WeaponSkin,
 	ITP_CharacterSkin,
+	ITP_KeyCrate,
+	ITP_CraftingComponent,
 	ITP_Item,
 
 	ITP_NONE,
@@ -886,10 +888,9 @@ enum ItemRarity
 	ITR_Common,
 	ITR_Uncommon,
 	ITR_Rare,
+	ITR_Mythical,
 	ITR_Legendary,
 	ITR_ExceedinglyRare,
-	ITR_Mythical,
-
 	ITR_NONE,
 };
 
@@ -910,7 +911,7 @@ struct native ItemProperties
 	var string Description;
 	var string Exchange;
 	var string Bundle;
-    var bool UniqueToOwn;
+	var bool UniqueToOwn;
 };
 var array<ItemProperties> ItemPropertiesList;
 
@@ -924,6 +925,7 @@ struct native ExchangeRuleSets
 {
 	var array<ExchangeRule> Sources;
 	var int Target;
+	var ItemType Type;
 };
 var array<ExchangeRuleSets> ExchangeRuleSetList;
 
@@ -1703,7 +1705,6 @@ native function GetPlayerGroups(out array<UniqueNetId> UserGroups);
 defaultproperties
 {
    NamedInterfaceDefs(0)=(InterfaceName="RecentPlayersList",InterfaceClassName="Engine.OnlineRecentPlayersList")
-   NamedInterfaceDefs(1)=(InterfaceName="AnalyticsUpload",InterfaceClassName="IpDrv.TWOnlineEventsInterface")
    Name="Default__OnlineSubsystem"
    ObjectArchetype=Object'Core.Default__Object'
 }

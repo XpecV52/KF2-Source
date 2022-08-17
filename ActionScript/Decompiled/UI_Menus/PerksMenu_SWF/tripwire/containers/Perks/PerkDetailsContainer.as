@@ -1,4 +1,4 @@
-package tripwire.containers.perks
+package tripwire.containers.Perks
 {
     import com.greensock.TweenMax;
     import com.greensock.easing.Linear;
@@ -6,10 +6,9 @@ package tripwire.containers.perks
     import scaleform.clik.controls.ScrollingList;
     import scaleform.clik.controls.UILoader;
     import scaleform.clik.data.DataProvider;
-    import tripwire.containers.TripContainer;
     import tripwire.controls.perks.PerksPassiveDataLineRenderer;
     
-    public class PerkDetailsContainer extends TripContainer
+    public class PerkDetailsContainer extends PerkContainerBase
     {
          
         
@@ -49,41 +48,41 @@ package tripwire.containers.perks
             ANIM_OFFSET_X = 0;
         }
         
-        public function set passivesData(param1:Array) : *
+        public function set passivesData(source:Array) : *
         {
-            if(param1 != null && this.passivesList != null)
+            if(source != null && this.passivesList != null)
             {
-                this.passivesList.dataProvider = new DataProvider(param1);
+                this.passivesList.dataProvider = new DataProvider(source);
             }
         }
         
-        public function set detailsData(param1:Object) : *
+        public function set detailsData(data:Object) : *
         {
-            if(param1 != null)
+            if(data != null)
             {
-                this.weaponIconTextField0.text = !!param1.WeaponName0 ? param1.WeaponName0 : "";
-                this.weaponIconTextField1.text = !!param1.WeaponName1 ? param1.WeaponName1 : "";
-                this.weaponIconTextField2.text = !!param1.WeaponName2 ? param1.WeaponName2 : "";
-                this.weaponIconTextField3.text = !!param1.WeaponName3 ? param1.WeaponName3 : "";
-                this.SetDataSource(param1.WeaponImage0,this.weaponIcon0);
-                this.SetDataSource(param1.WeaponImage1,this.weaponIcon1);
-                this.SetDataSource(param1.WeaponImage2,this.weaponIcon2);
-                this.SetDataSource(param1.WeaponImage3,this.weaponIcon3);
-                this.objectiveTextField1.text = !!param1.EXPAction1 ? param1.EXPAction1 : "";
-                this.objectiveTextField2.text = !!param1.EXPAction2 ? param1.EXPAction2 : "";
+                this.weaponIconTextField0.text = !!data.WeaponName0 ? data.WeaponName0 : "";
+                this.weaponIconTextField1.text = !!data.WeaponName1 ? data.WeaponName1 : "";
+                this.weaponIconTextField2.text = !!data.WeaponName2 ? data.WeaponName2 : "";
+                this.weaponIconTextField3.text = !!data.WeaponName3 ? data.WeaponName3 : "";
+                this.SetDataSource(data.WeaponImage0,this.weaponIcon0);
+                this.SetDataSource(data.WeaponImage1,this.weaponIcon1);
+                this.SetDataSource(data.WeaponImage2,this.weaponIcon2);
+                this.SetDataSource(data.WeaponImage3,this.weaponIcon3);
+                this.objectiveTextField1.text = !!data.EXPAction1 ? data.EXPAction1 : "";
+                this.objectiveTextField2.text = !!data.EXPAction2 ? data.EXPAction2 : "";
             }
         }
         
-        private function SetDataSource(param1:String, param2:UILoader) : *
+        private function SetDataSource(_source:String, _uiLoader:UILoader) : *
         {
-            if(param1 != null && param1 != "")
+            if(_source != null && _source != "")
             {
-                param2.source = param1;
-                param2.visible = true;
+                _uiLoader.source = _source;
+                _uiLoader.visible = true;
             }
             else
             {
-                param2.visible = false;
+                _uiLoader.visible = false;
             }
         }
         

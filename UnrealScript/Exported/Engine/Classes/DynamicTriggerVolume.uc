@@ -41,7 +41,6 @@ defaultproperties
    End Object
    BrushComponent=BrushComponent0
    Components(0)=BrushComponent0
-   CollisionType=COLLIDE_CustomDefault
    bStatic=False
    bAlwaysRelevant=True
    bOnlyDirtyReplication=True

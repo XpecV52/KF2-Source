@@ -859,10 +859,9 @@ simulated state MeleeBlocking
     reliable client simulated function ClientPlayParryEffects(bool bInterruptSuccess)
     {
         global.ClientPlayParryEffects(bInterruptSuccess);
-        if(!bInterruptSuccess)
+        if(!bInterruptSuccess && Instigator.IsLocallyControlled())
         {
-            ClearPendingFire(1);
-            GotoState('BlockingCooldown');
+            StopFire(1);
         }
     }
     stop;    

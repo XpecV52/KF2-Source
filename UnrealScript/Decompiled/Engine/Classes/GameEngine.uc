@@ -42,6 +42,22 @@ struct native transient URL
     }
 };
 
+struct native transient BenchmarkSample
+{
+    var init float AppTime;
+    var init float RenderThreadTime;
+    var init float GameThreadTime;
+    var init float GPUFrameTime;
+
+    structdefaultproperties
+    {
+        AppTime=0
+        RenderThreadTime=0
+        GameThreadTime=0
+        GPUFrameTime=0
+    }
+};
+
 struct native LevelStreamingStatus
 {
     var name PackageName;
@@ -109,6 +125,7 @@ var const transient bool bWorldWasLoadedThisTick;
 var const transient bool bCheckForMovieCapture;
 var const transient bool bTriggerPostLoadMap;
 var const transient bool bStartedLoadMapMovie;
+var bool bSaveBenchmarkGraphs;
 var const bool bShouldCommitPendingMapChange;
 var config bool bClearAnimSetLinkupCachesOnLoadMap;
 var config bool bEnableSecondaryDisplay;
@@ -118,6 +135,7 @@ var const transient GamePadLightbarSubsystem GamePadLightbarSubsystem;
 var const transient DownloadableContentEnumerator DLCEnumerator;
 var string DownloadableContentEnumeratorClassName;
 var const transient DownloadableContentManager DLCManager;
+var array<BenchmarkSample> BenchmarkSamples;
 var string DownloadableContentManagerClassName;
 var const array<name> LevelsToLoadForPendingMapChange;
 var const array<Level> LoadedLevelsForPendingMapChange;

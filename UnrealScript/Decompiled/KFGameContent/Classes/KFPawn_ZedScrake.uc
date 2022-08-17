@@ -24,6 +24,8 @@ var(RageCharge) float RageHealthThresholdHard;
 var(RageCharge) float RageHealthThresholdSuicidal;
 /** Threshold of health below which the Scrake will start rage charging on hell on earth */
 var(RageCharge) float RageHealthThresholdHellOnEarth;
+/** Threshold of health below which the Scrake will start rage charging (determined by difficulty) */
+var(RageCharge) float RageHealthThreshold;
 
 simulated event PostBeginPlay()
 {
@@ -32,12 +34,73 @@ simulated event PostBeginPlay()
     CreateExhaustFx();
 }
 
-simulated function SetCharacterArch(KFCharacterInfoBase Info)
+simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bForce)
 {
     super(KFPawn).SetCharacterArch(Info);
     if((WorldInfo.NetMode != NM_DedicatedServer) && Mesh != none)
     {
         BodyAltMIC = Mesh.CreateAndSetMaterialInstanceConstant(2);
+    }
+}
+
+function PossessedBy(Controller C, bool bVehicleTransition)
+{
+    local KFAIController_Monster KFAICM;
+
+    super.PossessedBy(C, bVehicleTransition);
+    if(!IsHumanControlled())
+    {
+        KFAICM = KFAIController_Monster(C);
+        if(KFAICM != none)
+        {
+            if(KFAICM.Skill == Class'KFDifficultyInfo'.static.GetDifficultyValue(0))
+            {
+                RageHealthThreshold = RageHealthThresholdNormal;                
+            }
+            else
+            {
+                if(KFAICM.Skill <= Class'KFDifficultyInfo'.static.GetDifficultyValue(1))
+                {
+                    RageHealthThreshold = RageHealthThresholdHard;                    
+                }
+                else
+                {
+                    if(KFAICM.Skill <= Class'KFDifficultyInfo'.static.GetDifficultyValue(2))
+                    {
+                        RageHealthThreshold = RageHealthThresholdSuicidal;                        
+                    }
+                    else
+                    {
+                        RageHealthThreshold = RageHealthThresholdHellOnEarth;
+                    }
+                }
+            }
+        }        
+    }
+    else
+    {
+        if(WorldInfo.Game.GameDifficulty == float(0))
+        {
+            RageHealthThreshold = RageHealthThresholdNormal;            
+        }
+        else
+        {
+            if(WorldInfo.Game.GameDifficulty == float(1))
+            {
+                RageHealthThreshold = RageHealthThresholdHard;                
+            }
+            else
+            {
+                if(WorldInfo.Game.GameDifficulty == float(2))
+                {
+                    RageHealthThreshold = RageHealthThresholdSuicidal;                    
+                }
+                else
+                {
+                    RageHealthThreshold = RageHealthThresholdHellOnEarth;
+                }
+            }
+        }
     }
 }
 
@@ -91,9 +154,18 @@ simulated function CreateExhaustFx()
     }
 }
 
-simulated function GoreMeshSwapped()
+event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
 {
-    super.GoreMeshSwapped();
+    super.TakeDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
+    if((bCanRage && !bPlayedDeath) && GetHealthPercentage() < RageHealthThreshold)
+    {
+        bIsEnraged = true;
+    }
+}
+
+simulated event NotifyGoreMeshActive()
+{
+    super.NotifyGoreMeshActive();
     if((WorldInfo.NetMode != NM_DedicatedServer) && Mesh != none)
     {
         BodyAltMIC = Mesh.CreateAndSetMaterialInstanceConstant(2);
@@ -159,7 +231,7 @@ function OnStackingAfflictionChanged(byte Id)
 defaultproperties
 {
     begin object name=ChainsawAkComponent0 class=AkComponent
-        BoneName=Root
+        BoneName=Dummy
         bStopWhenOwnerDestroyed=true
         bForceOcclusionUpdateInterval=true
         OcclusionUpdateInterval=0.2
@@ -175,6 +247,7 @@ defaultproperties
     RageHealthThresholdSuicidal=0.75
     RageHealthThresholdHellOnEarth=0.9
     bLargeZed=true
+    bCanRage=true
     CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Scrake_ARCH.ZED_Scrake_Archetype'
     HeadlessBleedOutTime=6
     ParryResistance=4
@@ -182,6 +255,7 @@ defaultproperties
     begin object name=MeleeHelper class=KFMeleeHelperAI
         BaseDamage=30
         MyDamageType=Class'KFDT_Slashing_Scrake'
+        MomentumTransfer=45000
         MaxHitRange=200
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedScrake.MeleeHelper'
@@ -204,12 +278,12 @@ defaultproperties
     HitZones=/* Array type was not detected. */
     PenetrationResistance=4
     begin object name=Afflictions class=KFPawnAfflictions_Scrake
-        InstantAffl=/* Array type was not detected. */
-        StackingAffl=/* Array type was not detected. */
         FireFullyCharredDuration=5
     object end
     // Reference: KFPawnAfflictions_Scrake'Default__KFPawn_ZedScrake.Afflictions'
     AfflictionHandler=Afflictions
+    InstantIncaps=/* Array type was not detected. */
+    StackingIncaps=/* Array type was not detected. */
     KnockdownImpulseScale=2
     SprintSpeed=600
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
@@ -272,7 +346,7 @@ defaultproperties
     Components(6)=AkComponent'Default__KFPawn_ZedScrake.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedScrake.DialogAkSoundComponent'
     begin object name=ChainsawAkComponent0 class=AkComponent
-        BoneName=Root
+        BoneName=Dummy
         bStopWhenOwnerDestroyed=true
         bForceOcclusionUpdateInterval=true
         OcclusionUpdateInterval=0.2

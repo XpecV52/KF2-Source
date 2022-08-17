@@ -35,20 +35,20 @@ struct MapVote
 
 struct TopVotes
 {
-    var byte Map1Index;
+    var string Map1Name;
     var byte Map1Votes;
-    var byte Map2Index;
+    var string Map2Name;
     var byte Map2Votes;
-    var byte Map3Index;
+    var string Map3Name;
     var byte Map3Votes;
 
     structdefaultproperties
     {
-        Map1Index=255
+        Map1Name=""
         Map1Votes=255
-        Map2Index=255
+        Map2Name=""
         Map2Votes=255
-        Map3Index=255
+        Map3Name=""
         Map3Votes=255
     }
 };
@@ -68,7 +68,7 @@ var TopVotes TopVotesObject;
 var array<MapVote> MapVoteList;
 var array<string> MapList;
 
-reliable server function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplicationInfo PRI_Kicker)
+function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplicationInfo PRI_Kicker)
 {
     local int I;
     local array<KFPlayerReplicationInfo> PRIs;
@@ -386,6 +386,7 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
     local bool bMapFound;
     local MapVote TempMapVote;
     local array<KFPlayerReplicationInfo> PRIs;
+    local KFGameInfo KFGI;
 
     Outer.GetKFPRIArray(PRIs);
     if(MapVoteList.Length > 0)
@@ -415,8 +416,9 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
         MapVoteList.AddItem(TempMapVote;
     }    
     MapVoteList.Sort(MapVoteSort;
+    KFGI = KFGameInfo(Outer.WorldInfo.Game);
     I = 0;
-    J0x199:
+    J0x1DF:
 
     if(I < TopResultsToShow)
     {
@@ -426,15 +428,15 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
             {
                 case 0:
                     TopVotesObject.Map1Votes = byte(MapVoteList[I].VoterPRIList.Length);
-                    TopVotesObject.Map1Index = byte(MapVoteList[I].MapIndex);
+                    TopVotesObject.Map1Name = KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[MapVoteList[I].MapIndex];
                     break;
                 case 1:
                     TopVotesObject.Map2Votes = byte(MapVoteList[I].VoterPRIList.Length);
-                    TopVotesObject.Map2Index = byte(MapVoteList[I].MapIndex);
+                    TopVotesObject.Map2Name = KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[MapVoteList[I].MapIndex];
                     break;
                 case 2:
                     TopVotesObject.Map3Votes = byte(MapVoteList[I].VoterPRIList.Length);
-                    TopVotesObject.Map3Index = byte(MapVoteList[I].MapIndex);
+                    TopVotesObject.Map3Name = KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps[MapVoteList[I].MapIndex];
                     break;
                 default:
                     break;
@@ -443,18 +445,18 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
         else
         {
             ++ I;
-            goto J0x199;
-        }/* !MISMATCHING REMOVE, tried Loop got Type:Else Position:0x395! */
+            goto J0x1DF;
+        }/* !MISMATCHING REMOVE, tried Loop got Type:Else Position:0x4C8! */
         I = 0;
-        J0x3AE:
+        J0x4E1:
 
         if(I < PRIs.Length)
         {
             PRIs[I].RecieveTopMaps(TopVotesObject);
             ++ I;
-            goto J0x3AE;
+            goto J0x4E1;
         }
-    }/* !MISMATCHING REMOVE, tried Else got Type:Loop Position:0x199! */
+    }/* !MISMATCHING REMOVE, tried Else got Type:Loop Position:0x1DF! */
 }
 
 function int MapVoteSort(MapVote A, MapVote B)
@@ -477,5 +479,5 @@ defaultproperties
     VoteTime=30
     TopResultsToShow=3
     ActiveTimeUntilVoteEnabled=30
-    TopVotesObject=(Map1Index=255,Map1Votes=255,Map2Index=255,Map2Votes=255,Map3Index=255,Map3Votes=255)
+    TopVotesObject=(Map1Name="",Map1Votes=255,Map2Name="",Map2Votes=255,Map3Name="",Map3Votes=255)
 }

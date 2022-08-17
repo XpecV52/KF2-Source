@@ -182,6 +182,10 @@ function UpdateWeaponList()
 	}
 
 	SetObject("weaponArray", DataProvider);
+//@HSL_MOD_BEGIN - amiller 4/1/2016 - Force game to resave game.ini when a gear piece changes
+	KFPC = KFPlayerController(GetPC());
+	KFPC.SaveConfig();
+//@HSL_MOD_END
 }
 
 function UpdateWeaponVariants(class<KFWeaponDefinition> WeaponDef, out GFxObject MeshObject)
@@ -226,6 +230,7 @@ function UpdateCharacterList()
 	local byte i, ItemIndex;
 	local GFxObject DataProvider, SlotObject;
 	local string TexturePath;
+	local KFPlayerController KFPC; 
 
 	ItemIndex = 0;
 	DataProvider = CreateArray();
@@ -249,6 +254,10 @@ function UpdateCharacterList()
 	}
 	
 	SetObject("characterArray", DataProvider);
+//@HSL_MOD_BEGIN - amiller 4/1/2016 - Force game to resave game.ini when a gear piece changes
+	KFPC = KFPlayerController(GetPC());
+	KFPC.SaveConfig();
+//@HSL_MOD_END
 }
 
 function UpdateGear()
@@ -271,7 +280,7 @@ function UpdateMeshList(string OutfitKey, string SkinKey, array<OutfitVariants> 
 	local GFxObject DataProvider, SlotObject;
 	local string TexturePath;
 	local OutfitVariants Outfit;
-
+	
 	ItemIndex = 0;
 	DataProvider = CreateArray();
 	for (i = 0; i < Outfits.length; i++)
@@ -403,6 +412,7 @@ function SetGearButtons(byte MeshIndex, byte SkinIndex, string MeshKey, string S
 	local string CurrentMesh;
 	local string SkinName, MeshName;
 	local GFxObject DataObject;
+	local KFPlayerController KFPC; 
 
 	DataObject = CreateObject("Object");
 
@@ -424,6 +434,10 @@ function SetGearButtons(byte MeshIndex, byte SkinIndex, string MeshKey, string S
 	DataObject.SetInt( (sectionFunctionName$"SkinIndex"), SkinIndex);
 
 	SetObject( sectionFunctionName, DataObject);
+//@HSL_MOD_BEGIN - amiller 4/1/2016 - Force game to resave game.ini when a gear piece changes
+	KFPC = KFPlayerController(GetPC());
+	KFPC.SaveConfig();
+//@HSL_MOD_END
 }
 
 /** Update the labels for our currently equipped attachments */
@@ -432,6 +446,7 @@ function SetAttachmentButtons(string AttachmentMeshKey, string sectionFunctionNa
 	local string CurrentMesh, FinishedString;
 	local GFxObject DataObject;
 	local byte i, AttachmentIndex;
+	local KFPlayerController KFPC; 
 
 	DataObject = CreateObject("Object");
 
@@ -452,6 +467,10 @@ function SetAttachmentButtons(string AttachmentMeshKey, string sectionFunctionNa
 	DataObject.SetString( sectionFunctionName, FinishedString );
 
 	SetObject( sectionFunctionName, DataObject);
+//@HSL_MOD_BEGIN - amiller 4/1/2016 - Force game to resave game.ini when a gear piece changes
+	KFPC = KFPlayerController(GetPC());
+	KFPC.SaveConfig();
+//@HSL_MOD_END
 }
 
 event OnClose()
@@ -462,7 +481,8 @@ event OnClose()
 
 	GetGameViewportClient().HandleInputAxis = none;
 
-	if ( class'WorldInfo'.static.IsMenuLevel() )
+	if ( class'WorldInfo'.static.IsMenuLevel() 
+		&& !class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) ) // @PSX
 	{
 		Manager.ManagerObject.SetBool("backgroundVisible", true);
 	}

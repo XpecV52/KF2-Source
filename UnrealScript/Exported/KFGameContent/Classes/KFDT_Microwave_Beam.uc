@@ -63,7 +63,6 @@ class KFDT_Microwave_Beam extends KFDT_Microwave
 
 
 
-
 #linenumber 14;
 
 /** Test obliterate conditions when taking damage */

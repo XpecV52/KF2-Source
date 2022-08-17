@@ -128,6 +128,7 @@ defaultproperties
     DampenFactor=0.2
     DampenFactorParallel=0.3
     LandedTranslationOffset=(X=-8,Y=0,Z=0)
+    WeaponSelectTexture=Texture2D'wep_ui_dynamite_tex.UI_WeaponSelect_Dynamite'
     GlassShatterType=FracturedMeshGlassShatterType.FMGS_ShatterNone
     TossZ=400
     ExplosionActorClass=Class'KFGame.KFExplosionActor'

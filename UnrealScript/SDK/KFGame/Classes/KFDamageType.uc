@@ -20,6 +20,12 @@ var class<KFWeaponDefinition> WeaponDef;
 /** Won't do damage to the instigator */
 var bool bNoInstigatorDamage;
 
+/** Scale up damage to the zed when the head is blown off by this amount. Used for weapons with multiple projectiles like shotguns so you get the effect of all pellets hitting the head */
+var float HeadDestructionDamageScale;
+
+/** Scale up ragdoll impulse force to the zed's body when the head is blown off by this amount. Used for weapons with multiple projectiles like shotguns so you get the effect of all pellets hitting the head */
+var float HeadDestructionImpulseForceScale;
+
 /*********************************************************************************************
 Damage over time
  ********************************************************************************************* */
@@ -64,6 +70,7 @@ var float BurnPower;
 var float EMPPower;
 var float PoisonPower;
 var float MicrowavePower;
+var float FreezePower;
 
 /*********************************************************************************************
 Impact Effects
@@ -163,6 +170,9 @@ var name DeathMaterialEffectParamName;
 
 /** Interpolation duration for death material parameter above */
 var float DeathMaterialEffectDuration;
+
+/** Custom override that bypasses skin type system for one-off damage types. */
+var ParticleSystem OverrideImpactEffect;
 
 /** Custom override that bypasses skin type system for one-off damage types. */
 var AKEvent OverrideImpactSound;
@@ -296,7 +306,14 @@ static function PlayImpactHitEffects( KFPawn P, vector HitLocation, vector HitDi
 		SkinType = P.GetHitZoneSkinTypeEffects( HitZoneIndex );
 		if( SkinType != none )
 		{
-			SkinType.PlayImpactParticleEffect(P, HitLocation, HitDirection, HitZoneIndex, default.EffectGroup);
+			if( default.OverrideImpactEffect != none )
+			{
+				P.WorldInfo.MyEmitterPool.SpawnEmitter( default.OverrideImpactEffect, HitLocation, rotator(-HitDirection), P );
+			}
+			else
+			{
+				SkinType.PlayImpactParticleEffect(P, HitLocation, HitDirection, HitZoneIndex, default.EffectGroup);
+			}
 
 			if ( default.OverrideImpactSound != None )
 			{
@@ -305,9 +322,20 @@ static function PlayImpactHitEffects( KFPawn P, vector HitLocation, vector HitDi
 			else
 			{
 				SkinType.PlayTakeHitSound(P, HitLocation, HitInstigator, default.EffectGroup);
-			}				
+			}
+			return;
 		}
 	}
+
+	// Play overrides even if we had no skin type
+	if( default.OverrideImpactEffect != none )
+	{
+		P.WorldInfo.MyEmitterPool.SpawnEmitter( default.OverrideImpactEffect, HitLocation, rotator(-HitDirection), P );
+	}
+	if ( default.OverrideImpactSound != None )
+	{
+		P.PlaySoundBase(default.OverrideImpactSound, true,,, HitLocation);
+	}	
 }
 
 static function bool IsNotPerkBound()
@@ -333,6 +361,8 @@ Defaultproperties
 	bExtraMomentumZ=false
 	bCausesFracture=true
 	KDamageImpulse=400
+	HeadDestructionDamageScale=1.0
+	HeadDestructionImpulseForceScale=1.0
 
 	BloodSpread=0.0
 	BloodScale=1.0

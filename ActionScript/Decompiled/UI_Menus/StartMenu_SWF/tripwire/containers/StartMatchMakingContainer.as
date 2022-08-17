@@ -44,6 +44,7 @@ package tripwire.containers
         {
             super();
             defaultFirstElement = this.modeButton;
+            defaultNumPrompts = 2;
         }
         
         override protected function addedToStage(param1:Event) : void

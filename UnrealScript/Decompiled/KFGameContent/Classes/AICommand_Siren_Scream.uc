@@ -58,7 +58,7 @@ state Command_SpecialMove
 
         if(((Outer.Enemy != none) && SpecialMove != 0) && !bShouldCheckSpecialMove || Outer.MyKFPawn.CanDoSpecialMove(SpecialMove))
         {
-            if((Outer.WorldInfo.TimeSeconds - LastScreamTime) < ScreamCooldown)
+            if(((Outer.WorldInfo.TimeSeconds - LastScreamTime) < ScreamCooldown) || !Outer.CheckOverallCooldownTimer())
             {
                 return false;
             }
@@ -72,6 +72,10 @@ state Command_SpecialMove
             if(((RangeToEnemy < float(MaxScreamRange)) && RangeToEnemy > float(MinScreamRange)) && Outer.Trace(HitL, HitN, EnemyLocation, MyEyeLocation, false,,, Outer.1) == none)
             {
                 LastScreamTime = Outer.WorldInfo.TimeSeconds;
+                if((KFGameInfo(Outer.WorldInfo.Game) != none) && KFGameInfo(Outer.WorldInfo.Game).GameConductor != none)
+                {
+                    KFGameInfo(Outer.WorldInfo.Game).GameConductor.UpdateOverallAttackCoolDowns(Outer);
+                }
                 return true;
             }
         }

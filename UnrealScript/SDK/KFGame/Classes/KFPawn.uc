@@ -11,7 +11,7 @@ class KFPawn extends BaseAIPawn
 	abstract
 	nativereplication
 	native(Pawn)
-	dependson(KFPhysicalMaterialProperty,KFPawnVoiceGroup);
+	dependson(KFPhysicalMaterialProperty,KFPawnVoiceGroup,KFPawnAfflictions);
 
 `include(KFGame\KFGameAnalytics.uci);
 `include(KFGame\KFMatchStats.uci);
@@ -29,6 +29,10 @@ var KFPawnSoundGroup		SoundGroupArch;
 var class<KFPawnVoiceGroup>	VoiceGroupArch;
 /** This pawn's anim info archetype based on character info */
 var KFPawnAnimInfo			PawnAnimInfo;
+/** This classes key to look up name to be displayed in UI **/
+var name LocalizationKey;
+
+var Texture2D CharacterPortrait;
 
 /*********************************************************************************************
  * @name	Pawn meshes and mesh components
@@ -61,19 +65,6 @@ var globalconfig bool bAllowAlwaysOnPhysics;
  * @name	Damage & Hit Zones
  ********************************************************************************************* */
 
-/** Abstracted body parts that can be associated with multiple zones */
-enum EHitZoneBodyPart
-{
-	BP_None,
-	BP_Head,
-	BP_Torso,
-	BP_LeftArm,
-	BP_RightArm,
-	BP_LeftLeg,
-	BP_RightLeg,
-	BP_Special,
-};
-
 /** All pawns share a common head index.  Use enum to access from any class */
 enum EHitZoneIndex
 {
@@ -84,8 +75,8 @@ struct native HitZoneInfo
 {
 	var() name         		ZoneName;           // The name of this hitzone
 	var() name		   		BoneName;			// Name of the bone that corresponds to this hitzone
-	var() int          		GoreHealth;			// The amount of health this zone has left (Not Replicated)
-	var() float		    	DmgScale;			// Damage Multiplier
+	var() int          		GoreHealth;			// The base amount of health for this hitzone, and stores health this zone has left (Not Replicated)
+	var() float		    	DmgScale;			// Damage multiplier for damage taken on this hitzone
 	var() EHitZoneBodyPart	Limb;				// Group zones together for hit reactions
 	var() byte				SkinID;				// ID used for impact effects
 
@@ -148,6 +139,8 @@ struct native ExplosiveStackInfo
 /** List of active explosives that deal reduced damage when stacked */
 var array<ExplosiveStackInfo> RecentExplosiveStacks;
 
+/** The last time this pawn dealt or received any damage */
+var transient float LastTimeDamageHappened;
 /*********************************************************************************************
  * @name	HitFX & Gore
  ********************************************************************************************* */
@@ -248,7 +241,13 @@ var transient float LastGibCollisionTime;
  * @name	Status Effects
  ********************************************************************************************* */
 
+/* Manages various types of afflictions that this pawn may have that has smoe type of gameplay affect (such as panicking from fire, disrupted by EMP, etc) */
 var instanced KFPawnAfflictions AfflictionHandler;
+
+/** Afflications that are one off and happen instantly if the input damage crosses the resistance threshold (e.g. Knockdown, Stumble)*/
+var protected array<IncapResist> 		InstantIncaps;
+/** Afflications that accumlate/decay over time and can stack with eachother (e.g. Panic, Burning) and are triggered when the accumulated value crosses the threshold */
+var protected array<StackingIncapInfo> 	StackingIncaps;
 
 /** Bit-flags 0:Alive 1:Dead.  Up to (first) 32 hit zones */
 var repnotify int InjuredHitZones;
@@ -319,7 +318,7 @@ var(Physics) float		PhysicsImpactBlendOutTime;
 var	float PhysicsImpactBlendTimeToGo;
 
 /** Artifically scale impulses, to counter mass, for ragdoll hit reactions. */
-var(Physics) float PhysRagdollImpulseScale;
+var(Physics)	float		PhysRagdollImpulseScale;
 /** As above, but applied to living (aka knockdown) impulse */
 var(Physics) float KnockdownImpulseScale;
 
@@ -332,15 +331,14 @@ var const vector	LastRootRigidBodyTestLoc;
  * @name	Movement & Physics
  ********************************************************************************************* */
 
-/** pct. of movement speed while sprinting */
-//var float SprintingPct;
+/** Base movement speed while sprinting */
 var	float SprintSpeed;
 
 /** currently sprinting */
 var bool bIsSprinting;
 
-/** MaxSpeedModifier is scaled by this value if player is moving backwards */
-var float BackPedalSpeedMod;
+/** Movement rate while sprinting + strafe/backpedal.  If zero, ignore and move at full speed */
+var float SprintStrafeSpeed;
 
 /** Replicated Floor property, used to set Floor on the client (for anims), currently used by Crawler */
 var repnotify vector ReplicatedFloor;
@@ -410,6 +408,9 @@ var KFWeapon MyKFWeapon;
 
 /** Last time WeaponFired() was called, used by animation */
 var float LastWeaponFireTime;
+
+/** Whether this pawn needs a crosshair regardless of whether it has a weapon */
+var bool bNeedsCrosshair;
 
 /*********************************************************************************************
  * @name	Animation
@@ -487,6 +488,8 @@ struct native LookAtInfo
 	var vector	TargetOffset;
 	/** Pct to look at the target */
 	var float	LookAtPct;
+	/** Forced lookat location, overrides lookattarget */
+	var vector 	ForcedLookAtLocation;
 };
 
 /** Skeletal controller for head bone */
@@ -524,9 +527,11 @@ enum ESpecialMove
 	SM_Knockdown,
 	SM_DeathAnim,
 	SM_Stunned,
+	SM_Frozen,
 
 	/** ZED Misc */
 	SM_Emerge,
+	SM_Jump,
 	SM_Taunt,
 	SM_WalkingTaunt,
 	SM_Evade,
@@ -535,13 +540,22 @@ enum ESpecialMove
 
 	/** ZED special attacks */
 	SM_SonicAttack,
-	SM_StandAndShotAttack,
+	SM_StandAndShootAttack,
 	SM_HoseWeaponAttack,
 	SM_Suicide,
+
+	/** Versus */
+	SM_PlayerZedAttack1,
+	SM_PlayerZedAttack2,
+	SM_PlayerZedSpecial1,
+	SM_PlayerZedSpecial2,
+	SM_PlayerZedSpecial3,
+	SM_PlayerZedSpecial4,
 
 	/** Human Moves */
 	SM_GrappleVictim,
 	SM_HansGrappleVictim,
+	SM_SirenVortexVictim,
 
 	/** Boss special attacks */
 	SM_BossTheatrics,
@@ -676,8 +690,11 @@ var transient float		CurrentTurningRadius;
 var float				AccelConvergeFalloffDistance;
 /** Pawn acceleration from previous frame */
 var transient vector	OldAcceleration;
+/** AI using this pawn will pause for this amount of time when taking "heavy" damage */
 var float				DamageRecoveryTimeHeavy;
+/** AI using this pawn will pause for this amount of time when taking "medium" damage */
 var float				DamageRecoveryTimeMedium;
+/** How fast an AI will move when using this pawn when they are hidden from player view */
 var	float				HiddenGroundSpeed;
 /** AI Zeds won't target this pawn if this is true */
 var bool                bAIZedsIgnoreMe;
@@ -1015,12 +1032,12 @@ simulated function InitRBSettings()
 ********************************************************************************************* */
 
 /** Set various basic properties for this KFPawn based on the character class metadata */
-simulated function SetCharacterArch( KFCharacterInfoBase Info )
+simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bForce )
 {
 	local KFPlayerReplicationInfo KFPRI;
 
     KFPRI = KFPlayerReplicationInfo( PlayerReplicationInfo );
-	if (Info != CharacterArch)
+	if (Info != CharacterArch || bForce)
 	{
 		// Set Family Info
 		CharacterArch = Info;
@@ -1075,6 +1092,27 @@ simulated function SetCharacterArch( KFCharacterInfoBase Info )
 	}
 }
 
+/**
+ * Called from PlayerController UpdateRotation() -> ProcessViewRotation() to (pre)process player ViewRotation
+ * adds delta rot (player input), applies any limits and post-processing
+ * returns the final ViewRotation set on PlayerController
+ *
+ * @param	DeltaTime, time since last frame
+ * @param	ViewRotation, actual PlayerController view rotation
+ * @input	out_DeltaRot, delta rotation to be applied on ViewRotation. Represents player's input.
+ * @return	processed ViewRotation to be set on PlayerController.
+ */
+simulated function ProcessViewRotation( float DeltaTime, out rotator out_ViewRotation, out Rotator out_DeltaRot )
+{
+	super.ProcessViewRotation( DeltaTime, out_ViewRotation, out_DeltaRot );
+
+	// Allow special moves to alter view rotation
+	if( SpecialMove != SM_None && SpecialMoves[SpecialMove] != none )
+	{
+		SpecialMoves[SpecialMove].ProcessViewRotation( DeltaTime, out_ViewRotation, out_DeltaRot );
+	}
+}
+
 /** Setup animation and ragdoll here */
 simulated function SetCharacterAnimationInfo()
 {
@@ -1122,12 +1160,8 @@ simulated function SetGameplayMICParams()
     }
 }
 
-/** Called when SwitchToGoreLOD is successful */
-simulated event NotifyGoreLODActive()
-{
-    // Need to reset material params since our BodyMIC could have changed
-	SetGameplayMICParams();
-}
+/** If true, assign custom player controlled skin when available */
+simulated function bool UsePlayerControlledZedSkin();
 
 /*********************************************************************************************
  * @name	Camera Methods
@@ -1693,12 +1727,70 @@ final simulated function bool CanReloadWeapon()
 }
 
 /**
- * Returns location to use when testing if this pawn was hit by a melee attack.  Useful to override, e.g., for
- * small creatures close to the ground.
+ * Toss active weapon using default settings (location+velocity).
+ *
+ * @param DamageType  allows this function to do different behaviors based on the damage type
  */
-simulated function vector GetMeleeHitTestLocation()
+function ThrowActiveWeapon( optional bool bDestroyWeap )
 {
-	return Location;
+	local float BestPrimaryRating, BestSecondaryRating, BestMeleeRating;
+	local KFWeapon BestWeapon, BestPrimary, BestSecondary, BestMelee, TempWeapon;
+
+	// Only throw on server
+	if( Role < ROLE_Authority )
+	{
+		return;
+	}
+
+	// If we're dead, throw our best weapon if the one we have out can't be thrown
+	if( InvManager != none && Health <= 0 && (Weapon == none || !Weapon.bDropOnDeath || !Weapon.CanThrow()) )
+	{
+		foreach InvManager.InventoryActors( class'KFWeapon', TempWeapon )
+		{
+			// We only care about weapons we can actually drop
+			if( !TempWeapon.bDropOnDeath || !TempWeapon.CanThrow() )
+			{
+				continue;
+			}
+
+			// Collect the best weapons from each inventory group
+			if( TempWeapon.InventoryGroup == IG_Primary )
+			{
+				if( BestPrimaryRating == 0.f || TempWeapon.GroupPriority > BestPrimaryRating )
+				{
+					BestPrimary = TempWeapon;
+					BestPrimaryRating = TempWeapon.GroupPriority;
+				}
+			}
+			else if( TempWeapon.InventoryGroup == IG_Secondary )
+			{
+				if( BestSecondaryRating == 0.f || TempWeapon.GroupPriority > BestSecondaryRating )
+				{
+					BestSecondary = TempWeapon;
+					BestSecondaryRating = TempWeapon.GroupPriority;
+				}
+			}
+			else if( TempWeapon.InventoryGroup == IG_Melee )
+			{
+				if( BestMeleeRating == 0.f || TempWeapon.GroupPriority > BestMeleeRating )
+				{
+					BestMelee = TempWeapon;
+					BestMeleeRating = TempWeapon.GroupPriority;
+				}
+			}
+		}
+
+		// Get our best possible weapon from all 3 categories and throw it
+		BestWeapon = BestPrimary != none ? BestPrimary : (BestSecondary != none ? BestSecondary : BestMelee);
+		if( BestWeapon != none )
+		{
+			TossInventory( BestWeapon );
+		}
+	}
+	else
+	{
+		super.ThrowActiveWeapon( bDestroyWeap );
+	}
 }
 
 /** Called by KFPawnAnimInfo when determining whether an attack can be performed */
@@ -1764,34 +1856,34 @@ simulated function vector GetAutoLookAtLocation(vector CamLoc, Pawn InstigatingP
 	local vector			HitLocation, HitNormal;
 	local Actor				HitActor;
 	local TraceHitInfo		HitInfo;
-	local vector            HeadLocation, TorsoLocation, PelvisLocation;    
+	local vector            HeadLocation, TorsoLocation, PelvisLocation;
 
     // Check to see if we can hit the head
-	HeadLocation = Mesh.GetBoneLocation(HeadBoneName);
-	HitActor = InstigatingPawn.Trace(HitLocation, HitNormal, HeadLocation, CamLoc, TRUE, vect(0,0,0), HitInfo, TRACEFLAG_Bullet);
+    HeadLocation = Mesh.GetBoneLocation(HeadBoneName);
+    HitActor = InstigatingPawn.Trace(HitLocation, HitNormal, HeadLocation, CamLoc, TRUE, vect(0,0,0), HitInfo, TRACEFLAG_Bullet);
 	if( HitActor == none || HitActor == Self )
-	{
-		//`log("Autotarget - found head");
-		return HeadLocation + (vect(0,0,-10.0));
-	}
-   
-	// Try for the torso
-    TorsoLocation = Mesh.GetBoneLocation(TorsoBoneName);
-    HitActor = InstigatingPawn.Trace(HitLocation, HitNormal, TorsoLocation, CamLoc, TRUE, vect(0,0,0), HitInfo, TRACEFLAG_Bullet);
-    if( HitActor == none || HitActor == Self)
     {
-        //`log("Autotarget - found torso");
-        return TorsoLocation;
+        //`log("Autotarget - found head");
+        return HeadLocation + (vect(0,0,-10.0));
     }
 
-	// Try for the pelvis
-    PelvisLocation = Mesh.GetBoneLocation(PelvisBoneName);
+	// Try for the torso
+        TorsoLocation = Mesh.GetBoneLocation(TorsoBoneName);
+    HitActor = InstigatingPawn.Trace(HitLocation, HitNormal, TorsoLocation, CamLoc, TRUE, vect(0,0,0), HitInfo, TRACEFLAG_Bullet);
+        if( HitActor == none || HitActor == Self)
+        {
+            //`log("Autotarget - found torso");
+            return TorsoLocation;
+        }
+
+            // Try for the pelvis
+            PelvisLocation = Mesh.GetBoneLocation(PelvisBoneName);
     HitActor = InstigatingPawn.Trace(HitLocation, HitNormal, PelvisLocation, CamLoc, TRUE, vect(0,0,0), HitInfo, TRACEFLAG_Bullet);
-    if( HitActor == none || HitActor == Self)
-    {
-        //`log("Autotarget - found pelvis");
-        return PelvisLocation;
-    }
+            if( HitActor == none || HitActor == Self)
+            {
+                //`log("Autotarget - found pelvis");
+                return PelvisLocation;
+            }
 
     //`log("Autotarget - found noting - returning location");
     return Location + BaseEyeHeight * vect(0,0,0.5f);
@@ -1837,7 +1929,7 @@ function SetSprinting(bool bNewSprintStatus)
 /** Perform jump if bJumpCapable=TRUE */
 function bool DoJump( bool bUpdating )
 {
-	if ( Super.DoJump(bUpdating) )
+	if ( Super.DoJump(bUpdating) && !IsDoingSpecialMove() )
 	{
 		// cancel ironsights
 		if ( MyKFWeapon != None && MyKFWeapon.bUsingSights )
@@ -2202,11 +2294,10 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	}
 
 	// Increase AI damage by AI Damage modifiers
-    if( InDamage > 0 && InstigatedBy != none && !InstigatedBy.bIsPlayer
-        && KFAIController_Monster(InstigatedBy) != none )
+    if( InDamage > 0 && InstigatedBy != none && KFPawn_Monster(InstigatedBy.Pawn) != none )
 	{
-		`log(self@GetFuncName()@" Difficulty Damage Mod ="$KFAIController_Monster(InstigatedBy).DifficultyDamageMod, bLogTakeDamage);
-        InDamage = Max(InDamage * KFAIController_Monster(InstigatedBy).DifficultyDamageMod, 1);
+		`log(self@GetFuncName()@" Difficulty Damage Mod ="$KFPawn_Monster(InstigatedBy.Pawn).DifficultyDamageMod, bLogTakeDamage);
+        InDamage = Max(InDamage * KFPawn_Monster(InstigatedBy.Pawn).DifficultyDamageMod, 1);
 	}
 
 	// apply zone specific vulnerability/resistance
@@ -2219,6 +2310,11 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
     `log(self@GetFuncName()@" After KFPawn adjustment Damage="$InDamage@"Momentum="$Momentum@"Zone="$HitInfo.BoneName@"DamageType="$DamageType, bLogTakeDamage);
 }
 
+/** Updates the time damage was dealt or received */
+function UpdateLastTimeDamageHappened()
+{
+	LastTimeDamageHappened = WorldInfo.TimeSeconds;
+}
 
 /** Adjusts RadiusDamage (called just before AdjustDamage) */
 function AdjustRadiusDamage(out float InBaseDamage, float DamageScale, vector HurtOrigin)
@@ -2237,7 +2333,7 @@ function AdjustRadiusDamage(out float InBaseDamage, float DamageScale, vector Hu
 	    FlushPersistentDebugLines();
 		DrawDebugSphere( LastRadiusHurtOrigin, LastRadiusDamageScale, 10, 255, 255, 0, true );
 	}
-`endif	
+`endif
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
 }
 
@@ -2253,7 +2349,7 @@ function float GetExposureTo(vector TraceStart)
 //    DrawDebugLine(Mesh.GetBoneLocation(RightFootBoneName), TraceStart, 255, 0, 0, TRUE);
 //    DrawDebugLine(Location, TraceStart, 255, 0, 0, TRUE);
 
-	
+
 	if( FastTrace(Mesh.GetBoneLocation(HeadBoneName), TraceStart,, true) )
 	{
 		PercentExposed += 0.4;
@@ -2500,16 +2596,16 @@ function bool NotifyAttackParried(Pawn InstigatedBy, byte InParryStrength)
 			}
 
 			if( CanDoSpecialMove(SM_KnockDown) && InstigatorPerk != none && InstigatorPerk.ShouldKnockdown() )
-			{
+		{
 				Knockdown(, vect(1,1,20),,,, 1000 * Normal(Location - InstigatorPawn.Location ), Location);
-			}
+		}
 			else
-			{
+		{
 				DoSpecialMove(SM_Stumble,,, class'KFSM_Stumble'.static.PackParrySMFlags(self, Location - InstigatedBy.Location));
-			}
+		}
 
 			return TRUE;
-		}
+	}
 	}
 
 	return FALSE;
@@ -2600,7 +2696,7 @@ function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, clas
 	bHasNewHitEffect = true;
 
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
-`if(`notdefined(ShippingPC))	
+`if(`notdefined(ShippingPC))
 	if( WorldInfo.Game != none && KFGameInfo(WorldInfo.Game).bNVAlwaysHeadshot )
 	{
 		HitZoneIdx = HZI_HEAD;
@@ -2653,8 +2749,8 @@ function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, clas
 			HitFxInfo.HitLocation.Z += FRand();
 		}
 
-		if ( bPlayedDeath && KFDT != none && KFDT.default.bCanObliterate )
-		{
+			if ( bPlayedDeath && KFDT != none && KFDT.default.bCanObliterate )
+			{
 			HitFxInfo.bObliterated = KFDT.static.CheckObliterate(self, Damage);
 		}
 
@@ -2672,7 +2768,7 @@ function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, clas
                 KFPlayerController(InstigatedBy).AddHeadHit(1);
             }
 
-			TakeHitZoneDamage(Damage, HitFxInfo.DamageType, HitZoneIdx, InstigatedBy.Pawn.Location);
+            TakeHitZoneDamage(Damage, HitFxInfo.DamageType, HitZoneIdx, InstigatedBy.Pawn.Location);
 		}
 		else
 		{
@@ -2689,8 +2785,6 @@ function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, clas
 	bNeedsProcessHitFx = true;
 	LastPainTime = WorldInfo.TimeSeconds;
 
-	/** __TW_ANALYTICS_ */
-	`RecordKFDamage(`StatID(DAMAGE_GENERIC), InstigatedBy, self, HitZoneIdx, Damage, DamageType)
 	//Record weapon Damage for AAR
 	`RecordWeaponDamage(InstigatedBy, KFDT, Damage, Self, HitZoneIdx);
 }
@@ -2770,15 +2864,41 @@ function bool CanInjureHitZone(class<DamageType> DamageType, int HitZoneIdx)
 /** Plays clientside hit effects using the data in HitFxInfo */
 simulated function PlayTakeHitEffects( vector HitDirection, vector HitLocation )
 {
+	local KFPlayerController KFPC;
+	local class<KFDamageType> DmgType;
 	local KFPawn InstigatedBy;
+	
+	DmgType = HitFxInfo.DamageType;
+
+	if( IsLocallyControlled() && !Controller.bGodMode )
+	{
+		// Apply gameplay post process effects
+		KFPC = KFPlayerController(Controller);
+		if( KFPC != none && DmgType != None )
+		{
+			KFPC.PlayScreenHitFX(DmgType, true);
+
+			// assumes all types with radial impulse (which include husk fireball) are "explosive"
+			if( Dmgtype.default.RadialDamageImpulse > 0 )
+			{
+				KFPC.PlayEarRingEffect( ByteToFloat(HitFxRadialInfo.RadiusDamageScale) );
+			}
+		}
+
+		// Allow weapon to play additional special effects
+		if( MyKFWeapon != None )
+		{
+			MyKFWeapon.PlayTakeHitEffects(HitFxInfo.HitLocation, HitFxInstigator);
+		}
+	}
 
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
-`if(`notdefined(ShippingPC))	
+`if(`notdefined(ShippingPC))
 	if( WorldInfo.Game != none && KFGameInfo(WorldInfo.Game).bNVAlwaysHeadshot )
 	{
 		HitFxInfo.HitBoneIndex = HZI_HEAD;
 	}
-`endif	
+`endif
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
 
 	if ( HitFxInfo.DamageType != None )
@@ -3231,9 +3351,22 @@ simulated final function SetAimOffsetNodesProfile(Name NewProfileName)
 {
 	local int i;
 
-	for(i=0; i<AimOffsetNodes.Length; i++)
+	for( i=0; i<AimOffsetNodes.Length; ++i )
 	{
-		AimOffsetNodes[i].SetActiveProfileByName(NewProfileName);
+		AimOffsetNodes[i].SetActiveProfileByName( NewProfileName );
+	}
+}
+
+/**
+ * Returns aim offset profile to default (index 0)
+ */
+simulated final function SetDefaultAimOffsetNodesProfile()
+{
+	local int i;
+
+	for( i=0; i<AimOffsetNodes.Length; ++i )
+	{
+		AimOffsetNodes[i].SetActiveProfileByIndex( 0 );
 	}
 }
 
@@ -3269,7 +3402,7 @@ simulated function UpdateMeshForFleXCollision()
 	{
 		// @note: also requires that scene query flag is set (see InstancePhysXGeom)
 		Mesh.bUpdateKinematicBonesFromAnimation = true;
-		Mesh.MinDistFactorForKinematicUpdate = 0.0;		
+		Mesh.MinDistFactorForKinematicUpdate = 0.0;
 	}
 }
 
@@ -3517,6 +3650,12 @@ simulated event Tick( float DeltaTime )
 		}
 	}
 
+	// Tick special moves
+	if( SpecialMove != SM_None && SpecialMoves[SpecialMove] != none )
+	{
+		SpecialMoves[SpecialMove].Tick( DeltaTime );
+	}
+
 	// always clear for server (client already clears in ProcessHitFx)
 	bNeedsProcessHitFx = false;
 }
@@ -3719,6 +3858,15 @@ simulated event DoSpecialMove(ESpecialMove NewMove, optional bool bForceMove, op
 }
 
 /**
+ * Replicate a client initiated special move
+ * @note: move entry validation happens independently and could become out of sync
+ */
+reliable server final function ServerDoSpecialMove(ESpecialMove NewMove, optional bool bForceMove, optional Pawn InInteractionPawn, optional byte InSpecialMoveFlags, optional bool bSkipReplication)
+{
+	DoSpecialMove(NewMove, bForceMove, InInteractionPawn, InSpecialMoveFlags, bSkipReplication);
+}
+
+/**
  * Request to abort/stop current SpecialMove
  */
 simulated final event EndSpecialMove(optional ESpecialMove SpecialMoveToEnd, optional bool bForceNetSync)
@@ -3733,6 +3881,9 @@ simulated event bool CanDoSpecialMove(ESpecialMove AMove, optional bool bForceCh
 {
 	return SpecialMoveHandler.CanDoSpecialMove( AMove, bForceCheck );
 }
+
+/** Called from KFSpecialMove::SpecialMoveEnded */
+simulated function NotifySpecialMoveEnded( KFSpecialMove FinishedMove, ESpecialMove SMHandle );
 
 simulated event bool IsMovementDisabledDuringSpecialMove()
 {
@@ -3751,8 +3902,8 @@ function bool CanBeGrabbed(KFPawn GrabbingPawn, optional bool bIgnoreFalling)
 		return false;
 	}
 
-	// Don't allow weak zed grabs if we're waiting for a cooldown
-    if( GrabbingPawn.bWeakZedGrab && WeakZedGrabCooldown > 0
+	// Don't allow weak AI zed grabs if we're waiting for a cooldown
+    if( GrabbingPawn.MyKFAIC != None && GrabbingPawn.bWeakZedGrab && WeakZedGrabCooldown > 0
         && `TimeSince(WeakZedGrabCooldown) < 0 )
     {
         //`log("Can't be grabbed because cooldown "$`TimeSince(WeakZedGrabCooldown));
@@ -4099,6 +4250,16 @@ State Dying
 }
 
 /*********************************************************************************************
+ * @name	UI / Localization 
+ ********************************************************************************************* */
+/**Looks up and returns localized name */
+
+function string GetLocalizedName()
+{
+	return "";
+}
+
+/*********************************************************************************************
  * @name	Particle systems
  ********************************************************************************************* */
 /** Shuts down provided emitter */
@@ -4175,7 +4336,7 @@ defaultproperties
 	ArmsMesh=FirstPersonArms
 
     Begin Object Class=AkComponent name=AmbientAkSoundComponent_0
-        BoneName=RW_Weapon
+        BoneName=dummy
         bStopWhenOwnerDestroyed=true
         bForceOcclusionUpdateInterval=true
         // OcclusionUpdateInterval is set in SetWeaponAmbientSound based on first/third person
@@ -4184,7 +4345,7 @@ defaultproperties
     Components.Add(AmbientAkSoundComponent_0)
 
     Begin Object Class=AkComponent name=AmbientAkSoundComponent_1
-    	BoneName=Spine1 // need bone name so it doesn't interfere with default PlaySoundBase functionality
+    	BoneName=dummy // need bone name so it doesn't interfere with default PlaySoundBase functionality
     	bStopWhenOwnerDestroyed=true
     End Object
     AmbientAkComponent=AmbientAkSoundComponent_1
@@ -4195,7 +4356,7 @@ defaultproperties
     WeaponAmbientEchoHandler=WeaponAmbientEchoHandler_0
 
     Begin Object Class=AkComponent name=FootstepAkSoundComponent
-        BoneName=Root
+        BoneName=dummy
         bForceOcclusionUpdateInterval=true
 		OcclusionUpdateInterval=0.f // never update occlusion for footsteps
 		bStopWhenOwnerDestroyed=true
@@ -4204,7 +4365,7 @@ defaultproperties
     Components.Add(FootstepAkSoundComponent)
 
     Begin Object Class=AkComponent name=DialogAkSoundComponent
-    	BoneName=Head
+    	BoneName=dummy
     	//bForceOcclusionUpdateInterval=true
     	//OcclusionUpdateInterval=0.2f
     	bStopWhenOwnerDestroyed=true
@@ -4276,7 +4437,6 @@ defaultproperties
 	SprintSpeed=460.f
 	WalkingPct=0.40
 	CrouchedPct=0.40
-	BackPedalSpeedMod=1.0f//0.75f
 	bWeaponBob=true
 	Bob=0.010
 	ExtraCostForPath=0
@@ -4305,12 +4465,13 @@ defaultproperties
 	// ---------------------------------------------
 	// Affictions
 	Begin Object Class=KFPawnAfflictions Name=Afflictions_0
-		StackingAffl(SAF_EMPPanic)=(Threshhold=1.0,Duration=5.0,Cooldown=5.0,DissipationRate=0.5)
-		StackingAffl(SAF_FirePanic)=(Threshhold=10.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.0)
 		FireFullyCharredDuration=2.5
    	 	FireCharPercentThreshhold=0.25
 	End Object
 	AfflictionHandler=Afflictions_0
+
+	StackingIncaps(SAF_EMPPanic)=(Threshhold=1.0,Duration=5.0,Cooldown=5.0,DissipationRate=0.5)
+	StackingIncaps(SAF_FirePanic)=(Threshhold=10.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.0)
 
 	// ---------------------------------------------
 	// AI / Navigation
@@ -4321,6 +4482,8 @@ defaultproperties
 
 	WeaponAttachmentSocket=RW_Weapon
 	bWeaponAttachmentVisible=true
+
+	bNeedsCrosshair=false
 
 	TeammateCollisionRadiusPercent=0.80
 

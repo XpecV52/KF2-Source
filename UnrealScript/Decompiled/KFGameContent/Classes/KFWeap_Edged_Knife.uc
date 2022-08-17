@@ -9,11 +9,6 @@ class KFWeap_Edged_Knife extends KFWeap_MeleeBase
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
-function class<KFWeaponDefinition> GetKnifeWeaponDef()
-{
-    return AssociatedPerkClass.default.KnifeWeaponDef;
-}
-
 defaultproperties
 {
     MaxChainAtkCount=4
@@ -32,6 +27,7 @@ defaultproperties
         ChainSequence_L=/* Array type was not detected. */
         ChainSequence_R=/* Array type was not detected. */
         WorldImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Bladed_melee_impact'
+        MeleeImpactCamShakeScale=0.2
         MaxHitRange=220
         HitboxChain=/* Array type was not detected. */
     object end

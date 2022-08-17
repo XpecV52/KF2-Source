@@ -49,7 +49,7 @@ defaultproperties
         StaticMesh=StaticMesh'ENV_Collectible_MESH.Env_Dosh_Collectible'
         bNeverBecomeDynamic=true
         ReplacementPrimitive=none
-        LightingChannels=(bInitialized=true,Dynamic=true,Indoor=true,Outdoor=true)
+        LightingChannels=(Dynamic=true)
     object end
     // Reference: StaticMeshComponent'Default__KFCollectibleActor.StaticMeshComponent0'
     Components(1)=StaticMeshComponent0

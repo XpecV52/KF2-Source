@@ -38,6 +38,7 @@ var const float FireballFireIntervalNormal;
 var const float FireballFireIntervalHard;
 var const float FireballFireIntervalSuicidal;
 var const float FireballFireIntervalHellOnEarth;
+var const float LowIntensityAttackScaleOfFireballInterval;
 var Vector FireOffset;
 
 function bool IsNearDoor()
@@ -85,6 +86,7 @@ event PostBeginPlay()
             }
         }
     }
+    LowIntensityAttackCooldown = BaseTimeBetweenFireBalls * LowIntensityAttackScaleOfFireballInterval;
     TimeBetweenFireBalls = BaseTimeBetweenFireBalls + RandRange(-FireballRandomizedValue, FireballRandomizedValue);
 }
 
@@ -113,12 +115,20 @@ simulated function Tick(float DeltaTime)
                     {
                         if(CanDoFlamethrower(DistToTargetSq))
                         {
+                            if((KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).GameConductor != none)
+                            {
+                                KFGameInfo(WorldInfo.Game).GameConductor.UpdateOverallAttackCoolDowns(self);
+                            }
                             Class'AICommand_HuskFlameThrowerAttack'.static.FlameThrowerAttack(self);                            
                         }
                         else
                         {
                             if(CanDoFireball(DistToTargetSq))
                             {
+                                if((KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).GameConductor != none)
+                                {
+                                    KFGameInfo(WorldInfo.Game).GameConductor.UpdateOverallAttackCoolDowns(self);
+                                }
                                 Class'AICommand_HuskFireBallAttack'.static.FireBallAttack(self);
                                 TimeBetweenFireBalls = BaseTimeBetweenFireBalls + RandRange(-FireballRandomizedValue, FireballRandomizedValue);
                             }
@@ -142,7 +152,7 @@ function bool IsSuicidal()
 
 function bool CanDoSuicide(float DistToTargetSq)
 {
-    if((DistToTargetSq <= (MinDistanceToSuicide * MinDistanceToSuicide)) && MyKFPawn.CanDoSpecialMove(19))
+    if((DistToTargetSq <= (MinDistanceToSuicide * MinDistanceToSuicide)) && MyKFPawn.CanDoSpecialMove(21))
     {
         return true;
     }
@@ -151,7 +161,11 @@ function bool CanDoSuicide(float DistToTargetSq)
 
 function bool CanDoFlamethrower(float DistToTargetSq)
 {
-    if(((bCanUseFlameThrower && (LastFlameThrowerTime == float(0)) || (WorldInfo.TimeSeconds - LastFlameThrowerTime) > TimeBetweenFlameThrower) && DistToTargetSq <= float(MaxDistanceForFlameThrower * MaxDistanceForFlameThrower)) && MyKFPawn.CanDoSpecialMove(18))
+    if(!CheckOverallCooldownTimer())
+    {
+        return false;
+    }
+    if(((bCanUseFlameThrower && (LastFlameThrowerTime == float(0)) || (WorldInfo.TimeSeconds - LastFlameThrowerTime) > TimeBetweenFlameThrower) && DistToTargetSq <= float(MaxDistanceForFlameThrower * MaxDistanceForFlameThrower)) && MyKFPawn.CanDoSpecialMove(20))
     {
         return true;
     }
@@ -160,7 +174,11 @@ function bool CanDoFlamethrower(float DistToTargetSq)
 
 function bool CanDoFireball(float DistToTargetSq)
 {
-    if((((LastFireBallTime == float(0)) || (WorldInfo.TimeSeconds - LastFireBallTime) > TimeBetweenFireBalls) && DistToTargetSq <= float(MaxDistanceForFireBall * MaxDistanceForFireBall)) && MyKFPawn.CanDoSpecialMove(17))
+    if(!CheckOverallCooldownTimer())
+    {
+        return false;
+    }
+    if((((LastFireBallTime == float(0)) || (WorldInfo.TimeSeconds - LastFireBallTime) > TimeBetweenFireBalls) && DistToTargetSq <= float(MaxDistanceForFireBall * MaxDistanceForFireBall)) && MyKFPawn.CanDoSpecialMove(19))
     {
         return true;
     }
@@ -169,7 +187,7 @@ function bool CanDoFireball(float DistToTargetSq)
 
 event bool SetEnemy(Pawn NewEnemy)
 {
-    if((MyKFPawn == none) || MyKFPawn.IsDoingSpecialMove(17))
+    if((MyKFPawn == none) || MyKFPawn.IsDoingSpecialMove(19))
     {
         if(MyKFPawn.NeedToTurn(NewEnemy.Location))
         {
@@ -223,7 +241,7 @@ function ShootFireball(class<KFProjectile> FireballClass)
         return;
     }
     SocketLocation = MyKFPawn.GetPawnViewLocation() + (FireOffset >> Pawn.GetViewRotation());
-    if(((float(MyKFPawn.Health) > 0) && Role == ROLE_Authority) && MyKFPawn.IsDoingSpecialMove(17))
+    if(((float(MyKFPawn.Health) > 0) && Role == ROLE_Authority) && MyKFPawn.IsDoingSpecialMove(19))
     {
         AimLocation = Enemy.Location;
         if(Skill == Class'KFDifficultyInfo'.static.GetDifficultyValue(0))
@@ -294,7 +312,7 @@ function ShootFireball(class<KFProjectile> FireballClass)
                 {
                     self.AILog_Internal(((((((string(GetFuncName()) @ " HitActor: ") @ string(HitActor)) @ " Is NOT My Enemy: ") @ string(Enemy)) @ " and distanceToHitLoc: ") @ string(distanceToHitLoc)) @ " is too close so not firing!!!", 'FireBall');
                 }
-                MyKFPawn.SpecialMoves[17].AbortedByAICommand();
+                MyKFPawn.SpecialMoves[19].AbortedByAICommand();
                 LastFireBallTime = WorldInfo.TimeSeconds;
                 return;                
             }
@@ -368,6 +386,7 @@ defaultproperties
     FireballFireIntervalHard=4.5
     FireballFireIntervalSuicidal=4
     FireballFireIntervalHellOnEarth=3.5
+    LowIntensityAttackScaleOfFireballInterval=1.25
     FireOffset=(X=15,Y=32,Z=-12)
     bCanTeleportCloser=false
     bUseDesiredRotationForMelee=false

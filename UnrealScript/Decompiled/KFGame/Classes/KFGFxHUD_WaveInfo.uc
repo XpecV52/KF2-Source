@@ -58,7 +58,7 @@ function UpdateWaveCount()
         SetInt("maxWaves", CurrentWaveMax);
         LastWaveMax = CurrentWaveMax;
     }
-    CurrentWave = KFGRI.WaveNum + 1;
+    CurrentWave = KFGRI.WaveNum;
     if(CurrentWave != LastWave)
     {
         SetInt("currentWave", CurrentWave);

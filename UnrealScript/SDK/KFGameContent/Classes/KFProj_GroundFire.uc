@@ -84,8 +84,6 @@ defaultproperties
     bAutoStartAmbientSound=true
     bAmbientSoundZedTimeOnly=false
 
-    AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_Flamethrower.Play_WEP_SA_Flamethrower_Residual_Fire_Loop'
-    AmbientSoundStopEvent=AkEvent'WW_WEP_SA_Flamethrower.Stop_WEP_SA_Flamethrower_Residual_Fire_Loop'
 
     Begin Object Class=AkComponent name=AmbientAkSoundComponent
     	bStopWhenOwnerDestroyed=true

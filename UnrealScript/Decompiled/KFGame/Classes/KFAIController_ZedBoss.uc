@@ -56,9 +56,9 @@ event bool SetEnemy(Pawn NewEnemy)
     return super(KFAIController).SetEnemy(NewEnemy);
 }
 
-function UpdateSprintFrustration(optional byte bForceFrustration)
+function UpdateSprintFrustration(optional byte bForceFrustrationState)
 {
-    bForceFrustration = 255;
+    bForceFrustrationState = 255;
 }
 
 function PlayDamagePlayerDialog(class<DamageType> dmgType);
@@ -96,4 +96,5 @@ defaultproperties
 {
     bCanTeleportCloser=false
     FrustrationThreshold=0
+    LowIntensityAttackCooldown=0
 }

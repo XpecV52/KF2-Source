@@ -29,6 +29,8 @@ var(RageCharge) float       RageHealthThresholdHard;
 var(RageCharge) float       RageHealthThresholdSuicidal;
 /** Threshold of health below which the Scrake will start rage charging on hell on earth */
 var(RageCharge) float       RageHealthThresholdHellOnEarth;
+/** Threshold of health below which the Scrake will start rage charging (determined by difficulty) */
+var(RageCharge) float       RageHealthThreshold;
 
 // handle chainsaw idle here instead of through an anim-notify so that we can actually turn it off
 simulated event PostBeginPlay()
@@ -40,7 +42,7 @@ simulated event PostBeginPlay()
 }
 
 /** Overridden to support loading the alternate body mic */
-simulated function SetCharacterArch( KFCharacterInfoBase Info )
+simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bForce )
 {
 	super.SetCharacterArch( Info );
 
@@ -48,6 +50,58 @@ simulated function SetCharacterArch( KFCharacterInfoBase Info )
 	if( WorldInfo.NetMode != NM_DedicatedServer && Mesh != None )
 	{
 		BodyAltMIC = Mesh.CreateAndSetMaterialInstanceConstant( 2 );
+	}
+}
+
+function PossessedBy( Controller C, bool bVehicleTransition )
+{
+	local KFAIController_Monster KFAICM;
+
+	super.PossessedBy( C, bVehicleTransition );
+
+	if( !IsHumanControlled() )
+	{
+		KFAICM = KFAIController_Monster( C );
+
+		if( KFAICM != none )
+		{
+	        // Determine what rage health threshold to use
+	        if( KFAICM.Skill == class'KFDifficultyInfo'.static.GetDifficultyValue(0) ) // Normal
+	        {
+	            RageHealthThreshold = RageHealthThresholdNormal;
+	        }
+	        else if( KFAICM.Skill <= class'KFDifficultyInfo'.static.GetDifficultyValue(1) ) // Hard
+	        {
+	            RageHealthThreshold = RageHealthThresholdHard;
+	        }
+	        else if( KFAICM.Skill <= class'KFDifficultyInfo'.static.GetDifficultyValue(2) ) // Suicidal
+	        {
+	            RageHealthThreshold = RageHealthThresholdSuicidal;
+	        }
+	        else // Hell on Earth
+	        {
+	            RageHealthThreshold = RageHealthThresholdHellOnEarth;
+	        }
+	    }
+	}
+	else
+	{
+		if( WorldInfo.Game.GameDifficulty == 0 )
+		{
+            RageHealthThreshold = RageHealthThresholdNormal;
+		}
+		else if( WorldInfo.Game.GameDifficulty == 1 )
+		{
+            RageHealthThreshold = RageHealthThresholdHard;
+		}
+		else if( WorldInfo.Game.GameDifficulty == 2 )
+		{
+            RageHealthThreshold = RageHealthThresholdSuicidal;
+		}
+		else
+		{
+            RageHealthThreshold = RageHealthThresholdHellOnEarth;
+		}
 	}
 }
 
@@ -110,10 +164,20 @@ simulated function CreateExhaustFx()
 	}
 }
 
-/** Overridden to support secondary body material */
-simulated function GoreMeshSwapped()
+event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
 {
-	super.GoreMeshSwapped();
+	super.TakeDamage( Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser );
+
+	if( bCanRage && !bPlayedDeath && GetHealthPercentage() < RageHealthThreshold )
+	{
+		bIsEnraged = true;
+	}
+}
+
+/** Overridden to support secondary body material */
+simulated event NotifyGoreMeshActive()
+{
+	super.NotifyGoreMeshActive();
 
     // Set our secondary MIC
 	if( WorldInfo.NetMode != NM_DedicatedServer && Mesh != None )
@@ -197,7 +261,7 @@ function OnStackingAfflictionChanged(byte Id)
 defaultproperties
 {
    Begin Object Class=AkComponent Name=ChainsawAkComponent0
-      BoneName="Root"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True
       OcclusionUpdateInterval=0.200000
@@ -214,6 +278,7 @@ defaultproperties
    RageHealthThresholdSuicidal=0.750000
    RageHealthThresholdHellOnEarth=0.900000
    bLargeZed=True
+   bCanRage=True
    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Scrake_ARCH.ZED_Scrake_Archetype'
    HeadlessBleedOutTime=6.000000
    ParryResistance=4
@@ -221,6 +286,7 @@ defaultproperties
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
       BaseDamage=30.000000
       MyDamageType=Class'kfgamecontent.KFDT_Slashing_Scrake'
+      MomentumTransfer=45000.000000
       MaxHitRange=200.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
@@ -265,22 +331,23 @@ defaultproperties
    HitZones(17)=()
    PenetrationResistance=4.000000
    Begin Object Class=KFPawnAfflictions_Scrake Name=Afflictions_0
-      InstantAffl(0)=(head=55,Torso=110,Leg=110,Arm=140,LowHealthBonus=10,Cooldown=17.000000)
-      InstantAffl(1)=(head=53,Torso=110,Leg=110,Arm=110,LowHealthBonus=10,Cooldown=3.000000)
-      InstantAffl(2)=(head=53,Torso=53,Arm=60,LowHealthBonus=10,Cooldown=8.000000)
-      InstantAffl(3)=(Leg=54,LowHealthBonus=10,Cooldown=3.000000)
-      InstantAffl(4)=(head=29,Torso=40,Leg=40,Arm=40,LowHealthBonus=10,Cooldown=4.000000)
-      InstantAffl(5)=(head=134,Torso=134,Leg=134,Arm=134,LowHealthBonus=10,Cooldown=3.000000)
-      StackingAffl(0)=(Threshhold=2.000000,Cooldown=5.000000,DissipationRate=0.500000)
-      StackingAffl(1)=(Threshhold=12.000000,Duration=2.000000,Cooldown=5.000000)
-      StackingAffl(2)=(Threshhold=5.000000,Duration=1.500000,Cooldown=20.000000)
-      StackingAffl(3)=(Threshhold=7.500000,Duration=1.500000,Cooldown=20.000000)
-      StackingAffl(4)=(Threshhold=0.000000,Cooldown=5.000000)
       FireFullyCharredDuration=5.000000
       Name="Afflictions_0"
       ObjectArchetype=KFPawnAfflictions_Scrake'kfgamecontent.Default__KFPawnAfflictions_Scrake'
    End Object
    AfflictionHandler=KFPawnAfflictions_Scrake'kfgamecontent.Default__KFPawn_ZedScrake:Afflictions_0'
+   InstantIncaps(0)=(head=55,Torso=110,Leg=110,Arm=140,LowHealthBonus=10,Cooldown=17.000000)
+   InstantIncaps(1)=(head=65,Torso=120,Leg=120,Arm=120,LowHealthBonus=10,Cooldown=3.000000)
+   InstantIncaps(2)=(head=53,Torso=53,Arm=60,LowHealthBonus=10,Cooldown=8.000000)
+   InstantIncaps(3)=(Leg=54,LowHealthBonus=10,Cooldown=3.000000)
+   InstantIncaps(4)=(head=29,Torso=40,Leg=40,Arm=40,LowHealthBonus=10,Cooldown=4.000000)
+   InstantIncaps(5)=(head=134,Torso=134,Leg=134,Arm=134,LowHealthBonus=10,Cooldown=3.000000)
+   StackingIncaps(0)=(Threshhold=2.000000)
+   StackingIncaps(1)=(Threshhold=12.000000,Duration=2.000000)
+   StackingIncaps(2)=(Threshhold=5.000000,Duration=1.500000,Cooldown=20.000000)
+   StackingIncaps(3)=(Threshhold=7.500000,Duration=1.500000,Cooldown=20.000000)
+   StackingIncaps(4)=(Threshhold=0.000000,Cooldown=5.000000)
+   StackingIncaps(5)=(Threshhold=3.000000)
    KnockdownImpulseScale=2.000000
    SprintSpeed=600.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:FirstPersonArms'
@@ -306,31 +373,39 @@ defaultproperties
       SpecialMoveClasses(7)=Class'KFGame.KFSM_RagdollKnockdown'
       SpecialMoveClasses(8)=Class'KFGame.KFSM_DeathAnim'
       SpecialMoveClasses(9)=Class'KFGame.KFSM_Stunned'
-      SpecialMoveClasses(10)=None
-      SpecialMoveClasses(11)=Class'KFGame.KFSM_Zed_Taunt'
-      SpecialMoveClasses(12)=Class'KFGame.KFSM_Zed_WalkingTaunt'
-      SpecialMoveClasses(13)=Class'KFGame.KFSM_Evade'
-      SpecialMoveClasses(14)=None
-      SpecialMoveClasses(15)=None
+      SpecialMoveClasses(10)=Class'KFGame.KFSM_Frozen'
+      SpecialMoveClasses(11)=None
+      SpecialMoveClasses(12)=None
+      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_Taunt'
+      SpecialMoveClasses(14)=Class'KFGame.KFSM_Zed_WalkingTaunt'
+      SpecialMoveClasses(15)=Class'KFGame.KFSM_Evade'
       SpecialMoveClasses(16)=None
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
       SpecialMoveClasses(19)=None
-      SpecialMoveClasses(20)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(21)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(20)=None
+      SpecialMoveClasses(21)=None
+      SpecialMoveClasses(22)=None
+      SpecialMoveClasses(23)=None
+      SpecialMoveClasses(24)=None
+      SpecialMoveClasses(25)=None
+      SpecialMoveClasses(26)=None
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
    SpecialMoveHandler=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedScrake:SpecialMoveHandler_0'
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent_1 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:AmbientAkSoundComponent_1'
-      BoneName="Spine1"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       Name="AmbientAkSoundComponent_1"
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:AmbientAkSoundComponent_1'
    End Object
    AmbientAkComponent=AmbientAkSoundComponent_1
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent_0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:AmbientAkSoundComponent_0'
-      BoneName="RW_Weapon"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True
       Name="AmbientAkSoundComponent_0"
@@ -343,7 +418,7 @@ defaultproperties
    End Object
    WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'kfgamecontent.Default__KFPawn_ZedScrake:WeaponAmbientEchoHandler_0'
    Begin Object Class=AkComponent Name=FootstepAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_Monster:FootstepAkSoundComponent'
-      BoneName="Root"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True
       Name="FootstepAkSoundComponent"
@@ -351,7 +426,7 @@ defaultproperties
    End Object
    FootstepAkComponent=FootstepAkSoundComponent
    Begin Object Class=AkComponent Name=DialogAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_Monster:DialogAkSoundComponent'
-      BoneName="head"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       Name="DialogAkSoundComponent"
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:DialogAkSoundComponent'

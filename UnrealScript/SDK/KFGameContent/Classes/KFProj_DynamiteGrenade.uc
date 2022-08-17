@@ -126,6 +126,7 @@ simulated protected function SetExplosionActorClass()
 
 defaultproperties
 {
+
 	Speed=1500
 	TossZ=400
 
@@ -138,6 +139,7 @@ defaultproperties
 
 	ProjFlightTemplate=ParticleSystem'WEP_Dynamite_EMIT.FX_Dynamite_Grenade_Mesh'
 	ExplosionActorClass=class'KFExplosionActor'
+	WeaponSelectTexture=Texture2D'wep_ui_dynamite_tex.UI_WeaponSelect_Dynamite'
 
 	AltExploEffects=KFImpactEffectInfo'WEP_Dynamite_ARCH.Dynamite_Explosion_Concussive_Force'
 

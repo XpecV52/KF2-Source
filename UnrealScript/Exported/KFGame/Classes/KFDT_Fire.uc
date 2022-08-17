@@ -368,8 +368,6 @@ class KFDT_Fire extends KFDamageType
 
 
 
-
-
 	
 
 
@@ -421,6 +419,7 @@ class KFDT_Fire extends KFDamageType
 
 
 	
+
 
 
 

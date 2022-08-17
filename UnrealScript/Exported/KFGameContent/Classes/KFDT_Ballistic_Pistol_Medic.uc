@@ -64,7 +64,6 @@ class KFDT_Ballistic_Pistol_Medic extends KFDT_Ballistic_Handgun
 
 
 
-
 #linenumber 15;
 
 /** Allows the damage type to customize exactly which hit zones it can dismember */

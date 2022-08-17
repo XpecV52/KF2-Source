@@ -277,7 +277,7 @@ simulated function TryStick( vector HitNormal, optional vector HitLocation, opti
 {
 	local TraceHitInfo HitInfo;
 
-	if( Instigator == None || !Instigator.IsLocallyControlled() )
+	if( Instigator == None || !Instigator.IsLocallyControlled() || (Physics == PHYS_None && StuckToActor != none) )
 	{
 		return;
 	}
@@ -669,7 +669,7 @@ defaultproperties
       ReplacementPrimitive=None
       bCastDynamicShadow=False
       CollideActors=False
-      LightingChannels=(bInitialized=True,Dynamic=True,Indoor=True,Outdoor=True)
+      LightingChannels=(Dynamic=True)
       Name="StaticMeshComponent0"
       ObjectArchetype=StaticMeshComponent'Engine.Default__StaticMeshComponent'
    End Object

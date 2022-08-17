@@ -136,7 +136,6 @@ class KFOnlineStatsWrite extends OnlineStatsWrite
 
 
 
-
 #linenumber 16;
 
 const	WeldingPointsRequired = 510;
@@ -294,6 +293,12 @@ const KFACHID_FarmhouseHard  			=	100;
 const KFACHID_FarmhouseSuicidal			=	101;
 const KFACHID_FarmhouseHellOnEarth		=	102;
 const KFACHID_FarmhouseCollectibles		= 	103;
+
+const KFACHID_PrisonNormal	 			=	104;
+const KFACHID_PrisonHard  				=	105;
+const KFACHID_PrisonSuicidal			=	106;
+const KFACHID_PrisonHellOnEarth			=	107;
+const KFACHID_PrisonCollectibles		= 	108;
 
 /* __TW_ANALYTICS_ */
 var int PerRoundWeldXP;
@@ -694,6 +699,11 @@ private event AddToKills( class<KFPawn_Monster> MonsterClass, byte Difficulty, c
 	IncrementIntStat( 200, 1 );
 	Kills++;
 
+	if(!MonsterClass.default.bVersusZed)
+	{
+		MyKFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_PlayerKills', KMT_PLayerKillZed, MyKFPC.PlayerReplicationInfo, none, MonsterClass);
+	}
+
 	if( IsStalkerKill( MonsterClass, DT ) )
 	{
 		AddStalkerKill( Difficulty );
@@ -1008,7 +1018,7 @@ function OnUnlockAchievement( int AchievementIndex )
 
 /**
  * @brief Call into native to determine if we achieved anything
- *
+  *
  * @param MapName The name of the map played
  * @param Difficulty The game's difficulty
  * @param GameLength short/medium/long

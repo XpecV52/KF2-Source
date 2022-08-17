@@ -36,23 +36,12 @@ defaultproperties
     object end
     // Reference: SpriteComponent'Default__SkyLight.Sprite'
     Components(0)=Sprite
-    begin object name=LightMeshComponent0 class=StaticMeshComponent
-        ReplacementPrimitive=none
-    object end
-    // Reference: StaticMeshComponent'Default__SkyLight.LightMeshComponent0'
-    Components(1)=LightMeshComponent0
-    begin object name=LensFlareComponent0 class=LensFlareComponent
-        NextTraceTime=0.0 // Ka v oh
-        ReplacementPrimitive=none
-    object end
-    // Reference: LensFlareComponent'Default__SkyLight.LensFlareComponent0'
-    Components(2)=LensFlareComponent0
     begin object name=SkyLightComponent0 class=SkyLightComponent
         UseDirectLightMap=true
         bCanAffectDynamicPrimitivesOutsideDynamicChannel=true
     object end
     // Reference: SkyLightComponent'Default__SkyLight.SkyLightComponent0'
-    Components(3)=SkyLightComponent0
+    Components(1)=SkyLightComponent0
     begin object name=LightMeshComponent0 class=StaticMeshComponent
         ReplacementPrimitive=none
     object end

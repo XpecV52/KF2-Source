@@ -13,6 +13,20 @@ class KFPlayerController extends GamePlayerController
 
 const MAX_AIM_CORRECTION_SIZE = 40.f;
 
+enum ETextChatChannel
+{
+    ETCC_ALL,
+    ETCC_TEAM,
+    ETCC_MAX
+};
+
+enum EVoiceChannel
+{
+    EVC_ALL,
+    EVC_TEAM,
+    EVC_MAX
+};
+
 enum EAnalogMovementSpeed
 {
     AMOVESPEED,
@@ -57,8 +71,12 @@ enum ETrackingMode
 
 enum EGameConductorDebugMode
 {
+    EGCDM_OverallRankAndSkill,
     EGCDM_Skill,
+    EGCDM_OverallAccuracy,
     EGCDM_LifeSpan,
+    EGCDM_ZedSpawning,
+    EGCDM_GameplayAdjustments,
     EGCDM_Status,
     EGCDM_MAX
 };
@@ -89,6 +107,20 @@ struct native PlayerSteamAvatar
     }
 };
 
+struct native sPlayerZedSpawnInfo
+{
+    var class<KFPawn_Monster> PendingZedPawnClass;
+    var Vector PendingZedSpawnLocation;
+    var float LastSpawnedTime;
+
+    structdefaultproperties
+    {
+        PendingZedPawnClass=none
+        PendingZedSpawnLocation=(X=0,Y=0,Z=0)
+        LastSpawnedTime=0
+    }
+};
+
 struct native ObjectiveAnnouncementInfo
 {
     /** the default announcement sound to play (can be None) */
@@ -108,8 +140,7 @@ struct native PostWaveReplicationInfo
     var Vector VectData1;
     var Vector VectData2;
     var byte LargeZedKills;
-    var byte DeathStreakStartWave;
-    var byte DeathStreakEndWave;
+    var bool bDiedDuringWave;
     var bool bBestTeammate;
     var bool bKilledMostZeds;
     var bool bEarnedMostDosh;
@@ -118,6 +149,7 @@ struct native PostWaveReplicationInfo
     var bool bOneSurvivedLastWave;
     var bool bKilledFleshpoundLastWave;
     var bool bKilledScrakeLastWave;
+    var bool bOpeningTrader;
     var class<KFPawn_Monster> ClassKilledByLastWave;
     var byte RepCount;
 
@@ -126,8 +158,7 @@ struct native PostWaveReplicationInfo
         VectData1=(X=0,Y=0,Z=0)
         VectData2=(X=0,Y=0,Z=0)
         LargeZedKills=0
-        DeathStreakStartWave=0
-        DeathStreakEndWave=0
+        bDiedDuringWave=false
         bBestTeammate=false
         bKilledMostZeds=false
         bEarnedMostDosh=false
@@ -136,17 +167,26 @@ struct native PostWaveReplicationInfo
         bOneSurvivedLastWave=false
         bKilledFleshpoundLastWave=false
         bKilledScrakeLastWave=false
+        bOpeningTrader=false
         ClassKilledByLastWave=none
         RepCount=0
     }
 };
 
+var KFPlayerController.ETextChatChannel CurrentTextChatChannel;
+var KFPlayerController.EVoiceChannel CurrentVoiceChannel;
+var globalconfig byte SavedPerkIndex;
+var transient KFPlayerController.KFSpectateModes CurrentSpectateMode;
+var transient KFPlayerController.ETrackingRangeMode CurrentTrackerRangeMode;
+var transient KFPlayerController.ETrackingMode CurrentTrackingMode;
+var transient KFPlayerController.EGameConductorDebugMode CurrentGameConductorDebugMode;
 var array<PlayerSteamAvatar> AvatarList;
 var array<PerkInfo> PerkList;
 var KFPerk CurrentPerk;
 var class<KFPerk> ServPendingPerkClass;
 var int ServPendingPerkBuild;
 var int ServPendingPerkLevel;
+var class<KFPerk> MonsterPerkClass;
 var const name MusicMessageType;
 var private const bool bPerkStatsLoaded;
 var bool bAcuteHearing;
@@ -174,11 +214,8 @@ var bool bDebugPartialZedTime;
 var bool bForcePartialZedTime;
 /** If true the tracking map is a top down view, otherwise its a side view */
 var(ZedMap) bool bTrackingMapTopView;
-var config byte SavedPerkIndex;
-var transient KFPlayerController.KFSpectateModes CurrentSpectateMode;
-var transient KFPlayerController.ETrackingRangeMode CurrentTrackerRangeMode;
-var transient KFPlayerController.ETrackingMode CurrentTrackingMode;
-var transient KFPlayerController.EGameConductorDebugMode CurrentGameConductorDebugMode;
+var transient bool bNoGoActive;
+var transient sPlayerZedSpawnInfo PlayerZedSpawnInfo;
 var KFPawn_Human UsablePawn;
 var KFEmit_CameraEffect CameraEffect;
 var PostProcessSettings PostProcessModifier;
@@ -324,6 +361,7 @@ var(ZedMap) float TrackerSpawnVolumeSizeX;
 var(ZedMap) float TrackerSpawnVolumeSizeY;
 /** Distance range for the tracking map */
 var(ZedMap) float TrackingMapRange;
+var transient float NoGoStartTime;
 
 replication
 {
@@ -375,10 +413,7 @@ simulated event ReplicatedEvent(name VarName)
     }
     if(VarName == 'PWRI')
     {
-        if((self != none) && self.MatchStats != none)
-        {
-            self.MatchStats.RecordWaveInfo();
-        }
+        SubmitPostWaveStats();
     }
 }
 
@@ -554,7 +589,14 @@ function OnPlayerTalking(UniqueNetId TalkingPlayer, bool bIsTalking)
             KFPRI.VOIPStatusChanged(KFPRI, bIsTalking);
             if(bIsTalking)
             {
-                KFPRI.ServerNotifyStartVoip();                
+                if(CurrentVoiceChannel == 0)
+                {
+                    KFPRI.ServerNotifyStartVoip();                    
+                }
+                else
+                {
+                    KFPRI.ServerNotifyStartTeamVoip();
+                }                
             }
             else
             {
@@ -568,13 +610,22 @@ reliable client simulated function ClientStartNetworkedVoice()
 {
     local KFPlayerReplicationInfo KFPRI;
 
-    super(PlayerController).ClientStartNetworkedVoice();
     KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
     if(KFPRI != none)
     {
         KFPRI.VOIPStatusChanged(PlayerReplicationInfo, true);
-        KFPRI.ServerNotifyStartVoip();
+        if(CurrentVoiceChannel == 0)
+        {
+            KFPRI.VOIPStatus = 1;
+            KFPRI.ServerNotifyStartVoip();            
+        }
+        else
+        {
+            KFPRI.VOIPStatus = 2;
+            KFPRI.ServerNotifyStartTeamVoip();
+        }
     }
+    super(PlayerController).ClientStartNetworkedVoice();
 }
 
 reliable client simulated function ClientStopNetworkedVoice()
@@ -654,8 +705,14 @@ native final event RequestPerkChange(byte NewPerkIndex);
 // Export UKFPlayerController::execServerSetPendingPerkUpdate(FFrame&, void* const)
 private reliable server native final event ServerSetPendingPerkUpdate(byte NewPerkIndex, int NewPerkBuild, byte NewLevel);
 
+// Export UKFPlayerController::execServerSetSavedPerkIndex(FFrame&, void* const)
+private reliable server native final event ServerSetSavedPerkIndex(byte NewSavedPerkIndex);
+
 // Export UKFPlayerController::execServerSelectPerk(FFrame&, void* const)
-private reliable server native final event ServerSelectPerk(byte NewPerkIndex, byte NewLevel);
+protected reliable server native final event ServerSelectPerk(byte NewPerkIndex, byte NewLevel, optional bool bForce)
+{
+    bForce = false;                    
+}
 
 // Export UKFPlayerController::execCanUpdatePerkInfo(FFrame&, void* const)
 native final function bool CanUpdatePerkInfo();
@@ -697,12 +754,12 @@ event SetHaveUpdatePerk(bool bUsedUpdate)
 
 event NotifyPendingPerkChanges()
 {
-    ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 13, PlayerReplicationInfo);
+    ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 14, PlayerReplicationInfo);
 }
 
 event NotifyPerkUpdated()
 {
-    ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 14, PlayerReplicationInfo);
+    ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 15, PlayerReplicationInfo);
 }
 
 function NotifyXPGain(class<KFPerk> PerkClass, int Amount)
@@ -977,11 +1034,9 @@ reliable client simulated function ClientSetCameraMode(name NewCamMode)
 {
     local KFPawn KFP;
     local KFPawn_MonsterBoss KFBoss;
+    local Vector Loc, pos, HitLocation, HitNormal;
+    local Rotator Rot;
 
-    if(PlayerCamera != none)
-    {
-        PlayerCamera.CameraStyle = NewCamMode;
-    }
     KFP = KFPawn(ViewTarget);
     if(KFP != none)
     {
@@ -996,7 +1051,14 @@ reliable client simulated function ClientSetCameraMode(name NewCamMode)
         {
             if(KFGameReplicationInfo(WorldInfo.GRI).AnyPlayersAlive())
             {
-                ShowBossNameplate(KFBoss);
+                if(KFBoss.bVersusZed)
+                {
+                    ShowBossNameplate(KFBoss, ("(" $ KFBoss.PlayerReplicationInfo.PlayerName) $ ")");                    
+                }
+                else
+                {
+                    ShowBossNameplate(KFBoss);
+                }
             }
         }
         if(!ViewTarget.IsA('KFPawn_MonsterBoss'))
@@ -1007,13 +1069,38 @@ reliable client simulated function ClientSetCameraMode(name NewCamMode)
     else
     {
         HideBossNamePlate();
-        if((NewCamMode == 'FirstPerson') && !PlayerReplicationInfo.bIsSpectator)
+        if(NewCamMode == 'FreeCam')
         {
-            if((Pawn != none) && ViewTarget != Pawn)
+            if((PlayerCamera != none) && PlayerCamera.CameraStyle != NewCamMode)
             {
-                SetViewTarget(Pawn);
+                Loc = Location;
+                Loc += (PlayerCamera.FreeCamOffset >> Rotation);
+                Rot = PlayerCamera.CameraCache.POV.Rotation;
+                Rot.Roll = 0;
+                pos = Loc + (vector(Rot) * PlayerCamera.FreeCamDistance);
+                Trace(HitLocation, HitNormal, pos, Loc, false, vect(12, 12, 12));
+                SetLocation(((IsZero(HitLocation)) ? pos : HitLocation));
+                SetRotation(Rot);
+            }            
+        }
+        else
+        {
+            if((NewCamMode == 'FirstPerson') && !PlayerReplicationInfo.bIsSpectator)
+            {
+                if((Pawn != none) && ViewTarget != Pawn)
+                {
+                    SetViewTarget(Pawn);
+                }
             }
         }
+        if(((IsSpectating()) && ViewTarget != none) && (ViewTarget != Pawn) || (KFPawn_Customization(Pawn) == none) && !Pawn.IsAliveAndWell())
+        {
+            NotifyChangeSpectateViewTarget();
+        }
+    }
+    if(PlayerCamera != none)
+    {
+        PlayerCamera.CameraStyle = NewCamMode;
     }
 }
 
@@ -1030,9 +1117,23 @@ function KFPawn_MonsterBoss GetBoss()
 
 function SetCameraMode(name NewCamMode)
 {
+    local Vector Loc, pos, HitLocation, HitNormal;
+    local Rotator Rot;
+
     if(PlayerCamera != none)
     {
         PlayerCamera.CameraStyle = NewCamMode;
+        if(NewCamMode == 'FreeCam')
+        {
+            Loc = Location;
+            Loc += (PlayerCamera.FreeCamOffset >> Rotation);
+            Rot = PlayerCamera.CameraCache.POV.Rotation;
+            Rot.Roll = 0;
+            pos = Loc + (vector(Rot) * PlayerCamera.FreeCamDistance);
+            Trace(HitLocation, HitNormal, pos, Loc, false, vect(12, 12, 12));
+            SetLocation(((IsZero(HitLocation)) ? pos : HitLocation));
+            SetRotation(Rot);
+        }
         if(WorldInfo.Role == ROLE_Authority)
         {
             ClientSetCameraMode(NewCamMode);
@@ -1104,6 +1205,15 @@ simulated function EnableReflections(bool bEnabled)
 }
 
 exec function Camera(name NewMode);
+
+exec function ResetCustomizationCamera()
+{
+    if(KFPlayerCamera(PlayerCamera) != none)
+    {
+        KFPlayerCamera(PlayerCamera).CustomizationCam.bInitialize = false;
+        KFPlayerCamera(PlayerCamera).CustomizationCam.SetBodyView(0);
+    }
+}
 
 function bool AdminCmdOk()
 {
@@ -1561,7 +1671,18 @@ reliable client simulated event ReceiveLocalizedMessage(class<LocalMessage> Mess
     }
     else
     {
-        super(PlayerController).ReceiveLocalizedMessage(Message, Switch, RelatedPRI_1, RelatedPRI_2, OptionalObject);
+        if((Message == Class'KFLocalMessage_PlayerKills') && MyGFxHUD != none)
+        {
+            if((Switch == 0) || Class'KFGameEngine'.default.bShowKillTicker && RelatedPRI_1 == PlayerReplicationInfo)
+            {
+                TempMessage = Class'KFLocalMessage_PlayerKills'.static.GetString(Switch, true, RelatedPRI_1, RelatedPRI_2, OptionalObject);
+                MyGFxHUD.ShowKillMessage(TempMessage, Class'KFLocalMessage_PlayerKills'.static.GetHexColor(Switch));
+            }            
+        }
+        else
+        {
+            super(PlayerController).ReceiveLocalizedMessage(Message, Switch, RelatedPRI_1, RelatedPRI_2, OptionalObject);
+        }
     }
 }
 
@@ -1742,12 +1863,19 @@ event PlayerTick(float DeltaTime)
     }
 }
 
-function SetGrabEffect(bool bValue)
+function SetGrabEffect(bool bValue, optional bool bPlayerZed, optional bool bSkipMessage)
 {
     bGrabEffectIsActive = bValue;
-    if(bGrabEffectIsActive)
+    if(!bSkipMessage && bGrabEffectIsActive)
     {
-        ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 9);        
+        if(bPlayerZed)
+        {
+            ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 10);            
+        }
+        else
+        {
+            ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 9);
+        }        
     }
     else
     {
@@ -2272,11 +2400,11 @@ function SetGFxHUD(KFGFxMoviePlayer_HUD NewGFxHud)
     MyGFxHUD = NewGFxHud;
 }
 
-function ShowBossNameplate(KFPawn_MonsterBoss KFBoss)
+function ShowBossNameplate(KFPawn_MonsterBoss KFBoss, optional string PlayerName)
 {
     if(MyGFxHUD != none)
     {
-        MyGFxHUD.ShowBossNameplate(KFBoss.default.BossName, KFBoss.default.BossCaptionStrings[Rand(KFBoss.default.BossCaptionStrings.Length)]);
+        MyGFxHUD.ShowBossNameplate(KFBoss.default.BossName $ PlayerName, KFBoss.default.BossCaptionStrings[Rand(KFBoss.default.BossCaptionStrings.Length)]);
     }
 }
 
@@ -2402,7 +2530,11 @@ unreliable server function ServerTeamSay(string msg)
     local KFGameInfo KFGI;
 
     KFGI = KFGameInfo(WorldInfo.Game);
-    if(!KFGI.bDisablePublicTextChat || PlayerReplicationInfo.bAdmin)
+    if(WorldInfo.GRI.bMatchIsOver && !KFGI.bDisablePublicTextChat)
+    {
+        ServerSay(msg);        
+    }
+    else
     {
         super(PlayerController).ServerTeamSay(msg);
     }
@@ -2416,7 +2548,11 @@ reliable client simulated event TeamMessage(PlayerReplicationInfo PRI, coerce st
     {
         return;
     }
-    ChatMessage = (PRI.PlayerName $ ": ") $ S;
+    if(((PRI.Team != none) && Type == 'TeamSay') && PRI.Team.TeamIndex != PlayerReplicationInfo.Team.TeamIndex)
+    {
+        return;
+    }
+    ChatMessage = ((PRI.PlayerName @ (GetTeamTag(PRI))) $ ": ") $ S;
     if((MyGFxManager != none) && Type != MusicMessageType)
     {
         if(Class'WorldInfo'.static.IsMenuLevel())
@@ -2442,21 +2578,35 @@ reliable client simulated event TeamMessage(PlayerReplicationInfo PRI, coerce st
         {
             if((Type != 'Event') && Type != 'None')
             {
-                if(PRI.bAdmin)
-                {
-                    ChatMessage = Class'KFLocalMessage'.default.AdminString $ ChatMessage;
-                    MyGFxHUD.HudChatBox.AddChatMessage(ChatMessage, Class'KFLocalMessage'.default.PriorityColor);                    
-                }
-                else
-                {
-                    MyGFxHUD.HudChatBox.AddChatMessage(ChatMessage, Class'KFLocalMessage'.default.SayColor);
-                }                
+                RecieveChatMessage(PRI, ChatMessage, Type, MsgLifeTime);                
             }
             else
             {
                 MyGFxHUD.HudChatBox.AddChatMessage(Class'KFLocalMessage'.default.SystemString @ S, Class'KFLocalMessage'.default.EventColor);
             }
         }
+    }
+}
+
+function string GetTeamTag(PlayerReplicationInfo PRI)
+{
+    return "";
+}
+
+function RecieveChatMessage(PlayerReplicationInfo PRI, string ChatMessage, name Type, optional float MsgLifeTime)
+{
+    if(PRI.bOnlySpectator)
+    {
+        ChatMessage = Class'KFCommon_LocalizedStrings'.default.SpectatorString @ ChatMessage;
+    }
+    if(PRI.bAdmin)
+    {
+        ChatMessage = Class'KFLocalMessage'.default.AdminString $ ChatMessage;
+        MyGFxHUD.HudChatBox.AddChatMessage(ChatMessage, Class'KFLocalMessage'.default.PriorityColor);        
+    }
+    else
+    {
+        MyGFxHUD.HudChatBox.AddChatMessage(ChatMessage, Class'KFLocalMessage'.default.SayColor);
     }
 }
 
@@ -2473,11 +2623,13 @@ function OpenChatBox()
 
 exec function Talk()
 {
+    CurrentTextChatChannel = 0;
     OpenChatBox();
 }
 
 exec function TeamTalk()
 {
+    CurrentTextChatChannel = 1;
     OpenChatBox();
 }
 
@@ -2501,19 +2653,28 @@ reliable client simulated function ClientResetCountdown()
     }
 }
 
+reliable client simulated function ClientSetOnlineStatus()
+{
+    OnlineSub.PlayerInterface.SetOnlineStatus(byte(LocalPlayer(Player).ControllerId), WorldInfo.GetMapName(true), true);
+}
+
 exec function StartFire(optional byte FireModeNum)
 {
     local KFInventoryManager KFIM;
 
     if(!KFPlayerInput(PlayerInput).bQuickWeaponSelect)
     {
-        if((MyGFxHUD != none) && MyGFxHUD.WeaponSelectWidget.bChangingWeapons)
+        if(((MyGFxHUD != none) && MyGFxHUD.WeaponSelectWidget != none) && MyGFxHUD.WeaponSelectWidget.bChangingWeapons)
         {
             KFIM = KFInventoryManager(Pawn.InvManager);
             KFIM.SetCurrentWeapon(KFIM.PendingWeapon);
             MyGFxHUD.WeaponSelectWidget.FadeOut();
             return;
         }
+    }
+    if(((MyGFxHUD != none) && MyGFxHUD.VoiceCommsWidget != none) && MyGFxHUD.VoiceCommsWidget.bActive)
+    {
+        return;
     }
     super(PlayerController).StartFire(FireModeNum);
 }
@@ -2559,22 +2720,6 @@ function CloseTraderMenu()
     }
 }
 
-function NotifyAddInventory(Inventory NewItem)
-{
-    local KFGFxMenu_Trader TraderMenu;
-    local KFWeapon KFW;
-
-    TraderMenu = KFGFxMenu_Trader(MyGFxManager.CurrentMenu);
-    if(TraderMenu != none)
-    {
-        KFW = KFWeapon(NewItem);
-        if(KFW != none)
-        {
-            TraderMenu.GiveExternalWeapon(KFW);
-        }
-    }
-}
-
 simulated function NotifyTraderDoshChanged()
 {
     local KFGFxMenu_Trader TraderMenu;
@@ -2608,11 +2753,11 @@ function ClosePostGameMenu()
     }
 }
 
-function UpdateRhythmCounterWidget(int Count)
+function UpdateRhythmCounterWidget(int Count, int Max)
 {
     if(MyGFxHUD != none)
     {
-        MyGFxHUD.UpdateRhythmCounterWidget(Count);
+        MyGFxHUD.UpdateRhythmCounterWidget(Count, Max);
     }
 }
 
@@ -2954,8 +3099,7 @@ reliable client simulated function ClientWriteAndFlushStats()
             LogInternal(string(GetFuncName()) @ "Writing and flushing stats to steam!");
         }
         OnlineSub.StatsInterface.WriteOnlineStats('Game', PlayerReplicationInfo.UniqueId, StatsWrite);
-        OnlineSub.StatsInterface.FlushOnlineStats('Game');
-        ClientLogWeldAndHealXP();        
+        OnlineSub.StatsInterface.FlushOnlineStats('Game');        
     }
     else
     {
@@ -3033,10 +3177,6 @@ event byte GetPerkLevelFromPerkList(class<KFPerk> PerkClass)
 function AddZedKill(class<KFPawn_Monster> MonsterClass, byte Difficulty, class<DamageType> DT)
 {
     ClientAddZedKill(MonsterClass, Difficulty, DT);
-    if(((((WorldInfo.Game != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress()) && MonsterClass.static.IsStalkerClass()) && Class'KFPerk'.static.IsDamageTypeOnThisPerk(class<KFDamageType>(DT), Class'KFPerk_Commando'.static.GetPerkClass()))
-    {
-        KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogPlayerIntEvent(1303, self, Class'KFPerk_Commando'.static.GetStalkerKillXP(Difficulty));
-    }
 }
 
 // Export UKFPlayerController::execClientAddZedKill(FFrame&, void* const)
@@ -3081,45 +3221,6 @@ function AddHealPoints(int PointsHealed)
 
 // Export UKFPlayerController::execClientAddHealPoints(FFrame&, void* const)
 private reliable client native final simulated function ClientAddHealPoints(int PointsHealed);
-
-function ClientLogWeldAndHealXP()
-{
-    if(Role == ROLE_Authority)
-    {
-        if(StatsWrite.PerRoundHealXP > 0)
-        {
-            if(((WorldInfo.Game != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress())
-            {
-                KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogPlayerIntEvent(1300, self, StatsWrite.PerRoundHealXP);
-            }
-        }
-        if(StatsWrite.PerRoundWeldXP > 0)
-        {
-            if(((WorldInfo.Game != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress())
-            {
-                KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogPlayerIntEvent(1301, self, StatsWrite.PerRoundWeldXP);
-            }
-        }        
-    }
-    else
-    {
-        ServerLogWeldAndHealXP(StatsWrite.PerRoundWeldXP, StatsWrite.PerRoundHealXP);
-    }
-    StatsWrite.PerRoundWeldXP = 0;
-    StatsWrite.PerRoundHealXP = 0;
-}
-
-unreliable server function ServerLogWeldAndHealXP(int WeldingXP, int HealingXP)
-{
-    if(((WorldInfo.Game != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress())
-    {
-        KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogPlayerIntEvent(1300, self, HealingXP);
-    }
-    if(((WorldInfo.Game != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter != none) && KFGameInfo(WorldInfo.Game).GameplayEventsWriter.IsSessionInProgress())
-    {
-        KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogPlayerIntEvent(1301, self, WeldingXP);
-    }
-}
 
 exec function ResetStats(string ConfirmSteamNickInQuotes, optional bool bResetAchievements)
 {
@@ -3469,19 +3570,51 @@ simulated function NextSpectateMode();
 
 unreliable server function ServerSetSpectatorActive();
 
+function MoveToValidSpectatorLocation()
+{
+    local KFPawn KFP;
+    local Vector CameraLocation, HitLocation, HitNormal;
+
+    foreach WorldInfo.AllPawns(Class'KFPawn', KFP)
+    {
+        if((KFP.IsAliveAndWell() && KFP.IsHumanControlled()) && PlayerReplicationInfo.bOnlySpectator || KFP.GetTeamNum() == GetTeamNum())
+        {
+            CameraLocation = KFP.Location + (vect(0, 0, 1) * ((KFP.CylinderComponent.CollisionHeight * 2) + 50));
+            KFP.Trace(HitLocation, HitNormal, CameraLocation, KFP.Location, false, vect(5, 5, 5),, 1);
+            if(!IsZero(HitLocation))
+            {
+                CameraLocation = KFP.Location + (vect(0, 0, 1) * (VSize(KFP.Location - HitLocation) - 50));
+            }
+            SetLocation(CameraLocation);
+            break;
+        }        
+    }    
+}
+
 function NotifyChangeSpectateViewTarget()
 {
     local KFPlayerReplicationInfo KFPRI;
-    local KFPawn_Human KFP;
+    local KFPawn KFP;
 
-    KFP = KFPawn_Human(ViewTarget);
+    KFP = KFPawn(ViewTarget);
+    if((WorldInfo.GRI == none) || float(WorldInfo.GRI.ElapsedTime) < 2)
+    {
+        return;
+    }
     if(((MyGFxHUD != none) && MyGFxHUD.SpectatorInfoWidget != none) && KFP != none)
     {
         if((KFP == Pawn) && Pawn.IsAliveAndWell())
         {
             return;
         }
-        KFPRI = KFPlayerReplicationInfo(KFP.PlayerReplicationInfo);
+        if(KFP.PlayerReplicationInfo != none)
+        {
+            KFPRI = KFPlayerReplicationInfo(KFP.PlayerReplicationInfo);            
+        }
+        else
+        {
+            KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
+        }
         if(KFPRI != none)
         {
             MyGFxHUD.SpectatorInfoWidget.SetSpectatedKFPRI(KFPRI);
@@ -3511,7 +3644,7 @@ reliable client simulated event ClientSetViewTarget(Actor A, optional ViewTarget
 
 unreliable server function ServerNextSpectateMode()
 {
-    local KFPawn_Human HumanViewTarget;
+    local KFPawn HumanViewTarget;
 
     if(!IsSpectating())
     {
@@ -3519,7 +3652,7 @@ unreliable server function ServerNextSpectateMode()
     }
     if(CurrentSpectateMode != 3)
     {
-        HumanViewTarget = KFPawn_Human(ViewTarget);
+        HumanViewTarget = KFPawn(ViewTarget);
         if((HumanViewTarget == none) || !HumanViewTarget.IsAliveAndWell())
         {
             SpectateRoaming();
@@ -3555,7 +3688,7 @@ function SpectatePlayer(KFPlayerController.KFSpectateModes Mode)
     if(KFPawn_Human(ViewTarget) == none)
     {
         TryViewNextPlayer();
-        if(KFPawn_Human(ViewTarget) == none)
+        if(KFPawn(ViewTarget) == none)
         {
             SpectateRoaming();
             return;
@@ -3589,10 +3722,10 @@ reliable server function SpectateRoaming()
 
 reliable server function TryViewNextPlayer()
 {
-    local KFPawn_Human KFPHTarget;
+    local KFPawn KFPTarget;
 
-    KFPHTarget = KFPawn_Human(ViewTarget);
-    if((KFPHTarget == none) || KFPHTarget.IsAliveAndWell())
+    KFPTarget = KFPawn(ViewTarget);
+    if((KFPTarget == none) || KFPTarget.IsAliveAndWell())
     {
         ServerViewNextPlayer();
     }
@@ -3600,27 +3733,70 @@ reliable server function TryViewNextPlayer()
 
 unreliable server function ServerViewNextPlayer()
 {
-    switch(CurrentSpectateMode)
+    if(IsSpectating())
     {
-        case 0:
-        case 1:
-        case 2:
-            super(PlayerController).ServerViewNextPlayer();
-            break;
-        default:
-            break;
+        switch(CurrentSpectateMode)
+        {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+                if((ViewTarget == self) && CurrentSpectateMode != 0)
+                {
+                    CurrentSpectateMode = 0;
+                    SetCameraMode('FreeCam');
+                }
+                ViewAPlayer(1);
+                break;
+            default:
+                break;
+        }
+    }
+    else
+    {
     }
 }
 
-function ReplicatePWRI()
+unreliable server function ServerViewPrevPlayer()
 {
+    if(IsSpectating())
+    {
+        switch(CurrentSpectateMode)
+        {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+                if(ViewTarget == self)
+                {
+                    CurrentSpectateMode = 0;
+                    SetCameraMode('FreeCam');
+                }
+                ViewAPlayer(-1);
+                break;
+            default:
+                break;
+        }
+    }
+    else
+    {
+    }
+}
+
+function SubmitPostWaveStats(optional bool bOpeningTrader)
+{
+    MatchStats.RecordWaveInfo();
     if(Role == ROLE_Authority)
     {
-        if((self != none) && self.MatchStats != none)
-        {
-            self.MatchStats.RecordWaveInfo();
-        }
+        PWRI.bOpeningTrader = bOpeningTrader;
         ++ PWRI.RepCount;
+    }
+    if(PWRI.bOpeningTrader && IsLocalController())
+    {
+        if(((WorldInfo.NetMode != NM_DedicatedServer) && KFGameReplicationInfo(WorldInfo.GRI) != none) && KFGameReplicationInfo(WorldInfo.GRI).TraderDialogManager != none)
+        {
+            KFGameReplicationInfo(WorldInfo.GRI).TraderDialogManager.PlayBeginTraderTimeDialog(self);
+        }
     }
 }
 
@@ -3642,24 +3818,6 @@ reliable client simulated function ClientReceiveAwardInfo(byte AwardID, PlayerRe
 reliable client simulated function ReceiveTopWeapons(TopWeaponReplicationInfo TopWeapons)
 {
     MatchStats.UnpackTopWeapons(TopWeapons);
-}
-
-function ResetLastWaveInfo()
-{
-    PWRI.VectData1.X = 0;
-    PWRI.VectData1.Y = 0;
-    PWRI.VectData1.Z = 0;
-    PWRI.VectData2.X = 0;
-    PWRI.VectData2.Y = 0;
-    PWRI.VectData2.Z = 0;
-    PWRI.bKilledMostZeds = false;
-    PWRI.bKilledFleshpoundLastWave = false;
-    PWRI.bKilledScrakeLastWave = false;
-    PWRI.ClassKilledByLastWave = none;
-    PWRI.bAllSurvivedLastWave = false;
-    PWRI.bSomeSurvivedLastWave = false;
-    PWRI.bOneSurvivedLastWave = false;
-    MatchStats.ZedsKilledLastWave = 0;
 }
 
 unreliable client simulated event ClientHearDialog(Actor DialogSpeaker, AkEvent DialogEvent, byte bCanBeMinimized)
@@ -3693,11 +3851,20 @@ function NotifyKilled(Controller Killer, Controller Killed, Pawn KilledPawn, cla
                 PWRI.bKilledScrakeLastWave = true;
             }
         }
-        ++ MatchStats.ZedsKilledLastWave;
+        ++ MatchStats.ZedsKilledLastWave;        
     }
-    if(self == Killed)
+    else
     {
-        SetLocation(KilledPawn.Location + (vect(0, 0, 1) * (KilledPawn.GetCollisionRadius() * 2)));
+        if(self == Killed)
+        {
+            PWRI.bDiedDuringWave = true;
+            if((Killer != none) && Killer.Pawn != none)
+            {
+                PWRI.ClassKilledByLastWave = class<KFPawn_Monster>(Killer.Pawn.Class);
+            }
+            ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 0);
+            SetLocation(KilledPawn.Location + (vect(0, 0, 1) * (KilledPawn.GetCollisionRadius() * 2)));
+        }
     }
 }
 
@@ -3744,6 +3911,7 @@ unreliable server function ServerPlayVoiceCommsDialog(int CommsIndex)
 
 function CancelDownload()
 {
+    LogInternal("Disconnecting!!!");    
     ConsoleCommand("DISCONNECT");
 }
 
@@ -3839,6 +4007,46 @@ function ClearOnlineDelegates()
     super(PlayerController).ClearOnlineDelegates();
 }
 
+exec function RequestSwitchTeam();
+
+// Export UKFPlayerController::execSetNoGoActive(FFrame&, void* const)
+protected native function SetNoGoActive(bool bNewActive, float Delay);
+
+protected reliable server event ServerSetNoGoActive(bool bNewActive, float Delay)
+{
+    bNoGoActive = bNewActive;
+    if(bNoGoActive)
+    {
+        SetTimer(Delay, false, 'MotivatePlayerToMove');        
+    }
+    else
+    {
+        ClearTimer('MotivatePlayerToMove');
+    }
+}
+
+protected function MotivatePlayerToMove()
+{
+    if((Pawn != none) && bNoGoActive)
+    {
+        Pawn.TakeDamage(Pawn.HealthMax / 10, self, Pawn.Location, vect(0, 0, 0), Class'KFVersusNoGoVolume'.static.GetNoGoDTClass());        
+    }
+    else
+    {
+        bNoGoActive = false;
+        ClearTimer('MotivatePlayerToMove');
+    }
+    SetTimer(Class'KFVersusNoGoVolume'.static.GetNoGoHurtInterval(), true, 'MotivatePlayerToMove');
+}
+
+exec function GCF()
+{
+    if(MyGFxManager != none)
+    {
+        MyGFxManager.currentFocus();
+    }
+}
+
 state PlayerWalking
 {
     ignores SeePlayer, HearNoise, Bump;
@@ -3876,7 +4084,7 @@ state Dead
         local KFPlayerInput KFPI;
 
         super.BeginState(PreviousStateName);
-        SetTimer(5, false, 'StartSpectate');
+        SetTimer(6, false, 'StartSpectate');
         ResetGameplayPostProcessFX();
         KFP = KFPawn(ViewTarget);
         if((KFP != none) && UsingFirstPersonCamera())
@@ -3951,6 +4159,19 @@ state Dead
     stop;    
 }
 
+auto state PlayerWaiting
+{
+    ignores SeePlayer, HearNoise, NotifyBump, TakeDamage, PhysicsVolumeChange, NextWeapon, 
+	    PrevWeapon, SwitchToBestWeapon;
+
+    reliable server function ServerRestartPlayer()
+    {
+        MoveToValidSpectatorLocation();
+        super.ServerRestartPlayer();
+    }
+    stop;    
+}
+
 state Spectating
 {
     ignores StartFire;
@@ -3962,11 +4183,12 @@ state Spectating
         {
             MyGFxHUD.SetHUDSpectating(true);
         }
-        if(Role == ROLE_Authority)
+        if(((Role == ROLE_Authority) && !bIsAchievementPlayer) && float(WorldInfo.GRI.ElapsedTime) > 2)
         {
-            SpectatePlayer(ROLE_None);
-            NotifyChangeSpectateViewTarget();
+            MoveToValidSpectatorLocation();
         }
+        SpectatePlayer(0);
+        NotifyChangeSpectateViewTarget();
         if(WorldInfo.NetMode == NM_Standalone)
         {
             ToggleHealthEffects(false);
@@ -3976,24 +4198,19 @@ state Spectating
     exec function SpectateNextPlayer()
     {
         ServerViewNextPlayer();
-        if(Role == ROLE_Authority)
-        {
-            NotifyChangeSpectateViewTarget();
-        }
+        NotifyChangeSpectateViewTarget();
     }
 
     exec function SpectatePreviousPlayer()
     {
         ServerViewPrevPlayer();
-        if(Role == ROLE_Authority)
-        {
-            NotifyChangeSpectateViewTarget();
-        }
+        NotifyChangeSpectateViewTarget();
     }
 
     exec function SpectateChangeCamMode()
     {
         ServerNextSpectateMode();
+        NotifyChangeSpectateViewTarget();
     }
 
     event EndState(name NextStateName)
@@ -4033,11 +4250,21 @@ state Spectating
     {
         LastActiveTime = WorldInfo.TimeSeconds;
     }
+
+    function SetViewTarget(Actor NewViewTarget, optional ViewTargetTransitionParams TransitionParams)
+    {
+        if(NewViewTarget != ViewTarget)
+        {
+            NotifyChangeSpectateViewTarget();
+        }
+        global.SetViewTarget(NewViewTarget, TransitionParams);
+    }
     stop;    
 }
 
 defaultproperties
 {
+    SavedPerkIndex=1
     PerkList(0)=(PerkClass=Class'KFPerk_Berserker',PerkLevel=0,PerkArchetype=none)
     PerkList(1)=(PerkClass=Class'KFPerk_Commando',PerkLevel=0,PerkArchetype=none)
     PerkList(2)=(PerkClass=Class'KFPerk_Support',PerkLevel=0,PerkArchetype=none)
@@ -4050,7 +4277,6 @@ defaultproperties
     MusicMessageType=Music
     bReflectionsEnabled=true
     bTrackingMapTopView=true
-    SavedPerkIndex=1
     ZedTimeEnterSound=AkEvent'WW_GLO_Runtime.Set_ZEDTime_On'
     ZedTimeExitSound=AkEvent'WW_GLO_Runtime.Set_ZEDTime_Off'
     ZedTimePartialEnterSound=AkEvent'WW_GLO_Runtime.Set_ZEDTime_Partial_On'

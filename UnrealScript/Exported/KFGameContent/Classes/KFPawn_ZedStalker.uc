@@ -10,12 +10,14 @@
 class KFPawn_ZedStalker extends KFPawn_Monster;
 
 var MaterialInstanceConstant SpottedMaterial;
-var MaterialInstanceConstant CloakedMaterial;
 
 var AkBaseSoundObject CloakedLoop;
 var AkBaseSoundObject CloakedLoopEnd;
 
 var float CloakPercent;
+
+/** The local player controller viewing this pawn */
+var KFPlayerController ViewerPlayer;
 
 /** Cloak speeds */
 var float CloakSpeed;
@@ -24,6 +26,8 @@ var float DeCloakSpeed;
 simulated event PostBeginPlay()
 {
 	super.PostBeginPlay();
+
+	SetCloaked( true );
 	PlayStealthSoundLoop();
 }
 
@@ -104,18 +108,18 @@ simulated function SetGameplayMICParams()
 		{
 			BodyMIC.SetParent(SpottedMaterial);
 		}
-		else if( BodyMIC.Parent != CloakedMaterial )
+		else if( BodyMIC.Parent == SpottedMaterial )
 		{
-			BodyMIC.SetParent(CloakedMaterial);
+			BodyMIC.SetParent(Mesh.SkeletalMesh.Materials[0]);
 			PlayStealthSoundLoop();
 		}
 	}
 }
 
 /** Called when SwitchToGoreLOD is successful */
-simulated event NotifyGoreLODActive()
+simulated event NotifyGoreMeshActive()
 {
-	super.NotifyGoreLODActive();
+	super.NotifyGoreMeshActive();
 
 	if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlaySpotCloakDialog( self, false );
 
@@ -135,24 +139,45 @@ simulated function PlayStealthSoundLoopEnd()
 /** Overridden to support transparency scalar */
 simulated event Tick( float DeltaTime )
 {
+	local float MinCloakPct;
+
 	super.Tick( DeltaTime );
 
 	if( WorldInfo.NetMode != NM_DedicatedServer )
 	{
+		if( ViewerPlayer == none )
+		{
+			ViewerPlayer = KFPlayerController( WorldInfo.GetALocalPlayerController() );
+		}
+
+		MinCloakPct = GetMinCloakPct();
+
 		if( !bIsCloaking )
 		{
 			if( CloakPercent < 1.0f )
 			{
-				CloakPercent = FMin(CloakPercent + DeltaTime*DeCloakSpeed, 1.0f);
-				BodyMIC.SetScalarParameterValue('Transparency', CloakPercent);
+				CloakPercent = fMin( CloakPercent + DeltaTime*DeCloakSpeed, 1.0f );
+				BodyMIC.SetScalarParameterValue( 'Transparency', CloakPercent );
 			}
 		}
-		else if( CloakPercent > 0.f )
+		else if( CloakPercent > MinCloakPct )
 		{
-			CloakPercent = FMax(CloakPercent - DeltaTime*CloakSpeed, 0.f);
-			BodyMIC.SetScalarParameterValue('Transparency', CloakPercent);
+			CloakPercent = fMax( CloakPercent - DeltaTime*CloakSpeed, MinCloakPct );
+			BodyMIC.SetScalarParameterValue( 'Transparency', CloakPercent );
 		}
 	}
+}
+
+
+/** Gets the minimum cloaked amount based on the viewer */
+simulated protected function float GetMinCloakPct()
+{
+	if( ViewerPlayer != none && (ViewerPlayer.GetTeamNum() == GetTeamNum() || ViewerPlayer.PlayerReplicationInfo.bOnlySpectator) )
+	{
+		return 0.5f;
+	}
+
+	return 0.f;
 }
 
 /*********************************************************************************************
@@ -178,29 +203,32 @@ simulated event UpdateSpottedStatus()
 	bOldSpottedByLP = bIsCloakingSpottedByLP;
 	bIsCloakingSpottedByLP = false;
 
-	LocalPC = KFPlayerController(GetALocalPlayerController());
-	if( LocalPC != none )
-	{
-		LocalPerk = LocalPC.GetPerk();
-	}
-
-	if ( LocalPC != none && LocalPC.Pawn != None && LocalPC.Pawn.IsAliveAndWell() && LocalPerk != none &&
-		 LocalPerk.bCanSeeCloakedZeds && (WorldInfo.TimeSeconds - LastRenderTime) < 1.f )
-	{
-		DistanceSq = VSizeSq(LocalPC.Pawn.Location - Location);
-		Range = LocalPerk.GetCloakDetectionRange();
-
-		if ( DistanceSq < Square(Range) )
+    if( !IsHumanControlled() || bIsSprinting )
+    {
+		LocalPC = KFPlayerController(GetALocalPlayerController());
+		if( LocalPC != none )
 		{
-			bIsCloakingSpottedByLP = true;
-			if ( LocalPerk.IsCallOutActive() )
+			LocalPerk = LocalPC.GetPerk();
+		}
+
+		if ( LocalPC != none && LocalPC.Pawn != None && LocalPC.Pawn.IsAliveAndWell() && LocalPerk != none &&
+			 LocalPerk.bCanSeeCloakedZeds && (WorldInfo.TimeSeconds - LastRenderTime) < 1.f )
+		{
+			DistanceSq = VSizeSq(LocalPC.Pawn.Location - Location);
+			Range = LocalPerk.GetCloakDetectionRange();
+
+			if ( DistanceSq < Square(Range) )
 			{
-				// Beware of server spam.  This RPC is marked unreliable and UpdateSpottedStatus has it's own cooldown timer
-				LocalPC.ServerCallOutPawnCloaking(self);
+				bIsCloakingSpottedByLP = true;
+				if ( LocalPerk.IsCallOutActive() )
+				{
+					// Beware of server spam.  This RPC is marked unreliable and UpdateSpottedStatus has it's own cooldown timer
+					LocalPC.ServerCallOutPawnCloaking(self);
+				}
 			}
 		}
 	}
-
+	
 	// If spotted by team already, there is no point in trying to update the MIC here
 	if ( !bIsCloakingSpottedByTeam )
 	{
@@ -226,6 +254,30 @@ function CallOutCloakingExpired()
 	bIsCloakingSpottedByTeam = false;
 	LastStoredCC = none;
 	SetGameplayMICParams();
+}
+
+/** Spawns and attaches the rally effect to a specified bone */
+simulated function SpawnRallyEffect( ParticleSystem RallyEffect, name EffectBoneName, vector EffectOffset )
+{
+	local PlayerController PC;
+
+	if( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		PC = WorldInfo.GetALocalPlayerController();
+
+		// Don't spawn rally effect if cloaking but not spotted
+		if( bIsCloaking
+			&& !bIsCloakingSpottedByLP
+			&& !bIsCloakingSpottedByTeam
+			&& PC.GetTeamNum() < 255
+			&& PC.Pawn != none
+			&& PC.Pawn.IsAliveAndWell() )
+		{
+			return;
+		}
+	}
+
+	super.SpawnRallyEffect( RallyEffect, EffectBoneName, EffectOffset );
 }
 
 /* PlayDying() is called on server/standalone game when killed
@@ -320,7 +372,6 @@ static function int GetTraderAdviceID()
 defaultproperties
 {
    SpottedMaterial=MaterialInstanceConstant'ZED_Stalker_MAT.ZED_Stalker_Visible_MAT'
-   CloakedMaterial=MaterialInstanceConstant'ZED_Stalker_MAT.ZED_Stalker_MAT'
    CloakedLoop=AkEvent'WW_ZED_Stalker.ZED_Stalker_SFX_Stealth_LP'
    CloakedLoopEnd=AkEvent'WW_ZED_Stalker.ZED_Stalker_SFX_Stealth_LP_Stop'
    CloakPercent=1.000000
@@ -332,6 +383,7 @@ defaultproperties
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
       BaseDamage=9.000000
       MyDamageType=Class'kfgamecontent.KFDT_Slashing_ZedWeak'
+      MomentumTransfer=25000.000000
       MaxHitRange=180.000000
       Name="MeleeHelper_0"
       ObjectArchetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
@@ -356,22 +408,23 @@ defaultproperties
    bIsCloaking=True
    PenetrationResistance=0.500000
    Begin Object Class=KFPawnAfflictions Name=Afflictions_0 Archetype=KFPawnAfflictions'KFGame.Default__KFPawn_Monster:Afflictions_0'
-      InstantAffl(0)=(head=50,Torso=75,Leg=75,Arm=75,LowHealthBonus=10,Cooldown=9.000000)
-      InstantAffl(1)=(head=43,Torso=46,Leg=46,Arm=46,LowHealthBonus=10,Cooldown=3.000000)
-      InstantAffl(2)=(head=43,Torso=46,Arm=46,LowHealthBonus=10)
-      InstantAffl(3)=(Leg=46,LowHealthBonus=10,Cooldown=1.000000)
-      InstantAffl(4)=(head=23,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=0.350000)
-      InstantAffl(5)=(head=106,Torso=106,Leg=106,Arm=106,LowHealthBonus=10,Cooldown=1.000000)
-      StackingAffl(0)=(Cooldown=5.000000,DissipationRate=0.500000)
-      StackingAffl(1)=(Threshhold=2.000000,Duration=2.500000,Cooldown=5.000000,DissipationRate=0.050000)
-      StackingAffl(2)=(Threshhold=6.000000,Cooldown=20.500000)
-      StackingAffl(3)=(Threshhold=3.000000,Cooldown=20.500000)
       FireFullyCharredDuration=2.500000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
       ObjectArchetype=KFPawnAfflictions'KFGame.Default__KFPawn_Monster:Afflictions_0'
    End Object
    AfflictionHandler=KFPawnAfflictions'kfgamecontent.Default__KFPawn_ZedStalker:Afflictions_0'
+   InstantIncaps(0)=(head=50,Torso=75,Leg=75,Arm=75,LowHealthBonus=10,Cooldown=9.000000)
+   InstantIncaps(1)=(head=43,Torso=45,Leg=60,Arm=60,LowHealthBonus=10,Cooldown=3.000000)
+   InstantIncaps(2)=(head=43,Torso=46,Arm=46,LowHealthBonus=10)
+   InstantIncaps(3)=(Leg=46,LowHealthBonus=10,Cooldown=1.000000)
+   InstantIncaps(4)=(head=23,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=0.350000)
+   InstantIncaps(5)=(head=106,Torso=106,Leg=106,Arm=106,LowHealthBonus=10,Cooldown=1.000000)
+   StackingIncaps(1)=(Threshhold=2.000000,Duration=2.500000,DissipationRate=0.050000)
+   StackingIncaps(2)=(Threshhold=6.000000,Cooldown=20.500000)
+   StackingIncaps(3)=(Cooldown=20.500000)
+   StackingIncaps(4)=()
+   StackingIncaps(5)=()
    PhysRagdollImpulseScale=0.900000
    KnockdownImpulseScale=0.900000
    SprintSpeed=500.000000
@@ -398,31 +451,39 @@ defaultproperties
       SpecialMoveClasses(7)=Class'KFGame.KFSM_RagdollKnockdown'
       SpecialMoveClasses(8)=Class'KFGame.KFSM_DeathAnim'
       SpecialMoveClasses(9)=Class'KFGame.KFSM_Stunned'
-      SpecialMoveClasses(10)=Class'KFGame.KFSM_Emerge'
-      SpecialMoveClasses(11)=Class'KFGame.KFSM_Zed_Taunt'
-      SpecialMoveClasses(12)=Class'KFGame.KFSM_Zed_WalkingTaunt'
-      SpecialMoveClasses(13)=Class'KFGame.KFSM_Evade'
-      SpecialMoveClasses(14)=Class'kfgamecontent.KFSM_Evade_Fear'
-      SpecialMoveClasses(15)=None
-      SpecialMoveClasses(16)=None
+      SpecialMoveClasses(10)=Class'KFGame.KFSM_Frozen'
+      SpecialMoveClasses(11)=Class'KFGame.KFSM_Emerge'
+      SpecialMoveClasses(12)=None
+      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_Taunt'
+      SpecialMoveClasses(14)=Class'KFGame.KFSM_Zed_WalkingTaunt'
+      SpecialMoveClasses(15)=Class'KFGame.KFSM_Evade'
+      SpecialMoveClasses(16)=Class'kfgamecontent.KFSM_Evade_Fear'
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
       SpecialMoveClasses(19)=None
-      SpecialMoveClasses(20)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(21)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(20)=None
+      SpecialMoveClasses(21)=None
+      SpecialMoveClasses(22)=None
+      SpecialMoveClasses(23)=None
+      SpecialMoveClasses(24)=None
+      SpecialMoveClasses(25)=None
+      SpecialMoveClasses(26)=None
+      SpecialMoveClasses(27)=None
+      SpecialMoveClasses(28)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(29)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
    SpecialMoveHandler=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedStalker:SpecialMoveHandler_0'
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent_1 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:AmbientAkSoundComponent_1'
-      BoneName="Spine1"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       Name="AmbientAkSoundComponent_1"
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:AmbientAkSoundComponent_1'
    End Object
    AmbientAkComponent=AmbientAkSoundComponent_1
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent_0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:AmbientAkSoundComponent_0'
-      BoneName="RW_Weapon"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True
       Name="AmbientAkSoundComponent_0"
@@ -435,7 +496,7 @@ defaultproperties
    End Object
    WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'kfgamecontent.Default__KFPawn_ZedStalker:WeaponAmbientEchoHandler_0'
    Begin Object Class=AkComponent Name=FootstepAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_Monster:FootstepAkSoundComponent'
-      BoneName="Root"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True
       Name="FootstepAkSoundComponent"
@@ -443,7 +504,7 @@ defaultproperties
    End Object
    FootstepAkComponent=FootstepAkSoundComponent
    Begin Object Class=AkComponent Name=DialogAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_Monster:DialogAkSoundComponent'
-      BoneName="head"
+      BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
       Name="DialogAkSoundComponent"
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:DialogAkSoundComponent'

@@ -27,13 +27,13 @@ enum EFlexAssetType
 
 	// NVCHANGE_BEGIN: HLLU - Add flex container to flex asset
 	/** The flex container this asset will use. This container can be overwritten by the FlexActor's container */
-	var (Common) notforconsole FlexContainer FlexAssetContainerTemplate;
+	var (Common) FlexContainer FlexAssetContainerTemplate;
 
 	/** The phase-id to assign to particles spawned for this mesh. This can be overwritten by the FlexActor's FlexComponentPhaseId */
-	var (Common) notforconsole int FlexAssetPhaseId;
+	var (Common) int FlexAssetPhaseId;
 
 	/** If true then the particles will be auto-assigned a positive phase-id. This bool can be overwritten by the FlexActor's bFlexComponentAutoAssignPhase */
-	var (Common) notforconsole bool bFlexAssetAutoAssignPhase;
+	var (Common) bool bFlexAssetAutoAssignPhase;
 	// NVCHANGE_END: HLLU - Add flex container to flex asset
 
 	/** The per-particle mass to use for the particles, for clothing this value be multiplied by 0-1 dependent on the vertex color */
@@ -81,7 +81,7 @@ enum EFlexAssetType
 	var array<INT> Triangles;
 	var array<INT> VertexToParticleMap;
 
-	var notforconsole transient native const pointer Object {struct FlexExtObject};
+	var transient native const pointer Object {struct FlexExtObject};
 
 cpptext
 {

@@ -370,8 +370,6 @@ class KFDialogManager extends Actor
 
 
 
-
-
 	
 
 
@@ -423,6 +421,7 @@ class KFDialogManager extends Actor
 
 
 	
+
 
 
 
@@ -599,6 +598,8 @@ var int     IdleHighAmmoPctThreshold;
 // sprinting
 var float   TimeUntilStartSprintPanting;
 
+// global AkEvents
+var AkEvent StopBreathingAkEvent;
 
 /** Same as defined in KFPawn_HUman. This one should always match that one. */
 delegate OnFinishedDialog( const out DialogResponseInfo ResponseInfo );
@@ -1071,7 +1072,7 @@ function PlayDialogEvent( KFPawn Speaker, int EventID )
 
     if( EventInfo.bOnlyPlayLocally )
     {
-        if( KFPlayerController(Speaker.Controller) != none )
+        if( Speaker.IsLocallyControlled() )
         {
             KFPlayerController(Speaker.Controller).ClientHearDialog( Speaker, EventAudioCue, EventInfo.bCanBeMinimized );
         }
@@ -1545,32 +1546,36 @@ function PlayJumpDialog( KFPawn Speaker )
  * Sprint Dialog
  ************************************************/
 
-function PlaySprintingDialog( KFPawn_Human Speaker, bool bSprinting )
-{
-    if( Speaker.VoiceGroupArch == none || Speaker.VoiceGroupArch.default.EventDataClass == none )
-    {
-        return;
-    }
-
-    if( bSprinting )
-    {
-        PlayDialogEvent( Speaker, 50);
-    }
-
-    // if sprint audio is lengthy, then we'll want to stop when we stop sprinting
-}
-
 function PlaySprintPantingDialog( KFPawn_Human Speaker, bool bNewSprintStatus )
 {
     if( bNewSprintStatus && !Speaker.bIsSprinting )
     {
         Speaker.SprintStartTime = WorldInfo.TimeSeconds;
     }
+    else if ( !bNewSprintStatus )
+    {
+        StopBreathingDialog(Speaker);
+    }
 
     if( (WorldInfo.TimeSeconds - Speaker.SprintStartTime) > TimeUntilStartSprintPanting )
     {
         Speaker.SprintStartTime = WorldInfo.TimeSeconds;
         PlayDialogEvent( Speaker, 50);
+    }
+}
+
+/** 
+ * A stop event for sprinting and ironsight breathing.  The breathing sounds also have a max duration,
+ * so even though this event is not perfect (changing controllers, etc...) it won't break anything.
+ */
+function StopBreathingDialog(KFPawn Speaker)
+{
+    if( Speaker.IsSpeaking() )
+    {
+        if ( Speaker.CurrDialogEventID == 50|| Speaker.CurrDialogEventID == 52)
+        {
+            KFPlayerController(Speaker.Controller).ClientHearDialog( Speaker, StopBreathingAkEvent, 0 );
+        }
     }
 }
 
@@ -3152,6 +3157,11 @@ function PlayHansFrenzyDialog( KFPawn Hans )
     PlayDialogEvent( Hans, 21);
 }
 
+function PlayHansAOEDialog( KFPawn Hans )
+{
+    PlayDialogEvent( Hans, 37);
+}
+
 function PlayHansBattlePhaseDialog( KFPawn Hans, int CurrBattlePhase )
 {
     if( !Hans.IsAliveAndWell() )
@@ -3181,22 +3191,22 @@ function PlayHansBattlePhaseDialog( KFPawn Hans, int CurrBattlePhase )
 
 function PlayPattyMinigunWarnDialog( KFPawn Patty )
 {
-    PlayDialogEvent( Patty, 37);
+    PlayDialogEvent( Patty, 16);
 }
 
 function PlayPattyMinigunAttackDialog( KFPawn Patty )
 {
-    PlayDialogEvent( Patty, 38);
+    PlayDialogEvent( Patty, 17);
 }
 
 function PlayPattyTentaclePullDialog( KFPawn Patty )
 {
-    PlayDialogEvent( Patty, 42);
+    PlayDialogEvent( Patty, 21);
 }
 
 function PlayPattyChildKilledDialog( KFPawn Patty )
 {
-    PlayDialogEvent( Patty, 46);
+    PlayDialogEvent( Patty, 25);
 }
 
 function PlayPattyKilledDialog( KFPawn Patty, class<DamageType> DmgType )
@@ -3225,17 +3235,22 @@ function PlayPattyBattlePhaseDialog( KFPawn Patty, int CurrBattlePhase )
     switch( CurrBattlePhase )
     {
     case 2:
-        PlayDialogEvent( Patty, 47);
+        PlayDialogEvent( Patty, 26);
         break;
 
     case 3:
-        PlayDialogEvent( Patty, 48);
+        PlayDialogEvent( Patty, 27);
         break;
 
     case 4:
-        PlayDialogEvent( Patty, 49);
+        PlayDialogEvent( Patty, 28);
         break;
     };
+}
+
+function PlayPattyWhirlwindDialog( KFPawn Patty )
+{
+    PlayDialogEvent( Patty, 36);
 }
 
 defaultproperties
@@ -3270,6 +3285,7 @@ defaultproperties
    IdleLowDoshThreshold=350
    IdleHighDoshThreshold=3500
    TimeUntilStartSprintPanting=3.000000
+   StopBreathingAkEvent=AkEvent'WW_GLO_Runtime.Stop_Breathing'
    CollisionType=COLLIDE_CustomDefault
    Name="Default__KFDialogManager"
    ObjectArchetype=Actor'Engine.Default__Actor'

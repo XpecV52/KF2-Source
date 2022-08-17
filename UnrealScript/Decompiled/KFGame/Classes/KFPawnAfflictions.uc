@@ -8,7 +8,20 @@
 class KFPawnAfflictions extends Object within KFPawn
     native(Pawn);
 
-enum EInstantAfflictions
+enum EHitZoneBodyPart
+{
+    BP_None,
+    BP_Head,
+    BP_Torso,
+    BP_LeftArm,
+    BP_RightArm,
+    BP_LeftLeg,
+    BP_RightLeg,
+    BP_Special,
+    BP_MAX
+};
+
+enum EInstantIncaps
 {
     IAF_Knockdown,
     IAF_Stun,
@@ -22,13 +35,14 @@ enum EInstantAfflictions
     IAF_MAX
 };
 
-enum EStackingAfflictions
+enum EStackingIncaps
 {
     SAF_EMPPanic,
     SAF_FirePanic,
     SAF_Poison,
     SAF_Microwave,
     SAF_EMPDisrupt,
+    SAF_Freeze,
     SAF_Custom1,
     SAF_Custom2,
     SAF_Custom3,
@@ -49,7 +63,7 @@ struct native IncapResist
     var() const byte Special;
     /** Additional resist applied as health approaches zero */
     var() const byte LowHealthBonus;
-    /** prevent incap spamming */
+    /** How long after this incap occurs can it happen again. Prevents pawns from getting spammed with incaps */
     var() const float Cooldown;
     var transient float LastStartTime;
 
@@ -90,8 +104,6 @@ struct native StackingIncapInfo
     }
 };
 
-var protected array<IncapResist> InstantAffl;
-var protected array<StackingIncapInfo> StackingAffl;
 var protected bool bDebugLog;
 var protected bool bNoBurnedMatBeforeDeath;
 var protected bool bSteamEffectActive;
@@ -133,7 +145,7 @@ function NotifyTakeHit(Controller DamageInstigator, Vector HitDir, class<KFDamag
     {
         InstigatorPerk = KFPlayerController(DamageInstigator).GetPerk();
     }
-    if(!Outer.IsHumanControlled() && !Outer.bPlayedDeath)
+    if((Outer.GetTeamNum() > 254) && !Outer.bPlayedDeath)
     {
         CheckSpecialMoveAfflictions(InstigatorPerk, HitDir, DamageType);
         CheckHitReactionAfflictions(DamageType);
@@ -141,7 +153,7 @@ function NotifyTakeHit(Controller DamageInstigator, Vector HitDir, class<KFDamag
     CheckStackingAfflictions(InstigatorPerk, DamageType);
 }
 
-function KFPawnAnimInfo.EHitReactionAnimType GetPredictedHitReaction(class<KFDamageType> DamageType, KFPawn.EHitZoneBodyPart BodyPart)
+function byte GetPredictedHitReaction(class<KFDamageType> DamageType, KFPawnAfflictions.EHitZoneBodyPart BodyPart)
 {
     if((DamageType.default.MeleeHitPower > 0) && ShouldApply(4, BodyPart, DamageType.default.MeleeHitPower,, true))
     {
@@ -159,11 +171,11 @@ function KFPawnAnimInfo.EHitReactionAnimType GetPredictedHitReaction(class<KFDam
 
 protected function CheckSpecialMoveAfflictions(KFPerk InstigatorPerk, Vector HitDir, class<KFDamageType> DamageType)
 {
-    local KFPawn.EHitZoneBodyPart BodyPart;
+    local KFPawnAfflictions.EHitZoneBodyPart BodyPart;
     local byte HitZoneIdx;
     local Vector HitLoc;
     local float KnockdownPowerModifier, StumblePowerModifier, StunPowerModifier, StumbleCooldownModifier;
-    local bool bForceStumble;
+    local bool bForceKnockdown, bForceStumble, bForceStun;
 
     if(IsZero(HitDir))
     {
@@ -182,17 +194,25 @@ protected function CheckSpecialMoveAfflictions(KFPerk InstigatorPerk, Vector Hit
         StumblePowerModifier = InstigatorPerk.GetStumblePowerModifier(Outer, DamageType, StumbleCooldownModifier, BodyPart);
         StunPowerModifier = InstigatorPerk.GetStunPowerModifier(DamageType, HitZoneIdx);
     }
+    if(KnockdownPowerModifier >= 255)
+    {
+        bForceKnockdown = true;
+    }
     if(StumblePowerModifier >= 255)
     {
         bForceStumble = true;
     }
-    if(((DamageType.default.KnockdownPower > 0) && Outer.CanDoSpecialMove(7)) && ShouldApply(0, BodyPart, int(float(DamageType.default.KnockdownPower) * KnockdownPowerModifier)))
+    if(StunPowerModifier >= 255)
+    {
+        bForceStun = true;
+    }
+    if(((bForceKnockdown || DamageType.default.KnockdownPower > 0) && Outer.CanDoSpecialMove(7)) && ShouldApply(0, BodyPart, ((bForceKnockdown) ? 256 : int(float(DamageType.default.KnockdownPower) * KnockdownPowerModifier))))
     {
         ActivateKnockdown(DamageType, HitLoc, HitDir, HitZoneIdx);        
     }
     else
     {
-        if(((DamageType.default.StunPower > 0) && Outer.CanDoSpecialMove(9)) && ShouldApply(1, BodyPart, int(float(DamageType.default.StunPower) * StunPowerModifier)))
+        if(((bForceStun || DamageType.default.StunPower > 0) && Outer.CanDoSpecialMove(9)) && ShouldApply(1, BodyPart, ((bForceStun) ? 256 : int(float(DamageType.default.StunPower) * StunPowerModifier))))
         {
             Outer.DoSpecialMove(9);            
         }
@@ -215,7 +235,7 @@ protected function CheckSpecialMoveAfflictions(KFPerk InstigatorPerk, Vector Hit
 
 protected function CheckHitReactionAfflictions(class<KFDamageType> DamageType)
 {
-    local KFPawn.EHitZoneBodyPart BodyPart;
+    local KFPawnAfflictions.EHitZoneBodyPart BodyPart;
     local byte HitZoneIdx;
 
     if((Outer.MyKFAIC != none) && Outer.SpecialMove == 0)
@@ -272,13 +292,17 @@ protected function CheckStackingAfflictions(KFPerk InstigatorPerk, class<KFDamag
     {
         SetMicrowavePanicked(true);
     }
+    if((DamageType.default.FreezePower > float(0)) && AccrueStackingAffliction(5, DamageType.default.FreezePower))
+    {
+        SetFrozen(true);
+    }
     if((DamageType.default.EMPPower > float(0)) && AccrueStackingAffliction(4, DamageType.default.EMPPower))
     {
         SetEMPDisrupted(true);
     }
 }
 
-protected function bool ShouldApply(KFPawnAfflictions.EInstantAfflictions Id, KFPawn.EHitZoneBodyPart BodyPart, int InPower, optional float CooldownModifier, optional bool bTestOnly)
+protected function bool ShouldApply(KFPawnAfflictions.EInstantIncaps Id, KFPawnAfflictions.EHitZoneBodyPart BodyPart, int InPower, optional float CooldownModifier, optional bool bTestOnly)
 {
     local byte BaseResistValue;
     local float PercentHealth;
@@ -288,32 +312,32 @@ protected function bool ShouldApply(KFPawnAfflictions.EInstantAfflictions Id, KF
     {
         return false;
     }
-    if(Id >= InstantAffl.Length)
+    if(Id >= Outer.InstantIncaps.Length)
     {
         return false;
     }
     switch(BodyPart)
     {
         case 1:
-            BaseResistValue = InstantAffl[Id].head;
+            BaseResistValue = Outer.InstantIncaps[Id].head;
             break;
         case 2:
-            BaseResistValue = InstantAffl[Id].Torso;
+            BaseResistValue = Outer.InstantIncaps[Id].Torso;
             break;
         case 3:
-            BaseResistValue = InstantAffl[Id].Arm;
+            BaseResistValue = Outer.InstantIncaps[Id].Arm;
             break;
         case 4:
-            BaseResistValue = InstantAffl[Id].Arm;
+            BaseResistValue = Outer.InstantIncaps[Id].Arm;
             break;
         case 5:
-            BaseResistValue = InstantAffl[Id].Leg;
+            BaseResistValue = Outer.InstantIncaps[Id].Leg;
             break;
         case 6:
-            BaseResistValue = InstantAffl[Id].Leg;
+            BaseResistValue = Outer.InstantIncaps[Id].Leg;
             break;
         case 7:
-            BaseResistValue = InstantAffl[Id].Special;
+            BaseResistValue = Outer.InstantIncaps[Id].Special;
             break;
         default:
             return false;
@@ -323,9 +347,9 @@ protected function bool ShouldApply(KFPawnAfflictions.EInstantAfflictions Id, KF
     {
         if(bDebugLog)
         {
-            LogInternal(((((((string(Id) @ string(self)) @ "Resistance is Base:") @ string(BaseResistValue)) @ "LowHealthBonus:") @ string(InstantAffl[Id].LowHealthBonus)) @ "Power: ") $ string(InPower), 'StatusEffect');
+            LogInternal(((((((string(Id) @ string(self)) @ "Resistance is Base:") @ string(BaseResistValue)) @ "LowHealthBonus:") @ string(Outer.InstantIncaps[Id].LowHealthBonus)) @ "Power: ") $ string(InPower), 'StatusEffect');
         }
-        if((Outer.WorldInfo.TimeSeconds - InstantAffl[Id].LastStartTime) < (InstantAffl[Id].Cooldown * CooldownModifier))
+        if((Outer.WorldInfo.TimeSeconds - Outer.InstantIncaps[Id].LastStartTime) < (Outer.InstantIncaps[Id].Cooldown * CooldownModifier))
         {
             if(bDebugLog)
             {
@@ -341,10 +365,10 @@ protected function bool ShouldApply(KFPawnAfflictions.EInstantAfflictions Id, KF
             }
             return false;
         }
-        if(InPower < (BaseResistValue + InstantAffl[Id].LowHealthBonus))
+        if(InPower < (BaseResistValue + Outer.InstantIncaps[Id].LowHealthBonus))
         {
             PercentHealth = GetOwnerHealthPercent();
-            if(float(InPower) < (float(BaseResistValue) + ((1 - PercentHealth) * float(InstantAffl[Id].LowHealthBonus))))
+            if(float(InPower) < (float(BaseResistValue) + ((1 - PercentHealth) * float(Outer.InstantIncaps[Id].LowHealthBonus))))
             {
                 if(bDebugLog)
                 {
@@ -355,7 +379,7 @@ protected function bool ShouldApply(KFPawnAfflictions.EInstantAfflictions Id, KF
         }
         if(!bTestOnly)
         {
-            InstantAffl[Id].LastStartTime = Outer.WorldInfo.TimeSeconds;
+            Outer.InstantIncaps[Id].LastStartTime = Outer.WorldInfo.TimeSeconds;
         }
         if(bDebugLog)
         {
@@ -378,13 +402,13 @@ function float GetOwnerHealthPercent()
     return FMin(float(Outer.Health) / float(Outer.HealthMax), 1);
 }
 
-function bool AccrueStackingAffliction(KFPawnAfflictions.EStackingAfflictions Id, float InPower)
+function bool AccrueStackingAffliction(KFPawnAfflictions.EStackingIncaps Id, float InPower)
 {
-    if(((Id >= StackingAffl.Length) || InPower <= float(0)) || StackingAffl[Id].Duration <= float(0))
+    if(((Id >= Outer.StackingIncaps.Length) || InPower <= float(0)) || Outer.StackingIncaps[Id].Duration <= float(0))
     {
         return false;
     }
-    if((Outer.WorldInfo.TimeSeconds - StackingAffl[Id].LastStartTime) < StackingAffl[Id].Cooldown)
+    if((Outer.WorldInfo.TimeSeconds - Outer.StackingIncaps[Id].LastStartTime) < Outer.StackingIncaps[Id].Cooldown)
     {
         if(bDebugLog)
         {
@@ -392,12 +416,12 @@ function bool AccrueStackingAffliction(KFPawnAfflictions.EStackingAfflictions Id
         }
         return false;
     }
-    StackingAffl[Id].StackedPower += InPower;
+    Outer.StackingIncaps[Id].StackedPower += InPower;
     if(bDebugLog)
     {
-        LogInternal(((((string(GetFuncName()) @ string(Id)) @ "Threshold:") $ string(StackingAffl[Id].Threshhold)) @ "Power:") $ string(StackingAffl[Id].StackedPower));
+        LogInternal(((((string(GetFuncName()) @ string(Id)) @ "Threshold:") $ string(Outer.StackingIncaps[Id].Threshhold)) @ "Power:") $ string(Outer.StackingIncaps[Id].StackedPower));
     }
-    if(StackingAffl[Id].Threshhold > StackingAffl[Id].StackedPower)
+    if(Outer.StackingIncaps[Id].Threshhold > Outer.StackingIncaps[Id].StackedPower)
     {
         if(bDebugLog)
         {
@@ -405,7 +429,7 @@ function bool AccrueStackingAffliction(KFPawnAfflictions.EStackingAfflictions Id
         }
         return false;
     }
-    StackingAffl[Id].LastStartTime = Outer.WorldInfo.TimeSeconds;
+    Outer.StackingIncaps[Id].LastStartTime = Outer.WorldInfo.TimeSeconds;
     if(bDebugLog)
     {
         LogInternal((string(GetFuncName()) @ "accepted:") $ string(Id));
@@ -452,6 +476,10 @@ event SetEMPDisrupted(bool bEnabled)
             return;
         }
         Outer.bEmpDisrupted = bEnabled;
+        if(Outer.IsDoingSpecialMove())
+        {
+            Outer.SpecialMoves[Outer.SpecialMove].OnEMPDisrupted();
+        }
         Outer.OnStackingAfflictionChanged(4);
     }
     SetEMPEffects(Outer.bEmpDisrupted, Outer.bEmpPanicked);
@@ -546,7 +574,7 @@ event SetFirePanicked(bool bEnabled)
     {
         if(bEnabled)
         {
-            StackingAffl[1].LastStartTime = Outer.WorldInfo.TimeSeconds;
+            Outer.StackingIncaps[1].LastStartTime = Outer.WorldInfo.TimeSeconds;
         }
     }
     SetFirePanicEffects(bEnabled);
@@ -569,7 +597,7 @@ function SetBurnedParameter(float BurnedAmount, optional bool bViaReplication)
 
 function TearOffFirePanic(byte ServerFirePct)
 {
-    StackingAffl[1].StackedPower = ByteToFloat(ServerFirePct) * StackingAffl[1].Threshhold;
+    Outer.StackingIncaps[1].StackedPower = ByteToFloat(ServerFirePct) * Outer.StackingIncaps[1].Threshhold;
 }
 
 protected function SetFirePanicEffects(bool bEnabled)
@@ -625,7 +653,7 @@ protected event UpdateBurnedMatParam(float DeltaTime)
             MicrowaveParamValue = MicrowaveBurnedAmount;
         }
     }
-    if((Outer.bPlayedDeath || StackingAffl[1].StackedPower > (StackingAffl[1].Threshhold * FireCharPercentThreshhold)) && FireBurnedAmount < FireFullyCharredDuration)
+    if((Outer.bPlayedDeath || Outer.StackingIncaps[1].StackedPower > (Outer.StackingIncaps[1].Threshhold * FireCharPercentThreshhold)) && FireBurnedAmount < FireFullyCharredDuration)
     {
         FireBurnedAmount = FMin(FireBurnedAmount + DeltaTime, FireFullyCharredDuration);
         BurnedParam = FireBurnedAmount / FireFullyCharredDuration;
@@ -664,7 +692,7 @@ protected event UpdateBurnedMatParam(float DeltaTime)
             }
         }
     }
-    Outer.DeathFireStackedPower = FloatToByte(StackingAffl[1].StackedPower / StackingAffl[1].Threshhold);
+    Outer.DeathFireStackedPower = FloatToByte(Outer.StackingIncaps[1].StackedPower / Outer.StackingIncaps[1].Threshhold);
 }
 
 event SetPoisoned(bool bEnabled)
@@ -702,6 +730,30 @@ function SetPoisonedOverlay(bool bEnabled)
     }
 }
 
+event SetFrozen(bool bEnabled)
+{
+    if(!Outer.IsAliveAndWell())
+    {
+        return;
+    }
+    if(Outer.Role == ROLE_Authority)
+    {
+        Outer.OnStackingAfflictionChanged(5);
+        Outer.DoSpecialMove(10, true);
+    }
+}
+
+function SetFrozenParameter(float FreezeAmount)
+{
+    local MaterialInstanceConstant MIC;
+
+    if(Outer.WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        MIC = ((Outer.GoreMIC != none) ? Outer.GoreMIC : Outer.BodyMIC);
+        MIC.SetScalarParameterValue('Scalar_Freeze', FreezeAmount);
+    }
+}
+
 event SetMicrowavePanicked(bool bEnabled)
 {
     local KFPawn_Monster P;
@@ -735,7 +787,7 @@ protected event UpdateMicrowaveMatParam(float DeltaTime)
         }
         else
         {
-            ParamValue = FMin(StackingAffl[3].StackedPower / StackingAffl[3].Threshhold, 1);
+            ParamValue = FMin(Outer.StackingIncaps[3].StackedPower / Outer.StackingIncaps[3].Threshhold, 1);
         }
     }
     if(ParamValue < MicrowavedAmount)
@@ -773,7 +825,7 @@ protected event UpdateMicrowaveMatParam(float DeltaTime)
     {
         SetMicrowaveParameter(UsedMicrowavedAmount);
     }
-    if((StackingAffl[1].StackedPower <= float(0)) && !Outer.bFirePanicked)
+    if((Outer.StackingIncaps[1].StackedPower <= float(0)) && !Outer.bFirePanicked)
     {
         UpdateBurnedMatParam(DeltaTime);
     }
@@ -840,6 +892,14 @@ protected function SetMicrowaveSteamEffects(bool bEnabled)
             SteamingEffect.SetStopSpawning(-1, true);
         }
         Outer.PlaySoundBase(OnSteamEndSound, true, true);
+    }
+}
+
+function float GetAfflictionDuration(KFPawnAfflictions.EStackingIncaps AfflictionId)
+{
+    if(AfflictionId < Outer.StackingIncaps.Length)
+    {
+        return Outer.StackingIncaps[AfflictionId].Duration;
     }
 }
 

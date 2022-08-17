@@ -38,23 +38,23 @@ function Init(WorldInfo WI)
 
 function loadRecords()
 {
-    local array<string> names;
+    local array<string> Names;
     local int I, J, Idx;
     local string tmp;
 
-    GetPerObjectConfigSections(Class'MultiAdminData', names);
+    GetPerObjectConfigSections(Class'MultiAdminData', Names);
     I = 0;
     J0x29:
 
-    if(I < names.Length)
+    if(I < Names.Length)
     {
-        Idx = InStr(names[I], " ");
+        Idx = InStr(Names[I], " ");
         if(Idx == -1)
         {            
         }
         else
         {
-            tmp = Left(names[I], Idx);
+            tmp = Left(Names[I], Idx);
             J = 0;
             J0xAF:
 

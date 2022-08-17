@@ -341,6 +341,7 @@ defaultproperties
 	Begin Object Name=MeleeHelper_0
 		BaseDamage=7.f
 		MaxHitRange=180.f
+		MomentumTransfer=25000.f
 		MyDamageType=class'KFDT_Slashing_ZedWeak'
 	End Object
 
@@ -391,17 +392,15 @@ defaultproperties
 		SpecialMoveClasses(SM_Evade_Fear)=class'KFSM_Evade_Fear'
 	End Object
 
-   	Begin Object Name=Afflictions_0
-		InstantAffl(IAF_Stun)=(Head=43,Torso=43,Leg=43,Arm=43,LowHealthBonus=10,Cooldown=3.0)
-		InstantAffl(IAF_Knockdown)=(Head=35,Torso=54,Leg=54,Arm=54,LowHealthBonus=10,Cooldown=8.0)
-		InstantAffl(IAF_Stumble)=(Head=43,Torso=43,Arm=43,LowHealthBonus=10,Cooldown=1.0)
-		InstantAffl(IAF_LegStumble)=(Leg=43,LowHealthBonus=10,Cooldown=1.0)
-		InstantAffl(IAF_GunHit)=(Head=100,Torso=100,Leg=100,Arm=100,LowHealthBonus=10,Cooldown=0.5)
-		InstantAffl(IAF_MeleeHit)=(Head=23,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=0.35)
-		StackingAffl(SAF_Poison)=(Threshhold=1.0,Duration=5.5,Cooldown=7.5,DissipationRate=1.00)
-		StackingAffl(SAF_Microwave)=(Threshhold=1.0,Duration=3.0,Cooldown=7.5,DissipationRate=1.00)
-		StackingAffl(SAF_FirePanic)=(Threshhold=0.5,Duration=5,Cooldown=7.0,DissipationRate=0.07)
-	End Object
+	InstantIncaps(IAF_Stun)=(Head=43,Torso=43,Leg=43,Arm=43,LowHealthBonus=10,Cooldown=3.0)
+	InstantIncaps(IAF_Knockdown)=(Head=35,Torso=54,Leg=54,Arm=54,LowHealthBonus=10,Cooldown=8.0)
+	InstantIncaps(IAF_Stumble)=(Head=43,Torso=43,Arm=43,LowHealthBonus=10,Cooldown=1.0)
+	InstantIncaps(IAF_LegStumble)=(Leg=43,LowHealthBonus=10,Cooldown=1.0)
+	InstantIncaps(IAF_GunHit)=(Head=100,Torso=100,Leg=100,Arm=100,LowHealthBonus=10,Cooldown=0.5)
+	InstantIncaps(IAF_MeleeHit)=(Head=23,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=0.35)
+	StackingIncaps(SAF_Poison)=(Threshhold=1.0,Duration=5.5,Cooldown=7.5,DissipationRate=1.00)
+	StackingIncaps(SAF_Microwave)=(Threshhold=1.0,Duration=3.0,Cooldown=7.5,DissipationRate=1.00)
+	StackingIncaps(SAF_FirePanic)=(Threshhold=0.5,Duration=5,Cooldown=7.0,DissipationRate=0.07)
 
 	ParryResistance=1
 

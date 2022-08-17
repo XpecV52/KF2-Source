@@ -74,7 +74,7 @@ function UpdateWaveCount()
     }
 
     // Current wave we're on.
-    CurrentWave = KFGRI.WaveNum + 1;
+    CurrentWave = KFGRI.WaveNum;
     if(CurrentWave != LastWave)
     {
         SetInt("currentWave" ,CurrentWave);

@@ -2,7 +2,7 @@
 // KFWeaponDefintion
 //=============================================================================
 // A lightweight container for basic weapon properties that can be safely
-// accessed without a weapon actor (UI, remote clients). 
+// accessed without a weapon actor (UI, remote clients).
 //=============================================================================
 // Killing Floor 2
 // Copyright (C) 2015 Tripwire Interactive LLC
@@ -14,7 +14,7 @@ DefaultProperties
 {
 	WeaponClassPath="KFGameContent.KFWeap_Shotgun_AA12"
 
-	BuyPrice=1700
+	BuyPrice=1500
 	AmmoPricePerMag=100
 	ImagePath="ui_weaponselect_tex.UI_WeaponSelect_AA12"
 

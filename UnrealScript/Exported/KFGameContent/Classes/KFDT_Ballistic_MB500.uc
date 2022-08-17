@@ -63,7 +63,6 @@ class KFDT_Ballistic_MB500 extends KFDT_Ballistic_Shotgun
 
 
 
-
 #linenumber 14;
 
 /** Allows the damage type to customize exactly which hit zones it can dismember */

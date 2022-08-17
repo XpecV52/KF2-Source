@@ -1,5 +1,5 @@
 //=============================================================================
-// KFPawn
+// KFPlayerCamera
 //=============================================================================
 // Camera class for KF players
 //=============================================================================
@@ -18,7 +18,7 @@ var(Camera) protected const  class<KFCustomizationCamera>      	CustomizationCam
 
 
 /** Implements the boss camera. */
-var(Camera) editinline transient KFBossCamera			BossCam;
+var(Camera) editinline transient KFBossCamera					BossCam;
 /** Class to use for viewing the boss camera. */
 var(Camera) protected const  class<KFBossCamera>      			BossCameraClass;
 
@@ -213,4 +213,3 @@ defaultproperties
 	BossCameraClass=class'KFBossCamera'
 	FirstPersonCameraClass=class'KFFirstPersonCamera'
 }
-

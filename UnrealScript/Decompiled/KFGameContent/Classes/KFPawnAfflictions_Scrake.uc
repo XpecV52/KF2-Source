@@ -104,3 +104,15 @@ function SetMicrowaveParameter(float ParamValue)
         }
     }
 }
+
+function SetFrozenParameter(float FreezeAmount)
+{
+    local MaterialInstanceConstant MIC;
+
+    if(Outer.WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        MIC = ((Outer.GoreMIC != none) ? Outer.GoreMIC : Outer.BodyMIC);
+        MIC.SetScalarParameterValue('Scalar_Freeze', FreezeAmount);
+        Outer.BodyAltMIC.SetScalarParameterValue('Scalar_Freeze', FreezeAmount);
+    }
+}

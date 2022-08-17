@@ -267,6 +267,7 @@ defaultproperties
 		HitboxChain.Add((BoneOffset=(Y=+3,Z=30)))
 		HitboxChain.Add((BoneOffset=(Y=-3,Z=10)))
 		// modified combo sequences
+		MeleeImpactCamShakeScale=0.5f
 		ChainSequence_F=(DIR_ForwardRight, DIR_ForwardLeft, DIR_ForwardRight, DIR_ForwardLeft)
 		ChainSequence_B=(DIR_BackwardRight, DIR_ForwardLeft, DIR_BackwardLeft, DIR_ForwardRight)
 		ChainSequence_L=(DIR_Right, DIR_ForwardLeft, DIR_ForwardRight, DIR_Left, DIR_Right)

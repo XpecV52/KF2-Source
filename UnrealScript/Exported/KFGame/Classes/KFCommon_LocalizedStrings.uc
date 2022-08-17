@@ -32,6 +32,9 @@ var localized string NoString;
 
 var localized string DisbandPartyString;
 var localized string LeaveCurrentMenuString;
+var localized string ZedString;
+var localized string HumanString;
+var localized string SpectatorString;
 
 static function array<string> GetDifficultyStringsArray()
 {
@@ -93,7 +96,7 @@ static function array<string> GetGameModeStringsArray()
 	return default.ModeStrings;
 }
 
-static function string GetGameModeString( float GameModeIndex )
+static function string GetGameModeString( int GameModeIndex )
 {
 	if( 0 < default.ModeStrings.length && GameModeIndex < default.ModeStrings.length )
 	{
@@ -117,6 +120,7 @@ defaultproperties
    PermissionStrings(1)="Friends only"
    PermissionStrings(2)="Private"
    ModeStrings(0)="Survival"
+   ModeStrings(1)="VS Survival"
    NoPreferenceString="ANY"
    OKString="OK"
    ConfirmString="CONFIRM"
@@ -130,6 +134,9 @@ defaultproperties
    NoString="No"
    DisbandPartyString="DISBAND PARTY"
    LeaveCurrentMenuString="Leave current menu?"
+   ZedString="ZED"
+   HumanString="SURVIVOR"
+   SpectatorString="SPECTATOR"
    Name="Default__KFCommon_LocalizedStrings"
    ObjectArchetype=Object'Core.Default__Object'
 }

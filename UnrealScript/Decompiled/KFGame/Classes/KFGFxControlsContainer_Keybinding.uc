@@ -17,7 +17,7 @@ var config array<config string> WeaponSelectBindList;
 var config array<config string> InteractionBindList;
 var KeyBind PendingKeyBind;
 var KeyBind OldKeyBind;
-var string BindCommand;
+var string bindCommand;
 var byte CurrentlySelectedSection;
 var byte TotalBindSections;
 var bool bModCtrl;
@@ -70,7 +70,7 @@ function InitalizeCommandList(out array<string> BindList)
     {
         DataProvider = Outer.CreateArray();
         DataProvider.SetInt("sectionIndex", TotalBindSections);
-        DataProvider.SetString("sectionHeader", SectionHeaders[TotalBindSections]);
+        DataProvider.SetString("bindingHeader", SectionHeaders[TotalBindSections]);
         DataProvider.SetString("pressKeyString", PressKeyString);
         I = 0;
         J0xFC:
@@ -140,7 +140,7 @@ function SetSectionBindings(int I, GFxObject bindData)
 
 function ChangeBind(string ChangedCommand, byte SelectedSection)
 {
-    BindCommand = ChangedCommand;
+    bindCommand = ChangedCommand;
     CurrentlySelectedSection = SelectedSection;
     bWaitForInput = true;
 }
@@ -213,7 +213,7 @@ function SetKeyBind(KeyBind NewKeyBind)
         UpdateAllBindings();
         return;
     }
-    if(((NewKeyBind.Name == 'XboxTypeS_A') || NewKeyBind.Name == 'LeftMouseButton') && Manager.IsFocusIgnoreKey(BindCommand))
+    if(((NewKeyBind.Name == 'XboxTypeS_A') || NewKeyBind.Name == 'LeftMouseButton') && Manager.IsFocusIgnoreKey(bindCommand))
     {
         Manager.OpenPopup(2, default.WarningString, string(NewKeyBind.Name) @ default.IgnoredKeyString, Class'KFCommon_LocalizedStrings'.default.OKString);
         UpdateAllBindings();
@@ -221,16 +221,16 @@ function SetKeyBind(KeyBind NewKeyBind)
     }
     KFInput = KFPlayerInput(Outer.GetPC().PlayerInput);
     OldKeyCommand = KFInput.GetGameBindableAction(NewKeyBind.Name);
-    if(((NewKeyBind.Name != 'Delete') && OldKeyCommand != "") && OldKeyCommand != BindCommand)
+    if(((NewKeyBind.Name != 'Delete') && OldKeyCommand != "") && OldKeyCommand != bindCommand)
     {
         PendingKeyBind = NewKeyBind;
         OldKeyBind.Command = OldKeyCommand;
         OldKeyBind.Name = 'Delete';
-        SetConflictMessage(string(NewKeyBind.Name), OldKeyCommand, BindCommand, CurrentlySelectedSection);        
+        SetConflictMessage(string(NewKeyBind.Name), OldKeyCommand, bindCommand, CurrentlySelectedSection);        
     }
     else
     {
-        KFInput.BindKey(NewKeyBind, BindCommand, false);
+        KFInput.BindKey(NewKeyBind, bindCommand, false);
         UpdateAllBindings();
     }
 }
@@ -246,7 +246,7 @@ function SetConflictMessage(string KeyString, string OldCommand, string NewComma
 function AcceptBind()
 {
     KFPlayerInput(Outer.GetPC().PlayerInput).BindKey(OldKeyBind, OldKeyBind.Command, false);
-    KFPlayerInput(Outer.GetPC().PlayerInput).BindKey(PendingKeyBind, BindCommand, false);
+    KFPlayerInput(Outer.GetPC().PlayerInput).BindKey(PendingKeyBind, bindCommand, false);
     UpdateAllBindings();
 }
 
@@ -293,13 +293,14 @@ defaultproperties
     WeaponSelectBindList(6)="GBA_LastWeapon"
     InteractionBindList(0)="GBA_Use"
     InteractionBindList(1)="GBA_Talk"
-    InteractionBindList(2)="GBA_VoiceChat"
-    InteractionBindList(3)="GBA_ShowVoiceComms"
-    InteractionBindList(4)="GBA_ShowScores"
-    InteractionBindList(5)="GBA_TossMoney"
-    InteractionBindList(6)="GBA_DropWeapon"
-    InteractionBindList(7)="GBA_VoteYes"
-    InteractionBindList(8)="GBA_VoteNo"
+    InteractionBindList(2)="GBA_TeamTalk"
+    InteractionBindList(3)="GBA_VoiceChat"
+    InteractionBindList(4)="GBA_ShowVoiceComms"
+    InteractionBindList(5)="GBA_ShowScores"
+    InteractionBindList(6)="GBA_TossMoney"
+    InteractionBindList(7)="GBA_DropWeapon"
+    InteractionBindList(8)="GBA_VoteYes"
+    InteractionBindList(9)="GBA_VoteNo"
     SectionName="LocalizedControls"
     SectionHeaders(0)="Movement"
     SectionHeaders(1)="Interaction"

@@ -47,6 +47,7 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
         {
             MyPatPawn.SetGunTracking(true);
         }
+        AnimName = default.AnimName;
     }
     MyPatPawn.SpecialMoveFlags = 255;
     MyPatPawn.ZeroMovementVariables();
@@ -96,7 +97,11 @@ function SpecialMoveFlagsUpdated()
             bInterrupted = true;
             if(!bIsFanFire)
             {
-                MyPatPawn.StopBodyAnim(1, 0.1);
+                MyPatPawn.StopBodyAnim(1, 0.1);                
+            }
+            else
+            {
+                MyPatPawn.StopBodyAnim(0, 0.1);
             }
             PlayWindDownAnim();
             break;
@@ -121,8 +126,9 @@ function PlayFireAnim()
         MyPatPawn.bDisableTurnInPlace = true;
         bUseRootMotion = true;
         MyPatPawn.Mesh.RootMotionMode = 3;
-        MyPatPawn.BodyStanceNodes[0].SetRootBoneAxisOption(2, 2, 2);
-        PlaySpecialMoveAnim(AnimName, 0, 0.1, 0.2);        
+        AnimStance = 0;
+        MyPatPawn.BodyStanceNodes[AnimStance].SetRootBoneAxisOption(2, 2, 2);
+        PlaySpecialMoveAnim(AnimName, AnimStance, 0.1, 0.2);        
     }
     else
     {
@@ -130,13 +136,17 @@ function PlayFireAnim()
         MyPatPawn.Mesh.RootMotionMode = KFPOwner.Mesh.default.RootMotionMode;
         MyPatPawn.RotationRate = FocusFireRotationRate;
         MyPatPawn.bDisableTurnInPlace = false;
+        AnimStance = 1;
         MyPatPawn.BodyStanceNodes[0].SetRootBoneAxisOption(1, 1, 1);
-        PlaySpecialMoveAnim(AnimName, 1, BlendInTime, BlendOutTime, 1);
+        PlaySpecialMoveAnim(AnimName, AnimStance, BlendInTime, BlendOutTime, 1);
     }
     MyPatPawn.ZeroMovementVariables();
+    if((MyPatPawn.Role == ROLE_Authority) || MyPatPawn.IsLocallyControlled())
+    {
+        MyPatPawn.Weapon.StartFire(0);
+    }
     if(MyPatPawn.Role == ROLE_Authority)
     {
-        MyPatPawn.StartFire(0);
         if(!bIsFanFire && !MyPatPawn.IsHumanControlled())
         {
             MyPatPawn.SetTimer(0.06, true, 'Timer_CheckIfFireAllowed', self);
@@ -151,6 +161,16 @@ function Timer_CheckIfFireAllowed()
     local Vector Projection, OtherProjection, PawnRot2D;
     local float DistSq;
 
+    if((MyPatController.Enemy == none) || !MyPatController.Enemy.IsAliveAndWell())
+    {
+        Timer_SearchForMinigunTargets();
+    }
+    if((MyPatController.Enemy == none) || !MyPatController.Enemy.IsAliveAndWell())
+    {
+        MyPatPawn.SpecialMoveFlags = 64;
+        SpecialMoveFlagsUpdated();
+        return;
+    }
     Projection = MyPatController.Enemy.Location - MyPatPawn.Location;
     DistSq = VSizeSq(Projection);
     foreach MyPatPawn.WorldInfo.AllPawns(Class'KFPawn', KFP)
@@ -163,7 +183,7 @@ function Timer_CheckIfFireAllowed()
             MyPatPawn.SetGunTracking(true);
             if(!MyPatPawn.IsFiring())
             {
-                MyPatPawn.StartFire(0);
+                MyPatPawn.Weapon.StartFire(0);
             }            
             return;
         }        
@@ -172,11 +192,11 @@ function Timer_CheckIfFireAllowed()
     {
         PawnRot2D = vector(MyPatPawn.Rotation);
         PawnRot2D.Z = 0;
-        if((PawnRot2D Dot Normal2D(Projection)) >= 0.9)
+        if((PawnRot2D Dot Normal2D(Projection)) >= 0.68)
         {
             if(!MyPatPawn.IsFiring())
             {
-                MyPatPawn.StartFire(0);
+                MyPatPawn.Weapon.StartFire(0);
             }
             return;
         }
@@ -193,7 +213,7 @@ function Timer_SearchForMinigunTargets()
     {
         return;
     }
-    if(MyPatController.CheckForEnemiesInFOV(4000, 0.6, 1, true, false) != none)
+    if(MyPatController.CheckForEnemiesInFOV(4000, 0.3, 1, true, false) != none)
     {
         MyPatPawn.SetGunTracking(true);
         return;
@@ -253,6 +273,13 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
         if(!bObstructed)
         {
             MyPatPawn.StartWeaponCooldown();
+        }
+        if(MyPatPawn.IsFiring())
+        {
+            if(KFPOwner.BodyStanceNodes[AnimStance].bIsPlayingCustomAnim)
+            {
+                KFPOwner.StopBodyAnim(AnimStance, AbortBlendOutTime);
+            }
         }
         if((MyPatPawn.Weapon != none) && !MyPatPawn.Weapon.IsInState('Active'))
         {

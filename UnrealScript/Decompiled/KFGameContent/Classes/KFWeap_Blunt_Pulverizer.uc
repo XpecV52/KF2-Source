@@ -212,6 +212,7 @@ defaultproperties
         ChainSequence_B=/* Array type was not detected. */
         ChainSequence_L=/* Array type was not detected. */
         ChainSequence_R=/* Array type was not detected. */
+        MeleeImpactCamShakeScale=0.5
         MaxHitRange=190
         HitboxChain=/* Array type was not detected. */
     object end

@@ -1,6 +1,6 @@
 package
 {
-    import tripwire.containers.perks.PerksSkillsSummaryContainer;
+    import tripwire.containers.Perks.PerksSkillsSummaryContainer;
     
     public dynamic class SelectPerkSkillsSummaryContainer extends PerksSkillsSummaryContainer
     {

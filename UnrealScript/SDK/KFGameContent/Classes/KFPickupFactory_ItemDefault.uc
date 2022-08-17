@@ -19,4 +19,8 @@ defaultproperties
     ItemPickups.Add((ItemClass=class'KFWeap_Blunt_Crovel'))
     ItemPickups.Add((ItemClass=class'KFWeap_Edged_Katana'))
 	ItemPickups.Add((ItemClass=class'KFWeap_Pistol_9mm'))
+	ItemPickups.Add((ItemClass=class'KFWeap_Revolver_Rem1858'))
+	ItemPickups.Add((ItemClass=class'KFWeap_Rifle_Winchester1894'))
+	ItemPickups.Add((ItemClass=class'KFWeap_Pistol_Medic'))
+	ItemPickups.Add((ItemClass=class'KFWeap_Flame_CaulkBurn'))
 }

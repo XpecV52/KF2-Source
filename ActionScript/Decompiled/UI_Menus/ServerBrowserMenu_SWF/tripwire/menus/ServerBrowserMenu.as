@@ -64,6 +64,8 @@ package tripwire.menus
                 this.filtersContainer.visible = false;
             }
             defaultFirstElement = this.tabButtonBar;
+            sectionHeader = this.serverBrowserHeader;
+            defaultNumPrompts = 2;
         }
         
         override public function openContainer() : void

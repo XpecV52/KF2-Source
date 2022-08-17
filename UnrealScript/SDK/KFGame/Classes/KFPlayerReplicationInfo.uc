@@ -61,7 +61,7 @@ struct native CustomizationInfo
 var const repnotify CustomizationInfo RepCustomizationInfo;
 
 /** Texture of render of custom character head. */
-var	texture	CharPortrait;
+var	texture		CharPortrait;
 
 /** 0 is Not Talking, 1 is Public, 2 is Team, 3 is Squad, 4 is Vehicle, 5 is Spectator, 6 is Sequestered Spectator */
 var	repnotify byte	VOIPStatus;
@@ -70,13 +70,13 @@ var	repnotify byte	VOIPStatus;
  *  Replicated Perk Data
  ************************************/
 /** Selected perk info replicated to all */
-var  			byte			NetPerkIndex; // @todo: replace with class?
+var  	byte			NetPerkIndex; // @todo: replace with class?
 var  			Class<KFPerk>	CurrentPerkClass;
-var private 	byte			ActivePerkLevel;
+var private 	byte	ActivePerkLevel;
 /** Kill assists. Need an integer here because it is very easy to exceed 255 assists. */
 var 			int 			Assists;
-var 			byte			PlayerHealth;
-var 			byte			PlayerHealthMax;
+var 	byte			PlayerHealth; //represented as a percentage
+var 	byte			PlayerHealthPercent; //represented as a percentage
 /** The firebug range skill increases the range of fire weapons we need to tell other clients if it is on */
 var 			bool 			bExtraFireRange;
 /** The firebug splash damage skill changes the explosion template */
@@ -116,9 +116,9 @@ replication
 {
 	if ( bNetDirty )
 		RepCustomizationInfo, NetPerkIndex, ActivePerkLevel,
-		CurrentPerkClass, bObjectivePlayer, Assists, PlayerHealth, 
-		PlayerHealthMax, bExtraFireRange, bSplashActive, bNukeActive, 
-		bConcussiveActive, bPerkCanSupply;
+		CurrentPerkClass, bObjectivePlayer, Assists, PlayerHealth, PlayerHealthPercent,
+		bExtraFireRange, bSplashActive, bNukeActive, 
+		bConcussiveActive, bPerkCanSupply, CharPortrait;
 
   	// sent to non owning clients
  	if ( bNetDirty && (!bNetOwner || bDemoRecording) )
@@ -139,6 +139,12 @@ simulated event ReplicatedEvent(name VarName)
 	{
 		UpdateTraderDosh();
 	}
+	
+	if ( VarName == 'Team' )
+	{
+		ClientRecieveNewTeam();
+	}
+
 	Super.ReplicatedEvent(VarName);
 }
 
@@ -147,6 +153,69 @@ simulated event PostBeginPlay()
 	super.PostBeginPlay();
 }
 
+/*********************************************************************************************
+`*Team management
+*********************************************************************************************/
+reliable server function ServerSwitchTeam()
+{
+	local KFGameInfo MyGameInfo;
+	local KFGameReplicationInfo KFGRI;
+	
+	MyGameInfo = KFGameInfo(WorldInfo.Game);
+	if( MyGameInfo == none )
+	{
+		return;
+	}
+
+	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+	if( KFGRI == None || !KFGRI.bAllowSwitchTeam )
+	{
+		return;
+	}
+
+	if( KFGRI.bMatchHasBegun )
+	{
+		PlayerController(Owner).Pawn.Suicide();
+	}
+
+	switch( GetTeamNum() )
+	{
+		case MyGameInfo.Teams[0].TeamIndex:
+			MyGameInfo.SetTeam( PlayerController(Owner), MyGameInfo.Teams[1] );
+			break;
+	
+		case MyGameInfo.Teams[1].TeamIndex:
+				MyGameInfo.SetTeam( PlayerController(Owner), MyGameInfo.Teams[0] );
+			break;
+	
+		default:
+			`log("Function: KFPlayerReplicationInfo::ServerSwitchTeam Team index not accounted for - " @GetTeamNum());
+	}
+}
+
+reliable client function ClientRecieveNewTeam()
+{
+	local KFGameReplicationInfo KFGRI;
+	local KFGFxHudWrapper MyGFxHUD;
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(Owner);
+
+	if(KFPC != none && KFPC.IsLocalController())
+	{
+		MyGFxHud = KFGFxHudWrapper(KFPC.myHUD);
+	}
+	else
+	{
+		return;
+	}
+
+	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+	if(KFGRI.bMatchHasBegun)
+	{
+		MyGFxHud.CreateHUDMovie();
+	}
+}
 /*********************************************************************************************
 `* Current Perk Level
 ********************************************************************************************* */
@@ -160,30 +229,20 @@ simulated function byte GetActivePerkLevel()
 `* VOIP
 ********************************************************************************************* */
 
+
 reliable server function ServerNotifyStartVoip()
 {
 	local int i;
-
 	local KFPlayerController KFPC;
-	local KFGameInfo KFGI;
 
 	KFPC = KFPlayerController(Owner);
-	if(KFPC == none)
-	{
-		return;
-	}
 
-	KFGI = KFGameInfo(WorldInfo.Game);
-	if( KFGI == none )
-	{
+	//ClearTimer('ClearVOIP');
 
-	}
-
-	if ( !KFGI.bDisableVOIP )
+	if ( !KFGameInfo(WorldInfo.Game).bDisableVOIP && !KFGameInfo(WorldInfo.Game).bDisablePublicVOIPChannel )
 	{
 		if ( !bOnlySpectator )
 		{
-			VOIPStatus = 1;
 			bNetDirty = true;
 			bForceNetUpdate = true;
 
@@ -191,6 +250,7 @@ reliable server function ServerNotifyStartVoip()
 			{
 				VOIPStatusChanged(self, true);
 			}
+            VOIPStatus = 1;
 
 			KFPC.VoiceReceivers.Remove(0, KFPC.VoiceReceivers.Length);
 
@@ -209,7 +269,7 @@ reliable server function ServerNotifyStartVoip()
 					}
 				}
 			}
-			else if ( KFGI.bEnableDeadToDeadVOIP )
+			else if ( KFGameInfo(WorldInfo.Game).bEnableDeadToVOIP )
 			{
 				for ( i = 0; i < WorldInfo.GRI.PRIArray.Length; i++ )
 				{
@@ -224,14 +284,81 @@ reliable server function ServerNotifyStartVoip()
 					}
 				}
 			}
+
+			if ( KFPC.VoiceReceivers.Length <= 0 )
+			{
+				KFPC.VoiceReceivers.AddItem(UniqueId);
+			}
+		}
 			else
 			{
-				VOIPStatus = 0;
-				bNetDirty = true;
-				bForceNetUpdate = true;
-				if(!KFPC.IsLocalController())
+			ServerStartSpectatorVoiceChat();
+		}
+	}
+	else
+	{
+		KFPC.VoiceReceivers.Remove(0, KFPC.VoiceReceivers.Length);
+		KFPC.VoiceReceivers.AddItem(UniqueId);
+	}
+}
+
+reliable server function ServerNotifyStartTeamVoip()
+{
+	local byte TeamIndex;
+	local int i;
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(Owner);
+
+	//ClearTimer('ClearVOIP');
+
+	if ( !KFGameInfo(WorldInfo.Game).bDisableVoip )
+	{
+		TeamIndex = GetTeamNum();
+
+		if ( !bOnlySpectator )
+		{
+			bNetDirty = true;
+			bForceNetUpdate = true;
+		
+			if(!KFPC.IsLocalController())
+			{
+				VOIPStatusChanged(self, true);
+			}
+            
+            VOIPStatus = 2;
+
+			KFPC.VoiceReceivers.Remove(0, KFPC.VoiceReceivers.Length);
+
+			if ( KFPC.Pawn != none && KFPC.Pawn.Health > 0 )
+			{
+				for ( i = 0; i < WorldInfo.GRI.PRIArray.Length; i++ )
 				{
-					VOIPStatusChanged(self, FALSE);
+					if ( !WorldInfo.GRI.PRIArray[i].bBot && (WorldInfo.GRI.PRIArray[i].GetTeamNum() == TeamIndex || !WorldInfo.GRI.bMatchHasBegun || WorldInfo.GRI.bMatchIsOver) )
+					{
+						KFPC.VoiceReceivers.AddItem(WorldInfo.GRI.PRIArray[i].UniqueId);
+
+						if ( PlayerController(WorldInfo.GRI.PRIArray[i].Owner) != none )
+						{
+							PlayerController(WorldInfo.GRI.PRIArray[i].Owner).VoiceSenders.AddItem(UniqueId);
+						}
+					}
+				}
+			}
+			else if ( KFGameInfo(WorldInfo.Game).bEnableDeadToVOIP )
+			{
+				for ( i = 0; i < WorldInfo.GRI.PRIArray.Length; i++ )
+				{
+					if ( !WorldInfo.GRI.PRIArray[i].bBot &&
+						 (WorldInfo.GRI.PRIArray[i].GetTeamNum() == TeamIndex || !WorldInfo.GRI.bMatchHasBegun || WorldInfo.GRI.bMatchIsOver) )
+					{
+						KFPC.VoiceReceivers.AddItem(WorldInfo.GRI.PRIArray[i].UniqueId);
+
+						if ( PlayerController(WorldInfo.GRI.PRIArray[i].Owner) != none )
+						{
+							PlayerController(WorldInfo.GRI.PRIArray[i].Owner).VoiceSenders.AddItem(UniqueId);
+						}
+					}
 				}
 			}
 
@@ -247,17 +374,11 @@ reliable server function ServerNotifyStartVoip()
 	}
 	else
 	{
-		VOIPStatus = 0;
-		bNetDirty = true;
-		bForceNetUpdate = true;
-		if(!KFPC.IsLocalController())
-		{
-			VOIPStatusChanged(self, FALSE);
-		}
 		KFPC.VoiceReceivers.Remove(0, KFPC.VoiceReceivers.Length);
 		KFPC.VoiceReceivers.AddItem(UniqueId);
 	}
 }
+
 
 function ServerStartSpectatorVoiceChat()
 {
@@ -304,7 +425,7 @@ reliable server function ServerNotifyStopVOIP()
 
 	if( KFPC != none )
 	{
-		KFPC.VoiceReceivers.Remove(0, KFPC.VoiceReceivers.Length);
+	KFPC.VoiceReceivers.Remove(0, KFPC.VoiceReceivers.Length);
 	}
 
 	foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
@@ -432,7 +553,7 @@ simulated function CastMapVote(int MapIndex, bool bDoubleClick)
 {
 	local KFGameInfo KFGI;
 
-	ServerCastMapVote(self, MapIndex);
+	ServerCastMapVote(self, KFGameReplicationInfo(WorldInfo.GRI).VoteCollector.MapList[MapIndex]);
 
 	if(WorldInfo.NetMode == NM_StandAlone)
 	{
@@ -445,7 +566,7 @@ simulated function CastMapVote(int MapIndex, bool bDoubleClick)
 	}
 }
 
-reliable server function ServerCastMapVote(PlayerReplicationInfo PRI, int MapIndex)
+reliable server function ServerCastMapVote(PlayerReplicationInfo PRI, string MapName)
 {
 	local KFGameReplicationInfo kfGRI;
 	local KFGameInfo KFGI;
@@ -460,7 +581,7 @@ reliable server function ServerCastMapVote(PlayerReplicationInfo PRI, int MapInd
 
 	if(KFGRI != none)
 	{
-		KFGRI.ReceiveVoteMap(PRI, MapIndex);
+		KFGRI.ReceiveVoteMap(PRI, KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps.Find(MapName));
 	}
 }
 
@@ -570,7 +691,7 @@ simulated event CharacterCustomizationChanged()
 	local KFCharacterInfoBase NewCharArch;
 
 	`AnalyticsLog(("character_change", self, CharacterArchetypes[RepCustomizationInfo.CharacterIndex].Name));
-
+				   
 	foreach WorldInfo.AllPawns(class'KFPawn_Human', KFP)
 	{
 		if (KFP.PlayerReplicationInfo == self ||
@@ -641,7 +762,6 @@ function AddDosh( int DoshAmount, optional bool bEarned )
 	if ( bEarned && DoshAmount > 0 )
 	{
 		`RecordAARIntStat(KFPlayerController(Owner), DOSH_EARNED, DoshAmount);
-		//`AnalyticsLog(( "dosh_earned", KFPlayerController(Owner).PlayerReplicationInfo, "#"$DoshAmount ));
 	}
 }
 
@@ -675,11 +795,11 @@ simulated function NotifyHUDofPRIDestroyed()
 		if( KFPC.MyGFxHUD != none )
 		{
 			KFPC.MyGFxHUD.NotifyHUDofPRIDestroyed(self);
-		}
+	}
 
 		// notify movie manager of remote player disconnect
 		if( KFPC != Owner && KFPC.MyGFxManager != None )
-		{
+	{
 			KFPC.MyGFxManager.RemotePlayerDisconnected(UniqueId);
 		}
 	}
@@ -735,11 +855,11 @@ defaultproperties
 	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Mark_archetype')
     CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_MrFoster_archetype')
  	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Jagerhorn_Archetype')
- 	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Ana_Archetype')
+	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Ana_Archetype')
     CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Masterson_Archetype')
  	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Alan_Archetype')
  	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Coleman_archetype')
- 	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.chr_DJSkully_archetype')
+	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.chr_DJSkully_archetype')
 	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Strasser_Archetype')
 	CharacterArchetypes.Add(KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Tanaka_Archetype')
 }

@@ -137,6 +137,8 @@ var class<KFProj_Grenade> GrenadeClass;
 var int InitialGrenadeCount;
 var int MaxGrenadeCount;
 var array<name> BackupWeaponDamageTypeNames;
+var float HitAccuracyHandicap;
+var float HeadshotAccuracyHandicap;
 var KFPlayerReplicationInfo MyPRI;
 var KFGameInfo MyKFGI;
 var KFGameReplicationInfo MyKFGRI;
@@ -574,7 +576,7 @@ private final simulated function PerkSetOwnerHealthAndArmor(optional bool bModif
         if(MyPRI != none)
         {
             MyPRI.PlayerHealth = byte(OwnerPawn.Health);
-            MyPRI.PlayerHealthMax = byte(OwnerPawn.HealthMax);
+            MyPRI.PlayerHealthPercent = FloatToByte(float(OwnerPawn.Health) / float(OwnerPawn.HealthMax));
         }
         OwnerPawn.MaxArmor = OwnerPawn.default.MaxArmor;
         ModifyArmor(OwnerPawn.MaxArmor);
@@ -765,7 +767,7 @@ function ModifySpeed(out float Speed);
 
 simulated function ModifyRecoil(out float CurrentRecoilModifier, KFWeapon KFW);
 
-function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType);
+function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx);
 
 function ModifyDamageTaken(out int InDamage, optional class<DamageType> DamageType, optional Controller InstigatedBy);
 
@@ -1019,6 +1021,8 @@ simulated event bool GetIsHeadShotComboActive()
     return false;
 }
 
+private reliable server final event ServerResetHeadShotCombo();
+
 simulated function ModifyRateOfFire(out float InRate, KFWeapon KFW);
 
 simulated event float GetIronSightSpeedModifier(KFWeapon KFW)
@@ -1052,11 +1056,13 @@ function KFWeapon GetOwnerWeapon()
 {
     local KFWeapon KFW;
 
-    CheckOwnerPawn();
-    KFW = KFWeapon(OwnerPawn.Weapon);
-    if(KFW != none)
+    if(CheckOwnerPawn())
     {
-        return KFW;
+        KFW = KFWeapon(OwnerPawn.Weapon);
+        if(KFW != none)
+        {
+            return KFW;
+        }
     }
     return none;
 }
@@ -1072,6 +1078,10 @@ function OnWaveEnded()
 
 protected reliable client simulated function ClientOnWaveEnded()
 {
+    if(MyPRI == none)
+    {
+        MyPRI = KFPlayerReplicationInfo(OwnerPawn.PlayerReplicationInfo);
+    }
     MyPRI.ResetSupplierUsed();
 }
 
@@ -1118,6 +1128,7 @@ function TickRegen(float DeltaTime)
             if(KFPRI != none)
             {
                 KFPRI.PlayerHealth = byte(OwnerPawn.Health);
+                KFPRI.PlayerHealthPercent = FloatToByte(float(OwnerPawn.Health) / float(OwnerPawn.HealthMax));
             }
             if((float(OldHealth) <= (float(OwnerPawn.HealthMax) * 0.25)) && float(OwnerPawn.Health) >= (float(OwnerPawn.HealthMax) * 0.25))
             {
@@ -1193,6 +1204,8 @@ simulated function LogPerkSkills()
         goto J0x83;
     }
 }
+
+simulated function FormatPerkSkills();
 
 simulated function PlayerDied();
 

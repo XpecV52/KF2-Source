@@ -113,6 +113,17 @@ function Callback_MenuBarTabChanged(int NewMenuIndex)
     }
 }
 
+function Callback_RequestTeamSwitch()
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(Outer.GetPC());
+    if(KFPC != none)
+    {
+        KFPC.RequestSwitchTeam();
+    }
+}
+
 function Callback_ReadyClicked(bool bReady)
 {
     local KFPlayerReplicationInfo KFPRI;
@@ -220,7 +231,14 @@ function Callback_BroadcastChatMessage(string Message)
         }
         else
         {
-            Outer.GetPC().Say(Message);
+            if(Manager.bAfterLobby)
+            {
+                Outer.GetPC().TeamSay(Message);                
+            }
+            else
+            {
+                Outer.GetPC().Say(Message);
+            }
         }
     }
 }

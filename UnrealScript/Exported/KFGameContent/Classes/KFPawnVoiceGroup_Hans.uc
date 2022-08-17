@@ -358,8 +358,6 @@ class KFPawnVoiceGroup_Hans extends KFPawnVoiceGroup;
 
 
 
-
-
 	
 
 
@@ -411,6 +409,7 @@ class KFPawnVoiceGroup_Hans extends KFPawnVoiceGroup;
 
 
 	
+
 
 
 
@@ -527,6 +526,7 @@ defaultproperties
    DialogEvents(34)=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Ph2Start_Base')
    DialogEvents(35)=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Ph3Start_Base')
    DialogEvents(36)=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Ph4Start_Base')
+   DialogEvents(37)=(DefaultAudioCue=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Nerve2_Base')
    Name="Default__KFPawnVoiceGroup_Hans"
    ObjectArchetype=KFPawnVoiceGroup'KFGame.Default__KFPawnVoiceGroup'
 }

@@ -25,5 +25,4 @@ defaultproperties
     object end
     // Reference: SpriteComponent'Default__RadialBlurActor.Sprite'
     Components(1)=Sprite
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
 }

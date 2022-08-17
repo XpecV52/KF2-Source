@@ -212,8 +212,11 @@ var(SprayDamage) vector2d	SprayDamageScaleDistRange;
 /** Damage type to deliver */
 var(SprayDamage) class<KFDamageType>	MyDamageType<AllowAbstract>;
 
+/** Radius within which to do splash damage */
 var(SprayDamage) float	SplashDamageRadius;
+/** Damage amount to do from splash damage */
 var(SprayDamage) float	SplashDamage;
+/** How much to reduce damage as you get farther away from the origin of where splash damage is occuring */
 var(SprayDamage) float	SplashDamageFalloffExponent;
 /** What percentage of splash damage should get applied to the instigator */
 var(SprayDamage) float	SplashDamageInstigatorDamageScale;

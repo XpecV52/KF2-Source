@@ -13,6 +13,7 @@ defaultproperties
     GrenadeBounceEffectInfo=KFImpactEffectInfo'wep_Nailbomb_arch.Nail_Bomb_Grenade_Impacts'
     DampenFactor=0.4
     DampenFactorParallel=0.6
+    WeaponSelectTexture=Texture2D'wep_ui_nailbomb_tex.UI_WeaponSelect_GunslingerGrenade'
     ExplosionActorClass=Class'KFGame.KFExplosionActor'
     begin object name=ExploTemplate0 class=KFGameExplosion
         ShardClass=Class'KFProj_NailShard'

@@ -174,8 +174,8 @@ simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
 						SocketToWorldTransform = OwningWeapon.MySkelMesh.GetSocketMatrix(LaserSightSocketName);
 						SocketSpaceAimLocation = InverseTransformVector(SocketToWorldTransform, InstantTraceHitLocation);
 
-						// Basically SocketSpaceAimLocation - (0,0,0)
-						SocketSpaceAimDir = Normal(SocketSpaceAimLocation);
+		// Basically SocketSpaceAimLocation - (0,0,0)
+		SocketSpaceAimDir = Normal(SocketSpaceAimLocation);
 
 						// Clamp the maximum aim adjustment for the AimDir so you don't get weird
 						// cases where the aim dir is rotated away from the location where you
@@ -190,7 +190,7 @@ simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
 							SocketSpaceAimDir = QuatRotateVector(Q,DirB);
 						}
 
-						// Apply relative rotation to aim along desired direction
+		// Apply relative rotation to aim along desired direction
 						SocketSpaceNewTraceDir = LaserSightAimStrength * SocketSpaceAimDir + (1.f - LaserSightAimStrength) * DirB;
 
 						// Transform the direction to world space. Convert direction vector  in socket space to point 
@@ -214,7 +214,7 @@ simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
 							// Hide the dot mesh if it didn't hit anything
 							LaserDotMeshComp.SetHidden(true);
 						}
-					}
+	}
 				}
 				else
 				{

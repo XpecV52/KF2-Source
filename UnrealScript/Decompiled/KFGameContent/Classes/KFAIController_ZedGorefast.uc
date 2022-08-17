@@ -27,7 +27,7 @@ function bool ShouldSprint()
 
 event EnemyNotVisible()
 {
-    if(MyKFPawn.bIsSprinting && MyKFGameInfo.MyKFGRI.AIRemaining > FrustrationThreshold)
+    if((MyKFPawn.bIsSprinting && !bForceFrustration) && MyKFGameInfo.MyKFGRI.AIRemaining > FrustrationThreshold)
     {
         MyKFPawn.SetSprinting(false);
     }
@@ -36,16 +36,31 @@ event EnemyNotVisible()
     EnableSeePlayer();
 }
 
-function UpdateSprintFrustration(optional byte bForceFrustration)
+function UpdateSprintFrustration(optional byte bForceFrustrationState)
 {
-    bForceFrustration = 255;
+    bForceFrustrationState = 255;
+    if(bForceFrustration)
+    {
+        bCanSprint = true;
+    }
 }
 
-function bool IsFrustrated();
+function bool IsFrustrated()
+{
+    if(bForceFrustration)
+    {
+        return true;
+    }
+    return false;
+}
 
 simulated function Tick(float DeltaTime)
 {
     super(KFAIController).Tick(DeltaTime);
+    if(bForceFrustration)
+    {
+        return;
+    }
     if(((MyKFPawn != none) && !bHasDebugCommand) && (LastSprintChangeTime == 0) || (WorldInfo.TimeSeconds - LastSprintChangeTime) > 1)
     {
         if(((((!MyKFPawn.bIsHeadless && !MyKFPawn.bEmpPanicked) && Enemy != none) && bEnemyIsVisible) && !MyKFPawn.bIsSprinting) && (MyKFPawn.Health < MyKFPawn.HealthMax) || VSizeSq(Enemy.Location - Pawn.Location) <= (SprintWithinEnemyRange.Y * SprintWithinEnemyRange.Y))
@@ -71,4 +86,5 @@ defaultproperties
     StrikeRangePercentage=0.75
     MaxMeleeHeightAngle=0.68
     EvadeGrenadeChance=0.75
+    LowIntensityAttackCooldown=3
 }
