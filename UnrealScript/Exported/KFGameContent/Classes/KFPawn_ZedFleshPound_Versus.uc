@@ -114,6 +114,11 @@ defaultproperties
       ObjectArchetype=KFPawnAfflictions'kfgamecontent.Default__KFPawn_ZedFleshpound:Afflictions_0'
    End Object
    AfflictionHandler=KFPawnAfflictions'kfgamecontent.Default__KFPawn_ZedFleshPound_Versus:Afflictions_0'
+   InstantIncaps(1)=(head=75,Torso=120,Leg=120,Arm=120,Special=65,Cooldown=10.000000)
+   InstantIncaps(2)=()
+   InstantIncaps(3)=()
+   InstantIncaps(4)=()
+   InstantIncaps(5)=()
    SprintStrafeSpeed=450.000000
    TeammateCollisionRadiusPercent=0.300000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:FirstPersonArms'

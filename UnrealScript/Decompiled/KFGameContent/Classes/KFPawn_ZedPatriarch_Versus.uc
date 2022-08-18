@@ -399,7 +399,6 @@ defaultproperties
     MaxMortarRangeSQ=6250000
     bVersusZed=true
     ThirdPersonViewOffset=(OffsetHigh=(X=-200,Y=90,Z=45),OffsetMid=(X=-185,Y=110,Z=45),OffsetLow=(X=-220,Y=130,Z=55))
-    DifficultyDamageMod=1.25
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedPatriarch_Versus.MeleeHelper'
     SpecialMoveCooldowns=/* Array type was not detected. */
     FootstepCameraShake=CameraShake'Default__KFPawn_ZedPatriarch_Versus.FootstepCameraShake0'

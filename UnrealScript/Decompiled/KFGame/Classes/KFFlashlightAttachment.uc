@@ -306,7 +306,7 @@ defaultproperties
         InnerConeAngle=20
         OuterConeAngle=30
         Radius=3000
-        Brightness=2
+        Brightness=35
         Function=LightFunction'Default__KFFlashlightAttachment.FlashLightFunction'
         bEnabled=false
         CastShadows=false

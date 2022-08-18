@@ -400,7 +400,7 @@ DefaultProperties
 	End Object
 	RotationRate=(Pitch=50000,Yaw=40000,Roll=50000)
   	
-	InstantIncaps(IAF_Stun)=(Head=75,Torso=120,Leg=120,Arm=120,Special=65,LowHealthBonus=10,Cooldown=10.0)
+	InstantIncaps(IAF_Stun)=(Head=60,Torso=65,Leg=50,Arm=65,Special=53,LowHealthBonus=10,Cooldown=12.0)
 	InstantIncaps(IAF_Knockdown)=(Head=65,Torso=140,Leg=140,Arm=140,Special=65,LowHealthBonus=10,Cooldown=25.0)
 	InstantIncaps(IAF_Stumble)=(Head=60,Torso=65,Arm=65,Special=53,LowHealthBonus=10,Cooldown=10.0)
 	InstantIncaps(IAF_LegStumble)=(Leg=60,LowHealthBonus=10,Cooldown=9.0)

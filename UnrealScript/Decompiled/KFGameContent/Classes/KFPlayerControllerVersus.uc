@@ -223,11 +223,15 @@ exec function RequestSwitchTeam()
 
 function ServerNotifyTeamChanged()
 {
-    if(Role == ROLE_Authority)
+    if((Role == ROLE_Authority) && MonsterPerkClass != none)
     {
-        if(GetTeamNum() > ROLE_None)
+        if(CurrentPerk == none)
         {
-            ServerSelectPerk(, ROLE_None, true);            
+            WarnInternal("Versus - ServerNotifyTeamChanged called with no initial perk! Team switch errors will follow");
+        }
+        if(GetTeamNum() > 0)
+        {
+            ServerSelectPerk(255, 0, true);            
         }
         else
         {

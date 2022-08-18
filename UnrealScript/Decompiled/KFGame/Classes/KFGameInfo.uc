@@ -860,7 +860,7 @@ function SetMonsterDefaults(KFPawn_Monster P)
     }
     else
     {
-        P.DifficultyDamageMod = P.default.DifficultyDamageMod;
+        P.DifficultyDamageMod = DamageMod;
     }
     P.GroundSpeed = P.default.GroundSpeed * GroundSpeedMod;
     P.SprintSpeed = P.default.SprintSpeed * GroundSpeedMod;
@@ -2241,6 +2241,7 @@ defaultproperties
 {
     CustomizationPawnClass=Class'KFPawn_Customization'
     bWaitForNetPlayers=true
+    bEnableDeadToVOIP=true
     bCanPerkAlwaysChange=true
     bUseMapList=true
     KFGFxManagerClass=Class'KFGFxMoviePlayer_Manager'

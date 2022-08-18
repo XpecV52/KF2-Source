@@ -1114,7 +1114,7 @@ function SetMonsterDefaults( KFPawn_Monster P )
     else
     {
     	// scale damage
-        P.DifficultyDamageMod = P.default.DifficultyDamageMod;
+        P.DifficultyDamageMod = DamageMod;
     }
 
 	// scale movement speed

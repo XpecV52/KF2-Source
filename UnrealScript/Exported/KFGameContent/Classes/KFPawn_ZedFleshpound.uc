@@ -378,7 +378,7 @@ defaultproperties
    End Object
    AfflictionHandler=KFPawnAfflictions'kfgamecontent.Default__KFPawn_ZedFleshpound:Afflictions_0'
    InstantIncaps(0)=(head=65,Torso=140,Leg=140,Arm=140,Special=65,LowHealthBonus=10,Cooldown=25.000000)
-   InstantIncaps(1)=(head=75,Torso=120,Leg=120,Arm=120,Special=65,LowHealthBonus=10,Cooldown=10.000000)
+   InstantIncaps(1)=(head=60,Torso=65,Leg=50,Arm=65,Special=53,LowHealthBonus=10,Cooldown=12.000000)
    InstantIncaps(2)=(head=60,Torso=65,Arm=65,Special=53,LowHealthBonus=10,Cooldown=10.000000)
    InstantIncaps(3)=(Leg=60,LowHealthBonus=10,Cooldown=9.000000)
    InstantIncaps(4)=(head=25,Torso=50,Leg=50,Arm=50,LowHealthBonus=10,Cooldown=1.200000)

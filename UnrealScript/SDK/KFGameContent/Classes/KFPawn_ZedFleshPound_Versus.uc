@@ -91,6 +91,19 @@ DefaultProperties
 		SpecialMoveClasses(SM_PlayerZedSpecial1)=class'KFSM_PlayerFleshpound_Rage'
 	End Object
 
+	InstantIncaps(IAF_Stun)=(Head=75,Torso=120,Leg=120,Arm=120,Special=65,LowHealthBonus=10,Cooldown=10.0)
+	InstantIncaps(IAF_Knockdown)=(Head=65,Torso=140,Leg=140,Arm=140,Special=65,LowHealthBonus=10,Cooldown=25.0)
+	InstantIncaps(IAF_Stumble)=(Head=60,Torso=65,Arm=65,Special=53,LowHealthBonus=10,Cooldown=10.0)
+	InstantIncaps(IAF_LegStumble)=(Leg=60,LowHealthBonus=10,Cooldown=9.0)
+	InstantIncaps(IAF_GunHit)=(Head=150,Torso=150,Leg=150,Arm=150,LowHealthBonus=10,Cooldown=20)
+	InstantIncaps(IAF_MeleeHit)=(Head=25,Torso=50,Leg=50,Arm=50,LowHealthBonus=10,Cooldown=1.2)
+	StackingIncaps(SAF_Poison)=(Threshhold=5.0,Duration=1.5,Cooldown=20.0,DissipationRate=1.00)
+	StackingIncaps(SAF_Microwave)=(Threshhold=10.0,Duration=1.5,Cooldown=20.0,DissipationRate=1.00)
+	StackingIncaps(SAF_FirePanic)=(Threshhold=13.0,Duration=1.5,Cooldown=8.0,DissipationRate=1.0)
+	StackingIncaps(SAF_EMPPanic)=(Threshhold=2.0,Duration=3.0,Cooldown=10.0,DissipationRate=0.5)
+	StackingIncaps(SAF_EMPDisrupt)=(Threshhold=1.5,Duration=2.0,Cooldown=10.0,DissipationRate=0.5)
+	StackingIncaps(SAF_Freeze)=(Threshhold=3.0,Duration=1.0,Cooldown=5.0,DissipationRate=0.33)
+
 	SpecialMoveCooldowns(0)=(SMHandle=SM_PlayerZedAttack1,		CooldownTime=0.75f,	SpecialMoveIcon=Texture2D'ZED_Fleshpound_UI.ZED-VS_Icons_Fleshpound-LightAttack', GBA_Name="GBA_Fire",NameLocalizationKey="Light")
 	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedAttack2,		CooldownTime=1.5f,	SpecialMoveIcon=Texture2D'ZED_Fleshpound_UI.ZED-VS_Icons_Fleshpound-HeavyAttack', GBA_Name="GBA_IronsightsToggle", ALT_GBA_Name="GBA_IronsightsHold",NameLocalizationKey="Heavy")
 	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,					CooldownTime=0.0f,	GBA_Name="GBA_Reload",bShowOnHud=false)
@@ -99,6 +112,7 @@ DefaultProperties
 
 	ResistantDamageTypes.Add((DamageType=class'KFDT_Fire', 		DamageScale=0.3f))
 	ResistantDamageTypes.Add((DamageType=class'KFDT_Ballistic', DamageScale=0.7f))
+
 
 	//defaults
 	Begin Object Name=MeleeHelper_0

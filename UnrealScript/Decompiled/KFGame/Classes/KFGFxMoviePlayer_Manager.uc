@@ -94,7 +94,7 @@ var bool bMenusOpen;
 var bool bSearchingForGame;
 var bool bCanCloseMenu;
 var bool bPlayerInLobby;
-var config bool bSetGamma;
+var globalconfig bool bSetGamma;
 var class<KFGFxWidget_PartyInGame> InGamePartyWidgetClass;
 var KFGFxObject_Popup CurrentPopup;
 var protected array<SPopupData> PopupData;

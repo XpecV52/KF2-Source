@@ -555,7 +555,6 @@ defaultproperties
    MaxMortarRangeSQ=6250000.000000
    bVersusZed=True
    ThirdPersonViewOffset=(OffsetHigh=(X=-200.000000,Y=90.000000,Z=45.000000),OffsetMid=(X=-185.000000,Y=110.000000,Z=45.000000),OffsetLow=(X=-220.000000,Y=130.000000,Z=55.000000))
-   DifficultyDamageMod=1.250000
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedPatriarch:MeleeHelper_0'
       BaseDamage=55.000000
       MyDamageType=Class'kfgamecontent.KFDT_Bludgeon_Patriarch'

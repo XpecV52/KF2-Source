@@ -18,7 +18,7 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
 
     super(KFGFxObject_Container).Initialize(NewParentMenu);
     KFPC = KFPlayerController(Outer.GetPC());
-    UpdatePerkHeader(KFPC.GetPerk().Class);
+    UpdatePerkHeader(KFPC.PerkList[KFPC.SavedPerkIndex].PerkClass);
 }
 
 function UpdatePerkHeader(class<KFPerk> PerkClass)

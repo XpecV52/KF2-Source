@@ -165,7 +165,7 @@ var bool bMenusOpen;	// true if we're using menus, otherwise we're using the HUD
 var bool bSearchingForGame; // true if we are in the process of finding a game
 var bool bCanCloseMenu;	// Set to true after a menu has been completely opened and allows a player to close the menu
 var bool bPlayerInLobby;
-var config bool bSetGamma;	// Set to true if we've already set the gamma on the first launch
+var globalconfig bool bSetGamma;	// Set to true if we've already set the gamma on the first launch
 
 //Delegates for popups.  These are used to hold the delegates while the swf is loading. once it is loaded, it will pass it to the GFX object
 //@TODO: Rewrite the pop up system to keep the pop ups loaded in at all times so the pending delegates are not needed. (Hide and show them as needed)

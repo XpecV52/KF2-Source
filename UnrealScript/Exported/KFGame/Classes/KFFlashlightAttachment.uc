@@ -369,7 +369,7 @@ defaultproperties
       InnerConeAngle=20.000000
       OuterConeAngle=30.000000
       Radius=3000.000000
-      Brightness=2.000000
+      Brightness=35.000000
       Begin Object Class=LightFunction Name=FlashLightFunction_0
          SourceMaterial=Material'FX_Mat_Lib.VFX_Flashlight_PM'
          Name="FlashLightFunction_0"

@@ -1420,7 +1420,7 @@ function SetMonsterDefaults( KFPawn_Monster P )
     else
     {
     	// scale damage
-        P.DifficultyDamageMod = P.default.DifficultyDamageMod;
+        P.DifficultyDamageMod = DamageMod;
     }
 
 	// scale movement speed
@@ -2890,6 +2890,7 @@ defaultproperties
 {
    CustomizationPawnClass=Class'KFGame.KFPawn_Customization'
    bWaitForNetPlayers=True
+   bEnableDeadToVOIP=True
    bCanPerkAlwaysChange=True
    bUseMapList=True
    KFGFxManagerClass=Class'KFGame.KFGFxMoviePlayer_Manager'

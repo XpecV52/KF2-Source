@@ -83,6 +83,7 @@ defaultproperties
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedFleshPound_Versus.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedFleshPound_Versus.Afflictions'
+    InstantIncaps=/* Array type was not detected. */
     SprintStrafeSpeed=450
     TeammateCollisionRadiusPercent=0.3
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent

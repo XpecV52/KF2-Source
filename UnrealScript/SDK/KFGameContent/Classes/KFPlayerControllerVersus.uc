@@ -281,11 +281,19 @@ exec function RequestSwitchTeam()
 /** We have to change perks when players team switch */
 function ServerNotifyTeamChanged()
 {
-	if( Role == ROLE_Authority )
+	if( Role == ROLE_Authority && MonsterPerkClass != None )
 	{
+		if ( CurrentPerk == None )
+		{
+			// If we get here without a perk via the normal path, we're in trouble.
+			// SavedPerkIndex may not have been updated (config loaded) which will cause
+			// team switch to get you the wrong perk.
+			`warn("Versus - ServerNotifyTeamChanged called with no initial perk! Team switch errors will follow");
+		}
+
 		if( GetTeamNum() > 0 )
 		{
-			ServerSelectPerk( -1, 0, true );
+			ServerSelectPerk( 255, 0, true );
 		}
 		else if( CurrentPerk != none && CurrentPerk.Class == MonsterPerkClass )
 		{

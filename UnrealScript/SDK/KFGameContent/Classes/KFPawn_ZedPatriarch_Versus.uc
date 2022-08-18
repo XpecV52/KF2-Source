@@ -498,8 +498,6 @@ DefaultProperties
 	SprintStrafeSpeed=400.f
 	GroundSpeed=260.f
 
-	DifficultyDamageMod=1.25
-
 	Begin Object Name=MeleeHelper_0
 		BaseDamage=55.f //45.f
 		MaxHitRange=375.f
