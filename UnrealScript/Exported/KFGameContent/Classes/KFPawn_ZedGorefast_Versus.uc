@@ -24,8 +24,8 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedGorefast_Versus:MeleeHelper_0'
    DoshValue=48
-   ResistantDamageTypes(0)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=0.200000)
-   ResistantDamageTypes(1)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=0.200000)
+   ResistantDamageTypes(16)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=0.200000)
+   ResistantDamageTypes(17)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=0.200000)
    SpecialMoveCooldowns(0)=(CoolDownTime=0.350000,SMHandle=SM_PlayerZedAttack1,SpecialMoveIcon=Texture2D'ZED_Gorefast_UI.ZED-VS_Icons_Gorefast-Melee',NameLocalizationKey="Light",GBA_Name="GBA_Fire")
    SpecialMoveCooldowns(1)=(CoolDownTime=0.700000,SMHandle=SM_PlayerZedAttack2,SpecialMoveIcon=Texture2D'ZED_Gorefast_UI.ZED-VS_Icons_Gorefast-HeavyMelee',NameLocalizationKey="Heavy",GBA_Name="GBA_IronsightsToggle",ALT_GBA_NAME="GBA_IronsightsHold")
    SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,GBA_Name="GBA_Reload",bShowOnHud=False)

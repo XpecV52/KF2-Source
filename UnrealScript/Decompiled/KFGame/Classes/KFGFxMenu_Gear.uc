@@ -96,8 +96,11 @@ function OnOpen()
         if(PC.PlayerReplicationInfo.bReadyToPlay && PC.WorldInfo.GRI.bMatchHasBegun)
         {
             SetBool("characterButtonEnabled", false);
+            return;
         }
     }
+    UpdateCharacterList();
+    UpdateGear();
 }
 
 function LocalizeText()
@@ -438,7 +441,7 @@ event OnClose()
 
     super.OnClose();
     Outer.GetGameViewportClient().__HandleInputAxis__Delegate = None;
-    if(Class'WorldInfo'.static.IsMenuLevel() && !Class'WorldInfo'.static.IsConsoleBuild(8))
+    if(Class'WorldInfo'.static.IsMenuLevel())
     {
         Manager.ManagerObject.SetBool("backgroundVisible", true);
     }

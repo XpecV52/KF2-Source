@@ -1044,7 +1044,7 @@ function bool IsVulnerableTo(class<DamageType> DT, optional out float DamageMod)
 
     if(Idx < VulnerableDamageTypes.Length)
     {
-        if(ClassIsChildOf(DT, VulnerableDamageTypes[Idx].DamageType))
+        if((VulnerableDamageTypes[Idx].DamageType != none) && ClassIsChildOf(DT, VulnerableDamageTypes[Idx].DamageType))
         {
             DamageMod = VulnerableDamageTypes[Idx].DamageScale;
             return true;
@@ -1064,7 +1064,7 @@ function bool IsResistantTo(class<DamageType> DT, optional out float DamageMod)
 
     if(Idx < ResistantDamageTypes.Length)
     {
-        if(ClassIsChildOf(DT, ResistantDamageTypes[Idx].DamageType))
+        if((ResistantDamageTypes[Idx].DamageType != none) && ClassIsChildOf(DT, ResistantDamageTypes[Idx].DamageType))
         {
             DamageMod = ResistantDamageTypes[Idx].DamageScale;
             return true;
@@ -2775,6 +2775,38 @@ defaultproperties
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_Monster.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
+    VulnerableDamageTypes(0)=(DamageType=none,DamageScale=2)
+    VulnerableDamageTypes(1)=(DamageType=none,DamageScale=2)
+    VulnerableDamageTypes(2)=(DamageType=none,DamageScale=2)
+    VulnerableDamageTypes(3)=(DamageType=none,DamageScale=2)
+    VulnerableDamageTypes(4)=(DamageType=none,DamageScale=2)
+    VulnerableDamageTypes(5)=(DamageType=none,DamageScale=2)
+    VulnerableDamageTypes(6)=(DamageType=none,DamageScale=2)
+    VulnerableDamageTypes(7)=(DamageType=none,DamageScale=2)
+    VulnerableDamageTypes(8)=(DamageType=none,DamageScale=2)
+    VulnerableDamageTypes(9)=(DamageType=none,DamageScale=2)
+    VulnerableDamageTypes(10)=(DamageType=none,DamageScale=2)
+    VulnerableDamageTypes(11)=(DamageType=none,DamageScale=2)
+    VulnerableDamageTypes(12)=(DamageType=none,DamageScale=2)
+    VulnerableDamageTypes(13)=(DamageType=none,DamageScale=2)
+    VulnerableDamageTypes(14)=(DamageType=none,DamageScale=2)
+    VulnerableDamageTypes(15)=(DamageType=none,DamageScale=2)
+    ResistantDamageTypes(0)=(DamageType=none,DamageScale=0.5)
+    ResistantDamageTypes(1)=(DamageType=none,DamageScale=0.5)
+    ResistantDamageTypes(2)=(DamageType=none,DamageScale=0.5)
+    ResistantDamageTypes(3)=(DamageType=none,DamageScale=0.5)
+    ResistantDamageTypes(4)=(DamageType=none,DamageScale=0.5)
+    ResistantDamageTypes(5)=(DamageType=none,DamageScale=0.5)
+    ResistantDamageTypes(6)=(DamageType=none,DamageScale=0.5)
+    ResistantDamageTypes(7)=(DamageType=none,DamageScale=0.5)
+    ResistantDamageTypes(8)=(DamageType=none,DamageScale=0.5)
+    ResistantDamageTypes(9)=(DamageType=none,DamageScale=0.5)
+    ResistantDamageTypes(10)=(DamageType=none,DamageScale=0.5)
+    ResistantDamageTypes(11)=(DamageType=none,DamageScale=0.5)
+    ResistantDamageTypes(12)=(DamageType=none,DamageScale=0.5)
+    ResistantDamageTypes(13)=(DamageType=none,DamageScale=0.5)
+    ResistantDamageTypes(14)=(DamageType=none,DamageScale=0.5)
+    ResistantDamageTypes(15)=(DamageType=none,DamageScale=0.5)
     ZedBumpDamageScale=1
     MatchEnemySpeedAtDistance=200
     MinimumEnemySpeedToMatch=280

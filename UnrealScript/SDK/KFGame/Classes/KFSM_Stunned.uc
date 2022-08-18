@@ -43,7 +43,24 @@ function DoStun()
 		KFPOwner.SetTimer( StunDuration, false, nameof(DoWakeup), self );
 	}
 
+	// We still want to preserve Z velocity, and not stop in mid-air
+	KFPOwner.Velocity.X = 0.f;
+	KFPOwner.Velocity.Y = 0.f;
+	KFPOwner.Acceleration = vect(0,0,0);
 	PlaySpecialMoveAnim( StunnedAnim, EAS_FullBody, 0.4f, 0.3f, 1.f, true );
+}
+
+/** Overridden to restrict movement when on the ground */
+simulated event Tick( float DeltaTime )
+{
+	super.Tick( DeltaTime );
+
+	if( KFPOwner != none && KFPOwner.Role == ROLE_Authority && KFPOwner.Physics == PHYS_Walking )
+	{
+		KFPOwner.Velocity.X = 0.f;
+		KFPOwner.Velocity.Y = 0.f;
+		KFPOwner.Acceleration = vect(0,0,0);
+	}
 }
 
 /** Wakeup the zed once the servers timer has finished */
@@ -105,5 +122,3 @@ defaultproperties
 	bDisablesWeaponFiring=true
 	bCanOnlyWanderAtEnd=true
 }
-
-

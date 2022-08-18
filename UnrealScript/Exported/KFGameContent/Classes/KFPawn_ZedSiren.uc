@@ -54,7 +54,7 @@ defaultproperties
    XPValues(1)=15.000000
    XPValues(2)=15.000000
    XPValues(3)=15.000000
-   VulnerableDamageTypes(0)=(DamageType=Class'KFGame.KFDT_Explosive')
+   VulnerableDamageTypes(16)=(DamageType=Class'KFGame.KFDT_Explosive')
    PawnAnimInfo=KFPawnAnimInfo'ZED_Siren_ANIM.Siren_AnimGroup'
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
       ReplacementPrimitive=None

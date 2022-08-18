@@ -774,7 +774,7 @@ defaultproperties
     AIMovementSpeedModificationRange(0)=(X=0.5,Y=0.5)  // Normal
     AIMovementSpeedModificationRange(1)=(X=0.5,Y=0.5)  // Hard
     AIMovementSpeedModificationRange(2)=(X=0.5,Y=0.65)  // Suicidal
-    AIMovementSpeedModificationRange(3)=(X=0.0,Y=0.5)  // HOE
+    AIMovementSpeedModificationRange(3)=(X=0.0,Y=0.0)  // HOE
 
     AllowLowIntensityZedModeByDifficulty(0)=1   // Normal
     AllowLowIntensityZedModeByDifficulty(1)=1   // Hard

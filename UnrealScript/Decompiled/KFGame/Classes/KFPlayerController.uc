@@ -336,6 +336,7 @@ var float BlurBlendOutSpeed;
 var float BlurLerpControl;
 var private KFOnlineStatsRead StatsRead;
 var private KFOnlineStatsWrite StatsWrite;
+var private const float XPMultiplier;
 var repnotify PostWaveReplicationInfo PWRI;
 var EphemeralMatchStats MatchStats;
 var class<EphemeralMatchStats> MatchStatsClass;
@@ -508,6 +509,11 @@ function SpawnReconnectedPlayer()
         return;
     }
     WorldInfo.Game.RestartPlayer(self);
+}
+
+function bool CanRestartPlayer()
+{
+    return ((((PlayerReplicationInfo != none) && !PlayerReplicationInfo.bOnlySpectator) && HasClientLoadedCurrentWorld()) && PendingSwapConnection == none) && KFPlayerReplicationInfo(PlayerReplicationInfo).bReadyToPlay;
 }
 
 function ResetPlayerMovementInput()
@@ -3215,13 +3221,11 @@ function AddZedHeadshot(byte Difficulty, class<DamageType> DT)
 // Export UKFPlayerController::execClientAddZedHeadshot(FFrame&, void* const)
 private reliable client native final simulated function ClientAddZedHeadshot(byte Difficulty, class<DamageType> DT);
 
-function AddPlayerXP(int XP, class<KFPerk> PerkClass)
-{
-    ClientAddPlayerXP(XP, PerkClass);
-}
+// Export UKFPlayerController::execAddPlayerXP(FFrame&, void* const)
+native final function AddPlayerXP(int XP, class<KFPerk> PerkClass);
 
 // Export UKFPlayerController::execClientAddPlayerXP(FFrame&, void* const)
-private reliable client native final simulated function ClientAddPlayerXP(int XP, class<KFPerk> PerkClass);
+private reliable client native final simulated event ClientAddPlayerXP(int XP, class<KFPerk> PerkClass);
 
 function AddSmallRadiusKill(byte Difficulty)
 {

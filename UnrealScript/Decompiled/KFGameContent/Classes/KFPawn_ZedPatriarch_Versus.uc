@@ -196,6 +196,21 @@ private final function bool IsHealAllowed()
     return (GetHealthPercentage() < HealThreshold) && SpecialMoveCooldowns[5].Charges > 0;
 }
 
+simulated function Rotator GetAdjustedAimFor(Weapon W, Vector StartFireLoc)
+{
+    local Vector SocketLoc, EndTrace;
+    local Rotator ActualAimRot, SocketRot;
+
+    ActualAimRot = super.GetAdjustedAimFor(W, StartFireLoc);
+    EndTrace = StartFireLoc + (vector(ActualAimRot) * W.GetTraceRange());
+    Mesh.GetSocketWorldLocationAndRotation('LeftMuzzleFlash', SocketLoc, SocketRot);
+    if((vector(SocketRot) Dot Normal(EndTrace - StartFireLoc)) < 0.96)
+    {
+        return SocketRot;
+    }
+    return ActualAimRot;
+}
+
 function GetMissileAimDirAndTargetLoc(int MissileNum, Vector MissileLoc, Rotator MissileRot, out Vector AimDir, out Vector TargetLoc)
 {
     local PlayerController PC;
@@ -390,6 +405,7 @@ defaultproperties
     object end
     // Reference: StaticMeshComponent'Default__KFPawn_ZedPatriarch_Versus.KFSyringeStaticMeshComponent3'
     HealingSyringeMeshes(2)=KFSyringeStaticMeshComponent3
+    bUseServerSideGunTracking=true
     BoilLightComponent=PointLightComponent'Default__KFPawn_ZedPatriarch_Versus.BoilLightComponent0'
     BattlePhases(0)=(bAllowedToSprint=true,SprintCooldownTime=3,bCanTentacleGrab=false,TentacleGrabCooldownTime=0,bCanUseMissiles=true,MissileAttackCooldownTime=10,bCanUseMortar=false,MortarAttackCooldownTime=0,bCanDoMortarBarrage=false,bCanChargeAttack=true,ChargeAttackCooldownTime=14,MaxRageAttacks=0,TentacleDamage=10,MinigunAttackCooldownTime=2.25,bCanSummonMinions=true,HealAmounts=(1))
     BattlePhases(1)=(bAllowedToSprint=true,SprintCooldownTime=2.5,bCanTentacleGrab=true,TentacleGrabCooldownTime=10,bCanUseMissiles=true,MissileAttackCooldownTime=8,bCanUseMortar=true,MortarAttackCooldownTime=10,bCanDoMortarBarrage=false,bCanChargeAttack=true,ChargeAttackCooldownTime=10,MaxRageAttacks=4,TentacleDamage=10,MinigunAttackCooldownTime=2,bCanSummonMinions=true,HealAmounts=(1))

@@ -1499,20 +1499,34 @@ function SetOriginalValuesFromPickup( KFWeapon PickedUpWeapon )
  */
 function bool DenyPickupQuery(class<Inventory> ItemClass, Actor Pickup)
 {
+	local bool bDenyPickUp;
+	local KFPlayerController KFPC;
+
 	if( ItemClass == class )
 	{
 		// Unless ammo is full, allow the pickup to handle giving ammo
 		if( CanRefillSecondaryAmmo() )
 		{
-            return ((SpareAmmoCount[0] + MagazineCapacity[0]) >= MaxSpareAmmo[0] && AmmoCount[1] >= MagazineCapacity[1]);
+			bDenyPickUp =((SpareAmmoCount[0] + MagazineCapacity[0]) >= MaxSpareAmmo[0] && AmmoCount[1] >= MagazineCapacity[1]);
 		}
 		else
 		{
-            return ((SpareAmmoCount[0] + MagazineCapacity[0]) >= MaxSpareAmmo[0]);
+			bDenyPickUp = ((SpareAmmoCount[0] + MagazineCapacity[0]) >= MaxSpareAmmo[0]);
+			
+		}
+		
+		if(bDenyPickUp)
+		{
+			KFPC = KFPlayerController(Instigator.Controller);
+			//show non critical message for deny pickup
+			if ( KFPC != None )
+ 			{
+ 				KFPC.ReceiveLocalizedMessage(class'KFLocalMessage_Game', GMT_AmmoIsFull);
+ 			}
 		}
 	}
 
-	return false;
+	return bDenyPickUp;
 }
 
 function NotifyPickedUp()

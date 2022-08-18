@@ -1696,7 +1696,7 @@ function bool IsVulnerableTo(class<DamageType> DT, optional out float DamageMod)
 
 	for (Idx = 0; Idx < VulnerableDamageTypes.length; ++Idx)
 	{
-		if ( ClassIsChildOf(DT, VulnerableDamageTypes[Idx].DamageType) )
+		if ( VulnerableDamageTypes[Idx].DamageType != none && ClassIsChildOf(DT, VulnerableDamageTypes[Idx].DamageType) )
 		{
 			DamageMod = VulnerableDamageTypes[Idx].DamageScale;
 			return true;
@@ -1713,7 +1713,7 @@ function bool IsResistantTo(class<DamageType> DT, optional out float DamageMod)
 
 	for (Idx = 0; Idx < ResistantDamageTypes.length; ++Idx)
 	{
-		if ( ClassIsChildOf(DT, ResistantDamageTypes[Idx].DamageType) )
+		if ( ResistantDamageTypes[Idx].DamageType != none && ClassIsChildOf(DT, ResistantDamageTypes[Idx].DamageType) )
 		{
 			DamageMod = ResistantDamageTypes[Idx].DamageScale;
 			return true;
@@ -2124,7 +2124,7 @@ simulated function SetGameplayMICParams()
 function bool NotifyAttackParried(Pawn InstigatedBy, byte InParryStrength)
 {
 	if ( InParryStrength < ParryResistance  )
-    	{
+    {
 		return FALSE; // resisted
     }
 

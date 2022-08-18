@@ -333,10 +333,10 @@ defaultproperties
    XPValues(1)=47.000000
    XPValues(2)=63.000000
    XPValues(3)=72.000000
-   VulnerableDamageTypes(0)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=1.500000)
-   VulnerableDamageTypes(1)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=1.500000)
-   VulnerableDamageTypes(2)=(DamageType=Class'kfgamecontent.KFDT_Microwave',DamageScale=1.000000)
-   ResistantDamageTypes(0)=(DamageType=Class'KFGame.KFDamageType')
+   VulnerableDamageTypes(16)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=1.500000)
+   VulnerableDamageTypes(17)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=1.500000)
+   VulnerableDamageTypes(18)=(DamageType=Class'kfgamecontent.KFDT_Microwave',DamageScale=1.000000)
+   ResistantDamageTypes(16)=(DamageType=Class'KFGame.KFDamageType')
    ZedBumpDamageScale=0.000000
    BumpFrequency=0.100000
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'

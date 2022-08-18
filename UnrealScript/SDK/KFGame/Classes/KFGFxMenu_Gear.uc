@@ -72,8 +72,6 @@ function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 	// Set the list of usable characters
 	UpdateCharacterList();	
 	UpdateGear();
-	/*PerkSelectionContainer = GetObject("perkSelectionContainer");
-	`log("THIS IS THE PERK SELECTION CONTAITNER : " @perkSelectionContainer);*/
 	TraderItems = KFGameReplicationInfo( KFPlayerController(GetPC()).WorldInfo.GRI ).TraderItems;
 }
 
@@ -115,7 +113,10 @@ function OnOpen()
 	{
 		// Players cannot change characters if they are in a game
 		SetBool("characterButtonEnabled", false);
+		return;
 	}
+	UpdateCharacterList();	
+	UpdateGear();
 }
 
 function LocalizeText()
@@ -481,8 +482,7 @@ event OnClose()
 
 	GetGameViewportClient().HandleInputAxis = none;
 
-	if ( class'WorldInfo'.static.IsMenuLevel() 
-		&& !class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) ) // @PSX
+	if ( class'WorldInfo'.static.IsMenuLevel() )
 	{
 		Manager.ManagerObject.SetBool("backgroundVisible", true);
 	}

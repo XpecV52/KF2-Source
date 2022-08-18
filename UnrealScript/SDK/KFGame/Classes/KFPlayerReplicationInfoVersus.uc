@@ -91,7 +91,7 @@ reliable server function ServerSwitchTeam()
 	if( KFGRI.bMatchHasBegun )
 	{
 		//will this switch upset current game balance?
-		if(WillUpsetTeamBalance()) 
+		if(!WillMaintainTeamBalance()) 
 		{
 			ClientRefusedTeamSwitch();
 			return;
@@ -120,7 +120,7 @@ reliable server function ServerSwitchTeam()
 }
 
 //SERVER ONLY
-function bool WillUpsetTeamBalance()
+function bool WillMaintainTeamBalance()
 {
 	local KFGameInfo MyGameInfo;
 	local KFGameReplicationInfo KFGRI;
@@ -136,22 +136,23 @@ function bool WillUpsetTeamBalance()
 		if( KFPC.Pawn == none && GetTeamNum() == 0 )
 		{
 			//dead return false
-			return true;
+			return false;
 		}
 
 		switch( GetTeamNum() )
 		{
 			case MyGameInfo.Teams[0].TeamIndex:
 				//the team i want to go to is smaller than my current team  AND the desired team is also smaller than half the allowed max players
-				return MyGameInfo.Teams[0].Size < MyGameInfo.Teams[1].Size  && MyGameInfo.Teams[1].Size < (MyGameInfo.MaxPlayersAllowed / 2);		
+				return MyGameInfo.Teams[1].Size < MyGameInfo.Teams[0].Size  && MyGameInfo.Teams[1].Size < (MyGameInfo.MaxPlayersAllowed / 2);	
+
 			case MyGameInfo.Teams[1].TeamIndex:
-				return MyGameInfo.Teams[1].Size < MyGameInfo.Teams[0].Size  && MyGameInfo.Teams[0].Size < (MyGameInfo.MaxPlayersAllowed / 2);	
+				return MyGameInfo.Teams[0].Size < MyGameInfo.Teams[1].Size  && MyGameInfo.Teams[0].Size < (MyGameInfo.MaxPlayersAllowed / 2);	
 			default:
 				`log("Function: KFPlayerReplicationInfo::WillUpsetTeamBalance Team index not accounted for - " @GetTeamNum());
 		}
 	}
 
-	return false;
+	return true;
 }
 
 reliable client function ClientRefusedTeamSwitch()

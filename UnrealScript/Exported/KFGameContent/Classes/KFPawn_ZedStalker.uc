@@ -405,8 +405,8 @@ defaultproperties
    XPValues(1)=10.000000
    XPValues(2)=10.000000
    XPValues(3)=10.000000
-   ResistantDamageTypes(0)=(DamageType=Class'KFGame.KFDT_Toxic')
-   ResistantDamageTypes(1)=(DamageType=Class'kfgamecontent.KFDT_Microwave')
+   ResistantDamageTypes(16)=(DamageType=Class'KFGame.KFDT_Toxic')
+   ResistantDamageTypes(17)=(DamageType=Class'kfgamecontent.KFDT_Microwave')
    PawnAnimInfo=KFPawnAnimInfo'ZED_Stalker_ANIM.Stalker_AnimGroup'
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
       ReplacementPrimitive=None

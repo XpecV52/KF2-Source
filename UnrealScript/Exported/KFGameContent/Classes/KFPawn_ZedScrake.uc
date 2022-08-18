@@ -297,10 +297,10 @@ defaultproperties
    XPValues(1)=45.000000
    XPValues(2)=60.000000
    XPValues(3)=69.000000
-   VulnerableDamageTypes(0)=(DamageType=Class'kfgamecontent.KFDT_Microwave')
-   VulnerableDamageTypes(1)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_RPG7Impact',DamageScale=4.000000)
-   ResistantDamageTypes(0)=(DamageType=Class'KFGame.KFDT_Slashing')
-   ResistantDamageTypes(1)=(DamageType=Class'KFGame.KFDT_Explosive')
+   VulnerableDamageTypes(16)=(DamageType=Class'kfgamecontent.KFDT_Microwave')
+   VulnerableDamageTypes(17)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_RPG7Impact',DamageScale=4.000000)
+   ResistantDamageTypes(16)=(DamageType=Class'KFGame.KFDT_Slashing')
+   ResistantDamageTypes(17)=(DamageType=Class'KFGame.KFDT_Explosive')
    ZedBumpDamageScale=0.100000
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
    PawnAnimInfo=KFPawnAnimInfo'ZED_Scrake_ANIM.Scrake_AnimGroup'

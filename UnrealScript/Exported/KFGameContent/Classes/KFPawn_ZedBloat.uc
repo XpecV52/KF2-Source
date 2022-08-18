@@ -192,13 +192,13 @@ defaultproperties
    XPValues(1)=22.000000
    XPValues(2)=30.000000
    XPValues(3)=34.000000
-   VulnerableDamageTypes(0)=(DamageType=Class'KFGame.KFDT_Fire')
-   VulnerableDamageTypes(1)=(DamageType=Class'KFGame.KFDT_Slashing')
-   VulnerableDamageTypes(2)=(DamageType=Class'KFGame.KFDT_Piercing')
-   ResistantDamageTypes(0)=(DamageType=Class'KFGame.KFDT_Ballistic')
-   ResistantDamageTypes(1)=(DamageType=Class'KFGame.KFDT_Explosive')
-   ResistantDamageTypes(2)=(DamageType=Class'KFGame.KFDT_Toxic')
-   ResistantDamageTypes(3)=(DamageType=Class'KFGame.KFDT_Bludgeon')
+   VulnerableDamageTypes(16)=(DamageType=Class'KFGame.KFDT_Fire')
+   VulnerableDamageTypes(17)=(DamageType=Class'KFGame.KFDT_Slashing')
+   VulnerableDamageTypes(18)=(DamageType=Class'KFGame.KFDT_Piercing')
+   ResistantDamageTypes(16)=(DamageType=Class'KFGame.KFDT_Ballistic')
+   ResistantDamageTypes(17)=(DamageType=Class'KFGame.KFDT_Explosive')
+   ResistantDamageTypes(18)=(DamageType=Class'KFGame.KFDT_Toxic')
+   ResistantDamageTypes(19)=(DamageType=Class'KFGame.KFDT_Bludgeon')
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
    PawnAnimInfo=KFPawnAnimInfo'ZED_Bloat_ANIM.Bloat_AnimGroup'
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'

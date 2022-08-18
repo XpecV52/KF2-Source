@@ -395,6 +395,8 @@ var float BlurLerpControl;
 var private KFOnlineStatsRead  StatsRead; //Only used to read in the stats, everything else should be handled by the write object
 var private KFOnlineStatsWrite StatsWrite;
 
+var private const float XPMultiplier;
+
 /*********************************************************************************************
  * @name Dialog and AAR stats
 ********************************************************************************************* */
@@ -790,6 +792,11 @@ function SpawnReconnectedPlayer()
 		return;
 
 	WorldInfo.Game.RestartPlayer( Self );
+}
+
+function bool CanRestartPlayer()
+{
+	return PlayerReplicationInfo != None && !PlayerReplicationInfo.bOnlySpectator && HasClientLoadedCurrentWorld() && PendingSwapConnection == None && KFPlayerReplicationInfo(PlayerReplicationInfo).bReadyToPlay;
 }
 
 /** reset input to defaults */
@@ -4139,11 +4146,8 @@ function AddZedHeadshot( byte Difficulty, class<DamageType> DT )
 native reliable client private function ClientAddZedHeadshot( byte Difficulty, class<DamageType> DT );
 
 /** Perk xp stat */
-function AddPlayerXP(int XP, class<KFPerk> PerkClass)
-{
-	ClientAddPlayerXP(XP, PerkClass);
-}
-native reliable client private function ClientAddPlayerXP( int XP, class<KFPerk> PerkClass );
+native final function AddPlayerXP(int XP, class<KFPerk> PerkClass);
+native reliable client private event ClientAddPlayerXP( int XP, class<KFPerk> PerkClass );
 
 /** Radius kill stat */
 function AddSmallRadiusKill( byte Difficulty )

@@ -32,21 +32,20 @@ function LocalizeText()
     local GFxObject LocalizedObject;
     local string MatchInfoString;
     local string GameDifficultyString;
+    local KFGameReplicationInfo KFGRI;
 
 	CurrentMapName = GetPC().WorldInfo.GetMapName();	
-
 	GameTypeString = class'KFCommon_LocalizedStrings'.static.GetGameModeString(0);
+	KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
 
-	if(GetPC().WorldInfo.GRI != none)
+	if(KFGRI != none)
 	{
 		CurrentGameDifficulty = KFGameReplicationInfo(GetPC().WorldInfo.GRI).GameDifficulty;
 
 		GameDifficultyString =  class'KFCommon_LocalizedStrings'.static.GetDifficultyString(CurrentGameDifficulty);
-		GameTypeString =   class'KFCommon_LocalizedStrings'.static.GetGameModeString(0);
+		GameTypeString =  KFGRI.GameClass.default.GameName;
     	MatchInfoString = GameTypeString @"-" @GameDifficultyString;
 	}
-
-	
 
 	LocalizedObject = CreateObject( "Object" );
 

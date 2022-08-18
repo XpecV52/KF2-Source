@@ -478,6 +478,7 @@ defaultproperties
     AntiGriefDamageTypeClass=Class'KFGame.KFDT_NoGoVolume'
     bIsVersusGame=true
     KFGFxManagerClass=Class'KFGame.KFGFxMoviePlayer_Manager_Versus'
+    MinNetPlayers=2
     DifficultyTemplate=KFDifficultyInfo'GP_Difficulty_ARCH.Difficulty_Versus'
     MaxGameDifficulty=0
     SpawnManagerClasses=/* Array type was not detected. */

@@ -828,7 +828,7 @@ reliable server function ServerCastMapVote(PlayerReplicationInfo PRI, string Map
 		return;
 	}
 
-	if(KFGRI != none)
+	if(KFGRI != none && !bOnlySpectator)
 	{
 		KFGRI.ReceiveVoteMap(PRI, KFGI.GameMapCycles[KFGI.ActiveMapCycle].Maps.Find(MapName));
 	}

@@ -726,7 +726,6 @@ function Callback_StartOnlineGame()
     OptionsComponent.UpdateFilters();
     if(OptionsComponent.GetServerTypeListen())
     {
-        LogInternal(("******open" @ (MakeMapURL(OptionsComponent))) $ "?listen?steamsockets");
         Outer.ConsoleCommand(("open" @ (MakeMapURL(OptionsComponent))) $ "?listen?steamsockets");
         OnlineLobby.LobbyJoinGame();
         return;

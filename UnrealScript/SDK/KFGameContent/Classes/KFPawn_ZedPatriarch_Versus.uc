@@ -90,18 +90,6 @@ function SetCloaked(bool bNewCloaking)
 
 	super.SetCloaked(bNewCloaking);
 
-	/*if(MyKFPC != none)
-	{
-		if(bIsCloaking)
-		{
-			MyKFPC.ClientEnterZedTime( true );
-		}
-		else
-		{
-			MyKFPC.ClientFadeOutZedTime();
-		}
-	}*/
-
 	UpdateCloakedTimer();
 
 	if( WorldInfo.NetMode != NM_DedicatedServer )
@@ -256,6 +244,30 @@ private function UpdateCloakIconState()
 private function bool IsHealAllowed()
 {
 	return (GetHealthPercentage() < HealThreshold && SpecialMoveCooldowns[5].Charges > 0);
+}
+
+/**
+ * Adjusts aim to always point at the enemy we're targeting
+ * @param	W, weapon about to fire
+ * @param	StartFireLoc, world location of weapon fire start trace, or projectile spawn loc.
+ */
+simulated function Rotator GetAdjustedAimFor( Weapon W, vector StartFireLoc )
+{
+	local vector SocketLoc, EndTrace;
+	local rotator ActualAimRot, SocketRot;
+
+	ActualAimRot = super.GetAdjustedAimFor( W, StartFireLoc );
+	EndTrace = StartFireLoc + vector(ActualAimRot) * W.GetTraceRange();
+
+	Mesh.GetSocketWorldLocationAndRotation( 'LeftMuzzleFlash', SocketLoc, SocketRot );
+
+	// If the rotation of the barrel is not close enough to believably make the shot, use its rotation instead
+	if( vector(SocketRot) dot Normal(EndTrace - StartFireLoc) < 0.96f )
+	{
+		return SocketRot;
+	}
+
+	return ActualAimRot;
 }
 
 /** Retrieves the aim direction and target location for each missile. Called from SpecialMove */
@@ -487,6 +499,7 @@ DefaultProperties
 
 	LocalizationKey=KFPawn_ZedPatriarch
 
+	bUseServerSideGunTracking=true
 	bNeedsCrosshair=true
 	SummonChildrenDuration=10.f
 	HealThreshold=0.5f

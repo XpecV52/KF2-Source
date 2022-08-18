@@ -349,7 +349,7 @@ defaultproperties
    XPValues(1)=20.000000
    XPValues(2)=27.000000
    XPValues(3)=31.000000
-   ResistantDamageTypes(0)=(DamageType=Class'KFGame.KFDT_Fire')
+   ResistantDamageTypes(16)=(DamageType=Class'KFGame.KFDT_Fire')
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True

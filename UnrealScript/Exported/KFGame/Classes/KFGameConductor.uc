@@ -798,7 +798,6 @@ defaultproperties
    AIMovementSpeedModificationRange(0)=(X=0.500000,Y=0.500000)
    AIMovementSpeedModificationRange(1)=(X=0.500000,Y=0.500000)
    AIMovementSpeedModificationRange(2)=(X=0.500000,Y=0.650000)
-   AIMovementSpeedModificationRange(3)=(X=0.000000,Y=0.500000)
    CurrentAIMovementSpeedMod=1.000000
    CurrentVersusZedHealthMod=1.000000
    CurrentVersusZedDamageMod=1.000000

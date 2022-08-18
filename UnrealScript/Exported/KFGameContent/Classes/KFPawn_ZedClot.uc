@@ -73,7 +73,7 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedClot:MeleeHelper_0'
    DoshValue=7
-   ResistantDamageTypes(0)=(DamageType=Class'kfgamecontent.KFDT_Microwave')
+   ResistantDamageTypes(16)=(DamageType=Class'kfgamecontent.KFDT_Microwave')
    KnockedDownBySonicWaveOdds=0.230000
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
       ReplacementPrimitive=None

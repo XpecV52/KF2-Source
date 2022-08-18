@@ -1056,11 +1056,11 @@ defaultproperties
    XPValues(1)=1694.000000
    XPValues(2)=1790.000000
    XPValues(3)=1843.000000
-   VulnerableDamageTypes(0)=(DamageType=Class'kfgamecontent.KFDT_Microwave',DamageScale=1.250000)
-   ResistantDamageTypes(0)=(DamageType=Class'KFGame.KFDT_Toxic')
-   ResistantDamageTypes(1)=(DamageType=Class'KFGame.KFDT_EMP')
-   ResistantDamageTypes(2)=(DamageType=Class'KFGame.KFDT_Slashing')
-   ResistantDamageTypes(3)=(DamageType=Class'KFGame.KFDT_Explosive')
+   VulnerableDamageTypes(16)=(DamageType=Class'kfgamecontent.KFDT_Microwave',DamageScale=1.250000)
+   ResistantDamageTypes(16)=(DamageType=Class'KFGame.KFDT_Toxic')
+   ResistantDamageTypes(17)=(DamageType=Class'KFGame.KFDT_EMP')
+   ResistantDamageTypes(18)=(DamageType=Class'KFGame.KFDT_Slashing')
+   ResistantDamageTypes(19)=(DamageType=Class'KFGame.KFDT_Explosive')
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
    PawnAnimInfo=KFPawnAnimInfo'ZED_Hans_ANIM.Hans_AnimGroup'
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_ZedHansBase:ThirdPersonHead0'

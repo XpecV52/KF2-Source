@@ -91,8 +91,8 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedFleshPound_Versus:MeleeHelper_0'
    DoshValue=400
-   ResistantDamageTypes(1)=(DamageType=Class'KFGame.KFDT_Fire',DamageScale=0.300000)
-   ResistantDamageTypes(2)=(DamageType=Class'KFGame.KFDT_Ballistic',DamageScale=0.700000)
+   ResistantDamageTypes(17)=(DamageType=Class'KFGame.KFDT_Fire',DamageScale=0.300000)
+   ResistantDamageTypes(18)=(DamageType=Class'KFGame.KFDT_Ballistic',DamageScale=0.700000)
    SpecialMoveCooldowns(0)=(CoolDownTime=0.750000,SMHandle=SM_PlayerZedAttack1,SpecialMoveIcon=Texture2D'ZED_Fleshpound_UI.ZED-VS_Icons_Fleshpound-LightAttack',NameLocalizationKey="Light",GBA_Name="GBA_Fire")
    SpecialMoveCooldowns(1)=(CoolDownTime=1.500000,SMHandle=SM_PlayerZedAttack2,SpecialMoveIcon=Texture2D'ZED_Fleshpound_UI.ZED-VS_Icons_Fleshpound-HeavyAttack',NameLocalizationKey="Heavy",GBA_Name="GBA_IronsightsToggle",ALT_GBA_NAME="GBA_IronsightsHold")
    SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,GBA_Name="GBA_Reload",bShowOnHud=False)

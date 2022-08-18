@@ -1390,7 +1390,7 @@ function bool IsVulnerableTo(class<DamageType> DT, optional out float DamageMod)
 
 	for (Idx = 0; Idx < VulnerableDamageTypes.length; ++Idx)
 	{
-		if ( ClassIsChildOf(DT, VulnerableDamageTypes[Idx].DamageType) )
+		if ( VulnerableDamageTypes[Idx].DamageType != none && ClassIsChildOf(DT, VulnerableDamageTypes[Idx].DamageType) )
 		{
 			DamageMod = VulnerableDamageTypes[Idx].DamageScale;
 			return true;
@@ -1407,7 +1407,7 @@ function bool IsResistantTo(class<DamageType> DT, optional out float DamageMod)
 
 	for (Idx = 0; Idx < ResistantDamageTypes.length; ++Idx)
 	{
-		if ( ClassIsChildOf(DT, ResistantDamageTypes[Idx].DamageType) )
+		if ( ResistantDamageTypes[Idx].DamageType != none && ClassIsChildOf(DT, ResistantDamageTypes[Idx].DamageType) )
 		{
 			DamageMod = ResistantDamageTypes[Idx].DamageScale;
 			return true;
@@ -1818,7 +1818,7 @@ simulated function SetGameplayMICParams()
 function bool NotifyAttackParried(Pawn InstigatedBy, byte InParryStrength)
 {
 	if ( InParryStrength < ParryResistance  )
-    	{
+    {
 		return FALSE; // resisted
     }
 
@@ -3494,6 +3494,40 @@ DefaultProperties
 	HitZones.Add((ZoneName=rthigh,	  BoneName=RightUpLeg,	 Limb=BP_RightLeg, GoreHealth=75))
 	HitZones.Add((ZoneName=rcalf,	  BoneName=RightLeg,	 Limb=BP_RightLeg, GoreHealth=25))
 	HitZones.Add((ZoneName=rfoot,	  BoneName=RightLeg,	 Limb=BP_RightLeg, GoreHealth=15))
+
+	// Pad the arrays so we can modify them with the live update system if needed
+	VulnerableDamageTypes.Add((DamageType=none))
+	VulnerableDamageTypes.Add((DamageType=none))
+	VulnerableDamageTypes.Add((DamageType=none))
+	VulnerableDamageTypes.Add((DamageType=none))
+	VulnerableDamageTypes.Add((DamageType=none))
+	VulnerableDamageTypes.Add((DamageType=none))
+	VulnerableDamageTypes.Add((DamageType=none))
+	VulnerableDamageTypes.Add((DamageType=none))
+	VulnerableDamageTypes.Add((DamageType=none))
+	VulnerableDamageTypes.Add((DamageType=none))
+	VulnerableDamageTypes.Add((DamageType=none))
+	VulnerableDamageTypes.Add((DamageType=none))
+	VulnerableDamageTypes.Add((DamageType=none))
+	VulnerableDamageTypes.Add((DamageType=none))
+	VulnerableDamageTypes.Add((DamageType=none))
+	VulnerableDamageTypes.Add((DamageType=none))
+	ResistantDamageTypes.Add((DamageType=none))
+	ResistantDamageTypes.Add((DamageType=none))
+	ResistantDamageTypes.Add((DamageType=none))
+	ResistantDamageTypes.Add((DamageType=none))
+	ResistantDamageTypes.Add((DamageType=none))
+	ResistantDamageTypes.Add((DamageType=none))
+	ResistantDamageTypes.Add((DamageType=none))
+	ResistantDamageTypes.Add((DamageType=none))
+	ResistantDamageTypes.Add((DamageType=none))
+	ResistantDamageTypes.Add((DamageType=none))
+	ResistantDamageTypes.Add((DamageType=none))
+	ResistantDamageTypes.Add((DamageType=none))
+	ResistantDamageTypes.Add((DamageType=none))
+	ResistantDamageTypes.Add((DamageType=none))
+	ResistantDamageTypes.Add((DamageType=none))
+	ResistantDamageTypes.Add((DamageType=none))
 
 	// List of BodySetups turned to phycsi for arm injury
 	ArmPhysicsBoneList=("RightShoulder","RightArm","RightForeArm","RightHand")

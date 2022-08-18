@@ -210,6 +210,11 @@ unreliable client simulated function NotifyOfAutoBalance()
     MyGFxHUD.ShowNonCriticalMessage("You have been team swapped");
 }
 
+exec function ChangeTeam(optional string TeamName)
+{
+    RequestSwitchTeam();
+}
+
 exec function RequestSwitchTeam()
 {
     local KFPlayerReplicationInfo KFPRI;

@@ -267,6 +267,12 @@ unreliable client function NotifyOfAutoBalance()
 	MyGFxHUD.ShowNonCriticalMessage("You have been team swapped");
 }
 
+//override from base PlayerController
+exec function ChangeTeam( optional string TeamName )
+{
+	RequestSwitchTeam();
+}
+
 exec function RequestSwitchTeam()
 {
     local KFPlayerReplicationInfo KFPRI;

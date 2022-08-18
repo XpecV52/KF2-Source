@@ -818,18 +818,29 @@ function SetOriginalValuesFromPickup(KFWeapon PickedUpWeapon)
 
 function bool DenyPickupQuery(class<Inventory> ItemClass, Actor Pickup)
 {
+    local bool bDenyPickUp;
+    local KFPlayerController KFPC;
+
     if(ItemClass == Class)
     {
         if(CanRefillSecondaryAmmo())
         {
-            return ((SpareAmmoCount[0] + MagazineCapacity[0]) >= MaxSpareAmmo[0]) && AmmoCount[1] >= MagazineCapacity[1];            
+            bDenyPickUp = ((SpareAmmoCount[0] + MagazineCapacity[0]) >= MaxSpareAmmo[0]) && AmmoCount[1] >= MagazineCapacity[1];            
         }
         else
         {
-            return (SpareAmmoCount[0] + MagazineCapacity[0]) >= MaxSpareAmmo[0];
+            bDenyPickUp = (SpareAmmoCount[0] + MagazineCapacity[0]) >= MaxSpareAmmo[0];
+        }
+        if(bDenyPickUp)
+        {
+            KFPC = KFPlayerController(Instigator.Controller);
+            if(KFPC != none)
+            {
+                KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 10);
+            }
         }
     }
-    return false;
+    return bDenyPickUp;
 }
 
 function NotifyPickedUp()

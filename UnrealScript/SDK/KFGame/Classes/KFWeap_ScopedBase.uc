@@ -309,6 +309,13 @@ simulated function ZoomOutFastFinished()
     {
         ScopeLenseMIC.SetScalarParameterValue(InterpParamName, 0.0);
     }
+
+    // Stop updating the scope when the fast zoom out finishes
+    if( SceneCapture != none && Instigator != none && !Instigator.PlayerReplicationInfo.bBot )
+    {
+        SceneCapture.bEnabled=false;
+        SceneCapture.SetFrameRate(0.0);
+    }
 }
 
 DefaultProperties

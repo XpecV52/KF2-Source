@@ -39,11 +39,9 @@ function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 	{
 		DataObject = CreateObject( "Object" );
 		DataObject.SetString( "label", OptionStrings[i] );
+		DataObject.SetBool("enabled", (!(!class'WorldInfo'.static.IsMenuLevel() && i == OM_Credits)));
 		DataProvider.SetElementObject( i, DataObject );
-		/*if(!(!class'WorldInfo'.static.IsMenuLevel() && i == OM_Credits))
-		{
-			
-		}*/
+		
 	}
 	SetObject("buttonNames", DataProvider);
 }

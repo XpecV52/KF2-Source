@@ -203,6 +203,9 @@ var bool bSpinBarrels;
 /** Minigun barrel spin rotation rate */
 var float BarrelSpinSpeed;
 
+/** Allows gun tracking on the server if server aim precision is necessary (player-controlled, etc) */
+var protected const bool bUseServerSideGunTracking;
+
 /** Turns gun tracking on and off */
 var bool bGunTracking;
 
@@ -332,7 +335,10 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 	{
 		BarrelSpinSkelCtrl = KFSkelControl_SpinBone(SkelComp.FindSkelControl('BarrelSpin'));
 		BarrelSpinSkelCtrl.SetSkelControlActive( false );
+	}
 
+	if( WorldInfo.NetMode != NM_DedicatedServer || bUseServerSideGunTracking )
+	{
 		GunTrackingSkelCtrl = SkelControlLookAt(SkelComp.FindSkelControl('GunTracking'));
 		GunTrackingSkelCtrl.SetSkelControlActive( false );
 	}
@@ -904,9 +910,6 @@ simulated event Tick( float DeltaTime )
 			}
 		}
 
-		// Update our gun tracking skeletal controller
-		UpdateGunTrackingSkelCtrl( DeltaTime );
-
 		// Update syringe material scalars
 		if( ActiveSyringe > -1 && HealingSyringeMICs[ActiveSyringe] != none && SyringeInjectTimeRemaining > 0.f )
 		{
@@ -988,6 +991,9 @@ simulated event Tick( float DeltaTime )
 			}
 		}
 	}
+
+	// Update our gun tracking skeletal controller
+	UpdateGunTrackingSkelCtrl( DeltaTime );	
 }
 
 /** Updates our gun tracking skeletal control */
@@ -1928,6 +1934,7 @@ defaultproperties
     bCanCloak=true
 	bCanGrabAttack=true
 	bEnableAimOffset=true
+	bUseServerSideGunTracking=false
 
 	ActiveSyringe=-1
 	CurrentSyringeMeshNum=-1

@@ -71,7 +71,7 @@ reliable server function ServerSwitchTeam()
     }
     if(KFGRI.bMatchHasBegun)
     {
-        if(WillUpsetTeamBalance())
+        if(!WillMaintainTeamBalance())
         {
             ClientRefusedTeamSwitch();
             return;
@@ -96,7 +96,7 @@ reliable server function ServerSwitchTeam()
     }
 }
 
-function bool WillUpsetTeamBalance()
+function bool WillMaintainTeamBalance()
 {
     local KFGameInfo MyGameInfo;
     local KFGameReplicationInfo KFGRI;
@@ -109,20 +109,20 @@ function bool WillUpsetTeamBalance()
     {
         if((KFPC.Pawn == none) && GetTeamNum() == 0)
         {
-            return true;
+            return false;
         }
         switch(GetTeamNum())
         {
             case byte(MyGameInfo.Teams[0].TeamIndex):
-                return (MyGameInfo.Teams[0].Size < MyGameInfo.Teams[1].Size) && MyGameInfo.Teams[1].Size < (MyGameInfo.MaxPlayersAllowed / 2);
+                return (MyGameInfo.Teams[1].Size < MyGameInfo.Teams[0].Size) && MyGameInfo.Teams[1].Size < (MyGameInfo.MaxPlayersAllowed / 2);
             case byte(MyGameInfo.Teams[1].TeamIndex):
-                return (MyGameInfo.Teams[1].Size < MyGameInfo.Teams[0].Size) && MyGameInfo.Teams[0].Size < (MyGameInfo.MaxPlayersAllowed / 2);
+                return (MyGameInfo.Teams[0].Size < MyGameInfo.Teams[1].Size) && MyGameInfo.Teams[0].Size < (MyGameInfo.MaxPlayersAllowed / 2);
             default:
                 LogInternal("Function: KFPlayerReplicationInfo::WillUpsetTeamBalance Team index not accounted for - " @ string(GetTeamNum()));
                 break;
             }
     }
-    return false;
+    return true;
 }
 
 reliable client simulated function ClientRefusedTeamSwitch()

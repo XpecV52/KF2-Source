@@ -33,7 +33,21 @@ function DoStun()
         }
         KFPOwner.SetTimer(StunDuration, false, 'DoWakeup', self);
     }
+    KFPOwner.Velocity.X = 0;
+    KFPOwner.Velocity.Y = 0;
+    KFPOwner.Acceleration = vect(0, 0, 0);
     PlaySpecialMoveAnim(StunnedAnim, 0, 0.4, 0.3, 1, true);
+}
+
+simulated event Tick(float DeltaTime)
+{
+    super(GameSpecialMove).Tick(DeltaTime);
+    if(((KFPOwner != none) && KFPOwner.Role == ROLE_Authority) && KFPOwner.Physics == 1)
+    {
+        KFPOwner.Velocity.X = 0;
+        KFPOwner.Velocity.Y = 0;
+        KFPOwner.Acceleration = vect(0, 0, 0);
+    }
 }
 
 function DoWakeup()

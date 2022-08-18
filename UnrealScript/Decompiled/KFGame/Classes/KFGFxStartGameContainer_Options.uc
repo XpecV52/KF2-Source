@@ -19,7 +19,6 @@ enum EServerType
 {
     E_Standard,
     E_Custom,
-    E_Listen,
     E_MAX
 };
 
@@ -156,7 +155,6 @@ function LocalizeArrays()
 {
     ServerTypeStrings[0] = Localize("KFGFxStartGameContainer_Options", "StandardServerString", "KFGame");
     ServerTypeStrings[1] = Localize("KFGFxStartGameContainer_Options", "CustomServerString", "KFGame");
-    ServerTypeStrings[2] = "Listen";
     InProgessOptionStrings[0] = Localize("KFGFxStartGameContainer_Options", "AllowInProgressString", "KFGame");
     InProgessOptionStrings[1] = Localize("KFGFxStartGameContainer_Options", "NotStartedString", "KFGame");
 }
@@ -407,7 +405,7 @@ function GetServerTypeBools(out int bCustom, out int bRanked)
 
 function bool GetServerTypeListen()
 {
-    return SavedServerTypeIndex == 2;
+    return false;
 }
 
 defaultproperties

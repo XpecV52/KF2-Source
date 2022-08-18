@@ -203,6 +203,9 @@ var bool bSpinBarrels;
 /** Minigun barrel spin rotation rate */
 var float BarrelSpinSpeed;
 
+/** Allows gun tracking on the server if server aim precision is necessary (player-controlled, etc) */
+var protected const bool bUseServerSideGunTracking;
+
 /** Turns gun tracking on and off */
 var bool bGunTracking;
 
@@ -332,7 +335,10 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 	{
 		BarrelSpinSkelCtrl = KFSkelControl_SpinBone(SkelComp.FindSkelControl('BarrelSpin'));
 		BarrelSpinSkelCtrl.SetSkelControlActive( false );
+	}
 
+	if( WorldInfo.NetMode != NM_DedicatedServer || bUseServerSideGunTracking )
+	{
 		GunTrackingSkelCtrl = SkelControlLookAt(SkelComp.FindSkelControl('GunTracking'));
 		GunTrackingSkelCtrl.SetSkelControlActive( false );
 	}
@@ -904,9 +910,6 @@ simulated event Tick( float DeltaTime )
 			}
 		}
 
-		// Update our gun tracking skeletal controller
-		UpdateGunTrackingSkelCtrl( DeltaTime );
-
 		// Update syringe material scalars
 		if( ActiveSyringe > -1 && HealingSyringeMICs[ActiveSyringe] != none && SyringeInjectTimeRemaining > 0.f )
 		{
@@ -988,6 +991,9 @@ simulated event Tick( float DeltaTime )
 			}
 		}
 	}
+
+	// Update our gun tracking skeletal controller
+	UpdateGunTrackingSkelCtrl( DeltaTime );	
 }
 
 /** Updates our gun tracking skeletal control */
@@ -1873,16 +1879,16 @@ defaultproperties
    XPValues(1)=1694.000000
    XPValues(2)=1790.000000
    XPValues(3)=1843.000000
-   VulnerableDamageTypes(0)=(DamageType=Class'KFGame.KFDT_EMP',DamageScale=1.500000)
-   VulnerableDamageTypes(1)=(DamageType=Class'kfgamecontent.KFDT_Microwave',DamageScale=1.250000)
-   ResistantDamageTypes(0)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=0.600000)
-   ResistantDamageTypes(1)=(DamageType=Class'KFGame.KFDT_Toxic')
-   ResistantDamageTypes(2)=(DamageType=Class'KFGame.KFDT_Fire')
-   ResistantDamageTypes(3)=(DamageType=Class'KFGame.KFDT_Slashing')
-   ResistantDamageTypes(4)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=0.400000)
-   ResistantDamageTypes(5)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=0.800000)
-   ResistantDamageTypes(6)=(DamageType=Class'KFGame.KFDT_Ballistic',DamageScale=0.700000)
-   ResistantDamageTypes(7)=(DamageType=Class'KFGame.KFDT_Healing',DamageScale=0.600000)
+   VulnerableDamageTypes(16)=(DamageType=Class'KFGame.KFDT_EMP',DamageScale=1.500000)
+   VulnerableDamageTypes(17)=(DamageType=Class'kfgamecontent.KFDT_Microwave',DamageScale=1.250000)
+   ResistantDamageTypes(16)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=0.600000)
+   ResistantDamageTypes(17)=(DamageType=Class'KFGame.KFDT_Toxic')
+   ResistantDamageTypes(18)=(DamageType=Class'KFGame.KFDT_Fire')
+   ResistantDamageTypes(19)=(DamageType=Class'KFGame.KFDT_Slashing')
+   ResistantDamageTypes(20)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=0.400000)
+   ResistantDamageTypes(21)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=0.800000)
+   ResistantDamageTypes(22)=(DamageType=Class'KFGame.KFDT_Ballistic',DamageScale=0.700000)
+   ResistantDamageTypes(23)=(DamageType=Class'KFGame.KFDT_Healing',DamageScale=0.600000)
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
    FootstepCameraShakeInnerRadius=200.000000
    FootstepCameraShakeOuterRadius=900.000000

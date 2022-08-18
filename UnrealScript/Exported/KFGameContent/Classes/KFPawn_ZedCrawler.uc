@@ -326,11 +326,11 @@ defaultproperties
    XPValues(1)=10.000000
    XPValues(2)=10.000000
    XPValues(3)=10.000000
-   VulnerableDamageTypes(0)=(DamageType=Class'KFGame.KFDT_Ballistic')
-   VulnerableDamageTypes(1)=(DamageType=Class'KFGame.KFDT_Toxic')
-   VulnerableDamageTypes(2)=(DamageType=Class'KFGame.KFDT_Bludgeon')
-   ResistantDamageTypes(0)=(DamageType=Class'KFGame.KFDT_Slashing')
-   ResistantDamageTypes(1)=(DamageType=Class'kfgamecontent.KFDT_Microwave')
+   VulnerableDamageTypes(16)=(DamageType=Class'KFGame.KFDT_Ballistic')
+   VulnerableDamageTypes(17)=(DamageType=Class'KFGame.KFDT_Toxic')
+   VulnerableDamageTypes(18)=(DamageType=Class'KFGame.KFDT_Bludgeon')
+   ResistantDamageTypes(16)=(DamageType=Class'KFGame.KFDT_Slashing')
+   ResistantDamageTypes(17)=(DamageType=Class'kfgamecontent.KFDT_Microwave')
    PawnAnimInfo=KFPawnAnimInfo'ZED_Crawler_ANIM.Crawler_AnimGroup'
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
       ReplacementPrimitive=None

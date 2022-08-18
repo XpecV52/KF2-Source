@@ -86,6 +86,7 @@ var LinearColor DeadBoilColor;
 var bool bPulseBoils;
 var bool bSprayingFire;
 var bool bSpinBarrels;
+var protected const bool bUseServerSideGunTracking;
 var bool bGunTracking;
 var repnotify bool bInFleeAndHealMode;
 var bool bHealedThisPhase;
@@ -219,6 +220,9 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
     {
         BarrelSpinSkelCtrl = KFSkelControl_SpinBone(SkelComp.FindSkelControl('BarrelSpin'));
         BarrelSpinSkelCtrl.SetSkelControlActive(false);
+    }
+    if((WorldInfo.NetMode != NM_DedicatedServer) || bUseServerSideGunTracking)
+    {
         GunTrackingSkelCtrl = SkelControlLookAt(SkelComp.FindSkelControl('GunTracking'));
         GunTrackingSkelCtrl.SetSkelControlActive(false);
     }
@@ -712,7 +716,6 @@ simulated event Tick(float DeltaTime)
                 }
             }
         }
-        UpdateGunTrackingSkelCtrl(DeltaTime);
         if(((ActiveSyringe > -1) && HealingSyringeMICs[ActiveSyringe] != none) && SyringeInjectTimeRemaining > 0)
         {
             SyringeInjectTimeRemaining -= DeltaTime;
@@ -790,6 +793,7 @@ simulated event Tick(float DeltaTime)
             }
         }
     }
+    UpdateGunTrackingSkelCtrl(DeltaTime);
 }
 
 simulated function UpdateGunTrackingSkelCtrl(float DeltaTime)

@@ -12,6 +12,18 @@ class KFGFXHudWrapper_Versus extends KFGFxHudWrapper
 
 const FriendlyZedInfoShowDistanceSQ = 562000;
 
+struct sHiddenHumanPawnInfo
+{
+    var Pawn HumanPawn;
+    var PlayerReplicationInfo HumanPRI;
+
+    structdefaultproperties
+    {
+        HumanPawn=none
+        HumanPRI=none
+    }
+};
+
 var class<KFGFxMoviePlayer_HUD> HumanHUDClass;
 var class<KFGFxMoviePlayer_HUD> ZedHUDClass;
 var float HumanPlayerIconInterpMult;
@@ -59,29 +71,29 @@ function class<KFGFxMoviePlayer_HUD> GetHUDClass()
 
 function DrawHUD()
 {
+    local PlayerReplicationInfo PRI;
     local KFPlayerReplicationInfoVersus KFPRIV;
     local float ThisDot;
     local Vector ViewLocation, ViewVector, PawnLocation;
     local Rotator ViewRotation;
     local Pawn TestPawn;
     local KFPawn_Human HumanPawn;
-    local KFPawn_Monster MonsterPawn;
     local array<PlayerReplicationInfo> VisibleHumanPlayers;
-    local int I;
-    local PlayerReplicationInfo PRI;
+    local array<sHiddenHumanPawnInfo> HiddenHumanPlayers;
+    local int I, HiddenHumanIndex;
 
     super.DrawHUD();
     if(KFPlayerOwner.PlayerCamera != none)
     {
         KFPlayerOwner.PlayerCamera.GetCameraViewPoint(ViewLocation, ViewRotation);
     }
+    Canvas.EnableStencilTest(true);
     ViewVector = vector(ViewRotation);
     if((KFPlayerOwner != none) && KFPlayerOwner.GetTeamNum() == 255)
     {
-        Canvas.EnableStencilTest(true);
         foreach WorldInfo.AllPawns(Class'Pawn', TestPawn)
         {
-            if((TestPawn != BossPawn) && TestPawn != KFPlayerOwner.Pawn)
+            if((TestPawn.IsAliveAndWell() && TestPawn != BossPawn) && TestPawn != KFPlayerOwner.Pawn)
             {
                 if((TestPawn.Mesh != none) && (WorldInfo.TimeSeconds - TestPawn.Mesh.LastRenderTime) < 0.2)
                 {
@@ -93,21 +105,38 @@ function DrawHUD()
                         {
                             if(DrawPreciseEnemyHumanHUD(HumanPawn))
                             {
-                                VisibleHumanPlayers.AddItem(HumanPawn.PlayerReplicationInfo;
+                                VisibleHumanPlayers.AddItem(HumanPawn.PlayerReplicationInfo;                                
                             }
-                            continue;
+                            else
+                            {
+                                HiddenHumanPlayers.Insert(0, 1;
+                                HiddenHumanPlayers[0].HumanPawn = TestPawn;
+                                HiddenHumanPlayers[0].HumanPRI = HumanPawn.PlayerReplicationInfo;
+                            }                            
                         }
-                        MonsterPawn = KFPawn_Monster(TestPawn);
-                        if((MonsterPawn != none) && VSizeSq(KFPlayerOwner.ViewTarget.Location - MonsterPawn.Location) <= float(562000))
+                        else
                         {
-                            DrawFriendlyZedHUD(MonsterPawn);
+                            if(TestPawn.GetTeamNum() == 255)
+                            {
+                                if(VSizeSq(KFPlayerOwner.ViewTarget.Location - TestPawn.Location) <= float(562000))
+                                {
+                                    DrawFriendlyZedHUD(TestPawn);
+                                }
+                            }
                         }
                     }
+                    continue;
+                }
+                if(TestPawn.GetTeamNum() == 0)
+                {
+                    HiddenHumanPlayers.Insert(0, 1;
+                    HiddenHumanPlayers[0].HumanPawn = TestPawn;
+                    HiddenHumanPlayers[0].HumanPRI = TestPawn.PlayerReplicationInfo;
                 }
             }            
         }        
         I = 0;
-        J0x352:
+        J0x487:
 
         if(I < WorldInfo.GRI.PRIArray.Length)
         {
@@ -117,24 +146,31 @@ function DrawHUD()
             }
             else
             {
-                KFPRIV = KFPlayerReplicationInfoVersus(WorldInfo.GRI.PRIArray[I]);
-                PawnLocation = KFPRIV.GetReplicatedPawnIconLocation(HumanPlayerIconInterpMult);
-                if(IsZero(PawnLocation))
-                {                    
-                }
-                else
+                HiddenHumanIndex = HiddenHumanPlayers.Find('HumanPRI', PRI;
+                if((HiddenHumanIndex != -1) && HiddenHumanPlayers[HiddenHumanIndex].HumanPawn != none)
                 {
-                    ThisDot = Normal(PawnLocation - ViewLocation) Dot ViewVector;
-                    if(ThisDot > float(0))
+                    PawnLocation = HiddenHumanPlayers[HiddenHumanIndex].HumanPawn.Location;
+                }
+                if(IsZero(PawnLocation))
+                {
+                    KFPRIV = KFPlayerReplicationInfoVersus(PRI);
+                    PawnLocation = KFPRIV.GetReplicatedPawnIconLocation(HumanPlayerIconInterpMult);
+                    if(IsZero(PawnLocation))
                     {
-                        DrawEnemyHumanHUD(KFPRIV, PawnLocation);
+                        goto J0x6F4;
                     }
                 }
+                ThisDot = Normal(PawnLocation - ViewLocation) Dot ViewVector;
+                if(ThisDot > 0)
+                {
+                    DrawEnemyHumanHUD(PRI, PawnLocation);
+                }
             }
+            J0x6F4:
+
             ++ I;
-            goto J0x352;
+            goto J0x487;
         }
-        Canvas.EnableStencilTest(false);
     }
     if(((((BossPawn != none) && BossPawn != PlayerOwner.Pawn) && BossPawn.IsAliveAndWell()) && (WorldInfo.TimeSeconds - BossPawn.Mesh.LastRenderTime) > 0.2) && (PlayerOwner.GetTeamNum() == 255) || BossPawn.ShouldDrawBossIcon())
     {
@@ -144,50 +180,41 @@ function DrawHUD()
             DrawBossHUD();
         }
     }
+    Canvas.EnableStencilTest(false);
 }
 
 function DrawZedPlayerHud();
 
-simulated function DrawFriendlyZedHUD(KFPawn_Monster KFPM)
+simulated function DrawFriendlyZedHUD(Pawn MonsterPawn)
 {
     local float Percentage, BarHeight, BarLength;
     local Vector ScreenPos, TargetLocation;
-    local KFPlayerReplicationInfo KFPRI;
     local FontRenderInfo MyFontRenderInfo;
     local float FontScale;
 
-    KFPRI = KFPlayerReplicationInfo(KFPM.PlayerReplicationInfo);
-    if(KFPRI == none)
-    {
-        return;
-    }
     MyFontRenderInfo = Canvas.CreateFontRenderInfo(true);
     BarLength = FMin(float(HumanStatusBarLengthMax) * (float(Canvas.SizeX) / 1024), float(HumanStatusBarLengthMax)) * FriendlyHudScale;
     BarHeight = FMin(8 * (float(Canvas.SizeX) / 1024), 8) * FriendlyHudScale;
-    TargetLocation = KFPM.Location + ((vect(0, 0, 1) * KFPM.GetCollisionHeight()) * 1.2);
+    TargetLocation = MonsterPawn.Location + ((vect(0, 0, 1) * MonsterPawn.GetCollisionHeight()) * 1.2);
     ScreenPos = Canvas.Project(TargetLocation);
     if((((ScreenPos.X < float(0)) || ScreenPos.X > float(Canvas.SizeX)) || ScreenPos.Y < float(0)) || ScreenPos.Y > float(Canvas.SizeY))
     {
         return;
     }
-    Percentage = FMin(float(KFPM.Health) / float(KFPM.HealthMax), 100);
+    Percentage = FMin(float(MonsterPawn.Health) / float(MonsterPawn.HealthMax), 100);
     DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5), ScreenPos.Y, HealthColor);
     FontScale = Class'KFGameEngine'.static.GetKFFontScale();
     Canvas.Font = Class'KFGameEngine'.static.GetKFCanvasFont();
     Canvas.SetDrawColorStruct(PlayerBarTextColor);
     Canvas.SetPos(ScreenPos.X - (BarLength * 0.5), ScreenPos.Y - (BarHeight * float(3)));
-    Canvas.DrawText(KFPRI.PlayerName,, FontScale * FriendlyHudScale, FontScale * FriendlyHudScale, MyFontRenderInfo);
+    Canvas.DrawText(MonsterPawn.PlayerReplicationInfo.PlayerName,, FontScale * FriendlyHudScale, FontScale * FriendlyHudScale, MyFontRenderInfo);
 }
 
-function DrawEnemyHumanHUD(KFPlayerReplicationInfoVersus KFPRIV, Vector IconWorldLocation)
+function DrawEnemyHumanHUD(PlayerReplicationInfo PRI, Vector IconWorldLocation)
 {
     local Vector ScreenPos;
     local float IconSizeMult;
 
-    if(KFPRIV.CurrentPerkClass == none)
-    {
-        return;
-    }
     ScreenPos = Canvas.Project(IconWorldLocation + ((vect(0, 0, 1) * Class'KFPawn_Human'.default.CylinderComponent.CollisionHeight) * 1.2));
     IconSizeMult = (PlayerStatusIconSize * FriendlyHudScale) * 0.5;
     ScreenPos.X -= IconSizeMult;
