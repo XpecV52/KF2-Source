@@ -604,7 +604,7 @@ defaultproperties
     Bindings(118)=(Name=XboxTypeS_RightY,Command="GBA_Look_Gamepad",Control=false,Shift=false,Alt=false,bIgnoreCtrl=false,bIgnoreShift=false,bIgnoreAlt=false)
     Bindings(119)=(Name=XboxTypeS_RightThumbStick,Command="GBA_TertiaryFire",Control=false,Shift=false,Alt=false,bIgnoreCtrl=false,bIgnoreShift=false,bIgnoreAlt=false)
     Bindings(120)=(Name=XboxTypeS_LeftShoulder,Command="GBA_Grenade_Gamepad",Control=false,Shift=false,Alt=false,bIgnoreCtrl=false,bIgnoreShift=false,bIgnoreAlt=false)
-    Bindings(121)=(Name=XboxTypeS_RightShoulder,Command="GBA_AltFire",Control=false,Shift=false,Alt=false,bIgnoreCtrl=false,bIgnoreShift=false,bIgnoreAlt=false)
+    Bindings(121)=(Name=XboxTypeS_RightShoulder,Command="GBA_SwitchFireMode",Control=false,Shift=false,Alt=false,bIgnoreCtrl=false,bIgnoreShift=false,bIgnoreAlt=false)
     Bindings(122)=(Name=XboxTypeS_LeftTrigger,Command="GBA_IronsightsHold",Control=false,Shift=false,Alt=false,bIgnoreCtrl=false,bIgnoreShift=false,bIgnoreAlt=false)
     Bindings(123)=(Name=XboxTypeS_RightTrigger,Command="GBA_Fire",Control=false,Shift=false,Alt=false,bIgnoreCtrl=false,bIgnoreShift=false,bIgnoreAlt=false)
     Bindings(124)=(Name=XboxTypeS_DPad_Left,Command="GBA_DPad_Left_Gamepad",Control=false,Shift=false,Alt=false,bIgnoreCtrl=false,bIgnoreShift=false,bIgnoreAlt=false)

@@ -703,7 +703,7 @@ simulated function ReceivedGameClass(class<GameInfo> GameClass)
 /** Allow achievements after the first successful spawn */
 event Possess(Pawn aPawn, bool bVehicleTransition)
 {
-	if( aPawn != none )
+	if( aPawn != none && aPawn.IsAliveAndWell() )
 	{
 		bIsAchievementPlayer = true;
 	}
@@ -745,7 +745,10 @@ reliable client function ClientRestart(Pawn NewPawn)
 	EnableDepthOfField(false);
 
 	// Only unlock achievements for people who have possessed a pawn during this game
-	bIsAchievementPlayer = true;
+	if( NewPawn != none && NewPawn.IsAliveAndWell() )
+	{
+		bIsAchievementPlayer = true;
+	}
 
 	NewPawn.MovementSpeedModifier = 1.f;
 }
@@ -759,6 +762,26 @@ reliable client function ClientReset()
 	EnableDepthOfField(false);
 
 	Super.ClientReset();
+}
+
+/** Need to handle death of our customization pawn */
+function PawnDied( Pawn inPawn )
+{
+	if( inPawn == Pawn && KFPawn_Customization(InPawn) != none )
+	{
+		if( !Pawn.bDeleteMe && !Pawn.bPendingDelete )
+		{
+			Pawn.UnPossessed();
+		}
+		Pawn = none;		
+		if( MyGFxManager != none )
+		{
+			MyGFxManager.CloseMenus();
+		}
+		return;
+	}
+
+	super.PawnDied( inPawn );
 }
 
 function SpawnReconnectedPlayer()
@@ -3315,6 +3338,10 @@ function OnAvatarReceived(const UniqueNetId NetId, Texture2D Avatar)
 	}
 }
 
+function ServerNotifyTeamChanged();
+
+function ClientRecieveNewTeam();
+
 /*********************************************************************************************
  * @name Chat
 ********************************************************************************************* */
@@ -5831,7 +5858,16 @@ state Dead
 		local KFPlayerInput KFPI;
 
 		Super.BeginState( PreviousStateName );
-		SetTimer( 6.f, false, nameof(StartSpectate) );
+
+		// Allow suicide cam to linger a tiny bit longer
+		if( PlayerCamera.CameraStyle == 'ZedSuicide' )
+		{
+			SetTimer( 6.f, false, nameOf(StartSpectate) );
+		}
+		else
+		{
+			SetTimer( 5.f, false, nameOf(StartSpectate) );		
+		}
 
         // Deactivate any post process effects when we die
 		ResetGameplayPostProcessFX();
@@ -5953,36 +5989,23 @@ unreliable server function ServerSetSpectatorActive();
 
 function MoveToValidSpectatorLocation()
 {
-	local KFPawn KFP;
+	local KFPlayerStart KFPS;
 	local vector CameraLocation;
 	local vector HitLocation, HitNormal;
 
 	// Make sure that our freecam isn't trapped in the lobby
-	foreach WorldInfo.AllPawns( class'KFPawn', KFP )
+	foreach AllActors( class'KFPlayerStart', KFPS )
 	{
-		if( KFP.IsAliveAndWell() && KFP.IsHumanControlled() && (PlayerReplicationInfo.bOnlySpectator || KFP.GetTeamNum() == GetTeamNum()) )
+		CameraLocation = KFPS.Location + ( vect(0,0,1) * ((KFPS.CylinderComponent.CollisionHeight * 2.f) + 50.f) );
+		Trace( HitLocation, HitNormal, CameraLocation, KFPS.Location, false, vect(5,5,5),, TRACEFLAG_Bullet );
+		if( !IsZero(HitLocation) )
 		{
-			CameraLocation = KFP.Location + ( vect(0,0,1) * ((KFP.CylinderComponent.CollisionHeight * 2.f) + 50.f) );
-			KFP.Trace( HitLocation, HitNormal, CameraLocation, KFP.Location, false, vect(5,5,5),, TRACEFLAG_Bullet );
-			if( !IsZero(HitLocation) )
-			{
-				CameraLocation = KFP.Location + ( vect(0,0,1) * (VSize(KFP.Location - HitLocation) - 50.f) );
-			}
-			SetLocation( CameraLocation );
-			break;
+			CameraLocation = KFPS.Location + ( vect(0,0,1) * (VSize(KFPS.Location - HitLocation) - 50.f) );
 		}
-	}	
-}
-
-auto state PlayerWaiting
-{
-ignores SeePlayer, HearNoise, NotifyBump, TakeDamage, PhysicsVolumeChange, NextWeapon, PrevWeapon, SwitchToBestWeapon;
-
-	reliable server function ServerRestartPlayer()
-	{
-		MoveToValidSpectatorLocation();
-
-		super.ServerRestartPlayer();
+		SetLocation( CameraLocation );
+		ServerSetSpectatorLocation( CameraLocation );
+		SetRotation( rot(-4096,0,0) );
+		break;
 	}
 }
 
@@ -5990,19 +6013,37 @@ state Spectating
 {
 	event BeginState(Name PreviousStateName)
 	{
+		// Make sure we nuke our customization pawn!
+		if( Pawn != none && KFPawn_Customization(Pawn) != none )
+		{
+			if( WorldInfo.NetMode != NM_Client )
+			{
+				Pawn.Destroy();
+			}
+		}
+
 		Super.BeginState(PreviousStateName);
+
+		// Make sure we have a valid viewtarget
+		if( ViewTarget == none || ViewTarget.bDeleteMe || ViewTarget.bPendingDelete || KFPawn_Customization(ViewTarget) != none )
+		{
+			SetViewTarget( self );
+		}
 
 		if( MyGFxHUD != none )
 		{
 			MyGFxHUD.SetHUDSpectating(true);
 		}
 
-		if( Role == ROLE_Authority && !bIsAchievementPlayer && WorldInfo.GRI.ElapsedTime > 2.f )
+		// Put us in roaming if our viewtarget is ourself
+		if( ViewTarget == self )
 		{
-			MoveToValidSpectatorLocation();
+			SpectatePlayer( SMODE_Roaming );
 		}
-
-		SpectatePlayer( SMODE_PawnFreeCam );
+		else
+		{
+			SpectatePlayer( SMODE_PawnFreeCam );
+		}
 		NotifyChangeSpectateViewTarget();
 
 		// If we end up spectating in standalone, toggle health FX off
@@ -6010,9 +6051,14 @@ state Spectating
 		{
 			ToggleHealthEffects(false);
 		}
+
+		if( IsLocalPlayerController() && !bIsAchievementPlayer && WorldInfo.GRI.ElapsedTime > 2.f )
+		{
+			MoveToValidSpectatorLocation();
+		}
 	}
 
-	exec function StartFire (optional BYTE FireModeNum)
+	exec function StartFire(optional BYTE FireModeNum)
 	{
 
 	}
@@ -6557,6 +6603,7 @@ function ClearOnlineDelegates()
 }
 
 exec function RequestSwitchTeam();
+exec function SwitchTeam(); //disabled 
 
 /**
  * @brief Activates/Deactivates the timer that could eventually start to hurt the player (Client)

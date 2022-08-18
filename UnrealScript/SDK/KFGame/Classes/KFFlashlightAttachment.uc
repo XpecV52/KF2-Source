@@ -28,7 +28,7 @@ var protected transient bool bLightInitialized;
 
 /** Spot Light */
 var()			SpotLightComponent LightTemplate;
-var transient	SpotLightComponent Light;
+var() transient	SpotLightComponent Light;
 
 /** Light Cone Mesh*/
 var()		  StaticMesh			LightConeMesh;
@@ -139,7 +139,7 @@ protected function InitializeLight()
 	{
 		`log("Invalid mesh for flashlight"@self);
 		return;
-	}	
+	}
 
 	if ( Light == None && LightTemplate != None )
 	{
@@ -149,7 +149,7 @@ protected function InitializeLight()
 
 	if ( LightConeMesh != None )
 	{
-		LightConeMeshComp.SetStaticMesh(LightConeMesh);		
+		LightConeMeshComp.SetStaticMesh(LightConeMesh);
 		AttachFlashlightComponent(OwnerMesh, LightConeMeshComp);
 	}
 
@@ -370,7 +370,7 @@ defaultproperties
 	End Object
 
 	Begin Object Class=SpotLightComponent Name=FlashlightTemplate_0
-		Brightness=35
+		Brightness=10
 		InnerConeAngle=20
 		OuterConeAngle=30
 		Radius=3000

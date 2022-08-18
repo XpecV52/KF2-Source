@@ -442,7 +442,7 @@ simulated function ReceivedGameClass(class<GameInfo> GameClass)
 
 event Possess(Pawn aPawn, bool bVehicleTransition)
 {
-    if(aPawn != none)
+    if((aPawn != none) && aPawn.IsAliveAndWell())
     {
         bIsAchievementPlayer = true;
     }
@@ -469,7 +469,10 @@ reliable client simulated function ClientRestart(Pawn NewPawn)
         Pawn.AttachComponent(AmplificationLight);
     }
     EnableDepthOfField(false);
-    bIsAchievementPlayer = true;
+    if((NewPawn != none) && NewPawn.IsAliveAndWell())
+    {
+        bIsAchievementPlayer = true;
+    }
     NewPawn.MovementSpeedModifier = 1;
 }
 
@@ -478,6 +481,24 @@ reliable client simulated function ClientReset()
     ResetGameplayPostProcessFX();
     EnableDepthOfField(false);
     super(PlayerController).ClientReset();
+}
+
+function PawnDied(Pawn inPawn)
+{
+    if((inPawn == Pawn) && KFPawn_Customization(inPawn) != none)
+    {
+        if(!Pawn.bDeleteMe && !Pawn.bPendingDelete)
+        {
+            Pawn.UnPossessed();
+        }
+        Pawn = none;
+        if(MyGFxManager != none)
+        {
+            MyGFxManager.CloseMenus();
+        }
+        return;
+    }
+    super(PlayerController).PawnDied(inPawn);
 }
 
 function SpawnReconnectedPlayer()
@@ -2514,6 +2535,10 @@ function OnAvatarReceived(const UniqueNetId NetId, Texture2D Avatar)
     }
 }
 
+function ServerNotifyTeamChanged();
+
+function ClientRecieveNewTeam();
+
 unreliable server function ServerSay(string msg)
 {
     local KFGameInfo KFGI;
@@ -3572,22 +3597,21 @@ unreliable server function ServerSetSpectatorActive();
 
 function MoveToValidSpectatorLocation()
 {
-    local KFPawn KFP;
+    local KFPlayerStart KFPS;
     local Vector CameraLocation, HitLocation, HitNormal;
 
-    foreach WorldInfo.AllPawns(Class'KFPawn', KFP)
+    foreach AllActors(Class'KFPlayerStart', KFPS)
     {
-        if((KFP.IsAliveAndWell() && KFP.IsHumanControlled()) && PlayerReplicationInfo.bOnlySpectator || KFP.GetTeamNum() == GetTeamNum())
+        CameraLocation = KFPS.Location + (vect(0, 0, 1) * ((KFPS.CylinderComponent.CollisionHeight * 2) + 50));
+        Trace(HitLocation, HitNormal, CameraLocation, KFPS.Location, false, vect(5, 5, 5),, 1);
+        if(!IsZero(HitLocation))
         {
-            CameraLocation = KFP.Location + (vect(0, 0, 1) * ((KFP.CylinderComponent.CollisionHeight * 2) + 50));
-            KFP.Trace(HitLocation, HitNormal, CameraLocation, KFP.Location, false, vect(5, 5, 5),, 1);
-            if(!IsZero(HitLocation))
-            {
-                CameraLocation = KFP.Location + (vect(0, 0, 1) * (VSize(KFP.Location - HitLocation) - 50));
-            }
-            SetLocation(CameraLocation);
-            break;
-        }        
+            CameraLocation = KFPS.Location + (vect(0, 0, 1) * (VSize(KFPS.Location - HitLocation) - 50));
+        }
+        SetLocation(CameraLocation);
+        ServerSetSpectatorLocation(CameraLocation);
+        SetRotation(rot(-4096, 0, 0));
+        break;        
     }    
 }
 
@@ -4009,6 +4033,8 @@ function ClearOnlineDelegates()
 
 exec function RequestSwitchTeam();
 
+exec function SwitchTeam();
+
 // Export UKFPlayerController::execSetNoGoActive(FFrame&, void* const)
 protected native function SetNoGoActive(bool bNewActive, float Delay);
 
@@ -4084,7 +4110,14 @@ state Dead
         local KFPlayerInput KFPI;
 
         super.BeginState(PreviousStateName);
-        SetTimer(6, false, 'StartSpectate');
+        if(PlayerCamera.CameraStyle == 'ZedSuicide')
+        {
+            SetTimer(6, false, 'StartSpectate');            
+        }
+        else
+        {
+            SetTimer(5, false, 'StartSpectate');
+        }
         ResetGameplayPostProcessFX();
         KFP = KFPawn(ViewTarget);
         if((KFP != none) && UsingFirstPersonCamera())
@@ -4159,39 +4192,44 @@ state Dead
     stop;    
 }
 
-auto state PlayerWaiting
-{
-    ignores SeePlayer, HearNoise, NotifyBump, TakeDamage, PhysicsVolumeChange, NextWeapon, 
-	    PrevWeapon, SwitchToBestWeapon;
-
-    reliable server function ServerRestartPlayer()
-    {
-        MoveToValidSpectatorLocation();
-        super.ServerRestartPlayer();
-    }
-    stop;    
-}
-
 state Spectating
 {
     ignores StartFire;
 
     event BeginState(name PreviousStateName)
     {
+        if((Pawn != none) && KFPawn_Customization(Pawn) != none)
+        {
+            if(WorldInfo.NetMode != NM_Client)
+            {
+                Pawn.Destroy();
+            }
+        }
         super.BeginState(PreviousStateName);
+        if((((ViewTarget == none) || ViewTarget.bDeleteMe) || ViewTarget.bPendingDelete) || KFPawn_Customization(ViewTarget) != none)
+        {
+            SetViewTarget(self);
+        }
         if(MyGFxHUD != none)
         {
             MyGFxHUD.SetHUDSpectating(true);
         }
-        if(((Role == ROLE_Authority) && !bIsAchievementPlayer) && float(WorldInfo.GRI.ElapsedTime) > 2)
+        if(ViewTarget == self)
         {
-            MoveToValidSpectatorLocation();
+            SpectatePlayer(3);            
         }
-        SpectatePlayer(0);
+        else
+        {
+            SpectatePlayer(0);
+        }
         NotifyChangeSpectateViewTarget();
         if(WorldInfo.NetMode == NM_Standalone)
         {
             ToggleHealthEffects(false);
+        }
+        if(((IsLocalPlayerController()) && !bIsAchievementPlayer) && float(WorldInfo.GRI.ElapsedTime) > 2)
+        {
+            MoveToValidSpectatorLocation();
         }
     }
 

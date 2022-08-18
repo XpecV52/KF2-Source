@@ -115,11 +115,11 @@ simulated function ShowTraderPath()
     local bool bPathFound;
 
     KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if(((KFGRI != none) && KFGRI.OpenedTrader == self) && bCollideActors)
+    if(((bCollideActors && KFGRI != none) && KFGRI.bTraderIsOpen) && KFGRI.OpenedTrader == self)
     {
         foreach LocalPlayerControllers(Class'KFPlayerController', KFPC)
         {
-            if((KFPC.Pawn == none) || KFPC.GetTeamNum() == 255)
+            if(((KFPC.Pawn == none) || KFPC.GetTeamNum() == 255) || !KFPC.Pawn.IsAliveAndWell())
             {
                 continue;                
             }
@@ -153,9 +153,9 @@ simulated function ShowTraderPath()
                 }
             }
             KFPC.Pawn.ClearConstraints();
-            KFPC.Pawn.PathSearchType = OldSearchType;
-            KFPC.SetTimer(2, false, 'ShowTraderPath', self);            
+            KFPC.Pawn.PathSearchType = OldSearchType;            
         }        
+        WorldInfo.GetALocalPlayerController().SetTimer(2, false, 'ShowTraderPath', self);
     }
 }
 

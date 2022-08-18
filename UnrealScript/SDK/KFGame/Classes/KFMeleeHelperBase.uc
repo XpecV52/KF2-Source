@@ -256,7 +256,7 @@ simulated function float RateMeleeVictim(Pawn Victim, vector StartTrace, vector 
 	}
 
 	// Finally trace to make sure there are no obstructions. ie acquiring someone through a wall
-	if ( !FastTrace(EndTrace, StartTrace) )
+	if ( !FastTrace(VictimLocation, StartTrace) )
 	{
 		`log("rejected:"@Victim@"melee obstruction: ", bLogMelee);
 		return -1.f;

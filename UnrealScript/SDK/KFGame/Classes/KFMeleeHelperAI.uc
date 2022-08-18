@@ -182,14 +182,7 @@ function bool DoAreaImpact(
 
         if ( RateMeleeVictim(KFP, Location, Location + Normal(Vector(Instigator.Rotation)) * Range, Range, InFOVCosine) > 0.f )
 		{
-			if( Instigator.IsHumanControlled() )
-			{
-				ResolvePawnMeleeDamage(KFP, Damage, MomentumScalar, DamageType);
-			}
-			else
-			{
-				ApplyMeleeDamage(KFP, Damage, MomentumScalar, DamageType);
-			}
+			ApplyMeleeDamage(KFP, Damage, MomentumScalar, DamageType);
 			bFoundHit = true;
 		}
 	}
@@ -529,6 +522,13 @@ protected function ResolvePawnMeleeDamage(Pawn Victim, int Damage, float Momentu
 	if ( Instigator.Role < ROLE_Authority )
 	{
 		return; // how did we get here?
+	}
+
+	// Do not apply ping compensation to player instigated damage!
+	if ( Instigator.IsHumanControlled() )
+	{
+		ApplyMeleeDamage(Victim, Damage, Momentum, InDamageType);
+		return;
 	}
 
 	// If necessary, apply ping compensation

@@ -145,23 +145,24 @@ simulated function ShowTraderPath()
 
 	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
 
-	if ( KFGRI != none && KFGRI.OpenedTrader == self && bCollideActors )
+	if( bCollideActors && KFGRI != none && KFGRI.bTraderIsOpen && KFGRI.OpenedTrader == self )
 	{
 		foreach LocalPlayerControllers(class'KFPlayerController', KFPC)
 		{
-			if( KFPC.Pawn == none || KFPC.GetTeamNum() == 255 )
+			if( KFPC.Pawn == none || KFPC.GetTeamNum() == 255 || !KFPC.Pawn.IsAliveAndWell() )
 			{
 				continue;
 			}
 
+			// Cache off our previous path search type
 			OldSearchType = KFPC.Pawn.PathSearchType;
 
-			// @todo: PST_Constraint and ToTrader() appear to be legacy and frivolous?
+			// Generate a path network that excludes bIgnoredByTraderTrail navpoints
 			KFPC.Pawn.PathSearchType = PST_Constraint;
 			class'Path_ToTrader'.static.ToTrader( KFPC.Pawn );
-
 			class'Goal_AtActor'.static.AtActor( KFPC.Pawn, self,, false );
 
+			// Generate path
 			nodePathRoot = KFPC.FindPathToward(self);
 			if( nodePathRoot != none )
 			{
@@ -188,10 +189,13 @@ simulated function ShowTraderPath()
 				if (bLogTrader) LogInternal("ShowTraderPath - No Path Found, KFGRI.OpenedTrader: " @ KFGRI.OpenedTrader @ " trader trigger loc: " @ Location @ " - player loc: " @ KFPC.Pawn.Location);
 			}
 
+			// Clear path constraints and restore previous path search type
 			KFPC.Pawn.ClearConstraints();
 			KFPC.Pawn.PathSearchType = OldSearchType;
-			KFPC.SetTimer(2.0, false, nameof(ShowTraderPath), self);
 		}
+
+		// This timer only needs to run once, not on all controllers
+		WorldInfo.GetALocalPlayerController().SetTimer( 2.0, false, nameOf(ShowTraderPath), self );
 	}
 }
 

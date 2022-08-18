@@ -153,7 +153,7 @@ simulated function float RateMeleeVictim(Pawn Victim, Vector StartTrace, Vector 
             }
         }
     }
-    if(!Outer.FastTrace(EndTrace, StartTrace))
+    if(!Outer.FastTrace(VictimLocation, StartTrace))
     {
         if(bLogMelee)
         {

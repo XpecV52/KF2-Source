@@ -51,6 +51,7 @@ defaultproperties
    End Object
    SceneCapture=SceneCapture2DComponent0
    ScopeLenseMICTemplate=MaterialInstanceConstant'WEP_1P_Crossbow_MAT.WEP_1P_Crossbow_Scope_MAT'
+   ScopedSensitivityMod=16.000000
    InventorySize=7
    bHasIronSights=True
    bCanBeReloaded=True
@@ -73,6 +74,7 @@ defaultproperties
    AmmoPickupScale(0)=3.000000
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
+   BonesToLockOnEmpty(0)="RW_Projectile"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_Crossbow.Play_WEP_SA_Crossbow_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_Crossbow.Play_WEP_SA_Crossbow_Fire_1P')
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_Crossbow.Play_WEP_SA_Crossbow_DryFire'
    PlayerViewOffset=(X=1.000000,Y=8.000000,Z=-5.000000)

@@ -13,7 +13,7 @@ class KFPawn_Customization extends KFPawn_Human
 struct native sReplicatedMovementData
 {
     var Vector NewLocation;
-    var int NewRotationYaw;
+    var byte NewRotationYaw;
 
     structdefaultproperties
     {
@@ -61,7 +61,7 @@ simulated event ReplicatedEvent(name VarName)
 function SetUpdatedMovementData(Vector NewLoc, Rotator NewRot)
 {
     ReplicatedMovementData.NewLocation = NewLoc;
-    ReplicatedMovementData.NewRotationYaw = NewRot.Yaw;
+    ReplicatedMovementData.NewRotationYaw = byte((NewRot.Yaw & 65535) >> 8);
     OnMovementDataUpdated();
     bForceNetUpdate = true;
 }
@@ -71,7 +71,7 @@ simulated function OnMovementDataUpdated()
     local Rotator TempRotation;
 
     SetLocation(ReplicatedMovementData.NewLocation);
-    TempRotation.Yaw = ReplicatedMovementData.NewRotationYaw;
+    TempRotation.Yaw = NormalizeRotAxis(ReplicatedMovementData.NewRotationYaw << 8);
     SetRotation(TempRotation);
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
@@ -165,7 +165,7 @@ simulated event OnAnimEnd(AnimNodeSequence SeqNode, float PlayedTime, float Exce
 
 simulated function NotifyTeamChanged()
 {
-    if(PlayerReplicationInfo != none)
+    if((PlayerReplicationInfo != none) && CharacterArch == none)
     {
         SetCharacterArch(GetCharacterInfo());
     }
@@ -209,6 +209,7 @@ function InitializeCustomizationPawn(PlayerController NewController, NavigationP
     NewController.SetViewTarget(self);
     NewController.SetCameraMode('Customization');
     bUsingCustomizationPoint = KFCustomizationPoint(BestStartSpot) != none;
+    SetUpdatedMovementData(BestStartSpot.Location, BestStartSpot.Rotation);
 }
 
 defaultproperties

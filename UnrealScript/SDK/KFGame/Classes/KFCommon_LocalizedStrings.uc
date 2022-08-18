@@ -36,6 +36,9 @@ var localized string ZedString;
 var localized string HumanString;
 var localized string SpectatorString;
 
+var localized string UnableToSwitchTeamString;
+var localized string NoSwitchReasonString;
+
 static function array<string> GetDifficultyStringsArray()
 {
 	return default.DifficultyStrings;

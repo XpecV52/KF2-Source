@@ -302,6 +302,14 @@ function ServerNotifyTeamChanged()
 	}
 }
 
+function ClientRecieveNewTeam()
+{
+	if(MyGFxManager != none)
+	{
+		MyGFxManager.ClientRecieveNewTeam();
+	}
+}
+
 state Dead
 {
 	event BeginState(Name PreviousStateName)

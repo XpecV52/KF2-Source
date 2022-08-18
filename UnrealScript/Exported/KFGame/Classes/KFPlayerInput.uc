@@ -1072,6 +1072,23 @@ exec function SwitchFireRelease()
 	}
 }
 
+/** GBA_GamepadStartFire */
+/*exec function GamepadStartFire()
+{
+	local KFWeapon KFW;
+
+	if( Pawn != none )
+	{
+		KFW = KFWeapon(Pawn.Weapon);
+		if ( KFW != None )
+		{
+			KFW.bGamepadFireEntry = TRUE;
+			StartFire();
+			KFW.bGamepadFireEntry = FALSE;
+		}
+	}
+}*/
+
 /*********************************************************************************************
 * @name	Weapon Select
 ********************************************************************************************* */

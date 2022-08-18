@@ -707,7 +707,7 @@ defaultproperties
    Bindings(118)=(Name="XboxTypeS_RightY",Command="GBA_Look_Gamepad")
    Bindings(119)=(Name="XboxTypeS_RightThumbStick",Command="GBA_TertiaryFire")
    Bindings(120)=(Name="XboxTypeS_LeftShoulder",Command="GBA_Grenade_Gamepad")
-   Bindings(121)=(Name="XboxTypeS_RightShoulder",Command="GBA_AltFire")
+   Bindings(121)=(Name="XboxTypeS_RightShoulder",Command="GBA_SwitchFireMode")
    Bindings(122)=(Name="XboxTypeS_LeftTrigger",Command="GBA_IronsightsHold")
    Bindings(123)=(Name="XboxTypeS_RightTrigger",Command="GBA_Fire")
    Bindings(124)=(Name="XboxTypeS_DPad_Left",Command="GBA_DPad_Left_Gamepad")

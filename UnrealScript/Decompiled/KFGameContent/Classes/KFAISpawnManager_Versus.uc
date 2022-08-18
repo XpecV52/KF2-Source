@@ -50,14 +50,13 @@ function SetupNextWave(byte NextWaveIndex)
         ++ I;
         goto J0x5D;
     }
-    LogInternal("largest squad size:" @ string(LargestSquadSize));
 }
 
 function AssignZedsToPlayers(out array< class<KFPawn_Monster> > NewZeds)
 {
     local KFPlayerControllerVersus KFPCV;
 
-    if(Outer.MyKFGRI.WaveNum == Outer.MyKFGRI.WaveMax)
+    if(!IsPlayerZedSpawnAllowed())
     {
         return;
     }
@@ -205,7 +204,7 @@ function Vector GetSpawnLocation(class<KFPawn_Monster> MonsterPawnClass, KFSpawn
     return SpawnVolume.FindSpawnLocation(MonsterPawnClass);
 }
 
-function RespawnZedHumanPlayers(KFSpawnVolume SpawnVolume)
+protected function RespawnZedHumanPlayers(KFSpawnVolume SpawnVolume)
 {
     local KFPlayerController KFPC;
     local KFPawn_Human KFPH;
@@ -217,12 +216,17 @@ function RespawnZedHumanPlayers(KFSpawnVolume SpawnVolume)
     local array< class<KFPawn_Monster> > MonsterPawnClasses;
     local int I;
 
-    if(Outer.bGameEnded)
+    if(Outer.MyKFGRI.bMatchIsOver || Outer.MyKFGRI.bTraderIsOpen)
     {
         return;
     }
-    if((Outer.MyKFGRI.WaveNum >= Outer.MyKFGRI.WaveMax) && !bBossSpawned)
+    if((Outer.MyKFGRI.WaveNum == Outer.MyKFGRI.WaveMax) && !bBossSpawned)
     {
+        if(Outer.IsTimerActive('Timer_CheckForZedTakeovers', self))
+        {
+            Outer.ClearTimer('Timer_CheckForZedTakeovers', self);
+        }
+        ReservedPlayerZeds.Length = 0;
         foreach Outer.WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
         {
             KFPC.PlayerZedSpawnInfo.PendingZedPawnClass = none;
@@ -235,9 +239,9 @@ function RespawnZedHumanPlayers(KFSpawnVolume SpawnVolume)
         KFPC = ZedPlayers[Rand(ZedPlayers.Length)];
         if(KFPC != none)
         {
-            KFPC.PlayerZedSpawnInfo.PendingZedPawnClass = Outer.AIBossClassList[Rand(Outer.AIBossClassList.Length)];
+            KFPC.PlayerZedSpawnInfo.PendingZedPawnClass = Outer.PlayerBossClassList[Rand(Outer.PlayerBossClassList.Length)];
             MonsterPawnClasses[0] = KFPC.PlayerZedSpawnInfo.PendingZedPawnClass;
-            if(SpawnVolume.bNoPlayers)
+            if((SpawnVolume != none) && SpawnVolume.bNoPlayers)
             {
                 SetDesiredSquadTypeForZedList(MonsterPawnClasses);
                 SpawnVolume = GetBestSpawnVolume(MonsterPawnClasses,, KFPC);
@@ -247,12 +251,23 @@ function RespawnZedHumanPlayers(KFSpawnVolume SpawnVolume)
                 KFPC.Pawn.Destroy();
             }
             Outer.RestartPlayer(KFPC);
-            bBossSpawned = true;
-            SpawnLocation = GetSpawnLocation(class<KFPawn_Monster>(KFPC.Pawn.Class), SpawnVolume);
-            KFPC.SetLocation(SpawnLocation);
-            KFPC.Pawn.SetLocation(SpawnLocation);
-            KFPC.InitGameplayPostProcessFX();
-            Outer.RefreshMonsterAliveCount();
+            if(KFPC.Pawn != none)
+            {
+                bBossSpawned = true;
+                SpawnLocation = GetSpawnLocation(class<KFPawn_Monster>(KFPC.Pawn.Class), SpawnVolume);
+                KFPC.SetLocation(SpawnLocation);
+                KFPC.Pawn.SetLocation(SpawnLocation);
+                KFPC.InitGameplayPostProcessFX();
+                KFPC.PlayerZedSpawnInfo.PendingZedPawnClass = none;
+                KFPC.PlayerZedSpawnInfo.PendingZedSpawnLocation = vect(0, 0, 0);
+                ++ Outer.NumAISpawnsQueued;
+                Outer.RefreshMonsterAliveCount();                
+            }
+            else
+            {
+                RespawnZedHumanPlayers(none);
+                return;
+            }
         }
         Outer.SetTimer(BossSpawnPlayerInterval, false, 'Timer_SpawnBossPlayerZeds', self);
         return;
@@ -290,15 +305,15 @@ function RespawnZedHumanPlayers(KFSpawnVolume SpawnVolume)
         }        
     }    
     I = 0;
-    J0x7EC:
+    J0x972:
 
     if(I < ZedPlayers.Length)
     {
-        if(Outer.bGameEnded)
+        if(Outer.MyKFGRI.bMatchIsOver || Outer.MyKFGRI.bTraderIsOpen)
         {
             return;
         }
-        if((NumSpawned % 2) == 0)
+        if((NumSpawned % 3) == 0)
         {
             SetDesiredSquadTypeForZedList(MonsterPawnClasses);
             SpawnVolume = GetBestSpawnVolume(MonsterPawnClasses,, ZedPlayers[I]);
@@ -324,26 +339,27 @@ function RespawnZedHumanPlayers(KFSpawnVolume SpawnVolume)
         MonsterPawnClasses.Remove(I, 1;
         -- I;
         ++ I;
-        goto J0x7EC;
+        goto J0x972;
     }
     CheckForTakeoverTimer();
 }
 
 function CheckForTakeoverTimer()
 {
+    if(!IsPlayerZedSpawnAllowed())
+    {
+        if(Outer.IsTimerActive('Timer_CheckForZedTakeovers', self))
+        {
+            Outer.ClearTimer('Timer_CheckForZedTakeovers', self);
+        }
+        return;
+    }
     Outer.RefreshMonsterAliveCount();
-    if((!Outer.MyKFGRI.bTraderIsOpen && Outer.MyKFGRI.WaveNum < Outer.MyKFGRI.WaveMax) && (WaveTotalAI - Outer.NumAISpawnsQueued) <= (LargestSquadSize + 2))
+    if((WaveTotalAI - Outer.NumAISpawnsQueued) <= (LargestSquadSize + 2))
     {
         if(!Outer.IsTimerActive('Timer_CheckForZedTakeovers', self))
         {
             Outer.SetTimer(1, true, 'Timer_CheckForZedTakeovers', self);
-        }        
-    }
-    else
-    {
-        if(Outer.MyKFGRI.bTraderIsOpen && Outer.IsTimerActive('Timer_CheckForZedTakeovers', self))
-        {
-            Outer.ClearTimer('Timer_CheckForZedTakeovers', self);
         }
     }
 }
@@ -355,7 +371,7 @@ function Timer_CheckForZedTakeovers()
     local array<KFPlayerControllerVersus> ZedPlayers;
     local int I, LivingPlayerCount, DesiredTakeovers;
 
-    if(Outer.MyKFGRI.bTraderIsOpen)
+    if(!IsPlayerZedSpawnAllowed())
     {
         Outer.ClearTimer('Timer_CheckForZedTakeovers', self);
         return;
@@ -437,16 +453,16 @@ function Timer_CheckForZedTakeovers()
     {
         if(DesiredTakeovers > 0)
         {
-            J0x4E6:
+            J0x4BE:
 
             if(ZedPlayers.Length > DesiredTakeovers)
             {
                 ZedPlayers.Remove(Rand(ZedPlayers.Length), 1;
-                goto J0x4E6;
+                goto J0x4BE;
             }
         }
         I = 0;
-        J0x524:
+        J0x4FC:
 
         if(I < ZedPlayers.Length)
         {
@@ -457,7 +473,7 @@ function Timer_CheckForZedTakeovers()
                 bNeedRespawn = true;
             }
             ++ I;
-            goto J0x524;
+            goto J0x4FC;
         }
     }
     if(bNeedRespawn)
@@ -471,8 +487,9 @@ function SpawnRemainingReservedZeds(optional bool bSpawnAllReservedZeds)
     local int I, NumZedsSpawned;
     local array< class<KFPawn_Monster> > TempSquad;
 
-    if(ReservedPlayerZeds.Length == 0)
+    if(!IsPlayerZedSpawnAllowed() || ReservedPlayerZeds.Length == 0)
     {
+        ReservedPlayerZeds.Length = 0;
         return;
     }
     Outer.RefreshMonsterAliveCount();
@@ -484,14 +501,14 @@ function SpawnRemainingReservedZeds(optional bool bSpawnAllReservedZeds)
     if(ReservedPlayerZeds.Length > 0)
     {
         I = 0;
-        J0xB4:
+        J0xD1:
 
         if((I < ReservedPlayerZeds.Length) && bSpawnAllReservedZeds || NumZedsSpawned < 2)
         {
             if((Outer.AIAliveCount + (NumZedsSpawned + 1)) > Outer.MyKFGRI.AIRemaining)
             {
                 ReservedPlayerZeds.Length = 0;
-                goto J0x23B;
+                goto J0x258;
             }
             if(!ClassIsChildOf(Outer.PlayerZedClasses[6], ReservedPlayerZeds[I]) && !ClassIsChildOf(Outer.PlayerZedClasses[7], ReservedPlayerZeds[I]))
             {
@@ -501,9 +518,9 @@ function SpawnRemainingReservedZeds(optional bool bSpawnAllReservedZeds)
                 -- I;
             }
             ++ I;
-            goto J0xB4;
+            goto J0xD1;
         }
-        J0x23B:
+        J0x258:
 
         if(TempSquad.Length > 0)
         {
@@ -520,6 +537,10 @@ function FindTakeoverZed(KFPlayerControllerVersus KFPCV)
     local class<KFPawn_Monster> AliveClass;
     local int I;
 
+    if(!IsPlayerZedSpawnAllowed())
+    {
+        return;
+    }
     foreach Outer.WorldInfo.AllPawns(Class'KFPawn_Monster', KFPM)
     {
         if(((KFPM.bVersusZed || KFPM.IsHeadless()) || !KFPM.IsAliveAndWell()) || KFPM.IsDoingSpecialMove())
@@ -545,7 +566,7 @@ function FindTakeoverZed(KFPlayerControllerVersus KFPCV)
         }
         AliveClass = KFPM.Class;
         I = 0;
-        J0x29E:
+        J0x2AF:
 
         if(I < Outer.PlayerZedClasses.Length)
         {
@@ -562,7 +583,7 @@ function FindTakeoverZed(KFPlayerControllerVersus KFPCV)
                 return;
             }
             ++ I;
-            goto J0x29E;
+            goto J0x2AF;
         }        
     }    
 }
@@ -592,15 +613,11 @@ function Timer_SpawnBossPlayerZeds()
         {
             continue;            
         }
+        KFPC.PlayerZedSpawnInfo.PendingZedPawnClass = none;
         if((KFPC.Pawn == none) || !KFPC.Pawn.IsAliveAndWell())
         {
             if(LivingPlayerCount == 1)
             {
-                if(BestPlayer.PlayerZedSpawnInfo.PendingZedPawnClass != none)
-                {
-                    BestPlayer.PlayerZedSpawnInfo.PendingZedPawnClass = none;
-                    -- Outer.NumAISpawnsQueued;
-                }
                 TimeSinceSpawn = Outer.WorldInfo.TimeSeconds - KFPC.PlayerZedSpawnInfo.LastSpawnedTime;
                 if((LongestSpawnTime == float(0)) || TimeSinceSpawn > LongestSpawnTime)
                 {
@@ -626,7 +643,6 @@ function Timer_SpawnBossPlayerZeds()
                     KFPC.PlayerZedSpawnInfo.PendingZedPawnClass = Outer.PlayerZedClasses[4];
                 }
             }
-            ++ Outer.NumAISpawnsQueued;
             bNeedRespawn = true;
         }        
     }    
@@ -634,13 +650,12 @@ function Timer_SpawnBossPlayerZeds()
     {
         if(FRand() < 0.5)
         {
-            KFPC.PlayerZedSpawnInfo.PendingZedPawnClass = Outer.PlayerZedClasses[1];            
+            BestPlayer.PlayerZedSpawnInfo.PendingZedPawnClass = Outer.PlayerZedClasses[1];            
         }
         else
         {
-            KFPC.PlayerZedSpawnInfo.PendingZedPawnClass = Outer.PlayerZedClasses[4];
+            BestPlayer.PlayerZedSpawnInfo.PendingZedPawnClass = Outer.PlayerZedClasses[4];
         }
-        ++ Outer.NumAISpawnsQueued;
     }
     if(bNeedRespawn)
     {
@@ -666,6 +681,10 @@ function bool RestartPlayerZed(KFPlayerController KFPC, KFSpawnVolume SpawnVolum
     local Vector SpawnLocation;
     local Rotator SpawnRotation;
 
+    if(Outer.MyKFGRI.bTraderIsOpen || Outer.MyKFGRI.bMatchIsOver)
+    {
+        return false;
+    }
     Outer.RestartPlayer(KFPC);
     if(KFPC.Pawn != none)
     {
@@ -685,6 +704,29 @@ function bool RestartPlayerZed(KFPlayerController KFPC, KFSpawnVolume SpawnVolum
         KFPC.PlayerZedSpawnInfo.LastSpawnedTime = Outer.WorldInfo.TimeSeconds;
         return true;
     }
+    return false;
+}
+
+protected function bool IsPlayerZedSpawnAllowed()
+{
+    return (!Outer.MyKFGRI.bTraderIsOpen && !Outer.MyKFGRI.bMatchIsOver) && Outer.MyKFGRI.WaveNum < Outer.MyKFGRI.WaveMax;
+}
+
+protected function bool CanSpawnPlayerBoss()
+{
+    local KFPlayerController KFPC;
+
+    if(bBossSpawned)
+    {
+        return true;
+    }
+    foreach Outer.WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+    {
+        if(((KFPC.GetTeamNum() == 255) && KFPC.CanRestartPlayer()) && (KFPC.Pawn == none) || !KFPC.Pawn.IsAliveAndWell())
+        {            
+            return true;
+        }        
+    }    
     return false;
 }
 

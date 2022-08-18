@@ -124,6 +124,17 @@ simulated event NotifyGoreMeshActive()
 	`DialogManager.PlaySpotCloakDialog( self, false );
 
 	PlayStealthSoundLoopEnd();
+
+	// Restore to uncloaked values
+	bIsCloaking = false;
+	bIsCloakingSpottedByLP = false;
+	bIsCloakingSpottedByTeam = false;
+
+	// Set to our solid gore mat (only AI-controlled)
+	if( PlayerReplicationInfo == none )
+	{
+		BodyMIC.SetParent( Mesh.SkeletalMesh.Materials[2] );	
+	}
 }
 
 simulated function PlayStealthSoundLoop()

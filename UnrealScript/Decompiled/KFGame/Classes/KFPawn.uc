@@ -1411,6 +1411,10 @@ function JumpOffPawn()
 {
     local float Theta;
 
+    if((Base == none) || Base.Location.Z > Location.Z)
+    {
+        return;
+    }
     Theta = (2 * 3.141593) * FRand();
     SetPhysics(2);
     if((Controller != none) && !IsHumanControlled())

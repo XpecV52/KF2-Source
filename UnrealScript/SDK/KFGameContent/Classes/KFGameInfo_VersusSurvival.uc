@@ -23,6 +23,7 @@ var config float ScoreRadius;
 
 /** Zed pawn classes used by players */
 var protected const array<class<KFPawn_Monster> > PlayerZedClasses;
+var protected const array<class<KFPawn_MonsterBoss> > PlayerBossClassList;
 
 const ANTI_GRIEF_DELAY = 30.f;
 const ANTI_GRIEF_INTERVAL = 2.f;
@@ -32,10 +33,10 @@ var class<KFDamageType> AntiGriefDamageTypeClass;
 
 event PreBeginPlay()
 {
-    super.PreBeginPlay();
+	super.PreBeginPlay();
 
-    // Create the zed team
-    CreateTeam(1);
+	// Create the zed team
+	CreateTeam(1);
 }
 
 function InitGRIVariables()
@@ -58,13 +59,13 @@ function bool IsPlayerReady( KFPlayerReplicationInfo PRI )
 
 function StartMatch()
 {
-    local KFPlayerController KFPC;
-    local array<KFPlayerController> PlayerControllers;
+	local KFPlayerController KFPC;
+	local array<KFPlayerController> PlayerControllers;
 
-    // Get a list of players
-    foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
-    {
-        PlayerControllers[PlayerControllers.Length] = KFPC;
+	// Get a list of players
+	foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
+	{
+		PlayerControllers[PlayerControllers.Length] = KFPC;
         if( KFPC.GetTeamNum() == 255 && (KFPC.Pawn == none || KFPawn_Customization(KFPC.Pawn) != none) )
         {
             if( KFPC.Pawn != none )
@@ -74,7 +75,7 @@ function StartMatch()
 
             KFPC.StartSpectate();
         }
-    }
+	}
 
     // If there's only one player, we must spawn them in as human
     if( PlayerControllers.Length == 1 )
@@ -82,7 +83,7 @@ function StartMatch()
         SetTeam( PlayerControllers[0], Teams[0] );
     }
 
-    super.StartMatch();
+	super.StartMatch();
 }
 
 function BalanceTeams()
@@ -154,21 +155,20 @@ function byte PickTeam(byte Current, Controller C)
 {
     // Make sure teams are balanced
     if( Teams[1].Size < Teams[0].Size || (Teams[0].Size > 0 && Teams[1].Size == Teams[0].Size && fRand() < 0.5f) )
-    {
-        // Zed team
+	{
+		// Zed team
         return 1;
-    }
-    else
-    {
-        // Human team
+	}
+	else
+	{
+	    // Human team
         return 0;
-    }
+	}
 }
 
 /** Return whether a team change is allowed. */
 function bool ChangeTeam(Controller Other, int N, bool bNewTeam)
 {
-    `log("******CHANGE TEAM!!!");
     if( PlayerController(Other) == none
         || (Other.PlayerReplicationInfo != none
         && !Other.PlayerReplicationInfo.bOnlySpectator
@@ -278,6 +278,7 @@ function RestartPlayer(Controller NewPlayer)
 {
     local int PlayerTeamIndex;
     local KFPawn_Monster MonsterPawn;
+    local KFPlayerController KFPC;
 
     // Check bOnlySpectator.  Can be called sometimes without calling CanRestartPlayer()?!?
     if(NewPlayer.PlayerReplicationInfo == none || NewPlayer.PlayerReplicationInfo.bOnlySpectator)
@@ -286,6 +287,12 @@ function RestartPlayer(Controller NewPlayer)
     }
 
     PlayerTeamIndex = NewPlayer.GetTeamNum();
+    KFPC = KFPlayerController( NewPlayer );
+    if( KFPC != none && (MyKFGRI.bMatchIsOver || (PlayerTeamIndex == 255 && (MyKFGRI.bTraderIsOpen || KFPC.PlayerZedSpawnInfo.PendingZedPawnClass == none))) )
+    {
+        KFPC.StartSpectate();
+        return;
+    }
 
     if( NewPlayer.Pawn != none && KFPawn_Customization(NewPlayer.Pawn) != none )
     {
@@ -312,29 +319,29 @@ function RestartPlayer(Controller NewPlayer)
 
 function int GetAIControlledMonsterAliveCount()
 {
-    local AIController AIP;
-    local int UsedLivingAIMonsterCount;
+	local AIController AIP;
+	local int UsedLivingAIMonsterCount;
 
-    foreach WorldInfo.AllControllers(class'AIController', AIP)
-    {
-        if( AIP != none && AIP.Pawn != none && AIP.Pawn.IsAliveAndWell() )
-        {
+	foreach WorldInfo.AllControllers(class'AIController', AIP)
+	{
+		if( AIP != none && AIP.Pawn != none && AIP.Pawn.IsAliveAndWell() )
+		{
             if( KFPawn_Monster(AIP.Pawn) != none )
             {
                 UsedLivingAIMonsterCount++;
             }
-        }
-    }
+		}
+	}
 
-    return UsedLivingAIMonsterCount;
+	return UsedLivingAIMonsterCount;
 }
 
 /**
  * Returns the default pawn class for the specified controller,
  *
- * @param   C - controller to figure out pawn class for
+ * @param	C - controller to figure out pawn class for
  *
- * @return  default pawn class
+ * @return	default pawn class
  */
 function class<Pawn> GetDefaultPlayerClass( Controller C )
 {
@@ -342,13 +349,9 @@ function class<Pawn> GetDefaultPlayerClass( Controller C )
 
     KFPC = KFPlayerController(C);
 
-    if( KFPC.GetTeamNum() == 255 )
-    {
-        if( WaveNum == WaveMax && AIAliveCount == 0 )
-        {
-            return class'KFGameContent.KFPawn_ZedPatriarch_Versus';
-        }
-        else if( KFPC.PlayerZedSpawnInfo.PendingZedPawnClass != none )
+	if( KFPC.GetTeamNum() == 255 )
+	{
+        if( KFPC.PlayerZedSpawnInfo.PendingZedPawnClass != none )
         {
             return KFPC.PlayerZedSpawnInfo.PendingZedPawnClass;
         }
@@ -356,38 +359,38 @@ function class<Pawn> GetDefaultPlayerClass( Controller C )
         return none;
     }
 
-    // default to the game specified pawn class
-    return super.GetDefaultPlayerClass( C );
+	// default to the game specified pawn class
+	return super.GetDefaultPlayerClass( C );
 }
 
 // Overridden because the native implementation will count human controlled zeds
 function int GetLivingPlayerCount()
 {
-    local Controller P;
-    local int UsedLivingHumanPlayersCount;
+	local Controller P;
+	local int UsedLivingHumanPlayersCount;
 
 `if(`notdefined(ShippingPC))
-    if ( ForcedNumLivingPlayers != 0 )
-    {
-        return ForcedNumLivingPlayers;
-    }
+	if ( ForcedNumLivingPlayers != 0 )
+	{
+		return ForcedNumLivingPlayers;
+	}
 `endif
 
-    foreach WorldInfo.AllControllers(class'Controller', P)
-    {
-        if( P != none && P.Pawn != none && P.Pawn.IsAliveAndWell() )
-        {
+	foreach WorldInfo.AllControllers(class'Controller', P)
+	{
+		if( P != none && P.Pawn != none && P.Pawn.IsAliveAndWell() )
+		{
             if( P.GetTeamNum() != 255 )
             {
                 //`log(P$" TeamIndex = "$P.PlayerReplicationInfo.Team.TeamIndex);
                 UsedLivingHumanPlayersCount++;
             }
-        }
-    }
+		}
+	}
 
-    //`log(GetFuncName()$" Player alive count: "$UsedLivingHumanPlayersCount);
+	//`log(GetFuncName()$" Player alive count: "$UsedLivingHumanPlayersCount);
 
-    return UsedLivingHumanPlayersCount;
+	return UsedLivingHumanPlayersCount;
 }
 
 /*  Use reduce damage for friendly fire, etc. */
@@ -467,7 +470,7 @@ function EndOfMatch(bool bVictory)
         SetZedsToVictoryState();
     }
 
-    WorldInfo.TWRefreshTweakParams();
+	WorldInfo.TWRefreshTweakParams();
     WorldInfo.TWPushLogs();
 
     GotoState('MatchEnded');
@@ -543,15 +546,15 @@ DefaultProperties
 {
     bIsVersusGame=true
 
-    OnlineGameSettingsClass=class'KFGame.KFOnlineGameSettingsVersus'
-    HUDType=class'KFGameContent.KFGFXHudWrapper_Versus'
+	OnlineGameSettingsClass=class'KFGame.KFOnlineGameSettingsVersus'
+	HUDType=class'KFGameContent.KFGFXHudWrapper_Versus'
     KFGFxManagerClass=class'KFGame.KFGFxMoviePlayer_Manager_Versus'
-    PlayerControllerClass=class'KFGameContent.KFPlayerControllerVersus'
+	PlayerControllerClass=class'KFGameContent.KFPlayerControllerVersus'
     PlayerReplicationInfoClass=class'KFGame.KFPlayerReplicationInfoVersus'
-    GameReplicationInfoClass=class'KFGameContent.KFGameReplicationInfoVersus'
-    MaxPlayersAllowed=`KF_MAX_PLAYERS_VERSUS
-    DefaultPawnClass=class'KFGameContent.KFPawn_Human_Versus'
-    GameConductorClass=class'KFGameContent.KFGameConductorVersus'
+	GameReplicationInfoClass=class'KFGameContent.KFGameReplicationInfoVersus'
+	MaxPlayersAllowed=`KF_MAX_PLAYERS_VERSUS
+	DefaultPawnClass=class'KFGameContent.KFPawn_Human_Versus'
+	GameConductorClass=class'KFGameContent.KFGameConductorVersus'
 
     MaxGameDifficulty=0
     DifficultyTemplate=KFDifficultyInfo'GP_Difficulty_ARCH.Difficulty_Versus'
@@ -567,11 +570,10 @@ DefaultProperties
     PlayerZedClasses(AT_Siren)=class'KFGameContent.KFPawn_ZedSiren_Versus'
     PlayerZedClasses(AT_Husk)=class'KFGameContent.KFPawn_ZedHusk_Versus'
 
-    AIBossClassList.Empty
-    AIBossClassList.Add(class'KFGameContent.KFPawn_ZedPatriarch_Versus')
+    PlayerBossClassList.Add(class'KFGameContent.KFPawn_ZedPatriarch_Versus')
 
     SpawnManagerClasses.Empty
-    SpawnManagerClasses(0)=class'KFAISpawnManager_Versus'
+	SpawnManagerClasses(0)=class'KFAISpawnManager_Versus'
 
     AntiGriefDamageTypeClass=class'KFDT_NoGoVolume'
 }

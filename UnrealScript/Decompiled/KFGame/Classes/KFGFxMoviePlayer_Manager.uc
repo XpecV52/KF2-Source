@@ -843,6 +843,8 @@ function ConditionalPauseGame(bool bPause)
     }
 }
 
+function ClientRecieveNewTeam();
+
 function OnLobbyStatusChanged(bool bIsInLobby)
 {
     bPlayerInLobby = bIsInLobby;

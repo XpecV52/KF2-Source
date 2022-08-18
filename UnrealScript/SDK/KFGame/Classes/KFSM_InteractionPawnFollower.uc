@@ -62,7 +62,7 @@ function bool MessageEvent(Name EventName, Object Sender)
 function InteractionStarted()
 {
 	// Keep track of what special move the leader is doing.
-	LeaderSpecialMove = Leader.SpecialMove;
+	LeaderSpecialMove = Leader != none ? Leader.SpecialMove : KFPOwner.InteractionPawn.SpecialMove;
 }
 
 DefaultProperties

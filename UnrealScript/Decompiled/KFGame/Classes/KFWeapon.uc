@@ -104,6 +104,7 @@ var KFWeapon.EReloadStatus ReloadStatus;
 var byte ReloadAmountLeft;
 var bool bUseAltFireMode;
 var transient bool bStopAltFireOnNextRelease;
+var bool bGamepadFireEntry;
 /** Target friction enabled? */
 var() bool bTargetFrictionEnabled;
 /** Target adhesion enabled? */
@@ -821,11 +822,11 @@ function bool DenyPickupQuery(class<Inventory> ItemClass, Actor Pickup)
     {
         if(CanRefillSecondaryAmmo())
         {
-            return (SpareAmmoCount[0] >= MaxSpareAmmo[0]) && AmmoCount[1] >= MagazineCapacity[1];            
+            return ((SpareAmmoCount[0] + MagazineCapacity[0]) >= MaxSpareAmmo[0]) && AmmoCount[1] >= MagazineCapacity[1];            
         }
         else
         {
-            return SpareAmmoCount[0] >= MaxSpareAmmo[0];
+            return (SpareAmmoCount[0] + MagazineCapacity[0]) >= MaxSpareAmmo[0];
         }
     }
     return false;
@@ -1830,7 +1831,7 @@ simulated function StartFire(byte FireModeNum)
         }
     }
     bStopAltFireOnNextRelease = false;
-    if(((FireModeNum == 0) && bUseAltFireMode) && !IsUsingGamepad())
+    if(((FireModeNum == 0) && bUseAltFireMode) && !bGamepadFireEntry)
     {
         FireModeNum = 1;
         bStopAltFireOnNextRelease = true;
@@ -1866,21 +1867,6 @@ simulated function StopFire(byte FireModeNum)
         FireModeNum = 1;
     }
     super.StopFire(FireModeNum);
-}
-
-simulated function bool IsUsingGamepad()
-{
-    local PlayerController PC;
-
-    if((Instigator != none) && Instigator.IsLocallyControlled())
-    {
-        PC = PlayerController(Instigator.Controller);
-        if(((PC != none) && PC.PlayerInput != none) && PC.PlayerInput.bUsingGamepad)
-        {
-            return true;
-        }
-    }
-    return false;
 }
 
 simulated function AltFireMode()

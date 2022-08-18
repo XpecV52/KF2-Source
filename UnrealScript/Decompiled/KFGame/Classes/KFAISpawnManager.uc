@@ -655,6 +655,7 @@ function int SpawnSquad(array< class<KFPawn_Monster> > AIToSpawn, optional bool 
 {
     local KFSpawnVolume KFSV;
     local int SpawnerAmount, VolumeAmount, FinalAmount, I;
+    local bool bCanSpawnPlayerBoss;
 
     bSkipHumanZedSpawning = false;
     if((ActiveSpawner != none) && ActiveSpawner.CanSpawnHere(DesiredSquadType))
@@ -675,7 +676,8 @@ function int SpawnSquad(array< class<KFPawn_Monster> > AIToSpawn, optional bool 
             {
                 LogMonsterList(AIToSpawn, "SpawnSquad Pre Spawning");
             }
-            if(!Outer.bIsVersusGame || Outer.MyKFGRI.WaveNum < Outer.MyKFGRI.WaveMax)
+            bCanSpawnPlayerBoss = ((Outer.bIsVersusGame) ? CanSpawnPlayerBoss() : false);
+            if((!Outer.bIsVersusGame || Outer.MyKFGRI.WaveNum < Outer.MyKFGRI.WaveMax) || (Outer.MyKFGRI.WaveNum == Outer.MyKFGRI.WaveMax) && !bCanSpawnPlayerBoss)
             {
                 VolumeAmount = KFSV.SpawnWave(AIToSpawn, true);
             }
@@ -685,7 +687,10 @@ function int SpawnSquad(array< class<KFPawn_Monster> > AIToSpawn, optional bool 
                 {
                     AIToSpawn.Length = 0;
                 }
-                RespawnZedHumanPlayers(KFSV);
+                if((Outer.MyKFGRI.WaveNum < Outer.MyKFGRI.WaveMax) || bCanSpawnPlayerBoss)
+                {
+                    RespawnZedHumanPlayers(KFSV);
+                }
             }
             if(bLogAISpawning)
             {
@@ -713,13 +718,13 @@ function int SpawnSquad(array< class<KFPawn_Monster> > AIToSpawn, optional bool 
             LogMonsterList(LeftoverSpawnSquad, "Failed Spawn Before Adding To Leftovers");
         }
         I = 0;
-        J0x4AE:
+        J0x5E8:
 
         if(I < AIToSpawn.Length)
         {
             LeftoverSpawnSquad[LeftoverSpawnSquad.Length] = AIToSpawn[I];
             ++ I;
-            goto J0x4AE;
+            goto J0x5E8;
         }
         if(bLogAISpawning)
         {
@@ -986,7 +991,9 @@ function ResetSpawnCurveIntensity()
     SetSineWaveFreq(default.SineWaveFreq);
 }
 
-function RespawnZedHumanPlayers(KFSpawnVolume SpawnVolume);
+protected function RespawnZedHumanPlayers(KFSpawnVolume SpawnVolume);
+
+protected function bool CanSpawnPlayerBoss();
 
 defaultproperties
 {

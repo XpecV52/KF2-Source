@@ -2791,7 +2791,7 @@ simulated function Tick(float DeltaTime)
     {
         EvaluateStuckPossibility(DeltaTime);
     }
-    if((((((((bCanTeleportCloser && PendingDoor == none) && Role == ROLE_Authority) && MyKFPawn != none) && MyKFGameInfo.MyKFGRI != none) && MyKFPawn.Health > 0) && (WorldInfo.TimeSeconds - LastTeleportCheckTime) > TeleportCheckInterval) && !MyKFPawn.IsDoingSpecialMove()) && MyKFGameInfo.MyKFGRI.AIRemaining > FrustrationThreshold)
+    if((((((((bCanTeleportCloser && PendingDoor == none) && Role == ROLE_Authority) && MyKFPawn != none) && MyKFGameInfo.MyKFGRI != none) && MyKFPawn.Health > 0) && (WorldInfo.TimeSeconds - LastTeleportCheckTime) > TeleportCheckInterval) && !MyKFPawn.IsDoingSpecialMove()) && (MyKFGameInfo.MyKFGRI.AIRemaining > FrustrationThreshold) || (WorldInfo.TimeSeconds - LastAttackTime_Melee) > 20)
     {
         EvaluateTeleportPossibility(DeltaTime);
     }

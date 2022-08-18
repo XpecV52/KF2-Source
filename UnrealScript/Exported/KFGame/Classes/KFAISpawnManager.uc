@@ -1045,6 +1045,7 @@ function int SpawnSquad( array< class<KFPawn_Monster> > AIToSpawn, optional bool
 {
 	local KFSpawnVolume KFSV;
 	local int SpawnerAmount, VolumeAmount, FinalAmount, i;
+    local bool bCanSpawnPlayerBoss;
 
 
 
@@ -1076,18 +1077,24 @@ function int SpawnSquad( array< class<KFPawn_Monster> > AIToSpawn, optional bool
     			LogMonsterList(AIToSpawn, "SpawnSquad Pre Spawning");
             }
 
-            if( !bIsVersusGame || MyKFGRI.WaveNum < MyKFGRI.WaveMax )
+            bCanSpawnPlayerBoss = bIsVersusGame ? CanSpawnPlayerBoss() : false;
+
+            if( !bIsVersusGame || MyKFGRI.WaveNum < MyKFGRI.WaveMax || (MyKFGRI.WaveNum == MyKFGRI.WaveMax && !bCanSpawnPlayerBoss) )
             {
     			VolumeAmount = KFSV.SpawnWave(AIToSpawn, true);
             }
 
             if( bIsVersusGame && !bSkipHumanZedSpawning )
             {
-                if( MyKFGRI.WaveNum == MyKFGRI.WaveMax )
+                if( MyKFGRI.WaveNum == MyKFGRI.WaveMax  )
                 {
                     AIToSpawn.Length = 0;
                 }
-                RespawnZedHumanPlayers( KFSV );
+
+                if( MyKFGRI.WaveNum < MyKFGRI.WaveMax || bCanSpawnPlayerBoss )
+                {
+                    RespawnZedHumanPlayers( KFSV );
+                }
             }
 
 		    if (bLogAISpawning) LogInternal("KFAISpawnManager.SpawnAI() AIs spawned:" @ VolumeAmount @ "in Volume:" @ KFSV);
@@ -1415,7 +1422,10 @@ function ResetSpawnCurveIntensity()
 }
 
 /** Respawn dead human player zeds. Overridden in subclasses */
-function RespawnZedHumanPlayers( KFSpawnVolume SpawnVolume );
+protected function RespawnZedHumanPlayers( KFSpawnVolume SpawnVolume );
+
+/** Determines whether we can spawn a player boss or not */
+protected function bool CanSpawnPlayerBoss();
 
 defaultproperties
 {

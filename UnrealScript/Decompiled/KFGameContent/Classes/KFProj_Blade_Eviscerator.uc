@@ -48,7 +48,7 @@ simulated function SpawnFlightEffects()
     }
 }
 
-function Vector EncodeSmallVector(Vector V)
+simulated function Vector EncodeSmallVector(Vector V)
 {
     return V * 256;
 }
@@ -220,7 +220,7 @@ state Pickup
         {
             return false;
         }
-        if(!FastTrace(Other.Location, Location,, true))
+        if(!FastTrace(Other.Location, Location))
         {
             return false;
         }

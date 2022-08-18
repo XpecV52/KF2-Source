@@ -106,6 +106,13 @@ simulated event NotifyGoreMeshActive()
         KFGameInfo(WorldInfo.Game).DialogManager.PlaySpotCloakDialog(self, false);
     }
     PlayStealthSoundLoopEnd();
+    bIsCloaking = false;
+    bIsCloakingSpottedByLP = false;
+    bIsCloakingSpottedByTeam = false;
+    if(PlayerReplicationInfo == none)
+    {
+        BodyMIC.SetParent(Mesh.SkeletalMesh.Materials[2]);
+    }
 }
 
 simulated function PlayStealthSoundLoop()

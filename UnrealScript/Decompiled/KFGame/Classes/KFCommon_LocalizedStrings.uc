@@ -28,6 +28,8 @@ var const localized string LeaveCurrentMenuString;
 var const localized string ZedString;
 var const localized string HumanString;
 var const localized string SpectatorString;
+var const localized string UnableToSwitchTeamString;
+var const localized string NoSwitchReasonString;
 
 static function array<string> GetDifficultyStringsArray()
 {
@@ -129,4 +131,6 @@ defaultproperties
     ZedString="ZED"
     HumanString="SURVIVOR"
     SpectatorString="SPECTATOR"
+    UnableToSwitchTeamString="Unable to Switch Teams"
+    NoSwitchReasonString="Switching teams would upset team balance."
 }

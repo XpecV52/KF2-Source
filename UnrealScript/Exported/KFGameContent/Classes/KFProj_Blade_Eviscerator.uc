@@ -77,7 +77,7 @@ simulated function SpawnFlightEffects()
  * Very small momentum values get truncated during replication. So, we need to scale the
  * momentum vector during replication.
  */
-function vector EncodeSmallVector(vector V)				{return V * 256.f;}
+simulated function vector EncodeSmallVector(vector V)	{return V * 256.f;}
 simulated function vector DecodeSmallVector(vector V)	{return V / 256.f;}
 
 simulated event HitWall(vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
@@ -219,7 +219,7 @@ state Pickup
 		}
 
 		// make sure not touching through wall
-		if ( !FastTrace(Other.Location, Location,,true) )
+		if ( !FastTrace(Other.Location, Location) )
 		{
 			return false;
 		}

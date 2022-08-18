@@ -106,60 +106,9 @@ simulated event PostBeginPlay()
     super.PostBeginPlay();
 }
 
-reliable server function ServerSwitchTeam()
-{
-    local KFGameInfo MyGameInfo;
-    local KFGameReplicationInfo KFGRI;
+reliable server function ServerSwitchTeam();
 
-    MyGameInfo = KFGameInfo(WorldInfo.Game);
-    if(MyGameInfo == none)
-    {
-        return;
-    }
-    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if((KFGRI == none) || !KFGRI.bAllowSwitchTeam)
-    {
-        return;
-    }
-    if(KFGRI.bMatchHasBegun)
-    {
-        PlayerController(Owner).Pawn.Suicide();
-    }
-    switch(GetTeamNum())
-    {
-        case byte(MyGameInfo.Teams[0].TeamIndex):
-            MyGameInfo.SetTeam(PlayerController(Owner), MyGameInfo.Teams[1]);
-            break;
-        case byte(MyGameInfo.Teams[1].TeamIndex):
-            MyGameInfo.SetTeam(PlayerController(Owner), MyGameInfo.Teams[0]);
-            break;
-        default:
-            LogInternal("Function: KFPlayerReplicationInfo::ServerSwitchTeam Team index not accounted for - " @ string(GetTeamNum()));
-            break;
-    }
-}
-
-reliable client simulated function ClientRecieveNewTeam()
-{
-    local KFGameReplicationInfo KFGRI;
-    local KFGFxHudWrapper MyGFxHUD;
-    local KFPlayerController KFPC;
-
-    KFPC = KFPlayerController(Owner);
-    if((KFPC != none) && KFPC.IsLocalController())
-    {
-        MyGFxHUD = KFGFxHudWrapper(KFPC.myHUD);        
-    }
-    else
-    {
-        return;
-    }
-    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if(KFGRI.bMatchHasBegun)
-    {
-        MyGFxHUD.CreateHUDMovie();
-    }
-}
+reliable client simulated function ClientRecieveNewTeam();
 
 simulated function byte GetActivePerkLevel()
 {

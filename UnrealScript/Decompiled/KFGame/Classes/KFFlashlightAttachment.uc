@@ -15,7 +15,7 @@ var protected transient bool bLightInitialized;
 var bool bDebug;
 /** Spot Light */
 var() export editinline SpotLightComponent LightTemplate;
-var export editinline transient SpotLightComponent Light;
+var() export editinline transient SpotLightComponent Light;
 /** Light Cone Mesh */
 var() StaticMesh LightConeMesh;
 var export editinline StaticMeshComponent LightConeMeshComp;
@@ -306,7 +306,7 @@ defaultproperties
         InnerConeAngle=20
         OuterConeAngle=30
         Radius=3000
-        Brightness=35
+        Brightness=10
         Function=LightFunction'Default__KFFlashlightAttachment.FlashLightFunction'
         bEnabled=false
         CastShadows=false

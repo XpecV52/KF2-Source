@@ -2307,6 +2307,14 @@ function JumpOffPawn()
 {
 	local float Theta;
 
+	// Make sure we're jumping off a pawn that is below us, otherwise we could
+	// end up in a situation where both pawns are constantly calling JumpOffPawn()
+	// which results in... interesting physics issues. -MattF
+	if( Base == none || Base.Location.Z > Location.Z )
+	{
+		return;
+	}
+
 	// 2d version of vrand
 	Theta = 2.f * PI * FRand();
 	SetPhysics(PHYS_Falling);
@@ -2902,16 +2910,16 @@ function bool NotifyAttackParried(Pawn InstigatedBy, byte InParryStrength)
 			}
 
 			if( CanDoSpecialMove(SM_KnockDown) && InstigatorPerk != none && InstigatorPerk.ShouldKnockdown() )
-		{
+			{
 				Knockdown(, vect(1,1,20),,,, 1000 * Normal(Location - InstigatorPawn.Location ), Location);
-		}
+			}
 			else
-		{
+			{
 				DoSpecialMove(SM_Stumble,,, class'KFSM_Stumble'.static.PackParrySMFlags(self, Location - InstigatedBy.Location));
-		}
+			}
 
 			return TRUE;
-	}
+		}
 	}
 
 	return FALSE;

@@ -3939,8 +3939,9 @@ simulated function Tick( FLOAT DeltaTime )
     }
 
     // Regularly check to see if this AI can teleport closer to the enemy
-    if( bCanTeleportCloser && PendingDoor == none && Role == ROLE_Authority && MyKFPawn != none && MyKFGameInfo.MyKFGRI != None && MyKFPawn.Health > 0
-    	&& (WorldInfo.TimeSeconds - LastTeleportCheckTime) > TeleportCheckInterval && !MyKFPawn.IsDoingSpecialMove() && MyKFGameInfo.MyKFGRI.AIRemaining > FrustrationThreshold )
+    if( bCanTeleportCloser && PendingDoor == none && Role == ROLE_Authority && MyKFPawn != none && MyKFGameInfo.MyKFGRI != None
+    	&& MyKFPawn.Health > 0 && (WorldInfo.TimeSeconds - LastTeleportCheckTime) > TeleportCheckInterval && !MyKFPawn.IsDoingSpecialMove()
+    	&& (MyKFGameInfo.MyKFGRI.AIRemaining > FrustrationThreshold || (WorldInfo.TimeSeconds - LastAttackTime_Melee) > 20.f) )
     {
         EvaluateTeleportPossibility(DeltaTime);
     }

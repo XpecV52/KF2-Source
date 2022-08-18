@@ -18,6 +18,7 @@ var config bool bTeamBalanceEnabled;
 var transient array<KFProj_BloatPukeMine> ActivePukeMines;
 var config float ScoreRadius;
 var protected const array< class<KFPawn_Monster> > PlayerZedClasses;
+var protected const array< class<KFPawn_MonsterBoss> > PlayerBossClassList;
 var class<KFDamageType> AntiGriefDamageTypeClass;
 
 event PreBeginPlay()
@@ -149,7 +150,6 @@ function byte PickTeam(byte Current, Controller C)
 
 function bool ChangeTeam(Controller Other, int N, bool bNewTeam)
 {
-    LogInternal("******CHANGE TEAM!!!");
     if((PlayerController(Other) == none) || (((Other.PlayerReplicationInfo != none) && !Other.PlayerReplicationInfo.bOnlySpectator) && 2 > N) && Other.PlayerReplicationInfo.Team != Teams[N])
     {
         SetTeam(Other, Teams[N]);
@@ -241,12 +241,19 @@ function RestartPlayer(Controller NewPlayer)
 {
     local int PlayerTeamIndex;
     local KFPawn_Monster MonsterPawn;
+    local KFPlayerController KFPC;
 
     if((NewPlayer.PlayerReplicationInfo == none) || NewPlayer.PlayerReplicationInfo.bOnlySpectator)
     {
         return;
     }
     PlayerTeamIndex = NewPlayer.GetTeamNum();
+    KFPC = KFPlayerController(NewPlayer);
+    if((KFPC != none) && MyKFGRI.bMatchIsOver || (PlayerTeamIndex == 255) && MyKFGRI.bTraderIsOpen || KFPC.PlayerZedSpawnInfo.PendingZedPawnClass == none)
+    {
+        KFPC.StartSpectate();
+        return;
+    }
     if((NewPlayer.Pawn != none) && KFPawn_Customization(NewPlayer.Pawn) != none)
     {
         NewPlayer.Pawn.Destroy();
@@ -294,16 +301,9 @@ function class<Pawn> GetDefaultPlayerClass(Controller C)
     KFPC = KFPlayerController(C);
     if(KFPC.GetTeamNum() == 255)
     {
-        if((WaveNum == WaveMax) && AIAliveCount == 0)
+        if(KFPC.PlayerZedSpawnInfo.PendingZedPawnClass != none)
         {
-            return Class'KFPawn_ZedPatriarch_Versus';            
-        }
-        else
-        {
-            if(KFPC.PlayerZedSpawnInfo.PendingZedPawnClass != none)
-            {
-                return KFPC.PlayerZedSpawnInfo.PendingZedPawnClass;
-            }
+            return KFPC.PlayerZedSpawnInfo.PendingZedPawnClass;
         }
         return none;
     }
@@ -474,6 +474,7 @@ defaultproperties
     PlayerZedClasses(8)=class'KFPawn_ZedBloat_Versus'
     PlayerZedClasses(9)=class'KFPawn_ZedSiren_Versus'
     PlayerZedClasses(10)=class'KFPawn_ZedHusk_Versus'
+    PlayerBossClassList(0)=class'KFPawn_ZedPatriarch_Versus'
     AntiGriefDamageTypeClass=Class'KFGame.KFDT_NoGoVolume'
     bIsVersusGame=true
     KFGFxManagerClass=Class'KFGame.KFGFxMoviePlayer_Manager_Versus'
@@ -481,7 +482,6 @@ defaultproperties
     MaxGameDifficulty=0
     SpawnManagerClasses=/* Array type was not detected. */
     GameConductorClass=Class'KFGameConductorVersus'
-    AIBossClassList=/* Array type was not detected. */
     InValidMaps=/* Array type was not detected. */
     DefaultPawnClass=Class'KFPawn_Human_Versus'
     HUDType=Class'KFGFXHudWrapper_Versus'

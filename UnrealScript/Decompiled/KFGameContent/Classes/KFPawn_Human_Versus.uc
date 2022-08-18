@@ -65,8 +65,8 @@ defaultproperties
 {
     begin object name=FlashLight class=KFFlashlightAttachment
         begin object name=FlashLightTemplate class=SpotLightComponent
-            LightGuid=(A=-577619726,B=1088173321,C=767371434,D=-1174157011)
-            LightmapGuid=(A=1602629714,B=1252009303,C=-140395094,D=-1846746219)
+            LightGuid=(A=0,B=0,C=0,D=0) // Ka v oh
+            LightmapGuid=(A=0,B=0,C=0,D=0) // Ka v oh
         object end
         // Reference: SpotLightComponent'Default__KFPawn_Human_Versus.FlashLight.FlashLightTemplate'
         LightTemplate=FlashLightTemplate

@@ -44,5 +44,5 @@ function bool MessageEvent(name EventName, Object Sender)
 
 function InteractionStarted()
 {
-    LeaderSpecialMove = Leader.SpecialMove;
+    LeaderSpecialMove = ((Leader != none) ? Leader.SpecialMove : KFPOwner.InteractionPawn.SpecialMove);
 }

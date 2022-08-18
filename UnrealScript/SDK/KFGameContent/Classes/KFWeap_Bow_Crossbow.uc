@@ -54,6 +54,8 @@ defaultproperties
 	   FieldOfView=18.5 // "2.0X" = 37(our real world FOV determinant)/2.0
 	End Object
 
+	ScopedSensitivityMod=16.0
+
 	ScopeLenseMICTemplate=MaterialInstanceConstant'WEP_1P_Crossbow_MAT.WEP_1P_Crossbow_Scope_MAT'
 
 	// Depth of field
@@ -119,6 +121,7 @@ defaultproperties
 
 	// Custom animations
 	FireSightedAnims=(Shoot_Iron, Shoot_Iron2, Shoot_Iron3)
+	BonesToLockOnEmpty=(RW_Projectile)//, RW_Cable_Parent)
 
 	// Attachments
 	bHasIronSights=true

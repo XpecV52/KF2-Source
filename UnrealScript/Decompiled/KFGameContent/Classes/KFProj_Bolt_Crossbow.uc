@@ -9,6 +9,7 @@ class KFProj_Bolt_Crossbow extends KFProj_Bullet_RackEmUp
     hidecategories(Navigation);
 
 var repnotify ImpactInfo StickInfo;
+var ImpactInfo DelayedStickInfo;
 var bool bStuck;
 var class<KFWeapon> WeaponClass;
 /** The radius size of the pickup collision when the blade stops moving */
@@ -48,7 +49,7 @@ simulated function SpawnFlightEffects()
     }
 }
 
-function Vector EncodeSmallVector(Vector V)
+simulated function Vector EncodeSmallVector(Vector V)
 {
     return V * 256;
 }
@@ -120,7 +121,6 @@ simulated function Stick(ImpactInfo MyStickInfo, bool bReplicated)
         if(Role == ROLE_Authority)
         {
             bStuck = true;
-            StickInfo = MyStickInfo;
             LifeSpan = LifeSpanAfterStick;
         }
     }
@@ -128,6 +128,26 @@ simulated function Stick(ImpactInfo MyStickInfo, bool bReplicated)
     {
         AmbientComponent.StopEvents();
     }
+    if(WorldInfo.NetMode == NM_DedicatedServer)
+    {
+        DelayedStickInfo = MyStickInfo;
+        SetTimer(0.01, false, 'DelayedStick');        
+    }
+    else
+    {
+        if(Role == ROLE_Authority)
+        {
+            StickInfo = MyStickInfo;
+        }
+        bForceNetUpdate = true;
+        NetUpdateFrequency = 3;
+        GotoState('Pickup');
+    }
+}
+
+simulated function DelayedStick()
+{
+    StickInfo = DelayedStickInfo;
     bForceNetUpdate = true;
     NetUpdateFrequency = 3;
     GotoState('Pickup');
@@ -219,7 +239,7 @@ state Pickup
         {
             return false;
         }
-        if(!FastTrace(Other.Location, Location,, true))
+        if(!FastTrace(Other.Location, Location))
         {
             return false;
         }

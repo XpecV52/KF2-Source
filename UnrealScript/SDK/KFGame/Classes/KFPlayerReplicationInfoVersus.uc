@@ -71,6 +71,126 @@ function SetPlayerTeam( TeamInfo NewTeam )
 	SetTimer( 1.f, true, nameOf(UpdateReplicatedVariables) );
 }
 
+reliable server function ServerSwitchTeam()
+{
+	local KFGameInfo MyGameInfo;
+	local KFGameReplicationInfo KFGRI;
+	
+	MyGameInfo = KFGameInfo(WorldInfo.Game);
+	if( MyGameInfo == none )
+	{
+		return;
+	}
+
+	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+	if( KFGRI == None || !KFGRI.bAllowSwitchTeam )
+	{
+		return;
+	}
+
+	if( KFGRI.bMatchHasBegun )
+	{
+		//will this switch upset current game balance?
+		if(WillUpsetTeamBalance()) 
+		{
+			ClientRefusedTeamSwitch();
+			return;
+		}
+		PlayerController(Owner).Pawn.Suicide();
+	}
+
+	switch( GetTeamNum() )
+	{
+		case MyGameInfo.Teams[0].TeamIndex:
+			MyGameInfo.SetTeam( PlayerController(Owner), MyGameInfo.Teams[1] );
+			break;
+	
+		case MyGameInfo.Teams[1].TeamIndex:
+				MyGameInfo.SetTeam( PlayerController(Owner), MyGameInfo.Teams[0] );
+			break;
+	
+		default:
+			`log("Function: KFPlayerReplicationInfo::ServerSwitchTeam Team index not accounted for - " @GetTeamNum());
+	}
+
+	if(PlayerController(Owner).IsLocalController() && Role == Role_Authority)
+	{
+		ClientRecieveNewTeam();
+	}
+}
+
+//SERVER ONLY
+function bool WillUpsetTeamBalance()
+{
+	local KFGameInfo MyGameInfo;
+	local KFGameReplicationInfo KFGRI;
+	local KFPlayerController KFPC;
+	
+	KFPC = KFPlayerController(Owner);
+	
+	MyGameInfo = KFGameInfo(WorldInfo.Game);
+	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+
+	if(KFGRI.bMatchHasBegun)
+	{		//dead 					//human
+		if( KFPC.Pawn == none && GetTeamNum() == 0 )
+		{
+			//dead return false
+			return true;
+		}
+
+		switch( GetTeamNum() )
+		{
+			case MyGameInfo.Teams[0].TeamIndex:
+				//the team i want to go to is smaller than my current team  AND the desired team is also smaller than half the allowed max players
+				return MyGameInfo.Teams[0].Size < MyGameInfo.Teams[1].Size  && MyGameInfo.Teams[1].Size < (MyGameInfo.MaxPlayersAllowed / 2);		
+			case MyGameInfo.Teams[1].TeamIndex:
+				return MyGameInfo.Teams[1].Size < MyGameInfo.Teams[0].Size  && MyGameInfo.Teams[0].Size < (MyGameInfo.MaxPlayersAllowed / 2);	
+			default:
+				`log("Function: KFPlayerReplicationInfo::WillUpsetTeamBalance Team index not accounted for - " @GetTeamNum());
+		}
+	}
+
+	return false;
+}
+
+reliable client function ClientRefusedTeamSwitch()
+{
+	local KFPlayerController KFPC;
+	
+	KFPC = KFPlayerController(Owner);
+	if(KFPC != none && KFPC.IsLocalController() && KFPC.MyGFxManager != none)
+	{
+		KFPC.MyGFxManager.OpenPopup(ENotification, class'KFCommon_LocalizedStrings'.default.UnableToSwitchTeamString, class'KFCommon_LocalizedStrings'.default.NoSwitchReasonString, class'KFCommon_LocalizedStrings'.default.OKString);
+	}
+}
+
+reliable client function ClientRecieveNewTeam()
+{
+	local KFGameReplicationInfo KFGRI;
+	local KFGFxHudWrapper MyGFxHUD;
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(Owner);
+
+	if(KFPC != none && KFPC.IsLocalController())
+	{
+		MyGFxHud = KFGFxHudWrapper(KFPC.myHUD);
+		KFPC.ClientRecieveNewTeam();
+	}
+	else
+	{
+		return;
+	}
+
+	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+	if(KFGRI.bMatchHasBegun)
+	{
+		MyGFxHud.CreateHUDMovie();
+	}
+
+}
+
 function UpdateReplicatedVariables()
 {
 	if( !bIsSpectator && 

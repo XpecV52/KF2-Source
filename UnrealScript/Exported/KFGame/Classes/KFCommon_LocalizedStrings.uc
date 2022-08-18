@@ -36,6 +36,9 @@ var localized string ZedString;
 var localized string HumanString;
 var localized string SpectatorString;
 
+var localized string UnableToSwitchTeamString;
+var localized string NoSwitchReasonString;
+
 static function array<string> GetDifficultyStringsArray()
 {
 	return default.DifficultyStrings;
@@ -137,6 +140,8 @@ defaultproperties
    ZedString="ZED"
    HumanString="SURVIVOR"
    SpectatorString="SPECTATOR"
+   UnableToSwitchTeamString="Unable to Switch Teams"
+   NoSwitchReasonString="Switching teams would upset team balance."
    Name="Default__KFCommon_LocalizedStrings"
    ObjectArchetype=Object'Core.Default__Object'
 }

@@ -42,4 +42,5 @@ defaultproperties
 	MeleeHitPower=25
 
 	ModifierPerkList(0)=class'KFPerk_Sharpshooter'
+	WeaponDef=class'KFWeapDef_Winchester1894'
 }

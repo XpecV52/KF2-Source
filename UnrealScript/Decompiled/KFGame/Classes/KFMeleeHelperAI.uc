@@ -130,14 +130,7 @@ function bool DoAreaImpact(int Damage, optional float MomentumScalar, optional c
         }
         if((RateMeleeVictim(KFP, Outer.Location, Outer.Location + (Normal(vector(Outer.Instigator.Rotation)) * Range), Range, InFOVCosine)) > 0)
         {
-            if(Outer.Instigator.IsHumanControlled())
-            {
-                ResolvePawnMeleeDamage(KFP, Damage, MomentumScalar, DamageType);                
-            }
-            else
-            {
-                ApplyMeleeDamage(KFP, Damage, MomentumScalar, DamageType);
-            }
+            ApplyMeleeDamage(KFP, Damage, MomentumScalar, DamageType);
             bFoundHit = true;
         }        
     }    
@@ -411,6 +404,11 @@ protected function ResolvePawnMeleeDamage(Pawn Victim, int Damage, float Momentu
 
     if(Outer.Instigator.Role < ROLE_Authority)
     {
+        return;
+    }
+    if(Outer.Instigator.IsHumanControlled())
+    {
+        ApplyMeleeDamage(Victim, Damage, Momentum, inDamageType);
         return;
     }
     if(((Victim.PlayerReplicationInfo != none) && Victim.Weapon != none) && ClassIsChildOf(Victim.Weapon.Class, Class'KFWeap_MeleeBase'))

@@ -13,7 +13,7 @@ class KFPawn_Customization extends KFPawn_Human
 struct native sReplicatedMovementData
 {
 	var vector NewLocation;
-	var int NewRotationYaw;
+	var byte NewRotationYaw;
 };
 
 /** Post-spawn replicated location (we skip actor property replication, this allows us to update after spawn) */
@@ -67,7 +67,7 @@ simulated event ReplicatedEvent( name VarName )
 function SetUpdatedMovementData( vector NewLoc, rotator NewRot )
 {
 	ReplicatedMovementData.NewLocation = NewLoc;
-	ReplicatedMovementData.NewRotationYaw = NewRot.Yaw;
+	ReplicatedMovementData.NewRotationYaw = ( NewRot.Yaw & 65535 ) >> 8;
 
 	// Set directly on listen server
 	OnMovementDataUpdated();
@@ -82,7 +82,7 @@ simulated function OnMovementDataUpdated()
 	local rotator TempRotation;
 
 	SetLocation( ReplicatedMovementData.NewLocation );
-	TempRotation.Yaw = ReplicatedMovementData.NewRotationYaw;
+	TempRotation.Yaw = NormalizeRotAxis( ReplicatedMovementData.NewRotationYaw << 8 );
 	SetRotation( TempRotation );
 
 	// Update visibility on listen server/clients
@@ -210,7 +210,7 @@ simulated event OnAnimEnd(AnimNodeSequence SeqNode, float PlayedTime, float Exce
 simulated function NotifyTeamChanged()
 {
 	// Applies Character Info for < ROLE_Authority
-	if (PlayerReplicationInfo != None)
+	if( PlayerReplicationInfo != none && CharacterArch == none )
 	{
 		SetCharacterArch(GetCharacterInfo());
 	}
@@ -275,6 +275,9 @@ function InitializeCustomizationPawn( PlayerController NewController, Navigation
 
 	// initialize and start it up
 	bUsingCustomizationPoint = ( KFCustomizationPoint( BestStartSpot ) != none );
+
+	// Need to update our client-side movement data
+	SetUpdatedMovementData( BestStartSpot.Location, BestStartSpot.Rotation );
 }
 
 defaultproperties

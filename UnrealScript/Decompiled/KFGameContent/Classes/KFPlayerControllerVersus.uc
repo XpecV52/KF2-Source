@@ -243,6 +243,14 @@ function ServerNotifyTeamChanged()
     }
 }
 
+function ClientRecieveNewTeam()
+{
+    if(MyGFxManager != none)
+    {
+        MyGFxManager.ClientRecieveNewTeam();
+    }
+}
+
 simulated event Destroyed()
 {
     local int I;

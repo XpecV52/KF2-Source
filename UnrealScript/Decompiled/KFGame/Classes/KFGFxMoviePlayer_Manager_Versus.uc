@@ -8,10 +8,30 @@
 class KFGFxMoviePlayer_Manager_Versus extends KFGFxMoviePlayer_Manager
     config(UI);
 
+function ClientRecieveNewTeam()
+{
+    if(bMenusOpen)
+    {
+        if((CurrentMenu != none) && CurrentMenu == GearMenu)
+        {
+            OpenMenu(0);
+        }
+        UpdateMenuBar();
+    }
+}
+
 event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 {
     switch(WidgetName)
     {
+        case 'MenuBarWidget':
+            if(MenuBarWidget == none)
+            {
+                MenuBarWidget = KFGFxWidget_MenuBarVersus(Widget);
+                MenuBarWidget.InitializeMenu(self);
+                MenuBarWidget.InitializeCurrentMenu(0);
+            }
+            break;
         case 'PartyWidget':
             if(PartyWidget == none)
             {
@@ -36,4 +56,5 @@ defaultproperties
     WidgetPaths(0)="../UI_Widgets/MenuBarWidget_SWF.swf"
     WidgetPaths(1)="../UI_Widgets/ButtonPromptWidget_SWF.swf"
     WidgetPaths(2)="../UI_Widgets/VersusLobbyWidget_SWF.swf"
+    WidgetBindings=/* Array type was not detected. */
 }

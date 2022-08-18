@@ -79,7 +79,7 @@ function HandleButtonSpecialCase(byte ButtonIndex, out GFxObject GfxButton)
 			GfxButton.SetBool( "bPulsing", ShouldStartMenuPulse() );
 			break;
 		case UI_Inventory:
-			GfxButton.SetBool( "enabled", CanUseGearButton() );
+			GfxButton.SetBool( "enabled", CanUseInventory() );
 			break;		
 	}
 }
@@ -160,6 +160,17 @@ function bool CanUseGearButton()
 	}
 	return false;
 }
+
+//Duplicate function because Gear menu override in VS class
+function bool CanUseInventory()
+{
+	if( GetPC().Pawn != none && !Manager.bAfterLobby ||class'WorldInfo'.static.IsMenuLevel() )
+	{
+		return true;
+	}
+	return false;
+}
+
 
 DefaultProperties
 {

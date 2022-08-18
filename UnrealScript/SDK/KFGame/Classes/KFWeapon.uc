@@ -73,6 +73,9 @@ var(Weapon) float   GrenadeTossWeakZedGrabCooldown;
 /** Time after we are grabbed by a zed to prevent nade throwing so we don't blow ourselvs up */
 var(Weapon) float   ZedGrabGrenadeTossCooldown;
 
+/** Set when calling StartFire(DEFAULT_FIREMODE) from a gamepad press */
+var bool bGamepadFireEntry;
+
 /************************************************************************************
  * @name	Aim Assist
  ***********************************************************************************/
@@ -1247,11 +1250,11 @@ function bool DenyPickupQuery(class<Inventory> ItemClass, Actor Pickup)
 		// Unless ammo is full, allow the pickup to handle giving ammo
 		if( CanRefillSecondaryAmmo() )
 		{
-            return (SpareAmmoCount[0] >= MaxSpareAmmo[0] && AmmoCount[1] >= MagazineCapacity[1]);
+            return ((SpareAmmoCount[0] + MagazineCapacity[0]) >= MaxSpareAmmo[0] && AmmoCount[1] >= MagazineCapacity[1]);
 		}
 		else
 		{
-            return (SpareAmmoCount[0] >= MaxSpareAmmo[0]);
+            return ((SpareAmmoCount[0] + MagazineCapacity[0]) >= MaxSpareAmmo[0]);
 		}
 	}
 
@@ -2554,7 +2557,7 @@ simulated function StartFire(byte FireModeNum)
 
 	// Convert to altfire if we have alt fire mode active
 	bStopAltFireOnNextRelease = false;
-	if ( FireModeNum == DEFAULT_FIREMODE && bUseAltFireMode && !IsUsingGamepad() )
+	if ( FireModeNum == DEFAULT_FIREMODE && bUseAltFireMode && !bGamepadFireEntry )
 	{
 		FireModeNum = ALTFIRE_FIREMODE;
 		bStopAltFireOnNextRelease = true;
@@ -2604,22 +2607,6 @@ simulated function StopFire(byte FireModeNum)
 	}
 
 	Super.StopFire(FireModeNum);
-}
-
-/** Helper for AltFireMode() */
-simulated function bool IsUsingGamepad()
-{
-	local PlayerController PC;
-	if ( Instigator != None && Instigator.IsLocallyControlled() )
-	{
-		PC = PlayerController(Instigator.Controller);
-		if ( PC != None && PC.PlayerInput != None && PC.PlayerInput.bUsingGamepad )
-		{
-			return TRUE;
-		}
-	}
-
-	return FALSE;
 }
 
 /**

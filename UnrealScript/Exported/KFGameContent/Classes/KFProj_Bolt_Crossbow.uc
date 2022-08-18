@@ -17,6 +17,9 @@ class KFProj_Bolt_Crossbow extends KFProj_Bullet_RackEmUp
 /** Information on where this blade has stuck */
 var repnotify ImpactInfo StickInfo;
 
+/** Information on where this blade has stuck, cached for later use */
+var ImpactInfo DelayedStickInfo;
+
 /** This projectile is currently stuck to a wall */
 var bool bStuck;
 
@@ -80,7 +83,7 @@ simulated function SpawnFlightEffects()
  * Very small momentum values get truncated during replication. So, we need to scale the
  * momentum vector during replication.
  */
-function vector EncodeSmallVector(vector V)				{return V * 256.f;}
+simulated function vector EncodeSmallVector(vector V)	{return V * 256.f;}
 simulated function vector DecodeSmallVector(vector V)	{return V / 256.f;}
 
 simulated event HitWall(vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
@@ -161,8 +164,6 @@ simulated function Stick(ImpactInfo MyStickInfo, bool bReplicated )
     else if( Role == ROLE_Authority )
     {
         bStuck = true;
-        StickInfo = MyStickInfo;
-
         LifeSpan = LifeSpanAfterStick;
     }
 
@@ -172,10 +173,23 @@ simulated function Stick(ImpactInfo MyStickInfo, bool bReplicated )
         AmbientComponent.StopEvents();
 	}
 
-	bForceNetUpdate = TRUE;
-	NetUpdateFrequency = 3;
+    if ( WorldInfo.NetMode == NM_DedicatedServer )
+    {
+        DelayedStickInfo = MyStickInfo;
+        SetTimer(0.01, false, nameof(DelayedStick));
+    }
+    else
+    {
+        if( Role == ROLE_Authority )
+        {
+            StickInfo = MyStickInfo;
+        }
 
-    GotoState('Pickup');
+    	bForceNetUpdate = TRUE;
+    	NetUpdateFrequency = 3;
+
+        GotoState('Pickup');
+    }
 }
 
 
@@ -183,6 +197,19 @@ simulated function Stick(ImpactInfo MyStickInfo, bool bReplicated )
  * State Pickup
  * Pickup is active
  *********************************************************************************************/
+
+/**
+ * Delay the stick so that client side hit detection doesn't get messed up for close shots
+ */
+simulated function DelayedStick()
+{
+	StickInfo = DelayedStickInfo;
+
+    bForceNetUpdate = TRUE;
+	NetUpdateFrequency = 3;
+
+    GotoState('Pickup');
+}
 
 /**
  * State where this blade is waiting to be picked up
@@ -222,7 +249,7 @@ state Pickup
 		}
 
 		// make sure not touching through wall
-		if ( !FastTrace(Other.Location, Location,,true) )
+		if ( !FastTrace(Other.Location, Location) )
 		{
 			return false;
 		}
@@ -288,14 +315,14 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 
 	if ( Other != Instigator && !Other.bWorldGeometry && Other.bCanBeDamaged )
 	{
-		if ( Pawn(other) != None )
+        if ( Pawn(other) != None )
 		{
 			if( Physics != Phys_Falling )
 			{
                 // check/ignore repeat touch events
     			if( CheckRepeatingTouch(Other) )
     			{
-    				return;
+                    return;
     			}
 
     			ProcessBulletTouch(Other, HitLocation, HitNormal);
@@ -314,7 +341,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 
                 if ( !bPassThrough )
                 {
-            		// Turn off the corona when it stops
+                    // Turn off the corona when it stops
                 	if ( WorldInfo.NetMode != NM_DedicatedServer && ProjEffects!=None )
                 	{
                         ProjEffects.DeactivateSystem();
@@ -350,7 +377,7 @@ simulated function Tick( float DeltaTime )
         {
             DrawDebugLine( Location, LastLocation, 100, 255, 100, true );
         }
-        LastLocation = Location;   
+        LastLocation = Location;
     }*/
 
     // Make it start falling faster if it's moving really slow

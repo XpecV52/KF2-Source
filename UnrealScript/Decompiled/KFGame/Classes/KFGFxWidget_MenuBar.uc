@@ -66,7 +66,7 @@ function HandleButtonSpecialCase(byte ButtonIndex, out GFxObject GfxButton)
             GfxButton.SetBool("bPulsing", ShouldStartMenuPulse());
             break;
         case 3:
-            GfxButton.SetBool("enabled", CanUseGearButton());
+            GfxButton.SetBool("enabled", CanUseInventory());
             break;
         default:
             break;
@@ -138,6 +138,15 @@ function bool ShouldStartMenuPulse()
 }
 
 function bool CanUseGearButton()
+{
+    if(((Outer.GetPC().Pawn != none) && !Manager.bAfterLobby) || Class'WorldInfo'.static.IsMenuLevel())
+    {
+        return true;
+    }
+    return false;
+}
+
+function bool CanUseInventory()
 {
     if(((Outer.GetPC().Pawn != none) && !Manager.bAfterLobby) || Class'WorldInfo'.static.IsMenuLevel())
     {

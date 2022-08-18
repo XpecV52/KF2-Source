@@ -37,6 +37,8 @@ ZedString="ZED"
 HumanString="SURVIVOR"
 SpectatorString="SPECTATOR"
 
+UnableToSwitchTeamString="Unable to Switch Teams"
+NoSwitchReasonString="Switching teams would upset team balance."
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="FAILED TO FIND MATCH"

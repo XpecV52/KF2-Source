@@ -36,6 +36,7 @@ defaultproperties
     // Reference: TWSceneCapture2DDPGComponent'Default__KFWeap_Bow_Crossbow.SceneCapture2DComponent0'
     SceneCapture=SceneCapture2DComponent0
     ScopeLenseMICTemplate=MaterialInstanceConstant'WEP_1P_Crossbow_MAT.WEP_1P_Crossbow_Scope_MAT'
+    ScopedSensitivityMod=16
     InventorySize=7
     bHasIronSights=true
     bCanBeReloaded=true
@@ -56,6 +57,7 @@ defaultproperties
     InitialSpareMags=17
     AmmoPickupScale=3
     FireSightedAnims=/* Array type was not detected. */
+    BonesToLockOnEmpty=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=1,Y=8,Z=-5)
