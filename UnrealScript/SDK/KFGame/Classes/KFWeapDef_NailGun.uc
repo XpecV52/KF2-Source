@@ -16,7 +16,7 @@ DefaultProperties
 	AttachmentArchtypePath="WEP_Nail_Shotgun_ARCH.Wep_Nail_Shotgun_3P"
 	
 	BuyPrice=600
-	AmmoPricePerMag=25
+	AmmoPricePerMag=20
 	ImagePath="ui_weaponselect_tex.UI_WeaponSelect_NailShotgun"
 
 	EffectiveRange=20

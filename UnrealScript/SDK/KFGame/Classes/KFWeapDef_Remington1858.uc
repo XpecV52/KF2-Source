@@ -15,7 +15,7 @@ DefaultProperties
 	WeaponClassPath="KFGameContent.KFWeap_Revolver_Rem1858"
 
 	BuyPrice=100
-	AmmoPricePerMag=5
+	AmmoPricePerMag=6
 	ImagePath="WEP_UI_Remington_1858_TEX.UI_WeaponSelect_Remington"
 
 	EffectiveRange=50

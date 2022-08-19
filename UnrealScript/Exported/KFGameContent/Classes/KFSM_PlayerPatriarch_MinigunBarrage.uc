@@ -10,17 +10,10 @@ class KFSM_PlayerPatriarch_MinigunBarrage extends KFSM_Patriarch_MinigunBarrage;
 
 var bool bAnimCanBeInterrupted;
 
-/** Name of the aim offset profile to use with this special move */
-var name AimOffsetProfileName;
-
 function SpecialMoveStarted( bool bForced, name PrevMove )
 {
 	bAnimCanBeInterrupted = false;
 	bPendingStopFire = false;
-
-	// set aim offset nodes profile
-	KFPOwner.SetAimOffsetNodesProfile( AimOffsetProfileName );
-	KFPOwner.bEnableAimOffset = true;
 
 	super.SpecialMoveStarted( bForced, PrevMove );
 }
@@ -66,8 +59,6 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
 	if( KFPOwner != none )
 	{
 		KFPOwner.SpecialMoveFlags = 255;
-		KFPOwner.bEnableAimOffset = false;
-		KFPOwner.SetDefaultAimOffsetNodesProfile();
 	}
 
 	super.SpecialMoveEnded( PrevMove, NextMove );
@@ -116,7 +107,6 @@ function SpecialMoveButtonReleased()
 
 defaultproperties
 {
-   AimOffsetProfileName="Minigun"
    bUseCustomThirdPersonViewOffset=True
    CustomThirdPersonViewOffset=(OffsetHigh=(X=-140.000000,Y=90.000000,Z=45.000000),OffsetMid=(X=-125.000000,Y=110.000000,Z=45.000000),OffsetLow=(X=-160.000000,Y=130.000000,Z=55.000000))
    ViewOffsetInterpTime=0.400000

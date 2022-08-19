@@ -1423,6 +1423,8 @@ function SetMonsterDefaults( KFPawn_Monster P )
         P.DifficultyDamageMod = DamageMod;
     }
 
+    //`log("Start P.GroundSpeed = "$P.GroundSpeed$" GroundSpeedMod = "$GroundSpeedMod$" percent of default = "$(P.default.GroundSpeed * GroundSpeedMod)/P.default.GroundSpeed$" RandomSpeedMod= "$RandomSpeedMod);
+
 	// scale movement speed
 	P.GroundSpeed = P.default.GroundSpeed * GroundSpeedMod;
 	P.SprintSpeed = P.default.SprintSpeed * GroundSpeedMod;
@@ -1430,6 +1432,9 @@ function SetMonsterDefaults( KFPawn_Monster P )
 	// Store the difficulty adjusted ground speed to restore if we change it elsewhere
 	P.NormalGroundSpeed = P.GroundSpeed;
 	P.NormalSprintSpeed = P.SprintSpeed;
+	P.RandomGroundSpeedModifier = RandomSpeedMod;
+
+	//`log(P$" GroundSpeed = "$P.GroundSpeed$" P.NormalGroundSpeed = "$P.NormalGroundSpeed);
 
 	// Scale health by difficulty
 	P.Health = P.default.Health * HealthMod;

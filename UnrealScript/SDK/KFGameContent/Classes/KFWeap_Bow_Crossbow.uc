@@ -36,10 +36,10 @@ simulated function name GetReloadAnimName( bool bTacticalReload )
 defaultproperties
 {
 	// Inventory
-	InventorySize=7
+	InventorySize=6
 	GroupPriority=50
 	WeaponSelectTexture=Texture2D'WEP_UI_Crossbow_TEX.UI_WeaponSelect_Crossbow'
-   	AssociatedPerkClass=none//AssociatedPerkClass=class'KFPerk_Sharpshooter'
+   	AssociatedPerkClass=class'KFPerk_Sharpshooter'
 
     // FOV / Position
     MeshFOV=70
@@ -54,7 +54,7 @@ defaultproperties
 	   FieldOfView=18.5 // "2.0X" = 37(our real world FOV determinant)/2.0
 	End Object
 
-	ScopedSensitivityMod=16.0
+	ScopedSensitivityMod=12.0
 
 	ScopeLenseMICTemplate=MaterialInstanceConstant'WEP_1P_Crossbow_MAT.WEP_1P_Crossbow_Scope_MAT'
 
@@ -76,8 +76,8 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=1
-	MaxSpareAmmo[0]=35
-	InitialSpareMags[0]=17
+	MaxSpareAmmo[0]=34
+	InitialSpareMags[0]=13
 	AmmoPickupScale[0]=3.0 // 3 arrows
 	bCanBeReloaded=true
 	bReloadFromMagazine=true // reloading from mag is one step, while NOT reloading from mag is multi-step (open bolt, load ammo, close bolt) and not applicable for bow
@@ -121,7 +121,7 @@ defaultproperties
 
 	// Custom animations
 	FireSightedAnims=(Shoot_Iron, Shoot_Iron2, Shoot_Iron3)
-	BonesToLockOnEmpty=(RW_Projectile)//, RW_Cable_Parent)
+	BonesToLockOnEmpty=(RW_Cable_Parent)
 
 	// Attachments
 	bHasIronSights=true

@@ -7,3 +7,8 @@
  *******************************************************************************/
 class KFDT_Bludgeon_RailGun extends KFDT_Bludgeon_RifleButt
     abstract;
+
+defaultproperties
+{
+    WeaponDef=Class'KFGame.KFWeapDef_RailGun'
+}

@@ -665,8 +665,18 @@ var const Rotator  FloorConformLastPawnRotation;
 /** If set, floor conforming assumes this creature is a quadruped.  See also GetFloorConformNormal() */
 var const bool	   bUseQuadrupedFloorConform;
 
+/** Cached values for Z smoothing */
+var const float 	LastPhysSmoothDeltaZ;
+
 /** if TRUE, disable mesh offset steps smoothing */
-var() bool	bDisableMeshSmoothing;
+var() protected bool bDisableMeshSmoothing;
+
+/** if TRUE, disable mesh replicated rotation smoothing */
+var() protected bool bDisableMeshRotationSmoothing;
+
+/** Additional yaw for mesh */
+var const transient float MeshYawOffset;
+var float MeshRotSmoothingInterpSpeed;
 
 /*********************************************************************************************
  * @name	Audio
@@ -794,6 +804,8 @@ cpptext
 	INT* GetOptimizedRepList( BYTE* InDefault, FPropertyRetirement* Retire, INT* Ptr, UPackageMap* Map, UActorChannel* Channel );
 	virtual UBOOL IsNetRelevantFor(APlayerController* RealViewer, AActor* Viewer, const FVector& SrcLocation);
 	virtual UBOOL ShouldDoSimpleNetRelevancy(APlayerController* RealViewer, const FVector& SrcLocation);
+	virtual void PreNetReceive();
+	virtual void PostNetReceive();
 
     // sound
 	virtual void ReplicateSound(class UAkBaseSoundObject* InSoundCue, UBOOL bNotReplicated = FALSE, UBOOL bNoRepToOwner = FALSE, UBOOL bStopWhenOwnerDestroyed = FALSE, FVector* SoundLocation = NULL, UBOOL bNoRepToRelevant = FALSE, FRotator* SoundRotation = NULL );
@@ -826,6 +838,7 @@ cpptext
 	void SmoothCorrection(const FVector& OldLocation);
 	void PerformStepsSmoothing(const FVector& OldLocation, FLOAT DeltaSeconds);
 	void TickMeshTranslationOffset(FLOAT DeltaSeconds);
+	void TickMeshRotationSmoothing(FLOAT DeltaSeconds);
 
 	// Floor conforming (IK, mesh translation/rotation, etc..)
 	UBOOL UpdateFloorConform(FLOAT DeltaSeconds);
@@ -4696,6 +4709,8 @@ defaultproperties
 	bCanJumpOverWalls=true
 	bCanUseHiddenSpeed=true
 	Mass=65.f // (in kilograms) Used by HandleMomentum()
+	
+	MeshRotSmoothingInterpSpeed=30.f
 
 	// ---------------------------------------------
 	// Damage

@@ -349,9 +349,20 @@ simulated event Destroyed()
 	MyActivePukeMines.Length = 0;
 }
 
+/**
+ * InitInputSystem()
+ * Spawn the appropriate class of PlayerInput
+ * Only called for playercontrollers that belong to local players
+ */
+event InitInputSystem()
+{
+	Super.InitInputSystem();
+
+	KFPlayerInput(PlayerInput).bVersusInput = true;
+}
+
 DefaultProperties
 {
 	CameraClass=class'KFPlayerCamera_Versus'
-	InputClass=class'KFGameContent.KFPlayerInputVersus'
 	MonsterPerkClass=class'KFPerk_Monster'
 }

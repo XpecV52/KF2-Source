@@ -15,7 +15,7 @@ defaultproperties
    WeaponClassPath="KFGameContent.KFWeap_Revolver_DualSW500"
    ImagePath="WEP_UI_Dual_SW_500_TEX.UI_WeaponSelect_DualSW500"
    BuyPrice=1500
-   AmmoPricePerMag=30
+   AmmoPricePerMag=50
    EffectiveRange=50
    Name="Default__KFWeapDef_SW500Dual"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

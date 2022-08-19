@@ -25,8 +25,8 @@ defaultproperties
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'WEP_UI_M79_TEX.UI_WeaponSelect_M79'
    MagazineCapacity(0)=1
-   MaxSpareAmmo(0)=15
-   InitialSpareMags(0)=7
+   MaxSpareAmmo(0)=26
+   InitialSpareMags(0)=9
    AmmoPickupScale(0)=2.000000
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_M79.Play_WEP_SA_M79_Fire_M',FirstPersonCue=AkEvent'WW_WEP_SA_M79.Play_WEP_SA_M79_Fire_S')
    WeaponDryFireSnd(0)=None

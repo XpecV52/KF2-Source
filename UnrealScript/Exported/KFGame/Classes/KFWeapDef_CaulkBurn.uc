@@ -15,7 +15,7 @@ defaultproperties
    WeaponClassPath="KFGameContent.KFWeap_Flame_CaulkBurn"
    ImagePath="WEP_UI_CaulkBurn_TEX.UI_WeaponSelect_CaulkNBurn"
    BuyPrice=200
-   AmmoPricePerMag=15
+   AmmoPricePerMag=20
    EffectiveRange=15
    Name="Default__KFWeapDef_CaulkBurn"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

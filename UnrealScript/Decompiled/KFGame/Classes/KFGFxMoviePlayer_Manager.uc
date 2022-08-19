@@ -484,9 +484,6 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
         CurrentMenu.OnClose();
         CurrentMenu = none;
     }
-    bCanCloseMenu = false;
-    TimerHelper.ClearTimer('AllowCloseMenu', self);
-    TimerHelper.SetTimer(0.5, false, 'AllowCloseMenu', self);
     if(NewMenuIndex != 14)
     {
         CurrentMenuIndex = NewMenuIndex;        
@@ -498,6 +495,8 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
         {
             PC.PlayerInput.ResetInput();
         }
+        bCanCloseMenu = false;
+        TimerHelper.SetTimer(0.5, false, 'AllowCloseMenu', self);
     }
     if(CurrentMenuIndex == 0)
     {
@@ -598,17 +597,31 @@ event OnClose()
 event OnCleanup()
 {
     super.OnCleanup();
+    ClearAllInventoryReadCompleteDelegates();
     GetGameViewportClient().__HandleInputAxis__Delegate = None;
+}
+
+function ClearAllInventoryReadCompleteDelegates()
+{
+    local OnlineSubsystem OnlineSub;
+    local int I;
+
+    OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+    I = 0;
+    J0x34:
+
+    if(I < OnlineSub.ReadInventoryCompleteDelegates.Length)
+    {
+        OnlineSub.ReadInventoryCompleteDelegates.Remove(I, 1;
+        ++ I;
+        goto J0x34;
+    }
 }
 
 function bool ToggleMenus()
 {
     if(!bMenusOpen || HUD.bShowHUD)
     {
-        if(!bMenusOpen)
-        {
-            TimerHelper.SetTimer(0.5, false, 'AllowCloseMenu', self);
-        }
         ManagerObject.SetBool("bOpenedInGame", true);
         if(CurrentMenuIndex >= MenuSWFPaths.Length)
         {
@@ -620,6 +633,7 @@ function bool ToggleMenus()
             UpdateMenuBar();
         }
         bCanCloseMenu = false;
+        TimerHelper.SetTimer(0.5, false, 'AllowCloseMenu', self);
         TimerHelper.SetTimer(0.15, false, 'PlayOpeningSound', self);        
     }
     else

@@ -135,8 +135,8 @@ defaultproperties
    GroupPriority=25.000000
    WeaponSelectTexture=Texture2D'WEP_UI_HX25_Pistol_TEX.UI_WeaponSelect_HX25'
    MagazineCapacity(0)=1
-   MaxSpareAmmo(0)=23
-   InitialSpareMags(0)=11
+   MaxSpareAmmo(0)=29
+   InitialSpareMags(0)=17
    AmmoPickupScale(0)=3.000000
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"

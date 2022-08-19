@@ -27,6 +27,9 @@ DefaultProperties
 	ProjFlightTemplate=ParticleSystem'ZED_Husk_EMIT.FX_Husk_projectile_01'
 	ExplosionActorClass=class'KFExplosionActor'
 
+    bCollideComplex=true	// Ignore simple collision on StaticMeshes, and collide per poly
+	bBlockedByInstigator=false
+
 	// Grenade explosion light
 	Begin Object Class=PointLightComponent Name=ExplosionPointLight
 	    LightColor=(R=245,G=190,B=140,A=255)

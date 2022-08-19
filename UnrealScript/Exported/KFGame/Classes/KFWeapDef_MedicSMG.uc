@@ -15,7 +15,7 @@ defaultproperties
    WeaponClassPath="KFGameContent.KFWeap_SMG_Medic"
    ImagePath="ui_weaponselect_tex.UI_WeaponSelect_MedicSMG"
    BuyPrice=650
-   AmmoPricePerMag=15
+   AmmoPricePerMag=20
    EffectiveRange=70
    Name="Default__KFWeapDef_MedicSMG"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

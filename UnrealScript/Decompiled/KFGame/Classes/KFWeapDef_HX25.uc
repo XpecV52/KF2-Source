@@ -13,6 +13,6 @@ defaultproperties
     WeaponClassPath="KFGameContent.KFWeap_GrenadeLauncher_HX25"
     ImagePath="WEP_UI_HX25_Pistol_TEX.UI_WeaponSelect_HX25"
     BuyPrice=300
-    AmmoPricePerMag=5
+    AmmoPricePerMag=9
     EffectiveRange=25
 }

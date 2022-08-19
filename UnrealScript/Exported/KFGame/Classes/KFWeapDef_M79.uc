@@ -15,7 +15,7 @@ defaultproperties
    WeaponClassPath="KFGameContent.KFWeap_GrenadeLauncher_M79"
    ImagePath="WEP_UI_M79_TEX.UI_WeaponSelect_M79"
    BuyPrice=1100
-   AmmoPricePerMag=10
+   AmmoPricePerMag=13
    EffectiveRange=100
    Name="Default__KFWeapDef_M79"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

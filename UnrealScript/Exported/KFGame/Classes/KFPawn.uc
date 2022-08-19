@@ -971,8 +971,18 @@ var const Rotator  FloorConformLastPawnRotation;
 /** If set, floor conforming assumes this creature is a quadruped.  See also GetFloorConformNormal() */
 var const bool	   bUseQuadrupedFloorConform;
 
+/** Cached values for Z smoothing */
+var const float 	LastPhysSmoothDeltaZ;
+
 /** if TRUE, disable mesh offset steps smoothing */
-var() bool	bDisableMeshSmoothing;
+var() protected bool bDisableMeshSmoothing;
+
+/** if TRUE, disable mesh replicated rotation smoothing */
+var() protected bool bDisableMeshRotationSmoothing;
+
+/** Additional yaw for mesh */
+var const transient float MeshYawOffset;
+var float MeshRotSmoothingInterpSpeed;
 
 /*********************************************************************************************
  * @name	Audio
@@ -1088,6 +1098,9 @@ replication
     	bIsCloaking;
 }
 
+// (cpptext)
+// (cpptext)
+// (cpptext)
 // (cpptext)
 // (cpptext)
 // (cpptext)
@@ -4913,6 +4926,7 @@ defaultproperties
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFSpecialMoveHandler'
    End Object
    SpecialMoveHandler=KFSpecialMoveHandler'KFGame.Default__KFPawn:SpecialMoveHandler_0'
+   MeshRotSmoothingInterpSpeed=30.000000
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent_1
       BoneName="Dummy"
       bStopWhenOwnerDestroyed=True

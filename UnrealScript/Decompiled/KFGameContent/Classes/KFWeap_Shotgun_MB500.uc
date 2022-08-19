@@ -24,8 +24,8 @@ defaultproperties
     GroupPriority=25
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Mossberg'
     MagazineCapacity=8
-    MaxSpareAmmo=40
-    InitialSpareMags=2
+    MaxSpareAmmo=56
+    InitialSpareMags=3
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=8,Y=8,Z=-3.5)

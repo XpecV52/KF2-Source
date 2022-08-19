@@ -138,8 +138,8 @@ defaultproperties
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Dual_SW_500_TEX.UI_WeaponSelect_DualSW500'
    MagazineCapacity(0)=10
-   MaxSpareAmmo(0)=70
-   InitialSpareMags(0)=3
+   MaxSpareAmmo(0)=95
+   InitialSpareMags(0)=2
    BonesToLockOnEmpty(0)="RW_Hammer"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_SW500.Play_WEP_SA_SW500_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_SW500.Play_WEP_SA_SW500_Fire_1P')
    WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_SW500.Play_WEP_SA_SW500_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_SW500.Play_WEP_SA_SW500_Fire_1P')

@@ -15,7 +15,7 @@ DefaultProperties
 	WeaponClassPath="KFGameContent.KFWeap_Pistol_Colt1911"
 
 	BuyPrice=325
-	AmmoPricePerMag=10
+	AmmoPricePerMag=13
 	ImagePath="WEP_UI_M1911_TEX.UI_WeaponSelect_M1911Colt"
 
 	EffectiveRange=50

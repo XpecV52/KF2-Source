@@ -369,7 +369,7 @@ function FleeAndHealBump()
     local float ClosestDist;
     local KFAIController_ZedPatriarch KFAICP;
 
-    if(((MyKFAIC == none) || MyKFAIC.Enemy == none) || IsDoingSpecialMove(17))
+    if((((MyKFAIC == none) || MyKFAIC.Enemy == none) || MyKFAIC.RouteGoal == none) || IsDoingSpecialMove(17))
     {
         return;
     }
@@ -499,15 +499,22 @@ simulated event Vector GetWeaponStartTraceLocation(optional Weapon CurrentWeapon
 
 simulated function Rotator GetAdjustedAimFor(Weapon W, Vector StartFireLoc)
 {
-    local Vector SocketLoc;
-    local Rotator SocketRot;
+    local Vector SocketLoc, EndTrace;
+    local Rotator ActualAimRot, SocketRot;
 
     if(bSprayingFire)
     {
         Mesh.GetSocketWorldLocationAndRotation('LeftMuzzleFlash', SocketLoc, SocketRot);
         return SocketRot;
     }
-    return super(KFPawn).GetAdjustedAimFor(W, StartFireLoc);
+    ActualAimRot = super(KFPawn).GetAdjustedAimFor(W, StartFireLoc);
+    EndTrace = StartFireLoc + (vector(ActualAimRot) * W.GetTraceRange());
+    Mesh.GetSocketWorldLocationAndRotation('LeftMuzzleFlash', SocketLoc, SocketRot);
+    if((vector(SocketRot) Dot Normal(EndTrace - StartFireLoc)) < 0.96)
+    {
+        return SocketRot;
+    }
+    return ActualAimRot;
 }
 
 function class<KFProj_Missile_Patriarch> GetMissileClass()
@@ -1536,6 +1543,7 @@ defaultproperties
     BoilColors[2]=(R=0.54,G=0.079,B=0,A=1)
     BoilColors[3]=(R=0.85,G=0,B=0.003,A=1)
     DeadBoilColor=(R=0.05,G=0,B=0,A=1)
+    bUseServerSideGunTracking=true
     BoilPulseRate=2.5
     BoilLightBrightness[0]=2.6
     BoilLightBrightness[1]=2.7

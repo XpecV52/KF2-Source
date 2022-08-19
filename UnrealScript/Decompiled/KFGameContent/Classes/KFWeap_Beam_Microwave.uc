@@ -234,8 +234,7 @@ defaultproperties
     GroupPriority=100
     WeaponSelectTexture=Texture2D'WEP_UI_Microwave_Gun_TEX.UI_WeaponSelect_MicrowaveGun'
     MagazineCapacity=100
-    MaxSpareAmmo=300
-    InitialSpareMags=1
+    MaxSpareAmmo=400
     AmmoPickupScale=0.4
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */

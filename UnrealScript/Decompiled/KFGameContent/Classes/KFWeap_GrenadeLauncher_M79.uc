@@ -23,8 +23,8 @@ defaultproperties
     GroupPriority=75
     WeaponSelectTexture=Texture2D'WEP_UI_M79_TEX.UI_WeaponSelect_M79'
     MagazineCapacity=1
-    MaxSpareAmmo=15
-    InitialSpareMags=7
+    MaxSpareAmmo=26
+    InitialSpareMags=9
     AmmoPickupScale=2
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */

@@ -48,6 +48,7 @@ defaultproperties
    AmbientComponent=AmbientAkSoundComponent
    Speed=1800.000000
    MaxSpeed=1800.000000
+   bBlockedByInstigator=False
    Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'KFGame.Default__KFProjectile:CollisionCylinder'
       CollisionHeight=0.000000
       CollisionRadius=0.000000
@@ -58,6 +59,7 @@ defaultproperties
    CylinderComponent=CollisionCylinder
    Components(0)=CollisionCylinder
    Components(1)=AmbientAkSoundComponent
+   bCollideComplex=True
    CollisionComponent=CollisionCylinder
    Name="Default__KFProj_Husk_Fireball"
    ObjectArchetype=KFProjectile'KFGame.Default__KFProjectile'

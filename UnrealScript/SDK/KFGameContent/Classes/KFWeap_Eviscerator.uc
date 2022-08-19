@@ -366,8 +366,8 @@ defaultproperties
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
 	MagazineCapacity[0]=5
-	MaxSpareAmmo[0]=20
-	InitialSpareMags[0]=2
+	MaxSpareAmmo[0]=25
+	InitialSpareMags[0]=0
 	MagazineCapacity[1]=250 // 30 seconds of fuel
 	AmmoPickupScale[1]=0.2
 

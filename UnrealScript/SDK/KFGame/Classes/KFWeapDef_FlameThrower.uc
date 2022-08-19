@@ -15,7 +15,7 @@ DefaultProperties
 	WeaponClassPath="KFGameContent.KFWeap_Flame_Flamethrower"
 
 	BuyPrice=1100
-	AmmoPricePerMag=60
+	AmmoPricePerMag=83
 	ImagePath="ui_weaponselect_tex.UI_WeaponSelect_Flamethrower"
 
 	EffectiveRange=17

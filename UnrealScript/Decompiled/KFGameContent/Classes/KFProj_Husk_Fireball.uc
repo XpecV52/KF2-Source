@@ -43,6 +43,7 @@ defaultproperties
     AmbientComponent=AmbientAkSoundComponent
     Speed=1800
     MaxSpeed=1800
+    bBlockedByInstigator=false
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end
@@ -60,6 +61,7 @@ defaultproperties
     object end
     // Reference: AkComponent'Default__KFProj_Husk_Fireball.AmbientAkSoundComponent'
     Components(1)=AmbientAkSoundComponent
+    bCollideComplex=true
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

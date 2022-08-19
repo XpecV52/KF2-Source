@@ -14,7 +14,7 @@ defaultproperties
 {
    WeaponClassPath="KFGameContent.KFWeap_Pistol_9mm"
    ImagePath="ui_weaponselect_tex.UI_WeaponSelect_9mm"
-   AmmoPricePerMag=10
+   AmmoPricePerMag=8
    EffectiveRange=50
    Name="Default__KFWeapDef_9mm"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

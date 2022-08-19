@@ -33,8 +33,8 @@ defaultproperties
    GroupPriority=45.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Dual_Deagle_TEX.UI_WeaponSelect_DualDeagle'
    MagazineCapacity(0)=14
-   MaxSpareAmmo(0)=84
-   InitialSpareMags(0)=3
+   MaxSpareAmmo(0)=98
+   InitialSpareMags(0)=2
    BonesToLockOnEmpty(0)="RW_Slide"
    BonesToLockOnEmpty(1)="RW_Bullets1"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_DesertEagle.Play_WEP_SA_DesertEagle_Fire_Single_M',FirstPersonCue=AkEvent'WW_WEP_SA_DesertEagle.Play_WEP_SA_DesertEagle_Fire_Single_S')

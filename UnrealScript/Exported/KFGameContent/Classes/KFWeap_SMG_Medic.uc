@@ -38,8 +38,8 @@ defaultproperties
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicSMG'
    SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
    MagazineCapacity(0)=40
-   MaxSpareAmmo(0)=320
-   InitialSpareMags(0)=3
+   MaxSpareAmmo(0)=480
+   InitialSpareMags(0)=5
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_MedicSMG.Play_SA_MedicSMG_Fire_3P_Loop',FirstPersonCue=AkEvent'WW_WEP_SA_MedicSMG.Play_SA_MedicSMG_Fire_1P_Loop')

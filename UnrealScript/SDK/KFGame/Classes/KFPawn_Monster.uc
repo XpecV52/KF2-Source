@@ -219,6 +219,8 @@ var private		bool 	bIsFleshpoundClass;
 var transient float	NormalGroundSpeed;
 /** The difficulty adjusted original SprintSpeed for this character */
 var transient float	NormalSprintSpeed;
+/** The random ground speed modifier that is applied whent this character is initialized */
+var transient float	RandomGroundSpeedModifier;
 /** Time interval for HiddenGroundSpeed check */
 var	transient float	LastAISpeedCheckTime;
 /** The last time this Zed was network relevant to someone, or had line of sight to someone */
@@ -591,8 +593,13 @@ simulated function bool UsePlayerControlledZedSkin()
 /** Set a desired movement speed adjustment that will blend in over time */
 function AdjustMovementSpeed(float SpeedAdjust)
 {
-    DesiredAdjustedGroundSpeed = NormalGroundSpeed * SpeedAdjust;
-    DesiredAdjustedSprintSpeed = NormalSprintSpeed * SpeedAdjust;
+    DesiredAdjustedGroundSpeed = default.GroundSpeed * SpeedAdjust * RandomGroundSpeedModifier;
+    DesiredAdjustedSprintSpeed = default.SprintSpeed * SpeedAdjust * RandomGroundSpeedModifier;
+
+    NormalGroundSpeed = DesiredAdjustedGroundSpeed;
+	NormalSprintSpeed = DesiredAdjustedSprintSpeed;
+
+    //`log(self$"SpeedAdjust = "$SpeedAdjust$" default.GroundSpeed = "$default.GroundSpeed$" GroundSpeed = "$GroundSpeed$" DesiredAdjustedGroundSpeed = "$DesiredAdjustedGroundSpeed$" RandomGroundSpeedModifier = "$RandomGroundSpeedModifier);
 }
 
 /** Overridden to cause slight camera shakes when walking. */
@@ -3449,6 +3456,7 @@ DefaultProperties
 	BumpFrequency=0.5f
 	bLimitFallAccel=TRUE
 	SpeedAdjustTransitionRate=100.f
+	RandomGroundSpeedModifier=1.0
 
 	// ---------------------------------------------
 	// Spawning

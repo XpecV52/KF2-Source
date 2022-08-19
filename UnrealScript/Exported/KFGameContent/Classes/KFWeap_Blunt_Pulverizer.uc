@@ -259,8 +259,7 @@ defaultproperties
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Pulverizer'
    MagazineCapacity(0)=5
-   MaxSpareAmmo(0)=30
-   InitialSpareMags(0)=3
+   MaxSpareAmmo(0)=15
    WeaponFireSnd(6)=(DefaultCue=AkEvent'WW_WEP_MEL_Pulverizer.Play_WEP_MEL_Pulverizer_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_MEL_Pulverizer.Play_WEP_MEL_Pulverizer_Fire_1P')
    AttachmentArchetype=KFWeapAttach_Pulverizer'WEP_Pulverizer_ARCH.Wep_Pulverizer_3P'
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'

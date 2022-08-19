@@ -10,17 +10,10 @@ class KFSM_PlayerPatriarch_MinigunBarrage extends KFSM_Patriarch_MinigunBarrage;
 
 var bool bAnimCanBeInterrupted;
 
-/** Name of the aim offset profile to use with this special move */
-var name AimOffsetProfileName;
-
 function SpecialMoveStarted( bool bForced, name PrevMove )
 {
 	bAnimCanBeInterrupted = false;
 	bPendingStopFire = false;
-
-	// set aim offset nodes profile
-	KFPOwner.SetAimOffsetNodesProfile( AimOffsetProfileName );
-	KFPOwner.bEnableAimOffset = true;
 
 	super.SpecialMoveStarted( bForced, PrevMove );
 }
@@ -66,8 +59,6 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
 	if( KFPOwner != none )
 	{
 		KFPOwner.SpecialMoveFlags = 255;
-		KFPOwner.bEnableAimOffset = false;
-		KFPOwner.SetDefaultAimOffsetNodesProfile();
 	}
 
 	super.SpecialMoveEnded( PrevMove, NextMove );
@@ -117,7 +108,6 @@ function SpecialMoveButtonReleased()
 defaultproperties
 {
 	Handle=KFSM_PlayerPatriarch_MinigunBarrage
-	AimOffsetProfileName=Minigun
 	//WindUpAnimName=Gun_TO_Load
 	//WindDownAnimName=Gun_TO_Idle
 	//AnimName=Gun_Idle	

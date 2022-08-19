@@ -450,7 +450,7 @@ event PerkLevelUpdated()
 {
     if( MyKFGI != none )
     {
-        MyKFGI.GameConductor.HandlePerkLevelsUpdated();
+        MyKFGI.GameConductor.UpdateAveragePerkRank();
     }
 }
 
@@ -1077,7 +1077,7 @@ reliable protected client function ClientOnWaveEnded()
 	{
 		MyPRI = KFPlayerReplicationInfo(OwnerPawn.PlayerReplicationInfo);
 	}
-	
+
 	MyPRI.ResetSupplierUsed();
 }
 

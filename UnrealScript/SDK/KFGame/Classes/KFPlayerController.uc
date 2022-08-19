@@ -3559,10 +3559,16 @@ exec function StartAltFire( optional Byte FireModeNum )
 /** Server instigated open trader menu */
 function OpenTraderMenu()
 {
-	if (Role == ROLE_Authority && Pawn != none)
+	local KFInventoryManager KFIM;
+
+	if( Role == ROLE_Authority && Pawn != none )
 	{
-   		KFInventoryManager(Pawn.InvManager).bServerTraderMenuOpen = true;
- 		ClientOpenTraderMenu();
+   		KFIM = KFInventoryManager(Pawn.InvManager);
+   		if( KFIM != none && !KFIM.bServerTraderMenuOpen )
+   		{
+	   		KFIM.bServerTraderMenuOpen = true;
+	 		ClientOpenTraderMenu();
+	 	}
 	}
 }
 
@@ -3576,8 +3582,11 @@ reliable client function ClientOpenTraderMenu()
 }
 
 function CloseTraderMenu()
-{
-	if ( MyGFxManager != none )
+{if ( MyGFxManager != none )
+	{
+		
+		MyGFxManager.CloseTraderMenu();
+	}if ( MyGFxManager != none )
 	{
 		MyGFxManager.CloseTraderMenu();
 	}
@@ -5329,6 +5338,14 @@ function DrawDebugConductor( out Canvas Canvas )
         	{
                 Points[Points.Length] = vect2d(i * Float(ArrayCount(KFGRI.ZedMovementSpeedModifierTracker)),(MaxLifeSpan - KFGRI.ZedMovementSpeedModifierTracker[i]));
         	}
+
+        	if( KFGameInfo(WorldInfo.Game) != none )
+        	{
+                if( MaxLifeSpan < KFGameInfo(WorldInfo.Game).DifficultyInfo.GetAIGroundSpeedMod() )
+                {
+                    MaxLifeSpan = KFGameInfo(WorldInfo.Game).DifficultyInfo.GetAIGroundSpeedMod();
+                }
+        	}
         }
 
         // Scale the graph to the screen size
@@ -5361,6 +5378,14 @@ function DrawDebugConductor( out Canvas Canvas )
         }
 
         Canvas.DrawDebugGraphElement(Points, UL_X, UL_Y, W, H, vect2d(0,100), vect2d(0,MaxLifeSpan), MakeColor(255, 128, 0, 255), "Spawn Rate Mod", 150 * ScaleX,KFGRI.ZedSpawnRateModifierTracker[i-1]$"X");
+
+        if( KFGameInfo(WorldInfo.Game) != none )
+        {
+            Points.Length = 0;
+            Points[Points.Length] = vect2d(0,MaxLifeSpan - KFGameInfo(WorldInfo.Game).DifficultyInfo.GetAIGroundSpeedMod());
+            Points[Points.Length] = vect2d(100,MaxLifeSpan - KFGameInfo(WorldInfo.Game).DifficultyInfo.GetAIGroundSpeedMod());
+            Canvas.DrawDebugGraphElement(Points, UL_X, UL_Y, W, H, vect2d(0,100), vect2d(0,100), MakeColor(0, 255, 255, 255), "Base Speed Mod", 250 * ScaleX,KFGameInfo(WorldInfo.Game).DifficultyInfo.GetAIGroundSpeedMod()$"X");
+        }
     }
 	else if( CurrentGameConductorDebugMode == EGCDM_ZedSpawning )
 	{

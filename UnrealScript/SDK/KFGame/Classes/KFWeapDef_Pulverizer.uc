@@ -15,7 +15,7 @@ DefaultProperties
 	WeaponClassPath="KFGameContent.KFWeap_Blunt_Pulverizer"
 	
 	BuyPrice=1200
-	AmmoPricePerMag=50
+	AmmoPricePerMag=85
 	ImagePath="ui_weaponselect_tex.UI_WeaponSelect_Pulverizer"
 
 	EffectiveRange=3

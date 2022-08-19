@@ -37,8 +37,8 @@ defaultproperties
     GroupPriority=35
     WeaponSelectTexture=Texture2D'WEP_UI_DualRemington1858_TEX.UI_WeaponSelect_DualRemington'
     MagazineCapacity=12
-    MaxSpareAmmo=132
-    InitialSpareMags=5
+    MaxSpareAmmo=180
+    InitialSpareMags=7
     IdleFidgetAnims=/* Array type was not detected. */
     BonesToLockOnEmpty=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */

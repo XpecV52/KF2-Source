@@ -276,6 +276,12 @@ simulated event Destroyed()
     MyActivePukeMines.Length = 0;
 }
 
+event InitInputSystem()
+{
+    super.InitInputSystem();
+    KFPlayerInput(PlayerInput).bVersusInput = true;
+}
+
 state Dead
 {
     event BeginState(name PreviousStateName)
@@ -298,7 +304,6 @@ defaultproperties
     AmplificationLightTemplate=PointLightComponent'Default__KFPlayerControllerVersus.AmplificationLightTemplate'
     NVGLightTemplate=PointLightComponent'Default__KFPlayerControllerVersus.NVGLightTemplate'
     CameraClass=Class'KFPlayerCamera_Versus'
-    InputClass=Class'KFPlayerInputVersus'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

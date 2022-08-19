@@ -168,7 +168,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 {
 	super.TakeDamage( Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser );
 
-	if( bCanRage && !bPlayedDeath && GetHealthPercentage() < RageHealthThreshold )
+	if( bCanRage && !bPlayedDeath && (GetHealthPercentage() < RageHealthThreshold || GetHealthPercentage() < RageHealthThreshold) )
 	{
 		bIsEnraged = true;
 	}

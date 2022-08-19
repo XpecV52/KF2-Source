@@ -287,6 +287,7 @@ defaultproperties
 	bDisableTurnInPlace=true
 	bEnableAimOffset=false
 	bSkipActorPropertyReplication=true
+	bDisableMeshRotationSmoothing=true
 
 	// Default the customization pawn to walking so that IK is enabled
 	Physics=PHYS_Walking

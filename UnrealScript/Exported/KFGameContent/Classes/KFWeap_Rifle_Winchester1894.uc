@@ -11,7 +11,7 @@ class KFWeap_Rifle_Winchester1894 extends KFWeap_RifleBase;
 
 defaultproperties
 {
-   InventorySize=6
+   InventorySize=5
    bHasIronSights=True
    bCanBeReloaded=True
    bHasFireLastAnims=True
@@ -24,7 +24,7 @@ defaultproperties
    GroupPriority=25.000000
    WeaponSelectTexture=Texture2D'wep_ui_winchester_tex.UI_WeaponSelect_Winchester'
    MagazineCapacity(0)=10
-   MaxSpareAmmo(0)=50
+   MaxSpareAmmo(0)=60
    InitialSpareMags(0)=2
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"

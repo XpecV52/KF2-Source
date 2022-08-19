@@ -15,7 +15,7 @@ defaultproperties
    WeaponClassPath="KFGameContent.KFWeap_Beam_Microwave"
    ImagePath="WEP_UI_Microwave_Gun_TEX.UI_WeaponSelect_MicrowaveGun"
    BuyPrice=1500
-   AmmoPricePerMag=75
+   AmmoPricePerMag=100
    EffectiveRange=12
    Name="Default__KFWeapDef_MicrowaveGun"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

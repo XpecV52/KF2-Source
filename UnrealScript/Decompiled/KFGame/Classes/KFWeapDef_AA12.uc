@@ -13,6 +13,6 @@ defaultproperties
     WeaponClassPath="KFGameContent.KFWeap_Shotgun_AA12"
     ImagePath="ui_weaponselect_tex.UI_WeaponSelect_AA12"
     BuyPrice=1500
-    AmmoPricePerMag=100
+    AmmoPricePerMag=110
     EffectiveRange=30
 }

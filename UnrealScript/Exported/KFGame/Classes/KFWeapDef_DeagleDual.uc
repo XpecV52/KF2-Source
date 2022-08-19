@@ -15,7 +15,7 @@ defaultproperties
    WeaponClassPath="KFGameContent.KFWeap_Pistol_DualDeagle"
    ImagePath="WEP_UI_Dual_Deagle_TEX.UI_WeaponSelect_DualDeagle"
    BuyPrice=1100
-   AmmoPricePerMag=20
+   AmmoPricePerMag=42
    EffectiveRange=50
    Name="Default__KFWeapDef_DeagleDual"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

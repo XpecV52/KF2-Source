@@ -27,8 +27,8 @@ defaultproperties
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Benelli'
    MagazineCapacity(0)=8
-   MaxSpareAmmo(0)=40
-   InitialSpareMags(0)=2
+   MaxSpareAmmo(0)=64
+   InitialSpareMags(0)=3
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_M4.Play_WEP_SA_M4_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_M4.Play_WEP_SA_M4_Fire_1P')
    WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_M4.Play_WEP_SA_M4_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_M4.Play_WEP_SA_M4_Fire_1P')
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_M4.Play_WEP_SA_M4_Handling_DryFire'

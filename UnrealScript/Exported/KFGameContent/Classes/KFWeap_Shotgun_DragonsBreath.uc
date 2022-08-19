@@ -29,7 +29,7 @@ defaultproperties
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'WEP_UI_DragonsBreath.UI_WeaponSelect_DragonsBreath'
    MagazineCapacity(0)=6
-   MaxSpareAmmo(0)=40
+   MaxSpareAmmo(0)=45
    InitialSpareMags(0)=3
    BonesToLockOnEmpty(0)="RW_Hammer"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_DragonsBreath.Play_SA_DragonsBreath_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_DragonsBreath.Play_SA_DragonsBreath_Fire_1P')

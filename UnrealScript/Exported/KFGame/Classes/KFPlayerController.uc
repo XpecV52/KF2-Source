@@ -3936,10 +3936,16 @@ exec function StartAltFire( optional Byte FireModeNum )
 /** Server instigated open trader menu */
 function OpenTraderMenu()
 {
-	if (Role == ROLE_Authority && Pawn != none)
+	local KFInventoryManager KFIM;
+
+	if( Role == ROLE_Authority && Pawn != none )
 	{
-   		KFInventoryManager(Pawn.InvManager).bServerTraderMenuOpen = true;
- 		ClientOpenTraderMenu();
+   		KFIM = KFInventoryManager(Pawn.InvManager);
+   		if( KFIM != none && !KFIM.bServerTraderMenuOpen )
+   		{
+	   		KFIM.bServerTraderMenuOpen = true;
+	 		ClientOpenTraderMenu();
+	 	}
 	}
 }
 
@@ -3953,8 +3959,11 @@ reliable client function ClientOpenTraderMenu()
 }
 
 function CloseTraderMenu()
-{
-	if ( MyGFxManager != none )
+{if ( MyGFxManager != none )
+	{
+		
+		MyGFxManager.CloseTraderMenu();
+	}if ( MyGFxManager != none )
 	{
 		MyGFxManager.CloseTraderMenu();
 	}
@@ -5397,6 +5406,22 @@ simulated function DrawMapElement(Canvas Canvas,
 /** Draw the tracking map */
 function DrawDebugConductor( out Canvas Canvas )
 {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

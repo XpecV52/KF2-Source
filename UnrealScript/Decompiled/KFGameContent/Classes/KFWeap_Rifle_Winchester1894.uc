@@ -11,7 +11,7 @@ class KFWeap_Rifle_Winchester1894 extends KFWeap_RifleBase
 
 defaultproperties
 {
-    InventorySize=6
+    InventorySize=5
     bHasIronSights=true
     bCanBeReloaded=true
     bHasFireLastAnims=true
@@ -23,7 +23,7 @@ defaultproperties
     GroupPriority=25
     WeaponSelectTexture=Texture2D'wep_ui_winchester_tex.UI_WeaponSelect_Winchester'
     MagazineCapacity=10
-    MaxSpareAmmo=50
+    MaxSpareAmmo=60
     InitialSpareMags=2
     FireSightedAnims=/* Array type was not detected. */
     BonesToLockOnEmpty=/* Array type was not detected. */

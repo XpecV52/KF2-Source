@@ -239,6 +239,7 @@ defaultproperties
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     bEnableAimOffset=false
     bDisableTurnInPlace=true
+    bDisableMeshRotationSmoothing=true
     AfflictionHandler=KFPawnAfflictions'Default__KFPawn_Customization.Afflictions'
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none

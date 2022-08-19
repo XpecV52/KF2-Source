@@ -15,7 +15,7 @@ defaultproperties
    WeaponClassPath="KFGameContent.KFWeap_Pistol_DualColt1911"
    ImagePath="WEP_UI_Dual_M1911_TEX.UI_WeaponSelect_DualM1911"
    BuyPrice=650
-   AmmoPricePerMag=20
+   AmmoPricePerMag=26
    EffectiveRange=50
    Name="Default__KFWeapDef_Colt1911Dual"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

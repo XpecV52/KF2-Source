@@ -15,7 +15,7 @@ defaultproperties
    WeaponClassPath="KFGameContent.KFWeap_Shotgun_Medic"
    ImagePath="ui_weaponselect_tex.UI_WeaponSelect_MedicShotgun"
    BuyPrice=1100
-   AmmoPricePerMag=30
+   AmmoPricePerMag=40
    EffectiveRange=50
    Name="Default__KFWeapDef_MedicShotgun"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

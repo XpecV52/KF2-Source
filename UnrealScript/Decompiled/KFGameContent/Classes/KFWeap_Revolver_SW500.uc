@@ -33,8 +33,8 @@ defaultproperties
     WeaponSelectTexture=Texture2D'WEP_UI_SW_500_TEX.UI_WeaponSelect_SW500'
     DualClass=Class'KFWeap_Revolver_DualSW500'
     MagazineCapacity=5
-    MaxSpareAmmo=75
-    InitialSpareMags=7
+    MaxSpareAmmo=100
+    InitialSpareMags=5
     AmmoPickupScale=2
     IdleFidgetAnims=/* Array type was not detected. */
     FireSightedAnims=/* Array type was not detected. */

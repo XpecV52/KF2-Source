@@ -26,8 +26,7 @@ defaultproperties
     GroupPriority=100
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AA12'
     MagazineCapacity=20
-    MaxSpareAmmo=60
-    InitialSpareMags=1
+    MaxSpareAmmo=80
     FireSightedAnims=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */

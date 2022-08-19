@@ -349,7 +349,7 @@ event PerkLevelUpdated()
 {
     if(MyKFGI != none)
     {
-        MyKFGI.GameConductor.HandlePerkLevelsUpdated();
+        MyKFGI.GameConductor.UpdateAveragePerkRank();
     }
 }
 

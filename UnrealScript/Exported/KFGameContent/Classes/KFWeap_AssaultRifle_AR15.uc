@@ -89,8 +89,8 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=25.000000
    MagazineCapacity(0)=20
-   MaxSpareAmmo(0)=180
-   InitialSpareMags(0)=4
+   MaxSpareAmmo(0)=240
+   InitialSpareMags(0)=6
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_AR15.Play_WEP_SA_AR15_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_AR15.Play_WEP_SA_AR15_Fire_1P')

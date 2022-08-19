@@ -65,6 +65,7 @@ class KFDT_Bludgeon_RailGun extends KFDT_Bludgeon_RifleButt
 
 defaultproperties
 {
+   WeaponDef=Class'KFGame.KFWeapDef_RailGun'
    Name="Default__KFDT_Bludgeon_RailGun"
    ObjectArchetype=KFDT_Bludgeon_RifleButt'kfgamecontent.Default__KFDT_Bludgeon_RifleButt'
 }

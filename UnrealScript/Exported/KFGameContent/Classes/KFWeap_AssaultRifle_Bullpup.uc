@@ -25,7 +25,7 @@ defaultproperties
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Bullpup'
    MagazineCapacity(0)=30
-   MaxSpareAmmo(0)=270
+   MaxSpareAmmo(0)=300
    InitialSpareMags(0)=4
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True

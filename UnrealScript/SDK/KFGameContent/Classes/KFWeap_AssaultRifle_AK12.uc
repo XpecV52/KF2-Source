@@ -238,7 +238,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=30
-	MaxSpareAmmo[0]=210
+	MaxSpareAmmo[0]=330
 	InitialSpareMags[0]=3
 	bCanBeReloaded=true
 	bReloadFromMagazine=true

@@ -35,7 +35,7 @@ defaultproperties
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicAssault'
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
     MagazineCapacity=30
-    MaxSpareAmmo=300
+    MaxSpareAmmo=390
     InitialSpareMags=3
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */

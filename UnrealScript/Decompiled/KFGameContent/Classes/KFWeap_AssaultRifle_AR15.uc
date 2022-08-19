@@ -70,8 +70,8 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=25
     MagazineCapacity=20
-    MaxSpareAmmo=180
-    InitialSpareMags=4
+    MaxSpareAmmo=240
+    InitialSpareMags=6
     FireSightedAnims=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */

@@ -91,8 +91,8 @@ defaultproperties
    WeaponSelectTexture=Texture2D'WEP_UI_Remington_1858_TEX.UI_WeaponSelect_Remington'
    DualClass=Class'kfgamecontent.KFWeap_Revolver_DualRem1858'
    MagazineCapacity(0)=6
-   MaxSpareAmmo(0)=138
-   InitialSpareMags(0)=11
+   MaxSpareAmmo(0)=186
+   InitialSpareMags(0)=15
    AmmoPickupScale(0)=2.000000
    IdleFidgetAnims(3)="Guncheck_v4"
    FireSightedAnims(1)="Shoot_Iron2"

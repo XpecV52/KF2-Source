@@ -26,8 +26,8 @@ defaultproperties
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SCAR'
    MagazineCapacity(0)=20
-   MaxSpareAmmo(0)=280
-   InitialSpareMags(0)=5
+   MaxSpareAmmo(0)=340
+   InitialSpareMags(0)=4
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
    FireSightedAnims(1)="Shoot_Iron2"

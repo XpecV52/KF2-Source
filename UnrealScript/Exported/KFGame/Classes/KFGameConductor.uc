@@ -231,8 +231,8 @@ function ResetWaveStats()
     CurrentWaveZedVisibleAverageLifeSpan=0;
 }
 
-/** Handle someone's perk levels being updated */
-function HandlePerkLevelsUpdated()
+/** Update the average perk rank of the players on the server */
+function UpdateAveragePerkRank()
 {
 	local KFPlayerController KFPC;
 	local KFPerk MyPerk;
@@ -247,6 +247,7 @@ function HandlePerkLevelsUpdated()
 
     		if( MyPerk != none )
     		{
+                //`log(KFPC$" MyPerk = "$MyPerk$" MyPerk.GetLevel() = "$MyPerk.GetLevel());
                 NumHumanTeamPlayers++;
                 TotalPerkRank += Float(MyPerk.GetLevel());
     		}
@@ -258,6 +259,11 @@ function HandlePerkLevelsUpdated()
         AveragePlayerPerkRank = TotalPerkRank/NumHumanTeamPlayers;
         //`log(self@GetFuncName()$" AveragePlayerPerkRank = "$AveragePlayerPerkRank$" TotalPerkRank = "$TotalPerkRank$" NumHumanTeamPlayers = "$NumHumanTeamPlayers);
 	}
+	else
+	{
+        AveragePlayerPerkRank = 0;
+        //`log(self@GetFuncName()$" AveragePlayerPerkRank = "$AveragePlayerPerkRank$" TotalPerkRank = "$TotalPerkRank$" NumHumanTeamPlayers = "$NumHumanTeamPlayers);
+	}
 
 }
 
@@ -265,7 +271,7 @@ function HandlePerkLevelsUpdated()
 function HandlePlayerChangedTeam()
 {
     // Perk levels are now valid handle that
-    HandlePerkLevelsUpdated();
+    UpdateAveragePerkRank();
 }
 
 /** Called once per second to evaluate changes to gameplay */
@@ -292,6 +298,8 @@ function UpdatePlayersStatus()
 	local int i;
 	local KFPlayerReplicationInfo KFPRI;
 	local float NumHumanPlayers;
+
+    UpdateAveragePerkRank();
 
 	foreach WorldInfo.AllControllers( class'Controller', C )
 	{
@@ -734,7 +742,7 @@ function EvaluateAIMovementSpeedModification()
             MyKFGRI.ZedMovementSpeedModifierTracker[i] = MyKFGRI.ZedMovementSpeedModifierTracker[i+1];
     	}
 
-        MyKFGRI.ZedMovementSpeedModifierTracker[ArrayCount(MyKFGRI.ZedMovementSpeedModifierTracker) -1] = CurrentAIMovementSpeedMod/BaseGroundSpeedMod;
+        MyKFGRI.ZedMovementSpeedModifierTracker[ArrayCount(MyKFGRI.ZedMovementSpeedModifierTracker) -1] = CurrentAIMovementSpeedMod;
     }
 
     // Adjust the speed of the currently living pawns
@@ -743,6 +751,7 @@ function EvaluateAIMovementSpeedModification()
         if( KFPM.Health > 0 )
         {
             KFPM.AdjustMovementSpeed(CurrentAIMovementSpeedMod);
+            if (bLogGameConductor) LogInternal("Adjust KFPM.default.GroundSpeed = "$KFPM.default.GroundSpeed$" CurrentAIMovementSpeedMod = "$CurrentAIMovementSpeedMod$" percent of default = "$(KFPM.default.GroundSpeed * CurrentAIMovementSpeedMod)/KFPM.default.GroundSpeed);
         }
 	}
 

@@ -320,7 +320,9 @@ var(Grab) bool bWeakZedGrab;
 var const bool bDoFloorConformBlend;
 var const bool bUseQuadrupedFloorConform;
 /** if TRUE, disable mesh offset steps smoothing */
-var() bool bDisableMeshSmoothing;
+var() protected bool bDisableMeshSmoothing;
+/** if TRUE, disable mesh replicated rotation smoothing */
+var() protected bool bDisableMeshRotationSmoothing;
 var globalconfig bool bAllowFootstepSounds;
 var const bool bUseHiddenSpeed;
 var bool bCanUseHiddenSpeed;
@@ -457,6 +459,9 @@ var float MTO_SpecialMoveSpeed;
 var const Vector MTO_IKFloorConform;
 var const Vector MeshFloorConformNormal;
 var const Rotator FloorConformLastPawnRotation;
+var const float LastPhysSmoothDeltaZ;
+var const transient float MeshYawOffset;
+var float MeshRotSmoothingInterpSpeed;
 var repnotify AkEvent AmbientSound;
 var protected export editinline AkComponent AmbientAkComponent;
 var repnotify AkEvent WeaponAmbientSound;
@@ -3437,6 +3442,7 @@ defaultproperties
     object end
     // Reference: KFSpecialMoveHandler'Default__KFPawn.SpecialMoveHandler'
     SpecialMoveHandler=SpecialMoveHandler
+    MeshRotSmoothingInterpSpeed=30
     begin object name=AmbientAkSoundComponent_1 class=AkComponent
         BoneName=Dummy
         bStopWhenOwnerDestroyed=true

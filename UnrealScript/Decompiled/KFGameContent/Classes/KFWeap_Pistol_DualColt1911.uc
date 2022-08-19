@@ -32,7 +32,7 @@ defaultproperties
     WeaponSelectTexture=Texture2D'WEP_UI_Dual_M1911_TEX.UI_WeaponSelect_DualM1911'
     MagazineCapacity=16
     MaxSpareAmmo=128
-    InitialSpareMags=4
+    InitialSpareMags=3
     BonesToLockOnEmpty=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */

@@ -28,7 +28,7 @@ defaultproperties
     DualClass=Class'KFWeap_Pistol_DualColt1911'
     MagazineCapacity=8
     MaxSpareAmmo=136
-    InitialSpareMags=8
+    InitialSpareMags=7
     AmmoPickupScale=2
     IdleFidgetAnims=/* Array type was not detected. */
     FireSightedAnims=/* Array type was not detected. */

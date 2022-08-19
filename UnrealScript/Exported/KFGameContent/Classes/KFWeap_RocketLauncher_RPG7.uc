@@ -120,8 +120,8 @@ defaultproperties
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'WEP_UI_RPG7_TEX.UI_WeaponSelect_RPG7'
    MagazineCapacity(0)=1
-   MaxSpareAmmo(0)=11
-   InitialSpareMags(0)=5
+   MaxSpareAmmo(0)=15
+   InitialSpareMags(0)=4
    AmmoPickupScale(0)=2.000000
    BonesToLockOnEmpty(0)="RW_Grenade1"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_Fire_1P')

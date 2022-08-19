@@ -157,7 +157,7 @@ simulated function CreateExhaustFx()
 event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
 {
     super.TakeDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
-    if((bCanRage && !bPlayedDeath) && GetHealthPercentage() < RageHealthThreshold)
+    if((bCanRage && !bPlayedDeath) && (GetHealthPercentage() < RageHealthThreshold) || GetHealthPercentage() < RageHealthThreshold)
     {
         bIsEnraged = true;
     }

@@ -33,6 +33,8 @@ function UpdateOverallStatus()
 {
     local int i;
 
+    UpdateAveragePerkRank();
+
     // Adjust the zed damage and health to balance out player perk rank
     if( !bBypassGameConductor )
     {
@@ -79,8 +81,8 @@ defaultproperties
 {
     TargetPerkRankRange(0)=(X=0,Y=25) // Normal, should result in a CurrentTargetPerkRank of 12.5, right in the middle
 
-    HumanRankZedHealthScaleCurve=(Points=((InVal=0.f,OutVal=0.5f),(InVal=12.f, OutVal=0.7),(InVal=25.f, OutVal=1.18f)))// level 0  0.525
-    HumanRankZedDamageScaleCurve=(Points=((InVal=0.f,OutVal=0.35f),(InVal=12.f, OutVal=0.5),(InVal=25.f, OutVal=0.75f)))// level 25 0.75
+    HumanRankZedHealthScaleCurve=(Points=((InVal=0.f,OutVal=0.35f),(InVal=6.f,OutVal=0.5f),(InVal=12.f, OutVal=0.7),(InVal=24.f, OutVal=1.35f)))
+    HumanRankZedDamageScaleCurve=(Points=((InVal=0.f,OutVal=0.25f),(InVal=6.f,OutVal=0.35f),(InVal=12.f, OutVal=0.5),(InVal=24.f, OutVal=0.85f)))
 
     CurrentSpawnRateModification=1.3 // Slow down all spawning in versus globally
 }

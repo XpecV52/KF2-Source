@@ -12,10 +12,10 @@ class KFWeap_Rifle_Winchester1894 extends KFWeap_RifleBase;
 defaultproperties
 {
 	// Inventory / Grouping
-	InventorySize=6
+	InventorySize=5
 	GroupPriority=25
 	WeaponSelectTexture=Texture2D'wep_ui_winchester_tex.UI_WeaponSelect_Winchester'
-   	AssociatedPerkClass=none//AssociatedPerkClass=class'KFPerk_Sharpshooter'
+   	AssociatedPerkClass=class'KFPerk_Sharpshooter'
 
     // FOV
     MeshFOV=65
@@ -39,7 +39,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=10
-	MaxSpareAmmo[0]=50
+	MaxSpareAmmo[0]=60
 	InitialSpareMags[0]=2
 	bCanBeReloaded=true
 	bReloadFromMagazine=false
@@ -94,7 +94,7 @@ defaultproperties
 
 	// Attachments
 	bHasIronSights=true
-	bHasFlashlight=false	
+	bHasFlashlight=false
 }
 
 

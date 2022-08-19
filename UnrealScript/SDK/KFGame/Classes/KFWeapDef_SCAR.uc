@@ -15,7 +15,7 @@ DefaultProperties
 	WeaponClassPath="KFGameContent.KFWeap_AssaultRifle_SCAR"
 
 	BuyPrice=1500
-	AmmoPricePerMag=30
+	AmmoPricePerMag=28
 	ImagePath="ui_weaponselect_tex.UI_WeaponSelect_SCAR"
 
 	EffectiveRange=70

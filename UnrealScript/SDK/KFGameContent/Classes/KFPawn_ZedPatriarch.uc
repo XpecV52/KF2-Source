@@ -513,7 +513,7 @@ function FleeAndHealBump()
     local float ClosestDist;
     local KFAIController_ZedPatriarch KFAICP;
 
-    if( MyKFAIC == none || MyKFAIC.Enemy == none || IsDoingSpecialMove(SM_Heal) )
+    if( MyKFAIC == none || MyKFAIC.Enemy == none || MyKFAIC.RouteGoal == none || IsDoingSpecialMove(SM_Heal) )
     {
         return;
     }
@@ -666,8 +666,8 @@ simulated event Vector GetWeaponStartTraceLocation(optional Weapon CurrentWeapon
 /** Overloaded to support spray fire for minigun */
 simulated function Rotator GetAdjustedAimFor( Weapon W, vector StartFireLoc )
 {
-	local vector SocketLoc;
-	local rotator SocketRot;
+	local vector SocketLoc, EndTrace;
+	local rotator ActualAimRot, SocketRot;
 
 	// If spraying, use the rotation of the muzzle flash bone
 	if( bSprayingFire )
@@ -676,8 +676,18 @@ simulated function Rotator GetAdjustedAimFor( Weapon W, vector StartFireLoc )
 		return SocketRot;
 	}
 
-	// Otherwise, give a chance for controller to adjust this Aim Rotation
-	return super.GetAdjustedAimFor( W, StartFireLoc );
+	ActualAimRot = super.GetAdjustedAimFor( W, StartFireLoc );
+	EndTrace = StartFireLoc + vector(ActualAimRot) * W.GetTraceRange();
+
+	Mesh.GetSocketWorldLocationAndRotation( 'LeftMuzzleFlash', SocketLoc, SocketRot );
+
+	// If the rotation of the barrel is not close enough to believably make the shot, use its rotation instead
+	if( vector(SocketRot) dot Normal(EndTrace - StartFireLoc) < 0.96f )
+	{
+		return SocketRot;
+	}
+
+	return ActualAimRot;
 }
 
 /** Retrieves the projectile class used for the missile attack. Called from SpecialMove */
@@ -1934,7 +1944,7 @@ defaultproperties
     bCanCloak=true
 	bCanGrabAttack=true
 	bEnableAimOffset=true
-	bUseServerSideGunTracking=false
+	bUseServerSideGunTracking=true
 
 	ActiveSyringe=-1
 	CurrentSyringeMeshNum=-1

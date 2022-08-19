@@ -13,6 +13,6 @@ defaultproperties
     WeaponClassPath="KFGameContent.KFWeap_Shotgun_MB500"
     ImagePath="ui_weaponselect_tex.UI_WeaponSelect_Mossberg"
     BuyPrice=200
-    AmmoPricePerMag=40
+    AmmoPricePerMag=32
     EffectiveRange=20
 }

@@ -2724,10 +2724,16 @@ exec function StartAltFire(optional byte FireModeNum)
 
 function OpenTraderMenu()
 {
+    local KFInventoryManager KFIM;
+
     if((Role == ROLE_Authority) && Pawn != none)
     {
-        KFInventoryManager(Pawn.InvManager).bServerTraderMenuOpen = true;
-        ClientOpenTraderMenu();
+        KFIM = KFInventoryManager(Pawn.InvManager);
+        if((KFIM != none) && !KFIM.bServerTraderMenuOpen)
+        {
+            KFIM.bServerTraderMenuOpen = true;
+            ClientOpenTraderMenu();
+        }
     }
 }
 
@@ -2745,6 +2751,10 @@ reliable client simulated function ClientOpenTraderMenu()
 
 function CloseTraderMenu()
 {
+    if(MyGFxManager != none)
+    {
+        MyGFxManager.CloseTraderMenu();
+    }
     if(MyGFxManager != none)
     {
         MyGFxManager.CloseTraderMenu();

@@ -35,6 +35,7 @@ var(Adhesion) config bool bTargetAdhesionEnabled;
 var(AutoTarget) config bool bAutoTargetEnabled;
 /** @name  Force Feedback */
 var(ForceFeedback) config bool bForceFeedbackEnabled;
+var bool bVersusInput;
 var transient float PressedJumpTime;
 var transient float RawJoyMagnitude;
 var transient float RawJoyLookMagnitude;
@@ -476,6 +477,11 @@ function bool ShouldActivateGamepadSprint()
 
 exec function Jump()
 {
+    if(bVersusInput)
+    {
+        JumpVersus();
+        return;
+    }
     Outer.bDuck = 0;
     PressedJumpTime = Outer.WorldInfo.TimeSeconds;
     super(PlayerInput).Jump();
@@ -550,6 +556,10 @@ simulated exec function IronSights(optional bool bHoldButtonMode)
 {
     local KFWeapon KFW;
 
+    if(bVersusInput && IronSightsVersus(bHoldButtonMode))
+    {
+        return;
+    }
     if(bHoldButtonMode)
     {
         bIronsightsHeld = true;
@@ -573,6 +583,10 @@ simulated exec function IronSightsRelease(optional bool bHoldButtonMode)
 {
     local KFWeapon KFW;
 
+    if(bVersusInput && IronSightsReleaseVersus(bHoldButtonMode))
+    {
+        return;
+    }
     if(bHoldButtonMode)
     {
         bIronsightsHeld = false;
@@ -727,6 +741,10 @@ exec function Grenade()
 {
     if(Outer.Pawn != none)
     {
+        if(bVersusInput && GrenadeVersus())
+        {
+            return;
+        }
         Outer.Pawn.StartFire(4);
     }
 }
@@ -735,6 +753,11 @@ exec function GrenadeRelease()
 {
     if(Outer.Pawn != none)
     {
+        if((Outer.Pawn.Weapon == none) || Outer.Pawn.Weapon.ShouldWeaponIgnoreStartFire())
+        {
+            Outer.Pawn.StopFire(6);
+            return;
+        }
         Outer.Pawn.StopFire(4);
     }
 }
@@ -769,6 +792,10 @@ exec function SwitchFire()
 
     if(Outer.Pawn != none)
     {
+        if(bVersusInput && SwitchFireVersus())
+        {
+            return;
+        }
         KFW = KFWeapon(Outer.Pawn.Weapon);
         if(KFW != none)
         {
@@ -783,6 +810,10 @@ exec function SwitchFireRelease()
 
     if(Outer.Pawn != none)
     {
+        if(bVersusInput && SwitchFireReleaseVersus())
+        {
+            return;
+        }
         KFW = KFWeapon(Outer.Pawn.Weapon);
         if(KFW != none)
         {
@@ -991,6 +1022,10 @@ exec function QuickHeal()
     {
         return;
     }
+    if(bVersusInput && QuickHealVersus())
+    {
+        return;
+    }
     KFW = KFWeapon(Outer.Pawn.Weapon);
     if((KFW != none) && !KFW.CanSwitchWeapons())
     {
@@ -1091,6 +1126,10 @@ exec function GamepadDpadUp()
 
 exec function ShowVoiceComms()
 {
+    if(bVersusInput && Outer.PlayerReplicationInfo.GetTeamNum() == 255)
+    {
+        return;
+    }
     if((Outer.MyGFxHUD != none) && Outer.MyGFxHUD.VoiceCommsWidget != none)
     {
         Outer.MyGFxHUD.ShowVoiceComms(true);
@@ -1820,6 +1859,91 @@ function bool IsAimAssistAutoTargetEnabled()
     return bAimAssistEnabled && bAutoTargetEnabled;
 }
 
+function JumpVersus()
+{
+    local KFPawn_Monster KFPM;
+
+    if(Outer.WorldInfo.Pauser == Outer.PlayerReplicationInfo)
+    {
+        Outer.SetPause(false);        
+    }
+    else
+    {
+        if(Outer.Pawn != none)
+        {
+            KFPM = KFPawn_Monster(Outer.Pawn);
+            if(KFPM != none)
+            {
+                if(KFPM.GetSpecialMoveCooldownTimeRemainingByHandle(12) > 0)
+                {
+                    return;
+                }
+            }
+        }
+        Outer.bPressedJump = true;
+    }
+}
+
+simulated function bool IronSightsVersus(optional bool bHoldButtonMode)
+{
+    if((Outer.Pawn != none) && (Outer.Pawn.Weapon == none) || Outer.Pawn.Weapon.ShouldWeaponIgnoreStartFire())
+    {
+        Outer.Pawn.StartFire(1);
+        return true;
+    }
+    return false;
+}
+
+function bool IronSightsReleaseVersus(optional bool bHoldButtonMode)
+{
+    if((Outer.Pawn != none) && (Outer.Pawn.Weapon == none) || Outer.Pawn.Weapon.ShouldWeaponIgnoreStartFire())
+    {
+        Outer.Pawn.StopFire(1);
+        return true;
+    }
+    return false;
+}
+
+function bool GrenadeVersus()
+{
+    if(((Outer.Pawn != none) && Outer.Pawn.Weapon == none) || Outer.Pawn.Weapon.ShouldWeaponIgnoreStartFire())
+    {
+        Outer.Pawn.StartFire(6);
+        return true;
+    }
+    return false;
+}
+
+function bool SwitchFireVersus()
+{
+    if(((Outer.Pawn != none) && Outer.Pawn.Weapon == none) || Outer.Pawn.Weapon.ShouldWeaponIgnoreStartFire())
+    {
+        Outer.Pawn.StartFire(4);
+        return true;
+    }
+    return false;
+}
+
+function bool SwitchFireReleaseVersus()
+{
+    if(((Outer.Pawn != none) && Outer.Pawn.Weapon == none) || Outer.Pawn.Weapon.ShouldWeaponIgnoreStartFire())
+    {
+        Outer.Pawn.StopFire(4);
+        return true;
+    }
+    return false;
+}
+
+function bool QuickHealVersus()
+{
+    if((Outer.Pawn.Weapon == none) || Outer.Pawn.Weapon.ShouldWeaponIgnoreStartFire())
+    {
+        Outer.Pawn.StartFire(5);
+        return true;
+    }
+    return false;
+}
+
 exec function SuppressTakeDamage(optional name ClassName)
 {
     ClassName = ((ClassName != 'None') ? ClassName : 'KFPawn');    
@@ -1878,14 +2002,14 @@ exec function UnsuppressWeaponAttach(optional name ClassName)
     Outer.ConsoleCommand("SETNOPEC KFWeaponAttachment bDebug true");
 }
 
-exec function SuppressIncapacitation(optional name ClassName)
+exec function SuppressAffliction(optional name ClassName)
 {
-    Outer.ConsoleCommand("SETNOPEC KFPawnAfflictions bLog false");
+    Outer.ConsoleCommand("SETNOPEC KFAfflictionBase bDebug false");
 }
 
-exec function UnsuppressIncapacitation(optional name ClassName)
+exec function UnsuppressAffliction(optional name ClassName)
 {
-    Outer.ConsoleCommand("SETNOPEC KFPawnAfflictions bLog true");
+    Outer.ConsoleCommand("SETNOPEC KFAfflictionBase bDebug true");
 }
 
 exec function SuppressWeaponAnim(optional name ClassName)

@@ -24,8 +24,8 @@ defaultproperties
     GroupPriority=75
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Benelli'
     MagazineCapacity=8
-    MaxSpareAmmo=40
-    InitialSpareMags=2
+    MaxSpareAmmo=64
+    InitialSpareMags=3
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=15,Y=8.5,Z=-3.5)

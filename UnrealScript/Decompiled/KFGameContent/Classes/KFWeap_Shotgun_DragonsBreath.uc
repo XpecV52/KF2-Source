@@ -26,7 +26,7 @@ defaultproperties
     GroupPriority=50
     WeaponSelectTexture=Texture2D'WEP_UI_DragonsBreath.UI_WeaponSelect_DragonsBreath'
     MagazineCapacity=6
-    MaxSpareAmmo=40
+    MaxSpareAmmo=45
     InitialSpareMags=3
     BonesToLockOnEmpty=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */

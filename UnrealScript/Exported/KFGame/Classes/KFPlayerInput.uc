@@ -205,6 +205,11 @@ var(ForceFeedback) config bool bForceFeedbackEnabled;
 ********************************************************************************************* */
 var const float DoubleTapDelay;
 
+/*********************************************************************************************
+* @name	Game class
+********************************************************************************************* */
+var bool bVersusInput;
+
 // (cpptext)
 // (cpptext)
 // (cpptext)
@@ -239,7 +244,6 @@ native function string GetBindDisplayName(out KeyBind MyKeyBind);
 
 /** Used to display in-game controls */
 native function string GetGameBindableAction(const out Name Key);
-
 
 /*********************************************************************************************
 * @name	Debugging
@@ -300,7 +304,6 @@ function UpdatePushToTalk(bool bValue)
 		SaveConfig();
 	}
 }
-
 
 /*********************************************************************************************
 * @name	Aiming/Mouse Sensitivity
@@ -680,6 +683,12 @@ function bool ShouldActivateGamepadSprint()
 /** Abort/Cancel crouch when jumping */
 exec function Jump()
 {
+	if( bVersusInput )
+	{
+		JumpVersus();
+		return;
+	}
+
 	bDuck = 0;
 	PressedJumpTime = WorldInfo.TimeSeconds;
 	Super.Jump();
@@ -778,6 +787,11 @@ simulated exec function IronSights(optional bool bHoldButtonMode)
 {
 	local KFWeapon KFW;
 
+	if( bVersusInput && IronSightsVersus( bHoldButtonMode ) )
+	{ 
+		return;
+	}
+
 	if ( bHoldButtonMode )
 	{
 		bIronsightsHeld = true;
@@ -805,6 +819,11 @@ simulated exec function IronSights(optional bool bHoldButtonMode)
 simulated exec function IronSightsRelease(optional bool bHoldButtonMode)
 {
 	local KFWeapon KFW;
+
+	if( bVersusInput && IronSightsReleaseVersus( bHoldButtonMode ) )
+	{
+		return;
+	}
 
 	if ( bHoldButtonMode )
 	{
@@ -1000,6 +1019,11 @@ exec function Grenade()
 {
 	if ( Pawn != None )
 	{
+		if( bVersusInput && GrenadeVersus() )
+		{
+			return;
+		}
+		
 		Pawn.StartFire(4);
 	}
 }
@@ -1009,6 +1033,12 @@ exec function GrenadeRelease()
 {
 	if ( Pawn != None )
 	{
+		if( Pawn.Weapon == none || Pawn.Weapon.ShouldWeaponIgnoreStartFire() )
+		{
+			Pawn.StopFire(6);
+			return;
+		}
+
 		Pawn.StopFire(4);
 	}
 }
@@ -1046,6 +1076,11 @@ exec function SwitchFire()
 
 	if( Pawn != none )
 	{
+		if( bVersusInput && SwitchFireVersus() )
+		{
+			return;
+		}
+
 		KFW = KFWeapon(Pawn.Weapon);
 		if ( KFW != None )
 		{
@@ -1064,6 +1099,11 @@ exec function SwitchFireRelease()
 
 	if( Pawn != none )
 	{
+		if( bVersusInput && SwitchFireReleaseVersus() )
+		{
+			return;
+		}
+
 		KFW = KFWeapon(Pawn.Weapon);
 		if ( KFW != None )
 		{
@@ -1344,6 +1384,11 @@ exec function QuickHeal()
 		return;
 	}
 
+	if( bVersusInput && QuickHealVersus() )
+	{
+		return;
+	}
+
 	// Don't quick heal if the current weapon prevents it
     KFW = KFWeapon(Pawn.Weapon);
 	if ( KFW != None && !KFW.CanSwitchWeapons())
@@ -1459,7 +1504,12 @@ exec function GamepadDpadUp()
 
 exec function ShowVoiceComms()
 {
-	if(MyGFxHUD != none && MyGFxHUD.VoiceCommsWidget != none)
+	if( bVersusInput && PlayerReplicationInfo.GetTeamNum() == 255 )
+	{
+		return;
+	}
+
+	if( MyGFxHUD != none && MyGFxHUD.VoiceCommsWidget != none )
 	{
 		MyGFxHUD.ShowVoiceComms(true);
 	}
@@ -2400,6 +2450,98 @@ function bool IsAimAssistAutoTargetEnabled()
 }
 
 /*********************************************************************************************
+* Versus
+********************************************************************************************* */
+function JumpVersus()
+{
+	local KFPawn_Monster KFPM;
+
+	if ( WorldInfo.Pauser == PlayerReplicationInfo )
+	{
+		SetPause( False );
+	}
+	else
+	{
+		if( Pawn != none )
+		{
+			KFPM = KFPawn_Monster(Pawn);
+			if( KFPM != none )
+			{
+				if( KFPM.GetSpecialMoveCooldownTimeRemainingByHandle(SM_Jump) > 0.f )
+				{
+					return;
+				}
+			}
+		}
+
+		bPressedJump = true;
+	}
+}
+
+simulated function bool IronSightsVersus( optional bool bHoldButtonMode )
+{
+	// For pawns without weapons let KFPawn_Monster::StartFire() have a chance to perform
+	// an alt-fire for zeds.  Since PendingFire is not set no StopFire() is needed.
+	if( Pawn != none && (Pawn.Weapon == none || Pawn.Weapon.ShouldWeaponIgnoreStartFire()) )
+	{
+		Pawn.StartFire(1);
+		return true;
+	}
+	return false;
+}
+
+function bool IronSightsReleaseVersus( optional bool bHoldButtonMode )
+{
+	if( Pawn != none && (Pawn.Weapon == none || Pawn.Weapon.ShouldWeaponIgnoreStartFire()) )
+	{
+		Pawn.StopFire(1);
+		return true;
+	}
+	return false;
+}
+
+function bool GrenadeVersus()
+{
+	if( Pawn != none && Pawn.Weapon == none || Pawn.Weapon.ShouldWeaponIgnoreStartFire() )
+	{
+		Pawn.StartFire(6);
+		return true;
+	}
+
+	return false;
+}
+
+function bool SwitchFireVersus()
+{
+	if( Pawn != none && Pawn.Weapon == none || Pawn.Weapon.ShouldWeaponIgnoreStartFire() )
+	{
+		Pawn.StartFire(4);
+		return true;
+	}
+	return false;
+}
+
+function bool SwitchFireReleaseVersus()
+{
+	if( Pawn != none && Pawn.Weapon == none || Pawn.Weapon.ShouldWeaponIgnoreStartFire() )
+	{
+		Pawn.StopFire(4);
+		return true;
+	}
+	return false;
+}
+
+function bool QuickHealVersus()
+{
+	if( Pawn.Weapon == none || Pawn.Weapon.ShouldWeaponIgnoreStartFire() )
+	{
+		Pawn.StartFire(5);
+		return true;
+	}
+	return false;
+}
+
+/*********************************************************************************************
 * Debugging - These are not cheats!  Some commands, such as SETNOPEC are disabled in ShippingPC
 *			  We use 'config' vars for log groups so they can always be set from ini.
 ********************************************************************************************* */
@@ -2462,14 +2604,14 @@ exec function UnsuppressWeaponAttach(optional name ClassName)
 	ConsoleCommand("SETNOPEC KFWeaponAttachment bDebug true");
 }
 
-exec function SuppressIncapacitation(optional name ClassName)
+exec function SuppressAffliction(optional name ClassName)
 {
-	ConsoleCommand("SETNOPEC KFPawnAfflictions bLog false");
+	ConsoleCommand("SETNOPEC KFAfflictionBase bDebug false");
 }
 
-exec function UnsuppressIncapacitation(optional name ClassName)
+exec function UnsuppressAffliction(optional name ClassName)
 {
-	ConsoleCommand("SETNOPEC KFPawnAfflictions bLog true");
+	ConsoleCommand("SETNOPEC KFAfflictionBase bDebug true");
 }
 
 exec function SuppressWeaponAnim(optional name ClassName)

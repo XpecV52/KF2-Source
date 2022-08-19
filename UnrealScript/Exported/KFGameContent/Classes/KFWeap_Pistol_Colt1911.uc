@@ -30,7 +30,7 @@ defaultproperties
    DualClass=Class'kfgamecontent.KFWeap_Pistol_DualColt1911'
    MagazineCapacity(0)=8
    MaxSpareAmmo(0)=136
-   InitialSpareMags(0)=8
+   InitialSpareMags(0)=7
    AmmoPickupScale(0)=2.000000
    IdleFidgetAnims(3)="Guncheck_v4"
    IdleFidgetAnims(4)="Guncheck_v5"

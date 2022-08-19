@@ -106,8 +106,8 @@ defaultproperties
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicShotgun'
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
     MagazineCapacity=10
-    MaxSpareAmmo=50
-    InitialSpareMags=2
+    MaxSpareAmmo=80
+    InitialSpareMags=3
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=14,Y=6.5,Z=-3.5)

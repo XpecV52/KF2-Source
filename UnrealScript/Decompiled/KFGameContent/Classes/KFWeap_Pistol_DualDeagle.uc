@@ -30,8 +30,8 @@ defaultproperties
     GroupPriority=45
     WeaponSelectTexture=Texture2D'WEP_UI_Dual_Deagle_TEX.UI_WeaponSelect_DualDeagle'
     MagazineCapacity=14
-    MaxSpareAmmo=84
-    InitialSpareMags=3
+    MaxSpareAmmo=98
+    InitialSpareMags=2
     BonesToLockOnEmpty=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */

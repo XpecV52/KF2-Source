@@ -866,6 +866,7 @@ function SetMonsterDefaults(KFPawn_Monster P)
     P.SprintSpeed = P.default.SprintSpeed * GroundSpeedMod;
     P.NormalGroundSpeed = P.GroundSpeed;
     P.NormalSprintSpeed = P.SprintSpeed;
+    P.RandomGroundSpeedModifier = RandomSpeedMod;
     P.Health = int(float(P.default.Health) * HealthMod);
     if(P.default.HealthMax == 0)
     {

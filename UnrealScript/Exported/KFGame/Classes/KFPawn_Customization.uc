@@ -301,6 +301,7 @@ defaultproperties
    ThirdPersonHeadMeshComponent=ThirdPersonHead0
    bEnableAimOffset=False
    bDisableTurnInPlace=True
+   bDisableMeshRotationSmoothing=True
    Begin Object Class=KFPawnAfflictions Name=Afflictions_0 Archetype=KFPawnAfflictions'KFGame.Default__KFPawn_Human:Afflictions_0'
       bNoBurnedMatBeforeDeath=True
       FireFullyCharredDuration=2.500000

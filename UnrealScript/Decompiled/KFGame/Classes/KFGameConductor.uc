@@ -138,7 +138,7 @@ function ResetWaveStats()
     CurrentWaveZedVisibleAverageLifeSpan = 0;
 }
 
-function HandlePerkLevelsUpdated()
+function UpdateAveragePerkRank()
 {
     local KFPlayerController KFPC;
     local KFPerk MyPerk;
@@ -159,13 +159,17 @@ function HandlePerkLevelsUpdated()
     }    
     if(NumHumanTeamPlayers > 0)
     {
-        AveragePlayerPerkRank = TotalPerkRank / float(NumHumanTeamPlayers);
+        AveragePlayerPerkRank = TotalPerkRank / float(NumHumanTeamPlayers);        
+    }
+    else
+    {
+        AveragePlayerPerkRank = 0;
     }
 }
 
 function HandlePlayerChangedTeam()
 {
-    HandlePerkLevelsUpdated();
+    UpdateAveragePerkRank();
 }
 
 function TimerUpdate()
@@ -189,6 +193,7 @@ function UpdatePlayersStatus()
     local KFPlayerReplicationInfo KFPRI;
     local float NumHumanPlayers;
 
+    UpdateAveragePerkRank();
     foreach Outer.WorldInfo.AllControllers(Class'Controller', C)
     {
         if(C.GetTeamNum() == 0)
@@ -238,7 +243,7 @@ function UpdatePlayersStatus()
     }
     AggregatePlayersStatus = (PlayersHealthStatus * 0.5) + (PlayersAmmoStatus * 0.5);
     I = 0;
-    J0x3A4:
+    J0x3AE:
 
     if(I < (10 - 1))
     {
@@ -246,7 +251,7 @@ function UpdatePlayersStatus()
         Outer.MyKFGRI.PlayersAmmoStatusTracker[I] = Outer.MyKFGRI.PlayersAmmoStatusTracker[I + 1];
         Outer.MyKFGRI.AggregatePlayersStatusTracker[I] = Outer.MyKFGRI.AggregatePlayersStatusTracker[I + 1];
         ++ I;
-        goto J0x3A4;
+        goto J0x3AE;
     }
     Outer.MyKFGRI.PlayersHealthStatusTracker[10 - 1] = PlayersHealthStatus;
     Outer.MyKFGRI.PlayersAmmoStatusTracker[10 - 1] = PlayersAmmoStatus;
@@ -618,13 +623,17 @@ function EvaluateAIMovementSpeedModification()
             ++ I;
             goto J0x53E;
         }
-        Outer.MyKFGRI.ZedMovementSpeedModifierTracker[10 - 1] = CurrentAIMovementSpeedMod / BaseGroundSpeedMod;
+        Outer.MyKFGRI.ZedMovementSpeedModifierTracker[10 - 1] = CurrentAIMovementSpeedMod;
     }
     foreach Outer.WorldInfo.AllPawns(Class'KFPawn_Monster', KFPM)
     {
         if(KFPM.Health > 0)
         {
             KFPM.AdjustMovementSpeed(CurrentAIMovementSpeedMod);
+            if(bLogGameConductor)
+            {
+                LogInternal((((("Adjust KFPM.default.GroundSpeed = " $ string(KFPM.default.GroundSpeed)) $ " CurrentAIMovementSpeedMod = ") $ string(CurrentAIMovementSpeedMod)) $ " percent of default = ") $ string((KFPM.default.GroundSpeed * CurrentAIMovementSpeedMod) / KFPM.default.GroundSpeed));
+            }
         }        
     }    
     if(bLogGameConductor)

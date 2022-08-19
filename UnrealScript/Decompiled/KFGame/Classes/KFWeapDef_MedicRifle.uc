@@ -13,6 +13,6 @@ defaultproperties
     WeaponClassPath="KFGameContent.KFWeap_AssaultRifle_Medic"
     ImagePath="ui_weaponselect_tex.UI_WeaponSelect_MedicAssault"
     BuyPrice=1500
-    AmmoPricePerMag=20
+    AmmoPricePerMag=40
     EffectiveRange=70
 }

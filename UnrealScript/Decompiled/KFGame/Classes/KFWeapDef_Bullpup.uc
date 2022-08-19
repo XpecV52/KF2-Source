@@ -13,6 +13,6 @@ defaultproperties
     WeaponClassPath="KFGameContent.KFWeap_AssaultRifle_Bullpup"
     ImagePath="ui_weaponselect_tex.UI_WeaponSelect_Bullpup"
     BuyPrice=650
-    AmmoPricePerMag=20
+    AmmoPricePerMag=24
     EffectiveRange=68
 }

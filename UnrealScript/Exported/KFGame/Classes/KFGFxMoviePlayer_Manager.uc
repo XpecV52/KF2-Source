@@ -562,12 +562,6 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 		CurrentMenu = none;
 	}
 
-
-	bCanCloseMenu = false;
-	TimerHelper.ClearTimer(nameof(AllowCloseMenu), self);
-	TimerHelper.SetTimer( 0.5, false, nameof(AllowCloseMenu), self );
-	
-
 	if (NewMenuIndex != UI_Trader)
 	{
 		CurrentMenuIndex = NewMenuIndex;
@@ -580,7 +574,11 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 		if( PC != none && PC.PlayerInput != none )
 		{
 			PC.PlayerInput.ResetInput();
-		}		
+		}
+
+		// The trader menu is not opened through ToggleMenus, set the timer to mark when the menu is completely open
+		bCanCloseMenu = false;
+		TimerHelper.SetTimer( 0.5, false, nameof(AllowCloseMenu), self );
 	}
 
 	if(CurrentMenuIndex == UI_Start)
@@ -690,7 +688,21 @@ event OnClose()
 event OnCleanup()
 {
 	Super.OnCleanup();
+	
+	ClearAllInventoryReadCompleteDelegates();
 	GetGameViewportClient().HandleInputAxis = none;
+}
+
+function ClearAllInventoryReadCompleteDelegates()
+{
+	local OnlineSubsystem OnlineSub;
+	local int i;
+
+	OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
+	for (i = 0; i < OnlineSub.ReadInventoryCompleteDelegates.length; i++)
+	{
+		OnlineSub.ReadInventoryCompleteDelegates.Remove(i,1);
+	}
 }
 
 /** Opens / Closes the menus on input */
@@ -698,24 +710,20 @@ function bool ToggleMenus()
 {
 	if (!bMenusOpen || HUD.bShowHUD)
 	{
-		if(!bMenusOpen)
-		{
-			TimerHelper.SetTimer( 0.5, false, nameof(AllowCloseMenu), self );
-		}
-
 		ManagerObject.SetBool("bOpenedInGame",true);
 		if (CurrentMenuIndex >= MenuSWFPaths.length)
-		{
+	{
 			LaunchMenus();
-		}
+	}
 		else
-		{
+	{
 			OpenMenu(UI_Perks);
 			UpdateMenuBar();
-		}
+	}
 
 		// set the timer to mark when the menu is completely open and we can close the menu down
 		bCanCloseMenu = false;
+		TimerHelper.SetTimer( 0.5, false, nameof(AllowCloseMenu), self );
 		TimerHelper.SetTimer( 0.15, false, nameof(PlayOpeningSound), self );//Delay due to pause
 	}
 	else if(bCanCloseMenu) //check to make sure

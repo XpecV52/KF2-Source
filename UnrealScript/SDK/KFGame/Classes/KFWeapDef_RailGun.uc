@@ -1,22 +1,22 @@
 //=============================================================================
-// KFWeapDef_Crovel
+// KFWeapDef_RailGun
 //=============================================================================
 // A lightweight container for basic weapon properties that can be safely
-// accessed without a weapon actor (UI, remote clients). 
+// accessed without a weapon actor (UI, remote clients).
 //=============================================================================
 // Killing Floor 2
 // Copyright (C) 2015 Tripwire Interactive LLC
 //=============================================================================
-class KFWeapDef_Pulverizer extends KFWeaponDefinition
+class KFWeapDef_RailGun extends KFWeaponDefinition
 	abstract;
 
-defaultproperties
+DefaultProperties
 {
-   WeaponClassPath="KFGameContent.KFWeap_Blunt_Pulverizer"
-   ImagePath="ui_weaponselect_tex.UI_WeaponSelect_Pulverizer"
-   BuyPrice=1200
-   AmmoPricePerMag=85
-   EffectiveRange=3
-   Name="Default__KFWeapDef_Pulverizer"
-   ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'
+	WeaponClassPath="KFGameContent.KFWeap_Rifle_RailGun"
+
+	BuyPrice=1500
+	AmmoPricePerMag=25
+	ImagePath="WEP_UI_RailGun_TEX.UI_WeaponSelect_Railgun"
+
+	EffectiveRange=100
 }

@@ -199,7 +199,7 @@ defaultproperties
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Flamethrower'
    MagazineCapacity(0)=100
-   MaxSpareAmmo(0)=300
+   MaxSpareAmmo(0)=400
    InitialSpareMags(0)=1
    AmmoPickupScale(0)=0.400000
    bLoopingFireAnim(0)=True

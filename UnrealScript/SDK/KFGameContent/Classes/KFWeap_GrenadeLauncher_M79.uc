@@ -44,8 +44,8 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=1
-	MaxSpareAmmo[0]=15
-	InitialSpareMags[0]=7
+	MaxSpareAmmo[0]=26
+	InitialSpareMags[0]=9
 	AmmoPickupScale[0]=2.0
 	bCanBeReloaded=true
 	bReloadFromMagazine=true

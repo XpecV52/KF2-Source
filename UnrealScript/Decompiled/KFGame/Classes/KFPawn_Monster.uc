@@ -153,6 +153,7 @@ var KFPlayerController LastStoredCC;
 var export editinline transient ParticleSystemComponent RallyPSC;
 var transient float NormalGroundSpeed;
 var transient float NormalSprintSpeed;
+var transient float RandomGroundSpeedModifier;
 var transient float LastAISpeedCheckTime;
 var transient float LastLOSOrRelevantTime;
 var float MatchEnemySpeedAtDistance;
@@ -382,8 +383,10 @@ simulated function bool UsePlayerControlledZedSkin()
 
 function AdjustMovementSpeed(float SpeedAdjust)
 {
-    DesiredAdjustedGroundSpeed = NormalGroundSpeed * SpeedAdjust;
-    DesiredAdjustedSprintSpeed = NormalSprintSpeed * SpeedAdjust;
+    DesiredAdjustedGroundSpeed = (default.GroundSpeed * SpeedAdjust) * RandomGroundSpeedModifier;
+    DesiredAdjustedSprintSpeed = (default.SprintSpeed * SpeedAdjust) * RandomGroundSpeedModifier;
+    NormalGroundSpeed = DesiredAdjustedGroundSpeed;
+    NormalSprintSpeed = DesiredAdjustedSprintSpeed;
 }
 
 simulated event PlayFootStepSound(int FootDown)
@@ -2812,6 +2815,7 @@ defaultproperties
     ResistantDamageTypes(14)=(DamageType=none,DamageScale=0.5)
     ResistantDamageTypes(15)=(DamageType=none,DamageScale=0.5)
     ZedBumpDamageScale=1
+    RandomGroundSpeedModifier=1
     MatchEnemySpeedAtDistance=200
     MinimumEnemySpeedToMatch=280
     PursuitSpeedScale=1

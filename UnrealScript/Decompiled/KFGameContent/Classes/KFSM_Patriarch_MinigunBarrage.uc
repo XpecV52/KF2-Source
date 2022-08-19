@@ -9,6 +9,7 @@ class KFSM_Patriarch_MinigunBarrage extends KFSM_PlaySingleAnim;
 
 var KFPawn_ZedPatriarch MyPatPawn;
 var KFAIController_ZedPatriarch MyPatController;
+var name AimOffsetProfileName;
 var name WindUpAnimName;
 var name WindDownAnimName;
 var array<name> FanAnimNames;
@@ -54,6 +55,8 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
     MyPatPawn.PlayMinigunWarnDialog();
     MyPatController = KFAIController_ZedPatriarch(MyPatPawn.Controller);
     PlayWindUpAnimation();
+    MyPatPawn.SetAimOffsetNodesProfile(AimOffsetProfileName);
+    MyPatPawn.bEnableAimOffset = true;
     if((MyPatPawn.Role == ROLE_Authority) && !MyPatPawn.IsHumanControlled())
     {
         MyPatPawn.SetTimer(VisibilityCheckTime, false, 'Timer_CheckEnemyLOS', self);
@@ -290,6 +293,9 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
         {
             MyPatPawn.PostAkEventOnBone(MinigunLoopEnd, 'BarrelSpinner', true, true);
         }
+        MyPatPawn.bEnableAimOffset = false;
+        MyPatPawn.SetDefaultAimOffsetNodesProfile();
+        MyPatPawn.ClearTimer('Timer_SearchForMinigunTargets', self);
         MyPatPawn.ClearTimer('Timer_CheckIfFireAllowed', self);
         MyPatPawn.ClearTimer('Timer_CheckEnemyLOS', self);
         MyPatPawn.SetGunTracking(false);
@@ -304,6 +310,7 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
 
 defaultproperties
 {
+    AimOffsetProfileName=Minigun
     WindUpAnimName=Gun_TO_Load
     WindDownAnimName=Gun_TO_Idle
     FanAnimNames(0)=Gun_Shoot_Fan_V1

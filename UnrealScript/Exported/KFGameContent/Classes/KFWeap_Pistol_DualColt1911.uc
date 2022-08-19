@@ -34,7 +34,7 @@ defaultproperties
    WeaponSelectTexture=Texture2D'WEP_UI_Dual_M1911_TEX.UI_WeaponSelect_DualM1911'
    MagazineCapacity(0)=16
    MaxSpareAmmo(0)=128
-   InitialSpareMags(0)=4
+   InitialSpareMags(0)=3
    BonesToLockOnEmpty(1)="RW_Bullets1"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_1911.Play_WEP_SA_1911_Fire_Single_M',FirstPersonCue=AkEvent'WW_WEP_1911.Play_WEP_SA_1911_Fire_Single_S')
    WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_1911.Play_WEP_SA_1911_Fire_Single_M',FirstPersonCue=AkEvent'WW_WEP_1911.Play_WEP_SA_1911_Fire_Single_S')

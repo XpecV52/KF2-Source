@@ -25,8 +25,8 @@ defaultproperties
     GroupPriority=100
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SCAR'
     MagazineCapacity=20
-    MaxSpareAmmo=280
-    InitialSpareMags=5
+    MaxSpareAmmo=340
+    InitialSpareMags=4
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */
     FireSightedAnims=/* Array type was not detected. */

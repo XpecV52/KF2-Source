@@ -231,7 +231,7 @@ defaultproperties
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AK12'
    MagazineCapacity(0)=30
-   MaxSpareAmmo(0)=210
+   MaxSpareAmmo(0)=330
    InitialSpareMags(0)=3
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True

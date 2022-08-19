@@ -36,8 +36,8 @@ defaultproperties
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicPistol'
    SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
    MagazineCapacity(0)=15
-   MaxSpareAmmo(0)=225
-   InitialSpareMags(0)=7
+   MaxSpareAmmo(0)=240
+   InitialSpareMags(0)=8
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_MedicPistol.Play_SA_MedicPistol_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_MedicPistol.Play_SA_MedicPistol_Fire_1P')

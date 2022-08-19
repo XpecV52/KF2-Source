@@ -15,6 +15,9 @@ var KFPawn_ZedPatriarch MyPatPawn;
 /** Cached reference to Patriarch AI controller */
 var KFAIController_ZedPatriarch MyPatController;
 
+/** Name of the aim offset profile to use with this special move */
+var Name AimOffsetProfileName;
+
 /** Wind Up animation name */
 var Name WindUpAnimName;
 
@@ -97,6 +100,10 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 
 	// Play wind up
 	PlayWindUpAnimation();
+
+	// set aim offset nodes profile
+	MyPatPawn.SetAimOffsetNodesProfile( AimOffsetProfileName );
+	MyPatPawn.bEnableAimOffset = true;
 
 	// Check to make sure our enemy is still visible
 	if( MyPatPawn.Role == ROLE_Authority && !MyPatPawn.IsHumanControlled() )
@@ -395,6 +402,11 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
 			MyPatPawn.PostAkEventOnBone( MinigunLoopEnd, 'BarrelSpinner', true, true );
 		}
 
+		// Restore aim profile defaults
+		MyPatPawn.bEnableAimOffset = false;
+		MyPatPawn.SetDefaultAimOffsetNodesProfile();
+
+		MyPatPawn.ClearTimer( nameOf(Timer_SearchForMinigunTargets), self );
 		MyPatPawn.ClearTimer( nameOf(Timer_CheckIfFireAllowed), self );
 		MyPatPawn.ClearTimer( nameOf(Timer_CheckEnemyLOS), self );
 		MyPatPawn.SetGunTracking( false );
@@ -410,6 +422,7 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
 
 defaultproperties
 {
+   AimOffsetProfileName="Minigun"
    WindUpAnimName="Gun_TO_Load"
    WindDownAnimName="Gun_TO_Idle"
    FanAnimNames(0)="Gun_Shoot_Fan_V1"

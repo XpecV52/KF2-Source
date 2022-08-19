@@ -13,6 +13,6 @@ defaultproperties
     WeaponClassPath="KFGameContent.KFWeap_Pistol_Deagle"
     ImagePath="WEP_UI_Deagle_TEX.UI_WeaponSelect_Deagle"
     BuyPrice=550
-    AmmoPricePerMag=10
+    AmmoPricePerMag=21
     EffectiveRange=50
 }

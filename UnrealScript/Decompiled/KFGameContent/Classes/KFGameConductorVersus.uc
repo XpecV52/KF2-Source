@@ -25,6 +25,7 @@ function UpdateOverallStatus()
 {
     local int I;
 
+    UpdateAveragePerkRank();
     if(!bBypassGameConductor)
     {
         CurrentVersusZedHealthMod = EvalInterpCurveFloat(HumanRankZedHealthScaleCurve, AveragePlayerPerkRank);
@@ -52,13 +53,13 @@ function UpdateOverallStatus()
     Outer.MyKFGRI.CurrentGameConductorStatus = GameConductorStatus;
     Outer.MyKFGRI.CurrentParZedLifeSpan = GetParZedLifeSpan();
     I = 0;
-    J0x282:
+    J0x28C:
 
     if(I < (10 - 1))
     {
         Outer.MyKFGRI.OverallRankAndSkillModifierTracker[I] = Outer.MyKFGRI.OverallRankAndSkillModifierTracker[I + 1];
         ++ I;
-        goto J0x282;
+        goto J0x28C;
     }
     OverallRankAndSkillModifier = 0.5;
     if(bLogGameConductor)
@@ -71,8 +72,8 @@ function UpdateOverallStatus()
 
 defaultproperties
 {
-    HumanRankZedHealthScaleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.5,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
-    HumanRankZedDamageScaleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.35,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
+    HumanRankZedHealthScaleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.35,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
+    HumanRankZedDamageScaleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.25,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
     TargetPerkRankRange=(X=0,Y=25)
     CurrentSpawnRateModification=1.3
 }

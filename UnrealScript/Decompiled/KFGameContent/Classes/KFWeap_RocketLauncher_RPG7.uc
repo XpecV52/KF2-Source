@@ -95,8 +95,8 @@ defaultproperties
     GroupPriority=100
     WeaponSelectTexture=Texture2D'WEP_UI_RPG7_TEX.UI_WeaponSelect_RPG7'
     MagazineCapacity=1
-    MaxSpareAmmo=11
-    InitialSpareMags=5
+    MaxSpareAmmo=15
+    InitialSpareMags=4
     AmmoPickupScale=2
     IdleFidgetAnims=/* Array type was not detected. */
     BonesToLockOnEmpty=/* Array type was not detected. */

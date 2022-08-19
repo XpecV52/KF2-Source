@@ -11,8 +11,8 @@ class KFWeapDef_M14EBR extends KFWeaponDefinition
 defaultproperties
 {
     WeaponClassPath="KFGameContent.KFWeap_Rifle_M14EBR"
-    ImagePath="ui_weaponselect_tex.UI_WeaponSelect_9mm"
-    BuyPrice=100
-    AmmoPricePerMag=10
+    ImagePath="WEP_UI_M14EBR_TEX.UI_WeaponSelect_SM14-EBR"
+    BuyPrice=1100
+    AmmoPricePerMag=40
     EffectiveRange=90
 }

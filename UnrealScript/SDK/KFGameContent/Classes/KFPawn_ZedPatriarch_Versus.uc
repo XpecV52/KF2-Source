@@ -246,30 +246,6 @@ private function bool IsHealAllowed()
 	return (GetHealthPercentage() < HealThreshold && SpecialMoveCooldowns[5].Charges > 0);
 }
 
-/**
- * Adjusts aim to always point at the enemy we're targeting
- * @param	W, weapon about to fire
- * @param	StartFireLoc, world location of weapon fire start trace, or projectile spawn loc.
- */
-simulated function Rotator GetAdjustedAimFor( Weapon W, vector StartFireLoc )
-{
-	local vector SocketLoc, EndTrace;
-	local rotator ActualAimRot, SocketRot;
-
-	ActualAimRot = super.GetAdjustedAimFor( W, StartFireLoc );
-	EndTrace = StartFireLoc + vector(ActualAimRot) * W.GetTraceRange();
-
-	Mesh.GetSocketWorldLocationAndRotation( 'LeftMuzzleFlash', SocketLoc, SocketRot );
-
-	// If the rotation of the barrel is not close enough to believably make the shot, use its rotation instead
-	if( vector(SocketRot) dot Normal(EndTrace - StartFireLoc) < 0.96f )
-	{
-		return SocketRot;
-	}
-
-	return ActualAimRot;
-}
-
 /** Retrieves the aim direction and target location for each missile. Called from SpecialMove */
 function GetMissileAimDirAndTargetLoc( int MissileNum, vector MissileLoc, rotator MissileRot, out vector AimDir, out vector TargetLoc )
 {

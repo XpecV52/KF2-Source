@@ -349,6 +349,18 @@ simulated event Destroyed()
 	MyActivePukeMines.Length = 0;
 }
 
+/**
+ * InitInputSystem()
+ * Spawn the appropriate class of PlayerInput
+ * Only called for playercontrollers that belong to local players
+ */
+event InitInputSystem()
+{
+	Super.InitInputSystem();
+
+	KFPlayerInput(PlayerInput).bVersusInput = true;
+}
+
 defaultproperties
 {
    MonsterPerkClass=Class'KFGame.KFPerk_Monster'
@@ -385,7 +397,6 @@ defaultproperties
    End Object
    NVGLightTemplate=NVGLightTemplate_0
    CameraClass=Class'kfgamecontent.KFPlayerCamera_Versus'
-   InputClass=Class'kfgamecontent.KFPlayerInputVersus'
    Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'KFGame.Default__KFPlayerController:CollisionCylinder'
       ReplacementPrimitive=None
       Name="CollisionCylinder"

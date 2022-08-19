@@ -15,7 +15,7 @@ DefaultProperties
 	WeaponClassPath="KFGameContent.KFWeap_Bow_Crossbow"
 
 	BuyPrice=650
-	AmmoPricePerMag=10
+	AmmoPricePerMag=11
 	ImagePath="WEP_UI_Crossbow_TEX.UI_WeaponSelect_Crossbow"
 
 	EffectiveRange=80

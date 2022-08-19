@@ -116,8 +116,8 @@ defaultproperties
    GroupPriority=25.000000
    WeaponSelectTexture=Texture2D'WEP_UI_CaulkBurn_TEX.UI_WeaponSelect_CaulkNBurn'
    MagazineCapacity(0)=50
-   MaxSpareAmmo(0)=250
-   InitialSpareMags(0)=3
+   MaxSpareAmmo(0)=400
+   InitialSpareMags(0)=4
    AmmoPickupScale(0)=0.500000
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True

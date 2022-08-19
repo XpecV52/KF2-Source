@@ -203,8 +203,7 @@ defaultproperties
     GroupPriority=75
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Pulverizer'
     MagazineCapacity=5
-    MaxSpareAmmo=30
-    InitialSpareMags=3
+    MaxSpareAmmo=15
     WeaponFireSnd=/* Array type was not detected. */
     AttachmentArchetype=KFWeapAttach_Pulverizer'WEP_Pulverizer_ARCH.Wep_Pulverizer_3P'
     begin object name=MeleeHelper class=KFMeleeHelperWeapon

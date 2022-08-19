@@ -222,8 +222,7 @@ defaultproperties
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SawbladeShooter'
     MagazineCapacity[0]=5
     MagazineCapacity[1]=250
-    MaxSpareAmmo=20
-    InitialSpareMags=2
+    MaxSpareAmmo=25
     AmmoPickupScale[1]=0.2
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */

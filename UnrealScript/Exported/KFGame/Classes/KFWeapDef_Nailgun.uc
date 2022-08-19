@@ -16,7 +16,7 @@ defaultproperties
    AttachmentArchtypePath="WEP_Nail_Shotgun_ARCH.Wep_Nail_Shotgun_3P"
    ImagePath="ui_weaponselect_tex.UI_WeaponSelect_NailShotgun"
    BuyPrice=600
-   AmmoPricePerMag=25
+   AmmoPricePerMag=20
    EffectiveRange=20
    Name="Default__KFWeapDef_Nailgun"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'
