@@ -12,8 +12,8 @@ class KFProj_Bullet_Winchester1894 extends KFProj_Bullet_RackEmUp
 
 defaultproperties
 {
-	MaxSpeed=8000.0
-	Speed=8000.0
+	MaxSpeed=24000.0
+	Speed=24000.0
 
 	DamageRadius=0
 

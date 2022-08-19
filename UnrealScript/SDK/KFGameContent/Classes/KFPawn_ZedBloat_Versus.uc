@@ -32,7 +32,7 @@ defaultproperties
 	bVersusZed=true
 	TeammateCollisionRadiusPercent=0.30
 	VomitDamage=15
-	
+
 	PukeMineProjectileClass=class'KFProj_BloatPukeMine'
 
     LocalizationKey=KFPawn_ZedBloat
@@ -45,7 +45,7 @@ defaultproperties
 	End Object
 	MeleeAttackHelper=MeleeHelper_0
 
-	Begin Object Name=SpecialMoveHandler_0		
+	Begin Object Name=SpecialMoveHandler_0
 		SpecialMoveClasses(SM_PlayerZedAttack1)= class'KFSM_PlayerBloat_Melee2'
 		SpecialMoveClasses(SM_PlayerZedAttack2)= class'KFSM_PlayerBloat_PukeMineAttack'
 		SpecialMoveClasses(SM_PlayerZedSpecial1)= class'KFSM_PlayerBloat_Melee'
@@ -67,18 +67,23 @@ defaultproperties
 	StackingIncaps(SAF_Microwave)=(Threshhold=20.0,Duration=5.0,Cooldown=20.5,DissipationRate=1.00)
 	StackingIncaps(SAF_FirePanic)=(Threshhold=12.0,Duration=2.0,Cooldown=5.0,DissipationRate=1.0)
 
-		// Resistant damage types
+    // Vulnerable damage types
+    VulnerableDamageTypes.Add((DamageType=class'KFGameContent.KFDT_Ballistic_AR15', DamageScale=0.75))
+    VulnerableDamageTypes.Add((DamageType=class'KFGameContent.KFDT_Ballistic_Rem1858', DamageScale=0.75))
+
+	// Resistant damage types
     ResistantDamageTypes.Add((DamageType=class'KFDT_Slashing', DamageScale=0.05f))
     ResistantDamageTypes.Add((DamageType=class'KFDT_Bludgeon', DamageScale=0.05f))
 
     // Faster sprint
-	SprintSpeed=400.0f//445.0f	
+	SprintSpeed=400.0f//445.0f
 	SprintStrafeSpeed=280.f//295.f
 	Groundspeed=260.0f//2.85f
 
-	Health=605
-    HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=110, DmgScale=1.1, SkinID=1)//gorehealth 90
-    DoshValue=68// 4x 17 default because they are harder to hit
+	Health=485
+    HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=90, DmgScale=1.1, SkinID=1)//gorehealth 90
+    DoshValue=25    // 1.2x 17 default because they have 1.2x more health
+    XPValues(0)=40  // 1.2 x 2x default because they have 1.2x more health
 
 	//defaults
 	ThirdPersonViewOffset={(

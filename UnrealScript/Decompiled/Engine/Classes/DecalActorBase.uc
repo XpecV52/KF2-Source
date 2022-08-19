@@ -50,6 +50,7 @@ defaultproperties
     object end
     // Reference: ArrowComponent'Default__DecalActorBase.ArrowComponent0'
     Components(2)=ArrowComponent0
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
     TickGroup=ETickingGroup.TG_DuringAsyncWork
     bStatic=true
     bMovable=false

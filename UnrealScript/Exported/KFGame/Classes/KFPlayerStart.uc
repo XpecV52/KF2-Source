@@ -60,6 +60,7 @@ defaultproperties
       ObjectArchetype=PathRenderingComponent'Engine.Default__PlayerStart:PathRenderer'
    End Object
    Components(4)=PathRenderer
+   CollisionType=COLLIDE_CustomDefault
    CollisionComponent=CollisionCylinder
    Name="Default__KFPlayerStart"
    ObjectArchetype=PlayerStart'Engine.Default__PlayerStart'

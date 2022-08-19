@@ -90,7 +90,8 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedFleshpound:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedFleshPound_Versus:MeleeHelper_0'
-   DoshValue=400
+   DoshValue=300
+   XPValues(0)=105.000000
    ResistantDamageTypes(17)=(DamageType=Class'KFGame.KFDT_Fire',DamageScale=0.300000)
    ResistantDamageTypes(18)=(DamageType=Class'KFGame.KFDT_Ballistic',DamageScale=0.700000)
    SpecialMoveCooldowns(0)=(CoolDownTime=0.750000,SMHandle=SM_PlayerZedAttack1,SpecialMoveIcon=Texture2D'ZED_Fleshpound_UI.ZED-VS_Icons_Fleshpound-LightAttack',NameLocalizationKey="Light",GBA_Name="GBA_Fire")

@@ -46,6 +46,7 @@ defaultproperties
    End Object
    BrushComponent=BrushComponent0
    Components(0)=BrushComponent0
+   CollisionType=COLLIDE_CustomDefault
    bProjTarget=True
    CollisionComponent=BrushComponent0
    SupportedEvents(1)=Class'Engine.SeqEvent_TakeDamage'

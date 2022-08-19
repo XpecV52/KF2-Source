@@ -40,6 +40,7 @@ defaultproperties
       ObjectArchetype=SpriteComponent'Engine.Default__SpriteComponent'
    End Object
    Components(1)=Sprite
+   CollisionType=COLLIDE_CustomDefault
    bStatic=True
    bHidden=True
    bNoDelete=True

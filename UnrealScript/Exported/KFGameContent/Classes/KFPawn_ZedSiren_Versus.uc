@@ -32,7 +32,7 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedSiren:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedSiren_Versus:MeleeHelper_0'
-   DoshValue=75
+   XPValues(0)=22.000000
    SpecialMoveCooldowns(0)=(CoolDownTime=2.500000,SMHandle=SM_PlayerZedAttack1,SpecialMoveIcon=Texture2D'ZED_Siren_UI.ZED-VS_Icons_Siren-Scream',NameLocalizationKey="Scream",GBA_Name="GBA_Fire")
    SpecialMoveCooldowns(1)=(CoolDownTime=8.000000,SMHandle=SM_PlayerZedAttack2,SpecialMoveIcon=Texture2D'ZED_Siren_UI.ZED-VS_Icons_Siren-PullIn',NameLocalizationKey="Vortex",GBA_Name="GBA_IronsightsToggle")
    SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,GBA_Name="GBA_Reload",bShowOnHud=False)

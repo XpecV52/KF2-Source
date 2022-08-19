@@ -144,9 +144,9 @@ function NotifyMeleeDamageDealt()
 }
 
 /** Start enrage if we've taken enough damage */
-function AddTakenDamage( Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType )
+function AIHandleTakenDamage( Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType )
 {
-	super.AddTakenDamage( DamagerController, Damage, DamageCauser, DamageType );
+	super.AIHandleTakenDamage( DamagerController, Damage, DamageCauser, DamageType );
 
 	//if( MyBlackBoard != none )
 	//{

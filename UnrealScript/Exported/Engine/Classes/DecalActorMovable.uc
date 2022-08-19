@@ -38,7 +38,6 @@ defaultproperties
       ObjectArchetype=ArrowComponent'Engine.Default__DecalActorBase:ArrowComponent0'
    End Object
    Components(2)=ArrowComponent0
-   CollisionType=COLLIDE_CustomDefault
    bStatic=False
    bNoDelete=True
    bHardAttach=True

@@ -664,14 +664,13 @@ defaultproperties
    FractureCullMaxDistance=4096.000000
    Components(0)=FracturedSkinnedComponent0
    Components(1)=FracturedStaticMeshComponent0
-   CollisionType=COLLIDE_BlockAll
+   CollisionType=COLLIDE_CustomDefault
    bNoDelete=True
    bWorldGeometry=True
    bRouteBeginPlayEvenIfStatic=False
    bGameRelevant=True
    bMovable=False
    bCanBeDamaged=True
-   BlockRigidBody=True
    bCollideActors=True
    bBlockActors=True
    bProjTarget=True

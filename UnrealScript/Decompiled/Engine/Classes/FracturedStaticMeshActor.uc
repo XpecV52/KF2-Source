@@ -539,14 +539,13 @@ defaultproperties
     object end
     // Reference: FracturedStaticMeshComponent'Default__FracturedStaticMeshActor.FracturedStaticMeshComponent0'
     Components(1)=FracturedStaticMeshComponent0
-    CollisionType=ECollisionType.COLLIDE_BlockAll
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
     bNoDelete=true
     bWorldGeometry=true
     bRouteBeginPlayEvenIfStatic=false
     bGameRelevant=true
     bMovable=false
     bCanBeDamaged=true
-    BlockRigidBody=true
     bCollideActors=true
     bBlockActors=true
     bProjTarget=true

@@ -1021,9 +1021,13 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
         bCheckingExtraHeadDamage = false;
         InDamage += ExtraHeadDamage;
     }
-    if((!bCheckingExtraHeadDamage && InstigatedBy != none) && MyKFAIC != none)
+    if(!bCheckingExtraHeadDamage && InstigatedBy != none)
     {
-        MyKFAIC.AddTakenDamage(InstigatedBy, int(FMin(float(Health), float(InDamage))), DamageCauser, class<KFDamageType>(DamageType));
+        if(MyKFAIC != none)
+        {
+            MyKFAIC.AIHandleTakenDamage(InstigatedBy, int(FMin(float(Health), float(InDamage))), DamageCauser, class<KFDamageType>(DamageType));
+        }
+        AddTakenDamage(InstigatedBy, int(FMin(float(Health), float(InDamage))), DamageCauser, class<KFDamageType>(DamageType));
     }
     if((HitZoneIdx == 0) && bIsHeadless)
     {

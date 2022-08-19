@@ -177,7 +177,7 @@ defaultproperties
    End Object
    BrushComponent=BrushComponent0
    Components(0)=BrushComponent0
-   CollisionType=COLLIDE_NoCollision
+   CollisionType=COLLIDE_CustomDefault
    bCollideActors=False
    CollisionComponent=BrushComponent0
    Name="Default__ReverbVolume"

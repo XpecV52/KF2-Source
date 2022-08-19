@@ -13,8 +13,8 @@ class KFProj_Bullet_RevolverSW500 extends KFProj_Bullet_RackEmUp
 
 defaultproperties
 {
-	MaxSpeed=5000.0
-	Speed=5000.0
+	MaxSpeed=22500.0
+	Speed=22500.0
 
 	DamageRadius=0
 

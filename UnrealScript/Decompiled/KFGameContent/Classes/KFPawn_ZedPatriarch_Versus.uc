@@ -416,6 +416,7 @@ defaultproperties
     bVersusZed=true
     ThirdPersonViewOffset=(OffsetHigh=(X=-200,Y=90,Z=45),OffsetMid=(X=-185,Y=110,Z=45),OffsetLow=(X=-220,Y=130,Z=55))
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedPatriarch_Versus.MeleeHelper'
+    XPValues=2500
     SpecialMoveCooldowns=/* Array type was not detected. */
     FootstepCameraShake=CameraShake'Default__KFPawn_ZedPatriarch_Versus.FootstepCameraShake0'
     LocalizationKey=KFPawn_ZedPatriarch

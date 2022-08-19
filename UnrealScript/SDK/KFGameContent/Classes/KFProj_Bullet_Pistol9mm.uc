@@ -13,8 +13,8 @@ class KFProj_Bullet_Pistol9mm extends KFProj_Bullet
 
 defaultproperties
 {
-	MaxSpeed=5000.0
-	Speed=5000.0
+	MaxSpeed=15000.0
+	Speed=15000.0
 
 	DamageRadius=0
 

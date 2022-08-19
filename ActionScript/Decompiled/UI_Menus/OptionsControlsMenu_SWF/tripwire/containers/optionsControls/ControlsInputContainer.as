@@ -44,6 +44,24 @@ package tripwire.containers.optionsControls
         
         public var sectionTextField:TextField;
         
+        public var sensitivityMinimumText:TextField;
+        
+        public var sensitivityMaximumText:TextField;
+        
+        public var zoomSensitivityMinimumText:TextField;
+        
+        public var zoomSensitivityMaximumText:TextField;
+        
+        public var controllerSensitivityMinimumText:TextField;
+        
+        public var controllerSensitivityMaximumText:TextField;
+        
+        public var controllerZoomSensitivityMinimumText:TextField;
+        
+        public var controllerZoomSensitivityMaximumText:TextField;
+        
+        public var bOptionsInit;
+        
         public function ControlsInputContainer()
         {
             super();
@@ -101,19 +119,28 @@ package tripwire.containers.optionsControls
             this.zoomSensitivitySliderOption.sliderValue = !!param1.zoomSensitivityValue ? int(param1.zoomSensitivityValue) : 0;
             this.zoomSensitivitySliderOption.slider.minimum = !!param1.zoomSensitivityValueMin ? Number(param1.zoomSensitivityValueMin) : Number(0);
             this.zoomSensitivitySliderOption.slider.maximum = !!param1.zoomSensitivityValueMax ? Number(param1.zoomSensitivityValueMax) : Number(1);
+            this.sensitivityMinimumText.text = (this.sensitivitySliderOption.slider.minimum / 100).toFixed(2).toString();
+            this.sensitivityMaximumText.text = (this.sensitivitySliderOption.slider.maximum / 100).toFixed(2).toString();
+            this.zoomSensitivityMinimumText.text = (this.zoomSensitivitySliderOption.slider.minimum / 100).toFixed(2).toString();
+            this.zoomSensitivityMaximumText.text = (this.zoomSensitivitySliderOption.slider.maximum / 100).toFixed(2).toString();
             this.mouseSmoothingCheckBox.selected = !!param1.mouseSmoothingValue ? Boolean(param1.mouseSmoothingValue) : false;
             this.invertYCheckBox.selected = !!param1.invertedValue ? Boolean(param1.invertedValue) : false;
-            this.controllerSensitivitySliderOption.sliderValue = !!param1.controllerSensitivityValue ? int(param1.controllerSensitivityValue) : 0;
-            this.controllerSensitivitySliderOption.slider.minimum = !!param1.controllerSensitivityValueMin ? Number(param1.controllerSensitivityValueMin) : Number(0);
-            this.controllerSensitivitySliderOption.slider.maximum = !!param1.controllerSensitivityValueMax ? Number(param1.controllerSensitivityValueMax) : Number(1);
-            this.controllerZoomSensitivitySliderOption.sliderValue = !!param1.controllerZoomSensitivityValue ? int(param1.controllerZoomSensitivityValue) : 0;
-            this.controllerZoomSensitivitySliderOption..slider.minimum = !!param1.controllerZoomSensitivityValueMin ? Number(param1.controllerZoomSensitivityValueMin) : Number(0);
-            this.controllerZoomSensitivitySliderOption.slider.maximum = !!param1.controllerZoomSensitivityValueMax ? Number(param1.controllerZoomSensitivityValueMax) : Number(1);
+            this.forceFeedbackCheckBox.selected = !!param1.forceFeedbackValue ? Boolean(param1.forceFeedbackValue) : false;
+            this.controllerSensitivitySliderOption.slider.minimum = param1.controllerSensitivityValueMin != undefined ? Number(param1.controllerSensitivityValueMin) : Number(0);
+            this.controllerSensitivitySliderOption.slider.maximum = param1.controllerSensitivityValueMax != undefined ? Number(param1.controllerSensitivityValueMax) : Number(1);
+            this.controllerSensitivitySliderOption.sliderValue = param1.controllerSensitivityValue != undefined ? int(param1.controllerSensitivityValue) : 0;
+            this.controllerZoomSensitivitySliderOption.slider.minimum = param1.controllerZoomSensitivityValueMin != undefined ? Number(param1.controllerZoomSensitivityValueMin) : Number(0);
+            this.controllerZoomSensitivitySliderOption.slider.maximum = param1.controllerZoomSensitivityValueMax != undefined ? Number(param1.controllerZoomSensitivityValueMax) : Number(1);
+            this.controllerZoomSensitivitySliderOption.sliderValue = param1.controllerZoomSensitivityValue != undefined ? int(param1.controllerZoomSensitivityValue) : 0;
+            this.controllerSensitivityMinimumText.text = (this.controllerSensitivitySliderOption.slider.minimum / 100).toFixed(2).toString();
+            this.controllerSensitivityMaximumText.text = (this.controllerSensitivitySliderOption.slider.maximum / 100).toFixed(2).toString();
+            this.controllerZoomSensitivityMinimumText.text = (this.controllerZoomSensitivitySliderOption.slider.minimum / 100).toFixed(2).toString();
+            this.controllerZoomSensitivityMaximumText.text = (this.controllerZoomSensitivitySliderOption.slider.maximum / 100).toFixed(2).toString();
             this.aimAssistZoomLockOnCheckBox.selected = !!param1.aimAssistLockOnValue ? Boolean(param1.aimAssistLockOnValue) : false;
             this.aimAssistRotationCheckBox.selected = !!param1.aimAssistRotationValue ? Boolean(param1.aimAssistRotationValue) : false;
             this.aimAssistSlowDownCheckBox.selected = !!param1.aimAssistSlowDownValue ? Boolean(param1.aimAssistSlowDownValue) : false;
-            this.forceFeedbackCheckBox.selected = !!param1.forceFeedbackValue ? Boolean(param1.forceFeedbackValue) : false;
             this.controllerInvertYCheckBox.selected = !!param1.controllerInvertedValue ? Boolean(param1.controllerInvertedValue) : false;
+            this.bOptionsInit = true;
         }
         
         override protected function onBPressed(param1:InputDetails) : void
@@ -124,6 +151,10 @@ package tripwire.containers.optionsControls
         private function onSliderValueChanged(param1:SliderEvent) : void
         {
             var _loc2_:Slider = null;
+            if(!this.bOptionsInit)
+            {
+                return;
+            }
             _loc2_ = param1.currentTarget as Slider;
             switch(_loc2_)
             {
@@ -144,6 +175,10 @@ package tripwire.containers.optionsControls
         private function onCheckBoxClick(param1:ButtonEvent) : void
         {
             var _loc2_:CheckBox = null;
+            if(!this.bOptionsInit)
+            {
+                return;
+            }
             _loc2_ = param1.currentTarget as CheckBox;
             switch(_loc2_)
             {

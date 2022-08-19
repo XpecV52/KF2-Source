@@ -36,7 +36,9 @@ defaultproperties
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedBloat_Versus.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
-    DoshValue=68
+    DoshValue=25
+    XPValues=40
+    VulnerableDamageTypes=/* Array type was not detected. */
     ResistantDamageTypes=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
     LocalizationKey=KFPawn_ZedBloat
@@ -67,7 +69,7 @@ defaultproperties
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedBloat_Versus.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedBloat_Versus.DialogAkSoundComponent'
     GroundSpeed=260
-    Health=605
+    Health=485
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

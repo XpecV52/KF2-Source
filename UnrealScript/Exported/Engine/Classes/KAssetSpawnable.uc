@@ -28,9 +28,7 @@ defaultproperties
    End Object
    SkeletalMeshComponent=KAssetSkelMeshComponent
    Components(0)=KAssetSkelMeshComponent
-   CollisionType=COLLIDE_CustomDefault
    bNoDelete=False
-   BlockRigidBody=False
    CollisionComponent=KAssetSkelMeshComponent
    Name="Default__KAssetSpawnable"
    ObjectArchetype=KAsset'Engine.Default__KAsset'

@@ -3964,6 +3964,47 @@ simulated function KFPawn SpawnAIZed(string ZedName, float Distance, optional na
     return Zed;
 }
 
+exec function SpawnZedVC(string ZedName)
+{
+    local KFPlayerController KFPC;
+    local class<KFPawn_Monster> MonsterClass;
+    local Vector SpawnLoc;
+    local Rotator SpawnRot;
+    local KFPawn KFP;
+
+    if(!Outer.WorldInfo.Game.IsA('KFGameInfo_VersusSurvival'))
+    {
+        Outer.ClientMessage("This cheat command is only valid in Versus Survival mode!", CheatType);
+        return;
+    }
+    MonsterClass = LoadMonsterByName(ZedName, true);
+    if(MonsterClass != none)
+    {
+        if(Outer.Pawn != none)
+        {
+            SpawnLoc = Outer.Pawn.Location;            
+        }
+        else
+        {
+            SpawnLoc = Outer.Location;
+        }
+        SpawnLoc += ((200 * vector(Outer.Rotation)) + (vect(0, 0, 1) * 15));
+        SpawnRot.Yaw = Outer.Rotation.Yaw + 32768;
+        KFP = Outer.Spawn(MonsterClass,,, SpawnLoc, SpawnRot,, false);
+        if(KFP != none)
+        {
+            KFPC = Outer.Spawn(Class'KFPlayerController');
+            Outer.WorldInfo.Game.ChangeName(KFPC, "Braindead Human", false);
+            KFPC.Possess(KFP, false);
+            KFP.SetPhysics(2);            
+        }
+        else
+        {
+            Outer.ClientMessage((" Could not spawn Versus ZED [" $ ZedName) $ "] with a PC. Please make sure that the ZED name to archetype mapping is set up correctly.", CheatType);
+        }
+    }
+}
+
 exec function SpawnZedV(string ZedName, optional bool bPossess)
 {
     local class<KFPawn_Monster> MonsterClass;

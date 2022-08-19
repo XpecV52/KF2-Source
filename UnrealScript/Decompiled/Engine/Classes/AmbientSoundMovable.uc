@@ -42,7 +42,6 @@ defaultproperties
     // Reference: AudioComponent'Default__AmbientSoundMovable.AudioComponent0'
     Components(2)=AudioComponent0
     Physics=EPhysics.PHYS_Interpolating
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
     TickGroup=ETickingGroup.TG_DuringAsyncWork
     bStatic=false
 }

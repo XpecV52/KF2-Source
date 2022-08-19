@@ -3222,7 +3222,7 @@ function AddZedHeadshot(byte Difficulty, class<DamageType> DT)
 private reliable client native final simulated function ClientAddZedHeadshot(byte Difficulty, class<DamageType> DT);
 
 // Export UKFPlayerController::execAddPlayerXP(FFrame&, void* const)
-native final function AddPlayerXP(int XP, class<KFPerk> PerkClass);
+native function AddPlayerXP(int XP, class<KFPerk> PerkClass);
 
 // Export UKFPlayerController::execClientAddPlayerXP(FFrame&, void* const)
 private reliable client native final simulated event ClientAddPlayerXP(int XP, class<KFPerk> PerkClass);

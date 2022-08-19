@@ -631,28 +631,6 @@ struct native KFAICmdHistoryItem
 };
 var array<KFAICmdHistoryItem>	KFAICommandHistory;
 
-/*********************************************************************************************
-* Scoring/Dosh Distribution
-********************************************************************************************* */
-struct native DamageInfo
-{
-	/** PRI from the player that did damage to us */
-	var	Controller						DamagerController;
-	/** PRI from the player that did damage to us */
-	var	PlayerReplicationInfo			DamagerPRI;
-	/** damage done from one player, might be reset during gameplay */
-	var	float							Damage;
-	/** Total damage done from one player total */
-	var	float							TotalDamage;
-	/** Last time the zed was damaged */
-	var	float							LastTimeDamaged;
-	/** List of each perk that should get xp for this damage */
-	var array<class<KFPerk> > 			DamagePerks;
-};
-
-/** List of PRIs who damaged the specimen */
-var	array<DamageInfo> DamageHistory;
-
 cpptext
 {
 	virtual void    Initialize();
@@ -4294,46 +4272,6 @@ function RestoreCollisionCylinderReducedPercentForSameTeamIgnoreBlockingBy()
 	}
 }
 
-/*********************************************************************************************
-* Damage (Taken) History
-********************************************************************************************* */
-
-function int GetMostRecentDamageHistoryIndexFor( Pawn CheckKFP )
-{
-	local int i;
-
-	for ( i = 0; i < DamageHistory.Length; i++ )
-	{
-		if ( DamageHistory[i].DamagerController != none )
-		{
-			if( DamageHistory[i].DamagerController == CheckKFP.Controller )
-			{
-				return i;
-			}
-		}
-	}
-	return -1;
-}
-
-function int RecentDamageFrom( Pawn CheckKFP, optional out int DamageAmount )
-{
-	local int i;
-
-	for ( i = 0; i < DamageHistory.Length; i++ )
-	{
-		if ( DamageHistory[i].DamagerController != none )
-		{
-			if( DamageHistory[i].DamagerController == CheckKFP.Controller )
-			{
-				DamageAmount += DamageHistory[i].Damage;
-				//return true;
-			}
-		}
-	}
-
-	return DamageAmount;
-}
-
 /** NPC has seen a player - use SeeMonster for similar notifications about seeing any pawns (currently not in use) */
 event SeePlayer( Pawn Seen )
 {
@@ -5797,159 +5735,12 @@ function DoDebugTurnInPlace( KFPlayerController KFPC, optional bool bAllowMelee=
 * TakeDamage
 ********************************************************************************************* */
 
-function AddTakenDamage( Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType )
-{
-	UpdateDamageHistory(DamagerController, Damage, DamageCauser, DamageType);
-}
-
-function UpdateDamageHistory( Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType )
-{
-	local DamageInfo Info;
-	local Pawn BlockerPawn;
-	local bool bChangedEnemies;
-	local int HistoryIndex;
-	local float DamageThreshold;
-
-	if( !GetDamageHistory( DamagerController, Info, HistoryIndex ) )
-	{
-		DamageHistory.Insert(0, 1);
-	}
-
-	if( DamagerController.bIsPlayer )
-	{
-		DamageThreshold = float(Pawn.HealthMax) * AggroPlayerHealthPercentage;
-		UpdateDamageHistoryValues( DamagerController, Damage, DamageCauser, AggroPlayerResetTime, Info, DamageType );
-
-		if( `TimeSince(DamageHistory[CurrentEnemysHistoryIndex].LastTimeDamaged) > 10 )
-		{
-			DamageHistory[CurrentEnemysHistoryIndex].Damage = 0;
-		}
-
-		if( IsAggroEnemySwitchAllowed()
-			&& DamagerController.Pawn != Enemy
-			&& Info.Damage >= DamageThreshold
-			&& Info.Damage > DamageHistory[CurrentEnemysHistoryIndex].Damage )
-		{
-			BlockerPawn = GetPawnBlockingPathTo( DamagerController.Pawn, true );
-			if( BlockerPawn == none )
-			{
-				bChangedEnemies = SetEnemy(DamagerController.Pawn);
-			}
-			else
-			{
-				bChangedEnemies = SetEnemy( BlockerPawn );
-			}
-		}
-	}
-	else
-	{
-		DamageThreshold = float(Pawn.HealthMax) * AggroZedHealthPercentage;
-		UpdateDamageHistoryValues( DamagerController, Damage, DamageCauser, AggroZedResetTime, Info, DamageType );
-
-		if( IsAggroEnemySwitchAllowed()
-			&& DamagerController.Pawn != Enemy
-			&& Info.Damage >= DamageThreshold )
-		{
-			BlockerPawn = GetPawnBlockingPathTo( DamagerController.Pawn );
-			if( BlockerPawn == none )
-			{
-				bChangedEnemies = SetEnemyToZed(DamagerController.Pawn);
-			}
-		}
-	}
-
-	DamageHistory[HistoryIndex] = Info;
-
-	if( bChangedEnemies )
-	{
-		CurrentEnemysHistoryIndex = HistoryIndex;
-	}
-}
+function AIHandleTakenDamage( Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType ){}
 
 /** To override in subclasses */
 function bool IsAggroEnemySwitchAllowed()
 {
 	return true;
-}
-
-function bool GetDamageHistory( Controller DamagerController, out DamageInfo InInfo, out int InHistoryIndex )
-{
-	// Check if this controller is already in our Damage History
-	InHistoryIndex = DamageHistory.Find( 'DamagerController', DamagerController );
-	if( InHistoryIndex != INDEX_NONE )
-		{
-			InInfo = DamageHistory[InHistoryIndex];
-			return true;
-		}
-
-	InHistoryIndex = 0;
-	return false;
-}
-
-function UpdateDamageHistoryValues( Controller DamagerController, int Damage, Actor DamageCauser, float DamageResetTime, out DamageInfo InInfo, class<KFDamageType> DamageType )
-{
-	local class<KFPerk> WeaponPerk;
-
-	// Update the history
-	InInfo.DamagerController = DamagerController;
-
-	// if too much time has passed since our last damage, reset the damage history
-	if( `TimeSince( InInfo.LastTimeDamaged ) > DamageResetTime )
-	{
-		InInfo.Damage = 0;
-	}
-	InInfo.Damage += Damage;
-	InInfo.TotalDamage += Damage;
-
-	// Zeds will not have a PRI unless game analytics is on
-	if( DamagerController.PlayerReplicationInfo != none )
-	{
-		InInfo.DamagerPRI = DamagerController.PlayerReplicationInfo;
-	}
-
-	// Make sure we have a weapon perk class. Grab the active perk's class as a fallback.
-	// Helps with the shared weapons like the 9mm etc.
-	WeaponPerk = GetUsedWeaponPerk( DamagerController, DamageCauser, DamageType );
-	if( WeaponPerk != none && InInfo.DamagePerks.Find( WeaponPerk ) == INDEX_NONE )
-	{
-		InInfo.DamagePerks.AddItem( WeaponPerk );
-	}
-}
-
-function class<KFPerk> GetUsedWeaponPerk( Controller DamagerController, Actor DamageCauser, class<KFDamageType> DamageType )
-{
-	local class<KFPerk> WeaponPerk;
-	local KFPlayerController KFPC;
-	local KFWeapon KFW;
-
-	KFPC = KFPlayerController(DamagerController);
-	if( KFPC == none )
-	{
-		return none;
-	}
-
-	// Make sure we have a weapon perk class. Grab the active perk's class as a fallback.
-	// Helps with the shared weapons like the 9mm etc.
-	WeaponPerk = class'KFPerk'.static.GetPerkFromDamageCauser( DamageCauser );
-	if( WeaponPerk == none )
-	{
-		KFW = KFWeapon(DamageCauser);
-		if( KFW == none && DamageType != none && DamageType.static.IsNotPerkBound() )
-		{
-			KFW = KFWeapon(KFPC.Pawn.Weapon);
-			if( KFW != none )
-		{
-				WeaponPerk = class'KFPerk'.static.GetPerkFromDamageCauser( KFW );
-		}
-	}
-
-		if( WeaponPerk == none && KFW != none && class'KFPerk'.static.IsBackupWeapon( KFW ) )
-	{
-			WeaponPerk = KFPC.GetPerk().GetPerkClass();
-		}
-	}
-
-	return WeaponPerk;
 }
 
 /**
@@ -6822,7 +6613,7 @@ event float EvaluateThreatFrom( Pawn CheckPawn, optional float EarlyOutScore )
 
 	Threat = KFPawn(CheckPawn);
 
-	RecentDamageFromThreat = RecentDamageFrom(Threat);
+	RecentDamageFromThreat = MyKFPawn.RecentDamageFrom(Threat);
 	DistToThreat = VSize( Threat.Location - Pawn.Location );
 	// Count # of Zeds who are currently targeting CheckPawn and closer to CheckPawn than I am
 	//ZedsTargetingThreat = NumberOfZedsTargetingPawn( Threat, true, DistToThreat * 1.75f );

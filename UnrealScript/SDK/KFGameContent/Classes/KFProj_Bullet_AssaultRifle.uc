@@ -12,8 +12,8 @@ class KFProj_Bullet_AssaultRifle extends KFProj_Bullet
 
 defaultproperties
 {
-	MaxSpeed=7500.0
-	Speed=7500.0
+	MaxSpeed=22500.0
+	Speed=22500.0
 
 	DamageRadius=0
 

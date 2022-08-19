@@ -1013,14 +1013,25 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
                 KFAIC = KFAIController(Killer);
                 if(KFAIC != none)
                 {
-                    KillerLabel = string(KFAIC.MyKFPawn.Class.Name);
+                    KillerLabel = string(KFAIC.MyKFPawn.Class.Name);                    
+                }
+                else
+                {
+                    if(Killer.Pawn != none)
+                    {
+                        KillerLabel = string(Killer.Pawn.Class.Name);                        
+                    }
+                    else
+                    {
+                        KillerLabel = string(Killer.Class.Name);
+                    }
                 }
             }
         }
         KFPC = KFPlayerController(KilledPlayer);
         if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
         {
-            WorldInfo.TWLogEvent("player_death", KilledPRI, KillerLabel, string(DT.Name), "#" $ string(MyKFGRI.WaveNum), KFPC.GetPerk().PerkName, string(KFPC.GetPerk().GetLevel()), (((KilledPawn != none) && KilledPawn.InvManager != none) ? KFInventoryManager(KilledPawn.InvManager).DumpInventory() : ""));
+            WorldInfo.TWLogEvent("player_death", KilledPRI, KillerLabel, string(DT.Name), "#" $ string(MyKFGRI.WaveNum), ((KFPC != none) ? KFPC.GetPerk().PerkName : ""), string(((KFPC != none) ? KFPC.GetPerk().GetLevel() : byte(0))), (((KilledPawn != none) && KilledPawn.InvManager != none) ? KFInventoryManager(KilledPawn.InvManager).DumpInventory() : ""));
         }
     }
     super(GameInfo).Killed(Killer, KilledPlayer, KilledPawn, DT);
@@ -1092,7 +1103,10 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
                 KilledPRI.PlayerHealthPercent = 0;
             }
         }
-        KFPawn_Human(KilledPawn).BroadcastDeathMessage(Killer);
+        if((KilledPawn != none) && KFPawn_Human(KilledPawn) != none)
+        {
+            KFPawn_Human(KilledPawn).BroadcastDeathMessage(Killer);
+        }
     }
 }
 
@@ -1132,14 +1146,11 @@ function ScoreKill(Controller Killer, Controller Other)
 
 function ScoreMonsterKill(Controller Killer, Controller Monster, KFPawn_Monster MonsterPawn)
 {
-    local KFAIController KFAIC;
-
-    KFAIC = KFAIController(Monster);
-    if(KFAIC != none)
+    if(MonsterPawn != none)
     {
-        if(KFAIC.DamageHistory.Length > 0)
+        if(MonsterPawn.DamageHistory.Length > 0)
         {
-            DistributeMoneyAndXP(MonsterPawn.Class, KFAIC.DamageHistory, Killer);
+            DistributeMoneyAndXP(MonsterPawn.Class, MonsterPawn.DamageHistory, Killer);
             if((MonsterPawn.IsStalkerClass() && MonsterPawn.LastStoredCC != none) && MonsterPawn.bIsCloakingSpottedByTeam)
             {
                 MonsterPawn.LastStoredCC.AddPlayerXP(int(MonsterPawn.GetXPValue(byte(GameDifficulty))), Class'KFPerk_Commando');

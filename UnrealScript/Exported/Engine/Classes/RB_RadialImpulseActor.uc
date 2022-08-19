@@ -77,7 +77,6 @@ defaultproperties
    End Object
    Components(2)=Sprite
    RemoteRole=ROLE_SimulatedProxy
-   CollisionType=COLLIDE_CustomDefault
    bNoDelete=True
    bAlwaysRelevant=True
    bOnlyDirtyReplication=True

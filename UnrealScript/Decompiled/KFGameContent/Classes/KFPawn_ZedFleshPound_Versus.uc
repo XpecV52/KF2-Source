@@ -72,7 +72,8 @@ defaultproperties
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedFleshPound_Versus.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
-    DoshValue=400
+    DoshValue=300
+    XPValues=105
     ResistantDamageTypes=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
     FootstepCameraShake=CameraShake'Default__KFPawn_ZedFleshPound_Versus.FootstepCameraShake0'

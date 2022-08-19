@@ -141,6 +141,29 @@ var array<ExplosiveStackInfo> RecentExplosiveStacks;
 
 /** The last time this pawn dealt or received any damage */
 var transient float LastTimeDamageHappened;
+
+/*********************************************************************************************
+* Scoring/Dosh Distribution
+********************************************************************************************* */
+struct native DamageInfo
+{
+	/** PRI from the player that did damage to us */
+	var	Controller						DamagerController;
+	/** PRI from the player that did damage to us */
+	var	PlayerReplicationInfo			DamagerPRI;
+	/** damage done from one player, might be reset during gameplay */
+	var	float							Damage;
+	/** Total damage done from one player total */
+	var	float							TotalDamage;
+	/** Last time the zed was damaged */
+	var	float							LastTimeDamaged;
+	/** List of each perk that should get xp for this damage */
+	var array<class<KFPerk> > 			DamagePerks;
+};
+
+/** List of PRIs who damaged the specimen */
+var	array<DamageInfo> DamageHistory;
+
 /*********************************************************************************************
  * @name	HitFX & Gore
  ********************************************************************************************* */
@@ -2343,6 +2366,215 @@ function AdjustRadiusDamage(out float InBaseDamage, float DamageScale, vector Hu
 	}
 `endif
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
+}
+
+/*********************************************************************************************
+* Damage (Taken) History
+********************************************************************************************* */
+
+function int GetMostRecentDamageHistoryIndexFor( Pawn CheckKFP )
+{
+	local int i;
+
+	for ( i = 0; i < DamageHistory.Length; i++ )
+	{
+		if ( DamageHistory[i].DamagerController != none )
+		{
+			if( DamageHistory[i].DamagerController == CheckKFP.Controller )
+			{
+				return i;
+			}
+		}
+	}
+	return -1;
+}
+
+function int RecentDamageFrom( Pawn CheckKFP, optional out int DamageAmount )
+{
+	local int i;
+
+	for ( i = 0; i < DamageHistory.Length; i++ )
+	{
+		if ( DamageHistory[i].DamagerController != none )
+		{
+			if( DamageHistory[i].DamagerController == CheckKFP.Controller )
+			{
+				DamageAmount += DamageHistory[i].Damage;
+				//return true;
+			}
+		}
+	}
+
+	return DamageAmount;
+}
+
+function AddTakenDamage( Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType )
+{
+	UpdateDamageHistory(DamagerController, Damage, DamageCauser, DamageType);
+}
+
+function UpdateDamageHistory( Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType )
+{
+	local DamageInfo Info;
+	local Pawn BlockerPawn;
+	local bool bChangedEnemies;
+	local int HistoryIndex;
+	local float DamageThreshold;
+	local KFAIController KFAIC;
+
+	if( !GetDamageHistory( DamagerController, Info, HistoryIndex ) )
+	{
+		DamageHistory.Insert(0, 1);
+	}
+
+    KFAIC = KFAIController(Controller);
+
+	if( DamagerController.bIsPlayer )
+	{
+        if( KFAIC != none )
+        {
+    		DamageThreshold = float(HealthMax) * KFAIC.AggroPlayerHealthPercentage;
+
+            UpdateDamageHistoryValues( DamagerController, Damage, DamageCauser, KFAIC.AggroPlayerResetTime, Info, DamageType );
+
+    		if( `TimeSince(DamageHistory[KFAIC.CurrentEnemysHistoryIndex].LastTimeDamaged) > 10 )
+    		{
+    			DamageHistory[KFAIC.CurrentEnemysHistoryIndex].Damage = 0;
+    		}
+
+    		if( KFAIC.IsAggroEnemySwitchAllowed()
+    			&& DamagerController.Pawn != KFAIC.Enemy
+    			&& Info.Damage >= DamageThreshold
+    			&& Info.Damage > DamageHistory[KFAIC.CurrentEnemysHistoryIndex].Damage )
+    		{
+    			BlockerPawn = KFAIC.GetPawnBlockingPathTo( DamagerController.Pawn, true );
+    			if( BlockerPawn == none )
+    			{
+    				bChangedEnemies = KFAIC.SetEnemy(DamagerController.Pawn);
+    			}
+    			else
+    			{
+    				bChangedEnemies = KFAIC.SetEnemy( BlockerPawn );
+    			}
+    		}
+
+		}
+		else
+		{
+            UpdateDamageHistoryValues( DamagerController, Damage, DamageCauser, 0, Info, DamageType );
+		}
+	}
+	else
+	{
+        if( KFAIC != none )
+        {
+    		DamageThreshold = float(HealthMax) * KFAIC.AggroZedHealthPercentage;
+
+            UpdateDamageHistoryValues( DamagerController, Damage, DamageCauser, KFAIC.AggroZedResetTime, Info, DamageType );
+
+    		if( KFAIC.IsAggroEnemySwitchAllowed()
+    			&& DamagerController.Pawn != KFAIC.Enemy
+    			&& Info.Damage >= DamageThreshold )
+    		{
+    			BlockerPawn = KFAIC.GetPawnBlockingPathTo( DamagerController.Pawn );
+    			if( BlockerPawn == none )
+    			{
+    				bChangedEnemies = KFAIC.SetEnemyToZed(DamagerController.Pawn);
+    			}
+    		}
+		}
+		else
+		{
+            UpdateDamageHistoryValues( DamagerController, Damage, DamageCauser, 0, Info, DamageType );
+		}
+	}
+
+	DamageHistory[HistoryIndex] = Info;
+
+	if( KFAIC != none && bChangedEnemies )
+	{
+		KFAIC.CurrentEnemysHistoryIndex = HistoryIndex;
+	}
+}
+
+function bool GetDamageHistory( Controller DamagerController, out DamageInfo InInfo, out int InHistoryIndex )
+{
+	// Check if this controller is already in our Damage History
+	InHistoryIndex = DamageHistory.Find( 'DamagerController', DamagerController );
+	if( InHistoryIndex != INDEX_NONE )
+		{
+			InInfo = DamageHistory[InHistoryIndex];
+			return true;
+		}
+
+	InHistoryIndex = 0;
+	return false;
+}
+
+function UpdateDamageHistoryValues( Controller DamagerController, int Damage, Actor DamageCauser, float DamageResetTime, out DamageInfo InInfo, class<KFDamageType> DamageType )
+{
+	local class<KFPerk> WeaponPerk;
+
+	// Update the history
+	InInfo.DamagerController = DamagerController;
+
+	// if too much time has passed since our last damage, reset the damage history
+	if( `TimeSince( InInfo.LastTimeDamaged ) > DamageResetTime )
+	{
+		InInfo.Damage = 0;
+	}
+	InInfo.Damage += Damage;
+	InInfo.TotalDamage += Damage;
+
+	// Zeds will not have a PRI unless game analytics is on
+	if( DamagerController.PlayerReplicationInfo != none )
+	{
+		InInfo.DamagerPRI = DamagerController.PlayerReplicationInfo;
+	}
+
+	// Make sure we have a weapon perk class. Grab the active perk's class as a fallback.
+	// Helps with the shared weapons like the 9mm etc.
+	WeaponPerk = GetUsedWeaponPerk( DamagerController, DamageCauser, DamageType );
+	if( WeaponPerk != none && InInfo.DamagePerks.Find( WeaponPerk ) == INDEX_NONE )
+	{
+		InInfo.DamagePerks.AddItem( WeaponPerk );
+	}
+}
+
+function class<KFPerk> GetUsedWeaponPerk( Controller DamagerController, Actor DamageCauser, class<KFDamageType> DamageType )
+{
+	local class<KFPerk> WeaponPerk;
+	local KFPlayerController KFPC;
+	local KFWeapon KFW;
+
+	KFPC = KFPlayerController(DamagerController);
+	if( KFPC == none )
+	{
+		return none;
+	}
+
+	// Make sure we have a weapon perk class. Grab the active perk's class as a fallback.
+	// Helps with the shared weapons like the 9mm etc.
+	WeaponPerk = class'KFPerk'.static.GetPerkFromDamageCauser( DamageCauser );
+	if( WeaponPerk == none )
+	{
+		KFW = KFWeapon(DamageCauser);
+		if( KFW == none && DamageType != none && DamageType.static.IsNotPerkBound() )
+		{
+			KFW = KFWeapon(KFPC.Pawn.Weapon);
+			if( KFW != none )
+		{
+				WeaponPerk = class'KFPerk'.static.GetPerkFromDamageCauser( KFW );
+		}
+	}
+
+		if( WeaponPerk == none && KFW != none && class'KFPerk'.static.IsBackupWeapon( KFW ) )
+	{
+			WeaponPerk = KFPC.GetPerk().GetPerkClass();
+		}
+	}
+
+	return WeaponPerk;
 }
 
 /**

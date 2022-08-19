@@ -562,6 +562,12 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 		CurrentMenu = none;
 	}
 
+
+	bCanCloseMenu = false;
+	TimerHelper.ClearTimer(nameof(AllowCloseMenu), self);
+	TimerHelper.SetTimer( 0.5, false, nameof(AllowCloseMenu), self );
+	
+
 	if (NewMenuIndex != UI_Trader)
 	{
 		CurrentMenuIndex = NewMenuIndex;
@@ -574,11 +580,7 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 		if( PC != none && PC.PlayerInput != none )
 		{
 			PC.PlayerInput.ResetInput();
-		}
-
-		// The trader menu is not opened through ToggleMenus, set the timer to mark when the menu is completely open
-		bCanCloseMenu = false;
-		TimerHelper.SetTimer( 0.5, false, nameof(AllowCloseMenu), self );
+		}		
 	}
 
 	if(CurrentMenuIndex == UI_Start)
@@ -648,7 +650,7 @@ function ClosePostGameMenu()
 }
 function CloseMenus(optional bool bForceClose=false)
 {
-	if (bMenusOpen || bForceClose)
+	if ( (bMenusOpen && bCanCloseMenu) || bForceClose)
 	{
 		UnloadCurrentPopup();
 		if ( !bAfterLobby && PartyWidget != none || GetPC() == none || GetPC().WorldInfo.GRI == none || GetPC().WorldInfo.GRI.bMatchIsOver )
@@ -696,32 +698,37 @@ function bool ToggleMenus()
 {
 	if (!bMenusOpen || HUD.bShowHUD)
 	{
+		if(!bMenusOpen)
+		{
+			TimerHelper.SetTimer( 0.5, false, nameof(AllowCloseMenu), self );
+		}
+
+		ManagerObject.SetBool("bOpenedInGame",true);
 		if (CurrentMenuIndex >= MenuSWFPaths.length)
-	{
+		{
 			LaunchMenus();
-	}
+		}
 		else
-	{
+		{
 			OpenMenu(UI_Perks);
 			UpdateMenuBar();
-	}
+		}
 
 		// set the timer to mark when the menu is completely open and we can close the menu down
 		bCanCloseMenu = false;
-		TimerHelper.SetTimer( 0.5, false, nameof(AllowCloseMenu), self );
 		TimerHelper.SetTimer( 0.15, false, nameof(PlayOpeningSound), self );//Delay due to pause
 	}
 	else if(bCanCloseMenu) //check to make sure
 	{
 		if(GetPC().WorldInfo.GRI.bMatchIsOver && !bAfterLobby)
-	{
+		{
 			return false; // we are still in the lobby and the game has not proceeded to a point where we can use the esc key
-	}
+		}
 
 		if (CurrentMenu != TraderMenu)
-	{
+		{
 			PlaySoundFromTheme('MainMenu_Close', SoundThemeName);
-	}
+		}
 
     	CloseMenus();
 	}

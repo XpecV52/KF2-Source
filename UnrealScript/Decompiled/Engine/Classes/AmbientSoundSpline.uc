@@ -59,5 +59,4 @@ defaultproperties
     object end
     // Reference: SplineAudioComponent'Default__AmbientSoundSpline.AudioComponent1'
     Components(3)=AudioComponent1
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
 }

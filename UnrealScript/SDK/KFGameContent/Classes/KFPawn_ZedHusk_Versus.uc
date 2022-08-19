@@ -95,7 +95,8 @@ DefaultProperties
 	TeammateCollisionRadiusPercent=0.30
 
 	LocalizationKey=KFPawn_ZedHusk
-    DoshValue=68.0 // 4x default because they are harder to hit/kill
+    DoshValue=20.0 // default because they have the same health as survival
+    XPValues(0)=30 // 2x default because they are harder to hit/kill
 
     // Faster sprint
     SprintSpeed=500.f

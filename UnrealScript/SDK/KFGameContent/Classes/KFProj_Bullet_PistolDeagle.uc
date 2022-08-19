@@ -13,8 +13,8 @@ class KFProj_Bullet_PistolDeagle extends KFProj_Bullet_RackEmUp
 
 defaultproperties
 {
-	MaxSpeed=5000.0
-	Speed=5000.0
+	MaxSpeed=18000.0
+	Speed=18000.0
 
 	DamageRadius=0
 

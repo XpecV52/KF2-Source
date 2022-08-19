@@ -78,7 +78,6 @@ defaultproperties
    Components(1)=DrawSoundRadius0
    Components(2)=SplineComponent0
    Components(3)=AudioComponent1
-   CollisionType=COLLIDE_CustomDefault
    Name="Default__AmbientSoundSpline"
    ObjectArchetype=AmbientSound'Engine.Default__AmbientSound'
 }

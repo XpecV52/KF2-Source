@@ -892,6 +892,12 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 		ShieldAbsorb( InDamage );
 	}
 
+	// register damage to divide up score
+	if( InstigatedBy != none )
+	{
+		AddTakenDamage( InstigatedBy, FMin(Health, InDamage), DamageCauser, class<KFDamageType>(DamageType) );
+	}
+
 	if( bHasSacrificeSkill && Health >= 5 && Health - InDamage < 5 )
 	{
 		Health = InDamage + 5;

@@ -678,6 +678,10 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
     {
         ShieldAbsorb(InDamage);
     }
+    if(InstigatedBy != none)
+    {
+        AddTakenDamage(InstigatedBy, int(FMin(float(Health), float(InDamage))), DamageCauser, class<KFDamageType>(DamageType));
+    }
     if((bHasSacrificeSkill && Health >= 5) && (Health - InDamage) < 5)
     {
         Health = InDamage + 5;

@@ -76,8 +76,8 @@ function UpdateOverallStatus()
 
 defaultproperties
 {
-   HumanRankZedHealthScaleCurve=(Points=((OutVal=0.700000),(InVal=12.000000,OutVal=0.700000),(InVal=25.000000,OutVal=1.180000)))
-   HumanRankZedDamageScaleCurve=(Points=((OutVal=0.500000),(InVal=12.000000,OutVal=0.750000),(InVal=25.000000,OutVal=0.840000)))
+   HumanRankZedHealthScaleCurve=(Points=((OutVal=0.500000),(InVal=12.000000,OutVal=0.700000),(InVal=25.000000,OutVal=1.180000)))
+   HumanRankZedDamageScaleCurve=(Points=((OutVal=0.350000),(InVal=12.000000,OutVal=0.500000),(InVal=25.000000,OutVal=0.750000)))
    TargetPerkRankRange(0)=(X=0.000000,Y=25.000000)
    CurrentSpawnRateModification=1.300000
    Name="Default__KFGameConductorVersus"

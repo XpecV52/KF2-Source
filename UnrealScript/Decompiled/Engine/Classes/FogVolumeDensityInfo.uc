@@ -144,5 +144,6 @@ defaultproperties
     object end
     // Reference: StaticMeshComponent'Default__FogVolumeDensityInfo.AutomaticMeshComponent0'
     Components(1)=AutomaticMeshComponent0
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
     bNoDelete=true
 }

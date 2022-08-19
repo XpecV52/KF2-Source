@@ -38,7 +38,8 @@ defaultproperties
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedCrawler_Versus.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
-    DoshValue=40
+    DoshValue=25
+    XPValues=32
     SpecialMoveCooldowns=/* Array type was not detected. */
     JumpBumpDamageType=Class'KFDT_Bludgeon_ZedJump'
     LocalizationKey=KFPawn_ZedCrawler

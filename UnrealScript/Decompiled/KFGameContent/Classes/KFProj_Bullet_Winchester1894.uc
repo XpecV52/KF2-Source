@@ -12,8 +12,8 @@ defaultproperties
 {
     ProjFlightTemplate=ParticleSystem'WEP_1P_L85A2_EMIT.FX_L85A2_Tracer_ZEDTime'
     AmbientComponent=AkComponent'Default__KFProj_Bullet_Winchester1894.AmbientAkSoundComponent'
-    Speed=8000
-    MaxSpeed=8000
+    Speed=24000
+    MaxSpeed=24000
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

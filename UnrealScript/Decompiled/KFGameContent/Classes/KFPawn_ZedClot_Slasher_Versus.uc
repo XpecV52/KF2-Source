@@ -42,7 +42,9 @@ defaultproperties
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedClot_Slasher_Versus.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
-    DoshValue=35
+    DoshValue=20
+    XPValues=32
+    VulnerableDamageTypes=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
     JumpBumpDamageType=Class'KFDT_Bludgeon_ZedJump'
     LocalizationKey=KFPawn_ZedClot_Slasher

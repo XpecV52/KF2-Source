@@ -1304,6 +1304,14 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 				{
 					KillerLabel = string(KFAIC.MyKFPawn.Class.Name);
 				}
+				else if( Killer.Pawn != none )
+				{
+					KillerLabel = string(Killer.Pawn.Class.Name);
+				}
+				else
+				{
+				    KillerLabel = string(Killer.Class.Name); // well SOMETHING killed me (vs), no pawn, log the controller
+				}
 			}
 		}
 
@@ -1313,8 +1321,8 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 					   KillerLabel,
 					   DT.Name,
 					   "#"$MyKFGRI.WaveNum,
-					   KFPC.GetPerk().PerkName,
-					   KFPC.GetPerk().GetLevel(),
+					   KFPC != none ? KFPC.GetPerk().PerkName : "",
+					   KFPC != none ? KFPC.GetPerk().GetLevel() : byte(0),
 					   (KilledPawn != none && KilledPawn.InvManager != none) ? KFInventoryManager(KilledPawn.InvManager).DumpInventory() : ""));
 	}
 
@@ -1390,7 +1398,10 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 	        }
 	    }
 
-        KFPawn_Human(KilledPawn).BroadcastDeathMessage( Killer );
+        if( KilledPawn != none && KFPawn_Human(KilledPawn) != none )
+        {
+            KFPawn_Human(KilledPawn).BroadcastDeathMessage( Killer );
+        }
 	}
 }
 
@@ -1449,14 +1460,11 @@ function ScoreKill(Controller Killer, Controller Other)
 /* A Zed got killed, let's distribute its money money money value */
 function ScoreMonsterKill( Controller Killer, Controller Monster, KFPawn_Monster MonsterPawn )
 {
-	local KFAIController KFAIC;
-
-	KFAIC = KFAIController(Monster);
-	if( KFAIC != none )
+	if( MonsterPawn != none )
 	{
-		if( KFAIC.DamageHistory.Length > 0 )
+		if( MonsterPawn.DamageHistory.Length > 0 )
 		{
-			DistributeMoneyAndXP( MonsterPawn.class, KFAIC.DamageHistory, Killer );
+			DistributeMoneyAndXP( MonsterPawn.class, MonsterPawn.DamageHistory, Killer );
 
 			if( MonsterPawn.IsStalkerClass() &&
 			 	MonsterPawn.LastStoredCC != none &&

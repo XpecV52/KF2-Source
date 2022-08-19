@@ -13,8 +13,8 @@ class KFProj_Bullet_Pistol50AE extends KFProj_Bullet_RackEmUp
 
 defaultproperties
 {
-	MaxSpeed=6000.0
-	Speed=6000.0
+	MaxSpeed=18000.0
+	Speed=18000.0
 
 	DamageRadius=0
 

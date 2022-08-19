@@ -200,13 +200,12 @@ defaultproperties
    bDamageAppliesImpulse=True
    Components(0)=KAssetSkelMeshComponent
    Physics=PHYS_RigidBody
-   CollisionType=COLLIDE_BlockWeapons
+   CollisionType=COLLIDE_CustomDefault
    TickGroup=TG_PostAsyncWork
    bNoDelete=True
    bAlwaysRelevant=True
    bUpdateSimulatedPosition=True
    bNetInitialRotation=True
-   BlockRigidBody=True
    bCollideActors=True
    bBlockActors=True
    bProjTarget=True

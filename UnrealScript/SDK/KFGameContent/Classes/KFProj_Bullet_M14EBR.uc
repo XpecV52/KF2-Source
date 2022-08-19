@@ -12,8 +12,8 @@ class KFProj_Bullet_M14EBR extends KFProj_Bullet_RackEmUp
 
 defaultproperties
 {
-	MaxSpeed=8000.0
-	Speed=8000.0
+	MaxSpeed=30000.0
+	Speed=30000.0
 
 	DamageRadius=0
 

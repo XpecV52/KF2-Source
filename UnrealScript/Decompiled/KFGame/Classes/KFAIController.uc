@@ -80,26 +80,6 @@ struct native KFAICmdHistoryItem
     }
 };
 
-struct native DamageInfo
-{
-    var Controller DamagerController;
-    var PlayerReplicationInfo DamagerPRI;
-    var float Damage;
-    var float TotalDamage;
-    var float LastTimeDamaged;
-    var array< class<KFPerk> > DamagePerks;
-
-    structdefaultproperties
-    {
-        DamagerController=none
-        DamagerPRI=none
-        Damage=0
-        TotalDamage=0
-        LastTimeDamaged=0
-        DamagePerks=none
-    }
-};
-
 var bool bAllowScriptTeamCheck;
 var bool bIdleMoveToNearestEnemy;
 var bool bReachedMoveGoal;
@@ -386,7 +366,6 @@ var Vector LocationAtLastStuckCheck;
 var AICommand CmdTriggeringHardCoreStuckChecking;
 var AITickablePlugin PlugInTriggeringTriggeringHardCoreStuckChecking;
 var array<KFAICmdHistoryItem> KFAICommandHistory;
-var array<DamageInfo> DamageHistory;
 
 // Export UKFAIController::execBumperSomewhereToGo(FFrame&, void* const)
 native function bool BumperSomewhereToGo();
@@ -3262,50 +3241,6 @@ function RestoreCollisionCylinderReducedPercentForSameTeamIgnoreBlockingBy()
     }
 }
 
-function int GetMostRecentDamageHistoryIndexFor(Pawn CheckKFP)
-{
-    local int I;
-
-    I = 0;
-    J0x0B:
-
-    if(I < DamageHistory.Length)
-    {
-        if(DamageHistory[I].DamagerController != none)
-        {
-            if(DamageHistory[I].DamagerController == CheckKFP.Controller)
-            {
-                return I;
-            }
-        }
-        ++ I;
-        goto J0x0B;
-    }
-    return -1;
-}
-
-function int RecentDamageFrom(Pawn CheckKFP, optional out int DamageAmount)
-{
-    local int I;
-
-    I = 0;
-    J0x0C:
-
-    if(I < DamageHistory.Length)
-    {
-        if(DamageHistory[I].DamagerController != none)
-        {
-            if(DamageHistory[I].DamagerController == CheckKFP.Controller)
-            {
-                DamageAmount += int(DamageHistory[I].Damage);
-            }
-        }
-        ++ I;
-        goto J0x0C;
-    }
-    return DamageAmount;
-}
-
 event SeePlayer(Pawn Seen)
 {
     local float DistToEnemy, DistToSeen;
@@ -4355,132 +4290,11 @@ function DoDebugTurnInPlace(KFPlayerController KFPC, optional bool bAllowMelee)
     Class'AICommand_DebugTurn'.static.DebugTurnInPlace(self, bAllowMelee, KFPC);
 }
 
-function AddTakenDamage(Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType)
-{
-    UpdateDamageHistory(DamagerController, Damage, DamageCauser, DamageType);
-}
-
-function UpdateDamageHistory(Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType)
-{
-    local DamageInfo Info;
-    local Pawn BlockerPawn;
-    local bool bChangedEnemies;
-    local int HistoryIndex;
-    local float DamageThreshold;
-
-    if(!GetDamageHistory(DamagerController, Info, HistoryIndex))
-    {
-        DamageHistory.Insert(0, 1;
-    }
-    if(DamagerController.bIsPlayer)
-    {
-        DamageThreshold = float(Pawn.HealthMax) * AggroPlayerHealthPercentage;
-        UpdateDamageHistoryValues(DamagerController, Damage, DamageCauser, AggroPlayerResetTime, Info, DamageType);
-        if((WorldInfo.TimeSeconds - DamageHistory[CurrentEnemysHistoryIndex].LastTimeDamaged) > float(10))
-        {
-            DamageHistory[CurrentEnemysHistoryIndex].Damage = 0;
-        }
-        if((((IsAggroEnemySwitchAllowed()) && DamagerController.Pawn != Enemy) && Info.Damage >= DamageThreshold) && Info.Damage > DamageHistory[CurrentEnemysHistoryIndex].Damage)
-        {
-            BlockerPawn = GetPawnBlockingPathTo(DamagerController.Pawn, true);
-            if(BlockerPawn == none)
-            {
-                bChangedEnemies = SetEnemy(DamagerController.Pawn);                
-            }
-            else
-            {
-                bChangedEnemies = SetEnemy(BlockerPawn);
-            }
-        }        
-    }
-    else
-    {
-        DamageThreshold = float(Pawn.HealthMax) * AggroZedHealthPercentage;
-        UpdateDamageHistoryValues(DamagerController, Damage, DamageCauser, AggroZedResetTime, Info, DamageType);
-        if(((IsAggroEnemySwitchAllowed()) && DamagerController.Pawn != Enemy) && Info.Damage >= DamageThreshold)
-        {
-            BlockerPawn = GetPawnBlockingPathTo(DamagerController.Pawn);
-            if(BlockerPawn == none)
-            {
-                bChangedEnemies = SetEnemyToZed(DamagerController.Pawn);
-            }
-        }
-    }
-    DamageHistory[HistoryIndex] = Info;
-    if(bChangedEnemies)
-    {
-        CurrentEnemysHistoryIndex = byte(HistoryIndex);
-    }
-}
+function AIHandleTakenDamage(Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType);
 
 function bool IsAggroEnemySwitchAllowed()
 {
     return true;
-}
-
-function bool GetDamageHistory(Controller DamagerController, out DamageInfo InInfo, out int InHistoryIndex)
-{
-    InHistoryIndex = DamageHistory.Find('DamagerController', DamagerController;
-    if(InHistoryIndex != -1)
-    {
-        InInfo = DamageHistory[InHistoryIndex];
-        return true;
-    }
-    InHistoryIndex = 0;
-    return false;
-}
-
-function UpdateDamageHistoryValues(Controller DamagerController, int Damage, Actor DamageCauser, float DamageResetTime, out DamageInfo InInfo, class<KFDamageType> DamageType)
-{
-    local class<KFPerk> WeaponPerk;
-
-    InInfo.DamagerController = DamagerController;
-    if((WorldInfo.TimeSeconds - InInfo.LastTimeDamaged) > DamageResetTime)
-    {
-        InInfo.Damage = 0;
-    }
-    InInfo.Damage += float(Damage);
-    InInfo.TotalDamage += float(Damage);
-    if(DamagerController.PlayerReplicationInfo != none)
-    {
-        InInfo.DamagerPRI = DamagerController.PlayerReplicationInfo;
-    }
-    WeaponPerk = GetUsedWeaponPerk(DamagerController, DamageCauser, DamageType);
-    if((WeaponPerk != none) && InInfo.DamagePerks.Find(WeaponPerk == -1)
-    {
-        InInfo.DamagePerks.AddItem(WeaponPerk;
-    }
-}
-
-function class<KFPerk> GetUsedWeaponPerk(Controller DamagerController, Actor DamageCauser, class<KFDamageType> DamageType)
-{
-    local class<KFPerk> WeaponPerk;
-    local KFPlayerController KFPC;
-    local KFWeapon KFW;
-
-    KFPC = KFPlayerController(DamagerController);
-    if(KFPC == none)
-    {
-        return none;
-    }
-    WeaponPerk = Class'KFPerk'.static.GetPerkFromDamageCauser(DamageCauser);
-    if(WeaponPerk == none)
-    {
-        KFW = KFWeapon(DamageCauser);
-        if(((KFW == none) && DamageType != none) && DamageType.static.IsNotPerkBound())
-        {
-            KFW = KFWeapon(KFPC.Pawn.Weapon);
-            if(KFW != none)
-            {
-                WeaponPerk = Class'KFPerk'.static.GetPerkFromDamageCauser(KFW);
-            }
-        }
-        if(((WeaponPerk == none) && KFW != none) && Class'KFPerk'.static.IsBackupWeapon(KFW))
-        {
-            WeaponPerk = KFPC.GetPerk().GetPerkClass();
-        }
-    }
-    return WeaponPerk;
 }
 
 function DrawDebugOverheadMovementPhaseData(KFHUDBase HUD, out Vector2D ScreenPos)
@@ -5041,7 +4855,7 @@ event float EvaluateThreatFrom(Pawn CheckPawn, optional float EarlyOutScore)
     local float DistScore, ClosestDist, Time;
 
     Threat = KFPawn(CheckPawn);
-    RecentDamageFromThreat = RecentDamageFrom(Threat);
+    RecentDamageFromThreat = MyKFPawn.RecentDamageFrom(Threat);
     DistToThreat = VSize(Threat.Location - Pawn.Location);
     if(CheckPawn.IsHumanControlled() && CheckPawn.PlayerReplicationInfo != none)
     {

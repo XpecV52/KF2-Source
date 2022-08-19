@@ -12,8 +12,8 @@ defaultproperties
 {
     ProjFlightTemplate=ParticleSystem'FX_Projectile_EMIT.FX_Tracer_9MM_ZEDTime'
     AmbientComponent=AkComponent'Default__KFProj_Bullet_Pistol50AE.AmbientAkSoundComponent'
-    Speed=6000
-    MaxSpeed=6000
+    Speed=18000
+    MaxSpeed=18000
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

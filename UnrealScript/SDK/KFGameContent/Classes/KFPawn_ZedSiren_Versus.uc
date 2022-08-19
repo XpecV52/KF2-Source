@@ -42,7 +42,7 @@ defaultproperties
 	Begin Object Name=SpecialMoveHandler_0
 	SpecialMoveClasses(SM_PlayerZedAttack1)=class'KFSM_PlayerSiren_NormalScream'
 	SpecialMoveClasses(SM_PlayerZedAttack2)=class'KFSM_PlayerSiren_VortexScream'
-	SpecialMoveClasses(SM_PlayerZedSpecial1)=class'KFSM_PlayerSiren_Melee'		
+	SpecialMoveClasses(SM_PlayerZedSpecial1)=class'KFSM_PlayerSiren_Melee'
 	End Object
 
 	SpecialMoveCooldowns(0)=(SMHandle=SM_PlayerZedAttack1,		CooldownTime=2.5f,		SpecialMoveIcon=Texture2D'ZED_Siren_UI.ZED-VS_Icons_Siren-Scream', GBA_Name="GBA_Fire",NameLocalizationKey="Scream")
@@ -72,7 +72,8 @@ defaultproperties
 //	// Custom Hit Zones (HeadHealth, SkinTypes, etc...)
 //    HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=155, DmgScale=1.1, SkinID=1) // KF1=200
 
-    DoshValue=75.0 // 2x default because they are harder to hit/kill
+    DoshValue=25.0 // default because they have the same health as survival
+    XPValues(0)=22 // 2x default because they are harder to hit/kill
 
 	//defaults
 	ThirdPersonViewOffset={(

@@ -334,4 +334,5 @@ defaultproperties
     object end
     // Reference: StaticMeshComponent'Default__KFSpawner.PreviewMesh'
     Components(0)=PreviewMesh
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
 }

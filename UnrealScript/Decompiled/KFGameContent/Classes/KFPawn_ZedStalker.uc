@@ -109,7 +109,7 @@ simulated event NotifyGoreMeshActive()
     bIsCloaking = false;
     bIsCloakingSpottedByLP = false;
     bIsCloakingSpottedByTeam = false;
-    if(PlayerReplicationInfo == none)
+    if((PlayerReplicationInfo == none) && Mesh.SkeletalMesh.Materials.Length > 2)
     {
         BodyMIC.SetParent(Mesh.SkeletalMesh.Materials[2]);
     }
@@ -279,6 +279,16 @@ function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, clas
     {
         SetTimer(0.35, false, 'ReCloakTimer');
     }
+}
+
+simulated function PlayHeadAsplode()
+{
+    if(bIsCloaking)
+    {
+        SetCloaked(false);
+    }
+    bCanCloak = false;
+    super.PlayHeadAsplode();
 }
 
 simulated function ReCloakTimer()

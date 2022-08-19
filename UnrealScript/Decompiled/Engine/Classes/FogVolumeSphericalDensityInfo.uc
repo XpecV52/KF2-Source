@@ -47,5 +47,4 @@ defaultproperties
     object end
     // Reference: FogVolumeSphericalDensityComponent'Default__FogVolumeSphericalDensityInfo.FogVolumeComponent0'
     Components(3)=FogVolumeComponent0
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
 }

@@ -23,7 +23,10 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedGorefast:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedGorefast_Versus:MeleeHelper_0'
-   DoshValue=48
+   DoshValue=28
+   XPValues(0)=44.000000
+   VulnerableDamageTypes(16)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AR15',DamageScale=1.250000)
+   VulnerableDamageTypes(17)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rem1858',DamageScale=1.250000)
    ResistantDamageTypes(16)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=0.200000)
    ResistantDamageTypes(17)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=0.200000)
    SpecialMoveCooldowns(0)=(CoolDownTime=0.350000,SMHandle=SM_PlayerZedAttack1,SpecialMoveIcon=Texture2D'ZED_Gorefast_UI.ZED-VS_Icons_Gorefast-Melee',NameLocalizationKey="Light",GBA_Name="GBA_Fire")
@@ -39,7 +42,7 @@ defaultproperties
       ObjectArchetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedGorefast:ThirdPersonHead0'
    End Object
    ThirdPersonHeadMeshComponent=ThirdPersonHead0
-   HitZones(0)=(GoreHealth=100)
+   HitZones(0)=(GoreHealth=80)
    HitZones(1)=()
    HitZones(2)=()
    HitZones(3)=()
@@ -155,7 +158,7 @@ defaultproperties
    End Object
    DialogAkComponent=DialogAkSoundComponent
    GroundSpeed=320.000000
-   Health=360
+   Health=275
    Begin Object Class=KFSkeletalMeshComponent Name=KFPawnSkeletalMeshComponent Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedGorefast:KFPawnSkeletalMeshComponent'
       WireframeColor=(B=0,G=255,R=255,A=255)
       MinDistFactorForKinematicUpdate=0.200000

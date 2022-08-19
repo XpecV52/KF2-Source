@@ -13,8 +13,8 @@ defaultproperties
     ProjFlightTemplate=ParticleSystem'WEP_1P_L85A2_EMIT.FX_L85A2_Tracer_ZEDTime'
     AmbientComponent=AkComponent'Default__KFProj_Bullet_AssaultRifle.AmbientAkSoundComponent'
     ImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Heavy_bullet_impact'
-    Speed=7500
-    MaxSpeed=7500
+    Speed=22500
+    MaxSpeed=22500
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

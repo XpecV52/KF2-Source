@@ -440,6 +440,7 @@ defaultproperties
       ObjectArchetype=StaticMeshComponent'Engine.Default__StaticMeshComponent'
    End Object
    Components(0)=PreviewMesh
+   CollisionType=COLLIDE_CustomDefault
    Name="Default__KFSpawner"
    ObjectArchetype=Actor'Engine.Default__Actor'
 }

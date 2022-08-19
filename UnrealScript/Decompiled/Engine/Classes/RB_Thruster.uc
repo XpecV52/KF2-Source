@@ -59,7 +59,6 @@ defaultproperties
     object end
     // Reference: SpriteComponent'Default__RB_Thruster.Sprite'
     Components(1)=Sprite
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
     bHardAttach=true
     bEdShouldSnap=true
 }

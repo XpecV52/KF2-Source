@@ -12,8 +12,8 @@ defaultproperties
 {
     ProjFlightTemplate=ParticleSystem'FX_Projectile_EMIT.FX_Tracer_9MM_ZEDTime'
     AmbientComponent=AkComponent'Default__KFProj_Bullet_RevolverSW500.AmbientAkSoundComponent'
-    Speed=5000
-    MaxSpeed=5000
+    Speed=22500
+    MaxSpeed=22500
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

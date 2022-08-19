@@ -50,6 +50,7 @@ defaultproperties
    End Object
    Components(1)=DrawSoundRadius0
    Components(2)=AudioComponent0
+   CollisionType=COLLIDE_CustomDefault
    Name="Default__AmbientSound"
    ObjectArchetype=Keypoint'Engine.Default__Keypoint'
 }

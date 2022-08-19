@@ -35,6 +35,7 @@ defaultproperties
     object end
     // Reference: SpriteComponent'Default__LandscapeGizmoActor.Sprite'
     Components(0)=Sprite
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
     TickGroup=ETickingGroup.TG_DuringAsyncWork
     bStatic=true
     bMovable=false

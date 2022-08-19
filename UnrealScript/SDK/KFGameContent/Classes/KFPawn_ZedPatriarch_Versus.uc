@@ -77,7 +77,7 @@ function PossessedBy( Controller C, bool bVehicleTransition )
 	MyKFPC = KFPlayerController(C);
 
 	// Start the cloak timer
-	SetTimer( 2.f + fRand(), false, nameOf(Timer_EnableCloak) );	
+	SetTimer( 2.f + fRand(), false, nameOf(Timer_EnableCloak) );
 }
 
 /** Toggle cloaking material */
@@ -214,7 +214,7 @@ private function UpdateHealAvailable()
 			SpecialMoveCooldowns[5].LastUsedTime = 0;
 		}
 	}
-	else 
+	else
 	{
 		if( bIsQuickHealMessageShowing )
 		{
@@ -236,7 +236,7 @@ private function UpdateCloakIconState()
 	}
 	else
 	{
-		SpecialMoveCooldowns[7].LastUsedTime = 0;		
+		SpecialMoveCooldowns[7].LastUsedTime = 0;
 	}
 }
 
@@ -337,7 +337,7 @@ function bool CollectMortarTargets( optional bool bInitialTarget, optional bool 
 	local KFPawn_Human KFP;
 	local float TargetDistSQ;
 	local vector MortarVelocity, MortarStartLoc, TargetLoc, TargetProjection;
-	
+
    	MortarStartLoc = Location + vect(0,0,1)*GetCollisionHeight();
     NumTargets = bInitialTarget ? 0 : 1;
     foreach WorldInfo.AllPawns( class'KFPawn_Human', KFP )
@@ -459,7 +459,7 @@ function NotifyHealed()
 	SpecialMoveCooldowns[7].Charges = CloakCharges;
 
 	// Reset autoheal status
-	bAutoHealed = false;	
+	bAutoHealed = false;
 }
 
 /** Allow humans to draw a positional icon to find us when we're uncloaked */
@@ -496,6 +496,8 @@ DefaultProperties
 {
 	bVersusZed=true
 	TeammateCollisionRadiusPercent=0.30
+
+	XPValues(0)=2500 // 2x default because you have to play two rounds
 
 	LocalizationKey=KFPawn_ZedPatriarch
 

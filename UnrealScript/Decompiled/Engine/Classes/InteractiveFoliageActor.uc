@@ -94,7 +94,7 @@ defaultproperties
     object end
     // Reference: CylinderComponent'Default__InteractiveFoliageActor.CollisionCylinder'
     Components(1)=CollisionCylinder
-    CollisionType=ECollisionType.COLLIDE_TouchAllButWeapons
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
     TickGroup=ETickingGroup.TG_DuringAsyncWork
     bStatic=false
     bNoDelete=true

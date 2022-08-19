@@ -54,6 +54,7 @@ defaultproperties
     object end
     // Reference: PathRenderingComponent'Default__KFPlayerStart.PathRenderer'
     Components(4)=PathRenderer
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionHeight=86
         CollisionRadius=36

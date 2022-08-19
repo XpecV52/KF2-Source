@@ -71,8 +71,8 @@ function UpdateOverallStatus()
 
 defaultproperties
 {
-    HumanRankZedHealthScaleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.7,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
-    HumanRankZedDamageScaleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.5,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
+    HumanRankZedHealthScaleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.5,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
+    HumanRankZedDamageScaleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0.35,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
     TargetPerkRankRange=(X=0,Y=25)
     CurrentSpawnRateModification=1.3
 }

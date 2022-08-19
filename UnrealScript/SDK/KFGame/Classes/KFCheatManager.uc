@@ -4179,6 +4179,58 @@ simulated function KFPawn SpawnAIZed(string ZedName, float Distance, optional na
 	return Zed;
 }
 
+/** Spawns a versus zed with name ZedName, and possess them with a player controller so we can test functionality that requires a player controlled versus zed */
+exec function SpawnZedVC(string ZedName)
+{
+	local KFPlayerController KFPC;
+    local class<KFPawn_Monster> MonsterClass;
+    local vector SpawnLoc;
+    local rotator SpawnRot;
+    local KFPawn KFP;
+
+    if( !WorldInfo.Game.IsA('KFGameInfo_VersusSurvival') )
+    {
+        ClientMessage("This cheat command is only valid in Versus Survival mode!", CheatType );
+        return;
+    }
+
+    MonsterClass = LoadMonsterByName( ZedName, true );
+
+    if( MonsterClass != none )
+    {
+        // The ZED should be spawned X units in front of the view location
+        if( Pawn != None )
+        {
+            SpawnLoc = Pawn.Location;
+        }
+        else
+        {
+            SpawnLoc = Location;
+        }
+
+        SpawnLoc += 200.f * vector(Rotation) + vect(0,0,1) * 15.f;
+        SpawnRot.Yaw = Rotation.Yaw + 32768;
+
+        KFP = Spawn( MonsterClass,,, SpawnLoc, SpawnRot,, false );
+        if( KFP != none )
+        {
+        	// Create a new Controller for this Bot
+        	KFPC = Spawn(class'KFPlayerController');
+
+        	// Silly name for now
+        	WorldInfo.Game.ChangeName(KFPC, "Braindead Human", false);
+
+        	KFPC.Possess(KFP, false);
+
+            KFP.SetPhysics( PHYS_Falling );
+        }
+        else
+        {
+            ClientMessage(" Could not spawn Versus ZED ["$ZedName$"] with a PC. Please make sure that the ZED name to archetype mapping is set up correctly.", CheatType );
+        }
+    }
+}
+
 /** Spawns a versus zed with name ZedName, and optionally possesses them */
 exec function SpawnZedV( string ZedName, optional bool bPossess=true )
 {

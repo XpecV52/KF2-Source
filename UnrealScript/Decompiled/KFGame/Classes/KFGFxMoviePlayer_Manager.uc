@@ -484,6 +484,9 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
         CurrentMenu.OnClose();
         CurrentMenu = none;
     }
+    bCanCloseMenu = false;
+    TimerHelper.ClearTimer('AllowCloseMenu', self);
+    TimerHelper.SetTimer(0.5, false, 'AllowCloseMenu', self);
     if(NewMenuIndex != 14)
     {
         CurrentMenuIndex = NewMenuIndex;        
@@ -495,8 +498,6 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
         {
             PC.PlayerInput.ResetInput();
         }
-        bCanCloseMenu = false;
-        TimerHelper.SetTimer(0.5, false, 'AllowCloseMenu', self);
     }
     if(CurrentMenuIndex == 0)
     {
@@ -562,7 +563,7 @@ function ClosePostGameMenu()
 function CloseMenus(optional bool bForceClose)
 {
     bForceClose = false;
-    if(bMenusOpen || bForceClose)
+    if((bMenusOpen && bCanCloseMenu) || bForceClose)
     {
         UnloadCurrentPopup();
         if((((!bAfterLobby && PartyWidget != none) || (GetPC()) == none) || GetPC().WorldInfo.GRI == none) || GetPC().WorldInfo.GRI.bMatchIsOver)
@@ -604,6 +605,11 @@ function bool ToggleMenus()
 {
     if(!bMenusOpen || HUD.bShowHUD)
     {
+        if(!bMenusOpen)
+        {
+            TimerHelper.SetTimer(0.5, false, 'AllowCloseMenu', self);
+        }
+        ManagerObject.SetBool("bOpenedInGame", true);
         if(CurrentMenuIndex >= MenuSWFPaths.Length)
         {
             LaunchMenus();            
@@ -614,7 +620,6 @@ function bool ToggleMenus()
             UpdateMenuBar();
         }
         bCanCloseMenu = false;
-        TimerHelper.SetTimer(0.5, false, 'AllowCloseMenu', self);
         TimerHelper.SetTimer(0.15, false, 'PlayOpeningSound', self);        
     }
     else

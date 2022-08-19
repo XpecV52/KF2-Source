@@ -102,7 +102,7 @@ defaultproperties
    StaticMeshComponent=FoliageMeshComponent0
    Components(0)=FoliageMeshComponent0
    Components(1)=CollisionCylinder
-   CollisionType=COLLIDE_TouchAllButWeapons
+   CollisionType=COLLIDE_CustomDefault
    TickGroup=TG_DuringAsyncWork
    bStatic=False
    bNoDelete=True

@@ -22,8 +22,8 @@ defaultproperties
    End Object
    AmbientComponent=AmbientAkSoundComponent
    ImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Heavy_bullet_impact'
-   Speed=7500.000000
-   MaxSpeed=7500.000000
+   Speed=22500.000000
+   MaxSpeed=22500.000000
    Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'KFGame.Default__KFProj_Bullet:CollisionCylinder'
       CollisionHeight=0.000000
       CollisionRadius=0.000000

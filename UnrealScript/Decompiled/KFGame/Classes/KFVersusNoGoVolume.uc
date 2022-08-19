@@ -131,7 +131,7 @@ defaultproperties
     // Reference: BrushComponent'Default__KFVersusNoGoVolume.BrushComponent0'
     Components(0)=BrushComponent0
     RemoteRole=ENetRole.ROLE_SimulatedProxy
-    CollisionType=ECollisionType.COLLIDE_TouchAllButWeapons
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
     bCollideActors=true
     begin object name=BrushComponent0 class=BrushComponent
         ReplacementPrimitive=none

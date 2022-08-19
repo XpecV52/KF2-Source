@@ -125,7 +125,8 @@ DefaultProperties
 	End Object
 	MeleeAttackHelper=MeleeHelper_0
 
-    DoshValue=400.0 // 2x default because they are harder to hit/kill
+    DoshValue=300.0 // 1.5x default because they are harder to hit/kill
+    XPValues(0)=105.0// 1.5 X 2x default because they are harder to hit/kill
 
     SprintSpeed=725.f
     SprintStrafeSpeed=450.f

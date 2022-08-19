@@ -34,7 +34,6 @@ defaultproperties
     object end
     // Reference: ArrowComponent'Default__DecalActorMovable.ArrowComponent0'
     Components(2)=ArrowComponent0
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
     bStatic=false
     bNoDelete=true
     bHardAttach=true

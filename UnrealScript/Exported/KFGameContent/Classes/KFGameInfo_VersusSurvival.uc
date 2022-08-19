@@ -86,6 +86,11 @@ function StartMatch()
 	super.StartMatch();
 }
 
+function bool ShouldStartMatch()
+{
+    return ( WorldInfo.NetMode == NM_StandAlone || (Teams[0].Size > 0 && Teams[1].Size > 0) );
+}
+
 function BalanceTeams()
 {
     local int Delta, AutoBalanceRemaining, i;

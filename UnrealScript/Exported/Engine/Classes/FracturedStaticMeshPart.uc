@@ -136,13 +136,11 @@ defaultproperties
    SkinnedComponent=None
    Components(0)=FracturedStaticMeshComponent0
    Physics=PHYS_RigidBody
-   CollisionType=COLLIDE_CustomDefault
    TickGroup=TG_PostAsyncWork
    bNoDelete=False
    bWorldGeometry=False
    bNetInitialRotation=True
    bMovable=True
-   BlockRigidBody=False
    bBlockActors=False
    bNoEncroachCheck=True
    bPathColliding=False

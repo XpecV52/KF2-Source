@@ -116,13 +116,11 @@ defaultproperties
     // Reference: FracturedStaticMeshComponent'Default__FracturedStaticMeshPart.FracturedStaticMeshComponent0'
     Components(0)=FracturedStaticMeshComponent0
     Physics=EPhysics.PHYS_RigidBody
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
     TickGroup=ETickingGroup.TG_PostAsyncWork
     bNoDelete=false
     bWorldGeometry=false
     bNetInitialRotation=true
     bMovable=true
-    BlockRigidBody=false
     bBlockActors=false
     bNoEncroachCheck=true
     bPathColliding=false

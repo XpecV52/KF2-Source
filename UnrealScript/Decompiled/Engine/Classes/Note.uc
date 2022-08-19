@@ -33,6 +33,7 @@ defaultproperties
     object end
     // Reference: SpriteComponent'Default__Note.Sprite'
     Components(1)=Sprite
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
     bStatic=true
     bHidden=true
     bNoDelete=true

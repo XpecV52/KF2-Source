@@ -13,8 +13,8 @@ class KFProj_Bullet_RevolverRem1858 extends KFProj_Bullet_RackEmUp
 
 defaultproperties
 {
-	MaxSpeed=5000.0
-	Speed=5000.0
+	MaxSpeed=15000.0
+	Speed=15000.0
 
 	DamageRadius=0
 

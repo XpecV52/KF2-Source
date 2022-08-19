@@ -94,9 +94,9 @@ function NotifyMeleeDamageDealt()
     }
 }
 
-function AddTakenDamage(Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType)
+function AIHandleTakenDamage(Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType)
 {
-    super(KFAIController).AddTakenDamage(DamagerController, Damage, DamageCauser, DamageType);
+    super(KFAIController).AIHandleTakenDamage(DamagerController, Damage, DamageCauser, DamageType);
     if(RagePlugin != none)
     {
         RagePlugin.AccumulatedDOT += Damage;

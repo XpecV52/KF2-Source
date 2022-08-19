@@ -160,10 +160,18 @@ reliable client function ClientRefusedTeamSwitch()
 	local KFPlayerController KFPC;
 	
 	KFPC = KFPlayerController(Owner);
-	if(KFPC != none && KFPC.IsLocalController() && KFPC.MyGFxManager != none)
+	if(KFPC != none && KFPC.IsLocalController())
 	{
-		KFPC.MyGFxManager.OpenPopup(ENotification, class'KFCommon_LocalizedStrings'.default.UnableToSwitchTeamString, class'KFCommon_LocalizedStrings'.default.NoSwitchReasonString, class'KFCommon_LocalizedStrings'.default.OKString);
+		if(KFPC.MyGFxManager != none && KFPC.MyGFxManager.bMenusOpen)
+		{
+			KFPC.MyGFxManager.OpenPopup(ENotification, class'KFCommon_LocalizedStrings'.default.UnableToSwitchTeamString, class'KFCommon_LocalizedStrings'.default.NoSwitchReasonString, class'KFCommon_LocalizedStrings'.default.OKString);
+		}
+		else if(KFPC.MyGFxHUD != none )
+		{
+			KFPC.MyGFxHUD.ShowNonCriticalMessage(class'KFCommon_LocalizedStrings'.default.NoSwitchReasonString);
+		}
 	}
+
 }
 
 reliable client function ClientRecieveNewTeam()

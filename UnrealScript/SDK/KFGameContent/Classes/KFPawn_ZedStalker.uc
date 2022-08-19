@@ -131,7 +131,7 @@ simulated event NotifyGoreMeshActive()
 	bIsCloakingSpottedByTeam = false;
 
 	// Set to our solid gore mat (only AI-controlled)
-	if( PlayerReplicationInfo == none )
+	if( PlayerReplicationInfo == none && Mesh.SkeletalMesh.Materials.Length > 2 )
 	{
 		BodyMIC.SetParent( Mesh.SkeletalMesh.Materials[2] );	
 	}
@@ -345,6 +345,18 @@ function PlayHit( float Damage, Controller InstigatedBy, vector HitLocation, cla
 	{
 		SetTimer( 0.35f, false, nameof(ReCloakTimer) );
 	}
+}
+
+simulated function PlayHeadAsplode()
+{
+	if( bIsCloaking )
+	{
+		SetCloaked( false );
+	}
+
+	bCanCloak = false;
+
+	super.PlayHeadAsplode();
 }
 
 simulated function ReCloakTimer()

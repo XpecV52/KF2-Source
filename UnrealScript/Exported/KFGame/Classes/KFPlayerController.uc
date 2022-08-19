@@ -4523,7 +4523,7 @@ function AddZedHeadshot( byte Difficulty, class<DamageType> DT )
 native reliable client private function ClientAddZedHeadshot( byte Difficulty, class<DamageType> DT );
 
 /** Perk xp stat */
-native final function AddPlayerXP(int XP, class<KFPerk> PerkClass);
+native function AddPlayerXP(int XP, class<KFPerk> PerkClass);
 native reliable client private event ClientAddPlayerXP( int XP, class<KFPerk> PerkClass );
 
 /** Radius kill stat */

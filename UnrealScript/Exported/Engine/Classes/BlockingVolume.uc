@@ -58,10 +58,9 @@ defaultproperties
    End Object
    BrushComponent=BrushComponent0
    Components(0)=BrushComponent0
-   CollisionType=COLLIDE_BlockAllButWeapons
+   CollisionType=COLLIDE_CustomDefault
    bWorldGeometry=True
    bMovable=False
-   BlockRigidBody=True
    bBlockActors=True
    CollisionComponent=BrushComponent0
    Name="Default__BlockingVolume"

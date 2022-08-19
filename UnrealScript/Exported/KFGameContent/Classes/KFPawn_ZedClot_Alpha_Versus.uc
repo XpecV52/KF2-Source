@@ -22,7 +22,10 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedClot_Alpha:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedClot_Alpha_Versus:MeleeHelper_0'
-   DoshValue=35
+   DoshValue=20
+   XPValues(0)=32.000000
+   VulnerableDamageTypes(16)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AR15',DamageScale=1.500000)
+   VulnerableDamageTypes(17)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rem1858',DamageScale=1.500000)
    SpecialMoveCooldowns(0)=(CoolDownTime=0.250000,SMHandle=SM_PlayerZedAttack1,SpecialMoveIcon=Texture2D'ZED_Clot_UI.ZED-VS_Icons_AlphaClot-Melee',NameLocalizationKey="Melee",GBA_Name="GBA_Fire")
    SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedAttack2,SpecialMoveIcon=Texture2D'ZED_Clot_UI.ZED-VS_Icons_AlphaClot-Grab',NameLocalizationKey="Grab",GBA_Name="GBA_IronsightsToggle",ALT_GBA_NAME="GBA_IronsightsHold")
    SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,GBA_Name="GBA_Reload",bShowOnHud=False)

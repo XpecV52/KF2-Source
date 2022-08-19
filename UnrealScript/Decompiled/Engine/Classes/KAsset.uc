@@ -162,13 +162,12 @@ defaultproperties
     // Reference: SkeletalMeshComponent'Default__KAsset.KAssetSkelMeshComponent'
     Components(0)=KAssetSkelMeshComponent
     Physics=EPhysics.PHYS_RigidBody
-    CollisionType=ECollisionType.COLLIDE_BlockWeapons
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
     TickGroup=ETickingGroup.TG_PostAsyncWork
     bNoDelete=true
     bAlwaysRelevant=true
     bUpdateSimulatedPosition=true
     bNetInitialRotation=true
-    BlockRigidBody=true
     bCollideActors=true
     bBlockActors=true
     bProjTarget=true

@@ -67,7 +67,8 @@ DefaultProperties
 	//DrawScale3D=(X=1.5,Y=1.5,Z=1.25)
 
     Health=250.f // almost 5x default // 250.f
-    DoshValue=40.0 // 4x default because they are harder to hit
+    DoshValue=25.0      // 2x default because they are harder to hit
+    XPValues(0)=32.0    // 4x default because they are harder to hit
 
 	Begin Object Name=SpecialMoveHandler_0
 		SpecialMoveClasses(SM_PlayerZedAttack1)=class'KFSM_PlayerCrawler_Melee'

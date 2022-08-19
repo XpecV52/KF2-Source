@@ -392,7 +392,6 @@ struct native VulnerableDamageTypeInfo
 /** These damage types cause this zed to receive increased damage */
 var const array< VulnerableDamageTypeInfo > VulnerableDamageTypes;
 
-
 /** Information on resistant damage types */
 struct native ResistantDamageTypeInfo
 {
@@ -1672,11 +1671,15 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
         InDamage += ExtraHeadDamage;
 	}
 
-	// register damage with AIController to divide up money.  This is done here instead of NotifyTakeHit,
+	// register damage to divide up money/XP/Score.  This is done here instead of NotifyTakeHit,
 	// so that it's called on the killing blow
-	if( !bCheckingExtraHeadDamage && InstigatedBy != none && MyKFAIC != none )
+	if( !bCheckingExtraHeadDamage && InstigatedBy != none )
 	{
-		MyKFAIC.AddTakenDamage( InstigatedBy, FMin(Health, InDamage), DamageCauser, class<KFDamageType>(DamageType) );
+		if( MyKFAIC != none )
+		{
+            MyKFAIC.AIHandleTakenDamage( InstigatedBy, FMin(Health, InDamage), DamageCauser, class<KFDamageType>(DamageType) );
+        }
+		AddTakenDamage( InstigatedBy, FMin(Health, InDamage), DamageCauser, class<KFDamageType>(DamageType) );
 	}
 
 	// If the head has been dismembered reduce damage to 1 (non-zero so play hit is called).

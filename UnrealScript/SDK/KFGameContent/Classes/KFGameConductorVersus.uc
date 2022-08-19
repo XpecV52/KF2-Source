@@ -79,8 +79,8 @@ defaultproperties
 {
     TargetPerkRankRange(0)=(X=0,Y=25) // Normal, should result in a CurrentTargetPerkRank of 12.5, right in the middle
 
-    HumanRankZedHealthScaleCurve=(Points=((InVal=0.f,OutVal=0.7f),(InVal=12.f, OutVal=0.7),(InVal=25.f, OutVal=1.18f)))// level 0  0.525
-    HumanRankZedDamageScaleCurve=(Points=((InVal=0.f,OutVal=0.5f),(InVal=12.f, OutVal=0.75),(InVal=25.f, OutVal=0.84f)))// level 25 0.83
+    HumanRankZedHealthScaleCurve=(Points=((InVal=0.f,OutVal=0.5f),(InVal=12.f, OutVal=0.7),(InVal=25.f, OutVal=1.18f)))// level 0  0.525
+    HumanRankZedDamageScaleCurve=(Points=((InVal=0.f,OutVal=0.35f),(InVal=12.f, OutVal=0.5),(InVal=25.f, OutVal=0.75f)))// level 25 0.75
 
     CurrentSpawnRateModification=1.3 // Slow down all spawning in versus globally
 }

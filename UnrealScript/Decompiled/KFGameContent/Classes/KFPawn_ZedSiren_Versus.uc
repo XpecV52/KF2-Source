@@ -28,7 +28,7 @@ defaultproperties
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedSiren_Versus.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
-    DoshValue=75
+    XPValues=22
     SpecialMoveCooldowns=/* Array type was not detected. */
     LocalizationKey=KFPawn_ZedSiren
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

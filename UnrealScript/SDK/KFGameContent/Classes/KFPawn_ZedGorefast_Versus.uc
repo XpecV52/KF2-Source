@@ -46,15 +46,20 @@ DefaultProperties
 	StackingIncaps(SAF_Microwave)=(Threshhold=2.0,Duration=2.0,Cooldown=12.5,DissipationRate=1.00)
 	StackingIncaps(SAF_FirePanic)=(Threshhold=2.0,Duration=2.5,Cooldown=6.0,DissipationRate=1.00)
 
+    // Vulnerable damage types
+    VulnerableDamageTypes.Add((DamageType=class'KFGameContent.KFDT_Ballistic_AR15', DamageScale=1.25))
+    VulnerableDamageTypes.Add((DamageType=class'KFGameContent.KFDT_Ballistic_Rem1858', DamageScale=1.25))
+
 	// Resistant damage types
     ResistantDamageTypes.Add((DamageType=class'KFDT_Slashing', DamageScale=0.2f))
     ResistantDamageTypes.Add((DamageType=class'KFDT_Bludgeon', DamageScale=0.2f))
 
-    Health=360.f // 2.5x default
-    DoshValue=48.0 // 4x default because they are harder to hit/kill
+    Health=275.f // 1.375x default
+    DoshValue=28.0 // 2x default because they are harder to hit/kill
+    XPValues(0)=44 // 4x default because they are harder to hit/kill
 
     // Override Head GoreHealth (aka HeadHealth)
-    HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=100, DmgScale=1.1, SkinID=1) // default is 20
+    HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=80, DmgScale=1.1, SkinID=1) // default is 20
 
     // Really fast sprint
     SprintSpeed=580.f

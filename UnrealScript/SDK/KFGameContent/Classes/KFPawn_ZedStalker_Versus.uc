@@ -133,7 +133,8 @@ defaultproperties
 	Health=200 // 2.5x default
     // Override Head GoreHealth (aka HeadHealth)
     HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=75, DmgScale=1.1, SkinID=1) // default is 20
-    DoshValue=60.0 // 4x default because they are harder to hit/kill
+    DoshValue=30.0 // 2x default because they are harder to hit/kill
+    XPValues(0)=32 // 4x default because they are harder to hit/kill
 
     // Really fast sprint
     SprintSpeed=620.f

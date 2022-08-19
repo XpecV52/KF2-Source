@@ -19,7 +19,9 @@ defaultproperties
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedGorefast_Versus.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
-    DoshValue=48
+    DoshValue=28
+    XPValues=44
+    VulnerableDamageTypes=/* Array type was not detected. */
     ResistantDamageTypes=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
     LocalizationKey=KFPawn_ZedGorefast
@@ -50,7 +52,7 @@ defaultproperties
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedGorefast_Versus.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedGorefast_Versus.DialogAkSoundComponent'
     GroundSpeed=320
-    Health=360
+    Health=275
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

@@ -41,7 +41,7 @@ defaultproperties
 
 	// Really fast sprint
     SprintSpeed=600.f
-    SprintStrafeSpeed=450.f    
+    SprintStrafeSpeed=450.f
     GroundSpeed=430.f
 
 	Begin Object Name=SpecialMoveHandler_0
@@ -76,10 +76,15 @@ defaultproperties
 	End Object
 	MeleeAttackHelper=MeleeHelper_0
 
-    Health=325 // 2.5x default //250
+    Health=325 // 3.25x default //250
     // Override Head GoreHealth (aka HeadHealth)
     HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=75, DmgScale=1.1, SkinID=1) // default is 20
-    DoshValue=35.0 // 5x default because they are harder to hit
+    DoshValue=20.0 // 2x default because they are harder to hit
+    XPValues(0)=32 // 4x default because they are harder to hit
+
+    // Vulnerable damage types
+    VulnerableDamageTypes.Add((DamageType=class'KFGameContent.KFDT_Ballistic_AR15', DamageScale=1.5))
+    VulnerableDamageTypes.Add((DamageType=class'KFGameContent.KFDT_Ballistic_Rem1858', DamageScale=1.5))
 
     MegaJumpZ=1250
     MegaJumpForwardScale=0.25
