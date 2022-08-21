@@ -13,6 +13,7 @@
 *.cze        text eol=lf working-tree-encoding=utf-16le-bom
 *.dan        text eol=lf working-tree-encoding=utf-16le-bom
 *.deu        text eol=lf working-tree-encoding=utf-16le-bom
+*.dut        text eol=lf working-tree-encoding=utf-16le-bom
 *.esm        text eol=lf working-tree-encoding=utf-16le-bom
 *.esn        text eol=lf working-tree-encoding=utf-16le-bom
 *.fra        text eol=lf working-tree-encoding=utf-16le-bom
