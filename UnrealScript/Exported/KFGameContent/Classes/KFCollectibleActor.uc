@@ -52,6 +52,7 @@ defaultproperties
 {
    ReplicationMode=RT_ServerOptimized
    bAllowBumpDamageFromAI=False
+   INSTAKILL_DAMAGE=1
    Begin Object Class=AkComponent Name=AmbientSoundComponent0 Archetype=AkComponent'KFGame.Default__KFDestructibleActor:AmbientSoundComponent0'
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True

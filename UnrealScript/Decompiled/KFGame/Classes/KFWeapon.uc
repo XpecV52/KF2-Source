@@ -3722,19 +3722,23 @@ private reliable server final function ServerSyncWeaponFiring(byte FireModeNum)
 {
     if(IsInState('Reloading'))
     {
-        if((GetNextReloadStatus() == 4) && GetRemainingTimeForTimer('ReloadStatusTimer') > ((float(Instigator.PlayerReplicationInfo.Ping) * 4) * 0.001))
-        {
-            return;
-        }
         if((ReloadStatus == 2) && IsTimerActive('ReloadAmmoTimer'))
         {
             PerformReload();
             ClearTimer('ReloadAmmoTimer');
         }
         ReloadStatus = 4;
+        if(bAllowClientAmmoTracking && !HasAmmo(FireModeNum))
+        {
+            ServerSyncReload(InitialReloadSpareAmmo - 1);
+        }
         if(HasAmmo(FireModeNum))
         {
-            SendToFiringState(FireModeNum);
+            SendToFiringState(FireModeNum);            
+        }
+        else
+        {
+            WarnInternal("Failed to sync weapon ammo.");
         }
     }
 }
@@ -4725,6 +4729,8 @@ simulated state MeleeAttackBasic
 
 simulated state WeaponSingleFireAndReload extends WeaponSingleFiring
 {
+    ignores ServerSyncReload;
+
     simulated function FireAmmunition()
     {
         local float ReloadDelay;

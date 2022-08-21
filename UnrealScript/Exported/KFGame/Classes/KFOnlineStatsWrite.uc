@@ -1114,7 +1114,7 @@ function OnUnlockAchievement( int AchievementIndex )
   */
 native final function OnGameWon( string MapName, byte Difficulty, byte GameLength, byte bCoop, class<KFPerk> PerkClass );
 
-native final function OnRoundEnd();
+native final function OnRoundEnd( byte WinningTeam );
 
 /**
  * @brief Check for map specific achievements on game end
@@ -1150,7 +1150,7 @@ native final private function CheckAllPerksLvl25();
  * @brief Unlocks the tutorial achievement
  */
 native final function UnlockTutorialAchievement();
-native final function CheckForRoundTeamWinAchievements();
+native final function CheckForRoundTeamWinAchievements( byte WinningTeam );
 
 defaultproperties
 {

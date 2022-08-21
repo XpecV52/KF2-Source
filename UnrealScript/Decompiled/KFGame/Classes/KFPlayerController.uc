@@ -3253,6 +3253,11 @@ exec function StartFire(optional byte FireModeNum)
     {
         return;
     }
+    if(KFPlayerInput(PlayerInput).bGamepadWeaponSelectOpen && MyGFxHUD.WeaponSelectWidget != none)
+    {
+        MyGFxHUD.WeaponSelectWidget.SetWeaponSwitchStayOpen(false);
+        KFPlayerInput(PlayerInput).bGamepadWeaponSelectOpen = false;
+    }
     super(PlayerController).StartFire(FireModeNum);
 }
 
@@ -3790,11 +3795,11 @@ reliable client simulated function ClientWonGame(string MapName, byte Difficulty
     }
 }
 
-reliable client simulated function ClientRoundEnded()
+reliable client simulated function ClientRoundEnded(byte WinningTeam)
 {
     if((WorldInfo.NetMode != NM_DedicatedServer) && IsLocalPlayerController())
     {
-        StatsWrite.OnRoundEnd();
+        StatsWrite.OnRoundEnd(WinningTeam);
     }
 }
 
@@ -4885,10 +4890,17 @@ state Dead
 
 state Spectating
 {
+    local KFGFxHudWrapper GFxHUDWrapper;
+
     ignores StartFire;
 
     event BeginState(name PreviousStateName)
     {
+        GFxHUDWrapper = KFGFxHudWrapper(myHUD);
+        if(GFxHUDWrapper != none)
+        {
+            GFxHUDWrapper.CreateHUDMovie();
+        }
         if((Pawn != none) && KFPawn_Customization(Pawn) != none)
         {
             if(WorldInfo.NetMode != NM_Client)

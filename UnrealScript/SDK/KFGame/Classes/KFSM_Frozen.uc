@@ -202,7 +202,7 @@ defaultproperties
 	ThawAnims.Add(Stun_Wakeup_V3)
 
 	FreezeDuration=(X=3,Y=5)
-	FreezeInTime=1
+	FreezeInTime=0.5
 	FreezeOutTime=1
 
 	bAllowHitReactions=FALSE

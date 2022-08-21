@@ -268,9 +268,10 @@ simulated event Destroyed()
 /** We can't allow aggro enemy switches during certain special moves */
 function bool IsAggroEnemySwitchAllowed()
 {
-	return ( !MyPatPawn.IsDoingSpecialMove(SM_StandAndShootAttack)
+	return super.IsAggroEnemySwitchAllowed()
+			&& !MyPatPawn.IsDoingSpecialMove(SM_StandAndShootAttack)
 			&& !MyPatPawn.IsDoingSpecialMove(SM_HoseWeaponAttack)
-			&& !MyPatPawn.IsDoingSpecialMove(SM_GrappleAttack) );
+			&& !MyPatPawn.IsDoingSpecialMove(SM_GrappleAttack);
 }
 
 /** Whether enemy switch commands can be run */

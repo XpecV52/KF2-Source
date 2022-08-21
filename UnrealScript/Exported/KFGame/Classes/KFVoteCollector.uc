@@ -54,6 +54,7 @@ struct TopVotes
 	}
 };
 
+var bool bAllPlayersVotedOnMap;
 var TopVotes TopVotesObject;
 var array<MapVote> MapVoteList;
 var array<string> MapList;
@@ -469,6 +470,33 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
 	{
 		PRIs[i].RecieveTopMaps(TopVotesObject);
 	}
+
+	if(CheckAllPlayerVoted(PRIs) && !bAllPlayersVotedOnMap)
+	{
+		bAllPlayersVotedOnMap = true;
+		
+		if(KFGI != none)
+		{
+			KFGI.UpdateCurrentMapVoteTime(5, true);
+		}
+	}
+}
+
+function bool CheckAllPlayerVoted(out array<KFPlayerReplicationInfo> PRIs)
+{
+	local int i, j, PlayerVoteCount;
+	for (i = 0; i < PRIs.length; i++)
+	{
+		for (j = 0; j < MapVoteList.length; j++)
+		{
+			if(MapVoteList[j].VoterPRIList.Find(PRIs[i]) != INDEX_NONE)
+			{
+				PlayerVoteCount++;
+			}
+		}
+	}
+
+	return PlayerVoteCount >= PRIs.length;
 }
 
 function int MapVoteSort(MapVote A, MapVote B)

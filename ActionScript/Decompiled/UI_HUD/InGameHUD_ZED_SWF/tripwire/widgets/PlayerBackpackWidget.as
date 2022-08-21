@@ -1,15 +1,14 @@
 package tripwire.widgets
 {
+    import com.greensock.TweenMax;
+    import com.greensock.easing.Expo;
     import fl.motion.Color;
-    import fl.transitions.TweenEvent;
     import flash.display.MovieClip;
     import flash.events.Event;
-    import flash.events.MouseEvent;
-    import flash.filters.BlurFilter;
-    import flash.filters.GlowFilter;
-    import flash.geom.ColorTransform;
+    import flash.events.KeyboardEvent;
     import flash.text.TextField;
     import flash.text.TextLineMetrics;
+    import flash.ui.Keyboard;
     import scaleform.clik.controls.UILoader;
     import scaleform.clik.core.UIComponent;
     
@@ -61,41 +60,37 @@ package tripwire.widgets
         
         private var _grenadeIconLoader:UILoader = null;
         
+        private var _doshBarkPrefix:TextField = null;
+        
+        private var _doshBarkText:TextField = null;
+        
         private var whiteColor:uint = 16503487;
         
         private var greenColor:uint = 4836490;
         
         private var redColor:uint = 16745317;
         
-        private var doshBarkColor:uint;
+        private var doshBarkIconColor:Color;
         
-        private var _whiteglowFilter01:GlowFilter;
+        public var doshObj:Object;
         
-        private var _whiteglowFilter02:GlowFilter;
+        public const doshBarkXOffset:int = 64;
         
-        private var _whiteglowFilter03:GlowFilter;
+        public const doshBarkStartY:int = -56;
         
-        private var _doshbarkGlowFilter01:GlowFilter;
+        public const doshBarkYOffset:int = 8;
         
-        private var _doshbarkGlowFilter02:GlowFilter;
+        public const doshBarkDelayTime:int = 45;
         
-        private var _doshbarkGlowFilter03:GlowFilter;
-        
-        private var _doshGlowFilter01:GlowFilter;
-        
-        private var _doshGlowFilter02:GlowFilter;
-        
-        private var _doshGlowFilter03:GlowFilter;
-        
-        private var _blurFilter:BlurFilter;
+        public const doshBarkTweenTime:int = 8;
         
         public function PlayerBackpackWidget()
         {
-            this._blurFilter = new BlurFilter(3,3,3);
+            this.doshBarkIconColor = new Color();
+            this.doshObj = {"doshNum":0};
             super();
             _enableInitCallback = true;
             this.cacheBackpackWidgets();
-            this.initFilters();
         }
         
         override protected function addedToStage(param1:Event) : void
@@ -103,23 +98,7 @@ package tripwire.widgets
             super.addedToStage(param1);
             this.bUsesAmmo = false;
             this.bUsesSecondaryAmmo = false;
-        }
-        
-        private function initFilters() : void
-        {
-            this._whiteglowFilter01 = new GlowFilter(this.whiteColor,1,5,5,0.75,1,false,false);
-            this._whiteglowFilter02 = new GlowFilter(this.whiteColor,1,0,20,0.35,1,false,false);
-            this._whiteglowFilter03 = new GlowFilter(this.whiteColor,1,0,35,0.15,1,false,false);
-            this.applyFilters();
-        }
-        
-        private function applyFilters() : void
-        {
-        }
-        
-        private function AddSomeDosh(param1:MouseEvent) : *
-        {
-            this.backpackDosh = Math.floor(Math.random() * (100 - -100 + 1)) + -100;
+            this.resetDoshBark();
         }
         
         private function cacheBackpackWidgets() : *
@@ -135,36 +114,14 @@ package tripwire.widgets
             this._flashlightBatteryMC = this.FlashlightContainer.FlashlightBarContainer;
             this._flashlightIconMC = this.FlashlightContainer.FlashlightIcon;
             this._doshGaugeMC = this.DoshContainer.DoshGaugeInfo;
-            this._doshBarkMC = this.DoshContainer.DoshBarkAnimContainer;
-            this._doshBarkInfoMC = this.DoshContainer.DoshBarkAnimContainer.DoshBarkInfo;
-            this._doshBarkMC.visible = false;
-            this.DoshContainer.DoshBarkAnimContainer.addEventListener("OnDoshBarkComplete",this.OnDoshBarkComplete);
+            this._doshBarkMC = this.DoshContainer.DoshBark;
+            this._doshBarkPrefix = this.DoshContainer.DoshBark.DoshPrefix;
+            this._doshBarkText = this.DoshContainer.DoshBark.DoshTextField;
         }
         
         public function set WeightText(param1:String) : void
         {
             this.weightTextField.text = param1;
-        }
-        
-        function OnDoshBarkComplete(param1:Event) : void
-        {
-            var _DoshColor:Color = null;
-            var e:Event = param1;
-            var UpdateDoshTint:Function = function(param1:TweenEvent):void
-            {
-                _DoshColor.setTint(doshBarkColor,param1.position);
-                _doshGaugeMC.transform.colorTransform = _DoshColor;
-            };
-            _DoshColor = new Color();
-            this.DoshContainer.DoshGaugeInfo.gotoAndPlay("CashWoofedAnim");
-            this._doshTotal += this._barkDosh;
-            this._barkDosh = 0;
-            this._doshBarkInfoMC.DoshTextField.text = "";
-            this._doshBarkMC.visible = false;
-            this._doshTF.text = this._doshTotal.toString();
-            var _DoshNumMetrics:TextLineMetrics = this._doshTF.getLineMetrics(0);
-            var _DoshNumStartX:Number = _DoshNumMetrics.x;
-            var _DoshNumWidth:Number = _DoshNumMetrics.width;
         }
         
         public function set bUsesAmmo(param1:Boolean) : void
@@ -212,27 +169,74 @@ package tripwire.widgets
         
         public function set backpackDosh(param1:int) : void
         {
-            var backpackDosh:int = param1;
-            var UpdateBarkFilters:Function = function(param1:TweenEvent):void
+            TweenMax.killTweensOf(this._doshBarkMC);
+            this._barkDosh += param1;
+            this.tintBarkDosh(this._barkDosh);
+            this._doshBarkText.text = String(Math.abs(this._barkDosh));
+            this.moveBarkDoshItems();
+            if(!this._doshBarkMC.visible)
             {
-                var _loc2_:BlurFilter = new BlurFilter(param1.position,0,1);
-                _doshBarkMC.filters = [_whiteglowFilter01,_whiteglowFilter02,_whiteglowFilter03,_loc2_];
-            };
-            var _doshPrefix:String = backpackDosh > 0 ? "+" : "-";
-            this._barkDosh += backpackDosh;
-            this._doshBarkInfoMC.DoshPrefix.text = _doshPrefix;
-            this._doshBarkInfoMC.DoshTextField.text = Math.abs(this._barkDosh).toString();
-            this._doshBarkMC.visible = true;
-            var _DoshNumMetrics:TextLineMetrics = this._doshBarkInfoMC.DoshTextField.getLineMetrics(0);
-            var _DoshNumStartX:Number = _DoshNumMetrics.x;
-            var _DoshNumWidth:Number = _DoshNumMetrics.width;
-            this._doshBarkInfoMC.DoshBarkIcon.x = _DoshNumStartX - 32;
-            this._doshBarkInfoMC.DoshPrefix.x = _DoshNumStartX - 56;
-            this.DoshContainer.DoshBarkAnimContainer.gotoAndPlay("Woof");
-            this.doshBarkColor = backpackDosh >= 0 ? uint(this.greenColor) : uint(this.redColor);
-            var _DoshBarkColor:ColorTransform = new ColorTransform();
-            _DoshBarkColor.color = this.doshBarkColor;
-            this._doshBarkMC.transform.colorTransform = _DoshBarkColor;
+                this._doshBarkMC.visible = true;
+                TweenMax.set(this._doshBarkMC,{
+                    "x":"+" + String(this.doshBarkXOffset),
+                    "y":this.doshBarkStartY
+                });
+                TweenMax.to(this._doshBarkMC,this.doshBarkTweenTime,{
+                    "x":0,
+                    "alpha":1,
+                    "useFrames":true,
+                    "ease":Expo.easeOut
+                });
+            }
+            else
+            {
+                this._doshBarkMC.y = this.doshBarkStartY;
+                this._doshBarkMC.alpha = 1;
+            }
+            TweenMax.to(this._doshBarkMC,this.doshBarkTweenTime,{
+                "delay":this.doshBarkDelayTime,
+                "alpha":0,
+                "y":String(this.doshBarkYOffset),
+                "useFrames":true,
+                "onComplete":this.resetDoshBark
+            });
+            this._doshTotal += param1;
+            TweenMax.fromTo(this.doshObj,this.doshBarkTweenTime,{"doshNum":parseInt(this._doshTF.text)},{
+                "doshNum":this._doshTotal,
+                "onUpdate":this.changeDosh,
+                "useFrames":true
+            });
+        }
+        
+        public function tintBarkDosh(param1:int) : void
+        {
+            var _loc2_:uint = 0;
+            _loc2_ = param1 >= 0 ? uint(this.greenColor) : uint(this.redColor);
+            this._doshBarkPrefix.text = param1 >= 0 ? "+" : "-";
+            this._doshBarkPrefix.textColor = _loc2_;
+            this._doshBarkText.textColor = _loc2_;
+            this.doshBarkIconColor.setTint(_loc2_,1);
+            this._doshBarkMC.DoshBarkIcon.transform.colorTransform = this.doshBarkIconColor;
+        }
+        
+        public function moveBarkDoshItems() : void
+        {
+            var _loc1_:TextLineMetrics = this._doshBarkText.getLineMetrics(0);
+            var _loc2_:Number = 0 - _loc1_.width;
+            this._doshBarkMC.DoshBarkIcon.x = _loc2_ - 35;
+            this._doshBarkPrefix.x = _loc2_ - 65;
+        }
+        
+        public function changeDosh() : void
+        {
+            this._doshTF.text = int(this.doshObj.doshNum).toString();
+        }
+        
+        public function resetDoshBark() : void
+        {
+            this._barkDosh = 0;
+            this._doshBarkMC.visible = false;
+            this._doshBarkMC.alpha = 0;
         }
         
         public function set backpackGrenades(param1:int) : void
@@ -266,6 +270,18 @@ package tripwire.widgets
             else
             {
                 this._flashlightIconMC.gotoAndStop("off");
+            }
+        }
+        
+        public function testBackpack(param1:KeyboardEvent) : void
+        {
+            if(param1.keyCode == Keyboard.A)
+            {
+                this.backpackDosh = 100;
+            }
+            if(param1.keyCode == Keyboard.S)
+            {
+                this.backpackDosh = -100;
             }
         }
     }

@@ -319,6 +319,7 @@ var Actor ActorEnemy;
 var KFDoorActor DoorEnemy;
 var KFPawn MeleeTarget;
 var float EnemyVisibilityTime;
+var float LastEnemySwitchTime;
 var Pawn CachedVisibleEnemy;
 var Projectile PendingEvadeProjectile;
 var float EvadeGrenadeChance;
@@ -1050,6 +1051,7 @@ function ChangeEnemy(Pawn NewEnemy, optional bool bCanTaunt)
                 KFGameInfo(WorldInfo.Game).GameplayEventsWriter.LogAIChangedEnemy(self, NewEnemy, OldEnemy, "ChangeEnemy() ");
             }
         }
+        LastEnemySwitchTime = WorldInfo.TimeSeconds;
     }
     AILog_Internal((string(GetFuncName()) $ "() set Enemy to ") $ string(NewEnemy), 'SetEnemy');
     Enemy = NewEnemy;
@@ -2098,6 +2100,10 @@ function DoStumble(Vector Momentum, KFAfflictionManager.EHitZoneBodyPart HitZone
 {
     local AICommand_Attack_Melee MeleeCommand;
 
+    if((GetActiveCommand() != none) && AICommand_PanicWander(GetActiveCommand()) != none)
+    {
+        return;
+    }
     if((CommandList != none) && GetActiveCommand().IsA('AICommand_Attack_Melee'))
     {
         MeleeCommand = AICommand_Attack_Melee(GetActiveCommand());
@@ -4351,6 +4357,10 @@ function DoDebugTurnInPlace(KFPlayerController KFPC, optional bool bAllowMelee)
 
 function bool IsAggroEnemySwitchAllowed()
 {
+    if((LastEnemySwitchTime > 0) && (WorldInfo.TimeSeconds - LastEnemySwitchTime) < 5)
+    {
+        return false;
+    }
     return true;
 }
 

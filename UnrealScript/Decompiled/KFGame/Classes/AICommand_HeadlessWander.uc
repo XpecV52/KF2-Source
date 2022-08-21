@@ -32,6 +32,7 @@ static function bool HeadlessWander(KFAIController AI)
 
 function Pushed()
 {
+    super.Pushed();
     if(Outer.Steering != none)
     {
         Outer.Steering.EnableDefaultAcceleration();

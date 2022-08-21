@@ -348,7 +348,6 @@ simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo,
 {
 	local float TempMaxSpareAmmoAmount;
 
-	ScriptTrace();
 	if( IsAmmoVestActive() && IsWeaponOnPerk( KFW, TraderItem.AssociatedPerkClass ) )
 	{
 		TempMaxSpareAmmoAmount = MaxSpareAmmo;

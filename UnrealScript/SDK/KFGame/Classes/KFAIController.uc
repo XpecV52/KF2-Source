@@ -435,6 +435,8 @@ var transient bool bIsVisibleToEnemy;
 var transient bool bWasVisibleToEnemy;
 /** When last enemy LineOfSightTo() check was done */
 var	float		EnemyVisibilityTime;
+/** The last time an enemy switch occurred (only set if enemy was set to a new enemy) */
+var float 		LastEnemySwitchTime;
 /** Who the enemy was for the last LineOfSightTo() check */
 var	Pawn		CachedVisibleEnemy;
 /** Incoming projectile that I should evade away from (see ReceiveProjectileWarning()) */
@@ -1465,6 +1467,9 @@ function ChangeEnemy( Pawn NewEnemy, optional bool bCanTaunt = true )
 		{
 			`RecordAIChangedEnemy( self, NewEnemy, OldEnemy, "ChangeEnemy() " );
 		}
+
+		// Set our last enemy switch time for the aggro system
+		LastEnemySwitchTime = WorldInfo.TimeSeconds;
 	}
 	`AILog( GetFuncName()$"() set Enemy to "$NewEnemy, 'SetEnemy' );
 	Enemy = NewEnemy;
@@ -2799,6 +2804,12 @@ function DoEvade( byte EvadeDir, optional actor EvadeActor, optional float Delay
 function DoStumble( vector Momentum, EHitZoneBodyPart HitZoneLimb )
 {
 	local AICommand_Attack_Melee MeleeCommand;
+
+	// Don't stumble if we're in a panic wander state
+	if( GetActiveCommand() != none && AICommand_PanicWander(GetActiveCommand()) != none )
+	{
+		return;
+	}
 
 	if( CommandList != None && GetActiveCommand().IsA('AICommand_Attack_Melee') )
 	{
@@ -5812,6 +5823,11 @@ function DoDebugTurnInPlace( KFPlayerController KFPC, optional bool bAllowMelee=
 /** To override in subclasses */
 function bool IsAggroEnemySwitchAllowed()
 {
+	if( LastEnemySwitchTime > 0.f && `TimeSince(LastEnemySwitchTime) < 5.f )
+	{
+		return false;
+	}
+
 	return true;
 }
 

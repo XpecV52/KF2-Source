@@ -214,8 +214,7 @@ defaultproperties
     ExplosionTemplate=KFGameExplosion'WEP_Pulverizer_ARCH.Wep_Pulverizer_Explosion'
     BlastSpawnOffset=-10
     ParryStrength=5
-    BlockDamageMitigation=0.6
-    ParryDamageMitigationPercent=0.6
+    ParryDamageMitigationPercent=0.4
     BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Hammer'
     ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Wood'
     FireModeIconPaths=/* Array type was not detected. */

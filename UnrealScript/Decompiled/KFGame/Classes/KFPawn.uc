@@ -2137,10 +2137,14 @@ function bool NotifyAttackParried(Pawn InstigatedBy, byte InParryStrength)
     return false;
 }
 
+simulated function bool IsImpaired();
+
 function bool IsIncapacitated()
 {
     return (((IsDoingSpecialMove(4) || IsDoingSpecialMove(8)) || IsDoingSpecialMove(9)) || IsDoingSpecialMove(6)) || IsDoingSpecialMove(5);
 }
+
+simulated function bool IsHeadless();
 
 simulated function TerminateEffectsOnDeath()
 {
@@ -3193,8 +3197,6 @@ function SetWeakGrabCoolDown(float CoolDownTime)
 function CausePanicWander();
 
 simulated function bool ShouldBeWandering();
-
-simulated function bool IsHeadless();
 
 function bool CanAITargetThisPawn(Controller TargetingController)
 {

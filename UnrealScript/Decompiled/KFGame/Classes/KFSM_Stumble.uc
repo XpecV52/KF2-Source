@@ -139,7 +139,7 @@ static function byte GetStumbleTypeFromRegion(KFPawn.EPawnOctant HitRegion, opti
 
 protected function bool InternalCanDoSpecialMove()
 {
-    return (PawnOwner.Physics == 1) || ((PawnOwner.Physics == 2) && Abs(PawnOwner.Velocity.Z) < float(250)) && VSize2D(PawnOwner.Velocity) < float(600);
+    return (!KFPOwner.IsImpaired() || KFPOwner.IsHeadless()) && (PawnOwner.Physics == 1) || ((PawnOwner.Physics == 2) && Abs(PawnOwner.Velocity.Z) < float(250)) && VSize2D(PawnOwner.Velocity) < float(600);
 }
 
 function PlayAnimation()

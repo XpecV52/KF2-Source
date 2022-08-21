@@ -19,77 +19,77 @@ var array <int>BattlePhaseColors;
 
 function InitializeHUD()
 {
-	bossNameTextField = GetObject("bossnameText");
+    bossNameTextField = GetObject("bossnameText");
 }
 
 function TickHud(float DeltaTime)
 {
-	if(BossPawn != none)
-	{
-		if(GetPC() != none &&
-       	GetPC().WorldInfo.TimeSeconds - LastUpdateTime > UpdateTickTime)
-		{	
-			UpdateBossHealth();
-		}	
-	}
+    if(BossPawn != none)
+    {
+        if(GetPC() != none &&
+        GetPC().WorldInfo.TimeSeconds - LastUpdateTime > UpdateTickTime)
+        {   
+            UpdateBossHealth();
+        }   
+    }
 }
 
 function SetBossPawn(KFPawn_MonsterBoss NewBossPawn)
 {
-	local string BossNameText;
-	if(NewBossPawn == none)
-	{
-		return;
-	}
-	BossPawn = NewBossPawn;
-	BossNameText = BossPawn.BossName;
-	if(BossPawn.IsHumanControlled())
-	{
-		 BossNameText = BossNameText$"("$BossPawn.Controller.PlayerReplicationInfo$")";
-	}
+    local string BossNameText;
+    if(NewBossPawn == none)
+    {
+        return;
+    }
+    BossPawn = NewBossPawn;
+    BossNameText = BossPawn.BossName;
+    if(BossPawn.IsHumanControlled())
+    {
+         BossNameText = BossNameText$"("$BossPawn.Controller.PlayerReplicationInfo$")";
+    }
 
-	SetBossName(BossNameText);
-	UpdateBossHealth();	
+    SetBossName(BossNameText);
+    UpdateBossHealth(); 
 }
 
 function OnNamePlateHidden()
 {
-	if(BossPawn != none)
-	{
-		SetVisible(true);
-	}
+    if(BossPawn != none)
+    {
+        SetVisible(true);
+    }
 }
 
 function SetBossName(string BossName)
 {
-	if(bossNameTextField != none)
-	{
-		bossNameTextField.SetText(BossName);
-	}
+    if(bossNameTextField != none)
+    {
+        bossNameTextField.SetText(BossName);
+    }
 }
 
 function UpdateBossHealth()
 {
-	SetFloat( "currentHealthPercentValue",float(BossPawn.Health) / float(BossPawn.HealthMax) );
+    SetFloat( "currentHealthPercentValue",float(BossPawn.Health) / float(BossPawn.HealthMax) );
 }
 
 function UpdateBossBattlePhase(int BattlePhase)
 {
-	SetInt( "currentBattlePhaseColor", BattlePhaseColors[BattlePhase-1] );
+    SetInt( "currentBattlePhaseColor", BattlePhaseColors[BattlePhase-1] );
 }
 
 function UpdateBossShield(float NewShieldPercect)
 {
-	SetFloat( "currentShieldPercecntValue",NewShieldPercect);
+    SetFloat( "currentShieldPercecntValue",NewShieldPercect);
 }
 
 defaultproperties
 {
    UpdateTickTime=0.100000
-   BattlePhaseColors(0)=60799
-   BattlePhaseColors(1)=15396096
-   BattlePhaseColors(2)=15568640
-   BattlePhaseColors(3)=15534080
+   BattlePhaseColors(0)=47202
+   BattlePhaseColors(1)=16756736
+   BattlePhaseColors(2)=16736256
+   BattlePhaseColors(3)=11343377
    BattlePhaseColors(4)=0
    Name="Default__KFGFxWidget_BossHealthBar"
    ObjectArchetype=GFxObject'GFxUI.Default__GFxObject'

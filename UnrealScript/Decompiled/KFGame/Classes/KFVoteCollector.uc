@@ -61,6 +61,7 @@ var byte LastKickVoteValue;
 var sKickVoteInfo CurrentVote;
 var bool bIsVoteInProgress;
 var bool bIsFailedVoteTimerActive;
+var bool bAllPlayersVotedOnMap;
 var const int TopResultsToShow;
 var const int ActiveTimeUntilVoteEnabled;
 var array<PlayerReplicationInfo> PlayersThatHaveVoted;
@@ -456,7 +457,42 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
             ++ I;
             goto J0x4E1;
         }
+        if((CheckAllPlayerVoted(PRIs)) && !bAllPlayersVotedOnMap)
+        {
+            bAllPlayersVotedOnMap = true;
+            if(KFGI != none)
+            {
+                KFGI.UpdateCurrentMapVoteTime(5, true);
+            }
+        }
     }/* !MISMATCHING REMOVE, tried Else got Type:Loop Position:0x1DF! */
+}
+
+function bool CheckAllPlayerVoted(out array<KFPlayerReplicationInfo> PRIs)
+{
+    local int I, J, PlayerVoteCount;
+
+    I = 0;
+    J0x0B:
+
+    if(I < PRIs.Length)
+    {
+        J = 0;
+        J0x2E:
+
+        if(J < MapVoteList.Length)
+        {
+            if(MapVoteList[J].VoterPRIList.Find(PRIs[I] != -1)
+            {
+                ++ PlayerVoteCount;
+            }
+            ++ J;
+            goto J0x2E;
+        }
+        ++ I;
+        goto J0x0B;
+    }
+    return PlayerVoteCount >= PRIs.Length;
 }
 
 function int MapVoteSort(MapVote A, MapVote B)

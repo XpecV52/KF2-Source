@@ -206,7 +206,7 @@ package tripwire.managers
             this.BossNamePlate.layoutData = new LayoutData(LayoutMode.ALIGN_RIGHT,LayoutMode.ALIGN_BOTTOM,-8,-8,"","",this.PrimaryLayoutIndex,this.layoutID);
             this.LevelUpNotificationWidget.layoutData = new LayoutData(LayoutMode.ALIGN_CENTER,LayoutMode.ALIGN_BOTTOM,0,-40,"","",this.PrimaryLayoutIndex,this.layoutID);
             this.PlayerBackpackWidget.layoutData = new LayoutData(LayoutMode.ALIGN_RIGHT,LayoutMode.ALIGN_BOTTOM,-16,-16,"","",this.PrimaryLayoutIndex,this.layoutID);
-            this.KickVoteWidget.layoutData = new LayoutData(LayoutMode.ALIGN_RIGHT,LayoutMode.ALIGN_TOP,0,0,this.PlayerBackpackWidget.name,this.PlayerBackpackWidget.name,this.SecondaryLayoutIndex,this.layoutID);
+            this.KickVoteWidget.layoutData = new LayoutData(LayoutMode.ALIGN_RIGHT,LayoutMode.ALIGN_BOTTOM,-20,-256,"","",this.PrimaryLayoutIndex,this.layoutID);
             this.PlayerStatWidgetMC.layoutData = new LayoutData(LayoutMode.ALIGN_LEFT,LayoutMode.ALIGN_BOTTOM,16,-16,"","",this.PrimaryLayoutIndex,this.layoutID);
             this.ChatBoxWidget.layoutData = new LayoutData(LayoutMode.ALIGN_LEFT,LayoutMode.ALIGN_BOTTOM,24,-216,"","",this.PrimaryLayoutIndex,this.layoutID);
             this.voipWidget.layoutData = new LayoutData(LayoutMode.ALIGN_LEFT,LayoutMode.ALIGN_TOP,16,16,"",this.ChatBoxWidget.name,this.SecondaryLayoutIndex,this.layoutID);

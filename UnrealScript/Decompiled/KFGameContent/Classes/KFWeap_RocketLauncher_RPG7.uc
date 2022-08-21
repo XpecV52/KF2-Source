@@ -82,7 +82,7 @@ defaultproperties
     BackBlastOffset=(X=-20,Y=4,Z=-3)
     ForceReloadTime=0.4
     FireModeIconPaths=/* Array type was not detected. */
-    InventorySize=10
+    InventorySize=9
     MagazineCapacity=1
     bHasIronSights=true
     bCanBeReloaded=true

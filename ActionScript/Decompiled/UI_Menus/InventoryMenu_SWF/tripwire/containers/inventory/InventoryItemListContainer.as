@@ -158,6 +158,12 @@ package tripwire.containers.inventory
             rightSidePanels.push(this.itemDescriptionText);
             rightSidePanels.push(this.itemNameText);
             this.currentFilter = this.allButton;
+            this.inventoryItemScrollingList.addEventListener(ListEvent.INDEX_CHANGE,this.onItemRollOver,false,0,true);
+        }
+        
+        public function onItemRollOver(param1:ListEvent) : void
+        {
+            this.itemDetails = param1.itemData;
         }
         
         override public function handleInput(param1:InputEvent) : void

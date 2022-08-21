@@ -982,7 +982,6 @@ function Callback_FavoriteItem()
 		SetPlayerItemDetails(SelectedItemIndex);
 	}
 }
-
 //==============================================================
 // ActionScript Callbacks - Trader Inventory
 //==============================================================
@@ -1095,9 +1094,12 @@ function Callback_GrenadeItemSelected()
 
 function Callback_PerkChanged(int PerkIndex)
 {
-	MyKFPC.RequestPerkChange(PerkIndex);
-	MyKFPC.SetHaveUpdatePerk(true);
-	
+	if( MyKFPRI.NetPerkIndex != PerkIndex )
+	{
+		MyKFPC.RequestPerkChange(PerkIndex);
+		MyKFPC.SetHaveUpdatePerk(true);
+	}
+		
 	if( PlayerInventoryContainer != none )
 	{
 		PlayerInventoryContainer.UpdateLock();

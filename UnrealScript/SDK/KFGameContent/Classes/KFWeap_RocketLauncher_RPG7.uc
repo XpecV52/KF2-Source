@@ -107,7 +107,7 @@ defaultproperties
 	// Inventory
 	InventoryGroup=IG_Primary
 	GroupPriority=100
-	InventorySize=10
+	InventorySize=9 //10
 	WeaponSelectTexture=Texture2D'WEP_UI_RPG7_TEX.UI_WeaponSelect_RPG7'
 
     // FOV

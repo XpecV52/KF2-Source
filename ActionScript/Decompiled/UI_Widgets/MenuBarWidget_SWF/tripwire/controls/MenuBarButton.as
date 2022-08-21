@@ -118,6 +118,11 @@ package tripwire.controls
                 this.iconColor.setTint(this.DisabledColor,1);
                 this.iconContainer.transform.colorTransform = this.iconColor;
             }
+            else
+            {
+                this.iconColor.setTint(12453376,1);
+                this.iconContainer.transform.colorTransform = this.iconColor;
+            }
         }
     }
 }

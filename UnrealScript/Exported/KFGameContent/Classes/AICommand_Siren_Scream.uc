@@ -54,6 +54,11 @@ state Command_SpecialMove
 		}
 	}
 
+	function ESpecialMove GetSpecialMove()
+	{
+		return default.SpecialMove;
+	}
+
 	function bool CanScream()
 	{
 		local vector	HitL, HitN;
@@ -68,7 +73,7 @@ state Command_SpecialMove
 				return false;
 			}
 
-			if( MyKFPawn.IsImpaired() )
+			if( MyKFPawn.IsImpaired() || MyKFPawn.IsInCapacitated() )
 			{
 				return false;
 			}

@@ -12,8 +12,8 @@ class KFWeap_Edged_Katana extends KFWeap_MeleeBase;
 
 defaultproperties
 {
-   BlockDamageMitigation=0.700000
-   ParryDamageMitigationPercent=0.700000
+   BlockDamageMitigation=0.600000
+   ParryDamageMitigationPercent=0.500000
    BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
    ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Metal'
    InventorySize=3

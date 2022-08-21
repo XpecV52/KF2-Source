@@ -3242,6 +3242,9 @@ function bool NotifyAttackParried(Pawn InstigatedBy, byte InParryStrength)
 	return FALSE;
 }
 
+/** Overridden in subclasses, determines if pawn is impaired (panicked, etc) */
+simulated function bool IsImpaired();
+
 /** Returns true if pawn is incapacitated in any way */
 function bool IsIncapacitated()
 {
@@ -3251,6 +3254,9 @@ function bool IsIncapacitated()
 			|| IsDoingSpecialMove(SM_Knockdown)
 			|| IsDoingSpecialMove(SM_RecoverFromRagdoll);
 }
+
+/** Overridden in subclasses, determines if a pawn is headless */
+simulated function bool IsHeadless();
 
 /** Clean up function to terminate any effects on death */
 simulated function TerminateEffectsOnDeath()
@@ -4573,9 +4579,6 @@ function CausePanicWander();
 
 /** Used to detect if we should currently be doing a wander special move */
 simulated function bool ShouldBeWandering();
-
-/** Used to detect if we should currently be doing a wander special move */
-simulated function bool IsHeadless();
 
 /*********************************************************************************************
  * @name	AI

@@ -154,8 +154,8 @@ static function byte GetStumbleTypeFromRegion(EPawnOctant HitRegion, optional bo
 protected function bool InternalCanDoSpecialMove()
 {
 	// Only valid while walking or falling slowly.  This makes stumble exclusive to HandleMomentum()
-	return PawnOwner.Physics == PHYS_Walking || (PawnOwner.Physics == PHYS_Falling &&
-        Abs(PawnOwner.Velocity.Z) < 250 && VSize2d(PawnOwner.Velocity) < 600);
+	return (!KFPOwner.IsImpaired() || KFPOwner.IsHeadless()) && (PawnOwner.Physics == PHYS_Walking || (PawnOwner.Physics == PHYS_Falling &&
+        Abs(PawnOwner.Velocity.Z) < 250 && VSize2d(PawnOwner.Velocity) < 600));
 }
 
 function PlayAnimation()

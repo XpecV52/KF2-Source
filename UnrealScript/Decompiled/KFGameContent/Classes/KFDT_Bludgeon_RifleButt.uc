@@ -10,7 +10,8 @@ class KFDT_Bludgeon_RifleButt extends KFDT_Bludgeon
 
 defaultproperties
 {
-    StumblePower=49
+    StumblePower=200
+    MeleeHitPower=100
     ModifierPerkList=/* Array type was not detected. */
     bExtraMomentumZ=true
     KDamageImpulse=700

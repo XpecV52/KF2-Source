@@ -347,8 +347,8 @@ defaultproperties
 	FiringStatesArray(RELOAD_FIREMODE)="Reloading"
 
 	// Blocking
-	ParryDamageMitigationPercent=0.50
-	BlockDamageMitigation=0.50
+	ParryDamageMitigationPercent=0.30
+	BlockDamageMitigation=0.40
 
     // Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Sawblade_ARCH.Wep_Sawblade_MuzzleFlash'

@@ -1023,7 +1023,7 @@ function OnUnlockAchievement(int AchievementIndex)
 native final function OnGameWon(string MapName, byte Difficulty, byte GameLength, byte bCoop, class<KFPerk> PerkClass);
 
 // Export UKFOnlineStatsWrite::execOnRoundEnd(FFrame&, void* const)
-native final function OnRoundEnd();
+native final function OnRoundEnd(byte WinningTeam);
 
 // Export UKFOnlineStatsWrite::execCheckMapEndAchievements(FFrame&, void* const)
 native final function CheckMapEndAchievements(string MapName, byte Difficulty, byte bCoop);
@@ -1041,7 +1041,7 @@ private native final function CheckAllPerksLvl25();
 native final function UnlockTutorialAchievement();
 
 // Export UKFOnlineStatsWrite::execCheckForRoundTeamWinAchievements(FFrame&, void* const)
-native final function CheckForRoundTeamWinAchievements();
+native final function CheckForRoundTeamWinAchievements(byte WinningTeam);
 
 defaultproperties
 {

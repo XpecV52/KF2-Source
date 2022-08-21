@@ -19,7 +19,7 @@ defaultproperties
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
       ExplosionEffects=KFImpactEffectInfo'WEP_RPG7_ARCH.RPG7_Explosion'
       Damage=750.000000
-      DamageRadius=250.000000
+      DamageRadius=400.000000
       DamageFalloffExponent=2.000000
       MyDamageType=Class'kfgamecontent.KFDT_Explosive_RPG7'
       KnockDownStrength=0.000000

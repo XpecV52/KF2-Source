@@ -1012,7 +1012,7 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.005000
    Spread(1)=0.005000
-   InstantHitDamage(0)=750.000000
+   InstantHitDamage(0)=375.000000
    InstantHitDamage(1)=750.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=()

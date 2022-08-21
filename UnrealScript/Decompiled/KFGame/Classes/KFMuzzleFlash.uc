@@ -124,11 +124,20 @@ function AttachMuzzleFlash(SkeletalMeshComponent OwnerMesh, optional name Socket
     }
     if(OwnerMesh.DepthPriorityGroup == 2)
     {
-        MuzzleFlash.PSC.SetDepthPriorityGroup(MuzzleFlash.FirstPersonDepthPriorityGroup);
-        MuzzleFlash.PSC.bDepthTestEnabled = MuzzleFlash.FirstPersonDepthPriorityGroup == 2;
-        MuzzleFlashAlt.PSC.SetDepthPriorityGroup(MuzzleFlashAlt.FirstPersonDepthPriorityGroup);
-        MuzzleFlashAlt.PSC.bDepthTestEnabled = MuzzleFlashAlt.FirstPersonDepthPriorityGroup == 2;
-        ShellEjectPSC.SetDepthPriorityGroup(2);
+        if(MuzzleFlash.PSC != none)
+        {
+            MuzzleFlash.PSC.SetDepthPriorityGroup(MuzzleFlash.FirstPersonDepthPriorityGroup);
+            MuzzleFlash.PSC.bDepthTestEnabled = MuzzleFlash.FirstPersonDepthPriorityGroup == 2;
+        }
+        if(MuzzleFlashAlt.PSC != none)
+        {
+            MuzzleFlashAlt.PSC.SetDepthPriorityGroup(MuzzleFlashAlt.FirstPersonDepthPriorityGroup);
+            MuzzleFlashAlt.PSC.bDepthTestEnabled = MuzzleFlashAlt.FirstPersonDepthPriorityGroup == 2;
+        }
+        if(ShellEjectPSC != none)
+        {
+            ShellEjectPSC.SetDepthPriorityGroup(2);
+        }
     }
     if(OwnerMesh.IsA('KFSkeletalMeshComponent'))
     {

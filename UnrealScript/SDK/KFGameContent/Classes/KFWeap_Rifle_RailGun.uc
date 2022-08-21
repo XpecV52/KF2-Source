@@ -954,7 +954,7 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=none
-	InstantHitDamage(DEFAULT_FIREMODE)=750
+	InstantHitDamage(DEFAULT_FIREMODE)=375  //750
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_RailGun'
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_RailGun'
 	FireInterval(DEFAULT_FIREMODE)=0.4
@@ -970,7 +970,7 @@ defaultproperties
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(ALTFIRE_FIREMODE)=none
-	InstantHitDamage(ALTFIRE_FIREMODE)=750
+	InstantHitDamage(ALTFIRE_FIREMODE)=750 //750
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_RailGun'
 	FireInterval(ALTFIRE_FIREMODE)=0.4
 	PenetrationPower(ALTFIRE_FIREMODE)=10.0

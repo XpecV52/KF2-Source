@@ -124,7 +124,7 @@ simulated event Destroyed()
 
 function bool IsAggroEnemySwitchAllowed()
 {
-    return (!MyPatPawn.IsDoingSpecialMove(18) && !MyPatPawn.IsDoingSpecialMove(19)) && !MyPatPawn.IsDoingSpecialMove(3);
+    return ((super(KFAIController).IsAggroEnemySwitchAllowed() && !MyPatPawn.IsDoingSpecialMove(18)) && !MyPatPawn.IsDoingSpecialMove(19)) && !MyPatPawn.IsDoingSpecialMove(3);
 }
 
 function bool CanSwitchEnemies()

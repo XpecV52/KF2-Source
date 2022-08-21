@@ -53,6 +53,7 @@ defaultproperties
 	// KFDestructibleActor
 	ReplicationMode=RT_ServerOptimized
 	bAllowBumpDamageFromAI=False
+	INSTAKILL_DAMAGE=1
 
 	Begin Object Class=StaticMeshComponent Name=StaticMeshComponent0
 		StaticMesh=StaticMesh'ENV_Collectible_MESH.Env_Dosh_Collectible'

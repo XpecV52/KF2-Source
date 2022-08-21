@@ -198,7 +198,7 @@ defaultproperties
    ThawAnims(0)="Stun_Wakeup_V1"
    ThawAnims(1)="Stun_Wakeup_V2"
    ThawAnims(2)="Stun_Wakeup_V3"
-   FreezeInTime=1.000000
+   FreezeInTime=0.500000
    FreezeOutTime=1.000000
    FreezeDuration=(X=3.000000,Y=5.000000)
    FrozenSteamTemplate=ParticleSystem'WEP_Freeze_Grenade_EMIT.FX_Freeze_Grenade_Smoke'

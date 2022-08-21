@@ -582,6 +582,10 @@ function EndOfMatch(bool bVictory)
 
 function Killed( Controller Killer, Controller KilledPlayer, Pawn KilledPawn, class<DamageType> damageType )
 {
+    local KFPawn KFP;
+    local KFPlayerReplicationInfo DamagerKFPRI;
+    local int i;
+
     super.Killed( Killer, KilledPlayer, KilledPawn, damageType );
 
     if( IsWaveActive() && GetAIControlledMonsterAliveCount() <= 0 && SpawnManager.IsFinishedSpawning() )
@@ -593,6 +597,27 @@ function Killed( Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cl
     if( KilledPlayer.GetTeamNum() == 255 && MyKFGRIV.WaveNum == MyKFGRIV.WaveMax && KFPawn_MonsterBoss(KilledPawn) != none )
     {
         BossDamageDone = POINTS_FOR_BOSS_KILL;
+    }
+    else if( Killer.GetTeamNum() == 255 && KilledPawn.GetTeamNum() == 0 )
+    {
+        KFP = KFPawn( KilledPawn );
+        for( i = 0; i < KFP.DamageHistory.Length; ++i )
+        {
+            if( KFP.DamageHistory[i].DamagerController != none
+                && KFP.DamageHistory[i].DamagerController.bIsPlayer
+                && KFP.DamageHistory[i].DamagerPRI.GetTeamNum() == 255
+                && KFP.DamageHistory[i].DamagerPRI != none )
+            {
+                if( Killer.PlayerReplicationInfo != KFP.DamageHistory[i].DamagerPRI )
+                {
+                    DamagerKFPRI = KFPlayerReplicationInfo( KFP.DamageHistory[i].DamagerPRI );
+                    if( DamagerKFPRI != none )
+                    {
+                        ++DamagerKFPRI.Assists;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -608,10 +633,16 @@ function WaveEnded( EWaveEndCondition WinCondition )
     // If game ended on a wipe, record how many zeds were killed as well as wave reached
     if( WinCondition == WEC_TeamWipedOut )
     {
+        CheckRoundEndAchievements( 255 );
+
         if( SpawnManager != none )
         {
             PercentOfZedsKilledBeforeWipe = float(MyKFGRI.AIRemaining) / float(SpawnManager.WaveTotalAI);
         }
+    }
+    else if( WinCondition == WEC_WaveWon )
+    {
+         CheckRoundEndAchievements( 0 ); 
     }
 
     WaveReached = MyKFGRI.WaveNum;
@@ -929,8 +960,6 @@ state RoundEnded
 {
     event BeginState( name PrevStateName )
     {
-        CheckRoundEndAchievements();
-
         // Set round over flag (allows perk changes etc)
         MyKFGRIV.bRoundIsOver = true;
 
@@ -973,13 +1002,13 @@ End:
     StartSpawning();
 }
 
-protected function CheckRoundEndAchievements()
+protected function CheckRoundEndAchievements( byte WinningTeam )
 {
     local KFPlayerControllerVersus KFPCV;
 
     foreach WorldInfo.AllControllers( class'KFPlayerControllerVersus', KFPCV )
     {
-        KFPCV.ClientRoundEnded();
+        KFPCV.ClientRoundEnded( WinningTeam );
     }
 }
 

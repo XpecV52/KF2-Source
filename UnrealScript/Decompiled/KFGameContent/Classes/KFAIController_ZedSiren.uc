@@ -13,21 +13,21 @@ function PreMoveToEnemy()
 {
     if((MyKFPawn.SpecialMove == 17) || (MyKFPawn.SpecialMove == 0) && !IsTimerActive('DoScream'))
     {
-        DoScream();
+        DoScream(true);        
     }
-}
-
-function NotifySpecialMoveStarted(KFSpecialMove SM)
-{
-    if(IsInStumble() || MyKFPawn.IsIncapacitated())
+    else
     {
-        AbortCommand(FindCommandOfClass(Class'AICommand_Siren_Scream'));
+        if(!IsTimerActive('DoScream'))
+        {
+            SetTimer(1, false, 'DoScream');
+        }
     }
 }
 
-function DoScream()
+function DoScream(optional bool bCalledFromPreMove)
 {
-    if(IsInStumble() || MyKFPawn.IsIncapacitated())
+    bCalledFromPreMove = false;
+    if(MyKFPawn.IsImpaired() || MyKFPawn.IsIncapacitated())
     {
         return;
     }
@@ -36,27 +36,59 @@ function DoScream()
         Class'AICommand_Siren_Scream'.static.Scream(self);
         MyKFPawn.DisablebOnDeathAchivement();
     }
+    if(!bCalledFromPreMove)
+    {
+        SetEnemyMoveGoal(self, true);
+    }
+}
+
+function AcquireEnemyAndScream(optional bool bStartScreamTimer)
+{
+    local Pawn BestTarget;
+
+    if(MyKFPawn.IsImpaired() || MyKFPawn.IsIncapacitated())
+    {
+        return;
+    }
+    BestTarget = MyKFPawn.GetBestAggroEnemy();
+    if(BestTarget == none)
+    {
+        BestTarget = GetClosestEnemy();
+    }
+    ChangeEnemy(BestTarget, true);
+    if(bStartScreamTimer)
+    {
+        SetTimer(1, false, 'DoScream');
+    }
+}
+
+function NotifySpecialMoveStarted(KFSpecialMove SM)
+{
+    local AICommand_Siren_Scream ScreamCommand;
+
+    if(MyKFPawn.IsImpaired() || MyKFPawn.IsIncapacitated())
+    {
+        ScreamCommand = FindCommandOfClass(Class'AICommand_Siren_Scream');
+        if(ScreamCommand != none)
+        {
+            AbortCommand(ScreamCommand);
+        }
+    }
+    super(KFAIController).NotifySpecialMoveStarted(SM);
 }
 
 function NotifySpecialMoveEnded(KFSpecialMove SM)
 {
-    local Pawn BestTarget;
-
+    super(KFAIController).NotifySpecialMoveEnded(SM);
     if((((SM.Handle == 'KFSM_Stumble') || SM.Handle == 'KFSM_Stunned') || SM.Handle == 'KFSM_Frozen') || SM.Handle == 'KFSM_RecoverFromRagdoll')
     {
-        BestTarget = MyKFPawn.GetBestAggroEnemy();
-        if(BestTarget != none)
-        {
-            BestTarget = GetClosestEnemy();
-        }
-        ChangeEnemy(BestTarget, true);
-        SetEnemyMoveGoal(self, true);
-        SetTimer(1, false, 'DoScream');
+        AcquireEnemyAndScream(true);
     }
 }
 
 function NotifyMeleeAttackFinished()
 {
+    super(KFAIController).NotifyMeleeAttackFinished();
     if(MyKFPawn != none)
     {
         MyKFPawn.NotifyMeleeAttackFinished();
@@ -65,11 +97,23 @@ function NotifyMeleeAttackFinished()
 
 function NotifyCommandFinished(AICommand FinishedCommand)
 {
-    if(ClassIsChildOf(FinishedCommand.Class, Class'AICommand_PanicWander'))
+    if(AICommand_PanicWander(FinishedCommand) != none)
     {
-        SetTimer(1, false, 'DoScream');
+        AcquireEnemyAndScream(true);
     }
     super(KFAIController).NotifyCommandFinished(FinishedCommand);
+}
+
+function DoPanicWander()
+{
+    local AICommand_Siren_Scream ScreamCommand;
+
+    ScreamCommand = FindCommandOfClass(Class'AICommand_Siren_Scream');
+    if(ScreamCommand != none)
+    {
+        AbortCommand(ScreamCommand);
+    }
+    super(KFAIController).DoPanicWander();
 }
 
 function EnterZedVictoryState()

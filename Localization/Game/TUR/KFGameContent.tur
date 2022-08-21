@@ -390,18 +390,14 @@ ItemDescription="• Atış sadece tekli modta.\n• Arbalet okları genellikle 
 [KFWeap_Rifle_M14EBR]
 ItemName="M14 EBR"
 ItemCategory="Sniper Rifle"
-ItemDescription=""
+ItemDescription="• Fire mode is single shot only.\n• Equipped with a laser sight.\n• The preferred sniper rifle of Navy SEALs, Delta Force, and other various badasses."
 
 [KFWeap_Rifle_RailGun]
 ItemName="Rail Gun"
 ItemCategory="Sniper Rifle"
-ItemDescription=""
+ItemDescription="• Fire mode is single shot only.\n• Using the sight lets you lock on to vulnerable spots on your target. \n• This weapon fires a high-speed metal slug using magnets, penetrating Zeds like tissue paper."
 
-[KFWeap_AssaultRifle_M16M203]
-ItemName="M16 M203 Assault Rifle"
-ItemCategory="Assault Rifle"
-ItemDescription=""
-SecondaryAmmo="M203 Grenade"
+Submachine guns
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

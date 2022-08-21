@@ -238,10 +238,25 @@ static function string GetMessageString(int Switch, optional out String Secondar
 			else
 			{
 				SecondaryString = default.PlayerCanChangePerksString;
+				//open perk menu
+				OpenPerkMenu();
 			}
 			return default.NextRoundBeginString;
 		default:
 			return "";
+	}
+}
+
+static function OpenPerkMenu()
+{
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController());
+
+	if(KFPC != none && KFPC.MyGfxManager != none)
+	{
+		LogInternal("OPEN PERK MENU CALLED DUE TO RECIEVE MESSAGE!!!");
+		KFPC.MyGfxManager.OpenMenu(UI_Perks, true);
 	}
 }
 

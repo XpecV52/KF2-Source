@@ -49,6 +49,12 @@ var const int MaxActivePlayerScrakes;
 /** Maximum number of player-controlled Fleshpounds allowed at once */
 var const int MaxActivePlayerFleshpounds;
 
+/** Number of player Scrakes that have been queued up to spawn this cycle */
+var protected int NumScrakesThisSpawnCycle;
+
+/** Number of player Fleshpounds that have been queued up to spawn this cycle */
+var protected int NumFleshpoundsThisSpawnCycle;
+
 /** TRUE when boss has been spawned in Versus */
 var protected bool bBossSpawned;
 
@@ -137,6 +143,7 @@ function Timer_SpawnPlayerZeds()
 
 
 
+
     local int RandNum;
     local array<class<KFPawn_Monster> > NewSquad;
     local float SpawnTimer;
@@ -163,6 +170,10 @@ function Timer_SpawnPlayerZeds()
         return;
     }    
 
+    // Reset our big zed counts
+    NumScrakesThisSpawnCycle = 0;
+    NumFleshpoundsThisSpawnCycle = 0;
+
     // Only do spawning if the wave isn't paused
     if( WorldInfo.Game.IsInState('PlayingWave') )
     {
@@ -173,6 +184,37 @@ function Timer_SpawnPlayerZeds()
         RandNum = Rand( PlayerZedSquads.Length );
         GetSpawnListFromSquad( RandNum, PlayerZedSquads, NewSquad );
         PlayerZedSquads.Remove( RandNum, 1 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -383,18 +425,27 @@ function GiveAvailableZedClass( KFPlayerControllerVersus KFPCV, out array<class<
     // Iterate through all available zeds and populate array with classes we haven't spawned as yet
     for( i = 0; i < AvailableZeds.Length; ++i )
     {
+        // Make sure we're not spawning more than are allowed to be active
+        if( AvailableZeds[i] == AIClassList[AT_Scrake] )
+        {
+            if( NumScrakesThisSpawnCycle >= MaxActivePlayerScrakes || GetNumActiveZedsOfClass(class'KFPawn_ZedScrake') >= MaxActivePlayerScrakes )
+            {
+                continue;
+            }
+        }
+        else if( AvailableZeds[i] == AIClassList[AT_Fleshpound] )
+        {
+            if( NumFleshpoundsThisSpawnCycle >= MaxActivePlayerFleshpounds || GetNumActiveZedsOfClass(class'KFPawn_ZedFleshpound') >= MaxActivePlayerFleshpounds )
+            {
+                continue;
+            }
+        }
+
         for( j = 0; j < PlayerZedClasses.Length; ++j )
         {
             // Check our spawnzed zeds array to see if we've spawned as this class yet
             if( ClassIsChildOf(PlayerZedClasses[j], AvailableZeds[i]) )
             {
-                // Make sure we're not spawning more than are allowed to be active
-                if( (AvailableZeds[i] == AIClassList[AT_Scrake] && GetNumActiveZedsOfClass(class'KFPawn_ZedScrake') >= MaxActivePlayerScrakes)
-                    || (AvailableZeds[i] == AIClassList[AT_Fleshpound] && GetNumActiveZedsOfClass(class'KFPawn_ZedFleshpound') >= MaxActivePlayerFleshpounds) )
-                {
-                    continue;
-                }
-
                 if( j < KFPCV.HasSpawnedZeds.Length && KFPCV.HasSpawnedZeds[j] )
                 {
                     PassedOnZeds.AddItem( j );
@@ -437,6 +488,15 @@ function GiveAvailableZedClass( KFPlayerControllerVersus KFPCV, out array<class<
     {
         if( ClassIsChildOf(PlayerZedClasses[i], PossibleZeds[ZedIndex]) )
         {
+            if( PossibleZeds[ZedIndex] == AIClassList[AT_Scrake] )
+            {
+                ++NumScrakesThisSpawnCycle;
+            }
+            else if( PossibleZeds[ZedIndex] == AIClassList[AT_Fleshpound] )
+            {
+                ++NumFleshpoundsThisSpawnCycle;
+            }
+
             KFPCV.PlayerZedSpawnInfo.PendingZedPawnClass = PlayerZedClasses[i];
             AvailableZeds.Remove( AvailableZeds.Find(PossibleZeds[ZedIndex]), 1 );
             KFPCV.HasSpawnedZeds[i] = true;

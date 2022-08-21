@@ -2,6 +2,7 @@ package tripwire.widgets
 {
     import com.greensock.TweenMax;
     import com.greensock.easing.Cubic;
+    import fl.motion.Color;
     import flash.display.MovieClip;
     import flash.events.Event;
     import flash.events.KeyboardEvent;
@@ -15,6 +16,8 @@ package tripwire.widgets
         
         public var bossnameText:TextField;
         
+        public var healthBarShield:MovieClip;
+        
         public var healthBarRed:MovieClip;
         
         public var healthBarGlow:MovieClip;
@@ -22,6 +25,8 @@ package tripwire.widgets
         protected var originalHealthBarWidth:Number;
         
         protected var previousHealthValue:Number = 1;
+        
+        protected var previousShieldValue:Number = 1;
         
         public const barOffset:int = 56;
         
@@ -37,11 +42,51 @@ package tripwire.widgets
             this.originalHealthBarWidth = this.healthBarRed.width;
             this.healthBarGlow.width = 0;
             visible = false;
+            this.currentShieldPercecntValue = 0;
         }
         
         public function onGlowComplete(param1:Event = null) : void
         {
             this.healthBarGlow.width = 0;
+        }
+        
+        public function set currentBattlePhaseColor(param1:uint) : void
+        {
+            var _loc2_:Color = new Color();
+            _loc2_.setTint(param1,1);
+            this.healthBarRed.transform.colorTransform = _loc2_;
+        }
+        
+        public function set currentShieldPercecntValue(param1:Number) : void
+        {
+            var _loc2_:Number = NaN;
+            if(param1 > 1)
+            {
+                param1 = 1;
+            }
+            if(param1 < 0)
+            {
+                param1 = 0;
+            }
+            if(this.previousShieldValue != param1)
+            {
+                _loc2_ = this.originalHealthBarWidth * param1;
+                TweenMax.to(this.healthBarShield,4,{
+                    "width":_loc2_,
+                    "useFrames":true,
+                    "easing":Cubic.easeOut
+                });
+                if(this.healthBarShield.width > this.originalHealthBarWidth)
+                {
+                    this.healthBarShield.width = this.originalHealthBarWidth;
+                }
+                this.previousShieldValue = param1;
+            }
+        }
+        
+        public function get currentShieldPercecntValue() : Number
+        {
+            return this.previousShieldValue;
         }
         
         public function set currentHealthPercentValue(param1:Number) : void

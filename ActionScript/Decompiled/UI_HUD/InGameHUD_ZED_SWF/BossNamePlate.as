@@ -191,7 +191,7 @@ package
                 this.____motion_subTextContaineraf1_mat3DVec__[9] = 0;
                 this.____motion_subTextContaineraf1_mat3DVec__[10] = 1;
                 this.____motion_subTextContaineraf1_mat3DVec__[11] = 0;
-                this.____motion_subTextContaineraf1_mat3DVec__[12] = 448;
+                this.____motion_subTextContaineraf1_mat3DVec__[12] = 335;
                 this.____motion_subTextContaineraf1_mat3DVec__[13] = 378.25;
                 this.____motion_subTextContaineraf1_mat3DVec__[14] = -128;
                 this.____motion_subTextContaineraf1_mat3DVec__[15] = 1;
@@ -236,7 +236,7 @@ package
                 this.__motion_subTextContaineraf1.addPropertyArray("visible",[true]);
                 this.__motion_subTextContaineraf1.addPropertyArray("alphaMultiplier",[0.48,0.5775,0.675,0.7725,0.87,0.9025,0.935,0.9675,1]);
                 this.__motion_subTextContaineraf1.motion_internal::transformationPoint = new Point(295.65,33.25);
-                this.__motion_subTextContaineraf1.motion_internal::initialPosition = [807.65,411.5,-128];
+                this.__motion_subTextContaineraf1.motion_internal::initialPosition = [694.65,411.5,-128];
                 this.__motion_subTextContaineraf1.is3D = true;
                 this.__motion_subTextContaineraf1.motion_internal::spanStart = 20;
                 this.__animArray_subTextContaineraf1.push(this.__motion_subTextContaineraf1);
@@ -263,7 +263,7 @@ package
                 this.____motion_subTextContaineraf1_mat3DVec__[9] = 0;
                 this.____motion_subTextContaineraf1_mat3DVec__[10] = 1;
                 this.____motion_subTextContaineraf1_mat3DVec__[11] = 0;
-                this.____motion_subTextContaineraf1_mat3DVec__[12] = 432;
+                this.____motion_subTextContaineraf1_mat3DVec__[12] = 319;
                 this.____motion_subTextContaineraf1_mat3DVec__[13] = 378.25;
                 this.____motion_subTextContaineraf1_mat3DVec__[14] = -128;
                 this.____motion_subTextContaineraf1_mat3DVec__[15] = 1;

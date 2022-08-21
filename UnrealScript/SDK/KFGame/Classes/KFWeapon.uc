@@ -6206,17 +6206,6 @@ reliable private server function ServerSyncWeaponFiring( byte FireModeNum )
 {
 	if( IsInState('Reloading') )
 	{
-		//`log("[SERVERSYNCWEAPONFIRING]"@getnextreloadstatus()@GetRemainingTimeForTimer(nameOf(ReloadStatusTimer))@((Instigator.PlayerReplicationInfo.Ping*`PING_SCALE) * 0.001f));
-
-		// Only allow immediate switch to the fire state if we are near the end of a reload and it's
-		// within an acceptable length of time from the end of the reload sequence
-		if( GetNextReloadStatus() == RS_Complete
-			&& GetRemainingTimeForTimer(nameOf(ReloadStatusTimer)) > ((Instigator.PlayerReplicationInfo.Ping * `PING_SCALE)*0.001f) )
-		{
-			//`log("[SERVERSYNCWEAPONFIRING] Player likely tried to cheat!");
-			return;
-		}
-
 		// Perform our reload if we haven't yet
 		if( ReloadStatus == RS_Reloading && IsTimerActive(nameOf(ReloadAmmoTimer)) )
 		{
@@ -6227,17 +6216,31 @@ reliable private server function ServerSyncWeaponFiring( byte FireModeNum )
 		// Flag reload as complete
 		ReloadStatus = RS_Complete;
 
+		// May have not recieved ServerSyncReload yet!  Do something!
+		if ( bAllowClientAmmoTracking && !HasAmmo(FireModeNum) )
+		{
+			ServerSyncReload(InitialReloadSpareAmmo - 1);
+		}
+
 		// Move immediately to the firing state, as long as we have ammo
 		if( HasAmmo(FireModeNum) )
 		{
 			SendToFiringState( FireModeNum );
+		}
+		else
+		{
+			`warn("Failed to sync weapon ammo.");
 		}
 	}
 }
 
 simulated state WeaponSingleFireAndReload extends WeaponSingleFiring
 {
- 	simulated function FireAmmunition()
+	// It is technically possible for ServerSyncWeaponFiring to call before the ServerSyncReload in the Reload state.
+	// If this happens, we don't want to allow ServerSyncReload to be called twice.
+	ignores ServerSyncReload;
+
+	simulated function FireAmmunition()
 	{
 		local float ReloadDelay;
 

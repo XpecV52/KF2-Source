@@ -69,6 +69,7 @@ function string GetRandomLoadingMessage()
 
 function DrawTransitionMessage(Canvas Canvas, string Message)
 {
+    FontScale = float(Canvas.SizeY) / float(1080);
     Class'Engine'.static.AddOverlay(MessageFont, Message, 0.15, 0.85, FontScale, FontScale, true);
     return;
     super.DrawTransitionMessage(Canvas, Message);

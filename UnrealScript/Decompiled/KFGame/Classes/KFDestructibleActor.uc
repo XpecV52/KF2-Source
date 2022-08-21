@@ -10,8 +10,6 @@ class KFDestructibleActor extends Actor
     placeable
     hidecategories(Physics,Debug,Object,Mobile);
 
-const INSTAKILL_DAMAGE = 100000;
-
 enum EDestructibleRepType
 {
     RT_ServerDefault,
@@ -370,6 +368,7 @@ var transient bool bComponentsSetUp;
 var transient bool bInitRBPhysCalled;
 var transient bool bIsRadiusDamage;
 var transient bool bAnyDamageModApplied;
+var protected const int INSTAKILL_DAMAGE;
 /** List of damage types that instantly destroy this object */
 var() array< class<DamageType> > InstaKillDamageType<AllowAbstract=>;
 /** List of damage types to always ignore */
@@ -548,10 +547,10 @@ event TakeDamage(int Damage, Controller EventInstigator, Vector HitLocation, Vec
     {
         return;
     }
-    if((Damage >= 100000) || bIsRadiusDamage)
+    if((Damage >= INSTAKILL_DAMAGE) || bIsRadiusDamage)
     {
         Idx = 0;
-        J0x65:
+        J0x69:
 
         if(Idx < SubObjects.Length)
         {
@@ -560,7 +559,7 @@ event TakeDamage(int Damage, Controller EventInstigator, Vector HitLocation, Vec
                 DamageSubObject(Idx, Damage, EventInstigator, DamageType);
             }
             ++ Idx;
-            goto J0x65;
+            goto J0x69;
         }        
     }
     else
@@ -568,7 +567,7 @@ event TakeDamage(int Damage, Controller EventInstigator, Vector HitLocation, Vec
         if(ValidateHitComponent(HitInfo, HitLocation, Momentum))
         {
             Idx = 0;
-            J0x104:
+            J0x108:
 
             if(Idx < SubObjects.Length)
             {
@@ -581,14 +580,14 @@ event TakeDamage(int Damage, Controller EventInstigator, Vector HitLocation, Vec
                     {
                         DamageSubObject(Idx, Damage, EventInstigator, DamageType);
                     }
-                    goto J0x1D7;
+                    goto J0x1DB;
                 }
                 ++ Idx;
-                goto J0x104;
+                goto J0x108;
             }
         }
     }
-    J0x1D7:
+    J0x1DB:
 
     if((Role == ROLE_Authority) && !HasAnyHealth())
     {
@@ -608,14 +607,14 @@ function AdjustDamage(out int InDamage, Controller EventInstigator, class<Damage
     {
         if((DamageType == InstaKillDamageType[Idx]) || ClassIsChildOf(DamageType, InstaKillDamageType[Idx]))
         {
-            InDamage = 100000;
+            InDamage = INSTAKILL_DAMAGE;
             return;
         }
         ++ Idx;
         goto J0x0B;
     }
     Idx = 0;
-    J0x92:
+    J0x96:
 
     if(Idx < IgnoreDamageType.Length)
     {
@@ -625,7 +624,7 @@ function AdjustDamage(out int InDamage, Controller EventInstigator, class<Damage
             return;
         }
         ++ Idx;
-        goto J0x92;
+        goto J0x96;
     }
     if(EventInstigator != none)
     {
@@ -634,7 +633,7 @@ function AdjustDamage(out int InDamage, Controller EventInstigator, class<Damage
             KFAIInstigator = KFAIController(EventInstigator);
             if((KFAIInstigator != none) && KFAIInstigator.ActorEnemy == self)
             {
-                InDamage = 100000;
+                InDamage = INSTAKILL_DAMAGE;
                 return;
             }
         }
@@ -891,6 +890,7 @@ defaultproperties
     ReplicatedDamageMods[14]=(ObjIdx=255,ModIdx=255,bPartial=false)
     ReplicatedDamageMods[15]=(ObjIdx=255,ModIdx=255,bPartial=false)
     bAllowBumpDamageFromAI=true
+    INSTAKILL_DAMAGE=100000
     VulnerableDamageType(0)=class'KFDT_Sonic'
     SelfDestructAllDelay=0.2
     begin object name=AmbientSoundComponent0 class=AkComponent

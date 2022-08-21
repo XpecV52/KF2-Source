@@ -365,6 +365,9 @@ defaultproperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(1.0)))
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 		                DamageScale=(1.0)))
 
+	//Special Case damage resistance
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_9mm',              DamageScale=(1.0))
+
 
 	// ---------------------------------------------
 	// Movement / Physics

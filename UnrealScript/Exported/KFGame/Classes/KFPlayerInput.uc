@@ -969,6 +969,11 @@ exec function StartTertiaryFire()
 	if ( Pawn != None )
 	{
 		Pawn.StartFire(3);
+		if ( bGamepadWeaponSelectOpen && MyGFxHUD.WeaponSelectWidget != none )
+		{
+			MyGFxHUD.WeaponSelectWidget.SetWeaponSwitchStayOpen(false);
+			bGamepadWeaponSelectOpen = false;
+		}
 	}
 }
 
@@ -987,6 +992,11 @@ exec function Reload()
 	if ( Pawn != None )
 	{
 		Pawn.StartFire(2);
+		if ( bGamepadWeaponSelectOpen && MyGFxHUD.WeaponSelectWidget != none )
+		{
+			MyGFxHUD.WeaponSelectWidget.SetWeaponSwitchStayOpen(false);
+			bGamepadWeaponSelectOpen = false;
+		}
 	}
 }
 

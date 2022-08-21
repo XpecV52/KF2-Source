@@ -157,7 +157,7 @@ simulated function ModifySpareAmmoAmount(KFWeapon KFW, out int PrimarySpareAmmo,
     if(IsWeaponOnPerk(KFW, WeaponPerkClass))
     {
         TempSpareAmmoAmount = float(PrimarySpareAmmo);
-        TempSpareAmmoAmount += (float(PrimarySpareAmmo) * (GetPassiveValue(Ammo, CurrentLevel)));
+        TempSpareAmmoAmount += (float(PrimarySpareAmmo) * (GetSkillValue(PerkSkills[0])));
         PrimarySpareAmmo = Round(TempSpareAmmoAmount);
     }
 }
@@ -171,7 +171,7 @@ simulated function ModifyMaxSpareAmmoAmount(KFWeapon KFW, out int MaxSpareAmmo, 
     if(IsWeaponOnPerk(KFW, WeaponPerkClass))
     {
         TempMaxSpareAmmoAmount = float(MaxSpareAmmo);
-        TempMaxSpareAmmoAmount += (float(MaxSpareAmmo) * (GetPassiveValue(Ammo, CurrentLevel)));
+        TempMaxSpareAmmoAmount += (float(MaxSpareAmmo) * (GetSkillValue(PerkSkills[0])));
         MaxSpareAmmo = Round(TempMaxSpareAmmoAmount);
     }
 }
@@ -481,7 +481,7 @@ defaultproperties
     EXPAction2="Welding doors"
     PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Support'
     InteractIcon=Texture2D'UI_World_TEX.Support_Supplier_HUD'
-    PerkSkills(0)=(Name="Ammo",Increment=0,Rank=0,StartingValue=1.2,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Ammo",bActive=false)
+    PerkSkills(0)=(Name="Ammo",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Ammo",bActive=false)
     PerkSkills(1)=(Name="Supplier",Increment=0,Rank=0,StartingValue=1.15,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Supplier",bActive=false)
     PerkSkills(2)=(Name="Fortitude",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Fortitude",bActive=false)
     PerkSkills(3)=(Name="Regeneration",Increment=0,Rank=0,StartingValue=0.15,MaxValue=0.15,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Regeneration",bActive=false)

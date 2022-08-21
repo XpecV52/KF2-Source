@@ -223,13 +223,13 @@ simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo
 	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) )
 	{
 		TempSpareAmmoAmount = PrimarySpareAmmo;
-		TempSpareAmmoAmount += PrimarySpareAmmo * GetPassiveValue( Ammo, CurrentLevel );
+		TempSpareAmmoAmount += PrimarySpareAmmo * GetSkillValue( PerkSkills[ESupportAmmo] );
 		PrimarySpareAmmo = Round( TempSpareAmmoAmount );
 	}
 }
 
 /**
- * @brief Modidies the max spare ammo
+ * @brief Modifies the max spare ammo
  *
  * @param KFW The weapon
  * @param PrimarySpareAmmo ammo amount
@@ -244,7 +244,7 @@ simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo,
 	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) )
 	{
 		TempMaxSpareAmmoAmount = MaxSpareAmmo;
-		TempMaxSpareAmmoAmount += MaxSpareAmmo * GetPassiveValue( Ammo, CurrentLevel );
+		TempMaxSpareAmmoAmount += MaxSpareAmmo* GetSkillValue( PerkSkills[ESupportAmmo] );
 		MaxSpareAmmo = Round( TempMaxSpareAmmoAmount );
 	}
 }
@@ -688,7 +688,7 @@ DefaultProperties
 	WeldingProficiency=(Name="Welding Proficiency",Increment=0.02f,Rank=0,StartingValue=1.f,MaxValue=1.50f)
 	GrenadeDamage=(Name="Grenade Damage",Increment=0.02f,Rank=0,StartingValue=0.f,MaxValue=0.5f)
 
-	PerkSkills(ESupportAmmo)=(Name="Ammo",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Ammo",Increment=0.f,Rank=0,StartingValue=1.2f,MaxValue=0.f)
+	PerkSkills(ESupportAmmo)=(Name="Ammo",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Ammo",Increment=0.f,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
 	PerkSkills(ESupportSupplier)=(Name="Supplier",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Supplier",Increment=0.f,Rank=0,StartingValue=1.15f,MaxValue=0.f)
 	PerkSkills(ESupportFortitude)=(Name="Fortitude",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Fortitude",Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
 	PerkSkills(ESupportRegeneration)=(Name="Regeneration",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Regeneration",Increment=0.f,Rank=0,StartingValue=0.15f,MaxValue=0.15f)

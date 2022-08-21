@@ -291,7 +291,7 @@ package tripwire.containers
         public function dimLeftSide(param1:Boolean) : void
         {
             var _loc2_:int = 0;
-            if(this.leftSidePanels.length > 0)
+            if(this.leftSidePanels.length > 0 && this.bManagerUsingGamepad)
             {
                 _loc2_ = 0;
                 while(_loc2_ < this.leftSidePanels.length)
@@ -312,7 +312,7 @@ package tripwire.containers
         public function dimRightSide(param1:Boolean) : void
         {
             var _loc2_:int = 0;
-            if(this.rightSidePanels.length > 0)
+            if(this.rightSidePanels.length > 0 && this.bManagerUsingGamepad)
             {
                 _loc2_ = 0;
                 while(_loc2_ < this.rightSidePanels.length)
@@ -348,6 +348,10 @@ package tripwire.containers
         
         protected function openAnimation(param1:Boolean = true) : *
         {
+            if(!this.bManagerUsingGamepad)
+            {
+                param1 = true;
+            }
             TweenMax.killTweensOf(this);
             TweenMax.fromTo(this,this.ANIM_TIME,{
                 "z":this.ANIM_OFFSET_Z,

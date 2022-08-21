@@ -57,6 +57,46 @@ simulated event PreloadTextures(bool bForcePreload, float ClearTime)
 /** changes the value of FOV */
 native final function SetFOV(float NewFOV);
 
+/**
+* Called by AnimNotify_PlayParticleEffect
+* Looks for a socket name first then bone name
+*
+* @param AnimNotifyData The AnimNotify_PlayParticleEffect which will have all of the various params on it
+*/
+event bool PlayParticleEffect( const AnimNotify_PlayParticleEffect AnimNotifyData )
+{
+	local KFParticleSystemComponent PSC;
+
+	// Assign 1st person particles to match depth and FOV 
+	// abridged version (only attached, non-extreme content) from Super()
+	if ( DepthPriorityGroup == SDPG_Foreground 
+		&& AnimNotifyData.bAttach 
+		&& !AnimNotifyData.bIsExtremeContent )
+	{		
+		PSC = new(self) class'KFParticleSystemComponent';  // move this to the object pool once it can support attached to bone/socket and relative translation/rotation
+		PSC.SetTemplate( AnimNotifyData.PSTemplate );
+		PSC.SetDepthPriorityGroup(SDPG_Foreground);
+		PSC.SetFOV(FOV);
+
+		if( AnimNotifyData.SocketName != '' )
+		{
+			//`log( "attaching AnimNotifyData.SocketName" );
+			AttachComponentToSocket( PSC, AnimNotifyData.SocketName );
+		}
+		else if( AnimNotifyData.BoneName != '' )
+		{
+			//`log( "attaching AnimNotifyData.BoneName" );
+			AttachComponent( PSC, AnimNotifyData.BoneName );
+		}
+
+		PSC.ActivateSystem(true);
+		PSC.OnSystemFinished = SkelMeshCompOnParticleSystemFinished;
+		return true;
+	}
+
+	return Super.PlayParticleEffect(AnimNotifyData);
+}
+
 /** Returns the duration (in seconds) for a named AnimSequence. Returns 0.f if no animation. */
 final function float GetAnimInterruptTime(Name AnimSeqName)
 {

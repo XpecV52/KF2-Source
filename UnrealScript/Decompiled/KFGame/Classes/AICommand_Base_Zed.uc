@@ -93,6 +93,12 @@ Begin:
         Outer.DisableMeleeRangeEventProbing();
         Outer.WaitForLanding();
     }
+    if(Outer.IsInStumble() || Outer.MyKFPawn.IsIncapacitated())
+    {
+        Outer.DisableMeleeRangeEventProbing();
+        Outer.Sleep(0.1);
+        goto 'Begin';
+    }
     Outer.EnableMeleeRangeEventProbing();
     Outer.CheckInterruptCombatTransitions();
     if(((Outer.Enemy == none) || Outer.Enemy.Health <= 0) || !Outer.IsValidAttackTarget(KFPawn(Outer.Enemy)))
@@ -116,12 +122,12 @@ Begin:
         Outer.AILog_Internal(((("Calling SetEnemyMoveGoal [Dist:" $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location))) $ "] using offset of ") $ string(Outer.AttackRange)) $ ", because IsWithinBasicMeleeRange() returned false ", 'Command_Base');
         bWaitingOnMovementPlugIn = true;
         Outer.SetEnemyMoveGoal(self, true,,, ShouldAttackWhileMoving());
-        J0x706:
+        J0x7A7:
 
         if(bWaitingOnMovementPlugIn && Outer.bUsePluginsForMovement)
         {
             Outer.Sleep(0.03);
-            goto J0x706;
+            goto J0x7A7;
         }
         Outer.AILog_Internal("Back from waiting for the movement plug in!!!");
         if(Outer.Enemy == none)
@@ -154,7 +160,7 @@ Begin:
         Outer.Sleep(0);
     }
     goto 'Begin';
-    stop;            
+    stop;        
 }
 
 defaultproperties

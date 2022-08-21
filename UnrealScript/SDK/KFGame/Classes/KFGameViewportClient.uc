@@ -89,6 +89,8 @@ function string GetRandomLoadingMessage()
  */
 function DrawTransitionMessage(Canvas Canvas,string Message)
 {
+	FontScale = float(Canvas.SizeY) / float(1080);
+
 	Class'Engine'.static.AddOverlay(MessageFont, message, 0.15, 0.85, FontScale, FontScale, true);
 	
 `if(`isdefined(ShippingPC) || `isdefined(FINAL_RELEASE))

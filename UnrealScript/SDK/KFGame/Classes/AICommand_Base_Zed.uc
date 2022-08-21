@@ -126,6 +126,15 @@ Begin:
 		DisableMeleeRangeEventProbing();
 		WaitForLanding();
 	}
+
+	// Don't do any sort of AI processing in incap states
+	if( IsInStumble() || MyKFPawn.IsInCapacitated() )
+	{
+		DisableMeleeRangeEventProbing();
+		Sleep( 0.1f );
+		Goto( 'Begin' );
+	}
+
 	EnableMeleeRangeEventProbing();
 	// Check for any interrupt transitions
 	CheckInterruptCombatTransitions();

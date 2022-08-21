@@ -43,6 +43,34 @@ simulated event PreloadTextures(bool bForcePreload, float ClearTime)
 // Export UKFSkeletalMeshComponent::execSetFOV(FFrame&, void* const)
 native final function SetFOV(float NewFOV);
 
+event bool PlayParticleEffect(const AnimNotify_PlayParticleEffect AnimNotifyData)
+{
+    local editinline KFParticleSystemComponent PSC;
+
+    if(((DepthPriorityGroup == 2) && AnimNotifyData.bAttach) && !AnimNotifyData.bIsExtremeContent)
+    {
+        PSC = new (self) Class'KFParticleSystemComponent';
+        PSC.SetTemplate(AnimNotifyData.PSTemplate);
+        PSC.SetDepthPriorityGroup(2);
+        PSC.SetFOV(FOV);
+        if(AnimNotifyData.SocketName != 'None')
+        {
+            AttachComponentToSocket(PSC, AnimNotifyData.SocketName);            
+        }
+        else
+        {
+            if(AnimNotifyData.BoneName != 'None')
+            {
+                AttachComponent(PSC, AnimNotifyData.BoneName);
+            }
+        }
+        PSC.ActivateSystem(true);
+        PSC.__OnSystemFinished__Delegate = SkelMeshCompOnParticleSystemFinished;
+        return true;
+    }
+    return super.PlayParticleEffect(AnimNotifyData);
+}
+
 final function float GetAnimInterruptTime(name AnimSeqName)
 {
     return GetAnimNotifyTime(AnimSeqName, Class'KFAnimNotify_Interrupt');

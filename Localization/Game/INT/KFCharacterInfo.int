@@ -90,11 +90,11 @@ HeadSkin1="The Black Album"
 HeadSkin2="Blood Red"
 
 [chr_Jagerhorn_archetype.Attachment0]
-AttachmentSkin0="Olde English"
-AttachmentSkin1="Leather Head"
-AttachmentSkin2="Union Style"
-AttachmentSkin3="Green Thumb"
-AttachmentSkin4="Holier Than Thou"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Yellow"
+AttachmentSkin4="White"
 
 [chr_Jagerhorn_archetype.Attachment1]
 AttachmentSkin0="Camo"
@@ -697,11 +697,11 @@ AttachmentSkin5="Gold"
 AttachmentSkin6="Blue"
 
 [chr_DJSkully_archetype.Attachment4]
-AttachmentSkin0="Olde English"
-AttachmentSkin1="Leather Head"
-AttachmentSkin2="Union Style"
-AttachmentSkin3="Green Thumb"
-AttachmentSkin4="Holier Than Thou"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Yellow"
+AttachmentSkin4="White"
 
 [chr_DJSkully_archetype.Attachment5]
 AttachmentSkin0="An Excellent Hat"
@@ -1382,11 +1382,11 @@ AttachmentSkin5="Gold"
 AttachmentSkin6="Blue"
 
 [chr_briar_archetype.Attachment8]
-AttachmentSkin0="Olde English"
-AttachmentSkin1="Leather Head"
-AttachmentSkin2="Union Style"
-AttachmentSkin3="Green Thumb"
-AttachmentSkin4="Holier Than Thou"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Yellow"
+AttachmentSkin4="White"
 
 [chr_briar_archetype.Attachment9]
 AttachmentSkin0="An Excellent Hat"
@@ -2174,11 +2174,11 @@ AttachmentSkin2="Slightly Used"
 AttachmentSkin0="Cowboy Hat"
 
 [chr_MrFoster_archetype.Attachment10]
-AttachmentSkin0="Olde English"
-AttachmentSkin1="Leather Head"
-AttachmentSkin2="Union Style"
-AttachmentSkin3="Green Thumb"
-AttachmentSkin4="Holier Than Thou"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Yellow"
+AttachmentSkin4="White"
 
 [chr_MrFoster_archetype.Attachment11]
 AttachmentSkin0="Camo"
@@ -2849,11 +2849,11 @@ AttachmentSkin3="Yellow"
 AttachmentSkin0="Cowboy Hat"
 
 [chr_Coleman_archetype.Attachment11]
-AttachmentSkin0="Olde English"
-AttachmentSkin1="Leather Head"
-AttachmentSkin2="Union Style"
-AttachmentSkin3="Green Thumb"
-AttachmentSkin4="Holier Than Thou"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Yellow"
+AttachmentSkin4="White"
 
 [chr_Coleman_archetype.Attachment12]
 AttachmentSkin0="Camo"
@@ -3568,11 +3568,11 @@ AttachmentSkin5="Gold"
 AttachmentSkin6="Blue"
 
 [chr_Alberts_archetype.Attachment8]
-AttachmentSkin0="Olde English"
-AttachmentSkin1="Leather Head"
-AttachmentSkin2="Union Style"
-AttachmentSkin3="Green Thumb"
-AttachmentSkin4="Holier Than Thou"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Yellow"
+AttachmentSkin4="White"
 
 [chr_Alberts_archetype.Attachment9]
 AttachmentSkin0="An Excellent Hat"
@@ -4343,11 +4343,11 @@ AttachmentSkin3="Yellow"
 AttachmentSkin0="Cowboy Hat"
 
 [chr_Masterson_archetype.Attachment9]
-AttachmentSkin0="Olde English"
-AttachmentSkin1="Leather Head"
-AttachmentSkin2="Union Style"
-AttachmentSkin3="Green Thumb"
-AttachmentSkin4="Holier Than Thou"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Yellow"
+AttachmentSkin4="White"
 
 [chr_Masterson_archetype.Attachment10]
 AttachmentSkin0="Camo"
@@ -5129,11 +5129,11 @@ AttachmentSkin2="Slightly Used"
 AttachmentSkin0="Cowboy Hat"
 
 [chr_Tanaka_archetype.Attachment12]
-AttachmentSkin0="Olde English"
-AttachmentSkin1="Leather Head"
-AttachmentSkin2="Union Style"
-AttachmentSkin3="Green Thumb"
-AttachmentSkin4="Holier Than Thou"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Yellow"
+AttachmentSkin4="White"
 
 [chr_Tanaka_archetype.Attachment13]
 AttachmentSkin0="Camo"
@@ -5813,11 +5813,11 @@ AttachmentSkin2="Green"
 AttachmentSkin3="Red"
 
 [chr_Ana_archetype.Attachment6]
-AttachmentSkin0="Olde English"
-AttachmentSkin1="Leather Head"
-AttachmentSkin2="Union Style"
-AttachmentSkin3="Green Thumb"
-AttachmentSkin4="Holier Than Thou"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Yellow"
+AttachmentSkin4="White"
 
 [chr_Ana_archetype.Attachment7]
 AttachmentSkin0="White"
@@ -6550,11 +6550,11 @@ AttachmentSkin3="Yellow"
 AttachmentSkin0="Cowboy Hat"
 
 [chr_mark_archetype.Attachment11]
-AttachmentSkin0="Olde English"
-AttachmentSkin1="Leather Head"
-AttachmentSkin2="Union Style"
-AttachmentSkin3="Green Thumb"
-AttachmentSkin4="Holier Than Thou"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Yellow"
+AttachmentSkin4="White"
 
 [chr_mark_archetype.Attachment12]
 AttachmentSkin0="Camo"
@@ -7293,11 +7293,11 @@ AttachmentSkin3="Yellow"
 AttachmentSkin0="Cowboy Hat"
 
 [chr_alan_archetype.Attachment9]
-AttachmentSkin0="Olde English"
-AttachmentSkin1="Leather Head"
-AttachmentSkin2="Union Style"
-AttachmentSkin3="Green Thumb"
-AttachmentSkin4="Holier Than Thou"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Yellow"
+AttachmentSkin4="White"
 
 [chr_alan_archetype.Attachment10]
 AttachmentSkin0="Camo"
@@ -8019,11 +8019,11 @@ AttachmentSkin2="Slightly Used"
 AttachmentSkin0="Cowboy Hat"
 
 [chr_strasser_archetype.Attachment8]
-AttachmentSkin0="Olde English"
-AttachmentSkin1="Leather Head"
-AttachmentSkin2="Union Style"
-AttachmentSkin3="Green Thumb"
-AttachmentSkin4="Holier Than Thou"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Yellow"
+AttachmentSkin4="White"
 
 [chr_strasser_archetype.Attachment9]
 AttachmentSkin0="Camo"
@@ -9469,11 +9469,11 @@ AttachmentSkin5="Gold"
 AttachmentSkin6="Blue"
 
 [chr_rockabilly_archetype.Attachment12]
-AttachmentSkin0="Olde English"
-AttachmentSkin1="Leather Head"
-AttachmentSkin2="Union Style"
-AttachmentSkin3="Green Thumb"
-AttachmentSkin4="Holier Than Thou"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Yellow"
+AttachmentSkin4="White"
 
 [chr_rockabilly_archetype.Attachment13]
 AttachmentSkin0="An Excellent Hat"

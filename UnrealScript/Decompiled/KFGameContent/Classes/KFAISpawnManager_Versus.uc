@@ -22,6 +22,8 @@ var protected array< class<KFPawn_Monster> > ReservedPlayerZeds;
 var const int ReservedZedQueueLimit;
 var const int MaxActivePlayerScrakes;
 var const int MaxActivePlayerFleshpounds;
+var protected int NumScrakesThisSpawnCycle;
+var protected int NumFleshpoundsThisSpawnCycle;
 var protected float BossSpawnPlayerInterval;
 var protected float FinalSurvivorBossSpawnPlayerInterval;
 var protected int LargestSquadSize;
@@ -105,6 +107,8 @@ function Timer_SpawnPlayerZeds()
         SpawnRemainingReservedZeds();
         return;
     }
+    NumScrakesThisSpawnCycle = 0;
+    NumFleshpoundsThisSpawnCycle = 0;
     if(Outer.WorldInfo.Game.IsInState('PlayingWave'))
     {
         CheckForSpecialSquadSpawn();
@@ -215,31 +219,42 @@ function GiveAvailableZedClass(KFPlayerControllerVersus KFPCV, out array< class<
 
     if(I < AvailableZeds.Length)
     {
+        if(AvailableZeds[I] == Outer.AIClassList[6])
+        {
+            if((NumScrakesThisSpawnCycle >= MaxActivePlayerScrakes) || (GetNumActiveZedsOfClass(Class'KFPawn_ZedScrake')) >= MaxActivePlayerScrakes)
+            {
+                goto J0x299;
+            }            
+        }
+        else
+        {
+            if(AvailableZeds[I] == Outer.AIClassList[7])
+            {
+                if((NumFleshpoundsThisSpawnCycle >= MaxActivePlayerFleshpounds) || (GetNumActiveZedsOfClass(Class'KFPawn_ZedFleshpound')) >= MaxActivePlayerFleshpounds)
+                {
+                    goto J0x299;
+                }
+            }
+        }
         J = 0;
-        J0x98:
+        J0x187:
 
         if(J < Outer.PlayerZedClasses.Length)
         {
             if(ClassIsChildOf(Outer.PlayerZedClasses[J], AvailableZeds[I]))
             {
-                if(((AvailableZeds[I] == Outer.AIClassList[6]) && (GetNumActiveZedsOfClass(Class'KFPawn_ZedScrake')) >= MaxActivePlayerScrakes) || (AvailableZeds[I] == Outer.AIClassList[7]) && (GetNumActiveZedsOfClass(Class'KFPawn_ZedFleshpound')) >= MaxActivePlayerFleshpounds)
-                {                    
-                }
-                else
+                if((J < KFPCV.HasSpawnedZeds.Length) && KFPCV.HasSpawnedZeds[J])
                 {
-                    if((J < KFPCV.HasSpawnedZeds.Length) && KFPCV.HasSpawnedZeds[J])
-                    {
-                        PassedOnZeds.AddItem(J;
-                        goto J0x267;
-                    }
-                    PossibleZeds.AddItem(AvailableZeds[I];
-                    goto J0x267;
+                    PassedOnZeds.AddItem(J;
+                    goto J0x299;
                 }
+                PossibleZeds.AddItem(AvailableZeds[I];
+                goto J0x299;
             }
             ++ J;
-            goto J0x98;
+            goto J0x187;
         }
-        J0x267:
+        J0x299:
 
         ++ I;
         goto J0x75;
@@ -260,12 +275,23 @@ function GiveAvailableZedClass(KFPlayerControllerVersus KFPCV, out array< class<
     }
     ZedIndex = Rand(PossibleZeds.Length);
     I = 0;
-    J0x342:
+    J0x374:
 
     if(I < Outer.PlayerZedClasses.Length)
     {
         if(ClassIsChildOf(Outer.PlayerZedClasses[I], PossibleZeds[ZedIndex]))
         {
+            if(PossibleZeds[ZedIndex] == Outer.AIClassList[6])
+            {
+                ++ NumScrakesThisSpawnCycle;                
+            }
+            else
+            {
+                if(PossibleZeds[ZedIndex] == Outer.AIClassList[7])
+                {
+                    ++ NumFleshpoundsThisSpawnCycle;
+                }
+            }
             KFPCV.PlayerZedSpawnInfo.PendingZedPawnClass = Outer.PlayerZedClasses[I];
             AvailableZeds.Remove(AvailableZeds.Find(PossibleZeds[ZedIndex], 1;
             KFPCV.HasSpawnedZeds[I] = true;
@@ -276,7 +302,7 @@ function GiveAvailableZedClass(KFPlayerControllerVersus KFPCV, out array< class<
             return;
         }
         ++ I;
-        goto J0x342;
+        goto J0x374;
     }
 }
 

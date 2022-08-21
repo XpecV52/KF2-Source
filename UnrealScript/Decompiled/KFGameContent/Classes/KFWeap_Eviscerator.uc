@@ -206,7 +206,8 @@ defaultproperties
     IdleMotorSound=AkEvent'WW_WEP_SA_SawBlade.Play_WEP_SA_Sawblade_Idle_Loop'
     ParryStrength=5
     MeleeSustainedWarmupTime=0.1
-    ParryDamageMitigationPercent=0.5
+    BlockDamageMitigation=0.4
+    ParryDamageMitigationPercent=0.3
     BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
     ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
     FireModeIconPaths=/* Array type was not detected. */

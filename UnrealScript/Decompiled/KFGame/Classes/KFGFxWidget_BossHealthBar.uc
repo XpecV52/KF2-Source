@@ -81,9 +81,9 @@ function UpdateBossShield(float NewShieldPercect)
 defaultproperties
 {
     UpdateTickTime=0.1
-    BattlePhaseColors(0)=60799
-    BattlePhaseColors(1)=15396096
-    BattlePhaseColors(2)=15568640
-    BattlePhaseColors(3)=15534080
+    BattlePhaseColors(0)=47202
+    BattlePhaseColors(1)=16756736
+    BattlePhaseColors(2)=16736256
+    BattlePhaseColors(3)=11343377
     BattlePhaseColors(4)=0
 }

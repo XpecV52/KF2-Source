@@ -1206,7 +1206,7 @@ EatLead="Eat Lead"
 EatLeadDescription="Need more bullets? Get 50% more rounds in your mags with Commando weapons."
 
 RapidFire="ZED TIME - Rapid Fire"
-RapidFireDescription="When the world slows down, do more hurt: Do 3% more damage with Commando weapons and shoot 3x times faster with all guns."
+RapidFireDescription="When the world slows down, do more hurt: Do 3% more damage with Commando weapons and shoot 3x faster with all guns."
 
 Professional="ZED TIME - Professional"
 ProfessionalDescription="When the world slows down, you don't: Reload Commando weapons at full speed and switch Commando weapons twice as fast!"

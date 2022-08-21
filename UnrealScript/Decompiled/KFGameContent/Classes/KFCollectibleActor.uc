@@ -40,6 +40,7 @@ defaultproperties
 {
     ReplicationMode=EDestructibleRepType.RT_ServerOptimized
     bAllowBumpDamageFromAI=false
+    INSTAKILL_DAMAGE=1
     AmbientSoundComponent=AkComponent'Default__KFCollectibleActor.AmbientSoundComponent0'
     SubObjects=/* Array type was not detected. */
     begin object name=Sprite class=SpriteComponent

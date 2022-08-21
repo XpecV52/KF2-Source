@@ -57,7 +57,7 @@ var transient byte	ReplicatedDamageFlags;
 * Damage
  ********************************************************************************************* */
 /** The damage needed for a hit to be considered instakill */
-const INSTAKILL_DAMAGE = 100000;
+var protected const int INSTAKILL_DAMAGE;
 /** List of damage types that instantly destroy this object */
 var() array<class<DamageType> >	InstaKillDamageType<AllowAbstract>;
 /** List of damage types to always ignore */
@@ -1089,6 +1089,7 @@ defaultproperties
    ReplicatedDamageMods(14)=(ObjIdx=255,ModIdx=255)
    ReplicatedDamageMods(15)=(ObjIdx=255,ModIdx=255)
    bAllowBumpDamageFromAI=True
+   INSTAKILL_DAMAGE=100000
    VulnerableDamageType(0)=Class'KFGame.KFDT_Sonic'
    SelfDestructAllDelay=0.200000
    Begin Object Class=AkComponent Name=AmbientSoundComponent0

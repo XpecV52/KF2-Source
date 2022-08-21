@@ -261,7 +261,7 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_3
    InputLinks(2)=(DrawY=426,OverrideDelta=59)
    InputLinks(3)=(DrawY=448,OverrideDelta=81)
    InputLinks(4)=(DrawY=470,OverrideDelta=103)
-   OutputLinks(0)=(DrawY=398,OverrideDelta=31)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_3')),DrawY=398,OverrideDelta=31)
    OutputLinks(1)=(DrawY=454,OverrideDelta=87)
    VariableLinks(0)=(LinkedVariables=(InterpData'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.InterpData_3'),DrawX=2467,OverrideDelta=16)
    VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_229'),LinkDesc="NewSkeletalMeshGroup",MinVars=0,DrawX=2539,OverrideDelta=63)
@@ -1349,41 +1349,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_7
    ObjectArchetype=SeqAct_Interp'Engine.Default__SeqAct_Interp'
 End Object
 
-Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_1
-   Duration=30.000000
-   InputLinks(0)=(DrawY=341,OverrideDelta=14)
-   InputLinks(1)=(DrawY=362,OverrideDelta=35)
-   InputLinks(2)=(DrawY=383,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_4'),(LinkedOp=SeqAct_Delay'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_1')),DrawY=346,OverrideDelta=19)
-   OutputLinks(1)=(DrawY=378,OverrideDelta=51)
-   VariableLinks(0)=(DrawX=2048,OverrideDelta=25)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=1996
-   ObjPosY=304
-   DrawWidth=106
-   DrawHeight=109
-   Name="SeqAct_Delay_1"
-   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
-End Object
-
-Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_4
-   LinkCount=2
-   InputLinks(0)=(DrawY=324,OverrideDelta=13)
-   InputLinks(1)=(DrawY=344,OverrideDelta=33)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_4',InputLinkIdx=1),(LinkedOp=SeqAct_Interp'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_7'),(LinkedOp=SeqAct_Interp'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_3',InputLinkIdx=2)),DrawY=324,OverrideDelta=13)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_4',InputLinkIdx=1),(LinkedOp=SeqAct_Interp'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_3'),(LinkedOp=SeqAct_Interp'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_7',InputLinkIdx=2)),LinkDesc="Link 2",DrawY=344,OverrideDelta=33)
-   VariableLinks(0)=(DrawX=2224,OverrideDelta=23)
-   ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=2180
-   ObjPosY=288
-   DrawWidth=89
-   DrawHeight=101
-   Name="SeqAct_RandomSwitch_4"
-   ObjectArchetype=SeqAct_RandomSwitch'Engine.Default__SeqAct_RandomSwitch'
-End Object
-
 Begin Object Class=SequenceFrame Name=SequenceFrame_11
    SizeX=1019
    SizeY=690
@@ -1401,13 +1366,13 @@ End Object
 
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_0
    MaxWidth=136
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_4'),(LinkedOp=SeqAct_Delay'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_1')),DrawY=333,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=354,OverrideDelta=35)
-   OutputLinks(2)=(DrawY=375,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_3')),DrawY=421,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=442,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=463,OverrideDelta=56)
    ObjInstanceVersion=3
    ParentSequence=Sequence'KF-ContainmentStation.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=1752
-   ObjPosY=264
+   ObjPosX=2160
+   ObjPosY=352
    DrawWidth=137
    Name="SeqEvent_LevelLoaded_0"
    ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'

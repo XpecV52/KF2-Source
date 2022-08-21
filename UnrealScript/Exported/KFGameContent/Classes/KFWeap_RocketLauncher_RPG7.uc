@@ -107,7 +107,7 @@ defaultproperties
    ForceReloadTime=0.400000
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Rocket'
    FireModeIconPaths(1)=()
-   InventorySize=10
+   InventorySize=9
    MagazineCapacity(0)=1
    bHasIronSights=True
    bCanBeReloaded=True

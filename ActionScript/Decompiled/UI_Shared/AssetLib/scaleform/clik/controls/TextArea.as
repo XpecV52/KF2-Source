@@ -346,13 +346,14 @@ package scaleform.clik.controls
         
         protected function updateScrollBar() : void
         {
+            var _loc2_:ConstrainedElement = null;
             this._maxScroll = textField.maxScrollV;
             var _loc1_:ScrollIndicator = this._scrollBar as ScrollIndicator;
             if(_loc1_ == null)
             {
                 return;
             }
-            var _loc2_:ConstrainedElement = constraints.getElement("textField");
+            _loc2_ = constraints.getElement("textField");
             if(this._scrollPolicy == "on" || this._scrollPolicy == "auto" && textField.maxScrollV > 1)
             {
                 if(this._autoScrollBar && !_loc1_.visible)

@@ -51,6 +51,11 @@ state Command_SpecialMove
         }
     }
 
+    function KFGame.KFPawn.ESpecialMove GetSpecialMove()
+    {
+        return default.SpecialMove;
+    }
+
     function bool CanScream()
     {
         local Vector HitL, HitN, EnemyLocation, MyEyeLocation;
@@ -62,7 +67,7 @@ state Command_SpecialMove
             {
                 return false;
             }
-            if(Outer.MyKFPawn.IsImpaired())
+            if(Outer.MyKFPawn.IsImpaired() || Outer.MyKFPawn.IsIncapacitated())
             {
                 return false;
             }

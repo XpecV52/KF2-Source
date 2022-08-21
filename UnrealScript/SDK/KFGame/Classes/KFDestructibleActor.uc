@@ -57,7 +57,7 @@ var transient byte	ReplicatedDamageFlags;
 * Damage
  ********************************************************************************************* */
 /** The damage needed for a hit to be considered instakill */
-const INSTAKILL_DAMAGE = 100000;
+var protected const int INSTAKILL_DAMAGE;
 /** List of damage types that instantly destroy this object */
 var() array<class<DamageType> >	InstaKillDamageType<AllowAbstract>;
 /** List of damage types to always ignore */
@@ -1123,5 +1123,6 @@ defaultproperties
 
 	SelfDestructAllDelay=0.2f
 	bAllowBumpDamageFromAI=true
+	INSTAKILL_DAMAGE=100000
 	//NavMeshObjectState=ENavMeshObjectState_None
 }

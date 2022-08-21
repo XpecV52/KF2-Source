@@ -67,8 +67,8 @@ defaultproperties
 	BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
 	ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Metal'
 	
-	ParryDamageMitigationPercent=0.70
-	BlockDamageMitigation=0.70
+	ParryDamageMitigationPercent=0.50
+	BlockDamageMitigation=0.60
 	ParryStrength=4
 }
 

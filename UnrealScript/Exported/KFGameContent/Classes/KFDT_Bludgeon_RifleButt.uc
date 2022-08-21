@@ -11,7 +11,8 @@ class KFDT_Bludgeon_RifleButt extends KFDT_Bludgeon
 
 defaultproperties
 {
-   StumblePower=49.000000
+   StumblePower=200.000000
+   MeleeHitPower=100.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
    bExtraMomentumZ=True
    KDamageImpulse=700.000000

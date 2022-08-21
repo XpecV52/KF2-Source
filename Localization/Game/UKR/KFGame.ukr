@@ -313,6 +313,7 @@ DeathsString="Player Deaths Penalty"
 DamageString="Damage From Boss Penalty"
 TotalString="TOTAL"
 YourTeamString=" (Your Team)"
+OpponentsString=" (Opponents)"
 
 [KFGFxMenu_PostGameReport]
 MapVoteString="ГОЛОСУВАННЯ"
@@ -1187,7 +1188,7 @@ LargeMags="Large Mags"
 LargeMagsDescription="Get a bit more serious: Increase Commando weapon magazine capacities by 50%."
 
 Backup="Backup"
-BackupDescription="Give your backup pistol and knife 60% extra damage for those moments when you really need it!"
+BackupDescription="Give your backup pistol and knife 60% extra damage for those moments when you really need it! You also increase your weapon switching speed."
 
 Impact="Impact"
 ImpactDescription="Pack more punch and knock 'em down: Increase Stumble power by 150% for all Commando weapons."
@@ -1444,10 +1445,10 @@ AmmoPouch="Always Prepared"
 AmmoPouchDescription="Get 25% more ammo for Sharpshooter weapons and grenades."
 
 ZTKnockdown="ZED TIME - Assassin"
-ZTKnockdownDescription="Headshots with Sharpshooter weapons will knock down any Zed."
+ZTKnockdownDescription="Headshots with Sharpshooter weapons will dramatically increase knockdown power."
 
 ZTStun="ZED TIME - Ranger"
-ZTStunDescription="Headshots with Sharpshooter weapons will stun any Zed."
+ZTStunDescription="Headshots with Sharpshooter weapons will dramatically increase stun power."
 
 
 
@@ -1553,12 +1554,12 @@ ObjectiveStatusTitle="ПОВЕРНУТИ 30% ГОТІВКИ"
 ObjectiveTimeString="с ЛИШИЛОСЯ"
 
 [KFGameViewportClient]
-RandomLoadingStrings[0]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 0"
-RandomLoadingStrings[1]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 1"
-RandomLoadingStrings[2]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 2"
-RandomLoadingStrings[3]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 3"
-RandomLoadingStrings[4]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 4"
-RandomLoadingStrings[5]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 5"
+RandomLoadingStrings[0]="The fleshpound is vulnerable to explosives but resistant to bullets."
+RandomLoadingStrings[1]="The scrake is resistant to explosives but vulnerable to bullets."
+RandomLoadingStrings[2]="You can only carry a limited amount of weight. Sell weaker weapons to make room for better ones."
+RandomLoadingStrings[3]="Watch the vents and sewers; Zeds can come from anywhere."
+RandomLoadingStrings[4]="Keep an eye out for gear and ammo boxes scattered throughout the map. They may save you if you get in a pinch."
+RandomLoadingStrings[5]="The bloat's body can take a lot of hits. Aim for its head."
 RandomLoadingStrings[6]="The parry ability stumbles a Zed, allowing you to get in a few extra strikes."
 RandomLoadingStrings[7]="Watch out for the husk. Once he takes enough damage, he may try to self-detonate on your team."
 RandomLoadingStrings[8]="You receive XP for damaging Zeds towards the perk associated with the weapon that inflicted the damage."
@@ -1673,7 +1674,7 @@ LeftCtrl="Лівий Ctrl"
 RightCtrl="Правий Ctrl"
 LeftAlt="Лівий Alt"
 RightAlt="Правий Alt"
-BackSlash="\\"
+BackSlash="\"
 Slash="/"
 RightBracket="]"
 LeftBracket="["

@@ -351,8 +351,8 @@ defaultproperties
 	ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Wood'
 
 	// Trader
-	ParryDamageMitigationPercent=0.60
-	BlockDamageMitigation=0.60
+	ParryDamageMitigationPercent=0.40
+	BlockDamageMitigation=0.50
 
 	
 	ParryStrength=5

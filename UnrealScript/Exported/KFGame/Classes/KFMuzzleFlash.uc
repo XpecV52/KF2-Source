@@ -174,11 +174,21 @@ function AttachMuzzleFlash(SkeletalMeshComponent OwnerMesh, optional name Socket
 		//MuzzleFlash.PSC.bDepthTestEnabled=false;
 		//MuzzleFlashAlt.PSC.bDepthTestEnabled=false;
 
-		MuzzleFlash.PSC.SetDepthPriorityGroup( MuzzleFlash.FirstPersonDepthPriorityGroup );
-		MuzzleFlash.PSC.bDepthTestEnabled = MuzzleFlash.FirstPersonDepthPriorityGroup == SDPG_Foreground;
-		MuzzleFlashAlt.PSC.SetDepthPriorityGroup( MuzzleFlashAlt.FirstPersonDepthPriorityGroup );
-		MuzzleFlashAlt.PSC.bDepthTestEnabled = MuzzleFlashAlt.FirstPersonDepthPriorityGroup == SDPG_Foreground;
-		ShellEjectPSC.SetDepthPriorityGroup( SDPG_Foreground );
+		if( MuzzleFlash.PSC != none )
+		{
+			MuzzleFlash.PSC.SetDepthPriorityGroup( MuzzleFlash.FirstPersonDepthPriorityGroup );
+			MuzzleFlash.PSC.bDepthTestEnabled = MuzzleFlash.FirstPersonDepthPriorityGroup == SDPG_Foreground;
+		}
+		if( MuzzleFlashAlt.PSC != none )
+		{
+			MuzzleFlashAlt.PSC.SetDepthPriorityGroup( MuzzleFlashAlt.FirstPersonDepthPriorityGroup );
+			MuzzleFlashAlt.PSC.bDepthTestEnabled = MuzzleFlashAlt.FirstPersonDepthPriorityGroup == SDPG_Foreground;
+		}
+
+		if( ShellEjectPSC != none )
+		{
+			ShellEjectPSC.SetDepthPriorityGroup( SDPG_Foreground );
+		}
 	}
 
 	// If attaching to a mesh with a custom FOV

@@ -477,6 +477,10 @@ function EndOfMatch(bool bVictory)
 
 function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, class<DamageType> DamageType)
 {
+    local KFPawn KFP;
+    local KFPlayerReplicationInfo DamagerKFPRI;
+    local int I;
+
     super.Killed(Killer, KilledPlayer, KilledPawn, DamageType);
     if(((IsWaveActive()) && (GetAIControlledMonsterAliveCount()) <= 0) && SpawnManager.IsFinishedSpawning())
     {
@@ -484,7 +488,33 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
     }
     if(((KilledPlayer.GetTeamNum() == 255) && MyKFGRIV.WaveNum == MyKFGRIV.WaveMax) && KFPawn_MonsterBoss(KilledPawn) != none)
     {
-        BossDamageDone = POINTS_FOR_BOSS_KILL;
+        BossDamageDone = POINTS_FOR_BOSS_KILL;        
+    }
+    else
+    {
+        if((Killer.GetTeamNum() == 255) && KilledPawn.GetTeamNum() == 0)
+        {
+            KFP = KFPawn(KilledPawn);
+            I = 0;
+            J0x19A:
+
+            if(I < KFP.DamageHistory.Length)
+            {
+                if((((KFP.DamageHistory[I].DamagerController != none) && KFP.DamageHistory[I].DamagerController.bIsPlayer) && KFP.DamageHistory[I].DamagerPRI.GetTeamNum() == 255) && KFP.DamageHistory[I].DamagerPRI != none)
+                {
+                    if(Killer.PlayerReplicationInfo != KFP.DamageHistory[I].DamagerPRI)
+                    {
+                        DamagerKFPRI = KFPlayerReplicationInfo(KFP.DamageHistory[I].DamagerPRI);
+                        if(DamagerKFPRI != none)
+                        {
+                            ++ DamagerKFPRI.Assists;
+                        }
+                    }
+                }
+                ++ I;
+                goto J0x19A;
+            }
+        }
     }
 }
 
@@ -497,14 +527,22 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
     ClearTimer('CheckPawnsForGriefing');
     if(WinCondition == 1)
     {
+        CheckRoundEndAchievements(255);
         if(SpawnManager != none)
         {
             PercentOfZedsKilledBeforeWipe = float(MyKFGRI.AIRemaining) / float(SpawnManager.WaveTotalAI);
+        }        
+    }
+    else
+    {
+        if(WinCondition == 0)
+        {
+            CheckRoundEndAchievements(0);
         }
     }
     WaveReached = MyKFGRI.WaveNum;
     I = 0;
-    J0xDA:
+    J0x109:
 
     if(I < WorldInfo.GRI.PRIArray.Length)
     {
@@ -518,19 +556,19 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
             {
                 WaveKills = KFPRIV.Kills;
                 J = 0;
-                J0x25B:
+                J0x28A:
 
                 if(J < KFPRIV.WaveKills.Length)
                 {
                     WaveKills -= KFPRIV.WaveKills[J];
                     ++ J;
-                    goto J0x25B;
+                    goto J0x28A;
                 }
                 KFPRIV.WaveKills[WaveReached] = WaveKills;
             }
         }
         ++ I;
-        goto J0xDA;
+        goto J0x109;
     }
     super.WaveEnded(WinCondition);
 }
@@ -756,13 +794,13 @@ protected function SwitchOnePlayerToTeam(byte TeamNum)
     }    
 }
 
-protected function CheckRoundEndAchievements()
+protected function CheckRoundEndAchievements(byte WinningTeam)
 {
     local KFPlayerControllerVersus KFPCV;
 
     foreach WorldInfo.AllControllers(Class'KFPlayerControllerVersus', KFPCV)
     {
-        KFPCV.ClientRoundEnded();        
+        KFPCV.ClientRoundEnded(WinningTeam);        
     }    
 }
 
@@ -797,7 +835,6 @@ state RoundEnded
 {
     event BeginState(name PrevStateName)
     {
-        CheckRoundEndAchievements();
         MyKFGRIV.bRoundIsOver = true;
         MyKFGRIV.CurrentRound += 1;
         MyKFGRIV.SetPlayerZedSpawnTime(255, false);
