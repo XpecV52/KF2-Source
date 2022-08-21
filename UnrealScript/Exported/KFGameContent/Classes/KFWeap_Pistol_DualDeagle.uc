@@ -18,6 +18,7 @@ defaultproperties
    BonesToLockOnEmpty_L(0)="LW_Slide"
    BonesToLockOnEmpty_L(1)="LW_Bullets1"
    InventorySize=4
+   MagazineCapacity(0)=14
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -32,7 +33,6 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=45.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Dual_Deagle_TEX.UI_WeaponSelect_DualDeagle'
-   MagazineCapacity(0)=14
    MaxSpareAmmo(0)=98
    InitialSpareMags(0)=2
    BonesToLockOnEmpty(0)="RW_Slide"
@@ -102,7 +102,7 @@ defaultproperties
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_DualBase:FirstPersonMesh'
    End Object
    Mesh=FirstPersonMesh
-   ItemName="Dual .50 Desert Eagle"
+   ItemName="Dual .50 Desert Eagles"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_DualBase:StaticPickupComponent'
       StaticMesh=StaticMesh'WEP_3P_Deagle_MESH.Wep_DEagle_Pickup'
       ReplacementPrimitive=None

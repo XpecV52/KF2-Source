@@ -9,7 +9,6 @@ class KFPawn_ZedScrake extends KFPawn_Monster
     config(Game)
     hidecategories(Navigation);
 
-var MaterialInstanceConstant BodyAltMIC;
 var protected export editinline AkComponent ChainsawIdleAkComponent;
 var protected AkEvent PlayChainsawIdleAkEvent;
 var protected AkEvent StopChainsawIdleAkEvent;
@@ -39,7 +38,7 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
     super(KFPawn).SetCharacterArch(Info);
     if((WorldInfo.NetMode != NM_DedicatedServer) && Mesh != none)
     {
-        BodyAltMIC = Mesh.CreateAndSetMaterialInstanceConstant(2);
+        CharacterMICs[1] = Mesh.CreateAndSetMaterialInstanceConstant(2);
     }
 }
 
@@ -104,37 +103,6 @@ function PossessedBy(Controller C, bool bVehicleTransition)
     }
 }
 
-function UpdateMaterialEffect(float DeltaTime)
-{
-    local float Intensity;
-
-    if(MaterialEffectTimeRemaining > 0)
-    {
-        if(MaterialEffectTimeRemaining > DeltaTime)
-        {
-            MaterialEffectTimeRemaining -= DeltaTime;
-            Intensity = 1 - FClamp(MaterialEffectTimeRemaining / MaterialEffectDuration, 0, 1);            
-        }
-        else
-        {
-            MaterialEffectTimeRemaining = 0;
-            Intensity = 1;
-        }
-        if(BodyMIC != none)
-        {
-            BodyMIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
-        }
-        if(BodyAltMIC != none)
-        {
-            BodyAltMIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
-        }
-        if(HeadMIC != none)
-        {
-            HeadMIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
-        }
-    }
-}
-
 simulated function CreateExhaustFx()
 {
     local Vector Loc;
@@ -157,9 +125,25 @@ simulated function CreateExhaustFx()
 event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
 {
     super.TakeDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
-    if((bCanRage && !bPlayedDeath) && (GetHealthPercentage() < RageHealthThreshold) || GetHealthPercentage() < RageHealthThreshold)
+    if((bCanRage && !bPlayedDeath) && (GetHealthPercentage() < RageHealthThreshold) || (GetHeadHealthPercent()) < RageHealthThreshold)
     {
-        bIsEnraged = true;
+        SetEnraged(true);
+    }
+}
+
+simulated function SetEnraged(bool bNewEnraged)
+{
+    if((Role == ROLE_Authority) && bNewEnraged == bIsEnraged)
+    {
+        return;
+    }
+    if(Role == ROLE_Authority)
+    {
+        bIsEnraged = bNewEnraged;
+        if(!IsHumanControlled())
+        {
+            SetSprinting(bNewEnraged);
+        }
     }
 }
 
@@ -168,14 +152,14 @@ simulated event NotifyGoreMeshActive()
     super.NotifyGoreMeshActive();
     if((WorldInfo.NetMode != NM_DedicatedServer) && Mesh != none)
     {
-        BodyAltMIC = Mesh.CreateAndSetMaterialInstanceConstant(2);
+        CharacterMICs[1] = Mesh.CreateAndSetMaterialInstanceConstant(2);
     }
 }
 
 simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 {
     CleanupChainsaw();
-    super(KFPawn).PlayDying(DamageType, HitLoc);
+    super.PlayDying(DamageType, HitLoc);
 }
 
 simulated event Destroyed()
@@ -238,8 +222,8 @@ defaultproperties
     object end
     // Reference: AkComponent'Default__KFPawn_ZedScrake.ChainsawAkComponent0'
     ChainsawIdleAkComponent=ChainsawAkComponent0
-    PlayChainsawIdleAkEvent=AkEvent'WW_ZED_Scrake.ZED_Scrake_SFX_Chainsaw_Idle_LP'
-    StopChainsawIdleAkEvent=AkEvent'WW_ZED_Scrake.ZED_Scrake_SFX_Chainsaw_Idle_LP_Stop'
+    PlayChainsawIdleAkEvent=AkEvent'WW_ZED_Scrake_2.ZED_Scrake_SFX_Chainsaw_Idle_LP'
+    StopChainsawIdleAkEvent=AkEvent'WW_ZED_Scrake_2.ZED_Scrake_SFX_Chainsaw_Idle_LP_Stop'
     ExhaustSocketName=FX_Exhaust
     ExhaustTemplate=ParticleSystem'ZED_Scrake_EMIT.FX_Scrake_Smoke_Idle_01'
     RageHealthThresholdNormal=0.5
@@ -265,10 +249,10 @@ defaultproperties
     XPValues[1]=45
     XPValues[2]=60
     XPValues[3]=69
-    VulnerableDamageTypes=/* Array type was not detected. */
-    ResistantDamageTypes=/* Array type was not detected. */
+    DamageTypeModifiers=/* Array type was not detected. */
     ZedBumpDamageScale=0.1
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
+    OnDeathAchievementID=132
     PawnAnimInfo=KFPawnAnimInfo'ZED_Scrake_ANIM.Scrake_AnimGroup'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
@@ -277,13 +261,13 @@ defaultproperties
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     HitZones=/* Array type was not detected. */
     PenetrationResistance=4
-    begin object name=Afflictions class=KFPawnAfflictions_Scrake
+    begin object name=Afflictions class=KFAfflictionManager
+        AfflictionClasses=/* Array type was not detected. */
         FireFullyCharredDuration=5
     object end
-    // Reference: KFPawnAfflictions_Scrake'Default__KFPawn_ZedScrake.Afflictions'
+    // Reference: KFAfflictionManager'Default__KFPawn_ZedScrake.Afflictions'
     AfflictionHandler=Afflictions
-    InstantIncaps=/* Array type was not detected. */
-    StackingIncaps=/* Array type was not detected. */
+    IncapSettings=/* Array type was not detected. */
     KnockdownImpulseScale=2
     SprintSpeed=600
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
@@ -301,8 +285,8 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedScrake.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedScrake.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedScrake.DialogAkSoundComponent'
-    DamageRecoveryTimeHeavy=0.2
-    DamageRecoveryTimeMedium=0.09
+    DamageRecoveryTimeHeavy=0.85
+    DamageRecoveryTimeMedium=0.75
     Mass=130
     GroundSpeed=170
     Health=1100

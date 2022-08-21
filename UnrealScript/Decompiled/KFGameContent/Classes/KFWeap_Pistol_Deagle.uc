@@ -12,6 +12,7 @@ class KFWeap_Pistol_Deagle extends KFWeap_PistolBase
 defaultproperties
 {
     InventorySize=2
+    MagazineCapacity=7
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -25,7 +26,6 @@ defaultproperties
     GroupPriority=25
     WeaponSelectTexture=Texture2D'WEP_UI_Deagle_TEX.UI_WeaponSelect_Deagle'
     DualClass=Class'KFWeap_Pistol_DualDeagle'
-    MagazineCapacity=7
     MaxSpareAmmo=105
     InitialSpareMags=5
     AmmoPickupScale=2

@@ -9,8 +9,6 @@ class KFDT_Slashing_Katana extends KFDT_Slashing
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
@@ -131,9 +129,8 @@ defaultproperties
 	KDamageImpulse=200
 	KDeathUpKick=250
 
-	StumblePower=40
-	LegStumblePower=40
-	MeleeHitPower=37
+	StumblePower=30
+	MeleeHitPower=100
 
 	WeaponDef=class'KFWeapDef_Katana'
 }

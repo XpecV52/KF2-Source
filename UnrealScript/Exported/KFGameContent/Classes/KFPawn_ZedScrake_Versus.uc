@@ -8,7 +8,16 @@
 //=============================================================================
 class KFPawn_ZedScrake_Versus extends KFPawn_ZedScrake;
 
-//get rif of ragemode sprint
+/** Ground speed to use when sprinting and enraged */
+var const protected float RageSprintSpeed;
+
+/** Rage bump damage variables */
+var const protected class<KFDamageType> RageBumpDamageType;
+var const protected int RageBumpDamage;
+var const protected float RageBumpRadius;
+var const protected float RageBumpMomentum;
+
+/** Disallow sprinting if we've been struck by an EMP */
 function SetSprinting(bool bNewSprintStatus)
 {
 	if( bEmpDisrupted )
@@ -16,44 +25,44 @@ function SetSprinting(bool bNewSprintStatus)
 		bNewSprintStatus = false;
 	}
 
-	if( bNewSprintStatus )
+	super.SetSprinting( bNewSprintStatus );
+}
+
+/** Enrage this FleshPound! */
+simulated function SetEnraged( bool bNewEnraged )
+{
+	super.SetEnraged( bNewEnraged );
+
+	if( bIsEnraged )
 	{
-		// Wait for uncrouch; see CheckJumpOrDuck
-		if ( bIsCrouched )
+		if( !IsTimerActive(nameOf(Timer_RageBump)) )
 		{
-			bNewSprintStatus = false;
+			SetTimer( 0.25f, true, nameOf(Timer_RageBump) );
 		}
-		else if ( MyKFWeapon != None && !MyKFWeapon.AllowSprinting() )
-		{
-			bNewSprintStatus = false;
-		}
+
+		SprintSpeed = RageSprintSpeed;
 	}
-
-	bIsSprinting = bNewSprintStatus;
-
-	if ( MyKFWeapon != None )
+	else if( IsTimerActive(nameOf(Timer_RageBump)) )
 	{
-		MyKFWeapon.SetWeaponSprint(bNewSprintStatus);
+		ClearTimer( nameOf(Timer_RageBump) );
+
+		SprintSpeed = default.SprintSpeed;
 	}
 }
 
-/** Puts all moves on this pawn on cooldown */
-function PutAllMovesOnCooldown()
+/** Applies damage and impulse to nearby pawns and objects */
+simulated protected function Timer_RageBump()
 {
-	/*local int i;
-
-	// Allow primary attack to still function
-	for( i = 1; i < SpecialMoveCooldowns.Length; ++i )
-	{
-		if( SpecialMoveCooldowns[i].SMHandle != SM_None )
-		{
-			SpecialMoveCooldowns[i].LastUsedTime = WorldInfo.TimeSeconds;
-		}
-	}*/
+	HurtRadius( RageBumpDamage, RageBumpRadius, RageBumpDamageType, RageBumpMomentum, Location, self, Controller );
 }
 
 defaultproperties
 {
+   RageSprintSpeed=650.000000
+   RageBumpDamageType=Class'kfgamecontent.KFDT_HeavyZedBump'
+   RageBumpDamage=2
+   RageBumpRadius=240.000000
+   RageBumpMomentum=500.000000
    Begin Object Class=AkComponent Name=ChainsawAkComponent0 Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedScrake:ChainsawAkComponent0'
       BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
@@ -67,9 +76,10 @@ defaultproperties
    bVersusZed=True
    ThirdPersonViewOffset=(OffsetHigh=(X=-175.000000,Y=60.000000,Z=60.000000),OffsetMid=(X=-160.000000,Y=50.000000,Z=0.000000),OffsetLow=(X=-220.000000,Y=100.000000,Z=50.000000))
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedScrake:MeleeHelper_0'
-      BaseDamage=40.000000
+      BaseDamage=15.000000
       MyDamageType=Class'kfgamecontent.KFDT_Slashing_Scrake'
       MomentumTransfer=45000.000000
+      PlayerDoorDamageMultiplier=5.000000
       MeleeImpactCamScale=0.450000
       MaxHitRange=200.000000
       Name="MeleeHelper_0"
@@ -78,11 +88,16 @@ defaultproperties
    MeleeAttackHelper=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedScrake_Versus:MeleeHelper_0'
    DoshValue=260
    XPValues(0)=102.000000
+   DamageTypeModifiers(13)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=(0.600000))
+   DamageTypeModifiers(14)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=(0.500000))
+   BlockingDamageModifier=0.250000
+   MeleeBlockingDamageModifier=0.250000
    SpecialMoveCooldowns(0)=(CoolDownTime=0.500000,SMHandle=SM_PlayerZedAttack1,SpecialMoveIcon=Texture2D'ZED_Scrake_UI.ZED-VS_Icons_Scrake-LightLunge',NameLocalizationKey="Light",GBA_Name="GBA_Fire")
    SpecialMoveCooldowns(1)=(CoolDownTime=1.500000,SMHandle=SM_PlayerZedAttack2,SpecialMoveIcon=Texture2D'ZED_Scrake_UI.ZED-VS_Icons_Scrake-HeavyLunge',NameLocalizationKey="Heavy",GBA_Name="GBA_IronsightsToggle",ALT_GBA_NAME="GBA_IronsightsHold")
    SpecialMoveCooldowns(2)=(CoolDownTime=1.000000,SMHandle=SM_Taunt,GBA_Name="GBA_Reload",bShowOnHud=False)
    SpecialMoveCooldowns(3)=(CoolDownTime=2.500000,SMHandle=SM_PlayerZedSpecial1,SpecialMoveIcon=Texture2D'ZED_Scrake_UI.ZED-VS_Icons_Scrake-SpinAttack',NameLocalizationKey="Spin",GBA_Name="GBA_TertiaryFire")
-   SpecialMoveCooldowns(4)=(CoolDownTime=1.250000,SMHandle=SM_Jump,SpecialMoveIcon=Texture2D'ZED_Scrake_UI.ZED-VS_Icons_Scrake-Jump',GBA_Name="GBA_Jump",bShowOnHud=False)
+   SpecialMoveCooldowns(4)=(CoolDownTime=0.500000,SMHandle=SM_PlayerZedSpecial2,SpecialMoveIcon=Texture2D'ZED_Shared_UI.ZED-VS_Icons_Generic-Block',NameLocalizationKey="Block",GBA_Name="GBA_SwitchFireMode")
+   SpecialMoveCooldowns(5)=(CoolDownTime=1.250000,SMHandle=SM_Jump,SpecialMoveIcon=Texture2D'ZED_Scrake_UI.ZED-VS_Icons_Scrake-Jump',GBA_Name="GBA_Jump",bShowOnHud=False)
    LocalizationKey="KFPawn_ZedScrake"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedScrake:ThirdPersonHead0'
       ReplacementPrimitive=None
@@ -91,23 +106,32 @@ defaultproperties
       ObjectArchetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedScrake:ThirdPersonHead0'
    End Object
    ThirdPersonHeadMeshComponent=ThirdPersonHead0
-   Begin Object Class=KFPawnAfflictions_Scrake Name=Afflictions_0 Archetype=KFPawnAfflictions_Scrake'kfgamecontent.Default__KFPawn_ZedScrake:Afflictions_0'
+   Begin Object Class=KFAfflictionManager Name=Afflictions_0 Archetype=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedScrake:Afflictions_0'
+      AfflictionClasses(0)=Class'KFGame.KFAffliction_EMPDisrupt'
+      AfflictionClasses(1)=()
+      AfflictionClasses(2)=()
+      AfflictionClasses(3)=()
+      AfflictionClasses(4)=()
+      AfflictionClasses(5)=()
+      AfflictionClasses(6)=()
+      AfflictionClasses(7)=()
+      AfflictionClasses(8)=()
+      AfflictionClasses(9)=()
       FireFullyCharredDuration=5.000000
+      FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
-      ObjectArchetype=KFPawnAfflictions_Scrake'kfgamecontent.Default__KFPawn_ZedScrake:Afflictions_0'
+      ObjectArchetype=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedScrake:Afflictions_0'
    End Object
-   AfflictionHandler=KFPawnAfflictions_Scrake'kfgamecontent.Default__KFPawn_ZedScrake_Versus:Afflictions_0'
-   InstantIncaps(1)=(Cooldown=6.000000)
-   InstantIncaps(2)=(head=60,Torso=65,Arm=65)
-   InstantIncaps(3)=(Leg=60,Cooldown=5.000000)
-   InstantIncaps(4)=()
-   InstantIncaps(5)=()
-   StackingIncaps(0)=(Duration=2.000000)
-   StackingIncaps(1)=()
-   StackingIncaps(2)=()
-   StackingIncaps(3)=()
-   StackingIncaps(4)=(Duration=2.000000)
-   StackingIncaps(5)=()
+   AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedScrake_Versus:Afflictions_0'
+   IncapSettings(2)=(Vulnerability=(0.500000))
+   IncapSettings(3)=()
+   IncapSettings(4)=(Cooldown=5.000000,Vulnerability=(0.200000))
+   IncapSettings(5)=(Duration=1.500000)
+   IncapSettings(6)=(Duration=1.500000,Cooldown=20.000000,Vulnerability=(0.600000))
+   IncapSettings(7)=(Vulnerability=(0.200000))
+   IncapSettings(8)=(Duration=0.500000)
+   IncapSettings(9)=()
+   SprintSpeed=530.000000
    SprintStrafeSpeed=350.000000
    TeammateCollisionRadiusPercent=0.300000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedScrake:FirstPersonArms'
@@ -126,33 +150,32 @@ defaultproperties
       SpecialMoveClasses(0)=None
       SpecialMoveClasses(1)=Class'KFGame.KFSM_MeleeAttack'
       SpecialMoveClasses(2)=Class'KFGame.KFSM_DoorMeleeAttack'
-      SpecialMoveClasses(3)=None
-      SpecialMoveClasses(4)=Class'KFGame.KFSM_GrappleAttack'
-      SpecialMoveClasses(5)=Class'KFGame.KFSM_Stumble'
-      SpecialMoveClasses(6)=Class'KFGame.KFSM_RecoverFromRagdoll'
-      SpecialMoveClasses(7)=Class'KFGame.KFSM_RagdollKnockdown'
-      SpecialMoveClasses(8)=Class'KFGame.KFSM_DeathAnim'
-      SpecialMoveClasses(9)=Class'KFGame.KFSM_Stunned'
-      SpecialMoveClasses(10)=Class'KFGame.KFSM_Frozen'
+      SpecialMoveClasses(3)=Class'KFGame.KFSM_GrappleCombined'
+      SpecialMoveClasses(4)=Class'KFGame.KFSM_Stumble'
+      SpecialMoveClasses(5)=Class'KFGame.KFSM_RecoverFromRagdoll'
+      SpecialMoveClasses(6)=Class'KFGame.KFSM_RagdollKnockdown'
+      SpecialMoveClasses(7)=Class'KFGame.KFSM_DeathAnim'
+      SpecialMoveClasses(8)=Class'KFGame.KFSM_Stunned'
+      SpecialMoveClasses(9)=Class'KFGame.KFSM_Frozen'
+      SpecialMoveClasses(10)=None
       SpecialMoveClasses(11)=None
-      SpecialMoveClasses(12)=None
-      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_Taunt'
-      SpecialMoveClasses(14)=Class'KFGame.KFSM_Zed_WalkingTaunt'
-      SpecialMoveClasses(15)=Class'KFGame.KFSM_Evade'
+      SpecialMoveClasses(12)=Class'KFGame.KFSM_Zed_Taunt'
+      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_WalkingTaunt'
+      SpecialMoveClasses(14)=Class'KFGame.KFSM_Evade'
+      SpecialMoveClasses(15)=None
       SpecialMoveClasses(16)=None
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
       SpecialMoveClasses(19)=None
       SpecialMoveClasses(20)=None
-      SpecialMoveClasses(21)=None
-      SpecialMoveClasses(22)=Class'kfgamecontent.KFSM_PlayerScrake_Melee'
-      SpecialMoveClasses(23)=Class'kfgamecontent.KFSM_PlayerScrake_Melee2'
-      SpecialMoveClasses(24)=Class'kfgamecontent.KFSM_PlayerScrake_Melee3'
+      SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_PlayerScrake_Melee'
+      SpecialMoveClasses(22)=Class'kfgamecontent.KFSM_PlayerScrake_Melee2'
+      SpecialMoveClasses(23)=Class'kfgamecontent.KFSM_PlayerScrake_Melee3'
+      SpecialMoveClasses(24)=Class'kfgamecontent.KFSM_PlayerScrake_Block'
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=None
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedScrake:SpecialMoveHandler_0'
    End Object
@@ -192,8 +215,8 @@ defaultproperties
       ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedScrake:DialogAkSoundComponent'
    End Object
    DialogAkComponent=DialogAkSoundComponent
-   GroundSpeed=226.000000
-   Health=1565
+   GroundSpeed=220.000000
+   Health=1600
    Begin Object Class=KFSkeletalMeshComponent Name=KFPawnSkeletalMeshComponent Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedScrake:KFPawnSkeletalMeshComponent'
       WireframeColor=(B=0,G=255,R=255,A=255)
       MinDistFactorForKinematicUpdate=0.200000
@@ -216,9 +239,8 @@ defaultproperties
       RBCollideWithChannels=(Default=True,Pawn=True,Vehicle=True,BlockingVolume=True)
       Translation=(X=0.000000,Y=0.000000,Z=-86.000000)
       ScriptRigidBodyCollisionThreshold=200.000000
-      PerObjectShadowCullDistance=4000.000000
+      PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
-      bAllowPerObjectShadowBatching=True
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedScrake:KFPawnSkeletalMeshComponent'
    End Object

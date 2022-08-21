@@ -12,66 +12,10 @@ class KFDT_Ballistic_Bullpup extends KFDT_Ballistic_AssaultRifle
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 15;
-
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Bullpup'
-   StumblePower=37
-   LegStumblePower=37
-   GunHitPower=25
+   GunHitPower=0.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Commando'
    KDamageImpulse=900.000000
    KDeathVel=100.000000

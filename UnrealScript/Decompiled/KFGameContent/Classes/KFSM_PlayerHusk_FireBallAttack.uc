@@ -7,14 +7,25 @@
  *******************************************************************************/
 class KFSM_PlayerHusk_FireBallAttack extends KFSM_PlaySingleAnim;
 
+var KFPawn_ZedHusk_Versus MyHuskPawn;
+var float HoldStartTime;
 var bool bReadyToFire;
 var name WindUpAnimName;
 var name FireHeldAnimName;
+var ParticleSystem LoopingMuzzleEffect;
+var export editinline ParticleSystemComponent MuzzlePSC;
+var name MuzzleFXSocketName;
 
 function SpecialMoveStarted(bool bForced, name PrevMove)
 {
     super.SpecialMoveStarted(bForced, PrevMove);
+    MyHuskPawn = KFPawn_ZedHusk_Versus(KFPOwner);
+    HoldStartTime = MyHuskPawn.WorldInfo.TimeSeconds;
     bReadyToFire = false;
+    if(MyHuskPawn.WorldInfo.MyEmitterPool != none)
+    {
+        MuzzlePSC = MyHuskPawn.WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(LoopingMuzzleEffect, MyHuskPawn.Mesh, MuzzleFXSocketName, true);
+    }
     PlayWindUpAnimation();
 }
 
@@ -22,24 +33,21 @@ function PlayAnimation();
 
 function PlayWindUpAnimation()
 {
-    bUseRootMotion = true;
-    KFPOwner.Mesh.RootMotionMode = 3;
-    KFPOwner.BodyStanceNodes[0].SetRootBoneAxisOption(2, 2, 2);
-    AnimStance = 0;
-    PlaySpecialMoveAnim(WindUpAnimName, 0, BlendInTime, BlendOutTime, 1);
+    bUseRootMotion = false;
+    PlaySpecialMoveAnim(WindUpAnimName, AnimStance, BlendInTime, BlendOutTime, 1);
 }
 
 function PlayFireHeldAnimation()
 {
     bReadyToFire = true;
-    PlaySpecialMoveAnim(FireHeldAnimName, 0, BlendInTime, BlendOutTime, 1, true);
+    PlaySpecialMoveAnim(FireHeldAnimName, AnimStance, BlendInTime, BlendOutTime, 1, true);
 }
 
 function PlayFireAnimation()
 {
     bReadyToFire = false;
     bPendingStopFire = false;
-    PlaySpecialMoveAnim(AnimName, 0, BlendInTime, BlendOutTime, 1, false);
+    PlaySpecialMoveAnim(AnimName, AnimStance, BlendInTime, BlendOutTime, 1, false);
 }
 
 function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime)
@@ -62,6 +70,29 @@ function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessT
         default:
             break;
     }
+}
+
+simulated function Tick(float DeltaTime)
+{
+    local float Strength;
+    local Vector2D StrengthRange;
+
+    super(GameSpecialMove).Tick(DeltaTime);
+    if(MuzzlePSC != none)
+    {
+        StrengthRange = MyHuskPawn.GetFireballStrengthRange();
+        Strength = FClamp((MyHuskPawn.WorldInfo.TimeSeconds - HoldStartTime) * MyHuskPawn.GetFireballStrengthPerSecond(), StrengthRange.X, StrengthRange.Y);
+        MuzzlePSC.SetFloatParameter('FX_Size', 1 * (Strength / StrengthRange.Y));
+    }
+}
+
+function SpecialMoveEnded(name PrevMove, name NextMove)
+{
+    if((MuzzlePSC != none) && MuzzlePSC.bIsActive)
+    {
+        MuzzlePSC.DeactivateSystem();
+    }
+    super.SpecialMoveEnded(PrevMove, NextMove);
 }
 
 function SpecialMoveFlagsUpdated()
@@ -109,14 +140,18 @@ defaultproperties
 {
     WindUpAnimName=Player_Shoot_Start
     FireHeldAnimName=Player_Shoot_Loop
+    LoopingMuzzleEffect=ParticleSystem'ZED_Husk_EMIT.FX_Husk_muzzleflash_Loop_01'
+    MuzzleFXSocketName=EMPDisruptSocket
     AnimName=Player_Shoot_End
     bCanBeInterrupted=true
     bUseCustomThirdPersonViewOffset=true
     bDisableMovement=true
     bDisableSteering=false
+    bDisableTurnInPlace=true
     CustomThirdPersonViewOffset=(OffsetHigh=(X=-135,Y=75,Z=40),OffsetMid=(X=-120,Y=60,Z=0),OffsetLow=(X=-180,Y=75,Z=50))
     ViewOffsetInterpTime=0.3
     CustomCameraFOV=60
     CameraFOVTransitionTime=0.4
+    CustomTurnInPlaceAnimRate=2
     Handle=KFSM_PlayerHusk_FireBallAttack
 }

@@ -12,112 +12,6 @@ class KFDT_Slashing_Knife extends KFDT_Slashing
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 15;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 15;
-
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
@@ -236,10 +130,7 @@ static simulated function ModifyDismembermentHitImpulse(KFPawn_Monster InPawn, n
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFweapDef_Knife_Base'
-   StunPower=31
-   StumblePower=40
-   LegStumblePower=40
-   MeleeHitPower=30
+   MeleeHitPower=50.000000
    KDamageImpulse=200.000000
    KDeathUpKick=250.000000
    Name="Default__KFDT_Slashing_Knife"

@@ -13,7 +13,8 @@ defaultproperties
 {
     MaxChainAtkCount=4
     ParryStrength=1
-    ParryDamageMitigationPercent=0.3
+    BlockDamageMitigation=0.8
+    ParryDamageMitigationPercent=0.8
     BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
     ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
     bIsBackupWeapon=true
@@ -35,6 +36,7 @@ defaultproperties
     MeleeAttackHelper=MeleeHelper
     AssociatedPerkClass=Class'KFGame.KFPerk_Commando'
     InstantHitDamage=/* Array type was not detected. */
+    InstantHitMomentum=/* Array type was not detected. */
     InstantHitDamageTypes=/* Array type was not detected. */
     bCanThrow=false
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent

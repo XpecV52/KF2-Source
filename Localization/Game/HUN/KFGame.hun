@@ -10,14 +10,15 @@ LengthStrings[2]="Hosszú (10 hullám)"
 
 ServerTypeStrings[0]="Rangsorolt"
 ServerTypeStrings[1]="Rangsorolt - Egyéni"
-;ServerTypeStrings[2]="Rangsorolatlan"
+ServerTypeStrings[1]="Rangsorolt - Egyéni"
+ServerTypeStrings[2]="Unranked"
 
 PermissionStrings[0]="Nyilvános"
 PermissionStrings[1]="Csak barátok"
 PermissionStrings[2]="Privát"
 
 ModeStrings[0]="Túlélő mód"
-ModeStrings[1]="VS Survival"
+ModeStrings[1]="VS. TÚLÉLÉS"
 
 NoPreferenceString="BÁRMELY"
 OKString="OK"
@@ -33,7 +34,15 @@ NoString="Nem"
 
 DisbandPartyString="FELOSZLATÁS"
 LeaveCurrentMenuString="Elhagyod a jelenlegi menüt?"
-ZedString="ZED"
+ZedString="ZÉ"
+HumanString="TÚLÉLŐ"
+SpectatorString="NÉZŐ"
+TeamString="TEAM"
+AllString="ALL"
+
+UnableToSwitchTeamString="Unable to Switch Teams"
+NoSwitchReasonString="Switching teams would upset team balance"
+
 
 
 [KFGFxMoviePlayer_Manager]
@@ -48,6 +57,9 @@ JoinGameString="Csatlakozás a játékhoz?"
 LeavePartyTitleString="TÁRSASÁG ELHAGYÁSA"
 LeavePartyDescriptionString="Biztosan el akarod hagyni ezt az online társaságot?"
 LeaveString="ELHAGYÁS"
+
+
+
 
 [KFDoorActor]
 WeldIntegrityString="Hegesztés épsége:"
@@ -81,6 +93,31 @@ CouldNotFindGameDescriptionString="Nem található a keresési beállításoknak
 [KFGFxStartGameContainer_FindGame]
 MultiplayerString="Online meccskeresés"
 SoloString="Egyjátékos játék offline"
+TutorialString="Basic Training"
+
+[StartMenuHelperText]
+modeList0="Survival – PVE battle waves of AI controlled Zeds"
+modeList1="VS Survival – PVP Horzine Mercenaries vs waves of Player and AI controlled Zeds"
+modeList2=""
+difficultyList0="Normal – For beginning players of perk rank 0-5."
+difficultyList1="Hard – For experienced players of perk rank 5-12. There are more Zeds per wave, they move faster, and have more health. There are fewer pickups and you get less dosh."
+difficultyList2="Suicidal – For seasoned players of perk rank 13-25. There are even more Zeds per wave, they use new attacks, and move even faster.  There even fewer pickups, and you get less dosh."
+difficultyList3="Hell on Earth – The most intense challenge for players of perk rank 25. There are still more Zeds per wave and they use new attacks. There are still fewer pickups, and you get still less dosh."
+lengthList0=""
+lengthList1=""
+lengthList2=""
+lengthList3=""
+serverTypeList0="Ranked – Any map, no mods, no friendly fire, 6 players max (if VS Survival this is 12 players max)"
+serverTypeList1="Ranked Stock – Official Maps, no mods, no friendly fire, and 6 players max"
+serverTypeList2="Ranked Custom – Any map, whitelisted mods, any server setting"
+serverTypeList3="Unranked Custom – Non-whitelisted mods (only)"
+privacyList0=""
+privacyList1=""
+privacyList2=""
+privacyList3=""
+inProgressList0=""
+inProgressList1=""
+inProgressList2=""
 
 [KFGFxStartGameContainer_Options]
 BackString="VISSZA"
@@ -91,10 +128,12 @@ SoloGameString="SZÓLÓ JÁTÉK"
 LeaveMatchMakingString="MECCSKERESÉS ELHAGYÁSA"
 MultiplayerLaunchString="JÁTSSZ ONLINE MOST"
 SearchingString="KERESÉS LEÁLLÍTÁSA"
+CancelSearchingString="CANCEL SEARCH"
 ServerTypeString="SZERVERFAJTA"
-StandardServerString="Hagyományos"
+AnyMapServerString="Ranked"
 UnrankedServerString="Rangsorolatlan"
 CustomServerString="Egyéni"
+StandardServerString="Hagyományos"
 AllowInProgressString="Folyamatban lévő játékok is"
 NotStartedString="Csak új játékok"
 
@@ -255,6 +294,26 @@ WeaponTypeStrings[9]="Géppisztolyok"
 
 OffPerkString="Perk-független"
 
+[KFGFxHUD_PostRoundMenu]
+RoundResultsString="Round Results"
+MatchResultsString="Overall Winner"
+SurvivorVictory="Survivor Victory!"
+ZEDVictory="Zed Victory!"
+TieString="Tie!"
+YourTeamString="Your Team Wins!"
+OpposingTeamString="Opposing Team Wins!"
+MatchOnGoingString="Switching Teams..."
+
+[KFGFxPostRoundContainer_Team]
+TitleString="Round "
+ScoreString="Score"
+WavesCompleteString="Waves Completed Bonus"
+BossDeadString="Boss Defeated"
+DeathsString="Player Deaths Penalty"
+DamageString="Damage From Boss Penalty"
+TotalString="TOTAL"
+YourTeamString=" (Your Team)"
+
 [KFGFxMenu_PostGameReport]
 MapVoteString="PÁLYASZAVAZÁS"
 PlayerStatsString="JÁTÉKOS-STATISZTIKÁK"
@@ -284,6 +343,21 @@ HeadPopper="Fejpukkasztó"
 HeadPopperValue="fejlövés"
 Dominator="Uralomra törő"
 DominatorValue="főellenség"
+
+Carnage="Carnage"
+Closer="Closer"
+ComboMaker="Combo Maker"
+Grabby="Grabby Pants"
+ZedSupport="Zed Support"
+Zednnihilation="Zednnihilation"
+CarnageValue="Zed Damage Dealt"
+CloserValue="Survivor Kills"
+ComboMakerValue="Zed Assist"
+GrabbyValue="Players Grabbed"
+ZedSupportValue="Indirect Damage"
+ZednnihilationValue="Kills in Wave"
+
+
 
 EPB_Healing="Gyógyítás"
 EPB_Kills="Ölések"
@@ -358,11 +432,11 @@ ViewProfileString="Profil megnézése"
 
 RemainingString="Hátralevő:"
 DownLoadingString="Letöltődik:"
-PartyLeaderString="Leader"
+PartyLeaderString="Vezető"
 
 [KFGFxWidget_PartyInGame_Versus]
-SwitchTeamsString="Switch Teams"
-balanceWarningString="WARNING: Teams will be auto-balanced"
+SwitchTeamsString="Csapatváltás"
+balanceWarningString="FIGYELEM: A csapatok automatikusan kiegyensúlyozásra kerülnek."
 
 [KFGFxMenu_Gear]
 GearHeaderString="FELSZERELÉS TESTRESZABÁSA"
@@ -378,39 +452,43 @@ WeaponsString="Fegyverek"
 WeaponsInfoString="Testreszabás"
 
 [KFGFxMenu_Inventory]
+RecycleOneString="Recycle One"
+RecycleDuplicatesString="Recycle Duplicates"
 InventoryString="FELSZERELÉS"
-UseString="Használ"
+UseString="HASZNÁL"
 EquipString="FELSZEREL"
 UnequipString="LESZEREL"
-AllString="MIND"
-WeaponSkinString="FEGYVERKÜLSŐK"
-CosmeticString="DÍSZÍTŐ"
-CraftingMatsString="Crafting"
-ItemString="TÁRGYAK"
+AllString="Mind"
+WeaponSkinString="Fegyverkülsők"
+CosmeticString="Díszítők"
+CraftingMatsString="Tárgykészítés"
+ItemString="Tárgyak"
 FiltersString="Szűrők"
-MoreItemsString="E tárgy használatához szükséges egy másik tárgy."
-FailedToExchangeString="BECSERÉLÉS SIKERTELEN"
-RecycleString="RECYCLE"
-CraftString="CRAFT"
-CraftCosmeticString="Cosmetic Crafting"
-CraftWeaponString="Weapon Skin Crafting"
-CraftWeaponStrings[0]="Uncommon Weapon Skin"
-CraftWeaponStrings[1]="Rare Weapon Skin"
-CraftWeaponStrings[2]="Exceptional Weapon Skin"
-CraftWeaponStrings[3]="Master Crafted Weapon Skin"
-CraftCosmeticStrings[0]="Uncommon Cosmetic"
-CraftCosmeticStrings[1]="Rare Cosmetic"
-CraftCosmeticStrings[2]="Exceptional Cosmetic"
-CraftCosmeticStrings[3]="Master Crafted Cosmetic"
-RecycleWarningString="Warning, this cannot be undone. This will destroy the selected item and replace it with a crafting material item"
-RecycleItemString="Recycle Item?"
-ConfirmCraftItemString="Crafting this item will use resources and cannot be undone"
-CraftItemString="Confirm Craft Item?"
-FailedToCraftItemString="Failed to Craft Item"
-CraftRequirementString="Insufficient quantity of required crafting materials"
-CraftCosmeticDescriptionString="You can craft new cosmetic items from this menu out of cosmetic material. You can obtain cosmetic material by recycling existing cosmetic items. To recycle, select an item and press recycle"
-CraftWeaponDescriptionString="You can craft new weapon skin items from this menu out of weapon skin material. You can obtain weapon skin material by recycling existing weapon skin items. To recycle, select an item and press recycle"
-RequiresString="Requires: "
+MoreItemsString="Összeillő kulcsra és ládára van szükséged. Kulcsot a játékon belüli boltból vásárolhatsz."
+FailedToExchangeString="A LÁDA NEM NYITHATÓ"
+RecycleString="ÚJRAHASZNOSÍT"
+CraftString="KÉSZÍT"
+CraftCosmeticString="Díszítő készítése"
+CraftWeaponString="Fegyverkülső készítése"
+CraftWeaponStrings[0]="Szokatlan fegyverkülső"
+CraftWeaponStrings[1]="Ritka fegyverkülső"
+CraftWeaponStrings[2]="Kivételes fegyverkülső"
+CraftWeaponStrings[3]="Mesteri fegyverkülső"
+CraftCosmeticStrings[0]="Szokatlan díszítő"
+CraftCosmeticStrings[1]="Ritka díszítő"
+CraftCosmeticStrings[2]="Kivételes díszítő"
+CraftCosmeticStrings[3]="Mesteri díszítő"
+RecycleWarningString="Figyelem, ez nem vonható vissza. Ez megsemmisíti a választott tárgyat, és lecseréli egy készítőanyag tárgyra."
+RecycleItemString="Újrahasznosítod a tárgyat?"
+ConfirmCraftItemString="E tárgy készítése nyersanyagokat fog felhasználni, és nem vonható vissza."
+CraftItemString="Megerősíted a tárgykészítést?"
+FailedToCraftItemString="Tárgykészítés sikertelen."
+CraftRequirementString="Elégtelen a szükséges készítőanyagok mennyisége."
+CraftCosmeticDescriptionString="Ebből a menüből új díszítő tárgyakat készíthetsz díszítő anyagokból. Díszítő anyagokat meglevő díszítő tárgyak újrahasznosításával szerezhetsz. Az újrahasznosításhoz válassz egy tárgyat, és nyomd meg az ÚJRAHASZNOSÍT gombot."
+CraftWeaponDescriptionString="Ebből a menüből új fegyverkülső tárgyakat készíthetsz fegyverkülső anyagokból. Fegyverkülső anyagokat létező fegyverkülső tárgyak újrahasznosításával szerezhetsz. Az újrahasznosításhoz válassz egy tárgyat, és nyomd meg az ÚJRAHASZNOSÍT gombot."
+RequiresString="Szükséges: "
+PurchaseKeyString="BUY KEY: "
+LookUpOnMarketString="Lookup on Market"
 
 [KFGFxPerksContainer]
 LevelString=""
@@ -452,13 +530,12 @@ TotalString="Összesen"
 CheckOutString="Kassza"
 
 [KFGFxStoreContainer_Main]
-NewReleasesString="Új megjelenések"
-CartString="Kosár"
-ToolsString="Eszközök"
 WeaponSkinsString="Fegyverkülsők"
-CharactersString="Karakterek"
+MarketConsumablesString="Market Crates/USBs"
+MarketCosmeticsString="Market Cosmetics"
 
 [KFGFxStoreContainer_Details]
+LookUpOnMarketString="FIND IN MARKET"
 AddToCartString="Megvásárlás"
 PreviewString="Előnézet"
 
@@ -516,6 +593,9 @@ KillsString="ÖLÉSEK"
 AssistsString="SEGÍTÉSEK"
 PingString="PING"
 
+[KFGFxHUD_ScoreboardVersusWidget]
+ScoreString=SCORE
+
 [KFGFxHUD_PlayerStatus]
 EXPString="TP"
 
@@ -535,8 +615,8 @@ ThrowString="FEGYVER DOBÁSA"
 VoteKickString="Játékos kirúgása?"
 
 [KFLocalMessage_PlayerKills]
-KilledString="killed"
-ZedString=ZEDs
+KilledString="megölte:"
+ZedString="ZÉk"
 
 [KFLocalMessage_VoiceComms]
 VoiceCommsOptionStrings[0]="GYÓGYÍTÁS KÉRÉSE"
@@ -729,7 +809,7 @@ AmbientOcclusionStringOptions[1]="SSAO"
 AmbientOcclusionStringOptions[2]="HBAO+"
 
 DepthOfFieldStringOptions[0]="Ki"
-DepthOfFieldStringOptions[1]="SAT DOF"
+DepthOfFieldStringOptions[1]="Be"
 
 [KFGFxOptionsMenu_Graphics_DX10]
 AmbientOcclusionStringOptions_DX10[0]="Ki"
@@ -754,25 +834,30 @@ GoreOptionStrings[2]="Véres"
 NormalString="Normál"
 WiderString="Szélesebb"
 FriendlyHudScaleString="Felhasználóbarát HUD-méret"
+KillTickerString="Ölésbejelentő"
 
 [LocalizedControls]
-ControllerLayoutDefault="Default"
-ControllerLayoutJumper="Jumper"
-ControllerLayoutQuickDraw="Quick Draw"
-ControllerLayoutSouthPaw="South Paw"
+ControllerLayoutDefault="Alap"
+ControllerLayoutJumper="Ugró"
+ControllerLayoutQuickDraw="Villámkezű"
+ControllerLayoutSouthPaw="Balkezes"
 
-GBA_WeaponSelect_Gamepad="Fegyverválasztó menü (tartva)"
-GBA_Reload_Gamepad="Reload"
-GBA_StrafeLeft_Gamepad="Movement Control"
-GBA_MoveForward_Gamepad="Move Forward"
-GBA_Look_Gamepad="Look Control"
-GBA_Grenade_Gamepad="Throw Grenade"
-GBA_TurnLeft_Gamepad="Look Control"
-GBA_Look_Gamepad="Look Control"
-GBA_DPad_Left_Gamepad="Voice Comms"
-GBA_DPad_Up_Gamepad="Equip Healer"
-GBA_DPad_Right_Gamepad="Throw Dosh"
-GBA_DPad_Down_Gamepad="Toggle Flashlight"
+GBA_TurnLeft="Turn Left"
+GBA_TurnRight="Turn Right"
+GBA_Backward="Hátra"
+GBA_MoveForward="Előre"
+GBA_WeaponSelect_Gamepad="Fegyverválasztás (tartva)"
+GBA_Reload_Gamepad="Újratöltés"
+GBA_StrafeLeft_Gamepad="Mozgás irányítása"
+GBA_MoveForward_Gamepad="Mozgás előre"
+GBA_Look_Gamepad="Nézés irányítása"
+GBA_Grenade_Gamepad="Gránátdobás"
+GBA_TurnLeft_Gamepad="Nézés irányítása"
+GBA_Look_Gamepad="Nézés irányítása"
+GBA_DPad_Left_Gamepad="Hangkommunikáció"
+GBA_DPad_Up_Gamepad="Gyógyító kézbe vétele"
+GBA_DPad_Right_Gamepad="Lóvé dobása"
+GBA_DPad_Down_Gamepad="Zseblámpa be/kikapcsolása"
 
 
 GBA_MoveForward="Előre"
@@ -784,14 +869,14 @@ GBA_Sprint="Futás"
 GBA_CrouchToggle="Guggolás (váltás)"
 GBA_CrouchHold="Guggolás (tartva)"
 GBA_SprintAndCrouch="Guggolás / Futás"
-GBA_SprintAndMelee="Melee / Sprint"
-GBA_ShowMenu="Toggle In Game Menu"
+GBA_SprintAndMelee="Közelharc / Futás"
+GBA_ShowMenu="Játékbeli menü ki/be"
 
 GBA_Use="Használat / Gyors hegesztés (tartva)"
 GBA_Talk="Beszéd"
-GBA_TeamTalk="Team Talk"
-GBA_VoiceChat="Hangos csevegés"
-GBA_PublicVoiceChat="Public Voice"
+GBA_TeamTalk="Csapatbeszéd"
+GBA_VoiceChat="Csapathang"
+GBA_PublicVoiceChat="Nyilvános hang"
 GBA_ShowVoiceComms="Hangparancsok"
 GBA_ShowScores="Eredménytábla mutatása"
 GBA_TossMoney="Lóvé dobása"
@@ -808,7 +893,7 @@ GBA_TertiaryFire="Közelharci ütés"
 GBA_ToggleFlashlight="Zseblámpa be/kikapcsolása"
 GBA_AltFire="Alt. tüzelés / Blokkolás"
 
-GBA_WeaponSelect_Gamepad="Fegyverválasztó menü (tartva)"
+GBA_WeaponSelect_Gamepad="Fegyverválasztás (tartva)"
 GBA_NextWeapon="Következő fegyver"
 GBA_PrevWeapon="Előző fegyver"
 GBA_LastWeapon="Legutóbb használt fegyver"
@@ -818,6 +903,15 @@ GBA_SwitchWeapon3="Közelharci fegyver"
 GBA_SwitchWeapon4="Felszerelés"
 GBA_VoteYes="„Igen” szavazat (tartva)"
 GBA_VoteNo="„Nem” szavazat (tartva)"
+
+GBA_VoiceCommReqHealing="REQUEST HEALING"
+GBA_VoiceCommReqDosh="REQUEST DOSH"
+GBA_VoiceCommReqHelp="REQUEST HELP"
+GBA_VoiceCommTauntZeds="TAUNT ZEDS"
+GBA_VoiceCommFollowMe="FOLLOW ME"
+GBA_VoiceCommGetToTheTrader="GET TO THE TRADER"
+GBA_VoiceCommAffirmative="AFFIRMATIVE"
+GBA_VoiceCommNegative="NEGATIVE"
 
 [KFGFxControlsContainer_Input]
 SensitivityString="Érzékenység"
@@ -838,6 +932,7 @@ SectionHeaders[0]="Mozgás"
 SectionHeaders[1]="Interakció"
 SectionHeaders[2]="Harc"
 SectionHeaders[3]="Fegyverválasztás"
+SectionHeaders[4]="VOICE COMMS"
 
 ResetString="ALAPÁLLAPOT"
 ApplyString="ALKALMAZ"
@@ -856,7 +951,11 @@ LookString="Nézés irányítása"
 WeaponSelectMenuString="Fegyverválasztó menü (tartva)"
 ShowScoardBoardString="Eredménytábla mutatása"
 ShowIngameMenuString="Játékbeli menü ki/be"
-CurrentControllerPresetString="Current Controller Preset"
+CurrentControllerPresetString="Jelenlegi játékvezérlő sablon"
+PresetStrings[0]="Preset 1"
+PresetStrings[1]="Preset 2"
+PresetStrings[2]="Preset 3"
+PresetStrings[3]="Preset 4"
 
 BashString="Közelharci ütés"
 BlockString="Blokkolás (tartva)"
@@ -901,7 +1000,7 @@ YourselfString="magadat."
 PickedupArmorMessage="Páncélt vettél fel."
 FullArmorMessage="A páncélod már tele van."
 PickupAmmoMessage="Lőszert vettél fel."
-AmmoFullMessage="Your ammo is full"
+AmmoFullMessage="Tele vagy lőszerrel."
 PickupWeaponAmmoMessage="%x% lőszert vettél fel."
 AlreadyCarryingWeaponMessage="Már megvan ez a fegyver."
 PickupMessage="Ezt vetted fel:"
@@ -914,14 +1013,14 @@ HeadShotAddedString="%x fejlövés - %y% extra sebzés!"
 HeadShotMaxString="Fejlövés! %x% extra sebzés!"
 HeadShotResetString="Elvétett fejlövés. Normál sebzés!"
 
-SuicideMessage="lemondott az életéről..."
-KilledMessage="vacsora lett."
-KillzedBy_PatriarchString=" can't hurt Kevin's children anymore"
+SuicideMessage=" lemondott az életéről..."
+KilledMessage=" vacsora lett."
+KillzedBy_PatriarchString=" nem bánthatja tovább Kevin gyermekeit."
 KillzedBy_HansString=" teste eltávolításra került további kísérletek céljából."
 KillzedBy_ZedCrawlerString=" lábfejeit lerágták."
-KillzedBy_ZedBloatString="testnedvekbe fulladt."
-KillzedBy_ZedFleshpoundString="péppé zúzódott."
-KillzedBy_ZedGorefastString="bőrét lenyúzták."
+KillzedBy_ZedBloatString=" testnedvekbe fulladt."
+KillzedBy_ZedFleshpoundString=" péppé zúzódott."
+KillzedBy_ZedGorefastString=" bőrét lenyúzták."
 KillzedBy_ZedHuskString=" szénné égett."
 KillzedBy_ZedScrakeString=" élete teljében lett levágva."
 KillzedBy_ZedSirenString=" dobhártyái beszakadtak. Halálosan..."
@@ -931,7 +1030,7 @@ KillzedBy_ZedClot_AlphaString=" illetlen helyen lett megmarkolva."
 KillzedBy_ZedClot_SlasherString=" már nem szereti a kaszabolós horrorfilmeket."
 
 FoundAMapCollectibleMessage="%x% megtalált egy %y%. Még %z% maradt..."
-FoundAllMapCollectiblesMessage="Az összes %x% sikerült megtalálni!"
+FoundAllMapCollectiblesMessage="Az összes %x% előkerült!"
 MapCollectibleName="lóvés nyakláncot"
 
 [KFLocalMessage_Priority]
@@ -948,17 +1047,20 @@ ObjectiveEndedMessage="A feladat véget ért!"
 ObjectiveLostMessage="Feladat elbukva!"
 ObjNotEnoughPlayersMessage="Nincs elég játékos!"
 ObjTimeRanOutMessage="Lejárt az idő!"
-HumansLoseMessage="Humans squad wiped out!"
-HumansWinMessage="Humans squad survived!"
-AttackHumanPlayersString="Attack the Human Players!"
-ZedGroupRegroupingString="Zed Horde regrouping!"
+HumansLoseMessage="Az emberi osztagot kiirtották!"
+HumansWinMessage="Az emberi osztag túlélte!"
+AttackHumanPlayersString="Támadd az emberi játékosokat!"
+ZedGroupRegroupingString="Zé horda gyülekezik!"
+NextRoundBeginString="N E X T  R O U N D"
+PlayerCanChangePerksString="Perk changes are allowed"
+ZedWaitingForNextRoundString="Zed Horde invasion imminent!"
 
 [KFLocalMessage_Interaction]
 UseTraderMessage="<%x%> KERESKEDŐ HASZNÁLATA"
-UseDoorMessage="<%x%> Kinyit/Becsuk (TARTVA) <%x%> Hegesztő kézbe vétele"
-UseDoorWeldedMessage="(HOLD) <%x%> equip welder"
-ZedUseDoorMessage="<%x%> Open/Close"
-ZedUseDoorWeldedMessage=""
+UseDoorMessage="<%x%> Kinyit/Becsuk // <%x%> (TARTVA) Hegesztő kézbe vétele"
+UseDoorWeldedMessage="<%x%> (TARTVA) Hegesztő kézbe vétele"
+ZedUseDoorMessage="<%x%> Kinyit/Becsuk"
+ZedUseDoorWeldedMessage="Ajtó behegesztve, törd be!"
 AcceptObjectiveMessage="<%x%> Feladat elfogadása"
 ReceiveAmmoMessage="<%x%> Lőszer elfogadása"
 ReceiveGrenadesMessage="<%x%> Gránátok elfogadása"
@@ -966,10 +1068,10 @@ HealSelfWarning="<%x%> Öngyógyítás"
 HealSelfGamepadWarning="<%x%> (TARTVA) öngyógyítás"
 PressToBashWarning="<%x%> Ütés"
 GamepadWeaponSelectHint="<%x%> (TARTVA) fegyverválasztás"
-PlayerClotGrabWarningMessage="Kill zed to break free!"
+PlayerClotGrabWarningMessage="Kiszabaduláshoz öld meg a zét!"
 
 [KFLocalMessage_ServerNotification]
-TeamPendingBalanceMessage="Teams are unbalanced and will be adjusted"
+TeamPendingBalanceMessage="A csapatok kiegyensúlyozatlanok, és igazításra kerülnek."
 
 [KFGfxPerkComp_Abilities]
 RankNames[0]="I-es rangú"
@@ -1012,147 +1114,148 @@ SkillSlots4[1]=(Title="",Description="")
 WeaponDroppedMessage="Új teherbírási kapacitásod miatt eldobtad ezt: %%%%!"
 
 [KFPerk_Berserker]
-PerkName="Dühöngő"
+PerkName="Berserker"
 
-SkillCatagories[0]="Ellenállás"
-SkillCatagories[1]="Túlélés"
-SkillCatagories[2]="Közelharc"
-SkillCatagories[3]="Erő"
-SkillCatagories[4]="Haladó kiképzés"
+SkillCatagories[0]="Survival"
+SkillCatagories[1]="Combat"
+SkillCatagories[2]="Close Combat"
+SkillCatagories[3]="Power"
+SkillCatagories[4]="Advanced Training"
 
-Passives[0]=(Title="Perk-fegyver sebzés",Description="+25% Dühöngő-fegyver sebzés, +x%x szintenként.");
-Passives[1]=(Title="Közelharci támadósebesség",Description="+0% közelharci támadósebesség, +x%x szintenként.");
-Passives[2]=(Title="Közelharci mozgási sebesség",Description="10%-kal gyorsabb mozgás közelharci fegyverrel a kézben, +x%x szintenként.");
-Passives[3]=(Title="Sebzésellenállás",Description="%x%-kal kevesebb beérkező sebzés.");
-Passives[4]=(Title="+Éjjellátó képesség",Description="Zseblámpák ÉS éjjellátó szemüvegek.")
-Passives[5]=(Title="+Clotok nem tudnak megragadni",Description="A clotok nem tudják megragadni a Dühöngőt.")
 
-EXPAction1="Sebzés Dühöngő-fegyverekkel"
-EXPAction2="Zék megölése más játékos közelében perk-fegyverrel"
+Passives[0]=(Title="Berserker Damage",Description="x%x damage increase every level")
+Passives[1]=(Title="Damage Resistance",Description="x%x resistance per every 5 levels to all damage")
+Passives[2]=(Title="+Night Vision Capability",Description="Flashlight - AND Night Vision Goggles")
+Passives[3]=(Title="+Clots cannot grab you",Description="Clots can't hold on to a Berserker")
 
-PoisonResistance="Méregellenállás"
-PoisonResistanceDescription="Köpök a mérgedre: 40%-kal csökkenti a sebzést, amit méregtámadásoktól szenvedsz el."
+EXPAction1="Dealing Berserker weapon damage"
+EXPAction2="Kill Zeds near a player with a Berserker weapon"
 
-SonicResistance="Hangellenállás"
-SonicResistanceDescription="Nem hallak! 40%-kal csökkenti a sebzést, amit hangtámadásoktól szenvedsz el."
+Fortitude="Dreadnaught"
+FortitudeDescription="Increase total Health by 50%."
 
-Vampire="Vámpír"
-VampireDescription="Az élet szívás: a Horzine nanotechnika 3 életpontot szív el minden Dühöngő fegyverrel megölt zéből, és a te életedhez adja."
+Ninja="Skirmisher"
+NinjaDescription="Move 20% faster. Sprint 25% faster. Regenerate 2 points of Health every second. "
 
-Fortitude="Állhatatosság"
-FortitudeDescription="Adj jobb esélyt magadnak: növeld 100%-kal a maximális és kezdeti életerőt."
+Vampire="Vampire"
+VampireDescription="Heal yourself 4 points of Health for every Zed you kill with a Berserker weapon. You also attack 15% faster with Berserker weapons."
 
-FuriousDefender="Ádáz védekező"
-FuriousDefenderDescription="Okkal hívnak Dühöngőnek: közelharci támadásaid 10%-kal gyorsabbak, és minden támadás 20%-kal több sebzést okoz."
+Speed="Butcher"
+SpeedDescription="Attack 20% faster and do 25% more damage with Berserker weapons."
 
-Block="Blokkolás"
-BlockDescription="Micsoda ügyesség! Dühöngőként egy támadás blokkolása 50%-kal erősebbé teszi a következő közelharci támadásodat."
+Resistance="Resistance"
+ResistanceDescription="Gain 20% resistance to all damage. You gain an additional 20% resistance to Poison and Sonic Damage."
 
-Parry="Kivédés"
-ParryDescription="Ötvözd ügyességed és erőd: egy támadás kivédése 4 másodpercig 15%-kal növeli közelharci támadási sebességedet és 30%-kal könnyű támadási sebzésedet."
+Parry="Parry"
+ParryDescription="Parrying an attack with a Berserker melee weapon will increase melee attack speed by 5% and melee damage by 35% for 10 seconds."
 
-Smash="Zúzás"
-SmashDescription="Erőből: a kemény ütések 100%-kal nagyobb sebzést okoznak ÉS ha fejre viszed be őket, nagy esélyt adnak a nagy zék feldöntésére."
+Smash="Smash"
+SmashDescription="Hard attacks with Berserker melee weapons do 50% more damage, plus an additional 25%  damage on head shots, and have 200% more Stumble power."
+ 
+Fury="Massacre"
+FuryDescription="Light attacks with Berserker melee weapons do 20% more damage and are 5% faster."
 
-Spartan="ZÉ IDŐ - A spártai"
-SpartanDescription="Láttad a 300-at: mozogj valós időben, növeld a közelharci Dühöngő-fegyverek támadási sebességét 50%-kal és okozz minden kivédéssel feldöntést."
+Spartan="ZED TIME - Spartan" 
+SpartanDescription="You've seen 300: Attack in near real time and gain 25% of your total Health."
 
-Menace="ZÉ IDŐ - Fenyegetés"
-MenaceDescription="Válj igazán veszélyessé: mozogj valós időben, növeld 100%-kal közelharci Dühöngő-fegyvereid bénítási erejét fejtalálatokkor, valamint megingatási erődet 100%-kal."
+Flash="ZED TIME - Berserker Rage"
+FlashDescription="Zeds won't like you when you're angry: Move and attack in real time."
 
 [KFPerk_Commando]
-PerkName="Kommandós"
+PerkName="Commando"
 
-SkillCatagories[0]="Ellátmány"
-SkillCatagories[1]="Fegyverkezelés"
-SkillCatagories[2]="Figyelem"
-SkillCatagories[3]="Fegyverspecialista"
-SkillCatagories[4]="Haladó kiképzés"
+SkillCatagories[0]="Tactics"
+SkillCatagories[1]="Advanced Tactics"
+SkillCatagories[2]="Survival"
+SkillCatagories[3]="Weapon Specialist"
+SkillCatagories[4]="Advanced Training"
 
-Passives[0]=(Title="Perk-fegyver sebzés",Description="+%x% Kommandós-fegyver sebzés.");
-Passives[1]=(Title="Álcázott ellenségek észlelése",Description="+%x% álcázás-észlelési távolság.");
-Passives[2]=(Title="Életerőcsík észlelése",Description="+%x% életerőcsík-észlelési távolság.");
-Passives[3]=(Title="Zé idő-elnyújtás",Description="A Zé idő %x% hosszú.");
-Passives[4]=(Title="Életerő növekedés",Description="+%x% életerő.");
-Passives[5]=(Title="+Éjjellátó képesség",Description="Zseblámpák ÉS éjjellátó szemüvegek.");
+Passives[0]=(Title="Perk Weapon Damage",Description="%x% increase in Commando weapon damage.");
+Passives[1]=(Title="Cloaked Enemy & Health Bar Detection",Description="10m plus %x%m increase by each level");
+Passives[2]=(Title="Zed Time Extension",Description="Zed time lasts %x% longer");
+Passives[3]=(Title="Reload Speed",Description="%x%% increase every 5 levels");
+Passives[4]=(Title="+Night Vision Capability",Description="Flashlights - AND Night Vision Goggles");
+Passives[5]=(Title="+Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units");
 
-EXPAction1="Sebzés Kommandós-fegyverekkel"
-EXPAction2="Stalkerek ölése Kommandós-fegyverekkel"
+EXPAction1="Dealing Commando weapon damage"
+EXPAction2="Killing Stalkers with Commando weapons"
 
-LargeMags="Nagy tárak"
-LargeMagsDescription="Legyél kicsit komolyabb - növeld Kommandós-fegyvereid tárkapacitását 50%-kal."
+TacticalReload="Tactical Reload"
+TacticalReloadDescription="Be cool. Be quick. Reload 20% faster with Commando weapons AND look more elite while you're at it."
 
-Backup="Tartalék"
-BackupDescription="Biztosíts 60%-os többletsebzést tartalék pisztolyodnak és késednek azokra a pillanatokra, amikor igazán szükség van rájuk!"
+LargeMags="Large Mags"
+LargeMagsDescription="Get a bit more serious: Increase Commando weapon magazine capacities by 50%."
 
-Impact="Becsapódás"
-ImpactDescription="Lőj erősebben és döntsd fel őket. Növeld 30%-kal a zék megingatásának esélyét minden Kommandós-fegyverrel."
+Backup="Backup"
+BackupDescription="Give your backup pistol and knife 60% extra damage for those moments when you really need it!"
 
-TacticalReload="Taktikai újratöltés"
-TacticalReloadDescription="Legyél menő. Legyél gyors. Tölts újra gyorsabban perk-fegyvereiddel ÉS tűnj közben elitebbnek."
+Impact="Impact"
+ImpactDescription="Pack more punch and knock 'em down: Increase Stumble power by 150% for all Commando weapons."
 
-Leadership="Vezetői erély"
-LeadershipDescription="Vezetői erélyed megnyugtatja és lecsillapítja csapattársaidat, hatékonyabbá téve őket. A csapattársak 10%-kal gyorsabban töltenek újra."
+HealthIncrease="Health Increase"
+HealthIncreaseDescription="Increase total Health and Armor by 25%."
 
-CallOut="Figyelemfelkeltés"
-CallOutDescription="Add meg csapattársaidnak is a képességet, hogy ugyanolyan jól láthassák az álcázott ellenségeket, mint te. Meg fogják köszönni ÉS az ölésekért te is megkapod azt a TP-t, amit ők."
+AmmoVest="Ammo Vest"
+AmmoVestDescription="Carry two extra magazines for each Commando weapon."
 
-SingleFire="Egyetlen lövés"
-SingleFireDescription="Jutalmazzuk a takarékos tüzelést! Kommandós-fegyvereidnek 20%-kal nagyobb sebzést ad, amikor egylövéses módban vannak."
+HollowPoints="Hollow Point Rounds"
+HollowPointsDescription="Upgrade your ammo, giving Commando weapons 25% more damage and reducing their recoil 50%."
 
-Autofire="Automata tüzelés"
-AutofireDescription="Miért finomkodnál? Okozz 20%-kal nagyobb sebzést Kommandós-fegyvereiddel teljes- vagy rövid sorozat módot használva."
+EatLead="Eat Lead"
+EatLeadDescription="Need more bullets? Get 50% more rounds in your mags with Commando weapons."
 
-RapidFire="ZÉ IDŐ - Gyorstüzelés"
-RapidFireDescription="Okozz nagyobb fájdalmat, amikor a világ lelassul: 3%-kal nagyobb sebzés Kommandós-fegyverekkel, és 3-szor gyorsabb tüzelés minden fegyverrel."
+RapidFire="ZED TIME - Rapid Fire"
+RapidFireDescription="When the world slows down, do more hurt: Do 3% more damage with Commando weapons and shoot 3x times faster with all guns."
 
-Professional="ZÉ IDŐ - A profi"
-ProfessionalDescription="Amikor a világ lelassul, te nem. Töltsd újra a fegyvereket valós sebességgel - válts fegyvereket kétszer olyan gyorsan!"
+Professional="ZED TIME - Professional"
+ProfessionalDescription="When the world slows down, you don't: Reload Commando weapons at full speed and switch Commando weapons twice as fast!"
 
 [KFPerk_Demolitionist]
-PerkName="Robbantó"
-EXPAction1="Sebzés Robbantó-fegyverekkel"
-EXPAction2="Fleshpoundok ölése Robbantó-fegyverekkel"
+PerkName="Demolitionist"
+EXPAction1="Dealing Demolitionist weapon damage"
+EXPAction2="Killing Fleshpounds with Demolitionist weapons"
 
-SkillCatagories[0]="Módszeresség"
-SkillCatagories[1]="Ellenállás"
-SkillCatagories[2]="Fejlettebb módszerek"
-SkillCatagories[3]="Fegyverkezelés"
-SkillCatagories[4]="Fejlettebb robbanószerek"
+SkillCatagories[0]="Technique"
+SkillCatagories[1]="Explosives"
+SkillCatagories[2]="Advanced Techniques"
+SkillCatagories[3]="Weapon Techniques"
+SkillCatagories[4]="Advanced Explosives"
 
-Passives[0]=(Title="Perk-fegyver sebzés",Description="+%x% perk-fegyver sebzés.");
-Passives[1]=(Title="Robbanás-ellenállás",Description="+%x% ellenállás a robbanási sebzéssel szemben.");
-Passives[2]=(Title="Extra robbanólőszer",Description="+%x% kezdő robbanólőszer.");
+Passives[0]=(Title="Perk Weapon Damage",Description="Perk weapon damage increased by %x%");
+Passives[1]=(Title="Explosive Resistance",Description="%x% resistance to explosive damage");
+Passives[2]=(Title="Extra Explosive Ammo",Description="%x% more starting explosive ammo");
+Passives[3]=(Title="+Grenade Supplier",Description="Give out one extra grenade per wave to your team");
+Passives[4]=(Title="+Door Traps",Description="Doors you weld will explode when destroyed");
 
-GrenadeSupplier="Gránátellátó"
-GrenadeSupplierDescription="Imádni fognak érte: csapattársaid egy extra gránátot kaphatnak tőled, hullámonként egyszer."
+Damage="Bombardier"
+DamageDescription="Your explosive Demolitionist weapons do 25% more damage."
 
-OnContact="Becsapódás"
-OnContactDescription="A képedbe, öreg: dinamitrúdjaid felrobbannak, amikor egy zével érintkeznek."
+Speed="Grenadier"
+SpeedDescription="You reload your Demolitionist weapons 10% faster."
 
-ExplosiveResistance="Robbanás-ellenállás"
-ExplosiveResistanceDescription="Erősítsd a csapatot: csökkentsd 30%-kal az elszenvedett sebzésedet - és a csapattársaidét is, ha elég közel vannak hozzád!"
+DirectHit="High Impact Rounds"
+DirectHitDescription="Do 25% more damage on a direct hit with your explosive Demolitionist weapons, but decrease maximum ammo for each weapon by 3."
 
-Sacrifice="Reaktív páncél"
-SacrificeDescription="Legyél te a bomba: hullámonként egyszer, egy támadás, ami egyébként végezne veled, robbanást okoz, sebezve a körülötted lévő zéket, téged pedig 5 életponton hagyva."
+Ammo="Extra Rounds"
+AmmoDescription="Increase maximum ammo by 5 for all explosive Demolitionist weapons."
 
-DoorTraps="Ajtócsapdák"
-DoorTrapsDescription="Robbantsd be az ajtót: 30%-kal lassabban hegesztesz, de az általad behegesztett ajtók berobbannak, amikor betörik őket. Minél többet hegesztettél az ajtón, annál nagyobbat robban."
+SirenResistance="Sonic Resistant Rounds"
+SirenResistanceDescription="Your explosive Demolitionist weapons have a 100% chance of getting past a siren's scream and actually exploding."
 
-SirenResistance="Siren-ellenállás"
-SirenResistanceDescription="Fogd be a szád, zé: gránátjaidnak 100%-os esélye van túlélni a hangsebzést, és ténylegesen felrobbanni."
+AreaOfEffect="Fragmentation Rounds"
+AreaOfEffectDescription="The area of effect for your explosive Demolitionist weapons is increased by 50%, but their damage is reduced by 30%."
 
-OffPerk="Perken kívül"
-OffPerkDescription="Már megint nem: okozz 10% többletsebzést bármely perken kívüli fegyverrel."
+CriticalHit="Armor Piercing Rounds"
+CriticalHitDescription="A direct hit to a critical zone with any Demolitionist weapon will do 50% additional damage."
 
-OnPerk="Perken belül"
-OnPerkDescription="Már megint igen: növeld 30%-kal Robbantó-fegyvereid reakció, megingató és feldöntő erejét."
+ConcussiveForce="Concussive Rounds"
+ConcussiveForceDescription="The reaction, stun, stumble and knockdown power of your Demolitionist weapons increase by 50%."
 
-Nuke="ZÉ IDŐ - Atom"
-NukeDescription="Atomot nekik: robbanószereid erős radioaktív sebzést okoznak Zé időben, mérgezve a zéket."
+Nuke="ZED TIME - Destroyer of Worlds"
+NukeDescription="Nuke 'em: Your explosives dish out massive radiation damage in Zed Time, poisoning Zeds."
 
-ConcussiveForce="ZÉ IDŐ - Megrázó erő"
-ConcussiveForceDescription="Döntsd fel őket: robbanásaidnak erős feldöntő erejük van a zék ellen Zé időben."
+Professional="ZED TIME - Mad Bomber"
+ProfessionalDescription="Shoot and reload in near real time."
 
 
 [KFPerk_FieldMedic]
@@ -1180,7 +1283,7 @@ Combatant="Harcos"
 CombatantDescription="Ne csak felcser legyél, hanem az a harci orvos, aki mindig is lenni akartál, ingyen kezdő testpáncéllal és 60%-os kedvezménnyel minden páncélvételre!"
 
 Armament="Hadi felszerelés"
-ArmamentDescription="Ne csak embereket hozz rendbe: mondj le gyógyító hatékonyságod 10%-áról csapattársaidon, de helyette minden alkalommal javíts testpáncéljukon a maximális érték 2%-ával."
+ArmamentDescription="Ne csak embereket hozz rendbe: mondj le gyógyító hatékonyságod 25%-áról csapattársaidon, de helyette minden alkalommal javíts testpáncéljukon a maximális érték 1%-ával."
 
 Regeneration="Regeneráció"
 RegenerationDescription="Lődd be magad: az életed időarányosan, lassan regenerálódik a Horzine nano-botoknak köszönhetően."
@@ -1189,13 +1292,13 @@ Lacerate="Gyötrelem"
 LacerateDescription="Vigyázz azzal a szikével: a zék jobban fognak vérezni, ha a perk-fegyvereiddel sebzed meg őket."
 
 VaccinationArmor="Védőoltás"
-VaccinationArmorDescription="Segíts megelőzni a halál terjedését: gyógyításod a maximális érték 4%-ával javítja csapattársaid páncélját, plusz ideglenes Bloat-okádék ellenállást ad."
+VaccinationArmorDescription="Segíts megelőzni a halál terjedését: gyógyításod a maximális érték 2%-ával javítja csapattársaid páncélját, plusz ideglenes Bloat-okádék ellenállást ad."
 
 VaccinationDamageMod="Savas elegy"
 VaccinationDamageModDescription="Van, akiket gyógyít... másokra halált hoz! Gyógyító nyilaid megmérgezhetik a zéket; ha elég sebzést okozol, gránátjaid és nyilaid pánikot is keltenek a zékben."
 
 AirborneAgent="ZÉ IDŐ - Levegőben terjedő"
-AirborneAgentDescription="Az idő begyógyítja a sebeket: nyilaid gyógyító felhőt képeznek célpontod és a közeli társak számára 10%-os extra gyógyításért."
+AirborneAgentDescription="Az idő begyógyítja a sebeket: nyilaid gyógyító felhőt képeznek célpontod és a közeli társak számára 20%-os extra gyógyításért."
 
 Sedative="ZÉ IDŐ - Nyugtató"
 SedativeDescription="És megáll az idő: nyilaid és gránátjaid zé-nyugtatót bocsátanak ki, ami átmenetileg megállíthatja a zék mozgását."
@@ -1225,7 +1328,7 @@ FullyStocked="Csurig töltve"
 FullyStockedDescription="Ahogy a tartályon is áll: a Tűzköpő-fegyverek maximum lőszerkapacitással vehetők meg az Árustól."
 
 FlarotovCoctail="Fénypatron-koktél"
-FlarotovCoctailDescription="A nevében is benne van: dugj egy fénypatront a Molotov-koktélodba - egy olyan fénypatront kapsz, ami 30 másodpercig megvilágítja a környezetét ÉS a lángjaid kétszer annyi ideig égnek a földön."
+FlarotovCoctailDescription="A nevében is benne van: dugj egy fénypatront a Molotov-koktélodba - egy olyan fénypatront kapsz, ami 30 másodpercig megvilágítja a környezetét ÉS a lángjaid kétszer annyi ideig égnek."
 
 Fuse="Gyutacs"
 FuseDescription="Szép, lassú égés: a Tűzköpő-fegyverek égési hatása 70%-kal hosszabb ideig marad meg, növelve az időarányos sebzést."
@@ -1234,7 +1337,7 @@ HeatWave="Hőhullám"
 HeatWaveDescription="Mint egy forró nyár: a közvetlen közelről tűzzel meglőtt ellenségek hátratántorodnak."
 
 ZedShrapnel="Zé-repeszek"
-ZedShrapnelDescription="Felrobbanó zék: bármely, tűzzel megölt zének 50% esélye van felrobbanni, sebzést okozva a közeli zéknek."
+ZedShrapnelDescription="Felrobbanó zék: bármely, tűzzel megölt zének 30% esélye van felrobbanni, sebzést okozva a közeli zéknek."
 
 Napalm="Zé-napalm"
 NapalmDescription="Tüzes zék: az égő zék a többi zét is felgyújtják, amikor hozzájuk érnek."
@@ -1268,28 +1371,28 @@ Passives[2]=(Title="Mozgási sebesség",Description="+%x% mozgási sebesség.");
 Passives[3]=(Title="Visszarúgás",Description="-%x% visszarúgás.");
 
 ShootnMove="Lövés és spuri"
-ShootnMoveDescription="Ne ácsorogj, várva, hogy megegyenek: irányzékkal célozva 50%-kal gyorsabban mozogsz, és enyhébb a fegyver-kilengés."
+ShootnMoveDescription="Ne ácsorogj, várva, hogy megegyenek: irányzékkal célozva 200%-kal gyorsabban mozogsz, és enyhébb a fegyver-kilengés."
 
 QuickSwitch="Villámkezű"
 QuickSwitchDescription="Megy ez neked: 50%-kal gyorsabb fegyverváltás, és ha tovább lősz, miközben kifogyott a lőszer, automatikusan a tartalék pisztolyra váltasz."
 
 RhythmMethod="Rakásra"
-RhythmMethodDescription="Fejlövések sorjában: Pisztolyhős fegyverekkel minden egymást követő fejlövés sebzése 5%-kal nő maximum 75%-ig."
+RhythmMethodDescription="Fejlövések sorjában: Pisztolyhős fegyverekkel minden egymást követő fejlövés sebzése 10%-kal nő maximum 70%-ig."
 
 BoneBreaker="Csonttörő"
 BoneBreakerDescription="Ne csak gyűjtsd, törd is őket: Pisztolyhős fegyverekkel 20%-kal többet sebzel."
 
 SpeedReload="Gyorstöltő"
-SpeedReloadDescription="Menőbb, gyorsabb, halálosabb: Pisztolyhős fegyverekkel 20%-kal gyorsabban töltesz újra, ÉS még menőbbnek is látszol közben."
+SpeedReloadDescription="Menőbb, gyorsabb, halálosabb: tölts újra 20%-kal gyorsabban Pisztolyhős fegyverekkel ÉS tűnj közben elitebbnek."
 
 Penetration="Áthatolás"
-PenetrationDescription="Sorakoztasd fel, majd döntsd le őket: minden lövésed egyel több zén hatol át."
+PenetrationDescription="Sorakoztasd fel, majd döntsd le őket: minden lövésed eggyel több zén hatol át."
 
 CenterMass="Tömegközéppont"
-CenterMassDescription="Ha a tömegközéppontra célzol... a mellkaslövéseknek 30%-kal nagyobb feldöntőereje van."
+CenterMassDescription="Ha a tömegközéppontra célzol... a mellkaslövéseknek 40%-kal nagyobb feldöntőereje van."
 
 LimbShots="Láblövés"
-LimbShotsDescription="Vagy lődd őket lábon... a láblövéseknek 30%-kal nagyobb feldöntő ereje van, amikor a zé fut."
+LimbShotsDescription="Vagy lődd őket lábon... a láblövéseknek 3-szor nagyobb feldöntő ereje van, amikor a zé fut."
 
 Fanfare="ZÉ IDŐ - Sebesség"
 FanfareDescription="Sebesen sebző: Pisztolyhős fegyverekkel Zé időben háromszor gyorsabban lősz."
@@ -1303,12 +1406,57 @@ PerkName="Harcművész"
 [KFPerk_Sharpshooter]
 PerkName="Mesterlövész"
 
+EXPAction1="Dealing Sharpshooter weapon damage"
+EXPAction2="Head shots with Sharpshooter weapons"
+
+SkillCatagories[0]="Movement"
+SkillCatagories[1]="Basic Technique"
+SkillCatagories[2]="Skill"
+SkillCatagories[3]="Equipment"
+SkillCatagories[4]="Master Techniques"
+
+Passives[0]=(Title="Headshot Damage",Description="Headshot damage increased by %x%");
+Passives[1]=(Title="Recoil",Description="%x% less recoil");
+Passives[2]=(Title="Weapon Switch",Description="Weapon switch speed increased by %x%");
+
+StationaryAim="Sniper"
+StationaryAimDescription="Inflict 25% more damage while stationary and using a Sharpshooter weapon."
+
+Trigger="Marksman"
+TriggerDescription="Shoot 25% faster and move 10% faster when using a Sharpshooter weapon."
+
+CrouchAim="Stability"
+CrouchAimDescription="Inflict 30% more damage while crouching and using a Sharpshooter weapon."
+
+Stun="Ballistic Shock"
+StunDescription="Stun power with Sharpshooter weapons increases by 100%."
+
+RhythmMethod="Rack 'em Up"
+RhythmMethodDescription="Rack up the headshots: each consecutive headshot with a Sharpshooter weapon increases your damage by 5% up to 75%."
+
+TacticalReload="Combat Ready"
+TacticalReloadDescription="Be cool. Be quick. Reload faster with Sharpshooter weapons AND look more elite while you're at it."
+
+Scoped="Dead Eye"
+ScopedDescription="Reduce recoil 10% and increase head shot damage 10% when using a scope or ironsights with a Sharpshooter weapon."
+
+AmmoPouch="Always Prepared"
+AmmoPouchDescription="Get 25% more ammo for Sharpshooter weapons and grenades."
+
+ZTKnockdown="ZED TIME - Assassin"
+ZTKnockdownDescription="Headshots with Sharpshooter weapons will knock down any Zed."
+
+ZTStun="ZED TIME - Ranger"
+ZTStunDescription="Headshots with Sharpshooter weapons will stun any Zed."
+
+
+
 [KFPerk_Support]
 PerkName="Támogató"
 
-SkillCatagories[0]="Fegyverkezelés"
+SkillCatagories[0]="Ellátás"
 SkillCatagories[1]="Erőnlét"
-SkillCatagories[2]="Ellátás"
+SkillCatagories[2]="Fegyverkezelés"
 SkillCatagories[3]="Állóképesség"
 SkillCatagories[4]="Haladó kiképzés"
 
@@ -1359,9 +1507,6 @@ BarrageDescription="Hozd ki a legtöbbet a Zé időből 15%-os általános sebz�
 
 [KFPerk_Sharpshooter]
 PerkName="Mesterlövész"
-
-[KFPerk_SWAT]
-PerkName="SWAT"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -1414,6 +1559,43 @@ RandomLoadingStrings[2]="Lorem ipsum dolor sit amet, consectetur adipiscing elit
 RandomLoadingStrings[3]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 3"
 RandomLoadingStrings[4]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 4"
 RandomLoadingStrings[5]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 5"
+RandomLoadingStrings[6]="The parry ability stumbles a Zed, allowing you to get in a few extra strikes."
+RandomLoadingStrings[7]="Watch out for the husk. Once he takes enough damage, he may try to self-detonate on your team."
+RandomLoadingStrings[8]="You receive XP for damaging Zeds towards the perk associated with the weapon that inflicted the damage."
+RandomLoadingStrings[9]="Stick together. Getting singled out decreases your chances of survival if things get hairy."
+RandomLoadingStrings[10]="Players can use the syringe to heal themselves as well as their teammates."
+RandomLoadingStrings[11]="Welding doors can hold Zeds back. Doors do not come back once destroyed."
+RandomLoadingStrings[12]="If a teammate dies, it is helpful to grab their weapon and drop it for them at the trader."
+RandomLoadingStrings[13]="Got some extra dosh? Drop some for your team; they may return the favor."
+RandomLoadingStrings[14]="Choose your targets. Different weapons are more or less effective against different types of Zeds."
+RandomLoadingStrings[15]="Prioritize your targets. A fleshpound is a lot more deserving of your attention than a clot."
+RandomLoadingStrings[16]="All Zeds have weak points. If it's not the head, look for glowing elements on their bodies."
+RandomLoadingStrings[17]="Looking to buy or sell a cosmetic item or weapon skin?  Check the marketplace."
+RandomLoadingStrings[18]="The siren's scream neutralizes grenades and other explosives."
+RandomLoadingStrings[19]="Scrakes and fleshpounds will rage once they receive enough damage. Stay out of their way."
+RandomLoadingStrings[20]="Have a bunch of weapon skins or cosmetic items you're not using?  Craft new ones in your Inventory."
+RandomLoadingStrings[21]="Consider your outfit and gear carefully. One must look stylish while killing Zeds."
+RandomLoadingStrings[22]="Melee attacks are directional based on your movement. Forward = overhead, side = swipe, and back = uppercut."
+RandomLoadingStrings[23]="Welding doors shut can limit the directions the Zeds will attack you from, but will also limit your escape routes."
+RandomLoadingStrings[24]="Don't get close to even the weakest Zeds; they can grab you and hold on until their bigger friends arrive."
+RandomLoadingStrings[25]="Want Medic XP and some dosh? Heal your team -- both parties benefit!"
+RandomLoadingStrings[26]="Use controlled bursts with your weapons. Running out of ammo mid-wave makes for a difficult time."
+RandomLoadingStrings[27]="New perk skills are unlocked every 5 levels. Check them out at the Perks Menu."
+RandomLoadingStrings[28]="The M79 and RPG must travel a certain distance to arm the explosive charge."
+RandomLoadingStrings[29]="If you're having trouble seeing the Zeds, try your flashlight."
+RandomLoadingStrings[30]="Having a tough time surviving? Try a different perk! You may find one that fits your playstyle better."
+RandomLoadingStrings[31]="Always make sure you have a way out. Getting boxed in is a sure way to take a dirt nap."
+RandomLoadingStrings[32]="Armor is your friend. You can never go wrong getting more armor."
+RandomLoadingStrings[33]="Fire is a great way to keep Zeds away from you. Fire alone takes awhile to kill Zeds, but it keeps them occupied."
+RandomLoadingStrings[34]="If a Zed or its weapon are glowing red, parrying its melee attacks will be less effective.  Run!"
+RandomLoadingStrings[35]="Lighting Zeds on fire can cause them to panic. Time to play everyone's favorite game: Oh my god, I'm on fire!"
+RandomLoadingStrings[36]="Submachine guns have a high chance to cause targets to stumble, allowing you to keep them at a distance."
+RandomLoadingStrings[37]="The rail gun can fire through multiple Zeds if you line them up right."
+RandomLoadingStrings[38]="The microwave gun does more damage against Zeds carrying metal, like fleshpounds and sirens."
+RandomLoadingStrings[39]="Try out your weapon's alternate fire mode. Not all weapons have them, but it may help you in a tight spot."
+RandomLoadingStrings[40]="You get XP and dosh for assists in addition to kills, so don't feel bad for setting up kills for your allies."
+
+ 
 
 [Zeds]
 KFPawn_ZedBloat="Bloat"
@@ -1429,40 +1611,56 @@ KFPawn_ZedClot_Slasher="Slasher"
 KFPawn_ZedClot_Alpha="Alpha Clot"
 KFPawn_ZedScrake="Scrake"
 KFPawn_ZedSiren="Siren"
-KFPawn_ZedPatriarch="Patriarch"
+KFPawn_ZedPatriarch="Pátriárka"
+;Human zeds
+KFPawn_ZedBloat_Versus="Bloat - Játékos"
+KFPawn_ZedClot_Versus="Clot - Játékos"
+KFPawn_ZedCrawler_Versus="Crawler - Játékos"
+KFPawn_ZedFleshPound_Versus="Fleshpound - Játékos"
+KFPawn_ZedGorefast_Versus="Gorefast - Játékos"
+KFPawn_ZedHans_Versus="Dr. Hans Volter - Játékos"
+KFPawn_ZedHusk_Versus="Husk - Játékos"
+KFPawn_ZedStalker_Versus="Stalker - Játékos"
+KFPawn_ZedClot_Cyst_Versus="Cyst - Játékos"
+KFPawn_ZedClot_Slasher_Versus="Slasher - Játékos"
+KFPawn_ZedClot_Alpha_Versus="Alpha Clot - Játékos"
+KFPawn_ZedScrake_Versus="Scrake - Játékos"
+KFPawn_ZedSiren_Versus="Siren - Játékos"
+KFPawn_ZedPatriarch_Versus="Pátriárka - Játékos"
 
 [ZedMoves]
-Melee="Melee"
-Rally="Rally"
-Grab="Grab"
-Light="Light"
-Heavy="Heavy"
-Spin="Spin"
-Evade="Evade"
-Jump="Jump"
-Puke="Puke"
-Mine="Mine"
-Bite="Bite"
-Scream="Scream"
-Vortex="Vortex"
-Shoot="Shoot"
-Flame="Flame"
-Suicide="Suicide"
-Rage="Rage"
-Minigun="Minigun"
-Rocket="Rocket"
-Mortar="Mortar"
-Heal="Heal"
+Melee="Közelharc"
+Rally="Hajrá"
+Grab="Elkapás"
+Light="Könnyű"
+Heavy="Erős"
+Spin="Forgás"
+Evade="Kitérés"
+Jump="Ugrás"
+Puke="Hányás"
+Mine="Akna"
+Bite="Harapás"
+Scream="Sikítás"
+Vortex="Örvény"
+Shoot="Lövés"
+Flame="Láng"
+Suicide="Öngyilkosság"
+Rage="Düh"
+Minigun="Gépágyú"
+Rocket="Rakéta"
+Mortar="Aknavető"
+Heal="Gyógyítás"
+Block="Block"
 
 [Keybinds]
-CtrlCombo="Ctrl + "
-ShiftCombo="Shift + "
-AltCombo="Alt + "
-LeftMouseButton="Bal kattintás"
-MiddleMouseButton="Középső kattintás"
-RightMouseBUtton="Jobb kattintás"
-ThumbMouseButton1="Oldal-egérgomb 1"
-ThumbMouseButton2="Oldal-egérgomb 2"
+CtrlCombo="Ctrl-"
+ShiftCombo="Shift-"
+AltCombo="Alt-"
+LeftMouseButton="Egér bal"
+MiddleMouseButton="Egér köz."
+RightMouseBUtton="Egér jobb"
+ThumbMouseButton="Egér 4."
+ThumbMouseButton2="Egér 5."
 MouseScrollDown="Egérgörgő le"
 MouseScrollUp="Egérgörgő fel"
 CapsLock="Caps Lock"
@@ -1475,7 +1673,7 @@ LeftCtrl="Bal Ctrl"
 RightCtrl="Jobb Ctrl"
 LeftAlt="Bal Alt"
 RightAlt="Jobb Alt"
-BackSlash="\\ "
+BackSlash="\\"
 Slash="/"
 RightBracket="]"
 LeftBracket="["
@@ -1563,7 +1761,14 @@ DisplayName="Black Forest"
 [KF-Prison KFMapSummary]
 DisplayName="Prison"
 
+[KF-ContainmentStation KFMapSummary]
+DisplayName="Containment Station"
+
+[KF-HostileGrounds KFMapSummary]
+DisplayName="Hostile Grounds"
+
+
 [KFMapInfo]
 ; defaults
-FoundCollectibleString="%x% found a collectible. %y% left to find..."
-FoundAllCollectiblesString="Every collectible has been found!"
+FoundCollectibleString="%x% talált egy gyűjthető tárgyat. Még %y% maradt..."
+FoundAllCollectiblesString="Minden gyűjthető tárgy előkerült!"

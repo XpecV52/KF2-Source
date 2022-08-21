@@ -12,11 +12,10 @@ defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_MicrowaveGun'
     bCanGib=true
-    StumblePower=135
-    LegStumblePower=135
     EffectGroup=EEffectDamageGroup.FXG_MicrowaveBlast
     GoreDamageGroup=EGoreDamageGroup.DGT_Obliteration
-    BurnPower=0.25
+    KnockdownPower=200
+    MicrowavePower=100
     ModifierPerkList=/* Array type was not detected. */
     bExtraMomentumZ=true
     KDamageImpulse=0

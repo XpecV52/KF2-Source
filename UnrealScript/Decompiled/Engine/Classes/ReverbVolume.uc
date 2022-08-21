@@ -138,7 +138,7 @@ defaultproperties
     object end
     // Reference: BrushComponent'Default__ReverbVolume.BrushComponent0'
     Components(0)=BrushComponent0
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
+    CollisionType=ECollisionType.COLLIDE_NoCollision
     bCollideActors=false
     begin object name=BrushComponent0 class=BrushComponent
         ReplacementPrimitive=none

@@ -1,5 +1,6 @@
 package tripwire.controls.perks
 {
+    import fl.motion.Color;
     import flash.display.MovieClip;
     import flash.events.FocusEvent;
     import flash.events.MouseEvent;
@@ -37,16 +38,20 @@ package tripwire.controls.perks
         
         public var SelectorArrow:MovieClip;
         
+        public var iconColor:Color;
+        
         public var hitbox:MovieClip;
         
-        public const hitboxZ:int = 32;
+        public const hitboxZ:int = 0;
         
         public function PerkSelectLineRenderer()
         {
+            this.iconColor = new Color();
             super();
             preventAutosizing = true;
             this._originalPositionZ = z;
             addEventListener(FocusEvent.FOCUS_IN,this.handleFocusIn,false,0,true);
+            disabledColor = 5393734;
             if(!enabled)
             {
                 this.disableButton();
@@ -70,7 +75,7 @@ package tripwire.controls.perks
                     this._perkLevelStr = !!param1.PerkLevel ? param1.PerkLevel : "0";
                     this.perkLevelText.text = this._perkLevelStr;
                 }
-                enabled = !!param1.unlocked ? Boolean(param1.unlocked) : true;
+                this.enabled = !!param1.unlocked ? Boolean(param1.unlocked) : true;
                 this.bTierUnlocked = !!param1.bTierUnlocked ? Boolean(param1.bTierUnlocked) : false;
                 if(this.bTierUnlocked)
                 {
@@ -99,6 +104,14 @@ package tripwire.controls.perks
         
         public function set active(param1:Boolean) : void
         {
+            if(param1)
+            {
+                this.highlightButton();
+            }
+            if(!param1)
+            {
+                this.unhighlightButton();
+            }
             if(this.SelectorArrow)
             {
                 this.SelectorArrow.visible = param1;
@@ -141,6 +154,7 @@ package tripwire.controls.perks
             {
                 this.highlightButton();
             }
+            setState("over");
         }
         
         override protected function handleMouseRollOut(param1:MouseEvent) : void
@@ -150,6 +164,7 @@ package tripwire.controls.perks
             {
                 this.unhighlightButton();
             }
+            setState("out");
         }
         
         override public function set selected(param1:Boolean) : void
@@ -170,7 +185,10 @@ package tripwire.controls.perks
             if(enabled)
             {
                 textField.textColor = highlightColor;
-                this.perkLevelText.textColor = highlightColor;
+                if(this.perkLevelText)
+                {
+                    this.perkLevelText.textColor = highlightColor;
+                }
                 this.hitbox.z = this.hitboxZ;
             }
             else
@@ -184,7 +202,10 @@ package tripwire.controls.perks
             if(enabled)
             {
                 textField.textColor = defaultColor;
-                this.perkLevelText.textColor = defaultColor;
+                if(this.perkLevelText)
+                {
+                    this.perkLevelText.textColor = defaultColor;
+                }
                 this.hitbox.z = 0;
             }
             else
@@ -193,10 +214,28 @@ package tripwire.controls.perks
             }
         }
         
+        override public function set enabled(param1:Boolean) : void
+        {
+            super.enabled = param1;
+            if(!super.enabled)
+            {
+                this.iconColor.setTint(disabledColor,1);
+            }
+            else
+            {
+                this.iconColor.setTint(highlightColor,1);
+            }
+            this.iconLoader.transform.colorTransform = this.iconColor;
+            this.unhighlightButton();
+        }
+        
         protected function disableButton() : *
         {
             textField.textColor = disabledColor;
-            this.perkLevelText.textColor = disabledColor;
+            if(this.perkLevelText)
+            {
+                this.perkLevelText.textColor = disabledColor;
+            }
         }
     }
 }

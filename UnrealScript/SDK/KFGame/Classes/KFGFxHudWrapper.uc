@@ -22,17 +22,10 @@ var KFPawn_MonsterBoss BossPawn;
 /*********************************************************************************************
 `* Initialization
 ********************************************************************************************* */
-
-simulated function PostBeginPlay()
-{
-	super.PostBeginPlay();
-	CreateHUDMovie();
-}
-
 /**
   * Create and initialize the HUDMovie.
   */
-function CreateHUDMovie()
+function CreateHUDMovie(optional bool bForce)
 {
 	if (!class'WorldInfo'.static.IsMenuLevel())
 	{
@@ -96,7 +89,7 @@ function ResolutionChanged()
 {
 	super.ResolutionChanged();
 
-	CreateHUDMovie();
+	CreateHUDMovie(true);
 }
 
 /**
@@ -109,8 +102,6 @@ event PostRender()
 	{
 		HudMovie.TickHud(0);
 	}
-	
-	UpdatePlayerInfos();
 }
 
 /** sets bShowScores to a specific value (not toggle) */
@@ -172,49 +163,6 @@ event DrawHUD()
 `* Updating
 ********************************************************************************************* */
 
-function UpdatePlayerInfos()
-{
-	local KFPawn_Human KFPH;
-	local vector ViewLocation, ViewVector, PlayerPartyInfoLocation;
-	local rotator ViewRotation;
-	local float ThisDot;
-	local KFWeapon KFW;
-
-	PlayerOwner.GetPlayerViewPoint(ViewLocation, ViewRotation);
-    ViewVector = vector(ViewRotation);
-
-    if ( PlayerOwner.Pawn != none )
-    {
-    	KFW = KFWeapon(PlayerOwner.Pawn.Weapon);
-    }
-
-	foreach WorldInfo.AllPawns(class'KFPawn_Human', KFPH)
-	{
-		if ( KFPH.PlayerPartyInfo == None || !KFPH.IsAliveAndWell() )
-			continue;
-
-		PlayerPartyInfoLocation = KFPH.Location + KFPH.MTO_PhysSmoothOffset + KFPH.CylinderComponent.CollisionHeight * vect(0,0,1);
-		ThisDot = Normal(PlayerPartyInfoLocation - ViewLocation) dot Normal(ViewVector);
-		
-		if ( `TimeSince(KFPH.Mesh.LastRenderTime) < 0.4f && ThisDot > 0 )
-		{
-			if ( (KFW != none && !KFW.bUsingSights) || ThisDot < 0.99 )
-			{
-				KFPH.PlayerPartyInfo.SetVisible(true);
-         		KFPH.PlayerPartyInfo.ScreenPosition = Canvas.Project(PlayerPartyInfoLocation);
-				KFPH.PlayerPartyInfo.TickHud(0);
-			}
-			else
-			{
-				KFPH.PlayerPartyInfo.SetVisible(false);
-			}
-		}
-		else
-		{
-			KFPH.PlayerPartyInfo.SetVisible(false);
-		}
-	}
-}
 
 /*********************************************************************************************
 Close / Died

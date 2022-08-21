@@ -11,6 +11,7 @@ enum EKillMessageType
 {
     KMT_PlayerKillPlayer,
     KMT_PLayerKillZed,
+    KMT_AIKillPlayer,
     KMT_MAX
 };
 
@@ -35,8 +36,6 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
 {
     switch(Switch)
     {
-        case 0:
-            return (((RelatedPRI_1.PlayerName $ (ResolveTeamName(RelatedPRI_1))) @ default.KilledString) @ RelatedPRI_2.PlayerName) $ (ResolveTeamName(RelatedPRI_2));
         case 1:
             return "+" $ (Localize("Zeds", string(OptionalObject.Name), "KFGame"));
         default:

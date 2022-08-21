@@ -32,7 +32,7 @@ defaultproperties
     DoT_Duration=5
     DoT_Interval=1
     DoT_DamageScale=1.5
-    BurnPower=0.25
+    BurnPower=2.5
     ModifierPerkList(0)=class'KFPerk_Firebug'
     CameraLensEffectTemplate=Class'KFCameraLensEmit_Fire'
     KDamageImpulse=0

@@ -10,6 +10,23 @@
 
 class KFPlayerStart extends PlayerStart;
 
+/** Saves enabled state at map start for restore on reset */
+var transient bool bDefaultEnabled;
+
+function PreBeginPlay()
+{
+	super.PreBeginPlay();
+
+	bDefaultEnabled = bEnabled;
+}
+
+function Reset()
+{
+	super.Reset();
+	
+	bEnabled = bDefaultEnabled;
+}
+
 defaultproperties
 {
    Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'Engine.Default__PlayerStart:CollisionCylinder'
@@ -60,7 +77,6 @@ defaultproperties
       ObjectArchetype=PathRenderingComponent'Engine.Default__PlayerStart:PathRenderer'
    End Object
    Components(4)=PathRenderer
-   CollisionType=COLLIDE_CustomDefault
    CollisionComponent=CollisionCylinder
    Name="Default__KFPlayerStart"
    ObjectArchetype=PlayerStart'Engine.Default__PlayerStart'

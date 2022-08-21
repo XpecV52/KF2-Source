@@ -13,6 +13,7 @@ defaultproperties
 {
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=10
+    MagazineCapacity=20
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -25,7 +26,6 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=100
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AA12'
-    MagazineCapacity=20
     MaxSpareAmmo=80
     FireSightedAnims=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */

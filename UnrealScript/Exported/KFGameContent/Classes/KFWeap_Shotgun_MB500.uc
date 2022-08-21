@@ -13,6 +13,7 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    InventorySize=5
+   MagazineCapacity(0)=8
    bHasIronSights=True
    bCanBeReloaded=True
    PenetrationPower(0)=2.000000
@@ -24,7 +25,6 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=25.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Mossberg'
-   MagazineCapacity(0)=8
    MaxSpareAmmo(0)=56
    InitialSpareMags(0)=3
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_MB500.Play_WEP_SA_MB500_Fire_M',FirstPersonCue=AkEvent'WW_WEP_SA_MB500.Play_WEP_SA_MB500_Fire_S')

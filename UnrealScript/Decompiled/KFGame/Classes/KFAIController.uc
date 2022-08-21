@@ -156,6 +156,7 @@ var bool bForceDebugCommand;
 var config bool bDebug_DrawAttackAnimInfo;
 var config bool bDebug_ShowViewCone;
 var bool bDisablePartialPaths;
+var bool bIsSimulatedPlayerController;
 var config bool bDebugCommandHistory;
 var bool bDumpCommandHistoryOnExit;
 var bool bDumpedCommandHistory;
@@ -1037,9 +1038,9 @@ function ChangeEnemy(Pawn NewEnemy, optional bool bCanTaunt)
     }
     if((Enemy != none) && Enemy != NewEnemy)
     {
-        if((bCanTaunt && MyKFPawn != none) && MyKFPawn.CanDoSpecialMove(14))
+        if((bCanTaunt && MyKFPawn != none) && MyKFPawn.CanDoSpecialMove(13))
         {
-            MyKFPawn.DoSpecialMove(14);
+            MyKFPawn.DoSpecialMove(13);
         }
         OldEnemy = Enemy;
         if(OldEnemy != none)
@@ -1065,6 +1066,59 @@ function ChangeEnemy(Pawn NewEnemy, optional bool bCanTaunt)
         }
     }
     LastSetEnemyTime = WorldInfo.TimeSeconds;
+}
+
+function KFPawn CheckForEnemiesInFOV(float MaxRange, float MinFOV, float MaxFOV, optional bool bForceRetarget, optional bool bTauntNewEnemy)
+{
+    local Vector PawnDir, Projection;
+    local float FOVDot, TempDistSQ, BestDistSq;
+    local KFPawn KFP, BestTarget;
+
+    bTauntNewEnemy = true;
+    if(Pawn == none)
+    {
+        return none;
+    }
+    PawnDir = vector(Pawn.Rotation);
+    foreach Pawn.OverlappingActors(Class'KFPawn', KFP, MaxRange)
+    {
+        if(bForceRetarget && Enemy == KFP)
+        {
+            continue;            
+        }
+        if(!KFP.IsAliveAndWell() || KFP.GetTeamNum() == GetTeamNum())
+        {
+            continue;            
+        }
+        Projection = KFP.Location - Pawn.Location;
+        FOVDot = PawnDir Dot Normal(Projection);
+        if((FOVDot < MinFOV) || FOVDot > MaxFOV)
+        {
+            continue;            
+        }
+        if(!Pawn.FastTrace(KFP.Location, Pawn.Location,, true))
+        {
+            continue;            
+        }
+        TempDistSQ = VSizeSq(Projection);
+        TempDistSQ *= (1 - (GetAggroRating(KFP)));
+        if((BestTarget == none) || TempDistSQ < BestDistSq)
+        {
+            BestDistSq = TempDistSQ;
+            BestTarget = KFP;
+        }        
+    }    
+    if((BestTarget != none) && BestTarget != Enemy)
+    {
+        ChangeEnemy(BestTarget, bTauntNewEnemy);
+        return BestTarget;
+    }
+    return none;
+}
+
+function float GetAggroRating(KFPawn KFP)
+{
+    return 0;
 }
 
 function EnableProbingMeleeRangeEvents(optional bool bForce)
@@ -1100,14 +1154,14 @@ function bool IsSuicidal()
 
 function bool IsDoingGrabSpecialMove()
 {
-    return (MyKFPawn != none) && MyKFPawn.IsDoingSpecialMove(3) || MyKFPawn.IsDoingSpecialMove(4);
+    return (MyKFPawn != none) && MyKFPawn.IsDoingSpecialMove(3);
 }
 
 function bool CanTargetBeGrabbed(KFPawn TargetKFP)
 {
     local KFAIController OtherKFAIC;
 
-    if((((TargetKFP == none) || TargetKFP.Health <= 0) || TargetKFP.IsDoingSpecialMove(28)) || TargetKFP.Physics == 2)
+    if((((TargetKFP == none) || TargetKFP.Health <= 0) || TargetKFP.IsDoingSpecialMove(27)) || TargetKFP.Physics == 2)
     {
         return false;
     }
@@ -1217,7 +1271,7 @@ final event bool IsDoingAttackSpecialMove()
     if(MyKFPawn.IsDoingSpecialMove())
     {
         KFSM = MyKFPawn.SpecialMove;
-        if((((((KFSM == 1) || KFSM == 3) || KFSM == 4) || KFSM == 18) || KFSM == 2) || KFSM == 21)
+        if(((((KFSM == 1) || KFSM == 3) || KFSM == 17) || KFSM == 2) || KFSM == 20)
         {
             return true;
         }
@@ -1348,7 +1402,7 @@ function bool DoHeavyZedBump(Actor Other, Vector HitNormal)
         else
         {
             BumpedMonster.TakeDamage(BumpEffectDamage, self, BumpedMonster.Location, vect(0, 0, 0), MyKFPawn.GetBumpAttackDamageType());
-            BumpedMonster.DoSpecialMove(5,,, Class'KFSM_Stumble'.static.PackBodyHitSMFlags(BumpedMonster, HitNormal));
+            BumpedMonster.DoSpecialMove(4,,, Class'KFSM_Stumble'.static.PackBodyHitSMFlags(BumpedMonster, HitNormal));
             return true;
         }
     }
@@ -1483,7 +1537,7 @@ event bool CanGrabAttack()
     return false;
 }
 
-event DoGrabAttack(optional Pawn NewEnemy, optional Actor InTarget, optional float InPostSpecialMoveSleepTime)
+event DoGrabAttack(optional Pawn NewEnemy, optional float InPostSpecialMoveSleepTime)
 {
     InPostSpecialMoveSleepTime = 0;
 }
@@ -2021,7 +2075,7 @@ final function DoProjectileEvade()
     local byte BestDir;
 
     MyKFPawn.SetHeadTrackTarget(none);
-    if((((((MyKFPawn != none) && MyKFPawn.CanDoSpecialMove(15) || MyKFPawn.CanDoSpecialMove(16)) && PendingEvadeProjectile != none) && !PendingEvadeProjectile.bDeleteMe) && !IsZero(PendingEvadeProjectile.Velocity)) && CanEvade())
+    if((((((MyKFPawn != none) && MyKFPawn.CanDoSpecialMove(14) || MyKFPawn.CanDoSpecialMove(15)) && PendingEvadeProjectile != none) && !PendingEvadeProjectile.bDeleteMe) && !IsZero(PendingEvadeProjectile.Velocity)) && CanEvade())
     {
         BestDir = GetBestEvadeDir(PendingEvadeProjectile.Location, PendingEvadeProjectile.Instigator);
         if(BestDir != 8)
@@ -2040,7 +2094,7 @@ function DoEvade(byte EvadeDir, optional Actor EvadeActor, optional float Delay,
     Class'AICommand_Evade'.static.Evade(self, EvadeDir, Delay, bFrightened);
 }
 
-function DoStumble(Vector Momentum, KFPawnAfflictions.EHitZoneBodyPart HitZoneLimb)
+function DoStumble(Vector Momentum, KFAfflictionManager.EHitZoneBodyPart HitZoneLimb)
 {
     local AICommand_Attack_Melee MeleeCommand;
 
@@ -2338,7 +2392,10 @@ function bool IsFrustrated()
 
 function NotifyCommandFinished(AICommand FinishedCommand);
 
-function NotifyFleeFinished();
+function NotifyFleeFinished(optional bool bAcquireNewEnemy)
+{
+    bAcquireNewEnemy = true;
+}
 
 event NotifyFailMove(string Reason)
 {
@@ -2627,7 +2684,7 @@ event bool NotifyHitWall(Vector HitNormal, Actor Wall)
     LastHitWall = Wall;
     LastNotifyHitWallTime = WorldInfo.TimeSeconds;
     AILog_Internal((((string(GetFuncName()) @ " Wall: ") @ string(Wall)) @ " HitNormal: ") @ string(HitNormal));
-    if((MyKFPawn != none) && MyKFPawn.IsDoingSpecialMove(11))
+    if((MyKFPawn != none) && MyKFPawn.IsDoingSpecialMove(10))
     {
         DisableNotifyHitWall(0.5);
         return true;
@@ -3257,7 +3314,7 @@ event SeePlayer(Pawn Seen)
         }
         else
         {
-            if(MyKFPawn.IsDoingSpecialMove(11))
+            if(MyKFPawn.IsDoingSpecialMove(10))
             {
                 DisableSeePlayer(0);
                 return;
@@ -3280,9 +3337,9 @@ event SeePlayer(Pawn Seen)
             {
                 if((LastEnemySightedTime == float(0)) || (WorldInfo.TimeSeconds - LastEnemySightedTime) > RepeatWalkingTauntTime)
                 {
-                    if(MyKFPawn.CanDoSpecialMove(14))
+                    if(MyKFPawn.CanDoSpecialMove(13))
                     {
-                        MyKFPawn.DoSpecialMove(14);
+                        MyKFPawn.DoSpecialMove(13);
                     }
                 }
                 LastEnemySightedTime = WorldInfo.TimeSeconds;
@@ -3292,7 +3349,7 @@ event SeePlayer(Pawn Seen)
     }
     if((Enemy != none) && Enemy != Seen)
     {
-        if((((KFPawn(Seen) != none) && KFPawn(Seen).IsDoingSpecialMove(28)) && (NumberOfZedsTargetingPawn(Seen)) <= 3) && !bEnemyIsVisible)
+        if((((KFPawn(Seen) != none) && KFPawn(Seen).IsDoingSpecialMove(27)) && (NumberOfZedsTargetingPawn(Seen)) <= 3) && !bEnemyIsVisible)
         {
             SetEnemy(Seen);            
         }
@@ -3376,7 +3433,7 @@ event bool NotifyBump(Actor Other, Vector HitNormal)
     local Actor HitActor;
     local Vector HitLocation, MyHitNormal;
 
-    if((MyKFPawn != none) && MyKFPawn.IsDoingSpecialMove(11))
+    if((MyKFPawn != none) && MyKFPawn.IsDoingSpecialMove(10))
     {
         DisableBump(0.25);
         return true;
@@ -3480,6 +3537,8 @@ function NotifySpecialMoveEnded(KFSpecialMove SM)
     }
     LastSpecialMoveEndTime = WorldInfo.TimeSeconds;
 }
+
+function NotifySpecialMoveStarted(KFSpecialMove SM);
 
 simulated function StartSteering()
 {
@@ -4290,8 +4349,6 @@ function DoDebugTurnInPlace(KFPlayerController KFPC, optional bool bAllowMelee)
     Class'AICommand_DebugTurn'.static.DebugTurnInPlace(self, bAllowMelee, KFPC);
 }
 
-function AIHandleTakenDamage(Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType);
-
 function bool IsAggroEnemySwitchAllowed()
 {
     return true;
@@ -4498,7 +4555,7 @@ function ReceiveProjectileWarning(Projectile Proj)
 {
     local KFAIController OtherKFAIC;
 
-    if(((MyKFPawn == none) || MyKFPawn.Health <= 0) || !MyKFPawn.CanDoSpecialMove(15) && !MyKFPawn.CanDoSpecialMove(16))
+    if(((MyKFPawn == none) || MyKFPawn.Health <= 0) || !MyKFPawn.CanDoSpecialMove(14) && !MyKFPawn.CanDoSpecialMove(15))
     {
         return;
     }
@@ -4517,7 +4574,7 @@ function ReceiveProjectileWarning(Projectile Proj)
 
 function HandleProjectileWarning(Projectile Proj)
 {
-    if(((MyKFPawn == none) || MyKFPawn.Health <= 0) || !MyKFPawn.CanDoSpecialMove(15) && !MyKFPawn.CanDoSpecialMove(16))
+    if(((MyKFPawn == none) || MyKFPawn.Health <= 0) || !MyKFPawn.CanDoSpecialMove(14) && !MyKFPawn.CanDoSpecialMove(15))
     {
         return;
     }
@@ -4542,7 +4599,7 @@ final function Timer_DoProjectileEvade()
     local byte BestDir;
 
     MyKFPawn.SetHeadTrackTarget(none);
-    if((((((MyKFPawn != none) && MyKFPawn.CanDoSpecialMove(15) || MyKFPawn.CanDoSpecialMove(16)) && PendingEvadeProjectile != none) && !PendingEvadeProjectile.bDeleteMe) && !IsZero(PendingEvadeProjectile.Velocity)) && CanEvade())
+    if((((((MyKFPawn != none) && MyKFPawn.CanDoSpecialMove(14) || MyKFPawn.CanDoSpecialMove(15)) && PendingEvadeProjectile != none) && !PendingEvadeProjectile.bDeleteMe) && !IsZero(PendingEvadeProjectile.Velocity)) && CanEvade())
     {
         BestDir = GetBestEvadeDir(PendingEvadeProjectile.Location, PendingEvadeProjectile.Instigator);
         if(BestDir != 8)

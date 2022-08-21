@@ -12,7 +12,7 @@ class KFDestructibleActor extends Actor
 	placeable
 	//implements(Interface_NavMeshPathObject)
 	native
-	hidecategories(Physics, Advanced, Debug, Object, Mobile)
+	hidecategories(Physics, Debug, Object, Mobile)
 	showcategories(Navigation);
 
 /*********************************************************************************************
@@ -47,8 +47,6 @@ struct native ReplicatedDamageModInfo
 /** Packed dmg mod info for replication */
 var repnotify ReplicatedDamageModInfo	ReplicatedDamageMods[16];
 
-/** used to force reset on clients even when state hasn't changed */
-var repnotify byte	ResetCount;
 /** True if the destructible is fully shut down */
 var repnotify bool  bShutDown;
 
@@ -91,6 +89,8 @@ var transient bool				bComponentsSetUp;
 var transient bool				bInitRBPhysCalled;
 /** If set, TakeRadiusDamage is being executed */
 var transient bool				bIsRadiusDamage;
+/** Used by reset code to determine if actor is dirtied */
+var transient bool bAnyDamageModApplied;
 
 /*********************************************************************************************
 * Nav Mesh (DEPRECATED)
@@ -473,7 +473,7 @@ public:
 replication
 {
 	if (Role == ROLE_Authority)
-		ReplicatedDamageMods, ResetCount, bShutDown;
+		ReplicatedDamageMods, bShutDown;
 }
 
 simulated event ReplicatedEvent(name VarName)
@@ -495,10 +495,6 @@ simulated event ReplicatedEvent(name VarName)
 				}
 			}
 		}
-	}
-	else if (VarName == nameof(ResetCount) && ResetCount > 0)
-	{
-		UnDestroy();
 	}
 	else if (VarName == nameof(bShutDown))
 	{
@@ -1056,22 +1052,21 @@ function MoveCollidingPawns()
 	// @todo
 }
 
-/** set ResetCount to zero so it doesn't get applied for JIP clients, which is a problem since they
- * will also get post-reset replicated properties simultaneously and have no reasonable way to resolve it
+/**
+ * Level was reset without reloading
+ * Network: ALL. Called on clients to avoid issues that could arise from players joining in progress
+ * and thinking they need to reset this actor when they don't.
  */
-final function ClearResetCount()
+simulated function Reset()
 {
-	ResetCount = 0;
-}
+	if( !bAnyDamageModApplied )
+	{
+		return;
+	}
 
-function Reset()
-{
 	RemoveDecals();
 	UnDestroy();
-	ResetCount++;
-	bForceNetUpdate = TRUE;
-	// chance to replicate
-	SetTimer(1.0, false, nameof(ClearResetCount));
+	bForceNetUpdate = true;
 }
 
 defaultproperties

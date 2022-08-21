@@ -45,9 +45,16 @@ event Init()
     if(OnlineSub != none)
     {
         GameInterface = OnlineSub.GameInterface;
-        if(NotEqual_InterfaceInterface(GameInterface, (none)))
+        if(Class'WorldInfo'.static.IsConsoleBuild() && !Class'WorldInfo'.static.IsE3Build())
         {
-            GameInterface.AddFindOnlineGamesCompleteDelegate(OnSearchComplete);
+            Class'GameEngine'.static.GetPlayfabInterface().AddFindOnlineGamesCompleteDelegate(OnSearchComplete);            
+        }
+        else
+        {
+            if(NotEqual_InterfaceInterface(GameInterface, (none)))
+            {
+                GameInterface.AddFindOnlineGamesCompleteDelegate(OnSearchComplete);
+            }
         }
     }
 }
@@ -89,7 +96,14 @@ event bool SubmitGameSearch(byte ControllerIndex, optional bool bInvalidateExist
                 return true;
             }
             InvalidateCurrentSearchResults();
-            return GameInterface.FindOnlineGames(ControllerIndex, GameSearchCfgList[ActiveSearchIndex].Search);            
+            if(Class'WorldInfo'.static.IsConsoleBuild() && !Class'WorldInfo'.static.IsE3Build())
+            {
+                return Class'GameEngine'.static.GetPlayfabInterface().FindOnlineGames(GameSearchCfgList[ActiveSearchIndex].Search);                
+            }
+            else
+            {
+                return GameInterface.FindOnlineGames(ControllerIndex, GameSearchCfgList[ActiveSearchIndex].Search);
+            }            
         }
         else
         {

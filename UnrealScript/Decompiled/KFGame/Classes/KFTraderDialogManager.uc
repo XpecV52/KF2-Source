@@ -77,7 +77,7 @@ simulated function PlayDialog(int EventID, Controller C)
     {
         return;
     }
-    if(!default.bEnabled || TraderVoiceGroupClass == none)
+    if(!bEnabled || TraderVoiceGroupClass == none)
     {
         return;
     }

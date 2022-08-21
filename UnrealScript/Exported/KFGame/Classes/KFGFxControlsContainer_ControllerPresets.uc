@@ -21,6 +21,8 @@ var localized string ShowIngameMenuString;
 var localized string HoldString;
 var localized string CurrentControllerPresetString;
 
+var localized array<string> PresetStrings;
+
 var int numGamepadLayouts;
 
 struct KeyBinding
@@ -82,6 +84,7 @@ function LocalizeText()
 	local GfxObject TextField;
 	local GFxObject PresetArray;
 	local GfxObject StepperOption;
+	local GFxObject defaultButton;
 	local int i;
 
 	TextField = GetObject("CurrentPresetTextfield");
@@ -91,7 +94,7 @@ function LocalizeText()
 	for (i = 0; i < numGamepadLayouts; i++)
 	{
 		StepperOption = CreateObject("Object");
-		StepperOption.SetString("label", string(i));
+		StepperOption.SetString("label", PresetStrings[i]);
 		PresetArray.SetElementObject(i, StepperOption);
 	}
 	SetObject("presetOptions",PresetArray);
@@ -100,6 +103,12 @@ function LocalizeText()
 	if(TextField != none)
 	{
 		Textfield.SetText(CurrentControllerPresetString);
+	}
+
+	defaultButton = GetObject("defaultButton");
+	if ( defaultButton != None )
+	{
+		defaultButton.SetString("label",Localize("KFGFxOptionsMenu_Graphics","DefaultString","KFGame"));
 	}
 }
 
@@ -171,6 +180,15 @@ function AddBindingToGFxObject(out GFxObject ObjectArray, string Key, string Com
 	ObjectArray.SetElementObject(i, TempObject);
 }
 
+function ResetPresetOptions()
+{
+	// Currently doing nothing with the reset button is pressed since current system overrides default .ini settings. HSL_BB
+	// TODO: Restore settings back to defaults.
+
+	//SetInt("currentPreset", /*Default value*/);
+
+}
+
 defaultproperties
 {
    InputSectionName="LocalizedControls"
@@ -181,6 +199,10 @@ defaultproperties
    ShowIngameMenuString="Toggle In Game Menu"
    HoldString="(Hold)"
    CurrentControllerPresetString="Current Controller Preset"
+   PresetStrings(0)="Preset 1"
+   PresetStrings(1)="Preset 2"
+   PresetStrings(2)="Preset 3"
+   PresetStrings(3)="Preset 4"
    Name="Default__KFGFxControlsContainer_ControllerPresets"
    ObjectArchetype=KFGFxObject_Container'KFGame.Default__KFGFxObject_Container'
 }

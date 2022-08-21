@@ -188,6 +188,7 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Flamethrower'
    FireModeIconPaths(1)=()
    InventorySize=8
+   MagazineCapacity(0)=100
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -198,7 +199,6 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=1.000000
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Flamethrower'
-   MagazineCapacity(0)=100
    MaxSpareAmmo(0)=400
    InitialSpareMags(0)=1
    AmmoPickupScale(0)=0.400000

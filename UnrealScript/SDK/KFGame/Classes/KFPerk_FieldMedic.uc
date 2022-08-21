@@ -29,6 +29,9 @@ const 							AARangeSq			=	250000;
 /** How much to reduce the damage of a "vaccinated" teammate when the skill is active */
 const							VaccinationResist 	= 	0.25;
 
+var 	const private int		VaccBloatBileResistance;
+var 	const private ParticleSystem AAParticleSystem;
+
 enum EMedicPerkSkills
 {
 	EMedicHealingSurge,			// 20% Increased health
@@ -148,7 +151,7 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
  *
  * @param Speed jog/sprint speed
   */
-function ModifySpeed( out float Speed )
+simulated function ModifySpeed( out float Speed )
 {
 	`QALog( "MovementSpeed" @ GetPercentage( Speed, Speed * GetPassiveValue( MovementSpeed, GetLevel() ) ), bLogPerk );
 	Speed *= GetPassiveValue( MovementSpeed, GetLevel() );
@@ -224,14 +227,14 @@ simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo
 /**
  * @brief Modifies the armor price
  *
- * @param ArmorPrice armomr price
+ * @param ArmorPrice armor price
  * @todo: Greg, use this for the trader
  */
 simulated function float GetArmorDiscountMod()
 {
 	if( IsCombatantActive() )
 	{
-		return 1 - FMin( PerkSkills[EMedicCombatant].StartingValue, PerkSkills[EMedicCombatant].MaxValue );
+		return 1 - GetSkillValue( PerkSkills[EMedicCombatant] );
 	}
 	return 1;
 }
@@ -299,6 +302,10 @@ simulated function bool CanRepairArmor()
 	return IsVaccinationActive() || IsArmamentActive();
 }
 
+static function float GetBloatBileResistance()
+{
+	return default.VaccBloatBileResistance;
+}
 
 /** Takes the weapons primary damage and calculates the bleeding over time value */
 /**
@@ -421,6 +428,16 @@ private final function bool IsSedadtiveActive()
 private final function bool IsAirborneAgentActive()
 {
 	return PerkSkills[EMedicAirborneAgent].bActive && WorldInfo.TimeDilation < 1.f;
+}
+
+simulated function bool ShouldPlayAAEffect()
+{
+	return PerkSkills[EMedicAirborneAgent].bActive;
+}
+
+simulated static function ParticleSystem GetAAEffect()
+{
+	return default.AAParticleSystem;
 }
 
 /**
@@ -590,6 +607,8 @@ DefaultProperties
    	RegenerationInterval=5.f
 	RegenerationAmount=2
 
+	VaccBloatBileResistance=0.45
+
 	VaccinationResistableDamageTypeNames(0)="KFDT_BloatPuke"
 	VaccinationResistableDamageTypeNames(1)="KFDT_Toxic"
 
@@ -614,12 +633,14 @@ DefaultProperties
 	BleedDmgTypeClass=KFDT_Bleeding
 	VaccinationDuration=10.f
 
-	SecondaryXPModifier[0]=2
-	SecondaryXPModifier[1]=2
-	SecondaryXPModifier[2]=3
+	SecondaryXPModifier[0]=4
+	SecondaryXPModifier[1]=4
+	SecondaryXPModifier[2]=4
 	SecondaryXPModifier[3]=4
 
     // Skill tracking
 	HitAccuracyHandicap=5.0
 	HeadshotAccuracyHandicap=-0.75
+
+	AAParticleSystem=ParticleSystem'FX_Impacts_EMIT.FX_Medic_Airborne_Agent_01'
 }

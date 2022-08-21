@@ -11,8 +11,6 @@ class KFDT_Ballistic_NailShotgun extends KFDT_Ballistic_Shotgun
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 /**
  * Returns the class of the projectile to spawn if the weapon using this damage
  * type can pin a zed when it kills it
@@ -32,10 +30,9 @@ defaultproperties
 	KDeathVel=15
 
     KnockdownPower=0
-	StunPower=42
-	StumblePower=54
-	LegStumblePower=54
-	GunHitPower=118
+	StunPower=0
+	StumblePower=24
+	GunHitPower=0
 
 	WeaponDef=class'KFWeapDef_NailGun'
 

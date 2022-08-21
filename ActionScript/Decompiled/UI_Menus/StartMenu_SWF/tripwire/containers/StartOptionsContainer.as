@@ -1,11 +1,15 @@
 package tripwire.containers
 {
+    import com.greensock.TimelineMax;
+    import com.greensock.easing.Circ;
     import flash.display.MovieClip;
     import flash.events.Event;
     import flash.events.KeyboardEvent;
+    import flash.events.MouseEvent;
     import flash.external.ExternalInterface;
     import flash.ui.Keyboard;
     import scaleform.clik.controls.UILoader;
+    import scaleform.clik.core.UIComponent;
     import scaleform.clik.data.DataProvider;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.IndexEvent;
@@ -13,6 +17,7 @@ package tripwire.containers
     import scaleform.clik.interfaces.IDataProvider;
     import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
+    import scaleform.gfx.FocusManager;
     import tripwire.controls.CategoryButton;
     import tripwire.controls.TripButton;
     import tripwire.controls.TripScrollingList;
@@ -21,6 +26,8 @@ package tripwire.containers
     public class StartOptionsContainer extends TripSubContainer
     {
          
+        
+        public var helperTextContainer:TextContainer;
         
         public var optionsHeader:SectionHeaderContainer;
         
@@ -88,12 +95,42 @@ package tripwire.containers
         
         public var createGameMapImageContainerMC:MovieClip;
         
+        public var fadeTimeline:TimelineMax;
+        
         public function StartOptionsContainer()
         {
+            this.fadeTimeline = new TimelineMax({
+                "paused":true,
+                "useFrames":true
+            });
             super();
             currentElement = defaultFirstElement = this.startGameButton;
             sectionHeader = this.optionsHeader;
             defaultNumPrompts = 2;
+        }
+        
+        public function set helpText(param1:String) : void
+        {
+            if(param1 != "")
+            {
+                this.helperTextContainer.text = param1;
+                if(this.helperTextContainer.alpha != 1)
+                {
+                    this.fadeTimeline.play();
+                }
+            }
+            else
+            {
+                this.closeHelpText();
+            }
+        }
+        
+        public function closeHelpText() : void
+        {
+            if(this.helperTextContainer.visible)
+            {
+                this.fadeTimeline.reverse(0);
+            }
         }
         
         public function set localizedText(param1:Object) : void
@@ -270,12 +307,15 @@ package tripwire.containers
             stage.addEventListener(KeyboardEvent.KEY_UP,this.onUserKeyUp,false,0,true);
             if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
             {
-                FocusHandler.getInstance().setFocus(this.startGameButton);
+                FocusHandler.getInstance().setFocus(currentElement);
+                showDimLeftSide(false);
             }
+            this.backButton.visible = !bManagerUsingGamepad;
         }
         
         override public function deselectContainer() : void
         {
+            currentElement = !!this._currentList ? this._currentList.associatedButton : FocusManager.getFocus() as UIComponent;
             super.deselectContainer();
             this.backButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
             this.startGameButton.removeEventListener(ButtonEvent.PRESS,this.handleButtonEvent);
@@ -292,9 +332,66 @@ package tripwire.containers
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
-            currentElement = defaultFirstElement = this.modeButton;
+            this.helperTextContainer.visible = false;
+            currentElement = defaultFirstElement = this.startGameButton;
             this.initializeLists();
             this.setTabIndex();
+            this.backButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.startGameButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.modeButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.mapButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.difficultyButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.lengthButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.privacyButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.serverTypeButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.inProgressButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.optionsHeader.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.createGameMapImageContainerMC.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.modeList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
+            this.mapList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
+            this.difficultyList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
+            this.lengthList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
+            this.serverTypeList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
+            this.privacyList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
+            this.inProgressList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
+            leftSidePanels.push(this.backButton);
+            leftSidePanels.push(this.startGameButton);
+            leftSidePanels.push(this.modeButton);
+            leftSidePanels.push(this.mapButton);
+            leftSidePanels.push(this.difficultyButton);
+            leftSidePanels.push(this.lengthButton);
+            leftSidePanels.push(this.privacyButton);
+            leftSidePanels.push(this.serverTypeButton);
+            leftSidePanels.push(this.inProgressButton);
+            leftSidePanels.push(this.optionsHeader);
+            leftSidePanels.push(this.createGameMapImageContainerMC);
+            rightSidePanels.push(this.modeList);
+            rightSidePanels.push(this.mapList);
+            rightSidePanels.push(this.difficultyList);
+            rightSidePanels.push(this.lengthList);
+            rightSidePanels.push(this.serverTypeList);
+            rightSidePanels.push(this.privacyList);
+            rightSidePanels.push(this.inProgressList);
+            this.makeAnims();
+        }
+        
+        public function makeAnims() : void
+        {
+            this.fadeTimeline.set(this.helperTextContainer,{"visible":false});
+            this.fadeTimeline.fromTo(this.helperTextContainer,6,{
+                "alpha":0,
+                "visible":true
+            },{
+                "alpha":1,
+                "visible":true,
+                "ease":Circ.easeOut
+            });
+        }
+        
+        override protected function onInputChange(param1:Event) : *
+        {
+            super.onInputChange(param1);
+            this.backButton.visible = !bManagerUsingGamepad;
         }
         
         function initializeLists() : *
@@ -341,8 +438,6 @@ package tripwire.containers
                     this.showOptions(this.modeList);
                     break;
                 case this.mapButton:
-                    this.mapList.addEventListener(ListEvent.ITEM_ROLL_OVER,this.onItemRollOver,false,0,true);
-                    this.mapList.addEventListener(ListEvent.INDEX_CHANGE,this.onItemRollOver,false,0,true);
                     this.showOptions(this.mapList);
                     break;
                 case this.difficultyButton:
@@ -414,6 +509,12 @@ package tripwire.containers
         {
             param1.bOpen = true;
             this._currentList = param1;
+            this._currentList.addEventListener(ListEvent.ITEM_ROLL_OVER,this.onItemRollOver,false,0,true);
+            this._currentList.addEventListener(ListEvent.INDEX_CHANGE,this.onItemRollOver,false,0,true);
+            if(bManagerUsingGamepad)
+            {
+                showDimLeftSide(true);
+            }
         }
         
         private function onItemRollOver(param1:ListEvent) : *
@@ -424,6 +525,10 @@ package tripwire.containers
             if(param1 != null)
             {
                 _loc4_ = param1.index;
+                if(this._currentList != this.mapList)
+                {
+                    ExternalInterface.call("Callback_OptionListOpened",this._currentList.name,_loc4_);
+                }
             }
             else
             {
@@ -451,8 +556,11 @@ package tripwire.containers
         
         override protected function onBPressed(param1:InputDetails) : void
         {
-            this.onBack(new IndexEvent(IndexEvent.INDEX_CHANGE,false,true,CANCELLED_INDEX));
-            this._currentList = null;
+            if(this._currentList)
+            {
+                this._currentList = null;
+            }
+            this.attemptLeaveMenu();
         }
         
         protected function onBack(param1:IndexEvent) : *
@@ -461,39 +569,50 @@ package tripwire.containers
             {
                 this.attemptLeaveMenu();
             }
-            else if(param1.index != CANCELLED_INDEX)
+            else
             {
-                (this._currentList.associatedButton as CategoryButton).infoString = this._currentList.dataProvider[param1.index].label;
-                switch(this._currentList)
+                if(param1.index != CANCELLED_INDEX)
                 {
-                    case this.modeList:
-                        ExternalInterface.call("Callback_Mode",param1.index);
-                        break;
-                    case this.lengthList:
-                        ExternalInterface.call("Callback_Length",param1.index);
-                        break;
-                    case this.difficultyList:
-                        ExternalInterface.call("Callback_Difficulty",param1.index);
-                        break;
-                    case this.mapList:
-                        this.mapList.removeEventListener(ListEvent.ITEM_ROLL_OVER,this.onItemRollOver);
-                        this.mapList.removeEventListener(ListEvent.INDEX_CHANGE,this.onItemRollOver);
-                        this._currentSelectedMapIndex = param1.index;
-                        ExternalInterface.call("Callback_MapSelection",param1.index);
-                        break;
-                    case this.privacyList:
-                        ExternalInterface.call("Callback_Privacy",param1.index);
-                        break;
-                    case this.serverTypeList:
-                        ExternalInterface.call("Callback_ServerType",param1.index);
-                        break;
-                    case this.inProgressList:
-                        ExternalInterface.call("Callback_InProgress",param1.index);
+                    (this._currentList.associatedButton as CategoryButton).infoString = this._currentList.dataProvider[param1.index].label;
+                    switch(this._currentList)
+                    {
+                        case this.modeList:
+                            ExternalInterface.call("Callback_Mode",param1.index);
+                            break;
+                        case this.lengthList:
+                            ExternalInterface.call("Callback_Length",param1.index);
+                            break;
+                        case this.difficultyList:
+                            ExternalInterface.call("Callback_Difficulty",param1.index);
+                            break;
+                        case this.mapList:
+                            this._currentSelectedMapIndex = param1.index;
+                            ExternalInterface.call("Callback_MapSelection",param1.index);
+                            break;
+                        case this.privacyList:
+                            ExternalInterface.call("Callback_Privacy",param1.index);
+                            break;
+                        case this.serverTypeList:
+                            ExternalInterface.call("Callback_ServerType",param1.index);
+                            break;
+                        case this.inProgressList:
+                            ExternalInterface.call("Callback_InProgress",param1.index);
+                    }
+                    this.closeHelpText();
+                    this._currentList.removeEventListener(ListEvent.ITEM_ROLL_OVER,this.onItemRollOver);
+                    this._currentList.removeEventListener(ListEvent.INDEX_CHANGE,this.onItemRollOver);
                 }
-            }
-            else if(this._currentList == this.mapList)
-            {
-                this.resetMapOption();
+                else
+                {
+                    if(this._currentList == this.mapList)
+                    {
+                        this.resetMapOption();
+                    }
+                    this.closeHelpText();
+                    this._currentList.removeEventListener(ListEvent.ITEM_ROLL_OVER,this.onItemRollOver);
+                    this._currentList.removeEventListener(ListEvent.INDEX_CHANGE,this.onItemRollOver);
+                }
+                showDimLeftSide(false);
             }
         }
         

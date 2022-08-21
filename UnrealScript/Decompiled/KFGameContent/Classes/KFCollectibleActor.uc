@@ -6,7 +6,7 @@
  * All rights belong to their respective owners.
  *******************************************************************************/
 class KFCollectibleActor extends KFDestructibleActor
-    hidecategories(Physics,Advanced,Debug,Object,Mobile,Navigation,NavMesh);
+    hidecategories(Physics,Debug,Object,Mobile,Navigation,NavMesh);
 
 var private bool bFound;
 
@@ -33,6 +33,8 @@ function AdjustDamage(out int InDamage, Controller EventInstigator, class<Damage
     }
     super.AdjustDamage(InDamage, EventInstigator, DamageType);
 }
+
+simulated function Reset();
 
 defaultproperties
 {

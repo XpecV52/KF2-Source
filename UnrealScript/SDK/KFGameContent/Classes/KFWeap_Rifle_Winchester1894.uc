@@ -40,7 +40,7 @@ defaultproperties
 	// Ammo
 	MagazineCapacity[0]=10
 	MaxSpareAmmo[0]=60
-	InitialSpareMags[0]=2
+	InitialSpareMags[0]=3
 	bCanBeReloaded=true
 	bReloadFromMagazine=false
 
@@ -73,7 +73,7 @@ defaultproperties
 	InstantHitDamage(DEFAULT_FIREMODE)=105.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Winchester'
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Winchester'
-	FireInterval(DEFAULT_FIREMODE)=0.85 // 70 RPM
+	FireInterval(DEFAULT_FIREMODE)=0.75 // 70 RPM  0.85
 	Spread(DEFAULT_FIREMODE)=0.007
 	PenetrationPower(DEFAULT_FIREMODE)=1.5
 	FireOffset=(X=25,Y=3.0,Z=-2.5)

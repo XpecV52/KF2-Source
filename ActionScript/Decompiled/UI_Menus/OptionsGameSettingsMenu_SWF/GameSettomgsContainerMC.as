@@ -13,6 +13,7 @@ package
             this.__setProp_classicWeaponSelectCheckBox_GameSettomgsContainerMC_test_0();
             this.__setProp_killTickerCheckBox_GameSettomgsContainerMC_test_0();
             this.__setProp_closeButton_GameSettomgsContainerMC_header_0();
+            this.__setProp_defaultButton_GameSettomgsContainerMC_header_0();
         }
         
         function __setProp_crosshairCheckBox_GameSettomgsContainerMC_test_0() : *
@@ -115,6 +116,34 @@ package
             try
             {
                 closeButton["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        
+        function __setProp_defaultButton_GameSettomgsContainerMC_header_0() : *
+        {
+            try
+            {
+                defaultButton["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            defaultButton.autoRepeat = false;
+            defaultButton.autoSize = "none";
+            defaultButton.data = "";
+            defaultButton.enabled = true;
+            defaultButton.enableInitCallback = false;
+            defaultButton.focusable = true;
+            defaultButton.label = "";
+            defaultButton.selected = false;
+            defaultButton.toggle = false;
+            defaultButton.visible = false;
+            try
+            {
+                defaultButton["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

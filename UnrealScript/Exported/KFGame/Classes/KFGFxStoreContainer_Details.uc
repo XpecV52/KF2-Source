@@ -12,6 +12,7 @@ class KFGFxStoreContainer_Details extends KFGFxObject_Container;
 
 var localized string AddToCartString;
 var localized string PreviewString;
+var localized string LookUpOnMarketString;
 
 function Initialize( KFGFxObject_Menu NewParentMenu )
 {
@@ -35,8 +36,9 @@ function LocalizeText()
 
 defaultproperties
 {
-   AddToCartString="Buy Item"
-   PreviewString="Preview"
+   AddToCartString="BUY ITEM"
+   PreviewString="PREVIEW"
+   LookUpOnMarketString="FIND IN MARKET"
    Name="Default__KFGFxStoreContainer_Details"
    ObjectArchetype=KFGFxObject_Container'KFGame.Default__KFGFxObject_Container'
 }

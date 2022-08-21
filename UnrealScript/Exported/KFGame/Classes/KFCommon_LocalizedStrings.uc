@@ -39,6 +39,9 @@ var localized string SpectatorString;
 var localized string UnableToSwitchTeamString;
 var localized string NoSwitchReasonString;
 
+var localized string TeamString;
+var localized string AllString;
+
 static function array<string> GetDifficultyStringsArray()
 {
 	return default.DifficultyStrings;
@@ -101,6 +104,11 @@ static function array<string> GetGameModeStringsArray()
 
 static function string GetGameModeString( int GameModeIndex )
 {
+	if(GameModeIndex == INDEX_NONE)
+	{
+		return default.NoPreferenceString;
+	}
+	
 	if( 0 < default.ModeStrings.length && GameModeIndex < default.ModeStrings.length )
 	{
 		return default.ModeStrings[GameModeIndex];
@@ -119,6 +127,7 @@ defaultproperties
    LengthStrings(2)="Long (10 Waves)"
    ServerTypeStrings(0)="Ranked"
    ServerTypeStrings(1)="Ranked - Custom"
+   ServerTypeStrings(2)="Unranked"
    PermissionStrings(0)="Public"
    PermissionStrings(1)="Friends only"
    PermissionStrings(2)="Private"
@@ -141,7 +150,9 @@ defaultproperties
    HumanString="SURVIVOR"
    SpectatorString="SPECTATOR"
    UnableToSwitchTeamString="Unable to Switch Teams"
-   NoSwitchReasonString="Switching teams would upset team balance."
+   NoSwitchReasonString="Switching teams would upset team balance"
+   TeamString="TEAM"
+   AllString="ALL"
    Name="Default__KFCommon_LocalizedStrings"
    ObjectArchetype=Object'Core.Default__Object'
 }

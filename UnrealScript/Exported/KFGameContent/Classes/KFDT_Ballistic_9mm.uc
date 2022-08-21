@@ -12,67 +12,11 @@ class KFDT_Ballistic_9mm extends KFDT_Ballistic_Handgun
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 15;
-
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_9mm'
-   KnockdownPower=30
-   StumblePower=35
-   LegStumblePower=35
-   GunHitPower=15
+   KnockdownPower=12.000000
+   StumblePower=0.000000
    KDamageImpulse=900.000000
    KDeathVel=100.000000
    KDeathUpKick=-300.000000

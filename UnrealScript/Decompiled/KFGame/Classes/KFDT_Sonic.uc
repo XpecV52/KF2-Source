@@ -15,7 +15,6 @@ static function int GetDamageeDialogID()
 
 defaultproperties
 {
-    bCanObliterate=true
     ScreenMaterialName=Effect_Siren
     ObliterationHealthThreshold=-1
     ObliterationDamageThreshold=3

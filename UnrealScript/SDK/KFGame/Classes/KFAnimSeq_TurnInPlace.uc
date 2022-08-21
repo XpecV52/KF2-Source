@@ -26,8 +26,14 @@ var()	FLOAT			TransitionBlendTime;
 var		transient INT	ActiveChildIndex;
 var		transient FLOAT	BlendTimeToGo;
 
+/** Internal cached pointer to Owner */
+var const transient KFPawn	PawnOwner;
+
 cpptext
 {
+	// AnimNode interface
+	void InitAnim( USkeletalMeshComponent* MeshComp, UAnimNodeBlendBase* Parent );
+
 	/** Play a turn in place transition */
 	void PlayTransition(FName TransitionName, FLOAT BlendTime);
 	void TickAnim(FLOAT DeltaSeconds);

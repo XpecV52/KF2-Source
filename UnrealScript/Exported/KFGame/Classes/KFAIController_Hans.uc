@@ -94,11 +94,17 @@ var KFPawn LastRecentlySeenEnemyGunned;
 /** The last enemy we grenaded that was recently seen */
 var KFPawn LastRecentlySeenEnemyGrenaded;
 
-/* How often to update RecentlySeenEnemyList */
+/** How often to update RecentlySeenEnemyList */
 var() float RecentSeenEnemyListUpdateInterval;
 
-/* Last time we updated the RecentlySeenEnemyList*/
+/** Last time we updated the RecentlySeenEnemyList*/
 var float LastRecentSeenEnemyListUpdateTime;
+
+/** The last time we changed to a new target */
+var float LastRetargetTime;
+
+/** How long to wait before attempting to find a new target */
+var float RetargetWaitTime;
 
 /*********************************************************************************************
 * Vars for handing the timing of firing, when to shoot, the shooting cadence, etc
@@ -153,6 +159,37 @@ var() float GrenadeAttackEvalInterval;
 /* Last time we evaluated if we wanted to do a grenade attack*/
 var float LastGrenadeAttackEvalTime;
 
+/** Whether we've already thrown a smoke grenade barrage this hunt and heal phase */
+var bool bHasUsedSmokeScreenThisPhase;
+
+/*********************************************************************************************
+* Fleeing
+**********************************************************************************************/
+
+/** TRUE if flee is in progress */
+var bool bFleeing;
+
+/** TRUE if flee was interrupted (to attack, etc) */
+var bool bWantsToFlee;
+
+/** Set to true once the flee has been completed */
+var bool bHasFledThisPhase;
+
+/** How long we should flee */
+var float MinFleeDuration, MaxFleeDuration;
+
+/** Maximum flee distance */
+var float MaxFleeDistance;
+
+/** The start time of the last flee */
+var float FleeStartTime;
+
+/** The total cumulative time spent fleeing */
+var float TotalFleeTime;
+
+/** Whether the flee was interrupted by the targeting loop */
+var bool bFleeInterrupted;
+
 // (cpptext)
 // (cpptext)
 // (cpptext)
@@ -174,6 +211,9 @@ event Possess( Pawn inPawn, bool bVehicleTransition )
 	{
 		WarnInternal(GetFuncName()$"() attempting to possess "$inPawn$", but it's not a KFPawn_ZedHansBase class! MyHansPawn variable will not be valid.");
 	}
+
+    // Initialize retarget time
+    LastRetargetTime = WorldInfo.TimeSeconds;
 
 	super.Possess( inPawn, bVehicleTransition );
 }
@@ -240,11 +280,9 @@ function DoGrenadeThrow( optional bool bGrenadeBarrage )
 }
 
 /** Start the throw grenade command with smoke, optionally for the grenade barrage attack */
-function DoSmokeGrenadeThrow( optional bool bGrenadeBarrage, optional bool bSpawnZeds )
+function DoSmokeGrenadeThrow( optional bool bGrenadeBarrage, optional bool bIsHuntAndHeal )
 {
     local bool bThrowSuccess;
-    local int DifficultyIndex;
-    local KFAIWaveInfo MinionWave;
 
     if( MyHansPawn != none )
     {
@@ -252,51 +290,7 @@ function DoSmokeGrenadeThrow( optional bool bGrenadeBarrage, optional bool bSpaw
     }
 
     // Spawn some zeds if we need to
-    if( !bSpawnZeds )
-    {
-        bThrowSuccess = class'AICommand_ThrowGrenade'.static.ThrowGrenade(self, bGrenadeBarrage ? 1 : 0);
-    }
-    else
-    {
-        // Determine which summon squad to spawn by difficulty
-        if( Skill == class'KFDifficultyInfo'.static.GetDifficultyValue(0) ) // Normal
-        {
-            DifficultyIndex = 0;
-        }
-        else if( Skill <= class'KFDifficultyInfo'.static.GetDifficultyValue(1) ) // Hard
-        {
-            DifficultyIndex = 1;
-        }
-        else if( Skill <= class'KFDifficultyInfo'.static.GetDifficultyValue(2) ) // Suicidal
-        {
-            DifficultyIndex = 2;
-        }
-        else // Hell on Earth
-        {
-            DifficultyIndex = 3;
-        }
-
-        if( MyHansPawn == none )
-        {
-            return;
-        }
-
-        // Select the correct batch of zeds to spawn during this battle phase
-        if( MyHansPawn.CurrentBattlePhase == 1 )
-        {
-            MinionWave = MyHansPawn.SummonWaves[DifficultyIndex].PhaseOneWave;
-        }
-        else if( MyHansPawn.CurrentBattlePhase == 2 )
-        {
-            MinionWave = MyHansPawn.SummonWaves[DifficultyIndex].PhaseTwoWave;
-        }
-        else if( MyHansPawn.CurrentBattlePhase == 3 )
-        {
-            MinionWave = MyHansPawn.SummonWaves[DifficultyIndex].PhaseThreeWave;
-        }
-
-        bThrowSuccess = class'AICommand_ThrowGrenade'.static.ThrowGrenade(self, bGrenadeBarrage ? 1 : 0,, MinionWave, MyHansPawn.NumMinionsToSpawn);
-    }
+    bThrowSuccess = class'AICommand_ThrowGrenade'.static.ThrowGrenade(self, bGrenadeBarrage ? 1 : 0, bIsHuntAndHeal);
 
 	if( bThrowSuccess )
 	{
@@ -309,30 +303,95 @@ function DoSmokeGrenadeThrow( optional bool bGrenadeBarrage, optional bool bSpaw
 	}
 }
 
+/** Notification from the pawn that it has taken damage */
+function NotifyTakeHit( Controller InstigatedBy, vector HitLocation, int Damage, class<DamageType> damageType, vector Momentum )
+{
+    local float HealThreshold, HealthPct;
+
+    super.NotifyTakeHit( InstigatedBy, HitLocation, Damage, damageType, Momentum );
+
+    // When our health gets low, go hunt a player to draw life and enter the next battle phase
+    if( !MyHansPawn.bHealedThisPhase && MyHansPawn.CurrentBattlePhase < 4 )
+    {
+        HealThreshold = MyHansPawn.BattlePhases[MyHansPawn.CurrentBattlePhase-1].HealThresholds[WorldInfo.Game.GameDifficulty];
+        HealthPct = GetHealthPercentage();
+
+        // Summon minions if we haven't yet
+        if( !bSummonedThisPhase && HealthPct < HealThreshold + 0.11f )
+        {
+            MyHansPawn.SummonMinions();
+            bSummonedThisPhase = true;
+
+            // Fallback so zeds can't spawn forever
+            SetTimer( 30.f, false, nameOf(Timer_StopSummoningZeds) );
+        }
+
+        // Enter hunt and heal mode if we've dropped below the health threshold
+        if( GetHealthPercentage() < HealThreshold )
+        {
+            MyHansPawn.SetHuntAndHealMode( true );
+        }
+    }
+}
+
+/** Special move has ended, whether cleanly or aborted */
 function NotifySpecialMoveEnded(KFSpecialMove SM)
 {
     super.NotifySpecialMoveEnded(SM);
 
-	if( Enemy != None && MyHansPawn != none && MyHansPawn.bPendingSmokeGrenadeBarrage )
-	{
-		DoSmokeGrenadeThrow( true, true );
-	}
+    bFleeInterrupted = false;
 
-	if( SM.Handle == 'KFSM_MeleeAttack' || SM.Handle == 'SM_Hans_GrenadeBarrage'
-        || SM.Handle == 'KFSM_Hans_ThrowGrenade' || SM.Handle == 'KFSM_Taunt'
+    // Our guns are put away, toss some grenades
+    if( !bWantsToFlee && !bFleeing && Enemy != None && MyHansPawn != none && MyHansPawn.bPendingSmokeGrenadeBarrage )
+    {
+        DoSmokeGrenadeThrow( true, true );
+    }
+
+    if( SM.Handle == 'KFSM_MeleeAttack'
+        || SM.Handle == 'KFSM_Hans_GrenadeBarrage'
+        || SM.Handle == 'KFSM_Hans_GrenadeHalfBarrage'
+        || SM.Handle == 'KFSM_Hans_ThrowGrenade'
+        || SM.Handle == 'KFSM_Taunt'
         || SM.Handle == 'KFSM_WalkingTaunt' )
-	{
+    {
         LastAttackMoveFinishTime = WorldInfo.TimeSeconds;
-	}
+    }
 
-	// Evaluate sprinting whenever we finish a special move so sprinting will be snappy!
+    // Handle flee interruptions
+    if( !bWantsToFlee )
+    {
+        // Retarget if it's been enough time since we changed targets
+        if( SM.Handle == 'KFSM_MeleeAttack' && (WorldInfo.TimeSeconds - LastRetargetTime) > RetargetWaitTime )
+        {
+            CheckForEnemiesInFOV( 3000.f, -1.f, 1.f, true );
+        }
+    }
+    else if( MyHansPawn.bGunsEquipped )
+    {
+        class'AICommand_Hans_GunStance'.static.SetGunStance( self, 0 );
+    }
+    else if( PendingDoor == none && !bFleeing )
+    {
+        Flee();
+    }
+
+    // Evaluate sprinting whenever we finish a special move so sprinting will be snappy!
     EvaluateSprinting();
 }
 
 /** Evaluate if we should start/stop sprinting, and then set the sprinting flag */
 function EvaluateSprinting()
 {
-    if( MyKFPawn != none && MyKFPawn.IsAliveAndWell() && Enemy != none )
+    if( MyKFPawn == none || !MyKFPawn.IsAliveAndWell() )
+    {
+        return;
+    }
+
+    if( bFleeing || bWantsToFlee )
+    {
+        MyKFPawn.SetSprinting( true );
+    }
+    else if( Enemy != none )
 	{
 		if( ShouldSprint() )
 		{
@@ -383,6 +442,31 @@ event SeePlayer( Pawn Seen )
             RecentlySeenEnemyList[EnemyListIndex].LastTimeVisible = WorldInfo.TimeSeconds;
             RecentlySeenEnemyList[EnemyListIndex].LastVisibleLocation = Seen.Location;
         }
+    }
+
+    // Throw down our smoke screen before going after a player to heal
+    if( bHasFledThisPhase && MyHansPawn.bInHuntAndHealMode && !bHasUsedSmokeScreenThisPhase )
+    {
+        bHasUsedSmokeScreenThisPhase = true;        
+        SetTimer( 2.f + fRand(), false, nameOf(Timer_DoHuntAndHealSmokeGrenadeThrow) );
+    }
+}
+
+/** Throws a smoke grenade barrage after waiting a short time */
+function Timer_DoHuntAndHealSmokeGrenadeThrow()
+{
+    // Toss some smoke grenades out and summon some minions to help
+    // while I try and find someont to suck some life from. If Hans
+    // has his guns out, set the flag to wait til his guns are put
+    // away before trying to throw the smoke grenade barrage and
+    // Spawn the minion zeds
+    if( !MyHansPawn.bGunsEquipped && !MyHansPawn.IsImpaired() && !MyHansPawn.IsIncapacitated() )
+    {
+        DoSmokeGrenadeThrow( true );
+    }
+    else
+    {
+        MyHansPawn.bPendingSmokeGrenadeBarrage = true;
     }
 }
 
@@ -623,13 +707,34 @@ event bool SetEnemy( Pawn NewEnemy )
 {
     // Don't let Hans switch enemies in the middle of draining his current enemy,
     // unless that enemy is dead
-    if( MyKFPawn != none && MyKFPawn.IsDoingSpecialMove(SM_GrabAttack) && Enemy != none
-        && Enemy.IsAliveAndWell() && Enemy.CanAITargetThisPawn(self) )
+    if( !CanSwitchEnemies()
+        || (MyKFPawn != none && MyKFPawn.IsDoingSpecialMove(SM_GrappleAttack) && Enemy != none
+        && Enemy.IsAliveAndWell() && Enemy.CanAITargetThisPawn(self)) )
     {
         return false;
     }
 
     return Super.SetEnemy( NewEnemy );
+}
+
+/** Overridden to stop retargeting enemies when fleeing or cloaked */
+event ChangeEnemy( Pawn NewEnemy, optional bool bCanTaunt = true )
+{
+    local Pawn OldEnemy;
+
+    if( !CanSwitchEnemies() )
+    {
+        return;
+    }
+
+    OldEnemy = Enemy;
+
+    super.ChangeEnemy( NewEnemy, bCanTaunt );
+
+    if( OldEnemy != Enemy )
+    {
+        LastRetargetTime = WorldInfo.TimeSeconds;
+    }
 }
 
 /**
@@ -777,6 +882,12 @@ function bool CanPerformShotAttack(optional bool bStart)
 {
 	local float rangeToEnemy;
 
+    // No guns when fleeing
+    if( bFleeing || bWantsToFlee )
+    {
+        return false;
+    }
+
     // Don't start shooting if hans hasn't drawn his gun yet, or is already trying to fire
     if( bStart && ( Pawn.IsFiring()
                 || IsTimerActive(nameof(FireTimer), self) || IsTimerActive(nameof(StartFireTiming), self)) )
@@ -879,6 +990,12 @@ function TickRangedCombatDecision()
                RecentlySeenEnemyList[i].LastTimeVisible = WorldInfo.TimeSeconds;
     	   }
     	}
+    }
+
+    // No grenades or guns when fleeing
+    if( bFleeing || bWantsToFlee )
+    {
+        return;
     }
 
     if( Enemy != None && (LastGrenadeAttackEvalTime == 0 || (WorldInfo.TimeSeconds - LastGrenadeAttackEvalTime) > GrenadeAttackEvalInterval) )
@@ -1333,30 +1450,6 @@ function bool SetupGrenadeAttack()
 	}
 }
 
-
-/* epic ===============================================
-* ::NotifyTakeHit
-*
-* Notification from pawn that it has received damage
-* via TakeDamage().
-*
-* =====================================================
-*/
-function NotifyTakeHit(Controller InstigatedBy, vector HitLocation, int Damage, class<DamageType> damageType, vector Momentum)
-{
-    // When our health gets low, go hunt a player to draw life and enter the next battle phase
-    if( MyHansPawn != none && !MyHansPawn.bHealedThisPhase && MyHansPawn.CurrentBattlePhase < 4 )
-    {
-	   	if( GetHealthPercentage() < 0.35 )
-	   	{
-	       	MyHansPawn.SetHuntAndHealMode( true );
-			NextBattlePhase();
-	   	}
-	}
-
-    Super.NotifyTakeHit(InstigatedBy, HitLocation, Damage, DamageType, Momentum);
-}
-
 function DoStrike()
 {
 	local name AttackName;
@@ -1377,28 +1470,6 @@ function DoStrike()
 	}
 
 	super.DoStrike();
-}
-
-/**
- * Set Hans to the next phase in the battle
- */
-function NextBattlePhase()
-{
-    // Toss some smoke grenades out and summon some minions to help
-    // while I try and find someont to suck some life from. If Hans
-    // has his guns out, set the flag to wait til his guns are put
-    // away before trying to throw the smoke grenade barrage and
-    // Spawn the minion zeds
-    if( !MyHansPawn.bGunsEquipped )
-    {
-        DoSmokeGrenadeThrow( true, true );
-    }
-    else
-    {
-        MyHansPawn.bPendingSmokeGrenadeBarrage=true;
-    }
-
-    MyHansPawn.IncrementBattlePhase( self );
 }
 
 /**
@@ -1423,12 +1494,265 @@ function bool IsWithinAttackRange()
 
 	// Check distance from enemy versus my grab range value.
 	DistSqToEnemy = VSizeSq( Enemy.Location - Pawn.Location );
-	if( DistSqToEnemy <= MinDistanceToPerformGrabAttack * MinDistanceToPerformGrabAttack )
+	if( DistSqToEnemy <= Square(MinDistanceToPerformGrabAttack) )
 	{
 		return true;
 	}
 
 	return false;
+}
+
+/*********************************************************************************************
+* Battle-phase switching
+**********************************************************************************************/
+
+/** Overridden to handle door usage in flee state */
+function NotifyAttackDoor( KFDoorActor Door )
+{
+    // We need to count up the total flee time so infinite fleeing isn't possible
+    if( bFleeing )
+    {
+        TotalFleeTime = TotalFleeTime + (WorldInfo.TimeSeconds - FleeStartTime);
+        bWantsToFlee = true;
+        bFleeInterrupted = true;
+        bFleeing = false;
+        
+        // Kill our flee and move commands
+        AbortCommand( CommandList );
+
+        // Allow melee again
+        EnableMeleeRangeEventProbing();
+
+        // Restart default command
+        BeginCombatCommand( GetDefaultCommand(), "Restarting default command" );
+    }
+
+    super.NotifyAttackDoor( Door );
+}
+
+/** Overridden to handle door usage in flee state */
+function bool DoorFinished()
+{
+    local bool bSuperFinished;
+
+    bSuperFinished = super.DoorFinished();
+
+    if( bWantsToFlee && !bFleeing )
+    {
+        if( MyHansPawn.IsDoingSpecialMove() )
+        {
+            MyHansPawn.EndSpecialMove();
+        }
+        Flee();
+    }
+
+    return bSuperFinished;
+}
+
+/**
+ * Set Hans to the next phase in the battle
+ */
+function NextBattlePhase()
+{
+    // Set flee flags
+    bHasFledThisPhase = false;
+    MaxFleeDuration = RandRange( MinFleeDuration, MaxFleeDuration );
+    bWantsToFlee = true;
+    DisableMeleeRangeEventProbing();
+
+    // Set smoke grenade barrage flag
+    bHasUsedSmokeScreenThisPhase = false;
+}
+
+/** Whether enemy switch commands can be run */
+function bool CanSwitchEnemies()
+{
+    return !bWantsToFlee && !bFleeing;
+}
+
+/** Sets flee target if there is no enemy, starts flee command */
+function Flee()
+{
+    local Actor FleeFromTarget;
+    local float FleeDuration;
+    local AICommand_SpecialMove AICSM;
+
+    // Reset flee state
+    bFleeing = false;
+    bWantsToFlee = false;
+    bFleeInterrupted = false;
+
+    // We need a target to flee from
+    Enemy = none;
+    CheckForEnemiesInFOV( 3000.f, 0.2f, 1.f, true, false );
+    if( Enemy == None )
+    {
+        SetEnemy( GetClosestEnemy() );
+    }
+
+    // Try to get an enemy, if not just choose a nearby navigation point (always flee!)
+    if( Enemy != None )
+    {
+        FleeFromTarget = Enemy;
+    }
+    else
+    {
+        FleeFromTarget = class'NavigationPoint'.static.GetNearestNavToActor( MyHansPawn );
+    }
+
+    // Prevent timeout from interrupting flee
+    AICSM = FindCommandOfClass( class'AICommand_SpecialMove' );
+    if( AICSM != none )
+    {
+        AICSM.ClearTimeout();
+    }
+
+    // Abort all commands
+    AbortCommand( CommandList );
+
+    // Perform flee
+    bFleeing = true;
+    MyHansPawn.SetSprinting( true );
+    DisableMeleeRangeEventProbing();
+
+    FleeDuration = fMax( MaxFleeDuration - TotalFleeTime, 6.f );
+    //`log("[FLEE] FleeDuration:"@FleeDuration);
+    //`log("[FLEE] FleeStartTime:"@WorldInfo.TimeSeconds);
+    FleeStartTime = WorldInfo.TimeSeconds;
+    DoFleeFrom( FleeFromTarget, FleeDuration, MaxFleeDistance + Rand(MaxFleeDistance * 0.25f), true );
+    EvaluateSprinting();
+
+    // Constantly make sure we don't have a player trying to block us
+    if( !IsTimerActive(nameOf(Timer_SearchForFleeObstructions)) )
+    {
+        SetTimer( 1.5f, false, nameOf(Timer_SearchForFleeObstructions) );
+    }
+}
+
+/** Custom target searching when fleeing -- we only want to attack targets that are blocking our flee path */
+function Timer_SearchForFleeObstructions()
+{
+    local KFPawn ObstructingEnemy;
+
+    if( !bFleeing || bWantsToFlee || MyHansPawn.IsDoingSpecialMove() )
+    {
+        SetTimer( 0.25f, false, nameOf(Timer_SearchForFleeObstructions) );
+        return;
+    }
+
+    // See if there's someone blocking us
+    ObstructingEnemy = CheckForEnemiesInFOV( AttackRange * 1.1f, 0.5f, 1.f, false, false );
+    if( ObstructingEnemy != none )
+    {
+        // We need to count up the total flee time so infinite fleeing isn't possible
+        TotalFleeTime = TotalFleeTime + (WorldInfo.TimeSeconds - FleeStartTime);
+        bFleeInterrupted = true;
+        bFleeing = false;
+
+        // Kill our flee and move commands
+        AbortCommand( CommandList );
+
+        // Set our new enemy
+        ChangeEnemy( ObstructingEnemy, false );
+
+        // Set our pending flee
+        bWantsToFlee = true;
+
+        // Sprint to new enemy
+        MyHansPawn.SetSprinting( true );
+        SetEnemyMoveGoal( self, true );
+        EnableMeleeRangeEventProbing();
+
+        // Restart default command
+        BeginCombatCommand( GetDefaultCommand(), "Restarting default command" );
+
+        // Give hans a little bit of time to flee after this attack
+        SetTimer( 2.0f, false, nameOf(Timer_SearchForFleeObstructions) );
+    }
+    else
+    {
+        SetTimer( 0.25f, false, nameOf(Timer_SearchForFleeObstructions) );
+    }
+}
+
+
+/** Command finished. Used to catch instances where the flee command is interrupted by another command */
+function NotifyCommandFinished( AICommand FinishedCommand )
+{
+    if( !bWantsToFlee && bFleeing && PendingDoor == none && (ActorEnemy == none || ActorEnemy.bPendingDelete) && AICommand_Flee(FinishedCommand) != none )
+    {
+        // Add to our total flee time
+        TotalFleeTime = TotalFleeTime + (WorldInfo.TimeSeconds - FleeStartTime);
+
+        // Abort the flee command
+        AbortCommand( FinishedCommand );
+
+        // Cancel any special moves
+        if( MyHansPawn.IsDoingSpecialMove() )
+        {
+            MyHansPawn.EndSpecialMove();
+        }
+
+        // Delay flee by a tiny bit to allow command to finish up
+        SetTimer( 0.06f, false, nameOf(Flee), self );
+    }
+}
+
+/** We have finished fleeing for one reason or another, notify pawn to heal */
+function NotifyFleeFinished( optional bool bAcquireNewEnemy=true )
+{
+    local KFAISpawnManager SpawnManager;
+
+    // Restore flee flags to default
+    bFleeing = false;
+    bWantsToFlee = false;
+
+    // Stop searching for targets
+    ClearTimer( nameOf(Timer_SearchForFleeObstructions) );
+
+    // Stop summoning minions
+    SpawnManager = KFGameInfo(WorldInfo.Game).SpawnManager; 
+    if ( SpawnManager != none )
+    {
+        SpawnManager.StopSummoningBossMinions();
+    }
+
+    // Prevent infinite fleeing
+    bHasFledThisPhase = true;
+
+    // Find a new enemy and move to them
+    if( bAcquireNewEnemy )
+    {
+        ChangeEnemy( GetClosestEnemy(), true );
+    }
+
+    // Allow melee again
+    EnableMeleeRangeEventProbing();
+
+    // Restart default command
+    BeginCombatCommand( GetDefaultCommand(), "Restarting default command" );
+}
+
+/** Aborts the flee (shield was destroyed, etc) */
+function CancelFlee( optional bool bAcquireNewEnemy=true )
+{
+    if( bFleeing )
+    {
+        bFleeing = false;
+        bWantsToFlee = false;
+
+        // Kill our flee command
+        AbortCommand( FindCommandOfClass(class'AICommand_Flee') );
+
+        // End flee as normal
+        NotifyFleeFinished( bAcquireNewEnemy );
+    }
+    else
+    {
+        // Make sure hans doesn't try to flee again
+        bWantsToFlee = false;
+        bHasFledThisPhase = true;
+    }
 }
 
 /**
@@ -1441,6 +1765,12 @@ event bool CanGrabAttack()
 	local float DistSq;
 	local vector HitLocation, HitNormal;
 	local Actor HitActor;
+
+    /** Don't try to grab while still fleeing */
+    if( bFleeing || bWantsToFlee )
+    {
+        return false;
+    }
 
 	/** Hans shouldn't do this attack if at full health */
 	if( Enemy == none || MyKFPawn == none || MyKFPawn.Health <= 0 || GetHealthPercentage() >= 1.f )
@@ -1463,7 +1793,7 @@ event bool CanGrabAttack()
 	KFPawnEnemy = KFPawn( Enemy );
 
 	if( KFPawnEnemy != none && KFPawnEnemy.IsDoingSpecialMove(SM_GrappleVictim)
-        && VSizeSq(MyHansPawn.Location - Enemy.Location) < 250000 ) // 5 Meters
+        && VSizeSq(MyHansPawn.Location - Enemy.Location) < Square(MinDistanceToPerformGrabAttack*1.5f) )
 	{
         // End the move immediately so other zed stops grabbing our target!
         KFPawnEnemy.InteractionPawn.EndSpecialMove();
@@ -1475,7 +1805,7 @@ event bool CanGrabAttack()
 	}
 
 	// If I'm crippled, falling, busy doing an attack, or incapacitated, refuse.
-	if( MyKFPawn.bIsHeadless || (MyKFPawn.Physics == PHYS_Falling) || IsDoingAttackSpecialMove() || IsInStumble() )
+	if( MyKFPawn.bIsHeadless || (MyKFPawn.Physics == PHYS_Falling) || IsDoingAttackSpecialMove() || IsInStumble() || MyKFPawn.IsIncapacitated() )
 	{
 		return false;
 	}
@@ -1489,7 +1819,7 @@ event bool CanGrabAttack()
 		}
 
 		DistSq = VSizeSq(Enemy.Location - Pawn.Location);
-		if( DistSq > MinDistanceToPerformGrabAttack * MinDistanceToPerformGrabAttack )
+		if( DistSq > Square(MinDistanceToPerformGrabAttack) )
 		{
 			return false;
 		}
@@ -1551,18 +1881,18 @@ function bool CanTargetBeGrabbed( KFPawn TargetKFP )
 }
 
 /** Launch a grab attack */
-event DoGrabAttack( optional Pawn NewEnemy, optional Actor InTarget, optional float InPostSpecialMoveSleepTime=0.f )
+event DoGrabAttack( optional Pawn NewEnemy, optional float InPostSpecialMoveSleepTime=0.f )
 {
 	if( CommandList == None || AICommand(CommandList).bAllowedToAttack )
 	{
-		if( NewEnemy != None )
+		if( NewEnemy != None && NewEnemy != Enemy )
 		{
-			SetEnemy( NewEnemy );
+			ChangeEnemy( NewEnemy, false );
 		}
 		/** Abort qany movement commands */
 		ClearMovementInfo();
 		AILog_Internal(GetFuncName()$"() Init AICommand_Attack_Grab",'InitAICommand',);
-		class'AICommand_Attack_Grab'.static.Grab( self, KFPawn(InTarget), InPostSpecialMoveSleepTime );
+		class'AICommand_Attack_Grab'.static.Grab( self, InPostSpecialMoveSleepTime );
 	}
 	else if( CommandList != none && !AICommand(CommandList).bAllowedToAttack )
 	{
@@ -1637,22 +1967,25 @@ function bool CanDoStrike()
     local bool bInGrabRange;
     local float DistSq;
 
-	/** See if we want to grab an enemy, and they are in grab range */
-	if( Enemy != none && MyHansPawn != none && MyHansPawn.bInHuntAndHealMode &&
-        MyKFPawn != none && MyKFPawn.Health > 0 )
-	{
-    	DistSq = VSizeSq(Enemy.Location - Pawn.Location);
-		if( DistSq < MinDistanceToPerformGrabAttack * MinDistanceToPerformGrabAttack )
-		{
-            bInGrabRange = true;
-		}
-	}
+    if( !bFleeing && !bWantsToFlee )
+    {
+    	/** See if we want to grab an enemy, and they are in grab range */
+    	if( Enemy != none && MyHansPawn != none && MyHansPawn.bInHuntAndHealMode &&
+            MyKFPawn != none && MyKFPawn.Health > 0 )
+    	{
+        	DistSq = VSizeSq(Enemy.Location - Pawn.Location);
+    		if( DistSq < Square(MinDistanceToPerformGrabAttack) )
+    		{
+                bInGrabRange = true;
+    		}
+    	}
 
-	// Never do melee strikes when in bInHuntAndHealMode unless we can't grab attack, and the enemy is in grab range
-	if( MyHansPawn == none || (MyHansPawn.bInHuntAndHealMode && (!bInGrabRange || CanGrabAttack())) )
-	{
-		return false;
-	}
+    	// Never do melee strikes when in bInHuntAndHealMode unless we can't grab attack, and the enemy is in grab range
+    	if( MyHansPawn == none || (MyHansPawn.bInHuntAndHealMode && (!bInGrabRange || CanGrabAttack())) )
+    	{
+    		return false;
+    	}
+    }
 
 	return super.CanDoStrike();
 }
@@ -1747,6 +2080,7 @@ event EdgeAndPolySubRegionRejectedDueToProximityToTarget( vector EdgeCenterRejec
 
 
 
+
 /*********************************************************************************************
 * Pathfinding
 ********************************************************************************************* */
@@ -1786,6 +2120,7 @@ defaultproperties
    StanceChangeCooldown=0.300000
    PostAttackMoveGunCooldown=0.300000
    LastRecentSeenEnemyListUpdateTime=0.100000
+   RetargetWaitTime=5.000000
    MinBurstAmount=3
    MaxBurstAmount=8
    BurstWaitTime=0.500000
@@ -1800,8 +2135,11 @@ defaultproperties
    StartShootingRange=500000.000000
    MinShootingRange=300.000000
    GrenadeAttackEvalInterval=0.100000
+   MinFleeDuration=10.000000
+   MaxFleeDuration=15.000000
+   MaxFleeDistance=10000.000000
    bRepathOnInvalidStrike=True
-   MinDistanceToPerformGrabAttack=200.000000
+   MinDistanceToPerformGrabAttack=350.000000
    MinTimeBetweenGrabAttacks=2.500000
    bCanDoHeavyBump=True
    DefaultCommandClass=Class'KFGame.AICommand_Base_Hans'

@@ -12,6 +12,7 @@ package tripwire.widgets
     import scaleform.clik.constants.NavigationCode;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.InputEvent;
+    import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.FocusManager;
     import scaleform.gfx.TextFieldEx;
@@ -100,6 +101,8 @@ package tripwire.widgets
         protected var _deployTimer:Timer;
         
         protected var _currentTime:int;
+        
+        protected var _bInitialPartySet:Boolean;
         
         public function PartyWidget()
         {
@@ -198,7 +201,7 @@ package tripwire.widgets
                             _loc3_ = this["squadMember" + (this.MAX_SLOTS - 1)];
                             if(_loc3_.focused == 1)
                             {
-                                FocusManager.setFocus(this.leaveButton);
+                                FocusHandler.getInstance().setFocus(this.leaveButton);
                             }
                         }
                 }
@@ -207,7 +210,7 @@ package tripwire.widgets
         
         public function set readyHighlight(param1:Boolean) : void
         {
-            FocusManager.setFocus(this.readyButton);
+            FocusHandler.getInstance().setFocus(this.readyButton);
         }
         
         public function testKey(param1:KeyboardEvent) : void
@@ -251,12 +254,21 @@ package tripwire.widgets
             {
                 this.setTabIndex();
             }
+            else
+            {
+                if(this._bInitialPartySet)
+                {
+                    return;
+                }
+                this._bInitialPartySet = true;
+            }
             this._bInParty = param1;
             if(param1)
             {
                 this.createPartyButton.visible = !param1;
             }
-            this["squadMember" + _loc3_].enabled = this._bInParty;
+            _loc2_ = this["squadMember" + _loc3_];
+            _loc2_.enabled = this._bInParty;
             _loc3_ = 1;
             while(_loc3_ < this.MAX_SLOTS)
             {
@@ -417,7 +429,7 @@ package tripwire.widgets
                             while(_loc4_ < this.MAX_SLOTS)
                             {
                                 _loc3_ = this["squadMember" + _loc4_];
-                                if(_loc3_ != _loc2_)
+                                if(_loc3_ != _loc2_ && _loc3_.activeList.bOpen)
                                 {
                                     _loc3_.closeList();
                                 }

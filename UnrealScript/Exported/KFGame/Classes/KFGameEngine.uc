@@ -72,6 +72,10 @@ enum EConnectionError
 /** The last error we got attempting to connect */
 var EConnectionError LastConnectionError;
 
+//@HSL_BEGIN - JRO - 3/21/2016 - PS4 Sessions
+var string ConsoleGameSessionGuid; 
+//@HSL_END
+
 /************************************************************************************
  * @name		Debugging
  ***********************************************************************************/
@@ -141,6 +145,7 @@ native static function SetWWiseMasterVolume( float Volume );
 native static function SetVoIPRecieveVolume( float Volume );
 native static function GetVoIPVolumeRange(out float MinVol, out float MaxVol, out float CurrentVol);
 native static function PlayFullScreenMovie(string MovieName);
+native static function bool IsFullScreenMoviePlaying();
 
 /**
  * Sets the current gamma value.
@@ -292,8 +297,8 @@ native function KillPendingServerConnection();
 
 defaultproperties
 {
-   KFCanvasFont=Font'UI_Canvas_Fonts.Font_General'
-   KFFontScale=0.280000
+   KFCanvasFont=Font'UI_Canvas_Fonts.Font_Main'
+   KFFontScale=0.560000
    DefaultGammaMult=0.680000
    MusicVolumeMultiplier=50.000000
    SFxVolumeMultiplier=100.000000

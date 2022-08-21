@@ -94,6 +94,7 @@ function UpdateMatchInfo()
     if(MatchInfoContainer != none)
     {
         MatchInfoContainer.UpdateMatchInfo();
+        MatchInfoContainer.UpdateWaveCount();
     }
 }
 
@@ -184,7 +185,14 @@ function UpdatePlayerData()
                 TempData.SetString("perkName", KFPRI.CurrentPerkClass.default.PerkName);
                 TempData.SetString("iconPath", "img://" $ KFPRI.CurrentPerkClass.static.GetPerkIconPath());
             }
-            TempData.SetString("avatar", KFPC.GetSteamAvatar(KFPRI.UniqueId));
+            if(Class'WorldInfo'.static.IsConsoleBuild(8))
+            {
+                TempData.SetString("avatar", KFPC.GetPS4Avatar(KFPRI.PlayerName));                
+            }
+            else
+            {
+                TempData.SetString("avatar", KFPC.GetSteamAvatar(KFPRI.UniqueId));
+            }
             TempData.SetFloat("health", float(KFPRI.PlayerHealth));
             TempData.SetFloat("healthPercent", ByteToFloat(KFPRI.PlayerHealthPercent) * float(100));
             DataProvider.SetElementObject(PlayerIndex, TempData);

@@ -142,6 +142,7 @@ defaultproperties
     NumPellets=/* Array type was not detected. */
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=4
+    MagazineCapacity=2
     bHasIronSights=true
     bNoMagazine=true
     bCanBeReloaded=true
@@ -155,7 +156,6 @@ defaultproperties
     DOF_FG_FocalRadius=65
     GroupPriority=50
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_DBShotgun'
-    MagazineCapacity=2
     MaxSpareAmmo=46
     InitialSpareMags=11
     AmmoPickupScale=3
@@ -199,7 +199,7 @@ defaultproperties
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Shotgun_DoubleBarrel.FirstPersonMesh'
     Mesh=FirstPersonMesh
-    ItemName="Double-barrel Boomstick"
+    ItemName="Double-barreled Boomstick"
     begin object name=StaticPickupComponent class=StaticMeshComponent
         StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Double_Barrel_Pickup'
         ReplacementPrimitive=none

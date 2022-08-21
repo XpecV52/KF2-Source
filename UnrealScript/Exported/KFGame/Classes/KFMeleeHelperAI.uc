@@ -81,20 +81,8 @@ function ApplyMeleeDamage(Actor Victim, int Damage, optional float InMomentum=1.
 	local vector HitDirection;
 	local KFPawn_Monster InstigatorPawn;
 
-	if ( IsZero(HitLocation) )
-	{
-		// bump the hit location so that TakeHitInfo will always replicate
-		HitLocation = Victim.Location;
-		HitLocation.Z += FRand();
-	}
-	HitDirection = Normal(HitLocation - Instigator.Location);
-
-	// After modifiers are applied, ensure damage is never zero
+	// Make sure we're doing _some_ damage
 	Damage = Max(Damage, 1);
-	Victim.TakeDamage(Damage, Instigator.Controller, HitLocation, HitDirection * InMomentum, InDamageType,, Outer );
-
-	// play camera shake, etc...
-	PlayMeleeHitEffects(Victim, HitLocation, HitDirection);
 
 	InstigatorPawn = KFPawn_Monster(Instigator);
 	if ( InstigatorPawn != none )
@@ -107,7 +95,24 @@ function ApplyMeleeDamage(Actor Victim, int Damage, optional float InMomentum=1.
 		{
 			InstigatorPawn.MyKFAIC.NotifyMeleeDamageDealt();
 		}
+
+		// Apply rally boost damage
+		Damage = InstigatorPawn.GetRallyBoostDamage( Damage );
 	}
+
+	// Bump the hit location so that TakeHitInfo will always replicate
+	if ( IsZero(HitLocation) )
+	{
+		HitLocation = Victim.Location;
+		HitLocation.Z += FRand();
+	}
+	HitDirection = Normal(HitLocation - Instigator.Location);
+
+	// After modifiers are applied, ensure damage is never zero
+	Victim.TakeDamage( Damage, Instigator.Controller, HitLocation, HitDirection * InMomentum, InDamageType,, Outer );
+
+	// play camera shake, etc...
+	PlayMeleeHitEffects(Victim, HitLocation, HitDirection);
 
 	if (bLogMelee) LogInternal(Victim$"**** Melee attack!  BaseDamage="@BaseDamage@", ModifiedDamage="@Damage);
 }
@@ -271,7 +276,7 @@ function MeleeImpactNotify(KFAnimNotify_MeleeImpact Notify)
 	local bool bDealtDmg;
 	local class<KFDamageType> CurrentDamageType;
 
-	if ( Instigator == None || Instigator.Role < ROLE_Authority )
+	if ( Instigator == None || (Instigator.Role < ROLE_Authority && !Instigator.IsLocallyControlled()) )
 	{
 		return; // AutomonmousProxy in Versus, but doesn't work with CSHD
 	}
@@ -582,7 +587,7 @@ defaultproperties
 {
    MyDamageType=Class'KFGame.KFDT_Slashing'
    bTrackSwipeHits=True
-   PlayerDoorDamageMultiplier=5.000000
+   PlayerDoorDamageMultiplier=10.000000
    PlayerControlledFOV=0.150000
    MeleeImpactCamScale=1.000000
    MaxPingCompensation=200

@@ -12,6 +12,7 @@ class KFWeap_Pistol_9mm extends KFWeap_PistolBase;
 
 defaultproperties
 {
+   MagazineCapacity(0)=15
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -26,7 +27,6 @@ defaultproperties
    GroupPriority=10.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_9mm'
    DualClass=Class'kfgamecontent.KFWeap_Pistol_Dual9mm'
-   MagazineCapacity(0)=15
    MaxSpareAmmo(0)=225
    InitialSpareMags(0)=7
    IdleFidgetAnims(3)="Guncheck_v4"

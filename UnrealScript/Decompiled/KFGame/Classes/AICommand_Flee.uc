@@ -77,6 +77,7 @@ function Popped()
         Outer.MyKFPawn.bIsSprinting = bWasSprinting;
         Outer.MyKFPawn.ClearHeadTrackTarget(FleeTarget);
     }
+    Outer.ClearTimer('Timer_FleeDurationExpired', self);
     Outer.EnableMeleeRangeEventProbing();
 }
 
@@ -90,6 +91,8 @@ state Fleeing
 
     function bool CheckRetreat()
     {
+        local Engine.Pawn.EPathSearchType OldSearchType;
+
         if((Outer.RouteGoal != none) && bHaveGoal)
         {
             Outer.AIActionStatus = ((("Attempting to flee from [" $ string(FleeTarget)) $ "] at [") $ string(Outer.RouteGoal)) $ "]";
@@ -103,9 +106,12 @@ state Fleeing
         {
             Class'NavigationPoint'.static.GetNearestNavToActor(Outer.Pawn);
         }
+        OldSearchType = Outer.Pawn.PathSearchType;
         if(FleeTarget != none)
         {
             Outer.AIActionStatus = ("Searching for navigable path from [" $ string(FleeTarget)) $ "]";
+            Outer.Pawn.PathSearchType = 3;
+            Class'Path_AlongLine'.static.AlongLine(Outer.Pawn, Normal(Outer.Pawn.Location - FleeTarget.Location));
             Class'Goal_AwayFromPosition'.static.FleeFrom(Outer.Pawn, FleeTarget.Location, int(FleeDistance));
             if(Outer.FindPathToward(Outer.Pawn) != none)
             {
@@ -113,14 +119,11 @@ state Fleeing
                 Outer.AIActionStatus = ((("Attempting to flee from [" $ string(FleeTarget)) $ "] at [") $ string(Outer.RouteGoal)) $ "]";
                 Outer.Focus = none;
                 PathAttempts = 0;
-                return true;                
-            }
-            else
-            {
-                PathAttempts += 1;
-                return false;
+                Outer.Pawn.PathSearchType = OldSearchType;
+                return true;
             }
         }
+        Outer.Pawn.PathSearchType = OldSearchType;
         PathAttempts += 1;
         return false;
     }
@@ -193,12 +196,12 @@ Begin:
             }
         }
     }
-    J0x667:
+    J0x66C:
 
     Status = 'Success';
     Outer.NotifyFleeFinished();
     Outer.PopCommand(self);
-    stop;            
+    stop;                    
 }
 
 state RotateToFocus extends DebugState

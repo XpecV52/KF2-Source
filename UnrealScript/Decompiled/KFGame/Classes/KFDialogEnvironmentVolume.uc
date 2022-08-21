@@ -30,7 +30,6 @@ enum EDialogEnvironment
     DENV_Aftermath,
     DENV_Cave,
     DENV_Underground,
-    DENV_CharSpecific,
     DENV_MAX
 };
 

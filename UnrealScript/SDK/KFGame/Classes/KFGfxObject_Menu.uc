@@ -45,6 +45,8 @@ event bool OnAxisModified( int ControllerId, name Key, float Delta, float DeltaT
 
 event OnTraderTimeStart();
 
+function OnRoundOver();
+
 event OnClose();
 
 function OnLobbyStatusChanged(bool bIsInParty){}
@@ -97,9 +99,17 @@ function Callback_ControllerCloseMenu()
 	    
 	if( Manager != none && KFPRI != none )
 	{
-		if( !class'WorldInfo'.static.IsMenuLevel() && KFPRI.WorldInfo.GRI.bMatchHasBegun && Manager.bUsingGamepad )
+		if( !class'WorldInfo'.static.IsMenuLevel() && Manager.bUsingGamepad )
 		{
-			Manager.CloseMenus();
+			if ( KFPRI.WorldInfo.GRI.bMatchHasBegun )
+			{
+				Manager.CloseMenus();
+			}
+			else if ( Manager.bAfterLobby && ( Manager.CurrentMenu != None && Manager.PostGameMenu != None && Manager.CurrentMenu != Manager.PostGameMenu) ) 
+			{
+				// Allow for backing out of the pause screen into the AAR.
+				Manager.ToggleMenus();
+			}
 		}
 	}
 }
@@ -158,12 +168,16 @@ function Callback_ReadyClicked( bool bReady )
 	    else if (Manager != none )
 	    {
 	    	if(Manager.PartyWidget !=none)
-	    {
-			Manager.PartyWidget.RefreshParty();
-		}
+	    	{
+				Manager.PartyWidget.RefreshParty();
+			}
 			if(Manager.StartMenu != none && bReady)
 			{
 				Manager.StartMenu.OnPlayerReadiedUp();
+			}
+			if(Manager.PerksMenu != none)
+			{
+				Manager.PerksMenu.SelectionContainer.SetPerkListEnabled(!bReady);
 			}
 		}
 	}
@@ -243,7 +257,11 @@ function Callback_LeaveParty()
 
 function Callback_InviteFriend()
 {
-	if ( OnlineLobby != none )
+	if ( Class'WorldInfo'.Static.IsConsoleBuild() )
+	{
+		class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.ShowInviteUI(Manager.GetLP().ControllerId, "");
+	}
+	else if ( OnlineLobby != none )
 	{
 		OnlineLobby.ShowLobbyInviteInterface();
 	}	
@@ -276,19 +294,19 @@ function Callback_BroadcastChatMessage(string Message)
 			{
 				OnlineLobby.LobbyMessage(ChatMessage);
 			}
-			}
+		}
     	else
     	{
     		//game has started
     		if(Manager.bAfterLobby)
     		{
     			GetPC().TeamSay(Message);	
-    	}
-    	else
-    	{
-    		GetPC().Say(Message);	
     		}
-    	} 
+	    	else
+	    	{
+	    		GetPC().Say(Message);	
+	    	} 
+    	}
     }
 }
 

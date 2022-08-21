@@ -33,6 +33,8 @@ package tripwire.widgets
         
         public var firemodeLoader:UILoader;
         
+        public var weightTextField:TextField;
+        
         private var _storedAmmoTF:TextField = null;
         
         private var _magazineAmmoTF:TextField = null;
@@ -137,6 +139,11 @@ package tripwire.widgets
             this._doshBarkInfoMC = this.DoshContainer.DoshBarkAnimContainer.DoshBarkInfo;
             this._doshBarkMC.visible = false;
             this.DoshContainer.DoshBarkAnimContainer.addEventListener("OnDoshBarkComplete",this.OnDoshBarkComplete);
+        }
+        
+        public function set WeightText(param1:String) : void
+        {
+            this.weightTextField.text = param1;
         }
         
         function OnDoshBarkComplete(param1:Event) : void

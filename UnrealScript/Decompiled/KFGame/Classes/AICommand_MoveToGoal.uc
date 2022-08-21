@@ -866,7 +866,10 @@ state MovingToGoal
         {
             CachedChildCommand.NotifyDoorOpened();
         }
-        Outer.bPreparingMove = false;
+        if(!Outer.MyKFPawn.IsDoingSpecialMove() || !Outer.MyKFPawn.SpecialMoves[Outer.MyKFPawn.SpecialMove].bDisableMovement)
+        {
+            Outer.bPreparingMove = false;
+        }
     }
 
     function FindDirectPath()
@@ -1339,7 +1342,7 @@ FailedMove:
             Outer.Pawn.SetPhysics(2);
             Outer.WaitForLanding();
             bValidRouteCache = false;
-            if(Outer.bPreparingMove && Outer.PendingDoor == none)
+            if((Outer.bPreparingMove && Outer.PendingDoor == none) && !Outer.MyKFPawn.IsDoingSpecialMove() || !Outer.MyKFPawn.SpecialMoves[Outer.MyKFPawn.SpecialMove].bDisableMovement)
             {
                 Outer.bPreparingMove = false;
             }
@@ -1355,7 +1358,7 @@ FailedMove:
         if(Retries < 5)
         {
             bValidRouteCache = false;
-            if(Outer.bPreparingMove && Outer.PendingDoor == none)
+            if((Outer.bPreparingMove && Outer.PendingDoor == none) && !Outer.MyKFPawn.IsDoingSpecialMove() || !Outer.MyKFPawn.SpecialMoves[Outer.MyKFPawn.SpecialMove].bDisableMovement)
             {
                 Outer.bPreparingMove = false;
             }
@@ -1371,7 +1374,7 @@ FailedMove:
             if((Retries >= 5) && Retries < 10)
             {
                 bValidRouteCache = false;
-                if(Outer.bPreparingMove && Outer.PendingDoor == none)
+                if((Outer.bPreparingMove && Outer.PendingDoor == none) && !Outer.MyKFPawn.IsDoingSpecialMove() || !Outer.MyKFPawn.SpecialMoves[Outer.MyKFPawn.SpecialMove].bDisableMovement)
                 {
                     Outer.bPreparingMove = false;
                 }
@@ -1404,7 +1407,7 @@ FailedMove:
             }
         }
     }
-    J0x36FA:
+    J0x3940:
 
     if(Outer.MoveGoal != none)
     {
@@ -1416,7 +1419,7 @@ FailedMove:
     }
     Status = 'Success';
     Outer.PopCommand(self);
-    stop;                
+    stop;        
 }
 
 state DelayFailure

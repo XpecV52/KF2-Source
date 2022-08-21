@@ -1,25 +1,37 @@
+//=============================================================================
+// KFGFXHudWrapper_Versus
+//=============================================================================
+// HUD class for Versus mode
+//=============================================================================
+// Killing Floor 2
+// Copyright (C) 2016 Tripwire Interactive LLC
+//=============================================================================
 class KFGFXHudWrapper_Versus extends KFGFXHudWrapper;
 
-struct sHiddenHumanPawnInfo
-{
-    var Pawn HumanPawn;
-    var PlayerReplicationInfo HumanPRI;
-};
+/** Cached GRI reference */
+var KFGameReplicationInfoVersus MyKFGRIV;
 
 var Class<KFGFxMoviePlayer_HUD> HumanHUDClass;
 var Class<KFGFxMoviePlayer_HUD> ZedHUDClass;
-var float HumanPlayerIconInterpMult;
 var() float ZedPlayerHudLocX, ZedPlayerHudLocY;
 
 var int HumanStatusBarLengthMax;
 const FriendlyZedInfoShowDistanceSQ = 562000;
 
-/** Texture used for the generic human icon */
-var Texture2D GenericHumanIconTexture;
-
 /** Boss icon texture/values */
 var Texture2D BossIconTexture;
 var color BossIconColor;
+
+/** String displayed to player zeds waiting for the next spawn cycle */
+var localized string WaitingToSpawnString;
+
+/** String displayed to player zeds when the takeover timer is active */
+var localized string ZedTakeOverActiveString;
+
+/** String displayed to human players when the round is over */
+var localized string PerkSwitchAllowedString;
+
+var int LastTeamIndex;
 
 simulated function PostBeginPlay()
 {
@@ -35,17 +47,21 @@ simulated function PostBeginPlay()
     }
 }
 
-function CreateHUDMovie()
+function CreateHUDMovie(optional bool bForce)
 {
     if (!class'WorldInfo'.static.IsMenuLevel())
     {       
-        if(HudMovie != none)
+        if(KFPlayerOwner != none && KFPlayerOwner.PlayerReplicationInfo.GetTeamNum() != LastTeamIndex || bForce)
         {
-            RemoveMovies();
+            LastTeamIndex = KFPlayerOwner.GetTeamNum();
+            if(HudMovie != none)
+            {
+                RemoveMovies();
+            }
+            HudMovie = new GetHUDClass();
+            HudMovie.SetTimingMode(TM_Real);
+            HudMovie.Init(class'Engine'.static.GetEngine().GamePlayers[HudMovie.LocalPlayerOwnerIndex]);
         }
-        HudMovie = new GetHUDClass();
-        HudMovie.SetTimingMode(TM_Real);
-        HudMovie.Init(class'Engine'.static.GetEngine().GamePlayers[HudMovie.LocalPlayerOwnerIndex]);
     }
 }
 
@@ -59,18 +75,19 @@ function class<KFGFxMoviePlayer_HUD> GetHUDClass()
     return HumanHUDClass;
 }
 
+/**
+ * @brief Main canvas draw function
+ */
 function DrawHUD()
 {
-    local PlayerReplicationInfo PRI;
-    local KFPlayerReplicationInfoVersus KFPRIV;
     local float ThisDot;
-    local vector ViewLocation, ViewVector, PawnLocation;
+    local vector ViewLocation, ViewVector;
     local rotator ViewRotation;
     local Pawn TestPawn;
     local KFPawn_Human HumanPawn;
     local array<PlayerReplicationInfo> VisibleHumanPlayers;
     local array<sHiddenHumanPawnInfo> HiddenHumanPlayers;
-    local int i, HiddenHumanIndex;
+    local byte MyTeamNum;
 
     super.DrawHUD();
 
@@ -84,11 +101,24 @@ function DrawHUD()
 
     // Cache off view rotation vector
     ViewVector = vector(ViewRotation);
+    MyTeamNum = KFPlayerOwner.GetTeamNum();
 
-    if( KFPlayerOwner != none && KFPlayerOwner.GetTeamNum() == 255 )
+    // Cache GRI
+    if( MyKFGRIV == none )
+    {
+        MyKFGRIV = KFGameReplicationInfoVersus( WorldInfo.GRI );
+    }
+
+    if( KFPlayerOwner != none && MyTeamNum == 255 )
     {
         foreach WorldInfo.AllPawns( class'Pawn', TestPawn )   
         {
+            // Only player-controlled pawns
+            if( TestPawn.PlayerReplicationInfo == none )
+            {
+                continue;
+            }
+
             if( TestPawn.IsAliveAndWell() && TestPawn != BossPawn && TestPawn != KFPlayerOwner.Pawn )
             {
                 if( TestPawn.Mesh != none && `TimeSince( TestPawn.Mesh.LastRenderTime ) < 0.2f )
@@ -99,22 +129,22 @@ function DrawHUD()
                         HumanPawn = KFPawn_Human(TestPawn);
                         if( HumanPawn != none )
                         {
-                            if( DrawPreciseEnemyHumanHUD( HumanPawn ) )
+                            if( DrawPreciseHumanPlayerInfo( HumanPawn ) )
                             {
                                 VisibleHumanPlayers.AddItem( HumanPawn.PlayerReplicationInfo );
                             }
                             else
                             {
                                 HiddenHumanPlayers.Insert( 0, 1 );
-                                HiddenHumanPlayers[0].HumanPawn = TestPawn;
+                                HiddenHumanPlayers[0].HumanPawn = HumanPawn;
                                 HiddenHumanPlayers[0].HumanPRI = HumanPawn.PlayerReplicationInfo;
                             }
                         }
-                        else if( TestPawn.GetTeamNum() == 255 )
+                        else if( MyTeamNum == 255 && TestPawn.GetTeamNum() == 255 )
                         {
                             if( VSizeSq( KFPlayerOwner.ViewTarget.Location - TestPawn.Location ) <= FriendlyZedInfoShowDistanceSQ )
                             {
-                                DrawFriendlyZedHUD( TestPawn );
+                                DrawFriendlyZedPawnIcon( TestPawn );
                             }
                         }
                     }
@@ -128,47 +158,39 @@ function DrawHUD()
             }
         }
 
-        // Draw the hidden players
-        for( i = 0; i < WorldInfo.GRI.PRIArray.Length; ++i )
+        CheckAndDrawHiddenPlayerIcons( VisibleHumanPlayers, HiddenHumanPlayers );
+    }
+
+    // Draw spawn time remaining
+    if( (MyTeamNum == 255 || MyKFGRIV.bRoundIsOver)
+        && !MyKFGRIV.bMatchIsOver
+        && (PlayerOwner.Pawn == none || PlayerOwner.Pawn.bPlayedDeath)
+        && PlayerOwner.CanRestartPlayer() )
+    {
+        if( MyKFGRIV.TimeUntilNextSpawn != 255 || MyKFGRIV.PlayerZedSpawnWaitTimeData.bTakeOverActive )
         {
-            // Avoid casting until we've got some simple checks out of the way
-            PRI = WorldInfo.GRI.PRIArray[i];
-
-            // Only humans
-            if( PRI.GetTeamNum() == PlayerOwner.GetTeamNum() ||
-                VisibleHumanPlayers.Find( PRI ) != INDEX_NONE )
-            {
-                continue;
-            }
-
-            // Use the real pawn location if the pawn is still relevant
-            HiddenHumanIndex = HiddenHumanPlayers.Find( 'HumanPRI', PRI );
-            if( HiddenHumanIndex != INDEX_NONE && HiddenHumanPlayers[HiddenHumanIndex].HumanPawn != none )
-            {
-                PawnLocation = HiddenHumanPlayers[HiddenHumanIndex].HumanPawn.Location;
-            }
-
-            // Otherwise we'll use our replicated location
-            if( IsZero(PawnLocation) )
-            {
-                KFPRIV = KFPlayerReplicationInfoVersus( PRI );
-                PawnLocation = KFPRIV.GetReplicatedPawnIconLocation(HumanPlayerIconInterpMult);
-                if( IsZero(PawnLocation) )
-                {
-                    continue;
-                }
-            }
-
-            // FOV pre-check (further per-pixel filtering after screen projection is done)
-            ThisDot = Normal(PawnLocation - ViewLocation) dot ViewVector;
-            if( ThisDot > 0.f )
-            {
-                DrawEnemyHumanHUD( PRI, PawnLocation );
-            }
-        }      
+            DrawRemainingTimeUntilSpawn( MyKFGRIV.TimeUntilNextSpawn, MyKFGRIV.PlayerZedSpawnWaitTimeData.bTakeOverActive );
+        }
     }
 
     // Draw boss pawn icon if needed
+    CheckAndDrawBossPawnIcon( ViewLocation, ViewVector );
+
+    // Disable stencil test
+    Canvas.EnableStencilTest(false);
+}
+
+/**
+ * @brief Checks if a boss icon should be drawn
+ * 
+ * @param ViewLocation Thew local player's ViewLocation 
+ * @param ViewVector Thew local player's ViewVector 
+ * 
+ */
+simulated function CheckAndDrawBossPawnIcon( vector ViewLocation, vector ViewVector )
+{
+    local float ThisDot;
+
     if( BossPawn != none
         && BossPawn != PlayerOwner.Pawn
         && BossPawn.IsAliveAndWell()
@@ -178,17 +200,17 @@ function DrawHUD()
         ThisDot = Normal( BossPawn.Location - ViewLocation ) dot ViewVector;
         if( ThisDot > 0.f )
         {
-            DrawBossHUD();
+            DrawBossPawnIcon();
         }
     }
-
-    // Disable stencil test
-    Canvas.EnableStencilTest(false);
 }
 
-function DrawZedPlayerHud();
-
-simulated function DrawFriendlyZedHUD( Pawn MonsterPawn )
+/**
+ * @brief Draws a visible zed team mate's info
+ * 
+ * @param MonsterPawn The zed's pawn
+ */
+simulated function DrawFriendlyZedPawnIcon( Pawn MonsterPawn )
 {
     local float Percentage;
     local float BarHeight, BarLength;
@@ -221,32 +243,13 @@ simulated function DrawFriendlyZedHUD( Pawn MonsterPawn )
     Canvas.DrawText( MonsterPawn.PlayerReplicationInfo.PlayerName,,FontScale * FriendlyHudScale,FontScale * FriendlyHudScale, MyFontRenderInfo );
 }
 
-/** Displays icons where enemy human players are */
-function DrawEnemyHumanHUD( PlayerReplicationInfo PRI, vector IconWorldLocation )
-{
-    local vector ScreenPos;
-    local float IconSizeMult;
-
-    // Project world pos to canvas
-    ScreenPos = Canvas.Project( IconWorldLocation + vect(0,0,1) * class'KFPAwn_Human'.default.CylinderComponent.CollisionHeight * 1.2 );
-
-    // Fudge by icon size
-    IconSizeMult = PlayerStatusIconSize * FriendlyHudScale * 0.5f;
-    ScreenPos.X -= IconSizeMult;
-    ScreenPos.Y -= IconSizeMult;
-
-    if( ScreenPos.X < 0 || ScreenPos.X > Canvas.SizeX || ScreenPos.Y < 0 || ScreenPos.Y > Canvas.SizeY )
-    {
-        return;
-    }
-
-    // Draw human icon
-    Canvas.SetDrawColor(255,255,255,255);
-    Canvas.SetPos( ScreenPos.X, ScreenPos.Y );
-    Canvas.DrawTile( GenericHumanIconTexture, PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256 );
-}
-
-function bool DrawPreciseEnemyHumanHUD( KFPawn_Human KFPH )
+/**
+ * @brief Draws a visible human player's info
+ * 
+ * @param KFPH The player's pawn
+ * @return true if successfully drawn
+ */
+function bool DrawPreciseHumanPlayerInfo( KFPawn_Human KFPH )
 {
     local float Percentage;
     local float BarHeight, BarLength;
@@ -284,7 +287,7 @@ function bool DrawPreciseEnemyHumanHUD( KFPawn_Human KFPH )
 
     Canvas.SetDrawColor(255,255,255,255);
     Canvas.SetPos( ScreenPos.X, ScreenPos.Y );
-    Canvas.DrawTile( /*KFPRI.CurrentPerkClass.default.PerkIcon*/GenericHumanIconTexture, PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256 );
+    Canvas.DrawTile( GenericHumanIconTexture, PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256 );
     return true;
 }
 
@@ -293,7 +296,7 @@ function bool DrawPreciseEnemyHumanHUD( KFPawn_Human KFPH )
  * 
  * @param BossPawn The boss' pawn
  */
-function DrawBossHUD()
+function DrawBossPawnIcon()
 {
     local vector ScreenPos, TargetLocation;
     local float IconSizeMult;
@@ -316,8 +319,53 @@ function DrawBossHUD()
     Canvas.DrawTile( BossIconTexture, PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256 );
 }
 
+function DrawRemainingTimeUntilSpawn( byte RemainingTime, bool bTakeOverIsActive )
+{
+    local vector2D ScreenPos;
+    local int ShadowSize;
+    local float TextScale, XL, YL;
+    local string ActualString;
+    local FontRenderInfo MyFontRenderInfo;
+
+    MyFontRenderInfo = Canvas.CreateFontRenderInfo( true );
+
+    if( bTakeOverIsActive && PlayerOwner.GetTeamNum() == 255 )
+    {
+        ActualString = ZedTakeOverActiveString;
+    }
+    else
+    {
+        if( PlayerOwner.GetTeamNum() == 0 && MyKFGRIV.bRoundIsOver )
+        {
+            ActualString = Repl( PerkSwitchAllowedString, "%x%", RemainingTime, true );
+        }
+        else
+        {
+            ActualString = Repl( WaitingToSpawnString, "%x%", RemainingTime, true );           
+        }
+    }
+
+    TextScale = class'KFGameEngine'.Static.GetKFFontScale() * (Canvas.ClipY / 384.f);
+    Canvas.Font = class'KFGameEngine'.Static.GetKFCanvasFont();
+    Canvas.TextSize( Repl( WaitingToSpawnString, "%x%", "00", true ), XL, YL, TextScale, TextScale );
+    ScreenPos.X = (Canvas.ClipX * 0.5f) - (XL * 0.5f);
+    ScreenPos.Y = Canvas.ClipY * 0.25f;
+
+    // Drop shadow
+    ShadowSize = int( Canvas.ClipY / 360.f );
+    Canvas.SetPos( ScreenPos.X + ShadowSize, ScreenPos.Y + ShadowSize );
+    Canvas.SetDrawColor( 0, 0, 0, 160 );
+    Canvas.DrawText( ActualString,, TextScale, TextScale, MyFontRenderInfo );
+
+    // Text
+    Canvas.SetPos( ScreenPos.X, ScreenPos.Y );
+    Canvas.SetDrawColor( 255, 255, 255, 255 );
+    Canvas.DrawText( ActualString,, TextScale, TextScale, MyFontRenderInfo );
+}
+
 DefaultProperties
 {
+    LastTeamIndex=-1
     HUDClass=class'KFGFxMoviePlayer_HUD'
     HumanHUDClass=class'KFGFxMoviePlayer_HUD'
     ZedHUDClass=class'KFGFxMoviePlayer_HUD_Versus'
@@ -328,7 +376,6 @@ DefaultProperties
     HumanPlayerIconInterpMult=0.007f
     HumanStatusBarLengthMax = 80.0f;
 
-    GenericHumanIconTexture=Texture2D'UI_PerkIcons_TEX.UI_Horzine_H_Logo'
     BossIconTexture=Texture2D'ZED_Patriarch_UI.ZED-VS_Icon_Boss'
     BossIconColor=(R=255, G=255, B=255, A=192)
 }

@@ -12,66 +12,12 @@ class KFDT_Explosive_RPG7BackBlast extends KFDT_Explosive
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 15;
-
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_RPG7'
    bShouldSpawnPersistentBlood=True
-   KnockdownPower=0
-   StumblePower=120
+   KnockdownPower=300.000000
+   StumblePower=500.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Demolitionist'
    KDeathVel=300.000000
    KDeathUpKick=1000.000000

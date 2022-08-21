@@ -372,6 +372,9 @@ var	texture		CharPortrait;
 /** 0 is Not Talking, 1 is Public, 2 is Team, 3 is Squad, 4 is Vehicle, 5 is Spectator, 6 is Sequestered Spectator */
 var	repnotify byte	VOIPStatus;
 
+/** The cumulative amount of damage this player has dealt, resets on team change */
+var int DamageDealtOnTeam;
+
 /************************************
  *  Replicated Perk Data
  ************************************/
@@ -411,8 +414,19 @@ var 			bool 			bPerkSupplyUsed;
  var		bool		bObjectivePlayer;
 
 /************************************
+ * Replicated, compressed locations of human players
+ ************************************/
+var private	Vector 		PawnLocationCompressed;
+var private	Vector 		LastReplicatedSmoothedLocation;
+var 		bool 		bShowNonRelevantPlayers;
+
+/** Cached (non-replicated) player owner, used by server */
+var KFPlayerController KFPlayerOwner;
+
+/************************************
 *  native
 ************************************/
+// (cpptext)
 // (cpptext)
 // (cpptext)
 // (cpptext)
@@ -423,16 +437,21 @@ replication
 	if ( bNetDirty )
 		RepCustomizationInfo, NetPerkIndex, ActivePerkLevel,
 		CurrentPerkClass, bObjectivePlayer, Assists, PlayerHealth, PlayerHealthPercent,
-		bExtraFireRange, bSplashActive, bNukeActive, 
-		bConcussiveActive, bPerkCanSupply, CharPortrait;
+		bExtraFireRange, bSplashActive, bNukeActive, bConcussiveActive, bPerkCanSupply,
+		CharPortrait, DamageDealtOnTeam;
 
   	// sent to non owning clients
  	if ( bNetDirty && (!bNetOwner || bDemoRecording) )
  		VOIPStatus, SharedUnlocks;
+
+ 	if( !bNetOwner && bNetDirty )
+		PawnLocationCompressed;
 }
 
 simulated event ReplicatedEvent(name VarName)
 {
+	local KFPlayerController LocalPC;
+
 	if ( VarName == 'RepCustomizationInfo' )
 	{
 		CharacterCustomizationChanged();
@@ -445,6 +464,25 @@ simulated event ReplicatedEvent(name VarName)
 	{
 		UpdateTraderDosh();
 	}
+	//@HSL_BEGIN - JRO - 4/28/2016 - Keep track of played we've played with
+	else if ( VarName == 'PlayerName' )
+	{
+		LocalPC = KFPlayerController(GetALocalPlayerController());
+		if( LocalPC != none )
+		{
+			LocalPC.RecentlyMetPlayers.AddItem(PlayerName);
+
+			// Refresh the party widget when the name changes
+			if( WorldInfo.IsE3Build() &&
+				LocalPC.MyGFxManager != none &&
+				LocalPC.MyGFxManager.PartyWidget != none)
+			{
+				LocalPC.MyGFxManager.PartyWidget.RefreshParty();
+			}
+		}
+	}
+	//@HSL_END
+
 	
 	if ( VarName == 'Team' )
 	{
@@ -457,6 +495,11 @@ simulated event ReplicatedEvent(name VarName)
 simulated event PostBeginPlay()
 {
 	super.PostBeginPlay();
+
+	if( Role == ROLE_Authority )
+	{
+		KFPlayerOwner = KFPlayerController( Owner );
+	}
 }
 
 /*********************************************************************************************
@@ -984,6 +1027,84 @@ function PlayerReplicationInfo Duplicate()
 	return NewKFPRI;
 }
 
+function SetPlayerTeam( TeamInfo NewTeam )
+{
+	if( NewTeam != Team )
+	{
+		DamageDealtOnTeam = 0;
+	}
+
+	super.SetPlayerTeam( NewTeam );
+
+	KFPlayerOwner = KFPlayerController( Owner );
+
+	SetTimer( 1.f, true, nameOf(UpdateReplicatedVariables) );
+}
+
+function UpdateReplicatedVariables()
+{
+	if( !bIsSpectator && 
+		KFPlayerOwner != none && 
+		KFPlayerOwner.GetTeamNum() == 0 &&
+		KFPlayerOwner.Pawn != none && 
+		KFPlayerOwner.Pawn.IsAliveAndWell() )
+	{
+		UpdatePawnLocation();
+	}
+	else if( !IsZero( PawnLocationCompressed ) )
+	{
+		PawnLocationCompressed = vect(0,0,0);
+	}
+
+	UpdateReplicatedPlayerHealth();
+}
+
+/** Called once per second while on the human team to refresh replicated position */
+function UpdatePawnLocation()
+{
+		PawnLocationCompressed = KFPlayerOwner.Pawn.Location;
+		// Compress
+		PawnLocationCompressed *= 0.01f;
+}
+
+function UpdateReplicatedPlayerHealth()
+{
+	local Pawn OwnerPawn;
+
+	if( KFPlayerOwner != none )
+	{
+		OwnerPawn = KFPlayerOwner.Pawn;
+		if( OwnerPawn != none && OwnerPawn.Health != PlayerHealth )
+		{
+			PlayerHealth = OwnerPawn.Health;
+			PlayerHealthPercent = FloatToByte( float(OwnerPawn.Health) / float(OwnerPawn.HealthMax) );
+		}
+	}
+}
+
+/** Return location used for overhead icon */
+simulated function vector GetReplicatedPawnIconLocation(float BlendSpeed)
+{
+	local vector UncompressedLocation;
+
+	UncompressedLocation = PawnLocationCompressed * 100.f;
+
+	// if new location is nearby add some quick and dirty blending
+	// @note: We're faking timestep and making a few assumptions about the HUD
+	if ( BlendSpeed > 0 && !IsZero(UncompressedLocation) && VSizeSq(UncompressedLocation - LastReplicatedSmoothedLocation) < Square(500) )
+	{
+		LastReplicatedSmoothedLocation = VInterpTo( LastReplicatedSmoothedLocation,
+                                UncompressedLocation, WorldInfo.DeltaSeconds,
+                                VSize(UncompressedLocation - LastReplicatedSmoothedLocation) * BlendSpeed );
+	}
+	else
+	{
+		LastReplicatedSmoothedLocation = UncompressedLocation;		
+	}
+
+	return LastReplicatedSmoothedLocation;
+}
+
 simulated function SetPlayerReady( bool bReady )
 {
    	bReadyToPlay = bReady;
@@ -1066,6 +1187,8 @@ function IncrementDeaths( optional int Amt = 1 )
 	{
 		super.IncrementDeaths( Amt );
 	}
+
+	PawnLocationCompressed = vect(0,0,0);
 }
 
 reliable client function MarkSupplierOwnerUsed( KFPlayerReplicationInfo SupplierPRI )
@@ -1110,7 +1233,9 @@ defaultproperties
    CharacterArchetypes(10)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_DJSkully_archetype'
    CharacterArchetypes(11)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Strasser_Archetype'
    CharacterArchetypes(12)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Tanaka_Archetype'
+   CharacterArchetypes(13)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_rockabilly_archetype'
    RepCustomizationInfo=(AttachmentMeshIndices[0]=255,AttachmentMeshIndices[1]=255,AttachmentMeshIndices[2]=255)
+   bShowNonRelevantPlayers=True
    Name="Default__KFPlayerReplicationInfo"
    ObjectArchetype=PlayerReplicationInfo'Engine.Default__PlayerReplicationInfo'
 }

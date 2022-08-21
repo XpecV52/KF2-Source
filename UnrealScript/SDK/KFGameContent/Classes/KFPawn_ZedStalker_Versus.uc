@@ -1,57 +1,12 @@
 //=============================================================================
-// KFPawn_ZedStalker
+// KFPawn_ZedStalker_Versus
 //=============================================================================
-// Stalker
+// Player-controlled Stalker pawn
 //=============================================================================
 // Killing Floor 2
-// Copyright (C) 2015 Tripwire Interactive LLC
+// Copyright (C) 2016 Tripwire Interactive LLC
 //=============================================================================
-
 class KFPawn_ZedStalker_Versus extends KFPawn_ZedStalker;
-
-/** Keeps track of cloaking states */
-var bool bWasCloaked;
-
-/**
-* Check on various replicated data and act accordingly.
-*/
-simulated event ReplicatedEvent( name VarName )
-{
-	switch( VarName )
-	{
-		case nameOf(bIsCloaking):
-			ClientCloakingStateUpdated();
-			break;
-
-		default:
-			break;
-	}
-
-	super.ReplicatedEvent( VarName );
-}
-
-/** Toggle cloaking material */
-function SetCloaked(bool bNewCloaking)
-{
-	super.SetCloaked( bNewCloaking );
-
-	if( WorldInfo.NetMode != NM_DedicatedServer )
-	{
-		ClearBloodDecals();
-	}
-}
-
-/**
- * bIsCloaking replicated state changed
- * Network: Local and Remote Clients
- */
-simulated function ClientCloakingStateUpdated()
-{
-	if( bIsCloaking )
-	{
-		ClearBloodDecals();
-	}
-}
 
 /**
  * Called every 0.5f seconds to check if a cloaked zed has been spotted
@@ -64,7 +19,7 @@ simulated event UpdateSpottedStatus()
 		if( bIsCloakingSpottedByLP )
 		{
 			bIsCloakingSpottedByLP = false;
-			SetGameplayMICParams();
+			UpdateGameplayMICParams();
 		}
 
 		return;
@@ -81,7 +36,7 @@ function CallOutCloaking( optional KFPlayerController CallOutController )
 		if( bIsCloakingSpottedByTeam )
 		{
 			bIsCloakingSpottedByTeam = false;
-			SetGameplayMICParams();		
+			UpdateGameplayMICParams();
 		}
 
 		return;
@@ -109,19 +64,53 @@ defaultproperties
 	SpecialMoveCooldowns(3)=(SMHandle=SM_PlayerZedSpecial1,		CooldownTime=0.35f,	SpecialMoveIcon=Texture2D'ZED_Stalker_UI.ZED-VS_Icons_Stalker-Evade', GBA_Name="GBA_TertiaryFire",NameLocalizationKey="Evade")
 	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.0f,	SpecialMoveIcon=Texture2D'ZED_Stalker_UI.ZED-VS_Icons_Stalker-Jump', GBA_Name="GBA_Jump",bShowOnHud=false)) // Jump always at end of array)) // Jump always at end of array
 
-	InstantIncaps(IAF_Stun)=(Head=68,Torso=90,Leg=90,Arm=90,LowHealthBonus=10,Cooldown=5.0)
-	InstantIncaps(IAF_Knockdown)=(Head=50,Torso=75,Leg=75,Arm=75,LowHealthBonus=10,Cooldown=9.0)
-	InstantIncaps(IAF_Stumble)=(Head=60,Torso=65,Arm=65,LowHealthBonus=10,Cooldown=5.0)
-	InstantIncaps(IAF_LegStumble)=(Leg=60,LowHealthBonus=10,Cooldown=5.0)
-	InstantIncaps(IAF_GunHit)=(Head=106,Torso=106,Leg=106,Arm=106,LowHealthBonus=10,Cooldown=1.0)
-	InstantIncaps(IAF_MeleeHit)=(Head=23,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=0.35)
-	StackingIncaps(SAF_Poison)=(Threshhold=6.0,Duration=5.0,Cooldown=20.5,DissipationRate=1.00)
-	StackingIncaps(SAF_Microwave)=(Threshhold=3.0,Duration=5.0,Cooldown=20.5,DissipationRate=1.00)
-	StackingIncaps(SAF_FirePanic)=(Threshhold=2.0,Duration=2.5,Cooldown=5.0,DissipationRate=0.05)
+
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(1.1)))  //3.0
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(0.7)))  //1.0
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun', 	        DamageScale=(0.3)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun', 	        DamageScale=(0.4)))  //1.01
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle', 	        DamageScale=(0.4)))  //0.76  0.5
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(1.0)))  //0.5
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(1.0)))  //0.5
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(0.5)))  //0.8
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 	                DamageScale=(0.35)))  //0.25
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 	                DamageScale=(0.20)))  //0.85  0.35
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.4)))   //1.0
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(1.0)))  //0.88
+
+
+// special case
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AR15',              DamageScale=(1.2))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_MB500', 	         DamageScale=(0.5)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rem1858', 	         DamageScale=(0.75)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Colt1911', 	     DamageScale=(0.65)))  //0.9
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_9mm', 	             DamageScale=(1.6)))  //0.9
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Pistol_Medic', 	 DamageScale=(1.5)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Winchester', 	     DamageScale=(0.6)))  //0.9  0.7
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire_CaulkBurn', 	         DamageScale=(0.9)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_ExplosiveSubmunition_HX25', 	 DamageScale=(0.5)))  //0.9  0.6
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing_EvisceratorProj', 	 DamageScale=(0.3)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing_Eviscerator', 	     DamageScale=(0.3)))  //0.9
+
+
+
+	IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 0.5, 0.1, 0.1, 0.1), Cooldown=3.0, Duration=2.0)
+	IncapSettings(AF_Knockdown)=(Vulnerability=(0.5),                     Cooldown=3.0)
+	IncapSettings(AF_Stumble)=	(Vulnerability=(0.5),                     Cooldown=3.0)
+	IncapSettings(AF_GunHit)=	(Vulnerability=(1.0),                     Cooldown=0.75)
+	IncapSettings(AF_MeleeHit)=	(Vulnerability=(1.0),                     Cooldown=0.5)
+	IncapSettings(AF_Poison)=	(Vulnerability=(1),                       Cooldown=5.0, Duration=2.0)
+	IncapSettings(AF_Microwave)=(Vulnerability=(0.0),                     Cooldown=5.0, Duration=2.0)
+	IncapSettings(AF_FirePanic)=(Vulnerability=(0.5),                     Cooldown=7.0, Duration=3)
+	IncapSettings(AF_EMP)=		(Vulnerability=(1.0),                     Cooldown=5.0, Duration=3.0)
+	IncapSettings(AF_Freeze)=	(Vulnerability=(1.0),                     Cooldown=1.5, Duration=2.0)
+
+
+
 
 	//defaults
 	Begin Object Name=MeleeHelper_0
-		BaseDamage=18.f
+		BaseDamage=20 //20
 		MaxHitRange=180.f
 		MomentumTransfer=25000.f
 		MyDamageType=class'KFDT_Slashing_ZedWeak'
@@ -130,16 +119,21 @@ defaultproperties
 	End Object
 	MeleeAttackHelper=MeleeHelper_0
 
-	Health=200 // 2.5x default
+	Health=100 // 2.5x default  //200
     // Override Head GoreHealth (aka HeadHealth)
-    HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=75, DmgScale=1.1, SkinID=1) // default is 20
+    HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=100, DmgScale=1.001, SkinID=1) // default is 20  GoreHealth=75
     DoshValue=30.0 // 2x default because they are harder to hit/kill
     XPValues(0)=32 // 4x default because they are harder to hit/kill
 
     // Really fast sprint
-    SprintSpeed=620.f
+    SprintSpeed=700  //620
     SprintStrafeSpeed=425.f
-    GroundSpeed=390.f
+    GroundSpeed=500  //390
+
+
+    JumpZ=1100  //750
+
+    CloakSpeed=2.0f
 
 	//defaults
 	ThirdPersonViewOffset={(

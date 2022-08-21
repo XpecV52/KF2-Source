@@ -15,9 +15,30 @@ const ShootAnim_F = 'HardFire_F';
 const ShootAnim_B = 'HardFire_B';
 
 var() GameExplosion ExplosionTemplate;
-var transient Vector BlastStartLocation;
 var transient Actor BlastAttachee;
+var transient float BlastSpawnOffset;
 var transient bool bPulverizerFireReleased;
+var bool bFriendlyFireEnabled;
+
+replication
+{
+     if(bNetInitial)
+        bFriendlyFireEnabled;
+}
+
+simulated event PreBeginPlay()
+{
+    super(KFWeapon).PreBeginPlay();
+    if((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game).FriendlyFireScale != 0)
+    {
+        bFriendlyFireEnabled = true;
+    }
+}
+
+simulated function bool CanOverrideMagReload(byte FireModeNum)
+{
+    return FireModeNum != 2;
+}
 
 simulated function CustomFire()
 {
@@ -31,6 +52,7 @@ simulated function CustomFire()
     }
     SpawnLoc = Instigator.GetWeaponStartTraceLocation();
     SpawnRot = GetPulverizerAim(SpawnLoc);
+    SpawnLoc += (vector(SpawnRot) * BlastSpawnOffset);
     ExploActor = Spawn(Class'KFExplosionActorReplicated', self,, SpawnLoc, SpawnRot,, true);
     if(ExploActor != none)
     {
@@ -103,7 +125,6 @@ private reliable server final function ServerBeginPulverizerFire(Actor HitActor,
         LogInternal("ServerBeginPulverizerFire outside of range!");
         return;
     }
-    BlastStartLocation = HitLocation;
     BlastAttachee = HitActor;
     SendToFiringState(6);
 }
@@ -163,13 +184,12 @@ simulated state MeleeHeavyAttacking
                 return;
             }
             Victim = KFPawn(HitActor);
-            if((Victim == none) || Victim.bPlayedDeath && (WorldInfo.TimeSeconds - Victim.TimeOfDeath) > 0)
+            if(((Victim == none) || !bFriendlyFireEnabled && Victim.GetTeamNum() == Instigator.GetTeamNum()) || Victim.bPlayedDeath && (WorldInfo.TimeSeconds - Victim.TimeOfDeath) > 0)
             {
                 return;
             }
             if((AmmoCount[0] > 0) && !IsTimerActive('BeginPulverizerFire'))
             {
-                BlastStartLocation = HitLocation;
                 BlastAttachee = HitActor;
                 SetTimer(0.001, false, 'BeginPulverizerFire');
                 if(Role < ROLE_Authority)
@@ -192,17 +212,19 @@ simulated state MeleeHeavyAttacking
 defaultproperties
 {
     ExplosionTemplate=KFGameExplosion'WEP_Pulverizer_ARCH.Wep_Pulverizer_Explosion'
+    BlastSpawnOffset=-10
     ParryStrength=5
-    ParryDamageMitigationPercent=0.1
+    BlockDamageMitigation=0.6
+    ParryDamageMitigationPercent=0.6
     BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Hammer'
     ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Wood'
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=6
+    MagazineCapacity=5
     bCanBeReloaded=true
     bReloadFromMagazine=true
     GroupPriority=75
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Pulverizer'
-    MagazineCapacity=5
     MaxSpareAmmo=15
     WeaponFireSnd=/* Array type was not detected. */
     AttachmentArchetype=KFWeapAttach_Pulverizer'WEP_Pulverizer_ARCH.Wep_Pulverizer_3P'

@@ -12,60 +12,6 @@ class KFDT_Ballistic_Pistol_Medic extends KFDT_Ballistic_Handgun
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 15;
-
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static function bool CanApplyDamageOverTime( out int InDamage, out class<KFDamageType> KFDT, optional Controller InstigatedBy ) 
 {
@@ -75,8 +21,8 @@ static function bool CanApplyDamageOverTime( out int InDamage, out class<KFDamag
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_MedicPistol'
-   LegStumblePower=105
-   GunHitPower=103
+   StumblePower=0.000000
+   GunHitPower=45.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_FieldMedic'
    KDamageImpulse=900.000000
    KDeathVel=100.000000

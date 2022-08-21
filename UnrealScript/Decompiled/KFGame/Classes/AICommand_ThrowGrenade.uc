@@ -8,10 +8,9 @@
 class AICommand_ThrowGrenade extends AICommand_SpecialMove within KFAIController_Hans;
 
 var int GrenadeBarrage;
-var KFAIWaveInfo SummonWave;
-var int MaxBossMinions;
+var bool bHuntAndHeal;
 
-static function bool ThrowGrenade(KFAIController_Hans AI, optional int inGrenadeBarrage, optional KFPawn InTarget, optional KFAIWaveInfo NewSummonWave, optional int NewMaxBossMinions)
+static function bool ThrowGrenade(KFAIController_Hans AI, optional int inGrenadeBarrage, optional bool bIsHuntAndHeal)
 {
     local AICommand_ThrowGrenade Cmd;
 
@@ -19,11 +18,7 @@ static function bool ThrowGrenade(KFAIController_Hans AI, optional int inGrenade
     if(Cmd != none)
     {
         Cmd.GrenadeBarrage = inGrenadeBarrage;
-        if((NewMaxBossMinions > 0) && NewSummonWave != none)
-        {
-            Cmd.SummonWave = NewSummonWave;
-            Cmd.MaxBossMinions = NewMaxBossMinions;
-        }
+        Cmd.bHuntAndHeal = bIsHuntAndHeal;
         AI.PushCommand(Cmd);
         return true;
     }
@@ -56,27 +51,17 @@ state Command_SpecialMove
 
     function bool ExecuteSpecialMove()
     {
-        local KFAISpawnManager SpawnManager;
-
         if(super.ExecuteSpecialMove())
         {
-            if(MaxBossMinions > 0)
+            if(KFPawn_ZedHansBase(Outer.MyKFPawn) != none)
             {
-                SpawnManager = KFGameInfo(Outer.WorldInfo.Game).SpawnManager;
-                if(SpawnManager != none)
-                {
-                    SpawnManager.SummonBossMinions(SummonWave.Squads, MaxBossMinions);
-                }
-                if(KFPawn_ZedHansBase(Outer.MyKFPawn) != none)
-                {
-                    KFPawn_ZedHansBase(Outer.MyKFPawn).bPendingSmokeGrenadeBarrage = false;
-                }
+                KFPawn_ZedHansBase(Outer.MyKFPawn).bPendingSmokeGrenadeBarrage = false;
             }
             return true;            
         }
         else
         {
-            if(((GrenadeBarrage > 0) && MaxBossMinions > 0) && KFPawn_ZedHansBase(Outer.MyKFPawn) != none)
+            if(((GrenadeBarrage > 0) && bHuntAndHeal) && KFPawn_ZedHansBase(Outer.MyKFPawn) != none)
             {
                 KFPawn_ZedHansBase(Outer.MyKFPawn).bPendingSmokeGrenadeBarrage = true;
             }
@@ -88,17 +73,17 @@ state Command_SpecialMove
     {
         if(GrenadeBarrage == 0)
         {
-            return 33;            
+            return 32;            
         }
         else
         {
             if(GrenadeBarrage == 1)
             {
-                return 34;                
+                return 33;                
             }
             else
             {
-                return 35;
+                return 34;
             }
         }
     }

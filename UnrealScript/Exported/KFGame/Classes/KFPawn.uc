@@ -11,7 +11,7 @@ class KFPawn extends BaseAIPawn
 	abstract
 	nativereplication
 	native(Pawn)
-	dependson(KFPhysicalMaterialProperty,KFPawnVoiceGroup,KFPawnAfflictions);
+	dependson(KFPhysicalMaterialProperty,KFPawnVoiceGroup,KFAfflictionManager);
 
 
 
@@ -355,17 +355,18 @@ var int ThirdPersonAttachmentBitMask;
 var name ThirdPersonAttachmentSocketNames[3];
 var MeshComponent ThirdPersonAttachments[3];
 
-/** For customizable characters this is the outfit MIC, otherwise it is the MIC for the whole body */
-var MaterialInstanceConstant BodyMIC;
-/** Alternate body MIC used for blood and gore (only used by KFPawn_Monster for now) */
-var MaterialInstanceConstant GoreMIC;
-/** For customizable characters this is the head MIC, otherwise it is empty */
-var MaterialInstanceConstant HeadMIC;
-/** For customizable characters this is the first person arms MIC, otherwise it is empty */
-//var MaterialInstanceConstant ArmMIC;
+/**
+ * Character mesh MICs that are used for material params during gameplay
+ * 0: Always the main body (Replaced with the gore mesh)
+ * 1: Head MIC for Humans.  Alternate body MIC for complex zeds
+*/
+var array<MaterialInstanceConstant> CharacterMICs;
 
 /** Whether to allow always on physics such as jiggly parts, cloth, etc */
 var globalconfig bool bAllowAlwaysOnPhysics;
+
+/** True if switched to Gore Skeleton/Physics Asset */
+var const bool bIsGoreMesh;
 
 /*********************************************************************************************
  * @name	Damage & Hit Zones
@@ -447,6 +448,7 @@ var array<ExplosiveStackInfo> RecentExplosiveStacks;
 
 /** The last time this pawn dealt or received any damage */
 var transient float LastTimeDamageHappened;
+
 
 /*********************************************************************************************
 * Scoring/Dosh Distribution
@@ -566,17 +568,17 @@ var globalconfig bool bAllowRagdollAndGoreOnDeadBodies;
 /** The time when a gib last collided with something in the world (relative to WorldInfo.TimeSeconds) */
 var transient float LastGibCollisionTime;
 
+/** Tells remote clients to play a melee impact effect */
+var repnotify vector MeleeImpactLocation;
+
 /*********************************************************************************************
  * @name	Status Effects
  ********************************************************************************************* */
 
 /* Manages various types of afflictions that this pawn may have that has smoe type of gameplay affect (such as panicking from fire, disrupted by EMP, etc) */
-var instanced KFPawnAfflictions AfflictionHandler;
-
-/** Afflications that are one off and happen instantly if the input damage crosses the resistance threshold (e.g. Knockdown, Stumble)*/
-var protected array<IncapResist> 		InstantIncaps;
+var instanced KFAfflictionManager AfflictionHandler;
 /** Afflications that accumlate/decay over time and can stack with eachother (e.g. Panic, Burning) and are triggered when the accumulated value crosses the threshold */
-var protected array<StackingIncapInfo> 	StackingIncaps;
+var array<IncapSettingsInfo> 	  IncapSettings;
 
 /** Bit-flags 0:Alive 1:Dead.  Up to (first) 32 hit zones */
 var repnotify int InjuredHitZones;
@@ -589,7 +591,7 @@ var repnotify bool bEmpPanicked;
 /** This pawn is currently Panicked by the EMP effect */
 var repnotify bool bFirePanicked;
 /** Replicated the remaining StackedPower for fire on death so the zed keeps burning */
-var repnotify byte DeathFireStackedPower;
+var 		  byte DeathFireStackedPower;
 /** How burned is this zed currently? Replicated version */
 var repnotify byte RepFireBurnedAmount;
 
@@ -679,6 +681,12 @@ var float TeammateCollisionRadiusPercent;
 
 /** If set, counter the World's TimeDilation using this Pawn's CustomTimeDilation */
 var bool bUnaffectedByZedTime;
+
+/** If true, will always move at normal speed in zed time */
+var bool bMovesFastInZedTime;
+
+/** Scale to use when moving in zed time. bMovesFastInZedTime must be set to TRUE */
+var float ZedTimeSpeedScale;
 
 /*********************************************************************************************
  * @name	Camera
@@ -793,6 +801,9 @@ var rotator		ReplicatedAimOffsetPct;
 /** If set, turns off KFAnim_TurnInPlace (and related) nodes */
 var(Animation) bool bDisableTurnInPlace;
 
+/** Scales the anim rate of the KFAnimSeq_TurnInPlace node */
+var float TurnInPlaceAnimRate;
+
 /** Time when AnimGroup can play a new hit reaction */
 var float NextHitReactionAnim_ActorTime;
 /** Timer for swipe damage tick notify */
@@ -847,8 +858,7 @@ enum ESpecialMove
 	/** ZED standard attacks */
 	SM_MeleeAttack,
 	SM_MeleeAttackDoor,
-	SM_Grab,
-	SM_GrabAttack,
+	SM_GrappleAttack,
 
 	/** ZED Hit Reactions */
 	SM_Stumble,
@@ -949,27 +959,29 @@ var float BaseTranslationOffset;
  *  This variable is used to compensate mesh's translation
  *  when steps/inclines/bulky geometry causing cylinder to move up/downs rapidly
  *  To make it smooth this interpolates and creates smoother location transition **/
-var const vector   MTO_PhysSmoothOffset;
+var const vector 	MTO_PhysSmoothOffset;
 /** SpecialMoveOffset:
  *  This doesn't have to be used by SpecialMove but it's in-game usable mesh offset
  *  SpecialMoveInterp is interpolation variable to reach target SpecialMoveOffset
  *  SpecialMoveSpeed is interpolate speed to reach target SpecialMoveOffset per second
   */
-var vector         MTO_SpecialMoveOffset;
-var vector         MTO_SpecialMoveInterp;
-var float          MTO_SpecialMoveSpeed;
+var vector 			MTO_SpecialMoveOffset;
+var vector 			MTO_SpecialMoveInterp;
+var float 			MTO_SpecialMoveSpeed;
 
 /** Mesh translation calculated by UpdateFloorConform */
-var const vector   MTO_IKFloorConform;
+var const vector 	MTO_IKFloorConform;
 
 /** Floor up vector used by floor conforming */
-var const vector   MeshFloorConformNormal;
+var const Vector 	MeshFloorConformNormal;
 /** If set, interp the MeshFloorConformNormal */
-var const bool	   bDoFloorConformBlend;
+var const bool	 	bDoFloorConformBlend;
 /** Track last Pawn rotation, to make any updates if necessary */
-var const Rotator  FloorConformLastPawnRotation;
+var const Rotator 	FloorConformLastPawnRotation;
+/** Current floor conform rotation yaw */
+var const int 		FloorConformMeshRotationYaw;
 /** If set, floor conforming assumes this creature is a quadruped.  See also GetFloorConformNormal() */
-var const bool	   bUseQuadrupedFloorConform;
+var const bool	 	bUseQuadrupedFloorConform;
 
 /** Cached values for Z smoothing */
 var const float 	LastPhysSmoothDeltaZ;
@@ -1073,7 +1085,7 @@ replication
 	if ( bNetDirty )
 		AmbientSound, WeaponAttachmentTemplate, bIsSprinting, InjuredHitZones,
 		KnockdownImpulse, ReplicatedSpecialMove, bEmpDisrupted, bEmpPanicked, bFirePanicked,
-        RepFireBurnedAmount, bUnaffectedByZedTime;
+        RepFireBurnedAmount, bUnaffectedByZedTime, bMovesFastInZedTime;
 	if ( bNetDirty && WorldInfo.TimeSeconds < LastTakeHitTimeout )
 		HitFxInfo, HitFxRadialInfo, HitFxInstigator, HitFxAddedRelativeLocs, HitFxAddedHitCount;
 	if ( Physics == PHYS_RigidBody && !bTearOff )
@@ -1091,7 +1103,7 @@ replication
 
 	// Replicated to all but the owning client
 	if ( bNetDirty && (!bNetOwner || bDemoRecording) )
-		WeaponAmbientSound;
+		WeaponAmbientSound, MeleeImpactLocation;
 	if ( bEnableAimOffset && (!bNetOwner || bDemoRecording) )
 		ReplicatedAimOffsetPct;
     if ( bNetDirty && bCanCloak )
@@ -1179,6 +1191,8 @@ native final simulated function bool FitCollision();
 /*********************************************************************************************
  * @name	Constructors, Destructors, and Loading
 ********************************************************************************************* */
+/**  Chris: See udn.unrealengine.com/questions/104007/replicated-clientgivento-has-none-newowner-paramet.html */
+reliable client function ForceOpenActorChannel();
 
 /** This will determine and then return the CharacterInfo for this pawn **/
 native simulated function KFCharacterInfoBase GetCharacterInfo();
@@ -1241,6 +1255,15 @@ event PostBeginPlay()
 	}
 }
 
+/* Reset actor to initial state - used when restarting level without reloading. */
+function Reset()
+{
+	DetachFromController( true );
+	Destroy();
+
+	super(Actor).Reset();
+}
+
 /** End any active special moves when pawn is destroyed (rather than killed
 from incoming damage) - this can happen when using a cheat like "killpawns"
 */
@@ -1291,23 +1314,23 @@ simulated event ReplicatedEvent(name VarName)
 		break;
 
 	case nameof(bEmpDisrupted):
-		AfflictionHandler.SetEMPDisrupted(bEmpDisrupted);
+		AfflictionHandler.ToggleEffects(AF_EMP, bEmpDisrupted, bEmpPanicked);
 		break;
 
 	case nameof(bEmpPanicked):
-		AfflictionHandler.SetEMPPanicked(bEmpPanicked);
+		AfflictionHandler.ToggleEffects(AF_EMP, bEmpDisrupted, bEmpPanicked);
 		break;
 
 	case nameof(bFirePanicked):
-		AfflictionHandler.SetFirePanicked(bFirePanicked);
+		AfflictionHandler.ToggleEffects(AF_FirePanic, bFirePanicked);
 		break;
 
 	case nameof(RepFireBurnedAmount):
-		AfflictionHandler.SetBurnedParameter(ByteToFloat(RepFireBurnedAmount), true);
+		AfflictionHandler.UpdateMaterialParameter(AF_FirePanic, ByteToFloat(RepFireBurnedAmount));
 		break;
 
-	case nameof(DeathFireStackedPower):
-		AfflictionHandler.TearOffFirePanic(DeathFireStackedPower);
+	case nameOf(MeleeImpactLocation):
+		OnMeleeImpactLocationUpdated();
 		break;
 	}
 
@@ -1492,13 +1515,13 @@ simulated function SetCharacterAnimationInfo()
 	}
 }
 
-/** Set gameplay related MIC params on the active body MIC */
-simulated function SetGameplayMICParams()
+/** Reapply active gameplay related MIC params (e.g. when switching to the gore mesh) */
+simulated function UpdateGameplayMICParams()
 {
     if ( WorldInfo.NetMode != NM_DedicatedServer )
 	{
-        AfflictionHandler.SetEMPEffects(bEmpDisrupted, bEmpPanicked);
-        AfflictionHandler.SetBurnedParameter(ByteToFloat(RepFireBurnedAmount));
+        AfflictionHandler.ToggleEffects(AF_EMP, bEmpDisrupted, bEmpPanicked);
+        AfflictionHandler.UpdateMaterialParameter(AF_FirePanic, ByteToFloat(RepFireBurnedAmount));
     }
 }
 
@@ -1859,6 +1882,24 @@ simulated function PlayWeaponSwitch(Weapon OldWeapon, Weapon NewWeapon)
 {
 	// Save a reference to carried Weapon, so we don't cast all over the place.
 	MyKFWeapon = KFWeapon(Weapon);
+}
+
+/**
+ * Sets the melee impact location for hit effect processing
+ * Network: Server
+ */
+function SetMeleeImpactLocation( vector MeleeImpactLoc )
+{
+	MeleeImpactLocation = MeleeImpactLoc;
+}
+
+/**
+ * Processes a melee impact location
+ * Network: Remote Players
+ */
+simulated function OnMeleeImpactLocationUpdated()
+{
+	KFImpactEffectManager(WorldInfo.MyImpactEffectManager).PlayImpactEffects( MeleeImpactLocation, self,,,, true );
 }
 
 /**
@@ -2597,7 +2638,7 @@ simulated function TakeRadiusDamage
 /** apply some amount of damage to this actor */
 event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
 {
-	local int OldHealth;
+	local int OldHealth, ActualDamage;
 	local class<KFDamageType> KFDT;
 
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
@@ -2611,6 +2652,12 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 
 	OldHealth = Health;
 	Super.TakeDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
+
+	ActualDamage = OldHealth - Health;
+	if( ActualDamage > 0 )
+	{
+		WorldInfo.Game.ScoreDamage( ActualDamage, OldHealth, InstigatedBy, self, DamageType );
+	}
 
 	// Handle DamageOverTime.  Must be done in TakeDamage for access to original unmodified
 	// damage.  Requires valid DamageCauser, 'None' for DoT, to prevent recursion
@@ -2729,7 +2776,10 @@ function int RecentDamageFrom( Pawn CheckKFP, optional out int DamageAmount )
 
 function AddTakenDamage( Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType )
 {
-	UpdateDamageHistory(DamagerController, Damage, DamageCauser, DamageType);
+	if( Damage > 0 )
+	{
+		UpdateDamageHistory(DamagerController, Damage, DamageCauser, DamageType);
+	}
 }
 
 function UpdateDamageHistory( Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType )
@@ -2834,6 +2884,12 @@ function UpdateDamageHistoryValues( Controller DamagerController, int Damage, Ac
 {
 	local class<KFPerk> WeaponPerk;
 
+	// Don't count friendly fire
+	if( DamagerController.GetTeamNum() == GetTeamNum() )
+	{
+		return;
+	}
+
 	// Update the history
 	InInfo.DamagerController = DamagerController;
 
@@ -2894,6 +2950,29 @@ function class<KFPerk> GetUsedWeaponPerk( Controller DamagerController, Actor Da
 	}
 
 	return WeaponPerk;
+}
+
+/** Returns the best enemy based on damage history values */
+function Pawn GetBestAggroEnemy()
+{
+	local int i;
+	local int DamageThreshold;
+	local DamageInfo DamageHistoryInfo;
+
+	DamageThreshold = float(HealthMax) * KFAIController(Controller).AggroZedHealthPercentage;
+	for( i = 0; i < DamageHistory.Length; ++i )
+	{
+		DamageHistoryInfo = DamageHistory[i];
+		if( DamageHistoryInfo.DamagerController != none
+			&& DamageHistoryInfo.DamagerController.Pawn != none
+			&& DamageHistoryInfo.Damage >= DamageThreshold
+			&& (WorldInfo.TimeSeconds - DamageHistory[i].LastTimeDamaged) < 5.f )
+		{
+			return DamageHistoryInfo.DamagerController.Pawn;
+		}
+	}
+
+	return none;
 }
 
 /**
@@ -2985,6 +3064,13 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 {
 	// Clean up and terminate any currently playing effects
 	TerminateEffectsOnDeath();
+
+	// Replicate input params to other clients.  These are from Pawn.uc, but never get set.
+	if ( !bTearOff )
+	{
+		HitDamageType	= DamageType;
+		TakeHitLocation	= HitLoc;
+	}
 
 	// Abort current special move
 	if( IsDoingSpecialMove() )
@@ -3113,10 +3199,6 @@ function bool Died(Controller Killer, class<DamageType> damageType, vector HitLo
 	{
 		// Other pathing NPCs will stop considering me as a potential path blocker.
 		bBlocksNavigation = false;
-
-		// Replicate in params to other clients.  These are from Pawn.uc, but never get set.
-		HitDamageType		= damageType;
-		TakeHitLocation		= HitLocation;
 		return true;
 	}
 
@@ -3131,23 +3213,13 @@ event EncroachedBy( actor Other )
 /** Called when a melee attack has been parried by another pawn */
 function bool NotifyAttackParried(Pawn InstigatedBy, byte InParryStrength)
 {
-	local KFSM_MeleeAttack Move;
 	local KFPawn InstigatorPawn;
 	local KFPerk InstigatorPerk;
 
-	if ( SpecialMove == SM_MeleeAttack || SpecialMove == SM_Grab )
+	if ( IsDoingSpecialMove() && SpecialMoves[SpecialMove].CanInterruptWithParry() )
 	{
 		if ( CanDoSpecialMove(SM_Stumble) || CanDoSpecialMove(SM_KnockDown) )
 		{
-			if ( SpecialMove == SM_MeleeAttack )
-			{
-				Move = KFSM_MeleeAttack(SpecialMoves[SpecialMove]);
-				if ( Move != None && Move.bCannotBeParried )
-				{
-					return FALSE;
-				}
-			}
-
 			InstigatorPawn = KFPawn(InstigatedBy);
 			if( InstigatorPawn != none )
 			{
@@ -3168,6 +3240,16 @@ function bool NotifyAttackParried(Pawn InstigatedBy, byte InParryStrength)
 	}
 
 	return FALSE;
+}
+
+/** Returns true if pawn is incapacitated in any way */
+function bool IsIncapacitated()
+{
+	return IsDoingSpecialMove(SM_Stumble)
+			|| IsDoingSpecialMove(SM_Stunned)
+			|| IsDoingSpecialMove(SM_Frozen)
+			|| IsDoingSpecialMove(SM_Knockdown)
+			|| IsDoingSpecialMove(SM_RecoverFromRagdoll);
 }
 
 /** Clean up function to terminate any effects on death */
@@ -3263,13 +3345,14 @@ function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, clas
 
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
 
-	// handle multiple hits occuring in the same tick
-	if ( LastPainTime == WorldInfo.TimeSeconds )
+	// We don't process any new effects until we are done processing old ones. 
+	if ( bNeedsProcessHitFx ) 
 	{
 		if ( InstigatedBy != none && InstigatedBy.Pawn == HitFxInstigator && KFDT == HitFXInfo.DamageType )
 		{
 			// Add any additional hits to a separate repliated array
-			if( HitFxAddedHitCount < MAX_ADDED_HITFX )
+			// @note: Do not stack radial hits because they already affect the whole body (and are more expensive)
+			if( HitFxAddedHitCount < MAX_ADDED_HITFX && !bTakingRadiusDamage )
 			{
 				// Replicate any additional hits separately from the HitFxInfo struct and pass them as relative location to replicate easier
 				HitFxAddedRelativeLocs[HitFxAddedHitCount] = HitLocation - HitFxInfo.HitLocation;
@@ -3308,9 +3391,13 @@ function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, clas
 			HitFxInfo.HitLocation.Z += FRand();
 		}
 
-			if ( bPlayedDeath && KFDT != none && KFDT.default.bCanObliterate )
-			{
+		if ( bPlayedDeath && KFDT != none && KFDT.default.bCanObliterate )
+		{
 			HitFxInfo.bObliterated = KFDT.static.CheckObliterate(self, Damage);
+		}
+		else
+		{
+			HitFxInfo.bObliterated = false;
 		}
 
 		HitFxAddedHitCount = 0;
@@ -3345,7 +3432,7 @@ function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, clas
 	LastPainTime = WorldInfo.TimeSeconds;
 
 	//Record weapon Damage for AAR
-	if(KFDT!= none){class'EphemeralMatchStats'.static.RecordWeaponDamage(InstigatedBy,KFDT.default.WeaponDef,Damage,Self,HitZoneIdx);};
+	if(KFDT!= none){class'EphemeralMatchStats'.static.RecordWeaponDamage(InstigatedBy,KFDT,KFDT.default.WeaponDef,Damage,Self,HitZoneIdx);};
 }
 
 /** Plays and replicates heal effects
@@ -3426,7 +3513,7 @@ simulated function PlayTakeHitEffects( vector HitDirection, vector HitLocation )
 	local KFPlayerController KFPC;
 	local class<KFDamageType> DmgType;
 	local KFPawn InstigatedBy;
-	
+
 	DmgType = HitFxInfo.DamageType;
 
 	if( IsLocallyControlled() && !Controller.bGodMode )
@@ -3562,7 +3649,7 @@ simulated function ApplyRagdollImpulse(class<KFDamageType> DamageType, vector Hi
 	// Reduce impulse if the gore system has dismembered this bone already
 	if ( bHasBrokenConstraints && Mesh.IsBrokenConstraint( HitBoneName ) )
 	{
-		GoreImpulseScale *= class'KFGoreManager'.static.GetGibImpulseScale();
+		GoreImpulseScale *= class'KFGoreManager'.static.GetGibImpulseMax();
 	}
 
 	// Lastly, multiply scaling factors and apply impulse
@@ -3738,6 +3825,12 @@ simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects( int HitZoneIdx )
 
 	return CharacterArch.ImpactSkins[HitZoneSkinID];
 }
+
+/** 
+ * Used to adjust strength of all incoming afflictions (similar to AdjustDamage)
+ * based on current situation / state.
+ */
+simulated function AdjustAffliction(out float AfflictionPower);
 
 /*********************************************************************************************
  * @name	Damage over Time
@@ -4201,6 +4294,7 @@ simulated event Tick( float DeltaTime )
 		if( bNeedsProcessHitFx )
 		{
 			ProcessHitFx();
+			bNeedsProcessHitFx = false;
 		}
 
 		if( MaterialEffectTimeRemaining > 0 )
@@ -4223,6 +4317,7 @@ simulated event Tick( float DeltaTime )
 function UpdateMaterialEffect(float DeltaTime)
 {
 	local float Intensity;
+	local MaterialInstanceConstant MIC;
 
 	if( MaterialEffectTimeRemaining > 0.f )
 	{
@@ -4238,14 +4333,9 @@ function UpdateMaterialEffect(float DeltaTime)
 		}
 
 		// Update the materials
-		if( BodyMIC != none )
+		foreach CharacterMICs(MIC)
 		{
-   			BodyMIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
-   		}
-
-		if( HeadMIC != none )
-		{
-   			HeadMIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
+   			MIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
    		}
 	}
 }
@@ -4475,7 +4565,7 @@ function bool CanBeGrabbed(KFPawn GrabbingPawn, optional bool bIgnoreFalling)
 /** Set the cooldown time for weak zed grab */
 function SetWeakGrabCoolDown(float CooldownTime)
 {
-    WeakZedGrabCooldown = WorldInfo.TimeSeconds + CooldownTime;
+    WeakZedGrabCooldown = fMax(WorldInfo.TimeSeconds + CooldownTime, WeakZedGrabCooldown);
 }
 
 /** Puts a pawn into the panic wander state */
@@ -4809,7 +4899,7 @@ State Dying
 }
 
 /*********************************************************************************************
- * @name	UI / Localization 
+ * @name	UI / Localization
  ********************************************************************************************* */
 /**Looks up and returns localized name */
 
@@ -4862,20 +4952,21 @@ defaultproperties
    HeadBoneName="head"
    TorsoBoneName="Spine2"
    PelvisBoneName="Spine"
-   Begin Object Class=KFPawnAfflictions Name=Afflictions_0
+   Begin Object Class=KFAfflictionManager Name=Afflictions_0
       FireFullyCharredDuration=2.500000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
-      ObjectArchetype=KFPawnAfflictions'KFGame.Default__KFPawnAfflictions'
+      ObjectArchetype=KFAfflictionManager'KFGame.Default__KFAfflictionManager'
    End Object
-   AfflictionHandler=KFPawnAfflictions'KFGame.Default__KFPawn:Afflictions_0'
-   StackingIncaps(0)=(Cooldown=5.000000,DissipationRate=0.500000)
-   StackingIncaps(1)=(Threshhold=10.000000,Cooldown=5.000000)
+   AfflictionHandler=KFAfflictionManager'KFGame.Default__KFPawn:Afflictions_0'
+   IncapSettings(0)=(Cooldown=5.000000)
+   IncapSettings(1)=(Cooldown=5.000000)
    PhysicsHitReactionImpulseScale=1.000000
    PhysicsImpactBlendOutTime=0.450000
    PhysRagdollImpulseScale=1.000000
    SprintSpeed=460.000000
    TeammateCollisionRadiusPercent=0.800000
+   ZedTimeSpeedScale=1.000000
    BaseCrouchEyeHeight=48.000000
    Bob=0.010000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms
@@ -4891,6 +4982,7 @@ defaultproperties
    End Object
    ArmsMesh=FirstPersonArms
    WeaponAttachmentSocket="RW_Weapon"
+   TurnInPlaceAnimRate=1.000000
    Begin Object Class=KFSpecialMoveHandler Name=SpecialMoveHandler_0
       SpecialMoveClasses(0)=None
       SpecialMoveClasses(1)=None
@@ -4919,9 +5011,8 @@ defaultproperties
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=None
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFSpecialMoveHandler'
    End Object
@@ -5005,9 +5096,8 @@ defaultproperties
       RBCollideWithChannels=(Default=True,Pawn=True,Vehicle=True,BlockingVolume=True)
       Translation=(X=0.000000,Y=0.000000,Z=-86.000000)
       ScriptRigidBodyCollisionThreshold=200.000000
-      PerObjectShadowCullDistance=4000.000000
+      PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
-      bAllowPerObjectShadowBatching=True
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFSkeletalMeshComponent'
    End Object

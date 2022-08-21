@@ -13,8 +13,8 @@ class KFDT_Explosive_PlayerZedTakeover extends KFDT_Explosive
 defaultproperties
 {
    bShouldSpawnPersistentBlood=True
-   KnockdownPower=0
-   StumblePower=0
+   KnockdownPower=0.000000
+   StumblePower=0.000000
    ObliterationHealthThreshold=0
    ObliterationDamageThreshold=1
    KDeathUpKick=1000.000000

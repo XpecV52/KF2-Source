@@ -86,6 +86,7 @@ package tripwire.containers.serverBrowser
             this.serverScrollingList.addEventListener(ListEvent.ITEM_PRESS,this.serverItemPressed,false,0,true);
             this.serverScrollingList.addEventListener(ListEvent.ITEM_DOUBLE_CLICK,this.serverItemDoubleClick,false,0,true);
             this.serverScrollingList.doubleClickEnabled = true;
+            this.backButton.visible = !bManagerUsingGamepad;
         }
         
         public function serverItemDoubleClick(param1:ListEvent) : void
@@ -106,6 +107,7 @@ package tripwire.containers.serverBrowser
         {
             super.onInputChange(param1);
             this.updateControllerIconVisibility();
+            this.backButton.visible = !bManagerUsingGamepad;
         }
         
         private function updateControllerIconVisibility() : void
@@ -361,7 +363,7 @@ package tripwire.containers.serverBrowser
             return _loc1_;
         }
         
-        override protected function openAnimation() : *
+        override protected function openAnimation(param1:Boolean = true) : *
         {
             alpha = 1;
             _bReadyForInput = true;

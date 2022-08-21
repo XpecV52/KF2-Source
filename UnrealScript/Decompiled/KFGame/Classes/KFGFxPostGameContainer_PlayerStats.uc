@@ -140,7 +140,7 @@ function GFxObject MakeAwardObject();
 defaultproperties
 {
     AchievementsString="Achievements"
-    ZedKillsString="ZED KILLS"
+    ZedKillsString="Zed KILLS:"
     TopWeaponsString="TOP WEAPONS"
     TotalDamageDealtString="Total Damage Dealt:"
     HeadShotsString="Headshots:"

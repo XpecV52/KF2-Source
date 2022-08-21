@@ -49,7 +49,9 @@ defaultproperties
     XPValues[1]=15
     XPValues[2]=15
     XPValues[3]=15
-    VulnerableDamageTypes=/* Array type was not detected. */
+    WeakSpotSocketNames=/* Array type was not detected. */
+    DamageTypeModifiers=/* Array type was not detected. */
+    OnDeathAchievementID=129
     PawnAnimInfo=KFPawnAnimInfo'ZED_Siren_ANIM.Siren_AnimGroup'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
@@ -57,9 +59,12 @@ defaultproperties
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedSiren.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     HitZones=/* Array type was not detected. */
-    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedSiren.Afflictions'
-    InstantIncaps=/* Array type was not detected. */
-    StackingIncaps=/* Array type was not detected. */
+    begin object name=Afflictions class=KFAfflictionManager
+        AfflictionClasses=/* Array type was not detected. */
+    object end
+    // Reference: KFAfflictionManager'Default__KFPawn_ZedSiren.Afflictions'
+    AfflictionHandler=Afflictions
+    IncapSettings=/* Array type was not detected. */
     PhysRagdollImpulseScale=0.5
     KnockdownImpulseScale=0.5
     SprintSpeed=200
@@ -78,7 +83,7 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedSiren.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedSiren.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedSiren.DialogAkSoundComponent'
-    DamageRecoveryTimeHeavy=0.2
+    DamageRecoveryTimeHeavy=0.75
     Mass=50
     GroundSpeed=200
     Health=230

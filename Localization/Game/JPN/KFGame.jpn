@@ -1,0 +1,1774 @@
+[KFCommon_LocalizedStrings]
+DifficultyStrings[0]="ノーマル"
+DifficultyStrings[1]="ハード"
+DifficultyStrings[2]="自殺級"
+DifficultyStrings[3]="地上の地獄"
+
+LengthStrings[0]="ショート (4 ウェーブ)"
+LengthStrings[1]="ミディアム (7 ウェーブ)"
+LengthStrings[2]="ロング (10 ウェーブ)"
+
+ServerTypeStrings[0]="ランク"
+ServerTypeStrings[1]="ランク - カスタム"
+ServerTypeStrings[1]="ランク - カスタム"
+ServerTypeStrings[2]="Unranked"
+
+PermissionStrings[0]="公開"
+PermissionStrings[1]="フレンドのみ"
+PermissionStrings[2]="非公開"
+
+ModeStrings[0]="サバイバル"
+ModeStrings[1]="VS Survival"
+
+NoPreferenceString="すべて"
+OKString="OK"
+ConfirmString="確定"
+CancelString="キャンセル"
+BackString="戻る"
+AcceptString="承認"
+DeclineString="拒否"
+NoticeString="通知!"
+PerkUpdateNoticeString="パークは1ウェーブにつき1回変更できます！"
+YesString="はい"
+NoString="いいえ"
+
+DisbandPartyString="パーティの解散"
+LeaveCurrentMenuString="現在のメニューを終了しますか？"
+ZedString="ZED"
+HumanString="SURVIVOR"
+SpectatorString="SPECTATOR"
+TeamString="TEAM"
+AllString="ALL"
+
+UnableToSwitchTeamString="Unable to Switch Teams"
+NoSwitchReasonString="Switching teams would upset team balance"
+
+
+
+[KFGFxMoviePlayer_Manager]
+FailedSearchTitleString="マッチ検索に失敗"
+FailedSearchString="指定した条件に該当するマッチを見つけることができませんでした。検索条件を広げるか、サーバーブラウザでマッチを検索してください。"
+BrowseServersString="サーバーを閲覧"
+HasInvitedToGameString=" からゲームに招待されました。"
+JoinGameString="ゲームに参加しますか？"
+
+
+[KFGFxObject_Menu]
+LeavePartyTitleString="パーティ離脱"
+LeavePartyDescriptionString="オンラインパーティから離脱しますか？"
+LeaveString="終了"
+
+
+
+
+[KFDoorActor]
+WeldIntegrityString="溶接の耐久値:"
+ExplosiveString="ドアトラップ："
+
+[KFGFxMenu_StartGame]
+CreateMatchString="マッチの作成"
+MatchmakingString="オンラインマッチメイキング"
+ServerBrowserString="サーバーを閲覧"
+
+DifficultyTitle="難易度"
+GameModeTitle="ゲームモード"
+ServerTypeString="サーバータイプ"
+PermissionsTitle="権限"
+WhiteListedTitle="統計有効"
+LengthTitle="長さ"
+MapTitle="開始マップ"
+MutatorTitle="MUTATORS"
+InfoTitle="情報"
+InProgressString="進行中"
+
+WhiteListedStrings[0]="はい"
+WhiteListedStrings[1]="いいえ"
+
+FindGameString="ホーム"
+LeaveMenuString="マッチメイキングから退出するとパーティを解散します。サーバーブラウザに移行しますか?"
+
+CouldNotFindGameTitleString="マッチが見つかりません"
+CouldNotFindGameDescriptionString="検索設定にマッチしたサーバーが見つかりませんでした。設定を変更するか、サーバーブラウザを使用してください。"
+
+[KFGFxStartGameContainer_FindGame]
+MultiplayerString="オンラインマッチ"
+SoloString="オフラインプレイ"
+TutorialString="Basic Training"
+
+[StartMenuHelperText]
+modeList0="Survival – PVE battle waves of AI controlled Zeds"
+modeList1="VS Survival – PVP Horzine Mercenaries vs waves of Player and AI controlled Zeds"
+modeList2=""
+difficultyList0="Normal – For beginning players of perk rank 0-5."
+difficultyList1="Hard – For experienced players of perk rank 5-12. There are more Zeds per wave, they move faster, and have more health. There are fewer pickups and you get less dosh."
+difficultyList2="Suicidal – For seasoned players of perk rank 13-25. There are even more Zeds per wave, they use new attacks, and move even faster.  There even fewer pickups, and you get less dosh."
+difficultyList3="Hell on Earth – The most intense challenge for players of perk rank 25. There are still more Zeds per wave and they use new attacks. There are still fewer pickups, and you get still less dosh."
+lengthList0=""
+lengthList1=""
+lengthList2=""
+lengthList3=""
+serverTypeList0="Ranked – Any map, no mods, no friendly fire, 6 players max (if VS Survival this is 12 players max)"
+serverTypeList1="Ranked Stock – Official Maps, no mods, no friendly fire, and 6 players max"
+serverTypeList2="Ranked Custom – Any map, whitelisted mods, any server setting"
+serverTypeList3="Unranked Custom – Non-whitelisted mods (only)"
+privacyList0=""
+privacyList1=""
+privacyList2=""
+privacyList3=""
+inProgressList0=""
+inProgressList1=""
+inProgressList2=""
+
+[KFGFxStartGameContainer_Options]
+BackString="戻る"
+StartGameString="ゲーム開始"
+LaunchGameString="ゲームを始める"
+InProgressString="ゲーム進行状況"
+SoloGameString="ソロプレイ"
+LeaveMatchMakingString="マッチメイキングから退出"
+MultiplayerLaunchString="オンラインで今すぐプレイ"
+SearchingString="検索をキャンセル"
+CancelSearchingString="CANCEL SEARCH"
+ServerTypeString="サーバータイプ"
+AnyMapServerString="Ranked"
+UnrankedServerString="非ランク"
+CustomServerString="カスタム"
+StandardServerString="スタンダード"
+AllowInProgressString="ゲーム中でも参加可能"
+NotStartedString="新規ゲーム開始のみ"
+
+
+[KFGFxStartContainer_MatchMaking]
+OptionsHeaderString="マッチメイキング"
+BackString="戻る"
+FindGameString="ゲームを探す"
+
+[KFGFxStartContainer_InGameOverview]
+OverviewString="マッチ概要"
+ChangeString="変更"
+SharedByString="共有者:"
+SharedContentString="共有コンテンツ"
+
+[KFGFxStartContainer_ServerBrowserOverview]
+OverviewString="マッチ概要"
+DescriptionString="はサーバーブラウザでゲームを検索しています..."
+
+[KFGFxTraderContainer_GameInfo]
+TimeLeftString="残り時間"
+WaveString="ウェーブ"
+BossWaveString="ボス"
+
+[KFPawn_MonsterBoss]
+BossName="ボス"
+BossCaptionStrings[0]="ボス 説明 1"
+BossCaptionStrings[1]="ボス 説明 2"
+
+[KFGFxTraderContainer_PlayerInfo]
+PlayerHeaderString="インベントリ"
+SelectPerkString="パークの選択"
+
+[KFGFxMenu_ServerBrowser]
+FavoriteString="お気に入り"
+MultiplayerMenuString="マッチメイキング"
+LeaveMenuString="このメニューから離れるとパーティを解散します。マッチメイキングに移行しますか?"
+NameString="名称"
+RefreshString="更新"
+GamesFoundString="ゲーム数:"
+
+ServerBrowserString="サーバーブラウザ"
+
+JoinString="参加"
+PasswordPromptString="パスワード入力"
+
+RankedString="統計有効"
+UnrankedString="統計無効"
+DedicatedString="専用サーバー"
+VACSecureString="VAC保護"
+InLobbyString="ロビー"
+InProgressString="進行中"
+
+BackString="戻る"
+ApplyString="適用"
+ResetString="リセット"
+
+PingString="PING"
+LengthString="長さ"
+DifficultyString="難易度"
+MapString="マップ"
+GameModeString="モード"
+WaveString="ウェーブ"
+PlayersString="プレイヤー数"
+ZedCountString="ZEDカウント"
+FiltersString="フィルター"
+
+SearchString="検索"
+
+PingOptionStrings[0]="< 50 MS"
+PingOptionStrings[1]="< 100 MS"
+PingOptionStrings[2]="< 150 MS"
+PingOptionStrings[3]="< 200 MS"
+
+TabStrings[0]="ブラウズ"
+TabStrings[1]="お気に入り"
+TabStrings[2]="フレンド"
+TabStrings[3]="履歴"
+TabStrings[4]="LAN"
+
+[KFGFxServerBrowser_Filters]
+NoPasswordString="パスワードなし"
+NoMutatorsString="MUTATORSなし"
+NotFullString="満室なし"
+NotEmptyString="空室なし"
+NoStatsEnabledString="ランク (基本) サーバーなし"
+NoRankedCustomString="カスタムサーバーなし"
+NoUnrankedString="非ランクサーバーなし"
+DedicatedString="専用サーバー"
+VACSecureString="VAC保護"
+InLobbyString="ロビー"
+InProgressString="進行中"
+OnlyStockMapsString="保有マップのみ"
+OnlyCustomMapsString="カスタムマップのみ"
+LimitServerResultsString="検索結果の上限数:"
+
+[KFGFxServerBrowser_ServerDetails]
+MutatorsString="MUTATORS"
+JoinGameString="ゲーム参加"
+SpectateGameString="観戦"
+ServerInfoString="サーバー情報"
+UnfavoriteString="お気に入り解除"
+
+[KFGFxMenu_Trader]
+ExitMenuString="メニュー終了"
+
+[KFGFxTraderContainer_Store]
+TraderString="装備の購入"
+
+[KFGFxServerBrowser_ServerList]
+LeaveServerBrowserString="サーバーブラウザを終了"
+DetailsString="サーバー詳細"
+SpectateString="観戦"
+
+[KFGFxTraderContainer_ItemDetails]
+DamageTitle="ダメージ"
+FireRateTitle="射撃速度"
+PenetrationTitle="貫通力"
+RangeTitle="射程"
+BlockTitle="ブロック"
+ParryTitle="パリィ"
+AccuracyTitle="命中精度"
+CapacityTitle="弾薬数"
+MagTitle="マガジンサイズ"
+HealAmountTitle="回復量"
+HealRechargeTitle="チャージ時間"
+BuyString="購入"
+SellString="売却"
+CannotSellString="売却不可"
+CannotBuyString="購入不可"
+FavoriteString="お気に入り"
+UnfavoriteString="お気に入り解除"
+
+[KFGFxTraderContainer_PlayerInventory]
+FillString="補充"
+MagString="弾倉"
+BuyGrenadeString="1X"
+AutoFillString="自動補充"
+ArmorString="コンバットアーマー"
+ChangePerkString="パーク変更"
+
+[KFGFxTraderContainer_Filter]
+TabsArray[0]="パーク"
+TabsArray[1]="タイプ"
+TabsArray[2]="お気に入り"
+TabsArray[3]="すべて"
+
+WeaponTypeStrings[0]="ピストル"
+WeaponTypeStrings[1]="ショットガン"
+WeaponTypeStrings[2]="ライフル"
+WeaponTypeStrings[3]="発射武器"
+WeaponTypeStrings[4]="火炎武器"
+WeaponTypeStrings[5]="電撃武器"
+WeaponTypeStrings[6]="爆発物"
+WeaponTypeStrings[7]="アサルトライフル"
+WeaponTypeStrings[8]="近接武器"
+WeaponTypeStrings[9]="サブマシンガン"
+
+OffPerkString="未分類"
+
+[KFGFxHUD_PostRoundMenu]
+RoundResultsString="Round Results"
+MatchResultsString="Overall Winner"
+SurvivorVictory="Survivor Victory!"
+ZEDVictory="Zed Victory!"
+TieString="Tie!"
+YourTeamString="Your Team Wins!"
+OpposingTeamString="Opposing Team Wins!"
+MatchOnGoingString="Switching Teams..."
+
+[KFGFxPostRoundContainer_Team]
+TitleString="Round "
+ScoreString="Score"
+WavesCompleteString="Waves Completed Bonus"
+BossDeadString="Boss Defeated"
+DeathsString="Player Deaths Penalty"
+DamageString="Damage From Boss Penalty"
+TotalString="TOTAL"
+YourTeamString=" (Your Team)"
+
+[KFGFxMenu_PostGameReport]
+MapVoteString="マップ投票"
+PlayerStatsString="プレイヤーデータ"
+TeamAwardsString="アワード"
+PostGameReportString="ゲームレポートを投稿"
+NextMapString="次のマップまで："
+WaveString="ウェーブ"
+XPString="XP"
+VictoryString="勝利"
+DefeatString="敗北"
+ItemDropTitleString="新アイテムを獲得！"
+
+[EphemeralMatchStats]
+MedicineMaster="医療の達人"
+MedicineMasterValue="ヘルス"
+ZedSlayer="ZED スレイヤー"
+ZedSlayerValue="キル"
+Enforcer="用心棒"
+EnforcerValue="アシスト"
+Destroyer="デストロイヤー"
+DestroyerValue="ダメージ"
+GiantSlayer="ジャイアントスレイヤー"
+GiantSlayerValue="大型ZED"
+MoneyBags="マネーバッグ"
+MoneyBagsValue="Dosh"
+HeadPopper="ヘッドポッパー"
+HeadPopperValue="ヘッドショット"
+Dominator="ドミネーター"
+DominatorValue="ボス"
+
+Carnage="Carnage"
+Closer="Closer"
+ComboMaker="Combo Maker"
+Grabby="Grabby Pants"
+ZedSupport="Zed Support"
+Zednnihilation="Zednnihilation"
+CarnageValue="Zed Damage Dealt"
+CloserValue="Survivor Kills"
+ComboMakerValue="Zed Assist"
+GrabbyValue="Players Grabbed"
+ZedSupportValue="Indirect Damage"
+ZednnihilationValue="Kills in Wave"
+
+
+
+EPB_Healing="治療"
+EPB_Kills="キル"
+EPB_Assists="アシスト"
+EPB_LargeZedKill="大型ZED キル"
+EPB_Dosh="獲得Dosh"
+EPB_HeadShots="ヘッドショット"
+EPB_KnifeKills="ナイフキル"
+EPB_PistolKills="ピストルキル"
+EPB_DoorWelding="ドアの溶接"
+
+EPB_HealingValue="ヘルス"
+EPB_KillsValue="キル"
+EPB_AssistsValue="アシスト"
+EPB_LargeZedKillValue="匹の大型ZED"
+EPB_DoshValue="Dosh"
+EPB_HeadShotsValue="ヘッドショット"
+EPB_KnifeKillsValue="キル"
+EPB_PistolKillsValue="キル"
+EPB_DoorWeldingValue="溶接ポイント"
+
+[KFGFxPostGameContainer_TeamAwards]
+TeamAwardsString="チームアワード"
+PersonalBestsString="自己ベスト"
+NoTeamAwardsGivenString="アワードなし"
+
+[KFGFxPostGameContainer_MapVote]
+YourVoteString="自分の投票"
+TopVotesString="トップの投票"
+
+[KFGFxPostGameContainer_PlayerStats]
+AchievementsString="実績"
+KnifeString="ナイフ"
+TopWeaponsString="トップ武器"
+ZedKillsString="ZED キル"
+TotalDamageDealtString="与えた合計ダメージ:"
+HeadShotsString="ヘッドショット:"
+LargeZedKillsString="大型ZED キル:"
+TotalDoshEarnedString="合計獲得Dosh:"
+TotalKillsString="合計キル:"
+AssistsString="アシスト数:"
+DamageDealtString="与えたダメージ:"
+
+
+
+[KFGFxWidget_BaseParty]
+PlayerReadyString="[ 準備完了 ]"
+WaitingString="プレイヤー待機中"
+DeployingString="開始まで"
+CreatePartyString="フレンドを招待"
+ReadyString="準備完了"
+LeaveString="パーティ離脱"
+SquadString="部隊"
+SoloString="ソロ"
+DefaultPlayerName="プレイヤー"
+
+PartyLeaderSearchingForMatchString="はマッチを検索しています..."
+PartyLeaderIsUpdatingMatchOptionsString="はマッチ設定をしています..."
+PartyLeaderInServerBrowserString="はサーバーブラウザで検索しています..."
+PartyLeaderInOtherMenuString="は別のメニューにいます..."
+SearchingForGameString="オンラインゲームを検索中..."
+
+PartHostLeftString="パーティーのホストが退室した"
+PartyLeaderChangedString="が新しいパーティのホストです。"
+
+MuteString="プレイヤーをミュート"
+UnmuteString="プレイヤーのミュート解除"
+AddFriendString="フレンドに追加"
+RemoveFriendString="フレンドを削除"
+VoteKickString="プレイヤーを追放"
+ViewProfileString="プロフィールを表示"
+
+RemainingString="残り:"
+DownLoadingString="ダウンロード中:"
+PartyLeaderString="Leader"
+
+[KFGFxWidget_PartyInGame_Versus]
+SwitchTeamsString="SWITCH TEAMS"
+balanceWarningString="WARNING: Teams will be auto-balanced"
+
+[KFGFxMenu_Gear]
+GearHeaderString="装備をカスタマイズ"
+BioString="略歴"
+CharacterString="キャラクター"
+HeadString="頭"
+BodyString="体"
+SkinsString="スキン"
+AttachmentsString="アクセサリ"
+BackString="戻る"
+NoneString="無し"
+WeaponsString="武器"
+WeaponsInfoString="カスタマイズ"
+
+[KFGFxMenu_Inventory]
+RecycleOneString="Recycle One"
+RecycleDuplicatesString="Recycle Duplicates"
+InventoryString="インベントリ"
+UseString="使用"
+EquipString="装備"
+UnequipString="外す"
+AllString="すべて"
+WeaponSkinString="武器スキン"
+CosmeticString="装飾"
+CraftingMatsString="Crafting"
+ItemString="アイテム"
+FiltersString="フィルター"
+MoreItemsString="You require a matching key and crate. You can purchase a key from the in game store."
+FailedToExchangeString="CANNOT OPEN CRATE"
+RecycleString="RECYCLE"
+CraftString="CRAFT"
+CraftCosmeticString="CRAFT COSMETIC"
+CraftWeaponString="CRAFT WEAPON SKIN"
+CraftWeaponStrings[0]="Uncommon\nWeapon Skin"
+CraftWeaponStrings[1]="Rare\nWeapon Skin"
+CraftWeaponStrings[2]="Exceptional\nWeapon Skin"
+CraftWeaponStrings[3]="Master Crafted\nWeapon Skin"
+CraftCosmeticStrings[0]="Uncommon\nCosmetic"
+CraftCosmeticStrings[1]="Rare\nCosmetic"
+CraftCosmeticStrings[2]="Exceptional\nCosmetic"
+CraftCosmeticStrings[3]="Master Crafted\nCosmetic"
+RecycleWarningString="Warning, this cannot be undone. This will destroy the selected item and replace it with a crafting material item"
+RecycleItemString="Recycle Item?"
+ConfirmCraftItemString="Crafting this item will use resources and cannot be undone"
+CraftItemString="Confirm Craft Item?"
+FailedToCraftItemString="Failed to Craft Item"
+CraftRequirementString="Insufficient quantity of required crafting materials"
+CraftCosmeticDescriptionString="You can craft new cosmetic items from this menu out of cosmetic material. You can obtain cosmetic material by recycling existing cosmetic items. To recycle, select an item and press recycle"
+CraftWeaponDescriptionString="You can craft new weapon skin items from this menu out of weapon skin material. You can obtain weapon skin material by recycling existing weapon skin items. To recycle, select an item and press recycle"
+RequiresString="Requires: "
+PurchaseKeyString="BUY KEY: "
+LookUpOnMarketString="Lookup on Market"
+
+[KFGFxPerksContainer]
+LevelString=""
+
+[KFGFxPerksContainer_Header]
+ExperienceString="経験値"
+PrestigeLevelString="名誉"
+
+[KFGFxPerksContainer_SkillsSummary]
+ConfigureString="設定"
+SkillsString="スキル"
+
+[KFGFxMenu_Perks]
+TierUnlockedText="新しい階級のロックを解除！"
+TierUnlockedSecondaryText="次のパークの新しい階級をロック解除しました:"
+
+
+[KFGFxPerksContainer_Details]
+ObjectivesString="XP 目標"
+PerkBonusesString="パークボーナス"
+BasicLoadoutString="初期装備"
+
+[KFGFxPerksContainer_Skills]
+ConfigureSkillsString="スキルの設定"
+BackButtonString="<< 戻る"
+
+[KFGFxPerksContainer_Selection]
+HeaderTitle="パーク選択"
+EndOfWaveString="パークの変更はウェーブが終了した時に行われます!"
+ChangesAppliedOnCloseString="このメニューを閉じた時にパークの変更が適用されます"
+OncePerWaveString="パークの変更はウェーブごとに1回だけです!"
+
+[KFGFxMenu_Store]
+StoreString="ストア"
+
+[KFGFxStoreContainer_Cart]
+CartString="カート"
+TotalString="合計"
+CheckOutString="チェックアウト"
+
+[KFGFxStoreContainer_Main]
+WeaponSkinsString="武器スキン"
+MarketConsumablesString="Market Crates/USBs"
+MarketCosmeticsString="Market Cosmetics"
+
+[KFGFxStoreContainer_Details]
+LookUpOnMarketString="FIND IN MARKET"
+AddToCartString="アイテムを購入"
+PreviewString="プレビュー"
+
+
+[KFGFxWidget_ButtonPrompt]
+CancelString="戻る"
+ConfirmString="選択"
+
+[KFGFxWidget_MenuBar]
+MenuStrings[0]="ホーム"
+MenuStrings[1]="パーク"
+MenuStrings[2]="装備"
+MenuStrings[3]="インベントリ"
+MenuStrings[4]="ストア"
+MenuStrings[5]="オプション"
+MenuStrings[6]="終了"
+
+ServerBrowserString="サーバーブラウザ"
+MatchmakingString="マッチメイキング"
+SoloString="ソロ"
+OverviewString="マッチの概要"
+
+TitleStrings[0]="戦いをもう放棄するのか？"
+TitleStrings[1]="もうやめるのか？"
+TitleStrings[2]="やられるのにうんざりしたか？"
+
+DescriptionStrings[0]="いいだろう、 哀れな生き方をするんだな。 Killing Floor では5分と生き残れないんだから。"
+DescriptionStrings[1]="お前がいなくなった瞬間、 仲間は怪物の軍団に料理されてしまう。 彼らを見捨てるのか?"
+DescriptionStrings[2]="どのみち奴らはお前を見つけようとする。 奴らをお前を見つけ、 スナック菓子のように心臓を食べるのだ。"
+
+ExitString="終了"
+CancelString="キャンセル"
+
+[KFGFxWidget_LevelUpNotification]
+LevelUpString="レベルアップ"
+TierUnlockedString="新しいスキルのロックを解除した"
+
+[KFGFxHUD_WaveInfo]
+WaveString="ウェーブ"
+BossWaveString="ボス"
+FinalWaveString="最終"
+
+[KFGFxHUD_TraderCompass]
+TraderString="トレーダー"
+
+[KFGFxHUD_SpectatorInfo]
+PrevPlayerString="次のプレイヤー"
+NextPlayerString="前のプレイヤー"
+ChangeCameraString="カメラ変更"
+
+[KFGFxHUD_ScoreboardWidget]
+PlayerString="プレイヤー"
+DoshString="DOSH"
+KillsString="キル"
+AssistsString="アシスト"
+PingString="PING"
+
+[KFGFxHUD_ScoreboardVersusWidget]
+ScoreString=SCORE
+
+[KFGFxHUD_PlayerStatus]
+EXPString="XP"
+
+
+[KFGFxHUD_ScoreboardMapInfoContainer]
+WaveString="ウェーブ"
+FinalString="最終"
+
+[KFGFxHUD_WeaponSelectWidget]
+PrimaryString="プライマリ"
+EquiptmentString="装備"
+MeleeString="近接"
+SecondaryString="セカンダリ"
+ThrowString="武器を捨てる"
+
+[KFGFxWidget_KickVote]
+VoteKickString="プレイヤーを追放しますか？"
+
+[KFLocalMessage_PlayerKills]
+KilledString="killed"
+ZedString=ZEDs
+
+[KFLocalMessage_VoiceComms]
+VoiceCommsOptionStrings[0]="治療してくれ"
+VoiceCommsOptionStrings[1]="DOSH をくれ"
+VoiceCommsOptionStrings[2]="助けてくれ"
+VoiceCommsOptionStrings[3]="ZED を挑発"
+VoiceCommsOptionStrings[4]="ついてこい"
+VoiceCommsOptionStrings[5]="トレーダーに向え"
+VoiceCommsOptionStrings[6]="いいぞ"
+VoiceCommsOptionStrings[7]="駄目だ"
+
+[KFGFxMenu_Exit]
+HeaderString="ゲーム終了"
+ExitToMainDescription="現在のゲームを終了し、タイトル画面に戻りますか?"
+ExitToMainMenu="タイトル画面に戻る"
+ExitKF2="デスクトップに戻る"
+
+[KFGFxOptionsMenu_Selection]
+HeaderString="オプション"
+OptionStrings[0]="ビデオ"
+OptionStrings[1]="オーディオ"
+OptionStrings[2]="操作"
+OptionStrings[3]="ゲームプレイ"
+OptionStrings[4]="クレジット"
+
+[KFGFxOptionsMenu_Audio]
+AudioString="オーディオオプション"
+SectionNameString="音量"
+OptionsString="オプション"
+MasterVolumeString="主音量"
+DialogVolumeString="ダイアログ音量"
+MusicString="ゲーム内の BGM 音量"
+SFxString="SFX 音量"
+VOIPVolumeString="ボイスチャットの受信音量"
+ConfigureMicString="マイクの設定"
+VocalsString="BGM のボーカル"
+BattleChatterString="戦闘中のおしゃべりを最小化"
+PushToVoIPString="ボタンを押してボイスチャット"
+
+[KFGFxOptionsMenu_Graphics]
+KeepSettingsPromptString="このビデオ設定を使用しますか？"
+WarningPromptString="警告"
+WillExpireString="%x% 秒後に設定が元に戻ります。"
+SingleWarningString="変更されたいくつかの設定は %x% 場合があります"
+DoubleWarningString="変更されたいくつかの設定は %x% 場合や、%y% 場合があります。"
+PerformanceDescString[0]="パフォーマンスを悪化させる"
+PerformanceDescString[1]="パフォーマンスに重大な影響を及ぼす"
+RestartDescString="再起動が必要である"
+OKString="OK"
+CancelString="キャンセル"
+UnsavedChangesString="保存していない変更があります"
+SaveChangesString="今すぐに保存しますか？"
+ContinueString="続行しますか？"
+
+AdjustGammaDescription="左側のクリーチャーがかろうじて見え、かつ右側のクリーチャーがはっきりと見えるようにスライダを調整してください。"
+ResetGammaString="リセット"
+SetGammaString="適用"
+
+
+GraphicsString="グラフィック"
+BasicString="基本"
+AdvancedString="詳細"
+EffectsString="エフェクト"
+
+AspectRatioString="アスペクト比"
+ResolutionString="解像度"
+GraphicsQualityString="グラフィッククオリティ"
+VSyncString="垂直同期"
+FullscreenString="ディスプレイ"
+VariableFrameRateString="可変フレームレート"
+FilmGrainString="フィルムグレイン"
+AdjustGammaString="ガンマ補正"
+
+PhysicsLevelString="NVIDIA® FleX"
+
+PhysicsLevelOptionStrings[0]="オフ"
+PhysicsLevelOptionStrings[1]="内臓*"
+PhysicsLevelOptionStrings[2]="内臓と流体*"
+
+PhysicsLevelSuggestionStrings[0]=""
+PhysicsLevelSuggestionStrings[1]="*GeForce® GTX™ 770 以上を推奨"
+PhysicsLevelSuggestionStrings[2]="*GeForce® GTX™ 980 以上を推奨"
+
+FlexPopUpString="NVIDIA® FleXを有効化でゴア表現や液体を再現します。この設定はパフォーマンスに悪影響を及ぼすかもしれません。再起動する必要があります。"
+
+EnvironmentDetailsString="環境ディティール"
+FoliageString="枝葉ディティール"
+CharacterDetailString="キャラクターディティール"
+FXString="FX"
+TextureResolutionString="テクスチャ解像度"
+TextureFilteringString="テクスチャフィルタリング"
+ShadowsString="シャドウクオリティ"
+RealtimeReflectionsString="リアルタイムリフレクション"
+AntiAliasingString="アンチエイリアス"
+BloomString="ブルーム"
+MotionBlurString="モーションブラー"
+AmbientOcclusionString="アンビエントオクルージョン"
+DepthOfFieldString="被写界深度"
+
+
+VolumetricLightingString="ボリュームライトFX"
+LensFlaresString="レンズフレア"
+LightShaftsString="ライトシャフト"
+CustomString="カスタム"
+IniOverrideString="INI 上書き"
+
+ApplyString="適用"
+CancelString="キャンセル"
+DefaultString="デフォルト"
+
+AspectRatioString_All="すべて"
+StandardAspectRatioString_4_3="4:3"
+StandardAspectRatioString_5_4="5:4"
+StandardAspectRatioString_3_2="3:2"
+WideAspectRatioString_16_9="16:9"
+WideAspectRatioString_16_10="16:10"
+ExtraWideAspectRatioString_2_1="2:1"
+ExtraWideAspectRatioString_21_9="21:9"
+MultiMonitorAspectRatioString="マルチモニター"
+
+FullScreenStringOptions[0]="ウィンドウ"
+FullScreenStringOptions[1]="枠無し"
+FullScreenStringOptions[2]="フルスクリーン"
+
+OffOnStringOptions[0]="オフ"
+OffOnStringOptions[1]="オン"
+
+GraphicsQualityStringOptions[0]="低"
+GraphicsQualityStringOptions[1]="中"
+GraphicsQualityStringOptions[2]="高"
+GraphicsQualityStringOptions[3]="最高"
+
+VSyncStringOptions[0]="オフ"
+VSyncStringOptions[1]="オン"
+;VSyncStringOptions[2]="トリプルバッファ"
+
+EnvironmentDetailsStringOptions[0]="低"
+EnvironmentDetailsStringOptions[1]="中"
+EnvironmentDetailsStringOptions[2]="高"
+EnvironmentDetailsStringOptions[3]="最高"
+
+FoliageStringOptions[0]="低"
+FoliageStringOptions[1]="中"
+FoliageStringOptions[2]="高"
+
+CharacterDetailStringOptions[0]="低"
+CharacterDetailStringOptions[1]="高"
+CharacterDetailStringOptions[2]="最高"
+
+FXStringOptions[0]="低"
+FXStringOptions[1]="中"
+FXStringOptions[2]="高"
+FXStringOptions[3]="最高"
+
+TextureResolutionStringOptions[0]="低"
+TextureResolutionStringOptions[1]="中"
+TextureResolutionStringOptions[2]="高"
+TextureResolutionStringOptions[3]="最高"
+
+TextureFilteringStringOptions[0]="バイリニア"
+TextureFilteringStringOptions[1]="トライリニア"
+TextureFilteringStringOptions[2]="4x 異方性"
+TextureFilteringStringOptions[3]="16x 異方性"
+
+ShadowsStringOptions[0]="低"
+ShadowsStringOptions[1]="中"
+ShadowsStringOptions[2]="高"
+ShadowsStringOptions[3]="最高"
+
+PhysicsStringOptions[0]="オフ"
+PhysicsStringOptions[1]="中"
+PhysicsStringOptions[2]="高"
+
+RealtimeReflectionsStringOptions[0]="オフ"
+RealtimeReflectionsStringOptions[1]="オン"
+
+AntiAliasingStringOptions[0]="オフ"
+AntiAliasingStringOptions[1]="FXAA"
+
+BloomStringOptions[0]="オフ"
+BloomStringOptions[1]="低"
+BloomStringOptions[2]="高"
+
+MotionBlurStringOptions[0]="オフ"
+MotionBlurStringOptions[1]="中"
+MotionBlurStringOptions[2]="高"
+
+AmbientOcclusionStringOptions[0]="オフ"
+AmbientOcclusionStringOptions[1]="SSAO"
+AmbientOcclusionStringOptions[2]="HBAO+"
+
+DepthOfFieldStringOptions[0]="オフ"
+DepthOfFieldStringOptions[1]="SAT DOF"
+
+[KFGFxOptionsMenu_Graphics_DX10]
+AmbientOcclusionStringOptions_DX10[0]="オフ"
+AmbientOcclusionStringOptions_DX10[1]="SSAO"
+
+[KFGFxOptionsMenu_Controls]
+TabStrings[0]="入力"
+TabStrings[1]="キーバインド"
+TabStrings[2]="コントローラ"
+HeaderText="操作オプション"
+
+[KFGFxOptionsMenu_GameSettings]
+SectionNameString="オプション"
+GameSettingsString="ゲーム設定"
+FOVString="FOV"
+GoreString="ゴア表現"
+ShowCrosshairString="照準を表示"
+ClassicWeaponSelectString="武器のクイック選択"
+GoreOptionStrings[0]="ゴアなし"
+GoreOptionStrings[1]="低ゴア"
+GoreOptionStrings[2]="血みどろ"
+NormalString="普通"
+WiderString="広い"
+FriendlyHudScaleString="HUD のスケール"
+KillTickerString="Kill Ticker"
+
+[LocalizedControls]
+ControllerLayoutDefault="Default"
+ControllerLayoutJumper="Jumper"
+ControllerLayoutQuickDraw="Quick Draw"
+ControllerLayoutSouthPaw="South Paw"
+
+GBA_TurnLeft="Turn Left"
+GBA_TurnRight="Turn Right"
+GBA_Backward="後退"
+GBA_MoveForward="前進"
+GBA_WeaponSelect_Gamepad="武器選択メニュー (長押し)"
+GBA_Reload_Gamepad="Reload"
+GBA_StrafeLeft_Gamepad="Movement Control"
+GBA_MoveForward_Gamepad="Move Forward"
+GBA_Look_Gamepad="Look Control"
+GBA_Grenade_Gamepad="Throw Grenade"
+GBA_TurnLeft_Gamepad="Look Control"
+GBA_Look_Gamepad="Look Control"
+GBA_DPad_Left_Gamepad="Voice Comms"
+GBA_DPad_Up_Gamepad="Equip Healer"
+GBA_DPad_Right_Gamepad="Throw Dosh"
+GBA_DPad_Down_Gamepad="Toggle Flashlight"
+
+
+GBA_MoveForward="前進"
+GBA_StrafeLeft="左平行移動"
+GBA_Backward="後退"
+GBA_StrafeRight="右平行移動"
+GBA_Jump="ジャンプ"
+GBA_Sprint="走る"
+GBA_CrouchToggle="しゃがむ (切り替え)"
+GBA_CrouchHold="しゃがむ (長押し)"
+GBA_SprintAndCrouch="しゃがむ / 走る"
+GBA_SprintAndMelee="Melee / Sprint"
+GBA_ShowMenu="Toggle In Game Menu"
+
+GBA_Use="使用 / クイック溶接 (長押し)"
+GBA_Talk="話す"
+GBA_TeamTalk="Team Talk"
+GBA_VoiceChat="ボイスチャット"
+GBA_PublicVoiceChat="Public Voice"
+GBA_ShowVoiceComms="ボイスコマンド"
+GBA_ShowScores="スコア表示"
+GBA_TossMoney="Doshを投げる"
+GBA_DropWeapon="武器を投げる"
+
+GBA_Fire="攻撃"
+GBA_IronSightsToggle="アイアンサイト (切り替え)"
+GBA_IronsightsHold="アイアンサイト (長押し)"
+GBA_Reload="リロード"
+GBA_Grenade="グレネードを投げる"
+GBA_QuickHeal="クイック治療"
+GBA_SwitchFireMode="オルトファイア / ブロック"
+GBA_TertiaryFire="近接攻撃"
+GBA_ToggleFlashlight="フラッシュライト切り替え"
+GBA_AltFire="オルトファイア / ブロック"
+
+GBA_WeaponSelect_Gamepad="武器選択メニュー (長押し)"
+GBA_NextWeapon="次の武器"
+GBA_PrevWeapon="前の武器"
+GBA_LastWeapon="最後に使用した武器"
+GBA_SwitchWeapon1="プライマリ武器"
+GBA_SwitchWeapon2="セカンダリ武器"
+GBA_SwitchWeapon3="近接武器"
+GBA_SwitchWeapon4="装備"
+GBA_VoteYes="賛成に投票 (長押し)"
+GBA_VoteNo="反対に投票 (長押し)"
+
+GBA_VoiceCommReqHealing="REQUEST HEALING"
+GBA_VoiceCommReqDosh="REQUEST DOSH"
+GBA_VoiceCommReqHelp="REQUEST HELP"
+GBA_VoiceCommTauntZeds="TAUNT ZEDS"
+GBA_VoiceCommFollowMe="FOLLOW ME"
+GBA_VoiceCommGetToTheTrader="GET TO THE TRADER"
+GBA_VoiceCommAffirmative="AFFIRMATIVE"
+GBA_VoiceCommNegative="NEGATIVE"
+
+[KFGFxControlsContainer_Input]
+SensitivityString="感度"
+InvertedString="Y軸反転"
+ControllerString="コントローラー"
+ControllerSensitivityString="視点移動感度"
+MouseString="マウス"
+MouseSmoothingString="マウススムージング"
+ZoomSensitivityString="ズーム感度"
+ControllerZoomSensitivityString="ズーム感度"
+AimAssistLockOnString="エイムアシスト ズームロックオン"
+AimAssistRotationString="Aim Assist Rotation"
+AimAssistSlowDownString="エイムアシスト スローダウン"
+ForceFeedbackString="コントローラ振動"
+
+[KFGFxControlsContainer_Keybinding]
+SectionHeaders[0]="移動"
+SectionHeaders[1]="インタラクション"
+SectionHeaders[2]="戦闘"
+SectionHeaders[3]="武器選択"
+SectionHeaders[4]="VOICE COMMS"
+
+ResetString="すべてリセット"
+ApplyString="適用"
+PressKeyString="[キーを押してください]"
+WarningString="警告"
+KeyAlreadyBoundString="キー <%x%> は既に設定されています:"
+RebindString="以下に再バインドします:"
+ClearedString="(以前のバインドは削除されます)"
+CancelString="キャンセル"
+AcceptString="承認"
+IgnoredKeyString="は無視されたキーに割り当てられません"
+
+[KFGFxControlsContainer_ControllerPresets]
+MovementString="移動の操作"
+LookString="視点の操作"
+WeaponSelectMenuString="武器選択メニュー (長押し)"
+ShowScoardBoardString="スコアを表示"
+ShowIngameMenuString="ゲーム内メニューを切り替え"
+CurrentControllerPresetString="Current Controller Preset"
+PresetStrings[0]="Preset 1"
+PresetStrings[1]="Preset 2"
+PresetStrings[2]="Preset 3"
+PresetStrings[3]="Preset 4"
+
+BashString="近接攻撃"
+BlockString="ブロック (長押し)"
+HoldString="(長押し)"
+
+[KFInventoryManager]
+FullHealthMsg="Health Full"
+
+[KFLocalMessage]
+SystemString="システム:"
+AdminString ="(管理者)"
+LoggedInAsAdminString="サーバー管理者としてログインしました"
+LoggedOutAsAdminString="サーバー管理者からログアウトしました"
+MustLoginToCheatString="チートを有効化するためにはログインの必要があります。"
+CheatsEnabledString="はチートを有効にしています。このセッションでは統計は無効となります。"
+ServerMaintenanceString="ゲーム終了時にメンテナンスのためサーバーはシャットダウンされます"
+KickVoteStartedString="以下のプレイヤーへの追放投票が開始されました:"
+KickVoteSucceededString="追放投票が可決しました:"
+KickVoteFailedString="追放投票が否決しました:"
+KickVoteRejectedString="最近否決した投票からの時間が短すぎます。少し待ってから再試行してください。"
+KickVoteInProgressString="追放投票を開始できません。既に投票が進行中です。"
+KickVoteDisabledString="追放投票はこのサーバーでは無効になっています"
+KickVoteYesReceivedString="追放するよう投票しました:"
+KickVoteNoReceivedString="追放しないよう投票しました:"
+KickVoteKickAdminString="サーバー管理者を追放することはできません。"
+KickVoteActiveTimeString="マッチ開始から時間が経っていないため、追放投票は行えません。"
+KickVoteMatchNotStartedString="マッチの前に追放投票を開始することはできません。"
+KickVoteMaxKicksReachedString="あなたはこのマッチの間、これ以上の追放投票を開始することはできません。"
+KickVoteNotEnoughPlayersString="プレイヤー数が足りないため、追放投票を開始できません。"
+KickVoteNoSpectatorsString="観戦者は追放投票を開始できません。"
+KickedFromServerString="あなたはサーバーから追放されました。"
+BannedFromServerString="あなたはこのサーバーから追放されました。今回は再参加できません。"
+
+[KFLocalMessage_Game]
+ReceivedAmmoFromMessage="弾薬を受け取った："
+GaveAmmoToMessage="弾薬を与えた:"
+PendingPerkChangesSet="パークの変更はウェーブが終了した時に行われます。"
+PendingPerkChangesApplied="パークが変更されました！"
+HealedByMessage="治療してもらった:"
+HealedMessage="治療した:"
+YourselfString="自分自身"
+PickedupArmorMessage="アーマーを拾った"
+FullArmorMessage="アーマーは全く破損していない"
+PickupAmmoMessage="弾薬を拾った"
+AmmoFullMessage="Your ammo is full"
+PickupWeaponAmmoMessage="%x% の弾薬を拾った"
+AlreadyCarryingWeaponMessage="この武器は既に持っている"
+PickupMessage="アイテムを拾った :"
+TooMuchWeightMessage="この武器は重過ぎる。 武器を捨てるか売れ。"
+FailedDropInventoryMessage="ここには捨てられない"
+ReceivedGrenadesFromMessage="グレネードを受け取った："
+GaveGrenadesToMessage="グレネードを与えた："
+SharingContentString="はコンテンツを共有した。"
+HeadShotAddedString="%x 回目のヘッドショット - %y% の追加ダメージ！"
+HeadShotMaxString="ヘッドショット！ %x% の追加ダメージ！"
+HeadShotResetString="ヘッドショットに失敗した。 通常ダメージだ！"
+
+SuicideMessage="は自殺した..."
+KilledMessage="は生きたまま食べられた"
+KillzedBy_PatriarchString=" can't hurt Kevin's children anymore"
+KillzedBy_HansString="の体は実験のために解剖された"
+KillzedBy_ZedCrawlerString="の足首が噛み千切られた"
+KillzedBy_ZedBloatString="はゲロの中で溺れ死んだ"
+KillzedBy_ZedFleshpoundString="は挽肉になった"
+KillzedBy_ZedGorefastString="は生きたまま皮を剥がされた"
+KillzedBy_ZedHuskString="は黒こげになって死んだ"
+KillzedBy_ZedScrakeString="は伐採された"
+KillzedBy_ZedSirenString="の耳が吹き飛んだ - FATALITY"
+KillzedBy_ZedStalkerString="には奴が近づいているのが見えなかった"
+KillzedBy_ZedClot_CystString="はみっともない死にざまを経験した"
+KillzedBy_ZedClot_AlphaString="はアソコを掴まれた"
+KillzedBy_ZedClot_SlasherString="はスラッシャーの爪攻撃に嫌気がさした"
+
+FoundAMapCollectibleMessage="%x% が%y%を発見。 残り %z% ..."
+FoundAllMapCollectiblesMessage="全ての%x%が発見された！"
+MapCollectibleName="DOSHアクセサリの一つ"
+
+[KFLocalMessage_Priority]
+WaveStartMessage="ウ　ェ　ー　ブ　開　始"
+WaveEndMessage="ウ　ェ　ー　ブ　終　了"
+GetToTraderMessage="トレーダーポッドへ行け"
+YouLostMessage="敗　北"
+YouWonMessage="勝　利"
+SquadWipedOutMessage="部隊は全滅した"
+SquadSurvivedMessage="部隊は生き延びた"
+ObjectiveStartMessage="目標開始！"
+ObjectiveWonMessage="目標達成！"
+ObjectiveEndedMessage="目標終了！"
+ObjectiveLostMessage="目標失敗！"
+ObjNotEnoughPlayersMessage="プレイヤーが足りない！"
+ObjTimeRanOutMessage="制限時間に到達した！"
+HumansLoseMessage="Human squad wiped out!"
+HumansWinMessage="Human squad survived!"
+AttackHumanPlayersString="Attack the Human Players!"
+ZedGroupRegroupingString="Zed Horde regrouping!"
+NextRoundBeginString="N E X T  R O U N D"
+PlayerCanChangePerksString="Perk changes are allowed"
+ZedWaitingForNextRoundString="Zed Horde invasion imminent!"
+
+[KFLocalMessage_Interaction]
+UseTraderMessage="<%x%> を押してトレード"
+UseDoorMessage="<%x%> を押して使用、長押しで溶接機を装備"
+UseDoorWeldedMessage="[HOLD]<%x%> EQUIP WELDER"
+ZedUseDoorMessage="<%x%>OPEN/CLOSE"
+ZedUseDoorWeldedMessage="DOOR WELDED, BREAK IT DOWN!"
+AcceptObjectiveMessage="<%x%> を押して目標を承認"
+ReceiveAmmoMessage="<%x%> を押して弾薬を受け取る"
+ReceiveGrenadesMessage="<%x%> を押してグレネードを受け取る"
+HealSelfWarning="<%x%> を押して自分を治療する。"
+HealSelfGamepadWarning="[HOLD]<%x%> HEAL SELF"
+PressToBashWarning="<%x%> を押して近接攻撃"
+GamepadWeaponSelectHint="[HOLD] WEAPON SELECT"
+PlayerClotGrabWarningMessage="KILL ZED TO BREAK FREE!"
+
+[KFLocalMessage_ServerNotification]
+TeamPendingBalanceMessage="Teams are unbalanced and will be adjusted"
+
+[KFGfxPerkComp_Abilities]
+RankNames[0]="ランク I"
+RankNames[1]="ランク II"
+RankNames[2]="ランク III"
+
+[KFPerk]
+SkillCatagories[0]=""
+SkillCatagories[1]=""
+SkillCatagories[2]=""
+SkillCatagories[3]=""
+SkillCatagories[4]=""
+
+LevelString="レベル"
+
+SpecialAbilityName="シグネーチャーアビリティ"
+SpecialAbilityDescription=""
+
+Passives[0]=(Title="",Description="");
+Passives[1]=(Title="",Description="");
+Passives[2]=(Title="",Description="");
+Passives[3]=(Title="",Description="");
+Passives[4]=(Title="",Description="");
+
+SkillSlots0[0]=(Title="",Description="")
+SkillSlots0[1]=(Title="",Description="")
+
+SkillSlots1[0]=(Title="",Description="")
+SkillSlots1[1]=(Title="",Description="")
+
+SkillSlots2[0]=(Title="",Description="")
+SkillSlots2[1]=(Title="",Description="")
+
+SkillSlots3[0]=(Title="",Description="")
+SkillSlots3[1]=(Title="",Description="")
+
+SkillSlots4[0]=(Title="",Description="")
+SkillSlots4[1]=(Title="",Description="")
+
+WeaponDroppedMessage="所持容量が変化したため %%%% を落とした！"
+
+[KFPerk_Berserker]
+PerkName="Berserker"
+
+SkillCatagories[0]="Survival"
+SkillCatagories[1]="Combat"
+SkillCatagories[2]="Close Combat"
+SkillCatagories[3]="Power"
+SkillCatagories[4]="Advanced Training"
+
+
+Passives[0]=(Title="Berserker Damage",Description="x%x damage increase every level")
+Passives[1]=(Title="Damage Resistance",Description="x%x resistance per every 5 levels to all damage")
+Passives[2]=(Title="+Night Vision Capability",Description="Flashlight - AND Night Vision Goggles")
+Passives[3]=(Title="+Clots cannot grab you",Description="Clots can't hold on to a Berserker")
+
+EXPAction1="Dealing Berserker weapon damage"
+EXPAction2="Kill Zeds near a player with a Berserker weapon"
+
+Fortitude="Dreadnaught"
+FortitudeDescription="Increase total Health by 50%."
+
+Ninja="Skirmisher"
+NinjaDescription="Move 20% faster. Sprint 25% faster. Regenerate 2 points of Health every second. "
+
+Vampire="Vampire"
+VampireDescription="Heal yourself 4 points of Health for every Zed you kill with a Berserker weapon. You also attack 15% faster with Berserker weapons."
+
+Speed="Butcher"
+SpeedDescription="Attack 20% faster and do 25% more damage with Berserker weapons."
+
+Resistance="Resistance"
+ResistanceDescription="Gain 20% resistance to all damage. You gain an additional 20% resistance to Poison and Sonic Damage."
+
+Parry="Parry"
+ParryDescription="Parrying an attack with a Berserker melee weapon will increase melee attack speed by 5% and melee damage by 35% for 10 seconds."
+
+Smash="Smash"
+SmashDescription="Hard attacks with Berserker melee weapons do 50% more damage, plus an additional 25%  damage on head shots, and have 200% more Stumble power."
+ 
+Fury="Massacre"
+FuryDescription="Light attacks with Berserker melee weapons do 20% more damage and are 5% faster."
+
+Spartan="ZED TIME - Spartan" 
+SpartanDescription="You've seen 300: Attack in near real time and gain 25% of your total Health."
+
+Flash="ZED TIME - Berserker Rage"
+FlashDescription="Zeds won't like you when you're angry: Move and attack in real time."
+
+[KFPerk_Commando]
+PerkName="Commando"
+
+SkillCatagories[0]="Tactics"
+SkillCatagories[1]="Advanced Tactics"
+SkillCatagories[2]="Survival"
+SkillCatagories[3]="Weapon Specialist"
+SkillCatagories[4]="Advanced Training"
+
+Passives[0]=(Title="Perk Weapon Damage",Description="%x% increase in Commando weapon damage.");
+Passives[1]=(Title="Cloaked Enemy & Health Bar Detection",Description="10m plus %x%m increase by each level");
+Passives[2]=(Title="Zed Time Extension",Description="Zed time lasts %x% longer");
+Passives[3]=(Title="Reload Speed",Description="%x%% increase every 5 levels");
+Passives[4]=(Title="+Night Vision Capability",Description="Flashlights - AND Night Vision Goggles");
+Passives[5]=(Title="+Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units");
+
+EXPAction1="Dealing Commando weapon damage"
+EXPAction2="Killing Stalkers with Commando weapons"
+
+TacticalReload="Tactical Reload"
+TacticalReloadDescription="Be cool. Be quick. Reload 20% faster with Commando weapons AND look more elite while you're at it."
+
+LargeMags="Large Mags"
+LargeMagsDescription="Get a bit more serious: Increase Commando weapon magazine capacities by 50%."
+
+Backup="Backup"
+BackupDescription="Give your backup pistol and knife 60% extra damage for those moments when you really need it!"
+
+Impact="Impact"
+ImpactDescription="Pack more punch and knock 'em down: Increase Stumble power by 150% for all Commando weapons."
+
+HealthIncrease="Health Increase"
+HealthIncreaseDescription="Increase total Health and Armor by 25%."
+
+AmmoVest="Ammo Vest"
+AmmoVestDescription="Carry two extra magazines for each Commando weapon."
+
+HollowPoints="Hollow Point Rounds"
+HollowPointsDescription="Upgrade your ammo, giving Commando weapons 25% more damage and reducing their recoil 50%."
+
+EatLead="Eat Lead"
+EatLeadDescription="Need more bullets? Get 50% more rounds in your mags with Commando weapons."
+
+RapidFire="ZED TIME - Rapid Fire"
+RapidFireDescription="When the world slows down, do more hurt: Do 3% more damage with Commando weapons and shoot 3x times faster with all guns."
+
+Professional="ZED TIME - Professional"
+ProfessionalDescription="When the world slows down, you don't: Reload Commando weapons at full speed and switch Commando weapons twice as fast!"
+
+[KFPerk_Demolitionist]
+PerkName="Demolitionist"
+EXPAction1="Dealing Demolitionist weapon damage"
+EXPAction2="Killing Fleshpounds with Demolitionist weapons"
+
+SkillCatagories[0]="Technique"
+SkillCatagories[1]="Explosives"
+SkillCatagories[2]="Advanced Techniques"
+SkillCatagories[3]="Weapon Techniques"
+SkillCatagories[4]="Advanced Explosives"
+
+Passives[0]=(Title="Perk Weapon Damage",Description="Perk weapon damage increased by %x%");
+Passives[1]=(Title="Explosive Resistance",Description="%x% resistance to explosive damage");
+Passives[2]=(Title="Extra Explosive Ammo",Description="%x% more starting explosive ammo");
+Passives[3]=(Title="+Grenade Supplier",Description="Give out one extra grenade per wave to your team");
+Passives[4]=(Title="+Door Traps",Description="Doors you weld will explode when destroyed");
+
+Damage="Bombardier"
+DamageDescription="Your explosive Demolitionist weapons do 25% more damage."
+
+Speed="Grenadier"
+SpeedDescription="You reload your Demolitionist weapons 10% faster."
+
+DirectHit="High Impact Rounds"
+DirectHitDescription="Do 25% more damage on a direct hit with your explosive Demolitionist weapons, but decrease maximum ammo for each weapon by 3."
+
+Ammo="Extra Rounds"
+AmmoDescription="Increase maximum ammo by 5 for all explosive Demolitionist weapons."
+
+SirenResistance="Sonic Resistant Rounds"
+SirenResistanceDescription="Your explosive Demolitionist weapons have a 100% chance of getting past a siren's scream and actually exploding."
+
+AreaOfEffect="Fragmentation Rounds"
+AreaOfEffectDescription="The area of effect for your explosive Demolitionist weapons is increased by 50%, but their damage is reduced by 30%."
+
+CriticalHit="Armor Piercing Rounds"
+CriticalHitDescription="A direct hit to a critical zone with any Demolitionist weapon will do 50% additional damage."
+
+ConcussiveForce="Concussive Rounds"
+ConcussiveForceDescription="The reaction, stun, stumble and knockdown power of your Demolitionist weapons increase by 50%."
+
+Nuke="ZED TIME - Destroyer of Worlds"
+NukeDescription="Nuke 'em: Your explosives dish out massive radiation damage in Zed Time, poisoning Zeds."
+
+Professional="ZED TIME - Mad Bomber"
+ProfessionalDescription="Shoot and reload in near real time."
+
+
+[KFPerk_FieldMedic]
+PerkName="フィールドメディック"
+
+SkillCatagories[0]="整体療法"
+SkillCatagories[1]="医療の専門家"
+SkillCatagories[2]="武器の取り扱い"
+SkillCatagories[3]="戦闘の専門家"
+SkillCatagories[4]="さらなる鍛錬"
+
+Passives[0]=(Title="注射器チャージ時間",Description="武器ダメージが %x% 増加");
+Passives[1]=(Title="注射器の効能",Description="透明な敵検知が %x% 増加");
+Passives[2]=(Title="ブロートのゲロ耐性",Description="ヘルスバー検知が %x% 増加");
+Passives[3]=(Title="移動スピード",Description="ZED TIME が %x% 持続");
+Passives[4]=(Title="アーマーボーナス",Description="ヘルスが %x% 増加");
+
+HealingSurge="過剰摂取"
+HealingSurgeDescription="用法・用量を守って正しくお使いください: ヘルスが 20% 増加する。"
+
+Enforcer="エンフォーサー"
+EnforcerDescription="思いやりをもって介抱: パークとバックアップの武器の開始時点の弾薬数が 20% 増加する。"
+
+Combatant="戦闘員"
+CombatantDescription="ただの医者にはならない - 開始時に無料のアーマーを入手し、全弾薬が60%セールになる衛生兵となる。"
+
+Armament="装備"
+ArmamentDescription="人間を修復する、とは言わない: チームメイトへの治療効果が 10% 減少するが、その代わり彼らのアーマーを 2% 修復する。"
+
+Regeneration="再生医療"
+RegenerationDescription="治癒能力: ホージン社製のナノボットによって、ゆっくりと時間をかけてヘルスが回復していく。"
+
+Lacerate="切開"
+LacerateDescription="メスを入れる: 全てのパーク武器でダメージをZEDに与えた後により出血するようになる。"
+
+VaccinationArmor="予防接種"
+VaccinationArmorDescription="疫病根絶: 味方を回復すると 4% の最大アーマーが修理され、ブロートのゲロ耐性を一時的に持たせる。"
+
+VaccinationDamageMod="酸性化合物"
+VaccinationDamageModDescription="多くの者を治療し・・・他の者へは死を！回復ダーツにZEDへの毒ダメージ効果が追加される。グレネードやダーツで十分なダメージを与えるとZEDはパニックとなる。"
+
+AirborneAgent="ZED TIME - 空挺エージェント"
+AirborneAgentDescription="They say time heals: Your medic darts will form a healing cloud for your target and nearby friends to get 20% extra healing."
+
+Sedative="ZED TIME - 鎮静剤"
+SedativeDescription="時よ止まれ: 一時的にZEDの動きを止めるZED鎮痛剤の成分が、回復ダーツとグレネードに配合される。"
+
+
+EXPAction1="フィールドメディックの武器でダメージを与える"
+EXPAction2="チームメイトを治療する"
+
+[KFPerk_Firebug]
+PerkName="ファイアバグ"
+EXPAction1="ファイアバグの武器でダメージを与える"
+EXPAction2="ファイアバグの武器でクローラーを殺す"
+
+SkillCatagories[0]="補給品"
+SkillCatagories[1]="スパイシー"
+SkillCatagories[2]="焼却"
+SkillCatagories[3]="火炎"
+SkillCatagories[4]="さらなる鍛錬"
+
+Passives[0]=(Title="パーク武器ダメージ",Description="パーク武器のダメージが %x% 増加");
+Passives[1]=(Title="パーク武器リロード",Description="パーク武器のリロード速度が %x% 高速化");
+Passives[2]=(Title="ZED火炎ダメージ耐性",Description="火炎ダメージが %x% 軽減");
+Passives[3]=(Title="自分の火炎ダメージからの耐性",Description="人からの火炎ダメージが %x% 軽減");
+Passives[4]=(Title="開始時の弾薬",Description="開始時の弾薬が %x% 増加");
+
+FullyStocked="フル装填"
+FullyStockedDescription="お望みのままに: トレーダーで購入時のファイアバグの武器が最大弾薬数で入手できる。"
+
+FlarotovCoctail="フレロトフ・カクテル"
+FlarotovCoctailDescription="It's in the name: Shove a flare in your Molotov Cocktail - you get a Flare that lights up the environment for 30 seconds."
+
+Fuse="導火線"
+FuseDescription="A nice slow-burner: Firebug weapons' Fire effect lingers 20% longer, adding to damage over time."
+
+HeatWave="熱波"
+HeatWaveDescription="ジョージア州の夏のように: 至近距離から炎を受けた敵は後ろによろめく。"
+
+ZedShrapnel="ZED榴散弾"
+ZedShrapnelDescription="Zed goes BOOM: Any Zed killed by Fire weapons has a 20% chance to explode, causing damage to and knocking down nearby Zeds."
+
+Napalm="ZEDナパーム弾"
+NapalmDescription="ZEDを火だるまに: ZEDが燃えているZEDに触れると、そのZEDにも火が燃え移る。"
+
+Range="射程"
+RangeDescription="Increase range of all Fire weapons. Go on - you know you want to."
+
+SplashDamage="スプラッシュダメージ"
+SplashDamageDescription="Or increase the splash damage of Fire weapon impacts. Decisions, decisions!"
+
+Combustion="ZED TIME - 燃焼"
+CombustionDescription="榴散弾 + ナパーム弾 = 燃焼 みたいなの。ZED TIME 中に火炎武器でZEDを殺すと爆発し、周りのZEDを燃やす。"
+
+Scorch="ZED TIME - 焦げ"
+ScorchDescription="火だるまだ！ いや、文字通りではないな。 ZED TIME中にパーク武器を使用しても、炎の速度は通常時とほとんど同じになる。"
+
+[KFPerk_Gunslinger]
+PerkName="ガンスリンガー"
+EXPAction1="ガンスリンガーの武器でダメージを与える"
+EXPAction2="ガンスリンガーの武器を使ってヘッドショット"
+
+SkillCatagories[0]="技術"
+SkillCatagories[1]="スキル"
+SkillCatagories[2]="高等技術"
+SkillCatagories[3]="クリティカルヒット"
+SkillCatagories[4]="Master Techniques"
+
+Passives[0]=(Title="パーク武器ダメージ",Description="パーク武器のダメージが %x% 増加");
+Passives[1]=(Title="銃弾耐性",Description="銃弾ダメージを %x% 軽減");
+Passives[2]=(Title="移動スピード",Description="移動スピードが %x% 増加");
+Passives[3]=(Title="Recoil",Description="%x% less recoil");
+
+ShootnMove="Shoot'n'Scoot"
+ShootnMoveDescription="Don't hang around to be eaten: Move 200% faster in iron sights with reduced weapon bob when using Gunslinger weapons."
+
+QuickSwitch="クイックドロー"
+QuickSwitchDescription="You know it: Increase weapon switch speed with Gunslinger weapons by 50% and quick draw spare pistols if you keep firing while out of ammo."
+
+RhythmMethod="Rhythm Method"
+RhythmMethodDescription="Rack up the headshots: Each consecutive headshot with a Gunslinger weapon increases your damage by 17% up to a maximum of 68%."
+
+BoneBreaker="Bone Breaker"
+BoneBreakerDescription="Don't just collect them, break them too: Inflict 20% more damage with Gunslinger weapons."
+
+SpeedReload="Speedloader"
+SpeedReloadDescription="Cooler, quicker, deadlier: Reload faster with Gunslinger weapons 20% faster AND look more elite while you're at it."
+
+Penetration="Penetration"
+PenetrationDescription="Line 'em up and knock 'em down: Penetrate an extra Zed with every shot with Gunslinger weapons."
+
+CenterMass="Center of Mass"
+CenterMassDescription="If you aim for the center of mass... shots to the chest with Gunslinger weapons have 40% more stumble power."
+
+LimbShots="Leg Shots"
+LimbShotsDescription="Or shoot them in the legs... shots to the legs with Gunslinger weapons have 3x more knockdown power when the Zed is sprinting."
+
+Fanfare="ZED TIME - Fanfire"
+FanfareDescription="Fanfire with fanfare: Shoot 3x faster with Gunslinger weapons in Zed time."
+
+UberAmmo="ZED TIME - Uber Ammo"
+UberAmmoDescription="Uber it up: You can’t run out of ammo with Gunslinger weapons during Zed time."
+
+[KFPerk_MartialArtist]
+PerkName="マーシャルアーティスト"
+
+[KFPerk_Sharpshooter]
+PerkName="シャープシューター"
+
+EXPAction1="Dealing Sharpshooter weapon damage"
+EXPAction2="Head shots with Sharpshooter weapons"
+
+SkillCatagories[0]="Movement"
+SkillCatagories[1]="Basic Technique"
+SkillCatagories[2]="Skill"
+SkillCatagories[3]="Equipment"
+SkillCatagories[4]="Master Techniques"
+
+Passives[0]=(Title="Headshot Damage",Description="Headshot damage increased by %x%");
+Passives[1]=(Title="Recoil",Description="%x% less recoil");
+Passives[2]=(Title="Weapon Switch",Description="Weapon switch speed increased by %x%");
+
+StationaryAim="Sniper"
+StationaryAimDescription="Inflict 25% more damage while stationary and using a Sharpshooter weapon."
+
+Trigger="Marksman"
+TriggerDescription="Shoot 25% faster and move 10% faster when using a Sharpshooter weapon."
+
+CrouchAim="Stability"
+CrouchAimDescription="Inflict 30% more damage while crouching and using a Sharpshooter weapon."
+
+Stun="Ballistic Shock"
+StunDescription="Stun power with Sharpshooter weapons increases by 100%."
+
+RhythmMethod="Rack 'em Up"
+RhythmMethodDescription="Rack up the headshots: each consecutive headshot with a Sharpshooter weapon increases your damage by 5% up to 75%."
+
+TacticalReload="Combat Ready"
+TacticalReloadDescription="Be cool. Be quick. Reload faster with Sharpshooter weapons AND look more elite while you're at it."
+
+Scoped="Dead Eye"
+ScopedDescription="Reduce recoil 10% and increase head shot damage 10% when using a scope or ironsights with a Sharpshooter weapon."
+
+AmmoPouch="Always Prepared"
+AmmoPouchDescription="Get 25% more ammo for Sharpshooter weapons and grenades."
+
+ZTKnockdown="ZED TIME - Assassin"
+ZTKnockdownDescription="Headshots with Sharpshooter weapons will knock down any Zed."
+
+ZTStun="ZED TIME - Ranger"
+ZTStunDescription="Headshots with Sharpshooter weapons will stun any Zed."
+
+
+
+[KFPerk_Support]
+PerkName="サポート"
+
+SkillCatagories[0]="武器の取り扱い"
+SkillCatagories[1]="フィットネス"
+SkillCatagories[2]="補給"
+SkillCatagories[3]="持久力"
+SkillCatagories[4]="さらなる鍛錬"
+
+Passives[0]=(Title="溶接工",Description="溶接スピードが %x% 増加");
+Passives[1]=(Title="パーク武器ダメージ",Description="パーク武器のダメージが %x% 増加");
+Passives[2]=(Title="パーク武器貫通力",Description="レベル毎に、パーク武器の貫通力が %x% 増加");
+Passives[3]=(Title="グレネードダメージ",Description="グレネードダメージが %x% 増加");
+Passives[4]=(Title="",Description="");
+
+;Passives[0]=(Title="溶接工",Description="溶接スピードが 2% 増加 (最大 50%")");
+;Passives[1]=(Title="ショットガンダメージ",Description="ショットガンのダメージが 2% 増加 (最大 50%")");
+;Passives[2]=(Title="ショットガン貫通力",Description="レベル毎に、ショットガンの貫通力が 25% 増加");
+;Passives[3]=(Title="グレネードダメージ",Description="グレネードのダメージが 2% 増加 (最大 50%")");
+;Passives[4]=(Title="",Description="");
+
+EXPAction1="サポートの武器でダメージを与える"
+EXPAction2="ドアを溶接する"
+
+Ammo="弾薬"
+AmmoDescription="まず真剣に始めよ: 弾薬数上限と開始時点の弾薬数が 20% 増加する。"
+
+Supplier="供給者"
+SupplierDescription="皆に愛されよ: バックパックを持っているので全てのプレイヤーはウェーブ毎に弾薬を提供できるようになる。"
+
+Fortitude="不撓不屈"
+FortitudeDescription="さらなるチャンスを: ヘルスが 50% 増加する。"
+
+Regeneration="再生医療"
+RegenerationDescription="医者いらず: ホージン社製のナノボットによって、ゆっくりと時間をかけてヘルスが回復していく。"
+
+Bombard="爆弾魔"
+BombardDescription="さらなる力を込めて: 実験体をサポートの武器で攻撃した場合に実験体をよろめかせるチャンスが 60% 増加する。"
+
+TacticalReload="タクティカルリロード"
+TacticalReloadDescription="素早く、クールに。パーク武器のリロード速度がより高速化し、精鋭部隊の隊員のようだ。"
+
+Strength="バルクアップ"
+StrengthDescription="ジムに通え。筋肉をバルクアップし、所持容量が 5 増大する。"
+
+Tenacity="粘り強さ"
+TenacityDescription="サポートの武器でのダメージが 10% 増加する。"
+
+Safeguard="ZED TIME - セーフガード"
+SafeguardDescription="Wade right in with 5% more Armor for you AND your nearby friends!"
+
+Barrage="ZED TIME - 弾幕"
+BarrageDescription="自分と近くにいる味方のダメージが 15% 増加する！"
+
+[KFPerk_Sharpshooter]
+PerkName="シャープシューター"
+
+[Fonts]
+Bicubik="バイキュービック"
+
+[KFObjective]
+ObjectiveDifficulties[0]="イージー"
+ObjectiveDifficulties[1]="ミディアム"
+ObjectiveDifficulties[2]="ハード"
+ObjectiveStartTitle="指示に従って開始地点へ行け"
+ObjectiveWaitingString="他のプレイヤーを待機中！"
+ObjectiveWonString="達成！"
+ObjectiveFailedString="失敗！"
+ObjectiveEndedString="終了！"
+ObjectiveFailReasons[0]="制限時間終了！"
+ObjectiveFailReasons[1]="チームは全滅した"
+ObjectiveFailReasons[2]="低ヘルスのプレイヤーが死亡した"
+ObjectiveFailReasons[3]="ウェーブが終了した"
+ObjectiveFailReasons[4]="目標終了"
+ObjectiveFailReasons[5]="Dosh 不足のプレイヤーがいなくなった"
+ObjectiveFailReasons[6]="プレイヤーが足りない！"
+ObjectiveXPString="XP:"
+ObjectiveTimeLimitString="制限時間:"
+ObjectiveTimeUnit="秒"
+ObjectiveStatusString="目標の状況"
+
+[KFObj_Wave]
+ObjectiveAvailableString="有効な目標"
+
+[KFObj_Wave_Defend]
+ObjectiveTypeString="防衛"
+ObjectiveTargetTitle="ウイルスのアップロードを防衛しろ！"
+ObjectiveStatusTitle="リンクダウンロード状況"
+
+[KFObj_Coop_Healer]
+ObjectiveTypeString="治療"
+ObjectiveTargetTitle="低いヘルスのプレイヤーを回復せよ"
+ObjectiveStatusTitle="人のプレイヤーを回復"
+ObjectiveTimeString="秒の残り時間"
+
+[KFObj_Coop_PayDay]
+ObjectiveTypeString="給料日"
+ObjectiveTargetTitle="復活したプレイヤーにDosh を与えよ"
+ObjectiveStatusTitle="30%のキャッシュバックを獲得"
+ObjectiveTimeString="秒の残り時間"
+
+[KFGameViewportClient]
+RandomLoadingStrings[0]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 0"
+RandomLoadingStrings[1]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 1"
+RandomLoadingStrings[2]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 2"
+RandomLoadingStrings[3]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 3"
+RandomLoadingStrings[4]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 4"
+RandomLoadingStrings[5]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 5"
+RandomLoadingStrings[6]="The parry ability stumbles a Zed, allowing you to get in a few extra strikes."
+RandomLoadingStrings[7]="Watch out for the husk. Once he takes enough damage, he may try to self-detonate on your team."
+RandomLoadingStrings[8]="You receive XP for damaging Zeds towards the perk associated with the weapon that inflicted the damage."
+RandomLoadingStrings[9]="Stick together. Getting singled out decreases your chances of survival if things get hairy."
+RandomLoadingStrings[10]="Players can use the syringe to heal themselves as well as their teammates."
+RandomLoadingStrings[11]="Welding doors can hold Zeds back. Doors do not come back once destroyed."
+RandomLoadingStrings[12]="If a teammate dies, it is helpful to grab their weapon and drop it for them at the trader."
+RandomLoadingStrings[13]="Got some extra dosh? Drop some for your team; they may return the favor."
+RandomLoadingStrings[14]="Choose your targets. Different weapons are more or less effective against different types of Zeds."
+RandomLoadingStrings[15]="Prioritize your targets. A fleshpound is a lot more deserving of your attention than a clot."
+RandomLoadingStrings[16]="All Zeds have weak points. If it's not the head, look for glowing elements on their bodies."
+RandomLoadingStrings[17]="Looking to buy or sell a cosmetic item or weapon skin?  Check the marketplace."
+RandomLoadingStrings[18]="The siren's scream neutralizes grenades and other explosives."
+RandomLoadingStrings[19]="Scrakes and fleshpounds will rage once they receive enough damage. Stay out of their way."
+RandomLoadingStrings[20]="Have a bunch of weapon skins or cosmetic items you're not using?  Craft new ones in your Inventory."
+RandomLoadingStrings[21]="Consider your outfit and gear carefully. One must look stylish while killing Zeds."
+RandomLoadingStrings[22]="Melee attacks are directional based on your movement. Forward = overhead, side = swipe, and back = uppercut."
+RandomLoadingStrings[23]="Welding doors shut can limit the directions the Zeds will attack you from, but will also limit your escape routes."
+RandomLoadingStrings[24]="Don't get close to even the weakest Zeds; they can grab you and hold on until their bigger friends arrive."
+RandomLoadingStrings[25]="Want Medic XP and some dosh? Heal your team -- both parties benefit!"
+RandomLoadingStrings[26]="Use controlled bursts with your weapons. Running out of ammo mid-wave makes for a difficult time."
+RandomLoadingStrings[27]="New perk skills are unlocked every 5 levels. Check them out at the Perks Menu."
+RandomLoadingStrings[28]="The M79 and RPG must travel a certain distance to arm the explosive charge."
+RandomLoadingStrings[29]="If you're having trouble seeing the Zeds, try your flashlight."
+RandomLoadingStrings[30]="Having a tough time surviving? Try a different perk! You may find one that fits your playstyle better."
+RandomLoadingStrings[31]="Always make sure you have a way out. Getting boxed in is a sure way to take a dirt nap."
+RandomLoadingStrings[32]="Armor is your friend. You can never go wrong getting more armor."
+RandomLoadingStrings[33]="Fire is a great way to keep Zeds away from you. Fire alone takes awhile to kill Zeds, but it keeps them occupied."
+RandomLoadingStrings[34]="If a Zed or its weapon are glowing red, parrying its melee attacks will be less effective.  Run!"
+RandomLoadingStrings[35]="Lighting Zeds on fire can cause them to panic. Time to play everyone's favorite game: Oh my god, I'm on fire!"
+RandomLoadingStrings[36]="Submachine guns have a high chance to cause targets to stumble, allowing you to keep them at a distance."
+RandomLoadingStrings[37]="The rail gun can fire through multiple Zeds if you line them up right."
+RandomLoadingStrings[38]="The microwave gun does more damage against Zeds carrying metal, like fleshpounds and sirens."
+RandomLoadingStrings[39]="Try out your weapon's alternate fire mode. Not all weapons have them, but it may help you in a tight spot."
+RandomLoadingStrings[40]="You get XP and dosh for assists in addition to kills, so don't feel bad for setting up kills for your allies."
+
+ 
+
+[Zeds]
+KFPawn_ZedBloat="ブロート"
+KFPawn_ZedClot="クロト"
+KFPawn_ZedCrawler="クローラー"
+KFPawn_ZedFleshPound="フレッシュパウンド"
+KFPawn_ZedGorefast="ゴアファスト"
+KFPawn_ZedHans="ドクター ハンス・ヴォルター"
+KFPawn_ZedHusk="ハスク"
+KFPawn_ZedStalker="ストーカー"
+KFPawn_ZedClot_Cyst="シスト"
+KFPawn_ZedClot_Slasher="スラッシャー"
+KFPawn_ZedClot_Alpha="アルファクロト"
+KFPawn_ZedScrake="スクレイク"
+KFPawn_ZedSiren="サイレン"
+KFPawn_ZedPatriarch="Patriarch"
+;Human zeds
+KFPawn_ZedBloat_Versus="Bloat - Player"
+KFPawn_ZedClot_Versus="Clot - Player"
+KFPawn_ZedCrawler_Versus="Crawler - Player"
+KFPawn_ZedFleshPound_Versus="Fleshpound - Player"
+KFPawn_ZedGorefast_Versus="Gorefast - Player"
+KFPawn_ZedHans_Versus="Dr. Hans Volter - Player"
+KFPawn_ZedHusk_Versus="Husk - Player"
+KFPawn_ZedStalker_Versus="Stalker - Player"
+KFPawn_ZedClot_Cyst_Versus="Cyst - Player"
+KFPawn_ZedClot_Slasher_Versus="Slasher - Player"
+KFPawn_ZedClot_Alpha_Versus="Alpha Clot - Player"
+KFPawn_ZedScrake_Versus="Scrake - Player"
+KFPawn_ZedSiren_Versus="Siren - Player"
+KFPawn_ZedPatriarch_Versus="Patriarch - Player"
+
+[ZedMoves]
+Melee="Melee"
+Rally="Rally"
+Grab="Grab"
+Light="Light"
+Heavy="Heavy"
+Spin="Spin"
+Evade="Evade"
+Jump="Jump"
+Puke="Puke"
+Mine="Mine"
+Bite="Bite"
+Scream="Scream"
+Vortex="Vortex"
+Shoot="Shoot"
+Flame="Flame"
+Suicide="Suicide"
+Rage="Rage"
+Minigun="Minigun"
+Rocket="Rocket"
+Mortar="Mortar"
+Heal="Heal"
+Block="Block"
+
+[Keybinds]
+CtrlCombo="Ctrl + "
+ShiftCombo="Shift + "
+AltCombo="Alt + "
+LeftMouseButton="左クリック"
+MiddleMouseButton="中央クリック"
+RightMouseBUtton="右クリック"
+ThumbMouseButton="Mouse 4"
+ThumbMouseButton2="Mouse 5"
+MouseScrollDown="マウスホイール下"
+MouseScrollUp="マウスホイール上"
+CapsLock="Caps Lock"
+Tab="Tab"
+BackSpace="Backspace"
+SpaceBar="スペースキー"
+LeftShift="左 Shift"
+RightSift="右 Shift"
+LeftCtrl="左 Ctrl"
+RightCtrl="右 Ctrl"
+LeftAlt="左 Alt"
+RightAlt="右 Alt"
+BackSlash="\\ "
+Slash="/"
+RightBracket="]"
+LeftBracket="["
+Quote="'"
+SemiColon=";"
+Period="."
+Comma=","
+Subtract="-"
+Add="+"
+Equals="="
+Multiply="*"
+Divide="Num Pad /"
+Underscore="-"
+NumPadZero="0"
+NumPadOne="1"
+NumPadTwo="2"
+NumPadThree="3"
+NumPadFour="4"
+NumPadFive="5"
+NumPadSix="6"
+NumPadSeven="7"
+NumPadEight="8"
+NumPadNine="9"
+Decimal="Num Pad ."
+NumLock="Num Lock"
+PageUp="Page Up"
+PageDown="Page Down"
+Home="Home"
+End="End"
+Insert="Insert"
+Delete="Delete"
+Up="上"
+Down="下"
+Left="左"
+Right="右"
+ScrollLock="Scroll Lock"
+Pause="Pause"
+Enter="Enter"
+one="1"
+two="2"
+three="3"
+four="4"
+five="5"
+six="6"
+seven="7"
+eight="8"
+nine="9"
+zero="0"
+
+[SharedUnlocks]
+KFWeap_Zweihander="Chivalry のプロモ"
+
+SharedUnlocks
+Source0="Chivalry のプロモ"
+;============================================
+; Map Localization
+;============================================
+[KF-BioticsLab KFMapSummary]
+DisplayName="生体研究所"
+
+[KF-Outpost KFMapSummary]
+DisplayName="前哨基地"
+
+[KF-BurningParis KFMapSummary]
+DisplayName="炎上の都パリ"
+
+[Survival KFGameInfoSummary]
+GameName="サバイバル"
+
+[KF-VolterManor KFMapSummary]
+DisplayName="ヴォルターの館"
+
+[KF-Catacombs KFMapSummary]
+DisplayName="カタコンベ"
+
+[KF-EvacuationPoint KFMapSummary]
+DisplayName="避難所"
+
+[KF-Farmhouse KFMapSummary]
+DisplayName="Farmhouse"
+
+[KF-BlackForest KFMapSummary]
+DisplayName="黒い森"
+
+[KF-Prison KFMapSummary]
+DisplayName="Prison"
+
+[KF-ContainmentStation KFMapSummary]
+DisplayName="Containment Station"
+
+[KF-HostileGrounds KFMapSummary]
+DisplayName="Hostile Grounds"
+
+
+[KFMapInfo]
+; defaults
+FoundCollectibleString="%x% found a collectible. %y% left to find..."
+FoundAllCollectiblesString="Every collectible has been found!"

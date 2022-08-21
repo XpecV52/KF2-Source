@@ -187,6 +187,10 @@ simulated function TakeRadiusDamage
 }
 
 
+simulated function Reset();
+
+
+
 simulated event Destroyed()
 {
 	Super.Destroyed();

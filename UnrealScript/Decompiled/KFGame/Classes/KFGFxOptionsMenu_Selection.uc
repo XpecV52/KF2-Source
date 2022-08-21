@@ -26,27 +26,46 @@ function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
 {
     local byte I;
     local GFxObject DataProvider, DataObject;
+    local array<string> DisplayedOptions;
+    local PlayerController PC;
 
     super.InitializeMenu(InManager);
+    PC = Outer.GetPC();
     DataProvider = Outer.CreateArray();
     DataProvider.SetString("header", HeaderString);
+    DisplayedOptions = OptionStrings;
+    if((PC != none) && PC.WorldInfo != none)
+    {
+        if(PC.WorldInfo.IsConsoleBuild())
+        {
+            DisplayedOptions.Remove(0, 1;
+            DisplayedOptions[0] = (OptionStrings[1] $ "/") $ OptionStrings[0];
+        }
+        if(!PC.WorldInfo.IsMenuLevel())
+        {
+            DisplayedOptions.Remove(DisplayedOptions.Length - 1, 1;
+        }
+    }
     I = 0;
-    J0x79:
+    J0x1AB:
 
-    if(I < OptionStrings.Length)
+    if(I < DisplayedOptions.Length)
     {
         DataObject = Outer.CreateObject("Object");
-        DataObject.SetString("label", OptionStrings[I]);
-        DataObject.SetBool("enabled", !!Class'WorldInfo'.static.IsMenuLevel() && I == 4);
+        DataObject.SetString("label", DisplayedOptions[I]);
         DataProvider.SetElementObject(I, DataObject);
         ++ I;
-        goto J0x79;
+        goto J0x1AB;
     }
     SetObject("buttonNames", DataProvider);
 }
 
 function Callback_MenuSelected(int MenuIndex)
 {
+    if(Class'WorldInfo'.static.IsConsoleBuild())
+    {
+        ++ MenuIndex;
+    }
     switch(MenuIndex)
     {
         case 0:

@@ -152,7 +152,7 @@ function bool IsSuicidal()
 
 function bool CanDoSuicide(float DistToTargetSq)
 {
-    if((DistToTargetSq <= (MinDistanceToSuicide * MinDistanceToSuicide)) && MyKFPawn.CanDoSpecialMove(21))
+    if((DistToTargetSq <= (MinDistanceToSuicide * MinDistanceToSuicide)) && MyKFPawn.CanDoSpecialMove(20))
     {
         return true;
     }
@@ -165,7 +165,7 @@ function bool CanDoFlamethrower(float DistToTargetSq)
     {
         return false;
     }
-    if(((bCanUseFlameThrower && (LastFlameThrowerTime == float(0)) || (WorldInfo.TimeSeconds - LastFlameThrowerTime) > TimeBetweenFlameThrower) && DistToTargetSq <= float(MaxDistanceForFlameThrower * MaxDistanceForFlameThrower)) && MyKFPawn.CanDoSpecialMove(20))
+    if(((bCanUseFlameThrower && (LastFlameThrowerTime == float(0)) || (WorldInfo.TimeSeconds - LastFlameThrowerTime) > TimeBetweenFlameThrower) && DistToTargetSq <= float(MaxDistanceForFlameThrower * MaxDistanceForFlameThrower)) && MyKFPawn.CanDoSpecialMove(19))
     {
         return true;
     }
@@ -178,7 +178,7 @@ function bool CanDoFireball(float DistToTargetSq)
     {
         return false;
     }
-    if((((LastFireBallTime == float(0)) || (WorldInfo.TimeSeconds - LastFireBallTime) > TimeBetweenFireBalls) && DistToTargetSq <= float(MaxDistanceForFireBall * MaxDistanceForFireBall)) && MyKFPawn.CanDoSpecialMove(19))
+    if((((LastFireBallTime == float(0)) || (WorldInfo.TimeSeconds - LastFireBallTime) > TimeBetweenFireBalls) && DistToTargetSq <= float(MaxDistanceForFireBall * MaxDistanceForFireBall)) && MyKFPawn.CanDoSpecialMove(18))
     {
         return true;
     }
@@ -187,7 +187,7 @@ function bool CanDoFireball(float DistToTargetSq)
 
 event bool SetEnemy(Pawn NewEnemy)
 {
-    if((MyKFPawn == none) || MyKFPawn.IsDoingSpecialMove(19))
+    if((MyKFPawn == none) || MyKFPawn.IsDoingSpecialMove(18))
     {
         if(MyKFPawn.NeedToTurn(NewEnemy.Location))
         {
@@ -241,7 +241,7 @@ function ShootFireball(class<KFProjectile> FireballClass)
         return;
     }
     SocketLocation = MyKFPawn.GetPawnViewLocation() + (FireOffset >> Pawn.GetViewRotation());
-    if(((float(MyKFPawn.Health) > 0) && Role == ROLE_Authority) && MyKFPawn.IsDoingSpecialMove(19))
+    if(((float(MyKFPawn.Health) > 0) && Role == ROLE_Authority) && MyKFPawn.IsDoingSpecialMove(18))
     {
         AimLocation = Enemy.Location;
         if(Skill == Class'KFDifficultyInfo'.static.GetDifficultyValue(0))
@@ -312,7 +312,7 @@ function ShootFireball(class<KFProjectile> FireballClass)
                 {
                     self.AILog_Internal(((((((string(GetFuncName()) @ " HitActor: ") @ string(HitActor)) @ " Is NOT My Enemy: ") @ string(Enemy)) @ " and distanceToHitLoc: ") @ string(distanceToHitLoc)) @ " is too close so not firing!!!", 'FireBall');
                 }
-                MyKFPawn.SpecialMoves[19].AbortedByAICommand();
+                MyKFPawn.SpecialMoves[18].AbortedByAICommand();
                 LastFireBallTime = WorldInfo.TimeSeconds;
                 return;                
             }

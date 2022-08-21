@@ -10,10 +10,6 @@
 
 class KFWeap_AssaultRifle_AK12 extends KFWeap_RifleBase;
 
-/** Number of shots already fired in this burst. */
-var int BurstCount;
-/** Number of shots to fire per burst. */
-var() int BurstAmount;
 /** RecoilRate when firing in burst fire. */
 var(Recoil) float BurstFireRecoilRate;
 /** How much to scale recoil when firing in burst fire. */
@@ -41,18 +37,12 @@ var(Sounds)	WeaponFireSndInfo	WeaponFire3RdSnd;
  * Fires a burst of bullets. Fire must be released between every shot.
  *********************************************************************************************/
 
-simulated state WeaponBurstFiring extends WeaponFiring
+simulated state WeaponBurstFiring
 {
 	simulated function BeginState(Name PrevStateName)
 	{
-        // Reset the BurstCount when we start firing again
-        BurstCount=0;
-
-        // Don't let us fire more shots than we have ammo for
-        BurstAmount=Min(default.BurstAmount, AmmoCount[GetAmmoType(CurrentFireMode)]);
-
-        // Modify the recoil for burst fire
-        RecoilRate=BurstFireRecoilRate;
+		// Modify the recoil for burst fire
+		RecoilRate=BurstFireRecoilRate;
 
 		// Initialize recoil blend out settings
 		if( RecoilRate > 0 && RecoilBlendOutRatio > 0 )
@@ -64,23 +54,6 @@ simulated state WeaponBurstFiring extends WeaponFiring
 		super.BeginState(PrevStateName);
 	}
 
-	simulated function bool ShouldRefire()
-	{
-		// Stop firing when we hit the burst amount
-        if( BurstCount >= BurstAmount )
-		{
-            return false;
-		}
-    	// if doesn't have ammo to keep on firing, then stop
-    	else if( !HasAmmo( CurrentFireMode ) )
-    	{
-    		return false;
-    	}
-		else
-		{
-            return true;
-		}
-	}
 
     /**
      * PlayFireEffects Is the root function that handles all of the effects associated with
@@ -93,7 +66,7 @@ simulated state WeaponBurstFiring extends WeaponFiring
 
         // Only play the burst fire sound on the first shot as the sound includes additional shot sounds baked in
         if( FireModeNum != ALTFIRE_FIREMODE || (FireModeNum == ALTFIRE_FIREMODE &&
-            (BurstCount==0 || `IsInZedTime(self))) )
+            (BurstAmount==default.BurstAmount || `IsInZedTime(self))) )
         {
             PlayFiringSound(CurrentFireMode);
     	}
@@ -101,7 +74,7 @@ simulated state WeaponBurstFiring extends WeaponFiring
     	if( Instigator != none && Instigator.IsFirstPerson() )
     	{
     	    if ( !bPlayingLoopingFireAnim && (FireModeNum != ALTFIRE_FIREMODE || (FireModeNum == ALTFIRE_FIREMODE &&
-                BurstCount==0)) )
+                BurstAmount==default.BurstAmount)) )
     	    {
     		    WeaponFireAnimName = GetWeaponFireAnim(FireModeNum);
 
@@ -120,11 +93,11 @@ simulated state WeaponBurstFiring extends WeaponFiring
     	}
     }
 
-    /** Overrideen to include the BurstFireModifier*/
-    simulated function ModifyRecoil( out float CurrentRecoilModifier )
+    /** Overridden to include the BurstFireModifier*/
+	simulated function ModifyRecoil( out float CurrentRecoilModifier )
 	{
 		super.ModifyRecoil( CurrentRecoilModifier );
-	    CurrentRecoilModifier *= BurstFireRecoilModifier;
+		CurrentRecoilModifier *= BurstFireRecoilModifier;
 	}
 
     /** Get name of the animation to play for PlayFireEffects. Overriden to play the right animation for the number of shots in the burst fire */
@@ -175,25 +148,10 @@ simulated state WeaponBurstFiring extends WeaponFiring
 		}
     }
 
-    /**
-     * FireAmmunition: Perform all logic associated with firing a shot
-     * - Fires ammunition (instant hit or spawn projectile)
-     * - Consumes ammunition
-     * - Plays any associated effects (fire sound and whatnot)
-     * Overridden to increment the BurstCount
-     *
-     * Network: LocalPlayer and Server
-     */
-    simulated function FireAmmunition()
-    {
-        super.FireAmmunition();
-        BurstCount++;
-    }
-
-	simulated event EndState( Name NextStateName )
+    simulated event EndState( Name NextStateName )
 	{
-        // Set recoil settings back to normal
-        RecoilRate=default.RecoilRate;
+		// Set recoil settings back to normal
+		RecoilRate=default.RecoilRate;
 
 		// Initialize recoil blend out settings
 		if( RecoilRate > 0 && RecoilBlendOutRatio > 0 )
@@ -201,15 +159,13 @@ simulated state WeaponBurstFiring extends WeaponFiring
 			RecoilYawBlendOutRate = maxRecoilYaw/RecoilRate * RecoilBlendOutRatio;
 			RecoilPitchBlendOutRate = maxRecoilPitch/RecoilRate * RecoilBlendOutRatio;
 		}
-
+		
 		Super.EndState(NextStateName);
-		EndFire(CurrentFireMode);
 	}
 }
 
 defaultproperties
 {
-
     // FOV
     MeshFOV=75
 	MeshIronSightFOV=33

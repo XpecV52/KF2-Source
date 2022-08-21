@@ -31,6 +31,11 @@ simulated function UnHideTimer()
     StaticMeshComponent.SetHidden(false);
 }
 
+simulated event Reset()
+{
+    Destroy();
+}
+
 defaultproperties
 {
     begin object name=StaticMeshComponent0 class=StaticMeshComponent

@@ -24,6 +24,13 @@ var localized array<string> DescriptionStrings;
 
 var string LastHomeString;
 
+//@HSL_BEGIN - JRO - 4/28/2016 - Disable certain features for PlayGo
+var GFxObject InventoryButton;
+var GFxObject StoreButton;
+var int SaveCurrentMenuIndex;
+var bool bCachedGameFullyInstalled;
+//@HSL_END
+
 function InitializeCurrentMenu(byte CurrentMenuIndex)
 {
 	UpdateMenu(CurrentMenuIndex);
@@ -54,8 +61,16 @@ function  UpdateMenu(byte CurrentMenuIndex)
 
 
 		DataProvider.SetElementObject(i, TempObj);
-		
+
 	}
+
+	//@HSL_BEGIN - JRO - 4/28/2016 - Update the buttons if the game is finished installing while sitting in the main menus
+	SaveCurrentMenuIndex = CurrentMenuIndex;
+	if(InventoryButton != None && StoreButton != None && !class'WorldInfo'.static.IsE3Build() && class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis))
+	{
+		CheckGameFullyInstalled();
+	}
+	//@HSL_END
 
 	DataProvider.SetInt("selectedIndex", CurrentMenuIndex);
 	SetObject("dataObject", DataProvider);
@@ -73,16 +88,44 @@ function HandleButtonSpecialCase(byte ButtonIndex, out GFxObject GfxButton)
 			// Disable the gear button if we're a spectator (must be done through data provider since buttons don't exist yet)	
 			GfxButton.SetBool( "enabled", CanUseGearButton() );			
 			break;
-	
 		case UI_Start:
 			GfxButton.SetString( "label",  GetHomeButtonName());
 			GfxButton.SetBool( "bPulsing", ShouldStartMenuPulse() );
 			break;
+		//@HSL_BEGIN - JRO - 4/28/2016 - Disable these buttons for certain scenarios. Including PlayGo
 		case UI_Inventory:
-			GfxButton.SetBool( "enabled", CanUseInventory() );
-			break;		
+			GfxButton.SetBool( "enabled", CanUseInventory() && !class'WorldInfo'.static.IsE3Build()); // Disabled for E3 build
+			InventoryButton = GfxButton;
+			break;
+		case UI_Store:
+			GfxButton.SetBool("enabled", !class'WorldInfo'.static.IsE3Build()); // Disabled for E3 build
+			StoreButton = GfxButton;
+			break;
+		//@HSL_END
 	}
 }
+
+//@HSL_BEGIN - JRO - 4/28/2016 - Disable certain features for PlayGo
+function CheckGameFullyInstalled()
+{
+	if(!bCachedGameFullyInstalled)
+	{
+		if(class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.IsGameFullyInstalled())
+		{
+			bCachedGameFullyInstalled = true;
+			InventoryButton.SetBool("enabled", true);
+			StoreButton.SetBool("enabled", true);
+			UpdateMenu(SaveCurrentMenuIndex);
+		}
+		else
+		{
+			InventoryButton.SetBool("enabled", false);
+			StoreButton.SetBool("enabled", false);
+			Manager.TimerHelper.SetTimer(1.0f, false, nameof(CheckGameFullyInstalled), self);
+		}
+	}
+}
+//@HSL_END
 
 
 // Opens the "Are you sure you want to quit" Confirmation

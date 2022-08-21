@@ -32,7 +32,10 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
         SharedContentButton.SetVisible(Outer.GetPC().WorldInfo.NetMode != NM_Standalone);
     }
     UpdateSharedContent();
-    ShowWelcomeScreen();
+    if(!Class'WorldInfo'.static.IsE3Build())
+    {
+        ShowWelcomeScreen();
+    }
 }
 
 function LocalizeContainer()

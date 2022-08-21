@@ -45,7 +45,6 @@ defaultproperties
       ObjectArchetype=ArrowComponent'Engine.Default__ArrowComponent'
    End Object
    Components(1)=Arrow
-   CollisionType=COLLIDE_CustomDefault
    bStatic=False
    bNoDelete=True
    Name="Default__TargetPoint"

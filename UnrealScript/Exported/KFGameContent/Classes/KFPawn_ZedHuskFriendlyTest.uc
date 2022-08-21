@@ -52,13 +52,23 @@ defaultproperties
       ObjectArchetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedHusk:ThirdPersonHead0'
    End Object
    ThirdPersonHeadMeshComponent=ThirdPersonHead0
-   Begin Object Class=KFPawnAfflictions Name=Afflictions_0 Archetype=KFPawnAfflictions'kfgamecontent.Default__KFPawn_ZedHusk:Afflictions_0'
+   Begin Object Class=KFAfflictionManager Name=Afflictions_0 Archetype=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedHusk:Afflictions_0'
+      AfflictionClasses(0)=Class'KFGame.KFAffliction_EMPDisrupt'
+      AfflictionClasses(1)=()
+      AfflictionClasses(2)=()
+      AfflictionClasses(3)=()
+      AfflictionClasses(4)=()
+      AfflictionClasses(5)=()
+      AfflictionClasses(6)=()
+      AfflictionClasses(7)=()
+      AfflictionClasses(8)=()
+      AfflictionClasses(9)=()
       FireFullyCharredDuration=5.000000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
-      ObjectArchetype=KFPawnAfflictions'kfgamecontent.Default__KFPawn_ZedHusk:Afflictions_0'
+      ObjectArchetype=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedHusk:Afflictions_0'
    End Object
-   AfflictionHandler=KFPawnAfflictions'kfgamecontent.Default__KFPawn_ZedHuskFriendlyTest:Afflictions_0'
+   AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedHuskFriendlyTest:Afflictions_0'
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedHusk:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True
       bOverrideAttachmentOwnerVisibility=True
@@ -75,33 +85,32 @@ defaultproperties
       SpecialMoveClasses(0)=None
       SpecialMoveClasses(1)=Class'KFGame.KFSM_MeleeAttack'
       SpecialMoveClasses(2)=Class'KFGame.KFSM_DoorMeleeAttack'
-      SpecialMoveClasses(3)=None
-      SpecialMoveClasses(4)=Class'KFGame.KFSM_GrappleAttack'
-      SpecialMoveClasses(5)=Class'KFGame.KFSM_Stumble'
-      SpecialMoveClasses(6)=Class'KFGame.KFSM_RecoverFromRagdoll'
-      SpecialMoveClasses(7)=Class'KFGame.KFSM_RagdollKnockdown'
-      SpecialMoveClasses(8)=Class'KFGame.KFSM_DeathAnim'
-      SpecialMoveClasses(9)=Class'KFGame.KFSM_Stunned'
-      SpecialMoveClasses(10)=Class'KFGame.KFSM_Frozen'
+      SpecialMoveClasses(3)=Class'KFGame.KFSM_GrappleCombined'
+      SpecialMoveClasses(4)=Class'KFGame.KFSM_Stumble'
+      SpecialMoveClasses(5)=Class'KFGame.KFSM_RecoverFromRagdoll'
+      SpecialMoveClasses(6)=Class'KFGame.KFSM_RagdollKnockdown'
+      SpecialMoveClasses(7)=Class'KFGame.KFSM_DeathAnim'
+      SpecialMoveClasses(8)=Class'KFGame.KFSM_Stunned'
+      SpecialMoveClasses(9)=Class'KFGame.KFSM_Frozen'
+      SpecialMoveClasses(10)=None
       SpecialMoveClasses(11)=None
-      SpecialMoveClasses(12)=None
-      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_Taunt'
-      SpecialMoveClasses(14)=Class'KFGame.KFSM_Zed_WalkingTaunt'
-      SpecialMoveClasses(15)=Class'KFGame.KFSM_Evade'
-      SpecialMoveClasses(16)=Class'kfgamecontent.KFSM_Evade_Fear'
+      SpecialMoveClasses(12)=Class'KFGame.KFSM_Zed_Taunt'
+      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_WalkingTaunt'
+      SpecialMoveClasses(14)=Class'KFGame.KFSM_Evade'
+      SpecialMoveClasses(15)=Class'kfgamecontent.KFSM_Evade_Fear'
+      SpecialMoveClasses(16)=None
       SpecialMoveClasses(17)=None
-      SpecialMoveClasses(18)=None
-      SpecialMoveClasses(19)=Class'kfgamecontent.KFSM_Husk_FireBallAttack'
-      SpecialMoveClasses(20)=Class'kfgamecontent.KFSM_Husk_FlameThrowerAttack'
-      SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_Husk_Suicide'
+      SpecialMoveClasses(18)=Class'kfgamecontent.KFSM_Husk_FireBallAttack'
+      SpecialMoveClasses(19)=Class'kfgamecontent.KFSM_Husk_FlameThrowerAttack'
+      SpecialMoveClasses(20)=Class'kfgamecontent.KFSM_Husk_Suicide'
+      SpecialMoveClasses(21)=None
       SpecialMoveClasses(22)=None
       SpecialMoveClasses(23)=None
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=None
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedHusk:SpecialMoveHandler_0'
    End Object
@@ -166,9 +175,8 @@ defaultproperties
       RBCollideWithChannels=(Default=True,Pawn=True,Vehicle=True,BlockingVolume=True)
       Translation=(X=0.000000,Y=0.000000,Z=-86.000000)
       ScriptRigidBodyCollisionThreshold=200.000000
-      PerObjectShadowCullDistance=4000.000000
+      PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
-      bAllowPerObjectShadowBatching=True
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedHusk:KFPawnSkeletalMeshComponent'
    End Object

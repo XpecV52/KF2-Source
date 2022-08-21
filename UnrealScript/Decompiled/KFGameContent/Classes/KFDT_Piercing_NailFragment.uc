@@ -34,10 +34,10 @@ defaultproperties
     WeaponDef=Class'KFGame.KFWeapDef_Grenade_Gunslinger'
     bShouldSpawnBloodSplat=true
     bShouldSpawnPersistentBlood=true
-    GunHitPower=25
-    MeleeHitPower=20
     EffectGroup=EEffectDamageGroup.FXG_Ballistic
     GoreDamageGroup=EGoreDamageGroup.DGT_Handgun
+    GunHitPower=10
+    MeleeHitPower=8
     ModifierPerkList=/* Array type was not detected. */
     BodyWoundDecalMaterials=/* Array type was not detected. */
     BloodSpread=0.4

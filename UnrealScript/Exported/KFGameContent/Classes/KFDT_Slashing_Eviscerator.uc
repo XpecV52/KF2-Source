@@ -9,60 +9,6 @@ class KFDT_Slashing_Eviscerator extends KFDT_Slashing
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 12;
-
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
 	return true;
@@ -180,8 +126,8 @@ static simulated function ModifyDismembermentHitImpulse(KFPawn_Monster InPawn, n
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Eviscerator'
-   StunPower=42
-   MeleeHitPower=114
+   StumblePower=100.000000
+   MeleeHitPower=20.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
    KDamageImpulse=1000.000000
    KDeathVel=600.000000

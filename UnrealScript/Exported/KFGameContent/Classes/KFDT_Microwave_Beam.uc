@@ -11,82 +11,19 @@
 class KFDT_Microwave_Beam extends KFDT_Microwave
 	abstract;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 14;
-
 /** Test obliterate conditions when taking damage */
 static function bool CheckObliterate(Pawn P, int Damage)
 {
-	local KFPawn_Monster MP;
-
-	if ( default.bCanObliterate )
-	{
-		MP = KFPawn_Monster(P);
-		if ( MP != None )
-		{
-			return (MP.RepInflateMatParam > 1);
-		}
-	}
-
-	return false;
+	return default.bCanObliterate;
 }
 
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_MicrowaveGun'
+   bCanGib=True
    bCanObliterate=True
-   MicrowavePower=0.250000
+   StumblePower=30.000000
+   MicrowavePower=10.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Firebug'
    KDamageImpulse=2000.000000
    KDeathVel=350.000000

@@ -14,13 +14,7 @@ var class<KFGFxMoviePlayer_HUD> HUDClass;
 var KFGFxMoviePlayer_HUD HudMovie;
 var KFPawn_MonsterBoss BossPawn;
 
-simulated function PostBeginPlay()
-{
-    super.PostBeginPlay();
-    CreateHUDMovie();
-}
-
-function CreateHUDMovie()
+function CreateHUDMovie(optional bool bForce)
 {
     if(!Class'WorldInfo'.static.IsMenuLevel())
     {
@@ -65,7 +59,7 @@ function SetVisible(bool bNewVisible)
 function ResolutionChanged()
 {
     super.ResolutionChanged();
-    CreateHUDMovie();
+    CreateHUDMovie(true);
 }
 
 event PostRender()
@@ -75,7 +69,6 @@ event PostRender()
     {
         HudMovie.TickHud(0);
     }
-    UpdatePlayerInfos();
 }
 
 exec function SetShowScores(bool bNewValue)
@@ -122,46 +115,6 @@ event DrawHUD()
         }
         return;
     }
-}
-
-function UpdatePlayerInfos()
-{
-    local KFPawn_Human KFPH;
-    local Vector ViewLocation, ViewVector, PlayerPartyInfoLocation;
-    local Rotator ViewRotation;
-    local float ThisDot;
-    local KFWeapon KFW;
-
-    PlayerOwner.GetPlayerViewPoint(ViewLocation, ViewRotation);
-    ViewVector = vector(ViewRotation);
-    if(PlayerOwner.Pawn != none)
-    {
-        KFW = KFWeapon(PlayerOwner.Pawn.Weapon);
-    }
-    foreach WorldInfo.AllPawns(Class'KFPawn_Human', KFPH)
-    {
-        if((KFPH.PlayerPartyInfo == none) || !KFPH.IsAliveAndWell())
-        {
-            continue;            
-        }
-        PlayerPartyInfoLocation = (KFPH.Location + KFPH.MTO_PhysSmoothOffset) + (KFPH.CylinderComponent.CollisionHeight * vect(0, 0, 1));
-        ThisDot = Normal(PlayerPartyInfoLocation - ViewLocation) Dot Normal(ViewVector);
-        if(((WorldInfo.TimeSeconds - KFPH.Mesh.LastRenderTime) < 0.4) && ThisDot > float(0))
-        {
-            if(((KFW != none) && !KFW.bUsingSights) || ThisDot < 0.99)
-            {
-                KFPH.PlayerPartyInfo.SetVisible(true);
-                KFPH.PlayerPartyInfo.ScreenPosition = Canvas.Project(PlayerPartyInfoLocation);
-                KFPH.PlayerPartyInfo.TickHud(0);                
-            }
-            else
-            {
-                KFPH.PlayerPartyInfo.SetVisible(false);
-            }
-            continue;
-        }
-        KFPH.PlayerPartyInfo.SetVisible(false);        
-    }    
 }
 
 function PlayerOwnerDied()

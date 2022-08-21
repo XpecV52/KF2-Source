@@ -67,7 +67,7 @@ defaultproperties
    bDisablesWeaponFiring=True
    bDisableMovement=True
    bDisableSteering=False
-   Handle="SM_Hans_ThrowGrenade"
+   Handle="KFSM_Hans_ThrowGrenade"
    Name="Default__KFSM_Hans_ThrowGrenade"
    ObjectArchetype=KFSM_PlaySingleAnim'KFGame.Default__KFSM_PlaySingleAnim'
 }

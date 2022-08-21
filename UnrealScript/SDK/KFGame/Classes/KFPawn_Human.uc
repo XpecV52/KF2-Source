@@ -102,9 +102,6 @@ var repnotify bool 	bHasSupportSafeguardBuff;
 var repnotify bool 	bHasSupportBarrageBuff;
 var repnotify bool 	bHasMedicVaccinationBuff;
 
-/** The berserker skill can let you move with normal speed when in Zed time with certain skills */
-var bool bMovesFastInZedTime;
-
 var bool bBuffsUpdated;
 var array<string> ActiveSkillIconPaths;
 
@@ -149,7 +146,7 @@ replication
 {
 	// Replicated to ALL
 	if(bNetDirty)
-		Armor, MaxArmor, bObjectivePlayer, bMovesFastInZedTime, WeaponSkinItemId;
+		Armor, MaxArmor, bObjectivePlayer, WeaponSkinItemId;
 
 	// Replicated to all but the owning client
 	if(bNetDirty && (!bNetOwner || bDemoRecording))
@@ -165,7 +162,6 @@ cpptext
 	// Actor
 	INT* GetOptimizedRepList( BYTE* InDefault, FPropertyRetirement* Retire, INT* Ptr, UPackageMap* Map, UActorChannel* Channel );
 	virtual void TickAuthoritative( FLOAT DeltaSeconds );
-	virtual void UpdateTimeDilation();
 }
 
 /*********************************************************************************************
@@ -386,8 +382,8 @@ function UpdateGroundSpeed()
 	// Ask our perk to set the new ground speed based on weapon type
 	if( GetPerk() != none )
 	{
-		GetPerk().ModifySpeed(GroundSpeed);
-		GetPerk().ModifySpeed(SprintSpeed);
+		GetPerk().ModifySpeed( GroundSpeed );
+		GetPerk().ModifySprintSpeed( SprintSpeed );
 	}
 }
 
@@ -749,14 +745,14 @@ simulated function PlayDamageInstigatorHitEffects(KFPawn Victim)
 /** Ambient battle blood added to chracter body and face as they kill Zeds */
 simulated function AddBattleBlood(float InBattleBloodIncrementvalue)
 {
+	local MaterialInstanceConstant MIC;
 	// Accumulate the blood param value of the pawn
 	BattleBloodParamValue = FMax(BattleBloodParamValue + InBattleBloodIncrementvalue, MinBattleBloodValue);
 
-	if ( BodyMIC != None && HeadMIC != None)
-	{
-		BodyMIC.SetScalarParameterValue(BattleBloodParamName, BattleBloodParamValue);
-		HeadMIC.SetScalarParameterValue(BattleBloodParamName, BattleBloodParamValue);
-	}
+    foreach CharacterMICs(MIC)
+    {
+		MIC.SetScalarParameterValue(BattleBloodParamName, BattleBloodParamValue);
+    }
 }
 
 simulated function SetNightVisionLight(bool bEnabled)
@@ -822,26 +818,6 @@ function bool Died(Controller Killer, class<DamageType> damageType, vector HitLo
 	return false;
 }
 
-simulated function BroadcastDeathMessage( Controller Killer )
-{
-	if( Killer != none && Killer != Controller)
-	{
-		if(Killer.IsA('KFAIController'))
-		{
-			BroadcastLocalizedMessage( class'KFLocalMessage_Game', KMT_Killed, PlayerReplicationInfo, none, Killer.Class );
-		}
-		else
-		{
-			BroadcastLocalizedMessage( class'KFLocalMessage_PlayerKills', KMT_PlayerKillPlayer, Killer.PlayerReplicationInfo, PlayerReplicationInfo);
-		}
-		
-	}
-	else
-	{
-		BroadcastLocalizedMessage( class'KFLocalMessage_Game', KMT_Suicide, PlayerReplicationInfo );
-	}
-}
-
 /* AdjustDamage()
 adjust damage based on inventory, other attributes
 */
@@ -849,7 +825,6 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 {
 	local KFPerk MyKFPerk, MyMedicPerk;
 	local float TempDamage;
-	local bool bHasSacrificeSkill;
 
 	`log(self @ GetFuncName()@"Adjusted Damage BEFORE =" @ InDamage, bLogTakeDamage);
 	super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
@@ -859,7 +834,6 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	{
 		MyKFPerk.ModifyDamageTaken( InDamage, DamageType, InstigatedBy );
 		MyMedicPerk = KFPerk_FieldMedic(MyKFPerk);
-		bHasSacrificeSkill = MyKFPerk.ShouldSacrifice();
 	}
 
 	TempDamage = InDamage;
@@ -896,12 +870,6 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	if( InstigatedBy != none )
 	{
 		AddTakenDamage( InstigatedBy, FMin(Health, InDamage), DamageCauser, class<KFDamageType>(DamageType) );
-	}
-
-	if( bHasSacrificeSkill && Health >= 5 && Health - InDamage < 5 )
-	{
-		Health = InDamage + 5;
-		SacrificeExplode();
 	}
 
 	`log(self @ GetFuncName()@"Adjusted Damage AFTER =" @ InDamage, bLogTakeDamage);
@@ -965,38 +933,6 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 /*********************************************************************************************
 * @name Perks
 ********************************************************************************************* */
-
-function SacrificeExplode()
-{
-	local KFExplosionActorReplicated ExploActor;
-	local GameExplosion	ExplosionTemplate;
-	local KFPerk_Demolitionist DemoPerk;
-
-	if ( Role < ROLE_Authority )
-	{
-		return;
-	}
-
-	DemoPerk = KFPerk_Demolitionist(GetPerk());
-
-	// explode using the given template
-	ExploActor = Spawn(class'KFExplosionActorReplicated', self,, Location,,, true);
-	if( ExploActor != None )
-	{
-		ExploActor.InstigatorController = Controller;
-		ExploActor.Instigator = self;
-
-		ExplosionTemplate = class'KFPerk_Demolitionist'.static.GetSacrificeExplosionTemplate();
-		ExplosionTemplate.MyDamageType = class'KFPerk_Demolitionist'.static.GetSacrificeDamageTypeClass();
-		ExplosionTemplate.bIgnoreInstigator = true;
-		ExploActor.Explode( ExplosionTemplate );
-
-		if( DemoPerk != none )
-		{
-			DemoPerk.NotifyPerkSacrificeExploded();
-		}
-	}
-}
 
 /**
  * @brief Checks if we are close to a demo player with explosivbe resistance skill enabled
@@ -1624,15 +1560,7 @@ defaultproperties
 	BatteryRechargeRate=4.f
 	NVGBatteryDrainRate=4.f
 
-	StackingIncaps(SAF_FirePanic)=(Threshhold=0.2,Duration=1.0,Cooldown=0.0,DissipationRate=0.2)	
-
-	Begin Object Name=Afflictions_0
-		// We just catch on fire visually, and do burn fx for 1 second every time we
-	    // get the impact (1 second = 0.2 threshold dissipating at 0.2 units per second).
-	    // Have to do it this way because fire incap power is .25 and if we're not under
-	    // the threshold we won't catch fire.
-	    bNoBurnedMatBeforeDeath=true
-	End Object
+	IncapSettings(AF_FirePanic)=(Vulnerability=(50.f), Cooldown=0.0, Duration=1.0)
 
 	DeathFaceAnims=(Death_V1, Death_V2, Death_V3)
 }

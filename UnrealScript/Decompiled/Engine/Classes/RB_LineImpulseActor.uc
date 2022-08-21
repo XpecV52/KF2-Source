@@ -81,6 +81,7 @@ defaultproperties
     // Reference: SpriteComponent'Default__RB_LineImpulseActor.Sprite'
     Components(1)=Sprite
     RemoteRole=ENetRole.ROLE_SimulatedProxy
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
     bNoDelete=true
     bAlwaysRelevant=true
     bOnlyDirtyReplication=true

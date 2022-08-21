@@ -56,6 +56,7 @@ package tripwire.containers
         override public function selectContainer() : void
         {
             super.selectContainer();
+            this.backButton.visible = !bManagerUsingGamepad;
             this.tileList.open();
             this.tileList.addEventListener(IndexEvent.INDEX_CHANGE,this.onSelectionMade,false,0,true);
             this.backButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);

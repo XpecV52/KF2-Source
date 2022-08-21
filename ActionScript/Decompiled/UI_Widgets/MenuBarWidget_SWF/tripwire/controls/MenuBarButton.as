@@ -27,7 +27,7 @@ package tripwire.controls
         
         public const HighLightColor:uint = 16503487;
         
-        public const UnhighLightColor:uint = 12234399;
+        public const UnhighLightColor:uint = 14538703;
         
         public const DisabledColor:uint = 5393734;
         

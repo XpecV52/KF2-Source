@@ -11,8 +11,8 @@ class KFDT_Ballistic_AR15 extends KFDT_Ballistic_AssaultRifle
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_AR15'
-    StumblePower=35
-    LegStumblePower=35
+    StumblePower=5
+    GunHitPower=0
     ModifierPerkList=/* Array type was not detected. */
     KDamageImpulse=900
     KDeathVel=100

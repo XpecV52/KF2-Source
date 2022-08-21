@@ -11,10 +11,10 @@ class KFWeap_AssetDummy extends KFWeapon;
 
 defaultproperties
 {
+   MagazineCapacity(0)=30
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
-   MagazineCapacity(0)=30
    MaxSpareAmmo(0)=390
    InitialSpareMags(0)=4
    AttachmentArchetype=KFWeaponAttachment'WEP_L85A2_ARCH.Wep_L85A2_3P'

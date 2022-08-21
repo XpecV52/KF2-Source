@@ -262,10 +262,10 @@ function ClearGameInviteAcceptedDelegate(byte LocalUserNum, delegate<OnGameInvit
     }
 }
 
-delegate OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult);
+delegate OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult, Engine.OnlineSubsystem.OnGameInviteAcceptedResult ResultReason);
 
 // Export UOnlineGameInterfaceSteamworks::execAcceptGameInvite(FFrame&, void* const)
-native function bool AcceptGameInvite(byte LocalUserNum, name SessionName);
+native function bool AcceptGameInvite(byte LocalUserNum, name SessionName, const out OnlineGameSearchResult DesiredGame);
 
 // Export UOnlineGameInterfaceSteamworks::execRegisterPlayer(FFrame&, void* const)
 native function bool RegisterPlayer(name SessionName, UniqueNetId PlayerID, bool bWasInvited);

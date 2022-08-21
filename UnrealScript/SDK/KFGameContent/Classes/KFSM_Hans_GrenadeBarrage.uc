@@ -24,5 +24,5 @@ function SpecialMoveStarted( bool bForced, name PrevMove )
 DefaultProperties
 {
 	AnimName=Atk_NadeBarrage_V1
-	Handle=SM_Hans_GrenadeBarrage
+	Handle=KFSM_Hans_GrenadeBarrage
 }

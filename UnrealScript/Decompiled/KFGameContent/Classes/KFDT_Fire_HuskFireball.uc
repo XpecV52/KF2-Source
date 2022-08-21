@@ -10,8 +10,8 @@ class KFDT_Fire_HuskFireball extends KFDT_Fire
 
 defaultproperties
 {
-    StumblePower=150
     DoT_DamageScale=0.2
+    StumblePower=59
     DeathMaterialEffectParamName=Scalar_Burnt
     DeathMaterialEffectDuration=2
     bExtraMomentumZ=true

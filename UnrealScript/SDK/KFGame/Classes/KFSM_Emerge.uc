@@ -86,7 +86,7 @@ function name GetEmergeAnim( byte EmergeType, int Variant )
 /** Allow override from Knockdown (see ANIMNOTIFY_Knockdown) */
 function bool CanOverrideMoveWith( Name NewMove )
 {
-	if ( NewMove == 'Knockdown' )
+	if ( NewMove == 'KFSM_Knockdown' )
 		return true;
 
 	return Super.CanOverrideMoveWith(NewMove);;

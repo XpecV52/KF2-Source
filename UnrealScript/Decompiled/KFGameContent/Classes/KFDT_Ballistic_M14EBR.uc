@@ -8,11 +8,34 @@
 class KFDT_Ballistic_M14EBR extends KFDT_Ballistic_Rifle
     abstract;
 
+static simulated function bool CanDismemberHitZone(name InHitZoneName)
+{
+    if(super(KFDT_Ballistic).CanDismemberHitZone(InHitZoneName))
+    {
+        return true;
+    }
+    switch(InHitZoneName)
+    {
+        case 'lupperarm':
+        case 'rupperarm':
+        case 'chest':
+        case 'heart':
+            return true;
+        default:
+            return false;
+            break;
+    }
+}
+
 defaultproperties
 {
-    StunPower=20
-    GunHitPower=30
-    MeleeHitPower=25
+    WeaponDef=Class'KFGame.KFWeapDef_M14EBR'
+    StunPower=40
+    KnockdownPower=20
+    StumblePower=0
+    GunHitPower=50
     ModifierPerkList=/* Array type was not detected. */
-    KDamageImpulse=600
+    KDamageImpulse=2250
+    KDeathVel=250
+    KDeathUpKick=-400
 }

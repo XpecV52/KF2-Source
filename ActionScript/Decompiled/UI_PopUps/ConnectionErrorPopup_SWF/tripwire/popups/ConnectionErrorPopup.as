@@ -3,7 +3,7 @@ package tripwire.popups
     import flash.events.Event;
     import flash.text.TextField;
     import scaleform.clik.events.ButtonEvent;
-    import scaleform.gfx.FocusManager;
+    import scaleform.clik.managers.FocusHandler;
     import tripwire.controls.TripButton;
     
     public class ConnectionErrorPopup extends BasePopup
@@ -46,11 +46,11 @@ package tripwire.popups
             super.openPopup();
             if(bManagerUsingGamepad)
             {
-                FocusManager.setFocus(this.AcceptButton);
+                FocusHandler.getInstance().setFocus(this.AcceptButton);
             }
             else
             {
-                FocusManager.setFocus(null);
+                FocusHandler.getInstance().setFocus(null);
             }
         }
         

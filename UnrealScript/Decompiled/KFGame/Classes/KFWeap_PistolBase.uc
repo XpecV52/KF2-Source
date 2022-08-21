@@ -189,22 +189,22 @@ simulated function ResetCylinder()
     UsedStartIdx = BulletMeshComponents.Length - 1;
     UsedEndIdx = UsedStartIdx - (MagazineCapacity[0] - AmmoCount[0]);
     I = UsedStartIdx;
-    J0xC7:
+    J0xC9:
 
     if(I > UsedEndIdx)
     {
         BulletMeshComponents[I].SetSkeletalMesh(UsedBulletMeshTemplate);
         -- I;
-        goto J0xC7;
+        goto J0xC9;
     }
     I = UsedEndIdx;
-    J0x132:
+    J0x134:
 
     if(I > 0)
     {
         BulletMeshComponents[I].SetSkeletalMesh(UnusedBulletMeshTemplate);
         -- I;
-        goto J0x132;
+        goto J0x134;
     }
 }
 

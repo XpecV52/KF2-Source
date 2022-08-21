@@ -9,9 +9,21 @@
 class KFPawn_ZedHusk_Versus extends KFPawn_ZedHusk;
 
 /** Speed at which a fireball travels */
-var float FireballSpeed;
+var protected const float FireballSpeed;
 
-/** Turns medium range flamethrower effect on */
+/** Minimum/maximum strength (damage and radius multiplier) a fireball can have */
+var protected const vector2D FireballStrengthRange;
+
+/** How much strength to apply to a fireball per 1 second of holding the attack button down */
+var protected const float FireballStrengthPerSecond;
+
+/** How much to multiply FireballStrength by when applying the radius boost */
+var protected const float FireballStrengthRadiusMultiplier;
+
+/** Current strength of the fireball */
+var protected float FireballStrength;
+
+/** Turns flamethrower on (FX, damage) */
 simulated function ANIMNOTIFY_FlameThrowerOn()
 {
     if( IsDoingSpecialMove(SM_PlayerZedAttack2) )
@@ -23,18 +35,33 @@ simulated function ANIMNOTIFY_FlameThrowerOn()
 /** AnimNotify which launches the fireball projectile */
 function ANIMNOTIFY_HuskFireballAttack()
 {
+	local float FireballStartTime;
+
+	// Determine how strong the fireball attack will be
+	if( IsDoingSpecialMove(SM_PlayerZedAttack1) )
+	{
+		FireballStartTime = KFSM_PlayerHusk_FireBallAttack( SpecialMoves[SpecialMove] ).HoldStartTime;
+		FireballStrength = fClamp( (WorldInfo.TimeSeconds - FireballStartTime) * FireballStrengthPerSecond, FireballStrengthRange.X, FireballStrengthRange.Y );
+	}
+	else
+	{
+		FireballStrength = 1.f;
+	}
+
 	ShootFireball();
 }
 
+/** Shoots a fireball at the crosshair */
 function ShootFireball()
 {
-	local vector		SocketLocation;
-	local KFProjectile	MyFireball;
     local PlayerController PC;
+	local KFProjectile	MyFireball;
+	local KFProj_Husk_Fireball_Versus HuskFireball;
+    local Actor HitActor;
+	local vector SocketLocation;
     local rotator ShootRotation;
 	local vector HitLocation, HitNormal;
     local vector TraceStart, TraceEnd;
-    local Actor HitActor;
 
     if( Role == ROLE_Authority && IsHumanControlled() )
     {
@@ -44,35 +71,46 @@ function ShootFireball()
 	        return;
 	    }
 
-		SocketLocation = GetPawnViewLocation() + (PlayerFireOffset >> GetViewRotation());
+		SocketLocation = GetPawnViewLocation() + ( PlayerFireOffset >> GetViewRotation() );
 
 	    TraceStart = PC.PlayerCamera.CameraCache.POV.Location;
 	    TraceEnd = PC.PlayerCamera.CameraCache.POV.Location + vector(PC.PlayerCamera.CameraCache.POV.Rotation)*100000;
 
-	    HitActor = Trace( HitLocation, HitNormal, TraceEnd, TraceStart, TRUE,,,TRACEFLAG_Bullet );
+	    HitActor = Trace( HitLocation, HitNormal, TraceEnd, TraceStart, TRUE,,, TRACEFLAG_Bullet );
 
 	    if( HitActor != none )
 	    {
-	        ShootRotation = Rotator( HitLocation - SocketLocation);
+	        ShootRotation = Rotator( HitLocation - SocketLocation );
 	    }
 	    else
 	    {
-		   ShootRotation = Rotator( TraceEnd - SocketLocation);
+	    	ShootRotation = Rotator( TraceEnd - SocketLocation );
 		}
 
 		if( Health > 0.f && IsDoingSpecialMove(SM_PlayerZedAttack1) )
 		{
 			// Shoot the fireball
 			MyFireball = Spawn( FireballClass, self,, SocketLocation, ShootRotation );
-			MyFireball.Instigator			= Self;
-			MyFireball.InstigatorController	= Controller;
-			MyFireball.Speed				= FireballSpeed;
-			MyFireball.MaxSpeed				= FireballSpeed;
+			MyFireball.Instigator						= Self;
+			MyFireball.InstigatorController				= Controller;
+			MyFireball.Speed							= FireballSpeed;
+			MyFireball.MaxSpeed							= FireballSpeed;
+			MyFireball.ExplosionTemplate.Damage 		= GetRallyBoostDamage( MyFireball.default.ExplosionTemplate.Damage ) * FireballStrength;
+			MyFireball.ExplosionTemplate.DamageRadius   = MyFireball.default.ExplosionTemplate.DamageRadius * (FireballStrength * FireballStrengthRadiusMultiplier);
+
+			// Apply fireball size if our projectile is a husk fireball
+			HuskFireball = KFProj_Husk_Fireball_Versus( MyFireball );
+			if( HuskFireball != none )
+			{
+				HuskFireball.SetDrawScale( fMax(FireballStrength, 1.f) );
+			}
+
 			MyFireball.Init( vector(ShootRotation) );
 		}
 	}
 }
 
+/** Called by KFSM_Husk_Suicide move after exploding */
 simulated function OnExploded( Controller SuicideController )
 {
 	local KFPlayerController KFPC;
@@ -89,12 +127,23 @@ simulated function OnExploded( Controller SuicideController )
     }
 }
 
+/** Accessors */
+simulated function vector2D GetFireballStrengthRange()
+{
+	return FireballStrengthRange;
+}
+simulated function float GetFireballStrengthPerSecond()
+{
+	return FireballStrengthPerSecond;
+}
+
 DefaultProperties
 {
 	bVersusZed=true
 	TeammateCollisionRadiusPercent=0.30
 
 	LocalizationKey=KFPawn_ZedHusk
+	Health=450 // KF1=600
     DoshValue=20.0 // default because they have the same health as survival
     XPValues(0)=30 // 2x default because they are harder to hit/kill
 
@@ -117,22 +166,57 @@ DefaultProperties
 	SpecialMoveCooldowns(6)=(SMHandle=SM_PlayerZedSpecial4,		CooldownTime=0.0f,	SpecialMoveIcon=Texture2D'ZED_Husk_UI.ZED-VS_Icons_Husk-Explode', GBA_Name="GBA_Grenade",NameLocalizationKey="Suicide")
 	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.f,	SpecialMoveIcon=Texture2D'ZED_Husk_UI.ZED-VS_Icons_Husk-Jump', GBA_Name="GBA_Jump",bShowOnHud=false)) // Jump always at end of array)) // Jump always at end of array
 
-	InstantIncaps(IAF_Stun)=(Head=68,Torso=90,Leg=90,Arm=90,LowHealthBonus=10,Cooldown=5.0)
-	InstantIncaps(IAF_Knockdown)=(Head=50,Torso=80,Leg=80,Arm=80,Special=50,LowHealthBonus=10,Cooldown=10.0)
-	InstantIncaps(IAF_Stumble)=(Head=60,Torso=65,Arm=65,Special=50,LowHealthBonus=10,Cooldown=5.0)
-	InstantIncaps(IAF_LegStumble)=(Leg=60,LowHealthBonus=10,Cooldown=5.0)
-	InstantIncaps(IAF_GunHit)=(Head=110,Torso=110,Leg=110,Arm=110,LowHealthBonus=10,Cooldown=0.5)
-	InstantIncaps(IAF_MeleeHit)=(Head=23,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=0.35)
-	StackingIncaps(SAF_Poison)=(Threshhold=3.0,Duration=4.0,Cooldown=8.5,DissipationRate=1.00)
-	StackingIncaps(SAF_Microwave)=(Threshhold=3.0,Duration=4.0,Cooldown=8.5,DissipationRate=1.00)
-	StackingIncaps(SAF_FirePanic)=(Threshhold=12.0,Duration=2.0,Cooldown=5.0,DissipationRate=1.0)
-	StackingIncaps(SAF_EMPPanic)=(Threshhold=1.5,Duration=2.0,Cooldown=5.0,DissipationRate=0.5)
-	StackingIncaps(SAF_EMPDisrupt)=(Threshhold=0.0,Duration=2.0,Cooldown=5.0,DissipationRate=1.0)
-	StackingIncaps(SAF_Freeze)=(Threshhold=5.0,Duration=1.0,Cooldown=5.0,DissipationRate=0.33)
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(0.8)))  //3.0
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(0.5)))  //1.0
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun', 	        DamageScale=(0.5)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun', 	        DamageScale=(0.6)))  //1.01  0.4
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle', 	        DamageScale=(0.65)))  //0.76  0.5
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(0.5)))  //0.5
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(0.5)))  //0.5
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(0.1)))  //0.8
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 	                DamageScale=(1.0)))  //0.25
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 	                DamageScale=(0.5)))  //0.85  0.35
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.4)))   //1.0
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.30)))  //0.88
 
+
+// special case
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AR15',              DamageScale=(1.0))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_MB500', 	         DamageScale=(1.1)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rem1858', 	         DamageScale=(0.85)))  //0.9  0.75
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Colt1911', 	     DamageScale=(0.75)))  //0.9   0.65
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_9mm', 	             DamageScale=(1.6)))  //0.9
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Pistol_Medic', 	 DamageScale=(1.5)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Winchester', 	     DamageScale=(0.75)))  //0.9  0.7
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire_CaulkBurn', 	         DamageScale=(0.2)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_ExplosiveSubmunition_HX25', 	 DamageScale=(0.6)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing_EvisceratorProj', 	 DamageScale=(0.4)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing_Eviscerator', 	     DamageScale=(0.3)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_DragonsBreath', 	 DamageScale=(1.1)))  //0.9
+
+
+
+	IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 0.5, 0.1, 0.1, 0.1), Cooldown=3.0, Duration=2.0)
+	IncapSettings(AF_Knockdown)=(Vulnerability=(0.5),                     Cooldown=3.0)
+	IncapSettings(AF_Stumble)=	(Vulnerability=(0.5),                     Cooldown=3.0)
+	IncapSettings(AF_GunHit)=	(Vulnerability=(1.0),                     Cooldown=0.75)
+	IncapSettings(AF_MeleeHit)=	(Vulnerability=(1.0),                     Cooldown=0.5)
+	IncapSettings(AF_Poison)=	(Vulnerability=(1),                       Cooldown=5.0, Duration=2.0)
+	IncapSettings(AF_Microwave)=(Vulnerability=(1.0),                     Cooldown=5.0, Duration=2.0)
+	IncapSettings(AF_FirePanic)=(Vulnerability=(0.1),                     Cooldown=8.0, Duration=3)
+	IncapSettings(AF_EMP)=		(Vulnerability=(1.0),                     Cooldown=5.0, Duration=3.0)
+	IncapSettings(AF_Freeze)=	(Vulnerability=(1.0),                     Cooldown=1.5, Duration=2.0)
+
+	HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=200, DmgScale=1.001, SkinID=1)  // KF1=200     //154
+
+	// Fireball/flamethrower
 	bNeedsCrosshair=true
 	FireballSpeed=3600.f
+	FireballStrengthRange=(X=0.5f, Y=1.3f)
+	FireballStrengthPerSecond=0.4f
+	FireballStrengthRadiusMultiplier=0.7f
 	PlayerFireOffset=(X=15.f,Y=32,Z=-12)
+	FireballClass=class'KFProj_Husk_Fireball_Versus'
 
 	// Backpack/Suicide Explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
@@ -166,7 +250,7 @@ DefaultProperties
 
 	//defaults
 	Begin Object Name=MeleeHelper_0
-		BaseDamage=30.f
+		BaseDamage=15.f  //30
 		MaxHitRange=180.f
 		MomentumTransfer=25000.f
 		MyDamageType=class'KFDT_Slashing_ZedWeak'

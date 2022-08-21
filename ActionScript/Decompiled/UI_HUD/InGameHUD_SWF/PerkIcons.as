@@ -9,12 +9,6 @@ package
         public function PerkIcons()
         {
             super();
-            addFrameScript(0,this.frame1);
-        }
-        
-        function frame1() : *
-        {
-            stop();
         }
     }
 }

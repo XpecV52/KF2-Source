@@ -11,6 +11,7 @@ class KFSM_RagdollKnockdown extends KFSpecialMove;
 var(Physics) float KnockdownMaxZ;
 var const int MaxKnockdownPawns;
 var transient Vector KnockdownStartLoc;
+var export editinline transient ParticleSystemComponent DazedPSC;
 
 protected function bool InternalCanDoSpecialMove()
 {
@@ -40,11 +41,19 @@ protected function bool InternalCanDoSpecialMove()
 function SpecialMoveStarted(bool bForced, name PrevMove)
 {
     ApplyKnockdownImpulse(KFPOwner.KnockdownImpulse);
+    if(KFPOwner.WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        DazedPSC = Class'KFSM_Stunned'.static.AttachDazedEffect(KFPawn_Monster(KFPOwner));
+    }
 }
 
 function SpecialMoveEnded(name PrevMove, name NextMove)
 {
-    if((PawnOwner.Mesh.PhysicsWeight >= 1) && NextMove != 'RecoverFromRagdoll')
+    if((DazedPSC != none) && DazedPSC.bIsActive)
+    {
+        DazedPSC.DeactivateSystem();
+    }
+    if((PawnOwner.Mesh.PhysicsWeight >= 1) && NextMove != 'KFSM_RecoverFromRagdoll')
     {
         PawnOwner.ClearTimer('EndKnockdown', self);
         PawnOwner.ClearTimer('KnockdownTimer', self);
@@ -144,6 +153,10 @@ protected function EndKnockdown()
 {
     PawnOwner.ClearTimer('EndKnockdown', self);
     PawnOwner.ClearTimer('KnockdownTimer', self);
+    if(DazedPSC != none)
+    {
+        DazedPSC.DeactivateSystem();
+    }
     if(Abs(KnockdownStartLoc.Z - PawnOwner.Location.Z) > KnockdownMaxZ)
     {
         KnockdownFailsafe();
@@ -156,8 +169,8 @@ protected function EndKnockdown()
     }
     if(PawnOwner.IsAliveAndWell() && PawnOwner.Physics == 10)
     {
-        KFPOwner.DoSpecialMove(6, true);
-        if(KFPOwner.SpecialMove != 6)
+        KFPOwner.DoSpecialMove(5, true);
+        if(KFPOwner.SpecialMove != 5)
         {
             TermKnockdownRagdoll(KFPOwner);
             LogInternal((string(GetFuncName()) @ "Failed to find special move class for: SM_RecoverFromRagdoll") @ string(self));
@@ -226,6 +239,7 @@ defaultproperties
 {
     KnockdownMaxZ=750
     MaxKnockdownPawns=5
+    bCanOnlyWanderAtEnd=true
     bDisablesWeaponFiring=true
-    Handle=Knockdown
+    Handle=KFSM_Knockdown
 }

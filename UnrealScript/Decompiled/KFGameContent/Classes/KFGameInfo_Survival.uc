@@ -64,8 +64,8 @@ function InitSpawnManager()
 
 function StartMatch()
 {
-    super.StartMatch();
     WaveNum = 0;
+    super.StartMatch();
     if(Class'KFGameEngine'.static.CheckNoAutoStart() || Class'KFGameEngine'.static.IsEditor())
     {
         GotoState('DebugSuspendWave');        
@@ -174,7 +174,7 @@ function bool IsPlayerReady(KFPlayerReplicationInfo PRI)
     if(super.IsPlayerReady(PRI))
     {
         KFPC = KFPlayerController(PRI.Owner);
-        if((KFPC != none) && (KFPC.CurrentPerk == none) || !KFPC.CurrentPerk.bInitialized)
+        if(((WorldInfo.NetMode == NM_Standalone) && KFPC != none) && (KFPC.CurrentPerk == none) || !KFPC.CurrentPerk.bInitialized)
         {
             if(WorldInfo.IsConsoleDedicatedServer() || WorldInfo.IsConsoleBuild())
             {
@@ -201,6 +201,7 @@ function RestartPlayer(Controller NewPlayer)
 {
     local KFPlayerController KFPC;
     local KFPlayerReplicationInfo KFPRI;
+    local bool bWasWaitingForClientPerkData;
 
     KFPC = KFPlayerController(NewPlayer);
     KFPRI = KFPlayerReplicationInfo(NewPlayer.PlayerReplicationInfo);
@@ -208,6 +209,7 @@ function RestartPlayer(Controller NewPlayer)
     {
         if(IsPlayerReady(KFPRI))
         {
+            bWasWaitingForClientPerkData = KFPC.bWaitingForClientPerkData;
             if((MyKFGRI.bMatchHasBegun && KFPRI.NumTimesReconnected > 1) && (WorldInfo.TimeSeconds - KFPRI.LastQuitTime) < float(ReconnectRespawnTime))
             {
                 KFPC.StartSpectate();
@@ -215,13 +217,17 @@ function RestartPlayer(Controller NewPlayer)
             }
             else
             {
-                if(IsWaveActive())
+                if((IsWaveActive()) && !bWasWaitingForClientPerkData)
                 {
                     KFPC.StartSpectate();                    
                 }
                 else
                 {
                     super.RestartPlayer(NewPlayer);
+                    if(bWasWaitingForClientPerkData)
+                    {
+                        return;
+                    }
                     if(KFPRI.Deaths == 0)
                     {
                         if(WaveNum < 1)
@@ -302,6 +308,7 @@ function UpdateGameSettings()
 {
     local name SessionName;
     local KFOnlineGameSettings KFGameSettings;
+    local int NumHumanPlayers, I;
 
     if((WorldInfo.NetMode == NM_DedicatedServer) || WorldInfo.NetMode == NM_ListenServer)
     {
@@ -333,6 +340,26 @@ function UpdateGameSettings()
                 if(MyKFGRI != none)
                 {
                     MyKFGRI.bCustom = bIsCustomGame;
+                }
+                if(WorldInfo.IsConsoleDedicatedServer())
+                {
+                    KFGameSettings.MapName = WorldInfo.GetMapName(true);
+                    if(GameReplicationInfo != none)
+                    {
+                        I = 0;
+                        J0x3C7:
+
+                        if(I < GameReplicationInfo.PRIArray.Length)
+                        {
+                            if(!GameReplicationInfo.PRIArray[I].bBot)
+                            {
+                                ++ NumHumanPlayers;
+                            }
+                            ++ I;
+                            goto J0x3C7;
+                        }
+                    }
+                    KFGameSettings.NumOpenPublicConnections = KFGameSettings.NumPublicConnections - NumHumanPlayers;
                 }
                 GameInterface.UpdateOnlineGame(SessionName, KFGameSettings, true);
             }
@@ -459,7 +486,7 @@ function RewardSurvivingPlayers()
 {
     local int PlayerCut, PlayerCount;
     local KFPlayerController KFPC;
-    local TeamInfo T;
+    local KFTeamInfo_Human T;
 
     foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
     {
@@ -468,7 +495,7 @@ function RewardSurvivingPlayers()
             ++ PlayerCount;
             if(((T == none) && KFPC.PlayerReplicationInfo != none) && KFPC.PlayerReplicationInfo.Team != none)
             {
-                T = KFPC.PlayerReplicationInfo.Team;
+                T = KFTeamInfo_Human(KFPC.PlayerReplicationInfo.Team);
             }
         }        
     }    
@@ -494,14 +521,14 @@ function RewardSurvivingPlayers()
         if((KFPC.Pawn != none) && KFPC.Pawn.IsAliveAndWell())
         {
             KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo).AddDosh(PlayerCut, true);
-            T.Score -= float(PlayerCut);
+            T.AddScore(-PlayerCut);
             if(bLogScoring)
             {
                 LogInternal(((("Player" @ KFPC.PlayerReplicationInfo.PlayerName) @ "got") @ string(PlayerCut)) @ "for surviving the wave");
             }
         }        
     }    
-    T.Score = 0;
+    T.AddScore(0, true);
 }
 
 function int GetAdjustedDeathPenalty(KFPlayerReplicationInfo KilledPlayerPRI, optional bool bLateJoiner)
@@ -922,10 +949,15 @@ function ShowPostGameMenu()
     KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
     if(KFGRI != none)
     {
-        KFGRI.OnOpenAfterActionReport(MapVoteDuration);
+        KFGRI.OnOpenAfterActionReport(GetEndOfMatchTime());
     }
     Class'EphemeralMatchStats'.static.SendMapOptionsAndOpenAARMenu();
-    UpdateCurrentMapVoteTime(byte(MapVoteDuration), true);
+    UpdateCurrentMapVoteTime(byte(GetEndOfMatchTime()), true);
+}
+
+function float GetEndOfMatchTime()
+{
+    return MapVoteDuration;
 }
 
 function ProcessAwards()
@@ -938,14 +970,19 @@ function UpdateCurrentMapVoteTime(byte NewTime, optional bool bStartTime)
     if((WorldInfo.GRI.RemainingTime > NewTime) || bStartTime)
     {
         ClearTimer('RestartGame');
-        SetTimer(float(NewTime), false, 'RestartGame');
+        SetTimer(float(NewTime), false, 'TryRestartGame');
         WorldInfo.GRI.RemainingMinute = NewTime;
         WorldInfo.GRI.RemainingTime = NewTime;
     }
     if((NewTime <= 0) || WorldInfo.GRI.RemainingTime <= 0)
     {
-        RestartGame();
+        TryRestartGame();
     }
+}
+
+function TryRestartGame()
+{
+    RestartGame();
 }
 
 function DebugKillZeds()
@@ -1061,6 +1098,8 @@ state MatchEnded
 
 state DebugSuspendWave
 {
+    ignores CheckWaveEnd;
+
     function BeginState(name PreviousStateName)
     {
         local PlayerController PC;

@@ -9,11 +9,15 @@ class KFPawn_ZedHusk_Versus extends KFPawn_ZedHusk
     config(Game)
     hidecategories(Navigation);
 
-var float FireballSpeed;
+var protected const float FireballSpeed;
+var protected const Vector2D FireballStrengthRange;
+var protected const float FireballStrengthPerSecond;
+var protected const float FireballStrengthRadiusMultiplier;
+var protected float FireballStrength;
 
 simulated function ANIMNOTIFY_FlameThrowerOn()
 {
-    if(IsDoingSpecialMove(23))
+    if(IsDoingSpecialMove(22))
     {
         KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]).TurnOnFlamethrower();
     }
@@ -21,17 +25,29 @@ simulated function ANIMNOTIFY_FlameThrowerOn()
 
 function ANIMNOTIFY_HuskFireballAttack()
 {
+    local float FireballStartTime;
+
+    if(IsDoingSpecialMove(21))
+    {
+        FireballStartTime = KFSM_PlayerHusk_FireBallAttack(SpecialMoves[SpecialMove]).HoldStartTime;
+        FireballStrength = FClamp((WorldInfo.TimeSeconds - FireballStartTime) * FireballStrengthPerSecond, FireballStrengthRange.X, FireballStrengthRange.Y);        
+    }
+    else
+    {
+        FireballStrength = 1;
+    }
     ShootFireball();
 }
 
 function ShootFireball()
 {
-    local Vector SocketLocation;
-    local KFProjectile MyFireball;
     local PlayerController PC;
+    local KFProjectile MyFireball;
+    local KFProj_Husk_Fireball_Versus HuskFireball;
+    local Actor HitActor;
+    local Vector SocketLocation;
     local Rotator ShootRotation;
     local Vector HitLocation, HitNormal, TraceStart, TraceEnd;
-    local Actor HitActor;
 
     if((Role == ROLE_Authority) && IsHumanControlled())
     {
@@ -52,13 +68,20 @@ function ShootFireball()
         {
             ShootRotation = rotator(TraceEnd - SocketLocation);
         }
-        if((float(Health) > 0) && IsDoingSpecialMove(22))
+        if((float(Health) > 0) && IsDoingSpecialMove(21))
         {
             MyFireball = Spawn(FireballClass, self,, SocketLocation, ShootRotation);
             MyFireball.Instigator = self;
             MyFireball.InstigatorController = Controller;
             MyFireball.Speed = FireballSpeed;
             MyFireball.MaxSpeed = FireballSpeed;
+            MyFireball.ExplosionTemplate.Damage = float(GetRallyBoostDamage(int(MyFireball.default.ExplosionTemplate.Damage))) * FireballStrength;
+            MyFireball.ExplosionTemplate.DamageRadius = MyFireball.default.ExplosionTemplate.DamageRadius * (FireballStrength * FireballStrengthRadiusMultiplier);
+            HuskFireball = KFProj_Husk_Fireball_Versus(MyFireball);
+            if(HuskFireball != none)
+            {
+                HuskFireball.SetDrawScale(FMax(FireballStrength, 1));
+            }
             MyFireball.Init(vector(ShootRotation));
         }
     }
@@ -79,9 +102,23 @@ simulated function OnExploded(Controller SuicideController)
     }
 }
 
+simulated function Vector2D GetFireballStrengthRange()
+{
+    return FireballStrengthRange;
+}
+
+simulated function float GetFireballStrengthPerSecond()
+{
+    return FireballStrengthPerSecond;
+}
+
 defaultproperties
 {
     FireballSpeed=3600
+    FireballStrengthRange=(X=0.5,Y=1.3)
+    FireballStrengthPerSecond=0.4
+    FireballStrengthRadiusMultiplier=0.7
+    FireballClass=Class'KFProj_Husk_Fireball_Versus'
     PlayerFireOffset=(X=15,Y=32,Z=-12)
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Explosions.HuskSuicide_Explosion'
@@ -100,13 +137,14 @@ defaultproperties
     bVersusZed=true
     ThirdPersonViewOffset=(OffsetHigh=(X=-175,Y=75,Z=40),OffsetMid=(X=-160,Y=60,Z=0),OffsetLow=(X=-220,Y=75,Z=50))
     begin object name=MeleeHelper class=KFMeleeHelperAI
-        BaseDamage=30
+        PlayerDoorDamageMultiplier=5
         MeleeImpactCamScale=0.2
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedHusk_Versus.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
     DoshValue=20
     XPValues=30
+    DamageTypeModifiers=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
     LocalizationKey=KFPawn_ZedHusk
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -115,9 +153,8 @@ defaultproperties
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedHusk_Versus.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     bNeedsCrosshair=true
-    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedHusk_Versus.Afflictions'
-    InstantIncaps=/* Array type was not detected. */
-    StackingIncaps=/* Array type was not detected. */
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedHusk_Versus.Afflictions'
+    IncapSettings=/* Array type was not detected. */
     SprintSpeed=500
     SprintStrafeSpeed=250
     TeammateCollisionRadiusPercent=0.3
@@ -136,6 +173,7 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedHusk_Versus.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedHusk_Versus.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedHusk_Versus.DialogAkSoundComponent'
+    Health=450
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

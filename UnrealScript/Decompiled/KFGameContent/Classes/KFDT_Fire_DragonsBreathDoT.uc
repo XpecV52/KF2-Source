@@ -27,5 +27,5 @@ defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_DragonsBreath'
     DoT_DamageScale=1
-    BurnPower=1.25
+    BurnPower=12.5
 }

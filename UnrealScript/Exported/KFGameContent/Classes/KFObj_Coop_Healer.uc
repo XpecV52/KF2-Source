@@ -11,60 +11,6 @@
 //=============================================================================
 class KFObj_Coop_Healer extends KFObj_Coop;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 14;
-
 var	KFPawn_Human					HealingTarget;
 var	array<PlayerReplicationInfo>    Healers;
 var int								PawnHealingTime;

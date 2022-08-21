@@ -11,66 +11,13 @@ class KFDT_Explosive_FragGrenade extends KFDT_Explosive
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 14;
-
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Grenade_Support'
    bShouldSpawnPersistentBlood=True
-   KnockdownPower=0
-   StumblePower=120
+   KnockdownPower=0.000000
+   StumblePower=500.000000
+   MeleeHitPower=100.000000
    KDeathVel=300.000000
    KDeathUpKick=1000.000000
    RadialDamageImpulse=3000.000000

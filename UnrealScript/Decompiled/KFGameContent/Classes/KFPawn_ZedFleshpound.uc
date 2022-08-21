@@ -25,7 +25,7 @@ simulated event PreBeginPlay()
     super.PreBeginPlay();
     if((WorldInfo.NetMode != NM_DedicatedServer) && Mesh != none)
     {
-        SetGameplayMICParams();
+        UpdateGameplayMICParams();
     }
 }
 
@@ -49,9 +49,9 @@ function OnStackingAfflictionChanged(byte Id)
     super.OnStackingAfflictionChanged(Id);
     if((bEmpDisrupted && MyKFAIC != none) && IsAliveAndWell())
     {
-        if(IsDoingSpecialMove(13))
+        if(IsDoingSpecialMove(12))
         {
-            EndSpecialMove(13);
+            EndSpecialMove(12);
         }
         FpAIC = KFAIController_ZedFleshpound(MyKFAIC);
         if((FpAIC != none) && FpAIC.RagePlugin != none)
@@ -128,7 +128,10 @@ simulated function SetEnraged(bool bNewEnraged)
     if(Role == ROLE_Authority)
     {
         bIsEnraged = bNewEnraged;
-        SetSprinting(bNewEnraged);
+        if(!IsHumanControlled())
+        {
+            SetSprinting(bNewEnraged);
+        }
     }
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
@@ -140,19 +143,19 @@ simulated function SetEnraged(bool bNewEnraged)
         {
             PostAkEvent(RageStopSound, true, true);
         }
-        SetGameplayMICParams();
+        UpdateGameplayMICParams();
     }
 }
 
-simulated function SetGameplayMICParams()
+simulated function UpdateGameplayMICParams()
 {
     local MaterialInstanceConstant MIC;
 
-    super.SetGameplayMICParams();
+    super.UpdateGameplayMICParams();
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
         UpdateBattlePhaseLights();
-        MIC = ((bIsGoreMesh) ? GoreMIC : BodyMIC);
+        MIC = CharacterMICs[0];
         if(!IsAliveAndWell())
         {
             MIC.SetVectorParameterValue('Vector_GlowColor', DeadGlowColor);            
@@ -173,7 +176,7 @@ simulated function SetGameplayMICParams()
 
 simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 {
-    super(KFPawn).PlayDying(DamageType, HitLoc);
+    super.PlayDying(DamageType, HitLoc);
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
         SetEnraged(false);
@@ -183,6 +186,14 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 function class<KFDamageType> GetBumpAttackDamageType()
 {
     return RageBumpDamageType;
+}
+
+simulated function AdjustAffliction(out float AfflictionPower)
+{
+    if(bIsEnraged)
+    {
+        AfflictionPower *= 0.25;
+    }
 }
 
 simulated function GetOverheadDebugText(KFHUDBase HUD, out array<string> OverheadTexts, out array<Color> OverheadColors)
@@ -281,8 +292,8 @@ defaultproperties
     XPValues[1]=47
     XPValues[2]=63
     XPValues[3]=72
-    VulnerableDamageTypes=/* Array type was not detected. */
-    ResistantDamageTypes=/* Array type was not detected. */
+    WeakSpotSocketNames=/* Array type was not detected. */
+    DamageTypeModifiers=/* Array type was not detected. */
     ZedBumpDamageScale=0
     BumpFrequency=0.1
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
@@ -295,6 +306,7 @@ defaultproperties
     object end
     // Reference: CameraShake'Default__KFPawn_ZedFleshpound.FootstepCameraShake0'
     FootstepCameraShake=FootstepCameraShake0
+    OnDeathAchievementID=131
     PawnAnimInfo=KFPawnAnimInfo'ZED_Fleshpound_ANIM.Fleshpound_AnimGroup'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
@@ -303,13 +315,13 @@ defaultproperties
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     HitZones=/* Array type was not detected. */
     PenetrationResistance=5
-    begin object name=Afflictions class=KFPawnAfflictions
+    begin object name=Afflictions class=KFAfflictionManager
+        AfflictionClasses=/* Array type was not detected. */
         FireFullyCharredDuration=5
     object end
-    // Reference: KFPawnAfflictions'Default__KFPawn_ZedFleshpound.Afflictions'
+    // Reference: KFAfflictionManager'Default__KFPawn_ZedFleshpound.Afflictions'
     AfflictionHandler=Afflictions
-    InstantIncaps=/* Array type was not detected. */
-    StackingIncaps=/* Array type was not detected. */
+    IncapSettings=/* Array type was not detected. */
     PhysRagdollImpulseScale=1.5
     KnockdownImpulseScale=2
     SprintSpeed=725
@@ -328,8 +340,8 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedFleshpound.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedFleshpound.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedFleshpound.DialogAkSoundComponent'
-    DamageRecoveryTimeHeavy=0.25
-    DamageRecoveryTimeMedium=0.09
+    DamageRecoveryTimeHeavy=0.85
+    DamageRecoveryTimeMedium=0.85
     Mass=200
     GroundSpeed=260
     Health=1500

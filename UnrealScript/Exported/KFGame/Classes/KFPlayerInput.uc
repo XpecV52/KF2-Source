@@ -215,6 +215,9 @@ var bool bVersusInput;
 // (cpptext)
 // (cpptext)
 // (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
 
 /** Will return the BindName based on the BindCommand
   * Adds check for gamepad bindings which have _Gamepad appended to them  (for the special cases where a bind was modified to work special on the gamepad.)
@@ -536,6 +539,18 @@ function AdjustMouseSensitivity(float FOVScale)
 	}
 
 	Super.AdjustMouseSensitivity(FOVScale);
+}
+
+
+// Reinitialize control settings. Used for E3 when settings change via button hacks
+event ReInitializeControlsUI()
+{
+	if( MyGFxManager != none && 
+		MyGFxManager.OptionsControlsMenu != none &&
+		MyGFxManager.OptionsControlsMenu.InputContainer != none )
+	{
+		MyGFxManager.OptionsControlsMenu.InputContainer.InitializeOptions();
+	}
 }
 
 /*********************************************************************************************
@@ -1597,7 +1612,6 @@ exec function InteractTimer()
 
 exec function StartVoiceChat(optional bool bPublicChat)
 {
-	LogInternal("VOICE CHAT!");
 	if(bRequiresPushToTalk)
 	{
 		if(bPublicChat)
@@ -2607,11 +2621,13 @@ exec function UnsuppressWeaponAttach(optional name ClassName)
 exec function SuppressAffliction(optional name ClassName)
 {
 	ConsoleCommand("SETNOPEC KFAfflictionBase bDebug false");
+	ConsoleCommand("SETNOPEC KFAfflictionManager bDebugLog false");
 }
 
 exec function UnsuppressAffliction(optional name ClassName)
 {
 	ConsoleCommand("SETNOPEC KFAfflictionBase bDebug true");
+	ConsoleCommand("SETNOPEC KFAfflictionManager bDebugLog true");
 }
 
 exec function SuppressWeaponAnim(optional name ClassName)

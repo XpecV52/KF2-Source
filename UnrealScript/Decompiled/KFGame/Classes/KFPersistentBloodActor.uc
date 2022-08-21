@@ -20,6 +20,14 @@ var() float BloodScale<UIMin=0.0|UIMax=1.0|ClampMin=0.0|ClampMax=1.0>;
 var() float BloodSpread<UIMin=0.0|UIMax=1.0|ClampMin=0.0|ClampMax=1.0>;
 var const export editinline DrawConeComponent PreviewCone;
 
+simulated function TryAddBloodSplats()
+{
+    if(bEnabled && BloodScale > 0)
+    {
+        LeaveBloodSplats();
+    }
+}
+
 simulated function LeaveBloodSplats()
 {
     local KFGoreManager GoreManager;
@@ -77,10 +85,12 @@ simulated function LeaveBloodSplats()
 
 simulated event PreBeginPlay()
 {
-    if(bEnabled && BloodScale > 0)
-    {
-        LeaveBloodSplats();
-    }
+    TryAddBloodSplats();
+}
+
+simulated function Reset()
+{
+    TryAddBloodSplats();
 }
 
 defaultproperties

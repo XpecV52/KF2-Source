@@ -58,10 +58,10 @@ struct native STraderItem
     var name SingleClassName;
     var name DualClassName;
     var class<KFPerk> AssociatedPerkClass;
-    var int MagazineCapacity;
-    var int InitialSpareMags;
     var int MaxSpareAmmo;
+    var int InitialSpareMags;
     var int MaxSecondaryAmmoCount;
+    var byte MagazineCapacity;
     var byte BlocksRequired;
     var string SecondaryAmmoImagePath;
     var KFGFxObject_TraderItems.EFilterTypeUI TraderFilter;
@@ -77,10 +77,10 @@ struct native STraderItem
         SingleClassName=None
         DualClassName=None
         AssociatedPerkClass=none
-        MagazineCapacity=0
-        InitialSpareMags=0
         MaxSpareAmmo=0
+        InitialSpareMags=0
         MaxSecondaryAmmoCount=0
+        MagazineCapacity=0
         BlocksRequired=0
         SecondaryAmmoImagePath=""
         TraderFilter=EFilterTypeUI.FT_Pistol

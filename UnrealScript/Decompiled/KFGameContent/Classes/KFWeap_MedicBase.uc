@@ -134,6 +134,16 @@ simulated function AltFireMode()
     StartFire(1);
 }
 
+simulated function bool HasAmmo(byte FireModeNum, optional int Amount)
+{
+    Amount = 1;
+    if(FireModeNum == 1)
+    {
+        return AmmoCount[1] >= HealAmmoCost;
+    }
+    return super.HasAmmo(FireModeNum, Amount);
+}
+
 simulated function ConsumeAmmo(byte FireModeNum)
 {
     local int AmmoGroup;
@@ -581,30 +591,6 @@ simulated state WeaponSingleFiring
     stop;    
 }
 
-simulated state Active
-{
-    simulated function BeginFire(byte FireModeNum)
-    {
-        if(!bDeleteMe && Instigator != none)
-        {
-            if((FireModeNum == 1) && !CanHealFire())
-            {
-                if(((WeaponDryFireSnd[FireModeNum] != none) && Instigator != none) && Instigator.IsLocallyControlled())
-                {
-                    WeaponPlaySound(WeaponDryFireSnd[FireModeNum]);
-                    if(Role < ROLE_Authority)
-                    {
-                        ServerPlayDryFireSound(FireModeNum);
-                    }
-                }
-                return;
-            }
-            super.BeginFire(FireModeNum);
-        }
-    }
-    stop;    
-}
-
 auto simulated state Inactive
 {
     simulated function BeginState(name PreviousStateName)
@@ -658,9 +644,9 @@ defaultproperties
     LockLostSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Lost_1P'
     LockTargetingSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Locking_1P'
     OpticsUIClass=Class'KFGame.KFGFxWorld_MedicOptics'
+    MagazineCapacity[1]=100
     bCanRefillSecondaryAmmo=false
     AimCorrectionSize=40
-    MagazineCapacity[1]=100
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_MedicBase.MeleeHelper'
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */

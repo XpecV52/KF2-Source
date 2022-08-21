@@ -76,13 +76,13 @@ defaultproperties
 {
    SingleFireMode=1
    InventorySize=6
+   MagazineCapacity(0)=60
    bHasIronSights=True
    bUseAnimLenEquipTime=False
    MeshFOV=75.000000
    MeshIronSightFOV=33.000000
    PlayerIronSightFOV=70.000000
    GroupPriority=50.000000
-   MagazineCapacity(0)=60
    MaxSpareAmmo(0)=270
    InitialSpareMags(0)=3
    bLoopingFireAnim(0)=True

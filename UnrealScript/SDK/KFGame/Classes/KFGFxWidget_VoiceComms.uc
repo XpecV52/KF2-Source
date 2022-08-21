@@ -54,6 +54,12 @@ function EnableComm()
 	if(!PC.IsDead() && PC.Pawn != none)
 	{
 		bActive = true;
+		if(PC.IsTimerActive('HandleInputChange',self))
+		{
+			// Clear the timer and reset the ignore look input because it goes up incrementally.  HSL_BB
+			PC.ClearTimer('HandleInputChange',self);
+			PC.IgnoreLookInput( false );
+		}
 		//Disable player rotate and click
 		PC.IgnoreLookInput( true );  // Calling this instead of SetCinematicMode so we can avoid the Performance issue associated with opening comms on Console.
 		GetGameViewportClient().HandleInputAxis = OnAxisModified;
@@ -67,10 +73,23 @@ function DisableComm()
 	if(bActive)
 	{
 		bActive = false;
-		PC.IgnoreLookInput( false );  // Since we are no longer toggling CinematicMode return lookInput to normal.
+		if ( !PC.PlayerInput.bUsingGamepad )
+		{
+			PC.IgnoreLookInput( false );  // Since we are no longer toggling CinematicMode return lookInput to normal.
+		}
+		else
+		{
+			// Adding 0.25 second delay when using controller so you aren't whipped into the direction of your comms.  HSL_BB
+			PC.SetTimer(0.25f,false,'HandleInputChange',self);
+		}
 		GetGameViewportClient().HandleInputAxis = None;
 		ActionScriptVoid("disableComm");
 	}
+}
+
+function HandleInputChange()
+{
+	PC.IgnoreLookInput( false );  // Since we are no longer toggling CinematicMode return lookInput to normal.
 }
 
 //==============================================================

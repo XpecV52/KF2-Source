@@ -5,38 +5,14 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFDT_Ballistic_RPG7Impact extends KFDT_Ballistic
+class KFDT_Ballistic_RPG7Impact extends KFDT_Ballistic_Shell
     abstract;
-
-static simulated function bool CanDismemberHitZone(name InHitZoneName)
-{
-    if(super.CanDismemberHitZone(InHitZoneName))
-    {
-        return true;
-    }
-    switch(InHitZoneName)
-    {
-        case 'lupperarm':
-        case 'rupperarm':
-        case 'lthigh':
-        case 'rthigh':
-        case 'chest':
-        case 'heart':
-            return true;
-        default:
-            return false;
-            break;
-    }
-}
 
 defaultproperties
 {
-    WeaponDef=Class'KFGame.KFWeapDef_RPG7'
-    KnockdownPower=55
-    StumblePower=48
-    LegStumblePower=48
-    GunHitPower=129
-    EffectGroup=EEffectDamageGroup.FXG_UnexplodedGrenade
+    KnockdownPower=200
+    StumblePower=340
+    GunHitPower=275
     ModifierPerkList=/* Array type was not detected. */
     KDamageImpulse=3000
     KDeathVel=500

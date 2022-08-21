@@ -1,0 +1,7 @@
+[FontLib]
+FontLib=UI_Shared.fonts_jp
+FontLib=UI_Shared.gfxfontlib
+
+[Fonts]
+UIFont=KFMerged Regular
+UIFontBold=KFMerged Regular

@@ -25,7 +25,13 @@ enum ETeamAwards
     ETA_MoneyBags,
     ETA_HeadPopper,
     ETA_Dominator,
-    ETA_MAX
+    ETA_Carnage,
+    ETA_Closer,
+    ETA_ComboMaker,
+    ETA_Grabby,
+    ETA_ZedSupport,
+    ETA_Zednnihilation,
+    ETA_Max
 };
 
 enum EPersonalBests
@@ -384,7 +390,7 @@ static function RecordWeaponHeadShot(Controller InstigatedBy, class<DamageType> 
     }
 }
 
-static function RecordWeaponDamage(Controller InstigatedBy, class<KFWeaponDefinition> WeaponDef, int Damage, KFPawn TargetPawn, int HitZoneIdx)
+static function RecordWeaponDamage(Controller InstigatedBy, class<KFDamageType> KFDT, class<KFWeaponDefinition> WeaponDef, int Damage, KFPawn TargetPawn, int HitZoneIdx)
 {
     local KFPlayerController KFPC;
 
@@ -395,7 +401,7 @@ static function RecordWeaponDamage(Controller InstigatedBy, class<KFWeaponDefini
     KFPC = KFPlayerController(InstigatedBy);
     if((KFPC != none) && KFPC.MatchStats != none)
     {
-        KFPC.MatchStats.InternalRecordWeaponDamage(WeaponDef, Damage, TargetPawn, HitZoneIdx);
+        KFPC.MatchStats.InternalRecordWeaponDamage(KFDT, WeaponDef, Damage, TargetPawn, HitZoneIdx);
     }
 }
 
@@ -417,20 +423,49 @@ function RecordWeaponKill(class<KFWeaponDefinition> WeaponDef)
     }
 }
 
-function InternalRecordWeaponDamage(class<KFWeaponDefinition> WeaponDef, int Damage, KFPawn TargetPawn, int HitZoneIdx)
+function InternalRecordWeaponDamage(class<KFDamageType> KFDT, class<KFWeaponDefinition> WeaponDef, int Damage, KFPawn TargetPawn, int HitZoneIdx)
 {
     local int WeaponIndex;
     local WeaponDamage TempWeaponDamage;
     local bool bLargeZedKill, bKilled;
     local int PreHealth;
 
-    if((Outer.Role != ROLE_Authority) || !TargetPawn.IsA('KFPawn_Monster'))
+    if(Outer.Role != ROLE_Authority)
     {
-        return;
+        if((TargetPawn.IsA('KFPawn_Monster') && Outer.PlayerReplicationInfo.GetTeamNum() == 255) || !TargetPawn.IsA('KFPawn_Monster') && Outer.PlayerReplicationInfo.GetTeamNum() != 255)
+        {
+            return;
+        }
     }
     bKilled = (TargetPawn.Health <= 0) && (TargetPawn.Health + Damage) > 0;
     bLargeZedKill = bKilled && TargetPawn.IsLargeZed();
     WeaponIndex = WeaponDamageList.Find('WeaponDef', WeaponDef;
+    if(Outer.PlayerReplicationInfo.GetTeamNum() == 255)
+    {
+        PreHealth = TargetPawn.Health + Damage;
+        if(TargetPawn.Health > 0)
+        {
+            RecordIntStat(2, Damage);
+            if((KFDT != none) && KFDT.default.bConsideredIndirectOrAoE)
+            {
+                KFPlayerReplicationInfoVersus(Outer.PlayerReplicationInfo).IndirectDamageDealt += Damage;
+                KFPlayerReplicationInfoVersus(Outer.PlayerReplicationInfo).DamageDealtOnTeam += Damage;
+            }            
+        }
+        else
+        {
+            if(PreHealth > 0)
+            {
+                RecordIntStat(2, PreHealth);
+                if((KFDT != none) && KFDT.default.bConsideredIndirectOrAoE)
+                {
+                    KFPlayerReplicationInfoVersus(Outer.PlayerReplicationInfo).IndirectDamageDealt += PreHealth;
+                    KFPlayerReplicationInfoVersus(Outer.PlayerReplicationInfo).DamageDealtOnTeam += PreHealth;
+                }
+            }
+        }
+        return;
+    }
     if(WeaponIndex == -1)
     {
         TempWeaponDamage.WeaponDef = WeaponDef;
@@ -608,7 +643,7 @@ static function ProcessPostGameStats()
     I = 0;
     J0xC3:
 
-    if(I < 8)
+    if(I < 14)
     {
         GetTeamAward(byte(I), TempAwardObject, KFPCArray);
         J = 0;
@@ -655,7 +690,7 @@ static function SendMapOptionsAndOpenAARMenu()
             ++ I;
             goto J0xCA;
         }
-        KFPC.ClientOpenPostGameMenu();        
+        KFPC.ClientShowPostGameMenu();        
     }    
 }
 
@@ -953,8 +988,182 @@ static function GetTeamAward(EphemeralMatchStats.ETeamAwards AwardIndex, out AAR
             }
             Give_Dominator(TempAwardObject, KFPCArray);
             break;
+        case 8:
+            Give_Carnage(TempAwardObject, KFPCArray);
+            break;
+        case 9:
+            Give_Closer(TempAwardObject, KFPCArray);
+            break;
+        case 10:
+            Give_Combo(TempAwardObject, KFPCArray);
+            break;
+        case 11:
+            Give_Grabby(TempAwardObject, KFPCArray);
+            break;
+        case 12:
+            Give_BestSupportingZed(TempAwardObject, KFPCArray);
+            break;
+        case 13:
+            Give_Zednnihilation(TempAwardObject, KFPCArray);
+            break;
         default:
             break;
+    }
+}
+
+static function Give_Zednnihilation(out AARAward outAward, const out array<KFPlayerController> KFPCArray)
+{
+    local int I, J, MyHighestWaveKillValue;
+    local KFPlayerReplicationInfoVersus KPRIV;
+
+    I = 0;
+    J0x0B:
+
+    if(I < KFPCArray.Length)
+    {
+        KPRIV = KFPlayerReplicationInfoVersus(KFPCArray[I].PlayerReplicationInfo);
+        if(KPRIV != none)
+        {
+            J = 0;
+            J0x78:
+
+            if(J < KPRIV.WaveKills.Length)
+            {
+                if(KPRIV.WaveKills[J] > MyHighestWaveKillValue)
+                {
+                    MyHighestWaveKillValue = KPRIV.WaveKills[J];
+                }
+                ++ J;
+                goto J0x78;
+            }
+            if(MyHighestWaveKillValue > outAward.DisplayValue)
+            {
+                outAward.PRI = KPRIV;
+                outAward.DisplayValue = MyHighestWaveKillValue;
+            }
+        }
+        ++ I;
+        goto J0x0B;
+    }
+}
+
+static function Give_Grabby(out AARAward outAward, const out array<KFPlayerController> KFPCArray)
+{
+    local int I;
+    local KFPlayerReplicationInfoVersus KPRIV;
+
+    I = 0;
+    J0x0B:
+
+    if(I < KFPCArray.Length)
+    {
+        KPRIV = KFPlayerReplicationInfoVersus(KFPCArray[I].PlayerReplicationInfo);
+        if(KPRIV != none)
+        {
+            if(KPRIV.ZedGrabs > outAward.DisplayValue)
+            {
+                outAward.PRI = KPRIV;
+                outAward.DisplayValue = KPRIV.ZedGrabs;
+            }
+        }
+        ++ I;
+        goto J0x0B;
+    }
+}
+
+static function Give_BestSupportingZed(out AARAward outAward, const out array<KFPlayerController> KFPCArray)
+{
+    local int I;
+    local KFPlayerReplicationInfoVersus KPRIV;
+
+    I = 0;
+    J0x0B:
+
+    if(I < KFPCArray.Length)
+    {
+        KPRIV = KFPlayerReplicationInfoVersus(KFPCArray[I].PlayerReplicationInfo);
+        if(KPRIV != none)
+        {
+            if(KPRIV.IndirectDamageDealt > outAward.DisplayValue)
+            {
+                outAward.PRI = KPRIV;
+                outAward.DisplayValue = KPRIV.IndirectDamageDealt;
+            }
+        }
+        ++ I;
+        goto J0x0B;
+    }
+}
+
+static function Give_Carnage(out AARAward outAward, const out array<KFPlayerController> KFPCArray)
+{
+    local int I;
+    local KFPlayerReplicationInfoVersus KPRIV;
+
+    I = 0;
+    J0x0B:
+
+    if(I < KFPCArray.Length)
+    {
+        KPRIV = KFPlayerReplicationInfoVersus(KFPCArray[I].PlayerReplicationInfo);
+        if(KPRIV != none)
+        {
+            if(KPRIV.DamageDealtOnTeam > outAward.DisplayValue)
+            {
+                outAward.PRI = KPRIV;
+                outAward.DisplayValue = KPRIV.DamageDealtOnTeam;
+            }
+        }
+        ++ I;
+        goto J0x0B;
+    }
+}
+
+static function Give_Combo(out AARAward outAward, const out array<KFPlayerController> KFPCArray)
+{
+    local int I;
+    local KFPlayerReplicationInfoVersus KPRIV;
+
+    I = 0;
+    J0x0B:
+
+    if(I < KFPCArray.Length)
+    {
+        KPRIV = KFPlayerReplicationInfoVersus(KFPCArray[I].PlayerReplicationInfo);
+        if(KPRIV != none)
+        {
+            if(KPRIV.AssistsAsZed > outAward.DisplayValue)
+            {
+                outAward.PRI = KPRIV;
+                outAward.DisplayValue = KPRIV.AssistsAsZed;
+            }
+        }
+        ++ I;
+        goto J0x0B;
+    }
+}
+
+static function Give_Closer(out AARAward outAward, const out array<KFPlayerController> KFPCArray)
+{
+    local int I;
+    local KFPlayerReplicationInfoVersus KPRIV;
+
+    I = 0;
+    J0x0B:
+
+    if(I < KFPCArray.Length)
+    {
+        KPRIV = KFPlayerReplicationInfoVersus(KFPCArray[I].PlayerReplicationInfo);
+        if(KPRIV != none)
+        {
+            if(KPRIV.KillsAsZed > outAward.DisplayValue)
+            {
+                outAward.PRI = KPRIV;
+                outAward.DisplayValue = KPRIV.KillsAsZed;
+            }
+        }
+        ++ I;
+        goto J0x0B;
     }
 }
 
@@ -1181,6 +1390,12 @@ defaultproperties
     TeamAwardList(5)=(IconPath=UI_Award_Team.UI_Award_Team-Dosh,TitleIdentifier="MoneyBags",DescriptionIdentifier="",ValueIdentifier="MoneyBagsValue",DisplayValue=0,bHighLight=false,PRI=none)
     TeamAwardList(6)=(IconPath=UI_Award_Team.UI_Award_Team-Headshots,TitleIdentifier="HeadPopper",DescriptionIdentifier="",ValueIdentifier="HeadPopperValue",DisplayValue=0,bHighLight=false,PRI=none)
     TeamAwardList(7)=(IconPath=UI_Award_Team.UI_Award_Team-BossKO,TitleIdentifier="Dominator",DescriptionIdentifier="",ValueIdentifier="DominatorValue",DisplayValue=0,bHighLight=false,PRI=none)
+    TeamAwardList(8)=(IconPath=ui_award_zeds.UI_Award_ZED_RawDmg,TitleIdentifier="Carnage",DescriptionIdentifier="",ValueIdentifier="CarnageValue",DisplayValue=0,bHighLight=false,PRI=none)
+    TeamAwardList(9)=(IconPath=ui_award_zeds.UI_Award_ZED_Kills,TitleIdentifier="Closer",DescriptionIdentifier="",ValueIdentifier="CloserValue",DisplayValue=0,bHighLight=false,PRI=none)
+    TeamAwardList(10)=(IconPath=ui_award_zeds.UI_Award_ZED_Assists,TitleIdentifier="ComboMaker",DescriptionIdentifier="",ValueIdentifier="ComboMakerValue",DisplayValue=0,bHighLight=false,PRI=none)
+    TeamAwardList(11)=(IconPath=ui_award_zeds.UI_Award_ZED_CC,TitleIdentifier="Grabby",DescriptionIdentifier="",ValueIdentifier="GrabbyValue",DisplayValue=0,bHighLight=false,PRI=none)
+    TeamAwardList(12)=(IconPath=ui_award_zeds.UI_Award_ZED_SupportAoE,TitleIdentifier="ZedSupport",DescriptionIdentifier="",ValueIdentifier="ZedSupportValue",DisplayValue=0,bHighLight=false,PRI=none)
+    TeamAwardList(13)=(IconPath=ui_award_zeds.UI_Award_ZED_MostKills,TitleIdentifier="Zednnihilation",DescriptionIdentifier="",ValueIdentifier="ZednnihilationValue",DisplayValue=0,bHighLight=false,PRI=none)
     PersonalBestList(0)=(IconPath=UI_Award_PersonalSolo.UI_Award_PersonalSolo-Knife,TitleIdentifier="EPB_KnifeKills",DescriptionIdentifier="",ValueIdentifier="EPB_KnifeKillsValue",DisplayValue=0,bHighLight=false,PRI=none)
     PersonalBestList(1)=(IconPath=UI_Award_PersonalSolo.UI_Award_PersonalSolo-Pistol,TitleIdentifier="EPB_PistolKills",DescriptionIdentifier="",ValueIdentifier="EPB_PistolKillsValue",DisplayValue=0,bHighLight=false,PRI=none)
     PersonalBestList(2)=(IconPath=UI_Award_PersonalMulti.UI_Award_PersonalMulti-Headshots,TitleIdentifier="EPB_HeadShots",DescriptionIdentifier="",ValueIdentifier="EPB_HeadShotsValue",DisplayValue=0,bHighLight=false,PRI=none)

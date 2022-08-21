@@ -126,17 +126,17 @@ function bool CanDoStrike()
 }
 
 /** Launch a grab attack */
-event DoGrabAttack( optional Pawn NewEnemy, optional Actor InTarget, optional float InPostSpecialMoveSleepTime=0.f )
+event DoGrabAttack( optional Pawn NewEnemy, optional float InPostSpecialMoveSleepTime=0.f )
 {
 	if( CommandList == None || AICommand(CommandList).bAllowedToAttack )
 	{
-		if (NewEnemy != None)
+		if( NewEnemy != None && NewEnemy != Enemy )
 		{
 			SetEnemy( NewEnemy );
 		}
 		ClearMovementInfo( true, "Aborted For GrabAttack" );
 		AILog_Internal(GetFuncName()$"() Init AICommand_Attack_Grab",'InitAICommand',);
-		class'AICommand_Attack_Grab'.static.Grab( self, KFPawn(InTarget), InPostSpecialMoveSleepTime );
+		class'AICommand_Attack_Grab'.static.Grab( self, InPostSpecialMoveSleepTime );
 	}
 	else if( CommandList != none && !AICommand(CommandList).bAllowedToAttack )
 	{

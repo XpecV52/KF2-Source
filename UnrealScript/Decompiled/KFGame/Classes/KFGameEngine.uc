@@ -45,6 +45,7 @@ var config bool bEnableAdvDebugLines;
 var config float FOVOptionsPercentageValue;
 var transient delegate<HandshakeCompleteCallback> OnHandshakeComplete;
 var KFGameEngine.EConnectionError LastConnectionError;
+var string ConsoleGameSessionGuid;
 /** List of categories to filter */
 var(Debug) config array<config name> AILogFilter;
 var private transient KFDebugLines KFDebugLines;
@@ -100,6 +101,9 @@ native static function GetVoIPVolumeRange(out float MinVol, out float MaxVol, ou
 
 // Export UKFGameEngine::execPlayFullScreenMovie(FFrame&, void* const)
 native static function PlayFullScreenMovie(string MovieName);
+
+// Export UKFGameEngine::execIsFullScreenMoviePlaying(FFrame&, void* const)
+native static function bool IsFullScreenMoviePlaying();
 
 // Export UKFGameEngine::execSetGamma(FFrame&, void* const)
 native static function SetGamma(float InGammaMultiplier);
@@ -219,8 +223,8 @@ native function KillPendingServerConnection();
 
 defaultproperties
 {
-    KFCanvasFont=Font'UI_Canvas_Fonts.Font_General'
-    KFFontScale=0.28
+    KFCanvasFont=Font'UI_Canvas_Fonts.Font_Main'
+    KFFontScale=0.56
     DefaultGammaMult=0.68
     MusicVolumeMultiplier=50
     SFxVolumeMultiplier=100

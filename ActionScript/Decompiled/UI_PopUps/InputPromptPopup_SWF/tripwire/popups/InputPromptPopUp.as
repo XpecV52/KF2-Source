@@ -42,7 +42,7 @@ package tripwire.popups
             this.cancelButton.tabIndex = 3;
         }
         
-        override public function openContainer() : void
+        override public function openContainer(param1:Boolean = true) : void
         {
             super.openContainer();
             visible = true;

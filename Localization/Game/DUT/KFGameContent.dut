@@ -1,0 +1,442 @@
+//NOTES: 
+//1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
+//2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
+//3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
+//ItemDescription="Double-barreled, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest Zeds will stagger when hit with both barrels. We found it in an old farm-house and //canned it for the Trader Pod. Hope you live longer than the farmer."
+
+[KFTutorial]
+;Lobby start
+RewardsTitleKey="Welcome to the Training Floor"
+RewardsDescriptionKey="The Training Floor will teach you some survival basics, but without the fear of death. Complete the Training Floor and you will receive a cosmetic item and enough XP to bring your selected perk up to Level 1."
+WelcomeTitleKey="Select a Perk"
+WelcomeDescriptionKey="Before you begin the match, select the <font color="#caab05">PERKS</font> tab at the top of the screen and select a perk. Perks are classes with different passive <font color="#caab05">PERK BONUSES</font>, configurable <font color="#caab05">SKILLS</font>, and <font color="#caab05">WEAPON LOADOUTS</font>."
+PerksTitleKey="Perks Details"
+PerksDescriptionKey="Perform <font color="#caab05">XP OBJECTIVES</font> in game to gain XP and level up your perks. Each time you level up, your <font color="#caab05">PERK BONUSES</font> increase for that perk. Every 5 levels you will unlock new <font color="#caab05">SKILLS</font> that you can <font color="#caab05">CONFIGURE</font> once unlocked. Select a perk and press <font color="#caab05">READY UP</font> to begin the match."
+
+;Gear Menu
+GearTitleKey="Gear Menu"
+GearDescriptionKey="The Gear Menu lets you select and <font color="#caab05">CUSTOMIZE</font> your character. Each character has a unique visual look, voice, and personality. Each character's head and body can be customized. You can wear up to 3 cosmetic accessories. Select and customize your character using the buttons on the left side of this menu."
+
+;Inventory Menu
+InventoryMenuTitleKey="Inventory Menu"
+InventoryMenuDescriptionKey="The inventory menu allows you to view and manage your item inventory. You can obtain items as rewards for completing matches from time to time, but you can also get items by opening crates, decrypting weapon skin USBs, trading with your friends, or purchasing them on the Market."
+WeaponSkinsTitleKey="Equipping Weapon Skins"
+WeaponSkinsDescriptionKey="Selecting any item will let you view the item details. If you have a weapon skin selected, you can equip it by pressing the <font color="#caab05">EQUIP</font> button. If you have a weapon skin equipped, any time you use that weapon in a match it will appear with the currently equipped skin."
+
+;Store Menu
+StoreTitleKey="Store Menu"
+StoreDescriptionsKey="The Store Menu allows you to purchase keys that are used to open crates and decrypt weapon skin USBs you find. There are also several character cosmetic item bundles you can purchase. Items that you purchase or receive as rewards will appear in the Inventory Menu."
+
+;Match Start
+InventoryTitleKey="Know Your Inventory"
+InventoryDescriptionKey="Each perk loadout starts with a unique primary weapon, a backup 9mm pistol, a specialist knife, and grenades. Press <font color="#caab05">%x%</font> to cycle through your weapons. You can also quick select weapon categories by pressing the following: <font color="#caab05">%x%</font> to equip your primary ranged weapon, <font color="#caab05">%x%</font> to equip your pistol, <font color="#caab05">%x%</font> to equip your melee weapon, and <font color="#caab05">%x%</font> to equip your syringe."
+InventoryContTitleKey="Know Your Inventory"
+InventoryContDescriptionKey="Each perk loadout starts with a unique primary weapon, a backup 9mm pistol, a specialist knife and grenade. Hold <font color="#caab05">%x%</font> and use the Dpad to select a weapon."
+AlternateFireKey="Alternate Fire"
+AlternateFireDescription="Most primary weapon have an alternate fire mode. Press <font color="#caab05">%x%</font> to toggle your current fire mode. An icon in your view will show the currently selected firemode."
+FlashLightBatteryTitleKey="Using a Flashlight"
+FlashLightBatteryDescriptionKey="It can get dark out there. Press <font color="#caab05">%x%</font> to toggle your <font color="#caab05">FLASHLIGHT</font> on and off. Your flashlight battery will slowly run out of power. When this happens it will turn off and automatically start recharging again."
+GrenadeTitleKey="Using Grenades"
+GrenadeDescriptionKey="Grenades allow you to deal with closely packed groups of Zeds. Perks have different grenades in their <font color="#caab05">WEAPON LOADOUTS</font>, all of which damage Zeds, but may have additional effects. Press <font color="#caab05">%x%</font> to throw a grenade." 
+
+;Wave 1 end
+TraderTimeTitleKey="Trader Time"
+TraderTimeDescriptionKey="In between waves you can buy/sell weapons and fill your ammo at the Trader. Follow the blue arrows to find the Trader."
+InventoryWeightTitleKey="Carrying Weight"
+InventoryWeightDescriptionKey="You are limited in the weight you can carry. If you can't carry what you want, sell some gear first to make room."
+
+;Trader Menu Open
+TraderRefillTitleKey="Refill Your Ammo and Armor"
+TraderRefillDescriptionKey="You can refill your <font color="#caab05">AMMO</font>, <font color="#caab05">GRENADES</font>, and <font color="#caab05">BODY ARMOR</font> by pressing the <font color="#caab05">MAG</font>, <font color="#caab05">x1</font>, or <font color="#caab05">FILL</font> buttons next to the appropriate item. If you are short of time (or long on dosh), pressing <font color="#caab05">AUTOFILL</font> will spend your dosh for you, spreading it across ammo, armor, and grenades quickly."
+TraderSellTitleKey="Selling Weapons"
+TraderSellDescriptionKey="To <font color="#caab05">SELL A WEAPON</font>, select the weapon on the right side of the menu and press the large <font color="#caab05">SELL BUTTON</font> in the center of the menu. You cannot sell your backup 9mm pistol, body armor, or grenades."
+TraderBuyTitleKey="Buying Weapons"
+TraderBuyDescriptionKey="To <font color="#caab05">BUY A WEAPON</font>, select a weapon on the left side of the menu and press the large <font color="#caab05">BUY BUTTON</font> in the center of the menu. Make sure you have enough <font color="#caab05">DOSH</font> and <font color="#caab05">WEIGHT CAPACITY</font> to purchase the weapon."
+TraderWeightTitleKey="Weapon Weight and Capacity"
+TraderWeightDescriptionKey="Every weapon has a <font color="#caab05">WEIGHT VALUE</font>. The weight of your current weapons may prevent you from being able to purchase the weapon you wish. The weight of the weapon is visible on the weapon list and in the weapon details. Your <font color="#caab05">WEIGHT CAPACITY</font> is shown above the buy/sell button in the center of the screen. Anything that will block you from buying the currently selected item is highlighted in red."
+
+;Trader Menu Close
+DoorWeldTitleKey="Weld Doors"
+DoorWeldDescriptionKey="You can <font color="#caab05">WELD DOORS</font> to slow the flow of enemies to a given area. To weld a door, walk up to it and <font color="#caab05">HOLD %x%</font> to equip your welder."
+HoldOutRunTitleKey="Run vs. Hold Out"
+HoldOutRunDescriptionKey="Know when to hold out and when to run. Find a good hold out spot, but once you start getting overrun, find an exit."
+TeamAdviceTitleKey="Stick Together"
+TeamAdviceDescriptionKey="<font color="#caab05">STAY WITH YOUR TEAM!</font> Your teammates are vital to your survival. They can heal you as well as help you take down the bigger Zeds."
+
+;Victory
+CongratulationsTitleKey="Victory!"
+CongratulationsDescriptionKey="Congratulations! You have completed the Training Floor!"
+NextStepsTitleKey="What to Do Next"
+NextStepsDescriptionKey="From the main menu, <font color="#caab05">PLAY SOLO OFFLINE</font> to practice more offline or jump into <font color="#caab05">ONLINE MATCHMAKING</font> or <font color="#caab05">BROWSE SERVERS</font> to find an online game. Now go kill some Zeds!"
+
+;Healing Section
+QuickHealTitleKey="Heal Yourself When Hurt"
+QuickHealDescriptionKey="If you are hurt, you can heal yourself by pressing <font color="#caab05">%x%</font>. After healing, your syringe will take sometime to recharge before you can use it again."
+HowToSyringeTitleKey="Heal Your Teammates"
+HowToSyringeDescriptionKey="You can also equip the syringe to heal your teammates by pressing <font color="#caab05">%x%</font> and then pressing <font color="#caab05">%x%</font> when close to a teammate."
+HealOthersTitleKey="Use Field Medic Weapons to Heal Teammates"
+HealOthersDescriptionKey="Field Medic perk weapons can heal teammates from a distance with their alternate fire mode. If you are using a Field Medic weapon, press <font color="#caab05">%x%</font> to fire a healing dart. Also, when you have selected the Field Medic perk, press <font color="#caab05">%x%</font> to throw a healing gas grenade."
+
+;Zed Time
+ZedTimeTitleKey="Zed Time"
+ZedTimeDescriptionKey="<font color="#caab05">ZED TIME SLO-MO</font> kicks in when cool things happen like headshots or hordes of enemies dying in an explosion. You can use this time to catch a small breather and daisy-chain some kills together."
+
+;Melee Section
+MeleeTitleKey="Melee Weapons"
+MeleeDescriptionKey="Melee weapons have both light and hard attacks. Perform a light attack by pressing <font color="#caab05">%x%</font> and a hard attack by pressing <font color="#caab05">%x%</font>."
+BlockingTitleKey="Blocking with Melee Weapons"
+BlockingDescriptionKey="You can also block with melee weapons by <font color="#caab05">HOLDING %x%</font>. Blocking will reduce incoming Zed damage."
+ParryTitleKey="Parrying with Melee Weapons"
+ParryDescriptionKey="If you time a block correctly with an incoming Zed attack, you will parry the Zed and stumble him back. You will see an effect flash if you successfully parry a Zed."
+UnblockableTitleKey="Unblockable Zed Attacks"
+UnblockableDescriptionKey="Larger Zeds have some unblockable attacks. You can tell if an attack is unblockable by glowing effects on the Zed during an attack."
+
+[KFGFxTutorialContainer]
+BackString="BACK"
+NextString="NEXT"
+DoneString="DONE"
+SkipString="SKIP"
+
+[Armor]
+ItemName="Gevechtspantser"
+ItemCategory="Uitrusting"
+ItemDescription="• Gevechtspantser beschermt je tegen verschillende vormen van schade, maar wordt slechter bij gebruik\n• Koop nieuw pantser of repareer beschadigd pantser bij de handelaar\n\nHet is een jas voorzien van platen gemaakt van een combinatie van hightech vezel en wolfraamstaal."
+
+[KFProj_DynamiteGrenade]
+ItemName="1/2 dynamietstaaf"
+ItemCategory ="Explosieven"
+ItemDescription="• Gewoon een klein stuk dynamiet met een lont eraan.\n• Het kan jou ook pijn doen, dus wees er voorzichtig mee!"
+
+[KFProj_MedicGrenade]
+ItemName="Medicijngranaat"
+ItemCategory ="Explosieven"
+ItemDescription="• Laat een gas vrij dat Zeds vergiftigt, maar mensen geneest\n• Ga in de blauwe gaswolk staan om te genezen\n\nOm een van onze wetenschappers te citeren: 'Het gas dat door deze granaten wordt vrijgelaten zal Homo Sapiens doen herleven, en Homo Zedicus euthanaseren.' We hopen dat het helpt."
+
+[KFProj_MolotovGrenade]
+ItemName="Molotovcocktail"
+ItemCategory="Explosieven"
+ItemDescription="• Heel eenvoudig, een brandbom die Zeds verbrand.\n• Let erop dat het jou ook kan verwonden!\n\nVernoemd, beledigend, door de Finnen tijdens de Winteroorlog 1939-1940, naar Vyacheslav Mikhailovich Molotov, de Sovjetminister van buitenlandse zaken onder Stalin... Sorry, wilde je geen geschiedenisles?"
+
+[KFProj_EMPGrenade]
+ItemName="EMP-granaat"
+ItemCategory="Explosieven"
+ItemDescription="• Genereert een elektrische puls die Zeds zowel kan verwonden als voor een korte tijd kan verdoven.\n\nAls je meer details wilt - tijdens de ontploffing genereert het een elektromagnetische puls van een nanoseconde lang die elektrische systemen binnen een kort bereik verstoort. Met name die binnenin de Zeds. Da's handig!"
+
+[KFProj_HEGrenade]
+ItemName="HE-granaat"
+ItemCategory="Explosieven"
+ItemDescription="• Een zeer eenvoudige hoog-explosieve granaat. Brengt schade toe aan zowel Zeds als mensen.\n\nHet kan echt niet simpeler. HE - Hoog-Explosief - het doet BOEM en blaast dingen op. Moeten we dat nou echt aan je uitleggen?"
+
+[KFProj_FragGrenade]
+ItemName="Scherfhandgranaat"
+ItemCategory="Explosieven"
+ItemDescription="• De klassieke fragmentatiegranaat: schiet venijnige kleine stukjes metaal in het rond, beschadigt alles.\n\nIk ben er vrij zeker van dat je vóór de Uitbraak genoeg videogames hebt gespeeld, om heel goed te weten wat een fragmentatiegranaat is. En hou op met net doen alsof dat niet zo is. Niemand hier gelooft je."
+
+[KFProj_NailBombGrenade]
+ItemName="Spijkerbom"
+ItemCategory ="Explosieven"
+ItemDescription="• Gewoon een bus vol oude spijkers, met een kleine explosieve lading in het midden.\n\nNiet de meest aangename of subtiele manier om met Zeds af te rekenen. Maar er is niets aangenaams of subtiel aan Zeds, toch?"
+
+[KFProj_FreezeGrenade]
+ItemName="Freeze Grenade"
+ItemCategory = "Explosives"
+ItemDescription="• An advanced canister of pressurized liquid nitrogen.\n\nEnough contact with the contents of this will freeze Zeds in place for a time. The results can be very shattering."
+
+[KFWeap_Healer_Syringe]
+ItemName="Medische spuit"
+ItemCategory="Uitrusting"
+
+[KFWeap_Welder]
+ItemName="Lasapparaat"
+ItemCategory="Uitrusting"
+
+[KFWeap_Pistol_9mm]
+ItemName="9mm-pistool"
+ItemCategory="Handvuurwapen"
+ItemDescription="• Alleen semi-automatisch vuren.\n• Dit is het standaard 9mm-pistool. Eenvoudig en goedkoop (voor jou erg goedkoop, eerlijk gezegd), het is het basis-handvuurwapen voor alle Horzine-agenten."
+
+[KFWeap_Pistol_Deagle]
+ItemName=".50 Desert Eagle"
+ItemCategory="Handvuurwapen"
+ItemDescription="• Alleen semi-automatisch vuren.\n• De Desert Eagle is het beest onder de handvuurwapens, dat is waarom we het allemaal kennen als het 'Handkanon'."
+
+[KFWeap_AssaultRifle_AR15]
+ItemName="AR-15 Ongediertegeweer"
+ItemCategory="Aanvalsgeweer"
+ItemDescription="• Keuze uit 3-schots-salvo of enkel-schots vuren.\n• Alt-vuren om van vuurmodus te wisselen.\n• Deze is voor Zeds, niet voor 'ongedierte'."
+
+[KFWeap_AssaultRifle_SCAR]
+ItemName="SCAR-H-aanvalsgeweer"
+ItemCategory="Aanvalsgeweer"
+ItemDescription="• Keuze uit volautomatisch en semi-automatisch vuren.\n• Alt-vuren om van vuurmodus te wisselen.\n• Oorspronkelijk ontworpen voor het Amerikaanse Special Operations Command en is inderdaad speciaal!"
+
+[KFWeap_AssaultRifle_AK12]
+ItemName="Kalashnikov AK-12"
+ItemCategory="Aanvalsgeweer"
+ItemDescription="• Keuze uit volautomatisch en semi-automatisch vuren.\n• Alt-vuren om van vuurmodus te wisselen.\n• Deze AK-12 is van een dode Russische Spetsnaz-soldaat genomen om te scannen."
+
+[KFWeap_AssaultRifle_Bullpup]
+ItemName="SA80 L85A2 Bullpup"
+ItemCategory="Aanvalsgeweer"
+ItemDescription="• Keuze uit volautomatisch en semi-automatisch vuren.\n• Alt-vuren om van vuurmodus te wisselen.\n• De SA80 was het standaardwapen van het Britse leger voordat het leger werd, nou ja, opgegeten."
+
+[KFWeap_Knife_Demolitionist]
+ItemName="Stanleymes"
+ItemCategory="Steekwapen"
+ItemDescription="• Primair - snelle hakkende aanval, vasthouden voor combo-aanval.\n• Secundair - zware hakkende aanval\n• Alt - blokkeren/afweren\n• Het is een Stanleymes. Perfect voor het openen van alle dozen die je tegenkomt op de Killing Floor."
+
+[KFWeap_Knife_FieldMedic]
+ItemName="Scalpel"
+ItemCategory="Steekwapen"
+ItemDescription="• Primair - snelle hakkende aanval, vasthouden voor combo-aanval.\n• Secundair - zware hakkende aanval\n• Alt - blokkeren/afweren\n• Het is een scalpel. Je bent een medic, dus we nemen aan dat we je niet hoeven uit te leggen hoe je het moet gebruiken."
+
+[KFWeap_Knife_Firebug]
+ItemName="Brandweermes"
+ItemCategory="Steekwapen"
+ItemDescription="• Primair - snelle hakkende aanval, vasthouden voor combo-aanval.\n• Secundair - zware hakkende aanval\n• Alt - blokkeren/afweren\n• Het is een mes van een brandweerman. Je bent een brandweerman, dus we nemen aan dat we je niet hoeven uit te leggen hoe je het moet gebruiken."
+
+[KFWeap_Knife_Gunslinger]
+ItemName="Bowiemes"
+ItemCategory="Steekwapen"
+ItemDescription="• Primair - snelle hakkende aanval, vasthouden voor combo-aanval.\n• Secundair - zware hakkende aanval\n• Alt - blokkeren/afweren\n• Het extra grote mes van het oude westen. Perfect voor het fileren van Zeds in het hier en nu."
+
+[KFWeap_Knife_Sharpshooter]
+ItemName="Kukri"
+ItemCategory="Steekwapen"
+ItemDescription=""
+
+[KFWeap_Pistol_Medic]
+ItemName="HMTech-101-pistool"
+ItemCategory="Pistool"
+ItemDescription="• Alleen semi-automatisch vuren.\n• Alt-vuren schiet genezende pijltjes om teamleden te genezen.\n• Gebruikt hulsloze munitie en telt het aantal patronen voor je."
+
+[KFWeap_SMG_Medic]
+ItemName="HMTech-201 SMG"
+ItemCategory="Sub Machine Gun"
+ItemDescription="• Alleen volautomatisch vuren.\n• Alt-vuren schiet genezende pijltjes om teamleden te genezen.\n• Je pistool, maar dan opgevoerd!"
+
+[KFWeap_Shotgun_Medic]
+ItemName="HMTech-301-shotgun"
+ItemCategory="Hagelgeweer"
+ItemDescription="• Alleen semi-automatisch vuren.\n• Alt-vuren schiet helende darts om teamleden te genezen.\n• De gevechtsshotgun-versie voor de medic."
+
+[KFWeap_AssaultRifle_Medic]
+ItemName="HMTech-401-aanvalsgeweer"
+ItemCategory="Aanvalsgeweer"
+ItemDescription="• Alleen volautomatisch vuren.\n• Alt-vuren schiet genezende pijltjes om teamleden te genezen.\n• De volwaardige aanvalsgeweerversie."
+
+[KFWeap_Shotgun_DoubleBarrel]
+ItemName="Dubbelloops jachtgeweer"
+ItemCategory="Hagelgeweer"
+ItemDescription="• Primair vuren gebruikt één loop.\n• Alt-vuren schiet beide lopen tegelijkertijd.\n• Dubbelloops, zij-aan-zij, kaliber 12 jachtgeweer. Ideaal voor close-range combat. Zelfs de grootste Zeds zullen wankelen!"
+
+[KFWeap_Shotgun_AA12]
+ItemName="AA-12 Auto-shotgun"
+ItemCategory="Hagelgeweer"
+ItemDescription="• Keuze uit volautomatisch en semi-automatisch vuren.\n• Alt-vuren om van vuurmodus te wisselen.\n• De AA-12 is een automatische shotgun. Verwoestende vuurkracht op korte tot middellange afstand, maar vreet munitie op volautomatisch!"
+
+[KFWeap_Shotgun_MB500]
+ItemName="SG 500 Pomp-actie"
+ItemCategory="Hagelgeweer"
+ItemDescription="• Alleen pomp-actie vuren.\n• De pomp-actie Mossberg SG 500, met pistoolgreep, is een prachtige close-quarters Zed-killer. Eenvoudig en effectief."
+
+[KFWeap_Shotgun_M4]
+ItemName="M4-gevechtsshotgun"
+ItemCategory="Hagelgeweer"
+ItemDescription="• Alleen semi-automatisch vuren.\n• Benelli ontwierp de M4-gevechtsshotgun voor het Amerikaanse leger. Semi-automatisch, dus een goede, stabiele vuursnelheid."
+
+[KFWeap_Knife_Berserker]
+ItemName="Grasmaaiermes"
+ItemCategory="Steekwapen"
+ItemDescription="• Primair - snelle hakkende aanval, vasthouden voor combo-aanval.\n• Secundair - zware hakkende aanval\n• Alt - blokkeren/afweren\n• Ja, het is daadwerkelijk een grasmaaiermes. Geniet ervan!"
+
+[KFWeap_Knife_Commando]
+ItemName="KF-BAR"
+ItemCategory="Steekwapen"
+ItemDescription="• Primair - snelle hakkende aanval, vasthouden voor combo-aanval.\n• Secundair - zware hakkende aanval\n• Alt - blokkeren/afweren\n• Horzines versie van het klassieke commandomes."
+
+[KFWeap_Knife_Support]
+ItemName="Machete"
+ItemCategory="Steekwapen"
+ItemDescription="• Primair - snelle hakkende aanval, vasthouden voor combo-aanval.\n• Secundair - zware hakkende aanval\n• Alt - blokkeren/afweren\n• Nou moet je niet gaan denken dat je speciaal bent, alleen maar omdat we jou het grootste mes hebben gegeven."
+
+[KFWeap_Edged_Katana]
+ItemName="Katana"
+ItemCategory="Slagwapen"
+ItemDescription="• Primair - snelle hakkende aanval, vasthouden voor combo-aanval.\n• Secundair - zware hakkende aanval\n• Alt - blokkeren/afweren\n• Probeer een beetje respect te tonen voor zijn klasse."
+
+[KFWeap_Blunt_Crovel]
+ItemName="Crovel-survivaltool"
+ItemCategory="Slagwapen"
+ItemDescription="• Primair - snelle hakkende aanval, vasthouden voor combo-aanval.\n• Secundair - zware stompe aanval\n• Alt - blokkeren/afweren\n• Deels koevoet, deels schop, samen behoorlijk dodelijk."
+
+[KFWeap_Shotgun_Nailgun]
+ItemName="VLAD-1000-spijkerpistool"
+ItemCategory="Hagelgeweer"
+ItemDescription="• Keuze uit één of meerdere spijkers tegelijk afvuren.\n• Alt-vuren om van vuurmodus te wisselen.\n• Ons is verteld dat een van de Horzine-wetenschappers het originele spijkerpistool heeft geleend van een (dode) onderhoudsman."
+
+[KFWeap_Blunt_Pulverizer]
+ItemName="Verpulveraar"
+ItemCategory="Slagwapen"
+ItemDescription="• Primair - snelle stompe aanval, vasthouden voor combo-aanval.\n• Secundair vuurt een explosieve patroon bij contact. Wanneer leeg, is secundair een zware stompe aanval - dus vergeet niet om te herladen!\n• Alt - blokkeren/afweren"
+
+[KFWeap_Eviscerator]
+ItemName="Ontdarmer"
+ItemCategory="Speciaal"
+ItemDescription="• Primair vuren schiet zaagbladen.\n• Alt-vuren is een melee-aanval, maar gebruikt veel brandstof.\n• Dit beest werd oorspronkelijk ontworpen door Horzines SDS-groep, in een van hun wildere momenten, en is allesbehalve subtiel."
+SecondaryAmmo="Benzine"
+
+[KFWeap_Edged_Zweihander]
+ItemName="Zweihänder"
+ItemCategory="Slagwapen"
+ItemDescription="• Primair - gemiddelde/zware schade, met enige menigte-controle.\n• Secundair - langzamer, maar met meer schade.\n• Alt - blokkeren/afweren\n• Je doet nog meer schade bij het naar voren bewegen."
+SharedUnlockSource="Chivalry: Medieval Warfare"
+
+[KFWeap_Flame_CaulkBurn]
+ItemName="Breeuw en brand"
+ItemCategory="Vlammen"
+ItemDescription="• Schiet vlammen.\n• Zelfgemaakte, draagbare vlammenwerper. NIET thuis uitproberen."
+
+[KFWeap_Shotgun_DragonsBreath]
+ItemName="Brandstichtende Trench Gun"
+ItemCategory="Hagelgeweer"
+ItemDescription="• Alleen pomp-actie vuren.\n• Een shotgun met Dragon's Breath-brandstichtende patronen. Niet alleen dodelijk, maar ziet er ook prachtig uit."
+
+[KFWeap_Flame_Flamethrower]
+ItemName="Vlammenwerper"
+ItemCategory="Vlammen"
+ItemDescription="• Schiet vlammen. Da's alles.\n• Een klassieker in elke generatie. Bij twijfel, gewoon alles platbranden."
+
+[KFWeap_Beam_Microwave]
+ItemName="Microgolfgeweer"
+ItemCategory="Vlammen"
+ItemDescription="• Gebruikt microgolven om Zeds op afstand te verhitten, waarbij ze van binnen en buiten verbranden.\n• Alt-vuren ontketent een korte-afstand microgolfexplosie.\n• De wonderen der moderne techniek. Een draagbare Zed-koker."
+
+[KFWeap_Thrown_C4]
+ItemName="C4-explosieven"
+ItemCategory="Explosieven"
+ItemDescription="• Vuren plaatst je C4-lading.\n• Alt-vuren laat je C4-ladingen ontploffen, in de volgorde waarin je ze hebt geplaatst.\n• Een blok C4, bedraad voor on-demand-ontploffing op afstand."
+
+[KFWeap_GrenadeLauncher_HX25]
+ItemName="HX25-granaatpistool"
+ItemCategory="Explosieven"
+ItemDescription="• Schiet meerdere submunities, die ontploffen bij contact."
+
+[KFWeap_GrenadeLauncher_M79]
+ItemName="M79-granaatwerper"
+ItemCategory="Explosieven"
+ItemDescription="• Lanceert een granaat.\n• Granaat explodeert bij impact.\n• Zet zichzelf pas na een paar meter op scherp, zodat je niet je eigen gezicht eraf blaast."
+
+[KFWeap_RocketLauncher_RPG7]
+ItemName="RPG-7"
+ItemCategory="Explosieven"
+ItemDescription="• Lanceert een raket.\n• Raket explodeert bij impact.\n• Zet zichzelf pas na een paar meter op scherp, zodat je niet je eigen gezicht eraf blaast.\n• En kijk uit voor de vuuruitstoot!"
+
+[KFWeap_Pistol_Dual9mm]
+ItemName="Dubbel 9mm-pistool"
+ItemCategory="Handvuurwapen"
+ItemDescription="• Alleen semi-automatisch vuren.\n• Alt-vuren om van richtstijl te wisselen.\n• Dit zijn een paar standaard 9mm-pistolen. Je kunt er (slechts) één verkopen, als dat nodig is."
+
+[KFWeap_Pistol_Colt1911]
+ItemName="M1911-pistool"
+ItemCategory="Handvuurwapen"
+ItemDescription="• Alleen semi-automatisch vuren.\n• Het klassieke Colt 1911-semi-automatische pistool."
+
+[KFWeap_Pistol_DualColt1911]
+ItemName="Dubbel M1911-pistool"
+ItemCategory="Handvuurwapen"
+ItemDescription="• Alleen semi-automatisch vuren.\n• Alt-vuren om van richtstijl te wisselen.\n• Dit zijn een paar Colt 1911-semi-automatische pistolen. Je kunt ze allebei afzonderlijk verkopen of laten vallen."
+
+[KFWeap_Pistol_Deagle]
+ItemName=".50 Desert Eagle"
+ItemCategory="Handvuurwapen"
+ItemDescription="• Alleen semi-automatisch vuren.\n• De Desert Eagle is het beest onder de handvuurwapens, dat is waarom we het allemaal kennen als het 'Handkanon'."
+
+[KFWeap_Pistol_DualDeagle]
+ItemName="Dubbele .50 Desert Eagle"
+ItemCategory="Handvuurwapen"
+ItemDescription="• Alleen semi-automatisch vuren.\n• Alt-vuren om van richtstijl te wisselen.\n• Een paar Desert Eagle-handkanonnen. Je kunt ze allebei afzonderlijk verkopen of laten vallen."
+
+[KFWeap_Revolver_Rem1858]
+ItemName="1858-revolver"
+ItemCategory="Handvuurwapen"
+ItemDescription="• Alleen enkelschots vuren.\n• Een prachtig voorbeeld van de Remington 'Model 1858' .44-kaliber, 6-schots Army single-action-revolver. Oud, maar nog steeds krachtig."
+
+[KFWeap_Revolver_DualRem1858]
+ItemName="Dubbele 1858-revolver"
+ItemCategory="Handvuurwapen"
+ItemDescription="• Alleen enkelschots vuren.\n• Alt-vuren om van richtstijl te wisselen.\n• Een paar Remington 1858-revolvers. Je kunt ze allebei afzonderlijk verkopen of laten vallen."
+
+[KFWeap_Revolver_SW500]
+ItemName=".500 Magnum-revolver"
+ItemCategory="Handvuurwapen"
+ItemDescription="• Alleen enkelschots vuren.\n• Ware hand-artillerie, in de vorm van een .50-kaliber 'Bone Collector'-revolver met lange loop, die full-load magnum-patronen afvuurt. Voor de serieuze revolverheld."
+
+[KFWeap_Revolver_DualSW500]
+ItemName="Dual .500 Magnums"
+ItemCategory="Handvuurwapen"
+ItemDescription="• Alleen semi-automatisch vuren.\n• Alt-vuren om van richtstijl te wisselen.\n• Een paar .500 Magnum 'Bone Collector'-revolvers. Je kunt ze allebei afzonderlijk verkopen of laten vallen.  Met een grote 'plof'."
+
+[KFWeap_Rifle_Winchester1894]
+ItemName="Winchester 1894"
+ItemCategory="Geweer"
+ItemDescription="• Fire mode is single shot only.\n• The classic Model 1894 Winchester lever-action rifle."
+
+[KFWeap_Bow_Crossbow]
+ItemName="Kruisboog"
+ItemCategory="Boog"
+ItemDescription="• Fire mode is single shot only.\n• Crossbow bolts are often recoverable!\n• A high-powered hunting crossbow, giving good penetration and good stopping power!"
+
+[KFWeap_Rifle_M14EBR]
+ItemName="M14 EBR"
+ItemCategory="Sniper Rifle"
+ItemDescription=""
+
+[KFWeap_Rifle_RailGun]
+ItemName="Rail Gun"
+ItemCategory="Sniper Rifle"
+ItemDescription=""
+
+[KFWeap_AssaultRifle_M16M203]
+ItemName="M16 M203 Assault Rifle"
+ItemCategory="Assault Rifle"
+ItemDescription=""
+SecondaryAmmo="M203 Grenade"
+
+//BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
+[KFPawn_ZedHans]
+BossName="Dr. Hans Volter"
+BossCaptionStrings[0]="Hans is bijna onkwetsbaar tijdens zijn rookgranaatgenezingsfase. Verspil geen munitie!"
+BossCaptionStrings[1]="Let op zijn energiekern: Hans is agressiever als het van kleur verandert."
+BossCaptionStrings[2]="Richt op zijn energiekern. Het is een kwetsbare plek."
+BossCaptionStrings[3]="Gas uit Hans' granaten blijft aan je kleven als Bloat-gal. Probeer het te vermijden!"
+BossCaptionStrings[4]="Zijn hakkende aanvallen zijn te sterk om te pareren. Je zult nog steeds volledige schade oplopen."
+BossCaptionStrings[5]="Kijk uit naar rode granaatwaarschuwingsindicatoren, die je kunnen helpen om te zien waar ze landen."
+BossCaptionStrings[6]="Als Hans zijn wapens trekt, blijf dan uit het zicht. Voor de hand liggend, maar belangrijk!"
+
+[KFPawn_ZedPatriarch]
+BossName="The Patriarch"
+BossCaptionStrings[0]="Kevin Clamely was ooit een briljante wetenschapper, totdat hij zijn eigen grootste creatie werd."
+BossCaptionStrings[1]="The Patriarch is staggeringly arrogant - he is likely to tell you which attack he will use next."
+BossCaptionStrings[2]="Hiding behind even big objects won't help as much as you'd hope. The Patriarch has an answer for that!"
+BossCaptionStrings[3]="In je eentje wegrennen is geen ontsnapping - je wordt juist een makkelijke prooi die hij het eerst aanvalt."
+BossCaptionStrings[4]="Ja, de Patriarch kan zich nog steeds verhullen, onzichtbaar worden, wegrennen en zichzelf genezen. Sommige dingen veranderen niet."
+BossCaptionStrings[5]="While you won't get much choice about it, killing The Patriarch's 'children' just makes him mad(der)."
+
+[KFGameInfo_Survival]
+GameName="Survival"
+
+[KFGameInfo_VersusSurvival]
+GameName="VS Survival"
+
+[KFPawn_ZedPatriarch_Versus]
+NoHealsRemainingMsg="Geen genezingen resterend"
+LowHealthMsg="Gezondheid is kritiek! Genees nu!"
+NoMortarTargetsMsg="Geen geldige mortierdoelen"
+
+[KFSM_PlayerSiren_VortexVictim]
+VortexGrabTeamWarningMsg="%x% is gevangen door een Siren!"
+
+[KFGFXHudWrapper_Versus]
+WaitingToSpawnString="TIME UNTIL SPAWN: %x% second(s)"
+ZedTakeOverActiveString="SEARCHING FOR ZEDS TO TAKE OVER..."

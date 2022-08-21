@@ -67,6 +67,9 @@ function OnlineGameSearch GetGameSearch()
     return GameSearch;
 }
 
+// Export UOnlineGameInterfaceImpl::execGetGameServerRemoteAddress(FFrame&, void* const)
+native function bool GetGameServerRemoteAddress(out string RemoteAddressString);
+
 // Export UOnlineGameInterfaceImpl::execCreateOnlineGame(FFrame&, void* const)
 native function bool CreateOnlineGame(byte HostingPlayerNum, name SessionName, OnlineGameSettings NewGameSettings);
 
@@ -317,13 +320,13 @@ function ClearArbitrationRegistrationCompleteDelegate(delegate<OnArbitrationRegi
 
 function array<OnlineArbitrationRegistrant> GetArbitratedPlayers(name SessionName);
 
-delegate OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult);
+delegate OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult, Engine.OnlineSubsystem.OnGameInviteAcceptedResult ResultReason);
 
 function AddGameInviteAcceptedDelegate(byte LocalUserNum, delegate<OnGameInviteAccepted> GameInviteAcceptedDelegate);
 
 function ClearGameInviteAcceptedDelegate(byte LocalUserNum, delegate<OnGameInviteAccepted> GameInviteAcceptedDelegate);
 
-function bool AcceptGameInvite(byte LocalUserNum, name SessionName);
+function bool AcceptGameInvite(byte LocalUserNum, name SessionName, const out OnlineGameSearchResult DesiredGame);
 
 function bool RecalculateSkillRating(name SessionName, const out array<UniqueNetId> Players);
 
@@ -387,8 +390,12 @@ native function bool ReadPlatformSpecificSessionInfo(const out OnlineGameSearchR
 // Export UOnlineGameInterfaceImpl::execReadPlatformSpecificSessionInfoBySessionName(FFrame&, void* const)
 native function bool ReadPlatformSpecificSessionInfoBySessionName(name SessionName, out byte PlatformSpecificInfo[80]);
 
+function bool ReadSessionGuidBySessionName(name SessionName, out string SessionGuid);
+
 // Export UOnlineGameInterfaceImpl::execBindPlatformSpecificSessionToSearch(FFrame&, void* const)
 native function bool BindPlatformSpecificSessionToSearch(byte SearchingPlayerNum, OnlineGameSearch SearchSettings, byte PlatformSpecificInfo[80]);
+
+function bool BindSessionGuidToSearch(byte SearchingPlayerNum, OnlineGameSearch SearchSettings, string SessionGuid);
 
 delegate OnQosStatusChanged(int NumComplete, int NumTotal);
 

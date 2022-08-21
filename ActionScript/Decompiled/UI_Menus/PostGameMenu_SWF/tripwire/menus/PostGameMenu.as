@@ -142,7 +142,14 @@ package tripwire.menus
             stage.addEventListener(InputEvent.INPUT,this.handleUserInput,false,0,true);
             this._nextMapTimer = new Timer(1000);
             this._nextMapTimer.addEventListener(TimerEvent.TIMER,this.countdownTimer,false,0,true);
-            this.chatBoxWidget.InitializeAsPartyChat();
+            if(!bManagerConsoleBuild)
+            {
+                this.chatBoxWidget.InitializeAsPartyChat();
+            }
+            else
+            {
+                this.chatBoxWidget.visible = false;
+            }
             this.mapVoteContainer.postGameMenu = this;
             this.selectedMenu = 0;
             this.playerStatsContainer.addEventListener(NEXT_PAGE,this.nextPage,false,0,true);
@@ -174,7 +181,7 @@ package tripwire.menus
             _loc2_.start();
         }
         
-        override public function openContainer() : void
+        override public function openContainer(param1:Boolean = true) : void
         {
             super.openContainer();
             if(stage && !hasEventListener(InputEvent.INPUT))
@@ -246,9 +253,8 @@ package tripwire.menus
         
         public function set playerInfo(param1:Object) : void
         {
-            if(param1)
+            if(!param1)
             {
-                this.playerNamePlate.data = param1;
             }
         }
         
@@ -335,7 +341,7 @@ package tripwire.menus
             this.nextMapTime = this._currentTime;
         }
         
-        override protected function openAnimation() : *
+        override protected function openAnimation(param1:Boolean = true) : *
         {
             TweenMax.killTweensOf(this);
             TweenMax.fromTo(this,ANIM_TIME,{

@@ -19,6 +19,7 @@ var config array<string> MovementBindList;
 var config array<string> CombatBindList;
 var config array<string> WeaponSelectBindList;
 var config array<string> InteractionBindList;
+var config array<string> VoiceCommBindList;
 
 var KeyBind PendingKeyBind;
 var KeyBind OldKeyBind;
@@ -36,7 +37,7 @@ var bool bModAlt;
 var bool bWaitForInput;
 
 var const string SectionName;
-const MAX_SECTIONS = 4;
+const MAX_SECTIONS = 5;
 var byte TotalBindSections;
 
 var localized array<string> SectionHeaders;
@@ -68,6 +69,7 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
  	InitalizeCommandList(InteractionBindList);
  	InitalizeCommandList(CombatBindList);
  	InitalizeCommandList(WeaponSelectBindList);
+ 	InitalizeCommandList(VoiceCommBindList);
  	
  	UpdateAllBindings();
 }
@@ -103,6 +105,7 @@ function UpdateAllBindings()
  	UpdateBindList( InteractionBindList, 1 );
  	UpdateBindList( CombatBindList, 2 );
  	UpdateBindList( WeaponSelectBindList, 3 );
+ 	UpdateBindList( VoiceCommBindList, 4 );
 	Manager.UpdateDynamicIgnoreKeys();
 }
 

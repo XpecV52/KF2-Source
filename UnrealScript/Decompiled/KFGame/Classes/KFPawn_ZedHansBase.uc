@@ -38,6 +38,9 @@ struct HansBattlePhaseInfo
     var float HENadeTossPhaseCooldown;
     var bool bCanBarrageGrenades;
     var float HENadeBarragePhaseCooldown;
+    var array<float> HealThresholds;
+    var array<float> HealAmounts;
+    var array<int> MaxShieldHealth;
 
     structdefaultproperties
     {
@@ -55,17 +58,28 @@ struct HansBattlePhaseInfo
         HENadeTossPhaseCooldown=10
         bCanBarrageGrenades=false
         HENadeBarragePhaseCooldown=20
+        HealThresholds=none
+        HealAmounts=none
+        MaxShieldHealth=none
     }
 };
 
+var KFAIController_Hans MyHansController;
 var repnotify bool bGunsEquipped;
 var bool bHealedThisPhase;
 var repnotify bool bInHuntAndHealMode;
 var bool bPendingSmokeGrenadeBarrage;
 var bool bDoingBarrage;
 var array<HansBattlePhaseInfo> BattlePhases;
+var float AmountHealedThisPhase;
 /** How much to reduce Hans' damage he receives when he is in hunt and heal mode */
 var() float HuntAndHealModeDamageReduction;
+var float IncapPowerScaleWhenHealing;
+var float ShieldHealth;
+var float ShieldHealthMax;
+var repnotify byte ShieldHealthPctByte;
+var int NumHuntAndHealEnemyBumps;
+var float LastHuntAndHealEnemyBumpTime;
 var class<KFProj_Grenade> ActiveGrenadeClass;
 var const class<KFProj_Grenade> ExplosiveGrenadeClass;
 var const class<KFProj_Grenade> NerveGasGrenadeClass;
@@ -90,7 +104,8 @@ var float LastSmokeTossTime;
 replication
 {
      if(bNetDirty)
-        bGunsEquipped, bInHuntAndHealMode;
+        ShieldHealthPctByte, bGunsEquipped, 
+        bInHuntAndHealMode;
 }
 
 simulated event ReplicatedEvent(name VarName)
@@ -100,6 +115,9 @@ simulated event ReplicatedEvent(name VarName)
         case 'bInHuntAndHealMode':
             SetHuntAndHealMode(bInHuntAndHealMode);
             break;
+        case 'ShieldHealthPctByte':
+            UpdateShieldColor();
+            break;
         default:
             super.ReplicatedEvent(VarName);
             break;
@@ -108,42 +126,95 @@ simulated event ReplicatedEvent(name VarName)
 
 function PossessedBy(Controller C, bool bVehicleTransition)
 {
-    local KFAIController_Hans HansAI;
-
     super.PossessedBy(C, bVehicleTransition);
-    HansAI = KFAIController_Hans(C);
-    SetPhaseCooldowns(HansAI);
+    MyHansController = KFAIController_Hans(C);
+    SetPhaseCooldowns(0);
 }
 
-function IncrementBattlePhase(KFAIController_Hans HansAI)
+function IncrementBattlePhase()
 {
     ++ CurrentBattlePhase;
     bHealedThisPhase = true;
-    SetPhaseCooldowns(HansAI);
+    AmountHealedThisPhase = 0;
+    SetPhaseCooldowns(CurrentBattlePhase - 1);
     bForceNetUpdate = true;
 }
 
-function SetPhaseCooldowns(KFAIController_Hans HansAI)
+function SetPhaseCooldowns(int BattlePhase)
 {
-    GlobalOffensiveNadeCooldown = BattlePhases[CurrentBattlePhase - 1].GlobalOffensiveNadePhaseCooldown;
-    HENadeTossCooldown = BattlePhases[CurrentBattlePhase - 1].HENadeTossPhaseCooldown;
-    HENadeBarrageCooldown = BattlePhases[CurrentBattlePhase - 1].HENadeBarragePhaseCooldown;
-    NerveGasTossCooldown = BattlePhases[CurrentBattlePhase - 1].NerveGasTossPhaseCooldown;
-    NerveGasBarrageCooldown = BattlePhases[CurrentBattlePhase - 1].NerveGasBarragePhaseCooldown;
-    if(HansAI != none)
+    GlobalOffensiveNadeCooldown = BattlePhases[BattlePhase].GlobalOffensiveNadePhaseCooldown;
+    HENadeTossCooldown = BattlePhases[BattlePhase].HENadeTossPhaseCooldown;
+    HENadeBarrageCooldown = BattlePhases[BattlePhase].HENadeBarragePhaseCooldown;
+    NerveGasTossCooldown = BattlePhases[BattlePhase].NerveGasTossPhaseCooldown;
+    NerveGasBarrageCooldown = BattlePhases[BattlePhase].NerveGasBarragePhaseCooldown;
+    if(MyHansController != none)
     {
-        HansAI.ShootingCooldown = BattlePhases[CurrentBattlePhase - 1].GunAttackPhaseCooldown;
-        HansAI.MaxGunAttackLength = BattlePhases[CurrentBattlePhase - 1].GunAttackLengthPhase;
+        MyHansController.ShootingCooldown = BattlePhases[BattlePhase].GunAttackPhaseCooldown;
+        MyHansController.MaxGunAttackLength = BattlePhases[BattlePhase].GunAttackLengthPhase;
+        MyHansController.bSummonedThisPhase = false;
     }
 }
 
 function AdjustDamage(out int InDamage, out Vector Momentum, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, TraceHitInfo HitInfo, Actor DamageCauser)
 {
-    if(bInHuntAndHealMode)
+    super(KFPawn_Monster).AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
+    UpdateShieldHealth(InDamage);
+    if(bInHuntAndHealMode && ShieldHealth > float(0))
     {
         InDamage *= HuntAndHealModeDamageReduction;
     }
-    super(KFPawn_Monster).AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
+}
+
+simulated function AdjustAffliction(out float AfflictionPower)
+{
+    super(KFPawn).AdjustAffliction(AfflictionPower);
+    if(bInHuntAndHealMode)
+    {
+        AfflictionPower *= IncapPowerScaleWhenHealing;
+    }
+}
+
+function UpdateShieldHealth(optional int Damage)
+{
+    Damage = -1;
+    if((ShieldHealth == float(0)) || Damage == 0)
+    {
+        return;
+    }
+    if((ShieldHealth > float(0)) && Damage > 0)
+    {
+        ShieldHealth = float(Max(int(ShieldHealth - float(Damage)), 0));
+    }
+    if(ShieldHealth == float(0))
+    {
+        ShieldHealthPctByte = 0;        
+    }
+    else
+    {
+        ShieldHealthPctByte = FloatToByte(FClamp(ShieldHealth / ShieldHealthMax, 0, 1));
+    }
+    UpdateShieldColor();
+    if(((WorldInfo.NetMode == NM_DedicatedServer) && bInHuntAndHealMode) && ShieldHealthPctByte == 0)
+    {
+        BreakShield();
+    }
+}
+
+simulated function BreakShield()
+{
+    if(Role == ROLE_Authority)
+    {
+        if(MyHansController != none)
+        {
+            MyHansController.CancelFlee();
+        }
+        SetHuntAndHealMode(false);
+        if(IsDoingSpecialMove())
+        {
+            EndSpecialMove();
+        }
+        Knockdown(((Velocity != vect(0, 0, 0)) ? -Velocity * float(2) : float(3) * (-vector(Rotation) * GroundSpeed)), vect(1, 1, 1),,,,, Location);
+    }
 }
 
 function bool CanFrenzyInThisPhase()
@@ -278,12 +349,38 @@ function PlayGrenadeDialog(bool bBarrage)
 
 simulated function SetHuntAndHealMode(bool bOn)
 {
+    local KFGameInfo KFGI;
+    local KFCharacterInfo_Monster MonsterInfo;
+    local float HealthMod, HeadHealthMod;
+
     bInHuntAndHealMode = bOn;
     if(Role == ROLE_Authority)
     {
         if(bInHuntAndHealMode)
         {
-            SetTimer(0.25, true, 'HuntAndHealBump');            
+            SetTimer(0.25, true, 'HuntAndHealBump');
+            HealthMod = 1;
+            KFGI = KFGameInfo(WorldInfo.Game);
+            if(KFGI != none)
+            {
+                MonsterInfo = GetCharacterMonsterInfo();
+                KFGI.DifficultyInfo.GetAIHealthModifier(MonsterInfo, KFGI.GameDifficulty, byte(KFGI.GetLivingPlayerCount()), HealthMod, HeadHealthMod);
+            }
+            ShieldHealthMax = float(BattlePhases[CurrentBattlePhase - 1].MaxShieldHealth[int(WorldInfo.Game.GameDifficulty)]) * HealthMod;
+            ShieldHealth = ShieldHealthMax;
+            UpdateShieldHealth();
+            NumHuntAndHealEnemyBumps = 0;
+            LastHuntAndHealEnemyBumpTime = WorldInfo.TimeSeconds;
+            if(IsDoingSpecialMove())
+            {
+                EndSpecialMove();
+            }
+            DoSpecialMove(4,,, Class'KFSM_Stumble'.static.PackBodyHitSMFlags(self, vector(Rotation)));
+            if(MyHansController != none)
+            {
+                MyHansController.NextBattlePhase();
+            }
+            IncrementBattlePhase();            
         }
         else
         {
@@ -297,12 +394,112 @@ simulated function SetHuntAndHealMode(bool bOn)
     if(!bOn)
     {
         bHealedThisPhase = false;
+        SetTimer(0.1, false, 'Timer_ResetShieldHealthPct');
+    }
+}
+
+function Timer_ResetShieldHealthPct()
+{
+    ShieldHealthPctByte = 0;
+}
+
+function float GetHealAmountForThisPhase()
+{
+    return float(HealthMax) * BattlePhases[CurrentBattlePhase - 2].HealAmounts[int(WorldInfo.Game.GameDifficulty)];
+}
+
+function SummonMinions()
+{
+    local int Skill, DifficultyIndex;
+    local KFAIWaveInfo MinionWave;
+    local KFAISpawnManager SpawnManager;
+    local KFGameInfo MyKFGameInfo;
+
+    MyKFGameInfo = KFGameInfo(WorldInfo.Game);
+    if(MyHansController != none)
+    {
+        Skill = int(MyHansController.Skill);
+    }
+    if(float(Skill) == Class'KFDifficultyInfo'.static.GetDifficultyValue(0))
+    {
+        DifficultyIndex = 0;        
+    }
+    else
+    {
+        if(float(Skill) <= Class'KFDifficultyInfo'.static.GetDifficultyValue(1))
+        {
+            DifficultyIndex = 1;            
+        }
+        else
+        {
+            if(float(Skill) <= Class'KFDifficultyInfo'.static.GetDifficultyValue(2))
+            {
+                DifficultyIndex = 2;                
+            }
+            else
+            {
+                DifficultyIndex = 3;
+            }
+        }
+    }
+    if(CurrentBattlePhase == 1)
+    {
+        MinionWave = SummonWaves[DifficultyIndex].PhaseOneWave;        
+    }
+    else
+    {
+        if(CurrentBattlePhase == 2)
+        {
+            MinionWave = SummonWaves[DifficultyIndex].PhaseTwoWave;            
+        }
+        else
+        {
+            if(CurrentBattlePhase == 3)
+            {
+                MinionWave = SummonWaves[DifficultyIndex].PhaseThreeWave;
+            }
+        }
+    }
+    MyKFGameInfo.GetAIDirector().bForceFrustration = true;
+    SpawnManager = MyKFGameInfo.SpawnManager;
+    if(SpawnManager != none)
+    {
+        SpawnManager.SummonBossMinions(MinionWave.Squads, NumMinionsToSpawn);
     }
 }
 
 simulated function ClearDOTs()
 {
     DamageOverTimeArray.Length = 0;
+}
+
+simulated event Bump(Actor Other, PrimitiveComponent OtherComp, Vector HitNormal)
+{
+    local KFPawn KFP;
+
+    if(!bGunsEquipped)
+    {
+        if(((((((Role == ROLE_Authority) && bInHuntAndHealMode) && MyHansController != none) && NumHuntAndHealEnemyBumps >= 0) && !IsDoingSpecialMove()) && Other.GetTeamNum() != GetTeamNum()) && MyHansController.FindCommandOfClass(Class'AICommand_Attack_Grab') == none)
+        {
+            KFP = KFPawn(Other);
+            if(KFP != none)
+            {
+                if((WorldInfo.TimeSeconds - LastHuntAndHealEnemyBumpTime) > 1)
+                {
+                    ++ NumHuntAndHealEnemyBumps;
+                    LastHuntAndHealEnemyBumpTime = WorldInfo.TimeSeconds;
+                    if(NumHuntAndHealEnemyBumps > 0)
+                    {
+                        NumHuntAndHealEnemyBumps = -1;
+                        MyHansController.CancelFlee(false);
+                        MyKFAIC.DoGrabAttack(KFP);
+                        return;
+                    }
+                }
+            }
+        }
+    }
+    super(KFPawn_Monster).Bump(Other, OtherComp, HitNormal);
 }
 
 function HuntAndHealBump()
@@ -352,6 +549,8 @@ simulated function ApplyBloodDecals(int HitZoneIndex, Vector HitLocation, Vector
     }
 }
 
+simulated function UpdateShieldColor();
+
 simulated function DetachShieldFX();
 
 defaultproperties
@@ -362,7 +561,7 @@ defaultproperties
     object end
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedHansBase.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
-    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedHansBase.Afflictions'
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedHansBase.Afflictions'
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

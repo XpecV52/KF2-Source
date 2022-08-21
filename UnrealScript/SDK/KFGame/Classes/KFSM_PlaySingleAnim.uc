@@ -14,6 +14,7 @@ class KFSM_PlaySingleAnim extends KFSpecialMove
 /** Animation to play */
 var() name				AnimName;
 var() EAnimSlotStance	AnimStance;
+var bool 				bLoopAnim;
 
 var	float		BlendInTime;
 var	float		BlendOutTime;
@@ -63,49 +64,25 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 /** Play an animation and enable the OnAnimEnd notification */
 function PlayAnimation()
 {
-	PlaySpecialMoveAnim(AnimName, AnimStance, BlendInTime, BlendOutTime, 1.f);
+	PlaySpecialMoveAnim(AnimName, AnimStance, BlendInTime, BlendOutTime, 1.f, bLoopAnim);
 }
 
 /**  When the animation finishes playing end this move */
 function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime)
 {
-	KFPOwner.EndSpecialMove();
-}
-
-/** Handle Interupt/Abort, also see CanOverrideMoveWith() for interrupt moves */
-function NotifyOwnerTakeHit(class<KFDamageType> DamageType, vector HitLoc, vector HitDir, Controller InstigatedBy)
-{
-	if ( bCanBeInterrupted && IsAnInterruptHit(PawnOwner, DamageType) )
+	if( !bLoopAnim )
 	{
 		KFPOwner.EndSpecialMove();
 	}
 }
 
-/** Returns true if this pawn is susceptible to a medium or hard hit reaction */
-static function bool IsAnInterruptHit(Pawn P, class<KFDamageType> DamageType)
+/** Notification from the pawn that a medium (aka gun) or heavy (aka melee) affliction has been activated */
+function NotifyHitReactionInterrupt()
 {
-	local KFPawn_Monster KFPM;
-	local byte HitZoneIdx;
-	local EHitZoneBodyPart BodyPart;
-
-	// only AI can be interrupted by hit reaction hits
-	if ( DamageType != None && !P.IsHumanControlled() )
+	if ( bCanBeInterrupted )
 	{
-		KFPM = KFPawn_Monster(P);
-		if ( KFPM != None )
-		{
-			// Grab the BodyPart from the TakeHitInfo, we can do this because PlayAIHitReactions is called just after the HitInfo is generated
-			HitZoneIdx = KFPM.HitFxInfo.HitBoneIndex;
-			BodyPart = (HitZoneIdx != 255) ? KFPM.HitZones[HitZoneIdx].Limb : BP_Torso;
-
-			if ( KFPM.AfflictionHandler.GetPredictedHitReaction(DamageType, BodyPart) > HIT_Light )
-			{
-				return true;
-			}
-		}
+		KFPOwner.EndSpecialMove();
 	}
-
-	return false;
 }
 
 defaultproperties
@@ -115,6 +92,7 @@ defaultproperties
 	BlendInTime=0.33f
 	BlendOutTime=0.33f
 	AbortBlendOutTime=0.33f
+	bLoopAnim=false
 
 	bAllowMomentumPush=true
 }

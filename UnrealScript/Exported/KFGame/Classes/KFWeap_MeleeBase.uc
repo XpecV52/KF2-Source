@@ -428,6 +428,22 @@ simulated state WeaponUpkeep
 		NotifyBeginState();
 	}
 
+	// Allow for players to skip cleaning the weapon and go right into attacking.
+	simulated function BeginFire(byte FireModeNum)
+	{
+		Global.BeginFire(FireModeNum);
+
+		// handle reload interrupts
+		if ( FireModeNum != RELOAD_FIREMODE )
+		{
+			// if able, immediately interupt/abort the reload state
+			if( PendingFire(FireModeNum) && HasAmmo(FireModeNum) )
+			{
+				GotoState('Active');
+			}
+		}
+	}
+
 	simulated event EndState(Name NextStateName)
 	{
 		NotifyEndState();
@@ -651,6 +667,13 @@ simulated state MeleeSustained extends WeaponFiring
 	simulated function BeginState(Name PreviousStateName)
 	{
 		// @note: No super because we don't want to FireAmmunition() right away
+		local KFPerk InstigatorPerk;
+
+		InstigatorPerk = GetPerk();
+		if( InstigatorPerk != none )
+		{
+			SetZedTimeResist( InstigatorPerk.GetZedTimeModifier(self) );
+		}
 
 		if ( MeleeSustainedWarmupTime > 0.f )
 		{
@@ -828,8 +851,8 @@ simulated state MeleeBlocking
 		local vector Dir2d;
 
 		// zero Z to give us a 2d dot product
-		Dir2d = Normal2d(InstigatedBy.Location - Location);
-		FacingDot = vector(Rotation) dot (Dir2d);
+		Dir2d = Normal2d(InstigatedBy.Location - Instigator.Location);
+		FacingDot = vector(Instigator.Rotation) dot (Dir2d);
 
 		// Cos(85)
 		if ( FacingDot > 0.087f )
@@ -855,7 +878,7 @@ simulated state MeleeBlocking
 		local float FacingDot;
 		local vector Dir2d;
 		local KFPerk InstigatorPerk;
-		local bool bInterruptSuccess;
+		//local bool bInterruptSuccess;
 
 		// zero Z to give us a 2d dot product
 		Dir2d = Normal2d(DamageCauser.Location - Instigator.Location);
@@ -872,10 +895,13 @@ simulated state MeleeBlocking
 				// Notify attacking pawn for effects / animations
 				if ( KFPawn(DamageCauser) != None )
 				{
-					bInterruptSuccess = KFPawn(DamageCauser).NotifyAttackParried(Instigator, ParryStrength);
+					/*bInterruptSuccess = */KFPawn(DamageCauser).NotifyAttackParried(Instigator, ParryStrength);
 				}
 
-				ClientPlayParryEffects(bInterruptSuccess);
+				// @NOTE: This is now always true per discussion with AndrewL on KFII-29686. Since we always
+				// do the damage mitigation, we should always play the effect regardless of whether the
+				// zed was stumbled or knocked down. -MattF
+				ClientPlayParryEffects( true /*bInterruptSuccess*/);
 
 				if( InstigatorPerk != none )
 				{

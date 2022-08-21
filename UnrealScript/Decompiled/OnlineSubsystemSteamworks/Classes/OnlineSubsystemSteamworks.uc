@@ -386,6 +386,7 @@ var delegate<OnMutingChange> __OnMutingChange__Delegate;
 var delegate<OnFriendsChange> __OnFriendsChange__Delegate;
 var delegate<OnLoginFailed> __OnLoginFailed__Delegate;
 var delegate<OnLogoutCompleted> __OnLogoutCompleted__Delegate;
+var delegate<OnPrivilegeLevelChecked> __OnPrivilegeLevelChecked__Delegate;
 var delegate<OnLoginStatusChange> __OnLoginStatusChange__Delegate;
 var delegate<OnReadProfileSettingsComplete> __OnReadProfileSettingsComplete__Delegate;
 var delegate<OnWriteProfileSettingsComplete> __OnWriteProfileSettingsComplete__Delegate;
@@ -417,6 +418,7 @@ var delegate<OnReadAchievementsComplete> __OnReadAchievementsComplete__Delegate;
 var delegate<OnReadOnlineAvatarComplete> __OnReadOnlineAvatarComplete__Delegate;
 var delegate<OnGetNumberOfCurrentPlayersComplete> __OnGetNumberOfCurrentPlayersComplete__Delegate;
 var delegate<OnReadCrossTitleProfileSettingsComplete> __OnReadCrossTitleProfileSettingsComplete__Delegate;
+var delegate<OnStoreDataRead> __OnStoreDataRead__Delegate;
 var delegate<OnEnumerateUserFilesComplete> __OnEnumerateUserFilesComplete__Delegate;
 var delegate<OnReadUserFileComplete> __OnReadUserFileComplete__Delegate;
 var delegate<OnWriteUserFileComplete> __OnWriteUserFileComplete__Delegate;
@@ -498,6 +500,12 @@ function string GetPlayerNickname(byte LocalUserNum)
 {
     return LoggedInPlayerName;
 }
+
+delegate OnPrivilegeLevelChecked(byte LocalUserNum, Engine.OnlineSubsystem.EFeaturePrivilege Privilege, Engine.OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevel);
+
+function AddPrivilegeLevelCheckedDelegate(delegate<OnPrivilegeLevelChecked> PrivilegeDelegate);
+
+function ClearPrivilegeLevelCheckedDelegate(delegate<OnPrivilegeLevelChecked> PrivilegeDelegate);
 
 // Export UOnlineSubsystemSteamworks::execCanPlayOnline(FFrame&, void* const)
 native function Engine.OnlineSubsystem.EFeaturePrivilegeLevel CanPlayOnline(byte LocalUserNum);
@@ -1589,6 +1597,20 @@ function ClearCrossTitleProfileSettings(byte LocalUserNum, int TitleId);
 
 function bool ShowCustomMessageUI(byte LocalUserNum, const out array<UniqueNetId> Recipients, string MessageTitle, string NonEditableMessage, optional string EditableMessage);
 
+function PostActivityFeedBossKill(string BossName, string MapName);
+
+function PostActivityFeedTeamAward(string AwardName);
+
+function PostActivityFeedPerkLevelUp(string PerkClassName, int Level);
+
+function ReadStoreData();
+
+delegate OnStoreDataRead(bool bSuccessful);
+
+function AddStoreDataReadCompleteDelegate(delegate<OnStoreDataRead> InDelegate);
+
+function ClearStoreDataReadCompleteDelegate(delegate<OnStoreDataRead> InDelegate);
+
 // Export UOnlineSubsystemSteamworks::execResetStats(FFrame&, void* const)
 native function bool ResetStats(bool bResetAchievements);
 
@@ -1842,6 +1864,9 @@ native function GetItemDefs();
 // Export UOnlineSubsystemSteamworks::execRefreshInventory(FFrame&, void* const)
 native function RefreshInventory();
 
+// Export UOnlineSubsystemSteamworks::execOpenMarketPlaceSearch(FFrame&, void* const)
+native function OpenMarketPlaceSearch(ItemProperties Item);
+
 // Export UOnlineSubsystemSteamworks::execOpenItemPurchaseOverlay(FFrame&, void* const)
 native function OpenItemPurchaseOverlay(int SKU);
 
@@ -1858,7 +1883,7 @@ function bool AddInGamePost(int InPostID, optional string InPostParam);
 
 function bool ShowGamerCardUIByUsername(byte LocalUserNum, string UserName);
 
-function bool RecordPlayersRecentlyMet(byte LocalUserNum, out array<UniqueNetId> Players, string GameDescription);
+function bool RecordPlayersRecentlyMet(byte LocalUserNum, out array<string> Players, string GameDescription);
 
 defaultproperties
 {

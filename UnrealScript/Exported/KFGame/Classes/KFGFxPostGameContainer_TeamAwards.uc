@@ -100,7 +100,7 @@ function SendTeamAwards()
 	ItemCount=0;
 	for (i = 0; i < StatCollector.TeamAwardList.length; i++)
 	{
-		if(StatCollector.TeamAwardList[i].PRI != none)
+		if(StatCollector.TeamAwardList[i].PRI != none && ItemCount < 8)
 		{
 			TeamAWard = CreateObject("Object");
 			TeamAward.SetString("playerName", StatCollector.TeamAwardList[i].PRI.PlayerName);

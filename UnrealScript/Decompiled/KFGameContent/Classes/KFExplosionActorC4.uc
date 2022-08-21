@@ -16,6 +16,6 @@ simulated function float GetDamageFor(Actor Victim)
 
 defaultproperties
 {
-    DamageScalePerStack=0.5
+    DamageScalePerStack=0.75
     LifeSpan=3
 }

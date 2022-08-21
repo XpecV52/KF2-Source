@@ -165,7 +165,7 @@ package tripwire.menus
             }
         }
         
-        override public function openContainer() : void
+        override public function openContainer(param1:Boolean = true) : void
         {
             super.openContainer();
             if(this._currentContainer)
@@ -200,7 +200,7 @@ package tripwire.menus
             super.deselectContainer();
             if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
             {
-                if(this._currentContainer != null)
+                if(this._currentContainer != null && bOpen)
                 {
                     this._currentContainer.deselectContainer();
                 }

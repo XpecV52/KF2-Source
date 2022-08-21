@@ -12,59 +12,6 @@ class KFDT_Piercing_NailFragment extends KFDT_Piercing
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 14;
-
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
@@ -91,10 +38,10 @@ defaultproperties
    WeaponDef=Class'KFGame.KFWeapDef_Grenade_Gunslinger'
    bShouldSpawnBloodSplat=True
    bShouldSpawnPersistentBlood=True
-   GunHitPower=25
-   MeleeHitPower=20
    EffectGroup=FXG_Ballistic
    GoreDamageGroup=DGT_Handgun
+   GunHitPower=10.000000
+   MeleeHitPower=8.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Gunslinger'
    BodyWoundDecalMaterials(0)=MaterialInstanceConstant'FX_Gore_MAT.FX_CH_Wound_01_Mic'
    BloodSpread=0.400000

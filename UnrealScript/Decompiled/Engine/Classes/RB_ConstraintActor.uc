@@ -131,6 +131,7 @@ defaultproperties
     Components(1)=MyConDrawComponent
     DrawScale=0.5
     Physics=EPhysics.PHYS_RigidBody
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
     TickGroup=ETickingGroup.TG_PostAsyncWork
     bHidden=true
     bNoDelete=true

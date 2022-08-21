@@ -13,6 +13,8 @@ class KFPawn_MonsterBoss extends KFPawn_Monster
 
 `include(KFGameDialog.uci)
 
+var KFPlayerController KFPC; //used to notify UI
+
 var localized string BossName;
 var localized array<string> BossCaptionStrings;
 
@@ -68,6 +70,14 @@ simulated event PreBeginPlay()
 {
 	Super.PreBeginPlay();
 	OnBattlePhaseChanged();
+	KFPC = KFPlayerController(GetALocalPlayerController());
+	if( KFPC != none )
+	{
+		if(KFPC.MyGFxHUD != none && KFPC.MyGFxHUD.BossHealthBar != none)
+		{
+			KFPC.MyGFxHUD.BossHealthBar.SetBossPawn(self);
+		}
+	}
 }
 
 // Mostly indistinguishable from PreBeginPlay().  Following Pawn conventions only one is 'simulated'
@@ -112,9 +122,12 @@ and also on net client when pawn gets bTearOff set to true (and bPlayedDeath is 
 simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 {
 	local KFGameReplicationInfo KFGRI;
-	local KFPlayerController KFPC;
 
     super.PlayDying( DamageType, HitLoc );
+
+	//@HSL_BEGIN - JRO - 5/17/2016 - PS4 Activity Feeds
+	class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.PostActivityFeedBossKill(BossName, class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName(WorldInfo.GetMapName(true)).DisplayName);
+	//@HSL_END
 
 	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
 	if( KFGRI != none && !KFGRI.IsFinalWave() )
@@ -122,7 +135,7 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 		return;
 	}
 
-	foreach LocalPlayerControllers(class'KFPlayerController', KFPC)
+	if(KFPC != none)
 	{
 		KFPC.SetBossCamera( self );
 	}
@@ -136,11 +149,10 @@ simulated function TerminateEffectsOnDeath()
 	OnBattlePhaseChanged();
 }
 
-/** Set gameplay related MIC params on the active body MIC. Overloaded to call OnBattlePhaseChanged. */
-simulated function SetGameplayMICParams()
+/** Reapply active gameplay related MIC params (e.g. when switching to the gore mesh) */
+simulated function UpdateGameplayMICParams()
 {
-	super.SetGameplayMICParams();
-
+	super.UpdateGameplayMICParams();
 	OnBattlePhaseChanged();
 }
 
@@ -153,7 +165,22 @@ simulated function int GetCurrentBattlePhase()
 /** Called when current battle phase changes */
 /* Network: ALL
  */
-simulated function OnBattlePhaseChanged();
+simulated function OnBattlePhaseChanged()
+{
+	UpdateBattlePhaseOnLocalPlayerUI();
+}
+
+simulated function UpdateBattlePhaseOnLocalPlayerUI()
+{
+	if(!KFPC.IsLocalController())
+    {
+        return;
+    }
+    if(KFPC != none && KFPC.MyGFxHUD != none && KFPC.MyGFxHUD.bossHealthBar != none)
+    {
+        KFPC.MyGFxHUD.bossHealthBar.UpdateBossBattlePhase(CurrentBattlePhase);   
+    }
+}
 
 /************************************
  * @name	Ephemeral Stats Tracking

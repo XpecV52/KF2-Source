@@ -11,69 +11,16 @@ class KFDT_Explosive_Shrapnel extends KFDT_Explosive
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 14;
-
 defaultproperties
 {
    bShouldSpawnPersistentBlood=True
-   KnockdownPower=0
-   StumblePower=120
+   KnockdownPower=500.000000
+   StumblePower=500.000000
+   MeleeHitPower=500.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Firebug'
-   KDeathVel=300.000000
-   KDeathUpKick=1000.000000
-   RadialDamageImpulse=3000.000000
+   KDeathVel=200.000000
+   KDeathUpKick=900.000000
+   RadialDamageImpulse=500.000000
    Name="Default__KFDT_Explosive_Shrapnel"
    ObjectArchetype=KFDT_Explosive'KFGame.Default__KFDT_Explosive'
 }

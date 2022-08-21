@@ -82,7 +82,8 @@ defaultproperties
     PSC_EndSpray=FlameEndSpray0
     MinAmmoConsumed=4
     FireModeIconPaths=/* Array type was not detected. */
-    InventorySize=6
+    InventorySize=5
+    MagazineCapacity=50
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -92,7 +93,6 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=2
     GroupPriority=25
     WeaponSelectTexture=Texture2D'WEP_UI_CaulkBurn_TEX.UI_WeaponSelect_CaulkNBurn'
-    MagazineCapacity=50
     MaxSpareAmmo=400
     InitialSpareMags=4
     AmmoPickupScale=0.5

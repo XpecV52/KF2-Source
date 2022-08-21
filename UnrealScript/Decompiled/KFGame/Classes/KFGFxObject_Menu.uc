@@ -39,6 +39,8 @@ event bool OnAxisModified(int ControllerId, name Key, float Delta, float DeltaTi
 
 event OnTraderTimeStart();
 
+function OnRoundOver();
+
 event OnClose();
 
 function OnLobbyStatusChanged(bool bIsInParty);
@@ -82,9 +84,19 @@ function Callback_ControllerCloseMenu()
     KFPRI = KFPlayerReplicationInfo(Outer.GetPC().PlayerReplicationInfo);
     if((Manager != none) && KFPRI != none)
     {
-        if((!Class'WorldInfo'.static.IsMenuLevel() && KFPRI.WorldInfo.GRI.bMatchHasBegun) && Manager.bUsingGamepad)
+        if(!Class'WorldInfo'.static.IsMenuLevel() && Manager.bUsingGamepad)
         {
-            Manager.CloseMenus();
+            if(KFPRI.WorldInfo.GRI.bMatchHasBegun)
+            {
+                Manager.CloseMenus();                
+            }
+            else
+            {
+                if(Manager.bAfterLobby && ((Manager.CurrentMenu != none) && Manager.PostGameMenu != none) && Manager.CurrentMenu != Manager.PostGameMenu)
+                {
+                    Manager.ToggleMenus();
+                }
+            }
         }
     }
 }
@@ -149,6 +161,10 @@ function Callback_ReadyClicked(bool bReady)
                 {
                     Manager.StartMenu.OnPlayerReadiedUp();
                 }
+                if(Manager.PerksMenu != none)
+                {
+                    Manager.PerksMenu.SelectionContainer.SetPerkListEnabled(!bReady);
+                }
             }
         }
     }
@@ -200,9 +216,16 @@ function Callback_LeaveParty()
 
 function Callback_InviteFriend()
 {
-    if(OnlineLobby != none)
+    if(Class'WorldInfo'.static.IsConsoleBuild())
     {
-        OnlineLobby.ShowLobbyInviteInterface();
+        Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.ShowInviteUI(byte(Manager.GetLP().ControllerId), "");        
+    }
+    else
+    {
+        if(OnlineLobby != none)
+        {
+            OnlineLobby.ShowLobbyInviteInterface();
+        }
     }
 }
 

@@ -38,7 +38,6 @@ var bool bRagedThisPhase;
 var bool bWantsToFlee;
 var bool bFleeing;
 var bool bFleeInterrupted;
-var bool bSummonedThisPhase;
 var float LostSightSprintDelay;
 var float AggroFalloffWaitTime;
 var float AggroFalloffPerSecond;
@@ -81,7 +80,6 @@ var float MaxFleeDuration;
 var float MaxFleeDistance;
 var float FleeStartTime;
 var float TotalFleeTime;
-var Vector FleeStartLocation;
 
 event Possess(Pawn inPawn, bool bVehicleTransition)
 {
@@ -126,12 +124,12 @@ simulated event Destroyed()
 
 function bool IsAggroEnemySwitchAllowed()
 {
-    return (!MyPatPawn.IsDoingSpecialMove(19) && !MyPatPawn.IsDoingSpecialMove(20)) && !MyPatPawn.IsDoingSpecialMove(4);
+    return (!MyPatPawn.IsDoingSpecialMove(18) && !MyPatPawn.IsDoingSpecialMove(19)) && !MyPatPawn.IsDoingSpecialMove(3);
 }
 
 function bool CanSwitchEnemies()
 {
-    return ((((((!bWantsToFlee && !bFleeing) && MyPatPawn != none) && !MyPatPawn.bIsCloaking) && !MyPatPawn.IsDoingSpecialMove(17)) && !MyPatPawn.IsDoingSpecialMove(19)) && !MyPatPawn.IsDoingSpecialMove(18)) && !MyPatPawn.IsDoingSpecialMove(4);
+    return ((((((!bWantsToFlee && !bFleeing) && MyPatPawn != none) && !MyPatPawn.bIsCloaking) && !MyPatPawn.IsDoingSpecialMove(16)) && !MyPatPawn.IsDoingSpecialMove(18)) && !MyPatPawn.IsDoingSpecialMove(17)) && !MyPatPawn.IsDoingSpecialMove(3);
 }
 
 function float GetAggroRating(KFPawn KFP)
@@ -308,54 +306,6 @@ function bool SetBestTarget(out array<KFPawn> RecentTargets, optional float MinD
         return true;
     }
     return false;
-}
-
-function KFPawn CheckForEnemiesInFOV(float MaxRange, float MinFOV, float MaxFOV, optional bool bForceRetarget, optional bool bTauntNewEnemy)
-{
-    local Vector PawnDir, Projection;
-    local float FOVDot, TempDistSQ, BestDistSq;
-    local KFPawn KFP, BestTarget;
-
-    bTauntNewEnemy = true;
-    if(MyPatPawn == none)
-    {
-        return none;
-    }
-    PawnDir = vector(MyPatPawn.Rotation);
-    foreach MyPatPawn.OverlappingActors(Class'KFPawn', KFP, MaxRange)
-    {
-        if(bForceRetarget && Enemy == KFP)
-        {
-            continue;            
-        }
-        if(!KFP.IsAliveAndWell() || KFP.GetTeamNum() == GetTeamNum())
-        {
-            continue;            
-        }
-        Projection = KFP.Location - MyPatPawn.Location;
-        FOVDot = PawnDir Dot Normal(Projection);
-        if((FOVDot < MinFOV) || FOVDot > MaxFOV)
-        {
-            continue;            
-        }
-        if(!MyPatPawn.FastTrace(KFP.Location, MyPatPawn.Location,, true))
-        {
-            continue;            
-        }
-        TempDistSQ = VSizeSq(Projection);
-        TempDistSQ *= (1 - (GetAggroRating(KFP)));
-        if((BestTarget == none) || TempDistSQ < BestDistSq)
-        {
-            BestDistSq = TempDistSQ;
-            BestTarget = KFP;
-        }        
-    }    
-    if((BestTarget != none) && BestTarget != Enemy)
-    {
-        ChangeEnemy(BestTarget, bTauntNewEnemy);
-        return BestTarget;
-    }
-    return none;
 }
 
 simulated function Tick(float DeltaTime)
@@ -706,14 +656,18 @@ function bool SomeEnemiesAreHidden()
 
 function NotifyAttackDoor(KFDoorActor door)
 {
-    if(bFleeing)
+    if(bFleeing || bWantsToFlee)
     {
-        TotalFleeTime = TotalFleeTime + (WorldInfo.TimeSeconds - FleeStartTime);
-        bWantsToFlee = true;
-        bFleeInterrupted = true;
-        bFleeing = false;
-        AbortCommand(FindCommandOfClass(Class'AICommand_Flee'));
-        EnableMeleeRangeEventProbing();        
+        if(bFleeing)
+        {
+            bFleeInterrupted = true;
+            bFleeing = false;
+            TotalFleeTime = TotalFleeTime + (WorldInfo.TimeSeconds - FleeStartTime);
+            bWantsToFlee = true;
+        }
+        AbortCommand(CommandList);
+        EnableMeleeRangeEventProbing();
+        BeginCombatCommand(GetDefaultCommand(), "Restarting default command");        
     }
     else
     {
@@ -768,7 +722,7 @@ function NotifyCommandFinished(AICommand FinishedCommand)
         {
             MyPatPawn.EndSpecialMove();
         }
-        SetTimer(0.06, false, 'Flee', self);
+        SetTimer(0.06, false, 'Flee');
     }
 }
 
@@ -896,7 +850,7 @@ function NotifyKilled(Controller Killer, Controller Killed, Pawn KilledPawn, cla
     }
     else
     {
-        if((((((!bWantsToFlee && !bFleeing) && !bRagedThisPhase) && MyPatPawn.MaxRageAttacks > 0) && !MyPatPawn.IsDoingSpecialMove(17)) && Killed != self) && Killed.GetTeamNum() == GetTeamNum())
+        if((((((!bWantsToFlee && !bFleeing) && !bRagedThisPhase) && MyPatPawn.MaxRageAttacks > 0) && !MyPatPawn.IsDoingSpecialMove(16)) && Killed != self) && Killed.GetTeamNum() == GetTeamNum())
         {
             if(CanSee(KilledPawn))
             {
@@ -909,9 +863,9 @@ function NotifyKilled(Controller Killer, Controller Killed, Pawn KilledPawn, cla
         }
         else
         {
-            if((Killed.Pawn == Enemy) && MyPatPawn.IsDoingSpecialMove(20))
+            if((Killed.Pawn == Enemy) && MyPatPawn.IsDoingSpecialMove(19))
             {
-                KFSM_Patriarch_MinigunBarrage(MyPatPawn.SpecialMoves[20]).Timer_SearchForMinigunTargets();
+                KFSM_Patriarch_MinigunBarrage(MyPatPawn.SpecialMoves[19]).Timer_SearchForMinigunTargets();
             }
         }
     }
@@ -960,15 +914,16 @@ function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, 
             }
         }
     }
-    if(((((!bWantsToFlee && !bFleeing) && MyPatPawn != none) && !MyPatPawn.bHealedThisPhase) && MyPatPawn.CurrentBattlePhase < 4) && !MyPatPawn.IsDoingSpecialMove(17))
+    if(((((!bWantsToFlee && !bFleeing) && MyPatPawn != none) && !MyPatPawn.bHealedThisPhase) && MyPatPawn.CanSummonChildren()) && !MyPatPawn.IsDoingSpecialMove(16))
     {
         if(!bSummonedThisPhase && GetHealthPercentage() < (FleeHealthThreshold + 0.075))
         {
             bSummonedThisPhase = true;
             MyAIDirector.bForceFrustration = true;
-            SummonChildren();
+            MyPatPawn.SummonChildren();
+            SetTimer(30, false, 'Timer_StopSummoningZeds');
         }
-        if(!MyPatPawn.IsDoingSpecialMove(13) && GetHealthPercentage() < FleeHealthThreshold)
+        if(!MyPatPawn.IsDoingSpecialMove(12) && GetHealthPercentage() < FleeHealthThreshold)
         {
             if(MyPatPawn.IsDoingSpecialMove())
             {
@@ -1097,19 +1052,10 @@ function bool AmIAllowedToSuicideWhenStuck()
     return false;
 }
 
-function SummonChildren()
-{
-    if(MyPatPawn == none)
-    {
-        return;
-    }
-    MyPatPawn.SummonChildren();
-}
-
-function Timer_StopSummoningChildren()
+function Timer_StopSummoningZeds()
 {
     bSummonedThisPhase = false;
-    MyKFGameInfo.SpawnManager.StopSummoningBossMinions();
+    super.Timer_StopSummoningZeds();
 }
 
 function NextBattlePhase()
@@ -1134,19 +1080,20 @@ function Timer_SearchForFleeObstructions()
         SetTimer(0.25, false, 'Timer_SearchForFleeObstructions');
         return;
     }
-    ObstructingEnemy = CheckForEnemiesInFOV(AttackRange, 0.6, 1, false, false);
+    ObstructingEnemy = CheckForEnemiesInFOV(AttackRange * 1.1, 0.4, 1, false, false);
     if(ObstructingEnemy != none)
     {
         TotalFleeTime = TotalFleeTime + (WorldInfo.TimeSeconds - FleeStartTime);
         bFleeInterrupted = true;
         bFleeing = false;
         MyPatPawn.SetCloaked(false);
+        AbortCommand(CommandList);
         ChangeEnemy(ObstructingEnemy, false);
         bWantsToFlee = true;
-        AbortCommand(FindCommandOfClass(Class'AICommand_Flee'));
         bSprintUntilAttack = true;
         SetEnemyMoveGoal(self, true);
         EnableMeleeRangeEventProbing();
+        BeginCombatCommand(GetDefaultCommand(), "Restarting default command");
         SetTimer(3, false, 'Timer_SearchForFleeObstructions');        
     }
     else
@@ -1164,7 +1111,7 @@ function Timer_SearchForChargeObstructions()
         SetTimer(0.25, false, 'Timer_SearchForChargeObstructions');
         return;
     }
-    ObstructingEnemy = CheckForEnemiesInFOV(AttackRange, 0.4, 1, false, false);
+    ObstructingEnemy = CheckForEnemiesInFOV(AttackRange * 1.1, 0.4, 1, false, false);
     if(ObstructingEnemy != none)
     {
         MyPatPawn.SetCloaked(false);
@@ -1230,7 +1177,7 @@ function bool DoHeavyZedBump(Actor Other, Vector HitNormal)
         else
         {
             BumpedMonster.TakeDamage(BumpEffectDamage, self, BumpedMonster.Location, vect(0, 0, 0), MyKFPawn.GetBumpAttackDamageType());
-            BumpedMonster.DoSpecialMove(5,,, Class'KFSM_Stumble'.static.PackBodyHitSMFlags(BumpedMonster, HitNormal));
+            BumpedMonster.DoSpecialMove(4,,, Class'KFSM_Stumble'.static.PackBodyHitSMFlags(BumpedMonster, HitNormal));
             return true;
         }
     }
@@ -1263,20 +1210,18 @@ function Flee()
         RageAttackCount = MaxRageAttacks;
         UpdateRageState();
     }
-    DumpCommandStack();
     AICSM = FindCommandOfClass(Class'AICommand_SpecialMove');
     if(AICSM != none)
     {
         AICSM.ClearTimeout();
-        AbortCommand(AICSM);
     }
+    AbortCommand(CommandList);
     bFleeing = true;
     bCanEvaluateAttacks = false;
     MyPatPawn.SetCloaked(true);
     MyPatPawn.SetSprinting(true);
     DisableMeleeRangeEventProbing();
     FleeDuration = FMax(MaxFleeDuration - TotalFleeTime, 6);
-    FleeStartLocation = MyPatPawn.Location;
     FleeStartTime = WorldInfo.TimeSeconds;
     DoFleeFrom(FleeFromTarget, FleeDuration, MaxFleeDistance + float(Rand(int(MaxFleeDistance * 0.25))), true);
     EvaluateSprinting();
@@ -1286,18 +1231,29 @@ function Flee()
     }
 }
 
-function NotifyFleeFinished()
+function NotifyFleeFinished(optional bool bAcquireNewEnemy)
 {
+    bAcquireNewEnemy = true;
     if(MyPatPawn != none)
     {
         MyPatPawn.SetCloaked(false);
-        SetTimer(4, false, 'Timer_StopSummoningChildren');
+        if(IsTimerActive('Timer_StopSummoningZeds'))
+        {
+            SetTimer(4, false, 'Timer_StopSummoningZeds');
+        }
         ClearTimer('Timer_SearchForFleeObstructions');
         bWantsToFlee = false;
         bFleeing = false;
-        MyPatPawn.DoSpecialMove(17,,, Class'KFSM_Patriarch_Heal'.static.PackSMFlags(MyPatPawn.CurrentBattlePhase - 1));
+        MyPatPawn.DoSpecialMove(16,,, Class'KFSM_Patriarch_Heal'.static.PackSMFlags(MyPatPawn.CurrentBattlePhase - 1));
     }
     EnableMeleeRangeEventProbing();
+    BeginCombatCommand(GetDefaultCommand(), "Restarting default command");
+}
+
+function ForceHeal()
+{
+    AbortCommand(CommandList);
+    NotifyFleeFinished();
 }
 
 function EnterZedVictoryState()

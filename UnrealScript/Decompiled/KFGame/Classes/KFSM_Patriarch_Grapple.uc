@@ -5,11 +5,10 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFSM_Patriarch_Grapple extends KFSM_GrappleAttack
+class KFSM_Patriarch_Grapple extends KFSM_GrappleCombined
     native(SpecialMoves);
 
 var float TentacleStartTime;
-var float TentacleGrabTime;
 var float MaxRange;
 var float MaxClawReach;
 var float DetachDistance;
@@ -29,7 +28,7 @@ var class<KFDamageType> TentacleDmgType;
 
 function SpecialMoveStarted(bool bForced, name PrevMove)
 {
-    super(KFSpecialMove).SpecialMoveStarted(bForced, PrevMove);
+    super.SpecialMoveStarted(bForced, PrevMove);
     bAlignFollowerLookSameDirAsMe = default.bAlignFollowerLookSameDirAsMe;
     bAlignFollowerRotation = default.bAlignFollowerRotation;
     Follower = KFPOwner.InteractionPawn;
@@ -43,7 +42,6 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
     bGrabMissed = false;
     if(KFPOwner.Role == ROLE_Authority)
     {
-        KFPOwner.SetTimer(TentacleGrabTime, false, 'CheckGrapple', self);
         KFPawn_Monster(KFPOwner).SetCloaked(false);
     }
     KFPawn_Monster(KFPOwner).BumpFrequency = 0;
@@ -53,12 +51,6 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
     {
         DetachDistance = (KFPOwner.CylinderComponent.CollisionRadius + Follower.CylinderComponent.CollisionRadius) + default.DetachDistance;
     }
-    PlayGrappleAnim();
-}
-
-function PlayGrappleAnim()
-{
-    PlaySpecialMoveAnim(GrappleAnims[0], 0);
 }
 
 function BeginTentacleControls()
@@ -104,11 +96,11 @@ function CheckGrapple()
 function DamageFollower(Vector GrabLocation, Vector GrabDirection)
 {
     GrabDirection = Normal(GrabDirection);
-    Follower.TakeDamage(int(float(TentacleDamage) * 0.5), KFPOwner.Controller, GrabLocation, GrabDirection, TentacleDmgType,, KFPOwner);
+    Follower.TakeDamage(TentacleDamage, KFPOwner.Controller, GrabLocation, GrabDirection, TentacleDmgType,, KFPOwner);
     KFPawn_Monster(KFPOwner).MeleeAttackHelper.PlayMeleeHitEffects(Follower, GrabLocation, GrabDirection);
 }
 
-function BeginGrapple()
+function BeginGrapple(optional KFPawn Victim)
 {
     if(PawnOwner.Role == ROLE_Authority)
     {
@@ -175,7 +167,7 @@ function InitializeSkelControls()
 
     if(I < TentacleControls.Length)
     {
-        TentacleControls[I].BlendInTime = TentacleGrabTime - TentacleStartTime;
+        TentacleControls[I].BlendInTime = GrabCheckTime - TentacleStartTime;
         TentacleControls[I].BlendOutTime = TentacleBlendOutTime;
         ++ I;
         goto J0x1F5;
@@ -243,10 +235,7 @@ function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessT
     super(KFSpecialMove).AnimEndNotify(SeqNode, PlayedTime, ExcessTime);
 }
 
-function NotifyOwnerTakeHit(class<KFDamageType> DamageType, Vector HitLoc, Vector HitDir, Controller InstigatedBy)
-{
-    return;
-}
+function NotifyOwnerTakeHit(class<KFDamageType> DamageType, Vector HitLoc, Vector HitDir, Controller InstigatedBy);
 
 function OnFollowerLeavingSpecialMove()
 {
@@ -279,10 +268,15 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
     super.SpecialMoveEnded(PrevMove, NextMove);
 }
 
+function SpecialMoveButtonRetriggered();
+
+function SpecialMoveButtonReleased();
+
+function PlayerReleasedGrapple();
+
 defaultproperties
 {
     TentacleStartTime=0.83
-    TentacleGrabTime=1.18
     MaxRange=600
     MaxClawReach=50
     DetachDistance=20
@@ -292,11 +286,12 @@ defaultproperties
     TentacleEndBone=FrontTentacle7
     TentacleStartBone=FrontTentacle2
     RetractAirSpeed=1000
-    GrappleAnims(0)=Atk_Tentical_V1
+    GrabStartAnimName=Atk_Tentical_V1
     FollowerSpecialMove=ESpecialMove.SM_HansGrappleVictim
     bAlignLeaderLocation=false
     bAlignFollowerZ=true
     bStopAlignFollowerRotationAtGoal=false
+    bRetryCollisionCheck=false
     AlignDistance=108
     AlignSpeedModifier=0.2
     Handle=KFSM_Patriarch_Grapple

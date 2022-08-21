@@ -244,7 +244,7 @@ function Actor FindEnemyFor( KFAIController RequestingAI, optional bool bSkipCur
 		return none;
 	}
 
-	if( RequestingAI.MyKFPawn.IsDoingSpecialMove(SM_GrabAttack) )
+	if( RequestingAI.MyKFPawn.IsDoingSpecialMove(SM_GrappleAttack) )
 	{
 		return RequestingAI.Enemy;
 	}

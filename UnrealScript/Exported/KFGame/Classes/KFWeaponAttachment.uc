@@ -104,6 +104,8 @@ enum EWeaponState
 	WEP_ReloadSingle_Elite,
 	WEP_ReloadSingleEmpty_Elite,
 	WEP_Firing,
+	WEP_FiringSecondary,
+	WEP_FiringSecondaryAndReload,
 	WEP_MeleeBasic,
 	WEP_MeleeChain,		// @deprecated
 	WEP_MeleeSustained,
@@ -235,6 +237,9 @@ const IronShootAnim		= 'ADD_Iron_Shoot';
 /** Weapon shoots */
 const WeaponFireAnim	= 'Shoot';
 const WeaponAltFireAnim	= 'Shoot';
+/** Secondary Weapon Shoots */
+const WeaponSecondaryShootAndReload = 'Reload_Empty';
+const WeaponSecondaryShoot 			= 'Shoot';
 
 /** (TEMP) blend settings */
 var(Anims) float DefaultBlendInTime;
@@ -378,7 +383,7 @@ simulated function AttachLaserSight()
 	}
 }
 
-/** 
+/**
  * Assign weapon skin to 3rd person mesh
  */
 event SetWeaponSkin(int ItemId)
@@ -399,7 +404,7 @@ event SetWeaponSkin(int ItemId)
  * @name	Fire Effect Methods
 ********************************************************************************************* */
 
-/** 
+/**
  * Need to either call Instigator.ActorEffectIsRelevant(), or determine our
  * own Location and LastRenderTime before calling Super.ActorEffectIsRelevant().
  */
@@ -570,7 +575,7 @@ simulated function SpawnTracer(vector EffectLocation, vector HitLocation)
 			TracerDuration = fMin( (Sqrt(DistSQ) - 100.f) / TracerInfo.TracerVelocity, 1.f );
 			if( TracerDuration > 0.f )
 			{
-	    		E = WorldInfo.MyEmitterPool.SpawnEmitter( TracerInfo.TracerTemplate, EffectLocation, rotator(Dir) );  
+	    		E = WorldInfo.MyEmitterPool.SpawnEmitter( TracerInfo.TracerTemplate, EffectLocation, rotator(Dir) );
 	 			E.SetVectorParameter( 'Tracer_Velocity', TracerInfo.VelocityVector );
 	 			E.SetFloatParameter( 'Tracer_Lifetime', TracerDuration );
 	 		}
@@ -703,6 +708,12 @@ simulated function UpdateThirdPersonWeaponAction(EWeaponState NewWeaponState, KF
 		break;
 	case WEP_Cleaning:
 		PlayCharacterMeshAnim(P, P.bIsCrouched ? CH_CleanWeaponAnim : CleanWeaponAnim);
+		break;
+	case WEP_FiringSecondary:
+		PlayCharacterMeshAnim(P, WeaponSecondaryShoot);
+		break;
+	case WEP_FiringSecondaryAndReload:
+		PlayCharacterMeshAnim(P, WeaponSecondaryShootAndReload, true);
 		break;
 	case WEP_MeleeBasic:
 	//case WEP_MeleeChain:
@@ -1013,6 +1024,11 @@ simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingC
 	if( !bWeapMeshIsPawnMesh )
 	{
 		WeapMesh.SetLightingChannels(NewLightingChannels);
+	}
+
+	if( LaserSight != none )
+	{
+	   LaserSight.SetMeshLightingChannels(NewLightingChannels);
 	}
 }
 

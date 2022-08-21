@@ -237,10 +237,10 @@ package
             pingScrollingList.itemRendererInstanceName = "";
             pingScrollingList.margin = 0;
             pingScrollingList.inspectablePadding = {
-                "top":2.5,
+                "top":-6,
                 "right":8,
-                "bottom":8,
-                "left":-1.5
+                "bottom":0,
+                "left":1
             };
             pingScrollingList.rowHeight = 0;
             pingScrollingList.scrollBar = "";
@@ -271,10 +271,10 @@ package
             lengthScrollingList.itemRendererInstanceName = "";
             lengthScrollingList.margin = 0;
             lengthScrollingList.inspectablePadding = {
-                "top":2.5,
+                "top":-6,
                 "right":8,
-                "bottom":8,
-                "left":-1.5
+                "bottom":0,
+                "left":1
             };
             lengthScrollingList.rowHeight = 0;
             lengthScrollingList.scrollBar = "";
@@ -305,10 +305,10 @@ package
             difficultyScrollingList.itemRendererInstanceName = "";
             difficultyScrollingList.margin = 0;
             difficultyScrollingList.inspectablePadding = {
-                "top":2.5,
+                "top":-6,
                 "right":8,
-                "bottom":8,
-                "left":-1.5
+                "bottom":0,
+                "left":1
             };
             difficultyScrollingList.rowHeight = 0;
             difficultyScrollingList.scrollBar = "";
@@ -339,10 +339,10 @@ package
             mapScrollingList.itemRendererInstanceName = "";
             mapScrollingList.margin = 0;
             mapScrollingList.inspectablePadding = {
-                "top":2.5,
+                "top":-6,
                 "right":8,
-                "bottom":8,
-                "left":-1.5
+                "bottom":0,
+                "left":1
             };
             mapScrollingList.rowHeight = 0;
             mapScrollingList.scrollBar = "ListScrollBar";
@@ -373,10 +373,10 @@ package
             gameModeScrollingList.itemRendererInstanceName = "";
             gameModeScrollingList.margin = 0;
             gameModeScrollingList.inspectablePadding = {
-                "top":2.5,
+                "top":-6,
                 "right":8,
-                "bottom":8,
-                "left":-1.5
+                "bottom":0,
+                "left":1
             };
             gameModeScrollingList.rowHeight = 0;
             gameModeScrollingList.scrollBar = "";

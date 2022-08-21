@@ -39,7 +39,7 @@ simulated event ReplicatedEvent(name VarName)
 	switch( VarName )
 	{
 	case nameof(bIsCloakingSpottedByTeam):
-		SetGameplayMICParams();
+		UpdateGameplayMICParams();
 		break;
 	case nameof(bIsCloaking):
 		ClientCloakingStateUpdated();
@@ -54,7 +54,7 @@ function SetCloaked(bool bNewCloaking)
 {
 	if ( bCanCloak )
 	{
-		if( IsImpaired() && bNewCloaking )
+		if( bNewCloaking && (IsImpaired() || IsIncapacitated()) )
 		{
 			return;
 		}
@@ -68,10 +68,11 @@ function SetCloaked(bool bNewCloaking)
 
 		if( WorldInfo.NetMode != NM_DedicatedServer )
 		{
-			SetGameplayMICParams();
+			UpdateGameplayMICParams();
 			Mesh.SetPerObjectShadows(!bNewCloaking);
+			ClearBloodDecals();
 		}
-
+		
 		super.SetCloaked( bNewCloaking );
 	}
 }
@@ -87,16 +88,16 @@ simulated function ClientCloakingStateUpdated()
 		ClearBloodDecals();
 	}
 	
-	SetGameplayMICParams();
+	UpdateGameplayMICParams();
 	Mesh.SetPerObjectShadows( !bIsCloaking );
 }
 
 /** Handle cloaking materials */
-simulated function SetGameplayMICParams()
+simulated function UpdateGameplayMICParams()
 {
 	local bool bIsSpotted;
 
-	super.SetGameplayMICParams();
+	super.UpdateGameplayMICParams();
 
 	// Cannot cloak after stalker has been gored
 	if ( !bIsGoreMesh && WorldInfo.NetMode != NM_DedicatedServer )
@@ -106,11 +107,11 @@ simulated function SetGameplayMICParams()
 
 		if ( bIsSpotted && bIsCloaking )
 		{
-			BodyMIC.SetParent(SpottedMaterial);
+			CharacterMICs[0].SetParent(SpottedMaterial);
 		}
-		else if( BodyMIC.Parent == SpottedMaterial )
+		else if( CharacterMICs[0].Parent == SpottedMaterial )
 		{
-			BodyMIC.SetParent(Mesh.SkeletalMesh.Materials[0]);
+			CharacterMICs[0].SetParent(Mesh.SkeletalMesh.Materials[0]);
 			PlayStealthSoundLoop();
 		}
 	}
@@ -133,7 +134,7 @@ simulated event NotifyGoreMeshActive()
 	// Set to our solid gore mat (only AI-controlled)
 	if( PlayerReplicationInfo == none && Mesh.SkeletalMesh.Materials.Length > 2 )
 	{
-		BodyMIC.SetParent( Mesh.SkeletalMesh.Materials[2] );	
+		CharacterMICs[0].SetParent( Mesh.SkeletalMesh.Materials[2] );	
 	}
 }
 
@@ -168,13 +169,13 @@ simulated event Tick( float DeltaTime )
 			if( CloakPercent < 1.0f )
 			{
 				CloakPercent = fMin( CloakPercent + DeltaTime*DeCloakSpeed, 1.0f );
-				BodyMIC.SetScalarParameterValue( 'Transparency', CloakPercent );
+				CharacterMICs[0].SetScalarParameterValue( 'Transparency', CloakPercent );
 			}
 		}
 		else if( CloakPercent > MinCloakPct )
 		{
 			CloakPercent = fMax( CloakPercent - DeltaTime*CloakSpeed, MinCloakPct );
-			BodyMIC.SetScalarParameterValue( 'Transparency', CloakPercent );
+			CharacterMICs[0].SetScalarParameterValue( 'Transparency', CloakPercent );
 		}
 	}
 }
@@ -245,7 +246,7 @@ simulated event UpdateSpottedStatus()
 	{
 		if ( bIsCloakingSpottedByLP != bOldSpottedByLP )
 		{
-			SetGameplayMICParams();
+			UpdateGameplayMICParams();
 		}
 	}
 }
@@ -255,7 +256,7 @@ function CallOutCloaking( optional KFPlayerController CallOutController )
 {
 	bIsCloakingSpottedByTeam = true;
 	LastStoredCC = CallOutController;
-	SetGameplayMICParams();
+	UpdateGameplayMICParams();
 	SetTimer(2.f, false, nameof(CallOutCloakingExpired));
 }
 
@@ -264,11 +265,18 @@ function CallOutCloakingExpired()
 {
 	bIsCloakingSpottedByTeam = false;
 	LastStoredCC = none;
-	SetGameplayMICParams();
+	UpdateGameplayMICParams();
 }
 
-/** Spawns and attaches the rally effect to a specified bone */
-simulated function SpawnRallyEffect( ParticleSystem RallyEffect, name EffectBoneName, vector EffectOffset )
+/** Applies the rally buff and spawns a rally effect */
+simulated function Rally(
+							ParticleSystem 	RallyEffect,
+							name 			EffectBoneName,
+							vector			EffectOffset,
+							ParticleSystem	PlayerRallyEffect,
+							name 			PlayerRallyEffectBoneNames[2],
+							vector 			PlayerRallyEffectOffset
+						)
 {
 	local PlayerController PC;
 
@@ -288,7 +296,7 @@ simulated function SpawnRallyEffect( ParticleSystem RallyEffect, name EffectBone
 		}
 	}
 
-	super.SpawnRallyEffect( RallyEffect, EffectBoneName, EffectOffset );
+	super.Rally( RallyEffect, EffectBoneName, EffectOffset, PlayerRallyEffect, PlayerRallyEffectBoneNames, PlayerRallyEffectOffset );
 }
 
 /* PlayDying() is called on server/standalone game when killed
@@ -321,7 +329,7 @@ function OnStackingAfflictionChanged(byte Id)
 
 	if( Role == ROLE_Authority && IsAliveAndWell() )
 	{
-		if ( Id == SAF_EMPPanic || Id == SAF_EMPDisrupt )
+		if ( Id == AF_EMP )
 		{
 			SetCloaked( !bEMPPanicked && !bEMPDisrupted );
 		}
@@ -422,15 +430,17 @@ DefaultProperties
 		SpecialMoveClasses(SM_Emerge)				=class'KFSM_Emerge'
 	End Object
 
-	InstantIncaps(IAF_Stun)=(Head=43,Torso=45,Leg=60,Arm=60,LowHealthBonus=10,Cooldown=3.0)
-	InstantIncaps(IAF_Knockdown)=(Head=50,Torso=75,Leg=75,Arm=75,LowHealthBonus=10,Cooldown=9.0)
-	InstantIncaps(IAF_Stumble)=(Head=43,Torso=46,Arm=46,LowHealthBonus=10,Cooldown=2.0)
-	InstantIncaps(IAF_LegStumble)=(Leg=46,LowHealthBonus=10,Cooldown=1.0)
-	InstantIncaps(IAF_GunHit)=(Head=106,Torso=106,Leg=106,Arm=106,LowHealthBonus=10,Cooldown=1.0)
-	InstantIncaps(IAF_MeleeHit)=(Head=23,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=0.35)
-	StackingIncaps(SAF_Poison)=(Threshhold=6.0,Duration=5.0,Cooldown=20.5,DissipationRate=1.00)
-	StackingIncaps(SAF_Microwave)=(Threshhold=3.0,Duration=5.0,Cooldown=20.5,DissipationRate=1.00)
-	StackingIncaps(SAF_FirePanic)=(Threshhold=2.0,Duration=2.5,Cooldown=5.0,DissipationRate=0.05)
+	// for reference: Vulnerability=(default, head, legs, arms, special)
+	IncapSettings(AF_Stun)=		(Vulnerability=(2.0, 2.0, 1.0, 1.0, 1.0), Cooldown=5.0)
+	IncapSettings(AF_Knockdown)=(Vulnerability=(1.5),                     Cooldown=1.0)
+	IncapSettings(AF_Stumble)=	(Vulnerability=(1.f),                     Cooldown=0.5)
+	IncapSettings(AF_GunHit)=	(Vulnerability=(0.75),                    Cooldown=0.0)
+	IncapSettings(AF_MeleeHit)=	(Vulnerability=(2.0),                     Cooldown=0.0)
+	IncapSettings(AF_FirePanic)=(Vulnerability=(3),                       Cooldown=3.0,  Duration=4.0)
+	IncapSettings(AF_EMP)=		(Vulnerability=(2.5),                     Cooldown=5.0,  Duration=5.0)
+	IncapSettings(AF_Poison)=	(Vulnerability=(10.0),                     Cooldown=7.5,  Duration=5.5)
+	IncapSettings(AF_Microwave)=(Vulnerability=(0.0),                     Cooldown=20.5, Duration=5.0)
+	IncapSettings(AF_Freeze)=	(Vulnerability=(2.5),                     Cooldown=1.5,  Duration=2.0)
 
 	ParryResistance=1
 
@@ -455,10 +465,23 @@ DefaultProperties
 	// Penetration
     PenetrationResistance=0.5
 
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(0.5)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(2.5)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun', 	        DamageScale=(0.25)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun', 	        DamageScale=(0.75)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle', 	        DamageScale=(0.3)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(1.0)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(1.0)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(0.3)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 	                DamageScale=(0.2)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive',            	    DamageScale=(0.3)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(1.0)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(1.0)))
+
 	// ---------------------------------------------
 	// Resistance & Vulnerability
-	ResistantDamageTypes.Add((DamageType=class'KFDT_Toxic'))
-	ResistantDamageTypes.Add((DamageType=class'KFDT_Microwave'))
+
+
 
     // ---------------------------------------------
 	// Movement / Physics
@@ -470,7 +493,7 @@ DefaultProperties
 	// ---------------------------------------------
 	// AI / Navigation
 	ControllerClass=class'KFAIController_ZedStalker'
-	DamageRecoveryTimeHeavy=0.2f
+	DamageRecoveryTimeHeavy=0.65f
 	DamageRecoveryTimeMedium=1.0f
 
 	RotationRate=(Pitch=50000,Yaw=45000,Roll=50000)

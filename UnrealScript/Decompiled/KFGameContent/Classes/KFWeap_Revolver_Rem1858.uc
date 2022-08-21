@@ -18,6 +18,7 @@ defaultproperties
     BulletMeshComponents=/* Array type was not detected. */
     CylinderRotInfo=(InC=-60,Time=0.0175)
     InventorySize=2
+    MagazineCapacity=6
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -31,7 +32,6 @@ defaultproperties
     GroupPriority=15
     WeaponSelectTexture=Texture2D'WEP_UI_Remington_1858_TEX.UI_WeaponSelect_Remington'
     DualClass=Class'KFWeap_Revolver_DualRem1858'
-    MagazineCapacity=6
     MaxSpareAmmo=186
     InitialSpareMags=15
     AmmoPickupScale=2

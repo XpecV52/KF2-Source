@@ -14,14 +14,11 @@ class AICommand_ThrowGrenade extends AICommand_SpecialMove
 /** 0 = no barrage, 1 = small barrage, 2 = big barrage */
 var int GrenadeBarrage;
 
-/** Waves of zeds to summon for this command*/
-var	KFAIWaveInfo				SummonWave;
-
-/** The maximum number of zeds to spawn/have active at once for this boss */
-var int MaxBossMinions;
+/** Whether we should keep trying to do this command if we're unable to at first */
+var bool bHuntAndHeal;
 
 /** Create the command to throw the grenade (TODO: add support for InTarget override) */
-static function bool ThrowGrenade( KFAIController_Hans AI, optional int inGrenadeBarrage, optional KFPawn InTarget, optional KFAIWaveInfo NewSummonWave, optional int NewMaxBossMinions )
+static function bool ThrowGrenade( KFAIController_Hans AI, optional int inGrenadeBarrage, optional bool bIsHuntAndHeal )
 {
 	local AICommand_ThrowGrenade Cmd;
 
@@ -29,12 +26,7 @@ static function bool ThrowGrenade( KFAIController_Hans AI, optional int inGrenad
 	if( Cmd != None )
 	{
 		Cmd.GrenadeBarrage = inGrenadeBarrage;
-
-		if( NewMaxBossMinions > 0 && NewSummonWave != none )
-		{
-    		Cmd.SummonWave = NewSummonWave;
-    		Cmd.MaxBossMinions = NewMaxBossMinions;
-		}
+		Cmd.bHuntAndHeal = bIsHuntAndHeal;
 
 		AI.PushCommand( Cmd );
 		return true;
@@ -73,32 +65,20 @@ state Command_SpecialMove
 
     function bool ExecuteSpecialMove()
 	{
-		local KFAISpawnManager SpawnManager;
-
         if( Super.ExecuteSpecialMove() )
         {
-            // Summon minions if we want them
-            if( MaxBossMinions > 0 )
+            // If we successfully did a smoke grenade throw, clear the pending flag
+            if( KFPawn_ZedHansBase(MyKFPawn) != none )
             {
-        		SpawnManager = KFGameInfo(WorldInfo.Game).SpawnManager;
-        		if ( SpawnManager != none )
-        		{
-        		 	SpawnManager.SummonBossMinions( SummonWave.Squads, MaxBossMinions );
-        		}
+                KFPawn_ZedHansBase(MyKFPawn).bPendingSmokeGrenadeBarrage = false;
+            }
 
-                // If we successfully did a smoke grenade throw, clear the pending flag
-                if( KFPawn_ZedHansBase(MyKFPawn) != none )
-                {
-                    KFPawn_ZedHansBase(MyKFPawn).bPendingSmokeGrenadeBarrage = false;
-                }
-
-    		}
     		return true;
 		}
 		else
 		{
             // If we were trying to do a grenade throw, do it when we can
-            if( GrenadeBarrage > 0 && MaxBossMinions > 0 && KFPawn_ZedHansBase(MyKFPawn) != none )
+            if( GrenadeBarrage > 0 && bHuntAndHeal && KFPawn_ZedHansBase(MyKFPawn) != none )
             {
                 KFPawn_ZedHansBase(MyKFPawn).bPendingSmokeGrenadeBarrage = true;
             }

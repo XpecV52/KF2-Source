@@ -30,18 +30,37 @@ function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 {
 	local byte i;
 	local GFxObject DataProvider, DataObject;
+	local array<string> DisplayedOptions;
+	local PlayerController PC;
 
 	super.InitializeMenu( InManager );
 	
+	PC = GetPC();
 	DataProvider = CreateArray();
 	DataProvider.SetString( "header", HeaderString );
-	for( i = 0; i < OptionStrings.length; i++ )
+	DisplayedOptions = OptionStrings;
+	if ( PC != None && PC.WorldInfo != None )
+	{
+		// On console we combine video and audio options so make sure the string shows that correctly.
+		if ( PC.WorldInfo.IsConsoleBuild() )
+		{
+			// No Video
+			DisplayedOptions.Remove(OM_Video,1);
+			DisplayedOptions[0] = OptionStrings[1]$"/"$OptionStrings[0];
+		}
+
+		// Remove the Credits option when in game instead of disabling it.
+		if ( !PC.WorldInfo.IsMenuLevel() )
+		{
+			DisplayedOptions.Remove(DisplayedOptions.length-1,1);
+		}
+	}
+
+	for( i = 0; i < DisplayedOptions.length; i++ )
 	{
 		DataObject = CreateObject( "Object" );
-		DataObject.SetString( "label", OptionStrings[i] );
-		DataObject.SetBool("enabled", (!(!class'WorldInfo'.static.IsMenuLevel() && i == OM_Credits)));
-		DataProvider.SetElementObject( i, DataObject );
-		
+		DataObject.SetString( "label", DisplayedOptions[i] );
+		DataProvider.SetElementObject( i, DataObject );		
 	}
 	SetObject("buttonNames", DataProvider);
 }
@@ -49,6 +68,11 @@ function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 
 function Callback_MenuSelected( int MenuIndex )
 {
+	// Since the console doesn't have Video we need to increase the menuIndex to account for that.
+	if(class'WorldInfo'.static.IsConsoleBuild())
+	{
+		MenuIndex++;
+	}
 	switch( MenuIndex )
 	{
 		case OM_Video:

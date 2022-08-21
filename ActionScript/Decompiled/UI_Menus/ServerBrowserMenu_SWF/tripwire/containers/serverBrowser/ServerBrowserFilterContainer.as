@@ -354,25 +354,14 @@ package tripwire.containers.serverBrowser
             this.pingScrollingList.bOpen = false;
         }
         
-        override protected function openAnimation() : *
+        override protected function openAnimation(param1:Boolean = true) : *
         {
             TweenMax.fromTo(this,6,{
                 "z":-128,
-                "autoAlpha":0,
-                "blurFilter":{
-                    "blurX":12,
-                    "blurY":12,
-                    "quality":1
-                }
+                "autoAlpha":0
             },{
                 "z":0,
                 "autoAlpha":1,
-                "blurFilter":{
-                    "blurX":0,
-                    "blurY":0,
-                    "quality":1,
-                    "remove":true
-                },
                 "ease":Cubic.easeOut,
                 "useFrames":true,
                 "onComplete":onOpened
@@ -388,12 +377,6 @@ package tripwire.containers.serverBrowser
                 "visible":false,
                 "z":-128,
                 "alpha":0,
-                "blurFilter":{
-                    "blurX":12,
-                    "blurY":12,
-                    "quality":1,
-                    "remove":true
-                },
                 "ease":Cubic.easeOut,
                 "useFrames":true,
                 "onComplete":onClosed

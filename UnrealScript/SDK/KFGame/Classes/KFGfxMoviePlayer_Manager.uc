@@ -38,11 +38,17 @@ enum EUIIndex
     UI_PostGame,
 	UI_Trader,
 	UI_ServerBrowserMenu,
+	UI_IIS,
 	UI_MAX,
 };
 
+struct SMenuPaths
+{
+	var string BaseSWFPath;
+	var string ConsoleSWFPath;
+};
 /** Points to the .swf location of each menu and is controlled by the EUIIndex */
-var array<string> MenuSWFPaths;
+var array<SMenuPaths> MenuSWFPaths;
 
 var KFGFxObject_Menu CurrentMenu;
 var byte CurrentMenuIndex;
@@ -62,6 +68,7 @@ var KFGFxMenu_PostGameReport PostGameMenu;
 var KFGFxMenu_Trader TraderMenu;
 var KFGFxMenu_ServerBrowser ServerBrowserMenu;
 var KFGFxMenu_Exit ExitMenu;
+var KFGFxMenu_IIS IISMenu;
 
 var bool bPostGameState;
 
@@ -149,6 +156,9 @@ var GFxObject ManagerObject;
 var KFHUDBase HUD;
 /** The main menus background movie */
 var TextureMovie BackgroundMovie;
+/** The IIS background movie */
+var TextureMovie IISMovie;
+
 
 /** Array of commands that cannot be rebound */
 var array<string> IgnoredCommands;
@@ -167,6 +177,8 @@ var bool bCanCloseMenu;	// Set to true after a menu has been completely opened a
 var bool bPlayerInLobby;
 var globalconfig bool bSetGamma;	// Set to true if we've already set the gamma on the first launch
 
+var OnlineSubsystem OnlineSub;
+
 //Delegates for popups.  These are used to hold the delegates while the swf is loading. once it is loaded, it will pass it to the GFX object
 //@TODO: Rewrite the pop up system to keep the pop ups loaded in at all times so the pending delegates are not needed. (Hide and show them as needed)
 delegate PendingRightButtonDelegate();
@@ -176,7 +188,9 @@ delegate PendingLeftButtonDelegate();
 /** Called on creation of the movie player */
 function Init(optional LocalPlayer LocPlay)
 {
-	local OnlineSubsystem OnlineSub;
+	local Vector2D ViewportSize;
+	local GameViewportClient GVC;
+	local float ScaleStage;
 	TimerHelper = GetPC().Spawn(class'KFHUDTimerHelper');
 	// Initialize datastores
 	class'KFUIDataStore_GameResource'.static.InitializeProviders();
@@ -185,15 +199,26 @@ function Init(optional LocalPlayer LocPlay)
 
 	super.Init( LocPlay );
 
-	if(OnlineSub != none)
+	if(OnlineSub == none)
 	{
-	OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
-	OnlineLobby = OnlineSub.GetLobbyInterface();
+		OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
+		if( OnlineSub != none )
+		{
+			OnlineLobby = OnlineSub.GetLobbyInterface();
+		}
 	}
 
 	TimerHelper.SetTimer( 1.0, true, nameof(OneSecondLoop), self );
 	SetTimingMode(TM_Real);
 
+	GVC = GetGameViewportClient();
+	if ( GVC != None && class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis))
+	{
+		GVC.GetViewportSize(ViewportSize);
+		ScaleStage = class'Engine'.static.GetTitleSafeArea();
+		SetViewport((ViewportSize.X-(ViewportSize.X*ScaleStage))/2,(ViewportSize.Y-(ViewportSize.Y*ScaleStage))/2,(ViewportSize.X*ScaleStage),(ViewportSize.Y*ScaleStage));
+	}
+	bUsingGamepad = class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis);
 	UpdateDynamicIgnoreKeys();
 }
 
@@ -201,24 +226,43 @@ function Init(optional LocalPlayer LocPlay)
 function LaunchMenus( optional bool bForceSkipLobby )
 {
 	local GFxWidgetBinding WidgetBinding;
-	local bool bSkippedLobby;
+	local bool bSkippedLobby, bShowIIS;
+	local KFGameViewportClient GVC;
+	local bool bShouldGamma, bShowMenuBg;
+	local TextureMovie BGTexture;
+	
+	bShouldGamma = true;
+
+	GVC = KFGameViewportClient(GetGameViewportClient());
 	// Add either the in game party or out of game party widget
 	WidgetBinding.WidgetName = 'partyWidget';
 	if ( class'WorldInfo'.static.IsMenuLevel() )
 	{
 		WidgetBinding.WidgetClass = class'KFGFxWidget_PartyMainMenu';
 
+		// If this is the menu level see if we've been here before.
+		bShowIIS = GVC != None && !GVC.bSeenIIS;
+
+		BGTexture = (GetPC().WorldInfo.IsConsoleBuild() && bShowIIS) ? IISMovie : BackgroundMovie;
+
 		SetExternalTexture("background", BackgroundMovie);
+		SetExternalTexture("IIS_BG", IISMovie);
+
+		bShowMenuBg = GVC.bSeenIIS || !GetPC().WorldInfo.IsConsoleBuild();
+		ManagerObject.SetBool("backgroundVisible", bShowMenuBg);
+		ManagerObject.SetBool("IISMovieVisible", !bShowMenuBg);
 
 		// Only play the movie if we are not in game
-		BackgroundMovie.Play();
+		BGTexture.Play();
 	}
 	else
 	{
 		bSkippedLobby = bForceSkipLobby || CheckSkipLobby();
 		WidgetBinding.WidgetClass = InGamePartyWidgetClass;
 		ManagerObject.SetBool("backgroundVisible", false);
-		if(bSkippedLobby)
+		ManagerObject.SetBool("IISMovieVisible", false);
+
+		if (bSkippedLobby)
 		{
 			BackgroundMovie.Stop();
 		}
@@ -242,7 +286,16 @@ function LaunchMenus( optional bool bForceSkipLobby )
 	if (!bSkippedLobby)
 	{
 		LoadWidgets(WidgetPaths);
-		OpenMenu(UI_Start);
+		// Console should check to see if we've seen the IIS and display it if this is the first time we've launched the menu.
+		if(class'WorldInfo'.static.IsConsoleBuild() && bShowIIS)
+		{
+			OpenMenu(UI_IIS,false);
+			bShouldGamma = false;
+		}
+		else
+		{
+			OpenMenu(UI_Start);
+		}
 		AllowCloseMenu();
 	}
 
@@ -253,8 +306,9 @@ function LaunchMenus( optional bool bForceSkipLobby )
 		CloseMenus(true);
 	}
 
-	if(!bSetGamma && !class'KFGameEngine'.static.CheckSkipGammaCheck())
+	if(bShouldGamma && !bSetGamma && !class'KFGameEngine'.static.CheckSkipGammaCheck())
 	{
+		ManagerObject.SetBool("bStartUpGamma", true);   // Let the manager know if we are gamma for start up so we can block backing out of the popup - HSL
 		OpenPopup(EGamma, "", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaDescription, Class'KFGFxOptionsMenu_Graphics'.default.ResetGammaString, Class'KFGFxOptionsMenu_Graphics'.default.SetGammaString);
 	}
 }
@@ -292,7 +346,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 			{
 				ManagerObject = Widget;
 				// Let the menuManager know if we are on console.
-				ManagerObject.SetBool("bConsoleBuild",class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis));
+				ManagerObject.SetBool("bConsoleBuild",class'WorldInfo'.static.IsConsoleBuild());
 			}
 		break;
 		case ( 'exitMenu' ):
@@ -414,7 +468,15 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 				PostGameMenu.InitializeMenu( self );
 			}
 			OnMenuOpen(WidgetPath, PostGameMenu);
-		break;
+			break;
+		case ( 'IISMenu' ):
+			if( IISMenu == none )
+			{
+				IISMenu = KFGFxMenu_IIS( Widget );
+				IISMenu.InitializeMenu( self );
+			}
+			OnMenuOpen( WidgetPath, IISMenu );
+			break;
 		case ( 'MenuBarWidget' ):
 			if ( MenuBarWidget == none )
 			{
@@ -499,6 +561,10 @@ function OneSecondLoop()
 		{
 			PostGameMenu.OneSecondLoop();
 		}
+		if (IISMenu != none)
+		{
+			IISMenu.OneSecondLoop();
+		}
 	}
 }
 
@@ -528,6 +594,7 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 	local EStartMenuState TempMenuState;
 	local WorldInfo WI;
 	local PlayerController PC;
+	local string MenuPath;
 
 	if( NewMenuIndex == UI_Gear )
 	{
@@ -560,6 +627,14 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 	{
 		CurrentMenu.OnClose();
 		CurrentMenu = none;
+	}
+
+	if (CurrentMenuIndex == UI_IIS && NewMenuIndex == UI_Start)
+	{
+		IISMovie.Stop();
+		ManagerObject.SetBool("IISMovieVisible", false);
+		BackgroundMovie.Play();
+		ManagerObject.SetBool("backgroundVisible", true);
 	}
 
 	if (NewMenuIndex != UI_Trader)
@@ -606,7 +681,15 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 	}
 
 	UpdateMenuBar();
-	LoadMenu( MenuSWFPaths[NewMenuIndex], bShowWidgets );
+	if ( class'WorldInfo'.static.IsConsoleBuild() && MenuSWFPaths[NewMenuIndex].ConsoleSWFPath != "" )
+	{
+		MenuPath = MenuSWFPaths[NewMenuIndex].ConsoleSWFPath;
+	}
+	else
+	{
+		MenuPath = MenuSWFPaths[NewMenuIndex].BaseSWFPath;
+	}
+	LoadMenu( MenuPath, bShowWidgets );
 }
 
 /** Tells actionscript which .swf to open up */
@@ -688,21 +771,12 @@ event OnClose()
 event OnCleanup()
 {
 	Super.OnCleanup();
-	
-	ClearAllInventoryReadCompleteDelegates();
-	GetGameViewportClient().HandleInputAxis = none;
-}
-
-function ClearAllInventoryReadCompleteDelegates()
-{
-	local OnlineSubsystem OnlineSub;
-	local int i;
-
-	OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
-	for (i = 0; i < OnlineSub.ReadInventoryCompleteDelegates.length; i++)
+	TimerHelper.ClearAllTimers();
+	if( OnlineSub != none )
 	{
-		OnlineSub.ReadInventoryCompleteDelegates.Remove(i,1);
+		OnlineSub.ClearAllInventoryReadCompleteDelegates();
 	}
+	GetGameViewportClient().HandleInputAxis = none;
 }
 
 /** Opens / Closes the menus on input */
@@ -743,13 +817,15 @@ function bool ToggleMenus()
 	else if(bPostGameState)
 	{
 		if(CurrentMenu == PostGameMenu)
-	{
+		{
+			ManagerObject.SetBool("bOpenedInGame",true);
 			bMenusOpen = false;
 			OpenMenu(UI_Perks);
 			SetWidgetsVisible(true);
 	}
 		else
 	{
+			ManagerObject.SetBool("bOpenedInGame",false);
 			OpenMenu(UI_PostGame);
 			SetWidgetsVisible(false);
 	}
@@ -802,11 +878,20 @@ function SetHUDVisiblity(bool bIsVisible)
 
 
 /** Called at the start of trader time */
-event OnTraderTimeStart()
+function OnTraderTimeStart()
 {
 	if(CurrentMenu != none)
 	{
 		CurrentMenu.OnTraderTimeStart();
+	}
+}
+
+/** Called when the round ends */
+function OnRoundOver()
+{
+	if( CurrentMenu != none )
+	{
+		CurrentMenu.OnRoundOver();
 	}
 }
 
@@ -1097,6 +1182,10 @@ function ChangeOverviewState(bool bLeaderIsOnServerBrowser)
  and open / close the perk selector */
 event bool FilterButtonInput(int ControllerId, name ButtonName, EInputEvent InputEvent)
 {
+	if ( class'KFGameEngine'.static.IsFullScreenMoviePlaying() )
+	{
+		return true;
+	}
 	// Handle closing out of currently active menu
 	if ( (bAfterLobby || GetPC().WorldInfo.GRI.bMatchIsOver) && InputEvent == EInputEvent.IE_Pressed
 		&& (ButtonName == 'Escape' || ButtonName == 'XboxTypeS_Start') )
@@ -1283,6 +1372,7 @@ defaultproperties
 {
 	InGamePartyWidgetClass=class'KFGFxWidget_PartyInGame'
 	BackgroundMovie=TextureMovie'UI_Managers.MenuBG'
+	IISMovie = TextureMovie'UI_Managers.IIS'
     MovieInfo=SwfMovie'UI_Managers.LoaderManager_SWF'
 	bCaptureInput=true
 	bAutoPlay=true
@@ -1298,20 +1388,21 @@ defaultproperties
 	IgnoredCommands.Add("GBA_VoiceChat")
 
 	// Menus
-	MenuSWFPaths[UI_Start]="../UI_Menus/StartMenu_SWF.swf"
-	MenuSWFPaths[UI_Perks]="../UI_Menus/PerksMenu_SWF.swf"
-	MenuSWFPaths[UI_ServerBrowserMenu]="../UI_Menus/ServerBrowserMenu_SWF.swf"
-	MenuSWFPaths[UI_Gear]="../UI_Menus/GearMenu_SWF.swf"
-	MenuSWFPaths[UI_Inventory]="../UI_Menus/InventoryMenu_SWF.swf"
-	MenuSWFPaths[UI_Store]="../UI_Menus/StoreMenu_SWF.swf"
-	MenuSWFPaths[UI_OptionsSelection]="../UI_Menus/OptionsSelectionMenu_SWF.swf"
-	MenuSWFPaths[UI_OptionsControls]="../UI_Menus/OptionsControlsMenu_SWF.swf"
-	MenuSWFPaths[UI_OptionsAudio]="../UI_Menus/OptionsAudioMenu_SWF.swf"
-	MenuSWFPaths[UI_OptionsGraphics]="../UI_Menus/OptionsGraphicsMenu_SWF.swf"
-	MenuSWFPaths[UI_OptionsGameSettings]="../UI_Menus/OptionsGameSettingsMenu_SWF.swf"
-	MenuSWFPaths[UI_PostGame]="../UI_Menus/PostGameMenu_SWF.swf"
-	MenuSWFPaths[UI_Trader]="../UI_Menus/TraderMenu_SWF.swf"
-	MenuSWFPaths[UI_Exit_Menu]="../UI_Menus/ExitMenu_SWF.swf"
+	MenuSWFPaths[UI_Start]=(BaseSWFPath="../UI_Menus/StartMenu_SWF.swf")
+	MenuSWFPaths[UI_Perks]=(BaseSWFPath="../UI_Menus/PerksMenu_SWF.swf")
+	MenuSWFPaths[UI_ServerBrowserMenu]=(BaseSWFPath="../UI_Menus/ServerBrowserMenu_SWF.swf")
+	MenuSWFPaths[UI_Gear]=(BaseSWFPath="../UI_Menus/GearMenu_SWF.swf")
+	MenuSWFPaths[UI_Inventory]=(BaseSWFPath="../UI_Menus/InventoryMenu_SWF.swf")
+	MenuSWFPaths[UI_Store]=(BaseSWFPath="../UI_Menus/StoreMenu_SWF.swf")
+	MenuSWFPaths[UI_OptionsSelection]=(BaseSWFPath="../UI_Menus/OptionsSelectionMenu_SWF.swf")
+	MenuSWFPaths[UI_OptionsControls]=(BaseSWFPath="../UI_Menus/OptionsControlsMenu_SWF.swf",ConsoleSWFPath="../UI_Menus/OptionsControlsMenu_SWF_Console.swf")
+	MenuSWFPaths[UI_OptionsAudio]=(BaseSWFPath="../UI_Menus/OptionsAudioMenu_SWF.swf",ConsoleSWFPath="../UI_Menus/OptionsAudioMenu_SWF_Console.swf")
+	MenuSWFPaths[UI_OptionsGraphics]=(BaseSWFPath="../UI_Menus/OptionsGraphicsMenu_SWF.swf")
+	MenuSWFPaths[UI_OptionsGameSettings]=(BaseSWFPath="../UI_Menus/OptionsGameSettingsMenu_SWF.swf",ConsoleSWFPath="../UI_Menus/OptionsGameSettingsMenu_SWF_Console.swf")
+	MenuSWFPaths[UI_PostGame]=(BaseSWFPath="../UI_Menus/PostGameMenu_SWF.swf")
+	MenuSWFPaths[UI_Trader]=(BaseSWFPath="../UI_Menus/TraderMenu_SWF.swf")
+	MenuSWFPaths[UI_Exit_Menu]=(BaseSWFPath="../UI_Menus/ExitMenu_SWF.swf")
+	MenuSWFPaths[UI_IIS]=(BaseSWFPath="../UI_Menus/IISMenu_SWF.swf")
 
 	CurrentMenuIndex=255
     // Pop-ups
@@ -1342,6 +1433,7 @@ defaultproperties
 	WidgetBindings.Add((WidgetName="postGameMenu",WidgetClass=class'KFGFxMenu_PostGameReport'))
 	WidgetBindings.Add((WidgetName="traderMenu",WidgetClass=class'KFGFxMenu_Trader'))
 	WidgetBindings.Add((WidgetName="ChatBoxWidget", WidgetClass=class'KFGFxHUD_ChatBoxWidget'))
+	WidgetBindings.Add((WidgetName="IISMenu", WidgetClass=class'KFGFxMenu_IIS'))
 
 	WidgetPaths.Add("../UI_Widgets/MenuBarWidget_SWF.swf")
 	WidgetPaths.Add("../UI_Widgets/PartyWidget_SWF.swf")

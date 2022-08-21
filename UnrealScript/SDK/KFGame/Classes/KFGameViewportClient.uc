@@ -22,6 +22,9 @@ var localized array<string> RandomLoadingStrings;
 var FONT MessageFont;
 var float FontScale;
 
+/** Keep track of whether we have seen the Initial Interaction Screen. */
+var bool bSeenIIS;
+
 cpptext
 {
 	virtual void ShowSpawnVolumes( ESetMode SetMode );
@@ -86,7 +89,7 @@ function string GetRandomLoadingMessage()
  */
 function DrawTransitionMessage(Canvas Canvas,string Message)
 {
-	//class'Engine'.static.AddOverlay(MessageFont, message, 0.1, 0.925, FontScale, FontScale, false);
+	Class'Engine'.static.AddOverlay(MessageFont, message, 0.15, 0.85, FontScale, FontScale, true);
 	
 `if(`isdefined(ShippingPC) || `isdefined(FINAL_RELEASE))
 	return;
@@ -98,6 +101,6 @@ function DrawTransitionMessage(Canvas Canvas,string Message)
 DefaultProperties
 {
 	//defaults
-	MessageFont=Font'UI_Canvas_Fonts.Font_General_Small'
-	FontScale=0.5
+	MessageFont=Font'UI_Canvas_Fonts.Font_Main'
+	FontScale=1
 }

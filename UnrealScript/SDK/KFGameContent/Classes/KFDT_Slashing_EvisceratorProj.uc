@@ -12,8 +12,6 @@ class KFDT_Slashing_EvisceratorProj extends KFDT_Slashing
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 `define COSINE_0_DEGREES   1
 `define COSINE_20_DEGREES  0.94
 `define COSINE_70_DEGREES  0.34
@@ -179,11 +177,10 @@ defaultproperties
 	// replicated CSHD weapon, but it might make sense to have bNoInstigatorDamage=true on more weapons.
 	bNoInstigatorDamage=true
 
-	StunPower=42
-	StumblePower=60
-	LegStumblePower=60
-    GunHitPower=150
-	MeleeHitPower=0
+	StunPower=0
+	StumblePower=100
+    GunHitPower=0
+	MeleeHitPower=100
 
 	WeaponDef=class'KFWeapDef_Eviscerator'
 

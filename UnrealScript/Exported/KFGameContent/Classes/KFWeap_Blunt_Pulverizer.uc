@@ -15,12 +15,39 @@ const ShootAnim_F = 'HardFire_F';
 const ShootAnim_B = 'HardFire_B';
 
 var() GameExplosion ExplosionTemplate;
-/** Location to try and spawn explosion at */
-var transient vector BlastStartLocation;
-var transient Actor  BlastAttachee;
+
+var transient Actor BlastAttachee;
+
+/** Spawn location offset to improve cone hit detection */
+var transient float BlastSpawnOffset;
 
 /** If set, heavy attack button has been released during the attack */
 var transient bool bPulverizerFireReleased;
+
+var bool bFriendlyFireEnabled;
+
+replication
+{
+	if (bNetInitial)
+		bFriendlyFireEnabled;
+}
+
+simulated event PreBeginPlay()
+{
+	Super.PreBeginPlay();
+
+	/** Initially check whether friendly fire is on or not. */
+	if(Role == ROLE_Authority && KFGameInfo(WorldInfo.Game).FriendlyFireScale != 0.f)
+	{
+		bFriendlyFireEnabled = true;
+	}
+}
+
+/** Pulverizer should be able to interrupt its reload state with any melee attack */
+simulated function bool CanOverrideMagReload(byte FireModeNum)
+{
+	return FireModeNum != RELOAD_FIREMODE;
+}
 
 /** Explosion Actor version */
 simulated function CustomFire()
@@ -34,8 +61,11 @@ simulated function CustomFire()
 		return;
 	}
 
-	SpawnLoc = Instigator.GetWeaponStartTraceLocation(); //BlastStartLocation;
+	SpawnLoc = Instigator.GetWeaponStartTraceLocation();
 	SpawnRot = GetPulverizerAim(SpawnLoc);
+
+	// nudge backwards to give a wider code near the player
+	SpawnLoc += vector(SpawnRot) * BlastSpawnOffset;
 
 	// explode using the given template
 	ExploActor = Spawn(class'KFExplosionActorReplicated', self,, SpawnLoc, SpawnRot,, true);
@@ -125,7 +155,6 @@ reliable server private function ServerBeginPulverizerFire(Actor HitActor, optio
 		return;
 	}
 
-	BlastStartLocation = HitLocation;
 	BlastAttachee = HitActor;
 	SendToFiringState(CUSTOM_FIREMODE);
 }
@@ -209,14 +238,15 @@ simulated state MeleeHeavyAttacking
 			}
 
 			Victim = KFPawn(HitActor);
-			if ( Victim == None || (Victim.bPlayedDeath && (WorldInfo.TimeSeconds - Victim.TimeOfDeath) > 0.f) )
+			if ( Victim == None || 
+				(!bFriendlyFireEnabled && Victim.GetTeamNum() == Instigator.GetTeamNum()) || 
+				(Victim.bPlayedDeath && (WorldInfo.TimeSeconds - Victim.TimeOfDeath) > 0.f) )
 			{
 				return;
 			}
 
 			if ( AmmoCount[0] > 0 && !IsTimerActive(nameof(BeginPulverizerFire)) )
 			{
-				BlastStartLocation = HitLocation;
 				BlastAttachee = HitActor;
 
 				// need to delay one frame, since this is called from AnimNotify
@@ -243,7 +273,8 @@ defaultproperties
 {
    ExplosionTemplate=KFGameExplosion'WEP_Pulverizer_ARCH.Wep_Pulverizer_Explosion'
    ParryStrength=5
-   ParryDamageMitigationPercent=0.100000
+   BlockDamageMitigation=0.600000
+   ParryDamageMitigationPercent=0.600000
    BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Hammer'
    ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Wood'
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
@@ -254,11 +285,11 @@ defaultproperties
    FireModeIconPaths(5)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
    FireModeIconPaths(6)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    InventorySize=6
+   MagazineCapacity(0)=5
    bCanBeReloaded=True
    bReloadFromMagazine=True
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Pulverizer'
-   MagazineCapacity(0)=5
    MaxSpareAmmo(0)=15
    WeaponFireSnd(6)=(DefaultCue=AkEvent'WW_WEP_MEL_Pulverizer.Play_WEP_MEL_Pulverizer_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_MEL_Pulverizer.Play_WEP_MEL_Pulverizer_Fire_1P')
    AttachmentArchetype=KFWeapAttach_Pulverizer'WEP_Pulverizer_ARCH.Wep_Pulverizer_3P'

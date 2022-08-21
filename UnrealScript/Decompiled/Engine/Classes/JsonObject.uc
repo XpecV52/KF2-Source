@@ -22,7 +22,7 @@ native function string GetStringValue(const string Key);
 // Export UJsonObject::execHasKey(FFrame&, void* const)
 native function bool HasKey(const string Key);
 
-function int GetIntValue(const string Key)
+event int GetIntValue(const string Key)
 {
     local string Value;
 
@@ -30,7 +30,7 @@ function int GetIntValue(const string Key)
     return int(Value);
 }
 
-function float GetFloatValue(const string Key)
+event float GetFloatValue(const string Key)
 {
     local string Value;
 
@@ -38,7 +38,7 @@ function float GetFloatValue(const string Key)
     return float(Value);
 }
 
-function bool GetBoolValue(const string Key)
+event bool GetBoolValue(const string Key)
 {
     local string Value;
 
@@ -52,17 +52,17 @@ native function SetObject(const string Key, JsonObject Object);
 // Export UJsonObject::execSetStringValue(FFrame&, void* const)
 native function SetStringValue(const string Key, const string Value);
 
-function SetIntValue(const string Key, int Value)
+event SetIntValue(const string Key, int Value)
 {
     SetStringValue(Key, "\\#" $ string(Value));
 }
 
-function SetFloatValue(const string Key, float Value)
+event SetFloatValue(const string Key, float Value)
 {
     SetStringValue(Key, "\\#" $ string(Value));
 }
 
-function SetBoolValue(const string Key, bool Value)
+event SetBoolValue(const string Key, bool Value)
 {
     SetStringValue(Key, "\\#" $ ((Value) ? "true" : "false"));
 }

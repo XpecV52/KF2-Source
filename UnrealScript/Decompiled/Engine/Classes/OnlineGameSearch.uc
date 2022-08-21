@@ -132,6 +132,7 @@ var LocalizedStringSetting Query;
 var databinding bool bIsLanQuery;
 var databinding bool bUsesArbitration;
 var const bool bIsSearchInProgress;
+var string GameMode;
 var class<OnlineGameSettings> GameSettingsClass;
 var const array<OnlineGameSearchResult> Results;
 var OverrideSkill ManualSkillOverride;

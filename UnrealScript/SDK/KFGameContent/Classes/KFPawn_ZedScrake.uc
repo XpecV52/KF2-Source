@@ -9,9 +9,6 @@
 
 class KFPawn_ZedScrake extends KFPawn_Monster;
 
-/** Secondary body material, used in the same way BodyMIC is */
-var MaterialInstanceConstant BodyAltMIC;
-
 var protected AkComponent 	ChainsawIdleAkComponent;
 var protected AkEvent		PlayChainsawIdleAkEvent;
 var protected AkEvent		StopChainsawIdleAkEvent;
@@ -49,7 +46,7 @@ simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bFo
     // Set our secondary material, attach our healing syringes
 	if( WorldInfo.NetMode != NM_DedicatedServer && Mesh != None )
 	{
-		BodyAltMIC = Mesh.CreateAndSetMaterialInstanceConstant( 2 );
+		CharacterMICs[1] = Mesh.CreateAndSetMaterialInstanceConstant( 2 );
 	}
 }
 
@@ -105,45 +102,6 @@ function PossessedBy( Controller C, bool bVehicleTransition )
 	}
 }
 
-/**
- * Update any material effects
- * Overridden to support second body material
- */
-function UpdateMaterialEffect(float DeltaTime)
-{
-	local float Intensity;
-
-	if( MaterialEffectTimeRemaining > 0.f )
-	{
-		if( MaterialEffectTimeRemaining > DeltaTime )
-		{
-			MaterialEffectTimeRemaining -= DeltaTime;
-			Intensity = 1.f - fClamp(MaterialEffectTimeRemaining/MaterialEffectDuration, 0.f, 1.f);
-		}
-		else
-		{
-			MaterialEffectTimeRemaining = 0.f;
-			Intensity = 1.f;
-		}
-
-		// Update the materials
-		if( BodyMIC != none )
-		{
-   			BodyMIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
-   		}
-
-   		if( BodyAltMIC != none )
-   		{
-   			BodyAltMIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
-   		}
-
-		if( HeadMIC != none )
-		{
-   			HeadMIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
-   		}
-	}
-}
-
 simulated function CreateExhaustFx()
 {
 	local vector Loc;
@@ -168,9 +126,29 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 {
 	super.TakeDamage( Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser );
 
-	if( bCanRage && !bPlayedDeath && (GetHealthPercentage() < RageHealthThreshold || GetHealthPercentage() < RageHealthThreshold) )
+	if( bCanRage && !bPlayedDeath && (GetHealthPercentage() < RageHealthThreshold || GetHeadHealthPercent() < RageHealthThreshold) )
 	{
-		bIsEnraged = true;
+		SetEnraged( true );
+	}
+}
+
+/** Enrage this Scrake! */
+simulated function SetEnraged( bool bNewEnraged )
+{
+	if( Role == ROLE_Authority && bNewEnraged == bIsEnraged )
+	{
+		return;
+	}
+
+	if ( Role == ROLE_Authority )
+	{
+		bIsEnraged = bNewEnraged;
+
+		// Sprint right away if we're AI
+		if( !IsHumanControlled() )
+		{
+			SetSprinting( bNewEnraged );
+		}
 	}
 }
 
@@ -182,7 +160,7 @@ simulated event NotifyGoreMeshActive()
     // Set our secondary MIC
 	if( WorldInfo.NetMode != NM_DedicatedServer && Mesh != None )
 	{
-		BodyAltMIC = Mesh.CreateAndSetMaterialInstanceConstant( 2 );
+		CharacterMICs[1] = Mesh.CreateAndSetMaterialInstanceConstant( 2 );
 	}
 }
 
@@ -289,23 +267,22 @@ defaultproperties
 		SpecialMoveClasses(SM_Evade)=class'KFSM_Evade'
 	End Object
 
-    InstantIncaps(IAF_Stun)=(Head=65,Torso=120,Leg=120,Arm=120,LowHealthBonus=10,Cooldown=3.0)
-    InstantIncaps(IAF_Knockdown)=(Head=55,Torso=110,Leg=110,Arm=140,LowHealthBonus=10,Cooldown=17.0)
-    InstantIncaps(IAF_Stumble)=(Head=53,Torso=53,Arm=60,LowHealthBonus=10,Cooldown=8.0)
-    InstantIncaps(IAF_LegStumble)=(Leg=54,LowHealthBonus=10,Cooldown=3.0)
-    InstantIncaps(IAF_GunHit)=(Head=134,Torso=134,Leg=134,Arm=134,LowHealthBonus=10,Cooldown=3.0)
-    InstantIncaps(IAF_MeleeHit)=(Head=29,Torso=40,Leg=40,Arm=40,LowHealthBonus=10,Cooldown=4.0)
-    StackingIncaps(SAF_Poison)=(Threshhold=5.0,Duration=1.5,Cooldown=20.0,DissipationRate=1.00)
-    StackingIncaps(SAF_Microwave)=(Threshhold=7.5,Duration=1.5,Cooldown=20.0,DissipationRate=1.00)
-    StackingIncaps(SAF_FirePanic)=(Threshhold=12.0,Duration=2.0,Cooldown=5.0,DissipationRate=1.0)
-    StackingIncaps(SAF_EMPPanic)=(Threshhold=2.0,Duration=5.0,Cooldown=5.0,DissipationRate=0.5)
-    StackingIncaps(SAF_EMPDisrupt)=(Threshhold=0.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.0)
-    StackingIncaps(SAF_Freeze)=(Threshhold=3.0,Duration=1.0,Cooldown=5.0,DissipationRate=0.33)
+	// for reference: Vulnerability=(default, head, legs, arms, special)
+    IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 1.0, 0.5, 0.5, 0.5), Cooldown=10.0, Duration=1.2)
+    IncapSettings(AF_Knockdown)=(Vulnerability=(0.4.f),                   Cooldown=10)
+    IncapSettings(AF_Stumble)=	(Vulnerability=(0.3),                     Cooldown=2.5)
+    IncapSettings(AF_GunHit)=	(Vulnerability=(0.2),                     Cooldown=1.7)
+    IncapSettings(AF_MeleeHit)=	(Vulnerability=(1.0),                     Cooldown=1.35)
+	IncapSettings(AF_Poison)=	(Vulnerability=(0.15),	                  Cooldown=20.5, Duration=5.0)
+    IncapSettings(AF_Microwave)=(Vulnerability=(1.0),                     Cooldown=10.0,  Duration=2.5)
+    IncapSettings(AF_FirePanic)=(Vulnerability=(0.9),                     Cooldown=5.0,  Duration=3.0)
+    IncapSettings(AF_EMP)=		(Vulnerability=(0.98),                    Cooldown=10.0, Duration=2.2)
+    IncapSettings(AF_Freeze)=	(Vulnerability=(0.98),                    Cooldown=1.5,  Duration=1.0)
 
-	Begin Object Class=KFPawnAfflictions_Scrake Name=Afflictions_0
+	Begin Object Name=Afflictions_0
         FireFullyCharredDuration=5
+		AfflictionClasses(AF_EMP)=class'KFAffliction_EMPDisrupt'
     End Object
-	AfflictionHandler=Afflictions_0
 
     ParryResistance=4
 
@@ -328,15 +305,27 @@ defaultproperties
 	// Penetration
     PenetrationResistance=4.0
 
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(0.5)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(0.7)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun', 	        DamageScale=(0.8)))  //0.75
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun', 	        DamageScale=(0.80)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle', 	        DamageScale=(1.0)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(0.75)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(0.75)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(0.3)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 				    DamageScale=(1.0)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 				    DamageScale=(0.4)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.75)))	
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_RPG7Impact', 	    DamageScale=(4.f)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.25)))
+
+
 	// Custom Hit Zones (HeadHealth, SkinTypes, etc...)
 	HeadlessBleedOutTime=6.f
     HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=600, DmgScale=1.1, SkinID=1)
 	HitZones[8]		  =(ZoneName=rforearm, BoneName=RightForearm, Limb=BP_RightArm, GoreHealth=20,  DmgScale=0.5, SkinID=2)
 
-    VulnerableDamageTypes.Add((DamageType=class'KFDT_Microwave'))
-    VulnerableDamageTypes.Add((DamageType=class'KFDT_Ballistic_RPG7Impact', DamageScale=4.0))
-	ResistantDamageTypes.Add((DamageType=class'KFDT_Slashing'))
-	ResistantDamageTypes.Add((DamageType=class'KFDT_Explosive'))
+
 
 	// ---------------------------------------------
 	// Movement / Physics
@@ -356,8 +345,8 @@ defaultproperties
 	// AI / Navigation
 	ControllerClass=class'KFAIController_ZedScrake'
 	BumpDamageType=class'KFDT_NPCBump_Large'
-	DamageRecoveryTimeHeavy=0.2f
-	DamageRecoveryTimeMedium=0.09f
+	DamageRecoveryTimeHeavy=0.85     //0.2f
+	DamageRecoveryTimeMedium=0.75   //0.09f   //0.85
 
 	bCanRage=true
 	bIsEnraged=false
@@ -376,8 +365,8 @@ defaultproperties
     ChainsawIdleAkComponent=ChainsawAkComponent0
     Components.Add(ChainsawAkComponent0)
 
-    PlayChainsawIdleAkEvent=AkEvent'WW_ZED_Scrake.ZED_Scrake_SFX_Chainsaw_Idle_LP'
-    StopChainsawIdleAkEvent=AkEvent'WW_ZED_Scrake.ZED_Scrake_SFX_Chainsaw_Idle_LP_Stop'
+    PlayChainsawIdleAkEvent=AkEvent'WW_ZED_Scrake_2.ZED_Scrake_SFX_Chainsaw_Idle_LP'
+    StopChainsawIdleAkEvent=AkEvent'WW_ZED_Scrake_2.ZED_Scrake_SFX_Chainsaw_Idle_LP_Stop'
 
 `if(`notdefined(ShippingPC))
 	DebugRadarTexture=Texture2D'UI_ZEDRadar_TEX.MapIcon_Scrake';
@@ -386,4 +375,6 @@ defaultproperties
 	// ---------------------------------------------
 	// Spawning
     MinSpawnSquadSizeType=EST_Large
+    
+    OnDeathAchievementID=KFACHID_HackAndSlash
 }

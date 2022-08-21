@@ -30,6 +30,8 @@ package tripwire.controls.serverBrowser
         
         private var _bCustom:Boolean;
         
+        public const serverNameColor:uint = 14538703;
+        
         public function ServerBrowserListItemRenderer()
         {
             super();
@@ -103,7 +105,7 @@ package tripwire.controls.serverBrowser
         
         override protected function unhighlightButton() : *
         {
-            this.serverNameText.textColor = defaultColor;
+            this.serverNameText.textColor = this.serverNameColor;
             this.serverModeText.textColor = defaultColor;
             this.serverDifficultyText.textColor = defaultColor;
             this.serverMapText.textColor = defaultColor;

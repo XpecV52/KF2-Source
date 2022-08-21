@@ -12,12 +12,17 @@ class KFDT_EMP_EMPGrenade extends KFDT_EMP
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 defaultproperties
 {
+
+		// physics impact
+	RadialDamageImpulse=1000
+	KDeathUpKick=500
+	KDeathVel=50
+
 	KnockdownPower=0
-	StumblePower=120
+	MeleeHitPower=100
+	EMPPower=100
 	
 	WeaponDef=class'KFWeapDef_Grenade_Berserker'
 }

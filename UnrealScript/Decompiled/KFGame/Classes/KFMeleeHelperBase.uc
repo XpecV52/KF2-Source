@@ -230,19 +230,62 @@ simulated function PlayMeleeHitEffects(Actor Target, Vector HitLocation, Vector 
 {
     local Pawn Victim;
     local PlayerController PC;
+    local KFPawn KFP;
+    local FracturedStaticMeshActor FracActor;
 
     bShakeInstigatorCamera = true;
-    if(Target.IsA('Pawn'))
+    if(Outer.WorldInfo.NetMode != NM_Client)
     {
         Victim = Pawn(Target);
-        if((Victim != none) && Victim.Controller != none)
+        if(Victim != none)
         {
-            PC = PlayerController(Victim.Controller);
-            if(PC != none)
+            if((Victim != none) && Victim.Controller != none)
             {
-                PC.ClientPlayCameraShake(MeleeVictimCamShake, 1, true);
+                PC = PlayerController(Victim.Controller);
+                if(PC != none)
+                {
+                    PC.ClientPlayCameraShake(MeleeVictimCamShake, 1, true);
+                }
+            }            
+        }
+        else
+        {
+            if(Outer.WorldInfo.NetMode != NM_Client)
+            {
+                KFP = KFPawn(Outer.Instigator);
+                if(KFP != none)
+                {
+                    KFP.SetMeleeImpactLocation(HitLocation);
+                }
+            }
+        }        
+    }
+    else
+    {
+        if(Outer.Instigator.IsHumanControlled() && Outer.Instigator.IsLocallyControlled())
+        {
+            FracActor = FracturedStaticMeshActor(Target);
+            if(FracActor != none)
+            {
+                Class'KFMeleeHelperBase'.static.MeleeFractureMeshImpact(FracActor, HitLocation, HitDirection);                
+            }
+            else
+            {
+                if(!Target.IsA('Pawn'))
+                {
+                    KFImpactEffectManager(Outer.WorldInfo.MyImpactEffectManager).PlayImpactEffects(HitLocation, Outer.Instigator, HitDirection,,, true);
+                }
             }
         }
+    }
+}
+
+static function MeleeFractureMeshImpact(FracturedStaticMeshActor FracActor, Vector HitLocation, Vector HitNormal)
+{
+    if(FracActor != none)
+    {
+        FracActor.BreakOffPartsInRadius(HitLocation - (HitNormal * 15), 35, 100, true);
+        FracActor.SetLoseChunkReplacementMaterial();
     }
 }
 

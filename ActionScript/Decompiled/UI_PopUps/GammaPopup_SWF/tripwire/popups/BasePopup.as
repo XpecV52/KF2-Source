@@ -2,15 +2,19 @@ package tripwire.popups
 {
     import com.greensock.TweenMax;
     import com.greensock.easing.Cubic;
+    import flash.display.Sprite;
     import flash.events.Event;
     import flash.external.ExternalInterface;
     import scaleform.clik.events.ButtonEvent;
+    import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.FocusManager;
     import tripwire.containers.TripContainer;
     
     public class BasePopup extends TripContainer
     {
          
+        
+        protected var _prevModalClip:Sprite;
         
         public function BasePopup()
         {
@@ -21,6 +25,7 @@ package tripwire.popups
         
         override protected function addedToStage(param1:Event) : void
         {
+            bSelected = true;
             super.addedToStage(param1);
             this.setTabIndex();
         }
@@ -43,30 +48,26 @@ package tripwire.popups
             {
                 this.openAnimation();
                 _bOpen = true;
-                FocusManager.setModalClip(this,0);
+                this._prevModalClip = FocusManager.getModalClip();
+                FocusManager.setModalClip(this);
             }
         }
         
-        override protected function openAnimation() : *
+        override protected function onBPressed(param1:InputDetails) : void
+        {
+            super.onBPressed(param1);
+            this.closePopup();
+        }
+        
+        override protected function openAnimation(param1:Boolean = true) : *
         {
             TweenMax.fromTo(this,6,{
                 "z":-128,
-                "autoAlpha":0,
-                "blurFilter":{
-                    "blurX":12,
-                    "blurY":12,
-                    "quality":1
-                }
+                "autoAlpha":0
             },{
                 "visible":true,
                 "z":0,
-                "autoAlpha":1,
-                "blurFilter":{
-                    "blurX":0,
-                    "blurY":0,
-                    "quality":1,
-                    "remove":true
-                },
+                "autoAlpha":(!!param1 ? _defaultAlpha : _dimmedAlpha),
                 "ease":Cubic.easeOut,
                 "useFrames":true,
                 "onComplete":onOpened
@@ -84,17 +85,11 @@ package tripwire.popups
                     "visible":false,
                     "z":-128,
                     "alpha":0,
-                    "blurFilter":{
-                        "blurX":12,
-                        "blurY":12,
-                        "quality":1,
-                        "remove":true
-                    },
                     "ease":Cubic.easeOut,
                     "useFrames":true,
                     "onComplete":this.closePopup
                 });
-                FocusManager.setModalClip(null,0);
+                FocusManager.setModalClip(this._prevModalClip);
                 _bOpen = false;
             }
         }

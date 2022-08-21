@@ -358,9 +358,9 @@ simulated final function bool AllowHeadless()
 	return class'GameInfo'.default.GoreLevel <= 1;
 }
 
-static function float GetGibImpulseScale()
+static function float GetGibImpulseMax()
 {
- 	return 0.2;
+ 	return 0.1;
 }
 
 /** Spawns blood effects due to limb dismemberment or gibbing
@@ -459,7 +459,7 @@ simulated final function AttachMutilationBloodEffects(
 			//
 			for( BloodParamIndex = 0; BloodParamIndex < BloodMICParams.length; BloodParamIndex++ )
 			{
-				InPawn.GoreMIC.SetScalarParameterValue(BloodMICParams[BloodParamIndex], 0.f);
+				InPawn.CharacterMICs[0].SetScalarParameterValue(BloodMICParams[BloodParamIndex], 0.f);
 			}
 		}
 	}
@@ -790,16 +790,27 @@ simulated function CauseGibsAndApplyImpulse(
 	local ExplosionBreakBone ExplosiveBreakBone;
 	local name RBBoneName;
 	local ParticleSystemComponent PSC;
+	local int NumGibs;
+	local float ModifiedImpulseLerpValue;
+	local float ModifiedImpulse;
+	local float GibImpulseMin;
 
 	MonsterInfo = InPawn.GetCharacterMonsterInfo();
+
+	// We need to scale the impule values based on the # of gibs to disconnect otherwise their impulses are way
+	// to high and limbs go flying really far. We perform a linear interpolation
+	GibImpulseMin = 0.1/2.0f;
+	NumGibs = InGibBoneList.Length; 
+	ModifiedImpulseLerpValue = 1.0f - numGibs/ MonsterInfo.GoreJointSettings.length;
+	ModifiedImpulse = lerp(GibImpulseMin, 0.1, ModifiedImpulseLerpValue);
 
     for( GibIdx=0; GibIdx<InGibBoneList.length; GibIdx++ )
     {
     	GibBoneName = InGibBoneList[GibIdx];
 
     	BoneLocation = InPawn.mesh.GetBoneLocation(GibBoneName);
-		Impulse = 0.2* InDmgType.default.RadialDamageImpulse * Normal(BoneLocation - InExplosionOrigin);
-		Impulse *= MonsterInfo.ExplosionImpulseScale;
+		Impulse =  InDmgType.default.RadialDamageImpulse * Normal(BoneLocation - InExplosionOrigin);
+		Impulse *= MonsterInfo.ExplosionImpulseScale*ModifiedImpulse;
 
 		for( JointIndex = 0; JointIndex < MonsterInfo.GoreJointSettings.length; JointIndex++ )
 		{
@@ -941,6 +952,27 @@ simulated function KFGiblet SpawnGiblet(vector GibLocation, rotator GibRotation,
 }
 
 /** Obliteration effects */
+simulated function SpawnObliterationBloodEffect(KFPawn InPawn)
+{
+	local ParticleSystemComponent PSC;
+	local KFCHaracterInfo_Monster MonsterInfo;
+	local vector ParticleLocation;
+	
+	// Play obliteration sound
+	InPawn.SoundGroupArch.PlayObliterationSound(InPawn);
+
+	MonsterInfo = KFCharacterInfo_Monster(InPawn.GetCharacterInfo());
+	// Particle location is the spine. If no spine, then it will be the pawn's location.
+	ParticleLocation = InPawn.Mesh.GetBoneLocation('Spine');
+	if( IsZero(ParticleLocation) )
+	{
+		ParticleLocation = InPawn.Location;
+	}
+	PSC = MiscGoreFXEmitterPool.SpawnEmitter(MonsterInfo.ObliterationEffectTemplate, ParticleLocation);
+	PSC.SetLightingChannels(InPawn.PawnLightingChannel);
+}
+
+/** @deprecated Obliteration effects */
 simulated function CauseObliteration(KFPawn InPawn, vector InDamageOrigin, class<KFDamageType> InDamageType, optional float MomentumScale = 1.f)
 {
 	local KFCharacterInfo_Monster MonsterInfo;
@@ -948,12 +980,10 @@ simulated function CauseObliteration(KFPawn InPawn, vector InDamageOrigin, class
 	local vector PawnLocation;
 	local KFPawnSoundGroup PawnSoundGroup;
 	local KFGiblet Gib;
-	local ParticleSystemComponent PSC;
 	local vector Loc;
 	local rotator Rot;
 	local Quat BoneQuat;
 	local bool bSpawnedAGibForThisIndex;
-	local vector ObliterationLocation;
 
 	// Cache the pawn's location
 	PawnLocation = InPawn.Location;
@@ -972,19 +1002,7 @@ simulated function CauseObliteration(KFPawn InPawn, vector InDamageOrigin, class
 	MonsterInfo = KFCharacterInfo_Monster(InPawn.GetCharacterInfo());
 	if ( MonsterInfo != None )
 	{
-		// Get the location where the actual mesh is at to spawn the Obliteration emitter
-        ObliterationLocation = InPawn.Mesh.GetBoneLocation('Spine');
-
-		if( IsZero(ObliterationLocation) )
-		{
-            ObliterationLocation = PawnLocation;
-		}
-
-        // Spawn the obliteration effect at the pawn's location
-		// NVCHANGE_BEGIN: JCAO - Apply the lightingChannel for the particle from the pawn
-		PSC = MiscGoreFXEmitterPool.SpawnEmitter(MonsterInfo.ObliterationEffectTemplate, ObliterationLocation);
-		PSC.SetLightingChannels(InPawn.PawnLightingChannel);
-		// NVCHANGE_END: JCAO - Apply the lightingChannel for the particle from the pawn
+        SpawnObliterationBloodEffect(InPawn);
 
 		// Spawn giblets - limbs, soft bodies, etc.
 		for( GibletIndex = 0; GibletIndex < MonsterInfo.GibletSettings.length; GibletIndex++ )
@@ -1085,9 +1103,7 @@ function ResetPersistantGore(optional bool bOnRespawn)
 	}
 }
 
-/**
-  * Reset actor to initial state - used when restarting level without reloading.
-  */
+/** Level was reset without reloading */
 event Reset()
 {
 	local int i;
@@ -1097,6 +1113,8 @@ event Reset()
 		CorpsePool[i].Destroy();
 	}
 	CorpsePool.Remove(0, CorpsePool.Length);
+
+	ClearPersistentBloodSplats();
 }
 
 // (cpptext)

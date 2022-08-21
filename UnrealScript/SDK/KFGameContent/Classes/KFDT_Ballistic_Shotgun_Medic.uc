@@ -11,8 +11,6 @@ class KFDT_Ballistic_Shotgun_Medic extends KFDT_Ballistic_Shotgun
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
@@ -66,9 +64,8 @@ defaultproperties
 	KDeathVel=35
 
     KnockdownPower=0
-	StumblePower=20
-	LegStumblePower=110
-	GunHitPower=113
+	StumblePower=13
+	GunHitPower=45
 
 	WeaponDef=class'KFWeapDef_MedicShotgun'
 

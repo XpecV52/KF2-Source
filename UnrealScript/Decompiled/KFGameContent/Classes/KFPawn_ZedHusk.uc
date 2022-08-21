@@ -18,7 +18,7 @@ var transient bool bHasExploded;
 
 simulated function ANIMNOTIFY_FlameThrowerOn()
 {
-    if(IsDoingSpecialMove(20))
+    if(IsDoingSpecialMove(19))
     {
         KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]).TurnOnFlamethrower();
     }
@@ -26,7 +26,7 @@ simulated function ANIMNOTIFY_FlameThrowerOn()
 
 simulated function ANIMNOTIFY_FlameThrowerOff()
 {
-    if(IsDoingSpecialMove(20))
+    if(IsDoingSpecialMove(19))
     {
         KFSM_Husk_FlameThrowerAttack(SpecialMoves[SpecialMove]).TurnOffFlamethrower();
     }
@@ -121,7 +121,7 @@ simulated event Vector GetWeaponStartTraceLocation(optional Weapon CurrentWeapon
 
 simulated function TerminateEffectsOnDeath()
 {
-    if(IsDoingSpecialMove(20))
+    if(IsDoingSpecialMove(19))
     {
         SpecialMoveHandler.EndSpecialMove();
     }
@@ -191,7 +191,7 @@ simulated function OnExploded(Controller SuicideController);
 function AdjustDamage(out int InDamage, out Vector Momentum, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, TraceHitInfo HitInfo, Actor DamageCauser)
 {
     super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
-    if((((MyKFAIC != none) && MyKFAIC.IsSuicidal()) && InstigatedBy == MyKFAIC) && IsDoingSpecialMove(21))
+    if((((MyKFAIC != none) && MyKFAIC.IsSuicidal()) && InstigatedBy == MyKFAIC) && IsDoingSpecialMove(20))
     {
         InDamage = 10000;
     }
@@ -225,7 +225,7 @@ function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, 
 function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, Vector Momentum, TraceHitInfo HitInfo)
 {
     super.PlayHit(Damage, InstigatedBy, HitLocation, DamageType, Momentum, HitInfo);
-    if(bEmpDisrupted && IsDoingSpecialMove(21))
+    if(bEmpDisrupted && IsDoingSpecialMove(20))
     {
         Died(InstigatedBy, DamageType, HitLocation);
     }
@@ -240,7 +240,7 @@ function OnStackingAfflictionChanged(byte Id)
     }
     if(bEmpDisrupted)
     {
-        if(IsDoingSpecialMove(19) || IsDoingSpecialMove(20))
+        if(IsDoingSpecialMove(18) || IsDoingSpecialMove(19))
         {
             EndSpecialMove();
         }
@@ -283,22 +283,22 @@ defaultproperties
     XPValues[1]=20
     XPValues[2]=27
     XPValues[3]=31
-    ResistantDamageTypes=/* Array type was not detected. */
+    WeakSpotSocketNames=/* Array type was not detected. */
+    DamageTypeModifiers=/* Array type was not detected. */
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedHusk.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
-    bDisableTurnInPlace=true
     HitZones=/* Array type was not detected. */
     PenetrationResistance=2
-    begin object name=Afflictions class=KFPawnAfflictions
+    begin object name=Afflictions class=KFAfflictionManager
+        AfflictionClasses=/* Array type was not detected. */
         FireFullyCharredDuration=5
     object end
-    // Reference: KFPawnAfflictions'Default__KFPawn_ZedHusk.Afflictions'
+    // Reference: KFAfflictionManager'Default__KFPawn_ZedHusk.Afflictions'
     AfflictionHandler=Afflictions
-    InstantIncaps=/* Array type was not detected. */
-    StackingIncaps=/* Array type was not detected. */
+    IncapSettings=/* Array type was not detected. */
     KnockdownImpulseScale=1
     SprintSpeed=450
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
@@ -316,7 +316,7 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedHusk.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedHusk.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedHusk.DialogAkSoundComponent'
-    DamageRecoveryTimeHeavy=0.2
+    DamageRecoveryTimeHeavy=0.75
     GroundSpeed=170
     Health=462
     ControllerClass=Class'KFAIController_ZedHusk'

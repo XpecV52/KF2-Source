@@ -87,13 +87,13 @@ state Command_SpecialMove
 {
     function KFPawn.ESpecialMove GetSpecialMove()
     {
-        if(bFrightened && Outer.MyKFPawn.CanDoSpecialMove(16))
+        if(bFrightened && Outer.MyKFPawn.CanDoSpecialMove(15))
         {
-            return 16;            
+            return 15;            
         }
         else
         {
-            return 15;
+            return 14;
         }
     }
 

@@ -14,7 +14,6 @@ class KFDT_HeavyZedBump extends KFDamageType
 
 defaultproperties
 {
-   bCanObliterate=True
    bIgnoreZedOnZedScaling=True
    Name="Default__KFDT_HeavyZedBump"
    ObjectArchetype=KFDamageType'KFGame.Default__KFDamageType'

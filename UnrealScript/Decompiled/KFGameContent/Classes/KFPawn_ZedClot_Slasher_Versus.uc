@@ -37,14 +37,15 @@ defaultproperties
     bHasExtraSprintJumpVelocity=true
     ThirdPersonViewOffset=(OffsetHigh=(X=-175,Y=50,Z=0),OffsetMid=(X=-145,Y=50,Z=-30),OffsetLow=(X=-220,Y=50,Z=0))
     begin object name=MeleeHelper class=KFMeleeHelperAI
-        BaseDamage=17
+        BaseDamage=15
+        PlayerDoorDamageMultiplier=5
         MeleeImpactCamScale=0.2
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedClot_Slasher_Versus.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
     DoshValue=20
     XPValues=32
-    VulnerableDamageTypes=/* Array type was not detected. */
+    DamageTypeModifiers=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
     JumpBumpDamageType=Class'KFDT_Bludgeon_ZedJump'
     LocalizationKey=KFPawn_ZedClot_Slasher
@@ -53,12 +54,14 @@ defaultproperties
     object end
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedClot_Slasher_Versus.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
+    bMovesFastInZedTime=true
     HitZones=/* Array type was not detected. */
-    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedClot_Slasher_Versus.Afflictions'
-    InstantIncaps=/* Array type was not detected. */
-    SprintSpeed=600
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedClot_Slasher_Versus.Afflictions'
+    IncapSettings=/* Array type was not detected. */
+    SprintSpeed=650
     SprintStrafeSpeed=450
     TeammateCollisionRadiusPercent=0.3
+    ZedTimeSpeedScale=0.75
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -74,8 +77,8 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedClot_Slasher_Versus.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedClot_Slasher_Versus.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedClot_Slasher_Versus.DialogAkSoundComponent'
-    GroundSpeed=430
-    Health=325
+    GroundSpeed=500
+    Health=150
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

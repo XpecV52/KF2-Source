@@ -11,6 +11,7 @@ package tripwire.containers.serverBrowser
     import scaleform.clik.data.DataProvider;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.IndexEvent;
+    import scaleform.gfx.TextFieldEx;
     import tripwire.containers.TripSubContainer;
     import tripwire.controls.TripButton;
     
@@ -146,6 +147,7 @@ package tripwire.containers.serverBrowser
             defaultFirstElement = this.favoriteButton;
             this.favoriteButton.preventAutosizing = true;
             this.setTabIndexes();
+            TextFieldEx.setVerticalAlign(this.rankedLabelText,TextFieldEx.VALIGN_CENTER);
         }
         
         private function setTabIndexes() : *
@@ -209,25 +211,14 @@ package tripwire.containers.serverBrowser
             }
         }
         
-        override protected function openAnimation() : *
+        override protected function openAnimation(param1:Boolean = true) : *
         {
             TweenMax.fromTo(this,6,{
                 "z":-128,
-                "autoAlpha":0,
-                "blurFilter":{
-                    "blurX":12,
-                    "blurY":12,
-                    "quality":1
-                }
+                "autoAlpha":0
             },{
                 "z":0,
                 "autoAlpha":1,
-                "blurFilter":{
-                    "blurX":0,
-                    "blurY":0,
-                    "quality":1,
-                    "remove":true
-                },
                 "ease":Cubic.easeOut,
                 "useFrames":true,
                 "onComplete":onOpened
@@ -243,12 +234,6 @@ package tripwire.containers.serverBrowser
                 "visible":false,
                 "z":-128,
                 "alpha":0,
-                "blurFilter":{
-                    "blurX":12,
-                    "blurY":12,
-                    "quality":1,
-                    "remove":true
-                },
                 "ease":Cubic.easeOut,
                 "useFrames":true,
                 "onComplete":onClosed

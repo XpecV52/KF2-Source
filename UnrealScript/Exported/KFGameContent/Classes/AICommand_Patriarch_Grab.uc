@@ -60,7 +60,7 @@ state Command_SpecialMove
 {
 	function ESpecialMove GetSpecialMove()
 	{
-		return SM_GrabAttack;
+		return SM_GrappleAttack;
 	}
 
 	/** Begin executing the special move */

@@ -203,6 +203,8 @@ protected function GameCameraBase FindBestCameraType(Actor CameraTarget)
 	return Super.FindBestCameraType(CameraTarget);
 }
 
+simulated function Reset();
+
 defaultproperties
 {
 	// Our default FOV is in 16:9, and then scaled based on the aspect ratio

@@ -124,6 +124,9 @@ var(Gore) ParticleSystem ExplosionEffectTemplate<DisplayName=Gib Explosion Templ
 /** Particle effect to be spawned on obliteration */
 var(Gore) ParticleSystem ObliterationEffectTemplate<DisplayName=Obliteration Effect Template>;
 
+/** Particle effect to be spawned when knocked down, stunned, etc */
+var(Stun) ParticleSystem DazedEffectTemplate<DisplayName=Stunned/Knocked Down Effect Template>;
+
 /** Use to scale the number of gibs when the character explodes. Values greater than 1
 	scale up, and values smaller than 0 scale down. Must be greater than 0. This is for
 	actual grenade (or other explosive) based explosions. It has no effect on explosions
@@ -185,7 +188,8 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 	// Initialize MICs
 	if( KFP.WorldInfo.NetMode != NM_DedicatedServer && KFP.Mesh != None )
 	{
-		KFP.BodyMIC = KFP.Mesh.CreateAndSetMaterialInstanceConstant(0);
+		KFP.CharacterMICs.Length = 0;
+		KFP.CharacterMICs[0] = KFP.Mesh.CreateAndSetMaterialInstanceConstant(0);
 	}
 }
 

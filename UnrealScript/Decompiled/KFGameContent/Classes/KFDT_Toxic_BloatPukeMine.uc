@@ -11,5 +11,6 @@ class KFDT_Toxic_BloatPukeMine extends KFDT_Toxic
 defaultproperties
 {
     bNoInstigatorDamage=true
+    bConsideredIndirectOrAoE=true
     DoT_Type=EDamageOverTimeGroup.DOT_None
 }

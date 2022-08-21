@@ -41,6 +41,12 @@ simulated function UnHideTimer()
 	StaticMeshComponent.SetHidden(FALSE);
 }
 
+/** Level was reset without reloading */
+simulated event Reset()
+{
+	Destroy();
+}
+
 defaultproperties
 {
 	Begin Object Name=StaticMeshComponent0

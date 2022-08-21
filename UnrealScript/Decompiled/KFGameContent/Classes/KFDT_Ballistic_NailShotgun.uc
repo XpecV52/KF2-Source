@@ -16,10 +16,7 @@ static simulated function class<KFProj_PinningBullet> GetPinProjectileClass()
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_Nailgun'
-    StunPower=42
-    StumblePower=54
-    LegStumblePower=54
-    GunHitPower=118
+    StumblePower=24
     ModifierPerkList=/* Array type was not detected. */
     BloodSpread=0.4
     BloodScale=0.6

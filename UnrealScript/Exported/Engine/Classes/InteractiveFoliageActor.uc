@@ -61,9 +61,6 @@ var float Mass;
 // (cpptext)
 // (cpptext)
 // (cpptext)
-// (cpptext)
-// (cpptext)
-// (cpptext)
 
 native simulated event TakeDamage(int Damage, Controller EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser);
 native simulated event Touch( Actor Other, PrimitiveComponent OtherComp, vector HitLocation, vector HitNormal );
@@ -102,7 +99,7 @@ defaultproperties
    StaticMeshComponent=FoliageMeshComponent0
    Components(0)=FoliageMeshComponent0
    Components(1)=CollisionCylinder
-   CollisionType=COLLIDE_CustomDefault
+   CollisionType=COLLIDE_TouchAllButWeapons
    TickGroup=TG_DuringAsyncWork
    bStatic=False
    bNoDelete=True
@@ -110,6 +107,7 @@ defaultproperties
    BlockRigidBody=False
    bBlockActors=False
    bProjTarget=True
+   bSkipPostTickComponentUpdate=True
    CollisionComponent=CollisionCylinder
    Name="Default__InteractiveFoliageActor"
    ObjectArchetype=StaticMeshActor'Engine.Default__StaticMeshActor'

@@ -64,17 +64,19 @@ var int StatAvgInBPS;
 var int StatMaxOutBPS;
 var int StatAvgOutBPS;
 var transient Texture2D Avatar;
+var string PlayfabPlayerId;
 
 replication
 {
      if(bNetDirty)
         Deaths, Kills, 
-        PlayerName, Score, 
-        StartTime, Team, 
-        UniqueId, bAdmin, 
-        bFromPreviousLevel, bIsSpectator, 
-        bOnlySpectator, bOutOfLives, 
-        bReadyToPlay, bWaitingPlayer;
+        PlayerName, PlayfabPlayerId, 
+        Score, StartTime, 
+        Team, UniqueId, 
+        bAdmin, bFromPreviousLevel, 
+        bIsSpectator, bOnlySpectator, 
+        bOutOfLives, bReadyToPlay, 
+        bWaitingPlayer;
 
      if(bNetDirty && !bNetOwner)
         Ping;
@@ -419,8 +421,7 @@ simulated function RegisterPlayerWithSession()
 {
     local OnlineSubsystem Online;
     local OnlineRecentPlayersList PlayersList;
-    local UniqueNetId ZeroId;
-    local PlayerController LocalPC;
+    local UniqueNetId ZeroId, LocalId;
 
     Online = Class'GameEngine'.static.GetOnlineSubsystem();
     if((((UniqueId != ZeroId && Online != none) && NotEqual_InterfaceInterface(Online.GameInterface, (none))) && SessionName != 'None') && Online.GameInterface.GetGameSettings(SessionName) != none)
@@ -435,31 +436,36 @@ simulated function RegisterPlayerWithSession()
             }
         }
     }
-    LocalPC = GetALocalPlayerController();
-    if(((((LocalPC != none) && LocalPC.PlayerReplicationInfo != none) && LocalPC.PlayerReplicationInfo != self) && WorldInfo.IsConsoleBuild()) && UniqueId != ZeroId)
+    if(WorldInfo.IsConsoleBuild() && UniqueId != ZeroId)
     {
-        Online.VoiceInterface.RegisterRemoteTalker(UniqueId);
+        Online.PlayerInterface.GetUniquePlayerId(0, LocalId);
+        if(LocalId != UniqueId)
+        {
+            Online.VoiceInterface.RegisterRemoteTalker(UniqueId);
+        }
     }
 }
 
 simulated function UnregisterPlayerFromSession()
 {
     local OnlineSubsystem OnlineSub;
-    local UniqueNetId ZeroId;
-    local PlayerController LocalPC;
+    local UniqueNetId ZeroId, LocalId;
 
+    OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
     if((UniqueId != ZeroId && WorldInfo.NetMode == NM_Client) && SessionName != 'None')
     {
-        OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
         if((((OnlineSub != none) && NotEqual_InterfaceInterface(OnlineSub.GameInterface, (none))) && OnlineSub.GameInterface.GetGameSettings(SessionName) != none) && !WorldInfo.PeerHostMigration.bHostMigrationEnabled && WorldInfo.PeerHostMigration.HostMigrationProgress != 0)
         {
             OnlineSub.GameInterface.UnregisterPlayer(SessionName, UniqueId);
         }
     }
-    LocalPC = GetALocalPlayerController();
-    if(((((LocalPC != none) && LocalPC.PlayerReplicationInfo != none) && LocalPC.PlayerReplicationInfo != self) && WorldInfo.IsConsoleBuild()) && UniqueId != ZeroId)
+    if(WorldInfo.IsConsoleBuild() && UniqueId != ZeroId)
     {
-        OnlineSub.VoiceInterface.UnregisterRemoteTalker(UniqueId);
+        OnlineSub.PlayerInterface.GetUniquePlayerId(0, LocalId);
+        if(LocalId != UniqueId)
+        {
+            OnlineSub.VoiceInterface.UnregisterRemoteTalker(UniqueId);
+        }
     }
 }
 

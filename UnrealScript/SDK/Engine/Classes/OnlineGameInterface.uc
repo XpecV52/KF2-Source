@@ -53,6 +53,17 @@ function ClearOnlineDelegates();
 
 `endif //(`__TW_ONLINESUBSYSTEM_)
 
+//@HSL_BEGIN - JRO - 3/21/2016 - PS4 Sessions
+/**
+ * Gets the remote address of the currently connected game server
+ *
+ * @param RemoteAddressString the returned address string
+ *
+ * @return true if successful in obtaining an address
+ */
+function bool GetGameServerRemoteAddress(out string RemoteAddressString);
+//@HSL_END
+
 /**
  * Creates an online game based upon the settings object specified.
  * NOTE: online game registration is an async process and does not complete
@@ -268,6 +279,19 @@ function bool ReadPlatformSpecificSessionInfo(const out OnlineGameSearchResult D
  */
 function bool ReadPlatformSpecificSessionInfoBySessionName(name SessionName,out byte PlatformSpecificInfo[80]);
 
+//@HSL_BEGIN - JRO - 3/21/2016 - PS4 Sessions
+/**
+ * Serializes the platform specific data into the provided buffer for the specified settings object.
+ * NOTE: This can only be done for a session that is bound to the online system
+ *
+ * @param GameSettings the game to copy the platform specific data for
+ * @param PlatformSpecificInfo the buffer to fill with the platform specific information
+ *
+ * @return true if successful reading the data for the session, false otherwise
+ */
+function bool ReadSessionGuidBySessionName(name SessionName,out string SessionGuid);
+//@HSL_END
+
 /**
  * Creates a search result out of the platform specific data and adds that to the specified search object
  *
@@ -278,6 +302,19 @@ function bool ReadPlatformSpecificSessionInfoBySessionName(name SessionName,out 
  * @return true if successful serializing the data, false otherwise
  */
 function bool BindPlatformSpecificSessionToSearch(byte SearchingPlayerNum,OnlineGameSearch SearchSettings,byte PlatformSpecificInfo[80]);
+
+//@HSL_BEGIN - JRO - 3/21/2016 - PS4 Sessions
+/**
+ * Creates a search result out of the session GUID and adds that to the specified search object
+ *
+ * @param SearchingPlayerNum the index of the player searching for a match
+ * @param SearchSettings the desired search to bind the session to
+ * @param SessionGuid the session GUID to convert to a server object
+ *
+ * @return true if successful serializing the data, false otherwise
+ */
+function bool BindSessionGuidToSearch(byte SearchingPlayerNum,OnlineGameSearch SearchSettings,string SessionGuid);
+//@HSL_END
 
 /**
  * Returns the currently set game search object
@@ -554,7 +591,9 @@ function array<OnlineArbitrationRegistrant> GetArbitratedPlayers(name SessionNam
  *
  * @param InviteResult the search/settings for the game we're joining via invite
  */
-delegate OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult);
+//@HSL_BEGIN - JRO - 3/21/2016 - PS4 Sessions
+delegate OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult, OnGameInviteAcceptedResult ResultReason);
+//@HSL_END
 
 /**
  * Sets the delegate used to notify the gameplay code when a game invite has been accepted
@@ -579,7 +618,9 @@ function ClearGameInviteAcceptedDelegate(byte LocalUserNum,delegate<OnGameInvite
  *
  * @return true if the game invite was able to be accepted, false otherwise
  */
-function bool AcceptGameInvite(byte LocalUserNum,name SessionName);
+//@HSL_BEGIN - JRO - 3/21/2016 - PS4 Sessions - Adding game info parameter so we can accept the right game
+function bool AcceptGameInvite(byte LocalUserNum,name SessionName,const out OnlineGameSearchResult DesiredGame);
+//@HSL_END
 
 /**
  * Updates the current session's skill rating using the list of players' skills

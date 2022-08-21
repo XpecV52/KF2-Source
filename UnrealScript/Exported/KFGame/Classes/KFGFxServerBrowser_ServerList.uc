@@ -98,6 +98,20 @@ var private transient enum ESearch_Tab
 	TAB_MAX,
 } ECurrentSearchTab;
 
+struct native ExtraServerInfo
+{
+	var bool ServerHeardBackFrom;
+	var bool GameRunning;
+	var bool RequestDispatched;
+	
+	var int StartTimer; // if game has not started, how many seconds until it does
+
+	var float Ping; // direct ping to the server from x-tra fetch
+	var int Survivors; // current player count
+	var int SurvivorsAvgLevel;
+	var int ZedPlayers; // current zed-players for vs servers
+};
+
 //equivalent to OnViewLoaded from UDK/Unreal Tournement 3
 function Initialize( KFGFxObject_Menu NewParentMenu )
 {

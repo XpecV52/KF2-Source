@@ -322,6 +322,8 @@ var int                                 NumSpecialSquadRecycles;
 var int                                 NumSpawnListCycles;
 /** List of available AI spawn volumes */
 var array<KFSpawnVolume>				SpawnVolumes;
+/** Last spawn volume used by AI */
+var KFSpawnVolume                       LastAISpawnVolume;
 
 var ESquadType							DesiredSquadType;
 
@@ -502,6 +504,8 @@ function SetupNextWave(byte NextWaveIndex)
     	}
 	}
 
+    LastAISpawnVolume = none;
+
 	if (bLogAISpawning || bLogWaveSpawnTiming) LogInternal("KFAISpawnManager.SetupNextWave() NextWave:" @ NextWaveIndex @ "WaveTotalAI:" @ WaveTotalAI);
 }
 
@@ -547,36 +551,40 @@ function SpawnRemainingReservedZeds( optional bool bSpawnAllReservedZeds );
 *   the DesiredSquadType might have been initialized for a different size of
 *   Zed groups, and be completely invalid and unset for this leftover group
 */
-function SetDesiredSquadTypeForZedList( array< class<KFPawn_Monster> >  NewSquad )
+function ESquadType GetDesiredSquadTypeForZedList( array< class<KFPawn_Monster> >  NewSquad )
 {
-	local int i;
-	local ESquadType LargestMonsterSquadType;
+    local int i;
+    local ESquadType LargestMonsterSquadType;
 
-	// Start with the smallest size, and the crank it up if the squad is larger
-	LargestMonsterSquadType = EST_Crawler;
+    // Start with the smallest size, and the crank it up if the squad is larger
+    LargestMonsterSquadType = EST_Crawler;
 
-	for ( i = 0; i < NewSquad.Length; i++ )
-	{
-    	if (bLogAISpawning) LogInternal(GetFuncName()$" LeftOverSquad "$NewSquad[i]$" MinSquadType:"$ GetEnum(enum'ESquadType',NewSquad[i].default.MinSpawnSquadSizeType));
+    for ( i = 0; i < NewSquad.Length; i++ )
+    {
+        if (bLogAISpawning) LogInternal(GetFuncName()$" LeftOverSquad "$NewSquad[i]$" MinSquadType:"$ GetEnum(enum'ESquadType',NewSquad[i].default.MinSpawnSquadSizeType));
         if( NewSquad[i].default.MinSpawnSquadSizeType < LargestMonsterSquadType )
         {
             LargestMonsterSquadType = NewSquad[i].default.MinSpawnSquadSizeType;
         }
-	}
+    }
 
-	DesiredSquadType = LargestMonsterSquadType;
-
-    if (bLogAISpawning) LogInternal(GetFuncName()$" adjusted largest squad for squad leftover squad to "$GetEnum(enum'ESquadType',DesiredSquadType));
+    return LargestMonsterSquadType;
 }
 
+function SetDesiredSquadTypeForZedList( array< class<KFPawn_Monster> >  NewSquad )
+{
+    DesiredSquadType = GetDesiredSquadTypeForZedList( NewSquad );
+    if (bLogAISpawning) LogInternal(GetFuncName()$" adjusted largest squad for squad leftover squad to "$GetEnum(enum'ESquadType',DesiredSquadType));
+}
 
 /** generate a list of classes to spawn for a given squad */
 function GetSpawnListFromSquad(byte SquadIdx, out array< KFAISpawnSquad > SquadsList, out array< class<KFPawn_Monster> >  AISpawnList)
 {
 	local KFAISpawnSquad Squad;
 	local EAIType AIType;
-	local int i, j;
+	local int i, j, RandNum;
 	local ESquadType LargestMonsterSquadType;
+    local array<class<KFPawn_Monster> > TempSpawnList;
 
 	Squad = SquadsList[SquadIdx];
 
@@ -589,7 +597,7 @@ function GetSpawnListFromSquad(byte SquadIdx, out array< KFAISpawnSquad > Squads
 		{
 			if( Squad.MonsterList[i].CustomClass != None )
 			{
-				AISpawnList.AddItem(Squad.MonsterList[i].CustomClass);
+				TempSpawnList.AddItem(Squad.MonsterList[i].CustomClass);
 			}
 			else
 			{
@@ -603,22 +611,30 @@ function GetSpawnListFromSquad(byte SquadIdx, out array< KFAISpawnSquad > Squads
 
 
 
-					AISpawnList.AddItem(AIBossClassList[Rand(AIBossClassList.Length)]);
+					TempSpawnList.AddItem(AIBossClassList[Rand(AIBossClassList.Length)]);
 				}
 				else
 				{
-					AISpawnList.AddItem(AIClassList[AIType]);
+					TempSpawnList.AddItem(AIClassList[AIType]);
 				}
 			}
 
-			if( AISpawnList[AISpawnList.Length - 1].default.MinSpawnSquadSizeType < LargestMonsterSquadType )
+			if( TempSpawnList[TempSpawnList.Length - 1].default.MinSpawnSquadSizeType < LargestMonsterSquadType )
             {
-                LargestMonsterSquadType = AISpawnList[AISpawnList.Length - 1].default.MinSpawnSquadSizeType;
+                LargestMonsterSquadType = TempSpawnList[TempSpawnList.Length - 1].default.MinSpawnSquadSizeType;
             }
 		}
 	}
-	if( AISpawnList.Length > 0 )
+	if( TempSpawnList.Length > 0 )
 	{
+        // Shuffle spawn list
+        while( TempSpawnList.Length > 0 )
+        {
+            RandNum = Rand( TempSpawnList.Length );
+            AISpawnList.AddItem( TempSpawnList[RandNum] );
+            TempSpawnList.Remove( RandNum, 1 );
+        }
+
 		DesiredSquadType = Squad.MinVolumeType;
 
 		if( LargestMonsterSquadType < DesiredSquadType )
@@ -743,16 +759,8 @@ function array< class<KFPawn_Monster> > GetNextSpawnList()
     	LogMonsterList(LeftoverSpawnSquad, "LeftoverSpawnSquad");
     }
 
-    if( bIsVersusGame )
-    {
-        AssignZedsToPlayers( NewSquad );
-    }
-
 	return NewSquad;
 }
-
-/** Assign and reserve zed squad members for human players if this is a versus game */
-function AssignZedsToPlayers( out array<class<KFPawn_Monster> > NewZeds );
 
 /** Print out a list of monsters */
 function LogMonsterList(array< class<KFPawn_Monster> >  MonsterList, String ListName)
@@ -1052,6 +1060,12 @@ function int SpawnSquad( array< class<KFPawn_Monster> > AIToSpawn, optional bool
 
 
 
+    // Since this is called from multiple locations, early out if we're not in a wave
+    if( !IsWaveActive() )
+    {
+        return 0;
+    }
+
 	// first check scripted spawners
 	if( ActiveSpawner != None && ActiveSpawner.CanSpawnHere(DesiredSquadType) )
 	{
@@ -1077,24 +1091,17 @@ function int SpawnSquad( array< class<KFPawn_Monster> > AIToSpawn, optional bool
     			LogMonsterList(AIToSpawn, "SpawnSquad Pre Spawning");
             }
 
-            bCanSpawnPlayerBoss = bIsVersusGame ? CanSpawnPlayerBoss() : false;
+            bCanSpawnPlayerBoss = (bIsVersusGame && MyKFGRI.WaveNum == MyKFGRI.WaveMax) ? CanSpawnPlayerBoss() : false;
 
-            if( !bIsVersusGame || MyKFGRI.WaveNum < MyKFGRI.WaveMax || (MyKFGRI.WaveNum == MyKFGRI.WaveMax && !bCanSpawnPlayerBoss) )
+            if( !bIsVersusGame || MyKFGRI.WaveNum < MyKFGRI.WaveMax || !bCanSpawnPlayerBoss )
             {
     			VolumeAmount = KFSV.SpawnWave(AIToSpawn, true);
+                LastAISpawnVolume = KFSV;
             }
 
-            if( bIsVersusGame && !bSkipHumanZedSpawning )
+            if( bIsVersusGame && !bSkipHumanZedSpawning && MyKFGRI.WaveNum == MyKFGRI.WaveMax )
             {
-                if( MyKFGRI.WaveNum == MyKFGRI.WaveMax  )
-                {
-                    AIToSpawn.Length = 0;
-                }
-
-                if( MyKFGRI.WaveNum < MyKFGRI.WaveMax || bCanSpawnPlayerBoss )
-                {
-                    RespawnZedHumanPlayers( KFSV );
-                }
+                AIToSpawn.Length = 0;
             }
 
 		    if (bLogAISpawning) LogInternal("KFAISpawnManager.SpawnAI() AIs spawned:" @ VolumeAmount @ "in Volume:" @ KFSV);
@@ -1122,11 +1129,7 @@ function int SpawnSquad( array< class<KFPawn_Monster> > AIToSpawn, optional bool
 
 	FinalAmount = VolumeAmount + SpawnerAmount;
 
-    // Versus games already do this after players are spawned, no need to run this iterator again
-    if( !bIsVersusGame )
-    {
-    	RefreshMonsterAliveCount();
-    }
+   	RefreshMonsterAliveCount();
 
 	if( AIToSpawn.Length > 0 )
 	{
@@ -1421,11 +1424,11 @@ function ResetSpawnCurveIntensity()
 	SetSineWaveFreq(default.SineWaveFreq);
 }
 
-/** Respawn dead human player zeds. Overridden in subclasses */
-protected function RespawnZedHumanPlayers( KFSpawnVolume SpawnVolume );
-
 /** Determines whether we can spawn a player boss or not */
 protected function bool CanSpawnPlayerBoss();
+
+/** Can be called to reset values within the spawn manager, without using explicit outer */
+function ResetSpawnManager();
 
 defaultproperties
 {

@@ -153,25 +153,41 @@ function bool isUserYourFriend(UniqueNetId PlayerID)
 
 function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
 {
+	local PlayerController PC;
+	local bool bConsoleBuild;
+
+	PC = GetPC();
 	//Clear the profile options
 	ProfileOptions.Length = 0;
-	
-	//View profile option
-	//ProfileOptions.AddItem(ViewProfileString); //not supported yet
-	//Are they your friend?
-	if(!IsPlayerAFriend(PlayerID))
+	bConsoleBuild = PC.WorldInfo.IsConsoleBuild();
+	if ( !bConsoleBuild && PlayerID != PC.PlayerReplicationInfo.UniqueId)
 	{
-		ProfileOptions.AddItem(AddFriendString);  //Not supported yet
+		//Are they your friend?
+		if(!IsPlayerAFriend(PlayerID))
+		{
+			ProfileOptions.AddItem(AddFriendString);  //Not supported yet
+		}
+		else
+		{
+			ProfileOptions.AddItem(RemoveFriendString);  //Not supported yet	
+		}
 	}
 	else
 	{
-		ProfileOptions.AddItem(RemoveFriendString);  //Not supported yet	
+		if(ProfileOptions.Find(AddFriendString) != INDEX_NONE)
+		{
+			ProfileOptions.RemoveItem(AddFriendString);
+		}
+		else if(ProfileOptions.Find(RemoveFriendString) != INDEX_NONE)
+		{
+			ProfileOptions.RemoveItem(RemoveFriendString);
+		}
 	}
 
-	if( !class'WorldInfo'.static.IsMenuLevel() ) //temp for now since voip and such does not work in the main menu
+	if( !PC.WorldInfo.IsMenuLevel() && PlayerID != PC.PlayerReplicationInfo.UniqueId ) //temp for now since voip and such does not work in the main menu
 	{
 		//Are they muted?
-		if(GetPC().IsPlayerMuted(PlayerID))
+		if(PC.IsPlayerMuted(PlayerID))
 		{
 			ProfileOptions.AddItem(UnmuteString);
 		}
@@ -182,13 +198,38 @@ function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
 
 		ProfileOptions.AddItem(VoteKickString);
 	}
-
-
-
-	if(PlayerID != GetPC().PlayerReplicationInfo.UniqueId)
+	else
 	{
-		CreateList(MemberSlots[SlotIndex].MemberSlotObject.GetObject("optionsList"), ProfileOptions, 0);
+		if(ProfileOptions.Find(UnmuteString) != INDEX_NONE)
+		{
+			ProfileOptions.RemoveItem(UnmuteString);
+		}
+		else if(ProfileOptions.Find(MuteString) != INDEX_NONE)
+		{
+			ProfileOptions.RemoveItem(MuteString);
+		}
+
+		if(ProfileOptions.Find(VoteKickString) != INDEX_NONE)
+		{
+			ProfileOptions.RemoveItem(VoteKickString);
+		}
 	}
+	//View profile option Added at the end if we are on PC but first on console.
+	if ( bConsoleBuild )
+	{
+		ProfileOptions.InsertItem(0, Localize("KFGFxWidget_BaseParty","ViewProfileString","KFGameConsole"));
+	}
+	else
+	{
+		ProfileOptions.AddItem(ViewProfileString);
+	}
+
+
+	// Setting everyone's list the same way for now.  Once we get perk switch working we won't do this for the Player.
+	//if(PlayerID != GetPC().PlayerReplicationInfo.UniqueId)
+	//{
+		CreateList(MemberSlots[SlotIndex].MemberSlotObject.GetObject("optionsList"), ProfileOptions, 0);
+	//}
 }
 
 function UpdateInLobby(bool bIsInLobby)
@@ -218,7 +259,6 @@ function UpdateInLobby(bool bIsInLobby)
 		
 		LeaveButton.SetVisible(false);
 	}
-	
 	SetBool("bInParty", bIsInLobby);	
 }
 
@@ -267,27 +307,35 @@ function CreateList( GFxObject OptionList, array<string> TextArray, byte Selecte
 		ItemSlot.SetString("label", TextArray[i] );
 		DataProvider.SetElementObject(i, ItemSlot);		
     }
-    DataProvider.ActionScriptVoid("invalidate");
+    DataProvider.ActionScriptVoid("invalidateData");
 }
 
 function ProfileOptionClicked(int OptionIndex, int SlotIndex)
 {
-	switch (OptionIndex)
+	local PlayerController PC;
+	PC = GetPC();
+
+	if( (PC.WorldInfo.IsConsoleBuild() && OptionIndex == 0) || OptionIndex == ProfileOptions.length - 1 )
 	{
-		case EToggle_Mute:
-			ToggelMuteOnPlayer(SlotIndex);
-			break;
-	
-		case EView_Profile:
-			ViewProfile(SlotIndex);
-			break;
+		// So the View Profile option is either going to be the first index on console (overriding Add Friend since we can't do that)
+		// or it's going to be the last index on PC because you can't mute or kick in the menus.
+		ViewProfile(SlotIndex);
+	}
+	else
+	{
+		switch (OptionIndex)
+		{
 		case EAdd_Friend:
 			AddFriend(SlotIndex);
+			break;
+		case EToggle_Mute:
+			ToggelMuteOnPlayer(SlotIndex);
 			break;
 		case EKick_Player:
 			KickPlayer(SlotIndex);
 		default:
-			
+
+		}
 	}
 }
 
@@ -423,6 +471,7 @@ function UpdateLock()
 {
 	local WorldInfo TempWorldInfo;
 	local KFGameReplicationInfo KFGRI;
+	local bool bLocked;
 
 	TempWorldInfo = class'WorldInfo'.static.GetWorldInfo();
 	if ( TempWorldInfo != none && TempWorldInfo.GRI != none )
@@ -431,7 +480,8 @@ function UpdateLock()
 
 		if ( KFGRI != none && KFPC != none )
 		{
-			SetBool( "locked", ( KFGRI.bTraderIsOpen && KFPC.bPlayerUsedUpdatePerk ));
+			bLocked = ( KFGRI.CanChangePerks() && KFPC.bPlayerUsedUpdatePerk );
+			SetBool( "locked", bLocked);
 		}
 	}
 }

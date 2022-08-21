@@ -7,6 +7,15 @@
  *******************************************************************************/
 class KFSM_PlayerAlpha_Grab extends KFSM_GrappleCombined;
 
+function StartInteraction()
+{
+    super.StartInteraction();
+    if(Follower != none)
+    {
+        ++ KFPlayerReplicationInfoVersus(KFPOwner.PlayerReplicationInfo).ZedGrabs;
+    }
+}
+
 function Tick(float DeltaTime)
 {
     local Rotator DesiredRotation;
@@ -31,8 +40,9 @@ function ProcessViewRotation(float DeltaTime, out Rotator out_ViewRotation, out 
 
 defaultproperties
 {
-    GrabStartAnimName=Player_Grab
-    bUseRootMotion=true
     GrappleAnims=/* Array type was not detected. */
+    bUseRootMotion=true
+    GrabStartAnimName=Player_Grab
+    bLockPawnRotation=true
     bPawnRotationLocked=true
 }

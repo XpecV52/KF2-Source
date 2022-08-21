@@ -8,7 +8,7 @@
 class KFDestructibleActor extends Actor
     native
     placeable
-    hidecategories(Physics,Advanced,Debug,Object,Mobile);
+    hidecategories(Physics,Debug,Object,Mobile);
 
 const INSTAKILL_DAMAGE = 100000;
 
@@ -354,7 +354,6 @@ struct native DestructibleSubobject
 };
 
 var() KFDestructibleActor.EDestructibleRepType ReplicationMode;
-var repnotify byte ResetCount;
 var transient byte ReplicatedDamageFlags;
 var const byte VulnerableMultiplier;
 /** SubObject array size limit based on ReplicationMode */
@@ -370,6 +369,7 @@ var() protected bool bAllowBumpDamageFromAI;
 var transient bool bComponentsSetUp;
 var transient bool bInitRBPhysCalled;
 var transient bool bIsRadiusDamage;
+var transient bool bAnyDamageModApplied;
 /** List of damage types that instantly destroy this object */
 var() array< class<DamageType> > InstaKillDamageType<AllowAbstract=>;
 /** List of damage types to always ignore */
@@ -397,8 +397,7 @@ var(SubObjects) editoronly transient Rotator PreviewRelativeRotation;
 replication
 {
      if(Role == ROLE_Authority)
-        ReplicatedDamageMods, ResetCount, 
-        bShutDown;
+        ReplicatedDamageMods, bShutDown;
 }
 
 simulated event ReplicatedEvent(name VarName)
@@ -427,22 +426,15 @@ simulated event ReplicatedEvent(name VarName)
     }
     else
     {
-        if((VarName == 'ResetCount') && ResetCount > 0)
+        if(VarName == 'bShutDown')
         {
-            UnDestroy();            
-        }
-        else
-        {
-            if(VarName == 'bShutDown')
+            if(bShutDown)
             {
-                if(bShutDown)
-                {
-                    ShutDownObject();                    
-                }
-                else
-                {
-                    UnShutDownObject();
-                }
+                ShutDownObject();                
+            }
+            else
+            {
+                UnShutDownObject();
             }
         }
     }
@@ -868,18 +860,15 @@ protected simulated event UnShutDownObject()
 
 function MoveCollidingPawns();
 
-final function ClearResetCount()
+simulated function Reset()
 {
-    ResetCount = 0;
-}
-
-function Reset()
-{
+    if(!bAnyDamageModApplied)
+    {
+        return;
+    }
     RemoveDecals();
     UnDestroy();
-    ++ ResetCount;
     bForceNetUpdate = true;
-    SetTimer(1, false, 'ClearResetCount');
 }
 
 defaultproperties

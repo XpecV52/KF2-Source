@@ -11,60 +11,6 @@ class KFDT_Ballistic_NailShotgun extends KFDT_Ballistic_Shotgun
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 14;
-
 /**
  * Returns the class of the projectile to spawn if the weapon using this damage
  * type can pin a zed when it kills it
@@ -77,10 +23,7 @@ static simulated function class<KFProj_PinningBullet> GetPinProjectileClass()
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Nailgun'
-   StunPower=42
-   StumblePower=54
-   LegStumblePower=54
-   GunHitPower=118
+   StumblePower=24.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
    BloodSpread=0.400000
    BloodScale=0.600000

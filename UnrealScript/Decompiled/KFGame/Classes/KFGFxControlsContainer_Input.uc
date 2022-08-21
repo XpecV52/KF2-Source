@@ -47,6 +47,7 @@ function LocalizeText()
     LocalizedObject.SetString("aimAssistRotationLabel", AimAssistRotationString);
     LocalizedObject.SetString("aimAssistSlowDownLabel", AimAssistSlowDownString);
     LocalizedObject.SetString("forceFeedbackLabel", ForceFeedbackString);
+    LocalizedObject.SetString("resetDefault", Localize("KFGFxOptionsMenu_Graphics", "DefaultString", "KFGame"));
     SetObject("localizedText", LocalizedObject);
 }
 
@@ -57,14 +58,18 @@ function InitializeOptions()
 
     KFPI = KFPlayerInput(Outer.GetPC().PlayerInput);
     ValuesObject = Outer.CreateObject("Object");
-    ValuesObject.SetFloat("sensitivityValue", KFPI.MouseSensitivity);
-    ValuesObject.SetFloat("sensitivityValueMin", 100 * ControlsMenu.MinMouseLookSensitivity);
-    ValuesObject.SetFloat("sensitivityValueMax", 100 * ControlsMenu.MaxMouseLookSensitivity);
-    ValuesObject.SetFloat("zoomSensitivityValue", 100 * KFPI.ZoomedSensitivityScale);
-    ValuesObject.SetFloat("zoomSensitivityValueMin", 100 * ControlsMenu.MinMouseLookZoomSensitivity);
-    ValuesObject.SetFloat("zoomSensitivityValueMax", 100 * ControlsMenu.MaxMouseLookZoomSensitivity);
-    ValuesObject.SetBool("invertedValue", KFPI.bInvertMouse);
-    ValuesObject.SetBool("mouseSmoothingLabel", KFPI.bEnableMouseSmoothing);
+    if(!Outer.GetPC().WorldInfo.IsConsoleBuild())
+    {
+        ValuesObject.SetFloat("sensitivityValue", KFPI.MouseSensitivity);
+        ValuesObject.SetFloat("sensitivityValueMin", 100 * ControlsMenu.MinMouseLookSensitivity);
+        ValuesObject.SetFloat("sensitivityValueMax", 100 * ControlsMenu.MaxMouseLookSensitivity);
+        ValuesObject.SetFloat("zoomSensitivityValue", 100 * KFPI.ZoomedSensitivityScale);
+        ValuesObject.SetFloat("zoomSensitivityValueMin", 100 * ControlsMenu.MinMouseLookZoomSensitivity);
+        ValuesObject.SetFloat("zoomSensitivityValueMax", 100 * ControlsMenu.MaxMouseLookZoomSensitivity);
+        ValuesObject.SetBool("invertedValue", KFPI.bInvertMouse);
+        ValuesObject.SetBool("mouseSmoothingLabel", KFPI.bEnableMouseSmoothing);
+        ValuesObject.SetBool("forceFeedbackValue", KFPI.bForceFeedbackEnabled);
+    }
     ValuesObject.SetFloat("controllerSensitivityValue", 100 * KFPI.GamepadSensitivityScale);
     ValuesObject.SetFloat("controllerSensitivityValueMin", 100 * ControlsMenu.MinControllerLookSensitivity);
     ValuesObject.SetFloat("controllerSensitivityValueMax", 100 * ControlsMenu.MaxControllerLookSensitivity);
@@ -75,17 +80,18 @@ function InitializeOptions()
     ValuesObject.SetBool("aimAssistLockOnValue", KFPI.bAutoTargetEnabled);
     ValuesObject.SetBool("aimAssistRotationValue", KFPI.bTargetAdhesionEnabled);
     ValuesObject.SetBool("aimAssistSlowDownValue", KFPI.bTargetFrictionEnabled);
-    ValuesObject.SetBool("forceFeedbackValue", KFPI.bForceFeedbackEnabled);
     SetObject("initializeOptions", ValuesObject);
 }
+
+function ResetInputOptions();
 
 defaultproperties
 {
     SensitivityString="Sensitivity"
     InvertedString="Invert Y"
     ControllerSensitivityString="Look Sensitivity"
-    ControllerString="Controller"
-    MouseString="Mouse"
+    ControllerString="CONTROLLER"
+    MouseString="MOUSE"
     MouseSmoothingString="Mouse Smoothing"
     ZoomSensitivityString="Zoom Sensitivity"
     ControllerZoomSensitivityString="Zoom Sensitivity"

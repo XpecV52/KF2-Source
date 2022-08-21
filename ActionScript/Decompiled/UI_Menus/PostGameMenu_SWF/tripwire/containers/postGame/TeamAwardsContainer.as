@@ -61,6 +61,8 @@ package tripwire.containers.postGame
         
         public const personalBestsObjectY:Number = 736;
         
+        public const MaxTeamAwardRenderers:int = 8;
+        
         public function TeamAwardsContainer()
         {
             super();
@@ -101,7 +103,7 @@ package tripwire.containers.postGame
             this.playerStatsList.scrollBar.scrollRate = this.scrollAmount;
         }
         
-        override public function openContainer() : void
+        override public function openContainer(param1:Boolean = true) : void
         {
             super.openContainer();
             this.playerStatsList.enabled = true;
@@ -129,7 +131,7 @@ package tripwire.containers.postGame
                     "onComplete":this.scrollComplete
                 });
             }
-            else if(this.currentPlayerIndex < this.personalBestList.dataProvider.length)
+            else if(this.currentPlayerIndex < Math.min(this.personalBestList.dataProvider.length,this.MaxTeamAwardRenderers))
             {
                 this.playNextPlayerAnimation();
             }
@@ -184,7 +186,7 @@ package tripwire.containers.postGame
             }
         }
         
-        override protected function openAnimation() : *
+        override protected function openAnimation(param1:Boolean = true) : *
         {
             this.playerStatsList.scrollBar.position = 0;
             TweenMax.killTweensOf(this);

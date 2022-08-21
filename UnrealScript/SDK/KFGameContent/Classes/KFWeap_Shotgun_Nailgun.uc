@@ -137,7 +137,7 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Nail_Nailgun'
-	InstantHitDamage(DEFAULT_FIREMODE)=30.0
+	InstantHitDamage(DEFAULT_FIREMODE)=30
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_NailShotgun'
 	Spread(DEFAULT_FIREMODE)=0.185
 	PenetrationPower(DEFAULT_FIREMODE)=2.0
@@ -151,7 +151,7 @@ defaultproperties
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponAltFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Nail_Nailgun'
-	InstantHitDamage(ALTFIRE_FIREMODE)=30.0
+	InstantHitDamage(ALTFIRE_FIREMODE)=30
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_NailShotgun'
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_NailShotgun'
 	Spread(ALTFIRE_FIREMODE)=0.02

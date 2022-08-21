@@ -26,6 +26,8 @@ enum ESupportPerkSkills
 };
 
 /** Passives */
+var() const PerkSkill Ammo;
+/** Welding speed modifier */
 var() const PerkSkill WeldingProficiency;
 /** Shotgun dmg modifier */
 var() const PerkSkill ShotgunDamage;
@@ -46,7 +48,7 @@ function ApplySkillsToPawn()
     {
         if(IsStrengthActive())
         {
-            KFIM.MaxCarryBlocks = byte(float(KFIM.default.MaxCarryBlocks) + PerkSkills[6].StartingValue);
+            KFIM.MaxCarryBlocks = byte(float(KFIM.default.MaxCarryBlocks) + (GetSkillValue(PerkSkills[6])));
         }
     }
     ResetSupplier();
@@ -92,19 +94,18 @@ protected simulated event PostSkillUpdate()
 simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx)
 {
     local KFWeapon MyKFWeapon;
-    local float TempDamage, BaseDamage, ShotgunDamageMod;
+    local float TempDamage, ShotgunDamageMod;
 
     TempDamage = float(InDamage);
-    BaseDamage = TempDamage;
     if(DamageCauser != none)
     {
         if(ClassIsChildOf(DamageCauser.Class, Class'KFProj_Grenade'))
         {
-            TempDamage += (BaseDamage * (GetPassiveValue(GrenadeDamage, CurrentLevel)));            
+            TempDamage += (float(InDamage) * (GetPassiveValue(GrenadeDamage, CurrentLevel)));            
         }
         else
         {
-            if((DamageInstigator != none) && DamageInstigator.Pawn != none)
+            if(((DamageInstigator != none) && DamageInstigator.Pawn != none) && !ClassIsChildOf(DamageType, Class'KFDT_Explosive'))
             {
                 MyKFWeapon = KFWeapon(DamageInstigator.Pawn.Weapon);
                 if(MyKFWeapon != none)
@@ -112,10 +113,10 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
                     if((IsWeaponOnPerk(MyKFWeapon)) && IsDamageTypeOnPerk(DamageType))
                     {
                         ShotgunDamageMod = GetPassiveValue(ShotgunDamage, CurrentLevel);
-                        TempDamage = ((ShotgunDamageMod > float(0)) ? TempDamage += (BaseDamage * ShotgunDamageMod) : TempDamage);
+                        TempDamage = ((ShotgunDamageMod > float(0)) ? TempDamage += (float(InDamage) * ShotgunDamageMod) : TempDamage);
                         if(IsTenacityActive())
                         {
-                            TempDamage += (BaseDamage * PerkSkills[7].StartingValue);
+                            TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[7])));
                         }
                     }
                 }
@@ -123,7 +124,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
         }
         if(IsBarrageActive())
         {
-            TempDamage += (BaseDamage * PerkSkills[9].StartingValue);
+            TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[9])));
         }
     }
     InDamage = FCeil(TempDamage);
@@ -152,18 +153,11 @@ simulated function ModifySpareAmmoAmount(KFWeapon KFW, out int PrimarySpareAmmo,
     local float TempSpareAmmoAmount;
     local class<KFPerk> WeaponPerkClass;
 
-    if(KFW == none)
-    {
-        WeaponPerkClass = TraderItem.AssociatedPerkClass;        
-    }
-    else
-    {
-        WeaponPerkClass = KFW.AssociatedPerkClass;
-    }
-    if(IsAmmoActive() && IsWeaponOnPerk(KFW, WeaponPerkClass))
+    WeaponPerkClass = ((KFW == none) ? TraderItem.AssociatedPerkClass : KFW.AssociatedPerkClass);
+    if(IsWeaponOnPerk(KFW, WeaponPerkClass))
     {
         TempSpareAmmoAmount = float(PrimarySpareAmmo);
-        TempSpareAmmoAmount *= PerkSkills[0].StartingValue;
+        TempSpareAmmoAmount += (float(PrimarySpareAmmo) * (GetPassiveValue(Ammo, CurrentLevel)));
         PrimarySpareAmmo = Round(TempSpareAmmoAmount);
     }
 }
@@ -173,18 +167,11 @@ simulated function ModifyMaxSpareAmmoAmount(KFWeapon KFW, out int MaxSpareAmmo, 
     local float TempMaxSpareAmmoAmount;
     local class<KFPerk> WeaponPerkClass;
 
-    if(KFW == none)
-    {
-        WeaponPerkClass = TraderItem.AssociatedPerkClass;        
-    }
-    else
-    {
-        WeaponPerkClass = KFW.AssociatedPerkClass;
-    }
-    if(IsAmmoActive() && IsWeaponOnPerk(KFW, WeaponPerkClass))
+    WeaponPerkClass = ((KFW == none) ? TraderItem.AssociatedPerkClass : KFW.AssociatedPerkClass);
+    if(IsWeaponOnPerk(KFW, WeaponPerkClass))
     {
         TempMaxSpareAmmoAmount = float(MaxSpareAmmo);
-        TempMaxSpareAmmoAmount *= PerkSkills[0].StartingValue;
+        TempMaxSpareAmmoAmount += (float(MaxSpareAmmo) * (GetPassiveValue(Ammo, CurrentLevel)));
         MaxSpareAmmo = Round(TempMaxSpareAmmoAmount);
     }
 }
@@ -201,7 +188,7 @@ function ModifyHealth(out int InHealth)
     if(IsFortitudeActive())
     {
         TempHealth = float(InHealth);
-        TempHealth *= PerkSkills[2].StartingValue;
+        TempHealth += (float(InHealth) * (GetSkillValue(PerkSkills[2])));
         InHealth = FCeil(TempHealth);
     }
 }
@@ -215,7 +202,7 @@ function NotifyZedTimeStarted()
         if(IsSafeguardActive() && !OwnerPawn.bHasSupportSafeguardBuff)
         {
             OwnerPawn.SetSupportSafeguardBuff(true);
-            OwnerPawn.AddArmor(int(PerkSkills[8].StartingValue * float(OwnerPawn.MaxArmor)));
+            OwnerPawn.AddArmor(int((GetSkillValue(PerkSkills[8])) * float(OwnerPawn.MaxArmor)));
         }
         if(IsBarrageActive() && !OwnerPawn.bHasSupportBarrageBuff)
         {
@@ -256,7 +243,7 @@ function GivePlayerBuffs()
                     OtherPawn.SetSupportSafeguardBuff(true);
                     BuffedPlayerInfos.Insert(0, 1;
                     BuffedPlayerInfos[0].BuffedPawn = OtherPawn;
-                    OtherPawn.AddArmor(int(PerkSkills[8].StartingValue * float(OtherPawn.MaxArmor)));
+                    OtherPawn.AddArmor(int((GetSkillValue(PerkSkills[8])) * float(OtherPawn.MaxArmor)));
                     continue;
                 }
                 if(IsBarrageActive() && !OtherPawn.bHasSupportBarrageBuff)
@@ -297,7 +284,7 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
 {
     if((IsWeaponOnPerk(GetOwnerWeapon())) && IsBombardActive())
     {
-        return 1 + PerkSkills[4].StartingValue;
+        return 1 + (GetSkillValue(PerkSkills[4]));
     }
     return 1;
 }
@@ -308,22 +295,11 @@ simulated function Interact(KFPawn_Human KFPH)
     local int MagCount;
     local KFPlayerController KFPC;
     local KFPlayerReplicationInfo UserPRI, OwnerPRI;
+    local bool bReceivedAmmo;
 
-    if(SuppliedPawnList.Find(KFPH != -1)
+    if((SuppliedPawnList.Find(KFPH != -1) || !IsSupplierActive())
     {
         return;
-    }
-    if(Role == ROLE_Authority)
-    {
-        KFPC = KFPlayerController(KFPH.Controller);
-        OwnerPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 1, KFPC.PlayerReplicationInfo);
-        KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 0, OwnerPC.PlayerReplicationInfo);
-        UserPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
-        OwnerPRI = KFPlayerReplicationInfo(OwnerPC.PlayerReplicationInfo);
-        if((UserPRI != none) && OwnerPRI != none)
-        {
-            UserPRI.MarkSupplierOwnerUsed(OwnerPRI);
-        }
     }
     foreach KFPH.InvManager.InventoryActors(Class'KFWeapon', KFW)
     {
@@ -332,13 +308,28 @@ simulated function Interact(KFPawn_Human KFPH)
             continue;            
         }
         MagCount = Max(KFW.InitialSpareMags[0] / 3, 1);
-        KFW.AddAmmo(MagCount * KFW.MagazineCapacity[0]);
+        bReceivedAmmo = ((bReceivedAmmo) ? true : KFW.AddAmmo(MagCount * KFW.MagazineCapacity[0]) > 0);
         if(KFW.CanRefillSecondaryAmmo())
         {
-            KFW.AddSecondaryAmmo(Max(KFW.InitialSpareMags[1] / 3, 1));
+            bReceivedAmmo = ((bReceivedAmmo) ? true : KFW.AddSecondaryAmmo(Max(KFW.InitialSpareMags[1] / 3, 1)) > 0);
         }        
     }    
-    SuppliedPawnList.AddItem(KFPH;
+    if(bReceivedAmmo)
+    {
+        if(Role == ROLE_Authority)
+        {
+            KFPC = KFPlayerController(KFPH.Controller);
+            OwnerPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 1, KFPC.PlayerReplicationInfo);
+            KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 0, OwnerPC.PlayerReplicationInfo);
+            UserPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
+            OwnerPRI = KFPlayerReplicationInfo(OwnerPC.PlayerReplicationInfo);
+            if((UserPRI != none) && OwnerPRI != none)
+            {
+                UserPRI.MarkSupplierOwnerUsed(OwnerPRI);
+            }
+        }
+        SuppliedPawnList.AddItem(KFPH;
+    }
 }
 
 simulated function bool CanInteract(KFPawn_Human MyKFPH)
@@ -450,17 +441,6 @@ simulated function LogPerkSkills()
         LogInternal(("-Shotgun Damage Modifier:" @ string(((GetPassiveValue(ShotgunDamage, CurrentLevel)) - float(1)) * float(100))) $ "%");
         LogInternal("-Shotgun Penetration Modifier:" @ string(GetPassiveValue(default.ShotgunPenetration, CurrentLevel)));
         LogInternal(("-Grenade Damage Modifier:" @ string((GetPassiveValue(GrenadeDamage, CurrentLevel, 100)) * float(100))) $ "%");
-        LogInternal("Skill Tree");
-        LogInternal("-Ammo:" @ string(PerkSkills[5].bActive));
-        LogInternal("-Supplier:" @ string(IsSupplierActive()));
-        LogInternal("-Fortitude:" @ string(PerkSkills[2].bActive));
-        LogInternal("-Regeneration:" @ string(PerkSkills[3].bActive));
-        LogInternal("-Bombard:" @ string(PerkSkills[4].bActive));
-        LogInternal(("-Tactical Reload:" @ string(PerkSkills[5].bActive)) @ string(LogTacticalReload()));
-        LogInternal("-Strength:" @ string(PerkSkills[6].bActive));
-        LogInternal("-Tenacity:" @ string(PerkSkills[7].bActive));
-        LogInternal("-Safeguard:" @ string(PerkSkills[8].bActive));
-        LogInternal("-Barrage:" @ string(PerkSkills[9].bActive));
     }
 }
 
@@ -503,7 +483,7 @@ defaultproperties
     InteractIcon=Texture2D'UI_World_TEX.Support_Supplier_HUD'
     PerkSkills(0)=(Name="Ammo",Increment=0,Rank=0,StartingValue=1.2,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Ammo",bActive=false)
     PerkSkills(1)=(Name="Supplier",Increment=0,Rank=0,StartingValue=1.15,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Supplier",bActive=false)
-    PerkSkills(2)=(Name="Fortitude",Increment=0,Rank=0,StartingValue=1.5,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Fortitude",bActive=false)
+    PerkSkills(2)=(Name="Fortitude",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Fortitude",bActive=false)
     PerkSkills(3)=(Name="Regeneration",Increment=0,Rank=0,StartingValue=0.15,MaxValue=0.15,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Regeneration",bActive=false)
     PerkSkills(4)=(Name="Bombard",Increment=0,Rank=0,StartingValue=0.6,MaxValue=0.6,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Bombard",bActive=false)
     PerkSkills(5)=(Name="TacticalReload",Increment=0,Rank=0,StartingValue=0.8,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_TacticalReload",bActive=false)

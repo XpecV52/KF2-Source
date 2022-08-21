@@ -45,7 +45,7 @@ function DealPukeDamage(Pawn Victim, Vector Origin)
     VectToEnemy = Victim.Location - Origin;
     VectToEnemy.Z = 0;
     VectToEnemy = Normal(VectToEnemy);
-    Victim.TakeDamage(VomitDamage, Controller, Victim.Location, VectToEnemy, Class'KFDT_BloatPuke',, self);
+    Victim.TakeDamage(GetRallyBoostDamage(VomitDamage), Controller, Victim.Location, VectToEnemy, Class'KFDT_BloatPuke',, self);
 }
 
 function bool CanPukeOnTarget(Pawn PukeTarget, Vector PukeLocation, Vector PukeDirection)
@@ -170,8 +170,7 @@ defaultproperties
     XPValues[1]=22
     XPValues[2]=30
     XPValues[3]=34
-    VulnerableDamageTypes=/* Array type was not detected. */
-    ResistantDamageTypes=/* Array type was not detected. */
+    DamageTypeModifiers=/* Array type was not detected. */
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
     PawnAnimInfo=KFPawnAnimInfo'ZED_Bloat_ANIM.Bloat_AnimGroup'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -181,16 +180,15 @@ defaultproperties
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     HitZones=/* Array type was not detected. */
     PenetrationResistance=3
-    begin object name=Afflictions class=KFPawnAfflictions
+    begin object name=Afflictions class=KFAfflictionManager
         FireFullyCharredDuration=3.5
     object end
-    // Reference: KFPawnAfflictions'Default__KFPawn_ZedBloat.Afflictions'
+    // Reference: KFAfflictionManager'Default__KFPawn_ZedBloat.Afflictions'
     AfflictionHandler=Afflictions
-    InstantIncaps=/* Array type was not detected. */
-    StackingIncaps=/* Array type was not detected. */
+    IncapSettings=/* Array type was not detected. */
     PhysRagdollImpulseScale=1.5
     KnockdownImpulseScale=1.5
-    SprintSpeed=260
+    SprintSpeed=210
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -206,7 +204,7 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedBloat.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedBloat.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedBloat.DialogAkSoundComponent'
-    DamageRecoveryTimeHeavy=0.35
+    DamageRecoveryTimeHeavy=0.85
     Mass=130
     GroundSpeed=150
     Health=405

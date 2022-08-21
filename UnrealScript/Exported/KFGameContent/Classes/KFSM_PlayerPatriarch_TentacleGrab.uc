@@ -35,7 +35,7 @@ protected function bool InternalCanDoSpecialMove()
 			{
 				Projection = KFP.Location - KFPOwner.Location;
 				DistSQ = VSizeSQ( Projection );
-				if( VSizeSQ(Projection) <= TentacleRangeSQ )
+				if( DistSQ <= TentacleRangeSQ )
 				{
 					FOV = CameraNormal dot Normal( Projection );
 
@@ -60,7 +60,6 @@ protected function bool InternalCanDoSpecialMove()
 		if( BestTarget != none )
 		{
 			KFPOwner.InteractionPawn = BestTarget;
-			return true;
 		}
 
 		// Execute the move regardless of whether there's a follower
@@ -86,6 +85,17 @@ function SpecialMoveStarted( bool bForced, name PrevMove )
 	}
 
 	super.SpecialMoveStarted( bForced, PrevMove );
+}
+
+/** StartInteraction */
+function StartInteraction() 
+{
+    super.StartInteraction();
+
+    if( Follower != none )
+    {
+        ++KFPlayerReplicationInfoVersus(KFPOwner.PlayerReplicationInfo).ZedGrabs;
+    }
 }
 
 /** Script Tick function. */

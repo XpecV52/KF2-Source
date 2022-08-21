@@ -1,8 +1,8 @@
 package
 {
-    import scaleform.clik.controls.OptionStepper;
+    import tripwire.controls.TripOptionStepper;
     
-    public dynamic class DefaultOptionStepper extends OptionStepper
+    public dynamic class DefaultOptionStepper extends TripOptionStepper
     {
          
         

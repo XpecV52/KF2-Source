@@ -15,7 +15,8 @@ defaultproperties
    NumPellets(1)=()
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
-   InventorySize=6
+   InventorySize=5
+   MagazineCapacity(0)=6
    bHasIronSights=True
    bCanBeReloaded=True
    PenetrationPower(0)=3.000000
@@ -28,7 +29,6 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=2.500000
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'WEP_UI_DragonsBreath.UI_WeaponSelect_DragonsBreath'
-   MagazineCapacity(0)=6
    MaxSpareAmmo(0)=45
    InitialSpareMags(0)=3
    BonesToLockOnEmpty(0)="RW_Hammer"

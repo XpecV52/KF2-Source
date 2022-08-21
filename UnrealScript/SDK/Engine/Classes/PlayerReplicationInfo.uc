@@ -125,6 +125,11 @@ var int StatMaxOutBPS, StatAvgOutBPS;
 /** The online avatar for this player. May be None if we haven't downloaded it yet, or player doesn't have one. */
 var transient Texture2D Avatar;   // not replicated.
 
+//@HSL_BEGIN - BWJ - 4-12-16 - Playfab support
+/** The playfab player Id */
+var string PlayfabPlayerId;
+//@HSL_END
+
 cpptext
 {
 	// AActor interface.
@@ -143,7 +148,9 @@ replication
 		Kills, //Added this for Scoreboard.
 `endif
 		// NOTE: This needs to be replicated to the owning client so don't move it from here
-		UniqueId;
+//@HSL_BEGIN - BWJ - 4-12-16 - Playfab support
+		UniqueId, PlayfabPlayerId;
+//@HSL_END
 
 	// sent to everyone except the player that belongs to this pri
 	if (bNetDirty && !bNetOwner)
@@ -546,8 +553,7 @@ simulated function RegisterPlayerWithSession()
 {
 	local OnlineSubsystem Online;
 	local OnlineRecentPlayersList PlayersList;
-	local UniqueNetId ZeroId;
-	local PlayerController LocalPC;
+	local UniqueNetId ZeroId, LocalId;
 
 	Online = class'GameEngine'.static.GetOnlineSubsystem();
 	if (UniqueId != ZeroId &&
@@ -570,14 +576,15 @@ simulated function RegisterPlayerWithSession()
 	}
 
 //@HSL_BEGIN - BWJ - 3-18-16 - Register remote talker for console
-	LocalPC = GetALocalPlayerController();
-	if( LocalPC != None && 
-		LocalPC.PlayerReplicationInfo != None &&
-		LocalPC.PlayerReplicationInfo != self &&
-		WorldInfo.IsConsoleBuild() &&
+	if( WorldInfo.IsConsoleBuild() &&
 		UniqueId != ZeroId )
 	{
-		Online.VoiceInterface.RegisterRemoteTalker( UniqueId );
+		// Register players that are NOT local
+		Online.PlayerInterface.GetUniquePlayerId(0, LocalId);
+		if( LocalId != UniqueId )
+		{
+			Online.VoiceInterface.RegisterRemoteTalker( UniqueId );
+		}
 	}
 //@HSL_END
 }
@@ -589,15 +596,15 @@ simulated function RegisterPlayerWithSession()
 simulated function UnregisterPlayerFromSession()
 {
 	local OnlineSubsystem OnlineSub;
-	local UniqueNetId ZeroId;
-	local PlayerController LocalPC;
+	local UniqueNetId ZeroId, LocalId;
+
+	OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
 
 	// If there is a game and we are a client, unregister this remote player
 	if (UniqueId != ZeroId &&
 		WorldInfo.NetMode == NM_Client &&
 		SessionName != 'None')
 	{
-		OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
 		if (OnlineSub != None &&
 			OnlineSub.GameInterface != None &&
 			OnlineSub.GameInterface.GetGameSettings(SessionName) != None &&
@@ -610,14 +617,16 @@ simulated function UnregisterPlayerFromSession()
 	}
 
 //@HSL_BEGIN - BWJ - 3-18-16 - Register remote talker for console
-	LocalPC = GetALocalPlayerController();
-	if( LocalPC != None && 
-		LocalPC.PlayerReplicationInfo != None &&
-		LocalPC.PlayerReplicationInfo != self &&
-		WorldInfo.IsConsoleBuild() &&
+	//@HSL_BEGIN - BWJ - 3-18-16 - Register remote talker for console
+	if( WorldInfo.IsConsoleBuild() &&
 		UniqueId != ZeroId )
 	{
-		OnlineSub.VoiceInterface.UnregisterRemoteTalker( UniqueId );
+		// Register players that are NOT local
+		OnlineSub.PlayerInterface.GetUniquePlayerId(0, LocalId);
+		if( LocalId != UniqueId )
+		{
+			OnlineSub.VoiceInterface.UnregisterRemoteTalker( UniqueId );
+		}
 	}
 //@HSL_END
 }

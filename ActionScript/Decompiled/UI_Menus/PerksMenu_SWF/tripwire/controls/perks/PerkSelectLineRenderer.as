@@ -1,5 +1,6 @@
 package tripwire.controls.perks
 {
+    import fl.motion.Color;
     import flash.display.MovieClip;
     import flash.events.FocusEvent;
     import flash.events.MouseEvent;
@@ -37,16 +38,20 @@ package tripwire.controls.perks
         
         public var SelectorArrow:MovieClip;
         
+        public var iconColor:Color;
+        
         public var hitbox:MovieClip;
         
-        public const hitboxZ:int = 32;
+        public const hitboxZ:int = 0;
         
         public function PerkSelectLineRenderer()
         {
+            this.iconColor = new Color();
             super();
             preventAutosizing = true;
             this._originalPositionZ = z;
             addEventListener(FocusEvent.FOCUS_IN,this.handleFocusIn,false,0,true);
+            disabledColor = 5393734;
             if(!enabled)
             {
                 this.disableButton();
@@ -54,24 +59,24 @@ package tripwire.controls.perks
             this.active = false;
         }
         
-        override public function setData(data:Object) : void
+        override public function setData(param1:Object) : void
         {
-            this.data = data;
-            if(data)
+            this.data = param1;
+            if(param1)
             {
                 visible = true;
-                label = !!data.Title ? data.Title : "";
+                label = !!param1.Title ? param1.Title : "";
                 if(label == "")
                 {
                     visible = false;
                 }
                 if(this.perkLevelText != null)
                 {
-                    this._perkLevelStr = !!data.PerkLevel ? data.PerkLevel : "0";
+                    this._perkLevelStr = !!param1.PerkLevel ? param1.PerkLevel : "0";
                     this.perkLevelText.text = this._perkLevelStr;
                 }
-                enabled = !!data.unlocked ? Boolean(data.unlocked) : true;
-                this.bTierUnlocked = !!data.bTierUnlocked ? Boolean(data.bTierUnlocked) : false;
+                this.enabled = !!param1.unlocked ? Boolean(param1.unlocked) : true;
+                this.bTierUnlocked = !!param1.bTierUnlocked ? Boolean(param1.bTierUnlocked) : false;
                 if(this.bTierUnlocked)
                 {
                     if(this.alertBG != null)
@@ -83,11 +88,11 @@ package tripwire.controls.perks
                 {
                     this.alertBG.gotoAndStop("Off");
                 }
-                if(data.iconSource != null && data.iconSource != "")
+                if(param1.iconSource != null && param1.iconSource != "")
                 {
                     if(this.iconLoader != null)
                     {
-                        this.iconLoader.source = data.iconSource;
+                        this.iconLoader.source = param1.iconSource;
                     }
                 }
             }
@@ -97,11 +102,19 @@ package tripwire.controls.perks
             }
         }
         
-        public function set active(value:Boolean) : void
+        public function set active(param1:Boolean) : void
         {
+            if(param1)
+            {
+                this.highlightButton();
+            }
+            if(!param1)
+            {
+                this.unhighlightButton();
+            }
             if(this.SelectorArrow)
             {
-                this.SelectorArrow.visible = value;
+                this.SelectorArrow.visible = param1;
             }
         }
         
@@ -114,7 +127,7 @@ package tripwire.controls.perks
             }
         }
         
-        protected function handleFocusIn(e:FocusEvent) : *
+        protected function handleFocusIn(param1:FocusEvent) : *
         {
             addEventListener(FocusEvent.FOCUS_OUT,this.handleFocusOut,false,0,true);
             removeEventListener(FocusEvent.FOCUS_IN,this.handleFocusIn);
@@ -124,7 +137,7 @@ package tripwire.controls.perks
             }
         }
         
-        protected function handleFocusOut(e:FocusEvent) : *
+        protected function handleFocusOut(param1:FocusEvent) : *
         {
             addEventListener(FocusEvent.FOCUS_IN,this.handleFocusIn,false,0,true);
             removeEventListener(FocusEvent.FOCUS_OUT,this.handleFocusOut);
@@ -134,28 +147,30 @@ package tripwire.controls.perks
             }
         }
         
-        override protected function handleMouseRollOver(event:MouseEvent) : void
+        override protected function handleMouseRollOver(param1:MouseEvent) : void
         {
-            super.handleMouseRollOver(event);
+            super.handleMouseRollOver(param1);
             if(!selected)
             {
                 this.highlightButton();
             }
+            setState("over");
         }
         
-        override protected function handleMouseRollOut(event:MouseEvent) : void
+        override protected function handleMouseRollOut(param1:MouseEvent) : void
         {
-            super.handleMouseRollOut(event);
+            super.handleMouseRollOut(param1);
             if(!selected)
             {
                 this.unhighlightButton();
             }
+            setState("out");
         }
         
-        override public function set selected(value:Boolean) : void
+        override public function set selected(param1:Boolean) : void
         {
-            super.selected = value;
-            if(value)
+            super.selected = param1;
+            if(param1)
             {
                 this.highlightButton();
             }
@@ -170,7 +185,10 @@ package tripwire.controls.perks
             if(enabled)
             {
                 textField.textColor = highlightColor;
-                this.perkLevelText.textColor = highlightColor;
+                if(this.perkLevelText)
+                {
+                    this.perkLevelText.textColor = highlightColor;
+                }
                 this.hitbox.z = this.hitboxZ;
             }
             else
@@ -184,7 +202,10 @@ package tripwire.controls.perks
             if(enabled)
             {
                 textField.textColor = defaultColor;
-                this.perkLevelText.textColor = defaultColor;
+                if(this.perkLevelText)
+                {
+                    this.perkLevelText.textColor = defaultColor;
+                }
                 this.hitbox.z = 0;
             }
             else
@@ -193,10 +214,28 @@ package tripwire.controls.perks
             }
         }
         
+        override public function set enabled(param1:Boolean) : void
+        {
+            super.enabled = param1;
+            if(!super.enabled)
+            {
+                this.iconColor.setTint(disabledColor,1);
+            }
+            else
+            {
+                this.iconColor.setTint(highlightColor,1);
+            }
+            this.iconLoader.transform.colorTransform = this.iconColor;
+            this.unhighlightButton();
+        }
+        
         protected function disableButton() : *
         {
             textField.textColor = disabledColor;
-            this.perkLevelText.textColor = disabledColor;
+            if(this.perkLevelText)
+            {
+                this.perkLevelText.textColor = disabledColor;
+            }
         }
     }
 }

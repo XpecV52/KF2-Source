@@ -10,6 +10,5 @@ class KFDT_HeavyZedBump extends KFDamageType
 
 defaultproperties
 {
-    bCanObliterate=true
     bIgnoreZedOnZedScaling=true
 }

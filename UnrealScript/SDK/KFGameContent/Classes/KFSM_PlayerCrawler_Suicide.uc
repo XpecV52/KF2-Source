@@ -4,7 +4,7 @@
 // Play a suicide attack animation sequence
 //=============================================================================
 // Killing Floor 2
-// Copyright (C) 2015 Tripwire Interactive LLC
+// Copyright (C) 2016 Tripwire Interactive LLC
 //=============================================================================
 class KFSM_PlayerCrawler_Suicide extends KFSM_PlaySingleAnim;
 
@@ -16,7 +16,7 @@ var class<KFDamageType> SuicideDamageType;
 
 protected function bool InternalCanDoSpecialMove()
 {
-    if( KFPOwner.WorldInfo.GRI.bMatchIsOver )
+    if( KFPOwner.WorldInfo.GRI.bMatchIsOver || KFGameReplicationInfoVersus(KFPOwner.WorldInfo.GRI).bRoundIsOver )
     {
         return false;
     }
@@ -31,7 +31,10 @@ protected function bool InternalCanDoSpecialMove()
 
 simulated function SpecialMoveEnded( name PrevMove, name NextMove )
 {
-	TriggerExplosion( KFPOwner );
+    //if( !bPendingStopFire )
+    //{
+    	TriggerExplosion( KFPOwner );
+    //}
 
 	super.SpecialMoveEnded( PrevMove, NextMove );
 }
@@ -51,6 +54,8 @@ static function TriggerExplosion( KFPawn CrawlerOwner, optional bool bForceExplo
 		ExploActor = CrawlerOwner.Spawn( class'KFExplosion_PlayerCrawlerSuicide', CrawlerOwner,, CrawlerOwner.Location, rotator(vect(0,0,1)) );
 		if( ExploActor != none )
 		{
+            ExploActor.InstigatorController = CrawlerOwner.Controller;
+            ExploActor.Instigator = CrawlerOwner;
             ExploActor.Explode( default.SuicideGasExplosionTemplate );
 		}
 
@@ -61,6 +66,38 @@ static function TriggerExplosion( KFPawn CrawlerOwner, optional bool bForceExplo
    		}
 	}
 }
+
+/** Interrupts the special move if the player has released the button */
+/*function SpecialMoveFlagsUpdated()
+{
+    if( !KFPOwner.IsLocallyControlled() && KFPOwner.SpecialMoveFlags == FLAG_SpecialMoveButtonReleased )
+    {
+        bPendingStopFire = true;
+        bCanBeInterrupted = true;
+
+        // End the special move on the server
+        if( KFPOwner.Role == ROLE_Authority )
+        {
+            // Wait 2 frames for the pending stopfire flag to propagate
+            KFPOwner.SetTimer( KFPOwner.WorldInfo.DeltaSeconds*2.f, false, nameOf(KFPOwner.EndSpecialMove) );
+        }
+    }
+    else
+    {
+        super.SpecialMoveFlagsUpdated();
+    }
+}*/
+
+/** Interrupt the move if the button was released */
+/*function SpecialMoveButtonReleased()
+{
+    bPendingStopFire = true;
+    if( KFPOwner.Role < ROLE_Authority && KFPOwner.IsLocallyControlled() )
+    {
+        KFPOwner.ServerDoSpecialMove( KFPOwner.SpecialMove, true,, FLAG_SpecialMoveButtonReleased );
+    }
+    KFPOwner.EndSpecialMove();
+}*/
 
 defaultproperties
 {
@@ -90,7 +127,7 @@ defaultproperties
 
     /** Used for suicide gas AOE attack "explosion" template */
     Begin Object Class=KFGameExplosion Name=ExploTemplate1
-        Damage=10
+        Damage=10 //10
         DamageRadius=600
         DamageFalloffExponent=0.f
         DamageDelay=0.f

@@ -175,18 +175,40 @@ function bool isUserYourFriend(UniqueNetId PlayerID)
 
 function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
 {
+    local PlayerController PC;
+    local bool bConsoleBuild;
+
+    PC = Outer.GetPC();
     ProfileOptions.Length = 0;
-    if(!IsPlayerAFriend(PlayerID))
+    bConsoleBuild = PC.WorldInfo.IsConsoleBuild();
+    if(!bConsoleBuild && PlayerID != PC.PlayerReplicationInfo.UniqueId)
     {
-        ProfileOptions.AddItem(AddFriendString;        
+        if(!IsPlayerAFriend(PlayerID))
+        {
+            ProfileOptions.AddItem(AddFriendString;            
+        }
+        else
+        {
+            ProfileOptions.AddItem(RemoveFriendString;
+        }        
     }
     else
     {
-        ProfileOptions.AddItem(RemoveFriendString;
+        if(ProfileOptions.Find(AddFriendString != -1)
+        {
+            ProfileOptions.RemoveItem(AddFriendString;            
+        }
+        else
+        {
+            if(ProfileOptions.Find(RemoveFriendString != -1)
+            {
+                ProfileOptions.RemoveItem(RemoveFriendString;
+            }
+        }
     }
-    if(!Class'WorldInfo'.static.IsMenuLevel())
+    if(!PC.WorldInfo.IsMenuLevel() && PlayerID != PC.PlayerReplicationInfo.UniqueId)
     {
-        if(Outer.GetPC().IsPlayerMuted(PlayerID))
+        if(PC.IsPlayerMuted(PlayerID))
         {
             ProfileOptions.AddItem(UnmuteString;            
         }
@@ -194,12 +216,35 @@ function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
         {
             ProfileOptions.AddItem(MuteString;
         }
-        ProfileOptions.AddItem(VoteKickString;
+        ProfileOptions.AddItem(VoteKickString;        
     }
-    if(PlayerID != Outer.GetPC().PlayerReplicationInfo.UniqueId)
+    else
     {
-        CreateList(MemberSlots[SlotIndex].MemberSlotObject.GetObject("optionsList"), ProfileOptions, 0);
+        if(ProfileOptions.Find(UnmuteString != -1)
+        {
+            ProfileOptions.RemoveItem(UnmuteString;            
+        }
+        else
+        {
+            if(ProfileOptions.Find(MuteString != -1)
+            {
+                ProfileOptions.RemoveItem(MuteString;
+            }
+        }
+        if(ProfileOptions.Find(VoteKickString != -1)
+        {
+            ProfileOptions.RemoveItem(VoteKickString;
+        }
     }
+    if(bConsoleBuild)
+    {
+        ProfileOptions.InsertItem(0, Localize("KFGFxWidget_BaseParty", "ViewProfileString", "KFGameConsole");        
+    }
+    else
+    {
+        ProfileOptions.AddItem(ViewProfileString;
+    }
+    CreateList(MemberSlots[SlotIndex].MemberSlotObject.GetObject("optionsList"), ProfileOptions, 0);
 }
 
 function UpdateInLobby(bool bIsInLobby)
@@ -281,26 +326,33 @@ function CreateList(GFxObject OptionList, array<string> TextArray, byte Selected
         ++ I;
         goto J0x44;
     }
-    DataProvider.ActionScriptVoid("invalidate");
+    DataProvider.ActionScriptVoid("invalidateData");
 }
 
 function ProfileOptionClicked(int OptionIndex, int SlotIndex)
 {
-    switch(OptionIndex)
+    local PlayerController PC;
+
+    PC = Outer.GetPC();
+    if((PC.WorldInfo.IsConsoleBuild() && OptionIndex == 0) || OptionIndex == (ProfileOptions.Length - 1))
     {
-        case 1:
-            ToggelMuteOnPlayer(SlotIndex);
-            break;
-        case 3:
-            ViewProfile(SlotIndex);
-            break;
-        case 0:
-            AddFriend(SlotIndex);
-            break;
-        case 2:
-            KickPlayer(SlotIndex);
-        default:
-            break;
+        ViewProfile(SlotIndex);        
+    }
+    else
+    {
+        switch(OptionIndex)
+        {
+            case 0:
+                AddFriend(SlotIndex);
+                break;
+            case 1:
+                ToggelMuteOnPlayer(SlotIndex);
+                break;
+            case 2:
+                KickPlayer(SlotIndex);
+            default:
+                break;
+        }
     }
 }
 
@@ -407,6 +459,7 @@ function UpdateLock()
 {
     local WorldInfo TempWorldInfo;
     local KFGameReplicationInfo KFGRI;
+    local bool bLocked;
 
     TempWorldInfo = Class'WorldInfo'.static.GetWorldInfo();
     if((TempWorldInfo != none) && TempWorldInfo.GRI != none)
@@ -414,7 +467,8 @@ function UpdateLock()
         KFGRI = KFGameReplicationInfo(TempWorldInfo.GRI);
         if((KFGRI != none) && KFPC != none)
         {
-            SetBool("locked", KFGRI.bTraderIsOpen && KFPC.bPlayerUsedUpdatePerk);
+            bLocked = KFGRI.CanChangePerks() && KFPC.bPlayerUsedUpdatePerk;
+            SetBool("locked", bLocked);
         }
     }
 }

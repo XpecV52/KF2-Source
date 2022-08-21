@@ -114,6 +114,7 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_MedicDart'
    InventorySize=6
+   MagazineCapacity(0)=10
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -127,7 +128,6 @@ defaultproperties
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicShotgun'
    SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
-   MagazineCapacity(0)=10
    MaxSpareAmmo(0)=80
    InitialSpareMags(0)=3
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_MedicShotgun.Play_SA_MedicShotgun_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_MedicShotgun.Play_SA_MedicShotgun_Fire_1P')

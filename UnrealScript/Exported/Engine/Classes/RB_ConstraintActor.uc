@@ -158,6 +158,7 @@ defaultproperties
    Components(1)=MyConDrawComponent
    DrawScale=0.500000
    Physics=PHYS_RigidBody
+   CollisionType=COLLIDE_CustomDefault
    TickGroup=TG_PostAsyncWork
    bHidden=True
    bNoDelete=True

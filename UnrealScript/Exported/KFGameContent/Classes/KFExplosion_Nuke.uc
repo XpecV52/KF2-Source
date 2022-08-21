@@ -29,6 +29,13 @@ protected simulated function AffectsPawn(Pawn Victim, float DamageScale)
 	}
 }
 
+simulated function Explode(GameExplosion NewExplosionTemplate, optional vector Direction)
+{
+	super.Explode(NewExplosionTemplate, Direction);
+
+	ExplosionTemplate.Damage = class'KFPerk_Demolitionist'.static.GetLingeringPoisonDamage();
+}
+
 protected simulated function bool ExplodePawns()
 {
 	local Pawn 		Victim;

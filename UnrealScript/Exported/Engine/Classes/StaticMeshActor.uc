@@ -36,6 +36,11 @@ var private editoronly bool OldAcceptsLights;
 var private editoronly ECollisionType OldCollisionType;
 
 
+var transient matrix DefaultLocalToWorld;
+var transient bool bResetCapable;
+
+
+
 /** Structure to hold info about precombined actor to recreate old actors */
 struct native PreCombinedStaticMeshActor
 {
@@ -116,8 +121,21 @@ var () editoronly array  <PreCombinedStaticMeshActor> PreCombinedStaticMeshActor
 // (cpptext)
 // (cpptext)
 // (cpptext)
+// (cpptext)
 
 event PreBeginPlay() {}
+
+
+native function ResetToDefaults();
+
+/** Reset dynamic static mesh actors */
+simulated event Reset()
+{
+	if( bResetCapable )
+	{
+		ResetToDefaults();
+	}
+}
 
 defaultproperties
 {

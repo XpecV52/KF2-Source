@@ -214,6 +214,9 @@ cpptext
 {
 	/** Searches the bind and skips the mainCommand */
 	void GetKeyBind(FKeyBind& MyKeyBind, const FString& KeyCommand, UBOOL bAlt, INT* StartBindIndex = NULL );
+
+	/** Override to detect input from a gamepad */
+	virtual UBOOL InputKey(INT ControllerId, FName Key, enum EInputEvent Event, FLOAT AmountDepressed = 1.f, UBOOL bGamepad = FALSE );
 }
 
 /** Will return the BindName based on the BindCommand
@@ -536,6 +539,18 @@ function AdjustMouseSensitivity(float FOVScale)
 	}
 
 	Super.AdjustMouseSensitivity(FOVScale);
+}
+
+
+// Reinitialize control settings. Used for E3 when settings change via button hacks
+event ReInitializeControlsUI()
+{
+	if( MyGFxManager != none && 
+		MyGFxManager.OptionsControlsMenu != none &&
+		MyGFxManager.OptionsControlsMenu.InputContainer != none )
+	{
+		MyGFxManager.OptionsControlsMenu.InputContainer.InitializeOptions();
+	}
 }
 
 /*********************************************************************************************
@@ -1597,7 +1612,6 @@ exec function InteractTimer()
 
 exec function StartVoiceChat(optional bool bPublicChat)
 {
-	`log("VOICE CHAT!");
 	if(bRequiresPushToTalk)
 	{
 		if(bPublicChat)
@@ -2607,11 +2621,13 @@ exec function UnsuppressWeaponAttach(optional name ClassName)
 exec function SuppressAffliction(optional name ClassName)
 {
 	ConsoleCommand("SETNOPEC KFAfflictionBase bDebug false");
+	ConsoleCommand("SETNOPEC KFAfflictionManager bDebugLog false");
 }
 
 exec function UnsuppressAffliction(optional name ClassName)
 {
 	ConsoleCommand("SETNOPEC KFAfflictionBase bDebug true");
+	ConsoleCommand("SETNOPEC KFAfflictionManager bDebugLog true");
 }
 
 exec function SuppressWeaponAnim(optional name ClassName)

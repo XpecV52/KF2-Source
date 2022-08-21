@@ -5,7 +5,7 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFSM_PlayerSiren_VortexScream extends KFSM_GrappleAttack;
+class KFSM_PlayerSiren_VortexScream extends KFSM_GrappleCombined;
 
 var const AkEvent VortexLoopAkEvent;
 var const AkEvent VortexLoopEndAkEvent;
@@ -38,49 +38,56 @@ protected function bool InternalCanDoSpecialMove()
     {
         return false;
     }
-    return super(KFSpecialMove).InternalCanDoSpecialMove();
+    return super.InternalCanDoSpecialMove();
 }
 
 function SpecialMoveStarted(bool bForced, name PrevMove)
 {
-    super(KFSpecialMove).SpecialMoveStarted(bForced, PrevMove);
+    local KFPawn_Monster MonsterOwner;
+
+    super.SpecialMoveStarted(bForced, PrevMove);
+    MonsterOwner = KFPawn_Monster(KFPOwner);
     bAlignFollowerLookSameDirAsMe = default.bAlignFollowerLookSameDirAsMe;
     bAlignFollowerRotation = default.bAlignFollowerRotation;
     bAlignPawns = false;
     Follower = none;
     InterpViewPitch = 0;
     FollowerAttachTime = 0;
-    if(PawnOwner.Role == ROLE_Authority)
+    if(MonsterOwner.Role == ROLE_Authority)
     {
-        PawnOwner.SetTimer(VortexCheckTime, true, 'Timer_CheckVortex', self);
-        FollowerDamagePerSec = int(DamageOverDuration / VortexDuration);
+        MonsterOwner.SetTimer(VortexCheckTime, true, 'Timer_CheckVortex', self);
+        FollowerDamagePerSec = MonsterOwner.GetRallyBoostDamage(int(DamageOverDuration / VortexDuration));
     }
     bVortexCanBeInterrupted = false;
     bPendingStopFire = false;
-    if(KFPOwner.IsLocallyControlled())
+    if(MonsterOwner.IsLocallyControlled())
     {
-        KFPOwner.SetTimer(MinVortexDuration, false, 'Timer_VortexInterrupt', self);
+        MonsterOwner.SetTimer(MinVortexDuration, false, 'Timer_VortexInterrupt', self);
     }
-    KFPawn_Monster(PawnOwner).BumpFrequency = 0;
-    PlayGrappleAnim();
-    KFPOwner.ViewPitchMin = ViewPitchConstraints.X;
-    KFPOwner.ViewPitchMax = ViewPitchConstraints.Y;
-    if(KFPOwner.IK_Look_Head == none)
+    MonsterOwner.BumpFrequency = 0;
+    MonsterOwner.ViewPitchMin = ViewPitchConstraints.X;
+    MonsterOwner.ViewPitchMax = ViewPitchConstraints.Y;
+    if(MonsterOwner.IK_Look_Head == none)
     {
-        KFPOwner.IK_Look_Head = SkelControlLookAt(KFPOwner.Mesh.FindSkelControl('HeadLook'));
+        MonsterOwner.IK_Look_Head = SkelControlLookAt(MonsterOwner.Mesh.FindSkelControl('HeadLook'));
     }
-    KFPOwner.bCanHeadTrack = true;
-    KFPOwner.bIsHeadTrackingActive = true;
-    KFPOwner.MyLookAtInfo.LookAtPct = 1;
-    KFPOwner.MyLookAtInfo.BlendOut = 0.33;
-    KFPOwner.MyLookAtInfo.BlendIn = 0.2;
-    if(KFPOwner.WorldInfo.NetMode != NM_DedicatedServer)
+    MonsterOwner.bCanHeadTrack = true;
+    MonsterOwner.bIsHeadTrackingActive = true;
+    MonsterOwner.MyLookAtInfo.LookAtPct = 1;
+    MonsterOwner.MyLookAtInfo.BlendOut = 0.33;
+    MonsterOwner.MyLookAtInfo.BlendIn = 0.2;
+    if(MonsterOwner.WorldInfo.NetMode != NM_DedicatedServer)
     {
-        VortexPSC = KFPOwner.WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(VortexEffect, KFPOwner.Mesh, 'VortexSocket', true);
+        VortexPSC = MonsterOwner.WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(VortexEffect, MonsterOwner.Mesh, 'VortexSocket', true);
         VortexPSC.SetAbsolute(false, true);
-        VortexPSC.SetRotation(KFPOwner.Rotation);
-        KFPOwner.PostAkEvent(VortexLoopAkEvent, true, true, true);
+        VortexPSC.SetRotation(MonsterOwner.Rotation);
+        MonsterOwner.PostAkEvent(VortexLoopAkEvent, true, true, true);
     }
+}
+
+function PlayGrabAnim()
+{
+    PlaySpecialMoveAnim(GrabStartAnimName, 0,,,, true);
 }
 
 function Tick(float DeltaTime)
@@ -220,6 +227,7 @@ function StartInteraction()
         {
             KFPOwner.PostAkEvent(VortexGrabAkEvent, true, true, true);
         }
+        ++ KFPlayerReplicationInfoVersus(KFPOwner.PlayerReplicationInfo).ZedGrabs;
     }
     super.StartInteraction();
 }
@@ -245,11 +253,6 @@ function Timer_DamageFollower()
         }
         KFPawn_Monster(KFPOwner).MeleeAttackHelper.PlayMeleeHitEffects(Follower, GrabLocation, GrabDirection, false);
     }
-}
-
-function PlayGrappleAnim()
-{
-    PlaySpecialMoveAnim(GrappleAnims[0], 0,,,, true);
 }
 
 function SpecialMoveFlagsUpdated()
@@ -363,16 +366,17 @@ defaultproperties
     MaxRangeSQ=1562500
     MinGrabTargetFOV=0.96
     VortexEffect=ParticleSystem'VFX_TEX_THREE.FX_Siren_Pull_Long_01'
-    VortexDuration=6
+    VortexDuration=5
     MinVortexDuration=1
     ViewRotInterpSpeed=0.5
     DamageOverDuration=24
     VortexDamageType=Class'KFDT_Sonic_VortexScream'
-    GrappleAnims=/* Array type was not detected. */
+    GrabStartAnimName=Player_Pull
     FollowerSpecialMove=ESpecialMove.SM_SirenVortexVictim
     bAlignLeaderLocation=false
     bAlignFollowerZ=true
     bStopAlignFollowerRotationAtGoal=false
+    bRetryCollisionCheck=false
     AlignDistance=360
     AlignDistanceThreshold=4
     AlignSpeedModifier=0.04

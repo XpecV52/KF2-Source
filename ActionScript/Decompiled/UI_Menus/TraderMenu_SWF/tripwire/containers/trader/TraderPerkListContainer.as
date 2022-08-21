@@ -22,7 +22,7 @@ package tripwire.containers.trader
             super();
         }
         
-        override protected function openAnimation() : *
+        override protected function openAnimation(param1:Boolean = true) : *
         {
             TweenMax.killTweensOf(this);
             TweenMax.fromTo(this,6,{
@@ -30,7 +30,7 @@ package tripwire.containers.trader
                 "useFrames":true
             },{
                 "delay":6,
-                "autoAlpha":1,
+                "autoAlpha":(!!param1 ? _defaultAlpha : _dimmedAlpha),
                 "ease":Cubic.easeOut,
                 "useFrames":true,
                 "onComplete":onOpened
@@ -43,7 +43,7 @@ package tripwire.containers.trader
             this.perkList.focusable = false;
             TweenMax.killTweensOf(this);
             TweenMax.fromTo(this,12,{
-                "alpha":1,
+                "alpha":alpha,
                 "useFrames":true
             },{
                 "alpha":0,

@@ -198,6 +198,16 @@ simulated function AltFireMode()
 	StartFire(ALTFIRE_FIREMODE);
 }
 
+simulated function bool HasAmmo(byte FireModeNum, optional int Amount = 1)
+{
+	if(FireModeNum == ALTFIRE_FIREMODE)
+	{
+		return AmmoCount[ALTFIRE_FIREMODE] >= HealAmmoCost;
+	}
+
+	return Super.HasAmmo(FireModeNum, Amount);
+}
+
 /** @see KFWeapon::ConsumeAmmo */
 simulated function ConsumeAmmo( byte FireModeNum )
 {
@@ -319,40 +329,6 @@ simulated state WeaponSingleFiring
 		}
 
         Super.BeginFire(FireModeNum);
-	}
-}
-
-/*********************************************************************************************
- * State Active
- * A Weapon this is being held by a pawn should be in the active state.  In this state,
- * a weapon should loop any number of idle animations, as well as check the PendingFire flags
- * to see if a shot has been fired.
- *********************************************************************************************/
-
-simulated state Active
-{
-	/** Override BeginFire so we can stop firing immediately if we don't have enough heal charge. */
-	simulated function BeginFire(byte FireModeNum)
-	{
-		if( !bDeleteMe && Instigator != None )
-		{
-			if( FireModeNum == ALTFIRE_FIREMODE && !CanHealFire() )
-			{
-                // do dry fire sounds
-                if( WeaponDryFireSnd[FireModeNum] != none && Instigator != none && Instigator.IsLocallyControlled() )
-                {
-                    WeaponPlaySound(WeaponDryFireSnd[FireModeNum]);
-                    if( Role < ROLE_Authority )
-                    {
-                        ServerPlayDryFireSound(FireModeNum);
-                    }
-                }
-
-                return;
-			}
-
-            Super.BeginFire(FireModeNum);
-		}
 	}
 }
 
@@ -898,9 +874,9 @@ defaultproperties
    LockLostSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Lost_1P'
    LockTargetingSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Locking_1P'
    OpticsUIClass=Class'KFGame.KFGFxWorld_MedicOptics'
+   MagazineCapacity(1)=100
    bCanRefillSecondaryAmmo=False
    AimCorrectionSize=40.000000
-   MagazineCapacity(1)=100
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"

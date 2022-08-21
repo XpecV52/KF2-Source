@@ -850,8 +850,9 @@ var array<name>		EnabledDebugTextCategories;
 var KFSpawnVolume	MySpawnVolume;
 var bool			bDisablePartialPaths;
 /** The melee attack index we are currently doing ONLY USED FOR DEBUGGING */
-var byte 		DebugCurrentStrikeIndex;
-
+var byte 			DebugCurrentStrikeIndex;
+/** If set to true, this AI is considered a player by KFAISpawnManager_Versus */
+var bool 			bIsSimulatedPlayerController;
 
 var Vector              LocationAtStartOfStuckCheck;
 var Vector              LocationAtLastStuckCheck;
@@ -1593,8 +1594,6 @@ event bool SetEnemyToZed( Pawn NewEnemy )
 	return false;
 }
 
-
-
 /** Set a new enemy, returns false potential enemy is a player and AI is set to ignore players */
 event bool SetEnemy( Pawn NewEnemy )
 {
@@ -1743,6 +1742,79 @@ function ChangeEnemy( Pawn NewEnemy, optional bool bCanTaunt = true )
 	LastSetEnemyTime = WorldInfo.TimeSeconds;
 }
 
+/** Search for enemies within a set FOV range */
+function KFPawn CheckForEnemiesInFOV( float MaxRange,
+									float MinFOV,
+									float MaxFOV,
+									optional bool bForceRetarget,
+									optional bool bTauntNewEnemy=true )
+{
+	local vector PawnDir, Projection;
+	local float FOVDot, TempDistSQ, BestDistSQ;
+	local KFPawn KFP, BestTarget;
+
+	if( Pawn == none )
+	{
+		return none;
+	}
+
+	PawnDir = vector( Pawn.Rotation );
+
+	foreach Pawn.OverlappingActors( class'KFPawn', KFP, MaxRange )
+	{
+		if( bForceRetarget && Enemy == KFP )
+		{
+			continue;
+		}
+
+		if( !KFP.IsAliveAndWell() || KFP.GetTeamNum() == GetTeamNum() )
+		{
+			continue;
+		}
+
+		Projection = KFP.Location - Pawn.Location;
+
+		// Only care about players within the FOV range
+		FOVDot = PawnDir dot Normal( Projection );
+		if( FOVDot < MinFOV || FOVDot > MaxFOV )
+		{
+			continue;
+		}
+
+		// Make sure enemy isn't obstructed
+		if( !Pawn.FastTrace(KFP.Location, Pawn.Location,, true) )
+		{
+			continue;
+		}
+
+		// Make sure enemy isn't too far away
+		TempDistSQ = VSizeSQ( Projection );
+
+		// Scales distance by aggro rating (0.0 - 1.0)
+		TempDistSQ *= 1.f - GetAggroRating( KFP );
+
+		if( BestTarget == none || TempDistSQ < BestDistSQ )
+		{
+			BestDistSQ = TempDistSQ;
+			BestTarget = KFP;
+		}
+	}
+
+	if( BestTarget != none && BestTarget != Enemy )
+	{
+		ChangeEnemy( BestTarget, bTauntNewEnemy );
+		return BestTarget;
+	}
+
+	return none;
+}
+
+/** Allows subclasses to assess aggro ratings on a pawn-by-pawn basis */
+function float GetAggroRating( KFPawn KFP )
+{
+	return 0.f;
+}
+
 /** Enable notifications sent from native code which signial when NPC is in range to perform certain attacks */
 function EnableProbingMeleeRangeEvents( optional bool bForce )
 {
@@ -1782,7 +1854,7 @@ function bool IsSuicidal()
 
 function bool IsDoingGrabSpecialMove()
 {
-	return (MyKFPawn != none && (MyKFPawn.IsDoingSpecialMove(SM_Grab) || MyKFPawn.IsDoingSpecialMove(SM_GrabAttack)) );
+	return ( MyKFPawn != none && MyKFPawn.IsDoingSpecialMove(SM_GrappleAttack) );
 }
 
 function bool CanTargetBeGrabbed( KFPawn TargetKFP )
@@ -1926,7 +1998,7 @@ final event bool IsDoingAttackSpecialMove()
 	{
 		KFSM = MyKFPawn.SpecialMove;
 
-		if( KFSM == SM_MeleeAttack || KFSM == SM_Grab || KFSM == SM_GrabAttack || KFSM == SM_SonicAttack || KFSM == SM_MeleeAttackDoor
+		if( KFSM == SM_MeleeAttack || KFSM == SM_GrappleAttack || KFSM == SM_SonicAttack || KFSM == SM_MeleeAttackDoor
 			|| KFSM == SM_Suicide )
 		{
 			return true;
@@ -2255,7 +2327,7 @@ event bool CanGrabAttack()
 }
 
 /** Override in child classes if pawn can grab */
-event DoGrabAttack( optional Pawn NewEnemy, optional Actor InTarget, optional float InPostSpecialMoveSleepTime=0.f ) {}
+event DoGrabAttack( optional Pawn NewEnemy, optional float InPostSpecialMoveSleepTime=0.f ) {}
 
 /** Count how many Zeds are currently targeting P, optionally excluding myself from the count */
 function int NumberOfZedsTargetingPawn( Pawn P, optional bool bExcludeMe=true, optional float MinDistanceToInclude )
@@ -3345,7 +3417,7 @@ function bool IsFrustrated()
 /** Notification from AICommand::Popped that it has completed */
 function NotifyCommandFinished( AICommand FinishedCommand );
 
-function NotifyFleeFinished();
+function NotifyFleeFinished( optional bool bAcquireNewEnemy=true );
 
 
 event NotifyFailMove( string Reason )
@@ -4845,6 +4917,8 @@ function NotifySpecialMoveEnded(KFSpecialMove SM)
 	LastSpecialMoveEndTime = WorldInfo.TimeSeconds;
 }
 
+function NotifySpecialMoveStarted(KFSpecialMove SM);
+
 /*********************************************************************************************
  Steering related
  ********************************************************************************************* */
@@ -5988,8 +6062,6 @@ function DoDebugTurnInPlace( KFPlayerController KFPC, optional bool bAllowMelee=
 /*********************************************************************************************
 * TakeDamage
 ********************************************************************************************* */
-
-function AIHandleTakenDamage( Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType ){}
 
 /** To override in subclasses */
 function bool IsAggroEnemySwitchAllowed()

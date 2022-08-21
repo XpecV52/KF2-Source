@@ -518,8 +518,7 @@ enum EDialogEnvironment
 	DENV_BioMatter,
 	DENV_Aftermath,
 	DENV_Cave,
-	DENV_Underground,
-	DENV_CharSpecific
+	DENV_Underground
 };
 
 var() EDialogEnvironment Environment;

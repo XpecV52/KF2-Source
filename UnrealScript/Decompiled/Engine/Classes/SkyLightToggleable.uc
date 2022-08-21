@@ -31,7 +31,6 @@ defaultproperties
     // Reference: SpriteComponent'Default__SkyLightToggleable.Sprite'
     Components(0)=Sprite
     Components(1)=SkyLightComponent'Default__SkyLightToggleable.SkyLightComponent0'
-    TickGroup=ETickingGroup.TG_DuringAsyncWork
     bHardAttach=true
     BlockRigidBody=false
     begin object name=LightMeshComponent0 class=StaticMeshComponent

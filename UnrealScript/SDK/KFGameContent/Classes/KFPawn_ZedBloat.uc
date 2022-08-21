@@ -51,7 +51,7 @@ function DealPukeDamage( Pawn Victim, Vector Origin )
 	VectToEnemy.Z = 0.f;
 	VectToEnemy = Normal( VectToEnemy );
 
-	Victim.TakeDamage( VomitDamage, Controller, Victim.Location, VectToEnemy, class'KFDT_BloatPuke',, self );
+	Victim.TakeDamage( GetRallyBoostDamage(VomitDamage), Controller, Victim.Location, VectToEnemy, class'KFDT_BloatPuke',, self );
 }
 
 function bool CanPukeOnTarget( Pawn PukeTarget, Vector PukeLocation, Vector PukeDirection)
@@ -197,15 +197,17 @@ DefaultProperties
 		SpecialMoveClasses(SM_Evade_Fear)=class'KFSM_Evade_Fear'
 	End Object
 
-	InstantIncaps(IAF_Stun)=(Head=49,Torso=51,Leg=51,Arm=51,LowHealthBonus=10,Cooldown=3.0)
-	InstantIncaps(IAF_Knockdown)=(Head=50,Torso=100,Leg=55,Arm=120,LowHealthBonus=10,Cooldown=10.0)
-	InstantIncaps(IAF_Stumble)=(Head=49,Torso=51,Arm=51,LowHealthBonus=10,Cooldown=2.5)
-	InstantIncaps(IAF_LegStumble)=(Leg=49,LowHealthBonus=10,Cooldown=1.0)
-	InstantIncaps(IAF_GunHit)=(Head=110,Torso=110,Leg=110,Arm=110,LowHealthBonus=10,Cooldown=0.5)
-	InstantIncaps(IAF_MeleeHit)=(Head=20,Torso=30,Leg=27,Arm=30,LowHealthBonus=10,Cooldown=0.3)
-	StackingIncaps(SAF_Poison)=(Threshhold=20.0,Duration=5.0,Cooldown=20.5,DissipationRate=1.00)
-	StackingIncaps(SAF_Microwave)=(Threshhold=20.0,Duration=5.0,Cooldown=20.5,DissipationRate=1.00)
-	StackingIncaps(SAF_FirePanic)=(Threshhold=12.0,Duration=2.0,Cooldown=5.0,DissipationRate=1.0)
+	// for reference: Vulnerability=(default, head, legs, arms, special)
+	IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 1.0, 0.5, 0.5, 0.5), Cooldown=5.0,  Duration=1.5)
+	IncapSettings(AF_Knockdown)=(Vulnerability=(1.0),	                  Cooldown=1.0)
+	IncapSettings(AF_Stumble)=	(Vulnerability=(0.4),	                  Cooldown=1.0)
+	IncapSettings(AF_GunHit)=	(Vulnerability=(0.35),	                  Cooldown=0.1)
+	IncapSettings(AF_MeleeHit)=	(Vulnerability=(2.0),	                  Cooldown=0.3)
+	IncapSettings(AF_Poison)=	(Vulnerability=(0.15),	                  Cooldown=20.5, Duration=5.0)
+	IncapSettings(AF_Microwave)=(Vulnerability=(4.0),	                  Cooldown=5.0, Duration=8.0)
+	IncapSettings(AF_FirePanic)=(Vulnerability=(4),		                  Cooldown=5.0,	 Duration=8.0)
+	IncapSettings(AF_EMP)=		(Vulnerability=(2.5),                     Cooldown=5.0,  Duration=3.0)
+	IncapSettings(AF_Freeze)=	(Vulnerability=(1.0),                     Cooldown=3.0,  Duration=2.0)
 
 	Begin Object Name=Afflictions_0
 		FireFullyCharredDuration=3.5
@@ -228,20 +230,31 @@ DefaultProperties
 	Health=405
 	HeadlessBleedOutTime=6.f
 	// Override Head GoreHealth (aka HeadHealth)
-    HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=40, DmgScale=1.1, SkinID=1)
+    HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=75, DmgScale=1.0001, SkinID=1)
+    //HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=40, DmgScale=1.1, SkinID=1) orginal setting
 	DoshValue=17
 	Mass=130.f
 
 	// Penetration
     PenetrationResistance=3.0
 
-	VulnerableDamageTypes.Add((DamageType=class'KFDT_Fire'))
-	VulnerableDamageTypes.Add((DamageType=class'KFDT_Slashing'))
-	VulnerableDamageTypes.Add((DamageType=class'KFDT_Piercing'))
-	ResistantDamageTypes.Add((DamageType=class'KFDT_Ballistic'))
-	ResistantDamageTypes.Add((DamageType=class'KFDT_Explosive'))
-	ResistantDamageTypes.Add((DamageType=class'KFDT_Toxic'))
-	ResistantDamageTypes.Add((DamageType=class'KFDT_Bludgeon'))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(0.35)))  //0.25
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(0.35)))  //0.25
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun', 	        DamageScale=(0.25)))  
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun', 	        DamageScale=(0.35)))  //0.2
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle', 	        DamageScale=(0.30)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(0.3)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(0.3)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(1.6)))  //1.2
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 	                DamageScale=(0.8)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 	                DamageScale=(0.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.25)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 		                DamageScale=(0.25)))
+
+
+	//Special Case damage resistance
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_9mm',              DamageScale=(0.65))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AR15',             DamageScale=(0.40))
 
 	// ---------------------------------------------
 	// Movement / Physics
@@ -251,7 +264,7 @@ DefaultProperties
 
 	RotationRate=(Pitch=50000,Yaw=20000,Roll=50000)
 	GroundSpeed=150.0f
-	SprintSpeed=260.0f
+	SprintSpeed=210.0f   //260
 	PhysRagdollImpulseScale=1.5f
 	KnockdownImpulseScale=1.5f
 
@@ -259,7 +272,7 @@ DefaultProperties
 	// AI / Navigation
 	ControllerClass=class'KFAIController_ZedBloat'
 	BumpDamageType=class'KFDT_NPCBump_Large'
-	DamageRecoveryTimeHeavy=0.35f
+	DamageRecoveryTimeHeavy=0.85f
 	DamageRecoveryTimeMedium=1.0f
 
 	// ---------------------------------------------

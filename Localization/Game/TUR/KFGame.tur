@@ -10,14 +10,15 @@ LengthStrings[2]="Uzun (10 Dalga)"
 
 ServerTypeStrings[0]="Dereceli"
 ServerTypeStrings[1]="Dereceli - Özel"
-;ServerTypeStrings[2]="Derecesiz"
+ServerTypeStrings[1]="Dereceli - Özel"
+ServerTypeStrings[2]="Unranked"
 
 PermissionStrings[0]="Herkese Açık"
 PermissionStrings[1]="Sadece Arkadaşlar"
 PermissionStrings[2]="Özel"
 
 ModeStrings[0]="Hayatta Kalma"
-ModeStrings[1]="VS Survival"
+ModeStrings[1]="VS Hayatta Kalma"
 
 NoPreferenceString="HERHANGİ"
 OKString="TAMAM"
@@ -34,6 +35,14 @@ NoString="Hayır"
 DisbandPartyString="PARTİYİ DAĞIT"
 LeaveCurrentMenuString="Mevcut menüden ayrıl?"
 ZedString="ZED"
+HumanString="HAYATTA KALAN"
+SpectatorString="İZLEYİCİ"
+TeamString="TEAM"
+AllString="ALL"
+
+UnableToSwitchTeamString="Unable to Switch Teams"
+NoSwitchReasonString="Switching teams would upset team balance"
+
 
 
 [KFGFxMoviePlayer_Manager]
@@ -48,6 +57,9 @@ JoinGameString="Oyuna Katıl?"
 LeavePartyTitleString="PARTİ TERK EDİLİYOR"
 LeavePartyDescriptionString="Bu çevrimiçi takımı terk etmek istediğine emin misin?"
 LeaveString="AYRIL"
+
+
+
 
 [KFDoorActor]
 WeldIntegrityString="Kaynak Sağlamlığı:"
@@ -64,7 +76,7 @@ ServerTypeString="SUNUCU TÜRÜ"
 PermissionsTitle="İZİNLER"
 WhiteListedTitle="İSTATİSTİKLER ETKİNLEŞTİRİLDİ"
 LengthTitle="UZUNLUK"
-MapTitle="BAŞLANGIÇ HARİTASI"
+MapTitle="İLK HARİTA"
 MutatorTitle="MUTATÖRLER"
 InfoTitle="BİLGİ"
 InProgressString="DEVAM ETMEKTE"
@@ -80,7 +92,32 @@ CouldNotFindGameDescriptionString="Arama ayarlarıyla eşleşen sunucu bulunamad
 
 [KFGFxStartGameContainer_FindGame]
 MultiplayerString="Çevrimiçi Eşleştirme"
-SoloString="Çevrimdışı Tek Kişi Oyna"
+SoloString="Çevrimdışı Oyna"
+TutorialString="Basic Training"
+
+[StartMenuHelperText]
+modeList0="Survival – PVE battle waves of AI controlled Zeds"
+modeList1="VS Survival – PVP Horzine Mercenaries vs waves of Player and AI controlled Zeds"
+modeList2=""
+difficultyList0="Normal – For beginning players of perk rank 0-5."
+difficultyList1="Hard – For experienced players of perk rank 5-12. There are more Zeds per wave, they move faster, and have more health. There are fewer pickups and you get less dosh."
+difficultyList2="Suicidal – For seasoned players of perk rank 13-25. There are even more Zeds per wave, they use new attacks, and move even faster.  There even fewer pickups, and you get less dosh."
+difficultyList3="Hell on Earth – The most intense challenge for players of perk rank 25. There are still more Zeds per wave and they use new attacks. There are still fewer pickups, and you get still less dosh."
+lengthList0=""
+lengthList1=""
+lengthList2=""
+lengthList3=""
+serverTypeList0="Ranked – Any map, no mods, no friendly fire, 6 players max (if VS Survival this is 12 players max)"
+serverTypeList1="Ranked Stock – Official Maps, no mods, no friendly fire, and 6 players max"
+serverTypeList2="Ranked Custom – Any map, whitelisted mods, any server setting"
+serverTypeList3="Unranked Custom – Non-whitelisted mods (only)"
+privacyList0=""
+privacyList1=""
+privacyList2=""
+privacyList3=""
+inProgressList0=""
+inProgressList1=""
+inProgressList2=""
 
 [KFGFxStartGameContainer_Options]
 BackString="GERİ"
@@ -91,11 +128,13 @@ SoloGameString="TEK KİŞİLİK OYUN"
 LeaveMatchMakingString="EŞLEŞTİRMEDEN AYRIL"
 MultiplayerLaunchString="ŞİMDİ ÇEVRİMİÇİ OYNA"
 SearchingString="ARAMAYI İPTAL ET"
+CancelSearchingString="CANCEL SEARCH"
 ServerTypeString="SUNUCU TÜRÜ"
-StandardServerString="Standart"
+AnyMapServerString="Ranked"
 UnrankedServerString="Derecesiz"
 CustomServerString="Özel"
-AllowInProgressString="İlerlemedeki Oyunlara İzin Ver"
+StandardServerString="Standart"
+AllowInProgressString="İlerlemedekilere İzin Ver"
 NotStartedString="Yalnızca Yeni Oyunlar"
 
 
@@ -199,7 +238,7 @@ ServerInfoString="SUNUCU BİLGİLERİ"
 UnfavoriteString="FAVORİLERDEN ÇIKAR"
 
 [KFGFxMenu_Trader]
-ExitMenuString="MENÜDEN ÇIK"
+ExitMenuString="KAPAT"
 
 [KFGFxTraderContainer_Store]
 TraderString="TEÇHİZAT SATIN AL"
@@ -255,12 +294,32 @@ WeaponTypeStrings[9]="SMGler"
 
 OffPerkString="Kapalı Özellik"
 
+[KFGFxHUD_PostRoundMenu]
+RoundResultsString="Round Results"
+MatchResultsString="Overall Winner"
+SurvivorVictory="Survivor Victory!"
+ZEDVictory="Zed Victory!"
+TieString="Tie!"
+YourTeamString="Your Team Wins!"
+OpposingTeamString="Opposing Team Wins!"
+MatchOnGoingString="Switching Teams..."
+
+[KFGFxPostRoundContainer_Team]
+TitleString="Round "
+ScoreString="Score"
+WavesCompleteString="Waves Completed Bonus"
+BossDeadString="Boss Defeated"
+DeathsString="Player Deaths Penalty"
+DamageString="Damage From Boss Penalty"
+TotalString="TOTAL"
+YourTeamString=" (Your Team)"
+
 [KFGFxMenu_PostGameReport]
 MapVoteString="HARİTA OYLAMA"
 PlayerStatsString="OYUNCU İSTATİSTİKLERİ"
 TeamAwardsString="ÖDÜLLER"
 PostGameReportString="OYUN SONU RAPORU"
-NextMapString="Sıradaki haritaya son:"
+NextMapString="Haritaya son:"
 WaveString="DALGA"
 XPString="XP"
 VictoryString="Zafer"
@@ -285,11 +344,26 @@ HeadPopperValue="Kafadan Vuruşlar"
 Dominator="Hükmedici"
 DominatorValue="Bölüm Sonu Canavarı"
 
+Carnage="Carnage"
+Closer="Closer"
+ComboMaker="Combo Maker"
+Grabby="Grabby Pants"
+ZedSupport="Zed Support"
+Zednnihilation="Zednnihilation"
+CarnageValue="Zed Damage Dealt"
+CloserValue="Survivor Kills"
+ComboMakerValue="Zed Assist"
+GrabbyValue="Players Grabbed"
+ZedSupportValue="Indirect Damage"
+ZednnihilationValue="Kills in Wave"
+
+
+
 EPB_Healing="İyileştirme"
 EPB_Kills="Leşler"
 EPB_Assists="Asistler"
 EPB_LargeZedKill="Büyük Zed Öldürme"
-EPB_Dosh="Mangır Kazanıldı"
+EPB_Dosh="Kazanılan Mangır"
 EPB_HeadShots="Kafadan Vuruşlar"
 EPB_KnifeKills="Bıçak Leşleri"
 EPB_PistolKills="Pistol Leşleri"
@@ -333,7 +407,7 @@ DamageDealtString="Verilen Hasar:"
 PlayerReadyString="[ HAZIR ]"
 WaitingString="OYUNCULAR BEKLENİYOR"
 DeployingString="BAŞLAMAYA SON"
-CreatePartyString="ARKADAŞLARINI DAVET ET"
+CreatePartyString="DAVET ET"
 ReadyString="HAZIR"
 LeaveString="PARTİDEN AYRIL"
 SquadString="TAKIM"
@@ -358,11 +432,11 @@ ViewProfileString="Profili Görüntüle"
 
 RemainingString="Kalan:"
 DownLoadingString="İndiriliyor:"
-PartyLeaderString="Leader"
+PartyLeaderString="Lider"
 
 [KFGFxWidget_PartyInGame_Versus]
-SwitchTeamsString="Switch Teams"
-balanceWarningString="WARNING: Teams will be auto-balanced"
+SwitchTeamsString="Takımı Değiştir"
+balanceWarningString="UYARI: Takımlar otomatik olarak dengelenecek."
 
 [KFGFxMenu_Gear]
 GearHeaderString="TEÇHİZATI ÖZELLEŞTİR"
@@ -378,39 +452,43 @@ WeaponsString="Silahlar"
 WeaponsInfoString="Özelleştir"
 
 [KFGFxMenu_Inventory]
+RecycleOneString="Recycle One"
+RecycleDuplicatesString="Recycle Duplicates"
 InventoryString="ENVANTER"
-UseString="Kullan"
+UseString="KULLAN"
 EquipString="KUŞAN"
 UnequipString="ÇIKART"
-AllString="TÜMÜ"
-WeaponSkinString="SİLAH KAPLAMALARI"
-CosmeticString="KOZMETİK"
-CraftingMatsString="Crafting"
-ItemString="ÖĞELER"
+AllString="Tümü"
+WeaponSkinString="Silah Kaplamaları"
+CosmeticString="Kozmetikler"
+CraftingMatsString="İşleniyor"
+ItemString="Öğeler"
 FiltersString="Filtreler"
-MoreItemsString="Bu ögeyi kullanmak için başka bir öğe gerekli."
-FailedToExchangeString="ÖDEME BAŞARISIZ"
-RecycleString="RECYCLE"
-CraftString="CRAFT"
-CraftCosmeticString="Cosmetic Crafting"
-CraftWeaponString="Weapon Skin Crafting"
-CraftWeaponStrings[0]="Uncommon Weapon Skin"
-CraftWeaponStrings[1]="Rare Weapon Skin"
-CraftWeaponStrings[2]="Exceptional Weapon Skin"
-CraftWeaponStrings[3]="Master Crafted Weapon Skin"
-CraftCosmeticStrings[0]="Uncommon Cosmetic"
-CraftCosmeticStrings[1]="Rare Cosmetic"
-CraftCosmeticStrings[2]="Exceptional Cosmetic"
-CraftCosmeticStrings[3]="Master Crafted Cosmetic"
-RecycleWarningString="Warning, this cannot be undone. This will destroy the selected item and replace it with a crafting material item"
-RecycleItemString="Recycle Item?"
-ConfirmCraftItemString="Crafting this item will use resources and cannot be undone"
-CraftItemString="Confirm Craft Item?"
-FailedToCraftItemString="Failed to Craft Item"
-CraftRequirementString="Insufficient quantity of required crafting materials"
+MoreItemsString="Birbirlerine uyumlu anahtar ve kutuya ihtiyacın var. Oyun mağazasından bir anahtar alabilirsin."
+FailedToExchangeString="KUTU AÇILAMAZ"
+RecycleString="GERİ DÖNÜŞTÜR"
+CraftString="İŞLEME"
+CraftCosmeticString="Kozmetik İşleme"
+CraftWeaponString="Silah Kaplaması İşleme"
+CraftWeaponStrings[0]="Seyrek Silah Kaplaması"
+CraftWeaponStrings[1]="Nadir Silah Kaplaması"
+CraftWeaponStrings[2]="İstisnai Silah Kaplaması"
+CraftWeaponStrings[3]="Ustaca Hazırlanmış Silah Kaplaması"
+CraftCosmeticStrings[0]="Seyrek Kozmetik"
+CraftCosmeticStrings[1]="Nadir Kozmetik"
+CraftCosmeticStrings[2]="İstisnai Kozmetik"
+CraftCosmeticStrings[3]="Ustaca Hazırlanmış Kozmetik"
+RecycleWarningString="Uyarı, bu geri alınamaz. Bu, seçili öğeyi yok edecek ve yerine işleme materyal öğesi yerleştirecek."
+RecycleItemString="Öğeyi Geri Dönüştür?"
+ConfirmCraftItemString="Bu öğeyi işlemek kaynakları kullanır ve geri alınamaz"
+CraftItemString="Öğe İşlemeyi Onayla?"
+FailedToCraftItemString="Öğe İşlenemedi"
+CraftRequirementString="Yetersiz miktarda gerekli işlem malzemeleri"
 CraftCosmeticDescriptionString="You can craft new cosmetic items from this menu out of cosmetic material. You can obtain cosmetic material by recycling existing cosmetic items. To recycle, select an item and press recycle"
 CraftWeaponDescriptionString="You can craft new weapon skin items from this menu out of weapon skin material. You can obtain weapon skin material by recycling existing weapon skin items. To recycle, select an item and press recycle"
-RequiresString="Requires: "
+RequiresString="Gereken:"
+PurchaseKeyString="BUY KEY: "
+LookUpOnMarketString="Lookup on Market"
 
 [KFGFxPerksContainer]
 LevelString=""
@@ -452,13 +530,12 @@ TotalString="Toplam"
 CheckOutString="Ödeme Yap"
 
 [KFGFxStoreContainer_Main]
-NewReleasesString="Yeni Yayınlananlar"
-CartString="Sepet"
-ToolsString="Araçlar"
 WeaponSkinsString="Silah Kaplamaları"
-CharactersString="Karakterler"
+MarketConsumablesString="Market Crates/USBs"
+MarketCosmeticsString="Market Cosmetics"
 
 [KFGFxStoreContainer_Details]
+LookUpOnMarketString="FIND IN MARKET"
 AddToCartString="Öğe Satın Al"
 PreviewString="Önizle"
 
@@ -481,7 +558,7 @@ MatchmakingString="EŞLEŞTİRME"
 SoloString="TEK KİŞİ"
 OverviewString="MAÇA GENEL BAKIŞ"
 
-TitleStrings[0]="Şimdiden savaşı mı terk ediyoruz?"
+TitleStrings[0]="Şimdiden savaşı terk mi ediyorsun?"
 TitleStrings[1]="Bu kadar erken mi ayrılıyoruz?"
 TitleStrings[2]="Çiğnenmekten sıkıldın mı?"
 
@@ -516,6 +593,9 @@ KillsString="LEŞLER"
 AssistsString="ASİSTLER"
 PingString="PING"
 
+[KFGFxHUD_ScoreboardVersusWidget]
+ScoreString=SCORE
+
 [KFGFxHUD_PlayerStatus]
 EXPString="XP"
 
@@ -535,8 +615,8 @@ ThrowString="SİLAH FIRLAT"
 VoteKickString="Oyuncuyu At?"
 
 [KFLocalMessage_PlayerKills]
-KilledString="killed"
-ZedString=ZEDs
+KilledString="öldürdü"
+ZedString="ZEDler"
 
 [KFLocalMessage_VoiceComms]
 VoiceCommsOptionStrings[0]="İYİLEŞTİRME İSTE"
@@ -729,7 +809,7 @@ AmbientOcclusionStringOptions[1]="SSAO"
 AmbientOcclusionStringOptions[2]="HBAO+"
 
 DepthOfFieldStringOptions[0]="Kapalı"
-DepthOfFieldStringOptions[1]="SAT Derinlik"
+DepthOfFieldStringOptions[1]="Açık"
 
 [KFGFxOptionsMenu_Graphics_DX10]
 AmbientOcclusionStringOptions_DX10[0]="Kapalı"
@@ -738,7 +818,7 @@ AmbientOcclusionStringOptions_DX10[1]="SSAO"
 [KFGFxOptionsMenu_Controls]
 TabStrings[0]="GİRDİ"
 TabStrings[1]="TUŞ SEÇENEKLERİ"
-TabStrings[2]="OYUN KUMANDALARI"
+TabStrings[2]="KONTOLCÜLER"
 HeaderText="KONTROL AYARLARI"
 
 [KFGFxOptionsMenu_GameSettings]
@@ -754,25 +834,30 @@ GoreOptionStrings[2]="Kanlı"
 NormalString="Normal"
 WiderString="Geniş"
 FriendlyHudScaleString="Kullanıcı Dostu Gösterge Ölçeği"
+KillTickerString="Kill Ticker"
 
 [LocalizedControls]
-ControllerLayoutDefault="Default"
+ControllerLayoutDefault="Varsayılan"
 ControllerLayoutJumper="Jumper"
 ControllerLayoutQuickDraw="Quick Draw"
-ControllerLayoutSouthPaw="South Paw"
+ControllerLayoutSouthPaw="Solak"
 
-GBA_WeaponSelect_Gamepad="Silah Seçme Menüsü (Basılı Tut)"
-GBA_Reload_Gamepad="Reload"
-GBA_StrafeLeft_Gamepad="Movement Control"
-GBA_MoveForward_Gamepad="Move Forward"
-GBA_Look_Gamepad="Look Control"
-GBA_Grenade_Gamepad="Throw Grenade"
-GBA_TurnLeft_Gamepad="Look Control"
-GBA_Look_Gamepad="Look Control"
-GBA_DPad_Left_Gamepad="Voice Comms"
-GBA_DPad_Up_Gamepad="Equip Healer"
-GBA_DPad_Right_Gamepad="Throw Dosh"
-GBA_DPad_Down_Gamepad="Toggle Flashlight"
+GBA_TurnLeft="Turn Left"
+GBA_TurnRight="Turn Right"
+GBA_Backward="Geri Yürü"
+GBA_MoveForward="İleri Yürü"
+GBA_WeaponSelect_Gamepad="Silah Seçme (Basılı Tut)"
+GBA_Reload_Gamepad="Şarjör Değiştir"
+GBA_StrafeLeft_Gamepad="Hareket Kontrolü"
+GBA_MoveForward_Gamepad="İleri Yürü"
+GBA_Look_Gamepad="Bakış Kontrolü"
+GBA_Grenade_Gamepad="El Bombası Fırlat"
+GBA_TurnLeft_Gamepad="Bakış Kontrolü"
+GBA_Look_Gamepad="Bakış Kontrolü"
+GBA_DPad_Left_Gamepad="Sesli Haberleşme"
+GBA_DPad_Up_Gamepad="İyileştiriciyi Kuşan"
+GBA_DPad_Right_Gamepad="Mangır Fırlat"
+GBA_DPad_Down_Gamepad="El Fenerini Aç/Kapat"
 
 
 GBA_MoveForward="İleri Yürü"
@@ -784,14 +869,14 @@ GBA_Sprint="Koş"
 GBA_CrouchToggle="Çömelme (Geçiş Yapma)"
 GBA_CrouchHold="Çömel (Basılı Tut)"
 GBA_SprintAndCrouch="Çömel / Koş"
-GBA_SprintAndMelee="Melee / Sprint"
-GBA_ShowMenu="Toggle In Game Menu"
+GBA_SprintAndMelee="Yakın Dövüş / Koşma"
+GBA_ShowMenu="Oyun İçi Menüye Geçiş Yap"
 
 GBA_Use="Kullan / Hızlı Kaynak (Basılı Tut)"
 GBA_Talk="Konuş"
-GBA_TeamTalk="Team Talk"
-GBA_VoiceChat="Sesli Sohbet"
-GBA_PublicVoiceChat="Public Voice"
+GBA_TeamTalk="Takım Sohbeti"
+GBA_VoiceChat="Takım Sesli Sohbeti"
+GBA_PublicVoiceChat="Herkese Açık Sesli İletişim"
 GBA_ShowVoiceComms="Ses Komutları"
 GBA_ShowScores="Skor tablosunu göster"
 GBA_TossMoney="Mangır Fırlat"
@@ -808,7 +893,7 @@ GBA_TertiaryFire="Yakın Darbe"
 GBA_ToggleFlashlight="Fener Aç/Kapa"
 GBA_AltFire="Alt. Ateş / Engelleme"
 
-GBA_WeaponSelect_Gamepad="Silah Seçme Menüsü (Basılı Tut)"
+GBA_WeaponSelect_Gamepad="Silah Seçme (Basılı Tut)"
 GBA_NextWeapon="Sonraki Silah"
 GBA_PrevWeapon="Önceki Silah"
 GBA_LastWeapon="Son Kullanılan Silah"
@@ -818,6 +903,15 @@ GBA_SwitchWeapon3="Yakın Dövüş Silahı"
 GBA_SwitchWeapon4="Ekipman"
 GBA_VoteYes="Evet Oyla (Basılı Tut)"
 GBA_VoteNo="Hayır Oyla (Basılı Tut)"
+
+GBA_VoiceCommReqHealing="REQUEST HEALING"
+GBA_VoiceCommReqDosh="REQUEST DOSH"
+GBA_VoiceCommReqHelp="REQUEST HELP"
+GBA_VoiceCommTauntZeds="TAUNT ZEDS"
+GBA_VoiceCommFollowMe="FOLLOW ME"
+GBA_VoiceCommGetToTheTrader="GET TO THE TRADER"
+GBA_VoiceCommAffirmative="AFFIRMATIVE"
+GBA_VoiceCommNegative="NEGATIVE"
 
 [KFGFxControlsContainer_Input]
 SensitivityString="Hassasiyet"
@@ -838,6 +932,7 @@ SectionHeaders[0]="Hareket"
 SectionHeaders[1]="Etkileşim"
 SectionHeaders[2]="Savaş"
 SectionHeaders[3]="Silah Seçimi"
+SectionHeaders[4]="VOICE COMMS"
 
 ResetString="TÜMÜNÜ SIFIRLA"
 ApplyString="UYGULA"
@@ -856,7 +951,11 @@ LookString="Bakış Kontrolü"
 WeaponSelectMenuString="Silah Seçim Menüsü (Basılı Tut)"
 ShowScoardBoardString="Skor Tablosunu Görüntüle"
 ShowIngameMenuString="Oyun Menüsüne Geç"
-CurrentControllerPresetString="Current Controller Preset"
+CurrentControllerPresetString="Mevcut Kontrolcü Ön Ayarı"
+PresetStrings[0]="Preset 1"
+PresetStrings[1]="Preset 2"
+PresetStrings[2]="Preset 3"
+PresetStrings[3]="Preset 4"
 
 BashString="Yakın Darbe"
 BlockString="Engelle (Basılı Tut)"
@@ -901,7 +1000,7 @@ YourselfString="kendiniz."
 PickedupArmorMessage="Zırh aldın"
 FullArmorMessage="Zırhın zaten tam"
 PickupAmmoMessage="Mermi aldın"
-AmmoFullMessage="Your ammo is full"
+AmmoFullMessage="Cephanen dolu"
 PickupWeaponAmmoMessage="%x% mermi aldın"
 AlreadyCarryingWeaponMessage="Bu silaha zaten sahipsin"
 PickupMessage="Yerden alındı:"
@@ -914,17 +1013,17 @@ HeadShotAddedString="%x Kafadan Vuruş(lar) - %y% Ekstra Hasar!"
 HeadShotMaxString="Tam kafadan! %x% Ekstra Hasar!"
 HeadShotResetString="Kaçırılan Kafadan Vuruşlar. Normal Hasar!"
 
-SuicideMessage="az önce hayatından vazgeçti..."
-KilledMessage="canlı canlı yendi"
-KillzedBy_PatriarchString=" can't hurt Kevin's children anymore"
+SuicideMessage=" az önce hayatından vazgeçti..."
+KilledMessage=" canlı canlı yendi"
+KillzedBy_PatriarchString=" Kevin'ın çocuklarının canını daha fazla yakamaz"
 KillzedBy_HansString="in cesedi üzerinde ileri deneyler yapılmak üzere kaldırıldı"
-KillzedBy_ZedCrawlerString="oyuncusunun ayak bilekleri çiğnendi"
+KillzedBy_ZedCrawlerString=" oyuncusunun ayak bilekleri çiğnendi"
 KillzedBy_ZedBloatString="vücut sıvısıyla boğuldu"
 KillzedBy_ZedFleshpoundString="püre haline geldi"
 KillzedBy_ZedGorefastString="canlı canlı derisi yüzüldü"
 KillzedBy_ZedHuskString="kömürleşerek öldü"
 KillzedBy_ZedScrakeString="zerrelerine ayrıldı"
-KillzedBy_ZedSirenString="oyuncusunun kulakları patladı - ölümcül bir şekilde"
+KillzedBy_ZedSirenString=" oyuncusunun kulakları patladı - ölümcül bir şekilde"
 KillzedBy_ZedStalkerString=" geldiğini görmedim"
 KillzedBy_ZedClot_CystString=" etkileyici olmayan bir ölüme maruz kaldı"
 KillzedBy_ZedClot_AlphaString=" uygunsuz bir şekilde yakalandı"
@@ -935,8 +1034,8 @@ FoundAllMapCollectiblesMessage="Her %x% bulundu!"
 MapCollectibleName="mangır mücevher parçası"
 
 [KFLocalMessage_Priority]
-WaveStartMessage="D A L G A G E L İ Y O R"
-WaveEndMessage="D A L G A T A M A M L A N D I"
+WaveStartMessage="D A L G A  G E L İ Y O R"
+WaveEndMessage="D A L G A  T A M A M L A N D I"
 GetToTraderMessage="Tüccar odasına git"
 YouLostMessage="Y E N İ L G İ"
 YouWonMessage="Z A F E R"
@@ -948,17 +1047,20 @@ ObjectiveEndedMessage="Görev Sona Erdi!"
 ObjectiveLostMessage="Görev Kaybedildi!"
 ObjNotEnoughPlayersMessage="Yeterli Oyuncu Yok!"
 ObjTimeRanOutMessage="Süre Limitine Ulaşıldı!"
-HumansLoseMessage="Humans squad wiped out!"
-HumansWinMessage="Humans squad survived!"
-AttackHumanPlayersString="Attack the Human Players!"
-ZedGroupRegroupingString="Zed Horde regrouping!"
+HumansLoseMessage="İnsan takımı yenildi!"
+HumansWinMessage="İnsan takımı hayatta kaldı!"
+AttackHumanPlayersString="İnsan Oyunculara Saldır!"
+ZedGroupRegroupingString="Zed Sürüsü geri toplanıyor!"
+NextRoundBeginString="N E X T  R O U N D"
+PlayerCanChangePerksString="Perk changes are allowed"
+ZedWaitingForNextRoundString="Zed Horde invasion imminent!"
 
 [KFLocalMessage_Interaction]
 UseTraderMessage="<%x%> TÜCCARI KULLAN"
 UseDoorMessage="Kaynak makinesini Açmak/Kapamak için <%x%>, kuşanmak için <%x%> BASILI tutun"
-UseDoorWeldedMessage="(HOLD) <%x%> equip welder"
-ZedUseDoorMessage="<%x%> Open/Close"
-ZedUseDoorWeldedMessage=""
+UseDoorWeldedMessage="(BASILI TUT) <%x%> kaynak makinesini kuşan"
+ZedUseDoorMessage="<%x%> Aç/Kapat"
+ZedUseDoorWeldedMessage="Kapı kaynaklandı, onu yerle bir et!"
 AcceptObjectiveMessage="<%x%> görevi kabul et"
 ReceiveAmmoMessage="<%x%> cephane tedarik et"
 ReceiveGrenadesMessage="<%x%> bomba tedarik et"
@@ -966,10 +1068,10 @@ HealSelfWarning="<%x%> kendini iyileştir."
 HealSelfGamepadWarning="(BASILI TUT) <%x%> kendini iyileştir"
 PressToBashWarning="<%x%> darbe"
 GamepadWeaponSelectHint="(BASILI TUT) <%x%> silah seç"
-PlayerClotGrabWarningMessage="Kill zed to break free!"
+PlayerClotGrabWarningMessage="Serbest kalmak için zed öldür!"
 
 [KFLocalMessage_ServerNotification]
-TeamPendingBalanceMessage="Teams are unbalanced and will be adjusted"
+TeamPendingBalanceMessage="Takımlar dengesiz ve ayarlanacaktır"
 
 [KFGfxPerkComp_Abilities]
 RankNames[0]="Rütbe I"
@@ -1012,151 +1114,152 @@ SkillSlots4[1]=(Title="",Description="")
 WeaponDroppedMessage="Yeni taşıma kapasitenden dolayı %%%%bıraktın!"
 
 [KFPerk_Berserker]
-PerkName="Savaşçı"
+PerkName="Berserker"
 
-SkillCatagories[0]="Dayanıklılık"
-SkillCatagories[1]="Hayatta Kalma"
-SkillCatagories[2]="Yakın Dövüş"
-SkillCatagories[3]="Güç"
-SkillCatagories[4]="Gelişmiş Eğitim"
+SkillCatagories[0]="Survival"
+SkillCatagories[1]="Combat"
+SkillCatagories[2]="Close Combat"
+SkillCatagories[3]="Power"
+SkillCatagories[4]="Advanced Training"
 
-Passives[0]=(Title="Özellik Silah Hasarı",Description="Savaşçı silah hasarını 25% artırır, her seviyede artı x%x");
-Passives[1]=(Title="Yakın Dövüş Saldırı Hızı",Description="Yakın dövüş saldırı hızını 0% artırır, her seviyede x%x artış");
-Passives[2]=(Title="Yakın Dövüş Hareket Hızı",Description="Yakın dövüş silahı tutulurken hareket hızında 10%, her seviyede artı x%x");
-Passives[3]=(Title="Hasar Direnci",Description="Gelen hasar %x% azalır");
-Passives[4]=(Title="+Gece Görüş Kabiliyeti",Description="Fenerler - VE Gece Görüş Gözlükleri")
-Passives[5]=(Title="+Pıhtılar seni yakalayamaz",Description="Pıhtılar bir Savaşçıyı tutamaz.")
 
-EXPAction1="Savaşçı silahıyla hasar vermek"
-EXPAction2="Oyuncu yakınındaki zedleri Özellik silahıyla öldür"
+Passives[0]=(Title="Berserker Damage",Description="x%x damage increase every level")
+Passives[1]=(Title="Damage Resistance",Description="x%x resistance per every 5 levels to all damage")
+Passives[2]=(Title="+Night Vision Capability",Description="Flashlight - AND Night Vision Goggles")
+Passives[3]=(Title="+Clots cannot grab you",Description="Clots can't hold on to a Berserker")
 
-PoisonResistance="Zehir Direnci"
-PoisonResistanceDescription="Senin zehrini tükürüyorum: Zehir saldırılarından alacağın hasarı %40 azaltır."
+EXPAction1="Dealing Berserker weapon damage"
+EXPAction2="Kill Zeds near a player with a Berserker weapon"
 
-SonicResistance="Sonik Direnci"
-SonicResistanceDescription="Seni duyamıyorum! Sonik saldırılarda aldığın hasar %40 oranında azalır"
+Fortitude="Dreadnaught"
+FortitudeDescription="Increase total Health by 50%."
 
-Vampire="Vampir"
-VampireDescription="Küçük vantuzlar: Horzine nano teknolojisi bir Berserker silahıyla öldürdüğün her Zed'den 3 sağlık puanı emer ve sana uygular."
+Ninja="Skirmisher"
+NinjaDescription="Move 20% faster. Sprint 25% faster. Regenerate 2 points of Health every second. "
 
-Fortitude="Cesaret"
-FortitudeDescription="Kendine daha iyi bir şans ver: Başlangıç ve maksimum sağlığını %100 artırır."
+Vampire="Vampire"
+VampireDescription="Heal yourself 4 points of Health for every Zed you kill with a Berserker weapon. You also attack 15% faster with Berserker weapons."
 
-FuriousDefender="Öfkeli Savunucu"
-FuriousDefenderDescription="Sana bir sebepten dolayı Savaşçı diyorlar: Savaşçı yakın dövüş saldırıları %10 daha hızlı ve %20 daha fazla hasar verir."
+Speed="Butcher"
+SpeedDescription="Attack 20% faster and do 25% more damage with Berserker weapons."
 
-Block="Engelle"
-BlockDescription="Ne kadar yetenekli! Bir saldırıyı engellemek bir sonraki Savaşçı saldırısında %50 daha fazla hasar verir."
+Resistance="Resistance"
+ResistanceDescription="Gain 20% resistance to all damage. You gain an additional 20% resistance to Poison and Sonic Damage."
 
-Parry="Savuştur"
-ParryDescription="Yeteneği ve gücü birleştir: Bir saldırıyı savuşturmak yakın dövüş saldırı hızını %15 azaltır ve hafif saldırı hasarı 4 saniyeliğine %30 artar."
+Parry="Parry"
+ParryDescription="Parrying an attack with a Berserker melee weapon will increase melee attack speed by 5% and melee damage by 35% for 10 seconds."
 
-Smash="Parçala"
-SmashDescription="Ona kaba kuvvet uygula: Sert isabetler %100 daha fazla hasar verir VE kafaya yapılan sert isabetler büyük bir şansla büyük Zedleri yere serebilir."
+Smash="Smash"
+SmashDescription="Hard attacks with Berserker melee weapons do 50% more damage, plus an additional 25%  damage on head shots, and have 200% more Stumble power."
+ 
+Fury="Massacre"
+FuryDescription="Light attacks with Berserker melee weapons do 20% more damage and are 5% faster."
 
-Spartan="ZED ZAMANI - Spartalı"
-SpartanDescription="300'ü gördün: Gerçek zamanlı hareket et, Savaşçı yakın dövüş silahı saldırı hızını %50 artırır ve herhangi bir Savuşturma yere sermeye sebep olabilir."
+Spartan="ZED TIME - Spartan" 
+SpartanDescription="You've seen 300: Attack in near real time and gain 25% of your total Health."
 
-Menace="ZED ZAMANI - Afacan"
-MenaceDescription="Gerçekten tehlikeli ol: Gerçek zamanlı hareket et, Savaşçı yakın dövüş silahlarıyla kafaya yapılan isabetlerde Sersemletme gücünde %100 artış ve Tökezleme gücünde %100 artış."
+Flash="ZED TIME - Berserker Rage"
+FlashDescription="Zeds won't like you when you're angry: Move and attack in real time."
 
 [KFPerk_Commando]
-PerkName="Komando"
+PerkName="Commando"
 
-SkillCatagories[0]="Erzak"
-SkillCatagories[1]="Silah Tutuşu"
-SkillCatagories[2]="Farkındalık"
-SkillCatagories[3]="Silah Uzmanı"
-SkillCatagories[4]="Gelişmiş Eğitim"
+SkillCatagories[0]="Tactics"
+SkillCatagories[1]="Advanced Tactics"
+SkillCatagories[2]="Survival"
+SkillCatagories[3]="Weapon Specialist"
+SkillCatagories[4]="Advanced Training"
 
-Passives[0]=(Title="Özellik Silah Hasarı",Description="Komando silah hasarında %x% artış.");
-Passives[1]=(Title="Gizlenmiş Düşman Algılama",Description="Gizli algılamada %x% artış");
-Passives[2]=(Title="Sağlık Barı Algılama",Description="Sağlık barı algılamada %x% artış");
-Passives[3]=(Title="Zed Zamanı Uzatımı",Description="Zed zamanı %x% sürer");
-Passives[4]=(Title="Sağlık Artışı",Description="Sağlık %x% artar");
-Passives[5]=(Title="+Gece Görüş Kabiliyeti",Description="Fenerler - VE Gece Görüş Gözlükleri");
+Passives[0]=(Title="Perk Weapon Damage",Description="%x% increase in Commando weapon damage.");
+Passives[1]=(Title="Cloaked Enemy & Health Bar Detection",Description="10m plus %x%m increase by each level");
+Passives[2]=(Title="Zed Time Extension",Description="Zed time lasts %x% longer");
+Passives[3]=(Title="Reload Speed",Description="%x%% increase every 5 levels");
+Passives[4]=(Title="+Night Vision Capability",Description="Flashlights - AND Night Vision Goggles");
+Passives[5]=(Title="+Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units");
 
-EXPAction1="Komando silahıyla hasar vermek"
-EXPAction2="Komando silahıyla öldürülen Stalkerlar"
+EXPAction1="Dealing Commando weapon damage"
+EXPAction2="Killing Stalkers with Commando weapons"
 
-LargeMags="Büyük Şarjörler"
-LargeMagsDescription="Biraz daha ciddi ol - Komando silahlarının şarjör kapasitesini %50 yükselt."
+TacticalReload="Tactical Reload"
+TacticalReloadDescription="Be cool. Be quick. Reload 20% faster with Commando weapons AND look more elite while you're at it."
 
-Backup="Yedek"
-BackupDescription="Gerçekten ihtiyacınız olduğunda yedek Tabanca ve Bıçağınıza %60 fazladan hasar!"
+LargeMags="Large Mags"
+LargeMagsDescription="Get a bit more serious: Increase Commando weapon magazine capacities by 50%."
 
-Impact="Darbe"
-ImpactDescription="Daha da kuvvetlenin ve onları yere serin. Zed tökezletme şansı tüm Komando silahlarında %30 artış."
+Backup="Backup"
+BackupDescription="Give your backup pistol and knife 60% extra damage for those moments when you really need it!"
 
-TacticalReload="Taktiksel Şarjör Değiştirme"
-TacticalReloadDescription="Rahat ol. Hızlı ol. Özellik silahlarında daha hızlı şarjör değiştir VE olduğundan daha elit görün."
+Impact="Impact"
+ImpactDescription="Pack more punch and knock 'em down: Increase Stumble power by 150% for all Commando weapons."
 
-Leadership="Liderlik"
-LeadershipDescription="Liderliğin takım arkadaşlarını sakinleştirir, rahatlatır ve onları daha etkili yapar. Takım arkadaşları %10 daha hızlı şarjör değiştirir."
+HealthIncrease="Health Increase"
+HealthIncreaseDescription="Increase total Health and Armor by 25%."
 
-CallOut="Ortaya Çıkar"
-CallOutDescription="Takım arkadaşlarına senin gibi düşmanı görme yeteneğini ver. Sana teşekkür edecekler VE öldürdüklerinden aynı XP'yi kazanacaklar."
+AmmoVest="Ammo Vest"
+AmmoVestDescription="Carry two extra magazines for each Commando weapon."
 
-SingleFire="Tekli Atış"
-SingleFireDescription="Dikkatli atış ödüllendirmesi! Tekli atış modundayken Komando silahlarında %20 daha fazla hasar ver."
+HollowPoints="Hollow Point Rounds"
+HollowPointsDescription="Upgrade your ammo, giving Commando weapons 25% more damage and reducing their recoil 50%."
 
-Autofire="Otomatik Atış"
-AutofireDescription="Neden kurnaz olacakmışsınız ki? Komando silahlarıyla Tam Otomatik ve Yarı Otomatik atış modlarını kullanırken %20 daha fazla hasar ver."
+EatLead="Eat Lead"
+EatLeadDescription="Need more bullets? Get 50% more rounds in your mags with Commando weapons."
 
-RapidFire="ZED ZAMANI - Seri Ateş"
-RapidFireDescription="Dünya yavaşladığında, daha çok hasar ver: Komando silahlarında %3 daha fazla hasar ver ve tüm silahlarda 3 kere daha hızlı ateş et."
+RapidFire="ZED TIME - Rapid Fire"
+RapidFireDescription="When the world slows down, do more hurt: Do 3% more damage with Commando weapons and shoot 3x times faster with all guns."
 
-Professional="ZED ZAMANI - Profesyonel"
-ProfessionalDescription="Dünya yavaşladığında sen yavaşlama. Tam hızla silah doldurma - silah geçişinde iki kat hız!"
+Professional="ZED TIME - Professional"
+ProfessionalDescription="When the world slows down, you don't: Reload Commando weapons at full speed and switch Commando weapons twice as fast!"
 
 [KFPerk_Demolitionist]
-PerkName="Yıkıcı"
-EXPAction1="Yıkıcı silahıyla hasar vermek"
-EXPAction2="Yıkıcı silahları ile öldürülen Fleshpoundlar"
+PerkName="Demolitionist"
+EXPAction1="Dealing Demolitionist weapon damage"
+EXPAction2="Killing Fleshpounds with Demolitionist weapons"
 
-SkillCatagories[0]="Teknik"
-SkillCatagories[1]="Dayanıklık"
-SkillCatagories[2]="Gelişmiş Teknikler"
-SkillCatagories[3]="Silah Teknikleri"
-SkillCatagories[4]="Gelişmiş Patlayıcılar"
+SkillCatagories[0]="Technique"
+SkillCatagories[1]="Explosives"
+SkillCatagories[2]="Advanced Techniques"
+SkillCatagories[3]="Weapon Techniques"
+SkillCatagories[4]="Advanced Explosives"
 
-Passives[0]=(Title="Özellik Silah Hasarı",Description="Özellik silah hasarında %x% artış");
-Passives[1]=(Title="Patlayıcı Direnci",Description="patlayıcı hasarına karşı %x% direnç");
-Passives[2]=(Title="Fazladan Patlayıcı Mermi",Description="%x% daha fazla başlangıç patlayıcı mermisi");
+Passives[0]=(Title="Perk Weapon Damage",Description="Perk weapon damage increased by %x%");
+Passives[1]=(Title="Explosive Resistance",Description="%x% resistance to explosive damage");
+Passives[2]=(Title="Extra Explosive Ammo",Description="%x% more starting explosive ammo");
+Passives[3]=(Title="+Grenade Supplier",Description="Give out one extra grenade per wave to your team");
+Passives[4]=(Title="+Door Traps",Description="Doors you weld will explode when destroyed");
 
-GrenadeSupplier="Bomba Tedarikçisi"
-GrenadeSupplierDescription="Seni bunun için sevecekler: Takım arkadaşların her dalgada senden fazladan el bombası alacak."
+Damage="Bombardier"
+DamageDescription="Your explosive Demolitionist weapons do 25% more damage."
 
-OnContact="Etkileşimde"
-OnContactDescription="Bu da sana kapak olsun: dinamit çubuklarına Zed dokunduğunda patlayacak."
+Speed="Grenadier"
+SpeedDescription="You reload your Demolitionist weapons 10% faster."
 
-ExplosiveResistance="Patlayıcı Koruması"
-ExplosiveResistanceDescription="Toughen up the team: Reduce damage taken by you by 30% - and your team-mates, if they are close enough!"
+DirectHit="High Impact Rounds"
+DirectHitDescription="Do 25% more damage on a direct hit with your explosive Demolitionist weapons, but decrease maximum ammo for each weapon by 3."
 
-Sacrifice="Tepkisel Zırh"
-SacrificeDescription="Bomba ol: Her dalgada bir kez, öldürmeye sebep olacak bir patlama darbesi etrafındaki Zedlere hasar verir ve sende sadece 5 can bırakır."
+Ammo="Extra Rounds"
+AmmoDescription="Increase maximum ammo by 5 for all explosive Demolitionist weapons."
 
-DoorTraps="Kapı Tuzakları"
-DoorTrapsDescription="Bu kapıyı patlat: %30 daha yavaş kaynak yaparsın fakat kaynakladığın kapılar kırıldığında patlar. Kapıya yapılan daha fazla kaynak, daha fazla patlama."
+SirenResistance="Sonic Resistant Rounds"
+SirenResistanceDescription="Your explosive Demolitionist weapons have a 100% chance of getting past a siren's scream and actually exploding."
 
-SirenResistance="Siren Koruması"
-SirenResistanceDescription="Shut your mouth, Zed: Your grenades have a 100% chance of getting past sonic damage and actually exploding."
+AreaOfEffect="Fragmentation Rounds"
+AreaOfEffectDescription="The area of effect for your explosive Demolitionist weapons is increased by 50%, but their damage is reduced by 30%."
 
-OffPerk="Kapalı Özellik"
-OffPerkDescription="Off again: Do 10% extra damage with any Off-Perk weapon."
+CriticalHit="Armor Piercing Rounds"
+CriticalHitDescription="A direct hit to a critical zone with any Demolitionist weapon will do 50% additional damage."
 
-OnPerk="Açık Özellik"
-OnPerkDescription="On again: Increase all reaction, stumble and knockdown power by 30% for Demo weapons."
+ConcussiveForce="Concussive Rounds"
+ConcussiveForceDescription="The reaction, stun, stumble and knockdown power of your Demolitionist weapons increase by 50%."
 
-Nuke="ZED ZAMANI - Atom Bombası"
-NukeDescription="Nukem: Your explosives dish out massive radiation damage in Zed Time, poisoning Zeds."
+Nuke="ZED TIME - Destroyer of Worlds"
+NukeDescription="Nuke 'em: Your explosives dish out massive radiation damage in Zed Time, poisoning Zeds."
 
-ConcussiveForce="ZED ZAMANI - Sarsıcı Güç"
-ConcussiveForceDescription="Bowl them over: Your explosions have massive knockdown force against Zeds in Zed Time."
+Professional="ZED TIME - Mad Bomber"
+ProfessionalDescription="Shoot and reload in near real time."
 
 
 [KFPerk_FieldMedic]
-PerkName="Sıhhiye"
+PerkName="Doktor"
 
 SkillCatagories[0]="Conditioning"
 SkillCatagories[1]="Tıbbi Teknisyen"
@@ -1174,13 +1277,13 @@ HealingSurge="Şifa Dalgası"
 HealingSurgeDescription="Doğru kullanım için bu Doktorun bilgilerini koy: Sağlık %20 artar."
 
 Enforcer="İnfazcı"
-EnforcerDescription="Enough focus on caring: Increase your starting ammo capacity by 20% for your Perk and Backup weapons."
+EnforcerDescription="Enough focus on caring: Increase your ammo capacity by 20% for your Field Medic and backup weapons."
 
 Combatant="Savaşçı"
-CombatantDescription="Don't just be a Medic - be the Combat Medic you always wanted to be with free, starting body armor & a 60% discount on all armor purchases!"
+CombatantDescription="Don't just be a medic - be the combat medic you always wanted to be with free starting combat armor and a 60% discount on all Armor purchases!"
 
 Armament="Silahlanma"
-ArmamentDescription="Yalnızca insanları iyileştirme: Takım arkadaşlarına verdiğin şifa etkisinin %10'unu kaybedersin, ama bunun yerine onların zırhlarını her seferinde %2 oranında arttırırsın!"
+ArmamentDescription="Yalnızca insanları iyileştirme: Takım arkadaşlarına verdiğin şifa etkisinin %25'ini kaybedersin, ama bunun yerine onların zırhlarını her seferinde %1 oranında arttırırsın!"
 
 Regeneration="Yenilenme"
 RegenerationDescription="Kendine bir doz aşıla: Sağlığın Horzine nano-botları sayesinde zamanla yavaş yavaş yenilenir."
@@ -1189,20 +1292,20 @@ Lacerate="Yarala"
 LacerateDescription="O neştere dikkat et: Tüm Özellik silahlarıyla Zedlere verilen hasar kanamaya sebep olur."
 
 VaccinationArmor="Aşılama"
-VaccinationArmorDescription="Ölümün yayılmasını önlemeye yardım et: İyileştirdiğin takım arkadaşının maksimum zırhı %4 onarılır, artı olarak Bloat'ın Safrasına karşı geçici direnç."
+VaccinationArmorDescription="Ölümün yayılmasını önlemeye yardım et: İyileştirdiğin takım arkadaşının maksimum zırhı %2 onarılır, artı olarak Bloat'ın Safrasına karşı geçici direnç."
 
 VaccinationDamageMod="Asidik Bileşik"
 VaccinationDamageModDescription="Bazıları için şifacı... diğerleri için ölüm! İyileştirici dartların Zedleri zehirler; bombaların ve dartların Zedlere yeterince hasar verir ve hatta Zedlerin panik olmasına sebep olur."
 
 AirborneAgent="ZED ZAMANI - Havadan Taşınan Etken Madde"
-AirborneAgentDescription="Zaman iyileştirir derler: İyileştirici dartlarınız hedefiniz ve yakınındaki arkadaşlarınız için bir iyileştirme bulutu oluşturur ve 10% ekstra iyileştirme almalarını sağlar."
+AirborneAgentDescription="Zaman iyileştirir derler: İyileştirici dartlarınız hedefiniz ve yakınındaki arkadaşlarınız için bir iyileştirme bulutu oluşturur ve %20 ekstra iyileştirme almalarını sağlar."
 
 Sedative="ZED ZAMANI - Yatıştırıcı"
 SedativeDescription="Ve zaman durur: Doktor bombaları ve dartları Zedin hareketini geçici olarak durduracak Zed-Yatıştırıcı salgılar."
 
 
 EXPAction1="Doktor silahıyla hasar vermek"
-EXPAction2="Takım arkadaşlarını iyileştirme"
+EXPAction2="Takım arkadaşlarını iyileştirmek"
 
 [KFPerk_Firebug]
 PerkName="Kundakçı"
@@ -1222,19 +1325,19 @@ Passives[3]=(Title="Kendi ateşine bağışıklık",Description="Kişisel ateş 
 Passives[4]=(Title="Başlangıç Cephanesi",Description="%x% daha fazla başlangıç cephanesi");
 
 FullyStocked="Tamamen Dolu"
-FullyStockedDescription="What it says on the can: Firebug weapons start at maximum ammo capacity at the Trader."
+FullyStockedDescription="What it says on the can: Firebug weapons start at 60% ammo capacity at the Trader."
 
 FlarotovCoctail="Flarotov Kokteyli"
-FlarotovCoctailDescription="It's in the name: Shove a Flare in your Molotov Cocktail - you get a Flare that lights up the environment for 30 seconds AND your flame burns for twice as long."
+FlarotovCoctailDescription="It's in the name: Shove a flare in your Molotov Cocktail - you get a Flare that lights up the environment for 30 seconds."
 
 Fuse="Fünye"
 FuseDescription="Güzel bir yavaş yakıcı: Kundakçı silahlarının alev etkisi zamanla hasarını artırarak %70 daha uzun süre yakar."
 
 HeatWave="Isı Dalgası"
-HeatWaveDescription="Like a Georgia summer: Enemies struck at point blank range with Fire will stumble back."
+HeatWaveDescription="Like a Georgia summer: Zeds struck with Fire at point blank range will stumble back."
 
 ZedShrapnel="Zed Şarapneli"
-ZedShrapnelDescription="Zed PATLAYACAK: Alev silahları ile öldürülen herhangi bir zed %50 şans ile patlar, yakınındaki Zedlere hasar verir."
+ZedShrapnelDescription="Zed PATLAYACAK: Alev silahları ile öldürülen herhangi bir zed %30 şans ile patlar, yakınındaki Zedlere hasar verir."
 
 Napalm="Zed Napalmi"
 NapalmDescription="ALEVLİ Zed: Yanan Zedler diğer zedlere dokunduğunda onları da ateşe verir."
@@ -1246,7 +1349,7 @@ SplashDamage="Sıçrama Hasarı"
 SplashDamageDescription="Veya Alev silahı darbelerinin sıçrama hasarını artırır. Kararlar, kararlar!"
 
 Combustion="ZED ZAMANI - Yanma"
-CombustionDescription="Shrapnel + Napalm = Combustion. Sort of. Any zed that dies from your Fire weapons in Zed Time will explode into a fireball setting anything in the explosion on fire."
+CombustionDescription="Any Zed that dies from your Fire weapons in Zed Time will explode into a fireball setting anything in the explosion on Fire."
 
 Scorch="ZED ZAMANI - Yakım"
 ScorchDescription="Yanıyorsun! Peki, tam olarak değil. Zed Zamanında kullanılan özellik silahları gerçek zamana yakın hızla ateşlenir."
@@ -1254,7 +1357,7 @@ ScorchDescription="Yanıyorsun! Peki, tam olarak değil. Zed Zamanında kullanı
 [KFPerk_Gunslinger]
 PerkName="Silahşör"
 EXPAction1="Dealing Gunslinger weapon damage"
-EXPAction2="Head shots with Gunslinger weapons"
+EXPAction2="Silahşör silahlarıyla kafadan vuruş yapmak"
 
 SkillCatagories[0]="Teknik"
 SkillCatagories[1]="Yetenek"
@@ -1268,34 +1371,34 @@ Passives[2]=(Title="Hareket Hızı",Description="Hareket hızında %x% artış")
 Passives[3]=(Title="Geri Tepme",Description="%x% az geri tepme");
 
 ShootnMove="Shoot'n'Scoot"
-ShootnMoveDescription="Don't hang around to be eaten: move 200% faster in iron sights with reduced weapon bob."
+ShootnMoveDescription="Don't hang around to be eaten: Move 200% faster in iron sights with reduced weapon bob when using Gunslinger weapons."
 
 QuickSwitch="Hızlı Çekiş"
 QuickSwitchDescription="Bunu biliyorsun: Silah geçişi %50 daha hızlı - ve eğer mermin bittiğinde ateş etmeye devam edersen yedek silahlarına hızlı geçiş yaparsın."
 
-RhythmMethod="Rack 'em Up"
-RhythmMethodDescription="Rack up the headshots: each consecutive headshot increases damage by 10% up to 70% with Gunslinger weapons."
+RhythmMethod="Rhythm Method"
+RhythmMethodDescription="Rack up the headshots: Each consecutive headshot with a Gunslinger weapon increases your damage by 17% up to a maximum of 68%."
 
 BoneBreaker="Kemik Kırıcı"
-BoneBreakerDescription="Don't just collect them, break them too: do 20% more damage with Gunslinger weapons."
+BoneBreakerDescription="Don't just collect them, break them too: Inflict 20% more damage with Gunslinger weapons."
 
-SpeedReload="Speed-loader"
-SpeedReloadDescription="Cooler, quicker, deadlier: reload 20% faster with Gunslinger weapons AND look more elite while you're at it."
+SpeedReload="Speedloader"
+SpeedReloadDescription="Cooler, quicker, deadlier: Reload faster with Gunslinger weapons 20% faster AND look more elite while you're at it."
 
 Penetration="Penetration"
-PenetrationDescription="Line 'em up and knock 'em down: penetrate an extra Zed with every shot."
+PenetrationDescription="Line 'em up and knock 'em down: Penetrate an extra Zed with every shot with Gunslinger weapons."
 
-CenterMass="Center Mass"
-CenterMassDescription="If you aim for the center of mass... shots to the chest have 40% more stumble power."
+CenterMass="Center of Mass"
+CenterMassDescription="If you aim for the center of mass... shots to the chest with Gunslinger weapons have 40% more stumble power."
 
 LimbShots="Leg Shots"
-LimbShotsDescription="Or shoot them in the legs... shots to the legs have 3x more knockdown power when the zed is sprinting."
+LimbShotsDescription="Veya ayaklarına ateş et... zed koşarken ayağına yapılan atışlarda 3x daha fazla yere serme gücü."
 
-Fanfare="ZED TIME - Fanfire"
-FanfareDescription="Fanfire with fanfare: shoot 3x faster with Gunslinger weapons in Zed time."
+Fanfare="ZED ZAMANI - Fanfire"
+FanfareDescription="Fanfire with fanfare: Shoot 3x faster with Gunslinger weapons in Zed time."
 
 UberAmmo="ZED ZAMANI - Über Mermi"
-UberAmmoDescription="Uber it up: you can’t run out of ammo with Gunslinger weapons during Zed time."
+UberAmmoDescription="Uber it up: You can’t run out of ammo with Gunslinger weapons during Zed time."
 
 [KFPerk_MartialArtist]
 PerkName="Dövüş Sanatçısı"
@@ -1303,12 +1406,57 @@ PerkName="Dövüş Sanatçısı"
 [KFPerk_Sharpshooter]
 PerkName="Keskin Nişancı"
 
+EXPAction1="Dealing Sharpshooter weapon damage"
+EXPAction2="Head shots with Sharpshooter weapons"
+
+SkillCatagories[0]="Movement"
+SkillCatagories[1]="Basic Technique"
+SkillCatagories[2]="Skill"
+SkillCatagories[3]="Equipment"
+SkillCatagories[4]="Master Techniques"
+
+Passives[0]=(Title="Headshot Damage",Description="Headshot damage increased by %x%");
+Passives[1]=(Title="Recoil",Description="%x% less recoil");
+Passives[2]=(Title="Weapon Switch",Description="Weapon switch speed increased by %x%");
+
+StationaryAim="Sniper"
+StationaryAimDescription="Inflict 25% more damage while stationary and using a Sharpshooter weapon."
+
+Trigger="Marksman"
+TriggerDescription="Shoot 25% faster and move 10% faster when using a Sharpshooter weapon."
+
+CrouchAim="Stability"
+CrouchAimDescription="Inflict 30% more damage while crouching and using a Sharpshooter weapon."
+
+Stun="Ballistic Shock"
+StunDescription="Stun power with Sharpshooter weapons increases by 100%."
+
+RhythmMethod="Rack 'em Up"
+RhythmMethodDescription="Rack up the headshots: each consecutive headshot with a Sharpshooter weapon increases your damage by 5% up to 75%."
+
+TacticalReload="Combat Ready"
+TacticalReloadDescription="Be cool. Be quick. Reload faster with Sharpshooter weapons AND look more elite while you're at it."
+
+Scoped="Dead Eye"
+ScopedDescription="Reduce recoil 10% and increase head shot damage 10% when using a scope or ironsights with a Sharpshooter weapon."
+
+AmmoPouch="Always Prepared"
+AmmoPouchDescription="Get 25% more ammo for Sharpshooter weapons and grenades."
+
+ZTKnockdown="ZED TIME - Assassin"
+ZTKnockdownDescription="Headshots with Sharpshooter weapons will knock down any Zed."
+
+ZTStun="ZED TIME - Ranger"
+ZTStunDescription="Headshots with Sharpshooter weapons will stun any Zed."
+
+
+
 [KFPerk_Support]
 PerkName="Destek"
 
-SkillCatagories[0]="Silah Taşıma"
+SkillCatagories[0]="Erzak"
 SkillCatagories[1]="Fitness"
-SkillCatagories[2]="Erzak"
+SkillCatagories[2]="Silah Taşıma"
 SkillCatagories[3]="Dayanıklılık"
 SkillCatagories[4]="Gelişmiş Eğitim"
 
@@ -1340,7 +1488,7 @@ Regeneration="Yenilenme"
 RegenerationDescription="Doktorların işine son ver: Sağlığın Horzine nano-botları sayesinde zamanla yavaş yavaş yenilenir."
 
 Bombard="Bombardıman"
-BombardDescription="Put some power into it: Increase your chance of causing a specimen to stumble by 60% with ranged Support weapons."
+BombardDescription="Put some power into it: Increase your chance of causing a Zed to stumble by 60% with ranged Support weapons."
 
 TacticalReload="Taktiksel Şarjör Değiştirme"
 TacticalReloadDescription="Rahat ol. Hızlı ol. Sınıfa ait silahlarla daha hızlı şarjör değiştir VE bunu yaparken daha elit görün."
@@ -1352,16 +1500,13 @@ Tenacity="Tenacity"
 TenacityDescription="Destek silahlarını geliştirmek ve %10 daha fazla hasar vermek için zaman harca."
 
 Safeguard="ZED ZAMANI - Koruma"
-SafeguardDescription="Wade right in with 5% improved armor for you AND your nearby friends!"
+SafeguardDescription="Wade right in with 5% more Armor for you AND your nearby friends!"
 
 Barrage="ZED ZAMANI - Baraj"
 BarrageDescription="Make the most of the time with a 15% increase to all damage for you AND your friends nearby!"
 
 [KFPerk_Sharpshooter]
 PerkName="Keskin Nişancı"
-
-[KFPerk_SWAT]
-PerkName="SWAT"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -1414,58 +1559,111 @@ RandomLoadingStrings[2]="Lorem ipsum dolor sit amet, consectetur adipiscing elit
 RandomLoadingStrings[3]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 3"
 RandomLoadingStrings[4]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 4"
 RandomLoadingStrings[5]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 5"
+RandomLoadingStrings[6]="The parry ability stumbles a Zed, allowing you to get in a few extra strikes."
+RandomLoadingStrings[7]="Watch out for the husk. Once he takes enough damage, he may try to self-detonate on your team."
+RandomLoadingStrings[8]="You receive XP for damaging Zeds towards the perk associated with the weapon that inflicted the damage."
+RandomLoadingStrings[9]="Stick together. Getting singled out decreases your chances of survival if things get hairy."
+RandomLoadingStrings[10]="Players can use the syringe to heal themselves as well as their teammates."
+RandomLoadingStrings[11]="Welding doors can hold Zeds back. Doors do not come back once destroyed."
+RandomLoadingStrings[12]="If a teammate dies, it is helpful to grab their weapon and drop it for them at the trader."
+RandomLoadingStrings[13]="Got some extra dosh? Drop some for your team; they may return the favor."
+RandomLoadingStrings[14]="Choose your targets. Different weapons are more or less effective against different types of Zeds."
+RandomLoadingStrings[15]="Prioritize your targets. A fleshpound is a lot more deserving of your attention than a clot."
+RandomLoadingStrings[16]="All Zeds have weak points. If it's not the head, look for glowing elements on their bodies."
+RandomLoadingStrings[17]="Looking to buy or sell a cosmetic item or weapon skin?  Check the marketplace."
+RandomLoadingStrings[18]="The siren's scream neutralizes grenades and other explosives."
+RandomLoadingStrings[19]="Scrakes and fleshpounds will rage once they receive enough damage. Stay out of their way."
+RandomLoadingStrings[20]="Have a bunch of weapon skins or cosmetic items you're not using?  Craft new ones in your Inventory."
+RandomLoadingStrings[21]="Consider your outfit and gear carefully. One must look stylish while killing Zeds."
+RandomLoadingStrings[22]="Melee attacks are directional based on your movement. Forward = overhead, side = swipe, and back = uppercut."
+RandomLoadingStrings[23]="Welding doors shut can limit the directions the Zeds will attack you from, but will also limit your escape routes."
+RandomLoadingStrings[24]="Don't get close to even the weakest Zeds; they can grab you and hold on until their bigger friends arrive."
+RandomLoadingStrings[25]="Want Medic XP and some dosh? Heal your team -- both parties benefit!"
+RandomLoadingStrings[26]="Use controlled bursts with your weapons. Running out of ammo mid-wave makes for a difficult time."
+RandomLoadingStrings[27]="New perk skills are unlocked every 5 levels. Check them out at the Perks Menu."
+RandomLoadingStrings[28]="The M79 and RPG must travel a certain distance to arm the explosive charge."
+RandomLoadingStrings[29]="If you're having trouble seeing the Zeds, try your flashlight."
+RandomLoadingStrings[30]="Having a tough time surviving? Try a different perk! You may find one that fits your playstyle better."
+RandomLoadingStrings[31]="Always make sure you have a way out. Getting boxed in is a sure way to take a dirt nap."
+RandomLoadingStrings[32]="Armor is your friend. You can never go wrong getting more armor."
+RandomLoadingStrings[33]="Fire is a great way to keep Zeds away from you. Fire alone takes awhile to kill Zeds, but it keeps them occupied."
+RandomLoadingStrings[34]="If a Zed or its weapon are glowing red, parrying its melee attacks will be less effective.  Run!"
+RandomLoadingStrings[35]="Lighting Zeds on fire can cause them to panic. Time to play everyone's favorite game: Oh my god, I'm on fire!"
+RandomLoadingStrings[36]="Submachine guns have a high chance to cause targets to stumble, allowing you to keep them at a distance."
+RandomLoadingStrings[37]="The rail gun can fire through multiple Zeds if you line them up right."
+RandomLoadingStrings[38]="The microwave gun does more damage against Zeds carrying metal, like fleshpounds and sirens."
+RandomLoadingStrings[39]="Try out your weapon's alternate fire mode. Not all weapons have them, but it may help you in a tight spot."
+RandomLoadingStrings[40]="You get XP and dosh for assists in addition to kills, so don't feel bad for setting up kills for your allies."
+
+ 
 
 [Zeds]
 KFPawn_ZedBloat="Bloat"
-KFPawn_ZedClot="Pıhtı"
+KFPawn_ZedClot="Clot"
 KFPawn_ZedCrawler="Crawler"
 KFPawn_ZedFleshPound="Fleshpound"
 KFPawn_ZedGorefast="Gorefast"
 KFPawn_ZedHans="Dr. Hans Volter"
-KFPawn_ZedHusk="Kabuk"
+KFPawn_ZedHusk="Husk"
 KFPawn_ZedStalker="Stalker"
-KFPawn_ZedClot_Cyst="Kist"
+KFPawn_ZedClot_Cyst="Cyst"
 KFPawn_ZedClot_Slasher="Slasher"
-KFPawn_ZedClot_Alpha="Alfa Pıhtı"
+KFPawn_ZedClot_Alpha="Alfa Clot"
 KFPawn_ZedScrake="Scrake"
 KFPawn_ZedSiren="Siren"
 KFPawn_ZedPatriarch="Patriarch"
+;Human zeds
+KFPawn_ZedBloat_Versus="Bloat - Oyuncu"
+KFPawn_ZedClot_Versus="Clot - Oyuncu"
+KFPawn_ZedCrawler_Versus="Crawler - Oyuncu"
+KFPawn_ZedFleshPound_Versus="Fleshpound - Oyuncu"
+KFPawn_ZedGorefast_Versus="Gorefast - Oyuncu"
+KFPawn_ZedHans_Versus="Dr. Hans Volter - Oyuncu"
+KFPawn_ZedHusk_Versus="Husk - Oyuncu"
+KFPawn_ZedStalker_Versus="Stalker - Oyuncu"
+KFPawn_ZedClot_Cyst_Versus="Cyst - Oyuncu"
+KFPawn_ZedClot_Slasher_Versus="Slasher - Oyuncu"
+KFPawn_ZedClot_Alpha_Versus="Alpha Clot - Oyuncu"
+KFPawn_ZedScrake_Versus="Scrake - Oyuncu"
+KFPawn_ZedSiren_Versus="Siren - Oyuncu"
+KFPawn_ZedPatriarch_Versus="Patriarch - Oyuncu"
 
 [ZedMoves]
-Melee="Melee"
-Rally="Rally"
-Grab="Grab"
-Light="Light"
-Heavy="Heavy"
-Spin="Spin"
-Evade="Evade"
-Jump="Jump"
-Puke="Puke"
-Mine="Mine"
-Bite="Bite"
-Scream="Scream"
-Vortex="Vortex"
-Shoot="Shoot"
-Flame="Flame"
-Suicide="Suicide"
-Rage="Rage"
+Melee="Yakın Dövüş"
+Rally="Ralli"
+Grab="Yakalama"
+Light="Hafif"
+Heavy="Ağır"
+Spin="Dönme"
+Evade="Kaçınma"
+Jump="Zıplama"
+Puke="Kusma"
+Mine="Mayın"
+Bite="Isırma"
+Scream="Çığlık"
+Vortex="Girdap"
+Shoot="Ateş Etme"
+Flame="Alev"
+Suicide="İntihar"
+Rage="Öfke"
 Minigun="Minigun"
-Rocket="Rocket"
-Mortar="Mortar"
-Heal="Heal"
+Rocket="Roket"
+Mortar="Havan"
+Heal="İyileştirme"
+Block="Block"
 
 [Keybinds]
-CtrlCombo="Ctrl + "
-ShiftCombo="Shift + "
-AltCombo="Alt + "
+CtrlCombo="Ctrl-"
+ShiftCombo="Shift-"
+AltCombo="Alt-"
 LeftMouseButton="Sol Tık"
 MiddleMouseButton="Orta Tık"
 RightMouseBUtton="Sağ Tık"
-ThumbMouseButton1="Mouse 4"
-ThumbMouseButton2="Mouse 5"
+ThumbMouseButton="Fare 4"
+ThumbMouseButton2="Fare 5"
 MouseScrollDown="Fare Tekeri Aşağı"
 MouseScrollUp="Fare Tekeri Yukarı"
-CapsLock="Caps Lock"
+CapsLock="CapsLock"
 Tab="Tab"
 BackSpace="Backspace"
 SpaceBar="Boşluk"
@@ -1475,7 +1673,7 @@ LeftCtrl="Sol Ctrl"
 RightCtrl="Sağ Ctrl"
 LeftAlt="Sol Alt"
 RightAlt="Sağ Alt"
-BackSlash="\\ "
+BackSlash="\"[Keybinds]Slash"
 Slash="/"
 RightBracket="]"
 LeftBracket="["
@@ -1555,15 +1753,22 @@ DisplayName="Yeraltı Mezarlığı"
 DisplayName="Tahliye Noktası"
 
 [KF-Farmhouse KFMapSummary]
-DisplayName="Çiftlik evi"
+DisplayName="Çiftlik Evi"
 
 [KF-BlackForest KFMapSummary]
 DisplayName="Kara Orman"
 
 [KF-Prison KFMapSummary]
-DisplayName="Prison"
+DisplayName="Hapishane"
+
+[KF-ContainmentStation KFMapSummary]
+DisplayName="Containment Station"
+
+[KF-HostileGrounds KFMapSummary]
+DisplayName="Hostile Grounds"
+
 
 [KFMapInfo]
 ; defaults
-FoundCollectibleString="%x% found a collectible. %y% left to find..."
-FoundAllCollectiblesString="Every collectible has been found!"
+FoundCollectibleString="%x% koleksiyon öğesi bulundu. %y% koleksiyon öğesi kaldı..."
+FoundAllCollectiblesString="Bütün koleksiyon öğeleri bulundu!"

@@ -21,7 +21,7 @@ defaultproperties
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Knife_Firebug.FirstPersonMesh'
     Mesh=FirstPersonMesh
-    ItemName="Firemans Knife"
+    ItemName="Fireman's Knife"
     begin object name=StaticPickupComponent class=StaticMeshComponent
         ReplacementPrimitive=none
     object end

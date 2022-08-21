@@ -15,6 +15,7 @@ defaultproperties
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
    SingleFireMode=1
    InventorySize=6
+   MagazineCapacity(0)=30
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -24,7 +25,6 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=2.500000
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Bullpup'
-   MagazineCapacity(0)=30
    MaxSpareAmmo(0)=300
    InitialSpareMags(0)=4
    bLoopingFireAnim(0)=True

@@ -141,7 +141,7 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
  *
  * @param Speed jog/sprint speed
   */
-function ModifySpeed( out float Speed )
+simulated function ModifySpeed( out float Speed )
 {
 	local float TempSpeed;
 
@@ -186,9 +186,9 @@ simulated function bool GetUsingTactialReload( KFWeapon KFW )
  */
 function float GetKnockdownPowerModifier( optional class<DamageType> DamageType, optional byte BodyPart, optional bool bIsSprinting=false )
 {
-	if( IsLimbShotsActive() && (BodyPart == BP_LeftLeg || BodyPart == BP_RightLeg) && bIsSprinting )
+	if( IsLimbShotsActive() && HitShouldKnockdown( BodyPart ) && bIsSprinting )
 	{
-		`QALog( "LimbShots knocdown, Hit" @ BodyPart @ GetSkillValue( PerkSkills[EGunslingerLimbShots] ), bLogPerk );
+		`QALog( "LimbShots knockdown, Hit" @ BodyPart @ GetSkillValue( PerkSkills[EGunslingerLimbShots] ), bLogPerk );
 		return GetSkillValue( PerkSkills[EGunslingerLimbShots] );
 	}
 
@@ -201,7 +201,7 @@ function float GetKnockdownPowerModifier( optional class<DamageType> DamageType,
  */
 function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart )
 {
-	if( IsCenterMassActive() && (BodyPart == BP_Torso || CheckSpecialZedBodyPart( KFP.class, BodyPart )) )
+	if( IsCenterMassActive() && ( HitShouldStumble( BodyPart ) || CheckSpecialZedBodyPart( KFP.class, BodyPart )) )
 	{
 		`QALog( "CenterMass Stumble, Hit" @ BodyPart @ GetSkillValue( PerkSkills[EGunslingerCenterMass] ), bLogPerk );
         return GetSkillValue( PerkSkills[EGunslingerCenterMass] );
@@ -732,8 +732,8 @@ DefaultProperties
    	// xp per headshot (all headshots, not just lethal)
    	SecondaryXPModifier(0)=1
    	SecondaryXPModifier(1)=1
-   	SecondaryXPModifier(2)=1
-   	SecondaryXPModifier(3)=1
+   	SecondaryXPModifier(2)=2
+   	SecondaryXPModifier(3)=3
 
    	ZedTimeModifyingStates(0)="WeaponFiring"
    	ZedTimeModifyingStates(1)="WeaponBurstFiring"
@@ -751,12 +751,30 @@ DefaultProperties
 	PerkSkills(EGunslingerBoneBreaker)=(Name="BoneBreaker",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_BoneBreaker",Increment=0.f,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
 	PerkSkills(EGunslingerSpeedReload)=(Name="SpeedReload",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_SpeedReload",Increment=0.f,Rank=0,StartingValue=0.0f,MaxValue=0.0f)
 	PerkSkills(EGunslingerPenetration)=(Name="Penetration",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_Penetration",Increment=0.f,Rank=0,StartingValue=1.f,MaxValue=1.f)
-	PerkSkills(EGunslingerCenterMass)=(Name="CenterMass",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_CenterMass",Increment=0.f,Rank=0,StartingValue=1.4f,MaxValue=1.4f)
-	PerkSkills(EGunslingerLimbShots)=(Name="LimbShots",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_LimbShots",Increment=0.f,Rank=0,StartingValue=3.1f,MaxValue=3.1f)
+	PerkSkills(EGunslingerCenterMass)=(Name="CenterMass",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_CenterMass",Increment=0.f,Rank=0,StartingValue=2.0,MaxValue=2.0)
+	PerkSkills(EGunslingerLimbShots)=(Name="LimbShots",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_LimbShots",Increment=0.f,Rank=0,StartingValue=5.1f,MaxValue=5.1f)
 	PerkSkills(EGunslingerFanfare)=(Name="Fanfare",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDSpeed",Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
 	PerkSkills(EGunslingerUberAmmo)=(Name="UberAmmo",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDAmmo",Increment=0.f,Rank=0,StartingValue=0.0f,MaxValue=0.0f)
 
     // Skill tracking
 	HitAccuracyHandicap=-5.0
 	HeadshotAccuracyHandicap=-8.0
+
+	BodyPartsCanStumble(0)=0
+	BodyPartsCanStumble(1)=2
+	BodyPartsCanStumble(3)=3
+
+	BodyPartsCanKnockdown(0)=4
+	BodyPartsCanKnockdown(1)=5
+
+/**	BP_Torso                =0,
+    BP_Head                 =1,
+    BP_LeftArm              =2,
+    BP_RightArm             =3,
+    BP_LeftLeg              =4,
+    BP_RightLeg             =5,
+    BP_Special              =6,
+    BP_MAX                  =7,*/
 }
+
+    

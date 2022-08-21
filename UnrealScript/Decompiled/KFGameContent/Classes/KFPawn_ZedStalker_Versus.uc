@@ -9,39 +9,6 @@ class KFPawn_ZedStalker_Versus extends KFPawn_ZedStalker
     config(Game)
     hidecategories(Navigation);
 
-var bool bWasCloaked;
-
-simulated event ReplicatedEvent(name VarName)
-{
-    switch(VarName)
-    {
-        case 'bIsCloaking':
-            ClientCloakingStateUpdated();
-            break;
-        default:
-            break;
-            break;
-    }
-    super.ReplicatedEvent(VarName);
-}
-
-function SetCloaked(bool bNewCloaking)
-{
-    super.SetCloaked(bNewCloaking);
-    if(WorldInfo.NetMode != NM_DedicatedServer)
-    {
-        ClearBloodDecals();
-    }
-}
-
-simulated function ClientCloakingStateUpdated()
-{
-    if(bIsCloaking)
-    {
-        ClearBloodDecals();
-    }
-}
-
 simulated event UpdateSpottedStatus()
 {
     if(!bIsSprinting)
@@ -49,7 +16,7 @@ simulated event UpdateSpottedStatus()
         if(bIsCloakingSpottedByLP)
         {
             bIsCloakingSpottedByLP = false;
-            SetGameplayMICParams();
+            UpdateGameplayMICParams();
         }
         return;
     }
@@ -63,7 +30,7 @@ function CallOutCloaking(optional KFPlayerController CallOutController)
         if(bIsCloakingSpottedByTeam)
         {
             bIsCloakingSpottedByTeam = false;
-            SetGameplayMICParams();
+            UpdateGameplayMICParams();
         }
         return;
     }
@@ -72,16 +39,19 @@ function CallOutCloaking(optional KFPlayerController CallOutController)
 
 defaultproperties
 {
+    CloakSpeed=2
     bVersusZed=true
     ThirdPersonViewOffset=(OffsetHigh=(X=-175,Y=50,Z=25),OffsetMid=(X=-150,Y=50,Z=-30),OffsetLow=(X=-220,Y=50,Z=50))
     begin object name=MeleeHelper class=KFMeleeHelperAI
-        BaseDamage=18
+        BaseDamage=20
+        PlayerDoorDamageMultiplier=5
         MeleeImpactCamScale=0.2
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedStalker_Versus.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
     DoshValue=30
     XPValues=32
+    DamageTypeModifiers=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
     LocalizationKey=KFPawn_ZedStalker
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -90,9 +60,9 @@ defaultproperties
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedStalker_Versus.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     HitZones=/* Array type was not detected. */
-    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedStalker_Versus.Afflictions'
-    InstantIncaps=/* Array type was not detected. */
-    SprintSpeed=620
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedStalker_Versus.Afflictions'
+    IncapSettings=/* Array type was not detected. */
+    SprintSpeed=700
     SprintStrafeSpeed=425
     TeammateCollisionRadiusPercent=0.3
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
@@ -110,8 +80,9 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedStalker_Versus.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedStalker_Versus.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedStalker_Versus.DialogAkSoundComponent'
-    GroundSpeed=390
-    Health=200
+    GroundSpeed=500
+    JumpZ=1100
+    Health=100
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

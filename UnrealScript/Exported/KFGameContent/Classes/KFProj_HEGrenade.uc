@@ -13,12 +13,13 @@ class KFProj_HEGrenade extends KFProj_Grenade
 
 defaultproperties
 {
+   FuseTime=1.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MK3_Grenade'
    ExplosionActorClass=Class'KFGame.KFExplosionActor'
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
       ExplosionEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Explosions.HEGrenade_Explosion'
       Damage=300.000000
-      DamageRadius=800.000000
+      DamageRadius=650.000000
       DamageFalloffExponent=2.000000
       MyDamageType=Class'kfgamecontent.KFDT_Explosive_HEGrenade'
       KnockDownStrength=0.000000
@@ -26,6 +27,8 @@ defaultproperties
       ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_HEGrenade:ExplosionPointLight'
       ExploLightFadeOutTime=0.200000
       CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
+      CamShakeInnerRadius=200.000000
+      CamShakeFalloff=1.500000
       Name="ExploTemplate0"
       ObjectArchetype=KFGameExplosion'KFGame.Default__KFGameExplosion'
    End Object

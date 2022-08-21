@@ -12,17 +12,14 @@ class KFDT_Ballistic_Bullpup extends KFDT_Ballistic_AssaultRifle
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 defaultproperties
 {
     KDamageImpulse=900
 	KDeathUpKick=-300
 	KDeathVel=100
 	
-	StumblePower=37
-	LegStumblePower=37
-	GunHitPower=25
+	StumblePower=10
+	GunHitPower=0
 
 	WeaponDef=class'KFWeapDef_Bullpup'
 

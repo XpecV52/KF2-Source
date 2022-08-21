@@ -3,6 +3,7 @@ package tripwire.containers
     import flash.display.MovieClip;
     import flash.events.Event;
     import flash.text.TextField;
+    import flash.text.TextFormat;
     import tripwire.managers.MenuManager;
     
     public class SectionHeaderContainer extends TripContainer
@@ -15,11 +16,17 @@ package tripwire.containers
         
         public var textField:TextField;
         
+        public var headerTextFormat:TextFormat;
+        
         private var _controllerIconVisible:Boolean = true;
+        
+        public const textSpacing:int = 3;
         
         public function SectionHeaderContainer()
         {
+            this.headerTextFormat = new TextFormat();
             super();
+            this.formatText();
         }
         
         override protected function addedToStage(param1:Event) : void
@@ -43,6 +50,13 @@ package tripwire.containers
         public function get text() : String
         {
             return this.textField.text;
+        }
+        
+        public function formatText() : void
+        {
+            this.headerTextFormat = this.textField.getTextFormat();
+            this.headerTextFormat.letterSpacing = this.textSpacing;
+            this.textField.defaultTextFormat = this.headerTextFormat;
         }
         
         public function get controllerIconVisible() : Boolean

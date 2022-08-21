@@ -262,6 +262,20 @@ function DecalComponent SpawnDecal( MaterialInterface DecalMaterial,
 	return Result;
 }
 
+`if(`__TW_)
+function Reset()
+{
+	local int i;
+
+	// Returns all decals to the pool
+	for( i = 0; i < ActiveDecals.Length; ++i )
+	{
+		DecalFinished( ActiveDecals[i].Decal );
+	}
+	ActiveDecals.Length = 0;
+}
+`endif
+
 defaultproperties
 {
 	TickGroup=TG_DuringAsyncWork

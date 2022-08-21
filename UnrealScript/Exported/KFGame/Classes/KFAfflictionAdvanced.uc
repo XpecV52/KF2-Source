@@ -1,0 +1,62 @@
+//=============================================================================
+// KFAfflictionAdvanced
+//=============================================================================
+// An affliction base class for custom (non special move) handling 
+//=============================================================================
+// Killing Floor 2
+// Copyright (C) 2015 Tripwire Interactive LLC
+//=============================================================================
+class KFAfflictionAdvanced extends KFAfflictionBase
+	abstract;
+
+/** Duration copied from owner's incap settings */
+var float Duration;
+/** true once activated until duration has expired */
+var bool bIsActive;
+
+/** Default Effect Socket */
+var protected name EffectSocketName;
+
+/** Copy incap settings we're going to need */
+function Init(KFPawn P, EAfflictionType Type)
+{
+	Super.Init(P, Type);
+	Duration = P.IncapSettings[Type].Duration;
+}
+
+/** */
+function Activate()
+{
+	if ( !bIsActive )
+	{
+		super.Activate();
+		PawnOwner.SetTimer(Duration, false, nameof(DeActivate), self);
+		bIsActive = true;		
+	}
+}
+
+function DeActivate()
+{
+	bIsActive = false;
+	if (bDebug) LogInternal(self@"was deactivaed");
+}
+
+/** flush active timers */
+function Shutdown()
+{
+	// flush active timers
+	if ( bIsActive )
+	{
+		DeActivate();
+		PawnOwner.ClearTimer(nameof(DeActivate), self);
+
+		if (bDebug) LogInternal(self@"shutdown on owner death");
+	}
+}
+
+defaultproperties
+{
+   EffectSocketName="Hips"
+   Name="Default__KFAfflictionAdvanced"
+   ObjectArchetype=KFAfflictionBase'KFGame.Default__KFAfflictionBase'
+}

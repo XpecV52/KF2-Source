@@ -2115,9 +2115,9 @@ function LocalizeText()
 
     LocalizedObject = CreateObject( "Object" );
 
-	LocalizedObject.SetString("graphics", GraphicsString);
-	LocalizedObject.SetString("basic", BasicString);
-	LocalizedObject.SetString("advanced", AdvancedString);
+	LocalizedObject.SetString("graphics", Caps(class'KFGFxOptionsMenu_Selection'.default.OptionStrings[OM_Video]));
+	LocalizedObject.SetString("basic", Caps(BasicString));
+	LocalizedObject.SetString("advanced", Caps(AdvancedString));
 	LocalizedObject.SetString("effects", EffectsString);
 
 	LocalizedObject.SetString("physicsLevel", PhysicsLevelString);
@@ -3343,6 +3343,7 @@ function Callback_ResetDefaultVideo()
 
 function Callback_OpenGamma()
 {
+	Manager.SetVariableBool("bStartUpGamma", false);  // Let the manager know if we are gamma for start up so we can block backing out of the popup - HSL
 	Manager.OpenPopup(EGamma, "", AdjustGammaDescription, ResetGammaString, SetGammaString);
 }
 

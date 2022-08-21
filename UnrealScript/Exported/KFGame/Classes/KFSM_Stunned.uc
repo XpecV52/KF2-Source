@@ -18,6 +18,11 @@ var float StunDuration;
 var vector2D PlayerStunDurationRange;
 var vector2D StunDurationRange;
 
+/** Socket to attach our dazed/stunned effect */
+var name DazedFXSocketName;
+var rotator DazedFXRelativeRotation;
+var transient ParticleSystemComponent DazedPSC;
+
 /** Notification called when Special Move starts */
 function SpecialMoveStarted(bool bForced, Name PrevMove )
 {
@@ -48,6 +53,12 @@ function DoStun()
 	KFPOwner.Velocity.Y = 0.f;
 	KFPOwner.Acceleration = vect(0,0,0);
 	PlaySpecialMoveAnim( StunnedAnim, EAS_FullBody, 0.4f, 0.3f, 1.f, true );
+
+	// Spawn the dazed particle effect
+	if( KFPOwner.WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		DazedPSC = AttachDazedEffect( KFPawn_Monster(KFPOwner) );
+	}
 }
 
 /** Overridden to restrict movement when on the ground */
@@ -82,6 +93,12 @@ function PlayWakeupAnimation()
 
 	WakeupIndex = Rand( WakeupAnims.Length );
 	PlaySpecialMoveAnim( WakeupAnims[WakeupIndex], EAS_FullBody, 0.2f, 0.3f, 1.f, false );
+
+	// Deactivate dazed particle effect
+	if( DazedPSC != none )
+	{
+		DazedPSC.DeactivateSystem();
+	}
 }
 
 /* Play the wakeup animation for all clients */
@@ -95,11 +112,35 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 {
 	super.SpecialMoveEnded( PrevMove, NextMove );
 
-	// Enable movement
-	if( KFPOwner.MyKFAIC != None )
+	// Make sure dazed particle effect is always deactivated
+	if( DazedPSC != none && DazedPSC.bIsActive )
 	{
-		KFPOwner.MyKFAIC.bPreparingMove = false;
+		DazedPSC.DeactivateSystem();
 	}
+}
+
+/** Attaches the dazed effect to a monster pawn */
+static function ParticleSystemComponent AttachDazedEffect( KFPawn_Monster KFPM )
+{
+	local ParticleSystemComponent PSC;
+	local KFCharacterInfo_Monster MonsterArch;
+
+	if( KFPM != none )
+	{
+		MonsterArch = KFPM.GetCharacterMonsterInfo();
+		if( MonsterArch != none && MonsterArch.DazedEffectTemplate != none && KFPM.WorldInfo.MyEmitterPool != none )
+		{
+			PSC = KFPM.WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment( MonsterArch.DazedEffectTemplate, KFPM.Mesh, default.DazedFXSocketName, true );
+			if( PSC != none )
+			{
+				PSC.SetAbsolute( false, true, false );
+				PSC.SetRotation( rotator(vect(0,0,1)) + default.DazedFXRelativeRotation );
+				return PSC;
+			}
+		}
+	}
+
+	return none;
 }
 
 defaultproperties
@@ -110,6 +151,8 @@ defaultproperties
    WakeupAnims(2)="Stun_Wakeup_V3"
    PlayerStunDurationRange=(X=1.000000,Y=1.500000)
    StunDurationRange=(X=2.000000,Y=4.000000)
+   DazedFXSocketName="FX_Dazed"
+   DazedFXRelativeRotation=(Pitch=16384,Yaw=0,Roll=0)
    bAllowHitReactions=True
    bCanOnlyWanderAtEnd=True
    bDisablesWeaponFiring=True

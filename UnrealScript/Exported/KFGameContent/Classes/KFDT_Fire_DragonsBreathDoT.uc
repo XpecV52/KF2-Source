@@ -12,60 +12,6 @@ class KFDT_Fire_DragonsBreathDoT extends KFDT_Fire
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 15;
-
 static function int GetKillerDialogID()
 {
 	return 86;//KILL_Fire
@@ -85,7 +31,7 @@ defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_DragonsBreath'
    DoT_DamageScale=1.000000
-   BurnPower=1.250000
+   BurnPower=12.500000
    Name="Default__KFDT_Fire_DragonsBreathDoT"
    ObjectArchetype=KFDT_Fire'KFGame.Default__KFDT_Fire'
 }

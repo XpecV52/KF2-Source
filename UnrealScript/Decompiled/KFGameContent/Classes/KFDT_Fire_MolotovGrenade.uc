@@ -13,5 +13,6 @@ defaultproperties
     WeaponDef=Class'KFGame.KFWeapDef_Grenade_Firebug'
     bIgnoreSelfInflictedScale=false
     DoT_DamageScale=0.2
-    BurnPower=0.95
+    StumblePower=100
+    BurnPower=10
 }

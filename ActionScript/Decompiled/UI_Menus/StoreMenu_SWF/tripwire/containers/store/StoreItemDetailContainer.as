@@ -2,6 +2,7 @@ package tripwire.containers.store
 {
     import com.greensock.TweenMax;
     import com.greensock.easing.Cubic;
+    import flash.display.InteractiveObject;
     import flash.events.Event;
     import flash.external.ExternalInterface;
     import flash.text.TextField;
@@ -81,15 +82,19 @@ package tripwire.containers.store
         {
             this.currentItemDataObject = param1;
             this.itemNameText.text = param1.label;
-            this.itemDescText.text = param1.description;
+            this.itemDescText.htmlText = param1.description;
             this.itemPriceText.text = param1.price;
             if(param1.imageURLLarge && param1.imageURLLarge != "")
             {
                 this.imageLoader.source = param1.imageURLLarge;
             }
+            if(bManagerConsoleBuild && (param1.price == "" || param1.price == undefined))
+            {
+                this.addCartButton.visible = false;
+            }
             if(bManagerUsingGamepad)
             {
-                FocusManager.setFocus(this.addCartButton);
+                FocusManager.setFocus(!!this.addCartButton.visible ? this.addCartButton : this.cancelButton);
             }
         }
         
@@ -99,25 +104,14 @@ package tripwire.containers.store
             super.closeContainer();
         }
         
-        override protected function openAnimation() : *
+        override protected function openAnimation(param1:Boolean = true) : *
         {
             TweenMax.fromTo(this,6,{
                 "z":-128,
-                "autoAlpha":0,
-                "blurFilter":{
-                    "blurX":12,
-                    "blurY":12,
-                    "quality":1
-                }
+                "autoAlpha":0
             },{
                 "z":0,
-                "autoAlpha":1,
-                "blurFilter":{
-                    "blurX":0,
-                    "blurY":0,
-                    "quality":1,
-                    "remove":true
-                },
+                "autoAlpha":(!!param1 ? _defaultAlpha : _dimmedAlpha),
                 "ease":Cubic.easeOut,
                 "useFrames":true,
                 "onComplete":onOpened
@@ -128,17 +122,11 @@ package tripwire.containers.store
         {
             TweenMax.fromTo(this,6,{
                 "z":0,
-                "alpha":1
+                "alpha":alpha
             },{
                 "visible":false,
                 "z":-128,
                 "alpha":0,
-                "blurFilter":{
-                    "blurX":12,
-                    "blurY":12,
-                    "quality":1,
-                    "remove":true
-                },
                 "ease":Cubic.easeOut,
                 "useFrames":true,
                 "onComplete":onClosed

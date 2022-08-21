@@ -2,7 +2,6 @@ package tripwire.controls
 {
     import com.greensock.TweenMax;
     import com.greensock.easing.Cubic;
-    import com.greensock.events.TweenEvent;
     import flash.display.MovieClip;
     import flash.events.Event;
     import flash.events.FocusEvent;
@@ -32,6 +31,8 @@ package tripwire.controls
         
         protected var _defaultAlpha:Number;
         
+        protected var _dimmedAlpha:Number = 0.6;
+        
         private var _type:String;
         
         private var _bOpen:Boolean;
@@ -39,6 +40,8 @@ package tripwire.controls
         private var _fadeIn:TweenMax;
         
         private var _fadeOut:TweenMax;
+        
+        private var _startingIndex:int;
         
         public function TripScrollingList()
         {
@@ -89,7 +92,7 @@ package tripwire.controls
             this._bOpen = param1;
             if(param1)
             {
-                this.open();
+                this.open(this.bManagerUsingGamepad);
             }
             else
             {
@@ -106,7 +109,7 @@ package tripwire.controls
             super.updateScrollBar();
         }
         
-        protected function open() : void
+        protected function open(param1:Boolean = true) : void
         {
             if(this.associatedButton != null)
             {
@@ -114,6 +117,7 @@ package tripwire.controls
             }
             focusable = true;
             focused = 1;
+            this._startingIndex = this.selectedIndex;
             if(!this.bManagerUsingGamepad)
             {
                 this.selectedIndex = -1;
@@ -123,22 +127,11 @@ package tripwire.controls
             this._fadeIn = TweenMax.fromTo(this,6,{
                 "z":48,
                 "alpha":0,
-                "blurFilter":{
-                    "blurX":24,
-                    "blurY":16,
-                    "quality":1
-                },
                 "ease":Cubic.easeIn,
                 "useFrames":true
             },{
-                "z":-32,
-                "alpha":1,
-                "blurFilter":{
-                    "blurX":0,
-                    "blurY":0,
-                    "quality":1,
-                    "remove":true
-                },
+                "z":0,
+                "alpha":(!!param1 ? this._defaultAlpha : this._dimmedAlpha),
                 "ease":Cubic.easeOut,
                 "useFrames":true,
                 "onComplete":this.onOpen,
@@ -161,21 +154,10 @@ package tripwire.controls
             mouseEnabled = false;
             this._fadeOut = TweenMax.fromTo(this,6,{
                 "alpha":1,
-                "blurFilter":{
-                    "blurX":0,
-                    "blurY":0,
-                    "quality":1
-                },
                 "ease":Cubic.easeOut,
                 "useFrames":true
             },{
                 "alpha":0,
-                "blurFilter":{
-                    "blurX":24,
-                    "blurY":16,
-                    "quality":1,
-                    "remove":true
-                },
                 "ease":Cubic.easeOut,
                 "useFrames":true,
                 "onComplete":this.onClose
@@ -208,6 +190,7 @@ package tripwire.controls
                 {
                     case NavigationCode.GAMEPAD_A:
                         this.closeList(_selectedIndex);
+                        param1.handled = true;
                         break;
                     case NavigationCode.UP:
                         break;
@@ -215,9 +198,7 @@ package tripwire.controls
                         break;
                     case NavigationCode.GAMEPAD_B:
                         this.onBPressed();
-                        break;
-                    default:
-                        this.closeList(selectedIndex);
+                        param1.handled = true;
                 }
             }
         }
@@ -234,23 +215,18 @@ package tripwire.controls
             {
                 this.bOpen = false;
             }
+            if(param1 == TripContainer.CANCELLED_INDEX)
+            {
+                this.selectedIndex = this._startingIndex;
+            }
             if(this.associatedButton)
             {
-                if(this.bManagerUsingGamepad)
+                if(this.bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
                 {
+                    FocusManager.setModalClip(null);
                     FocusManager.setFocus(this.associatedButton);
                 }
             }
-        }
-        
-        function updateMainInFilters(param1:TweenEvent) : void
-        {
-            filters = [TripList.getBlurInEffect(alpha)];
-        }
-        
-        function updateMainOutFilters(param1:TweenEvent) : void
-        {
-            filters = [TripList.getBlurOutEffect(alpha)];
         }
         
         function onOpen(param1:Boolean = true) : void
@@ -258,6 +234,7 @@ package tripwire.controls
             if(param1)
             {
                 TripList.onOpen(this);
+                FocusManager.setModalClip(this);
             }
         }
         

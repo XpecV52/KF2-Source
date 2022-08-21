@@ -90,6 +90,8 @@ struct native PickupInfo
 };
 
 var repnotify PreGameServerAdInfo ServerAdInfo;
+var int PrimaryXPAccumulator;
+var int SecondaryXPAccumulator;
 var KFTraderTrigger NextTrader;
 var KFTraderTrigger OpenedTrader;
 var int DebugingNextTraderIndex;
@@ -107,7 +109,6 @@ var bool bTrackingMapEnabled;
 var bool bGameConductorGraphingEnabled;
 var bool bVersusGame;
 var bool bAllowSwitchTeam;
-var private bool bLeadershipAvailable;
 var repnotify byte MusicTrackRepCount;
 var repnotify byte RepKickVotes;
 var byte WaveMax;
@@ -119,6 +120,9 @@ var byte CurrentGameConductorStatus;
 var byte MusicIntensity;
 var int AIRemaining;
 var int WaveTotalAICount;
+var repnotify string ConsoleGameSessionGuid;
+var UniqueNetId ConsoleGameSessionHost;
+var array<UniqueNetId> ConsoleGameSessionPendingPlayers;
 var float CurrentSineMod;
 var float CurrentNextSpawnTime;
 var float CurrentSineWavFreq;
@@ -165,12 +169,12 @@ var private float SteamHeartbeatAccumulator;
 replication
 {
      if(bNetDirty)
-        AIRemaining, CurrentObjective, 
-        GameSharedUnlocks, MusicIntensity, 
-        MusicTrackRepCount, NextTrader, 
-        ReplicatedMusicTrackInfo, WaveNum, 
-        WaveTotalAICount, bIsUnrankedGame, 
-        bLeadershipAvailable, bTraderIsOpen;
+        AIRemaining, ConsoleGameSessionGuid, 
+        CurrentObjective, GameSharedUnlocks, 
+        MusicIntensity, MusicTrackRepCount, 
+        NextTrader, ReplicatedMusicTrackInfo, 
+        WaveNum, WaveTotalAICount, 
+        bIsUnrankedGame, bTraderIsOpen;
 
      if(bNetInitial)
         GameDifficulty, GameLength, 
@@ -221,6 +225,9 @@ native function SendSteamHeartbeat();
 // Export UKFGameReplicationInfo::execSendSteamRequestItemDrop(FFrame&, void* const)
 native function SendSteamRequestItemDrop();
 
+// Export UKFGameReplicationInfo::execEndOfWave(FFrame&, void* const)
+private native final function EndOfWave();
+
 simulated event ReplicatedEvent(name VarName)
 {
     if(VarName == 'bTraderIsOpen')
@@ -228,6 +235,7 @@ simulated event ReplicatedEvent(name VarName)
         if(bTraderIsOpen)
         {
             NotifyWaveEnded();
+            EndOfWave();
             OpenTrader();            
         }
         else
@@ -279,7 +287,14 @@ simulated event ReplicatedEvent(name VarName)
                             }
                             else
                             {
-                                super.ReplicatedEvent(VarName);
+                                if(VarName == 'ConsoleGameSessionGuid')
+                                {
+                                    KFPlayerController(GetALocalPlayerController()).TryJoinGameSession();                                    
+                                }
+                                else
+                                {
+                                    super.ReplicatedEvent(VarName);
+                                }
                             }
                         }
                     }
@@ -295,6 +310,7 @@ simulated event PostBeginPlay()
 
     VoteCollector = new (self) VoteCollectorClass;
     super.PostBeginPlay();
+    ConsoleGameSessionGuid = KFGameEngine(Class'Engine'.static.GetEngine()).ConsoleGameSessionGuid;
     foreach DynamicActors(Class'KFDoorActor', door)
     {
         DoorList.AddItem(door;        
@@ -514,7 +530,6 @@ simulated function int GetNextMapTimeRemaining()
 
 function SetWaveActive(bool bWaveActive, optional byte NewMusicIntensity)
 {
-    CheckGlobalPerkSkills(bWaveActive);
     MusicIntensity = NewMusicIntensity;
     bTraderIsOpen = !bWaveActive && bMatchHasBegun;
     bForceNetUpdate = true;
@@ -601,36 +616,9 @@ simulated event Timer()
     }
 }
 
-function CheckGlobalPerkSkills(bool bWaveActive)
+simulated event bool CanChangePerks()
 {
-    bLeadershipAvailable = ((bWaveActive) ? CheckForLeaderShipSkill() : false);
-}
-
-function bool CheckForLeaderShipSkill()
-{
-    local KFPawn_Human KFPH;
-    local KFPerk_Commando KFPeC;
-
-    foreach WorldInfo.AllPawns(Class'KFPawn_Human', KFPH)
-    {
-        if(KFPH.IsAliveAndWell())
-        {
-            KFPeC = KFPerk_Commando(KFPH.GetPerk());
-            if(KFPeC != none)
-            {
-                if(KFPeC.IsLeadershipActive())
-                {                    
-                    return true;
-                }
-            }
-        }        
-    }    
-    return false;
-}
-
-simulated function bool IsLeadershipActive()
-{
-    return bLeadershipAvailable;
+    return bTraderIsOpen;
 }
 
 simulated function DisplayDebug(HUD HUD, out float YL, out float YPos)
@@ -1145,6 +1133,8 @@ private final event NotifyGameUnranked()
         WorldInfo.Game.UpdateGameSettings();
     }
 }
+
+function int GetCurrentRoundNumber();
 
 simulated function bool AreTeamsOutOfBalanced();
 

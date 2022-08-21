@@ -12,67 +12,12 @@ class KFDT_Explosive_M79 extends KFDT_Explosive
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 15;
-
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_M79'
    bShouldSpawnPersistentBlood=True
-   KnockdownPower=45
-   StumblePower=42
-   LegStumblePower=42
+   KnockdownPower=150.000000
+   StumblePower=400.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Demolitionist'
    KDeathVel=300.000000
    KDeathUpKick=1000.000000

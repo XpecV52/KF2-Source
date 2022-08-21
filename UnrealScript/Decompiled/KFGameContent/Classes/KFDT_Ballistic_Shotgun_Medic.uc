@@ -49,9 +49,8 @@ static function bool CheckMedicBleed(out int InDamage, out class<KFDamageType> K
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_MedicShotgun'
-    StumblePower=20
-    LegStumblePower=110
-    GunHitPower=113
+    StumblePower=13
+    GunHitPower=45
     ModifierPerkList=/* Array type was not detected. */
     BloodSpread=0.4
     BloodScale=0.6

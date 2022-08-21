@@ -34,9 +34,6 @@ var MaterialInstanceConstant SpottedMaterial;
 var MaterialInstanceConstant CloakedBodyMaterial;
 var MaterialInstanceConstant CloakedBodyAltMaterial;
 
-/** Secondary body material, used in the same way BodyMIC is */
-var MaterialInstanceConstant BodyAltMIC;
-
 /** Skel control for spinning the minigun barrel */
 var KFSkelControl_SpinBone BarrelSpinSkelCtrl;
 
@@ -242,6 +239,12 @@ var float DeCloakSpeed;
 /** Fleeing and attempting to heal */
 var repnotify bool bInFleeAndHealMode;
 
+/** Number of times we've bumped into enemies when trying to heal */
+var int NumFleeAndHealEnemyBumps;
+
+/** Last time we bumped into an enemy */
+var float LastFleeAndHealEnemyBumpTime;
+
 /** Whether we've healed this battle phase or not */
 var bool bHealedThisPhase;
 
@@ -259,7 +262,7 @@ simulated event ReplicatedEvent( name VarName )
 	switch( VarName )
 	{
 		case nameOf(bIsCloakingSpottedByTeam):
-			SetGameplayMICParams();
+			UpdateGameplayMICParams();
 			break;
 
 		case nameOf(bIsCloaking):
@@ -309,7 +312,7 @@ simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bFo
     // Set our secondary material, attach our healing syringes
 	if( WorldInfo.NetMode != NM_DedicatedServer && Mesh != None )
 	{
-		BodyAltMIC = Mesh.CreateAndSetMaterialInstanceConstant( 1 );
+		CharacterMICs[1] = Mesh.CreateAndSetMaterialInstanceConstant( 1 );
 
 		// Attach healing syringes
 		for( i = 0; i < 3; ++i )
@@ -379,6 +382,10 @@ simulated function SetFleeAndHealMode( bool bNewFleeAndHealStatus )
             ClearTimer(nameof(FleeAndHealBump));
         }
 
+        // Initialize bump variables
+		NumFleeAndHealEnemyBumps = 0;
+		LastFleeAndHealEnemyBumpTime = WorldInfo.TimeSeconds;
+
         bForceNetUpdate = true;
     }
 
@@ -423,6 +430,11 @@ function SummonChildren()
 	}
 }
 
+/** Returns whether we are allowed to summon children or not */
+function bool CanSummonChildren()
+{
+    return BattlePhases[CurrentBattlePhase-1].bCanSummonMinions;
+}
 
 /** Heal animnotify to move the syringe */
 simulated function ANIMNOTIFY_GrabSyringe()
@@ -505,6 +517,34 @@ simulated function BreakOffSyringe( int SyringeNum )
 	HealingSyringeMICs[SyringeNum] = none;
 }
 
+/** If the Patriarch repeatedly bumps into players during his flee and heal phase, just heal */
+simulated event Bump( Actor Other, PrimitiveComponent OtherComp, Vector HitNormal )
+{
+    local KFPawn KFP;
+
+    super.Bump( Other, OtherComp, HitNormal );
+
+    if( Role == ROLE_Authority && bInFleeAndHealMode && MyKFAIC != none && !IsDoingSpecialMove() && Other.GetTeamNum() != GetTeamNum() )
+    {
+        KFP = KFPawn( Other );
+        if( KFP != none )
+        {
+            if( `TimeSince(LastFleeAndHealEnemyBumpTime) > 1.f )
+            {
+                ++NumFleeAndHealEnemyBumps;
+                LastFleeAndHealEnemyBumpTime = WorldInfo.TimeSeconds;
+
+                // If we've bumped into players enough times, just force a heal
+                if( NumFleeAndHealEnemyBumps > 2 )
+                {
+                    NumFleeAndHealEnemyBumps = 0;
+                    KFAIController_ZedPatriarch(MyKFAIC).ForceHeal();
+                }
+            }
+        }
+    }
+}
+
 /** When fleeing, plow through any other zeds */
 function FleeAndHealBump()
 {
@@ -546,6 +586,7 @@ function IncrementBattlePhase()
 {
     CurrentBattlePhase++;
     bHealedThisPhase = true;
+    DisablebOnDeathAchivement();
 
     SetPhaseCooldowns( CurrentBattlePhase - 1 );
     OnBattlePhaseChanged();
@@ -560,7 +601,7 @@ simulated function OnBattlePhaseChanged()
     {
         return;
     }
-
+    super.OnBattlePhaseChanged();
 	UpdateBattlePhaseLights();
 	UpdateBattlePhaseMaterials();
 	UpdateBattlePhaseFX();
@@ -940,7 +981,7 @@ simulated event Tick( float DeltaTime )
 			}
 			BoilPulseSin = Abs( BoilPulseAccum );
 			ActualBoilColor = BoilColors[3] * BoilPulseSin;
-			BodyAltMIC.SetVectorParameterValue( 'Vector_GlowColor', ActualBoilColor );
+			CharacterMICs[1].SetVectorParameterValue( 'Vector_GlowColor', ActualBoilColor );
 			BoilPulseAccum += DeltaTime * BoilPulseRate;
 		}
 		else
@@ -948,7 +989,7 @@ simulated event Tick( float DeltaTime )
 			BoilPulseSin = 1.f;
 		}
 
-		if( BodyMIC.Parent != SpottedMaterial )
+		if( CharacterMICs[0].Parent != SpottedMaterial )
 		{
 			MinCloakPct = GetMinCloakPct();
 
@@ -960,12 +1001,12 @@ simulated event Tick( float DeltaTime )
 
 					if( CloakPercent == 1.0f )
 					{
-						SetGameplayMICParams();
+						UpdateGameplayMICParams();
 					}
 					else
 					{
-						BodyMIC.SetScalarParameterValue( 'Transparency', CloakPercent );
-						BodyAltMIC.SetScalarParameterValue( 'Transparency', CloakPercent );
+						CharacterMICs[0].SetScalarParameterValue( 'Transparency', CloakPercent );
+						CharacterMICs[1].SetScalarParameterValue( 'Transparency', CloakPercent );
 					}
 
 					if( bPulseBoils )
@@ -983,8 +1024,8 @@ simulated event Tick( float DeltaTime )
 			else if( CloakPercent > MinCloakPct )
 			{
 				CloakPercent = fMax( CloakPercent - DeltaTime*CloakSpeed, MinCloakPct );
-				BodyMIC.SetScalarParameterValue( 'Transparency', CloakPercent );
-				BodyAltMIC.SetScalarParameterValue( 'Transparency', CloakPercent );
+				CharacterMICs[0].SetScalarParameterValue( 'Transparency', CloakPercent );
+				CharacterMICs[1].SetScalarParameterValue( 'Transparency', CloakPercent );
 
 				if( BoilLightComponent.bEnabled )
 				{
@@ -1057,8 +1098,8 @@ simulated event NotifyGoreMeshActive()
     // Set our secondary MIC
 	if( WorldInfo.NetMode != NM_DedicatedServer && Mesh != None )
 	{
-		BodyMIC = Mesh.CreateAndSetMaterialInstanceConstant( 0 );
-		BodyAltMIC = Mesh.CreateAndSetMaterialInstanceConstant( 1 );
+		CharacterMICs[0] = Mesh.CreateAndSetMaterialInstanceConstant( 0 );
+		CharacterMICs[1] = Mesh.CreateAndSetMaterialInstanceConstant( 1 );
 
 		Super.NotifyGoreMeshActive();
 	}
@@ -1069,7 +1110,7 @@ function SetCloaked(bool bNewCloaking)
 {
 	if( bCanCloak && bNewCloaking != bIsCloaking )
 	{
-		if( IsImpaired() && bNewCloaking )
+		if( bNewCloaking && (IsImpaired() || IsIncapacitated()) )
 		{
 			return;
 		}
@@ -1093,7 +1134,7 @@ function SetCloaked(bool bNewCloaking)
 		{
 			if( bIsCloaking || bIsCloakingSpottedByLP || bIsCloakingSpottedByTeam )
 			{
-				SetGameplayMICParams();
+				UpdateGameplayMICParams();
 			}
 		}
 
@@ -1110,7 +1151,7 @@ simulated function ClientCloakingStateUpdated()
 	if( bIsCloaking )
 	{
 		ClearBloodDecals();
-		SetGameplayMICParams();
+		UpdateGameplayMICParams();
 
 		// Initial spotted callout should be slightly delayed
 		bIsCloakingSpottedByLP = false;
@@ -1119,7 +1160,7 @@ simulated function ClientCloakingStateUpdated()
 	}
 	else if( bIsCloakingSpottedByLP || bIsCloakingSpottedByTeam )
 	{
-		SetGameplayMICParams();
+		UpdateGameplayMICParams();
 	}
 }
 
@@ -1132,7 +1173,7 @@ function OnStackingAfflictionChanged(byte Id)
 
 	if( Role == ROLE_Authority && IsAliveAndWell() )
 	{
-		if ( Id == SAF_EMPPanic || Id == SAF_EMPDisrupt )
+		if ( Id == AF_EMP )
 		{
 			if( !IsHumanControlled() )
 			{
@@ -1201,7 +1242,7 @@ simulated event UpdateSpottedStatus()
 	{
 		if ( bIsCloakingSpottedByLP != bOldSpottedByLP )
 		{
-			SetGameplayMICParams();
+			UpdateGameplayMICParams();
 		}
 	}
 }
@@ -1210,7 +1251,7 @@ simulated event UpdateSpottedStatus()
 function CallOutCloaking( optional KFPlayerController CallOutController )
 {
 	bIsCloakingSpottedByTeam = true;
-	SetGameplayMICParams();
+	UpdateGameplayMICParams();
 	SetTimer(2.f, false, nameof(CallOutCloakingExpired));
 }
 
@@ -1218,56 +1259,17 @@ function CallOutCloaking( optional KFPlayerController CallOutController )
 function CallOutCloakingExpired()
 {
 	bIsCloakingSpottedByTeam = false;
-	SetGameplayMICParams();
-}
-
-/**
- * Update any material effects
- * Overridden to support second body material
- */
-function UpdateMaterialEffect(float DeltaTime)
-{
-	local float Intensity;
-
-	if( MaterialEffectTimeRemaining > 0.f )
-	{
-		if( MaterialEffectTimeRemaining > DeltaTime )
-		{
-			MaterialEffectTimeRemaining -= DeltaTime;
-			Intensity = 1.f - fClamp(MaterialEffectTimeRemaining/MaterialEffectDuration, 0.f, 1.f);
-		}
-		else
-		{
-			MaterialEffectTimeRemaining = 0.f;
-			Intensity = 1.f;
-		}
-
-		// Update the materials
-		if( BodyMIC != none )
-		{
-   			BodyMIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
-   		}
-
-   		if( BodyAltMIC != none )
-   		{
-   			BodyAltMIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
-   		}
-
-		if( HeadMIC != none )
-		{
-   			HeadMIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
-   		}
-	}
+	UpdateGameplayMICParams();
 }
 
 /** Handle cloaking materials */
-simulated function SetGameplayMICParams()
+simulated function UpdateGameplayMICParams()
 {
 	local int i;
 	local bool bIsSpotted;
 	local bool bWasCloaked;
 
-	super.SetGameplayMICParams();
+	super.UpdateGameplayMICParams();
 
 	// Cannot cloak after patriarch has been gored
 	if( WorldInfo.NetMode != NM_DedicatedServer )
@@ -1275,12 +1277,12 @@ simulated function SetGameplayMICParams()
 		// visible by local player or team (must go after ServerCallOutCloaking)
 		bIsSpotted = ( bIsCloakingSpottedByLP || bIsCloakingSpottedByTeam );
 
-		if( (!bIsCloaking || IsImpaired()) && BodyMIC.Parent != BodyMaterial )
+		if( (!bIsCloaking || IsImpaired()) && CharacterMICs[0].Parent != BodyMaterial )
 		{
-			bWasCloaked = BodyMIC.Parent == SpottedMaterial || BodyMIC.Parent == CloakedBodyMaterial;
+			bWasCloaked = CharacterMICs[0].Parent == SpottedMaterial || CharacterMICs[0].Parent == CloakedBodyMaterial;
 
-			BodyMIC.SetParent( BodyMaterial );
-			BodyAltMIC.SetParent( BodyAltMaterial );
+			CharacterMICs[0].SetParent( BodyMaterial );
+			CharacterMICs[1].SetParent( BodyAltMaterial );
 	   		for( i = 0; i < HealingSyringeMICs.Length; ++i )
 	   		{
 	   			if( HealingSyringeMICs[i] != none )
@@ -1302,11 +1304,11 @@ simulated function SetGameplayMICParams()
 				DoCloakFX();
 			}
 		}
-		else if ( bIsCloaking && bIsSpotted && BodyMIC.Parent != SpottedMaterial )
+		else if ( bIsCloaking && bIsSpotted && CharacterMICs[0].Parent != SpottedMaterial )
 		{
 			CloakPercent = 1.0f;
-			BodyMIC.SetParent( SpottedMaterial );
-			BodyAltMIC.SetParent( SpottedMaterial );
+			CharacterMICs[0].SetParent( SpottedMaterial );
+			CharacterMICs[1].SetParent( SpottedMaterial );
 	   		for( i = 0; i < HealingSyringeMICs.Length; ++i )
 	   		{
 	   			if( HealingSyringeMICs[i] != none )
@@ -1318,10 +1320,10 @@ simulated function SetGameplayMICParams()
 			Mesh.SetPerObjectShadows( false );
 			SetDamageFXActive( false );
 		}
-		else if( bIsCloaking && !bIsSpotted && BodyMIC.Parent != CloakedBodyMaterial )
+		else if( bIsCloaking && !bIsSpotted && CharacterMICs[0].Parent != CloakedBodyMaterial )
 		{
-			BodyMIC.SetParent( CloakedBodyMaterial );
-			BodyAltMIC.SetParent( CloakedBodyAltMaterial );
+			CharacterMICs[0].SetParent( CloakedBodyMaterial );
+			CharacterMICs[1].SetParent( CloakedBodyAltMaterial );
 	   		for( i = 0; i < HealingSyringeMICs.Length; ++i )
 	   		{
 	   			if( HealingSyringeMICs[i] != none )
@@ -1350,7 +1352,7 @@ simulated function DoCloakFX()
 simulated function UpdateBattlePhaseMaterials()
 {
 	// No adjustments to spotted materials
-	if( BodyMIC == none || BodyAltMIC == none || bIsCloakingSpottedByLP || bIsCloakingSpottedByTeam )
+	if( CharacterMICs[0] == none || CharacterMICs[1] == none || bIsCloakingSpottedByLP || bIsCloakingSpottedByTeam )
 	{
 		return;
 	}
@@ -1358,43 +1360,43 @@ simulated function UpdateBattlePhaseMaterials()
     switch( CurrentBattlePhase )
     {
     case 1:
-        BodyMIC.SetScalarParameterValue( 'Scalar_BattleGrime', 0.f );
-        BodyMIC.SetScalarParameterValue( 'Scalar_GlowFlashing', 0.f );
-		BodyMIC.SetVectorParameterValue( 'Vector_GlowColor', MechColors[0] );
-        BodyAltMIC.SetScalarParameterValue( 'Scalar_BattleGrime', 0.f );
-        BodyAltMIC.SetScalarParameterValue( 'Scalar_Damage_Blood_Contrast', 0.f );
-        BodyAltMIC.SetScalarParameterValue( 'Scalar_GlowFlashing', 0.f );
-        BodyAltMIC.SetVectorParameterValue( 'Vector_GlowColor', BoilColors[0] );
+        CharacterMICs[0].SetScalarParameterValue( 'Scalar_BattleGrime', 0.f );
+        CharacterMICs[0].SetScalarParameterValue( 'Scalar_GlowFlashing', 0.f );
+		CharacterMICs[0].SetVectorParameterValue( 'Vector_GlowColor', MechColors[0] );
+        CharacterMICs[1].SetScalarParameterValue( 'Scalar_BattleGrime', 0.f );
+        CharacterMICs[1].SetScalarParameterValue( 'Scalar_Damage_Blood_Contrast', 0.f );
+        CharacterMICs[1].SetScalarParameterValue( 'Scalar_GlowFlashing', 0.f );
+        CharacterMICs[1].SetVectorParameterValue( 'Vector_GlowColor', BoilColors[0] );
         break;
 
     case 2:
-        BodyMIC.SetScalarParameterValue( 'Scalar_BattleGrime', 0.3f );
-        BodyMIC.SetScalarParameterValue( 'Scalar_GlowFlashing', 0.25f );
-		BodyMIC.SetVectorParameterValue( 'Vector_GlowColor', MechColors[1] );
-        BodyAltMIC.SetScalarParameterValue( 'Scalar_BattleGrime', 0.25f );
-        BodyAltMIC.SetScalarParameterValue( 'Scalar_Damage_Blood_Contrast', 1.f );
-        BodyAltMIC.SetScalarParameterValue( 'Scalar_GlowFlashing', 0.f );
-        BodyAltMIC.SetVectorParameterValue( 'Vector_GlowColor', BoilColors[1] );
+        CharacterMICs[0].SetScalarParameterValue( 'Scalar_BattleGrime', 0.3f );
+        CharacterMICs[0].SetScalarParameterValue( 'Scalar_GlowFlashing', 0.25f );
+		CharacterMICs[0].SetVectorParameterValue( 'Vector_GlowColor', MechColors[1] );
+        CharacterMICs[1].SetScalarParameterValue( 'Scalar_BattleGrime', 0.25f );
+        CharacterMICs[1].SetScalarParameterValue( 'Scalar_Damage_Blood_Contrast', 1.f );
+        CharacterMICs[1].SetScalarParameterValue( 'Scalar_GlowFlashing', 0.f );
+        CharacterMICs[1].SetVectorParameterValue( 'Vector_GlowColor', BoilColors[1] );
         break;
 
     case 3:
-        BodyMIC.SetScalarParameterValue( 'Scalar_BattleGrime', 0.7f );
-        BodyMIC.SetScalarParameterValue( 'Scalar_GlowFlashing', 0.5f );
-		BodyMIC.SetVectorParameterValue( 'Vector_GlowColor', MechColors[2] );
-        BodyAltMIC.SetScalarParameterValue( 'Scalar_BattleGrime', 0.5f );
-        BodyAltMIC.SetScalarParameterValue( 'Scalar_Damage_Blood_Contrast', 1.2f );
-        BodyAltMIC.SetScalarParameterValue( 'Scalar_GlowFlashing', 0.f );
-        BodyAltMIC.SetVectorParameterValue( 'Vector_GlowColor', BoilColors[2] );
+        CharacterMICs[0].SetScalarParameterValue( 'Scalar_BattleGrime', 0.7f );
+        CharacterMICs[0].SetScalarParameterValue( 'Scalar_GlowFlashing', 0.5f );
+		CharacterMICs[0].SetVectorParameterValue( 'Vector_GlowColor', MechColors[2] );
+        CharacterMICs[1].SetScalarParameterValue( 'Scalar_BattleGrime', 0.5f );
+        CharacterMICs[1].SetScalarParameterValue( 'Scalar_Damage_Blood_Contrast', 1.2f );
+        CharacterMICs[1].SetScalarParameterValue( 'Scalar_GlowFlashing', 0.f );
+        CharacterMICs[1].SetVectorParameterValue( 'Vector_GlowColor', BoilColors[2] );
         break;
 
     case 4:
-        BodyMIC.SetScalarParameterValue( 'Scalar_BattleGrime', 1.1f );
-        BodyMIC.SetScalarParameterValue( 'Scalar_GlowFlashing', 0.75f );
-		BodyMIC.SetVectorParameterValue( 'Vector_GlowColor', MechColors[3] );
-        BodyAltMIC.SetScalarParameterValue( 'Scalar_BattleGrime', 0.75f );
-        BodyAltMIC.SetScalarParameterValue( 'Scalar_Damage_Blood_Contrast', 1.3f );
-        BodyAltMIC.SetScalarParameterValue( 'Scalar_GlowFlashing', 0.f );
-        BodyAltMIC.SetVectorParameterValue( 'Vector_GlowColor', BoilColors[3] );
+        CharacterMICs[0].SetScalarParameterValue( 'Scalar_BattleGrime', 1.1f );
+        CharacterMICs[0].SetScalarParameterValue( 'Scalar_GlowFlashing', 0.75f );
+		CharacterMICs[0].SetVectorParameterValue( 'Vector_GlowColor', MechColors[3] );
+        CharacterMICs[1].SetScalarParameterValue( 'Scalar_BattleGrime', 0.75f );
+        CharacterMICs[1].SetScalarParameterValue( 'Scalar_Damage_Blood_Contrast', 1.3f );
+        CharacterMICs[1].SetScalarParameterValue( 'Scalar_GlowFlashing', 0.f );
+        CharacterMICs[1].SetVectorParameterValue( 'Vector_GlowColor', BoilColors[3] );
         bPulseBoils = true;
         break;
     };
@@ -1553,7 +1555,7 @@ simulated function PlayTakeHitEffects( vector HitDirection, vector HitLocation )
 {
 	super.PlayTakeHitEffects( HitDirection, HitLocation );
 
-	if( !bIsCloaking || BodyMIC.Parent == SpottedMaterial || CloakPercent > CloakShimmerAmount || `TimeSince( LastCloakShimmerTime ) < 0.1f )
+	if( !bIsCloaking || CharacterMICs[0].Parent == SpottedMaterial || CloakPercent > CloakShimmerAmount || `TimeSince( LastCloakShimmerTime ) < 0.1f )
 	{
 		return;
 	}
@@ -1649,15 +1651,15 @@ simulated function PlayDying( class<DamageType> DamageType, vector HitLoc )
 	bPulseBoils = false;
 
  	// Turn off damage FX
-	if( BodyMIC != none )
+	if( CharacterMICs.Length > 0 && CharacterMICs[0] != none )
 	{
-		BodyMIC.SetVectorParameterValue( 'Vector_GlowColor', DeadMechColor );
-		BodyMIC.SetScalarParameterValue( 'Scalar_GlowFlashing', 0.f );
+		CharacterMICs[0].SetVectorParameterValue( 'Vector_GlowColor', DeadMechColor );
+		CharacterMICs[0].SetScalarParameterValue( 'Scalar_GlowFlashing', 0.f );
 	}
-	if( BodyAltMIC != none )
+	if( CharacterMICs.Length > 1 && CharacterMICs[1] != none )
 	{
-		BodyAltMIC.SetVectorParameterValue( 'Vector_GlowColor', DeadBoilColor );
-		BodyAltMIC.SetScalarParameterValue( 'Scalar_GlowFlashing', 0.f );
+		CharacterMICs[1].SetVectorParameterValue( 'Vector_GlowColor', DeadBoilColor );
+		CharacterMICs[1].SetScalarParameterValue( 'Scalar_GlowFlashing', 0.f );
 	}
 	BoilLightComponent.SetEnabled( false );
 	DetachComponent( BoilLightComponent );
@@ -1908,28 +1910,29 @@ defaultproperties
 		SpecialMoveClasses(SM_Taunt)=class'KFSM_Patriarch_Taunt'
 		SpecialMoveClasses(SM_Heal)=class'KFSM_Patriarch_Heal'
 		SpecialMoveClasses(SM_HoseWeaponAttack)=class'KFSM_Patriarch_MinigunBarrage'
-        SpecialMoveClasses(SM_GrabAttack)=class'KFSM_Patriarch_Grapple'
+        SpecialMoveClasses(SM_GrappleAttack)=class'KFSM_Patriarch_Grapple'
 		SpecialMoveClasses(SM_StandAndShootAttack)=class'KFSM_Patriarch_MissileAttack'
 		SpecialMoveClasses(SM_SonicAttack)=class'KFSM_Patriarch_MortarAttack'
 	End Object
 
-    InstantIncaps(IAF_Stun)=(Head=85,Torso=120,Arm=120,Special=85,LowHealthBonus=10,Cooldown=10.0)
-    InstantIncaps(IAF_Knockdown)=(Head=65,Torso=150,Leg=150,Special=65,LowHealthBonus=10,Cooldown=40.0)
-    InstantIncaps(IAF_Stumble)=(Head=79,Torso=130,Arm=130,Special=20,LowHealthBonus=10,Cooldown=8.0)
-    InstantIncaps(IAF_LegStumble)=(Leg=130,LowHealthBonus=10,Cooldown=8.0)
-    InstantIncaps(IAF_GunHit)=(Head=29,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=10.0)
-    InstantIncaps(IAF_MeleeHit)=(Head=29,Torso=35,Leg=35,Arm=35,LowHealthBonus=10,Cooldown=3.0)
-    StackingIncaps(SAF_Poison)=(Threshhold=5000.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.00)
-    StackingIncaps(SAF_Microwave)=(Threshhold=40.0,Duration=3.0,Cooldown=10.0,DissipationRate=1.00)
-    StackingIncaps(SAF_FirePanic)=(Threshhold=15,Duration=1.2,Cooldown=15.0,DissipationRate=1.0)
-    StackingIncaps(SAF_EMPPanic)=(Threshhold=1.15,Duration=2.25,Cooldown=12.0,DissipationRate=0.5)
-	StackingIncaps(SAF_EMPDisrupt)=(Threshhold=1.0,Duration=2.0,Cooldown=12.0,DissipationRate=0.5)
+    // for reference: Vulnerability=(default, head, legs, arms, special)
+    IncapSettings(AF_Stun)=		(Vulnerability=(0.1, 0.55, 0.1, 0.1, 0.55), Cooldown=17.0, Duration=1.0)   // 0.5, 0.55, 0.5, 0.4, 0.55
+    IncapSettings(AF_Knockdown)=(Vulnerability=(0.1, 0.4, 0.1, 0.1, 0.25),  Cooldown=20.0)                 // 0.2, 0.2, 0.4, 0.2, 0.25
+    IncapSettings(AF_Stumble)=  (Vulnerability=(0.1, 0.3, 0.1, 0.1, 0.4),   Cooldown=8.0)                  // 0.2, 0.2, 0.2, 0.2, 0.4
+    IncapSettings(AF_GunHit)=	(Vulnerability=(0.1, 0.1, 0.1, 0.1, 0.5),   Cooldown=1.7)                  // 0.1, 0.1, 0.1, 0.1, 0.5
+    IncapSettings(AF_MeleeHit)=	(Vulnerability=(0.1, 0.95, 0.1, 0.1, 0.75), Cooldown=2.0)                  //1.0
+    IncapSettings(AF_Poison)=	(Vulnerability=(0))
+    IncapSettings(AF_Microwave)=(Vulnerability=(0.08),                      Cooldown=10.0, Duration=3.0)
+    IncapSettings(AF_FirePanic)=(Vulnerability=(0.65),                      Cooldown=15.0, Duration=1.2)
+    IncapSettings(AF_EMP)=		(Vulnerability=(0.95),                      Cooldown=10.0, Duration=2.2)
+    IncapSettings(AF_Freeze)=   (Vulnerability=(0.95),                      Cooldown=10.0, Duration=1.0)
 
-	Begin Object Class=KFPawnAfflictions_Patriarch Name=Afflictions_0
+	Begin Object Class=Name=Afflictions_0
 		FireFullyCharredDuration=50.f
    	 	FireCharPercentThreshhold=0.35f
+		AfflictionClasses(AF_EMP)=class'KFAffliction_EMPDisrupt'
+		AfflictionClasses(AF_FirePanic)=class'KFAffliction_Fire_Patriarch'
     End Object
-	AfflictionHandler=Afflictions_0
 
 	MissileProjectileClass=class'KFProj_Missile_Patriarch'
 	MortarProjectileClass=class'KFProj_Mortar_Patriarch'
@@ -1959,7 +1962,7 @@ defaultproperties
 
 	Health=3750
 	DoshValue=500
-	Mass=175.f
+	Mass=400.f
 
 	CloakPercent=1.0f
 	DeCloakSpeed=4.5f
@@ -1969,47 +1972,54 @@ defaultproperties
 	FleeSprintSpeedModifier=1.25f
 
 	// Resistant damage types
-    ResistantDamageTypes.Add((DamageType=class'KFDT_Explosive', DamageScale=0.6f))
-    ResistantDamageTypes.Add((DamageType=class'KFDT_Toxic', 	DamageScale=0.5f))
-	ResistantDamageTypes.Add((DamageType=class'KFDT_Fire', 		DamageScale=0.5f))
-    ResistantDamageTypes.Add((DamageType=class'KFDT_Slashing', 	DamageScale=0.5f))
-    ResistantDamageTypes.Add((DamageType=class'KFDT_Bludgeon', 	DamageScale=0.4f))
-    ResistantDamageTypes.Add((DamageType=class'KFDT_Piercing', 	DamageScale=0.8f))
-    ResistantDamageTypes.Add((DamageType=class'KFDT_Ballistic', DamageScale=0.7f))
-    ResistantDamageTypes.Add((DamageType=class'KFDT_Healing', 	DamageScale=0.6f))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(0.5)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(0.5)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun', 	        DamageScale=(0.4)))  //0.75
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun', 	        DamageScale=(0.5)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle', 	        DamageScale=(0.5)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(0.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(0.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(0.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 	                DamageScale=(0.9)))  //0.5  //1.0
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 	                DamageScale=(0.4)))  //0.6  0.5
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.5)))	
 
-    // Vulnerable damagetypes
-	VulnerableDamageTypes.Add((DamageType=class'KFDT_EMP',		DamageScale=1.5f))
-    VulnerableDamageTypes.Add((DamageType=class'KFDT_Microwave',DamageScale=1.25f))
+    //special case
+
 
 	// Penetration
     PenetrationResistance=4.0
 
 	// Custom Hit Zones (HeadHealth, SkinTypes, etc...)
 	HeadlessBleedOutTime=6.f
-    HitZones[HZI_HEAD]=(ZoneName=head, 		BoneName=head, 			Limb=BP_Head, 		GoreHealth=100,		DmgScale=1.0,	SkinID=1)
-	HitZones[1]       =(ZoneName=jaw,		BoneName=Jaw,			Limb=BP_Head,		GoreHealth=MaxInt,	DmgScale=1.0,	SkinID=1)
-	HitZones[2]       =(ZoneName=chest, 	BoneName=Spine1,		Limb=BP_Torso,		GoreHealth=150, 	DmgScale=0.8,	SkinID=1)
-	HitZones[3]       =(ZoneName=heart,	    BoneName=FrontTentacle7, Limb=BP_Special,	GoreHealth=MaxInt,	DmgScale=1.5,	SkinID=1)
-	HitZones[4]		  =(ZoneName=lupperarm,	BoneName=LeftArm,		Limb=BP_LeftArm,	GoreHealth=50, 		DmgScale=0.33,	SkinID=3)
-	HitZones[5]		  =(ZoneName=lforearm, 	BoneName=LeftForearm,	Limb=BP_LeftArm,	GoreHealth=20,		DmgScale=0.33,	SkinID=3)
-	HitZones[7]		  =(ZoneName=rupperarm,	BoneName=RightArm,		Limb=BP_RightArm,	GoreHealth=50,		DmgScale=1.1,	SkinID=4)
-	HitZones[8]		  =(ZoneName=rforearm, 	BoneName=RightForearm, 	Limb=BP_RightArm,	GoreHealth=20,		DmgScale=1.1,	SkinID=4)
-	HitZones[9]		  =(ZoneName=rhand, 	BoneName=RightHand, 	Limb=BP_RightArm,	GoreHealth=10,		DmgScale=0.5,	SkinID=1)
-	HitZones[10]	  =(ZoneName=stomach, 	BoneName=Spine, 		Limb=BP_Torso,		GoreHealth=MaxInt,	DmgScale=0.8,	SkinID=1)
-	HitZones[12]	  =(ZoneName=lthigh,	BoneName=LeftUpLeg,		Limb=BP_LeftLeg,	GoreHealth=100,		DmgScale=0.33,	SkinID=3)
-	HitZones[13]	  =(ZoneName=lcalf,	    BoneName=LeftLeg,		Limb=BP_LeftLeg,	GoreHealth=MaxInt,	DmgScale=0.33,	SkinID=3)
-	HitZones[14]	  =(ZoneName=lfoot,	    BoneName=LeftFoot,		Limb=BP_LeftLeg,	GoreHealth=10,		DmgScale=0.33,	SkinID=3)
+    HitZones[HZI_HEAD]=(ZoneName=head, 		BoneName=head, 			Limb=BP_Head, 		GoreHealth=MaxInt,	DmgScale=1.0,	SkinID=1)  //1
+	HitZones[1]       =(ZoneName=jaw,		BoneName=Jaw,			Limb=BP_Head,		GoreHealth=MaxInt,	DmgScale=0.1,	SkinID=1)  //1
+	HitZones[2]       =(ZoneName=chest, 	BoneName=Spine1,		Limb=BP_Torso,		GoreHealth=150, 	DmgScale=0.8,	SkinID=1)  //0.8
+	HitZones[3]       =(ZoneName=heart,	    BoneName=FrontTentacle7, Limb=BP_Special,	GoreHealth=MaxInt,	DmgScale=1.5,	SkinID=1)  //1.5
+	HitZones[4]		  =(ZoneName=lupperarm,	BoneName=LeftArm,		Limb=BP_LeftArm,	GoreHealth=50, 		DmgScale=0.1,	SkinID=3)  //0.33
+	HitZones[5]		  =(ZoneName=lforearm, 	BoneName=LeftForearm,	Limb=BP_LeftArm,	GoreHealth=20,		DmgScale=0.1,	SkinID=3)   //0.33
+	HitZones[7]		  =(ZoneName=rupperarm,	BoneName=RightArm,		Limb=BP_RightArm,	GoreHealth=50,		DmgScale=1.3,	SkinID=4)
+	HitZones[8]		  =(ZoneName=rforearm, 	BoneName=RightForearm, 	Limb=BP_RightArm,	GoreHealth=20,		DmgScale=1.0,	SkinID=4)
+	HitZones[9]		  =(ZoneName=rhand, 	BoneName=RightHand, 	Limb=BP_RightArm,	GoreHealth=10,		DmgScale=0.5,	SkinID=1)  //0.5
+	HitZones[10]	  =(ZoneName=stomach, 	BoneName=Spine, 		Limb=BP_Torso,		GoreHealth=MaxInt,	DmgScale=0.8,	SkinID=1)  //0.8
+	HitZones[12]	  =(ZoneName=lthigh,	BoneName=LeftUpLeg,		Limb=BP_LeftLeg,	GoreHealth=100,		DmgScale=0.1,	SkinID=3)  //0.33
+	HitZones[13]	  =(ZoneName=lcalf,	    BoneName=LeftLeg,		Limb=BP_LeftLeg,	GoreHealth=MaxInt,	DmgScale=0.1,	SkinID=3)  //0.33
+	HitZones[14]	  =(ZoneName=lfoot,	    BoneName=LeftFoot,		Limb=BP_LeftLeg,	GoreHealth=10,		DmgScale=0.1,	SkinID=3)  //0.33
 	HitZones[15]	  =(ZoneName=rthigh,	BoneName=RightUpLeg,	Limb=BP_RightLeg,	GoreHealth=75,		DmgScale=0.8,	SkinID=1)
 	HitZones[16]	  =(ZoneName=rcalf,     BoneName=RightLeg,		Limb=BP_RightLeg,	GoreHealth=25,		DmgScale=0.8,	SkinID=1)
 
+	WeakSpotSocketNames.Empty() // Ignore head
+	WeakSpotSocketNames.Add(FX_Right_Arm_Spike) // Right arm
+	WeakSpotSocketNames.Add(FX_Front_Spike) // Tentacle
+
 	// Tentacle gore
-	HitZones.Add((ZoneName=tentacle,	    BoneName=FrontTentacle1, Limb=BP_Torso,  GoreHealth=50,  DmgScale=0.8, SkinID=1))
+	HitZones.Add((ZoneName=tentacle,	    BoneName=FrontTentacle1, Limb=BP_Torso,  GoreHealth=50,  DmgScale=1.3, SkinID=1))  //0.8
 
 	// Mech toes
-	HitZones.Add((ZoneName=ltoeindex,	    BoneName=LeftFootIndex1, 	Limb=BP_LeftLeg,  GoreHealth=MaxInt,  DmgScale=0.25, SkinID=3))
-	HitZones.Add((ZoneName=ltoemiddle, 		BoneName=LeftFootMiddle1, 	Limb=BP_LeftLeg,  GoreHealth=MaxInt,  DmgScale=0.25, SkinID=3))
-	HitZones.Add((ZoneName=ltoering,	    BoneName=LeftFootRing1,	 	Limb=BP_LeftLeg,  GoreHealth=MaxInt,  DmgScale=0.25, SkinID=3))
+	HitZones.Add((ZoneName=ltoeindex,	    BoneName=LeftFootIndex1, 	Limb=BP_LeftLeg,  GoreHealth=MaxInt,  DmgScale=0.1, SkinID=3))  //0.25
+	HitZones.Add((ZoneName=ltoemiddle, 		BoneName=LeftFootMiddle1, 	Limb=BP_LeftLeg,  GoreHealth=MaxInt,  DmgScale=0.1, SkinID=3))  //0.25
+	HitZones.Add((ZoneName=ltoering,	    BoneName=LeftFootRing1,	 	Limb=BP_LeftLeg,  GoreHealth=MaxInt,  DmgScale=0.1, SkinID=3))  //0.25
 
 	// ---------------------------------------------
 	// Movement / Physics
@@ -2028,8 +2038,8 @@ defaultproperties
 	// AI / Navigation
 	ControllerClass=class'KFGameContent.KFAIController_ZedPatriarch'
 	BumpDamageType=class'KFDT_NPCBump_Large'
-	DamageRecoveryTimeHeavy=0.1f
-	DamageRecoveryTimeMedium=0.09f
+	DamageRecoveryTimeHeavy=0.65f
+	DamageRecoveryTimeMedium=0.85f   //0.09f
 
 	DefaultInventory(0)=class'KFWeap_Minigun_Patriarch'
 
@@ -2050,7 +2060,7 @@ defaultproperties
 					  bCanChargeAttack=true,
 					  ChargeAttackCooldownTime=14.f,
 					  MinigunAttackCooldownTime=2.25f,
-					  HealAmounts={(0.75f, 1.0f, 1.0f, 1.0f)}, // Normal,Hard,Suicidal,HoE
+					  HealAmounts={(0.75f, 0.85f, 0.95f, 0.99f)}, // Normal,Hard,Suicidal,HoE
 					  bCanSummonMinions=true)}
 	BattlePhases(1)={(bAllowedToSprint=true,
 					  SprintCooldownTime=2.5f,
@@ -2064,7 +2074,7 @@ defaultproperties
 					  bCanChargeAttack=true,
 					  ChargeAttackCooldownTime=10.f,
 					  MinigunAttackCooldownTime=2.0f,
-					  HealAmounts={(0.65f, 1.0f, 1.0f, 1.0f)}, // Normal,Hard,Suicidal,HoE
+					  HealAmounts={(0.65f, 0.75f, 0.85f, 0.95f)}, // Normal,Hard,Suicidal,HoE
 					  MaxRageAttacks=4,
 					  bCanSummonMinions=true)}
 	BattlePhases(2)={(bAllowedToSprint=true,
@@ -2080,7 +2090,7 @@ defaultproperties
 					  bCanChargeAttack=true,
 					  ChargeAttackCooldownTime=9.f,
 					  MinigunAttackCooldownTime=1.75f,
-					  HealAmounts={(0.6f, 0.8f, 0.8f, 0.9f)}, // Normal,Hard,Suicidal,HoE
+					  HealAmounts={(0.55f, 0.65f, 0.75f, 0.85f)}, // Normal,Hard,Suicidal,HoE
 					  MaxRageAttacks=5,
 					  bCanSummonMinions=true)}
 	BattlePhases(3)={(bAllowedToSprint=true,
@@ -2097,11 +2107,13 @@ defaultproperties
 					  ChargeAttackCooldownTime=7.f,
 					  MinigunAttackCooldownTime=1.25f,
 					  MaxRageAttacks=6,
-					  bCanSummonMinions=true)}
+					  bCanSummonMinions=false)}
 
 	// ---------------------------------------------
 	// Spawning
     MinSpawnSquadSizeType=EST_Boss
 	LastFXBattlePhase=1
 	CurrentBattlePhase=1
+
+	OnDeathAchievementID=KFACHID_QuickOnTheTrigger
 }

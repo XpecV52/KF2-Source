@@ -12,6 +12,7 @@ class KFGFxStoreContainer_Details extends KFGFxObject_Container;
 
 var localized string AddToCartString;
 var localized string PreviewString;
+var localized string LookUpOnMarketString;
 
 function Initialize( KFGFxObject_Menu NewParentMenu )
 {

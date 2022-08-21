@@ -111,11 +111,11 @@ defaultproperties
 	bCanGib=true
 	GoreDamageGroup=DGT_Explosive
 
-	KnockdownPower=100
-	StumblePower=150
+	KnockdownPower=39
+	StumblePower=59
 
 	// Obliteration
-	bCanObliterate=TRUE
-	ObliterationHealthThreshold=-150
-	ObliterationDamageThreshold=175
+	bCanObliterate=true
+	ObliterationHealthThreshold=-80
+	ObliterationDamageThreshold=160
 }

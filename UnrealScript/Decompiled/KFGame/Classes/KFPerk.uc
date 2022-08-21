@@ -118,6 +118,8 @@ var const float VaccinationDuration;
 var array<BuffedPlayerInfo> BuffedPlayerInfos;
 var KFUsablePerkTrigger InteractionTrigger;
 var const array<name> ZedTimeModifyingStates;
+var protected array<byte> BodyPartsCanStumble;
+var protected array<byte> BodyPartsCanKnockDown;
 var bool bCanSeeCloakedZeds;
 var bool bHasTempSkill_TacticalReload;
 var const bool bInitialized;
@@ -717,8 +719,8 @@ protected function CheckForOverWeight(KFInventoryManager KFIM)
             }
             else
             {
-                DroppedWeaponClasses.AddItem(KFW.Class;
-                OwnerPawn.TossInventory(Inv);
+                DroppedWeaponClasses.AddItem(BestWeapon.Class;
+                OwnerPawn.TossInventory(BestWeapon);
             }
         }
         TempString = BuildDroppedMessageString(DroppedWeaponClasses);
@@ -763,7 +765,12 @@ simulated function float GetReloadRateScale(KFWeapon KFW)
     return 1;
 }
 
-function ModifySpeed(out float Speed);
+simulated function ModifySpeed(out float Speed);
+
+simulated function ModifySprintSpeed(out float Speed)
+{
+    ModifySpeed(Speed);
+}
 
 simulated function ModifyRecoil(out float CurrentRecoilModifier, KFWeapon KFW);
 
@@ -771,7 +778,7 @@ function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, option
 
 function ModifyDamageTaken(out int InDamage, optional class<DamageType> DamageType, optional Controller InstigatedBy);
 
-simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out int MagazineCapacity, optional class<KFPerk> WeaponPerkClass);
+simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional class<KFPerk> WeaponPerkClass);
 
 simulated function ModifySpareAmmoAmount(KFWeapon KFW, out int PrimarySpareAmmo, const optional out STraderItem TraderItem);
 
@@ -803,6 +810,11 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
 }
 
 function float GetStunPowerModifier(optional class<DamageType> DamageType, optional byte HitZoneIdx)
+{
+    return 1;
+}
+
+function float GetReactionModifier(optional class<KFDamageType> DamageType)
 {
     return 1;
 }
@@ -943,6 +955,11 @@ simulated function float GetSirenScreamStrength()
     return 1;
 }
 
+simulated function bool ShouldPlayAAEffect()
+{
+    return false;
+}
+
 simulated function bool IsFlarotovActive()
 {
     return false;
@@ -980,6 +997,8 @@ simulated function bool IsRangeActive()
     return false;
 }
 
+static function ModifyAssistDosh(out int EarnedDosh);
+
 simulated function bool IsOnContactActive()
 {
     return false;
@@ -1001,6 +1020,21 @@ simulated function bool ShouldRandSirenResist()
 }
 
 simulated function bool CanExplosiveWeld()
+{
+    return false;
+}
+
+simulated function float GetAeORadiusModifier()
+{
+    return 1;
+}
+
+simulated function float GetAeODamageModifier()
+{
+    return 1;
+}
+
+simulated function bool DoorShouldNuke()
 {
     return false;
 }
@@ -1039,6 +1073,11 @@ simulated function bool ShouldInstantlySwitchWeapon(KFWeapon KFW)
 
 simulated function ModifyWeaponBopDamping(out float BobDamping, KFWeapon PawnWeapon);
 
+simulated event float GetCameraViewShakeModifier(KFWeapon OwnerWeapon)
+{
+    return 1;
+}
+
 function string GetModifierString(byte ModifierIndex)
 {
     return "";
@@ -1048,20 +1087,17 @@ function ModifyBloatBileDoT(out float DoTScaler)
 {
     if(OwnerPawn.bHasMedicVaccinationBuff)
     {
-        DoTScaler -= Class'KFPerk_Berserker'.static.GetPoisonResistance();
+        DoTScaler -= Class'KFPerk_FieldMedic'.static.GetBloatBileResistance();
     }
 }
 
 function KFWeapon GetOwnerWeapon()
 {
-    local KFWeapon KFW;
-
     if(CheckOwnerPawn())
     {
-        KFW = KFWeapon(OwnerPawn.Weapon);
-        if(KFW != none)
+        if(OwnerPawn.Weapon != none)
         {
-            return KFW;
+            return KFWeapon(OwnerPawn.Weapon);
         }
     }
     return none;
@@ -1110,6 +1146,16 @@ simulated event KFPawn_Human GetOwnerPawn()
         }
     }
     return none;
+}
+
+protected function bool HitShouldStumble(byte BodyPart)
+{
+    return BodyPartsCanStumble.Find(BodyPart != -1;
+}
+
+protected function bool HitShouldKnockdown(byte BodyPart)
+{
+    return BodyPartsCanKnockDown.Find(BodyPart != -1;
 }
 
 function TickRegen(float DeltaTime)

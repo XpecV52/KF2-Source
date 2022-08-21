@@ -34,6 +34,11 @@ var transient KFPawn_ZedHansBase MyHansPawn;
 var Vector RangedAttackMoveLoc;
 var bool bFoundGrenadeThrowLocation;
 var bool bWantsToThrowGrenade;
+var bool bHasUsedSmokeScreenThisPhase;
+var bool bFleeing;
+var bool bWantsToFlee;
+var bool bHasFledThisPhase;
+var bool bFleeInterrupted;
 var Vector CalcedGreanadeTossVelForNavMeshLoc;
 var float TimeCalcedGreanadeTossVelWasFound;
 var Vector EnemysLocationWhenTossVelWasFound;
@@ -56,6 +61,8 @@ var KFPawn LastRecentlySeenEnemyGrenaded;
 /** How often to update RecentlySeenEnemyList */
 var() float RecentSeenEnemyListUpdateInterval;
 var float LastRecentSeenEnemyListUpdateTime;
+var float LastRetargetTime;
+var float RetargetWaitTime;
 /** Min length of a burst for this weapon when used by AI. Randomly used to calculate the BurstAmount */
 var(Firing) int MinBurstAmount;
 /** Max length of a burst for this weapon when used by AI. Randomly used to calculate the BurstAmount */
@@ -89,6 +96,11 @@ var KFPawn_ZedHansBase.EHansNadeType CurrentNadeAttackType;
 /** How often to check if we want to do a grenade attack */
 var() float GrenadeAttackEvalInterval;
 var float LastGrenadeAttackEvalTime;
+var float MinFleeDuration;
+var float MaxFleeDuration;
+var float MaxFleeDistance;
+var float FleeStartTime;
+var float TotalFleeTime;
 
 event Possess(Pawn inPawn, bool bVehicleTransition)
 {
@@ -100,6 +112,7 @@ event Possess(Pawn inPawn, bool bVehicleTransition)
     {
         WarnInternal(((string(GetFuncName()) $ "() attempting to possess ") $ string(inPawn)) $ ", but it's not a KFPawn_ZedHansBase class! MyHansPawn variable will not be valid.");
     }
+    LastRetargetTime = WorldInfo.TimeSeconds;
     super.Possess(inPawn, bVehicleTransition);
 }
 
@@ -138,68 +151,15 @@ function DoGrenadeThrow(optional bool bGrenadeBarrage)
     }
 }
 
-function DoSmokeGrenadeThrow(optional bool bGrenadeBarrage, optional bool bSpawnZeds)
+function DoSmokeGrenadeThrow(optional bool bGrenadeBarrage, optional bool bIsHuntAndHeal)
 {
     local bool bThrowSuccess;
-    local int DifficultyIndex;
-    local KFAIWaveInfo MinionWave;
 
     if(MyHansPawn != none)
     {
         MyHansPawn.SetActiveGrenadeClassSmoke();
     }
-    if(!bSpawnZeds)
-    {
-        bThrowSuccess = Class'AICommand_ThrowGrenade'.static.ThrowGrenade(self, ((bGrenadeBarrage) ? 1 : 0));        
-    }
-    else
-    {
-        if(Skill == Class'KFDifficultyInfo'.static.GetDifficultyValue(0))
-        {
-            DifficultyIndex = 0;            
-        }
-        else
-        {
-            if(Skill <= Class'KFDifficultyInfo'.static.GetDifficultyValue(1))
-            {
-                DifficultyIndex = 1;                
-            }
-            else
-            {
-                if(Skill <= Class'KFDifficultyInfo'.static.GetDifficultyValue(2))
-                {
-                    DifficultyIndex = 2;                    
-                }
-                else
-                {
-                    DifficultyIndex = 3;
-                }
-            }
-        }
-        if(MyHansPawn == none)
-        {
-            return;
-        }
-        if(MyHansPawn.CurrentBattlePhase == 1)
-        {
-            MinionWave = MyHansPawn.SummonWaves[DifficultyIndex].PhaseOneWave;            
-        }
-        else
-        {
-            if(MyHansPawn.CurrentBattlePhase == 2)
-            {
-                MinionWave = MyHansPawn.SummonWaves[DifficultyIndex].PhaseTwoWave;                
-            }
-            else
-            {
-                if(MyHansPawn.CurrentBattlePhase == 3)
-                {
-                    MinionWave = MyHansPawn.SummonWaves[DifficultyIndex].PhaseThreeWave;
-                }
-            }
-        }
-        bThrowSuccess = Class'AICommand_ThrowGrenade'.static.ThrowGrenade(self, ((bGrenadeBarrage) ? 1 : 0),, MinionWave, MyHansPawn.NumMinionsToSpawn);
-    }
+    bThrowSuccess = Class'AICommand_ThrowGrenade'.static.ThrowGrenade(self, ((bGrenadeBarrage) ? 1 : 0), bIsHuntAndHeal);
     if(bThrowSuccess)
     {
         if(MyHansPawn != none)
@@ -211,31 +171,86 @@ function DoSmokeGrenadeThrow(optional bool bGrenadeBarrage, optional bool bSpawn
     }
 }
 
+function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, class<DamageType> DamageType, Vector Momentum)
+{
+    local float HealThreshold, HealthPct;
+
+    super(Controller).NotifyTakeHit(InstigatedBy, HitLocation, Damage, DamageType, Momentum);
+    if(!MyHansPawn.bHealedThisPhase && MyHansPawn.CurrentBattlePhase < 4)
+    {
+        HealThreshold = MyHansPawn.BattlePhases[MyHansPawn.CurrentBattlePhase - 1].HealThresholds[int(WorldInfo.Game.GameDifficulty)];
+        HealthPct = GetHealthPercentage();
+        if(!bSummonedThisPhase && HealthPct < (HealThreshold + 0.11))
+        {
+            MyHansPawn.SummonMinions();
+            bSummonedThisPhase = true;
+            SetTimer(30, false, 'Timer_StopSummoningZeds');
+        }
+        if(GetHealthPercentage() < HealThreshold)
+        {
+            MyHansPawn.SetHuntAndHealMode(true);
+        }
+    }
+}
+
 function NotifySpecialMoveEnded(KFSpecialMove SM)
 {
     super(KFAIController).NotifySpecialMoveEnded(SM);
-    if(((Enemy != none) && MyHansPawn != none) && MyHansPawn.bPendingSmokeGrenadeBarrage)
+    bFleeInterrupted = false;
+    if((((!bWantsToFlee && !bFleeing) && Enemy != none) && MyHansPawn != none) && MyHansPawn.bPendingSmokeGrenadeBarrage)
     {
         DoSmokeGrenadeThrow(true, true);
     }
-    if(((((SM.Handle == 'KFSM_MeleeAttack') || SM.Handle == 'SM_Hans_GrenadeBarrage') || SM.Handle == 'KFSM_Hans_ThrowGrenade') || SM.Handle == 'KFSM_Taunt') || SM.Handle == 'KFSM_WalkingTaunt')
+    if((((((SM.Handle == 'KFSM_MeleeAttack') || SM.Handle == 'KFSM_Hans_GrenadeBarrage') || SM.Handle == 'KFSM_Hans_GrenadeHalfBarrage') || SM.Handle == 'KFSM_Hans_ThrowGrenade') || SM.Handle == 'KFSM_Taunt') || SM.Handle == 'KFSM_WalkingTaunt')
     {
         LastAttackMoveFinishTime = WorldInfo.TimeSeconds;
+    }
+    if(!bWantsToFlee)
+    {
+        if((SM.Handle == 'KFSM_MeleeAttack') && (WorldInfo.TimeSeconds - LastRetargetTime) > RetargetWaitTime)
+        {
+            CheckForEnemiesInFOV(3000, -1, 1, true);
+        }        
+    }
+    else
+    {
+        if(MyHansPawn.bGunsEquipped)
+        {
+            Class'AICommand_Hans_GunStance'.static.SetGunStance(self, 0);            
+        }
+        else
+        {
+            if((PendingDoor == none) && !bFleeing)
+            {
+                Flee();
+            }
+        }
     }
     EvaluateSprinting();
 }
 
 function EvaluateSprinting()
 {
-    if(((MyKFPawn != none) && MyKFPawn.IsAliveAndWell()) && Enemy != none)
+    if((MyKFPawn == none) || !MyKFPawn.IsAliveAndWell())
     {
-        if(ShouldSprint())
+        return;
+    }
+    if(bFleeing || bWantsToFlee)
+    {
+        MyKFPawn.SetSprinting(true);        
+    }
+    else
+    {
+        if(Enemy != none)
         {
-            MyKFPawn.SetSprinting(true);            
-        }
-        else
-        {
-            MyKFPawn.SetSprinting(false);
+            if(ShouldSprint())
+            {
+                MyKFPawn.SetSprinting(true);                
+            }
+            else
+            {
+                MyKFPawn.SetSprinting(false);
+            }
         }
     }
 }
@@ -268,6 +283,23 @@ event SeePlayer(Pawn Seen)
             RecentlySeenEnemyList[EnemyListIndex].LastTimeVisible = WorldInfo.TimeSeconds;
             RecentlySeenEnemyList[EnemyListIndex].LastVisibleLocation = Seen.Location;
         }
+    }
+    if((bHasFledThisPhase && MyHansPawn.bInHuntAndHealMode) && !bHasUsedSmokeScreenThisPhase)
+    {
+        bHasUsedSmokeScreenThisPhase = true;
+        SetTimer(2 + FRand(), false, 'Timer_DoHuntAndHealSmokeGrenadeThrow');
+    }
+}
+
+function Timer_DoHuntAndHealSmokeGrenadeThrow()
+{
+    if((!MyHansPawn.bGunsEquipped && !MyHansPawn.IsImpaired()) && !MyHansPawn.IsIncapacitated())
+    {
+        DoSmokeGrenadeThrow(true);        
+    }
+    else
+    {
+        MyHansPawn.bPendingSmokeGrenadeBarrage = true;
     }
 }
 
@@ -427,11 +459,28 @@ function ClearFireTiming()
 
 event bool SetEnemy(Pawn NewEnemy)
 {
-    if(((((MyKFPawn != none) && MyKFPawn.IsDoingSpecialMove(4)) && Enemy != none) && Enemy.IsAliveAndWell()) && Enemy.CanAITargetThisPawn(self))
+    if(!CanSwitchEnemies() || ((((MyKFPawn != none) && MyKFPawn.IsDoingSpecialMove(3)) && Enemy != none) && Enemy.IsAliveAndWell()) && Enemy.CanAITargetThisPawn(self))
     {
         return false;
     }
     return super.SetEnemy(NewEnemy);
+}
+
+event ChangeEnemy(Pawn NewEnemy, optional bool bCanTaunt)
+{
+    local Pawn OldEnemy;
+
+    bCanTaunt = true;
+    if(!CanSwitchEnemies())
+    {
+        return;
+    }
+    OldEnemy = Enemy;
+    super(KFAIController).ChangeEnemy(NewEnemy, bCanTaunt);
+    if(OldEnemy != Enemy)
+    {
+        LastRetargetTime = WorldInfo.TimeSeconds;
+    }
 }
 
 function SelectNewGunFireEnemy(KFPawn CurrentEnemy)
@@ -548,6 +597,10 @@ function bool CanPerformShotAttack(optional bool bStart)
 {
     local float RangeToEnemy;
 
+    if(bFleeing || bWantsToFlee)
+    {
+        return false;
+    }
     if(bStart && (Pawn.IsFiring() || IsTimerActive('FireTimer', self)) || IsTimerActive('StartFireTiming', self))
     {
         return false;
@@ -635,6 +688,10 @@ function TickRangedCombatDecision()
             goto J0x89;
         }
     }
+    if(bFleeing || bWantsToFlee)
+    {
+        return;
+    }
     if((Enemy != none) && (LastGrenadeAttackEvalTime == float(0)) || (WorldInfo.TimeSeconds - LastGrenadeAttackEvalTime) > GrenadeAttackEvalInterval)
     {
         LastGrenadeAttackEvalTime = WorldInfo.TimeSeconds;
@@ -704,7 +761,7 @@ function TickGunSystem()
             }
             return;
         }
-        if((HansPawn != none) && (curMove == none) || !MyKFPawn.IsDoingSpecialMove(32) && !MyKFPawn.IsDoingSpecialMove(31))
+        if((HansPawn != none) && (curMove == none) || !MyKFPawn.IsDoingSpecialMove(31) && !MyKFPawn.IsDoingSpecialMove(30))
         {
             if((Pawn.IsFiring() || IsTimerActive('FireTimer', self)) || IsTimerActive('StartFireTiming', self))
             {
@@ -806,7 +863,7 @@ function DrawRangedAttackInfo(HUD HUD)
     DrawDebugText(HUD, "Battle Phase: " $ string(MyHansPawn.CurrentBattlePhase));
     DrawDebugText(HUD, "--Guns--");
     DrawDebugText(HUD, (("Guns Equipped: " $ string(MyHansPawn.bGunsEquipped)) $ " Can Use Guns In This Phase: ") $ string(MyHansPawn.CanUseGunsInThisPhase()));
-    DrawDebugText(HUD, (((("Stance Changing: " $ string(MyKFPawn.IsDoingSpecialMove(32))) $ " CurrentMove: ") $ string(curMove)) $ " bDisablesWeaponFiring: ") $ string(bMoveDisablesFiring));
+    DrawDebugText(HUD, (((("Stance Changing: " $ string(MyKFPawn.IsDoingSpecialMove(31))) $ " CurrentMove: ") $ string(curMove)) $ " bDisablesWeaponFiring: ") $ string(bMoveDisablesFiring));
     if((WorldInfo.TimeSeconds - StartDrawGunsTime) > DrawGunFireDelay)
     {
         UsedDrawGunsCooldown = 0;        
@@ -966,7 +1023,7 @@ function bool GrenadeAttackInterruptGuns()
 
 function bool SetupGrenadeAttack()
 {
-    if(((((((MyHansPawn != none) && Enemy != none) && !MyHansPawn.IsDoingSpecialMove(32)) && !MyHansPawn.IsThrowingGrenade()) && !MyHansPawn.bGunsEquipped) && CanSeeByPoints(Pawn.GetPawnViewLocation(), Enemy.Location, rotator(Enemy.Location - Pawn.GetPawnViewLocation()))) && MyHansPawn.CacheGrenadeThrowLocation())
+    if(((((((MyHansPawn != none) && Enemy != none) && !MyHansPawn.IsDoingSpecialMove(31)) && !MyHansPawn.IsThrowingGrenade()) && !MyHansPawn.bGunsEquipped) && CanSeeByPoints(Pawn.GetPawnViewLocation(), Enemy.Location, rotator(Enemy.Location - Pawn.GetPawnViewLocation()))) && MyHansPawn.CacheGrenadeThrowLocation())
     {
         CurrentNadeAttackType = 0;
         if(!IsWithinAttackRange())
@@ -1019,19 +1076,6 @@ function bool SetupGrenadeAttack()
     }
 }
 
-function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, class<DamageType> DamageType, Vector Momentum)
-{
-    if(((MyHansPawn != none) && !MyHansPawn.bHealedThisPhase) && MyHansPawn.CurrentBattlePhase < 4)
-    {
-        if(GetHealthPercentage() < 0.35)
-        {
-            MyHansPawn.SetHuntAndHealMode(true);
-            NextBattlePhase();
-        }
-    }
-    super(Controller).NotifyTakeHit(InstigatedBy, HitLocation, Damage, DamageType, Momentum);
-}
-
 function DoStrike()
 {
     local name AttackName;
@@ -1060,19 +1104,6 @@ function DoStrike()
     super(KFAIController_Monster).DoStrike();
 }
 
-function NextBattlePhase()
-{
-    if(!MyHansPawn.bGunsEquipped)
-    {
-        DoSmokeGrenadeThrow(true, true);        
-    }
-    else
-    {
-        MyHansPawn.bPendingSmokeGrenadeBarrage = true;
-    }
-    MyHansPawn.IncrementBattlePhase(self);
-}
-
 function bool IsWithinAttackRange()
 {
     local float DistSqToEnemy;
@@ -1086,11 +1117,181 @@ function bool IsWithinAttackRange()
         return super(KFAIController).IsWithinAttackRange();
     }
     DistSqToEnemy = VSizeSq(Enemy.Location - Pawn.Location);
-    if(DistSqToEnemy <= (MinDistanceToPerformGrabAttack * MinDistanceToPerformGrabAttack))
+    if(DistSqToEnemy <= Square(MinDistanceToPerformGrabAttack))
     {
         return true;
     }
     return false;
+}
+
+function NotifyAttackDoor(KFDoorActor door)
+{
+    if(bFleeing)
+    {
+        TotalFleeTime = TotalFleeTime + (WorldInfo.TimeSeconds - FleeStartTime);
+        bWantsToFlee = true;
+        bFleeInterrupted = true;
+        bFleeing = false;
+        AbortCommand(CommandList);
+        EnableMeleeRangeEventProbing();
+        BeginCombatCommand(GetDefaultCommand(), "Restarting default command");
+    }
+    super(KFAIController).NotifyAttackDoor(door);
+}
+
+function bool DoorFinished()
+{
+    local bool bSuperFinished;
+
+    bSuperFinished = super(KFAIController).DoorFinished();
+    if(bWantsToFlee && !bFleeing)
+    {
+        if(MyHansPawn.IsDoingSpecialMove())
+        {
+            MyHansPawn.EndSpecialMove();
+        }
+        Flee();
+    }
+    return bSuperFinished;
+}
+
+function NextBattlePhase()
+{
+    bHasFledThisPhase = false;
+    MaxFleeDuration = RandRange(MinFleeDuration, MaxFleeDuration);
+    bWantsToFlee = true;
+    DisableMeleeRangeEventProbing();
+    bHasUsedSmokeScreenThisPhase = false;
+}
+
+function bool CanSwitchEnemies()
+{
+    return !bWantsToFlee && !bFleeing;
+}
+
+function Flee()
+{
+    local Actor FleeFromTarget;
+    local float FleeDuration;
+    local AICommand_SpecialMove AICSM;
+
+    bFleeing = false;
+    bWantsToFlee = false;
+    bFleeInterrupted = false;
+    Enemy = none;
+    CheckForEnemiesInFOV(3000, 0.2, 1, true, false);
+    if(Enemy == none)
+    {
+        SetEnemy(GetClosestEnemy());
+    }
+    if(Enemy != none)
+    {
+        FleeFromTarget = Enemy;        
+    }
+    else
+    {
+        FleeFromTarget = Class'NavigationPoint'.static.GetNearestNavToActor(MyHansPawn);
+    }
+    AICSM = FindCommandOfClass(Class'AICommand_SpecialMove');
+    if(AICSM != none)
+    {
+        AICSM.ClearTimeout();
+    }
+    AbortCommand(CommandList);
+    bFleeing = true;
+    MyHansPawn.SetSprinting(true);
+    DisableMeleeRangeEventProbing();
+    FleeDuration = FMax(MaxFleeDuration - TotalFleeTime, 6);
+    FleeStartTime = WorldInfo.TimeSeconds;
+    DoFleeFrom(FleeFromTarget, FleeDuration, MaxFleeDistance + float(Rand(int(MaxFleeDistance * 0.25))), true);
+    EvaluateSprinting();
+    if(!IsTimerActive('Timer_SearchForFleeObstructions'))
+    {
+        SetTimer(1.5, false, 'Timer_SearchForFleeObstructions');
+    }
+}
+
+function Timer_SearchForFleeObstructions()
+{
+    local KFPawn ObstructingEnemy;
+
+    if((!bFleeing || bWantsToFlee) || MyHansPawn.IsDoingSpecialMove())
+    {
+        SetTimer(0.25, false, 'Timer_SearchForFleeObstructions');
+        return;
+    }
+    ObstructingEnemy = CheckForEnemiesInFOV(AttackRange * 1.1, 0.5, 1, false, false);
+    if(ObstructingEnemy != none)
+    {
+        TotalFleeTime = TotalFleeTime + (WorldInfo.TimeSeconds - FleeStartTime);
+        bFleeInterrupted = true;
+        bFleeing = false;
+        AbortCommand(CommandList);
+        ChangeEnemy(ObstructingEnemy, false);
+        bWantsToFlee = true;
+        MyHansPawn.SetSprinting(true);
+        SetEnemyMoveGoal(self, true);
+        EnableMeleeRangeEventProbing();
+        BeginCombatCommand(GetDefaultCommand(), "Restarting default command");
+        SetTimer(2, false, 'Timer_SearchForFleeObstructions');        
+    }
+    else
+    {
+        SetTimer(0.25, false, 'Timer_SearchForFleeObstructions');
+    }
+}
+
+function NotifyCommandFinished(AICommand FinishedCommand)
+{
+    if((((!bWantsToFlee && bFleeing) && PendingDoor == none) && (ActorEnemy == none) || ActorEnemy.bPendingDelete) && AICommand_Flee(FinishedCommand) != none)
+    {
+        TotalFleeTime = TotalFleeTime + (WorldInfo.TimeSeconds - FleeStartTime);
+        AbortCommand(FinishedCommand);
+        if(MyHansPawn.IsDoingSpecialMove())
+        {
+            MyHansPawn.EndSpecialMove();
+        }
+        SetTimer(0.06, false, 'Flee', self);
+    }
+}
+
+function NotifyFleeFinished(optional bool bAcquireNewEnemy)
+{
+    local KFAISpawnManager SpawnManager;
+
+    bAcquireNewEnemy = true;
+    bFleeing = false;
+    bWantsToFlee = false;
+    ClearTimer('Timer_SearchForFleeObstructions');
+    SpawnManager = KFGameInfo(WorldInfo.Game).SpawnManager;
+    if(SpawnManager != none)
+    {
+        SpawnManager.StopSummoningBossMinions();
+    }
+    bHasFledThisPhase = true;
+    if(bAcquireNewEnemy)
+    {
+        ChangeEnemy(GetClosestEnemy(), true);
+    }
+    EnableMeleeRangeEventProbing();
+    BeginCombatCommand(GetDefaultCommand(), "Restarting default command");
+}
+
+function CancelFlee(optional bool bAcquireNewEnemy)
+{
+    bAcquireNewEnemy = true;
+    if(bFleeing)
+    {
+        bFleeing = false;
+        bWantsToFlee = false;
+        AbortCommand(FindCommandOfClass(Class'AICommand_Flee'));
+        NotifyFleeFinished(bAcquireNewEnemy);        
+    }
+    else
+    {
+        bWantsToFlee = false;
+        bHasFledThisPhase = true;
+    }
 }
 
 event bool CanGrabAttack()
@@ -1100,6 +1301,10 @@ event bool CanGrabAttack()
     local Vector HitLocation, HitNormal;
     local Actor HitActor;
 
+    if(bFleeing || bWantsToFlee)
+    {
+        return false;
+    }
     if((((Enemy == none) || MyKFPawn == none) || MyKFPawn.Health <= 0) || GetHealthPercentage() >= 1)
     {
         return false;
@@ -1113,7 +1318,7 @@ event bool CanGrabAttack()
         return false;
     }
     KFPawnEnemy = KFPawn(Enemy);
-    if(((KFPawnEnemy != none) && KFPawnEnemy.IsDoingSpecialMove(28)) && VSizeSq(MyHansPawn.Location - Enemy.Location) < float(250000))
+    if(((KFPawnEnemy != none) && KFPawnEnemy.IsDoingSpecialMove(27)) && VSizeSq(MyHansPawn.Location - Enemy.Location) < Square(MinDistanceToPerformGrabAttack * 1.5))
     {
         KFPawnEnemy.InteractionPawn.EndSpecialMove();
     }
@@ -1121,7 +1326,7 @@ event bool CanGrabAttack()
     {
         return false;
     }
-    if(((MyKFPawn.bIsHeadless || MyKFPawn.Physics == 2) || IsDoingAttackSpecialMove()) || IsInStumble())
+    if((((MyKFPawn.bIsHeadless || MyKFPawn.Physics == 2) || IsDoingAttackSpecialMove()) || IsInStumble()) || MyKFPawn.IsIncapacitated())
     {
         return false;
     }
@@ -1132,7 +1337,7 @@ event bool CanGrabAttack()
             return false;
         }
         DistSq = VSizeSq(Enemy.Location - Pawn.Location);
-        if(DistSq > (MinDistanceToPerformGrabAttack * MinDistanceToPerformGrabAttack))
+        if(DistSq > Square(MinDistanceToPerformGrabAttack))
         {
             return false;
         }
@@ -1158,7 +1363,7 @@ function bool CanTargetBeGrabbed(KFPawn TargetKFP)
 {
     local KFAIController OtherKFAIC;
 
-    if((((TargetKFP == none) || TargetKFP.Health <= 0) || TargetKFP.IsDoingSpecialMove(28)) || TargetKFP.Physics == 2)
+    if((((TargetKFP == none) || TargetKFP.Health <= 0) || TargetKFP.IsDoingSpecialMove(27)) || TargetKFP.Physics == 2)
     {
         return false;
     }
@@ -1179,18 +1384,18 @@ function bool CanTargetBeGrabbed(KFPawn TargetKFP)
     return true;
 }
 
-event DoGrabAttack(optional Pawn NewEnemy, optional Actor InTarget, optional float InPostSpecialMoveSleepTime)
+event DoGrabAttack(optional Pawn NewEnemy, optional float InPostSpecialMoveSleepTime)
 {
     InPostSpecialMoveSleepTime = 0;
     if((CommandList == none) || AICommand(CommandList).bAllowedToAttack)
     {
-        if(NewEnemy != none)
+        if((NewEnemy != none) && NewEnemy != Enemy)
         {
-            SetEnemy(NewEnemy);
+            ChangeEnemy(NewEnemy, false);
         }
         ClearMovementInfo();
         AILog_Internal(string(GetFuncName()) $ "() Init AICommand_Attack_Grab", 'InitAICommand');
-        Class'AICommand_Attack_Grab'.static.Grab(self, KFPawn(InTarget), InPostSpecialMoveSleepTime);        
+        Class'AICommand_Attack_Grab'.static.Grab(self, InPostSpecialMoveSleepTime);        
     }
     else
     {
@@ -1245,7 +1450,7 @@ function bool DoHeavyZedBump(Actor Other, Vector HitNormal)
         else
         {
             BumpedMonster.TakeDamage(BumpEffectDamage, self, BumpedMonster.Location, vect(0, 0, 0), MyKFPawn.GetBumpAttackDamageType());
-            BumpedMonster.DoSpecialMove(5,,, Class'KFSM_Stumble'.static.PackBodyHitSMFlags(BumpedMonster, HitNormal));
+            BumpedMonster.DoSpecialMove(4,,, Class'KFSM_Stumble'.static.PackBodyHitSMFlags(BumpedMonster, HitNormal));
             return true;
         }
     }
@@ -1257,17 +1462,20 @@ function bool CanDoStrike()
     local bool bInGrabRange;
     local float DistSq;
 
-    if(((((Enemy != none) && MyHansPawn != none) && MyHansPawn.bInHuntAndHealMode) && MyKFPawn != none) && MyKFPawn.Health > 0)
+    if(!bFleeing && !bWantsToFlee)
     {
-        DistSq = VSizeSq(Enemy.Location - Pawn.Location);
-        if(DistSq < (MinDistanceToPerformGrabAttack * MinDistanceToPerformGrabAttack))
+        if(((((Enemy != none) && MyHansPawn != none) && MyHansPawn.bInHuntAndHealMode) && MyKFPawn != none) && MyKFPawn.Health > 0)
         {
-            bInGrabRange = true;
+            DistSq = VSizeSq(Enemy.Location - Pawn.Location);
+            if(DistSq < Square(MinDistanceToPerformGrabAttack))
+            {
+                bInGrabRange = true;
+            }
         }
-    }
-    if((MyHansPawn == none) || MyHansPawn.bInHuntAndHealMode && !bInGrabRange || CanGrabAttack())
-    {
-        return false;
+        if((MyHansPawn == none) || MyHansPawn.bInHuntAndHealMode && !bInGrabRange || CanGrabAttack())
+        {
+            return false;
+        }
     }
     return super(KFAIController_Monster).CanDoStrike();
 }
@@ -1371,6 +1579,7 @@ defaultproperties
     StanceChangeCooldown=0.3
     PostAttackMoveGunCooldown=0.3
     LastRecentSeenEnemyListUpdateTime=0.1
+    RetargetWaitTime=5
     MinBurstAmount=3
     MaxBurstAmount=8
     BurstWaitTime=0.5
@@ -1385,8 +1594,11 @@ defaultproperties
     StartShootingRange=500000
     MinShootingRange=300
     GrenadeAttackEvalInterval=0.1
+    MinFleeDuration=10
+    MaxFleeDuration=15
+    MaxFleeDistance=10000
     bRepathOnInvalidStrike=true
-    MinDistanceToPerformGrabAttack=200
+    MinDistanceToPerformGrabAttack=350
     MinTimeBetweenGrabAttacks=2.5
     bCanDoHeavyBump=true
     DefaultCommandClass=Class'AICommand_Base_Hans'

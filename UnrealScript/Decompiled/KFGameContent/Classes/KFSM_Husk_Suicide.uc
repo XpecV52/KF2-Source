@@ -30,7 +30,7 @@ simulated function SpecialMoveEnded(name PrevMove, name NextMove)
     {
         LogInternal(string(self) $ " SpecialMoveEnded");
     }
-    if((PawnOwner.Role == ROLE_Authority) && PawnOwner.Health > 0)
+    if(!bPendingStopFire)
     {
         KFPawn_ZedHusk(PawnOwner).TriggerExplosion();
     }

@@ -77,9 +77,9 @@ function UpdateLock()
 // Grab all the items currently in our inventory chain, and add them to the inventory list
 function RefreshPlayerInventory()
 {
-	local byte SlotIndex;
+	local byte MagSize, SlotIndex;
 	local float PricePerRound;
-	local int AmmoCount, MaxAmmoCount, MagSize, PricePerMag;
+	local int AmmoCount, MaxAmmoCount, PricePerMag;
 	local int FillAmmoCost, BlocksRequired, AutoFillCost;
 	local string TextureLocation;
 	local GFxObject InfoSlot, MagSlot, FillSlot;
@@ -206,7 +206,7 @@ function SetItemInfo(out GFxObject InfoSlot, class<KFWeaponDefinition> WeaponDef
     InfoSlot.SetString( "itemSource", ItemTexPath );
 }
 
-function SetMagInfo(out GFxObject MagSlot, int AmmoCount, int MaxAmmoCount, int AmmoMagSize, int PricePerMag, float PricePerRound, int FillAmmoCost)
+function SetMagInfo(out GFxObject MagSlot, int AmmoCount, int MaxAmmoCount, byte AmmoMagSize, int PricePerMag, float PricePerRound, int FillAmmoCost)
 {
 	local int MagCost;
 	local bool bBuyPartialMag;

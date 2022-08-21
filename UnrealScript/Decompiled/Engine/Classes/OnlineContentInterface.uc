@@ -97,3 +97,8 @@ function ClearWriteSaveGameDataComplete(byte LocalUserNum, delegate<OnWriteSaveG
 function bool DeleteSaveGame(byte LocalUserNum, int DeviceID, string FriendlyName, string Filename);
 
 function bool ClearSaveGames(byte LocalUserNum);
+
+function bool IsGameFullyInstalled()
+{
+    return true;
+}

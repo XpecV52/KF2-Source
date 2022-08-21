@@ -204,6 +204,7 @@ defaultproperties
         CollisionHeight=160
         CollisionRadius=400
         ReplacementPrimitive=none
+        BlockZeroExtent=false
     object end
     // Reference: CylinderComponent'Default__KFTraderTrigger.CollisionCylinder'
     CylinderComponent=CollisionCylinder
@@ -216,6 +217,7 @@ defaultproperties
         CollisionHeight=160
         CollisionRadius=400
         ReplacementPrimitive=none
+        BlockZeroExtent=false
     object end
     // Reference: CylinderComponent'Default__KFTraderTrigger.CollisionCylinder'
     Components(1)=CollisionCylinder
@@ -225,6 +227,7 @@ defaultproperties
         CollisionHeight=160
         CollisionRadius=400
         ReplacementPrimitive=none
+        BlockZeroExtent=false
     object end
     // Reference: CylinderComponent'Default__KFTraderTrigger.CollisionCylinder'
     CollisionComponent=CollisionCylinder

@@ -80,7 +80,7 @@ state Command_SpecialMove
 
     function KFGame.KFPawn.ESpecialMove GetSpecialMove()
     {
-        return 18;
+        return 17;
     }
     stop;    
 }

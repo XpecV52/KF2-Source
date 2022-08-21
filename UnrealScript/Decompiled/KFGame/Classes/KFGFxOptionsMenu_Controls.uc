@@ -31,22 +31,28 @@ function LocalizeText()
 {
     local byte I;
     local GFxObject DataProvider, DataObject, LocalizedObject;
+    local array<string> DisplayedStrings;
 
     DataProvider = Outer.CreateArray();
+    DisplayedStrings = TabStrings;
+    if(Outer.GetPC().WorldInfo.IsConsoleBuild())
+    {
+        DisplayedStrings.Remove(1, 1;
+    }
     I = 0;
-    J0x35:
+    J0xA3:
 
-    if(I < TabStrings.Length)
+    if(I < DisplayedStrings.Length)
     {
         DataObject = Outer.CreateObject("Object");
-        DataObject.SetString("label", TabStrings[I]);
+        DataObject.SetString("label", DisplayedStrings[I]);
         DataProvider.SetElementObject(I, DataObject);
         ++ I;
-        goto J0x35;
+        goto J0xA3;
     }
     SetObject("tabStrings", DataProvider);
     LocalizedObject = Outer.CreateObject("Object");
-    LocalizedObject.SetString("header", HeaderText);
+    LocalizedObject.SetString("header", Caps(Class'KFGFxOptionsMenu_Selection'.default.OptionStrings[2]));
     LocalizedObject.SetString("close", Class'KFCommon_LocalizedStrings'.default.BackString);
     SetObject("localizedText", LocalizedObject);
 }
@@ -237,6 +243,22 @@ function Callback_UpdateControllerPreset(int PresetIndex)
     if(ControllerPresetsContainer != none)
     {
         ControllerPresetsContainer.UpdateCurrentPresetArray(byte(PresetIndex));
+    }
+}
+
+function CallBack_ResetPresetOptions()
+{
+    if(ControllerPresetsContainer != none)
+    {
+        Manager.OpenPopup(0, Localize("KFGFxOptionsMenu_Graphics", "WarningPromptString", "KFGame"), Localize("KFGFxObject_Menu", "ResetDefaults", "KFGameConsole"), Localize("KFGFxOptionsMenu_Graphics", "OKString", "KFGame"), Localize("KFGFxOptionsMenu_Graphics", "CancelString", "KFGame"), ControllerPresetsContainer.ResetPresetOptions);
+    }
+}
+
+function CallBack_ResetInputOptions()
+{
+    if(InputContainer != none)
+    {
+        Manager.OpenPopup(0, Localize("KFGFxOptionsMenu_Graphics", "WarningPromptString", "KFGame"), Localize("KFGFxObject_Menu", "ResetDefaults", "KFGameConsole"), Localize("KFGFxOptionsMenu_Graphics", "OKString", "KFGame"), Localize("KFGFxOptionsMenu_Graphics", "CancelString", "KFGame"), InputContainer.ResetInputOptions);
     }
 }
 

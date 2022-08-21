@@ -39,7 +39,6 @@ Begin:
     {
         Outer.AILog_Internal(((string(self) $ " DoorEnemy: ") $ string(Outer.DoorEnemy)) $ " starting melee attack", 'Command_Base');
         UpdateHistoryString(((("[Attacking : " $ string(Outer.DoorEnemy)) $ " at ") $ string(Outer.WorldInfo.TimeSeconds)) $ "]");
-        LogInternal("patty door melee");
         Class'AICommand_Attack_Melee'.static.Melee(Outer, Outer.DoorEnemy);
     }
     if(Outer.IsValidAttackTarget(KFPawn(Outer.Enemy)))
@@ -49,12 +48,12 @@ Begin:
             Outer.AILog_Internal(((("Calling SetEnemyMoveGoal [Dist:" $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location))) $ "] using offset of ") $ string(Outer.AttackRange)) $ ", because IsWithinBasicMeleeRange() returned false ", 'Command_Base');
             bWaitingOnMovementPlugIn = true;
             Outer.SetEnemyMoveGoal(self, true,,, ShouldAttackWhileMoving());
-            J0x788:
+            J0x773:
 
             if(bWaitingOnMovementPlugIn && Outer.bUsePluginsForMovement)
             {
                 Outer.Sleep(0.03);
-                goto J0x788;
+                goto J0x773;
             }
             Outer.AILog_Internal("Back from waiting for the movement plug in!!!");
         }
@@ -89,5 +88,5 @@ Begin:
         Outer.Sleep(0);
     }
     goto 'Begin';
-    stop;                
+    stop;                    
 }

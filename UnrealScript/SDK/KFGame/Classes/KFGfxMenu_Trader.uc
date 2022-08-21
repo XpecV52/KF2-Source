@@ -31,7 +31,8 @@ struct native SItemInformation
 	/** True if this item is being used to hold secondary ammo info */
 	var bool bIsSecondaryAmmo;
     /** Holds the final values for the owned item */
-	var int SpareAmmoCount, MaxSpareAmmo, MagazineCapacity, SecondaryAmmoCount, MaxSecondaryAmmoCount, SellPrice;
+	var int SpareAmmoCount, MaxSpareAmmo, MaxSecondaryAmmoCount, SellPrice;
+	var byte MagazineCapacity, SecondaryAmmoCount;
 	/** The dosh built up during an autofill for this item */
 	var int AutoFillDosh, AmmoPricePerMagazine;
 	/** Holds trader and default weapon information such as prices and stats */
@@ -109,7 +110,8 @@ function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 	super.InitializeMenu(InManager);
 	MyKFPC = KFPlayerController ( GetPC() );
 	SetString("exitMenuString", ExitMenuString);
-	SetString("cancelPromptName", ExitMenuString);
+	SetString("exitPromptString", ExitMenuString);
+	SetString("backPromptString",Localize("KFGFxWidget_ButtonPrompt","CancelString","KFGame"));
 }
 
 function OnOpen()
@@ -298,23 +300,17 @@ function OneSecondLoop()
 
 		RefreshItemComponents();
 	}
-
- 	UpdatePlayerInfo();
 }
 
 function UpdatePlayerInfo()
 {
 	if( MyKFPC != none && PlayerInfoContainer != none )
 	{
-		if(MyKFPC.CurrentPerk != LastPerkClass)
-		{
-			PlayerInfoContainer.SetPerkInfo();
-			PlayerInfoContainer.SetPerkList();
-			LastPerkClass = MyKFPC.CurrentPerk;
+		PlayerInfoContainer.SetPerkInfo();
+		PlayerInfoContainer.SetPerkList();
+		LastPerkClass = MyKFPC.CurrentPerk;
 
-			RefreshItemComponents();
-			OnOpen();
-		}
+		RefreshItemComponents();
 	}
 }
 
@@ -451,8 +447,8 @@ function int AddWeaponToOwnedItemList( STraderItem DefaultItem, optional bool bD
 {
 	local SItemInformation WeaponInfo;
 	local KFPerk CurrentPerk;
-	local byte ItemIndex;
-	local int DefaultMagazineCapacity, AddedWeaponIndex, OwnedSingleIdx, SingleDualAmmoDiff;
+	local byte ItemIndex, DefaultMagazineCapacity;
+	local int  AddedWeaponIndex, OwnedSingleIdx, SingleDualAmmoDiff;
 	local bool bShouldMagSizeModifySpareAmmo, bAddingDual;
 
 	CurrentPerk = MyKFPC.CurrentPerk;

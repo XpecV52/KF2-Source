@@ -12,8 +12,6 @@ class KFDT_Dart_Toxic extends KFDT_Toxic
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 /** If true, damage zeds when the acidic compund perk is active 
   * Completely overrides super 
   */

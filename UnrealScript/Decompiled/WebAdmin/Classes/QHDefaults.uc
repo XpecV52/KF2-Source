@@ -859,7 +859,7 @@ function handleSettingsGametypes(WebAdminQuery Q)
     local DCEGameInfo editGametype, GameType;
     local int Idx;
     local class<WebAdminSettings> settingsClass;
-    local class<GameInfo> gi;
+    local class<GameInfo> GI;
     local WebAdminSettings Settings;
     local ISettingsPrivileges privs;
     local bool liveAdjust, settingsSaved;
@@ -914,8 +914,8 @@ function handleSettingsGametypes(WebAdminQuery Q)
     Q.Response.Subst("gametypes", substvar);
     if(((editGametype != none) && Len(editGametype.Data.ClassName) > 0) && Q.User.canPerform((("webadmin://" $ Q.Request.URI) $ "/") $ editGametype.Data.ClassName))
     {
-        gi = class<GameInfo>(DynamicLoadObject(editGametype.Data.ClassName, Class'Class'));
-        if(gi != none)
+        GI = class<GameInfo>(DynamicLoadObject(editGametype.Data.ClassName, Class'Class'));
+        if(GI != none)
         {
             settingsClass = getSettingsClassFqn(editGametype.Data.ClassName);
         }
@@ -929,7 +929,7 @@ function handleSettingsGametypes(WebAdminQuery Q)
             {
                 SettingsMagic = new Class'SettingsMagic';
             }
-            Settings = SettingsMagic.Find(gi);
+            Settings = SettingsMagic.Find(GI);
         }
     }
     if(Settings != none)

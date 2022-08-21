@@ -191,7 +191,7 @@ package tripwire.containers.inventory
             this.openAnimation();
         }
         
-        override protected function openAnimation() : *
+        override protected function openAnimation(param1:Boolean = true) : *
         {
             this.masterTimeline.duration(this.startAnimDuration);
             this.masterTimeline.time(0);
@@ -211,12 +211,6 @@ package tripwire.containers.inventory
                 "visible":false,
                 "z":-128,
                 "alpha":0,
-                "blurFilter":{
-                    "blurX":12,
-                    "blurY":12,
-                    "quality":1,
-                    "remove":true
-                },
                 "ease":Cubic.easeOut,
                 "useFrames":true,
                 "onComplete":onClosed
@@ -244,21 +238,10 @@ package tripwire.containers.inventory
             }),"-=1");
             this.masterTimeline.append(TweenMax.fromTo(this,24,{
                 "z":-128,
-                "autoAlpha":0,
-                "blurFilter":{
-                    "blurX":12,
-                    "blurY":12,
-                    "quality":1
-                }
+                "autoAlpha":0
             },{
                 "z":0,
                 "autoAlpha":1,
-                "blurFilter":{
-                    "blurX":0,
-                    "blurY":0,
-                    "quality":1,
-                    "remove":true
-                },
                 "ease":Cubic.easeOut,
                 "useFrames":true,
                 "onStart":this.playStartAnimationSound

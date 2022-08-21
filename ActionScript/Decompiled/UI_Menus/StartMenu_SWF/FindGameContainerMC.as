@@ -12,6 +12,7 @@ package
             this.__setProp_matchMakingButton_FindGameContainerMC_Buttons_0();
             this.__setProp_serverBrowserButton_FindGameContainerMC_Buttons_0();
             this.__setProp_soloOfflineButton_FindGameContainerMC_Buttons_0();
+            this.__setProp_tutorialButton_FindGameContainerMC_Buttons_0();
         }
         
         function __setProp_matchMakingButton_FindGameContainerMC_Buttons_0() : *
@@ -27,7 +28,7 @@ package
             matchMakingButton.autoSize = "none";
             matchMakingButton.data = "";
             matchMakingButton.enabled = true;
-            matchMakingButton.enableInitCallback = false;
+            matchMakingButton.enableInitCallback = true;
             matchMakingButton.focusable = true;
             matchMakingButton.label = "text";
             matchMakingButton.selected = false;
@@ -55,7 +56,7 @@ package
             serverBrowserButton.autoSize = "none";
             serverBrowserButton.data = "";
             serverBrowserButton.enabled = true;
-            serverBrowserButton.enableInitCallback = false;
+            serverBrowserButton.enableInitCallback = true;
             serverBrowserButton.focusable = true;
             serverBrowserButton.label = "text";
             serverBrowserButton.selected = false;
@@ -83,7 +84,7 @@ package
             soloOfflineButton.autoSize = "none";
             soloOfflineButton.data = "";
             soloOfflineButton.enabled = true;
-            soloOfflineButton.enableInitCallback = false;
+            soloOfflineButton.enableInitCallback = true;
             soloOfflineButton.focusable = true;
             soloOfflineButton.label = "text";
             soloOfflineButton.selected = false;
@@ -92,6 +93,34 @@ package
             try
             {
                 soloOfflineButton["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        
+        function __setProp_tutorialButton_FindGameContainerMC_Buttons_0() : *
+        {
+            try
+            {
+                tutorialButton["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            tutorialButton.autoRepeat = false;
+            tutorialButton.autoSize = "none";
+            tutorialButton.data = "";
+            tutorialButton.enabled = true;
+            tutorialButton.enableInitCallback = true;
+            tutorialButton.focusable = true;
+            tutorialButton.label = "text";
+            tutorialButton.selected = false;
+            tutorialButton.toggle = false;
+            tutorialButton.visible = true;
+            try
+            {
+                tutorialButton["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

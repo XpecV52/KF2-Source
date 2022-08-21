@@ -83,7 +83,7 @@ function ModifyDamageTaken(out int InDamage, optional class<DamageType> DamageTy
     InDamage = Round(TempDamage);
 }
 
-function ModifySpeed(out float Speed)
+simulated function ModifySpeed(out float Speed)
 {
     local float TempSpeed;
 
@@ -108,7 +108,7 @@ simulated function bool GetUsingTactialReload(KFWeapon KFW)
 function float GetKnockdownPowerModifier(optional class<DamageType> DamageType, optional byte BodyPart, optional bool bIsSprinting)
 {
     bIsSprinting = false;
-    if(((IsLimbShotsActive()) && (BodyPart == 5) || BodyPart == 6) && bIsSprinting)
+    if(((IsLimbShotsActive()) && HitShouldKnockdown(BodyPart)) && bIsSprinting)
     {
         return GetSkillValue(PerkSkills[7]);
     }
@@ -117,7 +117,7 @@ function float GetKnockdownPowerModifier(optional class<DamageType> DamageType, 
 
 function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart)
 {
-    if((IsCenterMassActive()) && (BodyPart == 2) || CheckSpecialZedBodyPart(KFP.Class, BodyPart))
+    if((IsCenterMassActive()) && (HitShouldStumble(BodyPart)) || CheckSpecialZedBodyPart(KFP.Class, BodyPart))
     {
         return GetSkillValue(PerkSkills[6]);
     }
@@ -126,7 +126,7 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
 
 function bool CheckSpecialZedBodyPart(class<KFPawn> PawnClass, byte BodyPart)
 {
-    if((BodyPart == 7) && SpecialZedClassNames.Find(PawnClass.Name != -1)
+    if((BodyPart == 6) && SpecialZedClassNames.Find(PawnClass.Name != -1)
     {
         return true;
     }
@@ -472,8 +472,8 @@ defaultproperties
     ProgressStatID=80
     PerkBuildStatID=81
     SecondaryXPModifier[1]=1
-    SecondaryXPModifier[2]=1
-    SecondaryXPModifier[3]=1
+    SecondaryXPModifier[2]=2
+    SecondaryXPModifier[3]=3
     PerkName="Gunslinger"
     Passives(0)=(Title="Perk Weapon Damage",Description="Perk weapon damage increased by %x%",IconPath="")
     Passives(1)=(Title="Bullet Resistance",Description="Resistance to projectile damage increased by %x%",IconPath="")
@@ -494,13 +494,25 @@ defaultproperties
     PerkSkills(3)=(Name="BoneBreaker",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_BoneBreaker",bActive=false)
     PerkSkills(4)=(Name="SpeedReload",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_SpeedReload",bActive=false)
     PerkSkills(5)=(Name="Penetration",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_Penetration",bActive=false)
-    PerkSkills(6)=(Name="CenterMass",Increment=0,Rank=0,StartingValue=1.4,MaxValue=1.4,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_CenterMass",bActive=false)
-    PerkSkills(7)=(Name="LimbShots",Increment=0,Rank=0,StartingValue=3.1,MaxValue=3.1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_LimbShots",bActive=false)
+    PerkSkills(6)=(Name="CenterMass",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_CenterMass",bActive=false)
+    PerkSkills(7)=(Name="LimbShots",Increment=0,Rank=0,StartingValue=5.1,MaxValue=5.1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_LimbShots",bActive=false)
     PerkSkills(8)=(Name="Fanfare",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDSpeed",bActive=false)
     PerkSkills(9)=(Name="UberAmmo",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDAmmo",bActive=false)
     ZedTimeModifyingStates(0)=WeaponFiring
     ZedTimeModifyingStates(1)=WeaponBurstFiring
     ZedTimeModifyingStates(2)=WeaponSingleFiring
+    BodyPartsCanStumble(0)=
+/* Exception thrown while deserializing BodyPartsCanStumble
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    BodyPartsCanStumble(1)=.!=_937
+    BodyPartsCanStumble(2)=.!=_5
+    BodyPartsCanStumble(3)=.!=_1
+    BodyPartsCanKnockDown(0)=4
+    BodyPartsCanKnockDown(1)=5
     PrimaryWeaponDef=Class'KFWeapDef_Remington1858Dual'
     KnifeWeaponDef=Class'KFWeapDef_Knife_Gunslinger'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Gunslinger'

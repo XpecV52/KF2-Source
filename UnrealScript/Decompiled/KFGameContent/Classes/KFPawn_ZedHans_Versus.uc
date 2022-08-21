@@ -12,7 +12,7 @@ class KFPawn_ZedHans_Versus extends KFPawn_ZedHans
 function PossessedBy(Controller C, bool bVehicleTransition)
 {
     super(KFPawn_ZedHansBase).PossessedBy(C, bVehicleTransition);
-    ServerDoSpecialMove(31);
+    ServerDoSpecialMove(30);
 }
 
 simulated function StartFire(byte FireModeNum)
@@ -30,9 +30,9 @@ simulated function StartFire(byte FireModeNum)
             }
             break;
         case 1:
-            if(!IsDoingSpecialMove(33))
+            if(!IsDoingSpecialMove(32))
             {
-                ServerDoSpecialMove(33);
+                ServerDoSpecialMove(32);
             }
             break;
         case 3:
@@ -107,6 +107,7 @@ defaultproperties
     BattlePhaseLightTemplateRed=PointLightComponent'Default__KFPawn_ZedHans_Versus.PointLightComponent2'
     BattlePhaseLightTemplateBlinking=PointLightComponent'Default__KFPawn_ZedHans_Versus.PointLightComponent3'
     ShieldImpactEffects=KFSkinTypeEffects_HansShield'Default__KFPawn_ZedHans_Versus.ShieldEffects'
+    ShieldShatterExplosionTemplate=KFGameExplosion'Default__KFPawn_ZedHans_Versus.ShatterExploTemplate0'
     bVersusZed=true
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedHans_Versus.MeleeHelper'
     LocalizationKey=KFPawn_ZedHans
@@ -115,7 +116,7 @@ defaultproperties
     object end
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedHans_Versus.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
-    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedHans_Versus.Afflictions'
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedHans_Versus.Afflictions'
     TeammateCollisionRadiusPercent=0.3
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none

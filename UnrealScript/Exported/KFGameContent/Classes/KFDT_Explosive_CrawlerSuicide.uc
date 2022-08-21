@@ -17,6 +17,7 @@ static simulated function bool CanDismemberHitZone( name InHitZoneName )
 
 defaultproperties
 {
+   bConsideredIndirectOrAoE=True
    bAnyPerk=True
    bShouldSpawnPersistentBlood=True
    KDamageImpulse=1500.000000

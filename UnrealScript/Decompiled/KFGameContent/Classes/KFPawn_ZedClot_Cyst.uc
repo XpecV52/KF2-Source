@@ -24,6 +24,7 @@ defaultproperties
     XPValues[1]=11
     XPValues[2]=11
     XPValues[3]=11
+    DamageTypeModifiers=/* Array type was not detected. */
     KnockedDownBySonicWaveOdds=0.35
     PawnAnimInfo=KFPawnAnimInfo'ZED_Clot_Anim.UnDevClot_AnimGroup'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -31,9 +32,8 @@ defaultproperties
     object end
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedClot_Cyst.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
-    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedClot_Cyst.Afflictions'
-    InstantIncaps=/* Array type was not detected. */
-    StackingIncaps=/* Array type was not detected. */
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedClot_Cyst.Afflictions'
+    IncapSettings=/* Array type was not detected. */
     KnockdownImpulseScale=1
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
@@ -46,7 +46,7 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedClot_Cyst.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedClot_Cyst.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedClot_Cyst.DialogAkSoundComponent'
-    DamageRecoveryTimeHeavy=0.3
+    DamageRecoveryTimeHeavy=0.85
     PeripheralVision=-0.5
     ControllerClass=Class'KFAIController_ZedClot_Cyst'
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent

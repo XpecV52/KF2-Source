@@ -9,49 +9,70 @@ class KFPawn_ZedScrake_Versus extends KFPawn_ZedScrake
     config(Game)
     hidecategories(Navigation);
 
+var protected const float RageSprintSpeed;
+var protected const class<KFDamageType> RageBumpDamageType;
+var protected const int RageBumpDamage;
+var protected const float RageBumpRadius;
+var protected const float RageBumpMomentum;
+
 function SetSprinting(bool bNewSprintStatus)
 {
     if(bEmpDisrupted)
     {
         bNewSprintStatus = false;
     }
-    if(bNewSprintStatus)
+    super.SetSprinting(bNewSprintStatus);
+}
+
+simulated function SetEnraged(bool bNewEnraged)
+{
+    super.SetEnraged(bNewEnraged);
+    if(bIsEnraged)
     {
-        if(bIsCrouched)
+        if(!IsTimerActive('Timer_RageBump'))
         {
-            bNewSprintStatus = false;            
+            SetTimer(0.25, true, 'Timer_RageBump');
         }
-        else
-        {
-            if((MyKFWeapon != none) && !MyKFWeapon.AllowSprinting())
-            {
-                bNewSprintStatus = false;
-            }
-        }
+        SprintSpeed = RageSprintSpeed;        
     }
-    bIsSprinting = bNewSprintStatus;
-    if(MyKFWeapon != none)
+    else
     {
-        MyKFWeapon.SetWeaponSprint(bNewSprintStatus);
+        if(IsTimerActive('Timer_RageBump'))
+        {
+            ClearTimer('Timer_RageBump');
+            SprintSpeed = default.SprintSpeed;
+        }
     }
 }
 
-function PutAllMovesOnCooldown();
+protected simulated function Timer_RageBump()
+{
+    HurtRadius(float(RageBumpDamage), RageBumpRadius, RageBumpDamageType, RageBumpMomentum, Location, self, Controller);
+}
 
 defaultproperties
 {
+    RageSprintSpeed=650
+    RageBumpDamageType=Class'KFDT_HeavyZedBump'
+    RageBumpDamage=2
+    RageBumpRadius=240
+    RageBumpMomentum=500
     ChainsawIdleAkComponent=AkComponent'Default__KFPawn_ZedScrake_Versus.ChainsawAkComponent0'
     RageHealthThresholdNormal=0.75
     bVersusZed=true
     ThirdPersonViewOffset=(OffsetHigh=(X=-175,Y=60,Z=60),OffsetMid=(X=-160,Y=50,Z=0),OffsetLow=(X=-220,Y=100,Z=50))
     begin object name=MeleeHelper class=KFMeleeHelperAI
-        BaseDamage=40
+        BaseDamage=15
+        PlayerDoorDamageMultiplier=5
         MeleeImpactCamScale=0.45
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedScrake_Versus.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
     DoshValue=260
     XPValues=102
+    DamageTypeModifiers=/* Array type was not detected. */
+    BlockingDamageModifier=0.25
+    MeleeBlockingDamageModifier=0.25
     SpecialMoveCooldowns=/* Array type was not detected. */
     LocalizationKey=KFPawn_ZedScrake
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -59,9 +80,9 @@ defaultproperties
     object end
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedScrake_Versus.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
-    AfflictionHandler=KFPawnAfflictions_Scrake'Default__KFPawn_ZedScrake_Versus.Afflictions'
-    InstantIncaps=/* Array type was not detected. */
-    StackingIncaps=/* Array type was not detected. */
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedScrake_Versus.Afflictions'
+    IncapSettings=/* Array type was not detected. */
+    SprintSpeed=530
     SprintStrafeSpeed=350
     TeammateCollisionRadiusPercent=0.3
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
@@ -79,8 +100,8 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedScrake_Versus.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedScrake_Versus.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedScrake_Versus.DialogAkSoundComponent'
-    GroundSpeed=226
-    Health=1565
+    GroundSpeed=220
+    Health=1600
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

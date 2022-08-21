@@ -119,7 +119,7 @@ package tripwire.containers.postGame
             this.playerStatsList.scrollBar.tabIndex = 1;
         }
         
-        override protected function openAnimation() : *
+        override protected function openAnimation(param1:Boolean = true) : *
         {
             TweenMax.killTweensOf(this);
             TweenMax.fromTo(this,ANIM_TIME,{
@@ -166,7 +166,7 @@ package tripwire.containers.postGame
             }
         }
         
-        override public function openContainer() : void
+        override public function openContainer(param1:Boolean = true) : void
         {
             super.openContainer();
             this.playerStatsList.enabled = true;

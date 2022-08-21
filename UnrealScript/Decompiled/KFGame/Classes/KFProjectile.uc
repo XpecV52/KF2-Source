@@ -348,7 +348,7 @@ simulated function ProcessDestructibleTouchOnBounce(Actor Other, Vector HitLocat
         {
             LastBounced.Actor = Other;
             LastBounced.Time = WorldInfo.TimeSeconds;
-            HitWall(HitNormal, Other, none);
+            HitWall(HitNormal, Other, LastTouchComponent);
         }
     }
 }
@@ -709,6 +709,10 @@ protected simulated function StopFlightEffects()
         ProjEffects.DeactivateSystem();
     }
 }
+
+function Detonate();
+
+function Timer_Explode();
 
 simulated function OnInstigatorControllerLeft();
 

@@ -9,66 +9,10 @@ class KFDT_Piercing_KatanaStab extends KFDT_Piercing
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 12;
-
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Katana'
-   StumblePower=45
-   LegStumblePower=45
-   MeleeHitPower=80
+   MeleeHitPower=100.000000
    KDamageImpulse=200.000000
    KDeathUpKick=250.000000
    Name="Default__KFDT_Piercing_KatanaStab"

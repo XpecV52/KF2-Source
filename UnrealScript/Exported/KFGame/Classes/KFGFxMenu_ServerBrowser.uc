@@ -450,7 +450,7 @@ defaultproperties
    GamesFoundString="GAMES FOUND:"
    PasswordPromptString="ENTER PASSWORD"
    JoinString="JOIN"
-   LeaveMenuString="Leaving this menu will disband your party.  Go to Matchmaking instead?"
+   LeaveMenuString="Leaving this menu will disband your party. Go to Matchmaking instead?"
    MultiplayerMenuString="MATCHMAKING"
    PingOptionStrings(0)="< 50 MS"
    PingOptionStrings(1)="< 100 MS"

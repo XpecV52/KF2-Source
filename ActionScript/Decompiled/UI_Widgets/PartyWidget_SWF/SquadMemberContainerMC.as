@@ -62,7 +62,7 @@ package
                 this.__motion_AddHitboxMCaf1.motion_internal::spanStart = 0;
                 this.____motion_AddHitboxMCaf1_matArray__ = new Array();
                 this.____motion_AddHitboxMCaf1_mat3DVec__ = new Vector.<Number>(16);
-                this.____motion_AddHitboxMCaf1_mat3DVec__[0] = 0.178574;
+                this.____motion_AddHitboxMCaf1_mat3DVec__[0] = 0.192276;
                 this.____motion_AddHitboxMCaf1_mat3DVec__[1] = 0;
                 this.____motion_AddHitboxMCaf1_mat3DVec__[2] = 0;
                 this.____motion_AddHitboxMCaf1_mat3DVec__[3] = 0;

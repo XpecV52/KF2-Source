@@ -12,20 +12,17 @@ class KFDT_ExplosiveSubmunition_HX25 extends KFDT_Explosive
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 defaultproperties
 {
 	bShouldSpawnPersistentBlood=true
 
 	// physics impact
-	RadialDamageImpulse=1000
-	KDeathUpKick=350
-	KDeathVel=250
+	RadialDamageImpulse=2500  //2000
+	KDeathUpKick=350   //350
+	KDeathVel=250    //250
 
-	KnockdownPower=0
-	StumblePower=36
-	LegStumblePower=36
+	KnockdownPower=5
+	StumblePower=10
 
 	//Perk
 	ModifierPerkList(0)=class'KFPerk_Demolitionist'

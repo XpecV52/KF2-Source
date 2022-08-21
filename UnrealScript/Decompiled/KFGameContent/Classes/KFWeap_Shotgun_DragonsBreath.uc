@@ -13,7 +13,8 @@ defaultproperties
 {
     NumPellets=/* Array type was not detected. */
     FireModeIconPaths=/* Array type was not detected. */
-    InventorySize=6
+    InventorySize=5
+    MagazineCapacity=6
     bHasIronSights=true
     bCanBeReloaded=true
     PenetrationPower=/* Array type was not detected. */
@@ -25,7 +26,6 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=2.5
     GroupPriority=50
     WeaponSelectTexture=Texture2D'WEP_UI_DragonsBreath.UI_WeaponSelect_DragonsBreath'
-    MagazineCapacity=6
     MaxSpareAmmo=45
     InitialSpareMags=3
     BonesToLockOnEmpty=/* Array type was not detected. */

@@ -14,13 +14,25 @@ class KFProj_ExplosiveSubmunition_HX25_Nuke extends KFProj_ExplosiveSubmunition_
 
 simulated function PostBeginPlay()
 {
+    local KFPlayerController KFPC;
+    local KFPerk InstigatorPerk;
+
 	Super.PostBeginPlay();
 
 	ExplosionTemplate = class'KFPerk_Demolitionist'.static.GetNukeExplosionTemplate();
 	ExplosionActorClass = class'KFPerk_Demolitionist'.static.GetNukeExplosionActorClass();
 	ExplosionTemplate.Damage = default.ExplosionTemplate.Damage * class'KFPerk_Demolitionist'.static.GetNukeDamageModifier();
     ExplosionTemplate.DamageRadius = default.ExplosionTemplate.DamageRadius * class'KFPerk_Demolitionist'.static.GetNukeRadiusModifier();
-    ExplosionTemplate.DamageFalloffExponent = default.ExplosionTemplate.DamageFalloffExponent;     
+    ExplosionTemplate.DamageFalloffExponent = default.ExplosionTemplate.DamageFalloffExponent;  
+
+    KFPC = KFPlayerController(Instigator.Controller);
+    // Change the radius and damage based on the perk
+    if( Instigator.Role == ROLE_Authority && KFPC != none )
+    {
+        InstigatorPerk = KFPC.GetPerk();
+        ExplosionTemplate.Damage *= InstigatorPerk.GetAeODamageModifier();
+        ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAeORadiusModifier();
+    }
 }
 
 defaultproperties
@@ -31,8 +43,8 @@ defaultproperties
       DamageRadius=150.000000
       ActorClassToIgnoreForDamage=Class'kfgamecontent.KFProj_ExplosiveSubmunition_HX25'
       MyDamageType=Class'kfgamecontent.KFDT_ExplosiveSubmunition_HX25'
-      KnockDownStrength=0.000000
-      MomentumTransferScale=0.000000
+      KnockDownStrength=10.000000
+      MomentumTransferScale=1.000000
       ExplosionSound=AkEvent'WW_WEP_SA_HX25.Play_WEP_SA_HX25_Mini_Explosion'
       ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_ExplosiveSubmunition_HX25:ExplosionPointLight'
       ExploLightFadeOutTime=0.300000

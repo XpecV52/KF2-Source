@@ -39,6 +39,7 @@ defaultproperties
    Components(1)=DrawSoundRadius0
    Components(2)=AudioComponent0
    Physics=PHYS_Interpolating
+   CollisionType=COLLIDE_CustomDefault
    TickGroup=TG_DuringAsyncWork
    bStatic=False
    Name="Default__AmbientSoundMovable"

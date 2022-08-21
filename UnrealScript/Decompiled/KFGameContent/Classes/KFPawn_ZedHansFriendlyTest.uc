@@ -23,6 +23,7 @@ defaultproperties
     BattlePhaseLightTemplateRed=PointLightComponent'Default__KFPawn_ZedHansFriendlyTest.PointLightComponent2'
     BattlePhaseLightTemplateBlinking=PointLightComponent'Default__KFPawn_ZedHansFriendlyTest.PointLightComponent3'
     ShieldImpactEffects=KFSkinTypeEffects_HansShield'Default__KFPawn_ZedHansFriendlyTest.ShieldEffects'
+    ShieldShatterExplosionTemplate=KFGameExplosion'Default__KFPawn_ZedHansFriendlyTest.ShatterExploTemplate0'
     BattlePhases=/* Array type was not detected. */
     CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Hans_ARCH.ZED_Hans_Benchmark_Archetype'
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedHansFriendlyTest.MeleeHelper'
@@ -31,7 +32,7 @@ defaultproperties
     object end
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedHansFriendlyTest.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
-    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedHansFriendlyTest.Afflictions'
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedHansFriendlyTest.Afflictions'
     DefaultInventory=/* Array type was not detected. */
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none

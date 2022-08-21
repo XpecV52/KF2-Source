@@ -16,7 +16,7 @@ defaultproperties
 	KDeathVel=200
 	bExtraMomentumZ=true
 
-	StumblePower=126
+	StumblePower=49
 	
 	ModifierPerkList(0)=class'KFPerk_Berserker'
 }

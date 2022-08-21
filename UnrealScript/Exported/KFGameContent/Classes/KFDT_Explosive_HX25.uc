@@ -12,67 +12,13 @@ class KFDT_Explosive_HX25 extends KFDT_Explosive
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 15;
-
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_HX25'
    bShouldSpawnPersistentBlood=True
-   KnockdownPower=30
-   StumblePower=36
-   LegStumblePower=36
+   KnockdownPower=100.000000
+   StumblePower=150.000000
+   MeleeHitPower=100.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Demolitionist'
    KDeathVel=250.000000
    KDeathUpKick=500.000000

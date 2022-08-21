@@ -788,13 +788,13 @@ defaultproperties
    ScreenUIClass=Class'KFGame.KFGFxWorld_HealerScreen'
    UIUpdateInterval=1.000000
    InventoryGroup=IG_Equipment
+   MagazineCapacity(0)=100
    bTargetAdhesionEnabled=False
    bCanBeReloaded=True
    bReloadFromMagazine=True
    bInfiniteSpareAmmo=True
    bAllowClientAmmoTracking=False
    GroupPriority=6.000000
-   MagazineCapacity(0)=100
    FireTweenTime=0.300000
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_Syringe.Play_WEP_SA_Syringe_3P_Fire_Single',FirstPersonCue=AkEvent'WW_WEP_SA_Syringe.Play_WEP_SA_Syringe_1P_Fire_Single')
    WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_Syringe.Play_WEP_SA_Syringe_3P_Fire_Single',FirstPersonCue=AkEvent'WW_WEP_SA_Syringe.Play_WEP_SA_Syringe_1P_Fire_Single')

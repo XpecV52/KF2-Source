@@ -135,6 +135,22 @@ function DecalComponent SpawnDecal(MaterialInterface DecalMaterial, Vector Decal
     return Result;
 }
 
+function Reset()
+{
+    local int I;
+
+    I = 0;
+    J0x0B:
+
+    if(I < ActiveDecals.Length)
+    {
+        DecalFinished(ActiveDecals[I].Decal);
+        ++ I;
+        goto J0x0B;
+    }
+    ActiveDecals.Length = 0;
+}
+
 defaultproperties
 {
     begin object name=BaseDecal class=DecalComponent

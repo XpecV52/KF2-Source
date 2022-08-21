@@ -19,6 +19,8 @@ var KFGFxStoreContainer_Main 	MainContainer;
 var KFGFxStoreContainer_Details DetailsContainer;
 var KFGFxStoreContainer_Cart	CartContainer;
 
+var GFxObject AddCartButton;
+
 struct StoreItem
 {
 	var int 	SKU;
@@ -28,16 +30,6 @@ struct StoreItem
 	var float 	ItemPrice;
 	var name 	ItemType;
 };
-
-var Array<ItemProperties> CharacterItems;
-var Array<StoreItem> WeaponSkinItems;
-var Array<StoreItem> ToolItems;
-
-var string AllString;
-var string NewReleasesKey;
-var string CharactersKey;
-var string WeaponsKey;
-var string ToolsKey;
 
 var localized string StoreString;
 
@@ -118,6 +110,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 			{
 			    DetailsContainer = KFGFxStoreContainer_Details(Widget);
 				DetailsContainer.Initialize( self );
+				AddCartButton = DetailsContainer.GetObject("addCartButton");
 		    }
          break;
     }
@@ -125,39 +118,65 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
     return true;
 }
 
-function Callback_StoreSectionChanged(string SectionName)
+function Callback_StoreSectionChanged(int FilterIndex)
 {
-	switch (SectionName)
-	{
-		case NewReleasesKey:
-			MainContainer.UpdateFilter(EStore_All, OnlineSub.ItemPropertiesList);
-			break;
-		case CharactersKey:
-			MainContainer.UpdateFilter(EStore_Cosmetics, OnlineSub.ItemPropertiesList);
-			break;
-		case WeaponsKey:
-			MainContainer.UpdateFilter(EStore_WeaponSkins, OnlineSub.ItemPropertiesList);
-			break;
-		case ToolsKey:
-			MainContainer.UpdateFilter(EStore_Consumables, OnlineSub.ItemPropertiesList);
-			break;
-	}
+	MainContainer.UpdateFilter(FilterIndex); 
 }
 
 function Callback_AddToCartClicked(int ItemSKU)
 {
+	local ItemProperties StoreItemDetails;
+
 	if(OnlineSub != none)
 	{
-		OnlineSub.OpenItemPurchaseOverlay(ItemSKU);
+		StoreItemDetails = OnlineSub.ItemPropertiesList[OnlineSub.ItemPropertiesList.Find('Definition', ItemSKU)];
+
+		if(StoreItemDetails.Price == "")
+		{
+			OnlineSub.OpenMarketPlaceSearch(StoreItemDetails);
+		}
+		else
+		{
+			OnlineSub.OpenItemPurchaseOverlay(ItemSKU);
+		}		
 	}
+}
+
+
+function CallBack_ItemDetailsClicked(int ItemDefinition)
+{
+	local ItemProperties StoreItemDetails;
+	
+	StoreItemDetails = OnlineSub.ItemPropertiesList[OnlineSub.ItemPropertiesList.Find('Definition', ItemDefinition)];
+	if(StoreItemDetails.Price == "")
+	{
+		AddCartButton.SetString("label", class'KFGFxStoreContainer_Details'.default.LookUpOnMarketString);
+	}
+	else
+	{
+		AddCartButton.SetString("label", class'KFGFxStoreContainer_Details'.default.AddToCartString$":"$StoreItemDetails.Price);
+	}
+	SetObject("storeItemDetails", CreateStoreItem(StoreItemDetails));
+}
+
+function GFxObject CreateStoreItem(ItemProperties DesiredStoreItem)
+{
+	local GFxObject DataObject;
+
+	DataObject = CreateObject( "Object" );
+				
+	DataObject.SetString("label", DesiredStoreItem.Name);
+	DataObject.SetString("description", DesiredStoreItem.Description);
+	DataObject.SetString("price", DesiredStoreItem.Price);
+	DataObject.SetString("imageURL", "img://"$DesiredStoreItem.IconURL);
+	DataObject.SetString("imageURLLarge", "img://"$DesiredStoreItem.IconURLLarge);
+	DataObject.SetInt("SKU", DesiredStoreItem.Definition);
+
+	return DataObject;
 }
 
 defaultproperties
 {
-   NewReleasesKey="New Releases"
-   CharactersKey="Characters"
-   WeaponsKey="Weapons"
-   ToolsKey="Tools"
    StoreString="STORE"
    SubWidgetBindings(0)=(WidgetName="ItemDetails",WidgetClass=Class'KFGame.KFGFxStoreContainer_Details')
    SubWidgetBindings(1)=(WidgetName="storeCart",WidgetClass=Class'KFGame.KFGFxStoreContainer_Cart')

@@ -117,6 +117,10 @@ var const transient bool bStartedLoadMapMovie;
 /** The singleton online interface for all game code to use */
 var const transient OnlineSubsystem OnlineSubsystem;
 
+//@HSL_BEGIN - BWJ - 4-5-16 - Playfab support
+var const transient PlayfabInterface PlayfabInterfaceInst;
+//@HSL_END
+
 //@zombie_ps4_begin - Adding a gamepad light system
 var const transient GamePadLightbarSubSystem GamePadLightBarSubsystem;
 //@zombie_ps4_end
@@ -137,7 +141,7 @@ var const transient DownloadableContentManager DLCManager;
 	var bool bSaveBenchmarkGraphs;
 	struct native transient BenchmarkSample
 	{
-		var float AppTime, RenderThreadTime, GameThreadTime, GPUFrameTime;
+		var float AppTime, RenderThreadTime, GameThreadTime, GPUFrameTime, FrameTime;
 	};
 	
 	var array<BenchmarkSample> BenchmarkSamples;
@@ -191,6 +195,10 @@ var init array<ScriptViewportClient>	SecondaryViewportClients;
 /** Array parallel to SecondaryViewportClients - these are the frames that render the SecondaryViewport clients */
 var init array<pointer>		SecondaryViewportFrames{FViewportFrame};
 
+//@HSL_MOD_BEGIN - amiller 4/11/2016 - Adding support to ignore specific packages for Using Handshake
+/** An Array of config package names to ignore GUID mismatch errors during connection handshake*/
+var const config array<string>	IgnoredUsesGUIDPackages;
+//@HSL_MOD_END
 
 /** level streaming updates that should be applied immediately after committing the map change */
 struct native LevelStreamingStatus
@@ -299,6 +307,10 @@ native final function DestroyNamedNetDriver(name NetDriverName);
 
 /** Returns the global online subsytem pointer. This will be null for PIE */
 native static final noexport function OnlineSubsystem GetOnlineSubsystem();
+
+//@HSL_BEGIN - BWJ - 4-5-16 - Playfab support
+native static final function PlayfabInterface GetPlayfabInterface();
+//@HSL_END
 
 /** Returns the DLC enumerator object pointer. This will be null for PIE */
 native static final noexport function DownloadableContentEnumerator GetDLCEnumerator();

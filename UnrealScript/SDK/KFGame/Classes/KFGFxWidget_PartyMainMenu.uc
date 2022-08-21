@@ -103,7 +103,6 @@ function RefreshParty()
 	local PlayerController PC;
 	local string PlayerName, ReadablePlayerName;
 	super.RefreshParty();
-
 	
 	if ( OnlineLobby != none && OnlineLobby.GetCurrentLobby(LobbyInfo) )
 	{		
@@ -144,12 +143,13 @@ function RefreshParty()
 	else
 	{
 		PC = GetPC();
-	    RefreshSlot(0, PC.PlayerReplicationInfo.UniqueId);
 	    InitializePerk();
+		RefreshSlot(0, PC.PlayerReplicationInfo.UniqueId);
+
 	    bInParty = false || bInLobby;
 		bIsInParty = bInParty;
 	    SetSearchingText("");
-		ReadablePlayerName = PC.PlayerReplicationInfo.GetHumanReadableName();
+		ReadablePlayerName = class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetPlayerNickname(0);
 	    if(OnlineLobby != none)
 	    {
 			PlayerName = OnlineLobby.GetFriendNickname(PC.PlayerReplicationInfo.UniqueId);
@@ -157,6 +157,8 @@ function RefreshParty()
 
 	    UpdatePlayerName(0, PlayerName != "" ? PlayerName : ReadablePlayerName == DefaultPlayerName ? DefaultPlayerName$"0" : ReadablePlayerName );
 
+		MemberSlots[0].PRI = PC.PlayerReplicationInfo;
+		MemberSlots[0].PlayerUID = PC.PlayerReplicationInfo.UniqueId;
 	    
 	    if(PartyChatWidget != none)
 		{
@@ -198,13 +200,14 @@ function RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
 	local UniqueNetId AdminId;
 	local bool bIsLeader;
 	local bool bIsMyPlayer;
+	local bool bUpdateSlot;
 	local PlayerController PC;
 
 	PC = GetPC();
 
 	if(OnlineLobby != none)
 	{
-	OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId);
+		OnlineLobby.GetLobbyAdmin( OnlineLobby.GetCurrentLobbyId(), AdminId);
 	}
 	
 	if( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) )
@@ -217,14 +220,28 @@ function RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
 		bIsLeader = (PlayerUID == AdminId);
 	}
 
-	MemberSlots[SlotIndex].bIsSlotTaken = true;
-	MemberSlots[SlotIndex].bIsLeader = bIsLeader;
-	MemberSlots[SlotIndex].PlayerUID = PlayerUID;
+	if ( !MemberSlots[SlotIndex].bIsSlotTaken )
+	{
+		MemberSlots[SlotIndex].bIsSlotTaken = true;
+		bUpdateSlot = true;
+	}
 
-	bIsMyPlayer = (PC.PlayerReplicationInfo.UniqueId == PlayerUID);
+	if ( MemberSlots[SlotIndex].bIsLeader != bIsLeader )
+	{
+		MemberSlots[SlotIndex].bIsLeader = bIsLeader;
+		bUpdateSlot = true;
+	}
+
+	if ( MemberSlots[SlotIndex].PlayerUID != PlayerUID )
+	{
+		MemberSlots[SlotIndex].PlayerUID = PlayerUID;
+		bIsMyPlayer = (PC.PlayerReplicationInfo.UniqueId == PlayerUID);
+		bUpdateSlot = true;
+	}
+
 	if(OnlineLobby != none)
 	{
-	PlayerName = OnlineLobby.GetFriendNickname(PlayerUID);
+		PlayerName = OnlineLobby.GetFriendNickname(PlayerUID);
 	}
 	
 	if (PlayerName == "")
@@ -235,11 +252,20 @@ function RefreshSlot(int SlotIndex, UniqueNetId PlayerUID)
 	// Make sure to use the name you just looked up.  -HSL_BB
 	UpdatePlayerName(SlotIndex,PlayerName);
 	
-	SlotChanged( SlotIndex, true, bIsMyPlayer, bIsLeader );
-	
+	if ( bUpdateSlot )
+	{
+		SlotChanged( SlotIndex, true, bIsMyPlayer, bIsLeader );
+		CreatePlayerOptions(PlayerUID, SlotIndex);
+	}
 
-	CreatePlayerOptions(PlayerUID, SlotIndex);
-	MemberSlots[SlotIndex].MemberSlotObject.SetString("profileImageSource", KFPC.GetSteamAvatar(PlayerUID));
+	if( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) )
+	{
+		MemberSlots[SlotIndex].MemberSlotObject.SetString("profileImageSource", KFPC.GetPS4Avatar(PlayerName));
+	}
+	else
+	{
+		MemberSlots[SlotIndex].MemberSlotObject.SetString("profileImageSource", KFPC.GetSteamAvatar(PlayerUID));
+	}
 }
 
 
@@ -285,7 +311,7 @@ function UpdatePerks(string Message)
 	IconPath = "img://"$KFPC.PerkList[PerkIndex].PerkClass.static.GetPerkIconPath();
 	PerkLevel = PlayerInfoStrings[2];
 
-        if(OnlineLobby == none)
+    if(OnlineLobby == none)
 	{
 		return;
 	}
@@ -366,6 +392,19 @@ function ViewProfile(int SlotIndex)
 		if( LobbyInfo.Members.Length > SlotIndex )
 		{
 			`log("View PLAYER profile: " @OnlineLobby.GetFriendNickname(LobbyInfo.Members[SlotIndex].PlayerUID) );
+		}
+	}
+
+	if ( MemberSlots[SlotIndex].bIsSlotTaken )
+	{
+		if ( GetPC().WorldInfo.IsConsoleBuild(CONSOLE_Orbis) )
+		{
+			OnlineSub.PlayerInterfaceEx.ShowGamerCardUIByUsername(GetLP().ControllerId,MemberSlots[SlotIndex].PRI.PlayerName);
+
+		}
+		else
+		{
+			OnlineSub.PlayerInterfaceEx.ShowGamerCardUI(GetLP().ControllerId,MemberSlots[SlotIndex].PRI.UniqueId);
 		}
 	}
 }

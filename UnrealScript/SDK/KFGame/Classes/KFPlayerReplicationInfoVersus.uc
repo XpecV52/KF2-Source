@@ -12,33 +12,28 @@ class KFPlayerReplicationInfoVersus extends KFPlayerReplicationInfo
 	nativereplication
 	dependson(KFVoteCollector);
 
-/** Cached (non-replicated) player owner, used by server */
-var PlayerController PlayerOwner;
+/** Total number of successful grab-type attacks done in this match */
+var int KillsAsZed;
 
-/** Replicated, compressed locations of human players */
-var private vector 		PawnLocationCompressed;
-var private vector 		LastReplicatedSmoothedLocation;
+/** Total number of successful grab-type attacks done in this match */
+var int AssistsAsZed;
+
+/** Total number of successful grab-type attacks done in this match */
+var int DamageDealtAsZed;
+
+/** Total number of successful grab-type attacks done in this match */
+var int ZedGrabs;
+
+/** Total amount of indirect damage dealt this match (bloat mines, crawler gas, etc) */
+var int IndirectDamageDealt;
+
+/** Number of kills per wave */
+var array<int> WaveKills;
 
 cpptext
 {
 	INT* GetOptimizedRepList( BYTE* InDefault, FPropertyRetirement* Retire, INT* Ptr, UPackageMap* Map, UActorChannel* Channel );
 	UBOOL IsTeamReplicationViewer( BYTE TeamNum );
-}
-
-replication
-{
-	if( !bNetOwner && bNetDirty )
-		PawnLocationCompressed;
-}
-
-simulated event PostBeginPlay()
-{
-	super.PostBeginPlay();
-
-	if( Role == ROLE_Authority )
-	{
-		PlayerOwner = PlayerController( Owner );
-	}
 }
 
 simulated function Pawn GetOwnerPawn()
@@ -65,8 +60,6 @@ function SetPlayerTeam( TeamInfo NewTeam )
 	{
 		return;
 	}
-
-	PlayerOwner = PlayerController( Owner );
 
 	SetTimer( 1.f, true, nameOf(UpdateReplicatedVariables) );
 }
@@ -195,82 +188,9 @@ reliable client function ClientRecieveNewTeam()
 	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
 	if(KFGRI.bMatchHasBegun)
 	{
-		MyGFxHud.CreateHUDMovie();
+		MyGFxHud.CreateHUDMovie(true);
 	}
 
-}
-
-function UpdateReplicatedVariables()
-{
-	if( !bIsSpectator && 
-		PlayerOwner != none && 
-		PlayerOwner.GetTeamNum() == 0 &&
-		PlayerOwner.Pawn != none && 
-		PlayerOwner.Pawn.IsAliveAndWell() )
-	{
-		UpdatePawnLocation();
-	}
-	else if( !IsZero( PawnLocationCompressed ) )
-	{
-		PawnLocationCompressed = vect(0,0,0);
-	}
-
-	UpdateReplicatedPlayerHealth();
-}
-
-/** Called once per second while on the human team to refresh replicated position */
-function UpdatePawnLocation()
-{
-		PawnLocationCompressed = PlayerOwner.Pawn.Location;
-		// Compress
-		PawnLocationCompressed *= 0.01f;
-}
-
-function UpdateReplicatedPlayerHealth()
-{
-	local Pawn OwnerPawn;
-
-	if( PlayerOwner != none )
-	{
-		OwnerPawn = PlayerOwner.Pawn;
-		if( OwnerPawn != none && OwnerPawn.Health != PlayerHealth )
-		{
-			PlayerHealth = OwnerPawn.Health;
-			PlayerHealthPercent = FloatToByte( float(OwnerPawn.Health) / float(OwnerPawn.HealthMax) );
-		}
-	}
-}
-
-/** Called when owner's pawn is killed */
-function IncrementDeaths(optional int Amt = 1)
-{
-	Super.IncrementDeaths(Amt);
-
-	// Update (zero) replicated location immediately instead of waiting for the timer
-	PawnLocationCompressed = vect(0,0,0);
-}
-
-/** Return location used for overhead icon */
-simulated function vector GetReplicatedPawnIconLocation(float BlendSpeed)
-{
-	local vector UncompressedLocation;
-
-	UncompressedLocation = PawnLocationCompressed * 100.f;
-
-	// if new location is nearby add some quick and dirty blending
-	// @note: We're faking timestep and making a few assumptions about the HUD
-	if ( BlendSpeed > 0 && !IsZero(UncompressedLocation) && VSizeSq(UncompressedLocation - LastReplicatedSmoothedLocation) < Square(500) )
-	{
-		LastReplicatedSmoothedLocation = VInterpTo( LastReplicatedSmoothedLocation,
-                                UncompressedLocation, WorldInfo.DeltaSeconds,
-                                VSize(UncompressedLocation - LastReplicatedSmoothedLocation) * BlendSpeed );
-	}
-	else
-	{
-		LastReplicatedSmoothedLocation = UncompressedLocation;		
-	}
-
-	return LastReplicatedSmoothedLocation;
 }
 
 simulated function VOIPStatusChanged( PlayerReplicationInfo Talker, bool bIsTalking )
@@ -281,6 +201,58 @@ simulated function VOIPStatusChanged( PlayerReplicationInfo Talker, bool bIsTalk
 	}
 
 	super.VOIPStatusChanged(Talker, bIsTalking);
+}
+
+
+function RecordEndGameInfo()
+{
+	local KFPlayerController KFPC;
+
+	if(GetTeamNum() == 255)
+	{
+		KFPC = KFPlayerController(Owner);
+		if( KFPC != none && KFPC.MatchStats != none )
+		{
+			KillsAsZed = Kills;
+			AssistsAsZed = Assists;
+			DamageDealtAsZed = KFPC.MatchStats.TotalDamageDealt;
+		}
+	}
+}
+
+/** Increment total death count on survivor team */
+function IncrementDeaths(optional int Amt = 1)
+{
+	local KFGameInfo MyGameInfo;
+
+	super.IncrementDeaths( Amt );
+
+	if( GetTeamNum() == 0 )
+	{
+		MyGameInfo = KFGameInfo(WorldInfo.Game);
+		if( MyGameInfo != none )
+		{
+			MyGameInfo.HumanDeaths += Amt;
+		}
+	}
+}
+
+/* Reset()
+reset actor to initial state - used when restarting level without reloading.
+*/
+function Reset()
+{
+	local bool bPrevWaitingPlayer, bPrevReadyToPlay;
+
+	Assists = 0;
+
+	bPrevWaitingPlayer = bWaitingPlayer;
+	bPrevReadyToPlay = bReadyToPlay;
+
+	super.Reset();
+
+	bWaitingPlayer = bPrevWaitingPlayer;
+	bReadyToPlay = bPrevReadyToPlay;
 }
 
 defaultproperties

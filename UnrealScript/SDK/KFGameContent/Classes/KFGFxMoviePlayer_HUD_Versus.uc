@@ -116,14 +116,6 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 			SetWidgetPathBinding( Widget, WidgetPath );
 		}
 		break;
-	case 'ScoreboardWidgetMC':
-		if ( ScoreboardWidget == none )
-		{
-			ScoreboardWidget = KFGFxHUD_ScoreboardWidget(Widget);
-			ScoreboardWidget.InitializeHUD();
-			SetWidgetPathBinding( Widget, WidgetPath );
-		}
-		break;
 	case 'ChatBoxWidget':
 		if(!(class'WorldInfo'.static.IsPlayInEditor()))
 		{
@@ -175,6 +167,26 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 	}
 
 	return true;
+}
+
+function ReceivePawn(KFPawn NewPawn)
+{
+	super.ReceivePawn(NewPawn);
+
+	if(MoveListContainer != none)
+	{
+		MoveListContainer.MyKFPM = KFPawn_Monster(NewPawn);
+	}
+}
+
+function PawnDied()
+{
+	super.PawnDied();
+	if(MoveListContainer != none)
+	{
+		MoveListContainer.MyKFPM = none;
+		MoveListContainer.ClearMovieList();
+	}
 }
 
 DefaultProperties

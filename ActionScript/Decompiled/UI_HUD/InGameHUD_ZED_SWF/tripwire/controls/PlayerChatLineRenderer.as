@@ -40,6 +40,7 @@ package tripwire.controls
         override public function setData(param1:Object) : void
         {
             var _loc2_:* = new TextFormat();
+            _loc2_ = textField.getTextFormat();
             this.data = param1;
             _loc2_.color = !!param1 ? param1.messageClr : 16777215;
             textField.defaultTextFormat = _loc2_;
@@ -77,6 +78,7 @@ package tripwire.controls
         public function setColor(param1:Number) : *
         {
             var _loc2_:* = new TextFormat();
+            _loc2_ = textField.getTextFormat();
             _loc2_.color = !!data ? data.messageClr : 16777215;
             textField.defaultTextFormat = _loc2_;
         }

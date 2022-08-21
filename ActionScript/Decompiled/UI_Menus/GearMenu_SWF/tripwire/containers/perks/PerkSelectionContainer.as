@@ -23,9 +23,11 @@ package tripwire.containers.Perks
         
         public var header:SectionHeaderContainer;
         
-        public var currentPerk:int = 1;
+        public var currentPerk:int = -1;
         
         private var _bLostFocus:Boolean = false;
+        
+        private var _bFirstChange:Boolean = true;
         
         public function PerkSelectionContainer()
         {
@@ -100,7 +102,7 @@ package tripwire.containers.Perks
         
         public function onPerkChanged(param1:ListEvent) : *
         {
-            if(bManagerUsingGamepad && this.perkScrollingList.hasFocus && !this._bLostFocus)
+            if(bManagerUsingGamepad && this.perkScrollingList.hasFocus && !this._bLostFocus && !this._bFirstChange)
             {
                 TweenMax.killTweensOf(this);
                 TweenMax.to(this,ANIM_TIME,{
@@ -112,6 +114,12 @@ package tripwire.containers.Perks
                 FocusHandler.getInstance().setFocus(this.perkScrollingList);
             }
             this._bLostFocus = !this.perkScrollingList.hasFocus;
+            this._bFirstChange = false;
+        }
+        
+        public function get SelectedIndex() : int
+        {
+            return this.perkScrollingList.selectedIndex;
         }
         
         public function set SelectedIndex(param1:int) : *
@@ -123,11 +131,26 @@ package tripwire.containers.Perks
                 _loc2_ = this.perkScrollingList.getRendererAt(_loc3_) as PerkSelectLineRenderer;
                 if(_loc3_ == param1)
                 {
-                    _loc2_.active = true;
                     if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
                     {
                         FocusHandler.getInstance().setFocus(_loc2_);
                     }
+                }
+                _loc3_++;
+            }
+            this.perkScrollingList.selectedIndex = param1;
+        }
+        
+        public function set ActiveIndex(param1:int) : *
+        {
+            var _loc2_:PerkSelectLineRenderer = null;
+            var _loc3_:int = 0;
+            while(_loc3_ < this.perkScrollingList.dataProvider.length)
+            {
+                _loc2_ = this.perkScrollingList.getRendererAt(_loc3_) as PerkSelectLineRenderer;
+                if(_loc3_ == param1)
+                {
+                    _loc2_.active = true;
                 }
                 else
                 {
@@ -135,8 +158,6 @@ package tripwire.containers.Perks
                 }
                 _loc3_++;
             }
-            this.perkScrollingList.selectedIndex = param1;
-            this.currentPerk = param1;
         }
         
         public function set perkData(param1:Array) : *

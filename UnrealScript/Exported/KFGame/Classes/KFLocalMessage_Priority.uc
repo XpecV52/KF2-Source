@@ -27,6 +27,9 @@ var localized string            HumansLoseMessage;
 var localized string            HumansWinMessage;
 var localized string			AttackHumanPlayersString;
 var localized string			ZedGroupRegroupingString;
+var localized string 			NextRoundBeginString;
+var localized string 			PlayerCanChangePerksString;
+var localized string 			ZedWaitingForNextRoundString;
 
 enum EGameMessageType
 {
@@ -44,7 +47,8 @@ enum EGameMessageType
 	GMT_Died,
 	GMT_ZedsWin,
 	GMT_HumansWin,
-	GMT_AttackHumanPlayers
+	GMT_AttackHumanPlayers,
+	GMT_NextRoundBegin
 };
 
 static function ClientReceive(
@@ -84,19 +88,6 @@ static function ClientReceive(
 			{
 				KFGRI.bMatchVictory = true;
 			}
-			class'KFMusicStingerHelper'.static.PlayMatchWonStinger( P );
-			break;
-
-		case GMT_MatchLost:
-			class'KFMusicStingerHelper'.static.PlayMatchLostStinger( P );
-			break;
-
-		case GMT_HumansWin:
-			KFGRI = KFGameReplicationInfo(P.WorldInfo.GRI);
-			if(KFGRI != none)
-			{
-				KFGRI.bMatchVictory = true;
-			}
 			if(P.PlayerReplicationInfo.GetTeamNum() == 255)
 			{
 				class'KFMusicStingerHelper'.static.PlayMatchLostStinger( P );
@@ -108,7 +99,7 @@ static function ClientReceive(
 			
 			break;
 
-		case GMT_ZedsWin:
+		case GMT_MatchLost:
 			if(P.PlayerReplicationInfo.GetTeamNum() == 255)
 			{
 				class'KFMusicStingerHelper'.static.PlayMatchWonStinger( P );
@@ -116,6 +107,35 @@ static function ClientReceive(
 			else
 			{
 				class'KFMusicStingerHelper'.static.PlayMatchLostStinger( P );
+			}
+			
+			break;
+
+		case GMT_HumansWin:
+			KFGRI = KFGameReplicationInfo(P.WorldInfo.GRI);
+			if(KFGRI != none)
+			{
+				KFGRI.bMatchVictory = true;
+			}
+			if(P.PlayerReplicationInfo.GetTeamNum() == 255)
+			{
+				class'KFMusicStingerHelper'.static.PlayRoundLostStinger( P );
+			}
+			else
+			{
+				class'KFMusicStingerHelper'.static.PlayRoundWonStinger( P );
+			}
+			
+			break;
+
+		case GMT_ZedsWin:
+			if(P.PlayerReplicationInfo.GetTeamNum() == 255)
+			{
+				class'KFMusicStingerHelper'.static.PlayRoundWonStinger( P );
+			}
+			else
+			{
+				class'KFMusicStingerHelper'.static.PlayRoundLostStinger( P );
 			}
 			
 			break;
@@ -210,6 +230,16 @@ static function string GetMessageString(int Switch, optional out String Secondar
 			return "";
 		case GMT_AttackHumanPlayers:
 			return default.AttackHumanPlayersString;
+		case GMT_NextRoundBegin:
+			if( TeamIndex == 255 )
+			{
+				SecondaryString = default.ZedWaitingForNextRoundString;
+			}
+			else
+			{
+				SecondaryString = default.PlayerCanChangePerksString;
+			}
+			return default.NextRoundBeginString;
 		default:
 			return "";
 	}
@@ -235,6 +265,8 @@ static function float GetMessageLifeTime(int Switch)
 			return 0.f;
 		case GMT_AttackHumanPlayers:
 			return 2.f;
+		case GMT_NextRoundBegin:
+			return 5.f;
 	}
 
     return default.LifeTime;
@@ -247,18 +279,21 @@ defaultproperties
    GetToTraderMessage="Get to the Trader Pod"
    YouLostMessage="D E F E A T"
    YouWonMessage="V I C T O R Y"
-   SquadWipedOutMessage="Your squad was wiped out"
-   SquadSurvivedMessage="Your squad survived"
+   SquadWipedOutMessage="Your squad was wiped out!"
+   SquadSurvivedMessage="Your squad survived!"
    ObjectiveStartMessage="Objective Started!"
    ObjectiveWonMessage="Objective Won!"
    ObjectiveLostMessage="Objective Lost!"
    ObjectiveEndedMessage="Objective Ended!"
    ObjNotEnoughPlayersMessage="Not Enough Players!"
    ObjTimeRanOutMessage="Time Limit Reached!"
-   HumansLoseMessage="Humans squad wiped out!"
-   HumansWinMessage="Humans squad survived!"
+   HumansLoseMessage="Human squad wiped out!"
+   HumansWinMessage="Human squad survived!"
    AttackHumanPlayersString="Attack the Human Players!"
    ZedGroupRegroupingString="Zed Horde regrouping!"
+   NextRoundBeginString="N E X T  R O U N D"
+   PlayerCanChangePerksString="Perk changes are allowed"
+   ZedWaitingForNextRoundString="Zed Horde invasion imminent!"
    Name="Default__KFLocalMessage_Priority"
    ObjectArchetype=KFLocalMessage'KFGame.Default__KFLocalMessage'
 }

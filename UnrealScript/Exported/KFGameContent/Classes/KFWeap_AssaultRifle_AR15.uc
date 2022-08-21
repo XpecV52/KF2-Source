@@ -10,75 +10,13 @@
 
 class KFWeap_AssaultRifle_AR15 extends KFWeap_RifleBase;
 
-/** Number of shots already fired in this burst. */
-var int BurstCount;
-/** Number of shots to fire per burst. */
-var() int BurstAmount;
-
-/*********************************************************************************************
- * State WeaponBurstFiring
- * Fires a burst of bullets. Fire must be released between every shot.
- *********************************************************************************************/
-
-simulated state WeaponBurstFiring extends WeaponFiring
-{
-	simulated function BeginState(Name PrevStateName)
-	{
-        // Reset the BurstCount when we start firing again
-        BurstCount=0;
-
-        // Don't let us fire more shots than we have ammo for
-        BurstAmount=Min(default.BurstAmount, AmmoCount[GetAmmoType(CurrentFireMode)]);
-
-		super.BeginState(PrevStateName);
-	}
-
-	simulated function bool ShouldRefire()
-	{
-		// Stop firing when we hit the burst amount
-        if( BurstCount >= BurstAmount )
-		{
-            return false;
-		}
-    	// if doesn't have ammo to keep on firing, then stop
-    	else if( !HasAmmo( CurrentFireMode ) )
-    	{
-    		return false;
-    	}
-		else
-		{
-            return true;
-		}
-	}
-
-    /**
-     * FireAmmunition: Perform all logic associated with firing a shot
-     * - Fires ammunition (instant hit or spawn projectile)
-     * - Consumes ammunition
-     * - Plays any associated effects (fire sound and whatnot)
-     * Overridden to increment the BurstCount
-     *
-     * Network: LocalPlayer and Server
-     */
-    simulated function FireAmmunition()
-    {
-        super.FireAmmunition();
-        BurstCount++;
-    }
-
-	simulated event EndState( Name NextStateName )
-	{
-		Super.EndState(NextStateName);
-		EndFire(CurrentFireMode);
-	}
-}
-
 defaultproperties
 {
-   BurstAmount=3
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletBurst'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
+   BurstAmount=3
    InventorySize=4
+   MagazineCapacity(0)=20
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -88,7 +26,6 @@ defaultproperties
    DOF_FG_FocalRadius=75.000000
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=25.000000
-   MagazineCapacity(0)=20
    MaxSpareAmmo(0)=240
    InitialSpareMags(0)=6
    FireSightedAnims(1)="Shoot_Iron2"

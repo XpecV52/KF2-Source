@@ -971,7 +971,11 @@ state MovingToGoal
 			CachedChildCommand.NotifyDoorOpened();
 		}
 
-		bPreparingMove = false;
+		// Only allow movement if we're not in a special move that disables movement
+		if( !MyKFPawn.IsDoingSpecialMove() || !MyKFPawn.SpecialMoves[MyKFPawn.SpecialMove].bDisableMovement )
+		{
+			bPreparingMove = false;
+		}
 	}
 
 	/** Checks to see if my pawn can directly move to my enemy (directly reachable), rather than pathfinding */
@@ -1564,7 +1568,7 @@ FailedMove:
 			Pawn.SetPhysics( PHYS_Falling );
 			WaitForLanding();
 			bValidRouteCache = false;
-			if( bPreparingMove && PendingDoor == none )
+			if( bPreparingMove && PendingDoor == none && (!MyKFPawn.IsDoingSpecialMove() || !MyKFPawn.SpecialMoves[MyKFPawn.SpecialMove].bDisableMovement) )
 			{
 				bPreparingMove = false;
 			}
@@ -1579,7 +1583,7 @@ FailedMove:
 	else if( Retries < 5 )
 	{
 		bValidRouteCache = false;
-		if( bPreparingMove && PendingDoor == none )
+		if( bPreparingMove && PendingDoor == none && (!MyKFPawn.IsDoingSpecialMove() || !MyKFPawn.SpecialMoves[MyKFPawn.SpecialMove].bDisableMovement) )
 		{
 			bPreparingMove = false;
 		}
@@ -1594,7 +1598,7 @@ FailedMove:
 	else if( Retries >= 5 && Retries < 10 )
 	{
 		bValidRouteCache = false;
-		if( bPreparingMove && PendingDoor == none )
+		if( bPreparingMove && PendingDoor == none && (!MyKFPawn.IsDoingSpecialMove() || !MyKFPawn.SpecialMoves[MyKFPawn.SpecialMove].bDisableMovement) )
 		{
 			bPreparingMove = false;
 		}

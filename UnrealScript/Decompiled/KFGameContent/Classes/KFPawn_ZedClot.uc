@@ -23,7 +23,7 @@ function int GetSpotterDialogID()
 {
     local int EmergeType;
 
-    if(IsDoingSpecialMove(11))
+    if(IsDoingSpecialMove(10))
     {
         EmergeType = SpecialMoveFlags & 15;
         switch(EmergeType)
@@ -57,16 +57,15 @@ defaultproperties
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedClot.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
     DoshValue=7
-    ResistantDamageTypes=/* Array type was not detected. */
+    DamageTypeModifiers=/* Array type was not detected. */
     KnockedDownBySonicWaveOdds=0.23
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedClot.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
-    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedClot.Afflictions'
-    InstantIncaps=/* Array type was not detected. */
-    StackingIncaps=/* Array type was not detected. */
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedClot.Afflictions'
+    IncapSettings=/* Array type was not detected. */
     SprintSpeed=400
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none

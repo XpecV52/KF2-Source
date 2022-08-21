@@ -17,6 +17,7 @@ defaultproperties
    SingleClass=Class'kfgamecontent.KFWeap_Pistol_Colt1911'
    BonesToLockOnEmpty_L(1)="LW_Bullets1"
    InventorySize=4
+   MagazineCapacity(0)=16
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -32,7 +33,6 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=40.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Dual_M1911_TEX.UI_WeaponSelect_DualM1911'
-   MagazineCapacity(0)=16
    MaxSpareAmmo(0)=128
    InitialSpareMags(0)=3
    BonesToLockOnEmpty(1)="RW_Bullets1"
@@ -102,7 +102,7 @@ defaultproperties
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_DualBase:FirstPersonMesh'
    End Object
    Mesh=FirstPersonMesh
-   ItemName="Dual M1911 Pistol"
+   ItemName="Dual M1911 Pistols"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_DualBase:StaticPickupComponent'
       StaticMesh=StaticMesh'WEP_3P_M1911_MESH.Wep_M1911_Pickup'
       ReplacementPrimitive=None

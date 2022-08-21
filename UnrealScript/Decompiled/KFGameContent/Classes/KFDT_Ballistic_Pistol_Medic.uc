@@ -16,8 +16,8 @@ static function bool CanApplyDamageOverTime(out int InDamage, out class<KFDamage
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_MedicPistol'
-    LegStumblePower=105
-    GunHitPower=103
+    StumblePower=0
+    GunHitPower=45
     ModifierPerkList=/* Array type was not detected. */
     KDamageImpulse=900
     KDeathVel=100

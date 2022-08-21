@@ -83,11 +83,11 @@ package
             mainSlider.enableInitCallback = false;
             mainSlider.focusable = true;
             mainSlider.liveDragging = true;
-            mainSlider.maximum = 1;
+            mainSlider.maximum = 100;
             mainSlider.minimum = 0;
             mainSlider.offsetLeft = 24;
             mainSlider.offsetRight = 0;
-            mainSlider.snapInterval = 0.1;
+            mainSlider.snapInterval = 1;
             mainSlider.snapping = false;
             mainSlider.value = 0;
             mainSlider.visible = true;

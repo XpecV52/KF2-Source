@@ -574,7 +574,7 @@ simulated function ProcessDestructibleTouchOnBounce( Actor Other, Vector HitLoca
 		{
 			LastBounced.Actor = Other;
 			LastBounced.Time = WorldInfo.TimeSeconds;
-			HitWall(HitNormal, Other, None);
+			HitWall(HitNormal, Other, LastTouchComponent);
 		}
 	}
 }
@@ -1056,6 +1056,12 @@ simulated protected function StopFlightEffects()
         ProjEffects.DeactivateSystem();
 	}
 }
+
+/** Can be overridden to detonate a projectile right away */
+function Detonate();
+
+/** Can be overridden to trigger a latent explosion */
+function Timer_Explode();
 
 /** Called when the owning instigator controller has left a game */
 simulated function OnInstigatorControllerLeft();

@@ -9,15 +9,13 @@ class KFDT_Bludgeon_CrovelBash extends KFDT_Bludgeon_Crovel
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 defaultproperties
 {
+	KnockdownPower=0
+	StunPower=0
+    StumblePower=100
+    MeleeHitPower=100
 
-	KnockdownPower=24
-	StunPower=42
-    StumblePower=51
-	LegStumblePower=51
 
     WeaponDef=class'KFWeapDef_Crovel'
 }

@@ -14,62 +14,34 @@ simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bFo
 {
     super.SetCharacterArch( Info, bForce );
 
-    SetGameplayMICParams();
+    UpdateGameplayMICParams();
 }
 
-/** Set gameplay related MIC params on the active body MIC */
-simulated function SetGameplayMICParams()
+/** Reapply active gameplay related MIC params (e.g. when switching to the gore mesh) */
+simulated function UpdateGameplayMICParams()
 {
     local PlayerController PC;
+    local MaterialInstanceConstant MIC;
     
-    super.SetGameplayMICParams();
+    super.UpdateGameplayMICParams();
 
     if( WorldInfo.NetMode != NM_DedicatedServer )
     {
         PC = GetALocalPlayerController();
         if( PC != none )
         {
-            if( BodyMIC != none )
+            foreach CharacterMICs(MIC)
             {
-                BodyMIC.SetScalarParameterValue( 'Scalar_Zedbait', PC.GetTeamNum() == 255 ? 1.f : 0.f );
-            }
-
-            if( HeadMIC != none )
-            {
-                HeadMIC.SetScalarParameterValue( 'Scalar_Zedbait', PC.GetTeamNum() == 255 ? 1.f : 0.f );
+                MIC.SetScalarParameterValue( 'Scalar_Zedbait', PC.GetTeamNum() == 255 ? 1.f : 0.f );
             }
         }
     }
 }
 
+/** Update team highlight */
 simulated function NotifyLocalPlayerTeamReceived()
 {    
-    SetGameplayMICParams();   
-}
-
-/*	Let the game type know this player took damage */
-event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
-{
-	local int OldHealth;
-	local int AppliedDamage;
-
-    OldHealth = Health;
-
-    super.TakeDamage( Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser );
-
-    if( OldHealth > Health )
-    {
-        AppliedDamage = OldHealth - Health;
-    }
-
-	if( AppliedDamage > 0 )
-	{
-        if( KFGameInfo_VersusSurvival(WorldInfo.Game) != none )
-        {
-            // Versus TODO: WIP zed scoring work that wasn't completed
-            KFGameInfo_VersusSurvival(WorldInfo.Game).ScoreDamage(AppliedDamage,InstigatedBy,Controller, self);
-        }
-	}
+    UpdateGameplayMICParams();   
 }
 
 defaultproperties
@@ -89,14 +61,13 @@ defaultproperties
       ObjectArchetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Human:ThirdPersonHead0'
    End Object
    ThirdPersonHeadMeshComponent=ThirdPersonHead0
-   Begin Object Class=KFPawnAfflictions Name=Afflictions_0 Archetype=KFPawnAfflictions'KFGame.Default__KFPawn_Human:Afflictions_0'
-      bNoBurnedMatBeforeDeath=True
+   Begin Object Class=KFAfflictionManager Name=Afflictions_0 Archetype=KFAfflictionManager'KFGame.Default__KFPawn_Human:Afflictions_0'
       FireFullyCharredDuration=2.500000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
-      ObjectArchetype=KFPawnAfflictions'KFGame.Default__KFPawn_Human:Afflictions_0'
+      ObjectArchetype=KFAfflictionManager'KFGame.Default__KFPawn_Human:Afflictions_0'
    End Object
-   AfflictionHandler=KFPawnAfflictions'kfgamecontent.Default__KFPawn_Human_Versus:Afflictions_0'
+   AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_Human_Versus:Afflictions_0'
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Human:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True
       bOverrideAttachmentOwnerVisibility=True
@@ -137,10 +108,9 @@ defaultproperties
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=None
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_HansGrappleVictim'
-      SpecialMoveClasses(30)=Class'kfgamecontent.KFSM_PlayerSiren_VortexVictim'
+      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(29)=Class'kfgamecontent.KFSM_PlayerSiren_VortexVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Human:SpecialMoveHandler_0'
    End Object
@@ -200,9 +170,8 @@ defaultproperties
       RBCollideWithChannels=(Default=True,Pawn=True,Vehicle=True,BlockingVolume=True)
       Translation=(X=0.000000,Y=0.000000,Z=-86.000000)
       ScriptRigidBodyCollisionThreshold=200.000000
-      PerObjectShadowCullDistance=4000.000000
+      PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
-      bAllowPerObjectShadowBatching=True
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Human:KFPawnSkeletalMeshComponent'
    End Object

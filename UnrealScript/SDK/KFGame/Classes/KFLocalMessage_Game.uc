@@ -170,9 +170,9 @@ static function string GetString(
 		case GMT_UserSharingContent:
             return RelatedPRI_1.PlayerName @Default.SharingContentString;
 		case KMT_Killed:
-			return	RelatedPRI_1.PlayerName$GetKilledByZedMessage( OptionalObject );
+			return	RelatedPRI_2.PlayerName$GetKilledByZedMessage( OptionalObject );
 		case KMT_Suicide:
-			return	RelatedPRI_1.PlayerName@ default.SuicideMessage;
+			return	RelatedPRI_2.PlayerName@ default.SuicideMessage;
 		default:
 			return "";
 	}

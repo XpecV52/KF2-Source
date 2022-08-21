@@ -39,7 +39,7 @@ simulated event ReplicatedEvent(name VarName)
 	switch( VarName )
 	{
 	case nameof(bIsCloakingSpottedByTeam):
-		SetGameplayMICParams();
+		UpdateGameplayMICParams();
 		break;
 	case nameof(bIsCloaking):
 		ClientCloakingStateUpdated();
@@ -54,7 +54,7 @@ function SetCloaked(bool bNewCloaking)
 {
 	if ( bCanCloak )
 	{
-		if( IsImpaired() && bNewCloaking )
+		if( bNewCloaking && (IsImpaired() || IsIncapacitated()) )
 		{
 			return;
 		}
@@ -68,10 +68,11 @@ function SetCloaked(bool bNewCloaking)
 
 		if( WorldInfo.NetMode != NM_DedicatedServer )
 		{
-			SetGameplayMICParams();
+			UpdateGameplayMICParams();
 			Mesh.SetPerObjectShadows(!bNewCloaking);
+			ClearBloodDecals();
 		}
-
+		
 		super.SetCloaked( bNewCloaking );
 	}
 }
@@ -87,16 +88,16 @@ simulated function ClientCloakingStateUpdated()
 		ClearBloodDecals();
 	}
 	
-	SetGameplayMICParams();
+	UpdateGameplayMICParams();
 	Mesh.SetPerObjectShadows( !bIsCloaking );
 }
 
 /** Handle cloaking materials */
-simulated function SetGameplayMICParams()
+simulated function UpdateGameplayMICParams()
 {
 	local bool bIsSpotted;
 
-	super.SetGameplayMICParams();
+	super.UpdateGameplayMICParams();
 
 	// Cannot cloak after stalker has been gored
 	if ( !bIsGoreMesh && WorldInfo.NetMode != NM_DedicatedServer )
@@ -106,11 +107,11 @@ simulated function SetGameplayMICParams()
 
 		if ( bIsSpotted && bIsCloaking )
 		{
-			BodyMIC.SetParent(SpottedMaterial);
+			CharacterMICs[0].SetParent(SpottedMaterial);
 		}
-		else if( BodyMIC.Parent == SpottedMaterial )
+		else if( CharacterMICs[0].Parent == SpottedMaterial )
 		{
-			BodyMIC.SetParent(Mesh.SkeletalMesh.Materials[0]);
+			CharacterMICs[0].SetParent(Mesh.SkeletalMesh.Materials[0]);
 			PlayStealthSoundLoop();
 		}
 	}
@@ -133,7 +134,7 @@ simulated event NotifyGoreMeshActive()
 	// Set to our solid gore mat (only AI-controlled)
 	if( PlayerReplicationInfo == none && Mesh.SkeletalMesh.Materials.Length > 2 )
 	{
-		BodyMIC.SetParent( Mesh.SkeletalMesh.Materials[2] );	
+		CharacterMICs[0].SetParent( Mesh.SkeletalMesh.Materials[2] );	
 	}
 }
 
@@ -168,13 +169,13 @@ simulated event Tick( float DeltaTime )
 			if( CloakPercent < 1.0f )
 			{
 				CloakPercent = fMin( CloakPercent + DeltaTime*DeCloakSpeed, 1.0f );
-				BodyMIC.SetScalarParameterValue( 'Transparency', CloakPercent );
+				CharacterMICs[0].SetScalarParameterValue( 'Transparency', CloakPercent );
 			}
 		}
 		else if( CloakPercent > MinCloakPct )
 		{
 			CloakPercent = fMax( CloakPercent - DeltaTime*CloakSpeed, MinCloakPct );
-			BodyMIC.SetScalarParameterValue( 'Transparency', CloakPercent );
+			CharacterMICs[0].SetScalarParameterValue( 'Transparency', CloakPercent );
 		}
 	}
 }
@@ -245,7 +246,7 @@ simulated event UpdateSpottedStatus()
 	{
 		if ( bIsCloakingSpottedByLP != bOldSpottedByLP )
 		{
-			SetGameplayMICParams();
+			UpdateGameplayMICParams();
 		}
 	}
 }
@@ -255,7 +256,7 @@ function CallOutCloaking( optional KFPlayerController CallOutController )
 {
 	bIsCloakingSpottedByTeam = true;
 	LastStoredCC = CallOutController;
-	SetGameplayMICParams();
+	UpdateGameplayMICParams();
 	SetTimer(2.f, false, nameof(CallOutCloakingExpired));
 }
 
@@ -264,11 +265,18 @@ function CallOutCloakingExpired()
 {
 	bIsCloakingSpottedByTeam = false;
 	LastStoredCC = none;
-	SetGameplayMICParams();
+	UpdateGameplayMICParams();
 }
 
-/** Spawns and attaches the rally effect to a specified bone */
-simulated function SpawnRallyEffect( ParticleSystem RallyEffect, name EffectBoneName, vector EffectOffset )
+/** Applies the rally buff and spawns a rally effect */
+simulated function Rally(
+							ParticleSystem 	RallyEffect,
+							name 			EffectBoneName,
+							vector			EffectOffset,
+							ParticleSystem	PlayerRallyEffect,
+							name 			PlayerRallyEffectBoneNames[2],
+							vector 			PlayerRallyEffectOffset
+						)
 {
 	local PlayerController PC;
 
@@ -288,7 +296,7 @@ simulated function SpawnRallyEffect( ParticleSystem RallyEffect, name EffectBone
 		}
 	}
 
-	super.SpawnRallyEffect( RallyEffect, EffectBoneName, EffectOffset );
+	super.Rally( RallyEffect, EffectBoneName, EffectOffset, PlayerRallyEffect, PlayerRallyEffectBoneNames, PlayerRallyEffectOffset );
 }
 
 /* PlayDying() is called on server/standalone game when killed
@@ -321,7 +329,7 @@ function OnStackingAfflictionChanged(byte Id)
 
 	if( Role == ROLE_Authority && IsAliveAndWell() )
 	{
-		if ( Id == SAF_EMPPanic || Id == SAF_EMPDisrupt )
+		if ( Id == AF_EMP )
 		{
 			SetCloaked( !bEMPPanicked && !bEMPDisrupted );
 		}
@@ -417,8 +425,18 @@ defaultproperties
    XPValues(1)=10.000000
    XPValues(2)=10.000000
    XPValues(3)=10.000000
-   ResistantDamageTypes(16)=(DamageType=Class'KFGame.KFDT_Toxic')
-   ResistantDamageTypes(17)=(DamageType=Class'kfgamecontent.KFDT_Microwave')
+   DamageTypeModifiers(0)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Submachinegun',DamageScale=(0.500000))
+   DamageTypeModifiers(1)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AssaultRifle',DamageScale=(2.500000))
+   DamageTypeModifiers(2)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Shotgun',DamageScale=(0.250000))
+   DamageTypeModifiers(3)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Handgun',DamageScale=(0.750000))
+   DamageTypeModifiers(4)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rifle',DamageScale=(0.300000))
+   DamageTypeModifiers(5)=(DamageType=Class'KFGame.KFDT_Slashing')
+   DamageTypeModifiers(6)=(DamageType=Class'KFGame.KFDT_Bludgeon')
+   DamageTypeModifiers(7)=(DamageType=Class'KFGame.KFDT_Fire',DamageScale=(0.300000))
+   DamageTypeModifiers(8)=(DamageType=Class'kfgamecontent.KFDT_Microwave',DamageScale=(0.200000))
+   DamageTypeModifiers(9)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=(0.300000))
+   DamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Piercing')
+   DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic')
    PawnAnimInfo=KFPawnAnimInfo'ZED_Stalker_ANIM.Stalker_AnimGroup'
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
       ReplacementPrimitive=None
@@ -430,24 +448,23 @@ defaultproperties
    bCanCloak=True
    bIsCloaking=True
    PenetrationResistance=0.500000
-   Begin Object Class=KFPawnAfflictions Name=Afflictions_0 Archetype=KFPawnAfflictions'KFGame.Default__KFPawn_Monster:Afflictions_0'
+   Begin Object Class=KFAfflictionManager Name=Afflictions_0 Archetype=KFAfflictionManager'KFGame.Default__KFPawn_Monster:Afflictions_0'
       FireFullyCharredDuration=2.500000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
-      ObjectArchetype=KFPawnAfflictions'KFGame.Default__KFPawn_Monster:Afflictions_0'
+      ObjectArchetype=KFAfflictionManager'KFGame.Default__KFPawn_Monster:Afflictions_0'
    End Object
-   AfflictionHandler=KFPawnAfflictions'kfgamecontent.Default__KFPawn_ZedStalker:Afflictions_0'
-   InstantIncaps(0)=(head=50,Torso=75,Leg=75,Arm=75,LowHealthBonus=10,Cooldown=9.000000)
-   InstantIncaps(1)=(head=43,Torso=45,Leg=60,Arm=60,LowHealthBonus=10,Cooldown=3.000000)
-   InstantIncaps(2)=(head=43,Torso=46,Arm=46,LowHealthBonus=10)
-   InstantIncaps(3)=(Leg=46,LowHealthBonus=10,Cooldown=1.000000)
-   InstantIncaps(4)=(head=23,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=0.350000)
-   InstantIncaps(5)=(head=106,Torso=106,Leg=106,Arm=106,LowHealthBonus=10,Cooldown=1.000000)
-   StackingIncaps(1)=(Threshhold=2.000000,Duration=2.500000,DissipationRate=0.050000)
-   StackingIncaps(2)=(Threshhold=6.000000,Cooldown=20.500000)
-   StackingIncaps(3)=(Cooldown=20.500000)
-   StackingIncaps(4)=()
-   StackingIncaps(5)=()
+   AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedStalker:Afflictions_0'
+   IncapSettings(0)=(Vulnerability=(2.500000))
+   IncapSettings(1)=(Duration=4.000000,Cooldown=3.000000,Vulnerability=(3.000000))
+   IncapSettings(2)=(Vulnerability=(2.000000))
+   IncapSettings(3)=(Vulnerability=(0.750000))
+   IncapSettings(4)=(Cooldown=0.500000,Vulnerability=(1.000000))
+   IncapSettings(5)=(Cooldown=5.000000,Vulnerability=(2.000000,2.000000,1.000000,1.000000,1.000000))
+   IncapSettings(6)=(Duration=5.500000,Cooldown=7.500000,Vulnerability=(10.000000))
+   IncapSettings(7)=(Cooldown=1.000000,Vulnerability=(1.500000))
+   IncapSettings(8)=(Duration=2.000000,Cooldown=1.500000,Vulnerability=(2.500000))
+   IncapSettings(9)=(Cooldown=20.500000,Vulnerability=(0.000000))
    PhysRagdollImpulseScale=0.900000
    KnockdownImpulseScale=0.900000
    SprintSpeed=500.000000
@@ -467,20 +484,20 @@ defaultproperties
       SpecialMoveClasses(0)=None
       SpecialMoveClasses(1)=Class'KFGame.KFSM_MeleeAttack'
       SpecialMoveClasses(2)=Class'KFGame.KFSM_DoorMeleeAttack'
-      SpecialMoveClasses(3)=None
-      SpecialMoveClasses(4)=Class'KFGame.KFSM_GrappleAttack'
-      SpecialMoveClasses(5)=Class'KFGame.KFSM_Stumble'
-      SpecialMoveClasses(6)=Class'KFGame.KFSM_RecoverFromRagdoll'
-      SpecialMoveClasses(7)=Class'KFGame.KFSM_RagdollKnockdown'
-      SpecialMoveClasses(8)=Class'KFGame.KFSM_DeathAnim'
-      SpecialMoveClasses(9)=Class'KFGame.KFSM_Stunned'
-      SpecialMoveClasses(10)=Class'KFGame.KFSM_Frozen'
-      SpecialMoveClasses(11)=Class'KFGame.KFSM_Emerge'
-      SpecialMoveClasses(12)=None
-      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_Taunt'
-      SpecialMoveClasses(14)=Class'KFGame.KFSM_Zed_WalkingTaunt'
-      SpecialMoveClasses(15)=Class'KFGame.KFSM_Evade'
-      SpecialMoveClasses(16)=Class'kfgamecontent.KFSM_Evade_Fear'
+      SpecialMoveClasses(3)=Class'KFGame.KFSM_GrappleCombined'
+      SpecialMoveClasses(4)=Class'KFGame.KFSM_Stumble'
+      SpecialMoveClasses(5)=Class'KFGame.KFSM_RecoverFromRagdoll'
+      SpecialMoveClasses(6)=Class'KFGame.KFSM_RagdollKnockdown'
+      SpecialMoveClasses(7)=Class'KFGame.KFSM_DeathAnim'
+      SpecialMoveClasses(8)=Class'KFGame.KFSM_Stunned'
+      SpecialMoveClasses(9)=Class'KFGame.KFSM_Frozen'
+      SpecialMoveClasses(10)=Class'KFGame.KFSM_Emerge'
+      SpecialMoveClasses(11)=None
+      SpecialMoveClasses(12)=Class'KFGame.KFSM_Zed_Taunt'
+      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_WalkingTaunt'
+      SpecialMoveClasses(14)=Class'KFGame.KFSM_Evade'
+      SpecialMoveClasses(15)=Class'kfgamecontent.KFSM_Evade_Fear'
+      SpecialMoveClasses(16)=None
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
       SpecialMoveClasses(19)=None
@@ -491,9 +508,8 @@ defaultproperties
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=None
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
@@ -533,7 +549,7 @@ defaultproperties
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:DialogAkSoundComponent'
    End Object
    DialogAkComponent=DialogAkSoundComponent
-   DamageRecoveryTimeHeavy=0.200000
+   DamageRecoveryTimeHeavy=0.650000
    Mass=50.000000
    GroundSpeed=400.000000
    Health=75
@@ -560,8 +576,7 @@ defaultproperties
       RBCollideWithChannels=(Default=True,Pawn=True,Vehicle=True,BlockingVolume=True)
       Translation=(X=0.000000,Y=0.000000,Z=-86.000000)
       ScriptRigidBodyCollisionThreshold=200.000000
-      PerObjectShadowCullDistance=4000.000000
-      bAllowPerObjectShadowBatching=True
+      PerObjectShadowCullDistance=2500.000000
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:KFPawnSkeletalMeshComponent'
    End Object

@@ -76,6 +76,9 @@ var(Weapon) float   ZedGrabGrenadeTossCooldown;
 /** Set when calling StartFire(DEFAULT_FIREMODE) from a gamepad press */
 var bool bGamepadFireEntry;
 
+/** Number of shots to fire per burst. */
+var(Weapon)	byte BurstAmount;
+
 /************************************************************************************
  * @name	Aim Assist
  ***********************************************************************************/
@@ -272,7 +275,7 @@ const SECONDARY_AMMO	= 1;
 /** Ammo from current magazine */
 var				byte	AmmoCount[2];
 /** Size of the weapon magazine, i.e. how many rounds it can hold */
-var(Inventory)	int		MagazineCapacity[2];
+var(Inventory)	byte	MagazineCapacity[2];
 /** Is this a no magazine/clip weapon e.g. the hunting shotgun? */
 var(Inventory)	bool 	bNoMagazine;
 
@@ -280,7 +283,7 @@ var(Inventory)	bool 	bNoMagazine;
 /// Spare ammo - Primary Only... for now
 
 /** Spare ammo, contained in extra magazines (outside of what's currently in the weapon) */
-var				int		SpareAmmoCount[2];
+var repnotify	int		SpareAmmoCount[2];
 /** Maximum amount of amount that can be carried for this gun, not counting what is in the magazine. Total amount this weapon can carry is MaxSpareAmmo + MagazineCapacity */
 var(Inventory)	int		MaxSpareAmmo[2];
 /** Number of additional magazines to start with. Starting ammo total is (InitialSpareMags * MagazineCapacity) + MagazineCapacity */
@@ -302,8 +305,16 @@ var EReloadStatus		ReloadStatus;
 var(Inventory) bool		bCanBeReloaded;
 var(Inventory) bool		bReloadFromMagazine;
 
-/** Number of rounds to reload during the reload state */
+/** Number of rounds left to reload during the reload state */
 var byte ReloadAmountLeft;
+/** Number of rounds to reload during the reload state */
+var byte InitialReloadAmount;
+
+/**
+*	Initial Spare ammo when starting a reload. Used to keep track of how much ammo should be loaded into the gun
+*	This is so, in case ammo changes when reloading, there are not desync problems.
+*/
+var int InitialReloadSpareAmmo;
 
 /** If set, this weapon can always reload */
 var const bool bInfiniteSpareAmmo;
@@ -1258,9 +1269,8 @@ function bool DenyPickupQuery(class<Inventory> ItemClass, Actor Pickup)
 		else
 		{
 			bDenyPickUp = ((SpareAmmoCount[0] + MagazineCapacity[0]) >= MaxSpareAmmo[0]);
-			
 		}
-		
+
 		if(bDenyPickUp)
 		{
 			KFPC = KFPlayerController(Instigator.Controller);
@@ -1371,6 +1381,12 @@ simulated event SetFOV( float NewFOV )
 		{
 			KFP.ArmsMesh.SetFOV(NewFOV);
 		}
+	}
+
+	// Set the FOV of the Laser Sight
+    if( bHasLaserSight && LaserSight != none )
+	{
+	   LaserSight.SetMeshFOV( NewFOV );
 	}
 }
 
@@ -2245,6 +2261,8 @@ simulated function ChangeVisibility(bool bIsVisible)
 simulated function PlayFireEffects( byte FireModeNum, optional vector HitLocation )
 {
 	local name WeaponFireAnimName;
+	local KFPerk CurrentPerk;
+	local float AdjustedAnimLength;
 
 	// If we have stopped the looping fire sound to play single fire sounds for zed time
 	// start the looping sound back up again when the time is back above zed time speed
@@ -2265,7 +2283,15 @@ simulated function PlayFireEffects( byte FireModeNum, optional vector HitLocatio
 
 				if ( WeaponFireAnimName != '' )
 				{
-					PlayAnimation(WeaponFireAnimName, MySkelMesh.GetAnimLength(WeaponFireAnimName),,FireTweenTime);
+					AdjustedAnimLength = MySkelMesh.GetAnimLength(WeaponFireAnimName);
+
+					CurrentPerk = GetPerk();
+					if( CurrentPerk != none )
+					{
+						CurrentPerk.ModifyRateOfFire( AdjustedAnimLength, self );
+					}
+
+					PlayAnimation(WeaponFireAnimName, AdjustedAnimLength,,FireTweenTime);
 				}
 			}
 
@@ -3865,7 +3891,8 @@ simulated event int GetTotalAmmoAmount(byte FiringMode)
 
 simulated event int GetMaxAmmoAmount(byte FiringMode)
 {
-	return MaxSpareAmmo[GetAmmoType(FiringMode)] + MagazineCapacity[GetAmmoType(FiringMode)];
+	// @todo: [MAXSPAREAMMO] Why was MagazineCapacity added to MaxSpareAmmo in BeginPlay?!?
+	return MaxSpareAmmo[GetAmmoType(FiringMode)];// + MagazineCapacity[GetAmmoType(FiringMode)];
 }
 
 simulated event int GetMissingSpareAmmoAmount(byte FiringMode)
@@ -4033,6 +4060,11 @@ reliable server protected function ServerPlayDryFireSound(byte FireModeNum)
 simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingChannels)
 {
 	Mesh.SetLightingChannels(NewLightingChannels);
+
+	if( LaserSight != none )
+	{
+	   LaserSight.SetMeshLightingChannels(NewLightingChannels);
+	}
 }
 
 /*********************************************************************************************
@@ -4356,10 +4388,11 @@ reliable server function ServerSyncReload(int ClientSpareAmmoCount)
 {
 	local int ClientReloadAmount;
 
-	if ( bAllowClientAmmoTracking && ClientSpareAmmoCount < SpareAmmoCount[0] )
+	// Checks the initial spare ammo values on both the server and client, so any ammo received won't throw off the reload.
+	if ( bAllowClientAmmoTracking && ClientSpareAmmoCount < InitialReloadSpareAmmo )
 	{
 		// clamp to spare ammo size
-		ClientReloadAmount = Min(SpareAmmoCount[0] - ClientSpareAmmoCount, SpareAmmoCount[0]);
+		ClientReloadAmount = Min(InitialReloadSpareAmmo - ClientSpareAmmoCount, InitialReloadSpareAmmo);
 		// consume spare ammo
 		SpareAmmoCount[0] -= ClientReloadAmount;
 
@@ -4471,7 +4504,7 @@ simulated state Active
 			InvManager.LastAttemptedSwitchToWeapon = none;
 		}
 
-		if( bHasLaserSight )
+		if( bHasLaserSight && LaserSight != none )
 		{
 			// Blend in when entering active state.
 			// Also, cancel any active blend out
@@ -4491,9 +4524,9 @@ simulated state Active
 		ClearTimer(nameof(IdleFidgetTimer));
 		ToggleAdditiveBobAnim(false);
 
-		if( bHasLaserSight )
+		if( bHasLaserSight && LaserSight != none )
 		{
-			// Blend out when entering active state.
+			// Blend out when exiting active state.
 			// Also, cancel any active blend in
 			LaserSight.SetAimBlendState(false, true);
 		}
@@ -4535,6 +4568,8 @@ simulated state Active
 	{
 		local Pawn P;
 
+		if ( Instigator == none )
+			return false;
 		if ( bCanBeReloaded && !HasAmmo(DEFAULT_FIREMODE) )
 			return false; // only when Ammo > 0 since most anims check magazine
 		if ( bUsingSights )
@@ -4584,10 +4619,27 @@ simulated state Active
 
 			PlayAnimation(AnimName);
 			LastIdleFidgetAnimTime = WorldInfo.TimeSeconds;
+			SetTimer((MySkelMesh.GetAnimLength(AnimName) * DefaultAnimSpeed),false,nameof(FidgetAnimEnd));
+    		if( bHasLaserSight )
+    		{
+    			// Blend out when exiting active state.
+    			// Also, cancel any active blend in
+    			LaserSight.SetAimBlendState(false, true);
+    		}
 			return true;
 		}
 
 		return false;
+	}
+
+	simulated function FidgetAnimEnd()
+	{
+		if( bHasLaserSight )
+		{
+			// Blend in when entering active state.
+			// Also, cancel any active blend out
+			LaserSight.SetAimBlendState(true, false);
+		}
 	}
 
 	/** Returns true if weapon can potentially be reloaded */
@@ -5227,6 +5279,61 @@ simulated state WeaponSingleFiring extends WeaponFiring
 }
 
 /*********************************************************************************************
+ * State WeaponBurstFiring
+ * Fires a burst of bullets. Fire must be released between every shot.
+ *********************************************************************************************/
+
+simulated state WeaponBurstFiring extends WeaponFiring
+{
+	simulated function BeginState(Name PrevStateName)
+	{
+		// Don't let us fire more shots than we have ammo for
+		BurstAmount=Min(default.BurstAmount, AmmoCount[GetAmmoType(CurrentFireMode)]);
+
+		super.BeginState(PrevStateName);
+	}
+
+	simulated function bool ShouldRefire()
+	{
+		// Stop firing when we hit the burst amount
+		if( 0 >= BurstAmount )
+		{
+			return false;
+		}
+		// if doesn't have ammo to keep on firing, then stop
+		else if( !HasAmmo( CurrentFireMode ) )
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+
+	/**
+	 * FireAmmunition: Perform all logic associated with firing a shot
+	 * - Fires ammunition (instant hit or spawn projectile)
+	 * - Consumes ammunition
+	 * - Plays any associated effects (fire sound and whatnot)
+	 * Overridden to decrement the BurstAmount
+	 *
+	 * Network: LocalPlayer and Server
+	 */
+	simulated function FireAmmunition()
+	{
+		super.FireAmmunition();
+		BurstAmount--;
+	}
+
+	simulated event EndState( Name NextStateName )
+	{
+		Super.EndState(NextStateName);
+		EndFire(CurrentFireMode);
+	}
+}
+
+/*********************************************************************************************
  * State GrenadeFiring
  * Handles firing grenades.
  *********************************************************************************************/
@@ -5375,7 +5482,10 @@ simulated function AbortReload();
 /** Called on local player when reload starts and replicated to server */
 simulated function InitializeReload()
 {
-	ReloadAmountLeft = Min(MagazineCapacity[0] - AmmoCount[0], SpareAmmoCount[0]);
+	ReloadAmountLeft		= Min(MagazineCapacity[0] - AmmoCount[0], SpareAmmoCount[0]);
+	InitialReloadAmount		= ReloadAmountLeft;
+	InitialReloadSpareAmmo	= SpareAmmoCount[0];
+
 	if ( Role < ROLE_Authority )
 	{
 		ServerSendToReload(ReloadAmountLeft);
@@ -5385,7 +5495,9 @@ simulated function InitializeReload()
 /** Called from client when reload starts */
 reliable server function ServerSendToReload(byte ClientReloadAmount)
 {
-	ReloadAmountLeft = ClientReloadAmount;
+	ReloadAmountLeft		= ClientReloadAmount;
+	InitialReloadAmount		= ReloadAmountLeft;
+	InitialReloadSpareAmmo	= SpareAmmoCount[0];
 	SendToFiringState(RELOAD_FIREMODE);
 }
 
@@ -5423,6 +5535,30 @@ simulated state Reloading
 		}
 	}
 
+	/** When we have our spare ammo count replicated while reloading, it will force spare ammo to show
+		up incorrectly, as the server has not yet done it's reload in ServerSyncReload(). This fix forces
+		the spare ammo to be correct on the client */
+	simulated event ReplicatedEvent(name VarName)
+	{
+		local int ClientsideAmmoReloaded;
+
+		if (VarName == nameof(SpareAmmoCount))
+		{
+			// If the reload has not yet begun (spare ammo count will be the same on client and server) do not do any corrections.
+			ClientsideAmmoReloaded = (InitialReloadAmount - ReloadAmountLeft);
+
+			if(Role < Role_Authority && ClientsideAmmoReloaded > 0 && bAllowClientAmmoTracking )
+			{
+				// Re-apply the work already done to the spare ammo because of our reload (the server does not reload at the same time as the client)
+				SpareAmmoCount[0] -= Max(ClientsideAmmoReloaded, 0);
+			}
+		}
+		else
+		{
+			Global.ReplicatedEvent(VarName);
+		}
+	}
+
 	simulated function BeginState(name PreviousStateName)
 	{
 		local KFPerk InstigatorPerk;
@@ -5452,6 +5588,7 @@ simulated state Reloading
 
 	simulated function EndState(Name NextStateName)
 	{
+		local int ActualReloadAmount;
 		ClearZedTimeResist();
 		ClearTimer(nameof(ReloadStatusTimer));
 		ClearTimer(nameof(ReloadAmmoTimer));
@@ -5460,7 +5597,10 @@ simulated state Reloading
 `if(`USE_RELOAD_SYNC)
 		if ( bAllowClientAmmoTracking && Role < ROLE_Authority )
 		{
-			ServerSyncReload(SpareAmmoCount[0]);
+			// Get how much total ammo was reloaded on the client side over the entire course of the reload.
+			ActualReloadAmount = InitialReloadAmount - ReloadAmountLeft;
+			// Sync spare ammo counts using initial spare ammo, and how much ammo has been reloaded since reload began.
+			ServerSyncReload(InitialReloadSpareAmmo - ActualReloadAmount);
 		}
 `endif
 
@@ -5619,7 +5759,6 @@ simulated function float GetReloadRateScale()
 {
 	local float Rate;
 	local KFPerk MyPerk;
-	local KFGameReplicationInfo KFGRI;
 
 	Rate = 1.f;
 
@@ -5627,12 +5766,6 @@ simulated function float GetReloadRateScale()
 	if( MyPerk != None )
 	{
 		Rate = MyPerk.GetReloadRateScale( self );
-	}
-
-	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-	if( KFGRI != none && KFGRI.IsLeadershipActive() )
-	{
-		Rate -= class'KFPerk_Commando'.static.GetLeadshipRateReduction();
 	}
 
 	return Rate;
@@ -5992,6 +6125,14 @@ simulated state MeleeAttackBasic
 
 	simulated function BeginState(Name PreviousStateName)
 	{
+		local KFPerk InstigatorPerk;
+
+		InstigatorPerk = GetPerk();
+		if( InstigatorPerk != none )
+		{
+			SetZedTimeResist( InstigatorPerk.GetZedTimeModifier(self) );
+		}
+
 		// Leave ironsights
 		if ( bUsingSights )
 		{
@@ -6004,6 +6145,7 @@ simulated state MeleeAttackBasic
 
 	simulated function EndState(Name NextStateName)
 	{
+		ClearZedTimeResist();
 		ClearTimer( nameof(RefireCheckTimer) );
 		NotifyEndState();
 	}

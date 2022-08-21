@@ -49,6 +49,7 @@ var byte SharedUnlocks;
 var const array<KFCharacterInfo_Human> CharacterArchetypes;
 var repnotify const CustomizationInfo RepCustomizationInfo;
 var Texture CharPortrait;
+var int DamageDealtOnTeam;
 var class<KFPerk> CurrentPerkClass;
 var int Assists;
 var bool bExtraFireRange;
@@ -58,24 +59,34 @@ var bool bConcussiveActive;
 var bool bPerkCanSupply;
 var bool bPerkSupplyUsed;
 var bool bObjectivePlayer;
+var bool bShowNonRelevantPlayers;
+var private Vector PawnLocationCompressed;
+var private Vector LastReplicatedSmoothedLocation;
+var KFPlayerController KFPlayerOwner;
 
 replication
 {
      if(bNetDirty)
         ActivePerkLevel, Assists, 
         CharPortrait, CurrentPerkClass, 
-        NetPerkIndex, PlayerHealth, 
-        PlayerHealthPercent, RepCustomizationInfo, 
-        bConcussiveActive, bExtraFireRange, 
-        bNukeActive, bObjectivePlayer, 
-        bPerkCanSupply, bSplashActive;
+        DamageDealtOnTeam, NetPerkIndex, 
+        PlayerHealth, PlayerHealthPercent, 
+        RepCustomizationInfo, bConcussiveActive, 
+        bExtraFireRange, bNukeActive, 
+        bObjectivePlayer, bPerkCanSupply, 
+        bSplashActive;
 
      if(bNetDirty && !bNetOwner || bDemoRecording)
         SharedUnlocks, VOIPStatus;
+
+     if(!bNetOwner && bNetDirty)
+        PawnLocationCompressed;
 }
 
 simulated event ReplicatedEvent(name VarName)
 {
+    local KFPlayerController LocalPC;
+
     if(VarName == 'RepCustomizationInfo')
     {
         CharacterCustomizationChanged();        
@@ -90,7 +101,22 @@ simulated event ReplicatedEvent(name VarName)
         {
             if(VarName == 'Score')
             {
-                UpdateTraderDosh();
+                UpdateTraderDosh();                
+            }
+            else
+            {
+                if(VarName == 'PlayerName')
+                {
+                    LocalPC = KFPlayerController(GetALocalPlayerController());
+                    if(LocalPC != none)
+                    {
+                        LocalPC.RecentlyMetPlayers.AddItem(PlayerName;
+                        if((WorldInfo.IsE3Build() && LocalPC.MyGFxManager != none) && LocalPC.MyGFxManager.PartyWidget != none)
+                        {
+                            LocalPC.MyGFxManager.PartyWidget.RefreshParty();
+                        }
+                    }
+                }
             }
         }
     }
@@ -104,6 +130,10 @@ simulated event ReplicatedEvent(name VarName)
 simulated event PostBeginPlay()
 {
     super.PostBeginPlay();
+    if(Role == ROLE_Authority)
+    {
+        KFPlayerOwner = KFPlayerController(Owner);
+    }
 }
 
 reliable server function ServerSwitchTeam();
@@ -587,6 +617,70 @@ function PlayerReplicationInfo Duplicate()
     return NewKFPRI;
 }
 
+function SetPlayerTeam(TeamInfo NewTeam)
+{
+    if(NewTeam != Team)
+    {
+        DamageDealtOnTeam = 0;
+    }
+    super.SetPlayerTeam(NewTeam);
+    KFPlayerOwner = KFPlayerController(Owner);
+    SetTimer(1, true, 'UpdateReplicatedVariables');
+}
+
+function UpdateReplicatedVariables()
+{
+    if((((!bIsSpectator && KFPlayerOwner != none) && KFPlayerOwner.GetTeamNum() == 0) && KFPlayerOwner.Pawn != none) && KFPlayerOwner.Pawn.IsAliveAndWell())
+    {
+        UpdatePawnLocation();        
+    }
+    else
+    {
+        if(!IsZero(PawnLocationCompressed))
+        {
+            PawnLocationCompressed = vect(0, 0, 0);
+        }
+    }
+    UpdateReplicatedPlayerHealth();
+}
+
+function UpdatePawnLocation()
+{
+    PawnLocationCompressed = KFPlayerOwner.Pawn.Location;
+    PawnLocationCompressed *= 0.01;
+}
+
+function UpdateReplicatedPlayerHealth()
+{
+    local Pawn OwnerPawn;
+
+    if(KFPlayerOwner != none)
+    {
+        OwnerPawn = KFPlayerOwner.Pawn;
+        if((OwnerPawn != none) && OwnerPawn.Health != PlayerHealth)
+        {
+            PlayerHealth = byte(OwnerPawn.Health);
+            PlayerHealthPercent = FloatToByte(float(OwnerPawn.Health) / float(OwnerPawn.HealthMax));
+        }
+    }
+}
+
+simulated function Vector GetReplicatedPawnIconLocation(float BlendSpeed)
+{
+    local Vector UncompressedLocation;
+
+    UncompressedLocation = PawnLocationCompressed * 100;
+    if(((BlendSpeed > float(0)) && !IsZero(UncompressedLocation)) && VSizeSq(UncompressedLocation - LastReplicatedSmoothedLocation) < Square(500))
+    {
+        LastReplicatedSmoothedLocation = VInterpTo(LastReplicatedSmoothedLocation, UncompressedLocation, WorldInfo.DeltaSeconds, VSize(UncompressedLocation - LastReplicatedSmoothedLocation) * BlendSpeed);        
+    }
+    else
+    {
+        LastReplicatedSmoothedLocation = UncompressedLocation;
+    }
+    return LastReplicatedSmoothedLocation;
+}
+
 simulated function SetPlayerReady(bool bReady)
 {
     bReadyToPlay = bReady;
@@ -657,6 +751,7 @@ function IncrementDeaths(optional int Amt)
     {
         super.IncrementDeaths(Amt);
     }
+    PawnLocationCompressed = vect(0, 0, 0);
 }
 
 reliable client simulated function MarkSupplierOwnerUsed(KFPlayerReplicationInfo SupplierPRI)
@@ -704,5 +799,7 @@ defaultproperties
     CharacterArchetypes(10)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_DJSkully_archetype'
     CharacterArchetypes(11)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Strasser_Archetype'
     CharacterArchetypes(12)=KFCharacterInfo_Human'CHR_Playable_ARCH.CHR_Tanaka_Archetype'
+    CharacterArchetypes(13)=KFCharacterInfo_Human'CHR_Playable_ARCH.chr_rockabilly_archetype'
     RepCustomizationInfo=(CharacterIndex=0,HeadMeshIndex=0,HeadSkinIndex=0,BodyMeshIndex=0,BodySkinIndex=0,AttachmentMeshIndices=255,AttachmentMeshIndices[1]=255,AttachmentMeshIndices[2]=255,AttachmentSkinIndices=0,AttachmentSkinIndices[1]=0,AttachmentSkinIndices[2]=0)
+    bShowNonRelevantPlayers=true
 }

@@ -37,7 +37,7 @@ defaultproperties
 	ProjFlightTemplate=ParticleSystem'ZED_Hans_EMIT.FX_Grenade_Explosive_01'
 	ExplosionActorClass=class'KFExplosionActor'
 
-	FuseTime=3.5
+	FuseTime=3
 
 	// explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0

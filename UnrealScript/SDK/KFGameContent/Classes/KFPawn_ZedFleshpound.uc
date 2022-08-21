@@ -37,7 +37,7 @@ simulated event PreBeginPlay()
 
 	if( WorldInfo.NetMode != NM_DedicatedServer && Mesh != None )
 	{
-		SetGameplayMICParams();
+		UpdateGameplayMICParams();
 	}
 }
 
@@ -171,8 +171,12 @@ simulated function SetEnraged( bool bNewEnraged )
 	if ( Role == ROLE_Authority )
 	{
 		bIsEnraged = bNewEnraged;
-		/** Sprinting depends soley on whether I'm enraged */
-		SetSprinting( bNewEnraged );
+
+		// Sprint right away if we're AI
+		if( !IsHumanControlled() )
+		{
+			SetSprinting( bNewEnraged );
+		}
 	}
 
 	if ( WorldInfo.NetMode != NM_DedicatedServer )
@@ -187,22 +191,22 @@ simulated function SetEnraged( bool bNewEnraged )
 		}
 
 		/** Set the proper glow material */
-		SetGameplayMICParams();
+		UpdateGameplayMICParams();
 	}
 }
 
 /** Handle GlowColor MIC Param */
-simulated function SetGameplayMICParams()
+simulated function UpdateGameplayMICParams()
 {
 	local MaterialInstanceConstant MIC;
 
-    super.SetGameplayMICParams();
+    super.UpdateGameplayMICParams();
 
 	if ( WorldInfo.NetMode != NM_DedicatedServer )
 	{
 		UpdateBattlePhaseLights();
 
-        MIC = bIsGoreMesh ? GoreMIC : BodyMIC;
+        MIC = CharacterMICs[0];
 
         if( !IsAliveAndWell() )
         {
@@ -239,6 +243,18 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 function class<KFDamageType> GetBumpAttackDamageType()
 {
 	return RageBumpDamageType;
+}
+
+/** 
+ * Used to adjust strength of all incoming afflictions (similar to AdjustDamage)
+ * based on current situation / state.
+ */
+simulated function AdjustAffliction(out float AfflictionPower)
+{
+	if ( bIsEnraged )
+	{
+		AfflictionPower *= 0.25f;
+	}
 }
 
 /*********************************************************************************************
@@ -356,19 +372,32 @@ DefaultProperties
 	// Penetration
     PenetrationResistance=5.0
 
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(0.5)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(0.5)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun', 	        DamageScale=(0.75)))  //0.75
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun', 	        DamageScale=(0.75)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle', 	        DamageScale=(0.75)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(0.3)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(0.4)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(0.3)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 	                DamageScale=(1.0)))  //0.5
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 	                DamageScale=(1.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.75)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.25)))	
+    //DamageTypeModifiers.Add((DamageType=class'KFDamageType', 	DamageScale=(0.5))) // All others
+
+	WeakSpotSocketNames.Add(WeakPointSocket1) // Chest
+
 	// Custom Hit Zones (HeadHealth, SkinTypes, etc...)
 	HeadlessBleedOutTime=7.f
     HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=650, DmgScale=1.1, SkinID=1)
-	HitZones[3]       =(ZoneName=heart,	   BoneName=Spine2,		  Limb=BP_Special,  GoreHealth=150, DmgScale=1.1, SkinID=2)
-	HitZones[5]		  =(ZoneName=lforearm, BoneName=LeftForearm,  Limb=BP_LeftArm,  GoreHealth=20,  DmgScale=0.5, SkinID=3)
-	HitZones[8]		  =(ZoneName=rforearm, BoneName=RightForearm, Limb=BP_RightArm, GoreHealth=20,  DmgScale=0.5, SkinID=3)
+	HitZones[3]       =(ZoneName=heart,	   BoneName=Spine1,		  Limb=BP_Special,  GoreHealth=150, DmgScale=1.1, SkinID=2)
+	HitZones[5]		  =(ZoneName=lforearm, BoneName=LeftForearm,  Limb=BP_LeftArm,  GoreHealth=20,  DmgScale=0.2, SkinID=3)
+	HitZones[8]		  =(ZoneName=rforearm, BoneName=RightForearm, Limb=BP_RightArm, GoreHealth=20,  DmgScale=0.2, SkinID=3)
 
 	DoshValue=200
 
-	VulnerableDamageTypes.Add((DamageType=class'KFDT_Explosive', DamageScale=1.5))
-	VulnerableDamageTypes.Add((DamageType=class'KFDT_Piercing', DamageScale=1.5))
-	VulnerableDamageTypes.Add((DamageType=class'KFDT_Microwave', DamageScale=1.0))
-	ResistantDamageTypes.Add((DamageType=class'KFDamageType')) // All others
+
 
 	// ---------------------------------------------
 	// Movement Physics
@@ -389,8 +418,8 @@ DefaultProperties
 	ControllerClass=class'KFAIController_ZedFleshpound'
 	BumpDamageType=class'KFDT_NPCBump_Large'
 	BumpFrequency=0.1
-	DamageRecoveryTimeHeavy=0.25f
-	DamageRecoveryTimeMedium=0.09f
+	DamageRecoveryTimeHeavy=0.85f   //0.25f   melee hits
+	DamageRecoveryTimeMedium=0.85   //0.09f  gunhits
 
 	// ---------------------------------------------
 	// Special Moves
@@ -399,22 +428,22 @@ DefaultProperties
 		SpecialMoveClasses(SM_Evade)=class'KFSM_Evade'
 	End Object
 	RotationRate=(Pitch=50000,Yaw=40000,Roll=50000)
-  	
-	InstantIncaps(IAF_Stun)=(Head=60,Torso=65,Leg=50,Arm=65,Special=53,LowHealthBonus=10,Cooldown=12.0)
-	InstantIncaps(IAF_Knockdown)=(Head=65,Torso=140,Leg=140,Arm=140,Special=65,LowHealthBonus=10,Cooldown=25.0)
-	InstantIncaps(IAF_Stumble)=(Head=60,Torso=65,Arm=65,Special=53,LowHealthBonus=10,Cooldown=10.0)
-	InstantIncaps(IAF_LegStumble)=(Leg=60,LowHealthBonus=10,Cooldown=9.0)
-	InstantIncaps(IAF_GunHit)=(Head=150,Torso=150,Leg=150,Arm=150,LowHealthBonus=10,Cooldown=20)
-	InstantIncaps(IAF_MeleeHit)=(Head=25,Torso=50,Leg=50,Arm=50,LowHealthBonus=10,Cooldown=1.2)
-	StackingIncaps(SAF_Poison)=(Threshhold=5.0,Duration=1.5,Cooldown=20.0,DissipationRate=1.00)
-	StackingIncaps(SAF_Microwave)=(Threshhold=10.0,Duration=1.5,Cooldown=20.0,DissipationRate=1.00)
-	StackingIncaps(SAF_FirePanic)=(Threshhold=13.0,Duration=1.5,Cooldown=8.0,DissipationRate=1.0)
-	StackingIncaps(SAF_EMPPanic)=(Threshhold=2.0,Duration=3.0,Cooldown=10.0,DissipationRate=0.5)
-	StackingIncaps(SAF_EMPDisrupt)=(Threshhold=1.5,Duration=2.0,Cooldown=10.0,DissipationRate=0.5)
-	StackingIncaps(SAF_Freeze)=(Threshhold=3.0,Duration=1.0,Cooldown=5.0,DissipationRate=0.33)
-	
+
+	// for reference: Vulnerability=(default, head, legs, arms, special)
+	IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 0.55, 0.5, 0.0, 0.55),   Cooldown=10.0, Duration=1.2)
+	IncapSettings(AF_Knockdown)=(Vulnerability=(0.25, 0.25, 0.25, 0.25, 0.4), Cooldown=10.0)
+	IncapSettings(AF_Stumble)=	(Vulnerability=(0.2, 0.25, 0.25, 0.0, 0.4),   Cooldown=5.0)
+	IncapSettings(AF_GunHit)=	(Vulnerability=(0.0, 0.0, 0.0, 0.0, 0.5),     Cooldown=1.7)
+	IncapSettings(AF_MeleeHit)=	(Vulnerability=(1.0),                         Cooldown=1.2)
+	IncapSettings(AF_Poison)=	(Vulnerability=(0.15),	                      Cooldown=20.5, Duration=5.0)
+	IncapSettings(AF_Microwave)=(Vulnerability=(0.8),                         Cooldown=17.0, Duration=2.5)
+	IncapSettings(AF_FirePanic)=(Vulnerability=(0.7),                         Cooldown=12.0, Duration=3.5)
+	IncapSettings(AF_EMP)=		(Vulnerability=(0.95),                        Cooldown=10.0, Duration=2.2)
+	IncapSettings(AF_Freeze)=	(Vulnerability=(0.95),                        Cooldown=1.5,  Duration=1.0)
+
 	Begin Object Name=Afflictions_0
 		FireFullyCharredDuration=5
+		AfflictionClasses(AF_EMP)=class'KFAffliction_EMPDisrupt'
 	End Object
 
 	ParryResistance=4
@@ -463,4 +492,6 @@ DefaultProperties
 	// ---------------------------------------------
 	// Spawning
     MinSpawnSquadSizeType=EST_Large
+
+    OnDeathAchievementID=KFACHID_ItsOnlyAFleshWound
 }

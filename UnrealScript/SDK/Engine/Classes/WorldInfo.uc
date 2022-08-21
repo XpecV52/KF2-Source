@@ -18,6 +18,10 @@ class WorldInfo extends ZoneInfo
 /** Maximum number of bookmarks																		*/
 const MAX_BOOKMARK_NUMBER = 10;
 
+`if(`__TW_)
+var const private bool UseCheckbackMatchmaking;
+`endif
+
 /** Default post process settings used by post processing volumes.									*/
 `if(`__TW_POSTPROCESS_)
 var(Rendering)						PostProcessSettings		DefaultPostProcessSettings;
@@ -951,6 +955,13 @@ var transient PhysicsVolume FirstPhysicsVolume;
 var bool bGameplayFramePause;
 
 `if(`__TW_)
+
+/** If set, uses physX raycasts for visibility traces */
+var(Physics) editconst bool bUsePxVisibilityCollision;
+
+/** See `BalanceLog() */
+var private FileWriter GameBalanceLog;
+
 // ---------------------------------------------
 // Light Animation
 /** Curve patterns for supported light animation types */
@@ -969,6 +980,8 @@ var(LightAnimation) float StrobeBrightnessLowerBoundClamp<UIMin=0.0|UIMax=1.0|Cl
 var(LightAnimation) float ChaoticFlickerBrightnessLowerBoundClamp<UIMin=0.0|UIMax=1.0|ClampMin=0.0|ClampMax=1.0>;
 var(LightAnimation) float InverseChaoticFlickerBrightnessLowerBoundClamp<UIMin=0.0|UIMax=1.0|ClampMin=0.0|ClampMax=1.0>;
 
+// ---------------------------------------------
+// Misc VFX
 /** MICs modified by zed time */
 var(Rendering) array<MaterialInstanceConstant> ZedTimeMICs;
 
@@ -979,11 +992,8 @@ var globalconfig float DestructionLifetimeScale;
 /** Whether explosion lights are supported or not */
 var globalconfig bool bAllowExplosionLights;
 
-/** If set, uses physX raycasts for visibility traces */
-var(Physics) editconst bool bUsePxVisibilityCollision;
-
-/** See `BalanceLog() */
-var private FileWriter GameBalanceLog;
+/** Like bDropDetail, but with a higher DesiredFrameRate threshold for high detail FX */
+var transient bool bDropHighDetail;
 
 // ---------------------------------------------
 // Manager (singleton) objects
@@ -1292,6 +1302,12 @@ native simulated static final function bool IsDemoBuild() const;  // True if thi
 
 //@HSL_BEGIN - BWJ - 3-16-16 - Support for console dedicated servers
 native static final function bool IsConsoleDedicatedServer() const;
+
+// returns TRUE if this server was spun up by playfab services
+native static final function bool IsPlayfabServer() const;
+
+// return TRUE if this is for an E3 demo
+native simulated static final function bool IsE3Build() const;
 //@HSL_END
 
 /**
@@ -1954,6 +1970,8 @@ defaultproperties
 	GoreEffectManagerClassPath="KFGame.KFGoreManager"
 	//TurbEffectPoolClassPath="KFGame.TurbEffectPool"
 
-	bUsePxVisibilityCollision=true
+    bUsePxVisibilityCollision=true
+	UseCheckbackMatchmaking=FALSE
+
 `endif
 }

@@ -7,29 +7,46 @@
 // Copyright (C) 2015 Tripwire Interactive LLC
 // - John "Ramm-Jaeger" Gibson
 //=============================================================================
-
 class KFGameInfo_VersusSurvival extends KFGameInfo_Survival;
 
-var config bool bTeamBalanceEnabled;
-
 /** The maximum global number of puke mines that can be active in play */
-const MaxActivePukeMines = 30;
+const MAX_ACTIVE_PUKE_MINES = 30;
 
-/** Array of all active puke mines */
-var transient array<KFProj_BloatPukeMine> ActivePukeMines;
-
-/** Radius around a damaged zed to award score to player zeds */
-var config float ScoreRadius;
+/** Anti-griefing system */
+var protected const float ANTI_GRIEF_DELAY;
+var protected const float ANTI_GRIEF_INTERVAL;
+var protected const float ANTI_GRIEF_DAMAGE_PERCENTAGE;
 
 /** Zed pawn classes used by players */
 var protected const array<class<KFPawn_Monster> > PlayerZedClasses;
 var protected const array<class<KFPawn_MonsterBoss> > PlayerBossClassList;
 
-const ANTI_GRIEF_DELAY = 30.f;
-const ANTI_GRIEF_INTERVAL = 2.f;
-const ANTI_GRIEF_DAMAGE_PERCENTAGE = 10.f;
+/** Cached reference to versus gamereplicationinfo */
+var KFGameReplicationInfoVersus MyKFGRIV;
 
+/** Damagetype used for anti-griefing system */
 var class<KFDamageType> AntiGriefDamageTypeClass;
+
+/** Whether auto team balance is enabled */
+var config bool bTeamBalanceEnabled;
+
+/** Radius around a damaged zed to award score to player zeds */
+var config float ScoreRadius;
+
+/** The delay at the end of a game before auto-switching to the next round */
+var int TimeUntilNextRound;
+
+/** The delay after a round is over before opening the round results screen */
+var float RoundEndCinematicDelay;
+
+/** Cooldown period after the round results menu is closed but before spawning starts */
+var float PostRoundWaitTime;
+
+/** Stat tracking for scoring */
+var protected int WaveReached;
+var protected int BossDamageDone;
+var protected int BossSurvivorDamageTaken;
+var protected float PercentOfZedsKilledBeforeWipe;
 
 event PreBeginPlay()
 {
@@ -43,7 +60,8 @@ function InitGRIVariables()
 {
     super.InitGRIVariables();
 
-    KFGameReplicationInfoVersus(MyKFGRI).bTeamBalanceEnabled = bTeamBalanceEnabled;
+    MyKFGRIV = KFGameReplicationInfoVersus( MyKFGRI );
+    MyKFGRIV.bTeamBalanceEnabled = bTeamBalanceEnabled;
 }
 
 function bool IsPlayerReady( KFPlayerReplicationInfo PRI )
@@ -66,7 +84,7 @@ function StartMatch()
 	foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
 	{
 		PlayerControllers[PlayerControllers.Length] = KFPC;
-        if( KFPC.GetTeamNum() == 255 && (KFPC.Pawn == none || KFPawn_Customization(KFPC.Pawn) != none) )
+        if( KFPC.GetTeamNum() == 255 && KFPC.CanRestartPlayer() && (KFPC.Pawn == none || KFPawn_Customization(KFPC.Pawn) != none) )
         {
             if( KFPC.Pawn != none )
             {
@@ -83,11 +101,24 @@ function StartMatch()
         SetTeam( PlayerControllers[0], Teams[0] );
     }
 
+    // Clear round over flag
+    MyKFGRIV.bRoundIsOver = false;
+    MyKFGRIV.bNetDirty = true;
+    MyKFGRIV.bForceNetUpdate = true;
+
 	super.StartMatch();
 }
 
 function bool ShouldStartMatch()
 {
+
+
+
+
+
+
+
+
     return ( WorldInfo.NetMode == NM_StandAlone || (Teams[0].Size > 0 && Teams[1].Size > 0) );
 }
 
@@ -96,26 +127,23 @@ function BalanceTeams()
     local int Delta, AutoBalanceRemaining, i;
     local TeamInfo TI;
     local Array<PlayerReplicationInfo> AutoBalanceList;
-    local KFGameReplicationInfoVersus KFGRIV;
     local PlayerReplicationInfo PRI;
-
-    KFGRIV = KFGameReplicationInfoVersus(MyKFGRI);
 
     Delta = Teams[1].Size - Teams[0].Size;
     if ( Delta == 0 )
         return;
 
     TI = (Delta > 0) ? Teams[1] : Teams[0];
-    for (i = 0; i < KFGRIV.PRIArray.Length; i++)
+    for (i = 0; i < MyKFGRIV.PRIArray.Length; i++)
     {
-        PRI = KFGRIV.PRIArray[i];
+        PRI = MyKFGRIV.PRIArray[i];
         if ( PRI.Team == TI )
         {
             AutoBalanceList.AddItem(PRI);
         }
     }
 
-    AutoBalanceRemaining = Min(abs(Delta), KFGRIV.TeamBalanceDelta);
+    AutoBalanceRemaining = Min(abs(Delta), MyKFGRIV.TeamBalanceDelta);
     while (AutoBalanceRemaining > 0 || TI.Size > (MaxPlayersAllowed / 2) )
     {
         i = Rand(AutoBalanceList.Length);
@@ -127,13 +155,13 @@ function BalanceTeams()
 
 function SwapTeamFor( PlayerReplicationInfo PRI )
 {
-    local KFPlayerControllerVersus KFPC;
+    local KFPlayerControllerVersus KFPCV;
 
-    KFPC = KFPlayerControllerVersus(PRI.Owner);
-    if( KFPC != none )
+    KFPCV = KFPlayerControllerVersus(PRI.Owner);
+    if( KFPCV != none )
     {
-       KFPC.NotifyOfAutoBalance();
-       SetTeam( KFPC,  PRI.GetTeamNum() == 255 ? Teams[0] : Teams[1] );
+       KFPCV.NotifyOfAutoBalance();
+       SetTeam( KFPCV,  PRI.GetTeamNum() == 255 ? Teams[0] : Teams[1] );
     }
 }
 
@@ -174,9 +202,9 @@ function byte PickTeam(byte Current, Controller C)
 /** Return whether a team change is allowed. */
 function bool ChangeTeam(Controller Other, int N, bool bNewTeam)
 {
-    if( PlayerController(Other) == none
-        || (Other.PlayerReplicationInfo != none
-        && !Other.PlayerReplicationInfo.bOnlySpectator
+    if( Other.PlayerReplicationInfo == none
+        || Other.PlayerReplicationInfo.bBot
+        || (!Other.PlayerReplicationInfo.bOnlySpectator
         && ArrayCount(Teams) > N
         && Other.PlayerReplicationInfo.Team != Teams[N]) )
     {
@@ -195,11 +223,10 @@ function bool ChangeTeam(Controller Other, int N, bool bNewTeam)
 */
 function SetTeam(Controller Other, KFTeamInfo_Human NewTeam)
 {
-    local KFPlayerControllerVersus KFPC;
+    local KFPlayerControllerVersus KFPCV;
     local TeamInfo OldTeam;
-    local NavigationPoint Start;
 
-    if( Other == none || Other.PlayerReplicationInfo == none )
+    if( Other == none || Other.PlayerReplicationInfo == none || Other.PlayerReplicationInfo.bBot || Other.PlayerReplicationInfo.bOnlySpectator )
     {
         super.SetTeam( Other, NewTeam );
         return;
@@ -209,69 +236,93 @@ function SetTeam(Controller Other, KFTeamInfo_Human NewTeam)
 
     super.SetTeam( Other, NewTeam );
 
-    if( NewTeam != OldTeam )
+    if( OldTeam != none && NewTeam != OldTeam )
     {
-        if( Other.PlayerReplicationInfo.bWaitingPlayer )
+        if( !IsPlayerReady(KFPlayerReplicationInfo(Other.PlayerReplicationInfo)) )
         {
-            KFPC = KFPlayerControllerVersus( Other );
-            if( KFPC != none )
+            OnWaitingPlayerTeamSwapped( Other );
+        }
+        else
+        {
+            KFPCV = KFPlayerControllerVersus( Other );
+            if( OldTeam != none && OldTeam.TeamIndex == 255 && KFPCV != none && KFPCV.PlayerZedSpawnInfo.PendingZedPawnClass != none )
             {
-                if( NewTeam.TeamIndex == 255 )
+                // If this player switched teams, we need to recycle their zed pawn class back into rotation
+                if( SpawnManager != none )
                 {
-                    if( KFPC.Pawn != none && KFPawn_Customization(KFPC.Pawn) != none )
-                    {
-                        // Hide customization pawn
-                        KFPawn_Customization(KFPC.Pawn).SetServerHidden( true );
-                    }
-
-                    KFPC.SetCameraMode( 'PlayerZedWaiting' );
+                    KFAISpawnManager_Versus(SpawnManager).RecyclePendingZedPawnClass( KFPCV );
                 }
-                else if( KFPC.Pawn != none )
-                {
-                    // Unhide/relocate customization pawn
-                    KFPawn_Customization(KFPC.Pawn).SetServerHidden( false );
-
-                    if( !KFPawn_Customization(KFPC.Pawn).MoveToCustomizationPoint() )
-                    {
-                        Start = KFPC.GetBestCustomizationStart( self );
-                        if( Start != none )
-                        {
-                            KFPawn_Customization(KFPC.Pawn).SetUpdatedMovementData( Start.Location, Start.Rotation );
-                        }
-                    }
-
-                    // Restore view target and camera mode
-                    KFPC.SetViewTarget( KFPC.Pawn );
-                    KFPC.SetCameraMode( 'Customization' );
-                }
-
-                KFPC.ServerNotifyTeamChanged();
             }
         }
-        else if( OldTeam.TeamIndex == 255 && KFPC.PlayerZedSpawnInfo.PendingZedPawnClass != none )
+    }
+}
+
+/** Overridden to handle team changes right after login */
+event PostLogin( PlayerController NewPlayer )
+{
+    super.PostLogin( NewPlayer );
+
+    if( !NewPlayer.CanRestartPlayer() )
+    {
+        OnWaitingPlayerTeamSwapped( NewPlayer );
+    }
+}
+
+/** Initializes player state on team swap */
+function OnWaitingPlayerTeamSwapped( Controller C )
+{
+    local KFPlayerControllerVersus KFPCV;
+    local NavigationPoint Start;
+
+    KFPCV = KFPlayerControllerVersus( C );
+    if( KFPCV != none )
+    {
+        if( KFPCV.GetTeamNum() == 255 )
         {
-            // If this player switched teams, we need to recycle their zed pawn class back into rotation
-            if( SpawnManager != none )
+            if( KFPCV.Pawn != none && KFPawn_Customization(KFPCV.Pawn) != none )
             {
-                KFAISpawnManager_Versus(SpawnManager).RecyclePendingZedPawnClass( KFPC );
+                // Hide customization pawn
+                KFPawn_Customization(KFPCV.Pawn).SetServerHidden( true );
             }
+
+            KFPCV.SetCameraMode( 'PlayerZedWaiting' );
         }
+        else if( KFPCV.Pawn != none )
+        {
+            // Unhide/relocate customization pawn
+            KFPawn_Customization(KFPCV.Pawn).SetServerHidden( false );
+
+            if( !KFPawn_Customization(KFPCV.Pawn).MoveToCustomizationPoint() )
+            {
+                Start = KFPCV.GetBestCustomizationStart( self );
+                if( Start != none )
+                {
+                    KFPawn_Customization(KFPCV.Pawn).SetUpdatedMovementData( Start.Location, Start.Rotation );
+                }
+            }
+
+            // Restore view target and camera mode
+            KFPCV.SetViewTarget( KFPCV.Pawn );
+            KFPCV.SetCameraMode( 'Customization' );
+        }
+
+        KFPCV.ServerNotifyTeamChanged();
     }
 }
 
 /** Need to recycle any exiting players' pending zed pawn classes back into the spawn rotation */
 function Logout( Controller Exiting )
 {
-    local KFPlayerController KFPC;
+    local KFPlayerControllerVersus KFPCV;
 
     if( Exiting != none )
     {
-        KFPC = KFPlayerController( Exiting );
-        if( KFPC != none && KFPC.GetTeamNum() == 255 && KFPC.PlayerZedSpawnInfo.PendingZedPawnClass != none )
+        KFPCV = KFPlayerControllerVersus( Exiting );
+        if( KFPCV != none && KFPCV.GetTeamNum() == 255 && KFPCV.PlayerZedSpawnInfo.PendingZedPawnClass != none )
         {
             if( SpawnManager != none )
             {
-                KFAISpawnManager_Versus(SpawnManager).RecyclePendingZedPawnClass( KFPC );
+                KFAISpawnManager_Versus(SpawnManager).RecyclePendingZedPawnClass( KFPCV );
             }
         }
     }
@@ -293,9 +344,13 @@ function RestartPlayer(Controller NewPlayer)
 
     PlayerTeamIndex = NewPlayer.GetTeamNum();
     KFPC = KFPlayerController( NewPlayer );
-    if( KFPC != none && (MyKFGRI.bMatchIsOver || (PlayerTeamIndex == 255 && (MyKFGRI.bTraderIsOpen || KFPC.PlayerZedSpawnInfo.PendingZedPawnClass == none))) )
+    if( KFPC != none
+        && (MyKFGRI.bMatchIsOver || (PlayerTeamIndex == 255 && (MyKFGRI.bTraderIsOpen || KFPC.PlayerZedSpawnInfo.PendingZedPawnClass == none))) )
     {
-        KFPC.StartSpectate();
+        if( IsPlayerReady(KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo)) )
+        {
+            KFPC.StartSpectate();
+        }
         return;
     }
 
@@ -403,49 +458,60 @@ function ReduceDamage( out int Damage, Pawn Injured, Controller InstigatedBy, ve
 {
     local KFPawn InstigatorPawn, InjuredPawn;
 
-    InstigatorPawn = KFPawn(InstigatedBy.Pawn);
-    InjuredPawn = KFPawn(Injured);
-
-    if( DamageType != AntiGriefDamageTypeClass )
+    if( InstigatedBy != none )
     {
-        if( InstigatorPawn != none && InjuredPawn != none && 
-            InstigatorPawn.GetTeamNum() != InjuredPawn.GetTeamNum() )
+        InstigatorPawn = KFPawn(InstigatedBy.Pawn);
+        InjuredPawn = KFPawn(Injured);
+
+        if( DamageType != AntiGriefDamageTypeClass )
         {
-            InstigatorPawn.UpdateLastTimeDamageHappened();
-            InjuredPawn.UpdateLastTimeDamageHappened();
+            if( InstigatorPawn != none && InjuredPawn != none && 
+                InstigatorPawn.GetTeamNum() != InjuredPawn.GetTeamNum() )
+            {
+                InstigatorPawn.UpdateLastTimeDamageHappened();
+                InjuredPawn.UpdateLastTimeDamageHappened();
+            }
         }
     }
 
-    if( InstigatedBy != none && Injured != none && Injured.Controller != InstigatedBy && Injured.GetTeamNum() == InstigatedBy.GetTeamNum() )
+    // Don't let player zeds damage AI zeds
+    if( InstigatedBy.GetTeamNum() == 255
+        && Injured.GetTeamNum() == 255
+        && InstigatedBy.bIsPlayer
+        && !Injured.IsHumanControlled() )
     {
-        Damage = 0;
         Momentum = vect(0,0,0);
+        Damage = 0;
     }
     else
     {
-        super.ReduceDamage( Damage, Injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser );
+        super.ReduceDamage( Damage, Injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser );       
     }
 }
 
-// Versus TODO: this was some unfinished code for awarding score to player zeds if
-// they are near other zeds that damage a player
-function ScoreDamage(int DamageAmount, Controller Damager, Controller Damagee, Pawn DamagedPawn)
+function ScoreKill(Controller Killer, Controller Other)
 {
-    local KFPlayerControllerVersus KFPCV;
-    local float ScoreRadiusSQ;
+    local KFPawn KFP;
+    local int i;
+    local DamageInfo Damager;
 
-    ScoreRadiusSQ = Square( ScoreRadius );
+    super.ScoreKill( Killer, Other );
 
-    foreach WorldInfo.AllControllers( class'KFPlayerControllerVersus', KFPCV )
+    // Score zed assists
+    if( Killer != none && Other != none && Killer.GetTeamNum() == 255 && Other.GetTeamNum() == 0 )
     {
-        if( KFPCV.Pawn != none
-            && KFPCV.GetTeamNum() == 255
-            && KFPCV.Pawn.IsAliveAndWell()
-            && VSizeSQ( KFPCV.Pawn.Location - DamagedPawn.Location ) <= ScoreRadiusSQ )
+        KFP = KFPawn(Killer.Pawn);
+        if( KFP != none )
         {
-            if( DamagedPawn.FastTrace(KFPCV.Pawn.Location, DamagedPawn.Location) )
+            for( i = 0; i < KFP.DamageHistory.Length; ++i )
             {
-                KFPCV.AwardZedDamage( DamageAmount, Damager == KFPCV );
+                Damager = KFP.DamageHistory[i];
+                if( Damager.DamagerController != none
+                    && Damager.DamagerController != Killer
+                    && !Damager.DamagerController.PlayerReplicationInfo.bBot )
+                {
+                    ++KFPlayerReplicationInfo(Damager.DamagerController.PlayerReplicationInfo).Assists;
+                }
             }
         }
     }
@@ -455,30 +521,63 @@ function ScoreDamage(int DamageAmount, Controller Damager, Controller Damagee, P
 function EndOfMatch(bool bVictory)
 {
     local KFPlayerController KFPC;
+    local int TempScore;
+    local KFPlayerReplicationInfoVersus KFPRIV;
 
     if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("match_end", None, "#"$WaveNum, "#"$(bVictory ? "1" : "0"), "#"$GameConductor.ZedVisibleAverageLifespan);
 
     if(bVictory)
     {
         SetTimer(EndCinematicDelay, false, nameof(SetWonGameCamera));
-
-        foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
-        {
-            KFPC.ClientWonGame( WorldInfo.GetMapName( true ), GameDifficulty, GameLength,   IsMultiplayerGame() );
-        }
-
-        BroadcastLocalizedMessage(class'KFLocalMessage_Priority', GMT_HumansWin);
+        BroadcastLocalizedMessage(class'KFLocalMessage_Priority', GMT_HumansWin);        
     }
     else
     {
-        BroadcastLocalizedMessage(class'KFLocalMessage_Priority', GMT_ZedsWin);
+        BroadcastLocalizedMessage(class'KFLocalMessage_Priority', GMT_ZedsWin);           
         SetZedsToVictoryState();
+    }
+    
+    foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
+    {
+        if( bVictory )
+        {
+            KFPC.ClientWonGame( WorldInfo.GetMapName( true ), GameDifficulty, GameLength, IsMultiplayerGame() );
+        }
+
+        KFPRIV = KFPlayerReplicationInfoVersus(KFPC.PlayerReplicationInfo);
+        if(KFPRIV != none)
+        {
+            KFPRIV.RecordEndGameInfo();   
+        }
     }
 
 	WorldInfo.TWRefreshTweakParams();
     WorldInfo.TWPushLogs();
 
-    GotoState('MatchEnded');
+    // Calculate final score
+    TempScore = Max( (WaveReached - 1), 0) * POINTS_FOR_WAVE_COMPLETION;
+    if( bVictory )
+    {
+        TempScore += POINTS_FOR_BOSS_KILL;
+    }
+    else
+    {
+        TempScore += int( float(POINTS_FOR_WAVE_COMPLETION) * PercentOfZedsKilledBeforeWipe );
+    }
+    TempScore -= POINTS_PENALTY_FOR_DEATH * HumanDeaths;
+    Teams[0].AddRoundScore( TempScore, true );
+
+    // Update team scores
+    if( MyKFGRIV.CurrentRound == 0 )
+    {
+        UpdateFirstRoundTeamScore();
+    }
+    else
+    {
+        UpdateSecondRoundTeamScore();
+    }
+
+    GotoState('RoundEnded', 'Begin');
 }
 
 function Killed( Controller Killer, Controller KilledPlayer, Pawn KilledPawn, class<DamageType> damageType )
@@ -489,11 +588,55 @@ function Killed( Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cl
     {
         CheckPawnsForGriefing( true );
     }
+
+    // Add our boss kill points
+    if( KilledPlayer.GetTeamNum() == 255 && MyKFGRIV.WaveNum == MyKFGRIV.WaveMax && KFPawn_MonsterBoss(KilledPawn) != none )
+    {
+        BossDamageDone = POINTS_FOR_BOSS_KILL;
+    }
 }
 
 function WaveEnded( EWaveEndCondition WinCondition )
 {
+    local KFPlayerReplicationInfoVersus KFPRIV;
+    local int WaveKills;
+    local int i, j;
+
+    MyKFGRIV.SetPlayerZedSpawnTime( 255, false );
     ClearTimer( nameOf(CheckPawnsForGriefing) );
+
+    // If game ended on a wipe, record how many zeds were killed as well as wave reached
+    if( WinCondition == WEC_TeamWipedOut )
+    {
+        if( SpawnManager != none )
+        {
+            PercentOfZedsKilledBeforeWipe = float(MyKFGRI.AIRemaining) / float(SpawnManager.WaveTotalAI);
+        }
+    }
+
+    WaveReached = MyKFGRI.WaveNum;
+
+    // Tabulate the number of kills this wave
+    for( i = 0; i < WorldInfo.GRI.PRIArray.Length; ++i )
+    {
+        // No kills to tabulate
+        if( WorldInfo.GRI.PRIArray[i].Kills == 0 )
+        {
+            continue;
+        }
+
+        KFPRIV = KFPlayerReplicationInfoVersus( WorldInfo.GRI.PRIArray[i] );
+        if( KFPRIV != none && !KFPRIV.bBot && KFPRIV.GetTeamNum() == 255 )
+        {
+            WaveKills = KFPRIV.Kills;
+            for( j = 0; j < KFPRIV.WaveKills.Length; ++j )
+            {
+                WaveKills -= KFPRIV.WaveKills[j];
+            }
+
+            KFPRIV.WaveKills[WaveReached] = WaveKills;
+        }
+    }
 
     super.WaveEnded( WinCondition );
 }
@@ -547,10 +690,333 @@ function ResetPickups( array<KFPickupFactory> PickupList, int NumPickups )
     }
 }
 
+function OpenPostRoundMenu()
+{
+    local KFPlayerController KFPC;
+
+    foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
+    {
+        if( IsPlayerReady(KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo)) )
+        {
+            KFPC.ClientOpenRoundSummary();
+        }
+    }
+}
+
+/** Updates team data for use in the next game round */
+function UpdateFirstRoundTeamScore()
+{
+    // Cache team score
+    Teams[1].TeamScoreDataPacket.RoundScore = Teams[0].TeamScoreDataPacket.RoundScore;
+
+    // Cache wave reached
+    Teams[1].TeamScoreDataPacket.WaveReached = WaveReached;
+
+    // Cache survivor deaths
+    Teams[1].TeamScoreDataPacket.Deaths = HumanDeaths;
+
+    // Cache boss values if relevant
+    if( WaveReached == MyKFGRI.WaveMax )
+    {
+        // Boss damage done
+        Teams[1].TeamScoreDataPacket.BossDamageDone = BossDamageDone;
+
+        // Boss survivor damage taken
+        Teams[1].TeamScoreDataPacket.BossDamageTaken = BossSurvivorDamageTaken;
+    }
+    else
+    {
+        // Clear any boss values
+        Teams[1].TeamScoreDataPacket.BossDamageDone = 0;
+        Teams[1].TeamScoreDataPacket.BossDamageTaken = 0;
+    }
+
+    // Reset merc team stats for second round
+    Teams[0].TeamScoreDataPacket.RoundScore = 0;
+    Teams[0].TeamScoreDataPacket.WaveReached = -1;
+    Teams[0].TeamScoreDataPacket.Deaths = 0;
+    Teams[0].TeamScoreDataPacket.BossDamageDone = 0;
+    Teams[0].TeamScoreDataPacket.BossDamageTaken = 0;
+
+    // Force network update
+    Teams[0].bForceNetUpdate = true;
+    Teams[0].bNetDirty = true;
+    Teams[1].bForceNetUpdate = true;
+    Teams[1].bNetDirty = true;
+}
+
+/** Updates team data for use in the final game round */
+function UpdateSecondRoundTeamScore()
+{
+    // Cache wave reached
+    Teams[0].TeamScoreDataPacket.WaveReached = WaveReached;
+
+    // Cache survivor deaths
+    Teams[0].TeamScoreDataPacket.Deaths = HumanDeaths;
+
+    // Cache boss values if relevant
+    if( WaveReached == MyKFGRI.WaveMax )
+    {
+        // Boss damage done
+        Teams[0].TeamScoreDataPacket.BossDamageDone = BossDamageDone;
+
+        // Boss survivor damage taken
+        Teams[0].TeamScoreDataPacket.BossDamageTaken = BossSurvivorDamageTaken;
+    }
+    else
+    {
+        // Clear any boss values
+        Teams[0].TeamScoreDataPacket.BossDamageDone = 0;
+        Teams[0].TeamScoreDataPacket.BossDamageTaken = 0;
+    }
+
+    // Force network update
+    Teams[0].bNetDirty = true;
+    Teams[0].bForceNetUpdate = true;
+    Teams[1].bNetDirty = true;
+    Teams[1].bForceNetUpdate = true;
+}
+
+/** Perform gametype-specific resets */
+function Reset()
+{
+    local KFPlayerControllerVersus KFPCV;
+
+    super.Reset();
+
+    // Swap teams
+    foreach WorldInfo.AllControllers( class'KFPlayerControllerVersus', KFPCV )
+    {
+        if( KFPCV.CanRestartPlayer() )
+        {
+            SetTeam( KFPCV, KFPCV.PlayerReplicationInfo.Team == Teams[0] ? Teams[1] : Teams[0] );
+            KFPCV.ServerNotifyTeamChanged();
+
+            // Put everyone into spectator state
+            if( !KFPCV.IsInState('Spectating') )
+            {
+                KFPCV.StartSpectate();
+            }
+        }
+    }
+
+    if( SpawnManager != none )
+    {
+        SpawnManager.ResetSpawnManager();
+    }
+
+    // Reset score statistics
+    WaveReached = -1;
+    HumanDeaths = 0;
+    BossDamageDone = 0;
+    BossSurvivorDamageTaken = 0;
+    PercentOfZedsKilledBeforeWipe = 0.f;
+
+    // Reset pool manager (clear puke mines, c4, etc)
+    class'KFGameplayPoolManager'.static.GetPoolManager().Reset();
+}
+
+ /*********************************************************************************************
+ * state RoundEnded
+ *********************************************************************************************/
+
+/** Close the team results screen */
+protected function ClosePostRoundMenu( optional bool bMatchOver=false )
+{
+    local KFPlayerControllerVersus KFPCV;
+
+    foreach WorldInfo.AllControllers( class'KFPlayerControllerVersus', KFPCV )
+    {
+        KFPCV.ClientShowPostGameMenu( false );
+    }
+
+    // Wait a tiny bit to display the next round message
+    if( !bMatchOver )
+    {
+        SetTimer( 0.1, false, nameOf(Timer_AnnounceNextRound) );
+    }
+}
+
+/** Announces the next round to players */
+protected function Timer_AnnounceNextRound()
+{
+    BroadcastLocalizedMessage( class'KFLocalMessage_Priority', GMT_NextRoundBegin );    
+}
+
+/** Checks to ensure a game is actually playable and balances accordingly */
+protected function CheckTeamNumbers()
+{
+    local KFPlayerControllerVersus KFPCV;
+    local int HumanPlayers, ZedPlayers;
+
+    // If there aren't at least 2 players, end the match
+    if( NumPlayers < 2 || MyKFGRIV.CurrentRound > 1 )
+    {
+        GotoState( 'MatchEnded' );
+        return;
+    }
+
+    // If there are no players on one of the teams, force one of them to switch
+    foreach WorldInfo.AllControllers( class'KFPlayerControllerVersus', KFPCV )
+    {
+        if( !KFPCV.CanRestartPlayer() )
+        {
+            continue;
+        }
+
+        if( KFPCV.GetTeamNum() == 255 )
+        {
+            ++ZedPlayers;
+        }
+        else
+        {
+            ++HumanPlayers;
+        }
+    }
+
+    if( HumanPlayers == 0 && ZedPlayers > 1 )
+    {
+        SwitchOnePlayerToTeam( 0 );
+    }
+    else if( ZedPlayers == 0 && HumanPlayers > 1 )
+    {
+        SwitchOnePlayerToTeam( 255 );
+    }
+}
+
+/** Resets the level and announces a round change */
+protected function BeginNextRound()
+{
+    // Reset everything
+    ResetLevel();
+
+    // Init next round
+    MyKFGRIV.bStopCountDown = true;
+    MyKFGRIV.SetPlayerZedSpawnTime( PostRoundWaitTime, false );
+    ClosePostRoundMenu();
+}
+
+/** Starts spawning */
+function StartSpawning()
+{
+    // Reset round over flag
+    MyKFGRIV.bRoundIsOver = false;
+    MyKFGRIV.bNetDirty = true;
+    MyKFGRIV.bForceNetUpdate = true;
+
+    // Off we go!
+    GotoState( '' );
+    StartMatch();
+}
+
+/** Swaps one player to the opposite team */
+protected function SwitchOnePlayerToTeam( byte TeamNum )
+{
+    local KFPlayerControllerVersus KFPCV;
+
+    foreach WorldInfo.AllControllers( class'KFPlayerControllerVersus', KFPCV )
+    {
+        if( KFPCV.CanRestartPlayer()
+            && KFPCV.GetTeamNum() != TeamNum )
+        {
+            SetTeam( KFPCV, TeamNum == 0 ? Teams[0] : Teams[1] );
+            break;
+        }
+    }
+}
+
+state RoundEnded
+{
+    event BeginState( name PrevStateName )
+    {
+        CheckRoundEndAchievements();
+
+        // Set round over flag (allows perk changes etc)
+        MyKFGRIV.bRoundIsOver = true;
+
+        // Increment round
+        MyKFGRIV.CurrentRound += 1;
+
+        // Turn off respawn timer
+        MyKFGRIV.SetPlayerZedSpawnTime( 255, false );
+    }
+
+    function bool MatchIsInProgress()
+    {
+        return false;
+    }
+
+ForceEnded:
+    Sleep( 1.f );
+    BeginNextRound();
+    Goto( 'End' );
+
+Begin:
+    // Wait a short time and bring up the results screen
+    Sleep( RoundEndCinematicDelay );
+    OpenPostRoundMenu();
+
+    // Wait for the results screen duration and start the next round
+    Sleep( GetEndOfMatchTime() );
+    if(  MyKFGRIV.CurrentRound > 1 )
+    {
+        GotoState( 'MatchEnded' );
+        Sleep(0.f);
+    }
+    CheckTeamNumbers();
+    BeginNextRound();
+
+    // Wait a short time after closing the results screen (for perk changes) before spawning
+    Sleep( PostRoundWaitTime );
+
+End:
+    StartSpawning();
+}
+
+protected function CheckRoundEndAchievements()
+{
+    local KFPlayerControllerVersus KFPCV;
+
+    foreach WorldInfo.AllControllers( class'KFPlayerControllerVersus', KFPCV )
+    {
+        KFPCV.ClientRoundEnded();
+    }
+}
+
+function TryRestartGame()
+{
+    if( IsInState('RoundEnded') )
+    {
+        BeginNextRound();
+    }
+    else
+    {
+        super.TryRestartGame();
+    }
+}
+
+function ShowPostGameMenu()
+{
+    ClosePostRoundMenu( true );
+
+    super.ShowPostGameMenu();
+}
+
+function float GetEndOfMatchTime()
+{
+    if( IsInState('RoundEnded') )
+    {
+        return TimeUntilNextRound;
+    }
+
+    return super.GetEndOfMatchTime();
+}
+
 defaultproperties
 {
-   bTeamBalanceEnabled=True
-   ScoreRadius=1000.000000
+   ANTI_GRIEF_DELAY=30.000000
+   ANTI_GRIEF_INTERVAL=2.000000
+   ANTI_GRIEF_DAMAGE_PERCENTAGE=10.000000
    PlayerZedClasses(0)=None
    PlayerZedClasses(1)=Class'kfgamecontent.KFPawn_ZedClot_Slasher_Versus'
    PlayerZedClasses(2)=Class'kfgamecontent.KFPawn_ZedClot_Alpha_Versus'
@@ -564,6 +1030,11 @@ defaultproperties
    PlayerZedClasses(10)=Class'kfgamecontent.KFPawn_ZedHusk_Versus'
    PlayerBossClassList(0)=Class'kfgamecontent.KFPawn_ZedPatriarch_Versus'
    AntiGriefDamageTypeClass=Class'KFGame.KFDT_NoGoVolume'
+   bTeamBalanceEnabled=True
+   ScoreRadius=1000.000000
+   TimeUntilNextRound=12
+   RoundEndCinematicDelay=4.000000
+   PostRoundWaitTime=15.000000
    bIsVersusGame=True
    KFGFxManagerClass=Class'KFGame.KFGFxMoviePlayer_Manager_Versus'
    MinNetPlayers=2
@@ -575,6 +1046,8 @@ defaultproperties
    InValidMaps(1)="KF-Catacombs"
    InValidMaps(2)="KF-EvacuationPoint"
    InValidMaps(3)="KF-BlackForest"
+   InValidMaps(4)="KF-ContainmentStation"
+   InValidMaps(5)="KF-HostileGrounds"
    DefaultPawnClass=Class'kfgamecontent.KFPawn_Human_Versus'
    HUDType=Class'kfgamecontent.KFGFXHudWrapper_Versus'
    MaxPlayers=12

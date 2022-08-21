@@ -194,8 +194,8 @@ protected function bool StumblePawn(BaseAIPawn Victim, float DistFromExplosion)
     KFP = KFPawn(Victim);
     if(KFP != none)
     {
-        KFP.DoSpecialMove(5,,, Class'KFSM_Stumble'.static.PackBodyHitSMFlags(KFP, Normal(KFP.Location - ExplosionTemplate.HitLocation)));
-        return KFP.IsDoingSpecialMove(5);
+        KFP.DoSpecialMove(4,,, Class'KFSM_Stumble'.static.PackBodyHitSMFlags(KFP, Normal(KFP.Location - ExplosionTemplate.HitLocation)));
+        return KFP.IsDoingSpecialMove(4);
     }
     return false;
 }
@@ -320,6 +320,11 @@ protected simulated function bool IsBehindExplosion(Actor A)
         }
     }
     return false;
+}
+
+function Reset()
+{
+    Destroy();
 }
 
 defaultproperties

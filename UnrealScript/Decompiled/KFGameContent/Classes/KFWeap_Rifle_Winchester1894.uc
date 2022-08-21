@@ -12,6 +12,7 @@ class KFWeap_Rifle_Winchester1894 extends KFWeap_RifleBase
 defaultproperties
 {
     InventorySize=5
+    MagazineCapacity=10
     bHasIronSights=true
     bCanBeReloaded=true
     bHasFireLastAnims=true
@@ -22,9 +23,8 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=25
     WeaponSelectTexture=Texture2D'wep_ui_winchester_tex.UI_WeaponSelect_Winchester'
-    MagazineCapacity=10
     MaxSpareAmmo=60
-    InitialSpareMags=2
+    InitialSpareMags=3
     FireSightedAnims=/* Array type was not detected. */
     BonesToLockOnEmpty=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */
@@ -48,6 +48,7 @@ defaultproperties
     RecoilISMaxPitchLimit=500
     RecoilISMinPitchLimit=65485
     IronSightMeshFOVCompensationScale=1.5
+    AssociatedPerkClass=Class'KFGame.KFPerk_Sharpshooter'
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */

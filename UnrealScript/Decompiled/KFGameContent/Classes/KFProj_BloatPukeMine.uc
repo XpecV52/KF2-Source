@@ -57,18 +57,21 @@ simulated event PostBeginPlay()
 
     TeamNum = GetTeamNum();
     super.PostBeginPlay();
-    if(Role == ROLE_Authority)
+    if(WorldInfo.NetMode != NM_Client)
     {
         if(InstigatorController != none)
         {
-            KFPlayerControllerVersus(InstigatorController).AddPukeMineToPool(self);            
+            Class'KFGameplayPoolManager'.static.GetPoolManager().AddProjectileToPool(self, 1);            
         }
         else
         {
             Destroy();
             return;
         }
-        Trace(HitLocation, HitNormal, Location, Instigator.Location, false,,, 1);
+    }
+    if(Role == ROLE_Authority)
+    {
+        Instigator.Trace(HitLocation, HitNormal, Location, Instigator.Location, false,,, 1);
         if(!IsZero(HitLocation))
         {
             SetLocation(HitLocation + (HitNormal * SpawnCollisionOffsetAmt));
@@ -143,6 +146,7 @@ simulated function Stick(Vector StuckLocation, Vector StuckNormal)
     local Vector HitLocation, HitNormal;
     local Rotator StuckRotation;
     local KFProj_BloatPukeMine PukeMine;
+    local Rotator RandRot;
 
     SetPhysics(0);
     RotationRate = rot(0, 0, 0);
@@ -154,13 +158,6 @@ simulated function Stick(Vector StuckLocation, Vector StuckNormal)
     NetUpdateFrequency = 0.25;
     bOnlyDirtyReplication = true;
     bForceNetUpdate = true;
-    if(Role == ROLE_Authority)
-    {
-        foreach TouchingActors(Class'KFProj_BloatPukeMine', PukeMine)
-        {
-            PukeMine.TriggerExplosion(PukeMine.Location, vect(0, 0, 1), none);            
-        }        
-    }
     Trace(HitLocation, HitNormal, Location - vect(0, 0, 50), Location + vect(0, 0, 5), false,,, 1);
     if(!IsZero(HitLocation))
     {
@@ -170,7 +167,16 @@ simulated function Stick(Vector StuckLocation, Vector StuckNormal)
     {
         StuckRotation = rotator(StuckNormal);
     }
+    if(Role == ROLE_Authority)
+    {
+        foreach TouchingActors(Class'KFProj_BloatPukeMine', PukeMine)
+        {
+            PukeMine.TriggerExplosion(PukeMine.Location, vect(0, 0, 1), none);            
+        }        
+    }
     SetRotation(StuckRotation);
+    RandRot.Yaw = Rand(65535);
+    SetRelativeRotation(RandRot);
     SwapToGroundFX(StuckRotation);
     PlayImpactSound(true);
     SpawnImpactDecal(StuckLocation, StuckNormal);
@@ -255,9 +261,14 @@ singular event TakeDamage(int InDamage, Controller InstigatedBy, Vector HitLocat
     }
 }
 
-function Timer_Explode()
+function Detonate()
 {
     TriggerExplosion(Location, vect(0, 0, 1), none);
+}
+
+function Timer_Explode()
+{
+    Detonate();
 }
 
 simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor HitActor)
@@ -339,24 +350,22 @@ simulated function SpawnBurstEffect()
 
 simulated event Destroyed()
 {
-    local KFGameInfo_VersusSurvival KFGIVS;
-
     if(WorldInfo.NetMode != NM_Client)
     {
         if(InstigatorController != none)
         {
-            KFPlayerControllerVersus(InstigatorController).RemovePukeMineFromPool(self);            
-        }
-        else
-        {
-            if(WorldInfo.Game != none)
-            {
-                KFGIVS = KFGameInfo_VersusSurvival(WorldInfo.Game);
-                KFGIVS.ActivePukeMines.Remove(KFGIVS.ActivePukeMines.Find(self, 1;
-            }
+            Class'KFGameplayPoolManager'.static.GetPoolManager().RemoveProjectileFromPool(self, 1);
         }
     }
     super.Destroyed();
+}
+
+simulated function OnInstigatorControllerLeft()
+{
+    if(WorldInfo.NetMode != NM_Client)
+    {
+        SetTimer((1 + float(Rand(5))) + FRand(), false, 'Timer_Explode');
+    }
 }
 
 simulated state Armed
@@ -382,7 +391,7 @@ defaultproperties
 {
     GroundFXTemplate=ParticleSystem'ZED_Bloat_EMIT.FX_Bloat_Mine_01'
     BurstFXTemplate=ParticleSystem'ZED_Bloat_EMIT.FX_Bloat_Mine_Hit_01'
-    Health=150
+    Health=100
     DampenFactor=0.125
     DampenFactorParallel=0.175
     SpawnCollisionOffsetAmt=28
@@ -403,7 +412,7 @@ defaultproperties
     ExplosionActorClass=Class'KFExplosion_PlayerBloatPukeMine'
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'ZED_Bloat_ARCH.Bloat_Mine_Explosion'
-        Damage=45
+        Damage=30
         DamageRadius=450
         DamageFalloffExponent=0
         MyDamageType=Class'KFDT_Toxic_BloatPukeMine'

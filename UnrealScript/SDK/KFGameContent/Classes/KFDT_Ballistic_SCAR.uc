@@ -12,8 +12,6 @@ class KFDT_Ballistic_SCAR extends KFDT_Ballistic_AssaultRifle
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
@@ -38,9 +36,8 @@ defaultproperties
 	KDeathUpKick=-200
 	KDeathVel=200
 	
-	StumblePower=42
-	LegStumblePower=42
-	GunHitPower=35
+	StumblePower=18
+	GunHitPower=0
 
 	WeaponDef=class'KFWeapDef_SCAR'
 	

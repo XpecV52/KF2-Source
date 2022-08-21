@@ -2,228 +2,441 @@
 //1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
 //2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
 //3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
-//ItemDescription="Dubeltówka równoległa, kaliber 12. Idealna do walki na krótkie odległości. Nawet najwięksi Zedowie zachwieją się trafieni wystrzałem z obu luf. Znaleźliśmy ją w starym domu na farmie i sprzedaliśmy w siedlisku handlarki. Mamy nadzieję, że przeżyjesz dłużej niż jej poprzedni właściciel."
+//ItemDescription="Double-barreled, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest Zeds will stagger when hit with both barrels. We found it in an old farm-house and //canned it for the Trader Pod. Hope you live longer than the farmer."
+
+[KFTutorial]
+;Lobby start
+RewardsTitleKey="Welcome to the Training Floor"
+RewardsDescriptionKey="The Training Floor will teach you some survival basics, but without the fear of death. Complete the Training Floor and you will receive a cosmetic item and enough XP to bring your selected perk up to Level 1."
+WelcomeTitleKey="Select a Perk"
+WelcomeDescriptionKey="Before you begin the match, select the <font color="#caab05">PERKS</font> tab at the top of the screen and select a perk. Perks are classes with different passive <font color="#caab05">PERK BONUSES</font>, configurable <font color="#caab05">SKILLS</font>, and <font color="#caab05">WEAPON LOADOUTS</font>."
+PerksTitleKey="Perks Details"
+PerksDescriptionKey="Perform <font color="#caab05">XP OBJECTIVES</font> in game to gain XP and level up your perks. Each time you level up, your <font color="#caab05">PERK BONUSES</font> increase for that perk. Every 5 levels you will unlock new <font color="#caab05">SKILLS</font> that you can <font color="#caab05">CONFIGURE</font> once unlocked. Select a perk and press <font color="#caab05">READY UP</font> to begin the match."
+
+;Gear Menu
+GearTitleKey="Gear Menu"
+GearDescriptionKey="The Gear Menu lets you select and <font color="#caab05">CUSTOMIZE</font> your character. Each character has a unique visual look, voice, and personality. Each character's head and body can be customized. You can wear up to 3 cosmetic accessories. Select and customize your character using the buttons on the left side of this menu."
+
+;Inventory Menu
+InventoryMenuTitleKey="Inventory Menu"
+InventoryMenuDescriptionKey="The inventory menu allows you to view and manage your item inventory. You can obtain items as rewards for completing matches from time to time, but you can also get items by opening crates, decrypting weapon skin USBs, trading with your friends, or purchasing them on the Market."
+WeaponSkinsTitleKey="Equipping Weapon Skins"
+WeaponSkinsDescriptionKey="Selecting any item will let you view the item details. If you have a weapon skin selected, you can equip it by pressing the <font color="#caab05">EQUIP</font> button. If you have a weapon skin equipped, any time you use that weapon in a match it will appear with the currently equipped skin."
+
+;Store Menu
+StoreTitleKey="Store Menu"
+StoreDescriptionsKey="The Store Menu allows you to purchase keys that are used to open crates and decrypt weapon skin USBs you find. There are also several character cosmetic item bundles you can purchase. Items that you purchase or receive as rewards will appear in the Inventory Menu."
+
+;Match Start
+InventoryTitleKey="Know Your Inventory"
+InventoryDescriptionKey="Each perk loadout starts with a unique primary weapon, a backup 9mm pistol, a specialist knife, and grenades. Press <font color="#caab05">%x%</font> to cycle through your weapons. You can also quick select weapon categories by pressing the following: <font color="#caab05">%x%</font> to equip your primary ranged weapon, <font color="#caab05">%x%</font> to equip your pistol, <font color="#caab05">%x%</font> to equip your melee weapon, and <font color="#caab05">%x%</font> to equip your syringe."
+InventoryContTitleKey="Know Your Inventory"
+InventoryContDescriptionKey="Each perk loadout starts with a unique primary weapon, a backup 9mm pistol, a specialist knife and grenade. Hold <font color="#caab05">%x%</font> and use the Dpad to select a weapon."
+AlternateFireKey="Alternate Fire"
+AlternateFireDescription="Most primary weapon have an alternate fire mode. Press <font color="#caab05">%x%</font> to toggle your current fire mode. An icon in your view will show the currently selected firemode."
+FlashLightBatteryTitleKey="Using a Flashlight"
+FlashLightBatteryDescriptionKey="It can get dark out there. Press <font color="#caab05">%x%</font> to toggle your <font color="#caab05">FLASHLIGHT</font> on and off. Your flashlight battery will slowly run out of power. When this happens it will turn off and automatically start recharging again."
+GrenadeTitleKey="Using Grenades"
+GrenadeDescriptionKey="Grenades allow you to deal with closely packed groups of Zeds. Perks have different grenades in their <font color="#caab05">WEAPON LOADOUTS</font>, all of which damage Zeds, but may have additional effects. Press <font color="#caab05">%x%</font> to throw a grenade." 
+
+;Wave 1 end
+TraderTimeTitleKey="Trader Time"
+TraderTimeDescriptionKey="In between waves you can buy/sell weapons and fill your ammo at the Trader. Follow the blue arrows to find the Trader."
+InventoryWeightTitleKey="Carrying Weight"
+InventoryWeightDescriptionKey="You are limited in the weight you can carry. If you can't carry what you want, sell some gear first to make room."
+
+;Trader Menu Open
+TraderRefillTitleKey="Refill Your Ammo and Armor"
+TraderRefillDescriptionKey="You can refill your <font color="#caab05">AMMO</font>, <font color="#caab05">GRENADES</font>, and <font color="#caab05">BODY ARMOR</font> by pressing the <font color="#caab05">MAG</font>, <font color="#caab05">x1</font>, or <font color="#caab05">FILL</font> buttons next to the appropriate item. If you are short of time (or long on dosh), pressing <font color="#caab05">AUTOFILL</font> will spend your dosh for you, spreading it across ammo, armor, and grenades quickly."
+TraderSellTitleKey="Selling Weapons"
+TraderSellDescriptionKey="To <font color="#caab05">SELL A WEAPON</font>, select the weapon on the right side of the menu and press the large <font color="#caab05">SELL BUTTON</font> in the center of the menu. You cannot sell your backup 9mm pistol, body armor, or grenades."
+TraderBuyTitleKey="Buying Weapons"
+TraderBuyDescriptionKey="To <font color="#caab05">BUY A WEAPON</font>, select a weapon on the left side of the menu and press the large <font color="#caab05">BUY BUTTON</font> in the center of the menu. Make sure you have enough <font color="#caab05">DOSH</font> and <font color="#caab05">WEIGHT CAPACITY</font> to purchase the weapon."
+TraderWeightTitleKey="Weapon Weight and Capacity"
+TraderWeightDescriptionKey="Every weapon has a <font color="#caab05">WEIGHT VALUE</font>. The weight of your current weapons may prevent you from being able to purchase the weapon you wish. The weight of the weapon is visible on the weapon list and in the weapon details. Your <font color="#caab05">WEIGHT CAPACITY</font> is shown above the buy/sell button in the center of the screen. Anything that will block you from buying the currently selected item is highlighted in red."
+
+;Trader Menu Close
+DoorWeldTitleKey="Weld Doors"
+DoorWeldDescriptionKey="You can <font color="#caab05">WELD DOORS</font> to slow the flow of enemies to a given area. To weld a door, walk up to it and <font color="#caab05">HOLD %x%</font> to equip your welder."
+HoldOutRunTitleKey="Run vs. Hold Out"
+HoldOutRunDescriptionKey="Know when to hold out and when to run. Find a good hold out spot, but once you start getting overrun, find an exit."
+TeamAdviceTitleKey="Stick Together"
+TeamAdviceDescriptionKey="<font color="#caab05">STAY WITH YOUR TEAM!</font> Your teammates are vital to your survival. They can heal you as well as help you take down the bigger Zeds."
+
+;Victory
+CongratulationsTitleKey="Victory!"
+CongratulationsDescriptionKey="Congratulations! You have completed the Training Floor!"
+NextStepsTitleKey="What to Do Next"
+NextStepsDescriptionKey="From the main menu, <font color="#caab05">PLAY SOLO OFFLINE</font> to practice more offline or jump into <font color="#caab05">ONLINE MATCHMAKING</font> or <font color="#caab05">BROWSE SERVERS</font> to find an online game. Now go kill some Zeds!"
+
+;Healing Section
+QuickHealTitleKey="Heal Yourself When Hurt"
+QuickHealDescriptionKey="If you are hurt, you can heal yourself by pressing <font color="#caab05">%x%</font>. After healing, your syringe will take sometime to recharge before you can use it again."
+HowToSyringeTitleKey="Heal Your Teammates"
+HowToSyringeDescriptionKey="You can also equip the syringe to heal your teammates by pressing <font color="#caab05">%x%</font> and then pressing <font color="#caab05">%x%</font> when close to a teammate."
+HealOthersTitleKey="Use Field Medic Weapons to Heal Teammates"
+HealOthersDescriptionKey="Field Medic perk weapons can heal teammates from a distance with their alternate fire mode. If you are using a Field Medic weapon, press <font color="#caab05">%x%</font> to fire a healing dart. Also, when you have selected the Field Medic perk, press <font color="#caab05">%x%</font> to throw a healing gas grenade."
+
+;Zed Time
+ZedTimeTitleKey="Zed Time"
+ZedTimeDescriptionKey="<font color="#caab05">ZED TIME SLO-MO</font> kicks in when cool things happen like headshots or hordes of enemies dying in an explosion. You can use this time to catch a small breather and daisy-chain some kills together."
+
+;Melee Section
+MeleeTitleKey="Melee Weapons"
+MeleeDescriptionKey="Melee weapons have both light and hard attacks. Perform a light attack by pressing <font color="#caab05">%x%</font> and a hard attack by pressing <font color="#caab05">%x%</font>."
+BlockingTitleKey="Blocking with Melee Weapons"
+BlockingDescriptionKey="You can also block with melee weapons by <font color="#caab05">HOLDING %x%</font>. Blocking will reduce incoming Zed damage."
+ParryTitleKey="Parrying with Melee Weapons"
+ParryDescriptionKey="If you time a block correctly with an incoming Zed attack, you will parry the Zed and stumble him back. You will see an effect flash if you successfully parry a Zed."
+UnblockableTitleKey="Unblockable Zed Attacks"
+UnblockableDescriptionKey="Larger Zeds have some unblockable attacks. You can tell if an attack is unblockable by glowing effects on the Zed during an attack."
+
+[KFGFxTutorialContainer]
+BackString="BACK"
+NextString="NEXT"
+DoneString="DONE"
+SkipString="SKIP"
 
 [Armor]
 ItemName="Pancerz bojowy"
-ItemCategory="Equipment"
+ItemCategory="Sprzęt"
 ItemDescription="• Pancerz bojowy chroni cię przed wieloma obrażeniami, jednak z czasem niszczeje.\n• Kup nowy albo napraw uszkodzony pancerz u handlarki.\n\nTo kurtka z zamocowanymi płytkami wykonanymi z połączenia zaawansowanego technologicznie włókna i stali wolframowej."
 
 [KFProj_DynamiteGrenade]
 ItemName="1/2 laski dynamitu"
-ItemCategory =" Explosives"
+ItemCategory =" Materiały wybuchowe"
 ItemDescription="• Zaledwie mały kawałek dynamitu z lontem.\n• Tobie także może zrobić krzywdę, więc obchódź się z nim ostrożnie!"
 
 [KFProj_MedicGrenade]
 ItemName="Granat medyka"
-ItemCategory =" Explosives"
-ItemDescription="• Uwalnia gaz, który zatruwa Zedy i leczy ludzi.\n• Jeśli chcesz się wyleczyć, stań w niebieskiej chmurze dymu.\n\nJeden z naszych naukowców powiedział:  „Czynnik uwalniany z tych granatów leczy Homo Sapiens i jednocześnie zabija Homo Zedicus”.  Mamy nadzieję, że się przyda."
+ItemCategory =" Materiały wybuchowe"
+ItemDescription="• Uwalnia gaz, który zatruwa zedy i leczy ludzi.\n• Jeśli chcesz się wyleczyć, stań w niebieskiej chmurze dymu.\n\nJeden z naszych naukowców powiedział: „Czynnik uwalniany z tych granatów leczy Homo sapiens i jednocześnie zabija Homo zedicus”. Mamy nadzieję, że się przyda."
 
 [KFProj_MolotovGrenade]
 ItemName="Koktajl Mołotowa"
-ItemCategory="Explosives"
-ItemDescription="• Granat zapalający Zedy.\n• Uważaj, bo ciebie też może zranić!\n\nNazwany tak przez Finów podczas wojny zimowej w latach 1939–1940, od nazwiska Wiaczesława Mołotowa, sowieckiego ministra spraw zagranicznych u boku Stalina... Skąd mieliśmy wiedzieć, że nie lubisz historii?"
+ItemCategory="Materiały wybuchowe"
+ItemDescription="• Granat zapalający zedy.\n• Uważaj, bo ciebie też może zranić!\n\nNazwany tak przez Finów podczas wojny zimowej w latach 1939–40, od nazwiska Wiaczesława Mołotowa, sowieckiego ministra spraw zagranicznych u boku Stalina... Skąd mieliśmy wiedzieć, że nie lubisz historii?"
 
 [KFProj_EMPGrenade]
 ItemName="Granat EMP"
-ItemCategory="Explosives"
-ItemDescription="• Generuje impuls elektromagnetyczny, który zadaje Zedom obrażenia i może je także na krótko ogłuszyć.n\n\Podczas detonacji wytwarza nanosekundowy impuls, który zakłóca pracę urządzeń elektrycznych znajdujących się w jego zasięgu. Szczególnie tych u Zedów. Niezłe, co?"
+ItemCategory="Materiały wybuchowe"
+ItemDescription="• Generuje impuls elektromagnetyczny, który zadaje zedom obrażenia i może je także na krótko ogłuszyć.\n\nPodczas detonacji wytwarza nanosekundowy impuls, który zakłóca pracę urządzeń elektrycznych znajdujących się w jego zasięgu. Szczególnie tych u zedów. Niezłe, co?"
 
 [KFProj_HEGrenade]
 ItemName="Granat wybuchowy"
-ItemCategory="Explosives"
-ItemDescription="• Bardzo prosty granat wybuchowy. Zadaje obrażenia zarówno Zedom, jak i ludziom.\n\nProściej się nie da. Robi BUM i wysadza okolicę w powietrze. Czy naprawdę musimy ci to tłumaczyć?"
+ItemCategory="Materiały wybuchowe"
+ItemDescription="• Bardzo prosty granat wybuchowy. Zadaje obrażenia zarówno zedom, jak i ludziom.\n\nProściej się nie da. Robi BUM i wysadza okolicę w powietrze. Czy naprawdę musimy ci to tłumaczyć?"
 
 [KFProj_FragGrenade]
 ItemName="Granat odłamkowy"
-ItemCategory="Explosives"
+ItemCategory="Materiały wybuchowe"
 ItemDescription="• Klasyczny granat odłamkowy: rozrzuca kawałki metalu, raniąc wszystkich dookoła.\n\nJestem pewien, że masz na swoim koncie sporo gier ukończonych przed wybuchem epidemii, więc bardzo dobrze wiesz, czym jest granat odłamkowy. I nie udawaj, że pierwsze słyszysz. Nikt ci w to nie uwierzy."
+
+[KFProj_NailBombGrenade]
+ItemName="Bomba z gwoździami"
+ItemCategory =" Materiały wybuchowe"
+ItemDescription="• Zwyczajny kanister wypełniony starymi gwoździami i zawierający niewielki ładunek wybuchowy w środku.\n\nNie należy do najbardziej przyjemnego i subtelnego sposobu radzenia sobie z zedami. Ale nie ma nic przyjemnego i subtelnego w zedach, prawda?."
+
+[KFProj_FreezeGrenade]
+ItemName="Freeze Grenade"
+ItemCategory = "Explosives"
+ItemDescription="• An advanced canister of pressurized liquid nitrogen.\n\nEnough contact with the contents of this will freeze Zeds in place for a time. The results can be very shattering."
 
 [KFWeap_Healer_Syringe]
 ItemName="Strzykawka"
-ItemCategory="Equipment"
+ItemCategory="Sprzęt"
 
 [KFWeap_Welder]
 ItemName="Spawarka"
-ItemCategory="Equipment"
+ItemCategory="Sprzęt"
 
 [KFWeap_Pistol_9mm]
 ItemName="Pistolet 9mm"
-ItemCategory="Hand Gun"
-ItemDescription="• Podstawowy typ ostrzału to półautomat.\n• Możliwość dołączenia latarki.\n• Standardowy pistolet 9 mm. Prosty i tani (szczerze mówiąc, bardzo tani). Jest podstawowym wyposażeniem Horzine."
+ItemCategory="Pistolet"
+ItemDescription="• Tryb ognia to półautomat.\n• Standardowy pistolet 9mm. Prosty i tani (szczerze mówiąc, bardzo tani). Jest podstawowym wyposażeniem Horzine."
 
 [KFWeap_Pistol_Deagle]
-ItemName=".50 Desert Eagle"
-ItemCategory="Hand Cannon"
-ItemDescription="• Podstawowy typ ostrzału to półautomat.\n• Desert Eagle jest bestią wśród pistoletów, dlatego też wszyscy znają go jako „działo ręczne”."
+ItemName="Desert Eagle .50"
+ItemCategory="Pistolet"
+ItemDescription="• Tryb ognia to półautomat.\n• Desert Eagle jest bestią wśród pistoletów, dlatego też wszyscy znają go jako „działo ręczne”."
 
 [KFWeap_AssaultRifle_AR15]
 ItemName="Karabin AR-15 Varmint"
-ItemCategory="Assault Rifle"
-ItemDescription="• Możliwość wyboru pomiędzy serią 3 strzałów lub pojedynczym wystrzałem.\n• Naciśnij przycisk alternatywnego ostrzału żeby zmienić tryb.\n• Na Zedy, nie „łapserdaki”."
+ItemCategory="Karabin szturmowy"
+ItemDescription="• Możliwość wyboru pomiędzy serią 3 strzałów lub pojedynczym wystrzałem.\n• Naciśnij przycisk alternatywnego ostrzału, żeby zmienić tryb.\n• Na zedy, nie „łapserdaki”."
 
 [KFWeap_AssaultRifle_SCAR]
 ItemName="Karabin SCAR-H"
-ItemCategory="Assault Rifle"
-ItemDescription="• Możliwość wyboru pomiędzy pełnym i pół automatem.\n• Naciśnij przycisk alternatywnego ostrzału żeby zmienić tryb.\n• Zaprojektowany dla Dowództwa Operacji Specjalnych USA. I naprawdę służy do operacji specjalnych!"
+ItemCategory="Karabin szturmowy"
+ItemDescription="• Możliwość wyboru pomiędzy pełnym i pół automatem.\n• Naciśnij przycisk alternatywnego ostrzału, żeby zmienić tryb.\n• Zaprojektowany dla Dowództwa Operacji Specjalnych USA. I naprawdę służy do operacji specjalnych!"
 
 [KFWeap_AssaultRifle_AK12]
 ItemName="Kałasznikow AK-12"
-ItemCategory="Assault Rifle"
-ItemDescription="• Możliwość wyboru pomiędzy automatem i serią 3 strzałów.\n• Naciśnij przycisk alternatywnego ostrzału żeby zmienić tryb.\n• Ten AK-12 został zabrany martwemu żołnierzowi rosyjskiego Specnazu."
+ItemCategory="Karabin szturmowy"
+ItemDescription="• Możliwość wyboru pomiędzy automatem i serią 3 strzałów.\n• Naciśnij przycisk alternatywnego ostrzału, żeby zmienić tryb.\n• Ten AK-12 został zabrany martwemu żołnierzowi rosyjskiego Specnazu."
 
 [KFWeap_AssaultRifle_Bullpup]
 ItemName="SA80 L85A2 Bullpup"
-ItemCategory="Assault Rifle"
-ItemDescription="• Możliwość wyboru pomiędzy pełnym i pół automatem.\n• Naciśnij przycisk alternatywnego ostrzału żeby zmienić tryb.\n• SA80 był podstawowym wyposażeniem armii brytyjskiej, zanim nie została... zjedzona."
+ItemCategory="Karabin szturmowy"
+ItemDescription="• Możliwość wyboru pomiędzy pełnym i półautomatem.\n• Naciśnij przycisk alternatywnego ostrzału, żeby zmienić tryb.\n• SA80 był podstawowym wyposażeniem armii brytyjskiej, zanim nie została... zjedzona."
 
 [KFWeap_Knife_Demolitionist]
 ItemName="Nóż"
-ItemCategory="Melee"
+ItemCategory="Broń do walki wręcz"
 ItemDescription="• Podstawowy – szybki atak cięciem, przytrzymany powoduje atak kombinacyjny\n• Drugi – mocny atak cięciem\n• Alt. – blok/odpieranie ataku\n• Po prostu nóż. Idealny od otwierania kartonów, które możesz napotkać w Killing Floor."
 
 [KFWeap_Knife_FieldMedic]
 ItemName="Skalpel"
-ItemCategory="Melee"
+ItemCategory="Broń do walki wręcz"
 ItemDescription="• Podstawowy – szybki atak cięciem, przytrzymany powoduje atak kombinacyjny\n• Drugi – mocny atak cięciem\n• Alt - blok/odpieranie ataku\n• Po prostu skalpel. Jesteś Medykiem, więc zakładamy, że nie musimy ci wyjaśniać jak go używać."
 
 [KFWeap_Knife_Firebug]
 ItemName="Nóż strażacki"
-ItemCategory="Melee"
+ItemCategory="Broń do walki wręcz"
 ItemDescription="• Podstawowy – szybki atak cięciem, przytrzymany powoduje atak kombinacyjny\n• Drugi – mocny atak cięciem\n• Alt - blok/odpieranie ataku\n• Po prostu nóż strażacki. Jesteś strażakiem, więc zakładamy, że nie musimy ci wyjaśniać jak go używać."
+
+[KFWeap_Knife_Gunslinger]
+ItemName="Nóż Bowie"
+ItemCategory="Broń do walki wręcz"
+ItemDescription="• Podstawowy – szybki atak cięciem, przytrzymany powoduje atak kombinacyjny\n• Drugi – mocny atak cięciem\n• Alt. – blok/odpieranie ataku\n• Ogromny nóż z dzikiego zachodu. Idealny do krojenia zedów na kawałki w każdej chwili i w każdym miejscu."
+
+[KFWeap_Knife_Sharpshooter]
+ItemName="Kukri"
+ItemCategory="Walka wręcz"
+ItemDescription=""
 
 [KFWeap_Pistol_Medic]
 ItemName="Pistolet HMTech-101"
-ItemCategory="Pistol"
-ItemDescription="• Podstawowy typ ostrzału to półautomat.\n• Po przełączeniu strzela leczniczymi strzałkami, którymi można wspomóc członków drużyny.\n• Korzysta z bezmagazynkowej amunicji i sam liczy pociski."
+ItemCategory="Pistolet"
+ItemDescription="• Tryb ognia to półautomat.\n• Atak alt. wystrzeliwuje strzałki leczące członków drużyny.\n• Korzysta z amunicji bezłuskowej i pokazuje stan magazynka."
 
 [KFWeap_SMG_Medic]
 ItemName="HMTech-201 SMG"
-ItemCategory="Sub Machine Gun"
-ItemDescription="• Podstawowy typ ostrzału to automat.\n• Po przełączeniu strzela leczniczymi strzałkami, którymi można wspomóc członków drużyny.\n• Możliwość dołączenia latarki.\n• Jak twój pistolet, ale lepszy!"
+ItemCategory="Pistolet maszynowy"
+ItemDescription="• Tryb ognia to automat.\n• Atak alt. wystrzeliwuje strzałki leczące członków drużyny.\n• Jak twój pistolet, ale lepszy!"
 
 [KFWeap_Shotgun_Medic]
 ItemName="Strzelba HMTech-301"
-ItemCategory="Shotgun"
-ItemDescription="• Podstawowy typ ostrzału to półautomat.\n• Po przełączeniu strzela leczniczymi strzałkami, którymi można wspomóc członków drużyny.\n• Możliwość dołączenia latarki.\n• Strzelba w wersji dla Medyka."
+ItemCategory="Strzelba"
+ItemDescription="• Tryb ognia to półautomat.\n• Atak alt. wystrzeliwuje strzałki leczące członków drużyny.\n• Strzelba w wersji dla Medyka."
 
 [KFWeap_AssaultRifle_Medic]
 ItemName="Karabin HMTech-401"
-ItemCategory="Assault Rifle"
-ItemDescription="• Podstawowy typ ostrzału to automat.\n• Po przełączeniu strzela leczniczymi strzałkami, którymi można wspomóc członków drużyny.\n• Możliwość dołączenia latarki.\n• Prawdziwy karabin szturmowy."
+ItemCategory="Karabin szturmowy"
+ItemDescription="• Tryb ognia to automat.\n• Atak alt. wystrzeliwuje strzałki leczące członków drużyny.\n• Prawdziwy karabin szturmowy."
 
 [KFWeap_Shotgun_DoubleBarrel]
 ItemName="Dwulufowy obrzyn"
-ItemCategory="Shotgun"
-ItemDescription="• Podstawowy typ ostrzału korzysta z jednej lufy.\n• Po przełączeniu strzela z obu luf jednocześnie.\n• Dubeltówka równoległa, kaliber 12. Idealna do walki na krótkie odległości. Nawet najwięksi Zedowie zachwieją się trafieni wystrzałem z obu luf!"
+ItemCategory="Strzelba"
+ItemDescription="• Podstawowy typ ostrzału korzysta z jednej lufy.\n• Po przełączeniu strzela z obu luf jednocześnie.\n• Dubeltówka równoległa, kaliber 12. Idealna do walki na krótkie odległości. Nawet najwięksi zedowie zachwieją się trafieni wystrzałem z obu luf!"
 
 [KFWeap_Shotgun_AA12]
 ItemName="Strzelba AA-12"
-ItemCategory="Shotgun"
-ItemDescription="• Podstawowy typ ostrzału to automat.\n• AA-12 to w pełni automatyczna strzelba. Ogromna siła rażenia na bliskie i średnie dystanse, po prostu pluje amunicją!"
+ItemCategory="Strzelba"
+ItemDescription="• Możliwość wyboru pomiędzy pełnym i półautomatem.\n• Naciśnij przycisk alternatywnego ostrzału, żeby zmienić tryb.\n• AA-12 to w automatyczna strzelba. Ogromna siła rażenia na bliskie i średnie dystanse; po prostu pluje amunicją na pełnym automacie!"
 
 [KFWeap_Shotgun_MB500]
-ItemName="SG 500 "Pompka""
-ItemCategory="Shotgun"
-ItemDescription="• Podstawowy typ ostrzału to "pompka".\n• Możliwość dołączenia latarki.\n• Mossberg SG 500 w wersji z "pompką" i kolbą pistoletu to wspaniały sprzęt do zabijania Zedów z krótkiej odległości. Łatwy i efektywny."
+ItemName="SG 500 Pompka"
+ItemCategory="Strzelba"
+ItemDescription="• Tryb ognia to tzw. „pompka”.\n• Mossberg SG 500 z chwytem pistoletowym to wspaniały sprzęt do zabijania zedów z krótkiej odległości. Łatwy w obsłudze i efektywny w działaniu."
 
 [KFWeap_Shotgun_M4]
 ItemName="Strzelba bojowa M4"
-ItemCategory="Shotgun"
-ItemDescription="• Podstawowy typ ostrzału to półautomat.\n• Możliwość dołączenia latarki.\n• Benelli zaprojektował strzelbę bojową M4 dla wojska USA. Półautomat pozwala na celny i stały ostrzał."
+ItemCategory="Strzelba"
+ItemDescription="• Tryb ognia to półautomat.\n• Benelli zaprojektował strzelbę bojową M4 dla wojska USA. Półautomat pozwala na celny i stały ostrzał."
 
 [KFWeap_Knife_Berserker]
 ItemName="Ostrze kosiarki"
-ItemCategory="Melee"
+ItemCategory="Broń do walki wręcz"
 ItemDescription="• Podstawowy – szybki atak cięciem, przytrzymany powoduje atak kombinacyjny\n• Drugi – mocny atak cięciem\n• Alt. – blok/odpieranie ataku\n• Tak, to naprawdę jest ostrze kosiarki. Baw się dobrze!"
 
 [KFWeap_Knife_Commando]
 ItemName="KF-BAR"
-ItemCategory="Melee"
+ItemCategory="Broń do walki wręcz"
 ItemDescription="• Podstawowy – szybki atak cięciem, przytrzymany powoduje atak kombinacyjny\n• Drugi – mocny atak cięciem\n• Alt. – blok/odpieranie ataku\n• Klasyczny nóż bojowy wykorzystywany w Horzine."
 
 [KFWeap_Knife_Support]
 ItemName="Maczeta"
-ItemCategory="Melee"
+ItemCategory="Broń do walki wręcz"
 ItemDescription="• Podstawowy – szybki atak cięciem, przytrzymany powoduje atak kombinacyjny.\n• Drugi – mocny atak cięciem\n• Alt. – blok/odpieranie ataku\n• Ale nie pęknij z dumy tylko dlatego, że daliśmy ci największy nóż."
 
 [KFWeap_Edged_Katana]
 ItemName="Katana"
-ItemCategory="Melee"
+ItemCategory="Broń do walki wręcz"
 ItemDescription="• Podstawowy – szybki atak cięciem, przytrzymany powoduje atak kombinacyjny.\n• Drugi – mocny atak cięciem\n• Alt. – blok/odpieranie ataku\n• Postaraj się okazać trochę szacunku temu cacku."
 
 [KFWeap_Blunt_Crovel]
 ItemName="Saperka Crovel"
-ItemCategory="Melee"
+ItemCategory="Broń do walki wręcz"
 ItemDescription="• Podstawowy – szybki atak cięciem, przytrzymany powoduje atak kombinacyjny.\n• Drugi – mocny atak obuchowy\n• Alt. – blok/odpieranie ataku\n• Łom i saperka w jednym, tak czy siak zabójczo niebezpieczna."
 
 [KFWeap_Shotgun_Nailgun]
 ItemName="Gwoździarka VLAD-1000"
-ItemCategory="Shotgun"
-ItemDescription="• Możliwość wyboru pomiędzy pomiędzy wystrzałem pojedynczym lub wielu gwoździ jednocześnie.\n• Naciśnij przycisk alternatywnego ostrzału żeby zmienić tryb.\n• Zdajemy sobie sprawę, że jeden z naukowców pożyczył pierwszą gwoździarkę od (martwego) robotnika budowlanego."
+ItemCategory="Strzelba"
+ItemDescription="• Możliwość wyboru pomiędzy pomiędzy wystrzałem pojedynczym lub wielu gwoździ jednocześnie.\n• Naciśnij przycisk alternatywnego ostrzału, żeby zmienić tryb.\n• Zdajemy sobie sprawę, że jeden z naukowców pożyczył pierwszą gwoździarkę od (martwego) robotnika budowlanego."
 
 [KFWeap_Blunt_Pulverizer]
-ItemName="Młynek"
-ItemCategory="Melee"
+ItemName="Miażdzyciel"
+ItemCategory="Broń do walki wręcz"
 ItemDescription="• Podstawowy – szybki atak obuchowy, przytrzymany powoduje atak kombinacyjny.\n• Drugi – poza podstawowym działaniem wystrzeliwuje także materiał wybuchowy. Bez ładunku drugi typ ataku jest ciężkim atakiem obuchowym, więc pamiętaj o przeładowywaniu broni!\n• Alt. – blok/odpieranie ataku"
 
 [KFWeap_Eviscerator]
-ItemName="Rozpruwacz"
-ItemCategory="Special"
+ItemName="Patroszyciel"
+ItemCategory="Specjalne"
 ItemDescription="• Podstawowy tryb wystrzeliwuje ostrza piły.\n• Atak alt. to uderzenie, które szybko zużywa paliwo.\n• Zaprojektowany przez grupę SDS w Horzine, podczas jednego z ich bardziej szalonych momentów. Prawdziwa bestia."
 SecondaryAmmo="Paliwo"
 
 [KFWeap_Edged_Zweihander]
-ItemName="Zweihänder"
-ItemCategory="Melee"
-ItemDescription="• Podstawowy – średnie/duże obrażenia, z pozwalający na kontrolę tłumu.\n• Drugi – wolniejszy, ale powodujący większe obrażenia.\n• Alt. – blok/odpieranie ataku\n• Zadasz jeszcze większe obrażenia idąc do przodu."
+ItemName="Zweihander"
+ItemCategory="Broń do walki wręcz"
+ItemDescription="• Podstawowy – średnie/duże obrażenia; pozwala na kontrolę tłumu.\n• Drugi – wolniejszy, ale powodujący większe obrażenia.\n• Alt. – blok/odpieranie ataku\n• Zadasz jeszcze większe obrażenia, idąc do przodu."
 SharedUnlockSource="Ciężki średniowieczny oręż"
 
 [KFWeap_Flame_CaulkBurn]
 ItemName="Zapalniczka"
-ItemCategory="Flames"
+ItemCategory="Płomienie"
 ItemDescription="• Strzelający płomieniami, przenośny, domowej roboty miotacz płomieni. Dzieci, NIE próbujcie tego w domu."
 
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="Strzelba zapalająca"
-ItemCategory="Shotgun"
-ItemDescription="• Jedyny tryb to ostrzał z „pompki”.\n• Strzelba wykorzystująca pociski zapalające „Oddech Smoka”. Poza tym, że jest śmiertelnie niebezpieczny, także świetnie wygląda."
+ItemCategory="Strzelba"
+ItemDescription="• Tryb ognia to tzw. „pompka”.\n• Strzelba wykorzystująca pociski zapalające „Oddech Smoka”. Poza tym, że jest śmiertelnie niebezpieczna, to jeszcze świetnie wygląda."
 
 [KFWeap_Flame_Flamethrower]
 ItemName="Miotacz ognia"
-ItemCategory="Flames"
+ItemCategory="Płomienie"
 ItemDescription="• Strzela płomieniami. I tyle.\n• Ponadczasowy klasyk. W razie wątpliwości spal wszystko."
 
 [KFWeap_Beam_Microwave]
 ItemName="Działo mikrofalowe"
-ItemCategory="Flames"
-ItemDescription="• Wystrzeliwuje mikrofale, które spalają Zedy od środka.\n• Alternatywny ostrzał uwalnia wybuch mikrofal przydatny na w zwarciu.\n• Cudo nowoczesnej technologii. Podręczna kuchenka na Zedy."
+ItemCategory="Płomienie"
+ItemDescription="• Wystrzeliwuje mikrofale, które spalają zedy od środka.\n• Alternatywny ostrzał uwalnia wybuch mikrofal przydatny w zwarciu.\n• Cudo nowoczesnej technologii. Podręczna kuchenka na zedy."
 
 [KFWeap_Thrown_C4]
 ItemName="Ładunek C4"
-ItemCategory="Explosives"
-ItemDescription="• Podstawowy – podkłada ładunek C4.\n• Alternatywny – detonuje ładunki w takiej kolejności w jakiej zostały podłożone .\n• Ładunek C4 przygotowany do zdalnej detonacji."
+ItemCategory="Materiały wybuchowe"
+ItemDescription="• Podstawowy – podkłada ładunek C4.\n• Alternatywny – detonuje ładunki w takiej kolejności, w jakiej zostały podłożone.\n• Ładunek C4 przygotowany do zdalnej detonacji."
 
 [KFWeap_GrenadeLauncher_HX25]
 ItemName="Granatnik HX25"
-ItemCategory="Explosives"
+ItemCategory="Materiały wybuchowe"
 ItemDescription="• Wystrzeliwuje wiele pocisków, które wybuchają dopiero w momencie kontaktu z przeciwnikiem."
 
 [KFWeap_GrenadeLauncher_M79]
 ItemName="Granatnik M79"
-ItemCategory="Explosives"
-ItemDescription="• Wystrzeliwuje granaty, które wybuchają pod wpływem uderzenia.\n• Korzystaj z niego będąc kilka metrów od celu, w przeciwnym wypadku zrobisz sobie krzywdę."
+ItemCategory="Materiały wybuchowe"
+ItemDescription="• Wystrzeliwuje granaty, które wybuchają pod wpływem uderzenia.\n• Korzystaj z niego, będąc kilka metrów od celu, bo w przeciwnym wypadku zrobisz sobie krzywdę."
 
 [KFWeap_RocketLauncher_RPG7]
 ItemName="RPG-7"
-ItemCategory="Explosives"
-ItemDescription="• Wystrzeliwuje rakiety, które wybuchają pod wpływem uderzenia.\n• Korzystaj z niego będąc kilka metrów od celu, w przeciwnym wypadku zrobisz sobie krzywdę.\n• Podczas wystrzału uważaj też na towarzyszy za tobą!"
+ItemCategory="Materiały wybuchowe"
+ItemDescription="• Wystrzeliwuje rakiety, które wybuchają pod wpływem uderzenia.\n• Korzystaj z niego, będąc kilka metrów od celu, bo w przeciwnym wypadku zrobisz sobie krzywdę.\n• Podczas wystrzału uważaj też na towarzyszy za tobą!"
 
 [KFWeap_Pistol_Dual9mm]
 ItemName="Dwa pistolety 9mm"
-ItemCategory="Hand Gun"
-ItemDescription="• Podstawowy typ ostrzału to półautomat.\n• Możliwość dołączenia latarki.\n• Para standardowych pistoletów 9 mm. Jeśli potrzebujesz forsy jeden z nich możesz sprzedać."
+ItemCategory="Pistolet"
+ItemDescription="• Tryb ognia to półautomat.\n• Atak alt. zmienia styl celowania przez przyrządy.\n• Para standardowych pistoletów 9mm. Jeśli potrzebujesz forsy, jeden z nich możesz sprzedać."
 
+[KFWeap_Pistol_Colt1911]
+ItemName="Pistolet M1911"
+ItemCategory="Pistolet"
+ItemDescription="• Tryb ognia to półautomat.\n• Klasyczny, półautomatyczny pistolet Colt 1911."
+
+[KFWeap_Pistol_DualColt1911]
+ItemName="Dwa pistolety M1911"
+ItemCategory="Pistolet"
+ItemDescription="• Tryb ognia to półautomat.\n• Atak alt. zmienia styl celowania przez przyrządy.\n• Para półautomatycznych pistoletów Colt 1911. Każdy może być osobno sprzedany lub wyrzucony."
+
+[KFWeap_Pistol_Deagle]
+ItemName="Desert Eagle .50"
+ItemCategory="Pistolet"
+ItemDescription="• Tryb ognia to półautomat.\n• Desert Eagle jest bestią wśród pistoletów, dlatego też wszyscy znają go jako „działo ręczne”."
+
+[KFWeap_Pistol_DualDeagle]
+ItemName="Dwa Desert Eagle .50"
+ItemCategory="Pistolet"
+ItemDescription="• Tryb ognia to półautomat.\n• Atak alt. zmienia styl celowania przez przyrządy.\n• Para pistoletów Desert Eagle. Każdy może być osobno sprzedany lub wyrzucony."
+
+[KFWeap_Revolver_Rem1858]
+ItemName="Rewolwer 1858"
+ItemCategory="Pistolet"
+ItemDescription="• Tryb ognia to pojedynczy strzał.\n• Cudowny przykład 6-strzałowego rewolweru kalibru .44 typu Remington „Model 1858”. Wiekowy, ale nadal skuteczny."
+
+[KFWeap_Revolver_DualRem1858]
+ItemName="Dwa rewolwery 1858"
+ItemCategory="Pistolet"
+ItemDescription="• Tryb ognia to pojedynczy strzał.\n• Atak alt. zmienia styl celowania przez przyrządy.\n• Para rewolwerów Remington 1858. Każdy może być osobno sprzedany lub wyrzucony."
+
+[KFWeap_Revolver_SW500]
+ItemName="Rewolwer Magnum .500"
+ItemCategory="Pistolet"
+ItemDescription="• Tryb ognia to półautomat.\n• Prawdziwe działo ręczne w postaci rewolweru kalibru .500 „Bone Collector” strzelającego dużymi nabojami magnum. Dla szanującego się kowboja."
+
+[KFWeap_Revolver_DualSW500]
+ItemName="Dwa rewolwery Magnum .500"
+ItemCategory="Pistolet"
+ItemDescription="• Tryb ognia to półautomat.\n• Atak alt. zmienia styl celowania przez przyrządy.\n• Para rewolwerów .500 Magnum „Bone Collector”. Każdy może być osobno sprzedany lub wyrzucony. Robi wielkie „bum”."
+
+[KFWeap_Rifle_Winchester1894]
+ItemName="Winchester 1894"
+ItemCategory="Karabin"
+ItemDescription="• Tryb ognia to pojedynczy strzał.\n• Klasyczny karabin dźwigniowy Winchester Model 1894."
+
+[KFWeap_Bow_Crossbow]
+ItemName="Kusza"
+ItemCategory="Łuk"
+ItemDescription="• Tryb ognia to pojedynczy strzał.\n• Bełty można często zebrać z powrotem!\n• Kusza myśliwska z dobrym uderzeniem, penetracją oraz mocą obalającą!"
+
+[KFWeap_Rifle_M14EBR]
+ItemName="M14 EBR"
+ItemCategory="Sniper Rifle"
+ItemDescription=""
+
+[KFWeap_Rifle_RailGun]
+ItemName="Rail Gun"
+ItemCategory="Sniper Rifle"
+ItemDescription=""
+
+[KFWeap_AssaultRifle_M16M203]
+ItemName="M16 M203 Assault Rifle"
+ItemCategory="Assault Rifle"
+ItemDescription=""
+SecondaryAmmo="M203 Grenade"
+
+//BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
+[KFPawn_ZedHans]
+BossName="Dr Hans Volter"
+BossCaptionStrings[0]="Hans jest niemal nietykalny, kiedy leczy się po użyciu granatów dymnych. Nie marnuj amunicji!"
+BossCaptionStrings[1]="Zwróć uwagę na rdzeń jego zasilania. Kiedy zmienia kolor, Hans robi się dużo bardziej agresywny."
+BossCaptionStrings[2]="Celuj w ten rdzeń, to jego słaby punkt."
+BossCaptionStrings[3]="Gaz z granatów Hansa przykleja się do Ciebie niczym wymiociny Spaślaka. Staraj się go unikać!"
+BossCaptionStrings[4]="Jego uderzenia są zbyt silne, żeby można je było odeprzeć. Nawet parując je odniesiesz maksymalne obrażenia."
+BossCaptionStrings[5]="Wypatruj czerwonych wskaźników ostrzegających przed granatami - dzięki nim możesz zobaczyć gdzie wylądują."
+BossCaptionStrings[6]="Gdy Hans wyciąga swoje karabiny, odsuń się z jego pola widzenia. Może i oczywiste, ale praktyczne!"
+
+[KFPawn_ZedPatriarch]
+BossName="Patriarcha"
+BossCaptionStrings[0]="Kevin Clamely był niegdyś wspaniałym naukowcem, aż do momentu gdy stał się swoim najlepszym tworem."
+BossCaptionStrings[1]="Patriarcha jest niebywale arogancki - twoja wartość dla niego jest tak niewielka, że nawet powie ci, którego ataku ma zamiar użyć."
+BossCaptionStrings[2]="Ukrywanie się nawet za wielkimi obiektami za bardzo ci nie pomoże. On już ma na to sposób!"
+BossCaptionStrings[3]="Samotne wyrwanie się z grupy to nie ucieczka - tylko robienie z siebie łatwej zdobyczy, którą dopadnie jako pierwszą."
+BossCaptionStrings[4]="Tak, Patriarcha ciągle może się kamuflować, stać się niewidzialnym, czy uciec i się podleczyć. Niektóre rzeczy nigdy się nie zmieniają."
+BossCaptionStrings[5]="Mimo że nie masz na to zbyt wielkiego wpływu, zabijanie „dzieci” Patriarchy  wpędza go w (jeszcze większy) szał."
 
 [KFGameInfo_Survival]
 GameName="Survival"
+
+[KFGameInfo_VersusSurvival]
+GameName="Przetrwanie (Kontra)"
+
+[KFPawn_ZedPatriarch_Versus]
+NoHealsRemainingMsg="Brak strzykawek"
+LowHealthMsg="Zdrowie na poziomie krytycznym! Ulecz się teraz!"
+NoMortarTargetsMsg="Brak celów dla ataku moździerzowego"
+
+[KFSM_PlayerSiren_VortexVictim]
+VortexGrabTeamWarningMsg="Syrena uwięziła %x%!"
+
+[KFGFXHudWrapper_Versus]
+WaitingToSpawnString="TIME UNTIL SPAWN: %x% second(s)"
+ZedTakeOverActiveString="SEARCHING FOR ZEDS TO TAKE OVER..."

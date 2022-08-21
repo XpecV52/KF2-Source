@@ -21,7 +21,9 @@ defaultproperties
     object end
     // Reference: BrushComponent'Default__GameCameraBlockingVolume.BrushComponent0'
     Components(0)=BrushComponent0
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
     bWorldGeometry=false
+    BlockRigidBody=false
     begin object name=BrushComponent0 class=BrushComponent
         ReplacementPrimitive=none
     object end

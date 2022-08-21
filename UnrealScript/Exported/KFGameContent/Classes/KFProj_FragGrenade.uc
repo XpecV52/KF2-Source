@@ -19,14 +19,15 @@ defaultproperties
       ShardClass=Class'kfgamecontent.KFProj_GrenadeShard'
       NumShards=10
       ExplosionEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Explosions.FragGrenade_Explosion'
-      Damage=225.000000
-      DamageRadius=800.000000
+      DamageRadius=900.000000
       MyDamageType=Class'kfgamecontent.KFDT_Explosive_FragGrenade'
       KnockDownStrength=0.000000
       ExplosionSound=AkEvent'WW_WEP_EXP_Grenade_Frag.Play_WEP_EXP_Grenade_Frag_Explosion'
       ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_FragGrenade:ExplosionPointLight'
       ExploLightFadeOutTime=0.200000
       CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
+      CamShakeInnerRadius=200.000000
+      CamShakeFalloff=1.500000
       Name="ExploTemplate0"
       ObjectArchetype=KFGameExplosion'KFGame.Default__KFGameExplosion'
    End Object

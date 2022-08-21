@@ -25,6 +25,7 @@ struct native BossMinionWaveInfo
     }
 };
 
+var KFPlayerController KFPC;
 var const localized string BossName;
 var const localized array<localized string> BossCaptionStrings;
 var BossMinionWaveInfo SummonWaves[4];
@@ -56,6 +57,14 @@ simulated event PreBeginPlay()
 {
     super.PreBeginPlay();
     OnBattlePhaseChanged();
+    KFPC = KFPlayerController(GetALocalPlayerController());
+    if(KFPC != none)
+    {
+        if((KFPC.MyGFxHUD != none) && KFPC.MyGFxHUD.bossHealthBar != none)
+        {
+            KFPC.MyGFxHUD.bossHealthBar.SetBossPawn(self);
+        }
+    }
 }
 
 event PostBeginPlay()
@@ -94,18 +103,18 @@ function bool CanAITargetThisPawn(Controller TargetingController)
 simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 {
     local KFGameReplicationInfo KFGRI;
-    local KFPlayerController KFPC;
 
-    super(KFPawn).PlayDying(DamageType, HitLoc);
+    super.PlayDying(DamageType, HitLoc);
+    Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.PostActivityFeedBossKill(BossName, Class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName(WorldInfo.GetMapName(true)).DisplayName);
     KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
     if((KFGRI != none) && !KFGRI.IsFinalWave())
     {
         return;
     }
-    foreach LocalPlayerControllers(Class'KFPlayerController', KFPC)
+    if(KFPC != none)
     {
-        KFPC.SetBossCamera(self);        
-    }    
+        KFPC.SetBossCamera(self);
+    }
 }
 
 simulated function TerminateEffectsOnDeath()
@@ -114,9 +123,9 @@ simulated function TerminateEffectsOnDeath()
     OnBattlePhaseChanged();
 }
 
-simulated function SetGameplayMICParams()
+simulated function UpdateGameplayMICParams()
 {
-    super.SetGameplayMICParams();
+    super.UpdateGameplayMICParams();
     OnBattlePhaseChanged();
 }
 
@@ -125,7 +134,22 @@ simulated function int GetCurrentBattlePhase()
     return CurrentBattlePhase;
 }
 
-simulated function OnBattlePhaseChanged();
+simulated function OnBattlePhaseChanged()
+{
+    UpdateBattlePhaseOnLocalPlayerUI();
+}
+
+simulated function UpdateBattlePhaseOnLocalPlayerUI()
+{
+    if(!KFPC.IsLocalController())
+    {
+        return;
+    }
+    if(((KFPC != none) && KFPC.MyGFxHUD != none) && KFPC.MyGFxHUD.bossHealthBar != none)
+    {
+        KFPC.MyGFxHUD.bossHealthBar.UpdateBossBattlePhase(CurrentBattlePhase);
+    }
+}
 
 static function bool IsABoss()
 {
@@ -209,7 +233,7 @@ defaultproperties
     // Reference: SkeletalMeshComponent'Default__KFPawn_MonsterBoss.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     bWeakZedGrab=false
-    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_MonsterBoss.Afflictions'
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_MonsterBoss.Afflictions'
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -219,18 +243,18 @@ defaultproperties
         SpecialMoveClasses(0)=none
         SpecialMoveClasses(1)=class'KFSM_MeleeAttack'
         SpecialMoveClasses(2)=class'KFSM_DoorMeleeAttack'
-        SpecialMoveClasses(3)=none
-        SpecialMoveClasses(4)=class'KFSM_GrappleAttack'
-        SpecialMoveClasses(5)=class'KFSM_Stumble'
-        SpecialMoveClasses(6)=class'KFSM_RecoverFromRagdoll'
-        SpecialMoveClasses(7)=class'KFSM_RagdollKnockdown'
-        SpecialMoveClasses(8)=class'KFSM_DeathAnim'
-        SpecialMoveClasses(9)=class'KFSM_Stunned'
-        SpecialMoveClasses(10)=class'KFSM_Frozen'
+        SpecialMoveClasses(3)=class'KFSM_GrappleCombined'
+        SpecialMoveClasses(4)=class'KFSM_Stumble'
+        SpecialMoveClasses(5)=class'KFSM_RecoverFromRagdoll'
+        SpecialMoveClasses(6)=class'KFSM_RagdollKnockdown'
+        SpecialMoveClasses(7)=class'KFSM_DeathAnim'
+        SpecialMoveClasses(8)=class'KFSM_Stunned'
+        SpecialMoveClasses(9)=class'KFSM_Frozen'
+        SpecialMoveClasses(10)=none
         SpecialMoveClasses(11)=none
-        SpecialMoveClasses(12)=none
-        SpecialMoveClasses(13)=class'KFSM_Zed_Taunt'
-        SpecialMoveClasses(14)=class'KFSM_Zed_WalkingTaunt'
+        SpecialMoveClasses(12)=class'KFSM_Zed_Taunt'
+        SpecialMoveClasses(13)=class'KFSM_Zed_WalkingTaunt'
+        SpecialMoveClasses(14)=none
         SpecialMoveClasses(15)=none
         SpecialMoveClasses(16)=none
         SpecialMoveClasses(17)=none
@@ -243,11 +267,10 @@ defaultproperties
         SpecialMoveClasses(24)=none
         SpecialMoveClasses(25)=none
         SpecialMoveClasses(26)=none
-        SpecialMoveClasses(27)=none
-        SpecialMoveClasses(28)=class'KFSM_GrappleVictim'
-        SpecialMoveClasses(29)=class'KFSM_HansGrappleVictim'
-        SpecialMoveClasses(30)=none
-        SpecialMoveClasses(31)=class'KFSM_Zed_Boss_Theatrics'
+        SpecialMoveClasses(27)=class'KFSM_GrappleVictim'
+        SpecialMoveClasses(28)=class'KFSM_HansGrappleVictim'
+        SpecialMoveClasses(29)=none
+        SpecialMoveClasses(30)=class'KFSM_Zed_Boss_Theatrics'
     object end
     // Reference: KFSpecialMoveHandler'Default__KFPawn_MonsterBoss.SpecialMoveHandler'
     SpecialMoveHandler=SpecialMoveHandler

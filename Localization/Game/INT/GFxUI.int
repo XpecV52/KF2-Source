@@ -1,8 +1,7 @@
 [FontLib]
 FontLib=UI_Shared.fonts_en
-FontLib=UI_Shared.fonts_ru
 FontLib=UI_Shared.gfxfontlib
 
 [Fonts]
-UIFont=TeX Gyre Adventor
+UIFont=KFMerged Regular
 UIFontBold=KF Font

@@ -98,7 +98,7 @@ defaultproperties
 	FireInterval(DEFAULT_FIREMODE)=+0.05 // 1200 RPM
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_HansAK12'
 	Spread(DEFAULT_FIREMODE)=0.1
-	InstantHitDamage(DEFAULT_FIREMODE)=8.0
+	InstantHitDamage(DEFAULT_FIREMODE)=10.0
 	FireOffset=(X=32,Y=4.0,Z=-5)
 
 	// ALT_FIREMODE

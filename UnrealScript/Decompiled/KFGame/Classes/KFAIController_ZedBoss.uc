@@ -10,6 +10,8 @@ class KFAIController_ZedBoss extends KFAIController_Monster
     config(AI)
     hidecategories(Navigation);
 
+var bool bSummonedThisPhase;
+
 event Possess(Pawn inPawn, bool bVehicleTransition)
 {
     local KFGameReplicationInfo KFGRI;
@@ -64,6 +66,11 @@ function UpdateSprintFrustration(optional byte bForceFrustrationState)
 function PlayDamagePlayerDialog(class<DamageType> dmgType);
 
 function DebugNextPhase();
+
+function Timer_StopSummoningZeds()
+{
+    MyKFGameInfo.SpawnManager.StopSummoningBossMinions();
+}
 
 function EnterZedVictoryState()
 {

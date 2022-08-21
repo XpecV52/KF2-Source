@@ -47,13 +47,13 @@ function PopulateFocalPoints()
     local KFTraderTrigger KFTT;
     local KFPathnode KFPN;
 
-    foreach PlayerCamera.WorldInfo.AllActors(Class'KFPlayerStart', KFPS)
+    foreach PlayerCamera.WorldInfo.AllNavigationPoints(Class'KFPlayerStart', KFPS)
     {
         AvailableFocalPoints[AvailableFocalPoints.Length] = KFPS;        
     }    
-    foreach PlayerCamera.AllActors(Class'KFPathnode', KFPN)
+    foreach PlayerCamera.WorldInfo.AllNavigationPoints(Class'KFPathnode', KFPN)
     {
-        foreach PlayerCamera.AllActors(Class'KFTraderTrigger', KFTT)
+        foreach PlayerCamera.DynamicActors(Class'KFTraderTrigger', KFTT)
         {
             if(VSizeSq(KFTT.Location - KFPN.Location) <= 160000)
             {
@@ -82,6 +82,10 @@ function UpdateCameraFocalPoint()
             if(FocalPointNum != -1)
             {
                 AvailableFocalPoints.Remove(FocalPointNum, 1;
+            }
+            if(AvailableFocalPoints.Length == 0)
+            {
+                PopulateFocalPoints();
             }
             FocalPoint.DetachComponent(CameraLight);
         }

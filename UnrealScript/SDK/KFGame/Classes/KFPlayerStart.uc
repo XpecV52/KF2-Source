@@ -10,6 +10,23 @@
 
 class KFPlayerStart extends PlayerStart;
 
+/** Saves enabled state at map start for restore on reset */
+var transient bool bDefaultEnabled;
+
+function PreBeginPlay()
+{
+	super.PreBeginPlay();
+
+	bDefaultEnabled = bEnabled;
+}
+
+function Reset()
+{
+	super.Reset();
+	
+	bEnabled = bDefaultEnabled;
+}
+
 defaultproperties
 {
 	Begin Object NAME=CollisionCylinder

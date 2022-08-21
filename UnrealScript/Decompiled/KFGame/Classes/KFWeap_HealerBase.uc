@@ -91,7 +91,7 @@ simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional name 
         if(ScreenUI != none)
         {
             ScreenUI.SetPause(false);
-            ScreenUI.SetCharge(byte(MagazineCapacity[0]));
+            ScreenUI.SetCharge(MagazineCapacity[0]);
         }
     }
 }
@@ -496,7 +496,7 @@ simulated state WeaponHealing extends WeaponSingleFiring
 {
     simulated function byte GetWeaponStateId()
     {
-        return 26;
+        return 28;
     }
 
     simulated event BeginState(name PreviousStateName)
@@ -541,7 +541,7 @@ simulated state WeaponQuickHeal extends WeaponHealing
 {
     simulated function byte GetWeaponStateId()
     {
-        return 27;
+        return 29;
     }
 
     simulated event BeginState(name PreviousStateName)
@@ -604,13 +604,13 @@ defaultproperties
     ScreenUIClass=Class'KFGFxWorld_HealerScreen'
     UIUpdateInterval=1
     InventoryGroup=EInventoryGroup.IG_Equipment
+    MagazineCapacity=100
     bTargetAdhesionEnabled=false
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bInfiniteSpareAmmo=true
     bAllowClientAmmoTracking=false
     GroupPriority=6
-    MagazineCapacity=100
     FireTweenTime=0.3
     WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_SA_Syringe.Play_WEP_SA_Syringe_3P_Fire_Single',FirstPersonCue=AkEvent'WW_WEP_SA_Syringe.Play_WEP_SA_Syringe_1P_Fire_Single')
     WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_SA_Syringe.Play_WEP_SA_Syringe_3P_Fire_Single',FirstPersonCue=AkEvent'WW_WEP_SA_Syringe.Play_WEP_SA_Syringe_1P_Fire_Single')

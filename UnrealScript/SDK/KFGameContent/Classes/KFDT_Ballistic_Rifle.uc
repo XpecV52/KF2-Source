@@ -16,7 +16,6 @@ defaultproperties
 {
 	GoreDamageGroup=DGT_Rifle
 	
-	StumblePower=10
-	LegStumblePower=15
-	GunHitPower=25
+	StumblePower=5
+	GunHitPower=10
 }

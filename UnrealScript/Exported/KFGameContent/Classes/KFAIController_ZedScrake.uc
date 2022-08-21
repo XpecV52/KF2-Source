@@ -8,31 +8,9 @@
 //=============================================================================
 class KFAIController_ZedScrake extends KFAIController_Monster;
 
-/** Threshold of health below which the Scrake will start rage charging*/
-var(RageCharge) float       RageHealthThreshold;
-
 function bool AmIAllowedToSuicideWhenStuck()
 {
 	return false;
-}
-
-/* epic ===============================================
-* ::NotifyTakeHit
-*
-* Notification from pawn that it has received damage
-* via TakeDamage().
-*
-* =====================================================
-*/
-function NotifyTakeHit(Controller InstigatedBy, vector HitLocation, int Damage, class<DamageType> damageType, vector Momentum)
-{
-    // Rage charge NOW if we have taken enough damage
-    if( ShouldSprint() && MyKFPawn != none )
-    {
-        MyKFPawn.SetSprinting( true );
-    }
-
-    Super.NotifyTakeHit(InstigatedBy, HitLocation, Damage, DamageType, Momentum);
 }
 
 /** Timer function called during latent moves that determines whether NPC should sprint or stop sprinting */

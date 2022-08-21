@@ -555,7 +555,7 @@ event bool CanGrabAttack()
 	if( !bCompletedInitialGrabAttack || (LastAttackTime_Grab == 0.f || ((WorldInfo.TimeSeconds - LastAttackTime_Grab) > MinTimeBetweenGrabAttacks)) )
 	{
         // Make sure the enemy's center of mass (location) is within my collision cylinder
-		if( Abs(Enemy.Location.Z - Pawn.Location.Z) > class'KFSM_GrappleStart'.default.MaxVictimZOffset )
+		if( Abs(Enemy.Location.Z - Pawn.Location.Z) > class'KFSM_GrappleCombined'.default.MaxVictimZOffset )
 		{
 			return false;
 		}

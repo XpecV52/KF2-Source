@@ -14,6 +14,7 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireMode=1
     InventorySize=6
+    MagazineCapacity=20
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -24,7 +25,6 @@ defaultproperties
     DOF_FG_FocalRadius=150
     GroupPriority=100
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SCAR'
-    MagazineCapacity=20
     MaxSpareAmmo=340
     InitialSpareMags=4
     bLoopingFireAnim=/* Array type was not detected. */

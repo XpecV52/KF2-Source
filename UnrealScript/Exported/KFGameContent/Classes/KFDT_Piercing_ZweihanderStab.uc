@@ -9,68 +9,11 @@ class KFDT_Piercing_ZweihanderStab extends KFDT_Piercing
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 12;
-
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Zweihander'
-   StunPower=42
-   KnockdownPower=20
-   StumblePower=63
-   LegStumblePower=63
-   MeleeHitPower=80
+   StumblePower=50.000000
+   MeleeHitPower=100.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
    KDamageImpulse=200.000000
    KDeathUpKick=250.000000

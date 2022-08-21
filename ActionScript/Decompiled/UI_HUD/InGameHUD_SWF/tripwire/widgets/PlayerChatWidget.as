@@ -8,6 +8,7 @@ package tripwire.widgets
     import flash.events.TimerEvent;
     import flash.external.ExternalInterface;
     import flash.text.TextField;
+    import flash.text.TextFormat;
     import flash.ui.Keyboard;
     import flash.utils.Timer;
     import scaleform.clik.controls.TextInput;
@@ -36,6 +37,8 @@ package tripwire.widgets
         private var _bIsPartyChat:Boolean = false;
         
         public var ChatScanlines:MovieClip;
+        
+        public var inputFormat:TextFormat;
         
         public function PlayerChatWidget()
         {
@@ -103,7 +106,7 @@ package tripwire.widgets
         
         private function initChatSizingField() : void
         {
-            this._sizingField.defaultTextFormat = this.ChatInputField.textField.defaultTextFormat;
+            this._sizingField.defaultTextFormat = this.ChatInputField.textField.getTextFormat();
             this._sizingField.multiline = true;
             this._sizingField.wordWrap = true;
         }

@@ -9,67 +9,11 @@ class KFDT_Slashing_Crovel extends KFDT_Slashing
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 12;
-
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Crovel'
-   StunPower=42
-   StumblePower=43
-   LegStumblePower=43
-   MeleeHitPower=30
+   StumblePower=50.000000
+   MeleeHitPower=50.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
    KDamageImpulse=1250.000000
    KDeathVel=250.000000

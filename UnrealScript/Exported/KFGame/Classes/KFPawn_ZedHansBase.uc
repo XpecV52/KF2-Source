@@ -12,6 +12,9 @@
 class KFPawn_ZedHansBase extends KFPawn_MonsterBoss
 	abstract;
 
+/** Cached AI controller */
+var KFAIController_Hans MyHansController;
+
 /** If true, MkB42s are unholstered and aiming (also see bIsTargeting) */
 var repnotify bool bGunsEquipped;
 
@@ -50,6 +53,12 @@ struct HansBattlePhaseInfo
     var             bool            bCanBarrageGrenades;
     /** Info on how often we can barrage HENades in this battle phase */
     var             float           HENadeBarragePhaseCooldown;
+    /** Heal threshold (MaxHealth * HealThreshold) per difficulty level */
+    var             array<float>    HealThresholds;
+    /** Heal amount Health + MaxHealth*(MaxHealth * HealAmount) per difficulty level */
+    var             array<float>    HealAmounts;
+    /** Shield health per difficulty level */
+    var             array<int>      MaxShieldHealth;
 
 	structdefaultproperties
 	{
@@ -65,16 +74,35 @@ struct HansBattlePhaseInfo
 };
 
 /** Configuration for the Hans battle phases */
-var	array<HansBattlePhaseInfo>		BattlePhases;
+var	array<HansBattlePhaseInfo>  BattlePhases;
 
 /** Whether or not we've healed this battle phase */
 var             bool            bHealedThisPhase;
+
+/** Amount of health healed this phase (cumulative) */
+var             float           AmountHealedThisPhase;
 
 /** In the mode to hunt players and try and heal */
 var repnotify   bool            bInHuntAndHealMode;
 
 /** How much to reduce Hans' damage he receives when he is in hunt and heal mode */
 var()           float           HuntAndHealModeDamageReduction;
+
+/** How much to scale incap powers by when healing */
+var             float           IncapPowerScaleWhenHealing;
+
+/** Amount of health shield has remaining */
+var             float           ShieldHealth;
+var             float           ShieldHealthMax;
+
+/** Replicated shield health percentage */
+var repnotify   byte            ShieldHealthPctByte;
+
+/** Number of times we've bumped into enemies when trying to heal */
+var             int             NumHuntAndHealEnemyBumps;
+
+/** Last time we bumped into an enemy */
+var             float           LastHuntAndHealEnemyBumpTime;
 
 /*********************************************************************************************
 * Grenade Throwing
@@ -135,9 +163,12 @@ var float LastNerveGasBarrageTime;
 var float SmokeTossCooldown;
 var float LastSmokeTossTime;
 
-/*********************************************************************************************
-* Minion summoning for when Hans goes into hunt and heal mode
-**********************************************************************************************/
+replication
+{
+    // Replicated to ALL
+    if ( bNetDirty )
+        bGunsEquipped, bInHuntAndHealMode, ShieldHealthPctByte;
+}
 
 simulated event ReplicatedEvent( name VarName )
 {
@@ -145,6 +176,10 @@ simulated event ReplicatedEvent( name VarName )
     {
     case nameof( bInHuntAndHealMode ):
         SetHuntAndHealMode( bInHuntAndHealMode );
+        break;
+
+    case nameOf( ShieldHealthPctByte ):
+        UpdateShieldColor();
         break;
 
     default:
@@ -155,64 +190,139 @@ simulated event ReplicatedEvent( name VarName )
 /** Called from Possessed event when this controller has taken control of a Pawn */
 function PossessedBy( Controller C, bool bVehicleTransition )
 {
-	local KFAIController_Hans HansAI;
-
     Super.PossessedBy( C, bVehicleTransition );
 
-    HansAI = KFAIController_Hans(C);
+    MyHansController = KFAIController_Hans( C );
 
-    SetPhaseCooldowns( HansAI );
+    SetPhaseCooldowns( 0 );
 }
 
 /** Increment Hans to the next battle phase */
-function IncrementBattlePhase( KFAIController_Hans HansAI )
+function IncrementBattlePhase()
 {
     CurrentBattlePhase++;
     bHealedThisPhase = true;
+    AmountHealedThisPhase = 0;
 
-    SetPhaseCooldowns( HansAI );
+    SetPhaseCooldowns( CurrentBattlePhase - 1 );
 
     bForceNetUpdate = true;
 }
 
 /** Set the correct phase based cooldown for this battle phase */
-function SetPhaseCooldowns( KFAIController_Hans HansAI )
-{
-    GlobalOffensiveNadeCooldown = BattlePhases[CurrentBattlePhase -1].GlobalOffensiveNadePhaseCooldown;
-    HENadeTossCooldown = BattlePhases[CurrentBattlePhase -1].HENadeTossPhaseCooldown;
-    HENadeBarrageCooldown = BattlePhases[CurrentBattlePhase -1].HENadeBarragePhaseCooldown;
-    NerveGasTossCooldown = BattlePhases[CurrentBattlePhase -1].NerveGasTossPhaseCooldown;
-    NerveGasBarrageCooldown = BattlePhases[CurrentBattlePhase -1].NerveGasBarragePhaseCooldown;
+function SetPhaseCooldowns( int BattlePhase )
+{  
+    GlobalOffensiveNadeCooldown = BattlePhases[BattlePhase].GlobalOffensiveNadePhaseCooldown;
+    HENadeTossCooldown = BattlePhases[BattlePhase].HENadeTossPhaseCooldown;
+    HENadeBarrageCooldown = BattlePhases[BattlePhase].HENadeBarragePhaseCooldown;
+    NerveGasTossCooldown = BattlePhases[BattlePhase].NerveGasTossPhaseCooldown;
+    NerveGasBarrageCooldown = BattlePhases[BattlePhase].NerveGasBarragePhaseCooldown;
 
-    if( HansAI != none )
+    if( MyHansController != none )
     {
-        HansAI.ShootingCooldown = BattlePhases[CurrentBattlePhase -1].GunAttackPhaseCooldown;
-        HansAI.MaxGunAttackLength = BattlePhases[CurrentBattlePhase -1].GunAttackLengthPhase;
+        MyHansController.ShootingCooldown = BattlePhases[BattlePhase].GunAttackPhaseCooldown;
+        MyHansController.MaxGunAttackLength = BattlePhases[BattlePhase].GunAttackLengthPhase;
+
+        // Reset summon flag
+        MyHansController.bSummonedThisPhase = false;
     }
 }
 
-/** Disable falling damage */
+/** Reduce damage when in hunt and heal mode */
 function AdjustDamage(out int InDamage, out vector Momentum, Controller InstigatedBy, vector HitLocation, class<DamageType> DamageType, TraceHitInfo HitInfo, Actor DamageCauser)
 {
+    Super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
+
+    // Update shield health before scaling damage
+    UpdateShieldHealth( InDamage );
+
     // Reduce damage when in hunt and heal mode
-    if( bInHuntAndHealMode )
+    if( bInHuntAndHealMode && ShieldHealth > 0 )
     {
         InDamage *= HuntAndHealModeDamageReduction;
     }
+}
 
-	Super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
+/** Reduce affliction/incap strength when healing */
+simulated function AdjustAffliction( out float AfflictionPower )
+{
+    super.AdjustAffliction( AfflictionPower );
+    if( bInHuntAndHealMode )
+    {
+        AfflictionPower *= IncapPowerScaleWhenHealing;
+    }
+}
+
+/** Updates shield health and shield health percent */
+function UpdateShieldHealth( optional int Damage=-1 )
+{
+    // If shield has been depleted already, or no damage was taken, don't update
+    if( ShieldHealth == 0 || Damage == 0 )
+    {
+        return;
+    }
+
+    // Damage the shield if applicable
+    if( ShieldHealth > 0 && Damage > 0 )
+    {
+        ShieldHealth = Max( ShieldHealth - Damage, 0 );
+    }
+
+    // Shield health depleted, break shield
+    if( ShieldHealth == 0 )
+    {
+        ShieldHealthPctByte = 0;
+    }
+    else
+    {
+        ShieldHealthPctByte = FloatToByte( fClamp(ShieldHealth / ShieldHealthMax, 0.f, 1.f) );
+    }
+
+    // Update color based on percentage of health remaining
+    UpdateShieldColor();
+
+    // Need to ensure shield gets broken on dedicated servers
+    if( WorldInfo.NetMode == NM_DedicatedServer && bInHuntAndHealMode && ShieldHealthPctByte == 0 )
+    {
+        BreakShield();
+    }
+}
+
+/** Breaks the shield */
+simulated function BreakShield()
+{
+    if( Role == ROLE_Authority )
+    {
+        // Cancel any flee in progress
+        if( MyHansController != none )
+        {
+            MyHansController.CancelFlee();
+        }
+
+        // Cancel hunt and heal mode
+        SetHuntAndHealMode( false );
+
+        // Cancel any active special moves
+        if( IsDoingSpecialMove() )
+        {
+            EndSpecialMove();
+        }
+
+        // Knock down
+        Knockdown( Velocity != vect(0,0,0) ? -Velocity*2 : 3*(-vector(Rotation) * GroundSpeed), vect(1,1,1),,,,, Location );
+    }
 }
 
 /** Can we frenzy attack in this phase */
 function bool CanFrenzyInThisPhase()
 {
-    return BattlePhases[CurrentBattlePhase -1].bCanFrenzy;
+    return BattlePhases[CurrentBattlePhase-1].bCanFrenzy;
 }
 
 /** If true Hans will favor sprinting in this phase. Even if it's false he may sprint under certain circumstances, but when it's true he'll try and sprint almost all the time */
 function bool DesireSprintingInThisPhase()
 {
-    return BattlePhases[CurrentBattlePhase -1].bSprintingBehavior;
+    return BattlePhases[CurrentBattlePhase-1].bSprintingBehavior;
 }
 
 /** Called by PawnAnimInfo when determining whether an attack with bSpecializedMode TRUE can be performed */
@@ -350,6 +460,11 @@ function PlayGrenadeDialog( bool bBarrage )
 /** Sets variables related to "hunt and heal" mode */
 simulated function SetHuntAndHealMode( bool bOn )
 {
+    local KFGameInfo KFGI;
+    local KFCharacterInfo_Monster MonsterInfo;
+    local float HealthMod;
+    local float HeadHealthMod;
+
     bInHuntAndHealMode = bOn;
 
     if( Role == ROLE_Authority )
@@ -357,6 +472,46 @@ simulated function SetHuntAndHealMode( bool bOn )
         if( bInHuntAndHealMode )
         {
             SetTimer(0.25f, true, nameof(HuntAndHealBump));
+
+            // Use health/player count to scale shield health
+            HealthMod = 1.f;
+            KFGI = KFGameInfo( WorldInfo.Game );
+            if( KFGI != none )
+            {
+                MonsterInfo = GetCharacterMonsterInfo();            
+
+                KFGI.DifficultyInfo.GetAIHealthModifier(
+                    MonsterInfo,
+                    KFGI.GameDifficulty,
+                    KFGI.GetLivingPlayerCount(),
+                    HealthMod,
+                    HeadHealthMod );
+            }
+
+            // Initialize shield health
+            ShieldHealthMax = BattlePhases[CurrentBattlePhase-1].MaxShieldHealth[WorldInfo.Game.GameDifficulty] * HealthMod;
+            ShieldHealth = ShieldHealthMax;
+            UpdateShieldHealth();
+
+            // Initialize bump variables
+            NumHuntAndHealEnemyBumps = 0;
+            LastHuntAndHealEnemyBumpTime = WorldInfo.TimeSeconds;
+
+            // Stumble
+            if( IsDoingSpecialMove() )
+            {
+                EndSpecialMove();
+            }
+            DoSpecialMove( SM_Stumble,,, class'KFSM_Stumble'.static.PackBodyHitSMFlags(self, vector(Rotation)) );
+
+            // Inform AI of phase change
+            if( MyHansController != none )
+            {
+                MyHansController.NextBattlePhase();
+            }
+
+            // Increment battle phase
+            IncrementBattlePhase();
         }
         else
         {
@@ -369,13 +524,119 @@ simulated function SetHuntAndHealMode( bool bOn )
 	if( !bOn )
 	{
 		bHealedThisPhase = false;
+        SetTimer( 0.1, false, nameOf(Timer_ResetShieldHealthPct) );
 	}
+}
+
+/** Sets shield health pct back to 0 for next phase */
+function Timer_ResetShieldHealthPct()
+{
+    ShieldHealthPctByte = 0;
+}
+
+/** Returns the amount that Hans should heal for this phase */
+function float GetHealAmountForThisPhase()
+{
+    return float(HealthMax) * BattlePhases[CurrentBattlePhase-2].HealAmounts[WorldInfo.Game.GameDifficulty];
+}
+
+/** Summons boss minions depending on difficulty and battle phase */
+function SummonMinions()
+{
+    local int Skill;
+    local int DifficultyIndex;
+    local KFAIWaveInfo MinionWave;
+    local KFAISpawnManager SpawnManager;
+    local KFGameInfo MyKFGameInfo;
+
+    MyKFGameInfo = KFGameInfo( WorldInfo.Game );
+
+    if( MyHansController != none )
+    {
+        Skill = MyHansController.Skill;
+    }
+
+    // Determine which summon squad to spawn by difficulty
+    if( Skill == class'KFDifficultyInfo'.static.GetDifficultyValue(0) ) // Normal
+    {
+        DifficultyIndex = 0;
+    }
+    else if( Skill <= class'KFDifficultyInfo'.static.GetDifficultyValue(1) ) // Hard
+    {
+        DifficultyIndex = 1;
+    }
+    else if( Skill <= class'KFDifficultyInfo'.static.GetDifficultyValue(2) ) // Suicidal
+    {
+        DifficultyIndex = 2;
+    }
+    else // Hell on Earth
+    {
+        DifficultyIndex = 3;
+    }
+
+    // Select the correct batch of zeds to spawn during this battle phase
+    if( CurrentBattlePhase == 1 )
+    {
+        MinionWave = SummonWaves[DifficultyIndex].PhaseOneWave;
+    }
+    else if( CurrentBattlePhase == 2 )
+    {
+        MinionWave = SummonWaves[DifficultyIndex].PhaseTwoWave;
+    }
+    else if( CurrentBattlePhase == 3 )
+    {
+        MinionWave = SummonWaves[DifficultyIndex].PhaseThreeWave;
+    }
+
+    // Force frustration mode on
+    MyKFGameInfo.GetAIDirector().bForceFrustration = true;
+
+    // Spawn our minions
+    SpawnManager = MyKFGameInfo.SpawnManager;
+    if ( SpawnManager != none )
+    {
+        SpawnManager.SummonBossMinions( MinionWave.Squads, NumMinionsToSpawn );
+    }
 }
 
 /** Used to clear DOTs, such as when Hans is healing */
 simulated function ClearDOTs()
 {
     DamageOverTimeArray.Length = 0;
+}
+
+/** If Hans repeatedly bumps into players during his hunt and heal phase, just heal */
+simulated event Bump( Actor Other, PrimitiveComponent OtherComp, Vector HitNormal )
+{
+    local KFPawn KFP;
+
+    if( !bGunsEquipped )
+    {
+        if( Role == ROLE_Authority && bInHuntAndHealMode && MyHansController != none && NumHuntAndHealEnemyBumps >= 0 && !IsDoingSpecialMove() 
+            && Other.GetTeamNum() != GetTeamNum() && MyHansController.FindCommandOfClass(class'AICommand_Attack_Grab') == none )
+        {
+            KFP = KFPawn( Other );
+            if( KFP != none )
+            {
+                if( (WorldInfo.TimeSeconds - LastHuntAndHealEnemyBumpTime) > 1.f )
+                {
+                    ++NumHuntAndHealEnemyBumps;
+                    LastHuntAndHealEnemyBumpTime = WorldInfo.TimeSeconds;
+
+                    // If we've bumped into players enough times, just heal off of them
+                    if( NumHuntAndHealEnemyBumps > 0 )
+                    {
+                        NumHuntAndHealEnemyBumps = -1;
+                        MyHansController.CancelFlee( false );
+                        MyKFAIC.DoGrabAttack( KFP );
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    super.Bump( Other, OtherComp, HitNormal );
 }
 
 // Knock other zeds the heck out of the way when I want to attack my enemy!!!
@@ -385,7 +646,7 @@ function HuntAndHealBump()
     local vector ClosestPoint;
     local float ClosestDist;
 
-    if( MyKFAIC == none || MyKFAIC.Enemy == none /*|| IsDoingSpecialMove(SM_GrabAttack)*/
+    if( MyKFAIC == none || MyKFAIC.Enemy == none /*|| IsDoingSpecialMove(SM_GrappleAttack)*/
         || VSizeSq(Location - MyKFAIC.Enemy.Location) > 250000 ) // 5 meters
     {
         return;
@@ -435,14 +696,11 @@ simulated function ApplyBloodDecals(int HitZoneIndex, vector HitLocation, vector
     // else do nothing, leave no blood because hans is mostly invulnerable
 }
 
-simulated function DetachShieldFX();
+/** Updates the color of the shield based on its health */
+simulated function UpdateShieldColor();
 
-replication
-{
-	// Replicated to ALL
-	if ( bNetDirty )
-		bGunsEquipped, bInHuntAndHealMode;
-}
+/** Detaches the shield PSC */
+simulated function DetachShieldFX();
 
 defaultproperties
 {
@@ -460,13 +718,13 @@ defaultproperties
       ObjectArchetype=SkeletalMeshComponent'KFGame.Default__KFPawn_MonsterBoss:ThirdPersonHead0'
    End Object
    ThirdPersonHeadMeshComponent=ThirdPersonHead0
-   Begin Object Class=KFPawnAfflictions Name=Afflictions_0 Archetype=KFPawnAfflictions'KFGame.Default__KFPawn_MonsterBoss:Afflictions_0'
+   Begin Object Class=KFAfflictionManager Name=Afflictions_0 Archetype=KFAfflictionManager'KFGame.Default__KFPawn_MonsterBoss:Afflictions_0'
       FireFullyCharredDuration=2.500000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
-      ObjectArchetype=KFPawnAfflictions'KFGame.Default__KFPawn_MonsterBoss:Afflictions_0'
+      ObjectArchetype=KFAfflictionManager'KFGame.Default__KFPawn_MonsterBoss:Afflictions_0'
    End Object
-   AfflictionHandler=KFPawnAfflictions'KFGame.Default__KFPawn_ZedHansBase:Afflictions_0'
+   AfflictionHandler=KFAfflictionManager'KFGame.Default__KFPawn_ZedHansBase:Afflictions_0'
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_MonsterBoss:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True
       bOverrideAttachmentOwnerVisibility=True
@@ -483,18 +741,18 @@ defaultproperties
       SpecialMoveClasses(0)=None
       SpecialMoveClasses(1)=Class'KFGame.KFSM_MeleeAttack'
       SpecialMoveClasses(2)=Class'KFGame.KFSM_DoorMeleeAttack'
-      SpecialMoveClasses(3)=None
-      SpecialMoveClasses(4)=Class'KFGame.KFSM_GrappleAttack'
-      SpecialMoveClasses(5)=Class'KFGame.KFSM_Stumble'
-      SpecialMoveClasses(6)=Class'KFGame.KFSM_RecoverFromRagdoll'
-      SpecialMoveClasses(7)=Class'KFGame.KFSM_RagdollKnockdown'
-      SpecialMoveClasses(8)=Class'KFGame.KFSM_DeathAnim'
-      SpecialMoveClasses(9)=Class'KFGame.KFSM_Stunned'
-      SpecialMoveClasses(10)=Class'KFGame.KFSM_Frozen'
+      SpecialMoveClasses(3)=Class'KFGame.KFSM_GrappleCombined'
+      SpecialMoveClasses(4)=Class'KFGame.KFSM_Stumble'
+      SpecialMoveClasses(5)=Class'KFGame.KFSM_RecoverFromRagdoll'
+      SpecialMoveClasses(6)=Class'KFGame.KFSM_RagdollKnockdown'
+      SpecialMoveClasses(7)=Class'KFGame.KFSM_DeathAnim'
+      SpecialMoveClasses(8)=Class'KFGame.KFSM_Stunned'
+      SpecialMoveClasses(9)=Class'KFGame.KFSM_Frozen'
+      SpecialMoveClasses(10)=None
       SpecialMoveClasses(11)=None
-      SpecialMoveClasses(12)=None
-      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_Taunt'
-      SpecialMoveClasses(14)=Class'KFGame.KFSM_Zed_WalkingTaunt'
+      SpecialMoveClasses(12)=Class'KFGame.KFSM_Zed_Taunt'
+      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_WalkingTaunt'
+      SpecialMoveClasses(14)=None
       SpecialMoveClasses(15)=None
       SpecialMoveClasses(16)=None
       SpecialMoveClasses(17)=None
@@ -507,11 +765,10 @@ defaultproperties
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=None
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_HansGrappleVictim'
-      SpecialMoveClasses(30)=None
-      SpecialMoveClasses(31)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(29)=None
+      SpecialMoveClasses(30)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_MonsterBoss:SpecialMoveHandler_0'
    End Object
@@ -573,9 +830,8 @@ defaultproperties
       RBCollideWithChannels=(Default=True,Pawn=True,Vehicle=True,BlockingVolume=True)
       Translation=(X=0.000000,Y=0.000000,Z=-86.000000)
       ScriptRigidBodyCollisionThreshold=200.000000
-      PerObjectShadowCullDistance=4000.000000
+      PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
-      bAllowPerObjectShadowBatching=True
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_MonsterBoss:KFPawnSkeletalMeshComponent'
    End Object

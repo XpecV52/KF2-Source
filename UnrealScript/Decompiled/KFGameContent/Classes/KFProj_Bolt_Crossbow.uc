@@ -8,8 +8,24 @@
 class KFProj_Bolt_Crossbow extends KFProj_Bullet_RackEmUp
     hidecategories(Navigation);
 
-var repnotify ImpactInfo StickInfo;
-var ImpactInfo DelayedStickInfo;
+struct StickInfo
+{
+    var Vector HitLocation;
+    var Vector HitNormal;
+    var Vector RayDir;
+    var export editinline PrimitiveComponent HitComponent;
+
+    structdefaultproperties
+    {
+        HitLocation=(X=0,Y=0,Z=0)
+        HitNormal=(X=0,Y=0,Z=0)
+        RayDir=(X=0,Y=0,Z=0)
+        HitComponent=none
+    }
+};
+
+var repnotify StickInfo RepStickInfo;
+var StickInfo DelayedStickInfo;
 var bool bStuck;
 var class<KFWeapon> WeaponClass;
 /** The radius size of the pickup collision when the blade stops moving */
@@ -21,18 +37,25 @@ var(Projectile) ParticleSystem ProjPickupTemplate;
 /** Sound to play when picking up ammo */
 var() AkEvent AmmoPickupSound;
 var float LifeSpanAfterStick;
+var Vector LastLocation;
 
 replication
 {
      if(bNetDirty)
-        StickInfo;
+        RepStickInfo;
+}
+
+simulated function SyncOriginalLocation()
+{
+    LastLocation = OriginalLocation;
+    super(KFProjectile).SyncOriginalLocation();
 }
 
 simulated event ReplicatedEvent(name VarName)
 {
-    if(VarName == 'StickInfo')
+    if(VarName == 'RepStickInfo')
     {
-        Stick(StickInfo, true);        
+        Stick(RepStickInfo, true);        
     }
     else
     {
@@ -61,7 +84,10 @@ simulated function Vector DecodeSmallVector(Vector V)
 
 simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
 {
-    local ImpactInfo MyStickInfo;
+    local StickInfo MyStickInfo;
+    local KFDestructibleActor HitDestructible;
+    local editinline StaticMeshComponent HitComponent;
+    local Vector DestructableHitLocation;
 
     SetRotation(rotator(Normal(Velocity)));
     SetPhysics(2);
@@ -74,22 +100,32 @@ simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallCom
         }
         if((!Wall.bStatic && !Wall.bWorldGeometry) && Wall.bProjTarget)
         {
-            Explode(Location, HitNormal);
-            ImpactedActor = none;            
+            HitDestructible = KFDestructibleActor(Wall);
+            if((HitDestructible != none) && HitDestructible.ReplicationMode >= 2)
+            {
+                return;
+            }
+            TraceComponent(DestructableHitLocation, HitNormal, WallComp, Location, LastLocation,,, bCollideComplex);
+            SetLocation(DestructableHitLocation);            
         }
         else
         {
-            MyStickInfo.HitLocation = Location;
-            MyStickInfo.HitNormal = HitNormal;
-            MyStickInfo.HitActor = Wall;
-            MyStickInfo.RayDir = EncodeSmallVector(Normal(Velocity));
-            Stick(MyStickInfo, false);
+            HitComponent = StaticMeshComponent(WallComp);
+            if((HitComponent != none) && HitComponent.CanBecomeDynamic())
+            {
+                return;
+            }
         }
+        MyStickInfo.HitLocation = Location;
+        MyStickInfo.HitNormal = HitNormal;
+        MyStickInfo.HitComponent = WallComp;
+        MyStickInfo.RayDir = EncodeSmallVector(Normal(Velocity));
+        Stick(MyStickInfo, false);
         bBounce = false;
     }
 }
 
-simulated function Stick(ImpactInfo MyStickInfo, bool bReplicated)
+simulated function Stick(StickInfo MyStickInfo, bool bReplicated)
 {
     if((WorldInfo.NetMode != NM_DedicatedServer) && ProjEffects != none)
     {
@@ -137,7 +173,7 @@ simulated function Stick(ImpactInfo MyStickInfo, bool bReplicated)
     {
         if(Role == ROLE_Authority)
         {
-            StickInfo = MyStickInfo;
+            RepStickInfo = MyStickInfo;
         }
         bForceNetUpdate = true;
         NetUpdateFrequency = 3;
@@ -147,7 +183,7 @@ simulated function Stick(ImpactInfo MyStickInfo, bool bReplicated)
 
 simulated function DelayedStick()
 {
-    StickInfo = DelayedStickInfo;
+    RepStickInfo = DelayedStickInfo;
     bForceNetUpdate = true;
     NetUpdateFrequency = 3;
     GotoState('Pickup');
@@ -204,6 +240,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 simulated function Tick(float DeltaTime)
 {
     super(KFProj_Bullet).Tick(DeltaTime);
+    LastLocation = Location;
     if((Physics == 6) && VSizeSq(Velocity) < ((Speed * Speed) * 0.1))
     {
         SetPhysics(2);
@@ -235,11 +272,14 @@ state Pickup
 
     function bool ValidTouch(Pawn Other)
     {
+        local Vector PickupLocation;
+
         if(((Other == none) || !Other.bCanPickupInventory) || (Other.DrivenVehicle == none) && Other.Controller == none)
         {
             return false;
         }
-        if(!FastTrace(Other.Location, Location))
+        PickupLocation = Location - (vector(Rotation) * 15);
+        if(!FastTrace(Other.Location, PickupLocation,, true))
         {
             return false;
         }
@@ -282,6 +322,15 @@ state Pickup
         bCollideComplex = false;
         SetOwner(none);
     }
+
+    simulated function Tick(float DeltaTime)
+    {
+        if(((Role == ROLE_Authority) && RepStickInfo.HitComponent != none) && RepStickInfo.HitComponent.HiddenGame)
+        {
+            Explode(RepStickInfo.HitLocation, RepStickInfo.HitNormal);
+            ImpactedActor = none;
+        }
+    }
 Begin:
 
     CheckTouching();
@@ -291,8 +340,8 @@ Begin:
 defaultproperties
 {
     WeaponClass=Class'KFWeap_Bow_Crossbow'
-    PickupRadius=100
-    PickupHeight=50
+    PickupRadius=200
+    PickupHeight=100
     ProjPickupTemplate=ParticleSystem'WEP_Crossbow_EMIT.FX_Crossbow_Projectile_Pickup'
     AmmoPickupSound=AkEvent'WW_WEP_SA_Crossbow.Play_Crossbow_Bolt_Pickup'
     LifeSpanAfterStick=180

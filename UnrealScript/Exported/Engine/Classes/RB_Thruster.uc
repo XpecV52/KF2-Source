@@ -64,6 +64,7 @@ defaultproperties
       ObjectArchetype=SpriteComponent'Engine.Default__SpriteComponent'
    End Object
    Components(1)=Sprite
+   CollisionType=COLLIDE_CustomDefault
    bHardAttach=True
    bEdShouldSnap=True
    Name="Default__RB_Thruster"

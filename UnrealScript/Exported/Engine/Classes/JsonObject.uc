@@ -46,7 +46,7 @@ native function bool HasKey(const string Key);
 /**
  * Helper functions to convert special strings that the decoder will make from numbers
  */
-function int GetIntValue(const string Key)
+event int GetIntValue(const string Key)
 {
 	local string Value;
 	
@@ -55,7 +55,7 @@ function int GetIntValue(const string Key)
 	return int(Value);
 }
 
-function float GetFloatValue(const string Key)
+event float GetFloatValue(const string Key)
 {
 	local string Value;
 
@@ -64,7 +64,7 @@ function float GetFloatValue(const string Key)
 	return float(Value);
 }
 
-function bool GetBoolValue(const string Key)
+event bool GetBoolValue(const string Key)
 {
 	local string Value;
 
@@ -83,17 +83,17 @@ native function SetStringValue(const string Key, const string Value);
 /**
  * Helper functions to make special strings that the encoder will turn into numbers
  */
-function SetIntValue(const string Key, int Value)
+event SetIntValue(const string Key, int Value)
 {
 	SetStringValue(Key, "\\#" $ Value);
 }
 
-function SetFloatValue(const string Key, float Value)
+event SetFloatValue(const string Key, float Value)
 {
 	SetStringValue(Key, "\\#" $ Value);
 }
 
-function SetBoolValue(const string Key, bool Value)
+event SetBoolValue(const string Key, bool Value)
 {
 	SetStringValue(Key, "\\#" $ (Value ? "true" : "false"));
 }

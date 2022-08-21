@@ -73,7 +73,6 @@ class KFPerk_Commando extends KFPerk
  
 
 
-
  
 
 
@@ -82,41 +81,62 @@ class KFPerk_Commando extends KFPerk
 
 
 
+
+
+ 
+
 #linenumber 14
 
 //Passives
-var		const	PerkSkill 		WeaponDamage;						// weapon dmg modifier
-var 	const	PerkSkill		CloakedEnemyDetection;              // Can see cloaked zeds x UUs far (100UUs = 100cm = 1m)
-var 	const	PerkSkill		HealthBarDetection;                 // Can see zed's health x UUs far (100UUs = 100cm = 1m)
-var 	const	PerkSkill		ZedTimeExtension;                   // How many times a zed time ext can happen
-var 	const	PerkSkill		ExtraHealth;                        // 0 - 50 HP based on level
-var 	const	PerkSkill		NightVision;                        // Night vision
+var private const	PerkSkill 		WeaponDamage;						// weapon dmg modifier
+var private const	PerkSkill		CloakedEnemyDetection;              // Can see cloaked zeds x UUs far (100UUs = 100cm = 1m)
+var private const	PerkSkill		ZedTimeExtension;                   // How many times a zed time ext can happen
+var private const	PerkSkill		ReloadSpeed;		                // 2% increase every 5 levels (max 10% increase)
+var private const	PerkSkill		CallOut;		                    // allow teammates to see cloaked units
+var private const	PerkSkill		NightVision;                        // Night vision
 
-var 	const	float			RapidFireFiringRate;    			// Faster firing rate in %  NOTE:This is needed for combinations with the Skill: RapidFire (Damage and Rate)
+var private const	float			RapidFireFiringRate;    			// Faster firing rate in %  NOTE:This is needed for combinations with the Skill: RapidFire (Damage and Rate)
+var private const 	float 			BackupWeaponSwitchModifier;
+var private const 	float			HollowPointRecoilModifier;
+var private const 	float			HealthArmorModifier;
 
 /** Temp HUD */
 var 			Texture2d		WhiteMaterial;
 
 enum ECommandoSkills
 {
+	ECommandoTacticalReload,
 	ECommandoLargeMags,
 	ECommandoBackup,
 	ECommandoImpact,
-	ECommandoTacticalReload,
-	ECommandoLeadership,
-	ECommandoCallOut,
-	ECommandoSingleFire,
-	ECommandoAutoFire,
-	ECommandoRapidFire,
-	ECommandoProfessional
+	ECommandoHealthIncrease,
+	ECommandoAmmoVest,
+	ECommandoHollowPoints,
+	ECommandoEatLead,
+	ECommandoProfessional,
+	ECommandoRapidFire
 };
+
+/** On spawn, modify owning pawn based on perk selection */
+function SetPlayerDefaults( Pawn PlayerPawn )
+{
+	local float NewArmor;
+
+	super.SetPlayerDefaults( PlayerPawn );
+
+	if( OwnerPawn.Role == ROLE_Authority && IsHealthIncreaseActive() )
+	{
+		NewArmor = OwnerPawn.default.MaxArmor * static.GetHealthArmorModifier();
+		OwnerPawn.AddArmor( Round( NewArmor ) );		
+	}
+}
 
 /*********************************************************************************************
 * @name	 Passive skills functions
 ********************************************************************************************* */
 
 /**
- * @brief Modifes the damage dealt
+ * @brief Modifies the damage dealt
   *
  * @param InDamage damage
  * @param DamageCauser weapon or projectile (optional)
@@ -150,21 +170,16 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 	{
 		if( IsBackupActive() && IsBackupWeapon( KFW ) )
 		{
+			;
 			TempDamage += InDamage * GetSkillValue( PerkSkills[ECommandoBackup] );
 		}
 
 		if( IsWeaponOnPerk(KFW) )
 		{
-			if( IsSingleFireActive() && KFW.GetStateName() == 'WeaponSingleFiring' )
+			if( IsHollowPointsActive() )
 			{
 				;
-	    		TempDamage += InDamage * GetSkillValue( PerkSkills[ECommandoSingleFire] );
-			}
-
-			if( IsAutoFireActive() && (KFW.GetStateName() == 'WeaponBurstFiring' || KFW.GetStateName() == 'WeaponFiring') )
-			{
-				;
-	       		TempDamage += InDamage * GetSkillValue( PerkSkills[ECommandoAutoFire] );
+	    		TempDamage += InDamage * GetSkillValue( PerkSkills[ECommandoHollowPoints] );
 			}
 		}
 	}
@@ -217,14 +232,62 @@ simulated static function float GetZedTimeExtension( byte Level )
 }
 
 /**
+ * @brief Calculates the additional ammo per perk level
+ *
+ * @param Level Current perk level
+ * @return additional ammo
+ */
+simulated private final static function float GetExtraReloadSpeed( int Level )
+{
+	return default.ReloadSpeed.Increment * FFloor( float( Level ) / 5.f );
+}
+
+/**
+ * @brief Modifies the reload speed for commando weapons
+ *
+ * @param ReloadDuration Length of the reload animation
+ * @param GiveAmmoTime Time after the weapon actually gets some ammo
+ */
+simulated function float GetReloadRateScale( KFWeapon KFW )
+{
+	if( IsWeaponOnPerk( KFW ) )
+	{
+		return 1.f - GetExtraReloadSpeed( CurrentLevel );
+	}
+
+	return 1.f;
+}
+
+/**
  * @brief modifies the players health 1% per level
  *
  * @param InHealth health
  */
 function ModifyHealth( out int InHealth )
 {
-	InHealth += GetPassiveValue( ExtraHealth, GetLevel() );
-	;
+	local float TempHealth;
+
+	if( IsHealthIncreaseActive() )
+	{
+		TempHealth = InHealth;
+		TempHealth += InHealth * GetSkillValue( PerkSkills[ECommandoHealthIncrease] );
+		InHealth = Round(TempHealth);
+		;
+	}
+}
+
+/**
+ * @brief Modifies the pawn's MaxArmor
+ *
+ * @param MaxArmor the maximum armor value
+ */
+function ModifyArmor( out byte MaxArmor )
+{
+	local float TempArmor;
+
+	TempArmor = MaxArmor;
+	TempArmor += MaxArmor * GetSkillValue( PerkSkills[ECommandoHealthIncrease] );
+	MaxArmor = Round( TempArmor );
 }
 
 /*********************************************************************************************
@@ -249,14 +312,48 @@ simulated function bool GetUsingTactialReload( KFWeapon KFW )
  * @param MagazineCapacity modified mag capacity
  * @param WeaponPerkClass the weapon's associated perk class (optional)
  */
-simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out int MagazineCapacity, optional Class<KFPerk> WeaponPerkClass )
+simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass )
 {
-	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) && IsLargeMagActive() && (KFW == none || !KFW.bNoMagazine) )
+	local float TempCapacity;
+
+	TempCapacity = MagazineCapacity;
+
+	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) && (KFW == none || !KFW.bNoMagazine) )
 	{
 		if( KFW != none )
 		{
-			MagazineCapacity *= 1 + GetSkillValue( PerkSkills[ECommandoLargeMags] );
+			if( IsLargeMagActive() )
+			{
+				TempCapacity += MagazineCapacity * GetSkillValue( PerkSkills[ECommandoLargeMags] );
+			}
+
+			if( IsEatLeadActive() )
+			{				
+	       		TempCapacity += MagazineCapacity * GetSkillValue( PerkSkills[ECommandoEatLead] );
+			}
 		}
+	}
+
+	MagazineCapacity = Round(TempCapacity);
+}
+
+/**
+ * @brief Modifies the max spare ammo
+ *
+ * @param KFW The weapon
+ * @param MaxSpareAmmo ammo amount
+ * @param TraderItem the weapon's associated trader item info
+ */
+simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo, optional const out STraderItem TraderItem)
+{
+	local float TempMaxSpareAmmoAmount;
+
+	ScriptTrace();
+	if( IsAmmoVestActive() && IsWeaponOnPerk( KFW, TraderItem.AssociatedPerkClass ) )
+	{
+		TempMaxSpareAmmoAmount = MaxSpareAmmo;
+		TempMaxSpareAmmoAmount += MaxSpareAmmo * GetSkillValue( PerkSkills[ECommandoAmmoVest] );
+		MaxSpareAmmo = Round( TempMaxSpareAmmoAmount );
 	}
 }
 
@@ -283,7 +380,7 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 		}
 	}
 
-	if( IsRapidFireActive() && ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE )
+	if( CouldRapidFireActive() && ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE )
 	{
 		return RapidFireFiringRate;
 	}
@@ -308,9 +405,46 @@ function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDa
 	return 1.f;
 }
 
-static simulated function float GetLeadshipRateReduction()
+/**
+ * @brief The Backup skill modifies the weapon switch speed
+ *
+ * @param ModifiedSwitchTime Duration of putting down or equipping the weapon
+ */
+simulated function ModifyWeaponSwitchTime( out float ModifiedSwitchTime )
 {
-	return GetSkillValue( default.PerkSkills[ECommandoLeadership] );
+	if( IsBackupActive() )
+	{
+		;
+		ModifiedSwitchTime -= ModifiedSwitchTime * static.GetBackupWeaponSwitchModifier();
+	}
+}
+
+simulated final static function float GetBackupWeaponSwitchModifier()
+{
+	return default.BackupWeaponSwitchModifier;
+}
+
+/**
+ * @brief Modifies the weapon's recoil
+ *
+ * @param CurrentRecoilModifier percent recoil lowered
+ */
+simulated function ModifyRecoil( out float CurrentRecoilModifier, KFWeapon KFW )
+{
+	if( IsWeaponOnPerk( KFW ) && IsHollowPointsActive() )
+	{
+		CurrentRecoilModifier -= CurrentRecoilModifier * GetHollowPointRecoilModifier();
+	}
+}
+
+simulated static final function float GetHollowPointRecoilModifier()
+{
+	return default.HollowPointRecoilModifier;
+}
+
+private static function float GetHealthArmorModifier()
+{
+	return default.HealthArmorModifier;
 }
 
 /*********************************************************************************************
@@ -323,7 +457,7 @@ static simulated function float GetLeadshipRateReduction()
  */
 simulated function bool IsCallOutActive()
 {
-	return PerkSkills[ECommandoCallOut].bActive;
+	return true;
 }
 
 /**
@@ -344,6 +478,11 @@ simulated function bool HasNightVision()
 simulated protected function bool IsRapidFireActive()
 {
 	return PerkSkills[ECommandoRapidFire].bActive && WorldInfo.TimeDilation < 1.f;
+}
+
+simulated protected function bool CouldRapidFireActive()
+{
+	return PerkSkills[ECommandoRapidFire].bActive;
 }
 
 /**
@@ -367,13 +506,13 @@ final private function bool IsBackupActive()
 }
 
 /**
- * @brief Checks if single fire skill is active
+ * @brief Checks if Hollow Points fire skill is active
  *
  * @return true/false
  */
-final private function bool IsSingleFireActive()
+final private function bool IsHollowPointsActive()
 {
-	return PerkSkills[ECommandoSingleFire].bActive;
+	return PerkSkills[ECommandoHollowPoints].bActive;
 }
 
 /**
@@ -387,16 +526,6 @@ simulated final private function bool IsTacticalReloadActive()
 }
 
 /**
- * @brief Checks if the Leadership skill is active
- *
- * @return true/false
- */
-simulated function bool IsLeadershipActive()
-{
-	return PerkSkills[ECommandoLeadership].bActive;
-}
-
-/**
  * @brief Checks if impact skill is active
  *
  * @return true/false
@@ -407,13 +536,33 @@ final private function bool IsImpactActive()
 }
 
 /**
+ * @brief Checks if health increase skill is active
+ *
+ * @return true/false
+ */
+final private function bool IsHealthIncreaseActive()
+{
+	return PerkSkills[ECommandoHealthIncrease].bActive;
+}
+
+/**
  * @brief Checks if auto fire skill is active
  *
  * @return true/false
  */
-final private function bool IsAutoFireActive()
+final private function bool IsEatLeadActive()
 {
-	return PerkSkills[ECommandoAutoFire].bActive;
+	return PerkSkills[ECommandoEatLead].bActive;
+}
+
+/**
+ * @brief Checks if ammo vest skill is active
+ *
+ * @return true/false
+ */
+final private function bool IsAmmoVestActive()
+{
+	return PerkSkills[ECommandoAmmoVest].bActive;
 }
 
 /**
@@ -426,6 +575,7 @@ simulated final private function bool IsProfessionalActive()
 	return PerkSkills[ECommandoProfessional].bActive;
 }
 
+
 /*********************************************************************************************
 * @name	 Hud/UI
 ********************************************************************************************* */
@@ -434,16 +584,16 @@ simulated static function GetPassiveStrings( out array<string> PassiveValues, ou
 {
 	PassiveValues[0] = Round( GetPassiveValue( default.WeaponDamage, Level) * 100 ) $ "%";
 	PassiveValues[1] = Round( GetPassiveValue( default.CloakedEnemyDetection, Level ) / 100 ) $ "m";		// Divide by 100 to convert unreal units to meters
-	PassiveValues[2] = Round( GetPassiveValue( default.HealthBarDetection, Level ) / 100 ) $ "m";	// Divide by 100 to convert unreal units to meters
-	PassiveValues[3] = Round( GetZedTimeExtension( Level )) $ "sec";
-	PassiveValues[4] = Round( GetPassiveValue( default.ExtraHealth, Level ) ) $ "%";
+	PassiveValues[2] = Round( GetZedTimeExtension( Level )) $ "sec";
+	PassiveValues[3] = Round( GetExtraReloadSpeed( Level ) * 100 ) $ "%";
+	PassiveValues[4] = "";
 	PassiveValues[5] = "";
 
-	Increments[0] = "["@Int(default.WeaponDamage.Increment * 100)  $"% /" @default.LevelString @"]";
+	Increments[0] = "["@Int(default.WeaponDamage.Increment * 100) $"% /" @default.LevelString @"]";
 	Increments[1] = "["@Int(default.CloakedEnemyDetection.Increment / 100)  $"m /" @default.LevelString @"]";
-	Increments[2] = "["@Int(default.HealthBarDetection.Increment / 100)  $"m /" @default.LevelString @"]";
-	Increments[3] = "["@Int(default.ZedTimeExtension.StartingValue) @"+" @Int(default.ZedTimeExtension.Increment)   @"sec / 5" @default.LevelString @"]";
-	Increments[4] = "["@Int(default.ExtraHealth.Increment)  $"% /" @default.LevelString @"]";
+	Increments[2] = "["@Int(default.ZedTimeExtension.StartingValue) @"+" @Int(default.ZedTimeExtension.Increment)   @"sec / 5" @default.LevelString @"]";
+	Increments[3] = "["@Int(default.ReloadSpeed.Increment * 100) $ "% / 5" @ default.LevelString @ "]";
+	Increments[4] = "";
 	Increments[5] = "";
 }
 
@@ -472,7 +622,7 @@ simulated function DrawSpecialPerkHUD(Canvas C)
 
 	if( CheckOwnerPawn() )
 	{
-		DetectionRangeSq = Square( GetPassiveValue( HealthBarDetection, CurrentLevel ) );
+		DetectionRangeSq = Square( GetPassiveValue( CloakedEnemyDetection, CurrentLevel ) );
 
 		foreach WorldInfo.AllPawns(class'KFPawn_Monster', KFPM)
 		{
@@ -571,12 +721,15 @@ simulated function LogPerkSkills()
 defaultproperties
 {
    WeaponDamage=(Name="Weapon Damage",Increment=0.010000,MaxValue=0.250000)
-   CloakedEnemyDetection=(Name="Cloacked Enemy Detection Range",Increment=200.000000,MaxValue=5000.000000)
-   HealthBarDetection=(Name="Health Bar Detection Range",Increment=200.000000,MaxValue=5000.000000)
+   CloakedEnemyDetection=(Name="Cloaked Enemy Detection Range",Increment=200.000000,StartingValue=1000.000000,MaxValue=6000.000000)
    ZedTimeExtension=(Name="Zed Time Extension",Increment=1.000000,StartingValue=1.000000,MaxValue=6.000000)
-   ExtraHealth=(Name="Extra Health",Increment=2.000000,MaxValue=50.000000)
+   ReloadSpeed=(Name="Reload Speed",Increment=0.020000,MaxValue=0.100000)
+   CallOut=(Name="Call Out",Increment=2.000000,MaxValue=50.000000)
    NightVision=(Name="Night Vision")
    RapidFireFiringRate=0.500000
+   BackupWeaponSwitchModifier=0.500000
+   HollowPointRecoilModifier=0.500000
+   HealthArmorModifier=0.250000
    WhiteMaterial=Texture2D'EngineResources.WhiteSquareTexture'
    ProgressStatID=1
    PerkBuildStatID=2
@@ -586,29 +739,29 @@ defaultproperties
    SecondaryXPModifier(3)=9
    PerkName="Commando"
    Passives(0)=(Title="Perk Weapon Damage",Description="%x% increase in Commando weapon damage.")
-   Passives(1)=(Title="Cloaked Enemy Detection",Description="Cloaked detection increased by %x%")
-   Passives(2)=(Title="Health Bar Detection",Description="Health bar detection increased by %x%")
-   Passives(3)=(Title="Zed Time Extension",Description="Zed time lasts %x%")
-   Passives(4)=(Title="Health Increase",Description="Health increased by %x%")
-   Passives(5)=(Title="+Night Vision Capability",Description="Flashlights - AND Night Vision Goggles")
-   SkillCatagories(0)="Supply"
-   SkillCatagories(1)="Weapon Handling"
-   SkillCatagories(2)="Awareness"
+   Passives(1)=(Title="Cloaked Enemy & Health Bar Detection",Description="10m plus %x%m increase by each level")
+   Passives(2)=(Title="Zed Time Extension",Description="Zed time lasts %x% longer")
+   Passives(3)=(Title="Reload Speed",Description="%x%% increase every 5 levels")
+   Passives(4)=(Title="+Night Vision Capability",Description="Flashlights - AND Night Vision Goggles")
+   Passives(5)=(Title="+Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units")
+   SkillCatagories(0)="Tactics"
+   SkillCatagories(1)="Advanced Tactics"
+   SkillCatagories(2)="Survival"
    SkillCatagories(3)="Weapon Specialist"
    SkillCatagories(4)="Advanced Training"
    EXPAction1="Dealing Commando weapon damage"
    EXPAction2="Killing Stalkers with Commando weapons"
    PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Commando'
-   PerkSkills(0)=(Name="LargeMags",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_LargeMag")
-   PerkSkills(1)=(Name="Backup",StartingValue=0.600000,MaxValue=0.600000,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_Backup")
-   PerkSkills(2)=(Name="Impact",StartingValue=0.300000,MaxValue=0.300000,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_Impact")
-   PerkSkills(3)=(Name="TacticalReload",IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_TacticalReload")
-   PerkSkills(4)=(Name="Leadership",StartingValue=0.100000,MaxValue=0.100000,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_Nightvision")
-   PerkSkills(5)=(Name="CallOut",IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_CallOut")
-   PerkSkills(6)=(Name="SingleFire",StartingValue=0.200000,MaxValue=0.200000,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_SingleFire")
-   PerkSkills(7)=(Name="Autofire",StartingValue=0.200000,MaxValue=0.200000,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_AutoFire")
-   PerkSkills(8)=(Name="RapidFire",StartingValue=0.030000,MaxValue=0.030000,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_RapidFire")
-   PerkSkills(9)=(Name="Professional",IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_Professional")
+   PerkSkills(0)=(Name="TacticalReload",IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_TacticalReload")
+   PerkSkills(1)=(Name="LargeMags",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_LargeMag")
+   PerkSkills(2)=(Name="Backup",StartingValue=0.600000,MaxValue=0.600000,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_Backup")
+   PerkSkills(3)=(Name="Impact",StartingValue=1.500000,MaxValue=1.500000,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_Impact")
+   PerkSkills(4)=(Name="HealthIncrease",StartingValue=0.250000,MaxValue=0.250000,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_HP")
+   PerkSkills(5)=(Name="AmmoVest",StartingValue=0.200000,MaxValue=0.200000,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_AmmoVest")
+   PerkSkills(6)=(Name="HollowPoints",StartingValue=0.200000,MaxValue=0.200000,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_SingleFire")
+   PerkSkills(7)=(Name="EatLead",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.Commando.UI_Talents_Commando_AutoFire")
+   PerkSkills(8)=(Name="Professional",IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_Professional")
+   PerkSkills(9)=(Name="RapidFire",StartingValue=0.030000,MaxValue=0.030000,IconPath="UI_PerkTalent_TEX.commando.UI_Talents_Commando_RapidFire")
    ZedTimeModifyingStates(0)="WeaponFiring"
    ZedTimeModifyingStates(1)="WeaponBurstFiring"
    ZedTimeModifyingStates(2)="WeaponSingleFiring"

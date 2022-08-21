@@ -51,6 +51,11 @@ function EnableComm()
     if(!PC.IsDead() && PC.Pawn != none)
     {
         bActive = true;
+        if(PC.IsTimerActive('HandleInputChange', self))
+        {
+            PC.ClearTimer('HandleInputChange', self);
+            PC.IgnoreLookInput(false);
+        }
         PC.IgnoreLookInput(true);
         Outer.GetGameViewportClient().__HandleInputAxis__Delegate = OnAxisModified;
         SetBool("bUsingGamePad", PC.PlayerInput.bUsingGamepad);
@@ -63,10 +68,22 @@ function DisableComm()
     if(bActive)
     {
         bActive = false;
-        PC.IgnoreLookInput(false);
+        if(!PC.PlayerInput.bUsingGamepad)
+        {
+            PC.IgnoreLookInput(false);            
+        }
+        else
+        {
+            PC.SetTimer(0.25, false, 'HandleInputChange', self);
+        }
         Outer.GetGameViewportClient().__HandleInputAxis__Delegate = None;
         ActionScriptVoid("disableComm");
     }
+}
+
+function HandleInputChange()
+{
+    PC.IgnoreLookInput(false);
 }
 
 function bool OnAxisModified(int ControllerId, name Key, float Delta, float DeltaTime, bool bGamepad)

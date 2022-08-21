@@ -79,11 +79,17 @@ event Init()
 	{
 		// Grab the game interface to verify the subsystem supports it
 		GameInterface = OnlineSub.GameInterface;
-		if (GameInterface != None)
+
+//@HSL_BEGIN - BWJ - 4-12-16 - Playfab support
+		if( class'WorldInfo'.static.IsConsoleBuild() && !class'WorldInfo'.static.IsE3Build() )
 		{
-			// Set the function to call when the search is done
+			class'GameEngine'.static.GetPlayfabInterface().AddFindOnlineGamesCompleteDelegate(OnSearchComplete);
+		}
+		else if (GameInterface != None)
+		{				// Set the function to call when the search is done
 			GameInterface.AddFindOnlineGamesCompleteDelegate(OnSearchComplete);
 		}
+//@HSL_END
 	}
 }
 
@@ -142,7 +148,17 @@ event bool SubmitGameSearch(byte ControllerIndex, optional bool bInvalidateExist
 
 			// invalidate the results for this search
 			InvalidateCurrentSearchResults();
-			return GameInterface.FindOnlineGames(ControllerIndex,GameSearchCfgList[ActiveSearchIndex].Search);
+
+//@HSL_BEGIN - BWJ - 4-12-16 - Playfab support
+			if( class'WorldInfo'.static.IsConsoleBuild() && !class'WorldInfo'.static.IsE3Build() )
+			{
+				return class'GameEngine'.static.GetPlayfabInterface().FindOnlineGames( GameSearchCfgList[ActiveSearchIndex].Search );
+			}
+			else
+			{
+				return GameInterface.FindOnlineGames(ControllerIndex,GameSearchCfgList[ActiveSearchIndex].Search);
+			}
+//@HSL_END
 		}
 		else
 		{

@@ -30,6 +30,8 @@ var const localized string HumanString;
 var const localized string SpectatorString;
 var const localized string UnableToSwitchTeamString;
 var const localized string NoSwitchReasonString;
+var const localized string TeamString;
+var const localized string AllString;
 
 static function array<string> GetDifficultyStringsArray()
 {
@@ -92,6 +94,10 @@ static function array<string> GetGameModeStringsArray()
 
 static function string GetGameModeString(int GameModeIndex)
 {
+    if(GameModeIndex == -1)
+    {
+        return default.NoPreferenceString;
+    }
     if((0 < default.ModeStrings.Length) && GameModeIndex < default.ModeStrings.Length)
     {
         return default.ModeStrings[GameModeIndex];
@@ -110,6 +116,7 @@ defaultproperties
     LengthStrings(2)="Long (10 Waves)"
     ServerTypeStrings(0)="Ranked"
     ServerTypeStrings(1)="Ranked - Custom"
+    ServerTypeStrings(2)="Unranked"
     PermissionStrings(0)="Public"
     PermissionStrings(1)="Friends only"
     PermissionStrings(2)="Private"
@@ -132,5 +139,7 @@ defaultproperties
     HumanString="SURVIVOR"
     SpectatorString="SPECTATOR"
     UnableToSwitchTeamString="Unable to Switch Teams"
-    NoSwitchReasonString="Switching teams would upset team balance."
+    NoSwitchReasonString="Switching teams would upset team balance"
+    TeamString="TEAM"
+    AllString="ALL"
 }

@@ -26,4 +26,6 @@ static function int GetDamageeDialogID()
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_CaulkBurn'
+    StumblePower=20
+    BurnPower=20
 }

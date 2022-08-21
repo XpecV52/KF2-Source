@@ -7,9 +7,13 @@
 // Killing Floor 2
 // Copyright (C) 2015 Tripwire Interactive LLC
 //=============================================================================
+class KFSM_GrappleCombined extends KFSM_InteractionPawnLeader
+	native(SpecialMoves);
 
-// @todo: collapse super class "GrappleAttack" into this class
-class KFSM_GrappleCombined extends KFSM_GrappleAttack;
+// Animations
+var array<name>	 GrappleAnims;
+var bool bStopFullBodyWhenMoveEnds;
+var byte LastVariant;  // The last anim index this special move played
 
 // Simple state flags for multi-stage special move
 enum EGrappleState
@@ -30,6 +34,9 @@ var name GrabStartAnimName;
 var bool bCanBeBlocked;
 /** Is set, the owner can cancel/abort this move after it's been started */
 var bool bCanBeInterrupted;
+
+/** The time from the start of the anim to check for a victim */
+var float GrabCheckTime;
 
 /** Minimum amount of time to grab if player released button */
 var float MinPlayerGrabTime;
@@ -69,11 +76,17 @@ function bool CanOverrideMoveWith( Name NewMove )
 	return FALSE;
 }
 
+/** Set our grab flag to EGS_GrabAttempt (we don't start the grapple until we've grabbed a pawn) */
+static function byte PackFlagsBase( KFPawn P )
+{
+	return EGS_GrabAttempt;
+}
+
 /** Notification called when Special Move starts */
 function SpecialMoveStarted(bool bForced, Name PrevMove )
 {
 	// skip default (instant attach) behavior 
-	Super(KFSpecialMove).SpecialMoveStarted(bForced,PrevMove);
+	Super(KFSpecialMove).SpecialMoveStarted(bForced, PrevMove);
 
 	// Reset variables
 	Follower = None;
@@ -88,13 +101,11 @@ function SpecialMoveStarted(bool bForced, Name PrevMove )
 /** Play an animation and enable the OnAnimEnd notification */
 function PlayGrabAnim()
 {
-	local float GrabCheckTime;
+	GrabCheckTime = KFSkeletalMeshComponent(PawnOwner.Mesh).GetAnimInterruptTime(GrabStartAnimName);
 
 	// On the server start a timer to check collision
 	if ( PawnOwner.Role == ROLE_Authority )
 	{
-		GrabCheckTime = KFSkeletalMeshComponent(PawnOwner.Mesh).GetAnimInterruptTime(GrabStartAnimName);
-
 		if ( GrabCheckTime <= 0 )
 		{
 			WarnInternal("Failed to play" @ GrabStartAnimName @ "on special move" @ Self @ "on Pawn" @ PawnOwner);
@@ -139,8 +150,6 @@ function CheckGrapple()
 
 	if( Victim != none && Victim.IsAliveAndWell() && Victim.GetTeamNum() != KFPOwner.GetTeamNum() /*&& AIOwner.Enemy.Physics != PHYS_Falling*/ )
 	{
-		ToEnemy = (PawnOwner.Location - Victim.Location);
-
 		if ( Victim != None && (bCanBeBlocked && Victim.MyKFWeapon != None && Victim.MyKFWeapon.IsGrappleBlocked(PawnOwner))
             || (!Victim.CanBeGrabbed(KFPOwner, true)) )
 		{
@@ -152,6 +161,8 @@ function CheckGrapple()
 		{
 			return;
 		}
+
+		ToEnemy = (PawnOwner.Location - Victim.Location);
 
 		if( VSizeSq(ToEnemy) > Square(MaxGrabDistance) )
 		{
@@ -194,6 +205,17 @@ function Pawn FindPlayerGrabTarget()
 	}
 }
 
+/**
+ * Used for Pawn to Pawn interactions.
+ * Return TRUE if we can perform an Interaction with this Pawn.
+ */
+function bool CanInteractWithPawn(KFPawn OtherPawn)
+{
+	// Prevent interaction if potentiail victim is dead, not on our team, in Phys_Falling, or busy with another special move
+	return( (OtherPawn.IsAliveAndWell() && !KFPOwner.IsSameTeam(OtherPawn) && OtherPawn.Physics != PHYS_Falling && !OtherPawn.IsDoingSpecialMove())
+		&& Super.CanInteractWithPawn(OtherPawn) );
+}
+
 /** Called when grapple is successful and interaction pawn is attached */
 function BeginGrapple(optional KFPawn Victim)
 {
@@ -211,10 +233,10 @@ function BeginGrapple(optional KFPawn Victim)
         KFPOwner.ReplicatedSpecialMove.Flags = KFPOwner.SpecialMoveFlags;
     }
 
-    // If button released before loop force at least one loop, then abort
-	if ( bPendingStopFire && PawnOwner.IsHumanControlled() && PawnOwner.IsLocallyControlled() )
+    // See if the grab should be ended early
+	if( PawnOwner.IsHumanControlled() && PawnOwner.IsLocallyControlled() )
 	{
-		PawnOwner.SetTimer(MinPlayerGrabTime, false, nameof(PlayerReleasedGrapple), self);
+		PawnOwner.SetTimer(MinPlayerGrabTime, false, nameof(CheckIfPlayerReleasedGrapple), self);
 	}
 
 	// stop root motion
@@ -233,7 +255,53 @@ function BeginGrapple(optional KFPawn Victim)
     CheckReadyToStartInteraction();
 }
 
-// Use timer & animlength instead of animend
+/** StartInteraction */
+function StartInteraction() 
+{
+	local KFAIDirector AIDirector;
+
+	super.StartInteraction();
+
+	if( Follower != none && KFPOwner != none )
+	{
+	    // Prevent grenade throwing for a short time after being grabbed to prevent players blowing themselves up
+	    if( KFWeapon(Follower.Weapon) != none )
+	    {
+	        KFWeapon(Follower.Weapon).ZedGrabGrenadeTossCooldown = Follower.WorldInfo.TimeSeconds + 0.35;
+	    }
+
+	    // Force the player to look at the zed if grabbed
+	    if( Follower.Controller != none && KFPlayerController(Follower.Controller) != none )
+	    {
+	        KFPlayerController(Follower.Controller).ForceLookAtPawn = KFPOwner;
+	        KFPlayerController(Follower.Controller).bLockToForceLookAtPawn = true;
+	    }
+
+		// Try to let the game's KFAIDirector know about the successful grab, so it can alert nearby Zeds
+		// TODO: Might want to move this to a timer so other zeds aren't alerted until the grapple anim actively looping
+		if( KFPOwner.MyKFAIC != none )
+		{
+			AIDirector = KFPOwner.MyKFAIC.MyAIDirector;
+
+			//Let the AI controller know the initial attack succeeded
+			if( KFAIController_Monster(KFPOwner.MyKFAIC) != none )
+			{
+	            KFAIController_Monster(KFPOwner.MyKFAIC).bCompletedInitialGrabAttack = true;
+	        }
+		}
+		else if ( KFPOwner.WorldInfo.Game != None )
+		{
+			AIDirector = KFGameInfo( KFPOwner.WorldInfo.Game ).GetAIDirector();
+			if ( AIDirector != None )
+			{
+				// We currently don't notify if/when the player breaks away from the grab
+				AIDirector.NotifyPawnGrabbed( Follower, KFPOwner );
+			}
+		}
+	}
+}
+
+/** Use timer & animlength instead of animend */
 function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime)
 {
 	if( KFPOwner != none && KFPOwner.Role == ROLE_Authority )
@@ -286,6 +354,12 @@ function PlayGrappleLoopAnim()
 	PlaySpecialMoveAnim(GrappleAnims[KFPOwner.SpecialMoveFlags >> 4], EAS_FullBody);
 }
 
+/** Notification when Follower is leaving his FollowerSpecialMove */
+function OnFollowerLeavingSpecialMove()
+{
+	KFPOwner.EndSpecialMove();
+}
+
 function SpecialMoveEnded(Name PrevMove, Name NextMove)
 {
 	// Clear timers.
@@ -300,19 +374,49 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 		KFPOwner.BodyStanceNodes[EAS_FullBody].SetRootBoneAxisOption(RBA_Discard, RBA_Discard, RBA_Discard);
 	}
 
+	if( bStopFullBodyWhenMoveEnds )
+	{
+		KFPOwner.StopBodyAnim(EAS_FullBody, 0.2f);
+	}
+
 	Super.SpecialMoveEnded(PrevMove, NextMove);
 }
 
 /** Handle bCanBeInterrupted, also see CanOverrideMoveWith() for interrupt moves */
 function NotifyOwnerTakeHit(class<KFDamageType> DamageType, vector HitLoc, vector HitDir, Controller InstigatedBy)
 {
+	// Don't break grab if the damage was from someone on the same team
+    if( InstigatedBy != none && KFPOwner != none && InstigatedBy.GetTeamNum() == KFPOwner.GetTeamNum() )
+    {
+        return;
+    }
+
+	if( !KFPOwner.IsHumanControlled() )
+	{
+	    // End the move immediately and let ProcessAIHit force a SM_Stumble
+		KFPOwner.EndSpecialMove();
+
+		// force stumble when damaged from a grapple
+		if ( KFPOwner.CanDoSpecialMove(SM_Stumble) && DamageType.default.StumblePower > 0 )
+		{
+			KFPOwner.DoSpecialMove(SM_Stumble,,, class'KFSM_Stumble'.static.PackBodyHitSMFlags(KFPOwner, HitDir));
+		}
+	}
+}
+
+/** Notification from the pawn that a medium (aka gun) or heavy (aka melee) affliction has been activated */
+function NotifyHitReactionInterrupt()
+{
+	local vector HitDir;
+
 	if ( KFPOwner.SpecialMoveFlags == EGS_GrabAttempt )
 	{
-		if ( bCanBeInterrupted && class'KFSM_PlaySingleAnim'.static.IsAnInterruptHit(PawnOwner, DamageType) )
+		if ( bCanBeInterrupted )
 		{
 			// Force stumble.  Cannot simple exit this move without aborting/overriding the animation
 			if ( KFPOwner.CanDoSpecialMove(SM_Stumble) )
 			{
+				HitDir = Normal(KFPOwner.HitFxInfo.EncodedHitDirection);
 				KFPOwner.DoSpecialMove(SM_Stumble,,, class'KFSM_Stumble'.static.PackBodyHitSMFlags(KFPOwner, HitDir));
 			}
 		}
@@ -322,46 +426,60 @@ function NotifyOwnerTakeHit(class<KFDamageType> DamageType, vector HitLoc, vecto
 /* Called on some player-controlled moves when a firemode input has been pressed */
 function SpecialMoveButtonRetriggered()
 {
-	bPendingStopFire = false;
-
-	// Clear the release timer if it's active
-	if( PawnOwner.IsTimerActive(nameOf(PlayerReleasedGrapple), self) )
-	{
-		PawnOwner.ClearTimer( nameOf(PlayerReleasedGrapple), self );
-	}
+    bPendingStopFire = false;
 }
 
 /** Called on some player-controlled moves when a firemode input has been released */
 function SpecialMoveButtonReleased()
 {
-	bPendingStopFire = true;
+    bPendingStopFire = true;
 
-	// if already attached we can stop immediately
-	if ( KFPOwner.SpecialMoveFlags != EGS_GrabAttempt )
+    // Wait out the initial grab attempt + minimum grab duration
+    if( Follower == none || KFPOwner.IsTimerActive(nameOf(CheckIfPlayerReleasedGrapple), self) )
+    {
+        return;
+    }
+
+	KFPOwner.EndSpecialMove();
+	if( KFPOwner.Role < ROLE_Authority && KFPOwner.IsLocallyControlled() )
 	{
-		PlayerReleasedGrapple();
+		KFPOwner.ServerDoSpecialMove( SM_None, true );
 	}
 }
 
 /** Called when aborting the move due to player input */
-function PlayerReleasedGrapple()
+function CheckIfPlayerReleasedGrapple()
 {
-	KFPOwner.EndSpecialMove();
-	if( KFPOwner.Role < ROLE_Authority && KFPOwner.IsLocallyControlled() )
+	if( bPendingStopFire )
 	{
-		KFPOwner.ServerDoSpecialMove(SM_None, true);
+		KFPOwner.EndSpecialMove();
+		if( KFPOwner.Role < ROLE_Authority && KFPOwner.IsLocallyControlled() )
+		{
+			KFPOwner.ServerDoSpecialMove( SM_None, true );
+		}
 	}
 }
 
 defaultproperties
 {
+   GrappleAnims(0)="Grab_Attack_V1"
+   GrappleAnims(1)="Grab_Attack_V2"
+   GrappleAnims(2)="Grab_Attack_V3"
+   bStopFullBodyWhenMoveEnds=True
+   bCanBeBlocked=True
+   bCanBeInterrupted=True
    MaxGrabDistance=210.000000
    MaxVictimZOffset=128.000000
    GrabStartAnimName="Grab"
-   bCanBeBlocked=True
-   bCanBeInterrupted=True
-   MinPlayerGrabTime=4.000000
-   bLockPawnRotation=True
+   MinPlayerGrabTime=3.000000
+   FollowerSpecialMove=SM_GrappleVictim
+   bAlignPawns=True
+   bStopAlignFollowerRotationAtGoal=True
+   AlignDistance=92.000000
+   AlignFollowerInterpSpeed=22.000000
+   bDisableMovement=True
+   bServerOnlyPhysics=True
+   Handle="SM_GrappleAttack"
    Name="Default__KFSM_GrappleCombined"
-   ObjectArchetype=KFSM_GrappleAttack'KFGame.Default__KFSM_GrappleAttack'
+   ObjectArchetype=KFSM_InteractionPawnLeader'KFGame.Default__KFSM_InteractionPawnLeader'
 }

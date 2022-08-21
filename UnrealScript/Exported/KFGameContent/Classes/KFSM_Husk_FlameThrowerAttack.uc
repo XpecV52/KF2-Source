@@ -111,6 +111,11 @@ simulated function TurnOnFlamethrower()
 
 	if( MyFlameSpray != none )
 	{
+		// Apply rally boost damage
+		MyFlameSpray.SprayDamage.X = HuskOwner.GetRallyBoostDamage( MyFlameSpray.default.SprayDamage.X );
+		MyFlameSpray.SprayDamage.Y = HuskOwner.GetRallyBoostDamage( MyFlameSpray.default.SprayDamage.Y );
+
+		// Start flames
 		MyFlameSpray.BeginSpray();
 	}
 }
@@ -164,7 +169,7 @@ simulated function TurnOffFlamethrower()
  */
 function bool CanOverrideMoveWith( Name NewMove )
 {
-	if ( bCanBeInterrupted && (NewMove == 'KFSM_Stunned' || NewMove == 'KFSM_Stumble' || NewMove == 'Knockdown') )
+	if ( bCanBeInterrupted && (NewMove == 'KFSM_Stunned' || NewMove == 'KFSM_Stumble' || NewMove == 'KFSM_Knockdown' || NewMove == 'KFSM_Frozen') )
 	{
 		return TRUE; // for NotifyAttackParried
 	}
@@ -186,8 +191,12 @@ defaultproperties
    FlameAttackStopEvent=AkEvent'WW_ZED_Husk.ZED_Husk_SFX_Flamethrower_Stop'
    AnimName="Player_Flame"
    bCanBeInterrupted=True
+   bUseCustomRotationRate=True
    bDisableMovement=True
    bDisableSteering=False
+   bDisableTurnInPlace=True
+   CustomRotationRate=(Pitch=66000,Yaw=100000,Roll=66000)
+   CustomTurnInPlaceAnimRate=2.000000
    Handle="KFSM_Husk_FlameThrowerAttack"
    Name="Default__KFSM_Husk_FlameThrowerAttack"
    ObjectArchetype=KFSM_PlaySingleAnim'KFGame.Default__KFSM_PlaySingleAnim'

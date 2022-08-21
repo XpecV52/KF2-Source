@@ -55,6 +55,7 @@ function LocalizeText()
 	LocalizedObject.SetString("aimAssistRotationLabel"			, aimAssistRotationString);
 	LocalizedObject.SetString("aimAssistSlowDownLabel"			, aimAssistSlowDownString);
 	LocalizedObject.SetString("forceFeedbackLabel"				, forceFeedbackString);
+	LocalizedObject.SetString("resetDefault", Localize("KFGFxOptionsMenu_Graphics","DefaultString","KFGame"));
 
 	SetObject("localizedText", LocalizedObject);
 }
@@ -66,17 +67,21 @@ function InitializeOptions()
 
 	KFPI = KFPlayerInput(GetPC().PlayerInput);
 	ValuesObject = CreateObject( "Object" );
+	// Don't try to set values of objects that aren't there on Console.
+	if ( !GetPC().WorldInfo.IsConsoleBuild() )
+	{
+		ValuesObject.SetFloat("sensitivityValue"					, KFPI.MouseSensitivity);
+		ValuesObject.SetFloat("sensitivityValueMin"					, 100 *	ControlsMenu.MinMouseLookSensitivity);
+		ValuesObject.SetFloat("sensitivityValueMax"					, 100 * ControlsMenu.MaxMouseLookSensitivity);
 
-	ValuesObject.SetFloat("sensitivityValue"					, KFPI.MouseSensitivity);
-	ValuesObject.SetFloat("sensitivityValueMin"					, 100 *	ControlsMenu.MinMouseLookSensitivity);
-	ValuesObject.SetFloat("sensitivityValueMax"					, 100 * ControlsMenu.MaxMouseLookSensitivity);
+		ValuesObject.SetFloat("zoomSensitivityValue"				, 100 * KFPI.ZoomedSensitivityScale);
+		ValuesObject.SetFloat("zoomSensitivityValueMin"				, 100 * ControlsMenu.MinMouseLookZoomSensitivity);
+		ValuesObject.SetFloat("zoomSensitivityValueMax"				, 100 * ControlsMenu.MaxMouseLookZoomSensitivity);
 
-	ValuesObject.SetFloat("zoomSensitivityValue"				, 100 * KFPI.ZoomedSensitivityScale);
-	ValuesObject.SetFloat("zoomSensitivityValueMin"				, 100 * ControlsMenu.MinMouseLookZoomSensitivity);
-	ValuesObject.SetFloat("zoomSensitivityValueMax"				, 100 * ControlsMenu.MaxMouseLookZoomSensitivity);
-
-	ValuesObject.SetBool("invertedValue"						, KFPI.bInvertMouse);
-	ValuesObject.SetBool("mouseSmoothingLabel"					, KFPI.bEnableMouseSmoothing);
+		ValuesObject.SetBool("invertedValue"						, KFPI.bInvertMouse);
+		ValuesObject.SetBool("mouseSmoothingLabel"					, KFPI.bEnableMouseSmoothing);
+		ValuesObject.SetBool("forceFeedbackValue"					, KFPI.bForceFeedbackEnabled);
+	}
 	
 	ValuesObject.SetFloat("controllerSensitivityValue"			, 100 * KFPI.GamepadSensitivityScale);
 	ValuesObject.SetFloat("controllerSensitivityValueMin"		, 100 * ControlsMenu.MinControllerLookSensitivity);
@@ -90,8 +95,39 @@ function InitializeOptions()
 	ValuesObject.SetBool("aimAssistLockOnValue"					, KFPI.bAutoTargetEnabled);
 	ValuesObject.SetBool("aimAssistRotationValue"				, KFPI.bTargetAdhesionEnabled);
 	ValuesObject.SetBool("aimAssistSlowDownValue"				, KFPI.bTargetFrictionEnabled);
-	ValuesObject.SetBool("forceFeedbackValue"					, KFPI.bForceFeedbackEnabled);
 
 	SetObject("initializeOptions", ValuesObject);
+}
+
+function ResetInputOptions()
+{
+	// Currently doing nothing with the reset button is pressed since current system overrides default .ini settings. HSL_BB
+	// TODO: Restore settings back to defaults.
+	
+	//local GFxObject ValuesObject;
+	//local KFPlayerInput KFPI;
+
+	//KFPI = KFPlayerInput(GetPC().PlayerInput);
+	//ValuesObject = CreateObject( "Object" );
+	//// Don't try to set values of objects that aren't there on Console.
+	//if ( !GetPC().WorldInfo.IsConsoleBuild() )
+	//{
+	//	ValuesObject.SetFloat("sensitivityValue"				, /*Default value*/);
+	//	ValuesObject.SetFloat("zoomSensitivityValue"			, /*Default value*/);
+
+	//	ValuesObject.SetBool("invertedValue"					, /*Default value*/);
+	//	ValuesObject.SetBool("mouseSmoothingLabel"				, /*Default value*/);
+	//	ValuesObject.SetBool("forceFeedbackValue"				, /*Default value*/);
+	//}
+
+	//ValuesObject.SetFloat("controllerSensitivityValue"			, /*Default value*/);
+	//ValuesObject.SetFloat("controllerZoomSensitivityValue"		, /*Default value*/);
+
+	//ValuesObject.SetBool("controllerInvertedValue"				, /*Default value*/);
+	//ValuesObject.SetBool("aimAssistLockOnValue"					, /*Default value*/);
+	//ValuesObject.SetBool("aimAssistRotationValue"				, /*Default value*/);
+	//ValuesObject.SetBool("aimAssistSlowDownValue"				, /*Default value*/);
+
+	//SetObject("initializeOptions", ValuesObject);
 }
 

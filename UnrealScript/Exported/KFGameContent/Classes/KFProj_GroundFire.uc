@@ -84,8 +84,8 @@ defaultproperties
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
       ExplosionEffects=KFImpactEffectInfo'WEP_Flamethrower_ARCH.GroundFire_Impacts'
       bAllowPerMaterialFX=True
-      Damage=10.000000
-      DamageRadius=100.000000
+      Damage=15.000000
+      DamageRadius=200.000000
       MyDamageType=Class'kfgamecontent.KFDT_Fire_Ground'
       KnockDownStrength=0.000000
       MomentumTransferScale=0.000000

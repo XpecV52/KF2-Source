@@ -13,7 +13,6 @@ class KFDamageType extends DamageType
 	hidedropdown;
 
 `include(KFGameDialog.uci)
-`include(KFGame\KFMatchStats.uci);
 
 var class<KFWeaponDefinition> WeaponDef;
 
@@ -25,6 +24,9 @@ var float HeadDestructionDamageScale;
 
 /** Scale up ragdoll impulse force to the zed's body when the head is blown off by this amount. Used for weapons with multiple projectiles like shotguns so you get the effect of all pellets hitting the head */
 var float HeadDestructionImpulseForceScale;
+
+/** Whether this damagetype is used in consideration for indirect/AoE damage in the AAR */
+var bool bConsideredIndirectOrAoE;
 
 /*********************************************************************************************
 Damage over time
@@ -56,14 +58,14 @@ Status Effects
  ********************************************************************************************* */
 
 /** Strength value for each incap effect */
-var byte StunPower;
-var byte KnockdownPower;
-var byte StumblePower;
-var byte LegStumblePower;
+var float StunPower;
+var float KnockdownPower;
+var float StumblePower;
+var float LegStumblePower;
 
 /** Clientside hit reactions.  Two types depends on weapon type */
-var byte GunHitPower;
-var byte MeleeHitPower;
+var float GunHitPower;
+var float MeleeHitPower;
 
 /** Strength of stacking incap effect (e.g. Burning/Panic, Poisoned) */
 var float BurnPower;
@@ -109,6 +111,7 @@ enum EGoreDamageGroup
 	DGT_Obliteration
 };
 
+
 /** What kind of damage group this damage type belongs to */
 var EGoreDamageGroup GoreDamageGroup;
 
@@ -138,8 +141,14 @@ var bool bCanGib;
 
 /** If set, it can completely obliterate zeds when hit by this damage type.
 	Obliteration can also depend on other factors such as how close the zed
-	was to this damage type when taking damage, etc. Eg. explosives. */
+	was to this damage type when taking damage, etc. Eg. explosives. 
+	*  bCanObliterate - will deal with dismembering all detachable body parts.
+	* 2) DGT_Obliterate: GoreGroup (archetype) driven "obliteration" gore.  Used by violent explosives (e.g. Pulverizer) and
+	* tends to gore the torso moreso than DGT_Explosive which often gores the legs. This follows the same dismemberment code,
+	* but picks specific bones that it can dismember.
+	**/
 var bool bCanObliterate;
+
 /** How low the pawn's health must get for this damage type to cause obliteration */
 var(Obliteration) int ObliterationHealthThreshold;
 /** How much damage this damage type must deal before causing obliteration */
@@ -346,12 +355,14 @@ static function bool IsNotPerkBound()
 /** Test obliterate conditions when taking damage */
 static function bool CheckObliterate(Pawn P, int Damage)
 {
-	if ( default.bCanObliterate )
-	{
-		return (P.Health <= default.ObliterationHealthThreshold
-			&& Damage > default.ObliterationDamageThreshold);
-	}
+	return (P.Health <= default.ObliterationHealthThreshold
+		&& Damage > default.ObliterationDamageThreshold);
 
+}
+
+/** See if this damagetype should always poison regardless of perk */
+static function bool AlwaysPoisons()
+{
 	return false;
 }
 
@@ -373,4 +384,5 @@ Defaultproperties
 	WeaponDef=None
 
 	bAnyPerk=false;
+	bCanObliterate=false;
 }

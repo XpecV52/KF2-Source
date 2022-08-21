@@ -12,10 +12,11 @@ class KFSM_PlaySingleAnim extends KFSpecialMove
 /** Animation to play */
 var() name AnimName;
 var() KFPawn.EAnimSlotStance AnimStance;
-var float BlendInTime;
-var float BlendOutTime;
+var bool bLoopAnim;
 var bool bUseRootMotion;
 var bool bCanBeInterrupted;
+var float BlendInTime;
+var float BlendOutTime;
 var float AbortBlendOutTime;
 
 function SpecialMoveStarted(bool bForced, name PrevMove)
@@ -45,42 +46,23 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
 
 function PlayAnimation()
 {
-    PlaySpecialMoveAnim(AnimName, AnimStance, BlendInTime, BlendOutTime, 1);
+    PlaySpecialMoveAnim(AnimName, AnimStance, BlendInTime, BlendOutTime, 1, bLoopAnim);
 }
 
 function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime)
 {
-    KFPOwner.EndSpecialMove();
-}
-
-function NotifyOwnerTakeHit(class<KFDamageType> DamageType, Vector HitLoc, Vector HitDir, Controller InstigatedBy)
-{
-    if(bCanBeInterrupted && IsAnInterruptHit(PawnOwner, DamageType))
+    if(!bLoopAnim)
     {
         KFPOwner.EndSpecialMove();
     }
 }
 
-static function bool IsAnInterruptHit(Pawn P, class<KFDamageType> DamageType)
+function NotifyHitReactionInterrupt()
 {
-    local KFPawn_Monster KFPM;
-    local byte HitZoneIdx;
-    local KFPawnAfflictions.EHitZoneBodyPart BodyPart;
-
-    if((DamageType != none) && !P.IsHumanControlled())
+    if(bCanBeInterrupted)
     {
-        KFPM = KFPawn_Monster(P);
-        if(KFPM != none)
-        {
-            HitZoneIdx = KFPM.HitFxInfo.HitBoneIndex;
-            BodyPart = ((HitZoneIdx != 255) ? KFPM.HitZones[HitZoneIdx].Limb : 2);
-            if(KFPM.AfflictionHandler.GetPredictedHitReaction(DamageType, BodyPart) > 0)
-            {
-                return true;
-            }
-        }
+        KFPOwner.EndSpecialMove();
     }
-    return false;
 }
 
 defaultproperties

@@ -45,6 +45,9 @@ function AdjustDamage(out int InDamage, Controller EventInstigator, class<Damage
 	super.AdjustDamage( InDamage, EventInstigator, DamageType );
 }
 
+/** Collectible actors should not reset */
+simulated function Reset();
+
 defaultproperties
 {
 	// KFDestructibleActor

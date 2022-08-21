@@ -11,11 +11,8 @@ class KFDT_Bludgeon_Crovel extends KFDT_Bludgeon
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_Crovel'
-    StunPower=42
-    KnockdownPower=22
-    StumblePower=51
-    LegStumblePower=51
-    MeleeHitPower=50
+    StumblePower=100
+    MeleeHitPower=100
     ModifierPerkList=/* Array type was not detected. */
     KDamageImpulse=1500
     KDeathVel=400

@@ -160,6 +160,8 @@ protected function GameCameraBase FindBestCameraType(Actor CameraTarget)
     return super.FindBestCameraType(CameraTarget);
 }
 
+simulated function Reset();
+
 defaultproperties
 {
     CustomizationCameraClass=Class'KFCustomizationCamera'

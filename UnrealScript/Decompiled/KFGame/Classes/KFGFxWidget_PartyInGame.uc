@@ -179,6 +179,7 @@ function RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
         MemberSlots[SlotIndex].bIsSlotTaken = true;
         PlayerID = KFPRI.UniqueId;
         MemberSlots[SlotIndex].PlayerUID = PlayerID;
+        MemberSlots[SlotIndex].PRI = KFPRI;
         OnlineLobby.GetLobbyAdmin(OnlineLobby.GetCurrentLobbyId(), AdminId);
         if(Class'WorldInfo'.static.IsConsoleBuild(8))
         {
@@ -191,10 +192,25 @@ function RefreshSlot(int SlotIndex, KFPlayerReplicationInfo KFPRI)
         bIsMyPlayer = Outer.GetPC().PlayerReplicationInfo.UniqueId == PlayerID;
         PlayerName = KFPRI.PlayerName;
         UpdatePlayerName(SlotIndex, PlayerName);
-        SlotChanged(SlotIndex, true, bIsMyPlayer, bIsLeader);
+        SlotChanged(SlotIndex, true, bIsMyPlayer, bIsLeader);        
+    }
+    else
+    {
+        if(Class'WorldInfo'.static.IsE3Build())
+        {
+            PlayerName = KFPRI.PlayerName;
+            UpdatePlayerName(SlotIndex, PlayerName);
+        }
     }
     CreatePlayerOptions(KFPRI.UniqueId, SlotIndex);
-    MemberSlots[SlotIndex].MemberSlotObject.SetString("profileImageSource", KFPC.GetSteamAvatar(KFPRI.UniqueId));
+    if(Class'WorldInfo'.static.IsConsoleBuild(8))
+    {
+        MemberSlots[SlotIndex].MemberSlotObject.SetString("profileImageSource", KFPC.GetPS4Avatar(KFPRI.PlayerName));        
+    }
+    else
+    {
+        MemberSlots[SlotIndex].MemberSlotObject.SetString("profileImageSource", KFPC.GetSteamAvatar(KFPRI.UniqueId));
+    }
 }
 
 function ToggelMuteOnPlayer(int SlotIndex)
@@ -228,12 +244,20 @@ function ViewProfile(int SlotIndex)
     local array<KFPlayerReplicationInfo> KFPRIArray;
 
     GetKFPRIArray(KFPRIArray);
-    if(KFPRIArray.Length <= 0)
+    if(((KFPRIArray.Length <= 0) || OnlineSub == none) || EqualEqual_InterfaceInterface(OnlineSub.PlayerInterfaceEx, (none)))
     {
         return;
     }
     if(KFPRIArray.Length > SlotIndex)
     {
+        if(Outer.GetPC().WorldInfo.IsConsoleBuild(8))
+        {
+            OnlineSub.PlayerInterfaceEx.ShowGamerCardUIByUsername(byte(Outer.GetLP().ControllerId), KFPRIArray[SlotIndex].PlayerName);            
+        }
+        else
+        {
+            OnlineSub.PlayerInterfaceEx.ShowGamerCardUI(byte(Outer.GetLP().ControllerId), KFPRIArray[SlotIndex].UniqueId);
+        }
         LogInternal("View PLAYER profile: " @ KFPRIArray[SlotIndex].PlayerName);
     }
 }

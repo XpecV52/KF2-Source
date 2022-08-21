@@ -9,68 +9,11 @@ class KFDT_Bludgeon_Crovel extends KFDT_Bludgeon
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 12;
-
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Crovel'
-   StunPower=42
-   KnockdownPower=22
-   StumblePower=51
-   LegStumblePower=51
-   MeleeHitPower=50
+   StumblePower=100.000000
+   MeleeHitPower=100.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
    KDamageImpulse=1500.000000
    KDeathVel=400.000000

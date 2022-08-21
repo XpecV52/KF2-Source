@@ -48,8 +48,7 @@ function LocalizeText()
         ++ I;
         goto J0x68;
     }
-    LocalizedObject.SetString("sectionName", SectionNameString);
-    LocalizedObject.SetString("header", GameSettingsString);
+    LocalizedObject.SetString("header", Caps(Class'KFGFxOptionsMenu_Selection'.default.OptionStrings[3]));
     LocalizedObject.SetString("fov", FOVString);
     LocalizedObject.SetString("friendlyHud", FriendlyHudScaleString);
     LocalizedObject.SetString("gore", GoreString);
@@ -60,6 +59,7 @@ function LocalizeText()
     LocalizedObject.SetString("normal", NormalString);
     LocalizedObject.SetString("killTicker", KillTickerString);
     LocalizedObject.SetString("close", Class'KFCommon_LocalizedStrings'.default.BackString);
+    LocalizedObject.SetString("resetDefault", Localize("KFGFxOptionsMenu_Graphics", "DefaultString", "KFGame"));
     SetObject("localizedText", LocalizedObject);
 }
 
@@ -74,7 +74,10 @@ function InitValues()
     DataObject.SetFloat("gore", float(Class'GameInfo'.default.GoreLevel));
     DataObject.SetFloat("friendlyHud", GetFriendlyHudScale());
     DataObject.SetBool("crosshair", Class'KFGameEngine'.static.IsCrosshairEnabled());
-    DataObject.SetBool("classicWeaponSelect", Class'KFPlayerInput'.default.bQuickWeaponSelect);
+    if(!Outer.GetPC().WorldInfo.IsConsoleBuild())
+    {
+        DataObject.SetBool("classicWeaponSelect", Class'KFPlayerInput'.default.bQuickWeaponSelect);
+    }
     DataObject.SetBool("killTicker", Class'KFGameEngine'.default.bShowKillTicker);
     SetObject("dataValues", DataObject);
 }
@@ -211,6 +214,13 @@ function Callback_GoreChanged(byte NewGoreLevel)
         Class'GameInfo'.static.StaticSaveConfig();
     }
 }
+
+function CallBack_ResetGameOptions()
+{
+    Manager.OpenPopup(0, Localize("KFGFxOptionsMenu_Graphics", "WarningPromptString", "KFGame"), Localize("KFGFxObject_Menu", "ResetDefaults", "KFGameConsole"), Localize("KFGFxOptionsMenu_Graphics", "OKString", "KFGame"), Localize("KFGFxOptionsMenu_Graphics", "CancelString", "KFGame"), ResetGameOptions);
+}
+
+function ResetGameOptions();
 
 defaultproperties
 {

@@ -14,7 +14,7 @@ function InitializePopup(KFGFxMoviePlayer_Manager InManager)
 {
     super.InitializePopup(InManager);
     GammaSlider = GetObject("mainSlider");
-    GammaSlider.SetFloat("value", Class'KFGameEngine'.default.GammaMultiplier);
+    GammaSlider.SetFloat("value", Class'KFGameEngine'.default.GammaMultiplier * float(100));
     SetString("imagePath", "img://" $ GammaImagePath);
     Manager.bEnableGammaCorrection = true;
     Manager.RefreshViewportFlags();
@@ -47,7 +47,7 @@ function ResetGamma()
     local KFGameEngine KFGE;
 
     DefaultGamma = Class'KFGameEngine'.default.DefaultGammaMult;
-    GammaSlider.SetFloat("value", DefaultGamma);
+    GammaSlider.SetFloat("value", DefaultGamma * float(100));
     KFGE = KFGameEngine(Class'Engine'.static.GetEngine());
     KFGE.GammaMultiplier = DefaultGamma;
     KFGE.SaveConfig();
@@ -63,7 +63,7 @@ function Callback_ClosedPopup()
 
 function Callback_GammaChanged(float NewGamma)
 {
-    SetGamma(NewGamma);
+    SetGamma(NewGamma / float(100));
 }
 
 function Callback_DefaultGamma()

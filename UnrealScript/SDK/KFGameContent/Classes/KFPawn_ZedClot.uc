@@ -91,23 +91,20 @@ DefaultProperties
 	// ---------------------------------------------
 	// Special Moves
 	Begin Object Name=SpecialMoveHandler_0
-		SpecialMoveClasses(SM_GrabAttack)=class'KFGame.KFSM_GrappleAttack'
-		SpecialMoveClasses(SM_Grab)=class'KFGame.KFSM_GrappleStart'
+		SpecialMoveClasses(SM_GrappleAttack)=class'KFGame.KFSM_GrappleCombined'
 		SpecialMoveClasses(SM_Taunt)=class'KFGame.KFSM_Zed_Taunt'
 		SpecialMoveClasses(SM_Emerge)=class'KFSM_Emerge'
 		SpecialMoveClasses(SM_Evade)=class'KFSM_Evade'
 		SpecialMoveClasses(SM_Evade_Fear)=class'KFSM_Evade_Fear'
 	End Object
 
-	InstantIncaps(IAF_Stun)=(Head=100,Torso=100,Leg=100,Arm=100,Cooldown=3.0)
-	InstantIncaps(IAF_Knockdown)=(Head=100,Torso=100,Leg=100,Arm=100,Cooldown=8.0)
-	InstantIncaps(IAF_Stumble)=(Head=100,Torso=100,Arm=100,Cooldown=1.0)
-	InstantIncaps(IAF_LegStumble)=(Leg=100,Cooldown=1.0)
-	InstantIncaps(IAF_GunHit)=(Head=100,Torso=100,Leg=100,Arm=100,Cooldown=1.0)
-	InstantIncaps(IAF_MeleeHit)=(Head=100,Torso=100,Leg=100,Arm=100,Cooldown=1.0)
-	StackingIncaps(SAF_FirePanic)=(Threshhold=1.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.0)
+	IncapSettings(AF_Stun)=		(Vulnerability=(2), Cooldown=3.0)
+	IncapSettings(AF_Knockdown)=(Vulnerability=(2), Cooldown=8.0)
+	IncapSettings(AF_Stumble)=	(Vulnerability=(2), Cooldown=1.0)
+	IncapSettings(AF_GunHit)=	(Vulnerability=(2), Cooldown=1.0)
+	IncapSettings(AF_MeleeHit)= (Vulnerability=(2), Cooldown=1.0)
 
-    ResistantDamageTypes.Add((DamageType=class'KFDT_Microwave'))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', DamageScale=(0.5))
 
 	// ---------------------------------------------
 	// AI / Navigation

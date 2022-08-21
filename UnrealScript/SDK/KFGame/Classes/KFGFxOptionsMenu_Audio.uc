@@ -23,6 +23,8 @@ var localized string VocalsString;
 var localized string BattleChatterString;
 var localized string PushToVoIPString;
 
+var float VoIPMin, VoIPMax;
+
 function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 {
 	super.InitializeMenu(InManager);
@@ -36,16 +38,33 @@ function LocalizeText()
 
     LocalizedObject = CreateObject( "Object" );
 
-	LocalizedObject.SetString("sectionName", SectionNameString);
-	LocalizedObject.SetString("options", OptionsString);
-    LocalizedObject.SetString("header", AudioString);
     LocalizedObject.SetString("master", MasterVolumeString);
     LocalizedObject.SetString("dialog", DialogVolumeString);
     LocalizedObject.SetString("music", MusicString);
     LocalizedObject.SetString("sFx", SFxString);
-    LocalizedObject.SetString("voipVolume", VOIPVolumeString);
-    LocalizedObject.SetString("configureMic", ConfigureMicString);
-    LocalizedObject.SetString("pushToTalk", PushToVoIPString);
+
+	// Console adds the gamma button and video section so change the localization so it is correct. 
+	if ( GetPC().WorldInfo.IsConsoleBuild() )
+	{
+		// Cobbling together the "Audio" and "Video" localization strings to make AUDIO/VIDEO.
+		LocalizedObject.SetString("header", Caps(class'KFGFxOptionsMenu_Selection'.default.OptionStrings[OM_Audio])$"/"$Caps(class'KFGFxOptionsMenu_Selection'.default.OptionStrings[OM_Video]));
+		// This should just be Audio string
+		LocalizedObject.SetString("sectionName", Caps(class'KFGFxOptionsMenu_Selection'.default.OptionStrings[1]));
+		// This should just be Video string
+		LocalizedObject.SetString("options", Caps(class'KFGFxOptionsMenu_Selection'.default.OptionStrings[0]));
+		LocalizedObject.SetString("configureMic", class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaString);
+	}
+	else
+	{
+		LocalizedObject.SetString("header", Caps(class'KFGFxOptionsMenu_Selection'.default.OptionStrings[OM_Audio]));
+		LocalizedObject.SetString("sectionName", SectionNameString);
+		LocalizedObject.SetString("options", OptionsString);
+		LocalizedObject.SetString("configureMic", ConfigureMicString);
+		// Not going to set these values on Console so only add them on PC.
+		LocalizedObject.SetString("voipVolume", VOIPVolumeString);
+		LocalizedObject.SetString("pushToTalk", PushToVoIPString);
+		LocalizedObject.SetString("resetDefault", Localize("KFGFxOptionsMenu_Graphics","DefaultString","KFGame"));
+	}
     LocalizedObject.SetString("vocals", VocalsString);
     LocalizedObject.SetString("battleChatter", BattleChatterString);
     LocalizedObject.SetString("close", Class'KFCommon_LocalizedStrings'.default.BackString);
@@ -54,11 +73,15 @@ function LocalizeText()
 
 function  InitValues()
 {
-	local float VoIPMin, VoIPMax, VoIPCurrent;
+	local float VoIPCurrent;
 
-	class'KFGameEngine'.static.GetVoIPVolumeRange(VoIPMin, VoIPMax, VoIPCurrent);
-	SetVoIPMinMax(VoIPMin, VoIPMax);
-	SetFloat("voipVolume", VoIPCurrent );
+	// Don't try to set values of objects that aren't there on Console.
+	if( !GetPC().WorldInfo.IsConsoleBuild() )
+	{
+		class'KFGameEngine'.static.GetVoIPVolumeRange(VoIPMin, VoIPMax, VoIPCurrent);
+		SetFloat("voipVolume", VoIPCurrent/VoIPMax * 100 );
+ 		SetBool("bPushToTalk", class'KFPlayerInput'.default.bRequiresPushToTalk);
+	}
 
 	SetFloat("masterVolume", class'KFGameEngine'.default.MasterVolumeMultiplier);
 	SetFloat("dialogVolume", class'KFGameEngine'.default.DialogVolumeMultiplier);
@@ -66,7 +89,6 @@ function  InitValues()
  	SetFloat("sFxVolume", class'KFGameEngine'.default.SFxVolumeMultiplier);
  	SetBool("vocalsEnabled", class'KFGameEngine'.default.bMusicVocalsEnabled);
  	SetBool("battleChatter", class'KFGameEngine'.default.bMinimalChatter);
- 	SetBool("bPushToTalk", class'KFPlayerInput'.default.bRequiresPushToTalk);
 }
 
 function SetVoIPMinMax( float MinVol, float MaxVol )
@@ -95,11 +117,20 @@ function Callback_ConfigureMicPress()
 {
 	local OnlineSubsystem SubSystem;
 
-	SubSystem = class'GameEngine'.static.GetOnlineSubsystem();
-
-	if( SubSystem != none )
+	// Console swaps the config mic button for Gamma setting so show that pop up instead.
+	if( GetPC().WorldInfo.IsConsoleBuild() )
 	{
-		SubSystem.ShowVOIPConfigUI();	
+		Manager.SetVariableBool("bStartUpGamma", false);  // Let the manager know if we are gamma for start up so we can block backing out of the popup - HSL
+		Manager.OpenPopup(EGamma, "", class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaDescription, class'KFGFxOptionsMenu_Graphics'.default.ResetGammaString, class'KFGFxOptionsMenu_Graphics'.default.SetGammaString);
+	}
+	else
+	{
+		SubSystem = class'GameEngine'.static.GetOnlineSubsystem();
+
+		if( SubSystem != none )
+		{
+			SubSystem.ShowVOIPConfigUI();	
+		}
 	}
 }
 
@@ -177,7 +208,54 @@ function Callback_SFxVolumeChanged( float NewVolume )
 //not implemented yet   This is a stub
 function Callback_VOIPVolumeChanged( float NewVolume )
 {
-	class'KFGameEngine'.static.SetVoIPRecieveVolume(NewVolume); //Steam saves this 
+	class'KFGameEngine'.static.SetVoIPRecieveVolume( (NewVolume / 100) * VoIPMax ); //Steam saves this 
+}
+
+function CallBack_ResetAudioOptions()
+{
+	Manager.OpenPopup( EConfirmation, 
+						Localize("KFGFxOptionsMenu_Graphics","WarningPromptString","KFGame"), 
+						Localize("KFGFxObject_Menu","ResetDefaults","KFGameConsole"),
+						Localize("KFGFxOptionsMenu_Graphics","OKString","KFGame"),
+						Localize("KFGFxOptionsMenu_Graphics","CancelString","KFGame"),
+						ResetAudioOptions);
+}
+
+function ResetAudioOptions()
+{
+	local float DefaultGamma;
+	local KFGameEngine KFGE;
+
+	// Currently doing nothing with the reset button is pressed since current system overrides default .ini settings. HSL_BB
+	// TODO: Restore settings back to defaults.
+
+	//local float VoIPMin, VoIPMax, VoIPCurrent;
+	// Don't try to set values of objects that aren't there on Console.
+	if( !GetPC().WorldInfo.IsConsoleBuild() )
+	{
+		//class'KFGameEngine'.static.GetVoIPVolumeRange(VoIPMin, VoIPMax, VoIPCurrent);
+		//SetFloat("voipVolume", /*Default value*/ );
+		//SetBool("bPushToTalk", /*Default value*/);
+	}
+	else
+	{
+		// Handle resetting the gamma setting since it is in this menu.
+		DefaultGamma = class'KFGameEngine'.default.DefaultGammaMult;
+		KFGE = KFGameEngine(Class'Engine'.static.GetEngine());
+		KFGE.GammaMultiplier = DefaultGamma;
+		KFGE.SaveConfig();
+
+		class'KFGameEngine'.static.SetGamma( DefaultGamma );
+		class'KFGameEngine'.default.GammaMultiplier = DefaultGamma;
+		class'KFGameEngine'.static.StaticSaveConfig();
+	}
+
+	//SetFloat("masterVolume", /*Default value*/);
+	//SetFloat("dialogVolume", /*Default value*/);
+	//SetFloat("musicVolume", /*Default value*/);
+	//SetFloat("sFxVolume", /*Default value*/);
+	//SetBool("vocalsEnabled", /*Default value*/);
+	//SetBool("battleChatter", /*Default value*/);
 }
 
 defaultproperties

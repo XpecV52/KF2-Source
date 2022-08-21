@@ -59,15 +59,7 @@ function ApplyMeleeDamage(Actor Victim, int Damage, optional float InMomentum, o
     local KFPawn_Monster InstigatorPawn;
 
     InMomentum = 1;        
-    if(IsZero(HitLocation))
-    {
-        HitLocation = Victim.Location;
-        HitLocation.Z += FRand();
-    }
-    HitDirection = Normal(HitLocation - Outer.Instigator.Location);
     Damage = Max(Damage, 1);
-    Victim.TakeDamage(Damage, Outer.Instigator.Controller, HitLocation, HitDirection * InMomentum, inDamageType,, Outer);
-    PlayMeleeHitEffects(Victim, HitLocation, HitDirection);
     InstigatorPawn = KFPawn_Monster(Outer.Instigator);
     if(InstigatorPawn != none)
     {
@@ -76,7 +68,16 @@ function ApplyMeleeDamage(Actor Victim, int Damage, optional float InMomentum, o
         {
             InstigatorPawn.MyKFAIC.NotifyMeleeDamageDealt();
         }
+        Damage = InstigatorPawn.GetRallyBoostDamage(Damage);
     }
+    if(IsZero(HitLocation))
+    {
+        HitLocation = Victim.Location;
+        HitLocation.Z += FRand();
+    }
+    HitDirection = Normal(HitLocation - Outer.Instigator.Location);
+    Victim.TakeDamage(Damage, Outer.Instigator.Controller, HitLocation, HitDirection * InMomentum, inDamageType,, Outer);
+    PlayMeleeHitEffects(Victim, HitLocation, HitDirection);
     if(bLogMelee)
     {
         LogInternal((((string(Victim) $ "**** Melee attack!  BaseDamage=") @ string(BaseDamage)) @ ", ModifiedDamage=") @ string(Damage));
@@ -190,7 +191,7 @@ function MeleeImpactNotify(KFAnimNotify_MeleeImpact Notify)
     local bool bDealtDmg;
     local class<KFDamageType> CurrentDamageType;
 
-    if((Outer.Instigator == none) || Outer.Instigator.Role < ROLE_Authority)
+    if((Outer.Instigator == none) || (Outer.Instigator.Role < ROLE_Authority) && !Outer.Instigator.IsLocallyControlled())
     {
         return;
     }
@@ -450,7 +451,7 @@ defaultproperties
 {
     MyDamageType=Class'KFDT_Slashing'
     bTrackSwipeHits=true
-    PlayerDoorDamageMultiplier=5
+    PlayerDoorDamageMultiplier=10
     PlayerControlledFOV=0.15
     MeleeImpactCamScale=1
     MaxPingCompensation=200

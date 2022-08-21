@@ -33,8 +33,6 @@ var 					KFGameExplosion				DoorTrapExplosionTemplate;
 var 					String 						NukeExplosionActorClassName;
 var						String						NukeExplosionDamageTypeName;
 var						String 						NukeProjectileClassName;
-var 					String 						SacrificeExplosionDamageTypeName;
-var 					String 						DoorTrapsExplosionDamageTypeName;
 var 					array<name>					NukeIgnoredProjectileNames;
 /** How much to modify a projectile's damage when the nuke skill is active */
 var 	private const 	float 						NukeDamageModifier;
@@ -42,20 +40,24 @@ var 	private const 	float 						NukeDamageModifier;
 var 	private const 	float 						NukeRadiusModifier;
 
 var 					AkEvent 					ConcussiveExplosionSound;
-var 	private			bool 						bUsedSacrifice;
+var 	private	const	float 						AoeDamageModifier;
+var 	private	const	int 						LingeringNukePoisonDamage;
+
+var 	private const	array<name>					PassiveExtraAmmoIgnoredClassNames;
+var 	private const	array<name>					ExtraAmmoIgnoredClassNames;
 
 enum EDemoSkills
 {
-	EDemoGrenadeSupplier,
-	EDemoOnContact,
-	EDemoExplosiveResistance,
-	EDemoSacrifice,
-	EDemoDoorTraps,
+	EDemoDamage,
+	EDemoTacticalReload,
+	EDemoDirectHit,
+	EDemoAmmo,
 	EDemoSirenResistance,
-	EDemoOffPerk,
-	EDemoOnPerk,
+	EDemoAoE,
+	EDemoCriticalHit,
+	EDemoConcussiveForce,
 	EDemoNuke,
-	EDemoConcussiveForce
+	EDemoProfessional
 };
 
 /*********************************************************************************************
@@ -84,7 +86,7 @@ function ApplySkillsToPawn()
 function OnWaveEnded()
 {
 	Super.OnWaveEnded();
-	bUsedSacrifice = false;
+
 	ResetSupplier();
 }
 
@@ -92,7 +94,7 @@ function OnWaveEnded()
 * @name	 Passives
 ********************************************************************************************* */
 /**
- * @brief Modifes the damage dealt
+ * @brief Modifies the damage dealt
  *
  * @param InDamage damage
  * @param DamageCauser weapon or projectile (optional)
@@ -114,18 +116,46 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 
 	if( (KFW != none && IsWeaponOnPerk( KFW )) || (DamageType != none && IsDamageTypeOnPerk( DamageType )) )
 	{
-		TempDamage +=  (InDamage * GetPassiveValue( ExplosiveDamage, CurrentLevel )) - InDamage;
-	}
-	else
-	{
-		if( IsOffPerkActive() )
+		`QALog( "Base Damage Given" @ DamageType @ KFW @ InDamage, bLogPerk );
+		//Passive
+		TempDamage +=  InDamage * GetPassiveValue( ExplosiveDamage, CurrentLevel );
+		`QALog( "ExplosiveDamage Given" @ DamageType @ KFW @ InDamage * GetPassiveValue( ExplosiveDamage, CurrentLevel ), bLogPerk );
+		//Damage skill
+		if( IsDamageActive() )
 		{
-			TempDamage += InDamage * GetSkillValue( PerkSkills[EDemoOffPerk] );
+			TempDamage +=  InDamage * GetSkillValue( PerkSkills[EDemoDamage] );
+			`QALog( "DemoDamage Given" @ DamageType @ KFW @ InDamage * GetSkillValue( PerkSkills[EDemoDamage] ), bLogPerk );
+		}
+
+		if( IsDirectHitActive() && DamageType != none && IsDamageTypeOnPerk( DamageType ) )
+		{
+			if( DamageType.IsA('KFDT_Ballistic_Shell') )
+			{
+				TempDamage += InDamage * GetSkillValue( PerkSkills[EDemoDirectHit] );
+				`QALog( "DirectHit Damage Given" @ DamageType @ KFW @ InDamage * GetSkillValue( PerkSkills[EDemoDirectHit] ), bLogPerk );
+			}
+		}
+
+		if( IsCriticalHitActive() && MyKFPM != none &&
+			IsCriticalHitZone( MyKFPM, HitZoneIdx ) )
+		{
+			TempDamage += InDamage * GetSkillValue( PerkSkills[EDemoCriticalHit] );
+			`QALog( "CriticalHit Damage Given" @ DamageType @ KFW @ InDamage * GetSkillValue( PerkSkills[EDemoCriticalHit] ), bLogPerk );
 		}
 	}
-
+	
 	`QALog( "Total Damage Given" @ DamageType @ KFW @ GetPercentage( InDamage, Round( TempDamage ) ), bLogPerk );
 	InDamage = Round( TempDamage );
+}
+
+protected function bool IsCriticalHitZone( KFPawn TestPawn, int HitZoneIndex )
+{
+	if( TestPawn != none && HitzoneIndex >= 0 && HitzoneIndex < TestPawn.HitZones.length )
+	{
+		return TestPawn.HitZones[HitZoneIndex].DmgScale > 1.f;
+	}
+
+	return false;
 }
 
 /**
@@ -161,27 +191,48 @@ simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo
 {
 	local class<KFPerk> WeaponPerkClass;
 	local bool bUsesAmmo;
+	local name WeaponClassName;
 
 	if( KFW == none )
 	{
 		WeaponPerkClass = TraderItem.AssociatedPerkClass;
 		bUsesAmmo = TraderItem.WeaponDef.static.UsesAmmo();
+		WeaponClassName = TraderItem.ClassName;
 	}
 	else
 	{
 		WeaponPerkClass = KFW.AssociatedPerkClass;
 		bUsesAmmo = KFW.UsesAmmo();
+		WeaponClassName = KFW.class.Name;
 	}
 
-	if( bUsesAmmo && IsWeaponOnPerk( KFW, WeaponPerkClass ) )
+	if( bUsesAmmo )
 	{
-		`QALog( "StartingAmmo" @ KFW @ "New" @ PrimarySpareAmmo + GetExtraAmmo( CurrentLevel ) @ "Old" @ PrimarySpareAmmo, bLogPerk );
+		GivePassiveExtraAmmo( PrimarySpareAmmo, KFW, WeaponPerkClass, WeaponClassName );
+		GiveAmmoExtraAmmo( PrimarySpareAmmo, KFW, WeaponPerkClass, WeaponClassName );
+	}
+}
+
+simulated private function GivePassiveExtraAmmo( out int PrimarySpareAmmo, KFWeapon KFW, class<KFPerk> WeaponPerkClass, name WeaponClassName )
+{
+	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) && 
+		PassiveExtraAmmoIgnoredClassNames.Find( WeaponClassName ) == INDEX_NONE )
+	{
 		PrimarySpareAmmo += GetExtraAmmo( CurrentLevel );
 	}
 }
 
+simulated private function GiveAmmoExtraAmmo( out int PrimarySpareAmmo, KFWeapon KFW, class<KFPerk> WeaponPerkClass, name WeaponClassName )
+{
+	if( IsWeaponOnPerk( KFW, WeaponPerkClass ) && 
+		ExtraAmmoIgnoredClassNames.Find( WeaponClassName ) == INDEX_NONE )
+	{
+		PrimarySpareAmmo += GetAmmoExtraAmmo();
+	}
+}
+
 /**
- * @brief Modidies the max spare ammo
+ * @brief Modifies the max spare ammo
  *
  * @param KFW The weapon
  * @param PrimarySpareAmmo ammo amount
@@ -191,24 +242,27 @@ simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo,
 {
 	local class<KFPerk> WeaponPerkClass;
 	local bool bUsesAmmo;
+		local name WeaponClassName;
 
 	if( KFW == none )
 	{
 		WeaponPerkClass = TraderItem.AssociatedPerkClass;
 		bUsesAmmo = TraderItem.WeaponDef.static.UsesAmmo();
+		WeaponClassName = TraderItem.ClassName;
 	}
 	else
 	{
 		WeaponPerkClass = KFW.AssociatedPerkClass;
 		bUsesAmmo = KFW.UsesAmmo();
+		WeaponClassName = KFW.class.Name;
 	}
 
-	if( bUsesAmmo && IsWeaponOnPerk( KFW, WeaponPerkClass ) )
+	if( bUsesAmmo )
 	{
-		MaxSpareAmmo += GetExtraAmmo( CurrentLevel );
+		GivePassiveExtraAmmo( MaxSpareAmmo, KFW, WeaponPerkClass, WeaponClassName );
+		GiveAmmoExtraAmmo( MaxSpareAmmo, KFW, WeaponPerkClass, WeaponClassName );
 	}
 }
-
 
 /**
  * @brief Calculates the additional ammo per perk level
@@ -216,7 +270,7 @@ simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo,
  * @param Level Current perk level
  * @return additional ammo
  */
-simulated static private final function int GetExtraAmmo( int Level )
+simulated private final static function int GetExtraAmmo( int Level )
 {
 	return default.ExplosiveAmmo.Increment * FFloor( float( Level ) / 5.f );
 }
@@ -224,6 +278,31 @@ simulated static private final function int GetExtraAmmo( int Level )
 /*********************************************************************************************
 * @name	 Selectable skills
 ********************************************************************************************* */
+simulated function float GetAeORadiusModifier()
+{ 
+	return IsAoEActive() ? GetSkillValue( PerkSkills[EDemoAoE] ) : 1.f;
+}
+
+simulated function float GetAeODamageModifier()
+{ 
+	return IsAoEActive() ? default.AoeDamageModifier : 1.f;
+}
+
+simulated protected function int GetAmmoExtraAmmo()
+{
+	return IsAmmoActive() ? GetSkillValue( PerkSkills[EDemoAmmo] ) : 0.f;
+}
+
+/**
+ * @brief Should the tactical reload skill adjust the reload speed
+ *
+ * @param KFW weapon in use
+ * @return true/false
+ */
+simulated function bool GetUsingTactialReload( KFWeapon KFW )
+{
+	return ( IsTacticalReloadActive() && (IsWeaponOnPerk( KFW ) || IsBackupWeapon( KFW )) );
+}
 
 /**
  * @brief Sets up the supllier skill
@@ -238,7 +317,7 @@ simulated final private function ResetSupplier()
 		}
 	}
 
-	if( MyPRI != none && IsSupplierActive() )
+	if( MyPRI != none )
 	{
 		if( SuppliedPawnList.Length > 0 )
 		{
@@ -277,37 +356,42 @@ simulated function Interact( KFPawn_Human KFPH )
 	local KFInventoryManager KFIM;
 	local KFPlayerController KFPC;
 	local KFPlayerReplicationInfo OwnerPRI, UserPRI;
+	local bool bReceivedGrenades;
 
 	if( SuppliedPawnList.Find( KFPH ) != INDEX_NONE )
 	{
 		return;
 	}
 
-	if( Role == ROLE_Authority )
-	{
-		KFPC = KFPlayerController(KFPH.Controller);
-		if( KFPC != none )
-		{
-			OwnerPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_GaveGrenadesTo, KFPC.PlayerReplicationInfo );
-			KFPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_ReceivedGrenadesFrom, OwnerPC.PlayerReplicationInfo );
-
-			UserPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
-			OwnerPRI = KFPlayerReplicationInfo(OwnerPC.PlayerReplicationInfo);
-			if( UserPRI != none && OwnerPRI != none )
-			{
-				UserPRI.MarkSupplierOwnerUsed( OwnerPRI );
-			}
-		}
-	}
-
 	KFIM = KFInventoryManager(KFPH.InvManager);
 	if( KFIM != None )
 	{
-		KFIM.AddGrenades( 1 );
-		`QALog( "Grenade Supplier" @ KFPC.PlayerReplicationInfo.PlayerName, bLogPerk );
+		bReceivedGrenades = KFIM.AddGrenades( 1 );
 	}
 
-	SuppliedPawnList.AddItem( KFPH );
+	if( bReceivedGrenades )
+	{
+		SuppliedPawnList.AddItem( KFPH );
+		
+		if( Role == ROLE_Authority )
+		{
+			KFPC = KFPlayerController(KFPH.Controller);
+			if( KFPC != none )
+			{
+				OwnerPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_GaveGrenadesTo, KFPC.PlayerReplicationInfo );
+				KFPC.ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_ReceivedGrenadesFrom, OwnerPC.PlayerReplicationInfo );
+
+				UserPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
+				OwnerPRI = KFPlayerReplicationInfo(OwnerPC.PlayerReplicationInfo);
+				if( UserPRI != none && OwnerPRI != none )
+				{
+					UserPRI.MarkSupplierOwnerUsed( OwnerPRI );
+				}
+
+				`QALog( "Grenade Supplier" @ KFPC.PlayerReplicationInfo.PlayerName, bLogPerk );
+			}
+		}
+	}
 }
 
 /**
@@ -318,7 +402,7 @@ simulated function Interact( KFPawn_Human KFPH )
  */
 simulated function bool CanInteract( KFPawn_HUman MyKFPH )
 {
-	return IsSupplierActive() && SuppliedPawnList.Find( MyKFPH ) == INDEX_NONE;
+	return SuppliedPawnList.Find( MyKFPH ) == INDEX_NONE;
 }
 
 /**
@@ -329,42 +413,6 @@ simulated function bool CanInteract( KFPawn_HUman MyKFPH )
 simulated static function ModifyExplosiveDamage( out float InDamage )
 {
 	InDamage -= Indamage * GetSharedExplosiveResistance();
-}
-
-/**
- * @brief Checks if we should blow up on death
- *
- * @return kaboom or not.
- */
-simulated function bool ShouldSacrifice()
-{
-	return IsSacrificeActive() && !bUsedSacrifice;
-}
-
-function NotifyPerkSacrificeExploded()
-{
-	bUsedSacrifice = true;
-}
-
-/**
- * @brief Door Traps skill modifies the welding speed
- *
- * @param FastenRate how much slower do we weld
- * @param UnfastenRate how much slower do we unweld
- *
-  */
-simulated function ModifyWeldingRate( out float FastenRate, out float UnfastenRate )
-{
-	local float WeldingModifier;
-
-	if( IsDoorTrapsActive() )
-	{
-		WeldingModifier = GetSkillValue( PerkSkills[EDemoDoorTraps]  );
-
-		`QALog( "Welding Modifier =" @ 1 - WeldingModifier, bLogPerk );
-		FastenRate *= 1 - WeldingModifier;
-		UnFastenRate *= 1 - WeldingModifier;
-	}
 }
 
 simulated function bool CanExplosiveWeld()
@@ -379,12 +427,12 @@ simulated function bool CanExplosiveWeld()
  */
 simulated function bool ShouldRandSirenResist()
 {
-	return IsSirenResistanceActive() /*&& FRand() <= GetSkillValue( PerkSkills[EDemoSirenResistance] )*/;
+	return IsSirenResistanceActive();
 }
 
 /**
  * @brief skills and weapons can modify the knockdown power chance
- * @return true/false
+ * @return knockdown power multiplier
  */
 function float GetKnockdownPowerModifier( optional class<DamageType> DamageType, optional byte BodyPart, optional bool bIsSprinting=false )
 {
@@ -392,29 +440,32 @@ function float GetKnockdownPowerModifier( optional class<DamageType> DamageType,
 
 	KnockDownMultiplier = 1.f;
 
-	if( IsDamageTypeOnPerk( class<KFDamageType>(DamageType) ) )
+	if( IsConcussiveForceActive() && IsDamageTypeOnPerk( class<KFDamageType>(DamageType) ) )
 	{
-		KnockDownMultiplier += IsOnPerkActive() ? GetSkillValue( PerkSkills[EDemoOnPerk] ) : 0.f;
-		KnockDownMultiplier += IsConcussiveForceActive() ? GetSkillValue( PerkSkills[EDemoConcussiveForce] ) : 0.f;
+		KnockDownMultiplier += GetSkillValue( PerkSkills[EDemoConcussiveForce] );
 	}
+
 	`QALog( "KnockDownMultiplier" @ KnockDownMultiplier, bLogPerk );
 	return KnockDownMultiplier;
 }
 
 /**
  * @brief skills and weapons can modify the stumbling power chance
- * @return stumpling power modifier
+ * @return stumbling power modifier
  */
 function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart )
 {
-	if( IsOnPerkActive() && IsDamageTypeOnPerk( DamageType ) )
+	local float StumbleMultiplier;
+
+	StumbleMultiplier = 1.f;
+
+	if( IsConcussiveForceActive() && IsDamageTypeOnPerk( DamageType ) )
 	{
-		`QALog( "OnPerk, StumbleModifier" @ 1.f + GetSkillValue( PerkSkills[EDemoOnPerk] ), bLogPerk );
-		return 1.f + GetSkillValue( PerkSkills[EDemoOnPerk] );
+		StumbleMultiplier += GetSkillValue( PerkSkills[EDemoConcussiveForce] );
 	}
 
-
-	return 1.f;
+	`QALog( "StumbleMultiplier" @ StumbleMultiplier, bLogPerk );
+	return StumbleMultiplier;
 }
 
 /**
@@ -424,13 +475,32 @@ function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDa
  */
 function float GetStunPowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
 {
-	if( IsOnPerkActive() && IsDamageTypeOnPerk( class<KFDamageType>(DamageType) ) )
+	local float StunMultiplier;
+
+	StunMultiplier = 1.f;
+
+	if( IsConcussiveForceActive() && IsDamageTypeOnPerk( class<KFDamageType>(DamageType) ) )
 	{
-		`QALog( "OnPerk, StunModifier" @ 1.f + GetSkillValue( PerkSkills[EDemoOnPerk] ), bLogPerk );
-		return 1.f + GetSkillValue( PerkSkills[EDemoOnPerk] );
+		StunMultiplier += GetSkillValue( PerkSkills[EDemoConcussiveForce] );
 	}
 
-	return 1.f;
+	`QALog( "StunMultiplier" @ StunMultiplier, bLogPerk );
+	return StunMultiplier;
+}
+
+function float GetReactionModifier( optional class<KFDamageType> DamageType )
+{
+	local float ReactionMultiplier;
+
+	ReactionMultiplier = 1.f;
+
+	if( IsConcussiveForceActive() && IsDamageTypeOnPerk( DamageType ) )
+	{
+		ReactionMultiplier += GetSkillValue( PerkSkills[EDemoConcussiveForce] );
+	}
+
+	`QALog( "ReactionMultiplier" @ ReactionMultiplier, bLogPerk );
+	return ReactionMultiplier;
 }
 
 simulated static function bool ProjectileShouldNuke( KFProjectile Proj )
@@ -438,33 +508,107 @@ simulated static function bool ProjectileShouldNuke( KFProjectile Proj )
 	return default.NukeIgnoredProjectileNames.Find( Proj.class.name ) == INDEX_NONE;
 }
 
+simulated function bool DoorShouldNuke()
+{
+	return IsNukeActive() && WorldInfo.TimeDilation < 1.f;
+}
+
+/**
+ * @brief Skills can modify the zed time time delation
+ *
+ * @param StateName used weapon's state
+ * @return time dilation modifier
+ */
+simulated function float GetZedTimeModifier( KFWeapon W )
+{
+	local name StateName;
+
+	StateName = W.GetStateName();
+	if( IsProfessionalActive() && IsWeaponOnPerk(W) )
+	{
+		
+		if( ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE )
+		{
+			`QALog( "Professional Modifier" @ StateName @ GetSkillValue( PerkSkills[EDemoProfessional] ), bLogPerk );
+			return GetSkillValue( PerkSkills[EDemoProfessional] );
+		}
+	}
+
+	return 0.f;
+}
+
 /*********************************************************************************************
 * @name	 Getters etc
 ********************************************************************************************* */
 
 /**
- * @brief Checks if the Supplier skill is active
+ * @brief Checks if the Damage skill is active
  *
  * @return true if we have the skill enabled
  */
-simulated function bool IsSupplierActive()
+simulated function bool IsDamageActive()
 {
-	return PerkSkills[EDemoGrenadeSupplier].bActive;
+	return PerkSkills[EDemoDamage].bActive;
 }
 
 /**
- * @brief Checks if the On Contact skill is active
+ * @brief Checks if the Damage skill is active
  *
  * @return true if we have the skill enabled
  */
-simulated function bool IsOnContactActive()
+simulated function bool IsTacticalReloadActive()
 {
-	return PerkSkills[EDemoOnContact].bActive;
+	return PerkSkills[EDemoTacticalReload].bActive;
 }
 
-simulated function bool IsSharedExplosiveResistaneActive()
+/**
+ * @brief Checks if the Direct hit skill is active
+ *
+ * @return true if we have the skill enabled
+ */
+simulated function bool IsDirectHitActive()
 {
-	return PerkSkills[EDemoExplosiveResistance].bActive;
+	return PerkSkills[EDemoDirectHit].bActive;
+}
+
+/**
+ * @brief Checks if the Ammo skill is active
+ *
+ * @return true if we have the skill enabled
+ */
+simulated function bool IsAmmoActive()
+{
+	return PerkSkills[EDemoAmmo].bActive;
+}
+
+/**
+ * @brief Checks if the Area of Effect skill is active
+ *
+ * @return true if we have the skill enabled
+ */
+simulated function bool IsAoEActive()
+{
+	return PerkSkills[EDemoAoE].bActive;
+}
+
+/**
+ * @brief Checks if the Critical hit skill is active
+ *
+ * @return true if we have the skill enabled
+ */
+simulated function bool IsCriticalHitActive()
+{
+	return PerkSkills[EDemoCriticalHit].bActive;
+}
+
+/**
+ * @brief Checks if the Heat wave skill is active and if we are in Zed time
+ *
+ * @return true/false
+ */
+simulated final private function bool IsProfessionalActive()
+{
+	return PerkSkills[EDemoProfessional].bActive && WorldInfo.TimeDilation < 1.f;
 }
 
 /**
@@ -507,24 +651,6 @@ static function GameExplosion GetSacrificeExplosionTemplate()
 	return default.SacrificeExplosionTemplate;
 }
 
-static function class<KFDamageType> GetSacrificeDamageTypeClass()
-{
-	local class<KFDamageType> DamageTypeClass;
-
-	DamageTypeClass = class<KFDamageType>(DynamicLoadObject(default.SacrificeExplosionDamageTypeName, class'Class'));
-	return DamageTypeClass;
-}
-
- /**
- * @brief Checks if the Sacrifice skill is active
- *
- * @return true if we have the skill enabled
- */
- simulated private final function bool IsSacrificeActive()
- {
- 	return PerkSkills[EDemoSacrifice].bActive;
- }
-
  /**
  * @brief Checks if the Door Traps skill is active
  *
@@ -532,7 +658,7 @@ static function class<KFDamageType> GetSacrificeDamageTypeClass()
  */
  simulated private final function bool IsDoorTrapsActive()
  {
- 	return PerkSkills[EDemoDoorTraps].bActive;
+ 	return true;
  }
 
 /**
@@ -545,15 +671,7 @@ static function GameExplosion GetDoorTrapsExplosionTemplate()
 	return default.DoorTrapExplosionTemplate;
 }
 
-static function class<KFDamageType> GetDoorTrapsDamageTypeClass()
-{
-	local class<KFDamageType> DamageTypeClass;
-
-	DamageTypeClass = class<KFDamageType>(DynamicLoadObject(default.DoorTrapsExplosionDamageTypeName, class'Class'));
-	return DamageTypeClass;
-}
-
- /**
+/**
  * @brief Checks if the Siren Resistance skill is active
  *
  * @return true if we have the skill enabled
@@ -561,26 +679,6 @@ static function class<KFDamageType> GetDoorTrapsDamageTypeClass()
 simulated private final function bool IsSirenResistanceActive()
 {
 	return PerkSkills[EDemoSirenResistance].bActive;
-}
-
- /**
- * @brief Checks if the On Perk skill is active
- *
- * @return true if we have the skill enabled
- */
-simulated private final function bool IsOnPerkActive()
-{
-	return PerkSkills[EDemoOnPerk].bActive;
-}
-
-/**
- * @brief Checks if the Off Perk skill is active
- *
- * @return true if we have the skill enabled
- */
-simulated private final function bool IsOffPerkActive()
-{
-	return PerkSkills[EDemoOffPerk].bActive;
 }
 
 /**
@@ -603,11 +701,11 @@ static simulated function KFGameExplosion GetNukeExplosionTemplate()
 	return default.NukeExplosionTemplate;
 }
 
-static simulated function class<GameExplosionActor> GetNukeExplosionActorClass()
+static simulated function class<KFExplosionActor> GetNukeExplosionActorClass()
 {
-	local class<GameExplosionActor> TempExplosionActorClass;
+	local class<KFExplosionActor> TempExplosionActorClass;
 
-	TempExplosionActorClass = class<GameExplosionActor>(DynamicLoadObject(default.NukeExplosionActorClassName, class'Class'));
+	TempExplosionActorClass = class<KFExplosionActor>(DynamicLoadObject(default.NukeExplosionActorClassName, class'Class'));
 	return TempExplosionActorClass;
 }
 
@@ -641,6 +739,11 @@ static function float GetNukeRadiusModifier()
 	return default.NukeRadiusModifier;
 }
 
+static function int GetLingeringPoisonDamage()
+{
+	return default.LingeringNukePoisonDamage;
+}
+
 /**
  * @brief Checks if the Concussive Force skill is active
  *
@@ -648,13 +751,14 @@ static function float GetNukeRadiusModifier()
  */
 simulated private final function bool IsConcussiveForceActive()
 {
-	return PerkSkills[EDemoConcussiveForce].bActive && WorldInfo.TimeDilation < 1.f;
+	return PerkSkills[EDemoConcussiveForce].bActive;
 }
 
 simulated final static function AkEvent GetConcussiveExplosionSound()
 {
 	return default.ConcussiveExplosionSound;
 }
+
 
 /*********************************************************************************************
 * @name	 Stats/XP
@@ -676,13 +780,17 @@ simulated static function int GetFleshpoundKillXP( byte Difficulty )
 ********************************************************************************************* */
 simulated static function GetPassiveStrings( out array<string> PassiveValues, out array<string> Increments, byte Level )
 {
-	PassiveValues[0] = Round((GetPassiveValue( default.ExplosiveDamage, Level ) * 100) - 100) $ "%";
-	PassiveValues[1] = Round(GetPassiveValue( default.ExplosiveResistance, Level ) * 100) $ "%";
+	PassiveValues[0] = Round( GetPassiveValue( default.ExplosiveDamage, Level ) * 100 ) $ "%";
+	PassiveValues[1] = Round( GetPassiveValue( default.ExplosiveResistance, Level ) * 100 ) $ "%";
 	PassiveValues[2] = string(GetExtraAmmo( Level ));
+	PassiveValues[3] = "";
+	PassiveValues[4] = "";
 
 	Increments[0] = "[" @ Round(default.ExplosiveDamage.Increment * 100)  $ "% /" @ default.LevelString @ "]";
 	Increments[1] = "[" @ Round(default.ExplosiveResistance.StartingValue * 100)  $ "%" @ "+" @ int(default.ExplosiveResistance.Increment * 100)  $ "% /" @ default.LevelString @ "]";
 	Increments[2] = "[" @ Round(default.ExplosiveAmmo.Increment) @ "/ 5" @ default.LevelString @ "]";
+	Increments[3] = "";
+	Increments[4] = "";
 }
 
 /*********************************************************************************************
@@ -700,7 +808,7 @@ simulated function LogPerkSkills()
 		`log( "-ExplosiveResistance:" @ GetPassiveValue( ExplosiveResistance, GetLevel() ) $ "%" );
 		`log( "-ExplosiveAmmo:" @ GetExtraAmmo( GetLevel() ) $ "%" );
 
-	    `log( "Skill Tree" );
+/**	    `log( "Skill Tree" );
 	    `log( "-GrenadeSupplier:" @ PerkSkills[EDemoGrenadeSupplier].bActive );
 	    `log( "-OnContact:" @ PerkSkills[EDemoOnContact].bActive );
 	    `log( "-ExplosiveResistance:" @ PerkSkills[EDemoExplosiveResistance].bActive );
@@ -710,7 +818,7 @@ simulated function LogPerkSkills()
 	    `log( "-OffPerk:" @ PerkSkills[EDemoOffPerk].bActive );
 	    `log( "-OnPerk:" @ PerkSkills[EDemoOnPerk].bActive );
 	    `log( "-Nuke:" @ PerkSkills[EDemoNuke].bActive );
-	    `log( "-ConcussiveForce:" @ PerkSkills[EDemoConcussiveForce].bActive );
+	    `log( "-ConcussiveForce:" @ PerkSkills[EDemoConcussiveForce].bActive );*/
 	}
 }
 
@@ -736,20 +844,22 @@ DefaultProperties
 	ExplosiveResistableDamageTypeSuperClass=class'KFDT_Explosive'
 	ExplosiveResistanceRadius=500.f
 
-   	ExplosiveDamage=(Name="Explosive Damage",Increment=0.01f,Rank=0,StartingValue=1.f,MaxValue=1.25)
+	AoeDamageModifier=0.7f
+
+  	ExplosiveDamage=(Name="Explosive Damage",Increment=0.01f,Rank=0,StartingValue=0.f,MaxValue=0.25)
 	ExplosiveResistance=(Name="Explosive Resistance",Increment=0.02f,Rank=0,StartingValue=0.1f,MaxValue=0.6f)
 	ExplosiveAmmo=(Name="Explosive Ammo",Increment=1.f,Rank=0,StartingValue=0.0f,MaxValue=5.f)
 
-	PerkSkills(EDemoGrenadeSupplier)=(Name="GrenadeSupplier",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_GrenadeSupplier")
-	PerkSkills(EDemoOnContact)=(Name="OnContact",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_OnContact")
-	PerkSkills(EDemoExplosiveResistance)=(Name="ExplosiveResistance",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_ExplosiveResistance",Increment=0.02f,Rank=0,StartingValue=0.1f,MaxValue=0.6f)
-	PerkSkills(EDemoSacrifice)=(Name="Sacrifice",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_Sacrifice",Increment=0.f,Rank=0,StartingValue=2.0f,MaxValue=2.f,)
-	PerkSkills(EDemoDoorTraps)=(Name="DoorTraps",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_DoorTraps",Increment=0.f,Rank=0,StartingValue=0.3f,MaxValue=0.3f)
+	PerkSkills(EDemoDamage)=(Name="Damage",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_GrenadeSupplier",Increment=0.f,Rank=0,StartingValue=0.25f,MaxValue=0.25f)
+	PerkSkills(EDemoTacticalReload)=(Name="Speed",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_Speed",Increment=0.f,Rank=0,StartingValue=0.0f,MaxValue=0.0f)
+	PerkSkills(EDemoDirectHit)=(Name="DirectHit",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_ExplosiveResistance",Increment=0.f,Rank=0,StartingValue=0.25,MaxValue=0.25)
+	PerkSkills(EDemoAmmo)=(Name="Ammo",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_Ammo",Increment=0.f,Rank=0,StartingValue=5.f,MaxValue=5.f,)
 	PerkSkills(EDemoSirenResistance)=(Name="SirenResistance",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_SirenResistance",Increment=0.f,Rank=0,StartingValue=0.5,MaxValue=0.5)
-	PerkSkills(EDemoOffPerk)=(Name="OffPerk",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_OffPerk",Increment=0.f,Rank=0,StartingValue=0.1f,MaxValue=0.1f)
-	PerkSkills(EDemoOnPerk)=(Name="OnPerk",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_OnPerk",Increment=0.f,Rank=0,StartingValue=0.3f,MaxValue=0.3f)
+	PerkSkills(EDemoAoE)=(Name="AreaOfEffect",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_AoE",Increment=0.f,Rank=0,StartingValue=1.50,MaxValue=1.50)
+	PerkSkills(EDemoCriticalHit)=(Name="CriticalHit",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_Crit",Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
+	PerkSkills(EDemoConcussiveForce)=(Name="ConcussiveForce",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_ConcussiveForce",Increment=0.f,Rank=0,StartingValue=1.0f,MaxValue=1.0f)
 	PerkSkills(EDemoNuke)=(Name="Nuke",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_Nuke",Increment=0.f,Rank=0,StartingValue=1.03,MaxValue=1.03)
-	PerkSkills(EDemoConcussiveForce)=(Name="ConcussiveForce",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_ConcussiveForce",Increment=0.f,Rank=0,StartingValue=1.f,MaxValue=1.f)
+	PerkSkills(EDemoProfessional)=(Name="Professional",IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_Professional",Increment=0.f,Rank=0,StartingValue=0.9f,MaxValue=0.9f)
 
 	// explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
@@ -795,18 +905,19 @@ DefaultProperties
 
 		// Camera Shake
 		CamShake=CameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
-		CamShakeInnerRadius=450
+		CamShakeInnerRadius=200
 		CamShakeOuterRadius=900
-		CamShakeFalloff=1.f
+		CamShakeFalloff=1.5f
 		bOrientCameraShakeTowardsEpicenter=true
 	End Object
 	NukeExplosionTemplate=ExploTemplate1
 
 	Begin Object Class=KFGameExplosion Name=ExploTemplate2
 		Damage=200
-		DamageRadius=500
+		DamageRadius=1000
 		DamageFalloffExponent=1.f
 		DamageDelay=0.f
+		MyDamageType=class'KFDT_Explosive_DoorTrap'		
 
 		// Damage Effects
 		KnockDownStrength=10
@@ -828,18 +939,27 @@ DefaultProperties
 
 	NukeExplosionActorClassName="KFGameContent.KFExplosion_Nuke"
 	NukeProjectileClassName="KFGameContent.KFProj_ExplosiveSubmunition_HX25_Nuke"
-	SacrificeExplosionDamageTypeName="KFGameContent.KFDT_Explosive_Sacrifice"
-	DoorTrapsExplosionDamageTypeName="KFGameContent.KFDT_Explosive_DoorTrap"
-
 	NukeIgnoredProjectileNames(0)="KFProj_ExplosiveSubmunition_HX25"
 	NukeIgnoredProjectileNames(1)="KFProj_ExplosiveSubmunition_HX25_Nuke"
-	NukeDamageModifier=1.25
-	NukeRadiusModifier=1.25
+	NukeDamageModifier=1.25   //1.25
+	NukeRadiusModifier=1.35  //1.25
+	LingeringNukePoisonDamage=10
 
 	ConcussiveExplosionSound=AkEvent'WW_GLO_Runtime.Play_WEP_Demo_Conc'
 
     // Skill tracking
 	HitAccuracyHandicap=2.0
 	HeadshotAccuracyHandicap=0.0
+
+   	ZedTimeModifyingStates(0)="WeaponFiring"
+   	ZedTimeModifyingStates(1)="WeaponBurstFiring"
+   	ZedTimeModifyingStates(2)="WeaponSingleFiring"
+   	ZedTimeModifyingStates(3)="Reloading"
+   	ZedTimeModifyingStates(4)="WeaponSingleFireAndReload"
+
+   	PassiveExtraAmmoIgnoredClassNames(0)="KFProj_DynamiteGrenade"
+
+   	ExtraAmmoIgnoredClassNames(0)="KFProj_DynamiteGrenade"
+   	ExtraAmmoIgnoredClassNames(1)="KFWeap_Thrown_C4"
 }
 

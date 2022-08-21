@@ -107,6 +107,13 @@ simulated event BreakOffPartsInRadius(vector Origin, float Radius, float RBStren
 	}
 }
 
+`if(`__TW_PHYSICS_)
+simulated event Reset()
+{
+	RecyclePart( true );
+}
+`endif
+
 defaultproperties
 {
 `if(`__TW_LIGHTING_MODIFICATIONS_)	

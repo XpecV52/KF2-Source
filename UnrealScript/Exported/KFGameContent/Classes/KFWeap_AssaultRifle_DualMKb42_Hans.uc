@@ -50,6 +50,7 @@ defaultproperties
 {
    SingleFireMode=1
    InventorySize=6
+   MagazineCapacity(0)=60
    bHasIronSights=True
    bUseAnimLenEquipTime=False
    MeshFOV=75.000000
@@ -57,7 +58,6 @@ defaultproperties
    PlayerIronSightFOV=70.000000
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AK12'
-   MagazineCapacity(0)=60
    MaxSpareAmmo(0)=270
    InitialSpareMags(0)=3
    bLoopingFireAnim(0)=True
@@ -105,7 +105,7 @@ defaultproperties
    FireInterval(3)=()
    FireInterval(4)=()
    Spread(0)=0.100000
-   InstantHitDamage(0)=8.000000
+   InstantHitDamage(0)=10.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=()

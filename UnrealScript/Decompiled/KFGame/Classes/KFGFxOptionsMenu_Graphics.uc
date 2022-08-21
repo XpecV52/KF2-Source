@@ -1448,9 +1448,9 @@ function LocalizeText()
     local GFxObject LocalizedObject;
 
     LocalizedObject = Outer.CreateObject("Object");
-    LocalizedObject.SetString("graphics", GraphicsString);
-    LocalizedObject.SetString("basic", BasicString);
-    LocalizedObject.SetString("advanced", AdvancedString);
+    LocalizedObject.SetString("graphics", Caps(Class'KFGFxOptionsMenu_Selection'.default.OptionStrings[0]));
+    LocalizedObject.SetString("basic", Caps(BasicString));
+    LocalizedObject.SetString("advanced", Caps(AdvancedString));
     LocalizedObject.SetString("effects", EffectsString);
     LocalizedObject.SetString("physicsLevel", PhysicsLevelString);
     LocalizedObject.SetString("aspectRatio", AspectRatioString);
@@ -2425,13 +2425,14 @@ function Callback_ResetDefaultVideo()
 
 function Callback_OpenGamma()
 {
+    Manager.SetVariableBool("bStartUpGamma", false);
     Manager.OpenPopup(1, "", AdjustGammaDescription, ResetGammaString, SetGammaString);
 }
 
 defaultproperties
 {
     ExpireTime=30
-    FlexPopUpString="NVIDIA? FleX enables simulated gore and fluid.  This setting may adversely affect performance and requires a restart."
+    FlexPopUpString="NVIDIA? FleX enables simulated gore and fluid. This setting may adversely affect performance and requires a restart."
     KeepSettingsPromptString="Use these video settings?"
     WarningPromptString="WARNING"
     WillExpireString="Settings will revert in %x% seconds."

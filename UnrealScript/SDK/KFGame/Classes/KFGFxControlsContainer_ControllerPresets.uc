@@ -21,6 +21,8 @@ var localized string ShowIngameMenuString;
 var localized string HoldString;
 var localized string CurrentControllerPresetString;
 
+var localized array<string> PresetStrings;
+
 var int numGamepadLayouts;
 
 struct KeyBinding
@@ -82,6 +84,7 @@ function LocalizeText()
 	local GfxObject TextField;
 	local GFxObject PresetArray;
 	local GfxObject StepperOption;
+	local GFxObject defaultButton;
 	local int i;
 
 	TextField = GetObject("CurrentPresetTextfield");
@@ -91,7 +94,7 @@ function LocalizeText()
 	for (i = 0; i < numGamepadLayouts; i++)
 	{
 		StepperOption = CreateObject("Object");
-		StepperOption.SetString("label", string(i));
+		StepperOption.SetString("label", PresetStrings[i]);
 		PresetArray.SetElementObject(i, StepperOption);
 	}
 	SetObject("presetOptions",PresetArray);
@@ -100,6 +103,12 @@ function LocalizeText()
 	if(TextField != none)
 	{
 		Textfield.SetText(CurrentControllerPresetString);
+	}
+
+	defaultButton = GetObject("defaultButton");
+	if ( defaultButton != None )
+	{
+		defaultButton.SetString("label",Localize("KFGFxOptionsMenu_Graphics","DefaultString","KFGame"));
 	}
 }
 
@@ -169,6 +178,15 @@ function AddBindingToGFxObject(out GFxObject ObjectArray, string Key, string Com
 	TempObject.SetString("Command", 		CommandString);
 
 	ObjectArray.SetElementObject(i, TempObject);
+}
+
+function ResetPresetOptions()
+{
+	// Currently doing nothing with the reset button is pressed since current system overrides default .ini settings. HSL_BB
+	// TODO: Restore settings back to defaults.
+
+	//SetInt("currentPreset", /*Default value*/);
+
 }
 
 DefaultProperties

@@ -38,6 +38,9 @@ var bool bAllowMomentumPush;
 var bool bCanOnlyWanderAtEnd;
 /** If set, allow weapon anims to be played for third-person pawns (weapon attachment) */
 var bool bAllowThirdPersonWeaponAnims;
+/** If set, sets Pawn.RotationRate to CustomRotationRate for the duration of the move */
+var bool bUseCustomRotationRate;
+var rotator CustomRotationRate;
 
 /*********************************************************************************************
  * Weapon firing
@@ -94,6 +97,8 @@ var					bool	bDisableAIAttackRangeChecks;
 var					bool	bDisableSteering;
 /** If TRUE, disables turning in place animations & code. Pawn will always face his rotation. */
 var const			bool	bDisableTurnInPlace;
+/** If set to anything above 0, scales the turn in place anim rate by its value */
+var const 			float 	CustomTurnInPlaceAnimRate;
 var	const			bool	bDisablePhysics;
 /** If TRUE, disables physics adjustments on the clients. Where drastic velocity changes are needed, this can help with rubberbanding */
 var const 			bool 	bServerOnlyPhysics;
@@ -162,7 +167,7 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 	local KFWeapon KFW;
 
 	// Make sure we're taken out of ironsights
-	if( PCOwner != none && KFPOwner != none && KFPOwner.Weapon != none )
+	if( PCOwner != none && KFPOwner.Weapon != none )
 	{
 		KFW = KFWeapon( KFPOwner.Weapon );
 		if( KFW != none )
@@ -174,14 +179,19 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 	SMIndex = KFPOwner.SpecialMove;
 
 	// Push AICommand if it is defined.
-	if( AIOwner != None && DefaultAICommandClass != None && AIOwner.MyKFPawn != None )
+	if( AIOwner != None )
 	{
-		AIOwnerActiveCommand == AICommand(AIOwner.GetActiveCommand());
-
-		if(( AIOwnerActiveCommand == none || AIOwnerActiveCommand.AllowPushOfDefaultCommandForSpecialMove(KFPOwner.SpecialMove)))
+		if( DefaultAICommandClass != None && AIOwner.MyKFPawn != None )
 		{
-			AICommand = DefaultAICommandClass.static.PushSpecialMoveCommand(AIOwner);
+			AIOwnerActiveCommand == AICommand(AIOwner.GetActiveCommand());
+
+			if(( AIOwnerActiveCommand == none || AIOwnerActiveCommand.AllowPushOfDefaultCommandForSpecialMove(KFPOwner.SpecialMove)))
+			{
+				AICommand = DefaultAICommandClass.static.PushSpecialMoveCommand(AIOwner);
+			}
 		}
+
+		AIOwner.NotifySpecialMoveStarted( self );
 	}
 
 	if( PCOwner != None )
@@ -206,8 +216,7 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 		bRestoredCameraDefaults = false;
 	}
 
-	if( bDisableWeaponInteraction && KFPOwner != none && KFPOwner.Weapon != none
-        && KFWeapon(KFPOwner.Weapon) != none )
+	if( bDisableWeaponInteraction && KFPOwner.Weapon != none && KFWeapon(KFPOwner.Weapon) != none )
 	{
         KFWeapon(KFPOwner.Weapon).SetSimplePutDown(true);
 	}
@@ -235,6 +244,16 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 		{
 			PawnOwner.SetPhysics(PHYS_None);
 		}
+	}
+
+	if( bUseCustomRotationRate )
+	{
+		PawnOwner.RotationRate = CustomRotationRate;
+	}
+
+	if( CustomTurnInPlaceAnimRate > 0.f )
+	{
+		KFPOwner.TurnInPlaceAnimRate = CustomTurnInPlaceAnimRate;
 	}
 }
 
@@ -271,12 +290,39 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 	if( KFPOwner != none )
 	{
 		KFPOwner.NotifySpecialMoveEnded( self, SMIndex );
-	}
+	
+		if( bUseCustomRotationRate )
+		{
+			KFPOwner.RotationRate = KFPOwner.default.RotationRate;
+		}
 
-	if( bDisableWeaponInteraction && KFPOwner != none && KFPOwner.Weapon != none
-        && KFWeapon(KFPOwner.Weapon) != none )
-	{
-        KFWeapon(KFPOwner.Weapon).SetSimplePutDown(false);
+		if( KFPOwner.TurnInPlaceAnimRate != KFPOwner.default.TurnInPlaceAnimRate )
+		{
+			KFPOwner.TurnInPlaceAnimRate = KFPOwner.default.TurnInPlaceAnimRate;
+		}
+
+		if( bDisableTurnInPlace )
+		{
+			KFPOwner.bDisableTurnInPlace = KFPOwner.default.bDisableTurnInPlace;
+		}
+
+		if( bDisableWeaponInteraction && KFPOwner.Weapon != none && KFWeapon(KFPOwner.Weapon) != none )
+		{
+	        KFWeapon(KFPOwner.Weapon).SetSimplePutDown(false);
+		}
+
+		// If we are in a state that should have left us wandering, begin wandering at the end of this move
+		if( bCanOnlyWanderAtEnd && KFPOwner != none )
+		{
+			if( AIOwner != none && KFPOwner.IsHeadless() )
+			{
+				AIOwner.DoHeadlessWander();
+			}
+			else if(KFPOwner.ShouldBeWandering())
+			{
+				KFPOwner.CausePanicWander();	
+			}
+		}		
 	}
 
 	if ( bDisablePhysics && (PawnOwner.Role == ROLE_Authority || PawnOwner.IsLocallyControlled()) )
@@ -303,30 +349,12 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 		SetLockPawnRotation(FALSE);
 	}
 
-	if( bDisableTurnInPlace )
-	{
-		KFPOwner.bDisableTurnInPlace = KFPOwner.default.bDisableTurnInPlace;
-	}
-
 	// Disable end of animation notification, so it doesn't interfere with future special moves
 	// using that same animation channel.
 	if ( ActiveSlotNode != None )
 	{
 		ActiveSlotNode.SetActorAnimEndNotification( FALSE );
 		ActiveSlotNode = None;
-	}
-
-	// If we are in a state that should have left us wandering, begin wandering at the end of this move
-	if( bCanOnlyWanderAtEnd && KFPOwner != none )
-	{
-		if( AIOwner != none && KFPOwner.IsHeadless() )
-		{
-			AIOwner.DoHeadlessWander();
-		}
-		else if(KFPOwner.ShouldBeWandering())
-		{
-			KFPOwner.CausePanicWander();	
-		}
 	}
 }
 
@@ -373,6 +401,10 @@ final function SetMovementLock(bool bEnable)
 				PCOwner.PlayerInput.aStrafe = 0.f;
 				PCOwner.PlayerInput.aUp = 0.f;
 			}
+		}
+		else if( AIOwner != none )
+		{
+			AIOwner.bPreparingMove = bEnable;
 		}
 
 		// Set acceleration to zero
@@ -484,9 +516,6 @@ function AbortSpecialMove()
 	KFPOwner.EndSpecialMove();
 }
 
-/** Called by owning AI Command when AI behavior decides to stop this attack */
-function AbortedByAICommand();
-
 /**
  * Notification called when body stance animation finished playing.
  * @param	SeqNode		- Node that finished playing. You can get to the SkeletalMeshComponent by looking at SeqNode->SkelComponent
@@ -499,8 +528,24 @@ function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessT
 	KFPOwner.EndSpecialMove();
 }
 
+/*********************************************************************************************
+ * Gameplay notications/hooks
+ *********************************************************************************************/
+
+/** Called by owning AI Command when AI behavior decides to stop this attack */
+function AbortedByAICommand();
+
 /** Notification from the pawn that damage was taken during move */
 function NotifyOwnerTakeHit(class<KFDamageType> DamageType, vector HitLoc, vector HitDir, Controller InstigatedBy);
+
+/** Notification from the pawn that a medium (aka gun) or heavy (aka melee) affliction has been activated */
+function NotifyHitReactionInterrupt();
+
+/** Called when owning pawn has damage parried during this move */
+function bool CanInterruptWithParry();
+
+/** Called when owner swaps to gore mesh during this move */
+function OnGoreMeshSwap();
 
 /** Server notification that the pawn has been EMP disrupted */
 function OnEMPDisrupted()
@@ -521,6 +566,7 @@ defaultproperties
 	bDisableAIAttackRangeChecks=true
 	bAllowHitReactions=false
 	bCanOnlyWanderAtEnd=false
+	CustomTurnInPlaceAnimRate=0.f
 
 	// Camera view offset/FOV
 	bUseCustomThirdPersonViewOffset=false

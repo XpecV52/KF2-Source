@@ -32,6 +32,7 @@ var transient bool bRequestedGlobalStats;
  *********************************************************************************************/
 exec native final function SetPerkLevel( int NewPerkLevel );
 exec native final function ResetPerkLevels();
+exec native final function AnalyzeCharacterAttachments();
 
 /** Global (aka Aggregated) stats */
 exec native function ReadGlobalStat(string statId, optional int HistoryNumDays);
@@ -158,12 +159,12 @@ exec function TestNukeGrenade()
 
 exec function BurnFX()
 {
-    KFPawn(GetMyPawn()).AfflictionHandler.SetFirePanicked(True);
+    KFPawn(GetMyPawn()).AfflictionHandler.ToggleEffects(AF_FirePanic, True);
 }
 
 exec function StopBurnFX()
 {
-    KFPawn(GetMyPawn()).AfflictionHandler.SetFirePanicked(False);
+    KFPawn(GetMyPawn()).AfflictionHandler.ToggleEffects(AF_FirePanic, False);
 }
 
 
@@ -173,7 +174,7 @@ exec function SetInflate(float InflateParam)
 
 	foreach WorldInfo.AllPawns( class'KFPawn_Monster', KFPM )
 	{
-        KFPM.AfflictionHandler.SetMicrowaveParameter(InflateParam);
+        KFPM.AfflictionHandler.UpdateMaterialParameter(AF_Microwave, InflateParam);
 	}
 }
 
@@ -183,7 +184,7 @@ exec function SetChar(float CharParam)
 
 	foreach WorldInfo.AllPawns( class'KFPawn_Monster', KFPM )
 	{
-        KFPM.AfflictionHandler.SetBurnedParameter(CharParam);
+        KFPM.AfflictionHandler.UpdateMaterialParameter(AF_FirePanic, CharParam);
 	}
 }
 
@@ -666,6 +667,7 @@ simulated exec function Assault()
     GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_AR15" );
     GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_SCAR" );
     GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_AK12" );
+    GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_M16M203" );
 }
 
 /**
@@ -751,11 +753,22 @@ simulated exec function Sharpshooter()
 }
 
 /**
- * Give the player all rifle weapons
+ * Give the player all Swat weapons
+ */
+simulated exec function Swat()
+{
+    //GiveWeapon( "KFGameContent.KFWeap_SMG_P90" );
+    GiveWeapon( "KFGameContent.KFWeap_SMG_MP7" );
+}
+
+/**
+ * Give the player all SMG weapons
  */
 simulated exec function SMG()
 {
-    GiveWeapon( "KFGameContent.KFWeap_SMG_P90" );
+    //GiveWeapon( "KFGameContent.KFWeap_SMG_P90" );
+    GiveWeapon( "KFGameContent.KFWeap_SMG_MP7" );
+    GiveWeapon( "KFGameContent.KFWeap_SMG_Medic" );
 }
 
 /* AllWeapons
@@ -770,8 +783,8 @@ exec function AllWeapons()
     Demo();
     Firebug();
     Medic();
+    Swat();
     Shotty();
-
 }
 
 /**
@@ -808,12 +821,50 @@ simulated exec function WeapFOV(float NewFov, optional bool bScaleByAspectRatio 
     }
 }
 
-/**
- * Toggle depth of field
- */
-simulated exec function ToggleDoF()
+/** Enables quick custom depth of field settings */
+exec function QuickDOF( bool bEnableDOF,
+                        optional float StaticDOFDistance=1000.f,
+                        optional float Aperture=0.25f,
+                        optional float FocusBlendRate=0.f )
 {
-	KFPlayerController(Outer).EnableDepthOfField(!KFPlayerController(Outer).bDOFEnabled);
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController( Outer );
+    if( KFPC != none )
+    {
+        KFPC.EnableDepthOfField( bEnableDOF, StaticDOFDistance, Aperture );
+        KFPC.DOFFocusBlendRate = FocusBlendRate;
+    }
+}
+
+/** Enables more precise DOF settings */
+exec function CustomDOF( bool bEnableDOF,
+                            optional float FocalDistance=1200.f,
+                            optional float FocalRadius=1200.f,
+                            optional float SharpRadius=1000.f,
+                            optional float MinBlurSize=0.0f,
+                            optional float MaxNearBlurSize=4.0f,
+                            optional float MaxFarBlurSize=3.0f,
+                            optional float ExpFalloff=1.0f,
+                            optional float BlendInSpeed=1.0f,
+                            optional float BlendOutSpeed=1.0f )
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController( Outer );
+    if( KFPC != none )
+    {
+        KFPC.bGamePlayDOFActive = bEnableDOF;
+        KFPC.DOF_GP_FocalDistance = FocalDistance;
+        KFPC.DOF_GP_FocalRadius = FocalRadius;
+        KFPC.DOF_GP_SharpRadius = SharpRadius;
+        KFPC.DOF_GP_MinBlurSize = MinBlurSize;
+        KFPC.DOF_GP_MaxNearBlurSize = MaxNearBlurSize;
+        KFPC.DOF_GP_MaxFarBlurSize = MaxFarBlurSize;
+        KFPC.DOF_GP_ExpFalloff = ExpFalloff;
+        KFPC.DOF_GP_BlendInSpeed = BlendInSpeed;
+        KFPC.DOF_GP_BlendOutSpeed = BlendOutSpeed;
+    }
 }
 
 simulated exec function ShowDownloadPopup(string NewText, string NewTExt2)
@@ -1347,7 +1398,7 @@ exec function OpenTraderNext()
 
 exec function OpenTraderMenu()
 {
-	KFPlayerController(Outer).OpenTraderMenu();
+	KFPlayerController(Outer).OpenTraderMenu( true );
 }
 
 /**
@@ -3460,7 +3511,7 @@ exec function AITestGrab()
 		{
 			AICommand_Debug(KFAIC.GetActiveCommand()).bAllowedToAttack = true;
 		}
-		KFAIC.DoGrabAttack( Pawn,, 5.f );
+		KFAIC.DoGrabAttack( Pawn, 5.f );
 		if( AICommand_Debug(KFAIC.GetActiveCommand()) != none )
 		{
 			AICommand_Debug(KFAIC.GetActiveCommand()).bAllowedToAttack = false;
@@ -3515,7 +3566,7 @@ exec function AITestHansGrab()
 		{
 			AICommand_Debug(KFAIC.GetActiveCommand()).bAllowedToAttack = true;
 		}
-		KFAIC.DoGrabAttack( Pawn,, 5.f );
+		KFAIC.DoGrabAttack( Pawn, 5.f );
 		if( AICommand_Debug(KFAIC.GetActiveCommand()) != none )
 		{
 			AICommand_Debug(KFAIC.GetActiveCommand()).bAllowedToAttack = false;
@@ -4026,12 +4077,12 @@ exec function EMPWander(bool bEnable)
 			{
                 // transition to the panicked state
     			P.CausePanicWander();
-    			P.AfflictionHandler.SetEMPEffects(True, false);
+    			P.AfflictionHandler.ToggleEffects(AF_EMP, True, false);
 			}
 			else
 			{
                 P.EndPanicWander();
-                P.AfflictionHandler.SetEMPEffects(False, false);
+                P.AfflictionHandler.ToggleEffects(AF_EMP, False, false);
 			}
 		}
 	}
@@ -4039,32 +4090,34 @@ exec function EMPWander(bool bEnable)
 
 exec function EMPValTest(float EMPValue)
 {
-	local KFPawn_Monster P;
+	local KFPawn P;
 	local MaterialInstanceConstant MIC;
 
-	ForEach WorldInfo.AllPawns(class'KFPawn_Monster', P)
+	ForEach WorldInfo.AllPawns(class'KFPawn', P)
 	{
 		if( P.IsAliveAndWell() )
 		{
-			MIC = P.bIsGoreMesh ? P.GoreMIC : P.BodyMIC;
-            // Show EMP effect
-			MIC.SetScalarParameterValue('Scalar_EMP',EMPValue);
+            foreach P.CharacterMICs(MIC)
+            {
+                MIC.SetScalarParameterValue('Scalar_EMP',EMPValue);
+            }
 		}
 	}
 }
 
 exec function BurnValTest(float BurnValue)
 {
-	local KFPawn_Monster P;
+	local KFPawn P;
 	local MaterialInstanceConstant MIC;
 
-	ForEach WorldInfo.AllPawns(class'KFPawn_Monster', P)
+	ForEach WorldInfo.AllPawns(class'KFPawn', P)
 	{
 		if( P.IsAliveAndWell() )
 		{
-			MIC = P.bIsGoreMesh ? P.GoreMIC : P.BodyMIC;
-            // Show EMP effect
-			MIC.SetScalarParameterValue('Scalar_Burnt',BurnValue);
+            foreach P.CharacterMICs(MIC)
+            {
+    			MIC.SetScalarParameterValue('Scalar_Burnt',BurnValue);
+            }
 		}
 	}
 }
@@ -4093,6 +4146,57 @@ simulated exec function SpawnAI(string ZedName, optional float Distance = 500.f,
 	}
 }
 
+exec function SpawnAIV( string ZedName, optional float Distance = 500.f )
+{
+    local class<KFPawn_Monster> MonsterClass;
+    local vector SpawnLoc;
+    local rotator SpawnRot;
+    local KFAIController KFAIC;
+    local KFPawn KFP;
+
+    if( !WorldInfo.Game.IsA('KFGameInfo_VersusSurvival') )
+    {
+        ClientMessage("This cheat command is only valid in Versus Survival mode!", CheatType );
+        return;
+    }
+
+    MonsterClass = LoadMonsterByName( ZedName, true );
+
+    if( MonsterClass != none )
+    {
+        // The ZED should be spawned X units in front of the view location
+        if( Pawn != None )
+        {
+            SpawnLoc = Pawn.Location;
+        }
+        else
+        {
+            SpawnLoc = Location;
+        }
+
+        SpawnLoc += Distance * vector(Rotation) + vect(0,0,1) * 15.f;
+        SpawnRot.Yaw = Rotation.Yaw + 32768;
+
+        KFP = Spawn( MonsterClass,,, SpawnLoc, SpawnRot,, false );
+        if( KFP != none )
+        {
+            KFP.SetPhysics( PHYS_Falling );
+            if( KFP.ControllerClass != None )
+            {
+                KFAIC = KFAIController( KFP.Spawn(KFP.ControllerClass) );
+                if( KFAIC != none )
+                {
+                    KFAIC.bIsSimulatedPlayerController = true;
+                    KFAIC.SetTeam( 1 );
+                    KFAIC.Possess( KFP, false );
+                }
+                return;
+            }
+        }
+    }
+
+    ClientMessage(" Could not spawn AI Versus ZED ["$ZedName$"]. Please make sure that the ZED name to archetype mapping is set up correctly.", CheatType );
+}
 
 /**
  * SpawnDebugAI()
@@ -4418,7 +4522,7 @@ function class<KFPawn_Monster> LoadMonsterByName(string ZedName, optional bool b
     {
         return class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedPatriarch"$VersusSuffix, class'Class'));
     }
-    
+
 	ClientMessage("Could not spawn ZED ["$ZedName$"]. Please make sure you specified a valid ZED name (ClotA, ClotS, ClotC, etc.) and that the ZED has a valid archetype setup.", CheatType );
     return none;
 }
@@ -5325,6 +5429,14 @@ exec function ClearCorpses()
 	}
 }
 
+exec function EndRound( optional bool bSkipResults )
+{
+    if( WorldInfo.Game != none )
+    {
+        WorldInfo.Game.GotoState( 'RoundEnded', bSkipResults ? 'ForceEnded' : 'Begin' );
+    }
+}
+
 exec function CameraBlood()
 {
 	Outer.ClientSpawnCameraLensEffect(class'KFCameraLensEmit_BloodBase');
@@ -5381,6 +5493,19 @@ exec function SetLivingPlayers( byte NewLivingPlayers, optional bool bSoloMode =
        KFGI.ForceLivingPlayerCount( NewLivingPlayers );
 	}
 }
+
+`if(`notdefined(ShippingPC))
+/** Tells the Versus spawn manager to simulate X number of zed players using AI */
+exec function SetAISimulatedPlayersV( byte NewSimulatedAIPlayers, optional byte NewSimulatedMercPlayers=0 )
+{
+    ConsoleCommand( "SETNOPEC KFAISpawnManager_Versus bUsingAISimulatedPlayers" @ NewSimulatedAIPlayers > 0 ? "true" : "false" );
+    ConsoleCommand( "SETNOPEC KFAISpawnManager_Versus AISimulatedPlayerNum" @ NewSimulatedAIPlayers );
+    if( NewSimulatedMercPlayers > 0)
+    {
+        SetLivingPlayers( NewSimulatedMercPlayers );
+    }
+}
+`endif
 
 /** converts a legacy 4/3 aspect ratio FOV to a 16/9 FOV */
 exec function ConvertFOV(float InFOV)
@@ -5562,25 +5687,6 @@ simulated function ClearFakeDramaEvent()
 {
     GetMyPawn().CustomTimeDilation = 1.0;
     GetMyPawn().Weapon.CustomTimeDilation = 1.0;
-}
-
-/** See KFDebugPosedPlayer.uc */
-/** Disable PosedPlayer Tick */
-exec function StopPosedPlayers()
-{
-	class'KFDebugPosedPlayer'.static.StopPosedPlayers( WorldInfo );
-}
-
-/** Spawn PosedPlayers */
-exec function SpawnPosedPlayers()
-{
-	class'KFDebugPosedPlayer'.static.SpawnPosedPlayers( WorldInfo );
-}
-
-/** Possess PosedPlayer */
-exec function PossessPosedPlayer()
-{
-    class'KFDebugPosedPlayer'.static.PossessPosedPlayer( WorldInfo );
 }
 
 /** Simulated a double shotgun shot momentum */
@@ -5814,85 +5920,79 @@ exec function TestGrapple()
 
     foreach WorldInfo.AllPawns( class'KFPawn_Monster', P )
     {
-        if ( P.CanDoSpecialMove(SM_GrabAttack) )
+        if ( P.CanDoSpecialMove(SM_GrappleAttack) )
         {
-            P.DoSpecialMove(SM_GrabAttack, true, Pawn);
+            P.DoSpecialMove(SM_GrappleAttack, true, Pawn);
         }
     }
 }
 
 exec function SpawnHumanPawnV(optional bool bEnemy, optional bool bUseGodMode, optional int CharIndex)
 {
-    local PlayerController PC;
     local KFAIController KFBot;
     local KFPlayerReplicationInfo KFPRI;
     local vector                    CamLoc;
     local rotator                   CamRot;
+    local class<KFPawn_Human> PawnClass;
     Local KFPawn_Human KFPH;
     local Vector HitLocation, HitNormal;
     local Actor TraceOwner;
-    local class<KFPawn_Human> PawnClass;
 
-    PC = GetALocalPlayerController();
+    GetPlayerViewPoint(CamLoc, CamRot);
 
-    if( PC != none )
+    if( Pawn != none )
     {
-        PC.GetPlayerViewPoint(CamLoc, CamRot);
-
-        if( PC.Pawn != none )
-        {
-            TraceOwner = PC.Pawn;
-        }
-        else
-        {
-            TraceOwner = PC;
-        }
-
-        TraceOwner.Trace( HitLocation, HitNormal, CamLoc + Vector(CamRot) * 250000, CamLoc, TRUE, vect(0,0,0) );
-
-        HitLocation.Z += 100;
-    //  FlushPersistentDebugLines();
-    //    DrawDebugSphere( HitLocation, 100, 12, 0, 255, 0, TRUE );
-
-        PawnClass = class<KFPawn_Human>( DynamicLoadObject("KFGameContent.KFPawn_Human_Versus", class'Class') );
-        KFPH = Spawn(PawnClass, , , HitLocation);
-        KFPH.SetPhysics(PHYS_Falling);
-
-        // Create a new Controller for this Bot
-        KFBot = Spawn(class'KFAIController');
-
-        // Silly name for now
-        WorldInfo.Game.ChangeName(KFBot, "Braindead Human", false);
-
-        // Add them to the Team they selected
-        if( !bEnemy )
-        {
-           KFGameInfo(WorldInfo.Game).SetTeam(KFBot, KFGameInfo(WorldInfo.Game).Teams[0]);
-        }
-
-        KFBot.Possess(KFPH, false);
-
-        if( bUseGodMode )
-        {
-           KFBot.bGodMode = true;
-        }
-
-        KFPRI = KFPlayerReplicationInfo( KFBot.PlayerReplicationInfo );
-
-        // Set perk stuff
-        //KFPRI.SetCharacter(CharIndex);
-        KFPRI.CurrentPerkClass = Class'KFPlayerController'.default.PerkList[1].PerkClass;
-        KFPRI.NetPerkIndex = 1;
-
-        if( KFPRI != none )
-        {
-            KFPRI.PLayerHealthPercent = FloatToByte( float(KFPH.Health) / float(KFPH.HealthMax) );
-            KFPRI.PLayerHealth = KFPH.Health;
-        }
-        //KFPRI.CurrentPerkLevel = 0;
-
-        KFPH.AddDefaultInventory();
+        TraceOwner = Pawn;
     }
+    else
+    {
+        TraceOwner = Outer;
+    }
+
+    TraceOwner.Trace( HitLocation, HitNormal, CamLoc + Vector(CamRot) * 250000, CamLoc, TRUE, vect(0,0,0) );
+
+    HitLocation.Z += 100;
+//  FlushPersistentDebugLines();
+//    DrawDebugSphere( HitLocation, 100, 12, 0, 255, 0, TRUE );
+
+    PawnClass = class<KFPawn_Human>( DynamicLoadObject("KFGameContent.KFPawn_Human_Versus", class'Class') );
+    KFPH = Spawn(PawnClass, , , HitLocation);
+    KFPH.SetPhysics(PHYS_Falling);
+
+    // Create a new Controller for this Bot
+    KFBot = Spawn(class'KFAIController');
+
+    // Silly name for now
+    WorldInfo.Game.ChangeName(KFBot, "Braindead Vs. Human", false);
+
+    // Add them to the Team they selected
+    if( !bEnemy )
+    {
+       KFGameInfo(WorldInfo.Game).SetTeam(KFBot, KFGameInfo(WorldInfo.Game).Teams[0]);
+    }
+
+    KFBot.Possess(KFPH, false);
+
+    if( bUseGodMode )
+    {
+       KFBot.bGodMode = true;
+    }
+
+    KFPRI = KFPlayerReplicationInfo( KFBot.PlayerReplicationInfo );
+
+    // Set perk stuff
+    //KFPRI.SetCharacter(CharIndex);
+    KFPRI.CurrentPerkClass = Class'KFPlayerController'.default.PerkList[1].PerkClass;
+    KFPRI.NetPerkIndex = 1;
+
+    if( KFPRI != none )
+    {
+        KFPRI.PLayerHealthPercent = FloatToByte( float(KFPH.Health) / float(KFPH.HealthMax) );
+        KFPRI.PLayerHealth = KFPH.Health;
+    }
+    //KFPRI.CurrentPerkLevel = 0;
+
+    KFPH.AddDefaultInventory();
 }
 
 /** For Accessory Testing, stop player on Gear Menu */
@@ -5937,6 +6037,7 @@ exec function NVZedTime(bool bImmediate = false, float Chance = 100.0, float Dur
 	}
 }
 
+//
 exec function NVEnableZedTime(bool bEnable = true)
 {
 	if( KFGameInfo(WorldInfo.Game) != none )
@@ -6037,6 +6138,217 @@ exec function NVSpawnFlex( optional int EffectNumber = 0, optional name BoneName
 }
 `endif
 // NVCHANGE_END - RLS - Debugging Effects
+
+exec function ShowPostRoundMenu ()
+{
+    local KFPlayerController KFPC;
+    KFPC = KFPlayerController(Outer);
+
+    KFPC.ClientOpenRoundSummary();
+}
+
+// Playfab debugging Begin
+/////////////////////////////////////////////////////////////
+exec function LoginSelf()
+{
+	TestLogin( PlayerReplicationInfo.PlayerName );
+}
+
+
+exec function TestLogin( string InName )
+{
+	`log("Logging in"@InName);
+	class'GameEngine'.static.GetPlayfabInterface().AddOnLoginCompleteDelegate( OnLoginComplete );
+	class'GameEngine'.static.GetPlayfabInterface().Login( InName );
+}
+
+
+function OnLoginComplete(bool bWasSuccessful, string SessionTicket, string PlayfabId)
+{
+	class'GameEngine'.static.GetPlayfabInterface().ClearOnLoginCompleteDelegate( OnLoginComplete );
+	`log("Login complete with success"@bWasSuccessful@"and playfab ID"@PlayfabId@"and session ticket"@SessionTicket);
+}
+
+
+exec function TestPlayfabGameSearch()
+{
+	local KFDataStore_OnlineGameSearch SearchDataStore;
+
+	SearchDataStore = KFDataStore_OnlineGameSearch(class'UIInteraction'.static.GetDataStoreClient().FindDataStore('KFGameSearch'));
+	class'GameEngine'.static.GetPlayfabInterface().AddFindOnlineGamesCompleteDelegate( OnFindOnlinePlayfabGamesComplete );
+	class'GameEngine'.static.GetPlayfabInterface().FindOnlineGames( SearchDataStore.GameSearchCfgList[0].Search );
+}
+
+
+function OnFindOnlinePlayfabGamesComplete( bool bSuccess )
+{
+	local int i;
+	local KFDataStore_OnlineGameSearch SearchDataStore;
+
+	SearchDataStore = KFDataStore_OnlineGameSearch(class'UIInteraction'.static.GetDataStoreClient().FindDataStore('KFGameSearch'));
+	class'GameEngine'.static.GetPlayfabInterface().ClearFindOnlineGamesCompleteDelegate( OnFindOnlinePlayfabGamesComplete );
+	`log("Search finished with success"@bSuccess);
+
+	for( i = 0; i < SearchDataStore.GameSearchCfgList[0].Search.Results.Length; i++ )
+	{
+		`log("Listing result with lobby ID"@SearchDataStore.GameSearchCfgList[0].Search.Results[i].GameSettings.LobbyId@"and num open connections"@SearchDataStore.GameSearchCfgList[0].Search.Results[i].GameSettings.NumOpenPublicConnections@"and max players"@SearchDataStore.GameSearchCfgList[0].Search.Results[i].GameSettings.NumPublicConnections);
+	}
+}
+
+
+exec function TestServerInfoQuery(string LobbyId)
+{
+	class'GameEngine'.static.GetPlayfabInterface().AddQueryServerInfoCompleteDelegate( OnQueryServerInfoComplete );
+	class'GameEngine'.static.GetPlayfabInterface().QueryServerInfo( LobbyId );
+}
+
+
+function OnQueryServerInfoComplete(bool bWasSuccessful, string LobbyId, string ServerIp, int ServerPort, string AuthTicket)
+{
+	class'GameEngine'.static.GetPlayfabInterface().ClearQueryServerInfoCompleteDelegate( OnQueryServerInfoComplete );
+	`log("OnQueryServerInfoComplete complete with succcess"@bWasSuccessful@"and lobby ID"@LobbyId@"and server IP"@ServerIp@"and port"@ServerPort@"and auth ticket"@AuthTicket);
+}
+
+
+exec function QueryRegions()
+{
+	class'GameEngine'.static.GetPlayfabInterface().AddRegionQueryCompleteDelegate( OnRegionQueryComplete );
+	class'GameEngine'.static.GetPlayfabInterface().QueryAvailableRegions();
+}
+
+
+function OnRegionQueryComplete( bool bSuccess, array<string> RegionNames )
+{
+	local int i;
+
+	`log("Region query with success"@bSuccess@"and results"@RegionNames.Length);
+	for( i = 0; i < RegionNames.Length; i++ )
+	{
+		`log("	Listing"@RegionNames[i]);
+	}
+
+	class'GameEngine'.static.GetPlayfabInterface().ClearRegionQueryCompleteDelegate( OnRegionQueryComplete );
+}
+
+
+exec function StartupServer( string GameMode, optional string ServerCommandline )
+{
+	class'GameEngine'.static.GetPlayfabInterface().AddOnServerStartedDelegate( OnServerStarted );
+	class'GameEngine'.static.GetPlayfabInterface().StartNewServerInstance( GameMode, ServerCommandline );
+}
+
+
+function OnServerStarted( bool bWasSuccessful, string ServerLobbyId, string ServerIp, int ServerPort, string ServerTicket )
+{
+	local string OpenCommand;
+
+	`log("Server started with success flag"@bWasSuccessful@"and with lobby id"@ServerLobbyId@"and server IP"@ServerIp@"and port"@ServerPort@"and ticket"@ServerTicket);
+	class'GameEngine'.static.GetPlayfabInterface().ClearOnServerStartedDelegate( OnServerStarted );
+
+	if( bWasSuccessful )
+	{
+		OpenCommand = "open"@ServerIp$":"$ServerPort;
+		OpenCommand $= "?AuthTicket="$ServerTicket;
+		OpenCommand $= "?PlayfabPlayerId="$class'GameEngine'.static.GetPlayfabInterface().CachedPlayfabId;
+
+		`log("Going to connect with URL:"@OpenCommand);
+		ConsoleCommand( OpenCommand );
+	}
+}
+
+
+exec function SetMatchmakingRegion( string InRegion )
+{
+	class'GameEngine'.static.GetPlayfabInterface().CurrRegionName = InRegion;
+}
+
+
+exec function ReadPFStoreData()
+{
+	class'GameEngine'.static.GetPlayfabInterface().AddStoreDataReadCompleteDelegate( OnPlayfabStoreReadComplete );
+	class'GameEngine'.static.GetPlayfabInterface().ReadStoreData();
+}
+
+
+function OnPlayfabStoreReadComplete( bool bSuccessful )
+{
+	class'GameEngine'.static.GetPlayfabInterface().ClearStoreDataReadCompleteDelegate( OnPlayfabStoreReadComplete );
+	`log("Inventory read with success"@bSuccessful);
+}
+
+
+exec function ReadPFUserInventory()
+{
+	class'GameEngine'.static.GetPlayfabInterface().AddInventoryReadCompleteDelegate( OnPlayfabInventoryReadComplete );
+	class'GameEngine'.static.GetPlayfabInterface().ReadInventory();
+}
+
+
+function OnPlayfabInventoryReadComplete( bool bSuccessful )
+{
+	class'GameEngine'.static.GetPlayfabInterface().ClearInventoryReadCompleteDelegate( OnPlayfabInventoryReadComplete );
+	`log("Inventory read with success"@bSuccessful);
+}
+
+
+exec function UnlockContainer( string ContainerItemID )
+{
+	class'GameEngine'.static.GetPlayfabInterface().UnlockContainer( ContainerItemID );
+}
+
+
+exec function DumpItemDefinitions()
+{
+	local int i;
+	local OnlineSubsystem OSS;
+
+	OSS = Class'GameEngine'.static.GetOnlineSubsystem();
+
+	for( i = 0; i < OSS.ItemPropertiesList.Length; i++ )
+	{
+		`log("Listing item"@OSS.ItemPropertiesList[i].Definition@"with name"@OSS.ItemPropertiesList[i].Name@"and type"@OSS.ItemPropertiesList[i].Type@"and price"@OSS.ItemPropertiesList[i].Price@"and URL"@OSS.ItemPropertiesList[i].IconURL@OSS.ItemPropertiesList[i].IconURLLarge);
+		`log("   and short description"@OSS.ItemPropertiesList[i].ShortDescription);
+		`log("   and description"@OSS.ItemPropertiesList[i].Description);
+		`log("   and bundle"@OSS.ItemPropertiesList[i].Bundle);
+		`log("   and exchange"@OSS.ItemPropertiesList[i].Exchange);
+	}
+}
+
+
+exec function DumpInventory()
+{
+	local int i;
+	local OnlineSubsystem OSS;
+
+	OSS = Class'GameEngine'.static.GetOnlineSubsystem();
+
+	for( i = 0; i < OSS.CurrentInventory.Length; i++ )
+	{
+		`log("Listing item"@OSS.CurrentInventory[i].Definition@"and quantity"@OSS.CurrentInventory[i].Quantity);
+	}
+}
+
+
+exec function DumpExchangeRules()
+{
+	local int i, j;
+	local OnlineSubsystem OSS;
+
+	OSS = Class'GameEngine'.static.GetOnlineSubsystem();
+
+	for( i = 0; i < OSS.ExchangeRuleSetList.Length; i++ )
+	{
+		`log("For target"@OSS.ExchangeRuleSetList[i].Target@"and item type"@OSS.ExchangeRuleSetList[i].Type);
+		for( j = 0; j < OSS.ExchangeRuleSetList[i].Sources.Length; j++ )
+		{
+			`log("	"$OSS.ExchangeRuleSetList[i].Sources[j].Definition@"x"$OSS.ExchangeRuleSetList[i].Sources[j].Quantity);
+		}
+	}
+}
+
+
+// Playfab debugging End
+/////////////////////////////////////////////////////////////
 
 defaultproperties
 {

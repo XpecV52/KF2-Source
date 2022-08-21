@@ -80,7 +80,7 @@ function name GetEmergeAnim(byte EmergeType, int Variant)
 
 function bool CanOverrideMoveWith(name NewMove)
 {
-    if(NewMove == 'Knockdown')
+    if(NewMove == 'KFSM_Knockdown')
     {
         return true;
     }
@@ -134,7 +134,7 @@ function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessT
     {
         KFPOwner.Knockdown(PawnOwner.Velocity, vect(1, 1, 1));
     }
-    if(KFPOwner.SpecialMove == 11)
+    if(KFPOwner.SpecialMove == 10)
     {
         KFPOwner.EndSpecialMove();
     }

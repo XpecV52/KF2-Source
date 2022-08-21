@@ -10,8 +10,6 @@
 class KFDT_Fire_CaulkBurn extends KFDT_Fire
 	abstract;
 
-`include(KFGame\KFMatchStats.uci);
-
 static function int GetKillerDialogID()
 {
 	return 86;//KILL_Fire
@@ -37,6 +35,7 @@ defaultproperties
 	DoT_DamageScale=1.5
 	bIgnoreSelfInflictedScale=true
 
-	BurnPower=0.25
+	BurnPower=20
+	StumblePower=20
 }
 

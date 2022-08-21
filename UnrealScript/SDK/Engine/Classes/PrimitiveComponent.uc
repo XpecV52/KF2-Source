@@ -873,5 +873,7 @@ defaultproperties
 	PerObjectShadowCullDistance=2000
 	// Defaulting to TRUE for now since that was the existing functionality
 	bAllowPreshadows=TRUE
+	// Use shadow batching by default
+	bAllowPerObjectShadowBatching=TRUE
 `endif
 }

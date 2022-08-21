@@ -13,7 +13,8 @@ defaultproperties
     WeaponDef=Class'KFGame.KFWeapDef_Grenade_Support'
     bShouldSpawnPersistentBlood=true
     KnockdownPower=0
-    StumblePower=120
+    StumblePower=500
+    MeleeHitPower=100
     KDeathVel=300
     KDeathUpKick=1000
     RadialDamageImpulse=3000

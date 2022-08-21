@@ -12,67 +12,12 @@ class KFDT_Ballistic_Rem1858 extends KFDT_Ballistic_Handgun
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 15;
-
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Remington1858'
-   KnockdownPower=30
-   StumblePower=45
-   LegStumblePower=45
-   GunHitPower=35
+   KnockdownPower=15.000000
+   StumblePower=50.000000
+   GunHitPower=150.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Gunslinger'
    KDamageImpulse=2500.000000
    KDeathVel=200.000000

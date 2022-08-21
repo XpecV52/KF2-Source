@@ -53,13 +53,12 @@ simulated function name GetReloadAnimName(bool bTacticalReload)
     {
         WarnInternal("Grenade launcher reloading with non-empty mag");
     }
-    return 'Reload_Empty';
+    return ((bTacticalReload) ? 'Reload_Empty_Elite' : 'Reload_Empty');
 }
 
 defaultproperties
 {
     ForceReloadTime=0.3
-    bAllowClientAmmoTracking=false
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_GrenadeLauncher_Base.MeleeHelper'
     FiringStatesArray=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent

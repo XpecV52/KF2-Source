@@ -94,20 +94,23 @@ simulated event PostBeginPlay()
 
 	super.PostBeginPlay();
 
-	if( Role == ROLE_Authority )
-	{
+	if( WorldInfo.NetMode != NM_Client )
+	{		
 		if( InstigatorController != none )
 		{
-			KFPlayerControllerVersus(InstigatorController).AddPukeMineToPool( self );
+			class'KFGameplayPoolManager'.static.GetPoolManager().AddProjectileToPool( self, PPT_PukeMine );
 		}
 		else
 		{
 			Destroy();
 			return;
 		}
+	}
 
+	if( Role == ROLE_Authority )
+	{
 		// If we're spawning in collision for some reason, offset it towards the instigator to keep it in play
-		Trace( HitLocation, HitNormal, Location, Instigator.Location, false,,, TRACEFLAG_Bullet );
+		Instigator.Trace( HitLocation, HitNormal, Location, Instigator.Location, false,,, TRACEFLAG_Bullet );
 		if( !IsZero(HitLocation) )
 		{
 			SetLocation( HitLocation + HitNormal*SpawnCollisionOffsetAmt );
@@ -119,12 +122,8 @@ simulated event PostBeginPlay()
 
 /** Overridden to do nothing */
 simulated function Shutdown() {}
-
-/** Overridden to do nothing */
 simulated protected function StopSimulating() {}
-
-/** Overridden to do nothing */
-simulated function Explode(vector HitLocation, vector HitNormal) {}
+simulated function Explode( vector HitLocation, vector HitNormal ) {}
 
 /** Give a little bounce */
 simulated event HitWall( vector HitNormal, Actor Wall, PrimitiveComponent WallComp )
@@ -203,6 +202,7 @@ simulated function Stick( vector StuckLocation, vector StuckNormal )
 	local vector HitLocation, HitNormal;
 	local rotator StuckRotation;
 	local KFProj_BloatPukeMine PukeMine;
+	local rotator RandRot;
 
 	SetPhysics( PHYS_None );
 	RotationRate = rot(0,0,0);
@@ -219,15 +219,6 @@ simulated function Stick( vector StuckLocation, vector StuckNormal )
 	bOnlyDirtyReplication = true;
 	bForceNetUpdate = true;
 
-	// Destroy any overlapping mines
-	if( Role == ROLE_Authority )
-	{
-		foreach TouchingActors( class'KFProj_BloatPukeMine', PukeMine )
-		{
-			PukeMine.TriggerExplosion( PukeMine.Location, vect(0,0,1), none );
-		}
-	}
-
 	// Set rotation
 	Trace( HitLocation, HitNormal, Location - vect(0,0,50), Location + vect(0,0,5), false,,, TRACEFLAG_Bullet );
 	if( !IsZero(HitLocation) )
@@ -239,7 +230,19 @@ simulated function Stick( vector StuckLocation, vector StuckNormal )
 		StuckRotation = rotator( StuckNormal );
 	}
 
+	// Destroy any overlapping mines
+	if( Role == ROLE_Authority )
+	{
+		foreach TouchingActors( class'KFProj_BloatPukeMine', PukeMine )
+		{
+			PukeMine.TriggerExplosion( PukeMine.Location, vect(0,0,1), none );
+		}
+	}
 	SetRotation( StuckRotation );
+
+	// Apply some random yaw
+	RandRot.Yaw = Rand( 65535 );
+	SetRelativeRotation( RandRot );
 
 	// Swap to ground FX
 	SwapToGroundFX( StuckRotation );
@@ -257,7 +260,7 @@ simulated function Stick( vector StuckLocation, vector StuckNormal )
 /** Switch to ground fx */
 simulated function SwapToGroundFX( rotator GroundRotation )
 {
-    // Replace the flying effects with ground FX
+	// Replace the flying effects with ground FX
 	if( WorldInfo.NetMode != NM_DedicatedServer )
 	{
 		StopFlightEffects();
@@ -348,10 +351,16 @@ singular event TakeDamage( int inDamage, Controller InstigatedBy, vector HitLoca
 	}
 }
 
+/** Blows up mine immediately */
+function Detonate()
+{
+	TriggerExplosion( Location, vect(0,0,1), none );
+}
+
 /** Blows up on a timer */
 function Timer_Explode()
 {
-	TriggerExplosion( Location, vect(0,0,1), none );
+	Detonate();
 }
 
 /** Explode this mine */
@@ -462,19 +471,11 @@ simulated function SpawnBurstEffect()
 /** Removes our puke mine from the pool */
 simulated event Destroyed()
 {
-	local KFGameInfo_VersusSurvival KFGIVS;
-
 	if( WorldInfo.NetMode != NM_Client )
 	{
 		if( InstigatorController != none )
 		{
-			KFPlayerControllerVersus(InstigatorController).RemovePukeMineFromPool( self );		
-		}
-		else if( WorldInfo.Game != none )
-		{
-			// If we no longer have a controller we still need to remove it from the gameinfo pool
-			KFGIVS = KFGameInfo_VersusSurvival( WorldInfo.Game );
-			KFGIVS.ActivePukeMines.Remove( KFGIVS.ActivePukeMines.Find(self), 1 );
+			class'KFGameplayPoolManager'.static.GetPoolManager().RemoveProjectileFromPool( self, PPT_PukeMine );
 		}
 	}
 
@@ -504,11 +505,20 @@ simulated state Armed
 	}
 }
 
+/** Controller left, explode after a short time */
+simulated function OnInstigatorControllerLeft()
+{
+	if( WorldInfo.NetMode != NM_Client )
+	{
+		SetTimer( 1.f + Rand(5) + fRand(), false, nameOf(Timer_Explode) );
+	}
+}
+
 defaultproperties
 {
    GroundFXTemplate=ParticleSystem'ZED_Bloat_EMIT.FX_Bloat_Mine_01'
    BurstFXTemplate=ParticleSystem'ZED_Bloat_EMIT.FX_Bloat_Mine_Hit_01'
-   Health=150
+   Health=100
    DampenFactor=0.125000
    DampenFactorParallel=0.175000
    SpawnCollisionOffsetAmt=28.000000
@@ -530,7 +540,7 @@ defaultproperties
    ExplosionActorClass=Class'kfgamecontent.KFExplosion_PlayerBloatPukeMine'
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
       ExplosionEffects=KFImpactEffectInfo'ZED_Bloat_ARCH.Bloat_Mine_Explosion'
-      Damage=45.000000
+      Damage=30.000000
       DamageRadius=450.000000
       DamageFalloffExponent=0.000000
       MyDamageType=Class'kfgamecontent.KFDT_Toxic_BloatPukeMine'

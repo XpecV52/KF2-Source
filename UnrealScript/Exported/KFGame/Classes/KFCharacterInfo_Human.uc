@@ -66,12 +66,14 @@ struct native AttachmentOverrideList
 
 struct native AttachmentVariants
 {
-	//var() const int UnlockAssetID;
+	var() KFCharacterAttachment AttachmentItem;
+
+	var() const int UnlockAssetID;
 	/** The path to this skins package and texture */
-	var() Texture UITexture;
+	var Texture UITexture;
 	/** Whether the attachment is a skeletal mesh. Otherwise, it is treated as a static mesh attachment.
 		Skeletal meshe animations are parented with the body mesh and must share the same skeletaon. */
-	var() bool bIsSkeletalAttachment;
+	var bool bIsSkeletalAttachment;
 	/** If set enables the material mask parameter on the assigned head variant */
 	var() bool bMaskHeadMesh;
 	/** Attachment mesh name. Must be of form PackageName.MeshName */
@@ -81,7 +83,7 @@ struct native AttachmentVariants
 		tries to attach to the same socket, it will replace the previously existing attachment. It will keep
 		both if there is no conflict. NOTE: Skeletal meshes do not require sockets for attachment, but the socket name
 		can still be used for conflit resolution. */
-	var() name SocketName;
+	var name SocketName;
 	/** Translation relative to given socket (for additional control) */
 	var() vector RelativeTranslation<EditCondition=!bIsSkeletalAttachment>;
 	/** Rotation relative to given socket (for additional control) */
@@ -89,13 +91,16 @@ struct native AttachmentVariants
 	/** Scale relative to given socket (for additional control) */
 	var() vector RelativeScale;
 	/** Distance at which the attachment will be hidden (distance culled). If 0, it is never culled */
-	var() float MaxDrawDistance;
+	var float MaxDrawDistance;
 	/** Material ID used for skin variations for this attachment (default is 0) */
-	var() int SkinMaterialID;
+	var int SkinMaterialID;
 	/** Reference to the different skin variants for a particular attachment mesh */
-	var() array<SkinVariant> SkinVariations;
+	var array<SkinVariant> SkinVariations;
 	/** List of sockets that this attachment will detach, if they are currently attached to a player */
-	var() AttachmentOverrideList OverrideList;
+	var AttachmentOverrideList OverrideList;
+
+	/** List of cosmetic indices that this attachment will detach, if they are currently attached to a player */
+	var() array<byte> SpecialOverrideIds;
 
 	structdefaultproperties
 	{
@@ -167,6 +172,23 @@ var(FaveWeapons) editoronly class<KFWeaponDefinition> FavoriteWeaponClassDefs[NU
 function int GetAssetId()
 {
 	return UnlockAssetID;
+}
+
+function string GetMesh(const out AttachmentVariants Variant)
+{
+	if (Len(Variant.MeshName) > 0)
+	{
+		return Variant.MeshName;
+	}
+	else
+	{
+		return Variant.AttachmentItem.MeshName;
+	}
+}
+
+function string GetMeshByIndex(int index)
+{
+	return GetMesh(CosmeticVariants[index]);
 }
 
 /** Return the 1P arm skeletal mesh representation for the class */
@@ -254,32 +276,32 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 	{
 		// Must clear all attachments before trying to attach new ones, 
 		// otherwise we might accidentally remove things we're not supposed to
-	for( AttachmentIdx=0; AttachmentIdx < 3; AttachmentIdx++ )
-	{
+		for( AttachmentIdx=0; AttachmentIdx < 3; AttachmentIdx++ )
+		{
 			// Clear any previous attachments from other characters
 			DetachAttachment(AttachmentIdx, KFP);
-	}
+		}
 
 		// Cosmetic attachment mesh & skin. Index of 255 implies don't use any attachments (default)
 		for( AttachmentIdx=0; AttachmentIdx < 3; AttachmentIdx++ )
-	{
-			CosmeticMeshIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx];
-			if ( CosmeticMeshIdx != 255)
 		{
-				bMaskHeadMesh = bMaskHeadMesh || CosmeticVariants[CosmeticMeshIdx].bMaskHeadMesh;
+				CosmeticMeshIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx];
+				if ( CosmeticMeshIdx != 255)
+			{
+					bMaskHeadMesh = bMaskHeadMesh || CosmeticVariants[CosmeticMeshIdx].bMaskHeadMesh;
 
-				// Attach all saved attachments to the character
-				SetAttachmentMeshAndSkin(
-					CosmeticMeshIdx,
-					KFPRI.RepCustomizationInfo.AttachmentSkinIndices[AttachmentIdx],
-					KFP, KFPRI);
+					// Attach all saved attachments to the character
+					SetAttachmentMeshAndSkin(
+						CosmeticMeshIdx,
+						KFPRI.RepCustomizationInfo.AttachmentSkinIndices[AttachmentIdx],
+						KFP, KFPRI);
+			}
 		}
-	}
 
 		// initial mask for new MIC (also see ResetHeadMaskParam())
-		if ( bMaskHeadMesh && KFP.HeadMIC != None )
+		if ( bMaskHeadMesh && KFP.CharacterMICs[1] != None )
 		{
-			KFP.HeadMIC.SetScalarParameterValue('Scalar_Mask', 1.f);
+			KFP.CharacterMICs[1].SetScalarParameterValue('Scalar_Mask', 1.f);
 		}
 	}
 }
@@ -342,7 +364,7 @@ protected simulated function SetBodySkinMaterial(OutfitVariants CurrentVariant, 
 	// Initialize MICs
 	if( KFP.WorldInfo.NetMode != NM_DedicatedServer && KFP.Mesh != None )
 	{
-		KFP.BodyMIC = KFP.Mesh.CreateAndSetMaterialInstanceConstant(BodyMaterialID);
+		KFP.CharacterMICs[0] = KFP.Mesh.CreateAndSetMaterialInstanceConstant(BodyMaterialID);
 	}
 }
 
@@ -370,7 +392,7 @@ protected simulated function SetHeadSkinMaterial(OutfitVariants CurrentVariant, 
 	// Initialize MICs
 	if( KFP.WorldInfo.NetMode != NM_DedicatedServer && KFP.ThirdPersonHeadMeshComponent != None )
 	{
-		KFP.HeadMIC = KFP.ThirdPersonHeadMeshComponent.CreateAndSetMaterialInstanceConstant(HeadMaterialID);
+		KFP.CharacterMICs[1] = KFP.ThirdPersonHeadMeshComponent.CreateAndSetMaterialInstanceConstant(HeadMaterialID);
 	}
 }
 
@@ -418,8 +440,8 @@ function bool IsAttachmentAvailable(const out AttachmentVariants Attachment, Paw
 		LogInternal("Attachment" @ Attachment.MeshName @ "is not purchased.");
 		return FALSE;
 		}
-	else if ( Attachment.bIsSkeletalAttachment && Attachment.SocketName != '' 
-		&& PreviewPawn.Mesh.GetSocketByName(Attachment.SocketName) == None )
+	else if ( Attachment.AttachmentItem.bIsSkeletalAttachment && Attachment.AttachmentItem.SocketName != '' 
+		&& PreviewPawn.Mesh.GetSocketByName(Attachment.AttachmentItem.SocketName) == None )
 		{
 		LogInternal("Attachment" @ Attachment.MeshName @ "is missing a required socket.");
 		return FALSE;
@@ -437,14 +459,14 @@ protected simulated function SetAttachmentSkinMaterial(
 	local int i;
 	if (KFP.WorldInfo.NetMode != NM_DedicatedServer)
 	{
-		if( CurrentVariant.SkinVariations.length > 0 )
+		if( CurrentVariant.AttachmentItem.SkinVariations.length > 0 )
 		{
 			// Assign a skin to the attachment mesh as a material override
-			if ( NewSkinIndex < CurrentVariant.SkinVariations.length )
+			if ( NewSkinIndex < CurrentVariant.AttachmentItem.SkinVariations.length )
 			{
 			KFP.ThirdPersonAttachments[PawnAttachmentIndex].SetMaterial(
-				CurrentVariant.SkinMaterialID,
-				CurrentVariant.SkinVariations[NewSkinIndex].Skin);
+				CurrentVariant.AttachmentItem.SkinMaterialID,
+				CurrentVariant.AttachmentItem.SkinVariations[NewSkinIndex].Skin);
 		}
 		else
 		{
@@ -499,14 +521,14 @@ private function SetAttachmentMeshAndSkin(
 		 CurrentAttachmentMeshIndex < CosmeticVariants.length )
 	{
 		// Cache values from character info
-		CharAttachmentMeshName = CosmeticVariants[CurrentAttachmentMeshIndex].MeshName;
-		CharAttachmentSocketName = CosmeticVariants[CurrentAttachmentMeshIndex].SocketName;
-		MaxDrawDistance = CosmeticVariants[CurrentAttachmentMeshIndex].MaxDrawDistance;
+		CharAttachmentMeshName = GetMeshByIndex(CurrentAttachmentMeshIndex);
+		CharAttachmentSocketName = CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.SocketName;
+		MaxDrawDistance = CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.MaxDrawDistance;
 		AttachmentLocationRelativeToSocket = CosmeticVariants[CurrentAttachmentMeshIndex].RelativeTranslation;
 		AttachmentRotationRelativeToSocket = CosmeticVariants[CurrentAttachmentMeshIndex].RelativeRotation;
 		AttachmentScaleRelativeToSocket = CosmeticVariants[CurrentAttachmentMeshIndex].RelativeScale;
-		bIsSkeletalAttachment = CosmeticVariants[CurrentAttachmentMeshIndex].bIsSkeletalAttachment;
-
+		bIsSkeletalAttachment = CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.bIsSkeletalAttachment;
+		//`log("AttachmentLocationRelativeToSocket: x="$AttachmentLocationRelativeToSocket.x@"y="$AttachmentLocationRelativeToSocket.y@"z="$AttachmentLocationRelativeToSocket.z);
 		// If it is a skeletal attachment, parent anim it to the body mesh
 		if( bIsSkeletalAttachment )
 		{
@@ -612,7 +634,7 @@ function DetachConflictingAttachments(byte NewAttachmentMeshIndex, KFPawn KFP, o
 		 NewAttachmentMeshIndex < CosmeticVariants.length )
 	{
 		// The socket that this attachment requires
-		NewAttachmentSocketName = CosmeticVariants[NewAttachmentMeshIndex].SocketName;
+		NewAttachmentSocketName = CosmeticVariants[NewAttachmentMeshIndex].AttachmentItem.SocketName;
 
 		for( i=0; i < 3; i++ )
 		{
@@ -651,25 +673,34 @@ function DetachConflictingAttachments(byte NewAttachmentMeshIndex, KFPawn KFP, o
  */
 function bool GetOverrideCase(byte AttachmentIndex1, byte AttachmentIndex2)
 {
-	if ( CosmeticVariants[AttachmentIndex2].OverrideList.SpecialOverrideIds.Find(AttachmentIndex1) != INDEX_NONE )
+	if (CosmeticVariants[AttachmentIndex2].SpecialOverrideIds.length > 0)
 	{
-		return TRUE;
+		if ( CosmeticVariants[AttachmentIndex2].SpecialOverrideIds.Find(AttachmentIndex1) != INDEX_NONE )
+		{
+			return TRUE;
+		}
 	}
-
-	switch(CosmeticVariants[AttachmentIndex1].SocketName)
+	else
+	{
+		if ( CosmeticVariants[AttachmentIndex2].AttachmentItem.SpecialOverrideIds.Find(AttachmentIndex1) != INDEX_NONE )
+		{
+			return TRUE;
+		}
+	}
+	switch(CosmeticVariants[AttachmentIndex1].AttachmentItem.SocketName)
 	{
 		case 'Hat_Attach':
-			return CosmeticVariants[AttachmentIndex2].OverrideList.bHat;
+			return CosmeticVariants[AttachmentIndex2].AttachmentItem.OverrideList.bHat;
 		case 'Face_Attach':
-			return CosmeticVariants[AttachmentIndex2].OverrideList.bFace;
+			return CosmeticVariants[AttachmentIndex2].AttachmentItem.OverrideList.bFace;
 		case 'Eyes_Attach':
-			return CosmeticVariants[AttachmentIndex2].OverrideList.bEyes;
+			return CosmeticVariants[AttachmentIndex2].AttachmentItem.OverrideList.bEyes;
 		case 'Jaw_Attach':
-			return CosmeticVariants[AttachmentIndex2].OverrideList.bJaw;
+			return CosmeticVariants[AttachmentIndex2].AttachmentItem.OverrideList.bJaw;
 		case 'Armband_Attach':
-			return CosmeticVariants[AttachmentIndex2].OverrideList.bArmband;
+			return CosmeticVariants[AttachmentIndex2].AttachmentItem.OverrideList.bArmband;
 		case 'Backpack_Attach':
-			return CosmeticVariants[AttachmentIndex2].OverrideList.bBackpack; 
+			return CosmeticVariants[AttachmentIndex2].AttachmentItem.OverrideList.bBackpack; 
 	}
 
 	return false;

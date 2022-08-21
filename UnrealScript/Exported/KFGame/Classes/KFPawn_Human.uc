@@ -408,9 +408,6 @@ var repnotify bool 	bHasSupportSafeguardBuff;
 var repnotify bool 	bHasSupportBarrageBuff;
 var repnotify bool 	bHasMedicVaccinationBuff;
 
-/** The berserker skill can let you move with normal speed when in Zed time with certain skills */
-var bool bMovesFastInZedTime;
-
 var bool bBuffsUpdated;
 var array<string> ActiveSkillIconPaths;
 
@@ -455,7 +452,7 @@ replication
 {
 	// Replicated to ALL
 	if(bNetDirty)
-		Armor, MaxArmor, bObjectivePlayer, bMovesFastInZedTime, WeaponSkinItemId;
+		Armor, MaxArmor, bObjectivePlayer, WeaponSkinItemId;
 
 	// Replicated to all but the owning client
 	if(bNetDirty && (!bNetOwner || bDemoRecording))
@@ -466,7 +463,6 @@ replication
 		bHasSupportSafeguardBuff, bHasSupportBarrageBuff, bHasMedicVaccinationBuff;
 }
 
-// (cpptext)
 // (cpptext)
 // (cpptext)
 // (cpptext)
@@ -692,8 +688,8 @@ function UpdateGroundSpeed()
 	// Ask our perk to set the new ground speed based on weapon type
 	if( GetPerk() != none )
 	{
-		GetPerk().ModifySpeed(GroundSpeed);
-		GetPerk().ModifySpeed(SprintSpeed);
+		GetPerk().ModifySpeed( GroundSpeed );
+		GetPerk().ModifySprintSpeed( SprintSpeed );
 	}
 }
 
@@ -1055,14 +1051,14 @@ simulated function PlayDamageInstigatorHitEffects(KFPawn Victim)
 /** Ambient battle blood added to chracter body and face as they kill Zeds */
 simulated function AddBattleBlood(float InBattleBloodIncrementvalue)
 {
+	local MaterialInstanceConstant MIC;
 	// Accumulate the blood param value of the pawn
 	BattleBloodParamValue = FMax(BattleBloodParamValue + InBattleBloodIncrementvalue, MinBattleBloodValue);
 
-	if ( BodyMIC != None && HeadMIC != None)
-	{
-		BodyMIC.SetScalarParameterValue(BattleBloodParamName, BattleBloodParamValue);
-		HeadMIC.SetScalarParameterValue(BattleBloodParamName, BattleBloodParamValue);
-	}
+    foreach CharacterMICs(MIC)
+    {
+		MIC.SetScalarParameterValue(BattleBloodParamName, BattleBloodParamValue);
+    }
 }
 
 simulated function SetNightVisionLight(bool bEnabled)
@@ -1128,26 +1124,6 @@ function bool Died(Controller Killer, class<DamageType> damageType, vector HitLo
 	return false;
 }
 
-simulated function BroadcastDeathMessage( Controller Killer )
-{
-	if( Killer != none && Killer != Controller)
-	{
-		if(Killer.IsA('KFAIController'))
-		{
-			BroadcastLocalizedMessage( class'KFLocalMessage_Game', KMT_Killed, PlayerReplicationInfo, none, Killer.Class );
-		}
-		else
-		{
-			BroadcastLocalizedMessage( class'KFLocalMessage_PlayerKills', KMT_PlayerKillPlayer, Killer.PlayerReplicationInfo, PlayerReplicationInfo);
-		}
-		
-	}
-	else
-	{
-		BroadcastLocalizedMessage( class'KFLocalMessage_Game', KMT_Suicide, PlayerReplicationInfo );
-	}
-}
-
 /* AdjustDamage()
 adjust damage based on inventory, other attributes
 */
@@ -1155,7 +1131,6 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 {
 	local KFPerk MyKFPerk, MyMedicPerk;
 	local float TempDamage;
-	local bool bHasSacrificeSkill;
 
 	if (bLogTakeDamage) LogInternal(self @ GetFuncName()@"Adjusted Damage BEFORE =" @ InDamage);
 	super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
@@ -1165,7 +1140,6 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	{
 		MyKFPerk.ModifyDamageTaken( InDamage, DamageType, InstigatedBy );
 		MyMedicPerk = KFPerk_FieldMedic(MyKFPerk);
-		bHasSacrificeSkill = MyKFPerk.ShouldSacrifice();
 	}
 
 	TempDamage = InDamage;
@@ -1202,12 +1176,6 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	if( InstigatedBy != none )
 	{
 		AddTakenDamage( InstigatedBy, FMin(Health, InDamage), DamageCauser, class<KFDamageType>(DamageType) );
-	}
-
-	if( bHasSacrificeSkill && Health >= 5 && Health - InDamage < 5 )
-	{
-		Health = InDamage + 5;
-		SacrificeExplode();
 	}
 
 	if (bLogTakeDamage) LogInternal(self @ GetFuncName()@"Adjusted Damage AFTER =" @ InDamage);
@@ -1271,38 +1239,6 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 /*********************************************************************************************
 * @name Perks
 ********************************************************************************************* */
-
-function SacrificeExplode()
-{
-	local KFExplosionActorReplicated ExploActor;
-	local GameExplosion	ExplosionTemplate;
-	local KFPerk_Demolitionist DemoPerk;
-
-	if ( Role < ROLE_Authority )
-	{
-		return;
-	}
-
-	DemoPerk = KFPerk_Demolitionist(GetPerk());
-
-	// explode using the given template
-	ExploActor = Spawn(class'KFExplosionActorReplicated', self,, Location,,, true);
-	if( ExploActor != None )
-	{
-		ExploActor.InstigatorController = Controller;
-		ExploActor.Instigator = self;
-
-		ExplosionTemplate = class'KFPerk_Demolitionist'.static.GetSacrificeExplosionTemplate();
-		ExplosionTemplate.MyDamageType = class'KFPerk_Demolitionist'.static.GetSacrificeDamageTypeClass();
-		ExplosionTemplate.bIgnoreInstigator = true;
-		ExploActor.Explode( ExplosionTemplate );
-
-		if( DemoPerk != none )
-		{
-			DemoPerk.NotifyPerkSacrificeExploded();
-		}
-	}
-}
 
 /**
  * @brief Checks if we are close to a demo player with explosivbe resistance skill enabled
@@ -1895,15 +1831,14 @@ defaultproperties
    BattleBloodRangeSq=40000.000000
    DeathMaterialEffectParamName="scalar_dead"
    DeathMaterialEffectDuration=0.100000
-   Begin Object Class=KFPawnAfflictions Name=Afflictions_0 Archetype=KFPawnAfflictions'KFGame.Default__KFPawn:Afflictions_0'
-      bNoBurnedMatBeforeDeath=True
+   Begin Object Class=KFAfflictionManager Name=Afflictions_0 Archetype=KFAfflictionManager'KFGame.Default__KFPawn:Afflictions_0'
       FireFullyCharredDuration=2.500000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
-      ObjectArchetype=KFPawnAfflictions'KFGame.Default__KFPawn:Afflictions_0'
+      ObjectArchetype=KFAfflictionManager'KFGame.Default__KFPawn:Afflictions_0'
    End Object
-   AfflictionHandler=KFPawnAfflictions'KFGame.Default__KFPawn_Human:Afflictions_0'
-   StackingIncaps(1)=(Threshhold=0.200000,Duration=1.000000,Cooldown=0.000000,DissipationRate=0.200000)
+   AfflictionHandler=KFAfflictionManager'KFGame.Default__KFPawn_Human:Afflictions_0'
+   IncapSettings(1)=(Duration=1.000000,Cooldown=0.000000,Vulnerability=(50.000000))
    TeammateCollisionRadiusPercent=0.500000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True
@@ -1945,9 +1880,8 @@ defaultproperties
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=None
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn:SpecialMoveHandler_0'
    End Object
@@ -2010,9 +1944,8 @@ defaultproperties
       RBCollideWithChannels=(Default=True,Pawn=True,Vehicle=True,BlockingVolume=True)
       Translation=(X=0.000000,Y=0.000000,Z=-86.000000)
       ScriptRigidBodyCollisionThreshold=200.000000
-      PerObjectShadowCullDistance=4000.000000
+      PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
-      bAllowPerObjectShadowBatching=True
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn:KFPawnSkeletalMeshComponent'
    End Object

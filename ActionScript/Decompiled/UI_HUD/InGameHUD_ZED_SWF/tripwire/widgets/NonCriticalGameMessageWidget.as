@@ -73,7 +73,7 @@ package tripwire.widgets
             closeContainer();
         }
         
-        override protected function openAnimation() : *
+        override protected function openAnimation(param1:Boolean = true) : *
         {
             TweenMax.killTweensOf(this);
             TweenMax.fromTo(this,4,{

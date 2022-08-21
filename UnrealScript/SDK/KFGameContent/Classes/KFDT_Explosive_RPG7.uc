@@ -12,8 +12,6 @@ class KFDT_Explosive_RPG7 extends KFDT_Explosive
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 defaultproperties
 {
 	bShouldSpawnPersistentBlood=true
@@ -23,9 +21,8 @@ defaultproperties
 	KDeathUpKick=2000
 	KDeathVel=500
 
-	KnockdownPower=55
-	StumblePower=48
-	LegStumblePower=48
+	KnockdownPower=225
+	StumblePower=400
 
 	//Perk
 	ModifierPerkList(0)=class'KFPerk_Demolitionist'

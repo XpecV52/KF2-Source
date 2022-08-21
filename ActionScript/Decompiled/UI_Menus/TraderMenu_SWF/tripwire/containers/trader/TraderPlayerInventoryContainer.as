@@ -153,6 +153,10 @@ package tripwire.containers.trader
                 this.fadeinAssets();
                 this.playerInfoContainer.closeList();
             }
+            if(this.playerInfoContainer.bOpen)
+            {
+                this.playerInfoContainer.closeContainer();
+            }
             super.closeContainer();
             currentElement = null;
         }

@@ -8,14 +8,111 @@
 class KFTeamInfo_Human extends TeamInfo
     hidecategories(Navigation,Movement,Collision);
 
-function PostBeginPlay()
+struct sTeamScoreData
+{
+    var int RoundScore;
+    var int WaveReached;
+    var int Deaths;
+    var int BossDamageDone;
+    var int BossDamageTaken;
+
+    structdefaultproperties
+    {
+        RoundScore=0
+        WaveReached=-1
+        Deaths=0
+        BossDamageDone=0
+        BossDamageTaken=0
+    }
+};
+
+var sTeamScoreData TeamScoreDataPacket;
+
+replication
+{
+     if(bNetDirty)
+        TeamScoreDataPacket;
+}
+
+simulated function PostBeginPlay()
 {
     super(Actor).PostBeginPlay();
-    bForceNetUpdate = true;
+    if(Role == ROLE_Authority)
+    {
+        bForceNetUpdate = true;
+        bNetDirty = true;        
+    }
+    else
+    {
+        if(TeamIndex >= 0)
+        {
+            if(WorldInfo.GRI != none)
+            {
+                WorldInfo.GRI.SetTeam(TeamIndex, self);                
+            }
+            else
+            {
+                SetTimer(0.1, true, 'Timer_WaitingForGRI');
+            }
+        }
+    }
+}
+
+simulated function Timer_WaitingForGRI()
+{
+    if(WorldInfo.GRI != none)
+    {
+        WorldInfo.GRI.SetTeam(TeamIndex, self);
+        ClearTimer('Timer_WaitingForGRI');
+    }
+}
+
+function bool AddToTeam(Controller Other)
+{
     bNetDirty = true;
+    bForceNetUpdate = true;
+    return super.AddToTeam(Other);
+}
+
+function RemoveFromTeam(Controller Other)
+{
+    bNetDirty = true;
+    bForceNetUpdate = true;
+    super.RemoveFromTeam(Other);
+}
+
+function AddScore(int ScoreToAdd, optional bool bSetScore)
+{
+    if(bSetScore)
+    {
+        Score = float(ScoreToAdd);        
+    }
+    else
+    {
+        Score += float(ScoreToAdd);
+    }
+}
+
+function AddRoundScore(int ScoreToAdd, optional bool bSetScore)
+{
+    if(bSetScore)
+    {
+        TeamScoreDataPacket.RoundScore = ScoreToAdd;        
+    }
+    else
+    {
+        TeamScoreDataPacket.RoundScore += ScoreToAdd;
+    }
+}
+
+function Reset()
+{
+    Score = 0;
 }
 
 defaultproperties
 {
+    TeamScoreDataPacket=(RoundScore=0,WaveReached=-1,Deaths=0,BossDamageDone=0,BossDamageTaken=0)
     TeamIndex=0
+    NetUpdateFrequency=1
 }

@@ -513,7 +513,7 @@ static function int GetDamagerDialogID()
 defaultproperties
 {
    GoreDamageGroup=DGT_EMP
-   EMPPower=1.000000
+   EMPPower=100.000000
    CameraLensEffectTemplate=Class'KFGame.KFCameraLensEmit_EMP'
    bArmorStops=False
    KDamageImpulse=150.000000

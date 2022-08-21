@@ -279,6 +279,11 @@ simulated function bool IsTouchBlockedBy(Actor A)
     return false;
 }
 
+function Reset()
+{
+    Destroy();
+}
+
 function TryFadeOut()
 {
     local Pawn P;
@@ -302,13 +307,16 @@ auto state Pickup
         local Vector HitLocation, HitNormal;
         local bool bHitWall;
 
-        if(((Other == none) || !Other.bCanPickupInventory) || (Other.DrivenVehicle == none) && Other.Controller == none)
+        if((((Other == none) || !Other.bCanPickupInventory) || !Other.IsAliveAndWell()) || (Other.DrivenVehicle == none) && Other.Controller == none)
         {
             return false;
         }
-        if((Other == Instigator) && (WorldInfo.TimeSeconds - CreationTime) < 0.1)
+        if(Other == Instigator)
         {
-            return false;
+            if(((float(Instigator.Health / Instigator.HealthMax) <= 0.2) && (WorldInfo.TimeSeconds - CreationTime) < 1) || (WorldInfo.TimeSeconds - CreationTime) < 0.1)
+            {
+                return false;
+            }
         }
         foreach Other.TraceActors(Class'Actor', HitA, HitLocation, HitNormal, MyCylinderComp.GetPosition() + vect(0, 0, 10), Other.Location)
         {

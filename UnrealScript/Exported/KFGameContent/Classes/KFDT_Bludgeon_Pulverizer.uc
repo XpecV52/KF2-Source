@@ -9,68 +9,11 @@ class KFDT_Bludgeon_Pulverizer extends KFDT_Bludgeon
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 12;
-
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Pulverizer'
-   StunPower=42
-   KnockdownPower=30
-   StumblePower=56
-   LegStumblePower=56
-   MeleeHitPower=50
+   StumblePower=50.000000
+   MeleeHitPower=100.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
    KDamageImpulse=1500.000000
    KDeathVel=375.000000

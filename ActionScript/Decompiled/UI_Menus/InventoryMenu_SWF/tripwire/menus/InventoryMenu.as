@@ -7,9 +7,11 @@ package tripwire.menus
     import flash.events.Event;
     import flash.events.KeyboardEvent;
     import flash.external.ExternalInterface;
+    import scaleform.clik.core.UIComponent;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.ListEvent;
     import scaleform.clik.ui.InputDetails;
+    import scaleform.gfx.FocusManager;
     import tripwire.containers.SectionHeaderContainer;
     import tripwire.containers.TripContainer;
     import tripwire.containers.inventory.CraftingContainer;
@@ -76,6 +78,7 @@ package tripwire.menus
             }
             else if(this.openCrateContainer.bOpen)
             {
+                FocusManager.setModalClip(null);
                 this.openCrateContainer.selectContainer();
                 if(this.coverBGTween != null && this.coverBGTween.progress() < 1)
                 {
@@ -84,6 +87,7 @@ package tripwire.menus
             }
             else if(this.craftingPanelContainer.bOpen)
             {
+                FocusManager.setModalClip(null);
                 this.craftingPanelContainer.selectContainer();
                 if(this.coverBGTween != null && this.coverBGTween.progress() < 1)
                 {
@@ -103,6 +107,7 @@ package tripwire.menus
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
+            this.inventoryListContainer.Owner = this;
             this.inventoryListContainer.inventoryItemScrollingList.addEventListener(ListEvent.ITEM_PRESS,this.onItemPress,false,0,true);
             this.inventoryListContainer.craftWeaponsButton.addEventListener(ButtonEvent.PRESS,this.onCraftWeaponClicked,false,0,true);
             this.inventoryListContainer.craftCosmeticsButton.addEventListener(ButtonEvent.PRESS,this.onCraftCosmeticClicked,false,0,true);
@@ -146,12 +151,14 @@ package tripwire.menus
         public function onCraftWeaponClicked(param1:ButtonEvent) : void
         {
             this.coverBGTween.play();
+            this.inventoryListContainer.currentFilter = param1.target as UIComponent;
             ExternalInterface.call("CallBack_RequestWeaponCraftInfo");
         }
         
         public function onCraftCosmeticClicked(param1:ButtonEvent) : void
         {
             this.coverBGTween.play();
+            this.inventoryListContainer.currentFilter = param1.target as UIComponent;
             ExternalInterface.call("CallBack_RequestCosmeticCraftInfo");
         }
         
@@ -181,6 +188,7 @@ package tripwire.menus
                 this.inventoryListContainer.deselectContainer();
                 this.inventoryListContainer.itemDetails = param1.itemData;
                 this.itemDetailsContainer.details = param1.itemData;
+                ExternalInterface.call("CallBack_ItemDetailsClicked",param1.itemData.definition);
             }
         }
         
@@ -249,6 +257,8 @@ package tripwire.menus
                 this.inventoryListContainer.selectContainer();
             }
             super.closeContainer();
+            FocusManager.setModalClip(null);
+            this.inventoryListContainer.leftSideFocused = true;
         }
     }
 }

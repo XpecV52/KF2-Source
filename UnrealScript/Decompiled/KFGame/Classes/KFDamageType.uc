@@ -36,6 +36,7 @@ enum EGoreDamageGroup
 
 var class<KFWeaponDefinition> WeaponDef;
 var bool bNoInstigatorDamage;
+var bool bConsideredIndirectOrAoE;
 var bool bAnyPerk;
 var bool bShouldSpawnBloodSplat;
 var bool bShouldSpawnPersistentBlood;
@@ -47,17 +48,17 @@ var bool bIgnoreZedOnZedScaling;
 var float HeadDestructionDamageScale;
 var float HeadDestructionImpulseForceScale;
 var KFDamageType.EDamageOverTimeGroup DoT_Type;
-var byte StunPower;
-var byte KnockdownPower;
-var byte StumblePower;
-var byte LegStumblePower;
-var byte GunHitPower;
-var byte MeleeHitPower;
 var KFSkinTypeEffects.EEffectDamageGroup EffectGroup;
 var KFDamageType.EGoreDamageGroup GoreDamageGroup;
 var float DoT_Duration;
 var float DoT_Interval;
 var float DoT_DamageScale;
+var float StunPower;
+var float KnockdownPower;
+var float StumblePower;
+var float LegStumblePower;
+var float GunHitPower;
+var float MeleeHitPower;
 var float BurnPower;
 var float EMPPower;
 var float PoisonPower;
@@ -197,10 +198,11 @@ static function bool IsNotPerkBound()
 
 static function bool CheckObliterate(Pawn P, int Damage)
 {
-    if(default.bCanObliterate)
-    {
-        return (P.Health <= default.ObliterationHealthThreshold) && Damage > default.ObliterationDamageThreshold;
-    }
+    return (P.Health <= default.ObliterationHealthThreshold) && Damage > default.ObliterationDamageThreshold;
+}
+
+static function bool AlwaysPoisons()
+{
     return false;
 }
 

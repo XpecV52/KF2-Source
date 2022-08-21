@@ -9,8 +9,6 @@ class KFDT_Bludgeon_C4 extends KFDT_Bludgeon_RifleButt
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 DefaultProperties
 {
 	//defaults

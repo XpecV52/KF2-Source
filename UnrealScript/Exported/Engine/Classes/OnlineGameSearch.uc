@@ -24,6 +24,11 @@ var databinding bool bUsesArbitration;
 /** Whether the search object in question is in progress or not. This is the union of the other flags */
 var const bool bIsSearchInProgress;
 
+//@HSL_BEGIN - BWJ - 5-13-16 - Playfab game mode support
+/** The name of the gamemode to search for */
+var string GameMode;
+//@HSL_END
+
 /** Struct used to return matching servers */
 struct native OnlineGameSearchResult
 {

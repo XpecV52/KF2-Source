@@ -11,6 +11,7 @@ package tripwire.containers
     import tripwire.controls.OverviewButton;
     import tripwire.controls.TripButton;
     import tripwire.controls.TripScrollingList;
+    import tripwire.managers.MenuManager;
     
     public class StartOverviewContainer extends TripContainer
     {
@@ -52,7 +53,7 @@ package tripwire.containers
             if(this.sharedContentButton.visible)
             {
                 currentElement = this.sharedContentButton;
-                if(bManagerUsingGamepad)
+                if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
                 {
                     this.sharedContentButton.focused = 1;
                 }
@@ -61,7 +62,7 @@ package tripwire.containers
             {
                 currentElement.tabEnabled = true;
                 currentElement.tabChildren = true;
-                if(bManagerUsingGamepad)
+                if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
                 {
                     currentElement.focused = 1;
                 }
@@ -115,7 +116,7 @@ package tripwire.containers
         public function hideWelcomeScreen(param1:ButtonEvent = null) : void
         {
             this.serverWelcomeScreen.closeContainer();
-            if(bManagerUsingGamepad)
+            if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
             {
                 this.sharedContentButton.focused = 1;
             }
@@ -125,7 +126,7 @@ package tripwire.containers
         {
             this.sharedContentListContainer.closeAnimation();
             currentElement = this.sharedContentButton;
-            if(bManagerUsingGamepad)
+            if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
             {
                 this.sharedContentButton.focused = 1;
             }
@@ -137,7 +138,7 @@ package tripwire.containers
             this.sharedContentListContainer.alpha = 0;
             this.sharedContentListContainer.visible = true;
             this.sharedContentListContainer.openAnimation();
-            if(bManagerUsingGamepad)
+            if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
             {
                 this.sharedContentListContainer.sharedContentConfirmButton.focused = 1;
             }

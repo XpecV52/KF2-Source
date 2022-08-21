@@ -17,6 +17,10 @@ var const localized string OverviewString;
 var const localized array<localized string> TitleStrings;
 var const localized array<localized string> DescriptionStrings;
 var string LastHomeString;
+var GFxObject InventoryButton;
+var GFxObject StoreButton;
+var int SaveCurrentMenuIndex;
+var bool bCachedGameFullyInstalled;
 
 function InitializeCurrentMenu(byte CurrentMenuIndex)
 {
@@ -47,6 +51,11 @@ function UpdateMenu(byte CurrentMenuIndex)
     }
     J0x189:
 
+    SaveCurrentMenuIndex = CurrentMenuIndex;
+    if((((InventoryButton != none) && StoreButton != none) && !Class'WorldInfo'.static.IsE3Build()) && Class'WorldInfo'.static.IsConsoleBuild(8))
+    {
+        CheckGameFullyInstalled();
+    }
     DataProvider.SetInt("selectedIndex", CurrentMenuIndex);
     SetObject("dataObject", DataProvider);
 }
@@ -66,10 +75,35 @@ function HandleButtonSpecialCase(byte ButtonIndex, out GFxObject GfxButton)
             GfxButton.SetBool("bPulsing", ShouldStartMenuPulse());
             break;
         case 3:
-            GfxButton.SetBool("enabled", CanUseInventory());
+            GfxButton.SetBool("enabled", (CanUseInventory()) && !Class'WorldInfo'.static.IsE3Build());
+            InventoryButton = GfxButton;
+            break;
+        case 4:
+            GfxButton.SetBool("enabled", !Class'WorldInfo'.static.IsE3Build());
+            StoreButton = GfxButton;
             break;
         default:
             break;
+    }
+}
+
+function CheckGameFullyInstalled()
+{
+    if(!bCachedGameFullyInstalled)
+    {
+        if(Class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.IsGameFullyInstalled())
+        {
+            bCachedGameFullyInstalled = true;
+            InventoryButton.SetBool("enabled", true);
+            StoreButton.SetBool("enabled", true);
+            UpdateMenu(byte(SaveCurrentMenuIndex));            
+        }
+        else
+        {
+            InventoryButton.SetBool("enabled", false);
+            StoreButton.SetBool("enabled", false);
+            Manager.TimerHelper.SetTimer(1, false, 'CheckGameFullyInstalled', self);
+        }
     }
 }
 

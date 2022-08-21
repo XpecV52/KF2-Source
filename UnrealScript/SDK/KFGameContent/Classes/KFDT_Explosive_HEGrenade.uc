@@ -12,8 +12,6 @@ class KFDT_Explosive_HEGrenade extends KFDT_Explosive
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 defaultproperties
 {
 	bShouldSpawnPersistentBlood=true
@@ -24,10 +22,11 @@ defaultproperties
 	KDeathVel=300
 
 	KnockdownPower=0
-	StumblePower=120
+	StumblePower=50
+	MeleeHitPower=200
 
-	ObliterationHealthThreshold=-250
-	ObliterationDamageThreshold=250
+	ObliterationHealthThreshold=-80
+	ObliterationDamageThreshold=160
 
 	WeaponDef=class'KFWeapDef_Grenade_Commando'
 }

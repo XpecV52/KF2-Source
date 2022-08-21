@@ -79,7 +79,6 @@ defaultproperties
     object end
     // Reference: ArrowComponent'Default__SpotLightMovable.ArrowComponent0'
     Components(6)=ArrowComponent0
-    TickGroup=ETickingGroup.TG_DuringAsyncWork
     bHardAttach=true
     bMovable=true
     begin object name=LightMeshComponent0 class=StaticMeshComponent

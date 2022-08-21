@@ -73,7 +73,6 @@ class KFPerk_Firebug extends KFPerk
  
 
 
-
  
 
 
@@ -81,6 +80,10 @@ class KFPerk_Firebug extends KFPerk
 
 
 
+
+
+
+ 
 
 #linenumber 14
 
@@ -96,7 +99,9 @@ var 	const 	int 				HeatWaveRadiusSQ;
 /** Chance that zeds will explode from the Shrapnel skill */
 var		const	float 				ShrapnelChance;
 var 			GameExplosion		ExplosionTemplate;
-var 			const String		ShrapnelExplosionDamageTypeName;
+var 	const 	String				ShrapnelExplosionDamageTypeName;
+
+var private const float 			AssistDoshModifier;
 
 enum EFirebugSkills
 {
@@ -348,7 +353,7 @@ simulated function bool ShouldShrapnel()
 /**
  * @brief The Zed shrapnel skill can spawn an explosion, this function delivers the template
  *
- * @return A gmae explosion template
+ * @return A game explosion template
  */
 static function GameExplosion GetExplosionTemplate()
 {
@@ -542,6 +547,20 @@ simulated static function int GetCrawlerKillXP( byte Difficulty )
 	return default.SecondaryXPModifier[Difficulty];
 }
 
+static function ModifyAssistDosh( out int EarnedDosh )
+{
+	local float TempDosh;
+
+	TempDosh = EarnedDosh;
+	TempDosh *= GetAssistDoshModifer();
+	EarnedDosh = Round( TempDosh );
+}
+
+private static function float GetAssistDoshModifer()
+{
+	return default.AssistDoshModifier;
+}
+
 /*********************************************************************************************
 * @name	 UI
 ********************************************************************************************* */
@@ -599,9 +618,10 @@ defaultproperties
    OwnFireResistance=(Name="Own fire Resistance",Increment=0.030000,StartingValue=0.250000,MaxValue=1.000000)
    StartingAmmo=(Name="Starting Ammo",Increment=0.050000,MaxValue=0.250000)
    HeatWaveRadiusSQ=90000
-   ShrapnelChance=0.300000
+   ShrapnelChance=0.200000
    ExplosionTemplate=KFGameExplosion'KFGame.Default__KFPerk_Firebug:ExploTemplate0'
    ShrapnelExplosionDamageTypeName="KFGameContent.KFDT_Explosive_Shrapnel"
+   AssistDoshModifier=2.000000
    ProgressStatID=30
    PerkBuildStatID=31
    SecondaryXPModifier(0)=2

@@ -10,6 +10,13 @@
 class KFAIController_ZedBoss extends KFAIController_Monster
 	native(AI);
 
+/*********************************************************************************************
+* Battle phases
+**********************************************************************************************/
+
+/** TRUE if we've already summoned minions this battle phase */
+var bool bSummonedThisPhase;
+
 /** Called when this controller has possessed inPawn */
 event Possess( Pawn inPawn, bool bVehicleTransition )
 {
@@ -66,6 +73,12 @@ function PlayDamagePlayerDialog( class<DamageType> DmgType );
 
 /** Stub debug command to advance battle phase */
 function DebugNextPhase();
+
+/** Stop summoning zeds */
+function Timer_StopSummoningZeds()
+{
+    MyKFGameInfo.SpawnManager.StopSummoningBossMinions();
+}
 
 /*********************************************************************************************
 *  Victory

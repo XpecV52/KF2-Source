@@ -17,60 +17,6 @@ class KFDT_Slashing_EvisceratorProj extends KFDT_Slashing
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 15;
-
-
-
-
-
-
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
@@ -224,10 +170,8 @@ defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Eviscerator'
    bNoInstigatorDamage=True
-   StunPower=42
-   StumblePower=60
-   LegStumblePower=60
-   GunHitPower=150
+   StumblePower=100.000000
+   MeleeHitPower=100.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
    KDamageImpulse=1000.000000
    KDeathVel=135.000000

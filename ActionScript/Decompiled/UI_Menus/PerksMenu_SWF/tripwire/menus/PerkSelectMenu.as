@@ -3,6 +3,7 @@ package tripwire.menus
     import com.greensock.TweenMax;
     import com.greensock.events.TweenEvent;
     import flash.events.Event;
+    import flash.events.MouseEvent;
     import flash.external.ExternalInterface;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.ui.InputDetails;
@@ -34,6 +35,8 @@ package tripwire.menus
         
         public var _tempSelected:int;
         
+        public var cachedSelectionIndex:int;
+        
         public var bCanUseMenu:Boolean = false;
         
         public function PerkSelectMenu()
@@ -42,9 +45,10 @@ package tripwire.menus
             defaultFirstElement = this.SelectionContainer.perkScrollingList;
         }
         
-        override protected function addedToStage(e:Event) : void
+        override protected function addedToStage(param1:Event) : void
         {
-            super.addedToStage(e);
+            super.addedToStage(param1);
+            this.SelectedPerkSummaryContainer.owner = this;
             this.SelectedPerkSummaryContainer.configureButton.addEventListener(ButtonEvent.CLICK,this.onButtonClick,false,0,true);
             this.SelectedPerkSummaryContainer.configureButton.clickSoundEffect = "Button_Selected";
             this.SkillsContainer.confirmButton.addEventListener(ButtonEvent.CLICK,this.onButtonClick,false,0,true);
@@ -53,6 +57,12 @@ package tripwire.menus
             this.SelectionContainer.selectContainer();
             this.openPerkDetails();
             currentElement = this.SelectionContainer.perkScrollingList;
+            this.HeaderContainer.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
+            this.DetailsContainer.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
+            this.SkillsContainer.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
+            this.SelectedPerkSummaryContainer.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
+            this.SelectionContainer.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            leftSidePanels.push(this.SelectionContainer);
         }
         
         override public function focusGroupIn() : void
@@ -63,6 +73,10 @@ package tripwire.menus
                 this.SelectionContainer.perkScrollingList.selectedIndex = this._tempSelected;
             }
             this.SelectionContainer.header.controllerIconVisible = !bSelected;
+            if(bManagerUsingGamepad)
+            {
+                this.SelectedPerkSummaryContainer.controllerIconContainer.visible = true;
+            }
         }
         
         override public function focusGroupOut() : void
@@ -71,18 +85,22 @@ package tripwire.menus
             this._tempSelected = this.SelectionContainer.perkScrollingList.selectedIndex;
             this.SelectionContainer.perkScrollingList.selectedIndex = -1;
             this.SelectionContainer.header.controllerIconVisible = !bSelected;
+            if(bManagerUsingGamepad)
+            {
+                this.SelectedPerkSummaryContainer.controllerIconContainer.visible = false;
+            }
         }
         
-        override public function openContainer() : void
+        override public function openContainer(param1:Boolean = true) : void
         {
-            super.openContainer();
+            super.openContainer(param1);
             this.SkillsContainer.closeContainer();
             this.openPerkDetails();
         }
         
-        override protected function onOpened(e:TweenEvent = null) : void
+        override protected function onOpened(param1:TweenEvent = null) : void
         {
-            super.onOpened(e);
+            super.onOpened(param1);
             this.bCanUseMenu = true;
         }
         
@@ -94,13 +112,13 @@ package tripwire.menus
             this.SelectionContainer.closeContainer();
         }
         
-        public function set locked(value:Boolean) : void
+        public function set locked(param1:Boolean) : void
         {
-            this._bLocked = value;
-            this.SelectionContainer.perkSelectBlocker.visible = value;
-            this.SelectionContainer.perkScrollingList.enabled = !value;
-            this.SelectedPerkSummaryContainer.configureButton.enabled = !value;
-            if(value)
+            this._bLocked = param1;
+            this.SelectionContainer.perkSelectBlocker.visible = param1;
+            this.SelectionContainer.perkScrollingList.enabled = !param1;
+            this.SelectedPerkSummaryContainer.configureButton.enabled = !param1;
+            if(param1)
             {
                 this.closeSkillConfigure();
             }
@@ -111,9 +129,9 @@ package tripwire.menus
             return this._bLocked;
         }
         
-        override protected function onBPressed(details:InputDetails) : void
+        override protected function onBPressed(param1:InputDetails) : void
         {
-            super.onBPressed(details);
+            super.onBPressed(param1);
             if(this.SkillsContainer.bOpen)
             {
                 this.closeSkillConfigure();
@@ -129,22 +147,27 @@ package tripwire.menus
             currentElement = this.SkillsContainer;
             TweenMax.killTweensOf([this.DetailsContainer,this.HeaderContainer,this.SelectedPerkSummaryContainer]);
             this.closePerkDetails();
+            this.cachedSelectionIndex = this.SelectionContainer.SelectedIndex;
             this.SelectionContainer.deselectContainer();
+            this.SelectionContainer.SelectedIndex = -1;
             TweenMax.to(this,ANIM_TIME,{
                 "useFrames":true,
                 "onComplete":this.SkillsContainer.openContainer
             });
+            showDimLeftSide(true);
         }
         
         private function closeSkillConfigure() : void
         {
             currentElement = this.SelectionContainer.perkScrollingList;
             this.SkillsContainer.closeContainer();
+            this.SelectionContainer.SelectedIndex = this.cachedSelectionIndex;
             this.SelectionContainer.selectContainer();
             TweenMax.to(this,ANIM_TIME,{
                 "useFrames":true,
                 "onComplete":this.openPerkDetails
             });
+            showDimLeftSide(false);
         }
         
         private function openPerkDetails() : void
@@ -161,13 +184,13 @@ package tripwire.menus
             this.SelectedPerkSummaryContainer.closeContainer();
         }
         
-        public function onButtonClick(e:ButtonEvent) : void
+        public function onButtonClick(param1:ButtonEvent) : void
         {
             if(!this.bCanUseMenu)
             {
                 return;
             }
-            switch(e.currentTarget)
+            switch(param1.currentTarget)
             {
                 case this.SelectedPerkSummaryContainer.configureButton:
                     this.openSkillConfigure();
@@ -177,22 +200,26 @@ package tripwire.menus
             }
         }
         
-        public function swapPerk(event:Event) : void
+        public function swapPerk(param1:Event) : void
         {
-            if(this.DetailsContainer.visible)
+            if(this.SkillsContainer.visible)
             {
-                this.closePerkDetails();
+                this.SkillsContainer.closeContainer();
+                if(!bManagerUsingGamepad)
+                {
+                    this.cachedSelectionIndex = this.SelectionContainer.SelectedIndex;
+                }
                 TweenMax.to(this,ANIM_TIME,{
                     "useFrames":true,
-                    "onComplete":this.openPerkDetails
+                    "onComplete":this.SkillsContainer.openContainer
                 });
             }
             else
             {
-                this.SkillsContainer.closeContainer();
-                TweenMax.to(this,ANIM_TIME,{
+                this.closePerkDetails();
+                TweenMax.to(sectionHeader,ANIM_TIME,{
                     "useFrames":true,
-                    "onComplete":this.SkillsContainer.openContainer
+                    "onComplete":this.openPerkDetails
                 });
             }
         }
@@ -207,6 +234,7 @@ package tripwire.menus
                 {
                     this.SkillsContainer.selectContainer();
                 }
+                showDimLeftSide(false);
             }
         }
     }

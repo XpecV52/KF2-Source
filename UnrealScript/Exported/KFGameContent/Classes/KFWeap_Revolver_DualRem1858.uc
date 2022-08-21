@@ -142,6 +142,7 @@ defaultproperties
    BulletMeshComponents(11)=BulletMeshComp5_L
    CylinderRotInfo=(InC=-60.000000,Time=0.087500)
    InventorySize=4
+   MagazineCapacity(0)=12
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -155,7 +156,6 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=35.000000
    WeaponSelectTexture=Texture2D'WEP_UI_DualRemington1858_TEX.UI_WeaponSelect_DualRemington'
-   MagazineCapacity(0)=12
    MaxSpareAmmo(0)=180
    InitialSpareMags(0)=7
    IdleFidgetAnims(3)="Guncheck_v4"
@@ -227,7 +227,7 @@ defaultproperties
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_DualBase:FirstPersonMesh'
    End Object
    Mesh=FirstPersonMesh
-   ItemName="Dual 1858 Revolver"
+   ItemName="Dual 1858 Revolvers"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_DualBase:StaticPickupComponent'
       StaticMesh=StaticMesh'WEP_3P_Remington_1858_MESH.Wep_3P_Remington_1858_Pickup'
       ReplacementPrimitive=None

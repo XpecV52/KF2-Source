@@ -36,7 +36,7 @@ protected simulated function StopFlightEffects();
 
 defaultproperties
 {
-    FuseTime=1
+    FuseTime=0.5
     bAllowTossDuringZedGrabRotation=true
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicGrenade'
     ExplosionActorClass=Class'KFExplosion_MedicGrenade'
@@ -56,7 +56,10 @@ defaultproperties
         ExploLightFlickerInterpSpeed=15
         FractureMeshRadius=0
         FracturePartVel=0
-        CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
+        CamShake=none
+        CamShakeInnerRadius=0
+        CamShakeOuterRadius=0
+        CamShakeFalloff=1.5
     object end
     // Reference: KFGameExplosion'Default__KFProj_MedicGrenade.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0

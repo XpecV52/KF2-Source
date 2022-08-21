@@ -26,7 +26,7 @@ package
             tileList.direction = "vertical";
             tileList.enabled = true;
             tileList.enableInitCallback = false;
-            tileList.externalColumnCount = 0;
+            tileList.externalColumnCount = 4;
             tileList.focusable = true;
             tileList.itemRendererName = "TileRendererMC";
             tileList.itemRendererInstanceName = "";
@@ -40,7 +40,7 @@ package
             tileList.rowHeight = 0;
             tileList.scrollBar = "scrollBarMC";
             tileList.visible = true;
-            tileList.wrapping = "normal";
+            tileList.wrapping = "stick";
             try
             {
                 tileList["componentInspectorSetting"] = false;

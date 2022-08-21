@@ -492,7 +492,6 @@ defaultproperties
       Rotation=(Pitch=16384,Yaw=0,Roll=0)
       PerObjectShadowCullDistance=4000.000000
       bAllowPerObjectShadows=True
-      bAllowPerObjectShadowBatching=True
       Name="KFSyringeStaticMeshComponent1"
       ObjectArchetype=StaticMeshComponent'kfgamecontent.Default__KFPawn_ZedPatriarch:KFSyringeStaticMeshComponent1'
    End Object
@@ -511,7 +510,6 @@ defaultproperties
       Rotation=(Pitch=16384,Yaw=0,Roll=0)
       PerObjectShadowCullDistance=4000.000000
       bAllowPerObjectShadows=True
-      bAllowPerObjectShadowBatching=True
       Name="KFSyringeStaticMeshComponent2"
       ObjectArchetype=StaticMeshComponent'kfgamecontent.Default__KFPawn_ZedPatriarch:KFSyringeStaticMeshComponent2'
    End Object
@@ -530,7 +528,6 @@ defaultproperties
       Rotation=(Pitch=16384,Yaw=0,Roll=0)
       PerObjectShadowCullDistance=4000.000000
       bAllowPerObjectShadows=True
-      bAllowPerObjectShadowBatching=True
       Name="KFSyringeStaticMeshComponent3"
       ObjectArchetype=StaticMeshComponent'kfgamecontent.Default__KFPawn_ZedPatriarch:KFSyringeStaticMeshComponent3'
    End Object
@@ -538,7 +535,7 @@ defaultproperties
    BattlePhases(0)=(TentacleDamage=10,HealAmounts=(1.000000))
    BattlePhases(1)=(HealAmounts=(1.000000))
    BattlePhases(2)=(HealAmounts=(0.900000))
-   BattlePhases(3)=()
+   BattlePhases(3)=(bCanSummonMinions=True)
    MissileProjectileClass=Class'kfgamecontent.KFProj_Missile_Patriarch_Versus'
    MaxMortarRangeSQ=6250000.000000
    bVersusZed=True
@@ -572,13 +569,23 @@ defaultproperties
    End Object
    ThirdPersonHeadMeshComponent=ThirdPersonHead0
    bNeedsCrosshair=True
-   Begin Object Class=KFPawnAfflictions_Patriarch Name=Afflictions_0 Archetype=KFPawnAfflictions_Patriarch'kfgamecontent.Default__KFPawn_ZedPatriarch:Afflictions_0'
+   Begin Object Class=KFAfflictionManager Name=Afflictions_0 Archetype=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedPatriarch:Afflictions_0'
+      AfflictionClasses(0)=Class'KFGame.KFAffliction_EMPDisrupt'
+      AfflictionClasses(1)=Class'kfgamecontent.KFAffliction_Fire_Patriarch'
+      AfflictionClasses(2)=()
+      AfflictionClasses(3)=()
+      AfflictionClasses(4)=()
+      AfflictionClasses(5)=()
+      AfflictionClasses(6)=()
+      AfflictionClasses(7)=()
+      AfflictionClasses(8)=()
+      AfflictionClasses(9)=()
       FireFullyCharredDuration=50.000000
       FireCharPercentThreshhold=0.350000
       Name="Afflictions_0"
-      ObjectArchetype=KFPawnAfflictions_Patriarch'kfgamecontent.Default__KFPawn_ZedPatriarch:Afflictions_0'
+      ObjectArchetype=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedPatriarch:Afflictions_0'
    End Object
-   AfflictionHandler=KFPawnAfflictions_Patriarch'kfgamecontent.Default__KFPawn_ZedPatriarch_Versus:Afflictions_0'
+   AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedPatriarch_Versus:Afflictions_0'
    SprintSpeed=700.000000
    SprintStrafeSpeed=400.000000
    TeammateCollisionRadiusPercent=0.300000
@@ -599,35 +606,34 @@ defaultproperties
       SpecialMoveClasses(0)=None
       SpecialMoveClasses(1)=Class'KFGame.KFSM_MeleeAttack'
       SpecialMoveClasses(2)=Class'KFGame.KFSM_DoorMeleeAttack'
-      SpecialMoveClasses(3)=None
-      SpecialMoveClasses(4)=Class'KFGame.KFSM_Patriarch_Grapple'
-      SpecialMoveClasses(5)=Class'KFGame.KFSM_Stumble'
-      SpecialMoveClasses(6)=Class'KFGame.KFSM_RecoverFromRagdoll'
-      SpecialMoveClasses(7)=Class'KFGame.KFSM_RagdollKnockdown'
-      SpecialMoveClasses(8)=Class'KFGame.KFSM_DeathAnim'
-      SpecialMoveClasses(9)=Class'KFGame.KFSM_Stunned'
-      SpecialMoveClasses(10)=Class'KFGame.KFSM_Frozen'
+      SpecialMoveClasses(3)=Class'KFGame.KFSM_Patriarch_Grapple'
+      SpecialMoveClasses(4)=Class'KFGame.KFSM_Stumble'
+      SpecialMoveClasses(5)=Class'KFGame.KFSM_RecoverFromRagdoll'
+      SpecialMoveClasses(6)=Class'KFGame.KFSM_RagdollKnockdown'
+      SpecialMoveClasses(7)=Class'KFGame.KFSM_DeathAnim'
+      SpecialMoveClasses(8)=Class'KFGame.KFSM_Stunned'
+      SpecialMoveClasses(9)=Class'KFGame.KFSM_Frozen'
+      SpecialMoveClasses(10)=None
       SpecialMoveClasses(11)=None
-      SpecialMoveClasses(12)=None
-      SpecialMoveClasses(13)=Class'kfgamecontent.KFSM_Patriarch_Taunt'
-      SpecialMoveClasses(14)=Class'KFGame.KFSM_Zed_WalkingTaunt'
+      SpecialMoveClasses(12)=Class'kfgamecontent.KFSM_Patriarch_Taunt'
+      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_WalkingTaunt'
+      SpecialMoveClasses(14)=None
       SpecialMoveClasses(15)=None
-      SpecialMoveClasses(16)=None
-      SpecialMoveClasses(17)=Class'kfgamecontent.KFSM_Patriarch_Heal'
-      SpecialMoveClasses(18)=Class'kfgamecontent.KFSM_Patriarch_MortarAttack'
-      SpecialMoveClasses(19)=Class'kfgamecontent.KFSM_Patriarch_MissileAttack'
-      SpecialMoveClasses(20)=Class'kfgamecontent.KFSM_Patriarch_MinigunBarrage'
-      SpecialMoveClasses(21)=None
-      SpecialMoveClasses(22)=Class'kfgamecontent.KFSM_PlayerPatriarch_Melee'
-      SpecialMoveClasses(23)=Class'kfgamecontent.KFSM_PlayerPatriarch_MinigunBarrage'
-      SpecialMoveClasses(24)=Class'kfgamecontent.KFSM_PlayerPatriarch_TentacleGrab'
-      SpecialMoveClasses(25)=Class'kfgamecontent.KFSM_PlayerPatriarch_MissileAttack'
-      SpecialMoveClasses(26)=Class'kfgamecontent.KFSM_PlayerPatriarch_Heal'
-      SpecialMoveClasses(27)=Class'kfgamecontent.KFSM_PlayerPatriarch_MortarAttack'
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_HansGrappleVictim'
-      SpecialMoveClasses(30)=None
-      SpecialMoveClasses(31)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(16)=Class'kfgamecontent.KFSM_Patriarch_Heal'
+      SpecialMoveClasses(17)=Class'kfgamecontent.KFSM_Patriarch_MortarAttack'
+      SpecialMoveClasses(18)=Class'kfgamecontent.KFSM_Patriarch_MissileAttack'
+      SpecialMoveClasses(19)=Class'kfgamecontent.KFSM_Patriarch_MinigunBarrage'
+      SpecialMoveClasses(20)=None
+      SpecialMoveClasses(21)=Class'kfgamecontent.KFSM_PlayerPatriarch_Melee'
+      SpecialMoveClasses(22)=Class'kfgamecontent.KFSM_PlayerPatriarch_MinigunBarrage'
+      SpecialMoveClasses(23)=Class'kfgamecontent.KFSM_PlayerPatriarch_TentacleGrab'
+      SpecialMoveClasses(24)=Class'kfgamecontent.KFSM_PlayerPatriarch_MissileAttack'
+      SpecialMoveClasses(25)=Class'kfgamecontent.KFSM_PlayerPatriarch_Heal'
+      SpecialMoveClasses(26)=Class'kfgamecontent.KFSM_PlayerPatriarch_MortarAttack'
+      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(29)=None
+      SpecialMoveClasses(30)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedPatriarch:SpecialMoveHandler_0'
    End Object
@@ -667,7 +673,7 @@ defaultproperties
       ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedPatriarch:DialogAkSoundComponent'
    End Object
    DialogAkComponent=DialogAkSoundComponent
-   Health=2540
+   Health=2240
    Begin Object Class=KFSkeletalMeshComponent Name=KFPawnSkeletalMeshComponent Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedPatriarch:KFPawnSkeletalMeshComponent'
       WireframeColor=(B=0,G=255,R=255,A=255)
       MinDistFactorForKinematicUpdate=0.200000
@@ -690,9 +696,8 @@ defaultproperties
       RBCollideWithChannels=(Default=True,Pawn=True,Vehicle=True,BlockingVolume=True)
       Translation=(X=0.000000,Y=0.000000,Z=-86.000000)
       ScriptRigidBodyCollisionThreshold=200.000000
-      PerObjectShadowCullDistance=4000.000000
+      PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
-      bAllowPerObjectShadowBatching=True
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedPatriarch:KFPawnSkeletalMeshComponent'
    End Object

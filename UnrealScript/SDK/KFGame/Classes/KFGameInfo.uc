@@ -16,6 +16,11 @@ class KFGameInfo extends FrameworkGame
 `include(KFGame\KFMatchStats.uci);
 
 
+/** Scoring */
+var const int POINTS_FOR_BOSS_KILL;
+var const int POINTS_FOR_WAVE_COMPLETION;
+var const int POINTS_PENALTY_FOR_DEATH;
+
 struct native sGameMode
 {
 	var string FriendlyName;
@@ -43,6 +48,9 @@ var					KFTeamInfo_Human	Teams[2];
 
 /** True if there was only one active player pawn at last respawn time */
 var 	bool 	bOnePlayerAtStart;
+
+/** The number of human deaths this match */
+var 	int 	HumanDeaths;
 
 /************************************************************************************
  * @name		User Interface
@@ -87,6 +95,9 @@ var globalconfig 	bool			bDisableTeamCollision;
 var globalconfig bool 				bEnableDeadToVOIP;
 var globalconfig bool 				bDisablePublicVOIPChannel;
 
+/** The time a server should stay up when empty before it dies if no one joins. Used for console dedicated servers only */
+var const config float ServerExpirationForKillWhenEmpty;
+
 /************************************************************************************
  * @name		Game Settings
  ***********************************************************************************/
@@ -94,7 +105,9 @@ var globalconfig bool 				bDisablePublicVOIPChannel;
  var const bool bCanPerkAlwaysChange;
 
 /** The time it takes to respawn when we have reconnected to the same server multiple times */
-var const int 							ReconnectRespawnTime;
+var const int 	ReconnectRespawnTime;
+
+var private const float XPMultiplier;
 
 /************************************************************************************
  * @name		Game Difficulty
@@ -329,6 +342,8 @@ cpptext
 	virtual void ServerCleanExit();
 
 	virtual UBOOL IsUnrankedGame() {return bIsUnrankedGame;}
+
+	virtual UBOOL IsStandardGame();
 }
 
 // Returns num of alive AI
@@ -499,7 +514,10 @@ event InitGame( string Options, out string ErrorMessage )
 	GameLength = Clamp(GetIntOption( Options, "GameLength", GameLength ), 0, SpawnManagerClasses.Length - 1);
 	GameDifficulty = Clamp(GameDifficulty, 0, MaxGameDifficulty);
 
-	OnlineSub.GetLobbyInterface().LobbyJoinGame();
+	if( OnlineSub != none )
+	{
+		OnlineSub.GetLobbyInterface().LobbyJoinGame();
+	}
 
 	if( Role == ROLE_Authority )
 	{
@@ -520,6 +538,12 @@ event InitGame( string Options, out string ErrorMessage )
 	ReadyUpDelay = Clamp( GetIntOption( Options, "ReadyUpDelay", ReadyUpDelay ), 0, 300 );
 	EndOfGameDelay = Clamp( GetIntOption( Options, "EndOfGameDelay", EndOfGameDelay ), 0, 120 );
 	FriendlyFireScale = FClamp( GetFloatOption( Options, "FriendlyFireScale", FriendlyFireScale ), 0, 1.f );
+
+	// BWJ - 4-11-16 - Dedicated server builds for console kill themselves after x seconds if empty. Important for playfab
+	if( WorldInfo.IsPlayfabServer() )
+	{
+		SetTimer( ServerExpirationForKillWhenEmpty, true, nameof(CheckPopulation) );
+	}
 }
 
 /**
@@ -548,10 +572,7 @@ static function float GetFloatOption( string Options, string ParseString, float 
  * 		  this a custom server
   * @return true if custom
  */
-protected function bool CheckForCustomSettings()
-{
-	return bDisablePickups || MaxPlayers < 6 || FriendlyFireScale > 0.f;
-}
+protected native function bool CheckForCustomSettings();
 
 event PreBeginPlay()
 {
@@ -712,7 +733,66 @@ function Logout( Controller Exiting )
 	{
 		UpdateGameSettings();
 	}
+
+	if( WorldInfo.IsPlayfabServer() )
+	{
+		if( PlayerController(Exiting) != none )
+		{
+			// Check the current population to see if we need to shut down the next frame
+			SetTimer( 0.01, false, nameof(CheckPopulation) );
+
+			// Notify playfab that a player has left
+			if( Exiting.PlayerReplicationInfo != None && Exiting.PlayerReplicationInfo.PlayfabPlayerId != "" )
+			{
+				class'GameEngine'.static.GetPlayfabInterface().ServerNotifyPlayerLeft( Exiting.PlayerReplicationInfo.PlayfabPlayerId );
+			}
+		}
+	}
 }
+
+/* ProcessServerTravel()
+ Optional handling of ServerTravel for network games.
+*/
+function ProcessServerTravel(string URL, optional bool bAbsolute)
+{
+	super.ProcessServerTravel( URL, bAbsolute );
+
+	// Set the last travel time in our persistent game data
+    class'KFMapTravelData'.static.SetLastTravelTime( WorldInfo.RealTimeSeconds );
+    class'KFMapTravelData'.static.SetLastGameMap( WorldInfo.GetMapName(true) );
+
+	//@HSL_BEGIN - JRO - 4/28/2016 - Recreate the session after each match
+	`log("SESSIONS - Clearing ConsoleGameSessionGuid for a new map"@URL);
+	KFGameEngine(Class'Engine'.static.GetEngine()).ConsoleGameSessionGuid = "";
+	//@HSL_END
+}
+
+function CheckPopulation()
+{
+	local bool bNeedsShutdown;
+	local int i;
+
+	if( WorldInfo.IsPlayfabServer() )
+	{
+		bNeedsShutdown = true;
+
+		for( i = 0; i < GameReplicationInfo.PRIArray.Length; i++ )
+		{
+			if( !GameReplicationInfo.PRIArray[i].bBot )
+			{
+				bNeedsShutdown = false;
+				break;
+			}
+		}
+	}
+
+	if( bNeedsShutdown )
+	{
+		`log("Server needs shutdown! Exiting now");
+		ConsoleCommand("Exit");
+	}
+}
+
 
 event InitAIDirector()
 {
@@ -941,24 +1021,25 @@ function KFPawn SpawnCustomizationPawn( NavigationPoint StartSpot )
 /** Overwritten to restart the player even if we are using a customization pawn*/
 function StartHumans()
 {
-	local PlayerController P;
+	local KFPlayerController KFPC;
 	local int NumPlayerPawns;
 
-	foreach WorldInfo.AllControllers(class'PlayerController', P)
+	foreach WorldInfo.AllControllers( class'KFPlayerController', KFPC )
 	{
-		if( P.Pawn == None || KFPawn_Customization(P.Pawn) != none )
+		if( bGameEnded )
 		{
-			if( bGameEnded )
+			return; // telefrag ended the game with ridiculous frag limit
+		}
+
+		if( KFPC.Pawn == None || KFPawn_Customization(KFPC.Pawn) != none )
+		{
+			if( KFPC.CanRestartPlayer() && KFPC.GetTeamNum() != 255 )
 			{
-				return; // telefrag ended the game with ridiculous frag limit
-			}
-			else if( P.CanRestartPlayer() && P.GetTeamNum() != 255 )
-			{
-				RestartPlayer( P );
+				RestartPlayer( KFPC );
 			}
 		}
 
-		if ( P.Pawn != None )
+		if( KFPC.Pawn != None || KFPC.bWaitingForClientPerkData )
 		{
 			NumPlayerPawns++;
 		}
@@ -970,10 +1051,27 @@ function StartHumans()
 function RestartPlayer(Controller NewPlayer)
 {
 	local KFPlayerController KFPC;
+	local KFPerk MyPerk;
 
+	KFPC = KFPlayerController( NewPlayer );
+
+	// Make sure the perk is initialized before spawning in, if not, wait for it -- networked games only
+	if( WorldInfo.NetMode != NM_StandAlone )
+	{
+	    if( KFPC != none && KFPC.GetTeamNum() != 255 )
+	    {
+	    	MyPerk = KFPC.GetPerk();
+	    	if( MyPerk == none || !MyPerk.bInitialized )
+	    	{
+	    		KFPC.WaitForPerkAndRespawn();
+	    		return;
+	    	}
+	    }
+	}
+
+	// If we have a customization pawn, destroy it before spawning a new pawn with super.RestartPlayer
     if( NewPlayer.Pawn != none && KFPawn_Customization(NewPlayer.Pawn) != none )
 	{
-		// If we have a customization pawn, destroy it before spawning a new pawn with super.RestartPlayer
 	 	NewPlayer.Pawn.Destroy();
 	}
 
@@ -981,7 +1079,6 @@ function RestartPlayer(Controller NewPlayer)
 
   	if( NewPlayer.Pawn != none )
   	{
-		KFPC = KFPlayerController( NewPlayer );
 		if( KFPC != none )
 		{
 			// Initialize game play post process effects such as damage, low health, etc.
@@ -1021,7 +1118,7 @@ function KFCustomizationPoint FindCustomizationStart( Controller Player )
 		}
 	}
 
-	return none;
+	return CP;
 }
 
 function bool CheckPointCollision( NavigationPoint P, Controller Player )
@@ -1099,9 +1196,6 @@ function SetMonsterDefaults( KFPawn_Monster P )
     	}
 	}
 
-    RandomSpeedMod = DifficultyInfo.GetAIRandomSpeedMod();
-	GroundSpeedMod = GameConductor.CurrentAIMovementSpeedMod * RandomSpeedMod;
-
     // Scale health and damage by game conductor values for versus zeds
     if( P.bVersusZed )
     {
@@ -1110,11 +1204,17 @@ function SetMonsterDefaults( KFPawn_Monster P )
 
     	// scale damage
         P.DifficultyDamageMod = DamageMod * GameConductor.CurrentVersusZedDamageMod;
+
+        RandomSpeedMod = 1.f;
+		GroundSpeedMod = 1.f;
     }
     else
     {
     	// scale damage
         P.DifficultyDamageMod = DamageMod;
+
+        RandomSpeedMod = DifficultyInfo.GetAIRandomSpeedMod();
+		GroundSpeedMod = GameConductor.CurrentAIMovementSpeedMod * RandomSpeedMod;
     }
 
     //`log("Start P.GroundSpeed = "$P.GroundSpeed$" GroundSpeedMod = "$GroundSpeedMod$" percent of default = "$(P.default.GroundSpeed * GroundSpeedMod)/P.default.GroundSpeed$" RandomSpeedMod= "$RandomSpeedMod);
@@ -1166,7 +1266,7 @@ function SetMonsterDefaults( KFPawn_Monster P )
 */
 function SetTeam(Controller Other, KFTeamInfo_Human NewTeam)
 {
-	if ( Other.PlayerReplicationInfo == None || Other.PlayerReplicationInfo.bOnlySpectator )
+	if( Other.PlayerReplicationInfo == None || Other.PlayerReplicationInfo.bOnlySpectator || NewTeam == Other.PlayerReplicationInfo.Team )
 	{
 		return;
 	}
@@ -1185,6 +1285,10 @@ function SetTeam(Controller Other, KFTeamInfo_Human NewTeam)
 
         GameConductor.HandlePlayerChangedTeam();
 	}
+
+    // Force net update for UI snappyness
+    Other.PlayerReplicationInfo.bNetDirty = true;
+    Other.PlayerReplicationInfo.bForceNetUpdate = true;	
 }
 
 /* create a player team, and fill from the team roster
@@ -1263,8 +1367,8 @@ function ReduceDamage(out int Damage, Pawn Injured, Controller InstigatedBy, vec
 
 	if ( Damage > 0 && InstigatedBy != None && InstigatedBy != Injured.Controller )
 	{
-		// Only human players who are not on team 255 (zeds team) will scale friendly firef
-		if ( Injured.GetTeamNum() != 255 && Injured.GetTeamNum() == InstigatedBy.GetTeamNum() )
+		// Friendly fire is scaled for all humans
+		if ( Injured.IsHumanControlled() && Injured.GetTeamNum() == InstigatedBy.GetTeamNum() )
 		{
 			Damage *= FriendlyFireScale;
 
@@ -1302,7 +1406,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 			{
 				KillerLabel = "self";
 			}
-			else
+			else if( Killer != none )
 			{
 				KFAIC = KFAIController(Killer);
 				if ( KFAIC != none )
@@ -1394,7 +1498,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 
 	        	if( KilledPRI.Team != none )
 	        	{
-		        	KilledPRI.Team.Score -= TeamPenalty;
+		        	KFTeamInfo_Human(KilledPRI.Team).AddScore( -TeamPenalty );
 		        	`log("SCORING: Team lost" @ TeamPenalty @ "dosh for a player dying", bLogScoring);
 		        }
 
@@ -1402,11 +1506,25 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 	        	KilledPRI.PlayerHealthPercent = 0;
 	        }
 	    }
+	}
+}
 
-        if( KilledPawn != none && KFPawn_Human(KilledPawn) != none )
-        {
-            KFPawn_Human(KilledPawn).BroadcastDeathMessage( Killer );
-        }
+function BroadcastDeathMessage(Controller Killer, Controller Other, class<DamageType> damageType)
+{
+	if ( (Killer == Other) || (Killer == None) )
+	{	//suicide
+		BroadcastLocalized(self, class'KFLocalMessage_Game', KMT_Suicide, None, Other.PlayerReplicationInfo);
+	}
+	else
+	{
+		if(Killer.IsA('KFAIController'))
+		{
+			BroadcastLocalized(self, class'KFLocalMessage_Game', KMT_Killed, none, Other.PlayerReplicationInfo, Killer.Pawn.Class);
+		}
+		else
+		{
+			BroadcastLocalized(self, class'KFLocalMessage_PlayerKills', KMT_PlayerKillPlayer, Killer.PlayerReplicationInfo, Other.PlayerReplicationInfo);
+		}
 	}
 }
 
@@ -1436,6 +1554,25 @@ function BossDied(Controller Killer);
  * @name		Scoring/DO$H
  ***********************************************************************************/
 
+static function int GetBossKillScore()
+{
+	return default.POINTS_FOR_BOSS_KILL;
+}
+
+function ScoreDamage( int DamageAmount, int HealthBeforeDamage, Controller InstigatedBy, Pawn DamagedPawn, class<DamageType> damageType )
+{
+	if( InstigatedBy == none
+		|| !InstigatedBy.bIsPlayer
+		|| InstigatedBy.PlayerReplicationInfo == none
+		|| InstigatedBy.GetTeamNum() == DamagedPawn.GetTeamNum() )
+	{
+		return;
+	}
+
+	DamageAmount = Min( DamageAmount, HealthBeforeDamage );
+	KFPlayerReplicationInfo(InstigatedBy.PlayerReplicationInfo).DamageDealtOnTeam += DamageAmount;
+}
+
 function ScoreKill(Controller Killer, Controller Other)
 {
 	if ( Killer != none && Killer.PlayerReplicationInfo != None && Killer != Other )
@@ -1463,7 +1600,7 @@ function ScoreKill(Controller Killer, Controller Other)
 }
 
 /* A Zed got killed, let's distribute its money money money value */
-function ScoreMonsterKill( Controller Killer, Controller Monster, KFPawn_Monster MonsterPawn )
+protected function ScoreMonsterKill( Controller Killer, Controller Monster, KFPawn_Monster MonsterPawn )
 {
 	if( MonsterPawn != none )
 	{
@@ -1475,12 +1612,12 @@ function ScoreMonsterKill( Controller Killer, Controller Monster, KFPawn_Monster
 			 	MonsterPawn.LastStoredCC != none &&
 			 	MonsterPawn.bIsCloakingSpottedByTeam )
 			{
-				MonsterPawn.LastStoredCC.AddPlayerXP( MonsterPawn.static.GetXPValue(GameDifficulty), class'KFPerk_Commando' );
+				AddPlayerXP(MonsterPawn.LastStoredCC, MonsterPawn.static.GetXPValue(GameDifficulty), class'KFPerk_Commando');
 			}
 		}
 	}
 
-	if(WorldInfo.NetMode == NM_DedicatedServer)
+	if( WorldInfo.NetMode == NM_DedicatedServer && Killer.GetTeamNum() == 0 )
 	{
 		`RecordAARZedKill(KFPlayerController(Killer), MonsterPawn.Class, None );
 	}
@@ -1577,7 +1714,7 @@ function int GetNumHumanTeamPlayers()
 }
 
 /* Who needs some do$h? Give players money after a Zed was killed based on the percentage of damage they dealt*/
-function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, const out array<DamageInfo> DamageHistory, Controller Killer)
+protected function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, const out array<DamageInfo> DamageHistory, Controller Killer)
 {
 	local int i, j, TotalDamage, EarnedDosh;
 	local float AdjustedAIValue, ScoreDenominator, XP;
@@ -1601,7 +1738,10 @@ function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, const out arra
 
 	for ( i = 0; i < DamageHistory.Length; i++ )
 	{
-		if ( DamageHistory[i].DamagerController != none && DamageHistory[i].DamagerController.bIsPlayer && DamageHistory[i].DamagerPRI != none )
+		if( DamageHistory[i].DamagerController != none
+			&& DamageHistory[i].DamagerController.bIsPlayer
+			&& DamageHistory[i].DamagerPRI.GetTeamNum() == 0
+			&& DamageHistory[i].DamagerPRI != none )
 		{
 			EarnedDosh = Round( DamageHistory[i].TotalDamage * ScoreDenominator );
 			`log("SCORING: Player" @ DamageHistory[i].DamagerPRI.PlayerName @ "received" @ EarnedDosh @ "dosh for killing a" @ MonsterClass, bLogScoring);
@@ -1609,19 +1749,25 @@ function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, const out arra
 			DamagerKFPRI = KFPlayerReplicationInfo(DamageHistory[i].DamagerPRI);
 			if( DamagerKFPRI != none )
 			{
-				DamagerKFPRI.AddDosh(EarnedDosh, true);
 				//Killer cannot receive assists.
 				if( Killer.PlayerReplicationInfo != DamagerKFPRI )
 				{
 					DamagerKFPRI.Assists++;
+
+					if( DamageHistory[i].DamagePerks.Length == 1 )
+					{
+						DamageHistory[i].DamagePerks[0].static.ModifyAssistDosh( EarnedDosh );
+					}
 				}
+
+				DamagerKFPRI.AddDosh( EarnedDosh, true );
 
 				if( DamagerKFPRI.Team != none )
 				{
 					//Dosh
-					DamagerKFPRI.Team.Score += EarnedDosh;
+					KFTeamInfo_Human(DamagerKFPRI.Team).AddScore( EarnedDosh );
 
-					if ( DamageHistory[i].DamagePerks.Length <= 0 )
+					if( DamageHistory[i].DamagePerks.Length <= 0 )
 					{
 						continue;
 					}
@@ -1632,9 +1778,9 @@ function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, const out arra
 					{
 						XP = MonsterClass.static.GetXPValue(GameDifficulty) / DamageHistory[i].DamagePerks.Length;
 
-						for ( j =0; j < DamageHistory[i].DamagePerks.Length; j++ )
+						for( j = 0; j < DamageHistory[i].DamagePerks.Length; j++ )
 						{
-							KFPC.AddPlayerXP(FCeil(XP), DamageHistory[i].DamagePerks[j]);
+							AddPlayerXP(KFPC, FCeil(XP), DamageHistory[i].DamagePerks[j]);
 						}
 					}
 				}
@@ -1642,6 +1788,9 @@ function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, const out arra
 		}
 	}
 }
+
+/** Grant xp rewards */
+native private function AddPlayerXP(KFPlayerController PC, INT XP, class<KFPerk> PerkClass);
 
 /************************************************************************************
  * @name		Zed time
@@ -2100,8 +2249,29 @@ event MakeReservations(const string URLOptions, const UniqueNetId PlayerId, out 
 
 event PlayerController Login(string Portal, string Options, const UniqueNetID UniqueID, out string ErrorMessage)
 {
+	local PlayerController SpawnedPC;
+	local string ClientAuthTicket, PlayerfabPlayerId;
+
 	SeatPlayer(UniqueID);
-	return super.Login(Portal, Options, UniqueID, ErrorMessage);
+	SpawnedPC = super.Login(Portal, Options, UniqueID, ErrorMessage);
+
+	if( WorldInfo.IsPlayfabServer() && SpawnedPC != None )
+	{
+		`log("Player login with options"@Options);
+
+		ClientAuthTicket = ParseOption( Options, "AuthTicket" );
+		PlayerfabPlayerId = ParseOption( Options, "PlayfabPlayerId" );
+		`log("Player controller log in with auth ticket"@ClientAuthTicket@"and playfab player id"@PlayerfabPlayerId);
+
+		if( ClientAuthTicket != "" )
+		{
+			class'GameEngine'.static.GetPlayfabInterface().ServerValidatePlayer( ClientAuthTicket );
+		}
+
+		SpawnedPC.PlayerReplicationInfo.PlayfabPlayerId = PlayerfabPlayerId;
+	}
+
+	return SpawnedPC;
 }
 
 /** Broadcast message when server needs restart/update.  Called with commandline -autoupdate. */
@@ -2595,6 +2765,11 @@ function OnAIChangeEnemy( BaseAIController AI, Pawn Enemy )
 
 defaultproperties
 {
+	/** Scoring */
+    POINTS_FOR_BOSS_KILL=10000
+    POINTS_FOR_WAVE_COMPLETION=1000
+    POINTS_PENALTY_FOR_DEATH=100
+
 	bTeamGame=true
 	bCanPerkAlwaysChange=true
     bRequiresPushToTalk=true

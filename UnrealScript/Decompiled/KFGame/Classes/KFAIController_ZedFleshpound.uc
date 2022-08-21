@@ -87,17 +87,17 @@ function NotifyMeleeDamageDealt()
     super(KFAIController).NotifyMeleeDamageDealt();
     if(RagePlugin != none)
     {
-        if((MyKFPawn.SpecialMove != 5) && MyKFPawn.SpecialMove != 2)
+        if((MyKFPawn.SpecialMove != 4) && MyKFPawn.SpecialMove != 2)
         {
             RagePlugin.EndRage();
         }
     }
 }
 
-function AIHandleTakenDamage(Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType)
+function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, class<DamageType> DamageType, Vector Momentum)
 {
-    super(KFAIController).AIHandleTakenDamage(DamagerController, Damage, DamageCauser, DamageType);
-    if(RagePlugin != none)
+    super(Controller).NotifyTakeHit(InstigatedBy, HitLocation, Damage, DamageType, Momentum);
+    if((RagePlugin != none) && InstigatedBy != self)
     {
         RagePlugin.AccumulatedDOT += Damage;
     }

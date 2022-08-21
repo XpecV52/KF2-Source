@@ -161,7 +161,7 @@ simulated state Active
 
 				// don't start idle fidget timer if we are out of ammo, because at the moment fidgets use the projectile model
 				// @todo: update fidget system to account for hidden projectile mesh?
-				//StartIdleFidgetTimer();
+			//StartIdleFidgetTimer();
 			}
 			else if ( IdleAnims.Length > 0 )
 			{
@@ -262,8 +262,9 @@ simulated function PerformArtificialReload()
 	PerformReload();
 	
 
-	if ( bAllowClientAmmoTracking && Role < ROLE_Authority )
+	if( bAllowClientAmmoTracking && Role < ROLE_Authority )
 	{
+		InitializeReload();
 		ServerSyncReload(SpareAmmoCount[0]);
 	}
 

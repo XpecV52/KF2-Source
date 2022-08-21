@@ -12,6 +12,7 @@ class KFWeap_Rifle_Winchester1894 extends KFWeap_RifleBase;
 defaultproperties
 {
    InventorySize=5
+   MagazineCapacity(0)=10
    bHasIronSights=True
    bCanBeReloaded=True
    bHasFireLastAnims=True
@@ -23,9 +24,8 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=25.000000
    WeaponSelectTexture=Texture2D'wep_ui_winchester_tex.UI_WeaponSelect_Winchester'
-   MagazineCapacity(0)=10
    MaxSpareAmmo(0)=60
-   InitialSpareMags(0)=2
+   InitialSpareMags(0)=3
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
    BonesToLockOnEmpty(0)="RW_Hammer"
@@ -55,6 +55,7 @@ defaultproperties
    RecoilISMaxPitchLimit=500
    RecoilISMinPitchLimit=65485
    IronSightMeshFOVCompensationScale=1.500000
+   AssociatedPerkClass=Class'KFGame.KFPerk_Sharpshooter'
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
@@ -65,7 +66,7 @@ defaultproperties
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_Winchester1894'
-   FireInterval(0)=0.850000
+   FireInterval(0)=0.750000
    FireInterval(1)=()
    FireInterval(2)=()
    FireInterval(3)=()

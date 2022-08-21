@@ -79,7 +79,7 @@ package tripwire.containers.postGame
             }
         }
         
-        override protected function openAnimation() : *
+        override protected function openAnimation(param1:Boolean = true) : *
         {
             TweenMax.killTweensOf(this);
             TweenMax.fromTo(this,ANIM_TIME,{

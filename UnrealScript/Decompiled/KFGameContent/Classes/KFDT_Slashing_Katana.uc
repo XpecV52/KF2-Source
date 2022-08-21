@@ -126,9 +126,8 @@ static simulated function ModifyDismembermentHitImpulse(KFPawn_Monster inPawn, n
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_Katana'
-    StumblePower=40
-    LegStumblePower=40
-    MeleeHitPower=37
+    StumblePower=30
+    MeleeHitPower=100
     KDamageImpulse=200
     KDeathUpKick=250
 }

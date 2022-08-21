@@ -9,8 +9,6 @@ class KFDT_Slashing_Zweihander extends KFDT_Slashing
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
@@ -132,11 +130,10 @@ defaultproperties
 	KDeathUpKick=200
 	KDeathVel=375
 
-	KnockdownPower=30
-	StunPower=42
-	StumblePower=53
-	LegStumblePower=53
-	MeleeHitPower=50
+	KnockdownPower=0
+	StunPower=0
+	StumblePower=250
+	MeleeHitPower=100
 
 	WeaponDef=class'KFWeapDef_Zweihander'
 	ModifierPerkList(0)=class'KFPerk_Berserker'

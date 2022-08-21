@@ -240,6 +240,7 @@ defaultproperties
 	Begin Object NAME=CollisionCylinder LegacyClassName=Trigger_TriggerCylinderComponent_Class
 		CollisionRadius=+00400.000000
 		CollisionHeight=+00160.000000
+		BlockZeroExtent=false
 	End Object
 
 	// the GRI turns collision on during trader time

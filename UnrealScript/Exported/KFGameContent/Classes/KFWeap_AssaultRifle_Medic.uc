@@ -29,6 +29,7 @@ defaultproperties
    FireModeIconPaths(1)=()
    SingleFireMode=1
    InventorySize=7
+   MagazineCapacity(0)=30
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -41,7 +42,6 @@ defaultproperties
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicAssault'
    SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
-   MagazineCapacity(0)=30
    MaxSpareAmmo(0)=390
    InitialSpareMags(0)=3
    bLoopingFireAnim(0)=True

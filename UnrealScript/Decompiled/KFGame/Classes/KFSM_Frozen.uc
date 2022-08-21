@@ -9,14 +9,13 @@ class KFSM_Frozen extends KFSpecialMove;
 
 var() name FrozenAnim;
 var() array<name> ThawAnims;
-var() float FreezeDuration;
 var() float FreezeInTime;
 var() float FreezeOutTime;
-var transient float BeginFreezePhaseTime;
-var protected ParticleSystem FrozenShatterTemplate;
+var() Vector2D FreezeDuration;
+var float BeginFreezePhaseTime;
+var float FreezeMatParamValue;
 var protected ParticleSystem FrozenSteamTemplate;
 var protected export editinline ParticleSystemComponent FrozenSteamEffect;
-var transient bool bShatter;
 
 function SpecialMoveStarted(bool bForced, name PrevMove)
 {
@@ -26,25 +25,39 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
 
 function DoFreeze()
 {
+    local float TimeUntilThaw;
+
     if(KFPOwner.Role == ROLE_Authority)
     {
-        FreezeDuration = (default.FreezeDuration - (default.FreezeDuration / 4)) + ((default.FreezeDuration / 2) * FRand());
-        KFPOwner.SetTimer(FreezeDuration, false, 'DoThaw', self);
+        TimeUntilThaw = ((KFPOwner.IncapSettings[8].Duration > float(0)) ? KFPOwner.IncapSettings[8].Duration : RandRange(FreezeDuration.X, FreezeDuration.Y));
+        KFPOwner.SetTimer(TimeUntilThaw, false, 'DoThaw', self);
     }
-    BeginFreezePhaseTime = KFPOwner.WorldInfo.TimeSeconds;
-    KFPOwner.SetTimer(0.1, true, 'UpdateFreezeInParam', self);
+    if(PawnOwner.WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        BeginFreezePhaseTime = KFPOwner.WorldInfo.TimeSeconds;
+        KFPOwner.SetTimer(0.1, true, 'UpdateFreezeInParam', self);
+        FrozenSteamEffect = KFPOwner.WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(FrozenSteamTemplate, KFPOwner.Mesh, 'Root');
+    }
     PlaySpecialMoveAnim(FrozenAnim, 0, FreezeInTime, 0.3, 0.001, true);
-    FrozenSteamEffect = KFPOwner.WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(FrozenSteamTemplate, KFPOwner.Mesh, 'Root');
-    bShatter = true;
 }
 
 function DoThaw()
 {
-    if(KFPOwner.Role == ROLE_Authority)
+    local KFPawn_Monster P;
+
+    if(PawnOwner.Role == ROLE_Authority)
     {
-        KFPOwner.SpecialMoveFlags = 1;
-        KFPOwner.ReplicatedSpecialMove.Flags = 1;
-        PlayThawAnimation();
+        P = KFPawn_Monster(PawnOwner);
+        if((P != none) && P.bIsHeadless)
+        {
+            P.BleedOutTimer();            
+        }
+        else
+        {
+            KFPOwner.SpecialMoveFlags = byte(1 + Rand(ThawAnims.Length));
+            KFPOwner.ReplicatedSpecialMove.Flags = KFPOwner.SpecialMoveFlags;
+            PlayThawAnimation();
+        }
     }
 }
 
@@ -52,18 +65,19 @@ function PlayThawAnimation()
 {
     local byte ThawIndex;
 
-    ThawIndex = byte(Rand(ThawAnims.Length));
+    ThawIndex = byte(KFPOwner.SpecialMoveFlags - 1);
     PlaySpecialMoveAnim(ThawAnims[ThawIndex], 0, FreezeOutTime, 0.3, 0.5, false);
-    if(KFPawn_Monster(KFPOwner).bIsHeadless)
+    if(PawnOwner.WorldInfo.NetMode != NM_DedicatedServer)
     {
-        KFPOwner.Died(none, none, KFPOwner.Location);        
-    }
-    else
-    {
-        bShatter = false;
         BeginFreezePhaseTime = KFPOwner.WorldInfo.TimeSeconds;
         KFPOwner.SetTimer(0.1, true, 'UpdateFreezeOutParam', self);
+        FreezeOutTime = PawnOwner.Mesh.GetAnimLength(ThawAnims[ThawIndex]);
     }
+}
+
+function SpecialMoveFlagsUpdated()
+{
+    PlayThawAnimation();
 }
 
 function UpdateFreezeInParam()
@@ -71,9 +85,8 @@ function UpdateFreezeInParam()
     local float Param;
 
     Param = FMin(1, (KFPOwner.WorldInfo.TimeSeconds - BeginFreezePhaseTime) / FreezeInTime);
-    KFPOwner.AfflictionHandler.SetFrozenParameter(Param);
-    KFPawn_Monster(KFPOwner).RepFrozenMatParam = FloatToByte(Param);
-    if(Param >= FreezeInTime)
+    SetFrozenParameter(Param);
+    if(Param == 1)
     {
         KFPOwner.ClearTimer('UpdateFreezeInParam', self);
     }
@@ -84,40 +97,67 @@ function UpdateFreezeOutParam()
     local float Param;
 
     Param = 1 - FMin(1, (KFPOwner.WorldInfo.TimeSeconds - BeginFreezePhaseTime) / FreezeOutTime);
-    KFPOwner.AfflictionHandler.SetFrozenParameter(Param);
-    KFPawn_Monster(KFPOwner).RepFrozenMatParam = FloatToByte(Param);
-    if(Param >= FreezeOutTime)
+    SetFrozenParameter(Param);
+    if(Param == 0)
     {
         KFPOwner.ClearTimer('UpdateFreezeOutParam', self);
     }
 }
 
-function SpecialMoveFlagsUpdated()
-{
-    PlayThawAnimation();
-}
-
 function SpecialMoveEnded(name PrevMove, name NextMove)
 {
     super.SpecialMoveEnded(PrevMove, NextMove);
-    if(KFPOwner.MyKFAIC != none)
+    if(PawnOwner.WorldInfo.NetMode != NM_DedicatedServer)
     {
-        KFPOwner.MyKFAIC.bPreparingMove = false;
-    }
-    KFPOwner.DetachEmitter(FrozenSteamEffect);
-    if(bShatter)
-    {
-        Shatter();
+        KFPOwner.DetachEmitter(FrozenSteamEffect);
+        if(!PawnOwner.IsAliveAndWell())
+        {
+            PlayDeathEffects();
+            KFPOwner.ClearTimer('UpdateFreezeOutParam', self);
+        }
     }
     KFPOwner.ClearTimer('UpdateFreezeInParam', self);
-    KFPOwner.ClearTimer('UpdateFreezeOutParam', self);
     KFPOwner.ClearTimer('DoThaw', self);
 }
 
-function Shatter()
+function OnGoreMeshSwap()
 {
-    KFPOwner.WorldInfo.MyEmitterPool.SpawnEmitter(FrozenShatterTemplate, KFPOwner.Location, rotator(vect(0, 0, 1)));
-    KFPawn_Monster(KFPOwner).ForceBreakAllConstraints();
+    SetFrozenParameter(FreezeMatParamValue);
+}
+
+function SetFrozenParameter(float FreezeAmount)
+{
+    local MaterialInstanceConstant MIC;
+
+    if(PawnOwner.WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        FreezeMatParamValue = FreezeAmount;
+        foreach KFPOwner.CharacterMICs(MIC,)
+        {
+            MIC.SetScalarParameterValue('Scalar_Ice', FreezeMatParamValue);            
+        }        
+    }
+}
+
+function PlayDeathEffects()
+{
+    if(PawnOwner.WorldInfo.NetMode == NM_DedicatedServer)
+    {
+        return;
+    }
+    if(PawnOwner.HitDamageType != Class'KFDT_Bleeding')
+    {
+        Class'KFDT_Freeze'.static.PlayShatter(KFPOwner, false);        
+    }
+    else
+    {
+        PawnOwner.SetTimer(0.5, false, 'DelayedShatterTimer', self);
+    }
+}
+
+function DelayedShatterTimer()
+{
+    Class'KFDT_Freeze'.static.PlayShatter(KFPOwner, true);
 }
 
 defaultproperties
@@ -126,9 +166,10 @@ defaultproperties
     ThawAnims(0)=Stun_Wakeup_V1
     ThawAnims(1)=Stun_Wakeup_V2
     ThawAnims(2)=Stun_Wakeup_V3
-    FreezeDuration=4
     FreezeInTime=1
     FreezeOutTime=1
+    FreezeDuration=(X=3,Y=5)
+    FrozenSteamTemplate=ParticleSystem'WEP_Freeze_Grenade_EMIT.FX_Freeze_Grenade_Smoke'
     bCanOnlyWanderAtEnd=true
     bDisablesWeaponFiring=true
     bDisableMovement=true

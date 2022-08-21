@@ -5,7 +5,8 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFSM_GrappleCombined extends KFSM_GrappleAttack;
+class KFSM_GrappleCombined extends KFSM_InteractionPawnLeader
+    native(SpecialMoves);
 
 enum EGrappleState
 {
@@ -15,12 +16,16 @@ enum EGrappleState
     EGS_MAX
 };
 
-var float MaxGrabDistance;
-var float MaxVictimZOffset;
-var name GrabStartAnimName;
+var array<name> GrappleAnims;
+var bool bStopFullBodyWhenMoveEnds;
 var bool bCanBeBlocked;
 var bool bCanBeInterrupted;
 var bool bUseRootMotion;
+var byte LastVariant;
+var float MaxGrabDistance;
+var float MaxVictimZOffset;
+var name GrabStartAnimName;
+var float GrabCheckTime;
 var float MinPlayerGrabTime;
 
 protected function bool InternalCanDoSpecialMove()
@@ -48,6 +53,11 @@ function bool CanOverrideMoveWith(name NewMove)
     return false;
 }
 
+static function byte PackFlagsBase(KFPawn P)
+{
+    return 0;
+}
+
 function SpecialMoveStarted(bool bForced, name PrevMove)
 {
     super(KFSpecialMove).SpecialMoveStarted(bForced, PrevMove);
@@ -61,11 +71,9 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
 
 function PlayGrabAnim()
 {
-    local float GrabCheckTime;
-
+    GrabCheckTime = KFSkeletalMeshComponent(PawnOwner.Mesh).GetAnimInterruptTime(GrabStartAnimName);
     if(PawnOwner.Role == ROLE_Authority)
     {
-        GrabCheckTime = KFSkeletalMeshComponent(PawnOwner.Mesh).GetAnimInterruptTime(GrabStartAnimName);
         if(GrabCheckTime <= float(0))
         {
             WarnInternal((((("Failed to play" @ string(GrabStartAnimName)) @ "on special move") @ string(self)) @ "on Pawn") @ string(PawnOwner));
@@ -101,7 +109,6 @@ function CheckGrapple()
     }
     if(((Victim != none) && Victim.IsAliveAndWell()) && Victim.GetTeamNum() != KFPOwner.GetTeamNum())
     {
-        ToEnemy = PawnOwner.Location - Victim.Location;
         if(((Victim != none) && (bCanBeBlocked && Victim.MyKFWeapon != none) && Victim.MyKFWeapon.IsGrappleBlocked(PawnOwner)) || !Victim.CanBeGrabbed(KFPOwner, true))
         {
             return;
@@ -110,6 +117,7 @@ function CheckGrapple()
         {
             return;
         }
+        ToEnemy = PawnOwner.Location - Victim.Location;
         if(VSizeSq(ToEnemy) > Square(MaxGrabDistance))
         {
             return;
@@ -144,6 +152,11 @@ function Pawn FindPlayerGrabTarget()
     }
 }
 
+function bool CanInteractWithPawn(KFPawn OtherPawn)
+{
+    return (((OtherPawn.IsAliveAndWell() && !KFPOwner.IsSameTeam(OtherPawn)) && OtherPawn.Physics != 2) && !OtherPawn.IsDoingSpecialMove()) && super.CanInteractWithPawn(OtherPawn);
+}
+
 function BeginGrapple(optional KFPawn Victim)
 {
     if(PawnOwner.Role == ROLE_Authority)
@@ -154,9 +167,9 @@ function BeginGrapple(optional KFPawn Victim)
         KFPOwner.SpecialMoveFlags = 1;
         KFPOwner.ReplicatedSpecialMove.Flags = KFPOwner.SpecialMoveFlags;
     }
-    if((bPendingStopFire && PawnOwner.IsHumanControlled()) && PawnOwner.IsLocallyControlled())
+    if(PawnOwner.IsHumanControlled() && PawnOwner.IsLocallyControlled())
     {
-        PawnOwner.SetTimer(MinPlayerGrabTime, false, 'PlayerReleasedGrapple', self);
+        PawnOwner.SetTimer(MinPlayerGrabTime, false, 'CheckIfPlayerReleasedGrapple', self);
     }
     if(bUseRootMotion && PawnOwner.Mesh.RootMotionMode == 3)
     {
@@ -165,6 +178,44 @@ function BeginGrapple(optional KFPawn Victim)
     }
     PawnOwner.SetTimer(InteractionStartTimeOut, false, 'InteractionStartTimedOut', self);
     CheckReadyToStartInteraction();
+}
+
+function StartInteraction()
+{
+    local KFAIDirector AIDirector;
+
+    super.StartInteraction();
+    if((Follower != none) && KFPOwner != none)
+    {
+        if(KFWeapon(Follower.Weapon) != none)
+        {
+            KFWeapon(Follower.Weapon).ZedGrabGrenadeTossCooldown = Follower.WorldInfo.TimeSeconds + 0.35;
+        }
+        if((Follower.Controller != none) && KFPlayerController(Follower.Controller) != none)
+        {
+            KFPlayerController(Follower.Controller).ForceLookAtPawn = KFPOwner;
+            KFPlayerController(Follower.Controller).bLockToForceLookAtPawn = true;
+        }
+        if(KFPOwner.MyKFAIC != none)
+        {
+            AIDirector = KFPOwner.MyKFAIC.MyAIDirector;
+            if(KFAIController_Monster(KFPOwner.MyKFAIC) != none)
+            {
+                KFAIController_Monster(KFPOwner.MyKFAIC).bCompletedInitialGrabAttack = true;
+            }            
+        }
+        else
+        {
+            if(KFPOwner.WorldInfo.Game != none)
+            {
+                AIDirector = KFGameInfo(KFPOwner.WorldInfo.Game).GetAIDirector();
+                if(AIDirector != none)
+                {
+                    AIDirector.NotifyPawnGrabbed(Follower, KFPOwner);
+                }
+            }
+        }
+    }
 }
 
 function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime)
@@ -215,6 +266,11 @@ function PlayGrappleLoopAnim()
     PlaySpecialMoveAnim(GrappleAnims[KFPOwner.SpecialMoveFlags >> 4], 0);
 }
 
+function OnFollowerLeavingSpecialMove()
+{
+    KFPOwner.EndSpecialMove();
+}
+
 function SpecialMoveEnded(name PrevMove, name NextMove)
 {
     PawnOwner.ClearTimer('CheckGrapple', self);
@@ -223,18 +279,41 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
         PawnOwner.Mesh.RootMotionMode = PawnOwner.Mesh.default.RootMotionMode;
         KFPOwner.BodyStanceNodes[0].SetRootBoneAxisOption(1, 1, 1);
     }
+    if(bStopFullBodyWhenMoveEnds)
+    {
+        KFPOwner.StopBodyAnim(0, 0.2);
+    }
     super.SpecialMoveEnded(PrevMove, NextMove);
 }
 
 function NotifyOwnerTakeHit(class<KFDamageType> DamageType, Vector HitLoc, Vector HitDir, Controller InstigatedBy)
 {
+    if(((InstigatedBy != none) && KFPOwner != none) && InstigatedBy.GetTeamNum() == KFPOwner.GetTeamNum())
+    {
+        return;
+    }
+    if(!KFPOwner.IsHumanControlled())
+    {
+        KFPOwner.EndSpecialMove();
+        if(KFPOwner.CanDoSpecialMove(4) && DamageType.default.StumblePower > float(0))
+        {
+            KFPOwner.DoSpecialMove(4,,, Class'KFSM_Stumble'.static.PackBodyHitSMFlags(KFPOwner, HitDir));
+        }
+    }
+}
+
+function NotifyHitReactionInterrupt()
+{
+    local Vector HitDir;
+
     if(KFPOwner.SpecialMoveFlags == 0)
     {
-        if(bCanBeInterrupted && Class'KFSM_PlaySingleAnim'.static.IsAnInterruptHit(PawnOwner, DamageType))
+        if(bCanBeInterrupted)
         {
-            if(KFPOwner.CanDoSpecialMove(5))
+            if(KFPOwner.CanDoSpecialMove(4))
             {
-                KFPOwner.DoSpecialMove(5,,, Class'KFSM_Stumble'.static.PackBodyHitSMFlags(KFPOwner, HitDir));
+                HitDir = Normal(KFPOwner.HitFxInfo.EncodedHitDirection);
+                KFPOwner.DoSpecialMove(4,,, Class'KFSM_Stumble'.static.PackBodyHitSMFlags(KFPOwner, HitDir));
             }
         }
     }
@@ -243,23 +322,15 @@ function NotifyOwnerTakeHit(class<KFDamageType> DamageType, Vector HitLoc, Vecto
 function SpecialMoveButtonRetriggered()
 {
     bPendingStopFire = false;
-    if(PawnOwner.IsTimerActive('PlayerReleasedGrapple', self))
-    {
-        PawnOwner.ClearTimer('PlayerReleasedGrapple', self);
-    }
 }
 
 function SpecialMoveButtonReleased()
 {
     bPendingStopFire = true;
-    if(KFPOwner.SpecialMoveFlags != 0)
+    if((Follower == none) || KFPOwner.IsTimerActive('CheckIfPlayerReleasedGrapple', self))
     {
-        PlayerReleasedGrapple();
+        return;
     }
-}
-
-function PlayerReleasedGrapple()
-{
     KFPOwner.EndSpecialMove();
     if((KFPOwner.Role < ROLE_Authority) && KFPOwner.IsLocallyControlled())
     {
@@ -267,13 +338,36 @@ function PlayerReleasedGrapple()
     }
 }
 
+function CheckIfPlayerReleasedGrapple()
+{
+    if(bPendingStopFire)
+    {
+        KFPOwner.EndSpecialMove();
+        if((KFPOwner.Role < ROLE_Authority) && KFPOwner.IsLocallyControlled())
+        {
+            KFPOwner.ServerDoSpecialMove(0, true);
+        }
+    }
+}
+
 defaultproperties
 {
+    GrappleAnims(0)=Grab_Attack_V1
+    GrappleAnims(1)=Grab_Attack_V2
+    GrappleAnims(2)=Grab_Attack_V3
+    bStopFullBodyWhenMoveEnds=true
+    bCanBeBlocked=true
+    bCanBeInterrupted=true
     MaxGrabDistance=210
     MaxVictimZOffset=128
     GrabStartAnimName=Grab
-    bCanBeBlocked=true
-    bCanBeInterrupted=true
-    MinPlayerGrabTime=4
-    bLockPawnRotation=true
+    MinPlayerGrabTime=3
+    FollowerSpecialMove=ESpecialMove.SM_GrappleVictim
+    bAlignPawns=true
+    bStopAlignFollowerRotationAtGoal=true
+    AlignDistance=92
+    AlignFollowerInterpSpeed=22
+    bDisableMovement=true
+    bServerOnlyPhysics=true
+    Handle=SM_GrappleAttack
 }

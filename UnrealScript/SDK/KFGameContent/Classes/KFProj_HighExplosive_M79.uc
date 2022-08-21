@@ -21,6 +21,7 @@ defaultproperties
 	GravityScale=0.25
     MomentumTransfer=50000.0
     ArmDistSquared=150000 // 4.0 meters
+    LifeSpan=+25.f
 
 	ProjFlightTemplate=ParticleSystem'WEP_3P_M79_EMIT.FX_M79_40mm_Projectile'
 	ProjFlightTemplateZedTime=ParticleSystem'WEP_3P_M79_EMIT.FX_M79_40mm_Projectile_ZEDTIME'
@@ -45,8 +46,8 @@ defaultproperties
 	// explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
 		Damage=225
-		DamageRadius=800
-		DamageFalloffExponent=2.0f
+		DamageRadius=850          //800
+		DamageFalloffExponent=2    //2
 		DamageDelay=0.f
 
 		// Damage Effects
@@ -64,9 +65,9 @@ defaultproperties
 
 		// Camera Shake
 		CamShake=CameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
-		CamShakeInnerRadius=450
+		CamShakeInnerRadius=200
 		CamShakeOuterRadius=900
-		CamShakeFalloff=1.f
+		CamShakeFalloff=1.5f
 		bOrientCameraShakeTowardsEpicenter=true
 	End Object
 	ExplosionTemplate=ExploTemplate0

@@ -24,6 +24,13 @@ var databinding int NumOpenPrivateConnections;
 /** The server's nonce for this session */
 var const qword ServerNonce;
 
+//@HSL_BEGIN - JRO - 3/21/2016 - PS4 Sessions
+/** The session guid */
+var string SessionGuid;
+/** UE3 Join string for PS4 invites */
+var string JoinString;
+//@HSL_END
+
 /** Whether this match is publicly advertised on the online service */
 var databinding bool bShouldAdvertise;
 
@@ -83,6 +90,10 @@ var const int BuildUniqueId;
 
 /** Whether to shrink the session slots when a player leaves the match or not */
 var const bool bShouldShrinkArbitratedSessions;
+
+//@HSL_BEGIN - BWJ - 4-11-16 - Playfab support
+var const string LobbyId;
+//@HSL_END
 
 
 

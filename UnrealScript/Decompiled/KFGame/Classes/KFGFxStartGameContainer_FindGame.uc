@@ -10,6 +10,7 @@ class KFGFxStartGameContainer_FindGame extends KFGFxObject_Container within GFxM
 var KFGFxMenu_StartGame StartMenu;
 var const localized string MultiplayerString;
 var const localized string SoloString;
+var const localized string TutorialString;
 
 function Initialize(KFGFxObject_Menu NewParentMenu)
 {
@@ -27,6 +28,7 @@ function LocalizeMenu()
     TextObject.SetString("multiplayer", MultiplayerString);
     TextObject.SetString("serverBrowser", StartMenu.ServerBrowserString);
     TextObject.SetString("solo", SoloString);
+    TextObject.SetString("tutorial", TutorialString);
     SetObject("localizedText", TextObject);
 }
 
@@ -34,4 +36,5 @@ defaultproperties
 {
     MultiplayerString="Online Matchmaking"
     SoloString="Play Solo Offline"
+    TutorialString="Basic Training"
 }

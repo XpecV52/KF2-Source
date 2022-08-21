@@ -50,6 +50,7 @@ DefaultProperties
     PenetrationResistance=1.5
 
 	// Custom Hit Zones (HeadHealth, SkinTypes, etc...)
+	HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=50, DmgScale=1.1, SkinID=1)
 	HitZones[8]=(ZoneName=rforearm, BoneName=RightForearm, Limb=BP_RightArm, GoreHealth=20, DmgScale=0.5, SkinID=2)
 
 	// ---------------------------------------------
@@ -66,7 +67,7 @@ DefaultProperties
 	ControllerClass=class'KFAIController_ZedGorefast'
 	ReachedEnemyThresholdScale=1.f
 	//ReachedGoalThresholdOverride=0
-	DamageRecoveryTimeHeavy=0.2f
+	DamageRecoveryTimeHeavy=0.85f
 	DamageRecoveryTimeMedium=1.0f
 
 	KnockdownImpulseScale=1.0f
@@ -79,17 +80,32 @@ DefaultProperties
 		SpecialMoveClasses(SM_Evade_Fear)=class'KFSM_Evade_Fear'
 	End Object
 
-	InstantIncaps(IAF_Stun)=(Head=43,Torso=45,Leg=60,Arm=60,LowHealthBonus=10,Cooldown=3.0)
-	InstantIncaps(IAF_Knockdown)=(Head=50,Torso=75,Leg=56,Arm=75,LowHealthBonus=10,Cooldown=9.0)
-	InstantIncaps(IAF_Stumble)=(Head=43,Torso=46,Arm=49,LowHealthBonus=10,Cooldown=2.0)
-	InstantIncaps(IAF_LegStumble)=(Leg=46,LowHealthBonus=10,Cooldown=2.0)
-	InstantIncaps(IAF_GunHit)=(Head=106,Torso=106,Leg=106,Arm=106,LowHealthBonus=10,Cooldown=1.5)
-	InstantIncaps(IAF_MeleeHit)=(Head=20,Torso=27,Leg=25,Arm=25,LowHealthBonus=10,Cooldown=0.3)
-	StackingIncaps(SAF_Poison)=(Threshhold=2.0,Duration=2.0,Cooldown=12.5,DissipationRate=1.00)
-	StackingIncaps(SAF_Microwave)=(Threshhold=2.0,Duration=2.0,Cooldown=12.5,DissipationRate=1.00)
-	StackingIncaps(SAF_FirePanic)=(Threshhold=2.0,Duration=2.5,Cooldown=6.0,DissipationRate=1.00)
+	// for reference: Vulnerability=(default, head, legs, arms, special)
+	IncapSettings(AF_Stun)=		(Vulnerability=(2.0, 2.0, 1.0, 1.0, 1.0), Cooldown=5.0)
+	IncapSettings(AF_Knockdown)=(Vulnerability=(1.f),                     Cooldown=1.0)
+	IncapSettings(AF_Stumble)=	(Vulnerability=(1.f),                     Cooldown=0.5)
+	IncapSettings(AF_GunHit)=	(Vulnerability=(1.75),                    Cooldown=0.0)
+	IncapSettings(AF_MeleeHit)=	(Vulnerability=(2.0),                     Cooldown=0.3)
+	IncapSettings(AF_Poison)=	(Vulnerability=(10.0),                     Cooldown=10,   Duration=3.5)
+	IncapSettings(AF_Microwave)=(Vulnerability=(2.0),                     Cooldown=6.0,  Duration=3.5)
+	IncapSettings(AF_FirePanic)=(Vulnerability=(0.2),                     Cooldown=6.0,  Duration=3.5)
+	IncapSettings(AF_EMP)=		(Vulnerability=(2.0),                     Cooldown=5.0,  Duration=5.0)
+	IncapSettings(AF_Freeze)=   (Vulnerability=(2.0),                     Cooldown=1.5,  Duration=2.0)
 
 	ParryResistance=2
+
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(0.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(0.75)))  //1
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun', 	        DamageScale=(1.6)))   //1.5
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun', 	        DamageScale=(0.75))) 
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle', 	        DamageScale=(1.25)))   //0.5
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(0.55)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(0.65)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(0.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 	                DamageScale=(0.85)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 	                DamageScale=(0.75)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.5)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.5)))
 
 `if(`notdefined(ShippingPC))
 	DebugRadarTexture=Texture2D'UI_ZEDRadar_TEX.MapIcon_Gorefast';

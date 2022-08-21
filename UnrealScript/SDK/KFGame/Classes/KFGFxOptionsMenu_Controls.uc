@@ -36,12 +36,20 @@ function LocalizeText()
 	local byte i;
 	local GFxObject DataProvider, DataObject;
 	local GFxObject LocalizedObject;
+	local array<string> DisplayedStrings;
 	
 	DataProvider = CreateArray();
-	for( i = 0; i < TabStrings.length; i++ )
+	DisplayedStrings = TabStrings;
+
+	// Removing the keybindings option.
+	if( GetPC().WorldInfo.IsConsoleBuild() )
+	{
+		DisplayedStrings.Remove(1,1);
+	}
+	for( i = 0; i < DisplayedStrings.length; i++ )
 	{
 		DataObject = CreateObject( "Object" );
-		DataObject.SetString( "label", TabStrings[i] );
+		DataObject.SetString( "label", DisplayedStrings[i] );
 		DataProvider.SetElementObject( i, DataObject );
 	}
 
@@ -49,7 +57,7 @@ function LocalizeText()
 
 	LocalizedObject = CreateObject("Object");
 
-	LocalizedObject.SetString("header", HeaderText);
+	LocalizedObject.SetString("header", Caps(class'KFGFxOptionsMenu_Selection'.default.OptionStrings[OM_Controls]));
 	LocalizedObject.SetString("close", Class'KFCommon_LocalizedStrings'.default.BackString);
 
 	SetObject("localizedText", LocalizedObject);
@@ -256,6 +264,32 @@ function Callback_UpdateControllerPreset(int PresetIndex)
 		ControllerPresetsContainer.UpdateCurrentPresetArray(PresetIndex);
 	}
 
+}
+
+function CallBack_ResetPresetOptions()
+{
+	if(ControllerPresetsContainer != None)
+	{
+		Manager.OpenPopup( EConfirmation, 
+			Localize("KFGFxOptionsMenu_Graphics","WarningPromptString","KFGame"), 
+			Localize("KFGFxObject_Menu","ResetDefaults","KFGameConsole"),
+			Localize("KFGFxOptionsMenu_Graphics","OKString","KFGame"),
+			Localize("KFGFxOptionsMenu_Graphics","CancelString","KFGame"),
+			controllerPresetsContainer.ResetPresetOptions);
+	}
+}
+
+function CallBack_ResetInputOptions()
+{
+	if(InputContainer != None)
+	{
+		Manager.OpenPopup( EConfirmation, 
+			Localize("KFGFxOptionsMenu_Graphics","WarningPromptString","KFGame"), 
+			Localize("KFGFxObject_Menu","ResetDefaults","KFGameConsole"),
+			Localize("KFGFxOptionsMenu_Graphics","OKString","KFGame"),
+			Localize("KFGFxOptionsMenu_Graphics","CancelString","KFGame"),
+			InputContainer.ResetInputOptions);
+	}
 }
 
 defaultproperties

@@ -258,11 +258,6 @@ function name ChooseAttackByName(name AttackName, optional KFPawn_Monster Instig
     Idx = Attacks.Find('Tag', AttackName;
     if(Idx != -1)
     {
-        if(Class'WorldInfo'.static.GetWorldInfo().TimeSeconds < Attacks[Idx].LastTimePlayed)
-        {
-            LogInternal("[ANIMINFO] WorldInfo.TimeSeconds mismatch! Resetting cooldowns.");
-            Attacks[Idx].LastTimePlayed = 0;
-        }
         if((Instigator != none) && !CanDoAttackAnim(Idx, Instigator, Target))
         {
             return 'None';
@@ -380,10 +375,20 @@ function byte GetStrikeFlags(int DesiredStrikeIndex)
     return byte(DesiredStrikeIndex + (Variant << 4));
 }
 
+function CheckForValidCooldown(int AtkIdx)
+{
+    if(Class'WorldInfo'.static.GetWorldInfo().TimeSeconds < Attacks[AtkIdx].LastTimePlayed)
+    {
+        LogInternal("[ANIMINFO] WorldInfo.TimeSeconds mismatch! Resetting cooldowns.");
+        Attacks[AtkIdx].LastTimePlayed = 0;
+    }
+}
+
 function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
 {
     local AttackAnimInfo Attack;
 
+    CheckForValidCooldown(Idx);
     Attack = Attacks[Idx];
     if(Attack.Anims.Length <= 0)
     {

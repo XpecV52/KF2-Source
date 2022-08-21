@@ -2,80 +2,83 @@
 // KFSM_GrappleAttack_Hans
 //=============================================================================
 // Hans's energy drain attack - he grabs his victim (similar to the clot
-// grab attack) and syphons health from the victim.
+// grab attack) and siphons health from the victim.
 //=============================================================================
 // Killing Floor 2
-// Copyright (C) 2015 Tripwire Interactive LLC
+// Copyright (C) 2016 Tripwire Interactive LLC
 //=============================================================================
-class KFSM_GrappleAttack_Hans extends KFSM_GrappleAttack;
+class KFSM_GrappleAttack_Hans extends KFSM_GrappleCombined;
+
+/** Alternate (lunge) grab anim name */
+var name GrabStartAnimNameLunge;
 
 var bool bAlreadyDetachedFollower;
 var KFPawn CachedFollower;
 
-var int DamagePerSecond;
-var() int HealthGainPerSecond;
+/** How often, in seconds, damage/healing should be done */
+var float DrainInterval;
+
+/** How long to wait after grabbing the player before draining */
+var float DelayBeforeDrain;
+
+/** How much to damage/heal per drain DrainInterval */
+var int HealthGainPerDrainInterval;
+var int DamageDrainRemaining;
+var int NumDrainsRemaining;
 
 var int FollowerStartingHealth;
 
-var   float EnemyDrawLifeThreshold;
+/** The threshold (multiple of Enemy.MaxHealth) at which to drain health */
+var float EnemyDrawLifeThreshold;
+
 /** How much life to draw from an enemy when drawing life per difficulty level */
-var() float MaxEnemyLifeDrawThresholdNormal;
-var() float MaxEnemyLifeDrawThresholdHard;
-var() float MaxEnemyLifeDrawThresholdSuicidal;
-var() float MaxEnemyLifeDrawThresholdHellOnEarth;
+var float MaxEnemyLifeDrawThresholdNormal;
+var float MaxEnemyLifeDrawThresholdHard;
+var float MaxEnemyLifeDrawThresholdSuicidal;
+var float MaxEnemyLifeDrawThresholdHellOnEarth;
+/** When taking damage from multiple sources never drain health beyond this point */
+var float MinEnemyLifeDrawThreshold;
 
 /** How long Hans should wait to do an attack on the player he just drained when he is finished */
-var() float PostDrainAttackCooldown;
+var float PostDrainAttackCooldown;
 
+/** Smoke explosion */
 var class<KFExplosionActor> LifeDrainSmokeExplosionActorClass;
-var KFGameExplosion         LifeDrainSmokeExplosionTemplate;
+var KFGameExplosion LifeDrainSmokeExplosionTemplate;
 
-// shield
+/** Invulnerability shield */
 var ParticleSystem InvulnerableEnergyFX;
 var ParticleSystemComponent InvulnerableEnergyPSC;
 var name InvulnerableEnergySocketName;
 
+/** Determine if this is a lunge grab or regular grab */
+static function byte PackFlagsBase( KFPawn P )
+{
+    if( P.MyKFAIC != none && P.MyKFAIC.Enemy != none )
+    {
+        if( VSizeSQ(P.MyKFAIC.Enemy.Location - P.Location) > class'KFAIController_Hans'.default.MinDistanceToPerformGrabAttack*0.33f )
+        {
+            return 128;
+        }
+    }
+
+    return 0;
+}
+
 function SpecialMoveStarted( bool bForced, Name PrevMove )
 {
-    local KFExplosionActor ExplosionActor;
-	local KFPawn_ZedHansBase HansPawn;
-    local KFAIController KFAIC;
+    local KFPawn_ZedHansBase HansPawn;
 
     super.SpecialMoveStarted( bForced, PrevMove );
 
-	HansPawn = KFPawn_ZedHansBase(PawnOwner);
-	if( Follower != none && HansPawn != none && HansPawn.Controller != none)
-	{
-        CachedFollower = Follower;
-
-    	// Don't let other zeds target this player
-        Follower.ExclusiveTargetingController = HansPawn.Controller;
-
-    	// If other zeds are targeting this player, make them target someone else or wander around
-    	foreach Follower.AllActors( class'KFAIController', KFAIC )
-    	{
-            if( KFAIC != none && KFAIC != HansPawn.Controller
-                && KFAIC.Enemy == Follower )
-            {
-                KFAIC.Enemy = none;
-                KFAIC.FindNewEnemy();
-
-                // Have the enemies buzz off for a few if they can't find an enemy
-                if( KFAIC.Enemy == none )
-                {
-                    KFAIC.DoWander( Follower, 5.0, true );
-                }
-                // Wander anyway if they are real close, just to get them away from Hans - Ramm, maybe add back later if needed
-                //else if( VSizeSq(KFAIC.Pawn.Location - Follower.Location) < 250000 ) // 5 meters
-                //{
-                //    KFAIC.DoWander( Follower, 1.0, true );
-                //}
-            }
+    if( PawnOwner.Role == ROLE_Authority )
+    {
+        HansPawn = KFPawn_ZedHansBase(PawnOwner);
+        if( HansPawn != none )
+        {
+            HansPawn.PlayGrabDialog();
         }
-
-        HansPawn.PlayHealDialog();
-        HansPawn.DetachShieldFX();
-	}
+    }
 
     if( KFPOwner != none && KFPOwner.MyKFAIC != none )
     {
@@ -97,8 +100,108 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
             EnemyDrawLifeThreshold = MaxEnemyLifeDrawThresholdHellOnEarth;
         }
     }
+}
 
-    KFPOwner.SetTimer( 0.25f, true, nameof(Timer_DrainHealth), self );
+/** Play an animation and enable the OnAnimEnd notification */
+function PlayGrabAnim()
+{
+    if( KFPOwner.SpecialMoveFlags == 128 )
+    {
+        bUseRootMotion = true;
+        GrabStartAnimName = default.GrabStartAnimNameLunge;
+    }
+    else
+    {
+        bUseRootMotion = default.bUseRootMotion;
+        GrabStartAnimName = default.GrabStartAnimName;
+    }
+
+    super.PlayGrabAnim();
+}
+
+function PlayGrappleLoopAnim()
+{
+    local float Duration, InterruptTime, ActualDrainTime, DrainsPerSecond;
+
+    // Get our anim duration
+    Duration = PlaySpecialMoveAnim( GrappleAnims[0], EAS_FullBody );
+
+    // Set our release timer
+    bAlreadyDetachedFollower = false;
+    InterruptTime = KFSkeletalMeshComponent(KFPOwner.Mesh).GetAniminterruptTime( GrappleAnims[0] );
+    KFPOwner.SetTimer( InterruptTime, false, nameof(Timer_DetachFollower), self );
+
+    if( KFPOwner.Role == ROLE_Authority )
+    {
+        // Set our special move flag so clients start the grab as well
+        KFPOwner.SpecialMoveFlags = EGS_GrabSuccess;
+
+        PostDrainAttackCooldown = (Duration - InterruptTime) + 0.5f;
+        ActualDrainTime = InterruptTime - DelayBeforeDrain;
+        DrainsPerSecond = 1.f / DrainInterval;
+        // Number of times the drain timer will be called
+        NumDrainsRemaining = ActualDrainTime / DrainInterval;
+
+        // Determine the rate to draw life at
+        if( Follower.GetHealthPercentage() > EnemyDrawLifeThreshold )
+        {
+            // Damage the player only in the period between the initial drain delay and the follower detach time
+            DamageDrainRemaining = Max(Follower.Health - (float(Follower.HealthMax) * EnemyDrawLifeThreshold), 0);
+        }
+        else
+        {
+            DamageDrainRemaining = 0;
+        }
+
+        // Heal only in the period between the initial drain delay and the follower detach time
+        HealthGainPerDrainInterval  = Max( (KFPawn_ZedHansBase(KFPOwner).GetHealAmountForThisPhase() / ActualDrainTime) / DrainsPerSecond, 1 );
+    }
+}
+
+/** Called when grapple is successful and interaction pawn is attached */
+function BeginGrapple(optional KFPawn Victim)
+{
+    local KFPawn_ZedHansBase HansPawn;
+    local KFAIController KFAIC;
+    local KFExplosionActor ExplosionActor;
+
+    super.BeginGrapple( Victim );
+
+    HansPawn = KFPawn_ZedHansBase(PawnOwner);
+    if( Follower != none && HansPawn != none && HansPawn.Controller != none)
+    {
+        CachedFollower = Follower;
+
+        // Don't let other zeds target this player
+        Follower.ExclusiveTargetingController = HansPawn.Controller;
+
+        // If other zeds are targeting this player, make them target someone else or wander around
+        foreach Follower.WorldInfo.AllControllers( class'KFAIController', KFAIC )
+        {
+            if( KFAIC != none && KFAIC != HansPawn.Controller
+                && KFAIC.Enemy == Follower )
+            {
+                KFAIC.Enemy = none;
+                KFAIC.FindNewEnemy();
+
+                // Have the enemies buzz off for a few if they can't find an enemy
+                if( KFAIC.Enemy == none )
+                {
+                    KFAIC.DoWander( Follower, 5.0, true );
+                }
+                // Wander anyway if they are real close, just to get them away from Hans - Ramm, maybe add back later if needed
+                //else if( VSizeSq(KFAIC.Pawn.Location - Follower.Location) < 250000 ) // 5 meters
+                //{
+                //    KFAIC.DoWander( Follower, 1.0, true );
+                //}
+            }
+        }
+
+        HansPawn.PlayHealDialog();
+
+        // Set drain health timer
+        KFPOwner.SetTimer( DelayBeforeDrain, true, nameof(Timer_DrainHealth), self );
+    }
 
     // spawn smoke cloud
     ExplosionActor = KFPOwner.Spawn(LifeDrainSmokeExplosionActorClass, KFPOwner,, KFPOwner.mesh.GetBoneLocation('Root'), rotator(vect(0,0,1)));
@@ -110,54 +213,15 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
     if( KFPOwner.WorldInfo.NetMode != NM_DedicatedServer )
     {
         InvulnerableEnergyPSC = KFPOwner.WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(InvulnerableEnergyFX, KFPOwner.Mesh, InvulnerableEnergySocketName, true);
-    }
+    }    
 }
 
-function PlayGrappleAnim()
+/** Toggle attachment */
+function SpecialMoveFlagsUpdated()
 {
-    local int GrappleAnimIdx;
-    local float Duration, InterruptTime, DamageMod;
-
-    // select a random anim from the list
-    GrappleAnimIdx = Rand(GrappleAnims.Length);
-
-    // Missed!
-    Duration = PlaySpecialMoveAnim( GrappleAnims[GrappleAnimIdx], EAS_FullBody );
-
-    // Set our release timer
-    bAlreadyDetachedFollower = false;
-    InterruptTime = KFSkeletalMeshComponent(KFPOwner.Mesh).GetAniminterruptTime( GrappleAnims[GrappleAnimIdx] );
-    PostDrainAttackCooldown = (Duration - InterruptTime) + 0.5f;
-    KFPOwner.SetTimer( InterruptTime, false, nameof(Timer_DetachFollower), self );
-
-    // Scale the damage per second by the interrupt time (the moment Hans lets go of the player, not when the specialmove ends)
-    DamageMod = Duration/InterruptTime;
-
-    // Determine the rate to draw life at
-    if( Follower.GetHealthPercentage() > EnemyDrawLifeThreshold )
+    if( KFPOwner.SpecialMoveFlags != 128 )
     {
-        // Damage the player completely in 75% of the animation time
-        DamagePerSecond = DamageMod * Max(((Follower.Health - (Follower.HealthMax * EnemyDrawLifeThreshold))/(Duration * 0.75)) * 0.25, 1);
-    }
-    else
-    {
-        DamagePerSecond = 0;
-    }
-
-    // Heal up completely in 75% of the animation time
-    HealthGainPerSecond  = DamageMod * ((KFPOwner.HealthMax - (KFPOwner.HealthMax * KFPOwner.GetHealthPercentage()))/(Duration * 0.75)) * 0.25;
-
-    // Have SOME healing
-    if( HealthGainPerSecond <= 0 )
-    {
-        HealthGainPerSecond = 1;
-    }
-
-    // Remove from the list so that it's not repeated
-    GrappleAnims.Remove(GrappleAnimIdx, 1);
-    if ( GrappleAnims.Length == 0 )
-    {
-        GrappleAnims = default.GrappleAnims;
+        super.SpecialMoveFlagsUpdated();
     }
 }
 
@@ -174,27 +238,27 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
         HansPawn = KFPawn_ZedHansBase(KFPOwner);
 
         // stop hunting players and sucking health if you got enough health
-        if( KFPOwner.MyKFAIC.GetHealthPercentage() > 0.75 )
-        {
-            if( HansPawn != none )
-            {
+        if( HansPawn != none )
+        {        
+            if( HansPawn.AmountHealedThisPhase > EnemyDrawLifeThreshold * 0.75f )
+            { 
                 HansPawn.SetHuntAndHealMode( false );
             }
-            SpawnManager = KFGameInfo(PawnOwner.WorldInfo.Game).SpawnManager; 
-            if ( SpawnManager != none )
-            {
-                SpawnManager.StopSummoningBossMinions();
-            }
+        }
+        SpawnManager = KFGameInfo(PawnOwner.WorldInfo.Game).SpawnManager; 
+        if ( SpawnManager != none )
+        {
+            SpawnManager.StopSummoningBossMinions();
         }
 
-    	if( CachedFollower != none && HansPawn != none && KFPOwner.MyKFAIC != none)
-    	{
-			// If there is no enemy taunt instead of just standing around
+        if( CachedFollower != none && HansPawn != none && KFPOwner.MyKFAIC != none)
+        {
+            // If there is no enemy taunt instead of just standing around
             if( KFPOwner.MyKFAIC.Enemy == None && HansPawn.CanDoSpecialMove(SM_Taunt) )
-			{
-				class'AICommand_TauntEnemy'.static.Taunt( KFPOwner.MyKFAIC, CachedFollower, TAUNT_Standard );
+            {
+                class'AICommand_TauntEnemy'.static.Taunt( KFPOwner.MyKFAIC, CachedFollower, TAUNT_Standard );
             }
-    	}
+        }
     }
 
     if( InvulnerableEnergyPSC != none )
@@ -209,24 +273,33 @@ function SpecialMoveEnded( Name PrevMove, Name NextMove )
 function Timer_DrainHealth()
 {
     local KFPawn_ZedHansBase HansPawn;
+    local int Damage;
 
     if( KFPOwner != none && KFPOwner.Health > 0 && Follower != none && Follower.Health >= 0 && Follower.IsDoingSpecialMove(SM_HansGrappleVictim) )
     {
-        // Don't suck too much of the player's life
-        if( Follower.GetHealthPercentage() > EnemyDrawLifeThreshold )
+        if ( NumDrainsRemaining > 0 )
         {
-            Follower.TakeDamage( DamagePerSecond, KFPOwner.Controller, Follower.Location, vect(0,0,0), class'KFDT_DrainHealth' );
+            // Round off an integer damage value from the total damage left
+            Damage = Round(float(DamageDrainRemaining) / NumDrainsRemaining);
+            DamageDrainRemaining -= Damage;
+            NumDrainsRemaining--;
+
+            // Allow life to drop below EnemyDrawLifeThreshold, but don't deal killing blow
+            if( Damage > 0 && (float(Follower.Health - Damage) / Follower.HealthMax) > MinEnemyLifeDrawThreshold )
+            {
+                Follower.TakeDamage( Damage, KFPOwner.Controller, Follower.Location, vect(0,0,0), class'KFDT_DrainHealth' );
+            }
         }
 
-        KFPOwner.HealDamage( HealthGainPerSecond, KFPOwner.Controller, class'KFDT_Healing' );
+        KFPOwner.HealDamage( HealthGainPerDrainInterval, KFPOwner.Controller, class'KFDT_Healing' );
 
         HansPawn = KFPawn_ZedHansBase(KFPOwner);
-
         if( HansPawn != none )
         {
+            HansPawn.AmountHealedThisPhase += HealthGainPerDrainInterval;
             // Don't let Hans try and toss smoke right after healing
             HansPawn.LastSmokeTossTime = HansPawn.WorldInfo.TimeSeconds;
-        }
+        }        
     }
     else
     {
@@ -247,19 +320,26 @@ function Timer_DetachFollower()
 
     if( Follower != none )
     {
-        // Have Hans and other zeds not attack this player after he just drained them
-        Follower.AIIgnoreEndTime = Follower.WorldInfo.TimeSeconds + PostDrainAttackCooldown;
-        KFPOwner.MyKFAIC.Enemy = none;
-        KFPOwner.MyKFAIC.FindNewEnemy();
+        if( KFPOwner.Role == ROLE_Authority )
+        {
+            // Have Hans and other zeds not attack this player after he just drained them
+            Follower.AIIgnoreEndTime = Follower.WorldInfo.TimeSeconds + PostDrainAttackCooldown;
+
+            if( KFPOwner.MyKFAIC != none )
+            {
+                KFPOwner.MyKFAIC.Enemy = none;
+                KFPOwner.MyKFAIC.FindNewEnemy();
+            }
+        }
 
         // End special move on Follower
         Follower.EndSpecialMove();
+    }
 
-        // Zero movement variables on Follower to stop any animation-driven motion
-        if( bAlignPawns )
-        {
-            Follower.ZeroMovementVariables();
-        }
+    // Zero movement variables on Follower to stop any animation-driven motion
+    if( bAlignPawns && !KFPOwner.IsHumanControlled() )
+    {
+        Follower.ZeroMovementVariables();
     }
 
     if( ExecutionCameraAnimInst_Follower != None )
@@ -295,29 +375,32 @@ function OnFollowerLeavingSpecialMove()
     KFPOwner.EndSpecialMove();
 }
 
-/** Notification from the pawn that damage was taken during move */
-function NotifyOwnerTakeHit(class<KFDamageType> DamageType, vector HitLoc, vector HitDir, Controller InstigatedBy)
-{
-    // Don't take us out of the special move for damage
-    // TODO: Implement taking us out of the special move for incaps, or certain melee damage amounts
-    return;
-}
+/** Disable grab interruption */
+function NotifyOwnerTakeHit(class<KFDamageType> DamageType, vector HitLoc, vector HitDir, Controller InstigatedBy);
 
 defaultproperties
 {
+   GrabStartAnimNameLunge="Atk_Lunge_Paralyze_V1"
+   DrainInterval=0.250000
+   DelayBeforeDrain=0.250000
    MaxEnemyLifeDrawThresholdNormal=0.700000
-   MaxEnemyLifeDrawThresholdHard=0.600000
-   MaxEnemyLifeDrawThresholdSuicidal=0.500000
+   MaxEnemyLifeDrawThresholdHard=0.450000
+   MaxEnemyLifeDrawThresholdSuicidal=0.350000
    MaxEnemyLifeDrawThresholdHellOnEarth=0.250000
+   MinEnemyLifeDrawThreshold=0.100000
    LifeDrainSmokeExplosionActorClass=Class'kfgamecontent.KFExplosion_HansSmokeGrenade'
    LifeDrainSmokeExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFSM_GrappleAttack_Hans:ExploTemplate0'
    InvulnerableEnergyFX=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Energy'
    InvulnerableEnergySocketName="Root"
    GrappleAnims(0)="Atk_DrawLife_V1"
+   bCanBeBlocked=False
+   bCanBeInterrupted=False
+   MaxGrabDistance=250.000000
+   GrabStartAnimName="Atk_Paralyze_V1"
    FollowerSpecialMove=SM_HansGrappleVictim
    bStopAlignFollowerRotationAtGoal=False
    AlignDistance=108.000000
    bCanOnlyWanderAtEnd=True
    Name="Default__KFSM_GrappleAttack_Hans"
-   ObjectArchetype=KFSM_GrappleAttack'KFGame.Default__KFSM_GrappleAttack'
+   ObjectArchetype=KFSM_GrappleCombined'KFGame.Default__KFSM_GrappleCombined'
 }

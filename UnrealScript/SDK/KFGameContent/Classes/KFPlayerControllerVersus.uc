@@ -10,9 +10,6 @@ class KFPlayerControllerVersus extends KFPlayerController;
 
 var string BossName;
 
-/** Puke mines spawned by this player */
-var transient protected array<KFProj_BloatPukeMine> MyActivePukeMines;
-
 /** Array of zed classes spawned by this player */
 var array<bool> HasSpawnedZeds;
 
@@ -48,7 +45,6 @@ function Restart(bool bVehicleTransition)
 
 reliable client function ClientRestart(Pawn NewPawn)
 {
-	local KFGFxHudWrapper GFxHUDWrapper;
 	Super.ClientRestart(NewPawn);
 
 	if(NewPawn == none)
@@ -65,13 +61,6 @@ reliable client function ClientRestart(Pawn NewPawn)
 			SetCameraMode('ThirdPerson');
 		}
 	}
-
-	    //Spawn hud here
-    GFxHUDWrapper = KFGFxHudWrapper(myHUD);
-    if( GFxHUDWrapper != none )
-    {
-        GFxHUDWrapper.CreateHUDMovie();
-    }
 }
 
 /** GBA_SwitchAltFire */
@@ -137,110 +126,6 @@ function bool ShouldDisplayGameplayPostProcessFX()
 			|| (GetTeamNum() == 255 && Pawn != none && (Pawn.Health / float(Pawn.HealthMax)) * 100.f <= default.LowHealthThreshold);
 }
 
-/** Add a puke mine to the pool, removing the oldest if we are at the pool limit */
-function AddPukeMineToPool( KFProj_BloatPukeMine PukeMine )
-{
-	local KFGameInfo_VersusSurvival KFGIVS;
-	local KFProj_BloatPukeMine OldestMine;
-
-	KFGIVS = KFGameInfo_VersusSurvival( WorldInfo.Game );
-	if( KFGIVS != none )
-	{
-		if( KFGIVS.ActivePukeMines.Length >= KFGIVS.MaxActivePukeMines )
-		{
-			if( MyActivePukeMines.Length > 0 && MyActivePukeMines[0] != none )
-			{
-				OldestMine = MyActivePukeMines[0];
-				MyActivePukeMines.Remove( 0, 1 );
-				KFGIVS.ActivePukeMines.Remove( KFGIVS.ActivePukeMines.Find(OldestMine), 1 );
-			}
-			else
-			{
-				OldestMine = KFGIVS.ActivePukeMines[0];
-				KFGIVS.ActivePukeMines.Remove( 0, 1 );
-			}
-		}
-		else if( MyActivePukeMines.Length >= GetMaxPlayerPukeMineNum() )
-		{
-			OldestMine = MyActivePukeMines[0];
-			MyActivePukeMines.Remove( 0, 1 );
-			KFGIVS.ActivePukeMines.Remove( KFGIVS.ActivePukeMines.Find(OldestMine), 1 );
-		}
-
-		// Blow up our oldest puke mine 
-		if( OldestMine != none )
-		{
-			OldestMine.TriggerExplosion( OldestMine.Location, vect(0,0,1), none );
-		}
-
-		// Add to pool arrays
-		MyActivePukeMines[MyActivePukeMines.Length] = PukeMine;
-		KFGIVS.ActivePukeMines[KFGIVS.ActivePukeMines.Length] = PukeMine;
-	}
-}
-
-/** Remove a puke mine from the pool (it's been destroyed) */
-function RemovePukeMineFromPool( KFProj_BloatPukeMine PukeMine )
-{
-	local KFGameInfo_VersusSurvival KFGIVS;
-	local int PukeMineIndex;
-
-	PukeMineIndex = MyActivePukeMines.Find( PukeMine );
-	MyActivePukeMines.Remove( PukeMineIndex, 1 );
-	KFGIVS = KFGameInfo_VersusSurvival( WorldInfo.Game );
-	if( KFGIVS != none )
-	{
-		PukeMineIndex = KFGIVS.ActivePukeMines.Find( PukeMine );
-		if( PukeMineIndex != INDEX_NONE )
-		{
-			KFGIVS.ActivePukeMines.Remove( PukeMineIndex, 1 );
-		}
-	}
-}
-
-/** Returns the number of active puke mines each player is allowed to have */
-function int GetMaxPlayerPukeMineNum()
-{
-	local KFGameInfo_VersusSurvival KFGIVS;
-	local KFPawn_ZedBloat_Versus BloatPawn;
-	local int NumBloatPlayers;
-
-	KFGIVS = KFGameInfo_VersusSurvival( WorldInfo.Game );
-	foreach WorldInfo.AllPawns( class'KFPawn_ZedBloat_Versus', BloatPawn )
-	{
-		++NumBloatPlayers;
-	}
-
-	// Shouldn't happen, but just in case...
-	NumBloatPlayers = NumBloatPlayers == 0 ? 1 : NumBloatPlayers;
-	
-	return KFGIVS.MaxActivePukeMines / NumBloatPlayers;
-}
-
-function string GetTeamTag(PlayerReplicationInfo PRI)
-{
-	if(PRI == none)
-	{
-		return "";
-	}
-	if(!PRI.bOnlySpectator)
-	{
-		if(PRI.GetTeamNum() == 255)
-		{
-			return "<"$class'KFCommon_LocalizedStrings'.default.ZedString$">";
-		}
-		else
-		{
-			return "<"$class'KFCommon_LocalizedStrings'.default.HumanString$">";
-		}
-		
-	}
-	else
-	{
-		return "<"$class'KFCommon_LocalizedStrings'.default.SpectatorString$">";
-	}
-}
-
 function RecieveChatMessage(PlayerReplicationInfo PRI, string ChatMessage, name Type, optional float MsgLifeTime)
 {
 	if(PRI.bAdmin)
@@ -289,13 +174,13 @@ function ServerNotifyTeamChanged()
 {
 	if( Role == ROLE_Authority && MonsterPerkClass != None )
 	{
-		if ( CurrentPerk == None )
+		/*if ( CurrentPerk == None )
 		{
 			// If we get here without a perk via the normal path, we're in trouble.
-			// SavedPerkIndex may not have been updated (config loaded) which will cause
-			// team switch to get you the wrong perk.
-			`warn("Versus - ServerNotifyTeamChanged called with no initial perk! Team switch errors will follow");
-		}
+			// SavedPerkIndex may not have been updated (config loaded) which will
+			// cause team switch to get you the wrong perk.
+			`warn("Versus: ServerNotifyTeamChanged called before client has assigned a SavedPerkIndex!");
+		}*/
 
 		if( GetTeamNum() > 0 )
 		{
@@ -332,21 +217,60 @@ state Dead
 	}
 }
 
-simulated event Destroyed()
+/**
+ * Level was reset without reloading
+ * NOTE: We can't call the super because it does a lot of things we don't want it to do. -MattF
+ */
+function Reset()
 {
+	// Only reset active players!
+	if( CanRestartPlayer() )
+	{
+		SetViewTarget( self );
+	    ResetCameraMode();
+	    FixFOV();
+
+	 	// This is necessary because the server will try to synchronize pawns with the client when the client
+	 	// is in the middle of trying to clean its pawn reference up. The ClientRestart() function sends the
+	 	// client into a state (WaitingForPawn) where it thinks the server is about to replicate a new pawn,
+	 	// but it isn't, so the client gets stuck there forever.
+	    AcknowledgedPawn = none;
+
+		PlayerZedSpawnInfo.PendingZedPawnClass = none;
+		PlayerZedSpawnInfo.PendingZedSpawnLocation = vect( 0,0,0 );
+	}
+}
+
+/** Level was reset without reloading */
+reliable client function ClientReset()
+{
+	local Actor A;
+	local array<Actor> BloodSplatActors;
 	local int i;
 
-	super.Destroyed();
-
-	for( i = 0; i < MyActivePukeMines.Length; ++i )
+	// Reset all actors (except controllers and blood splats)
+	foreach AllActors( class'Actor', A )
 	{
-		if( MyActivePukeMines[i] != none )
+		if( A.IsA('KFPersistentBloodActor') )
 		{
-			MyActivePukeMines[i].SetTimer( 1 + Rand(5) + fRand(), false, nameOf(MyActivePukeMines[i].Timer_Explode) );
+			BloodSplatActors.AddItem( A );
+			continue;
+		}
+
+		if( !A.IsA('Controller') )
+		{
+			A.Reset();
 		}
 	}
 
-	MyActivePukeMines.Length = 0;
+	// Reset blood splat actors after everything else
+	for( i = 0; i < BloodSplatActors.Length; ++i )
+	{
+		BloodSplatActors[i].Reset();
+	}
+
+	// Clear pool manager
+    class'KFGameplayPoolManager'.static.GetPoolManager().Reset();
 }
 
 /**
@@ -361,8 +285,15 @@ event InitInputSystem()
 	KFPlayerInput(PlayerInput).bVersusInput = true;
 }
 
+/** Overridden to allow perk changes during the end of the round */
+event SetHaveUpdatePerk( bool bUsedUpdate )
+{
+	super.SetHaveUpdatePerk( KFGameReplicationInfoVersus(WorldInfo.GRI).bRoundIsOver ? false : bUsedUpdate );
+}
+
 DefaultProperties
 {
 	CameraClass=class'KFPlayerCamera_Versus'
 	MonsterPerkClass=class'KFPerk_Monster'
+    PostRoundMenuClass=class'KFGFxMoviePlayer_PostRoundMenu'
 }

@@ -118,6 +118,8 @@ simulated function TakeRadiusDamage(Controller InstigatedBy, float BaseDamage, f
     }
 }
 
+simulated function Reset();
+
 simulated event Destroyed()
 {
     super.Destroyed();

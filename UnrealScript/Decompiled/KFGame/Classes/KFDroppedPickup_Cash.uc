@@ -14,46 +14,42 @@ var AkEvent PickupSound;
 
 function GiveTo(Pawn P)
 {
+    local KFPawn_Human KFPH;
+    local KFPlayerReplicationInfo KFPRI;
+
     if(P.PlayerReplicationInfo != none)
     {
-        if(P.PlayerReplicationInfo != TosserPRI)
+        KFPH = KFPawn_Human(P);
+        KFPRI = KFPlayerReplicationInfo(P.PlayerReplicationInfo);
+        if(((KFPRI != none) && KFPRI != TosserPRI) && KFPH != none)
         {
-            KFPawn_Human(P).UpdateDoshCaught(CashAmount, TosserPRI);
+            KFPH.UpdateDoshCaught(CashAmount, TosserPRI);
         }
-        if(KFPlayerReplicationInfo(P.PlayerReplicationInfo) != none)
+        if(KFPRI != none)
         {
-            KFPlayerReplicationInfo(P.PlayerReplicationInfo).AddDosh(CashAmount);
+            KFPRI.AddDosh(CashAmount);
             if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
             {
-                WorldInfo.TWLogEvent("dosh_picked_up", P.PlayerReplicationInfo, "#" $ string(CashAmount));
+                WorldInfo.TWLogEvent("dosh_picked_up", KFPRI, "#" $ string(CashAmount));
             }
         }
         bForceNetUpdate = true;
         P.PlaySoundBase(PickupSound);
-        CheckForPayDayBonus(P);
+        AddDoshForBenefector(TosserPRI);
     }
     PickedUpBy(P);
 }
 
-function CheckForPayDayBonus(Pawn ReceiverPawn)
+protected function AddDoshForBenefector(PlayerReplicationInfo MyTosserPRI)
 {
-    local KFGameReplicationInfo MyKFGRI;
-    local KFPawn_Human KFPH;
+    local KFPlayerController KFPC;
 
-    if(ReceiverPawn.PlayerReplicationInfo == TosserPRI)
+    if(MyTosserPRI != none)
     {
-        return;
-    }
-    MyKFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if((MyKFGRI != none) && MyKFGRI.CurrentObjective != none)
-    {
-        KFPH = KFPawn_Human(ReceiverPawn);
-        if((KFPH != none) && KFPH.bObjectivePlayer)
+        KFPC = KFPlayerController(MyTosserPRI.Owner);
+        if(KFPC != none)
         {
-            if(KFPlayerReplicationInfo(TosserPRI) != none)
-            {
-                KFPlayerReplicationInfo(TosserPRI).AddDosh(MyKFGRI.CurrentObjective.GetPayDayBonusDosh(CashAmount), true);
-            }
+            KFPC.UpdateBenefactor(CashAmount);
         }
     }
 }

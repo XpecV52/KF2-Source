@@ -280,6 +280,8 @@ function InitializeCustomizationPawn( PlayerController NewController, Navigation
 	SetUpdatedMovementData( BestStartSpot.Location, BestStartSpot.Rotation );
 }
 
+function Reset();
+
 defaultproperties
 {
 	MaleCustomizationAnimSet=AnimSet'CHR_BaseMale_ANIM.CS_Male'

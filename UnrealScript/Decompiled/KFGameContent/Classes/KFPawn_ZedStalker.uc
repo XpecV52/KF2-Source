@@ -29,7 +29,7 @@ simulated event ReplicatedEvent(name VarName)
     switch(VarName)
     {
         case 'bIsCloakingSpottedByTeam':
-            SetGameplayMICParams();
+            UpdateGameplayMICParams();
             break;
         case 'bIsCloaking':
             ClientCloakingStateUpdated();
@@ -44,7 +44,7 @@ function SetCloaked(bool bNewCloaking)
 {
     if(bCanCloak)
     {
-        if((IsImpaired()) && bNewCloaking)
+        if(bNewCloaking && (IsImpaired()) || IsIncapacitated())
         {
             return;
         }
@@ -58,8 +58,9 @@ function SetCloaked(bool bNewCloaking)
         bIsCloaking = bNewCloaking;
         if(WorldInfo.NetMode != NM_DedicatedServer)
         {
-            SetGameplayMICParams();
+            UpdateGameplayMICParams();
             Mesh.SetPerObjectShadows(!bNewCloaking);
+            ClearBloodDecals();
         }
         super.SetCloaked(bNewCloaking);
     }
@@ -71,27 +72,27 @@ simulated function ClientCloakingStateUpdated()
     {
         ClearBloodDecals();
     }
-    SetGameplayMICParams();
+    UpdateGameplayMICParams();
     Mesh.SetPerObjectShadows(!bIsCloaking);
 }
 
-simulated function SetGameplayMICParams()
+simulated function UpdateGameplayMICParams()
 {
     local bool bIsSpotted;
 
-    super.SetGameplayMICParams();
+    super.UpdateGameplayMICParams();
     if(!bIsGoreMesh && WorldInfo.NetMode != NM_DedicatedServer)
     {
         bIsSpotted = bIsCloakingSpottedByLP || bIsCloakingSpottedByTeam;
         if(bIsSpotted && bIsCloaking)
         {
-            BodyMIC.SetParent(SpottedMaterial);            
+            CharacterMICs[0].SetParent(SpottedMaterial);            
         }
         else
         {
-            if(BodyMIC.Parent == SpottedMaterial)
+            if(CharacterMICs[0].Parent == SpottedMaterial)
             {
-                BodyMIC.SetParent(Mesh.SkeletalMesh.Materials[0]);
+                CharacterMICs[0].SetParent(Mesh.SkeletalMesh.Materials[0]);
                 PlayStealthSoundLoop();
             }
         }
@@ -111,7 +112,7 @@ simulated event NotifyGoreMeshActive()
     bIsCloakingSpottedByTeam = false;
     if((PlayerReplicationInfo == none) && Mesh.SkeletalMesh.Materials.Length > 2)
     {
-        BodyMIC.SetParent(Mesh.SkeletalMesh.Materials[2]);
+        CharacterMICs[0].SetParent(Mesh.SkeletalMesh.Materials[2]);
     }
 }
 
@@ -142,7 +143,7 @@ simulated event Tick(float DeltaTime)
             if(CloakPercent < 1)
             {
                 CloakPercent = FMin(CloakPercent + (DeltaTime * DeCloakSpeed), 1);
-                BodyMIC.SetScalarParameterValue('Transparency', CloakPercent);
+                CharacterMICs[0].SetScalarParameterValue('Transparency', CloakPercent);
             }            
         }
         else
@@ -150,7 +151,7 @@ simulated event Tick(float DeltaTime)
             if(CloakPercent > MinCloakPct)
             {
                 CloakPercent = FMax(CloakPercent - (DeltaTime * CloakSpeed), MinCloakPct);
-                BodyMIC.SetScalarParameterValue('Transparency', CloakPercent);
+                CharacterMICs[0].SetScalarParameterValue('Transparency', CloakPercent);
             }
         }
     }
@@ -203,7 +204,7 @@ simulated event UpdateSpottedStatus()
     {
         if(bIsCloakingSpottedByLP != bOldSpottedByLP)
         {
-            SetGameplayMICParams();
+            UpdateGameplayMICParams();
         }
     }
 }
@@ -212,7 +213,7 @@ function CallOutCloaking(optional KFPlayerController CallOutController)
 {
     bIsCloakingSpottedByTeam = true;
     LastStoredCC = CallOutController;
-    SetGameplayMICParams();
+    UpdateGameplayMICParams();
     SetTimer(2, false, 'CallOutCloakingExpired');
 }
 
@@ -220,10 +221,10 @@ function CallOutCloakingExpired()
 {
     bIsCloakingSpottedByTeam = false;
     LastStoredCC = none;
-    SetGameplayMICParams();
+    UpdateGameplayMICParams();
 }
 
-simulated function SpawnRallyEffect(ParticleSystem RallyEffect, name EffectBoneName, Vector EffectOffset)
+simulated function Rally(ParticleSystem RallyEffect, name EffectBoneName, Vector EffectOffset, ParticleSystem PlayerRallyEffect, name PlayerRallyEffectBoneNames[2], Vector PlayerRallyEffectOffset)
 {
     local PlayerController PC;
 
@@ -235,14 +236,14 @@ simulated function SpawnRallyEffect(ParticleSystem RallyEffect, name EffectBoneN
             return;
         }
     }
-    super.SpawnRallyEffect(RallyEffect, EffectBoneName, EffectOffset);
+    super.Rally(RallyEffect, EffectBoneName, EffectOffset, PlayerRallyEffect, PlayerRallyEffectBoneNames, PlayerRallyEffectOffset);
 }
 
 simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 {
     SetCloaked(false);
     bCanCloak = false;
-    super(KFPawn).PlayDying(DamageType, HitLoc);
+    super.PlayDying(DamageType, HitLoc);
 }
 
 function CauseHeadTrauma(optional float BleedOutTime)
@@ -260,7 +261,7 @@ function OnStackingAfflictionChanged(byte Id)
     super.OnStackingAfflictionChanged(Id);
     if((Role == ROLE_Authority) && IsAliveAndWell())
     {
-        if((Id == 0) || Id == 4)
+        if(Id == 0)
         {
             SetCloaked(!bEmpPanicked && !bEmpDisrupted);
         }
@@ -271,7 +272,7 @@ function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, clas
 {
     super.PlayHit(Damage, InstigatedBy, HitLocation, DamageType, Momentum, HitInfo);
     SetCloaked(false);
-    if((HitFxInfo.DamageType != none) && HitFxInfo.DamageType.default.MeleeHitPower > 0)
+    if((HitFxInfo.DamageType != none) && HitFxInfo.DamageType.default.MeleeHitPower > float(0))
     {
         SetTimer(1, false, 'ReCloakTimer');        
     }
@@ -343,7 +344,7 @@ defaultproperties
     XPValues[1]=10
     XPValues[2]=10
     XPValues[3]=10
-    ResistantDamageTypes=/* Array type was not detected. */
+    DamageTypeModifiers=/* Array type was not detected. */
     PawnAnimInfo=KFPawnAnimInfo'ZED_Stalker_ANIM.Stalker_AnimGroup'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
@@ -353,9 +354,8 @@ defaultproperties
     bCanCloak=true
     bIsCloaking=true
     PenetrationResistance=0.5
-    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedStalker.Afflictions'
-    InstantIncaps=/* Array type was not detected. */
-    StackingIncaps=/* Array type was not detected. */
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedStalker.Afflictions'
+    IncapSettings=/* Array type was not detected. */
     PhysRagdollImpulseScale=0.9
     KnockdownImpulseScale=0.9
     SprintSpeed=500
@@ -374,7 +374,7 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedStalker.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedStalker.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedStalker.DialogAkSoundComponent'
-    DamageRecoveryTimeHeavy=0.2
+    DamageRecoveryTimeHeavy=0.65
     Mass=50
     GroundSpeed=400
     Health=75

@@ -8,13 +8,14 @@
 class KFGFxControlsContainer_Keybinding extends KFGFxObject_Container within GFxMoviePlayer
     config(UI);
 
-const MAX_SECTIONS = 4;
+const MAX_SECTIONS = 5;
 
 var KFGFxMoviePlayer_Manager Manager;
 var config array<config string> MovementBindList;
 var config array<config string> CombatBindList;
 var config array<config string> WeaponSelectBindList;
 var config array<config string> InteractionBindList;
+var config array<config string> VoiceCommBindList;
 var KeyBind PendingKeyBind;
 var KeyBind OldKeyBind;
 var string bindCommand;
@@ -58,6 +59,7 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
     InitalizeCommandList(InteractionBindList);
     InitalizeCommandList(CombatBindList);
     InitalizeCommandList(WeaponSelectBindList);
+    InitalizeCommandList(VoiceCommBindList);
     UpdateAllBindings();
 }
 
@@ -66,7 +68,7 @@ function InitalizeCommandList(out array<string> BindList)
     local byte I;
     local GFxObject CommandSlot, DataProvider;
 
-    if(TotalBindSections < 4)
+    if(TotalBindSections < 5)
     {
         DataProvider = Outer.CreateArray();
         DataProvider.SetInt("sectionIndex", TotalBindSections);
@@ -94,6 +96,7 @@ function UpdateAllBindings()
     UpdateBindList(InteractionBindList, 1);
     UpdateBindList(CombatBindList, 2);
     UpdateBindList(WeaponSelectBindList, 3);
+    UpdateBindList(VoiceCommBindList, 4);
     Manager.UpdateDynamicIgnoreKeys();
 }
 
@@ -301,11 +304,20 @@ defaultproperties
     InteractionBindList(7)="GBA_DropWeapon"
     InteractionBindList(8)="GBA_VoteYes"
     InteractionBindList(9)="GBA_VoteNo"
+    VoiceCommBindList(0)="GBA_VoiceCommReqHealing"
+    VoiceCommBindList(1)="GBA_VoiceCommReqDosh"
+    VoiceCommBindList(2)="GBA_VoiceCommReqHelp"
+    VoiceCommBindList(3)="GBA_VoiceCommTauntZeds"
+    VoiceCommBindList(4)="GBA_VoiceCommFollowMe"
+    VoiceCommBindList(5)="GBA_VoiceCommGetToTheTrader"
+    VoiceCommBindList(6)="GBA_VoiceCommAffirmative"
+    VoiceCommBindList(7)="GBA_VoiceCommNegative"
     SectionName="LocalizedControls"
-    SectionHeaders(0)="Movement"
-    SectionHeaders(1)="Interaction"
-    SectionHeaders(2)="Combat"
-    SectionHeaders(3)="Weapon Selection"
+    SectionHeaders(0)="MOVEMENT"
+    SectionHeaders(1)="INTERACTION"
+    SectionHeaders(2)="COMBAT"
+    SectionHeaders(3)="WEAPON SELECTION"
+    SectionHeaders(4)="VOICE COMMS"
     ResetString="RESET ALL"
     ApplyString="APPLY"
     KeyAlreadyBoundString="Key <%x%> is already bound to:"

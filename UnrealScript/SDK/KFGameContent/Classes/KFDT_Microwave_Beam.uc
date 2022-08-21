@@ -11,23 +11,10 @@
 class KFDT_Microwave_Beam extends KFDT_Microwave
 	abstract;
 
-`include(KFGame\KFMatchStats.uci);
-
 /** Test obliterate conditions when taking damage */
 static function bool CheckObliterate(Pawn P, int Damage)
 {
-	local KFPawn_Monster MP;
-
-	if ( default.bCanObliterate )
-	{
-		MP = KFPawn_Monster(P);
-		if ( MP != None )
-		{
-			return (MP.RepInflateMatParam > 1);
-		}
-	}
-
-	return false;
+	return default.bCanObliterate;
 }
 
 defaultproperties
@@ -40,10 +27,12 @@ defaultproperties
 	KDeathVel=350
     KDamageImpulse=2000
 
-	MicrowavePower=0.25
+	MicrowavePower=10
+	StumblePower=30
 
 	EffectGroup=255 //None
 	bCanObliterate=true
+	bCanGib=true
 	ModifierPerkList(0)=class'KFPerk_Firebug'
 }
 

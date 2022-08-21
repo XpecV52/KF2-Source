@@ -274,9 +274,18 @@ simulated function CustomFire()
 
 simulated function bool CanWeldTarget( optional int FireModeNum=CurrentFireMode )
 {
+	local KFPerk WelderPerk;
+
+	WelderPerk = GetPerk();
+
 	if ( FireModeNum == DEFAULT_FIREMODE &&
 		 WeldTarget.WeldIntegrity >= WeldTarget.MaxWeldIntegrity )
 	{
+		if( WelderPerk != none && WelderPerk.CanExplosiveWeld() )
+		{
+			return WeldTarget.DemoWeld < WeldTarget.default.DemoWeldRequired;
+		}
+
 		return false;
 	}
 	else if ( FireModeNum == ALTFIRE_FIREMODE &&
@@ -620,12 +629,12 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Electricity'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Electricity'
    InventoryGroup=IG_None
+   MagazineCapacity(0)=100
    bTargetAdhesionEnabled=False
    bInfiniteSpareAmmo=True
    bAllowClientAmmoTracking=False
    GroupPriority=5.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Welder'
-   MagazineCapacity(0)=100
    bLoopingFireAnim(0)=True
    bLoopingFireAnim(1)=True
    bLoopingFireSnd(0)=True

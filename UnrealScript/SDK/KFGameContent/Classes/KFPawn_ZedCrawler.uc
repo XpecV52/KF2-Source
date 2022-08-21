@@ -352,11 +352,19 @@ defaultproperties
 	// Penetration
     PenetrationResistance=0.5
 
-	VulnerableDamageTypes.Add((DamageType=class'KFDT_Ballistic'))
-	VulnerableDamageTypes.Add((DamageType=class'KFDT_Toxic'))
-	VulnerableDamageTypes.Add((DamageType=class'KFDT_Bludgeon'))
-	ResistantDamageTypes.Add((DamageType=class'KFDT_Slashing'))
-	ResistantDamageTypes.Add((DamageType=class'KFDT_Microwave'))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(2.25)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(1.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun', 	        DamageScale=(0.35)))  //0.75
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun', 	        DamageScale=(0.75)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle', 	        DamageScale=(1.0)))   //0.45
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(0.75)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(0.65)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(0.3)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 	                DamageScale=(0.2)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive',   	            DamageScale=(0.75)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(1.0)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 		                DamageScale=(1.0)))
+
 
 	// ---------------------------------------------
 	// Movement / Physics
@@ -379,7 +387,7 @@ defaultproperties
 	bDisableTurnInPlace=true
 	bBlocksNavigation=true
 	//ExtraCostForPath=2000
-	DamageRecoveryTimeHeavy=0.2f
+	DamageRecoveryTimeHeavy=0.75f
 	DamageRecoveryTimeMedium=1.0f
 	
 	KnockdownImpulseScale=1.0f
@@ -392,15 +400,17 @@ defaultproperties
 		SpecialMoveClasses(SM_Evade_Fear)=class'KFSM_Evade_Fear'
 	End Object
 
-	InstantIncaps(IAF_Stun)=(Head=43,Torso=43,Leg=43,Arm=43,LowHealthBonus=10,Cooldown=3.0)
-	InstantIncaps(IAF_Knockdown)=(Head=35,Torso=54,Leg=54,Arm=54,LowHealthBonus=10,Cooldown=8.0)
-	InstantIncaps(IAF_Stumble)=(Head=43,Torso=43,Arm=43,LowHealthBonus=10,Cooldown=1.0)
-	InstantIncaps(IAF_LegStumble)=(Leg=43,LowHealthBonus=10,Cooldown=1.0)
-	InstantIncaps(IAF_GunHit)=(Head=100,Torso=100,Leg=100,Arm=100,LowHealthBonus=10,Cooldown=0.5)
-	InstantIncaps(IAF_MeleeHit)=(Head=23,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=0.35)
-	StackingIncaps(SAF_Poison)=(Threshhold=1.0,Duration=5.5,Cooldown=7.5,DissipationRate=1.00)
-	StackingIncaps(SAF_Microwave)=(Threshhold=1.0,Duration=3.0,Cooldown=7.5,DissipationRate=1.00)
-	StackingIncaps(SAF_FirePanic)=(Threshhold=0.5,Duration=5,Cooldown=7.0,DissipationRate=0.07)
+	// for reference: Vulnerability=(default, head, legs, arms, special)
+	IncapSettings(AF_Stun)=		(Vulnerability=(2.0, 2.0, 1.0, 1.0, 1.0), Cooldown=5.0)
+	IncapSettings(AF_Knockdown)=(Vulnerability=(2.f),                     Cooldown=1.0)
+	IncapSettings(AF_Stumble)=	(Vulnerability=(2.f),                     Cooldown=0.2)
+	IncapSettings(AF_GunHit)=	(Vulnerability=(2.5),                     Cooldown=0.2)
+	IncapSettings(AF_MeleeHit)=	(Vulnerability=(2.0),                     Cooldown=0.0)
+	IncapSettings(AF_Poison)=	(Vulnerability=(10.0),                     Cooldown=7.5, Duration=5.5)
+	IncapSettings(AF_Microwave)=(Vulnerability=(0.0),                     Cooldown=7.5, Duration=3.0)
+	IncapSettings(AF_FirePanic)=(Vulnerability=(3),                       Cooldown=7.0, Duration=5)
+	IncapSettings(AF_EMP)=		(Vulnerability=(2.5),                     Cooldown=5.0, Duration=5.0)
+	IncapSettings(AF_Freeze)=	(Vulnerability=(2.5),                     Cooldown=1.5, Duration=2.0)
 
 	ParryResistance=1
 

@@ -33,6 +33,8 @@ package tripwire.managers
         
         public var renderTexture:MovieClip;
         
+        public var renderTexture_IIS:MovieClip;
+        
         public var MenuBackground:MovieClip;
         
         public var MenuScanlines:MovieClip;
@@ -47,6 +49,8 @@ package tripwire.managers
         
         private var _widgetLoader:Loader;
         
+        public var bStartUpGamma:Boolean = false;
+        
         public var bPopUpOpen:Boolean;
         
         private var _bLoading:Boolean;
@@ -54,6 +58,8 @@ package tripwire.managers
         private var _bUsingGamepad:Boolean;
         
         private var _bConsoleBuild:Boolean;
+        
+        private var _bOpenedInGame:Boolean;
         
         private var _bMenuOpen:Boolean;
         
@@ -109,6 +115,11 @@ package tripwire.managers
             this.renderTexture.visible = param1;
         }
         
+        public function set IISMovieVisible(param1:Boolean) : void
+        {
+            this.renderTexture_IIS.visible = param1;
+        }
+        
         public function get bUsingGamepad() : Boolean
         {
             return this._bUsingGamepad;
@@ -157,6 +168,28 @@ package tripwire.managers
             }
         }
         
+        public function get bOpenedInGame() : Boolean
+        {
+            return this._bOpenedInGame;
+        }
+        
+        public function set bOpenedInGame(param1:Boolean) : *
+        {
+            if(this._bOpenedInGame == param1)
+            {
+                return;
+            }
+            this._bOpenedInGame = param1;
+            if(this._bOpenedInGame)
+            {
+                this.numPrompts = 2;
+            }
+            else
+            {
+                this.numPrompts = this.menuList.length > this._currentMenuIndex && this.menuList[this._currentMenuIndex].menuObject != null ? int(this.menuList[this._currentMenuIndex].menuObject.defaultNumPrompts) : 1;
+            }
+        }
+        
         public function get numPrompts() : int
         {
             return this._numPrompts;
@@ -168,7 +201,7 @@ package tripwire.managers
             {
                 return;
             }
-            this._numPrompts = param1;
+            this._numPrompts = !this.bOpenedInGame ? int(param1) : 2;
             stage.dispatchEvent(new Event(PROMPT_CHANGED));
         }
         
@@ -216,6 +249,7 @@ package tripwire.managers
             var _loc2_:TripContainer = param1.target.content.getChildAt(0) as TripContainer;
             this._widgets.push(_loc2_);
             stage.addChildAt(_loc2_,stage.numChildren - 1);
+            _loc2_.openContainer();
         }
         
         public function loadCurrentPopup(param1:String, param2:String, param3:String, param4:String, param5:String, param6:String) : void

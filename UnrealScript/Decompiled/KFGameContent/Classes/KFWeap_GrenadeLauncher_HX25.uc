@@ -10,6 +10,7 @@ class KFWeap_GrenadeLauncher_HX25 extends KFWeap_GrenadeLauncher_Base
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
 var(Weapon) array<byte> NumPellets;
+var array<Vector2D> PelletSpread;
 
 simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass, Vector RealStartLoc, Vector AimDir)
 {
@@ -34,7 +35,7 @@ simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass,
         }
         else
         {
-            super(KFWeapon).SpawnProjectile(KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot)));
+            super(KFWeapon).SpawnProjectile(KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot, byte(I))));
         }
         ++ I;
         goto J0x89;
@@ -60,7 +61,7 @@ simulated function Rotator AddSpread(Rotator BaseAim)
     return BaseAim;
 }
 
-simulated function Rotator AddMultiShotSpread(Rotator BaseAim)
+simulated function Rotator AddMultiShotSpread(Rotator BaseAim, byte PelletNum)
 {
     local Vector X, Y, Z;
     local float CurrentSpread, RandY, RandZ;
@@ -73,8 +74,8 @@ simulated function Rotator AddMultiShotSpread(Rotator BaseAim)
     else
     {
         GetAxes(BaseAim, X, Y, Z);
-        RandY = FRand() - 0.5;
-        RandZ = Sqrt(0.5 - Square(RandY)) * (FRand() - 0.5);
+        RandY = PelletSpread[PelletNum].Y * RandRange(0.5, 1.5);
+        RandZ = PelletSpread[PelletNum].X * RandRange(0.5, 1.5);
         return rotator((X + ((RandY * CurrentSpread) * Y)) + ((RandZ * CurrentSpread) * Z));
     }
 }
@@ -98,9 +99,67 @@ static simulated function float CalculateTraderWeaponStatDamage()
 defaultproperties
 {
     NumPellets(0)=7
+    PelletSpread(0)=
+/* Exception thrown while deserializing PelletSpread
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    PelletSpread(1)=
+/* Exception thrown while deserializing PelletSpread
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    PelletSpread(2)=
+/* Exception thrown while deserializing PelletSpread
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    PelletSpread(3)=
+/* Exception thrown while deserializing PelletSpread
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    PelletSpread(4)=
+/* Exception thrown while deserializing PelletSpread
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    PelletSpread(5)=
+/* Exception thrown while deserializing PelletSpread
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    PelletSpread(6)=FireModeIconPaths=/* Array type was not detected. */,
+/* Exception thrown while deserializing PelletSpread
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     FireModeIconPaths=/* Array type was not detected. */
     InventoryGroup=EInventoryGroup.IG_Secondary
     InventorySize=4
+    MagazineCapacity=1
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -110,7 +169,6 @@ defaultproperties
     FastZoomOutTime=0.2
     GroupPriority=25
     WeaponSelectTexture=Texture2D'WEP_UI_HX25_Pistol_TEX.UI_WeaponSelect_HX25'
-    MagazineCapacity=1
     MaxSpareAmmo=29
     InitialSpareMags=17
     AmmoPickupScale=3

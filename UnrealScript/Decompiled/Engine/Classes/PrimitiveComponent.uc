@@ -563,4 +563,5 @@ defaultproperties
     LastRenderTime=-1000
     PerObjectShadowCullDistance=2000
     bAllowPreshadows=true
+    bAllowPerObjectShadowBatching=true
 }

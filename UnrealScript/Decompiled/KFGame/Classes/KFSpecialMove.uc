@@ -23,6 +23,7 @@ var bool bAllowHitReactions;
 var bool bAllowMomentumPush;
 var bool bCanOnlyWanderAtEnd;
 var bool bAllowThirdPersonWeaponAnims;
+var bool bUseCustomRotationRate;
 var bool bDisablesWeaponFiring;
 var bool bOnlyInteractionPawnCanDamageMe;
 var bool bCanModifyInteractionPawn;
@@ -43,11 +44,13 @@ var const bool bDisableTurnInPlace;
 var const bool bDisablePhysics;
 var const bool bServerOnlyPhysics;
 var bool bAllowFireAnims;
+var Rotator CustomRotationRate;
 var ViewOffsetData CustomThirdPersonViewOffset;
 var float ViewOffsetInterpTime;
 var float CustomCameraFOV;
 var float CameraFOVTransitionTime;
 var float AITimeout;
+var const float CustomTurnInPlaceAnimRate;
 var AICommand_PushedBySM AICommand;
 var class<AICommand_PushedBySM> DefaultAICommandClass;
 
@@ -89,7 +92,7 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
     local AICommand AIOwnerActiveCommand;
     local KFWeapon KFW;
 
-    if(((PCOwner != none) && KFPOwner != none) && KFPOwner.Weapon != none)
+    if((PCOwner != none) && KFPOwner.Weapon != none)
     {
         KFW = KFWeapon(KFPOwner.Weapon);
         if(KFW != none)
@@ -98,13 +101,17 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
         }
     }
     SMIndex = KFPOwner.SpecialMove;
-    if(((AIOwner != none) && DefaultAICommandClass != none) && AIOwner.MyKFPawn != none)
+    if(AIOwner != none)
     {
-        AIOwnerActiveCommand == AICommand(AIOwner.GetActiveCommand());
-        if((AIOwnerActiveCommand == none) || AIOwnerActiveCommand.AllowPushOfDefaultCommandForSpecialMove(KFPOwner.SpecialMove))
+        if((DefaultAICommandClass != none) && AIOwner.MyKFPawn != none)
         {
-            AICommand = DefaultAICommandClass.static.PushSpecialMoveCommand(AIOwner);
+            AIOwnerActiveCommand == AICommand(AIOwner.GetActiveCommand());
+            if((AIOwnerActiveCommand == none) || AIOwnerActiveCommand.AllowPushOfDefaultCommandForSpecialMove(KFPOwner.SpecialMove))
+            {
+                AICommand = DefaultAICommandClass.static.PushSpecialMoveCommand(AIOwner);
+            }
         }
+        AIOwner.NotifySpecialMoveStarted(self);
     }
     if(PCOwner != none)
     {
@@ -122,7 +129,7 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
         }
         bRestoredCameraDefaults = false;
     }
-    if(((bDisableWeaponInteraction && KFPOwner != none) && KFPOwner.Weapon != none) && KFWeapon(KFPOwner.Weapon) != none)
+    if((bDisableWeaponInteraction && KFPOwner.Weapon != none) && KFWeapon(KFPOwner.Weapon) != none)
     {
         KFWeapon(KFPOwner.Weapon).SetSimplePutDown(true);
     }
@@ -145,6 +152,14 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
         {
             PawnOwner.SetPhysics(0);
         }
+    }
+    if(bUseCustomRotationRate)
+    {
+        PawnOwner.RotationRate = CustomRotationRate;
+    }
+    if(CustomTurnInPlaceAnimRate > 0)
+    {
+        KFPOwner.TurnInPlaceAnimRate = CustomTurnInPlaceAnimRate;
     }
 }
 
@@ -172,10 +187,36 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
     if(KFPOwner != none)
     {
         KFPOwner.NotifySpecialMoveEnded(self, SMIndex);
-    }
-    if(((bDisableWeaponInteraction && KFPOwner != none) && KFPOwner.Weapon != none) && KFWeapon(KFPOwner.Weapon) != none)
-    {
-        KFWeapon(KFPOwner.Weapon).SetSimplePutDown(false);
+        if(bUseCustomRotationRate)
+        {
+            KFPOwner.RotationRate = KFPOwner.default.RotationRate;
+        }
+        if(KFPOwner.TurnInPlaceAnimRate != KFPOwner.default.TurnInPlaceAnimRate)
+        {
+            KFPOwner.TurnInPlaceAnimRate = KFPOwner.default.TurnInPlaceAnimRate;
+        }
+        if(bDisableTurnInPlace)
+        {
+            KFPOwner.bDisableTurnInPlace = KFPOwner.default.bDisableTurnInPlace;
+        }
+        if((bDisableWeaponInteraction && KFPOwner.Weapon != none) && KFWeapon(KFPOwner.Weapon) != none)
+        {
+            KFWeapon(KFPOwner.Weapon).SetSimplePutDown(false);
+        }
+        if(bCanOnlyWanderAtEnd && KFPOwner != none)
+        {
+            if((AIOwner != none) && KFPOwner.IsHeadless())
+            {
+                AIOwner.DoHeadlessWander();                
+            }
+            else
+            {
+                if(KFPOwner.ShouldBeWandering())
+                {
+                    KFPOwner.CausePanicWander();
+                }
+            }
+        }
     }
     if(bDisablePhysics && (PawnOwner.Role == ROLE_Authority) || PawnOwner.IsLocallyControlled())
     {
@@ -194,28 +235,10 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
     {
         SetLockPawnRotation(false);
     }
-    if(bDisableTurnInPlace)
-    {
-        KFPOwner.bDisableTurnInPlace = KFPOwner.default.bDisableTurnInPlace;
-    }
     if(ActiveSlotNode != none)
     {
         ActiveSlotNode.SetActorAnimEndNotification(false);
         ActiveSlotNode = none;
-    }
-    if(bCanOnlyWanderAtEnd && KFPOwner != none)
-    {
-        if((AIOwner != none) && KFPOwner.IsHeadless())
-        {
-            AIOwner.DoHeadlessWander();            
-        }
-        else
-        {
-            if(KFPOwner.ShouldBeWandering())
-            {
-                KFPOwner.CausePanicWander();
-            }
-        }
     }
 }
 
@@ -252,6 +275,13 @@ final function SetMovementLock(bool bEnable)
                 PCOwner.PlayerInput.aForward = 0;
                 PCOwner.PlayerInput.aStrafe = 0;
                 PCOwner.PlayerInput.aUp = 0;
+            }            
+        }
+        else
+        {
+            if(AIOwner != none)
+            {
+                AIOwner.bPreparingMove = bEnable;
             }
         }
         if(bEnable)
@@ -328,14 +358,20 @@ function AbortSpecialMove()
     KFPOwner.EndSpecialMove();
 }
 
-function AbortedByAICommand();
-
 function AnimEndNotify(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime)
 {
     KFPOwner.EndSpecialMove();
 }
 
+function AbortedByAICommand();
+
 function NotifyOwnerTakeHit(class<KFDamageType> DamageType, Vector HitLoc, Vector HitDir, Controller InstigatedBy);
+
+function NotifyHitReactionInterrupt();
+
+function bool CanInterruptWithParry();
+
+function OnGoreMeshSwap();
 
 function OnEMPDisrupted()
 {

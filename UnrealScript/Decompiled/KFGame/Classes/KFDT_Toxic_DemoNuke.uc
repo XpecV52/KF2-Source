@@ -7,11 +7,13 @@
  *******************************************************************************/
 class KFDT_Toxic_DemoNuke extends KFDT_Toxic;
 
+static function bool AlwaysPoisons()
+{
+    return true;
+}
+
 defaultproperties
 {
     bNoInstigatorDamage=true
-    DoT_Type=EDamageOverTimeGroup.DOT_None
-    KnockdownPower=55
-    StumblePower=48
-    LegStumblePower=48
+    PoisonPower=1000
 }

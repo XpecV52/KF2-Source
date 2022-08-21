@@ -11,8 +11,17 @@
 class KFProj_Blade_Eviscerator extends KFProj_RicochetBullet
 	hidedropdown;
 
+// Toned down ImpactInfo type to reduce net traffic.
+struct StickInfo
+{
+    var vector HitLocation;
+    var vector HitNormal;
+    var vector RayDir;
+    var PrimitiveComponent HitComponent;
+};
+
 /** Information on where this blade has stuck */
-var repnotify ImpactInfo StickInfo;
+var repnotify StickInfo RepStickInfo;
 
 /** This projectile is currently stuck to a wall */
 var bool bStuck;
@@ -35,10 +44,21 @@ var() AkEvent AmmoPickupSound;
 	Allows us to set a much shorter LifeSpan to prevent fly-away blades living a long time. */
 var float LifeSpanAfterStick;
 
+/** Position this bolt was in last frame. Used to position the bolt on destructibles correctly */
+var vector LastLocation;
+
 replication
 {
 	if ( bNetDirty )
-        StickInfo;
+        RepStickInfo;
+}
+
+// Make sure that last location always exists.
+simulated event PostBeginPlay()
+{
+    Super.PostBeginPlay();
+
+    LastLocation = Location;
 }
 
 /* epic ===============================================
@@ -50,9 +70,9 @@ replication
 */
 simulated event ReplicatedEvent(name VarName)
 {
-	if (VarName == nameof(StickInfo))
+	if (VarName == nameof(RepStickInfo))
 	{
-		Stick(StickInfo, true);
+		Stick(RepStickInfo, true);
 	}
 	else
 	{
@@ -82,7 +102,10 @@ simulated function vector DecodeSmallVector(vector V)	{return V / 256.f;}
 
 simulated event HitWall(vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
 {
-    local ImpactInfo MyStickInfo;
+    local StickInfo MyStickInfo;
+    local KFDestructibleActor HitDestructible;
+    local StaticMeshComponent HitComponent;
+    local vector DestructableHitLocation;
 
     SetRotation(rotator(Normal(Velocity)));
 	SetPhysics(PHYS_Falling);
@@ -91,26 +114,44 @@ simulated event HitWall(vector HitNormal, Actor Wall, PrimitiveComponent WallCom
     if( !Bounce(HitNormal, Wall) )
     {
         // Turn off the corona when it stops
-    	if ( WorldInfo.NetMode != NM_DedicatedServer && ProjEffects!=None )
-    	{
+        if ( WorldInfo.NetMode != NM_DedicatedServer && ProjEffects!=None )
+        {
             ProjEffects.DeactivateSystem();
             ProjEffects.SetVectorParameter('Rotation', vect(0,0,0));
         }
 
-        // if our last hit is a destructible, don't stick
-        if ( !Wall.bStatic && !Wall.bWorldGeometry && Wall.bProjTarget )
-    	{
-            Explode(Location, HitNormal);
-            ImpactedActor = None;
-    	}
+        // Check to see whether we should stick or not.
+        if ( (!Wall.bStatic && !Wall.bWorldGeometry && Wall.bProjTarget))
+        {
+            // If the object is client side, don't stick, because it's destruction won't be replicated
+            HitDestructible = KFDestructibleActor(Wall);
+            if(HitDestructible != none && HitDestructible.ReplicationMode >= RT_ClientSide) 
+            {
+                return;
+            }
+
+            // Trace the component that was hit (in this code path, WallComp is null) so we know where the bolt should be placed
+            // This is done because hit locations aren't handled properly on destructibles in the engine.
+            TraceComponent(DestructableHitLocation, HitNormal, WallComp,  Location,  LastLocation,,, bCollideComplex);
+
+            SetLocation(DestructableHitLocation);
+        }
         else
         {
-            MyStickInfo.HitLocation = Location;
-            MyStickInfo.HitNormal = HitNormal;
-            MyStickInfo.HitActor = Wall;
-            MyStickInfo.RayDir = EncodeSmallVector(Normal(Velocity));
-            Stick(MyStickInfo, false);
+             // If our hit object can become dynamic, don't stick.
+            HitComponent = StaticMeshComponent(WallComp);
+            if(HitComponent != none && HitComponent.CanBecomeDynamic())
+            {
+                return;
+            }
         }
+
+        MyStickInfo.HitLocation = Location;
+        MyStickInfo.HitNormal = HitNormal;
+        MyStickInfo.HitComponent = WallComp;
+
+        MyStickInfo.RayDir = EncodeSmallVector(Normal(Velocity));
+        Stick(MyStickInfo, false);
 
         bBounce = false;
     }
@@ -119,7 +160,7 @@ simulated event HitWall(vector HitNormal, Actor Wall, PrimitiveComponent WallCom
 /**
  * Stick on the wall
  */
-simulated function Stick(ImpactInfo MyStickInfo, bool bReplicated )
+simulated function Stick(StickInfo MyStickInfo, bool bReplicated )
 {
     // Turn off the corona and rotation when it stops
 	if ( WorldInfo.NetMode != NM_DedicatedServer && ProjEffects!=None )
@@ -158,7 +199,7 @@ simulated function Stick(ImpactInfo MyStickInfo, bool bReplicated )
     else if( Role == ROLE_Authority )
     {
         bStuck = true;
-        StickInfo = MyStickInfo;
+        RepStickInfo = MyStickInfo;
 
         LifeSpan = LifeSpanAfterStick;
     }
@@ -210,27 +251,31 @@ state Pickup
 	 * Validate touch (if valid return true to let other pick me up and trigger event).
 	 * Overridden to remove call to WorldInfo.Game.PickupQuery(Other, InventoryType, self) since we need this to be client side
 	 */
-	function bool ValidTouch( Pawn Other )
-	{
-		// make sure its a live player
-		if (Other == None || !Other.bCanPickupInventory || (Other.DrivenVehicle == None && Other.Controller == None))
-		{
-			return false;
-		}
+    function bool ValidTouch( Pawn Other )
+    {
+        local vector PickupLocation;
 
-		// make sure not touching through wall
-		if ( !FastTrace(Other.Location, Location) )
-		{
-			return false;
-		}
+        // make sure its a live player
+        if (Other == None || !Other.bCanPickupInventory || (Other.DrivenVehicle == None && Other.Controller == None))
+        {
+            return false;
+        }
 
-		// make sure game will let player pick me up
-		if (WorldInfo.Game.PickupQuery(Other, WeaponClass, self))
-		{
-			return true;
-		}
-		return false;
-	}
+        PickupLocation = Location - vector(Rotation) * 15.f;
+
+        // make sure not touching through wall
+        if ( !FastTrace(Other.Location, PickupLocation,,true) )
+        {
+            return false;
+        }
+
+        // make sure game will let player pick me up
+        if (WorldInfo.Game.PickupQuery(Other, WeaponClass, self))
+        {
+            return true;
+        }
+        return false;
+    }
 
 	// When touched by an actor.
 	simulated event Touch( Actor Other, PrimitiveComponent OtherComp, vector HitLocation, vector HitNormal )
@@ -270,13 +315,23 @@ state Pickup
 
 	}
 
+    // Here we handle what happens if a bolt is on a destructible, and that destructible is destroyed.
+    simulated function Tick( float DeltaTime )
+    {
+        if(Role == ROLE_Authority && RepStickInfo.HitComponent != none && RepStickInfo.HitComponent.HiddenGame)
+        {
+            Explode(RepStickInfo.HitLocation, RepStickInfo.HitNormal);
+            ImpactedActor = None;
+        }
+    }
+
 Begin:
 	CheckTouching();
 }
 
 //==============
 // Touching
-// Overriden to get nails bouncing off of destructible meshes
+// Overridden to get nails bouncing off of destructible meshes
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
 {
     local KFPawn KFP;
@@ -340,6 +395,8 @@ simulated function Tick( float DeltaTime )
 {
     super.Tick(DeltaTime);
 
+    LastLocation = Location;
+
     // Make it start falling faster if it's moving really slow
     if( Physics == PHYS_Projectile && VSizeSq(Velocity) < ((Speed * Speed) * 0.1) )
     {
@@ -393,8 +450,8 @@ defaultproperties
     AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_SawBlade.Play_WEP_SA_Sawblade_Projectile_Loop'
     AmbientSoundStopEvent=AkEvent'WW_WEP_SA_SawBlade.Stop_WEP_SA_Sawblade_Projectile_Loop'
 
-    PickupRadius=200
-    PickupHeight=50
+    PickupRadius=250   //200
+    PickupHeight=100   //50
 	WeaponClass=class'KFWeap_Eviscerator'
 	ProjPickupTemplate=ParticleSystem'WEP_SawBlade_EMIT.FX_Sawblade_pickup_01'
     AmmoPickupSound=AkEvent'WW_WEP_SA_SawBlade.Play_WEP_SA_Sawblade_Projectile_Pickup'

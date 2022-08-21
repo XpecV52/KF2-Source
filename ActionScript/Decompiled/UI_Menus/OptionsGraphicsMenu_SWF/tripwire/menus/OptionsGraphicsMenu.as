@@ -296,6 +296,12 @@ package tripwire.menus
             this.cancelButton.tabIndex = 27;
         }
         
+        override protected function onInputChange(param1:Event) : *
+        {
+            super.onInputChange(param1);
+            this.cancelButton.visible = !bManagerUsingGamepad;
+        }
+        
         private function setAdvancedDropdownLabelFunctions() : *
         {
             this.graphicsQualityDropDown.labelFunction = this.setGraphicsDropDownLabel;
@@ -396,9 +402,10 @@ package tripwire.menus
             this.lightShaftsDropDown.addEventListener(ListEvent.INDEX_CHANGE,this.onAdvancedOptionChanged,false,0,true);
         }
         
-        override public function openContainer() : void
+        override public function openContainer(param1:Boolean = true) : void
         {
             super.openContainer();
+            this.cancelButton.visible = !bManagerUsingGamepad;
         }
         
         override public function closeContainer() : void

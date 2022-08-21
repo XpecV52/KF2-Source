@@ -12,60 +12,6 @@ class KFDT_Ballistic_M4Shotgun extends KFDT_Ballistic_Shotgun
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 15;
-
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
@@ -89,8 +35,7 @@ static simulated function bool CanDismemberHitZone( name InHitZoneName )
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_M4'
-   StumblePower=42
-   LegStumblePower=42
+   StumblePower=12.000000
    BloodSpread=0.400000
    BloodScale=0.600000
    KDamageImpulse=350.000000

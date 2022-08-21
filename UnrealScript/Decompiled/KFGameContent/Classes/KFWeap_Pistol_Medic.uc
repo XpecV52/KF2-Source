@@ -18,6 +18,7 @@ defaultproperties
 {
     InventoryGroup=EInventoryGroup.IG_Secondary
     InventorySize=1
+    MagazineCapacity=15
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -29,7 +30,6 @@ defaultproperties
     GroupPriority=25
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicPistol'
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
-    MagazineCapacity=15
     MaxSpareAmmo=240
     InitialSpareMags=8
     FireSightedAnims=/* Array type was not detected. */

@@ -83,6 +83,7 @@ defaultproperties
     ForceReloadTime=0.4
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=10
+    MagazineCapacity=1
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -94,7 +95,6 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=2.5
     GroupPriority=100
     WeaponSelectTexture=Texture2D'WEP_UI_RPG7_TEX.UI_WeaponSelect_RPG7'
-    MagazineCapacity=1
     MaxSpareAmmo=15
     InitialSpareMags=4
     AmmoPickupScale=2

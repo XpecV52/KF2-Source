@@ -328,6 +328,7 @@ cpptext
 #if __TW_SDK_
 	virtual void 	PreBeginPlay();
 	virtual UBOOL	IsWhitelisted();
+	virtual UBOOL	IsStandardGame();
 	virtual void 	SetGameUnranked( UBOOL bUnranked ) {}
 	virtual UBOOL	IsUnrankedGame() { return true; }
 #endif
@@ -1371,9 +1372,10 @@ event PlayerController Login(string Portal, string Options, const UniqueNetID Un
 
 `if(`__TW_)
 static function bool AllowAnalyticsLogging();
-`endif
-	
-`if (`__TW_ONLINESUBSYSTEM_)
+
+function ScoreDamage( int DamageAmount, int HealthBeforeDamage, Controller InstigatedBy, Pawn DamagedPawn, class<DamageType> DamageType );
+
+// OnlineSubsystem
 event bool SeatPlayer(const UniqueNetId SeatedPlayerID);
 event MakeReservations(const string URLOptions, const UniqueNetId PlayerId, out string OutError);
 event bool ConfirmReservation(const UniqueNetId PlayerID);
@@ -3925,4 +3927,10 @@ defaultproperties
 //	PopulationManagerClass=class'CrowdPopulationManagerBase'
 
 	StreamingPauseIcon=Material'EngineResources.M_StreamingPause'
+
+`if(`__TW_)
+	GameInfoClassAliases(0)=(ShortName="BenchMark", GameClassName="KFGameContent.KFGameInfo_BenchMark")
+	GameInfoClassAliases(1)=(ShortName="Survival", GameClassName="KFGameContent.KFGameInfo_Survival")
+	GameInfoClassAliases(2)=(ShortName="Versus", GameClassName="KFGameContent.KFGameInfo_VersusSurvival")
+`endif
 }

@@ -8,42 +8,6 @@
 class KFDT_Ballistic_Shotgun extends KFDT_Ballistic
     abstract;
 
-static simulated function GetBoneToDismember(KFPawn_Monster inPawn, Vector HitDirection, name InHitZoneName, out name OutBoneName)
-{
-    local KFCharacterInfo_Monster MonsterInfo;
-
-    MonsterInfo = inPawn.GetCharacterMonsterInfo();
-    if(MonsterInfo != none)
-    {
-        if(InHitZoneName == 'chest')
-        {
-            OutBoneName = ((Rand(2) == 0) ? MonsterInfo.SpecialMeleeDismemberment.LeftShoulderBoneName : MonsterInfo.SpecialMeleeDismemberment.RightShoulderBoneName);
-        }
-    }
-}
-
-static function float GetGoreDamageScale(Vector Location, Vector InstigatorLocation)
-{
-    local float DistSq;
-
-    DistSq = VSizeSq(InstigatorLocation - Location);
-    if(DistSq > float(1000000))
-    {
-        return 0.25;        
-    }
-    else
-    {
-        if(DistSq > float(160000))
-        {
-            return 0.5;            
-        }
-        else
-        {
-            return 1;
-        }
-    }
-}
-
 defaultproperties
 {
     HeadDestructionDamageScale=7

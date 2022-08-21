@@ -44,24 +44,43 @@ DefaultProperties
 	// AI / Navigation
 	ControllerClass=class'KFAIController_ZedClot_Slasher'
 	//bPreferDarkness=true
-	DamageRecoveryTimeHeavy=0.3f
+	DamageRecoveryTimeHeavy=0.65f
 	DamageRecoveryTimeMedium=1.0f
 	
 	KnockdownImpulseScale=1.0f
 
 	// ---------------------------------------------
 	// Within KFPawn
-	InstantIncaps(IAF_Stun)=(Head=43,Torso=45,Leg=50,Arm=50,LowHealthBonus=10,Cooldown=3.0)
-	InstantIncaps(IAF_Knockdown)=(Head=40,Torso=50,Leg=50,Arm=50,LowHealthBonus=10,Cooldown=8.0)
-	InstantIncaps(IAF_Stumble)=(Head=43,Torso=43,Arm=43,LowHealthBonus=10,Cooldown=0.5)
-	InstantIncaps(IAF_LegStumble)=(Leg=26,LowHealthBonus=10,Cooldown=0.5)
-	InstantIncaps(IAF_GunHit)=(Head=98,Torso=98,Leg=98,Arm=98,LowHealthBonus=10,Cooldown=0.0)
-	InstantIncaps(IAF_MeleeHit)=(Head=20,Torso=20,Leg=20,Arm=20,LowHealthBonus=10,Cooldown=0.0)
-	StackingIncaps(SAF_Poison)=(Threshhold=1.0,Duration=2.0,Cooldown=5.0,DissipationRate=1.00)
-	StackingIncaps(SAF_Microwave)=(Threshhold=1.0,Duration=2.0,Cooldown=5.0,DissipationRate=1.00)
-	StackingIncaps(SAF_FirePanic)=(Threshhold=0.9,Duration=5,Cooldown=7.0,DissipationRate=0.07)
+	// for reference: Vulnerability=(default, head, legs, arms, special)
+	IncapSettings(AF_Stun)=		(Vulnerability=(2.0, 2.0, 1.0, 2.0, 1.0), Cooldown=3.0, Duration=2.0)
+	IncapSettings(AF_Knockdown)=(Vulnerability=(1.f),                     Cooldown=1.0)
+	IncapSettings(AF_Stumble)=	(Vulnerability=(1.3f),                    Cooldown=0.3)
+	IncapSettings(AF_GunHit)=	(Vulnerability=(2.f),                     Cooldown=0.2)
+	IncapSettings(AF_MeleeHit)=	(Vulnerability=(2.0),                     Cooldown=0.0)
+	IncapSettings(AF_Poison)=	(Vulnerability=(1.0),                     Cooldown=5.0, Duration=4.5)
+	IncapSettings(AF_Microwave)=(Vulnerability=(0.0),                     Cooldown=5.0, Duration=2.0)
+	IncapSettings(AF_FirePanic)=(Vulnerability=(0.7),                     Cooldown=7.0, Duration=5)
+	IncapSettings(AF_EMP)=		(Vulnerability=(2.5),                     Cooldown=5.0, Duration=5.0)
+	IncapSettings(AF_Freeze)=	(Vulnerability=(2.5),                     Cooldown=1.5, Duration=2.0)
 
 	ParryResistance=0
+
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(3.0)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(1.0)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun', 	        DamageScale=(0.9)))   //0.78
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun', 	        DamageScale=(1.01)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle', 	        DamageScale=(0.76)))   //0.3 45
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(0.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(0.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(0.8)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 	                DamageScale=(0.25)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 	                DamageScale=(0.85)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(1.0)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.8)))
+
+
+	// special case
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing_Knife',              DamageScale=(0.7))
 	
 `if(`notdefined(ShippingPC))
 	DebugRadarTexture=Texture2D'UI_ZEDRadar_TEX.MapIcon_Slasher';

@@ -29,6 +29,8 @@ defaultproperties
       ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_Explosive_HX25:ExplosionPointLight'
       ExploLightFadeOutTime=0.300000
       CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
+      CamShakeInnerRadius=200.000000
+      CamShakeFalloff=1.500000
       Name="ExploTemplate0"
       ObjectArchetype=KFGameExplosion'KFGame.Default__KFGameExplosion'
    End Object

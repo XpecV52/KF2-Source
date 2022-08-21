@@ -191,6 +191,7 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunAuto'
    InventorySize=4
+   MagazineCapacity(0)=2
    bHasIronSights=True
    bNoMagazine=True
    bCanBeReloaded=True
@@ -205,7 +206,6 @@ defaultproperties
    DOF_FG_FocalRadius=65.000000
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_DBShotgun'
-   MagazineCapacity(0)=2
    MaxSpareAmmo(0)=46
    InitialSpareMags(0)=11
    AmmoPickupScale(0)=3.000000
@@ -285,7 +285,7 @@ defaultproperties
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_ShotgunBase:FirstPersonMesh'
    End Object
    Mesh=FirstPersonMesh
-   ItemName="Double-barrel Boomstick"
+   ItemName="Double-barreled Boomstick"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_ShotgunBase:StaticPickupComponent'
       StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_Double_Barrel_Pickup'
       ReplacementPrimitive=None

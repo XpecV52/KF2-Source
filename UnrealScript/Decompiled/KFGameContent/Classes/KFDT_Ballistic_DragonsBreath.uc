@@ -5,28 +5,14 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFDT_Ballistic_DragonsBreath extends KFDT_Ballistic
+class KFDT_Ballistic_DragonsBreath extends KFDT_Ballistic_Shotgun
     abstract;
 
 var class<KFDamageType> BurnDamageType;
 
-static simulated function GetBoneToDismember(KFPawn_Monster inPawn, Vector HitDirection, name InHitZoneName, out name OutBoneName)
-{
-    local KFCharacterInfo_Monster MonsterInfo;
-
-    MonsterInfo = inPawn.GetCharacterMonsterInfo();
-    if(MonsterInfo != none)
-    {
-        if(InHitZoneName == 'chest')
-        {
-            OutBoneName = ((Rand(2) == 0) ? MonsterInfo.SpecialMeleeDismemberment.LeftShoulderBoneName : MonsterInfo.SpecialMeleeDismemberment.RightShoulderBoneName);
-        }
-    }
-}
-
 static simulated function bool CanDismemberHitZone(name InHitZoneName)
 {
-    if(super.CanDismemberHitZone(InHitZoneName))
+    if(super(KFDT_Ballistic).CanDismemberHitZone(InHitZoneName))
     {
         return true;
     }
@@ -40,28 +26,6 @@ static simulated function bool CanDismemberHitZone(name InHitZoneName)
         default:
             return false;
             break;
-    }
-}
-
-static function float GetGoreDamageScale(Vector Location, Vector InstigatorLocation)
-{
-    local float DistSq;
-
-    DistSq = VSizeSq(InstigatorLocation - Location);
-    if(DistSq > float(1000000))
-    {
-        return 0.25;        
-    }
-    else
-    {
-        if(DistSq > float(160000))
-        {
-            return 0.5;            
-        }
-        else
-        {
-            return 1;
-        }
     }
 }
 
@@ -85,12 +49,11 @@ defaultproperties
 {
     BurnDamageType=Class'KFDT_Fire_DragonsBreathDoT'
     WeaponDef=Class'KFGame.KFWeapDef_DragonsBreath'
-    StumblePower=53
-    LegStumblePower=53
-    GunHitPower=30
     EffectGroup=EEffectDamageGroup.FXG_IncendiaryRound
-    GoreDamageGroup=EGoreDamageGroup.DGT_Shotgun
-    BurnPower=0.5
+    StumblePower=21
+    LegStumblePower=21
+    GunHitPower=12
+    BurnPower=5
     ModifierPerkList=/* Array type was not detected. */
     CameraLensEffectTemplate=Class'KFGame.KFCameraLensEmit_Fire'
     BloodSpread=0.4

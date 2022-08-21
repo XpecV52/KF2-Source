@@ -114,7 +114,7 @@ simulated function SetFogDensity(float NewDensity)
         {
             if(bOldEnabled)
             {
-                Deactivate();
+                DeActivate();
             }            
         }
         else
@@ -167,7 +167,7 @@ event Tick(float DeltaTime)
             {
                 SetFogDensity(0);
                 bBlendingFogOut = false;
-                Deactivate();                
+                DeActivate();                
             }
             else
             {
@@ -243,7 +243,7 @@ simulated function Activate()
     TempMessagePlayers(ActivateMessage);
 }
 
-simulated function Deactivate()
+simulated function DeActivate()
 {
     if(bEnabled)
     {

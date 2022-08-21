@@ -206,12 +206,14 @@ defaultproperties
     IdleMotorSound=AkEvent'WW_WEP_SA_SawBlade.Play_WEP_SA_Sawblade_Idle_Loop'
     ParryStrength=5
     MeleeSustainedWarmupTime=0.1
-    ParryDamageMitigationPercent=0.1
+    ParryDamageMitigationPercent=0.5
     BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
     ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
     FireModeIconPaths=/* Array type was not detected. */
     InventoryGroup=EInventoryGroup.IG_Primary
     InventorySize=10
+    MagazineCapacity[0]=5
+    MagazineCapacity[1]=250
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bHasFireLastAnims=true
@@ -220,10 +222,8 @@ defaultproperties
     QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=8192)
     GroupPriority=100
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SawbladeShooter'
-    MagazineCapacity[0]=5
-    MagazineCapacity[1]=250
     MaxSpareAmmo=25
-    AmmoPickupScale[1]=0.2
+    AmmoPickupScale[1]=0.5
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */
     MeleeAttackAnims=/* Array type was not detected. */

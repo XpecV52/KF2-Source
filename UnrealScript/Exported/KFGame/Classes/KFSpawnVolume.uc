@@ -455,14 +455,14 @@ var int VolumeChosenCount;
  Native SpawnVolume rating functions
  ********************************************************************************************* */
 /** Attempts to spawn the pawn classes in the SpawnList array. bAllOrNothing is to be determined */
-native final function int SpawnWave( out array< class<KFPawn_Monster> > SpawnList, bool bAllOrNothing );
+native final function int SpawnWave( out array< class<KFPawn_Monster> > SpawnList, bool bAllOrNothing, optional bool bSimulatedAIPlayers=false );
 /** Attempts to find a place to teleport the pawn class within this spawn volume */
 native final function vector FindTeleportLocation( class<KFPawn_Monster> TeleportMonsterClass, optional int ForcedMarkerIdx=0 );
 /** Attempts to find an open marker to spawn the pawn class within this spawn volume */
 native final function vector FindSpawnLocation( class<KFPawn> SpawnPawnClass );
 
 /** Get average visibility/distance rating by checking all human players */
-native function float ScoreLocation(Controller ControllerToScoreAgainst, Float BestRating, Float BestPossibleRating);
+native function float ScoreLocation(Controller ControllerToScoreAgainst, Float BestRating, Float BestPossibleRating, ESquadType SquadType);
 /** Get distance based score from one human player */
 native function float ScoreDistanceFrom(vector ViewLoc);
 /** Perform line of sight traces for visibility */
@@ -598,7 +598,7 @@ function float RateVolume( ESquadType DesiredSquadType, Controller RateControlle
     BestPossibleRatingWithoutLocation = (DesirabilityMod * 0.3) + (UsageRating * 0.3) + (DesirabilityMod * 0.1);
 
 	// Calculate rating based on distance and visibility to players
-	LocationRating = ScoreLocation(RateController, BestRating, BestPossibleRatingWithoutLocation);
+	LocationRating = ScoreLocation(RateController, BestRating, BestPossibleRatingWithoutLocation, DesiredSquadType);
 	if ( LocationRating < 0.f )
 	{
         if( !bMinimalDebugRatingChecks )

@@ -10,6 +10,7 @@ package tripwire.widgets
     import scaleform.clik.core.UIComponent;
     import scaleform.clik.motion.Tween;
     import tripwire.containers.WeaponSelectGroupContainer;
+    import tripwire.managers.HudManager;
     
     public class WeaponSelectWidget extends UIComponent
     {
@@ -103,6 +104,7 @@ package tripwire.widgets
             this.WeaponBlurIn();
             this._weaponSelectFadeTimer.reset();
             this._weaponSelectFadeTimer.start();
+            HudManager.manager.RhythmCounter.hidden = true;
         }
         
         public function close(param1:TimerEvent = null) : *
@@ -114,6 +116,7 @@ package tripwire.widgets
                 Tween.removeAllTweens();
                 this.WeaponBlurOut();
                 this.onFadeOutComplete();
+                HudManager.manager.RhythmCounter.hidden = false;
             }
         }
         
@@ -210,6 +213,7 @@ package tripwire.widgets
                 }
                 _loc2_++;
             }
+            HudManager.manager.RhythmCounter.hidden = true;
         }
         
         public function showAllHUDGroups() : void
@@ -223,11 +227,13 @@ package tripwire.widgets
                 }
                 _loc1_++;
             }
+            HudManager.manager.RhythmCounter.hidden = true;
         }
         
         private function onFadeOutComplete() : void
         {
             ExternalInterface.call("Callback_WeaponSelectFadedOut");
+            HudManager.manager.RhythmCounter.hidden = false;
         }
         
         private function WeaponBlurIn() : void

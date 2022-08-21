@@ -7,7 +7,7 @@
  *******************************************************************************/
 class AICommand_Attack_Grab extends AICommand_SM_Attack within KFAIController_Monster;
 
-static function bool Grab(KFAIController_Monster AI, KFPawn NewGrabTarget, optional float InPostSpecialMoveSleepTime)
+static function bool Grab(KFAIController_Monster AI, optional float InPostSpecialMoveSleepTime)
 {
     local AICommand_Attack_Grab OtherCmd, Cmd;
 
@@ -67,7 +67,7 @@ function Popped()
 
 function NotifyEnemyChanged(optional Pawn OldEnemy)
 {
-    if((Outer.MyKFPawn != none) && Outer.MyKFPawn.IsDoingSpecialMove(4))
+    if((Outer.MyKFPawn != none) && Outer.MyKFPawn.IsDoingSpecialMove(3))
     {
         Outer.MyKFPawn.EndSpecialMove();
     }
@@ -105,7 +105,7 @@ state Command_SpecialMove
     function SpecialMoveTimeout()
     {
         Outer.AILog_Internal(string(self) $ " Special move timed out", 'Command_Attack_Grab');
-        if((Outer.MyKFPawn.SpecialMove == SpecialMove) || Outer.MyKFPawn.SpecialMove == 4)
+        if((Outer.MyKFPawn.SpecialMove == SpecialMove) || Outer.MyKFPawn.SpecialMove == 3)
         {
             Outer.MyKFPawn.EndSpecialMove();
         }
@@ -137,7 +137,7 @@ state Command_SpecialMove
 
     function bool IsSpecialMoveComplete()
     {
-        return (Outer.MyKFPawn == none) || (!Outer.MyKFPawn.IsDoingSpecialMove(3) && !Outer.MyKFPawn.IsDoingSpecialMove(4)) && super.IsSpecialMoveComplete();
+        return (Outer.MyKFPawn == none) || !Outer.MyKFPawn.IsDoingSpecialMove(3) && super.IsSpecialMoveComplete();
     }
 
     function FinishedSpecialMove()

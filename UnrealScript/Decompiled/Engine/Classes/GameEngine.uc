@@ -48,6 +48,7 @@ struct native transient BenchmarkSample
     var init float RenderThreadTime;
     var init float GameThreadTime;
     var init float GPUFrameTime;
+    var init float FrameTime;
 
     structdefaultproperties
     {
@@ -55,6 +56,7 @@ struct native transient BenchmarkSample
         RenderThreadTime=0
         GameThreadTime=0
         GPUFrameTime=0
+        FrameTime=0
     }
 };
 
@@ -131,6 +133,7 @@ var config bool bClearAnimSetLinkupCachesOnLoadMap;
 var config bool bEnableSecondaryDisplay;
 var config bool bEnableSecondaryViewport;
 var const transient OnlineSubsystem OnlineSubsystem;
+var const transient PlayfabInterface PlayfabInterfaceInst;
 var const transient GamePadLightbarSubsystem GamePadLightbarSubsystem;
 var const transient DownloadableContentEnumerator DLCEnumerator;
 var string DownloadableContentEnumeratorClassName;
@@ -144,6 +147,7 @@ var config float MaxDeltaTime;
 var string SecondaryViewportClientClassName;
 var init array<init ScriptViewportClient> SecondaryViewportClients;
 var init array<init Pointer> SecondaryViewportFrames;
+var const config array<config string> IgnoredUsesGUIDPackages;
 var const array<LevelStreamingStatus> PendingLevelStreamingStatusUpdates;
 var const array<ObjectReferencer> ObjectReferencers;
 var array<FullyLoadedPackagesInfo> PackagesToFullyLoad;
@@ -158,6 +162,9 @@ native final function DestroyNamedNetDriver(name NetDriverName);
 
 // Export UGameEngine::execGetOnlineSubsystem(FFrame&, void* const)
 native static final function OnlineSubsystem GetOnlineSubsystem();
+
+// Export UGameEngine::execGetPlayfabInterface(FFrame&, void* const)
+native static final function PlayfabInterface GetPlayfabInterface();
 
 // Export UGameEngine::execGetDLCEnumerator(FFrame&, void* const)
 native static final function DownloadableContentEnumerator GetDLCEnumerator();

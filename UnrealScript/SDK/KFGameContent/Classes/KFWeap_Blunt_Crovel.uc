@@ -66,6 +66,8 @@ defaultproperties
 	ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Metal'
 	
 	ParryStrength=3
+	ParryDamageMitigationPercent=0.70
+	BlockDamageMitigation=0.70
 }
 
 

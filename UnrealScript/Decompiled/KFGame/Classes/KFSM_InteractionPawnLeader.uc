@@ -45,16 +45,23 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
 
 function SpecialMoveEnded(name PrevMove, name NextMove)
 {
+    local KFSM_InteractionPawnFollower FollowerSM;
+
     PawnOwner.ClearTimer('CheckReadyToStartInteraction', self);
     PawnOwner.ClearTimer('InteractionStartTimedOut', self);
     PawnOwner.ClearTimer('RetryCollisionTimer', self);
-    if(bAlignPawns)
+    if(bAlignPawns && !KFPOwner.IsHumanControlled())
     {
         PawnOwner.ZeroMovementVariables();
         if(Follower != none)
         {
             Follower.ZeroMovementVariables();
         }
+    }
+    if((Follower != none) && Follower.IsDoingSpecialMove(FollowerSpecialMove))
+    {
+        FollowerSM = KFSM_InteractionPawnFollower(Follower.SpecialMoves[FollowerSpecialMove]);
+        FollowerSM.OnLeaderLeavingSpecialMove();
     }
     Follower = none;
     if(ExecutionCameraAnimInst_Leader != none)
@@ -162,7 +169,6 @@ function StartInteraction()
 
 function RetryCollisionTimer()
 {
-    LogInternal("zdist:" @ string(Abs(Follower.Location.Z - PawnOwner.Location.Z)));
     if((Abs(Follower.Location.Z - PawnOwner.Location.Z) > (PawnOwner.CylinderComponent.CollisionHeight * 1.5)) || !IsFollowerReachable())
     {
         KFPOwner.EndSpecialMove();
@@ -171,15 +177,7 @@ function RetryCollisionTimer()
 
 function bool IsFollowerReachable()
 {
-    local Vector HitLocation, HitNormal;
-    local Actor HitActor;
-
-    HitActor = PawnOwner.WorldInfo.Trace(HitLocation, HitNormal, Follower.Location, PawnOwner.Location, false);
-    if((HitActor != none) && HitActor != Follower)
-    {
-        return false;
-    }
-    return true;
+    return (IsPawnPathClear(KFPOwner.WorldInfo, Follower, Follower.Location, KFPOwner.Location, vect(2, 2, 2), true, true)) && IsPawnPathClear(KFPOwner.WorldInfo, Follower, Follower.Location, KFPOwner.Location,, true, true);
 }
 
 function bool MessageEvent(name EventName, Object Sender)
@@ -192,7 +190,13 @@ function bool MessageEvent(name EventName, Object Sender)
     return super(GameSpecialMove).MessageEvent(EventName, Sender);
 }
 
-function OnFollowerLeavingSpecialMove();
+function OnFollowerLeavingSpecialMove()
+{
+    if((KFPOwner != none) && KFPOwner.Role == ROLE_Authority)
+    {
+        KFPOwner.EndSpecialMove();
+    }
+}
 
 function DebugSocketRelativeLocation(name InSocketName)
 {

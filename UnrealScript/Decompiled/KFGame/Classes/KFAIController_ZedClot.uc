@@ -40,18 +40,18 @@ function bool CanDoStrike()
     return super.CanDoStrike();
 }
 
-event DoGrabAttack(optional Pawn NewEnemy, optional Actor InTarget, optional float InPostSpecialMoveSleepTime)
+event DoGrabAttack(optional Pawn NewEnemy, optional float InPostSpecialMoveSleepTime)
 {
     InPostSpecialMoveSleepTime = 0;
     if((CommandList == none) || AICommand(CommandList).bAllowedToAttack)
     {
-        if(NewEnemy != none)
+        if((NewEnemy != none) && NewEnemy != Enemy)
         {
             SetEnemy(NewEnemy);
         }
         ClearMovementInfo(true, "Aborted For GrabAttack");
         AILog_Internal(string(GetFuncName()) $ "() Init AICommand_Attack_Grab", 'InitAICommand');
-        Class'AICommand_Attack_Grab'.static.Grab(self, KFPawn(InTarget), InPostSpecialMoveSleepTime);        
+        Class'AICommand_Attack_Grab'.static.Grab(self, InPostSpecialMoveSleepTime);        
     }
     else
     {

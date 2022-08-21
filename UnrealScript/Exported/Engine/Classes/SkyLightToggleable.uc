@@ -58,7 +58,6 @@ defaultproperties
    End Object
    Components(0)=Sprite
    Components(1)=SkyLightComponent0
-   TickGroup=TG_DuringAsyncWork
    bHardAttach=True
    BlockRigidBody=False
    CollisionComponent=LightMeshComponent0

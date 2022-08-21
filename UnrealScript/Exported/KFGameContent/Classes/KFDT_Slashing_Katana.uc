@@ -9,60 +9,6 @@ class KFDT_Slashing_Katana extends KFDT_Slashing
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 12;
-
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
@@ -181,9 +127,8 @@ static simulated function ModifyDismembermentHitImpulse(KFPawn_Monster InPawn, n
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Katana'
-   StumblePower=40
-   LegStumblePower=40
-   MeleeHitPower=37
+   StumblePower=30.000000
+   MeleeHitPower=100.000000
    KDamageImpulse=200.000000
    KDeathUpKick=250.000000
    Name="Default__KFDT_Slashing_Katana"

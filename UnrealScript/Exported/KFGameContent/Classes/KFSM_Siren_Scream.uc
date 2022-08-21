@@ -31,6 +31,7 @@ var bool            bDrawWaveRadius;
 var bool			bDrawProjectileShield;
 
 var KFTrigger_SirenProjectileShield ProjectileShield;
+var const	float	ProjectileShieldLifetime;
 
 /**
  * Can a new special move override this one before it is finished?
@@ -38,7 +39,7 @@ var KFTrigger_SirenProjectileShield ProjectileShield;
  */
 function bool CanOverrideMoveWith( Name NewMove )
 {
-	if ( bCanBeInterrupted && (NewMove == 'KFSM_Stunned' || NewMove == 'KFSM_Stumble' || NewMove == 'Knockdown') )
+	if ( bCanBeInterrupted && (NewMove == 'KFSM_Stunned' || NewMove == 'KFSM_Stumble' || NewMove == 'KFSM_Knockdown' || NewMove == 'KFSM_Frozen') )
 	{
 		return TRUE;
 	}
@@ -47,12 +48,10 @@ function bool CanOverrideMoveWith( Name NewMove )
 
 function SpecialMoveStarted( bool bForced, name PrevMove )
 {
-	local float ShieldDestroyTime;
-
 	super.SpecialMoveStarted( bForced, PrevMove );
 
-	ShieldDestroyTime = KFSkeletalMeshComponent(KFPOwner.Mesh).GetAnimInterruptTime( AnimName );
-	KFPOwner.SetTimer( ShieldDestroyTime, false, nameof(Timer_DestroyProjectileShield), self );
+	//ShieldDestroyTime = KFSkeletalMeshComponent(KFPOwner.Mesh).GetAnimInterruptTime( AnimName );
+	KFPOwner.SetTimer( ProjectileShieldLifetime, false, nameof(Timer_DestroyProjectileShield), self );
 
 	if( AIOwner != none )
 	{
@@ -141,6 +140,7 @@ function ScreamExplosion()
 		return;
 	}
 
+	ExplosionTemplate.Damage = KFPawn_Monster(KFPOwner).GetRallyBoostDamage( default.ExplosionTemplate.Damage );
 	ExplosionActor.Explode(ExplosionTemplate);		// go bewm
 
 	ScreamCount++;
@@ -170,6 +170,7 @@ defaultproperties
    ScreamDamageFrequency=1.000000
    ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFSM_Siren_Scream:ExploTemplate0'
    ExplosionActorClass=Class'kfgamecontent.KFExplosion_SirenScream'
+   ProjectileShieldLifetime=1.000000
    AnimName="Atk_Combo1_V1"
    AnimStance=EAS_UpperBody
    bCanBeInterrupted=True

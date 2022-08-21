@@ -68,6 +68,7 @@ var int MaxSpecialSquadRecycles;
 var int NumSpecialSquadRecycles;
 var int NumSpawnListCycles;
 var array<KFSpawnVolume> SpawnVolumes;
+var KFSpawnVolume LastAISpawnVolume;
 var KFSpawner ActiveSpawner;
 var const int ObjExtraAI;
 var array< class<KFPawn_Monster> > LeftoverSpawnSquad;
@@ -153,6 +154,7 @@ function SetupNextWave(byte NextWaveIndex)
             KFGRI.CurrentTimeTilNextSpawn = TimeUntilNextSpawn;
         }
     }
+    LastAISpawnVolume = none;
     if(bLogAISpawning || bLogWaveSpawnTiming)
     {
         LogInternal((("KFAISpawnManager.SetupNextWave() NextWave:" @ string(NextWaveIndex)) @ "WaveTotalAI:") @ string(WaveTotalAI));
@@ -206,7 +208,7 @@ function GetAvailableSquads(byte MyWaveIndex, optional bool bNeedsSpecialSquad)
 
 function SpawnRemainingReservedZeds(optional bool bSpawnAllReservedZeds);
 
-function SetDesiredSquadTypeForZedList(array< class<KFPawn_Monster> > NewSquad)
+function KFSpawnVolume.ESquadType GetDesiredSquadTypeForZedList(array< class<KFPawn_Monster> > NewSquad)
 {
     local int I;
     local KFSpawnVolume.ESquadType LargestMonsterSquadType;
@@ -228,7 +230,12 @@ function SetDesiredSquadTypeForZedList(array< class<KFPawn_Monster> > NewSquad)
         ++ I;
         goto J0x17;
     }
-    DesiredSquadType = LargestMonsterSquadType;
+    return LargestMonsterSquadType;
+}
+
+function SetDesiredSquadTypeForZedList(array< class<KFPawn_Monster> > NewSquad)
+{
+    DesiredSquadType = GetDesiredSquadTypeForZedList(NewSquad);
     if(bLogAISpawning)
     {
         LogInternal((string(GetFuncName()) $ " adjusted largest squad for squad leftover squad to ") $ string(GetEnum(Enum'ESquadType', DesiredSquadType)));
@@ -239,8 +246,9 @@ function GetSpawnListFromSquad(byte SquadIdx, out array<KFAISpawnSquad> SquadsLi
 {
     local KFAISpawnSquad Squad;
     local KFAISpawnManager.EAIType AIType;
-    local int I, J;
+    local int I, J, RandNum;
     local KFSpawnVolume.ESquadType LargestMonsterSquadType;
+    local array< class<KFPawn_Monster> > TempSpawnList;
 
     Squad = SquadsList[SquadIdx];
     LargestMonsterSquadType = 4;
@@ -256,23 +264,23 @@ function GetSpawnListFromSquad(byte SquadIdx, out array<KFAISpawnSquad> SquadsLi
         {
             if(Squad.MonsterList[I].CustomClass != none)
             {
-                AISpawnList.AddItem(Squad.MonsterList[I].CustomClass;                
+                TempSpawnList.AddItem(Squad.MonsterList[I].CustomClass;                
             }
             else
             {
                 AIType = Squad.MonsterList[I].Type;
                 if(AIType == 11)
                 {
-                    AISpawnList.AddItem(Outer.AIBossClassList[Rand(Outer.AIBossClassList.Length)];                    
+                    TempSpawnList.AddItem(Outer.AIBossClassList[Rand(Outer.AIBossClassList.Length)];                    
                 }
                 else
                 {
-                    AISpawnList.AddItem(Outer.AIClassList[AIType];
+                    TempSpawnList.AddItem(Outer.AIClassList[AIType];
                 }
             }
-            if(AISpawnList[AISpawnList.Length - 1].default.MinSpawnSquadSizeType < LargestMonsterSquadType)
+            if(TempSpawnList[TempSpawnList.Length - 1].default.MinSpawnSquadSizeType < LargestMonsterSquadType)
             {
-                LargestMonsterSquadType = AISpawnList[AISpawnList.Length - 1].default.MinSpawnSquadSizeType;
+                LargestMonsterSquadType = TempSpawnList[TempSpawnList.Length - 1].default.MinSpawnSquadSizeType;
             }
             ++ J;
             goto J0x6E;
@@ -280,8 +288,17 @@ function GetSpawnListFromSquad(byte SquadIdx, out array<KFAISpawnSquad> SquadsLi
         ++ I;
         goto J0x36;
     }
-    if(AISpawnList.Length > 0)
+    if(TempSpawnList.Length > 0)
     {
+        J0x2C5:
+
+        if(TempSpawnList.Length > 0)
+        {
+            RandNum = Rand(TempSpawnList.Length);
+            AISpawnList.AddItem(TempSpawnList[RandNum];
+            TempSpawnList.Remove(RandNum, 1;
+            goto J0x2C5;
+        }
         DesiredSquadType = Squad.MinVolumeType;
         if(LargestMonsterSquadType < DesiredSquadType)
         {
@@ -371,14 +388,8 @@ function array< class<KFPawn_Monster> > GetNextSpawnList()
         LogMonsterList(NewSquad, "NewSquad");
         LogMonsterList(LeftoverSpawnSquad, "LeftoverSpawnSquad");
     }
-    if(Outer.bIsVersusGame)
-    {
-        AssignZedsToPlayers(NewSquad);
-    }
     return NewSquad;
 }
-
-function AssignZedsToPlayers(out array< class<KFPawn_Monster> > NewZeds);
 
 function LogMonsterList(array< class<KFPawn_Monster> > MonsterList, string ListName)
 {
@@ -658,6 +669,10 @@ function int SpawnSquad(array< class<KFPawn_Monster> > AIToSpawn, optional bool 
     local bool bCanSpawnPlayerBoss;
 
     bSkipHumanZedSpawning = false;
+    if(!Outer.IsWaveActive())
+    {
+        return 0;
+    }
     if((ActiveSpawner != none) && ActiveSpawner.CanSpawnHere(DesiredSquadType))
     {
         SpawnerAmount = ActiveSpawner.SpawnSquad(AIToSpawn);
@@ -676,21 +691,15 @@ function int SpawnSquad(array< class<KFPawn_Monster> > AIToSpawn, optional bool 
             {
                 LogMonsterList(AIToSpawn, "SpawnSquad Pre Spawning");
             }
-            bCanSpawnPlayerBoss = ((Outer.bIsVersusGame) ? CanSpawnPlayerBoss() : false);
-            if((!Outer.bIsVersusGame || Outer.MyKFGRI.WaveNum < Outer.MyKFGRI.WaveMax) || (Outer.MyKFGRI.WaveNum == Outer.MyKFGRI.WaveMax) && !bCanSpawnPlayerBoss)
+            bCanSpawnPlayerBoss = ((Outer.bIsVersusGame && Outer.MyKFGRI.WaveNum == Outer.MyKFGRI.WaveMax) ? CanSpawnPlayerBoss() : false);
+            if((!Outer.bIsVersusGame || Outer.MyKFGRI.WaveNum < Outer.MyKFGRI.WaveMax) || !bCanSpawnPlayerBoss)
             {
                 VolumeAmount = KFSV.SpawnWave(AIToSpawn, true);
+                LastAISpawnVolume = KFSV;
             }
-            if(Outer.bIsVersusGame && !bSkipHumanZedSpawning)
+            if((Outer.bIsVersusGame && !bSkipHumanZedSpawning) && Outer.MyKFGRI.WaveNum == Outer.MyKFGRI.WaveMax)
             {
-                if(Outer.MyKFGRI.WaveNum == Outer.MyKFGRI.WaveMax)
-                {
-                    AIToSpawn.Length = 0;
-                }
-                if((Outer.MyKFGRI.WaveNum < Outer.MyKFGRI.WaveMax) || bCanSpawnPlayerBoss)
-                {
-                    RespawnZedHumanPlayers(KFSV);
-                }
+                AIToSpawn.Length = 0;
             }
             if(bLogAISpawning)
             {
@@ -706,10 +715,7 @@ function int SpawnSquad(array< class<KFPawn_Monster> > AIToSpawn, optional bool 
         }
     }
     FinalAmount = VolumeAmount + SpawnerAmount;
-    if(!Outer.bIsVersusGame)
-    {
-        Outer.RefreshMonsterAliveCount();
-    }
+    Outer.RefreshMonsterAliveCount();
     if(AIToSpawn.Length > 0)
     {
         if(bLogAISpawning)
@@ -718,13 +724,13 @@ function int SpawnSquad(array< class<KFPawn_Monster> > AIToSpawn, optional bool 
             LogMonsterList(LeftoverSpawnSquad, "Failed Spawn Before Adding To Leftovers");
         }
         I = 0;
-        J0x5E8:
+        J0x56F:
 
         if(I < AIToSpawn.Length)
         {
             LeftoverSpawnSquad[LeftoverSpawnSquad.Length] = AIToSpawn[I];
             ++ I;
-            goto J0x5E8;
+            goto J0x56F;
         }
         if(bLogAISpawning)
         {
@@ -991,9 +997,9 @@ function ResetSpawnCurveIntensity()
     SetSineWaveFreq(default.SineWaveFreq);
 }
 
-protected function RespawnZedHumanPlayers(KFSpawnVolume SpawnVolume);
-
 protected function bool CanSpawnPlayerBoss();
+
+function ResetSpawnManager();
 
 defaultproperties
 {

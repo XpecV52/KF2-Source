@@ -18,11 +18,19 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
     LeaderSpecialMove = 0;
 }
 
+function OnLeaderLeavingSpecialMove()
+{
+    if((KFPOwner != none) && KFPOwner.Role == ROLE_Authority)
+    {
+        KFPOwner.EndSpecialMove();
+    }
+}
+
 function SpecialMoveEnded(name PrevMove, name NextMove)
 {
     local KFSM_InteractionPawnLeader LeaderSM;
 
-    if(((Leader != none) && Leader.Health > 0) && Leader.IsDoingSpecialMove(LeaderSpecialMove))
+    if((Leader != none) && Leader.IsDoingSpecialMove(LeaderSpecialMove))
     {
         LeaderSM = KFSM_InteractionPawnLeader(Leader.SpecialMoves[LeaderSpecialMove]);
         LeaderSM.OnFollowerLeavingSpecialMove();

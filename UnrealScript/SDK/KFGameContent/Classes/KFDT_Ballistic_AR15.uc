@@ -12,17 +12,14 @@ class KFDT_Ballistic_AR15 extends KFDT_Ballistic_AssaultRifle
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 defaultproperties
 {
 	KDamageImpulse=900
 	KDeathUpKick=-300
 	KDeathVel=100
 	
-	StumblePower=35
-	LegStumblePower=35
-	GunHitPower=15
+	StumblePower=5
+	GunHitPower=0
 
 	WeaponDef=class'KFWeapDef_AR15'
 

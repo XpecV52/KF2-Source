@@ -24,7 +24,7 @@ defaultproperties
 	ScreenMaterialName=Effect_Siren
 
     // Obliteration
-	bCanObliterate=TRUE
+	bCanObliterate=false
 	ObliterationHealthThreshold=-1
 	ObliterationDamageThreshold=3
 	

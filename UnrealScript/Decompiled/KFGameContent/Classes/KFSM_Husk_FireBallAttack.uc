@@ -55,7 +55,7 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
 
 function bool CanOverrideMoveWith(name NewMove)
 {
-    if(bCanBeInterrupted && ((NewMove == 'KFSM_Stunned') || NewMove == 'KFSM_Stumble') || NewMove == 'Knockdown')
+    if(bCanBeInterrupted && (((NewMove == 'KFSM_Stunned') || NewMove == 'KFSM_Stumble') || NewMove == 'KFSM_Knockdown') || NewMove == 'KFSM_Frozen')
     {
         return true;
     }
@@ -66,7 +66,10 @@ defaultproperties
 {
     AnimName=Atk_Shoot_V1
     bCanBeInterrupted=true
+    bUseCustomRotationRate=true
     bDisableMovement=true
     bDisableSteering=false
+    bDisableTurnInPlace=true
+    CustomRotationRate=(Pitch=66000,Yaw=100000,Roll=66000)
     Handle=KFSM_Husk_FireBallAttack
 }

@@ -46,32 +46,61 @@ defaultproperties
 	End Object
 
 	SpecialMoveCooldowns(0)=(SMHandle=SM_PlayerZedAttack1,		CooldownTime=2.5f,		SpecialMoveIcon=Texture2D'ZED_Siren_UI.ZED-VS_Icons_Siren-Scream', GBA_Name="GBA_Fire",NameLocalizationKey="Scream")
-	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedAttack2,		CooldownTime=8.0f,		SpecialMoveIcon=Texture2D'ZED_Siren_UI.ZED-VS_Icons_Siren-PullIn', GBA_Name="GBA_IronsightsToggle",NameLocalizationKey="Vortex")
+	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedAttack2,		CooldownTime=12.0f,		SpecialMoveIcon=Texture2D'ZED_Siren_UI.ZED-VS_Icons_Siren-PullIn', GBA_Name="GBA_IronsightsToggle",NameLocalizationKey="Vortex") //8.0
 	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,					CooldownTime=0.0f,		GBA_Name="GBA_Reload",bShowOnHud=false)
 	SpecialMoveCooldowns(3)=(SMHandle=SM_PlayerZedSpecial1,		CooldownTime=0.0f,		SpecialMoveIcon=Texture2D'ZED_Siren_UI.ZED-VS_Icons_Siren-Bite', GBA_Name="GBA_TertiaryFire",NameLocalizationKey="Bite")
 	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.5f,		SpecialMoveIcon=Texture2D'ZED_Siren_UI.ZED-VS_Icons_Siren-Jump', GBA_Name="GBA_Jump",bShowOnHud=false)) // Jump always at end of array
 
-	InstantIncaps(IAF_Stun)=(Head=68,Torso=90,Leg=90,Arm=90,LowHealthBonus=10,Cooldown=5.0)
-	InstantIncaps(IAF_Knockdown)=(Head=50,Torso=80,Leg=80,Arm=80,Special=50,LowHealthBonus=10,Cooldown=9.0)
-	InstantIncaps(IAF_Stumble)=(Head=60,Torso= 65,Arm=65,Special=65,LowHealthBonus=10,Cooldown=5.0)
-	InstantIncaps(IAF_LegStumble)=(Leg=60,LowHealthBonus=10,Cooldown=5.0)
-	InstantIncaps(IAF_GunHit)=(Head=105,Torso=105,Leg=105,Arm=105,LowHealthBonus=10,Cooldown=0.5)
-	InstantIncaps(IAF_MeleeHit)=(Head=23,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=0.35)
-	StackingIncaps(SAF_Poison)=(Threshhold=3.0,Duration=4.0,Cooldown=8.5,DissipationRate=1.00)
-	StackingIncaps(SAF_Microwave)=(Threshhold=3.0,Duration=4.0,Cooldown=8.5,DissipationRate=1.00)
-	StackingIncaps(SAF_FirePanic)=(Threshhold=12.0,Duration=2.0,Cooldown=5.0,DissipationRate=1.0)
-	StackingIncaps(SAF_EMPPanic)=(Threshhold=1.5,Duration=2.0,Cooldown=5.0,DissipationRate=0.5)
-	StackingIncaps(SAF_EMPDisrupt)=(Threshhold=0.0,Duration=2.0,Cooldown=5.0,DissipationRate=1.0)
-	StackingIncaps(SAF_Freeze)=(Threshhold=2.0,Duration=1.0,Cooldown=5.0,DissipationRate=0.33)
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(0.8)))  //3.0
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(0.5)))  //1.0
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun', 	        DamageScale=(0.5)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun', 	        DamageScale=(0.6)))  //1.01  0.4
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle', 	        DamageScale=(0.65)))  //0.76  0.5
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(0.5)))  //0.5
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(0.5)))  //0.5
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(0.3)))  //0.8
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 	                DamageScale=(0.75)))  //0.25
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 	                DamageScale=(0.5)))  //0.85  0.35
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.4)))   //1.0
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.30)))  //0.88
 
-    SprintSpeed=450.0f
+
+// special case
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AR15',              DamageScale=(1.0))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_MB500', 	         DamageScale=(1.1)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rem1858', 	         DamageScale=(0.85)))  //0.9  0.75
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Colt1911', 	     DamageScale=(0.75)))  //0.9   0.65
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_9mm', 	             DamageScale=(1.6)))  //0.9
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Pistol_Medic', 	 DamageScale=(1.5)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Winchester', 	     DamageScale=(0.75)))  //0.9  0.7
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire_CaulkBurn', 	         DamageScale=(0.7)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_ExplosiveSubmunition_HX25', 	 DamageScale=(0.6)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing_EvisceratorProj', 	 DamageScale=(0.4)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing_Eviscerator', 	     DamageScale=(0.3)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_DragonsBreath', 	 DamageScale=(1.1)))  //0.9
+
+
+
+	IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 0.5, 0.1, 0.1, 0.1), Cooldown=3.0, Duration=2.0)
+	IncapSettings(AF_Knockdown)=(Vulnerability=(0.5),                     Cooldown=3.0)
+	IncapSettings(AF_Stumble)=	(Vulnerability=(0.5),                     Cooldown=3.0)
+	IncapSettings(AF_GunHit)=	(Vulnerability=(1.0),                     Cooldown=0.75)
+	IncapSettings(AF_MeleeHit)=	(Vulnerability=(1.0),                     Cooldown=0.5)
+	IncapSettings(AF_Poison)=	(Vulnerability=(1),                       Cooldown=5.0, Duration=2.0)
+	IncapSettings(AF_Microwave)=(Vulnerability=(0.0),                     Cooldown=5.0, Duration=2.0)
+	IncapSettings(AF_FirePanic)=(Vulnerability=(1.0),                     Cooldown=8.0, Duration=3)
+	IncapSettings(AF_EMP)=		(Vulnerability=(1.0),                     Cooldown=5.0, Duration=3.0)
+	IncapSettings(AF_Freeze)=	(Vulnerability=(1.0),                     Cooldown=1.5, Duration=2.0)
+
+    SprintSpeed=430.0f  //450
     SprintStrafeSpeed=300.f
     GroundSpeed=200.0f
 
-//	Health=230
-//	// Custom Hit Zones (HeadHealth, SkinTypes, etc...)
-//    HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=155, DmgScale=1.1, SkinID=1) // KF1=200
 
+// Custom Hit Zones (HeadHealth, SkinTypes, etc...)
+    HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=155, DmgScale=1.01, SkinID=1) // KF1=200
+
+    Health=300 // KF1=300
     DoshValue=25.0 // default because they have the same health as survival
     XPValues(0)=22 // 2x default because they are harder to hit/kill
 

@@ -24,6 +24,9 @@ struct native PreGameServerAdInfo
 
 var repnotify PreGameServerAdInfo ServerAdInfo;
 
+var int PrimaryXPAccumulator;
+var int SecondaryXPAccumulator;
+
 /************************************
 *  Traders
 ************************************/
@@ -65,6 +68,16 @@ var					int							WaveTotalAICount;
 
 /** Cached class references loaded once */
 //var	array< class<KFPawn_Monster> >		AIClassList;
+
+//@HSL_BEGIN - JRO - 3/21/2016 - PS4 Sessions
+/************************************
+* Console Sessions
+************************************/
+//console info
+var repnotify string ConsoleGameSessionGuid;
+var UniqueNetId ConsoleGameSessionHost;
+var array<UniqueNetId> ConsoleGameSessionPendingPlayers;
+//@HSL_END
 
 /************************************
 * Settings
@@ -266,8 +279,6 @@ var repnotify KFMusicTrackInfo  ReplicatedMusicTrackInfo;
 /************************************
 *  Perks
 ************************************/
-/** Commando Leadership skill */
-var private bool bLeadershipAvailable;
 
 /************************************
 *  debug
@@ -281,6 +292,7 @@ var private float SteamHeartbeatAccumulator;
 native function SendSteamHeartbeat();
 native function SendSteamRequestItemDrop();
 
+function native private EndOfWave();
 
 // (cpptext)
 // (cpptext)
@@ -304,7 +316,7 @@ replication
 	if ( bNetDirty )
 		bTraderIsOpen, NextTrader, WaveNum, AIRemaining, WaveTotalAICount,
 		CurrentObjective, MusicIntensity, ReplicatedMusicTrackInfo, MusicTrackRepCount,
-		bIsUnrankedGame, bLeadershipAvailable, GameSharedUnlocks;
+		bIsUnrankedGame, GameSharedUnlocks, ConsoleGameSessionGuid; //@HSL - JRO - 3/21/2016 - PS4 Sessions
 	if ( bNetInitial )
 		GameLength, GameDifficulty, WaveMax, bCustom, bVersusGame;
 	if ( bNetInitial && Role == ROLE_Authority )
@@ -342,6 +354,7 @@ simulated event ReplicatedEvent(name VarName)
 		if ( bTraderIsOpen )
 		{
 			NotifyWaveEnded();
+			EndOfWave();
 			OpenTrader();
 		}
         else
@@ -380,6 +393,12 @@ simulated event ReplicatedEvent(name VarName)
 	{
 			UpdateHUDWaveCount();
 	}
+//@HSL_BEGIN - JRO - 3/21/2016 - PS4 Sessions
+	else if( VarName == 'ConsoleGameSessionGuid' )
+	{
+		KFPlayerController(GetALocalPlayerController()).TryJoinGameSession();
+	}
+//@HSL_END
 	else
 	{
 		super.ReplicatedEvent(VarName);
@@ -393,6 +412,10 @@ simulated event PostBeginPlay()
 	VoteCollector = new(Self) VoteCollectorClass;
 
 	Super.PostBeginPlay();
+	
+//@HSL_BEGIN - JRO - 3/21/2016 - PS4 Sessions
+	ConsoleGameSessionGuid = KFGameEngine(Class'Engine'.static.GetEngine()).ConsoleGameSessionGuid;
+//@HSL_END
 
 	// cache list of all doors actors (useful for HUD)
 	ForEach DynamicActors(class'KFDoorActor', Door)
@@ -640,8 +663,6 @@ simulated function int GetNextMapTimeRemaining()
 /** Called from the GameInfo when the trader pod should be activated */
 function SetWaveActive(bool bWaveActive, optional byte NewMusicIntensity)
 {
-    CheckGlobalPerkSkills( bWaveActive );
-
     // set up music intensity for this wave
     MusicIntensity = NewMusicIntensity;
 	bTraderIsOpen = !bWaveActive && bMatchHasBegun;
@@ -738,39 +759,11 @@ simulated event Timer()
     }
 }
 
-function CheckGlobalPerkSkills( bool bWaveActive )
+/** Called by the menu system to determine if perk changes are allowed */
+simulated event bool CanChangePerks()
 {
-	bLeadershipAvailable = bWaveActive ? CheckForLeaderShipSkill() : false;
+	return bTraderIsOpen;
 }
-
-function bool CheckForLeaderShipSkill()
-{
-	local KFPawn_Human KFPH;
-	local KFPerk_Commando KFPeC;
-
-	foreach WorldInfo.Allpawns( class'KFPawn_Human', KFPH )
-	{
-		if ( KFPH.IsAliveAndWell() )
-		{
-			KFPeC = KFPerk_Commando(KFPH.GetPerk());
-			if( KFPeC != none )
-			{
-				if( KFPeC.IsLeaderShipActive() )
-				{
-					return true;
-				}
-			}
-		}
-	}
-
-	return false;
-}
-
-simulated function bool IsLeadershipActive()
-{
-	return bLeadershipAvailable;
-}
-
 
 /* DisplayDebug()
 list important controller attributes on canvas
@@ -1324,6 +1317,11 @@ final private event NotifyGameUnranked()
 	}
 }
 
+/***********************************************************
+@name Post Round Info
+************************************************************/
+
+function int GetCurrentRoundNumber();
 
 /***********************************************************
 @name Team management

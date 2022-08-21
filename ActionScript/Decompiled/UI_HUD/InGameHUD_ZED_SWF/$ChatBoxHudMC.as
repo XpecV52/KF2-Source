@@ -57,7 +57,7 @@ package
             {
             }
             ChatInputField.actAsButton = true;
-            ChatInputField.defaultText = ">>";
+            ChatInputField.defaultText = "";
             ChatInputField.displayAsPassword = false;
             ChatInputField.editable = true;
             ChatInputField.enabled = true;

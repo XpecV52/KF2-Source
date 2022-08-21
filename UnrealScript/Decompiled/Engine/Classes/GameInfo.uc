@@ -953,6 +953,8 @@ event PlayerController Login(string Portal, string Options, const UniqueNetId Un
 
 static function bool AllowAnalyticsLogging();
 
+function ScoreDamage(int DamageAmount, int HealthBeforeDamage, Controller InstigatedBy, Pawn DamagedPawn, class<DamageType> DamageType);
+
 event bool SeatPlayer(const UniqueNetId SeatedPlayerID);
 
 event MakeReservations(const string URLOptions, const UniqueNetId PlayerID, out string OutError);
@@ -2860,6 +2862,9 @@ defaultproperties
     MinDynamicBandwidth=4000
     MaxDynamicBandwidth=7000
     StreamingPauseIcon=Material'EngineResources.M_StreamingPause'
+    GameInfoClassAliases(0)=(ShortName="BenchMark",GameClassName="KFGameContent.KFGameInfo_BenchMark")
+    GameInfoClassAliases(1)=(ShortName="Survival",GameClassName="KFGameContent.KFGameInfo_Survival")
+    GameInfoClassAliases(2)=(ShortName="Versus",GameClassName="KFGameContent.KFGameInfo_VersusSurvival")
     DefaultGameType="KFGameContent.KFGameInfo_Survival"
     Components=none
     CollisionType=ECollisionType.COLLIDE_CustomDefault

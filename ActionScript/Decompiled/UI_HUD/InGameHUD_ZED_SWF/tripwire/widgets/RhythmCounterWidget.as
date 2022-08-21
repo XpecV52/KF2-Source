@@ -26,6 +26,8 @@ package tripwire.widgets
         
         public var countGauge:MovieClip;
         
+        protected var _hidden:Boolean;
+        
         public function RhythmCounterWidget()
         {
             this.masterTimeline = new TimelineMax({
@@ -109,6 +111,22 @@ package tripwire.widgets
             {
                 this.count = 0;
             }
+        }
+        
+        public function set hidden(param1:Boolean) : void
+        {
+            this._hidden = param1;
+            this.visible = !this._hidden;
+        }
+        
+        override public function get visible() : Boolean
+        {
+            return super.visible && !this._hidden;
+        }
+        
+        override public function set visible(param1:Boolean) : void
+        {
+            super.visible = param1 && !this._hidden;
         }
         
         public function testTrace() : void

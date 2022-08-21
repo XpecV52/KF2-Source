@@ -11,60 +11,6 @@
 class KFGFxPostGameContainer_PlayerStats extends KFGFxObject_Container
 	dependson(EphemeralMatchStats);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 14;
-
 var localized string AchievementsString, ZedKillsString, TopWeaponsString;
 var localized string TotalDamageDealtString, HeadShotsString, LargeZedKillsString, TotalDoshEarnedString, TotalKillsString, AssistsString, DamageDealtString;
 var localized string KnifeString;
@@ -218,7 +164,7 @@ function GFxObject MakeAwardObject()
 defaultproperties
 {
    AchievementsString="Achievements"
-   ZedKillsString="ZED KILLS"
+   ZedKillsString="Zed KILLS:"
    TopWeaponsString="TOP WEAPONS"
    TotalDamageDealtString="Total Damage Dealt:"
    HeadShotsString="Headshots:"

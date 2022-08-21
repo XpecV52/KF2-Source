@@ -14,13 +14,25 @@ class KFProj_ExplosiveSubmunition_HX25_Nuke extends KFProj_ExplosiveSubmunition_
 
 simulated function PostBeginPlay()
 {
+    local KFPlayerController KFPC;
+    local KFPerk InstigatorPerk;
+
 	Super.PostBeginPlay();
 
 	ExplosionTemplate = class'KFPerk_Demolitionist'.static.GetNukeExplosionTemplate();
 	ExplosionActorClass = class'KFPerk_Demolitionist'.static.GetNukeExplosionActorClass();
 	ExplosionTemplate.Damage = default.ExplosionTemplate.Damage * class'KFPerk_Demolitionist'.static.GetNukeDamageModifier();
     ExplosionTemplate.DamageRadius = default.ExplosionTemplate.DamageRadius * class'KFPerk_Demolitionist'.static.GetNukeRadiusModifier();
-    ExplosionTemplate.DamageFalloffExponent = default.ExplosionTemplate.DamageFalloffExponent;     
+    ExplosionTemplate.DamageFalloffExponent = default.ExplosionTemplate.DamageFalloffExponent;  
+
+    KFPC = KFPlayerController(Instigator.Controller);
+    // Change the radius and damage based on the perk
+    if( Instigator.Role == ROLE_Authority && KFPC != none )
+    {
+        InstigatorPerk = KFPC.GetPerk();
+        ExplosionTemplate.Damage *= InstigatorPerk.GetAeODamageModifier();
+        ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAeORadiusModifier();
+    }
 }
 
 defaultproperties

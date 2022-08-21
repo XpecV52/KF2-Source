@@ -283,10 +283,11 @@ defaultproperties
    OrientationAxis=AXIS_X
    OrientationBoneName="Spine1"
    GetUpFromBackYawOffset=32768
+   bCanOnlyWanderAtEnd=True
    bDisablesWeaponFiring=True
    bDisableMovement=True
    bLockPawnRotation=True
-   Handle="RecoverFromRagdoll"
+   Handle="KFSM_RecoverFromRagdoll"
    Name="Default__KFSM_RecoverFromRagdoll"
    ObjectArchetype=KFSpecialMove'KFGame.Default__KFSpecialMove'
 }

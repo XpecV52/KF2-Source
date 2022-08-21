@@ -200,16 +200,34 @@ simulated function bool MeleeAttackImpact()
  */
 simulated function ImpactInfo CalcWeaponMeleeAttack(vector StartTrace, vector EndTrace, optional out array<ImpactInfo> ImpactList, optional vector Extent)
 {
-	local Pawn				BestVictim;
-	local ImpactInfo		CurrentImpact;
-	local array<Pawn>		VictimList;
-	local vector			RayDir;
+	local KFPawn 						KFPOwner;
+	local KFSM_InteractionPawnFollower 	FollowerSM;
+	local Pawn							BestVictim;
+	local ImpactInfo					CurrentImpact;
+	local array<Pawn>					VictimList;
+	local vector						RayDir;
 
 	// nudge impact direction (momentum) based on attack type
 	RayDir = GetAdjustedRayDir(EndTrace - StartTrace);
 
-	// first find nearby pawn targets - in the future we may want to calculate multiple victim impacts
-	BestVictim = FindVictimByFOV(StartTrace, EndTrace);
+	// If an enemy pawn has engaged us in an interaction special move, try to target them first
+	KFPOwner = KFPawn( Instigator );
+	if( KFPOwner.IsDoingSpecialMove() )
+	{
+		FollowerSM = KFSM_InteractionPawnFollower( KFPOwner.SpecialMoves[KFPOwner.SpecialMove] );
+		if( FollowerSM != none
+			&& FollowerSM.Leader != none
+			&& RateMeleeVictim(FollowerSM.Leader, StartTrace, EndTrace, MaxHitRange, DefaultFOVCosine) > -1.f )
+		{
+			BestVictim = FollowerSM.Leader;
+		}
+	}
+
+	// Find nearby pawn targets - in the future we may want to calculate multiple victim impacts
+	if( BestVictim == none )
+	{
+		BestVictim = FindVictimByFOV(StartTrace, EndTrace);
+	}
 
 	if ( BestVictim != None )
 	{
@@ -660,8 +678,7 @@ simulated function ProcessMeleeHit(byte FiringMode, ImpactInfo Impact)
 				FracActor = FracturedStaticMeshActor(Impact.HitActor);
 				if(FracActor != None)
 				{
-					FracActor.BreakOffPartsInRadius(Impact.HitLocation - (Impact.HitNormal * 15.0), 35.0, 100.0, TRUE);
-					//DrawDebugSphere(Impact.HitLocation - (TestImpact.HitNormal * 15.0), 35.0, 16.0, 255,0,0, TRUE);
+					class'KFMeleeHelperBase'.static.MeleeFractureMeshImpact( FracActor, Impact.HitLocation, Impact.HitNormal );
 				}
 			}
 		}
@@ -740,6 +757,7 @@ simulated function float GetDamageScaleByAngle(vector HitLoc)
  */
 simulated function PlayMeleeHitEffects(Actor Target, vector HitLocation, vector HitDirection, optional bool bShakeInstigatorCamera=true)
 {
+	local KFPawn KFP;
 	// @todo: all super does is add camera shake, which we don't want for player-against-player melee.
 	// we'll need to re-add camera shake some other way if/when we add PvP.
 	//Super.PlayMeleeHitEffects(Target, HitLocation, HitDirection);
@@ -763,6 +781,15 @@ simulated function PlayMeleeHitEffects(Actor Target, vector HitLocation, vector 
 		{
 			// Use ImpactEffectManager to material based world impacts
 			`ImpactEffectManager.PlayImpactEffects(HitLocation, Instigator, HitDirection, WorldImpactEffects);
+		}
+	}
+	else if( WorldInfo.NetMode != NM_Client && !Target.IsA('Pawn') )
+	{
+		// Tell remote clients to play impacts
+		KFP = KFPawn( Instigator );
+		if( KFP != none )
+		{
+			KFP.SetMeleeImpactLocation( HitLocation );
 		}
 	}
 }

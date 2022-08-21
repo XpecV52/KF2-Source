@@ -11,7 +11,6 @@
 class KFDT_Piercing_NadeFragment extends KFDT_Piercing
 	abstract
 	hidedropdown;
-`include(KFGame\KFMatchStats.uci);
 
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
@@ -50,10 +49,9 @@ defaultproperties
 	KDamageImpulse=400
 	KDeathUpKick=250
 
-	StumblePower=100
-	LegStumblePower=100
-	GunHitPower=25
-	MeleeHitPower=20
+	StumblePower=1000
+	GunHitPower=0
+	MeleeHitPower=100
 
 	WeaponDef=class'KFWeapDef_Grenade_Support'
 

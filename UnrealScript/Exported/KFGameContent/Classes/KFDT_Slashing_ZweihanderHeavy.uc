@@ -9,60 +9,6 @@ class KFDT_Slashing_ZweihanderHeavy extends KFDT_Slashing_Katana
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 12;
-
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
@@ -84,11 +30,7 @@ static simulated function bool CanDismemberHitZone( name InHitZoneName )
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Zweihander'
-   StunPower=42
-   KnockdownPower=40
-   StumblePower=63
-   LegStumblePower=63
-   MeleeHitPower=50
+   StumblePower=100.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
    KDamageImpulse=1600.000000
    KDeathVel=500.000000

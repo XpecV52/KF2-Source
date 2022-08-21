@@ -47,7 +47,6 @@ defaultproperties
     object end
     // Reference: ArrowComponent'Default__DirectionalLightToggleable.ArrowComponent0'
     Components(2)=ArrowComponent0
-    TickGroup=ETickingGroup.TG_DuringAsyncWork
     bHardAttach=true
     begin object name=LightMeshComponent0 class=StaticMeshComponent
         ReplacementPrimitive=none

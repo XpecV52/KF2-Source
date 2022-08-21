@@ -547,6 +547,7 @@ function SetupDroppedPickup( out DroppedPickup P, vector StartVelocity )
 {
 	local KFWeapon NewSingle;
 	local KFInventoryManager KFIM;
+	local vector X,Y,Z;
 
 	super.SetupDroppedPickup( P, StartVelocity );
 	
@@ -572,7 +573,16 @@ function SetupDroppedPickup( out DroppedPickup P, vector StartVelocity )
 		NewSingle.ClientForceAmmoUpdate(NewSingle.AmmoCount[0],NewSingle.SpareAmmoCount[0]);
 		NewSingle.ClientForceSecondaryAmmoUpdate(NewSingle.AmmoCount[1]);
 
-		Instigator.InvManager.SetCurrentWeapon( NewSingle );
+		// Drop second gun on death
+		if( Instigator.bPlayedDeath || Instigator.Health <= 0 )
+		{
+			GetAxes( Instigator.Rotation, X,Y,Z );
+			NewSingle.DropFrom( P.Location + Y*20, StartVelocity*(1.f + fRand()*0.1f) );
+		}
+		else
+		{
+			Instigator.InvManager.SetCurrentWeapon( NewSingle );
+		}
 	}
 
 	P.InventoryClass = SingleClass;
@@ -890,7 +900,7 @@ defaultproperties
 	FireLastSightedAnim=Shoot_IronOG_RW_Last
 	LeftFireLastSightedAnim=Shoot_IronOG_LW_Last
 	FireLastSightedAnim_Alt=Shoot_Iron_RW_Last
-	LeftFireLastSightedAnim_Alt=Shoot_Iron_RW_Last
+	LeftFireLastSightedAnim_Alt=Shoot_Iron_LW_Last
 
 	// DEFAULT_FIREMODE
 	FireModeIconPaths[DEFAULT_FIREMODE]=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'

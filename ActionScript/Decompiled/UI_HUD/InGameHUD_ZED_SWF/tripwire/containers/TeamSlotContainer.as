@@ -18,6 +18,8 @@ package tripwire.containers
         
         public var healthBarOriginalWidth:Number;
         
+        public var barBG:MovieClip;
+        
         public var previousHealthValue:Number;
         
         protected var _data:Object;
@@ -79,6 +81,7 @@ package tripwire.containers
             if(param1 != this.previousHealthValue)
             {
                 this.skullIconMC.visible = param1 == 0;
+                this.barBG.visible = param1 != 0;
                 this.zedAvatar.visible = param1 > 0;
                 this.healthBar.width = this.healthBarOriginalWidth * (param1 / 100);
             }

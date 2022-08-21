@@ -14,6 +14,7 @@ defaultproperties
 {
    bNoInstigatorDamage=True
    DoT_Type=DOT_None
+   CameraLensEffectTemplate=Class'KFGame.KFCameraLensEmit_Puke_Light'
    Name="Default__KFDT_Toxic_PlayerCrawlerSuicide"
    ObjectArchetype=KFDT_Toxic'KFGame.Default__KFDT_Toxic'
 }

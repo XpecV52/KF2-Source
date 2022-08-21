@@ -12,8 +12,6 @@ class KFDT_Slashing_Knife_Medic extends KFDT_Slashing_Knife
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 /** Whether this damage type can apply damage over time */
 static function bool CanApplyDamageOverTime( out int InDamage, out class<KFDamageType> KFDT, optional Controller InstigatedBy ) 
 {
@@ -39,6 +37,6 @@ static function bool CheckMedicBleed( out int InDamage, out class<KFDamageType> 
 
 defaultproperties
 {
-    GunHitPower=112
+    GunHitPower=44
     WeaponDef=class'KFWeapDef_Knife_Medic'
 }

@@ -210,9 +210,16 @@ simulated function CustomFire()
 
 simulated function bool CanWeldTarget(optional int FireModeNum)
 {
+    local KFPerk WelderPerk;
+
     FireModeNum = CurrentFireMode;
+    WelderPerk = GetPerk();
     if((FireModeNum == 0) && WeldTarget.WeldIntegrity >= WeldTarget.MaxWeldIntegrity)
     {
+        if((WelderPerk != none) && WelderPerk.CanExplosiveWeld())
+        {
+            return WeldTarget.DemoWeld < WeldTarget.default.DemoWeldRequired;
+        }
         return false;        
     }
     else
@@ -473,7 +480,7 @@ simulated state WeaponWelding extends WeaponFiring
 {
     simulated function byte GetWeaponStateId()
     {
-        return 28;
+        return 30;
     }
 
     simulated function BeginState(name PrevStateName)
@@ -505,12 +512,12 @@ defaultproperties
     ScreenUIClass=Class'KFGame.KFGFxWorld_WelderScreen'
     FireModeIconPaths=/* Array type was not detected. */
     InventoryGroup=EInventoryGroup.IG_None
+    MagazineCapacity=100
     bTargetAdhesionEnabled=false
     bInfiniteSpareAmmo=true
     bAllowClientAmmoTracking=false
     GroupPriority=5
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Welder'
-    MagazineCapacity=100
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */
     FireTweenTime=0.2

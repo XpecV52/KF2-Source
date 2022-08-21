@@ -34,9 +34,9 @@ defaultproperties
 
 	// explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
-		Damage=100
-		DamageRadius=600
-		DamageFalloffExponent=2.f
+		Damage=25  //100
+		DamageRadius=700   //600
+		DamageFalloffExponent=1  //2
 		DamageDelay=0.f
 
 		// Damage Effects
@@ -55,9 +55,9 @@ defaultproperties
 
 		// Camera Shake
 		CamShake=CameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
-		CamShakeInnerRadius=450
+		CamShakeInnerRadius=200
 		CamShakeOuterRadius=900
-		CamShakeFalloff=1.f
+		CamShakeFalloff=1.5f
 		bOrientCameraShakeTowardsEpicenter=true
 	End Object
 	ExplosionTemplate=ExploTemplate0

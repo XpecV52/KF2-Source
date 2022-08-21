@@ -12,8 +12,6 @@ class KFDT_Ballistic_HX25SubmunitionImpact extends KFDT_Ballistic_Shotgun
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
@@ -45,9 +43,8 @@ defaultproperties
 	KDeathVel=10
 
     KnockdownPower=0
-	StumblePower=36
-	LegStumblePower=36
-	GunHitPower=30
+	StumblePower=75
+	GunHitPower=0
 
 	WeaponDef=class'KFWeapDef_HX25'
 

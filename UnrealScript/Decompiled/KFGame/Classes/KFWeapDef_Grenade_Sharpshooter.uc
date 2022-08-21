@@ -11,5 +11,5 @@ class KFWeapDef_Grenade_Sharpshooter extends KFWeaponDefinition
 defaultproperties
 {
     WeaponClassPath="KFGameContent.KFProj_FreezeGrenade"
-    ImagePath="ui_weaponselect_tex.UI_WeaponSelect_Grenade"
+    ImagePath="wep_ui_ln2_grenade_tex.UI_WeaponSelect_SharpshooterGrenade"
 }

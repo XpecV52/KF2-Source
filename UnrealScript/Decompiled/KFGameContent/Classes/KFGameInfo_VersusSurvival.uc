@@ -9,17 +9,24 @@ class KFGameInfo_VersusSurvival extends KFGameInfo_Survival
     config(Game)
     hidecategories(Navigation,Movement,Collision);
 
-const MaxActivePukeMines = 30;
-const ANTI_GRIEF_DELAY = 30.f;
-const ANTI_GRIEF_INTERVAL = 2.f;
-const ANTI_GRIEF_DAMAGE_PERCENTAGE = 10.f;
+const MAX_ACTIVE_PUKE_MINES = 30;
 
-var config bool bTeamBalanceEnabled;
-var transient array<KFProj_BloatPukeMine> ActivePukeMines;
-var config float ScoreRadius;
+var protected const float ANTI_GRIEF_DELAY;
+var protected const float ANTI_GRIEF_INTERVAL;
+var protected const float ANTI_GRIEF_DAMAGE_PERCENTAGE;
 var protected const array< class<KFPawn_Monster> > PlayerZedClasses;
 var protected const array< class<KFPawn_MonsterBoss> > PlayerBossClassList;
+var KFGameReplicationInfoVersus MyKFGRIV;
 var class<KFDamageType> AntiGriefDamageTypeClass;
+var config bool bTeamBalanceEnabled;
+var config float ScoreRadius;
+var int TimeUntilNextRound;
+var float RoundEndCinematicDelay;
+var float PostRoundWaitTime;
+var protected int WaveReached;
+var protected int BossDamageDone;
+var protected int BossSurvivorDamageTaken;
+var protected float PercentOfZedsKilledBeforeWipe;
 
 event PreBeginPlay()
 {
@@ -30,7 +37,8 @@ event PreBeginPlay()
 function InitGRIVariables()
 {
     super(KFGameInfo).InitGRIVariables();
-    KFGameReplicationInfoVersus(MyKFGRI).bTeamBalanceEnabled = bTeamBalanceEnabled;
+    MyKFGRIV = KFGameReplicationInfoVersus(MyKFGRI);
+    MyKFGRIV.bTeamBalanceEnabled = bTeamBalanceEnabled;
 }
 
 function bool IsPlayerReady(KFPlayerReplicationInfo PRI)
@@ -50,7 +58,7 @@ function StartMatch()
     foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
     {
         PlayerControllers[PlayerControllers.Length] = KFPC;
-        if((KFPC.GetTeamNum() == 255) && (KFPC.Pawn == none) || KFPawn_Customization(KFPC.Pawn) != none)
+        if(((KFPC.GetTeamNum() == 255) && KFPC.CanRestartPlayer()) && (KFPC.Pawn == none) || KFPawn_Customization(KFPC.Pawn) != none)
         {
             if(KFPC.Pawn != none)
             {
@@ -63,6 +71,9 @@ function StartMatch()
     {
         SetTeam(PlayerControllers[0], Teams[0]);
     }
+    MyKFGRIV.bRoundIsOver = false;
+    MyKFGRIV.bNetDirty = true;
+    MyKFGRIV.bForceNetUpdate = true;
     super.StartMatch();
 }
 
@@ -76,10 +87,8 @@ function BalanceTeams()
     local int Delta, AutoBalanceRemaining, I;
     local TeamInfo TI;
     local array<PlayerReplicationInfo> AutoBalanceList;
-    local KFGameReplicationInfoVersus KFGRIV;
     local PlayerReplicationInfo PRI;
 
-    KFGRIV = KFGameReplicationInfoVersus(MyKFGRI);
     Delta = Teams[1].Size - Teams[0].Size;
     if(Delta == 0)
     {
@@ -87,20 +96,20 @@ function BalanceTeams()
     }
     TI = ((Delta > 0) ? Teams[1] : Teams[0]);
     I = 0;
-    J0xB5:
+    J0x99:
 
-    if(I < KFGRIV.PRIArray.Length)
+    if(I < MyKFGRIV.PRIArray.Length)
     {
-        PRI = KFGRIV.PRIArray[I];
+        PRI = MyKFGRIV.PRIArray[I];
         if(PRI.Team == TI)
         {
             AutoBalanceList.AddItem(PRI;
         }
         ++ I;
-        goto J0xB5;
+        goto J0x99;
     }
-    AutoBalanceRemaining = Min(int(Abs(float(Delta))), KFGRIV.TeamBalanceDelta);
-    J0x19F:
+    AutoBalanceRemaining = Min(int(Abs(float(Delta))), MyKFGRIV.TeamBalanceDelta);
+    J0x183:
 
     if((AutoBalanceRemaining > 0) || TI.Size > (MaxPlayersAllowed / 2))
     {
@@ -108,19 +117,19 @@ function BalanceTeams()
         SwapTeamFor(AutoBalanceList[I]);
         AutoBalanceList.Remove(I, 1;
         -- AutoBalanceRemaining;
-        goto J0x19F;
+        goto J0x183;
     }
 }
 
 function SwapTeamFor(PlayerReplicationInfo PRI)
 {
-    local KFPlayerControllerVersus KFPC;
+    local KFPlayerControllerVersus KFPCV;
 
-    KFPC = KFPlayerControllerVersus(PRI.Owner);
-    if(KFPC != none)
+    KFPCV = KFPlayerControllerVersus(PRI.Owner);
+    if(KFPCV != none)
     {
-        KFPC.NotifyOfAutoBalance();
-        SetTeam(KFPC, ((PRI.GetTeamNum() == 255) ? Teams[0] : Teams[1]));
+        KFPCV.NotifyOfAutoBalance();
+        SetTeam(KFPCV, ((PRI.GetTeamNum() == 255) ? Teams[0] : Teams[1]));
     }
 }
 
@@ -155,7 +164,7 @@ function byte PickTeam(byte Current, Controller C)
 
 function bool ChangeTeam(Controller Other, int N, bool bNewTeam)
 {
-    if((PlayerController(Other) == none) || (((Other.PlayerReplicationInfo != none) && !Other.PlayerReplicationInfo.bOnlySpectator) && 2 > N) && Other.PlayerReplicationInfo.Team != Teams[N])
+    if(((Other.PlayerReplicationInfo == none) || Other.PlayerReplicationInfo.bBot) || (!Other.PlayerReplicationInfo.bOnlySpectator && 2 > N) && Other.PlayerReplicationInfo.Team != Teams[N])
     {
         SetTeam(Other, Teams[N]);
         return true;
@@ -165,77 +174,94 @@ function bool ChangeTeam(Controller Other, int N, bool bNewTeam)
 
 function SetTeam(Controller Other, KFTeamInfo_Human NewTeam)
 {
-    local KFPlayerControllerVersus KFPC;
+    local KFPlayerControllerVersus KFPCV;
     local TeamInfo OldTeam;
-    local NavigationPoint Start;
 
-    if((Other == none) || Other.PlayerReplicationInfo == none)
+    if((((Other == none) || Other.PlayerReplicationInfo == none) || Other.PlayerReplicationInfo.bBot) || Other.PlayerReplicationInfo.bOnlySpectator)
     {
         super(KFGameInfo).SetTeam(Other, NewTeam);
         return;
     }
     OldTeam = Other.PlayerReplicationInfo.Team;
     super(KFGameInfo).SetTeam(Other, NewTeam);
-    if(NewTeam != OldTeam)
+    if((OldTeam != none) && NewTeam != OldTeam)
     {
-        if(Other.PlayerReplicationInfo.bWaitingPlayer)
+        if(!IsPlayerReady(KFPlayerReplicationInfo(Other.PlayerReplicationInfo)))
         {
-            KFPC = KFPlayerControllerVersus(Other);
-            if(KFPC != none)
-            {
-                if(NewTeam.TeamIndex == 255)
-                {
-                    if((KFPC.Pawn != none) && KFPawn_Customization(KFPC.Pawn) != none)
-                    {
-                        KFPawn_Customization(KFPC.Pawn).SetServerHidden(true);
-                    }
-                    KFPC.SetCameraMode('PlayerZedWaiting');                    
-                }
-                else
-                {
-                    if(KFPC.Pawn != none)
-                    {
-                        KFPawn_Customization(KFPC.Pawn).SetServerHidden(false);
-                        if(!KFPawn_Customization(KFPC.Pawn).MoveToCustomizationPoint())
-                        {
-                            Start = KFPC.GetBestCustomizationStart(self);
-                            if(Start != none)
-                            {
-                                KFPawn_Customization(KFPC.Pawn).SetUpdatedMovementData(Start.Location, Start.Rotation);
-                            }
-                        }
-                        KFPC.SetViewTarget(KFPC.Pawn);
-                        KFPC.SetCameraMode('Customization');
-                    }
-                }
-                KFPC.ServerNotifyTeamChanged();
-            }            
+            OnWaitingPlayerTeamSwapped(Other);            
         }
         else
         {
-            if((OldTeam.TeamIndex == 255) && KFPC.PlayerZedSpawnInfo.PendingZedPawnClass != none)
+            KFPCV = KFPlayerControllerVersus(Other);
+            if((((OldTeam != none) && OldTeam.TeamIndex == 255) && KFPCV != none) && KFPCV.PlayerZedSpawnInfo.PendingZedPawnClass != none)
             {
                 if(SpawnManager != none)
                 {
-                    KFAISpawnManager_Versus(SpawnManager).RecyclePendingZedPawnClass(KFPC);
+                    KFAISpawnManager_Versus(SpawnManager).RecyclePendingZedPawnClass(KFPCV);
                 }
             }
         }
     }
 }
 
+event PostLogin(PlayerController NewPlayer)
+{
+    super(KFGameInfo).PostLogin(NewPlayer);
+    if(!NewPlayer.CanRestartPlayer())
+    {
+        OnWaitingPlayerTeamSwapped(NewPlayer);
+    }
+}
+
+function OnWaitingPlayerTeamSwapped(Controller C)
+{
+    local KFPlayerControllerVersus KFPCV;
+    local NavigationPoint Start;
+
+    KFPCV = KFPlayerControllerVersus(C);
+    if(KFPCV != none)
+    {
+        if(KFPCV.GetTeamNum() == 255)
+        {
+            if((KFPCV.Pawn != none) && KFPawn_Customization(KFPCV.Pawn) != none)
+            {
+                KFPawn_Customization(KFPCV.Pawn).SetServerHidden(true);
+            }
+            KFPCV.SetCameraMode('PlayerZedWaiting');            
+        }
+        else
+        {
+            if(KFPCV.Pawn != none)
+            {
+                KFPawn_Customization(KFPCV.Pawn).SetServerHidden(false);
+                if(!KFPawn_Customization(KFPCV.Pawn).MoveToCustomizationPoint())
+                {
+                    Start = KFPCV.GetBestCustomizationStart(self);
+                    if(Start != none)
+                    {
+                        KFPawn_Customization(KFPCV.Pawn).SetUpdatedMovementData(Start.Location, Start.Rotation);
+                    }
+                }
+                KFPCV.SetViewTarget(KFPCV.Pawn);
+                KFPCV.SetCameraMode('Customization');
+            }
+        }
+        KFPCV.ServerNotifyTeamChanged();
+    }
+}
+
 function Logout(Controller Exiting)
 {
-    local KFPlayerController KFPC;
+    local KFPlayerControllerVersus KFPCV;
 
     if(Exiting != none)
     {
-        KFPC = KFPlayerController(Exiting);
-        if(((KFPC != none) && KFPC.GetTeamNum() == 255) && KFPC.PlayerZedSpawnInfo.PendingZedPawnClass != none)
+        KFPCV = KFPlayerControllerVersus(Exiting);
+        if(((KFPCV != none) && KFPCV.GetTeamNum() == 255) && KFPCV.PlayerZedSpawnInfo.PendingZedPawnClass != none)
         {
             if(SpawnManager != none)
             {
-                KFAISpawnManager_Versus(SpawnManager).RecyclePendingZedPawnClass(KFPC);
+                KFAISpawnManager_Versus(SpawnManager).RecyclePendingZedPawnClass(KFPCV);
             }
         }
     }
@@ -256,7 +282,10 @@ function RestartPlayer(Controller NewPlayer)
     KFPC = KFPlayerController(NewPlayer);
     if((KFPC != none) && MyKFGRI.bMatchIsOver || (PlayerTeamIndex == 255) && MyKFGRI.bTraderIsOpen || KFPC.PlayerZedSpawnInfo.PendingZedPawnClass == none)
     {
-        KFPC.StartSpectate();
+        if(IsPlayerReady(KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo)))
+        {
+            KFPC.StartSpectate();
+        }
         return;
     }
     if((NewPlayer.Pawn != none) && KFPawn_Customization(NewPlayer.Pawn) != none)
@@ -337,20 +366,23 @@ function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vec
 {
     local KFPawn InstigatorPawn, InjuredPawn;
 
-    InstigatorPawn = KFPawn(InstigatedBy.Pawn);
-    InjuredPawn = KFPawn(injured);
-    if(DamageType != AntiGriefDamageTypeClass)
+    if(InstigatedBy != none)
     {
-        if(((InstigatorPawn != none) && InjuredPawn != none) && InstigatorPawn.GetTeamNum() != InjuredPawn.GetTeamNum())
+        InstigatorPawn = KFPawn(InstigatedBy.Pawn);
+        InjuredPawn = KFPawn(injured);
+        if(DamageType != AntiGriefDamageTypeClass)
         {
-            InstigatorPawn.UpdateLastTimeDamageHappened();
-            InjuredPawn.UpdateLastTimeDamageHappened();
+            if(((InstigatorPawn != none) && InjuredPawn != none) && InstigatorPawn.GetTeamNum() != InjuredPawn.GetTeamNum())
+            {
+                InstigatorPawn.UpdateLastTimeDamageHappened();
+                InjuredPawn.UpdateLastTimeDamageHappened();
+            }
         }
     }
-    if((((InstigatedBy != none) && injured != none) && injured.Controller != InstigatedBy) && injured.GetTeamNum() == InstigatedBy.GetTeamNum())
+    if((((InstigatedBy.GetTeamNum() == 255) && injured.GetTeamNum() == 255) && InstigatedBy.bIsPlayer) && !injured.IsHumanControlled())
     {
-        Damage = 0;
-        Momentum = vect(0, 0, 0);        
+        Momentum = vect(0, 0, 0);
+        Damage = 0;        
     }
     else
     {
@@ -358,27 +390,40 @@ function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vec
     }
 }
 
-function ScoreDamage(int DamageAmount, Controller Damager, Controller Damagee, Pawn DamagedPawn)
+function ScoreKill(Controller Killer, Controller Other)
 {
-    local KFPlayerControllerVersus KFPCV;
-    local float ScoreRadiusSQ;
+    local KFPawn KFP;
+    local int I;
+    local DamageInfo Damager;
 
-    ScoreRadiusSQ = Square(ScoreRadius);
-    foreach WorldInfo.AllControllers(Class'KFPlayerControllerVersus', KFPCV)
+    super(KFGameInfo).ScoreKill(Killer, Other);
+    if((((Killer != none) && Other != none) && Killer.GetTeamNum() == 255) && Other.GetTeamNum() == 0)
     {
-        if((((KFPCV.Pawn != none) && KFPCV.GetTeamNum() == 255) && KFPCV.Pawn.IsAliveAndWell()) && VSizeSq(KFPCV.Pawn.Location - DamagedPawn.Location) <= ScoreRadiusSQ)
+        KFP = KFPawn(Killer.Pawn);
+        if(KFP != none)
         {
-            if(DamagedPawn.FastTrace(KFPCV.Pawn.Location, DamagedPawn.Location))
+            I = 0;
+            J0xDF:
+
+            if(I < KFP.DamageHistory.Length)
             {
-                KFPCV.AwardZedDamage(DamageAmount, Damager == KFPCV);
+                Damager = KFP.DamageHistory[I];
+                if(((Damager.DamagerController != none) && Damager.DamagerController != Killer) && !Damager.DamagerController.PlayerReplicationInfo.bBot)
+                {
+                    ++ KFPlayerReplicationInfo(Damager.DamagerController.PlayerReplicationInfo).Assists;
+                }
+                ++ I;
+                goto J0xDF;
             }
-        }        
-    }    
+        }
+    }
 }
 
 function EndOfMatch(bool bVictory)
 {
     local KFPlayerController KFPC;
+    local int TempScore;
+    local KFPlayerReplicationInfoVersus KFPRIV;
 
     if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
     {
@@ -387,10 +432,6 @@ function EndOfMatch(bool bVictory)
     if(bVictory)
     {
         SetTimer(EndCinematicDelay, false, 'SetWonGameCamera');
-        foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
-        {
-            KFPC.ClientWonGame(WorldInfo.GetMapName(true), byte(GameDifficulty), byte(GameLength), IsMultiplayerGame());            
-        }        
         BroadcastLocalizedMessage(Class'KFLocalMessage_Priority', 13);        
     }
     else
@@ -398,9 +439,40 @@ function EndOfMatch(bool bVictory)
         BroadcastLocalizedMessage(Class'KFLocalMessage_Priority', 12);
         SetZedsToVictoryState();
     }
+    foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+    {
+        if(bVictory)
+        {
+            KFPC.ClientWonGame(WorldInfo.GetMapName(true), byte(GameDifficulty), byte(GameLength), IsMultiplayerGame());
+        }
+        KFPRIV = KFPlayerReplicationInfoVersus(KFPC.PlayerReplicationInfo);
+        if(KFPRIV != none)
+        {
+            KFPRIV.RecordEndGameInfo();
+        }        
+    }    
     WorldInfo.TWRefreshTweakParams();
     WorldInfo.TWPushLogs();
-    GotoState('MatchEnded');
+    TempScore = Max(WaveReached - 1, 0) * POINTS_FOR_WAVE_COMPLETION;
+    if(bVictory)
+    {
+        TempScore += POINTS_FOR_BOSS_KILL;        
+    }
+    else
+    {
+        TempScore += int(float(POINTS_FOR_WAVE_COMPLETION) * PercentOfZedsKilledBeforeWipe);
+    }
+    TempScore -= (POINTS_PENALTY_FOR_DEATH * HumanDeaths);
+    Teams[0].AddRoundScore(TempScore, true);
+    if(MyKFGRIV.CurrentRound == 0)
+    {
+        UpdateFirstRoundTeamScore();        
+    }
+    else
+    {
+        UpdateSecondRoundTeamScore();
+    }
+    GotoState('RoundEnded', 'Begin');
 }
 
 function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, class<DamageType> DamageType)
@@ -410,11 +482,56 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
     {
         CheckPawnsForGriefing(true);
     }
+    if(((KilledPlayer.GetTeamNum() == 255) && MyKFGRIV.WaveNum == MyKFGRIV.WaveMax) && KFPawn_MonsterBoss(KilledPawn) != none)
+    {
+        BossDamageDone = POINTS_FOR_BOSS_KILL;
+    }
 }
 
 function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
 {
+    local KFPlayerReplicationInfoVersus KFPRIV;
+    local int WaveKills, I, J;
+
+    MyKFGRIV.SetPlayerZedSpawnTime(255, false);
     ClearTimer('CheckPawnsForGriefing');
+    if(WinCondition == 1)
+    {
+        if(SpawnManager != none)
+        {
+            PercentOfZedsKilledBeforeWipe = float(MyKFGRI.AIRemaining) / float(SpawnManager.WaveTotalAI);
+        }
+    }
+    WaveReached = MyKFGRI.WaveNum;
+    I = 0;
+    J0xDA:
+
+    if(I < WorldInfo.GRI.PRIArray.Length)
+    {
+        if(WorldInfo.GRI.PRIArray[I].Kills == 0)
+        {            
+        }
+        else
+        {
+            KFPRIV = KFPlayerReplicationInfoVersus(WorldInfo.GRI.PRIArray[I]);
+            if(((KFPRIV != none) && !KFPRIV.bBot) && KFPRIV.GetTeamNum() == 255)
+            {
+                WaveKills = KFPRIV.Kills;
+                J = 0;
+                J0x25B:
+
+                if(J < KFPRIV.WaveKills.Length)
+                {
+                    WaveKills -= KFPRIV.WaveKills[J];
+                    ++ J;
+                    goto J0x25B;
+                }
+                KFPRIV.WaveKills[WaveReached] = WaveKills;
+            }
+        }
+        ++ I;
+        goto J0xDA;
+    }
     super.WaveEnded(WinCondition);
 }
 
@@ -436,16 +553,16 @@ protected function CheckPawnsForGriefing(optional bool bInitial)
                     MonsterTestPawn.LastTimeDamageHappened = WorldInfo.TimeSeconds;
                     continue;
                 }
-                if(((WorldInfo.TimeSeconds - MonsterTestPawn.LastTimeDamageHappened) >= 30) && MonsterTestPawn.LastTimeDamageHappened != float(0))
+                if(((WorldInfo.TimeSeconds - MonsterTestPawn.LastTimeDamageHappened) >= ANTI_GRIEF_DELAY) && MonsterTestPawn.LastTimeDamageHappened != float(0))
                 {
-                    MonsterTestPawn.MotivatePlayerToAttack(10, AntiGriefDamageTypeClass);
+                    MonsterTestPawn.MotivatePlayerToAttack(ANTI_GRIEF_DAMAGE_PERCENTAGE, AntiGriefDamageTypeClass);
                 }
             }
         }        
     }    
     if(IsWaveActive())
     {
-        SetTimer(2, false, 'CheckPawnsForGriefing');
+        SetTimer(ANTI_GRIEF_INTERVAL, false, 'CheckPawnsForGriefing');
     }
 }
 
@@ -464,10 +581,263 @@ function ResetPickups(array<KFPickupFactory> PickupList, int NumPickups)
     }
 }
 
+function OpenPostRoundMenu()
+{
+    local KFPlayerController KFPC;
+
+    foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+    {
+        if(IsPlayerReady(KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo)))
+        {
+            KFPC.ClientOpenRoundSummary();
+        }        
+    }    
+}
+
+function UpdateFirstRoundTeamScore()
+{
+    Teams[1].TeamScoreDataPacket.RoundScore = Teams[0].TeamScoreDataPacket.RoundScore;
+    Teams[1].TeamScoreDataPacket.WaveReached = WaveReached;
+    Teams[1].TeamScoreDataPacket.Deaths = HumanDeaths;
+    if(WaveReached == MyKFGRI.WaveMax)
+    {
+        Teams[1].TeamScoreDataPacket.BossDamageDone = BossDamageDone;
+        Teams[1].TeamScoreDataPacket.BossDamageTaken = BossSurvivorDamageTaken;        
+    }
+    else
+    {
+        Teams[1].TeamScoreDataPacket.BossDamageDone = 0;
+        Teams[1].TeamScoreDataPacket.BossDamageTaken = 0;
+    }
+    Teams[0].TeamScoreDataPacket.RoundScore = 0;
+    Teams[0].TeamScoreDataPacket.WaveReached = -1;
+    Teams[0].TeamScoreDataPacket.Deaths = 0;
+    Teams[0].TeamScoreDataPacket.BossDamageDone = 0;
+    Teams[0].TeamScoreDataPacket.BossDamageTaken = 0;
+    Teams[0].bForceNetUpdate = true;
+    Teams[0].bNetDirty = true;
+    Teams[1].bForceNetUpdate = true;
+    Teams[1].bNetDirty = true;
+}
+
+function UpdateSecondRoundTeamScore()
+{
+    Teams[0].TeamScoreDataPacket.WaveReached = WaveReached;
+    Teams[0].TeamScoreDataPacket.Deaths = HumanDeaths;
+    if(WaveReached == MyKFGRI.WaveMax)
+    {
+        Teams[0].TeamScoreDataPacket.BossDamageDone = BossDamageDone;
+        Teams[0].TeamScoreDataPacket.BossDamageTaken = BossSurvivorDamageTaken;        
+    }
+    else
+    {
+        Teams[0].TeamScoreDataPacket.BossDamageDone = 0;
+        Teams[0].TeamScoreDataPacket.BossDamageTaken = 0;
+    }
+    Teams[0].bNetDirty = true;
+    Teams[0].bForceNetUpdate = true;
+    Teams[1].bNetDirty = true;
+    Teams[1].bForceNetUpdate = true;
+}
+
+function Reset()
+{
+    local KFPlayerControllerVersus KFPCV;
+
+    super(GameInfo).Reset();
+    foreach WorldInfo.AllControllers(Class'KFPlayerControllerVersus', KFPCV)
+    {
+        if(KFPCV.CanRestartPlayer())
+        {
+            SetTeam(KFPCV, ((KFPCV.PlayerReplicationInfo.Team == Teams[0]) ? Teams[1] : Teams[0]));
+            KFPCV.ServerNotifyTeamChanged();
+            if(!KFPCV.IsInState('Spectating'))
+            {
+                KFPCV.StartSpectate();
+            }
+        }        
+    }    
+    if(SpawnManager != none)
+    {
+        SpawnManager.ResetSpawnManager();
+    }
+    WaveReached = -1;
+    HumanDeaths = 0;
+    BossDamageDone = 0;
+    BossSurvivorDamageTaken = 0;
+    PercentOfZedsKilledBeforeWipe = 0;
+    Class'KFGameplayPoolManager'.static.GetPoolManager().Reset();
+}
+
+protected function ClosePostRoundMenu(optional bool bMatchOver)
+{
+    local KFPlayerControllerVersus KFPCV;
+
+    bMatchOver = false;
+    foreach WorldInfo.AllControllers(Class'KFPlayerControllerVersus', KFPCV)
+    {
+        KFPCV.ClientShowPostGameMenu(false);        
+    }    
+    if(!bMatchOver)
+    {
+        SetTimer(0.1, false, 'Timer_AnnounceNextRound');
+    }
+}
+
+protected function Timer_AnnounceNextRound()
+{
+    BroadcastLocalizedMessage(Class'KFLocalMessage_Priority', 15);
+}
+
+protected function CheckTeamNumbers()
+{
+    local KFPlayerControllerVersus KFPCV;
+    local int HumanPlayers, ZedPlayers;
+
+    if((NumPlayers < 2) || MyKFGRIV.CurrentRound > 1)
+    {
+        GotoState('MatchEnded');
+        return;
+    }
+    foreach WorldInfo.AllControllers(Class'KFPlayerControllerVersus', KFPCV)
+    {
+        if(!KFPCV.CanRestartPlayer())
+        {
+            continue;            
+        }
+        if(KFPCV.GetTeamNum() == 255)
+        {
+            ++ ZedPlayers;
+            continue;
+        }
+        ++ HumanPlayers;        
+    }    
+    if((HumanPlayers == 0) && ZedPlayers > 1)
+    {
+        SwitchOnePlayerToTeam(0);        
+    }
+    else
+    {
+        if((ZedPlayers == 0) && HumanPlayers > 1)
+        {
+            SwitchOnePlayerToTeam(255);
+        }
+    }
+}
+
+protected function BeginNextRound()
+{
+    ResetLevel();
+    MyKFGRIV.bStopCountDown = true;
+    MyKFGRIV.SetPlayerZedSpawnTime(byte(PostRoundWaitTime), false);
+    ClosePostRoundMenu();
+}
+
+function StartSpawning()
+{
+    MyKFGRIV.bRoundIsOver = false;
+    MyKFGRIV.bNetDirty = true;
+    MyKFGRIV.bForceNetUpdate = true;
+    GotoState('None');
+    StartMatch();
+}
+
+protected function SwitchOnePlayerToTeam(byte TeamNum)
+{
+    local KFPlayerControllerVersus KFPCV;
+
+    foreach WorldInfo.AllControllers(Class'KFPlayerControllerVersus', KFPCV)
+    {
+        if(KFPCV.CanRestartPlayer() && KFPCV.GetTeamNum() != TeamNum)
+        {
+            SetTeam(KFPCV, ((TeamNum == 0) ? Teams[0] : Teams[1]));
+            break;
+        }        
+    }    
+}
+
+protected function CheckRoundEndAchievements()
+{
+    local KFPlayerControllerVersus KFPCV;
+
+    foreach WorldInfo.AllControllers(Class'KFPlayerControllerVersus', KFPCV)
+    {
+        KFPCV.ClientRoundEnded();        
+    }    
+}
+
+function TryRestartGame()
+{
+    if(IsInState('RoundEnded'))
+    {
+        BeginNextRound();        
+    }
+    else
+    {
+        super.TryRestartGame();
+    }
+}
+
+function ShowPostGameMenu()
+{
+    ClosePostRoundMenu(true);
+    super.ShowPostGameMenu();
+}
+
+function float GetEndOfMatchTime()
+{
+    if(IsInState('RoundEnded'))
+    {
+        return float(TimeUntilNextRound);
+    }
+    return super.GetEndOfMatchTime();
+}
+
+state RoundEnded
+{
+    event BeginState(name PrevStateName)
+    {
+        CheckRoundEndAchievements();
+        MyKFGRIV.bRoundIsOver = true;
+        MyKFGRIV.CurrentRound += 1;
+        MyKFGRIV.SetPlayerZedSpawnTime(255, false);
+    }
+
+    function bool MatchIsInProgress()
+    {
+        return false;
+    }
+ForceEnded:
+
+    Sleep(1);
+    BeginNextRound();
+    goto 'End';
+Begin:
+
+
+    Sleep(RoundEndCinematicDelay);
+    OpenPostRoundMenu();
+    Sleep(GetEndOfMatchTime());
+    if(MyKFGRIV.CurrentRound > 1)
+    {
+        GotoState('MatchEnded');
+        Sleep(0);
+    }
+    CheckTeamNumbers();
+    BeginNextRound();
+    Sleep(PostRoundWaitTime);
+End:
+
+
+    StartSpawning();
+    stop;                
+}
+
 defaultproperties
 {
-    bTeamBalanceEnabled=true
-    ScoreRadius=1000
+    ANTI_GRIEF_DELAY=30
+    ANTI_GRIEF_INTERVAL=2
+    ANTI_GRIEF_DAMAGE_PERCENTAGE=10
     PlayerZedClasses(0)=none
     PlayerZedClasses(1)=class'KFPawn_ZedClot_Slasher_Versus'
     PlayerZedClasses(2)=class'KFPawn_ZedClot_Alpha_Versus'
@@ -481,6 +851,11 @@ defaultproperties
     PlayerZedClasses(10)=class'KFPawn_ZedHusk_Versus'
     PlayerBossClassList(0)=class'KFPawn_ZedPatriarch_Versus'
     AntiGriefDamageTypeClass=Class'KFGame.KFDT_NoGoVolume'
+    bTeamBalanceEnabled=true
+    ScoreRadius=1000
+    TimeUntilNextRound=12
+    RoundEndCinematicDelay=4
+    PostRoundWaitTime=15
     bIsVersusGame=true
     KFGFxManagerClass=Class'KFGame.KFGFxMoviePlayer_Manager_Versus'
     MinNetPlayers=2

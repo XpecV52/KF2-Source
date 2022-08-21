@@ -12,8 +12,6 @@ class KFDT_Ballistic_Assault_Medic extends KFDT_Ballistic_AssaultRifle
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
@@ -62,9 +60,8 @@ defaultproperties
 	KDeathVel=135
 	
     KnockdownPower=0
-	StumblePower=20
-	LegStumblePower=117
-	GunHitPower=116
+	StumblePower=25
+	GunHitPower=45
 
 	WeaponDef=class'KFWeapDef_MedicRifle'
 

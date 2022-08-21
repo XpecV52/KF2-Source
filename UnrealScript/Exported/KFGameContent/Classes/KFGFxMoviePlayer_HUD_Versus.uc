@@ -116,14 +116,6 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 			SetWidgetPathBinding( Widget, WidgetPath );
 		}
 		break;
-	case 'ScoreboardWidgetMC':
-		if ( ScoreboardWidget == none )
-		{
-			ScoreboardWidget = KFGFxHUD_ScoreboardWidget(Widget);
-			ScoreboardWidget.InitializeHUD();
-			SetWidgetPathBinding( Widget, WidgetPath );
-		}
-		break;
 	case 'ChatBoxWidget':
 		if(!(class'WorldInfo'.static.IsPlayInEditor()))
 		{
@@ -177,6 +169,26 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 	return true;
 }
 
+function ReceivePawn(KFPawn NewPawn)
+{
+	super.ReceivePawn(NewPawn);
+
+	if(MoveListContainer != none)
+	{
+		MoveListContainer.MyKFPM = KFPawn_Monster(NewPawn);
+	}
+}
+
+function PawnDied()
+{
+	super.PawnDied();
+	if(MoveListContainer != none)
+	{
+		MoveListContainer.MyKFPM = none;
+		MoveListContainer.ClearMovieList();
+	}
+}
+
 defaultproperties
 {
    MovieInfo=SwfMovie'UI_HUD.InGameHUD_ZED_SWF'
@@ -188,15 +200,15 @@ defaultproperties
    WidgetBindings(5)=(WidgetName="WeaponSelectContainer",WidgetClass=Class'KFGame.KFGFxHUD_WeaponSelectWidget')
    WidgetBindings(6)=(WidgetName="CompassContainer",WidgetClass=Class'KFGame.KFGFxHUD_TraderCompass')
    WidgetBindings(7)=(WidgetName="WaveInfoContainer",WidgetClass=Class'KFGame.KFGFxHUD_WaveInfo')
-   WidgetBindings(8)=(WidgetName="ScoreboardWidgetMC",WidgetClass=Class'KFGame.KFGFxHUD_ScoreboardWidget')
-   WidgetBindings(9)=(WidgetName="ChatBoxWidget",WidgetClass=Class'KFGame.KFGFxHUD_ChatBoxWidget')
-   WidgetBindings(10)=(WidgetName="VOIPWidget",WidgetClass=Class'KFGame.KFGFxWidget_VOIPNotification')
-   WidgetBindings(11)=(WidgetName="LevelUpNotificationWidget",WidgetClass=Class'KFGame.KFGFxWidget_LevelUpNotification')
-   WidgetBindings(12)=(WidgetName="VoiceCommsWidget",WidgetClass=Class'KFGame.KFGFxWidget_VoiceComms')
-   WidgetBindings(13)=(WidgetName="KickVoteWidget",WidgetClass=Class'KFGame.KFGFxWidget_KickVote')
-   WidgetBindings(14)=(WidgetName="MusicNotification",WidgetClass=Class'KFGame.KFGFxWidget_MusicNotification')
-   WidgetBindings(15)=(WidgetName="NonCriticalMessageWidget",WidgetClass=Class'KFGame.KFGFxWidget_NonCriticalGameMessage')
-   WidgetBindings(16)=(WidgetName="RhythmCounter",WidgetClass=Class'KFGame.KFGFxWidget_RhythmCounter')
+   WidgetBindings(8)=(WidgetName="ChatBoxWidget",WidgetClass=Class'KFGame.KFGFxHUD_ChatBoxWidget')
+   WidgetBindings(9)=(WidgetName="VOIPWidget",WidgetClass=Class'KFGame.KFGFxWidget_VOIPNotification')
+   WidgetBindings(10)=(WidgetName="LevelUpNotificationWidget",WidgetClass=Class'KFGame.KFGFxWidget_LevelUpNotification')
+   WidgetBindings(11)=(WidgetName="VoiceCommsWidget",WidgetClass=Class'KFGame.KFGFxWidget_VoiceComms')
+   WidgetBindings(12)=(WidgetName="KickVoteWidget",WidgetClass=Class'KFGame.KFGFxWidget_KickVote')
+   WidgetBindings(13)=(WidgetName="MusicNotification",WidgetClass=Class'KFGame.KFGFxWidget_MusicNotification')
+   WidgetBindings(14)=(WidgetName="NonCriticalMessageWidget",WidgetClass=Class'KFGame.KFGFxWidget_NonCriticalGameMessage')
+   WidgetBindings(15)=(WidgetName="RhythmCounter",WidgetClass=Class'KFGame.KFGFxWidget_RhythmCounter')
+   WidgetBindings(16)=(WidgetName="bossHealthBar",WidgetClass=Class'KFGame.KFGFxWidget_BossHealthBar')
    WidgetBindings(17)=(WidgetName="teamRoster",WidgetClass=Class'KFGame.KFGFxHud_PlayerRosterWidget')
    WidgetBindings(18)=(WidgetName="MoveListContainer",WidgetClass=Class'KFGame.KFGFxHUD_PlayerMoveList')
    WidgetBindings(19)=(WidgetName="PlayerStatWidgetMC",WidgetClass=Class'kfgamecontent.KFGFxHUD_PlayerStatusVersus')

@@ -7,7 +7,6 @@ package tripwire.containers.Perks
     import flash.external.ExternalInterface;
     import flash.text.TextField;
     import scaleform.clik.controls.Button;
-    import tripwire.managers.MenuManager;
     
     public class PerksConfigureSkillsContainer extends PerkContainerBase
     {
@@ -43,59 +42,50 @@ package tripwire.containers.Perks
             defaultNumPrompts = 2;
         }
         
-        override protected function addedToStage(e:Event) : void
+        override protected function addedToStage(param1:Event) : void
         {
-            super.addedToStage(e);
+            super.addedToStage(param1);
             this.initTierList();
         }
         
         private function initTierList() : void
         {
-            for(var i:int = 0; i < this.NUM_TIERS; i++)
+            var _loc1_:int = 0;
+            while(_loc1_ < this.NUM_TIERS)
             {
-                this.tierList.push(this["tier" + i]);
+                this.tierList.push(this["tier" + _loc1_]);
+                _loc1_++;
             }
         }
         
-        public function set skillList(data:Array) : void
+        public function set skillList(param1:Array) : void
         {
-            var tempObj:Object = null;
-            var tempIndex:int = 0;
-            for each(tempObj in data)
+            var _loc3_:Object = null;
+            var _loc2_:int = 0;
+            for each(_loc3_ in param1)
             {
-                this.tierList[tempIndex].setData(tempObj);
-                this.tierList[tempIndex].tier = tempIndex;
-                this.tierList[tempIndex].skillButton0.tabIndex = ++this.tabIndexHelper;
-                this.tierList[tempIndex].skillButton1.tabIndex = ++this.tabIndexHelper;
-                tempIndex++;
+                this.tierList[_loc2_].setData(_loc3_);
+                this.tierList[_loc2_].tier = _loc2_;
+                this.tierList[_loc2_].skillButton0.tabIndex = ++this.tabIndexHelper;
+                this.tierList[_loc2_].skillButton1.tabIndex = ++this.tabIndexHelper;
+                _loc2_++;
             }
         }
         
-        override protected function openAnimation() : *
+        override protected function openAnimation(param1:Boolean = true) : *
         {
             TweenMax.killTweensOf(this);
             TweenMax.fromTo(this,ANIM_TIME,{
                 "z":ANIM_OFFSET_Z,
                 "x":ANIM_START_X + ANIM_OFFSET_X,
                 "alpha":0,
-                "blurFilter":{
-                    "blurX":ANIM_BLUR_X,
-                    "blurY":ANIM_BLUR_Y,
-                    "quality":1
-                },
                 "ease":Linear.easeNone,
                 "useFrames":true,
                 "overwrite":1
             },{
                 "z":ANIM_START_Z,
                 "x":ANIM_START_X,
-                "alpha":_defaultAlpha,
-                "blurFilter":{
-                    "blurX":AnimBLUR_OUT,
-                    "blurY":AnimBLUR_OUT,
-                    "quality":1,
-                    "remove":true
-                },
+                "alpha":(!!param1 ? _defaultAlpha : _dimmedAlpha),
                 "ease":Linear.easeNone,
                 "useFrames":true,
                 "onComplete":this.onOpened
@@ -106,12 +96,11 @@ package tripwire.containers.Perks
         {
             super.selectContainer();
             this.updateControllerIconVisibility();
-            trace("Bryan: " + this + " selectContainer:: defaultPromptNum: " + defaultNumPrompts + " manager numprompts: " + MenuManager.manager.numPrompts);
         }
         
-        override protected function onInputChange(e:Event) : *
+        override protected function onInputChange(param1:Event) : *
         {
-            super.onInputChange(e);
+            super.onInputChange(param1);
             this.updateControllerIconVisibility();
         }
         
@@ -120,9 +109,9 @@ package tripwire.containers.Perks
             this.confirmButton.visible = !bManagerUsingGamepad;
         }
         
-        override protected function onOpened(e:TweenEvent = null) : void
+        override protected function onOpened(param1:TweenEvent = null) : void
         {
-            super.onOpened(e);
+            super.onOpened(param1);
             ExternalInterface.call("Callback_SkillSelectionOpened");
         }
     }

@@ -2,7 +2,6 @@ package tripwire.controls
 {
     import com.greensock.TweenMax;
     import com.greensock.easing.Cubic;
-    import com.greensock.events.TweenEvent;
     import flash.display.MovieClip;
     import scaleform.clik.constants.InputValue;
     import scaleform.clik.constants.NavigationCode;
@@ -66,7 +65,6 @@ package tripwire.controls
                     "onComplete":this.onOpen,
                     "onCompleteParams":[this.bManagerUsingGamepad]
                 });
-                this._fadeIn.addEventListener(TweenEvent.UPDATE,this.updateMainInFilters,false,0,true);
                 this._bOpen = true;
             }
         }
@@ -86,7 +84,6 @@ package tripwire.controls
                     "useFrames":true,
                     "onComplete":this.onClose
                 });
-                this._fadeOut.addEventListener(TweenEvent.UPDATE,this.updateMainOutFilters);
             }
         }
         
@@ -126,16 +123,6 @@ package tripwire.controls
         {
             this.close();
             dispatchEvent(new IndexEvent(IndexEvent.INDEX_CHANGE,false,true,param1));
-        }
-        
-        private function updateMainInFilters(param1:TweenEvent) : void
-        {
-            filters = [TripList.getBlurInEffect(alpha)];
-        }
-        
-        private function updateMainOutFilters(param1:TweenEvent) : void
-        {
-            filters = [TripList.getBlurOutEffect(alpha)];
         }
         
         private function onOpen(param1:Boolean = true) : void

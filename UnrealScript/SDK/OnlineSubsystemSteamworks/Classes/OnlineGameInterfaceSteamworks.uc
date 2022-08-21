@@ -368,7 +368,9 @@ function ClearGameInviteAcceptedDelegate(byte LocalUserNum,delegate<OnGameInvite
  *
  * @param InviteResult the search/settings for the game we're joining via invite
  */
-delegate OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult);
+//@HSL_BEGIN - JRO - 3/21/2016 - PS4 Sessions
+delegate OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult, OnGameInviteAcceptedResult ResultReason);
+//@HSL_END
 
 /**
  * Tells the online subsystem to accept the game invite that is currently pending
@@ -378,7 +380,9 @@ delegate OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult);
  *
  * @return true if the game invite was able to be accepted, false otherwise
  */
-native function bool AcceptGameInvite(byte LocalUserNum,name SessionName);
+//@HSL_BEGIN - JRO - 3/21/2016 - PS4 Sessions - Extra parameter to make sure we accept the correct game!
+native function bool AcceptGameInvite(byte LocalUserNum,name SessionName,const out OnlineGameSearchResult DesiredGame);
+//@HSL_END
 
 /**
  * Registers a player with the online service as being part of the online game

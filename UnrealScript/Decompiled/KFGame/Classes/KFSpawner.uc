@@ -234,7 +234,7 @@ function AddPendingSpawns(out array< class<KFPawn_Monster> > SpawnList)
     if(I >= 0)
     {
         SMH = SpawnList[I].default.SpecialMoveHandler;
-        if((11 < SMH.SpecialMoveClasses.Length) && SMH.SpecialMoveClasses[11] != none)
+        if((10 < SMH.SpecialMoveClasses.Length) && SMH.SpecialMoveClasses[10] != none)
         {
             PendingSpawns.AddItem(SpawnList[I];
             SpawnList.Remove(I, 1;
@@ -254,8 +254,8 @@ event HandleSpawn(KFPawn NewSpawn, int SlotIdx)
     }
     if(EmergeAnim != 4)
     {
-        NewSpawn.DoSpecialMove(11,,, Class'KFSM_Emerge'.static.PackAnimFlag(EmergeAnim, LastAnimDirection));
-        if(!NewSpawn.IsDoingSpecialMove(11))
+        NewSpawn.DoSpecialMove(10,,, Class'KFSM_Emerge'.static.PackAnimFlag(EmergeAnim, LastAnimDirection));
+        if(!NewSpawn.IsDoingSpecialMove(10))
         {
             WarnInternal("SM_Emerge failed for" @ string(NewSpawn));
             NewSpawn.Died(none, WorldInfo.KillZDamageType, Location);
@@ -334,5 +334,4 @@ defaultproperties
     object end
     // Reference: StaticMeshComponent'Default__KFSpawner.PreviewMesh'
     Components(0)=PreviewMesh
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
 }

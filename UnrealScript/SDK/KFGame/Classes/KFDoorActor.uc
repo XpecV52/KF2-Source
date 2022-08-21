@@ -89,7 +89,11 @@ var transient float LastUsedTime;
 
 /** current state of the door if it hasn't been destroyed - note it's possible for bIsDoorOpen to be false and bIsDoorDestroyed to be true so check both */
 var repnotify transient bool bIsDoorOpen;
+var transient bool bLocalIsDoorOpen;
 var transient bool bReverseHinge;
+
+/** When true, the door can be processed for resets */
+var transient bool bHasBeenDirtied;
 
 /*********************************************************************************************
  * @name	Health
@@ -216,6 +220,9 @@ var() DestroyedEffectParams DamageEmitter;
 /** played when the melee attack hits world geometry and the door has no health */
 var() array<DestroyedEffectParams> DestroyedEmitters;
 
+/** Physics actors spawned when a door is broken */
+var transient array<ParticleSystemComponent> BrokenDoorParticleEffects;
+
 var localized string WeldIntegrityString;
 var localized string ExplosiveString;
 
@@ -248,6 +255,7 @@ replication
 	if ( bNetDirty )
 		bIsDoorOpen, Health, WeldIntegrity, bIsDestroyed, HitCount, DemoWeld, 
 		bShouldExplode;
+
 	if ( bNetDirty && DoorMechanism == EDM_Hinge )
 		bReverseHinge;
 }
@@ -274,10 +282,6 @@ simulated event ReplicatedEvent(name VarName)
 		if ( bIsDestroyed )
 		{
 			PlayDestroyed();
-		}
-		else
-		{
-			ResetDoor();
 		}
 	}
 	else if ( VarName == nameof(Health) )
@@ -363,7 +367,7 @@ simulated event PostBeginPlay()
 /** Grab the doors materials and create MICs to visualize door damage */
 simulated function InitializeDoorMIC()
 {
-	local MaterialInstanceConstant NewMIC;
+	local MaterialInstanceConstant NewMIC, AltMIC;
 	local byte i, MaterialIndex;
 
 	if (HealthMICs.Length <= 0 && WorldInfo.NetMode != NM_DedicatedServer)
@@ -384,7 +388,20 @@ simulated function InitializeDoorMIC()
 		        	// Apply the MIC to our door components
 			        for ( i = 0; i < MeshAttachments.length; i++ )
 			        {
-				   	    MeshAttachments[i].Component.SetMaterial(MaterialIndex, NewMIC);
+			        	// Only apply MIC to components that share the same material
+			        	if( MeshAttachments[i].Component.GetMaterial(MaterialIndex) == NewMIC.Parent )
+			        	{
+					   	    MeshAttachments[i].Component.SetMaterial(MaterialIndex, NewMIC);
+					   	}
+					   	else
+					   	{
+					   		// If this mesh component had a custom material, allow it to use it instead of our mirrored MIC
+							AltMIC = new class'MaterialInstanceConstant';
+							AltMIC.SetParent( MeshAttachments[i].Component.GetMaterial(MaterialIndex) );
+
+							HealthMICs.AddItem( AltMIC );
+					   	    MeshAttachments[i].Component.SetMaterial( MaterialIndex, AltMIC );							
+						}
 			   	    }
 		   		}
 			}
@@ -427,6 +444,7 @@ simulated function InitSkelControl()
 	// start in open state
 	MovementControl.SetSkelControlStrength(1.f, 0.f);
 	bIsDoorOpen = true;
+	bLocalIsDoorOpen = true;
 }
 
 /*********************************************************************************************
@@ -505,7 +523,7 @@ event Bump( Actor Other, PrimitiveComponent OtherComp, Vector HitNormal )
 /** Initiate door opening animation */
 simulated protected function OpenDoor(Pawn P)
 {
-	if ( bIsDestroyed || WeldIntegrity > 0 )
+	if ( bIsDestroyed || bLocalIsDoorOpen  || WeldIntegrity > 0)
 	{
 	 	return;
 	}
@@ -513,6 +531,9 @@ simulated protected function OpenDoor(Pawn P)
 	bIsDoorOpen = true;
 	bForceNetUpdate = true;
 	bDoorMoveCompleted = false;
+
+	// Local (non-replicated) open flag
+	bLocalIsDoorOpen = true;
 
 	if ( DoorMechanism == EDM_Hinge )
 	{
@@ -552,14 +573,20 @@ simulated private function OpenSwingingDoor(Pawn P)
 /** To close the door, just reverse the animation */
 simulated private function CloseDoor()
 {
-	if ( bIsDestroyed )
+	if( bIsDestroyed || !bLocalIsDoorOpen )
 	{
 	 	return;
 	}
 
+	// If door has been closed, it's dirty
+	bHasBeenDirtied = true;
+
 	bIsDoorOpen = false;
 	bForceNetUpdate = true;
 	bDoorMoveCompleted = false;
+
+	// Local (non-replicated) open flag
+	bLocalIsDoorOpen = false;
 
 	SetTickIsDisabled(false);
 	PlayMovingSound(true);
@@ -873,10 +900,18 @@ function FastenDoor(int Amount, optional KFPawn Welder)
 		{
 			AddExplosiveWeld( Amount, PC );
 		}
+
+		// If weld integrity has increased from 0, it's dirty
+		bHasBeenDirtied = true;
 		
 		WeldIntegrity = Min( WeldIntegrity + Amount, MaxWeldIntegrity );
 		UpdateIntegrityMIC();
 		bForceNetUpdate = true;
+
+		if( WeldIntegrity == MaxWeldIntegrity )
+		{
+			PC.UnlockHoldOut();
+		}
 
 		if( !BeingUnwelded() )
 		{
@@ -891,6 +926,21 @@ function FastenDoor(int Amount, optional KFPawn Welder)
 		if( WelderPawn == Welder )
 		{
 			LastWeldTime = WorldInfo.TimeSeconds;
+		}
+	}
+	else if( !bIsDoorOpen && WeldIntegrity >= MaxWeldIntegrity &&
+			  DemoWeld < DemoWeldRequired )
+	{
+		PC = KFPlayerController(Welder.Controller);
+		if ( PC != None )
+		{
+			WelderPerk = PC.GetPerk();
+			if( WelderPerk != none && WelderPerk.CanExplosiveWeld() )
+			{
+				AddExplosiveWeld( Amount, PC );
+				UpdateIntegrityMIC();
+				bForceNetUpdate = true;
+			}
 		}
 	}
 	else if ( bIsDoorOpen )
@@ -989,7 +1039,7 @@ simulated function SpawnParticlesFromEffectParam( DestroyedEffectParams EffectPa
 		Loc = Location + EffectParam.RelativeOffset;
 	    Rot = Rotation + EffectParam.RelativeRotation;
 	    Rot.Yaw += ( bReverseDir ) ? 32768 : 0;
-		WorldInfo.MyEmitterPool.SpawnEmitter(EffectParam.ParticleEffect, Loc, Rot);
+		BrokenDoorParticleEffects.AddItem( WorldInfo.MyEmitterPool.SpawnEmitter(EffectParam.ParticleEffect, Loc, Rot) );
 	}
 }
 
@@ -1000,6 +1050,9 @@ simulated function PlayDestroyed()
     SetTickIsDisabled(false);
 
 	bIsDestroyed = true;
+
+	// If door is destroyed, it's dirty
+	bHasBeenDirtied = true;
 
 	if ( DestroyedSound != None )
 	{
@@ -1025,31 +1078,33 @@ simulated function PlayDestroyed()
 
 simulated function PlayExplosion()
 {
-	local KFExplosionActorReplicated ExploActor;
+	local KFExplosionActor ExploActor;
 	local GameExplosion	ExplosionTemplate;
 	local KFPawn ExplosionInstigator;
+	local KFPerk InstigatorPerk;
+	local class<KFExplosionActor> KFEAR;
 
 	if ( Role < ROLE_Authority )
 	{
 		return;
 	}
 
-	// explode using the given template
-	ExploActor = Spawn(class'KFExplosionActorReplicated', self,, Location + vect(0,0,100),,, true);
-	if( ExploActor != None )
+	ExplosionInstigator = KFPawn(ExplosionInstigatorController.Pawn);
+	InstigatorPerk = ExplosionInstigator.GetPerk();
+	if( ExplosionInstigator != none && InstigatorPerk != none )
 	{
-		ExploActor.InstigatorController = ExplosionInstigatorController;
-		
-		ExplosionInstigator = KFPawn(ExplosionInstigatorController.Pawn);
-		if( ExplosionInstigator != none )
+		KFEAR = InstigatorPerk.DoorShouldNuke() ? class'KFPerk_Demolitionist'.static.GetNukeExplosionActorClass() : class'KFExplosionActorReplicated';
+		ExploActor = Spawn(KFEAR, self,, Location + vect(0,0,100),,, true);
+		if( ExploActor != None )
 		{
+			ExploActor.InstigatorController = ExplosionInstigatorController;
 			ExploActor.Instigator = ExplosionInstigator;
-		}
-		
-		ExplosionTemplate = class'KFPerk_Demolitionist'.static.GetDoorTrapsExplosionTemplate();
-		ExplosionTemplate.MyDamageType = class'KFPerk_Demolitionist'.static.GetDoorTrapsDamageTypeClass();
-		ExploActor.Explode( ExplosionTemplate );
-	}	
+
+			ExplosionTemplate = InstigatorPerk.DoorShouldNuke() ? class'KFPerk_Demolitionist'.static.GetNukeExplosionTemplate() : class'KFPerk_Demolitionist'.static.GetDoorTrapsExplosionTemplate();
+			ExplosionTemplate.Damage = class'KFPerk_Demolitionist'.static.GetDoorTrapsExplosionTemplate().Damage;
+			ExploActor.Explode( ExplosionTemplate );
+		}	
+	}
 }
 
 /** If the door is sliding or lifting then only play particle effects and open the door */
@@ -1069,14 +1124,41 @@ simulated function DestroyNonPhysicsDoor()
     }
 }
 
-/** Restore all doors to the way they were at the start of a map */
+/** Restores this door to the way it was at the start of a map */
 simulated function ResetDoor()
 {
-    bIsDestroyed = false;
- 	bForceNetUpdate = true;
-    SetTickIsDisabled(false);
+	local int i;
+	local DoorMarker DoorNav;
 
-   	if ( DoorMechanism == EDM_Hinge )
+	// Reset server-controlled variables and force an update
+	if( Role == ROLE_Authority )
+	{
+		Health = MaxHealth;
+	    bIsDestroyed = false;
+	    bShouldExplode = false;
+	    bIsDoorOpen = true;
+		WeldIntegrity = 0;
+	    DemoWeld = 0;
+
+		// Update clients immediately
+		bNetDirty = true;
+	 	bForceNetUpdate = true;
+	}
+
+	// Reset non-replicated variables
+	ExplosionInstigatorController = none;
+ 	bDoorMoveCompleted = true;
+	bLocalIsDoorOpen = true;
+ 	bHasBeenDirtied = false;
+
+	// Door has not been dirtied and does not need to be ticked yet
+    SetTickIsDisabled( true );
+
+	// Set rigid body collision params
+    SetRBCollideWithDeadPawn( false );
+
+    // Reset hinged doors a little differently
+   	if( DoorMechanism == EDM_Hinge )
 	{
       	ResetHingedDoor();
 	}
@@ -1085,17 +1167,43 @@ simulated function ResetDoor()
 		BashSlot.StopCustomAnim( 0 );
 	}
 
-	Health = MaxHealth;
-	WeldIntegrity = 0;
-	DemoWeld = 0;
-	ExplosionInstigatorController = none;
-	bShouldExplode = false;
+	// Restore door to open position
+	MovementControl.SetSkelControlActive( true );
+	MovementControl.SetSkelControlStrength( 1.f, 0.f );
+	SkeletalMeshComp.ForceSkelUpdate();
 
-	UpdateHealthMICs();
+	// Make sure door is considered open by AI
+	if( bMonitorDoor )
+	{
+		DoorNav = DoorMarker(MyMarker);
+		if (DoorNav != None)
+		{
+			DoorNav.MoverOpened();
+		}
+		bMonitorDoor = false;
+	}
+
+	// Update health MIC scalars
 	UpdateHealthScalars('doorHealthA', 0);
 	UpdateHealthScalars('doorHealthB', 0);
 	UpdateHealthScalars('doorHealthC', 0);
 	UpdateHealthScalars('doorHealthD', 0);
+
+	// Stop any sounds that might have been playing
+	if( AmbientSoundComponent != none && AmbientSoundComponent.IsPlaying() )
+	{
+		AmbientSoundComponent.StopEvents();
+	}
+
+	// Delete broken door particle effects and empty cache
+	for( i = 0; i < BrokenDoorParticleEffects.Length; ++i )
+	{
+		if( BrokenDoorParticleEffects[i] != none && BrokenDoorParticleEffects[i].bIsActive )
+		{
+			BrokenDoorParticleEffects[i].DeactivateSystem();
+		}
+	}
+	BrokenDoorParticleEffects.Length = 0;
 }
 
 /** As the door takes damage, scale its damage paramaters to make it look more beaten */
@@ -1108,6 +1216,12 @@ simulated function UpdateHealthMICs()
 	if ( Health <= 0 )
 	{
 		return;
+	}
+
+	// If health has dropped, it's dirty
+	if( Health < MaxHealth )
+	{
+		bHasBeenDirtied = true;
 	}
 
 	if ( HealthMICs.Length > 0 )
@@ -1153,6 +1267,9 @@ simulated function UpdateIntegrityMIC()
 		// the weld will always be at least partially visible on the door
 		if(WeldIntegrity > 0)
 		{
+			// If weld integrity has increased from 0, it's dirty
+			bHasBeenDirtied = true;
+
 			IntegrityScaler = FMax(float(WeldIntegrity) / float(MaxWeldIntegrity), MinWeldScalar);
 		}
 		else
@@ -1286,6 +1403,7 @@ simulated function ResetHingedDoor()
 		MeshAttachments[i].Component.SetHidden( false );
 	}
 
+	OpenSwingingDoor( none );
 	SkeletalMeshComp.bComponentUseFixedSkelBounds = TRUE;
 }
 
@@ -1466,6 +1584,19 @@ simulated event DrawTemporaryWeldIcon( HUD HUD, Canvas C )
 	}
 }
 
+/**
+ * Level was reset without reloading
+ * Network: ALL. Called on clients to avoid issues that could arise from players joining in progress
+ * and thinking they need to reset this actor when they don't.
+ */
+simulated function Reset()
+{
+	if( bHasBeenDirtied )
+	{
+		ResetDoor();
+	}
+}
+
 defaultproperties
 {
 	Begin Object Class=SpriteComponent Name=Sprite
@@ -1555,7 +1686,7 @@ defaultproperties
 		BlockActors=TRUE
 		BlockRigidBody=TRUE
 		RBChannel=RBCC_GameplayPhysics
-		RBCollideWithChannels=(Default=TRUE,GameplayPhysics=TRUE,EffectPhysics=TRUE,DeadPawn=TRUE,Pickup=TRUE,FlexAsset=FALSE)
+		RBCollideWithChannels=(Default=TRUE,GameplayPhysics=TRUE,EffectPhysics=TRUE,DeadPawn=FALSE,Pickup=TRUE,FlexAsset=FALSE)
 	End Object
 
 	Begin Object Class=StaticMeshComponent Name=StaticMeshComponent1
@@ -1569,7 +1700,7 @@ defaultproperties
 		BlockActors=TRUE
 		BlockRigidBody=TRUE
 		RBChannel=RBCC_GameplayPhysics
-		RBCollideWithChannels=(Default=TRUE,GameplayPhysics=TRUE,EffectPhysics=TRUE,DeadPawn=TRUE,Pickup=TRUE,FlexAsset=FALSE)
+		RBCollideWithChannels=(Default=TRUE,GameplayPhysics=TRUE,EffectPhysics=TRUE,DeadPawn=FALSE,Pickup=TRUE,FlexAsset=FALSE)
 	End Object
 
 	Begin Object Class=StaticMeshComponent Name=StaticMeshComponent2

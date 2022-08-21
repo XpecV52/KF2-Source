@@ -16,31 +16,58 @@ var KFPlayerController 				MyKFPC;
 var int								LastDosh;
 // Number of bullets in the  current magazine
 var int 							LastSpareAmmo;
-var int                             LastMagazineAmmo;
+var byte                            LastMagazineAmmo;
 var bool                            bUsesAmmo;
 //
 var int                             LastFlashlightBattery;
 //
 var int                             LastGrenades;
+
+var int                             LastMaxWeight;
+var int                             LastWeight;
 // Amount of secondary ammo
-var int                             LastSecondaryAmmo;
+var byte                            LastSecondaryAmmo;
 var bool                            bWasUsingAltFireMode;
 var bool                            bUsesSecondaryAmmo;
 
 var class<KFPerk> LastPerkClass;
 var KFWeapon LastWeapon;
 
+var KFInventoryManager MyKFInvManager;
+
 function InitializeHUD()
 {
 	MyKFPC = KFPlayerController(GetPC());
+
+    if( MyKFPC.Pawn != none && MyKFPC.Pawn.InvManager != none )
+    {
+        MyKFInvManager = KFInventoryManager(MyKFPC.Pawn.InvManager);
+    }
 }
 
 function TickHud(float DeltaTime)
 {
-        UpdateDosh();
-        UpdateGrenades();
-        UpdateWeapon();
-        UpdateFlashlight();   
+    UpdateDosh();
+    UpdateGrenades();
+    UpdateWeapon();
+    UpdateFlashlight();   
+    UpdateWeight();
+}
+
+function UpdateWeight()
+{
+    if( MyKFPC.Pawn != none && MyKFPC.Pawn.InvManager != none )
+    {
+        MyKFInvManager = KFInventoryManager(MyKFPC.Pawn.InvManager);    
+
+        if(MyKFInvManager != none && (LastMaxWeight != MyKFInvManager.MaxCarryBlocks || LastWeight != MyKFInvManager.CurrentCarryBlocks))
+        {
+            SetString("WeightText", MyKFInvManager.CurrentCarryBlocks$"/"$MyKFInvManager.MaxCarryBlocks);
+
+            LastMaxWeight = MyKFInvManager.MaxCarryBlocks;
+            LastWeight = MyKFInvManager.CurrentCarryBlocks;
+        }
+    }
 }
 
 function UpdateDosh()
@@ -64,21 +91,18 @@ function UpdateDosh()
 
 function UpdateGrenades()
 {
-    local KFInventoryManager MyKFInvManager;
     local int CurrentGrenades;
 
 	if(MyKFPC == None)
 	{
 		return;
 	}
-    if(MyKFPC.Pawn != none)
+    
+    if(MyKFInvManager != none)
     {
-        MyKFInvManager = KFInventoryManager(MyKFPC.Pawn.InvManager);
-        if(MyKFInvManager != none)
-        {
-            CurrentGrenades = MyKFInvManager.GrenadeCount;
-        }
+        CurrentGrenades = MyKFInvManager.GrenadeCount;
     }
+    
     //Update the icon the for grenade type.
     if(MyKFPC.GetPerk() != none)
     {
@@ -99,11 +123,11 @@ function UpdateGrenades()
 function UpdateWeapon()
 {
 	local int CurrentSpareAmmo;
-	local int CurrentMagazineAmmo;
-    local int CurrentSecondaryAmmo;
+	local byte CurrentMagazineAmmo;
+    local byte CurrentSecondaryAmmo;
     local KFWeapon CurrentWeapon;
 
-    if(MyKFPC != none && MyKFPC.Pawn != none)
+    if(MyKFPC != none && MyKFPC.Pawn != none && MyKFPC.Pawn.Weapon != none )
     {
         CurrentWeapon = KFWeapon(MyKFPC.Pawn.Weapon);
         if(CurrentWeapon != none)
@@ -205,5 +229,6 @@ function SetFlashlightBattery( int BatteryCharge, bool bIsOn )
 
 DefaultProperties
 {
-    
+    LastMaxWeight=-1   
+    LastWeight=-1
 }

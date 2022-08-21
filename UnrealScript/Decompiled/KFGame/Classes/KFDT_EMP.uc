@@ -21,7 +21,7 @@ static function int GetDamagerDialogID()
 defaultproperties
 {
     GoreDamageGroup=EGoreDamageGroup.DGT_EMP
-    EMPPower=1
+    EMPPower=100
     CameraLensEffectTemplate=Class'KFCameraLensEmit_EMP'
     bArmorStops=false
     KDamageImpulse=150

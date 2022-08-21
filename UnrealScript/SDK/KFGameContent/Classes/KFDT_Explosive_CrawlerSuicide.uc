@@ -29,4 +29,5 @@ DefaultProperties
 	bCanGib=true
 
 	bAnyPerk=true
+	bConsideredIndirectOrAoE=true
 }

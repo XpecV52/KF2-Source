@@ -11,11 +11,26 @@ KF-Manor="Playing Manor"
 KF-MineShaft="Playing Mine Shaft"
 KF-Outpost="Playing Outpost"
 
-[ActivityFeed en]
+[ActivityFeed]
+BossKillCondensedCaption="Boss defeated!"
+BossKillCaption="$USER_NAME_OR_ID has defeated %x% on %y%"
+TeamAwardCondensedCaption="Team Award!"
+TeamAwardCaption="$USER_NAME_OR_ID has earned %x% team award"
 PerkLevelUpCondensedCaption="Level up!"
-PerkLevelUpCaption="%s Perk leveled up to %i"
-FinishGameCondensedCaptionWin="$USER_NAME_OR_ID destroyed the Zed on %s!"
-FinishGameCondensedCaptionLose="$USER_NAME_OR_ID was defeated on %s!"
-FinishGameCaptionWin="$USER_NAME_OR_ID destroyed the Zed on %s with %i kills, %i deaths, and %i assists"
-FinishGameCaptionLose="$USER_NAME_OR_ID was defeated on %s with %i kills, %i deaths, and %i assists"
+PerkLevelUpCaption="$USER_NAME_OR_ID has unlocked the level %x% %y% skill"
 
+[KFGFxMenu_IIS]
+PressButtonToStart=Press XboxTypeS_A To Start
+LoggingIn=Logging in...
+
+[Notifications]
+ControllerDisconnectedTitle=Controller Disconnected
+ControllerDisconnectedPS4Message=Wireless controller has been disconnected. Please reconnect the wireless controller for the User that booted the game.
+PlayGoBusyTitle=Still installing
+PlayGoBusyMessage=Limited content and features are available while the game finishes installing.
+
+[KFGFxWidget_BaseParty]
+ViewProfileString=View Player Profile
+
+[KFGFxObject_Menu]
+ResetDefaults=Are you sure you want to reset settings to default values?

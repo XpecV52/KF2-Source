@@ -64,7 +64,7 @@ defaultproperties
       ObjectArchetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFWeap_Edged_Knife:FirstPersonMesh'
    End Object
    Mesh=FirstPersonMesh
-   ItemName="Firemans Knife"
+   ItemName="Fireman's Knife"
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'kfgamecontent.Default__KFWeap_Edged_Knife:StaticPickupComponent'
       StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_CommandoKnife_Pickup'
       ReplacementPrimitive=None

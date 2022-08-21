@@ -12,18 +12,15 @@ class KFDT_Ballistic_Colt1911 extends KFDT_Ballistic_Handgun
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 defaultproperties
 {
 	KDamageImpulse=1500
 	KDeathUpKick=-450
 	KDeathVel=200
 
-	KnockdownPower=40
-	StumblePower=40
-	LegStumblePower=40
-	GunHitPower=15
+	KnockdownPower=15
+	StumblePower=20
+	GunHitPower=100
 
 	WeaponDef=class'KFWeapDef_Colt1911'
 

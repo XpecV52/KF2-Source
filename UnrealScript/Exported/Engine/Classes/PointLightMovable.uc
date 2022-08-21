@@ -81,7 +81,6 @@ defaultproperties
    End Object
    Components(2)=DrawLightSourceRadius0
    Components(3)=PointLightComponent0
-   TickGroup=TG_DuringAsyncWork
    bHardAttach=True
    bMovable=True
    CollisionComponent=LightMeshComponent0

@@ -9,12 +9,17 @@ class KFPawn_ZedFleshPound_Versus extends KFPawn_ZedFleshpound
     config(Game)
     hidecategories(Navigation);
 
+var protected const float RageSprintSpeed;
+var protected const int RageBumpDamage;
+var protected const float RageBumpRadius;
+var protected const float RageBumpMomentum;
+
 function PossessedBy(Controller C, bool bVehicleTransition)
 {
     super(KFPawn_Monster).PossessedBy(C, bVehicleTransition);
     if((WorldInfo.NetMode != NM_DedicatedServer) && Mesh != none)
     {
-        SetGameplayMICParams();
+        UpdateGameplayMICParams();
     }
 }
 
@@ -24,25 +29,33 @@ function SetSprinting(bool bNewSprintStatus)
     {
         bNewSprintStatus = false;
     }
-    if(bNewSprintStatus)
+    super(KFPawn_Monster).SetSprinting(bNewSprintStatus);
+}
+
+simulated function SetEnraged(bool bNewEnraged)
+{
+    super.SetEnraged(bNewEnraged);
+    if(bIsEnraged)
     {
-        if(bIsCrouched)
+        if(!IsTimerActive('Timer_RageBump'))
         {
-            bNewSprintStatus = false;            
+            SetTimer(0.25, true, 'Timer_RageBump');
         }
-        else
+        SprintSpeed = RageSprintSpeed;        
+    }
+    else
+    {
+        if(IsTimerActive('Timer_RageBump'))
         {
-            if((MyKFWeapon != none) && !MyKFWeapon.AllowSprinting())
-            {
-                bNewSprintStatus = false;
-            }
+            ClearTimer('Timer_RageBump');
+            SprintSpeed = default.SprintSpeed;
         }
     }
-    bIsSprinting = bNewSprintStatus;
-    if(MyKFWeapon != none)
-    {
-        MyKFWeapon.SetWeaponSprint(bNewSprintStatus);
-    }
+}
+
+protected simulated function Timer_RageBump()
+{
+    HurtRadius(float(RageBumpDamage), RageBumpRadius, RageBumpDamageType, RageBumpMomentum, Location, self, Controller);
 }
 
 function NotifyMeleeDamageDealt()
@@ -58,23 +71,28 @@ function EndRage()
     SetEnraged(false);
 }
 
-function PutAllMovesOnCooldown();
-
 defaultproperties
 {
+    RageSprintSpeed=700
+    RageBumpDamage=2
+    RageBumpRadius=240
+    RageBumpMomentum=500
     BattlePhaseLightTemplateYellow=PointLightComponent'Default__KFPawn_ZedFleshPound_Versus.PointLightComponent1'
     BattlePhaseLightTemplateRed=PointLightComponent'Default__KFPawn_ZedFleshPound_Versus.PointLightComponent2'
     bVersusZed=true
     ThirdPersonViewOffset=(OffsetHigh=(X=-175,Y=60,Z=60),OffsetMid=(X=-160,Y=50,Z=30),OffsetLow=(X=-220,Y=100,Z=50))
     begin object name=MeleeHelper class=KFMeleeHelperAI
-        BaseDamage=50
+        BaseDamage=30
+        PlayerDoorDamageMultiplier=5
         MeleeImpactCamScale=0.45
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedFleshPound_Versus.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
     DoshValue=300
     XPValues=105
-    ResistantDamageTypes=/* Array type was not detected. */
+    DamageTypeModifiers=/* Array type was not detected. */
+    BlockingDamageModifier=0.7
+    MeleeBlockingDamageModifier=0.7
     SpecialMoveCooldowns=/* Array type was not detected. */
     FootstepCameraShake=CameraShake'Default__KFPawn_ZedFleshPound_Versus.FootstepCameraShake0'
     LocalizationKey=KFPawn_ZedFleshpound
@@ -83,8 +101,9 @@ defaultproperties
     object end
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedFleshPound_Versus.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
-    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedFleshPound_Versus.Afflictions'
-    InstantIncaps=/* Array type was not detected. */
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedFleshPound_Versus.Afflictions'
+    IncapSettings=/* Array type was not detected. */
+    SprintSpeed=550
     SprintStrafeSpeed=450
     TeammateCollisionRadiusPercent=0.3
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
@@ -102,7 +121,7 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedFleshPound_Versus.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedFleshPound_Versus.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedFleshPound_Versus.DialogAkSoundComponent'
-    GroundSpeed=300
+    GroundSpeed=275
     Health=1983
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none

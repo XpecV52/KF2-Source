@@ -483,7 +483,7 @@ DefaultProperties
 	HealThreshold=0.5f
 	AutoHealThreshold=0.25f
 	LowHealthThreshold=0.3f
-	Health=2540
+    Health=2240 //2540
 
 	SprintSpeed=700.f
 	SprintStrafeSpeed=400.f

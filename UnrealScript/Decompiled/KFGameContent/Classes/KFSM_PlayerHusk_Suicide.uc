@@ -9,11 +9,38 @@ class KFSM_PlayerHusk_Suicide extends KFSM_Husk_Suicide;
 
 protected function bool InternalCanDoSpecialMove()
 {
-    if(KFPOwner.WorldInfo.GRI.bMatchIsOver)
+    if(KFPOwner.WorldInfo.GRI.bMatchIsOver || KFGameReplicationInfoVersus(KFPOwner.WorldInfo.GRI).bRoundIsOver)
     {
         return false;
     }
     return super.InternalCanDoSpecialMove();
+}
+
+function SpecialMoveFlagsUpdated()
+{
+    if(KFPOwner.SpecialMoveFlags == 254)
+    {
+        bPendingStopFire = true;
+        bCanBeInterrupted = true;
+        if(KFPOwner.Role == ROLE_Authority)
+        {
+            KFPOwner.SetTimer(KFPOwner.WorldInfo.DeltaSeconds * 2, false, 'EndSpecialMove');
+        }        
+    }
+    else
+    {
+        super(GameSpecialMove).SpecialMoveFlagsUpdated();
+    }
+}
+
+function SpecialMoveButtonReleased()
+{
+    bPendingStopFire = true;
+    KFPOwner.DoSpecialMove(KFPOwner.SpecialMove, true,, 254);
+    if((KFPOwner.Role < ROLE_Authority) && KFPOwner.IsLocallyControlled())
+    {
+        KFPOwner.ServerDoSpecialMove(KFPOwner.SpecialMove, true,, 254);
+    }
 }
 
 defaultproperties

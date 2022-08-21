@@ -82,7 +82,6 @@ defaultproperties
       ObjectArchetype=ArrowComponent'Engine.Default__DirectionalLight:ArrowComponent0'
    End Object
    Components(2)=ArrowComponent0
-   TickGroup=TG_DuringAsyncWork
    bHardAttach=True
    CollisionComponent=LightMeshComponent0
    Name="Default__DirectionalLightToggleable"

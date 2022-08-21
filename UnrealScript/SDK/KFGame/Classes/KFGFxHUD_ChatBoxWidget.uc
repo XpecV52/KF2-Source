@@ -63,8 +63,12 @@ function SetLobbyChatVisible(bool bIsVisible)
 {
     if(bIsVisible != bChatBoxVisible)
     {
-        SetVisible(bIsVisible);    
-        bChatBoxVisible = bIsVisible;  
+		// Only show if we aren't on console.
+		if( !GetPC().WorldInfo.IsConsoleBuild() )
+		{
+			SetVisible(bIsVisible);    
+			bChatBoxVisible = bIsVisible;  
+		}
     }   
 }
 

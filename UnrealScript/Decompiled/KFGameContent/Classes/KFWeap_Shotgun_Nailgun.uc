@@ -79,6 +79,7 @@ defaultproperties
     NumPellets=/* Array type was not detected. */
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=6
+    MagazineCapacity=42
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -89,7 +90,6 @@ defaultproperties
     IronSightPosition=(X=12,Y=0,Z=0)
     GroupPriority=50
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_NailShotgun'
-    MagazineCapacity=42
     MaxSpareAmmo=336
     InitialSpareMags=4
     FireSightedAnims=/* Array type was not detected. */

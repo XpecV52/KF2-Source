@@ -25,7 +25,6 @@ defaultproperties
     object end
     // Reference: SpriteComponent'Default__MaterialInstanceActor.Sprite'
     Components(0)=Sprite
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
     TickGroup=ETickingGroup.TG_DuringAsyncWork
     bNoDelete=true
 }

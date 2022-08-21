@@ -11,8 +11,6 @@ class KFDT_Microwave_Blast extends KFDT_Microwave
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 DefaultProperties
 {
 	// This weapon uses radial impulses
@@ -24,13 +22,12 @@ DefaultProperties
 	// unreal physics momentum
 	bExtraMomentumZ=True
 	
-	KnockdownPower=0
-	StumblePower=135
-	LegStumblePower=135
+	KnockdownPower=200
+	StumblePower=0
 	GunHitPower=0
 	MeleeHitPower=0
 
-	BurnPower=0.25
+	MicrowavePower=100
 
 	EffectGroup=FXG_MicrowaveBlast
 	//bCanObliterate=true

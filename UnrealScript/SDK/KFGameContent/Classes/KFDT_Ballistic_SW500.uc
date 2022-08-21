@@ -12,8 +12,6 @@ class KFDT_Ballistic_SW500 extends KFDT_Ballistic_Handgun
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
@@ -37,10 +35,9 @@ defaultproperties
 	KDeathUpKick=-700
 	KDeathVel=350
 
-   	KnockdownPower=50 
+   	KnockdownPower=25
 	StumblePower=60
-	LegStumblePower=60
-	GunHitPower=35
+	GunHitPower=200
 
 	WeaponDef=class'KFWeapDef_SW500'
 	ModifierPerkList(0)=class'KFPerk_Gunslinger'

@@ -17,6 +17,7 @@ package
             this.__setProp_mapList_GameOptionsContainerMC_MapList_0();
             this.__setProp_modeList_GameOptionsContainerMC_ModeList_0();
             this.__setProp_mutatorButton_GameOptionsContainerMC_MutatorButton_0();
+            this.__setProp_helperTextContainer_GameOptionsContainerMC_helpertextbox_0();
             this.__setProp_modeButton_GameOptionsContainerMC_Buttons_0();
             this.__setProp_mapButton_GameOptionsContainerMC_Buttons_0();
             this.__setProp_difficultyButton_GameOptionsContainerMC_Buttons_0();
@@ -288,6 +289,29 @@ package
             try
             {
                 mutatorButton["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        
+        function __setProp_helperTextContainer_GameOptionsContainerMC_helpertextbox_0() : *
+        {
+            try
+            {
+                helperTextContainer["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            helperTextContainer.autoSize = "none";
+            helperTextContainer.enabled = true;
+            helperTextContainer.enableInitCallback = false;
+            helperTextContainer.text = "test test fasdf fdas fdsafdsfafds afds  fdafdsf f dsafds fadfds aff asdfdsaf dsafs f sdaf sadf dsfdsfkasdj fdskf ds";
+            helperTextContainer.visible = true;
+            try
+            {
+                helperTextContainer["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

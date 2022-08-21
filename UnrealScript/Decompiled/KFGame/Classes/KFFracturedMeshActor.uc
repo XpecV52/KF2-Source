@@ -13,6 +13,7 @@ var() KFDestructibleActor.EDestructibleRepType ReplicationMode;
 var const byte VulnerableMultiplier;
 /** Amount of damage this actor can take before fully collapsing */
 var() int TotalHealth;
+var transient int DefaultTotalHealth;
 /** Light brightness material parameter for this subobject */
 var() MaterialLightParamMod MaterialLightParams;
 /** When health reaches zero, should spawn FracturedMeshParts */
@@ -31,13 +32,19 @@ simulated event ReplicatedEvent(name VarName)
 {
     if(VarName == 'bHasBeenDestroyed')
     {
-        BreakOffAllFragments();        
+        if(bHasBeenDestroyed)
+        {
+            BreakOffAllFragments();
+        }        
     }
     else
     {
         if(VarName == 'bHasLostChunk')
         {
-            SetLoseChunkReplacementMaterial();
+            if(bHasLostChunk)
+            {
+                SetLoseChunkReplacementMaterial();
+            }
         }
     }
 }
@@ -52,6 +59,7 @@ simulated event PreBeginPlay()
     {
         RemoteRole = ((ReplicationMode == 2) ? 0 : 1);
     }
+    DefaultTotalHealth = TotalHealth;
     super(Actor).PreBeginPlay();
 }
 
@@ -125,8 +133,15 @@ simulated function bool FractureEffectIsRelevant(bool bForceDedicated, Pawn Effe
 simulated event SetLoseChunkReplacementMaterial()
 {
     super.SetLoseChunkReplacementMaterial();
-    bHasLostChunk = true;
-    bForceNetUpdate = true;
+    if(!bHasLostChunk)
+    {
+        bHasLostChunk = true;
+        if(WorldInfo.NetMode != NM_Client)
+        {
+            bNetDirty = true;
+            bForceNetUpdate = true;
+        }
+    }
 }
 
 simulated function BreakOffAllFragments(optional Vector InVelocity)
@@ -139,6 +154,7 @@ simulated function BreakOffAllFragments(optional Vector InVelocity)
     local float PartScale;
     local bool bWantPhysChunksAndParticles;
 
+    bHasBeenDirtied = true;
     bHasBeenDestroyed = true;
     bForceNetUpdate = true;
     if(ReplicationMode != 2)
@@ -150,7 +166,7 @@ simulated function BreakOffAllFragments(optional Vector InVelocity)
     FracMesh = FracturedStaticMesh(FracturedStaticMeshComponent.StaticMesh);
     FragmentVis = FracturedStaticMeshComponent.GetVisibleFragments();
     I = 0;
-    J0xE0:
+    J0xEC:
 
     if(I < FragmentVis.Length)
     {
@@ -170,12 +186,9 @@ simulated function BreakOffAllFragments(optional Vector InVelocity)
             FragmentVis[I] = 0;
         }
         ++ I;
-        goto J0xE0;
+        goto J0xEC;
     }
-    if(!bHasLostChunk)
-    {
-        SetLoseChunkReplacementMaterial();
-    }
+    SetLoseChunkReplacementMaterial();
     if(bWantPhysChunksAndParticles && NumPartsHidden > 0)
     {
         PlayBreakOffAllParticles(FracMesh);
@@ -185,6 +198,12 @@ simulated function BreakOffAllFragments(optional Vector InVelocity)
     {
         PlaySoundBase(ExplosionFractureSound);
     }
+}
+
+simulated event BreakOffPartsInRadius(Vector Origin, float Radius, float RBStrength, bool bWantPhysChunksAndParticles)
+{
+    super.BreakOffPartsInRadius(Origin, Radius, RBStrength, bWantPhysChunksAndParticles);
+    SetLoseChunkReplacementMaterial();
 }
 
 simulated function PlayBreakOffAllParticles(FracturedStaticMesh FracMesh)
@@ -219,6 +238,24 @@ simulated function SimulateRemoteHit(Vector HitLocation, Vector Momentum, const 
     }
 }
 
+simulated function Reset()
+{
+    if(!bHasBeenDirtied)
+    {
+        return;
+    }
+    super.Reset();
+    bHasBeenDestroyed = false;
+    bHasLostChunk = false;
+    bForceNetUpdate = true;
+    bNetDirty = true;
+    if(ReplicationMode != 2)
+    {
+        SetCollision(,, true);
+    }
+    TotalHealth = DefaultTotalHealth;
+}
+
 defaultproperties
 {
     VulnerableMultiplier=6
@@ -236,6 +273,7 @@ defaultproperties
     object end
     // Reference: FracturedSkinnedMeshComponent'Default__KFFracturedMeshActor.FracturedSkinnedComponent0'
     SkinnedComponent=FracturedSkinnedComponent0
+    FractureCullMaxDistance=100000
     begin object name=FracturedSkinnedComponent0 class=FracturedSkinnedMeshComponent
         ReplacementPrimitive=none
         LightEnvironment=DynamicLightEnvironmentComponent'Default__KFFracturedMeshActor.LightEnvironment0'

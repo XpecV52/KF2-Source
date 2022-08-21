@@ -13,6 +13,7 @@ class KFDT_Toxic_BloatPukeMine extends KFDT_Toxic
 defaultproperties
 {
    bNoInstigatorDamage=True
+   bConsideredIndirectOrAoE=True
    DoT_Type=DOT_None
    Name="Default__KFDT_Toxic_BloatPukeMine"
    ObjectArchetype=KFDT_Toxic'KFGame.Default__KFDT_Toxic'

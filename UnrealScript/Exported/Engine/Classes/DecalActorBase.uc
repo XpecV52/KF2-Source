@@ -63,7 +63,6 @@ defaultproperties
       ObjectArchetype=ArrowComponent'Engine.Default__ArrowComponent'
    End Object
    Components(2)=ArrowComponent0
-   CollisionType=COLLIDE_CustomDefault
    TickGroup=TG_DuringAsyncWork
    bStatic=True
    bMovable=False

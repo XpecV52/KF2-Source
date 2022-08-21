@@ -11,10 +11,8 @@ class KFDT_Slashing_Crovel extends KFDT_Slashing
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_Crovel'
-    StunPower=42
-    StumblePower=43
-    LegStumblePower=43
-    MeleeHitPower=30
+    StumblePower=50
+    MeleeHitPower=50
     ModifierPerkList=/* Array type was not detected. */
     KDamageImpulse=1250
     KDeathVel=250

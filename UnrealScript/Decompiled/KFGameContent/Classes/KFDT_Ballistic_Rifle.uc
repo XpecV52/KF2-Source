@@ -10,8 +10,7 @@ class KFDT_Ballistic_Rifle extends KFDT_Ballistic
 
 defaultproperties
 {
-    StumblePower=10
-    LegStumblePower=15
-    GunHitPower=25
     GoreDamageGroup=EGoreDamageGroup.DGT_Rifle
+    StumblePower=5
+    GunHitPower=10
 }

@@ -34,6 +34,7 @@ var const int HeatWaveRadiusSQ;
 var const float ShrapnelChance;
 var GameExplosion ExplosionTemplate;
 var const string ShrapnelExplosionDamageTypeName;
+var private const float AssistDoshModifier;
 
 function ApplySkillsToPawn()
 {
@@ -266,6 +267,20 @@ static simulated function int GetCrawlerKillXP(byte Difficulty)
     return default.SecondaryXPModifier[Difficulty];
 }
 
+static function ModifyAssistDosh(out int EarnedDosh)
+{
+    local float TempDosh;
+
+    TempDosh = float(EarnedDosh);
+    TempDosh *= GetAssistDoshModifer();
+    EarnedDosh = Round(TempDosh);
+}
+
+private static final function float GetAssistDoshModifer()
+{
+    return default.AssistDoshModifier;
+}
+
 static simulated function GetPassiveStrings(out array<string> PassiveValues, out array<string> Increments, byte Level)
 {
     PassiveValues[0] = string(Round(((GetPassiveValue(default.WeaponDamage, Level)) * float(100)) - float(100))) $ "%";
@@ -313,18 +328,18 @@ defaultproperties
     OwnFireResistance=(Name="Own fire Resistance",Increment=0.03,Rank=0,StartingValue=0.25,MaxValue=1,ModifierValue=0,IconPath="",bActive=false)
     StartingAmmo=(Name="Starting Ammo",Increment=0.05,Rank=0,StartingValue=0,MaxValue=0.25,ModifierValue=0,IconPath="",bActive=false)
     HeatWaveRadiusSQ=90000
-    ShrapnelChance=0.3
+    ShrapnelChance=0.2
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'FX_Explosions_ARCH.FX_Combustion_Explosion'
-        Damage=120
-        DamageRadius=600
-        KnockDownStrength=0
+        Damage=10
+        DamageRadius=200
         ExplosionSound=AkEvent'WW_WEP_EXP_Grenade_Frag.Play_WEP_EXP_Grenade_Frag_Explosion'
         CamShake=KFCameraShake'FX_CameraShake_Arch.Misc_Explosions.Perk_ShrapnelCombustion'
     object end
     // Reference: KFGameExplosion'Default__KFPerk_Firebug.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0
     ShrapnelExplosionDamageTypeName="KFGameContent.KFDT_Explosive_Shrapnel"
+    AssistDoshModifier=2
     ProgressStatID=30
     PerkBuildStatID=31
     SecondaryXPModifier[0]=2

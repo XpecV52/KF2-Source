@@ -8,6 +8,9 @@
 class KFDT_Freeze extends KFDamageType
     abstract;
 
+var protected ParticleSystem FrozenShatterTemplate;
+var protected AkBaseSoundObject ShatterSound;
+
 static function int GetKillerDialogID()
 {
     return 88;
@@ -18,7 +21,41 @@ static function int GetDamagerDialogID()
     return 103;
 }
 
+static function PlayShatter(KFPawn P, optional bool bSkipParticles, optional bool bMaterialOnly, optional Vector RBLinearVelocity)
+{
+    local KFPawn_Monster Zed;
+    local MaterialInstanceConstant MIC;
+
+    if(!bMaterialOnly)
+    {
+        Zed = KFPawn_Monster(P);
+        if(Zed != none)
+        {
+            if(!Zed.bIsGoreMesh)
+            {
+                Zed.SwitchToGoreMesh();
+            }
+            Zed.ForceBreakAllConstraints();
+            if(!IsZero(RBLinearVelocity))
+            {
+                P.Mesh.SetRBLinearVelocity(RBLinearVelocity, true);
+            }
+        }
+        if(!bSkipParticles)
+        {
+            P.WorldInfo.MyEmitterPool.SpawnEmitter(default.FrozenShatterTemplate, P.Location, rotator(vect(0, 0, 1)));
+            P.PlaySoundBase(default.ShatterSound, true,,, P.Location);
+        }
+    }
+    foreach P.CharacterMICs(MIC,)
+    {
+        MIC.SetScalarParameterValue('Scalar_Ice', 1);        
+    }    
+}
+
 defaultproperties
 {
-    FreezePower=1
+    FrozenShatterTemplate=ParticleSystem'WEP_Freeze_Grenade_EMIT.FX_Freeze_Grenade_Death'
+    ShatterSound=AkEvent'WW_WEP_Freeze_Grenade.Play_Freeze_Grenade_Shatter'
+    FreezePower=2.5
 }

@@ -105,7 +105,10 @@ var export editinline KFSpawnRenderingComponent DebugComponent;
 var int VolumeChosenCount;
 
 // Export UKFSpawnVolume::execSpawnWave(FFrame&, void* const)
-native final function int SpawnWave(out array< class<KFPawn_Monster> > SpawnList, bool bAllOrNothing);
+native final function int SpawnWave(out array< class<KFPawn_Monster> > SpawnList, bool bAllOrNothing, optional bool bSimulatedAIPlayers)
+{
+    bSimulatedAIPlayers = false;                    
+}
 
 // Export UKFSpawnVolume::execFindTeleportLocation(FFrame&, void* const)
 native final function Vector FindTeleportLocation(class<KFPawn_Monster> TeleportMonsterClass, optional int ForcedMarkerIdx)
@@ -117,7 +120,7 @@ native final function Vector FindTeleportLocation(class<KFPawn_Monster> Teleport
 native final function Vector FindSpawnLocation(class<KFPawn> SpawnPawnClass);
 
 // Export UKFSpawnVolume::execScoreLocation(FFrame&, void* const)
-native function float ScoreLocation(Controller ControllerToScoreAgainst, float BestRating, float BestPossibleRating);
+native function float ScoreLocation(Controller ControllerToScoreAgainst, float BestRating, float BestPossibleRating, KFSpawnVolume.ESquadType SquadType);
 
 // Export UKFSpawnVolume::execScoreDistanceFrom(FFrame&, void* const)
 native function float ScoreDistanceFrom(Vector ViewLoc);
@@ -253,7 +256,7 @@ function float RateVolume(KFSpawnVolume.ESquadType DesiredSquadType, Controller 
         }
     }
     BestPossibleRatingWithoutLocation = ((DesirabilityMod * 0.3) + (UsageRating * 0.3)) + (DesirabilityMod * 0.1);
-    LocationRating = ScoreLocation(RateController, BestRating, BestPossibleRatingWithoutLocation);
+    LocationRating = ScoreLocation(RateController, BestRating, BestPossibleRatingWithoutLocation, DesiredSquadType);
     if(LocationRating < 0)
     {
         if(!bMinimalDebugRatingChecks)

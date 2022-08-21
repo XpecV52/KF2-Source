@@ -73,15 +73,18 @@ function SpecialMoveButtonReleased()
 DefaultProperties
 {
 	// SpecialMove
-	AnimName=Player_Flame
 	Handle=KFSM_PlayerHusk_FlameThrowerAttack
 	bDisableSteering=false
 	bDisableMovement=true
-	AnimStance=EAS_FullBody
+   	bDisableTurnInPlace=true
    	bCanBeInterrupted=true
 
+   	// Animation
+	AnimName=Player_Flame
+	AnimStance=EAS_FullBody
+
+	// Flamethrower
 	FlameSprayArchetype=SprayActor_Flame'zed_husk_arch.Husk_Flamethrower_Flame_Player'
-	
 	FlameAttackPlayEvent=AkEvent'WW_ZED_Husk.ZED_Husk_SFX_Flamethrower_LP'
     FlameAttackStopEvent=AkEvent'WW_ZED_Husk.ZED_Husk_SFX_Flamethrower_Stop'
 }

@@ -12,8 +12,6 @@ class KFDT_Ballistic_SMG_Medic extends KFDT_Ballistic_Submachinegun
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 /** Whether this damage type can apply damage over time */
 static function bool CanApplyDamageOverTime( out int InDamage, out class<KFDamageType> KFDT, optional Controller InstigatedBy ) 
 {
@@ -43,9 +41,8 @@ defaultproperties
 	KDeathUpKick=-300
 	KDeathVel=100
 
-	StumblePower=10
-	LegStumblePower=108
-	GunHitPower=106
+	StumblePower=0
+	GunHitPower=45
 
 	WeaponDef=class'KFWeapDef_MedicSMG'
 }

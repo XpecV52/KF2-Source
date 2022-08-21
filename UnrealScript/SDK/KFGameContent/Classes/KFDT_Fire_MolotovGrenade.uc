@@ -12,8 +12,6 @@ class KFDT_Fire_MolotovGrenade extends KFDT_Fire
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 defaultproperties
 {
 	bShouldSpawnPersistentBlood=false
@@ -24,8 +22,8 @@ defaultproperties
 	KDeathVel=0
 
 	KnockdownPower=0
-	StumblePower=0
-	BurnPower=.95
+	StumblePower=100
+	BurnPower=10
 
 	// DOT
 	DoT_DamageScale=0.2

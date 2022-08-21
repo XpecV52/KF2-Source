@@ -11,69 +11,14 @@ class KFDT_Microwave_Blast extends KFDT_Microwave
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 14;
-
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_MicrowaveGun'
    bCanGib=True
-   StumblePower=135
-   LegStumblePower=135
    EffectGroup=FXG_MicrowaveBlast
    GoreDamageGroup=DGT_Obliteration
-   BurnPower=0.250000
+   KnockdownPower=200.000000
+   MicrowavePower=100.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Firebug'
    bExtraMomentumZ=True
    KDamageImpulse=0.000000

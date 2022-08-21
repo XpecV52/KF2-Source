@@ -9,8 +9,9 @@ LengthStrings[1]="Medium (7 Waves)"
 LengthStrings[2]="Long (10 Waves)"
 
 ServerTypeStrings[0]="Ranked"
+ServerTypeStrings[1]="Ranked - Stock"
 ServerTypeStrings[1]="Ranked - Custom"
-;ServerTypeStrings[2]="Unranked"
+ServerTypeStrings[2]="Unranked"
 
 PermissionStrings[0]="Public"
 PermissionStrings[1]="Friends only"
@@ -36,15 +37,19 @@ LeaveCurrentMenuString="Leave current menu?"
 ZedString="ZED"
 HumanString="SURVIVOR"
 SpectatorString="SPECTATOR"
+TeamString="TEAM"
+AllString="ALL"
 
 UnableToSwitchTeamString="Unable to Switch Teams"
-NoSwitchReasonString="Switching teams would upset team balance."
+NoSwitchReasonString="Switching teams would upset team balance"
+
+
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="FAILED TO FIND MATCH"
-FailedSearchString="Matchmaking failed to find a match with the options provided.  Please broaden your search or consider using the server browser to find a match."
+FailedSearchString="Matchmaking failed to find a match with the options provided. Please broaden your search or consider using the server browser to find a match."
 BrowseServersString="BROWSE SERVERS"
-HasInvitedToGameString=" has invited you to a game."
+HasInvitedToGameString=" has invited you to a game"
 JoinGameString="Join Game?"
 
 
@@ -52,6 +57,9 @@ JoinGameString="Join Game?"
 LeavePartyTitleString="LEAVING PARTY"
 LeavePartyDescriptionString="Are you sure you want to leave this online party?"
 LeaveString="LEAVE"
+
+
+
 
 [KFDoorActor]
 WeldIntegrityString="Weld Integrity:"
@@ -77,7 +85,7 @@ WhiteListedStrings[0]="YES"
 WhiteListedStrings[1]="NO"
 
 FindGameString="HOME"
-LeaveMenuString="Leaving matchmaking will disband your party.  Go to server browser instead?"
+LeaveMenuString="Leaving matchmaking will disband your party. Go to server browser instead?"
 
 CouldNotFindGameTitleString="Unable To Find Match"
 CouldNotFindGameDescriptionString="No servers matching the search settings were found. Try different filters or use the server browser."
@@ -85,6 +93,31 @@ CouldNotFindGameDescriptionString="No servers matching the search settings were 
 [KFGFxStartGameContainer_FindGame]
 MultiplayerString="Online Matchmaking"
 SoloString="Play Solo Offline"
+TutorialString="Basic Training"
+
+[StartMenuHelperText]
+modeList0="Survival – PVE battle waves of AI controlled Zeds"
+modeList1="VS Survival – PVP Horzine Mercenaries vs waves of Player and AI controlled Zeds"
+modeList2=""
+difficultyList0="Normal – For beginning players of perk rank 0-5."
+difficultyList1="Hard – For experienced players of perk rank 5-12. There are more Zeds per wave, they move faster, and have more health. There are fewer pickups and you get less dosh."
+difficultyList2="Suicidal – For seasoned players of perk rank 13-25. There are even more Zeds per wave, they use new attacks, and move even faster.  There even fewer pickups, and you get less dosh."
+difficultyList3="Hell on Earth – The most intense challenge for players of perk rank 25. There are still more Zeds per wave and they use new attacks. There are still fewer pickups, and you get still less dosh."
+lengthList0=""
+lengthList1=""
+lengthList2=""
+lengthList3=""
+serverTypeList0="Ranked – Any map, no mods, no friendly fire, 6 players max (if VS Survival this is 12 players max)"
+serverTypeList1="Ranked Stock – Official Maps, no mods, no friendly fire, and 6 players max"
+serverTypeList2="Ranked Custom – Any map, whitelisted mods, any server setting"
+serverTypeList3="Unranked Custom – Non-whitelisted mods (only)"
+privacyList0=""
+privacyList1=""
+privacyList2=""
+privacyList3=""
+inProgressList0=""
+inProgressList1=""
+inProgressList2=""
 
 [KFGFxStartGameContainer_Options]
 BackString="BACK"
@@ -94,11 +127,13 @@ InProgressString="GAME PROGRESS"
 SoloGameString="SOLO GAME"
 LeaveMatchMakingString="LEAVE MATCHMAKING"
 MultiplayerLaunchString="PLAY ONLINE NOW"
-SearchingString="CANCEL SEARCH"
+SearchingString="SEARCHING FOR ONLINE GAME...PLEASE WAIT"
+CancelSearchingString="CANCEL SEARCH"
 ServerTypeString="SERVER TYPE"
-StandardServerString="Standard"
+AnyMapServerString="Ranked"
 UnrankedServerString="Unranked"
-CustomServerString="Custom"
+CustomServerString="Ranked - Custom"
+StandardServerString="Ranked - Stock"
 AllowInProgressString="Allow In Progress Games"
 NotStartedString="Only New Games"
 
@@ -135,7 +170,7 @@ SelectPerkString="SELECT PERK"
 [KFGFxMenu_ServerBrowser]
 FavoriteString="FAVORITE"
 MultiplayerMenuString="MATCHMAKING"
-LeaveMenuString="Leaving this menu will disband your party.  Go to Matchmaking instead?"
+LeaveMenuString="Leaving this menu will disband your party. Go to Matchmaking instead?"
 NameString="NAME"
 RefreshString="REFRESH"
 GamesFoundString="GAMES FOUND:"
@@ -259,6 +294,27 @@ WeaponTypeStrings[9]="SMGs"
 
 OffPerkString="Off Perk"
 
+[KFGFxHUD_PostRoundMenu]
+RoundResultsString="Round Results"
+MatchResultsString="Overall Winner"
+SurvivorVictory="Survivor Victory!"
+ZEDVictory="Zed Victory!"
+TieString="Tie!"
+YourTeamString="Your Team Wins!"
+OpposingTeamString="Opposing Team Wins!"
+MatchOnGoingString="Switching Teams..."
+
+[KFGFxPostRoundContainer_Team]
+TitleString="Round "
+ScoreString="Score"
+WavesCompleteString="Waves Completed Bonus"
+BossDeadString="Boss Defeated"
+DeathsString="Player Deaths Penalty"
+DamageString="Damage From Boss Penalty"
+TotalString="TOTAL"
+YourTeamString=" (Your Team)"
+OpponentsString=" (Opponents)"
+
 [KFGFxMenu_PostGameReport]
 MapVoteString="MAP VOTE"
 PlayerStatsString="PLAYER STATS"
@@ -288,6 +344,21 @@ HeadPopper="Head Popper"
 HeadPopperValue="Headshots"
 Dominator="Dominator"
 DominatorValue="Boss"
+
+Carnage="Carnage"
+Closer="Closer"
+ComboMaker="Combo Maker"
+Grabby="Grabby Pants"
+ZedSupport="Zed Support"
+Zednnihilation="Zednnihilation"
+CarnageValue="Zed Damage Dealt"
+CloserValue="Survivor Kills"
+ComboMakerValue="Zed Assist"
+GrabbyValue="Players Grabbed"
+ZedSupportValue="Indirect Damage"
+ZednnihilationValue="Kills in Wave"
+
+
 
 EPB_Healing="Healing"
 EPB_Kills="Kills"
@@ -322,7 +393,7 @@ TopVotesString="TOP VOTES"
 AchievementsString="Achievements"
 KnifeString="Knife"
 TopWeaponsString="TOP WEAPONS"
-ZedKillsString="ZED KILLS"
+ZedKillsString="Zed KILLS:"
 TotalDamageDealtString="Total Damage Dealt:"
 HeadShotsString="Headshots:"
 LargeZedKillsString="Large Zed Kills:"
@@ -365,7 +436,7 @@ DownLoadingString="Downloading:"
 PartyLeaderString="Leader"
 
 [KFGFxWidget_PartyInGame_Versus]
-SwitchTeamsString="Switch Teams"
+SwitchTeamsString="SWITCH TEAMS"
 balanceWarningString="WARNING: Teams will be auto-balanced"
 
 [KFGFxMenu_Gear]
@@ -382,6 +453,8 @@ WeaponsString="Weapons"
 WeaponsInfoString="Customize"
 
 [KFGFxMenu_Inventory]
+RecycleOneString="Recycle One"
+RecycleDuplicatesString="Recycle Duplicates"
 InventoryString="INVENTORY"
 UseString="USE"
 EquipString="EQUIP"
@@ -391,21 +464,21 @@ WeaponSkinString="Weapon Skins"
 CosmeticString="Cosmetics"
 CraftingMatsString="Crafting"
 ItemString="Items"
-FiltersString="Filters"
+FiltersString="FILTERS"
 MoreItemsString="You require a matching key and crate. You can purchase a key from the in game store."
 FailedToExchangeString="CANNOT OPEN CRATE"
 RecycleString="RECYCLE"
 CraftString="CRAFT"
-CraftCosmeticString="Cosmetic Crafting"
-CraftWeaponString="Weapon Skin Crafting"
-CraftWeaponStrings[0]="Uncommon Weapon Skin"
-CraftWeaponStrings[1]="Rare Weapon Skin"
-CraftWeaponStrings[2]="Exceptional Weapon Skin"
-CraftWeaponStrings[3]="Master Crafted Weapon Skin"
-CraftCosmeticStrings[0]="Uncommon Cosmetic"
-CraftCosmeticStrings[1]="Rare Cosmetic"
-CraftCosmeticStrings[2]="Exceptional Cosmetic"
-CraftCosmeticStrings[3]="Master Crafted Cosmetic"
+CraftCosmeticString="CRAFT COSMETIC"
+CraftWeaponString="CRAFT WEAPON SKIN"
+CraftWeaponStrings[0]="Uncommon\nWeapon Skin"
+CraftWeaponStrings[1]="Rare\nWeapon Skin"
+CraftWeaponStrings[2]="Exceptional\nWeapon Skin"
+CraftWeaponStrings[3]="Master Crafted\nWeapon Skin"
+CraftCosmeticStrings[0]="Uncommon\nCosmetic"
+CraftCosmeticStrings[1]="Rare\nCosmetic"
+CraftCosmeticStrings[2]="Exceptional\nCosmetic"
+CraftCosmeticStrings[3]="Master Crafted\nCosmetic"
 RecycleWarningString="Warning, this cannot be undone. This will destroy the selected item and replace it with a crafting material item"
 RecycleItemString="Recycle Item?"
 ConfirmCraftItemString="Crafting this item will use resources and cannot be undone"
@@ -415,6 +488,8 @@ CraftRequirementString="Insufficient quantity of required crafting materials"
 CraftCosmeticDescriptionString="You can craft new cosmetic items from this menu out of cosmetic material. You can obtain cosmetic material by recycling existing cosmetic items. To recycle, select an item and press recycle"
 CraftWeaponDescriptionString="You can craft new weapon skin items from this menu out of weapon skin material. You can obtain weapon skin material by recycling existing weapon skin items. To recycle, select an item and press recycle"
 RequiresString="Requires: "
+PurchaseKeyString="BUY KEY: "
+LookUpOnMarketString="Lookup on Market"
 
 [KFGFxPerksContainer]
 LevelString=""
@@ -444,7 +519,7 @@ BackButtonString="<< BACK"
 [KFGFxPerksContainer_Selection]
 HeaderTitle=SELECT PERK
 EndOfWaveString="Perk changes will be applied at end of the wave!"
-ChangesAppliedOnCloseString="Perk changes will be applied when this menu is closed"
+ChangesAppliedOnCloseString="Perk changes will be applied when this menu is closed."
 OncePerWaveString="Perk changes can only be done once per wave!"
 
 [KFGFxMenu_Store]
@@ -456,15 +531,14 @@ TotalString=Total
 CheckOutString=Check Out
 
 [KFGFxStoreContainer_Main]
-NewReleasesString="New Releases"
-CartString="Cart"
-ToolsString="Tools"
-WeaponSkinsString="Weapon Skins"
-CharactersString="Characters"
+WeaponSkinsString="Market Weapon Skins"
+MarketConsumablesString="Market Crates/USBs"
+MarketCosmeticsString="Market Cosmetics"
 
 [KFGFxStoreContainer_Details]
-AddToCartString="Buy Item"
-PreviewString="Preview"
+LookUpOnMarketString="FIND IN MARKET"
+AddToCartString="BUY ITEM"
+PreviewString="PREVIEW"
 
 
 [KFGFxWidget_ButtonPrompt]
@@ -519,6 +593,9 @@ DoshString="DOSH"
 KillsString="KILLS"
 AssistsString="ASSISTS"
 PingString="PING"
+
+[KFGFxHUD_ScoreboardVersusWidget]
+ScoreString=SCORE
 
 [KFGFxHUD_PlayerStatus]
 EXPString="XP"
@@ -624,7 +701,7 @@ PhysicsLevelSuggestionStrings[0]=""
 PhysicsLevelSuggestionStrings[1]="*GeForce® GTX™ 770 or higher recommended"
 PhysicsLevelSuggestionStrings[2]="*GeForce® GTX™ 980 or higher recommended"
 
-FlexPopUpString="NVIDIA® FleX enables simulated gore and fluid.  This setting may adversely affect performance and requires a restart."
+FlexPopUpString="NVIDIA® FleX enables simulated gore and fluid. This setting may adversely affect performance and requires a restart."
 
 EnvironmentDetailsString="Environment Detail"
 FoliageString="Foliage Detail"
@@ -766,6 +843,10 @@ ControllerLayoutJumper="Jumper"
 ControllerLayoutQuickDraw="Quick Draw"
 ControllerLayoutSouthPaw="South Paw"
 
+GBA_TurnLeft="Turn Left"
+GBA_TurnRight="Turn Right"
+GBA_Backward="Move Backward"
+GBA_MoveForward="Move Forward"
 GBA_WeaponSelect_Gamepad="Weapon Select (Hold)"
 GBA_Reload_Gamepad="Reload"
 GBA_StrafeLeft_Gamepad="Movement Control"
@@ -824,12 +905,21 @@ GBA_SwitchWeapon4="Equipment"
 GBA_VoteYes="Vote Yes (Hold)"
 GBA_VoteNo="Vote No (Hold)"
 
+GBA_VoiceCommReqHealing="REQUEST HEALING"
+GBA_VoiceCommReqDosh="REQUEST DOSH"
+GBA_VoiceCommReqHelp="REQUEST HELP"
+GBA_VoiceCommTauntZeds="TAUNT ZEDS"
+GBA_VoiceCommFollowMe="FOLLOW ME"
+GBA_VoiceCommGetToTheTrader="GET TO THE TRADER"
+GBA_VoiceCommAffirmative="AFFIRMATIVE"
+GBA_VoiceCommNegative="NEGATIVE"
+
 [KFGFxControlsContainer_Input]
 SensitivityString="Sensitivity"
 InvertedString="Invert Y"
-ControllerString="Controller"
+ControllerString="CONTROLLER"
 ControllerSensitivityString="Look Sensitivity"
-MouseString="Mouse"
+MouseString="MOUSE"
 MouseSmoothingString="Mouse Smoothing"
 ZoomSensitivityString="Zoom Sensitivity"
 ControllerZoomSensitivityString="Zoom Sensitivity"
@@ -839,10 +929,11 @@ AimAssistSlowDownString="Aim Assist Slowdown"
 ForceFeedbackString="Controller Vibration"
 
 [KFGFxControlsContainer_Keybinding]
-SectionHeaders[0]="Movement"
-SectionHeaders[1]="Interaction"
-SectionHeaders[2]="Combat"
-SectionHeaders[3]="Weapon Selection"
+SectionHeaders[0]="MOVEMENT"
+SectionHeaders[1]="INTERACTION"
+SectionHeaders[2]="COMBAT"
+SectionHeaders[3]="WEAPON SELECTION"
+SectionHeaders[4]="VOICE COMMS"
 
 ResetString="RESET ALL"
 ApplyString="APPLY"
@@ -862,6 +953,10 @@ WeaponSelectMenuString="Weapon Select Menu (Hold)"
 ShowScoardBoardString="Show Scoreboard"
 ShowIngameMenuString="Toggle In Game Menu"
 CurrentControllerPresetString="Current Controller Preset"
+PresetStrings[0]="Preset 1"
+PresetStrings[1]="Preset 2"
+PresetStrings[2]="Preset 3"
+PresetStrings[3]="Preset 4"
 
 BashString="Melee Bash"
 BlockString="Block (Hold)"
@@ -875,30 +970,30 @@ SystemString="System:"
 AdminString ="(Admin)"
 LoggedInAsAdminString=" logged in as Server Admin"
 LoggedOutAsAdminString=" logged out as Server Admin"
-MustLoginToCheatString="You must be logged in to enable cheats."
-CheatsEnabledString=" has enabled cheats. Stats have been disabled for this session."
+MustLoginToCheatString="You must be logged in to enable cheats"
+CheatsEnabledString=" has enabled cheats. Stats have been disabled for this session"
 ServerMaintenanceString="Server will be shutdown for maintenance at end of game"
 KickVoteStartedString="A vote has started to kick:"
 KickVoteSucceededString="Vote passed to kick:"
 KickVoteFailedString="Vote failed to kick:"
-KickVoteRejectedString="Not enough time has passed since the last failed vote. Please wait then try again."
-KickVoteInProgressString="Cannot start a kick vote, one is already active."
+KickVoteRejectedString="Not enough time has passed since the last failed vote. Please wait then try again"
+KickVoteInProgressString="Cannot start a kick vote, one is already active"
 KickVoteDisabledString="Kick vote is disabled on this server"
 KickVoteYesReceivedString="You have voted to kick:"
 KickVoteNoReceivedString="You have voted to not kick:"
-KickVoteKickAdminString="You may not kick the server admin."
-KickVoteActiveTimeString="Match has not been active long enough for kick vote."
-KickVoteMatchNotStartedString="Kick vote may not be started before match."
-KickVoteMaxKicksReachedString="You cannot initiate any more kicks during this match."
-KickVoteNotEnoughPlayersString="Not enough players to initiate a kick vote."
-KickVoteNoSpectatorsString="Spectators may not initiate a kick vote."
-KickedFromServerString="You have been removed from the server."
-BannedFromServerString="You have been removed from this server. You cannot rejoin at this time."
+KickVoteKickAdminString="You may not kick the server admin"
+KickVoteActiveTimeString="Match has not been active long enough for kick vote"
+KickVoteMatchNotStartedString="Kick vote may not be started before match"
+KickVoteMaxKicksReachedString="You cannot initiate any more kicks during this match"
+KickVoteNotEnoughPlayersString="Not enough players to initiate a kick vote"
+KickVoteNoSpectatorsString="Spectators may not initiate a kick vote"
+KickedFromServerString="You have been removed from the server"
+BannedFromServerString="You have been removed from this server. You cannot rejoin at this time"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="You received ammo from"
 GaveAmmoToMessage="You gave ammo to"
-PendingPerkChangesSet="Perk changes will be applied at the end of the wave."
+PendingPerkChangesSet="Perk changes will be applied at the end of the wave"
 PendingPerkChangesApplied="Perk changes applied!"
 HealedByMessage="You were healed by"
 HealedMessage="You healed"
@@ -910,11 +1005,11 @@ AmmoFullMessage="Your ammo is full"
 PickupWeaponAmmoMessage="You picked up %x% ammo"
 AlreadyCarryingWeaponMessage="You already have this weapon"
 PickupMessage="You picked up a"
-TooMuchWeightMessage="This weapon is too heavy. Try dropping or selling a weapon."
+TooMuchWeightMessage="This weapon is too heavy. Try dropping or selling a weapon"
 FailedDropInventoryMessage="You can't drop that here"
 ReceivedGrenadesFromMessage="You received grenades from"
 GaveGrenadesToMessage="You gave grenades to"
-SharingContentString="is sharing content."
+SharingContentString="is sharing content"
 HeadShotAddedString="%x Headshot(s) - %y% Extra Damage!"
 HeadShotMaxString="Headshot! %x% Extra Damage!"
 HeadShotResetString="Missed Headshot. Normal Damage!"
@@ -945,33 +1040,36 @@ WaveEndMessage="W A V E  C O M P L E T E"
 GetToTraderMessage="Get to the Trader Pod"
 YouLostMessage="D E F E A T"
 YouWonMessage="V I C T O R Y"
-SquadWipedOutMessage="Your squad was wiped out"
-SquadSurvivedMessage="Your squad survived"
+SquadWipedOutMessage="Your squad was wiped out!"
+SquadSurvivedMessage="Your squad survived!"
 ObjectiveStartMessage="Objective Started!"
 ObjectiveWonMessage="Objective Won!"
 ObjectiveEndedMessage="Objective Ended!"
 ObjectiveLostMessage="Objective Lost!"
 ObjNotEnoughPlayersMessage="Not Enough Players!"
 ObjTimeRanOutMessage="Time Limit Reached!"
-HumansLoseMessage="Humans squad wiped out!"
-HumansWinMessage="Humans squad survived!"
+HumansLoseMessage="Human squad wiped out!"
+HumansWinMessage="Human squad survived!"
 AttackHumanPlayersString="Attack the Human Players!"
 ZedGroupRegroupingString="Zed Horde regrouping!"
+NextRoundBeginString="N E X T  R O U N D"
+PlayerCanChangePerksString="Perk changes are allowed"
+ZedWaitingForNextRoundString="Zed Horde invasion imminent!"
 
 [KFLocalMessage_Interaction]
-UseTraderMessage="<%x%> USE TRADER"
-UseDoorMessage="<%x%> Open/Close     (HOLD) <%x%> equip welder"
-UseDoorWeldedMessage="(HOLD) <%x%> equip welder"
-ZedUseDoorMessage="<%x%> Open/Close"
-ZedUseDoorWeldedMessage="Door welded, break it down!"
-AcceptObjectiveMessage="<%x%> accept objective"
-ReceiveAmmoMessage="<%x%> receive ammo"
-ReceiveGrenadesMessage="<%x%> receive grenades"
-HealSelfWarning="<%x%> heal self."
-HealSelfGamepadWarning="(HOLD) <%x%> heal self"
-PressToBashWarning="<%x%> bash"
-GamepadWeaponSelectHint="(HOLD) <%x%> weapon select"
-PlayerClotGrabWarningMessage="Kill zed to break free!"
+UseTraderMessage="<%x%>USE TRADER"
+UseDoorMessage="OPEN/CLOSE\n[HOLD] EQUIP WELDER"
+UseDoorWeldedMessage="[HOLD]<%x%> EQUIP WELDER"
+ZedUseDoorMessage="<%x%>OPEN/CLOSE"
+ZedUseDoorWeldedMessage="DOOR WELDED, BREAK IT DOWN!"
+AcceptObjectiveMessage="<%x%>ACCEPT OBJECTIVE"
+ReceiveAmmoMessage="<%x%>RECEIVE AMMO"
+ReceiveGrenadesMessage="<%x%>RECEIVE GRENADES"
+HealSelfWarning="<%x%>HEAL SELF"
+HealSelfGamepadWarning="[HOLD]<%x%> HEAL SELF"
+PressToBashWarning="<%x%>BASH"
+GamepadWeaponSelectHint="[HOLD] WEAPON SELECT"
+PlayerClotGrabWarningMessage="KILL ZED TO BREAK FREE!"
 
 [KFLocalMessage_ServerNotification]
 TeamPendingBalanceMessage="Teams are unbalanced and will be adjusted"
@@ -1019,100 +1117,99 @@ WeaponDroppedMessage="You dropped%%%% because of your new carrying capacity!"
 [KFPerk_Berserker]
 PerkName="Berserker"
 
-SkillCatagories[0]="Resistance"
-SkillCatagories[1]="Survival"
+SkillCatagories[0]="Survival"
+SkillCatagories[1]="Combat"
 SkillCatagories[2]="Close Combat"
 SkillCatagories[3]="Power"
 SkillCatagories[4]="Advanced Training"
 
-Passives[0]=(Title="Perk Weapon Damage",Description="25% increase in Berserker weapon damage, plus x%x each level");
-Passives[1]=(Title="Melee Attack Speed",Description="0% increase in melee attack speed, increasing x%x per level");
-Passives[2]=(Title="Melee Move Speed",Description="10% faster movement when wielding a melee weapon, plus x%x each level");
-Passives[3]=(Title="Damage Resistance",Description="Incoming damage reduced by %x%");
-Passives[4]=(Title="+Night Vision Capability",Description="Flashlights - AND Night Vision Goggles")
-Passives[5]=(Title="+Clots cannot grab you",Description="Clots can't hold on to a Berserker.")
+
+Passives[0]=(Title="Berserker Damage",Description="x%x damage increase every level")
+Passives[1]=(Title="Damage Resistance",Description="x%x resistance per every 5 levels to all damage")
+Passives[2]=(Title="+Night Vision Capability",Description="Flashlight - AND Night Vision Goggles")
+Passives[3]=(Title="+Clots cannot grab you",Description="Clots can't hold on to a Berserker")
 
 EXPAction1="Dealing Berserker weapon damage"
-EXPAction2="Kill zeds near a player with a Perk weapon"
+EXPAction2="Kill Zeds near a player with a Berserker weapon"
 
-PoisonResistance="Poison Resistance"
-PoisonResistanceDescription="I spit on your poison: Reduce the damage you take from Poison attacks by 40%."
+Fortitude="Dreadnaught"
+FortitudeDescription="Increase total Health by 50%."
 
-SonicResistance="Sonic Resistance"
-SonicResistanceDescription="I can't hear you! Reduce the damage you take from Sonic attacks by 40%"
+Ninja="Skirmisher"
+NinjaDescription="Move 20% faster. Sprint 25% faster. Regenerate 2 points of Health every second. "
 
 Vampire="Vampire"
-VampireDescription="Little suckers: Horzine nano-tech sucks 4 points of life from every Zed you kill with a Berserker weapon attack and applies it to you."
+VampireDescription="Heal yourself 4 points of Health for every Zed you kill with a Berserker weapon. You also attack 15% faster with Berserker weapons."
 
-Fortitude="Fortitude"
-FortitudeDescription="Give yourself a better chance: Increase Maximum and Starting Health by 75%"
+Speed="Butcher"
+SpeedDescription="Attack 20% faster and do 25% more damage with Berserker weapons."
 
-FuriousDefender="Furious Defender"
-FuriousDefenderDescription="They call you Berserk for a reason: Berserker melee attacks are 10% faster and hard attacks do 20% more damage."
-
-Block="Block"
-BlockDescription="Such skills! Blocking an attack will make your next Berserker melee attack do 50% more damage."
+Resistance="Resistance"
+ResistanceDescription="Gain 20% resistance to all damage. You gain an additional 20% resistance to Poison and Sonic Damage."
 
 Parry="Parry"
-ParryDescription="Combine skill and power: Parrying an attack will increase melee attack speed by 15% and light attack damage by 30% for 4 seconds."
+ParryDescription="Parrying an attack with a Berserker melee weapon will increase melee attack speed by 5% and melee damage by 35% for 10 seconds."
 
 Smash="Smash"
-SmashDescription="Brute force it: Hard hits do 25% more damage AND hard hits to the head have a high chance to knock big Zeds down."
+SmashDescription="Hard attacks with Berserker melee weapons do 50% more damage, plus an additional 25%  damage on head shots, and have 200% more Stumble power."
+ 
+Fury="Massacre"
+FuryDescription="Light attacks with Berserker melee weapons do 20% more damage and are 5% faster."
 
-Spartan="ZED TIME - Spartan"
-SpartanDescription="You've seen 300: Move in real-time, increase attack speed with Berserker melee weapons by 70% and any Parry will cause knockdown."
+Spartan="ZED TIME - Spartan" 
+SpartanDescription="You've seen 300: Attack in near real time and gain 25% of your total Health."
 
-Menace="ZED TIME - Menace"
-MenaceDescription="Get really dangerous: Move in real-time, Berserker melee weapons' Stun power increased 100% to head hits and Stumble power increased by 100%."
+Flash="ZED TIME - Berserker Rage"
+FlashDescription="Zeds won't like you when you're angry: Move and attack in real time."
 
 [KFPerk_Commando]
 PerkName="Commando"
 
-SkillCatagories[0]="Supply"
-SkillCatagories[1]="Weapon Handling"
-SkillCatagories[2]="Awareness"
+SkillCatagories[0]="Tactics"
+SkillCatagories[1]="Advanced Tactics"
+SkillCatagories[2]="Survival"
 SkillCatagories[3]="Weapon Specialist"
 SkillCatagories[4]="Advanced Training"
 
 Passives[0]=(Title="Perk Weapon Damage",Description="%x% increase in Commando weapon damage.");
-Passives[1]=(Title="Cloaked Enemy Detection",Description="Cloaked detection increased by %x%");
-Passives[2]=(Title="Health Bar Detection",Description="Health bar detection increased by %x%");
-Passives[3]=(Title="Zed Time Extension",Description="Zed time lasts %x%");
-Passives[4]=(Title="Health Increase",Description="Health increased by %x%");
-Passives[5]=(Title="+Night Vision Capability",Description="Flashlights - AND Night Vision Goggles");
+Passives[1]=(Title="Cloaked Enemy & Health Bar Detection",Description="10m plus %x%m increase by each level");
+Passives[2]=(Title="Zed Time Extension",Description="Zed time lasts %x% longer");
+Passives[3]=(Title="Reload Speed",Description="%x%% increase every 5 levels");
+Passives[4]=(Title="+Night Vision Capability",Description="Flashlights - AND Night Vision Goggles");
+Passives[5]=(Title="+Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units");
 
 EXPAction1="Dealing Commando weapon damage"
 EXPAction2="Killing Stalkers with Commando weapons"
 
+TacticalReload="Tactical Reload"
+TacticalReloadDescription="Be cool. Be quick. Reload 20% faster with Commando weapons AND look more elite while you're at it."
+
 LargeMags="Large Mags"
-LargeMagsDescription="Get a bit more serious - upgrade Commando weapon magazine capacities by 50%."
+LargeMagsDescription="Get a bit more serious: Increase Commando weapon magazine capacities by 50%."
 
 Backup="Backup"
-BackupDescription="Give your backup Pistol and Knife 60% extra damage for those moments when you really need it!"
+BackupDescription="Give your backup pistol and knife 60% extra damage for those moments when you really need it! You also increase your weapon switching speed."
 
 Impact="Impact"
-ImpactDescription="Pack more punch and knock 'em down. Increase your chance to stumble a Zed by 30% with all Commando weapons."
+ImpactDescription="Pack more punch and knock 'em down: Increase Stumble power by 150% for all Commando weapons."
 
-TacticalReload="Tactical Reload"
-TacticalReloadDescription="Be cool. Be quick. Reload faster with perk weapons AND look more elite while you're at it."
+HealthIncrease="Health Increase"
+HealthIncreaseDescription="Increase total Health and Armor by 25%."
 
-Leadership="Leadership"
-LeadershipDescription="Your leadership calms and soothes your team-mates, making them more efficient. Team-mates reload 10% faster."
+AmmoVest="Ammo Vest"
+AmmoVestDescription="Carry two extra magazines for each Commando weapon."
 
-CallOut="Call Out"
-CallOutDescription="Give team-mates the ability to see cloaked enemies as well as you can. They'll thank you for it AND you get the same XP as they do for the kills!"
+HollowPoints="Hollow Point Rounds"
+HollowPointsDescription="Upgrade your ammo, giving Commando weapons 25% more damage and reducing their recoil 50%."
 
-SingleFire="Single Fire"
-SingleFireDescription="Reward careful shooting! Give your Commando weapons 20% more damage when in Single Shot mode."
-
-Autofire="Autofire"
-AutofireDescription="Why be subtle? Do 20% more damage with Commando weapons using Full Auto or Burst fire modes."
+EatLead="Eat Lead"
+EatLeadDescription="Need more bullets? Get 50% more rounds in your mags with Commando weapons."
 
 RapidFire="ZED TIME - Rapid Fire"
-RapidFireDescription="When the world slows down, do more hurt: Do 3% more damage with Commando weapons and shoot 3 times faster with all guns."
+RapidFireDescription="When the world slows down, do more hurt: Do 3% more damage with Commando weapons and shoot 3x times faster with all guns."
 
 Professional="ZED TIME - Professional"
-ProfessionalDescription="When the world slows down, you don't. Reload weapons at full speed - switch weapons twice as fast!"
+ProfessionalDescription="When the world slows down, you don't: Reload Commando weapons at full speed and switch Commando weapons twice as fast!"
 
 [KFPerk_Demolitionist]
 PerkName="Demolitionist"
@@ -1120,7 +1217,7 @@ EXPAction1="Dealing Demolitionist weapon damage"
 EXPAction2="Killing Fleshpounds with Demolitionist weapons"
 
 SkillCatagories[0]="Technique"
-SkillCatagories[1]="Resistance"
+SkillCatagories[1]="Explosives"
 SkillCatagories[2]="Advanced Techniques"
 SkillCatagories[3]="Weapon Techniques"
 SkillCatagories[4]="Advanced Explosives"
@@ -1128,36 +1225,38 @@ SkillCatagories[4]="Advanced Explosives"
 Passives[0]=(Title="Perk Weapon Damage",Description="Perk weapon damage increased by %x%");
 Passives[1]=(Title="Explosive Resistance",Description="%x% resistance to explosive damage");
 Passives[2]=(Title="Extra Explosive Ammo",Description="%x% more starting explosive ammo");
+Passives[3]=(Title="+Grenade Supplier",Description="Give out one extra grenade per wave to your team");
+Passives[4]=(Title="+Door Traps",Description="Doors you weld will explode when destroyed");
 
-GrenadeSupplier="Grenade Supplier"
-GrenadeSupplierDescription="They'll love you for it: Team-mates can get an extra grenade from you, once per wave."
+Damage="Bombardier"
+DamageDescription="Your explosive Demolitionist weapons do 25% more damage."
 
-OnContact="On Contact"
-OnContactDescription="In your face, pal: your dynamite sticks will blow up when they make contact with a Zed."
+Speed="Grenadier"
+SpeedDescription="You reload your Demolitionist weapons 10% faster."
 
-ExplosiveResistance="Explosive Resistance"
-ExplosiveResistanceDescription="Toughen up the team: Reduce damage taken by you by 30% - and your team-mates, if they are close enough!"
+DirectHit="High Impact Rounds"
+DirectHitDescription="Do 25% more damage on a direct hit with your explosive Demolitionist weapons, but decrease maximum ammo for each weapon by 3."
 
-Sacrifice="Reactive Armor"
-SacrificeDescription="Be the bomb: Once per wave, a blow that should kill causes an explosion, damaging Zeds around you and leaving you with just 5 health."
+Ammo="Extra Rounds"
+AmmoDescription="Increase maximum ammo by 5 for all explosive Demolitionist weapons."
 
-DoorTraps="Door Traps"
-DoorTrapsDescription="Blow that door: You weld 30% slower, but doors you weld explode when broken down. The more you weld of the door, the bigger the explosion."
+SirenResistance="Sonic Resistant Rounds"
+SirenResistanceDescription="Your explosive Demolitionist weapons have a 100% chance of getting past a siren's scream and actually exploding."
 
-SirenResistance="Siren Resistance"
-SirenResistanceDescription="Shut your mouth, Zed: Your grenades have a 100% chance of getting past sonic damage and actually exploding."
+AreaOfEffect="Fragmentation Rounds"
+AreaOfEffectDescription="The area of effect for your explosive Demolitionist weapons is increased by 50%, but their damage is reduced by 30%."
 
-OffPerk="Off Perk"
-OffPerkDescription="Off again: Do 10% extra damage with any Off-Perk weapon."
+CriticalHit="Armor Piercing Rounds"
+CriticalHitDescription="A direct hit to a critical zone with any Demolitionist weapon will do 50% additional damage."
 
-OnPerk="On Perk"
-OnPerkDescription="On again: Increase all reaction, stumble and knockdown power by 30% for Demo weapons."
+ConcussiveForce="Concussive Rounds"
+ConcussiveForceDescription="The reaction, stun, stumble and knockdown power of your Demolitionist weapons increase by 50%."
 
-Nuke="ZED TIME - Nuke"
-NukeDescription="Nukem: Your explosives dish out massive radiation damage in Zed Time, poisoning Zeds."
+Nuke="ZED TIME - Destroyer of Worlds"
+NukeDescription="Nuke 'em: Your explosives dish out massive radiation damage in Zed Time, poisoning Zeds."
 
-ConcussiveForce="ZED TIME - Concussive Force"
-ConcussiveForceDescription="Bowl them over: Your explosions have massive knockdown force against Zeds in Zed Time."
+Professional="ZED TIME - Mad Bomber"
+ProfessionalDescription="Shoot and reload in near real time."
 
 
 [KFPerk_FieldMedic]
@@ -1169,32 +1268,32 @@ SkillCatagories[2]="Weapon Handling"
 SkillCatagories[3]="Combat Technician"
 SkillCatagories[4]="Advanced Training"
 
-Passives[0]=(Title="Syringe Recharge Rate",Description="%x% increase in weapon damage");
-Passives[1]=(Title="Syringe Potency",Description="Cloaked detection increased by %x%");
-Passives[2]=(Title="Bloat Bile Resistance",Description="Health bar detection increased by %x%");
-Passives[3]=(Title="Movement Speed",Description="Zed time lasts %x%");
-Passives[4]=(Title="Armor Bonus",Description="Health increased by %x%");
+Passives[0]=(Title="Syringe Recharge Rate",Description="%x% decrease im syringe recharge rate");
+Passives[1]=(Title="Syringe Potency",Description="Health restored by syringe increased by %x%");
+Passives[2]=(Title="Bloat Bile Resistance",Description="Damage from Bloat Bile reduced by %x%");
+Passives[3]=(Title="Movement Speed",Description="%x% faster movement");
+Passives[4]=(Title="Armor Bonus",Description="Armor increased by %x%");
 
 HealingSurge="Healing Surge"
-HealingSurgeDescription="Put that Medic knowledge to proper use: Increase Health by 20%."
+HealingSurgeDescription="Put that medic knowledge to proper use: Increase total Health by 20%."
 
 Enforcer="Enforcer"
-EnforcerDescription="Enough focus on caring: Increase your starting ammo capacity by 20% for your Perk and Backup weapons."
+EnforcerDescription="Enough focus on caring: Increase your ammo capacity by 20% for your Field Medic and backup weapons."
 
 Combatant="Combatant"
-CombatantDescription="Don't just be a Medic - be the Combat Medic you always wanted to be with free, starting body armor & a 60% discount on all armor purchases!"
+CombatantDescription="Don't just be a medic - be the combat medic you always wanted to be with free starting combat armor and a 60% discount on all Armor purchases!"
 
 Armament="Armament"
-ArmamentDescription="Don't just repair people: Lose 25% of your healing effectiveness on teammates, but repair 1% of their max body armor each time, instead!"
+ArmamentDescription="Don't just repair people: Lose 25% of your healing effectiveness on teammates, but repair 1% of their Armor each time instead!"
 
 Regeneration="Regeneration"
-RegenerationDescription="Dose yourself up: Your health regenerates slowly over time, thanks to Horzine nano-bots."
+RegenerationDescription="Dose yourself up: Your Health regenerates 1 point every second thanks to Horzine nano-bots."
 
 Lacerate="Lacerate"
-LacerateDescription="Watch it with that scalpel: You cause Zeds to bleed more after damage with all Perk weapons."
+LacerateDescription="Watch it with that scalpel: You cause Zeds to bleed more after inflicting damage with any Field Medic weapon."
 
 VaccinationArmor="Vaccination"
-VaccinationArmorDescription="Help prevent the spread of death: Your healing grants 2% of max armor as a repair to teammates, plus temporary resistance to Bloat Bile."
+VaccinationArmorDescription="Help prevent the spread of death: Your healing repairs 2% of your teammates' armor and provides temporary resistance to Bloat Bile."
 
 VaccinationDamageMod="Acidic Compound"
 VaccinationDamageModDescription="A healer to some... death to others! Your healing darts can poison Zeds; cause enough damage and your grenades and darts cause Zeds to panic as well."
@@ -1226,35 +1325,35 @@ Passives[2]=(Title="Resist Zed Fire Damage",Description="%x% resistance to fire 
 Passives[3]=(Title="Immunity to your own Fire",Description="%x% resistance to personal fire damage");
 Passives[4]=(Title="Starting Ammo",Description="%x% more starting ammo");
 
-FullyStocked="Fully Stocked"
-FullyStockedDescription="What it says on the can: Firebug weapons start at maximum ammo capacity at the Trader."
+FullyStocked="Well Stocked"
+FullyStockedDescription="What it says on the can: Firebug weapons start at 60% ammo capacity at the Trader."
 
 FlarotovCoctail="Flarotov Cocktail"
-FlarotovCoctailDescription="It's in the name: Shove a Flare in your Molotov Cocktail - you get a Flare that lights up the environment for 30 seconds AND your flame burns for twice as long."
+FlarotovCoctailDescription="It's in the name: Shove a flare in your Molotov Cocktail - you get a Flare that lights up the environment for 30 seconds."
 
-Fuse="Fuse"
-FuseDescription="A nice slow-burner: Firebug weapons burn effect lingers 70% longer adding to damage over time."
+Fuse="Barbecue"
+FuseDescription="A nice slow-burner: Firebug weapons' Fire effect lingers 20% longer, adding to damage over time."
 
 HeatWave="Heat Wave"
-HeatWaveDescription="Like a Georgia summer: Enemies struck at point blank range with Fire will stumble back."
+HeatWaveDescription="Like a Georgia summer: Zeds struck with Fire at point blank range will stumble back."
 
-ZedShrapnel="Zed Shrapnel"
-ZedShrapnelDescription="Zed goes BOOM: Any zed killed by Fire weapons has a 30% chance to explode, causing damage to nearby Zeds."
+ZedShrapnel="Pyre"
+ZedShrapnelDescription="Zed goes BOOM: Any Zed killed by Fire weapons has a 20% chance to explode, causing damage to and knocking down nearby Zeds."
 
-Napalm="Zed Napalm"
-NapalmDescription="Zed on FIRE: Zeds that are burning will set other zeds on fire when they make contact with them."
+Napalm="Napalm"
+NapalmDescription="Zed on FIRE: Zeds that are on Fire will set other Zeds on Fire when they make contact with them."
 
-Range="Range"
+Range="Firestorm"
 RangeDescription="Increase range of all Fire weapons. Go on - you know you want to."
 
-SplashDamage="Splash Damage"
+SplashDamage="Wildfire"
 SplashDamageDescription="Or increase the splash damage of Fire weapon impacts. Decisions, decisions!"
 
-Combustion="ZED TIME - Combustion"
-CombustionDescription="Shrapnel + Napalm = Combustion. Sort of. Any zed that dies from your Fire weapons in Zed Time will explode into a fireball setting anything in the explosion on fire."
+Combustion="ZED TIME - Arsonist"
+CombustionDescription="Any Zed that dies from your Fire weapons in Zed Time will explode into a fireball setting anything in the explosion on Fire."
 
-Scorch="ZED TIME - Scorch"
-ScorchDescription="You're on fire! Well, not literally. Perk weapons used in Zed Time will fire close to real-time speed."
+Scorch="ZED TIME - Pyromaniac"
+ScorchDescription="You're on fire! Well, not literally. Firebug weapons used in Zed Time will fire close to real-time speed."
 
 [KFPerk_Gunslinger]
 PerkName="Gunslinger"
@@ -1273,34 +1372,34 @@ Passives[2]=(Title="Movement Speed",Description="Movement speed increased by %x%
 Passives[3]=(Title="Recoil",Description="%x% less recoil");
 
 ShootnMove="Shoot'n'Scoot"
-ShootnMoveDescription="Don't hang around to be eaten: move 200% faster in iron sights with reduced weapon bob."
+ShootnMoveDescription="Don't hang around to be eaten: Move 200% faster in iron sights with reduced weapon bob when using Gunslinger weapons."
 
 QuickSwitch="Quick Draw"
-QuickSwitchDescription="You know it: 50% faster weapon switch - and, if you keep firing when you are out of ammo, quick draw spare pistols."
+QuickSwitchDescription="You know it: Increase weapon switch speed with Gunslinger weapons by 50% and quick draw spare pistols if you keep firing while out of ammo."
 
-RhythmMethod="Rack 'em Up"
-RhythmMethodDescription="Rack up the headshots: each consecutive headshot increases damage by 10% up to 70% with Gunslinger weapons."
+RhythmMethod="Rhythm Method"
+RhythmMethodDescription="Rack up the headshots: Each consecutive headshot with a Gunslinger weapon increases your damage by 17% up to a maximum of 68%."
 
 BoneBreaker="Bone Breaker"
-BoneBreakerDescription="Don't just collect them, break them too: do 20% more damage with Gunslinger weapons."
+BoneBreakerDescription="Don't just collect them, break them too: Inflict 20% more damage with Gunslinger weapons."
 
-SpeedReload="Speed-loader"
-SpeedReloadDescription="Cooler, quicker, deadlier: reload 20% faster with Gunslinger weapons AND look more elite while you're at it."
+SpeedReload="Speedloader"
+SpeedReloadDescription="Cooler, quicker, deadlier: Reload faster with Gunslinger weapons 20% faster AND look more elite while you're at it."
 
 Penetration="Penetration"
-PenetrationDescription="Line 'em up and knock 'em down: penetrate an extra Zed with every shot."
+PenetrationDescription="Line 'em up and knock 'em down: Penetrate an extra Zed with every shot with Gunslinger weapons."
 
-CenterMass="Center Mass"
-CenterMassDescription="If you aim for the center of mass... shots to the chest have 40% more stumble power."
+CenterMass="Center of Mass"
+CenterMassDescription="If you aim for the center of mass... shots to the chest with Gunslinger weapons have 40% more stumble power."
 
 LimbShots="Leg Shots"
-LimbShotsDescription="Or shoot them in the legs... shots to the legs have 3x more knockdown power when the zed is sprinting."
+LimbShotsDescription="Or shoot them in the legs... shots to the legs with Gunslinger weapons have 3x more knockdown power when the Zed is sprinting."
 
 Fanfare="ZED TIME - Fanfire"
-FanfareDescription="Fanfire with fanfare: shoot 3x faster with Gunslinger weapons in Zed time."
+FanfareDescription="Fanfire with fanfare: Shoot 3x faster with Gunslinger weapons in Zed time."
 
 UberAmmo="ZED TIME - Uber Ammo"
-UberAmmoDescription="Uber it up: you can’t run out of ammo with Gunslinger weapons during Zed time."
+UberAmmoDescription="Uber it up: You can’t run out of ammo with Gunslinger weapons during Zed time."
 
 [KFPerk_MartialArtist]
 PerkName="Martial Artist"
@@ -1308,8 +1407,8 @@ PerkName="Martial Artist"
 [KFPerk_Sharpshooter]
 PerkName="Sharpshooter"
 
-EXPAction1="Dealing Gunslinger weapon damage"
-EXPAction2="Head shots with Gunslinger weapons"
+EXPAction1="Dealing Sharpshooter weapon damage"
+EXPAction2="Head shots with Sharpshooter weapons"
 
 SkillCatagories[0]="Movement"
 SkillCatagories[1]="Basic Technique"
@@ -1321,35 +1420,35 @@ Passives[0]=(Title="Headshot Damage",Description="Headshot damage increased by %
 Passives[1]=(Title="Recoil",Description="%x% less recoil");
 Passives[2]=(Title="Weapon Switch",Description="Weapon switch speed increased by %x%");
 
-StationaryAim="Stationary Aim
-StationaryAimDescription="10% more damage while stationary."
+StationaryAim="Sniper"
+StationaryAimDescription="Inflict 25% more damage while stationary and using a Sharpshooter weapon."
 
-Trigger="Trigger"
-TriggerDescription="Shoot speed and movement speed increased by 10%."
+Trigger="Marksman"
+TriggerDescription="Shoot 25% faster and move 10% faster when using a Sharpshooter weapon."
 
-CrouchAim="Crouch Aim"
-CrouchAimDescription="10% more damage while crouched."
+CrouchAim="Stability"
+CrouchAimDescription="Inflict 30% more damage while crouching and using a Sharpshooter weapon."
 
-Stun="Stun"
-StunDescription="30% more stun power with perk weapons."
+Stun="Ballistic Shock"
+StunDescription="Stun power with Sharpshooter weapons increases by 100%."
 
 RhythmMethod="Rack 'em Up"
-RhythmMethodDescription="Rack up the headshots: each consecutive headshot increases damage by 17% up to 68% with Gunslinger weapons."
+RhythmMethodDescription="Rack up the headshots: each consecutive headshot with a Sharpshooter weapon increases your damage by 5% up to 75%."
 
-TacticalReload="Tactical Reload"
-TacticalReloadDescription="Be cool. Be quick. Reload faster with perk weapons AND look more elite while you're at it."
+TacticalReload="Combat Ready"
+TacticalReloadDescription="Be cool. Be quick. Reload faster with Sharpshooter weapons AND look more elite while you're at it."
 
-Scoped="Scoped"
-ScopedDescription="Recoil reduced 10%, headshot damage increased 10% when using scope or ironsights."
+Scoped="Dead Eye"
+ScopedDescription="Reduce recoil 10% and increase head shot damage 10% when using a scope or ironsights with a Sharpshooter weapon."
 
-AmmoPouch="Ammo Pouch"
-AmmoPouchDescription="25% more ammo and grenades."
+AmmoPouch="Always Prepared"
+AmmoPouchDescription="Get 25% more ammo for Sharpshooter weapons and grenades."
 
-ZTKnockdown="ZED TIME - Knockdown"
-ZTKnockdownDescription="Headshots with perk weapons will knock down any zed."
+ZTKnockdown="ZED TIME - Assassin"
+ZTKnockdownDescription="Headshots with Sharpshooter weapons will dramatically increase knockdown power."
 
-ZTStun="ZED TIME - Stun"
-ZTStunDescription="Headshots with perk weapons will stun any zed."
+ZTStun="ZED TIME - Ranger"
+ZTStunDescription="Headshots with Sharpshooter weapons will dramatically increase stun power."
 
 
 
@@ -1378,22 +1477,22 @@ EXPAction1="Dealing Support weapon damage"
 EXPAction2="Welding doors"
 
 Ammo="Ammo"
-AmmoDescription="Start getting serious: Increase your ammo capacity and starting ammo by 20%."
+AmmoDescription="Start getting serious: Increase your ammo capacity and starting ammo for Support weapons by 20%."
 
 Supplier="Supplier"
 SupplierDescription="Be the one everyone loves: Carry a backpack from which all players can get ammo once per wave."
 
 Fortitude="Fortitude"
-FortitudeDescription="Give yourself a better chance: Increase your Health by 50%."
+FortitudeDescription="Give yourself a better chance: Increase your total Health by 50%."
 
 Regeneration="Regeneration"
 RegenerationDescription="Put the Medics out of business: Your health regenerates slowly over time, thanks to Horzine nano-bots."
 
 Bombard="Bombard"
-BombardDescription="Put some power into it: Increase your chance of causing a specimen to stumble by 60% with ranged Support weapons."
+BombardDescription="Put some power into it: Increase your chance of causing a Zed to stumble by 60% with ranged Support weapons."
 
 TacticalReload="Tactical Reload"
-TacticalReloadDescription="Be cool. Be quick. Reload faster with perk weapons AND look more elite while you're at it."
+TacticalReloadDescription="Be cool. Be quick. Reload faster with Support weapons AND look more elite while you're at it."
 
 Strength="Strength"
 StrengthDescription="Get down to the gym. Bulk up and increase your carrying capacity by 5."
@@ -1402,16 +1501,13 @@ Tenacity="Tenacity"
 TenacityDescription="Spend the time to improve and do 10% more damage with Support weapons."
 
 Safeguard="ZED TIME - Safeguard"
-SafeguardDescription="Wade right in with 5% improved armor for you AND your nearby friends!"
+SafeguardDescription="Wade right in with 5% more Armor for you AND your nearby friends!"
 
 Barrage="ZED TIME - Barrage"
 BarrageDescription="Make the most of the time with a 15% increase to all damage for you AND your friends nearby!"
 
 [KFPerk_Sharpshooter]
 PerkName="Sharpshooter"
-
-[KFPerk_SWAT]
-PerkName="SWAT"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -1458,12 +1554,49 @@ ObjectiveStatusTitle="GET 30% CASH BACK"
 ObjectiveTimeString="s LEFT"
 
 [KFGameViewportClient]
-RandomLoadingStrings[0]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 0"
-RandomLoadingStrings[1]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 1"
-RandomLoadingStrings[2]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 2"
-RandomLoadingStrings[3]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 3"
-RandomLoadingStrings[4]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 4"
-RandomLoadingStrings[5]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 5"
+RandomLoadingStrings[0]="The fleshpound is vulnerable to explosives but resistant to bullets."
+RandomLoadingStrings[1]="The scrake is resistant to explosives but vulnerable to bullets."
+RandomLoadingStrings[2]="You can only carry a limited amount of weight. Sell weaker weapons to make room for better ones."
+RandomLoadingStrings[3]="Watch the vents and sewers; Zeds can come from anywhere."
+RandomLoadingStrings[4]="Keep an eye out for gear and ammo boxes scattered throughout the map. They may save you if you get in a pinch."
+RandomLoadingStrings[5]="The bloat's body can take a lot of hits. Aim for its head."
+RandomLoadingStrings[6]="The parry ability stumbles a Zed, allowing you to get in a few extra strikes."
+RandomLoadingStrings[7]="Watch out for the husk. Once he takes enough damage, he may try to self-detonate on your team."
+RandomLoadingStrings[8]="You receive XP for damaging Zeds towards the perk associated with the weapon that inflicted the damage."
+RandomLoadingStrings[9]="Stick together. Getting singled out decreases your chances of survival if things get hairy."
+RandomLoadingStrings[10]="Players can use the syringe to heal themselves as well as their teammates."
+RandomLoadingStrings[11]="Welding doors can hold Zeds back. Doors do not come back once destroyed."
+RandomLoadingStrings[12]="If a teammate dies, it is helpful to grab their weapon and drop it for them at the trader."
+RandomLoadingStrings[13]="Got some extra dosh? Drop some for your team; they may return the favor."
+RandomLoadingStrings[14]="Choose your targets. Different weapons are more or less effective against different types of Zeds."
+RandomLoadingStrings[15]="Prioritize your targets. A fleshpound is a lot more deserving of your attention than a clot."
+RandomLoadingStrings[16]="All Zeds have weak points. If it's not the head, look for glowing elements on their bodies."
+RandomLoadingStrings[17]="Looking to buy or sell a cosmetic item or weapon skin?  Check the marketplace."
+RandomLoadingStrings[18]="The siren's scream neutralizes grenades and other explosives."
+RandomLoadingStrings[19]="Scrakes and fleshpounds will rage once they receive enough damage. Stay out of their way."
+RandomLoadingStrings[20]="Have a bunch of weapon skins or cosmetic items you're not using?  Craft new ones in your Inventory."
+RandomLoadingStrings[21]="Consider your outfit and gear carefully. One must look stylish while killing Zeds."
+RandomLoadingStrings[22]="Melee attacks are directional based on your movement. Forward = overhead, side = swipe, and back = uppercut."
+RandomLoadingStrings[23]="Welding doors shut can limit the directions the Zeds will attack you from, but will also limit your escape routes."
+RandomLoadingStrings[24]="Don't get close to even the weakest Zeds; they can grab you and hold on until their bigger friends arrive."
+RandomLoadingStrings[25]="Want Medic XP and some dosh? Heal your team -- both parties benefit!"
+RandomLoadingStrings[26]="Use controlled bursts with your weapons. Running out of ammo mid-wave makes for a difficult time."
+RandomLoadingStrings[27]="New perk skills are unlocked every 5 levels. Check them out at the Perks Menu."
+RandomLoadingStrings[28]="The M79 and RPG must travel a certain distance to arm the explosive charge."
+RandomLoadingStrings[29]="If you're having trouble seeing the Zeds, try your flashlight."
+RandomLoadingStrings[30]="Having a tough time surviving? Try a different perk! You may find one that fits your playstyle better."
+RandomLoadingStrings[31]="Always make sure you have a way out. Getting boxed in is a sure way to take a dirt nap."
+RandomLoadingStrings[32]="Armor is your friend. You can never go wrong getting more armor."
+RandomLoadingStrings[33]="Fire is a great way to keep Zeds away from you. Fire alone takes awhile to kill Zeds, but it keeps them occupied."
+RandomLoadingStrings[34]="If a Zed or its weapon are glowing red, parrying its melee attacks will be less effective.  Run!"
+RandomLoadingStrings[35]="Lighting Zeds on fire can cause them to panic. Time to play everyone's favorite game: Oh my god, I'm on fire!"
+RandomLoadingStrings[36]="Submachine guns have a high chance to cause targets to stumble, allowing you to keep them at a distance."
+RandomLoadingStrings[37]="The rail gun can fire through multiple Zeds if you line them up right."
+RandomLoadingStrings[38]="The microwave gun does more damage against Zeds carrying metal, like fleshpounds and sirens."
+RandomLoadingStrings[39]="Try out your weapon's alternate fire mode. Not all weapons have them, but it may help you in a tight spot."
+RandomLoadingStrings[40]="You get XP and dosh for assists in addition to kills, so don't feel bad for setting up kills for your allies."
+
+ 
 
 [Zeds]
 KFPawn_ZedBloat="Bloat"
@@ -1518,6 +1651,7 @@ Minigun="Minigun"
 Rocket="Rocket"
 Mortar="Mortar"
 Heal="Heal"
+Block="Block"
 
 [Keybinds]
 CtrlCombo="Ctrl-"
@@ -1627,6 +1761,13 @@ DisplayName="Black Forest"
 
 [KF-Prison KFMapSummary]
 DisplayName="Prison"
+
+[KF-ContainmentStation KFMapSummary]
+DisplayName="Containment Station"
+
+[KF-HostileGrounds KFMapSummary]
+DisplayName="Hostile Grounds"
+
 
 [KFMapInfo]
 ; defaults

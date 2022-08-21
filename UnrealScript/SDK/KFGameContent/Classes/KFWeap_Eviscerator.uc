@@ -347,7 +347,8 @@ defaultproperties
 	FiringStatesArray(RELOAD_FIREMODE)="Reloading"
 
 	// Blocking
-	ParryDamageMitigationPercent=0.1
+	ParryDamageMitigationPercent=0.50
+	BlockDamageMitigation=0.50
 
     // Fire Effects
 	MuzzleFlashTemplate=KFMuzzleFlash'WEP_Sawblade_ARCH.Wep_Sawblade_MuzzleFlash'
@@ -369,7 +370,7 @@ defaultproperties
 	MaxSpareAmmo[0]=25
 	InitialSpareMags[0]=0
 	MagazineCapacity[1]=250 // 30 seconds of fuel
-	AmmoPickupScale[1]=0.2
+	AmmoPickupScale[1]=0.5
 
 	// Animation
 	MeleeAttackAnims=(Atk_B)

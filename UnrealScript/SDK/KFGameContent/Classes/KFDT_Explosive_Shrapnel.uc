@@ -11,20 +11,18 @@ class KFDT_Explosive_Shrapnel extends KFDT_Explosive
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
-
 defaultproperties
 {
 	bShouldSpawnPersistentBlood=true
 
 	// physics impact
-	RadialDamageImpulse=3000
-	KDeathUpKick=1000
-	KDeathVel=300
+	RadialDamageImpulse=500  //3000
+	KDeathUpKick=900   //1000
+	KDeathVel=200      //300
 
-	KnockdownPower=0
-	StumblePower=120
+	KnockdownPower=500
+	StumblePower=500
+	MeleeHitPower=500
 
 
 	ModifierPerkList(0)=class'KFPerk_Firebug'	

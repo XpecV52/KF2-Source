@@ -88,15 +88,15 @@ function PopulateFocalPoints()
 	local KFPathnode KFPN;
 
 	// Fill out focal points array with player starts
-	foreach PlayerCamera.WorldInfo.AllActors( class'KFPlayerStart', KFPS )
+	foreach PlayerCamera.WorldInfo.AllNavigationPoints( class'KFPlayerStart', KFPS )
 	{
 		AvailableFocalPoints[AvailableFocalPoints.Length] = KFPS;
 	}
 
 	// Fill out focal points array with path nodes near trader triggers
-	foreach PlayerCamera.AllActors( class'KFPathnode', KFPN )
+	foreach PlayerCamera.WorldInfo.AllNavigationPoints( class'KFPathnode', KFPN )
 	{
-		foreach PlayerCamera.AllActors( class'KFTraderTrigger', KFTT )
+		foreach PlayerCamera.DynamicActors( class'KFTraderTrigger', KFTT )
 		{
 			if( VSizeSQ(KFTT.Location - KFPN.Location) <= 160000.f )
 			{
@@ -129,6 +129,12 @@ function UpdateCameraFocalPoint()
 			if( FocalPointNum != INDEX_NONE )
 			{
 				AvailableFocalPoints.Remove( FocalPointNum, 1 );
+			}
+
+			// In case we just cleared focal points, repopulate the list
+			if( AvailableFocalPoints.Length == 0 )
+			{
+				PopulateFocalPoints();
 			}
 
 			// Detach our ambient light

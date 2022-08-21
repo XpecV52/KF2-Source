@@ -4,11 +4,15 @@ package tripwire.containers.trader
     import flash.events.Event;
     import flash.external.ExternalInterface;
     import flash.text.TextField;
+    import scaleform.clik.constants.InputValue;
+    import scaleform.clik.constants.NavigationCode;
     import scaleform.clik.controls.UILoader;
     import scaleform.clik.data.DataProvider;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.IndexEvent;
+    import scaleform.clik.events.InputEvent;
     import scaleform.clik.events.ListEvent;
+    import scaleform.clik.ui.InputDetails;
     import tripwire.containers.SectionHeaderContainer;
     import tripwire.containers.TripContainer;
     
@@ -146,6 +150,7 @@ package tripwire.containers.trader
             if(this.perkListContainer.bOpen)
             {
                 dispatchEvent(new IndexEvent(IndexEvent.INDEX_CHANGE,false,true,CLOSE_INDEX));
+                deselectContainer();
                 this.closeList();
             }
             else
@@ -153,6 +158,23 @@ package tripwire.containers.trader
                 dispatchEvent(new IndexEvent(IndexEvent.INDEX_CHANGE,false,true,OPEN_INDEX));
                 selectContainer();
                 this.perkListContainer.openContainer();
+            }
+        }
+        
+        override public function handleInput(param1:InputEvent) : void
+        {
+            super.handleInput(param1);
+            var _loc2_:InputDetails = param1.details;
+            if(_loc2_.value == InputValue.KEY_DOWN)
+            {
+                switch(_loc2_.navEquivalent)
+                {
+                    case NavigationCode.GAMEPAD_B:
+                        if(_loc2_.code == 97 && this.perkListContainer.bOpen)
+                        {
+                            this.togglePerkList();
+                        }
+                }
             }
         }
         

@@ -15,7 +15,7 @@ class AICommand_Attack_Grab extends AICommand_SM_Attack
 ********************************************************************************************* */
 
 /** Simple constructor that pushes a new instance of the command for the AI */
-static function bool Grab( KFAIController_Monster AI, KFPawn NewGrabTarget, optional float InPostSpecialMoveSleepTime=0.f )
+static function bool Grab( KFAIController_Monster AI, optional float InPostSpecialMoveSleepTime=0.f )
 {
 	local AICommand_Attack_Grab OtherCmd, Cmd;
 
@@ -111,7 +111,7 @@ state Command_SpecialMove
 	{
 		`AILog( self$" Special move timed out", 'Command_Attack_Grab' );
 
-		if( MyKFPawn.SpecialMove == SpecialMove || MyKFPawn.SpecialMove == SM_GrabAttack )
+		if( MyKFPawn.SpecialMove == SpecialMove || MyKFPawn.SpecialMove == SM_GrappleAttack )
 		{
 			MyKFPawn.EndSpecialMove();
 		}
@@ -130,7 +130,7 @@ state Command_SpecialMove
 
 	function ESpecialMove GetSpecialMove()
 	{
-		return SM_Grab;
+		return SM_GrappleAttack;
 	}
 
 	function bool ExecuteSpecialMove()
@@ -143,7 +143,7 @@ state Command_SpecialMove
 
 	function bool IsSpecialMoveComplete()
 	{
-		return (MyKFPawn == None || (!MyKFPawn.IsDoingSpecialMove(SM_Grab) && !MyKFPawn.IsDoingSpecialMove(SM_GrabAttack)) && Super.IsSpecialMoveComplete());
+		return (MyKFPawn == None || (!MyKFPawn.IsDoingSpecialMove(SM_GrappleAttack)) && Super.IsSpecialMoveComplete());
 	}
 
 	function FinishedSpecialMove()
@@ -156,7 +156,7 @@ state Command_SpecialMove
 /** Overridden to break grabs on enemy changed */
 function NotifyEnemyChanged( optional Pawn OldEnemy )
 {
-	if( MyKFPawn != none && MyKFPawn.IsDoingSpecialMove(SM_GrabAttack) )
+	if( MyKFPawn != none && MyKFPawn.IsDoingSpecialMove(SM_GrappleAttack) )
 	{
 		MyKFPawn.EndSpecialMove();
 	}

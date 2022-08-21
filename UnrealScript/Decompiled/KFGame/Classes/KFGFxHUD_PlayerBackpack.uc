@@ -10,19 +10,26 @@ class KFGFxHUD_PlayerBackpack extends GFxObject within GFxMoviePlayer;
 var KFPlayerController MyKFPC;
 var int LastDosh;
 var int LastSpareAmmo;
-var int LastMagazineAmmo;
+var byte LastMagazineAmmo;
+var byte LastSecondaryAmmo;
 var bool bUsesAmmo;
 var bool bWasUsingAltFireMode;
 var bool bUsesSecondaryAmmo;
 var int LastFlashlightBattery;
 var int LastGrenades;
-var int LastSecondaryAmmo;
+var int LastMaxWeight;
+var int LastWeight;
 var class<KFPerk> LastPerkClass;
 var KFWeapon LastWeapon;
+var KFInventoryManager MyKFInvManager;
 
 function InitializeHUD()
 {
     MyKFPC = KFPlayerController(Outer.GetPC());
+    if((MyKFPC.Pawn != none) && MyKFPC.Pawn.InvManager != none)
+    {
+        MyKFInvManager = KFInventoryManager(MyKFPC.Pawn.InvManager);
+    }
 }
 
 function TickHud(float DeltaTime)
@@ -31,6 +38,21 @@ function TickHud(float DeltaTime)
     UpdateGrenades();
     UpdateWeapon();
     UpdateFlashlight();
+    UpdateWeight();
+}
+
+function UpdateWeight()
+{
+    if((MyKFPC.Pawn != none) && MyKFPC.Pawn.InvManager != none)
+    {
+        MyKFInvManager = KFInventoryManager(MyKFPC.Pawn.InvManager);
+        if((MyKFInvManager != none) && (LastMaxWeight != MyKFInvManager.MaxCarryBlocks) || LastWeight != MyKFInvManager.CurrentCarryBlocks)
+        {
+            SetString("WeightText", (string(MyKFInvManager.CurrentCarryBlocks) $ "/") $ string(MyKFInvManager.MaxCarryBlocks));
+            LastMaxWeight = MyKFInvManager.MaxCarryBlocks;
+            LastWeight = MyKFInvManager.CurrentCarryBlocks;
+        }
+    }
 }
 
 function UpdateDosh()
@@ -51,20 +73,15 @@ function UpdateDosh()
 
 function UpdateGrenades()
 {
-    local KFInventoryManager MyKFInvManager;
     local int CurrentGrenades;
 
     if(MyKFPC == none)
     {
         return;
     }
-    if(MyKFPC.Pawn != none)
+    if(MyKFInvManager != none)
     {
-        MyKFInvManager = KFInventoryManager(MyKFPC.Pawn.InvManager);
-        if(MyKFInvManager != none)
-        {
-            CurrentGrenades = MyKFInvManager.GrenadeCount;
-        }
+        CurrentGrenades = MyKFInvManager.GrenadeCount;
     }
     if(MyKFPC.GetPerk() != none)
     {
@@ -83,10 +100,11 @@ function UpdateGrenades()
 
 function UpdateWeapon()
 {
-    local int CurrentSpareAmmo, CurrentMagazineAmmo, CurrentSecondaryAmmo;
+    local int CurrentSpareAmmo;
+    local byte CurrentMagazineAmmo, CurrentSecondaryAmmo;
     local KFWeapon CurrentWeapon;
 
-    if((MyKFPC != none) && MyKFPC.Pawn != none)
+    if(((MyKFPC != none) && MyKFPC.Pawn != none) && MyKFPC.Pawn.Weapon != none)
     {
         CurrentWeapon = KFWeapon(MyKFPC.Pawn.Weapon);
         if(CurrentWeapon != none)
@@ -179,4 +197,10 @@ function UpdateFlashlight()
 function SetFlashlightBattery(int BatteryCharge, bool bIsOn)
 {
     ActionScriptVoid("setFlashlightBattery");
+}
+
+defaultproperties
+{
+    LastMaxWeight=-1
+    LastWeight=-1
 }

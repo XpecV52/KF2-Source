@@ -43,6 +43,7 @@ defaultproperties
    Components(0)=Sprite
    Components(1)=AutomaticMeshComponent0
    Components(2)=FogVolumeComponent0
+   CollisionType=COLLIDE_CustomDefault
    Name="Default__FogVolumeLinearHalfspaceDensityInfo"
    ObjectArchetype=FogVolumeDensityInfo'Engine.Default__FogVolumeDensityInfo'
 }

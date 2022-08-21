@@ -27,19 +27,26 @@ var const localized string ChangesAppliedOnCloseString;
 var const localized string OncePerWaveString;
 var array<PerkData> PerksData;
 var KFGFxMenu_Perks PerksMenu;
+var GFxObject PerkList;
+var KFGameReplicationInfo KFGRI;
+var KFPlayerReplicationInfo KFPRI;
 
 function Initialize(KFGFxObject_Menu NewParentMenu)
 {
     local KFPlayerController KFPC;
 
     KFPC = KFPlayerController(Outer.GetPC());
+    KFPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
     PerksMenu = KFGFxMenu_Perks(NewParentMenu);
+    KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
     super(KFGFxObject_Container).Initialize(NewParentMenu);
     LocalizeText();
     if(KFPC != none)
     {
         UpdatePerkSelection(KFPC.SavedPerkIndex);
     }
+    PerkList = GetObject("perkScrollingList");
+    SetPerkListEnabled(!KFPRI.bReadyToPlay);
 }
 
 function LocalizeText()
@@ -83,7 +90,19 @@ function UpdatePerkSelection(byte SelectedPerkIndex)
         }
         SetObject("perkData", DataProvider);
         SetInt("SelectedIndex", SelectedPerkIndex);
+        SetInt("ActiveIndex", SelectedPerkIndex);
         UpdatePendingPerkInfo(SelectedPerkIndex);
+    }
+}
+
+function SetPerkListEnabled(bool bValue)
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(Outer.GetPC());
+    if(PerkList != none)
+    {
+        PerkList.SetBool("enabled", bValue || KFPC.MyGFxManager.bAfterLobby);
     }
 }
 
@@ -91,17 +110,13 @@ function UpdatePendingPerkInfo(byte SelectedPerkIndex)
 {
     local string PerkName;
     local KFPlayerController KFPC;
-    local WorldInfo TempWorldInfo;
-    local KFGameReplicationInfo KFGRI;
 
-    TempWorldInfo = Class'WorldInfo'.static.GetWorldInfo();
     KFPC = KFPlayerController(Outer.GetPC());
-    KFGRI = KFGameReplicationInfo(TempWorldInfo.GRI);
     if((KFPC != none) && KFGRI != none)
     {
         if(!Class'WorldInfo'.static.IsMenuLevel())
         {
-            if((KFPC.bPlayerUsedUpdatePerk && !KFGRI.bTraderIsOpen) || ((KFGRI.bTraderIsOpen && PerksMenu.bModifiedPerk) && KFPC.PlayerReplicationInfo.bReadyToPlay) && KFPC.WorldInfo.GRI.bMatchHasBegun)
+            if((KFPC.bPlayerUsedUpdatePerk && !KFGRI.CanChangePerks()) || ((KFGRI.CanChangePerks() && PerksMenu.bModifiedPerk) && KFPC.PlayerReplicationInfo.bReadyToPlay) && KFPC.WorldInfo.GRI.bMatchHasBegun)
             {
                 PerkName = KFPC.PerkList[KFPC.SavedPerkIndex].PerkClass.default.PerkName;                
             }
@@ -110,7 +125,7 @@ function UpdatePendingPerkInfo(byte SelectedPerkIndex)
                 PerkName = "";
             }
         }
-        if(KFGRI.bTraderIsOpen)
+        if(KFGRI.CanChangePerks())
         {
             SetPendingPerkChanges(PerkName, "img://" $ KFPC.PerkList[KFPC.SavedPerkIndex].PerkClass.static.GetPerkIconPath(), ChangesAppliedOnCloseString);            
         }
@@ -141,6 +156,6 @@ defaultproperties
 {
     HeaderTitle="SELECT PERK"
     EndOfWaveString="Perk changes will be applied at end of the wave!"
-    ChangesAppliedOnCloseString="Perk changes will be applied when this menu is closed"
+    ChangesAppliedOnCloseString="Perk changes will be applied when this menu is closed."
     OncePerWaveString="Perk changes can only be done once per wave!"
 }

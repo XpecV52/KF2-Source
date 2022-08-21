@@ -36,6 +36,7 @@ struct PlayerZedAtkInfo
 	var EPlayerZedAtkType Type;
 	var EAnimSlotStance Stance;
 	var bool bForceDisableRootMotion;
+	var bool bCannotBeParried;
 };
 
 var bool bAnimCanBeInterrupted;
@@ -114,10 +115,14 @@ static function byte PackFlagsBase( KFPawn P )
 
 function SpecialMoveStarted( bool bForced, name PrevMove )
 {
+	super.SpecialMoveStarted( bForced, PrevMove );
+
 	bAnimCanBeInterrupted = false;
 	bPendingStopFire = false;
 
-	super.SpecialMoveStarted( bForced, PrevMove );
+	// Must be able to interrupt a parriable (e.g. stumble) attack
+	// @todo: all these interrupt variables are confusing and have a lot of overlap
+	bCanBeInterrupted = !bCannotBeParried;
 }
 
 /** Can be overridden in subclasses to determine if special attacks are used over defaults */
@@ -150,11 +155,14 @@ function UnpackSpecialMoveFlags()
 	AnimStance = Attacks[AtkIdx].Stance;
 
 	bDisableMovement = (AnimStance == EAS_FullBody);
-	bUseRootMotion = (AnimStance == EAS_FullBody && !Attacks[AtkIdx].bForceDisableRootMotion );
+	bUseRootMotion = (AnimStance == EAS_FullBody && !Attacks[AtkIdx].bForceDisableRootMotion);
 
 	// If we're doing a PHYS_Falling attack we need to allow RM take over
 	// which means disabling bAllowMomentumPush.
 	bAllowMomentumPush = (Attacks[AtkIdx].Type != PZA_Jumping);
+
+	// Set parry flag on a per-attack basis
+	bCannotBeParried = Attacks[AtkIdx].bCannotBeParried;
 
 	if( Attacks[AtkIdx].bIsInputHeld )
 	{

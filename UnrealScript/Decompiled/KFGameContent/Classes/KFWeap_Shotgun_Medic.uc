@@ -93,6 +93,7 @@ defaultproperties
     HealFullRechargeSeconds=12
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=6
+    MagazineCapacity=10
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -105,7 +106,6 @@ defaultproperties
     GroupPriority=75
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicShotgun'
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
-    MagazineCapacity=10
     MaxSpareAmmo=80
     InitialSpareMags=3
     WeaponFireSnd=/* Array type was not detected. */

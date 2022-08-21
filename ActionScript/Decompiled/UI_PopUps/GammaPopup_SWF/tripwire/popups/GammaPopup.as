@@ -6,9 +6,11 @@ package tripwire.popups
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.SliderEvent;
     import scaleform.clik.managers.FocusHandler;
+    import scaleform.clik.ui.InputDetails;
     import tripwire.controls.TripButton;
     import tripwire.controls.TripSlider;
     import tripwire.controls.TripUILoader;
+    import tripwire.managers.MenuManager;
     
     public class GammaPopup extends BasePopup
     {
@@ -41,6 +43,15 @@ package tripwire.popups
             this.mainSlider.tabIndex = 1;
             this.ApplyButton.tabIndex = 2;
             this.DefaultButton.tabIndex = 3;
+        }
+        
+        override protected function onBPressed(param1:InputDetails) : void
+        {
+            if(!MenuManager.manager.bStartUpGamma)
+            {
+                super.onBPressed(param1);
+                closePopup();
+            }
         }
         
         private function onApplyGamma(param1:Event) : void

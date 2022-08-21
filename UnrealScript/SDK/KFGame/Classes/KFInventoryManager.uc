@@ -583,7 +583,10 @@ simulated function HighlightPrevWeapon()
 		{
 			break;
 		}
-		CandidateWeapon = W;
+		if ( !ShouldSkipCycleWeapon(W, false) )
+		{
+			CandidateWeapon = W;
+		}
 	}
 
 	// if none found, get last
@@ -591,7 +594,10 @@ simulated function HighlightPrevWeapon()
 	{
 		ForEach InventoryActors(class'Weapon', W)
 		{
-			CandidateWeapon = W;
+			if ( !ShouldSkipCycleWeapon(W, false) )
+			{
+				CandidateWeapon = W;
+			}
 		}
 	}
 	HighlightWeapon(CandidateWeapon);
@@ -769,7 +775,10 @@ simulated function HighlightNextWeapon()
 	{
 		if( bBreakNext || (StartWeapon == None) )
 		{
-			CandidateWeapon = W;
+			if ( !ShouldSkipCycleWeapon(W, false) )
+			{
+				CandidateWeapon = W;
+			}
 			break;
 		}
 		if( W == StartWeapon )
@@ -782,7 +791,10 @@ simulated function HighlightNextWeapon()
 	{
 		ForEach InventoryActors( class'Weapon', W )
 		{
-			CandidateWeapon = W;
+			if ( !ShouldSkipCycleWeapon(W, false) )
+			{
+				CandidateWeapon = W;
+			}
 			break;
 		}
 	}
@@ -1513,7 +1525,7 @@ reliable server final private function ServerBuyAmmo(int AmountPurchased, byte C
 {
 	local STraderItem WeaponItem;
 	local KFWeapon KFW;
-	local int ClientMaxMagCapacity;
+	local byte ClientMaxMagCapacity;
 
 	if( Role == ROLE_Authority && bServerTraderMenuOpen )
 	{

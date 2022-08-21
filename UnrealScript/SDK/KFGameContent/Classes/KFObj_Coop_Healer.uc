@@ -11,8 +11,6 @@
 //=============================================================================
 class KFObj_Coop_Healer extends KFObj_Coop;
 
-`include(KFGame\KFMatchStats.uci);
-
 var	KFPawn_Human					HealingTarget;
 var	array<PlayerReplicationInfo>    Healers;
 var int								PawnHealingTime;

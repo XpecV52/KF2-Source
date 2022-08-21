@@ -129,7 +129,7 @@ event ReadyToMelee()
         {
             if(VSize(Enemy.Location - Pawn.Location) < (MyKFPawn.CylinderComponent.CollisionRadius * 3))
             {
-                if(MyKFPawn.CanDoSpecialMove(13) && (WorldInfo.TimeSeconds - LastTauntTime) > 2)
+                if(MyKFPawn.CanDoSpecialMove(12) && (WorldInfo.TimeSeconds - LastTauntTime) > 2)
                 {
                     AILog_Internal(string(GetFuncName()) $ " starting taunt command", 'CantMelee');
                     Class'AICommand_TauntEnemy'.static.Taunt(self, KFPawn(Enemy), 0);
@@ -218,7 +218,7 @@ event bool CanGrabAttack()
     }
     if(!bCompletedInitialGrabAttack || (LastAttackTime_Grab == 0) || (WorldInfo.TimeSeconds - LastAttackTime_Grab) > MinTimeBetweenGrabAttacks)
     {
-        if(Abs(Enemy.Location.Z - Pawn.Location.Z) > Class'KFSM_GrappleStart'.default.MaxVictimZOffset)
+        if(Abs(Enemy.Location.Z - Pawn.Location.Z) > Class'KFSM_GrappleCombined'.default.MaxVictimZOffset)
         {
             return false;
         }
@@ -322,7 +322,7 @@ function bool HandleZedBlockedPath()
         }
         if((VSize(Enemy.Location - Pawn.Location) < AttackRange) && bDirectMoveToGoal)
         {
-            if((MyKFPawn.CanDoSpecialMove(13) && FRand() < 0.32) && (WorldInfo.TimeSeconds - LastTauntTime) > 2)
+            if((MyKFPawn.CanDoSpecialMove(12) && FRand() < 0.32) && (WorldInfo.TimeSeconds - LastTauntTime) > 2)
             {
                 AILog_Internal(string(GetFuncName()) $ " starting taunt command", 'ReachedEnemy');
                 Class'AICommand_TauntEnemy'.static.Taunt(self, KFPawn(Enemy), 0);                

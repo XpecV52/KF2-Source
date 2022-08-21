@@ -42,7 +42,7 @@ simulated protected function StopFlightEffects();
 
 defaultproperties
 {
-	FuseTime=1
+	FuseTime=0.5  //1
 	PostExplosionLifetime=15
 
     LandedTranslationOffset=(X=2)
@@ -67,7 +67,7 @@ defaultproperties
 
 	// explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
-		Damage=50
+		Damage=50  //50
 		DamageRadius=350
 		DamageFalloffExponent=0.f
 		DamageDelay=0.f
@@ -90,10 +90,10 @@ defaultproperties
         ExploLightFlickerInterpSpeed=15.f
 
 		// Camera Shake
-		CamShake=CameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
-		CamShakeInnerRadius=450
-		CamShakeOuterRadius=900
-		CamShakeFalloff=1.f
+		CamShake=none
+		CamShakeInnerRadius=0
+		CamShakeOuterRadius=0
+		CamShakeFalloff=1.5f
 		bOrientCameraShakeTowardsEpicenter=true
 	End Object
 	ExplosionTemplate=ExploTemplate0

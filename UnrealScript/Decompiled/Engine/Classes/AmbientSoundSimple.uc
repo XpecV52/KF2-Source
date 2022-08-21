@@ -52,4 +52,5 @@ defaultproperties
     object end
     // Reference: AudioComponent'Default__AmbientSoundSimple.AudioComponent0'
     Components(2)=AudioComponent0
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
 }

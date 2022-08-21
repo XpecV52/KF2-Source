@@ -159,7 +159,7 @@ defaultproperties
    BrushComponent=BrushComponent0
    Components(0)=BrushComponent0
    RemoteRole=ROLE_SimulatedProxy
-   CollisionType=COLLIDE_CustomDefault
+   CollisionType=COLLIDE_TouchAllButWeapons
    bCollideActors=True
    CollisionComponent=BrushComponent0
    Name="Default__KFVersusNoGoVolume"

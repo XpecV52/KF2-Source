@@ -412,7 +412,7 @@ function bool DialogEventCanBePlayed(KFPawn KFP, const out DialogEventInfo Event
         }
         return false;
     }
-    if((KFP.SpecialMove == 29) && EventInfo.Priority > InterruptPriorityThreshold)
+    if((KFP.SpecialMove == 28) && EventInfo.Priority > InterruptPriorityThreshold)
     {
         if(bLogDialog)
         {
@@ -1162,19 +1162,19 @@ function PlayDamagedZedDialog(KFPawn_Human Damager, KFPawn_Monster Zed, class<Da
         return;
     }
     BestOptionID = -1;
-    if(Zed.IsDoingSpecialMove(7))
+    if(Zed.IsDoingSpecialMove(6))
     {
         AddRandomDialogOption(Damager, 101, NumOptions, BestOptionID);        
     }
     else
     {
-        if(Zed.IsDoingSpecialMove(5))
+        if(Zed.IsDoingSpecialMove(4))
         {
             AddRandomDialogOption(Damager, 100, NumOptions, BestOptionID);            
         }
         else
         {
-            if(Zed.IsDoingSpecialMove(9))
+            if(Zed.IsDoingSpecialMove(8))
             {
                 AddRandomDialogOption(Damager, 99, NumOptions, BestOptionID);
             }

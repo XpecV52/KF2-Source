@@ -60,9 +60,6 @@ public:
 	virtual void TickSpecial(FLOAT DeltaSeconds);
 	virtual void Spawned();
 	virtual void PostLoad();
-#if __TW_PERFORMANCE_
-	virtual void UpdateComponentsInternal( UBOOL bCollisionUpdate = FALSE );
-#endif
 };
 
 native simulated event TakeDamage(int Damage, Controller EventInstigator, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser);
@@ -122,4 +119,7 @@ defaultproperties
 	MaxTouchImpulse=1000
 	MaxForce=100000
 	Mass=1
+`if(`__TW_PERFORMANCE_)
+	bSkipPostTickComponentUpdate=TRUE
+`endif
 }

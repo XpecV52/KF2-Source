@@ -18,6 +18,7 @@ defaultproperties
     BulletMeshComponents=/* Array type was not detected. */
     CylinderRotInfo=(InC=-72,Time=0.0875)
     InventorySize=3
+    MagazineCapacity=5
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -32,7 +33,6 @@ defaultproperties
     GroupPriority=30
     WeaponSelectTexture=Texture2D'WEP_UI_SW_500_TEX.UI_WeaponSelect_SW500'
     DualClass=Class'KFWeap_Revolver_DualSW500'
-    MagazineCapacity=5
     MaxSpareAmmo=100
     InitialSpareMags=5
     AmmoPickupScale=2

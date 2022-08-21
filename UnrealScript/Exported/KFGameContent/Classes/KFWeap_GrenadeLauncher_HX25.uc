@@ -11,6 +11,7 @@
 class KFWeap_GrenadeLauncher_HX25 extends KFWeap_GrenadeLauncher_Base;
 
 var(Weapon) array<byte>	NumPellets;
+var array<vector2D> PelletSpread;
 
 /*********************************************************************************************
  Firing / Projectile
@@ -40,7 +41,7 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
 		}
 		else
 		{
-			Super.SpawnProjectile(KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot)));
+			Super.SpawnProjectile(KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot, i)));
 		}
 	}
 
@@ -69,7 +70,7 @@ simulated function rotator AddSpread(rotator BaseAim)
 }
 
  /** Same as AddSpread(), but used with MultiShotSpread */
-simulated function rotator AddMultiShotSpread(rotator BaseAim)
+simulated function rotator AddMultiShotSpread( rotator BaseAim, byte PelletNum )
 {
 	local vector X, Y, Z;
 	local float CurrentSpread, RandY, RandZ;
@@ -83,8 +84,8 @@ simulated function rotator AddMultiShotSpread(rotator BaseAim)
 	{
 		// Add in any spread.
 		GetAxes(BaseAim, X, Y, Z);
-		RandY = FRand() - 0.5;
-		RandZ = Sqrt(0.5 - Square(RandY)) * (FRand() - 0.5);
+		RandY = PelletSpread[PelletNum].Y * RandRange( 0.5f, 1.5f );
+		RandZ = PelletSpread[PelletNum].X * RandRange( 0.5f, 1.5f );
 		return rotator(X + RandY * CurrentSpread * Y + RandZ * CurrentSpread * Z);
 	}
 }
@@ -121,10 +122,17 @@ static simulated function float CalculateTraderWeaponStatDamage()
 defaultproperties
 {
    NumPellets(0)=7
+   PelletSpread(1)=(X=0.500000,Y=0.000000)
+   PelletSpread(2)=(X=0.321400,Y=0.383000)
+   PelletSpread(3)=(X=-0.250000,Y=0.433000)
+   PelletSpread(4)=(X=-0.500000,Y=0.000000)
+   PelletSpread(5)=(X=-0.250000,Y=-0.433000)
+   PelletSpread(6)=(X=0.250000,Y=-0.433000)
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
    FireModeIconPaths(1)=()
    InventoryGroup=IG_Secondary
    InventorySize=4
+   MagazineCapacity(0)=1
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -134,7 +142,6 @@ defaultproperties
    FastZoomOutTime=0.200000
    GroupPriority=25.000000
    WeaponSelectTexture=Texture2D'WEP_UI_HX25_Pistol_TEX.UI_WeaponSelect_HX25'
-   MagazineCapacity(0)=1
    MaxSpareAmmo(0)=29
    InitialSpareMags(0)=17
    AmmoPickupScale(0)=3.000000
@@ -183,7 +190,7 @@ defaultproperties
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
-   Spread(0)=0.125000
+   Spread(0)=0.100000
    InstantHitDamage(0)=10.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()

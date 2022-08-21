@@ -183,10 +183,8 @@ defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_Eviscerator'
     bNoInstigatorDamage=true
-    StunPower=42
-    StumblePower=60
-    LegStumblePower=60
-    GunHitPower=150
+    StumblePower=100
+    MeleeHitPower=100
     ModifierPerkList=/* Array type was not detected. */
     KDamageImpulse=1000
     KDeathVel=135

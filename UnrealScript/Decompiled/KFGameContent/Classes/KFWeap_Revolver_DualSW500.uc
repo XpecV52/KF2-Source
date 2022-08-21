@@ -23,6 +23,7 @@ defaultproperties
     BulletMeshComponents=/* Array type was not detected. */
     CylinderRotInfo=(InC=-72,Time=0.0875)
     InventorySize=6
+    MagazineCapacity=10
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -37,7 +38,6 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=50
     WeaponSelectTexture=Texture2D'WEP_UI_Dual_SW_500_TEX.UI_WeaponSelect_DualSW500'
-    MagazineCapacity=10
     MaxSpareAmmo=95
     InitialSpareMags=2
     BonesToLockOnEmpty=/* Array type was not detected. */

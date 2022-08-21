@@ -12,8 +12,6 @@ class KFDT_Toxic_MedicGrenade extends KFDT_Toxic
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 defaultproperties
 {
 	ModifierPerkList(0)=class'KFPerk_FieldMedic'

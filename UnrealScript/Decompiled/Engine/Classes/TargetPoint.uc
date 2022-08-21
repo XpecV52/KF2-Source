@@ -41,7 +41,6 @@ defaultproperties
     object end
     // Reference: ArrowComponent'Default__TargetPoint.Arrow'
     Components(1)=Arrow
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
     bStatic=false
     bNoDelete=true
 }

@@ -11,6 +11,7 @@
 class KFWeap_GrenadeLauncher_HX25 extends KFWeap_GrenadeLauncher_Base;
 
 var(Weapon) array<byte>	NumPellets;
+var array<vector2D> PelletSpread;
 
 /*********************************************************************************************
  Firing / Projectile
@@ -40,7 +41,7 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
 		}
 		else
 		{
-			Super.SpawnProjectile(KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot)));
+			Super.SpawnProjectile(KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot, i)));
 		}
 	}
 
@@ -69,7 +70,7 @@ simulated function rotator AddSpread(rotator BaseAim)
 }
 
  /** Same as AddSpread(), but used with MultiShotSpread */
-simulated function rotator AddMultiShotSpread(rotator BaseAim)
+simulated function rotator AddMultiShotSpread( rotator BaseAim, byte PelletNum )
 {
 	local vector X, Y, Z;
 	local float CurrentSpread, RandY, RandZ;
@@ -83,8 +84,8 @@ simulated function rotator AddMultiShotSpread(rotator BaseAim)
 	{
 		// Add in any spread.
 		GetAxes(BaseAim, X, Y, Z);
-		RandY = FRand() - 0.5;
-		RandZ = Sqrt(0.5 - Square(RandY)) * (FRand() - 0.5);
+		RandY = PelletSpread[PelletNum].Y * RandRange( 0.5f, 1.5f );
+		RandZ = PelletSpread[PelletNum].X * RandRange( 0.5f, 1.5f );
 		return rotator(X + RandY * CurrentSpread * Y + RandZ * CurrentSpread * Z);
 	}
 }
@@ -126,6 +127,17 @@ defaultproperties
 	FireSightedAnims[0]=Shoot_Iron
 	FireSightedAnims[1]=Shoot_Iron2
 	FireSightedAnims[2]=Shoot_Iron3
+
+	// x = 0 + r * cos(a)
+	// y = 0 + r * sin(a)
+	PelletSpread(0)=(X=0.f,Y=0.f)
+	PelletSpread(1)=(X=0.5f,Y=0.f) 			//0deg 
+	PelletSpread(2)=(X=0.3214,Y=0.3830) 	//60deg
+	PelletSpread(3)=(X=-0.25,Y=0.4330)		//120deg
+	PelletSpread(4)=(X=-0.5f,Y=0.f)			//180deg
+	PelletSpread(5)=(X=-0.25f,Y=-0.4330)	//240deg
+	PelletSpread(6)=(X=0.25,Y=-0.4330)		//300deg
+
 
 	// Inventory
 	InventoryGroup=IG_Secondary
@@ -190,11 +202,11 @@ defaultproperties
 	InstantHitDamage(DEFAULT_FIREMODE)=10.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_HX25SubmunitionImpact'
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_HX25'
-	Spread(DEFAULT_FIREMODE)=0.125
+	Spread(DEFAULT_FIREMODE)=0.1f
 	FireInterval(DEFAULT_FIREMODE)=0.25
 	FireOffset=(X=23,Y=4.0,Z=-3)
 	// Projectile count
-	NumPellets(DEFAULT_FIREMODE)=7
+	NumPellets(DEFAULT_FIREMODE) = 7
 
 	// ALT_FIREMODE
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring

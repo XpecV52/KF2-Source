@@ -12,8 +12,6 @@ class KFDT_Explosive_DynamiteGrenade extends KFDT_Explosive
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 
 defaultproperties
 {
@@ -24,9 +22,10 @@ defaultproperties
 	KDeathUpKick=1000
 	KDeathVel=300
 
-	KnockdownPower=50 // knockdown any non-boss zed in one hit
-	StumblePower=0
-	StunPower=54 // stun any non-boss zed in one hit
+	KnockdownPower=100 // knockdown any non-boss zed in one hit
+	MeleeHitPower=100
+	StumblePower=300
+	StunPower=0 // stun any non-boss zed in one hit
 
 	//Perk
 	ModifierPerkList(0)=class'KFPerk_Demolitionist'

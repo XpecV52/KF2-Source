@@ -118,12 +118,16 @@ function SetDifficultySettings(float GameDifficulty)
     }
 }
 
-function GetAIHealthModifier(const out KFCharacterInfo_Monster InMonsterInfo, float GameDifficulty, byte NumLivingPlayers, out float HealthMod, out float HeadHealthMod)
+function GetAIHealthModifier(const out KFCharacterInfo_Monster InMonsterInfo, float GameDifficulty, byte NumLivingPlayers, out float HealthMod, out float HeadHealthMod, optional bool bApplyDifficultyScaling)
 {
+    bApplyDifficultyScaling = true;
     if(InMonsterInfo != none)
     {
-        HealthMod = (GetGlobalHealthMod()) * (GetCharHealthModDifficulty(InMonsterInfo, GameDifficulty));
-        HeadHealthMod = (GetGlobalHealthMod()) * (GetCharHeadHealthModDifficulty(InMonsterInfo, GameDifficulty));
+        if(bApplyDifficultyScaling)
+        {
+            HealthMod = (GetGlobalHealthMod()) * (GetCharHealthModDifficulty(InMonsterInfo, GameDifficulty));
+            HeadHealthMod = (GetGlobalHealthMod()) * (GetCharHeadHealthModDifficulty(InMonsterInfo, GameDifficulty));
+        }
         if(HealthMod <= float(0))
         {
             HealthMod = 1;

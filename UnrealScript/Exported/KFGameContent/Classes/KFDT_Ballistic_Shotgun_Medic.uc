@@ -11,60 +11,6 @@ class KFDT_Ballistic_Shotgun_Medic extends KFDT_Ballistic_Shotgun
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 14;
-
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
@@ -111,9 +57,8 @@ static function bool CheckMedicBleed( out int InDamage, out class<KFDamageType> 
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_MedicShotgun'
-   StumblePower=20
-   LegStumblePower=110
-   GunHitPower=113
+   StumblePower=13.000000
+   GunHitPower=45.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_FieldMedic'
    BloodSpread=0.400000
    BloodScale=0.600000

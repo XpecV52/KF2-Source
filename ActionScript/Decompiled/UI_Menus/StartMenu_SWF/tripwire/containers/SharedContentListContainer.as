@@ -55,22 +55,11 @@ package tripwire.containers
             TweenMax.fromTo(this,this.ANIM_TIME,{
                 "z":this.ANIM_OFFSET_Z,
                 "alpha":0,
-                "blurFilter":{
-                    "blurX":this.ANIM_BLUR_X,
-                    "blurY":this.ANIM_BLUR_Y,
-                    "quality":1
-                },
                 "ease":Linear.easeNone,
                 "useFrames":true
             },{
                 "z":this.ANIM_START_Z,
                 "alpha":1,
-                "blurFilter":{
-                    "blurX":this.AnimBLUR_OUT,
-                    "blurY":this.AnimBLUR_OUT,
-                    "quality":1,
-                    "remove":true
-                },
                 "ease":Linear.easeNone,
                 "useFrames":true
             });
@@ -87,11 +76,6 @@ package tripwire.containers
             },{
                 "z":this.ANIM_OFFSET_Z,
                 "alpha":0,
-                "blurFilter":{
-                    "blurX":this.ANIM_BLUR_X,
-                    "blurY":this.ANIM_BLUR_Y,
-                    "quality":1
-                },
                 "visible":false,
                 "ease":Linear.easeNone,
                 "useFrames":true

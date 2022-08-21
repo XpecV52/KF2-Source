@@ -35,6 +35,11 @@ var private editoronly bool OldCastShadow;
 var private editoronly bool OldAcceptsLights;
 var private editoronly ECollisionType OldCollisionType;
 
+`if(`__TW_PHYSICS_)
+var transient matrix DefaultLocalToWorld;
+var transient bool bResetCapable;
+`endif
+
 `if(`__TW_MESH_MERGE_UTIL_)
 /** Structure to hold info about precombined actor to recreate old actors */
 struct native PreCombinedStaticMeshActor
@@ -113,11 +118,25 @@ protected:
 	virtual FString GetDetailedInfoInternal() const;
 
 #if __TW_PHYSICS_
+	virtual void PostLoad();
 	virtual UBOOL ShouldTrace(UPrimitiveComponent* Primitive,AActor *SourceActor, DWORD TraceFlags);
 #endif
 }
 
 event PreBeginPlay() {}
+
+`if(`__TW_PHYSICS_)
+native function ResetToDefaults();
+
+/** Reset dynamic static mesh actors */
+simulated event Reset()
+{
+	if( bResetCapable )
+	{
+		ResetToDefaults();
+	}
+}
+`endif
 
 defaultproperties
 {

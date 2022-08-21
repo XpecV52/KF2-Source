@@ -21,8 +21,8 @@ defaultproperties
 
 	// explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
-		Damage=300
-		DamageRadius=800
+		Damage=300  //300
+		DamageRadius=650  //800
 		DamageFalloffExponent=2.f
 		DamageDelay=0.f
 
@@ -30,7 +30,7 @@ defaultproperties
 		MyDamageType=class'KFDT_Explosive_HEGrenade'
 		KnockDownStrength=0
 		FractureMeshRadius=200.0
-		FracturePartVel=500.0
+		FracturePartVel=500.0	
 		ExplosionEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Explosions.HEGrenade_Explosion'
 		ExplosionSound=AkEvent'WW_WEP_EXP_Grenade_HE.Play_WEP_EXP_Grenade_HE_Explosion'
 
@@ -41,9 +41,9 @@ defaultproperties
 
 		// Camera Shake
 		CamShake=CameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
-		CamShakeInnerRadius=450
+		CamShakeInnerRadius=200
 		CamShakeOuterRadius=900
-		CamShakeFalloff=1.f
+		CamShakeFalloff=1.5f
 		bOrientCameraShakeTowardsEpicenter=true
 	End Object
 	ExplosionTemplate=ExploTemplate0
@@ -52,6 +52,8 @@ defaultproperties
 	ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
 
 	AssociatedPerkClass=class'KFPerk_Commando'
+
+	FuseTime=1.0
 }
 
 

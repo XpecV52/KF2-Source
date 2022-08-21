@@ -9,67 +9,10 @@ class KFDT_Piercing_KnifeStab extends KFDT_Piercing
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 12;
-
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFweapDef_Knife_Base'
-   StunPower=35
-   StumblePower=40
-   LegStumblePower=40
-   MeleeHitPower=30
+   MeleeHitPower=25.000000
    KDamageImpulse=200.000000
    KDeathUpKick=250.000000
    Name="Default__KFDT_Piercing_KnifeStab"

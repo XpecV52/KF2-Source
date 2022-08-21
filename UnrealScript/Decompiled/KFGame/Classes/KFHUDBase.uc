@@ -11,6 +11,18 @@ class KFHUDBase extends HUD
     config(Game)
     hidecategories(Navigation);
 
+struct sHiddenHumanPawnInfo
+{
+    var Pawn HumanPawn;
+    var PlayerReplicationInfo HumanPRI;
+
+    structdefaultproperties
+    {
+        HumanPawn=none
+        HumanPRI=none
+    }
+};
+
 var KFPlayerController KFPlayerOwner;
 var KFGameReplicationInfo KFGRI;
 var const Texture2D IconHudTexture;
@@ -48,6 +60,8 @@ var(Crosshair) InterpCurveFloat CrosshairAccuracyScale;
 var Texture2D PlayerStatusBarBGTexture;
 var const float PlayerStatusBarLengthMax;
 var const float PlayerStatusIconSize;
+var float HumanPlayerIconInterpMult;
+var Texture2D GenericHumanIconTexture;
 
 // Export UKFHUDBase::execDrawGlowText(FFrame&, void* const)
 native function DrawGlowText(string Text, float X, float Y, optional float MaxHeightInPixels, optional float PulseTime, optional bool bRightJustified)
@@ -340,6 +354,8 @@ function DrawHUD()
     local float ThisDot;
     local Vector ViewLocation, ViewVector, PlayerPartyInfoLocation;
     local Rotator ViewRotation;
+    local array<PlayerReplicationInfo> VisibleHumanPlayers;
+    local array<sHiddenHumanPawnInfo> HiddenHumanPlayers;
 
     super.DrawHUD();
     if((bDrawCrosshair || bForceDrawCrosshair) || (KFPlayerOwner != none) && KFPlayerOwner.GetTeamNum() == 255)
@@ -363,17 +379,31 @@ function DrawHUD()
             ThisDot = Normal(PlayerPartyInfoLocation - ViewLocation) Dot Normal(ViewVector);
             if(KFPH.IsAliveAndWell() && KFPH != KFPlayerOwner.Pawn)
             {
-                if(((WorldInfo.TimeSeconds - KFPH.Mesh.LastRenderTime) < 0.4) && (ThisDot > float(0)) && ThisDot < 1)
+                if(((WorldInfo.TimeSeconds - KFPH.Mesh.LastRenderTime) < 0.2) && (ThisDot > float(0)) && ThisDot < 1)
                 {
-                    DrawFriendlyHUD(KFPH);
+                    if(DrawFriendlyHumanPlayerInfo(KFPH))
+                    {
+                        VisibleHumanPlayers.AddItem(KFPH.PlayerReplicationInfo;                        
+                    }
+                    else
+                    {
+                        HiddenHumanPlayers.Insert(0, 1;
+                        HiddenHumanPlayers[0].HumanPawn = KFPH;
+                        HiddenHumanPlayers[0].HumanPRI = KFPH.PlayerReplicationInfo;
+                    }
+                    continue;
                 }
+                HiddenHumanPlayers.Insert(0, 1;
+                HiddenHumanPlayers[0].HumanPawn = KFPH;
+                HiddenHumanPlayers[0].HumanPRI = KFPH.PlayerReplicationInfo;
             }            
         }        
+        CheckAndDrawHiddenPlayerIcons(VisibleHumanPlayers, HiddenHumanPlayers);
         Canvas.EnableStencilTest(false);
     }
 }
 
-simulated function DrawFriendlyHUD(KFPawn_Human KFPH)
+simulated function bool DrawFriendlyHumanPlayerInfo(KFPawn_Human KFPH)
 {
     local float Percentage, BarHeight, BarLength;
     local Vector ScreenPos, TargetLocation;
@@ -385,7 +415,7 @@ simulated function DrawFriendlyHUD(KFPawn_Human KFPH)
     KFPRI = KFPlayerReplicationInfo(KFPH.PlayerReplicationInfo);
     if(KFPRI == none)
     {
-        return;
+        return false;
     }
     MyFontRenderInfo = Canvas.CreateFontRenderInfo(true);
     BarLength = FMin(PlayerStatusBarLengthMax * (float(Canvas.SizeX) / 1024), PlayerStatusBarLengthMax) * FriendlyHudScale;
@@ -394,7 +424,7 @@ simulated function DrawFriendlyHUD(KFPawn_Human KFPH)
     ScreenPos = Canvas.Project(TargetLocation);
     if((((ScreenPos.X < float(0)) || ScreenPos.X > float(Canvas.SizeX)) || ScreenPos.Y < float(0)) || ScreenPos.Y > float(Canvas.SizeY))
     {
-        return;
+        return false;
     }
     Percentage = FMin(float(KFPH.Health) / float(KFPH.HealthMax), 100);
     DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5), ScreenPos.Y, HealthColor);
@@ -407,7 +437,7 @@ simulated function DrawFriendlyHUD(KFPawn_Human KFPH)
     Canvas.DrawText(KFPRI.PlayerName,, FontScale * FriendlyHudScale, FontScale * FriendlyHudScale, MyFontRenderInfo);
     if(KFPRI.CurrentPerkClass == none)
     {
-        return;
+        return false;
     }
     Canvas.SetDrawColorStruct(PlayerBarIconColor);
     Canvas.SetPos(ScreenPos.X - (BarLength * 0.75), ScreenPos.Y - (BarHeight * float(2)));
@@ -422,6 +452,7 @@ simulated function DrawFriendlyHUD(KFPawn_Human KFPH)
         Canvas.SetPos(ScreenPos.X + (BarLength * 0.5), ScreenPos.Y - (BarHeight * float(2)));
         Canvas.DrawTile(KFPRI.CurrentPerkClass.static.GetInteractIcon(), PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256);
     }
+    return true;
 }
 
 simulated function DrawKFBar(float BarPercentage, float BarLength, float BarHeight, float XPos, float YPos, Color BarColor)
@@ -432,6 +463,85 @@ simulated function DrawKFBar(float BarPercentage, float BarLength, float BarHeig
     Canvas.SetDrawColorStruct(BarColor);
     Canvas.SetPos(XPos, YPos + float(1));
     Canvas.DrawTileStretched(PlayerStatusBarBGTexture, (BarLength - 2) * BarPercentage, BarHeight - 2, 0, 0, 32, 32);
+}
+
+simulated function CheckAndDrawHiddenPlayerIcons(array<PlayerReplicationInfo> VisibleHumanPlayers, array<sHiddenHumanPawnInfo> HiddenHumanPlayers)
+{
+    local int I, HiddenHumanIndex;
+    local PlayerReplicationInfo PRI;
+    local Vector ViewLocation, ViewVector, PawnLocation;
+    local Rotator ViewRotation;
+    local KFPlayerReplicationInfo KFPRI;
+    local float ThisDot;
+
+    if(KFPlayerOwner.PlayerCamera != none)
+    {
+        KFPlayerOwner.PlayerCamera.GetCameraViewPoint(ViewLocation, ViewRotation);
+    }
+    ViewVector = vector(ViewRotation);
+    I = 0;
+    J0x8A:
+
+    if(I < WorldInfo.GRI.PRIArray.Length)
+    {
+        PRI = WorldInfo.GRI.PRIArray[I];
+        if(((VisibleHumanPlayers.Find(PRI != -1) || KFPlayerOwner.PlayerReplicationInfo == PRI) || PRI.GetTeamNum() == 255)
+        {            
+        }
+        else
+        {
+            HiddenHumanIndex = HiddenHumanPlayers.Find('HumanPRI', PRI;
+            if((HiddenHumanIndex != -1) && HiddenHumanPlayers[HiddenHumanIndex].HumanPawn != none)
+            {
+                PawnLocation = HiddenHumanPlayers[HiddenHumanIndex].HumanPawn.Location;
+            }
+            if(IsZero(PawnLocation))
+            {
+                KFPRI = KFPlayerReplicationInfo(PRI);
+                PawnLocation = KFPRI.GetReplicatedPawnIconLocation(HumanPlayerIconInterpMult);
+                if(IsZero(PawnLocation) || KFPRI.PlayerHealth <= 0)
+                {
+                    goto J0x34A;
+                }
+            }
+            ThisDot = Normal(PawnLocation - ViewLocation) Dot ViewVector;
+            if(ThisDot > 0)
+            {
+                DrawHiddenHumanPlayerIcon(PRI, PawnLocation);
+            }
+            PawnLocation = vect(0, 0, 0);
+        }
+        J0x34A:
+
+        ++ I;
+        goto J0x8A;
+    }
+}
+
+function DrawHiddenHumanPlayerIcon(PlayerReplicationInfo PRI, Vector IconWorldLocation)
+{
+    local Vector ScreenPos;
+    local float IconSizeMult;
+    local KFPlayerReplicationInfo KFPRI;
+    local Texture2D PlayerIcon;
+
+    KFPRI = KFPlayerReplicationInfo(PRI);
+    if(KFPRI == none)
+    {
+        return;
+    }
+    ScreenPos = Canvas.Project(IconWorldLocation + ((vect(0, 0, 1) * Class'KFPawn_Human'.default.CylinderComponent.CollisionHeight) * 1.2));
+    IconSizeMult = (PlayerStatusIconSize * FriendlyHudScale) * 0.5;
+    ScreenPos.X -= IconSizeMult;
+    ScreenPos.Y -= IconSizeMult;
+    if((((ScreenPos.X < float(0)) || ScreenPos.X > float(Canvas.SizeX)) || ScreenPos.Y < float(0)) || ScreenPos.Y > float(Canvas.SizeY))
+    {
+        return;
+    }
+    PlayerIcon = ((PlayerOwner.GetTeamNum() == 0) ? KFPRI.CurrentPerkClass.default.PerkIcon : GenericHumanIconTexture);
+    Canvas.SetDrawColor(255, 255, 255, 255);
+    Canvas.SetPos(ScreenPos.X, ScreenPos.Y);
+    Canvas.DrawTile(PlayerIcon, PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256);
 }
 
 event OnLostFocusPause(bool bEnable)
@@ -482,4 +592,5 @@ defaultproperties
     PlayerStatusBarBGTexture=Texture2D'EngineResources.WhiteSquareTexture'
     PlayerStatusBarLengthMax=150
     PlayerStatusIconSize=32
+    GenericHumanIconTexture=Texture2D'UI_PerkIcons_TEX.UI_Horzine_H_Logo'
 }

@@ -29,8 +29,23 @@ package tripwire.controls
             addEventListener(FocusEvent.FOCUS_IN,this.handleFocusIn,false,0,true);
         }
         
-        protected function handleFocusIn(e:FocusEvent) : *
+        override public function get enabled() : Boolean
         {
+            return super.enabled;
+        }
+        
+        override public function set enabled(param1:Boolean) : void
+        {
+            super.enabled = param1;
+            focusable = param1;
+        }
+        
+        protected function handleFocusIn(param1:FocusEvent) : *
+        {
+            if(!this.enabled)
+            {
+                return;
+            }
             addEventListener(FocusEvent.FOCUS_OUT,this.handleFocusOut,false,0,true);
             removeEventListener(FocusEvent.FOCUS_IN,this.handleFocusIn);
             if(!selected)
@@ -39,8 +54,12 @@ package tripwire.controls
             }
         }
         
-        protected function handleFocusOut(e:FocusEvent) : *
+        protected function handleFocusOut(param1:FocusEvent) : *
         {
+            if(!this.enabled)
+            {
+                return;
+            }
             addEventListener(FocusEvent.FOCUS_IN,this.handleFocusIn,false,0,true);
             removeEventListener(FocusEvent.FOCUS_OUT,this.handleFocusOut);
             if(!selected)
@@ -49,46 +68,62 @@ package tripwire.controls
             }
         }
         
-        override protected function handleMouseRollOver(event:MouseEvent) : void
+        override protected function handleMouseRollOver(param1:MouseEvent) : void
         {
-            super.handleMouseRollOver(event);
+            if(!this.enabled)
+            {
+                return;
+            }
+            super.handleMouseRollOver(param1);
             if(!selected)
             {
                 this.highlightButton();
             }
         }
         
-        override protected function handleMouseRollOut(event:MouseEvent) : void
+        override protected function handleMouseRollOut(param1:MouseEvent) : void
         {
-            super.handleMouseRollOut(event);
+            if(!this.enabled)
+            {
+                return;
+            }
+            super.handleMouseRollOut(param1);
             if(!selected)
             {
                 this.unhighlightButton();
             }
         }
         
-        override protected function handleMousePress(event:MouseEvent) : void
+        override protected function handleMousePress(param1:MouseEvent) : void
         {
-            super.handleMousePress(event);
+            if(!this.enabled)
+            {
+                return;
+            }
+            super.handleMousePress(param1);
             if(Extensions.gfxProcessSound != null)
             {
                 Extensions.gfxProcessSound(this,"ButtonSoundTheme",this.clickSoundEffect);
             }
         }
         
-        override protected function handlePress(controllerIndex:uint = 0) : void
+        override protected function handlePress(param1:uint = 0) : void
         {
-            super.handlePress(controllerIndex);
+            if(!this.enabled)
+            {
+                return;
+            }
+            super.handlePress(param1);
             if(Extensions.gfxProcessSound != null)
             {
                 Extensions.gfxProcessSound(this,"ButtonSoundTheme",this.clickSoundEffect);
             }
         }
         
-        override public function set selected(value:Boolean) : void
+        override public function set selected(param1:Boolean) : void
         {
-            super.selected = value;
-            if(!value)
+            super.selected = param1;
+            if(!param1)
             {
                 this.unhighlightButton();
             }

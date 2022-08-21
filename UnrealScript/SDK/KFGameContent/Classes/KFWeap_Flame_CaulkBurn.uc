@@ -175,7 +175,7 @@ defaultproperties
     HippedRecoilModifier=1.5
 
     // Inventory
-	InventorySize=6
+	InventorySize=5
 	GroupPriority=25
 	WeaponSelectTexture=Texture2D'WEP_UI_CaulkBurn_TEX.UI_WeaponSelect_CaulkNBurn'
 

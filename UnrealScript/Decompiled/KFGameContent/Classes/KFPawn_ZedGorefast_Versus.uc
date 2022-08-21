@@ -14,15 +14,18 @@ defaultproperties
     bVersusZed=true
     ThirdPersonViewOffset=(OffsetHigh=(X=-175,Y=50,Z=25),OffsetMid=(X=-140,Y=50,Z=-10),OffsetLow=(X=-220,Y=50,Z=50))
     begin object name=MeleeHelper class=KFMeleeHelperAI
-        BaseDamage=25
+        BaseDamage=20
+        PlayerDoorDamageMultiplier=5
         MeleeImpactCamScale=0.2
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedGorefast_Versus.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
     DoshValue=28
     XPValues=44
-    VulnerableDamageTypes=/* Array type was not detected. */
-    ResistantDamageTypes=/* Array type was not detected. */
+    DamageTypeModifiers=/* Array type was not detected. */
+    MinBlockFOV=1
+    BlockingDamageModifier=0.05
+    MeleeBlockingDamageModifier=0.25
     SpecialMoveCooldowns=/* Array type was not detected. */
     LocalizationKey=KFPawn_ZedGorefast
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -31,10 +34,10 @@ defaultproperties
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedGorefast_Versus.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     HitZones=/* Array type was not detected. */
-    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedGorefast_Versus.Afflictions'
-    InstantIncaps=/* Array type was not detected. */
-    SprintSpeed=580
-    SprintStrafeSpeed=350
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedGorefast_Versus.Afflictions'
+    IncapSettings=/* Array type was not detected. */
+    SprintSpeed=550
+    SprintStrafeSpeed=300
     TeammateCollisionRadiusPercent=0.3
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
@@ -51,8 +54,8 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedGorefast_Versus.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedGorefast_Versus.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedGorefast_Versus.DialogAkSoundComponent'
-    GroundSpeed=320
-    Health=275
+    GroundSpeed=250
+    Health=500
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

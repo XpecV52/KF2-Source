@@ -764,6 +764,32 @@ function string GetPlayerNickname(byte LocalUserNum)
 	return LoggedInPlayerName;
 }
 
+//@HSL_BEGIN - JRO - 3/21/2016 PS4 Sessions - Make sure they have the privileges needed to play online
+/**
+ * Delegate called when a user's privilege level has been checked
+ *
+ * @param LocalUserNum -  the player that checked a privilege level
+ * @param Privilege - the privilege that was checked
+ * @param PrivilegeLevel - the privilege level for the given user for the requested Privilege
+ * @param bDiffersFromHint - does the returned privilege level differ from the hint that was given earlier?
+ */
+delegate OnPrivilegeLevelChecked(byte LocalUserNum, EFeaturePrivilege Privilege, EFeaturePrivilegeLevel PrivilegeLevel);
+
+/**
+ * Sets the delegate used to notify the gameplay code that a privilege check was completed
+ *
+ * @param PrivilegeDelegate the delegate to use for notifications
+ */
+function AddPrivilegeLevelCheckedDelegate(delegate<OnPrivilegeLevelChecked> PrivilegeDelegate);
+
+/**
+ * Removes the specified delegate from the notification list
+ *
+ * @param PrivilegeDelegate the delegate to use for notifications
+ */
+function ClearPrivilegeLevelCheckedDelegate(delegate<OnPrivilegeLevelChecked> PrivilegeDelegate);
+//@HSL_END
+
 /**
  * Determines whether the player is allowed to play online
  *
@@ -3147,6 +3173,18 @@ function ClearCrossTitleProfileSettings(byte LocalUserNum,int TitleId);
  */
 function bool ShowCustomMessageUI(byte LocalUserNum,const out array<UniqueNetId> Recipients,string MessageTitle,string NonEditableMessage,optional string EditableMessage);
 
+//@HSL_BEGIN - JRO - 5/17/2016 - PS4 Activity Feeds
+function PostActivityFeedBossKill(string BossName, string MapName);
+function PostActivityFeedTeamAward(string AwardName);
+function PostActivityFeedPerkLevelUp(string PerkClassName, int Level);
+//@HSL_END
+
+//@HSL_BEGIN - BWJ - 5-26-16 - Support for reading store data
+function ReadStoreData();
+delegate OnStoreDataRead( bool bSuccessful );
+function AddStoreDataReadCompleteDelegate( delegate<OnStoreDataRead> InDelegate );
+function ClearStoreDataReadCompleteDelegate( delegate<OnStoreDataRead> InDelegate ); 
+//@HSL_END
 
 /**
  * Resets the players stats (and achievements, if specified)
@@ -3685,6 +3723,7 @@ native private function SubmitStatValidation(qword UserId, int StatId, int Value
 // Inventory
 native function GetItemDefs();
 native function RefreshInventory();
+native function OpenMarketPlaceSearch(ItemProperties Item);
 native function OpenItemPurchaseOverlay(int SKU);
 native function OpenURL(string WebsiteLink);
 
@@ -3710,7 +3749,7 @@ native function bool CheckPlayerGroup(UniqueNetId Group);
 //@zombie_mod_begin
 function bool AddInGamePost( int InPostID, optional string InPostParam );
 function bool ShowGamerCardUIByUsername(byte LocalUserNum, string UserName);
-function bool RecordPlayersRecentlyMet( byte LocalUserNum, out array<UniqueNetID> Players, string GameDescription );
+function bool RecordPlayersRecentlyMet( byte LocalUserNum, out array<string> Players, string GameDescription ); //@HSL_BEGIN - JRO - 4/28/2016 - PS4 needs player names
 // @zombie_ps4_end
 
 defaultproperties

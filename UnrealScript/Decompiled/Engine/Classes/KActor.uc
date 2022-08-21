@@ -251,6 +251,10 @@ simulated function OnTeleport(SeqAct_Teleport inAction)
 
 simulated function Reset()
 {
+    if(bDeleteMe)
+    {
+        return;
+    }
     StaticMeshComponent.SetRBLinearVelocity(vect(0, 0, 0));
     StaticMeshComponent.SetRBAngularVelocity(vect(0, 0, 0));
     StaticMeshComponent.SetRBPosition(InitialLocation);

@@ -16,6 +16,7 @@ package tripwire.controls
         public function GearLineRenderer()
         {
             super();
+            defaultColor = 14538703;
         }
         
         override public function setData(param1:Object) : void

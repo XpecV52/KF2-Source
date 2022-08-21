@@ -12,53 +12,31 @@ class KFPawn_Human_Versus extends KFPawn_Human
 simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bForce)
 {
     super.SetCharacterArch(Info, bForce);
-    SetGameplayMICParams();
+    UpdateGameplayMICParams();
 }
 
-simulated function SetGameplayMICParams()
+simulated function UpdateGameplayMICParams()
 {
     local PlayerController PC;
+    local MaterialInstanceConstant MIC;
 
-    super(KFPawn).SetGameplayMICParams();
+    super(KFPawn).UpdateGameplayMICParams();
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
         PC = GetALocalPlayerController();
         if(PC != none)
         {
-            if(BodyMIC != none)
+            foreach CharacterMICs(MIC,)
             {
-                BodyMIC.SetScalarParameterValue('Scalar_Zedbait', ((PC.GetTeamNum() == 255) ? 1 : 0));
-            }
-            if(HeadMIC != none)
-            {
-                HeadMIC.SetScalarParameterValue('Scalar_Zedbait', ((PC.GetTeamNum() == 255) ? 1 : 0));
-            }
+                MIC.SetScalarParameterValue('Scalar_Zedbait', ((PC.GetTeamNum() == 255) ? 1 : 0));                
+            }            
         }
     }
 }
 
 simulated function NotifyLocalPlayerTeamReceived()
 {
-    SetGameplayMICParams();
-}
-
-event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
-{
-    local int OldHealth, AppliedDamage;
-
-    OldHealth = Health;
-    super.TakeDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
-    if(OldHealth > Health)
-    {
-        AppliedDamage = OldHealth - Health;
-    }
-    if(AppliedDamage > 0)
-    {
-        if(KFGameInfo_VersusSurvival(WorldInfo.Game) != none)
-        {
-            KFGameInfo_VersusSurvival(WorldInfo.Game).ScoreDamage(AppliedDamage, InstigatedBy, Controller, self);
-        }
-    }
+    UpdateGameplayMICParams();
 }
 
 defaultproperties
@@ -84,7 +62,7 @@ defaultproperties
     object end
     // Reference: SkeletalMeshComponent'Default__KFPawn_Human_Versus.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
-    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_Human_Versus.Afflictions'
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_Human_Versus.Afflictions'
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

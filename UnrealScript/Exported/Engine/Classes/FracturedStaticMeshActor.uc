@@ -89,6 +89,9 @@ var() bool bShouldSaveForCheckpoint;
 /** If set, fractures parts are destroyed on any collision */
 var(KFFracturedMeshActor) bool	bDestroyFragmentsOnImpact;
 
+/** Used by reset system to determine if actor needs to be processed */
+var transient bool bHasBeenDirtied;
+
 
 // (cpptext)
 // (cpptext)
@@ -366,6 +369,11 @@ simulated event TakeDamage(int Damage, Controller EventInstigator, vector HitLoc
 	}
 	//`log("FSM:TAKEDAMAGE"@HitInfo.Item@ChunkHealth[HitInfo.Item]);
 
+
+	// Dirty actor for reset
+	bHasBeenDirtied = true;
+
+
 	// If its hit zero health, hide part and spawn part.
 	if(ChunkHealth[HitInfo.Item] <= 0)
 	{
@@ -500,6 +508,11 @@ simulated event Explode()
 	local FracturedStaticMeshPart FracPart;
 	local float PartScale;
 
+
+	// Dirty actor for reset
+	bHasBeenDirtied = true;
+
+
 	FracMesh = FracturedStaticMesh(FracturedStaticMeshComponent.StaticMesh);
 
 	// Iterate over all visible fragments spawning them
@@ -549,6 +562,10 @@ simulated event HideOneFragment()
 		{
 			FragmentVis[i] = 0;
 			FracturedStaticMeshComponent.SetVisibleFragments(FragmentVis);
+
+			// Dirty actor for reset
+			bHasBeenDirtied = true;
+
 			return; // done!
 		}
 	}
@@ -592,6 +609,11 @@ simulated event SetLoseChunkReplacementMaterial()
 		return;
 	}
 
+
+	// Dirty actor for reset
+	bHasBeenDirtied = true;
+
+
 	FracMesh = FracturedStaticMesh(FracturedStaticMeshComponent.StaticMesh);
 
 	// Check override in component before one set in mesh
@@ -607,7 +629,12 @@ simulated event SetLoseChunkReplacementMaterial()
 	// If we have a material - apply it
 	if(LoseChunkOutsideMat != None)
 	{
-		MI_LoseChunkPreviousMaterial = FracturedStaticMeshComponent.GetMaterial( FracMesh.OutsideMaterialIndex ).GetMaterial();
+
+		// Base engine version for some reason uses the parent material instead of the actual material, which doesn't work.
+		MI_LoseChunkPreviousMaterial = FracturedStaticMeshComponent.GetMaterial( FracMesh.OutsideMaterialIndex );
+
+
+
 		FracturedStaticMeshComponent.SetMaterial(FracMesh.OutsideMaterialIndex, LoseChunkOutsideMat);
 	}
 }
@@ -638,6 +665,35 @@ simulated function NotifyHitByExplosion(Controller InstigatorController, float D
 	}
 }
 
+
+/** Level was reset without reloading */
+simulated function Reset()
+{
+	if( !bHasBeenDirtied )
+	{
+		return;
+	}
+
+	// Reset dirtied flag
+	bHasBeenDirtied = false;
+
+	// Reset all hidden chunks (destroyed chunks) back to their visible states
+	ResetVisibility();
+
+	// Reset chunk health (individual chunks)
+	ResetHealth();
+
+	// Reset collision
+	FracturedStaticMeshComponent.SetBlockRigidBody( true );	
+
+	// Switch back to initial material
+	if( MI_LoseChunkPreviousMaterial != none )
+	{
+		FracturedStaticMeshComponent.SetMaterial( FracturedStaticMesh(FracturedStaticMeshComponent.StaticMesh).OutsideMaterialIndex, MI_LoseChunkPreviousMaterial );
+		MI_LoseChunkPreviousMaterial = none;
+	}
+}
+
 defaultproperties
 {
    MaxPartsToSpawnAtOnce=6
@@ -664,13 +720,14 @@ defaultproperties
    FractureCullMaxDistance=4096.000000
    Components(0)=FracturedSkinnedComponent0
    Components(1)=FracturedStaticMeshComponent0
-   CollisionType=COLLIDE_CustomDefault
+   CollisionType=COLLIDE_BlockAll
    bNoDelete=True
    bWorldGeometry=True
    bRouteBeginPlayEvenIfStatic=False
    bGameRelevant=True
    bMovable=False
    bCanBeDamaged=True
+   BlockRigidBody=True
    bCollideActors=True
    bBlockActors=True
    bProjTarget=True

@@ -18,11 +18,33 @@ enum ELoginStatus
     LS_MAX
 };
 
+enum EFeaturePrivilege
+{
+    FP_OnlinePlay,
+    FP_CommunicationText,
+    FP_CommunicationVideo,
+    FP_CommunicationVoice,
+    FP_ShareUserCreatedContent,
+    FP_PurchaseContent,
+    FP_ViewPlayerProfile,
+    FP_ShowPresenceInformation,
+    FP_RecordDVRClips,
+    FP_CloudStorage,
+    FP_PremiumContent,
+    FP_PremiumVideoContent,
+    FP_BrowseInternet,
+    FP_SocialNetworkSharing,
+    FP_KinectSharing,
+    FP_FitnessUpload,
+    FP_MAX
+};
+
 enum EFeaturePrivilegeLevel
 {
     FPL_Disabled,
     FPL_EnabledFriendsOnly,
     FPL_Enabled,
+    FPL_Unknown,
     FPL_MAX
 };
 
@@ -58,6 +80,15 @@ enum EOnlineEnumerationReadState
     OERS_Done,
     OERS_Failed,
     OERS_MAX
+};
+
+enum OnGameInviteAcceptedResult
+{
+    OGIAR_Success,
+    OGIAR_GeneralFailure,
+    OGIAR_ServerActivity,
+    OGIAR_WrongAccount,
+    OGIAR_MAX
 };
 
 enum EOnlineFriendState
@@ -582,10 +613,11 @@ struct native SocialPostLinkInfo extends SocialPostImageInfo
 
 struct native CurrentInventoryEntry
 {
-    var UniqueNetId Instance;
-    var int Definition;
-    var int Quantity;
+    var const UniqueNetId Instance;
+    var const int Definition;
+    var const int Quantity;
     var int NewlyAdded;
+    var int LastUsedTime;
 
     structdefaultproperties
     {
@@ -593,12 +625,15 @@ struct native CurrentInventoryEntry
         Definition=0
         Quantity=0
         NewlyAdded=0
+        LastUsedTime=0
     }
 };
 
 struct native ItemProperties
 {
     var int Definition;
+    var string ProductId;
+    var string SignedOfferId;
     var string Name;
     var OnlineSubsystem.ItemType Type;
     var OnlineSubsystem.ItemRarity Rarity;
@@ -617,6 +652,8 @@ struct native ItemProperties
     structdefaultproperties
     {
         Definition=0
+        ProductId=""
+        SignedOfferId=""
         Name=""
         Type=ItemType.ITP_WeaponSkin
         Rarity=ItemRarity.ITR_Common
@@ -686,11 +723,15 @@ var config int BuildIdOverride;
 var config string IniLocPatcherClassName;
 var transient IniLocPatcher Patcher;
 var config float AsyncMinCompletionTime;
-var array<CurrentInventoryEntry> CurrentInventory;
+var const array<CurrentInventoryEntry> CurrentInventory;
 var array<ItemProperties> ItemPropertiesList;
 var array<ExchangeRuleSets> ExchangeRuleSetList;
 var delegate<OnInventoryReadComplete> __OnInventoryReadComplete__Delegate;
 var delegate<OnReadOnlineAvatarComplete> __OnReadOnlineAvatarComplete__Delegate;
+var delegate<OnReadOnlineAvatarByNameComplete> __OnReadOnlineAvatarByNameComplete__Delegate;
+
+// Export UOnlineSubsystem::execOpenMarketPlaceSearch(FFrame&, void* const)
+native function OpenMarketPlaceSearch(ItemProperties Item);
 
 // Export UOnlineSubsystem::execOpenItemPurchaseOverlay(FFrame&, void* const)
 native function OpenItemPurchaseOverlay(int SKU);
@@ -701,11 +742,17 @@ native function OpenURL(string WebsiteLink);
 // Export UOnlineSubsystem::execIsExchangeable(FFrame&, void* const)
 native function int IsExchangeable(int SourceSKU, out array<ExchangeRuleSets> Ret);
 
+// Export UOnlineSubsystem::execClearNewlyAdded(FFrame&, void* const)
+native function ClearNewlyAdded();
+
 // Export UOnlineSubsystem::execExchangeReady(FFrame&, void* const)
 native function bool ExchangeReady(const out ExchangeRuleSets Rule);
 
 // Export UOnlineSubsystem::execExchange(FFrame&, void* const)
 native function bool Exchange(const out ExchangeRuleSets Rule);
+
+// Export UOnlineSubsystem::execExchangeDuplicates(FFrame&, void* const)
+native function int ExchangeDuplicates(const out ExchangeRuleSets Rule);
 
 delegate OnInventoryReadComplete();
 
@@ -725,6 +772,21 @@ function ClearOnInventoryReadCompleteDelegate(delegate<OnInventoryReadComplete> 
     if(RemoveIndex != -1)
     {
         ReadInventoryCompleteDelegates.Remove(RemoveIndex, 1;
+    }
+}
+
+function ClearAllInventoryReadCompleteDelegates()
+{
+    local int I;
+
+    I = 0;
+    J0x0B:
+
+    if(I < ReadInventoryCompleteDelegates.Length)
+    {
+        ReadInventoryCompleteDelegates.Remove(I, 1;
+        ++ I;
+        goto J0x0B;
     }
 }
 
@@ -902,6 +964,25 @@ native function int GetBuildUniqueId();
 // Export UOnlineSubsystem::execGetNumSupportedLogins(FFrame&, void* const)
 native static final function int GetNumSupportedLogins();
 
+function bool IsInSession(name SessionName)
+{
+    local int I;
+
+    I = 0;
+    J0x0B:
+
+    if(I < Sessions.Length)
+    {
+        if(Sessions[I].SessionName == SessionName)
+        {
+            return true;
+        }
+        ++ I;
+        goto J0x0B;
+    }
+    return false;
+}
+
 static function DumpGameSettings(const OnlineGameSettings GameSettings)
 {
     LogInternal("    OnlineGameSettings: " $ string(GameSettings));
@@ -1000,7 +1081,11 @@ function bool RegisterLocalTalker(byte LocalUserNum);
 
 delegate OnReadOnlineAvatarComplete(const UniqueNetId PlayerNetId, Texture2D Avatar);
 
+delegate OnReadOnlineAvatarByNameComplete(const string PlayerName, const string AvatarURL);
+
 function ReadOnlineAvatar(const UniqueNetId PlayerNetId, int Size, delegate<OnReadOnlineAvatarComplete> ReadOnlineAvatarCompleteDelegate);
+
+function ReadOnlineAvatarByName(const string InPlayerName, int Size, delegate<OnReadOnlineAvatarByNameComplete> ReadOnlineAvatarCompleteDelegate);
 
 function bool ResetStats(bool bResetAchievements);
 

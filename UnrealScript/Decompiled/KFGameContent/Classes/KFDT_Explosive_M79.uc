@@ -12,9 +12,8 @@ defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_M79'
     bShouldSpawnPersistentBlood=true
-    KnockdownPower=45
-    StumblePower=42
-    LegStumblePower=42
+    KnockdownPower=150
+    StumblePower=400
     ModifierPerkList=/* Array type was not detected. */
     KDeathVel=300
     KDeathUpKick=1000

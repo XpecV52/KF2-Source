@@ -19,6 +19,8 @@ var const localized string ConfigureMicString;
 var const localized string VocalsString;
 var const localized string BattleChatterString;
 var const localized string PushToVoIPString;
+var float VoIPMin;
+var float VoIPMax;
 
 function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
 {
@@ -32,16 +34,27 @@ function LocalizeText()
     local GFxObject LocalizedObject;
 
     LocalizedObject = Outer.CreateObject("Object");
-    LocalizedObject.SetString("sectionName", SectionNameString);
-    LocalizedObject.SetString("options", OptionsString);
-    LocalizedObject.SetString("header", AudioString);
     LocalizedObject.SetString("master", MasterVolumeString);
     LocalizedObject.SetString("dialog", DialogVolumeString);
     LocalizedObject.SetString("music", MusicString);
     LocalizedObject.SetString("sFx", SFxString);
-    LocalizedObject.SetString("voipVolume", VOIPVolumeString);
-    LocalizedObject.SetString("configureMic", ConfigureMicString);
-    LocalizedObject.SetString("pushToTalk", PushToVoIPString);
+    if(Outer.GetPC().WorldInfo.IsConsoleBuild())
+    {
+        LocalizedObject.SetString("header", (Caps(Class'KFGFxOptionsMenu_Selection'.default.OptionStrings[1]) $ "/") $ Caps(Class'KFGFxOptionsMenu_Selection'.default.OptionStrings[0]));
+        LocalizedObject.SetString("sectionName", Caps(Class'KFGFxOptionsMenu_Selection'.default.OptionStrings[1]));
+        LocalizedObject.SetString("options", Caps(Class'KFGFxOptionsMenu_Selection'.default.OptionStrings[0]));
+        LocalizedObject.SetString("configureMic", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaString);        
+    }
+    else
+    {
+        LocalizedObject.SetString("header", Caps(Class'KFGFxOptionsMenu_Selection'.default.OptionStrings[1]));
+        LocalizedObject.SetString("sectionName", SectionNameString);
+        LocalizedObject.SetString("options", OptionsString);
+        LocalizedObject.SetString("configureMic", ConfigureMicString);
+        LocalizedObject.SetString("voipVolume", VOIPVolumeString);
+        LocalizedObject.SetString("pushToTalk", PushToVoIPString);
+        LocalizedObject.SetString("resetDefault", Localize("KFGFxOptionsMenu_Graphics", "DefaultString", "KFGame"));
+    }
     LocalizedObject.SetString("vocals", VocalsString);
     LocalizedObject.SetString("battleChatter", BattleChatterString);
     LocalizedObject.SetString("close", Class'KFCommon_LocalizedStrings'.default.BackString);
@@ -50,18 +63,20 @@ function LocalizeText()
 
 function InitValues()
 {
-    local float VoIPMin, VoIPMax, VoIPCurrent;
+    local float VoIPCurrent;
 
-    Class'KFGameEngine'.static.GetVoIPVolumeRange(VoIPMin, VoIPMax, VoIPCurrent);
-    SetVoIPMinMax(VoIPMin, VoIPMax);
-    SetFloat("voipVolume", VoIPCurrent);
+    if(!Outer.GetPC().WorldInfo.IsConsoleBuild())
+    {
+        Class'KFGameEngine'.static.GetVoIPVolumeRange(VoIPMin, VoIPMax, VoIPCurrent);
+        SetFloat("voipVolume", (VoIPCurrent / VoIPMax) * float(100));
+        SetBool("bPushToTalk", Class'KFPlayerInput'.default.bRequiresPushToTalk);
+    }
     SetFloat("masterVolume", Class'KFGameEngine'.default.MasterVolumeMultiplier);
     SetFloat("dialogVolume", Class'KFGameEngine'.default.DialogVolumeMultiplier);
     SetFloat("musicVolume", Class'KFGameEngine'.default.MusicVolumeMultiplier);
     SetFloat("sFxVolume", Class'KFGameEngine'.default.SFxVolumeMultiplier);
     SetBool("vocalsEnabled", Class'KFGameEngine'.default.bMusicVocalsEnabled);
     SetBool("battleChatter", Class'KFGameEngine'.default.bMinimalChatter);
-    SetBool("bPushToTalk", Class'KFPlayerInput'.default.bRequiresPushToTalk);
 }
 
 function SetVoIPMinMax(float MinVol, float MaxVol)
@@ -89,10 +104,18 @@ function Callback_ConfigureMicPress()
 {
     local OnlineSubsystem Subsystem;
 
-    Subsystem = Class'GameEngine'.static.GetOnlineSubsystem();
-    if(Subsystem != none)
+    if(Outer.GetPC().WorldInfo.IsConsoleBuild())
     {
-        Subsystem.ShowVoIPConfigUI();
+        Manager.SetVariableBool("bStartUpGamma", false);
+        Manager.OpenPopup(1, "", Class'KFGFxOptionsMenu_Graphics'.default.AdjustGammaDescription, Class'KFGFxOptionsMenu_Graphics'.default.ResetGammaString, Class'KFGFxOptionsMenu_Graphics'.default.SetGammaString);        
+    }
+    else
+    {
+        Subsystem = Class'GameEngine'.static.GetOnlineSubsystem();
+        if(Subsystem != none)
+        {
+            Subsystem.ShowVoIPConfigUI();
+        }
     }
 }
 
@@ -169,7 +192,32 @@ function Callback_SFxVolumeChanged(float NewVolume)
 
 function Callback_VOIPVolumeChanged(float NewVolume)
 {
-    Class'KFGameEngine'.static.SetVoIPRecieveVolume(NewVolume);
+    Class'KFGameEngine'.static.SetVoIPRecieveVolume((NewVolume / float(100)) * VoIPMax);
+}
+
+function CallBack_ResetAudioOptions()
+{
+    Manager.OpenPopup(0, Localize("KFGFxOptionsMenu_Graphics", "WarningPromptString", "KFGame"), Localize("KFGFxObject_Menu", "ResetDefaults", "KFGameConsole"), Localize("KFGFxOptionsMenu_Graphics", "OKString", "KFGame"), Localize("KFGFxOptionsMenu_Graphics", "CancelString", "KFGame"), ResetAudioOptions);
+}
+
+function ResetAudioOptions()
+{
+    local float DefaultGamma;
+    local KFGameEngine KFGE;
+
+    if(!Outer.GetPC().WorldInfo.IsConsoleBuild())
+    {        
+    }
+    else
+    {
+        DefaultGamma = Class'KFGameEngine'.default.DefaultGammaMult;
+        KFGE = KFGameEngine(Class'Engine'.static.GetEngine());
+        KFGE.GammaMultiplier = DefaultGamma;
+        KFGE.SaveConfig();
+        Class'KFGameEngine'.static.SetGamma(DefaultGamma);
+        Class'KFGameEngine'.default.GammaMultiplier = DefaultGamma;
+        Class'KFGameEngine'.static.StaticSaveConfig();
+    }
 }
 
 defaultproperties

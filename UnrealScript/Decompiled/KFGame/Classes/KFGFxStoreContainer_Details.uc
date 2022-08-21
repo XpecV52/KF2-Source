@@ -9,6 +9,7 @@ class KFGFxStoreContainer_Details extends KFGFxObject_Container within GFxMovieP
 
 var const localized string AddToCartString;
 var const localized string PreviewString;
+var const localized string LookUpOnMarketString;
 
 function Initialize(KFGFxObject_Menu NewParentMenu)
 {
@@ -29,6 +30,7 @@ function LocalizeText()
 
 defaultproperties
 {
-    AddToCartString="Buy Item"
-    PreviewString="Preview"
+    AddToCartString="BUY ITEM"
+    PreviewString="PREVIEW"
+    LookUpOnMarketString="FIND IN MARKET"
 }

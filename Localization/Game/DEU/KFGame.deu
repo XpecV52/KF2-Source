@@ -10,13 +10,15 @@ LengthStrings[2]="Lang (10 Wellen)"
 
 ServerTypeStrings[0]="Ranked"
 ServerTypeStrings[1]="Ranked – Benutzerdefiniert"
-;ServerTypeStrings[2]="Unranked"
+ServerTypeStrings[1]="Ranked – Benutzerdefiniert"
+ServerTypeStrings[2]="Unranked"
 
 PermissionStrings[0]="Öffentlich"
 PermissionStrings[1]="Nur Freunde"
 PermissionStrings[2]="Privat"
 
 ModeStrings[0]="Überleben"
+ModeStrings[1]="VS Survival"
 
 NoPreferenceString="ALLE"
 OKString="OK"
@@ -32,19 +34,32 @@ NoString="Nein"
 
 DisbandPartyString="GRUPPE AUFLÖSEN"
 LeaveCurrentMenuString="Aktuelles Menü verlassen?"
+ZedString="ZED"
+HumanString="ÜBERLEBENDER"
+SpectatorString="ZUSCHAUER"
+TeamString="TEAM"
+AllString="ALL"
+
+UnableToSwitchTeamString="Unable to Switch Teams"
+NoSwitchReasonString="Switching teams would upset team balance"
+
+
 
 [KFGFxMoviePlayer_Manager]
-FailedSearchTitleString="KEINE SPIEL GEFUNDEN"
-FailedSearchString="Keine Spiel mit den angegebenen Optionen gefunden.  Erweitere deine Suche oder verwende den Server-Browser, um ein Spiel zu finden."
+FailedSearchTitleString="KEIN SPIEL GEFUNDEN"
+FailedSearchString="Kein Spiel mit den angegebenen Optionen gefunden. Bitte erweitere deine Suche oder verwende den Serverbrowser, um ein Spiel zu finden."
 BrowseServersString="SERVER DURCHSUCHEN"
 HasInvitedToGameString=" hat dich zu einem Spiel eingeladen."
 JoinGameString="Spiel beitreten?"
 
 
 [KFGFxObject_Menu]
-LeavePartyTitleString="VERLASSE GRUPPE"
-LeavePartyDescriptionString="Bist du sicher, dass du diese Online-Gruppe verlassen möchtest?"
+LeavePartyTitleString="GRUPPE VERLASSEN"
+LeavePartyDescriptionString="Bist du sicher, dass du diese Onlinegruppe verlassen möchtest?"
 LeaveString="VERLASSEN"
+
+
+
 
 [KFDoorActor]
 WeldIntegrityString="Integrität der Schweißnähte:"
@@ -59,7 +74,7 @@ DifficultyTitle="SCHWIERIGKEIT"
 GameModeTitle="SPIELMODUS"
 ServerTypeString="SERVERTYP"
 PermissionsTitle="BERECHTIGUNGEN"
-WhiteListedTitle="STATISTIK AKTIVIERT"
+WhiteListedTitle="STATISTIK AKTIV"
 LengthTitle="LÄNGE"
 MapTitle="STARTKARTE"
 MutatorTitle="MUTATOREN"
@@ -70,14 +85,39 @@ WhiteListedStrings[0]="JA"
 WhiteListedStrings[1]="NEIN"
 
 FindGameString="HOME"
-LeaveMenuString="Durch Verlassen der Spielerstellung wird deine Gruppe aufgelöst.  Stattdessen Server-Browser verwenden?"
+LeaveMenuString="Durch Verlassen der Spielerstellung wird deine Gruppe aufgelöst. Stattdessen Serverbrowser verwenden?"
 
 CouldNotFindGameTitleString="Kein Spiel gefunden"
-CouldNotFindGameDescriptionString="Es wurden keine Server gefunden, die den Sucheinstellungen entsprechen. Versuche andere Filter oder verwende den Server-Browser."
+CouldNotFindGameDescriptionString="Es wurden keine Server gefunden, die den Sucheinstellungen entsprechen. Versuche andere Filter oder verwende den Serverbrowser."
 
 [KFGFxStartGameContainer_FindGame]
 MultiplayerString="Online-Spielerstellung"
 SoloString="Alleine offline spielen"
+TutorialString="Basic Training"
+
+[StartMenuHelperText]
+modeList0="Survival – PVE battle waves of AI controlled Zeds"
+modeList1="VS Survival – PVP Horzine Mercenaries vs waves of Player and AI controlled Zeds"
+modeList2=""
+difficultyList0="Normal – For beginning players of perk rank 0-5."
+difficultyList1="Hard – For experienced players of perk rank 5-12. There are more Zeds per wave, they move faster, and have more health. There are fewer pickups and you get less dosh."
+difficultyList2="Suicidal – For seasoned players of perk rank 13-25. There are even more Zeds per wave, they use new attacks, and move even faster.  There even fewer pickups, and you get less dosh."
+difficultyList3="Hell on Earth – The most intense challenge for players of perk rank 25. There are still more Zeds per wave and they use new attacks. There are still fewer pickups, and you get still less dosh."
+lengthList0=""
+lengthList1=""
+lengthList2=""
+lengthList3=""
+serverTypeList0="Ranked – Any map, no mods, no friendly fire, 6 players max (if VS Survival this is 12 players max)"
+serverTypeList1="Ranked Stock – Official Maps, no mods, no friendly fire, and 6 players max"
+serverTypeList2="Ranked Custom – Any map, whitelisted mods, any server setting"
+serverTypeList3="Unranked Custom – Non-whitelisted mods (only)"
+privacyList0=""
+privacyList1=""
+privacyList2=""
+privacyList3=""
+inProgressList0=""
+inProgressList1=""
+inProgressList2=""
 
 [KFGFxStartGameContainer_Options]
 BackString="ZURÜCK"
@@ -88,49 +128,40 @@ SoloGameString="EINZELSPIELER"
 LeaveMatchMakingString="VERLASSEN"
 MultiplayerLaunchString="JETZT ONLINE SPIELEN"
 SearchingString="SUCHE ABBRECHEN"
+CancelSearchingString="CANCEL SEARCH"
 ServerTypeString="SERVERTYP"
-StandardServerString="Standard"
+AnyMapServerString="Ranked"
 UnrankedServerString="Unranked"
 CustomServerString="Benutzerdefiniert"
-AllowInProgressString="Laufende Spiele zulassen"
+StandardServerString="Standard"
+AllowInProgressString="Auch laufende Spiele"
 NotStartedString="Nur neue Spiele"
 
 
 [KFGFxStartContainer_MatchMaking]
-OptionsHeaderString="SPIELERSTELLUNG"
+OptionsHeaderString="MATCHMAKING"
 BackString="ZURÜCK"
 FindGameString="SPIEL SUCHEN"
 
 [KFGFxStartContainer_InGameOverview]
-OverviewString="ÜBERSICHT"
+OverviewString="SPIELÜBERSICHT"
 ChangeString="ÄNDERN"
 SharedByString="Geteilt von:"
-SharedContentString="GETEILTER INHALT"
+SharedContentString="GETEILTE INHALTE"
 
 [KFGFxStartContainer_ServerBrowserOverview]
-OverviewString="SPIELEÜBERSICHT"
-DescriptionString="sucht nach einem Spiel im Server-Browser..."
+OverviewString="SPIELÜBERSICHT"
+DescriptionString="sucht nach einem Spiel im Serverbrowser..."
 
 [KFGFxTraderContainer_GameInfo]
 TimeLeftString="VERBLEIBENDE ZEIT"
 WaveString="WELLE"
 BossWaveString="BOSS"
 
-//BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters ma"
-[KFPawn_ZedHansBase]
-BossName="Dr. Hans Volter"
-BossCaptionStrings[0]="Hans ist während seiner Rauchgranaten-Heilungsphase nahezu unverwundbar. Verschwende deine Munition nicht!"
-BossCaptionStrings[1]="Achte auf seinen Energiekern: Hans ist aggressiver, wenn er die Farbe ändert."
-BossCaptionStrings[2]="Ziele auf seinen Energiekern. Er ist seine verwundbare Stelle."
-BossCaptionStrings[3]="Gas von Hans' Granaten bleibt an dir haften wie Bloat-Galle. Meide es!"
-BossCaptionStrings[4]="Seine Schlitzerangriffe sind zu stark, um zu parieren. Du wirst dennoch den vollen Schaden spüren."
-BossCaptionStrings[5]="Achte auf rote Granaten-Warnsignale, die dir zeigen, wo sie landen."
-BossCaptionStrings[6]="Wenn Hans seine Waffen zückt, bleibe außer Sichtweite. Naheliegend, aber wichtig!"
-
 [KFPawn_MonsterBoss]
 BossName="Endgegner"
-BossCaptionStrings[0]="Endgegner-Titel 1"
-BossCaptionStrings[1]="Endgegner-Titel 2"
+BossCaptionStrings[0]="Endgegnertitel 1"
+BossCaptionStrings[1]="Endgegnertitel 2"
 
 [KFGFxTraderContainer_PlayerInfo]
 PlayerHeaderString="INVENTAR"
@@ -138,18 +169,19 @@ SelectPerkString="PERK AUSWÄHLEN"
 
 [KFGFxMenu_ServerBrowser]
 FavoriteString="FAVORIT"
-MultiplayerMenuString="SPIELERSTELLUNG"
+MultiplayerMenuString="MATCHMAKING"
 LeaveMenuString="Durch Verlassen dieses Menüs wird deine Gruppe aufgelöst.  Stattdessen Spielerstellung verwenden?"
 NameString="NAME"
 RefreshString="AKTUALISIEREN"
 GamesFoundString="GEFUNDENE SPIELE:"
 
-ServerBrowserString="SERVER-BROWSER"
+ServerBrowserString="SERVERBROWSER"
 
 JoinString="BEITRETEN"
 PasswordPromptString="PASSWORT EINGEBEN"
 
-RankedString="STATISTIK AKTIVIERT"
+RankedString="STATISTIK AKTIV"
+UnrankedString="STATISTIK DEAKTIVIERT"
 DedicatedString="DEDIZIERT"
 VACSecureString="VAC-GESICHERT"
 InLobbyString="IN LOBBY"
@@ -187,16 +219,16 @@ NoPasswordString="KEIN PASSWORT"
 NoMutatorsString="KEINE MUTATOREN"
 NotFullString="NICHT VOLL"
 NotEmptyString="NICHT LEER"
-NoStatsEnabledString="KEINE RANKED-(Standard-)SERVER"
+NoStatsEnabledString="NUR UNRANKED (Standard)"
 NoRankedCustomString="NICHT BENUTZERDEFINIERT"
-NoUnrankedString="KEINE UNRANKED-SERVER"
+NoUnrankedString="NUR RANKED"
 DedicatedString="DEDIZIERTER SERVER"
 VACSecureString="VAC-GESICHERT"
 InLobbyString="IN LOBBY"
 InProgressString="LÄUFT"
 OnlyStockMapsString="NUR STANDARDKARTEN"
 OnlyCustomMapsString="NUR BENUTZERDEFINIERTE KARTEN"
-LimitServerResultsString="ERGEBNISSE EINSCHRÄNKEN:"
+LimitServerResultsString="MAX. ERGEBNISSE:"
 
 [KFGFxServerBrowser_ServerDetails]
 MutatorsString="MUTATOREN"
@@ -212,7 +244,7 @@ ExitMenuString="VERLASSEN"
 TraderString="AUSRÜSTUNG KAUFEN"
 
 [KFGFxServerBrowser_ServerList]
-LeaveServerBrowserString="SERVER-BROWSER VERLASSEN"
+LeaveServerBrowserString="ZURÜCK"
 DetailsString="SERVERDETAILS"
 SpectateString="ZUSCHAUEN"
 
@@ -229,9 +261,9 @@ MagTitle="MAGAZINGRÖSSE"
 HealAmountTitle="HEILMENGE"
 HealRechargeTitle="AUFLADEZEIT"
 BuyString="KAUF"
-SellString="VERKAUFEN"
-CannotSellString="NICHT MÖGLICH"
-CannotBuyString="NICHT MÖGLICH"
+SellString="VERK."
+CannotSellString="NICHT MÖGL."
+CannotBuyString="NICHT MÖGL."
 FavoriteString="FAVORIT"
 UnfavoriteString="KEIN FAVORIT"
 
@@ -262,16 +294,37 @@ WeaponTypeStrings[9]="Maschinenpistolen"
 
 OffPerkString="Ohne Perk"
 
+[KFGFxHUD_PostRoundMenu]
+RoundResultsString="Round Results"
+MatchResultsString="Overall Winner"
+SurvivorVictory="Survivor Victory!"
+ZEDVictory="Zed Victory!"
+TieString="Tie!"
+YourTeamString="Your Team Wins!"
+OpposingTeamString="Opposing Team Wins!"
+MatchOnGoingString="Switching Teams..."
+
+[KFGFxPostRoundContainer_Team]
+TitleString="Round "
+ScoreString="Score"
+WavesCompleteString="Waves Completed Bonus"
+BossDeadString="Boss Defeated"
+DeathsString="Player Deaths Penalty"
+DamageString="Damage From Boss Penalty"
+TotalString="TOTAL"
+YourTeamString=" (Your Team)"
+
 [KFGFxMenu_PostGameReport]
-MapVoteString="KARTEN-WAHL"
+MapVoteString="KARTENWAHL"
 PlayerStatsString="SPIELERSTATISTIK"
 TeamAwardsString="PREISE"
 PostGameReportString="SPIELBERICHT"
-NextMapString="Nächste Karte in:"
+NextMapString="Nächste Karte:"
 WaveString="WELLE"
 XPString="XP"
 VictoryString="Sieg"
 DefeatString="Niederlage"
+ItemDropTitleString="NEUEN GEGENSTAND ERHALTEN!"
 
 [EphemeralMatchStats]
 MedicineMaster="Medizinmeister"
@@ -279,7 +332,7 @@ MedicineMasterValue="Gesundheit"
 ZedSlayer="Zed-Schlitzer"
 ZedSlayerValue="Kills"
 Enforcer="Vollstrecker"
-EnforcerValue="Unterstützungen"
+EnforcerValue="Assists"
 Destroyer="Zerstörer"
 DestroyerValue="Schaden"
 GiantSlayer="Gewaltiger Schlitzer"
@@ -291,9 +344,24 @@ HeadPopperValue="Kopfschüsse"
 Dominator="Dominator"
 DominatorValue="Endgegner"
 
+Carnage="Carnage"
+Closer="Closer"
+ComboMaker="Combo Maker"
+Grabby="Grabby Pants"
+ZedSupport="Zed Support"
+Zednnihilation="Zednnihilation"
+CarnageValue="Zed Damage Dealt"
+CloserValue="Survivor Kills"
+ComboMakerValue="Zed Assist"
+GrabbyValue="Players Grabbed"
+ZedSupportValue="Indirect Damage"
+ZednnihilationValue="Kills in Wave"
+
+
+
 EPB_Healing="Heilung"
 EPB_Kills="Kills"
-EPB_Assists="Unterstützungen"
+EPB_Assists="Assists"
 EPB_LargeZedKill="Große-Zed-Kills"
 EPB_Dosh="Verdiente Kohle"
 EPB_HeadShots="Kopfschüsse"
@@ -303,7 +371,7 @@ EPB_DoorWelding="Türschweißen"
 
 EPB_HealingValue="Gesundheit"
 EPB_KillsValue="Kills"
-EPB_AssistsValue="Unterstützungen"
+EPB_AssistsValue="Assists"
 EPB_LargeZedKillValue="Große Zeds"
 EPB_DoshValue="Kohle"
 EPB_HeadShotsValue="Kopfschüsse"
@@ -312,27 +380,35 @@ EPB_PistolKillsValue="Kills"
 EPB_DoorWeldingValue="Schweißstellen"
 
 [KFGFxPostGameContainer_TeamAwards]
-TeamAwardsString="TEAM-PREISE"
-PersonalBestsString="PERSÖNLICHE BESTZEITEN"
+TeamAwardsString="TEAMPREISE"
+PersonalBestsString="PERSÖNLICHE STATISTIK"
 NoTeamAwardsGivenString="KEINE PREISE VERGEBEN"
 
 [KFGFxPostGameContainer_MapVote]
 YourVoteString="DEINE WAHL"
-TopVotesString="TOP-WAHL"
+TopVotesString="TOPWAHL"
 
 [KFGFxPostGameContainer_PlayerStats]
-AchievementsString="Erfolge"
+AchievementsString="Errungenschaften"
 KnifeString="Messer"
-TopWeaponsString="TOP-WAFFEN"
+TopWeaponsString="TOPWAFFEN"
 ZedKillsString="ZED-KILLS"
+TotalDamageDealtString="Gesamter ausgeteilter Schaden:"
+HeadShotsString="Kopfschüsse:"
+LargeZedKillsString="Große-Zed-Kills:"
+TotalDoshEarnedString="Gesamte verdiente Kohle:"
+TotalKillsString="Gesamte Kills:"
+AssistsString="Assists:"
+DamageDealtString="Ausgeteilter Schaden:"
+
 
 
 [KFGFxWidget_BaseParty]
-PlayerReadyString="[ BEREIT ]"
-WaitingString="WARTE AUF SPIELER"
+PlayerReadyString="[BEREIT]"
+WaitingString="WARTEN AUF SPIELER"
 DeployingString="START IN "
-CreatePartyString="JMD. EINLADEN"
-ReadyString="VORBEREITEN"
+CreatePartyString="EINLADEN"
+ReadyString="BEREIT"
 LeaveString="VERLASSEN"
 SquadString="TEAM"
 SoloString="SOLO"
@@ -340,19 +416,27 @@ DefaultPlayerName="Spieler"
 
 PartyLeaderSearchingForMatchString="sucht nach einem Spiel..."
 PartyLeaderIsUpdatingMatchOptionsString="legt Spieloptionen fest..."
-PartyLeaderInServerBrowserString="durchsucht den Server-Browser..."
+PartyLeaderInServerBrowserString="durchsucht den Serverbrowser..."
 PartyLeaderInOtherMenuString="ist in einem anderen Menü..."
-SearchingForGameString="Suche nach Online-Spiel..."
+SearchingForGameString="Suchen nach Onlinespiel..."
 
-PartHostLeftString="Der Gruppen-Host hat das Spiel verlassen."
-PartyLeaderChangedString="ist nun der neue Gruppen-Host."
+PartHostLeftString="Der Gruppenleiter hat das Spiel verlassen."
+PartyLeaderChangedString="ist nun der neue Gruppenleiter."
 
-MuteString="Spieler stumm schalten"
-UnmuteString="Spieler laut schalten"
+MuteString="Spieler stummschalten"
+UnmuteString="Spieler lautschalten"
 AddFriendString="Freund hinzufügen"
 RemoveFriendString="Freund entfernen"
 VoteKickString="Spieler rauswerfen"
-ViewProfileString="Profil ansehen"
+ViewProfileString="Profil anzeigen"
+
+RemainingString="Verbleibend:"
+DownLoadingString="Download läuft:"
+PartyLeaderString="Anführer"
+
+[KFGFxWidget_PartyInGame_Versus]
+SwitchTeamsString="Team wechseln"
+balanceWarningString="WARNUNG: Die Teams werden automatisch ausgeglichen"
 
 [KFGFxMenu_Gear]
 GearHeaderString="AUSRÜSTUNG ANPASSEN"
@@ -364,6 +448,47 @@ SkinsString="SKINS"
 AttachmentsString="ZUBEHÖR"
 BackString="ZURÜCK"
 NoneString="KEINES"
+WeaponsString="Waffen"
+WeaponsInfoString="Anpassen"
+
+[KFGFxMenu_Inventory]
+RecycleOneString="Recycle One"
+RecycleDuplicatesString="Recycle Duplicates"
+InventoryString="INVENTAR"
+UseString="BENUTZEN"
+EquipString="AUSRÜSTEN"
+UnequipString="ABLEGEN"
+AllString="Alle"
+WeaponSkinString="Waffen-Skins"
+CosmeticString="Kosmetika"
+CraftingMatsString="Herstellung"
+ItemString="Gegenstände"
+FiltersString="Filter"
+MoreItemsString="Um diesen Gegenstand zu benutzen, wird ein anderer Gegenstand benötigt."
+FailedToExchangeString="KISTE KANN NICHT GEÖFFNET WERDEN"
+RecycleString="WIEDERVERWERTEN"
+CraftString="HERSTELLEN"
+CraftCosmeticString="CRAFT COSMETIC"
+CraftWeaponString="CRAFT WEAPON SKIN"
+CraftWeaponStrings[0]="Uncommon\nWeapon Skin"
+CraftWeaponStrings[1]="Rare\nWeapon Skin"
+CraftWeaponStrings[2]="Exceptional\nWeapon Skin"
+CraftWeaponStrings[3]="Master Crafted\nWeapon Skin"
+CraftCosmeticStrings[0]="Uncommon\nCosmetic"
+CraftCosmeticStrings[1]="Rare\nCosmetic"
+CraftCosmeticStrings[2]="Exceptional\nCosmetic"
+CraftCosmeticStrings[3]="Master Crafted\nCosmetic"
+RecycleWarningString="Warning, this cannot be undone. This will destroy the selected item and replace it with a crafting material item"
+RecycleItemString="Gegenstand wiederverwerten?"
+ConfirmCraftItemString="Crafting this item will use resources and cannot be undone"
+CraftItemString="Confirm Craft Item?"
+FailedToCraftItemString="Failed to Craft Item"
+CraftRequirementString="Insufficient quantity of required crafting materials"
+CraftCosmeticDescriptionString="You can craft new cosmetic items from this menu out of cosmetic material. You can obtain cosmetic material by recycling existing cosmetic items. To recycle, select an item and press recycle"
+CraftWeaponDescriptionString="You can craft new weapon skin items from this menu out of weapon skin material. You can obtain weapon skin material by recycling existing weapon skin items. To recycle, select an item and press recycle"
+RequiresString="Benötigt: "
+PurchaseKeyString="BUY KEY: "
+LookUpOnMarketString="Lookup on Market"
 
 [KFGFxPerksContainer]
 LevelString=""
@@ -396,6 +521,25 @@ EndOfWaveString="Perk-Änderungen werden am Ende der Welle übernommen!"
 ChangesAppliedOnCloseString="Perk-Änderungen werden nach dem Schließen dieses Menüs übernommen!"
 OncePerWaveString="Perk-Änderungen können nur einmal pro Welle vorgenommen werden!"
 
+[KFGFxMenu_Store]
+StoreString="SHOP"
+
+[KFGFxStoreContainer_Cart]
+CartString="Warenkorb"
+TotalString="Summe"
+CheckOutString="Kasse"
+
+[KFGFxStoreContainer_Main]
+WeaponSkinsString="Waffen-Skins"
+MarketConsumablesString="Market Crates/USBs"
+MarketCosmeticsString="Market Cosmetics"
+
+[KFGFxStoreContainer_Details]
+LookUpOnMarketString="FIND IN MARKET"
+AddToCartString="Gegenstand kaufen"
+PreviewString="Vorschau"
+
+
 [KFGFxWidget_ButtonPrompt]
 CancelString="ZURÜCK"
 ConfirmString="AUSWÄHLEN"
@@ -404,15 +548,15 @@ ConfirmString="AUSWÄHLEN"
 MenuStrings[0]="HOME"
 MenuStrings[1]="PERKS"
 MenuStrings[2]="AUSRÜSTUNG"
-MenuStrings[3]="INVENTORY"
-MenuStrings[4]="STORE"
+MenuStrings[3]="INVENTAR"
+MenuStrings[4]="SHOP"
 MenuStrings[5]="OPTIONEN"
 MenuStrings[6]="BEENDEN"
 
-ServerBrowserString="SERVER-BROWSER"
-MatchmakingString="SUCHE"
+ServerBrowserString="SERVERBROWSER"
+MatchmakingString="MATCHMAKING"
 SoloString="SOLO"
-OverviewString="SPIELEÜBERSICHT"
+OverviewString="SPIELÜBERSICHT"
 
 TitleStrings[0]="Willst du den Kampf schon verlassen?"
 TitleStrings[1]="Willst du schon gehen?"
@@ -446,8 +590,11 @@ ChangeCameraString="KAMERA WECHSELN"
 PlayerString="SPIELER"
 DoshString="KOHLE"
 KillsString="KILLS"
-AssistsString="UNTERSTÜTZUNGEN"
+AssistsString="ASSISTS"
 PingString="PING"
+
+[KFGFxHUD_ScoreboardVersusWidget]
+ScoreString=SCORE
 
 [KFGFxHUD_PlayerStatus]
 EXPString="XP"
@@ -462,17 +609,22 @@ PrimaryString="PRIMÄR"
 EquiptmentString="AUSRÜSTUNG"
 MeleeString="NAHKAMPF"
 SecondaryString="SEKUNDÄR"
+ThrowString="WAFFE WERFEN"
 
 [KFGFxWidget_KickVote]
 VoteKickString="Spieler rauswerfen?"
 
+[KFLocalMessage_PlayerKills]
+KilledString="tötete"
+ZedString="ZEDs"
+
 [KFLocalMessage_VoiceComms]
-VoiceCommsOptionStrings[0]="HEILUNG ANFORDERN"
-VoiceCommsOptionStrings[1]="KOHLE ANFORDERN"
-VoiceCommsOptionStrings[2]="HILFE ANFORDERN"
+VoiceCommsOptionStrings[0]="BRAUCHE HEILUNG"
+VoiceCommsOptionStrings[1]="BRAUCHE KOHLE"
+VoiceCommsOptionStrings[2]="BRAUCHE HILFE"
 VoiceCommsOptionStrings[3]="ZEDS VERSPOTTEN"
-VoiceCommsOptionStrings[4]="FOLGE MIR"
-VoiceCommsOptionStrings[5]="GEHE ZUR HÄNDLERIN"
+VoiceCommsOptionStrings[4]="MIR NACH"
+VoiceCommsOptionStrings[5]="ZUR HÄNDLERIN"
 VoiceCommsOptionStrings[6]="POSITIV"
 VoiceCommsOptionStrings[7]="NEGATIV"
 
@@ -494,13 +646,15 @@ OptionStrings[4]="Mitwirkende"
 AudioString="AUDIOOPTIONEN"
 SectionNameString="LAUTSTÄRKE"
 OptionsString="OPTIONEN"
-MusicString="In-Game-Musiklautstärke"
-SFxString="Spiellautstärke"
-VOIPVolumeString="Voice-Chat-Annahmelautstärke"
+MasterVolumeString="Gesamtlautstärke"
+DialogVolumeString="Dialoglautstärke"
+MusicString="Musiklautstärke"
+SFxString="Effektlautstärke"
+VOIPVolumeString="Sprachchatlautstärke"
 ConfigureMicString="MIKROFON KONFIGURIEREN"
 VocalsString="Gesang"
-BattleChatterString="Kampfgeräusch minimieren"
-PushToVoIPString="VoIP anstoßen"
+BattleChatterString="Kampfgeräusche minimieren"
+PushToVoIPString="Push-to-Talk"
 
 [KFGFxOptionsMenu_Graphics]
 KeepSettingsPromptString="Diese Videoeinstellungen verwenden?"
@@ -527,11 +681,11 @@ BasicString="Basis"
 AdvancedString="Erweitert"
 EffectsString="Effekte"
 
-AspectRatioString="Seitenverhältnis"
+AspectRatioString="Bildformat"
 ResolutionString="Auflösung"
 GraphicsQualityString="Grafikqualität"
 VSyncString="Vertikale Synchronisation"
-FullscreenString="Display"
+FullscreenString="Anzeige"
 VariableFrameRateString="Variable Bildfrequenz"
 FilmGrainString="Filmkörnung"
 AdjustGammaString="GAMMA ANPASSEN"
@@ -543,10 +697,10 @@ PhysicsLevelOptionStrings[1]="Gibs*"
 PhysicsLevelOptionStrings[2]="Gibs UND Flüssigkeiten*"
 
 PhysicsLevelSuggestionStrings[0]=""
-PhysicsLevelSuggestionStrings[1]="*GeForce® GTX™ 770 oder höher empfohlen"
-PhysicsLevelSuggestionStrings[2]="*GeForce® GTX™ 980 oder höher empfohlen"
+PhysicsLevelSuggestionStrings[1]="*GeForce® GTX™ 770 oder besser empfohlen"
+PhysicsLevelSuggestionStrings[2]="*GeForce® GTX™ 980 oder besser empfohlen"
 
-FlexPopUpString="NVIDIA® FleX ermöglicht die Simulation von Blut und Flüssigkeiten. Diese Einstellung kann sich negativ auf die Leistung auswirken und einen Neustart erforderlich machen."
+FlexPopUpString="NVIDIA® FleX ermöglicht die Simulation von Blut und Flüssigkeiten. Diese Einstellung kann sich negativ auf die Leistung auswirken und einen Neustart erfordern."
 
 EnvironmentDetailsString="Umgebungsdetails"
 FoliageString="Laubdetail"
@@ -655,7 +809,7 @@ AmbientOcclusionStringOptions[1]="SSAO"
 AmbientOcclusionStringOptions[2]="HBAO+"
 
 DepthOfFieldStringOptions[0]="Aus"
-DepthOfFieldStringOptions[1]="SAT-Schärfentiefe"
+DepthOfFieldStringOptions[1]="An"
 
 [KFGFxOptionsMenu_Graphics_DX10]
 AmbientOcclusionStringOptions_DX10[0]="Aus"
@@ -680,8 +834,32 @@ GoreOptionStrings[2]="Hoch"
 NormalString="Normal"
 WiderString="Weit"
 FriendlyHudScaleString="Benutzerfreundliche HUD-Skala"
+KillTickerString="Kill Ticker"
 
 [LocalizedControls]
+ControllerLayoutDefault="Standard"
+ControllerLayoutJumper="Jumper"
+ControllerLayoutQuickDraw="Schnellziehen"
+ControllerLayoutSouthPaw="South Paw"
+
+GBA_TurnLeft="Turn Left"
+GBA_TurnRight="Turn Right"
+GBA_Backward="Rückwärts bewegen"
+GBA_MoveForward="Vorwärts bewegen"
+GBA_WeaponSelect_Gamepad="Waffenauswahl (Halten)"
+GBA_Reload_Gamepad="Nachladen"
+GBA_StrafeLeft_Gamepad="Bewegungssteuerung"
+GBA_MoveForward_Gamepad="Vorwärts laufen"
+GBA_Look_Gamepad="Sichtsteuerung"
+GBA_Grenade_Gamepad="Granate werfen"
+GBA_TurnLeft_Gamepad="Sichtsteuerung"
+GBA_Look_Gamepad="Sichtsteuerung"
+GBA_DPad_Left_Gamepad="Sprachbefehle"
+GBA_DPad_Up_Gamepad="Heiler ausrüsten"
+GBA_DPad_Right_Gamepad="Throw Dosh"
+GBA_DPad_Down_Gamepad="Taschenlampe ein-/ausschalten"
+
+
 GBA_MoveForward="Vorwärts bewegen"
 GBA_StrafeLeft="Seitlich nach links bewegen"
 GBA_Backward="Rückwärts bewegen"
@@ -691,10 +869,14 @@ GBA_Sprint="Rennen"
 GBA_CrouchToggle="Ducken (Umschalten)"
 GBA_CrouchHold="Ducken (Halten)"
 GBA_SprintAndCrouch="Ducken/Rennen"
+GBA_SprintAndMelee="Nahkampf/Rennen"
+GBA_ShowMenu="Toggle In Game Menu"
 
 GBA_Use="Benutzen/Schweißen (Halten)"
 GBA_Talk="Sprechen"
-GBA_VoiceChat="Voice Chat"
+GBA_TeamTalk="Teamchat"
+GBA_VoiceChat="Sprachchat"
+GBA_PublicVoiceChat="Public Voice"
 GBA_ShowVoiceComms="Sprachbefehle"
 GBA_ShowScores="Ergebnistafel anzeigen"
 GBA_TossMoney="Kohle werfen"
@@ -711,9 +893,10 @@ GBA_TertiaryFire="Nahkampfschlag"
 GBA_ToggleFlashlight="Auf Taschenlampe umschalten"
 GBA_AltFire="Alt.feuer/Abwehren"
 
-GBA_WeaponSelect_Gamepad="Waffenauswahlmenü (Halten)"
+GBA_WeaponSelect_Gamepad="Waffenauswahl (Halten)"
 GBA_NextWeapon="Nächste Waffe"
 GBA_PrevWeapon="Vorherige Waffe"
+GBA_LastWeapon="Zuletzt verwendete Waffe"
 GBA_SwitchWeapon1="Primärwaffe"
 GBA_SwitchWeapon2="Sekundärwaffe"
 GBA_SwitchWeapon3="Nahkampfwaffe"
@@ -721,19 +904,35 @@ GBA_SwitchWeapon4="Ausrüstung"
 GBA_VoteYes="Ja wählen (Halten)"
 GBA_VoteNo="Nein wählen (Halten)"
 
+GBA_VoiceCommReqHealing="REQUEST HEALING"
+GBA_VoiceCommReqDosh="REQUEST DOSH"
+GBA_VoiceCommReqHelp="REQUEST HELP"
+GBA_VoiceCommTauntZeds="TAUNT ZEDS"
+GBA_VoiceCommFollowMe="FOLLOW ME"
+GBA_VoiceCommGetToTheTrader="GET TO THE TRADER"
+GBA_VoiceCommAffirmative="AFFIRMATIVE"
+GBA_VoiceCommNegative="NEGATIVE"
+
 [KFGFxControlsContainer_Input]
 SensitivityString="Empfindlichkeit"
-InvertedString="Invertiert"
+InvertedString="Y invertieren"
 ControllerString="Controller"
 ControllerSensitivityString="Sichtempfindlichk."
-ControllerInvertedString="Y invertieren"
 MouseString="Maus"
+MouseSmoothingString="Mausglättung"
+ZoomSensitivityString="Zoom-Empfindlichkeit"
+ControllerZoomSensitivityString="Zoom-Empfindlichkeit"
+AimAssistLockOnString="Zielhilfe - Zoom einrasten"
+AimAssistRotationString="Zielhilfe - Rotation"
+AimAssistSlowDownString="Zielhilfe - Verlangsamung"
+ForceFeedbackString="Controllervibration"
 
 [KFGFxControlsContainer_Keybinding]
 SectionHeaders[0]="Bewegung"
 SectionHeaders[1]="Interaktion"
 SectionHeaders[2]="Kampf"
 SectionHeaders[3]="Waffenauswahl"
+SectionHeaders[4]="VOICE COMMS"
 
 ResetString="ZURÜCKSETZEN"
 ApplyString="ANWENDEN"
@@ -741,7 +940,7 @@ PressKeyString="[TASTE DRÜCKEN]"
 WarningString="WARNUNG"
 KeyAlreadyBoundString="Taste <%x%> ist bereits belegt mit:"
 RebindString="Neu belegen mit:"
-ClearedString=(Vorherige Tastenbelegung wird gelöscht)
+ClearedString="(Vorherige Tastenbelegung wird gelöscht)"
 CancelString="ABBRECHEN"
 AcceptString="ANNEHMEN"
 IgnoredKeyString="kann möglicherweise nicht mit ignorierter Taste belegt werden"
@@ -752,15 +951,22 @@ LookString="Sichtsteuerung"
 WeaponSelectMenuString="Waffenauswahlmenü (Halten)"
 ShowScoardBoardString="Ergebnistafel anzeigen"
 ShowIngameMenuString="Spielmenü anzeigen"
+CurrentControllerPresetString="Current Controller Preset"
+PresetStrings[0]="Preset 1"
+PresetStrings[1]="Preset 2"
+PresetStrings[2]="Preset 3"
+PresetStrings[3]="Preset 4"
 
 BashString="Schlagen"
 BlockString="Abwehren (Halten)"
-HoldString=(Halten)
+HoldString="(Halten)"
 
+[KFInventoryManager]
+FullHealthMsg="Gesundheit voll"
 
 [KFLocalMessage]
 SystemString="System:"
-AdminString =(Admin)
+AdminString ="(Admin)"
 LoggedInAsAdminString=" hat sich als Server-Admin angemeldet"
 LoggedOutAsAdminString=" hat sich als Server-Admin abgemeldet"
 MustLoginToCheatString="Du musst dich anmelden, um Cheats zu aktivieren."
@@ -769,7 +975,7 @@ ServerMaintenanceString="Server wird am Ende des Spiels wegen Wartungsarbeiten a
 KickVoteStartedString="Wahl begonnen zum Rauswurf von:"
 KickVoteSucceededString="Wahl angenommen zum Rauswurf von:"
 KickVoteFailedString="Wahl abgelehnt zum Rauswurf von:"
-KickVoteRejectedString="Seit der letzten abgelehnten Wahl ist noch nicht genug Zeit vergangen.  Versuche es später noch einmal."
+KickVoteRejectedString="Seit der letzten abgelehnten Wahl ist noch nicht genug Zeit vergangen. Bitte versuche es später erneut."
 KickVoteInProgressString="Wahl zum Rauswurf kann nicht gestartet werden. Es ist bereits eine Wahl aktiv."
 KickVoteDisabledString="Wahl zum Rauswurf auf diesem Server deaktiviert"
 KickVoteYesReceivedString="Du hast gewählt, wer rausgeworfen wird:"
@@ -794,8 +1000,8 @@ YourselfString="dich selbst."
 PickedupArmorMessage="Du hast Schutzweste aufgehoben"
 FullArmorMessage="Deine Schutzweste ist bereits voll"
 PickupAmmoMessage="Du hast Munition aufgehoben"
+AmmoFullMessage="Ihre Munition ist voll"
 PickupWeaponAmmoMessage="Du hast %x% Munition aufgehoben"
-AmmoFullMessage="Deine Munition ist voll"
 AlreadyCarryingWeaponMessage="Diese Waffe besitzt du bereits"
 PickupMessage="Du hast aufgehoben:"
 TooMuchWeightMessage="Diese Waffe ist zu schwer. Lege eine Waffe ab oder verkaufe sie."
@@ -803,9 +1009,13 @@ FailedDropInventoryMessage="Du kannst das hier nicht ablegen"
 ReceivedGrenadesFromMessage="Du hast Granaten erhalten von"
 GaveGrenadesToMessage="Du hast Granaten gegeben an"
 SharingContentString="teilt Inhalte."
+HeadShotAddedString="%x Kopfschüsse - %y% Zusatzschaden!"
+HeadShotMaxString="Kopfschuss! %x% Zusatzschaden!"
+HeadShotResetString="Kein Kopfschuss. Normaler Schaden!"
 
-SuicideMessage="ist gerade gestorben..."
-KilledMessage="wurde bei lebendigem Leib gefressen"
+SuicideMessage=" ist gerade gestorben..."
+KilledMessage=" wurde bei lebendigem Leib gefressen"
+KillzedBy_PatriarchString=" can't hurt Kevin's children anymore"
 KillzedBy_HansString="s Körper wurde für weitere Experimente entfernt"
 KillzedBy_ZedCrawlerString="s Knöchel wurden abgekaut"
 KillzedBy_ZedBloatString=" ist in Körperflüssigkeiten ertrunken"
@@ -821,11 +1031,11 @@ KillzedBy_ZedClot_SlasherString=" mag keine Schlitzerfilme mehr"
 
 FoundAMapCollectibleMessage="%x% hat %y% gefunden. %z% sind noch übrig..."
 FoundAllMapCollectiblesMessage="Alle %x% wurden gefunden!"
-MapCollectibleName="Kohle-Schmuck"
+MapCollectibleName="Kohleschmuck"
 
 [KFLocalMessage_Priority]
-WaveStartMessage="W E L L E  R Ü C K T  A N"
-WaveEndMessage="W E L L E  B E E N D E T"
+WaveStartMessage="W E L L E   R Ü C K T   A N"
+WaveEndMessage="W E L L E   B E E N D E T"
 GetToTraderMessage="Gehe zur Händlerin"
 YouLostMessage="N I E D E R L A G E"
 YouWonMessage="S I E G"
@@ -837,21 +1047,31 @@ ObjectiveEndedMessage="Aufgabe beendet!"
 ObjectiveLostMessage="Aufgabe nicht erfüllt!"
 ObjNotEnoughPlayersMessage="Nicht genug Spieler!"
 ObjTimeRanOutMessage="Zeitlimit erreicht!"
-
-[KFGameInfo_Survival]
-GameName="Überleben"
-
-[KFGameReplicationInfo]
-
+HumansLoseMessage="Human squad wiped out!"
+HumansWinMessage="Human squad survived!"
+AttackHumanPlayersString="Attack the Human Players!"
+ZedGroupRegroupingString="Zed Horde regrouping!"
+NextRoundBeginString="N E X T  R O U N D"
+PlayerCanChangePerksString="Perk changes are allowed"
+ZedWaitingForNextRoundString="Zed Horde invasion imminent!"
 
 [KFLocalMessage_Interaction]
-UseTraderMessage="Drücke <%x%>, um zu handeln"
-UseDoorMessage="DRÜCKE <%x%>, um Schweißgerät zu verwenden; HALTE, um es auszurüsten"
-AcceptObjectiveMessage="Drücke <%x%>, um die Aufgabe anzunehmen"
-ReceiveAmmoMessage="Drücke <%x%>, um Munition vom Lieferanten zu erhalten"
-ReceiveGrenadesMessage="Drücke <%x%>, um Granaten vom Lieferanten zu erhalten."
-HealSelfWarning="Drücke <%x%>, um dich selbst zu heilen."
-PressToBashWarning="Drücke <%x%> für einen Nahkampfschlag."
+UseTraderMessage="<%x%> HÄNDLERIN BENUTZEN"
+UseDoorMessage="<%x%> Öffnen/Schließen <%x%> (HALTEN) Schweißgerät ausrüsten"
+UseDoorWeldedMessage="<%x%> (HALTEN) Schweißgerät ausrüsten"
+ZedUseDoorMessage="<%x%> Öffnen/Schließen"
+ZedUseDoorWeldedMessage="Tür verschweißt, brechen Sie durch!"
+AcceptObjectiveMessage="<%x%> Aufgabe annehmen"
+ReceiveAmmoMessage="<%x%> Munition erhalten"
+ReceiveGrenadesMessage="<%x%> Granaten erhalten"
+HealSelfWarning="<%x%> Selbstheilung"
+HealSelfGamepadWarning="<%x%> (HALTEN) Selbstheilung"
+PressToBashWarning="<%x%> Schlag"
+GamepadWeaponSelectHint="<%x%> (HALTEN) Waffenauswahl"
+PlayerClotGrabWarningMessage="Zed töten, um auszubrechen!"
+
+[KFLocalMessage_ServerNotification]
+TeamPendingBalanceMessage="Teams are unbalanced and will be adjusted"
 
 [KFGfxPerkComp_Abilities]
 RankNames[0]="Rang I"
@@ -876,165 +1096,166 @@ Passives[2]=(Title="",Description="");
 Passives[3]=(Title="",Description="");
 Passives[4]=(Title="",Description="");
 
-SkillSlots0[0]=(Title="", Description="")
-SkillSlots0[1]=(Title="", Description="")
+SkillSlots0[0]=(Title="",Description="")
+SkillSlots0[1]=(Title="",Description="")
 
-SkillSlots1[0]=(Title="", Description="")
-SkillSlots1[1]=(Title="", Description="")
+SkillSlots1[0]=(Title="",Description="")
+SkillSlots1[1]=(Title="",Description="")
 
-SkillSlots2[0]=(Title="", Description="")
-SkillSlots2[1]=(Title="", Description="")
+SkillSlots2[0]=(Title="",Description="")
+SkillSlots2[1]=(Title="",Description="")
 
-SkillSlots3[0]=(Title="", Description="")
-SkillSlots3[1]=(Title="", Description="")
+SkillSlots3[0]=(Title="",Description="")
+SkillSlots3[1]=(Title="",Description="")
 
-SkillSlots4[0]=(Title="", Description="")
-SkillSlots4[1]=(Title="", Description="")
+SkillSlots4[0]=(Title="",Description="")
+SkillSlots4[1]=(Title="",Description="")
 
 WeaponDroppedMessage="Aufgrund deiner neuen Tragekapazität hat du %%%% abgelegt!"
 
 [KFPerk_Berserker]
 PerkName="Berserker"
 
-SkillCatagories[0]="Resistenz"
-SkillCatagories[1]="Überleben"
-SkillCatagories[2]="Nahkampf"
-SkillCatagories[3]="Kraft"
-SkillCatagories[4]="Fortgeschrittenes Training"
+SkillCatagories[0]="Survival"
+SkillCatagories[1]="Combat"
+SkillCatagories[2]="Close Combat"
+SkillCatagories[3]="Power"
+SkillCatagories[4]="Advanced Training"
 
-Passives[0]=(Title="Perk-Waffen-Schaden",Description="Schaden durch Berserkerwaffen um 25 % erhöht, zusätzlich x%x pro Level");
-Passives[1]=(Title="Nahkampf-Angriffsgeschwindigkeit",Description="Nahkampf-Angriffsgeschwindigkeit um 0 % erhöht, zusätzlich x%x pro Level");
-Passives[2]=(Title="Nahkampf-Bewegungsgeschwindigkeit",Description="Bewegungsgeschwindigkeit mit Nahkampfwaffen um 10 % erhöht, zusätzlich x%x pro Level");
-Passives[3]=(Title="Resistenz gegen Schaden",Description="Erlittener Schaden um %x% reduziert");
-Passives[4]=(Title="+Nachtsichtfähigkeit",Description="Taschenlampen UND Nachtsichtgerät");
-Passives[5]=(Title="+Resistenz gegen Clots",Description="Clots können einen Berserker nicht festhalten.");
 
-EXPAction1="Fügt Schaden durch Berserkerwaffe zu"
-EXPAction2="Töte Zeds in der Nähe eines Spielers mit Perk-Waffe"
+Passives[0]=(Title="Berserker Damage",Description="x%x damage increase every level")
+Passives[1]=(Title="Damage Resistance",Description="x%x resistance per every 5 levels to all damage")
+Passives[2]=(Title="+Night Vision Capability",Description="Flashlight - AND Night Vision Goggles")
+Passives[3]=(Title="+Clots cannot grab you",Description="Clots can't hold on to a Berserker")
 
-PoisonResistance="Resistenz gegen Gift"
-PoisonResistanceDescription="Ich spucke auf dein Gift: Senke den Schaden durch Giftangriffe um 40 %."
+EXPAction1="Dealing Berserker weapon damage"
+EXPAction2="Kill Zeds near a player with a Berserker weapon"
 
-SonicResistance="Resistenz gegen Schall"
-SonicResistanceDescription="Ich kann dich nicht hören! Senke den Schaden durch Schallangriffe um 40 %."
+Fortitude="Dreadnaught"
+FortitudeDescription="Increase total Health by 50%."
 
-Vampire="Vampir"
-VampireDescription="Kleine Blutsauger: Horzine-Nanotechnologie saugt 4 Lebenspunkte aus jedem Zed, den du mit einer beliebigen Perk-Waffe tötest, und addiert sie zu deinen."
+Ninja="Skirmisher"
+NinjaDescription="Move 20% faster. Sprint 25% faster. Regenerate 2 points of Health every second. "
 
-Fortitude="Tapferkeit"
-FortitudeDescription="Verbessere deine Chancen: Erhöhe die maximale und die Start-Gesundheit um 75 %"
+Vampire="Vampire"
+VampireDescription="Heal yourself 4 points of Health for every Zed you kill with a Berserker weapon. You also attack 15% faster with Berserker weapons."
 
-FuriousDefender="Wütender Verteidiger"
-FuriousDefenderDescription="Sie nennen dich nicht ohne Grund den Berserker: Berserker-Nahkampfwaffen sind um 10 % schneller und alle Angriffe fügen 20 % mehr Schaden zu."
+Speed="Butcher"
+SpeedDescription="Attack 20% faster and do 25% more damage with Berserker weapons."
 
-Block="Abwehren"
-BlockDescription="Dieses Geschick! Das Abwehren eines Angriffs erhöht den Schaden deines nächsten Berserker-Nahkampfangriffs um 75 %."
+Resistance="Resistance"
+ResistanceDescription="Gain 20% resistance to all damage. You gain an additional 20% resistance to Poison and Sonic Damage."
 
-Parry="Parieren"
-ParryDescription="Verbinde Geschick und Kraft: Das Parieren eines Angriffs erhöht die Nahkampf-Angriffsgeschwindigkeit für 4 Sekunden um 15 % und den Schaden durch leichte Angriffe um 30 %."
+Parry="Parry"
+ParryDescription="Parrying an attack with a Berserker melee weapon will increase melee attack speed by 5% and melee damage by 35% for 10 seconds."
 
-Smash="Zerschmettern"
-SmashDescription="Nutze die rohe Gewalt: Harte Treffer fügen 25 % mehr Schaden zu UND harte Treffer auf den Kopf haben eine hohe Wahrscheinlichkeit, große Zeds umzuhauen."
+Smash="Smash"
+SmashDescription="Hard attacks with Berserker melee weapons do 50% more damage, plus an additional 25%  damage on head shots, and have 200% more Stumble power."
+ 
+Fury="Massacre"
+FuryDescription="Light attacks with Berserker melee weapons do 20% more damage and are 5% faster."
 
-Spartan="ZED ZEIT – Spartaner"
-SpartanDescription="Du hast 300 gesehen: Bewege dich in Echtzeit, erhöhe die Angriffsgeschwindigkeit mit Berserker-Nahkampfwaffen um 50 %, und jedes Parieren verursacht einen Knockdown."
+Spartan="ZED TIME - Spartan" 
+SpartanDescription="You've seen 300: Attack in near real time and gain 25% of your total Health."
 
-Menace=""
-MenaceDescription="Werde richtig gefährlich: Bewege dich in Echtzeit, erhöhe die Betäubungswirkung für Kopftreffer von Berserker-Nahkampfwaffen um 100 % und das Zu-Fall-Bringen um 100 %."
+Flash="ZED TIME - Berserker Rage"
+FlashDescription="Zeds won't like you when you're angry: Move and attack in real time."
 
 [KFPerk_Commando]
-PerkName="Kommando"
+PerkName="Commando"
 
-SkillCatagories[0]="Bewusstsein"
-SkillCatagories[1]="Nachschub"
-SkillCatagories[2]="Waffenumgang"
-SkillCatagories[3]="Waffenspezialist"
-SkillCatagories[4]="Fortgeschrittenes Training"
+SkillCatagories[0]="Tactics"
+SkillCatagories[1]="Advanced Tactics"
+SkillCatagories[2]="Survival"
+SkillCatagories[3]="Weapon Specialist"
+SkillCatagories[4]="Advanced Training"
 
-Passives[0]=(Title="Perk-Waffen-Schaden",Description="Schaden durch Kommandowaffe um %x% erhöht.");
-Passives[1]=(Title="Getarnte Feinderkennung",Description="Tarnungserkennung um %x% erhöht");
-Passives[2]=(Title="Gesundheitserkennung",Description="Gesundheitserkennung um %x% erhöht");
-Passives[3]=(Title="Zed-Zeit-Verlängerung",Description="Zed-Zeit dauert %x%");
-Passives[4]=(Title="Gesundheitssteigerung",Description="Gesundheit um %x% erhöht");
-Passives[5]=(Title="+Nachtsichtfähigkeit",Description="Taschenlampen UND Nachtsichtgerät");
+Passives[0]=(Title="Perk Weapon Damage",Description="%x% increase in Commando weapon damage.");
+Passives[1]=(Title="Cloaked Enemy & Health Bar Detection",Description="10m plus %x%m increase by each level");
+Passives[2]=(Title="Zed Time Extension",Description="Zed time lasts %x% longer");
+Passives[3]=(Title="Reload Speed",Description="%x%% increase every 5 levels");
+Passives[4]=(Title="+Night Vision Capability",Description="Flashlights - AND Night Vision Goggles");
+Passives[5]=(Title="+Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units");
 
-EXPAction1="Fügt Schaden durch Kommandowaffe zu"
-EXPAction2="Stalker durch Kommandowaffen töten"
+EXPAction1="Dealing Commando weapon damage"
+EXPAction2="Killing Stalkers with Commando weapons"
 
-LargeMags="Große Magazine"
-LargeMagsDescription="Mach ernst: Verbessere die Kapazität von Kommandowaffen-Magazinen um 50 %."
+TacticalReload="Tactical Reload"
+TacticalReloadDescription="Be cool. Be quick. Reload 20% faster with Commando weapons AND look more elite while you're at it."
+
+LargeMags="Large Mags"
+LargeMagsDescription="Get a bit more serious: Increase Commando weapon magazine capacities by 50%."
 
 Backup="Backup"
-BackupDescription="Verleihe deiner Ersatzpistole und deinem Ersatzmesser 60 % zusätzlichen Schaden für die Momente, in denen du es wirklich gebrauchen kannst!"
+BackupDescription="Give your backup pistol and knife 60% extra damage for those moments when you really need it!"
 
-Impact="Einschlag"
-ImpactDescription="Teile kräftiger aus und hau sie um. Erhöhe deine Chance, mit Kommandowaffen einen Zed zu Fall zu bringen, um 30 %."
+Impact="Impact"
+ImpactDescription="Pack more punch and knock 'em down: Increase Stumble power by 150% for all Commando weapons."
 
-TacticalReload="Taktisches Nachladen"
-TacticalReloadDescription="Sei cool. Sei schnell. Lade deine Perk-Waffen schneller nach UND sieh dabei noch professioneller aus."
+HealthIncrease="Health Increase"
+HealthIncreaseDescription="Increase total Health and Armor by 25%."
 
-Leadership="Führung"
-LeadershipDescription="Deine Führung beruhigt deine Teammitglieder und macht sie effizienter. Teammitglieder können 10 % schneller nachladen."
+AmmoVest="Ammo Vest"
+AmmoVestDescription="Carry two extra magazines for each Commando weapon."
 
-CallOut="Bekanntgabe"
-CallOutDescription="Gib Teammitgliedern die Fähigkeit, getarnte Gegner ebenso wie du sehen zu können. Sie werden es dir danken UND du erhältst die gleichen XP für Kills wie sie!"
+HollowPoints="Hollow Point Rounds"
+HollowPointsDescription="Upgrade your ammo, giving Commando weapons 25% more damage and reducing their recoil 50%."
 
-SingleFire="Einzelschuss"
-SingleFireDescription="Belohnung für präzises Schießen! Verleihe deinen Kommandowaffen 20 % mehr Schaden im Einzelschussmodus."
+EatLead="Eat Lead"
+EatLeadDescription="Need more bullets? Get 50% more rounds in your mags with Commando weapons."
 
-Autofire="Autofeuer"
-AutofireDescription="Warum subtil sein? Füge mit Kommandowaffen im Vollautomatik- oder Dauerfeuermodus 20 % mehr Schaden zu."
+RapidFire="ZED TIME - Rapid Fire"
+RapidFireDescription="When the world slows down, do more hurt: Do 3% more damage with Commando weapons and shoot 3x times faster with all guns."
 
-RapidFire="ZED-ZEIT – Schnellfeuer"
-RapidFireDescription="Wenn die Welt langsamer wird, füge mehr Schaden zu: Füge mit Kommandowaffen 3 % mehr Schaden zu und schieße mit allen Waffen dreimal schneller."
-
-Professional="ZED-ZEIT – Profi"
-ProfessionalDescription="Wenn die Welt langsamer wird, wirst du es nicht. Lade Waffen bei voller Geschwindigkeit nach und wechsle sie doppelt so schnell!"
+Professional="ZED TIME - Professional"
+ProfessionalDescription="When the world slows down, you don't: Reload Commando weapons at full speed and switch Commando weapons twice as fast!"
 
 [KFPerk_Demolitionist]
-PerkName="Zerstörer"
-EXPAction1="Schaden durch Zerstörerwaffe wird zugefügt"
-EXPAction2="Fleshpounds werden mit Zerstörerwaffen getötet"
+PerkName="Demolitionist"
+EXPAction1="Dealing Demolitionist weapon damage"
+EXPAction2="Killing Fleshpounds with Demolitionist weapons"
 
-SkillCatagories[0]="Technik"
-SkillCatagories[1]="Resistenz"
-SkillCatagories[2]="Fortgeschrittene Techniken"
-SkillCatagories[3]="Waffentechniken"
-SkillCatagories[4]="Fortgeschrittene Sprengstoffe"
+SkillCatagories[0]="Technique"
+SkillCatagories[1]="Explosives"
+SkillCatagories[2]="Advanced Techniques"
+SkillCatagories[3]="Weapon Techniques"
+SkillCatagories[4]="Advanced Explosives"
 
-Passives[0]=(Title="Perk-Waffen-Schaden",Description="Schaden durch Perk-Waffen um %x% erhöht");
-Passives[1]=(Title="Resistenz gegen Sprengstoff",Description="%x% Resistenz gegen Schaden durch Sprengstoff");
-Passives[2]=(Title="Zusätzliche Sprengstoffmunition",Description="%x% mehr Sprengstoffmunition zu Beginn");
+Passives[0]=(Title="Perk Weapon Damage",Description="Perk weapon damage increased by %x%");
+Passives[1]=(Title="Explosive Resistance",Description="%x% resistance to explosive damage");
+Passives[2]=(Title="Extra Explosive Ammo",Description="%x% more starting explosive ammo");
+Passives[3]=(Title="+Grenade Supplier",Description="Give out one extra grenade per wave to your team");
+Passives[4]=(Title="+Door Traps",Description="Doors you weld will explode when destroyed");
 
-GrenadeSupplier="Granatenlieferant"
-GrenadeSupplierDescription="Sie werden dich lieben! Teammitglieder können einmal pro Welle eine zusätzliche Granate von dir erhalten."
+Damage="Bombardier"
+DamageDescription="Your explosive Demolitionist weapons do 25% more damage."
 
-OnContact="Bei Kontakt"
-OnContactDescription="Mitten ins Gesicht: Deine Dynamitstangen explodieren, wenn sie einen Zed treffen."
+Speed="Grenadier"
+SpeedDescription="You reload your Demolitionist weapons 10% faster."
 
-ExplosiveResistance="Resistenz gegen Sprengstoff"
-ExplosiveResistanceDescription="Stähle das Team: Senke den erlittenen Schaden um 30 % – für dich und deine Teammitglieder, wenn sie nah genug sind."
+DirectHit="High Impact Rounds"
+DirectHitDescription="Do 25% more damage on a direct hit with your explosive Demolitionist weapons, but decrease maximum ammo for each weapon by 3."
 
-Sacrifice="Reaktive Schutzweste"
-SacrificeDescription="Du bist die Bombe: Einmal pro Welle verursacht ein eigentlich tödlicher Schlag eine Explosion, die du mit 5 Gesundheit überlebst und die bei den Zeds um dich herum Schaden verursacht."
+Ammo="Extra Rounds"
+AmmoDescription="Increase maximum ammo by 5 for all explosive Demolitionist weapons."
 
-DoorTraps="Türfallen"
-DoorTrapsDescription="Jage diese Tür hoch: Du schweißt 30 % langsamer, aber von dir geschweißte Türen explodieren, wenn sie aufgebrochen werden. Je mehr du die Tür verschweißt, desto größer ist die Explosion."
+SirenResistance="Sonic Resistant Rounds"
+SirenResistanceDescription="Your explosive Demolitionist weapons have a 100% chance of getting past a siren's scream and actually exploding."
 
-SirenResistance="Resistenz gegen Sirenen"
-SirenResistanceDescription="Klappe halten, Zed: Deine Granaten haben eine 33 %ige Chance, dem Schaden durch Schall zu widerstehen und tatsächlich zu explodieren."
+AreaOfEffect="Fragmentation Rounds"
+AreaOfEffectDescription="The area of effect for your explosive Demolitionist weapons is increased by 50%, but their damage is reduced by 30%."
 
-OffPerk=""
-OffPerkDescription="Wieder ohne Perk: Füge 10 % mehr Schaden mit einer beliebigen Off-Perk-Waffe zu."
+CriticalHit="Armor Piercing Rounds"
+CriticalHitDescription="A direct hit to a critical zone with any Demolitionist weapon will do 50% additional damage."
 
-OnPerk="Mit Perk"
-OnPerkDescription="Wieder mit Perk: Erhöhe die Wirkung von Reaktionen, Zu-Fall-Bringen und Knockdowns um 30 % für Demo-Waffen."
+ConcussiveForce="Concussive Rounds"
+ConcussiveForceDescription="The reaction, stun, stumble and knockdown power of your Demolitionist weapons increase by 50%."
 
-Nuke="ZED-ZEIT – Atomar"
-NukeDescription="Nukem: Deine Sprengstoffe verteilen massive Strahlungsschäden in der Zed-Zeit und vergiften Zeds."
+Nuke="ZED TIME - Destroyer of Worlds"
+NukeDescription="Nuke 'em: Your explosives dish out massive radiation damage in Zed Time, poisoning Zeds."
 
-ConcussiveForce="ZED-ZEIT – Unvorstellbare Kraft"
-ConcussiveForceDescription="Wirf sie um: Deine Sprengstoffe haben eine unvorstellbare Kraft gegen Zeds in der Zed-Zeit."
+Professional="ZED TIME - Mad Bomber"
+ProfessionalDescription="Shoot and reload in near real time."
 
 
 [KFPerk_FieldMedic]
@@ -1049,7 +1270,7 @@ SkillCatagories[4]="Fortgeschrittenes Training"
 Passives[0]=(Title="Spritzen-Aufladerate",Description="Um %x% erhöhter Waffenschaden");
 Passives[1]=(Title="Spritzenstärke",Description="Getarnte Feinderkennung um %x% erhöht");
 Passives[2]=(Title="Resistenz gegen Bloat",Description="Gesundheitserkennung um %x% erhöht");
-Passives[3]=(Title="Bewegungsgeschw.",Description="Zed-Zeit dauert %x%");
+Passives[3]=(Title="Bewegungstempo",Description="Zed-Zeit dauert %x%");
 Passives[4]=(Title="Schutzwestenbonus",Description="Gesundheit um %x% erhöht");
 
 HealingSurge="Heilungswelle"
@@ -1059,10 +1280,10 @@ Enforcer="Vollstrecker"
 EnforcerDescription="Genug der Fürsorge: Erhöhe deine Startmunition für deine Perk- und Ersatzwaffen um 20 %."
 
 Combatant="Kämpfer"
-CombatantDescription="Sei nicht nur ein Sanitäter: Sei der Kampfsanitäter, der du schon immer sein wolltest, mit kostenloser Startschutzweste und einem 60 %igen Nachlass auf alle Schutzwestenkäufe!"
+CombatantDescription="Sei nicht nur ein Sanitäter: Sei der Kampfsanitäter, der du schon immer sein wolltest, mit kostenloser Startschutzweste und einem 60%igen Nachlass auf alle Schutzwestenkäufe!"
 
 Armament="Aufrüstung"
-ArmamentDescription="Repariere nicht einfach nur Menschen: Verliere 25 % deiner Heilungseffizienz bei Teammitgliedern und repariere dafür jedes Mal 1 % ihrer max. Schutzweste!"
+ArmamentDescription="Repariere nicht einfach nur Menschen: Verliere 10 % deiner Heilungseffizienz bei Teammitgliedern und repariere dafür jedes Mal 2 % ihrer max. Schutzweste!"
 
 Regeneration="Regeneration"
 RegenerationDescription="Gib dir die Dröhnung: Deine Gesundheit regeneriert sich mit der Zeit langsam dank der Horzine-Nanobots."
@@ -1083,13 +1304,13 @@ Sedative="ZED-ZEIT – Beruhigungsmittel"
 SedativeDescription="Und die Zeit steht still: Medizinpfeile und Granaten setzen ein Zed-Beruhigungsmittel frei, das die Bewegungen von Zeds vorübergehend anhält."
 
 
-EXPAction1="Fügt Schaden durch Medizinwaffe zu"
-EXPAction2="Teammitglieder werden geheilt"
+EXPAction1="Mit Feldsanitäterwaffe Schaden zufügen"
+EXPAction2="Teammitglieder heilen"
 
 [KFPerk_Firebug]
 PerkName="Feuerteufel"
-EXPAction1="Schaden durch Flammenwaffe wird zugefügt"
-EXPAction2="Crawler werden durch Flammenwaffen getötet"
+EXPAction1="Mit Feuerteufelwaffe Schaden zufügen"
+EXPAction2="Crawler mit Feuerteufelwaffen töten"
 
 SkillCatagories[0]="Nachschub"
 SkillCatagories[1]="Scharf"
@@ -1100,14 +1321,14 @@ SkillCatagories[4]="Fortgeschrittenes Training"
 Passives[0]=(Title="Perk-Waffen-Schaden",Description="Schaden durch Perk-Waffen um %x% erhöht");
 Passives[1]=(Title="Perk-Waffen nachladen",Description="Nachladegeschwindigkeit für Perk-Waffen um %x% erhöht");
 Passives[2]=(Title="Resistenz gegen Zed-Feuer",Description="%x% Resistenz gegen Schaden durch Feuer");
-Passives[3]=(Title="Schutz vor Eigenfeuer",Description="%x% Resistenz gegen Schaden durch eigenes Feuer");
+Passives[3]=(Title="Schutz vor eigenem Feuer",Description="%x% Resistenz gegen Schaden durch eigenes Feuer");
 Passives[4]=(Title="Startmunition",Description="%x% mehr Munition zu Beginn");
 
 FullyStocked="Voll ausgestattet"
 FullyStockedDescription="Es steht auf der Box: Flammenwaffen beginnen bei der Händlerin mit maximaler Munitionskapazität."
 
 FlarotovCoctail="Facklotowcocktail"
-FlarotovCoctailDescription="Der Name sagt alles: Schiebe eine Fackel in deinen Molotowcocktail und du erhältst eine Fackel, die deine Umgebung 30 Sekunden lang erhellt UND deine Flamme brennt zweimal so lange am Boden."
+FlarotovCoctailDescription="Der Name sagt alles: Schiebe eine Fackel in deinen Molotowcocktail, damit sie deine Umgebung 30 Sekunden lang erhellt UND deine Flamme brennt zweimal so lange am Boden."
 
 Fuse="Zünder"
 FuseDescription="Ein hübscher Dauerbrenner: Verbrennungseffekt durch Flammenwaffen hält 70 % länger an und verursacht mehr Schaden."
@@ -1116,7 +1337,7 @@ HeatWave="Hitzewelle"
 HeatWaveDescription="Wie ein Sommer in Georgia: Aus nächster Nähe von Feuer getroffene Feinde stolpern zurück."
 
 ZedShrapnel="Zed-Schrapnell"
-ZedShrapnelDescription="Zed macht BUMM: Jeder Zed, der durch Feuerwaffen getötet wird, hat eine 50 %ige Chance, zu explodieren und Zeds in der Nähe zu schaden."
+ZedShrapnelDescription="Zed macht BUMM: Jeder Zed, der durch Feuerwaffen getötet wird, hat eine 50%ige Chance, zu explodieren und Zeds in der Nähe zu schaden."
 
 Napalm="Zed-Napalm"
 NapalmDescription="Brennender Zed: Brennende Zeds setzen andere Zeds bei Kontakt in Brand."
@@ -1135,6 +1356,49 @@ ScorchDescription="Du brennst! Na ja, nicht wirklich. In der Zed-Zeit genutzte P
 
 [KFPerk_Gunslinger]
 PerkName="Revolverheld"
+EXPAction1="Mit Revolverheldwaffen Schaden zufügen"
+EXPAction2="Kopfschüsse mit Revolverheldwaffen"
+
+SkillCatagories[0]="Technik"
+SkillCatagories[1]="Fertigkeit"
+SkillCatagories[2]="Erweiterte Techniken"
+SkillCatagories[3]="Kritische Treffer"
+SkillCatagories[4]="Meistertechniken"
+
+Passives[0]=(Title="Perk-Waffen-Schaden",Description="Schaden durch Perk-Waffen um %x% erhöht");
+Passives[1]=(Title="Kugelwiderstand",Description="Widerstand gegen Projektilschaden um %x% erhöht");
+Passives[2]=(Title="Bewegungstempo",Description="Bewegungstempo um %x% erhöht");
+Passives[3]=(Title="Rückstoß",Description="%x% weniger Rückstoß");
+
+ShootnMove="Schießen und flitzen"
+ShootnMoveDescription="Lasse dich nicht essen: Bewege dich 50 % schneller mit Visiersicht und halte die Waffe ruhiger."
+
+QuickSwitch="Schnellziehen"
+QuickSwitchDescription="Du weißt es: 50 % schnellerer Waffenwechsel - und falls du weiterschießen solltest, wenn du keine Munition mehr hast, ziehst du schnell Ersatzpistolen."
+
+RhythmMethod="Kopfschüsse sammeln"
+RhythmMethodDescription="Sammle Kopfschüsse: Jeder Kopfschuss in Folge mit Revolverheldwaffen erhöht den Schaden um 10 %, bis zu einem Maximum von 70 %."
+
+BoneBreaker="Knochenbrecher"
+BoneBreakerDescription="Nicht nur sammeln, auch kaputt machen: 20 % mehr Schaden mit Revolverheldwaffen."
+
+SpeedReload="Schnelllader"
+SpeedReloadDescription="Cooler, schneller, tödlicher: Lade Revolverheldwaffen 20 % schneller nach UND sehe dabei gut aus."
+
+Penetration="Durchschlag"
+PenetrationDescription="Stelle sie auf und hau sie um: Jeder Schuss durchschlägt einen zusätzlichen Zed."
+
+CenterMass="Schwerpunkt"
+CenterMassDescription="Wenn du auf die Mitte zielst... Schüsse in die Brust haben 30 % mehr Chance, den Gegner zu Fall zu bringen."
+
+LimbShots="Beinschüsse"
+LimbShotsDescription="Oder schieße ihnen in die Beine... Schüsse in die Beine haben 30 % mehr Chance, Zeds umzuhauen, wenn sie sprinten."
+
+Fanfare="ZED-ZEIT - Schnellfeuern"
+FanfareDescription="Feuern mit Fanfare: Schieße während der Zed-Zeit 3x schneller mit Revolverheldwaffen."
+
+UberAmmo="ZED-ZEIT - Endlosmunition"
+UberAmmoDescription="Ohne Limit: Du hast mit Revolverheldwaffen während der Zed-Zeit keinen Munitionsmangel."
 
 [KFPerk_MartialArtist]
 PerkName="Kampfsportler"
@@ -1142,28 +1406,73 @@ PerkName="Kampfsportler"
 [KFPerk_Sharpshooter]
 PerkName="Scharfschütze"
 
+EXPAction1="Dealing Sharpshooter weapon damage"
+EXPAction2="Head shots with Sharpshooter weapons"
+
+SkillCatagories[0]="Movement"
+SkillCatagories[1]="Basic Technique"
+SkillCatagories[2]="Skill"
+SkillCatagories[3]="Equipment"
+SkillCatagories[4]="Master Techniques"
+
+Passives[0]=(Title="Headshot Damage",Description="Headshot damage increased by %x%");
+Passives[1]=(Title="Recoil",Description="%x% less recoil");
+Passives[2]=(Title="Weapon Switch",Description="Weapon switch speed increased by %x%");
+
+StationaryAim="Sniper"
+StationaryAimDescription="Inflict 25% more damage while stationary and using a Sharpshooter weapon."
+
+Trigger="Marksman"
+TriggerDescription="Shoot 25% faster and move 10% faster when using a Sharpshooter weapon."
+
+CrouchAim="Stability"
+CrouchAimDescription="Inflict 30% more damage while crouching and using a Sharpshooter weapon."
+
+Stun="Ballistic Shock"
+StunDescription="Stun power with Sharpshooter weapons increases by 100%."
+
+RhythmMethod="Rack 'em Up"
+RhythmMethodDescription="Rack up the headshots: each consecutive headshot with a Sharpshooter weapon increases your damage by 5% up to 75%."
+
+TacticalReload="Combat Ready"
+TacticalReloadDescription="Be cool. Be quick. Reload faster with Sharpshooter weapons AND look more elite while you're at it."
+
+Scoped="Dead Eye"
+ScopedDescription="Reduce recoil 10% and increase head shot damage 10% when using a scope or ironsights with a Sharpshooter weapon."
+
+AmmoPouch="Always Prepared"
+AmmoPouchDescription="Get 25% more ammo for Sharpshooter weapons and grenades."
+
+ZTKnockdown="ZED TIME - Assassin"
+ZTKnockdownDescription="Headshots with Sharpshooter weapons will knock down any Zed."
+
+ZTStun="ZED TIME - Ranger"
+ZTStunDescription="Headshots with Sharpshooter weapons will stun any Zed."
+
+
+
 [KFPerk_Support]
 PerkName="Unterstützer"
 
-SkillCatagories[0]="Waffenumgang"
+SkillCatagories[0]="Nachschub"
 SkillCatagories[1]="Fitness"
-SkillCatagories[2]="Nachschub"
+SkillCatagories[2]="Waffenumgang"
 SkillCatagories[3]="Ausdauer"
 SkillCatagories[4]="Fortgeschrittenes Training"
 
 Passives[0]=(Title="Schweißfertigkeit",Description="Schweißgeschwindigkeit um %x% erhöht");
 Passives[1]=(Title="Perk-Waffen-Schaden",Description="Schaden durch Perk-Waffen um %x% erhöht");
-Passives[2]=(Title="Perk-Waffen-Durchschlagskraft",Description="Mit jedem Level erhalten Perk-Waffen eine um %x% erhöhte Durchschlagskraft");
+Passives[2]=(Title="Perk-Waffen-Durchschlag",Description="Mit jedem Level erhalten Perk-Waffen eine um %x% erhöhte Durchschlagskraft");
 Passives[3]=(Title="Granatenschaden",Description="Schaden durch Granaten um %x% erhöht");
 Passives[4]=(Title="",Description="");
 
-;Passives[0]=(Title="Schweißfertigkeit",Description="2 %ige Erhöhung der Schweißgeschwindigkeit (max. 50 %)");
-;Passives[1]=(Title="Schrotflintenschaden",Description="2 %ige Erhöhung des Schadens durch Schrotflinten (max. 50 %)");
+;Passives[0]=(Title="Schweißfertigkeit",Description="2 %ige Erhöhung der Schweißgeschwindigkeit (max. 50 %")");
+;Passives[1]=(Title="Schrotflintenschaden",Description="2 %ige Erhöhung des Schadens durch Schrotflinten (max. 50 %")");
 ;Passives[2]=(Title="Schrotflintendurchschlag",Description="Mit jedem Level erhalten Schrotflinten eine um 25 % erhöhte Durchschlagskraft");
-;Passives[3]=(Title="Granatenschaden",Description="2 %ige Erhöhung des Schadens durch Granaten (max. 50 %)");
+;Passives[3]=(Title="Granatenschaden",Description="2 %ige Erhöhung des Schadens durch Granaten (max. 50 %")");
 ;Passives[4]=(Title="",Description="");
 
-EXPAction1="Fügt Schaden durch Unterstützerwaffe zu"
+EXPAction1="Mit Unterstützerwaffe Schaden zufügen"
 EXPAction2="Türen verschweißen"
 
 Ammo="Munition"
@@ -1199,9 +1508,6 @@ BarrageDescription="Nutze die Zeit mit einem um 15 % erhöhten Schaden für dic
 [KFPerk_Sharpshooter]
 PerkName="Scharfschütze"
 
-[KFPerk_SWAT]
-PerkName="SWAT"
-
 [Fonts]
 Bicubik="Bicubik"
 
@@ -1210,7 +1516,7 @@ ObjectiveDifficulties[0]="EINFACH"
 ObjectiveDifficulties[1]="MITTEL"
 ObjectiveDifficulties[2]="SCHWER"
 ObjectiveStartTitle="Folge dem Pfad zum Startpunkt"
-ObjectiveWaitingString="WARTE AUF WEITERE SPIELER!"
+ObjectiveWaitingString="WARTEN AUF WEITERE SPIELER!"
 ObjectiveWonString="ABGESCHLOSSEN!"
 ObjectiveFailedString="FEHLGESCHLAGEN!"
 ObjectiveEndedString="BEENDET!"
@@ -1232,7 +1538,7 @@ ObjectiveAvailableString="AUFGABE VERFÜGBAR"
 [KFObj_Wave_Defend]
 ObjectiveTypeString="VERTEIDIGEN"
 ObjectiveTargetTitle="Verteidige den Virus-Upload!"
-ObjectiveStatusTitle="LINK-DOWNLOAD-STATUS"
+ObjectiveStatusTitle="LINK-DOWNLOADSTATUS"
 
 [KFObj_Coop_Healer]
 ObjectiveTypeString="HEILER"
@@ -1253,6 +1559,43 @@ RandomLoadingStrings[2]="Lorem ipsum dolor sit amet, consectetur adipiscing elit
 RandomLoadingStrings[3]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 3"
 RandomLoadingStrings[4]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 4"
 RandomLoadingStrings[5]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 5"
+RandomLoadingStrings[6]="The parry ability stumbles a Zed, allowing you to get in a few extra strikes."
+RandomLoadingStrings[7]="Watch out for the husk. Once he takes enough damage, he may try to self-detonate on your team."
+RandomLoadingStrings[8]="You receive XP for damaging Zeds towards the perk associated with the weapon that inflicted the damage."
+RandomLoadingStrings[9]="Stick together. Getting singled out decreases your chances of survival if things get hairy."
+RandomLoadingStrings[10]="Players can use the syringe to heal themselves as well as their teammates."
+RandomLoadingStrings[11]="Welding doors can hold Zeds back. Doors do not come back once destroyed."
+RandomLoadingStrings[12]="If a teammate dies, it is helpful to grab their weapon and drop it for them at the trader."
+RandomLoadingStrings[13]="Got some extra dosh? Drop some for your team; they may return the favor."
+RandomLoadingStrings[14]="Choose your targets. Different weapons are more or less effective against different types of Zeds."
+RandomLoadingStrings[15]="Prioritize your targets. A fleshpound is a lot more deserving of your attention than a clot."
+RandomLoadingStrings[16]="All Zeds have weak points. If it's not the head, look for glowing elements on their bodies."
+RandomLoadingStrings[17]="Looking to buy or sell a cosmetic item or weapon skin?  Check the marketplace."
+RandomLoadingStrings[18]="The siren's scream neutralizes grenades and other explosives."
+RandomLoadingStrings[19]="Scrakes and fleshpounds will rage once they receive enough damage. Stay out of their way."
+RandomLoadingStrings[20]="Have a bunch of weapon skins or cosmetic items you're not using?  Craft new ones in your Inventory."
+RandomLoadingStrings[21]="Consider your outfit and gear carefully. One must look stylish while killing Zeds."
+RandomLoadingStrings[22]="Melee attacks are directional based on your movement. Forward = overhead, side = swipe, and back = uppercut."
+RandomLoadingStrings[23]="Welding doors shut can limit the directions the Zeds will attack you from, but will also limit your escape routes."
+RandomLoadingStrings[24]="Don't get close to even the weakest Zeds; they can grab you and hold on until their bigger friends arrive."
+RandomLoadingStrings[25]="Want Medic XP and some dosh? Heal your team -- both parties benefit!"
+RandomLoadingStrings[26]="Use controlled bursts with your weapons. Running out of ammo mid-wave makes for a difficult time."
+RandomLoadingStrings[27]="New perk skills are unlocked every 5 levels. Check them out at the Perks Menu."
+RandomLoadingStrings[28]="The M79 and RPG must travel a certain distance to arm the explosive charge."
+RandomLoadingStrings[29]="If you're having trouble seeing the Zeds, try your flashlight."
+RandomLoadingStrings[30]="Having a tough time surviving? Try a different perk! You may find one that fits your playstyle better."
+RandomLoadingStrings[31]="Always make sure you have a way out. Getting boxed in is a sure way to take a dirt nap."
+RandomLoadingStrings[32]="Armor is your friend. You can never go wrong getting more armor."
+RandomLoadingStrings[33]="Fire is a great way to keep Zeds away from you. Fire alone takes awhile to kill Zeds, but it keeps them occupied."
+RandomLoadingStrings[34]="If a Zed or its weapon are glowing red, parrying its melee attacks will be less effective.  Run!"
+RandomLoadingStrings[35]="Lighting Zeds on fire can cause them to panic. Time to play everyone's favorite game: Oh my god, I'm on fire!"
+RandomLoadingStrings[36]="Submachine guns have a high chance to cause targets to stumble, allowing you to keep them at a distance."
+RandomLoadingStrings[37]="The rail gun can fire through multiple Zeds if you line them up right."
+RandomLoadingStrings[38]="The microwave gun does more damage against Zeds carrying metal, like fleshpounds and sirens."
+RandomLoadingStrings[39]="Try out your weapon's alternate fire mode. Not all weapons have them, but it may help you in a tight spot."
+RandomLoadingStrings[40]="You get XP and dosh for assists in addition to kills, so don't feel bad for setting up kills for your allies."
+
+ 
 
 [Zeds]
 KFPawn_ZedBloat="Bloat"
@@ -1264,12 +1607,121 @@ KFPawn_ZedHans="Dr. Hans Volter"
 KFPawn_ZedHusk="Husk"
 KFPawn_ZedStalker="Stalker"
 KFPawn_ZedClot_Cyst="Cyst"
-KFPawn_ZedClot_Slasher="Schlitzer"
+KFPawn_ZedClot_Slasher="Slasher"
 KFPawn_ZedClot_Alpha="Alpha-Clot"
 KFPawn_ZedScrake="Scrake"
-KFPawn_ZedSiren="Sirene"
+KFPawn_ZedSiren="Siren"
+KFPawn_ZedPatriarch="Patriarch"
+;Human zeds
+KFPawn_ZedBloat_Versus="Bloat – Spieler"
+KFPawn_ZedClot_Versus="Clot – Spieler"
+KFPawn_ZedCrawler_Versus="Crawler – Spieler"
+KFPawn_ZedFleshPound_Versus="Fleshpound – Spieler"
+KFPawn_ZedGorefast_Versus="Gorefast – Spieler"
+KFPawn_ZedHans_Versus="Dr. Hans Volter – Spieler"
+KFPawn_ZedHusk_Versus="Husk – Spieler"
+KFPawn_ZedStalker_Versus="Stalker – Spieler"
+KFPawn_ZedClot_Cyst_Versus="Cyst – Spieler"
+KFPawn_ZedClot_Slasher_Versus="Slasher – Spieler"
+KFPawn_ZedClot_Alpha_Versus="Alpha Clot – Spieler"
+KFPawn_ZedScrake_Versus="Scrake – Spieler"
+KFPawn_ZedSiren_Versus="Siren – Spieler"
+KFPawn_ZedPatriarch_Versus="Patriarch – Spieler"
 
+[ZedMoves]
+Melee="Nahkampf"
+Rally="Rally"
+Grab="Greifen"
+Light="Light"
+Heavy="Schwer"
+Spin="Wirbel"
+Evade="Ausweichen"
+Jump="Jump"
+Puke="Puke"
+Mine="Mine"
+Bite="Bite"
+Scream="Schrei"
+Vortex="Vortex"
+Shoot="Schuss"
+Flame="Feuer"
+Suicide="Selbstmord"
+Rage="Rage"
+Minigun="Minigun"
+Rocket="Rakete"
+Mortar="Mörser"
+Heal="Heilung"
+Block="Block"
 
+[Keybinds]
+CtrlCombo="Strg + "
+ShiftCombo="Umschalttaste + "
+AltCombo="Alt + "
+LeftMouseButton="Linke Maustaste"
+MiddleMouseButton="Mittlere Maustaste"
+RightMouseBUtton="Rechte Maustaste"
+ThumbMouseButton="Maus 4"
+ThumbMouseButton2="Maustaste 5"
+MouseScrollDown="Mausrad runter"
+MouseScrollUp="Mausrad hoch"
+CapsLock="Feststelltaste"
+Tab="Tab"
+BackSpace="Rücktaste"
+SpaceBar="Leertaste"
+LeftShift="Umschalttaste (links)"
+RightSift="Umschalttaste (rechts)"
+LeftCtrl="Strg (links)"
+RightCtrl="Strg (rechts)"
+LeftAlt="Alt (links)"
+RightAlt="Alt (rechts)"
+BackSlash="\"[Keybinds]Slash"
+Slash="/"
+RightBracket="]"
+LeftBracket="["
+Quote="'"
+SemiColon=";"
+Period="."
+Comma=","
+Subtract="-"
+Add="+"
+Equals="="
+Multiply="*"
+Divide="Ziffernblock /"
+Underscore="-"
+NumPadZero="0"
+NumPadOne="1"
+NumPadTwo="2"
+NumPadThree="3"
+NumPadFour="4"
+NumPadFive="5"
+NumPadSix="6"
+NumPadSeven="7"
+NumPadEight="8"
+NumPadNine="9"
+Decimal="Ziffernblock ,"
+NumLock="Num-Taste"
+PageUp="Bild auf"
+PageDown="Bild ab"
+Home="Pos 1"
+End="Ende"
+Insert="Einfügen"
+Delete="Entfernen"
+Up="Hoch"
+Down="Runter"
+Left="Links"
+Right="Rechts"
+ScrollLock="Bildlauf"
+Pause="Pause"
+Enter="Eingabetaste"
+one="1"
+two="2"
+three="3"
+four="4"
+five="5"
+six="6"
+seven="7"
+eight="8"
+nine="9"
+zero="0"
 
 [SharedUnlocks]
 KFWeap_Zweihander="Chivalry-Promo"
@@ -1280,10 +1732,10 @@ Source0="Chivalry-Promo"
 ; Map Localization
 ;============================================
 [KF-BioticsLab KFMapSummary]
-DisplayName="Biotics-Labor"
+DisplayName="Biotics Lab"
 
 [KF-Outpost KFMapSummary]
-DisplayName="Außenposten"
+DisplayName="Outpost"
 
 [KF-BurningParis KFMapSummary]
 DisplayName="Paris in Flammen"
@@ -1292,10 +1744,31 @@ DisplayName="Paris in Flammen"
 GameName="Überleben"
 
 [KF-VolterManor KFMapSummary]
-DisplayName="Völter Manor"
+DisplayName="Volter Manor"
 
 [KF-Catacombs KFMapSummary]
-DisplayName="Katakomben"
+DisplayName="Catacombs"
 
 [KF-EvacuationPoint KFMapSummary]
-DisplayName="Evakuierungspunkt"
+DisplayName="Evacuation Point"
+
+[KF-Farmhouse KFMapSummary]
+DisplayName="Farmhouse"
+
+[KF-BlackForest KFMapSummary]
+DisplayName="Black Forest"
+
+[KF-Prison KFMapSummary]
+DisplayName="Prison"
+
+[KF-ContainmentStation KFMapSummary]
+DisplayName="Containment Station"
+
+[KF-HostileGrounds KFMapSummary]
+DisplayName="Hostile Grounds"
+
+
+[KFMapInfo]
+; defaults
+FoundCollectibleString="%x% found a collectible. %y% left to find..."
+FoundAllCollectiblesString="Every collectible has been found!"

@@ -43,7 +43,7 @@ function UnpackSpecialMoveFlags()
 
 function bool CanOverrideMoveWith(name NewMove)
 {
-    if(bCanBeInterrupted && ((NewMove == 'KFSM_Stunned') || NewMove == 'KFSM_Stumble') || NewMove == 'Knockdown')
+    if(bCanBeInterrupted && (((NewMove == 'KFSM_Stunned') || NewMove == 'KFSM_Stumble') || NewMove == 'KFSM_Knockdown') || NewMove == 'KFSM_Frozen')
     {
         return true;
     }
@@ -107,9 +107,9 @@ function PlayAnimation()
     PlaySpecialMoveAnim(AnimName, AnimStance, BlendInTime, BlendOutTime, 1);
 }
 
-function NotifyOwnerTakeHit(class<KFDamageType> DamageType, Vector HitLoc, Vector HitDir, Controller InstigatedBy)
+function NotifyHitReactionInterrupt()
 {
-    if(bCanBeInterrupted && IsAnInterruptHit(PawnOwner, DamageType))
+    if(bCanBeInterrupted)
     {
         KFPOwner.EndSpecialMove();
         if(AIOwner != none)
@@ -160,6 +160,11 @@ function InterruptCheckTimer()
             AIOwner.LastGetStrikeTime = -1;
         }
     }
+}
+
+function bool CanInterruptWithParry()
+{
+    return !bCannotBeParried;
 }
 
 defaultproperties

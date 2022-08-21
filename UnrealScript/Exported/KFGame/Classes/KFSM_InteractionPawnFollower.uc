@@ -28,12 +28,20 @@ function SpecialMoveStarted(bool bForced, Name PrevMove)
 	LeaderSpecialMove = SM_None;
 }
 
+function OnLeaderLeavingSpecialMove()
+{
+	if( KFPOwner != none && KFPOwner.Role == ROLE_Authority )
+	{
+		KFPOwner.EndSpecialMove();
+	}
+}
+
 function SpecialMoveEnded(Name PrevMove, Name NextMove)
 {
 	local KFSM_InteractionPawnLeader LeaderSM;
 
 	// If Leader is still around, let him know that follower is leaving his special move
-	if( Leader != None && Leader.Health > 0 && Leader.IsDoingSpecialMove(LeaderSpecialMove) )
+	if( Leader != None && Leader.IsDoingSpecialMove(LeaderSpecialMove) )
 	{
 		// Let our leader know that we're now ready to be detached from him.
 		LeaderSM = KFSM_InteractionPawnLeader(Leader.SpecialMoves[LeaderSpecialMove]);

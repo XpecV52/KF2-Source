@@ -96,9 +96,9 @@ defaultproperties
    HealAnimNames(0)="Heal_V1"
    HealAnimNames(1)="Heal_V2"
    HealAnimNames(2)="Heal_V3"
+   bUseRootMotion=True
    BlendInTime=0.150000
    BlendOutTime=0.100000
-   bUseRootMotion=True
    bDisableMovement=True
    bDisableTurnInPlace=True
    Handle="KFSM_Patriarch_Heal"

@@ -374,37 +374,30 @@ var protected 	bool 	bHasReducedMeleeDamage;
 var private const	int		DoshValue;
 /** XP this monster is worth (per difficulty) */
 var private const 	float	XPValues[4];
+/** List of sockets representing weakpoint zone locations */
+var() array<name> WeakSpotSocketNames;
 
-/** Information on vulnerable damage types */
-struct native VulnerableDamageTypeInfo
+/**
+ * Information on resistant or vulnerable damage types
+ * @todo: This is all static data so we should consider moving to the archetype
+*/
+struct native DamageModifierInfo
 {
     /** A damage type to modify damage to this zed when it is received */
 	var() class<DamageType> DamageType;
-	/** How much to modify damage to this zed from the specific damage type*/
-    var() float DamageScale;
+	/** Damage scale for this damage type. Additional array elements (MAX:4) can be used to modify for higher game difficulties */
+    var() array<float> DamageScale;
 
 	structdefaultproperties
 	{
-        DamageScale=2.f
+        DamageScale=(1.f)
 	}
 };
 
 /** These damage types cause this zed to receive increased damage */
-var const array< VulnerableDamageTypeInfo > VulnerableDamageTypes;
-
-/** Information on resistant damage types */
-struct native ResistantDamageTypeInfo
-{
-    /** A damage type to modify damage to this zed when it is recieved */
-	var() class<DamageType> DamageType;
-	/** How much to modify damage to this zed from the specific damage type*/
-    var() float DamageScale;
-
-	structdefaultproperties
-	{
-        DamageScale=0.5f
-	}
-};
+var  array<DamageModifierInfo> DamageTypeModifiers;
+/** Additional damage type modifiers that can override the defaults */
+var  array<DamageModifierInfo> LiveDamageTypeModifiers;
 
 /** Special move cooldown info */
 struct native SpecialMoveCooldownInfo
@@ -431,9 +424,6 @@ struct native SpecialMoveCooldownInfo
 	}
 };
 
-/** These damage types cause this zed to receive reduced damage */
-var const array< ResistantDamageTypeInfo > ResistantDamageTypes;
-
 /** The amount to scale damage dealt by the fleshpound */
 var float ZedBumpDamageScale;
 
@@ -444,6 +434,16 @@ var transient bool bCheckingExtraHeadDamage;
 
 /** Base human-controlled melee damage */
 var(Combat) float HumanBaseMeleeDamage;
+
+/** Whether this zed is blocking attacks */
+var bool bIsBlocking;
+
+/** Minimum FOV angle attacks must fall in to be blocked */
+var float MinBlockFOV;
+
+/** Blocking damage scalars */
+var float BlockingDamageModifier;
+var float MeleeBlockingDamageModifier;
 
 /*********************************************************************************************
  * @name	Player-controlled
@@ -478,9 +478,6 @@ var repnotify byte	RepInflateMatParam;
 /** Cached health before taking damage for status effect resistance */
 var transient int OldHealth;
 
-/** Replicated material parameter for frozen */
-var repnotify byte RepFrozenMatParam;
-
 /*********************************************************************************************
  * @name	Anim Tree Controls
 ********************************************************************************************* */
@@ -508,6 +505,11 @@ var				bool 	bCanRage;
 var repnotify	bool	bIsEnraged;
 /** Particle system component for player alpha rally effect */
 var transient 	ParticleSystemComponent RallyPSC;
+
+/** Player rally buff (power boost for X seconds) variables */
+var float 		PlayerRallyBuffTime;
+var float 		PlayerRallyBuffPowerBoostPct;
+var transient	ParticleSystemComponent PlayerRallyPSCs[2];
 
 /*********************************************************************************************
  * @name	Perks
@@ -571,8 +573,6 @@ var float SpeedAdjustTransitionRate;
 /*********************************************************************************************
  * @name	Dismemberment / Gore
 ********************************************************************************************* */
-/** True if switched to Gore Skeleton/Physics Asset */
-var const bool bIsGoreMesh;
 
 /** The explosion effect should only be played once */
 var transient bool bPlayedExplosionEffect;
@@ -632,6 +632,11 @@ var const float			CollisionRadiusForReducedZedOnZedPinchPointCollisionState;
 var() ESquadType MinSpawnSquadSizeType;
 
 /*********************************************************************************************
+ * @name	Achievements
+********************************************************************************************* */
+var protected const int OnDeathAchievementID;
+var protected bool bOnDeathAchivementbDisabled;
+/*********************************************************************************************
  * @name	Delegates
 ********************************************************************************************* */
 
@@ -644,7 +649,7 @@ replication
 	// Replicated to ALL
 	if (bNetDirty)
 		bIsHeadless, bIsPoisoned, bPlayPanicked, bPlayShambling, MaxHeadChunkGoreWhileAlive,
-		bShowHealth, RepInflateMatParam, RepFrozenMatParam;
+		bShowHealth, RepInflateMatParam;
 	if ( bNetDirty && bCanCloak )
 		bIsCloakingSpottedByTeam;
 	if ( bNetDirty && bCanRage )
@@ -696,15 +701,11 @@ simulated event ReplicatedEvent(name VarName)
 		break;
 
 	case nameof(bIsPoisoned):
-		AfflictionHandler.SetPoisoned(bIsPoisoned);
+		AfflictionHandler.ToggleEffects(AF_Poison, bIsPoisoned);
 		break;
 
 	case nameof(RepInflateMatParam):
-		AfflictionHandler.SetMicrowaveParameter(ByteToFloat(RepInflateMatParam));
-		break;
-
-	case nameof(RepFrozenMatParam):
-		AfflictionHandler.SetFrozenParameter(ByteToFloat(RepFrozenMatParam));
+		AfflictionHandler.UpdateMaterialParameter(AF_Microwave, ByteToFloat(RepInflateMatParam));
 		break;
 
 	case nameof(Controller):
@@ -799,7 +800,11 @@ function PossessedBy( Controller C, bool bVehicleTransition )
 	//CollisionRadiusBeforeReducedZedOnZedPinchPointCollisionState = CollisionCylinderReducedPercentForSameTeamCollision;
 
 	// Turn off air control for AI because it can mess up landing.
+
+
+
 	if( IsHumanControlled() )
+
 	{
 		KFPRI = KFPlayerReplicationInfo(C.PlayerReplicationInfo);
 		if(KFPRI != none)
@@ -830,7 +835,12 @@ function PossessedBy( Controller C, bool bVehicleTransition )
 	}
 
 	// Set audio switch based on AI or player-controlled
+
+
+
 	SetSwitch( 'Player_Zed', IsHumanControlled() ? 'Player' : 'NotPlayer' );
+
+
 }
 
 simulated event FellOutOfWorld(class<DamageType> dmgType)
@@ -995,6 +1005,19 @@ function SetSprinting( bool bNewSprintStatus )
 	if( MyKFAIC != none )
 	{
 		if( !MyKFAIC.CanSetSprinting(bNewSprintStatus) )
+		{
+			return;
+		}
+	}
+
+	// Disallow sprinting if blocking
+	if( bIsBlocking )
+	{
+		if( bIsSprinting )
+		{
+			bNewSprintStatus = false;
+		}
+		else
 		{
 			return;
 		}
@@ -1368,6 +1391,14 @@ simulated function StopFire(byte FireModeNum)
 		case 4:
 			DesiredSpecialMove = SM_PlayerZedSpecial2;
         	break;
+
+        case 5:
+        	DesiredSpecialMove = SM_PlayerZedSpecial3;
+        	break;
+
+        case 6:
+        	DesiredSpecialMove = SM_PlayerZedSpecial4;
+        	break;
 	}
 
 	if( SpecialMove == DesiredSpecialMove )
@@ -1400,7 +1431,7 @@ function float GetSpecialMoveCooldownPercent( SpecialMoveCooldownInfo Cooldown )
 	{
 		if( Cooldown.LastUsedTime > 0.f && Cooldown.CooldownTime > 0.f )
 		{
-			CDTime = (!bEmpDisrupted) ? Cooldown.CooldownTime : AfflictionHandler.GetAfflictionDuration(SAF_EMPDisrupt);
+			CDTime = (!bEmpDisrupted) ? Cooldown.CooldownTime : AfflictionHandler.GetAfflictionDuration(AF_EMP);
 			return fClamp( (WorldInfo.TimeSeconds - Cooldown.LastUsedTime) / CDTime, 0.f, 1.f );
 		}
 	}
@@ -1417,7 +1448,7 @@ function float GetSpecialMoveCooldownTimeRemaining( SpecialMoveCooldownInfo Cool
 	{
 		if( Cooldown.LastUsedTime > 0.f && Cooldown.CooldownTime > 0.f )
 		{
-			CDTime = (!bEmpDisrupted) ? Cooldown.CooldownTime : AfflictionHandler.GetAfflictionDuration(SAF_EMPDisrupt);
+			CDTime = (!bEmpDisrupted) ? Cooldown.CooldownTime : AfflictionHandler.GetAfflictionDuration(AF_EMP);
 			return CDTime - fMin( WorldInfo.TimeSeconds - Cooldown.LastUsedTime, CDTime );
 		}
 	}
@@ -1471,6 +1502,18 @@ function PutAllMovesOnCooldown()
 /*********************************************************************************************
  * @name	Damage/Death Methods
 ********************************************************************************************* */
+
+/*
+ * PlayDying() is called upon death
+ * Network: ALL
+ */
+simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
+{
+	EndPlayerRallyBoost();
+
+	Super.PlayDying(DamageType, HitLoc);
+}
+
 State Dying
 {
 	event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
@@ -1593,7 +1636,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 	}
 }
 
-/** Disable falling damage */
+/** Disable falling damage, apply blocking modifier */
 function AdjustDamage(out int InDamage, out vector Momentum, Controller InstigatedBy, vector HitLocation, class<DamageType> DamageType, TraceHitInfo HitInfo, Actor DamageCauser)
 {
 	local KFPlayerController KFPC;
@@ -1602,7 +1645,6 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	local int HitZoneIdx;
 	local int ExtraHeadDamage;
 	local KFPerk InstigatorPerk;
-	local float DamageMod;
 	local class<KFDamageType> KFDT;
 
 	Super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
@@ -1613,17 +1655,11 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 		return;
 	}
 
-	DamageMod = 1.0;
+	// start with damage type resistance/vulnerability
+	InDamage *= GetDamageTypeModifier(DamageType);
 
-	// is vulnerable?
-	if( IsVulnerableTo( DamageType, DamageMod ) )
-	{
-		InDamage *= DamageMod;
-	}
-	else if( IsResistantTo( DamageType, DamageMod ) )
-	{
-		InDamage *= DamageMod;
-	}
+	// Apply blocking modifier
+	ApplyBlockingDamageModifier( InDamage, InstigatedBy, DamageType );
 
 	// Cached hit params
 	HitZoneIdx = HitZones.Find('ZoneName', HitInfo.BoneName);
@@ -1682,10 +1718,6 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	// so that it's called on the killing blow
 	if( !bCheckingExtraHeadDamage && InstigatedBy != none )
 	{
-		if( MyKFAIC != none )
-		{
-            MyKFAIC.AIHandleTakenDamage( InstigatedBy, FMin(Health, InDamage), DamageCauser, class<KFDamageType>(DamageType) );
-        }
 		AddTakenDamage( InstigatedBy, FMin(Health, InDamage), DamageCauser, class<KFDamageType>(DamageType) );
 	}
 
@@ -1696,41 +1728,82 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 		InDamage = 1;
 	}
 
-	if (bLogTakeDamage) LogInternal(GetFuncName()@"Adjusted Damage="$InDamage);
+	if (bLogTakeDamage) LogInternal(self@"Adjusted Monster Damage="$InDamage);
 }
 
-/** If returns true, this monster is vulnerable to this damage type damage */
-function bool IsVulnerableTo(class<DamageType> DT, optional out float DamageMod)
+/** Returns damage multiplier for an incoming damage type */
+function float GetDamageTypeModifier(class<DamageType> DT)
 {
-	local int Idx;
+	local int i;
+	local int DifficultyIdx;
 
-	for (Idx = 0; Idx < VulnerableDamageTypes.length; ++Idx)
+	if ( LiveDamageTypeModifiers.Length > 0 )
 	{
-		if ( VulnerableDamageTypes[Idx].DamageType != none && ClassIsChildOf(DT, VulnerableDamageTypes[Idx].DamageType) )
+		AppendLiveDamageTypeModifiers();
+	}
+
+	// reverse iteration so that most specific damage type can be last on the array
+	for (i = DamageTypeModifiers.Length - 1; i >= 0; --i)
+	{
+		if ( ClassIsChildOf(DT, DamageTypeModifiers[i].DamageType) )
 		{
-			DamageMod = VulnerableDamageTypes[Idx].DamageScale;
-			return true;
+			if ( WorldInfo.Game != None && DamageTypeModifiers[i].DamageScale.Length > 1 )
+			{
+				DifficultyIdx = Min(WorldInfo.Game.GameDifficulty, DamageTypeModifiers[i].DamageScale.Length);
+			}
+
+			if (bLogTakeDamage) LogInternal(self@"Scaling damage taken from"@DT@"by"@DamageTypeModifiers[i].DamageScale[DifficultyIdx]);
+			return DamageTypeModifiers[i].DamageScale[DifficultyIdx];
 		}
 	}
 
-	return false;
+	return 1.f;
 }
 
-/** If returns true, this monster is vulnerable to this damage type damage */
-function bool IsResistantTo(class<DamageType> DT, optional out float DamageMod)
+/** Append (one-time) damage type modifiers from the live balance into the damage modifiers array */
+function AppendLiveDamageTypeModifiers()
 {
-	local int Idx;
+	local int i;
 
-	for (Idx = 0; Idx < ResistantDamageTypes.length; ++Idx)
+	for (i = 0; i < LiveDamageTypeModifiers.Length; i++)
 	{
-		if ( ResistantDamageTypes[Idx].DamageType != none && ClassIsChildOf(DT, ResistantDamageTypes[Idx].DamageType) )
+		if ( LiveDamageTypeModifiers[i].DamageType != None )
 		{
-			DamageMod = ResistantDamageTypes[Idx].DamageScale;
-			return true;
+			DamageTypeModifiers.AddItem(LiveDamageTypeModifiers[i]);
+		}
+		else
+		{
+			break; // finished once we find an empty entry
 		}
 	}
 
-	return false;
+	LiveDamageTypeModifiers.Length = 0;
+}
+
+/** Applies the blocking damage modifier to incoming damage */
+function ApplyBlockingDamageModifier( out int Damage, Controller InstigatedBy, class<DamageType> damageType )
+{
+	local vector DamageDirNormal;
+
+	if( !bIsBlocking || Damage <= 0 || InstigatedBy == none || InstigatedBy.Pawn == none || InstigatedBy.GetTeamNum() == GetTeamNum() )
+	{
+		return;
+	}
+
+	// Only block attacks that come from the front
+	DamageDirNormal = Normal( InstigatedBy.Pawn.Location - Location );
+	if( DamageDirNormal dot vector(Rotation) > MinBlockFOV )
+	{
+		// Melee damage first
+		if( ClassIsChildOf(damageType, class'KFDT_Bludgeon') || ClassIsChildOf(damageType, class'KFDT_Slashing') )
+		{
+			Damage = int( float(Damage) * MeleeBlockingDamageModifier );
+		}
+		else
+		{
+			Damage = int( float(Damage) * BlockingDamageModifier );
+		}
+	}
 }
 
 event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageType, optional bool bRepairArmor=true, optional bool bMessageHealer=true)
@@ -1804,9 +1877,41 @@ function BleedOutTimer()
 	}
 }
 
-/** Spawns and attaches the rally effect to a specified bone */
-simulated function SpawnRallyEffect( ParticleSystem RallyEffect, name EffectBoneName, vector EffectOffset )
+/** Applies the rally buff and spawns a rally effect */
+simulated function Rally(
+							ParticleSystem 	RallyEffect,
+							name 			EffectBoneName,
+							vector			EffectOffset,
+							ParticleSystem	PlayerRallyEffect,
+							name 			PlayerEffectBoneNames[2],
+							vector 			PlayerEffectOffset
+						)
 {
+    local KFAIController KFAIC;
+    local bool bStartedPlayerRally;
+
+	if( bVersusZed )
+	{
+		if( !IsTimerActive(nameOf(EndPlayerRallyBoost)) )
+		{
+			SetTimer( PlayerRallyBuffTime, false, nameOf(EndPlayerRallyBoost) );
+			bStartedPlayerRally = true;
+		}
+	}
+    else if( Role == ROLE_Authority && Controller != none )
+    {
+	    KFAIC = KFAIController( Controller );
+
+	    KFAIC.SetSprintingDisabled( false );
+	    KFAIC.SetCanSprint( true );
+	    KFAIC.bDefaultCanSprint = true;
+	    KFAIC.bForceFrustration = true;
+
+	    // Trigger sprint/rage immediately
+	    SetSprinting( true );
+	    SetEnraged( true );
+	}
+
 	if( WorldInfo.NetMode != NM_DedicatedServer )
 	{
 		if( RallyPSC != none )
@@ -1816,18 +1921,45 @@ simulated function SpawnRallyEffect( ParticleSystem RallyEffect, name EffectBone
 		}
 
 		RallyPSC = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment( RallyEffect, Mesh, EffectBoneName, false, EffectOffset );
+
+		// Spawn player rally particle systems and attach them
+		if( bStartedPlayerRally )
+		{
+			if( Mesh.MatchRefBone(PlayerEffectBoneNames[0]) != INDEX_NONE )
+			{
+				PlayerRallyPSCs[0] = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment( PlayerRallyEffect, Mesh, PlayerEffectBoneNames[0], false, PlayerEffectOffset );
+			}
+			if( Mesh.MatchRefBone(PlayerEffectBoneNames[1]) != INDEX_NONE )
+			{
+				PlayerRallyPSCs[1] = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment( PlayerRallyEffect, Mesh, PlayerEffectBoneNames[1], false, PlayerEffectOffset );
+			}
+		}
 	}
+}
+
+/** Ends the player rally boost and cancels effects */
+simulated function EndPlayerRallyBoost()
+{
+	if( PlayerRallyPSCs[0] != none && PlayerRallyPSCs[0].bIsActive )
+	{
+		PlayerRallyPSCs[0].DeactivateSystem();
+	}
+	if( PlayerRallyPSCs[1] != none && PlayerRallyPSCs[1].bIsActive )
+	{
+		PlayerRallyPSCs[1].DeactivateSystem();
+	}
+}
+
+/** Applies the rally damage boost if applicable */
+simulated function int GetRallyBoostDamage( int NewDamage )
+{
+	return NewDamage * ( IsTimerActive(nameOf(EndPlayerRallyBoost)) ? PlayerRallyBuffPowerBoostPct : 1.f );
 }
 
 function bool Died(Controller Killer, class<DamageType> DamageType, vector HitLocation)
 {
 	local KFPlayerController KFPC;
 	local KFPerk InstigatorPerk;
-
-	if(Killer != none)
-	{
-		BroadcastDeathMessage(Killer);
-	}
 
 	if ( super.Died(Killer, damageType, HitLocation) )
 	{
@@ -1943,7 +2075,7 @@ function ShrapnelExplode( Controller Killer )
 	// explode using the given template
 	ExploActor = Spawn(class'KFExplosionActorReplicated', InstigatorActor,, Location,,, true);
 	if( ExploActor != None )
-		{
+	{
 		ExploActor.InstigatorController = Killer;
 
 		if( Killer.Pawn != none )
@@ -1954,7 +2086,7 @@ function ShrapnelExplode( Controller Killer )
 		ExplosionTemplate = class'KFPerk_Firebug'.static.GetExplosionTemplate();
 		ExplosionTemplate.MyDamageType = class'KFPerk_Firebug'.static.GetShrapnelDamageTypeClass();
 		ExploActor.Explode( ExplosionTemplate );
-		}
+	}
 }
 
 /*********************************************************************************************
@@ -2113,21 +2245,20 @@ simulated function bool IsImpaired()
 	return bPlayShambling || bPlayPanicked || bEmpDisrupted;
 }
 
-/** Set gameplay related MIC params on the active body MIC */
-simulated function SetGameplayMICParams()
+/** Reapply active gameplay related MIC params (e.g. when switching to the gore mesh) */
+simulated function UpdateGameplayMICParams()
 {
 	if ( AfflictionHandler != None )
 	{
-		AfflictionHandler.SetPoisonedOverlay( bIsPoisoned );
-		AfflictionHandler.SetFrozenParameter(ByteToFloat(RepFrozenMatParam));
+		AfflictionHandler.ToggleEffects(AF_Poison, bIsPoisoned);
 
 		// Turn off inflated if we are using the gore mic
-        if( GoreMIC != none )
+        if( bIsGoreMesh )
 	    {
-            AfflictionHandler.SetMicrowaveParameter(0.f);
+            AfflictionHandler.UpdateMaterialParameter(AF_Microwave, 0.f);
         }
     }
-	super.SetGameplayMICParams();
+	super.UpdateGameplayMICParams();
 }
 
 /** Called when a melee attack has been parried by another pawn */
@@ -2273,8 +2404,13 @@ native final simulated function bool SwitchToGoreMesh();
 /** Called when SwitchToGoreMesh is successful */
 simulated event NotifyGoreMeshActive()
 {
-    // Need to reset material params since our BodyMIC could have changed
-	SetGameplayMICParams();
+    // Need to reset material params since our MIC was reassigned to the gore mesh
+	UpdateGameplayMICParams();
+
+	if ( SpecialMove != SM_None )
+	{
+		SpecialMoves[SpecialMove].OnGoreMeshSwap();
+	}
 }
 
 /** Returns n closest bones to the TestLocation that belong to the physics asset of the mesh */
@@ -2372,7 +2508,7 @@ simulated function PlayDeadHitEffects(vector HitLocation, vector HitDirection, i
 	local KFGoreManager GoreManager;
 	local bool bIsDismemberingHit;
 	local bool bWasObliterated;
-
+	
 	// If ragdoll and gore is not allowed for dead bodies, check the time of death
 	// to see when the pawn died, and skip if he has been dead for a while
 	if( bAllowRagdollAndGoreOnDeadBodies || (WorldInfo.TimeSeconds - TimeOfDeath) <= 3.f )
@@ -2391,24 +2527,18 @@ simulated function PlayDeadHitEffects(vector HitLocation, vector HitDirection, i
     		}
 	    }
 
-		if( HitFxInfo.bObliterated )
+		GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
+		// If the gore manager doesn't allow mutilation, then we don't allow anything other than basic effects.
+		if(GoreManager.AllowMutilation() && HitFxInfo.bObliterated && (WorldInfo.TimeSeconds - TimeOfDeath) < 0.25f)
 		{
-			GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
-			if( GoreManager.AllowMutilation() )
-			{
-				if( HitFxInfo.bRadialDamage )
-				{
-                    GoreManager.CauseObliteration(self, HitFxRadialInfo.RadiusHurtOrigin, DmgType, ByteToFloat(HitFxRadialInfo.RadiusDamageScale));
-				}
-				else
-				{
-					GoreManager.CauseObliteration(self, HitLocation, DmgType);
-				}
+			bWasObliterated = true;
+			bIsDismemberingHit = true;
+			HandlePartialGoreAndGibs(DmgType, HitLocation, HitDirection, HitBoneName, true);
 
-				bWasObliterated = true;
-			}
+			GoreManager = KFGoreManager(WorldInfo.MyGoreEffectManager);
+			GoreManager.SpawnObliterationBloodEffect(self);
 		}
-		else if (Physics == PHYS_RigidBody)
+		else
 		{
 	        // Handle damage types from projectiles that can pin zeds to walls
 	        PinProjectileClass = DmgType.static.GetPinProjectileClass();
@@ -2417,13 +2547,12 @@ simulated function PlayDeadHitEffects(vector HitLocation, vector HitDirection, i
 			   DeadPawn = self;
 	           PinProjectileClass.static.CreatePin(DeadPawn, HitLocation, HitDirection, HitBoneName);
 			}
-
-			// Gibbing, Parital gore (if any) and gib impulse
-			HandlePartialGoreAndGibs(DmgType, HitLocation, HitDirection, HitBoneName);
-
-			// Apply an impulse to attached limbs and ragdoll
-			HandleRagdollImpulseEffects( HitLocation, HitDirection, HitZoneName, HitBoneName, DmgType, bIsDismemberingHit );
+			
+			HandlePartialGoreAndGibs(DmgType, HitLocation, HitDirection, HitBoneName, false);
 		}
+		
+		// Apply an impulse to attached limbs and ragdoll
+		HandleRagdollImpulseEffects( HitLocation, HitDirection, HitZoneName, HitBoneName, DmgType, bIsDismemberingHit );
 	}
 
 	// Play blood effects. Apply more blood if this was a dismembering hit
@@ -2783,12 +2912,17 @@ simulated function ApplyBloodDecals(int HitZoneIndex, vector HitLocation, vector
 	}
 }
 
-/** Gibbing, partial gore and gib impusle effects handled here */
+/** 
+ *	Gibbing, partial gore and gib impusle effects handled here.
+ *
+ *  @param	ObliterateGibs	If true this function will rip apart all limbs. If false, the default behavior is to select random bones to rip apart.
+*/
 simulated function HandlePartialGoreAndGibs(
 	class<KFDamageType> DmgType,
 	vector HitLocation,
 	vector HitDirection,
-	name HitBoneName)
+	name HitBoneName,
+	bool ObliterateGibs)
 {
 	local KFGoreManager GoreManager;
 	local KFCharacterInfo_Monster MonsterInfo;
@@ -2810,7 +2944,12 @@ simulated function HandlePartialGoreAndGibs(
 			{
 				MonsterInfo = GetCharacterMonsterInfo();
 				// Try to apply exlosion gore first
-				if( HitFxInfo.bRadialDamage )
+				if(ObliterateGibs)
+				{
+					ApplyObliterationFxGore( GoreManager, MonsterInfo, DmgType );
+				}
+				else
+				if( HitFxInfo.bRadialDamage)
 				{
 					ApplyRadialFxGore( GoreManager, MonsterInfo, DmgType );
 				}
@@ -2823,7 +2962,11 @@ simulated function HandlePartialGoreAndGibs(
 	}
 }
 
-/** Apply any gibbing from radial damage */
+/** 
+ *	Apply any gibbing from radial damage
+ *
+ *  @param	ObliterateGibs	If true this function will rip apart all limbs. If false, the default behavior is to select random bones to rip apart.
+*/
 simulated function ApplyRadialFxGore( KFGoreManager GoreManager, KFCharacterInfo_Monster MonsterInfo, class<KFDamageType> DmgType )
 {
 	local array<name> OutGibBoneList;
@@ -2832,9 +2975,8 @@ simulated function ApplyRadialFxGore( KFGoreManager GoreManager, KFCharacterInfo
 	local int NumGibs;
 
 	// Try to apply exlosion gore first
-	if( DmgType.default.bCanGib )
+	if( DmgType.default.bCanGib)
 	{
-		// Origin is the point where the explosive went off
 		ExplosionOrigin = HitFxRadialInfo.RadiusHurtOrigin;
 
 		// Use distance from explosion along with some randomization to figure out
@@ -2842,6 +2984,7 @@ simulated function ApplyRadialFxGore( KFGoreManager GoreManager, KFCharacterInfo
 		NormalizedDistanceScale = VSize(Location - ExplosionOrigin)/1000.f;
 		NumGibs = FCeil(FMax(1.f - NormalizedDistanceScale, 0.f) * rand(10)) + rand(3);
 		NumGibs *= MonsterInfo.ExplosionGibScale;
+
 		GetClosestHitBones(NumGibs, ExplosionOrigin, OutGibBoneList);
 
 		// Gib-ify!
@@ -2850,6 +2993,45 @@ simulated function ApplyRadialFxGore( KFGoreManager GoreManager, KFCharacterInfo
 			self,
 			DmgType,
 			ExplosionOrigin,
+			OutGibBoneList,
+			MonsterInfo.ExplosionEffectTemplate,
+			mesh.GetBoneLocation(mesh.GetBoneName(0)));
+	}
+}
+
+/** 
+ *	This function will dismember all rigid body bones in the mesh.
+*/
+simulated function ApplyObliterationFxGore( KFGoreManager GoreManager, KFCharacterInfo_Monster MonsterInfo, class<KFDamageType> DmgType )
+{
+	local array<name> OutGibBoneList;
+	local vector ObliterationLocation;
+	local int MaxNumGibs;
+
+	// Allowed to disconnect 100 bones (basically, all bones.)
+	MaxNumGibs = 100;
+
+	// Try to apply exlosion gore first
+	if( DmgType.default.bCanGib)
+	{
+		// Origin is the point where the explosive went off
+		if(HitFxInfo.bRadialDamage == true)
+		{
+			ObliterationLocation = HitFxRadialInfo.RadiusHurtOrigin;
+		}
+		else
+		{
+			ObliterationLocation = self.Location;
+		}
+
+		GetClosestHitBones(MaxNumGibs, ObliterationLocation, OutGibBoneList);
+
+		// Gib-ify!
+		// Spawn exlosion PS at the root bone
+		GoreManager.CauseGibsAndApplyImpulse(
+			self,
+			DmgType,
+			ObliterationLocation,
 			OutGibBoneList,
 			MonsterInfo.ExplosionEffectTemplate,
 			mesh.GetBoneLocation(mesh.GetBoneName(0)));
@@ -3176,18 +3358,14 @@ simulated function ForceBreakAllConstraints()
 		{
 			SwitchToGoreMesh();
 		}
-	}
 
-	for( i = 0; i < HitZones.length; ++i )
-	{
-		// Bail out if the hit zone has already been dismembered
-		if( HitZones[i].bPlayedInjury )
+		for( i = 0; i < CharacterMonsterArch.GoreJointSettings.length; i++ )
 		{
-			continue;
+			if ( !CharacterMonsterArch.GoreJointSettings[i].bNonBreakableJoint )
+			{
+				GoreManager.BreakConstraint( self, CharacterMonsterArch.GoreJointSettings[i].HitBoneName );
+			}
 		}
-
-		// breaks joint and all dependent joints
-		GoreManager.BreakConstraint( self, HitZones[i].BoneName );
 	}
 }
 
@@ -3673,24 +3851,6 @@ function MotivatePlayerToAttack( float Percentage, class<DamageType> AntiGriefDa
  * @name    UI / Localization
  ********************************************************************************************* */
 /**Looks up and returns localized name */
-
-//called on server
-simulated function BroadcastDeathMessage( Controller Killer )
-{
-	if( Killer != none && Killer != Controller)
-	{
-		if(IsHumanControlled())
-		{
-			BroadcastLocalizedMessage( class'KFLocalMessage_PlayerKills', KMT_PlayerKillPlayer, Killer.PlayerReplicationInfo, PlayerReplicationInfo);
-		}
-		//do not replicate this there is no need
-		/*else
-		{
-			BroadcastLocalizedMessage( class'KFLocalMessage_PlayerKills', KMT_PLayerKillZed, Killer.PlayerReplicationInfo, none, Class);
-		}*/
-	}
-}
-
 function string GetLocalizedName()
 {
 	local string MonsterName;
@@ -3699,6 +3859,14 @@ function string GetLocalizedName()
 
     return MonsterName;
 }
+
+/*********************************************************************************************
+ * @name   Achievements
+ ********************************************************************************************* */
+
+native protected function bool ShouldGrandOnDeathAchievement();
+native protected function int GetZedOnDeathAchievement();
+native function DisablebOnDeathAchivement();
 
 defaultproperties
 {
@@ -3715,7 +3883,12 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperAI'KFGame.Default__KFMeleeHelperAI'
    End Object
    MeleeAttackHelper=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
+   WeakSpotSocketNames(0)="FX_Dazed"
    ZedBumpDamageScale=1.000000
+   BlockingDamageModifier=0.400000
+   MeleeBlockingDamageModifier=0.150000
+   PlayerRallyBuffTime=10.000000
+   PlayerRallyBuffPowerBoostPct=1.200000
    MatchEnemySpeedAtDistance=200.000000
    MinimumEnemySpeedToMatch=280.000000
    PursuitSpeedScale=1.000000
@@ -3724,6 +3897,7 @@ defaultproperties
    BumpDamageType=Class'KFGame.KFDT_NPCBump'
    SpeedAdjustTransitionRate=100.000000
    CollisionRadiusForReducedZedOnZedPinchPointCollisionState=1.000000
+   OnDeathAchievementID=-1
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -3734,7 +3908,7 @@ defaultproperties
    bCanHeadTrack=True
    HitZones(0)=(ZoneName="head",BoneName="head",GoreHealth=20,DmgScale=1.100000,Limb=BP_Head,SkinID=1)
    HitZones(1)=(ZoneName="neck",BoneName="neck",GoreHealth=20,Limb=BP_Head)
-   HitZones(2)=(ZoneName="chest",BoneName="Spine2",GoreHealth=150,Limb=BP_Torso)
+   HitZones(2)=(ZoneName="chest",BoneName="Spine2",GoreHealth=150)
    HitZones(3)=(ZoneName="heart",BoneName="Spine2",GoreHealth=150,Limb=BP_Special)
    HitZones(4)=(ZoneName="lupperarm",BoneName="LeftArm",Limb=BP_LeftArm)
    HitZones(5)=(ZoneName="lforearm",BoneName="LeftForearm",GoreHealth=15,Limb=BP_LeftArm)
@@ -3742,25 +3916,25 @@ defaultproperties
    HitZones(7)=(ZoneName="rupperarm",BoneName="RightArm",Limb=BP_RightArm)
    HitZones(8)=(ZoneName="rforearm",BoneName="RightForearm",GoreHealth=15,Limb=BP_RightArm)
    HitZones(9)=(ZoneName="rhand",BoneName="RightForearm",GoreHealth=20,Limb=BP_RightArm)
-   HitZones(10)=(ZoneName="stomach",BoneName="Spine1",GoreHealth=150,Limb=BP_Torso)
-   HitZones(11)=(ZoneName="abdomen",BoneName="Hips",GoreHealth=150,Limb=BP_Torso)
+   HitZones(10)=(ZoneName="stomach",BoneName="Spine1",GoreHealth=150)
+   HitZones(11)=(ZoneName="abdomen",BoneName="Hips",GoreHealth=150)
    HitZones(12)=(ZoneName="lthigh",BoneName="LeftUpLeg",GoreHealth=75,Limb=BP_LeftLeg)
    HitZones(13)=(ZoneName="lcalf",BoneName="LeftLeg",GoreHealth=25,Limb=BP_LeftLeg)
    HitZones(14)=(ZoneName="lfoot",BoneName="LeftLeg",GoreHealth=15,Limb=BP_LeftLeg)
    HitZones(15)=(ZoneName="rthigh",BoneName="RightUpLeg",GoreHealth=75,Limb=BP_RightLeg)
    HitZones(16)=(ZoneName="rcalf",BoneName="RightLeg",GoreHealth=25,Limb=BP_RightLeg)
    HitZones(17)=(ZoneName="rfoot",BoneName="RightLeg",GoreHealth=15,Limb=BP_RightLeg)
-   Begin Object Class=KFPawnAfflictions Name=Afflictions_0 Archetype=KFPawnAfflictions'KFGame.Default__KFPawn:Afflictions_0'
+   Begin Object Class=KFAfflictionManager Name=Afflictions_0 Archetype=KFAfflictionManager'KFGame.Default__KFPawn:Afflictions_0'
       FireFullyCharredDuration=2.500000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
-      ObjectArchetype=KFPawnAfflictions'KFGame.Default__KFPawn:Afflictions_0'
+      ObjectArchetype=KFAfflictionManager'KFGame.Default__KFPawn:Afflictions_0'
    End Object
-   AfflictionHandler=KFPawnAfflictions'KFGame.Default__KFPawn_Monster:Afflictions_0'
-   StackingIncaps(2)=(Threshhold=3.000000,Cooldown=5.000000)
-   StackingIncaps(3)=(Threshhold=3.000000,Cooldown=5.000000)
-   StackingIncaps(4)=()
-   StackingIncaps(5)=(Duration=1.000000,Cooldown=5.000000,DissipationRate=0.330000)
+   AfflictionHandler=KFAfflictionManager'KFGame.Default__KFPawn_Monster:Afflictions_0'
+   IncapSettings(6)=(Cooldown=5.000000)
+   IncapSettings(7)=()
+   IncapSettings(8)=(Cooldown=5.000000)
+   IncapSettings(9)=(Cooldown=5.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True
       bOverrideAttachmentOwnerVisibility=True
@@ -3781,18 +3955,18 @@ defaultproperties
       SpecialMoveClasses(0)=None
       SpecialMoveClasses(1)=Class'KFGame.KFSM_MeleeAttack'
       SpecialMoveClasses(2)=Class'KFGame.KFSM_DoorMeleeAttack'
-      SpecialMoveClasses(3)=None
-      SpecialMoveClasses(4)=Class'KFGame.KFSM_GrappleAttack'
-      SpecialMoveClasses(5)=Class'KFGame.KFSM_Stumble'
-      SpecialMoveClasses(6)=Class'KFGame.KFSM_RecoverFromRagdoll'
-      SpecialMoveClasses(7)=Class'KFGame.KFSM_RagdollKnockdown'
-      SpecialMoveClasses(8)=Class'KFGame.KFSM_DeathAnim'
-      SpecialMoveClasses(9)=Class'KFGame.KFSM_Stunned'
-      SpecialMoveClasses(10)=Class'KFGame.KFSM_Frozen'
+      SpecialMoveClasses(3)=Class'KFGame.KFSM_GrappleCombined'
+      SpecialMoveClasses(4)=Class'KFGame.KFSM_Stumble'
+      SpecialMoveClasses(5)=Class'KFGame.KFSM_RecoverFromRagdoll'
+      SpecialMoveClasses(6)=Class'KFGame.KFSM_RagdollKnockdown'
+      SpecialMoveClasses(7)=Class'KFGame.KFSM_DeathAnim'
+      SpecialMoveClasses(8)=Class'KFGame.KFSM_Stunned'
+      SpecialMoveClasses(9)=Class'KFGame.KFSM_Frozen'
+      SpecialMoveClasses(10)=None
       SpecialMoveClasses(11)=None
-      SpecialMoveClasses(12)=None
-      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_Taunt'
-      SpecialMoveClasses(14)=Class'KFGame.KFSM_Zed_WalkingTaunt'
+      SpecialMoveClasses(12)=Class'KFGame.KFSM_Zed_Taunt'
+      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_WalkingTaunt'
+      SpecialMoveClasses(14)=None
       SpecialMoveClasses(15)=None
       SpecialMoveClasses(16)=None
       SpecialMoveClasses(17)=None
@@ -3805,9 +3979,8 @@ defaultproperties
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=None
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn:SpecialMoveHandler_0'
    End Object
@@ -3884,9 +4057,8 @@ defaultproperties
       RBCollideWithChannels=(Default=True,Pawn=True,Vehicle=True,BlockingVolume=True)
       Translation=(X=0.000000,Y=0.000000,Z=-86.000000)
       ScriptRigidBodyCollisionThreshold=200.000000
-      PerObjectShadowCullDistance=4000.000000
+      PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
-      bAllowPerObjectShadowBatching=True
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn:KFPawnSkeletalMeshComponent'
    End Object

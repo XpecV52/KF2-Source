@@ -7,8 +7,3 @@
  *******************************************************************************/
 class KFDT_Bludgeon_CrovelBash extends KFDT_Bludgeon_Crovel
     abstract;
-
-defaultproperties
-{
-    KnockdownPower=24
-}

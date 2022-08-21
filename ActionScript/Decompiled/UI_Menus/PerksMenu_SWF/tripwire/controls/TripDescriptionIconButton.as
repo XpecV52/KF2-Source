@@ -20,11 +20,13 @@ package tripwire.controls
         
         public var iconColor:Color;
         
+        public var titleColor:uint = 14538703;
+        
         public var baseColor:uint = 12234399;
         
-        public var highlightColor:uint = 16503487;
+        public var highlightColor:uint = 14538703;
         
-        public var disabledColor:uint = 5393734;
+        public var disabledColor:uint = 8814195;
         
         public function TripDescriptionIconButton()
         {
@@ -33,41 +35,41 @@ package tripwire.controls
             preventAutosizing = true;
         }
         
-        public function setData(data:Object) : void
+        public function setData(param1:Object) : void
         {
             this.unhighlightButton();
-            this.icon = !!data.iconSource ? data.iconSource : "";
-            this.TitleText = !!data.label ? data.label : "";
-            this.DescriptionText = !!data.description ? data.description : "";
+            this.icon = !!param1.iconSource ? param1.iconSource : "";
+            this.TitleText = !!param1.label ? param1.label : "";
+            this.DescriptionText = !!param1.description ? param1.description : "";
         }
         
-        override protected function addedToStage(e:Event) : void
+        override protected function addedToStage(param1:Event) : void
         {
-            super.addedToStage(e);
+            super.addedToStage(param1);
             this.active = false;
         }
         
-        public function set icon(value:String) : void
+        public function set icon(param1:String) : void
         {
-            if(value != null && value != "")
+            if(param1 != null && param1 != "")
             {
-                this.iconLoader.source = value;
+                this.iconLoader.source = param1;
             }
         }
         
-        public function set TitleText(value:String) : void
+        public function set TitleText(param1:String) : void
         {
-            label = value;
+            label = param1;
         }
         
-        public function set DescriptionText(value:String) : void
+        public function set DescriptionText(param1:String) : void
         {
-            this.descriptionTextfield.text = value;
+            this.descriptionTextfield.text = param1;
         }
         
-        public function set active(value:*) : void
+        public function set active(param1:*) : void
         {
-            this.activeIndicator.visible = value;
+            this.activeIndicator.visible = param1;
             this.unhighlightButton();
         }
         
@@ -88,9 +90,9 @@ package tripwire.controls
             {
                 if(!this.activeIndicator.visible)
                 {
-                    this.iconColor.setTint(this.baseColor,1);
+                    this.iconColor.setTint(this.titleColor,1);
                     this.iconLoader.transform.colorTransform = this.iconColor;
-                    textField.textColor = this.baseColor;
+                    textField.textColor = this.titleColor;
                     this.descriptionTextfield.textColor = this.baseColor;
                 }
                 else
@@ -100,10 +102,10 @@ package tripwire.controls
             }
         }
         
-        override public function set enabled(value:Boolean) : void
+        override public function set enabled(param1:Boolean) : void
         {
-            super.enabled = value;
-            if(!value)
+            super.enabled = param1;
+            if(!param1)
             {
                 this.iconColor.setTint(this.disabledColor,1);
                 this.iconLoader.transform.colorTransform = this.iconColor;

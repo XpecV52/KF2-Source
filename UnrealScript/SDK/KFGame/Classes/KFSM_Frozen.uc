@@ -14,15 +14,14 @@ class KFSM_Frozen extends KFSpecialMove;
 var()	name		FrozenAnim;
 var()	array<name>	ThawAnims;
 
-var() 	float FreezeDuration, FreezeInTime, FreezeOutTime;
+var() float FreezeInTime, FreezeOutTime;
+var() Vector2D FreezeDuration;
 
-var		transient float BeginFreezePhaseTime;
+var	float BeginFreezePhaseTime;
+var float FreezeMatParamValue;
 
-var protected ParticleSystem FrozenShatterTemplate;
 var protected ParticleSystem FrozenSteamTemplate;
 var protected ParticleSystemComponent FrozenSteamEffect;
-
-var transient bool bShatter;
 
 /** Notification called when Special Move starts */
 function SpecialMoveStarted(bool bForced, Name PrevMove )
@@ -34,33 +33,45 @@ function SpecialMoveStarted(bool bForced, Name PrevMove )
 /** Stop the movement and play the stun animation for all clients */
 function DoFreeze()
 {
+	local float TimeUntilThaw;
+
 	if ( KFPOwner.Role == ROLE_Authority )
 	{
 		// Disable Movement by using the DefaultAICommandClass to call LockdownAI()
-		FreezeDuration = default.FreezeDuration - (default.FreezeDuration/4.f) + ((default.FreezeDuration/2.f)*FRand());//( default.FreezeDuration * FRand() );
-		KFPOwner.SetTimer(FreezeDuration, false, nameof(DoThaw), self);
+		TimeUntilThaw = KFPOwner.IncapSettings[AF_Freeze].Duration > 0 ? KFPOwner.IncapSettings[AF_Freeze].Duration : RandRange(FreezeDuration.X, FreezeDuration.Y);
+		KFPOwner.SetTimer(TimeUntilThaw, false, nameof(DoThaw), self);
 	}
 
-	BeginFreezePhaseTime = KFPOwner.WorldInfo.TimeSeconds;
-	KFPOwner.SetTimer( 0.1f, true, nameof(UpdateFreezeInParam), self );
+	if ( PawnOwner.WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		BeginFreezePhaseTime = KFPOwner.WorldInfo.TimeSeconds;
+		KFPOwner.SetTimer( 0.1f, true, nameof(UpdateFreezeInParam), self );
+		FrozenSteamEffect = KFPOwner.WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(FrozenSteamTemplate, KFPOwner.Mesh, 'root');
+	}	
 
-	// use a really slow rate to fake being "frozen"
+	// use a really slow rate to emulate being frozen
 	PlaySpecialMoveAnim( FrozenAnim, EAS_FullBody, FreezeInTime, 0.3f, 0.001f, true );
-
-	FrozenSteamEffect = KFPOwner.WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(FrozenSteamTemplate, KFPOwner.Mesh, 'root');
-
-	bShatter = true;
 }
 
-/** Thaw the zed once the servers timer has finished */
+/* Play a random wakeup animation */
 function DoThaw()
 {
-	// replicate to all clients
-	if ( KFPOwner.Role == ROLE_Authority )
-	{
-		KFPOwner.SpecialMoveFlags = 1;
-		KFPOwner.ReplicatedSpecialMove.Flags = 1;
-        PlayThawAnimation();
+	local KFPawn_Monster P;
+
+	if ( PawnOwner.Role == ROLE_Authority )
+	{		
+		// if pawn's head has already been blown off, skip thawing
+		P = KFPawn_Monster(PawnOwner);
+		if( P != None && P.bIsHeadless )
+		{
+			P.BleedOutTimer();
+		}
+		else
+		{
+			KFPOwner.SpecialMoveFlags = 1 + Rand( ThawAnims.Length );
+			KFPOwner.ReplicatedSpecialMove.Flags = KFPOwner.SpecialMoveFlags;
+			PlayThawAnimation();
+		}
 	}
 }
 
@@ -69,20 +80,22 @@ function PlayThawAnimation()
 {
 	local byte ThawIndex;
 
-	ThawIndex = Rand( ThawAnims.Length );
+	ThawIndex = KFPOwner.SpecialMoveFlags - 1;
 	PlaySpecialMoveAnim(ThawAnims[ThawIndex], EAS_FullBody, FreezeOutTime, 0.3f, 0.5f, false);
-
-	// if pawn's head has already been blown off, just shatter
-	if( KFPawn_Monster(KFPOwner).bIsHeadless )
+	
+	if ( PawnOwner.WorldInfo.NetMode != NM_DedicatedServer )
 	{
-		KFPOwner.Died( none, none, KFPOwner.Location );
-	}
-	else
-	{
-		bShatter = false;
 		BeginFreezePhaseTime = KFPOwner.WorldInfo.TimeSeconds;
 		KFPOwner.SetTimer( 0.1f, true, nameof(UpdateFreezeOutParam), self );
-	}
+		// Match the material param blend time to the animation length
+		FreezeOutTime = PawnOwner.Mesh.GetAnimLength(ThawAnims[ThawIndex]);
+	}	
+}
+
+/* Play the wakeup animation for all clients */
+function SpecialMoveFlagsUpdated()
+{
+	PlayThawAnimation();
 }
 
 function UpdateFreezeInParam()
@@ -90,10 +103,9 @@ function UpdateFreezeInParam()
 	local float Param;
 
 	Param = FMin( 1.f, (KFPOwner.WorldInfo.TimeSeconds - BeginFreezePhaseTime) / FreezeInTime );
-    KFPOwner.AfflictionHandler.SetFrozenParameter(Param);
-    KFPawn_Monster(KFPOwner).RepFrozenMatParam = FloatToByte(Param);
-
-    if( Param >= FreezeInTime )
+    SetFrozenParameter(Param);
+ 
+    if( Param == 1.f )
     {
     	KFPOwner.ClearTimer( nameof(UpdateFreezeInParam), self );
     }
@@ -104,49 +116,80 @@ function UpdateFreezeOutParam()
 	local float Param;
 
 	Param = 1.f - FMin( 1.f, (KFPOwner.WorldInfo.TimeSeconds - BeginFreezePhaseTime) / FreezeOutTime );
-	KFPOwner.AfflictionHandler.SetFrozenParameter(Param);
-	KFPawn_Monster(KFPOwner).RepFrozenMatParam = FloatToByte(Param);
+	SetFrozenParameter(Param);
 
-    if( Param >= FreezeOutTime )
+    if( Param == 0.f )
     {
     	KFPOwner.ClearTimer( nameof(UpdateFreezeOutParam), self );
     }
-}
-
-/* Play the wakeup animation for all clients */
-function SpecialMoveFlagsUpdated()
-{
-	PlayThawAnimation();
 }
 
 /** Notification called when Special Move starts when ReplicatedSpecialMove changes*/
 function SpecialMoveEnded(Name PrevMove, Name NextMove)
 {
 	super.SpecialMoveEnded( PrevMove, NextMove );
-
-	// Enable movement
-	if ( KFPOwner.MyKFAIC != None )
+	
+	if ( PawnOwner.WorldInfo.NetMode != NM_DedicatedServer )
 	{
-		KFPOwner.MyKFAIC.bPreparingMove = false;
-	}
+		KFPOwner.DetachEmitter( FrozenSteamEffect );
 
-	KFPOwner.DetachEmitter( FrozenSteamEffect );
-
-	// if we're dead, shatter
-	if( bShatter )
-	{
-		Shatter();
+		// if we're dead, shatter
+		if( !PawnOwner.IsAliveAndWell() )
+		{
+			PlayDeathEffects();
+			KFPOwner.ClearTimer( nameof(UpdateFreezeOutParam), self );
+		}
 	}
 
 	KFPOwner.ClearTimer( nameof(UpdateFreezeInParam), self );
-	KFPOwner.ClearTimer( nameof(UpdateFreezeOutParam), self );
 	KFPOwner.ClearTimer( nameof(DoThaw), self );
 }
 
-function Shatter()
+/** Reapply material param (e.g. headless or head chunk during freeze) */
+function OnGoreMeshSwap()
 {
-	KFPOwner.WorldInfo.MyEmitterPool.SpawnEmitter( FrozenShatterTemplate, KFPOwner.Location, rotator(vect(0,0,1)) );
-	KFPawn_Monster(KFPOwner).ForceBreakAllConstraints();
+	SetFrozenParameter(FreezeMatParamValue);
+}
+
+/** Enable/Disable the Frozen material effect */
+function SetFrozenParameter(float FreezeAmount)
+{
+	local MaterialInstanceConstant MIC;
+
+    if ( PawnOwner.WorldInfo.NetMode != NM_DedicatedServer )
+    {
+    	FreezeMatParamValue = FreezeAmount;
+
+	    foreach KFPOwner.CharacterMICs(MIC)
+	    {
+			MIC.SetScalarParameterValue( 'Scalar_Ice', FreezeMatParamValue );
+	    }
+    }
+}
+
+/** Do shatter VFX & Gore on death */
+function PlayDeathEffects()
+{
+	if ( PawnOwner.WorldInfo.NetMode == NM_DedicatedServer )
+	{
+		return;
+	}
+
+	// As long as we were killed by a weapon, add some VFX
+	if ( PawnOwner.HitDamageType != class'KFDT_Bleeding' )
+	{
+		// This happens "just" before ragdoll death is triggered
+		class'KFDT_Freeze'.static.PlayShatter(KFPOwner, false);
+	}
+	else
+	{
+		PawnOwner.SetTimer(0.5f, false, nameof(DelayedShatterTimer), self);
+	}
+}
+
+function DelayedShatterTimer()
+{
+	class'KFDT_Freeze'.static.PlayShatter(KFPOwner, true);
 }
 
 defaultproperties
@@ -158,7 +201,7 @@ defaultproperties
 	ThawAnims.Add(Stun_Wakeup_V2)
 	ThawAnims.Add(Stun_Wakeup_V3)
 
-	FreezeDuration=4
+	FreezeDuration=(X=3,Y=5)
 	FreezeInTime=1
 	FreezeOutTime=1
 
@@ -169,6 +212,8 @@ defaultproperties
 	DefaultAICommandClass=class'KFGame.AICommand_PushedBySM'
 	bDisablesWeaponFiring=true
 	bCanOnlyWanderAtEnd=true
+
+	FrozenSteamTemplate=ParticleSystem'WEP_Freeze_Grenade_EMIT.FX_Freeze_Grenade_Smoke'
 }
 
 

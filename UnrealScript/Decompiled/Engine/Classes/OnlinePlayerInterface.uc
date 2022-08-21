@@ -49,6 +49,12 @@ function bool IsGuestLogin(byte LocalUserNum);
 
 function bool IsLocalLogin(byte LocalUserNum);
 
+delegate OnPrivilegeLevelChecked(byte LocalUserNum, OnlineSubsystem.EFeaturePrivilege Privilege, OnlineSubsystem.EFeaturePrivilegeLevel PrivilegeLevel);
+
+function AddPrivilegeLevelCheckedDelegate(delegate<OnPrivilegeLevelChecked> PrivilegeDelegate);
+
+function ClearPrivilegeLevelCheckedDelegate(delegate<OnPrivilegeLevelChecked> PrivilegeDelegate);
+
 function OnlineSubsystem.EFeaturePrivilegeLevel CanPlayOnline(byte LocalUserNum);
 
 function OnlineSubsystem.EFeaturePrivilegeLevel CanCommunicate(byte LocalUserNum);

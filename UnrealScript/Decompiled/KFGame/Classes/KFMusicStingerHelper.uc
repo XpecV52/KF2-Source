@@ -7,6 +7,8 @@
  *******************************************************************************/
 class KFMusicStingerHelper extends Object;
 
+var AkEvent RoundWonStinger;
+var AkEvent RoundLostStinger;
 var AkEvent MatchWonStinger;
 var AkEvent MatchLostStinger;
 var AkEvent WaveStartStinger;
@@ -16,6 +18,88 @@ var AkEvent ObjectiveLostStinger;
 var AkEvent PlayerDiedStinger;
 var AkEvent LevelUpStinger;
 var AkEvent TierUnlockedStinger;
+var AkEvent TeammateDeathStinger;
+var AkEvent ZedKillHumanStinger;
+var AkEvent ZedPlayerKilledStinger;
+var AkEvent ZedPlayerSuicideStinger;
+
+static simulated function PlayTeammateDeathStinger(PlayerController P)
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(P);
+    if(KFPC == none)
+    {
+        return;
+    }
+    KFPC.StingerAkComponent.StopEvents();
+    KFPC.StingerAkComponent.PlayEvent(default.TeammateDeathStinger);
+}
+
+static simulated function PlayZedKillHumanStinger(PlayerController P)
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(P);
+    if(KFPC == none)
+    {
+        return;
+    }
+    KFPC.StingerAkComponent.StopEvents();
+    KFPC.StingerAkComponent.PlayEvent(default.ZedKillHumanStinger);
+}
+
+static simulated function PlayZedPlayerKilledStinger(PlayerController P)
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(P);
+    if(KFPC == none)
+    {
+        return;
+    }
+    KFPC.StingerAkComponent.StopEvents();
+    KFPC.StingerAkComponent.PlayEvent(default.ZedPlayerKilledStinger);
+}
+
+static simulated function PlayZedPlayerSuicideStinger(PlayerController P)
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(P);
+    if(KFPC == none)
+    {
+        return;
+    }
+    KFPC.StingerAkComponent.StopEvents();
+    KFPC.StingerAkComponent.PlayEvent(default.ZedPlayerSuicideStinger);
+}
+
+static simulated function PlayRoundWonStinger(PlayerController P)
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(P);
+    if(KFPC == none)
+    {
+        return;
+    }
+    KFPC.StingerAkComponent.StopEvents();
+    KFPC.StingerAkComponent.PlayEvent(default.RoundWonStinger);
+}
+
+static simulated function PlayRoundLostStinger(PlayerController P)
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(P);
+    if(KFPC == none)
+    {
+        return;
+    }
+    KFPC.StingerAkComponent.StopEvents();
+    KFPC.StingerAkComponent.PlayEvent(default.RoundLostStinger);
+}
 
 static simulated function PlayMatchWonStinger(PlayerController P)
 {
@@ -148,6 +232,8 @@ static simulated function PlayPlayerDiedStinger(PlayerController P)
 
 defaultproperties
 {
+    RoundWonStinger=AkEvent'WW_UI_Menu.Play_Round_Won'
+    RoundLostStinger=AkEvent'WW_UI_Menu.Play_Round_Lost'
     MatchWonStinger=AkEvent'WW_MSTG_Global.Play_MSTG_BossKilled'
     MatchLostStinger=AkEvent'WW_MSTG_Global.Play_MSTG_TeamWipedOut'
     WaveStartStinger=AkEvent'WW_UI_Menu.Play_UI_Alert_Wave_Incoming'
@@ -157,4 +243,8 @@ defaultproperties
     PlayerDiedStinger=AkEvent'WW_MSTG_Global.Play_MSTG_PlayerDeath'
     LevelUpStinger=AkEvent'WW_MSTG_Global.Play_MSTG_LevelUp_XP'
     TierUnlockedStinger=AkEvent'WW_MSTG_Global.Play_MSTG_LevelUp_KeyXP'
+    TeammateDeathStinger=AkEvent'WW_UI_Menu.Play_Teammate_Death'
+    ZedKillHumanStinger=AkEvent'WW_UI_Menu.Play_Zed_Kill_Human'
+    ZedPlayerKilledStinger=AkEvent'WW_UI_Menu.Play_Zed_Player_Killed'
+    ZedPlayerSuicideStinger=AkEvent'WW_UI_Menu.Play_Zed_Player_Suicide'
 }

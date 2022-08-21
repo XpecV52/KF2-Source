@@ -11,8 +11,6 @@
 class KFGFxPostGameContainer_PlayerStats extends KFGFxObject_Container
 	dependson(EphemeralMatchStats);
 
-`include(KFGame\KFMatchStats.uci);
-
 var localized string AchievementsString, ZedKillsString, TopWeaponsString;
 var localized string TotalDamageDealtString, HeadShotsString, LargeZedKillsString, TotalDoshEarnedString, TotalKillsString, AssistsString, DamageDealtString;
 var localized string KnifeString;

@@ -239,6 +239,7 @@ defaultproperties
     // Reference: SpriteComponent'Default__Light.Sprite'
     Components(0)=Sprite
     CollisionType=ECollisionType.COLLIDE_CustomDefault
+    TickGroup=ETickingGroup.TG_DuringAsyncWork
     bNoDelete=true
     bRouteBeginPlayEvenIfStatic=false
     bMovable=false

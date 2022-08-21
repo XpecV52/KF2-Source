@@ -16,16 +16,16 @@ defaultproperties
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'WEP_RPG7_ARCH.RPG7_Explosion'
         Damage=750
-        DamageRadius=1000
-        DamageFalloffExponent=3
+        DamageRadius=250
+        DamageFalloffExponent=2
         MyDamageType=Class'KFDT_Explosive_RPG7'
         KnockDownStrength=0
         ExplosionSound=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_Explosion'
         ExploLight=PointLightComponent'Default__KFProj_Rocket_RPG7.ExplosionPointLight'
         ExploLightFadeOutTime=0.2
         CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
-        CamShakeInnerRadius=900
-        CamShakeOuterRadius=1800
+        CamShakeInnerRadius=200
+        CamShakeFalloff=1.5
     object end
     // Reference: KFGameExplosion'Default__KFProj_Rocket_RPG7.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0

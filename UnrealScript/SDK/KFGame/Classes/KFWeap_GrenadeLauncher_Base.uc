@@ -69,7 +69,7 @@ simulated function name GetReloadAnimName( bool bTacticalReload )
 		`warn("Grenade launcher reloading with non-empty mag");
 	}
 
-	return ReloadEmptyMagAnim;
+	return bTacticalReload ? ReloadEmptyMagEliteAnim : ReloadEmptyMagAnim;
 }
 
 DefaultProperties
@@ -79,7 +79,7 @@ DefaultProperties
 
 	// Doesn't use CSHD so FALSE is needed to avoid some rare, but tricky sync issues.
 	// Since these weapons have a mag size of 1 client ammo is not that useful anyway.
-	bAllowClientAmmoTracking=false
+	bAllowClientAmmoTracking=true
 
 	// Aim Assist
 	AimCorrectionSize=0.f

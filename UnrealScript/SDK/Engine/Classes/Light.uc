@@ -116,7 +116,10 @@ public:
 	/** ticks the light
 	 * @return TRUE if the actor was ticked, FALSE if it was aborted (e.g. because it's in stasis)
 	 */
-	virtual UBOOL Tick(FLOAT DeltaTime, enum ELevelTick TickType);
+	virtual UBOOL 	Tick(FLOAT DeltaTime, enum ELevelTick TickType);
+	virtual void 	UpdateComponentsInternal(UBOOL bCollisionUpdate = FALSE);
+
+	/** Returns the material parameter value when synching with this light */
 	FLOAT GetLightMICParamValue();
 
 	virtual void PostLoad();
@@ -334,6 +337,7 @@ defaultproperties
 	Components.Add(Sprite)
 
 `if(`__TW_LIGHTING_MODIFICATIONS_)
+	TickGroup=TG_DuringAsyncWork
 	bStatic=FALSE
 	bHidden=FALSE    //Set hidden to false so that the light mesh is visible in game
 `else

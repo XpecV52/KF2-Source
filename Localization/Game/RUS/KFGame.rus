@@ -1,67 +1,82 @@
 [KFCommon_LocalizedStrings]
-DifficultyStrings[0]="Новичок"
-DifficultyStrings[1]="Любитель"
-DifficultyStrings[2]="Профессионал"
-DifficultyStrings[3]="Ад на земле"
+DifficultyStrings[0]="Нормальный"
+DifficultyStrings[1]="Сложный"
+DifficultyStrings[2]="Безумный"
+DifficultyStrings[3]="Ад на Земле"
 
-LengthStrings[0]="Небольшая (4 волны)"
+LengthStrings[0]="Короткая (4 волны)"
 LengthStrings[1]="Средняя (7 волн)"
-LengthStrings[2]="Длинная (10 волны)"
+LengthStrings[2]="Длинная (10 волн)"
 
-ServerTypeStrings[0]="С рейтингом"
-ServerTypeStrings[1]="С рейтингом - Персонализированный"
-;ServerTypeStrings[2]="Без рейтинга"
+ServerTypeStrings[0]="Рейтинговый"
+ServerTypeStrings[1]="Рейтинговый нестандартный"
+ServerTypeStrings[1]="Рейтинговый нестандартный"
+ServerTypeStrings[2]="Unranked"
 
 PermissionStrings[0]="Открытый"
 PermissionStrings[1]="Только для друзей"
 PermissionStrings[2]="Закрытый"
 
 ModeStrings[0]="Выживание"
+ModeStrings[1]="VS Survival"
 
-NoPreferenceString="ВСЕ РАВНО"
+NoPreferenceString="ВСЁ РАВНО"
 OKString="ОК"
-ConfirmString="ПОДТВЕРДИТЕ"
+ConfirmString="ДА"
 CancelString="ОТМЕНА"
 BackString="НАЗАД"
 AcceptString="Принять"
 DeclineString="Отклонить"
 NoticeString="ВНИМАНИЕ!"
-PerkUpdateNoticeString="Перк может обновляться один раз за волну!"
+PerkUpdateNoticeString="Перк можно изменить один раз за волну!"
 YesString="Да"
 NoString="Нет"
 
-DisbandPartyString="ОТМЕНА ТУСОВКИ"
+DisbandPartyString="РАСПУСТИТЬ ГРУППУ"
 LeaveCurrentMenuString="Выйти из текущего меню?"
+ZedString="ZED"
+HumanString="SURVIVOR"
+SpectatorString="SPECTATOR"
+TeamString="TEAM"
+AllString="ALL"
+
+UnableToSwitchTeamString="Unable to Switch Teams"
+NoSwitchReasonString="Switching teams would upset team balance"
+
+
 
 [KFGFxMoviePlayer_Manager]
-FailedSearchTitleString="НЕ УДАЛОСЬ НАЙТИ ПАРУ"
-FailedSearchString="Не удалось найти пару по заданным параметрам.  Пожалуйста, расширьте поиск или используйте поиск серверов для нахождения пары."
+FailedSearchTitleString="НЕ УДАЛОСЬ НАЙТИ ИГРУ"
+FailedSearchString="Не удалось найти игру по заданным параметрам. Пожалуйста, расширьте настройки поиска или воспользуйтесь меню «Поиск серверов»."
 BrowseServersString="ПОИСК СЕРВЕРОВ"
-HasInvitedToGameString=" пригласил(а) вас в игру."
+HasInvitedToGameString=" приглашает вас в игру."
 JoinGameString="Присоединиться к игре?"
 
 
 [KFGFxObject_Menu]
-LeavePartyTitleString="ВЫХОД ИЗ ТУСОВКИ"
-LeavePartyDescriptionString="Вы действительно хотите выйти из этой онлайн-тусовки?"
+LeavePartyTitleString="ПОКИНУТЬ ГРУППУ"
+LeavePartyDescriptionString="Вы действительно хотите покинуть группу?"
 LeaveString="ВЫЙТИ"
 
+
+
+
 [KFDoorActor]
-WeldIntegrityString="Целостность сварки:"
+WeldIntegrityString="Двери заварены на:"
 ExplosiveString="Дверная ловушка:"
 
 [KFGFxMenu_StartGame]
-CreateMatchString="НАЙТИ ПАРУ"
-MatchmakingString="ПОИСК ПАРЫ ОНЛАЙН"
+CreateMatchString="СОЗДАТЬ ИГРУ"
+MatchmakingString="ПОДБОР ИГРЫ"
 ServerBrowserString="Поиск серверов"
 
-DifficultyTitle="ТРУДНОСТЬ"
+DifficultyTitle="СЛОЖНОСТЬ"
 GameModeTitle="РЕЖИМ ИГРЫ"
 ServerTypeString="ТИП СЕРВЕРА"
 PermissionsTitle="РАЗРЕШЕНИЯ"
 WhiteListedTitle="СТАТИСТИКА ВКЛЮЧЕНА"
-LengthTitle="ДЛИНА"
-MapTitle="НАЧАЛЬНАЯ КАРТА"
+LengthTitle="ПРОДОЛЖИТЕЛЬНОСТЬ"
+MapTitle="КАРТА"
 MutatorTitle="МУТАТОРЫ"
 InfoTitle="ИНФОРМАЦИЯ"
 InProgressString="УЖЕ НАЧАТА"
@@ -70,62 +85,78 @@ WhiteListedStrings[0]="ДА"
 WhiteListedStrings[1]="НЕТ"
 
 FindGameString="ГЛАВНАЯ"
-LeaveMenuString="Выйдя из режима поиска пары, вы отмените свою тусовку.  Перейти к поиску серверов?"
+LeaveMenuString="Остановив подбор игры, вы распустите свою группу. Перейти к поиску серверов?"
 
-CouldNotFindGameTitleString="Не удалось найти пару"
-CouldNotFindGameDescriptionString="Не было найдено серверов, которые соответствуют параметрам поиска. Выберите другие фильтры или используйте поиск серверов."
+CouldNotFindGameTitleString="Не удалось найти игру"
+CouldNotFindGameDescriptionString="Не найдено серверов, соответствующих параметрам поиска. Измените фильтры или воспользуйтесь поиском серверов."
 
 [KFGFxStartGameContainer_FindGame]
-MultiplayerString="Поиск пары онлайн"
-SoloString="Играть соло"
+MultiplayerString="Подбор игры"
+SoloString="Одиночная игра"
+TutorialString="Basic Training"
+
+[StartMenuHelperText]
+modeList0="Survival – PVE battle waves of AI controlled Zeds"
+modeList1="VS Survival – PVP Horzine Mercenaries vs waves of Player and AI controlled Zeds"
+modeList2=""
+difficultyList0="Normal – For beginning players of perk rank 0-5."
+difficultyList1="Hard – For experienced players of perk rank 5-12. There are more Zeds per wave, they move faster, and have more health. There are fewer pickups and you get less dosh."
+difficultyList2="Suicidal – For seasoned players of perk rank 13-25. There are even more Zeds per wave, they use new attacks, and move even faster.  There even fewer pickups, and you get less dosh."
+difficultyList3="Hell on Earth – The most intense challenge for players of perk rank 25. There are still more Zeds per wave and they use new attacks. There are still fewer pickups, and you get still less dosh."
+lengthList0=""
+lengthList1=""
+lengthList2=""
+lengthList3=""
+serverTypeList0="Ranked – Any map, no mods, no friendly fire, 6 players max (if VS Survival this is 12 players max)"
+serverTypeList1="Ranked Stock – Official Maps, no mods, no friendly fire, and 6 players max"
+serverTypeList2="Ranked Custom – Any map, whitelisted mods, any server setting"
+serverTypeList3="Unranked Custom – Non-whitelisted mods (only)"
+privacyList0=""
+privacyList1=""
+privacyList2=""
+privacyList3=""
+inProgressList0=""
+inProgressList1=""
+inProgressList2=""
 
 [KFGFxStartGameContainer_Options]
 BackString="НАЗАД"
 StartGameString="НАЧАТЬ ИГРУ"
 LaunchGameString="ЗАПУСТИТЬ ИГРУ"
 InProgressString="ПРОГРЕСС"
-SoloGameString="СОЛО ИГРА"
-LeaveMatchMakingString="НАЗАД"
-MultiplayerLaunchString="ИГРАТЬ В РЕЖИМЕ ОНЛАЙН"
+SoloGameString="ОДИНОЧНАЯ ИГРА"
+LeaveMatchMakingString="ВЫЙТИ"
+MultiplayerLaunchString="НАЧАТЬ ПОИСК"
 SearchingString="ОТМЕНИТЬ ПОИСК"
+CancelSearchingString="CANCEL SEARCH"
 ServerTypeString="ТИП СЕРВЕРА"
+AnyMapServerString="Ranked"
+UnrankedServerString="Нерейтинговый"
+CustomServerString="Нестандартный"
 StandardServerString="Стандартный"
-UnrankedServerString="Без рейтинга"
-CustomServerString="Персонализированный"
 AllowInProgressString="Разрешить начатые игры"
 NotStartedString="Только новые игры"
 
 
 [KFGFxStartContainer_MatchMaking]
-OptionsHeaderString="ПОИСК ПАРЫ"
+OptionsHeaderString="ПОДБОР ИГРЫ"
 BackString="НАЗАД"
 FindGameString="НАЙТИ ИГРУ"
 
 [KFGFxStartContainer_InGameOverview]
-OverviewString="ОБЗОР ПАРЫ"
+OverviewString="ОБ ИГРЕ"
 ChangeString="ИЗМЕНИТЬ"
-SharedByString="Поделился:"
-SharedContentString="КОНТЕНТ"
+SharedByString="Владелец:"
+SharedContentString="ОБЩИЕ ПРЕДМЕТЫ"
 
 [KFGFxStartContainer_ServerBrowserOverview]
-OverviewString="ОБЗОР ПАРЫ"
-DescriptionString="Поиск игры в обзоре серверов..."
+OverviewString="ОБ ИГРЕ"
+DescriptionString="ищет игру в списке серверов..."
 
 [KFGFxTraderContainer_GameInfo]
 TimeLeftString="ОСТАЛОСЬ ВРЕМЕНИ"
 WaveString="ВОЛНА"
 BossWaveString="БОСС"
-
-//BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters ma"
-[KFPawn_ZedHansBase]
-BossName="Д-р Ганс Вольтер"
-BossCaptionStrings[0]="Ганс практически неуязвим, пока восстанавливает здоровье с помощью дымовой гранаты. Не тратьте патроны впустую!"
-BossCaptionStrings[1]="Следите за энергетическим ядром на его груди: по мере того, как оно меняет цвет, атаки Ганса становятся сильнее."
-BossCaptionStrings[2]="Цельтесь в энергетическое ядро. Это уязвимое место."
-BossCaptionStrings[3]="Газ от гранат Вольтера липнет к вам подобно желчи Толстяка. Старайтесь не касаться его!"
-BossCaptionStrings[4]="Отразить его рубящие атаки невозможно: они слишком сильны и всегда наносят полный урон."
-BossCaptionStrings[5]="Следите за красными указателями: они показывают место приземления гранат."
-BossCaptionStrings[6]="Когда Ганс достает огнестрельное оружие, прячьтесь в укрытие. Да, это очевидно, но крайне важно!"
 
 [KFPawn_MonsterBoss]
 BossName="Босс"
@@ -137,36 +168,37 @@ PlayerHeaderString="ИНВЕНТАРЬ"
 SelectPerkString="ВЫБРАТЬ ПЕРК"
 
 [KFGFxMenu_ServerBrowser]
-FavoriteString="ИЗБРАННОЕ"
-MultiplayerMenuString="ПОИСК ПАРЫ"
-LeaveMenuString="Выйдя из этого меню, вы отмените свою тусовку.  Перейти в режим Поиска пары?"
-NameString="ИМЯ"
+FavoriteString="В ИЗБРАННОЕ"
+MultiplayerMenuString="ПОДБОР ИГРЫ"
+LeaveMenuString="Выйдя из этого меню, вы распустите свою группу. Перейти к подбору игры?"
+NameString="НАЗВАНИЕ"
 RefreshString="ОБНОВИТЬ"
-GamesFoundString="НАЙДЕНО ИГР:"
+GamesFoundString="ИГР НАЙДЕНО:"
 
 ServerBrowserString="ПОИСК СЕРВЕРОВ"
 
 JoinString="ВЫБРАТЬ"
 PasswordPromptString="ВВЕДИТЕ ПАРОЛЬ"
 
-RankedString="СТАТИСТИКА ВКЛЮЧЕНА"
+RankedString="СТАТИСТИКА ВКЛ."
+UnrankedString="СТАТИСТИКА ОТКЛЮЧЕНА"
 DedicatedString="ВЫДЕЛЕННЫЙ"
-VACSecureString="VAC ЗАЩИЩЕННЫЙ"
+VACSecureString="ПОД ЗАЩИТОЙ VAC"
 InLobbyString="В ЛОББИ"
 InProgressString="УЖЕ НАЧАТА"
 
 BackString="НАЗАД"
 ApplyString="ПРИМЕНИТЬ"
-ResetString="СБРОС"
+ResetString="СБРОСИТЬ"
 
-PingString="ПЕРЕДАЧА"
-LengthString="ДЛИНА"
-DifficultyString="ТРУДНОСТЬ"
+PingString="ЗАДЕРЖКА"
+LengthString="ПРОДОЛЖИТЕЛЬНОСТЬ"
+DifficultyString="СЛОЖНОСТЬ"
 MapString="КАРТА"
 GameModeString="РЕЖИМ"
 WaveString="ВОЛНА"
-PlayersString="ИГРОКИ"
-ZedCountString="КОЛИЧЕСТВО ЗЕДОВ"
+PlayersString="ИГРОКОВ"
+ZedCountString="КОЛ-ВО ЗЕДОВ"
 FiltersString="ФИЛЬТРЫ"
 
 SearchString="ПОИСК"
@@ -187,26 +219,26 @@ NoPasswordString="БЕЗ ПАРОЛЯ"
 NoMutatorsString="БЕЗ МУТАТОРОВ"
 NotFullString="НЕ ПОЛНЫЙ"
 NotEmptyString="НЕ ПУСТОЙ"
-NoStatsEnabledString="НЕТ СЕРВЕРОВ С РЕЙТИНГОМ (Стандартных)"
-NoRankedCustomString="НЕТ ПЕРСОНАЛИЗИРОВАННЫХ СЕРВЕРОВ"
-NoUnrankedString="НЕТ СЕРВЕРОВ БЕЗ РЕЙТИНГА"
-DedicatedString="ВЫДЕЛЕННЫЙ СЕРВЕР"
-VACSecureString="VAC ЗАЩИЩЕННЫЙ"
+NoStatsEnabledString="НЕРЕЙТИНГОВЫЙ (Стандартный)"
+NoRankedCustomString="СТАНДАРТНЫЙ"
+NoUnrankedString="ТОЛЬКО РЕЙТИНГОВЫЕ"
+DedicatedString="ВЫДЕЛЕННЫЙ"
+VACSecureString="ПОД ЗАЩИТОЙ VAC"
 InLobbyString="В ЛОББИ"
-InProgressString="УЖЕ НАЧАТА"
-OnlyStockMapsString="ТОЛЬКО СТАНДАРТНЫЕ КАРТЫ"
-OnlyCustomMapsString="ТОЛЬКО ПЕРСОНАЛИЗИРОВАННЫЕ КАРТЫ"
-LimitServerResultsString="ОГРАНИЧИТЬ РЕЗУЛЬТАТЫ:"
+InProgressString="ИГРА НАЧАТА"
+OnlyStockMapsString="СТАНДАРТНЫЕ КАРТЫ"
+OnlyCustomMapsString="ПОЛЬЗОВАТЕЛЬСКИЕ КАРТЫ"
+LimitServerResultsString="МАКС. РЕЗУЛЬТАТОВ:"
 
 [KFGFxServerBrowser_ServerDetails]
 MutatorsString="МУТАТОРЫ"
-JoinGameString="ПРИСОЕДИНИТЬСЯ К ИГРЕ"
+JoinGameString="ИГРАТЬ"
 SpectateGameString="НАБЛЮДАТЬ"
-ServerInfoString="ИНФОРМАЦИЯ О СЕРВЕРЕ"
-UnfavoriteString="УБРАТЬ ИЗ ИЗБРАННОГО"
+ServerInfoString="О СЕРВЕРЕ"
+UnfavoriteString="УБРАТЬ"
 
 [KFGFxMenu_Trader]
-ExitMenuString="ВЫХОД ИЗ МЕНЮ"
+ExitMenuString="ВЫЙТИ"
 
 [KFGFxTraderContainer_Store]
 TraderString="КУПИТЬ СНАРЯЖЕНИЕ"
@@ -219,51 +251,71 @@ SpectateString="НАБЛЮДАТЬ"
 [KFGFxTraderContainer_ItemDetails]
 DamageTitle="УРОН"
 FireRateTitle="ТЕМП СТРЕЛЬБЫ"
-PenetrationTitle="ПРОБИВНАЯ СПОСОБНОСТЬ"
+PenetrationTitle="ПРОБИВАНИЕ"
 RangeTitle="ДАЛЬНОСТЬ"
-BlockTitle="БЛОКИРОВКА УДАРА"
-ParryTitle="ОТРАЖЕНИЕ УДАРА"
+BlockTitle="БЛОК УДАРА"
+ParryTitle="ПАРИРОВАНИЕ"
 AccuracyTitle="ТОЧНОСТЬ"
-CapacityTitle="МОЩНОСТЬ БОЕВЫХ ПРИПАСОВ"
-MagTitle="РАЗМЕР МАГАЗИНА"
-HealAmountTitle="СИЛА ИСЦЕЛЕНИЯ"
-HealRechargeTitle="ВРЕМЯ ПЕРЕЗАРЯДКИ"
+CapacityTitle="БОЕЗАПАС"
+MagTitle="ОБЪЕМ МАГАЗИНА"
+HealAmountTitle="ЛЕЧЕНИЕ"
+HealRechargeTitle="ПЕРЕЗАРЯДКА"
 BuyString="КУПИТЬ"
 SellString="ПРОДАТЬ"
-CannotSellString="НЕЛЬЗЯ ПРОДАТЬ"
-CannotBuyString="НЕЛЬЗЯ КУПИТЬ"
-FavoriteString="ИЗБРАННОЕ"
-UnfavoriteString="УБРАТЬ ИЗ ИЗБРАННОГО"
+CannotSellString="НЕ ПРОДАТЬ"
+CannotBuyString="НЕ КУПИТЬ"
+FavoriteString="В ИЗБРАННОЕ"
+UnfavoriteString="УБРАТЬ"
 
 [KFGFxTraderContainer_PlayerInventory]
-FillString="ЗАПОЛНИТЬ"
-MagString="МАГ"
-BuyGrenadeString="1X"
-AutoFillString="АВТОЗАПОЛНЕНИЕ"
+FillString="ПОЛН."
+MagString="МАГ."
+BuyGrenadeString="1 ШТ."
+AutoFillString="АВТОЗАКУПКА"
 ArmorString="Бронежилет"
-ChangePerkString="ИЗМЕНИТЬ ПЕРК"
+ChangePerkString="СМЕНИТЬ ПЕРК"
 
 [KFGFxTraderContainer_Filter]
-TabsArray[0]="ПЕРКИ"
-TabsArray[1]="ТИП"
+TabsArray[0]="ПО ПЕРКАМ"
+TabsArray[1]="ПО ТИПУ"
 TabsArray[2]="ИЗБРАННОЕ"
 TabsArray[3]="ВСЕ"
 
 WeaponTypeStrings[0]="Пистолеты"
-WeaponTypeStrings[1]="Ружья"
+WeaponTypeStrings[1]="Дробовики"
 WeaponTypeStrings[2]="Винтовки"
 WeaponTypeStrings[3]="Снаряды"
-WeaponTypeStrings[4]="Огнеметные средства"
-WeaponTypeStrings[5]="Электрическое оружие"
-WeaponTypeStrings[6]="Взрывчатые вещества"
-WeaponTypeStrings[7]="Штурмовые винтовки"
-WeaponTypeStrings[8]="Оружие ближнего боя"
+WeaponTypeStrings[4]="Зажигательное"
+WeaponTypeStrings[5]="Электрическое"
+WeaponTypeStrings[6]="Взрывчатка"
+WeaponTypeStrings[7]="Автоматы"
+WeaponTypeStrings[8]="Ближний бой"
 WeaponTypeStrings[9]="Пистолеты-пулеметы"
 
-OffPerkString="Выкл. перк"
+OffPerkString="Без перка"
+
+[KFGFxHUD_PostRoundMenu]
+RoundResultsString="Round Results"
+MatchResultsString="Overall Winner"
+SurvivorVictory="Survivor Victory!"
+ZEDVictory="Zed Victory!"
+TieString="Tie!"
+YourTeamString="Your Team Wins!"
+OpposingTeamString="Opposing Team Wins!"
+MatchOnGoingString="Switching Teams..."
+
+[KFGFxPostRoundContainer_Team]
+TitleString="Round "
+ScoreString="Score"
+WavesCompleteString="Waves Completed Bonus"
+BossDeadString="Boss Defeated"
+DeathsString="Player Deaths Penalty"
+DamageString="Damage From Boss Penalty"
+TotalString="TOTAL"
+YourTeamString=" (Your Team)"
 
 [KFGFxMenu_PostGameReport]
-MapVoteString="ГОЛОСОВАНИЕ ЗА КАРТУ"
+MapVoteString="ВЫБОР КАРТЫ"
 PlayerStatsString="СТАТИСТИКА ИГРОКА"
 TeamAwardsString="НАГРАДЫ"
 PostGameReportString="РЕЗУЛЬТАТЫ ИГРЫ"
@@ -272,44 +324,60 @@ WaveString="ВОЛНА"
 XPString="ОПЫТ"
 VictoryString="Победа"
 DefeatString="Поражение"
+ItemDropTitleString="ПОЛУЧЕН НОВЫЙ ПРЕДМЕТ!"
 
 [EphemeralMatchStats]
 MedicineMaster="Ходячая аптека"
-MedicineMasterValue="Здоровье"
-ZedSlayer="Истребитель Зедов"
-ZedSlayerValue="Убийства"
-Enforcer="Мордоворот"
-EnforcerValue="Поддержка"
+MedicineMasterValue="здоровья"
+ZedSlayer="Истребитель зедов"
+ZedSlayerValue="убийств"
+Enforcer="Напарник"
+EnforcerValue="помощи в убийстве"
 Destroyer="Сокрушитель"
-DestroyerValue="Нанесенный урон"
+DestroyerValue="урона"
 GiantSlayer="Гроза гигантов"
-GiantSlayerValue="Большие Зеды"
+GiantSlayerValue="больших зедов"
 MoneyBags="Толстосум"
-MoneyBagsValue="Тугрики"
+MoneyBagsValue="бабла"
 HeadPopper="Охотник за головами"
-HeadPopperValue="Выстрелы в голову"
-Dominator="Доминатор"
-DominatorValue="Босс"
+HeadPopperValue="попаданий в голову"
+Dominator="Главный боец"
+DominatorValue="босс"
 
-EPB_Healing="Здоровья восстановлено"
-EPB_Kills="Убийств"
+Carnage="Carnage"
+Closer="Closer"
+ComboMaker="Combo Maker"
+Grabby="Grabby Pants"
+ZedSupport="Zed Support"
+Zednnihilation="Zednnihilation"
+CarnageValue="Zed Damage Dealt"
+CloserValue="Survivor Kills"
+ComboMakerValue="Zed Assist"
+GrabbyValue="Players Grabbed"
+ZedSupportValue="Indirect Damage"
+ZednnihilationValue="Kills in Wave"
+
+
+
+EPB_Healing="Лечение"
+EPB_Kills="Убийства"
 EPB_Assists="Поддержка"
-EPB_LargeZedKill="Убито больших Зедов"
-EPB_Dosh="Заработано тугриков"
-EPB_HeadShots="Выстрелов в голову"
+EPB_LargeZedKill="Больших зедов"
+EPB_Dosh="Бабла"
+EPB_HeadShots="Попаданий в голову"
 EPB_KnifeKills="Убийств ножом"
 EPB_PistolKills="Убийств из пистолета"
 EPB_DoorWelding="Сварка дверей"
 
-EPB_HealingValue="Здоровье"
-EPB_KillsValue="Убийства"
-EPB_AssistsValue="Поддержка"
-EPB_LargeZedKillValue="Большие Зеды"
-EPB_DoshValue="Тугрики"
-EPB_HeadShotsValue="Выстрелы в голову"
-EPB_KnifeKillsValue="Убийства"
-EPB_PistolKillsValue="Убийства"
-EPB_DoorWeldingValue="Очки за сварку"
+EPB_HealingValue="здоровья"
+EPB_KillsValue="убийств"
+EPB_AssistsValue="помощи в убийстве"
+EPB_LargeZedKillValue="больших зедов убито"
+EPB_DoshValue="бабла получено"
+EPB_HeadShotsValue="попаданий в голову"
+EPB_KnifeKillsValue="убийств"
+EPB_PistolKillsValue="убийств"
+EPB_DoorWeldingValue="очков сварки"
 
 [KFGFxPostGameContainer_TeamAwards]
 TeamAwardsString="КОМАНДНЫЕ НАГРАДЫ"
@@ -318,62 +386,119 @@ NoTeamAwardsGivenString="НАГРАД НЕТ"
 
 [KFGFxPostGameContainer_MapVote]
 YourVoteString="ВАШ ГОЛОС"
-TopVotesString="ЛУЧШИЕ ГОЛОСА"
+TopVotesString="БОЛЬШИНСТВО ГОЛОСОВ"
 
 [KFGFxPostGameContainer_PlayerStats]
 AchievementsString="Достижения"
 KnifeString="Нож"
 TopWeaponsString="ЛУЧШЕЕ ОРУЖИЕ"
-ZedKillsString="УБИЙСТВА ЗЕДОВ"
+ZedKillsString="УБИТЫЕ ЗЕДЫ"
+TotalDamageDealtString="Всего нанесено урона:"
+HeadShotsString="В голову:"
+LargeZedKillsString="Убито больших зедов:"
+TotalDoshEarnedString="Всего получено бабла:"
+TotalKillsString="Убийств:"
+AssistsString="Помощи:"
+DamageDealtString="Урон:"
+
 
 
 [KFGFxWidget_BaseParty]
-PlayerReadyString="[ГОТОВ]"
+PlayerReadyString="[ ГОТОВ ]"
 WaitingString="ОЖИДАНИЕ ИГРОКОВ"
-DeployingString="МОБИЛИЗАЦИЯ ЧЕРЕЗ "
-CreatePartyString="ПРИГЛАСИТЬ"
+DeployingString="НАЧАЛО ЧЕРЕЗ "
+CreatePartyString="ПРИГЛАСИТЬ ДРУЗЕЙ"
 ReadyString="ПРИГОТОВИТЬСЯ"
-LeaveString="ВЫЙТИ"
+LeaveString="ПОКИНУТЬ ГРУППУ"
 SquadString="ОТРЯД"
-SoloString="СОЛО"
+SoloString="ОДИНОЧНАЯ ИГРА"
 DefaultPlayerName="Игрок"
 
-PartyLeaderSearchingForMatchString="поиск пары..."
-PartyLeaderIsUpdatingMatchOptionsString="установка параметров поиска пары..."
-PartyLeaderInServerBrowserString="Поиск серверов..."
-PartyLeaderInOtherMenuString="в другом меню..."
-SearchingForGameString="Поиск онлайн-игры..."
+PartyLeaderSearchingForMatchString="ищет игру…"
+PartyLeaderIsUpdatingMatchOptionsString="настраивает параметры игры…"
+PartyLeaderInServerBrowserString="ищет сервер…"
+PartyLeaderInOtherMenuString="находится в другом меню…"
+SearchingForGameString="Поиск игры…"
 
-PartHostLeftString="Хозяин тусовки вышел из игры"
-PartyLeaderChangedString="новый хозяин тусовки."
+PartHostLeftString="Лидер группы вышел"
+PartyLeaderChangedString="— новый лидер группы."
 
-MuteString="Игнорировать игрока"
-UnmuteString="Не игнорировать игрока"
-AddFriendString="Добавить друга"
-RemoveFriendString="Удалить друга"
-VoteKickString="Выкинуть игрока"
-ViewProfileString="Просмотр профиля"
+MuteString="Заглушить игрока"
+UnmuteString="Снять заглушение"
+AddFriendString="Добавить в друзья"
+RemoveFriendString="Удалить из друзей"
+VoteKickString="Выгнать игрока"
+ViewProfileString="Открыть профиль"
+
+RemainingString="Осталось:"
+DownLoadingString="Загрузка:"
+PartyLeaderString="Leader"
+
+[KFGFxWidget_PartyInGame_Versus]
+SwitchTeamsString="SWITCH TEAMS"
+balanceWarningString="WARNING: Teams will be auto-balanced"
 
 [KFGFxMenu_Gear]
-GearHeaderString="НАСТРОЙКА"
-BioString="БИО"
+GearHeaderString="СНАРЯЖЕНИЕ"
+BioString="БИОГРАФИЯ"
 CharacterString="ПЕРСОНАЖ"
 HeadString="ГОЛОВА"
 BodyString="ТЕЛО"
-SkinsString="СКИНЫ"
+SkinsString="ОКРАСКА"
 AttachmentsString="АКСЕССУАРЫ"
 BackString="НАЗАД"
 NoneString="НЕТ"
+WeaponsString="Оружие"
+WeaponsInfoString="Настроить"
+
+[KFGFxMenu_Inventory]
+RecycleOneString="Recycle One"
+RecycleDuplicatesString="Recycle Duplicates"
+InventoryString="ИНВЕНТАРЬ"
+UseString="USE"
+EquipString="НАДЕТЬ"
+UnequipString="СНЯТЬ"
+AllString="All"
+WeaponSkinString="Weapon Skins"
+CosmeticString="Cosmetics"
+CraftingMatsString="Crafting"
+ItemString="Items"
+FiltersString="Фильтры"
+MoreItemsString="You require a matching key and crate. You can purchase a key from the in game store."
+FailedToExchangeString="CANNOT OPEN CRATE"
+RecycleString="RECYCLE"
+CraftString="CRAFT"
+CraftCosmeticString="CRAFT COSMETIC"
+CraftWeaponString="CRAFT WEAPON SKIN"
+CraftWeaponStrings[0]="Uncommon\nWeapon Skin"
+CraftWeaponStrings[1]="Rare\nWeapon Skin"
+CraftWeaponStrings[2]="Exceptional\nWeapon Skin"
+CraftWeaponStrings[3]="Master Crafted\nWeapon Skin"
+CraftCosmeticStrings[0]="Uncommon\nCosmetic"
+CraftCosmeticStrings[1]="Rare\nCosmetic"
+CraftCosmeticStrings[2]="Exceptional\nCosmetic"
+CraftCosmeticStrings[3]="Master Crafted\nCosmetic"
+RecycleWarningString="Warning, this cannot be undone. This will destroy the selected item and replace it with a crafting material item"
+RecycleItemString="Recycle Item?"
+ConfirmCraftItemString="Crafting this item will use resources and cannot be undone"
+CraftItemString="Confirm Craft Item?"
+FailedToCraftItemString="Failed to Craft Item"
+CraftRequirementString="Insufficient quantity of required crafting materials"
+CraftCosmeticDescriptionString="You can craft new cosmetic items from this menu out of cosmetic material. You can obtain cosmetic material by recycling existing cosmetic items. To recycle, select an item and press recycle"
+CraftWeaponDescriptionString="You can craft new weapon skin items from this menu out of weapon skin material. You can obtain weapon skin material by recycling existing weapon skin items. To recycle, select an item and press recycle"
+RequiresString="Requires: "
+PurchaseKeyString="BUY KEY: "
+LookUpOnMarketString="Lookup on Market"
 
 [KFGFxPerksContainer]
 LevelString=""
 
 [KFGFxPerksContainer_Header]
-ExperienceString="Экспа"
+ExperienceString="Опыт"
 PrestigeLevelString="Престиж"
 
 [KFGFxPerksContainer_SkillsSummary]
-ConfigureString="НАСТРОЙКА"
+ConfigureString="ИЗМЕНИТЬ"
 SkillsString="НАВЫКИ"
 
 [KFGFxMenu_Perks]
@@ -382,7 +507,7 @@ TierUnlockedSecondaryText="Вы разблокировали новый уров
 
 
 [KFGFxPerksContainer_Details]
-ObjectivesString="XP ЦЕЛИ"
+ObjectivesString="ПОЛУЧЕНИЕ ОПЫТА"
 PerkBonusesString="БОНУСЫ ДЛЯ ПЕРКОВ"
 BasicLoadoutString="НАЧАЛО ВЫГРУЗКИ"
 
@@ -392,9 +517,28 @@ BackButtonString="<< НАЗАД"
 
 [KFGFxPerksContainer_Selection]
 HeaderTitle="ВЫБРАТЬ ПЕРК"
-EndOfWaveString="Все изменения в отношении перков будут применены в конце волны!"
-ChangesAppliedOnCloseString="Все изменения в отношении перков будут применены при закрытии этого меню"
-OncePerWaveString="Вы можете применять изменения в отношении перков только один раз за волну!"
+EndOfWaveString="Все изменения перков будут применены в конце волны!"
+ChangesAppliedOnCloseString="Все изменения перков будут применены при закрытии этого меню"
+OncePerWaveString="Изменять перки можно только один раз за волну!"
+
+[KFGFxMenu_Store]
+StoreString="МАГАЗИН"
+
+[KFGFxStoreContainer_Cart]
+CartString=Cart
+TotalString="Всего"
+CheckOutString="Рассчитать стоимость"
+
+[KFGFxStoreContainer_Main]
+WeaponSkinsString="Раскраски оружия"
+MarketConsumablesString="Market Crates/USBs"
+MarketCosmeticsString="Market Cosmetics"
+
+[KFGFxStoreContainer_Details]
+LookUpOnMarketString="FIND IN MARKET"
+AddToCartString="Купить предмет"
+PreviewString="Предпросмотр"
+
 
 [KFGFxWidget_ButtonPrompt]
 CancelString="НАЗАД"
@@ -404,23 +548,23 @@ ConfirmString="ВЫБРАТЬ"
 MenuStrings[0]="ГЛАВНАЯ"
 MenuStrings[1]="ПЕРКИ"
 MenuStrings[2]="СНАРЯЖЕНИЕ"
-MenuStrings[3]="INVENTORY"
-MenuStrings[4]="STORE"
-MenuStrings[5]="ОПЦИИ"
-MenuStrings[6]="ВЫХОД"
+MenuStrings[3]="ИНВЕНТАРЬ"
+MenuStrings[4]="ВЫХОД"
+MenuStrings[5]="НАСТРОЙКИ"
+MenuStrings[6]="ВЫЙТИ"
 
 ServerBrowserString="ПОИСК СЕРВЕРОВ"
 MatchmakingString="ПОИСК ПАРЫ"
-SoloString="СОЛО"
+SoloString="ОДИНОЧНАЯ ИГРА"
 OverviewString="ОБЗОР ПАРЫ"
 
-TitleStrings[0]="Ты что, больше не хочешь сражаться?"
-TitleStrings[1]="Ты уже уходишь?"
-TitleStrings[2]="Надоело, что тебя постоянно скушать пытаются?"
+TitleStrings[0]="Что, устал сражаться?"
+TitleStrings[1]="Уже уходишь?"
+TitleStrings[2]="Надоели чужие зубы в боку?"
 
-DescriptionStrings[0]="Ну и ладно. Иди, спасай свою жалкую жизнь. На Killing Floor ты бы и пяти минут не продержался."
-DescriptionStrings[1]="Но помни - каждую секунду, пока тебя нет, здесь рождается новая орда уродов, единственная цель которых - отведать на вкус твоих друзей. Ты что, оставишь их здесь одних?"
-DescriptionStrings[2]="Они тебя все равно найдут. Они тебя найдут и сожрут твое сердце, как вкусную мясистую закуску."
+DescriptionStrings[0]="Ну и ладно. Иди, спасай свою жалкую жизнь. В Killing Floor ты бы и пяти минут не продержался."
+DescriptionStrings[1]="Каждую секунду здесь появляется новая орда уродов, желающих попробовать на вкус твоих друзей. Ты что, бросишь их здесь одних?"
+DescriptionStrings[2]="Они тебя все равно найдут. Они тебя найдут и сожрут твое бьющееся окровавленное сердце на закуску."
 
 ExitString="ВЫХОД"
 CancelString="ОТМЕНА"
@@ -432,97 +576,107 @@ TierUnlockedString="НОВЫЕ НАВЫКИ РАЗБЛОКИРОВАНЫ"
 [KFGFxHUD_WaveInfo]
 WaveString="ВОЛНА"
 BossWaveString="БОСС"
-FinalWaveString="ПОСЛЕДНЯЯ"
+FinalWaveString="БОСС"
 
 [KFGFxHUD_TraderCompass]
-TraderString="ТОРГОВКА"
+TraderString="ТОРГОВЕЦ"
 
 [KFGFxHUD_SpectatorInfo]
-PrevPlayerString="СЛЕДУЮЩИЙ ИГРОК"
-NextPlayerString="ПРЕДЫДУЩИЙ ИГРОК"
+PrevPlayerString="СЛЕД. ИГРОК"
+NextPlayerString="ПРЕД. ИГРОК"
 ChangeCameraString="СМЕНИТЬ КАМЕРУ"
 
 [KFGFxHUD_ScoreboardWidget]
 PlayerString="ИГРОК"
-DoshString="ТУГРИКИ"
-KillsString="УБИВАЕТ"
-AssistsString="ПОМОГАЕТ"
-PingString="ПЕРЕДАЧА"
+DoshString="БАБЛО"
+KillsString="УБИЙСТВА"
+AssistsString="ПОМОЩЬ"
+PingString="ПИНГ"
+
+[KFGFxHUD_ScoreboardVersusWidget]
+ScoreString=SCORE
 
 [KFGFxHUD_PlayerStatus]
-EXPString="XP"
+EXPString="ОПЫТ"
 
 
 [KFGFxHUD_ScoreboardMapInfoContainer]
 WaveString="ВОЛНА"
-FinalString="Окончательная"
+FinalString="Последняя"
 
 [KFGFxHUD_WeaponSelectWidget]
 PrimaryString="ОСНОВНОЕ"
 EquiptmentString="ЭКИПИРОВКА"
 MeleeString="БЛИЖНИЙ БОЙ"
 SecondaryString="ВТОРОСТЕПЕННОЕ"
+ThrowString="ВЫБРОСИТЬ ОРУЖИЕ"
 
 [KFGFxWidget_KickVote]
-VoteKickString="Выкинуть игрока?"
+VoteKickString="Выгнать игрока?"
+
+[KFLocalMessage_PlayerKills]
+KilledString="killed"
+ZedString=ZEDs
 
 [KFLocalMessage_VoiceComms]
-VoiceCommsOptionStrings[0]="ЗАПРОСИТЬ ИСЦЕЛЕНИЕ"
-VoiceCommsOptionStrings[1]="ЗАПРОСИТЬ ТУГРИКИ"
-VoiceCommsOptionStrings[2]="ЗАПРОСИТЬ ПОМОЩЬ"
-VoiceCommsOptionStrings[3]="ПОДДРАЗНИТЬ ЗЕДОВ"
-VoiceCommsOptionStrings[4]="СЛЕДУЙ ЗА МНОЙ"
-VoiceCommsOptionStrings[5]="ДОЙТИ ДО ТОРГОВКИ"
-VoiceCommsOptionStrings[6]="ПОЛОЖИТЕЛЬНЫЙ ОТВЕТ"
-VoiceCommsOptionStrings[7]="ОТРИЦАТЕЛЬНЫЙ ОТВЕТ"
+VoiceCommsOptionStrings[0]="ЗАПРОСИТЬ ЛЕЧЕНИЕ"
+VoiceCommsOptionStrings[1]="НУЖНО БАБЛО"
+VoiceCommsOptionStrings[2]="REQUEST HELP"
+VoiceCommsOptionStrings[3]="НАСМЕШКА НАД ЗЕДАМИ"
+VoiceCommsOptionStrings[4]="ЗА МНОЙ"
+VoiceCommsOptionStrings[5]="ДОБЕРИТЕСЬ ДО ТОРГОВЦА"
+VoiceCommsOptionStrings[6]="ПОДТВЕРЖДАЮ"
+VoiceCommsOptionStrings[7]="НИКАК НЕТ"
 
 [KFGFxMenu_Exit]
 HeaderString="ВЫХОД ИЗ ИГРЫ"
-ExitToMainDescription="Выйти из текущей игры и вернуться к начальному экрану?"
-ExitToMainMenu="Выйти к начальному экрану"
-ExitKF2="Выйти к рабочему столу"
+ExitToMainDescription="Выйти из игры и вернуться в главное меню?"
+ExitToMainMenu="В главное меню"
+ExitKF2="На рабочий стол"
 
 [KFGFxOptionsMenu_Selection]
-HeaderString="ОПЦИИ"
+HeaderString="НАСТРОЙКИ"
 OptionStrings[0]="Видео"
-OptionStrings[1]="Аудио"
-OptionStrings[2]="Элементы управления"
-OptionStrings[3]="Геймплей"
+OptionStrings[1]="Звук"
+OptionStrings[2]="Управление"
+OptionStrings[3]="Игра"
 OptionStrings[4]="Титры"
 
 [KFGFxOptionsMenu_Audio]
-AudioString="ПАРАМЕТРЫ ЗВУКА"
+AudioString="НАСТРОЙКИ ЗВУКА"
 SectionNameString="ГРОМКОСТЬ"
-OptionsString="ОПЦИИ"
-MusicString="Громкость музыки в игре"
-SFxString="Громкость звука в игре"
-VOIPVolumeString="Громкость сообщений в чате"
-ConfigureMicString="НАСТРОЙКА МИКРОФОНА"
-VocalsString="Музыка"
-BattleChatterString="Приглушить болтовню"
-PushToVoIPString="Через VoIP"
+OptionsString="ДОПОЛНИТЕЛЬНО"
+MasterVolumeString="Общая громкость"
+DialogVolumeString="Громкость речи"
+MusicString="Громкость музыки"
+SFxString="Громкость эффектов"
+VOIPVolumeString="Громкость голосового чата"
+ConfigureMicString="НАСТРОЙКИ МИКРОФОНА"
+VocalsString="Вокальная партия"
+BattleChatterString="Меньше разговоров"
+PushToVoIPString="Голосовой чат"
 
 [KFGFxOptionsMenu_Graphics]
-KeepSettingsPromptString="Вы желаете оставить данные настройки видео?"
+KeepSettingsPromptString="Оставить текущие настройки видео?"
 WarningPromptString="ПРЕДУПРЕЖДЕНИЕ"
-WillExpireString="Параметры восстановятся через %x% секунд."
-SingleWarningString="Некоторые из установленных параметров могут %x%"
-DoubleWarningString="Некоторые из установленных параметров могут %x% и %y%"
-PerformanceDescString[0]="негативно влиять на производительность"
-PerformanceDescString[1]="серьезно повлиять на производительность"
-RestartDescString="потребовать перезагрузки"
+WillExpireString="Настройки восстановятся через %x% сек."
+SingleWarningString="Некоторые из выбранных настроек могут %x%"
+DoubleWarningString="Некоторые из выбранных настроек могут %x% и %y%"
+PerformanceDescString[0]="уменьшить производительность"
+PerformanceDescString[1]="заметно уменьшить производительность"
+RestartDescString="потребовать перезапуска игры"
 OKString="ОК"
 CancelString="ОТМЕНА"
 UnsavedChangesString="Есть несохраненные изменения"
 SaveChangesString="Сохранить их?"
-ContinueString="Вы хотите продолжить?"
+ContinueString="Продолжить?"
 
-AdjustGammaDescription="Настраивайте пока существо слева будет едва видно, а существо справа будет видно четко."
-ResetGammaString="СБРОС"
+AdjustGammaDescription="Отрегулируйте ползунок так, чтобы монстра слева было едва видно, а монстра справа было видно отчетливо."
+ResetGammaString="СБРОСИТЬ"
 SetGammaString="ПРИМЕНИТЬ"
 
 
-GraphicsString="ГРАФИКА"
+GraphicsString="ВИДЕО"
 BasicString="Основные"
 AdvancedString="Дополнительные"
 EffectsString="Эффекты"
@@ -531,157 +685,181 @@ AspectRatioString="Соотношение сторон"
 ResolutionString="Разрешение"
 GraphicsQualityString="Качество графики"
 VSyncString="Вертикальная синхронизация"
-FullscreenString="Дисплей"
-VariableFrameRateString="Частота кадров"
+FullscreenString="Режим отображения"
+VariableFrameRateString="Переменная част. кадров"
 FilmGrainString="Зернистость"
 AdjustGammaString="НАСТРОЙКА ГАММЫ"
 
 PhysicsLevelString="NVIDIA® FleX"
 
 PhysicsLevelOptionStrings[0]="Выкл."
-PhysicsLevelOptionStrings[1]="Потроха*"
-PhysicsLevelOptionStrings[2]="Потроха и жидкости*"
+PhysicsLevelOptionStrings[1]="Кишки*"
+PhysicsLevelOptionStrings[2]="Кишки и жидкости*"
 
 PhysicsLevelSuggestionStrings[0]=""
 PhysicsLevelSuggestionStrings[1]="*Рекомендуется GeForce® GTX™ 770 или более новая модель"
 PhysicsLevelSuggestionStrings[2]="*Рекомендуется GeForce® GTX™ 980 или более новая модель"
 
-FlexPopUpString="Технология NVIDIA® FleX позволяет симулировать кровь и прочие жидкости. Этот параметр может снизить производительность и требует перезапуска игры."
+FlexPopUpString="Технология NVIDIA® FleX симулирует расчленение тел и жидкости. Этот параметр может снизить производительность и требует перезапуска игры."
 
-EnvironmentDetailsString="Окружающая среда - детали"
-FoliageString="Листва - детали"
-CharacterDetailString="Персонажи - детали"
-FXString="FX"
-TextureResolutionString="Текстурное разрешение"
+EnvironmentDetailsString="Детализация окружения"
+FoliageString="Детализация листвы"
+CharacterDetailString="Детализация персонажей"
+FXString="Качество спецэффектов"
+TextureResolutionString="Разрешение текстур"
 TextureFilteringString="Фильтрация текстур"
 ShadowsString="Качество теней"
-RealtimeReflectionsString="Отражение в реальном времени"
+RealtimeReflectionsString="Отражения в реальном времени"
 AntiAliasingString="Сглаживание"
-BloomString="Расплывание"
+BloomString="Свечение"
 MotionBlurString="Размытие движения"
-AmbientOcclusionString="Окружающая окклюзия"
-DepthOfFieldString="Глубина поля зрения"
+AmbientOcclusionString="Рассеянное затенение"
+DepthOfFieldString="Глубина резкости"
 
 
-VolumetricLightingString="Объемное освещение FX"
-LensFlaresString="Фильтр «блик»"
-LightShaftsString="Объемные тени"
-CustomString="Персонализировать"
-IniOverrideString="INI оверрайт"
+VolumetricLightingString="Объемное освещение"
+LensFlaresString="Эффект бликов"
+LightShaftsString="Лучи света"
+CustomString="Пользовательское"
+IniOverrideString="Переопределение INI"
 
 ApplyString="ПРИМЕНИТЬ"
 CancelString="ОТМЕНА"
-DefaultString="ПО УМОЛЧАНИЮ"
+DefaultString="СБРОСИТЬ"
 
 AspectRatioString_All="Все"
-StandardAspectRatioString_4_3="0.16875"
-StandardAspectRatioString_5_4="0.211111111111111"
-StandardAspectRatioString_3_2="0.126388888888889"
-WideAspectRatioString_16_9="0.672916666666667"
-WideAspectRatioString_16_10="0.673611111111111"
-ExtraWideAspectRatioString_2_1="8.40277777777778E-02"
-ExtraWideAspectRatioString_21_9="0.88125"
-MultiMonitorAspectRatioString="Мульти-монитор"
+StandardAspectRatioString_4_3="4:3"
+StandardAspectRatioString_5_4="5:4"
+StandardAspectRatioString_3_2="3:2"
+WideAspectRatioString_16_9="16:9"
+WideAspectRatioString_16_10="16:10"
+ExtraWideAspectRatioString_2_1="2:1"
+ExtraWideAspectRatioString_21_9="21:9"
+MultiMonitorAspectRatioString="Несколько мониторов"
 
-FullScreenStringOptions[0]="Окна"
-FullScreenStringOptions[1]="Без границ"
+FullScreenStringOptions[0]="В окне"
+FullScreenStringOptions[1]="В окне без рамки"
 FullScreenStringOptions[2]="Полный экран"
 
-OffOnStringOptions[0]="Выкл"
-OffOnStringOptions[1]="Вкл"
+OffOnStringOptions[0]="Выкл."
+OffOnStringOptions[1]="Вкл."
 
 GraphicsQualityStringOptions[0]="Низкое"
 GraphicsQualityStringOptions[1]="Среднее"
 GraphicsQualityStringOptions[2]="Высокое"
-GraphicsQualityStringOptions[3]="Ультра"
+GraphicsQualityStringOptions[3]="Очень высокое"
 
-VSyncStringOptions[0]="Выкл"
-VSyncStringOptions[1]="Вкл"
+VSyncStringOptions[0]="Выкл."
+VSyncStringOptions[1]="Вкл."
 ;VSyncStringOptions[2]="Тройная буферизация"
 
-EnvironmentDetailsStringOptions[0]="Низкое"
-EnvironmentDetailsStringOptions[1]="Среднее"
-EnvironmentDetailsStringOptions[2]="Высокое"
-EnvironmentDetailsStringOptions[3]="Ультра"
+EnvironmentDetailsStringOptions[0]="Низкая"
+EnvironmentDetailsStringOptions[1]="Средняя"
+EnvironmentDetailsStringOptions[2]="Высокая"
+EnvironmentDetailsStringOptions[3]="Очень высокая"
 
-FoliageStringOptions[0]="Низкое"
-FoliageStringOptions[1]="Среднее"
-FoliageStringOptions[2]="Высокое"
+FoliageStringOptions[0]="Низкая"
+FoliageStringOptions[1]="Средняя"
+FoliageStringOptions[2]="Высокая"
 
-CharacterDetailStringOptions[0]="Низкое"
-CharacterDetailStringOptions[1]="Высокое"
-CharacterDetailStringOptions[2]="Ультра"
+CharacterDetailStringOptions[0]="Низкая"
+CharacterDetailStringOptions[1]="Высокая"
+CharacterDetailStringOptions[2]="Очень высокая"
 
 FXStringOptions[0]="Низкое"
 FXStringOptions[1]="Среднее"
 FXStringOptions[2]="Высокое"
-FXStringOptions[3]="Ультра"
+FXStringOptions[3]="Очень высокое"
 
 TextureResolutionStringOptions[0]="Низкое"
 TextureResolutionStringOptions[1]="Среднее"
 TextureResolutionStringOptions[2]="Высокое"
-TextureResolutionStringOptions[3]="Ультра"
+TextureResolutionStringOptions[3]="Очень высокое"
 
 TextureFilteringStringOptions[0]="Билинейная"
 TextureFilteringStringOptions[1]="Трилинейная"
-TextureFilteringStringOptions[2]="4x анизотропная"
-TextureFilteringStringOptions[3]="16x анизотропная"
+TextureFilteringStringOptions[2]="Анизотропная 4x"
+TextureFilteringStringOptions[3]="Анизотропная 16x"
 
 ShadowsStringOptions[0]="Низкое"
 ShadowsStringOptions[1]="Среднее"
 ShadowsStringOptions[2]="Высокое"
-ShadowsStringOptions[3]="Ультра"
+ShadowsStringOptions[3]="Очень высокое"
 
-PhysicsStringOptions[0]="Выкл"
-PhysicsStringOptions[1]="Нормальное"
+PhysicsStringOptions[0]="Выкл."
+PhysicsStringOptions[1]="Среднее"
 PhysicsStringOptions[2]="Высокое"
 
-RealtimeReflectionsStringOptions[0]="Выкл"
-RealtimeReflectionsStringOptions[1]="Вкл"
+RealtimeReflectionsStringOptions[0]="Выкл."
+RealtimeReflectionsStringOptions[1]="Вкл."
 
-AntiAliasingStringOptions[0]="Выкл"
+AntiAliasingStringOptions[0]="Выкл."
 AntiAliasingStringOptions[1]="FXAA"
 
-BloomStringOptions[0]="Выкл"
+BloomStringOptions[0]="Выкл."
 BloomStringOptions[1]="Низкое"
 BloomStringOptions[2]="Высокое"
 
-MotionBlurStringOptions[0]="Выкл"
-MotionBlurStringOptions[1]="Нормальное"
+MotionBlurStringOptions[0]="Выкл."
+MotionBlurStringOptions[1]="Среднее"
 MotionBlurStringOptions[2]="Высокое"
 
-AmbientOcclusionStringOptions[0]="Выкл"
+AmbientOcclusionStringOptions[0]="Выкл."
 AmbientOcclusionStringOptions[1]="SSAO"
 AmbientOcclusionStringOptions[2]="HBAO+"
 
-DepthOfFieldStringOptions[0]="Выкл"
+DepthOfFieldStringOptions[0]="Выкл."
 DepthOfFieldStringOptions[1]="SAT DOF"
 
 [KFGFxOptionsMenu_Graphics_DX10]
-AmbientOcclusionStringOptions_DX10[0]="Выкл"
+AmbientOcclusionStringOptions_DX10[0]="Выкл."
 AmbientOcclusionStringOptions_DX10[1]="SSAO"
 
 [KFGFxOptionsMenu_Controls]
-TabStrings[0]="ВВОД"
-TabStrings[1]="ПРИВЯЗКИ КЛАВИШ"
+TabStrings[0]="КАМЕРА"
+TabStrings[1]="КЛАВИАТУРА"
 TabStrings[2]="КОНТРОЛЛЕРЫ"
-HeaderText="ПАРАМЕТРЫ ЭЛЕМЕНТОВ УПРАВЛЕНИЯ"
+HeaderText="УПРАВЛЕНИЕ"
 
 [KFGFxOptionsMenu_GameSettings]
 SectionNameString="ОПЦИИ"
 GameSettingsString="НАСТРОЙКИ ИГРЫ"
-FOVString="ПЗ"
+FOVString="Поле зрения"
 GoreString="Уровень насилия"
-ShowCrosshairString="Показать оптический прицел"
-ClassicWeaponSelectString="Быстрый выбор оружия"
+ShowCrosshairString="Показывать прицел"
+ClassicWeaponSelectString="Быстрая смена оружия"
 GoreOptionStrings[0]="Нет"
-GoreOptionStrings[1]="Мало"
-GoreOptionStrings[2]="Много"
-NormalString="Нормальное"
-WiderString="Шире"
-FriendlyHudScaleString="Удобный масштаб HUD"
+GoreOptionStrings[1]="Низкий"
+GoreOptionStrings[2]="Высокий"
+NormalString="Обычное"
+WiderString="Широкое"
+FriendlyHudScaleString="Размер интерфейса"
+KillTickerString="Kill Ticker"
 
 [LocalizedControls]
+ControllerLayoutDefault="Default"
+ControllerLayoutJumper="Jumper"
+ControllerLayoutQuickDraw="Quick Draw"
+ControllerLayoutSouthPaw="South Paw"
+
+GBA_TurnLeft="Turn Left"
+GBA_TurnRight="Turn Right"
+GBA_Backward="Двигаться назад"
+GBA_MoveForward="Двигаться вперед"
+GBA_WeaponSelect_Gamepad="Меню выбора оружия (удерживайте)"
+GBA_Reload_Gamepad="Reload"
+GBA_StrafeLeft_Gamepad="Movement Control"
+GBA_MoveForward_Gamepad="Move Forward"
+GBA_Look_Gamepad="Look Control"
+GBA_Grenade_Gamepad="Throw Grenade"
+GBA_TurnLeft_Gamepad="Look Control"
+GBA_Look_Gamepad="Look Control"
+GBA_DPad_Left_Gamepad="Voice Comms"
+GBA_DPad_Up_Gamepad="Equip Healer"
+GBA_DPad_Right_Gamepad="Throw Dosh"
+GBA_DPad_Down_Gamepad="Toggle Flashlight"
+
+
 GBA_MoveForward="Двигаться вперед"
 GBA_StrafeLeft="Двигаться влево"
 GBA_Backward="Двигаться назад"
@@ -691,13 +869,17 @@ GBA_Sprint="Спринт"
 GBA_CrouchToggle="Присесть (переключите)"
 GBA_CrouchHold="Присесть (удерживайте)"
 GBA_SprintAndCrouch="Присесть / спринт"
+GBA_SprintAndMelee="Melee / Sprint"
+GBA_ShowMenu="Toggle In Game Menu"
 
 GBA_Use="Использовать / Быстрая сварка (удерживайте)"
 GBA_Talk="Говорить"
+GBA_TeamTalk="Team Talk"
 GBA_VoiceChat="Голосовой чат"
+GBA_PublicVoiceChat="Public Voice"
 GBA_ShowVoiceComms="Голосовые команды"
 GBA_ShowScores="Показать результаты"
-GBA_TossMoney="Бросить тугрики"
+GBA_TossMoney="Бросить бабло"
 GBA_DropWeapon="Бросить оружие"
 
 GBA_Fire="Огонь"
@@ -706,14 +888,15 @@ GBA_IronsightsHold="Механический прицел (удерживайт�
 GBA_Reload="Перезарядить"
 GBA_Grenade="Бросить гранату"
 GBA_QuickHeal="Быстрое исцеление"
-GBA_SwitchFireMode="Alt. Огонь / Блокировать"
+GBA_SwitchFireMode="Доп. огонь / Блокировать"
 GBA_TertiaryFire="Рукопашный бой"
 GBA_ToggleFlashlight="Переключить фонарик"
-GBA_AltFire="Alt. Огонь / Блокировать"
+GBA_AltFire="Доп. огонь / Блокировать"
 
 GBA_WeaponSelect_Gamepad="Меню выбора оружия (удерживайте)"
 GBA_NextWeapon="Следующее оружие"
 GBA_PrevWeapon="Предыдущее оружие"
+GBA_LastWeapon="Последнее использованное оружие"
 GBA_SwitchWeapon1="Основное оружие"
 GBA_SwitchWeapon2="Второстепенное оружие"
 GBA_SwitchWeapon3="Оружие ближнего боя"
@@ -721,19 +904,35 @@ GBA_SwitchWeapon4="Экипировка"
 GBA_VoteYes="За (удерживайте)"
 GBA_VoteNo="Против (удерживайте)"
 
+GBA_VoiceCommReqHealing="REQUEST HEALING"
+GBA_VoiceCommReqDosh="REQUEST DOSH"
+GBA_VoiceCommReqHelp="REQUEST HELP"
+GBA_VoiceCommTauntZeds="TAUNT ZEDS"
+GBA_VoiceCommFollowMe="FOLLOW ME"
+GBA_VoiceCommGetToTheTrader="GET TO THE TRADER"
+GBA_VoiceCommAffirmative="AFFIRMATIVE"
+GBA_VoiceCommNegative="NEGATIVE"
+
 [KFGFxControlsContainer_Input]
 SensitivityString="Чувствительность"
-InvertedString="Перевернутый"
+InvertedString="Инверсия по оси Y"
 ControllerString="Контроллер"
 ControllerSensitivityString="Чувствительность"
-ControllerInvertedString="Перевернуть Y"
 MouseString="Мышь"
+MouseSmoothingString="Сглаживание мыши"
+ZoomSensitivityString="Zoom Sensitivity"
+ControllerZoomSensitivityString="Zoom Sensitivity"
+AimAssistLockOnString="Aim Assist Zoom Lock-On"
+AimAssistRotationString="Aim Assist Rotation"
+AimAssistSlowDownString="Aim Assist Slowdown"
+ForceFeedbackString="Вибрация контроллера"
 
 [KFGFxControlsContainer_Keybinding]
 SectionHeaders[0]="Движение"
 SectionHeaders[1]="Взаимодействие"
 SectionHeaders[2]="Бой"
 SectionHeaders[3]="Выбор оружия"
+SectionHeaders[4]="VOICE COMMS"
 
 ResetString="СБРОСИТЬ ВСЕ"
 ApplyString="ПРИМЕНИТЬ"
@@ -741,7 +940,7 @@ PressKeyString="[НАЖМИТЕ]"
 WarningString="ПРЕДУПРЕЖДЕНИЕ"
 KeyAlreadyBoundString="Клавиша  <%x%>  уже привязана к:"
 RebindString="Привязать к:"
-ClearedString=(Предыдущая привязка будет отменена)
+ClearedString="(Предыдущая привязка будет отменена)"
 CancelString="ОТМЕНА"
 AcceptString="ПОДТВЕРДИТЬ"
 IgnoredKeyString="привязка к игнорируемой клавише может отсутствовать"
@@ -752,24 +951,31 @@ LookString="Просмотр управления"
 WeaponSelectMenuString="Меню выбора оружия (удерживайте)"
 ShowScoardBoardString="Показать табло"
 ShowIngameMenuString="Переключение меню игры"
+CurrentControllerPresetString="Current Controller Preset"
+PresetStrings[0]="Preset 1"
+PresetStrings[1]="Preset 2"
+PresetStrings[2]="Preset 3"
+PresetStrings[3]="Preset 4"
 
 BashString="Ударить"
 BlockString="Блокировать (удерживайте)"
-HoldString=(Удерживайте)
+HoldString="(Удерживайте)"
 
+[KFInventoryManager]
+FullHealthMsg="Полное здоровье"
 
 [KFLocalMessage]
 SystemString="Система:"
-AdminString =(Admin)
-LoggedInAsAdminString=" зашел (зашла) как Админ. Сервера"
-LoggedOutAsAdminString=" вышел (вышла) как Админ. Сервера"
+AdminString ="(Администратор)"
+LoggedInAsAdminString=" зашел (зашла) как админ. сервера"
+LoggedOutAsAdminString=" вышел (вышла) как админ. сервера"
 MustLoginToCheatString="Вы должны зайти, чтобы активировать подсказки."
 CheatsEnabledString=" активировал подсказки. Статистика для этого сеанса была отключена."
 ServerMaintenanceString="Сервер будет отключен в конце игры"
 KickVoteStartedString="Голосование вступает в силу"
 KickVoteSucceededString="Результат голосования - выкинуть игрока: "
 KickVoteFailedString="Результат голосования - оставить игрока:"
-KickVoteRejectedString="Предыдущее голосование с результатом "против" было слишком недавно. Пожалуйста, попробуйте позже."
+KickVoteRejectedString="Предыдущее голосование с результатом против было слишком недавно. Пожалуйста, попробуйте позже."
 KickVoteInProgressString="Невозможно начать голосование, так как оно уже было начато."
 KickVoteDisabledString="Опция голосования отключена на этом сервере"
 KickVoteYesReceivedString="Ваш голос - выкинуть игрока:"
@@ -786,77 +992,91 @@ BannedFromServerString="Вас выкинули с этого сервера. П
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="Вы получили патроны от"
 GaveAmmoToMessage="Вы дали патроны"
-PendingPerkChangesSet="Все изменения в отношении перков будут применены в конце волны."
+PendingPerkChangesSet="Все изменения перков будут применены в конце волны."
 PendingPerkChangesApplied="Перк изменен!"
 HealedByMessage="Вы были исцелены"
 HealedMessage="Вы исцелили"
 YourselfString="сами себя."
-PickedupArmorMessage="Вы выбрали броню"
+PickedupArmorMessage="Вы взяли броню"
 FullArmorMessage="Ваша броня уже заполнена"
-PickupAmmoMessage="Вы выбрали боеприпасы"
-PickupWeaponAmmoMessage="Вы выбрали %x% боеприпасы"
-AmmoFullMessage="Ваша боеприпасы заполнена"
+PickupAmmoMessage="Вы взяли боеприпасы"
+AmmoFullMessage="Your ammo is full"
+PickupWeaponAmmoMessage="Вы взяли боеприпасы для %x%"
 AlreadyCarryingWeaponMessage="У вас уже есть это оружие"
-PickupMessage="Вы выбрали"
+PickupMessage="Вы подобрали"
 TooMuchWeightMessage="Это оружие слишком тяжелое. Попробуйте сбросить или продать оружие."
 FailedDropInventoryMessage="Вы не можете сбросить это здесь"
 ReceivedGrenadesFromMessage="Вы получили гранаты от"
 GaveGrenadesToMessage="Вы дали гранаты"
 SharingContentString=" делится контентом."
+HeadShotAddedString="%x попад. в голову - %y% доп. урона!"
+HeadShotMaxString="Headshot! %x% Extra Damage!"
+HeadShotResetString="Missed Headshot. Normal Damage!"
 
 SuicideMessage="просто сдался (сдалась)..."
 KilledMessage="был(а) съеден(а) заживо"
-KillzedBy_HansString=" убрали для проведения опытов в будущем"
+KillzedBy_PatriarchString=" can't hurt Kevin's children anymore"
+KillzedBy_HansString=" забрали для проведения опытов"
 KillzedBy_ZedCrawlerString=" - его лодыжки были сильно покусаны"
-KillzedBy_ZedBloatString=" утонул(а) в своих выделениях"
+KillzedBy_ZedBloatString=" утонул(а) в телесных жидкостях"
 KillzedBy_ZedFleshpoundString=" измельчили в порошок"
-KillzedBy_ZedGorefastString="   остался без кожи"
+KillzedBy_ZedGorefastString=" остался(ась) без кожи"
 KillzedBy_ZedHuskString=" испепелили"
 KillzedBy_ZedScrakeString=" порезали на куски"
-KillzedBy_ZedSirenString="  остался (осталась) без ушей - и у него (нее) их никогда больше не будет"
+KillzedBy_ZedSirenString="  остался(ась) без ушей - смертельное увечье"
 KillzedBy_ZedStalkerString=" даже и не подозревал(а), что его (ее) ждет"
 KillzedBy_ZedClot_CystString=" умер (умерла) посредственной смертью"
 KillzedBy_ZedClot_AlphaString=" схватили в неприличном месте"
-KillzedBy_ZedClot_SlasherString=" больше не нравятся ужастики, где рубят людей"
+KillzedBy_ZedClot_SlasherString=" больше не нравятся кровавые ужастики"
 
-FoundAMapCollectibleMessage="%x% нашел %y%. %z%..."
+FoundAMapCollectibleMessage="%x% нашел %y%. Осталось: %z%..."
 FoundAllMapCollectiblesMessage="Каждый %x% был найден!"
-MapCollectibleName="тугриковская блестяшка"
+MapCollectibleName="тугриковая блестяшка"
 
 [KFLocalMessage_Priority]
-WaveStartMessage="В О Л НА  И Д Е Т"
-WaveEndMessage="В О Л НА  П Р И Ш Л А"
-GetToTraderMessage="Дойти до Пристанища Торговки"
-YouLostMessage="О Д Е Р Ж АТЬ"
-YouWonMessage="П О Б Е Д У "
+WaveStartMessage="В О Л Н А  Н А  П О Д Х О Д Е"
+WaveEndMessage="В О Л Н А  З А В Е Р Ш Е Н А"
+GetToTraderMessage="Отправляйтесь к торговке"
+YouLostMessage="П О Р А Ж Е Н И Е"
+YouWonMessage="П О Б Е Д А"
 SquadWipedOutMessage="Ваш отряд был уничтожен"
 SquadSurvivedMessage="Ваш отряд выжил"
 ObjectiveStartMessage="Миссия началась!"
-ObjectiveWonMessage="Вы выполнили миссию!"
+ObjectiveWonMessage="Миссия выполнена!"
 ObjectiveEndedMessage="Миссия закончилась!"
-ObjectiveLostMessage="Вы провалили миссию!"
+ObjectiveLostMessage="Миссия провалена!"
 ObjNotEnoughPlayersMessage="Не хватает игроков!"
 ObjTimeRanOutMessage="Ваше время истекло!"
-
-[KFGameInfo_Survival]
-GameName="Выживание"
-
-[KFGameReplicationInfo]
-
+HumansLoseMessage="Human squad wiped out!"
+HumansWinMessage="Human squad survived!"
+AttackHumanPlayersString="Attack the Human Players!"
+ZedGroupRegroupingString="Zed Horde regrouping!"
+NextRoundBeginString="N E X T  R O U N D"
+PlayerCanChangePerksString="Perk changes are allowed"
+ZedWaitingForNextRoundString="Zed Horde invasion imminent!"
 
 [KFLocalMessage_Interaction]
-UseTraderMessage="Нажмите клавишу  <%x%> для торговли"
-UseDoorMessage="НАЖМИТЕ <%x%>, чтобы использовать, УДЕРЖИВАЙТЕ, чтобы оснастить сварочный аппарат"
+UseTraderMessage="<%x%> ТОРГОВЛЯ"
+UseDoorMessage="НАЖМИТЕ <%x%>, чтобы использовать, УДЕРЖИВАЙТЕ, чтобы взять сварочный аппарат"
+UseDoorWeldedMessage="[HOLD]<%x%> EQUIP WELDER"
+ZedUseDoorMessage="<%x%>OPEN/CLOSE"
+ZedUseDoorWeldedMessage="DOOR WELDED, BREAK IT DOWN!"
 AcceptObjectiveMessage="Нажмите <%x%>, чтобы принять задачу"
 ReceiveAmmoMessage="Нажмите <%x%>, чтобы получить боеприпасы от поставщика"
 ReceiveGrenadesMessage="Нажмите <%x%>, чтобы получить гранаты от поставщика"
-HealSelfWarning="Нажмите <%x%>, чтобы исцелить себя."
-PressToBashWarning="Нажмите <%x%> для рукопашного боя."
+HealSelfWarning="<%x%> полечить себя."
+HealSelfGamepadWarning="[HOLD]<%x%> HEAL SELF"
+PressToBashWarning="<%x%> оттолкнуть"
+GamepadWeaponSelectHint="(УДЕРЖ.) <%x%> выбор оружия"
+PlayerClotGrabWarningMessage="KILL ZED TO BREAK FREE!"
+
+[KFLocalMessage_ServerNotification]
+TeamPendingBalanceMessage="Teams are unbalanced and will be adjusted"
 
 [KFGfxPerkComp_Abilities]
-RankNames[0]="I ранга"
-RankNames[1]="II ранга"
-RankNames[2]="III ранга"
+RankNames[0]="I ранг"
+RankNames[1]="II ранг"
+RankNames[2]="III ранг"
 
 [KFPerk]
 SkillCatagories[0]=""
@@ -867,7 +1087,7 @@ SkillCatagories[4]=""
 
 LevelString="Уровень"
 
-SpecialAbilityName="Подпись"
+SpecialAbilityName="Способность"
 SpecialAbilityDescription=""
 
 Passives[0]=(Title="",Description="");
@@ -876,165 +1096,166 @@ Passives[2]=(Title="",Description="");
 Passives[3]=(Title="",Description="");
 Passives[4]=(Title="",Description="");
 
-SkillSlots0[0]=(Title="", Description="")
-SkillSlots0[1]=(Title="", Description="")
+SkillSlots0[0]=(Title="",Description="")
+SkillSlots0[1]=(Title="",Description="")
 
-SkillSlots1[0]=(Title="", Description="")
-SkillSlots1[1]=(Title="", Description="")
+SkillSlots1[0]=(Title="",Description="")
+SkillSlots1[1]=(Title="",Description="")
 
-SkillSlots2[0]=(Title="", Description="")
-SkillSlots2[1]=(Title="", Description="")
+SkillSlots2[0]=(Title="",Description="")
+SkillSlots2[1]=(Title="",Description="")
 
-SkillSlots3[0]=(Title="", Description="")
-SkillSlots3[1]=(Title="", Description="")
+SkillSlots3[0]=(Title="",Description="")
+SkillSlots3[1]=(Title="",Description="")
 
-SkillSlots4[0]=(Title="", Description="")
-SkillSlots4[1]=(Title="", Description="")
+SkillSlots4[0]=(Title="",Description="")
+SkillSlots4[1]=(Title="",Description="")
 
 WeaponDroppedMessage="Вы сбросили%%%% из-за изменения максимального веса!"
 
 [KFPerk_Berserker]
-PerkName="Берсеркер"
+PerkName="Berserker"
 
-SkillCatagories[0]="Сопротивление"
-SkillCatagories[1]="Выживание"
-SkillCatagories[2]="Ближний бой"
-SkillCatagories[3]="Мощность"
-SkillCatagories[4]="Повышение квалификации"
+SkillCatagories[0]="Survival"
+SkillCatagories[1]="Combat"
+SkillCatagories[2]="Close Combat"
+SkillCatagories[3]="Power"
+SkillCatagories[4]="Advanced Training"
 
-Passives[0]=(Title="Урон от оружия Перков",Description="Урон от оружия Берсеркера повышается на 25% и на %x% с каждым уровнем");
-Passives[1]=(Title="Скорость рукопашной атаки",Description="Скорость атаки ближнего боя повышается на %x% с каждым уровнем");
-Passives[2]=(Title="Движение",Description="Скорость движения с оружием ближнего боя повышается на 10% и на %x% с каждым уровнем");
-Passives[3]=(Title="Сопротивление урону",Description="Входящий урон понижен на %x%");
-Passives[4]=(Title="Ночное видение",Description="Фонарики и прибор ночного видения")
-Passives[5]=(Title="Сопротивление захвату зомби",Description="Зомби не могут удержать Берсеркера.")
 
-EXPAction1="Нанесение урона оружием Берсеркера"
-EXPAction2="Убийство Зедов рядом с игроком оружием Перков"
+Passives[0]=(Title="Berserker Damage",Description="x%x damage increase every level")
+Passives[1]=(Title="Damage Resistance",Description="x%x resistance per every 5 levels to all damage")
+Passives[2]=(Title="+Night Vision Capability",Description="Flashlight - AND Night Vision Goggles")
+Passives[3]=(Title="+Clots cannot grab you",Description="Clots can't hold on to a Berserker")
 
-PoisonResistance="Сопротивление яду"
-PoisonResistanceDescription="Плевал я на ваш яд. Сокращение урона от атак ядом на 40%."
+EXPAction1="Dealing Berserker weapon damage"
+EXPAction2="Kill Zeds near a player with a Berserker weapon"
 
-SonicResistance="Сопротивление звуку"
-SonicResistanceDescription="Не слышу! Сокращение урона от звуковых атак на 40%."
+Fortitude="Dreadnaught"
+FortitudeDescription="Increase total Health by 50%."
 
-Vampire="Вампир"
-VampireDescription="Сосунки. Нанотехнологии Горизонта позволяют высасывать и передавать игроку по 4 очка здоровья из каждого Зеда, убитого любым оружием Перков."
+Ninja="Skirmisher"
+NinjaDescription="Move 20% faster. Sprint 25% faster. Regenerate 2 points of Health every second. "
 
-Fortitude="Стойкость"
-FortitudeDescription="Повысьте свои шансы. Увеличение максимального и начального уровня здоровья на 75%"
+Vampire="Vampire"
+VampireDescription="Heal yourself 4 points of Health for every Zed you kill with a Berserker weapon. You also attack 15% faster with Berserker weapons."
 
-FuriousDefender="Яростный защитник"
-FuriousDefenderDescription="Неспроста вас именуют Берсерком. Скорость рукопашных атак Берсеркера увеличивается на 10% и все атаки наносят на 20% больше урона."
+Speed="Butcher"
+SpeedDescription="Attack 20% faster and do 25% more damage with Berserker weapons."
 
-Block="Блокировка"
-BlockDescription="Мастер своего дела! Успешная блокировка удара увеличит урон от следующей рукопашной атаки Берсеркера на 75%."
+Resistance="Resistance"
+ResistanceDescription="Gain 20% resistance to all damage. You gain an additional 20% resistance to Poison and Sonic Damage."
 
-Parry="Отражение"
-ParryDescription="Навык и сила в одном флаконе. Успешное отражение удара повысит скорость атак ближнего боя на 15% и урон от легких атак на 30% на 4 секунды."
+Parry="Parry"
+ParryDescription="Parrying an attack with a Berserker melee weapon will increase melee attack speed by 5% and melee damage by 35% for 10 seconds."
 
-Smash="Сокрушительный удар"
-SmashDescription="Грубая сила - лучшее решение. Жесткие удары наносят на 25% больше урона, а при попадании в голову велика вероятность отправить больших Зедов в нокдаун."
+Smash="Smash"
+SmashDescription="Hard attacks with Berserker melee weapons do 50% more damage, plus an additional 25%  damage on head shots, and have 200% more Stumble power."
+ 
+Fury="Massacre"
+FuryDescription="Light attacks with Berserker melee weapons do 20% more damage and are 5% faster."
 
-Spartan="ЗЕД ТАЙМ по-спартански"
-SpartanDescription="300 спартанцев? Уже проходили. Движение в реальном времени, скорость атаки оружием ближнего боя Берсеркера увеличивается на 50%, а успешное отражение удара отправляет противника в нокдаун."
+Spartan="ZED TIME - Spartan" 
+SpartanDescription="You've seen 300: Attack in near real time and gain 25% of your total Health."
 
-Menace="ЗЕД ТАЙМ - опаснее некуда"
-MenaceDescription="Вы - настоящая машина смерти Движение в реальном времени, оглушающая сила оружия ближнего боя Берсеркера при ударе в голову увеличивается на 100%, как и шанс того, что противник споткнется."
+Flash="ZED TIME - Berserker Rage"
+FlashDescription="Zeds won't like you when you're angry: Move and attack in real time."
 
 [KFPerk_Commando]
-PerkName="Коммандос"
+PerkName="Commando"
 
-SkillCatagories[0]="Осознание"
-SkillCatagories[1]="Поставка"
-SkillCatagories[2]="Обращение с оружием"
-SkillCatagories[3]="Специалист по оружию"
-SkillCatagories[4]="Повышение квалификации"
+SkillCatagories[0]="Tactics"
+SkillCatagories[1]="Advanced Tactics"
+SkillCatagories[2]="Survival"
+SkillCatagories[3]="Weapon Specialist"
+SkillCatagories[4]="Advanced Training"
 
-Passives[0]=(Title="Урон от оружия Перков",Description="Урон от оружия Коммандос увеличивается на %x%.");
-Passives[1]=(Title="Нахождение замаскированного врага",Description="Нахождение замаскированного врага увеличено на %x%");
-Passives[2]=(Title="Нахождение шкалы здоровья",Description="Нахождение шкалы здоровья увеличено на %x%");
-Passives[3]=(Title="Продление Зед Тайм",Description="Зед Тайм длится %x%");
-Passives[4]=(Title="Увеличение здоровья",Description="Здоровье увеличено на %x%");
-Passives[5]=(Title="Ночное видение",Description="Фонарики и прибор ночного видения");
+Passives[0]=(Title="Perk Weapon Damage",Description="%x% increase in Commando weapon damage.");
+Passives[1]=(Title="Cloaked Enemy & Health Bar Detection",Description="10m plus %x%m increase by each level");
+Passives[2]=(Title="Zed Time Extension",Description="Zed time lasts %x% longer");
+Passives[3]=(Title="Reload Speed",Description="%x%% increase every 5 levels");
+Passives[4]=(Title="+Night Vision Capability",Description="Flashlights - AND Night Vision Goggles");
+Passives[5]=(Title="+Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units");
 
-EXPAction1="Нанесение урона оружием Коммандос"
-EXPAction2="Убийство Сталкеров при помощи оружия Коммандос"
+EXPAction1="Dealing Commando weapon damage"
+EXPAction2="Killing Stalkers with Commando weapons"
 
-LargeMags="Большие магазины"
-LargeMagsDescription="Посерьезней надо - улучшите мощности магазина оружия Коммандос на 50%."
+TacticalReload="Tactical Reload"
+TacticalReloadDescription="Be cool. Be quick. Reload 20% faster with Commando weapons AND look more elite while you're at it."
 
-Backup="Про запас"
-BackupDescription="Дайте вашему запасному Пистолету и Ножу 60% дополнительного урона - когда-нибудь это вам точно понадобится! "
+LargeMags="Large Mags"
+LargeMagsDescription="Get a bit more serious: Increase Commando weapon magazine capacities by 50%."
 
-Impact="Влияние"
-ImpactDescription="Ударь-ка посильнее, чтобы они закачались. Увеличьте ваш шанс наткнуться на Зедов на 30% при помощи всего оружия Коммандос."
+Backup="Backup"
+BackupDescription="Give your backup pistol and knife 60% extra damage for those moments when you really need it!"
 
-TacticalReload="Тактическая перезагрузка"
-TacticalReloadDescription="Не дергайся. И не медли. Перезаряжай оружие перков быстрее - и при этом не теряй стиля."
+Impact="Impact"
+ImpactDescription="Pack more punch and knock 'em down: Increase Stumble power by 150% for all Commando weapons."
 
-Leadership="Лидерские качества"
-LeadershipDescription="Вы - настоящий лидер. Ваше присутствие успокаивает команду, повышая ее эффективность в бою. Товарищи по команде перезаряжают оружие на 10% быстрее."
+HealthIncrease="Health Increase"
+HealthIncreaseDescription="Increase total Health and Armor by 25%."
 
-CallOut="Крикни"
-CallOutDescription="Дайте вашей команде возможность видеть замаскированных врагов не хуже вас. Товарищи будут вам благодарны. Кроме того, за убитых вашими соратниками противников вы получаете столько же опыта, сколько и они!"
+AmmoVest="Ammo Vest"
+AmmoVestDescription="Carry two extra magazines for each Commando weapon."
 
-SingleFire="Одиночный огонь"
-SingleFireDescription="Поощряйте осторожную стрельбу! Дайте вашему оружию Коммандос на 20% больше урона, когда оно находится в режиме Одиночного огня."
+HollowPoints="Hollow Point Rounds"
+HollowPointsDescription="Upgrade your ammo, giving Commando weapons 25% more damage and reducing their recoil 50%."
 
-Autofire="Автоматический огонь"
-AutofireDescription="А зачем на церемониться? Наносите 20% больше урона с оружием Коммандос, когда вы используете режимы Автоматического огня и Огня очередями."
+EatLead="Eat Lead"
+EatLeadDescription="Need more bullets? Get 50% more rounds in your mags with Commando weapons."
 
-RapidFire="ЗЕД ТАЙМ - Беглый огонь"
-RapidFireDescription="Когда мир замедляется, вы можете сделать противнику больнее: Наносите на 3% больше урона при помощи оружия Коммандос и стреляйте в 3 раза быстрее из всего оружия."
+RapidFire="ZED TIME - Rapid Fire"
+RapidFireDescription="When the world slows down, do more hurt: Do 3% more damage with Commando weapons and shoot 3x times faster with all guns."
 
-Professional="ЗЕД ТАЙМ - Профессионал"
-ProfessionalDescription="Мир замедляется, а вы - нет. Перезаряжайте оружие на полной скорости - переключайте оружие в два раза быстрее!"
+Professional="ZED TIME - Professional"
+ProfessionalDescription="When the world slows down, you don't: Reload Commando weapons at full speed and switch Commando weapons twice as fast!"
 
 [KFPerk_Demolitionist]
-PerkName="Подрывник"
-EXPAction1="Нанесение урона оружием Подрывника"
-EXPAction2="Убийство Отбивальщиков оружием Подрывника"
+PerkName="Demolitionist"
+EXPAction1="Dealing Demolitionist weapon damage"
+EXPAction2="Killing Fleshpounds with Demolitionist weapons"
 
-SkillCatagories[0]="Прием"
-SkillCatagories[1]="Сопротивление"
-SkillCatagories[2]="Расширенные приемы"
-SkillCatagories[3]="Приемы с оружием"
-SkillCatagories[4]="Улучшенное владение взрывчаткой"
+SkillCatagories[0]="Technique"
+SkillCatagories[1]="Explosives"
+SkillCatagories[2]="Advanced Techniques"
+SkillCatagories[3]="Weapon Techniques"
+SkillCatagories[4]="Advanced Explosives"
 
-Passives[0]=(Title="Урон от оружия Перков",Description="Урон от оружия Перков повышается на %x%");
-Passives[1]=(Title="Сопротивление взрывам",Description="Сопротивление урону от взрывов %x%");
-Passives[2]=(Title="Расширенный комплект взрывных боеприпасов",Description="Увеличение начального количества взрывных боеприпасов %x%");
+Passives[0]=(Title="Perk Weapon Damage",Description="Perk weapon damage increased by %x%");
+Passives[1]=(Title="Explosive Resistance",Description="%x% resistance to explosive damage");
+Passives[2]=(Title="Extra Explosive Ammo",Description="%x% more starting explosive ammo");
+Passives[3]=(Title="+Grenade Supplier",Description="Give out one extra grenade per wave to your team");
+Passives[4]=(Title="+Door Traps",Description="Doors you weld will explode when destroyed");
 
-GrenadeSupplier="Гренадер"
-GrenadeSupplierDescription="Душа компании. Каждую волну вы можете дать товарищам по команде дополнительную гранату."
+Damage="Bombardier"
+DamageDescription="Your explosive Demolitionist weapons do 25% more damage."
 
-OnContact="Прямой контакт"
-OnContactDescription="Прямо в морду, приятель. Брошенные вами палки динамита взрываются при контакте с Зедами."
+Speed="Grenadier"
+SpeedDescription="You reload your Demolitionist weapons 10% faster."
 
-ExplosiveResistance="Сопротивление взрывам"
-ExplosiveResistanceDescription="Крепкая команда. Вы и ваши товарищи, если они находятся рядом, получаете на 30% меньше урона."
+DirectHit="High Impact Rounds"
+DirectHitDescription="Do 25% more damage on a direct hit with your explosive Demolitionist weapons, but decrease maximum ammo for each weapon by 3."
 
-Sacrifice="Активная броня"
-SacrificeDescription="Живая бомба. Один раз за волну удар по вам, который должен стать смертельным, приводит к взрыву, нанося урон Зедам поблизости и оставляя вам 5 единиц здоровья."
+Ammo="Extra Rounds"
+AmmoDescription="Increase maximum ammo by 5 for all explosive Demolitionist weapons."
 
-DoorTraps="Дверные ловушки"
-DoorTrapsDescription="Разнеси дверь в щепки! Сварка замедляется на 30%, но заваренные вами двери взрываются, когда их проламывают. Чем дольше вы свариваете дверь, тем сильнее будет взрыв."
+SirenResistance="Sonic Resistant Rounds"
+SirenResistanceDescription="Your explosive Demolitionist weapons have a 100% chance of getting past a siren's scream and actually exploding."
 
-SirenResistance="Сопротивление Сиренам"
-SirenResistanceDescription="Заткни помойку, Зед! С вероятностью 33% ваши гранаты преодолеют звуковой урон и взорвутся."
+AreaOfEffect="Fragmentation Rounds"
+AreaOfEffectDescription="The area of effect for your explosive Demolitionist weapons is increased by 50%, but their damage is reduced by 30%."
 
-OffPerk="Вне перков"
-OffPerkDescription="Отключаемся Урон от оружия, не относящегося к перкам, увеличивается на 10%."
+CriticalHit="Armor Piercing Rounds"
+CriticalHitDescription="A direct hit to a critical zone with any Demolitionist weapon will do 50% additional damage."
 
-OnPerk="Назад к перкам"
-OnPerkDescription="Подключаемся Сила реакции, нокдауна и спотыкания увеличивается на 30% при использовании оружия Подрывника."
+ConcussiveForce="Concussive Rounds"
+ConcussiveForceDescription="The reaction, stun, stumble and knockdown power of your Demolitionist weapons increase by 50%."
 
-Nuke="ЗЕД ТАЙМ - ядерная мощь"
-NukeDescription="Дюк Нюкем во плоти. Ваше взрывное оружие наносит колоссальный урон радиацией в режиме Зед Тайм, отравляя Зедов."
+Nuke="ZED TIME - Destroyer of Worlds"
+NukeDescription="Nuke 'em: Your explosives dish out massive radiation damage in Zed Time, poisoning Zeds."
 
-ConcussiveForce="ЗЕД ТАЙМ - оглушительная мощь"
-ConcussiveForceDescription="Пускай полетают! В режиме Зед Тайм ваше взрывное оружие отправляет Зедов в нокдаун пачками."
+Professional="ZED TIME - Mad Bomber"
+ProfessionalDescription="Shoot and reload in near real time."
 
 
 [KFPerk_FieldMedic]
@@ -1046,41 +1267,41 @@ SkillCatagories[2]="Обращение с оружием"
 SkillCatagories[3]="Боевой техник"
 SkillCatagories[4]="Повышение квалификации"
 
-Passives[0]=(Title="Скорость перезарядки шприца",Description="%x% повышение урона от оружия");
+Passives[0]=(Title="Скорость перезарядки шприца",Description="Повышение урона оружием на %x%");
 Passives[1]=(Title="Эффективность шприца",Description="Нахождение замаскированного врага увеличено на %x%");
 Passives[2]=(Title="Сопротивление желчи Толстяка",Description="Нахождение шкалы здоровья увеличено на %x%");
 Passives[3]=(Title="Скорость движения",Description="Зед тайм длится %x%");
 Passives[4]=(Title="Бонус брони",Description="Здоровье увеличено на %x%");
 
 HealingSurge="Волна исцеления"
-HealingSurgeDescription="А ну-ка - используйте свои медицинские знания надлежащим образом: Увеличение здоровья на 20%."
+HealingSurgeDescription="Пора применять свои медицинские знания надлежащим образом. Увеличение здоровья на 20%."
 
 Enforcer="Мордоворот"
-EnforcerDescription="И не надо больше нежничать: Увеличьте начальную мощность боеприпасов на 20% для вашего оружия Перков и Запасного оружия."
+EnforcerDescription="Не надо телячьих нежностей. Увеличьте начальную мощность боеприпасов на 20% для вашего оружия Перков и запасного оружия."
 
 Combatant="Боец"
-CombatantDescription="Будьте не просто Медиком - будьте Медиком-Бойцом, которым вы всегда хотели быть - вместе с бесплатной личной броней и 60-процентной скидкой на всю броню!"
+CombatantDescription="Будьте не просто Медиком, а Боевым медиком. Ведь вы этого хотели? Бесплатная нательная броня и скидка в 60% на всю остальную броню!"
 
 Armament="Вооружение"
-ArmamentDescription="Прекратите просто чинить людей: Потеряйте 25% вашей целебной эффективности при лечении товарищей по команде, зато вместо этого каждый раз ремонтируйте 1% их максимальной личной брони!"
+ArmamentDescription="Хватит просто латать соратников. Потеряйте 10% вашей целебной эффективности при лечении товарищей по команде, зато вместо этого каждый раз восстанавливайте 2% их максимальной нательной брони!"
 
 Regeneration="Регенерация"
-RegenerationDescription="Пусть и тебе доза достанется: Твое здоровье медленно регенерируется со временем, благодаря нано-роботам Горизонта."
+RegenerationDescription="Накачай себя как следует. Твое здоровье медленно регенерируется со временем, благодаря нано-роботам Горизонта."
 
 Lacerate="Искалечить"
-LacerateDescription="Осторожно с этим скальпелем: От него Зеды просто истекут кровью - гораздо больше, чем от урона другим оружием Перков."
+LacerateDescription="Осторожнее со скальпелем. После нанесения урона любым оружием Перков Зеды просто истекают кровью."
 
 VaccinationArmor="Вакцинация"
-VaccinationArmorDescription="Предотвратите распространение смерти: Вашу исцеление увеличивает максимальную броню товарищей по команде, а также временное сопротивление желчи Толстяка."
+VaccinationArmorDescription="Предотвратите распространение смерти. Исцеляя товарищей, вы увеличиваете их максимальную броню, а также обеспечиваете временное сопротивление желчи Толстяка"
 
 VaccinationDamageMod="Кислотные соединения"
-VaccinationDamageModDescription="Одному леченье - другому мученье. Ваши целебные дротики могут отравлять Зедов. Если нанести достаточно урона, то ваши гранаты и дротики посеют ужас в рядах Зедов."
+VaccinationDamageModDescription="Одному леченье - другому мученье."
 
-AirborneAgent="ЗЕД ТАЙМ - Подвешенное в воздухе"
-AirborneAgentDescription="Говорят, что время лечит: Ваши медицинские дротики образуют целебное облако вокруг вашей цели, и ваши друзья, находящиеся неподалеку, получат на 10% больше дополнительного исцеления."
+AirborneAgent="ЗЕД ТАЙМ - Воздушно-капельным путем"
+AirborneAgentDescription="Говорят, время лечит. Ваши медицинские дротики образуют целебное облако вокруг цели, и ваши товарищи, оказавшиеся поблизости, получат на 10% больше очков здоровья."
 
 Sedative="ЗЕД ТАЙМ - Успокоительное"
-SedativeDescription="И время остановилось: Медицинские дротики и гранаты источают Зед-успокоительное, которое может временно приостановить движение Зедов."
+SedativeDescription="И время остановилось. Медицинские дротики и гранаты содержат Зед-успокоительное, которое может временно приостановить движение Зедов."
 
 
 EXPAction1="Нанесение урона оружием Медика"
@@ -1089,7 +1310,7 @@ EXPAction2="Исцеление товарищей по команде"
 [KFPerk_Firebug]
 PerkName="Поджигатель"
 EXPAction1="Нанесение урона оружием Поджигателя"
-EXPAction2="Убийство Ползунов при помощи оружия Поджигателя"
+EXPAction2="Убийство Ползунов оружием Поджигателя"
 
 SkillCatagories[0]="Припасы"
 SkillCatagories[1]="Острый"
@@ -1104,103 +1325,188 @@ Passives[3]=(Title="Неуязвимость к своему огню",Descripti
 Passives[4]=(Title="Начальный боекомплект",Description="Начальный боекомплект больше на %x%");
 
 FullyStocked="Полный комплект"
-FullyStockedDescription="Все включено. При покупке у торговца оружие Поджигателя снабжается полным боекомплектом."
+FullyStockedDescription="Название говорит само за себя: оружие поджигателя с самого начала имеют максимальный боезапас."
 
 FlarotovCoctail="Коктейль Молотова 2.0"
-FlarotovCoctailDescription="Новая версия. Берем коктейль Молотова и добавляем сигнальную ракету - огненная стена на 30 секунд обеспечена."
+FlarotovCoctailDescription="Новая версия."
 
 Fuse="Запал"
-FuseDescription="Горит медленно, но больно. Эффект горения от оружия Поджигателя длится на 70% дольше, увеличивая урон с течением времени."
+FuseDescription="Горит медленно, но верно: пламя поджигателя держится на 70% дольше, нанося больший урон."
 
 HeatWave="Тепловая волна"
-HeatWaveDescription="Как в Сахаре, только жарче. Нанесение урона огнем в упор отталкивает врагов."
+HeatWaveDescription="Как в Сахаре, только жарче."
 
 ZedShrapnel="Зеды - в крошку"
-ZedShrapnelDescription="А как они взрываются... Любой Зед, убитый из зажигательного оружия, с вероятностью 50% взорвется и нанесет урон находящимся рядом собратьям."
+ZedShrapnelDescription="А как они взрываются..."
 
 Napalm="Напалм для Зедов"
-NapalmDescription="Огоньку не желаете? Горящие Зеды поджигают собратьев при соприкосновении."
+NapalmDescription="Огоньку не желаете?"
 
 Range="Дальность"
 RangeDescription="Дальность стрельбы из всего зажигательного оружия увеличивается. То, что нужно, не так ли?"
 
 SplashDamage="Разрывной урон"
-SplashDamageDescription="А можно увеличить разрывной урон от снарядов зажигательного оружия. Решение не из простых."
+SplashDamageDescription="А можно увеличить разрывной урон от снарядов зажигательного оружия."
 
 Combustion="ЗЕД ТАЙМ - пламя"
-CombustionDescription="Осколки + Напалм = Пламенное сочетание. Типа того. Любой Зед, убитый зажигательным оружием в режиме Зед Тайм, взрывается огненным шаром, поджигая всех, кто попал в зону взрыва."
+CombustionDescription="Осколки + Напалм = Пламенное сочетание."
 
 Scorch="ЗЕД ТАЙМ - всепоглощающий огонь"
-ScorchDescription="Вы горите! Не в буквальном смысле, конечно. В режиме Зед Тайм оружие Перков стреляет почти без замедления."
+ScorchDescription="Вы горите!"
 
 [KFPerk_Gunslinger]
-PerkName="Опытный стрелок"
+PerkName="Ловкий стрелок"
+EXPAction1="Dealing Gunslinger weapon damage"
+EXPAction2="Попадать в голову из оружия Опытного стрелка"
+
+SkillCatagories[0]="Technique"
+SkillCatagories[1]="Навык"
+SkillCatagories[2]="Расширенные приемы"
+SkillCatagories[3]="Критические попадания"
+SkillCatagories[4]="Master Techniques"
+
+Passives[0]=(Title="Урон от оружия перка",Description="Урон от оружия перка увеличен на %x%");
+Passives[1]=(Title="Bullet Resistance",Description="Resistance to projectile damage increased by %x%");
+Passives[2]=(Title="Movement Speed",Description="Movement speed increased by %x%");
+Passives[3]=(Title="Recoil",Description="%x% less recoil");
+
+ShootnMove="Shoot'n'Scoot"
+ShootnMoveDescription="Don't hang around to be eaten: Move 200% faster in iron sights with reduced weapon bob when using Gunslinger weapons."
+
+QuickSwitch="Quick Draw"
+QuickSwitchDescription="You know it: Increase weapon switch speed with Gunslinger weapons by 50% and quick draw spare pistols if you keep firing while out of ammo."
+
+RhythmMethod="Rhythm Method"
+RhythmMethodDescription="Rack up the headshots: Each consecutive headshot with a Gunslinger weapon increases your damage by 17% up to a maximum of 68%."
+
+BoneBreaker="Костолом"
+BoneBreakerDescription="Don't just collect them, break them too: Inflict 20% more damage with Gunslinger weapons."
+
+SpeedReload="Speedloader"
+SpeedReloadDescription="Cooler, quicker, deadlier: Reload faster with Gunslinger weapons 20% faster AND look more elite while you're at it."
+
+Penetration="Penetration"
+PenetrationDescription="Line 'em up and knock 'em down: Penetrate an extra Zed with every shot with Gunslinger weapons."
+
+CenterMass="Center of Mass"
+CenterMassDescription="If you aim for the center of mass... shots to the chest with Gunslinger weapons have 40% more stumble power."
+
+LimbShots="Стрельба по ногам"
+LimbShotsDescription="Or shoot them in the legs... shots to the legs with Gunslinger weapons have 3x more knockdown power when the Zed is sprinting."
+
+Fanfare="ZED TIME - Fanfire"
+FanfareDescription="Fanfire with fanfare: Shoot 3x faster with Gunslinger weapons in Zed time."
+
+UberAmmo="ZED TIME - Uber Ammo"
+UberAmmoDescription="Uber it up: You can’t run out of ammo with Gunslinger weapons during Zed time."
 
 [KFPerk_MartialArtist]
-PerkName="Мастер боевых искусств"
+PerkName="Единоборец"
 
 [KFPerk_Sharpshooter]
 PerkName="Снайпер"
+
+EXPAction1="Dealing Sharpshooter weapon damage"
+EXPAction2="Head shots with Sharpshooter weapons"
+
+SkillCatagories[0]="Movement"
+SkillCatagories[1]="Basic Technique"
+SkillCatagories[2]="Skill"
+SkillCatagories[3]="Equipment"
+SkillCatagories[4]="Master Techniques"
+
+Passives[0]=(Title="Headshot Damage",Description="Headshot damage increased by %x%");
+Passives[1]=(Title="Recoil",Description="%x% less recoil");
+Passives[2]=(Title="Weapon Switch",Description="Weapon switch speed increased by %x%");
+
+StationaryAim="Sniper"
+StationaryAimDescription="Inflict 25% more damage while stationary and using a Sharpshooter weapon."
+
+Trigger="Marksman"
+TriggerDescription="Shoot 25% faster and move 10% faster when using a Sharpshooter weapon."
+
+CrouchAim="Stability"
+CrouchAimDescription="Inflict 30% more damage while crouching and using a Sharpshooter weapon."
+
+Stun="Ballistic Shock"
+StunDescription="Stun power with Sharpshooter weapons increases by 100%."
+
+RhythmMethod="Rack 'em Up"
+RhythmMethodDescription="Rack up the headshots: each consecutive headshot with a Sharpshooter weapon increases your damage by 5% up to 75%."
+
+TacticalReload="Combat Ready"
+TacticalReloadDescription="Be cool. Be quick. Reload faster with Sharpshooter weapons AND look more elite while you're at it."
+
+Scoped="Dead Eye"
+ScopedDescription="Reduce recoil 10% and increase head shot damage 10% when using a scope or ironsights with a Sharpshooter weapon."
+
+AmmoPouch="Always Prepared"
+AmmoPouchDescription="Get 25% more ammo for Sharpshooter weapons and grenades."
+
+ZTKnockdown="ZED TIME - Assassin"
+ZTKnockdownDescription="Headshots with Sharpshooter weapons will knock down any Zed."
+
+ZTStun="ZED TIME - Ranger"
+ZTStunDescription="Headshots with Sharpshooter weapons will stun any Zed."
+
+
 
 [KFPerk_Support]
 PerkName="Поддержка"
 
 SkillCatagories[0]="Обращение с оружием"
-SkillCatagories[1]="Фитнес"
+SkillCatagories[1]="Физподготовка"
 SkillCatagories[2]="Поставка"
 SkillCatagories[3]="Выносливость"
 SkillCatagories[4]="Повышение квалификации"
 
-Passives[0]=(Title="Сварочный навык",Description="Сварочная скорость увеличена на %x%");
+Passives[0]=(Title="Сварочный навык",Description="Скорость сварки увеличена на %x%");
 Passives[1]=(Title="Урон от оружия Перков",Description="Урон от оружия Перков повышается на %x%");
 Passives[2]=(Title="Пробивная способность оружия Перков",Description="С каждым уровнем пробивная способность оружия Перков увеличивается на %x%");
 Passives[3]=(Title="Урон от гранаты",Description="Урон от гранаты увеличен на %x%");
 Passives[4]=(Title="",Description="");
 
-;Passives[0]=(Title="Сварочный навык",Description="Сварочная скорость увеличена на 2% (Максимум - 50%)");
-;Passives[1]=(Title="Урон от ружья",Description="Урон от ружья увеличен на 2%(Максимум - 50%)");
-;Passives[2]=(Title="Пробивная способность ружья",Description="С каждым уровнем ружья получают пробивную способность на 25% больше");
-;Passives[3]=(Title="Урон от гранаты",Description="Урон от гранаты увеличен на 2%(Максимум - 50%)");
+;Passives[0]=(Title="Навык сварки",Description="Скорость сварки увеличена на 2% (Максимум - 50%")");
+;Passives[1]=(Title="Урон от ружей",Description="Урон от ружей увеличен на 2%(Максимум - 50%")");
+;Passives[2]=(Title="Пробивная способность ружей",Description="С каждым уровнем пробивная способность ружей увеличивается на 25%");
+;Passives[3]=(Title="Урон от гранат",Description="Урон от гранат увеличен на 2%(Максимум - 50%")");
 ;Passives[4]=(Title="",Description="");
 
-EXPAction1="Нанесение урона оружием Поддержки"
+EXPAction1="Нанесение урона оружием Бойца поддержки"
 EXPAction2="Сварка дверей"
 
 Ammo="Боеприпасы"
-AmmoDescription="Уже пора посерьезнее относиться к делу: Увеличьте мощность ваших боевых припасов и начальных боеприпасов на 20%."
+AmmoDescription="Пора отнестить к делу серьезно. Увеличьте максимальное и начальное количество боеприпасов на 20%."
 
 Supplier="Поставщик"
-SupplierDescription="Будьте тем, кого любят все: Носите за плечами рюкзак, из которого все игроки смогут получить боеприпасы один раз за волну."
+SupplierDescription="Всеобщий любимчик. У вас за плечами - рюкзак, из которого все игроки смогут получить боеприпасы один раз за волну."
 
 Fortitude="Стойкость"
-FortitudeDescription="Подарите себе побольше шансов: Увеличьте свое здоровье на 50%."
+FortitudeDescription="Увеличьте свои шансы. Увеличьте свое здоровье на 50%."
 
 Regeneration="Регенерация"
-RegenerationDescription="Выведите Медиков из бизнеса: Ваше здоровье медленно регенерируется со временем, благодаря нано-роботам Горизонта."
+RegenerationDescription="Лишите Медиков работы. Ваше здоровье медленно регенерируется со временем благодаря нано-роботам Горизонта."
 
 Bombard="Бомбардировка"
-BombardDescription="А ну-ка помощнее: Увеличьте свой шанс на то, что субъекты споткнутся, на 60% при помощи оружия дальнего боя Поддержки."
+BombardDescription="А ну-ка помощнее. Увеличьте вероятность спотыкания Зедов на 60% при нанесении урона оружием дальнего боя Бойца поддержки."
 
 TacticalReload="Тактическая перезагрузка"
-TacticalReloadDescription="Не дергайся. И не медли. Перезаряжай оружие перков быстрее - и при этом не теряй стиля."
+TacticalReloadDescription="Не дергайся. Не медли. Перезаряжай оружие перков быстрее - и при этом не теряй стиля."
 
-Strength="Прочность"
-StrengthDescription="А ну-ка быстро в тренажерный зал. Накачайся и увеличь свою несущую способность на 5."
+Strength="Сила"
+StrengthDescription="Скорее в тренажерку. Накачайся и увеличь свою несущую способность на 5."
 
 Tenacity="Упорство"
-TenacityDescription="Потрать немного времени на то, чтобы улучшить оружие Поддержки и причинять с его помощью на 10% больше урона."
+TenacityDescription="Потренируйся немного с оружием Бойца поддержки и наноси им на 10% больше урона."
 
 Safeguard="ЗЕД ТАЙМ - Охрана"
-SafeguardDescription="Смело в атаку! Ведь твоя броня и броня твоих друзей, находящихся неподалеку, теперь улучшена на 5%!"
+SafeguardDescription="Смело в атаку! Ведь твоя броня и броня твоих друзей, находящихся неподалеку, теперь выше на 5%!"
 
 Barrage="ЗЕД ТАЙМ - Огневая завеса"
-BarrageDescription="Используй свое время по максимуму с 15-процентным увеличением всего урона для тебя И твоих друзей, находящихся неподалеку! "
+BarrageDescription="Используй время по максимуму. Весь урон, наносимый тобой и твоими товарищами поблизости, увеличен на 15%."
 
 [KFPerk_Sharpshooter]
 PerkName="Снайпер"
-
-[KFPerk_SWAT]
-PerkName="SWAT"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -1209,21 +1515,21 @@ Bicubik="Bicubik"
 ObjectiveDifficulties[0]="ЛЕГКИЙ УРОВЕНЬ"
 ObjectiveDifficulties[1]="СРЕДНИЙ УРОВЕНЬ"
 ObjectiveDifficulties[2]="ТЯЖЕЛЫЙ УРОВЕНЬ"
-ObjectiveStartTitle="Следуй по тропе к исходному положению"
+ObjectiveStartTitle="Следуй по тропе к исходному расположению"
 ObjectiveWaitingString="ЖДЕМ БОЛЬШЕГО КОЛИЧЕСТВА ИГРОКОВ!"
 ObjectiveWonString="МИССИЯ ПРОЙДЕНА!"
-ObjectiveFailedString="МИССИЯ ПРОВАЛЕНА!"
+ObjectiveFailedString="ПОРАЖЕНИЕ!"
 ObjectiveEndedString="МИССИЯ ЗАКОНЧИЛАСЬ!"
 ObjectiveFailReasons[0]="ЛИМИТ ВРЕМЕНИ ИСЧЕРПАН!"
 ObjectiveFailReasons[1]="КОМАНДА УНИЧТОЖЕНА"
-ObjectiveFailReasons[2]="МАЛО ЗДОРОВЬЯ ИГРОК УМЕР"
-ObjectiveFailReasons[3]="ВОЛНА ЗАКОНЧИЛАСЬ"
+ObjectiveFailReasons[2]="ИГРОК С НИЗКИМ ЗАПАСОМ ЗДОРОВЬЯ УМЕР"
+ObjectiveFailReasons[3]="КОНЕЦ ВОЛНЫ"
 ObjectiveFailReasons[4]="МИССИЯ ЗАКОНЧИЛАСЬ"
-ObjectiveFailReasons[5]="НЕ ОСТАЛОСЬ ИГРОКА С НИЗКИМ УРОВНЕМ ТУГРИКОВ"
+ObjectiveFailReasons[5]="НЕ ОСТАЛОСЬ ИГРОКОВ С МАЛЫМ КОЛ-ВОМ БАБЛА"
 ObjectiveFailReasons[6]="НЕ ХВАТАЕТ ИГРОКОВ!"
-ObjectiveXPString="XP:"
+ObjectiveXPString="ОПЫТ:"
 ObjectiveTimeLimitString="ЛИМИТ ВРЕМЕНИ:"
-ObjectiveTimeUnit="s"
+ObjectiveTimeUnit="с"
 ObjectiveStatusString="СТАТУС МИССИИ"
 
 [KFObj_Wave]
@@ -1231,20 +1537,20 @@ ObjectiveAvailableString="МИССИЯ СВОБОДНА"
 
 [KFObj_Wave_Defend]
 ObjectiveTypeString="ЗАЩИТА"
-ObjectiveTargetTitle="Предоставь защиту от вируса!"
+ObjectiveTargetTitle="Обеспечь защиту от вируса!"
 ObjectiveStatusTitle="СОСТОЯНИЕ ЗАГРУЗКИ ССЫЛКИ"
 
 [KFObj_Coop_Healer]
 ObjectiveTypeString="ЦЕЛИТЕЛЬ"
-ObjectiveTargetTitle="ЛЕЧИТЬ НИЗКОЕ ЗДОРОВЬЕ ИГРОКА"
+ObjectiveTargetTitle="ЛЕЧИТЬ ИГРОКА С НИЗКИМ ЗАПАСОМ ЗДОРОВЬЯ"
 ObjectiveStatusTitle="ИГРОКИ ВЫЛЕЧЕНЫ"
-ObjectiveTimeString="s ОСТАЛОСЬ"
+ObjectiveTimeString="с ОСТАЛОСЬ"
 
 [KFObj_Coop_PayDay]
-ObjectiveTypeString="РАСЧЕТНЫЙ ДЕНЬ"
-ObjectiveTargetTitle="ДАТЬ ВОСКРЕШЕННЫМ ИГРОКАМ ТУГРИКИ"
+ObjectiveTypeString="ЗАРПЛАТА"
+ObjectiveTargetTitle="ДАТЬ ВОСКРЕШЕННЫМ ИГРОКАМ БАБЛО"
 ObjectiveStatusTitle="ПОЛУЧИ 30% НАЛИЧНЫХ ОБРАТНО"
-ObjectiveTimeString="s ОСТАЛОСЬ"
+ObjectiveTimeString="с ОСТАЛОСЬ"
 
 [KFGameViewportClient]
 RandomLoadingStrings[0]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 0"
@@ -1253,6 +1559,43 @@ RandomLoadingStrings[2]="Lorem ipsum dolor sit amet, consectetur adipiscing elit
 RandomLoadingStrings[3]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 3"
 RandomLoadingStrings[4]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 4"
 RandomLoadingStrings[5]="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lacinia odio. Integer egestas, tortor in dignissim aliquam, sem libero gravida felis, quis porta sem massa at nunc. Aliquam in nulla et libero auctor convallis. Mauris ultrices eros sed tellus egestas luctus. Vivamus ut laoreet erat. Etiam ut pharetra mi. Curabitur semper nulla vitae eros ornare tristique 5"
+RandomLoadingStrings[6]="The parry ability stumbles a Zed, allowing you to get in a few extra strikes."
+RandomLoadingStrings[7]="Watch out for the husk. Once he takes enough damage, he may try to self-detonate on your team."
+RandomLoadingStrings[8]="You receive XP for damaging Zeds towards the perk associated with the weapon that inflicted the damage."
+RandomLoadingStrings[9]="Stick together. Getting singled out decreases your chances of survival if things get hairy."
+RandomLoadingStrings[10]="Players can use the syringe to heal themselves as well as their teammates."
+RandomLoadingStrings[11]="Welding doors can hold Zeds back. Doors do not come back once destroyed."
+RandomLoadingStrings[12]="If a teammate dies, it is helpful to grab their weapon and drop it for them at the trader."
+RandomLoadingStrings[13]="Got some extra dosh? Drop some for your team; they may return the favor."
+RandomLoadingStrings[14]="Choose your targets. Different weapons are more or less effective against different types of Zeds."
+RandomLoadingStrings[15]="Prioritize your targets. A fleshpound is a lot more deserving of your attention than a clot."
+RandomLoadingStrings[16]="All Zeds have weak points. If it's not the head, look for glowing elements on their bodies."
+RandomLoadingStrings[17]="Looking to buy or sell a cosmetic item or weapon skin?  Check the marketplace."
+RandomLoadingStrings[18]="The siren's scream neutralizes grenades and other explosives."
+RandomLoadingStrings[19]="Scrakes and fleshpounds will rage once they receive enough damage. Stay out of their way."
+RandomLoadingStrings[20]="Have a bunch of weapon skins or cosmetic items you're not using?  Craft new ones in your Inventory."
+RandomLoadingStrings[21]="Consider your outfit and gear carefully. One must look stylish while killing Zeds."
+RandomLoadingStrings[22]="Melee attacks are directional based on your movement. Forward = overhead, side = swipe, and back = uppercut."
+RandomLoadingStrings[23]="Welding doors shut can limit the directions the Zeds will attack you from, but will also limit your escape routes."
+RandomLoadingStrings[24]="Don't get close to even the weakest Zeds; they can grab you and hold on until their bigger friends arrive."
+RandomLoadingStrings[25]="Want Medic XP and some dosh? Heal your team -- both parties benefit!"
+RandomLoadingStrings[26]="Use controlled bursts with your weapons. Running out of ammo mid-wave makes for a difficult time."
+RandomLoadingStrings[27]="New perk skills are unlocked every 5 levels. Check them out at the Perks Menu."
+RandomLoadingStrings[28]="The M79 and RPG must travel a certain distance to arm the explosive charge."
+RandomLoadingStrings[29]="If you're having trouble seeing the Zeds, try your flashlight."
+RandomLoadingStrings[30]="Having a tough time surviving? Try a different perk! You may find one that fits your playstyle better."
+RandomLoadingStrings[31]="Always make sure you have a way out. Getting boxed in is a sure way to take a dirt nap."
+RandomLoadingStrings[32]="Armor is your friend. You can never go wrong getting more armor."
+RandomLoadingStrings[33]="Fire is a great way to keep Zeds away from you. Fire alone takes awhile to kill Zeds, but it keeps them occupied."
+RandomLoadingStrings[34]="If a Zed or its weapon are glowing red, parrying its melee attacks will be less effective.  Run!"
+RandomLoadingStrings[35]="Lighting Zeds on fire can cause them to panic. Time to play everyone's favorite game: Oh my god, I'm on fire!"
+RandomLoadingStrings[36]="Submachine guns have a high chance to cause targets to stumble, allowing you to keep them at a distance."
+RandomLoadingStrings[37]="The rail gun can fire through multiple Zeds if you line them up right."
+RandomLoadingStrings[38]="The microwave gun does more damage against Zeds carrying metal, like fleshpounds and sirens."
+RandomLoadingStrings[39]="Try out your weapon's alternate fire mode. Not all weapons have them, but it may help you in a tight spot."
+RandomLoadingStrings[40]="You get XP and dosh for assists in addition to kills, so don't feel bad for setting up kills for your allies."
+
+ 
 
 [Zeds]
 KFPawn_ZedBloat="Толстяк"
@@ -1268,8 +1611,117 @@ KFPawn_ZedClot_Slasher="Расчленитель"
 KFPawn_ZedClot_Alpha="Альфа-зомби"
 KFPawn_ZedScrake="Мясник"
 KFPawn_ZedSiren="Сирена"
+KFPawn_ZedPatriarch="Patriarch"
+;Human zeds
+KFPawn_ZedBloat_Versus="Bloat - Player"
+KFPawn_ZedClot_Versus="Clot - Player"
+KFPawn_ZedCrawler_Versus="Crawler - Player"
+KFPawn_ZedFleshPound_Versus="Fleshpound - Player"
+KFPawn_ZedGorefast_Versus="Gorefast - Player"
+KFPawn_ZedHans_Versus="Dr. Hans Volter - Player"
+KFPawn_ZedHusk_Versus="Husk - Player"
+KFPawn_ZedStalker_Versus="Stalker - Player"
+KFPawn_ZedClot_Cyst_Versus="Cyst - Player"
+KFPawn_ZedClot_Slasher_Versus="Slasher - Player"
+KFPawn_ZedClot_Alpha_Versus="Alpha Clot - Player"
+KFPawn_ZedScrake_Versus="Scrake - Player"
+KFPawn_ZedSiren_Versus="Siren - Player"
+KFPawn_ZedPatriarch_Versus="Patriarch - Player"
 
+[ZedMoves]
+Melee="Melee"
+Rally="Rally"
+Grab="Grab"
+Light="Light"
+Heavy="Heavy"
+Spin="Spin"
+Evade="Evade"
+Jump="Jump"
+Puke="Puke"
+Mine="Mine"
+Bite="Bite"
+Scream="Scream"
+Vortex="Vortex"
+Shoot="Shoot"
+Flame="Flame"
+Suicide="Suicide"
+Rage="Rage"
+Minigun="Minigun"
+Rocket="Rocket"
+Mortar="Mortar"
+Heal="Heal"
+Block="Block"
 
+[Keybinds]
+CtrlCombo="Ctrl + "
+ShiftCombo="Shift + "
+AltCombo="Alt + "
+LeftMouseButton="Левая кнопка мыши"
+MiddleMouseButton="Средняя кнопка мыши"
+RightMouseBUtton="Правая кнопка мыши"
+ThumbMouseButton="Mouse 4"
+ThumbMouseButton2="Mouse 5"
+MouseScrollDown="Колесико мыши вниз"
+MouseScrollUp="Колесико мыши вверх"
+CapsLock="Caps Lock"
+Tab="Tab"
+BackSpace="Backspace"
+SpaceBar="Пробел"
+LeftShift="Левый Shift"
+RightSift="Правый Shift"
+LeftCtrl="Левый Ctrl"
+RightCtrl="Правый Ctrl"
+LeftAlt="Левый Alt"
+RightAlt="Правый Alt"
+BackSlash="\\ "
+Slash="/"
+RightBracket="]"
+LeftBracket="["
+Quote="'"
+SemiColon=";"
+Period="."
+Comma=","
+Subtract="-"
+Add="+"
+Equals="="
+Multiply="*"
+Divide="Num Pad /"
+Underscore="-"
+NumPadZero="0"
+NumPadOne="1"
+NumPadTwo="2"
+NumPadThree="3"
+NumPadFour="4"
+NumPadFive="5"
+NumPadSix="6"
+NumPadSeven="7"
+NumPadEight="8"
+NumPadNine="9"
+Decimal="Num Pad ."
+NumLock="Num Lock"
+PageUp="Page Up"
+PageDown="Page Down"
+Home="Home"
+End="End"
+Insert="Insert"
+Delete="Delete"
+Up="Стрелка вверх"
+Down="Стрелка вниз"
+Left="Стрелка влево"
+Right="Стрелка вправо"
+ScrollLock="Scroll Lock"
+Pause="Pause"
+Enter="Enter"
+one="1"
+two="2"
+three="3"
+four="4"
+five="5"
+six="6"
+seven="7"
+eight="8"
+nine="9"
+zero="0"
 
 [SharedUnlocks]
 KFWeap_Zweihander="Акция «Рыцарство»"
@@ -1280,13 +1732,13 @@ Source0="Акция «Рыцарство»"
 ; Map Localization
 ;============================================
 [KF-BioticsLab KFMapSummary]
-DisplayName="Лаборатория Биотики"
+DisplayName="Лаборатория биотики"
 
 [KF-Outpost KFMapSummary]
 DisplayName="Форпост"
 
 [KF-BurningParis KFMapSummary]
-DisplayName="Париж в огне"
+DisplayName="Горящий Париж"
 
 [Survival KFGameInfoSummary]
 GameName="Выживание"
@@ -1299,3 +1751,24 @@ DisplayName="Катакомбы"
 
 [KF-EvacuationPoint KFMapSummary]
 DisplayName="Точка эвакуации"
+
+[KF-Farmhouse KFMapSummary]
+DisplayName="Ферма"
+
+[KF-BlackForest KFMapSummary]
+DisplayName="Черный лес"
+
+[KF-Prison KFMapSummary]
+DisplayName="Prison"
+
+[KF-ContainmentStation KFMapSummary]
+DisplayName="Containment Station"
+
+[KF-HostileGrounds KFMapSummary]
+DisplayName="Hostile Grounds"
+
+
+[KFMapInfo]
+; defaults
+FoundCollectibleString="%x% found a collectible. %y% left to find..."
+FoundAllCollectiblesString="Every collectible has been found!"

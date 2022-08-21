@@ -50,7 +50,14 @@ enum ETeamAwards
 	ETA_GiantSlayer,
 	ETA_MoneyBags,
 	ETA_HeadPopper,
-	ETA_Dominator
+	ETA_Dominator,
+	ETA_Carnage,
+	ETA_Closer,
+	ETA_ComboMaker,
+	ETA_Grabby,
+	ETA_ZedSupport,
+	ETA_Zednnihilation,
+	ETA_Max
 };
 
 enum EPersonalBests
@@ -372,7 +379,7 @@ static function RecordWeaponHeadShot(Controller InstigatedBy, class<DamageType> 
 	}
 }
 
-static function RecordWeaponDamage(Controller InstigatedBy, class<KFWeaponDefinition> WeaponDef, int Damage, KFPawn TargetPawn, int HitZoneIdx)
+static function RecordWeaponDamage(Controller InstigatedBy, class<KFDamageType> KFDT, class<KFWeaponDefinition> WeaponDef, int Damage, KFPawn TargetPawn, int HitZoneIdx)
 {
 	local KFPlayerController KFPC;
 
@@ -384,7 +391,7 @@ static function RecordWeaponDamage(Controller InstigatedBy, class<KFWeaponDefini
 	KFPC = KFPlayerController(InstigatedBy);
 	if(KFPC != none && KFPC.MatchStats != none)
 	{
-		KFPC.MatchStats.InternalRecordWeaponDamage(WeaponDef, Damage, TargetPawn, HitZoneIdx);
+		KFPC.MatchStats.InternalRecordWeaponDamage(KFDT, WeaponDef, Damage, TargetPawn, HitZoneIdx);
 	}	
 }
 
@@ -410,7 +417,7 @@ function RecordWeaponKill(class<KFWeaponDefinition> WeaponDef)
  * Record weapon damage 
  * Network: Server
  */								
-function InternalRecordWeaponDamage(class<KFWeaponDefinition> WeaponDef, int Damage, KFPawn TargetPawn, int HitZoneIdx)
+function InternalRecordWeaponDamage(class<KFDamageType> KFDT, class<KFWeaponDefinition> WeaponDef, int Damage, KFPawn TargetPawn, int HitZoneIdx)
 {
 	local int WeaponIndex;
 	local WeaponDamage TempWeaponDamage;
@@ -418,8 +425,9 @@ function InternalRecordWeaponDamage(class<KFWeaponDefinition> WeaponDef, int Dam
 	local bool bKilled;
 	local int PreHealth;
 
-	if(Role != ROLE_Authority || !TargetPawn.isA('KFPawn_Monster') )
+	if(Role != ROLE_Authority) 
 	{
+		if( (TargetPawn.isA('KFPawn_Monster') && PlayerReplicationInfo.GetTeamNum() == 255) || (!TargetPawn.isA('KFPawn_Monster') && PlayerReplicationInfo.GetTeamNum() != 255) )
 		return;
 	}
 	
@@ -427,6 +435,40 @@ function InternalRecordWeaponDamage(class<KFWeaponDefinition> WeaponDef, int Dam
 	bLargeZedKill = bKilled && TargetPawn.IsLargeZed();
 
 	WeaponIndex = WeaponDamageList.Find('WeaponDef', WeaponDef);
+
+	//zed
+	if( PlayerReplicationInfo.GetTeamNum() == 255 )
+	{
+		PreHealth = TargetPawn.Health + Damage;
+
+		if ( TargetPawn.Health > 0 ) 
+		{
+			// damage has already been applied and zed is still standing, record it all
+			RecordIntStat(MATCH_EVENT_DAMAGE_DEALT, Damage);
+
+			// Record indirect/aoe damage
+			if( KFDT != none && KFDT.default.bConsideredIndirectOrAoE )
+			{
+				KFPlayerReplicationInfoVersus(PlayerReplicationInfo).IndirectDamageDealt += Damage;
+				KFPlayerReplicationInfoVersus(PlayerReplicationInfo).DamageDealtOnTeam += Damage;
+			}
+		}
+		else if ( PreHealth > 0 ) 
+		{
+			// Zed has taken terminal damage, only record the difference to remove overkill counting
+			RecordIntStat(MATCH_EVENT_DAMAGE_DEALT, PreHealth );
+
+			// Record indirect/aoe damage
+			if( KFDT != none && KFDT.default.bConsideredIndirectOrAoE )
+			{
+				KFPlayerReplicationInfoVersus(PlayerReplicationInfo).IndirectDamageDealt += PreHealth;
+				KFPlayerReplicationInfoVersus(PlayerReplicationInfo).DamageDealtOnTeam += PreHealth;
+			}
+		}
+		return;
+	}
+	
+	//survivor
 	if(WeaponIndex == INDEX_NONE)
 	{
 		TempWeaponDamage.WeaponDef = WeaponDef;
@@ -663,7 +705,7 @@ static function SendMapOptionsAndOpenAARMenu()
 				}
 			}
 		}
-		KFPC.ClientOpenPostGameMenu();
+		KFPC.ClientShowPostGameMenu();
 	}
 }
 
@@ -986,9 +1028,169 @@ static function GetTeamAward(ETeamAwards AwardIndex, out AARAward TempAwardObjec
 		case ETA_Dominator:
 		`log("Attempting to get ETA_Dominator", class'EphemeralMatchStats'.default.bShowMatchStatsLogging);
 			Give_Dominator(TempAwardObject, KFPCArray);
-			break;			
+			break;	
+		case ETA_Carnage:
+			Give_Carnage(TempAwardObject, KFPCArray);
+			break;
+		case ETA_Closer:
+			Give_Closer(TempAwardObject, KFPCArray);
+			break;
+		case ETA_ComboMaker:
+			Give_Combo(TempAwardObject, KFPCArray);
+				break;
+		case ETA_Grabby:
+			Give_Grabby(TempAwardObject, KFPCArray);
+				break;
+		case ETA_ZedSupport:
+			Give_BestSupportingZed(TempAwardObject, KFPCArray);
+				break;
+		case ETA_Zednnihilation:
+			Give_Zednnihilation(TempAwardObject, KFPCArray);
+				break;
 	}
 }
+
+/*=============================================================
+	Zed AWARDS
+==============================================================*/
+
+//highest number of kills in anywave
+static function Give_Zednnihilation (out AARAward outAward, const out Array<KFPlayerController> KFPCArray)
+{
+	local int i, j, MyHighestWaveKillValue;
+	local KFPlayerReplicationInfoVersus KPRIV;
+
+	For(i = 0; i < KFPCArray.Length; i++)
+	{
+		KPRIV = KFPlayerReplicationInfoVersus(KFPCArray[i].PlayerReplicationInfo);
+
+		if(KPRIV != none)
+		{
+			for (j = 0; j < KPRIV.WaveKills.length; j++)
+			{
+				if(KPRIV.WaveKills[j] > MyHighestWaveKillValue)
+				{
+					MyHighestWaveKillValue = KPRIV.WaveKills[j];
+				}
+			}
+			if(MyHighestWaveKillValue > outAward.DisplayValue)
+			{
+				outAward.PRI = KPRIV;
+				outAward.DisplayValue = MyHighestWaveKillValue;
+			}
+		}
+	}
+}
+
+//most most grabs
+static function Give_Grabby(out AARAward outAward, const out Array<KFPlayerController> KFPCArray)
+{
+	local int i;
+	local KFPlayerReplicationInfoVersus KPRIV;
+
+	For(i = 0; i < KFPCArray.Length; i++)
+	{
+		KPRIV = KFPlayerReplicationInfoVersus(KFPCArray[i].PlayerReplicationInfo);
+
+		if(KPRIV != none)
+		{
+			if(KPRIV.ZedGrabs > outAward.DisplayValue)
+			{
+				outAward.PRI = KPRIV;
+				outAward.DisplayValue = KPRIV.ZedGrabs;
+			}
+		}
+	}
+}
+
+//best supporting zed
+static function Give_BestSupportingZed(out AARAward outAward, const out Array<KFPlayerController> KFPCArray)
+{
+	local int i;
+	local KFPlayerReplicationInfoVersus KPRIV;
+
+	For(i = 0; i < KFPCArray.Length; i++)
+	{
+		KPRIV = KFPlayerReplicationInfoVersus(KFPCArray[i].PlayerReplicationInfo);
+
+		if(KPRIV != none)
+		{
+			if(KPRIV.IndirectDamageDealt > outAward.DisplayValue)
+			{
+				outAward.PRI = KPRIV;
+				outAward.DisplayValue = KPRIV.IndirectDamageDealt;
+			}
+		}
+	}
+}
+
+//most Most damgage done
+static function Give_Carnage(out AARAward outAward, const out Array<KFPlayerController> KFPCArray)
+{
+	local int i;
+	local KFPlayerReplicationInfoVersus KPRIV;
+
+	For(i = 0; i < KFPCArray.Length; i++)
+	{
+		KPRIV = KFPlayerReplicationInfoVersus(KFPCArray[i].PlayerReplicationInfo);
+
+		if(KPRIV != none)
+		{
+			if(KPRIV.DamageDealtOnTeam > outAward.DisplayValue)
+			{
+				outAward.PRI = KPRIV;
+				outAward.DisplayValue = KPRIV.DamageDealtOnTeam;
+			}
+		}
+	}
+}
+
+//most assits
+static function Give_Combo(out AARAward outAward, const out Array<KFPlayerController> KFPCArray)
+{
+	local int i;
+	local KFPlayerReplicationInfoVersus KPRIV;
+
+	For(i = 0; i < KFPCArray.Length; i++)
+	{
+		KPRIV = KFPlayerReplicationInfoVersus(KFPCArray[i].PlayerReplicationInfo);
+
+		if(KPRIV != none)
+		{
+			if(KPRIV.AssistsAsZed > outAward.DisplayValue)
+			{
+				outAward.PRI = KPRIV;
+				outAward.DisplayValue = KPRIV.AssistsAsZed;
+			}
+		}
+	}
+}
+
+//most kills
+static function Give_Closer(out AARAward outAward, const out Array<KFPlayerController> KFPCArray)
+{
+	local int i;
+	local KFPlayerReplicationInfoVersus KPRIV;
+
+	For(i = 0; i < KFPCArray.Length; i++)
+	{
+		KPRIV = KFPlayerReplicationInfoVersus(KFPCArray[i].PlayerReplicationInfo);
+
+		if(KPRIV != none)
+		{
+			if(KPRIV.KillsAsZed > outAward.DisplayValue)
+			{
+				outAward.PRI = KPRIV;
+				outAward.DisplayValue = KPRIV.KillsAsZed;
+			}
+		}
+	}
+}
+
+
+/*=============================================================
+	Survivor AWARDS
+==============================================================*/
 
 //most healing
 static function Give_MedicineMaster(out AARAward outAward, const out Array<KFPlayerController> KFPCArray)
@@ -1159,6 +1361,14 @@ DefaultProperties
 	TeamAwardList(ETA_MoneyBags)=(TitleIdentifier="MoneyBags",ValueIdentifier="MoneyBagsValue",IconPath="UI_Award_Team.UI_Award_Team-Dosh")
 	TeamAwardList(ETA_HeadPopper)=(TitleIdentifier="HeadPopper",ValueIdentifier="HeadPopperValue",IconPath="UI_Award_Team.UI_Award_Team-Headshots")
 	TeamAwardList(ETA_Dominator)=(TitleIdentifier="Dominator",ValueIdentifier="DominatorValue",IconPath="UI_Award_Team.UI_Award_Team-BossKO")
+	//zed awards
+	TeamAwardList(ETA_Carnage)=(TitleIdentifier="Carnage",ValueIdentifier="CarnageValue",IconPath="ui_award_zeds.UI_Award_ZED_RawDmg")
+	TeamAwardList(ETA_Closer)=(TitleIdentifier="Closer",ValueIdentifier="CloserValue",IconPath="ui_award_zeds.UI_Award_ZED_Kills")
+	TeamAwardList(ETA_ComboMaker)=(TitleIdentifier="ComboMaker",ValueIdentifier="ComboMakerValue",IconPath="ui_award_zeds.UI_Award_ZED_Assists")
+	TeamAwardList(ETA_Grabby)=(TitleIdentifier="Grabby",ValueIdentifier="GrabbyValue",IconPath="ui_award_zeds.UI_Award_ZED_CC")
+	TeamAwardList(ETA_ZedSupport)=(TitleIdentifier="ZedSupport",ValueIdentifier="ZedSupportValue",IconPath="ui_award_zeds.UI_Award_ZED_SupportAoE")
+	TeamAwardList(ETA_Zednnihilation)=(TitleIdentifier="Zednnihilation",ValueIdentifier="ZednnihilationValue",IconPath="ui_award_zeds.UI_Award_ZED_MostKills")
+
 
 	PersonalBestList(EPB_Healing)=(TitleIdentifier="EPB_Healing",ValueIdentifier="EPB_HealingValue",IconPath="UI_Award_PersonalMulti.UI_Award_PersonalMulti-Healing")
 	PersonalBestList(EPB_Kills)=(TitleIdentifier="EPB_Kills",ValueIdentifier="EPB_KillsValue",IconPath="UI_Award_PersonalMulti.UI_Award_PersonalMulti-Kills")

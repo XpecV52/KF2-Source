@@ -1,8 +1,10 @@
 package tripwire.controls.postGameMenu
 {
     import flash.display.MovieClip;
+    import flash.events.Event;
     import flash.events.MouseEvent;
     import tripwire.controls.TripListItemRenderer;
+    import tripwire.controls.TripUILoader;
     
     public class PostGameMenuPlayerSlotListItemRenderer extends TripListItemRenderer
     {
@@ -10,9 +12,17 @@ package tripwire.controls.postGameMenu
         
         public var voipIcon:MovieClip;
         
+        public var avatarLoader:TripUILoader;
+        
         public function PostGameMenuPlayerSlotListItemRenderer()
         {
             super();
+        }
+        
+        override protected function addedToStage(param1:Event) : void
+        {
+            this.bTalking = false;
+            super.addedToStage(param1);
         }
         
         override protected function handlePress(param1:uint = 0) : void
@@ -38,6 +48,7 @@ package tripwire.controls.postGameMenu
                 super.data = param1;
                 this.bTalking = !!param1.bTalking ? Boolean(param1.bTalking) : false;
                 visible = true;
+                this.avatarLoader.source = param1.avatar;
             }
             else
             {

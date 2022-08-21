@@ -16,6 +16,7 @@ package tripwire.controls.store
         {
             super();
             preventAutosizing = true;
+            defaultColor = 14538703;
         }
         
         override public function set data(param1:Object) : void

@@ -15,6 +15,9 @@ defaultproperties
 	// override DoT from KFDT_Toxic
 	DoT_Type=DOT_None
 
+	CameraLensEffectTemplate=class'KFCameraLensEmit_Puke_Light'
+	AltCameraLensEffectTemplate=class'KFCameraLensEmit_Puke_Light'
+
     // Don't let Hans damage himself with his grenade
     bNoInstigatorDamage=true
 }

@@ -15,12 +15,16 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 {
     local KFPlayerController KFPC;
 
-    super(KFPawn).PlayDying(DamageType, HitLoc);
+    super(KFPawn_Monster).PlayDying(DamageType, HitLoc);
     if((OldController != none) && DamageType == Class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType)
     {
         KFPC = KFPlayerController(OldController);
         if(KFPC != none)
         {
+            if(((KFPC.Pawn != none) && KFPC.Pawn != self) || KFPC.IsInState('Spectating'))
+            {
+                return;
+            }
             KFPC.SetCameraMode('ZedSuicide');
             KFPlayerCamera_Versus(KFPC.PlayerCamera).SwapToZedSuicideCam(Location);
         }
@@ -33,13 +37,15 @@ defaultproperties
     bHasExtraSprintJumpVelocity=true
     ThirdPersonViewOffset=(OffsetHigh=(X=-300,Y=60,Z=60),OffsetMid=(X=-250,Y=60,Z=-30),OffsetLow=(X=-220,Y=60,Z=25))
     begin object name=MeleeHelper class=KFMeleeHelperAI
-        BaseDamage=10
+        BaseDamage=15
+        PlayerDoorDamageMultiplier=5
         MeleeImpactCamScale=0.2
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedCrawler_Versus.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
     DoshValue=25
     XPValues=32
+    DamageTypeModifiers=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
     JumpBumpDamageType=Class'KFDT_Bludgeon_ZedJump'
     LocalizationKey=KFPawn_ZedCrawler
@@ -49,9 +55,9 @@ defaultproperties
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedCrawler_Versus.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     HitZones=/* Array type was not detected. */
-    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedCrawler_Versus.Afflictions'
-    InstantIncaps=/* Array type was not detected. */
-    SprintSpeed=600
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedCrawler_Versus.Afflictions'
+    IncapSettings=/* Array type was not detected. */
+    SprintSpeed=700
     SprintStrafeSpeed=500
     TeammateCollisionRadiusPercent=0.3
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
@@ -69,9 +75,9 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedCrawler_Versus.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedCrawler_Versus.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedCrawler_Versus.DialogAkSoundComponent'
-    GroundSpeed=300
-    JumpZ=900
-    Health=250
+    GroundSpeed=600
+    JumpZ=1000
+    Health=150
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

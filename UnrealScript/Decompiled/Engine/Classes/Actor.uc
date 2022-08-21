@@ -487,6 +487,7 @@ var(Collision) bool bIgnoreAudioOcclusion<EditCondition=bOverride_OcclusionFlags
 var const bool bIgnoreNetRelevancyCollision<EditCondition=bOverride_OcclusionFlags>;
 /** If set, bIgnoreNetRelevancyCollision & bIgnoreAudioOcclusion are set manually */
 var(Collision) bool bOverride_OcclusionFlags;
+var const bool bSkipPostTickComponentUpdate;
 var const transient int SkelMeshCompTickTag;
 var const transient int NetTag;
 var const float NetUpdateTime;

@@ -88,6 +88,19 @@ simulated event ReplicatedEvent( name VarName )
 
 simulated function PostBeginPlay()
 {
+	if( WorldInfo.NetMode != NM_Client )
+	{
+		if( InstigatorController != none )
+		{
+			class'KFGameplayPoolManager'.static.GetPoolManager().AddProjectileToPool( self, PPT_C4 );
+		}
+		else
+		{
+			Destroy();
+			return;
+		}
+	}
+
 	super.PostBeginPlay();
 
 	ProximityAlertTimer = ProximityAlertInterval;
@@ -604,6 +617,8 @@ simulated function Disintegrate( rotator InDisintegrateEffectRotation )
 simulated protected function PrepareExplosionTemplate()
 {
     local KFPlayerReplicationInfo InstigatorPRI;
+    local KFPlayerController KFPC;
+    local KFPerk InstigatorPerk;
 
     if( WorldInfo.TimeDilation < 1.f && Instigator != none )
     {
@@ -623,6 +638,15 @@ simulated protected function PrepareExplosionTemplate()
                 ExplosionTemplate.ExplosionSound = class'KFPerk_Demolitionist'.static.GetConcussiveExplosionSound();
             }
         }
+    }
+
+    KFPC = KFPlayerController(Instigator.Controller);
+    // Change the radius and damage based on the perk
+    if( Instigator.Role == ROLE_Authority && KFPC != none )
+    {
+        InstigatorPerk = KFPC.GetPerk();
+        ExplosionTemplate.Damage *= InstigatorPerk.GetAeODamageModifier();
+        ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAeORadiusModifier();
     }
 
     super.PrepareExplosionTemplate();
@@ -647,12 +671,32 @@ simulated protected function SetExplosionActorClass()
     super.SetExplosionActorClass();
 }
 
+/** Blows up on a timer */
+function Timer_Explode()
+{
+	Detonate();
+}
+
+/** Remove C4 from pool */
+simulated event Destroyed()
+{
+	if( WorldInfo.NetMode != NM_Client )
+	{
+		if( InstigatorController != none )
+		{
+			class'KFGameplayPoolManager'.static.GetPoolManager().RemoveProjectileFromPool( self, PPT_C4 );
+		}
+	}
+
+	super.Destroyed();
+}
+
 /** Called when the owning instigator controller has left a game */
 simulated function OnInstigatorControllerLeft()
 {
-	if( InstigatorController.Pawn != none && InstigatorController.Pawn.Weapon != Owner )
+	if( WorldInfo.NetMode != NM_Client )
 	{
-		Destroy();
+		SetTimer( 1.f + Rand(5) + fRand(), false, nameOf(Timer_Explode) );
 	}
 }
 
@@ -738,8 +782,8 @@ defaultproperties
 
 	// explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
-		Damage=820.000000
-	    DamageRadius=800.000000
+		Damage=820
+	    DamageRadius=400
 		DamageFalloffExponent=2.f
 		DamageDelay=0.f
 
@@ -758,9 +802,9 @@ defaultproperties
 
 		// Camera Shake
 		CamShake=CameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
-		CamShakeInnerRadius=450
+		CamShakeInnerRadius=200
 		CamShakeOuterRadius=900
-		CamShakeFalloff=1.f
+		CamShakeFalloff=1.5f
 		bOrientCameraShakeTowardsEpicenter=true
 	End Object
 	ExplosionTemplate=ExploTemplate0

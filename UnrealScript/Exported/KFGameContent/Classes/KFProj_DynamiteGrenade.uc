@@ -25,19 +25,6 @@ var PointLightComponent FuseLight;
  */
 simulated function PostBeginPlay()
 {
-	local KFPerk InstigatorPerk;
-	local KFPawn InstigatorPawn;
-
-	InstigatorPawn = KFPawn(Instigator);
-	if( InstigatorPawn != none )
-	{
-		InstigatorPerk = InstigatorPawn.GetPerk();
-		if( InstigatorPerk != none )
-		{
-			bExplodeOnContact = InstigatorPerk.IsOnContactActive();	
-		}
-	}
-
 	PlaySoundBase( FuseEvent, true,, true );
 
 	Super.PostBeginPlay();
@@ -57,7 +44,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 {
 	local Pawn ActorPawn;
 
-	if( bExplodeOnContact && Other != Instigator && !Other.bWorldGeometry )
+	if( Other != Instigator && !Other.bWorldGeometry )
 	{
 		ActorPawn = Pawn(other);
 		if ( ActorPawn != None )
@@ -81,6 +68,8 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 simulated protected function PrepareExplosionTemplate()
 {
     local KFPlayerReplicationInfo InstigatorPRI;
+    local KFPlayerController KFPC;
+    local KFPerk InstigatorPerk;
 
     if( WorldInfo.TimeDilation < 1.f && Instigator != none )
     {
@@ -101,6 +90,16 @@ simulated protected function PrepareExplosionTemplate()
             }
         }
     }
+
+    KFPC = KFPlayerController(Instigator.Controller);
+    // Change the radius and damage based on the perk
+    if( Instigator.Role == ROLE_Authority && KFPC != none )
+    {
+        InstigatorPerk = KFPC.GetPerk();
+        ExplosionTemplate.Damage *= InstigatorPerk.GetAeODamageModifier();
+        ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAeORadiusModifier();
+    }
+
 
     super.PrepareExplosionTemplate();
 }
@@ -154,15 +153,17 @@ defaultproperties
    ExplosionActorClass=Class'KFGame.KFExplosionActor'
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
       ExplosionEffects=KFImpactEffectInfo'WEP_Dynamite_ARCH.Dynamite_Explosion'
-      Damage=400.000000
-      DamageRadius=900.000000
-      DamageFalloffExponent=3.000000
+      Damage=300.000000
+      DamageRadius=400.000000
+      DamageFalloffExponent=2.000000
       MyDamageType=Class'kfgamecontent.KFDT_Explosive_DynamiteGrenade'
       KnockDownStrength=0.000000
       ExplosionSound=AkEvent'WW_WEP_EXP_Dynamite.Play_WEP_EXP_Dynamite_Explosion'
       ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_DynamiteGrenade:ExplosionPointLight'
       ExploLightFadeOutTime=0.200000
       CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
+      CamShakeInnerRadius=200.000000
+      CamShakeFalloff=1.500000
       Name="ExploTemplate0"
       ObjectArchetype=KFGameExplosion'KFGame.Default__KFGameExplosion'
    End Object

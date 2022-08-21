@@ -10,60 +10,6 @@
 //=============================================================================
 class KFObj_Wave_Defend extends KFObj_Wave;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 13;
-
 var float				HaxorPower;
 var	float				DfficultyModifier[3];
 var float				PlayerNumModifier;

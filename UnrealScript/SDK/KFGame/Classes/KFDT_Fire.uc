@@ -41,7 +41,7 @@ defaultproperties
 	KDamageImpulse=0
 	EffectGroup=FXG_Fire
 	GoreDamageGroup=DGT_Fire
-	BurnPower=0.25
+	BurnPower=2.5
 
 	CameraLensEffectTemplate=class'KFCameraLensEmit_Fire'
 

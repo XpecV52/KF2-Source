@@ -78,11 +78,13 @@ defaultproperties
     // Reference: BrushComponent'Default__DynamicBlockingVolume.BrushComponent0'
     Components(0)=BrushComponent0
     Physics=EPhysics.PHYS_Interpolating
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
     bStatic=false
     bWorldGeometry=false
     bAlwaysRelevant=true
     bOnlyDirtyReplication=true
     bMovable=true
+    BlockRigidBody=false
     begin object name=BrushComponent0 class=BrushComponent
         ReplacementPrimitive=none
     object end

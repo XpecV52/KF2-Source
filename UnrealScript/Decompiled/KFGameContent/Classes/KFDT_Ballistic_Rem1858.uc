@@ -11,10 +11,9 @@ class KFDT_Ballistic_Rem1858 extends KFDT_Ballistic_Handgun
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_Remington1858'
-    KnockdownPower=30
-    StumblePower=45
-    LegStumblePower=45
-    GunHitPower=35
+    KnockdownPower=15
+    StumblePower=50
+    GunHitPower=150
     ModifierPerkList=/* Array type was not detected. */
     KDamageImpulse=2500
     KDeathVel=200

@@ -248,6 +248,7 @@ var OnlineGameSearch MigratedSearchToJoin;
 var OnlineSubsystem OnlineSub;
 var OnlineVoiceInterface VoiceInterface;
 var UIDataStore_OnlinePlayerData OnlinePlayerData;
+var OnlineGameSearchResult CachedInviteResult;
 var config float InteractDistance;
 var name DelayedJoinSessionName;
 var array<InputMatchRequest> InputRequests;
@@ -4983,10 +4984,11 @@ reliable server function ServerRegisteredForArbitration(bool bWasSuccessful)
     WorldInfo.Game.ProcessClientRegistrationCompletion(self, bWasSuccessful);
 }
 
-function OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult)
+function OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult, OnlineSubsystem.OnGameInviteAcceptedResult ResultReason)
 {
     local OnlineGameSettings GameInviteSettings;
 
+    LogInternal("SESSIONS - OnGameInviteAccepted");
     if((OnlineSub != none) && NotEqual_InterfaceInterface(OnlineSub.GameInterface, (none)))
     {
         GameInviteSettings = InviteResult.GameSettings;
@@ -4996,6 +4998,7 @@ function OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult)
             {
                 if(CanAllPlayersPlayOnline())
                 {
+                    CachedInviteResult = InviteResult;
                     if(WorldInfo.NetMode != NM_Standalone)
                     {
                         if(OnlineSub.GameInterface.GetGameSettings('Game').bUsesArbitration)
@@ -5008,7 +5011,7 @@ function OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult)
                     else
                     {
                         OnlineSub.GameInterface.AddJoinOnlineGameCompleteDelegate(OnInviteJoinComplete);
-                        if(!OnlineSub.GameInterface.AcceptGameInvite(byte(LocalPlayer(Player).ControllerId), 'Game'))
+                        if(!OnlineSub.GameInterface.AcceptGameInvite(byte(LocalPlayer(Player).ControllerId), 'Game', CachedInviteResult))
                         {
                             OnlineSub.GameInterface.ClearJoinOnlineGameCompleteDelegate(OnInviteJoinComplete);
                             NotifyInviteFailed();
@@ -5080,10 +5083,11 @@ function OnEndForInviteComplete(name SessionName, bool bWasSuccessful)
 
 function OnDestroyForInviteComplete(name SessionName, bool bWasSuccessful)
 {
+    LogInternal((("SESSIONS - Destroy for invite complete for session name" @ string(SessionName)) @ "and successful") @ string(bWasSuccessful));
     if(bWasSuccessful)
     {
         OnlineSub.GameInterface.AddJoinOnlineGameCompleteDelegate(OnInviteJoinComplete);
-        if(!OnlineSub.GameInterface.AcceptGameInvite(byte(LocalPlayer(Player).ControllerId), SessionName))
+        if(!OnlineSub.GameInterface.AcceptGameInvite(byte(LocalPlayer(Player).ControllerId), SessionName, CachedInviteResult))
         {
             OnlineSub.GameInterface.ClearJoinOnlineGameCompleteDelegate(OnInviteJoinComplete);
             NotifyInviteFailed();
@@ -5126,7 +5130,7 @@ function OnInviteJoinComplete(name SessionName, bool bWasSuccessful)
 
 function NotifyInviteFailed()
 {
-    LogInternal("Invite handling failed");
+    LogInternal("SESSIONS - Invite handling failed");
     ClearInviteDelegates();
 }
 
@@ -6200,6 +6204,8 @@ event bool NotifyDisconnect(string Command)
 }
 
 event SetMatineeConstantCameraAnim(bool bOn, byte Type, float Rate);
+
+event SetUIScale(float fScale);
 
 function NotifyUnsuccessfulSearch();
 

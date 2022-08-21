@@ -12,60 +12,6 @@ class KFDT_Ballistic_AK12 extends KFDT_Ballistic_AssaultRifle
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 15;
-
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
@@ -87,9 +33,8 @@ static simulated function bool CanDismemberHitZone( name InHitZoneName )
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_AK12'
-   StumblePower=39
-   LegStumblePower=39
-   GunHitPower=25
+   StumblePower=15.000000
+   GunHitPower=0.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Commando'
    KDamageImpulse=1000.000000
    KDeathVel=135.000000

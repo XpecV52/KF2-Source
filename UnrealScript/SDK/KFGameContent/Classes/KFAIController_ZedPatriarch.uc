@@ -194,11 +194,6 @@ var float TotalFleeTime;
 /** Whether the flee was interrupted by the targeting loop */
 var bool bFleeInterrupted;
 
-/** Determines if a summon has been done this phase yet */
-var bool bSummonedThisPhase;
-
-var vector FleeStartLocation;
-
 /*********************************************************************************************
 * Initialization, Pawn Possession, and Destruction
 ********************************************************************************************* */
@@ -275,7 +270,7 @@ function bool IsAggroEnemySwitchAllowed()
 {
 	return ( !MyPatPawn.IsDoingSpecialMove(SM_StandAndShootAttack)
 			&& !MyPatPawn.IsDoingSpecialMove(SM_HoseWeaponAttack)
-			&& !MyPatPawn.IsDoingSpecialMove(SM_GrabAttack) );
+			&& !MyPatPawn.IsDoingSpecialMove(SM_GrappleAttack) );
 }
 
 /** Whether enemy switch commands can be run */
@@ -288,7 +283,7 @@ function bool CanSwitchEnemies()
 			&& !MyPatPawn.IsDoingSpecialMove(SM_Heal)
 			&& !MyPatPawn.IsDoingSpecialMove(SM_StandAndShootAttack)
 			&& !MyPatPawn.IsDoingSpecialMove(SM_SonicAttack)
-			&& !MyPatPawn.IsDoingSpecialMove(SM_GrabAttack);
+			&& !MyPatPawn.IsDoingSpecialMove(SM_GrappleAttack);
 }
 
 /** Returns an aggro rating on a scale of 0.0f to 1.0f */
@@ -517,73 +512,6 @@ function bool SetBestTarget( out array<KFPawn> RecentTargets,
 	}
 
 	return false;
-}
-
-/** Search for enemies within a set FOV range */
-function KFPawn CheckForEnemiesInFOV( float MaxRange,
-									float MinFOV,
-									float MaxFOV,
-									optional bool bForceRetarget,
-									optional bool bTauntNewEnemy=true )
-{
-	local vector PawnDir, Projection;
-	local float FOVDot, TempDistSQ, BestDistSQ;
-	local KFPawn KFP, BestTarget;
-
-	if( MyPatPawn == none )
-	{
-		return none;
-	}
-
-	PawnDir = vector( MyPatPawn.Rotation );
-
-	foreach MyPatPawn.OverlappingActors( class'KFPawn', KFP, MaxRange )
-	{
-		if( bForceRetarget && Enemy == KFP )
-		{
-			continue;
-		}
-
-		if( !KFP.IsAliveAndWell() || KFP.GetTeamNum() == GetTeamNum() )
-		{
-			continue;
-		}
-
-		Projection = KFP.Location - MyPatPawn.Location;
-
-		// Only care about players within the FOV range
-		FOVDot = PawnDir dot Normal( Projection );
-		if( FOVDot < MinFOV || FOVDot > MaxFOV )
-		{
-			continue;
-		}
-
-		// Make sure enemy isn't obstructed
-		if( !MyPatPawn.FastTrace(KFP.Location, MyPatPawn.Location,, true) )
-		{
-			continue;
-		}
-
-		// Make sure enemy isn't too far away
-		TempDistSQ = VSizeSQ( Projection );
-
-		// Scales distance by aggro rating (0.0 - 1.0)
-		TempDistSQ *= 1.f - GetAggroRating( KFP );
-
-		if( BestTarget == none || TempDistSQ < BestDistSQ )
-		{
-			BestDistSQ = TempDistSQ;
-			BestTarget = KFP;
-		}
-	}
-
-	if( BestTarget != none && BestTarget != Enemy )
-	{
-		ChangeEnemy( BestTarget, bTauntNewEnemy );
-		return BestTarget;
-	}
-
-	return none;
 }
 
 /** Override to tick the ranged combat system */
@@ -1026,20 +954,26 @@ function bool SomeEnemiesAreHidden()
 /** Overloaded to handle door usage in cloaked state */
 function NotifyAttackDoor( KFDoorActor Door )
 {
-	// We need to count up the total flee time so infinite fleeing isn't possible
-	if( bFleeing )
-	{
-		TotalFleeTime = TotalFleeTime + (WorldInfo.TimeSeconds - FleeStartTime);
-		bWantsToFlee = true;
-		bFleeInterrupted = true;
-		bFleeing = false;
-		
-		// Kill our flee command
-		AbortCommand( FindCommandOfClass(class'AICommand_Flee') );
+    // We need to count up the total flee time so infinite fleeing isn't possible
+    if( bFleeing || bWantsToFlee )
+    {
+    	if( bFleeing )
+    	{
+	        bFleeInterrupted = true;
+	        bFleeing = false;
+	        TotalFleeTime = TotalFleeTime + (WorldInfo.TimeSeconds - FleeStartTime);
+	        bWantsToFlee = true;
+	    }
+        
+        // Kill our flee and move commands
+        AbortCommand( CommandList );
 
-		// Allow melee again
-		EnableMeleeRangeEventProbing();
-	}
+        // Allow melee again
+        EnableMeleeRangeEventProbing();
+
+        // Restart default command
+        BeginCombatCommand( GetDefaultCommand(), "Restarting default command" );
+    }
 	else if( MyPatPawn.bIsCloaking )
 	{
 		MyPatPawn.SetCloaked( false );
@@ -1128,7 +1062,7 @@ function NotifyCommandFinished( AICommand FinishedCommand )
 		}
 
 		// Delay flee by a tiny bit to allow command to finish up
-		SetTimer( 0.06f, false, nameOf(Flee), self );
+		SetTimer( 0.06f, false, nameOf(Flee) );
 	}
 }
 
@@ -1330,14 +1264,17 @@ function NotifyTakeHit( Controller InstigatedBy, vector HitLocation, int Damage,
 	}
 
     // When our health gets low, summon zeds and escape from the battle to heal
-    if( !bWantsToFlee && !bFleeing && MyPatPawn != None && !MyPatPawn.bHealedThisPhase && MyPatPawn.CurrentBattlePhase < 4
+    if( !bWantsToFlee && !bFleeing && MyPatPawn != None && !MyPatPawn.bHealedThisPhase && MyPatPawn.CanSummonChildren()
     	&& !MyPatPawn.IsDoingSpecialMove(SM_Heal) )
     {
 		if( !bSummonedThisPhase && GetHealthPercentage() < FleeHealthThreshold+0.075f )
 		{
 			bSummonedThisPhase = true;
 			MyAIDirector.bForceFrustration = true;
-			SummonChildren();
+		    MyPatPawn.SummonChildren();
+
+			// Fallback so zeds can't spawn forever
+			SetTimer( 30.f, false, nameOf(Timer_StopSummoningZeds) );
 		}
 
 	   	if( !MyPatPawn.IsDoingSpecialMove(SM_Taunt) && GetHealthPercentage() < FleeHealthThreshold )
@@ -1541,23 +1478,13 @@ function bool AmIAllowedToSuicideWhenStuck()
 * Zed Summoning
 **********************************************************************************************/
 
-/** Summon some children */
-function SummonChildren()
-{
-    if( MyPatPawn == none )
-    {
-        return;
-    }
-
-    MyPatPawn.SummonChildren();
-}
-
 /** Stop summoning children */
-function Timer_StopSummoningChildren()
+function Timer_StopSummoningZeds()
 {
 	// Allow summoning of children for this phase
 	bSummonedThisPhase = false;	
-	MyKFGameInfo.SpawnManager.StopSummoningBossMinions();
+
+	super.Timer_StopSummoningZeds();
 }
 
 /*********************************************************************************************
@@ -1590,7 +1517,7 @@ function Timer_SearchForFleeObstructions()
 	}
 
 	// See if there's someone blocking us
-	ObstructingEnemy = CheckForEnemiesInFOV( AttackRange, 0.6f, 1.f, false, false );
+	ObstructingEnemy = CheckForEnemiesInFOV( AttackRange * 1.1f, 0.4f, 1.f, false, false );
 	if( ObstructingEnemy != none )
 	{
 		// We need to count up the total flee time so infinite fleeing isn't possible
@@ -1601,19 +1528,22 @@ function Timer_SearchForFleeObstructions()
 		// Temporarily end flee state
 		MyPatPawn.SetCloaked( false );
 
+        // Kill our flee and move commands
+        AbortCommand( CommandList );
+
 		// Set our new enemy
 		ChangeEnemy( ObstructingEnemy, false );
 
 		// Set our pending flee
 		bWantsToFlee = true;
 
-		// Kill our flee and move commands
-		AbortCommand( FindCommandOfClass(class'AICommand_Flee') );
-
 		// Sprint to new enemy
 		bSprintUntilAttack = true;
 		SetEnemyMoveGoal( self, true );
 		EnableMeleeRangeEventProbing();
+
+        // Restart default command
+        BeginCombatCommand( GetDefaultCommand(), "Restarting default command" );
 
 		// Give the patty a little bit of time to flee after this attack
 		SetTimer( 3.0f, false, nameOf(Timer_SearchForFleeObstructions) );
@@ -1636,7 +1566,7 @@ function Timer_SearchForChargeObstructions()
 	}
 
 	// See if there's someone blocking us
-	ObstructingEnemy = CheckForEnemiesInFOV( AttackRange, 0.4f, 1.f, false, false );
+	ObstructingEnemy = CheckForEnemiesInFOV( AttackRange * 1.1f, 0.4f, 1.f, false, false );
 	if( ObstructingEnemy != none )
 	{
 		// Set our new enemy
@@ -1768,16 +1698,15 @@ function Flee()
 		UpdateRageState();
 	}
 
-	// If flee is interrupting, figure out what's canceling the command
-	DumpCommandStack();
-
 	// Prevent timeout from interrupting flee
 	AICSM = FindCommandOfClass(class'AICommand_SpecialMove');
 	if( AICSM != none )
 	{
 		AICSM.ClearTimeout();
-		AbortCommand( AICSM );
 	}
+
+    // Abort all commands
+    AbortCommand( CommandList );
 
 	// Perform flee
 	bFleeing = true;
@@ -1789,7 +1718,6 @@ function Flee()
 	FleeDuration = fMax( MaxFleeDuration - TotalFleeTime, 6.f );
 	//`log("[FLEE] FleeDuration:"@FleeDuration);
 	//`log("[FLEE] FleeStartTime:"@WorldInfo.TimeSeconds);
-	FleeStartLocation = MyPatPawn.Location;
 	FleeStartTime = WorldInfo.TimeSeconds;
 	DoFleeFrom( FleeFromTarget, FleeDuration, MaxFleeDistance + Rand(MaxFleeDistance * 0.25f), true );
 	EvaluateSprinting();
@@ -1802,14 +1730,17 @@ function Flee()
 }
 
 /** We have finished fleeing for one reason or another, notify pawn to heal */
-function NotifyFleeFinished()
+function NotifyFleeFinished( optional bool bAcquireNewEnemy=true )
 {
 	if( MyPatPawn != None )
 	{
 		MyPatPawn.SetCloaked( false );
 
 		// Delay stop summoning, to give paternal instinct a chance to trigger
-		SetTimer( 4.f, false, nameOf(Timer_StopSummoningChildren) );
+		if( IsTimerActive(nameOf(Timer_StopSummoningZeds)) )
+		{
+			SetTimer( 4.f, false, nameOf(Timer_StopSummoningZeds) );
+		}
 
 		// Stop searching for targets
 		ClearTimer( nameOf(Timer_SearchForFleeObstructions) );
@@ -1817,7 +1748,6 @@ function NotifyFleeFinished()
 		// Flee debug
 		//`log("[HEAL] FleeDuration:"@fMax(MaxFleeDuration - TotalFleeTime, 6.f));
 		//`log("[HEAL] FleeEndTime:"@WorldInfo.TimeSeconds);
-		//`log("[HEAL] FleeDistance:"@VSize(FleeStartLocation - MyPatPawn.Location));
 		//scripttrace();
 
 		// End flee state
@@ -1828,7 +1758,19 @@ function NotifyFleeFinished()
 		MyPatPawn.DoSpecialMove( SM_Heal,,, class'KFSM_Patriarch_Heal'.static.PackSMFlags(MyPatPawn.CurrentBattlePhase-1) );
 	}
 
+    // Allow melee again
 	EnableMeleeRangeEventProbing();
+
+    // Restart default command
+    BeginCombatCommand( GetDefaultCommand(), "Restarting default command" );
+}
+
+/** Forces a heal regardless of what state we're in */
+function ForceHeal()
+{
+	// Kill our flee and move commands
+    AbortCommand( CommandList );
+    NotifyFleeFinished();
 }
 
 /** Victory */

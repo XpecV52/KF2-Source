@@ -18,20 +18,19 @@ function PreMoveToEnemy()
 	}
 }
 
-/** Scream after a stumble */
-function NotifySpecialMoveEnded( KFSpecialMove SM )
+/** If an incap special move just started, abort our scream command */
+function NotifySpecialMoveStarted( KFSpecialMove SM )
 {
-	// Allow a bit of time to blend out of stumble
-	if( SM.Handle == 'KFSM_Stumble' )
+	if( IsInStumble() || MyKFPawn.IsIncapacitated() )
 	{
-		SetTimer( 0.4f, false, nameOf(DoScream) );
+		AbortCommand( FindCommandOfClass( class'AICommand_Siren_Scream') );
 	}
 }
 
 /** Executes a scream */
 function DoScream()
 {
-	if( IsInStumble() )
+	if( IsInStumble() || MyKFPawn.IsIncapacitated() )
 	{
 		return;
 	}
@@ -39,9 +38,35 @@ function DoScream()
 	if( MyKFPawn.SpecialMove == SM_None || MyKFPawn.SpecialMove == SM_SonicAttack )
 	{
 		class'AICommand_Siren_Scream'.static.Scream( self );
+		MyKFPawn.DisablebOnDeathAchivement();
 	}
 }
 
+/** Scream after an incap */
+function NotifySpecialMoveEnded( KFSpecialMove SM )
+{
+	local Pawn BestTarget;
+
+	// Allow a bit of time to blend out of incaps
+	if( SM.Handle == 'KFSM_Stumble' || SM.Handle == 'KFSM_Stunned' || SM.Handle == 'KFSM_Frozen' || SM.Handle == 'KFSM_RecoverFromRagdoll' )
+	{
+		// Get a new enemy		
+		BestTarget = MyKFPawn.GetBestAggroEnemy();
+		if( BestTarget != none )
+		{
+			BestTarget = GetClosestEnemy();
+		}
+		ChangeEnemy( BestTarget, true );
+
+		// Start moving to enemy
+		SetEnemyMoveGoal( self, true );
+
+		// Wait 1 second, and then try to scream again
+		SetTimer( 1.f, false, nameOf(DoScream) );
+	}
+}
+
+/** Notification from KFSM_MeleeAttack that it has completed */
 function NotifyMeleeAttackFinished()
 {
 	if( MyKFPawn != none )
@@ -50,38 +75,17 @@ function NotifyMeleeAttackFinished()
 	}
 }
 
-/** Perform a melee attack AICommand.. InTarget is optional actor to attack (door, etc.) */
-/*
-function DoMeleeAttack( optional Pawn NewEnemy, optional Actor InTarget, optional byte AttackFlags )
+/** Notification from AICommand::Popped that it has completed */
+function NotifyCommandFinished( AICommand FinishedCommand )
 {
-	if( MyKFPawn == none || MyKFPawn.bIsHeadless || !IsMeleeRangeEventProbingEnabled() || (MyKFPawn.IsDoingSpecialMove() && !MyKFPawn.IsDoingSpecialMove(SM_ChargeRun)) )
+	// Need to set our scream timer after a panic wander or else Siren will likely never scream again
+	if( ClassIsChildOf(FinishedCommand.class, class'AICommand_PanicWander') )
 	{
-		`AILog( GetFuncName()$"() skipping melee attack because "$Pawn$" is already busy.", 'Command_Attack_Melee' );
-		return;
+		SetTimer( 1.f, false, nameOf(DoScream) );
 	}
 
-	if( MyKFPawn != none && MyKFPawn.PawnAnimInfo != none )
-	{
-		// Only Pack flags if 255 was initially passed in
-		if( AttackFlags == 255 )
-		{
-			AttackFlags = ChooseStrikeAnimation();
-		}
-
-		if( AttackFlags != 255 )
-		{
-			class'AICommand_Attack_Melee'.static.Melee( self, InTarget, AttackFlags );
-		}
-	}
-	super.DoMeleeAttack( NewEnemy, InTarget, AttackFlags );
+	super.NotifyCommandFinished( FinishedCommand );
 }
-
-	*/
-
-//function EndOfMeleeAttackNotification()
-//{
-//	class'AICommand_Hide'.static.HideFrom( self, Enemy, false );
-//}
 
 function EnterZedVictoryState()
 {

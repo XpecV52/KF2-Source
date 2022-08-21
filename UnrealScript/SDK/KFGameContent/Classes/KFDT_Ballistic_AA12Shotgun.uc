@@ -12,8 +12,6 @@ class KFDT_Ballistic_AA12Shotgun extends KFDT_Ballistic_Shotgun
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
@@ -43,9 +41,8 @@ defaultproperties
 	KDeathUpKick=120
 	KDeathVel=10
 
-    StumblePower=33
-	LegStumblePower=33
-	GunHitPower=35
+    StumblePower=5
+	GunHitPower=0
 
 	WeaponDef=class'KFWeapDef_AA12'
 }

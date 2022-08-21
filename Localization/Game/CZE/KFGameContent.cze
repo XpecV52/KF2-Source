@@ -2,7 +2,100 @@
 //1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
 //2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
 //3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
-//ItemDescription="Double-barreled, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest zeds will stagger when hit with both barrels. We found it in an old farm-house and //canned it for the Trader Pod. Hope you live longer than the farmer."
+//ItemDescription="Double-barreled, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest Zeds will stagger when hit with both barrels. We found it in an old farm-house and //canned it for the Trader Pod. Hope you live longer than the farmer."
+
+[KFTutorial]
+;Lobby start
+RewardsTitleKey="Welcome to the Training Floor"
+RewardsDescriptionKey="The Training Floor will teach you some survival basics, but without the fear of death. Complete the Training Floor and you will receive a cosmetic item and enough XP to bring your selected perk up to Level 1."
+WelcomeTitleKey="Select a Perk"
+WelcomeDescriptionKey="Before you begin the match, select the <font color="#caab05">PERKS</font> tab at the top of the screen and select a perk. Perks are classes with different passive <font color="#caab05">PERK BONUSES</font>, configurable <font color="#caab05">SKILLS</font>, and <font color="#caab05">WEAPON LOADOUTS</font>."
+PerksTitleKey="Perks Details"
+PerksDescriptionKey="Perform <font color="#caab05">XP OBJECTIVES</font> in game to gain XP and level up your perks. Each time you level up, your <font color="#caab05">PERK BONUSES</font> increase for that perk. Every 5 levels you will unlock new <font color="#caab05">SKILLS</font> that you can <font color="#caab05">CONFIGURE</font> once unlocked. Select a perk and press <font color="#caab05">READY UP</font> to begin the match."
+
+;Gear Menu
+GearTitleKey="Gear Menu"
+GearDescriptionKey="The Gear Menu lets you select and <font color="#caab05">CUSTOMIZE</font> your character. Each character has a unique visual look, voice, and personality. Each character's head and body can be customized. You can wear up to 3 cosmetic accessories. Select and customize your character using the buttons on the left side of this menu."
+
+;Inventory Menu
+InventoryMenuTitleKey="Inventory Menu"
+InventoryMenuDescriptionKey="The inventory menu allows you to view and manage your item inventory. You can obtain items as rewards for completing matches from time to time, but you can also get items by opening crates, decrypting weapon skin USBs, trading with your friends, or purchasing them on the Market."
+WeaponSkinsTitleKey="Equipping Weapon Skins"
+WeaponSkinsDescriptionKey="Selecting any item will let you view the item details. If you have a weapon skin selected, you can equip it by pressing the <font color="#caab05">EQUIP</font> button. If you have a weapon skin equipped, any time you use that weapon in a match it will appear with the currently equipped skin."
+
+;Store Menu
+StoreTitleKey="Store Menu"
+StoreDescriptionsKey="The Store Menu allows you to purchase keys that are used to open crates and decrypt weapon skin USBs you find. There are also several character cosmetic item bundles you can purchase. Items that you purchase or receive as rewards will appear in the Inventory Menu."
+
+;Match Start
+InventoryTitleKey="Know Your Inventory"
+InventoryDescriptionKey="Each perk loadout starts with a unique primary weapon, a backup 9mm pistol, a specialist knife, and grenades. Press <font color="#caab05">%x%</font> to cycle through your weapons. You can also quick select weapon categories by pressing the following: <font color="#caab05">%x%</font> to equip your primary ranged weapon, <font color="#caab05">%x%</font> to equip your pistol, <font color="#caab05">%x%</font> to equip your melee weapon, and <font color="#caab05">%x%</font> to equip your syringe."
+InventoryContTitleKey="Know Your Inventory"
+InventoryContDescriptionKey="Each perk loadout starts with a unique primary weapon, a backup 9mm pistol, a specialist knife and grenade. Hold <font color="#caab05">%x%</font> and use the Dpad to select a weapon."
+AlternateFireKey="Alternate Fire"
+AlternateFireDescription="Most primary weapon have an alternate fire mode. Press <font color="#caab05">%x%</font> to toggle your current fire mode. An icon in your view will show the currently selected firemode."
+FlashLightBatteryTitleKey="Using a Flashlight"
+FlashLightBatteryDescriptionKey="It can get dark out there. Press <font color="#caab05">%x%</font> to toggle your <font color="#caab05">FLASHLIGHT</font> on and off. Your flashlight battery will slowly run out of power. When this happens it will turn off and automatically start recharging again."
+GrenadeTitleKey="Using Grenades"
+GrenadeDescriptionKey="Grenades allow you to deal with closely packed groups of Zeds. Perks have different grenades in their <font color="#caab05">WEAPON LOADOUTS</font>, all of which damage Zeds, but may have additional effects. Press <font color="#caab05">%x%</font> to throw a grenade." 
+
+;Wave 1 end
+TraderTimeTitleKey="Trader Time"
+TraderTimeDescriptionKey="In between waves you can buy/sell weapons and fill your ammo at the Trader. Follow the blue arrows to find the Trader."
+InventoryWeightTitleKey="Carrying Weight"
+InventoryWeightDescriptionKey="You are limited in the weight you can carry. If you can't carry what you want, sell some gear first to make room."
+
+;Trader Menu Open
+TraderRefillTitleKey="Refill Your Ammo and Armor"
+TraderRefillDescriptionKey="You can refill your <font color="#caab05">AMMO</font>, <font color="#caab05">GRENADES</font>, and <font color="#caab05">BODY ARMOR</font> by pressing the <font color="#caab05">MAG</font>, <font color="#caab05">x1</font>, or <font color="#caab05">FILL</font> buttons next to the appropriate item. If you are short of time (or long on dosh), pressing <font color="#caab05">AUTOFILL</font> will spend your dosh for you, spreading it across ammo, armor, and grenades quickly."
+TraderSellTitleKey="Selling Weapons"
+TraderSellDescriptionKey="To <font color="#caab05">SELL A WEAPON</font>, select the weapon on the right side of the menu and press the large <font color="#caab05">SELL BUTTON</font> in the center of the menu. You cannot sell your backup 9mm pistol, body armor, or grenades."
+TraderBuyTitleKey="Buying Weapons"
+TraderBuyDescriptionKey="To <font color="#caab05">BUY A WEAPON</font>, select a weapon on the left side of the menu and press the large <font color="#caab05">BUY BUTTON</font> in the center of the menu. Make sure you have enough <font color="#caab05">DOSH</font> and <font color="#caab05">WEIGHT CAPACITY</font> to purchase the weapon."
+TraderWeightTitleKey="Weapon Weight and Capacity"
+TraderWeightDescriptionKey="Every weapon has a <font color="#caab05">WEIGHT VALUE</font>. The weight of your current weapons may prevent you from being able to purchase the weapon you wish. The weight of the weapon is visible on the weapon list and in the weapon details. Your <font color="#caab05">WEIGHT CAPACITY</font> is shown above the buy/sell button in the center of the screen. Anything that will block you from buying the currently selected item is highlighted in red."
+
+;Trader Menu Close
+DoorWeldTitleKey="Weld Doors"
+DoorWeldDescriptionKey="You can <font color="#caab05">WELD DOORS</font> to slow the flow of enemies to a given area. To weld a door, walk up to it and <font color="#caab05">HOLD %x%</font> to equip your welder."
+HoldOutRunTitleKey="Run vs. Hold Out"
+HoldOutRunDescriptionKey="Know when to hold out and when to run. Find a good hold out spot, but once you start getting overrun, find an exit."
+TeamAdviceTitleKey="Stick Together"
+TeamAdviceDescriptionKey="<font color="#caab05">STAY WITH YOUR TEAM!</font> Your teammates are vital to your survival. They can heal you as well as help you take down the bigger Zeds."
+
+;Victory
+CongratulationsTitleKey="Victory!"
+CongratulationsDescriptionKey="Congratulations! You have completed the Training Floor!"
+NextStepsTitleKey="What to Do Next"
+NextStepsDescriptionKey="From the main menu, <font color="#caab05">PLAY SOLO OFFLINE</font> to practice more offline or jump into <font color="#caab05">ONLINE MATCHMAKING</font> or <font color="#caab05">BROWSE SERVERS</font> to find an online game. Now go kill some Zeds!"
+
+;Healing Section
+QuickHealTitleKey="Heal Yourself When Hurt"
+QuickHealDescriptionKey="If you are hurt, you can heal yourself by pressing <font color="#caab05">%x%</font>. After healing, your syringe will take sometime to recharge before you can use it again."
+HowToSyringeTitleKey="Heal Your Teammates"
+HowToSyringeDescriptionKey="You can also equip the syringe to heal your teammates by pressing <font color="#caab05">%x%</font> and then pressing <font color="#caab05">%x%</font> when close to a teammate."
+HealOthersTitleKey="Use Field Medic Weapons to Heal Teammates"
+HealOthersDescriptionKey="Field Medic perk weapons can heal teammates from a distance with their alternate fire mode. If you are using a Field Medic weapon, press <font color="#caab05">%x%</font> to fire a healing dart. Also, when you have selected the Field Medic perk, press <font color="#caab05">%x%</font> to throw a healing gas grenade."
+
+;Zed Time
+ZedTimeTitleKey="Zed Time"
+ZedTimeDescriptionKey="<font color="#caab05">ZED TIME SLO-MO</font> kicks in when cool things happen like headshots or hordes of enemies dying in an explosion. You can use this time to catch a small breather and daisy-chain some kills together."
+
+;Melee Section
+MeleeTitleKey="Melee Weapons"
+MeleeDescriptionKey="Melee weapons have both light and hard attacks. Perform a light attack by pressing <font color="#caab05">%x%</font> and a hard attack by pressing <font color="#caab05">%x%</font>."
+BlockingTitleKey="Blocking with Melee Weapons"
+BlockingDescriptionKey="You can also block with melee weapons by <font color="#caab05">HOLDING %x%</font>. Blocking will reduce incoming Zed damage."
+ParryTitleKey="Parrying with Melee Weapons"
+ParryDescriptionKey="If you time a block correctly with an incoming Zed attack, you will parry the Zed and stumble him back. You will see an effect flash if you successfully parry a Zed."
+UnblockableTitleKey="Unblockable Zed Attacks"
+UnblockableDescriptionKey="Larger Zeds have some unblockable attacks. You can tell if an attack is unblockable by glowing effects on the Zed during an attack."
+
+[KFGFxTutorialContainer]
+BackString="BACK"
+NextString="NEXT"
+DoneString="DONE"
+SkipString="SKIP"
 
 [Armor]
 ItemName="Neprůstřelná vesta"
@@ -43,6 +136,11 @@ ItemDescription="• Klasický granát – vytáhneš pojistku, hodíš na nepř
 ItemName="Hřebíková bomba"
 ItemCategory ="Výbušnina"
 ItemDescription="• Nádobka plná starých zrezivělých hřebíků s přidanou třaskavinou.\n\nNa koleni spíchnutý granát, za který by se nestyděl ani Kevin. K tobě do baráku se rozhodně nikdo nedostane!"
+
+[KFProj_FreezeGrenade]
+ItemName="Freeze Grenade"
+ItemCategory = "Explosives"
+ItemDescription="• An advanced canister of pressurized liquid nitrogen.\n\nEnough contact with the contents of this will freeze Zeds in place for a time. The results can be very shattering."
 
 [KFWeap_Healer_Syringe]
 ItemName="Léčivá injekce"
@@ -104,7 +202,7 @@ ItemDescription="• Primární útok – rychlé seknutí, držením tlačítka
 
 [KFWeap_Knife_Sharpshooter]
 ItemName="Kukri"
-ItemCategory="Melee"
+ItemCategory="Na blízko"
 ItemDescription=""
 
 [KFWeap_Pistol_Medic]
@@ -270,24 +368,40 @@ ItemCategory="Pistole"
 ItemDescription="• Pouze režim jednotlivých ran\n• Alt. útok – přepínání mezi styly míření\n• Dva revolvery Remington 1858. Pokud budeš potřebovat, můžeš jeden z nich prodat nebo odhodit"
 
 [KFWeap_Revolver_SW500]
-ItemName="Revolver 500 Magnum"
+ItemName="Revolver .500 Magnum"
 ItemCategory="Pistole"
 ItemDescription="• Pouze režim jednotlivých ran\n• A pro pistolníky, kteří to myslí vážně, tu máme kapesní dělo ráže .50 střílející masivní náboje, kterými skolíš i slona. Tak si představ, co to asi udělá se Zedy..."
 
 [KFWeap_Revolver_DualSW500]
-ItemName="Dva revolvery 500 Magnum"
+ItemName="Dva revolvery .500 Magnum"
 ItemCategory="Pistole"
 ItemDescription="• Pouze režim jednotlivých ran\n• Alt. útok – přepínání mezi styly míření\n• Dvě kapesní děla ráže .50. Pokud budeš potřebovat, můžeš jedno z nich prodat nebo odhodit, ale bacha, ať neuděláš díru do země"
 
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
-ItemCategory="Rifle"
-ItemDescription="• Fire mode is single shot only.\n• The classic Model 1894 Winchester lever-action rifle."
+ItemCategory="Puška"
+ItemDescription="• Pouze režim jednotlivých ran\n• Klasický model Winchesterovy opakovací kulovnice z roku 1894."
 
 [KFWeap_Bow_Crossbow]
-ItemName="Crossbow"
-ItemCategory="Bow"
-ItemDescription="• Fire mode is single shot only.\n• Crossbow bolts are often recoverable!\n• A high-powered hunting crossbow, giving good penetration and good stopping power!"
+ItemName="Kuše"
+ItemCategory="S tětivou"
+ItemDescription="• Pouze režim jednotlivých ran\n• Šipky kuše je možné sebrat a znovu použít\n• Nesmírně silná lovecká kuše, která disponuje velkou průrazností"
+
+[KFWeap_Rifle_M14EBR]
+ItemName="M14 EBR"
+ItemCategory="Sniper Rifle"
+ItemDescription=""
+
+[KFWeap_Rifle_RailGun]
+ItemName="Rail Gun"
+ItemCategory="Sniper Rifle"
+ItemDescription=""
+
+[KFWeap_AssaultRifle_M16M203]
+ItemName="M16 M203 Assault Rifle"
+ItemCategory="Assault Rifle"
+ItemDescription=""
+SecondaryAmmo="M203 Grenade"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -301,24 +415,28 @@ BossCaptionStrings[5]="Když poblíž tebe dopadne granát, hra ti to dá najevo
 BossCaptionStrings[6]="Jakmile Hans vytáhne svoje zbraně, někam se schovej. Pro jistotu ti to připomínáme."
 
 [KFPawn_ZedPatriarch]
-BossName="The Patriarch"
-BossCaptionStrings[0]="Kevin Clamely was once a brilliant scientist, until he became his own greatest creation."
-BossCaptionStrings[1]="The Patriarch is staggeringly arrogant - he is likely to tell you which attack he will use next."
-BossCaptionStrings[2]="Hiding behind even big objects won't help as much as you'd hope. The Patriarch has an answer for that!"
-BossCaptionStrings[3]="Running off on your own isn't an escape - it makes you easy prey he will target first."
-BossCaptionStrings[4]="Yes, the Patriarch can still cloak, go invisible, run off and heal himself. Some things don't change."
-BossCaptionStrings[5]="While you won't get much choice about it, killing The Patriarch's 'children' just makes him mad(der)."
+BossName="Patriarch"
+BossCaptionStrings[0]="Kevin Clamely býval nepřekonatelným vědcem, ale poté se sám stal svým největším výtvorem."
+BossCaptionStrings[1]="Patriarch je až neskutečně arogantní. Je pravděpodobné, že ti řekne, jaký útok použije jako další."
+BossCaptionStrings[2]="Patriarch si s tebou dokáže poradit, i když se schováš za sebevětší objekt!"
+BossCaptionStrings[3]="Zbrklý útěk pryč od spoluhráčů tě nezachrání, naopak, učiní z tebe ještě jednodušší kořist."
+BossCaptionStrings[4]="Ano, Patriarch se také stále dokáže zneviditelnit a vyléčit sám sebe. Některé věci se prostě nezmění."
+BossCaptionStrings[5]="Ne že bys měl moc na výběr, ale když zabiješ Patriarchovy „děti“, naštveš ho ještě víc."
 
 [KFGameInfo_Survival]
 GameName="Přežití"
 
 [KFGameInfo_VersusSurvival]
-GameName="VS Survival"
+GameName="Lidé VS. Zedi"
 
 [KFPawn_ZedPatriarch_Versus]
-NoHealsRemainingMsg="No Heals Remaining"
-LowHealthMsg="Health Is Critical! Heal Now!"
-NoMortarTargetsMsg="No Valid Mortar Targets"
+NoHealsRemainingMsg="Už se nemůžeš vyléčit"
+LowHealthMsg="Zdraví je na kritické úrovni! Vyléči se!"
+NoMortarTargetsMsg="Minomet nenalezl žádné vhodné cíle"
 
 [KFSM_PlayerSiren_VortexVictim]
-VortexGrabTeamWarningMsg="%x% is trapped by a Siren!"
+VortexGrabTeamWarningMsg="%x% je chycen Sirenou!"
+
+[KFGFXHudWrapper_Versus]
+WaitingToSpawnString="TIME UNTIL SPAWN: %x% second(s)"
+ZedTakeOverActiveString="SEARCHING FOR ZEDS TO TAKE OVER..."

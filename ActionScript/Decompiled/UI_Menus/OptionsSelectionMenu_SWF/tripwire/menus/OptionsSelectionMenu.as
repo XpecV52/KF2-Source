@@ -6,6 +6,7 @@ package tripwire.menus
     import scaleform.clik.data.DataProvider;
     import scaleform.clik.events.ButtonBarEvent;
     import scaleform.clik.events.ButtonEvent;
+    import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
     import scaleform.gfx.FocusManager;
     import tripwire.containers.SectionHeaderContainer;
@@ -54,7 +55,8 @@ package tripwire.menus
                 {
                     if(this.buttonBar.getButtonAt(_loc3_).enabled)
                     {
-                        FocusManager.setFocus(this.buttonBar.getButtonAt(_loc3_));
+                        FocusHandler.getInstance().setFocus(this.buttonBar.getButtonAt(_loc3_));
+                        break;
                     }
                     _loc3_++;
                 }
@@ -84,9 +86,9 @@ package tripwire.menus
             this.buttonBar.selectedIndex = -1;
         }
         
-        override public function openContainer() : void
+        override public function openContainer(param1:Boolean = true) : void
         {
-            super.openContainer();
+            super.openContainer(param1);
             if(bManagerUsingGamepad && this.buttonBar.selectedIndex == -1)
             {
                 this.buttonBar.selectedIndex = 0;

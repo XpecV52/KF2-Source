@@ -95,13 +95,18 @@ var protected export editinline MeshComponent OverlayMesh;
 var export editinline KFSkeletalMeshComponent MySkelMesh;
 var array<Texture2D> FireModeIconPaths;
 var byte SingleFireMode;
+/** Number of shots to fire per burst. */
+var(Weapon) byte BurstAmount;
 /** Determines which group a weapon falls into in weapon select */
 var(Inventory) const KFWeapon.EInventoryGroup InventoryGroup;
 /** Inventory (In blocks) cost */
 var(Inventory) byte InventorySize;
 var byte AmmoCount[2];
+/** Size of the weapon magazine, i.e. how many rounds it can hold */
+var(Inventory) byte MagazineCapacity[2];
 var KFWeapon.EReloadStatus ReloadStatus;
 var byte ReloadAmountLeft;
+var byte InitialReloadAmount;
 var bool bUseAltFireMode;
 var transient bool bStopAltFireOnNextRelease;
 var bool bGamepadFireEntry;
@@ -253,14 +258,13 @@ var(Inventory) Texture2D WeaponSelectTexture;
 var(Inventory) Texture2D SecondaryAmmoTexture;
 var float EquipAbortTime;
 var class<KFWeap_DualBase> DualClass;
-/** Size of the weapon magazine, i.e. how many rounds it can hold */
-var(Inventory) int MagazineCapacity[2];
-var int SpareAmmoCount[2];
+var repnotify int SpareAmmoCount[2];
 /** Maximum amount of amount that can be carried for this gun, not counting what is in the magazine. Total amount this weapon can carry is MaxSpareAmmo + MagazineCapacity */
 var(Inventory) int MaxSpareAmmo[2];
 var int InitialSpareMags[2];
 /** What percentage of a full single magazine capacity to give when resupplying this weapon from an ammo pickup */
 var(Inventory) float AmmoPickupScale[2];
+var int InitialReloadSpareAmmo;
 var transient float LastReloadAbortTime;
 var array<CameraAnim> FireCameraAnim;
 /** How much to scale the FireCameraAnim when in ironsights */
@@ -913,6 +917,10 @@ simulated event SetFOV(float NewFOV)
         {
             KFP.ArmsMesh.super(KFWeapon).SetFOV(NewFOV);
         }
+    }
+    if(bHasLaserSight && LaserSight != none)
+    {
+        LaserSight.SetMeshFOV(NewFOV);
     }
 }
 
@@ -1601,6 +1609,8 @@ simulated function ChangeVisibility(bool bIsVisible)
 simulated function PlayFireEffects(byte FireModeNum, optional Vector HitLocation)
 {
     local name WeaponFireAnimName;
+    local KFPerk CurrentPerk;
+    local float AdjustedAnimLength;
 
     if(((FireModeNum < bLoopingFireSnd.Length) && bLoopingFireSnd[FireModeNum]) && !bPlayingLoopingFireSnd)
     {
@@ -1616,7 +1626,13 @@ simulated function PlayFireEffects(byte FireModeNum, optional Vector HitLocation
                 WeaponFireAnimName = GetWeaponFireAnim(FireModeNum);
                 if(WeaponFireAnimName != 'None')
                 {
-                    PlayAnimation(WeaponFireAnimName, MySkelMesh.GetAnimLength(WeaponFireAnimName),, FireTweenTime);
+                    AdjustedAnimLength = MySkelMesh.GetAnimLength(WeaponFireAnimName);
+                    CurrentPerk = GetPerk();
+                    if(CurrentPerk != none)
+                    {
+                        CurrentPerk.ModifyRateOfFire(AdjustedAnimLength, self);
+                    }
+                    PlayAnimation(WeaponFireAnimName, AdjustedAnimLength,, FireTweenTime);
                 }
             }
             CauseMuzzleFlash(FireModeNum);
@@ -2574,8 +2590,8 @@ function InitializeAmmo()
         CurrentPerk.ModifyMaxSpareAmmoAmount(self, MaxSpareAmmo[0]);
         CurrentPerk.ModifyMaxSpareAmmoAmount(self, MaxSpareAmmo[1]);
     }
-    AmmoCount[0] = byte(MagazineCapacity[0]);
-    AmmoCount[1] = byte(MagazineCapacity[1]);
+    AmmoCount[0] = MagazineCapacity[0];
+    AmmoCount[1] = MagazineCapacity[1];
     AddAmmo(InitialSpareMags[0] * default.MagazineCapacity[0]);
     if(CurrentPerk != none)
     {
@@ -2821,7 +2837,7 @@ simulated event int GetTotalAmmoAmount(byte FiringMode)
 
 simulated event int GetMaxAmmoAmount(byte FiringMode)
 {
-    return MaxSpareAmmo[GetAmmoType(FiringMode)] + MagazineCapacity[GetAmmoType(FiringMode)];
+    return MaxSpareAmmo[GetAmmoType(FiringMode)];
 }
 
 simulated event int GetMissingSpareAmmoAmount(byte FiringMode)
@@ -2953,6 +2969,10 @@ protected reliable server function ServerPlayDryFireSound(byte FireModeNum)
 simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingChannels)
 {
     Mesh.SetLightingChannels(NewLightingChannels);
+    if(LaserSight != none)
+    {
+        LaserSight.SetMeshLightingChannels(NewLightingChannels);
+    }
 }
 
 simulated function GetWeaponDebug(out array<string> DebugInfo)
@@ -3156,9 +3176,9 @@ reliable server function ServerSyncReload(int ClientSpareAmmoCount)
 {
     local int ClientReloadAmount;
 
-    if(bAllowClientAmmoTracking && ClientSpareAmmoCount < SpareAmmoCount[0])
+    if(bAllowClientAmmoTracking && ClientSpareAmmoCount < InitialReloadSpareAmmo)
     {
-        ClientReloadAmount = Min(SpareAmmoCount[0] - ClientSpareAmmoCount, SpareAmmoCount[0]);
+        ClientReloadAmount = Min(InitialReloadSpareAmmo - ClientSpareAmmoCount, InitialReloadSpareAmmo);
         SpareAmmoCount[0] -= ClientReloadAmount;
         AmmoCount[0] = byte(Min(AmmoCount[0] + ClientReloadAmount, MagazineCapacity[0]));
     }
@@ -3374,6 +3394,8 @@ simulated function AbortReload();
 simulated function InitializeReload()
 {
     ReloadAmountLeft = byte(Min(MagazineCapacity[0] - AmmoCount[0], SpareAmmoCount[0]));
+    InitialReloadAmount = ReloadAmountLeft;
+    InitialReloadSpareAmmo = SpareAmmoCount[0];
     if(Role < ROLE_Authority)
     {
         ServerSendToReload(ReloadAmountLeft);
@@ -3383,6 +3405,8 @@ simulated function InitializeReload()
 reliable server function ServerSendToReload(byte ClientReloadAmount)
 {
     ReloadAmountLeft = ClientReloadAmount;
+    InitialReloadAmount = ReloadAmountLeft;
+    InitialReloadSpareAmmo = SpareAmmoCount[0];
     SendToFiringState(2);
 }
 
@@ -3442,18 +3466,12 @@ simulated function float GetReloadRateScale()
 {
     local float Rate;
     local KFPerk MyPerk;
-    local KFGameReplicationInfo KFGRI;
 
     Rate = 1;
     MyPerk = GetPerk();
     if(MyPerk != none)
     {
         Rate = MyPerk.GetReloadRateScale(self);
-    }
-    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if((KFGRI != none) && KFGRI.IsLeadershipActive())
-    {
-        Rate -= Class'KFPerk_Commando'.static.GetLeadshipRateReduction();
     }
     return Rate;
 }
@@ -3534,7 +3552,7 @@ simulated function PerformReload()
 
     if(bInfiniteSpareAmmo)
     {
-        AmmoCount[0] = byte(MagazineCapacity[0]);
+        AmmoCount[0] = MagazineCapacity[0];
         ReloadAmountLeft = 0;
         return;
     }
@@ -3856,7 +3874,7 @@ simulated state Active
             }
             InvManager.LastAttemptedSwitchToWeapon = none;
         }
-        if(bHasLaserSight)
+        if(bHasLaserSight && LaserSight != none)
         {
             LaserSight.SetAimBlendState(true, false);
         }
@@ -3868,7 +3886,7 @@ simulated state Active
     {
         ClearTimer('IdleFidgetTimer');
         ToggleAdditiveBobAnim(false);
-        if(bHasLaserSight)
+        if(bHasLaserSight && LaserSight != none)
         {
             LaserSight.SetAimBlendState(false, true);
         }
@@ -3901,6 +3919,10 @@ simulated state Active
     {
         local Pawn P;
 
+        if(Instigator == none)
+        {
+            return false;
+        }
         if(bCanBeReloaded && !HasAmmo(0))
         {
             return false;
@@ -3955,9 +3977,22 @@ simulated state Active
             ToggleAdditiveBobAnim(false);
             PlayAnimation(AnimName);
             LastIdleFidgetAnimTime = WorldInfo.TimeSeconds;
+            SetTimer(MySkelMesh.GetAnimLength(AnimName) * DefaultAnimSpeed, false, 'FidgetAnimEnd');
+            if(bHasLaserSight)
+            {
+                LaserSight.SetAimBlendState(false, true);
+            }
             return true;
         }
         return false;
+    }
+
+    simulated function FidgetAnimEnd()
+    {
+        if(bHasLaserSight)
+        {
+            LaserSight.SetAimBlendState(true, false);
+        }
     }
 
     simulated function bool CanReload()
@@ -4006,7 +4041,7 @@ simulated state WeaponEquipping
 {
     simulated function byte GetWeaponStateId()
     {
-        return 23;
+        return 25;
     }
 
     simulated function bool TryPutDown()
@@ -4063,7 +4098,7 @@ simulated state WeaponPuttingDown
 
     simulated function byte GetWeaponStateId()
     {
-        return 24;
+        return 26;
     }
 
     simulated function BeginState(name PreviousStateName)
@@ -4330,11 +4365,52 @@ simulated state WeaponSingleFiring extends WeaponFiring
     stop;    
 }
 
+simulated state WeaponBurstFiring extends WeaponFiring
+{
+    simulated function BeginState(name PrevStateName)
+    {
+        BurstAmount = byte(Min(default.BurstAmount, AmmoCount[GetAmmoType(CurrentFireMode)]));
+        super.BeginState(PrevStateName);
+    }
+
+    simulated function bool ShouldRefire()
+    {
+        if(0 >= BurstAmount)
+        {
+            return false;            
+        }
+        else
+        {
+            if(!HasAmmo(CurrentFireMode))
+            {
+                return false;                
+            }
+            else
+            {
+                return true;
+            }
+        }
+    }
+
+    simulated function FireAmmunition()
+    {
+        super(KFWeapon).FireAmmunition();
+        -- BurstAmount;
+    }
+
+    simulated event EndState(name NextStateName)
+    {
+        super.EndState(NextStateName);
+        EndFire(CurrentFireMode);
+    }
+    stop;    
+}
+
 simulated state GrenadeFiring extends WeaponSingleFiring
 {
     simulated function byte GetWeaponStateId()
     {
-        return 25;
+        return 27;
     }
 
     simulated event BeginState(name PreviousStateName)
@@ -4422,6 +4498,24 @@ simulated state Reloading
         }
     }
 
+    simulated event ReplicatedEvent(name VarName)
+    {
+        local int ClientsideAmmoReloaded;
+
+        if(VarName == 'SpareAmmoCount')
+        {
+            ClientsideAmmoReloaded = InitialReloadAmount - ReloadAmountLeft;
+            if(((Role < ROLE_Authority) && ClientsideAmmoReloaded > 0) && bAllowClientAmmoTracking)
+            {
+                SpareAmmoCount[0] -= Max(ClientsideAmmoReloaded, 0);
+            }            
+        }
+        else
+        {
+            global.ReplicatedEvent(VarName);
+        }
+    }
+
     simulated function BeginState(name PreviousStateName)
     {
         local KFPerk InstigatorPerk;
@@ -4448,13 +4542,16 @@ simulated state Reloading
 
     simulated function EndState(name NextStateName)
     {
+        local int ActualReloadAmount;
+
         ClearZedTimeResist();
         ClearTimer('ReloadStatusTimer');
         ClearTimer('ReloadAmmoTimer');
         ClearPendingFire(2);
         if(bAllowClientAmmoTracking && Role < ROLE_Authority)
         {
-            ServerSyncReload(SpareAmmoCount[0]);
+            ActualReloadAmount = InitialReloadAmount - ReloadAmountLeft;
+            ServerSyncReload(InitialReloadSpareAmmo - ActualReloadAmount);
         }
         CheckBoltLockPostReload();
         NotifyEndState();
@@ -4588,6 +4685,13 @@ simulated state MeleeAttackBasic
 
     simulated function BeginState(name PreviousStateName)
     {
+        local KFPerk InstigatorPerk;
+
+        InstigatorPerk = GetPerk();
+        if(InstigatorPerk != none)
+        {
+            SetZedTimeResist(InstigatorPerk.GetZedTimeModifier(self));
+        }
         if(bUsingSights)
         {
             ZoomOut(false, default.ZoomOutTime);
@@ -4598,6 +4702,7 @@ simulated state MeleeAttackBasic
 
     simulated function EndState(name NextStateName)
     {
+        ClearZedTimeResist();
         ClearTimer('RefireCheckTimer');
         NotifyEndState();
     }
@@ -4613,7 +4718,7 @@ simulated state MeleeAttackBasic
 
     simulated function byte GetWeaponStateId()
     {
-        return 10;
+        return 12;
     }
     stop;    
 }

@@ -111,6 +111,11 @@ simulated function TurnOnFlamethrower()
 
 	if( MyFlameSpray != none )
 	{
+		// Apply rally boost damage
+		MyFlameSpray.SprayDamage.X = HuskOwner.GetRallyBoostDamage( MyFlameSpray.default.SprayDamage.X );
+		MyFlameSpray.SprayDamage.Y = HuskOwner.GetRallyBoostDamage( MyFlameSpray.default.SprayDamage.Y );
+
+		// Start flames
 		MyFlameSpray.BeginSpray();
 	}
 }
@@ -164,7 +169,7 @@ simulated function TurnOffFlamethrower()
  */
 function bool CanOverrideMoveWith( Name NewMove )
 {
-	if ( bCanBeInterrupted && (NewMove == 'KFSM_Stunned' || NewMove == 'KFSM_Stumble' || NewMove == 'Knockdown') )
+	if ( bCanBeInterrupted && (NewMove == 'KFSM_Stunned' || NewMove == 'KFSM_Stumble' || NewMove == 'KFSM_Knockdown' || NewMove == 'KFSM_Frozen') )
 	{
 		return TRUE; // for NotifyAttackParried
 	}
@@ -174,13 +179,20 @@ function bool CanOverrideMoveWith( Name NewMove )
 DefaultProperties
 {
 	// SpecialMove
-	AnimName=Player_Flame
 	Handle=KFSM_Husk_FlameThrowerAttack
 	bDisableSteering=false
 	bDisableMovement=true
-	AnimStance=EAS_FullBody
+	bDisableTurnInPlace=true
    	bCanBeInterrupted=true
+   	bUseCustomRotationRate=true
+   	CustomRotationRate=(Pitch=66000,Yaw=100000,Roll=66000)
+   	CustomTurnInPlaceAnimRate=2.f
 
+   	// Animation
+	AnimName=Player_Flame
+	AnimStance=EAS_FullBody
+
+	// Flamethrower
 	FlameSprayArchetype=SprayActor_Flame'zed_husk_arch.Husk_Flamethrower_Flame'
 
 	Begin Object Class=ParticleSystemComponent Name=FlameEndSpray0

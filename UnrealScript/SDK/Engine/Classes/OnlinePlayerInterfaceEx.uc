@@ -200,7 +200,7 @@ function bool ShowCustomPlayersUI(byte LocalUserNum,const out array<UniqueNetId>
  *
  * @return TRUE if it was able to show the UI, FALSE if it failed
  */
-function bool RecordPlayersRecentlyMet( byte LocalUserNum, out array<UniqueNetID> Players, string GameDescription );
+function bool RecordPlayersRecentlyMet( byte LocalUserNum, out array<string> Players, string GameDescription ); //@HSL_BEGIN - JRO - 4/28/2016 - PS4 needs player names
 
 /**
  * Adds an In Game Post to the Activity Feed
@@ -286,3 +286,17 @@ function ClearCrossTitleProfileSettings(byte LocalUserNum,int TitleId);
  * @return true if successful, false otherwise
  */
 function bool ShowCustomMessageUI(byte LocalUserNum,const out array<UniqueNetId> Recipients,string MessageTitle,string NonEditableMessage,optional string EditableMessage);	
+
+//@HSL_BEGIN - JRO - 5/17/2016 - PS4 Activity Feeds
+function PostActivityFeedBossKill(string BossName, string MapName);
+function PostActivityFeedTeamAward(string AwardName);
+function PostActivityFeedPerkLevelUp(string PerkClassName, int Level);
+//@HSL_END
+
+
+//@HSL_BEGIN - BWJ - 5-26-16 - Support for reading store data
+function ReadStoreData();
+delegate OnStoreDataRead( bool bSuccessful );
+function AddStoreDataReadCompleteDelegate( delegate<OnStoreDataRead> InDelegate );
+function ClearStoreDataReadCompleteDelegate( delegate<OnStoreDataRead> InDelegate ); 
+//@HSL_END

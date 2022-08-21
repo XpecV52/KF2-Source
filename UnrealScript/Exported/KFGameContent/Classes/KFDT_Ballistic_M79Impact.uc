@@ -8,96 +8,19 @@
 // John "Ramm-Jaeger" Gibson
 //=============================================================================
 
-class KFDT_Ballistic_M79Impact extends KFDT_Ballistic
+class KFDT_Ballistic_M79Impact extends KFDT_Ballistic_Shell
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 15;
-/** Allows the damage type to customize exactly which hit zones it can dismember */
-static simulated function bool CanDismemberHitZone( name InHitZoneName )
-{
-	if( super.CanDismemberHitZone( InHitZoneName ) )
-	{
-		return true;
-	}
-
-    switch ( InHitZoneName )
-	{
-		case 'lupperarm':
-		case 'rupperarm':
-		case 'lthigh':
-		case 'rthigh':
-		case 'chest':
-		case 'heart':
-	 		return true;
-	}
-	return false;
-}
-
 defaultproperties
 {
-   WeaponDef=Class'KFGame.KFWeapDef_M79'
-   KnockdownPower=45
-   StumblePower=42
-   LegStumblePower=42
-   GunHitPower=129
-   EffectGroup=FXG_UnexplodedGrenade
+   KnockdownPower=125.000000
+   StumblePower=340.000000
+   GunHitPower=275.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Demolitionist'
    KDamageImpulse=2000.000000
    KDeathVel=350.000000
    KDeathUpKick=750.000000
    Name="Default__KFDT_Ballistic_M79Impact"
-   ObjectArchetype=KFDT_Ballistic'KFGame.Default__KFDT_Ballistic'
+   ObjectArchetype=KFDT_Ballistic_Shell'kfgamecontent.Default__KFDT_Ballistic_Shell'
 }

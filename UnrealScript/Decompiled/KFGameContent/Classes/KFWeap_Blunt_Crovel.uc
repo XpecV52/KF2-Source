@@ -12,6 +12,8 @@ class KFWeap_Blunt_Crovel extends KFWeap_MeleeBase
 defaultproperties
 {
     ParryStrength=3
+    BlockDamageMitigation=0.7
+    ParryDamageMitigationPercent=0.7
     BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Crovel'
     ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Metal'
     FireModeIconPaths=/* Array type was not detected. */

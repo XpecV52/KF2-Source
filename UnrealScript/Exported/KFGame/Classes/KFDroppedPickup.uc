@@ -383,15 +383,20 @@ auto state Pickup
 		local bool bHitWall;
 
 		// make sure its a live player
-		if (Other == None || !Other.bCanPickupInventory || (Other.DrivenVehicle == None && Other.Controller == None))
+		if (Other == None || !Other.bCanPickupInventory || !Other.IsAliveAndWell() || (Other.DrivenVehicle == None && Other.Controller == None))
 		{
 			return false;
 		}
 
 		// prevent picking up as soon as it's spawned
-		if ( Other == Instigator && (WorldInfo.TimeSeconds - CreationTime) < 0.1f )
+		if ( Other == Instigator )
 		{
-			return false;
+			// If low on health, wait a little longer to allow pickup again
+			if( ((Instigator.Health / Instigator.HealthMax) <= 0.2f && (WorldInfo.TimeSeconds - CreationTime) < 1.f)
+				|| (WorldInfo.TimeSeconds - CreationTime) < 0.1f )
+			{
+				return false;
+			}
 		}
 
 		// make sure not touching through wall
@@ -453,6 +458,12 @@ simulated function bool IsTouchBlockedBy(Actor A)
 	}
 
 	return false;
+}
+
+/** Level was reset without reloading */
+function Reset()
+{
+	Destroy();
 }
 
 /*********************************************************************************************

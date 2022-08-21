@@ -9,9 +9,6 @@ class KFWeap_AssaultRifle_AK12 extends KFWeap_RifleBase
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
-var int BurstCount;
-/** Number of shots to fire per burst. */
-var() int BurstAmount;
 /** RecoilRate when firing in burst fire. */
 var(Recoil) float BurstFireRecoilRate;
 /** How much to scale recoil when firing in burst fire. */
@@ -29,12 +26,10 @@ var(Sounds) WeaponFireSndInfo WeaponFire2RdSnd;
 /** Sound to play when the weapon is fired in burst fire mode for 3 rounds */
 var(Sounds) WeaponFireSndInfo WeaponFire3RdSnd;
 
-simulated state WeaponBurstFiring extends WeaponFiring
+simulated state WeaponBurstFiring
 {
     simulated function BeginState(name PrevStateName)
     {
-        BurstCount = 0;
-        BurstAmount = Min(default.BurstAmount, AmmoCount[GetAmmoType(CurrentFireMode)]);
         RecoilRate = BurstFireRecoilRate;
         if((RecoilRate > float(0)) && RecoilBlendOutRatio > float(0))
         {
@@ -44,36 +39,17 @@ simulated state WeaponBurstFiring extends WeaponFiring
         super.BeginState(PrevStateName);
     }
 
-    simulated function bool ShouldRefire()
-    {
-        if(BurstCount >= BurstAmount)
-        {
-            return false;            
-        }
-        else
-        {
-            if(!HasAmmo(CurrentFireMode))
-            {
-                return false;                
-            }
-            else
-            {
-                return true;
-            }
-        }
-    }
-
     simulated function PlayFireEffects(byte FireModeNum, optional Vector HitLocation)
     {
         local name WeaponFireAnimName;
 
-        if((FireModeNum != 1) || (FireModeNum == 1) && (BurstCount == 0) || self.WorldInfo.TimeDilation < 1)
+        if((FireModeNum != 1) || (FireModeNum == 1) && (BurstAmount == default.BurstAmount) || self.WorldInfo.TimeDilation < 1)
         {
             PlayFiringSound(CurrentFireMode);
         }
         if((Instigator != none) && Instigator.IsFirstPerson())
         {
-            if(!bPlayingLoopingFireAnim && (FireModeNum != 1) || (FireModeNum == 1) && BurstCount == 0)
+            if(!bPlayingLoopingFireAnim && (FireModeNum != 1) || (FireModeNum == 1) && BurstAmount == default.BurstAmount)
             {
                 WeaponFireAnimName = GetWeaponFireAnim(FireModeNum);
                 if(WeaponFireAnimName != 'None')
@@ -143,12 +119,6 @@ simulated state WeaponBurstFiring extends WeaponFiring
         }
     }
 
-    simulated function FireAmmunition()
-    {
-        super(KFWeapon).FireAmmunition();
-        ++ BurstCount;
-    }
-
     simulated event EndState(name NextStateName)
     {
         RecoilRate = default.RecoilRate;
@@ -158,14 +128,12 @@ simulated state WeaponBurstFiring extends WeaponFiring
             RecoilPitchBlendOutRate = int((float(maxRecoilPitch) / RecoilRate) * RecoilBlendOutRatio);
         }
         super.EndState(NextStateName);
-        EndFire(CurrentFireMode);
     }
     stop;    
 }
 
 defaultproperties
 {
-    BurstAmount=3
     BurstFireRecoilRate=0.05
     BurstFireRecoilModifier=0.8
     BurstFire2RdAnim=Shoot_Burst2
@@ -176,7 +144,9 @@ defaultproperties
     WeaponFire3RdSnd=(DefaultCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Burst_M',FirstPersonCue=AkEvent'WW_WEP_SA_AK12.Play_WEP_SA_AK12_Fire_Burst_S')
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireMode=1
+    BurstAmount=3
     InventorySize=6
+    MagazineCapacity=30
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -185,7 +155,6 @@ defaultproperties
     PlayerIronSightFOV=70
     GroupPriority=75
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AK12'
-    MagazineCapacity=30
     MaxSpareAmmo=330
     InitialSpareMags=3
     bLoopingFireAnim=/* Array type was not detected. */

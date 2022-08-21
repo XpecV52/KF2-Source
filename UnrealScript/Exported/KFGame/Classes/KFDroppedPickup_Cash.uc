@@ -16,57 +16,44 @@ var 	AkEvent					PickupSound;
 /** Instead of adding to inventory, apply score directly to PRI */
 function GiveTo( Pawn P )
 {
+	local KFPawn_Human KFPH;
+	local KFPlayerReplicationInfo KFPRI;
+
 	if ( P.PlayerReplicationInfo != none )
 	{
-		// play dosh catch dialog
-		// if( (Abs(Velocity.X) > 0 || Abs(Velocity.Y) > 0) && KFPawn_Human(P) != none )
-		// {
-		// 	KFPawn_Human(P).UpdateDoshCaught( CashAmount, TosserPRI );
-		// }
-
+		KFPH = KFPawn_Human(P);
+		KFPRI = KFPlayerReplicationInfo(P.PlayerReplicationInfo);
 		// @todo (?): for now, play "catch dosh" dialog whenever you pick some up
-		if( P.PlayerReplicationInfo != TosserPRI )
+		if( KFPRI != none && KFPRI != TosserPRI && KFPH != none )
 		{
-			KFPawn_Human(P).UpdateDoshCaught( CashAmount, TosserPRI );
+			KFPH.UpdateDoshCaught( CashAmount, TosserPRI );
 		}
 
-		if( KFPlayerReplicationInfo(P.PlayerReplicationInfo) != none )
+		if( KFPRI != none )
 		{
-			KFPlayerReplicationInfo(P.PlayerReplicationInfo).AddDosh( CashAmount );
-			if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("dosh_picked_up", P.PlayerReplicationInfo, "#"$CashAmount);
+			KFPRI.AddDosh( CashAmount );
+			if(WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging()) WorldInfo.TWLogEvent ("dosh_picked_up", KFPRI, "#"$CashAmount);
 		}
 
 		bForceNetUpdate = true;
 		P.PlaySoundBase(PickUpSound);
 
-		CheckForPayDayBonus(P);
+		AddDoshForBenefector( TosserPRI );
 	}
 
 	PickedUpBy(P);
 }
 
-/** Check if we get some cash back in case the pay day objective is active */
-function CheckForPayDayBonus(Pawn ReceiverPawn)
+protected function AddDoshForBenefector( PlayerReplicationInfo MyTosserPRI )
 {
-	local KFGameReplicationInfo MyKFGRI;
-	local KFPawn_Human KFPH;
+	local KFPlayerController KFPC;
 
-	if  ( ReceiverPawn.PlayerReplicationInfo == TosserPRI )
+	if( MyTosserPRI != none )
 	{
-		return;
-	}
-
-	MyKFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-	if ( MyKFGRI != none && MyKFGRI.CurrentObjective != none )
-	{
-   		KFPH = KFPawn_Human(ReceiverPawn);
-		if ( KFPH != none && KFPH.bObjectivePlayer )
+		KFPC = KFPlayerController(MyTosserPRI.Owner);
+		if( KFPC != none )
 		{
-			// return a 30% benefit for being nice when the pay day objective is active
-			if( KFPlayerReplicationInfo(TosserPRI) != none )
-			{
-				KFPlayerReplicationInfo(TosserPRI).AddDosh(MyKFGRI.CurrentObjective.GetPayDayBonusDosh(CashAmount), true);
-			}
+			KFPC.UpdateBenefactor( CashAmount );
 		}
 	}
 }

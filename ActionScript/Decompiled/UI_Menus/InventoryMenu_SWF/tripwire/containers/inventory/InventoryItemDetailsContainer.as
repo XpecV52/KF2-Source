@@ -2,9 +2,13 @@ package tripwire.containers.inventory
 {
     import com.greensock.TweenMax;
     import com.greensock.easing.Cubic;
+    import flash.display.InteractiveObject;
+    import flash.display.MovieClip;
     import flash.events.Event;
+    import flash.events.KeyboardEvent;
     import flash.external.ExternalInterface;
     import flash.text.TextField;
+    import flash.ui.Keyboard;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.gfx.FocusManager;
     import tripwire.containers.TripContainer;
@@ -27,6 +31,10 @@ package tripwire.containers.inventory
         
         public var itemTypeText:TextField;
         
+        public var itemCountText:TextField;
+        
+        public var itemCountBG:MovieClip;
+        
         public var imageLoader:TripUILoader;
         
         public var currentItemDataObject:Object;
@@ -43,11 +51,12 @@ package tripwire.containers.inventory
         
         public const ITP_Item:int = 2;
         
+        public var _itemCount:int;
+        
         public function InventoryItemDetailsContainer()
         {
             super();
             enableInitCallback = true;
-            defaultFirstElement = this.equipButton;
             defaultNumPrompts = 2;
         }
         
@@ -112,6 +121,7 @@ package tripwire.containers.inventory
             this.currentItemDataObject = param1;
             this.itemNameText.text = param1.label;
             this.itemDescText.htmlText = param1.description;
+            this.itemCount = !!param1.count ? int(param1.count) : 0;
             this.equipButton.visible = param1.type == this.ITP_WeaponSkin || param1.exchangeable;
             if(param1.type == this.ITP_WeaponSkin)
             {
@@ -128,30 +138,39 @@ package tripwire.containers.inventory
             }
             if(bManagerUsingGamepad)
             {
-                FocusManager.setFocus(this.equipButton);
+                FocusManager.setFocus(!!this.equipButton.visible ? this.equipButton : this.cancelButton);
             }
             this.itemTypeText.text = !!param1.typeRarity ? param1.typeRarity : "";
         }
         
-        override protected function openAnimation() : *
+        public function set itemCount(param1:int) : void
+        {
+            this._itemCount = param1;
+            if(this.itemCountText == null)
+            {
+                return;
+            }
+            this.itemCountText.visible = param1 > 1;
+            this.itemCountBG.visible = param1 > 1;
+            if(param1 == 0)
+            {
+                this.itemCountText.text = "";
+                this.itemCountBG.visible = false;
+            }
+            else
+            {
+                this.itemCountText.text = "☓ " + this._itemCount.toString();
+            }
+        }
+        
+        override protected function openAnimation(param1:Boolean = true) : *
         {
             TweenMax.fromTo(this,8,{
                 "z":-128,
-                "autoAlpha":0,
-                "blurFilter":{
-                    "blurX":12,
-                    "blurY":12,
-                    "quality":1
-                }
+                "autoAlpha":0
             },{
                 "z":0,
-                "autoAlpha":1,
-                "blurFilter":{
-                    "blurX":0,
-                    "blurY":0,
-                    "quality":1,
-                    "remove":true
-                },
+                "autoAlpha":(!!param1 ? _defaultAlpha : _dimmedAlpha),
                 "ease":Cubic.easeOut,
                 "useFrames":true,
                 "onComplete":onOpened
@@ -162,21 +181,31 @@ package tripwire.containers.inventory
         {
             TweenMax.fromTo(this,8,{
                 "z":0,
-                "alpha":1
+                "alpha":alpha
             },{
                 "visible":false,
                 "z":-128,
                 "alpha":0,
-                "blurFilter":{
-                    "blurX":12,
-                    "blurY":12,
-                    "quality":1,
-                    "remove":true
-                },
                 "ease":Cubic.easeOut,
                 "useFrames":true,
                 "onComplete":onClosed
             });
+        }
+        
+        public function testDetails(param1:KeyboardEvent) : void
+        {
+            var _loc2_:Object = null;
+            if(param1.keyCode == Keyboard.U)
+            {
+                _loc2_ = {
+                    "label":"TEST OBJECT",
+                    "description":"THIS IS A TEST",
+                    "count":40,
+                    "exchangeable":true,
+                    "typeRarity":"RARE TEST OBJECT"
+                };
+                this.details = _loc2_;
+            }
         }
     }
 }

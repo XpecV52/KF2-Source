@@ -394,6 +394,8 @@ simulated function bool TraceProjHitZones(Pawn P, vector EndTrace, vector StartT
 simulated protected function PrepareExplosionTemplate()
 {
     local KFPlayerReplicationInfo InstigatorPRI;
+    local KFPlayerController KFPC;
+    local KFPerk InstigatorPerk;
 
     if( bWasTimeDilated && Instigator != none )
     {
@@ -413,6 +415,15 @@ simulated protected function PrepareExplosionTemplate()
                 ExplosionTemplate.ExplosionSound = class'KFPerk_Demolitionist'.static.GetConcussiveExplosionSound();
             }
         }
+    }
+
+    KFPC = KFPlayerController(Instigator.Controller);
+    // Change the radius and damage based on the perk
+    if( Instigator.Role == ROLE_Authority && KFPC != none )
+    {
+        InstigatorPerk = KFPC.GetPerk();
+        ExplosionTemplate.Damage *= InstigatorPerk.GetAeODamageModifier();
+        ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAeORadiusModifier();
     }
 
     super.PrepareExplosionTemplate();

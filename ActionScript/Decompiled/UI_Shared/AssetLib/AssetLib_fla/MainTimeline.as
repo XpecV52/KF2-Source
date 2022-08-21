@@ -1,6 +1,7 @@
 package AssetLib_fla
 {
     import flash.display.MovieClip;
+    import flash.text.TextField;
     import scaleform.clik.controls.ButtonBar;
     import scaleform.clik.data.DataProvider;
     import tripwire.widgets.VoipNotificationWidget;
@@ -18,6 +19,8 @@ package AssetLib_fla
         public var PerkIcons:PerkIconClass;
         
         public var ServerBrowserHeader:HeaderMC;
+        
+        public var Text137:TextField;
         
         public var __id3_:DefaultLabel;
         
@@ -474,6 +477,8 @@ package AssetLib_fla
             this.dropdown.selectedIndex = 0;
             this.optionStepper.dataProvider = new DataProvider(this.itemsData);
             this.optionStepper.selectedIndex = 0;
+            this.subHeader.text = "TESTING SUBHEADER";
+            this.ServerBrowserHeader.text = "TESTING HEADER";
         }
     }
 }

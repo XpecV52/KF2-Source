@@ -27,6 +27,7 @@ function LocalizeWidget()
 
 	LocalizedObject.SetString("cancel", CancelString);
 	LocalizedObject.SetString("confirm", ConfirmString);
+	LocalizedObject.SetString("reset",Localize("KFGFxOptionsMenu_Graphics","DefaultString","KFGame"));
 
 	SetObject("localizedText", LocalizedObject) ;
 }

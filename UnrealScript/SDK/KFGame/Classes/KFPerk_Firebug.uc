@@ -25,7 +25,9 @@ var 	const 	int 				HeatWaveRadiusSQ;
 /** Chance that zeds will explode from the Shrapnel skill */
 var		const	float 				ShrapnelChance;
 var 			GameExplosion		ExplosionTemplate;
-var 			const String		ShrapnelExplosionDamageTypeName;
+var 	const 	String				ShrapnelExplosionDamageTypeName;
+
+var private const float 			AssistDoshModifier;
 
 enum EFirebugSkills
 {
@@ -277,7 +279,7 @@ simulated function bool ShouldShrapnel()
 /**
  * @brief The Zed shrapnel skill can spawn an explosion, this function delivers the template
  *
- * @return A gmae explosion template
+ * @return A game explosion template
  */
 static function GameExplosion GetExplosionTemplate()
 {
@@ -471,6 +473,20 @@ simulated static function int GetCrawlerKillXP( byte Difficulty )
 	return default.SecondaryXPModifier[Difficulty];
 }
 
+static function ModifyAssistDosh( out int EarnedDosh )
+{
+	local float TempDosh;
+
+	TempDosh = EarnedDosh;
+	TempDosh *= GetAssistDoshModifer();
+	EarnedDosh = Round( TempDosh );
+}
+
+private static function float GetAssistDoshModifer()
+{
+	return default.AssistDoshModifier;
+}
+
 /*********************************************************************************************
 * @name	 UI
 ********************************************************************************************* */
@@ -533,7 +549,9 @@ DefaultProperties
 
    	HeatWaveRadiusSQ=90000
 
-   	ShrapnelChance=0.3f   //0.2
+   	ShrapnelChance=0.20   //0.2
+
+   	AssistDoshModifier=2.f
 
 	WeaponDamage=(Name="Weapon Damage",Increment=0.01f,Rank=0,StartingValue=1.f,MaxValue=1.25)
 	WeaponReload=(Name="Weapon Reload Speed",Increment=0.01f,Rank=0,StartingValue=0.f,MaxValue=0.25)
@@ -563,13 +581,12 @@ DefaultProperties
 	SecondaryXPModifier(3)=7
 
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
-		Damage=120    //231
-		DamageRadius=600    //840
-		DamageFalloffExponent=1.f
+		Damage=10  //231  //120
+		DamageRadius=200   //840  //600
+		DamageFalloffExponent=1
 		DamageDelay=0.f
-
 		// Damage Effects
-		KnockDownStrength=0
+		//KnockDownStrength=0
 		FractureMeshRadius=200.0
 		FracturePartVel=500.0
 		ExplosionEffects=KFImpactEffectInfo'FX_Explosions_ARCH.FX_Combustion_Explosion'

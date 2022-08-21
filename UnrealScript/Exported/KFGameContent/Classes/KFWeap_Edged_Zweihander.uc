@@ -15,6 +15,8 @@ class KFWeap_Edged_Zweihander extends KFWeap_MeleeBase;
 defaultproperties
 {
    ParryStrength=5
+   BlockDamageMitigation=0.600000
+   ParryDamageMitigationPercent=0.600000
    BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
    ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Metal'
    InventorySize=6

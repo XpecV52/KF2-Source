@@ -39,10 +39,10 @@ struct native SItemInformation
     var bool bIsSecondaryAmmo;
     var int SpareAmmoCount;
     var int MaxSpareAmmo;
-    var int MagazineCapacity;
-    var int SecondaryAmmoCount;
     var int MaxSecondaryAmmoCount;
     var int SellPrice;
+    var byte MagazineCapacity;
+    var byte SecondaryAmmoCount;
     var int AutoFillDosh;
     var int AmmoPricePerMagazine;
     var STraderItem DefaultItem;
@@ -52,13 +52,13 @@ struct native SItemInformation
         bIsSecondaryAmmo=false
         SpareAmmoCount=0
         MaxSpareAmmo=0
-        MagazineCapacity=0
-        SecondaryAmmoCount=0
         MaxSecondaryAmmoCount=0
         SellPrice=0
+        MagazineCapacity=0
+        SecondaryAmmoCount=0
         AutoFillDosh=0
         AmmoPricePerMagazine=0
-        DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClass=none,MagazineCapacity=0,InitialSpareMags=0,MaxSpareAmmo=0,MaxSecondaryAmmoCount=0,BlocksRequired=0,SecondaryAmmoImagePath="",TraderFilter=EFilterTypeUI.FT_Pistol,InventoryGroup=0,GroupPriority=0,WeaponStats=none)
+        DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClass=none,MaxSpareAmmo=0,InitialSpareMags=0,MaxSecondaryAmmoCount=0,MagazineCapacity=0,BlocksRequired=0,SecondaryAmmoImagePath="",TraderFilter=EFilterTypeUI.FT_Pistol,InventoryGroup=0,GroupPriority=0,WeaponStats=none)
     }
 };
 
@@ -98,7 +98,8 @@ function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
     super.InitializeMenu(InManager);
     MyKFPC = KFPlayerController(Outer.GetPC());
     SetString("exitMenuString", ExitMenuString);
-    SetString("cancelPromptName", ExitMenuString);
+    SetString("exitPromptString", ExitMenuString);
+    SetString("backPromptString", Localize("KFGFxWidget_ButtonPrompt", "CancelString", "KFGame"));
 }
 
 function OnOpen()
@@ -184,7 +185,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
                 PlayerInfoContainer.Initialize(self);
             }
             break;
-        case 'itemDetailsContainer':
+        case 'ItemDetailsContainer':
             if(ItemDetails == none)
             {
                 ItemDetails = KFGFxTraderContainer_ItemDetails(Widget);
@@ -261,21 +262,16 @@ function OneSecondLoop()
         PrevArmor = KFP.Armor;
         RefreshItemComponents();
     }
-    UpdatePlayerInfo();
 }
 
 function UpdatePlayerInfo()
 {
     if((MyKFPC != none) && PlayerInfoContainer != none)
     {
-        if(MyKFPC.CurrentPerk != LastPerkClass)
-        {
-            PlayerInfoContainer.SetPerkInfo();
-            PlayerInfoContainer.SetPerkList();
-            LastPerkClass = MyKFPC.CurrentPerk;
-            RefreshItemComponents();
-            OnOpen();
-        }
+        PlayerInfoContainer.SetPerkInfo();
+        PlayerInfoContainer.SetPerkList();
+        LastPerkClass = MyKFPC.CurrentPerk;
+        RefreshItemComponents();
     }
 }
 
@@ -397,8 +393,8 @@ function int AddWeaponToOwnedItemList(STraderItem DefaultItem, optional bool bDo
 {
     local SItemInformation WeaponInfo;
     local KFPerk CurrentPerk;
-    local byte ItemIndex;
-    local int DefaultMagazineCapacity, AddedWeaponIndex, OwnedSingleIdx, SingleDualAmmoDiff;
+    local byte ItemIndex, DefaultMagazineCapacity;
+    local int AddedWeaponIndex, OwnedSingleIdx, SingleDualAmmoDiff;
     local bool bShouldMagSizeModifySpareAmmo, bAddingDual;
 
     CurrentPerk = MyKFPC.CurrentPerk;
@@ -419,7 +415,7 @@ function int AddWeaponToOwnedItemList(STraderItem DefaultItem, optional bool bDo
     if(bAddingDual)
     {
         OwnedSingleIdx = 0;
-        J0x380:
+        J0x386:
 
         if(OwnedSingleIdx < OwnedItemList.Length)
         {
@@ -427,16 +423,16 @@ function int AddWeaponToOwnedItemList(STraderItem DefaultItem, optional bool bDo
             {
                 SingleDualAmmoDiff = OwnedItemList[OwnedSingleIdx].SpareAmmoCount - WeaponInfo.SpareAmmoCount;
                 WeaponInfo.SpareAmmoCount = OwnedItemList[OwnedSingleIdx].SpareAmmoCount;
-                goto J0x494;
+                goto J0x49A;
             }
             ++ OwnedSingleIdx;
-            goto J0x380;
+            goto J0x386;
         }
     }
-    J0x494:
+    J0x49A:
 
     CurrentPerk.MaximizeSpareAmmoAmount(DefaultItem.AssociatedPerkClass, WeaponInfo.SpareAmmoCount, DefaultItem.MaxSpareAmmo + DefaultItem.MagazineCapacity);
-    WeaponInfo.SecondaryAmmoCount = DefaultItem.MaxSecondaryAmmoCount;
+    WeaponInfo.SecondaryAmmoCount = byte(DefaultItem.MaxSecondaryAmmoCount);
     CurrentPerk.ModifyMagSizeAndNumber(none, WeaponInfo.SecondaryAmmoCount, DefaultItem.AssociatedPerkClass);
     WeaponInfo.MaxSecondaryAmmoCount = DefaultItem.MaxSecondaryAmmoCount;
     CurrentPerk.ModifyMaxSpareAmmoAmount(none, WeaponInfo.MaxSecondaryAmmoCount, DefaultItem);

@@ -18,14 +18,14 @@ package tripwire.controls.perks
             super();
         }
         
-        override public function setData(data:Object) : void
+        override public function setData(param1:Object) : void
         {
-            super.setData(data);
-            if(data != null)
+            super.setData(param1);
+            if(param1 != null)
             {
-                this.perkBonusTitleTextField.text = !!data.PassiveTitle ? data.PassiveTitle : "";
-                this.perkBonusAmountTextField.text = !!data.PerkBonusAmount ? data.PerkBonusAmount : "";
-                this.perkBonusModifierTextField.text = !!data.PerkBonusModifier ? data.PerkBonusModifier : "";
+                this.perkBonusTitleTextField.text = !!param1.PassiveTitle ? param1.PassiveTitle : "";
+                this.perkBonusAmountTextField.text = !!param1.PerkBonusAmount ? param1.PerkBonusAmount : "";
+                this.perkBonusModifierTextField.text = !!param1.PerkBonusModifier ? param1.PerkBonusModifier : "";
                 visible = true;
             }
             else

@@ -110,7 +110,7 @@ function int GetSpotterDialogID()
 {
     local int EmergeType;
 
-    if(IsDoingSpecialMove(11))
+    if(IsDoingSpecialMove(10))
     {
         EmergeType = SpecialMoveFlags & 15;
         switch(EmergeType)
@@ -162,8 +162,7 @@ defaultproperties
     XPValues[1]=10
     XPValues[2]=10
     XPValues[3]=10
-    VulnerableDamageTypes=/* Array type was not detected. */
-    ResistantDamageTypes=/* Array type was not detected. */
+    DamageTypeModifiers=/* Array type was not detected. */
     PawnAnimInfo=KFPawnAnimInfo'ZED_Crawler_ANIM.Crawler_AnimGroup'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
@@ -173,9 +172,8 @@ defaultproperties
     bDisableTurnInPlace=true
     bUseQuadrupedFloorConform=true
     PenetrationResistance=0.5
-    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedCrawler.Afflictions'
-    InstantIncaps=/* Array type was not detected. */
-    StackingIncaps=/* Array type was not detected. */
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedCrawler.Afflictions'
+    IncapSettings=/* Array type was not detected. */
     KnockdownImpulseScale=1
     SprintSpeed=500
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
@@ -193,7 +191,7 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedCrawler.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedCrawler.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedCrawler.DialogAkSoundComponent'
-    DamageRecoveryTimeHeavy=0.2
+    DamageRecoveryTimeHeavy=0.75
     Mass=50
     GroundSpeed=280
     MaxFallSpeed=6000

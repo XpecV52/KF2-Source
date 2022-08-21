@@ -12,64 +12,13 @@ class KFDT_EMP_EMPGrenade extends KFDT_EMP
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 15;
-
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Grenade_Berserker'
-   StumblePower=120
+   MeleeHitPower=100.000000
+   KDeathVel=50.000000
+   KDeathUpKick=500.000000
+   RadialDamageImpulse=1000.000000
    Name="Default__KFDT_EMP_EMPGrenade"
    ObjectArchetype=KFDT_EMP'KFGame.Default__KFDT_EMP'
 }

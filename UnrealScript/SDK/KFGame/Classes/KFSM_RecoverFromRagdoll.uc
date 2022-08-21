@@ -273,7 +273,7 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 
 defaultproperties
 {
-	Handle=RecoverFromRagdoll
+	Handle=KFSM_RecoverFromRagdoll
 
 	// ---------------------------------------------
 	// Animations
@@ -294,4 +294,5 @@ defaultproperties
 	bDisableMovement=TRUE
 	bLockPawnRotation=TRUE
     bDisablesWeaponFiring=true
+	bCanOnlyWanderAtEnd=true    
 }

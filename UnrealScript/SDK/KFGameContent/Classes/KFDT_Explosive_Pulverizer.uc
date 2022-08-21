@@ -8,17 +8,13 @@ class KFDT_Explosive_Pulverizer extends KFDT_Explosive
 	abstract
 	hidedropdown; // remove to edit archetype
 
-`include(KFGame\KFMatchStats.uci);
-
 DefaultProperties
 {
-
-	KnockdownPower=42
-	StunPower=42
-	StumblePower=66
-	LegStumblePower=66
-	GunHitPower=129
-	MeleeHitPower=130
+	KnockdownPower=0
+	StunPower=0
+	StumblePower=340
+	GunHitPower=0
+	MeleeHitPower=100
 
 	bCanObliterate=false
 

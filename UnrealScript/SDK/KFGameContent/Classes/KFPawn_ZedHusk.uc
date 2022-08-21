@@ -388,24 +388,38 @@ DefaultProperties
 		SpecialMoveClasses(SM_HoseWeaponAttack)= class'KFSM_Husk_FlameThrowerAttack'
 	End Object
 
-	InstantIncaps(IAF_Stun)=(Head=62,Torso=120,Leg=120,Arm=120,LowHealthBonus=10,Cooldown=3.0)
-	InstantIncaps(IAF_Knockdown)=(Head=50,Torso=80,Leg=80,Arm=80,Special=50,LowHealthBonus=10,Cooldown=10.0)
-	InstantIncaps(IAF_Stumble)=(Head=44,Torso=50,Arm=50,Special=43,LowHealthBonus=10,Cooldown=2.0)
-	InstantIncaps(IAF_LegStumble)=(Leg=44,LowHealthBonus=10,Cooldown=2.0)
-	InstantIncaps(IAF_GunHit)=(Head=110,Torso=110,Leg=110,Arm=110,LowHealthBonus=10,Cooldown=0.5)
-	InstantIncaps(IAF_MeleeHit)=(Head=23,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=0.35)
-	StackingIncaps(SAF_Poison)=(Threshhold=3.0,Duration=4.0,Cooldown=8.5,DissipationRate=1.00)
-	StackingIncaps(SAF_Microwave)=(Threshhold=3.0,Duration=4.0,Cooldown=8.5,DissipationRate=1.00)
-	StackingIncaps(SAF_FirePanic)=(Threshhold=12.0,Duration=2.0,Cooldown=5.0,DissipationRate=1.0)
-	StackingIncaps(SAF_EMPPanic)=(Threshhold=1.5,Duration=5.0,Cooldown=5.0,DissipationRate=0.5)
-	StackingIncaps(SAF_EMPDisrupt)=(Threshhold=0.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.0)
-	StackingIncaps(SAF_Freeze)=(Threshhold=5.0,Duration=1.0,Cooldown=5.0,DissipationRate=0.33)
+	// for reference: Vulnerability=(      default, head, legs, arms, special)
+	IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 2.0, 0.5, 0.5, 2.0), Cooldown=5.0, Duration=1.5)
+	IncapSettings(AF_Knockdown)=(Vulnerability=(0.4),                     Cooldown=3)
+	IncapSettings(AF_Stumble)=	(Vulnerability=(0.4),                     Cooldown=1.0)
+	IncapSettings(AF_GunHit)=	(Vulnerability=(0.5, 0.5, 0.2, 0.2, 0.5), Cooldown=0.2)
+	IncapSettings(AF_MeleeHit)=	(Vulnerability=(1.0),                     Cooldown=0.75)
+	IncapSettings(AF_FirePanic)=(Vulnerability=(0.0),                     Cooldown=5.0, Duration=2.0)
+	IncapSettings(AF_EMP)=		(Vulnerability=(2.5),                     Cooldown=5.0, Duration=3.0)
+	IncapSettings(AF_Poison)=	(Vulnerability=(0.15),	                  Cooldown=20.5, Duration=5.0)
+	IncapSettings(AF_Microwave)=(Vulnerability=(3),                       Cooldown=8.5, Duration=4.0)
+	IncapSettings(AF_Freeze)=	(Vulnerability=(1.0),                     Cooldown=1.5, Duration=1.2)
 
 	Begin Object Name=Afflictions_0
 		FireFullyCharredDuration=5
+		AfflictionClasses(AF_EMP)=class'KFAffliction_EMPDisrupt'
 	End Object
 
 	ParryResistance=2
+
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(0.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(0.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun', 	        DamageScale=(1.0)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun', 	        DamageScale=(0.4)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle', 	        DamageScale=(0.7))) //1
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(0.45)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(0.45)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(0.00)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 	                DamageScale=(1.15)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 				    DamageScale=(0.75)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.5)))	
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.25)))
+
 
 	// ---------------------------------------------
 	// Movement / Physics
@@ -417,7 +431,7 @@ DefaultProperties
 	// ---------------------------------------------
 	// AI / Navigation
 	ControllerClass=class'KFAIController_ZedHusk'
-	DamageRecoveryTimeHeavy=0.2f
+	DamageRecoveryTimeHeavy=0.75f
 	DamageRecoveryTimeMedium=1.0f
 	
 	KnockdownImpulseScale=1.0f
@@ -435,18 +449,20 @@ DefaultProperties
 	DoshValue=17
 	Mass=65.f
 
-	ResistantDamageTypes.Add((DamageType=class'KFDT_Fire'))
+	//DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', DamageScale=(0.5f)))
 
 	// Penetration
     PenetrationResistance=2.0
 
 	// Custom Hit Zones (HeadHealth, SkinTypes, etc...)
 	HeadlessBleedOutTime=5.f
-    HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=154, DmgScale=1.1, SkinID=1)  // KF1=200
-	HitZones[3]       =(ZoneName=heart,	   BoneName=Spine2,		  Limb=BP_Special,  GoreHealth=75, DmgScale=0.5, SkinID=2)
+    HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=200, DmgScale=1.001, SkinID=1)  // KF1=200     //154
+	HitZones[3]       =(ZoneName=heart,	   BoneName=Spine2,		  Limb=BP_Special,  GoreHealth=75, DmgScale=1.5, SkinID=2)    //0.5
 	HitZones[8]		  =(ZoneName=rforearm, BoneName=RightForearm, Limb=BP_RightArm, GoreHealth=20,  DmgScale=0.5, SkinID=3)
 
-	bDisableTurnInPlace=true
+	WeakSpotSocketNames.Add(WeakPointSocket1) // Backpack
+
+	bDisableTurnInPlace=false
 
 `if(`notdefined(ShippingPC))
 	DebugRadarTexture=Texture2D'UI_ZEDRadar_TEX.MapIcon_Husk';

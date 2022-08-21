@@ -27,4 +27,5 @@ defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_FlameThrower'
     DoT_DamageScale=0.6
+    StumblePower=20
 }

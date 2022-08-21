@@ -11,5 +11,8 @@ class KFDT_EMP_EMPGrenade extends KFDT_EMP
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_Grenade_Berserker'
-    StumblePower=120
+    MeleeHitPower=100
+    KDeathVel=50
+    KDeathUpKick=500
+    RadialDamageImpulse=1000
 }

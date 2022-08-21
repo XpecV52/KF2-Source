@@ -190,6 +190,6 @@ DefaultProperties
 	// ---------------------------------------------
 	// Settings
 	RageFrustrationBaseTime=9
-	RageDamageThreshold=276 ;scaled from KF1
+	RageDamageThreshold=276
 	MaxEnemyNotVisibleRageTime=30
 }

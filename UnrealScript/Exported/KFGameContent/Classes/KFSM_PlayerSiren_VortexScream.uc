@@ -6,7 +6,7 @@
 // Killing Floor 2
 // Copyright (C) 2015 Tripwire Interactive LLC
 //=============================================================================
-class KFSM_PlayerSiren_VortexScream extends KFSM_GrappleAttack;
+class KFSM_PlayerSiren_VortexScream extends KFSM_GrappleCombined;
 
 /** Sounds for vortex */
 var const AkEvent VortexLoopAkEvent;
@@ -81,8 +81,11 @@ protected function bool InternalCanDoSpecialMove()
 
 function SpecialMoveStarted( bool bForced, Name PrevMove )
 {
-    // Skip default (instant attach) behavior 
-    Super(KFSpecialMove).SpecialMoveStarted( bForced, PrevMove );
+	local KFPawn_Monster MonsterOwner;
+
+    Super.SpecialMoveStarted( bForced, PrevMove );
+
+	MonsterOwner = KFPawn_Monster( KFPOwner );
 
     bAlignFollowerLookSameDirAsMe = default.bAlignFollowerLookSameDirAsMe;
     bAlignFollowerRotation = default.bAlignFollowerRotation;
@@ -94,57 +97,56 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 	FollowerAttachTime = 0.f;
 
     // On the server start a timer to check collision
-    if ( PawnOwner.Role == ROLE_Authority )
+    if ( MonsterOwner.Role == ROLE_Authority )
     {
-        PawnOwner.SetTimer( VortexCheckTime, true, nameOf(Timer_CheckVortex), self );
+        MonsterOwner.SetTimer( VortexCheckTime, true, nameOf(Timer_CheckVortex), self );
 
         // Calculate our damage
-        FollowerDamagePerSec = int(DamageOverDuration / VortexDuration);
+        FollowerDamagePerSec = MonsterOwner.GetRallyBoostDamage( int(DamageOverDuration / VortexDuration) );
     }
 
 	bVortexCanBeInterrupted = false;
 	bPendingStopFire = false;
 
 	// Set our minimum vortex duration timer
-	if( KFPOwner.IsLocallyControlled() )
+	if( MonsterOwner.IsLocallyControlled() )
 	{
-		KFPOwner.SetTimer( MinVortexDuration, false, nameOf(Timer_VortexInterrupt), self );
+		MonsterOwner.SetTimer( MinVortexDuration, false, nameOf(Timer_VortexInterrupt), self );
 	}
 
-    KFPawn_Monster(PawnOwner).BumpFrequency = 0.f;
-    PlayGrappleAnim();
+    MonsterOwner.BumpFrequency = 0.f;
 
     // View constraints
-    KFPOwner.ViewPitchMin = ViewPitchConstraints.X;
-    KFPOwner.ViewPitchMax = ViewPitchConstraints.Y;
+    MonsterOwner.ViewPitchMin = ViewPitchConstraints.X;
+    MonsterOwner.ViewPitchMax = ViewPitchConstraints.Y;
 
     // Head tracking
-    if( KFPOwner.IK_Look_Head == none )
+    if( MonsterOwner.IK_Look_Head == none )
 	{
-		KFPOwner.IK_Look_Head = SkelControlLookAt( KFPOwner.Mesh.FindSkelControl('HeadLook') );
+		MonsterOwner.IK_Look_Head = SkelControlLookAt( MonsterOwner.Mesh.FindSkelControl('HeadLook') );
 	}
-	KFPOwner.bCanHeadTrack = true;
-    KFPOwner.bIsHeadTrackingActive = true;
-	KFPOwner.MyLookAtInfo.LookAtPct = 1.f;
-	KFPOwner.MyLookAtInfo.BlendOut = 0.33f;
-	KFPOwner.MyLookAtInfo.BlendIn = 0.2f;
+	MonsterOwner.bCanHeadTrack = true;
+    MonsterOwner.bIsHeadTrackingActive = true;
+	MonsterOwner.MyLookAtInfo.LookAtPct = 1.f;
+	MonsterOwner.MyLookAtInfo.BlendOut = 0.33f;
+	MonsterOwner.MyLookAtInfo.BlendIn = 0.2f;
 
     // Spawn particle effect, play sound
-    if( KFPOwner.WorldInfo.NetMode != NM_DedicatedServer )
+    if( MonsterOwner.WorldInfo.NetMode != NM_DedicatedServer )
     {
-		VortexPSC = KFPOwner.WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment( VortexEffect, KFPOwner.Mesh, 'VortexSocket', true );
+		VortexPSC = MonsterOwner.WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment( VortexEffect, MonsterOwner.Mesh, 'VortexSocket', true );
 		VortexPSC.SetAbsolute( false, true );
-		VortexPSC.SetRotation( KFPOwner.Rotation );
+		VortexPSC.SetRotation( MonsterOwner.Rotation );
 
 		// Post ak event on owner
-		KFPOwner.PostAkEvent( VortexLoopAkEvent, true, true, true );
+		MonsterOwner.PostAkEvent( VortexLoopAkEvent, true, true, true );
 	}
+}
 
-	// Do an immediate check for victims
-	/*if( KFPOwner.Role == ROLE_Authority )
-	{
-		Timer_CheckVortex();
-	}*/
+/** Play an animation and enable the OnAnimEnd notification */
+function PlayGrabAnim()
+{
+	PlaySpecialMoveAnim( GrabStartAnimName, EAS_FullBody,,,, true );	
 }
 
 /** Script Tick function. */
@@ -331,6 +333,8 @@ function StartInteraction()
 		{
 			KFPOwner.PostAkEvent( VortexGrabAkEvent, true, true, true );
 		}
+
+        ++KFPlayerReplicationInfoVersus(KFPOwner.PlayerReplicationInfo).ZedGrabs;
 	}
 
 	super.StartInteraction();
@@ -366,12 +370,6 @@ function Timer_DamageFollower()
 	}
 }
 
-/** Overridden to play a looping anim */
-function PlayGrappleAnim()
-{
-	PlaySpecialMoveAnim( GrappleAnims[0], EAS_FullBody,,,, true );
-}
-
 /** When the grapple animation ends, continue it with a different grapple anim */
 function SpecialMoveFlagsUpdated()
 {
@@ -385,7 +383,7 @@ function SpecialMoveFlagsUpdated()
 	}
 }
 
-/** Skip Super(KFSM_GrappleAttack) */
+/** Skip Super, we control animations here */
 function AnimEndNotify( AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime )
 {
     Super(KFSpecialMove).AnimEndNotify( SeqNode, PlayedTime, ExcessTime );
@@ -505,20 +503,21 @@ defaultproperties
    MaxRangeSQ=1562500.000000
    MinGrabTargetFOV=0.960000
    VortexEffect=ParticleSystem'VFX_TEX_THREE.FX_Siren_Pull_Long_01'
-   VortexDuration=6.000000
+   VortexDuration=5.000000
    MinVortexDuration=1.000000
    ViewRotInterpSpeed=0.500000
    DamageOverDuration=24.000000
    VortexDamageType=Class'kfgamecontent.KFDT_Sonic_VortexScream'
-   GrappleAnims(0)="Player_Pull"
+   GrabStartAnimName="Player_Pull"
    FollowerSpecialMove=SM_SirenVortexVictim
    bAlignLeaderLocation=False
    bAlignFollowerZ=True
    bStopAlignFollowerRotationAtGoal=False
+   bRetryCollisionCheck=False
    AlignDistance=360.000000
    AlignDistanceThreshold=4.000000
    AlignSpeedModifier=0.040000
    Handle="KFSM_PlayerSiren_VortexScream"
    Name="Default__KFSM_PlayerSiren_VortexScream"
-   ObjectArchetype=KFSM_GrappleAttack'KFGame.Default__KFSM_GrappleAttack'
+   ObjectArchetype=KFSM_GrappleCombined'KFGame.Default__KFSM_GrappleCombined'
 }

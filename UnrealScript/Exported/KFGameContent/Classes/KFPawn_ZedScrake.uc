@@ -9,9 +9,6 @@
 
 class KFPawn_ZedScrake extends KFPawn_Monster;
 
-/** Secondary body material, used in the same way BodyMIC is */
-var MaterialInstanceConstant BodyAltMIC;
-
 var protected AkComponent 	ChainsawIdleAkComponent;
 var protected AkEvent		PlayChainsawIdleAkEvent;
 var protected AkEvent		StopChainsawIdleAkEvent;
@@ -49,7 +46,7 @@ simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bFo
     // Set our secondary material, attach our healing syringes
 	if( WorldInfo.NetMode != NM_DedicatedServer && Mesh != None )
 	{
-		BodyAltMIC = Mesh.CreateAndSetMaterialInstanceConstant( 2 );
+		CharacterMICs[1] = Mesh.CreateAndSetMaterialInstanceConstant( 2 );
 	}
 }
 
@@ -105,45 +102,6 @@ function PossessedBy( Controller C, bool bVehicleTransition )
 	}
 }
 
-/**
- * Update any material effects
- * Overridden to support second body material
- */
-function UpdateMaterialEffect(float DeltaTime)
-{
-	local float Intensity;
-
-	if( MaterialEffectTimeRemaining > 0.f )
-	{
-		if( MaterialEffectTimeRemaining > DeltaTime )
-		{
-			MaterialEffectTimeRemaining -= DeltaTime;
-			Intensity = 1.f - fClamp(MaterialEffectTimeRemaining/MaterialEffectDuration, 0.f, 1.f);
-		}
-		else
-		{
-			MaterialEffectTimeRemaining = 0.f;
-			Intensity = 1.f;
-		}
-
-		// Update the materials
-		if( BodyMIC != none )
-		{
-   			BodyMIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
-   		}
-
-   		if( BodyAltMIC != none )
-   		{
-   			BodyAltMIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
-   		}
-
-		if( HeadMIC != none )
-		{
-   			HeadMIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
-   		}
-	}
-}
-
 simulated function CreateExhaustFx()
 {
 	local vector Loc;
@@ -168,9 +126,29 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 {
 	super.TakeDamage( Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser );
 
-	if( bCanRage && !bPlayedDeath && (GetHealthPercentage() < RageHealthThreshold || GetHealthPercentage() < RageHealthThreshold) )
+	if( bCanRage && !bPlayedDeath && (GetHealthPercentage() < RageHealthThreshold || GetHeadHealthPercent() < RageHealthThreshold) )
 	{
-		bIsEnraged = true;
+		SetEnraged( true );
+	}
+}
+
+/** Enrage this Scrake! */
+simulated function SetEnraged( bool bNewEnraged )
+{
+	if( Role == ROLE_Authority && bNewEnraged == bIsEnraged )
+	{
+		return;
+	}
+
+	if ( Role == ROLE_Authority )
+	{
+		bIsEnraged = bNewEnraged;
+
+		// Sprint right away if we're AI
+		if( !IsHumanControlled() )
+		{
+			SetSprinting( bNewEnraged );
+		}
 	}
 }
 
@@ -182,7 +160,7 @@ simulated event NotifyGoreMeshActive()
     // Set our secondary MIC
 	if( WorldInfo.NetMode != NM_DedicatedServer && Mesh != None )
 	{
-		BodyAltMIC = Mesh.CreateAndSetMaterialInstanceConstant( 2 );
+		CharacterMICs[1] = Mesh.CreateAndSetMaterialInstanceConstant( 2 );
 	}
 }
 
@@ -269,8 +247,8 @@ defaultproperties
       ObjectArchetype=AkComponent'AkAudio.Default__AkComponent'
    End Object
    ChainsawIdleAkComponent=ChainsawAkComponent0
-   PlayChainsawIdleAkEvent=AkEvent'WW_ZED_Scrake.ZED_Scrake_SFX_Chainsaw_Idle_LP'
-   StopChainsawIdleAkEvent=AkEvent'WW_ZED_Scrake.ZED_Scrake_SFX_Chainsaw_Idle_LP_Stop'
+   PlayChainsawIdleAkEvent=AkEvent'WW_ZED_Scrake_2.ZED_Scrake_SFX_Chainsaw_Idle_LP'
+   StopChainsawIdleAkEvent=AkEvent'WW_ZED_Scrake_2.ZED_Scrake_SFX_Chainsaw_Idle_LP_Stop'
    ExhaustSocketName="FX_Exhaust"
    ExhaustTemplate=ParticleSystem'ZED_Scrake_EMIT.FX_Scrake_Smoke_Idle_01'
    RageHealthThresholdNormal=0.500000
@@ -297,12 +275,22 @@ defaultproperties
    XPValues(1)=45.000000
    XPValues(2)=60.000000
    XPValues(3)=69.000000
-   VulnerableDamageTypes(16)=(DamageType=Class'kfgamecontent.KFDT_Microwave')
-   VulnerableDamageTypes(17)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_RPG7Impact',DamageScale=4.000000)
-   ResistantDamageTypes(16)=(DamageType=Class'KFGame.KFDT_Slashing')
-   ResistantDamageTypes(17)=(DamageType=Class'KFGame.KFDT_Explosive')
+   DamageTypeModifiers(0)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Submachinegun',DamageScale=(0.500000))
+   DamageTypeModifiers(1)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AssaultRifle',DamageScale=(0.700000))
+   DamageTypeModifiers(2)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Shotgun',DamageScale=(0.800000))
+   DamageTypeModifiers(3)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Handgun',DamageScale=(0.800000))
+   DamageTypeModifiers(4)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rifle')
+   DamageTypeModifiers(5)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=(0.750000))
+   DamageTypeModifiers(6)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=(0.750000))
+   DamageTypeModifiers(7)=(DamageType=Class'KFGame.KFDT_Fire',DamageScale=(0.300000))
+   DamageTypeModifiers(8)=(DamageType=Class'kfgamecontent.KFDT_Microwave')
+   DamageTypeModifiers(9)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=(0.400000))
+   DamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.750000))
+   DamageTypeModifiers(11)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_RPG7Impact',DamageScale=(4.000000))
+   DamageTypeModifiers(12)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.250000))
    ZedBumpDamageScale=0.100000
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
+   OnDeathAchievementID=132
    PawnAnimInfo=KFPawnAnimInfo'ZED_Scrake_ANIM.Scrake_AnimGroup'
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
       ReplacementPrimitive=None
@@ -330,24 +318,33 @@ defaultproperties
    HitZones(16)=()
    HitZones(17)=()
    PenetrationResistance=4.000000
-   Begin Object Class=KFPawnAfflictions_Scrake Name=Afflictions_0
+   Begin Object Class=KFAfflictionManager Name=Afflictions_0 Archetype=KFAfflictionManager'KFGame.Default__KFPawn_Monster:Afflictions_0'
+      AfflictionClasses(0)=Class'KFGame.KFAffliction_EMPDisrupt'
+      AfflictionClasses(1)=()
+      AfflictionClasses(2)=()
+      AfflictionClasses(3)=()
+      AfflictionClasses(4)=()
+      AfflictionClasses(5)=()
+      AfflictionClasses(6)=()
+      AfflictionClasses(7)=()
+      AfflictionClasses(8)=()
+      AfflictionClasses(9)=()
       FireFullyCharredDuration=5.000000
+      FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
-      ObjectArchetype=KFPawnAfflictions_Scrake'kfgamecontent.Default__KFPawnAfflictions_Scrake'
+      ObjectArchetype=KFAfflictionManager'KFGame.Default__KFPawn_Monster:Afflictions_0'
    End Object
-   AfflictionHandler=KFPawnAfflictions_Scrake'kfgamecontent.Default__KFPawn_ZedScrake:Afflictions_0'
-   InstantIncaps(0)=(head=55,Torso=110,Leg=110,Arm=140,LowHealthBonus=10,Cooldown=17.000000)
-   InstantIncaps(1)=(head=65,Torso=120,Leg=120,Arm=120,LowHealthBonus=10,Cooldown=3.000000)
-   InstantIncaps(2)=(head=53,Torso=53,Arm=60,LowHealthBonus=10,Cooldown=8.000000)
-   InstantIncaps(3)=(Leg=54,LowHealthBonus=10,Cooldown=3.000000)
-   InstantIncaps(4)=(head=29,Torso=40,Leg=40,Arm=40,LowHealthBonus=10,Cooldown=4.000000)
-   InstantIncaps(5)=(head=134,Torso=134,Leg=134,Arm=134,LowHealthBonus=10,Cooldown=3.000000)
-   StackingIncaps(0)=(Threshhold=2.000000)
-   StackingIncaps(1)=(Threshhold=12.000000,Duration=2.000000)
-   StackingIncaps(2)=(Threshhold=5.000000,Duration=1.500000,Cooldown=20.000000)
-   StackingIncaps(3)=(Threshhold=7.500000,Duration=1.500000,Cooldown=20.000000)
-   StackingIncaps(4)=(Threshhold=0.000000,Cooldown=5.000000)
-   StackingIncaps(5)=(Threshhold=3.000000)
+   AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedScrake:Afflictions_0'
+   IncapSettings(0)=(Duration=2.200000,Cooldown=10.000000,Vulnerability=(0.980000))
+   IncapSettings(1)=(Duration=3.000000,Vulnerability=(0.900000))
+   IncapSettings(2)=(Cooldown=1.350000,Vulnerability=(1.000000))
+   IncapSettings(3)=(Cooldown=1.700000,Vulnerability=(0.200000))
+   IncapSettings(4)=(Cooldown=2.500000,Vulnerability=(0.300000))
+   IncapSettings(5)=(Duration=1.200000,Cooldown=10.000000,Vulnerability=(0.500000,1.000000,0.500000,0.500000,0.500000))
+   IncapSettings(6)=(Cooldown=20.500000,Vulnerability=(0.150000))
+   IncapSettings(7)=(Cooldown=10.000000,Vulnerability=(0.400000))
+   IncapSettings(8)=(Duration=1.000000,Cooldown=1.500000,Vulnerability=(0.980000))
+   IncapSettings(9)=(Duration=2.500000,Cooldown=10.000000,Vulnerability=(1.000000))
    KnockdownImpulseScale=2.000000
    SprintSpeed=600.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:FirstPersonArms'
@@ -366,19 +363,19 @@ defaultproperties
       SpecialMoveClasses(0)=None
       SpecialMoveClasses(1)=Class'KFGame.KFSM_MeleeAttack'
       SpecialMoveClasses(2)=Class'KFGame.KFSM_DoorMeleeAttack'
-      SpecialMoveClasses(3)=None
-      SpecialMoveClasses(4)=Class'KFGame.KFSM_GrappleAttack'
-      SpecialMoveClasses(5)=Class'KFGame.KFSM_Stumble'
-      SpecialMoveClasses(6)=Class'KFGame.KFSM_RecoverFromRagdoll'
-      SpecialMoveClasses(7)=Class'KFGame.KFSM_RagdollKnockdown'
-      SpecialMoveClasses(8)=Class'KFGame.KFSM_DeathAnim'
-      SpecialMoveClasses(9)=Class'KFGame.KFSM_Stunned'
-      SpecialMoveClasses(10)=Class'KFGame.KFSM_Frozen'
+      SpecialMoveClasses(3)=Class'KFGame.KFSM_GrappleCombined'
+      SpecialMoveClasses(4)=Class'KFGame.KFSM_Stumble'
+      SpecialMoveClasses(5)=Class'KFGame.KFSM_RecoverFromRagdoll'
+      SpecialMoveClasses(6)=Class'KFGame.KFSM_RagdollKnockdown'
+      SpecialMoveClasses(7)=Class'KFGame.KFSM_DeathAnim'
+      SpecialMoveClasses(8)=Class'KFGame.KFSM_Stunned'
+      SpecialMoveClasses(9)=Class'KFGame.KFSM_Frozen'
+      SpecialMoveClasses(10)=None
       SpecialMoveClasses(11)=None
-      SpecialMoveClasses(12)=None
-      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_Taunt'
-      SpecialMoveClasses(14)=Class'KFGame.KFSM_Zed_WalkingTaunt'
-      SpecialMoveClasses(15)=Class'KFGame.KFSM_Evade'
+      SpecialMoveClasses(12)=Class'KFGame.KFSM_Zed_Taunt'
+      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_WalkingTaunt'
+      SpecialMoveClasses(14)=Class'KFGame.KFSM_Evade'
+      SpecialMoveClasses(15)=None
       SpecialMoveClasses(16)=None
       SpecialMoveClasses(17)=None
       SpecialMoveClasses(18)=None
@@ -390,9 +387,8 @@ defaultproperties
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=None
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
@@ -432,8 +428,8 @@ defaultproperties
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:DialogAkSoundComponent'
    End Object
    DialogAkComponent=DialogAkSoundComponent
-   DamageRecoveryTimeHeavy=0.200000
-   DamageRecoveryTimeMedium=0.090000
+   DamageRecoveryTimeHeavy=0.850000
+   DamageRecoveryTimeMedium=0.750000
    Mass=130.000000
    GroundSpeed=170.000000
    Health=1100
@@ -460,9 +456,8 @@ defaultproperties
       RBCollideWithChannels=(Default=True,Pawn=True,Vehicle=True,BlockingVolume=True)
       Translation=(X=0.000000,Y=0.000000,Z=-86.000000)
       ScriptRigidBodyCollisionThreshold=200.000000
-      PerObjectShadowCullDistance=4000.000000
+      PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
-      bAllowPerObjectShadowBatching=True
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:KFPawnSkeletalMeshComponent'
    End Object

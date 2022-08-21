@@ -122,6 +122,7 @@ defaultproperties
    BulletMeshComponents(9)=BulletMeshComp4_L
    CylinderRotInfo=(InC=-72.000000,Time=0.087500)
    InventorySize=6
+   MagazineCapacity(0)=10
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -137,7 +138,6 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Dual_SW_500_TEX.UI_WeaponSelect_DualSW500'
-   MagazineCapacity(0)=10
    MaxSpareAmmo(0)=95
    InitialSpareMags(0)=2
    BonesToLockOnEmpty(0)="RW_Hammer"

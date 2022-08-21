@@ -91,6 +91,8 @@ const CrouchShootAnim = 'ADD_CH_Shoot';
 const IronShootAnim = 'ADD_Iron_Shoot';
 const WeaponFireAnim = 'Shoot';
 const WeaponAltFireAnim = 'Shoot';
+const WeaponSecondaryShootAndReload = 'Reload_Empty';
+const WeaponSecondaryShoot = 'Shoot';
 
 enum EWeaponState
 {
@@ -104,6 +106,8 @@ enum EWeaponState
     WEP_ReloadSingle_Elite,
     WEP_ReloadSingleEmpty_Elite,
     WEP_Firing,
+    WEP_FiringSecondary,
+    WEP_FiringSecondaryAndReload,
     WEP_MeleeBasic,
     WEP_MeleeChain,
     WEP_MeleeSustained,
@@ -551,42 +555,48 @@ simulated function UpdateThirdPersonWeaponAction(KFWeaponAttachment.EWeaponState
     }
     switch(NewWeaponState)
     {
-        case 23:
+        case 25:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Equip_CH' : 'Equip'));
             break;
-        case 24:
+        case 26:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'PutAway_CH' : 'PutAway'));
             break;
-        case 25:
+        case 27:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Nade_Throw_CH' : 'Nade_Throw'));
             break;
-        case 26:
+        case 28:
             PlayHealAnim(P);
             break;
-        case 27:
+        case 29:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Heal_Quick_CH' : 'Heal_Quick'));
             break;
-        case 28:
+        case 30:
             PlayWeldAnim(P);
             break;
-        case 22:
+        case 24:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Clean_NoBlood_CH' : 'Clean_NoBlood'));
             break;
         case 10:
-        case 16:
-        case 15:
-        case 13:
-        case 14:
-        case 20:
-        case 19:
-        case 17:
-        case 18:
-            PlayMeleeAtkAnim(NewWeaponState, P);
+            PlayCharacterMeshAnim(P, 'Shoot');
+            break;
+        case 11:
+            PlayCharacterMeshAnim(P, 'Reload_Empty', true);
             break;
         case 12:
+        case 18:
+        case 17:
+        case 15:
+        case 16:
+        case 22:
+        case 21:
+        case 19:
+        case 20:
+            PlayMeleeAtkAnim(NewWeaponState, P);
+            break;
+        case 14:
             PlayMeleeSustainedAnim(P);
             break;
-        case 21:
+        case 23:
             PlayMeleeBlockAnim(P);
             break;
         case 1:
@@ -618,31 +628,31 @@ simulated function float PlayMeleeAtkAnim(KFWeaponAttachment.EWeaponState NewWea
     }
     switch(NewWeaponState)
     {
-        case 10:
+        case 12:
             AnimName = ((P.bIsCrouched) ? 'Melee_CH' : 'Melee');
             break;
-        case 20:
+        case 22:
             AnimName = ((P.bIsCrouched) ? 'Atk_H_B_CH' : 'Atk_H_B');
             break;
-        case 19:
+        case 21:
             AnimName = ((P.bIsCrouched) ? 'Atk_H_F_CH' : 'Atk_H_F');
             break;
-        case 17:
+        case 19:
             AnimName = ((P.bIsCrouched) ? 'Atk_H_L_CH' : 'Atk_H_L');
             break;
-        case 18:
+        case 20:
             AnimName = ((P.bIsCrouched) ? 'Atk_H_R_CH' : 'Atk_H_R');
             break;
-        case 16:
+        case 18:
             AnimName = ((P.bIsCrouched) ? 'Atk_B_CH' : 'Atk_B');
             break;
-        case 15:
+        case 17:
             AnimName = ((P.bIsCrouched) ? 'Atk_F_CH' : 'Atk_F');
             break;
-        case 13:
+        case 15:
             AnimName = ((P.bIsCrouched) ? 'Atk_L_CH' : 'Atk_L');
             break;
-        case 14:
+        case 16:
             AnimName = ((P.bIsCrouched) ? 'Atk_R_CH' : 'Atk_R');
             break;
         default:
@@ -687,7 +697,7 @@ simulated function LoopWeaponMeleeAnim()
     P = KFPawn(Owner);
     if((P != none) && !P.IsDoingSpecialMove())
     {
-        UpdateThirdPersonWeaponAction(11, P);
+        UpdateThirdPersonWeaponAction(13, P);
     }
 }
 
@@ -859,6 +869,10 @@ simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingC
     if(!bWeapMeshIsPawnMesh)
     {
         WeapMesh.SetLightingChannels(NewLightingChannels);
+    }
+    if(LaserSight != none)
+    {
+        LaserSight.SetMeshLightingChannels(NewLightingChannels);
     }
 }
 

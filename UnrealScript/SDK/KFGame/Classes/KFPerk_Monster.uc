@@ -17,6 +17,11 @@ simulated event PostBeginPlay()
 	
 	super.PostBeginPlay();
 
+	if( Owner == none )
+	{
+		return;
+	}
+
 	KFPRI = KFPlayerReplicationInfo(KFPlayerController(Owner).PlayerReplicationInfo);
 	if( KFPRI != none )
 	{
@@ -30,6 +35,7 @@ simulated event PostBeginPlay()
 
 defaultproperties
 {
+	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_ZED'
 	ProgressStatID=INDEX_NONE
    	PerkBuildStatID=INDEX_NONE
 }

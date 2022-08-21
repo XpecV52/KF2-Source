@@ -20,6 +20,13 @@ state ZedBaseCommand
 	}
 
 Begin:
+	// No logic at all here while fleeing
+	if( bFleeing )
+	{
+		Sleep( 0.f );
+		Goto( 'Begin' );
+	}
+
 	`AILog( self$" "$GetStateName()$" [Begin Label]", 'Command_Base' );
 	if( Pawn.Physics == PHYS_Falling )
 	{
@@ -111,4 +118,3 @@ Begin:
 	}
 	Goto('Begin');
 }
-

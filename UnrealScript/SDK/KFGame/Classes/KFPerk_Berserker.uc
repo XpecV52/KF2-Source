@@ -13,19 +13,24 @@ class KFPerk_Berserker extends KFPerk
 
 `include(KFOnlineStats.uci)
 
-var	const				PerkSkill 	BerserkerDamage;					// 25% increase in Berserker weapon damage, plus 1% each additional level. Max 50%
-var	const				PerkSkill	MeleeAttackSpeed;              		// 5% increase in melee attack speed - Max 30%
-var const				PerkSkill	Movement;                 			// 10% faster movement when wielding a melee weapon, plus +0.6% each level - Max 25%
+var	const				PerkSkill 	BerserkerDamage;
 var const				PerkSkill	DamageResistance;                   // 0% resistance to all damage – Max 25%
 var const				PerkSkill	NightVision;
 
-var 	const private 	int 		SmallRadiusSizeSQ;
-var 		private		bool		bBlockActive;
+var const 	private 	float 		NinjaSprintModifer;
+var const 	private 	float		SmashStumbleModifier;
+var const 	private 	int 		SmallRadiusSizeSQ;
 var 		private		bool		bParryActive;
 var const 	private  	float 		ParryDuration;
 var const 	private  	float 		ParrySpeed;
-var const 	private  	float 		FuriousDefenderSpeed;
+var const 	private  	float 		FurySpeed;
 var const 	private 	float 		SmashKnockdownMultiplier;
+var const 	private 	float 		SpartanZedTimeResistance;
+var const 	private 	float 		FlashZedTimeResistance;
+var const 	private 	float 		SpeedDamageModifier;
+var const 	private 	float 		SmashHeadDamageModifier;
+var const 	private 	float 		VampireAttackSpeedModifier;
+
 
 // Events to play when parry skill is activated / deactivated
 var AkEvent ParrySkillSoundModeStart;
@@ -33,16 +38,16 @@ var AkEvent ParrySkillSoundModeStop;
 
 enum EBerserkPerkSkills
 {
-	EBerserkerPoisonResistance,			// Poison does 40% less damage
-	EBerserkerSonicResistance,			// Sonic does 40% less damage
-	EBerserkerVampire,					// 5% more health per kill
-	EBerserkerFortitude,				// Give yourself a better chance: Increase Maximum and Starting Health by 100%
-	EBerserkerFuriousDefender,			// Attack 15% fasterHard attack does 15% more damage
-	EBerserkerBlock,					// Blocking an attack will make your next attack do 50% more damage
-	EBerserkerParry,					// Parry an attack will increase attack speed by 20% for 10 sec
-	EBerserkerSmash,					// Hard attacks do 30% more damage and increase knockdown incap by 100%
-	EBerserkerSpartan,					// 50% attack speed with Berserker melee weapons Parry will cause knockdown - move in realtime
-	EBerserkerMenace					// Stun power increased 100% to head hits Stumble power increased by 100% - move in realtime
+	EBerserkerFortitude,
+	EBerserkerNinja,
+	EBerserkerVampire,
+	EBerserkerSpeed,
+	EBerserkerResistance,
+	EBerserkerParry,
+	EBerserkerSmash,
+	EBerserkerFury,
+	EBerserkerSpartan,
+	EBerserkerFlash
 };
 
 cpptext
@@ -67,11 +72,37 @@ function ApplySkillsToPawn()
 	}
 }
 
+/**
+ * @brief Modifies skill related attributes
+ */
+simulated protected event PostSkillUpdate()
+{
+	super.PostSkillUpdate();
+
+	// enable tick if we have the regeneration skill
+	SetTickIsDisabled( !IsNinjaActive() );
+}
+
+/**
+ * @brief script tick (server)
+  *
+ * @param DeltaTime time since the last tick
+ */
+event Tick( float DeltaTime )
+{
+	super.Tick( DeltaTime );
+
+	if( IsNinjaActive() )
+	{
+		TickRegen( DeltaTime );
+	}
+}
+
 /*********************************************************************************************
 * @name	 Passive skills functions
 ********************************************************************************************* */
 /**
-* @brief Modifes the damage dealt
+* @brief Modifies the damage dealt
 *
 * @param InDamage damage
 * @param DamageCauser weapon or projectile (optional)
@@ -97,14 +128,32 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 			MyKFWeapon = KFWeapon(DamageCauser.Owner);
 		}
 
+		`QALog( GetFuncName() @ "Base damage:" @ InDamage , bLogPerk);
 		if( (MyKFWeapon != none && IsWeaponOnPerk( MyKFWeapon )) || IsDamageTypeOnPerk( DamageType ) )
 		{
-			TempDamage += (InDamage * GetPassiveValue( BerserkerDamage,  CurrentLevel )) - InDamage;
-
-			if( MyKFWeapon.IsMeleeWeapon() && GetBlockActive() )
+			TempDamage += InDamage * GetPassiveValue( BerserkerDamage,  CurrentLevel );
+			if( IsSpeedActive() )
 			{
-				TempDamage += (InDamage * (1 + GetSkillValue( PerkSkills[EBerserkerBlock] ))) - InDamage;
-				bBlockActive = false;
+				TempDamage += InDamage * static.GetSpeedDamageModifier();
+				`QALog( GetFuncName() @ "Speed extra damage:" @  InDamage * static.GetSpeedDamageModifier(), bLogPerk);
+			}
+
+			if( IsParryActive() )
+			{
+				TempDamage += InDamage * GetSkillValue( PerkSkills[EBerserkerParry] );
+				`QALog( GetFuncName() @ "Parry extra damage:" @  InDamage * GetSkillValue( PerkSkills[EBerserkerParry] ), bLogPerk);
+			}
+
+			if( IsFuryActive() )
+			{
+				TempDamage += InDamage * GetSkillValue( PerkSkills[EBerserkerFury] );	
+				`QALog( GetFuncName() @ "Fury extra damage:" @  InDamage * GetSkillValue( PerkSkills[EBerserkerFury] ), bLogPerk);
+			}
+
+			if( HitZoneIdx == HZI_HEAD && IsSmashActive() )
+			{
+				TempDamage += InDamage * static.GetSmashHeadDamageModifier();
+				`QALog( GetFuncName() @ "Smash head hit extra damage:" @  InDamage * static.GetSmashHeadDamageModifier(), bLogPerk);
 			}
 		}
 	}
@@ -116,7 +165,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 /**
  * @brief Some perk skills modify the melee attack speed
  *
- * @param InDuration delay inbetween attacks
+ * @param InDuration delay in between attacks
  */
 simulated function ModifyMeleeAttackSpeed( out float InDuration, KFWeapon KFW )
 {
@@ -129,36 +178,53 @@ simulated function ModifyMeleeAttackSpeed( out float InDuration, KFWeapon KFW )
 
 	TempDuration = InDuration;
 
-	TempDuration -= TempDuration * GetPassiveValue( MeleeAttackSpeed, CurrentLevel );
-
-	if( IsSpartanActive() )
+	if( IsSpeedActive() )
 	{
-		TempDuration -= TempDuration * GetSkillValue( PerkSkills[EBerserkerSpartan] );
+		`QALog("Speed reduced the attack delay duration by:" @ TempDuration * GetSkillValue( PerkSkills[EBerserkerSpeed] ), bLogPerk);
+		TempDuration -= TempDuration * GetSkillValue( PerkSkills[EBerserkerSpeed] );
 	}
 
 	if( GetParryActive() )
 	{
+		`QALog("Parry reduced the attack delay duration by:" @ TempDuration * ParrySpeed, bLogPerk);
 		TempDuration -= TempDuration * ParrySpeed;
 	}
 
-	if( IsFuriousDefenderActive() )
+	if( IsFuryActive() && KFW.CurrentFireMode == 0 )
 	{
-		TempDuration -= TempDuration * GetSkillValue( PerkSkills[EBerserkerFuriousDefender] );
+		`QALog("Fury reduced the attack delay duration by:" @ TempDuration * GetSkillValue( PerkSkills[EBerserkerFury] ), bLogPerk);
+		TempDuration -= TempDuration * GetSkillValue( PerkSkills[EBerserkerFury] );
+	}
+
+	if( IsVampireActive() )
+	{
+		`QALog("Vampire reduced the attack delay duration by:" @ TempDuration * GetVampireAttackSpeedModifier(), bLogPerk);
+		TempDuration -= TempDuration * GetVampireAttackSpeedModifier();
 	}
 
 	`QALog( "Total, Melee Attack Speed" @ GetPercentage( InDuration, TempDuration ) @ "Start/End" @ InDuration @ TempDuration, bLogPerk );
 	InDuration = TempDuration;
 }
 
+simulated final static function float GetFurySpeed()
+{
+	return default.FurySpeed;
+}
+
 /**
  * @brief Weapons and perk skills can affect the jog/sprint speed
  *
- * @param Speed jog/sprint speed
+ * @param Speed jog speed
  */
 simulated function ModifySpeed( out float Speed )
 {
 	local KFWeapon MyKFWeapon;
 	local KFInventoryManager KFIM;
+
+	if( !IsNinjaActive() )
+	{
+		return;
+	}
 
 	MyKFWeapon = GetOwnerWeapon();
 	if( MyKFWeapon == none && CheckOwnerPawn() )
@@ -172,9 +238,45 @@ simulated function ModifySpeed( out float Speed )
 
 	if( MyKFWeapon != none && MyKFWeapon.IsMeleeWeapon() )
 	{
-		`QALog( "Movement" @ MyKFWeapon @ GetPercentage( Speed, Speed * GetPassiveValue( Movement, CurrentLevel ) ), bLogPerk );
-		Speed *= GetPassiveValue( Movement,  CurrentLevel );
+		`QALog( "Movement" @ MyKFWeapon @ GetPercentage( Speed, Speed *  GetSkillValue( PerkSkills[EBerserkerNinja] ) ), bLogPerk );
+		Speed += Speed * GetSkillValue( PerkSkills[EBerserkerNinja] );
 	}
+}
+
+/**
+ * @brief Weapons and perk skills can affect the jog/sprint speed
+ *
+ * @param Speed sprint speed
+ */
+simulated function ModifySprintSpeed( out float Speed )
+{
+	local KFWeapon MyKFWeapon;
+	local KFInventoryManager KFIM;
+
+	if( !IsNinjaActive() )
+	{
+		return;
+	}
+
+	MyKFWeapon = GetOwnerWeapon();
+	if( MyKFWeapon == none && CheckOwnerPawn() )
+	{
+		KFIM = KFInventoryManager(OwnerPawn.InvManager);
+		if( KFIM != none && KFIM.PendingWeapon != none )
+		{
+			MyKFWeapon = KFWeapon(KFIM.PendingWeapon);
+		}
+	}
+
+	if( MyKFWeapon != none && MyKFWeapon.IsMeleeWeapon() )
+	{
+		Speed += Speed * static.GetNinjaSprintModifier();
+	}
+}
+
+simulated static final function float GetNinjaSprintModifier()
+{
+	return default.NinjaSprintModifer;
 }
 
 /**
@@ -189,61 +291,80 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
 
 	TempDamage = InDamage;
 
-	if( IsPoisonResistanceActive() && ClassIsChildOf( Damagetype,  class'KFDT_Toxic' ) )
+	if( IsResistanceActive() )
 	{
-		TempDamage -= InDamage * GetSkillValue( PerkSkills[EBerserkerPoisonResistance] );
+		TempDamage -= InDamage * GetSkillValue( PerkSkills[EBerserkerResistance] );
+		if( ClassIsChildOf( Damagetype,  class'KFDT_Toxic' ) ||
+			ClassIsChildOf( Damagetype,  class'KFDT_Sonic' ) )
+		{
+			TempDamage -= InDamage * GetSkillValue( PerkSkills[EBerserkerResistance] );
+		}
 	}
 
-	if( IsSonicResistanceActive() && ClassIsChildOf( Damagetype,  class'KFDT_Sonic' ) )
-			{
-		TempDamage -= InDamage * GetSkillValue( PerkSkills[EBerserkerSonicResistance] );
-			}
-
-	TempDamage -= InDamage * GetPassiveValue( DamageResistance,  CurrentLevel );
+	TempDamage -= InDamage * GetPassiveDamageResistance( CurrentLevel );
 
 	`QALog( "Total DamageResistance" @ DamageType @ GetPercentage( InDamage, Round( TempDamage ) ) @ "Start/End" @ InDamage @ TempDamage, bLogPerk );
 	InDamage = Round( TempDamage );
+}
+
+/**
+ * @brief Calculates the additional ammo per perk level
+ *
+ * @param Level Current perk level
+ * @return additional ammo
+ */
+simulated private final static function float GetPassiveDamageResistance( int Level )
+{
+	return default.DamageResistance.Increment * FFloor( float( Level ) / 5.f );
 }
 
 function ModifyBloatBileDoT( out float DoTScaler )
 {
 	super.ModifyBloatBileDoT( DoTScaler );
 
-	`QALog( "BloatBile DotScaler" @ GetPercentage( DoTScaler, DoTScaler - GetSkillValue( PerkSkills[EBerserkerPoisonResistance] ) ),bLogPerk );
-	DotScaler -= GetSkillValue( PerkSkills[EBerserkerPoisonResistance] );
+	`QALog( "BloatBile DotScaler" @ GetPercentage( DoTScaler, DoTScaler - GetSkillValue( PerkSkills[EBerserkerResistance] ) ),bLogPerk );
+	DotScaler -= GetSkillValue( PerkSkills[EBerserkerResistance] );
 }
 
 simulated static function GetPassiveStrings( out array<string> PassiveValues, out array<string> Increments, byte Level )
 {
-	PassiveValues[0] = Round((GetPassiveValue( default.BerserkerDamage, Level ) * 100) - 100) $ "%";
-	PassiveValues[1] = Round(GetPassiveValue( default.MeleeAttackSpeed, Level ) * 100) $ "%";
-	PassiveValues[2] = Round((GetPassiveValue( default.Movement, Level ) - 1) * 100) $ "%";
-	PassiveValues[3] = Round((GetPassiveValue(default.DamageResistance, Level)) * 100) $ "%";
-	PassiveValues[4] = "";
-	PassiveValues[5] = "";
+	PassiveValues[0] = Round(GetPassiveValue( default.BerserkerDamage, Level ) * 100) $ "%";
+	PassiveValues[1] = Round((GetPassiveValue(default.DamageResistance, Level)) * 100) $ "%";
+	PassiveValues[2] = "";
+	PassiveValues[3] = "";
 
-	Increments[0] = "[" @ ("25% + " $ Int(default.BerserkerDamage.Increment * 100))  $"% /" @ default.LevelString @ "]";
-	Increments[1] = "[" @ "5% + 0." $ int(default.MeleeAttackSpeed.Increment * 1000)  $ "% /" @ default.LevelString @ "]";
-	Increments[2] = "[" @ "10% + 0." $ int(default.Movement.Increment * 1000) $ "% /" @ default.LevelString @ "]";
-	Increments[3] = "[" @ (Int(default.DamageResistance.Increment * 100))  $"% /" @ default.LevelString @ "]";
-	Increments[4] = "";
-	Increments[5] = "";
+	Increments[0] = "[" @ (Int(default.BerserkerDamage.Increment * 100))  $"% /" @ default.LevelString @ "]";
+	Increments[1] = "[" @ (Int(default.DamageResistance.Increment * 100))  $"% / 5" @ default.LevelString @ "]";
+	Increments[2] = "";
+	Increments[3] = "";
 }
 
 /*********************************************************************************************
 * @name	 Selectable skills functions
 ********************************************************************************************* */
+
 /**
- * @brief Gets the Poison Resistance's resistance percentage
- * @return Poison resistance
+ * @brief modifies the players health
+ *
+ * @param InHealth health
  */
-static final function float GetPoisonResistance()
+function ModifyHealth( out int InHealth )
 {
-	return GetSkillValue( default.PerkSkills[EBerserkerPoisonResistance] );
+	local float TempHealth;
+
+	TempHealth = InHealth;
+
+	if( IsFortitudeActive() )
+	{
+		TempHealth += InHealth * GetSKillValue( PerkSkills[EBerserkerFortitude] );
+		`QALog( "Health passive + Fortitude health" @ InHealth, bLogPerk );
+	}
+
+	InHealth = Round( TempHealth );
 }
 
 /**
- * @brief Adds health oints earnt by killing with the vampire skill
+ * @brief Adds health points earned by killing with the vampire skill
  *
  * @param KFPC Owning controller
  */
@@ -257,21 +378,7 @@ function AddVampireHealth( KFPlayerController KFPC, class<DamageType> DT )
 }
 
 /**
- * @brief modifies the players health
- *
- * @param InHealth health
- */
-function ModifyHealth( out int InHealth )
-{
-	if( IsFortitudeActive() )
-	{
-		InHealth *= GetSKillValue( PerkSkills[EBerserkerFortitude] );
-		`QALog( "Fortitude Health" @ InHealth, bLogPerk );
-	}
-}
-
-/**
- * @brief Skills can effect the hard (seconday) melee attack damage
+ * @brief Skills can effect the hard (secondary) melee attack damage
  *
  * @param int The damage to modify
  */
@@ -281,18 +388,14 @@ function ModifyHardAttackDamage( out int InDamage )
 
 	TempDamage = InDamage;
 
-	if( IsFuriousDefenderActive() )
-	{
-		TempDamage += InDamage * GetSkillValue( PerkSkills[EBerserkerFuriousDefender] );
-		}
-
 	if( IsSmashActive() )
-		{
+	{
 		TempDamage += InDamage * GetSkillValue( PerkSkills[EBerserkerSmash] );
+		`QALog( GetFuncName() @ "Smash extra damage:" @  InDamage * GetSkillValue( PerkSkills[EBerserkerSmash] ), bLogPerk);
 	}
 
 	`QALog( "Total Hard Atk Dmg" @ GetPercentage( InDamage, TempDamage != InDamage ? Round( TempDamage ) : InDamage ) @ "Start/End" @ InDamage @ ( TempDamage != InDamage ? Round( TempDamage ) : InDamage ), bLogPerk );
-	InDamage = TempDamage != InDamage ? Round( TempDamage ) : InDamage;
+	InDamage = Round( TempDamage );
 }
 
 /**
@@ -304,15 +407,12 @@ function ModifyLightAttackDamage( out int InDamage )
 {
 	local float TempDamage;
 
-	TempDamage = InDamage;
-
-	if( IsParryActive() )
+	if( IsFuryActive() )
 	{
-		TempDamage *= 1 + GetSkillValue( PerkSkills[EBerserkerParry] );
+		TempDamage = InDamage;
+		TempDamage += InDamage * GetSkillValue( PerkSkills[EBerserkerFury] );
+		InDamage = Round( TempDamage );
 	}
-
-	`QALog( "Total Light Atk Dmg" @ GetPercentage( InDamage, TempDamage != InDamage ? FCeil( TempDamage ) : InDamage ) @ "Start/End" @ InDamage @ ( TempDamage != InDamage ? Round( TempDamage ) : InDamage ), bLogPerk );
-	InDamage = TempDamage != InDamage ? FCeil( TempDamage ) : InDamage;
 }
 
 /**
@@ -321,7 +421,7 @@ function ModifyLightAttackDamage( out int InDamage )
 simulated function ParryTimer()
 {
 	bParryActive = false;
-	SetTickIsDisabled( true );
+	SetTickIsDisabled( !IsNinjaActive() );
 
 	if( OwnerPC != none )
 	{
@@ -338,60 +438,31 @@ simulated function ParryTimer()
  */
 function ModifyScreamEffectDuration( out float InDuration )
 {
-	if( IsSonicResistanceActive() )
+	if( IsResistanceActive() )
 	{
-		`QALog( "Sream Duration" @ GetPercentage( InDuration, InDuration * ( 1 - GetSkillValue(PerkSkills[EBerserkerSonicResistance]) ) ), bLogPerk );
-		InDuration *= 1 - GetSkillValue( PerkSkills[EBerserkerSonicResistance]);
+		InDuration *= 1 - GetSkillValue( PerkSkills[EBerserkerResistance]);
 	}
 }
 
-/**
- * @brief Random chance to knockdown a zed with a melee weapon
- * @return true/false
- */
-function float GetKnockdownPowerModifier( optional class<DamageType> DamageType, optional byte BodyPartt, optional bool bIsSprinting=false )
-{
-	local KFWeapon KFW;;
-
-	KFW = GetOwnerWeapon();
-	if( IsSmashActive() && KFW.IsMeleeWeapon() )
-	{
-		`QALog( "Smash KnockDownMultiplier" @ SmashKnockdownMultiplier, bLogPerk );
-		return SmashKnockdownMultiplier;
-	}
-
-	return 1.f;
-}
 
 /**
  * @brief skills and weapons can modify the stumbling power
- * @return stumpling power modifier
+ * @return stumbling power modifier
  */
 function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart )
 {
-	if( IsMenaceActive() )
-	{
-        `QALog( "Menace Sumble Modifier" @ ( 1.f + GetSkillValue( PerkSkills[EBerserkerMenace] ) ), bLogPerk );
-        return 1.f + GetSkillValue( PerkSkills[EBerserkerMenace] );
+	if( IsSmashActive() )
+	{ 
+        return 1.f + static.GetSmashStumbleModifier();
 	}
 
 	return 1.f;
 }
 
-/**
- * @brief skills and weapons can modify the stun power
- * @return stun power modifier
- */
-function float GetStunPowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
-{
-	if( IsMenaceActive() && HitZoneIdx == HZI_HEAD )
-	{
-		`QALog( "Menace Stun Modifier" @ ( 1.f + GetSkillValue( PerkSkills[EBerserkerMenace] ) ), bLogPerk );
-        return 1.f +  GetSkillValue( PerkSkills[EBerserkerMenace] );
-	}
-
-    return 1.f;
-}
+ final static function float GetSmashStumbleModifier()
+ {
+ 	return default.SmashStumbleModifier;
+ }
 
 /**
  * @brief Gets the small radius kill xp based on the difficulty
@@ -423,54 +494,74 @@ function bool CanEarnSmallRadiusKillXP( class<DamageType> DT )
 	return IsDamageTypeOnPerk( class<KFDamageType>(DT) ) || IsBackupDamageTypeOnPerk( DT );
 }
 
-function bool ShouldKnockdown()
-{
-	return IsSpartanActive();
-}
-
 simulated function float GetSirenScreamStrength()
 {
-	if( IsSonicResistanceActive() )
-		{
-		return GetSkillValue( PerkSkills[EBerserkerSonicResistance] );
+	if( IsResistanceActive() )
+	{
+		return 1 - GetSkillValue( PerkSkills[EBerserkerResistance] );
 	}
 
 	return super.GetSirenScreamStrength();
 }
 
+function NotifyZedTimeStarted()
+{
+	if( IsSpartanActive() && OwnerPawn != none )
+	{
+		OwnerPawn.Health += OwnerPawn.HealthMax * GetSkillValue( PerkSkills[EBerserkerSpartan] );
+		OwnerPawn.Health = Min( OwnerPawn.Health, OwnerPawn.HealthMax );
+	}
+}
+
+/**
+ * @brief Skills can modify the zed time time dilation
+ *
+ * @param StateName used weapon's state
+ * @return time dilation modifier
+ */
+simulated function float GetZedTimeModifier( KFWeapon W )
+{
+	local name StateName;
+
+	StateName = W.GetStateName();
+
+	`QALog(GetFuncName() @ "StateName =" @ StateName, bLogPerk);
+
+	if( ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE )
+	{
+		if( CouldSpartanBeActive() )
+		{
+			return default.SpartanZedTimeResistance;
+		}
+		else if( CouldFlashBeActive() )
+		{
+			return default.FlashZedTimeResistance;
+		}
+	}
+
+	return 0.f;
+}
+
+private static function float GetSpeedDamageModifier()
+{
+	return default.SpeedDamageModifier;
+}
+
+private static function float GetSmashHeadDamageModifier()
+{
+	return default.SmashHeadDamageModifier;
+}
+
+private static function float GetVampireAttackSpeedModifier()
+{
+	return default.VampireAttackSpeedModifier;
+}
+
+
 /*********************************************************************************************
 * @name	 Getters / Setters
 ********************************************************************************************* */
 
-/**
- * @brief Checks if the Poison Resistance skill is active
- *
- * @return true if we have the skill enabled
- */
-simulated final private function bool IsPoisonResistanceActive()
-{
-	return PerkSkills[EBerserkerPoisonResistance].bActive;
-}
-
-/**
- * @brief Checks if the Sonic Resistance skill is active
- *
- * @return true if we have the skill enabled
- */
-simulated final private function bool IsSonicResistanceActive()
-{
-	return PerkSkills[EBerserkerSonicResistance].bActive;
-}
-
-/**
- * @brief Checks if the Vampire skill is active
- *
- * @return true if we have the skill enabled
- */
-final private function bool IsVampireActive()
-{
-	return PerkSkills[EBerserkerVampire].bActive;
-}
 
 /**
  * @brief Checks if the fortitude skill is active
@@ -483,33 +574,45 @@ final private function bool IsFortitudeActive()
 }
 
 /**
- * @brief Player successfully blocked an attack, save it if Block skill active
- */
-simulated function SetSuccessFullBlock()
-{
-	if( IsBlockActive() )
-	{
-		bBlockActive = true;
-	}
-}
-
-/**
- * @brief Checks if the Block skill is active
+ * @brief Checks if the ninja skill is active
  *
  * @return true if we have the skill enabled
  */
-simulated function bool IsBlockActive()
+simulated final private function bool IsNinjaActive()
 {
-	return PerkSkills[EBerserkerBlock].bActive;
+	return PerkSkills[EBerserkerNinja].bActive;
+}
+
+
+/**
+ * @brief Checks if the Vampire skill is active
+ *
+ * @return true if we have the skill enabled
+ */
+final private function bool IsVampireActive()
+{
+	return PerkSkills[EBerserkerVampire].bActive;
+}
+
+
+/**
+ * @brief Checks if the Speed skill is active
+ *
+ * @return true if we have the skill enabled
+ */
+simulated final private function bool IsSpeedActive()
+{
+	return PerkSkills[EBerserkerSpeed].bActive;
 }
 
 /**
- * @brief Check if conditions for the Block skill are true
- * @return true if blocked attack successfully earlier and Block skill active
+ * @brief Do we need to tick the perk?
+ *
+ * @return true if perk needs to be ticked
  */
-simulated function bool GetBlockActive()
+simulated function bool PerkNeedsTick()
 {
-	return IsBlockActive() && bBlockActive;
+	return IsNinjaActive();
 }
 
 /**
@@ -543,6 +646,16 @@ simulated function bool IsParryActive()
 }
 
 /**
+ * @brief Checks if the resistance skill is active
+ *
+ * @return true if we have the skill enabled
+ */
+simulated function bool IsResistanceActive()
+{
+	return PerkSkills[EBerserkerResistance].bActive;
+}
+
+/**
  * @brief Check if conditions for the Parry skill are true
  * @return true if parried attack successfully earlier and Parry skill active
  */
@@ -561,29 +674,29 @@ simulated function bool HasNightVision()
 }
 
 /**
- * @brief Checks if the Furious Defender skill is active
- *
- * @return true if we have the skill enabled
- */
-simulated final private function bool IsFuriousDefenderActive()
-{
-	return PerkSkills[EBerserkerFuriousDefender].bActive;
-}
-
-/**
  * @brief Checks if the Smash skill is active
  *
  * @return true if we have the skill enabled
  */
-final private function bool IsSmashActive()
+final protected event bool IsSmashActive()
 {
 	return PerkSkills[EBerserkerSmash].bActive;
 }
 
 /**
+ * @brief Checks if the fury skill is active
+ *
+ * @return true if we have the skill enabled
+ */
+final private function bool IsFuryActive()
+{
+	return PerkSkills[EBerserkerFury].bActive;
+}
+
+/**
  * @brief Checks if the player can be grabbed by clots
  *
- * @return true if we are ungrabbable
+ * @return true if we are not grabbable
  */
 function bool CanNotBeGrabbed()
 {
@@ -595,19 +708,29 @@ function bool CanNotBeGrabbed()
  *
  * @return true if we have the skill enabled
  */
-simulated final private event bool IsSpartanActive()
+simulated private event bool IsSpartanActive()
 {
 	return PerkSkills[EBerserkerSpartan].bActive && WorldInfo.TimeDilation < 1.f;
 }
 
+simulated private event bool CouldSpartanBeActive()
+{
+	return PerkSkills[EBerserkerSpartan].bActive;
+}
+
 /**
- * @brief Checks if the menace skill is active and if we are in zed time
+ * @brief Checks if the Flash skill is active and if we are in zed time
  *
  * @return true if we have the skill enabled
  */
-simulated final private event bool IsMenaceActive()
+simulated final private event bool IsFlashActive()
 {
-	return PerkSkills[EBerserkerMenace].bActive && WorldInfo.TimeDilation < 1.f;
+	return PerkSkills[EBerserkerFlash].bActive && WorldInfo.TimeDilation < 1.f;
+}
+
+simulated private event bool CouldFlashBeActive()
+{
+	return PerkSkills[EBerserkerFlash].bActive;
 }
 
 /**
@@ -617,7 +740,7 @@ simulated final private event bool IsMenaceActive()
  */
 function bool IsFastInZedTime()
 {
-	return PerkSkills[EBerserkerMenace].bActive || PerkSkills[EBerserkerSpartan].bActive;
+	return PerkSkills[EBerserkerFlash].bActive;
 }
 
 /*********************************************************************************************
@@ -627,7 +750,7 @@ simulated function class<EmitterCameraLensEffectBase> GetPerkLensEffect( class<K
 {
 	if( ClassIsChildOf( DmgType,  class'KFDT_Toxic' ) )
 	{
-		return IsPoisonResistanceActive() ? DmgType.default.AltCameraLensEffectTemplate : super.GetPerkLensEffect( DmgType );
+		return IsResistanceActive() ? DmgType.default.AltCameraLensEffectTemplate : super.GetPerkLensEffect( DmgType );
 	}
 
 	return super.GetPerkLensEffect( DmgType );
@@ -644,7 +767,7 @@ simulated function LogPerkSkills()
 
 	if ( bLogPerk )
 	{
-		`log( "PASSIVE PERKS" );
+/**		`log( "PASSIVE PERKS" );
 		`log( "-Berserker Damage:" @ (GetPassiveValue(BerserkerDamage, CurrentLevel) - 1) * 100 $"%" );
 		`log( "-MeleeAttackSpeed:" @ GetPassiveValue(default.MeleeAttackSpeed, CurrentLevel) * 100 $"%" );
 		`log( "-Movement:" @ (GetPassiveValue(default.Movement, CurrentLevel) - 1) * 100 $"%" );
@@ -660,18 +783,31 @@ simulated function LogPerkSkills()
 	    `log( "Parry" @ PerkSkills[EBerserkerParry].bActive );
 	    `log( "Smash" @ PerkSkills[EBerserkerSmash].bActive );
 	    `log( "Spartan" @ PerkSkills[EBerserkerSpartan].bActive );
-	    `log( "Menace" @ PerkSkills[EBerserkerMenace].bActive );
+	    `log( "Menace" @ PerkSkills[EBerserkerMenace].bActive );*/
 	}
 }
 
 DefaultProperties
 {
-	ParryDuration=4.f
-	ParrySpeed=0.15
+	ParryDuration=10.f
+	ParrySpeed=0.05
+	FurySpeed=0.05
+	NinjaSprintModifer=0.25
+	SmashStumbleModifier=2.0
+	SpartanZedTimeResistance=0.5		//Attack speed zed time resistance
+	FlashZedTimeResistance=1.0 			//Attack speed zed time resistance
+	SpeedDamageModifier=0.2
+	SmashHeadDamageModifier=0.25
+	VampireAttackSpeedModifier=0.15
 
-	FuriousDefenderSpeed=0.1f
+	RegenerationInterval=1
+	RegenerationAmount=1
 
-	SmashKnockdownMultiplier=2.f
+	ZedTimeModifyingStates(0)="MeleeChainAttacking"
+	ZedTimeModifyingStates(1)="MeleeAttackBasic"
+	ZedTimeModifyingStates(2)="MeleeHeavyAttacking"
+	ZedTimeModifyingStates(3)="MeleeSustained"
+	ZedTimeModifyingStates(4)="WeaponFiring"
 
 	PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Berserker'
 
@@ -688,22 +824,20 @@ DefaultProperties
 	KnifeWeaponDef=class'KFweapDef_Knife_Berserker'
 	GrenadeWeaponDef=class'KFWeapDef_Grenade_Berserker'
 
-	BerserkerDamage=(Name="Berserker Damage",Increment=0.01,Rank=0,StartingValue=1.25,MaxValue=1.5f)
-	MeleeAttackSpeed=(Name="Melee Attack Speed",Increment=0.008,Rank=0,StartingValue=0.05f,MaxValue=0.25f)
-	Movement=(Name="Movement",Increment=0.006f,Rank=0,StartingValue=1.1f,MaxValue=1.25f)
-	DamageResistance=(Name="Damage Resistance",Increment=0.01f,Rank=0,StartingValue=0.f,MaxValue=0.25f)
+	BerserkerDamage=(Name="Berserker Damage",Increment=0.01,Rank=0,StartingValue=0.f,MaxValue=0.25)
+	DamageResistance=(Name="Damage Resistance",Increment=0.02f,Rank=0,StartingValue=0.f,MaxValue=0.10f)
 	NightVision=(Name="Night Vision",Increment=0.f,Rank=0,StartingValue=0.f,MaxValue=0.f)
 
-	PerkSkills(EBerserkerPoisonResistance)=(Name="PoisonResistance",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_PoisonResistance",Increment=0.f,Rank=0,StartingValue=0.4f,MaxValue=0.4f)
-	PerkSkills(EBerserkerSonicResistance)=(Name="SonicResistance",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_SonicResistance",Increment=0.f,Rank=0,StartingValue=0.4f,MaxValue=0.4f)
+	PerkSkills(EBerserkerFortitude)=(Name="Fortitude",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Fortitude",Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
+	PerkSkills(EBerserkerNinja)=(Name="Ninja",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Ninja",Increment=0.f,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
 	PerkSkills(EBerserkerVampire)=(Name="Vampire",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Vampire",Increment=0.f,Rank=0,StartingValue=4.f,MaxValue=4.f)
-	PerkSkills(EBerserkerFortitude)=(Name="Fortitude",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Fortitude",Increment=0.f,Rank=0,StartingValue=1.75,MaxValue=1.75)
-	PerkSkills(EBerserkerFuriousDefender)=(Name="FuriousDefender",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_FuriousDefender",Increment=0.f,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
-	PerkSkills(EBerserkerBlock)=(Name="Block",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Block",Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
-	PerkSkills(EBerserkerParry)=(Name="Parry",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Parry",Increment=0.f,Rank=0,StartingValue=0.15,MaxValue=0.15)
-	PerkSkills(EBerserkerSmash)=(Name="Smash",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Smash",Increment=0.f,Rank=0,StartingValue=0.25,MaxValue=0.25)
-	PerkSkills(EBerserkerSpartan)=(Name="Spartan",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Spartan",Increment=0.f,Rank=0,StartingValue=0.7f,MaxValue=0.7f)
-	PerkSkills(EBerserkerMenace)=(Name="Menace",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Menace",Increment=0.f,Rank=0,StartingValue=1.f,MaxValue=1.f)
+	PerkSkills(EBerserkerSpeed)=(Name="Speed",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Speed",Increment=0.f,Rank=0,StartingValue=0.2,MaxValue=0.2)
+	PerkSkills(EBerserkerResistance)=(Name="Resistance",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_PoisonResistance",Increment=0.f,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
+	PerkSkills(EBerserkerParry)=(Name="Parry",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Parry",Increment=0.f,Rank=0,StartingValue=0.35,MaxValue=0.35)
+	PerkSkills(EBerserkerSmash)=(Name="Smash",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Smash",Increment=0.f,Rank=0,StartingValue=0.5,MaxValue=0.5)
+	PerkSkills(EBerserkerFury)=(Name="Fury",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Intimidate",Increment=0.f,Rank=0,StartingValue=0.2,MaxValue=0.2)
+	PerkSkills(EBerserkerSpartan)=(Name="Spartan",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Spartan",Increment=0.f,Rank=0,StartingValue=0.25,MaxValue=0.25)
+	PerkSkills(EBerserkerFlash)=(Name="Flash",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Flash",Increment=0.f,Rank=0,StartingValue=0.0,MaxValue=0.0)
 
 	ParrySkillSoundModeStart=AkEvent'WW_GLO_Runtime.Play_Beserker_Parry_Mode'
 	ParrySkillSoundModeStop=AkEvent'WW_GLO_Runtime.Stop_Beserker_Parry_Mode'

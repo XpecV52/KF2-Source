@@ -44,7 +44,7 @@ protected simulated function AffectsPawn(Pawn Victim, float DamageScale)
         {
             if((CachedInstigatorPerk != none) && CachedInstigatorPerk.ShouldSedate())
             {
-                MonsterVictim.DoSpecialMove(9);
+                MonsterVictim.DoSpecialMove(8);
             }
             super.AffectsPawn(Victim, DamageScale);            
         }

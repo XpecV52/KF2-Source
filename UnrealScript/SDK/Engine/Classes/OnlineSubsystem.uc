@@ -212,6 +212,44 @@ enum ELoginStatus
 	LS_LoggedIn
 };
 
+//@HSL_BEGIN - JRO - 3/21/2016 - PS4 Sessions - Make sure they have the privileges needed to play online
+/** The different types of privileges a user may or may not have */
+enum EFeaturePrivilege
+{
+	/** Can the user play online? */
+	FP_OnlinePlay,
+	/** Can the user use text communication? */
+	FP_CommunicationText,
+	/** Can the user use video communication? */
+	FP_CommunicationVideo,
+	/** Can the user use voice communication? */
+	FP_CommunicationVoice,
+	/** Can the user share (upload/download) user created content? */
+	FP_ShareUserCreatedContent,
+	/** Can the user purchase content? */
+	FP_PurchaseContent,
+	/** Can the user view player profiles? */
+	FP_ViewPlayerProfile,
+	/** Can the user be shown presence info? */
+	FP_ShowPresenceInformation,
+	/** Can the user record DVR clips? */
+	FP_RecordDVRClips,
+	/** Can the user use cloud storage? */
+	FP_CloudStorage,
+	/** Can the user access premium content? */
+	FP_PremiumContent,
+	/** Can the user access premium video content? */
+	FP_PremiumVideoContent,
+	/** Can the user browse the internet? */
+	FP_BrowseInternet,
+	/** Can the user share content to social networks? */
+	FP_SocialNetworkSharing,
+	/** Can the user share kinect generated/recorded content with other users? */
+	FP_KinectSharing,
+	/** Can the user upload fitness info? (eg height, weight, age, gender) */
+	FP_FitnessUpload,
+};
+
 /** This enum indicates access to major features in the game (parent controls */
 enum EFeaturePrivilegeLevel
 {
@@ -220,8 +258,11 @@ enum EFeaturePrivilegeLevel
 	/** Parental controls allow this feature only with people on their friends list */
 	FPL_EnabledFriendsOnly,
 	/** Parental controls allow this feature everywhere */
-	FPL_Enabled
+	FPL_Enabled,
+	/** Privilege Check Failed and is Unknown */
+	FPL_Unknown,
 };
+//@HSL_END
 
 /** Used to bulk query the friends list */
 struct native FriendsQuery
@@ -271,6 +312,16 @@ enum EOnlineEnumerationReadState
 	OERS_Done,
 	OERS_Failed
 };
+
+//@HSL_BEGIN - JRO - 3/21/2016 - PS4 Sessions
+enum OnGameInviteAcceptedResult
+{
+	OGIAR_Success,
+	OGIAR_GeneralFailure,
+	OGIAR_ServerActivity,
+	OGIAR_WrongAccount,
+};
+//@HSL_END
 
 /** The possible friend states for a friend entry */
 enum EOnlineFriendState
@@ -865,12 +916,13 @@ struct native SocialPostLinkInfo extends SocialPostImageInfo
 /* Used to contain a local list of inventory items fetched from Steam */
 struct native CurrentInventoryEntry
 {
-	var UniqueNetId Instance;
-	var int Definition;
-	var int Quantity;
+	var const UniqueNetId Instance;
+	var const int Definition;
+	var const int Quantity;
 	var int NewlyAdded;
+	var int LastUsedTime;
 };
-var array<CurrentInventoryEntry> CurrentInventory;
+var const array<CurrentInventoryEntry> CurrentInventory;
 
 enum ItemType
 {
@@ -898,6 +950,10 @@ enum ItemRarity
 struct native ItemProperties
 {
 	var int Definition;
+	/** The product ID as exists in PSN */
+	var string ProductId;
+	/** signed offer ID for PSN item */
+	var string SignedOfferId;
 	var string Name;
 	var ItemType Type;
 	var ItemRarity Rarity;
@@ -929,13 +985,15 @@ struct native ExchangeRuleSets
 };
 var array<ExchangeRuleSets> ExchangeRuleSetList;
 
-
+native function OpenMarketPlaceSearch(ItemProperties Item);
 native function OpenItemPurchaseOverlay(int SKU);
 native function OpenURL(string WebsiteLink);
 
 // return a list of rulesets this item is a source for (Crates,
 // Crafting, ... )
 native function int IsExchangeable( int SourceSKU, out array<ExchangeRuleSets> Ret );
+
+native function ClearNewlyAdded();
 
 // Are the requirements met to recieve the target SKU with the given
 // Rule (from IsExchangeable() above)
@@ -944,6 +1002,8 @@ native function bool ExchangeReady( const out ExchangeRuleSets Rule );
 // do the exchange with the given rule. Inventory will be scanned and
 // appropriate items removed to make the exchange
 native function bool Exchange( const out ExchangeRuleSets Rule );
+// keep exchanging as long as there are 2 or more
+native function int ExchangeDuplicates( const out ExchangeRuleSets Rule );
 
 delegate OnInventoryReadComplete();
 
@@ -964,6 +1024,16 @@ function ClearOnInventoryReadCompleteDelegate(delegate<OnInventoryReadComplete> 
 	if (RemoveIndex != INDEX_NONE)
 	{
 		ReadInventoryCompleteDelegates.Remove(RemoveIndex,1);
+	}
+}
+
+function ClearAllInventoryReadCompleteDelegates()
+{
+	local int i;
+
+	for (i = 0; i < ReadInventoryCompleteDelegates.length; i++)
+	{
+		ReadInventoryCompleteDelegates.Remove(i,1);
 	}
 }
 
@@ -1483,6 +1553,23 @@ native function int GetBuildUniqueId();
  */
 static final native function int GetNumSupportedLogins();
 
+//@HSL_BEGIN - JRO - 3/21/2016 - PS4 Sessions
+function bool IsInSession( name SessionName )
+{
+	local int i;
+
+	for( i = 0; i < Sessions.Length; i++ )
+	{
+		if( Sessions[i].SessionName == SessionName )
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+//@HSL_END_XBOX
+
 /**
  * Logs the game settings object
  *
@@ -1593,8 +1680,10 @@ function TWOnlineLobby GetLobbyInterface();
 function bool RegisterLocalTalker(byte LocalUserNum);
 
 delegate OnReadOnlineAvatarComplete(const UniqueNetId PlayerNetId, Texture2D Avatar);
+delegate OnReadOnlineAvatarByNameComplete(const string PlayerName, const string AvatarURL);
 
 function ReadOnlineAvatar(const UniqueNetId PlayerNetId, int Size, delegate<OnReadOnlineAvatarComplete> ReadOnlineAvatarCompleteDelegate);
+function ReadOnlineAvatarByName(const string InPlayerName, int Size, delegate<OnReadOnlineAvatarByNameComplete> ReadOnlineAvatarCompleteDelegate);
 
 function bool ResetStats(bool bResetAchievements);
 

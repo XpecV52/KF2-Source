@@ -6,6 +6,7 @@ package tripwire.menus
     import flash.display.MovieClip;
     import flash.events.Event;
     import flash.events.FocusEvent;
+    import flash.events.MouseEvent;
     import flash.external.ExternalInterface;
     import scaleform.clik.constants.InputValue;
     import scaleform.clik.constants.NavigationCode;
@@ -16,6 +17,7 @@ package tripwire.menus
     import scaleform.clik.ui.InputDetails;
     import tripwire.containers.TripContainer;
     import tripwire.containers.trader.TraderItemDetailsContainer;
+    import tripwire.containers.trader.TraderPlayerInfoContainer;
     import tripwire.containers.trader.TraderPlayerInventoryContainer;
     import tripwire.containers.trader.TraderShopContainer;
     import tripwire.controls.TripButton;
@@ -40,13 +42,17 @@ package tripwire.menus
         
         private const SELECTED_ALPHA = 1;
         
-        private const UNSELECTED_ALPHA = 0.5;
+        private const UNSELECTED_ALPHA = 0.6;
         
         private var _selectedMenuIndex:int = 0;
         
         private const PlayerInventory = 0;
         
         private const StoreContainer = 1;
+        
+        private var _exitPromptString;
+        
+        private var _backPromptString;
         
         public function TraderMenu()
         {
@@ -57,10 +63,15 @@ package tripwire.menus
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
-            stage.addEventListener(InputEvent.INPUT,this.handleControllerInput,false,0,true);
+            stage.addEventListener(InputEvent.INPUT,this.handleInput,false,0,true);
             this.playerInventoryContainer.addEventListener(IndexEvent.INDEX_CHANGE,this.selectedItemChanged,false,0,true);
             this.playerInventoryContainer.addEventListener(FocusEvent.FOCUS_IN,this.containerFocusIn,false,0,true);
             this.shopContainer.addEventListener(FocusEvent.FOCUS_IN,this.containerFocusIn,false,0,true);
+            this.shopContainer.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.playerInventoryContainer.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
+            this.playerInventoryContainer.playerInfoContainer.addEventListener(IndexEvent.INDEX_CHANGE,this.onPerkContainer,false,0,true);
+            leftSidePanels.push(this.shopContainer);
+            rightSidePanels.push(this.playerInventoryContainer);
             this.exitButton.focusable = false;
             if(bManagerUsingGamepad)
             {
@@ -99,15 +110,22 @@ package tripwire.menus
             this.exitButton.label = param1;
         }
         
-        public function set cancelPromptName(param1:String) : void
+        public function set exitPromptString(param1:String) : void
         {
-            this.cancelPrompt.textField.text = param1;
+            this._exitPromptString = param1;
+            this.cancelPrompt.textField.text = this._exitPromptString;
+        }
+        
+        public function set backPromptString(param1:String) : void
+        {
+            this._backPromptString = param1;
         }
         
         public function updateControllerVisibility() : *
         {
             this.cancelPrompt.visible = bManagerUsingGamepad;
             this.exitButton.visible = !bManagerUsingGamepad;
+            this.exitPromptString = this._exitPromptString;
             this.shopContainer.updateControllerVisibility();
             this.playerInventoryContainer.updateControllerVisibility();
             this.itemDetailsContainer.updateControllerVisibility();
@@ -130,7 +148,7 @@ package tripwire.menus
             this.itemDetailsContainer.visible = param1.index == SHOW_DETAILS;
         }
         
-        protected function handleControllerInput(param1:InputEvent) : void
+        override public function handleInput(param1:InputEvent) : void
         {
             var _loc2_:InputDetails = param1.details;
             if(!bOpen)
@@ -214,7 +232,7 @@ package tripwire.menus
             this.playerInventoryContainer.bCanUseMenu = true;
             this.exitButton.addEventListener(ButtonEvent.PRESS,this.exitMenu,false,0,true);
             mouseEnabled = mouseChildren = true;
-            stage.addEventListener(InputEvent.INPUT,this.handleControllerInput,false,0,true);
+            stage.addEventListener(InputEvent.INPUT,this.handleInput,false,0,true);
             if(bManagerUsingGamepad)
             {
                 this.selectedMenuIndex = this.PlayerInventory;
@@ -226,7 +244,7 @@ package tripwire.menus
             super.onClosed(param1);
             this.playerInventoryContainer.bCanUseMenu = false;
             this.exitButton.removeEventListener(ButtonEvent.PRESS,this.exitMenu);
-            stage.removeEventListener(InputEvent.INPUT,this.handleControllerInput);
+            stage.removeEventListener(InputEvent.INPUT,this.handleInput);
             if(bManagerUsingGamepad)
             {
                 this.selectedMenuIndex = this.PlayerInventory;
@@ -237,28 +255,17 @@ package tripwire.menus
             FocusHandler.getInstance().setFocus(null);
         }
         
-        override protected function openAnimation() : *
+        override protected function openAnimation(param1:Boolean = true) : *
         {
             TweenMax.killTweensOf(this);
             TweenMax.fromTo(this,ANIM_TIME,{
                 "z":ANIM_OFFSET_Z,
                 "alpha":0,
-                "blurFilter":{
-                    "blurX":ANIM_BLUR_X,
-                    "blurY":ANIM_BLUR_Y,
-                    "quality":1
-                },
                 "ease":Linear.easeNone,
                 "useFrames":true
             },{
                 "z":ANIM_START_Z,
-                "alpha":_defaultAlpha,
-                "blurFilter":{
-                    "blurX":AnimBLUR_OUT,
-                    "blurY":AnimBLUR_OUT,
-                    "quality":1,
-                    "remove":true
-                },
+                "alpha":(!!param1 ? _defaultAlpha : _dimmedAlpha),
                 "ease":Linear.easeNone,
                 "delay":ANIM_TIME,
                 "useFrames":true,
@@ -271,21 +278,31 @@ package tripwire.menus
             TweenMax.killTweensOf(this);
             TweenMax.fromTo(this,ANIM_TIME,{
                 "z":ANIM_START_Z,
-                "alpha":_defaultAlpha,
+                "alpha":alpha,
                 "ease":Linear.easeNone,
                 "useFrames":true
             },{
                 "z":ANIM_OFFSET_Z,
                 "alpha":0,
-                "blurFilter":{
-                    "blurX":ANIM_BLUR_X,
-                    "blurY":ANIM_BLUR_Y,
-                    "quality":1
-                },
                 "ease":Linear.easeNone,
                 "useFrames":true,
                 "onComplete":this.onClosed
             });
+        }
+        
+        protected function onPerkContainer(param1:IndexEvent) : *
+        {
+            if(bManagerUsingGamepad)
+            {
+                switch(param1.index)
+                {
+                    case TraderPlayerInfoContainer.OPEN_INDEX:
+                        this.cancelPrompt.textField.text = this._backPromptString;
+                        break;
+                    case TraderPlayerInfoContainer.CLOSE_INDEX:
+                        this.cancelPrompt.textField.text = this._exitPromptString;
+                }
+            }
         }
     }
 }

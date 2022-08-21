@@ -214,8 +214,9 @@ defaultproperties
     OrientationAxis=EAxis.AXIS_X
     OrientationBoneName=Spine1
     GetUpFromBackYawOffset=32768
+    bCanOnlyWanderAtEnd=true
     bDisablesWeaponFiring=true
     bDisableMovement=true
     bLockPawnRotation=true
-    Handle=RecoverFromRagdoll
+    Handle=KFSM_RecoverFromRagdoll
 }

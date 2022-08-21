@@ -28,6 +28,24 @@ function TickHud(float DeltaTime)
     }
 }
 
+function ClearMovieList()
+{
+    local GFxObject ObjectArray;
+    local int I;
+
+    ObjectArray = Outer.CreateArray();
+    I = 0;
+    J0x34:
+
+    if(I < 6)
+    {
+        ObjectArray.SetElementObject(I, none);
+        ++ I;
+        goto J0x34;
+    }
+    SetObject("Data", ObjectArray);
+}
+
 function UpdateMoveList()
 {
     local int I, MoveCount;

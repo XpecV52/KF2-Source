@@ -90,6 +90,18 @@ var 	Texture2d					PlayerStatusBarBGTexture;
 var 	const float 				PlayerStatusBarLengthMax;
 var 	const float					PlayerStatusIconSize;
 
+// Players that are not visible
+struct sHiddenHumanPawnInfo
+{
+    var Pawn HumanPawn;
+    var PlayerReplicationInfo HumanPRI;
+};
+
+var float HumanPlayerIconInterpMult;
+
+/** Texture used for the generic human icon */
+var Texture2D GenericHumanIconTexture;
+
 /**
  * Draw a glowing string
  */
@@ -505,12 +517,17 @@ simulated function DrawShadowedRotatedTile(texture2D Tex, Rotator Rot, float X, 
 	Canvas.DrawRotatedTile(Tex,Rot,XL,YL,U,V,UL,VL);
 }
 
+/**
+ * @brief Main canvas draw function
+ */
 function DrawHUD()
 {
 	local KFPawn_Human KFPH;
 	local float ThisDot;
 	local vector ViewLocation, ViewVector, PlayerPartyInfoLocation;
 	local rotator ViewRotation;
+    local array<PlayerReplicationInfo> VisibleHumanPlayers;
+    local array<sHiddenHumanPawnInfo> HiddenHumanPlayers;
 
 	super.DrawHUD();
 
@@ -528,30 +545,52 @@ function DrawHUD()
     {
 		if( KFPlayerOwner != none )
 		{
-		    KFPlayerOwner.GetPlayerViewPoint(ViewLocation, ViewRotation);
+		    KFPlayerOwner.GetPlayerViewPoint( ViewLocation, ViewRotation );
 		}
 		ViewVector = vector(ViewRotation);
 
-
 	    Canvas.EnableStencilTest(true);
-		foreach WorldInfo.AllPawns(class'KFPawn_Human', KFPH)
+		foreach WorldInfo.AllPawns( class'KFPawn_Human', KFPH )
 		{
 			PlayerPartyInfoLocation = KFPH.Location + KFPH.MTO_PhysSmoothOffset + KFPH.CylinderComponent.CollisionHeight * vect(0,0,1);
 			ThisDot = Normal(PlayerPartyInfoLocation - ViewLocation) dot Normal(ViewVector);
 
-			if( KFPH.IsAliveAndWell() && KFPH != KFPlayerOwner.Pawn)
+			if( KFPH.IsAliveAndWell() && KFPH != KFPlayerOwner.Pawn )
 			{
-				if(`TimeSince(KFPH.Mesh.LastRenderTime) < 0.4f && (ThisDot > 0 && ThisDot < 1.0) )
+				if(`TimeSince(KFPH.Mesh.LastRenderTime) < 0.2f && (ThisDot > 0 && ThisDot < 1.0) )
 				{
-					DrawFriendlyHUD(KFPH);
+					if( DrawFriendlyHumanPlayerInfo( KFPH ) )
+					{
+						VisibleHumanPlayers.AddItem( KFPH.PlayerReplicationInfo );
+					}
+					else
+					{
+						HiddenHumanPlayers.Insert( 0, 1 );
+                    	HiddenHumanPlayers[0].HumanPawn = KFPH;
+                    	HiddenHumanPlayers[0].HumanPRI = KFPH.PlayerReplicationInfo;
+					}
 				}
+				else 
+                {
+                    HiddenHumanPlayers.Insert( 0, 1 );
+                    HiddenHumanPlayers[0].HumanPawn = KFPH;
+                    HiddenHumanPlayers[0].HumanPRI = KFPH.PlayerReplicationInfo;
+                }
 			}
 		}
+
+		CheckAndDrawHiddenPlayerIcons( VisibleHumanPlayers, HiddenHumanPlayers );
 		Canvas.EnableStencilTest(false);
 	}
 }
 
-simulated function DrawFriendlyHUD( KFPawn_Human KFPH )
+/**
+ * @brief Draws name, perk etc over a human player's head
+ * 
+ * @param KFPH Human player's pawn
+ * @return true if draw was successful
+ */
+simulated function bool DrawFriendlyHumanPlayerInfo( KFPawn_Human KFPH )
 {
 	local float Percentage;
 	local float BarHeight, BarLength;
@@ -565,7 +604,7 @@ simulated function DrawFriendlyHUD( KFPawn_Human KFPH )
 
 	if( KFPRI == none )
 	{
-		return;
+		return false;
 	}
 
 	MyFontRenderInfo = Canvas.CreateFontRenderInfo( true );
@@ -577,7 +616,7 @@ simulated function DrawFriendlyHUD( KFPawn_Human KFPH )
 	ScreenPos = Canvas.Project(TargetLocation);
 	if( ScreenPos.X < 0 || ScreenPos.X > Canvas.SizeX || ScreenPos.Y < 0 || ScreenPos.Y > Canvas.SizeY )
 	{
-		return;
+		return false;
 	}
 
 	//Draw health bar
@@ -597,7 +636,7 @@ simulated function DrawFriendlyHUD( KFPawn_Human KFPH )
 
 	if( KFPRI.CurrentPerkClass == none )
 	{
-		return;
+		return false;
 	}
 
 	//draw perk icon
@@ -617,8 +656,20 @@ simulated function DrawFriendlyHUD( KFPawn_Human KFPH )
 		Canvas.SetPos( ScreenPos.X + BarLength * 0.5f, ScreenPos.Y - BarHeight * 2 );
 		Canvas.DrawTile( KFPRI.CurrentPerkClass.static.GetInteractIcon(), PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256); 
 	}
+
+	return true;
 }
 
+/**
+ * @brief Generic function to draw health and armor bars
+ * 
+ * @param BarPercentage Fill percentage
+ * @param BarLength total length
+ * @param BarHeight total height
+ * @param XPos Horizontal screen position
+ * @param YPos Vertical screen position 
+ * @param BarColor The bar's foreground color
+ */
 simulated function DrawKFBar( float BarPercentage, float BarLength, float BarHeight, float XPos, float YPos, Color BarColor )
 {
 	//background for status bar
@@ -630,6 +681,109 @@ simulated function DrawKFBar( float BarPercentage, float BarLength, float BarHei
 	Canvas.SetDrawColorStruct(BarColor);
 	Canvas.SetPos(XPos, YPos + 1);  // Adjust pos for border
 	Canvas.DrawTileStretched(PlayerStatusBarBGTexture, (BarLength - 2.0) * BarPercentage, BarHeight - 2.0, 0, 0, 32, 32);
+}
+
+/**
+ * @brief Checks if hidden player's icon should be drawn
+ * 
+ * @param VisibleHumanPlayers A list of visible players
+ * @param HiddenHumanPlayers A list of hidden players 
+ */
+simulated function CheckAndDrawHiddenPlayerIcons( array<PlayerReplicationInfo> VisibleHumanPlayers, array<sHiddenHumanPawnInfo> HiddenHumanPlayers )
+{
+ 	local int i, HiddenHumanIndex;
+ 	local PlayerReplicationInfo PRI;
+    local vector ViewLocation, ViewVector, PawnLocation;
+    local rotator ViewRotation;
+ 	local KFPlayerReplicationInfo KFPRI;
+ 	local float ThisDot;
+
+ 	if( KFPlayerOwner.PlayerCamera != none )
+    {
+        KFPlayerOwner.PlayerCamera.GetCameraViewPoint( ViewLocation, ViewRotation );
+    }
+
+    ViewVector = vector(ViewRotation);
+
+    for( i = 0; i < WorldInfo.GRI.PRIArray.Length; i++ )
+    {
+        // Avoid casting until we've got some simple checks out of the way
+        PRI = WorldInfo.GRI.PRIArray[i];
+
+        if( VisibleHumanPlayers.Find( PRI ) != INDEX_NONE || 
+        	KFPlayerOwner.PlayerReplicationInfo == PRI ||
+        	PRI.GetTeamNum() == 255 )
+        {
+            continue;
+        }
+
+        // Use the real pawn location if the pawn is still relevant
+        HiddenHumanIndex = HiddenHumanPlayers.Find( 'HumanPRI', PRI );
+        if( HiddenHumanIndex != INDEX_NONE && HiddenHumanPlayers[HiddenHumanIndex].HumanPawn != none )
+        {
+            PawnLocation = HiddenHumanPlayers[HiddenHumanIndex].HumanPawn.Location;
+        }
+
+        // Otherwise we'll use our replicated location
+        if( IsZero( PawnLocation ) )
+        {
+            KFPRI = KFPlayerReplicationInfo(PRI);
+            PawnLocation = KFPRI.GetReplicatedPawnIconLocation( HumanPlayerIconInterpMult );
+            if( IsZero(PawnLocation) || KFPRI.PlayerHealth <= 0 )
+            {
+                continue;
+            }
+        }
+
+        // FOV pre-check (further per-pixel filtering after screen projection is done)
+        ThisDot = Normal(PawnLocation - ViewLocation) dot ViewVector;
+        if( ThisDot > 0.f )
+        {
+            DrawHiddenHumanPlayerIcon( PRI, PawnLocation );
+        }
+
+        PawnLocation = vect(0,0,0);
+    }      
+}
+
+/**
+ * @brief Draws an icon when human players are hidden but in the field of view
+ * 
+ * @param PRI Player's PlayerReplicationInfo
+ * @param IconWorldLocation The "player's" location in the world
+ */
+function DrawHiddenHumanPlayerIcon( PlayerReplicationInfo PRI, vector IconWorldLocation )
+{
+    local vector ScreenPos;
+    local float IconSizeMult;
+    local KFPlayerReplicationInfo KFPRI;
+    local Texture2D PlayerIcon;
+
+    KFPRI = KFPlayerReplicationInfo(PRI);
+    if( KFPRI == none )
+    {
+    	return;
+    }
+
+    // Project world pos to canvas
+    ScreenPos = Canvas.Project( IconWorldLocation + vect(0,0,1) * class'KFPAwn_Human'.default.CylinderComponent.CollisionHeight * 1.2 );
+
+    // Fudge by icon size
+    IconSizeMult = PlayerStatusIconSize * FriendlyHudScale * 0.5f;
+    ScreenPos.X -= IconSizeMult;
+    ScreenPos.Y -= IconSizeMult;
+
+    if( ScreenPos.X < 0 || ScreenPos.X > Canvas.SizeX || ScreenPos.Y < 0 || ScreenPos.Y > Canvas.SizeY )
+    {
+        return;
+    }
+
+    PlayerIcon = PlayerOwner.GetTeamNum() == 0 ? KFPRI.CurrentPerkClass.default.PerkIcon : GenericHumanIconTexture;
+
+    // Draw human icon
+    Canvas.SetDrawColor(255,255,255,255);
+    Canvas.SetPos( ScreenPos.X, ScreenPos.Y );
+    Canvas.DrawTile( PlayerIcon, PlayerStatusIconSize * FriendlyHudScale, PlayerStatusIconSize * FriendlyHudScale, 0, 0, 256, 256 );
 }
 
 /*********************************************************************************************
@@ -700,4 +854,6 @@ defaultproperties
 	PlayerStatusBarBGTexture=Texture2D'EngineResources.WhiteSquareTexture'
 	PlayerStatusBarLengthMax = 150.0f;
 	PlayerStatusIconSize = 32.0f;
+
+	GenericHumanIconTexture=Texture2D'UI_PerkIcons_TEX.UI_Horzine_H_Logo'
 }

@@ -92,7 +92,6 @@ defaultproperties
    End Object
    BrushComponent=BrushComponent0
    Components(0)=BrushComponent0
-   CollisionType=COLLIDE_CustomDefault
    CollisionComponent=BrushComponent0
    Name="Default__TWOutdoorLightingVolume"
    ObjectArchetype=Volume'Engine.Default__Volume'

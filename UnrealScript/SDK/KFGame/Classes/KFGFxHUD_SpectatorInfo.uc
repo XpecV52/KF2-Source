@@ -77,10 +77,13 @@ function UpdatePlayerInfo()
 	local GFxObject TempObject;
 
 	TempObject = CreateObject("Object");
-    TempObject.SetString("playerName", SpectatedKFPRI.PlayerName);
-    TempObject.SetString("playerPerk", SpectatedKFPRI.CurrentPerkClass.default.LevelString @SpectatedKFPRI.GetActivePerkLevel() @SpectatedKFPRI.CurrentPerkClass.default.PerkName );
-    TempObject.SetString("iconPath", "img://" $SpectatedKFPRI.CurrentPerkClass.static.GetPerkIconPath());
-    SetObject("playerData", TempObject);
+    if( TempObject != none )
+    {
+        TempObject.SetString("playerName", SpectatedKFPRI.PlayerName);
+        TempObject.SetString("playerPerk", SpectatedKFPRI.CurrentPerkClass.default.LevelString @SpectatedKFPRI.GetActivePerkLevel() @SpectatedKFPRI.CurrentPerkClass.default.PerkName );
+        TempObject.SetString("iconPath", "img://" $SpectatedKFPRI.CurrentPerkClass.static.GetPerkIconPath());
+        SetObject("playerData", TempObject);
+    }
 }
 
 DefaultProperties

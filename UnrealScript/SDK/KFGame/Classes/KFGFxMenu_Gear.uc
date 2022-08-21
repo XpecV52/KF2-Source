@@ -143,7 +143,7 @@ function LocalizeText()
 //WEAPONS CUSTOMIZATION 
 function UpdateWeaponList()
 {
-	local byte i, ItemIndex;
+	local int i, ItemIndex;
 	local GFxObject DataProvider, SlotObject;
 	local string TexturePath;
 	local KFPlayerController KFPC; 
@@ -191,7 +191,7 @@ function UpdateWeaponList()
 
 function UpdateWeaponVariants(class<KFWeaponDefinition> WeaponDef, out GFxObject MeshObject)
 {
-	local byte i, ItemIndex;
+	local int i, ItemIndex;
 	local GFxObject DataProvider, SlotObject;
 	//local string SectionPath;
 	//local string TexturePath;
@@ -281,6 +281,7 @@ function UpdateMeshList(string OutfitKey, string SkinKey, array<OutfitVariants> 
 	local GFxObject DataProvider, SlotObject;
 	local string TexturePath;
 	local OutfitVariants Outfit;
+	local SkinVariant FirstSkin;
 	
 	ItemIndex = 0;
 	DataProvider = CreateArray();
@@ -293,10 +294,11 @@ function UpdateMeshList(string OutfitKey, string SkinKey, array<OutfitVariants> 
 			SlotObject.SetInt("ItemIndex", i);
 			SlotObject.SetString("label", Localize(CharInfoPath, OutfitKey$i, KFCharacterInfoString));
 			SlotObject.SetBool("enabled", true);
-			TexturePath = "img://"$PathName(Outfit.UITexture);
+			FirstSkin = UpdateVariants( OutfitKey, SkinKey, Outfit.SkinVariations, i, SlotObject );
+			TexturePath = "img://"$PathName(FirstSkin.UITexture);
 			SlotObject.SetString("source", TexturePath);
 
-			UpdateVariants( OutfitKey, SkinKey, Outfit.SkinVariations, i, SlotObject );
+			
 
 			DataProvider.SetElementObject(ItemIndex, SlotObject);
 			ItemIndex++;
@@ -317,6 +319,7 @@ function UpdateAttachmentsList(array<AttachmentVariants> Attachments)
 	local string TexturePath;
 	local AttachmentVariants Variant;
 	local Pawn MyPawn;
+	local SkinVariant FirstSkin;
 
 	ItemIndex = 0;
 	DataProvider = CreateArray();
@@ -337,12 +340,12 @@ function UpdateAttachmentsList(array<AttachmentVariants> Attachments)
 		{
 			SlotObject = CreateObject( "Object" );
 			SlotObject.SetInt("ItemIndex", i);
+			FirstSkin= UpdateVariants( AttachmentKey, AttachmentSkinKey, Variant.AttachmentItem.SkinVariations, i, SlotObject );
 			SlotObject.SetString("label", Localize(CharInfoPath, AttachmentKey$i, KFCharacterInfoString));
 			SlotObject.SetBool("enabled", true);
-			TexturePath = "img://"$PathName(Variant.UITexture);
+			TexturePath = "img://"$PathName(FirstSkin.UITexture);
 			SlotObject.SetString("source", TexturePath);
-			UpdateVariants( AttachmentKey, AttachmentSkinKey, Variant.SkinVariations, i, SlotObject );
-
+			
 			DataProvider.SetElementObject(ItemIndex, SlotObject);
 			ItemIndex++;
 		}
@@ -351,13 +354,15 @@ function UpdateAttachmentsList(array<AttachmentVariants> Attachments)
 	SetObject("attachmentsArray", DataProvider);
 }
 
-function UpdateVariants(string OutfitKey, string KeyName, out array<SkinVariant> SkinVariations, int OutfitIndex, out GFxObject MeshObject)
+function SkinVariant UpdateVariants(string OutfitKey, string KeyName, out array<SkinVariant> SkinVariations, int OutfitIndex, out GFxObject MeshObject)
 {
 	local byte i, ItemIndex;
 	local GFxObject DataProvider, SlotObject;
 	local SkinVariant Skin;
+	local SkinVariant FirstSkin;
 	local string SectionPath;
 	local string TexturePath;
+	local bool bFoundFirst;
 
 	ItemIndex = 0;
 	DataProvider = CreateArray();
@@ -368,6 +373,11 @@ function UpdateVariants(string OutfitKey, string KeyName, out array<SkinVariant>
 		Skin = SkinVariations[i];
 		if (class'KFUnlockManager'.static.GetAvailableSkin(Skin))
 		{
+			if(!bFoundFirst)
+			{
+				FirstSkin = Skin;
+				bFoundFirst = true;
+			}
 			SlotObject = CreateObject( "Object" );
 			SlotObject.SetInt("ItemIndex", i);
 			SlotObject.SetString("label", Localize(SectionPath, KeyName$i, KFCharacterInfoString));
@@ -384,6 +394,8 @@ function UpdateVariants(string OutfitKey, string KeyName, out array<SkinVariant>
 		}
 	}
 	MeshObject.SetObject("skinInfo", DataProvider);
+
+	return FirstSkin;
 }
 
 function SetCurrentCharacterButtons()
@@ -511,16 +523,6 @@ event bool OnAxisModified( int ControllerId, name Key, float Delta, float DeltaT
 //==============================================================
 // ActionScript Callbacks
 //==============================================================
-
-function Callback_PerkSelected(int PerkIndex)
-{
-	if(CurrentPerkIndex != PerkIndex)
-	{
-		CurrentPerkIndex = PerkIndex;
-		UpdateWeaponList();
-
-	}
-}
 
 function Callback_RotateCamera( int RotationDirection )
 {

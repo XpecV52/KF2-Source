@@ -10,10 +10,7 @@ class KFDT_Bludgeon_PulverizerBash extends KFDT_Bludgeon_Pulverizer
 
 defaultproperties
 {
-    KnockdownPower=40
-    StumblePower=66
-    LegStumblePower=66
-    MeleeHitPower=62
+    StumblePower=200
     KDamageImpulse=1600
     KDeathVel=500
 }

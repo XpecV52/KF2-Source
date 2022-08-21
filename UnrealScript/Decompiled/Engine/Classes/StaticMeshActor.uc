@@ -39,10 +39,23 @@ var private editoronly bool bProxy;
 var private editoronly bool bHiddenByProxy;
 var private editoronly bool OldCastShadow;
 var private editoronly bool OldAcceptsLights;
+var transient bool bResetCapable;
 var private editoronly Actor.ECollisionType OldCollisionType;
+var transient Matrix DefaultLocalToWorld;
 var() editoronly array<editoronly PreCombinedStaticMeshActor> PreCombinedStaticMeshActors;
 
 event PreBeginPlay();
+
+// Export UStaticMeshActor::execResetToDefaults(FFrame&, void* const)
+native function ResetToDefaults();
+
+simulated event Reset()
+{
+    if(bResetCapable)
+    {
+        ResetToDefaults();
+    }
+}
 
 defaultproperties
 {

@@ -11,8 +11,6 @@
 class KFDT_Fire_Ground_FlameThrower extends KFDT_Fire_Ground
 	abstract;
 
-`include(KFGame\KFMatchStats.uci);
-
 defaultproperties
 {
 	WeaponDef=class'KFWeapDef_FlameThrower'

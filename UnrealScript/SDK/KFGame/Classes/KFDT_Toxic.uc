@@ -45,5 +45,5 @@ defaultproperties
 	DoT_Interval=1.0
 	DoT_DamageScale=0.1
 
-	PoisonPower=1.0f
+	PoisonPower=33.f
 }

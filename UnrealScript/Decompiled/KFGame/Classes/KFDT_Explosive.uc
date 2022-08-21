@@ -85,11 +85,11 @@ defaultproperties
     bShouldSpawnBloodSplat=true
     bCanGib=true
     bCanObliterate=true
-    KnockdownPower=100
-    StumblePower=150
     GoreDamageGroup=EGoreDamageGroup.DGT_Explosive
-    ObliterationHealthThreshold=-150
-    ObliterationDamageThreshold=175
+    KnockdownPower=39
+    StumblePower=59
+    ObliterationHealthThreshold=-80
+    ObliterationDamageThreshold=160
     bExtraMomentumZ=true
     KDamageImpulse=0
     KDeathUpKick=250

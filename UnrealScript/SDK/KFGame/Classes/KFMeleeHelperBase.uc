@@ -358,21 +358,59 @@ simulated function PlayMeleeHitEffects(Actor Target, vector HitLocation, vector 
 {
 	local Pawn Victim;
 	local PlayerController PC;
+	local KFPawn KFP;
+	local FracturedStaticMeshActor FracActor;
 
-	// if we hit a pawn
-	if ( Target.IsA('Pawn') )
+	// Server-only
+	if( WorldInfo.NetMode != NM_Client )
 	{
-		Victim = Pawn(Target);
-
-		// shake victim (Server)
-		if( Victim != None && Victim.Controller != None )
+		// If we hit a pawn
+		Victim = Pawn( Target );
+		if( Victim != none )
 		{
-			PC = PlayerController(Victim.Controller);
-			if( PC != None )
+			// Shake victim (Server)
+			if( Victim != None && Victim.Controller != None )
 			{
-				PC.ClientPlayCameraShake(MeleeVictimCamShake, 1.f, true);
+				PC = PlayerController(Victim.Controller);
+				if( PC != None )
+				{
+					PC.ClientPlayCameraShake(MeleeVictimCamShake, 1.f, true);
+				}
 			}
 		}
+		else if( WorldInfo.NetMode != NM_Client )
+		{
+			// Tell remote clients to play impacts
+			KFP = KFPawn( Instigator );
+			if( KFP != none )
+			{
+				KFP.SetMeleeImpactLocation( HitLocation );
+			}
+		}
+	}
+	else if( Instigator.IsHumanControlled() && Instigator.IsLocallyControlled() ) // Local client impacts
+	{
+		// Fracture meshes if we hit them
+		FracActor = FracturedStaticMeshActor( Target );
+		if(FracActor != None)
+		{
+			class'KFMeleeHelperBase'.static.MeleeFractureMeshImpact( FracActor, HitLocation, HitDirection );
+		}
+		else if( !Target.IsA('Pawn') ) // Pawns will handle impacts in PlayHit()
+		{
+			// Play impacts for local players
+			`ImpactEffectManager.PlayImpactEffects( HitLocation, Instigator, HitDirection,,, true );		
+		}
+	}
+}
+
+/** Takes some chunks out of a fracture mesh */
+static function MeleeFractureMeshImpact( FracturedStaticMeshActor FracActor, vector HitLocation, vector HitNormal )
+{
+	if( FracActor != none )
+	{
+		FracActor.BreakOffPartsInRadius( HitLocation - (HitNormal * 15.0), 35.0, 100.0, TRUE);
+		FracActor.SetLoseChunkReplacementMaterial();
 	}
 }
 

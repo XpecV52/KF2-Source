@@ -29,6 +29,30 @@ enum ESearch_Tab
     TAB_MAX
 };
 
+struct native ExtraServerInfo
+{
+    var bool ServerHeardBackFrom;
+    var bool GameRunning;
+    var bool RequestDispatched;
+    var int StartTimer;
+    var float Ping;
+    var int Survivors;
+    var int SurvivorsAvgLevel;
+    var int ZedPlayers;
+
+    structdefaultproperties
+    {
+        ServerHeardBackFrom=false
+        GameRunning=false
+        RequestDispatched=false
+        StartTimer=0
+        Ping=0
+        Survivors=0
+        SurvivorsAvgLevel=0
+        ZedPlayers=0
+    }
+};
+
 var transient KFDataStore_OnlineGameSearch SearchDataStore;
 var private transient string ServerPassword;
 var private transient bool bJoinAsSpectator;

@@ -141,46 +141,6 @@ simulated function Projectile ProjectileFire()
 }
 
 /**
- * Initializes ammo counts, when weapon is spawned.
- * NOTE: Overridden specifically for C4. Demo gets 1 additional base ammo.
- */
-function InitializeAmmo()
-{
-	local KFPerk CurrentPerk;
-	local bool bWeaponIsOnPerk;
-
-	CurrentPerk = GetPerk();
-	bWeaponIsOnPerk = ( CurrentPerk != None && CurrentPerk.IsWeaponOnPerk(self) );
-
-	if( bWeaponIsOnPerk )
-	{
-		InitialSpareMags[0] += 1;
-	}
-
-	super.InitializeAmmo();
-
-	if( bWeaponIsOnPerk )
-	{
-		MaxSpareAmmo[0] += 1;
-		SpareAmmoCount[0] += 1;
-	}
-}
-
-/**
- * ReInitializes ammo counts on perk change.
- * NOTE: Overridden specifically for C4. Demo gets 1 additional base ammo.
- */
-function ReInitializeAmmoCounts(KFPerk CurrentPerk)
-{
-	super.ReInitializeAmmoCounts(CurrentPerk);
-
-	if( CurrentPerk != None && CurrentPerk.IsWeaponOnPerk(self) )
-	{
-		MaxSpareAmmo[0] += 1;
-	}
-}
-
-/**
  * This function checks to see if the weapon has any ammo available for a given fire mode.
  *
  * @param	FireModeNum		- The Fire Mode to Test For
@@ -204,10 +164,10 @@ simulated function Detonate()
 	// auto switch weapon when out of ammo and after detonating the last deployed charge
 	if( Role == ROLE_Authority )
 	{
-	if( DeployedCharges.Length > 0 )
-	{
-		DeployedCharges[0].Detonate();
-			RemoveDeployedCharge( 0 );
+		if( DeployedCharges.Length > 0 )
+		{
+			DeployedCharges[0].Detonate();
+				RemoveDeployedCharge( 0 );
 		}
 
 		if( !HasAnyAmmo() && NumDeployedCharges == 0 )

@@ -37,16 +37,16 @@ simulated function PlayPulverizerShoot(KFPawn P)
 {
     switch(NextPulverizerShootType)
     {
-        case 20:
+        case 22:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Atk_B_Shoot_CH' : 'Atk_B_shoot'));
             break;
-        case 19:
+        case 21:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Atk_F_Shoot_CH' : 'Atk_F_shoot'));
             break;
-        case 17:
+        case 19:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Atk_L_Shoot_CH' : 'Atk_L_shoot'));
             break;
-        case 18:
+        case 20:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Atk_R_Shoot_CH' : 'Atk_R_shoot'));
             break;
         default:
@@ -59,10 +59,10 @@ simulated function UpdateThirdPersonWeaponAction(KFGame.KFWeaponAttachment.EWeap
 {
     switch(NewWeaponState)
     {
-        case 20:
+        case 22:
+        case 21:
         case 19:
-        case 17:
-        case 18:
+        case 20:
             NextPulverizerShootType = NewWeaponState;
             break;
         default:

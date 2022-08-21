@@ -34,5 +34,5 @@ defaultproperties
 	
 	CameraLensEffectTemplate=class'KFCameraLensEmit_EMP'
 
-	EMPPower=1.0
+	EMPPower=100.0
 }

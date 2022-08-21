@@ -10,60 +10,6 @@
 class KFDT_Fire_CaulkBurn extends KFDT_Fire
 	abstract;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 13;
-
 static function int GetKillerDialogID()
 {
 	return 86;//KILL_Fire
@@ -82,6 +28,8 @@ static function int GetDamageeDialogID()
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_CaulkBurn'
+   StumblePower=20.000000
+   BurnPower=20.000000
    Name="Default__KFDT_Fire_CaulkBurn"
    ObjectArchetype=KFDT_Fire'KFGame.Default__KFDT_Fire'
 }

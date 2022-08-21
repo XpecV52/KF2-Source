@@ -11,10 +11,9 @@ class KFDT_Ballistic_Colt1911 extends KFDT_Ballistic_Handgun
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_Colt1911'
-    KnockdownPower=40
-    StumblePower=40
-    LegStumblePower=40
-    GunHitPower=15
+    KnockdownPower=15
+    StumblePower=20
+    GunHitPower=100
     ModifierPerkList=/* Array type was not detected. */
     KDamageImpulse=1500
     KDeathVel=200

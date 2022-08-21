@@ -54,5 +54,5 @@ defaultproperties
     bDisablesWeaponFiring=true
     bDisableMovement=true
     bDisableSteering=false
-    Handle=SM_Hans_ThrowGrenade
+    Handle=KFSM_Hans_ThrowGrenade
 }

@@ -14,9 +14,9 @@ class KFDT_Ballistic_Handgun extends KFDT_Ballistic
 
 defaultproperties
 {
-   StumblePower=10
-   LegStumblePower=15
-   GunHitPower=25
+   StumblePower=4.000000
+   LegStumblePower=6.000000
+   GunHitPower=10.000000
    Name="Default__KFDT_Ballistic_Handgun"
    ObjectArchetype=KFDT_Ballistic'KFGame.Default__KFDT_Ballistic'
 }

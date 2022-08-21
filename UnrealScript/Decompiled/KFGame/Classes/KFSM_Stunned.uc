@@ -12,6 +12,9 @@ var array<name> WakeupAnims;
 var float StunDuration;
 var Vector2D PlayerStunDurationRange;
 var Vector2D StunDurationRange;
+var name DazedFXSocketName;
+var Rotator DazedFXRelativeRotation;
+var export editinline transient ParticleSystemComponent DazedPSC;
 
 function SpecialMoveStarted(bool bForced, name PrevMove)
 {
@@ -37,6 +40,10 @@ function DoStun()
     KFPOwner.Velocity.Y = 0;
     KFPOwner.Acceleration = vect(0, 0, 0);
     PlaySpecialMoveAnim(StunnedAnim, 0, 0.4, 0.3, 1, true);
+    if(KFPOwner.WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        DazedPSC = AttachDazedEffect(KFPawn_Monster(KFPOwner));
+    }
 }
 
 simulated event Tick(float DeltaTime)
@@ -66,6 +73,10 @@ function PlayWakeupAnimation()
 
     WakeupIndex = byte(Rand(WakeupAnims.Length));
     PlaySpecialMoveAnim(WakeupAnims[WakeupIndex], 0, 0.2, 0.3, 1, false);
+    if(DazedPSC != none)
+    {
+        DazedPSC.DeactivateSystem();
+    }
 }
 
 function SpecialMoveFlagsUpdated()
@@ -76,10 +87,32 @@ function SpecialMoveFlagsUpdated()
 function SpecialMoveEnded(name PrevMove, name NextMove)
 {
     super.SpecialMoveEnded(PrevMove, NextMove);
-    if(KFPOwner.MyKFAIC != none)
+    if((DazedPSC != none) && DazedPSC.bIsActive)
     {
-        KFPOwner.MyKFAIC.bPreparingMove = false;
+        DazedPSC.DeactivateSystem();
     }
+}
+
+static function ParticleSystemComponent AttachDazedEffect(KFPawn_Monster KFPM)
+{
+    local editinline ParticleSystemComponent PSC;
+    local KFCharacterInfo_Monster MonsterArch;
+
+    if(KFPM != none)
+    {
+        MonsterArch = KFPM.GetCharacterMonsterInfo();
+        if(((MonsterArch != none) && MonsterArch.DazedEffectTemplate != none) && KFPM.WorldInfo.MyEmitterPool != none)
+        {
+            PSC = KFPM.WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(MonsterArch.DazedEffectTemplate, KFPM.Mesh, default.DazedFXSocketName, true);
+            if(PSC != none)
+            {
+                PSC.SetAbsolute(false, true, false);
+                PSC.SetRotation(rotator(vect(0, 0, 1)) + default.DazedFXRelativeRotation);
+                return PSC;
+            }
+        }
+    }
+    return none;
 }
 
 defaultproperties
@@ -90,6 +123,8 @@ defaultproperties
     WakeupAnims(2)=Stun_Wakeup_V3
     PlayerStunDurationRange=(X=1,Y=1.5)
     StunDurationRange=(X=2,Y=4)
+    DazedFXSocketName=FX_Dazed
+    DazedFXRelativeRotation=(Pitch=16384,Yaw=0,Roll=0)
     bAllowHitReactions=true
     bCanOnlyWanderAtEnd=true
     bDisablesWeaponFiring=true

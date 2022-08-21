@@ -184,6 +184,7 @@ defaultproperties
     MinAmmoConsumed=4
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=8
+    MagazineCapacity=100
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -194,7 +195,6 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=1
     GroupPriority=75
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Flamethrower'
-    MagazineCapacity=100
     MaxSpareAmmo=400
     InitialSpareMags=1
     AmmoPickupScale=0.4

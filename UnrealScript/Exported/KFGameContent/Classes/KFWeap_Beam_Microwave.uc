@@ -266,7 +266,8 @@ defaultproperties
    MinAmmoConsumed=3
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Flamethrower'
    FireModeIconPaths(1)=()
-   InventorySize=9
+   InventorySize=10
+   MagazineCapacity(0)=100
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -278,7 +279,6 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=1.000000
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Microwave_Gun_TEX.UI_WeaponSelect_MicrowaveGun'
-   MagazineCapacity(0)=100
    MaxSpareAmmo(0)=400
    AmmoPickupScale(0)=0.400000
    bLoopingFireAnim(0)=True

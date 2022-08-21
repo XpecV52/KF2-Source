@@ -40,7 +40,11 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
 		SharedContentButton.SetVisible((GetPC().WorldInfo.NetMode != NM_Standalone));
 	}
 	UpdateSharedContent();
-	ShowWelcomeScreen();
+	// BWJ - 5-5-16 - Hiding this for E3 build. Not guaranteed internet connection to download the images
+	if( !class'WorldInfo'.static.IsE3Build() )
+	{
+		ShowWelcomeScreen();
+	}
 }
 
 function LocalizeContainer()

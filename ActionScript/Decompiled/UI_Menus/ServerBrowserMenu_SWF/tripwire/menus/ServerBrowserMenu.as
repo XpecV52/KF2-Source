@@ -1,5 +1,8 @@
 package tripwire.menus
 {
+    import com.greensock.TweenMax;
+    import com.greensock.easing.Cubic;
+    import flash.display.MovieClip;
     import flash.events.Event;
     import flash.events.KeyboardEvent;
     import flash.external.ExternalInterface;
@@ -54,6 +57,8 @@ package tripwire.menus
         
         private var _previousMenuState:int = -1;
         
+        public var coverBG:MovieClip;
+        
         private var currentOpenContainer:TripContainer;
         
         public function ServerBrowserMenu()
@@ -68,7 +73,7 @@ package tripwire.menus
             defaultNumPrompts = 2;
         }
         
-        override public function openContainer() : void
+        override public function openContainer(param1:Boolean = true) : void
         {
             if(!bOpen)
             {
@@ -167,15 +172,30 @@ package tripwire.menus
             switch(this._menuState)
             {
                 case MENU_STATE_TAB:
+                    TweenMax.to(this.coverBG,8,{
+                        "autoAlpha":0,
+                        "useFrames":true,
+                        "ease":Cubic.easeOut
+                    });
                     this.serverListContainer.deselectContainer();
                     this.serverListContainer.unselectItem();
                     this.enableTabButtonBar();
                     FocusManager.setFocus(this.tabButtonBar);
                     break;
                 case MENU_STATE_LIST:
+                    TweenMax.to(this.coverBG,8,{
+                        "autoAlpha":0,
+                        "useFrames":true,
+                        "ease":Cubic.easeOut
+                    });
                     this.switchToMenuStateList();
                     break;
                 case MENU_STATE_FILTERS:
+                    TweenMax.to(this.coverBG,8,{
+                        "autoAlpha":1,
+                        "useFrames":true,
+                        "ease":Cubic.easeOut
+                    });
                     this.filtersContainer.openContainer();
                     this.serverListContainer.pushToBackground();
                     this.pushbackBrowser();
@@ -185,6 +205,11 @@ package tripwire.menus
                     }
                     break;
                 case MENU_STATE_DETAILS:
+                    TweenMax.to(this.coverBG,8,{
+                        "autoAlpha":1,
+                        "useFrames":true,
+                        "ease":Cubic.easeOut
+                    });
                     if(this.serverDetailsContainer != null)
                     {
                         this.serverDetailsContainer.openContainer();

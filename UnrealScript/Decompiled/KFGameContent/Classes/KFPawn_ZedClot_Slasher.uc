@@ -24,15 +24,15 @@ defaultproperties
     XPValues[1]=11
     XPValues[2]=11
     XPValues[3]=11
+    DamageTypeModifiers=/* Array type was not detected. */
     PawnAnimInfo=KFPawnAnimInfo'ZED_Clot_Anim.SlasherClot_AnimGroup'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedClot_Slasher.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
-    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedClot_Slasher.Afflictions'
-    InstantIncaps=/* Array type was not detected. */
-    StackingIncaps=/* Array type was not detected. */
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedClot_Slasher.Afflictions'
+    IncapSettings=/* Array type was not detected. */
     KnockdownImpulseScale=1
     SprintSpeed=500
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
@@ -46,7 +46,7 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedClot_Slasher.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedClot_Slasher.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedClot_Slasher.DialogAkSoundComponent'
-    DamageRecoveryTimeHeavy=0.3
+    DamageRecoveryTimeHeavy=0.65
     GroundSpeed=300
     ControllerClass=Class'KFAIController_ZedClot_Slasher'
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent

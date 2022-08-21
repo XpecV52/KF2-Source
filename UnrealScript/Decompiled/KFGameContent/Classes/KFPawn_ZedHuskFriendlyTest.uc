@@ -34,7 +34,7 @@ defaultproperties
     object end
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedHuskFriendlyTest.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
-    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedHuskFriendlyTest.Afflictions'
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedHuskFriendlyTest.Afflictions'
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

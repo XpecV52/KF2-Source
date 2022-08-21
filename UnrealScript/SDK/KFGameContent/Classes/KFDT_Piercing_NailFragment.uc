@@ -11,7 +11,6 @@
 class KFDT_Piercing_NailFragment extends KFDT_Piercing
 	abstract
 	hidedropdown;
-`include(KFGame\KFMatchStats.uci);
 
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
@@ -52,8 +51,8 @@ defaultproperties
 
 	StumblePower=0
 	LegStumblePower=0
-	GunHitPower=25
-	MeleeHitPower=20
+	GunHitPower=10
+	MeleeHitPower=8
 
 	WeaponDef=class'KFWeapDef_Grenade_Gunslinger'
 

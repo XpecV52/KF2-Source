@@ -32,7 +32,7 @@ simulated function SpecialRandSpin(float spinRate)
 
 defaultproperties
 {
-   FuseTime=3.500000
+   FuseTime=3.000000
    LandedTranslationOffset=(X=-5.000000,Y=0.000000,Z=0.000000)
    ExplosionActorClass=Class'KFGame.KFExplosionActor'
    Begin Object Class=KFGameExplosion Name=ExploTemplate0

@@ -18,6 +18,9 @@ var const int MaxKnockdownPawns;
 
 var transient vector KnockdownStartLoc;
 
+/** Dazed particle effect */
+var transient ParticleSystemComponent DazedPSC;
+
 protected function bool InternalCanDoSpecialMove()
 {
 	local Pawn P;
@@ -56,13 +59,25 @@ function SpecialMoveStarted(bool bForced, Name PrevMove )
 {
 	// KnockdownImpulse is replicated before this move (if this has problems go back to repnotify KnockdownImpulse)
 	ApplyKnockdownImpulse(KFPOwner.KnockdownImpulse);
+
+	// Spawn the dazed particle effect
+	if( KFPOwner.WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		DazedPSC = class'KFSM_Stunned'.static.AttachDazedEffect( KFPawn_Monster(KFPOwner) );
+	}
 }
 
 /** Notification called when Special Move starts */
 function SpecialMoveEnded(Name PrevMove, Name NextMove)
 {
+	// Make sure dazed particle effect is always deactivated
+	if( DazedPSC != none && DazedPSC.bIsActive )
+	{
+		DazedPSC.DeactivateSystem();
+	}
+
 	// failsafe in case knockdown needs to be cleaned up
-	if ( PawnOwner.Mesh.PhysicsWeight >= 1.f && NextMove != 'RecoverFromRagdoll' )
+	if ( PawnOwner.Mesh.PhysicsWeight >= 1.f && NextMove != 'KFSM_RecoverFromRagdoll' )
 	{
 		PawnOwner.ClearTimer(nameof(EndKnockdown), self);
 		PawnOwner.ClearTimer(nameof(KnockdownTimer), self);
@@ -198,6 +213,12 @@ protected function EndKnockdown()
 	PawnOwner.ClearTimer(nameof(EndKnockdown), self);
 	PawnOwner.ClearTimer(nameof(KnockdownTimer), self);
 
+	// Deactivate dazed particle effect
+	if( DazedPSC != none )
+	{
+		DazedPSC.DeactivateSystem();
+	}
+
 	// if we've fallen a significant distance then assume we're dead
 	if ( Abs(KnockdownStartLoc.Z - PawnOwner.Location.Z) > KnockdownMaxZ )
 	{
@@ -311,8 +332,9 @@ defaultproperties
 {
    KnockdownMaxZ=750.000000
    MaxKnockdownPawns=5
+   bCanOnlyWanderAtEnd=True
    bDisablesWeaponFiring=True
-   Handle="Knockdown"
+   Handle="KFSM_Knockdown"
    Name="Default__KFSM_RagdollKnockdown"
    ObjectArchetype=KFSpecialMove'KFGame.Default__KFSpecialMove'
 }

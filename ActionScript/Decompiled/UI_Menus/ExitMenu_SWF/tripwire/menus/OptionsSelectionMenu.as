@@ -6,8 +6,9 @@ package tripwire.menus
     import scaleform.clik.data.DataProvider;
     import scaleform.clik.events.ButtonBarEvent;
     import scaleform.clik.events.ButtonEvent;
+    import scaleform.clik.events.IndexEvent;
+    import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
-    import scaleform.gfx.FocusManager;
     import tripwire.containers.SectionHeaderContainer;
     import tripwire.containers.TripContainer;
     
@@ -32,6 +33,36 @@ package tripwire.menus
             sectionHeader = this.header;
         }
         
+        override protected function addedToStage(param1:Event) : void
+        {
+            super.addedToStage(param1);
+            this.buttonBar.addEventListener(IndexEvent.INDEX_CHANGE,this.updateFocus,false,0,true);
+        }
+        
+        public function updateFocus(param1:IndexEvent) : void
+        {
+            var _loc2_:int = param1.index;
+            if(this.buttonBar.dataProvider[_loc2_].hasOwnProperty("enabled") && !this.buttonBar.getButtonAt(_loc2_).enabled)
+            {
+                this.buttonBar.selectedIndex = param1.lastIndex;
+                this.buttonBar.getButtonAt(_loc2_).enabled = false;
+            }
+        }
+        
+        public function makeTestData() : void
+        {
+            var _loc1_:Array = new Array();
+            _loc1_.push({
+                "label":"test1",
+                "enabled":false
+            });
+            _loc1_.push({
+                "label":"test2",
+                "enabled":true
+            });
+            this.buttonNames = _loc1_;
+        }
+        
         public function set buttonNames(param1:Array) : void
         {
             var _loc3_:int = 0;
@@ -54,7 +85,8 @@ package tripwire.menus
                 {
                     if(this.buttonBar.getButtonAt(_loc3_).enabled)
                     {
-                        FocusManager.setFocus(this.buttonBar.getButtonAt(_loc3_));
+                        FocusHandler.getInstance().setFocus(this.buttonBar.getButtonAt(_loc3_));
+                        break;
                     }
                     _loc3_++;
                 }
@@ -84,9 +116,9 @@ package tripwire.menus
             this.buttonBar.selectedIndex = -1;
         }
         
-        override public function openContainer() : void
+        override public function openContainer(param1:Boolean = true) : void
         {
-            super.openContainer();
+            super.openContainer(param1);
             if(bManagerUsingGamepad && this.buttonBar.selectedIndex == -1)
             {
                 this.buttonBar.selectedIndex = 0;
@@ -99,11 +131,23 @@ package tripwire.menus
         
         override protected function onInputChange(param1:Event) : *
         {
+            var _loc2_:int = 0;
             super.onInputChange(param1);
             if(bManagerUsingGamepad)
             {
-                this.buttonBar.selectedIndex = 1;
-                FocusManager.setFocus(this.buttonBar);
+                if(bManagerUsingGamepad)
+                {
+                    _loc2_ = 0;
+                    while(_loc2_ < this.buttonBar.dataProvider.length)
+                    {
+                        if(this.buttonBar.getButtonAt(_loc2_).enabled)
+                        {
+                            FocusHandler.getInstance().setFocus(this.buttonBar.getButtonAt(_loc2_));
+                            break;
+                        }
+                        _loc2_++;
+                    }
+                }
             }
             else
             {

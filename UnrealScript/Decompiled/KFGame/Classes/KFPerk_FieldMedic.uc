@@ -40,6 +40,8 @@ var() const PerkSkill MovementSpeed;
 /** 3% more armor each level (max 75%) */
 var() const PerkSkill Armor;
 var array<name> VaccinationResistableDamageTypeNames;
+var private const int VaccBloatBileResistance;
+var private const ParticleSystem AAParticleSystem;
 
 function SetPlayerDefaults(Pawn PlayerPawn)
 {
@@ -99,7 +101,7 @@ function ModifyDamageTaken(out int InDamage, optional class<DamageType> DamageTy
     InDamage = Round(TempDamage);
 }
 
-function ModifySpeed(out float Speed)
+simulated function ModifySpeed(out float Speed)
 {
     Speed *= (GetPassiveValue(MovementSpeed, GetLevel()));
 }
@@ -150,7 +152,7 @@ simulated function float GetArmorDiscountMod()
 {
     if(IsCombatantActive())
     {
-        return 1 - FMin(PerkSkills[2].StartingValue, PerkSkills[2].MaxValue);
+        return 1 - (GetSkillValue(PerkSkills[2]));
     }
     return 1;
 }
@@ -196,6 +198,11 @@ function bool RepairArmor(Pawn HealTarget)
 simulated function bool CanRepairArmor()
 {
     return IsVaccinationActive() || IsArmamentActive();
+}
+
+static function float GetBloatBileResistance()
+{
+    return float(default.VaccBloatBileResistance);
 }
 
 static function ModifyBleedDmg(out int BleedDamage)
@@ -277,6 +284,16 @@ private final function bool IsSedadtiveActive()
 private final function bool IsAirborneAgentActive()
 {
     return PerkSkills[8].bActive && WorldInfo.TimeDilation < 1;
+}
+
+simulated function bool ShouldPlayAAEffect()
+{
+    return PerkSkills[8].bActive;
+}
+
+static simulated function ParticleSystem GetAAEffect()
+{
+    return default.AAParticleSystem;
 }
 
 function bool IsAcidicCompoundActive()
@@ -381,18 +398,19 @@ defaultproperties
     Armor=(Name="Armor",Increment=0.03,Rank=0,StartingValue=1,MaxValue=1.75,ModifierValue=0,IconPath="",bActive=false)
     VaccinationResistableDamageTypeNames(0)=KFDT_BloatPuke
     VaccinationResistableDamageTypeNames(1)=KFDT_Toxic
+    AAParticleSystem=ParticleSystem'FX_Impacts_EMIT.FX_Medic_Airborne_Agent_01'
     ProgressStatID=40
     PerkBuildStatID=41
-    SecondaryXPModifier[0]=2
-    SecondaryXPModifier[1]=2
-    SecondaryXPModifier[2]=3
+    SecondaryXPModifier[0]=4
+    SecondaryXPModifier[1]=4
+    SecondaryXPModifier[2]=4
     SecondaryXPModifier[3]=4
     PerkName="Field Medic"
-    Passives(0)=(Title="Syringe Recharge Rate",Description="%x% increase in weapon damage",IconPath="")
-    Passives(1)=(Title="Syringe Potency",Description="Cloaked detection increased by %x%",IconPath="")
-    Passives(2)=(Title="Bloat Bile Resistance",Description="Health bar detection increased by %x%",IconPath="")
-    Passives(3)=(Title="Movement Speed",Description="Zed time lasts %x%",IconPath="")
-    Passives(4)=(Title="Armor Bonus",Description="Health increased by %x%",IconPath="")
+    Passives(0)=(Title="Syringe Recharge Rate",Description="%x% decrease im syringe recharge rate",IconPath="")
+    Passives(1)=(Title="Syringe Potency",Description="Health restored by syringe increased by %x%",IconPath="")
+    Passives(2)=(Title="Bloat Bile Resistance",Description="Damage from Bloat Bile reduced by %x%",IconPath="")
+    Passives(3)=(Title="Movement Speed",Description="%x% faster movement",IconPath="")
+    Passives(4)=(Title="Armor Bonus",Description="Armor increased by %x%",IconPath="")
     SkillCatagories[0]="Conditioning"
     SkillCatagories[1]="Medical Technician"
     SkillCatagories[2]="Weapon Handling"

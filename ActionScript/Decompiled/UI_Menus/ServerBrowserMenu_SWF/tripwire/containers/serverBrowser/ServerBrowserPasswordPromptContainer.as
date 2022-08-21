@@ -36,7 +36,7 @@ package tripwire.containers.serverBrowser
             }
         }
         
-        override public function openContainer() : void
+        override public function openContainer(param1:Boolean = true) : void
         {
             super.openContainer();
             visible = true;

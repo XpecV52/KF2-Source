@@ -8,6 +8,17 @@
 //=============================================================================
 class KFSM_PlayerAlpha_Grab extends KFSM_GrappleCombined;
 
+/** StartInteraction */
+function StartInteraction() 
+{
+    super.StartInteraction();
+
+    if( Follower != none )
+    {
+        ++KFPlayerReplicationInfoVersus(KFPOwner.PlayerReplicationInfo).ZedGrabs;
+    }
+}
+
 /** Script Tick function. */
 function Tick( float DeltaTime )
 {
@@ -37,6 +48,7 @@ function ProcessViewRotation( float DeltaTime, out rotator out_ViewRotation, out
 defaultproperties
 {
 	//Cooldown=0.f
+    bLockPawnRotation=true
     bPawnRotationLocked=true
 
     // ---------------------------------------------

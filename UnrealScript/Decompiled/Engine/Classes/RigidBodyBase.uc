@@ -11,8 +11,3 @@ class RigidBodyBase extends Actor
     notplaceable
     hidecategories(Navigation)
     classgroup(Physics);
-
-defaultproperties
-{
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
-}

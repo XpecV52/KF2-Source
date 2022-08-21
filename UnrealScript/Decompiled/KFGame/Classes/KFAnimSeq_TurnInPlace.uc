@@ -26,6 +26,7 @@ var() array<TIP_Transition> TIP_Transitions;
 var() float TransitionBlendTime;
 var transient int ActiveChildIndex;
 var transient float BlendTimeToGo;
+var const transient KFPawn PawnOwner;
 
 defaultproperties
 {

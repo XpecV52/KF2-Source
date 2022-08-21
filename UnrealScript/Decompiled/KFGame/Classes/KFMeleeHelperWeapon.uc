@@ -121,13 +121,27 @@ simulated function bool MeleeAttackImpact()
 
 simulated function ImpactInfo CalcWeaponMeleeAttack(Vector StartTrace, Vector EndTrace, optional out array<ImpactInfo> ImpactList, optional Vector Extent)
 {
+    local KFPawn KFPOwner;
+    local KFSM_InteractionPawnFollower FollowerSM;
     local Pawn BestVictim;
     local ImpactInfo CurrentImpact;
     local array<Pawn> VictimList;
     local Vector RayDir;
 
     RayDir = GetAdjustedRayDir(EndTrace - StartTrace);
-    BestVictim = FindVictimByFOV(StartTrace, EndTrace);
+    KFPOwner = KFPawn(Outer.Instigator);
+    if(KFPOwner.IsDoingSpecialMove())
+    {
+        FollowerSM = KFSM_InteractionPawnFollower(KFPOwner.SpecialMoves[KFPOwner.SpecialMove]);
+        if(((FollowerSM != none) && FollowerSM.Leader != none) && (RateMeleeVictim(FollowerSM.Leader, StartTrace, EndTrace, MaxHitRange, DefaultFOVCosine)) > -1)
+        {
+            BestVictim = FollowerSM.Leader;
+        }
+    }
+    if(BestVictim == none)
+    {
+        BestVictim = FindVictimByFOV(StartTrace, EndTrace);
+    }
     if(BestVictim != none)
     {
         VictimList[0] = BestVictim;
@@ -524,7 +538,7 @@ simulated function ProcessMeleeHit(byte FiringMode, ImpactInfo Impact)
                 FracActor = FracturedStaticMeshActor(Impact.HitActor);
                 if(FracActor != none)
                 {
-                    FracActor.BreakOffPartsInRadius(Impact.HitLocation - (Impact.HitNormal * 15), 35, 100, true);
+                    Class'KFMeleeHelperBase'.static.MeleeFractureMeshImpact(FracActor, Impact.HitLocation, Impact.HitNormal);
                 }
             }
         }
@@ -578,6 +592,8 @@ simulated function float GetDamageScaleByAngle(Vector HitLoc)
 
 simulated function PlayMeleeHitEffects(Actor Target, Vector HitLocation, Vector HitDirection, optional bool bShakeInstigatorCamera)
 {
+    local KFPawn KFP;
+
     bShakeInstigatorCamera = true;
     if(Outer.WorldInfo.NetMode != NM_DedicatedServer)
     {
@@ -592,32 +608,43 @@ simulated function PlayMeleeHitEffects(Actor Target, Vector HitLocation, Vector 
         if(!Target.bCanBeDamaged && Target.IsA('Pawn'))
         {
             KFImpactEffectManager(Outer.WorldInfo.MyImpactEffectManager).PlayImpactEffects(HitLocation, Outer.Instigator, HitDirection, WorldImpactEffects);
+        }        
+    }
+    else
+    {
+        if((Outer.WorldInfo.NetMode != NM_Client) && !Target.IsA('Pawn'))
+        {
+            KFP = KFPawn(Outer.Instigator);
+            if(KFP != none)
+            {
+                KFP.SetMeleeImpactLocation(HitLocation);
+            }
         }
     }
 }
 
 defaultproperties
 {
-    ChainSequence_F(0)=187
-    ChainSequence_F(1)=22
+    ChainSequence_F(0)=170
+    ChainSequence_F(1)=23
     ChainSequence_F(2)=0
     ChainSequence_F(3)=0
     ChainSequence_F(4)=0
-    ChainSequence_B(0)=183
-    ChainSequence_B(1)=22
+    ChainSequence_B(0)=166
+    ChainSequence_B(1)=23
     ChainSequence_B(2)=0
     ChainSequence_B(3)=0
     ChainSequence_B(4)=0
     ChainSequence_B(5)=0
     ChainSequence_B(6)=0
-    ChainSequence_L(0)=190
-    ChainSequence_L(1)=22
+    ChainSequence_L(0)=173
+    ChainSequence_L(1)=23
     ChainSequence_L(2)=0
     ChainSequence_L(3)=0
     ChainSequence_L(4)=0
     ChainSequence_L(5)=0
-    ChainSequence_R(0)=187
-    ChainSequence_R(1)=22
+    ChainSequence_R(0)=170
+    ChainSequence_R(1)=23
     ChainSequence_R(2)=0
     ChainSequence_R(3)=0
     ChainSequence_R(4)=0

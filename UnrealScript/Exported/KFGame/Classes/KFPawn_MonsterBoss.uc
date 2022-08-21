@@ -498,6 +498,8 @@ class KFPawn_MonsterBoss extends KFPawn_Monster
 
 #linenumber 14
 
+var KFPlayerController KFPC; //used to notify UI
+
 var localized string BossName;
 var localized array<string> BossCaptionStrings;
 
@@ -553,6 +555,14 @@ simulated event PreBeginPlay()
 {
 	Super.PreBeginPlay();
 	OnBattlePhaseChanged();
+	KFPC = KFPlayerController(GetALocalPlayerController());
+	if( KFPC != none )
+	{
+		if(KFPC.MyGFxHUD != none && KFPC.MyGFxHUD.BossHealthBar != none)
+		{
+			KFPC.MyGFxHUD.BossHealthBar.SetBossPawn(self);
+		}
+	}
 }
 
 // Mostly indistinguishable from PreBeginPlay().  Following Pawn conventions only one is 'simulated'
@@ -597,9 +607,12 @@ and also on net client when pawn gets bTearOff set to true (and bPlayedDeath is 
 simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 {
 	local KFGameReplicationInfo KFGRI;
-	local KFPlayerController KFPC;
 
     super.PlayDying( DamageType, HitLoc );
+
+	//@HSL_BEGIN - JRO - 5/17/2016 - PS4 Activity Feeds
+	class'GameEngine'.static.GetOnlineSubsystem().PlayerInterfaceEx.PostActivityFeedBossKill(BossName, class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName(WorldInfo.GetMapName(true)).DisplayName);
+	//@HSL_END
 
 	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
 	if( KFGRI != none && !KFGRI.IsFinalWave() )
@@ -607,7 +620,7 @@ simulated function PlayDying(class<DamageType> DamageType, vector HitLoc)
 		return;
 	}
 
-	foreach LocalPlayerControllers(class'KFPlayerController', KFPC)
+	if(KFPC != none)
 	{
 		KFPC.SetBossCamera( self );
 	}
@@ -621,11 +634,10 @@ simulated function TerminateEffectsOnDeath()
 	OnBattlePhaseChanged();
 }
 
-/** Set gameplay related MIC params on the active body MIC. Overloaded to call OnBattlePhaseChanged. */
-simulated function SetGameplayMICParams()
+/** Reapply active gameplay related MIC params (e.g. when switching to the gore mesh) */
+simulated function UpdateGameplayMICParams()
 {
-	super.SetGameplayMICParams();
-
+	super.UpdateGameplayMICParams();
 	OnBattlePhaseChanged();
 }
 
@@ -638,7 +650,22 @@ simulated function int GetCurrentBattlePhase()
 /** Called when current battle phase changes */
 /* Network: ALL
  */
-simulated function OnBattlePhaseChanged();
+simulated function OnBattlePhaseChanged()
+{
+	UpdateBattlePhaseOnLocalPlayerUI();
+}
+
+simulated function UpdateBattlePhaseOnLocalPlayerUI()
+{
+	if(!KFPC.IsLocalController())
+    {
+        return;
+    }
+    if(KFPC != none && KFPC.MyGFxHUD != none && KFPC.MyGFxHUD.bossHealthBar != none)
+    {
+        KFPC.MyGFxHUD.bossHealthBar.UpdateBossBattlePhase(CurrentBattlePhase);   
+    }
+}
 
 /************************************
  * @name	Ephemeral Stats Tracking
@@ -725,13 +752,13 @@ defaultproperties
    End Object
    ThirdPersonHeadMeshComponent=ThirdPersonHead0
    bWeakZedGrab=False
-   Begin Object Class=KFPawnAfflictions Name=Afflictions_0 Archetype=KFPawnAfflictions'KFGame.Default__KFPawn_Monster:Afflictions_0'
+   Begin Object Class=KFAfflictionManager Name=Afflictions_0 Archetype=KFAfflictionManager'KFGame.Default__KFPawn_Monster:Afflictions_0'
       FireFullyCharredDuration=2.500000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
-      ObjectArchetype=KFPawnAfflictions'KFGame.Default__KFPawn_Monster:Afflictions_0'
+      ObjectArchetype=KFAfflictionManager'KFGame.Default__KFPawn_Monster:Afflictions_0'
    End Object
-   AfflictionHandler=KFPawnAfflictions'KFGame.Default__KFPawn_MonsterBoss:Afflictions_0'
+   AfflictionHandler=KFAfflictionManager'KFGame.Default__KFPawn_MonsterBoss:Afflictions_0'
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True
       bOverrideAttachmentOwnerVisibility=True
@@ -748,18 +775,18 @@ defaultproperties
       SpecialMoveClasses(0)=None
       SpecialMoveClasses(1)=Class'KFGame.KFSM_MeleeAttack'
       SpecialMoveClasses(2)=Class'KFGame.KFSM_DoorMeleeAttack'
-      SpecialMoveClasses(3)=None
-      SpecialMoveClasses(4)=Class'KFGame.KFSM_GrappleAttack'
-      SpecialMoveClasses(5)=Class'KFGame.KFSM_Stumble'
-      SpecialMoveClasses(6)=Class'KFGame.KFSM_RecoverFromRagdoll'
-      SpecialMoveClasses(7)=Class'KFGame.KFSM_RagdollKnockdown'
-      SpecialMoveClasses(8)=Class'KFGame.KFSM_DeathAnim'
-      SpecialMoveClasses(9)=Class'KFGame.KFSM_Stunned'
-      SpecialMoveClasses(10)=Class'KFGame.KFSM_Frozen'
+      SpecialMoveClasses(3)=Class'KFGame.KFSM_GrappleCombined'
+      SpecialMoveClasses(4)=Class'KFGame.KFSM_Stumble'
+      SpecialMoveClasses(5)=Class'KFGame.KFSM_RecoverFromRagdoll'
+      SpecialMoveClasses(6)=Class'KFGame.KFSM_RagdollKnockdown'
+      SpecialMoveClasses(7)=Class'KFGame.KFSM_DeathAnim'
+      SpecialMoveClasses(8)=Class'KFGame.KFSM_Stunned'
+      SpecialMoveClasses(9)=Class'KFGame.KFSM_Frozen'
+      SpecialMoveClasses(10)=None
       SpecialMoveClasses(11)=None
-      SpecialMoveClasses(12)=None
-      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_Taunt'
-      SpecialMoveClasses(14)=Class'KFGame.KFSM_Zed_WalkingTaunt'
+      SpecialMoveClasses(12)=Class'KFGame.KFSM_Zed_Taunt'
+      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_WalkingTaunt'
+      SpecialMoveClasses(14)=None
       SpecialMoveClasses(15)=None
       SpecialMoveClasses(16)=None
       SpecialMoveClasses(17)=None
@@ -772,11 +799,10 @@ defaultproperties
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=None
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_HansGrappleVictim'
-      SpecialMoveClasses(30)=None
-      SpecialMoveClasses(31)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(29)=None
+      SpecialMoveClasses(30)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
@@ -838,9 +864,8 @@ defaultproperties
       RBCollideWithChannels=(Default=True,Pawn=True,Vehicle=True,BlockingVolume=True)
       Translation=(X=0.000000,Y=0.000000,Z=-86.000000)
       ScriptRigidBodyCollisionThreshold=200.000000
-      PerObjectShadowCullDistance=4000.000000
+      PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
-      bAllowPerObjectShadowBatching=True
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:KFPawnSkeletalMeshComponent'
    End Object

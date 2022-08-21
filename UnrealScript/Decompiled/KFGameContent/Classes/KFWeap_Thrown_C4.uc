@@ -120,34 +120,6 @@ simulated function Projectile ProjectileFire()
     return P;
 }
 
-function InitializeAmmo()
-{
-    local KFPerk CurrentPerk;
-    local bool bWeaponIsOnPerk;
-
-    CurrentPerk = GetPerk();
-    bWeaponIsOnPerk = (CurrentPerk != none) && CurrentPerk.IsWeaponOnPerk(self);
-    if(bWeaponIsOnPerk)
-    {
-        InitialSpareMags[0] += 1;
-    }
-    super(KFWeapon).InitializeAmmo();
-    if(bWeaponIsOnPerk)
-    {
-        MaxSpareAmmo[0] += 1;
-        SpareAmmoCount[0] += 1;
-    }
-}
-
-function ReInitializeAmmoCounts(KFPerk CurrentPerk)
-{
-    super(KFWeapon).ReInitializeAmmoCounts(CurrentPerk);
-    if((CurrentPerk != none) && CurrentPerk.IsWeaponOnPerk(self))
-    {
-        MaxSpareAmmo[0] += 1;
-    }
-}
-
 simulated function bool HasAmmo(byte FireModeNum, optional int Amount)
 {
     if(FireModeNum == 5)
@@ -318,9 +290,9 @@ defaultproperties
     DryFireAkEvent=AkEvent'WW_WEP_EXP_C4.Play_WEP_EXP_C4_DryFire'
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=3
+    MagazineCapacity=1
     GroupPriority=50
     WeaponSelectTexture=Texture2D'WEP_UI_C4_TEX.UI_WeaponSelect_C4'
-    MagazineCapacity=1
     MaxSpareAmmo=1
     InitialSpareMags=1
     FireAnim=C4_Throw

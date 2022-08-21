@@ -14,7 +14,8 @@ defaultproperties
 {
    MaxChainAtkCount=4
    ParryStrength=1
-   ParryDamageMitigationPercent=0.300000
+   BlockDamageMitigation=0.800000
+   ParryDamageMitigationPercent=0.800000
    BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
    ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Katana'
    bIsBackupWeapon=True
@@ -62,6 +63,9 @@ defaultproperties
    InstantHitDamage(3)=()
    InstantHitDamage(4)=()
    InstantHitDamage(5)=64.000000
+   InstantHitMomentum(3)=1000.000000
+   InstantHitMomentum(4)=()
+   InstantHitMomentum(5)=()
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Slashing_Knife'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=()

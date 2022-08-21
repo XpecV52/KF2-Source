@@ -52,8 +52,17 @@ static function bool GetWeaponSkinAvailable(int Id)
     return GetIDAvailable(Id);
 }
 
+static event bool GetAvailableCharacterArchetype(KFCharacterInfo_Human Archetype)
+{
+    return GetAvailable((Archetype));
+}
+
 static function bool GetAvailable(KFUnlockableAsset Asset)
 {
+    if(((Class'WorldInfo'.static.IsConsoleBuild(8) && !Class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.IsGameFullyInstalled()) && string(Asset.Name) != "CHR_MrFoster_archetype") && string(Asset.Name) != "CHR_Ana_Archetype")
+    {
+        return false;
+    }
     return GetIDAvailable(Asset.GetAssetId());
 }
 
@@ -88,9 +97,9 @@ static function bool GetAvailableAttachment(const out AttachmentVariants Asset)
     I = 0;
     J0x0B:
 
-    if(I < Asset.SkinVariations.Length)
+    if(I < Asset.AttachmentItem.SkinVariations.Length)
     {
-        if(GetIDAvailable(Asset.SkinVariations[I].UnlockAssetID))
+        if(GetIDAvailable(Asset.AttachmentItem.SkinVariations[I].UnlockAssetID))
         {
             return true;
         }
@@ -133,7 +142,7 @@ private static final event bool CheckCustomizationOwnership(KFPlayerReplicationI
             if(PRI.RepCustomizationInfo.AttachmentMeshIndices[I] != 255)
             {
                 Attachment = CharArch.CosmeticVariants[PRI.RepCustomizationInfo.AttachmentMeshIndices[I]];
-                Skin = Attachment.SkinVariations[PRI.RepCustomizationInfo.AttachmentSkinIndices[I]];
+                Skin = Attachment.AttachmentItem.SkinVariations[PRI.RepCustomizationInfo.AttachmentSkinIndices[I]];
                 if(!GetIDAvailable(Skin.UnlockAssetID))
                 {
                     ClearCharacterCustomization(PRI);

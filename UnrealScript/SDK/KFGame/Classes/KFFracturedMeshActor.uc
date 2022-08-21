@@ -17,6 +17,7 @@ var() EDestructibleRepType ReplicationMode;
 
 /** Amount of damage this actor can take before fully collapsing */
 var()			int		TotalHealth;
+var transient 	int 	DefaultTotalHealth;
 
 /** Light brightness material parameter for this subobject */
 var()  MaterialLightParamMod			MaterialLightParams;
@@ -43,11 +44,17 @@ simulated event ReplicatedEvent(name VarName)
 {
 	if ( VarName == nameof(bHasBeenDestroyed) )
 	{
-		BreakOffAllFragments();
+		if( bHasBeenDestroyed )
+		{
+			BreakOffAllFragments();
+		}
 	}
 	else if ( VarName == nameof(bHasLostChunk) )
 	{
-		SetLoseChunkReplacementMaterial();
+		if( bHasLostChunk )
+		{
+			SetLoseChunkReplacementMaterial();
+		}
 	}
 }
 
@@ -66,6 +73,8 @@ simulated event PreBeginPlay()
 		// on the server, set role to SimulatedProxy (i.e. replicate it) only if not clientside
 		RemoteRole = (ReplicationMode == RT_ClientSide) ? ROLE_None : ROLE_SimulatedProxy;
 	}
+
+	DefaultTotalHealth = TotalHealth;
 
 	Super.PreBeginPlay();
 }
@@ -154,8 +163,16 @@ simulated event SetLoseChunkReplacementMaterial()
 {
 	Super.SetLoseChunkReplacementMaterial();
 
-	bHasLostChunk = true;
-	bForceNetUpdate = true;
+	if( !bHasLostChunk )
+	{
+		bHasLostChunk = true;
+
+		if( WorldInfo.NetMode != NM_Client )
+		{
+			bNetDirty = true;
+			bForceNetUpdate = true;
+		}
+	}
 }
 
 /** Break off all pieces in one go.  Also, handles network play (e.g. collision) */
@@ -168,6 +185,9 @@ simulated function BreakOffAllFragments(optional vector InVelocity)
 	local FracturedStaticMeshPart FracPart;
 	local float PartScale;
 	local bool bWantPhysChunksAndParticles;
+
+	// Dirty actor for reset
+	bHasBeenDirtied = true;
 
 	// network
 	bHasBeenDestroyed = true;
@@ -211,10 +231,7 @@ simulated function BreakOffAllFragments(optional vector InVelocity)
 	}
 
 	// switch to lose chunk material if we haven't already
-	if ( !bHasLostChunk )
-	{
-		SetLoseChunkReplacementMaterial();
-	}
+	SetLoseChunkReplacementMaterial();
 
 	if ( bWantPhysChunksAndParticles && NumPartsHidden > 0 )
 	{
@@ -228,6 +245,14 @@ simulated function BreakOffAllFragments(optional vector InVelocity)
 	{
 		PlaySoundBase( ExplosionFractureSound );
 	}
+}
+
+/** Make sure that when pieces break off the lost chunk material is applied */
+simulated event BreakOffPartsInRadius( vector Origin, float Radius, float RBStrength, bool bWantPhysChunksAndParticles )
+{
+	super.BreakOffPartsInRadius( Origin, Radius, RBStrength, bWantPhysChunksAndParticles );
+
+	SetLoseChunkReplacementMaterial();
 }
 
 /** Play effects - copied from Super.TakeDamage */
@@ -268,6 +293,32 @@ simulated function SimulateRemoteHit(vector HitLocation, vector Momentum, const 
 	}
 }
 
+/** Level was reset without reloading */
+simulated function Reset()
+{
+	if( !bHasBeenDirtied )
+	{
+		return;
+	}
+
+	super.Reset();
+
+	// Network
+	bHasBeenDestroyed = false;
+	bHasLostChunk = false;
+	bForceNetUpdate = true;
+	bNetDirty = true;
+
+	// Re-enable collision
+	if ( ReplicationMode != RT_ClientSide )
+	{
+		SetCollision( ,true );
+	}
+
+	// Reset total health (health for total destruction)
+	TotalHealth = DefaultTotalHealth;
+}
+
 defaultproperties
 {
 	Begin Object Class=SpriteComponent Name=Sprite
@@ -291,4 +342,7 @@ defaultproperties
 
 	// Default multiplier if we are vulnerable to any damage types
 	VulnerableMultiplier=6
+
+	// We want chunks to disappear no matter where you are in the map
+	FractureCullMaxDistance=100000.0
 }

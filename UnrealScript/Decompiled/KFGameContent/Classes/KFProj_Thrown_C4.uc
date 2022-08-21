@@ -73,6 +73,18 @@ simulated event ReplicatedEvent(name VarName)
 
 simulated function PostBeginPlay()
 {
+    if(WorldInfo.NetMode != NM_Client)
+    {
+        if(InstigatorController != none)
+        {
+            Class'KFGameplayPoolManager'.static.GetPoolManager().AddProjectileToPool(self, 0);            
+        }
+        else
+        {
+            Destroy();
+            return;
+        }
+    }
     super.PostBeginPlay();
     ProximityAlertTimer = ProximityAlertInterval;
     AdjustCanDisintigrate();
@@ -484,6 +496,8 @@ simulated function Disintegrate(Rotator InDisintegrateEffectRotation)
 protected simulated function PrepareExplosionTemplate()
 {
     local KFPlayerReplicationInfo InstigatorPRI;
+    local KFPlayerController KFPC;
+    local KFPerk InstigatorPerk;
 
     if((WorldInfo.TimeDilation < 1) && Instigator != none)
     {
@@ -507,6 +521,13 @@ protected simulated function PrepareExplosionTemplate()
             }
         }
     }
+    KFPC = KFPlayerController(Instigator.Controller);
+    if((Instigator.Role == ROLE_Authority) && KFPC != none)
+    {
+        InstigatorPerk = KFPC.GetPerk();
+        ExplosionTemplate.Damage *= InstigatorPerk.GetAeODamageModifier();
+        ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAeORadiusModifier();
+    }
     super.PrepareExplosionTemplate();
 }
 
@@ -528,11 +549,28 @@ protected simulated function SetExplosionActorClass()
     super.SetExplosionActorClass();
 }
 
+function Timer_Explode()
+{
+    Detonate();
+}
+
+simulated event Destroyed()
+{
+    if(WorldInfo.NetMode != NM_Client)
+    {
+        if(InstigatorController != none)
+        {
+            Class'KFGameplayPoolManager'.static.GetPoolManager().RemoveProjectileFromPool(self, 0);
+        }
+    }
+    super.Destroyed();
+}
+
 simulated function OnInstigatorControllerLeft()
 {
-    if((InstigatorController.Pawn != none) && InstigatorController.Pawn.Weapon != Owner)
+    if(WorldInfo.NetMode != NM_Client)
     {
-        Destroy();
+        SetTimer((1 + float(Rand(5))) + FRand(), false, 'Timer_Explode');
     }
 }
 
@@ -580,7 +618,7 @@ defaultproperties
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'WEP_C4_ARCH.C4_Explosion'
         Damage=820
-        DamageRadius=800
+        DamageRadius=400
         DamageFalloffExponent=2
         MyDamageType=Class'KFDT_Explosive_C4'
         KnockDownStrength=0
@@ -588,6 +626,8 @@ defaultproperties
         ExploLight=PointLightComponent'Default__KFProj_Thrown_C4.ExplosionPointLight'
         ExploLightFadeOutTime=0.2
         CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
+        CamShakeInnerRadius=200
+        CamShakeFalloff=1.5
     object end
     // Reference: KFGameExplosion'Default__KFProj_Thrown_C4.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0

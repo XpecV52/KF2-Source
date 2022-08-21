@@ -9,20 +9,16 @@ class KFDT_Bludgeon_Pulverizer extends KFDT_Bludgeon
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 defaultproperties
 {
 	KDamageImpulse=1500
 	KDeathUpKick=0
 	KDeathVel=375
-
 	
-	KnockdownPower=30
-	StunPower=42
-	StumblePower=56
-	LegStumblePower=56
-	MeleeHitPower=50
+	KnockdownPower=0
+	StunPower=0
+	StumblePower=50
+	MeleeHitPower=100
 
 	WeaponDef=class'KFWeapDef_Pulverizer'
 

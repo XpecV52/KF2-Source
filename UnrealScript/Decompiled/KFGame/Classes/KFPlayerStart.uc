@@ -8,6 +8,20 @@
 class KFPlayerStart extends PlayerStart
     hidecategories(Navigation,Lighting,LightColor,Force,Collision);
 
+var transient bool bDefaultEnabled;
+
+function PreBeginPlay()
+{
+    super(Actor).PreBeginPlay();
+    bDefaultEnabled = bEnabled;
+}
+
+function Reset()
+{
+    super(Actor).Reset();
+    bEnabled = bDefaultEnabled;
+}
+
 defaultproperties
 {
     begin object name=CollisionCylinder class=CylinderComponent
@@ -54,7 +68,6 @@ defaultproperties
     object end
     // Reference: PathRenderingComponent'Default__KFPlayerStart.PathRenderer'
     Components(4)=PathRenderer
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionHeight=86
         CollisionRadius=36

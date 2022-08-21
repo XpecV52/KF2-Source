@@ -23,9 +23,11 @@ package tripwire.containers.Perks
         
         public var header:SectionHeaderContainer;
         
-        public var currentPerk:int = 1;
+        public var currentPerk:int = -1;
         
         private var _bLostFocus:Boolean = false;
+        
+        private var _bFirstChange:Boolean = true;
         
         public function PerkSelectionContainer()
         {
@@ -33,12 +35,12 @@ package tripwire.containers.Perks
             defaultFirstElement = this.perkScrollingList;
         }
         
-        public function set localizedText(textObject:Object) : void
+        public function set localizedText(param1:Object) : void
         {
-            if(textObject)
+            if(param1)
             {
-                this.perkSelectBlocker.descriptionTextfield.text = !!textObject.oncePerkWave ? textObject.oncePerkWave : "";
-                this.header.text = !!textObject.header ? textObject.header : "";
+                this.perkSelectBlocker.descriptionTextfield.text = !!param1.oncePerkWave ? param1.oncePerkWave : "";
+                this.header.text = !!param1.header ? param1.header : "";
             }
         }
         
@@ -47,9 +49,9 @@ package tripwire.containers.Perks
             this.perkScrollingList.tabIndex = 1;
         }
         
-        override protected function addedToStage(e:Event) : void
+        override protected function addedToStage(param1:Event) : void
         {
-            super.addedToStage(e);
+            super.addedToStage(param1);
             this.setTabIndex();
             if(this.pendingPerkBox != null)
             {
@@ -59,14 +61,14 @@ package tripwire.containers.Perks
             this.perkScrollingList.addEventListener(ListEvent.INDEX_CHANGE,this.onPerkChanged,false,0,true);
         }
         
-        public function setPendingPerkChanges(perkClass:String, iconPath:String, message:String) : void
+        public function setPendingPerkChanges(param1:String, param2:String, param3:String) : void
         {
-            if(perkClass != null && perkClass != "")
+            if(param1 != null && param1 != "")
             {
                 this.pendingPerkBox.visible = true;
-                this.pendingPerkBox.pendingPerkTextField.text = perkClass;
-                this.pendingPerkBox.notificationTextfield.text = message;
-                this.pendingPerkBox.iconLoader.source = iconPath;
+                this.pendingPerkBox.pendingPerkTextField.text = param1;
+                this.pendingPerkBox.notificationTextfield.text = param3;
+                this.pendingPerkBox.iconLoader.source = param2;
             }
             else
             {
@@ -75,22 +77,22 @@ package tripwire.containers.Perks
             }
         }
         
-        public function onPerkClick(e:ListEvent) : *
+        public function onPerkClick(param1:ListEvent) : *
         {
-            if(e.index != this.currentPerk)
+            if(param1.index != this.currentPerk)
             {
                 TweenMax.killTweensOf(this);
-                this.perkScrollingList.selectedIndex = e.index;
+                this.perkScrollingList.selectedIndex = param1.index;
                 if(bManagerUsingGamepad)
                 {
-                    this.swapPerkInfo(e.index,true);
+                    this.swapPerkInfo(param1.index,true);
                 }
                 else
                 {
                     TweenMax.to(this,ANIM_TIME,{
                         "useFrames":true,
                         "onComplete":this.swapPerkInfo,
-                        "onCompleteParams":[e.index,true]
+                        "onCompleteParams":[param1.index,true]
                     });
                     dispatchEvent(new Event("changePerk",true));
                 }
@@ -98,55 +100,76 @@ package tripwire.containers.Perks
             }
         }
         
-        public function onPerkChanged(e:ListEvent) : *
+        public function onPerkChanged(param1:ListEvent) : *
         {
-            if(bManagerUsingGamepad && this.perkScrollingList.hasFocus && !this._bLostFocus)
+            if(bManagerUsingGamepad && this.perkScrollingList.hasFocus && !this._bLostFocus && !this._bFirstChange)
             {
                 TweenMax.killTweensOf(this);
                 TweenMax.to(this,ANIM_TIME,{
                     "useFrames":true,
                     "onComplete":this.swapPerkInfo,
-                    "onCompleteParams":[e.index,false]
+                    "onCompleteParams":[param1.index,false]
                 });
                 dispatchEvent(new Event("changePerk",true));
                 FocusHandler.getInstance().setFocus(this.perkScrollingList);
             }
             this._bLostFocus = !this.perkScrollingList.hasFocus;
+            this._bFirstChange = false;
         }
         
-        public function set SelectedIndex(value:int) : *
+        public function get SelectedIndex() : int
         {
-            var tempLineRender:PerkSelectLineRenderer = null;
-            for(var i:int = 0; i < this.perkScrollingList.dataProvider.length; i++)
+            return this.perkScrollingList.selectedIndex;
+        }
+        
+        public function set SelectedIndex(param1:int) : *
+        {
+            var _loc2_:PerkSelectLineRenderer = null;
+            var _loc3_:int = 0;
+            while(_loc3_ < this.perkScrollingList.dataProvider.length)
             {
-                tempLineRender = this.perkScrollingList.getRendererAt(i) as PerkSelectLineRenderer;
-                if(i == value)
+                _loc2_ = this.perkScrollingList.getRendererAt(_loc3_) as PerkSelectLineRenderer;
+                if(_loc3_ == param1)
                 {
-                    tempLineRender.active = true;
                     if(bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
                     {
-                        FocusHandler.getInstance().setFocus(tempLineRender);
+                        FocusHandler.getInstance().setFocus(_loc2_);
                     }
+                }
+                _loc3_++;
+            }
+            this.perkScrollingList.selectedIndex = param1;
+        }
+        
+        public function set ActiveIndex(param1:int) : *
+        {
+            var _loc2_:PerkSelectLineRenderer = null;
+            var _loc3_:int = 0;
+            while(_loc3_ < this.perkScrollingList.dataProvider.length)
+            {
+                _loc2_ = this.perkScrollingList.getRendererAt(_loc3_) as PerkSelectLineRenderer;
+                if(_loc3_ == param1)
+                {
+                    _loc2_.active = true;
                 }
                 else
                 {
-                    tempLineRender.active = false;
+                    _loc2_.active = false;
                 }
+                _loc3_++;
             }
-            this.perkScrollingList.selectedIndex = value;
-            this.currentPerk = value;
         }
         
-        public function set perkData(arr:Array) : *
+        public function set perkData(param1:Array) : *
         {
-            this.perkScrollingList.dataProvider = new DataProvider(arr);
+            this.perkScrollingList.dataProvider = new DataProvider(param1);
             this.perkScrollingList.validateNow();
             this.perkScrollingList.scrollBar.visible = this.perkScrollingList.dataProvider.length > this.perkScrollingList.rowCount;
         }
         
-        public function swapPerkInfo(_targetPerk:int, _bSelectedIndex:Boolean) : void
+        public function swapPerkInfo(param1:int, param2:Boolean) : void
         {
-            ExternalInterface.call("Callback_PerkSelected",_targetPerk,_bSelectedIndex);
+            ExternalInterface.call("Callback_PerkSelected",param1,param2);
         }
     }
 }

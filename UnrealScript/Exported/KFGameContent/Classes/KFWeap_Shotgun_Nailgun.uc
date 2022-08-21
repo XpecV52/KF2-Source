@@ -105,6 +105,7 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_NailsBurst'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Nail'
    InventorySize=6
+   MagazineCapacity(0)=42
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -116,7 +117,6 @@ defaultproperties
    IronSightPosition=(X=12.000000,Y=0.000000,Z=0.000000)
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_NailShotgun'
-   MagazineCapacity(0)=42
    MaxSpareAmmo(0)=336
    InitialSpareMags(0)=4
    FireSightedAnims(1)="Shoot_Iron2"

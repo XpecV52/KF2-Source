@@ -13,6 +13,7 @@ defaultproperties
 {
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=6
+    MagazineCapacity=1
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -22,7 +23,6 @@ defaultproperties
     FastZoomOutTime=0.2
     GroupPriority=75
     WeaponSelectTexture=Texture2D'WEP_UI_M79_TEX.UI_WeaponSelect_M79'
-    MagazineCapacity=1
     MaxSpareAmmo=26
     InitialSpareMags=9
     AmmoPickupScale=2

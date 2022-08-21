@@ -11,7 +11,7 @@ class KFPawn_ZedSiren_Versus extends KFPawn_ZedSiren
 
 function SetSprinting(bool bNewSprintStatus)
 {
-    if(bNewSprintStatus && IsDoingSpecialMove(22) || IsDoingSpecialMove(23))
+    if(bNewSprintStatus && IsDoingSpecialMove(21) || IsDoingSpecialMove(22))
     {
         return;
     }
@@ -24,11 +24,13 @@ defaultproperties
     ThirdPersonViewOffset=(OffsetHigh=(X=-175,Y=50,Z=25),OffsetMid=(X=-140,Y=50,Z=-10),OffsetLow=(X=-220,Y=50,Z=50))
     begin object name=MeleeHelper class=KFMeleeHelperAI
         MomentumTransfer=100000
+        PlayerDoorDamageMultiplier=5
         MeleeImpactCamScale=0.2
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedSiren_Versus.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
     XPValues=22
+    DamageTypeModifiers=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
     LocalizationKey=KFPawn_ZedSiren
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -37,10 +39,10 @@ defaultproperties
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedSiren_Versus.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     bCanHeadTrack=false
-    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedSiren_Versus.Afflictions'
-    InstantIncaps=/* Array type was not detected. */
-    StackingIncaps=/* Array type was not detected. */
-    SprintSpeed=450
+    HitZones=/* Array type was not detected. */
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedSiren_Versus.Afflictions'
+    IncapSettings=/* Array type was not detected. */
+    SprintSpeed=430
     SprintStrafeSpeed=300
     TeammateCollisionRadiusPercent=0.3
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
@@ -58,6 +60,7 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedSiren_Versus.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedSiren_Versus.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedSiren_Versus.DialogAkSoundComponent'
+    Health=300
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

@@ -49,8 +49,8 @@ function LocalizeText()
     	GoreOptions.SetElementString(i, GoreOptionStrings[i]);
     }
 
-	LocalizedObject.SetString("sectionName", SectionNameString);
-    LocalizedObject.SetString("header", GameSettingsString);
+	//LocalizedObject.SetString("sectionName", SectionNameString);
+    LocalizedObject.SetString("header", Caps(class'KFGFxOptionsMenu_Selection'.default.OptionStrings[OM_Gameplay]));
     LocalizedObject.SetString("fov", FOVString);
     LocalizedObject.SetString("friendlyHud", FriendlyHudScaleString);
     LocalizedObject.SetString("gore", GoreString);
@@ -60,7 +60,8 @@ function LocalizeText()
     LocalizedObject.SetString("wider", WiderString);
     LocalizedObject.SetString("normal", NormalString);
     LocalizedObject.SetString("killTicker", KillTickerString);
-    LocalizedObject.SetString("close", Class'KFCommon_LocalizedStrings'.default.BackString);
+	LocalizedObject.SetString("close", Class'KFCommon_LocalizedStrings'.default.BackString);
+	LocalizedObject.SetString("resetDefault", Localize("KFGFxOptionsMenu_Graphics","DefaultString","KFGame"));
 
     SetObject("localizedText", LocalizedObject);
 }
@@ -77,7 +78,11 @@ function  InitValues()
  	DataObject.SetFloat("gore", 				Class'GameInfo'.default.GoreLevel);
  	DataObject.SetFloat("friendlyHud", 			GetFriendlyHudScale());
  	DataObject.SetBool("crosshair", 			Class'KFGameEngine'.static.IsCrosshairEnabled());
- 	DataObject.SetBool("classicWeaponSelect",	Class'KFPlayerInput'.default.bQuickWeaponSelect);
+	// Setting not in the console build.
+	if ( !GetPC().WorldInfo.IsConsoleBuild() )
+	{
+		DataObject.SetBool("classicWeaponSelect",	Class'KFPlayerInput'.default.bQuickWeaponSelect);
+	}
  	DataObject.SetBool("killTicker",			Class'KFGameEngine'.default.bShowKillTicker);
 
  	SetObject("dataValues", DataObject);
@@ -229,6 +234,39 @@ function Callback_GoreChanged( byte NewGoreLevel )
 		class'GameInfo'.default.GoreLevel = NewGoreLevel;
 		class'GameInfo'.static.StaticSaveConfig();
 	}
+}
+
+function CallBack_ResetGameOptions()
+{
+	Manager.OpenPopup( EConfirmation, 
+		Localize("KFGFxOptionsMenu_Graphics","WarningPromptString","KFGame"), 
+		Localize("KFGFxObject_Menu","ResetDefaults","KFGameConsole"),
+		Localize("KFGFxOptionsMenu_Graphics","OKString","KFGame"),
+		Localize("KFGFxOptionsMenu_Graphics","CancelString","KFGame"),
+		ResetGameOptions);
+}
+
+function ResetGameOptions()
+{
+	// Currently doing nothing with the reset button is pressed since current system overrides default .ini settings. HSL_BB
+	// TODO: Restore settings back to defaults.
+
+	//local GFxObject DataObject;
+	//DataObject = CreateObject( "Object" );
+
+	//DataObject.SetFloat("fov", 				/*Default value*/);
+	//DataObject.SetFloat("gore", 				/*Default value*/);
+	//DataObject.SetFloat("friendlyHud", 		/*Default value*/);
+	//DataObject.SetBool("crosshair", 			/*Default value*/);
+	//// Don't try to set values of objects that aren't there on Console.
+	//if ( !GetPC().WorldInfo.IsConsoleBuild() )
+	//{
+	//	DataObject.SetBool("classicWeaponSelect",	/*Default value*/);
+	//}
+	//DataObject.SetBool("killTicker",			/*Default value*/);
+
+	//SetObject("dataValues", DataObject);
+
 }
 
 defaultproperties

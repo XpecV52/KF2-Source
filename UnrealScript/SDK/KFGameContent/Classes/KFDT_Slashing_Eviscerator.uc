@@ -9,8 +9,6 @@ class KFDT_Slashing_Eviscerator extends KFDT_Slashing
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
 	return true;
@@ -131,9 +129,9 @@ defaultproperties
 	KDeathUpKick=800
 	KDeathVel=600
 
-	StunPower=42
-    GunHitPower=0
-	MeleeHitPower=114
+	StunPower=0
+	StumblePower=100  //5
+	MeleeHitPower=20
 	
 	WeaponDef=class'KFWeapDef_Eviscerator'
 

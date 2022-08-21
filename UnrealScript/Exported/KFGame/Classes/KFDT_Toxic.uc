@@ -522,7 +522,7 @@ defaultproperties
    DoT_Duration=10.000000
    DoT_Interval=1.000000
    DoT_DamageScale=0.100000
-   PoisonPower=1.000000
+   PoisonPower=33.000000
    ScreenMaterialName="Effect_Puke"
    CameraLensEffectTemplate=Class'KFGame.KFCameraLensEmit_Puke'
    AltCameraLensEffectTemplate=Class'KFGame.KFCameraLensEmit_Puke_Light'

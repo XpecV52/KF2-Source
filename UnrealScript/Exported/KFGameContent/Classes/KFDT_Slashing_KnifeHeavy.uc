@@ -12,60 +12,6 @@ class KFDT_Slashing_KnifeHeavy extends KFDT_Slashing_Knife
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 15;
-
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
@@ -86,10 +32,7 @@ static simulated function bool CanDismemberHitZone( name InHitZoneName )
 
 defaultproperties
 {
-   KnockdownPower=21
-   StumblePower=45
-   LegStumblePower=45
-   MeleeHitPower=113
+   StumblePower=50.000000
    KDamageImpulse=300.000000
    KDeathUpKick=400.000000
    Name="Default__KFDT_Slashing_KnifeHeavy"

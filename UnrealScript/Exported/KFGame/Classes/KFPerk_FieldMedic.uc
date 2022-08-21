@@ -73,7 +73,6 @@ class KFPerk_FieldMedic extends KFPerk
  
 
 
-
  
 
 
@@ -81,6 +80,10 @@ class KFPerk_FieldMedic extends KFPerk
 
 
 
+
+
+
+ 
 
 #linenumber 14
 
@@ -99,6 +102,9 @@ const							ToxicDartDamage 	=	15;
 const 							AARangeSq			=	250000;
 /** How much to reduce the damage of a "vaccinated" teammate when the skill is active */
 const							VaccinationResist 	= 	0.25;
+
+var 	const private int		VaccBloatBileResistance;
+var 	const private ParticleSystem AAParticleSystem;
 
 enum EMedicPerkSkills
 {
@@ -219,7 +225,7 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
  *
  * @param Speed jog/sprint speed
   */
-function ModifySpeed( out float Speed )
+simulated function ModifySpeed( out float Speed )
 {
 	;
 	Speed *= GetPassiveValue( MovementSpeed, GetLevel() );
@@ -295,14 +301,14 @@ simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo
 /**
  * @brief Modifies the armor price
  *
- * @param ArmorPrice armomr price
+ * @param ArmorPrice armor price
  * @todo: Greg, use this for the trader
  */
 simulated function float GetArmorDiscountMod()
 {
 	if( IsCombatantActive() )
 	{
-		return 1 - FMin( PerkSkills[EMedicCombatant].StartingValue, PerkSkills[EMedicCombatant].MaxValue );
+		return 1 - GetSkillValue( PerkSkills[EMedicCombatant] );
 	}
 	return 1;
 }
@@ -370,6 +376,10 @@ simulated function bool CanRepairArmor()
 	return IsVaccinationActive() || IsArmamentActive();
 }
 
+static function float GetBloatBileResistance()
+{
+	return default.VaccBloatBileResistance;
+}
 
 /** Takes the weapons primary damage and calculates the bleeding over time value */
 /**
@@ -492,6 +502,16 @@ private final function bool IsSedadtiveActive()
 private final function bool IsAirborneAgentActive()
 {
 	return PerkSkills[EMedicAirborneAgent].bActive && WorldInfo.TimeDilation < 1.f;
+}
+
+simulated function bool ShouldPlayAAEffect()
+{
+	return PerkSkills[EMedicAirborneAgent].bActive;
+}
+
+simulated static function ParticleSystem GetAAEffect()
+{
+	return default.AAParticleSystem;
 }
 
 /**
@@ -656,18 +676,19 @@ defaultproperties
    Armor=(Name="Armor",Increment=0.030000,StartingValue=1.000000,MaxValue=1.750000)
    VaccinationResistableDamageTypeNames(0)="KFDT_BloatPuke"
    VaccinationResistableDamageTypeNames(1)="KFDT_Toxic"
+   AAParticleSystem=ParticleSystem'FX_Impacts_EMIT.FX_Medic_Airborne_Agent_01'
    ProgressStatID=40
    PerkBuildStatID=41
-   SecondaryXPModifier(0)=2
-   SecondaryXPModifier(1)=2
-   SecondaryXPModifier(2)=3
+   SecondaryXPModifier(0)=4
+   SecondaryXPModifier(1)=4
+   SecondaryXPModifier(2)=4
    SecondaryXPModifier(3)=4
    PerkName="Field Medic"
-   Passives(0)=(Title="Syringe Recharge Rate",Description="%x% increase in weapon damage")
-   Passives(1)=(Title="Syringe Potency",Description="Cloaked detection increased by %x%")
-   Passives(2)=(Title="Bloat Bile Resistance",Description="Health bar detection increased by %x%")
-   Passives(3)=(Title="Movement Speed",Description="Zed time lasts %x%")
-   Passives(4)=(Title="Armor Bonus",Description="Health increased by %x%")
+   Passives(0)=(Title="Syringe Recharge Rate",Description="%x% decrease im syringe recharge rate")
+   Passives(1)=(Title="Syringe Potency",Description="Health restored by syringe increased by %x%")
+   Passives(2)=(Title="Bloat Bile Resistance",Description="Damage from Bloat Bile reduced by %x%")
+   Passives(3)=(Title="Movement Speed",Description="%x% faster movement")
+   Passives(4)=(Title="Armor Bonus",Description="Armor increased by %x%")
    SkillCatagories(0)="Conditioning"
    SkillCatagories(1)="Medical Technician"
    SkillCatagories(2)="Weapon Handling"

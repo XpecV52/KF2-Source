@@ -19,7 +19,7 @@ defaultproperties
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'WEP_M79_ARCH.M79Grenade_Explosion'
         Damage=225
-        DamageRadius=800
+        DamageRadius=850
         DamageFalloffExponent=2
         MyDamageType=Class'KFDT_Explosive_M79'
         KnockDownStrength=0
@@ -27,6 +27,8 @@ defaultproperties
         ExploLight=PointLightComponent'Default__KFProj_HighExplosive_M79.ExplosionPointLight'
         ExploLightFadeOutTime=0.2
         CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
+        CamShakeInnerRadius=200
+        CamShakeFalloff=1.5
     object end
     // Reference: KFGameExplosion'Default__KFProj_HighExplosive_M79.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0
@@ -52,6 +54,7 @@ defaultproperties
     Components(0)=CollisionCylinder
     Components(1)=AkComponent'Default__KFProj_HighExplosive_M79.AmbientAkSoundComponent'
     Physics=EPhysics.PHYS_Falling
+    LifeSpan=25
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

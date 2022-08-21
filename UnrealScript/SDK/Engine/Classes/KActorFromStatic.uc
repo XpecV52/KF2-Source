@@ -186,6 +186,10 @@ simulated function TakeRadiusDamage
 	}
 }
 
+`if(`__TW_PHYSICS_)
+simulated function Reset();
+`endif
+
 `if(`__TW_PERFORMANCE_)
 simulated event Destroyed()
 {

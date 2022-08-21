@@ -79,7 +79,6 @@ function UpdateMatchInfo()
 {
 	local KFGameReplicationInfo KFGRI;
 	local int CurrentMatchTime;	
-	
 
     KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
     if(KFGRI != none)

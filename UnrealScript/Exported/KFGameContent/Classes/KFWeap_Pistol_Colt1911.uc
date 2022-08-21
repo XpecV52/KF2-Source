@@ -13,6 +13,7 @@ class KFWeap_Pistol_Colt1911 extends KFWeap_PistolBase;
 defaultproperties
 {
    InventorySize=2
+   MagazineCapacity(0)=8
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -28,7 +29,6 @@ defaultproperties
    GroupPriority=20.000000
    WeaponSelectTexture=Texture2D'WEP_UI_M1911_TEX.UI_WeaponSelect_M1911Colt'
    DualClass=Class'kfgamecontent.KFWeap_Pistol_DualColt1911'
-   MagazineCapacity(0)=8
    MaxSpareAmmo(0)=136
    InitialSpareMags(0)=7
    AmmoPickupScale(0)=2.000000

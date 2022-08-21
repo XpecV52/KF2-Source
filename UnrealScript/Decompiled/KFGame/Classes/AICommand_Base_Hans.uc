@@ -12,6 +12,11 @@ state ZedBaseCommand
     ignores BeginState, EndState;
 Begin:
 
+    if(Outer.bFleeing)
+    {
+        Outer.Sleep(0);
+        goto 'Begin';
+    }
     Outer.AILog_Internal(((string(self) $ " ") $ string(GetStateName())) $ " [Begin Label]", 'Command_Base');
     if(Outer.Pawn.Physics == 2)
     {
@@ -49,12 +54,12 @@ Begin:
             Outer.AILog_Internal(((("Calling SetEnemyMoveGoal [Dist:" $ string(VSize(Outer.Enemy.Location - Outer.Pawn.Location))) $ "] using offset of ") $ string(Outer.AttackRange)) $ ", because IsWithinBasicMeleeRange() returned false ", 'Command_Base');
             bWaitingOnMovementPlugIn = true;
             Outer.SetEnemyMoveGoal(self, true,,, ShouldAttackWhileMoving());
-            J0x85C:
+            J0x8A5:
 
             if(bWaitingOnMovementPlugIn && Outer.bUsePluginsForMovement)
             {
                 Outer.Sleep(0.03);
-                goto J0x85C;
+                goto J0x8A5;
             }
             Outer.AILog_Internal("Back from waiting for the movement plug in!!!");
         }
@@ -89,5 +94,5 @@ Begin:
         Outer.Sleep(0);
     }
     goto 'Begin';
-    stop;                
+    stop;            
 }

@@ -73,15 +73,28 @@ simulated function ProcessBulletTouch(Actor Other, Vector HitLocation, Vector Hi
 {
     local KFPerk InstigatorPerk;
     local KFPawn_Monster KFPM;
+    local KFPawn_Human KFPH;
 
     super(KFProjectile).ProcessBulletTouch(Other, HitLocation, HitNormal);
-    KFPM = KFPawn_Monster(Other);
-    if((Instigator != none) && KFPM != none)
+    if(Instigator != none)
     {
         InstigatorPerk = KFPawn(Instigator).GetPerk();
-        if((InstigatorPerk != none) && InstigatorPerk.ShouldSedate())
+        if(InstigatorPerk != none)
         {
-            KFPM.DoSpecialMove(9);
+            KFPM = KFPawn_Monster(Other);
+            if(InstigatorPerk.ShouldSedate() && KFPM != none)
+            {
+                KFPM.DoSpecialMove(8);
+                return;
+            }
+            if(((WorldInfo.NetMode != NM_DedicatedServer) && WorldInfo.TimeDilation < 1) && InstigatorPerk.ShouldPlayAAEffect())
+            {
+                KFPH = KFPawn_Human(Other);
+                if(KFPH != none)
+                {
+                    KFPH.WorldInfo.MyEmitterPool.SpawnEmitter(Class'KFPerk_FieldMedic'.static.GetAAEffect(), KFPH.Location);
+                }
+            }
         }
     }
 }

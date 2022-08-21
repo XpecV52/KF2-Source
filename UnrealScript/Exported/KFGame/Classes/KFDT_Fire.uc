@@ -524,7 +524,7 @@ defaultproperties
    DoT_Duration=5.000000
    DoT_Interval=1.000000
    DoT_DamageScale=1.500000
-   BurnPower=0.250000
+   BurnPower=2.500000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Firebug'
    CameraLensEffectTemplate=Class'KFGame.KFCameraLensEmit_Fire'
    KDamageImpulse=0.000000

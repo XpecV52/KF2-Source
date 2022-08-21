@@ -12,59 +12,6 @@ class KFDT_Piercing_NadeFragment extends KFDT_Piercing
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 14;
-
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
@@ -91,12 +38,10 @@ defaultproperties
    WeaponDef=Class'KFGame.KFWeapDef_Grenade_Support'
    bShouldSpawnBloodSplat=True
    bShouldSpawnPersistentBlood=True
-   StumblePower=100
-   LegStumblePower=100
-   GunHitPower=25
-   MeleeHitPower=20
    EffectGroup=FXG_Ballistic
    GoreDamageGroup=DGT_Handgun
+   StumblePower=1000.000000
+   MeleeHitPower=100.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Support'
    BodyWoundDecalMaterials(0)=MaterialInstanceConstant'FX_Gore_MAT.FX_CH_Wound_01_Mic'
    BloodSpread=0.400000

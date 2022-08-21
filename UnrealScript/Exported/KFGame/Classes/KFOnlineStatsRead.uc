@@ -73,7 +73,6 @@ class KFOnlineStatsRead extends OnlineStatsRead
  
 
 
-
  
 
 
@@ -81,6 +80,10 @@ class KFOnlineStatsRead extends OnlineStatsRead
 
 
 
+
+
+
+ 
 
 #linenumber 14
 
@@ -154,6 +157,7 @@ defaultproperties
    ColumnIds(31)=2005
    ColumnIds(32)=2006
    ColumnIds(33)=2007
+   ColumnIds(34)=3000
    ColumnMappings(0)=(Id=1)
    ColumnMappings(1)=(Id=2)
    ColumnMappings(2)=(Id=10)
@@ -188,6 +192,7 @@ defaultproperties
    ColumnMappings(31)=(Id=2005)
    ColumnMappings(32)=(Id=2006)
    ColumnMappings(33)=(Id=2007)
+   ColumnMappings(34)=(Id=3000)
    Name="Default__KFOnlineStatsRead"
    ObjectArchetype=OnlineStatsRead'Engine.Default__OnlineStatsRead'
 }

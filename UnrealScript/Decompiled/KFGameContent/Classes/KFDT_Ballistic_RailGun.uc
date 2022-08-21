@@ -8,11 +8,46 @@
 class KFDT_Ballistic_RailGun extends KFDT_Ballistic_Rifle
     abstract;
 
+static simulated function GetBoneToDismember(KFPawn_Monster inPawn, Vector HitDirection, name InHitZoneName, out name OutBoneName)
+{
+    local KFCharacterInfo_Monster MonsterInfo;
+
+    MonsterInfo = inPawn.GetCharacterMonsterInfo();
+    if(MonsterInfo != none)
+    {
+        if(InHitZoneName == 'chest')
+        {
+            OutBoneName = ((Rand(2) == 0) ? MonsterInfo.SpecialMeleeDismemberment.LeftShoulderBoneName : MonsterInfo.SpecialMeleeDismemberment.RightShoulderBoneName);
+        }
+    }
+}
+
+static simulated function bool CanDismemberHitZone(name InHitZoneName)
+{
+    switch(InHitZoneName)
+    {
+        case 'lupperarm':
+        case 'rupperarm':
+        case 'chest':
+        case 'heart':
+            return true;
+        default:
+            return false;
+            break;
+    }
+}
+
 defaultproperties
 {
-    StunPower=20
-    GunHitPower=30
-    MeleeHitPower=25
+    WeaponDef=Class'KFGame.KFWeapDef_RailGun'
+    GoreDamageGroup=EGoreDamageGroup.DGT_Shotgun
+    StunPower=100
+    KnockdownPower=20
+    StumblePower=600
+    GunHitPower=300
+    MeleeHitPower=100
     ModifierPerkList=/* Array type was not detected. */
-    KDamageImpulse=600
+    KDamageImpulse=4500
+    KDeathVel=350
+    KDeathUpKick=500
 }

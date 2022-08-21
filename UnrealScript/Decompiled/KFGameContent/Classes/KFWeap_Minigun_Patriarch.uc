@@ -58,13 +58,13 @@ defaultproperties
 {
     SingleFireMode=1
     InventorySize=6
+    MagazineCapacity=60
     bHasIronSights=true
     bUseAnimLenEquipTime=false
     MeshFOV=75
     MeshIronSightFOV=33
     PlayerIronSightFOV=70
     GroupPriority=50
-    MagazineCapacity=60
     MaxSpareAmmo=270
     InitialSpareMags=3
     bLoopingFireAnim=/* Array type was not detected. */

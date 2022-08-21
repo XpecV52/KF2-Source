@@ -389,6 +389,12 @@ simulated protected function bool IsBehindExplosion(Actor A)
 	return FALSE;
 }
 
+/** Level was reset without reloading */
+function Reset()
+{
+	Destroy();
+}
+
 defaultproperties
 {
 	//DurationOfDecal=24.0

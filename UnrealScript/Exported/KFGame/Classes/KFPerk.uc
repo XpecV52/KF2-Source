@@ -74,7 +74,6 @@ class KFPerk extends ReplicationInfo
  
 
 
-
  
 
 
@@ -82,6 +81,10 @@ class KFPerk extends ReplicationInfo
 
 
 
+
+
+
+ 
 
 #linenumber 15
 
@@ -177,6 +180,9 @@ var 			array<BuffedPlayerInfo>		BuffedPlayerInfos;
 var 			KFUsablePerkTrigger 		InteractionTrigger;
 
 var		const	array<Name>		ZedTimeModifyingStates;
+
+var protected	array<byte>		BodyPartsCanStumble;
+var protected	array<byte>		BodyPartsCanKnockDown;
 
 /*********************************************************************************************
 * Special abilities
@@ -960,8 +966,8 @@ protected function CheckForOverWeight( KFInventoryManager KFIM )
 			}
 			else
 			{
-				DroppedWeaponClasses.AddItem( KFW.class );
-				OwnerPawn.TossInventory( Inv );
+				DroppedWeaponClasses.AddItem( BestWeapon.class );
+				OwnerPawn.TossInventory( BestWeapon );
 			}
 		}
 
@@ -997,14 +1003,15 @@ simulated function float GetSuppressingFireSnareScale(){ return 1.0f; }
 /** Tactical Reload - Reloading rate increased */
 simulated function float GetReloadRateScale(KFWeapon KFW) {return 1.f;}
 /** Movement - all movement speeds increased */
-function ModifySpeed( out float Speed );
+simulated function ModifySpeed( out float Speed );
+simulated function ModifySprintSpeed( out float Speed ){ ModifySpeed( Speed ); }
 /** Kickback - recaoil bonus */
 simulated function ModifyRecoil( out float CurrentRecoilModifier, KFWeapon KFW );
 /** Allow perk to adjust damage given */
 function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx );
 function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageType, optional Controller InstigatedBy );
 /** Ammunition capacity and mag count increased */
-simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out int MagazineCapacity, optional Class<KFPerk> WeaponPerkClass );
+simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional Class<KFPerk> WeaponPerkClass );
 /** Update our weapons spare ammo count, *Use WeaponPerkClass for the trader when no weapon actually exists */
 simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo, optional const out STraderItem TraderItem);
 /** Set our weapon's spare ammo to maximum (needed another function besides ModifySpareAmmoAmount because we need to be able to specify maximum somehow) */
@@ -1019,6 +1026,7 @@ static simulated function float GetZedTimeExtension( byte Level ){ return 1.0f; 
 function float GetKnockdownPowerModifier( optional class<DamageType> DamageType, optional byte BodyPart, optional bool bIsSprinting=false ){ return 1.f; }
 function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart ){ return 1.f; }
 function float GetStunPowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx ){ return 1.f; }
+function float GetReactionModifier( optional class<KFDamageType> DamageType ){ return 1.f; }
 
 /** Support functions */
 /** Welding Proficiency - faster welding/unwelding */
@@ -1065,6 +1073,7 @@ function bool ShouldSedate(){ return false; }
 function ModifyACDamage( out int InDamage );
 simulated function bool CanRepairArmor(){ return false; }
 simulated function float GetSirenScreamStrength(){ return 1.f; }
+simulated function bool ShouldPlayAAEffect(){ return false; }
 
 /** Firebug functions */
 simulated function bool IsFlarotovActive(){ return false; }
@@ -1075,6 +1084,7 @@ function bool CouldBeZedShrapnel( class<KFDamageType> KFDT ){ return false; }
 simulated function bool ShouldShrapnel(){ return  false; }
 simulated function float GetSplashDamageModifier(){ return 1.f; }
 simulated function bool IsRangeActive(){ return false; }
+static function ModifyAssistDosh( out int EarnedDosh );
 
 /** Demo functions */
 simulated function bool IsOnContactActive(){ return false; }
@@ -1082,7 +1092,10 @@ simulated function bool IsSharedExplosiveResistaneActive(){ return false; }
 simulated function bool ShouldSacrifice(){ return false; }
 simulated function bool ShouldRandSirenResist(){ return false; }
 simulated function bool CanExplosiveWeld(){ return false; }
-
+simulated function float GetAeORadiusModifier(){ return 1.f; }
+simulated function float GetAeODamageModifier(){ return 1.f; }
+simulated function bool DoorShouldNuke(){ return false; }
+	
 /** "Rack 'em Up" perk skill functions (Gunslinger, Sharpshooter) */
 simulated function bool GetIsUberAmmoActive( KFWeapon KFW ){ return false; }
 function UpdatePerkHeadShots( ImpactInfo Impact, class<DamageType> DamageType, int NumHit );
@@ -1095,6 +1108,7 @@ simulated event float GetIronSightSpeedModifier( KFWeapon KFW ){ return 1.f; }
 simulated function ModifyWeaponSwitchTime( out float ModifiedSwitchTime );
 simulated function bool ShouldInstantlySwitchWeapon( KFWeapon KFW ){ return false; }
 simulated function ModifyWeaponBopDamping( out float BobDamping, KFWeapon PawnWeapon );
+simulated event float GetCameraViewShakeModifier( KFWeapon OwnerWeapon ){ return 1.f; }
 
 function string GetModifierString( byte ModifierIndex )
 {
@@ -1105,22 +1119,19 @@ function ModifyBloatBileDoT( out float DoTScaler )
 {
 	if( OwnerPawn.bHasMedicVaccinationBuff )
 	{
-		DoTScaler -= class'KFPerk_Berserker'.static.GetPoisonResistance();
+		DoTScaler -= class'KFPerk_FieldMedic'.static.GetBloatBileResistance();
 	}
 }
 
 /** other shared getters */
 function KFWeapon GetOwnerWeapon()
 {
-	local KFWeapon KFW;
-
 	if( CheckOwnerPawn() )
 	{
-	KFW = KFWeapon(OwnerPawn.Weapon);
-	if( KFW != none )
-	{
-		return KFW;
-	}
+		if( OwnerPawn.Weapon != none )
+		{
+			return KFWeapon( OwnerPawn.Weapon );
+		}
 	}
 
 	return none;
@@ -1178,6 +1189,16 @@ simulated event KFPawn_Human GetOwnerPawn()
 	}
 
 	return none;
+}
+
+protected function bool HitShouldStumble( byte BodyPart ) 
+{
+	return BodyPartsCanStumble.Find( BodyPart ) != INDEX_NONE;
+}
+
+protected function bool HitShouldKnockdown( byte BodyPart ) 
+{
+	return BodyPartsCanKnockDown.Find( BodyPart ) != INDEX_NONE;
 }
 
 /*********************************************************************************************

@@ -44,7 +44,7 @@ defaultproperties
     ExplosionActorClass=Class'KFExplosion_HansNerveGasGrenade'
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'ZED_Hans_EMIT.NerveGasGrenade_Explosion'
-        Damage=6
+        Damage=7
         DamageRadius=450
         DamageFalloffExponent=0
         MyDamageType=Class'KFDT_Toxic_HansGrenade'

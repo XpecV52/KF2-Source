@@ -49,5 +49,5 @@
 `define RecordAARPerkXPGain(KFPC,PerkClass,Value) 	if(`KFPC != none && `KFPC.MatchStats != none && `PerkClass != none){`KFPC.MatchStats.RecordPerkXPGain(`PerkClass,`Value);}
 `define RecordSecondaryXPGain(KFPC,PerkClass,Value) if(`KFPC != none && `KFPC.MatchStats != none && `PerkClass != none){`KFPC.MatchStats.RecordSecondaryXPGain(`PerkClass,`Value);}
 //Each Damage Type is going to have an ID that we are setting here.  We pass this id in to the function RecordWeaponDamage.  From there it is resolved 
-`define RecordWeaponDamage(InstigatedBy,KFDT,DamageValue,TargetPawn,HitZoneIdx)	if(`KFDT != none){`MatchStatsClass.static.RecordWeaponDamage(`InstigatedBy,`KFDT.default.WeaponDef,`DamageValue,`TargetPawn,`HitZoneIdx);}
+`define RecordWeaponDamage(InstigatedBy,KFDT,DamageValue,TargetPawn,HitZoneIdx)	if(`KFDT != none){`MatchStatsClass.static.RecordWeaponDamage(`InstigatedBy,`KFDT,`KFDT.default.WeaponDef,`DamageValue,`TargetPawn,`HitZoneIdx);}
 `define RecordWeaponHeadShot(PC,DT)	if(`PC != none && `DT != none){`MatchStatsClass.static.RecordWeaponHeadShot(`PC,`DT);}

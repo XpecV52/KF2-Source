@@ -9,8 +9,8 @@ package tripwire.managers
     import flash.events.KeyboardEvent;
     import flash.filters.*;
     import flash.geom.*;
-    import scaleform.clik.layout.Layout;
     import scaleform.clik.layout.LayoutData;
+    import tripwire.Tools.TripLayout;
     import tripwire.containers.MoveContainer;
     import tripwire.widgets.PlayerRosterWidget;
     
@@ -92,7 +92,6 @@ package tripwire.managers
             WaveCompassWidget.visible = false;
             ChatBoxWidget.visible = false;
             PlayerStatWidgetMC.visible = false;
-            ScoreboardWidgetMC.visible = false;
             PriorityMsgWidget.visible = false;
             voipWidget.visible = false;
             VoiceCommsWidget.visible = false;
@@ -177,11 +176,6 @@ package tripwire.managers
         {
             centerPoint = new Point(stage.stageWidth / 2,stage.stageHeight / 2);
             root.transform.perspectiveProjection.projectionCenter = centerPoint;
-            barkNode.layoutData = new LayoutData();
-            barkNode.layoutData.alignV = "center";
-            barkNode.layoutData.alignH = "right";
-            barkNode.layoutData.offsetH = 0;
-            barkNode.layoutData.offsetV = -128;
             WaveCompassWidget.layoutData = new LayoutData();
             WaveCompassWidget.layoutData.alignV = "top";
             WaveCompassWidget.layoutData.alignH = "left";
@@ -222,11 +216,14 @@ package tripwire.managers
             PriorityMsgWidget.layoutData.alignH = "center";
             PriorityMsgWidget.layoutData.offsetH = 0;
             PriorityMsgWidget.layoutData.offsetV = 0;
-            this.teamRoster.layoutData = new LayoutData();
-            this.teamRoster.layoutData.alignV = "top";
-            this.teamRoster.layoutData.alignH = "center";
-            this.teamRoster.layoutData.offsetH = 0;
-            this.teamRoster.layoutData.offsetV = 32;
+            if(this.teamRoster)
+            {
+                this.teamRoster.layoutData = new LayoutData();
+                this.teamRoster.layoutData.alignV = "top";
+                this.teamRoster.layoutData.alignH = "center";
+                this.teamRoster.layoutData.offsetH = 0;
+                this.teamRoster.layoutData.offsetV = 32;
+            }
             NonCriticalMessageWidget.layoutData = new LayoutData();
             NonCriticalMessageWidget.layoutData.alignV = "top";
             NonCriticalMessageWidget.layoutData.alignH = "center";
@@ -252,17 +249,18 @@ package tripwire.managers
             VoiceCommsWidget.layoutData.alignH = "center";
             VoiceCommsWidget.layoutData.offsetH = 0;
             VoiceCommsWidget.layoutData.offsetV = 0;
-            ScoreboardWidgetMC.layoutData = new LayoutData();
-            ScoreboardWidgetMC.layoutData.alignV = "center";
-            ScoreboardWidgetMC.layoutData.alignH = "center";
-            ScoreboardWidgetMC.layoutData.offsetH = 0;
-            ScoreboardWidgetMC.layoutData.offsetV = 0;
             MusicNotification.layoutData = new LayoutData();
             MusicNotification.layoutData.alignV = "top";
             MusicNotification.layoutData.alignH = "right";
             MusicNotification.layoutData.offsetV = 32;
             MusicNotification.layoutData.offsetH = -32;
-            layout = new Layout();
+            barkNode.layoutData = new LayoutData();
+            barkNode.layoutData.alignV = "bottom";
+            barkNode.layoutData.alignH = "right";
+            barkNode.layoutData.offsetH = -32;
+            barkNode.layoutData.offsetV = 0;
+            barkNode.layoutData.relativeToV = MusicNotification.name;
+            layout = new TripLayout();
             layout.tiedToStageSize = true;
             layout.hidden = false;
             addChild(layout);
@@ -283,19 +281,23 @@ package tripwire.managers
             apply3d(voipWidget,0,-24,0,"top","left");
             apply3d(PriorityMsgWidget,0,0,288,"center","center");
             apply3d(VoiceCommsWidget,0,0,288,"center","center");
-            apply3d(ScoreboardWidgetMC,0,0,288,"center","center");
-            apply3d(this.teamRoster,0,0,0,"center","center");
+            if(this.teamRoster)
+            {
+                apply3d(this.teamRoster,0,0,0,"center","center");
+            }
             apply3d(NonCriticalMessageWidget,0,0,0,"center","center");
             apply3d(MusicNotification,0,24,0,"top","right");
         }
         
         override public function UpdateElementScales() : void
         {
-            scaleChild(this.teamRoster);
+            if(this.teamRoster)
+            {
+                scaleChild(this.teamRoster);
+            }
             scaleChild(this.moveListContainer);
             scaleChild(ChatBoxWidget);
             scaleChild(voipWidget);
-            scaleChild(ScoreboardWidgetMC);
             scaleChild(WaveCompassWidget);
             scaleChild(PlayerStatWidgetMC);
             scaleChild(VoiceCommsWidget);

@@ -1,6 +1,10 @@
 package tripwire.menus
 {
+    import com.greensock.TweenMax;
+    import com.greensock.easing.Cubic;
+    import flash.display.MovieClip;
     import flash.events.Event;
+    import flash.external.ExternalInterface;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.ListEvent;
     import scaleform.clik.ui.InputDetails;
@@ -19,6 +23,8 @@ package tripwire.menus
         
         public var storeMainContainer:StoreMainContainer;
         
+        public var coverBG:MovieClip;
+        
         public function StoreMenu()
         {
             super();
@@ -32,6 +38,15 @@ package tripwire.menus
             if(this.itemDetails.bOpen)
             {
                 this.itemDetails.closeContainer();
+                TweenMax.to(this.coverBG,8,{
+                    "autoAlpha":0,
+                    "useFrames":true,
+                    "ease":Cubic.easeOut
+                });
+                this.storeMainContainer.selectContainer();
+            }
+            else if(!this.storeMainContainer.leftSideFocused)
+            {
                 this.storeMainContainer.selectContainer();
             }
         }
@@ -42,6 +57,11 @@ package tripwire.menus
             if(this.itemDetails.bOpen)
             {
                 this.itemDetails.selectContainer();
+                TweenMax.to(this.coverBG,8,{
+                    "autoAlpha":1,
+                    "useFrames":true,
+                    "ease":Cubic.easeOut
+                });
             }
             else
             {
@@ -57,8 +77,8 @@ package tripwire.menus
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
+            this.storeMainContainer.Owner = this;
             this.storeMainContainer.storeItemScrollingList.addEventListener(ListEvent.ITEM_CLICK,this.storeItemClicked,false,0,true);
-            this.storeMainContainer.cartButton.addEventListener(ButtonEvent.CLICK,this.showCart,false,0,true);
             this.itemDetails.cancelButton.addEventListener(ButtonEvent.CLICK,this.onCancelClick,false,0,true);
         }
         
@@ -66,6 +86,11 @@ package tripwire.menus
         {
             this.itemDetails.closeContainer();
             this.storeMainContainer.selectContainer();
+            TweenMax.to(this.coverBG,8,{
+                "autoAlpha":0,
+                "useFrames":true,
+                "ease":Cubic.easeOut
+            });
         }
         
         public function onDetailsClosed(param1:Event) : void
@@ -79,14 +104,29 @@ package tripwire.menus
         public function showCart(param1:ButtonEvent) : void
         {
             this.storeCart.openContainer();
+            TweenMax.to(this.coverBG,8,{
+                "autoAlpha":1,
+                "useFrames":true,
+                "ease":Cubic.easeOut
+            });
         }
         
         public function storeItemClicked(param1:ListEvent) : void
         {
             this.storeMainContainer.deselectContainer();
-            this.itemDetails.openContainer();
-            this.itemDetails.details = param1.itemData;
+            ExternalInterface.call("CallBack_ItemDetailsClicked",param1.itemData.SKU);
             this.storeMainContainer.pushToBackground();
+        }
+        
+        public function set storeItemDetails(param1:Object) : void
+        {
+            this.itemDetails.openContainer();
+            this.itemDetails.details = param1;
+            TweenMax.to(this.coverBG,8,{
+                "autoAlpha":1,
+                "useFrames":true,
+                "ease":Cubic.easeOut
+            });
         }
         
         override public function closeContainer() : void
@@ -95,7 +135,13 @@ package tripwire.menus
             {
                 this.itemDetails.closeContainer();
                 this.storeMainContainer.selectContainer();
+                TweenMax.to(this.coverBG,8,{
+                    "autoAlpha":0,
+                    "useFrames":true,
+                    "ease":Cubic.easeOut
+                });
             }
+            this.storeMainContainer.leftSideFocused = true;
             super.closeContainer();
         }
     }

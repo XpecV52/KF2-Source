@@ -22,7 +22,6 @@ defaultproperties
    LightEnvironment=MyLightEnvironment
    Components(0)=MyLightEnvironment
    Components(1)=FlexComponent0
-   CollisionType=COLLIDE_CustomDefault
    Begin Object Class=StaticMeshComponent Name=StaticMeshComponent0 Archetype=StaticMeshComponent'Engine.Default__InterpActor:StaticMeshComponent0'
       WireframeColor=(B=255,G=0,R=255,A=255)
       ReplacementPrimitive=None

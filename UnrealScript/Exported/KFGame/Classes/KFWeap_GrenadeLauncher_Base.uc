@@ -69,13 +69,12 @@ simulated function name GetReloadAnimName( bool bTacticalReload )
 		WarnInternal("Grenade launcher reloading with non-empty mag");
 	}
 
-	return ReloadEmptyMagAnim;
+	return bTacticalReload ? ReloadEmptyMagEliteAnim : ReloadEmptyMagAnim;
 }
 
 defaultproperties
 {
    ForceReloadTime=0.300000
-   bAllowClientAmmoTracking=False
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"

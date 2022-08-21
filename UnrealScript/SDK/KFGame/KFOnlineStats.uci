@@ -60,8 +60,7 @@
 /** Player analytics/trend data */
 `define STATID_AnalyticsPlaceholder			800
 
-
-/** Personal Bests (AAR) **/
+/** Personal Bests (AAR) */
 `define STATID_PersonalBest_KnifeKills		2000
 `define STATID_PersonalBest_PistolKills		2001
 `define STATID_PersonalBest_HeadShots		2002
@@ -70,3 +69,6 @@
 `define STATID_PersonalBest_Assists			2005
 `define STATID_PersonalBest_LargeZedKill	2006
 `define STATID_PersonalBest_Dosh			2007
+
+/** Progress stats for achievements */
+`define STATID_MatchWins					3000			

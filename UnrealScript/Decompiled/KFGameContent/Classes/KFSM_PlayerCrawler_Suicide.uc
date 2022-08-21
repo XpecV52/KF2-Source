@@ -12,7 +12,7 @@ var class<KFDamageType> SuicideDamageType;
 
 protected function bool InternalCanDoSpecialMove()
 {
-    if(KFPOwner.WorldInfo.GRI.bMatchIsOver)
+    if(KFPOwner.WorldInfo.GRI.bMatchIsOver || KFGameReplicationInfoVersus(KFPOwner.WorldInfo.GRI).bRoundIsOver)
     {
         return false;
     }
@@ -39,6 +39,8 @@ static function TriggerExplosion(KFPawn CrawlerOwner, optional bool bForceExplos
         ExploActor = CrawlerOwner.Spawn(Class'KFExplosion_PlayerCrawlerSuicide', CrawlerOwner,, CrawlerOwner.Location, rotator(vect(0, 0, 1)));
         if(ExploActor != none)
         {
+            ExploActor.InstigatorController = CrawlerOwner.Controller;
+            ExploActor.Instigator = CrawlerOwner;
             ExploActor.Explode(default.SuicideGasExplosionTemplate);
         }
         if(((CrawlerOwner.Role == ROLE_Authority) && !CrawlerOwner.bPlayedDeath) && !bForceExplosion)

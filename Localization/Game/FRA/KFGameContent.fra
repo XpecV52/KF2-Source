@@ -2,12 +2,105 @@
 //1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
 //2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
 //3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
-//ItemDescription="Fusil à double canon de calibre 12. Idéal pour le combat rapproché. Même les plus gros Zeds s'étaleront devant ses deux canons. Trouvé dans une vieille ferme et //mis en boîte pour la Marchande. Puissiez-vous vivre plus longtemps que le fermier."
+//ItemDescription="Double-barreled, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest Zeds will stagger when hit with both barrels. We found it in an old farm-house and //canned it for the Trader Pod. Hope you live longer than the farmer."
+
+[KFTutorial]
+;Lobby start
+RewardsTitleKey="Welcome to the Training Floor"
+RewardsDescriptionKey="The Training Floor will teach you some survival basics, but without the fear of death. Complete the Training Floor and you will receive a cosmetic item and enough XP to bring your selected perk up to Level 1."
+WelcomeTitleKey="Select a Perk"
+WelcomeDescriptionKey="Before you begin the match, select the <font color="#caab05">PERKS</font> tab at the top of the screen and select a perk. Perks are classes with different passive <font color="#caab05">PERK BONUSES</font>, configurable <font color="#caab05">SKILLS</font>, and <font color="#caab05">WEAPON LOADOUTS</font>."
+PerksTitleKey="Perks Details"
+PerksDescriptionKey="Perform <font color="#caab05">XP OBJECTIVES</font> in game to gain XP and level up your perks. Each time you level up, your <font color="#caab05">PERK BONUSES</font> increase for that perk. Every 5 levels you will unlock new <font color="#caab05">SKILLS</font> that you can <font color="#caab05">CONFIGURE</font> once unlocked. Select a perk and press <font color="#caab05">READY UP</font> to begin the match."
+
+;Gear Menu
+GearTitleKey="Gear Menu"
+GearDescriptionKey="The Gear Menu lets you select and <font color="#caab05">CUSTOMIZE</font> your character. Each character has a unique visual look, voice, and personality. Each character's head and body can be customized. You can wear up to 3 cosmetic accessories. Select and customize your character using the buttons on the left side of this menu."
+
+;Inventory Menu
+InventoryMenuTitleKey="Inventory Menu"
+InventoryMenuDescriptionKey="The inventory menu allows you to view and manage your item inventory. You can obtain items as rewards for completing matches from time to time, but you can also get items by opening crates, decrypting weapon skin USBs, trading with your friends, or purchasing them on the Market."
+WeaponSkinsTitleKey="Equipping Weapon Skins"
+WeaponSkinsDescriptionKey="Selecting any item will let you view the item details. If you have a weapon skin selected, you can equip it by pressing the <font color="#caab05">EQUIP</font> button. If you have a weapon skin equipped, any time you use that weapon in a match it will appear with the currently equipped skin."
+
+;Store Menu
+StoreTitleKey="Store Menu"
+StoreDescriptionsKey="The Store Menu allows you to purchase keys that are used to open crates and decrypt weapon skin USBs you find. There are also several character cosmetic item bundles you can purchase. Items that you purchase or receive as rewards will appear in the Inventory Menu."
+
+;Match Start
+InventoryTitleKey="Know Your Inventory"
+InventoryDescriptionKey="Each perk loadout starts with a unique primary weapon, a backup 9mm pistol, a specialist knife, and grenades. Press <font color="#caab05">%x%</font> to cycle through your weapons. You can also quick select weapon categories by pressing the following: <font color="#caab05">%x%</font> to equip your primary ranged weapon, <font color="#caab05">%x%</font> to equip your pistol, <font color="#caab05">%x%</font> to equip your melee weapon, and <font color="#caab05">%x%</font> to equip your syringe."
+InventoryContTitleKey="Know Your Inventory"
+InventoryContDescriptionKey="Each perk loadout starts with a unique primary weapon, a backup 9mm pistol, a specialist knife and grenade. Hold <font color="#caab05">%x%</font> and use the Dpad to select a weapon."
+AlternateFireKey="Alternate Fire"
+AlternateFireDescription="Most primary weapon have an alternate fire mode. Press <font color="#caab05">%x%</font> to toggle your current fire mode. An icon in your view will show the currently selected firemode."
+FlashLightBatteryTitleKey="Using a Flashlight"
+FlashLightBatteryDescriptionKey="It can get dark out there. Press <font color="#caab05">%x%</font> to toggle your <font color="#caab05">FLASHLIGHT</font> on and off. Your flashlight battery will slowly run out of power. When this happens it will turn off and automatically start recharging again."
+GrenadeTitleKey="Using Grenades"
+GrenadeDescriptionKey="Grenades allow you to deal with closely packed groups of Zeds. Perks have different grenades in their <font color="#caab05">WEAPON LOADOUTS</font>, all of which damage Zeds, but may have additional effects. Press <font color="#caab05">%x%</font> to throw a grenade." 
+
+;Wave 1 end
+TraderTimeTitleKey="Trader Time"
+TraderTimeDescriptionKey="In between waves you can buy/sell weapons and fill your ammo at the Trader. Follow the blue arrows to find the Trader."
+InventoryWeightTitleKey="Carrying Weight"
+InventoryWeightDescriptionKey="You are limited in the weight you can carry. If you can't carry what you want, sell some gear first to make room."
+
+;Trader Menu Open
+TraderRefillTitleKey="Refill Your Ammo and Armor"
+TraderRefillDescriptionKey="You can refill your <font color="#caab05">AMMO</font>, <font color="#caab05">GRENADES</font>, and <font color="#caab05">BODY ARMOR</font> by pressing the <font color="#caab05">MAG</font>, <font color="#caab05">x1</font>, or <font color="#caab05">FILL</font> buttons next to the appropriate item. If you are short of time (or long on dosh), pressing <font color="#caab05">AUTOFILL</font> will spend your dosh for you, spreading it across ammo, armor, and grenades quickly."
+TraderSellTitleKey="Selling Weapons"
+TraderSellDescriptionKey="To <font color="#caab05">SELL A WEAPON</font>, select the weapon on the right side of the menu and press the large <font color="#caab05">SELL BUTTON</font> in the center of the menu. You cannot sell your backup 9mm pistol, body armor, or grenades."
+TraderBuyTitleKey="Buying Weapons"
+TraderBuyDescriptionKey="To <font color="#caab05">BUY A WEAPON</font>, select a weapon on the left side of the menu and press the large <font color="#caab05">BUY BUTTON</font> in the center of the menu. Make sure you have enough <font color="#caab05">DOSH</font> and <font color="#caab05">WEIGHT CAPACITY</font> to purchase the weapon."
+TraderWeightTitleKey="Weapon Weight and Capacity"
+TraderWeightDescriptionKey="Every weapon has a <font color="#caab05">WEIGHT VALUE</font>. The weight of your current weapons may prevent you from being able to purchase the weapon you wish. The weight of the weapon is visible on the weapon list and in the weapon details. Your <font color="#caab05">WEIGHT CAPACITY</font> is shown above the buy/sell button in the center of the screen. Anything that will block you from buying the currently selected item is highlighted in red."
+
+;Trader Menu Close
+DoorWeldTitleKey="Weld Doors"
+DoorWeldDescriptionKey="You can <font color="#caab05">WELD DOORS</font> to slow the flow of enemies to a given area. To weld a door, walk up to it and <font color="#caab05">HOLD %x%</font> to equip your welder."
+HoldOutRunTitleKey="Run vs. Hold Out"
+HoldOutRunDescriptionKey="Know when to hold out and when to run. Find a good hold out spot, but once you start getting overrun, find an exit."
+TeamAdviceTitleKey="Stick Together"
+TeamAdviceDescriptionKey="<font color="#caab05">STAY WITH YOUR TEAM!</font> Your teammates are vital to your survival. They can heal you as well as help you take down the bigger Zeds."
+
+;Victory
+CongratulationsTitleKey="Victory!"
+CongratulationsDescriptionKey="Congratulations! You have completed the Training Floor!"
+NextStepsTitleKey="What to Do Next"
+NextStepsDescriptionKey="From the main menu, <font color="#caab05">PLAY SOLO OFFLINE</font> to practice more offline or jump into <font color="#caab05">ONLINE MATCHMAKING</font> or <font color="#caab05">BROWSE SERVERS</font> to find an online game. Now go kill some Zeds!"
+
+;Healing Section
+QuickHealTitleKey="Heal Yourself When Hurt"
+QuickHealDescriptionKey="If you are hurt, you can heal yourself by pressing <font color="#caab05">%x%</font>. After healing, your syringe will take sometime to recharge before you can use it again."
+HowToSyringeTitleKey="Heal Your Teammates"
+HowToSyringeDescriptionKey="You can also equip the syringe to heal your teammates by pressing <font color="#caab05">%x%</font> and then pressing <font color="#caab05">%x%</font> when close to a teammate."
+HealOthersTitleKey="Use Field Medic Weapons to Heal Teammates"
+HealOthersDescriptionKey="Field Medic perk weapons can heal teammates from a distance with their alternate fire mode. If you are using a Field Medic weapon, press <font color="#caab05">%x%</font> to fire a healing dart. Also, when you have selected the Field Medic perk, press <font color="#caab05">%x%</font> to throw a healing gas grenade."
+
+;Zed Time
+ZedTimeTitleKey="Zed Time"
+ZedTimeDescriptionKey="<font color="#caab05">ZED TIME SLO-MO</font> kicks in when cool things happen like headshots or hordes of enemies dying in an explosion. You can use this time to catch a small breather and daisy-chain some kills together."
+
+;Melee Section
+MeleeTitleKey="Melee Weapons"
+MeleeDescriptionKey="Melee weapons have both light and hard attacks. Perform a light attack by pressing <font color="#caab05">%x%</font> and a hard attack by pressing <font color="#caab05">%x%</font>."
+BlockingTitleKey="Blocking with Melee Weapons"
+BlockingDescriptionKey="You can also block with melee weapons by <font color="#caab05">HOLDING %x%</font>. Blocking will reduce incoming Zed damage."
+ParryTitleKey="Parrying with Melee Weapons"
+ParryDescriptionKey="If you time a block correctly with an incoming Zed attack, you will parry the Zed and stumble him back. You will see an effect flash if you successfully parry a Zed."
+UnblockableTitleKey="Unblockable Zed Attacks"
+UnblockableDescriptionKey="Larger Zeds have some unblockable attacks. You can tell if an attack is unblockable by glowing effects on the Zed during an attack."
+
+[KFGFxTutorialContainer]
+BackString="BACK"
+NextString="NEXT"
+DoneString="DONE"
+SkipString="SKIP"
 
 [Armor]
 ItemName="Armure de combat"
 ItemCategory="Equipment"
-ItemDescription="• L'armure de combat te protège contre les diverses formes de dégâts, mais elle est dégradée dans le processus\n• Achète une nouvelle armure ou répare celle endommagée chez le commerçant\n\nC'est une veste, équipée avec des plaques faites d'une combinaison de fibres high-tech et acier de tungstène."
+ItemDescription="• L'armure de combat te protège contre diverses formes de dégâts, mais elle se dégrade avec le temps\n• Achète une nouvelle armure ou répare-la chez la marchande\n\nC'est une veste, équipée de plaques composées d'un mélange de fibres high-tech et d'acier de tungstène."
 
 [KFProj_DynamiteGrenade]
 ItemName="1/2 Bâton de dynamite"
@@ -16,28 +109,38 @@ ItemDescription="• Un simple petit morceau de dynamite, avec une mèche.\n• 
 
 [KFProj_MedicGrenade]
 ItemName="Grenade du Médecin"
-ItemCategory =" "Explosives""
-ItemDescription="• Libère du gaz toxique pour les Zeds, mais aussi utile pour guérir les gens\n• Reste dans le nuage de gaz bleu pour être guéri\n\Citant un de nos scientifiques: 'L'agent libéré par ces grenades va revivifier les Homo Sapiens, en euthanasiant les Homo Zedicus.' Nous espérons que cela aide"."
+ItemCategory =" Explosives"
+ItemDescription="• Libère du gaz toxique pour les Zeds, mais aussi utile pour guérir les gens\n• Reste dans le nuage de gaz bleu pour être guéri\n\\Citant un de nos scientifiques: 'L'agent libéré par ces grenades va revivifier les Homo Sapiens, en euthanasiant les Homo Zedicus.' Nous espérons que cela aide."
 
 [KFProj_MolotovGrenade]
 ItemName="Cocktail Molotov"
 ItemCategory="Explosives"
-ItemDescription="• Une grenade à flammes très simple qui brûlera les Zeds.\n• Sois conscient que cela peut te faire du mal à toi aussi !\n\nNommée, de manière insultante, par les Finlandais pendant la guerre d'hiver de 1939 à 1940, après Vyacheslav Mikhailovich Molotov, le ministre des affaires étrangères soviétique sous Staline ... Désolé, tu n'avais pas envie d'une leçon d'histoire ?""
+ItemDescription="• Une grenade à flammes très simple qui brûlera les Zeds.\n• Sois conscient que cela peut te faire du mal à toi aussi !\n\nNommée, de manière insultante, par les Finlandais pendant la guerre d'hiver de 1939 à 1940, après Vyacheslav Mikhailovich Molotov, le ministre des affaires étrangères soviétique sous Staline ... Désolé, tu n'avais pas envie d'une leçon d'histoire ?"
 
 [KFProj_EMPGrenade]
-ItemName="Grenade EMP"
+ItemName="Grenade IEM"
 ItemCategory="Explosives"
-ItemDescription="• Génère une impulsion électrique qui va nuire les Zeds et peut également les étourdir pour un brève moment.n\n\Si tu veux plus de détails - lors de la détonation, elle génère une impulsion électromagnétique d’une nanoseconde qui perturbe les systèmes électriques dans un court intervalle de temps, en particulier ceux dont les Zeds sont dotés. C’est pratique.""
+ItemDescription="• Génère une impulsion électrique qui va nuire les Zeds et peut également les étourdir pour un brève moment.n\n\\Si tu veux plus de détails - lors de la détonation, elle génère une impulsion électromagnétique d’une nanoseconde qui perturbe les systèmes électriques dans un court intervalle de temps, en particulier ceux dont les Zeds sont dotés. C’est pratique."
 
 [KFProj_HEGrenade]
 ItemName="Grenade FE"
 ItemCategory="Explosives"
-ItemDescription="• Une grenade fortement explosive très simple. Blesse les Zeds et les humains.\n\nRien de plus simple. FE – Fortement explosive -elle fait BOUM et tout détone. Doit-on vraiment expliquer ?""
+ItemDescription="• Une grenade fortement explosive très simple. Blesse les Zeds et les humains.\n\nRien de plus simple. FE – Fortement explosive -elle fait BOUM et tout détone. Doit-on vraiment expliquer ?"
 
 [KFProj_FragGrenade]
-ItemName="Grenade-fragmentation"
+ItemName="Grenade à fragmentation"
 ItemCategory="Explosives"
 ItemDescription="• La grenade à fragmentation classique: jette de petits morceaux dangereux de métal partout blessant tout et tous.\n\nJe suis sûr que vous avez joué assez de jeux vidéo avant le déclenchement, donc vous savez parfaitement ce qui représente une grenade à fragmentation, et arrêtez de prétendre que vous ne le savais pas. Personne ici ne va vous croire."
+
+[KFProj_NailBombGrenade]
+ItemName="Nail Bomb"
+ItemCategory = "Explosives"
+ItemDescription="• Simply a canister full of old nails, with a small explosive charge in the middle.\n\nNot the most pleasant or subtle way of dealing with Zeds, but there is nothing pleasant or subtle about Zeds, is there?"
+
+[KFProj_FreezeGrenade]
+ItemName="Freeze Grenade"
+ItemCategory = "Explosives"
+ItemDescription="• An advanced canister of pressurized liquid nitrogen.\n\nEnough contact with the contents of this will freeze Zeds in place for a time. The results can be very shattering."
 
 [KFWeap_Healer_Syringe]
 ItemName="Seringue médicale"
@@ -48,12 +151,12 @@ ItemName="Soudeur"
 ItemCategory="Equipment"
 
 [KFWeap_Pistol_9mm]
-ItemName="Pistolet de 9mm"
+ItemName="Pistolet 9mm"
 ItemCategory="Hand Gun"
 ItemDescription="• Mode de tir semi-automatique uniquement.\n• Fixation lampe torche.\n• C’est le pistolet standard de 9mm. Simple et pas cher (très économique franchement, pour toi), c’est une arme secondaire de base pour tous les agents Horzine."
 
 [KFWeap_Pistol_Deagle]
-ItemName="0,50 Desert Eagle"
+ItemName="Desert Eagle .50"
 ItemCategory="Hand Cannon"
 ItemDescription="• Mode de tir semi-automatique uniquement.\n• Le Desert Eagle est la bête des armes de poing, c'est pour cela qu'on l'appelle le 'Canon à main'."
 
@@ -78,7 +181,7 @@ ItemCategory="Assault Rifle"
 ItemDescription="• Mode de tir automatique ou semi-automatique.\n• Tir alternatif pour basculer entre les modes.\n• Le second t'emmène dans des visées métalliques.\n• Le SA80 était l'arme standard de l'armée britannique, avant qu'elle ne se fasse... dévorée."
 
 [KFWeap_Knife_Demolitionist]
-ItemName="Utility Knife"
+ItemName=""
 ItemCategory="Melee"
 ItemDescription="• Principal - attaque tranchante rapide, maintenir pour combo\n• Le Secondaire - attaque tranchante puissante \n• Alt - blocage/parade\n• C’est un cutter. Parfait pour ouvrir les boites que tu pourrais trouver sur le killing floor."
 
@@ -92,13 +195,23 @@ ItemName="Couteau de Pompier"
 ItemCategory="Melee"
 ItemDescription="• Principal - attaque tranchante rapide, maintenir pour combo\n• Le Secondaire - attaque tranchante puissante \n• Alt - blocage/parade\n• C'est un couteau de pompier. T'es pompier, inutile de t'expliquer comment t'en servir."
 
+[KFWeap_Knife_Gunslinger]
+ItemName="Couteau Bowie"
+ItemCategory="Corps-à-corps"
+ItemDescription="• Primary - fast slash attack, Hold for combo attack.\n• Secondary - heavy slash attack.\n• Alt - block/parry.\n• The over-sized knife of the Old West. Perfect for slicing and dicing Zeds in the here and now."
+
+[KFWeap_Knife_Sharpshooter]
+ItemName="Kukri"
+ItemCategory="Melee"
+ItemDescription=""
+
 [KFWeap_Pistol_Medic]
-ItemName="HMTech-101 Pistol"
-ItemCategory="Pistol"
+ItemName="Pistolet HMTech-101"
+ItemCategory="Pistolet"
 ItemDescription="• Mode de tir semi-automatique seulement.\n• Le tir alternatif éjecte des seringues soignantes pour guérir les équipiers.\n• Utilisant des munitions sans étui, il compte les balles pour toi."
 
 [KFWeap_SMG_Medic]
-ItemName="Mitraillette HMTech-201 "
+ItemName="Mitraillette HMTech-201"
 ItemCategory="Sub Machine Gun"
 ItemDescription="• Mode de tir automatique seulement.\n• Le tir alternatif éjecte des seringues soignantes pour guérir les équipiers.\n• Fixation lampe torche\n• Ton pistolet sous amphets !"
 
@@ -186,7 +299,7 @@ ItemDescription="• Lance des flammes.\n• Lance-flammes maison, à main. N'es
 
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="Trench gun incendiaire"
-ItemCategory="Shotgun"
+ItemCategory="Fusil à pompe"
 ItemDescription="• Mode tir à pompe seulement.\n• Un shotgun utilisant les balles incendiaires de souffle du dragon. Mortel en plus d'avoir un aspect merveilleux."
 
 [KFWeap_Flame_Flamethrower]
@@ -224,6 +337,106 @@ ItemName="Double Pistolets 9mm"
 ItemCategory="Hand Gun"
 ItemDescription="• Mode de tir semi-automatique seulement.\n• Fixation lampe torche.\n• C'est une paire de 9mm standard. Vous pouvez en vendre un (seulement) si nécessaire."
 
+[KFWeap_Pistol_Colt1911]
+ItemName="M1911 Pistol"
+ItemCategory="Pistolet"
+ItemDescription="• Fire mode is semi-auto only.\n• The classic Colt 1911 semi-automatic pistol."
+
+[KFWeap_Pistol_DualColt1911]
+ItemName="Dual M1911 Pistols"
+ItemCategory="Pistolet"
+ItemDescription="• Fire mode is semi-auto only.\n• Alt-fire switches aiming styles when in Ironsights.\n• This is a pair of Colt 1911 semi-automatic pistols. Each can be individually sold or dropped."
+
+[KFWeap_Pistol_Deagle]
+ItemName="Desert Eagle .50"
+ItemCategory="Hand Cannon"
+ItemDescription="• Mode de tir semi-automatique uniquement.\n• Le Desert Eagle est la bête des armes de poing, c'est pour cela qu'on l'appelle le 'Canon à main'."
+
+[KFWeap_Pistol_DualDeagle]
+ItemName="Dual .50 Desert Eagles"
+ItemCategory="Pistolet"
+ItemDescription="• Fire mode is semi-auto only.\n• Alt-fire switches aiming styles when in Ironsights.\n• A pair of Desert Eagle hand cannons. Each can be individually sold or dropped."
+
+[KFWeap_Revolver_Rem1858]
+ItemName="1858 Revolver"
+ItemCategory="Hand Gun"
+ItemDescription="• Fire mode is single shot only.\n• A wonderful example of the .44-caliber Remington 'Model 1858' 6-shot single-action Army revolver. Ancient, but still potent."
+
+[KFWeap_Revolver_DualRem1858]
+ItemName="Dual 1858 Revolvers"
+ItemCategory="Hand Gun"
+ItemDescription="• Fire mode is semi-auto only.\n• Alt-fire switches aiming styles when in Ironsights.\n• A pair of Remington 1858 revolvers. Each can be individually sold or dropped."
+
+[KFWeap_Revolver_SW500]
+ItemName=".500 Magnum Revolver"
+ItemCategory="Hand Gun"
+ItemDescription="• Fire mode is single shot only.\n• True hand artillery in the form of a long-barrelled .50-caliber 'Bone Collector' revolver, firing full-load magnum rounds. For the serious Gunslinger."
+
+[KFWeap_Revolver_DualSW500]
+ItemName="Dual .500 Magnums"
+ItemCategory="Pistolet"
+ItemDescription="• Fire mode is semi-auto only.\n• Alt-fire switches aiming styles when in Ironsights.\n• A pair of .500 Magnum 'Bone Collector' revolvers. Each can be individually sold or dropped. With a big 'thud.'"
+
+[KFWeap_Rifle_Winchester1894]
+ItemName="Winchester 1894"
+ItemCategory="Rifle"
+ItemDescription="• Fire mode is single shot only.\n• The classic Model 1894 Winchester lever-action rifle."
+
+[KFWeap_Bow_Crossbow]
+ItemName="Crossbow"
+ItemCategory="Bow"
+ItemDescription="• Fire mode is single shot only.\n• Crossbow bolts are often recoverable!\n• A high-powered hunting crossbow, giving good penetration and good stopping power!"
+
+[KFWeap_Rifle_M14EBR]
+ItemName="M14 EBR"
+ItemCategory="Sniper Rifle"
+ItemDescription=""
+
+[KFWeap_Rifle_RailGun]
+ItemName="Rail Gun"
+ItemCategory="Sniper Rifle"
+ItemDescription=""
+
+[KFWeap_AssaultRifle_M16M203]
+ItemName="M16 M203 Assault Rifle"
+ItemCategory="Assault Rifle"
+ItemDescription=""
+SecondaryAmmo="M203 Grenade"
+
+//BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
+[KFPawn_ZedHans]
+BossName="Dr. Hans Volter"
+BossCaptionStrings[0]="When seriously injured Hans puts a shield up while he seeks a victim to drain health from. If you destroy this shield he cannot heal!"
+BossCaptionStrings[1]="Watch his power core: Hans is more aggressive as it changes color."
+BossCaptionStrings[2]="Aim for his emissive power core. It is a vulnerable zone."
+BossCaptionStrings[3]="Gas from Hans' grenades clings to you, like Bloat bile. Try to avoid it!"
+BossCaptionStrings[4]="His slashing attacks are too strong to parry. You'll still take full damage."
+BossCaptionStrings[5]="Watch for red grenade warning indicators, which may help you spot where they land."
+BossCaptionStrings[6]="When Hans pulls out his guns, stay out of the line of sight. Obvious, but important!"
+
+[KFPawn_ZedPatriarch]
+BossName="The Patriarch"
+BossCaptionStrings[0]="Kevin Clamely was once a brilliant scientist, until he became his own greatest creation."
+BossCaptionStrings[1]="The Patriarch is staggeringly arrogant - he is likely to tell you which attack he will use next."
+BossCaptionStrings[2]="Hiding behind even big objects won't help as much as you'd hope. The Patriarch has an answer for that!"
+BossCaptionStrings[3]="Running off on your own isn't an escape - it makes you easy prey he will target first."
+BossCaptionStrings[4]="Yes, the Patriarch can still cloak, go invisible, run off, and heal himself. Some things don't change."
+BossCaptionStrings[5]="While you won't get much choice about it, killing The Patriarch's 'children' just makes him mad(der)."
 
 [KFGameInfo_Survival]
 GameName="Survie"
+
+[KFGameInfo_VersusSurvival]
+GameName="VS Survival"
+
+[KFPawn_ZedPatriarch_Versus]
+NoHealsRemainingMsg="No Heals Remaining"
+LowHealthMsg="Health Is Critical! Heal Now!"
+NoMortarTargetsMsg="No Valid Mortar Targets"
+
+[KFSM_PlayerSiren_VortexVictim]
+VortexGrabTeamWarningMsg="%x% is trapped by a Siren!"
+
+[KFGFXHudWrapper_Versus]
+WaitingToSpawnString="TIME UNTIL SPAWN: %x% second(s)"
+ZedTakeOverActiveString="SEARCHING FOR ZEDS TO TAKE OVER..."

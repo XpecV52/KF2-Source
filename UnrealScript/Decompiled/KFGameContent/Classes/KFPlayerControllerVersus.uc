@@ -10,7 +10,6 @@ class KFPlayerControllerVersus extends KFPlayerController
     hidecategories(Navigation);
 
 var string BossName;
-var protected transient array<KFProj_BloatPukeMine> MyActivePukeMines;
 var array<bool> HasSpawnedZeds;
 var int ZedXPAmount;
 var byte ZedXPLevel;
@@ -36,8 +35,6 @@ function Restart(bool bVehicleTransition)
 
 reliable client simulated function ClientRestart(Pawn NewPawn)
 {
-    local KFGFxHudWrapper GFxHUDWrapper;
-
     super.ClientRestart(NewPawn);
     if(NewPawn == none)
     {
@@ -50,11 +47,6 @@ reliable client simulated function ClientRestart(Pawn NewPawn)
         {
             SetCameraMode('ThirdPerson');
         }
-    }
-    GFxHUDWrapper = KFGFxHudWrapper(myHUD);
-    if(GFxHUDWrapper != none)
-    {
-        GFxHUDWrapper.CreateHUDMovie();
     }
 }
 
@@ -86,102 +78,6 @@ function AwardZedDamage(int DamageAmount, bool bDamagerIsMe)
 function bool ShouldDisplayGameplayPostProcessFX()
 {
     return super.ShouldDisplayGameplayPostProcessFX() || ((GetTeamNum() == 255) && Pawn != none) && ((float(Pawn.Health) / float(Pawn.HealthMax)) * 100) <= float(default.LowHealthThreshold);
-}
-
-function AddPukeMineToPool(KFProj_BloatPukeMine PukeMine)
-{
-    local KFGameInfo_VersusSurvival KFGIVS;
-    local KFProj_BloatPukeMine OldestMine;
-
-    KFGIVS = KFGameInfo_VersusSurvival(WorldInfo.Game);
-    if(KFGIVS != none)
-    {
-        if(KFGIVS.ActivePukeMines.Length >= KFGIVS.30)
-        {
-            if((MyActivePukeMines.Length > 0) && MyActivePukeMines[0] != none)
-            {
-                OldestMine = MyActivePukeMines[0];
-                MyActivePukeMines.Remove(0, 1;
-                KFGIVS.ActivePukeMines.Remove(KFGIVS.ActivePukeMines.Find(OldestMine, 1;                
-            }
-            else
-            {
-                OldestMine = KFGIVS.ActivePukeMines[0];
-                KFGIVS.ActivePukeMines.Remove(0, 1;
-            }            
-        }
-        else
-        {
-            if(MyActivePukeMines.Length >= (GetMaxPlayerPukeMineNum()))
-            {
-                OldestMine = MyActivePukeMines[0];
-                MyActivePukeMines.Remove(0, 1;
-                KFGIVS.ActivePukeMines.Remove(KFGIVS.ActivePukeMines.Find(OldestMine, 1;
-            }
-        }
-        if(OldestMine != none)
-        {
-            OldestMine.TriggerExplosion(OldestMine.Location, vect(0, 0, 1), none);
-        }
-        MyActivePukeMines[MyActivePukeMines.Length] = PukeMine;
-        KFGIVS.ActivePukeMines[KFGIVS.ActivePukeMines.Length] = PukeMine;
-    }
-}
-
-function RemovePukeMineFromPool(KFProj_BloatPukeMine PukeMine)
-{
-    local KFGameInfo_VersusSurvival KFGIVS;
-    local int PukeMineIndex;
-
-    PukeMineIndex = MyActivePukeMines.Find(PukeMine;
-    MyActivePukeMines.Remove(PukeMineIndex, 1;
-    KFGIVS = KFGameInfo_VersusSurvival(WorldInfo.Game);
-    if(KFGIVS != none)
-    {
-        PukeMineIndex = KFGIVS.ActivePukeMines.Find(PukeMine;
-        if(PukeMineIndex != -1)
-        {
-            KFGIVS.ActivePukeMines.Remove(PukeMineIndex, 1;
-        }
-    }
-}
-
-function int GetMaxPlayerPukeMineNum()
-{
-    local KFGameInfo_VersusSurvival KFGIVS;
-    local KFPawn_ZedBloat_Versus BloatPawn;
-    local int NumBloatPlayers;
-
-    KFGIVS = KFGameInfo_VersusSurvival(WorldInfo.Game);
-    foreach WorldInfo.AllPawns(Class'KFPawn_ZedBloat_Versus', BloatPawn)
-    {
-        ++ NumBloatPlayers;        
-    }    
-    NumBloatPlayers = ((NumBloatPlayers == 0) ? 1 : NumBloatPlayers);
-    return KFGIVS.30 / NumBloatPlayers;
-}
-
-function string GetTeamTag(PlayerReplicationInfo PRI)
-{
-    if(PRI == none)
-    {
-        return "";
-    }
-    if(!PRI.bOnlySpectator)
-    {
-        if(PRI.GetTeamNum() == 255)
-        {
-            return ("<" $ Class'KFCommon_LocalizedStrings'.default.ZedString) $ ">";            
-        }
-        else
-        {
-            return ("<" $ Class'KFCommon_LocalizedStrings'.default.HumanString) $ ">";
-        }        
-    }
-    else
-    {
-        return ("<" $ Class'KFCommon_LocalizedStrings'.default.SpectatorString) $ ">";
-    }
 }
 
 function RecieveChatMessage(PlayerReplicationInfo PRI, string ChatMessage, name Type, optional float MsgLifeTime)
@@ -230,10 +126,6 @@ function ServerNotifyTeamChanged()
 {
     if((Role == ROLE_Authority) && MonsterPerkClass != none)
     {
-        if(CurrentPerk == none)
-        {
-            WarnInternal("Versus - ServerNotifyTeamChanged called with no initial perk! Team switch errors will follow");
-        }
         if(GetTeamNum() > 0)
         {
             ServerSelectPerk(255, 0, true);            
@@ -256,30 +148,58 @@ function ClientRecieveNewTeam()
     }
 }
 
-simulated event Destroyed()
+function Reset()
 {
+    if(CanRestartPlayer())
+    {
+        SetViewTarget(self);
+        ResetCameraMode();
+        FixFOV();
+        AcknowledgedPawn = none;
+        PlayerZedSpawnInfo.PendingZedPawnClass = none;
+        PlayerZedSpawnInfo.PendingZedSpawnLocation = vect(0, 0, 0);
+    }
+}
+
+reliable client simulated function ClientReset()
+{
+    local Actor A;
+    local array<Actor> BloodSplatActors;
     local int I;
 
-    super.Destroyed();
-    I = 0;
-    J0x15:
-
-    if(I < MyActivePukeMines.Length)
+    foreach AllActors(Class'Actor', A)
     {
-        if(MyActivePukeMines[I] != none)
+        if(A.IsA('KFPersistentBloodActor'))
         {
-            MyActivePukeMines[I].SetTimer((1 + float(Rand(5))) + FRand(), false, 'Timer_Explode');
+            BloodSplatActors.AddItem(A;
+            continue;            
         }
+        if(!A.IsA('Controller'))
+        {
+            A.Reset();
+        }        
+    }    
+    I = 0;
+    J0xA7:
+
+    if(I < BloodSplatActors.Length)
+    {
+        BloodSplatActors[I].Reset();
         ++ I;
-        goto J0x15;
+        goto J0xA7;
     }
-    MyActivePukeMines.Length = 0;
+    Class'KFGameplayPoolManager'.static.GetPoolManager().Reset();
 }
 
 event InitInputSystem()
 {
     super.InitInputSystem();
     KFPlayerInput(PlayerInput).bVersusInput = true;
+}
+
+event SetHaveUpdatePerk(bool bUsedUpdate)
+{
+    super.SetHaveUpdatePerk(((KFGameReplicationInfoVersus(WorldInfo.GRI).bRoundIsOver) ? false : bUsedUpdate));
 }
 
 state Dead
@@ -300,6 +220,7 @@ state Dead
 defaultproperties
 {
     MonsterPerkClass=Class'KFGame.KFPerk_Monster'
+    PostRoundMenuClass=Class'KFGame.KFGFxMoviePlayer_PostRoundMenu'
     StingerAkComponent=AkComponent'Default__KFPlayerControllerVersus.AkComponent'
     AmplificationLightTemplate=PointLightComponent'Default__KFPlayerControllerVersus.AmplificationLightTemplate'
     NVGLightTemplate=PointLightComponent'Default__KFPlayerControllerVersus.NVGLightTemplate'

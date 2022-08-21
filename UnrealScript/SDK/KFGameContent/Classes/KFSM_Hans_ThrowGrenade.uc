@@ -64,9 +64,9 @@ protected function bool InternalCanDoSpecialMove()
 DefaultProperties
 {
 	// SpecialMove
+	Handle=KFSM_Hans_ThrowGrenade
 	AnimName=Atk_Nade_V1
 	//AnimName=Atk_NadeBarrage_V1
-	Handle=SM_Hans_ThrowGrenade
 	bDisableSteering=false
 	bDisableMovement=true
 	// Don't let him shoot a gun while tossing a nade!

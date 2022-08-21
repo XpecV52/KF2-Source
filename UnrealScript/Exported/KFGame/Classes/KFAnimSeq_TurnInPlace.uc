@@ -26,6 +26,12 @@ var()	FLOAT			TransitionBlendTime;
 var		transient INT	ActiveChildIndex;
 var		transient FLOAT	BlendTimeToGo;
 
+/** Internal cached pointer to Owner */
+var const transient KFPawn	PawnOwner;
+
+// (cpptext)
+// (cpptext)
+// (cpptext)
 // (cpptext)
 // (cpptext)
 // (cpptext)

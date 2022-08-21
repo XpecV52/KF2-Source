@@ -27,5 +27,6 @@ defaultproperties
 	WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicKnife'
 
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Slashing_Knife_Medic'
-	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Slashing_KnifeHeavy_Medic'
+	InstantHitDamageTypes(HEAVY_ATK_FIREMODE)=class'KFDT_Slashing_KnifeHeavy_Medic'
+	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Piercing_KnifeStab_FieldMedic'
 }

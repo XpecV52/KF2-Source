@@ -82,19 +82,28 @@ function SpecialMoveStarted(bool bForced, Name PrevMove)
 
 function SpecialMoveEnded(Name PrevMove, Name NextMove)
 {
+	local KFSM_InteractionPawnFollower FollowerSM;
+
 	// Clear timers
 	PawnOwner.ClearTimer(nameof(CheckReadyToStartInteraction), Self);
 	PawnOwner.ClearTimer(nameof(InteractionStartTimedOut), self);
 	PawnOwner.ClearTimer(nameof(RetryCollisionTimer), self);
 
 	// If the special move was ended while bAlignPawns was on, velocity may get stuck on clients
-	if (bAlignPawns)
+	if( bAlignPawns && !KFPOwner.IsHumanControlled() )
 	{
 		PawnOwner.ZeroMovementVariables();
 		if( Follower != None)
 		{
 			Follower.ZeroMovementVariables();
 		}
+	}
+
+	// If the leader is leaving the special move, notify the follower
+	if( Follower != None && Follower.IsDoingSpecialMove(FollowerSpecialMove) )
+	{
+		FollowerSM = KFSM_InteractionPawnFollower(Follower.SpecialMoves[FollowerSpecialMove]);
+		FollowerSM.OnLeaderLeavingSpecialMove();
 	}
 
 	// Clear reference to Interaction Pawn.
@@ -219,7 +228,6 @@ function StartInteraction()
 /** Called on an interval to detect when pawns get too far apart or are seperated by a door */
 function RetryCollisionTimer()
 {
-	`log("zdist:"@Abs(Follower.Location.Z - PawnOwner.Location.Z));
 	// Test for vertical melee range (e.g. Follower fell off a ledge) & reachabilty (doors etc.)
 	// This started happening after PHYS_Falling handling was added to PrePerformPhysics
 	if ( (Abs(Follower.Location.Z - PawnOwner.Location.Z) > PawnOwner.CylinderComponent.CollisionHeight * 1.5) ||
@@ -237,18 +245,9 @@ function RetryCollisionTimer()
  */
 function bool IsFollowerReachable()
 {
-	local vector HitLocation, HitNormal;
-	local Actor HitActor;
-
 	// Trace from the WorldInfo, since open doors can ignore traces from zeds
-	HitActor = PawnOwner.WorldInfo.Trace( HitLocation, HitNormal, Follower.Location, PawnOwner.Location, false );
-
-	if( HitActor != None && HitActor != Follower )
-	{
-		return false;
-	}
-
-	return true;
+	return ( IsPawnPathClear(KFPOwner.WorldInfo, Follower, Follower.Location, KFPOwner.Location, vect(2,2,2), true, true)
+			&& IsPawnPathClear(KFPOwner.WorldInfo, Follower, Follower.Location, KFPOwner.Location,, true, true) );
 }
 
 /** Messages sent to this special move */
@@ -264,7 +263,13 @@ function bool MessageEvent(Name EventName, Object Sender)
 }
 
 /** Notification when Follower is leaving his FollowerSpecialMove */
-function OnFollowerLeavingSpecialMove();
+function OnFollowerLeavingSpecialMove()
+{
+	if( KFPOwner != none && KFPOwner.Role == ROLE_Authority )
+	{
+		KFPOwner.EndSpecialMove();
+	}
+}
 
 /**
  * Dump relative location of a Bone to PawnOwner

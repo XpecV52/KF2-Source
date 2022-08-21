@@ -14,62 +14,34 @@ simulated function SetCharacterArch( KFCharacterInfoBase Info, optional bool bFo
 {
     super.SetCharacterArch( Info, bForce );
 
-    SetGameplayMICParams();
+    UpdateGameplayMICParams();
 }
 
-/** Set gameplay related MIC params on the active body MIC */
-simulated function SetGameplayMICParams()
+/** Reapply active gameplay related MIC params (e.g. when switching to the gore mesh) */
+simulated function UpdateGameplayMICParams()
 {
     local PlayerController PC;
+    local MaterialInstanceConstant MIC;
     
-    super.SetGameplayMICParams();
+    super.UpdateGameplayMICParams();
 
     if( WorldInfo.NetMode != NM_DedicatedServer )
     {
         PC = GetALocalPlayerController();
         if( PC != none )
         {
-            if( BodyMIC != none )
+            foreach CharacterMICs(MIC)
             {
-                BodyMIC.SetScalarParameterValue( 'Scalar_Zedbait', PC.GetTeamNum() == 255 ? 1.f : 0.f );
-            }
-
-            if( HeadMIC != none )
-            {
-                HeadMIC.SetScalarParameterValue( 'Scalar_Zedbait', PC.GetTeamNum() == 255 ? 1.f : 0.f );
+                MIC.SetScalarParameterValue( 'Scalar_Zedbait', PC.GetTeamNum() == 255 ? 1.f : 0.f );
             }
         }
     }
 }
 
+/** Update team highlight */
 simulated function NotifyLocalPlayerTeamReceived()
 {    
-    SetGameplayMICParams();   
-}
-
-/*	Let the game type know this player took damage */
-event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
-{
-	local int OldHealth;
-	local int AppliedDamage;
-
-    OldHealth = Health;
-
-    super.TakeDamage( Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser );
-
-    if( OldHealth > Health )
-    {
-        AppliedDamage = OldHealth - Health;
-    }
-
-	if( AppliedDamage > 0 )
-	{
-        if( KFGameInfo_VersusSurvival(WorldInfo.Game) != none )
-        {
-            // Versus TODO: WIP zed scoring work that wasn't completed
-            KFGameInfo_VersusSurvival(WorldInfo.Game).ScoreDamage(AppliedDamage,InstigatedBy,Controller, self);
-        }
-	}
+    UpdateGameplayMICParams();   
 }
 
 defaultproperties

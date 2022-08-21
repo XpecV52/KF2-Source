@@ -9,15 +9,16 @@
 //=============================================================================
 
 class KFLaserSightAttachment extends Object
-	hidecategories(Object)
-	native(Effect);
+	hidecategories(Object);
 
 /** Distance at which we should start scaling the dot size and depth bias (5m) */
-`define LaserDotLerpStartDistance 	500.f 
+var() float LaserDotLerpStartDistance;
 /** Distance at which we should stop scaling the dot size and depth bias (60m) */
-`define LaserDotLerpEndDistance 	6000.f
+var() float LaserDotLerpEndDistance;
 /** Max scale is clamped at 20x */
-`define LaserDotMaxScale			10.f
+var() float LaserDotMaxScale;
+/** How much to pull the laser dot back to make sure it doesn't clip through what it hit */
+var() float LaserDotDepthBias;
 
 /*********************************************************************************************
  * @name	Attachments
@@ -27,6 +28,10 @@ class KFLaserSightAttachment extends Object
 var() StaticMesh LaserDotMesh;
 var transient StaticMeshComponent LaserDotMeshComp;
 
+/** Laser Sight Mesh */
+var()		  SkeletalMesh				LaserSightMesh;
+var transient KFSkeletalMeshComponent	LaserSightMeshComp;
+
 /** Laser Mesh */
 var()		  SkeletalMesh				LaserBeamMesh;
 var transient KFSkeletalMeshComponent	LaserBeamMeshComp;
@@ -35,7 +40,7 @@ var transient KFSkeletalMeshComponent	LaserBeamMeshComp;
 var() name LaserSightSocketName;
 var() float LaserSightRange;
 
-/** Specifies how much animation to blend in for the laser dot. 
+/** Specifies how much animation to blend in for the laser dot.
 	If 0, the dot will match the aim direction perfectly.
 	If 1, the dot will be completely controlled by animation
 	NOTE: First person only.
@@ -43,7 +48,7 @@ var() float LaserSightRange;
 var float AnimWeight;
 
 /** Specifies blending rate between aim and animation */
-var float AnimBlendRate;
+var() float AnimBlendRate;
 
 /** How strongly the laser sight should adhere to the aim direction.
 	Used to blend in and out of the weapon's active state
@@ -52,16 +57,11 @@ var transient 			float 			   LaserSightAimStrength;
 var transient 			bool 			   LaserAimBlendIn;
 var transient 			bool 			   LaserAimBlendOut;
 
-/** Update weapon attachment on an interval. OPTIMIZATION */
-var 					float 			   WeapAttachmentSkipTickInterval;
-var transient 			float 			   LastWeapAttachmentUpdateTime;
-
-/** Need more advanced trace flags here */
-native function Actor TraceLaserSight( Actor TraceOwner, vector TraceStart, vector TraceEnd, out vector HitLocation, out vector HitNormal );
-
 /** Create/Attach lasersight components */
 function AttachLaserSight(SkeletalMeshComponent OwnerMesh, bool bFirstPerson, optional name SocketNameOverride)
 {
+    local KFSkeletalMeshComponent KFMesh;
+
 	if ( OwnerMesh == None )
 	{
 		`log("Invalid mesh for laser sight " @self);
@@ -80,6 +80,16 @@ function AttachLaserSight(SkeletalMeshComponent OwnerMesh, bool bFirstPerson, op
 		OwnerMesh.AttachComponentToSocket(LaserDotMeshComp, LaserSightSocketName);
 	}
 
+	if ( LaserSightMesh != None )
+	{
+        LaserSightMeshComp.SetSkeletalMesh(LaserSightMesh);
+		OwnerMesh.AttachComponentToSocket(LaserSightMeshComp, LaserSightSocketName);
+        if( bFirstPerson )
+        {
+            LaserSightMeshComp.SetDepthPriorityGroup(SDPG_Foreground);
+        }
+	}
+
 	if ( LaserBeamMesh != None )
 	{
 		LaserBeamMeshComp.SetSkeletalMesh(LaserBeamMesh);
@@ -89,12 +99,37 @@ function AttachLaserSight(SkeletalMeshComponent OwnerMesh, bool bFirstPerson, op
 		{
 			LaserBeamMeshComp.SetDepthPriorityGroup(SDPG_Foreground);
 		}
+	}
 
-		// If attaching to a mesh with a custom FOV
-		if (OwnerMesh.IsA('KFSkeletalMeshComponent'))
-		{
-			LaserBeamMeshComp.SetFOV( KFSkeletalMeshComponent(OwnerMesh).FOV );
-		}
+    KFMesh =  KFSkeletalMeshComponent(OwnerMesh);
+
+	// If attaching to a mesh with a custom FOV
+	if (KFMesh != none && KFMesh.FOV > 0)
+	{
+		SetMeshFOV( KFMesh.FOV );
+	}
+}
+
+/** Set the FOV of the laser sight mesh */
+simulated function SetMeshFOV( float NewFOV )
+{
+	if( LaserBeamMeshComp.SkeletalMesh != none )
+	{
+        LaserBeamMeshComp.SetFOV( NewFOV );
+    }
+
+    if( LaserSightMeshComp.SkeletalMesh != none )
+    {
+	   LaserSightMeshComp.SetFOV( NewFOV );
+	}
+}
+
+/** Set the lighting channels on all the appropriate weapon attachment mesh(es) */
+simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingChannels)
+{
+	if( LaserSightMeshComp.SkeletalMesh != none  )
+	{
+		LaserSightMeshComp.SetLightingChannels(NewLightingChannels);
 	}
 }
 
@@ -120,9 +155,10 @@ simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
 	local float MaxAimStrength;
 	local vector DirA, DirB;
 	local Quat Q;
+	local TraceHitInfo		HitInfo;
 
-	if( OwningWeapon != None && 
-		OwningWeapon.Instigator != None && 
+	if( OwningWeapon != None &&
+		OwningWeapon.Instigator != None &&
 		OwningWeapon.Instigator.IsFirstPerson() )
 	{
 		MaxAimStrength = 1.f - AnimWeight;
@@ -157,8 +193,10 @@ simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
 			// Simulate an instant trace where weapon is aiming, Get hit info.
 			// Take minimal part of CalcWeaponFire()
 			TraceEnd = TraceStart + TraceAimDir * LaserSightRange;
-			HitActor = TraceLaserSight( OwningWeapon.GetTraceOwner(), TraceStart, TraceEnd, InstantTraceHitLocation, InstantTraceHitNormal );
-			//OwningWeapon.DrawDebugLine(InstantTraceHitLocation, InstantTraceHitLocation + 50*Normal(InstantTraceHitNormal), 0, 0, 255, FALSE);
+			HitActor = OwningWeapon.GetTraceOwner().Trace(InstantTraceHitLocation, InstantTraceHitNormal, TraceEnd, TraceStart, TRUE, vect(0,0,0), HitInfo, OwningWeapon.TRACEFLAG_Bullet);
+
+			//OwningWeapon.MySkelMesh.GetSocketWorldLocationAndRotation(LaserSightSocketName, SocketLocation);
+			//OwningWeapon.DrawDebugLine(SocketLocation, InstantTraceHitLocation, 255, 255, 0, FALSE);
 
 			if( HitActor != None )
 			{
@@ -174,8 +212,8 @@ simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
 						SocketToWorldTransform = OwningWeapon.MySkelMesh.GetSocketMatrix(LaserSightSocketName);
 						SocketSpaceAimLocation = InverseTransformVector(SocketToWorldTransform, InstantTraceHitLocation);
 
-		// Basically SocketSpaceAimLocation - (0,0,0)
-		SocketSpaceAimDir = Normal(SocketSpaceAimLocation);
+                		// Basically SocketSpaceAimLocation - (0,0,0)
+                		SocketSpaceAimDir = Normal(SocketSpaceAimLocation);
 
 						// Clamp the maximum aim adjustment for the AimDir so you don't get weird
 						// cases where the aim dir is rotated away from the location where you
@@ -190,16 +228,16 @@ simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
 							SocketSpaceAimDir = QuatRotateVector(Q,DirB);
 						}
 
-		// Apply relative rotation to aim along desired direction
+		                // Apply relative rotation to aim along desired direction
 						SocketSpaceNewTraceDir = LaserSightAimStrength * SocketSpaceAimDir + (1.f - LaserSightAimStrength) * DirB;
 
-						// Transform the direction to world space. Convert direction vector  in socket space to point 
+						// Transform the direction to world space. Convert direction vector  in socket space to point
 						// in world space and subtract the socket location to get direction vector in world space
 						WorldSpaceNewTraceDir = TransformVector(SocketToWorldTransform, SocketSpaceNewTraceDir) - TraceStart;
 
 						// Trace from socket along new trace direction
 						TraceEnd = TraceStart + Normal(WorldSpaceNewTraceDir) * LaserSightRange;
-						HitActor = TraceLaserSight( OwningWeapon.GetTraceOwner(), TraceStart, TraceEnd, HitLocation, HitNormal );
+						HitActor = OwningWeapon.GetTraceOwner().Trace(HitLocation, HitNormal, TraceEnd, TraceStart, TRUE, vect(0,0,0), HitInfo, OwningWeapon.TRACEFLAG_Bullet);
 
 						if( HitActor != None )
 						{
@@ -214,13 +252,13 @@ simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
 							// Hide the dot mesh if it didn't hit anything
 							LaserDotMeshComp.SetHidden(true);
 						}
-	}
+	                }
 				}
 				else
 				{
 					// If aim strength is 100%, then just aim at the instant trace location
 					LaserDotMeshComp.SetHidden(false);
-					AimAt(InstantTraceHitLocation, InstantTraceHitNormal, OwningWeapon.MySkelMesh);	
+					AimAt(InstantTraceHitLocation, InstantTraceHitNormal, OwningWeapon.MySkelMesh);
 				}
 			}
 			else
@@ -237,8 +275,8 @@ simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
 				OwningWeapon.MySkelMesh.GetSocketWorldLocationAndRotation(LaserSightSocketName,  TraceStart,  SocketRotation) )
 			{
 				TraceEnd = TraceStart + vector(SocketRotation) * LaserSightRange;
-				HitActor = TraceLaserSight( OwningWeapon.GetTraceOwner(), TraceStart, TraceEnd, HitLocation, HitNormal );
-				
+				HitActor = OwningWeapon.GetTraceOwner().Trace(HitLocation, HitNormal, TraceEnd, TraceStart, TRUE, vect(0,0,0), HitInfo, OwningWeapon.TRACEFLAG_Bullet);
+
 				if( HitActor != None )
 				{
 					// Unhide the dot mesh and make it point at given hit location
@@ -265,20 +303,28 @@ function AimAt(vector HitLocation, vector HitNormal, SkeletalMeshComponent Paren
 	local vector SocketSpaceAimLocation;
 	local matrix SocketToWorldTransform;
 	local float LaserDotScale;
+	local vector SocketLocation;
+	local vector SocketToHit;
+
+    ParentMesh.GetSocketWorldLocationAndRotation(LaserSightSocketName, SocketLocation);
+
+    // Pull the hit location back a bit to keep the laser dot from clipping
+    SocketToHit = (HitLocation - SocketLocation) * LaserDotDepthBias;
+    HitLocation = SocketLocation + SocketToHit;
 
 	SocketToWorldTransform = ParentMesh.GetSocketMatrix(LaserSightSocketName);
 
 	// Transform the aim location to the coordinate system of the laser sight socket
-	SocketSpaceAimLocation = InverseTransformVector(SocketToWorldTransform, HitLocation);	
+	SocketSpaceAimLocation = InverseTransformVector(SocketToWorldTransform, HitLocation);
 	LaserDotMeshComp.SetTranslation(SocketSpaceAimLocation);
 
 	// Scale laser dot based on distance clamped at 10x at 30m
-	LaserDotScale = 1.f + (`LaserDotMaxScale - 1.f) * FMax((SocketSpaceAimLocation.X - `LaserDotLerpStartDistance)/(`LaserDotLerpEndDistance - `LaserDotLerpStartDistance), 0.f);
+	LaserDotScale = 1.f + (LaserDotMaxScale - 1.f) * FMax((SocketSpaceAimLocation.X - LaserDotLerpStartDistance)/(LaserDotLerpEndDistance - LaserDotLerpStartDistance), 0.f);
 	LaserDotMeshComp.SetScale(LaserDotScale);
 
 	// START DEBUG
-	//`log("Distance = " $ SocketSpaceAimLocation.X @ "Scale = " $ LaserDotScale @ "DepthBias = " $ LaserDotDepthBias);
-	//class'WorldInfo'.static.GetWorldInfo().DrawDebugLine(HitLocation, HitLocation + 50*Normal(HitNormal), 0, 0, 255, FALSE);
+//	`log("Distance = " $ SocketSpaceAimLocation.X @ "Scale = " $ LaserDotScale);
+//	class'WorldInfo'.static.GetWorldInfo().DrawDebugLine(HitLocation, HitLocation + 50*Normal(HitNormal), 0, 0, 255, FALSE);
 	// END DEBUG
 }
 
@@ -297,17 +343,45 @@ defaultproperties
 	End Object
 	LaserDotMeshComp=LaserDotStaticMeshComponent_0
 
+	Begin Object Class=KFSkeletalMeshComponent Name=LaserSightMeshComponent_0
+		CollideActors=FALSE
+		BlockActors=FALSE
+		BlockZeroExtent=FALSE
+		BlockNonZeroExtent=FALSE
+		BlockRigidBody=FALSE
+		bAcceptsDecals=FALSE
+		bOwnerNoSee=true
+		bOnlyOwnerSee=false
+		AlwaysLoadOnClient=true
+		AlwaysLoadOnServer=false
+		MaxDrawDistance=4000
+		bAcceptsDynamicDecals=FALSE
+		CastShadow=true
+		bCastDynamicShadow=true
+		bUpdateSkelWhenNotRendered=false
+		bIgnoreControllersWhenNotRendered=true
+		bOverrideAttachmentOwnerVisibility=true
+		// Default to outdoor. If indoor, this will be set when TWIndoorLightingVolume::Touch() event is received at spawn.
+		LightingChannels=(Outdoor=TRUE,bInitialized=TRUE)
+		TickGroup=TG_PostAsyncWork
+	End Object
+	LaserSightMeshComp=LaserSightMeshComponent_0
+
 	Begin Object Class=KFSkeletalMeshComponent Name=LaserBeamMeshComp_0
 		CastShadow=FALSE
 	End Object
 	LaserBeamMeshComp=LaserBeamMeshComp_0
 
-	LaserSightRange=10000 //100m
-	WeapAttachmentSkipTickInterval=0.5
+	LaserSightRange=20000 //200m
 
-	// Set AnimWeight to 0 as it causes the laser dot to diverge from the 
+	// Set AnimWeight to 0 as it causes the laser dot to diverge from the
 	// aim location when you the player is right up against an obstace
 	AnimWeight=0.f
 
-	AnimBlendRate=12.f
+	AnimBlendRate=1.f
+
+    LaserDotLerpStartDistance=25.f
+    LaserDotLerpEndDistance=6000.f
+    LaserDotMaxScale=10.f
+    LaserDotDepthBias=0.95f
 }

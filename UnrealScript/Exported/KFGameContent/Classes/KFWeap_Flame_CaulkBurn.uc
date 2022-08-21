@@ -105,7 +105,8 @@ defaultproperties
    MinAmmoConsumed=4
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Flamethrower'
    FireModeIconPaths(1)=()
-   InventorySize=6
+   InventorySize=5
+   MagazineCapacity(0)=50
    bHasIronSights=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
@@ -115,7 +116,6 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=2.000000
    GroupPriority=25.000000
    WeaponSelectTexture=Texture2D'WEP_UI_CaulkBurn_TEX.UI_WeaponSelect_CaulkNBurn'
-   MagazineCapacity(0)=50
    MaxSpareAmmo(0)=400
    InitialSpareMags(0)=4
    AmmoPickupScale(0)=0.500000

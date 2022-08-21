@@ -274,9 +274,18 @@ simulated function CustomFire()
 
 simulated function bool CanWeldTarget( optional int FireModeNum=CurrentFireMode )
 {
+	local KFPerk WelderPerk;
+
+	WelderPerk = GetPerk();
+
 	if ( FireModeNum == DEFAULT_FIREMODE &&
 		 WeldTarget.WeldIntegrity >= WeldTarget.MaxWeldIntegrity )
 	{
+		if( WelderPerk != none && WelderPerk.CanExplosiveWeld() )
+		{
+			return WeldTarget.DemoWeld < WeldTarget.default.DemoWeldRequired;
+		}
+
 		return false;
 	}
 	else if ( FireModeNum == ALTFIRE_FIREMODE &&

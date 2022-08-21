@@ -88,6 +88,9 @@ var() bool bShouldSaveForCheckpoint;
 `if(`__TW_PHYSICS_)
 /** If set, fractures parts are destroyed on any collision */
 var(KFFracturedMeshActor) bool	bDestroyFragmentsOnImpact;
+
+/** Used by reset system to determine if actor needs to be processed */
+var transient bool bHasBeenDirtied;
 `endif
 
 cpptext
@@ -366,6 +369,11 @@ simulated event TakeDamage(int Damage, Controller EventInstigator, vector HitLoc
 	}
 	//`log("FSM:TAKEDAMAGE"@HitInfo.Item@ChunkHealth[HitInfo.Item]);
 
+`if(`__TW_PHYSICS_)
+	// Dirty actor for reset
+	bHasBeenDirtied = true;
+`endif
+
 	// If its hit zero health, hide part and spawn part.
 	if(ChunkHealth[HitInfo.Item] <= 0)
 	{
@@ -500,6 +508,11 @@ simulated event Explode()
 	local FracturedStaticMeshPart FracPart;
 	local float PartScale;
 
+`if(`__TW_PHYSICS_)
+	// Dirty actor for reset
+	bHasBeenDirtied = true;
+`endif
+
 	FracMesh = FracturedStaticMesh(FracturedStaticMeshComponent.StaticMesh);
 
 	// Iterate over all visible fragments spawning them
@@ -549,6 +562,10 @@ simulated event HideOneFragment()
 		{
 			FragmentVis[i] = 0;
 			FracturedStaticMeshComponent.SetVisibleFragments(FragmentVis);
+`if(`__TW_PHYSICS_)
+			// Dirty actor for reset
+			bHasBeenDirtied = true;
+`endif
 			return; // done!
 		}
 	}
@@ -592,6 +609,11 @@ simulated event SetLoseChunkReplacementMaterial()
 		return;
 	}
 
+`if(`__TW_PHYSICS_)
+	// Dirty actor for reset
+	bHasBeenDirtied = true;
+`endif
+
 	FracMesh = FracturedStaticMesh(FracturedStaticMeshComponent.StaticMesh);
 
 	// Check override in component before one set in mesh
@@ -607,7 +629,12 @@ simulated event SetLoseChunkReplacementMaterial()
 	// If we have a material - apply it
 	if(LoseChunkOutsideMat != None)
 	{
+`if(`__TW_PHYSICS_)
+		// Base engine version for some reason uses the parent material instead of the actual material, which doesn't work.
+		MI_LoseChunkPreviousMaterial = FracturedStaticMeshComponent.GetMaterial( FracMesh.OutsideMaterialIndex );
+`else
 		MI_LoseChunkPreviousMaterial = FracturedStaticMeshComponent.GetMaterial( FracMesh.OutsideMaterialIndex ).GetMaterial();
+`endif
 		FracturedStaticMeshComponent.SetMaterial(FracMesh.OutsideMaterialIndex, LoseChunkOutsideMat);
 	}
 }
@@ -637,6 +664,36 @@ simulated function NotifyHitByExplosion(Controller InstigatorController, float D
 		}
 	}
 }
+
+`if(`__TW_PHYSICS_)
+/** Level was reset without reloading */
+simulated function Reset()
+{
+	if( !bHasBeenDirtied )
+	{
+		return;
+	}
+
+	// Reset dirtied flag
+	bHasBeenDirtied = false;
+
+	// Reset all hidden chunks (destroyed chunks) back to their visible states
+	ResetVisibility();
+
+	// Reset chunk health (individual chunks)
+	ResetHealth();
+
+	// Reset collision
+	FracturedStaticMeshComponent.SetBlockRigidBody( true );	
+
+	// Switch back to initial material
+	if( MI_LoseChunkPreviousMaterial != none )
+	{
+		FracturedStaticMeshComponent.SetMaterial( FracturedStaticMesh(FracturedStaticMeshComponent.StaticMesh).OutsideMaterialIndex, MI_LoseChunkPreviousMaterial );
+		MI_LoseChunkPreviousMaterial = none;
+	}
+}
+`endif
 
 defaultproperties
 {

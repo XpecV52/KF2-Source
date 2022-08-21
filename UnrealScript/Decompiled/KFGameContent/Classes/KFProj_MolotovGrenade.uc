@@ -128,7 +128,6 @@ defaultproperties
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'wep_molotov_arch.Molotov_Explosion'
         Damage=60
-        DamageRadius=200
         MyDamageType=Class'KFDT_Fire_MolotovGrenade'
         KnockDownStrength=0
         MomentumTransferScale=0

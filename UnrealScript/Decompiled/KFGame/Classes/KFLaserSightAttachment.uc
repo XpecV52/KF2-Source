@@ -6,12 +6,22 @@
  * All rights belong to their respective owners.
  *******************************************************************************/
 class KFLaserSightAttachment extends Object
-    native(Effect)
     hidecategories(Object);
 
+/** Distance at which we should start scaling the dot size and depth bias (5m) */
+var() float LaserDotLerpStartDistance;
+/** Distance at which we should stop scaling the dot size and depth bias (60m) */
+var() float LaserDotLerpEndDistance;
+/** Max scale is clamped at 20x */
+var() float LaserDotMaxScale;
+/** How much to pull the laser dot back to make sure it doesn't clip through what it hit */
+var() float LaserDotDepthBias;
 /** Static Mesh */
 var() StaticMesh LaserDotMesh;
 var export editinline transient StaticMeshComponent LaserDotMeshComp;
+/** Laser Sight Mesh */
+var() SkeletalMesh LaserSightMesh;
+var export editinline transient KFSkeletalMeshComponent LaserSightMeshComp;
 /** Laser Mesh */
 var() SkeletalMesh LaserBeamMesh;
 var export editinline transient KFSkeletalMeshComponent LaserBeamMeshComp;
@@ -19,18 +29,16 @@ var export editinline transient KFSkeletalMeshComponent LaserBeamMeshComp;
 var() name LaserSightSocketName;
 var() float LaserSightRange;
 var float AnimWeight;
-var float AnimBlendRate;
+/** Specifies blending rate between aim and animation */
+var() float AnimBlendRate;
 var transient float LaserSightAimStrength;
 var transient bool LaserAimBlendIn;
 var transient bool LaserAimBlendOut;
-var float WeapAttachmentSkipTickInterval;
-var transient float LastWeapAttachmentUpdateTime;
-
-// Export UKFLaserSightAttachment::execTraceLaserSight(FFrame&, void* const)
-native function Actor TraceLaserSight(Actor TraceOwner, Vector TraceStart, Vector TraceEnd, out Vector HitLocation, out Vector HitNormal);
 
 function AttachLaserSight(SkeletalMeshComponent OwnerMesh, bool bFirstPerson, optional name SocketNameOverride)
 {
+    local editinline KFSkeletalMeshComponent KFMesh;
+
     if(OwnerMesh == none)
     {
         LogInternal("Invalid mesh for laser sight " @ string(self));
@@ -45,6 +53,15 @@ function AttachLaserSight(SkeletalMeshComponent OwnerMesh, bool bFirstPerson, op
         LaserDotMeshComp.SetStaticMesh(LaserDotMesh);
         OwnerMesh.AttachComponentToSocket(LaserDotMeshComp, LaserSightSocketName);
     }
+    if(LaserSightMesh != none)
+    {
+        LaserSightMeshComp.SetSkeletalMesh(LaserSightMesh);
+        OwnerMesh.AttachComponentToSocket(LaserSightMeshComp, LaserSightSocketName);
+        if(bFirstPerson)
+        {
+            LaserSightMeshComp.SetDepthPriorityGroup(2);
+        }
+    }
     if(LaserBeamMesh != none)
     {
         LaserBeamMeshComp.SetSkeletalMesh(LaserBeamMesh);
@@ -53,10 +70,31 @@ function AttachLaserSight(SkeletalMeshComponent OwnerMesh, bool bFirstPerson, op
         {
             LaserBeamMeshComp.SetDepthPriorityGroup(2);
         }
-        if(OwnerMesh.IsA('KFSkeletalMeshComponent'))
-        {
-            LaserBeamMeshComp.SetFOV(KFSkeletalMeshComponent(OwnerMesh).FOV);
-        }
+    }
+    KFMesh = KFSkeletalMeshComponent(OwnerMesh);
+    if((KFMesh != none) && KFMesh.FOV > float(0))
+    {
+        SetMeshFOV(KFMesh.FOV);
+    }
+}
+
+simulated function SetMeshFOV(float NewFOV)
+{
+    if(LaserBeamMeshComp.SkeletalMesh != none)
+    {
+        LaserBeamMeshComp.SetFOV(NewFOV);
+    }
+    if(LaserSightMeshComp.SkeletalMesh != none)
+    {
+        LaserSightMeshComp.SetFOV(NewFOV);
+    }
+}
+
+simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingChannels)
+{
+    if(LaserSightMeshComp.SkeletalMesh != none)
+    {
+        LaserSightMeshComp.SetLightingChannels(NewLightingChannels);
     }
 }
 
@@ -77,6 +115,7 @@ simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
     local float MaxAimStrength;
     local Vector DirA, DirB;
     local Quat Q;
+    local TraceHitInfo HitInfo;
 
     if(((OwningWeapon != none) && OwningWeapon.Instigator != none) && OwningWeapon.Instigator.IsFirstPerson())
     {
@@ -102,7 +141,7 @@ simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
             TraceStart = OwningWeapon.Instigator.GetWeaponStartTraceLocation();
             TraceAimDir = vector(OwningWeapon.Instigator.GetAdjustedAimFor(OwningWeapon, TraceStart));
             TraceEnd = TraceStart + (TraceAimDir * LaserSightRange);
-            HitActor = TraceLaserSight(OwningWeapon.GetTraceOwner(), TraceStart, TraceEnd, InstantTraceHitLocation, InstantTraceHitNormal);
+            HitActor = OwningWeapon.GetTraceOwner().Trace(InstantTraceHitLocation, InstantTraceHitNormal, TraceEnd, TraceStart, true, vect(0, 0, 0), HitInfo, OwningWeapon.1);
             if(HitActor != none)
             {
                 if(LaserSightAimStrength < 1)
@@ -122,7 +161,7 @@ simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
                         SocketSpaceNewTraceDir = (LaserSightAimStrength * SocketSpaceAimDir) + ((1 - LaserSightAimStrength) * DirB);
                         WorldSpaceNewTraceDir = TransformVector(SocketToWorldTransform, SocketSpaceNewTraceDir) - TraceStart;
                         TraceEnd = TraceStart + (Normal(WorldSpaceNewTraceDir) * LaserSightRange);
-                        HitActor = TraceLaserSight(OwningWeapon.GetTraceOwner(), TraceStart, TraceEnd, HitLocation, HitNormal);
+                        HitActor = OwningWeapon.GetTraceOwner().Trace(HitLocation, HitNormal, TraceEnd, TraceStart, true, vect(0, 0, 0), HitInfo, OwningWeapon.1);
                         if(HitActor != none)
                         {
                             LaserDotMeshComp.SetHidden(false);
@@ -152,7 +191,7 @@ simulated function Update(float DeltaTime, KFWeapon OwningWeapon)
                 if((OwningWeapon.MySkelMesh != none) && OwningWeapon.MySkelMesh.GetSocketWorldLocationAndRotation(LaserSightSocketName, TraceStart, SocketRotation))
                 {
                     TraceEnd = TraceStart + (vector(SocketRotation) * LaserSightRange);
-                    HitActor = TraceLaserSight(OwningWeapon.GetTraceOwner(), TraceStart, TraceEnd, HitLocation, HitNormal);
+                    HitActor = OwningWeapon.GetTraceOwner().Trace(HitLocation, HitNormal, TraceEnd, TraceStart, true, vect(0, 0, 0), HitInfo, OwningWeapon.1);
                     if(HitActor != none)
                     {
                         LaserDotMeshComp.SetHidden(false);
@@ -173,16 +212,24 @@ function AimAt(Vector HitLocation, Vector HitNormal, SkeletalMeshComponent Paren
     local Vector SocketSpaceAimLocation;
     local Matrix SocketToWorldTransform;
     local float LaserDotScale;
+    local Vector SocketLocation, SocketToHit;
 
+    ParentMesh.GetSocketWorldLocationAndRotation(LaserSightSocketName, SocketLocation);
+    SocketToHit = (HitLocation - SocketLocation) * LaserDotDepthBias;
+    HitLocation = SocketLocation + SocketToHit;
     SocketToWorldTransform = ParentMesh.GetSocketMatrix(LaserSightSocketName);
     SocketSpaceAimLocation = InverseTransformVector(SocketToWorldTransform, HitLocation);
     LaserDotMeshComp.SetTranslation(SocketSpaceAimLocation);
-    LaserDotScale = 1 + ((10 - 1) * FMax((SocketSpaceAimLocation.X - 500) / (6000 - 500), 0));
+    LaserDotScale = 1 + ((LaserDotMaxScale - 1) * FMax((SocketSpaceAimLocation.X - LaserDotLerpStartDistance) / (LaserDotLerpEndDistance - LaserDotLerpStartDistance), 0));
     LaserDotMeshComp.SetScale(LaserDotScale);
 }
 
 defaultproperties
 {
+    LaserDotLerpStartDistance=25
+    LaserDotLerpEndDistance=6000
+    LaserDotMaxScale=10
+    LaserDotDepthBias=0.95
     begin object name=LaserDotStaticMeshComponent class=StaticMeshComponent
         ReplacementPrimitive=none
         DepthPriorityGroup=ESceneDepthPriorityGroup.SDPG_Foreground
@@ -196,13 +243,26 @@ defaultproperties
     object end
     // Reference: StaticMeshComponent'Default__KFLaserSightAttachment.LaserDotStaticMeshComponent'
     LaserDotMeshComp=LaserDotStaticMeshComponent
+    begin object name=LaserSightMeshComponent class=KFSkeletalMeshComponent
+        bUpdateSkelWhenNotRendered=false
+        bIgnoreControllersWhenNotRendered=true
+        bOverrideAttachmentOwnerVisibility=true
+        ReplacementPrimitive=none
+        MaxDrawDistance=4000
+        CachedMaxDrawDistance=4000
+        bOwnerNoSee=true
+        AlwaysLoadOnServer=false
+        LightingChannels=(bInitialized=true,Outdoor=true)
+        TickGroup=ETickingGroup.TG_PostAsyncWork
+    object end
+    // Reference: KFSkeletalMeshComponent'Default__KFLaserSightAttachment.LaserSightMeshComponent'
+    LaserSightMeshComp=LaserSightMeshComponent
     begin object name=LaserBeamMeshComp class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
         CastShadow=false
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFLaserSightAttachment.LaserBeamMeshComp'
     LaserBeamMeshComp=LaserBeamMeshComp
-    LaserSightRange=10000
-    AnimBlendRate=12
-    WeapAttachmentSkipTickInterval=0.5
+    LaserSightRange=20000
+    AnimBlendRate=1
 }

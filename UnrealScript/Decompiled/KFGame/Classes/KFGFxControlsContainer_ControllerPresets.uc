@@ -29,6 +29,7 @@ var const localized string ShowScoardBoardString;
 var const localized string ShowIngameMenuString;
 var const localized string HoldString;
 var const localized string CurrentControllerPresetString;
+var const localized array<localized string> PresetStrings;
 var int numGamepadLayouts;
 var byte CurrentLocalizedIndex;
 var byte CurrentPresetIndex;
@@ -68,7 +69,7 @@ function UpdateCurrentPresetArray(byte PresetIndex)
 
 function LocalizeText()
 {
-    local GFxObject TextField, PresetArray, StepperOption;
+    local GFxObject TextField, PresetArray, StepperOption, defaultButton;
     local int I;
 
     TextField = GetObject("CurrentPresetTextfield");
@@ -79,7 +80,7 @@ function LocalizeText()
     if(I < numGamepadLayouts)
     {
         StepperOption = Outer.CreateObject("Object");
-        StepperOption.SetString("label", string(I));
+        StepperOption.SetString("label", PresetStrings[I]);
         PresetArray.SetElementObject(I, StepperOption);
         ++ I;
         goto J0x61;
@@ -89,6 +90,11 @@ function LocalizeText()
     if(TextField != none)
     {
         TextField.SetText(CurrentControllerPresetString);
+    }
+    defaultButton = GetObject("defaultButton");
+    if(defaultButton != none)
+    {
+        defaultButton.SetString("label", Localize("KFGFxOptionsMenu_Graphics", "DefaultString", "KFGame"));
     }
 }
 
@@ -147,6 +153,8 @@ function AddBindingToGFxObject(out GFxObject ObjectArray, string Key, string Com
     ObjectArray.SetElementObject(I, TempObject);
 }
 
+function ResetPresetOptions();
+
 defaultproperties
 {
     InputSectionName="LocalizedControls"
@@ -157,4 +165,8 @@ defaultproperties
     ShowIngameMenuString="Toggle In Game Menu"
     HoldString="(Hold)"
     CurrentControllerPresetString="Current Controller Preset"
+    PresetStrings(0)="Preset 1"
+    PresetStrings(1)="Preset 2"
+    PresetStrings(2)="Preset 3"
+    PresetStrings(3)="Preset 4"
 }

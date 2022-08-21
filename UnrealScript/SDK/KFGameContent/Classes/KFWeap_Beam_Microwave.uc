@@ -301,7 +301,7 @@ defaultproperties
     HippedRecoilModifier=1.5
 
     // Inventory
-	InventorySize=9
+	InventorySize=10
 	GroupPriority=100
 	WeaponSelectTexture=Texture2D'WEP_UI_Microwave_Gun_TEX.UI_WeaponSelect_MicrowaveGun'
 

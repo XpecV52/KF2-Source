@@ -33,6 +33,8 @@ struct InventoryHelper
     }
 };
 
+var const localized string RecycleOneString;
+var const localized string RecycleDuplicatesString;
 var const localized string InventoryString;
 var const localized string EquipString;
 var const localized string UnequipString;
@@ -60,8 +62,12 @@ var const localized string CraftRequirementString;
 var const localized string CraftCosmeticDescriptionString;
 var const localized string CraftWeaponDescriptionString;
 var const localized string RequiresString;
+var const localized string PurchaseKeyString;
+var const localized string LookUpOnMarketString;
 var GFxObject CraftingSubMenu;
 var GFxObject ItemListContainer;
+var GFxObject ItemDetailsContainer;
+var GFxObject EquipButton;
 var GFxObject CraftWeaponButton;
 var GFxObject CraftCosmeticButton;
 var OnlineSubsystem OnlineSub;
@@ -84,6 +90,7 @@ var name SoundEvent_ExceedinglyRare;
 var name SoundEvent_Mythical;
 var name SoundThemeName;
 var KFPlayerController KFPC;
+var int ValueToPromptDuplicateRecycle;
 var KFGFxMenu_Inventory.EINventory_Filter CurrentInventoryFilter;
 
 function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
@@ -95,6 +102,8 @@ function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
     OnlineSub.AddOnInventoryReadCompleteDelegate(OnInventoryReadComplete);
     KFPH = KFPawn_Customization(KFPC.Pawn);
     CraftingSubMenu = GetObject("craftingPanelContainer");
+    ItemDetailsContainer = GetObject("itemDetailsContainer");
+    EquipButton = ItemDetailsContainer.GetObject("equipButton");
     UpdateCraftButtons();
 }
 
@@ -205,20 +214,20 @@ function InitInventory()
                     KFPC.ConsoleCommand("CE gotitem");
                     SetObject("details", ItemObject);
                 }
-                OnlineSub.CurrentInventory[I].NewlyAdded = 0;
             }
         }
         ++ I;
         goto J0x67;
     }
+    OnlineSub.ClearNewlyAdded();
     I = 0;
-    J0x9B6:
+    J0x998:
 
     if(I < ActiveItems.Length)
     {
         ItemArray.SetElementObject(I, ActiveItems[I].GfxItemObject);
         ++ I;
-        goto J0x9B6;
+        goto J0x998;
     }
     SetObject("inventoryList", ItemArray);
     bInitialInventoryPassComplete = true;
@@ -452,6 +461,28 @@ function ConfirmRecycle()
     }
 }
 
+function ConfirmDuplicatesRecycle()
+{
+    local array<ExchangeRuleSets> ExchangeRules;
+
+    OnlineSub.IsExchangeable(TempItemIdHolder, ExchangeRules);
+    if(OnlineSub.ExchangeReady(ExchangeRules[0]))
+    {
+        SetVisible(false);
+        OnlineSub.ExchangeDuplicates(ExchangeRules[0]);        
+        KFPC.ConsoleCommand("CE Recycle_Start");        
+    }
+    else
+    {
+        LogInternal("FAILED TO RECYCLE!!! DUPLICATES");
+    }
+}
+
+function CancelRecycle()
+{
+    TempItemIdHolder = -1;
+}
+
 function ConfirmCraft()
 {
     local array<ExchangeRuleSets> ExchangeRules;
@@ -474,6 +505,32 @@ function ConfirmCraft()
         goto J0x3C;
     }
     LogInternal("CRAFTING == SAD");
+}
+
+function int GetItemCount(int ItemDefinition)
+{
+    local int I, ItemCount;
+
+    if(OnlineSub == none)
+    {
+        return 0;
+    }
+    I = 0;
+    J0x1C:
+
+    if(I < OnlineSub.CurrentInventory.Length)
+    {
+        if(OnlineSub.CurrentInventory[I].Definition != ItemDefinition)
+        {            
+        }
+        else
+        {
+            ItemCount += OnlineSub.CurrentInventory[I].Quantity;
+        }
+        ++ I;
+        goto J0x1C;
+    }
+    return ItemCount;
 }
 
 function Callback_CrateOpenComplete(int Rarity)
@@ -568,10 +625,46 @@ function Callback_Equip(int ItemDefinition)
     InitInventory();
 }
 
+function CallBack_ItemDetailsClicked(int ItemDefinition)
+{
+    local array<ExchangeRuleSets> ExchangeRules;
+    local ItemProperties NeededItem;
+    local int NeededItemID;
+
+    OnlineSub.IsExchangeable(ItemDefinition, ExchangeRules);
+    if(ExchangeRules.Length <= 0)
+    {
+        LogInternal("NO RULES EXIST FOR THIS ITEM!" @ string(ItemDefinition));
+        return;
+    }
+    if(!OnlineSub.ExchangeReady(ExchangeRules[0]))
+    {
+        if(ExchangeRules[0].Sources[0].Definition == ItemDefinition)
+        {
+            NeededItemID = ExchangeRules[0].Sources[1].Definition;            
+        }
+        else
+        {
+            NeededItemID = ExchangeRules[0].Sources[0].Definition;
+        }
+        NeededItem = OnlineSub.ItemPropertiesList[OnlineSub.ItemPropertiesList.Find('Definition', NeededItemID];
+        if(NeededItem.Price == "")
+        {
+            EquipButton.SetString("label", LookUpOnMarketString);            
+        }
+        else
+        {
+            EquipButton.SetString("label", PurchaseKeyString $ NeededItem.Price);
+        }
+    }
+}
+
 function Callback_UseItem(int ItemDefinition)
 {
     local array<ExchangeRuleSets> ExchangeRules;
     local string ItemSeriesCommand;
+    local ItemProperties NeededItem;
+    local int NeededItemID;
 
     OnlineSub.IsExchangeable(ItemDefinition, ExchangeRules);
     if(OnlineSub.ExchangeReady(ExchangeRules[0]))
@@ -583,7 +676,29 @@ function Callback_UseItem(int ItemDefinition)
     }
     else
     {
-        Manager.OpenPopup(2, FailedToExchangeString, MoreItemsString, Class'KFCommon_LocalizedStrings'.default.OKString);
+        if(ExchangeRules[0].Sources[0].Definition == ItemDefinition)
+        {
+            NeededItemID = ExchangeRules[0].Sources[1].Definition;            
+        }
+        else
+        {
+            NeededItemID = ExchangeRules[0].Sources[0].Definition;
+        }
+        NeededItem = OnlineSub.ItemPropertiesList[OnlineSub.ItemPropertiesList.Find('Definition', NeededItemID];
+        if(NeededItem.Price == "")
+        {
+            if(OnlineSub != none)
+            {
+                OnlineSub.OpenMarketPlaceSearch(NeededItem);
+            }            
+        }
+        else
+        {
+            if(OnlineSub != none)
+            {
+                OnlineSub.OpenItemPurchaseOverlay(NeededItemID);
+            }
+        }
     }
 }
 
@@ -591,8 +706,18 @@ function Callback_CharacterSkin(int ItemDefinition);
 
 function Callback_RecycleItem(int ItemDefinition)
 {
+    local int MatchingItemCount;
+
     TempItemIdHolder = ItemDefinition;
-    Manager.OpenPopup(0, RecycleItemString, RecycleWarningString, Class'KFCommon_LocalizedStrings'.default.ConfirmString, Class'KFCommon_LocalizedStrings'.default.CancelString, ConfirmRecycle);
+    MatchingItemCount = GetItemCount(ItemDefinition);
+    if(MatchingItemCount >= ValueToPromptDuplicateRecycle)
+    {
+        Manager.OpenPopup(0, RecycleItemString, RecycleWarningString, RecycleDuplicatesString, Class'KFCommon_LocalizedStrings'.default.CancelString, ConfirmDuplicatesRecycle, CancelRecycle, RecycleOneString, ConfirmRecycle);        
+    }
+    else
+    {
+        Manager.OpenPopup(0, RecycleItemString, RecycleWarningString, Class'KFCommon_LocalizedStrings'.default.ConfirmString, Class'KFCommon_LocalizedStrings'.default.CancelString, ConfirmRecycle);
+    }
 }
 
 function Callback_CraftOption(int ItemDefinition)
@@ -620,13 +745,11 @@ function Callback_CraftOption(int ItemDefinition)
 
 function CallBack_RequestCosmeticCraftInfo()
 {
-    LogInternal("CallBack_RequestCosmeticCraftInfo");
     SetCosmeticCraftDetails();
 }
 
 function CallBack_RequestWeaponCraftInfo()
 {
-    LogInternal("CallBack_RequestWeaponCraftInfo");
     SetWeaponCraftDetails();
 }
 
@@ -639,6 +762,8 @@ function Callback_PreviewItem(int ItemDefinition)
 
 defaultproperties
 {
+    RecycleOneString="Recycle One"
+    RecycleDuplicatesString="Recycle Duplicates"
     InventoryString="INVENTORY"
     EquipString="EQUIP"
     UnequipString="UNEQUIP"
@@ -650,21 +775,29 @@ defaultproperties
     CosmeticString="Cosmetics"
     CraftingMatsString="Crafting"
     ItemString="Items"
-    FiltersString="Filters"
-    CraftWeaponString="Weapon Skin Crafting"
-    CraftCosmeticString="Cosmetic Crafting"
+    FiltersString="FILTERS"
+    CraftWeaponString="CRAFT WEAPON SKIN"
+    CraftCosmeticString="CRAFT COSMETIC"
     CraftItemString="Confirm Craft Item?"
     ConfirmCraftItemString="Crafting this item will use resources and cannot be undone"
     RecycleWarningString="Warning, this cannot be undone. This will destroy the selected item and replace it with a crafting material item"
     RecycleItemString="Recycle Item?"
-    CraftWeaponStrings(0)="Uncommon Weapon Skin"
-    CraftWeaponStrings(1)="Rare Weapon Skin"
-    CraftWeaponStrings(2)="Exceptional Weapon Skin"
-    CraftWeaponStrings(3)="Master Crafted Weapon Skin"
-    CraftCosmeticStrings(0)="Uncommon Cosmetic"
-    CraftCosmeticStrings(1)="Rare Cosmetic"
-    CraftCosmeticStrings(2)="Exceptional Cosmetic"
-    CraftCosmeticStrings(3)="Master Crafted Cosmetic"
+    CraftWeaponStrings(0)="Uncommon
+Weapon Skin"
+    CraftWeaponStrings(1)="Rare
+Weapon Skin"
+    CraftWeaponStrings(2)="Exceptional
+Weapon Skin"
+    CraftWeaponStrings(3)="Master Crafted
+Weapon Skin"
+    CraftCosmeticStrings(0)="Uncommon
+Cosmetic"
+    CraftCosmeticStrings(1)="Rare
+Cosmetic"
+    CraftCosmeticStrings(2)="Exceptional
+Cosmetic"
+    CraftCosmeticStrings(3)="Master Crafted
+Cosmetic"
     FailedToExchangeString="CANNOT OPEN CRATE"
     MoreItemsString="You require a matching key and crate. You can purchase a key from the in game store."
     FailedToCraftItemString="Failed to Craft Item"
@@ -672,6 +805,8 @@ defaultproperties
     CraftCosmeticDescriptionString="You can craft new cosmetic items from this menu out of cosmetic material. You can obtain cosmetic material by recycling existing cosmetic items. To recycle, select an item and press recycle"
     CraftWeaponDescriptionString="You can craft new weapon skin items from this menu out of weapon skin material. You can obtain weapon skin material by recycling existing weapon skin items. To recycle, select an item and press recycle"
     RequiresString="Requires: "
+    PurchaseKeyString="BUY KEY: "
+    LookUpOnMarketString="Lookup on Market"
     UncommonCosmeticID=3708
     RareCosmeticID=3709
     ExceptionalCosmeticID=3710
@@ -687,4 +822,5 @@ defaultproperties
     SoundEvent_ExceedinglyRare=Crate_End_ExeedinglyRare
     SoundEvent_Mythical=Crate_End_Mythical
     SoundThemeName=SoundTheme_Crate
+    ValueToPromptDuplicateRecycle=3
 }

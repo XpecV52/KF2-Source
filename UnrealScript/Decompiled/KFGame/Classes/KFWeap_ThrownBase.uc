@@ -110,6 +110,7 @@ simulated function PerformArtificialReload()
     PerformReload();
     if(bAllowClientAmmoTracking && Role < ROLE_Authority)
     {
+        InitializeReload();
         ServerSyncReload(SpareAmmoCount[0]);
     }
 }

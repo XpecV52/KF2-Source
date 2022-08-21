@@ -12,67 +12,12 @@ class KFDT_Ballistic_Colt1911 extends KFDT_Ballistic_Handgun
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 15;
-
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Colt1911'
-   KnockdownPower=40
-   StumblePower=40
-   LegStumblePower=40
-   GunHitPower=15
+   KnockdownPower=15.000000
+   StumblePower=20.000000
+   GunHitPower=100.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Gunslinger'
    KDamageImpulse=1500.000000
    KDeathVel=200.000000

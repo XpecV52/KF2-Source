@@ -91,8 +91,9 @@ Start the game - inform all actors that the match is starting, and spawn player 
 */
 function StartMatch()
 {
-	super.StartMatch();
 	WaveNum = 0;
+
+	super.StartMatch();
 
 	if( class'KFGameEngine'.static.CheckNoAutoStart() || class'KFGameEngine'.static.IsEditor() )
 	{
@@ -159,7 +160,7 @@ function bool IsPlayerReady( KFPlayerReplicationInfo PRI )
 	if( super.IsPlayerReady(PRI) )
 	{
 		KFPC = KFPlayerController(PRI.Owner);
-		if ( KFPC != None && (KFPC.CurrentPerk == None || !KFPC.CurrentPerk.bInitialized) )
+		if ( WorldInfo.NetMode == NM_StandAlone && KFPC != None && (KFPC.CurrentPerk == None || !KFPC.CurrentPerk.bInitialized) )
 		{
 			// HSL - BWJ - 3-16-16 - console doesn't read stats yet, so no perk support. Adding this hack in for now so we can spawn in
 			if( WorldInfo.IsConsoleDedicatedServer() || WorldInfo.IsConsoleBuild() )
@@ -190,6 +191,7 @@ function RestartPlayer(Controller NewPlayer)
 {
 	local KFPlayerController KFPC;
 	local KFPlayerReplicationInfo KFPRI;
+	local bool bWasWaitingForClientPerkData;
 
 	KFPC = KFPlayerController(NewPlayer);
 	KFPRI = KFPlayerReplicationInfo(NewPlayer.PlayerReplicationInfo);
@@ -198,6 +200,8 @@ function RestartPlayer(Controller NewPlayer)
 	{
 		if( IsPlayerReady( KFPRI ) )
 		{
+			bWasWaitingForClientPerkData = KFPC.bWaitingForClientPerkData;
+
 			/** If we have rejoined the match more than once, delay our respawn by some amount of time */
 			if( MyKFGRI.bMatchHasBegun && KFPRI.NumTimesReconnected > 1 && `TimeSince(KFPRI.LastQuitTime) < ReconnectRespawnTime )
 			{
@@ -205,13 +209,19 @@ function RestartPlayer(Controller NewPlayer)
 				KFPC.SetTimer(ReconnectRespawnTime - `TimeSince(KFPRI.LastQuitTime), false, nameof(KFPC.SpawnReconnectedPlayer));
 			}
 			//If a wave is active, we spectate until the end of the wave
-			else if( IsWaveActive() )
+			else if( IsWaveActive() && !bWasWaitingForClientPerkData )
 			{
 				KFPC.StartSpectate();
 			}
 			else
 			{
 				Super.RestartPlayer(NewPlayer);
+
+				// Already gone through one RestartPlayer() cycle, don't process again
+				if( bWasWaitingForClientPerkData )
+				{
+					return;
+				}
 
 				if( KFPRI.Deaths == 0 )
 				{
@@ -298,6 +308,8 @@ function UpdateGameSettings()
 {
 	local name SessionName;
 	local KFOnlineGameSettings KFGameSettings;
+	local int NumHumanPlayers, i;
+
 	if (WorldInfo.NetMode == NM_DedicatedServer || WorldInfo.NetMode == NM_ListenServer)
 	{
 		if (GameInterface != None)
@@ -305,6 +317,7 @@ function UpdateGameSettings()
 			SessionName = PlayerReplicationInfoClass.default.SessionName;
 			KFGameSettings = KFOnlineGameSettings(GameInterface.GetGameSettings(SessionName));
 			//Ensure bug-for-bug compatibility with KF1
+
 			if (KFGameSettings != None)
 			{
 				KFGameSettings.Mode = GetGameModeNum();
@@ -332,6 +345,24 @@ function UpdateGameSettings()
 				if(MyKFGRI != none)
 				{
 					MyKFGRI.bCustom = bIsCustomGame;
+				}
+
+				// Set the map name
+				if( WorldInfo.IsConsoleDedicatedServer() )
+				{
+					KFGameSettings.MapName = WorldInfo.GetMapName(true);
+					if( GameReplicationInfo != none )
+					{
+						for( i = 0; i < GameReplicationInfo.PRIArray.Length; i++ )
+						{
+							if( !GameReplicationInfo.PRIArray[i].bBot )
+							{
+								NumHumanPlayers++;
+							}
+						}
+					}
+
+					KFGameSettings.NumOpenPublicConnections = KFGameSettings.NumPublicConnections - NumHumanPlayers;
 				}
 
 				//Trigger re-broadcast of game settings
@@ -500,7 +531,7 @@ function RewardSurvivingPlayers()
 	local int PlayerCut;
 	local int PlayerCount;
 	local KFPlayerController KFPC;
-	Local TeamInfo T;
+	Local KFTeamInfo_Human T;
 
 	foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
 	{
@@ -511,7 +542,7 @@ function RewardSurvivingPlayers()
     	 	// Find the player's team
             if( T == none && KFPC.PlayerReplicationInfo != none && KFPC.PlayerReplicationInfo.Team != none )
     	 	{
-                T = KFPC.PlayerReplicationInfo.Team;
+                T = KFTeamInfo_Human(KFPC.PlayerReplicationInfo.Team);
             }
 		}
 	}
@@ -533,14 +564,14 @@ function RewardSurvivingPlayers()
 		if( KFPC.Pawn != none && KFPC.Pawn.IsAliveAndWell() )
 		{
 			KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo).AddDosh(PlayerCut, true);
-			T.Score -= PlayerCut;
+			T.AddScore( -PlayerCut );
 
 			`log("Player" @ KFPC.PlayerReplicationInfo.PlayerName @ "got" @ PlayerCut @ "for surviving the wave", bLogScoring);
 		}
 	}
 
 	// Reset team score afte the wave ends
-	T.Score = 0;
+	T.AddScore( 0, true );
 }
 
 /**
@@ -1160,12 +1191,17 @@ function ShowPostGameMenu()
 
 	if(KFGRI != none)
 	{
-		KFGRI.OnOpenAfterActionReport(MapVoteDuration);
+		KFGRI.OnOpenAfterActionReport( GetEndOfMatchTime() );
 	}
 
 	class'EphemeralMatchStats'.Static.SendMapOptionsAndOpenAARMenu();
 
-	UpdateCurrentMapVoteTime(MapVoteDuration, true);
+	UpdateCurrentMapVoteTime( GetEndOfMatchTime(), true);
+}
+
+function float GetEndOfMatchTime()
+{
+	return MapVoteDuration;
 }
 
 function ProcessAwards()
@@ -1178,7 +1214,7 @@ function UpdateCurrentMapVoteTime(byte NewTime, optional bool bStartTime)
 	if(WorldInfo.GRI.RemainingTime > NewTime || bStartTime)
 	{
 		ClearTimer(nameof(RestartGame));
-		SetTimer(NewTime, false, nameof(RestartGame));
+		SetTimer(NewTime, false, nameof(TryRestartGame));
 		WorldInfo.GRI.RemainingMinute = NewTime;
 		WorldInfo.GRI.RemainingTime  = NewTime;
 	}
@@ -1186,8 +1222,13 @@ function UpdateCurrentMapVoteTime(byte NewTime, optional bool bStartTime)
 	//in the case that the server has a 0 for the time we still want to be able to trigger a server travel.
 	if(NewTime <= 0 || WorldInfo.GRI.RemainingTime <= 0)
 	{
-		RestartGame();
+		TryRestartGame();
 	}
+}
+
+function TryRestartGame()
+{
+	RestartGame();
 }
 
  /*********************************************************************************************
@@ -1196,6 +1237,8 @@ function UpdateCurrentMapVoteTime(byte NewTime, optional bool bStartTime)
 
  state DebugSuspendWave
  {
+ 	ignores CheckWaveEnd;
+
  	function BeginState( Name PreviousStateName )
  	{
  		local PlayerController PC;

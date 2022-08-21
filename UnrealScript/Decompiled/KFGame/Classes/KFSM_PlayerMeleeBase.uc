@@ -33,6 +33,7 @@ struct PlayerZedAtkInfo
     var KFSM_PlayerMeleeBase.EPlayerZedAtkType Type;
     var KFPawn.EAnimSlotStance Stance;
     var bool bForceDisableRootMotion;
+    var bool bCannotBeParried;
 
     structdefaultproperties
     {
@@ -41,6 +42,7 @@ struct PlayerZedAtkInfo
         Type=EPlayerZedAtkType.PZA_Default
         Stance=EAnimSlotStance.EAS_FullBody
         bForceDisableRootMotion=false
+        bCannotBeParried=false
     }
 };
 
@@ -141,9 +143,10 @@ static function byte PackFlagsBase(KFPawn P)
 
 function SpecialMoveStarted(bool bForced, name PrevMove)
 {
+    super.SpecialMoveStarted(bForced, PrevMove);
     bAnimCanBeInterrupted = false;
     bPendingStopFire = false;
-    super.SpecialMoveStarted(bForced, PrevMove);
+    bCanBeInterrupted = !bCannotBeParried;
 }
 
 static function bool IsInSpecialMode(KFPawn P)
@@ -170,6 +173,7 @@ function UnpackSpecialMoveFlags()
     bDisableMovement = AnimStance == 0;
     bUseRootMotion = (AnimStance == 0) && !Attacks[AtkIdx].bForceDisableRootMotion;
     bAllowMomentumPush = Attacks[AtkIdx].Type != 5;
+    bCannotBeParried = Attacks[AtkIdx].bCannotBeParried;
     if(Attacks[AtkIdx].bIsInputHeld)
     {
         bCanBeInterrupted = true;

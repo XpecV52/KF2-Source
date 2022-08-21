@@ -11,8 +11,6 @@ class KFDT_Explosive_NailBombGrenade extends KFDT_Explosive
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 defaultproperties
 {
 	bShouldSpawnPersistentBlood=true
@@ -22,8 +20,9 @@ defaultproperties
 	KDeathUpKick=1000
 	KDeathVel=300
 
-	KnockdownPower=0
-	StumblePower=0
+    StunPower=200   //125
+	MeleeHitPower=100
+	StumblePower=500
 
 	WeaponDef=class'KFWeapDef_Grenade_Gunslinger'
 }

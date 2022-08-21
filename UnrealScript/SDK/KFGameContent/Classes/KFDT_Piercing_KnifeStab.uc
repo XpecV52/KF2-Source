@@ -9,21 +9,15 @@ class KFDT_Piercing_KnifeStab extends KFDT_Piercing
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 defaultproperties
 {
 	KDamageImpulse=200
 	KDeathUpKick=250
 
-	// Hit reactions
-
-	
-	StumblePower=40
-	StunPower=35
-	LegStumblePower=40
-	MeleeHitPower=30
-
+	// Hit reactions	
+	StumblePower=0
+	StunPower=0
+	MeleeHitPower=25
 
 	WeaponDef=class'KFWeapDef_Knife_Base'
 }

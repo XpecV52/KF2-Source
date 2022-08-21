@@ -9,60 +9,6 @@ class KFDT_Slashing_Zweihander extends KFDT_Slashing
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 12;
-
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
@@ -181,11 +127,8 @@ static simulated function ModifyDismembermentHitImpulse(KFPawn_Monster InPawn, n
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Zweihander'
-   StunPower=42
-   KnockdownPower=30
-   StumblePower=53
-   LegStumblePower=53
-   MeleeHitPower=50
+   StumblePower=250.000000
+   MeleeHitPower=100.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
    KDamageImpulse=1500.000000
    KDeathVel=375.000000

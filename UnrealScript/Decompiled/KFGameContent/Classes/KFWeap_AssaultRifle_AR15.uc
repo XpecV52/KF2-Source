@@ -9,57 +9,12 @@ class KFWeap_AssaultRifle_AR15 extends KFWeap_RifleBase
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
-var int BurstCount;
-/** Number of shots to fire per burst. */
-var() int BurstAmount;
-
-simulated state WeaponBurstFiring extends WeaponFiring
-{
-    simulated function BeginState(name PrevStateName)
-    {
-        BurstCount = 0;
-        BurstAmount = Min(default.BurstAmount, AmmoCount[GetAmmoType(CurrentFireMode)]);
-        super.BeginState(PrevStateName);
-    }
-
-    simulated function bool ShouldRefire()
-    {
-        if(BurstCount >= BurstAmount)
-        {
-            return false;            
-        }
-        else
-        {
-            if(!HasAmmo(CurrentFireMode))
-            {
-                return false;                
-            }
-            else
-            {
-                return true;
-            }
-        }
-    }
-
-    simulated function FireAmmunition()
-    {
-        super(KFWeapon).FireAmmunition();
-        ++ BurstCount;
-    }
-
-    simulated event EndState(name NextStateName)
-    {
-        super.EndState(NextStateName);
-        EndFire(CurrentFireMode);
-    }
-    stop;    
-}
-
 defaultproperties
 {
-    BurstAmount=3
     FireModeIconPaths=/* Array type was not detected. */
+    BurstAmount=3
     InventorySize=4
+    MagazineCapacity=20
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -69,7 +24,6 @@ defaultproperties
     DOF_FG_FocalRadius=75
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=25
-    MagazineCapacity=20
     MaxSpareAmmo=240
     InitialSpareMags=6
     FireSightedAnims=/* Array type was not detected. */

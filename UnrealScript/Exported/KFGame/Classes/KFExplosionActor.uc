@@ -389,6 +389,12 @@ simulated protected function bool IsBehindExplosion(Actor A)
 	return FALSE;
 }
 
+/** Level was reset without reloading */
+function Reset()
+{
+	Destroy();
+}
+
 defaultproperties
 {
    MyImpactEffect=(DecalDissolveParamName="DissolveAmount",DecalDuration=24.000000,DecalMinSize=16.000000,DecalMaxSize=16.000000)

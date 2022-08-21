@@ -12,60 +12,6 @@ class KFDT_Ballistic_Deagle extends KFDT_Ballistic_Handgun
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 15;
-
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
@@ -89,10 +35,9 @@ static simulated function bool CanDismemberHitZone( name InHitZoneName )
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Deagle'
-   KnockdownPower=40
-   StumblePower=45
-   LegStumblePower=45
-   GunHitPower=20
+   KnockdownPower=20.000000
+   StumblePower=30.000000
+   GunHitPower=150.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Gunslinger'
    KDamageImpulse=2500.000000
    KDeathVel=250.000000

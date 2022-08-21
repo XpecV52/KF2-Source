@@ -53,7 +53,7 @@ function bool ShowPlayersUI(byte LocalUserNum);
 
 function bool ShowCustomPlayersUI(byte LocalUserNum, const out array<UniqueNetId> Players, string Title, string Description);
 
-function bool RecordPlayersRecentlyMet(byte LocalUserNum, out array<UniqueNetId> Players, string GameDescription);
+function bool RecordPlayersRecentlyMet(byte LocalUserNum, out array<string> Players, string GameDescription);
 
 function bool AddInGamePost(int InPostID, optional string InPostParam);
 
@@ -72,3 +72,17 @@ function OnlineProfileSettings GetCrossTitleProfileSettings(byte LocalUserNum, i
 function ClearCrossTitleProfileSettings(byte LocalUserNum, int TitleId);
 
 function bool ShowCustomMessageUI(byte LocalUserNum, const out array<UniqueNetId> Recipients, string MessageTitle, string NonEditableMessage, optional string EditableMessage);
+
+function PostActivityFeedBossKill(string BossName, string MapName);
+
+function PostActivityFeedTeamAward(string AwardName);
+
+function PostActivityFeedPerkLevelUp(string PerkClassName, int Level);
+
+function ReadStoreData();
+
+delegate OnStoreDataRead(bool bSuccessful);
+
+function AddStoreDataReadCompleteDelegate(delegate<OnStoreDataRead> InDelegate);
+
+function ClearStoreDataReadCompleteDelegate(delegate<OnStoreDataRead> InDelegate);

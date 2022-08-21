@@ -186,11 +186,15 @@ package tripwire.controls
         
         public function set bIsMyPlayer(param1:Boolean) : void
         {
+            if(this._bIsMyPlayer == param1)
+            {
+                return;
+            }
             this.optionsList.visible = false;
             this.perksList.visible = false;
             this.isTalking = false;
             this._bIsMyPlayer = param1;
-            this.activeList = !!param1 ? this.perksList : this.optionsList;
+            this.activeList = this.optionsList;
             this.activeList.addEventListener(IndexEvent.INDEX_CHANGE,this.onBack);
             this.activeList.associatedButton = this;
         }

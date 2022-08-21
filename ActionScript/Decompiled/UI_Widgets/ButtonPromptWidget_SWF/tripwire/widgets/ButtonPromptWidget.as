@@ -13,6 +13,8 @@ package tripwire.widgets
         
         public var BPrompt:MovieClip;
         
+        public var XPrompt:MovieClip;
+        
         public var promptBG:MovieClip;
         
         private var _displayedPrompts:int = 2;
@@ -29,8 +31,14 @@ package tripwire.widgets
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
-            stage.addEventListener(MenuManager.PROMPT_CHANGED,this.onPromptChanged,false,0,true);
             this.updateVisibilityBasedOnInputType();
+        }
+        
+        override public function openContainer(param1:Boolean = true) : void
+        {
+            super.openContainer(param1);
+            stage.addEventListener(MenuManager.PROMPT_CHANGED,this.onPromptChanged,false,0,true);
+            this.onPromptChanged();
         }
         
         override public function closeContainer() : void
@@ -43,6 +51,7 @@ package tripwire.widgets
         {
             this.APrompt.confirmText.text = !!param1.confirm ? param1.confirm : "";
             this.BPrompt.cancelText.text = !!param1.cancel ? param1.cancel : "";
+            this.XPrompt.cancelText.text = !!param1.reset ? param1.reset : "";
         }
         
         override public function set visible(param1:Boolean) : void
@@ -64,10 +73,11 @@ package tripwire.widgets
         {
             this.visible = bManagerUsingGamepad && this._displayedPrompts > 0;
             this.BPrompt.visible = this._displayedPrompts > 1;
-            this.promptBG.width = !this.BPrompt.visible ? Number(this._defaultBGWidth - this.BPrompt.width) : Number(this._defaultBGWidth);
+            this.XPrompt.visible = this._displayedPrompts > 2;
+            this.promptBG.width = !this.BPrompt.visible ? Number(this._defaultBGWidth - this.BPrompt.width * 2) : (!this.XPrompt.visible ? Number(this._defaultBGWidth - this.XPrompt.width) : Number(this._defaultBGWidth));
         }
         
-        protected function onPromptChanged(param1:Event) : *
+        protected function onPromptChanged(param1:Event = null) : *
         {
             if(MenuManager.manager.numPrompts != this._displayedPrompts)
             {

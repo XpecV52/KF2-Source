@@ -32,6 +32,7 @@ defaultproperties
     XPValues[1]=14
     XPValues[2]=14
     XPValues[3]=14
+    DamageTypeModifiers=/* Array type was not detected. */
     PawnAnimInfo=KFPawnAnimInfo'ZED_Gorefast_Anim.Gorefast_AnimGroup'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
@@ -40,9 +41,8 @@ defaultproperties
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     HitZones=/* Array type was not detected. */
     PenetrationResistance=1.5
-    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedGorefast.Afflictions'
-    InstantIncaps=/* Array type was not detected. */
-    StackingIncaps=/* Array type was not detected. */
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedGorefast.Afflictions'
+    IncapSettings=/* Array type was not detected. */
     KnockdownImpulseScale=1
     SprintSpeed=450
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
@@ -60,7 +60,7 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedGorefast.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedGorefast.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedGorefast.DialogAkSoundComponent'
-    DamageRecoveryTimeHeavy=0.2
+    DamageRecoveryTimeHeavy=0.85
     GroundSpeed=240
     MaxFallSpeed=6000
     Health=200

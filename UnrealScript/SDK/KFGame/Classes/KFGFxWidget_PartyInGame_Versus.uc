@@ -146,9 +146,12 @@ function RefreshSlot( int SlotIndex, KFPlayerReplicationInfo KFPRI )
 	if(MemberSlots[SlotIndex].PRI == none || KFPRI.UniqueId != MemberSlots[SlotIndex].PRI.UniqueId)
 	{
 		MemberSlots[SlotIndex].PRI = KFPRI;
-		CreatePlayerOptions( KFPRI.UniqueId, SlotIndex );
+		
 		SlotChanged( SlotIndex, true, bIsMyPlayer, bIsLeader );
+		MemberSlots[SlotIndex].PRI.UniqueId = KFPRI.UniqueId;
 	}
+	//
+	CreatePlayerOptions( KFPRI.UniqueId, SlotIndex );
 	
 	MemberSlots[SlotIndex].MemberSlotObject.SetString("profileImageSource", KFPC.GetSteamAvatar(KFPRI.UniqueId));
    	// Update this slots player name

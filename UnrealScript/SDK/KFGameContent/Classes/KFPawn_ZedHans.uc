@@ -102,11 +102,23 @@ var ParticleSystem BattleDamageFX_Sparks_Back_High;
 var ParticleSystem BattleDamageFX_Blood_Mid;
 var ParticleSystem BattleDamageFX_Blood_High;
 
+/** Shield */
+var float LastShieldHealthPct;
 var ParticleSystem InvulnerableShieldFX;
 var ParticleSystemComponent InvulnerableShieldPSC;
 var name ShieldSocketName;
 
 var KFSkinTypeEffects ShieldImpactEffects;
+var KFGameExplosion ShieldShatterExplosionTemplate;
+
+var const color ShieldColorGreen;
+var const color ShieldCoreColorGreen;
+var const color ShieldColorYellow;
+var const color ShieldCoreColorYellow;
+var const color ShieldColorOrange;
+var const color ShieldCoreColorOrange;
+var const color ShieldColorRed;
+var const color ShieldCoreColorRed;
 
 simulated event ReplicatedEvent(name VarName)
 {
@@ -208,7 +220,6 @@ simulated function SetWeaponStance(bool bInEquipWeapons, optional bool bForce)
 function SetSprinting( bool bNewSprintStatus )
 {
     local bool bWasSprinting;
-    local KFAIController_Hans KFAIHans;
 
     bWasSprinting = bIsSprinting;
 
@@ -216,12 +227,10 @@ function SetSprinting( bool bNewSprintStatus )
 
 	if( !bIsSprinting && !bNewSprintStatus && bWasSprinting != bIsSprinting )
 	{
-        KFAIHans = KFAIController_Hans(MyKFAIC);
-
         // Make Hans delay for a moment after finishing sprinting
-        if( KFAIHans != none )
+        if( MyHansController != none )
         {
-            KFAIHans.LastAttackMoveFinishTime = WorldInfo.TimeSeconds;
+            MyHansController.LastAttackMoveFinishTime = WorldInfo.TimeSeconds;
         }
 	}
 }
@@ -293,22 +302,16 @@ simulated function ANIMNOTIFY_AoENerveGas()
 /** Find a good velocity to throw a grenade at to hit our enemy, and cache it for later use. Returns true if we found a good place */
 function bool CacheGrenadeThrowLocation( optional bool bLeftHand )
 {
-	local vector StartThrowLocation;
+    local vector StartThrowLocation, TargetLocation, UsedEnemyLocation;
 	local name HandSocketName;
 	local vector TossVelocity, Extent, Offset;
 	local bool bFoundVel;
 	local float XYExtent, ZExtent;
 	local float TossZPct;
 	local bool bUsingCachedValues;
-	local vector TargetLocation;
 	local class<KFProj_Grenade> UsedGrenadeClass;
-	local vector UsedEnemyLocation;
-    local KFAIController_Hans KFAIHans;
     local int RandIdx, i;
     local array<TrackedEnemyInfo> TargetCandidates;
-//    local Vector	CamLoc;
-//	local Rotator	CamRot;
-//	local Vector	X, Y, Z;
 
     if( !bLeftHand )
     {
@@ -331,32 +334,29 @@ function bool CacheGrenadeThrowLocation( optional bool bLeftHand )
         UsedGrenadeClass = ExplosiveGrenadeClass;
     }
 
-
-    KFAIHans = KFAIController_Hans(MyKFAIC);
-
     // Randomly throw the grenades at other enemies :)
-    if( KFAIHans != none && KFAIHans.RecentlySeenEnemyList.Length > 0 )
+    if( MyHansController != none && MyHansController.RecentlySeenEnemyList.Length > 0 )
     {
     	// Validate targets to throw grenades at
-        for( i = KFAIHans.RecentlySeenEnemyList.Length-1; i >= 0; i-- )
+        for( i = MyHansController.RecentlySeenEnemyList.Length-1; i >= 0; i-- )
     	{
-            if( KFAIHans.RecentlySeenEnemyList[i].TrackedEnemy == none
-                || !KFAIHans.RecentlySeenEnemyList[i].TrackedEnemy.IsAliveAndWell()
-                || !KFAIHans.RecentlySeenEnemyList[i].TrackedEnemy.CanAITargetThisPawn(KFAIHans) )
+            if( MyHansController.RecentlySeenEnemyList[i].TrackedEnemy == none
+                || !MyHansController.RecentlySeenEnemyList[i].TrackedEnemy.IsAliveAndWell()
+                || !MyHansController.RecentlySeenEnemyList[i].TrackedEnemy.CanAITargetThisPawn(MyHansController) )
             {
-                KFAIHans.RecentlySeenEnemyList.Remove(i,1);
+                MyHansController.RecentlySeenEnemyList.Remove(i,1);
                 continue;
             }
-            else if( !NeedToTurnEx(KFAIHans.RecentlySeenEnemyList[i].LastVisibleLocation, 0.0) )
+            else if( !NeedToTurnEx(MyHansController.RecentlySeenEnemyList[i].LastVisibleLocation, 0.0) )
             {
-                TargetCandidates[TargetCandidates.Length] = KFAIHans.RecentlySeenEnemyList[i];
+                TargetCandidates[TargetCandidates.Length] = MyHansController.RecentlySeenEnemyList[i];
             }
     	}
 
     	// Clear out this pawn if it was the last one we fired at and it was engaged recently
         for( i = TargetCandidates.Length-1; i >= 0; i-- )
     	{
-            if( TargetCandidates.Length > 1 && TargetCandidates[i].TrackedEnemy == KFAIHans.LastRecentlySeenEnemyGrenaded
+            if( TargetCandidates.Length > 1 && TargetCandidates[i].TrackedEnemy == MyHansController.LastRecentlySeenEnemyGrenaded
                 && `TimeSince(TargetCandidates[i].LastTimeGrenadeAttacked) < 5.0 )
             {
                 TargetCandidates.Remove(i,1);
@@ -365,7 +365,7 @@ function bool CacheGrenadeThrowLocation( optional bool bLeftHand )
 
         // Debug drawing of our view area for selecting grenade targets
     	// Get camera location/rotation
-//    	KFAIHans.GetPlayerViewPoint( CamLoc, CamRot );
+//    	MyHansController.GetPlayerViewPoint( CamLoc, CamRot );
 //    	GetAxes( CamRot, X, Y, Z );
 //      FlushPersistentDebugLines();
 //    	DrawDebugCone(CamLoc,X,500.0, Acos(0.0), Acos(0.0),16,MakeColor(0,255,0,255),true);
@@ -377,8 +377,8 @@ function bool CacheGrenadeThrowLocation( optional bool bLeftHand )
             //`log("Selected random grenade target index "$RandIdx$" Pawn: "$TargetCandidates[RandIdx].TrackedEnemy);
             UsedEnemyLocation = TargetCandidates[RandIdx].LastVisibleLocation;
             // Store that we recently planned to pitch a nade at this guy
-            KFAIHans.LastRecentlySeenEnemyGrenaded = TargetCandidates[RandIdx].TrackedEnemy;
-            KFAIHans.RecentlySeenEnemyList[RandIdx].LastTimeGrenadeAttacked = WorldInfo.TimeSeconds;
+            MyHansController.LastRecentlySeenEnemyGrenaded = TargetCandidates[RandIdx].TrackedEnemy;
+            MyHansController.RecentlySeenEnemyList[RandIdx].LastTimeGrenadeAttacked = WorldInfo.TimeSeconds;
         }
         else
         {
@@ -403,15 +403,29 @@ function bool CacheGrenadeThrowLocation( optional bool bLeftHand )
 	Extent.Z = ZExtent;
 
     // Try a normal throw
-    TossZPct = 0.45;
-    bFoundVel = SuggestTossVelocity(TossVelocity, TargetLocation, StartThrowLocation, UsedGrenadeClass.default.Speed*1.2,, TossZPct, Extent);
+    TossZPct = 0.55;
+    bFoundVel = SuggestTossVelocity(TossVelocity, TargetLocation, StartThrowLocation, UsedGrenadeClass.default.Speed,, TossZPct, Extent);
 
     // Try a high throw
     if( !bFoundVel )
     {
-         TossZPct = 0.75;
-         bFoundVel = SuggestTossVelocity(TossVelocity, TargetLocation, StartThrowLocation, UsedGrenadeClass.default.Speed*1.2,, TossZPct, Extent);
+         TossZPct = 0.85;
+         bFoundVel = SuggestTossVelocity(TossVelocity, TargetLocation, StartThrowLocation, UsedGrenadeClass.default.Speed,, TossZPct, Extent);
     }
+
+    // Scale resulting toss velocity a little
+    // @NOTE: TossVelocity() is pretty shitty. Does not really give accurate velocity predictions. -MattF
+    if( VSizeSQ(MyKFAIC.Enemy.Velocity) < 2500 )
+    {
+        // Scale velocity down 10% if enemy is standing still
+        TossVelocity *= 0.8f;
+    }
+    TossVelocity.X *= 0.75f;
+    TossVelocity.Y *= 0.75f;
+
+    // Add velocity modifier. We're scaling this up because we want the grenade to explode
+    // around the time the player runs over it.
+    TossVelocity += MyKFAIC.Enemy.Velocity * 1.5f;
 
     // Used cached grenade throw values if we can't find any good ones
     if( !bFoundVel && `TimeSince(CachedGoodGrenadeToss.TossTime) < 5.0 )
@@ -430,7 +444,7 @@ function bool CacheGrenadeThrowLocation( optional bool bLeftHand )
             CachedGoodGrenadeToss.TossVelocity = TossVelocity;
             CachedGoodGrenadeToss.TossFromLocation = StartThrowLocation;
             CachedGoodGrenadeToss.TossTargetLocation = TargetLocation;
-            CachedGoodGrenadeToss.TossSpeed = UsedGrenadeClass.default.Speed*1.2;
+            CachedGoodGrenadeToss.TossSpeed = UsedGrenadeClass.default.Speed*1.2f;
             CachedGoodGrenadeToss.TossZPct = TossZPct;
             CachedGoodGrenadeToss.TossTime = WorldInfo.TimeSeconds;
         }
@@ -572,7 +586,6 @@ function DrawDebugOverheadText( KFHUDBase HUD, Out Vector2d ScreenPos )
 	local Canvas			Canvas;
 	local Vector			ScreenLoc;
 	local bool				bShowAllCategories;
-    local KFAIController_Hans KFAIHans;
 
     Super.DrawDebugOverheadText( HUD, ScreenPos );
 
@@ -593,11 +606,9 @@ function DrawDebugOverheadText( KFHUDBase HUD, Out Vector2d ScreenPos )
 		bShowAllCategories = true;
 	}
 
-    KFAIHans = KFAIController_Hans(MyKFAIC);
-
-	if( KFAIHans != none && (bShowAllCategories || HUD.ShouldDisplayDebug('RangedCombat')) )
+	if( MyHansController != none && (bShowAllCategories || HUD.ShouldDisplayDebug('RangedCombat')) )
 	{
-		KFAIHans.DrawRangedAttackInfo( HUD );
+		MyHansController.DrawRangedAttackInfo( HUD );
 	}
 }
 
@@ -748,23 +759,139 @@ simulated function PlayHuntAndHealModeFX()
 
     InvulnerableShieldPSC = WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(InvulnerableShieldFX, Mesh, ShieldSocketName, true);
     InvulnerableShieldPSC.SetAbsolute(false, true, true);
+    if( ShieldHealthPctByte > 0 )
+    {
+        UpdateShieldColor();
+    }
+}
 
-    BodyMic.SetScalarParameterValue( 'Scalar_DamageResist', 1.0 );
+/** Updates the color of the shield based on its health */
+simulated function UpdateShieldColor()
+{
+    local float ShieldHealthPct;
+
+    // Not on dedicated servers
+    if( WorldInfo.NetMode == NM_DedicatedServer )
+    {
+        return;
+    }
+
+    ShieldHealthPct = ByteToFloat( ShieldHealthPctByte );
+
+    // Break the shield if it has no health left
+    if( ShieldHealthPct == 0.f
+        && InvulnerableShieldPSC != none
+        && InvulnerableShieldPSC.bIsActive
+        && InvulnerableShieldPSC.bAttached )
+    {
+        BreakShield();
+    }
+    else if( InvulnerableShieldPSC != none )
+    {
+        if( ShieldHealthPct >= 0.75f ) // Green
+        {
+            if( LastShieldHealthPct < 0.75f )
+            {
+                InvulnerableShieldPSC.SetVectorParameter( 'Shield_Color', MakeVectorFromColor(ShieldColorGreen) );
+                InvulnerableShieldPSC.SetVectorParameter( 'Shield_CoreColor', MakeVectorFromColor(ShieldCoreColorGreen) );
+            }
+        }
+        else if( ShieldHealthPct >= 0.5f ) // Yellow
+        {
+            if( LastShieldHealthPct >= 0.75f || LastShieldHealthPct < 0.5f )
+            {
+                InvulnerableShieldPSC.SetVectorParameter( 'Shield_Color', MakeVectorFromColor(ShieldColorYellow) );
+                InvulnerableShieldPSC.SetVectorParameter( 'Shield_CoreColor', MakeVectorFromColor(ShieldCoreColorYellow) );
+            }
+        }
+        else if( ShieldHealthPct >= 0.25f ) // Orange
+        {
+            if( LastShieldHealthPct >= 0.5f || LastShieldHealthPct < 0.25f )
+            {
+                InvulnerableShieldPSC.SetVectorParameter( 'Shield_Color', MakeVectorFromColor(ShieldColorOrange) );
+                InvulnerableShieldPSC.SetVectorParameter( 'Shield_CoreColor', MakeVectorFromColor(ShieldCoreColorOrange) );
+            }
+        }
+        else if( LastShieldHealthPct >= 0.25f ) // Red
+        {
+            InvulnerableShieldPSC.SetVectorParameter( 'Shield_Color', MakeVectorFromColor(ShieldColorRed) );
+            InvulnerableShieldPSC.SetVectorParameter( 'Shield_CoreColor', MakeVectorFromColor(ShieldCoreColorRed) );                
+        }
+
+        // Scale the invulnerable material param
+        CharacterMICs[0].SetScalarParameterValue( 'Scalar_DamageResist', ShieldHealthPct );
+
+        // Cache off so we know whether the material params need to change
+        LastShieldHealthPct = ShieldHealthPct;
+
+        UpdateShieldUIOnLocalController(LastShieldHealthPct);
+    }
+}
+
+simulated function UpdateShieldUIOnLocalController(float ShieldPercent)
+{
+    if(!KFPC.IsLocalController())
+    {
+        return;
+    }
+
+    if(KFPC != none && KFPC.MyGFxHUD != none && KFPC.MyGFxHUD.bossHealthBar != none)
+    {
+        KFPC.MyGFxHUD.bossHealthBar.UpdateBossShield(ShieldPercent);   
+    }
+}
+
+
+/** Creates a vector parameter from a standard color */
+simulated function vector MakeVectorFromColor( color InColor )
+{
+    local LinearColor LinColor;
+    local vector ColorVec;
+
+    LinColor = ColorToLinearColor( InColor );
+    ColorVec.X = LinColor.R;
+    ColorVec.Y = LinColor.G;
+    ColorVec.Z = LinColor.B;
+
+    return ColorVec;
+}
+
+/** Breaks the shield */
+simulated function BreakShield()
+{
+    local KFExplosionActor ExplosionActor;
+
+    if( WorldInfo.NetMode != NM_DedicatedServer )
+    {
+        // Detach shield and zero out material params
+        DetachShieldFX();
+        CharacterMICs[0].SetScalarParameterValue( 'Scalar_DamageResist', 0.0 );
+
+        // Spawn a shatter explosion
+        ExplosionActor = Spawn( class'KFExplosionActor', self,, Location, rotator(vect(0,0,1)) );
+        if( ExplosionActor != None )
+        {
+            ExplosionActor.Explode( ShieldShatterExplosionTemplate );
+        }
+    }
+
+    super.BreakShield();
 }
 
 /** Turns hunt and heal backpack vent smoke off */
 simulated function StopHuntAndHealModeFX()
 {
 	DetachEmitter( BackPackSmokePSC );
-
     DetachShieldFX();
 
-	BodyMic.SetScalarParameterValue( 'Scalar_DamageResist', 0.0 );
+	CharacterMICs[0].SetScalarParameterValue( 'Scalar_DamageResist', 0.0 );
 }
 
 simulated function DetachShieldFX()
 {
+    LastShieldHealthPct = 0.f;    
     DetachEmitter( InvulnerableShieldPSC );
+    UpdateShieldUIOnLocalController(LastShieldHealthPct);
 }
 
 /** Turns hunt and heal backpack vent smoke off on termination */
@@ -776,9 +903,9 @@ simulated function TerminateEffectsOnDeath()
 }
 
 /** Overloaded to call OnBattlePhaseChanged */
-function IncrementBattlePhase( KFAIController_Hans HansAI )
+function IncrementBattlePhase()
 {
-	super.IncrementBattlePhase( HansAI );
+	super.IncrementBattlePhase();
 
 	OnBattlePhaseChanged();
 }
@@ -790,6 +917,7 @@ simulated function OnBattlePhaseChanged()
     {
         return;
     }
+    super.OnBattlePhaseChanged();
 
     UpdateBattlePhaseLights();
     UpdateBattlePhaseMaterials();
@@ -860,7 +988,7 @@ simulated function UpdateBattlePhaseMaterials()
 {
 	local MaterialInstanceConstant MIC;
 
-	MIC = bIsGoreMesh ? GoreMIC : BodyMIC;
+	MIC = CharacterMICs[0];
 
     switch( CurrentBattlePhase )
     {
@@ -963,7 +1091,7 @@ simulated function UpdateBattlePhaseParticles()
 /** Gets skin effects associated with hit zone (allows pawns to override) */
 simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects( int HitZoneIdx )
 {
-    if( bInHuntAndHealMode )
+    if( bInHuntAndHealMode && ShieldHealthPctByte > 0 )
     {
         return ShieldImpactEffects;
     }
@@ -1000,24 +1128,25 @@ DefaultProperties
 	// ---------------------------------------------
 	// Special Moves
 	Begin Object Name=SpecialMoveHandler_0
-		SpecialMoveClasses(SM_Grab)=class'KFSM_Hans_Grab'
-		SpecialMoveClasses(SM_GrabAttack) = class'KFSM_GrappleAttack_Hans'
+		SpecialMoveClasses(SM_GrappleAttack)=class'KFSM_GrappleAttack_Hans'
 		SpecialMoveClasses(SM_ChangeStance) = class'KFSM_Hans_WeaponSwitch'
 		SpecialMoveClasses(SM_Hans_ThrowGrenade)=class'KFSM_Hans_ThrowGrenade'
 		SpecialMoveClasses(SM_Hans_GrenadeHalfBarrage)=class'KFSM_Hans_GrenadeHalfBarrage'
 		SpecialMoveClasses(SM_Hans_GrenadeBarrage)=class'KFSM_Hans_GrenadeBarrage'
 	End Object
 
-    InstantIncaps(IAF_Stun)=(Head=85,Torso=120,Arm=120,Special=75,LowHealthBonus=10,Cooldown=10.0)
-    InstantIncaps(IAF_Knockdown)=(Head=65,Torso=150,Leg=150,Special=65,LowHealthBonus=10,Cooldown=40.0)
-    InstantIncaps(IAF_Stumble)=(Head=79,Torso=130,Arm=130,Special=53,LowHealthBonus=10,Cooldown=8.0)
-    InstantIncaps(IAF_LegStumble)=(Leg=130,LowHealthBonus=10,Cooldown=8.0)
-    InstantIncaps(IAF_GunHit)=(Head=29,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=10.0)
-    InstantIncaps(IAF_MeleeHit)=(Head=29,Torso=35,Leg=35,Arm=35,LowHealthBonus=10,Cooldown=3.0)
-    StackingIncaps(SAF_Poison)=(Threshhold=5000.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.00)
-    StackingIncaps(SAF_Microwave)=(Threshhold=40.0,Duration=3.0,Cooldown=10.0,DissipationRate=1.00)
-    StackingIncaps(SAF_FirePanic)=(Threshhold=15,Duration=1.2,Cooldown=15.0,DissipationRate=1.0)
-    StackingIncaps(SAF_EMPPanic)=(Threshhold=6.0,Duration=3.0,Cooldown=30.0,DissipationRate=0.5)
+
+    // for reference: Vulnerability=(default, head, legs, arms, special)
+    IncapSettings(AF_Stun)=     (Vulnerability=(0.1, 0.55, 0.1, 0.1, 0.55), Cooldown=17.0, Duration=1.0)   //0.5, 0.55, 0.5, 0.4, 0.55
+    IncapSettings(AF_Knockdown)=(Vulnerability=(0.1, 0.4, 0.1, 0.1, 0.25),  Cooldown=20.0)                 //0.2, 0.2, 0.4, 0.2, 0.25
+    IncapSettings(AF_Stumble)=  (Vulnerability=(0.1, 0.3, 0.1, 0.1, 0.4),   Cooldown=8.0)                  //0.2, 0.2, 0.2, 0.2, 0.4   Cooldown=5.0)
+    IncapSettings(AF_GunHit)=   (Vulnerability=(0.1, 0.1, 0.1, 0.1, 0.5),   Cooldown=1.7)                  //0.1, 0.1, 0.1, 0.1, 0.5
+    IncapSettings(AF_MeleeHit)= (Vulnerability=(0.5, 0.95, 0.5, 0.5, 0.75), Cooldown=2.0)                  //1.0    Cooldown=1.2
+    IncapSettings(AF_Poison)=   (Vulnerability=(0))
+    IncapSettings(AF_Microwave)=(Vulnerability=(0.08),                      Cooldown=10.0, Duration=3.0)   //0.08
+    IncapSettings(AF_FirePanic)=(Vulnerability=(0.65),                      Cooldown=15.0, Duration=1.2)   //0.65
+    IncapSettings(AF_EMP)=      (Vulnerability=(0.95),                      Cooldown=10.0, Duration=2.5)   //0.95
+    IncapSettings(AF_Freeze)=   (Vulnerability=(0.95),                      Cooldown=10.0, Duration=1.0)   //0.95
 
 	ParryResistance=4
 
@@ -1026,42 +1155,56 @@ DefaultProperties
 	bCanGrabAttack=true
 
 	Begin Object Name=MeleeHelper_0
-		BaseDamage=75.f
+		BaseDamage=70.0 //62 //40 //55
 		MaxHitRange=275.f
 		MomentumTransfer=40000.f
 		MyDamageType=class'KFDT_Slashing_Hans'
 	End Object
 
-	Health=3500
+	Health=8000
 	DoshValue=500
-	Mass=175.f
+	Mass=275.f
 	RightHandSocketName=RightHandSocket
 	LeftHandSocketName=LeftHandSocket
 	bEnableAimOffset=true
 
-	VulnerableDamageTypes.Add((DamageType=class'KFDT_Microwave', DamageScale=1.25))
-    ResistantDamageTypes.Add((DamageType=class'KFDT_Toxic'))
-	ResistantDamageTypes.Add((DamageType=class'KFDT_EMP'))
-    ResistantDamageTypes.Add((DamageType=class'KFDT_Slashing'))
-    ResistantDamageTypes.Add((DamageType=class'KFDT_Explosive'))
+    // Resistant damage types
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun',    DamageScale=(0.6))) //0.5
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle',     DamageScale=(0.6)))  //0.5
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun',          DamageScale=(0.6)))  //0.5
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun',          DamageScale=(0.6)))  //0.5
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle',            DamageScale=(0.7)))  //0.6
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing',                   DamageScale=(0.6)))  //0.5
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon',                   DamageScale=(0.6)))  //0.5
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Fire',                       DamageScale=(1.1)))  //1
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave',                  DamageScale=(1.5)))  //0.5
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive',                  DamageScale=(1.0)))  //1.5
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing',                   DamageScale=(0.6)))  //0.5
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic',                      DamageScale=(0.1))) 
+
+    //special case
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive_RPG7',             DamageScale=(1.2))) //2.0
 
 	// Penetration
     PenetrationResistance=4.0
 
 	// Custom Hit Zones (HeadHealth, SkinTypes, etc...)
 	HeadlessBleedOutTime=6.f
-    HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=MaxInt, DmgScale=1.1, SkinID=1)
-	HitZones[3]       =(ZoneName=heart,	    BoneName=Spine2,	   Limb=BP_Special,  GoreHealth=150, DmgScale=1.1, SkinID=2)
-	HitZones[4]		  =(ZoneName=lupperarm, BoneName=LeftArm,	   Limb=BP_LeftArm,  GoreHealth=50,  DmgScale=0.5, SkinID=3)
-	HitZones[5]		  =(ZoneName=lforearm,  BoneName=LeftForearm,  Limb=BP_LeftArm,  GoreHealth=20,  DmgScale=0.5, SkinID=3)
-	HitZones[7]		  =(ZoneName=rupperarm, BoneName=RightArm,	   Limb=BP_RightArm, GoreHealth=50,  DmgScale=0.5, SkinID=3)
-	HitZones[8]		  =(ZoneName=rforearm,  BoneName=RightForearm, Limb=BP_RightArm, GoreHealth=20,  DmgScale=0.5, SkinID=3)
-	HitZones[12]	  =(ZoneName=lthigh,	BoneName=LeftUpLeg,	   Limb=BP_LeftLeg,  GoreHealth=75,  DmgScale=0.5, SkinID=3)
-	HitZones[13]	  =(ZoneName=lcalf,	    BoneName=LeftLeg,	   Limb=BP_LeftLeg,  GoreHealth=25,  DmgScale=0.5, SkinID=3)
-	HitZones[15]	  =(ZoneName=rthigh,	BoneName=RightUpLeg,   Limb=BP_RightLeg, GoreHealth=75,  DmgScale=0.5, SkinID=3)
-	HitZones[16]	  =(ZoneName=rcalf,     BoneName=RightLeg,	   Limb=BP_RightLeg, GoreHealth=25,  DmgScale=0.5, SkinID=3)
+    HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=MaxInt, DmgScale=1.3, SkinID=1)  //1.1
+	HitZones[3]       =(ZoneName=heart,	    BoneName=Spine2,	   Limb=BP_Special,  GoreHealth=150, DmgScale=1.3, SkinID=2)  //1.1
+	HitZones[4]		  =(ZoneName=lupperarm, BoneName=LeftArm,	   Limb=BP_LeftArm,  GoreHealth=50,  DmgScale=0.3, SkinID=3)  //0.5
+	HitZones[5]		  =(ZoneName=lforearm,  BoneName=LeftForearm,  Limb=BP_LeftArm,  GoreHealth=20,  DmgScale=0.3, SkinID=3)   //0.5
+	HitZones[7]		  =(ZoneName=rupperarm, BoneName=RightArm,	   Limb=BP_RightArm, GoreHealth=50,  DmgScale=0.3, SkinID=3)  //0.5
+	HitZones[8]		  =(ZoneName=rforearm,  BoneName=RightForearm, Limb=BP_RightArm, GoreHealth=20,  DmgScale=0.3, SkinID=3)  //0.5
+	HitZones[12]	  =(ZoneName=lthigh,	BoneName=LeftUpLeg,	   Limb=BP_LeftLeg,  GoreHealth=75,  DmgScale=0.3, SkinID=3)  //0.5
+	HitZones[13]	  =(ZoneName=lcalf,	    BoneName=LeftLeg,	   Limb=BP_LeftLeg,  GoreHealth=25,  DmgScale=0.3, SkinID=3)  //0.5
+	HitZones[15]	  =(ZoneName=rthigh,	BoneName=RightUpLeg,   Limb=BP_RightLeg, GoreHealth=75,  DmgScale=0.3, SkinID=3)  //0.5
+	HitZones[16]	  =(ZoneName=rcalf,     BoneName=RightLeg,	   Limb=BP_RightLeg, GoreHealth=25,  DmgScale=0.3, SkinID=3)  //0.5
 	// unique zone for backpack / armor plates
-	HitZones.Add((ZoneName=armor, BoneName=Spine2, Limb=BP_Special, GoreHealth=MaxInt, DmgScale=0.5, SkinID=3)
+	HitZones.Add((ZoneName=armor, BoneName=Spine2, Limb=BP_Special, GoreHealth=MaxInt, DmgScale=0.3, SkinID=3)  //0.5
+
+    WeakSpotSocketNames.Add(Chest_FX) // Chest
+    WeakSpotSocketNames.Add(WeakPointSocket1) // Backpack
 
 	// ---------------------------------------------
 	// Movement / Physics
@@ -1080,8 +1223,8 @@ DefaultProperties
 	// AI / Navigation
 	ControllerClass=class'KFGame.KFAIController_Hans'
 	BumpDamageType=class'KFDT_NPCBump_Large'
-	DamageRecoveryTimeHeavy=0.1f
-	DamageRecoveryTimeMedium=0.09f
+	DamageRecoveryTimeHeavy=0.7f
+	DamageRecoveryTimeMedium=0.85f   //0.09f
 
 	DefaultInventory(0)=class'KFWeap_AssaultRifle_DualMKb42_Hans'
 
@@ -1094,42 +1237,50 @@ DefaultProperties
 
     // Battle phases
     BattlePhases(0)={(bCanFrenzy=false,
-                      bSprintingBehavior=false,
-                      GlobalOffensiveNadePhaseCooldown=12,
-                      bCanTossNerveGas=true,
-                      bCanBarrageNerveGas=false,
-                      bCanUseGuns=true,
-                      GunAttackPhaseCooldown=0,
-                      GunAttackLengthPhase=99999,
-                      bCanTossGrenade=false,
-                      bCanBarrageGrenades=false)}
+                    bSprintingBehavior=false,
+                    GlobalOffensiveNadePhaseCooldown=12,
+                    bCanTossNerveGas=true,
+                    bCanBarrageNerveGas=false,
+                    bCanUseGuns=true,
+                    GunAttackPhaseCooldown=0,
+                    GunAttackLengthPhase=99999,
+                    bCanTossGrenade=false,
+                    HealThresholds={(0.6f, 0.6f, 0.6f, 0.6f)}, // Normal,Hard,Suicidal,HoE
+                    HealAmounts={(0.325f, 0.325f, 0.325f, 0.325f)}, // Normal,Hard,Suicidal,HoE
+                    MaxShieldHealth={(400, 900, 1000, 1100)}, // Normal,Hard,Suicidal,HoE  //1500  1400, 1500, 1500, 1500  //500, 600, 700, 800
+                    bCanBarrageGrenades=false)}
     BattlePhases(1)={(bCanFrenzy=true,
-                     GlobalOffensiveNadePhaseCooldown=15,
-                     HENadeTossPhaseCooldown=20,
-                     NerveGasTossPhaseCooldown=20,
-                     bCanTossNerveGas=true,
-                     bCanBarrageNerveGas=false,
-                     bCanUseGuns=true,
-                     GunAttackPhaseCooldown=30,
-                     GunAttackLengthPhase=8,
-                     bCanTossGrenade=true,
-                     bCanBarrageGrenades=false)}
+                    GlobalOffensiveNadePhaseCooldown=15,
+                    HENadeTossPhaseCooldown=20,
+                    NerveGasTossPhaseCooldown=20,
+                    bCanTossNerveGas=true,
+                    bCanBarrageNerveGas=false,
+                    bCanUseGuns=true,
+                    GunAttackPhaseCooldown=30,
+                    GunAttackLengthPhase=8,
+                    bCanTossGrenade=true,
+                    HealThresholds={(0.41f, 0.41f, 0.41f, 0.41f)}, // Normal,Hard,Suicidal,HoE
+                    HealAmounts={(0.275f, 0.275f, 0.275f, 0.275f)}, // Normal,Hard,Suicidal,HoE
+                    MaxShieldHealth={(400, 900, 1000, 1100)}, // Normal,Hard,Suicidal,HoE   //1500  1300, 1400, 1400, 1400
+                    bCanBarrageGrenades=false)}
     BattlePhases(2)={(bCanFrenzy=true,
-                     bCanTossNerveGas=false,
-                     bCanBarrageNerveGas=true,
-                     bCanUseGuns=true,
-                     bCanTossGrenade=true,
-                     bCanBarrageGrenades=false)}
+                    bCanTossNerveGas=false,
+                    bCanBarrageNerveGas=true,
+                    bCanUseGuns=true,
+                    bCanTossGrenade=true,
+                    HealThresholds={(0.25f, 0.25f, 0.25f, 0.25f)}, // Normal,Hard,Suicidal,HoE
+                    HealAmounts={(0.125f, 0.125f, 0.125f, 0.125f)}, // Normal,Hard,Suicidal,HoE
+                    MaxShieldHealth={(400, 900, 1000, 1100)}, // Normal,Hard,Suicidal,HoE   //1500  1200, 1300, 1300, 1300
+                    bCanBarrageGrenades=false)} 
     BattlePhases(3)={(bCanFrenzy=true,
-                     bCanTossNerveGas=false,
-                     bCanBarrageNerveGas=true,
-                     bCanUseGuns=true,
-                     bCanTossGrenade=false,
-                     bCanBarrageGrenades=true)}
+                    bCanTossNerveGas=false,
+                    bCanBarrageNerveGas=true,
+                    bCanUseGuns=true,
+                    bCanTossGrenade=false,
+                    bCanBarrageGrenades=true)}
     CurrentBattlePhase=1
 
-    GrenadeTossSpread=0.07
-
+    GrenadeTossSpread=0.2
     SmokeTossCooldown=5
 
     AmbientBreathingEvent=AkEvent'WW_VOX_NPC_HansVolter.Play_HANS_Breathing_Base'
@@ -1137,16 +1288,11 @@ DefaultProperties
 
     TickDialogInterval=0.5f
 
-    HuntAndHealModeDamageReduction=0.15
-
-	// hunt and heal backpack effects
-    BackPackSmokeEffectTemplate=ParticleSystem'ZED_Hans_EMIT.FX_Life_Drain_Smoke_01'
-
     /** Used for nerve gas attack explosions */
     Begin Object Class=KFGameExplosion Name=ExploTemplate0
-        Damage=50
+        Damage=70
         DamageRadius=450
-        DamageFalloffExponent=0.25f
+        DamageFalloffExponent=1.f
         DamageDelay=0.f
 
         // Damage Effects
@@ -1293,13 +1439,56 @@ DefaultProperties
     Begin Object Class=KFSkinTypeEffects_HansShield Name=ShieldEffects
     End Object
 
-    ShieldImpactEffects=ShieldEffects
+    // Damage/incap scalars
+    HuntAndHealModeDamageReduction=0.f
+    IncapPowerScaleWhenHealing=0.f
 
-    // moved to kfsm_grappleattack_hans for now
+    // Hunt and heal backpack FX
+    BackPackSmokeEffectTemplate=ParticleSystem'ZED_Hans_EMIT.FX_Life_Drain_Smoke_01'
+
+    // Shield FX
+    ShieldImpactEffects=ShieldEffects
     InvulnerableShieldFX=ParticleSystem'ZED_Hans_EMIT.FX_Hans_Hunt_Shield'
     ShieldSocketName=Hips
+
+    // Shield colors
+    ShieldColorGreen=(R=50, G=255, B=50)
+    ShieldCoreColorGreen=(R=0, G=255, B=0)
+    ShieldColorYellow=(R=255, G=255, B=20)
+    ShieldCoreColorYellow=(R=255, G=255, B=0)
+    ShieldColorOrange=(R=255, G=110, B=10)
+    ShieldCoreColorOrange=(R=255, G=105, B=0)
+    ShieldColorRed=(R=255, G=20, B=20)
+    ShieldCoreColorRed=(R=255, G=10, B=10)
+
+    // Shield shatter explosion template
+    Begin Object Class=KFGameExplosion Name=ShatterExploTemplate0
+        Damage=30
+        DamageRadius=500
+        DamageFalloffExponent=1.f
+        DamageDelay=0.f
+
+        // Damage Effects
+        KnockDownStrength=0
+        KnockDownRadius=0
+        FractureMeshRadius=500.0
+        FracturePartVel=500.0
+        ExplosionEffects=KFImpactEffectInfo'ZED_Hans_EMIT.ShieldShatter_Explosion'
+        ExplosionSound=AkEvent'WW_ZED_Hans.Play_Hans_Shield_Break'
+
+        // Camera Shake
+        CamShake=CameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
+        CamShakeInnerRadius=450
+        CamShakeOuterRadius=900
+        CamShakeFalloff=0.5f
+        bOrientCameraShakeTowardsEpicenter=true
+        bUseOverlapCheck=false
+    End Object
+    ShieldShatterExplosionTemplate=ShatterExploTemplate0
 
 	// ---------------------------------------------
 	// Spawning
     MinSpawnSquadSizeType=EST_Boss
+
+    OnDeathAchievementID=KFACHID_DieVolter
 }

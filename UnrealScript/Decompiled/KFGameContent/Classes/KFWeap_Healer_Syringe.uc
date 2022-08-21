@@ -13,7 +13,7 @@ function InitializeAmmo()
 {
     MagazineCapacity[0] = default.MagazineCapacity[0];
     InitialSpareMags[0] = default.InitialSpareMags[0];
-    AmmoCount[0] = byte(MagazineCapacity[0]);
+    AmmoCount[0] = MagazineCapacity[0];
     AddAmmo(InitialSpareMags[0] * MagazineCapacity[0]);
 }
 

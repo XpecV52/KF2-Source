@@ -183,15 +183,6 @@ function EnableInterrupt()
 	bCanBeInterrupted = true;
 }
 
-/** Server: Notification from the pawn that damage was taken during move */
-function NotifyOwnerTakeHit(class<KFDamageType> DamageType, vector HitLoc, vector HitDir, Controller InstigatedBy)
-{
-	if ( bCanBeInterrupted && IsAnInterruptHit(KFPOwner, DamageType) )
-	{
-		KFPOwner.EndSpecialMove();
-	}
-}
-
 /** called when DoSpecialMove() is called again with this special move, but the special move flags have changed */
 function SpecialMoveFlagsUpdated()
 {

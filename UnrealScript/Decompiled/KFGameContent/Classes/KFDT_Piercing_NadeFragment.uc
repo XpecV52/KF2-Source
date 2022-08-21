@@ -34,12 +34,10 @@ defaultproperties
     WeaponDef=Class'KFGame.KFWeapDef_Grenade_Support'
     bShouldSpawnBloodSplat=true
     bShouldSpawnPersistentBlood=true
-    StumblePower=100
-    LegStumblePower=100
-    GunHitPower=25
-    MeleeHitPower=20
     EffectGroup=EEffectDamageGroup.FXG_Ballistic
     GoreDamageGroup=EGoreDamageGroup.DGT_Handgun
+    StumblePower=1000
+    MeleeHitPower=100
     ModifierPerkList=/* Array type was not detected. */
     BodyWoundDecalMaterials=/* Array type was not detected. */
     BloodSpread=0.4

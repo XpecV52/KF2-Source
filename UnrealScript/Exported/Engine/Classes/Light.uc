@@ -124,6 +124,9 @@ var transient float CurveOutputValue;
 // (cpptext)
 // (cpptext)
 // (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
 
 
 /** replicated copy of LightComponent's bEnabled property */
@@ -351,6 +354,7 @@ defaultproperties
    End Object
    Components(0)=Sprite
    CollisionType=COLLIDE_CustomDefault
+   TickGroup=TG_DuringAsyncWork
    bNoDelete=True
    bRouteBeginPlayEvenIfStatic=False
    bMovable=False

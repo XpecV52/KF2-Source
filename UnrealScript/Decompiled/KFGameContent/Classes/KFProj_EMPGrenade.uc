@@ -14,9 +14,8 @@ defaultproperties
     ExplosionActorClass=Class'KFGame.KFExplosionActor'
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Explosions.EMPGrenade_Explosion'
-        Damage=100
-        DamageRadius=600
-        DamageFalloffExponent=2
+        Damage=25
+        DamageRadius=700
         MyDamageType=Class'KFDT_EMP_EMPGrenade'
         ExplosionSound=AkEvent'WW_WEP_EXP_Grenade_EMP.Play_WEP_EXP_Grenade_EMP_Explosion'
         ExploLight=PointLightComponent'Default__KFProj_EMPGrenade.ExplosionPointLight'
@@ -25,6 +24,8 @@ defaultproperties
         ExploLightFlickerIntensity=5
         ExploLightFlickerInterpSpeed=15
         CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
+        CamShakeInnerRadius=200
+        CamShakeFalloff=1.5
     object end
     // Reference: KFGameExplosion'Default__KFProj_EMPGrenade.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0

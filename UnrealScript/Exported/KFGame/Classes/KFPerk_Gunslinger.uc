@@ -73,7 +73,6 @@ class KFPerk_Gunslinger extends KFPerk
  
 
 
-
  
 
 
@@ -81,6 +80,10 @@ class KFPerk_Gunslinger extends KFPerk
 
 
 
+
+
+
+ 
 
 #linenumber 14
 
@@ -212,7 +215,7 @@ function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageT
  *
  * @param Speed jog/sprint speed
   */
-function ModifySpeed( out float Speed )
+simulated function ModifySpeed( out float Speed )
 {
 	local float TempSpeed;
 
@@ -257,7 +260,7 @@ simulated function bool GetUsingTactialReload( KFWeapon KFW )
  */
 function float GetKnockdownPowerModifier( optional class<DamageType> DamageType, optional byte BodyPart, optional bool bIsSprinting=false )
 {
-	if( IsLimbShotsActive() && (BodyPart == BP_LeftLeg || BodyPart == BP_RightLeg) && bIsSprinting )
+	if( IsLimbShotsActive() && HitShouldKnockdown( BodyPart ) && bIsSprinting )
 	{
 		;
 		return GetSkillValue( PerkSkills[EGunslingerLimbShots] );
@@ -272,7 +275,7 @@ function float GetKnockdownPowerModifier( optional class<DamageType> DamageType,
  */
 function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart )
 {
-	if( IsCenterMassActive() && (BodyPart == BP_Torso || CheckSpecialZedBodyPart( KFP.class, BodyPart )) )
+	if( IsCenterMassActive() && ( HitShouldStumble( BodyPart ) || CheckSpecialZedBodyPart( KFP.class, BodyPart )) )
 	{
 		;
         return GetSkillValue( PerkSkills[EGunslingerCenterMass] );
@@ -795,8 +798,8 @@ defaultproperties
    ProgressStatID=80
    PerkBuildStatID=81
    SecondaryXPModifier(1)=1
-   SecondaryXPModifier(2)=1
-   SecondaryXPModifier(3)=1
+   SecondaryXPModifier(2)=2
+   SecondaryXPModifier(3)=3
    PerkName="Gunslinger"
    Passives(0)=(Title="Perk Weapon Damage",Description="Perk weapon damage increased by %x%")
    Passives(1)=(Title="Bullet Resistance",Description="Resistance to projectile damage increased by %x%")
@@ -817,13 +820,19 @@ defaultproperties
    PerkSkills(3)=(Name="BoneBreaker",StartingValue=0.200000,MaxValue=0.200000,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_BoneBreaker")
    PerkSkills(4)=(Name="SpeedReload",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_SpeedReload")
    PerkSkills(5)=(Name="Penetration",StartingValue=1.000000,MaxValue=1.000000,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_Penetration")
-   PerkSkills(6)=(Name="CenterMass",StartingValue=1.400000,MaxValue=1.400000,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_CenterMass")
-   PerkSkills(7)=(Name="LimbShots",StartingValue=3.100000,MaxValue=3.100000,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_LimbShots")
+   PerkSkills(6)=(Name="CenterMass",StartingValue=2.000000,MaxValue=2.000000,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_CenterMass")
+   PerkSkills(7)=(Name="LimbShots",StartingValue=5.100000,MaxValue=5.100000,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_LimbShots")
    PerkSkills(8)=(Name="Fanfare",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDSpeed")
    PerkSkills(9)=(Name="UberAmmo",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDAmmo")
    ZedTimeModifyingStates(0)="WeaponFiring"
    ZedTimeModifyingStates(1)="WeaponBurstFiring"
    ZedTimeModifyingStates(2)="WeaponSingleFiring"
+   BodyPartsCanStumble(0)=0
+   BodyPartsCanStumble(1)=2
+   BodyPartsCanStumble(2)=0
+   BodyPartsCanStumble(3)=3
+   BodyPartsCanKnockDown(0)=4
+   BodyPartsCanKnockDown(1)=5
    PrimaryWeaponDef=Class'KFGame.KFWeapDef_Remington1858Dual'
    KnifeWeaponDef=Class'KFGame.KFWeapDef_Knife_Gunslinger'
    GrenadeWeaponDef=Class'KFGame.KFWeapDef_Grenade_Gunslinger'

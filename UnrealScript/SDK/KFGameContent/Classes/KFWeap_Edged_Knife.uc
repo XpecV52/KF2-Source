@@ -60,9 +60,11 @@ defaultproperties
 
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Piercing_KnifeStab'
 	InstantHitDamage(BASH_FIREMODE)=15
+	InstantHitMomentum(BASH_FIREMODE)=1000.f   //30000.f
 
 	MaxChainAtkCount=4
-	ParryDamageMitigationPercent=0.3
+	ParryDamageMitigationPercent=0.8
+	BlockDamageMitigation=0.8
 
 	//Perks
 	AssociatedPerkClass=class'KFPerk_Commando'

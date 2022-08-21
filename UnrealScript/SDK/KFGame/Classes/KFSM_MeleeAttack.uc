@@ -60,7 +60,7 @@ function UnpackSpecialMoveFlags()
  */
 function bool CanOverrideMoveWith( Name NewMove )
 {
-	if ( bCanBeInterrupted && (NewMove == 'KFSM_Stunned' || NewMove == 'KFSM_Stumble' || NewMove == 'Knockdown') )
+	if ( bCanBeInterrupted && (NewMove == 'KFSM_Stunned' || NewMove == 'KFSM_Stumble' || NewMove == 'KFSM_Knockdown' || NewMove == 'KFSM_Frozen') )
 	{
 		return TRUE; // for NotifyAttackParried
 	}
@@ -132,11 +132,11 @@ function PlayAnimation()
 	PlaySpecialMoveAnim( AnimName, AnimStance, BlendInTime, BlendOutTime, 1.f );
 }
 
-/** Notification from the pawn that damage was taken during move - Network: Server */
-function NotifyOwnerTakeHit(class<KFDamageType> DamageType, vector HitLoc, vector HitDir, Controller InstigatedBy)
+/** Notification from the pawn that a medium (aka gun) or heavy (aka melee) affliction has been activated */
+function NotifyHitReactionInterrupt()
 {
 	// only non-RM attacks can be aborted
-	if ( bCanBeInterrupted && IsAnInterruptHit(PawnOwner, DamageType) )
+	if ( bCanBeInterrupted )
 	{
 		KFPOwner.EndSpecialMove();
 
@@ -194,6 +194,12 @@ function InterruptCheckTimer()
 			AIOwner.LastGetStrikeTime = -1;
 		}
 	}
+}
+
+/** Called when owning pawn has damage parried during this move */
+function bool CanInterruptWithParry()
+{
+	return !bCannotBeParried;
 }
 
 defaultproperties

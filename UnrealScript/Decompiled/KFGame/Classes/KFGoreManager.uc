@@ -233,9 +233,9 @@ final simulated function bool AllowHeadless()
     return Class'GameInfo'.default.GoreLevel <= 1;
 }
 
-static function float GetGibImpulseScale()
+static function float GetGibImpulseMax()
 {
-    return 0.2;
+    return 0.1;
 }
 
 final simulated function AttachMutilationBloodEffects(KFPawn_Monster inPawn, name DismemberedBone, optional array<BloodJetSettings> BloodJets, optional array<BloodTrailSettings> BloodTrails, optional array<name> BloodMICParams)
@@ -302,7 +302,7 @@ final simulated function AttachMutilationBloodEffects(KFPawn_Monster inPawn, nam
 
             if(BloodParamIndex < BloodMICParams.Length)
             {
-                inPawn.GoreMIC.SetScalarParameterValue(BloodMICParams[BloodParamIndex], 0);
+                inPawn.CharacterMICs[0].SetScalarParameterValue(BloodMICParams[BloodParamIndex], 0);
                 ++ BloodParamIndex;
                 goto J0x592;
             }
@@ -534,20 +534,26 @@ simulated function CauseGibsAndApplyImpulse(KFPawn_Monster inPawn, class<KFDamag
     local ExplosionBreakBone ExplosiveBreakBone;
     local name RBBoneName;
     local editinline ParticleSystemComponent PSC;
+    local int NumGibs;
+    local float ModifiedImpulseLerpValue, ModifiedImpulse, GibImpulseMin;
 
     HitBoneName = 'None';
     MonsterInfo = inPawn.GetCharacterMonsterInfo();
+    GibImpulseMin = 0.1 / 2;
+    NumGibs = InGibBoneList.Length;
+    ModifiedImpulseLerpValue = 1 - float(NumGibs / MonsterInfo.GoreJointSettings.Length);
+    ModifiedImpulse = Lerp(GibImpulseMin, 0.1, ModifiedImpulseLerpValue);
     GibIdx = 0;
-    J0x41:
+    J0xCB:
 
     if(GibIdx < InGibBoneList.Length)
     {
         GibBoneName = InGibBoneList[GibIdx];
         BoneLocation = inPawn.Mesh.GetBoneLocation(GibBoneName);
-        Impulse = (0.2 * InDmgType.default.RadialDamageImpulse) * Normal(BoneLocation - InExplosionOrigin);
-        Impulse *= MonsterInfo.ExplosionImpulseScale;
+        Impulse = InDmgType.default.RadialDamageImpulse * Normal(BoneLocation - InExplosionOrigin);
+        Impulse *= (MonsterInfo.ExplosionImpulseScale * ModifiedImpulse);
         JointIndex = 0;
-        J0x139:
+        J0x1C7:
 
         if(JointIndex < MonsterInfo.GoreJointSettings.Length)
         {
@@ -564,19 +570,19 @@ simulated function CauseGibsAndApplyImpulse(KFPawn_Monster inPawn, class<KFDamag
                     {
                         bPlayedBloodEffects = false;
                         JointIndex = 0;
-                        J0x348:
+                        J0x3D6:
 
                         if(!bPlayedBloodEffects && JointIndex < MonsterInfo.GoreJointSettings.Length)
                         {
                             if(MonsterInfo.GoreJointSettings[JointIndex].HitBoneName == HitBoneName)
                             {
                                 ExplosionBreakIdx = 0;
-                                J0x3DC:
+                                J0x46A:
 
                                 if(!bPlayedBloodEffects && ExplosionBreakIdx < MonsterInfo.GoreJointSettings[JointIndex].HitExplosionGore.Length)
                                 {
                                     BoneIdx = 0;
-                                    J0x444:
+                                    J0x4D2:
 
                                     if(BoneIdx < MonsterInfo.GoreJointSettings[JointIndex].HitExplosionGore[ExplosionBreakIdx].BreakBones.Length)
                                     {
@@ -585,30 +591,30 @@ simulated function CauseGibsAndApplyImpulse(KFPawn_Monster inPawn, class<KFDamag
                                         {
                                             AttachMutilationBloodEffects(inPawn, GibBoneName, ExplosiveBreakBone.BloodJets, ExplosiveBreakBone.BloodTrails, ExplosiveBreakBone.BloodMICParamName);
                                             bPlayedBloodEffects = true;
-                                            goto J0x5D2;
+                                            goto J0x660;
                                         }
                                         ++ BoneIdx;
-                                        goto J0x444;
+                                        goto J0x4D2;
                                     }
-                                    J0x5D2:
+                                    J0x660:
 
                                     ++ ExplosionBreakIdx;
-                                    goto J0x3DC;
+                                    goto J0x46A;
                                 }
                             }
                             ++ JointIndex;
-                            goto J0x348;
+                            goto J0x3D6;
                         }
                     }
                 }
             }
             ++ JointIndex;
-            goto J0x139;
+            goto J0x1C7;
         }
         RBBoneName = inPawn.GetRBBoneFromBoneName(GibBoneName);
         inPawn.Mesh.AddImpulse(Impulse, BoneLocation, RBBoneName);
         ++ GibIdx;
-        goto J0x41;
+        goto J0xCB;
     }
     if((bBrokenConstraint && !inPawn.bPlayedExplosionEffect) && ExplosionEffect != none)
     {
@@ -652,6 +658,23 @@ simulated function KFGiblet SpawnGiblet(Vector GibLocation, Rotator GibRotation,
     return Gib;
 }
 
+simulated function SpawnObliterationBloodEffect(KFPawn inPawn)
+{
+    local editinline ParticleSystemComponent PSC;
+    local KFCharacterInfo_Monster MonsterInfo;
+    local Vector ParticleLocation;
+
+    inPawn.SoundGroupArch.PlayObliterationSound(inPawn);
+    MonsterInfo = KFCharacterInfo_Monster(inPawn.GetCharacterInfo());
+    ParticleLocation = inPawn.Mesh.GetBoneLocation('Spine');
+    if(IsZero(ParticleLocation))
+    {
+        ParticleLocation = inPawn.Location;
+    }
+    PSC = MiscGoreFXEmitterPool.SpawnEmitter(MonsterInfo.ObliterationEffectTemplate, ParticleLocation);
+    PSC.SetLightingChannels(inPawn.PawnLightingChannel);
+}
+
 simulated function CauseObliteration(KFPawn inPawn, Vector InDamageOrigin, class<KFDamageType> inDamageType, optional float MomentumScale)
 {
     local KFCharacterInfo_Monster MonsterInfo;
@@ -659,12 +682,10 @@ simulated function CauseObliteration(KFPawn inPawn, Vector InDamageOrigin, class
     local Vector PawnLocation;
     local KFPawnSoundGroup PawnSoundGroup;
     local KFGiblet Gib;
-    local editinline ParticleSystemComponent PSC;
     local Vector Loc;
     local Rotator Rot;
     local Quat BoneQuat;
     local bool bSpawnedAGibForThisIndex;
-    local Vector ObliterationLocation;
 
     MomentumScale = 1;
     PawnLocation = inPawn.Location;
@@ -675,15 +696,9 @@ simulated function CauseObliteration(KFPawn inPawn, Vector InDamageOrigin, class
     MonsterInfo = KFCharacterInfo_Monster(inPawn.GetCharacterInfo());
     if(MonsterInfo != none)
     {
-        ObliterationLocation = inPawn.Mesh.GetBoneLocation('Spine');
-        if(IsZero(ObliterationLocation))
-        {
-            ObliterationLocation = PawnLocation;
-        }
-        PSC = MiscGoreFXEmitterPool.SpawnEmitter(MonsterInfo.ObliterationEffectTemplate, ObliterationLocation);
-        PSC.SetLightingChannels(inPawn.PawnLightingChannel);
+        SpawnObliterationBloodEffect(inPawn);
         GibletIndex = 0;
-        J0x21E:
+        J0x135:
 
         if(GibletIndex < MonsterInfo.GibletSettings.Length)
         {
@@ -691,7 +706,7 @@ simulated function CauseObliteration(KFPawn inPawn, Vector InDamageOrigin, class
             if(MonsterInfo.GibletSettings[GibletIndex].GibletBones.Length > 0)
             {
                 BoneIndex = 0;
-                J0x2A6:
+                J0x1BD:
 
                 if(BoneIndex < MonsterInfo.GibletSettings[GibletIndex].GibletBones.Length)
                 {
@@ -699,7 +714,7 @@ simulated function CauseObliteration(KFPawn inPawn, Vector InDamageOrigin, class
                     {
                         if(FRand() < 0.35)
                         {
-                            goto J0x57A;
+                            goto J0x491;
                         }
                     }
                     Loc = inPawn.Mesh.GetBoneLocation(MonsterInfo.GibletSettings[GibletIndex].GibletBones[BoneIndex]);
@@ -711,10 +726,10 @@ simulated function CauseObliteration(KFPawn inPawn, Vector InDamageOrigin, class
                     {
                         Gib.SoundGroup = PawnSoundGroup;
                     }
-                    J0x57A:
+                    J0x491:
 
                     ++ BoneIndex;
-                    goto J0x2A6;
+                    goto J0x1BD;
                 }                
             }
             else
@@ -728,7 +743,7 @@ simulated function CauseObliteration(KFPawn inPawn, Vector InDamageOrigin, class
                 }
             }
             ++ GibletIndex;
-            goto J0x21E;
+            goto J0x135;
         }
     }
 }
@@ -797,6 +812,7 @@ event Reset()
         goto J0x0B;
     }
     CorpsePool.Remove(0, CorpsePool.Length;
+    ClearPersistentBloodSplats();
 }
 
 defaultproperties

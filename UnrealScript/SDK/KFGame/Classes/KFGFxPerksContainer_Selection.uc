@@ -26,12 +26,18 @@ var array<PerkData> PerksData;
 
 var KFGFxMenu_Perks PerksMenu;
 
+var GFxObject PerkList;
+var KFGameReplicationInfo KFGRI;
+var KFPlayerReplicationInfo KFPRI;
+
 function Initialize( KFGFxObject_Menu NewParentMenu )
 {
 	local KFPlayerController KFPC;
 
 	KFPC = KFPlayerController(GetPC());
+	KFPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
 	PerksMenu = KFGFxMenu_Perks(NewParentMenu);
+	KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
 
 	super.Initialize( NewParentMenu );
 	LocalizeText();
@@ -39,6 +45,9 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
 	{
 		UpdatePerkSelection( KFPC.SavedPerkIndex );
 	}
+
+	PerkList = GetObject("perkScrollingList");
+	SetPerkListEnabled(!KFPRI.bReadyToPlay);
 }
 
 function LocalizeText()
@@ -84,27 +93,36 @@ function UpdatePerkSelection(byte SelectedPerkIndex)
 		}	
 		SetObject( "perkData", DataProvider );
 		SetInt("SelectedIndex", SelectedPerkIndex);
+		SetInt("ActiveIndex", SelectedPerkIndex); //Separated active index from the selected index call. This way the 'selected' index can be different from the active perk...mainly for navigation. (Shows the dark red button for the choosen perk) - HSL
 
 		UpdatePendingPerkInfo(SelectedPerkIndex);
     }
+}
+
+function SetPerkListEnabled(bool bValue)
+{
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(GetPC());
+
+	if(PerkList != none)
+	{
+		PerkList.SetBool("enabled", bValue || KFPC.MyGFxManager.bAfterLobby);
+	}
 }
 
 function UpdatePendingPerkInfo(byte SelectedPerkIndex)
 {
 	local string PerkName;
 	local KFPlayerController KFPC;
-	local WorldInfo TempWorldInfo;
-	local KFGameReplicationInfo KFGRI;
-
-	TempWorldInfo = class'WorldInfo'.static.GetWorldInfo();
 
 	KFPC = KFPlayerController( GetPC() );
-	KFGRI = KFGameReplicationInfo(TempWorldInfo.GRI);
+	
 	if( KFPC != none && KFGRI != none )
 	{
 		if(!class'WorldInfo'.static.IsMenuLevel())
 		{
-			if( (KFPC.bPlayerUsedUpdatePerk && !KFGRI.bTraderIsOpen) || (KFGRI.bTraderIsOpen && PerksMenu.bModifiedPerk)  && KFPC.PlayerReplicationInfo.bReadyToPlay && KFPC.WorldInfo.GRI.bMatchHasBegun)
+			if( (KFPC.bPlayerUsedUpdatePerk && !KFGRI.CanChangePerks()) || (KFGRI.CanChangePerks() && PerksMenu.bModifiedPerk)  && KFPC.PlayerReplicationInfo.bReadyToPlay && KFPC.WorldInfo.GRI.bMatchHasBegun)
 			{
 				PerkName = KFPC.PerkList[KFPC.SavedPerkIndex].PerkClass.default.PerkName;
 			}
@@ -114,7 +132,7 @@ function UpdatePendingPerkInfo(byte SelectedPerkIndex)
 			}
 		}	
 		
-		if(KFGRI.bTraderIsOpen)
+		if(KFGRI.CanChangePerks())
 		{
 			SetPendingPerkChanges(PerkName, "img://"$KFPC.PerkList[KFPC.SavedPerkIndex].PerkClass.static.GetPerkIconPath(), ChangesAppliedOnCloseString);
 		}

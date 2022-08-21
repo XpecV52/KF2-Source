@@ -67,9 +67,9 @@ struct native STraderItem
 	/** The perk this weapon is tied to */
 	var class<KFPerk> AssociatedPerkClass;
 
-	var int MagazineCapacity, InitialSpareMags, MaxSpareAmmo;
-	var int MaxSecondaryAmmoCount;
-    var byte BlocksRequired;
+	var int MaxSpareAmmo;
+	var int InitialSpareMags, MaxSecondaryAmmoCount;
+    var byte MagazineCapacity, BlocksRequired;
 
     /** Trader image for secondary ammo type */
 	var string SecondaryAmmoImagePath;

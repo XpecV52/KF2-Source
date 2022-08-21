@@ -2,7 +2,100 @@
 //1. ItemName can be changed slightly. It can run to about 21 characters (MAX), including spaces.
 //2. ItemCategory needs to match specific categories. LEAVE IT ALONE. - check this...
 //3. ItemDescription can be as much as about 295 characters, including spaces, although around 260-270 is best, so it leaves a space at the bottom. The following example is just about as long as it //can get:
-//ItemDescription="Doppelläufige Schrotflinte mit Kaliber 12. Ideal für den Nahkampf. Selbst die größten Zeds geraten ins Wanken, wenn sie von dieser Doppelflinte getroffen werden. Wir haben sie in einem alten Farmhaus gefunden und //haben sie für die Händlerin eingepackt. Hoffentlich lebst du länger als der Farmer."
+//ItemDescription="Double-barreled, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest Zeds will stagger when hit with both barrels. We found it in an old farm-house and //canned it for the Trader Pod. Hope you live longer than the farmer."
+
+[KFTutorial]
+;Lobby start
+RewardsTitleKey="Welcome to the Training Floor"
+RewardsDescriptionKey="The Training Floor will teach you some survival basics, but without the fear of death. Complete the Training Floor and you will receive a cosmetic item and enough XP to bring your selected perk up to Level 1."
+WelcomeTitleKey="Select a Perk"
+WelcomeDescriptionKey="Before you begin the match, select the <font color="#caab05">PERKS</font> tab at the top of the screen and select a perk. Perks are classes with different passive <font color="#caab05">PERK BONUSES</font>, configurable <font color="#caab05">SKILLS</font>, and <font color="#caab05">WEAPON LOADOUTS</font>."
+PerksTitleKey="Perks Details"
+PerksDescriptionKey="Perform <font color="#caab05">XP OBJECTIVES</font> in game to gain XP and level up your perks. Each time you level up, your <font color="#caab05">PERK BONUSES</font> increase for that perk. Every 5 levels you will unlock new <font color="#caab05">SKILLS</font> that you can <font color="#caab05">CONFIGURE</font> once unlocked. Select a perk and press <font color="#caab05">READY UP</font> to begin the match."
+
+;Gear Menu
+GearTitleKey="Gear Menu"
+GearDescriptionKey="The Gear Menu lets you select and <font color="#caab05">CUSTOMIZE</font> your character. Each character has a unique visual look, voice, and personality. Each character's head and body can be customized. You can wear up to 3 cosmetic accessories. Select and customize your character using the buttons on the left side of this menu."
+
+;Inventory Menu
+InventoryMenuTitleKey="Inventory Menu"
+InventoryMenuDescriptionKey="The inventory menu allows you to view and manage your item inventory. You can obtain items as rewards for completing matches from time to time, but you can also get items by opening crates, decrypting weapon skin USBs, trading with your friends, or purchasing them on the Market."
+WeaponSkinsTitleKey="Equipping Weapon Skins"
+WeaponSkinsDescriptionKey="Selecting any item will let you view the item details. If you have a weapon skin selected, you can equip it by pressing the <font color="#caab05">EQUIP</font> button. If you have a weapon skin equipped, any time you use that weapon in a match it will appear with the currently equipped skin."
+
+;Store Menu
+StoreTitleKey="Store Menu"
+StoreDescriptionsKey="The Store Menu allows you to purchase keys that are used to open crates and decrypt weapon skin USBs you find. There are also several character cosmetic item bundles you can purchase. Items that you purchase or receive as rewards will appear in the Inventory Menu."
+
+;Match Start
+InventoryTitleKey="Know Your Inventory"
+InventoryDescriptionKey="Each perk loadout starts with a unique primary weapon, a backup 9mm pistol, a specialist knife, and grenades. Press <font color="#caab05">%x%</font> to cycle through your weapons. You can also quick select weapon categories by pressing the following: <font color="#caab05">%x%</font> to equip your primary ranged weapon, <font color="#caab05">%x%</font> to equip your pistol, <font color="#caab05">%x%</font> to equip your melee weapon, and <font color="#caab05">%x%</font> to equip your syringe."
+InventoryContTitleKey="Know Your Inventory"
+InventoryContDescriptionKey="Each perk loadout starts with a unique primary weapon, a backup 9mm pistol, a specialist knife and grenade. Hold <font color="#caab05">%x%</font> and use the Dpad to select a weapon."
+AlternateFireKey="Alternate Fire"
+AlternateFireDescription="Most primary weapon have an alternate fire mode. Press <font color="#caab05">%x%</font> to toggle your current fire mode. An icon in your view will show the currently selected firemode."
+FlashLightBatteryTitleKey="Using a Flashlight"
+FlashLightBatteryDescriptionKey="It can get dark out there. Press <font color="#caab05">%x%</font> to toggle your <font color="#caab05">FLASHLIGHT</font> on and off. Your flashlight battery will slowly run out of power. When this happens it will turn off and automatically start recharging again."
+GrenadeTitleKey="Using Grenades"
+GrenadeDescriptionKey="Grenades allow you to deal with closely packed groups of Zeds. Perks have different grenades in their <font color="#caab05">WEAPON LOADOUTS</font>, all of which damage Zeds, but may have additional effects. Press <font color="#caab05">%x%</font> to throw a grenade." 
+
+;Wave 1 end
+TraderTimeTitleKey="Trader Time"
+TraderTimeDescriptionKey="In between waves you can buy/sell weapons and fill your ammo at the Trader. Follow the blue arrows to find the Trader."
+InventoryWeightTitleKey="Carrying Weight"
+InventoryWeightDescriptionKey="You are limited in the weight you can carry. If you can't carry what you want, sell some gear first to make room."
+
+;Trader Menu Open
+TraderRefillTitleKey="Refill Your Ammo and Armor"
+TraderRefillDescriptionKey="You can refill your <font color="#caab05">AMMO</font>, <font color="#caab05">GRENADES</font>, and <font color="#caab05">BODY ARMOR</font> by pressing the <font color="#caab05">MAG</font>, <font color="#caab05">x1</font>, or <font color="#caab05">FILL</font> buttons next to the appropriate item. If you are short of time (or long on dosh), pressing <font color="#caab05">AUTOFILL</font> will spend your dosh for you, spreading it across ammo, armor, and grenades quickly."
+TraderSellTitleKey="Selling Weapons"
+TraderSellDescriptionKey="To <font color="#caab05">SELL A WEAPON</font>, select the weapon on the right side of the menu and press the large <font color="#caab05">SELL BUTTON</font> in the center of the menu. You cannot sell your backup 9mm pistol, body armor, or grenades."
+TraderBuyTitleKey="Buying Weapons"
+TraderBuyDescriptionKey="To <font color="#caab05">BUY A WEAPON</font>, select a weapon on the left side of the menu and press the large <font color="#caab05">BUY BUTTON</font> in the center of the menu. Make sure you have enough <font color="#caab05">DOSH</font> and <font color="#caab05">WEIGHT CAPACITY</font> to purchase the weapon."
+TraderWeightTitleKey="Weapon Weight and Capacity"
+TraderWeightDescriptionKey="Every weapon has a <font color="#caab05">WEIGHT VALUE</font>. The weight of your current weapons may prevent you from being able to purchase the weapon you wish. The weight of the weapon is visible on the weapon list and in the weapon details. Your <font color="#caab05">WEIGHT CAPACITY</font> is shown above the buy/sell button in the center of the screen. Anything that will block you from buying the currently selected item is highlighted in red."
+
+;Trader Menu Close
+DoorWeldTitleKey="Weld Doors"
+DoorWeldDescriptionKey="You can <font color="#caab05">WELD DOORS</font> to slow the flow of enemies to a given area. To weld a door, walk up to it and <font color="#caab05">HOLD %x%</font> to equip your welder."
+HoldOutRunTitleKey="Run vs. Hold Out"
+HoldOutRunDescriptionKey="Know when to hold out and when to run. Find a good hold out spot, but once you start getting overrun, find an exit."
+TeamAdviceTitleKey="Stick Together"
+TeamAdviceDescriptionKey="<font color="#caab05">STAY WITH YOUR TEAM!</font> Your teammates are vital to your survival. They can heal you as well as help you take down the bigger Zeds."
+
+;Victory
+CongratulationsTitleKey="Victory!"
+CongratulationsDescriptionKey="Congratulations! You have completed the Training Floor!"
+NextStepsTitleKey="What to Do Next"
+NextStepsDescriptionKey="From the main menu, <font color="#caab05">PLAY SOLO OFFLINE</font> to practice more offline or jump into <font color="#caab05">ONLINE MATCHMAKING</font> or <font color="#caab05">BROWSE SERVERS</font> to find an online game. Now go kill some Zeds!"
+
+;Healing Section
+QuickHealTitleKey="Heal Yourself When Hurt"
+QuickHealDescriptionKey="If you are hurt, you can heal yourself by pressing <font color="#caab05">%x%</font>. After healing, your syringe will take sometime to recharge before you can use it again."
+HowToSyringeTitleKey="Heal Your Teammates"
+HowToSyringeDescriptionKey="You can also equip the syringe to heal your teammates by pressing <font color="#caab05">%x%</font> and then pressing <font color="#caab05">%x%</font> when close to a teammate."
+HealOthersTitleKey="Use Field Medic Weapons to Heal Teammates"
+HealOthersDescriptionKey="Field Medic perk weapons can heal teammates from a distance with their alternate fire mode. If you are using a Field Medic weapon, press <font color="#caab05">%x%</font> to fire a healing dart. Also, when you have selected the Field Medic perk, press <font color="#caab05">%x%</font> to throw a healing gas grenade."
+
+;Zed Time
+ZedTimeTitleKey="Zed Time"
+ZedTimeDescriptionKey="<font color="#caab05">ZED TIME SLO-MO</font> kicks in when cool things happen like headshots or hordes of enemies dying in an explosion. You can use this time to catch a small breather and daisy-chain some kills together."
+
+;Melee Section
+MeleeTitleKey="Melee Weapons"
+MeleeDescriptionKey="Melee weapons have both light and hard attacks. Perform a light attack by pressing <font color="#caab05">%x%</font> and a hard attack by pressing <font color="#caab05">%x%</font>."
+BlockingTitleKey="Blocking with Melee Weapons"
+BlockingDescriptionKey="You can also block with melee weapons by <font color="#caab05">HOLDING %x%</font>. Blocking will reduce incoming Zed damage."
+ParryTitleKey="Parrying with Melee Weapons"
+ParryDescriptionKey="If you time a block correctly with an incoming Zed attack, you will parry the Zed and stumble him back. You will see an effect flash if you successfully parry a Zed."
+UnblockableTitleKey="Unblockable Zed Attacks"
+UnblockableDescriptionKey="Larger Zeds have some unblockable attacks. You can tell if an attack is unblockable by glowing effects on the Zed during an attack."
+
+[KFGFxTutorialContainer]
+BackString="BACK"
+NextString="NEXT"
+DoneString="DONE"
+SkipString="SKIP"
 
 [Armor]
 ItemName="Kampfrüstung"
@@ -11,13 +104,13 @@ ItemDescription="• Die Kampfrüstung schützt dich vor verschiedenen Arten von
 
 [KFProj_DynamiteGrenade]
 ItemName="1/2 Stange Dynamit"
-ItemCategory =" "Explosives""
+ItemCategory =" Sprengstoffe"
 ItemDescription="• Eine kleine Menge Dynamit mit Zünder.\n• Kann dir schaden, also pass auf!"
 
 [KFProj_MedicGrenade]
 ItemName="Medizingranate"
-ItemCategory =" "Explosives""
-ItemDescription="• Setzt ein Gas frei, das Zeds vergiftet, aber Menschen heilt.\n• Stelle dich in die blaue Gaswolke, um geheilt zu werden.\n\nZitat von einem Wissenschaftler: 'Der Wirkstoff, den diese Granaten freisetzen, belebt den Homo sapiens wieder und schläfert den Homo zedicus ein.' Wir hoffen, das hilft."
+ItemCategory =" Explosives"
+ItemDescription="• Setzt ein Gas frei, das Zeds vergiftet, aber Menschen heilt.\n• Stelle dich in die blaue Gaswolke, um geheilt zu werden.\n\nZitat von einem Wissenschaftler: \Der Wirkstoff, den diese Granaten freisetzen, belebt den Homo sapiens wieder und schläfert den Homo zedicus ein.\" Wir hoffen, das hilft.""
 
 [KFProj_MolotovGrenade]
 ItemName="Molotowcocktail"
@@ -27,7 +120,7 @@ ItemDescription="• Eine Flammengranate, die Zeds verbrennt.\n• Pass auf, sie
 [KFProj_EMPGrenade]
 ItemName="EMP-Granate"
 ItemCategory="Explosives"
-ItemDescription="• Erzeugt einen elektrischen Impuls, der Zeds schadet und kurz betäubt.n\n\Wenn du weitere Details willst: Bei der Detonation erzeugt sie für eine Nanosekunde einen elektromagnetischen Impuls, der elektrische Systeme im nahen Umkreis stört. Insbesondere die in den Zeds. Ganz schön praktisch!"
+ItemDescription="• Erzeugt einen elektrischen Impuls, der Zeds schadet und kurz betäubt.n\n\\Wenn du weitere Details willst: Bei der Detonation erzeugt sie für eine Nanosekunde einen elektromagnetischen Impuls, der elektrische Systeme im nahen Umkreis stört. Insbesondere die in den Zeds. Ganz schön praktisch!"
 
 [KFProj_HEGrenade]
 ItemName="HE-Granate"
@@ -39,6 +132,16 @@ ItemName="Splittergranate"
 ItemCategory="Explosives"
 ItemDescription="• Die klassische Splittergranate: Versprengt fiese kleine Metallteilchen, die jeden verletzen.\n\nIch bin ziemlich sicher, dass du vor dem Ausbruch genug Videospiele gespielt hast, um zu wissen, was eine Splittergranate ist. Hör auf, mir etwas vorzumachen. Niemand hier wird dir glauben."
 
+[KFProj_NailBombGrenade]
+ItemName="Nagelbombe"
+ItemCategory =" Sprengstoffe"
+ItemDescription="• Einfach eine Büchse voller alter Nägel mit einer kleinen Sprengladung in der Mitte.\n\nNicht die freundlichste und subtilste Art, mit Zeds umzugehen. Aber Zeds haben ja auch nichts freundliches oder subtiles an sich, nicht wahr?"
+
+[KFProj_FreezeGrenade]
+ItemName="Freeze Grenade"
+ItemCategory = "Explosives"
+ItemDescription="• An advanced canister of pressurized liquid nitrogen.\n\nEnough contact with the contents of this will freeze Zeds in place for a time. The results can be very shattering."
+
 [KFWeap_Healer_Syringe]
 ItemName="Medizinische Spritze"
 ItemCategory="Equipment"
@@ -49,18 +152,18 @@ ItemCategory="Equipment"
 
 [KFWeap_Pistol_9mm]
 ItemName="9-mm-Pistole"
-ItemCategory="Hand Gun"
-ItemDescription="• Feuer nur halbautomatisch.\n• Mit Lampenhalterung.\n• Dies ist eine Standard-9-mm-Pistole. Einfach und günstig (sehr günstig, unter uns gesagt), die grundlegende Faustfeuerwaffe für alle Horzine-Einsatzkräfte."
+ItemCategory="Faustfeuerwaffe"
+ItemDescription="• Feuer nur halbautomatisch.\n• Dies ist eine Standard-9-mm-Pistole. Einfach und günstig (sehr günstig, unter uns gesagt), die grundlegende Faustfeuerwaffe für alle Horzine-Einsatzkräfte."
 
 [KFWeap_Pistol_Deagle]
 ItemName=".50 Desert Eagle"
-ItemCategory="Hand Cannon"
-ItemDescription="• Feuer nur halbautomatisch.\n• Die Desert Eagle ist das Biest unter den Handfeuerwaffen, daher kennt man sie auch unter dem Namen "Handkanone"."
+ItemCategory="Faustfeuerwaffe"
+ItemDescription="• Feuer nur halbautomatisch.\n• Die Desert Eagle ist das Biest unter den Faustfeuerwaffen, daher kennt man sie auch unter dem Namen Handkanone."
 
 [KFWeap_AssaultRifle_AR15]
 ItemName="AR-15 Schädlingsgewehr"
 ItemCategory="Assault Rifle"
-ItemDescription="• Primärangriff kann zwischen 3-Schuss-Salven und halbautomatisch umgeschaltet werden.\n• Mit Lampenhalterung.\n• Sekundär: Zielen über Kimme und Korn.\n• Die halbautomatische Version mit 9-mm-Patrone. Zeds = Schädlinge."
+ItemDescription="• Wahl zwischen Drei-Schuss-Salven und Einzelschuss.\n• Alternativfeuer zum Umschalten zwischen den Feuermodi.\n• Das ist für Zeds, nicht \Schädlinge\"""
 
 [KFWeap_AssaultRifle_SCAR]
 ItemName="SCAR-H-Sturmgewehr"
@@ -92,25 +195,35 @@ ItemName="Feuerwehrmesser"
 ItemCategory="Melee"
 ItemDescription="• Primärangriff: schneller Schlitzerangriff, halten für Kombiangriff.\n• Sekundärangriff: schwerer Schlitzerangriff\n• Alternativ: abwehren/parieren\n• Dies ist ein Feuerwehrmesser. Da du Feuerwehrmann bist, nehmen wir an, dass wir dir nicht erklären müssen, wie man es verwendet."
 
+[KFWeap_Knife_Gunslinger]
+ItemName="Bowiemesser"
+ItemCategory="Nahkampf"
+ItemDescription="• Primärangriff: schneller Schlitzerangriff, halten für Kombiangriff.\n• Sekundärangriff: schwerer Schlitzerangriff\n• Alternativ: abwehren/parieren\n• Das übergroße Messer des Alten Westens. Perfekt zum Zerstückeln und Würfeln von Zeds im Hier und Jetzt."
+
+[KFWeap_Knife_Sharpshooter]
+ItemName="Kukri"
+ItemCategory="Nahkampf"
+ItemDescription=""
+
 [KFWeap_Pistol_Medic]
-ItemName="HMTech-101 Pistol"
-ItemCategory="Pistol"
+ItemName="HMTech-101 Pistole"
+ItemCategory="Pistole"
 ItemDescription="• Feuer nur halbautomatisch.\n• Alternativfeuer verschießt Heilpfeile, um Teammitglieder zu heilen.\n• Verwendet hülsenlose Munition und zählt die Patronen."
 
 [KFWeap_SMG_Medic]
 ItemName="MP HMTech-201"
 ItemCategory="Sub Machine Gun"
-ItemDescription="• Feuer nur automatisch.\n• Alternativfeuer verschießt Heilpfeile, um Teammitglieder zu heilen.\n• Mit Lampenhalterung.\n• Deine Pistole, etwas aufgemotzt!"
+ItemDescription="• Feuer nur automatisch.\n• Alternativfeuer verschießt Heilpfeile, um Teammitglieder zu heilen.\n• Deine Pistole, etwas aufgemotzt!"
 
 [KFWeap_Shotgun_Medic]
 ItemName="Schrotflinte HMTech-301"
 ItemCategory="Shotgun"
-ItemDescription="• Feuer nur halbautomatisch.\n• Alternativfeuer verschießt Heilpfeile, um Teammitglieder zu heilen.\n• Mit Lampenhalterung.\n• Die Kampfschrotflintenversion für Sanitäter."
+ItemDescription="• Feuer nur halbautomatisch.\n• Alternativfeuer verschießt Heilpfeile, um Teammitglieder zu heilen.\n• Die Kampfschrotflintenversion für Sanitäter."
 
 [KFWeap_AssaultRifle_Medic]
 ItemName="StGw HMTech-401"
 ItemCategory="Assault Rifle"
-ItemDescription="• Feuer nur automatisch.\n• Alternativfeuer verschießt Heilpfeile, um Teammitglieder zu heilen.\n• Mit Lampenhalterung.\n• Die Vollversion des Sturmgewehrs."
+ItemDescription="• Feuer nur automatisch.\n• Alternativfeuer verschießt Heilpfeile, um Teammitglieder zu heilen.\n• Die Vollversion des Sturmgewehrs."
 
 [KFWeap_Shotgun_DoubleBarrel]
 ItemName="Doppelläufige Knarre"
@@ -120,17 +233,17 @@ ItemDescription="• Primärfeuer nur mit einem Lauf.\n• Alternativfeuer schie
 [KFWeap_Shotgun_AA12]
 ItemName="Auto-Schrotflinte AA-12"
 ItemCategory="Shotgun"
-ItemDescription="• Feuer nur automatisch.\n• Die AA-12 ist eine vollautomatische Schrotflinte. Hat eine zerstörende Feuerkraft im nahen und mittleren Umkreis, frisst aber Munition!"
+ItemDescription="• Wahl zwischen voll- und halbautomatischem Feuer.\n• Alternativfeuer zum Umschalten zwischen den Feuermodi.\n• Die AA-12 ist eine automatische Schrotflinte. Hat eine zerstörende Feuerkraft im nahen und mittleren Umkreis, frisst im vollautomatischen Modus aber Munition!"
 
 [KFWeap_Shotgun_MB500]
 ItemName="Repetierflinte SG 500"
 ItemCategory="Shotgun"
-ItemDescription="• Feuer nur mit Repetierflinte.\n• Mit Lampe.\n• Die Repetierflinte Mossberg SG 500 mit Pistolengriff ist ein wunderbarer Zed-Killer für den Nahkampf. Einfach und effektiv."
+ItemDescription="• Feuer nur mit Repetierflinte.\n• Die Repetierflinte Mossberg SG 500 mit Pistolengriff ist ein wunderbarer Zed-Killer für den Nahkampf. Einfach und effektiv."
 
 [KFWeap_Shotgun_M4]
 ItemName="M4-Kampfschrotflinte"
 ItemCategory="Shotgun"
-ItemDescription="• Feuer nur halbautomatisch.\n• Mit Lampe.\n• Benelli hat die M4-Kampfschrotflinte für das US-Militär entwickelt. Halbautomatisch, ermöglicht stetes Feuer."
+ItemDescription="• Feuer nur halbautomatisch.\n• Benelli hat die M4-Kampfschrotflinte für das US-Militär entwickelt. Halbautomatisch, ermöglicht stetes Feuer."
 
 [KFWeap_Knife_Berserker]
 ItemName="Rasenmäherklinge"
@@ -165,7 +278,7 @@ ItemDescription="• Wahl zwischen Einfach- und Mehrfach-Nagelfeuermodus.\n• A
 [KFWeap_Blunt_Pulverizer]
 ItemName="Pulverisator"
 ItemCategory="Melee"
-ItemDescription="• Primärangriff: schneller stumpfer Angriff, halten für Kombiangriff\n• Sekundärangriff feuert mit Explosivpatrone bei Kontakt. Wenn leer: schwerer stumpfer Angriff. Denke daran, nachzuladen!\n• Alternativ: abwehren/parieren."
+ItemDescription="• Primärangriff: schneller stumpfer Angriff, halten für Kombiangriff\n• Sekundärangriff feuert mit Explosivpatrone bei Kontakt. Wenn leer: schwerer stumpfer Angriff. Denke daran, nachzuladen!\n• Alternativ: abwehren/parieren"
 
 [KFWeap_Eviscerator]
 ItemName="Ausweider"
@@ -186,7 +299,7 @@ ItemDescription="• Feuermodus verschießt Flammen.\n• Selbstgebauter, tragba
 
 [KFWeap_Shotgun_DragonsBreath]
 ItemName="Schrotflinte mit zündbarer Munition"
-ItemCategory="Shotgun"
+ItemCategory="Schrotflinte"
 ItemDescription="• Feuer nur mit Repetierflinte.\n• Eine Schrotflinte mit zündbaren Dragon's-Breath-Patronen. Nicht nur tödlich, sondern auch schön anzusehen."
 
 [KFWeap_Flame_Flamethrower]
@@ -201,29 +314,129 @@ ItemDescription="• Feuermodus nutzt Mikrowellen, um Zeds zu erhitzen und sie i
 
 [KFWeap_Thrown_C4]
 ItemName="C4-Sprengstoff"
-ItemCategory="Explosives"
+ItemCategory="Sprengstoffe"
 ItemDescription="• Feuermodus platziert die C4-Ladung.\n• Alternativfeuer zündet die C4-Ladungen in der Reihenfolge, in der sie platziert wurden.\n• Ein Block C4, für die Fernzündung verkabelt."
 
 [KFWeap_GrenadeLauncher_HX25]
 ItemName="HX25-Granatpistole"
-ItemCategory="Explosives"
+ItemCategory="Sprengstoffe"
 ItemDescription="• Feuermodus verschießt Streumunition, die bei Kontakt explodiert."
 
 [KFWeap_GrenadeLauncher_M79]
 ItemName="M79-Granatwerfer"
-ItemCategory="Explosives"
+ItemCategory="Sprengstoffe"
 ItemDescription="• Feuermodus verschießt eine Granate.\n• Granate explodiert beim Aufprall.\n• Zündet nur in einigen Metern Entfernung, damit du dir nicht dein Gesicht wegbläst."
 
 [KFWeap_RocketLauncher_RPG7]
 ItemName="RPG-7"
-ItemCategory="Explosives"
+ItemCategory="Sprengstoffe"
 ItemDescription="• Feuermodus verschießt die Rakete.\n• Rakete explodiert beim Aufprall.\n• Zündet nur in einigen Metern Entfernung, damit du dir nicht dein Gesicht wegbläst.\n• Vorsicht vor dem Rückstoß!"
 
 [KFWeap_Pistol_Dual9mm]
 ItemName="Duale 9-mm-Pistole"
-ItemCategory="Hand Gun"
-ItemDescription="• Feuer nur halbautomatisch.\n• Mit Lampenhalterung.\n• Dies sind zwei Standard-9-mm-Pistolen. Du kannst (nur) eine verkaufen, wenn es nötig ist."
+ItemCategory="Faustfeuerwaffe"
+ItemDescription="• Feuer nur halbautomatisch.\n• Dies sind zwei Standard-9-mm-Pistolen. Du kannst (nur) eine verkaufen, wenn es nötig ist."
 
+[KFWeap_Pistol_Colt1911]
+ItemName="M1911-Pistole"
+ItemCategory="Faustfeuerwaffe"
+ItemDescription="• Feuer nur halbautomatisch.\n• Die klassische, halbautomatische Pistole \Colt 1911\".""
+
+[KFWeap_Pistol_DualColt1911]
+ItemName="Duale M1911-Pistole"
+ItemCategory="Faustfeuerwaffe"
+ItemDescription="• Feuer nur halbautomatisch.\n• Alternativfeuer wechselt beim Zielen den Zielmodus.\n• Dies ist ein Paar halbautomatischer \Colt 1911\"-Pistolen. Jede kann einzeln verkauft oder abgelegt werden.""
+
+[KFWeap_Pistol_Deagle]
+ItemName=".50 Desert Eagle"
+ItemCategory="Faustfeuerwaffe"
+ItemDescription="• Feuer nur halbautomatisch.\n• Die Desert Eagle ist das Biest unter den Faustfeuerwaffen, daher kennt man sie auch unter dem Namen Handkanone."
+
+[KFWeap_Pistol_DualDeagle]
+ItemName="Duale .50 Desert Eagle"
+ItemCategory="Faustfeuerwaffe"
+ItemDescription="• Feuer nur halbautomatisch.\n• Alternativfeuer wechselt beim Zielen den Zielmodus.\n• Ein Paar \Desert Eagle\"-Handkanonen. Jede kann einzeln verkauft oder abgelegt werden.""
+
+[KFWeap_Revolver_Rem1858]
+ItemName="1858-Revolver"
+ItemCategory="Faustfeuerwaffe"
+ItemDescription="• Feuert nur einzelne Schüsse ab.\n• Ein wunderbares Exemplar des Remington \Modell 1858\" Single-Action-Revolvers, Kaliber 44, mit 6 Schuss. Betagt, aber noch immer wirkmächtig.""
+
+[KFWeap_Revolver_DualRem1858]
+ItemName="Dualer 1858-Revolver"
+ItemCategory="Faustfeuerwaffe"
+ItemDescription="• Feuer nur halbautomatisch.\n• Alternativfeuer wechselt beim Zielen den Zielmodus.\n• Ein Paar \Remington 1858\"-Revolver. Jeder kann einzeln verkauft oder abgelegt werden.""
+
+[KFWeap_Revolver_SW500]
+ItemName=".500 Magnum-Revolver"
+ItemCategory="Faustfeuerwaffe"
+ItemDescription="• Feuert nur einzelne Schüsse ab.\n• Diese echte Handartillerie in Form des langläufigen Kaliber 50 \Knochensammler\"-Revolvers, feuert Vollmantel-Magnummunition. Für den professionellen Revolverhelden.""
+
+[KFWeap_Revolver_DualSW500]
+ItemName="Duale .500-Magnums"
+ItemCategory="Faustfeuerwaffe"
+ItemDescription="• Feuer nur halbautomatisch.\n• Alternativfeuer wechselt beim Zielen den Zielmodus.\n• Ein Paar .500 Magnum \Knochensammler\"-Revolver. Jeder kann einzeln verkauft oder abgelegt werden. Mit einem lauten \"Bumms\".""
+
+[KFWeap_Rifle_Winchester1894]
+ItemName="Winchester 1894"
+ItemCategory="Gewehr"
+ItemDescription="• Feuert nur einzelne Schüsse ab.\n• Das klassische Modell des 1894-Winchester-Unterhebelrepetiergewehrs."
+
+[KFWeap_Bow_Crossbow]
+ItemName="Armbrust"
+ItemCategory="Bogen"
+ItemDescription="• Feuert nur einzelne Schüsse ab.\n• Armbrustbolzen können oft wieder eingesammelt werden!\n• Eine kraftvolle Jagdarmbrust mit starkem Durchschlag und hoher Mannstoppwirkung!"
+
+[KFWeap_Rifle_M14EBR]
+ItemName="M14 EBR"
+ItemCategory="Sniper Rifle"
+ItemDescription=""
+
+[KFWeap_Rifle_RailGun]
+ItemName="Rail Gun"
+ItemCategory="Sniper Rifle"
+ItemDescription=""
+
+[KFWeap_AssaultRifle_M16M203]
+ItemName="M16 M203 Assault Rifle"
+ItemCategory="Assault Rifle"
+ItemDescription=""
+SecondaryAmmo="M203 Grenade"
+
+//BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
+[KFPawn_ZedHans]
+BossName="Dr. Hans Volter"
+BossCaptionStrings[0]="Hans ist während seiner Rauchgranaten-Heilungsphase nahezu unverwundbar. Verschwende deine Munition nicht!"
+BossCaptionStrings[1]="Achte auf seinen Energiekern: Hans ist aggressiver, wenn er die Farbe ändert."
+BossCaptionStrings[2]="Ziele auf seinen Energiekern. Er ist seine verwundbare Stelle."
+BossCaptionStrings[3]="Gas von Hans' Granaten bleibt an dir haften wie Bloat-Galle. Meide es!"
+BossCaptionStrings[4]="Seine Schlitzerangriffe sind zu stark, um zu parieren. Du wirst dennoch den vollen Schaden spüren."
+BossCaptionStrings[5]="Achte auf rote Granaten-Warnsignale, die dir zeigen, wo sie landen."
+BossCaptionStrings[6]="Wenn Hans seine Waffen zückt, bleibe außer Sichtweite. Naheliegend, aber wichtig!"
+
+[KFPawn_ZedPatriarch]
+BossName="Der Patriarch"
+BossCaptionStrings[0]="Kevin Clamely war einst ein brillanter Wissenschaftler, bis er zu seiner eigenen größten Schöpfung wurde."
+BossCaptionStrings[1]="The Patriarch is staggeringly arrogant - he is likely to tell you which attack he will use next."
+BossCaptionStrings[2]="Hiding behind even big objects won't help as much as you'd hope. The Patriarch has an answer for that!"
+BossCaptionStrings[3]="Running off on your own isn't an escape - it makes you easy prey he will target first."
+BossCaptionStrings[4]="Yes, the Patriarch can still cloak, go invisible, run off, and heal himself. Some things don't change."
+BossCaptionStrings[5]="While you won't get much choice about it, killing The Patriarch's 'children' just makes him mad(der)."
 
 [KFGameInfo_Survival]
 GameName="Überleben"
+
+[KFGameInfo_VersusSurvival]
+GameName="Überleben (VS.)"
+
+[KFPawn_ZedPatriarch_Versus]
+NoHealsRemainingMsg="No Heals Remaining"
+LowHealthMsg="Gesundheit kritisch! Jetzt heilen!"
+NoMortarTargetsMsg="No Valid Mortar Targets"
+
+[KFSM_PlayerSiren_VortexVictim]
+VortexGrabTeamWarningMsg="%x% is trapped by a Siren!"
+
+[KFGFXHudWrapper_Versus]
+WaitingToSpawnString="TIME UNTIL SPAWN: %x% second(s)"
+ZedTakeOverActiveString="SEARCHING FOR ZEDS TO TAKE OVER..."

@@ -89,9 +89,25 @@ static function bool GetWeaponSkinAvailable(INT ID)
 	return GetIDAvailable(ID);
 }
 
+//@HSL_BEGIN - JRO - 5/12/2016 - Need a native accessor method. Can't make GetAvailable an event due to the KFUnlockableAsset being a non-native interface
+static event bool GetAvailableCharacterArchetype(KFCharacterInfo_Human archetype)
+{
+	return GetAvailable(archetype);
+}
+//@HSL_END
+
 /** Returns whether a UObject asset is unlocked and available for use */
 static function bool GetAvailable(KFUnlockableAsset Asset)
 {
+	//@HSL_BEGIN - JRO - 5/12/2016 - Disable non-starter characters while installing
+	if (class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis) &&
+		!class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.IsGameFullyInstalled() &&
+		String(Asset.Name) != "CHR_MrFoster_archetype" &&
+		String(Asset.Name) != "CHR_Ana_Archetype")
+	{
+		return false;
+	}
+	//@HSL_END
 	return GetIDAvailable(Asset.GetAssetId());
 }
 
@@ -123,10 +139,10 @@ static function bool GetAvailableAttachment(const out AttachmentVariants Asset)
 {
 	local int i;
 
-	for( i = 0; i < Asset.SkinVariations.Length; ++i)
+	for( i = 0; i < Asset.AttachmentItem.SkinVariations.Length; ++i)
 	{
 		// unlock if it has at least one available skin
-		if ( GetIDAvailable(Asset.SkinVariations[i].UnlockAssetId) )
+		if ( GetIDAvailable(Asset.AttachmentItem.SkinVariations[i].UnlockAssetId) )
 		{
 			return TRUE;
 		}
@@ -182,7 +198,7 @@ static private event bool CheckCustomizationOwnership(KFPlayerReplicationInfo PR
 			if ( PRI.RepCustomizationInfo.AttachmentMeshIndices[i] != `CLEARED_ATTACHMENT_INDEX )
 			{
 				Attachment = CharArch.CosmeticVariants[PRI.RepCustomizationInfo.AttachmentMeshIndices[i]];
-				Skin = Attachment.SkinVariations[PRI.RepCustomizationInfo.AttachmentSkinIndices[i]];
+				Skin = Attachment.AttachmentItem.SkinVariations[PRI.RepCustomizationInfo.AttachmentSkinIndices[i]];
 				if( !GetIDAvailable(Skin.UnlockAssetID) )
 				{
  					ClearCharacterCustomization(PRI);

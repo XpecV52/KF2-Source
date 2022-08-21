@@ -126,8 +126,8 @@ static simulated function ModifyDismembermentHitImpulse(KFPawn_Monster inPawn, n
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_Eviscerator'
-    StunPower=42
-    MeleeHitPower=114
+    StumblePower=100
+    MeleeHitPower=20
     ModifierPerkList=/* Array type was not detected. */
     KDamageImpulse=1000
     KDeathVel=600

@@ -14,7 +14,7 @@ var KFGFxMenu_StartGame StartMenu;
 
 var localized string MultiplayerString;
 var localized string SoloString;
-
+var localized string TutorialString;
 
 //==============================================================
 // Initialization
@@ -35,5 +35,6 @@ function LocalizeMenu()
 	TextObject.SetString("multiplayer",MultiplayerString);	
 	TextObject.SetString("serverBrowser",StartMenu.ServerBrowserString);	
  	TextObject.SetString("solo",SoloString);	
+ 	TextObject.SetString("tutorial",TutorialString);
 	SetObject("localizedText", TextObject);
 }

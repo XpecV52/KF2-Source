@@ -48,7 +48,6 @@ var repnotify bool bFlashlightOn;
 var repnotify bool bHasSupportSafeguardBuff;
 var repnotify bool bHasSupportBarrageBuff;
 var repnotify bool bHasMedicVaccinationBuff;
-var bool bMovesFastInZedTime;
 var bool bBuffsUpdated;
 var bool bObjectivePlayer;
 var() float BatteryDrainRate;
@@ -85,8 +84,7 @@ replication
 {
      if(bNetDirty)
         Armor, MaxArmor, 
-        WeaponSkinItemId, bMovesFastInZedTime, 
-        bObjectivePlayer;
+        WeaponSkinItemId, bObjectivePlayer;
 
      if(bNetDirty && !bNetOwner || bDemoRecording)
         CurrentWeaponState, bFlashlightOn;
@@ -262,7 +260,7 @@ function UpdateGroundSpeed()
     if((GetPerk()) != none)
     {
         GetPerk().ModifySpeed(GroundSpeed);
-        GetPerk().ModifySpeed(SprintSpeed);
+        GetPerk().ModifySprintSpeed(SprintSpeed);
     }
 }
 
@@ -568,12 +566,13 @@ simulated function PlayDamageInstigatorHitEffects(KFPawn Victim)
 
 simulated function AddBattleBlood(float InBattleBloodIncrementvalue)
 {
+    local MaterialInstanceConstant MIC;
+
     BattleBloodParamValue = FMax(BattleBloodParamValue + InBattleBloodIncrementvalue, MinBattleBloodValue);
-    if((BodyMIC != none) && HeadMIC != none)
+    foreach CharacterMICs(MIC,)
     {
-        BodyMIC.SetScalarParameterValue(BattleBloodParamName, BattleBloodParamValue);
-        HeadMIC.SetScalarParameterValue(BattleBloodParamName, BattleBloodParamValue);
-    }
+        MIC.SetScalarParameterValue(BattleBloodParamName, BattleBloodParamValue);        
+    }    
 }
 
 simulated function SetNightVisionLight(bool bEnabled);
@@ -618,30 +617,10 @@ function bool Died(Controller Killer, class<DamageType> DamageType, Vector HitLo
     return false;
 }
 
-simulated function BroadcastDeathMessage(Controller Killer)
-{
-    if((Killer != none) && Killer != Controller)
-    {
-        if(Killer.IsA('KFAIController'))
-        {
-            BroadcastLocalizedMessage(Class'KFLocalMessage_Game', 22, PlayerReplicationInfo, none, Killer.Class);            
-        }
-        else
-        {
-            BroadcastLocalizedMessage(Class'KFLocalMessage_PlayerKills', 0, Killer.PlayerReplicationInfo, PlayerReplicationInfo);
-        }        
-    }
-    else
-    {
-        BroadcastLocalizedMessage(Class'KFLocalMessage_Game', 23, PlayerReplicationInfo);
-    }
-}
-
 function AdjustDamage(out int InDamage, out Vector Momentum, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, TraceHitInfo HitInfo, Actor DamageCauser)
 {
     local KFPerk MyKFPerk, MyMedicPerk;
     local float TempDamage;
-    local bool bHasSacrificeSkill;
 
     if(bLogTakeDamage)
     {
@@ -653,7 +632,6 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
     {
         MyKFPerk.ModifyDamageTaken(InDamage, DamageType, InstigatedBy);
         MyMedicPerk = KFPerk_FieldMedic(MyKFPerk);
-        bHasSacrificeSkill = MyKFPerk.ShouldSacrifice();
     }
     TempDamage = float(InDamage);
     if((TempDamage > float(0)) && bHasMedicVaccinationBuff)
@@ -681,11 +659,6 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
     if(InstigatedBy != none)
     {
         AddTakenDamage(InstigatedBy, int(FMin(float(Health), float(InDamage))), DamageCauser, class<KFDamageType>(DamageType));
-    }
-    if((bHasSacrificeSkill && Health >= 5) && (Health - InDamage) < 5)
-    {
-        Health = InDamage + 5;
-        SacrificeExplode();
     }
     if(bLogTakeDamage)
     {
@@ -744,33 +717,6 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
         KFPRI.PlayerHealthPercent = FloatToByte(float(Health) / float(HealthMax));
     }
     ResetIdleStartTime();
-}
-
-function SacrificeExplode()
-{
-    local KFExplosionActorReplicated ExploActor;
-    local GameExplosion ExplosionTemplate;
-    local KFPerk_Demolitionist DemoPerk;
-
-    if(Role < ROLE_Authority)
-    {
-        return;
-    }
-    DemoPerk = KFPerk_Demolitionist(GetPerk());
-    ExploActor = Spawn(Class'KFExplosionActorReplicated', self,, Location,,, true);
-    if(ExploActor != none)
-    {
-        ExploActor.InstigatorController = Controller;
-        ExploActor.Instigator = self;
-        ExplosionTemplate = Class'KFPerk_Demolitionist'.static.GetSacrificeExplosionTemplate();
-        ExplosionTemplate.MyDamageType = Class'KFPerk_Demolitionist'.static.GetSacrificeDamageTypeClass();
-        ExplosionTemplate.bIgnoreInstigator = true;
-        ExploActor.Explode(ExplosionTemplate);
-        if(DemoPerk != none)
-        {
-            DemoPerk.NotifyPerkSacrificeExploded();
-        }
-    }
 }
 
 protected function bool HasExplosiveResistance()
@@ -1267,36 +1213,32 @@ defaultproperties
     // Reference: SkeletalMeshComponent'Default__KFPawn_Human.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     bEnableAimOffset=true
-    HitZones(0)=(ZoneName=head,BoneName=head,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_None,SkinID=0,bPlayedInjury=false)
-    HitZones(1)=(ZoneName=neck,BoneName=neck,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_None,SkinID=0,bPlayedInjury=false)
-    HitZones(2)=(ZoneName=chest,BoneName=Spine2,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_None,SkinID=0,bPlayedInjury=false)
-    HitZones(3)=(ZoneName=heart,BoneName=Spine2,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_None,SkinID=0,bPlayedInjury=false)
-    HitZones(4)=(ZoneName=lupperarm,BoneName=LeftArm,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_None,SkinID=0,bPlayedInjury=false)
-    HitZones(5)=(ZoneName=lforearm,BoneName=LeftForearm,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_None,SkinID=0,bPlayedInjury=false)
-    HitZones(6)=(ZoneName=lhand,BoneName=LeftForearm,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_None,SkinID=0,bPlayedInjury=false)
-    HitZones(7)=(ZoneName=rupperarm,BoneName=RightArm,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_None,SkinID=0,bPlayedInjury=false)
-    HitZones(8)=(ZoneName=rforearm,BoneName=RightForearm,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_None,SkinID=0,bPlayedInjury=false)
-    HitZones(9)=(ZoneName=rhand,BoneName=RightForearm,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_None,SkinID=0,bPlayedInjury=false)
-    HitZones(10)=(ZoneName=stomach,BoneName=Spine1,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_None,SkinID=0,bPlayedInjury=false)
-    HitZones(11)=(ZoneName=abdomen,BoneName=Hips,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_None,SkinID=0,bPlayedInjury=false)
-    HitZones(12)=(ZoneName=lthigh,BoneName=LeftUpLeg,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_None,SkinID=0,bPlayedInjury=false)
-    HitZones(13)=(ZoneName=lcalf,BoneName=LeftLeg,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_None,SkinID=0,bPlayedInjury=false)
-    HitZones(14)=(ZoneName=lfoot,BoneName=LeftLeg,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_None,SkinID=0,bPlayedInjury=false)
-    HitZones(15)=(ZoneName=rthigh,BoneName=RightUpLeg,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_None,SkinID=0,bPlayedInjury=false)
-    HitZones(16)=(ZoneName=rcalf,BoneName=RightLeg,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_None,SkinID=0,bPlayedInjury=false)
-    HitZones(17)=(ZoneName=rfoot,BoneName=RightLeg,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_None,SkinID=0,bPlayedInjury=false)
+    HitZones(0)=(ZoneName=head,BoneName=head,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(1)=(ZoneName=neck,BoneName=neck,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(2)=(ZoneName=chest,BoneName=Spine2,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(3)=(ZoneName=heart,BoneName=Spine2,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(4)=(ZoneName=lupperarm,BoneName=LeftArm,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(5)=(ZoneName=lforearm,BoneName=LeftForearm,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(6)=(ZoneName=lhand,BoneName=LeftForearm,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(7)=(ZoneName=rupperarm,BoneName=RightArm,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(8)=(ZoneName=rforearm,BoneName=RightForearm,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(9)=(ZoneName=rhand,BoneName=RightForearm,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(10)=(ZoneName=stomach,BoneName=Spine1,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(11)=(ZoneName=abdomen,BoneName=Hips,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(12)=(ZoneName=lthigh,BoneName=LeftUpLeg,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(13)=(ZoneName=lcalf,BoneName=LeftLeg,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(14)=(ZoneName=lfoot,BoneName=LeftLeg,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(15)=(ZoneName=rthigh,BoneName=RightUpLeg,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(16)=(ZoneName=rcalf,BoneName=RightLeg,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
+    HitZones(17)=(ZoneName=rfoot,BoneName=RightLeg,GoreHealth=50,DmgScale=1,Limb=EHitZoneBodyPart.BP_Torso,SkinID=0,bPlayedInjury=false)
     BattleBloodParamName=Scalar_Blood_Contrast
     MinBattleBloodValue=0.2
     BattleBloodRangeSq=40000
     DeathMaterialEffectParamName=scalar_dead
     DeathMaterialEffectDuration=0.1
-    begin object name=Afflictions class=KFPawnAfflictions
-        bNoBurnedMatBeforeDeath=true
-    object end
-    // Reference: KFPawnAfflictions'Default__KFPawn_Human.Afflictions'
-    AfflictionHandler=Afflictions
-    StackingIncaps(0)=(Threshhold=1,Duration=5,Cooldown=5,DissipationRate=0.5,LastStartTime=0,StackedPower=0)
-    StackingIncaps(1)=(Threshhold=0.2,Duration=1,Cooldown=0,DissipationRate=0.2,LastStartTime=0,StackedPower=0)
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_Human.Afflictions'
+    IncapSettings(0)=(Duration=5,Cooldown=5,Vulnerability=none)
+    IncapSettings(1)=(Duration=1,Cooldown=0,Vulnerability=(50))
     TeammateCollisionRadiusPercent=0.5
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none

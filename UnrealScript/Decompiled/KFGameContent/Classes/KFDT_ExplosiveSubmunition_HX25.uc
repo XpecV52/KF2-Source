@@ -12,11 +12,10 @@ defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_HX25'
     bShouldSpawnPersistentBlood=true
-    KnockdownPower=0
-    StumblePower=36
-    LegStumblePower=36
+    KnockdownPower=5
+    StumblePower=10
     ModifierPerkList=/* Array type was not detected. */
     KDeathVel=250
     KDeathUpKick=350
-    RadialDamageImpulse=1000
+    RadialDamageImpulse=2500
 }

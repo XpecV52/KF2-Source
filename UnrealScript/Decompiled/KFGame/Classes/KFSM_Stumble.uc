@@ -25,9 +25,9 @@ enum EStubmleAnim
     ESA_MAX
 };
 
-static function bool ShouldDoLegStumble(KFPawn P, KFPawnAfflictions.EHitZoneBodyPart HitZoneLimb)
+static function bool ShouldDoLegStumble(KFPawn P, KFAfflictionManager.EHitZoneBodyPart HitZoneLimb)
 {
-    if((HitZoneLimb == 5) || HitZoneLimb == 6)
+    if((HitZoneLimb == 4) || HitZoneLimb == 5)
     {
         return VSizeSq(P.Velocity) > 100;
     }
@@ -163,14 +163,6 @@ function EnableInterrupt()
     bCanBeInterrupted = true;
 }
 
-function NotifyOwnerTakeHit(class<KFDamageType> DamageType, Vector HitLoc, Vector HitDir, Controller InstigatedBy)
-{
-    if(bCanBeInterrupted && IsAnInterruptHit(KFPOwner, DamageType))
-    {
-        KFPOwner.EndSpecialMove();
-    }
-}
-
 function SpecialMoveFlagsUpdated()
 {
     PlayAnimation();
@@ -178,8 +170,8 @@ function SpecialMoveFlagsUpdated()
 
 defaultproperties
 {
-    BlendOutTime=0.2
     bUseRootMotion=true
+    BlendOutTime=0.2
     AbortBlendOutTime=0.1
     bCanOnlyWanderAtEnd=true
     bDisablesWeaponFiring=true

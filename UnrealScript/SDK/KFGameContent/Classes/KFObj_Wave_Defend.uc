@@ -10,8 +10,6 @@
 //=============================================================================
 class KFObj_Wave_Defend extends KFObj_Wave;
 
-`include(KFGame\KFMatchStats.uci);
-
 var float				HaxorPower;
 var	float				DfficultyModifier[3];
 var float				PlayerNumModifier;

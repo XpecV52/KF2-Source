@@ -29,7 +29,7 @@ protected function bool InternalCanDoSpecialMove()
             {
                 Projection = KFP.Location - KFPOwner.Location;
                 DistSq = VSizeSq(Projection);
-                if(VSizeSq(Projection) <= TentacleRangeSQ)
+                if(DistSq <= TentacleRangeSQ)
                 {
                     FOV = CameraNormal Dot Normal(Projection);
                     if(FOV > MinGrabTargetFOV)
@@ -50,11 +50,10 @@ protected function bool InternalCanDoSpecialMove()
         if(BestTarget != none)
         {
             KFPOwner.InteractionPawn = BestTarget;
-            return true;
         }
         return true;
     }
-    return super(KFSpecialMove).InternalCanDoSpecialMove();
+    return super(KFSM_GrappleCombined).InternalCanDoSpecialMove();
 }
 
 function SpecialMoveStarted(bool bForced, name PrevMove)
@@ -71,6 +70,15 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
         TentacleDmgType = MyPatPawn.TentacleDamageType;
     }
     super.SpecialMoveStarted(bForced, PrevMove);
+}
+
+function StartInteraction()
+{
+    super.StartInteraction();
+    if(Follower != none)
+    {
+        ++ KFPlayerReplicationInfoVersus(KFPOwner.PlayerReplicationInfo).ZedGrabs;
+    }
 }
 
 function Tick(float DeltaTime)

@@ -12,8 +12,6 @@ class KFDT_Explosive_Sacrifice extends KFDT_Explosive
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 defaultproperties
 {
 	bShouldSpawnPersistentBlood=true
@@ -23,9 +21,9 @@ defaultproperties
 	KDeathUpKick=1000
 	KDeathVel=300
 
-	KnockdownPower=50 // knockdown any non-boss zed in one hit
+	KnockdownPower=20 // knockdown any non-boss zed in one hit
 	StumblePower=0
-	StunPower=54 // stun any non-boss zed in one hit
+	StunPower=21 // stun any non-boss zed in one hit
 
 	//Perk
 	ModifierPerkList(0)=class'KFPerk_Demolitionist'

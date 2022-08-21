@@ -40,7 +40,6 @@ function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
     OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
     OnlineSub.AddOnInventoryReadCompleteDelegate(SearchInventoryForNewItem);
     LocalizeText();
-    SetPlayerInfo();
     SetSumarryInfo();
     InitPlayerList();
 }
@@ -171,19 +170,29 @@ function SendVoipData()
 {
     local int I;
     local GFxObject DataProvider, TempObj;
+    local KFPlayerController KFPC;
 
+    KFPC = KFPlayerController(Outer.GetPC());
     DataProvider = Outer.CreateArray();
     I = 0;
-    J0x34:
+    J0x66:
 
     if(I < CurrentPlayerList.Length)
     {
         TempObj = Outer.CreateObject("Object");
         TempObj.SetString("label", CurrentPlayerList[I].PlayerName);
         TempObj.SetBool("bTalking", TalkerPRIs.Find(CurrentPlayerList[I] != -1);
+        if(Class'WorldInfo'.static.IsConsoleBuild(8))
+        {
+            TempObj.SetString("avatar", KFPC.GetPS4Avatar(CurrentPlayerList[I].PlayerName));            
+        }
+        else
+        {
+            TempObj.SetString("avatar", KFPC.GetSteamAvatar(CurrentPlayerList[I].UniqueId));
+        }
         DataProvider.SetElementObject(I, TempObj);
         ++ I;
-        goto J0x34;
+        goto J0x66;
     }
     SetObject("playerList", DataProvider);
 }

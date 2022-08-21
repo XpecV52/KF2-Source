@@ -73,7 +73,7 @@ package tripwire.containers
         
         public function set messageOfTheDay(param1:String) : void
         {
-            this.messageOfTheDayText.text = param1;
+            this.messageOfTheDayText.htmlText = param1;
         }
         
         function __setProp_webLinkButton_ServerWelcomeContainer_confirmbutton_0() : *

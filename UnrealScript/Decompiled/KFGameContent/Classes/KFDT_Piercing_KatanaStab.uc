@@ -11,9 +11,7 @@ class KFDT_Piercing_KatanaStab extends KFDT_Piercing
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_Katana'
-    StumblePower=45
-    LegStumblePower=45
-    MeleeHitPower=80
+    MeleeHitPower=100
     KDamageImpulse=200
     KDeathUpKick=250
 }

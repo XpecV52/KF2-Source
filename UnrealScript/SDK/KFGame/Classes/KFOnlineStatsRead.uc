@@ -86,6 +86,7 @@ defaultproperties
 	ColumnIds.Add(`STATID_PersonalBest_Assists)
 	ColumnIds.Add(`STATID_PersonalBest_LargeZedKill)
 	ColumnIds.Add(`STATID_PersonalBest_Dosh)
+	ColumnIds.Add(`STATID_MatchWins)
 
 	
 	ColumnMappings.Add((Id=`STATID_Cmdo_Progress))
@@ -122,4 +123,5 @@ defaultproperties
 	ColumnMappings.Add((Id=`STATID_PersonalBest_Assists))
 	ColumnMappings.Add((Id=`STATID_PersonalBest_LargeZedKill))
 	ColumnMappings.Add((Id=`STATID_PersonalBest_Dosh))
+	ColumnMappings.Add((Id=`STATID_MatchWins))
 }

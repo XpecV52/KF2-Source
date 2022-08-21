@@ -65,7 +65,7 @@ package tripwire.containers.postGame
             }
         }
         
-        override protected function openAnimation() : *
+        override protected function openAnimation(param1:Boolean = true) : *
         {
             TweenMax.killTweensOf(this);
             TweenMax.fromTo(this,ANIM_TIME,{
@@ -106,7 +106,7 @@ package tripwire.containers.postGame
             }
         }
         
-        override public function openContainer() : void
+        override public function openContainer(param1:Boolean = true) : void
         {
             super.openContainer();
             this.mapVoteList.addEventListener(ListEvent.ITEM_ROLL_OVER,this.onItemRollOver,false,0,true);
@@ -133,7 +133,10 @@ package tripwire.containers.postGame
                     this.mapVoteList.invalidateSelectedIndex();
                 }
             }
-            FocusManager.setFocus(this.mapVoteList);
+            if(!bManagerPopUpOpen)
+            {
+                FocusManager.setFocus(this.mapVoteList);
+            }
         }
         
         public function mouseOffMapVote(param1:MouseEvent) : void

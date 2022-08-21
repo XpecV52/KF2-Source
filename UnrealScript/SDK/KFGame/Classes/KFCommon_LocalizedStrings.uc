@@ -39,6 +39,9 @@ var localized string SpectatorString;
 var localized string UnableToSwitchTeamString;
 var localized string NoSwitchReasonString;
 
+var localized string TeamString;
+var localized string AllString;
+
 static function array<string> GetDifficultyStringsArray()
 {
 	return default.DifficultyStrings;
@@ -101,6 +104,11 @@ static function array<string> GetGameModeStringsArray()
 
 static function string GetGameModeString( int GameModeIndex )
 {
+	if(GameModeIndex == INDEX_NONE)
+	{
+		return default.NoPreferenceString;
+	}
+	
 	if( 0 < default.ModeStrings.length && GameModeIndex < default.ModeStrings.length )
 	{
 		return default.ModeStrings[GameModeIndex];

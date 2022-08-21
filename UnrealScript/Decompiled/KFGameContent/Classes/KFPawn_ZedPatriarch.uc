@@ -70,7 +70,6 @@ var MaterialInstanceConstant BodyAltMaterial;
 var MaterialInstanceConstant SpottedMaterial;
 var MaterialInstanceConstant CloakedBodyMaterial;
 var MaterialInstanceConstant CloakedBodyAltMaterial;
-var MaterialInstanceConstant BodyAltMIC;
 var KFSkelControl_SpinBone BarrelSpinSkelCtrl;
 var SkelControlLookAt GunTrackingSkelCtrl;
 var export editinline array<export editinline StaticMeshComponent> HealingSyringeMeshes;
@@ -145,6 +144,8 @@ var float FleeSprintSpeedModifier;
 var float CloakPercent;
 var float CloakSpeed;
 var float DeCloakSpeed;
+var int NumFleeAndHealEnemyBumps;
+var float LastFleeAndHealEnemyBumpTime;
 
 replication
 {
@@ -157,7 +158,7 @@ simulated event ReplicatedEvent(name VarName)
     switch(VarName)
     {
         case 'bIsCloakingSpottedByTeam':
-            SetGameplayMICParams();
+            UpdateGameplayMICParams();
             break;
         case 'bIsCloaking':
             ClientCloakingStateUpdated();
@@ -195,9 +196,9 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
     super(KFPawn).SetCharacterArch(Info);
     if((WorldInfo.NetMode != NM_DedicatedServer) && Mesh != none)
     {
-        BodyAltMIC = Mesh.CreateAndSetMaterialInstanceConstant(1);
+        CharacterMICs[1] = Mesh.CreateAndSetMaterialInstanceConstant(1);
         I = 0;
-        J0x84:
+        J0x86:
 
         if(I < 3)
         {
@@ -205,7 +206,7 @@ simulated function SetCharacterArch(KFCharacterInfoBase Info, optional bool bFor
             HealingSyringeMeshes[I].SetShadowParent(Mesh);
             Mesh.AttachComponent(HealingSyringeMeshes[I], name("SyringeAttach0" $ string(I + 1)));
             ++ I;
-            goto J0x84;
+            goto J0x86;
         }
         Mesh.AttachComponentToSocket(BoilLightComponent, BoilLightSocketName);
         UpdateBattlePhaseLights();
@@ -254,6 +255,8 @@ simulated function SetFleeAndHealMode(bool bNewFleeAndHealStatus)
             SprintSpeed = default.SprintSpeed;
             ClearTimer('FleeAndHealBump');
         }
+        NumFleeAndHealEnemyBumps = 0;
+        LastFleeAndHealEnemyBumpTime = WorldInfo.TimeSeconds;
         bForceNetUpdate = true;
     }
     if(!bNewFleeAndHealStatus)
@@ -295,6 +298,11 @@ function SummonChildren()
             MyKFGameInfo.SpawnManager.SummonBossMinions(MinionWave.Squads, NumMinionsToSpawn);
         }
     }
+}
+
+function bool CanSummonChildren()
+{
+    return BattlePhases[CurrentBattlePhase - 1].bCanSummonMinions;
 }
 
 simulated function ANIMNOTIFY_GrabSyringe()
@@ -362,6 +370,30 @@ simulated function BreakOffSyringe(int SyringeNum)
     HealingSyringeMICs[SyringeNum] = none;
 }
 
+simulated event Bump(Actor Other, PrimitiveComponent OtherComp, Vector HitNormal)
+{
+    local KFPawn KFP;
+
+    super(KFPawn_Monster).Bump(Other, OtherComp, HitNormal);
+    if(((((Role == ROLE_Authority) && bInFleeAndHealMode) && MyKFAIC != none) && !IsDoingSpecialMove()) && Other.GetTeamNum() != GetTeamNum())
+    {
+        KFP = KFPawn(Other);
+        if(KFP != none)
+        {
+            if((WorldInfo.TimeSeconds - LastFleeAndHealEnemyBumpTime) > 1)
+            {
+                ++ NumFleeAndHealEnemyBumps;
+                LastFleeAndHealEnemyBumpTime = WorldInfo.TimeSeconds;
+                if(NumFleeAndHealEnemyBumps > 2)
+                {
+                    NumFleeAndHealEnemyBumps = 0;
+                    KFAIController_ZedPatriarch(MyKFAIC).ForceHeal();
+                }
+            }
+        }
+    }
+}
+
 function FleeAndHealBump()
 {
     local KFPawn KFP;
@@ -369,7 +401,7 @@ function FleeAndHealBump()
     local float ClosestDist;
     local KFAIController_ZedPatriarch KFAICP;
 
-    if((((MyKFAIC == none) || MyKFAIC.Enemy == none) || MyKFAIC.RouteGoal == none) || IsDoingSpecialMove(17))
+    if((((MyKFAIC == none) || MyKFAIC.Enemy == none) || MyKFAIC.RouteGoal == none) || IsDoingSpecialMove(16))
     {
         return;
     }
@@ -396,6 +428,7 @@ function IncrementBattlePhase()
 {
     ++ CurrentBattlePhase;
     bHealedThisPhase = true;
+    DisablebOnDeathAchivement();
     SetPhaseCooldowns(CurrentBattlePhase - 1);
     OnBattlePhaseChanged();
     bForceNetUpdate = true;
@@ -407,6 +440,7 @@ simulated function OnBattlePhaseChanged()
     {
         return;
     }
+    super.OnBattlePhaseChanged();
     UpdateBattlePhaseLights();
     UpdateBattlePhaseMaterials();
     UpdateBattlePhaseFX();
@@ -741,14 +775,14 @@ simulated event Tick(float DeltaTime)
             }
             BoilPulseSin = Abs(BoilPulseAccum);
             ActualBoilColor = Multiply_LinearColorFloat(BoilColors[3], BoilPulseSin);
-            BodyAltMIC.SetVectorParameterValue('Vector_GlowColor', ActualBoilColor);
+            CharacterMICs[1].SetVectorParameterValue('Vector_GlowColor', ActualBoilColor);
             BoilPulseAccum += (DeltaTime * BoilPulseRate);            
         }
         else
         {
             BoilPulseSin = 1;
         }
-        if(BodyMIC.Parent != SpottedMaterial)
+        if(CharacterMICs[0].Parent != SpottedMaterial)
         {
             MinCloakPct = GetMinCloakPct();
             if(!bIsCloaking)
@@ -758,12 +792,12 @@ simulated event Tick(float DeltaTime)
                     CloakPercent = FMin(CloakPercent + (DeltaTime * DeCloakSpeed), 1);
                     if(CloakPercent == 1)
                     {
-                        SetGameplayMICParams();                        
+                        UpdateGameplayMICParams();                        
                     }
                     else
                     {
-                        BodyMIC.SetScalarParameterValue('Transparency', CloakPercent);
-                        BodyAltMIC.SetScalarParameterValue('Transparency', CloakPercent);
+                        CharacterMICs[0].SetScalarParameterValue('Transparency', CloakPercent);
+                        CharacterMICs[1].SetScalarParameterValue('Transparency', CloakPercent);
                     }
                     if(bPulseBoils)
                     {
@@ -784,8 +818,8 @@ simulated event Tick(float DeltaTime)
                 if(CloakPercent > MinCloakPct)
                 {
                     CloakPercent = FMax(CloakPercent - (DeltaTime * CloakSpeed), MinCloakPct);
-                    BodyMIC.SetScalarParameterValue('Transparency', CloakPercent);
-                    BodyAltMIC.SetScalarParameterValue('Transparency', CloakPercent);
+                    CharacterMICs[0].SetScalarParameterValue('Transparency', CloakPercent);
+                    CharacterMICs[1].SetScalarParameterValue('Transparency', CloakPercent);
                     if(BoilLightComponent.bEnabled)
                     {
                         BoilLightComponent.SetLightProperties(BoilLightBrightness[CurrentBattlePhase - 1] * CloakPercent);
@@ -844,8 +878,8 @@ simulated event NotifyGoreMeshActive()
 {
     if((WorldInfo.NetMode != NM_DedicatedServer) && Mesh != none)
     {
-        BodyMIC = Mesh.CreateAndSetMaterialInstanceConstant(0);
-        BodyAltMIC = Mesh.CreateAndSetMaterialInstanceConstant(1);
+        CharacterMICs[0] = Mesh.CreateAndSetMaterialInstanceConstant(0);
+        CharacterMICs[1] = Mesh.CreateAndSetMaterialInstanceConstant(1);
         super(KFPawn_Monster).NotifyGoreMeshActive();
     }
 }
@@ -854,7 +888,7 @@ function SetCloaked(bool bNewCloaking)
 {
     if(bCanCloak && bNewCloaking != bIsCloaking)
     {
-        if((IsImpaired()) && bNewCloaking)
+        if(bNewCloaking && (IsImpaired()) || IsIncapacitated())
         {
             return;
         }
@@ -876,7 +910,7 @@ function SetCloaked(bool bNewCloaking)
         {
             if((bIsCloaking || bIsCloakingSpottedByLP) || bIsCloakingSpottedByTeam)
             {
-                SetGameplayMICParams();
+                UpdateGameplayMICParams();
             }
         }
         super(KFPawn_Monster).SetCloaked(bNewCloaking);
@@ -888,7 +922,7 @@ simulated function ClientCloakingStateUpdated()
     if(bIsCloaking)
     {
         ClearBloodDecals();
-        SetGameplayMICParams();
+        UpdateGameplayMICParams();
         bIsCloakingSpottedByLP = false;
         bIsCloakingSpottedByTeam = false;
         LastSpottedStatusUpdate = WorldInfo.TimeSeconds - 0.2;        
@@ -897,7 +931,7 @@ simulated function ClientCloakingStateUpdated()
     {
         if(bIsCloakingSpottedByLP || bIsCloakingSpottedByTeam)
         {
-            SetGameplayMICParams();
+            UpdateGameplayMICParams();
         }
     }
 }
@@ -909,7 +943,7 @@ function OnStackingAfflictionChanged(byte Id)
     super(KFPawn_Monster).OnStackingAfflictionChanged(Id);
     if((Role == ROLE_Authority) && IsAliveAndWell())
     {
-        if((Id == 0) || Id == 4)
+        if(Id == 0)
         {
             if(!IsHumanControlled())
             {
@@ -963,7 +997,7 @@ simulated event UpdateSpottedStatus()
     {
         if(bIsCloakingSpottedByLP != bOldSpottedByLP)
         {
-            SetGameplayMICParams();
+            UpdateGameplayMICParams();
         }
     }
 }
@@ -971,63 +1005,32 @@ simulated event UpdateSpottedStatus()
 function CallOutCloaking(optional KFPlayerController CallOutController)
 {
     bIsCloakingSpottedByTeam = true;
-    SetGameplayMICParams();
+    UpdateGameplayMICParams();
     SetTimer(2, false, 'CallOutCloakingExpired');
 }
 
 function CallOutCloakingExpired()
 {
     bIsCloakingSpottedByTeam = false;
-    SetGameplayMICParams();
+    UpdateGameplayMICParams();
 }
 
-function UpdateMaterialEffect(float DeltaTime)
-{
-    local float Intensity;
-
-    if(MaterialEffectTimeRemaining > 0)
-    {
-        if(MaterialEffectTimeRemaining > DeltaTime)
-        {
-            MaterialEffectTimeRemaining -= DeltaTime;
-            Intensity = 1 - FClamp(MaterialEffectTimeRemaining / MaterialEffectDuration, 0, 1);            
-        }
-        else
-        {
-            MaterialEffectTimeRemaining = 0;
-            Intensity = 1;
-        }
-        if(BodyMIC != none)
-        {
-            BodyMIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
-        }
-        if(BodyAltMIC != none)
-        {
-            BodyAltMIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
-        }
-        if(HeadMIC != none)
-        {
-            HeadMIC.SetScalarParameterValue(MaterialEffectParamName, Intensity);
-        }
-    }
-}
-
-simulated function SetGameplayMICParams()
+simulated function UpdateGameplayMICParams()
 {
     local int I;
     local bool bIsSpotted, bWasCloaked;
 
-    super.SetGameplayMICParams();
+    super.UpdateGameplayMICParams();
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
         bIsSpotted = bIsCloakingSpottedByLP || bIsCloakingSpottedByTeam;
-        if((!bIsCloaking || IsImpaired()) && BodyMIC.Parent != BodyMaterial)
+        if((!bIsCloaking || IsImpaired()) && CharacterMICs[0].Parent != BodyMaterial)
         {
-            bWasCloaked = (BodyMIC.Parent == SpottedMaterial) || BodyMIC.Parent == CloakedBodyMaterial;
-            BodyMIC.SetParent(BodyMaterial);
-            BodyAltMIC.SetParent(BodyAltMaterial);
+            bWasCloaked = (CharacterMICs[0].Parent == SpottedMaterial) || CharacterMICs[0].Parent == CloakedBodyMaterial;
+            CharacterMICs[0].SetParent(BodyMaterial);
+            CharacterMICs[1].SetParent(BodyAltMaterial);
             I = 0;
-            J0x160:
+            J0x16A:
 
             if(I < HealingSyringeMICs.Length)
             {
@@ -1036,7 +1039,7 @@ simulated function SetGameplayMICParams()
                     HealingSyringeMICs[I].SetParent(default.HealingSyringeMeshes[I].Materials[0]);
                 }
                 ++ I;
-                goto J0x160;
+                goto J0x16A;
             }
             Mesh.AttachComponentToSocket(BoilLightComponent, BoilLightSocketName);
             BoilLightComponent.SetEnabled(true);
@@ -1051,13 +1054,13 @@ simulated function SetGameplayMICParams()
         }
         else
         {
-            if((bIsCloaking && bIsSpotted) && BodyMIC.Parent != SpottedMaterial)
+            if((bIsCloaking && bIsSpotted) && CharacterMICs[0].Parent != SpottedMaterial)
             {
                 CloakPercent = 1;
-                BodyMIC.SetParent(SpottedMaterial);
-                BodyAltMIC.SetParent(SpottedMaterial);
+                CharacterMICs[0].SetParent(SpottedMaterial);
+                CharacterMICs[1].SetParent(SpottedMaterial);
                 I = 0;
-                J0x367:
+                J0x377:
 
                 if(I < HealingSyringeMICs.Length)
                 {
@@ -1066,7 +1069,7 @@ simulated function SetGameplayMICParams()
                         HealingSyringeMICs[I].SetParent(SpottedMaterial);
                     }
                     ++ I;
-                    goto J0x367;
+                    goto J0x377;
                 }
                 Mesh.CastShadow = false;
                 Mesh.SetPerObjectShadows(false);
@@ -1074,12 +1077,12 @@ simulated function SetGameplayMICParams()
             }
             else
             {
-                if((bIsCloaking && !bIsSpotted) && BodyMIC.Parent != CloakedBodyMaterial)
+                if((bIsCloaking && !bIsSpotted) && CharacterMICs[0].Parent != CloakedBodyMaterial)
                 {
-                    BodyMIC.SetParent(CloakedBodyMaterial);
-                    BodyAltMIC.SetParent(CloakedBodyAltMaterial);
+                    CharacterMICs[0].SetParent(CloakedBodyMaterial);
+                    CharacterMICs[1].SetParent(CloakedBodyAltMaterial);
                     I = 0;
-                    J0x4CE:
+                    J0x4E4:
 
                     if(I < HealingSyringeMICs.Length)
                     {
@@ -1088,7 +1091,7 @@ simulated function SetGameplayMICParams()
                             HealingSyringeMICs[I].SetParent(CloakedBodyAltMaterial);
                         }
                         ++ I;
-                        goto J0x4CE;
+                        goto J0x4E4;
                     }
                     PlayStealthSoundLoop();
                     DoCloakFX();
@@ -1111,47 +1114,47 @@ simulated function DoCloakFX()
 
 simulated function UpdateBattlePhaseMaterials()
 {
-    if((((BodyMIC == none) || BodyAltMIC == none) || bIsCloakingSpottedByLP) || bIsCloakingSpottedByTeam)
+    if((((CharacterMICs[0] == none) || CharacterMICs[1] == none) || bIsCloakingSpottedByLP) || bIsCloakingSpottedByTeam)
     {
         return;
     }
     switch(CurrentBattlePhase)
     {
         case 1:
-            BodyMIC.SetScalarParameterValue('Scalar_BattleGrime', 0);
-            BodyMIC.SetScalarParameterValue('Scalar_GlowFlashing', 0);
-            BodyMIC.SetVectorParameterValue('Vector_GlowColor', MechColors[0]);
-            BodyAltMIC.SetScalarParameterValue('Scalar_BattleGrime', 0);
-            BodyAltMIC.SetScalarParameterValue('Scalar_Damage_Blood_Contrast', 0);
-            BodyAltMIC.SetScalarParameterValue('Scalar_GlowFlashing', 0);
-            BodyAltMIC.SetVectorParameterValue('Vector_GlowColor', BoilColors[0]);
+            CharacterMICs[0].SetScalarParameterValue('Scalar_BattleGrime', 0);
+            CharacterMICs[0].SetScalarParameterValue('Scalar_GlowFlashing', 0);
+            CharacterMICs[0].SetVectorParameterValue('Vector_GlowColor', MechColors[0]);
+            CharacterMICs[1].SetScalarParameterValue('Scalar_BattleGrime', 0);
+            CharacterMICs[1].SetScalarParameterValue('Scalar_Damage_Blood_Contrast', 0);
+            CharacterMICs[1].SetScalarParameterValue('Scalar_GlowFlashing', 0);
+            CharacterMICs[1].SetVectorParameterValue('Vector_GlowColor', BoilColors[0]);
             break;
         case 2:
-            BodyMIC.SetScalarParameterValue('Scalar_BattleGrime', 0.3);
-            BodyMIC.SetScalarParameterValue('Scalar_GlowFlashing', 0.25);
-            BodyMIC.SetVectorParameterValue('Vector_GlowColor', MechColors[1]);
-            BodyAltMIC.SetScalarParameterValue('Scalar_BattleGrime', 0.25);
-            BodyAltMIC.SetScalarParameterValue('Scalar_Damage_Blood_Contrast', 1);
-            BodyAltMIC.SetScalarParameterValue('Scalar_GlowFlashing', 0);
-            BodyAltMIC.SetVectorParameterValue('Vector_GlowColor', BoilColors[1]);
+            CharacterMICs[0].SetScalarParameterValue('Scalar_BattleGrime', 0.3);
+            CharacterMICs[0].SetScalarParameterValue('Scalar_GlowFlashing', 0.25);
+            CharacterMICs[0].SetVectorParameterValue('Vector_GlowColor', MechColors[1]);
+            CharacterMICs[1].SetScalarParameterValue('Scalar_BattleGrime', 0.25);
+            CharacterMICs[1].SetScalarParameterValue('Scalar_Damage_Blood_Contrast', 1);
+            CharacterMICs[1].SetScalarParameterValue('Scalar_GlowFlashing', 0);
+            CharacterMICs[1].SetVectorParameterValue('Vector_GlowColor', BoilColors[1]);
             break;
         case 3:
-            BodyMIC.SetScalarParameterValue('Scalar_BattleGrime', 0.7);
-            BodyMIC.SetScalarParameterValue('Scalar_GlowFlashing', 0.5);
-            BodyMIC.SetVectorParameterValue('Vector_GlowColor', MechColors[2]);
-            BodyAltMIC.SetScalarParameterValue('Scalar_BattleGrime', 0.5);
-            BodyAltMIC.SetScalarParameterValue('Scalar_Damage_Blood_Contrast', 1.2);
-            BodyAltMIC.SetScalarParameterValue('Scalar_GlowFlashing', 0);
-            BodyAltMIC.SetVectorParameterValue('Vector_GlowColor', BoilColors[2]);
+            CharacterMICs[0].SetScalarParameterValue('Scalar_BattleGrime', 0.7);
+            CharacterMICs[0].SetScalarParameterValue('Scalar_GlowFlashing', 0.5);
+            CharacterMICs[0].SetVectorParameterValue('Vector_GlowColor', MechColors[2]);
+            CharacterMICs[1].SetScalarParameterValue('Scalar_BattleGrime', 0.5);
+            CharacterMICs[1].SetScalarParameterValue('Scalar_Damage_Blood_Contrast', 1.2);
+            CharacterMICs[1].SetScalarParameterValue('Scalar_GlowFlashing', 0);
+            CharacterMICs[1].SetVectorParameterValue('Vector_GlowColor', BoilColors[2]);
             break;
         case 4:
-            BodyMIC.SetScalarParameterValue('Scalar_BattleGrime', 1.1);
-            BodyMIC.SetScalarParameterValue('Scalar_GlowFlashing', 0.75);
-            BodyMIC.SetVectorParameterValue('Vector_GlowColor', MechColors[3]);
-            BodyAltMIC.SetScalarParameterValue('Scalar_BattleGrime', 0.75);
-            BodyAltMIC.SetScalarParameterValue('Scalar_Damage_Blood_Contrast', 1.3);
-            BodyAltMIC.SetScalarParameterValue('Scalar_GlowFlashing', 0);
-            BodyAltMIC.SetVectorParameterValue('Vector_GlowColor', BoilColors[3]);
+            CharacterMICs[0].SetScalarParameterValue('Scalar_BattleGrime', 1.1);
+            CharacterMICs[0].SetScalarParameterValue('Scalar_GlowFlashing', 0.75);
+            CharacterMICs[0].SetVectorParameterValue('Vector_GlowColor', MechColors[3]);
+            CharacterMICs[1].SetScalarParameterValue('Scalar_BattleGrime', 0.75);
+            CharacterMICs[1].SetScalarParameterValue('Scalar_Damage_Blood_Contrast', 1.3);
+            CharacterMICs[1].SetScalarParameterValue('Scalar_GlowFlashing', 0);
+            CharacterMICs[1].SetVectorParameterValue('Vector_GlowColor', BoilColors[3]);
             bPulseBoils = true;
             break;
         default:
@@ -1299,7 +1302,7 @@ simulated function SetDamageFXActive(bool bEnable)
 simulated function PlayTakeHitEffects(Vector HitDirection, Vector HitLocation)
 {
     super(KFPawn_Monster).PlayTakeHitEffects(HitDirection, HitLocation);
-    if(((!bIsCloaking || BodyMIC.Parent == SpottedMaterial) || CloakPercent > CloakShimmerAmount) || (WorldInfo.TimeSeconds - LastCloakShimmerTime) < 0.1)
+    if(((!bIsCloaking || CharacterMICs[0].Parent == SpottedMaterial) || CloakPercent > CloakShimmerAmount) || (WorldInfo.TimeSeconds - LastCloakShimmerTime) < 0.1)
     {
         return;
     }
@@ -1377,15 +1380,15 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 simulated function TerminateEffectsOnDeath()
 {
     bPulseBoils = false;
-    if(BodyMIC != none)
+    if((CharacterMICs.Length > 0) && CharacterMICs[0] != none)
     {
-        BodyMIC.SetVectorParameterValue('Vector_GlowColor', DeadMechColor);
-        BodyMIC.SetScalarParameterValue('Scalar_GlowFlashing', 0);
+        CharacterMICs[0].SetVectorParameterValue('Vector_GlowColor', DeadMechColor);
+        CharacterMICs[0].SetScalarParameterValue('Scalar_GlowFlashing', 0);
     }
-    if(BodyAltMIC != none)
+    if((CharacterMICs.Length > 1) && CharacterMICs[1] != none)
     {
-        BodyAltMIC.SetVectorParameterValue('Vector_GlowColor', DeadBoilColor);
-        BodyAltMIC.SetScalarParameterValue('Scalar_GlowFlashing', 0);
+        CharacterMICs[1].SetVectorParameterValue('Vector_GlowColor', DeadBoilColor);
+        CharacterMICs[1].SetScalarParameterValue('Scalar_GlowFlashing', 0);
     }
     BoilLightComponent.SetEnabled(false);
     DetachComponent(BoilLightComponent);
@@ -1490,7 +1493,6 @@ defaultproperties
         Rotation=(Pitch=16384,Yaw=0,Roll=0)
         PerObjectShadowCullDistance=4000
         bAllowPerObjectShadows=true
-        bAllowPerObjectShadowBatching=true
     object end
     // Reference: StaticMeshComponent'Default__KFPawn_ZedPatriarch.KFSyringeStaticMeshComponent1'
     HealingSyringeMeshes(0)=KFSyringeStaticMeshComponent1
@@ -1508,7 +1510,6 @@ defaultproperties
         Rotation=(Pitch=16384,Yaw=0,Roll=0)
         PerObjectShadowCullDistance=4000
         bAllowPerObjectShadows=true
-        bAllowPerObjectShadowBatching=true
     object end
     // Reference: StaticMeshComponent'Default__KFPawn_ZedPatriarch.KFSyringeStaticMeshComponent2'
     HealingSyringeMeshes(1)=KFSyringeStaticMeshComponent2
@@ -1526,7 +1527,6 @@ defaultproperties
         Rotation=(Pitch=16384,Yaw=0,Roll=0)
         PerObjectShadowCullDistance=4000
         bAllowPerObjectShadows=true
-        bAllowPerObjectShadowBatching=true
     object end
     // Reference: StaticMeshComponent'Default__KFPawn_ZedPatriarch.KFSyringeStaticMeshComponent3'
     HealingSyringeMeshes(2)=KFSyringeStaticMeshComponent3
@@ -1580,10 +1580,10 @@ defaultproperties
     BattleDamageFX_Tentacle_HighDmg=ParticleSystem'ZED_Patriarch_EMIT.FX_Patriarch_tentacle_HighD_01'
     BattleDamageFX_Smoke_HighDmg=ParticleSystem'ZED_Patriarch_EMIT.FX_Pat_smoke_HighD_01'
     LastFXBattlePhase=1
-    BattlePhases(0)=(bAllowedToSprint=true,SprintCooldownTime=3,bCanTentacleGrab=false,TentacleGrabCooldownTime=0,bCanUseMissiles=true,MissileAttackCooldownTime=10,bCanUseMortar=false,MortarAttackCooldownTime=0,bCanDoMortarBarrage=false,bCanChargeAttack=true,ChargeAttackCooldownTime=14,MaxRageAttacks=0,TentacleDamage=0,MinigunAttackCooldownTime=2.25,bCanSummonMinions=true,HealAmounts=(0.75,1,1,1))
-    BattlePhases(1)=(bAllowedToSprint=true,SprintCooldownTime=2.5,bCanTentacleGrab=true,TentacleGrabCooldownTime=10,bCanUseMissiles=true,MissileAttackCooldownTime=8,bCanUseMortar=true,MortarAttackCooldownTime=10,bCanDoMortarBarrage=false,bCanChargeAttack=true,ChargeAttackCooldownTime=10,MaxRageAttacks=4,TentacleDamage=10,MinigunAttackCooldownTime=2,bCanSummonMinions=true,HealAmounts=(0.65,1,1,1))
-    BattlePhases(2)=(bAllowedToSprint=true,SprintCooldownTime=2,bCanTentacleGrab=true,TentacleGrabCooldownTime=9,bCanUseMissiles=true,MissileAttackCooldownTime=7,bCanUseMortar=true,MortarAttackCooldownTime=9,bCanDoMortarBarrage=true,bCanChargeAttack=true,ChargeAttackCooldownTime=9,MaxRageAttacks=5,TentacleDamage=10,MinigunAttackCooldownTime=1.75,bCanSummonMinions=true,HealAmounts=(0.6,0.8,0.8,0.9))
-    BattlePhases(3)=(bAllowedToSprint=true,SprintCooldownTime=1.5,bCanTentacleGrab=true,TentacleGrabCooldownTime=7,bCanUseMissiles=true,MissileAttackCooldownTime=5,bCanUseMortar=true,MortarAttackCooldownTime=7,bCanDoMortarBarrage=true,bCanChargeAttack=true,ChargeAttackCooldownTime=7,MaxRageAttacks=6,TentacleDamage=10,MinigunAttackCooldownTime=1.25,bCanSummonMinions=true,HealAmounts=none)
+    BattlePhases(0)=(bAllowedToSprint=true,SprintCooldownTime=3,bCanTentacleGrab=false,TentacleGrabCooldownTime=0,bCanUseMissiles=true,MissileAttackCooldownTime=10,bCanUseMortar=false,MortarAttackCooldownTime=0,bCanDoMortarBarrage=false,bCanChargeAttack=true,ChargeAttackCooldownTime=14,MaxRageAttacks=0,TentacleDamage=0,MinigunAttackCooldownTime=2.25,bCanSummonMinions=true,HealAmounts=(0.75,0.85,0.95,0.99))
+    BattlePhases(1)=(bAllowedToSprint=true,SprintCooldownTime=2.5,bCanTentacleGrab=true,TentacleGrabCooldownTime=10,bCanUseMissiles=true,MissileAttackCooldownTime=8,bCanUseMortar=true,MortarAttackCooldownTime=10,bCanDoMortarBarrage=false,bCanChargeAttack=true,ChargeAttackCooldownTime=10,MaxRageAttacks=4,TentacleDamage=10,MinigunAttackCooldownTime=2,bCanSummonMinions=true,HealAmounts=(0.65,0.75,0.85,0.95))
+    BattlePhases(2)=(bAllowedToSprint=true,SprintCooldownTime=2,bCanTentacleGrab=true,TentacleGrabCooldownTime=9,bCanUseMissiles=true,MissileAttackCooldownTime=7,bCanUseMortar=true,MortarAttackCooldownTime=9,bCanDoMortarBarrage=true,bCanChargeAttack=true,ChargeAttackCooldownTime=9,MaxRageAttacks=5,TentacleDamage=10,MinigunAttackCooldownTime=1.75,bCanSummonMinions=true,HealAmounts=(0.55,0.65,0.75,0.85))
+    BattlePhases(3)=(bAllowedToSprint=true,SprintCooldownTime=1.5,bCanTentacleGrab=true,TentacleGrabCooldownTime=7,bCanUseMissiles=true,MissileAttackCooldownTime=5,bCanUseMortar=true,MortarAttackCooldownTime=7,bCanDoMortarBarrage=true,bCanChargeAttack=true,ChargeAttackCooldownTime=7,MaxRageAttacks=6,TentacleDamage=10,MinigunAttackCooldownTime=1.25,bCanSummonMinions=false,HealAmounts=none)
     TentacleDamageType=Class'KFDT_Slashing_PatTentacle'
     HeavyBumpDamageType=Class'KFDT_HeavyZedBump'
     MissileProjectileClass=Class'KFProj_Missile_Patriarch'
@@ -1621,8 +1621,8 @@ defaultproperties
     XPValues[1]=1694
     XPValues[2]=1790
     XPValues[3]=1843
-    VulnerableDamageTypes=/* Array type was not detected. */
-    ResistantDamageTypes=/* Array type was not detected. */
+    WeakSpotSocketNames=/* Array type was not detected. */
+    DamageTypeModifiers=/* Array type was not detected. */
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
     FootstepCameraShakeInnerRadius=200
     FootstepCameraShakeOuterRadius=900
@@ -1633,6 +1633,7 @@ defaultproperties
     object end
     // Reference: CameraShake'Default__KFPawn_ZedPatriarch.FootstepCameraShake0'
     FootstepCameraShake=FootstepCameraShake0
+    OnDeathAchievementID=130
     PawnAnimInfo=KFPawnAnimInfo'ZED_Patriarch_ANIM.Patriarch_AnimGroup'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
@@ -1643,14 +1644,14 @@ defaultproperties
     bCanCloak=true
     HitZones=/* Array type was not detected. */
     PenetrationResistance=4
-    begin object name=Afflictions class=KFPawnAfflictions_Patriarch
+    begin object name=Afflictions class=KFAfflictionManager
+        AfflictionClasses=/* Array type was not detected. */
         FireFullyCharredDuration=50
         FireCharPercentThreshhold=0.35
     object end
-    // Reference: KFPawnAfflictions_Patriarch'Default__KFPawn_ZedPatriarch.Afflictions'
+    // Reference: KFAfflictionManager'Default__KFPawn_ZedPatriarch.Afflictions'
     AfflictionHandler=Afflictions
-    InstantIncaps=/* Array type was not detected. */
-    StackingIncaps=/* Array type was not detected. */
+    IncapSettings=/* Array type was not detected. */
     KnockdownImpulseScale=1
     SprintSpeed=650
     DefaultInventory=/* Array type was not detected. */
@@ -1669,9 +1670,9 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedPatriarch.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedPatriarch.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedPatriarch.DialogAkSoundComponent'
-    DamageRecoveryTimeHeavy=0.1
-    DamageRecoveryTimeMedium=0.09
-    Mass=175
+    DamageRecoveryTimeHeavy=0.65
+    DamageRecoveryTimeMedium=0.85
+    Mass=400
     GroundSpeed=260
     Health=3750
     ControllerClass=Class'KFAIController_ZedPatriarch'

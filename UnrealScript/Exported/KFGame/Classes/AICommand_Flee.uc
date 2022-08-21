@@ -109,6 +109,7 @@ function Popped()
 		MyKFPawn.ClearHeadTrackTarget( FleeTarget );
 	}
 
+	ClearTimer( nameOf(Timer_FleeDurationExpired), self );
 	EnableMeleeRangeEventProbing();
 }
 
@@ -127,6 +128,8 @@ state Fleeing
 
 	function bool CheckRetreat()
 	{
+		local EPathSearchType OldSearchType;
+
 		if( RouteGoal != none && bHaveGoal )
 		{
 			AIActionStatus = "Attempting to flee from ["$FleeTarget$"] at ["$RouteGoal$"]";
@@ -143,9 +146,15 @@ state Fleeing
 			Class'NavigationPoint'.static.GetNearestNavToActor( Pawn );			
 		}
 
+		// Cache off our previous path search type
+		OldSearchType = Pawn.PathSearchType;
+
 		if( FleeTarget != none )
 		{
 			AIActionStatus = "Searching for navigable path from ["$FleeTarget$"]";
+
+			Pawn.PathSearchType = PST_Constraint;
+			class'Path_AlongLine'.static.AlongLine( Pawn, Normal(Pawn.Location - FleeTarget.Location) );
 			class'Goal_AwayFromPosition'.static.FleeFrom( Pawn, FleeTarget.Location, FleeDistance );
 
 			if( FindPathToward( Pawn ) != None )
@@ -156,14 +165,16 @@ state Fleeing
 				AIActionStatus = "Attempting to flee from ["$FleeTarget$"] at ["$RouteGoal$"]";
 				Focus = none;
 				PathAttempts = 0;
+
+				// Restore previous path search type
+				Pawn.PathSearchType = OldSearchType;
+
 				return true;
 			}
-			else
-			{
-				PathAttempts += 1;
-				return false;
-			}
 		}
+
+		// Restore previous path search type
+		Pawn.PathSearchType = OldSearchType;
 
 		PathAttempts += 1;
 		return false;

@@ -9,21 +9,9 @@ class KFAIController_ZedScrake extends KFAIController_Monster
     config(AI)
     hidecategories(Navigation);
 
-/** Threshold of health below which the Scrake will start rage charging */
-var(RageCharge) float RageHealthThreshold;
-
 function bool AmIAllowedToSuicideWhenStuck()
 {
     return false;
-}
-
-function NotifyTakeHit(Controller InstigatedBy, Vector HitLocation, int Damage, class<DamageType> DamageType, Vector Momentum)
-{
-    if((ShouldSprint()) && MyKFPawn != none)
-    {
-        MyKFPawn.SetSprinting(true);
-    }
-    super(Controller).NotifyTakeHit(InstigatedBy, HitLocation, Damage, DamageType, Momentum);
 }
 
 function bool ShouldSprint()

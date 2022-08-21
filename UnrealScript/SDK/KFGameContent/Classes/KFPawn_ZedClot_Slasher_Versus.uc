@@ -40,11 +40,12 @@ defaultproperties
 	bHasExtraSprintJumpVelocity=true
 
 	// Really fast sprint
-    SprintSpeed=600.f
+    SprintSpeed=650  //600 //700
     SprintStrafeSpeed=450.f
-    GroundSpeed=430.f
+    GroundSpeed=500  //430 //600
 
 	Begin Object Name=SpecialMoveHandler_0
+		SpecialMoveClasses(SM_GrappleAttack)=none
 		SpecialMoveClasses(SM_PlayerZedAttack1)= class'KFSM_PlayerSlasher_Melee'
 		SpecialMoveClasses(SM_PlayerZedAttack2)= class'KFSM_PlayerSlasher_Melee2'
 		SpecialMoveClasses(SM_PlayerZedSpecial1)= class'KFSM_PlayerSlasher_Roll'
@@ -56,18 +57,50 @@ defaultproperties
 	SpecialMoveCooldowns(3)=(SMHandle=SM_PlayerZedSpecial1,		CooldownTime=0.2f,	SpecialMoveIcon=Texture2D'ZED_Slasher_UI.ZED-VS_Icons_Slasher-Evade', GBA_Name="GBA_TertiaryFire",NameLocalizationKey="Evade")
 	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.0f,	SpecialMoveIcon=Texture2D'ZED_Slasher_UI.ZED-VS_Icons_Slasher-Jump', GBA_Name="GBA_Jump",NameLocalizationKey="Jump")) // Jump always at end of array)) // Jump always at end of array
 
-	InstantIncaps(IAF_Stun)=(Head=68,Torso=90,Leg=90,Arm=90,LowHealthBonus=10,Cooldown=5.0)
-	InstantIncaps(IAF_Knockdown)=(Head=40,Torso=50,Leg=50,Arm=50,LowHealthBonus=10,Cooldown=8.0)
-	InstantIncaps(IAF_Stumble)=(Head=60,Torso=65,Arm=65,LowHealthBonus=10,Cooldown=5.0)
-	InstantIncaps(IAF_LegStumble)=(Leg=60,LowHealthBonus=10,Cooldown=5.0)
-	InstantIncaps(IAF_GunHit)=(Head=98,Torso=98,Leg=98,Arm=98,LowHealthBonus=10,Cooldown=0.0)
-	InstantIncaps(IAF_MeleeHit)=(Head=20,Torso=20,Leg=20,Arm=20,LowHealthBonus=10,Cooldown=0.0)
-	StackingIncaps(SAF_Poison)=(Threshhold=1.0,Duration=2.0,Cooldown=5.0,DissipationRate=1.00)
-	StackingIncaps(SAF_Microwave)=(Threshhold=1.0,Duration=2.0,Cooldown=5.0,DissipationRate=1.00)
-	StackingIncaps(SAF_FirePanic)=(Threshhold=0.9,Duration=5,Cooldown=7.0,DissipationRate=0.07)
+
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(0.8)))  //3.0
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(0.5)))  //1.0
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun', 	        DamageScale=(0.4)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun', 	        DamageScale=(0.4)))  //1.01
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle', 	        DamageScale=(0.5)))  //0.76
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(0.5)))  //0.5
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(0.5)))  //0.5
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(0.5)))  //0.8
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 	                DamageScale=(0.35)))  //0.25
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 	                DamageScale=(0.35)))  //0.85
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.4)))   //1.0
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(1.0)))  //0.88
+
+
+// special case
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AR15',              DamageScale=(1.0))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_MB500', 	         DamageScale=(1.0)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rem1858', 	         DamageScale=(0.75)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Colt1911', 	     DamageScale=(0.65)))  //0.9
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_9mm', 	             DamageScale=(1.6)))  //0.9
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Pistol_Medic', 	 DamageScale=(1.5)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Winchester', 	     DamageScale=(0.7)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire_CaulkBurn', 	         DamageScale=(0.9)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_ExplosiveSubmunition_HX25', 	 DamageScale=(0.6)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing_EvisceratorProj', 	 DamageScale=(0.3)))  //0.9
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing_Eviscerator', 	     DamageScale=(0.3)))  //0.9
+
+
+
+	IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 0.5, 0.1, 0.1, 0.1), Cooldown=3.0, Duration=2.0)
+	IncapSettings(AF_Knockdown)=(Vulnerability=(0.5),                     Cooldown=3.0)
+	IncapSettings(AF_Stumble)=	(Vulnerability=(0.5),                     Cooldown=3.0)
+	IncapSettings(AF_GunHit)=	(Vulnerability=(1.0),                     Cooldown=0.75)
+	IncapSettings(AF_MeleeHit)=	(Vulnerability=(1.0),                     Cooldown=0.5)
+	IncapSettings(AF_Poison)=	(Vulnerability=(1),                       Cooldown=5.0, Duration=2.0)
+	IncapSettings(AF_Microwave)=(Vulnerability=(0.0),                     Cooldown=5.0, Duration=2.0)
+	IncapSettings(AF_FirePanic)=(Vulnerability=(0.5),                     Cooldown=7.0, Duration=3)
+	IncapSettings(AF_EMP)=		(Vulnerability=(1.0),                     Cooldown=5.0, Duration=3.0)
+	IncapSettings(AF_Freeze)=	(Vulnerability=(1.0),                     Cooldown=1.5, Duration=2.0)
+
 
 	Begin Object Name=MeleeHelper_0
-		BaseDamage=17.f // 12.f
+		BaseDamage=15.0 // 12.f //20
 		MaxHitRange=172.f
 		MomentumTransfer=25000.f
 		MyDamageType=class'KFDT_Slashing_ZedWeak'
@@ -76,19 +109,21 @@ defaultproperties
 	End Object
 	MeleeAttackHelper=MeleeHelper_0
 
-    Health=325 // 3.25x default //250
+    Health=150 // 3.25x default //250  //200
     // Override Head GoreHealth (aka HeadHealth)
-    HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=75, DmgScale=1.1, SkinID=1) // default is 20
+    HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=85, DmgScale=1.001, SkinID=1) // default is 20  //gorehealth 75
     DoshValue=20.0 // 2x default because they are harder to hit
     XPValues(0)=32 // 4x default because they are harder to hit
 
     // Vulnerable damage types
-    VulnerableDamageTypes.Add((DamageType=class'KFGameContent.KFDT_Ballistic_AR15', DamageScale=1.5))
-    VulnerableDamageTypes.Add((DamageType=class'KFGameContent.KFDT_Ballistic_Rem1858', DamageScale=1.5))
+   // DamageTypeModifiers.Add((DamageType=class'KFGameContent.KFDT_Ballistic_AR15', DamageScale=(1.5))
+    //DamageTypeModifiers.Add((DamageType=class'KFGameContent.KFDT_Ballistic_Rem1858', DamageScale=(1.5))
 
     MegaJumpZ=1250
     MegaJumpForwardScale=0.25
     JumpBumpDamageType=class'KFDT_Bludgeon_ZedJump'
+    bMovesFastInZedTime=true
+    ZedTimeSpeedScale=0.75
 
 	ThirdPersonViewOffset={(
 		OffsetHigh=(X=-175,Y=50,Z=0),

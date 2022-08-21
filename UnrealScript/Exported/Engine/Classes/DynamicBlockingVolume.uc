@@ -101,11 +101,13 @@ defaultproperties
    BrushComponent=BrushComponent0
    Components(0)=BrushComponent0
    Physics=PHYS_Interpolating
+   CollisionType=COLLIDE_CustomDefault
    bStatic=False
    bWorldGeometry=False
    bAlwaysRelevant=True
    bOnlyDirtyReplication=True
    bMovable=True
+   BlockRigidBody=False
    CollisionComponent=BrushComponent0
    Name="Default__DynamicBlockingVolume"
    ObjectArchetype=BlockingVolume'Engine.Default__BlockingVolume'

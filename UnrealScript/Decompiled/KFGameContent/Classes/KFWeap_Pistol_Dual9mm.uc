@@ -17,6 +17,7 @@ defaultproperties
     BonesToLockOnEmpty_L=/* Array type was not detected. */
     InventoryGroup=EInventoryGroup.IG_Secondary
     InventorySize=2
+    MagazineCapacity=30
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -31,7 +32,6 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=20
     WeaponSelectTexture=Texture2D'WEP_UI_Dual_9MM_TEX.UI_WeaponSelect_Dual9mm'
-    MagazineCapacity=30
     MaxSpareAmmo=210
     InitialSpareMags=3
     AmmoPickupScale=0.5
@@ -69,7 +69,7 @@ defaultproperties
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFWeap_Pistol_Dual9mm.FirstPersonMesh'
     Mesh=FirstPersonMesh
-    ItemName="Dual 9mm Pistol"
+    ItemName="Dual 9mm Pistols"
     begin object name=StaticPickupComponent class=StaticMeshComponent
         StaticMesh=StaticMesh'WEP_3P_Pickups_MESH.Wep_9mm_Pickup'
         ReplacementPrimitive=none

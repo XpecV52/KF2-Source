@@ -12,18 +12,15 @@ class KFDT_Ballistic_Rem1858 extends KFDT_Ballistic_Handgun
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 defaultproperties
 {
 	KDamageImpulse=2500
 	KDeathUpKick=-500
 	KDeathVel=200
 
-	KnockdownPower=30
-	StumblePower=45
-	LegStumblePower=45
-	GunHitPower=35
+	KnockdownPower=15
+	StumblePower=50
+	GunHitPower=150
 
 	WeaponDef=class'KFWeapDef_Remington1858'
 

@@ -65,20 +65,36 @@ defaultproperties
 		SpecialMoveClasses(SM_Evade_Fear)=class'KFSM_Evade_Fear'
 	End Object
 
-	InstantIncaps(IAF_Stun)=(Head=62,Torso=120,Leg=120,Arm=120,Special=45,LowHealthBonus=10,Cooldown=3.0)
-	InstantIncaps(IAF_Knockdown)=(Head=50,Torso=80,Leg=80,Arm=80,Special=50,LowHealthBonus=10,Cooldown=9.0)
-	InstantIncaps(IAF_Stumble)=(Head=44,Torso= 50,Arm=50,LowHealthBonus=10,Cooldown=2.0)
-	InstantIncaps(IAF_LegStumble)=(Leg=44,LowHealthBonus=10,Cooldown=2.0)
-	InstantIncaps(IAF_GunHit)=(Head=105,Torso=105,Leg=105,Arm=105,LowHealthBonus=10,Cooldown=0.5)
-	InstantIncaps(IAF_MeleeHit)=(Head=23,Torso=29,Leg=29,Arm=29,LowHealthBonus=10,Cooldown=0.35)
-	StackingIncaps(SAF_Poison)=(Threshhold=3.0,Duration=4.0,Cooldown=8.5,DissipationRate=1.00)
-	StackingIncaps(SAF_Microwave)=(Threshhold=3.0,Duration=4.0,Cooldown=8.5,DissipationRate=1.00)
-	StackingIncaps(SAF_FirePanic)=(Threshhold=12.0,Duration=2.0,Cooldown=5.0,DissipationRate=1.0)
-	StackingIncaps(SAF_EMPPanic)=(Threshhold=1.5,Duration=5.0,Cooldown=5.0,DissipationRate=0.5)
-	StackingIncaps(SAF_EMPDisrupt)=(Threshhold=0.0,Duration=5.0,Cooldown=5.0,DissipationRate=1.0)
-	StackingIncaps(SAF_Freeze)=(Threshhold=2.0,Duration=1.0,Cooldown=5.0,DissipationRate=0.33)
+	// for reference: Vulnerability=(default, head, legs, arms, special)
+	IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 2.0, 0.5, 0.5, 2.0), Cooldown=5.0, Duration=1.5)
+	IncapSettings(AF_Knockdown)=(Vulnerability=(1.0),                     Cooldown=1.0)
+	IncapSettings(AF_Stumble)=	(Vulnerability=(1.0),                     Cooldown=1.0)   //0.4
+	IncapSettings(AF_GunHit)=	(Vulnerability=(0.9),                     Cooldown=0.2)
+	IncapSettings(AF_MeleeHit)=	(Vulnerability=(1.0),                     Cooldown=0.0)
+	IncapSettings(AF_FirePanic)=(Vulnerability=(3),                       Cooldown=3.0, Duration=8.0)
+	IncapSettings(AF_EMP)=		(Vulnerability=(2.5),                     Cooldown=5.0, Duration=5.0)
+	IncapSettings(AF_Poison)=	(Vulnerability=(0.15),	                  Cooldown=20.5, Duration=5.0)
+	IncapSettings(AF_Microwave)=(Vulnerability=(3),                       Cooldown=6.5, Duration=4.0)
+	IncapSettings(AF_Freeze)=	(Vulnerability=(2.0),                     Cooldown=1.5, Duration=2.2)
+
+	Begin Object Name=Afflictions_0
+		AfflictionClasses(AF_EMP)=class'KFAffliction_EMPDisrupt'
+	End Object
 
 	ParryResistance=1
+
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(0.6)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(0.75)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun', 	        DamageScale=(1.0)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun', 	        DamageScale=(0.6))) //0.5
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle', 	        DamageScale=(0.45)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(0.45)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(0.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(0.3)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 	                DamageScale=(0.85)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 				    DamageScale=(0.45)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(0.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.25)))	
 
 	// ---------------------------------------------
 	// Gameplay
@@ -99,7 +115,8 @@ defaultproperties
 	HitZones[2]		  =(ZoneName=chest,   BoneName=Spine2, Limb=BP_Torso, GoreHealth=150, DmgScale=0.5, SkinID=3)
 	HitZones[11]	  =(ZoneName=abdomen, BoneName=Hips,   Limb=BP_Torso, GoreHealth=150, DmgScale=0.5, SkinID=3)
 
-	VulnerableDamageTypes.Add((DamageType=class'KFDT_Explosive'))
+	WeakSpotSocketNames.Empty;	// Ignore the head
+	WeakSpotSocketNames.Add(Head_Attach); // Neck
 
 	// ---------------------------------------------
 	// Movement / Physics
@@ -111,7 +128,7 @@ defaultproperties
 	// ---------------------------------------------
 	// AI / Navigation
 	ControllerClass=class'KFAIController_ZedSiren'
-	DamageRecoveryTimeHeavy=0.2f
+	DamageRecoveryTimeHeavy=0.75f
 	DamageRecoveryTimeMedium=1.0f
 
 	RotationRate=(Pitch=50000,Yaw=20000,Roll=50000)
@@ -119,4 +136,6 @@ defaultproperties
 `if(`notdefined(ShippingPC))
 	DebugRadarTexture=Texture2D'UI_ZEDRadar_TEX.MapIcon_Siren';
 `endif
+	
+	OnDeathAchievementID=KFACHID_DeadSilence
 }

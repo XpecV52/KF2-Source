@@ -10,24 +10,12 @@ class KFPlayerReplicationInfoVersus extends KFPlayerReplicationInfo
     nativereplication
     hidecategories(Navigation,Movement,Collision);
 
-var PlayerController PlayerOwner;
-var private Vector PawnLocationCompressed;
-var private Vector LastReplicatedSmoothedLocation;
-
-replication
-{
-     if(!bNetOwner && bNetDirty)
-        PawnLocationCompressed;
-}
-
-simulated event PostBeginPlay()
-{
-    super.PostBeginPlay();
-    if(Role == ROLE_Authority)
-    {
-        PlayerOwner = PlayerController(Owner);
-    }
-}
+var int KillsAsZed;
+var int AssistsAsZed;
+var int DamageDealtAsZed;
+var int ZedGrabs;
+var int IndirectDamageDealt;
+var array<int> WaveKills;
 
 simulated function Pawn GetOwnerPawn()
 {
@@ -45,12 +33,11 @@ simulated function Pawn GetOwnerPawn()
 
 function SetPlayerTeam(TeamInfo NewTeam)
 {
-    super(PlayerReplicationInfo).SetPlayerTeam(NewTeam);
+    super.SetPlayerTeam(NewTeam);
     if(NewTeam == none)
     {
         return;
     }
-    PlayerOwner = PlayerController(Owner);
     SetTimer(1, true, 'UpdateReplicatedVariables');
 }
 
@@ -165,68 +152,8 @@ reliable client simulated function ClientRecieveNewTeam()
     KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
     if(KFGRI.bMatchHasBegun)
     {
-        MyGFxHUD.CreateHUDMovie();
+        MyGFxHUD.CreateHUDMovie(true);
     }
-}
-
-function UpdateReplicatedVariables()
-{
-    if((((!bIsSpectator && PlayerOwner != none) && PlayerOwner.GetTeamNum() == 0) && PlayerOwner.Pawn != none) && PlayerOwner.Pawn.IsAliveAndWell())
-    {
-        UpdatePawnLocation();        
-    }
-    else
-    {
-        if(!IsZero(PawnLocationCompressed))
-        {
-            PawnLocationCompressed = vect(0, 0, 0);
-        }
-    }
-    UpdateReplicatedPlayerHealth();
-}
-
-function UpdatePawnLocation()
-{
-    PawnLocationCompressed = PlayerOwner.Pawn.Location;
-    PawnLocationCompressed *= 0.01;
-}
-
-function UpdateReplicatedPlayerHealth()
-{
-    local Pawn OwnerPawn;
-
-    if(PlayerOwner != none)
-    {
-        OwnerPawn = PlayerOwner.Pawn;
-        if((OwnerPawn != none) && OwnerPawn.Health != PlayerHealth)
-        {
-            PlayerHealth = byte(OwnerPawn.Health);
-            PlayerHealthPercent = FloatToByte(float(OwnerPawn.Health) / float(OwnerPawn.HealthMax));
-        }
-    }
-}
-
-function IncrementDeaths(optional int Amt)
-{
-    Amt = 1;
-    super.IncrementDeaths(Amt);
-    PawnLocationCompressed = vect(0, 0, 0);
-}
-
-simulated function Vector GetReplicatedPawnIconLocation(float BlendSpeed)
-{
-    local Vector UncompressedLocation;
-
-    UncompressedLocation = PawnLocationCompressed * 100;
-    if(((BlendSpeed > float(0)) && !IsZero(UncompressedLocation)) && VSizeSq(UncompressedLocation - LastReplicatedSmoothedLocation) < Square(500))
-    {
-        LastReplicatedSmoothedLocation = VInterpTo(LastReplicatedSmoothedLocation, UncompressedLocation, WorldInfo.DeltaSeconds, VSize(UncompressedLocation - LastReplicatedSmoothedLocation) * BlendSpeed);        
-    }
-    else
-    {
-        LastReplicatedSmoothedLocation = UncompressedLocation;
-    }
-    return LastReplicatedSmoothedLocation;
 }
 
 simulated function VOIPStatusChanged(PlayerReplicationInfo Talker, bool bIsTalking)
@@ -236,4 +163,48 @@ simulated function VOIPStatusChanged(PlayerReplicationInfo Talker, bool bIsTalki
         return;
     }
     super.VOIPStatusChanged(Talker, bIsTalking);
+}
+
+function RecordEndGameInfo()
+{
+    local KFPlayerController KFPC;
+
+    if(GetTeamNum() == 255)
+    {
+        KFPC = KFPlayerController(Owner);
+        if((KFPC != none) && KFPC.MatchStats != none)
+        {
+            KillsAsZed = Kills;
+            AssistsAsZed = Assists;
+            DamageDealtAsZed = KFPC.MatchStats.TotalDamageDealt;
+        }
+    }
+}
+
+function IncrementDeaths(optional int Amt)
+{
+    local KFGameInfo MyGameInfo;
+
+    Amt = 1;
+    super.IncrementDeaths(Amt);
+    if(GetTeamNum() == 0)
+    {
+        MyGameInfo = KFGameInfo(WorldInfo.Game);
+        if(MyGameInfo != none)
+        {
+            MyGameInfo.HumanDeaths += Amt;
+        }
+    }
+}
+
+function Reset()
+{
+    local bool bPrevWaitingPlayer, bPrevReadyToPlay;
+
+    Assists = 0;
+    bPrevWaitingPlayer = bWaitingPlayer;
+    bPrevReadyToPlay = bReadyToPlay;
+    super(PlayerReplicationInfo).Reset();
+    bWaitingPlayer = bPrevWaitingPlayer;
+    bReadyToPlay = bPrevReadyToPlay;
 }

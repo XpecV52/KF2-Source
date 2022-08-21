@@ -30,7 +30,13 @@ simulated function name GetReloadAnimName( bool bTacticalReload )
 		`warn("Grenade launcher reloading with non-empty mag");
 	}
 
-	return ReloadEmptyMagAnim;
+	return bTacticalReload ? ReloadEmptyMagEliteAnim : ReloadEmptyMagAnim;
+}
+
+/** Returns trader filter index based on weapon type (copied from riflebase) */
+static simulated event EFilterTypeUI GetTraderFilter()
+{
+    return FT_Projectile;
 }
 
 defaultproperties

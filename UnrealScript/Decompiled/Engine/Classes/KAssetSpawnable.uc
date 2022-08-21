@@ -23,7 +23,9 @@ defaultproperties
     object end
     // Reference: SkeletalMeshComponent'Default__KAssetSpawnable.KAssetSkelMeshComponent'
     Components(0)=KAssetSkelMeshComponent
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
     bNoDelete=false
+    BlockRigidBody=false
     begin object name=KAssetSkelMeshComponent class=SkeletalMeshComponent
         ReplacementPrimitive=none
         LightEnvironment=DynamicLightEnvironmentComponent'Default__KAssetSpawnable.MyLightEnvironment'

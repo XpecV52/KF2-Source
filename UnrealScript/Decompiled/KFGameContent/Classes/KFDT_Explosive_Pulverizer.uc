@@ -12,12 +12,9 @@ defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_Pulverizer'
     bCanObliterate=false
-    StunPower=42
-    KnockdownPower=42
-    StumblePower=66
-    LegStumblePower=66
-    GunHitPower=129
-    MeleeHitPower=130
     GoreDamageGroup=EGoreDamageGroup.DGT_Obliteration
+    KnockdownPower=0
+    StumblePower=340
+    MeleeHitPower=100
     ModifierPerkList=/* Array type was not detected. */
 }

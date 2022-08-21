@@ -17,6 +17,7 @@ enum EKillMessageType
 {
 	KMT_PlayerKillPlayer,
 	KMT_PLayerKillZed,
+	KMT_AIKillPlayer,
 };
 
 // Returns a hex color code for the supplied message type
@@ -44,9 +45,7 @@ static function string GetString(
 
 	switch ( Switch )
 	{
-		case KMT_PlayerKillPlayer:
-			return	RelatedPRI_1.PlayerName$ResolveTeamName(RelatedPRI_1) @default.KilledString @RelatedPRI_2.PlayerName$ResolveTeamName(RelatedPRI_2);
-		case KMT_PLayerKillZed:
+		case KMT_PlayerKillZed:
 			return	"+" $Localize("Zeds", String(OptionalObject.Name), "KFGame");
 		default:
 			return "";

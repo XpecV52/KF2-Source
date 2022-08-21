@@ -136,9 +136,10 @@ defaultproperties
    NerveGasExplosiveBlastTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedHans_Versus:ExploTemplate0'
    NerveGasAttackTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedHans_Versus:ExploTemplate1'
    ShieldImpactEffects=KFSkinTypeEffects_HansShield'kfgamecontent.Default__KFPawn_ZedHans_Versus:ShieldEffects'
+   ShieldShatterExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedHans_Versus:ShatterExploTemplate0'
    bVersusZed=True
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedHans:MeleeHelper_0'
-      BaseDamage=75.000000
+      BaseDamage=70.000000
       MyDamageType=Class'kfgamecontent.KFDT_Slashing_Hans'
       MomentumTransfer=40000.000000
       MaxHitRange=275.000000
@@ -154,13 +155,13 @@ defaultproperties
       ObjectArchetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedHans:ThirdPersonHead0'
    End Object
    ThirdPersonHeadMeshComponent=ThirdPersonHead0
-   Begin Object Class=KFPawnAfflictions Name=Afflictions_0 Archetype=KFPawnAfflictions'kfgamecontent.Default__KFPawn_ZedHans:Afflictions_0'
+   Begin Object Class=KFAfflictionManager Name=Afflictions_0 Archetype=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedHans:Afflictions_0'
       FireFullyCharredDuration=2.500000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
-      ObjectArchetype=KFPawnAfflictions'kfgamecontent.Default__KFPawn_ZedHans:Afflictions_0'
+      ObjectArchetype=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedHans:Afflictions_0'
    End Object
-   AfflictionHandler=KFPawnAfflictions'kfgamecontent.Default__KFPawn_ZedHans_Versus:Afflictions_0'
+   AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedHans_Versus:Afflictions_0'
    TeammateCollisionRadiusPercent=0.300000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedHans:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True
@@ -178,18 +179,18 @@ defaultproperties
       SpecialMoveClasses(0)=None
       SpecialMoveClasses(1)=Class'KFGame.KFSM_MeleeAttack'
       SpecialMoveClasses(2)=Class'KFGame.KFSM_DoorMeleeAttack'
-      SpecialMoveClasses(3)=Class'kfgamecontent.KFSM_Hans_Grab'
-      SpecialMoveClasses(4)=Class'kfgamecontent.KFSM_GrappleAttack_Hans'
-      SpecialMoveClasses(5)=Class'KFGame.KFSM_Stumble'
-      SpecialMoveClasses(6)=Class'KFGame.KFSM_RecoverFromRagdoll'
-      SpecialMoveClasses(7)=Class'KFGame.KFSM_RagdollKnockdown'
-      SpecialMoveClasses(8)=Class'KFGame.KFSM_DeathAnim'
-      SpecialMoveClasses(9)=Class'KFGame.KFSM_Stunned'
-      SpecialMoveClasses(10)=Class'KFGame.KFSM_Frozen'
+      SpecialMoveClasses(3)=Class'kfgamecontent.KFSM_GrappleAttack_Hans'
+      SpecialMoveClasses(4)=Class'KFGame.KFSM_Stumble'
+      SpecialMoveClasses(5)=Class'KFGame.KFSM_RecoverFromRagdoll'
+      SpecialMoveClasses(6)=Class'KFGame.KFSM_RagdollKnockdown'
+      SpecialMoveClasses(7)=Class'KFGame.KFSM_DeathAnim'
+      SpecialMoveClasses(8)=Class'KFGame.KFSM_Stunned'
+      SpecialMoveClasses(9)=Class'KFGame.KFSM_Frozen'
+      SpecialMoveClasses(10)=None
       SpecialMoveClasses(11)=None
-      SpecialMoveClasses(12)=None
-      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_Taunt'
-      SpecialMoveClasses(14)=Class'KFGame.KFSM_Zed_WalkingTaunt'
+      SpecialMoveClasses(12)=Class'KFGame.KFSM_Zed_Taunt'
+      SpecialMoveClasses(13)=Class'KFGame.KFSM_Zed_WalkingTaunt'
+      SpecialMoveClasses(14)=None
       SpecialMoveClasses(15)=None
       SpecialMoveClasses(16)=None
       SpecialMoveClasses(17)=None
@@ -202,15 +203,14 @@ defaultproperties
       SpecialMoveClasses(24)=None
       SpecialMoveClasses(25)=None
       SpecialMoveClasses(26)=None
-      SpecialMoveClasses(27)=None
-      SpecialMoveClasses(28)=Class'KFGame.KFSM_GrappleVictim'
-      SpecialMoveClasses(29)=Class'KFGame.KFSM_HansGrappleVictim'
-      SpecialMoveClasses(30)=None
-      SpecialMoveClasses(31)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
-      SpecialMoveClasses(32)=Class'kfgamecontent.KFSM_Hans_WeaponSwitch'
-      SpecialMoveClasses(33)=Class'kfgamecontent.KFSM_Hans_ThrowGrenade'
-      SpecialMoveClasses(34)=Class'kfgamecontent.KFSM_Hans_GrenadeHalfBarrage'
-      SpecialMoveClasses(35)=Class'kfgamecontent.KFSM_Hans_GrenadeBarrage'
+      SpecialMoveClasses(27)=Class'KFGame.KFSM_GrappleVictim'
+      SpecialMoveClasses(28)=Class'KFGame.KFSM_HansGrappleVictim'
+      SpecialMoveClasses(29)=None
+      SpecialMoveClasses(30)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(31)=Class'kfgamecontent.KFSM_Hans_WeaponSwitch'
+      SpecialMoveClasses(32)=Class'kfgamecontent.KFSM_Hans_ThrowGrenade'
+      SpecialMoveClasses(33)=Class'kfgamecontent.KFSM_Hans_GrenadeHalfBarrage'
+      SpecialMoveClasses(34)=Class'kfgamecontent.KFSM_Hans_GrenadeBarrage'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedHans:SpecialMoveHandler_0'
    End Object
@@ -272,9 +272,8 @@ defaultproperties
       RBCollideWithChannels=(Default=True,Pawn=True,Vehicle=True,BlockingVolume=True)
       Translation=(X=0.000000,Y=0.000000,Z=-86.000000)
       ScriptRigidBodyCollisionThreshold=200.000000
-      PerObjectShadowCullDistance=4000.000000
+      PerObjectShadowCullDistance=2500.000000
       bAllowPerObjectShadows=True
-      bAllowPerObjectShadowBatching=True
       Name="KFPawnSkeletalMeshComponent"
       ObjectArchetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedHans:KFPawnSkeletalMeshComponent'
    End Object

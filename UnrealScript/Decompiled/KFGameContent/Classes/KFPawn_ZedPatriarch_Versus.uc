@@ -49,7 +49,7 @@ simulated event ReplicatedEvent(name VarName)
 function PossessedBy(Controller C, bool bVehicleTransition)
 {
     super.PossessedBy(C, bVehicleTransition);
-    ServerDoSpecialMove(31);
+    ServerDoSpecialMove(30);
     MyKFPC = KFPlayerController(C);
     SetTimer(2 + FRand(), false, 'Timer_EnableCloak');
 }
@@ -304,12 +304,12 @@ private final function CheckHealth()
         {
             if((SpecialMoveCooldowns[5].Charges > 0) && HealthPct <= AutoHealThreshold)
             {
-                if(IsDoingSpecialMove() && !IsDoingSpecialMove(26))
+                if(IsDoingSpecialMove() && !IsDoingSpecialMove(25))
                 {
                     EndSpecialMove();
                 }
                 bAutoHealed = true;
-                DoSpecialMove(26, true);
+                DoSpecialMove(25, true);
             }
         }
         if((((!bWarnedLowHealthThisPhase && IsLocallyControlled()) && MyKFPC.MyGFxHUD != none) && HealthPct <= LowHealthThreshold) && SpecialMoveCooldowns[5].Charges > 0)
@@ -410,7 +410,7 @@ defaultproperties
     // Reference: SkeletalMeshComponent'Default__KFPawn_ZedPatriarch_Versus.ThirdPersonHead0'
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     bNeedsCrosshair=true
-    AfflictionHandler=KFPawnAfflictions_Patriarch'Default__KFPawn_ZedPatriarch_Versus.Afflictions'
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedPatriarch_Versus.Afflictions'
     SprintSpeed=700
     SprintStrafeSpeed=400
     TeammateCollisionRadiusPercent=0.3
@@ -430,7 +430,7 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedPatriarch_Versus.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedPatriarch_Versus.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedPatriarch_Versus.DialogAkSoundComponent'
-    Health=2540
+    Health=2240
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

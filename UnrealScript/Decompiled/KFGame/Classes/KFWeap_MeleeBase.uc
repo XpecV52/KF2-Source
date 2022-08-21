@@ -409,7 +409,7 @@ simulated state WeaponUpkeep
 {
     simulated function byte GetWeaponStateId()
     {
-        return 22;
+        return 24;
     }
 
     simulated function BeginState(name PreviousStateName)
@@ -433,6 +433,18 @@ simulated state WeaponUpkeep
             SetTimer(0.001, false, 'UpkeepComplete');
         }
         NotifyBeginState();
+    }
+
+    simulated function BeginFire(byte FireModeNum)
+    {
+        global.BeginFire(FireModeNum);
+        if(FireModeNum != 2)
+        {
+            if(PendingFire(FireModeNum) && HasAmmo(FireModeNum))
+            {
+                GotoState('Active');
+            }
+        }
     }
 
     simulated event EndState(name NextStateName)
@@ -459,23 +471,23 @@ simulated state MeleeChainAttacking extends MeleeAttackBasic
         switch(MeleeAttackHelper.CurrentAttackDir)
         {
             case 0:
-                return 15;
+                return 17;
             case 4:
-                return 15;
+                return 17;
             case 5:
-                return 15;
+                return 17;
             case 1:
-                return 16;
+                return 18;
             case 6:
-                return 16;
+                return 18;
             case 7:
-                return 16;
+                return 18;
             case 2:
-                return 13;
+                return 15;
             case 3:
-                return 14;
+                return 16;
             default:
-                return 11;
+                return 13;
                 break;
         }
     }
@@ -569,21 +581,21 @@ simulated state MeleeHeavyAttacking extends MeleeAttackBasic
         switch(MeleeAttackHelper.CurrentAttackDir)
         {
             case 0:
-                return 19;
+                return 21;
             case 4:
-                return 19;
+                return 21;
             case 5:
-                return 19;
+                return 21;
             case 1:
-                return 20;
+                return 22;
             case 6:
-                return 20;
+                return 22;
             case 7:
-                return 20;
+                return 22;
             case 2:
-                return 17;
+                return 19;
             case 3:
-                return 18;
+                return 20;
             default:
                 return 0;
                 break;
@@ -652,6 +664,13 @@ simulated state MeleeSustained extends WeaponFiring
 
     simulated function BeginState(name PreviousStateName)
     {
+        local KFPerk InstigatorPerk;
+
+        InstigatorPerk = GetPerk();
+        if(InstigatorPerk != none)
+        {
+            SetZedTimeResist(InstigatorPerk.GetZedTimeModifier(self));
+        }
         if(MeleeSustainedWarmupTime > 0)
         {
             SetTimer(MeleeSustainedWarmupTime, false, 'SustainedWarmupEndTimer');            
@@ -714,7 +733,7 @@ simulated state MeleeSustained extends WeaponFiring
 
     simulated function byte GetWeaponStateId()
     {
-        return 12;
+        return 14;
     }
     stop;    
 }
@@ -725,7 +744,7 @@ simulated state MeleeBlocking
 
     simulated function byte GetWeaponStateId()
     {
-        return 21;
+        return 23;
     }
 
     simulated function BeginState(name PreviousStateName)
@@ -769,8 +788,8 @@ simulated state MeleeBlocking
         local float FacingDot;
         local Vector Dir2d;
 
-        Dir2d = Normal2D(InstigatedBy.Location - Location);
-        FacingDot = vector(Rotation) Dot Dir2d;
+        Dir2d = Normal2D(InstigatedBy.Location - Instigator.Location);
+        FacingDot = vector(Instigator.Rotation) Dot Dir2d;
         if(FacingDot > 0.087)
         {
             if(IsTimerActive('ParryCheckTimer'))
@@ -792,7 +811,6 @@ simulated state MeleeBlocking
         local float FacingDot;
         local Vector Dir2d;
         local KFPerk InstigatorPerk;
-        local bool bInterruptSuccess;
 
         Dir2d = Normal2D(DamageCauser.Location - Instigator.Location);
         FacingDot = vector(Instigator.Rotation) Dot Dir2d;
@@ -804,9 +822,9 @@ simulated state MeleeBlocking
                 InDamage *= ParryDamageMitigationPercent;
                 if(KFPawn(DamageCauser) != none)
                 {
-                    bInterruptSuccess = KFPawn(DamageCauser).NotifyAttackParried(Instigator, ParryStrength);
+                    KFPawn(DamageCauser).NotifyAttackParried(Instigator, ParryStrength);
                 }
-                ClientPlayParryEffects(bInterruptSuccess);
+                ClientPlayParryEffects(true);
                 if(InstigatorPerk != none)
                 {
                     InstigatorPerk.SetSuccessfullParry();

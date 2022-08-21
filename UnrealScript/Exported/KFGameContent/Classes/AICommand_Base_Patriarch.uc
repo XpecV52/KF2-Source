@@ -64,7 +64,6 @@ Begin:
 	{
 		AILog_Internal(self$" DoorEnemy: "$DoorEnemy$" starting melee attack",'Command_Base',);
 		UpdateHistoryString( "[Attacking : "$DoorEnemy$" at "$WorldInfo.TimeSeconds$"]" );
-		LogInternal("patty door melee");
 		class'AICommand_Attack_Melee'.static.Melee( Outer, DoorEnemy );
 	}
 

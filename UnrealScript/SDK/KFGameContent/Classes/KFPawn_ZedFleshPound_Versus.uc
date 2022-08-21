@@ -4,10 +4,17 @@
 // Fleshpound Versus pawn
 //=============================================================================
 // Killing Floor 2
-// Copyright (C) 2015 Tripwire Interactive LLC
+// Copyright (C) 2016 Tripwire Interactive LLC
 //=============================================================================
-
 class KFPawn_ZedFleshPound_Versus extends KFPawn_ZedFleshpound;
+
+/** Ground speed to use when sprinting and enraged */
+var const protected float RageSprintSpeed;
+
+/** Rage bump damage variables */
+var const protected int RageBumpDamage;
+var const protected float RageBumpRadius;
+var const protected float RageBumpMomentum;
 
 function PossessedBy( Controller C, bool bVehicleTransition )
 {
@@ -15,11 +22,11 @@ function PossessedBy( Controller C, bool bVehicleTransition )
 
 	if( WorldInfo.NetMode != NM_DedicatedServer && Mesh != None )
 	{
-		SetGameplayMICParams();
+		UpdateGameplayMICParams();
 	}
 }
 
-//get rif of ragemode sprint
+/** Disallow sprinting if we've been struck by an EMP */
 function SetSprinting(bool bNewSprintStatus)
 {
 	if( bEmpDisrupted )
@@ -27,27 +34,38 @@ function SetSprinting(bool bNewSprintStatus)
 		bNewSprintStatus = false;
 	}
 
-	if ( bNewSprintStatus )
+	super(KFPawn_Monster).SetSprinting( bNewSprintStatus );
+}
+
+/** Enrage this FleshPound! */
+simulated function SetEnraged( bool bNewEnraged )
+{
+	super.SetEnraged( bNewEnraged );
+
+	if( bIsEnraged )
 	{
-		// Wait for uncrouch; see CheckJumpOrDuck
-		if ( bIsCrouched )
+		if( !IsTimerActive(nameOf(Timer_RageBump)) )
 		{
-			bNewSprintStatus = false;
+			SetTimer( 0.25f, true, nameOf(Timer_RageBump) );
 		}
-		else if ( MyKFWeapon != None && !MyKFWeapon.AllowSprinting() )
-		{
-			bNewSprintStatus = false;
-		}
+
+		SprintSpeed = RageSprintSpeed;
 	}
-
-	bIsSprinting = bNewSprintStatus;
-
-	if ( MyKFWeapon != None )
+	else if( IsTimerActive(nameOf(Timer_RageBump)) )
 	{
-		MyKFWeapon.SetWeaponSprint(bNewSprintStatus);
+		ClearTimer( nameOf(Timer_RageBump) );
+
+		SprintSpeed = default.SprintSpeed;
 	}
 }
 
+/** Applies damage and impulse to nearby pawns and objects */
+simulated protected function Timer_RageBump()
+{
+	HurtRadius( RageBumpDamage, RageBumpRadius, RageBumpDamageType, RageBumpMomentum, Location, self, Controller );
+}
+
+/** Ends rage mode 3 seconds after melee damage is done */
 function NotifyMeleeDamageDealt()
 {
 	if( !IsTimerActive(nameOf(EndRage)) )
@@ -56,24 +74,10 @@ function NotifyMeleeDamageDealt()
 	}
 }
 
+/** Ends rage mode */
 function EndRage()
 {
 	SetEnraged( false );
-}
-
-/** Puts all moves on this pawn on cooldown */
-function PutAllMovesOnCooldown()
-{
-	/*local int i;
-
-	// Allow primary attack to still function
-	for( i = 1; i < SpecialMoveCooldowns.Length; ++i )
-	{
-		if( SpecialMoveCooldowns[i].SMHandle != SM_None )
-		{
-			SpecialMoveCooldowns[i].LastUsedTime = WorldInfo.TimeSeconds;
-		}
-	}*/
 }
 
 DefaultProperties
@@ -89,34 +93,40 @@ DefaultProperties
 		SpecialMoveClasses(SM_PlayerZedAttack1)=class'KFSM_PlayerFleshpound_Melee'
 		SpecialMoveClasses(SM_PlayerZedAttack2)=class'KFSM_PlayerFleshpound_Melee2'
 		SpecialMoveClasses(SM_PlayerZedSpecial1)=class'KFSM_PlayerFleshpound_Rage'
+		SpecialMoveClasses(SM_PlayerZedSpecial2)= class'KFSM_PlayerFleshpound_Block'
 	End Object
 
-	InstantIncaps(IAF_Stun)=(Head=75,Torso=120,Leg=120,Arm=120,Special=65,LowHealthBonus=10,Cooldown=10.0)
-	InstantIncaps(IAF_Knockdown)=(Head=65,Torso=140,Leg=140,Arm=140,Special=65,LowHealthBonus=10,Cooldown=25.0)
-	InstantIncaps(IAF_Stumble)=(Head=60,Torso=65,Arm=65,Special=53,LowHealthBonus=10,Cooldown=10.0)
-	InstantIncaps(IAF_LegStumble)=(Leg=60,LowHealthBonus=10,Cooldown=9.0)
-	InstantIncaps(IAF_GunHit)=(Head=150,Torso=150,Leg=150,Arm=150,LowHealthBonus=10,Cooldown=20)
-	InstantIncaps(IAF_MeleeHit)=(Head=25,Torso=50,Leg=50,Arm=50,LowHealthBonus=10,Cooldown=1.2)
-	StackingIncaps(SAF_Poison)=(Threshhold=5.0,Duration=1.5,Cooldown=20.0,DissipationRate=1.00)
-	StackingIncaps(SAF_Microwave)=(Threshhold=10.0,Duration=1.5,Cooldown=20.0,DissipationRate=1.00)
-	StackingIncaps(SAF_FirePanic)=(Threshhold=13.0,Duration=1.5,Cooldown=8.0,DissipationRate=1.0)
-	StackingIncaps(SAF_EMPPanic)=(Threshhold=2.0,Duration=3.0,Cooldown=10.0,DissipationRate=0.5)
-	StackingIncaps(SAF_EMPDisrupt)=(Threshhold=1.5,Duration=2.0,Cooldown=10.0,DissipationRate=0.5)
-	StackingIncaps(SAF_Freeze)=(Threshhold=3.0,Duration=1.0,Cooldown=5.0,DissipationRate=0.33)
+
 
 	SpecialMoveCooldowns(0)=(SMHandle=SM_PlayerZedAttack1,		CooldownTime=0.75f,	SpecialMoveIcon=Texture2D'ZED_Fleshpound_UI.ZED-VS_Icons_Fleshpound-LightAttack', GBA_Name="GBA_Fire",NameLocalizationKey="Light")
 	SpecialMoveCooldowns(1)=(SMHandle=SM_PlayerZedAttack2,		CooldownTime=1.5f,	SpecialMoveIcon=Texture2D'ZED_Fleshpound_UI.ZED-VS_Icons_Fleshpound-HeavyAttack', GBA_Name="GBA_IronsightsToggle", ALT_GBA_Name="GBA_IronsightsHold",NameLocalizationKey="Heavy")
 	SpecialMoveCooldowns(2)=(SMHandle=SM_Taunt,					CooldownTime=0.0f,	GBA_Name="GBA_Reload",bShowOnHud=false)
 	SpecialMoveCooldowns(3)=(SMHandle=SM_PlayerZedSpecial1,		CooldownTime=10.5f,	SpecialMoveIcon=Texture2D'ZED_Fleshpound_UI.ZED-VS_Icons_Fleshpound-Rage', GBA_Name="GBA_TertiaryFire",NameLocalizationKey="Rage")
+	SpecialMoveCooldowns(4)=(SMHandle=SM_PlayerZedSpecial2,		CooldownTime=0.5,	SpecialMoveIcon=Texture2D'ZED_Shared_UI.ZED-VS_Icons_Generic-Block', GBA_Name="GBA_SwitchFireMode",NameLocalizationKey="Block")
 	SpecialMoveCooldowns.Add((SMHandle=SM_Jump,					CooldownTime=1.25f,	SpecialMoveIcon=Texture2D'ZED_Fleshpound_UI.ZED-VS_Icons_Fleshpound-Jump', GBA_Name="GBA_Jump",bShowOnHud=false)) // Jump always at end of array
 
-	ResistantDamageTypes.Add((DamageType=class'KFDT_Fire', 		DamageScale=0.3f))
-	ResistantDamageTypes.Add((DamageType=class'KFDT_Ballistic', DamageScale=0.7f))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 	                DamageScale=(0.75)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive_RPG7', 	        DamageScale=(1.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 	                DamageScale=(1.5)))  //0.25
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(0.5)))
+	//DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic', DamageScale=(0.7f)))
+
+
+	IncapSettings(AF_Stun)=		(Vulnerability=(0.5, 0.55, 0.5, 0.0, 0.55),   Cooldown=10.0, Duration=1.5)
+	IncapSettings(AF_Knockdown)=(Vulnerability=(0.25, 0.25, 0.25, 0.25, 0.4), Cooldown=10.0)
+	IncapSettings(AF_Stumble)=	(Vulnerability=(0.2, 0.25, 0.25, 0.0, 0.4),   Cooldown=7.0)
+	IncapSettings(AF_GunHit)=	(Vulnerability=(0.0, 0.0, 0.0, 0.0, 0.5),     Cooldown=1.7)
+	IncapSettings(AF_MeleeHit)=	(Vulnerability=(1.0),                         Cooldown=1.2)
+	IncapSettings(AF_Poison)=	(Vulnerability=(0.6),                         Cooldown=20.0, Duration=1.5)
+	IncapSettings(AF_Microwave)=(Vulnerability=(0.8),                         Cooldown=17.0, Duration=2.5)
+	IncapSettings(AF_FirePanic)=(Vulnerability=(0.7),                         Cooldown=12.0, Duration=3.5)
+	IncapSettings(AF_EMP)=		(Vulnerability=(0.95),                        Cooldown=10.0, Duration=2.2)
+	IncapSettings(AF_Freeze)=	(Vulnerability=(0.95),                        Cooldown=1.5,  Duration=0.5)
 
 
 	//defaults
 	Begin Object Name=MeleeHelper_0
-		BaseDamage=50.f
+		BaseDamage=30
 		MaxHitRange=250.f
 		MomentumTransfer=55000.f
 		MyDamageType=class'KFDT_Bludgeon_Fleshpound'
@@ -128,9 +138,21 @@ DefaultProperties
     DoshValue=300.0 // 1.5x default because they are harder to hit/kill
     XPValues(0)=105.0// 1.5 X 2x default because they are harder to hit/kill
 
-    SprintSpeed=725.f
-    SprintStrafeSpeed=450.f
-    GroundSpeed=300.f
+	// Movement speeds
+    SprintSpeed=550 //750
+    RageSprintSpeed=700
+    SprintStrafeSpeed=450
+    GroundSpeed=275  //300
+
+	// Rage
+	RageBumpDamage=2
+	RageBumpRadius=240.f
+	RageBumpMomentum=500.f
+
+    // Blocking higher values = less resistance
+	MinBlockFOV=0.f
+	BlockingDamageModifier=0.7f
+	MeleeBlockingDamageModifier=0.7f
 
 	//defaults
 	ThirdPersonViewOffset={(

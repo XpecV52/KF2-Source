@@ -98,6 +98,7 @@ package tripwire.menus
         public function GearMenu()
         {
             super();
+            leftSidePanels = new Array();
             this.characterArray = new Array();
             this.bodyArray = new Array();
             this.attachmentsArray = new Array();
@@ -172,8 +173,23 @@ package tripwire.menus
         
         public function set selectedCharacter(param1:Object) : void
         {
+            var _loc3_:Number = NaN;
             this.characterButton.infoString = !!param1.selectedCharacter ? param1.selectedCharacter : "";
-            this._selectedCharacterIndex = !!param1.selectedCharacterIndex ? int(param1.selectedCharacterIndex) : 0;
+            var _loc2_:* = 0;
+            if(param1.selectedCharacterIndex)
+            {
+                _loc3_ = 0;
+                while(_loc3_ < this._characters.length)
+                {
+                    if(this._characters[_loc3_].ItemIndex == param1.selectedCharacterIndex)
+                    {
+                        _loc2_ = _loc3_;
+                        break;
+                    }
+                    _loc3_++;
+                }
+            }
+            this._selectedCharacterIndex = _loc2_;
             this.bioTextArea.text = !!param1.characterBio ? param1.characterBio : "";
         }
         
@@ -232,13 +248,21 @@ package tripwire.menus
             }
             else
             {
+                showDimLeftSide(false);
                 super.selectContainer();
             }
         }
         
-        override public function openContainer() : void
+        override public function openContainer(param1:Boolean = true) : void
         {
             super.openContainer();
+            if(!bManagerUsingGamepad)
+            {
+                this.characterButton.selected = false;
+                this.headButton.selected = false;
+                this.bodyButton.selected = false;
+                this.attachmentButton.selected = false;
+            }
         }
         
         override protected function onOpened(param1:TweenEvent = null) : void
@@ -249,7 +273,7 @@ package tripwire.menus
             {
                 currentElement = defaultFirstElement = !!this.bodyButton.enabled ? this.bodyButton : this.attachmentButton;
             }
-            if(!MenuManager.manager.bPopUpOpen)
+            if(!MenuManager.manager.bPopUpOpen && bManagerUsingGamepad)
             {
                 FocusManager.setFocus(currentElement);
             }
@@ -270,6 +294,10 @@ package tripwire.menus
                 this.gearList.closeContainer();
             }
             ExternalInterface.call("Callback_BodyCamera");
+            if(bManagerUsingGamepad)
+            {
+                showDimLeftSide(false);
+            }
         }
         
         override protected function onBPressed(param1:InputDetails) : void
@@ -316,6 +344,22 @@ package tripwire.menus
             this.skinList.addEventListener(IndexEvent.INDEX_CHANGE,this.listSelect,false,0,true);
             this.gearList.visible = false;
             this.skinList.visible = false;
+            this.gearHeader.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.characterButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.bioTextArea.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.headButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.bodyButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.attachmentButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.gearList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
+            this.skinList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
+            leftSidePanels.push(this.gearHeader);
+            leftSidePanels.push(this.characterButton);
+            leftSidePanels.push(this.bioTextArea);
+            leftSidePanels.push(this.headButton);
+            leftSidePanels.push(this.bodyButton);
+            leftSidePanels.push(this.attachmentButton);
+            rightSidePanels.push(this.gearList);
+            rightSidePanels.push(this.skinList);
             this.hideWeaponOptions();
             this.testMenu();
         }
@@ -390,7 +434,11 @@ package tripwire.menus
             }
             param1.dataProvider = new DataProvider(param2);
             param1.listTitle = param3;
-            param1.openContainer();
+            param1.openContainer(bManagerUsingGamepad);
+            if(bManagerUsingGamepad)
+            {
+                dimLeftSide(true);
+            }
             this._bSelectingSkin = param1 == this.skinList;
             if(this._bSelectingSkin)
             {
@@ -560,6 +608,13 @@ package tripwire.menus
                     ExternalInterface.call("Callback_RotateCamera",_loc3_);
                 }
             }
+        }
+        
+        override protected function onInputChange(param1:Event) : *
+        {
+            super.onInputChange(param1);
+            this.skinList.backButton.visible = !bManagerUsingGamepad;
+            this.gearList.backButton.visible = !bManagerUsingGamepad;
         }
         
         private function testMenu() : *

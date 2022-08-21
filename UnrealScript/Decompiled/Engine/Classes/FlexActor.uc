@@ -28,7 +28,6 @@ defaultproperties
     object end
     // Reference: FlexComponent'Default__FlexActor.FlexComponent0'
     Components(1)=FlexComponent0
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
     begin object name=StaticMeshComponent0 class=StaticMeshComponent
         ReplacementPrimitive=none
         LightEnvironment=DynamicLightEnvironmentComponent'Default__FlexActor.MyLightEnvironment'

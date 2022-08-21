@@ -12,7 +12,7 @@ class KFWeap_Shotgun_DragonsBreath extends KFWeap_ShotgunBase;
 defaultproperties
 {
 	// Inventory
-	InventorySize=6
+	InventorySize=5
 	GroupPriority=50
 	WeaponSelectTexture=Texture2D'WEP_UI_DragonsBreath.UI_WeaponSelect_DragonsBreath'
 

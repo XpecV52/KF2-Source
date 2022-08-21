@@ -177,6 +177,11 @@ event OnTraderTimeStart()
     UpdateLock();
 }
 
+function OnRoundOver()
+{
+	UpdateLock();
+}
+
 function bool IsMatchStarted()
 {
 	local KFGameReplicationInfo KFGRI;
@@ -238,7 +243,7 @@ function UpdateLock()
 
 		if ( KFGRI != none && KFPC != none )
 		{
-			SetBool( "locked", ( KFGRI.bTraderIsOpen && KFPC.bPlayerUsedUpdatePerk ));
+			SetBool( "locked", ( KFGRI.CanChangePerks() && KFPC.bPlayerUsedUpdatePerk ));
 		}
 	}
 }

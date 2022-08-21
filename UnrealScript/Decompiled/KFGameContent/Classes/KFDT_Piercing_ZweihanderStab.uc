@@ -11,11 +11,8 @@ class KFDT_Piercing_ZweihanderStab extends KFDT_Piercing
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_Zweihander'
-    StunPower=42
-    KnockdownPower=20
-    StumblePower=63
-    LegStumblePower=63
-    MeleeHitPower=80
+    StumblePower=50
+    MeleeHitPower=100
     ModifierPerkList=/* Array type was not detected. */
     KDamageImpulse=200
     KDeathUpKick=250

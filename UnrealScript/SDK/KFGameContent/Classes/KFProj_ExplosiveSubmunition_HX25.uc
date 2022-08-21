@@ -72,11 +72,11 @@ defaultproperties
 		DamageFalloffExponent=1.0f
 		DamageDelay=0.f
 
-		MomentumTransferScale=0.0f
+		MomentumTransferScale=1.f
 
 		// Damage Effects
 		MyDamageType=class'KFDT_ExplosiveSubmunition_HX25'
-		KnockDownStrength=0
+		KnockDownStrength=10
 		FractureMeshRadius=200.0
 		FracturePartVel=500.0
 		ExplosionEffects=KFImpactEffectInfo'WEP_HX25_Pistol_ARCH.HX25_Pistol_Submunition_Explosion'

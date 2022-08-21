@@ -166,6 +166,32 @@ function bool IsGuestLogin(byte LocalUserNum);
  */
 function bool IsLocalLogin(byte LocalUserNum);
 
+//@HSL_BEGIN - JRO - 3/21/2016 PS4 Sessions - Make sure they have the privileges needed to play online
+/**
+ * Delegate called when a user's privilege level has been checked
+ *
+ * @param LocalUserNum -  the player that checked a privilege level
+ * @param Privilege - the privilege that was checked
+ * @param PrivilegeLevel - the privilege level for the given user for the requested Privilege
+ * @param bDiffersFromHint - does the returned privilege level differ from the hint that was given earlier?
+ */
+delegate OnPrivilegeLevelChecked(byte LocalUserNum, EFeaturePrivilege Privilege, EFeaturePrivilegeLevel PrivilegeLevel);
+
+/**
+ * Sets the delegate used to notify the gameplay code that a privilege check was completed
+ *
+ * @param PrivilegeDelegate the delegate to use for notifications
+ */
+function AddPrivilegeLevelCheckedDelegate(delegate<OnPrivilegeLevelChecked> PrivilegeDelegate);
+
+/**
+ * Removes the specified delegate from the notification list
+ *
+ * @param PrivilegeDelegate the delegate to use for notifications
+ */
+function ClearPrivilegeLevelCheckedDelegate(delegate<OnPrivilegeLevelChecked> PrivilegeDelegate);
+//@HSL_END
+
 /**
  * Determines whether the player is allowed to play online
  *

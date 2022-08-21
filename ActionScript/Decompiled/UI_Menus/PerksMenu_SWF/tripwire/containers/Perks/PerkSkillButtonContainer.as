@@ -26,23 +26,23 @@ package tripwire.containers.Perks
             super();
         }
         
-        public function set bUnlocked(value:Boolean) : void
+        public function set bUnlocked(param1:Boolean) : void
         {
-            this._bUnlocked = value;
+            this._bUnlocked = param1;
             this.skillButton0.enabled = this.skillButton1.active = this._bUnlocked;
             this.skillButton1.enabled = this.skillButton1.active = this._bUnlocked;
         }
         
-        override protected function addedToStage(e:Event) : void
+        override protected function addedToStage(param1:Event) : void
         {
-            super.addedToStage(e);
+            super.addedToStage(param1);
             this.skillButton0.addEventListener(ButtonEvent.PRESS,this.onButtonPress,false,0,true);
             this.skillButton1.addEventListener(ButtonEvent.PRESS,this.onButtonPress,false,0,true);
         }
         
-        private function onButtonPress(e:ButtonEvent) : void
+        private function onButtonPress(param1:ButtonEvent) : void
         {
-            if(e.currentTarget == this.skillButton0)
+            if(param1.currentTarget == this.skillButton0)
             {
                 this.selectedSkill = 1;
                 ExternalInterface.call("Callback_SkillSelected",this.skillButton0.tier,1);
@@ -54,29 +54,29 @@ package tripwire.containers.Perks
             }
         }
         
-        public function set tier(value:int) : void
+        public function set tier(param1:int) : void
         {
-            this.skillButton0.tier = value;
-            this.skillButton1.tier = value;
+            this.skillButton0.tier = param1;
+            this.skillButton1.tier = param1;
         }
         
-        public function setData(data:Object) : void
+        public function setData(param1:Object) : void
         {
-            if(data)
+            if(param1)
             {
                 visible = true;
-                this.sectionText.text = !!data.label ? data.label : "";
-                this.bUnlocked = !!data.bUnlocked ? Boolean(data.bUnlocked) : false;
-                this.tierUnlockTextField.text = !!data.unlockLevel ? data.unlockLevel : "";
-                if(data.skill0 != null)
+                this.sectionText.text = !!param1.label ? param1.label : "";
+                this.bUnlocked = !!param1.bUnlocked ? Boolean(param1.bUnlocked) : false;
+                this.tierUnlockTextField.text = !!param1.unlockLevel ? param1.unlockLevel : "";
+                if(param1.skill0 != null)
                 {
-                    this.skillButton0.setData(data.skill0);
+                    this.skillButton0.setData(param1.skill0);
                 }
-                if(data.skill1 != null)
+                if(param1.skill1 != null)
                 {
-                    this.skillButton1.setData(data.skill1);
+                    this.skillButton1.setData(param1.skill1);
                 }
-                this.selectedSkill = !!data.selectedSkill ? int(data.selectedSkill) : 0;
+                this.selectedSkill = !!param1.selectedSkill ? int(param1.selectedSkill) : 0;
             }
             else
             {
@@ -84,9 +84,9 @@ package tripwire.containers.Perks
             }
         }
         
-        public function set selectedSkill(value:int) : void
+        public function set selectedSkill(param1:int) : void
         {
-            switch(value)
+            switch(param1)
             {
                 case 1:
                     this.skillButton0.active = true;
@@ -102,14 +102,14 @@ package tripwire.containers.Perks
             }
         }
         
-        public function set sectionName(value:String) : void
+        public function set sectionName(param1:String) : void
         {
-            this.sectionText.text = value;
+            this.sectionText.text = param1;
         }
         
-        public function set levelUnlockText(value:String) : void
+        public function set levelUnlockText(param1:String) : void
         {
-            this.tierUnlockTextField.text = value;
+            this.tierUnlockTextField.text = param1;
         }
     }
 }

@@ -17,11 +17,13 @@ defaultproperties
 	KDeathUpKick=250
 	KDeathVel=150
 
-	StunPower=70
-	StumblePower=10
-	LegStumblePower=15
-	GunHitPower=30
-	MeleeHitPower=25
+
+
+    KnockdownPower=20
+	StunPower=90
+	StumblePower=250
+	GunHitPower=100
+	MeleeHitPower=40
 
 	ModifierPerkList(0)=class'KFPerk_Sharpshooter'
 	WeaponDef=class'KFWeapDef_Crossbow'

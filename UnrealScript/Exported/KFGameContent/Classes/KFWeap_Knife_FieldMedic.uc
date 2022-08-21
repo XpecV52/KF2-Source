@@ -49,11 +49,11 @@ defaultproperties
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Knife_FieldMedic:MeleeHelper_0'
    AssociatedPerkClass=Class'KFGame.KFPerk_FieldMedic'
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Slashing_Knife_Medic'
-   InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Slashing_KnifeHeavy_Medic'
+   InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=()
-   InstantHitDamageTypes(3)=()
+   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Piercing_KnifeStab_FieldMedic'
    InstantHitDamageTypes(4)=()
-   InstantHitDamageTypes(5)=()
+   InstantHitDamageTypes(5)=Class'kfgamecontent.KFDT_Slashing_KnifeHeavy_Medic'
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFWeap_Edged_Knife:FirstPersonMesh'
       MinTickTimeStep=0.025000
       SkeletalMesh=SkeletalMesh'Wep_1P_Medic_Knife_MESH.Wep_1stP_Medic_Knife_Rig'

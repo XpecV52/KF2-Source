@@ -17,7 +17,7 @@ simulated function float GetDamageFor( Actor Victim )
 
 defaultproperties
 {
-   DamageScalePerStack=0.500000
+   DamageScalePerStack=0.750000
    LifeSpan=3.000000
    Name="Default__KFExplosionActorC4"
    ObjectArchetype=KFExplosionActor'KFGame.Default__KFExplosionActor'

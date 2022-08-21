@@ -187,6 +187,11 @@ var OnlineVoiceInterface VoiceInterface;
 /** The data store that holds any online player data */
 var UIDataStore_OnlinePlayerData OnlinePlayerData;
 
+//@HSL_BEGIN - JRO - 6/17/2015 - Keep this around so we can still join the game after leaving the current one
+/** Save the invite result so a later delegate can use it to join the online game */
+var OnlineGameSearchResult CachedInviteResult;
+//@HLS_END
+
 /** Ignores movement input. Stacked state storage, Use accessor function IgnoreMoveInput() */
 var byte	bIgnoreMoveInput;
 
@@ -7604,9 +7609,13 @@ reliable server function ServerRegisteredForArbitration(bool bWasSuccessful)
  *
  * @param InviteResult the search/settings for the game we're to join
  */
-function OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult)
+//@HSL_BEGIN - JRO - 3/21/2016 - PS4 Sessions
+function OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult, OnGameInviteAcceptedResult ResultReason)
+//@HSL_END
 {
 	local OnlineGameSettings GameInviteSettings;
+
+	`log("SESSIONS - OnGameInviteAccepted");
 
 	if (OnlineSub != None && OnlineSub.GameInterface != None)
 	{
@@ -7619,6 +7628,10 @@ function OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult)
 				// Make sure everyone logged in can play online
 				if (CanAllPlayersPlayOnline())
 				{
+					//@HSL_BEGIN - JRO - 3/21/2016 - Make sure we still have the new session info after we leave the current one
+					CachedInviteResult = InviteResult;
+					//@HSL_END
+
 					if (WorldInfo.NetMode != NM_Standalone)
 					{
 						// Write arbitration data, if required
@@ -7638,7 +7651,9 @@ function OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult)
 						OnlineSub.GameInterface.AddJoinOnlineGameCompleteDelegate(OnInviteJoinComplete);
 
 						// We can immediately accept since there is no online game
-						if (!OnlineSub.GameInterface.AcceptGameInvite(LocalPlayer(Player).ControllerId,'Game'))
+						//@HSL_BEGIN - JRO - 3/21/2016 - Adding invite info
+						if (!OnlineSub.GameInterface.AcceptGameInvite(LocalPlayer(Player).ControllerId,'Game',CachedInviteResult))
+						//@HSL_END
 						{
 							OnlineSub.GameInterface.ClearJoinOnlineGameCompleteDelegate(OnInviteJoinComplete);
 							// Do some error handling
@@ -7751,12 +7766,14 @@ function OnEndForInviteComplete(name SessionName,bool bWasSuccessful)
  */
 function OnDestroyForInviteComplete(name SessionName,bool bWasSuccessful)
 {
+	`log("SESSIONS - Destroy for invite complete for session name"@SessionName@"and successful"@bWasSuccessful);
+
 	if (bWasSuccessful)
 	{
 		// Set the delegate for notification of the join completing
 		OnlineSub.GameInterface.AddJoinOnlineGameCompleteDelegate(OnInviteJoinComplete);
 		// This will have us join async
-		if (!OnlineSub.GameInterface.AcceptGameInvite(LocalPlayer(Player).ControllerId,SessionName))
+		if (!OnlineSub.GameInterface.AcceptGameInvite(LocalPlayer(Player).ControllerId,SessionName,CachedInviteResult)) //@HSL - JRO - 3/21/2016 - PS4 Sessions - Make sure we accept the correct game!
 		{
 			OnlineSub.GameInterface.ClearJoinOnlineGameCompleteDelegate(OnInviteJoinComplete);
 			// Do some error handling
@@ -7819,7 +7836,7 @@ function OnInviteJoinComplete(name SessionName,bool bWasSuccessful)
 /** Override to display a message to the user */
 function NotifyInviteFailed()
 {
-	`Log("Invite handling failed");
+	`Log("SESSIONS - Invite handling failed");
 	ClearInviteDelegates();
 }
 
@@ -9221,6 +9238,8 @@ event bool NotifyDisconnect(string Command)
 
 /** Function called from matinee to turn on/off a constant camera anim for noise */
 event SetMatineeConstantCameraAnim(bool bOn, byte Type, float Rate);
+
+event SetUIScale(float fScale);
 
 `if(`__TW_ONLINESUBSYSTEM_)
 /** see TWOnlineLobby */

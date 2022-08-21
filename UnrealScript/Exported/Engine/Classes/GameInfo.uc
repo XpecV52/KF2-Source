@@ -332,6 +332,7 @@ function native bool GetMapCommonPackageName(const out string InFilename, out st
 // (cpptext)
 // (cpptext)
 // (cpptext)
+// (cpptext)
 
 //------------------------------------------------------------------------------
 // Engine notifications.
@@ -1372,8 +1373,9 @@ event PlayerController Login(string Portal, string Options, const UniqueNetID Un
 
 static function bool AllowAnalyticsLogging();
 
-	
+function ScoreDamage( int DamageAmount, int HealthBeforeDamage, Controller InstigatedBy, Pawn DamagedPawn, class<DamageType> DamageType );
 
+// OnlineSubsystem
 event bool SeatPlayer(const UniqueNetId SeatedPlayerID);
 event MakeReservations(const string URLOptions, const UniqueNetId PlayerId, out string OutError);
 event bool ConfirmReservation(const UniqueNetId PlayerID);
@@ -3923,6 +3925,9 @@ defaultproperties
    MinDynamicBandwidth=4000
    MaxDynamicBandwidth=7000
    StreamingPauseIcon=Material'EngineResources.M_StreamingPause'
+   GameInfoClassAliases(0)=(ShortName="BenchMark",GameClassName="KFGameContent.KFGameInfo_BenchMark")
+   GameInfoClassAliases(1)=(ShortName="Survival",GameClassName="KFGameContent.KFGameInfo_Survival")
+   GameInfoClassAliases(2)=(ShortName="Versus",GameClassName="KFGameContent.KFGameInfo_VersusSurvival")
    DefaultGameType="KFGameContent.KFGameInfo_Survival"
    CollisionType=COLLIDE_CustomDefault
    Name="Default__GameInfo"

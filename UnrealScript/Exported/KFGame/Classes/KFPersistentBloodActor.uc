@@ -34,6 +34,14 @@ var const DrawConeComponent PreviewCone;
 // (cpptext)
 // (cpptext)
 
+simulated function TryAddBloodSplats()
+{
+	if( bEnabled && BloodScale > 0.f )
+	{
+		LeaveBloodSplats();
+	}
+}
+
 simulated function LeaveBloodSplats()
 {
 	local KFGoreManager GoreManager;
@@ -85,10 +93,12 @@ simulated function LeaveBloodSplats()
 
 simulated event PreBeginPlay()
 {
-	if( bEnabled && BloodScale > 0.f )
-	{
-		LeaveBloodSplats();
-	}
+	TryAddBloodSplats();
+}
+
+simulated function Reset()
+{
+	TryAddBloodSplats();
 }
 
 defaultproperties

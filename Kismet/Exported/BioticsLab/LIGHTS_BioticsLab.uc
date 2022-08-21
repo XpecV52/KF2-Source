@@ -92,14 +92,15 @@ End Object
 
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_0
    EventName="MetalDetectorRightActivated"
-   MaxWidth=308
+   bClientSideOnly=True
+   MaxWidth=419
    OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'LIGHTS_BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_3')),DrawY=434,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=722,OverrideDelta=122)
+   VariableLinks(0)=(DrawX=777,OverrideDelta=177)
    ObjInstanceVersion=2
    ParentSequence=Sequence'LIGHTS_BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=568
    ObjPosY=368
-   DrawWidth=174
+   DrawWidth=229
    DrawHeight=128
    Name="SeqEvent_RemoteEvent_0"
    ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
@@ -268,14 +269,15 @@ End Object
 
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_2
    EventName="MetalDetectorLeftActivated"
-   MaxWidth=301
+   bClientSideOnly=True
+   MaxWidth=412
    OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'LIGHTS_BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_2')),DrawY=1162,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=686,OverrideDelta=118)
+   VariableLinks(0)=(DrawX=742,OverrideDelta=174)
    ObjInstanceVersion=2
    ParentSequence=Sequence'LIGHTS_BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=536
    ObjPosY=1096
-   DrawWidth=170
+   DrawWidth=226
    DrawHeight=128
    Name="SeqEvent_RemoteEvent_2"
    ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'

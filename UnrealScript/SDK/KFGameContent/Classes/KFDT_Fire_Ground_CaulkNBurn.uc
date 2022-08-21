@@ -11,8 +11,6 @@
 class KFDT_Fire_Ground_CaulkNBurn extends KFDT_Fire_Ground
 	abstract;
 
-`include(KFGame\KFMatchStats.uci);
-
 defaultproperties
 {
 	WeaponDef=class'KFWeapDef_CaulkBurn'

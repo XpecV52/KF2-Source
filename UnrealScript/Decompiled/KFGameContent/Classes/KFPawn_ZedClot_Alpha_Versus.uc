@@ -15,13 +15,14 @@ defaultproperties
     ThirdPersonViewOffset=(OffsetHigh=(X=-140,Y=50,Z=0),OffsetMid=(X=-160,Y=50,Z=0),OffsetLow=(X=-220,Y=50,Z=50))
     begin object name=MeleeHelper class=KFMeleeHelperAI
         BaseDamage=10
+        PlayerDoorDamageMultiplier=5
         MeleeImpactCamScale=0.2
     object end
     // Reference: KFMeleeHelperAI'Default__KFPawn_ZedClot_Alpha_Versus.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
     DoshValue=20
     XPValues=32
-    VulnerableDamageTypes=/* Array type was not detected. */
+    DamageTypeModifiers=/* Array type was not detected. */
     SpecialMoveCooldowns=/* Array type was not detected. */
     LocalizationKey=KFPawn_ZedClot_Alpha
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
@@ -31,9 +32,9 @@ defaultproperties
     ThirdPersonHeadMeshComponent=ThirdPersonHead0
     bWeakZedGrab=false
     HitZones=/* Array type was not detected. */
-    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_ZedClot_Alpha_Versus.Afflictions'
-    InstantIncaps=/* Array type was not detected. */
-    SprintSpeed=570
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedClot_Alpha_Versus.Afflictions'
+    IncapSettings=/* Array type was not detected. */
+    SprintSpeed=550
     SprintStrafeSpeed=325
     TeammateCollisionRadiusPercent=0.3
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
@@ -51,8 +52,8 @@ defaultproperties
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedClot_Alpha_Versus.WeaponAmbientEchoHandler'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedClot_Alpha_Versus.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedClot_Alpha_Versus.DialogAkSoundComponent'
-    GroundSpeed=250
-    Health=455
+    GroundSpeed=300
+    Health=200
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

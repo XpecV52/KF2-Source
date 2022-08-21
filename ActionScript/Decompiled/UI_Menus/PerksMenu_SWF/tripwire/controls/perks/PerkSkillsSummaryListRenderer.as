@@ -8,6 +8,7 @@ package tripwire.controls.perks
         {
             super();
             mouseEnabled = false;
+            highlightColor = 14538703;
         }
     }
 }

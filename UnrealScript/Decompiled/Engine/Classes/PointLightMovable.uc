@@ -60,7 +60,6 @@ defaultproperties
     object end
     // Reference: PointLightComponent'Default__PointLightMovable.PointLightComponent0'
     Components(3)=PointLightComponent0
-    TickGroup=ETickingGroup.TG_DuringAsyncWork
     bHardAttach=true
     bMovable=true
     begin object name=LightMeshComponent0 class=StaticMeshComponent

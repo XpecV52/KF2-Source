@@ -1,7 +1,5 @@
 package tripwire.containers.Perks
 {
-    import com.greensock.TweenMax;
-    import com.greensock.easing.Linear;
     import flash.display.MovieClip;
     import flash.text.TextField;
     import scaleform.clik.controls.UILoader;
@@ -34,68 +32,37 @@ package tripwire.containers.Perks
             ANIM_OFFSET_X = 0;
         }
         
-        public function set perkData(value:Object) : void
+        public function set perkData(param1:Object) : void
         {
-            var tempSource:String = null;
-            this.data = value;
+            var _loc2_:String = null;
+            this.data = param1;
             if(this.data != null)
             {
                 this.perkXPTextField.text = (!!this.data.xpString ? this.data.xpString : "") + " XP";
                 this.progressBarWidth = !!this.data.xpPercent ? Number(this.data.xpPercent) : Number(0);
                 this.perkNameTextfield.text = !!this.data.perkTitle ? this.data.perkTitle : "";
                 this.perkLevelTextfield.text = !!this.data.perkLevel ? this.data.perkLevel : "";
-                tempSource = !!this.data.iconSource ? this.data.iconSource : "";
-                if(tempSource != "")
+                _loc2_ = !!this.data.iconSource ? this.data.iconSource : "";
+                if(_loc2_ != "")
                 {
-                    this.perkIcon.source = tempSource;
+                    this.perkIcon.source = _loc2_;
                 }
                 this.perkRankTextField.text = !!this.data.prestigeLevel ? this.data.prestigeLevel : "";
             }
         }
         
-        protected function set progressBarWidth(value:Number) : void
+        protected function set progressBarWidth(param1:Number) : void
         {
-            if(value < 0)
+            if(param1 < 0)
             {
-                value = 0;
+                param1 = 0;
             }
-            if(value > 1)
+            if(param1 > 1)
             {
-                value = 1;
+                param1 = 1;
             }
-            this.progressNum = 100 * value + 1;
+            this.progressNum = 100 * param1 + 1;
             this.progressBar.gotoAndStop(this.progressNum);
-        }
-        
-        override protected function openAnimation() : *
-        {
-            TweenMax.killTweensOf(this);
-            TweenMax.fromTo(this,ANIM_TIME,{
-                "z":ANIM_OFFSET_Z,
-                "x":ANIM_START_X + ANIM_OFFSET_X,
-                "alpha":0,
-                "blurFilter":{
-                    "blurX":ANIM_BLUR_X,
-                    "blurY":ANIM_BLUR_Y,
-                    "quality":1
-                },
-                "ease":Linear.easeNone,
-                "useFrames":true,
-                "overwrite":1
-            },{
-                "z":ANIM_START_Z,
-                "x":ANIM_START_X,
-                "alpha":_defaultAlpha,
-                "blurFilter":{
-                    "blurX":AnimBLUR_OUT,
-                    "blurY":AnimBLUR_OUT,
-                    "quality":1,
-                    "remove":true
-                },
-                "ease":Linear.easeNone,
-                "useFrames":true,
-                "onComplete":onOpened
-            });
         }
     }
 }

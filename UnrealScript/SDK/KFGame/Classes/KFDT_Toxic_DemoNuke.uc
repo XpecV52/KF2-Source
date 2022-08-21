@@ -1,7 +1,7 @@
 //=============================================================================
 // KFDT_DemoNuke_Toxic
 //=============================================================================
-// Demolitionist's Nuke skill radiaten DamageType
+// Demolitionist's Nuke skill radiation DamageType
 // @note: In KFGame.u because it's references by the Demo perk
 //=============================================================================
 // Killing Floor 2
@@ -12,12 +12,24 @@
 class KFDT_Toxic_DemoNuke extends KFDT_Toxic
 	hidedropdown;
 
+/** Nuke will always apply poison */
+static function bool AlwaysPoisons()
+{
+	return true;
+}
+
 defaultproperties
 {
-	DoT_Type=DOT_None
+	DoT_Type=DOT_Toxic
     bNoInstigatorDamage=true
 
-    KnockdownPower=55
-	StumblePower=48
-	LegStumblePower=48
+    KnockdownPower=0
+	StumblePower=0
+
+	DoT_Duration=10.0
+	DoT_Interval=1.0
+	DoT_DamageScale=0.1
+
+	PoisonPower=1000
+	BurnPower=0
 }

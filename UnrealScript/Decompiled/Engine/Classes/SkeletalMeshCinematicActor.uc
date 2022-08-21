@@ -46,7 +46,6 @@ defaultproperties
     // Reference: SkeletalMeshComponent'Default__SkeletalMeshCinematicActor.SkeletalMeshComponent0'
     Components(0)=SkeletalMeshComponent0
     Components(1)=AudioComponent'Default__SkeletalMeshCinematicActor.FaceAudioComponent'
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
     begin object name=SkeletalMeshComponent0 class=SkeletalMeshComponent
         Animations=AnimNodeSequence'Default__SkeletalMeshCinematicActor.SkeletalMeshComponent0.AnimNodeSeq0'
         bUpdateSkelWhenNotRendered=true

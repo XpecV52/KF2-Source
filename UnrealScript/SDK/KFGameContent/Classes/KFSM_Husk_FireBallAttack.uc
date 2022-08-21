@@ -6,7 +6,6 @@
 // Killing Floor 2
 // Copyright (C) 2015 Tripwire Interactive LLC
 //=============================================================================
-
 class KFSM_Husk_FireBallAttack extends KFSM_PlaySingleAnim;
 
 protected function bool InternalCanDoSpecialMove()
@@ -63,7 +62,7 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
  */
 function bool CanOverrideMoveWith( Name NewMove )
 {
-	if ( bCanBeInterrupted && (NewMove == 'KFSM_Stunned' || NewMove == 'KFSM_Stumble' || NewMove == 'Knockdown') )
+	if ( bCanBeInterrupted && (NewMove == 'KFSM_Stunned' || NewMove == 'KFSM_Stumble' || NewMove == 'KFSM_Knockdown' || NewMove == 'KFSM_Frozen') )
 	{
 		return TRUE; // for NotifyAttackParried
 	}
@@ -73,10 +72,15 @@ function bool CanOverrideMoveWith( Name NewMove )
 DefaultProperties
 {
 	// SpecialMove
-	AnimName=Atk_Shoot_V1
 	Handle=KFSM_Husk_FireBallAttack
 	bDisableSteering=false
 	bDisableMovement=true
-	AnimStance=EAS_FullBody
+	bDisableTurnInPlace=true
    	bCanBeInterrupted=true
+   	bUseCustomRotationRate=true
+   	CustomRotationRate=(Pitch=66000,Yaw=100000,Roll=66000)
+
+   	// Animation
+	AnimName=Atk_Shoot_V1
+	AnimStance=EAS_FullBody
 }

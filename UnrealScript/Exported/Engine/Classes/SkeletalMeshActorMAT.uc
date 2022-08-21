@@ -131,6 +131,7 @@ defaultproperties
    FacialAudioComp=FaceAudioComponent
    Components(0)=SkeletalMeshComponent0
    Components(1)=FaceAudioComponent
+   CollisionType=COLLIDE_CustomDefault
    CollisionComponent=SkeletalMeshComponent0
    Name="Default__SkeletalMeshActorMAT"
    ObjectArchetype=SkeletalMeshCinematicActor'Engine.Default__SkeletalMeshCinematicActor'

@@ -12,8 +12,6 @@ class KFDT_Fire_DragonsBreathDoT extends KFDT_Fire
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 static function int GetKillerDialogID()
 {
 	return 86;//KILL_Fire
@@ -38,6 +36,6 @@ defaultproperties
 	DoT_Interval=1.0
 	DoT_DamageScale=1.0
 
-	BurnPower=1.25
+	BurnPower=12.5
 }
 

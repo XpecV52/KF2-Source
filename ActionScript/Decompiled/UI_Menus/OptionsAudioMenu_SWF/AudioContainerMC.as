@@ -9,10 +9,39 @@ package
         public function AudioContainerMC()
         {
             super();
+            this.__setProp_defaultButton_AudioContainerMC_Layer5_0();
             this.__setProp_vocalsCheckBox_AudioContainerMC_test_0();
             this.__setProp_minimalDialogueCheckBox_AudioContainerMC_test_0();
             this.__setProp_pushToTalkBox_AudioContainerMC_test_0();
             this.__setProp_closeButton_AudioContainerMC_header_0();
+        }
+        
+        function __setProp_defaultButton_AudioContainerMC_Layer5_0() : *
+        {
+            try
+            {
+                defaultButton["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            defaultButton.autoRepeat = false;
+            defaultButton.autoSize = "none";
+            defaultButton.data = "";
+            defaultButton.enabled = true;
+            defaultButton.enableInitCallback = false;
+            defaultButton.focusable = true;
+            defaultButton.label = "";
+            defaultButton.selected = false;
+            defaultButton.toggle = false;
+            defaultButton.visible = false;
+            try
+            {
+                defaultButton["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
         }
         
         function __setProp_vocalsCheckBox_AudioContainerMC_test_0() : *

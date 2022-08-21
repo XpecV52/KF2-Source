@@ -48,8 +48,8 @@ defaultproperties
       DamageRadius=150.000000
       ActorClassToIgnoreForDamage=Class'kfgamecontent.KFProj_ExplosiveSubmunition_HX25'
       MyDamageType=Class'kfgamecontent.KFDT_ExplosiveSubmunition_HX25'
-      KnockDownStrength=0.000000
-      MomentumTransferScale=0.000000
+      KnockDownStrength=10.000000
+      MomentumTransferScale=1.000000
       ExplosionSound=AkEvent'WW_WEP_SA_HX25.Play_WEP_SA_HX25_Mini_Explosion'
       ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_ExplosiveSubmunition_HX25:ExplosionPointLight'
       ExploLightFadeOutTime=0.300000

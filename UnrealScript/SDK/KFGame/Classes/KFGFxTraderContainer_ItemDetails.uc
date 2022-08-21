@@ -202,7 +202,8 @@ function float GetStatMax( TraderWeaponStat Stat )
 function SetGenericItemDetails(out STraderItem TraderItem, out GFxObject ItemData)
 {
 	local KFPerk CurrentPerk;
-	local int FinalMaxSpareAmmoCount, FinalMagazineCapacity;
+	local int FinalMaxSpareAmmoCount;
+	local byte FinalMagazineCapacity;
 
 	//@todo: rename flash objects to something more generic, like stat0text, stat0bar, etc.
 	if( TraderItem.WeaponStats.Length > 0 )

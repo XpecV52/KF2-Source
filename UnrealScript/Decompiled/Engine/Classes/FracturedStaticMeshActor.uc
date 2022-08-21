@@ -53,6 +53,7 @@ var() bool bBreakChunksOnActorTouch;
 var() bool bShouldSaveForCheckpoint;
 /** If set, fractures parts are destroyed on any collision */
 var(KFFracturedMeshActor) bool bDestroyFragmentsOnImpact;
+var transient bool bHasBeenDirtied;
 /** Set of damage types that can cause pieces to break off this FSAM. If empty, all damage types can do this. */
 var() array< class<DamageType> > FracturedByDamageType;
 /** Allows controlling how much 'health' chunks have on a per-instance basis */
@@ -296,6 +297,7 @@ simulated event TakeDamage(int Damage, Controller EventInstigator, Vector HitLoc
             ChunkHealth[HitInfo.Item] -= int(WorldInfo.FracturedMeshWeaponDamage);
         }
     }
+    bHasBeenDirtied = true;
     if(ChunkHealth[HitInfo.Item] <= 0)
     {
         FracMesh = FracturedStaticMesh(FracturedStaticMeshComponent.StaticMesh);
@@ -382,10 +384,11 @@ simulated event Explode()
     local FracturedStaticMeshPart FracPart;
     local float PartScale;
 
+    bHasBeenDirtied = true;
     FracMesh = FracturedStaticMesh(FracturedStaticMeshComponent.StaticMesh);
     FragmentVis = FracturedStaticMeshComponent.GetVisibleFragments();
     I = 0;
-    J0x65:
+    J0x71:
 
     if(I < FragmentVis.Length)
     {
@@ -401,7 +404,7 @@ simulated event Explode()
             FragmentVis[I] = 0;
         }
         ++ I;
-        goto J0x65;
+        goto J0x71;
     }
     FracturedStaticMeshComponent.SetVisibleFragments(FragmentVis);
 }
@@ -427,6 +430,7 @@ simulated event HideOneFragment()
         {
             FragmentVis[I] = 0;
             FracturedStaticMeshComponent.SetVisibleFragments(FragmentVis);
+            bHasBeenDirtied = true;
             return;
         }
         ++ I;
@@ -465,6 +469,7 @@ simulated event SetLoseChunkReplacementMaterial()
     {
         return;
     }
+    bHasBeenDirtied = true;
     FracMesh = FracturedStaticMesh(FracturedStaticMeshComponent.StaticMesh);
     if(FracturedStaticMeshComponent.LoseChunkOutsideMaterialOverride != none)
     {
@@ -476,7 +481,7 @@ simulated event SetLoseChunkReplacementMaterial()
     }
     if(LoseChunkOutsideMat != none)
     {
-        MI_LoseChunkPreviousMaterial = FracturedStaticMeshComponent.GetMaterial(FracMesh.OutsideMaterialIndex).GetMaterial();
+        MI_LoseChunkPreviousMaterial = FracturedStaticMeshComponent.GetMaterial(FracMesh.OutsideMaterialIndex);
         FracturedStaticMeshComponent.SetMaterial(FracMesh.OutsideMaterialIndex, LoseChunkOutsideMat);
     }
 }
@@ -498,6 +503,23 @@ simulated function NotifyHitByExplosion(Controller InstigatorController, float D
         }
         ++ Idx;
         goto J0x0B;
+    }
+}
+
+simulated function Reset()
+{
+    if(!bHasBeenDirtied)
+    {
+        return;
+    }
+    bHasBeenDirtied = false;
+    ResetVisibility();
+    ResetHealth();
+    FracturedStaticMeshComponent.SetBlockRigidBody(true);
+    if(MI_LoseChunkPreviousMaterial != none)
+    {
+        FracturedStaticMeshComponent.SetMaterial(FracturedStaticMesh(FracturedStaticMeshComponent.StaticMesh).OutsideMaterialIndex, MI_LoseChunkPreviousMaterial);
+        MI_LoseChunkPreviousMaterial = none;
     }
 }
 
@@ -539,13 +561,14 @@ defaultproperties
     object end
     // Reference: FracturedStaticMeshComponent'Default__FracturedStaticMeshActor.FracturedStaticMeshComponent0'
     Components(1)=FracturedStaticMeshComponent0
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
+    CollisionType=ECollisionType.COLLIDE_BlockAll
     bNoDelete=true
     bWorldGeometry=true
     bRouteBeginPlayEvenIfStatic=false
     bGameRelevant=true
     bMovable=false
     bCanBeDamaged=true
+    BlockRigidBody=true
     bCollideActors=true
     bBlockActors=true
     bProjTarget=true

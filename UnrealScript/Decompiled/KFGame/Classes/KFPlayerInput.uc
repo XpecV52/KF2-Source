@@ -369,6 +369,14 @@ function AdjustMouseSensitivity(float FOVScale)
     super(PlayerInput).AdjustMouseSensitivity(FOVScale);
 }
 
+event ReInitializeControlsUI()
+{
+    if(((Outer.MyGFxManager != none) && Outer.MyGFxManager.OptionsControlsMenu != none) && Outer.MyGFxManager.OptionsControlsMenu.InputContainer != none)
+    {
+        Outer.MyGFxManager.OptionsControlsMenu.InputContainer.InitializeOptions();
+    }
+}
+
 function BindKey(KeyBind NewKeyBind, string bindCommand, bool bIsAlt)
 {
     local KeyBind CurrentKeyBind;
@@ -1206,7 +1214,6 @@ exec function InteractTimer()
 
 exec function StartVoiceChat(optional bool bPublicChat)
 {
-    LogInternal("VOICE CHAT!");
     if(bRequiresPushToTalk)
     {
         if(bPublicChat)
@@ -1874,7 +1881,7 @@ function JumpVersus()
             KFPM = KFPawn_Monster(Outer.Pawn);
             if(KFPM != none)
             {
-                if(KFPM.GetSpecialMoveCooldownTimeRemainingByHandle(12) > 0)
+                if(KFPM.GetSpecialMoveCooldownTimeRemainingByHandle(11) > 0)
                 {
                     return;
                 }
@@ -2004,12 +2011,14 @@ exec function UnsuppressWeaponAttach(optional name ClassName)
 
 exec function SuppressAffliction(optional name ClassName)
 {
-    Outer.ConsoleCommand("SETNOPEC KFAfflictionBase bDebug false");
+    Outer.ConsoleCommand("SETNOPEC KFAfflictionBase bDebug false");    
+    Outer.ConsoleCommand("SETNOPEC KFAfflictionManager bDebugLog false");
 }
 
 exec function UnsuppressAffliction(optional name ClassName)
 {
-    Outer.ConsoleCommand("SETNOPEC KFAfflictionBase bDebug true");
+    Outer.ConsoleCommand("SETNOPEC KFAfflictionBase bDebug true");    
+    Outer.ConsoleCommand("SETNOPEC KFAfflictionManager bDebugLog true");
 }
 
 exec function SuppressWeaponAnim(optional name ClassName)

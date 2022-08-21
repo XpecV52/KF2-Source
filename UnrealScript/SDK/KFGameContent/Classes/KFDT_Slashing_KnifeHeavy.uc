@@ -12,8 +12,6 @@ class KFDT_Slashing_KnifeHeavy extends KFDT_Slashing_Knife
 	abstract
 	hidedropdown;
 
-`include(KFGame\KFMatchStats.uci);
-
 /** Allows the damage type to customize exactly which hit zones it can dismember */
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
@@ -33,15 +31,11 @@ static simulated function bool CanDismemberHitZone( name InHitZoneName )
 }
 
 defaultproperties
-{
- 
- 
- 	KnockdownPower=21
-	StunPower=31
- 	StumblePower=45
-	LegStumblePower=45
-	MeleeHitPower=113
-	
+{ 
+ 	KnockdownPower=0
+	StunPower=0
+ 	StumblePower=50
+	MeleeHitPower=50	
 	
 	KDamageImpulse=300
 	KDeathUpKick=400

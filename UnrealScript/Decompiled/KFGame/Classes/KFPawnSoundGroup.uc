@@ -23,13 +23,13 @@ struct FootstepSoundInfo
 
 struct ImpactSoundCoolDownInfo
 {
-    var KFPawnAfflictions.EHitZoneBodyPart Limb;
+    var KFAfflictionManager.EHitZoneBodyPart Limb;
     var name BoneName;
     var float LastImpactSoundTime;
 
     structdefaultproperties
     {
-        Limb=EHitZoneBodyPart.BP_None
+        Limb=EHitZoneBodyPart.BP_Torso
         BoneName=None
         LastImpactSoundTime=0
     }

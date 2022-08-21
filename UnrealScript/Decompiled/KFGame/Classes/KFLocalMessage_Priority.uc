@@ -24,6 +24,7 @@ enum EGameMessageType
     GMT_ZedsWin,
     GMT_HumansWin,
     GMT_AttackHumanPlayers,
+    GMT_NextRoundBegin,
     GMT_MAX
 };
 
@@ -44,6 +45,9 @@ var const localized string HumansLoseMessage;
 var const localized string HumansWinMessage;
 var const localized string AttackHumanPlayersString;
 var const localized string ZedGroupRegroupingString;
+var const localized string NextRoundBeginString;
+var const localized string PlayerCanChangePerksString;
+var const localized string ZedWaitingForNextRoundString;
 
 static function ClientReceive(PlayerController P, optional int Switch, optional PlayerReplicationInfo RelatedPRI_1, optional PlayerReplicationInfo RelatedPRI_2, optional Object OptionalObject)
 {
@@ -74,17 +78,6 @@ static function ClientReceive(PlayerController P, optional int Switch, optional 
             {
                 KFGRI.bMatchVictory = true;
             }
-            Class'KFMusicStingerHelper'.static.PlayMatchWonStinger(P);
-            break;
-        case 3:
-            Class'KFMusicStingerHelper'.static.PlayMatchLostStinger(P);
-            break;
-        case 13:
-            KFGRI = KFGameReplicationInfo(P.WorldInfo.GRI);
-            if(KFGRI != none)
-            {
-                KFGRI.bMatchVictory = true;
-            }
             if(P.PlayerReplicationInfo.GetTeamNum() == 255)
             {
                 Class'KFMusicStingerHelper'.static.PlayMatchLostStinger(P);                
@@ -94,7 +87,7 @@ static function ClientReceive(PlayerController P, optional int Switch, optional 
                 Class'KFMusicStingerHelper'.static.PlayMatchWonStinger(P);
             }
             break;
-        case 12:
+        case 3:
             if(P.PlayerReplicationInfo.GetTeamNum() == 255)
             {
                 Class'KFMusicStingerHelper'.static.PlayMatchWonStinger(P);                
@@ -102,6 +95,31 @@ static function ClientReceive(PlayerController P, optional int Switch, optional 
             else
             {
                 Class'KFMusicStingerHelper'.static.PlayMatchLostStinger(P);
+            }
+            break;
+        case 13:
+            KFGRI = KFGameReplicationInfo(P.WorldInfo.GRI);
+            if(KFGRI != none)
+            {
+                KFGRI.bMatchVictory = true;
+            }
+            if(P.PlayerReplicationInfo.GetTeamNum() == 255)
+            {
+                Class'KFMusicStingerHelper'.static.PlayRoundLostStinger(P);                
+            }
+            else
+            {
+                Class'KFMusicStingerHelper'.static.PlayRoundWonStinger(P);
+            }
+            break;
+        case 12:
+            if(P.PlayerReplicationInfo.GetTeamNum() == 255)
+            {
+                Class'KFMusicStingerHelper'.static.PlayRoundWonStinger(P);                
+            }
+            else
+            {
+                Class'KFMusicStingerHelper'.static.PlayRoundLostStinger(P);
             }
             break;
         case 9:
@@ -187,6 +205,16 @@ static function string GetMessageString(int Switch, optional out string Secondar
             return "";
         case 14:
             return default.AttackHumanPlayersString;
+        case 15:
+            if(TeamIndex == 255)
+            {
+                SecondaryString = default.ZedWaitingForNextRoundString;                
+            }
+            else
+            {
+                SecondaryString = default.PlayerCanChangePerksString;
+            }
+            return default.NextRoundBeginString;
         default:
             return "";
             break;
@@ -213,6 +241,8 @@ static function float GetMessageLifeTime(int Switch)
             return 0;
         case 14:
             return 2;
+        case 15:
+            return 5;
         default:
             return default.Lifetime;
             break;
@@ -226,16 +256,19 @@ defaultproperties
     GetToTraderMessage="Get to the Trader Pod"
     YouLostMessage="D E F E A T"
     YouWonMessage="V I C T O R Y"
-    SquadWipedOutMessage="Your squad was wiped out"
-    SquadSurvivedMessage="Your squad survived"
+    SquadWipedOutMessage="Your squad was wiped out!"
+    SquadSurvivedMessage="Your squad survived!"
     ObjectiveStartMessage="Objective Started!"
     ObjectiveWonMessage="Objective Won!"
     ObjectiveLostMessage="Objective Lost!"
     ObjectiveEndedMessage="Objective Ended!"
     ObjNotEnoughPlayersMessage="Not Enough Players!"
     ObjTimeRanOutMessage="Time Limit Reached!"
-    HumansLoseMessage="Humans squad wiped out!"
-    HumansWinMessage="Humans squad survived!"
+    HumansLoseMessage="Human squad wiped out!"
+    HumansWinMessage="Human squad survived!"
     AttackHumanPlayersString="Attack the Human Players!"
     ZedGroupRegroupingString="Zed Horde regrouping!"
+    NextRoundBeginString="N E X T  R O U N D"
+    PlayerCanChangePerksString="Perk changes are allowed"
+    ZedWaitingForNextRoundString="Zed Horde invasion imminent!"
 }

@@ -275,13 +275,6 @@ function Name ChooseAttackByName(name AttackName, optional KFPawn_Monster Instig
 
 	if ( idx != INDEX_NONE )
 	{
-		// Solve edge case where world time has reset but cooldowns haven't
-		if( class'WorldInfo'.static.GetWorldInfo().TimeSeconds < Attacks[Idx].LastTimePlayed )
-		{
-			`log("[ANIMINFO] WorldInfo.TimeSeconds mismatch! Resetting cooldowns.");
-			Attacks[Idx].LastTimePlayed = 0.f;
-		}
-
 		// if there is an instigator, check to see if this is a valid attack
 		if ( Instigator != None && !CanDoAttackAnim(idx, Instigator, Target) )
 		{
@@ -414,10 +407,23 @@ function byte GetStrikeFlags(int DesiredStrikeIndex)
 	return (DesiredStrikeIndex + (variant << 4));
 }
 
+/** Ensures that LastTimePlayed is never greater than world time */
+function CheckForValidCooldown( int AtkIdx )
+{
+	if( class'WorldInfo'.static.GetWorldInfo().TimeSeconds < Attacks[AtkIdx].LastTimePlayed )
+	{
+		`log("[ANIMINFO] WorldInfo.TimeSeconds mismatch! Resetting cooldowns.");
+		Attacks[AtkIdx].LastTimePlayed = 0.f;
+	}
+}
+
 /** Checks the AttackAnimInfo to see if this attack is valid to perform */
 function bool CanDoAttackAnim(int Idx, KFPawn P, optional Actor Target)
 {
 	local AttackAnimInfo Attack;
+
+	// Solve edge case where world time has reset but LastUsedTime hasn't
+	CheckForValidCooldown( Idx );
 
 	Attack = Attacks[Idx];
 

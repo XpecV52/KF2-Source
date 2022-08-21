@@ -13,14 +13,16 @@ enum EStore_Filter
     EStore_WeaponSkins,
     EStore_Cosmetics,
     EStore_Consumables,
-    EStore_MAX
+    EStore_Market_WeaponSkins,
+    EStore_Market_Cosmetics,
+    EStore_Market_Consumables,
+    EStore_Max
 };
 
-var const localized string NewReleasesString;
-var const localized string CartString;
-var const localized string ToolsString;
 var const localized string WeaponSkinsString;
-var const localized string CharactersString;
+var const localized string MarketConsumablesString;
+var const localized string MarketCosmeticsString;
+var const localized string LookUpOnMarketString;
 var KFGFxMenu_Store StoreMenu;
 var KFGFxStoreContainer_Main.EStore_Filter CurrentStoreFilter;
 
@@ -37,27 +39,53 @@ function LocalizeText()
 
     LocalizedObject = Outer.CreateObject("Object");
     LocalizedObject.SetString("back", Class'KFCommon_LocalizedStrings'.default.BackString);
-    LocalizedObject.SetString("newReleases", Class'KFGFxMenu_Inventory'.default.AllString);
-    LocalizedObject.SetString("characters", Class'KFGFxMenu_Inventory'.default.CosmeticString);
-    LocalizedObject.SetString("weaponSkins", WeaponSkinsString);
-    LocalizedObject.SetString("tools", Class'KFGFxMenu_Inventory'.default.ItemString);
-    LocalizedObject.SetString("cart", CartString);
+    LocalizedObject.SetString("all", Class'KFGFxMenu_Inventory'.default.AllString);
+    LocalizedObject.SetString("cosmetics", Class'KFGFxMenu_Inventory'.default.CosmeticString);
+    LocalizedObject.SetString("items", Class'KFGFxMenu_Inventory'.default.ItemString);
+    LocalizedObject.SetString("marketWeaponSkins", WeaponSkinsString);
+    LocalizedObject.SetString("marketCosmetics", MarketCosmeticsString);
+    LocalizedObject.SetString("marketConsumables", MarketConsumablesString);
     SetObject("localizedText", LocalizedObject);
 }
 
-function UpdateFilter(KFGFxStoreContainer_Main.EStore_Filter NewFilter, const out array<ItemProperties> StoreItemArray)
+function UpdateFilter(int NewFilterIndex)
 {
+    local KFGFxStoreContainer_Main.EStore_Filter NewFilter;
+
+    switch(NewFilterIndex)
+    {
+        case 0:
+            NewFilter = 0;
+            break;
+        case 1:
+            NewFilter = 2;
+            break;
+        case 2:
+            NewFilter = 3;
+            break;
+        case 3:
+            NewFilter = 4;
+            break;
+        case 4:
+            NewFilter = 5;
+            break;
+        case 5:
+            NewFilter = 6;
+            break;
+        default:
+            break;
+    }
     if(CurrentStoreFilter != NewFilter)
     {
         CurrentStoreFilter = NewFilter;
-        SendItems(StoreItemArray);
+        SendItems(StoreMenu.OnlineSub.ItemPropertiesList);
     }
 }
 
 function SendItems(const out array<ItemProperties> StoreItemArray)
 {
     local int I, ItemCount;
-    local GFxObject DataProvider, DataObject;
+    local GFxObject DataProvider;
 
     ItemCount = 0;
     DataProvider = Outer.CreateArray();
@@ -66,17 +94,21 @@ function SendItems(const out array<ItemProperties> StoreItemArray)
 
     if(I < StoreItemArray.Length)
     {
-        if((StoreItemArray[I].Price != "") && (IsFilterSame(StoreItemArray[I].Type, CurrentStoreFilter)) || CurrentStoreFilter == 0)
+        if(CurrentStoreFilter < 4)
         {
-            DataObject = Outer.CreateObject("Object");
-            DataObject.SetString("label", StoreItemArray[I].Name);
-            DataObject.SetString("description", StoreItemArray[I].Description);
-            DataObject.SetString("price", StoreItemArray[I].Price);
-            DataObject.SetString("imageURL", "img://" $ StoreItemArray[I].IconURL);
-            DataObject.SetString("imageURLLarge", "img://" $ StoreItemArray[I].IconURLLarge);
-            DataObject.SetInt("SKU", StoreItemArray[I].Definition);
-            DataProvider.SetElementObject(ItemCount, DataObject);
-            ++ ItemCount;
+            if((StoreItemArray[I].Price != "") && (IsFilterSame(StoreItemArray[I].Type, CurrentStoreFilter)) || CurrentStoreFilter == 0)
+            {
+                DataProvider.SetElementObject(ItemCount, CreateStoreItem(StoreItemArray[I]));
+                ++ ItemCount;
+            }            
+        }
+        else
+        {
+            if((StoreItemArray[I].Price == "") && IsFilterSame(StoreItemArray[I].Type, CurrentStoreFilter))
+            {
+                DataProvider.SetElementObject(ItemCount, CreateStoreItem(StoreItemArray[I]));
+                ++ ItemCount;
+            }
         }
         ++ I;
         goto J0x3F;
@@ -84,16 +116,36 @@ function SendItems(const out array<ItemProperties> StoreItemArray)
     SetObject("storeItemData", DataProvider);
 }
 
+function GFxObject CreateStoreItem(ItemProperties StoreItem)
+{
+    local GFxObject DataObject;
+
+    DataObject = Outer.CreateObject("Object");
+    DataObject.SetString("label", StoreItem.Name);
+    DataObject.SetString("description", StoreItem.Description);
+    DataObject.SetString("price", StoreItem.Price);
+    DataObject.SetString("imageURL", "img://" $ StoreItem.IconURL);
+    DataObject.SetString("imageURLLarge", "img://" $ StoreItem.IconURLLarge);
+    DataObject.SetInt("SKU", StoreItem.Definition);
+    return DataObject;
+}
+
 function bool IsFilterSame(Engine.OnlineSubsystem.ItemType FirstType, KFGFxStoreContainer_Main.EStore_Filter SecondType)
 {
-    return (FirstType + 1) == SecondType;
+    if(SecondType < 4)
+    {
+        return (FirstType + 1) == SecondType;        
+    }
+    else
+    {
+        return (FirstType + 1) == (SecondType - 3);
+    }
+    return false;
 }
 
 defaultproperties
 {
-    NewReleasesString="New Releases"
-    CartString="Cart"
-    ToolsString="Tools"
-    WeaponSkinsString="Weapon Skins"
-    CharactersString="Characters"
+    WeaponSkinsString="Market Weapon Skins"
+    MarketConsumablesString="Market Crates/USBs"
+    MarketCosmeticsString="Market Cosmetics"
 }

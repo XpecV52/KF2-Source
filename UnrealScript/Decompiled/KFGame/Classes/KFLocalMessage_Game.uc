@@ -154,9 +154,9 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
         case 21:
             return RelatedPRI_1.PlayerName @ default.SharingContentString;
         case 22:
-            return RelatedPRI_1.PlayerName $ (GetKilledByZedMessage(OptionalObject));
+            return RelatedPRI_2.PlayerName $ (GetKilledByZedMessage(OptionalObject));
         case 23:
-            return RelatedPRI_1.PlayerName @ default.SuicideMessage;
+            return RelatedPRI_2.PlayerName @ default.SuicideMessage;
         default:
             return "";
             break;
@@ -231,12 +231,12 @@ defaultproperties
     AlreadyCarryingWeaponMessage="You already have this weapon"
     PickupWeaponAmmoMessage="You picked up %x% ammo"
     PickupMessage="You picked up a"
-    TooMuchWeightMessage="This weapon is too heavy. Try dropping or selling a weapon."
+    TooMuchWeightMessage="This weapon is too heavy. Try dropping or selling a weapon"
     ReceivedGrenadesFromMessage="You received grenades from"
     GaveGrenadesToMessage="You gave grenades to"
     YourselfString="yourself."
     FailedDropInventoryMessage="You can't drop that here"
-    PendingPerkChangesSet="Perk changes will be applied at the end of the wave."
+    PendingPerkChangesSet="Perk changes will be applied at the end of the wave"
     PendingPerkChangesApplied="Perk changes applied!"
     KilledMessage=" was eaten alive"
     SuicideMessage=" just gave up on life..."
@@ -256,7 +256,7 @@ defaultproperties
     FoundAMapCollectibleMessage="%x% found a %y%. %z% left..."
     FoundAllMapCollectiblesMessage="Every %x% has been found!"
     MapCollectibleName="piece of dosh bling"
-    SharingContentString="is sharing content."
+    SharingContentString="is sharing content"
     HeadShotAddedString="%x Headshot(s) - %y% Extra Damage!"
     HeadShotMaxString="Headshot! %x% Extra Damage!"
     HeadShotResetString="Missed Headshot. Normal Damage!"

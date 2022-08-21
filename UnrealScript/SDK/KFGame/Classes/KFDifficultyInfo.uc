@@ -136,13 +136,16 @@ function SetDifficultySettings( float GameDifficulty )
  ************************************************************/
 
 /** Scales the health this Zed has by the difficulty level */
-function GetAIHealthModifier(const out KFCharacterInfo_Monster InMonsterInfo, float GameDifficulty, byte NumLivingPlayers, out float HealthMod, out float HeadHealthMod)
+function GetAIHealthModifier(const out KFCharacterInfo_Monster InMonsterInfo, float GameDifficulty, byte NumLivingPlayers, out float HealthMod, out float HeadHealthMod, optional bool bApplyDifficultyScaling=true)
 {
 	if ( InMonsterInfo != none )
 	{
 		// Global mod * character mod
-    	HealthMod = GetGlobalHealthMod() * GetCharHealthModDifficulty(InMonsterInfo, GameDifficulty);
-		HeadHealthMod = GetGlobalHealthMod() * GetCharHeadHealthModDifficulty(InMonsterInfo, GameDifficulty);
+		if( bApplyDifficultyScaling )
+		{
+	    	HealthMod = GetGlobalHealthMod() * GetCharHealthModDifficulty(InMonsterInfo, GameDifficulty);
+			HeadHealthMod = GetGlobalHealthMod() * GetCharHeadHealthModDifficulty(InMonsterInfo, GameDifficulty);
+		}
 
 		// invalid scaling?
 		if ( HealthMod <= 0 )

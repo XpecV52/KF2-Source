@@ -248,6 +248,7 @@ defaultproperties
       bAlwaysRenderIfSelected=True
       ReplacementPrimitive=None
       CollideActors=True
+      BlockZeroExtent=False
       Name="CollisionCylinder"
       ObjectArchetype=CylinderComponent'Engine.Default__Trigger_PawnsOnly:CollisionCylinder'
    End Object

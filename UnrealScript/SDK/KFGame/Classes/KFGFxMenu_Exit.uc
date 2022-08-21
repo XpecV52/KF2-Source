@@ -49,25 +49,24 @@ function SetExitOptions()
 
 function SetMenuText()
 {
-	local byte i;
+	local byte i, ButtonCount;
 	local GFxObject DataProvider, DataObject;
 
+	ButtonCount = 0;
 	DataProvider = CreateArray();
 	DataProvider.SetString( "header", HeaderString );
 	for( i = 0; i < OptionStrings.length; i++ )
 	{
 		DataObject = CreateObject( "Object" );
 		DataObject.SetString( "label", OptionStrings[i] );
-		if(OptionStrings[i] == ExitToMainMenu)
+		DataObject.SetInt( "buttonID", i );
+		if(OptionStrings[i] == ExitToMainMenu && class'WorldInfo'.static.IsMenuLevel())
 		{
-			DataObject.SetBool( "enabled", !class'WorldInfo'.static.IsMenuLevel() );
-		}
-		else
-		{
-			DataObject.SetBool( "enabled", true );
+			continue;
 		}
 		
-		DataProvider.SetElementObject( i, DataObject );
+		DataProvider.SetElementObject( ButtonCount, DataObject );
+		ButtonCount++;
 	}
 	SetObject("buttonNames", DataProvider);
 }
@@ -80,7 +79,15 @@ function Callback_MenuSelected( int MenuIndex )
 			ShowExitToOSPopUp();
 		break;
 		case EO_TO_Main_Menu:
-			ShowLeaveGamePopUp();
+			if(class'WorldInfo'.static.IsMenuLevel())
+			{
+				ShowExitToOSPopUp();
+			}
+			else
+			{
+				ShowLeaveGamePopUp();
+			}
+			
 		break;
 	}
 }

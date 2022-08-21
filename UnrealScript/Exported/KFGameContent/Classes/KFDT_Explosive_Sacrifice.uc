@@ -12,66 +12,12 @@ class KFDT_Explosive_Sacrifice extends KFDT_Explosive
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 15;
-
 defaultproperties
 {
    bShouldSpawnPersistentBlood=True
-   StunPower=54
-   KnockdownPower=50
-   StumblePower=0
+   StunPower=21.000000
+   KnockdownPower=20.000000
+   StumblePower=0.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Demolitionist'
    KDeathVel=300.000000
    KDeathUpKick=1000.000000

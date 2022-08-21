@@ -95,6 +95,7 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 function PlayAnimation()
 {
 	local byte Variant;
+	local Controller BossController;
 	local KFPawn_MonsterBoss BossPawn;
 	local KFPlayerController KFPC;
 	local vector CameraAnimOffset;
@@ -127,33 +128,25 @@ function PlayAnimation()
 	if( AIOwner!= None ) { AIOwner.AILog_Internal(GetFuncName()$" "$self$" chose theatric animation "$AnimName,'AIController'); };
 	PlaySpecialMoveAnim( AnimName, AnimStance, BlendInTime, BlendOutTime, 1.f );
 
-	// Set the camera to the boss
+	// Cache controller
+	BossController = AIOwner != none ? AIOwner : PCOwner;
+
+	// Cache pawn
 	BossPawn = KFPawn_MonsterBoss( KFPOwner );
 
-	// Obliterated cam
-	if( BossPawn == none || BossPawn.bPlayedDeath || BossPawn.bPendingDelete || BossPawn.HitFxInfo.bObliterated )
+	// Set camera to boss camera
+	if( BossController != none && BossController.Role == ROLE_Authority )
 	{
-		if( AIOwner != none && AIOwner.Role == ROLE_Authority )
+		foreach BossController.WorldInfo.AllControllers( class'KFPlayerController', KFPC )
 		{
-			foreach AIOwner.WorldInfo.AllControllers( class'KFPlayerController', KFPC )
-			{
-				KFPC.SetBossCamera( none );
-			}
+			KFPC.SetBossCamera( BossPawn );
 		}
-		else if( PCOwner != none && PCOwner.Role == ROLE_Authority )
-		{
-			foreach PCOwner.WorldInfo.AllControllers( class'KFPlayerController', KFPC )
-			{
-				KFPC.SetBossCamera( none );
-			}
-		}		
-		return;
 	}
 
-	// Take player-controlled boss into account
-	if( BossPawn.Role == ROLE_Authority && BossPawn.IsHumanControlled() )
+	// Boss was obliterated
+	if( BossPawn == none || BossPawn.bPlayedDeath || BossPawn.bPendingDelete || BossPawn.HitFxInfo.bObliterated )
 	{
-		KFPlayerController(BossPawn.Controller).ServerCamera( 'Boss' );
+		return;
 	}
 
 	// Regular boss cam
@@ -166,7 +159,7 @@ function PlayAnimation()
 
 		// Set view target and camera mode
 		KFPC.SetViewTarget( BossPawn );
-		KFPC.ClientSetCameraMode( 'Boss' );
+		//KFPC.ClientSetCameraMode( 'Boss' );
 
 		// Play a camera anim if we have one
 		if( CameraAnim != none )
@@ -190,7 +183,7 @@ function PlayAnimation()
 
 function SpecialMoveEnded(Name PrevMove, Name NextMove)
 {
-	local KFPlayerController KFPC;
+	local KFPlayerController KFPC, OtherKFPC;
 	local KFPawn_MonsterBoss BossPawn;
 
 	BossPawn = KFPawn_MonsterBoss( KFPOwner );
@@ -231,14 +224,14 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 			// Return the camera to the player
 			if( AIOwner.Role == ROLE_Authority )
 			{
-				foreach AIOwner.WorldInfo.AllControllers( class'KFPlayerController', KFPC )
+				foreach AIOwner.WorldInfo.AllControllers( class'KFPlayerController', OtherKFPC )
 				{
-					if( KFPC.Pawn != none )
+					if( OtherKFPC.Pawn != none )
 					{
-						KFPC.SetViewTarget( KFPC.Pawn );
+						OtherKFPC.SetViewTarget( OtherKFPC.Pawn );
 					}
-					KFPC.ServerCamera( 'FirstPerson' );
-	       			KFPC.SetCinematicMode( false, false, true, true, true, false );
+					OtherKFPC.ServerCamera( 'FirstPerson' );
+	       			OtherKFPC.SetCinematicMode( false, false, true, true, true, false );
 				}
 			}
 		}
@@ -247,27 +240,27 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 			// Return the camera to the player
 			if( PCOwner.Role == ROLE_Authority )
 			{
-				foreach PCOwner.WorldInfo.AllControllers( class'KFPlayerController', KFPC )
+				foreach PCOwner.WorldInfo.AllControllers( class'KFPlayerController', OtherKFPC )
 				{
-					if( KFPC.Pawn != none )
+					if( OtherKFPC.Pawn != none )
 					{
-						KFPC.SetViewTarget( KFPC.Pawn );
+						OtherKFPC.SetViewTarget( OtherKFPC.Pawn );
 					}
 
-					if( KFPC != PCOwner && KFPC.Pawn != none && KFPC.GetTeamNum() == 0  )
+					if( OtherKFPC != PCOwner && OtherKFPC.Pawn != none && OtherKFPC.GetTeamNum() == 0  )
 					{
-						KFPC.ServerCamera( 'FirstPerson' );
+						OtherKFPC.ServerCamera( 'FirstPerson' );
 					}
-					else if( KFPC == PCOwner )
+					else if( OtherKFPC == PCOwner )
 					{
-						KFPC.ServerCamera( 'ThirdPerson' );
+						OtherKFPC.ServerCamera( 'ThirdPerson' );
 					}
 					else
 					{
-						KFPC.ServerCamera( 'FreeCam' );
+						OtherKFPC.ServerCamera( 'FreeCam' );
 					}
 
-	       			KFPC.SetCinematicMode( false, false, true, true, true, false );
+	       			OtherKFPC.SetCinematicMode( false, false, true, true, true, false );
 				}
 			}
 		}

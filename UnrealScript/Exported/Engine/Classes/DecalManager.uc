@@ -262,6 +262,19 @@ function DecalComponent SpawnDecal( MaterialInterface DecalMaterial,
 	return Result;
 }
 
+
+function Reset()
+{
+	local int i;
+
+	// Returns all decals to the pool
+	for( i = 0; i < ActiveDecals.Length; ++i )
+	{
+		DecalFinished( ActiveDecals[i].Decal );
+	}
+	ActiveDecals.Length = 0;
+}
+
 defaultproperties
 {
    Begin Object Class=DecalComponent Name=BaseDecal

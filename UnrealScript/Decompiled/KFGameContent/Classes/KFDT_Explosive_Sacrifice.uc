@@ -11,8 +11,8 @@ class KFDT_Explosive_Sacrifice extends KFDT_Explosive
 defaultproperties
 {
     bShouldSpawnPersistentBlood=true
-    StunPower=54
-    KnockdownPower=50
+    StunPower=21
+    KnockdownPower=20
     StumblePower=0
     ModifierPerkList=/* Array type was not detected. */
     KDeathVel=300

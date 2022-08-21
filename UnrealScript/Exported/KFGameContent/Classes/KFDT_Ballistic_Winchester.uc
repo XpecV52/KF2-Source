@@ -32,10 +32,11 @@ static simulated function bool CanDismemberHitZone( name InHitZoneName )
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Winchester1894'
-   StunPower=65
-   GunHitPower=30
-   MeleeHitPower=25
-   ModifierPerkList(0)=None
+   StunPower=25.000000
+   KnockdownPower=20.000000
+   StumblePower=0.000000
+   GunHitPower=100.000000
+   ModifierPerkList(0)=Class'KFGame.KFPerk_Sharpshooter'
    KDamageImpulse=2000.000000
    KDeathVel=250.000000
    KDeathUpKick=400.000000

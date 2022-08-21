@@ -35,11 +35,11 @@ defaultproperties
 	KDeathUpKick=400
 	KDeathVel=250
 
-	StunPower=65
-	StumblePower=10
-	LegStumblePower=15
-	GunHitPower=30
-	MeleeHitPower=25
+    KnockdownPower=20
+	StunPower=25
+	StumblePower=0
+	GunHitPower=100
+	MeleeHitPower=0
 
 	ModifierPerkList(0)=class'KFPerk_Sharpshooter'
 	WeaponDef=class'KFWeapDef_Winchester1894'

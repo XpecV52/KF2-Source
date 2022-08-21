@@ -39,7 +39,7 @@ package tripwire.controls.perks
         
         public var hitbox:MovieClip;
         
-        public const hitboxZ:int = 32;
+        public const hitboxZ:int = 0;
         
         public function PerkSelectLineRenderer()
         {
@@ -141,6 +141,7 @@ package tripwire.controls.perks
             {
                 this.highlightButton();
             }
+            setState("over");
         }
         
         override protected function handleMouseRollOut(param1:MouseEvent) : void
@@ -150,6 +151,7 @@ package tripwire.controls.perks
             {
                 this.unhighlightButton();
             }
+            setState("out");
         }
         
         override public function set selected(param1:Boolean) : void

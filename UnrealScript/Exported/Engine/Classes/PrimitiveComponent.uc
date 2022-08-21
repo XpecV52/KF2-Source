@@ -860,6 +860,7 @@ defaultproperties
    BoundsScale=1.000000
    PerObjectShadowCullDistance=2000.000000
    bAllowPreshadows=True
+   bAllowPerObjectShadowBatching=True
    Name="Default__PrimitiveComponent"
    ObjectArchetype=ActorComponent'Engine.Default__ActorComponent'
 }

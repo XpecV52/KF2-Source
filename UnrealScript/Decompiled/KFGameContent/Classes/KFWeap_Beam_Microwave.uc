@@ -221,7 +221,8 @@ defaultproperties
     PSC_EndSpray=FlameEndSpray0
     MinAmmoConsumed=3
     FireModeIconPaths=/* Array type was not detected. */
-    InventorySize=9
+    InventorySize=10
+    MagazineCapacity=100
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -233,7 +234,6 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=1
     GroupPriority=100
     WeaponSelectTexture=Texture2D'WEP_UI_Microwave_Gun_TEX.UI_WeaponSelect_MicrowaveGun'
-    MagazineCapacity=100
     MaxSpareAmmo=400
     AmmoPickupScale=0.4
     bLoopingFireAnim=/* Array type was not detected. */

@@ -9,23 +9,119 @@ class KFGameReplicationInfoVersus extends KFGameReplicationInfo
     config(Game)
     hidecategories(Navigation,Movement,Collision);
 
+struct sPlayerZedSpawnWaitTimeData
+{
+    var byte SpawnWaitTime;
+    var bool bTakeOverActive;
+    var byte DirtyFlag;
+
+    structdefaultproperties
+    {
+        SpawnWaitTime=0
+        bTakeOverActive=false
+        DirtyFlag=0
+    }
+};
+
 var bool bTeamBalanceEnabled;
+var repnotify bool bRoundIsOver;
 var byte TeamBalanceDelta;
+var byte CurrentRound;
+var byte TimeUntilNextSpawn;
 var float TimeToLockSwitchTeam;
+var repnotify sPlayerZedSpawnWaitTimeData PlayerZedSpawnWaitTimeData;
 
 replication
 {
      if(bNetInitial)
         bTeamBalanceEnabled;
+
+     if(bNetDirty)
+        CurrentRound, PlayerZedSpawnWaitTimeData, 
+        bRoundIsOver;
 }
 
 simulated event ReplicatedEvent(name VarName)
 {
+    local KFPlayerController KFPC;
+
     if((VarName == 'bTraderIsOpen') && bTraderIsOpen)
     {
         FadeOutCrawlerSuicides();
     }
-    super.ReplicatedEvent(VarName);
+    if(VarName == 'PlayerZedSpawnWaitTimeData')
+    {
+        TimeUntilNextSpawn = PlayerZedSpawnWaitTimeData.SpawnWaitTime;
+        if(TimeUntilNextSpawn != 255)
+        {
+            SetTimer(1, true, 'Timer_TickDownSpawnTimer');            
+        }
+        else
+        {
+            ClearTimer('Timer_TickDownSpawnTimer');
+        }        
+    }
+    else
+    {
+        if(VarName == 'CurrentRound')
+        {
+            if(CurrentRound > 0)
+            {
+                OnRoundIncremented();
+            }            
+        }
+        else
+        {
+            if(VarName == 'bRoundIsOver')
+            {
+                KFPC = KFPlayerController(GetALocalPlayerController());
+                if(KFPC != none)
+                {
+                    if(KFPC.MyGFxManager != none)
+                    {
+                        KFPC.MyGFxManager.OnRoundOver();
+                    }
+                }                
+            }
+            else
+            {
+                super.ReplicatedEvent(VarName);
+            }
+        }
+    }
+}
+
+function SetPlayerZedSpawnTime(byte NewSpawnTime, bool bTakeOverActive)
+{
+    PlayerZedSpawnWaitTimeData.SpawnWaitTime = NewSpawnTime;
+    ++ PlayerZedSpawnWaitTimeData.DirtyFlag;
+    PlayerZedSpawnWaitTimeData.bTakeOverActive = bTakeOverActive;
+    bNetDirty = true;
+    bForceNetUpdate = true;
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        TimeUntilNextSpawn = PlayerZedSpawnWaitTimeData.SpawnWaitTime;
+        if(TimeUntilNextSpawn != 255)
+        {
+            SetTimer(1, true, 'Timer_TickDownSpawnTimer');            
+        }
+        else
+        {
+            ClearTimer('Timer_TickDownSpawnTimer');
+        }
+    }
+}
+
+simulated function Timer_TickDownSpawnTimer()
+{
+    if(TimeUntilNextSpawn < 255)
+    {
+        -- TimeUntilNextSpawn;
+        if(TimeUntilNextSpawn == 0)
+        {
+            ClearTimer('Timer_TickDownSpawnTimer');
+        }
+    }
 }
 
 simulated function SetTeam(int Index, TeamInfo TI)
@@ -120,6 +216,16 @@ function SetWaveActive(bool bWaveActive, optional byte NewMusicIntensity)
     }
 }
 
+simulated function int GetCurrentRoundNumber()
+{
+    return CurrentRound;
+}
+
+simulated event bool CanChangePerks()
+{
+    return super.CanChangePerks() || bRoundIsOver;
+}
+
 simulated function FadeOutCrawlerSuicides()
 {
     local KFExplosion_PlayerCrawlerSuicide CrawlerSuicideExplosion;
@@ -149,6 +255,8 @@ function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplication
         VoteCollector.ServerStartVoteKick(PRI_Kickee, PRI_Kicker);
     }
 }
+
+simulated function OnRoundIncremented();
 
 defaultproperties
 {

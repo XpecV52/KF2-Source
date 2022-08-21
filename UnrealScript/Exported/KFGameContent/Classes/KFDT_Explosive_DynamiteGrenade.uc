@@ -12,67 +12,13 @@ class KFDT_Explosive_DynamiteGrenade extends KFDT_Explosive
 	abstract
 	hidedropdown;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#linenumber 15;
-
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Grenade_Demo'
    bShouldSpawnPersistentBlood=True
-   StunPower=54
-   KnockdownPower=50
-   StumblePower=0
+   KnockdownPower=100.000000
+   StumblePower=300.000000
+   MeleeHitPower=100.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Demolitionist'
    KDeathVel=300.000000
    KDeathUpKick=1000.000000

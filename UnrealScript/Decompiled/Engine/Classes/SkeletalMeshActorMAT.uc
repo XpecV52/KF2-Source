@@ -94,6 +94,7 @@ defaultproperties
     // Reference: SkeletalMeshComponent'Default__SkeletalMeshActorMAT.SkeletalMeshComponent0'
     Components(0)=SkeletalMeshComponent0
     Components(1)=AudioComponent'Default__SkeletalMeshActorMAT.FaceAudioComponent'
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
     begin object name=SkeletalMeshComponent0 class=SkeletalMeshComponent
         Animations=none
         ReplacementPrimitive=none

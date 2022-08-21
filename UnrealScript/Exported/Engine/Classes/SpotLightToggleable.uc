@@ -135,7 +135,6 @@ defaultproperties
       ObjectArchetype=ArrowComponent'Engine.Default__SpotLight:ArrowComponent0'
    End Object
    Components(6)=ArrowComponent0
-   TickGroup=TG_DuringAsyncWork
    bHardAttach=True
    CollisionComponent=LightMeshComponent0
    Name="Default__SpotLightToggleable"

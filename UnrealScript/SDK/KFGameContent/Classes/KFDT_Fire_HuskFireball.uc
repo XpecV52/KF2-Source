@@ -29,7 +29,7 @@ defaultproperties
 	KDeathVel=350
 
 	KnockdownPower=0
-	StumblePower=150
+	StumblePower=59
 
 	DeathMaterialEffectDuration=2.f
 	DeathMaterialEffectParamName=scalar_burnt

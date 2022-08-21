@@ -24,7 +24,12 @@ simulated function name GetReloadAnimName(bool bTacticalReload)
     {
         WarnInternal("Grenade launcher reloading with non-empty mag");
     }
-    return 'Reload_Empty';
+    return ((bTacticalReload) ? 'Reload_Empty_Elite' : 'Reload_Empty');
+}
+
+static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
+{
+    return 3;
 }
 
 defaultproperties
@@ -38,6 +43,7 @@ defaultproperties
     ScopeLenseMICTemplate=MaterialInstanceConstant'WEP_1P_Crossbow_MAT.WEP_1P_Crossbow_Scope_MAT'
     ScopedSensitivityMod=12
     InventorySize=6
+    MagazineCapacity=1
     bHasIronSights=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
@@ -52,7 +58,6 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=50
     WeaponSelectTexture=Texture2D'WEP_UI_Crossbow_TEX.UI_WeaponSelect_Crossbow'
-    MagazineCapacity=1
     MaxSpareAmmo=34
     InitialSpareMags=13
     AmmoPickupScale=3
@@ -77,6 +82,7 @@ defaultproperties
     RecoilISMinYawLimit=65485
     RecoilISMaxPitchLimit=375
     RecoilISMinPitchLimit=65460
+    AssociatedPerkClass=Class'KFGame.KFPerk_Sharpshooter'
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */

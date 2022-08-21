@@ -10,7 +10,6 @@ class RigidBodyBase extends Actor
 
 defaultproperties
 {
-   CollisionType=COLLIDE_CustomDefault
    Name="Default__RigidBodyBase"
    ObjectArchetype=Actor'Engine.Default__Actor'
 }

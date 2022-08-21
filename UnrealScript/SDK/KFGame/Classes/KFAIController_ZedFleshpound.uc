@@ -143,17 +143,11 @@ function NotifyMeleeDamageDealt()
 	}
 }
 
-/** Start enrage if we've taken enough damage */
-function AIHandleTakenDamage( Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType )
+function NotifyTakeHit( Controller InstigatedBy, vector HitLocation, int Damage, class<DamageType> damageType, vector Momentum )
 {
-	super.AIHandleTakenDamage( DamagerController, Damage, DamageCauser, DamageType );
+	super.NotifyTakeHit( InstigatedBy, HitLocation, Damage, damageType, Momentum );
 
-	//if( MyBlackBoard != none )
-	//{
-	//	MyBlackBoard.SetWSPropFloat(WSKP_AccumulatedDamage, MyBlackBoard.GetWSPropFloat(WSKP_AccumulatedDamage) + Damage);
-	//}
-
-	if( RagePlugin != none )
+	if( RagePlugin != none && InstigatedBy != self )
 	{
 		RagePlugin.AccumulatedDOT += Damage;
 	}

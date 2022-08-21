@@ -19,14 +19,16 @@ defaultproperties
         ShardClass=Class'KFProj_NailShard'
         NumShards=10
         ExplosionEffects=KFImpactEffectInfo'wep_Nailbomb_arch.Nailbomb_Explosion'
-        Damage=300
-        DamageRadius=600
+        Damage=100
+        DamageRadius=1000
         MyDamageType=Class'KFDT_Explosive_NailBombGrenade'
         KnockDownStrength=0
         ExplosionSound=AkEvent'WW_EXP_Nail_Bomb.Play_Nail_Bomb_Explode'
         ExploLight=PointLightComponent'Default__KFProj_NailBombGrenade.ExplosionPointLight'
         ExploLightFadeOutTime=0.2
         CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
+        CamShakeInnerRadius=200
+        CamShakeFalloff=1.5
     object end
     // Reference: KFGameExplosion'Default__KFProj_NailBombGrenade.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0

@@ -13,6 +13,7 @@ defaultproperties
 {
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=8
+    MagazineCapacity=8
     bHasIronSights=true
     bCanBeReloaded=true
     PenetrationPower=/* Array type was not detected. */
@@ -23,7 +24,6 @@ defaultproperties
     DOF_FG_FocalRadius=25
     GroupPriority=75
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Benelli'
-    MagazineCapacity=8
     MaxSpareAmmo=64
     InitialSpareMags=3
     WeaponFireSnd=/* Array type was not detected. */

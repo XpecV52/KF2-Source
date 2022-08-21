@@ -212,6 +212,8 @@ function InitializeCustomizationPawn(PlayerController NewController, NavigationP
     SetUpdatedMovementData(BestStartSpot.Location, BestStartSpot.Rotation);
 }
 
+function Reset();
+
 defaultproperties
 {
     MaleCustomizationAnimSet=AnimSet'CHR_BaseMale_ANIM.CS_Male'
@@ -240,7 +242,7 @@ defaultproperties
     bEnableAimOffset=false
     bDisableTurnInPlace=true
     bDisableMeshRotationSmoothing=true
-    AfflictionHandler=KFPawnAfflictions'Default__KFPawn_Customization.Afflictions'
+    AfflictionHandler=KFAfflictionManager'Default__KFPawn_Customization.Afflictions'
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

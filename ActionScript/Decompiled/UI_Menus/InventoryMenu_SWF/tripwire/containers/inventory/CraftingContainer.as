@@ -7,6 +7,7 @@ package tripwire.containers.inventory
     import flash.text.TextField;
     import scaleform.clik.controls.Button;
     import scaleform.clik.events.ButtonEvent;
+    import scaleform.gfx.TextFieldEx;
     import tripwire.containers.TripContainer;
     import tripwire.controls.TripUILoader;
     
@@ -73,17 +74,30 @@ package tripwire.containers.inventory
             super();
             visible = false;
             defaultNumPrompts = 2;
-            defaultFirstElement = currentElement = this.backButton;
+            defaultFirstElement = currentElement = this.craftButton_0;
         }
         
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
+            TextFieldEx.setVerticalAlign(this.itemNameText_0,TextFieldEx.VALIGN_BOTTOM);
+            TextFieldEx.setVerticalAlign(this.itemNameText_1,TextFieldEx.VALIGN_BOTTOM);
+            TextFieldEx.setVerticalAlign(this.itemNameText_2,TextFieldEx.VALIGN_BOTTOM);
+            TextFieldEx.setVerticalAlign(this.itemNameText_3,TextFieldEx.VALIGN_BOTTOM);
+            TextFieldEx.setVerticalAlign(this.craftedItemDescription,TextFieldEx.VALIGN_CENTER);
             this.craftButton_0.addEventListener(ButtonEvent.PRESS,this.onButtonPress,false,0,true);
             this.craftButton_1.addEventListener(ButtonEvent.PRESS,this.onButtonPress,false,0,true);
             this.craftButton_2.addEventListener(ButtonEvent.PRESS,this.onButtonPress,false,0,true);
             this.craftButton_3.addEventListener(ButtonEvent.PRESS,this.onButtonPress,false,0,true);
             this.backButton.addEventListener(ButtonEvent.PRESS,this.onButtonPress,false,0,true);
+            this.craftButton_0.tabIndex = 1;
+            this.craftButton_1.tabIndex = 2;
+            this.craftButton_2.tabIndex = 3;
+            this.craftButton_3.tabIndex = 4;
+            if(bManagerUsingGamepad)
+            {
+                this.backButton.visible = false;
+            }
         }
         
         public function set localizedText(param1:Object) : void
@@ -164,25 +178,14 @@ package tripwire.containers.inventory
             dispatchEvent(new Event("containerClosed"));
         }
         
-        override protected function openAnimation() : *
+        override protected function openAnimation(param1:Boolean = true) : *
         {
             TweenMax.fromTo(this,8,{
                 "z":-128,
-                "autoAlpha":0,
-                "blurFilter":{
-                    "blurX":12,
-                    "blurY":12,
-                    "quality":1
-                }
+                "autoAlpha":0
             },{
                 "z":0,
-                "autoAlpha":1,
-                "blurFilter":{
-                    "blurX":0,
-                    "blurY":0,
-                    "quality":1,
-                    "remove":true
-                },
+                "autoAlpha":(!!param1 ? _defaultAlpha : _dimmedAlpha),
                 "ease":Cubic.easeOut,
                 "useFrames":true,
                 "onComplete":onOpened
@@ -193,17 +196,11 @@ package tripwire.containers.inventory
         {
             TweenMax.fromTo(this,8,{
                 "z":0,
-                "alpha":1
+                "alpha":alpha
             },{
                 "visible":false,
                 "z":-128,
                 "alpha":0,
-                "blurFilter":{
-                    "blurX":12,
-                    "blurY":12,
-                    "quality":1,
-                    "remove":true
-                },
                 "ease":Cubic.easeOut,
                 "useFrames":true,
                 "onComplete":onClosed

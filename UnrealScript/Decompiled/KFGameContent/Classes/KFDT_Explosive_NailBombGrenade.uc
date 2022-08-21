@@ -12,8 +12,9 @@ defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_Grenade_Gunslinger'
     bShouldSpawnPersistentBlood=true
-    KnockdownPower=0
-    StumblePower=0
+    StunPower=200
+    StumblePower=500
+    MeleeHitPower=100
     KDeathVel=300
     KDeathUpKick=1000
     RadialDamageImpulse=3000
