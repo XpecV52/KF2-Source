@@ -25,7 +25,7 @@ function PreMoveToEnemy()
 /** Executes a scream */
 function DoScream( optional bool bCalledFromPreMove=false )
 {
-	if( MyKFPawn.IsImpaired() || MyKFPawn.IsIncapacitated() )
+	if( MyKFPawn == none || !MyKFPawn.IsAliveAndWell() || MyKFPawn.IsImpaired() || MyKFPawn.IsIncapacitated() )
 	{
 		return;
 	}
@@ -39,7 +39,7 @@ function DoScream( optional bool bCalledFromPreMove=false )
 	// Start moving to enemy
 	if( !bCalledFromPreMove )
 	{
-		SetEnemyMoveGoal( self, true );	
+		SetEnemyMoveGoal( self, true );
 	}
 }
 
@@ -49,18 +49,24 @@ function AcquireEnemyAndScream( optional bool bStartScreamTimer )
 {
 	local Pawn BestTarget;
 
-	if( MyKFPawn.IsImpaired() || MyKFPawn.IsIncapacitated() )
+	if( MyKFPawn == none || !MyKFPawn.IsAliveAndWell() || MyKFPawn.IsImpaired() || MyKFPawn.IsIncapacitated() || IsTimerActive(nameOf(DoScream)) )
 	{
 		return;
 	}
 
-	// Get a new enemy		
-	BestTarget = MyKFPawn.GetBestAggroEnemy();
-	if( BestTarget == none )
+	// Get a new enemy if needed
+	if( Enemy == none )
 	{
-		BestTarget = GetClosestEnemy();
+		BestTarget = MyKFPawn.GetBestAggroEnemy();
+		if( BestTarget == none )
+		{
+			BestTarget = GetClosestEnemy();
+		}
+		if( BestTarget != none )
+		{
+			ChangeEnemy( BestTarget, true );
+		}
 	}
-	ChangeEnemy( BestTarget, true );
 
 	if( bStartScreamTimer )
 	{
@@ -72,6 +78,11 @@ function AcquireEnemyAndScream( optional bool bStartScreamTimer )
 function NotifySpecialMoveStarted( KFSpecialMove SM )
 {
 	local AICommand_Siren_Scream ScreamCommand;
+
+	if( MyKFPawn == none || !MyKFPawn.IsAliveAndWell() )
+	{
+		return;
+	}
 
 	if( MyKFPawn.IsImpaired() || MyKFPawn.IsIncapacitated() )
 	{
@@ -123,7 +134,14 @@ function NotifyCommandFinished( AICommand FinishedCommand )
 /** If we're in a panic state, kill the scream command */
 function DoPanicWander()
 {
+	local GameAICommand ActiveCommand;
 	local AICommand_Siren_Scream ScreamCommand;
+
+	ActiveCommand = GetActiveCommand();
+	if( ActiveCommand != none && AICommand_PanicWander(ActiveCommand) != none )
+	{
+		return;
+	}
 
 	ScreamCommand = FindCommandOfClass( class'AICommand_Siren_Scream' );
 	if( ScreamCommand != none )

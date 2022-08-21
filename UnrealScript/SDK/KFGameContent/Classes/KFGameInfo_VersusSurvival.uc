@@ -558,10 +558,12 @@ function EndOfMatch(bool bVictory)
     TempScore = Max( (WaveReached - 1), 0) * POINTS_FOR_WAVE_COMPLETION;
     if( bVictory )
     {
+        CheckRoundEndAchievements( 0 ); 
         TempScore += POINTS_FOR_BOSS_KILL;
     }
     else
     {
+        CheckRoundEndAchievements( 255 );
         TempScore += int( float(POINTS_FOR_WAVE_COMPLETION) * PercentOfZedsKilledBeforeWipe );
     }
     TempScore -= POINTS_PENALTY_FOR_DEATH * HumanDeaths;
@@ -631,18 +633,9 @@ function WaveEnded( EWaveEndCondition WinCondition )
     ClearTimer( nameOf(CheckPawnsForGriefing) );
 
     // If game ended on a wipe, record how many zeds were killed as well as wave reached
-    if( WinCondition == WEC_TeamWipedOut )
+    if( WinCondition == WEC_TeamWipedOut && SpawnManager != none )
     {
-        CheckRoundEndAchievements( 255 );
-
-        if( SpawnManager != none )
-        {
-            PercentOfZedsKilledBeforeWipe = float(MyKFGRI.AIRemaining) / float(SpawnManager.WaveTotalAI);
-        }
-    }
-    else if( WinCondition == WEC_WaveWon )
-    {
-         CheckRoundEndAchievements( 0 ); 
+        PercentOfZedsKilledBeforeWipe = float(MyKFGRI.AIRemaining) / float(SpawnManager.WaveTotalAI);
     }
 
     WaveReached = MyKFGRI.WaveNum;

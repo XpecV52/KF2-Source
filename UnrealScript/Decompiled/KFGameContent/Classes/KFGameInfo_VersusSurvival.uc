@@ -456,10 +456,12 @@ function EndOfMatch(bool bVictory)
     TempScore = Max(WaveReached - 1, 0) * POINTS_FOR_WAVE_COMPLETION;
     if(bVictory)
     {
+        CheckRoundEndAchievements(0);
         TempScore += POINTS_FOR_BOSS_KILL;        
     }
     else
     {
+        CheckRoundEndAchievements(255);
         TempScore += int(float(POINTS_FOR_WAVE_COMPLETION) * PercentOfZedsKilledBeforeWipe);
     }
     TempScore -= (POINTS_PENALTY_FOR_DEATH * HumanDeaths);
@@ -525,24 +527,13 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
 
     MyKFGRIV.SetPlayerZedSpawnTime(255, false);
     ClearTimer('CheckPawnsForGriefing');
-    if(WinCondition == 1)
+    if((WinCondition == 1) && SpawnManager != none)
     {
-        CheckRoundEndAchievements(255);
-        if(SpawnManager != none)
-        {
-            PercentOfZedsKilledBeforeWipe = float(MyKFGRI.AIRemaining) / float(SpawnManager.WaveTotalAI);
-        }        
-    }
-    else
-    {
-        if(WinCondition == 0)
-        {
-            CheckRoundEndAchievements(0);
-        }
+        PercentOfZedsKilledBeforeWipe = float(MyKFGRI.AIRemaining) / float(SpawnManager.WaveTotalAI);
     }
     WaveReached = MyKFGRI.WaveNum;
     I = 0;
-    J0x109:
+    J0xDC:
 
     if(I < WorldInfo.GRI.PRIArray.Length)
     {
@@ -556,19 +547,19 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
             {
                 WaveKills = KFPRIV.Kills;
                 J = 0;
-                J0x28A:
+                J0x25D:
 
                 if(J < KFPRIV.WaveKills.Length)
                 {
                     WaveKills -= KFPRIV.WaveKills[J];
                     ++ J;
-                    goto J0x28A;
+                    goto J0x25D;
                 }
                 KFPRIV.WaveKills[WaveReached] = WaveKills;
             }
         }
         ++ I;
-        goto J0x109;
+        goto J0xDC;
     }
     super.WaveEnded(WinCondition);
 }

@@ -20,7 +20,7 @@ function Tick(float DeltaTime)
 {
     local Rotator DesiredRotation;
 
-    super(GameSpecialMove).Tick(DeltaTime);
+    super(KFSpecialMove).Tick(DeltaTime);
     if(((KFPOwner != none) && Follower != none) && KFPOwner.SpecialMoveFlags >= 1)
     {
         DesiredRotation = KFPOwner.Rotation;

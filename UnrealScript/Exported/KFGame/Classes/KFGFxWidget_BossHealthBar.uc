@@ -24,6 +24,10 @@ function InitializeHUD()
 
 function TickHud(float DeltaTime)
 {
+    if(class'KFGameEngine'.default.bHideBossHealthBar)
+    {
+        return;
+    }
     if(BossPawn != none)
     {
         if(GetPC() != none &&
@@ -37,6 +41,10 @@ function TickHud(float DeltaTime)
 function SetBossPawn(KFPawn_MonsterBoss NewBossPawn)
 {
     local string BossNameText;
+    if(class'KFGameEngine'.default.bHideBossHealthBar)
+    {
+        return;
+    }
     if(NewBossPawn == none)
     {
         return;
@@ -54,6 +62,10 @@ function SetBossPawn(KFPawn_MonsterBoss NewBossPawn)
 
 function OnNamePlateHidden()
 {
+    if(class'KFGameEngine'.default.bHideBossHealthBar)
+    {
+        return;
+    }
     if(BossPawn != none)
     {
         SetVisible(true);

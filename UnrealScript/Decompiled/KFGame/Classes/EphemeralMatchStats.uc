@@ -428,7 +428,7 @@ function InternalRecordWeaponDamage(class<KFDamageType> KFDT, class<KFWeaponDefi
     local int WeaponIndex;
     local WeaponDamage TempWeaponDamage;
     local bool bLargeZedKill, bKilled;
-    local int PreHealth;
+    local KFPlayerReplicationInfoVersus KFPRIV;
 
     if(Outer.Role != ROLE_Authority)
     {
@@ -440,29 +440,15 @@ function InternalRecordWeaponDamage(class<KFDamageType> KFDT, class<KFWeaponDefi
     bKilled = (TargetPawn.Health <= 0) && (TargetPawn.Health + Damage) > 0;
     bLargeZedKill = bKilled && TargetPawn.IsLargeZed();
     WeaponIndex = WeaponDamageList.Find('WeaponDef', WeaponDef;
+    Damage = ((TargetPawn.Health > 0) ? Damage : TargetPawn.Health + Damage);
     if(Outer.PlayerReplicationInfo.GetTeamNum() == 255)
     {
-        PreHealth = TargetPawn.Health + Damage;
-        if(TargetPawn.Health > 0)
+        RecordIntStat(2, Damage);
+        KFPRIV = KFPlayerReplicationInfoVersus(Outer.PlayerReplicationInfo);
+        KFPRIV.DamageDealtOnTeam += Damage;
+        if((KFDT != none) && KFDT.default.bConsideredIndirectOrAoE)
         {
-            RecordIntStat(2, Damage);
-            if((KFDT != none) && KFDT.default.bConsideredIndirectOrAoE)
-            {
-                KFPlayerReplicationInfoVersus(Outer.PlayerReplicationInfo).IndirectDamageDealt += Damage;
-                KFPlayerReplicationInfoVersus(Outer.PlayerReplicationInfo).DamageDealtOnTeam += Damage;
-            }            
-        }
-        else
-        {
-            if(PreHealth > 0)
-            {
-                RecordIntStat(2, PreHealth);
-                if((KFDT != none) && KFDT.default.bConsideredIndirectOrAoE)
-                {
-                    KFPlayerReplicationInfoVersus(Outer.PlayerReplicationInfo).IndirectDamageDealt += PreHealth;
-                    KFPlayerReplicationInfoVersus(Outer.PlayerReplicationInfo).DamageDealtOnTeam += PreHealth;
-                }
-            }
+            KFPRIV.IndirectDamageDealt += Damage;
         }
         return;
     }
@@ -474,20 +460,8 @@ function InternalRecordWeaponDamage(class<KFDamageType> KFDT, class<KFWeaponDefi
     }
     if(WeaponDamageList[WeaponIndex].WeaponDef == WeaponDef)
     {
-        PreHealth = TargetPawn.Health + Damage;
-        if(TargetPawn.Health > 0)
-        {
-            RecordIntStat(2, Damage);
-            WeaponDamageList[WeaponIndex].DamageAmount += Damage;            
-        }
-        else
-        {
-            if(PreHealth > 0)
-            {
-                RecordIntStat(2, PreHealth);
-                WeaponDamageList[WeaponIndex].DamageAmount += PreHealth;
-            }
-        }
+        RecordIntStat(2, Damage);
+        WeaponDamageList[WeaponIndex].DamageAmount += Damage;
         if(bLargeZedKill)
         {
             ++ WeaponDamageList[WeaponIndex].LargeZedKills;

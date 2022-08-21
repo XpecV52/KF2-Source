@@ -431,11 +431,11 @@ final private function bool IsBackupActive()
 }
 
 /**
- * @brief Checks if Hollow Points fire skill is active
+ * @brief Checks if Hollow Points skill is active
  *
  * @return true/false
  */
-final private function bool IsHollowPointsActive()
+simulated private function bool IsHollowPointsActive()
 {
 	return PerkSkills[ECommandoHollowPoints].bActive;
 }

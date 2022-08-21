@@ -295,7 +295,7 @@ state Pickup
         PickupLocation = Location - vector(Rotation) * 15.f;
 
         // make sure not touching through wall
-        if ( !FastTrace(Other.Location, PickupLocation,,true) )
+        if ( !FastTrace(Other.Location, PickupLocation) && !FastTrace(Other.Location, PickupLocation,,true) )
         {
             return false;
         }

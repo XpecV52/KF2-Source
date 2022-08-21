@@ -41,6 +41,8 @@ var config bool  bMusicVocalsEnabled;
 var config bool  bMinimalChatter;
 var config float FOVOptionsPercentageValue;
 var config bool  bShowKillTicker;
+var config bool  bHideBossHealthBar;
+var config bool  bShowWelderInInv;
 
 var private config bool bShowCrossHair;
 /** Crossair for console builds (default on).  No config since it won't save */

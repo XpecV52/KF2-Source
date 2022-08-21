@@ -25,6 +25,7 @@ var(Animations) const editconst name BurstFire3RdSightedAnim;
 var(Sounds) WeaponFireSndInfo WeaponFire2RdSnd;
 /** Sound to play when the weapon is fired in burst fire mode for 3 rounds */
 var(Sounds) WeaponFireSndInfo WeaponFire3RdSnd;
+var bool bBurstPlayedFireEffects;
 
 simulated state WeaponBurstFiring
 {
@@ -36,6 +37,7 @@ simulated state WeaponBurstFiring
             RecoilYawBlendOutRate = int((float(maxRecoilYaw) / RecoilRate) * RecoilBlendOutRatio);
             RecoilPitchBlendOutRate = int((float(maxRecoilPitch) / RecoilRate) * RecoilBlendOutRatio);
         }
+        bBurstPlayedFireEffects = false;
         super.BeginState(PrevStateName);
     }
 
@@ -43,13 +45,13 @@ simulated state WeaponBurstFiring
     {
         local name WeaponFireAnimName;
 
-        if((FireModeNum != 1) || (FireModeNum == 1) && (BurstAmount == default.BurstAmount) || self.WorldInfo.TimeDilation < 1)
+        if((FireModeNum != 1) || (FireModeNum == 1) && !bBurstPlayedFireEffects || self.WorldInfo.TimeDilation < 1)
         {
             PlayFiringSound(CurrentFireMode);
         }
         if((Instigator != none) && Instigator.IsFirstPerson())
         {
-            if(!bPlayingLoopingFireAnim && (FireModeNum != 1) || (FireModeNum == 1) && BurstAmount == default.BurstAmount)
+            if(!bPlayingLoopingFireAnim && (FireModeNum != 1) || (FireModeNum == 1) && !bBurstPlayedFireEffects)
             {
                 WeaponFireAnimName = GetWeaponFireAnim(FireModeNum);
                 if(WeaponFireAnimName != 'None')
@@ -61,6 +63,7 @@ simulated state WeaponBurstFiring
             ShakeView();
             CauseMuzzleFlash(FireModeNum);
         }
+        bBurstPlayedFireEffects = true;
     }
 
     simulated function ModifyRecoil(out float CurrentRecoilModifier)

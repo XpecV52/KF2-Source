@@ -921,6 +921,7 @@ struct native CurrentInventoryEntry
 	var const int Quantity;
 	var int NewlyAdded;
 	var int LastUsedTime;
+	var bool InFlight;
 };
 var const array<CurrentInventoryEntry> CurrentInventory;
 
@@ -994,6 +995,7 @@ native function OpenURL(string WebsiteLink);
 native function int IsExchangeable( int SourceSKU, out array<ExchangeRuleSets> Ret );
 
 native function ClearNewlyAdded();
+native function ClearInFlight();
 
 // Are the requirements met to recieve the target SKU with the given
 // Rule (from IsExchangeable() above)
@@ -1003,7 +1005,7 @@ native function bool ExchangeReady( const out ExchangeRuleSets Rule );
 // appropriate items removed to make the exchange
 native function bool Exchange( const out ExchangeRuleSets Rule );
 // keep exchanging as long as there are 2 or more
-native function int ExchangeDuplicates( const out ExchangeRuleSets Rule );
+native function int ExchangeDuplicates( const out ExchangeRuleSets Rule, const int maxToExchange );
 
 delegate OnInventoryReadComplete();
 

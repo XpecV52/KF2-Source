@@ -7,8 +7,7 @@
 // Copyright (C) 2016 Tripwire Interactive LLC
 //  - Matt 'Squirrlz' Farber
 //=============================================================================
-class KFGameplayPoolManager extends Object
-	native;
+class KFGameplayPoolManager extends Actor;
 
 enum eProjectilePoolType
 {
@@ -40,8 +39,11 @@ var transient protected array<sProjectilePoolInfo> ActiveC4Infos;
 /** Puke mines spawned by players */
 var transient protected array<sProjectilePoolInfo> ActivePukeMineInfos;
 
-/** Returns the default instance of the pool manager */
-native static function KFGameplayPoolManager GetPoolManager();
+/** Returns instance to the pool manager */
+static function KFGameplayPoolManager GetPoolManager()
+{
+	return KFGameplayPoolManager( class'WorldInfo'.static.GetWorldInfo().MyGameplayPoolManager );
+}
 
 /** Determines the pool type and adds a new projectile to that pool */
 function AddProjectileToPool( KFProjectile Proj, eProjectilePoolType PoolType )
@@ -182,8 +184,8 @@ protected function int GetMaxPlayerPukeMineNum()
 /** Clears the pool arrays */
 event Reset()
 {
-	ActivePukeMineInfos.Remove( 0, ActivePukeMineInfos.Length );
-	ActiveC4Infos.Remove( 0, ActiveC4Infos.Length );
+	ActivePukeMineInfos.Length = 0;
+	ActiveC4Infos.Length = 0;
 }
 
 defaultproperties
@@ -191,6 +193,8 @@ defaultproperties
    MAX_ACTIVE_C4=40
    MAX_C4_PER_PLAYER=10
    MAX_ACTIVE_PUKE_MINES=30
+   CollisionType=COLLIDE_CustomDefault
+   bTickIsDisabled=True
    Name="Default__KFGameplayPoolManager"
-   ObjectArchetype=Object'Core.Default__Object'
+   ObjectArchetype=Actor'Engine.Default__Actor'
 }

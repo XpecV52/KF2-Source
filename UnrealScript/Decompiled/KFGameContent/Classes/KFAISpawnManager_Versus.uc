@@ -72,6 +72,7 @@ function SetupNextWave(byte NextWaveIndex)
     }
     else
     {
+        Outer.SetTimer(5, false, 'Timer_SpawnPlayerZeds', self);
         Outer.MyKFGRIV.SetPlayerZedSpawnTime(255, false);
     }
     foreach Outer.WorldInfo.AllControllers(Class'KFPlayerControllerVersus', KFPCV)

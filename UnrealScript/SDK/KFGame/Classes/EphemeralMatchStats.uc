@@ -423,7 +423,7 @@ function InternalRecordWeaponDamage(class<KFDamageType> KFDT, class<KFWeaponDefi
 	local WeaponDamage TempWeaponDamage;
 	local bool bLargeZedKill;
 	local bool bKilled;
-	local int PreHealth;
+	local KFPlayerReplicationInfoVersus KFPRIV;
 
 	if(Role != ROLE_Authority) 
 	{
@@ -436,34 +436,24 @@ function InternalRecordWeaponDamage(class<KFDamageType> KFDT, class<KFWeaponDefi
 
 	WeaponIndex = WeaponDamageList.Find('WeaponDef', WeaponDef);
 
-	//zed
+	// Set actual damage
+	Damage = TargetPawn.Health > 0 ? Damage : TargetPawn.Health + Damage;
+
+	// Player zed
 	if( PlayerReplicationInfo.GetTeamNum() == 255 )
 	{
-		PreHealth = TargetPawn.Health + Damage;
+		// Record actual damage
+		RecordIntStat(MATCH_EVENT_DAMAGE_DEALT, Damage);
 
-		if ( TargetPawn.Health > 0 ) 
+		KFPRIV = KFPlayerReplicationInfoVersus( PlayerReplicationInfo );
+
+		// Record damage dealt on team
+		KFPRIV.DamageDealtOnTeam += Damage;
+
+		// Record indirect/aoe damage
+		if( KFDT != none && KFDT.default.bConsideredIndirectOrAoE )
 		{
-			// damage has already been applied and zed is still standing, record it all
-			RecordIntStat(MATCH_EVENT_DAMAGE_DEALT, Damage);
-
-			// Record indirect/aoe damage
-			if( KFDT != none && KFDT.default.bConsideredIndirectOrAoE )
-			{
-				KFPlayerReplicationInfoVersus(PlayerReplicationInfo).IndirectDamageDealt += Damage;
-				KFPlayerReplicationInfoVersus(PlayerReplicationInfo).DamageDealtOnTeam += Damage;
-			}
-		}
-		else if ( PreHealth > 0 ) 
-		{
-			// Zed has taken terminal damage, only record the difference to remove overkill counting
-			RecordIntStat(MATCH_EVENT_DAMAGE_DEALT, PreHealth );
-
-			// Record indirect/aoe damage
-			if( KFDT != none && KFDT.default.bConsideredIndirectOrAoE )
-			{
-				KFPlayerReplicationInfoVersus(PlayerReplicationInfo).IndirectDamageDealt += PreHealth;
-				KFPlayerReplicationInfoVersus(PlayerReplicationInfo).DamageDealtOnTeam += PreHealth;
-			}
+			KFPRIV.IndirectDamageDealt += Damage;
 		}
 		return;
 	}
@@ -478,20 +468,9 @@ function InternalRecordWeaponDamage(class<KFDamageType> KFDT, class<KFWeaponDefi
 
 	if(WeaponDamageList[WeaponIndex].WeaponDef == WeaponDef)
 	{
-		PreHealth = TargetPawn.Health + Damage;
-
-		if ( TargetPawn.Health > 0 ) 
-		{
-			// damage has already been applied and zed is still standing, record it all
-			RecordIntStat(MATCH_EVENT_DAMAGE_DEALT, Damage);
-			WeaponDamageList[WeaponIndex].DamageAmount += Damage;
-		}
-		else if ( PreHealth > 0 ) 
-		{
-			// Zed has taken terminal damage, only record the difference to remove overkill counting
-			RecordIntStat(MATCH_EVENT_DAMAGE_DEALT, PreHealth );
-			WeaponDamageList[WeaponIndex].DamageAmount += PreHealth;
-		}
+		// Record actual damage
+		RecordIntStat(MATCH_EVENT_DAMAGE_DEALT, Damage);
+		WeaponDamageList[WeaponIndex].DamageAmount += Damage;
 		
 		if(bLargeZedKill)
 		{

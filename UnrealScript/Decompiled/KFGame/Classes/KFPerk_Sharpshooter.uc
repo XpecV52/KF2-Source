@@ -168,6 +168,21 @@ protected simulated event PostSkillUpdate()
         MaxGrenadeCount = default.MaxGrenadeCount;
     }
     super.PostSkillUpdate();
+    if(Role == ROLE_Authority)
+    {
+        if(IsRhythmMethodActive())
+        {
+            ServerClearHeadShotsCombo();
+        }
+    }
+}
+
+event Destroyed()
+{
+    if(Role == ROLE_Authority)
+    {
+        ServerClearHeadShotsCombo();
+    }
 }
 
 simulated function bool GetUsingTactialReload(KFWeapon KFW)

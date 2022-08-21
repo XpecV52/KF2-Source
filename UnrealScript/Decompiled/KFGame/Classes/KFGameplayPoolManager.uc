@@ -5,8 +5,9 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFGameplayPoolManager extends Object
-    native;
+class KFGameplayPoolManager extends Actor
+    notplaceable
+    hidecategories(Navigation);
 
 enum eProjectilePoolType
 {
@@ -33,8 +34,10 @@ var protected byte MAX_ACTIVE_PUKE_MINES;
 var protected transient array<sProjectilePoolInfo> ActiveC4Infos;
 var protected transient array<sProjectilePoolInfo> ActivePukeMineInfos;
 
-// Export UKFGameplayPoolManager::execGetPoolManager(FFrame&, void* const)
-native static function KFGameplayPoolManager GetPoolManager();
+static function KFGameplayPoolManager GetPoolManager()
+{
+    return KFGameplayPoolManager(Class'WorldInfo'.static.GetWorldInfo().MyGameplayPoolManager);
+}
 
 function AddProjectileToPool(KFProjectile Proj, KFGameplayPoolManager.eProjectilePoolType PoolType)
 {
@@ -174,8 +177,8 @@ protected function int GetMaxPlayerPukeMineNum()
 
 event Reset()
 {
-    ActivePukeMineInfos.Remove(0, ActivePukeMineInfos.Length;
-    ActiveC4Infos.Remove(0, ActiveC4Infos.Length;
+    ActivePukeMineInfos.Length = 0;
+    ActiveC4Infos.Length = 0;
 }
 
 defaultproperties
@@ -183,4 +186,6 @@ defaultproperties
     MAX_ACTIVE_C4=40
     MAX_C4_PER_PLAYER=10
     MAX_ACTIVE_PUKE_MINES=30
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
+    bTickIsDisabled=true
 }

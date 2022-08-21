@@ -136,7 +136,7 @@ function ApplySpecialZoneHealthMod(float HealthMod)
 
 function bool CanInjureHitZone(class<DamageType> DamageType, int HitZoneIdx)
 {
-    if((HitZoneIdx == 3) && !bPlayedDeath)
+    if((HitZoneIdx == 3) && !bPlayedDeath || WorldInfo.TimeSeconds == TimeOfDeath)
     {
         return true;
     }
@@ -157,8 +157,10 @@ function TriggerExplosion(optional bool bIgnoreHumans)
 {
     local KFExplosionActorReplicated ExploActor;
     local Controller DamageInstigator, OldController;
+    local bool bExplodeOnDeath;
 
-    if(!bHasExploded && !bPlayedDeath)
+    bExplodeOnDeath = WorldInfo.TimeSeconds == TimeOfDeath;
+    if(!bHasExploded && !bPlayedDeath || bExplodeOnDeath)
     {
         OldController = Controller;
         if(Role == ROLE_Authority)
@@ -176,7 +178,7 @@ function TriggerExplosion(optional bool bIgnoreHumans)
                 }
                 ExploActor.Explode(ExplosionTemplate, vect(0, 0, 1));
             }
-            if(!bPlayedDeath)
+            if(!bPlayedDeath || bExplodeOnDeath)
             {
                 TakeRadiusDamage(DamageInstigator, 10000, ExplosionTemplate.DamageRadius, ExplosionTemplate.MyDamageType, ExplosionTemplate.MomentumTransferScale, Location, true, self);
             }

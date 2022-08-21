@@ -27,7 +27,7 @@ function PreMoveToEnemy()
 function DoScream(optional bool bCalledFromPreMove)
 {
     bCalledFromPreMove = false;
-    if(MyKFPawn.IsImpaired() || MyKFPawn.IsIncapacitated())
+    if((((MyKFPawn == none) || !MyKFPawn.IsAliveAndWell()) || MyKFPawn.IsImpaired()) || MyKFPawn.IsIncapacitated())
     {
         return;
     }
@@ -46,16 +46,22 @@ function AcquireEnemyAndScream(optional bool bStartScreamTimer)
 {
     local Pawn BestTarget;
 
-    if(MyKFPawn.IsImpaired() || MyKFPawn.IsIncapacitated())
+    if(((((MyKFPawn == none) || !MyKFPawn.IsAliveAndWell()) || MyKFPawn.IsImpaired()) || MyKFPawn.IsIncapacitated()) || IsTimerActive('DoScream'))
     {
         return;
     }
-    BestTarget = MyKFPawn.GetBestAggroEnemy();
-    if(BestTarget == none)
+    if(Enemy == none)
     {
-        BestTarget = GetClosestEnemy();
+        BestTarget = MyKFPawn.GetBestAggroEnemy();
+        if(BestTarget == none)
+        {
+            BestTarget = GetClosestEnemy();
+        }
+        if(BestTarget != none)
+        {
+            ChangeEnemy(BestTarget, true);
+        }
     }
-    ChangeEnemy(BestTarget, true);
     if(bStartScreamTimer)
     {
         SetTimer(1, false, 'DoScream');
@@ -66,6 +72,10 @@ function NotifySpecialMoveStarted(KFSpecialMove SM)
 {
     local AICommand_Siren_Scream ScreamCommand;
 
+    if((MyKFPawn == none) || !MyKFPawn.IsAliveAndWell())
+    {
+        return;
+    }
     if(MyKFPawn.IsImpaired() || MyKFPawn.IsIncapacitated())
     {
         ScreamCommand = FindCommandOfClass(Class'AICommand_Siren_Scream');
@@ -106,8 +116,14 @@ function NotifyCommandFinished(AICommand FinishedCommand)
 
 function DoPanicWander()
 {
+    local GameAICommand ActiveCommand;
     local AICommand_Siren_Scream ScreamCommand;
 
+    ActiveCommand = GetActiveCommand();
+    if((ActiveCommand != none) && AICommand_PanicWander(ActiveCommand) != none)
+    {
+        return;
+    }
     ScreamCommand = FindCommandOfClass(Class'AICommand_Siren_Scream');
     if(ScreamCommand != none)
     {

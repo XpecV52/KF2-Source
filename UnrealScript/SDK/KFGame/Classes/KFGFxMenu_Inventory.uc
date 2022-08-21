@@ -103,6 +103,9 @@ struct InventoryHelper
 
 var EINventory_Filter CurrentInventoryFilter;
 
+var ExchangeRuleSets RuleToExchange;
+
+
 function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 {
 	super.InitializeMenu( InManager );
@@ -483,6 +486,8 @@ function ConfirmRecycle()
 
 	if(OnlineSub.ExchangeReady(ExchangeRules[0]))
 	{
+		OnlineSub.ClearInFlight();
+
 		SetVisible(false);
 		OnlineSub.Exchange(ExchangeRules[0]);
 		KFPC.ConsoleCommand("CE Recycle_Start");
@@ -493,16 +498,29 @@ function ConfirmRecycle()
 	}
 }
 
+function ExchangeDuplicatesEx()
+{
+	if ( OnlineSub.ExchangeDuplicates(RuleToExchange, 10) > 0 )
+	{
+		KFPC.SetTimer( 0.1, false, nameof(ExchangeDuplicatesEx), self );
+	}
+}
+
 function ConfirmDuplicatesRecycle()
 {
 	local array<ExchangeRuleSets> ExchangeRules;
 
-	OnlineSub.IsExchangeable(TempItemIdHolder, ExchangeRules);
+	OnlineSub.IsExchangeable( TempItemIdHolder, ExchangeRules );
 
-	if(OnlineSub.ExchangeReady(ExchangeRules[0]))
+	if( OnlineSub.ExchangeReady(ExchangeRules[0]) )
 	{
+		OnlineSub.ClearInFlight();
+
+		RuleToExchange = ExchangeRules[0];
 		SetVisible(false);
-		OnlineSub.ExchangeDuplicates(ExchangeRules[0]);
+
+		KFPC.SetTimer( 0.1, false, nameof(ExchangeDuplicatesEx), self );
+
 		KFPC.ConsoleCommand("CE Recycle_Start");
 	}
 	else
@@ -527,7 +545,7 @@ function ConfirmCraft()
 	{
 		if(OnlineSub.ExchangeReady(ExchangeRules[RuleIndex]))
 		{
-			OnlineSub.Exchange(ExchangeRules[RuleIndex]);
+			OnlineSub.Exchange( ExchangeRules[RuleIndex] );
 			SetVisible(false);
 			KFPC.ConsoleCommand("CE Craft_Start");
 			return;

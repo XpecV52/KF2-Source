@@ -77,7 +77,7 @@ simulated function Tick(float DeltaTime)
     local float Strength;
     local Vector2D StrengthRange;
 
-    super(GameSpecialMove).Tick(DeltaTime);
+    super(KFSpecialMove).Tick(DeltaTime);
     if(MuzzlePSC != none)
     {
         StrengthRange = MyHuskPawn.GetFireballStrengthRange();

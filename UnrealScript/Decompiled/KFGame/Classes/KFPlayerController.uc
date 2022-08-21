@@ -1416,20 +1416,6 @@ reliable client simulated function ClientSetCameraMode(name NewCamMode)
     {
         KFBoss = GetBoss();
         SetNightVision(false);
-        if(((KFBoss != none) && KFBoss.Health > 0) && !PlayerReplicationInfo.bIsSpectator)
-        {
-            if(KFGameReplicationInfo(WorldInfo.GRI).AnyPlayersAlive())
-            {
-                if(KFBoss.bVersusZed)
-                {
-                    ShowBossNameplate(KFBoss, ("(" $ KFBoss.PlayerReplicationInfo.PlayerName) $ ")");                    
-                }
-                else
-                {
-                    ShowBossNameplate(KFBoss);
-                }
-            }
-        }
         if(!ViewTarget.IsA('KFPawn_MonsterBoss'))
         {
             SetViewTarget(KFBoss);
@@ -4890,12 +4876,12 @@ state Dead
 
 state Spectating
 {
-    local KFGFxHudWrapper GFxHUDWrapper;
-
     ignores StartFire;
 
     event BeginState(name PreviousStateName)
     {
+        local KFGFxHudWrapper GFxHUDWrapper;
+
         GFxHUDWrapper = KFGFxHudWrapper(myHUD);
         if(GFxHUDWrapper != none)
         {

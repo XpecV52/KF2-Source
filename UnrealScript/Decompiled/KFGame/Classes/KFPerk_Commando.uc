@@ -299,7 +299,7 @@ private final function bool IsBackupActive()
     return PerkSkills[2].bActive;
 }
 
-private final function bool IsHollowPointsActive()
+private final simulated function bool IsHollowPointsActive()
 {
     return PerkSkills[6].bActive;
 }

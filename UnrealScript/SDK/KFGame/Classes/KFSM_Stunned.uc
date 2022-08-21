@@ -61,19 +61,6 @@ function DoStun()
 	}
 }
 
-/** Overridden to restrict movement when on the ground */
-simulated event Tick( float DeltaTime )
-{
-	super.Tick( DeltaTime );
-
-	if( KFPOwner != none && KFPOwner.Role == ROLE_Authority && KFPOwner.Physics == PHYS_Walking )
-	{
-		KFPOwner.Velocity.X = 0.f;
-		KFPOwner.Velocity.Y = 0.f;
-		KFPOwner.Acceleration = vect(0,0,0);
-	}
-}
-
 /** Wakeup the zed once the servers timer has finished */
 function DoWakeup()
 {

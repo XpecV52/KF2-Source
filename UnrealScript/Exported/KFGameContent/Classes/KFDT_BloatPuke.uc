@@ -13,6 +13,7 @@ class KFDT_BloatPuke extends KFDT_Toxic
 
 defaultproperties
 {
+   bConsideredIndirectOrAoE=True
    DoT_Duration=12.000000
    DoT_DamageScale=0.083333
    PoisonPower=0.000000

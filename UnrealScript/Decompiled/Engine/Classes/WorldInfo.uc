@@ -739,6 +739,8 @@ var(LightAnimation) float InverseChaoticFlickerBrightnessLowerBoundClamp<UIMin=0
 var(Rendering) array<MaterialInstanceConstant> ZedTimeMICs;
 var globalconfig float EmitterPoolScale;
 var globalconfig float DestructionLifetimeScale;
+var string GameplayPoolManagerClassPath;
+var transient Actor MyGameplayPoolManager;
 var string ImpactEffectManagerClassPath;
 var transient Actor MyImpactEffectManager;
 var string GoreEffectManagerClassPath;
@@ -905,7 +907,7 @@ simulated function PreBeginPlay()
     local class<DecalManager> DecalManagerClass;
     local class<FractureManager> FractureManagerClass;
     local class<ParticleEventManager> ParticleEventManagerClass;
-    local class<Actor> ImpactEffectManagerClass, GoreEffectManagerClass, TurbEffectPoolClass;
+    local class<Actor> ImpactEffectManagerClass, GoreEffectManagerClass, TurbEffectPoolClass, GameplayPoolManagerClass;
 
     super(Actor).PreBeginPlay();
     if((WorldInfo.NetMode != NM_DedicatedServer) && IsInPersistentLevel())
@@ -985,6 +987,17 @@ simulated function PreBeginPlay()
         }
         ExplosionDecalManager = Spawn(Class'DecalManager', self,, vect(0, 0, 0), rot(0, 0, 0));
         ExplosionDecalManager.MaxActiveDecals = MaxExplosionDecals;
+    }
+    if((WorldInfo.NetMode != NM_Client) && IsInPersistentLevel())
+    {
+        if(GameplayPoolManagerClassPath != "")
+        {
+            GameplayPoolManagerClass = class<Actor>(DynamicLoadObject(GameplayPoolManagerClassPath, Class'Class'));
+            if(GameplayPoolManagerClass != none)
+            {
+                MyGameplayPoolManager = Spawn(GameplayPoolManagerClass, self,, vect(0, 0, 0), rot(0, 0, 0));
+            }
+        }
     }
 }
 
@@ -1235,6 +1248,7 @@ defaultproperties
     InverseChaoticFlickerCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=1,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Constant)
     EmitterPoolScale=1
     DestructionLifetimeScale=1
+    GameplayPoolManagerClassPath="KFGame.KFGameplayPoolManager"
     ImpactEffectManagerClassPath="KFGame.KFImpactEffectManager"
     GoreEffectManagerClassPath="KFGame.KFGoreManager"
     GroundFireEmitterPoolClassPath="KFGame.GroundFireEmitterPool"

@@ -18,4 +18,5 @@ defaultproperties
 	DoT_DamageScale=0.0833334
 
 	PoisonPower=0.f
+	bConsideredIndirectOrAoE=true
 }

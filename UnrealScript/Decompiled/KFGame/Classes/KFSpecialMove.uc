@@ -291,6 +291,17 @@ final function SetMovementLock(bool bEnable)
     }
 }
 
+function Tick(float DeltaTime)
+{
+    super.Tick(DeltaTime);
+    if(((bMovementDisabled && KFPOwner != none) && KFPOwner.Role == ROLE_Authority) && KFPOwner.Physics == 1)
+    {
+        KFPOwner.Velocity.X = 0;
+        KFPOwner.Velocity.Y = 0;
+        KFPOwner.Acceleration = vect(0, 0, 0);
+    }
+}
+
 final function SetLockPawnRotation(bool bLock)
 {
     if(bPawnRotationLocked != bLock)

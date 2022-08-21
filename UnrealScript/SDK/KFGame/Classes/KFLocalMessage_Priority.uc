@@ -76,6 +76,10 @@ static function ClientReceive(
 	switch( Switch )
 	{
 		case GMT_WaveStart:
+			if(!P.PlayerReplicationInfo.bOnlySpectator)
+			{
+				CloseMenus();
+			}	
 			class'KFMusicStingerHelper'.static.PlayWaveStartStinger( P );
 			break;
 		case GMT_WaveEnd:
@@ -247,6 +251,18 @@ static function string GetMessageString(int Switch, optional out String Secondar
 	}
 }
 
+static function CloseMenus()
+{
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController());
+
+	if(KFPC != none && KFPC.MyGfxManager != none)
+	{
+		KFPC.MyGfxManager.CloseMenus(true);
+	}
+}
+
 static function OpenPerkMenu()
 {
 	local KFPlayerController KFPC;
@@ -255,7 +271,6 @@ static function OpenPerkMenu()
 
 	if(KFPC != none && KFPC.MyGfxManager != none)
 	{
-		`log("OPEN PERK MENU CALLED DUE TO RECIEVE MESSAGE!!!");
 		KFPC.MyGfxManager.OpenMenu(UI_Perks, true);
 	}
 }

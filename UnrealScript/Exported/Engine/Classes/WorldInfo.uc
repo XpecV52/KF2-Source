@@ -997,6 +997,10 @@ var transient bool bDropHighDetail;
 
 // ---------------------------------------------
 // Manager (singleton) objects
+/** Gameplay pool manager */
+var string GameplayPoolManagerClassPath;
+var transient Actor MyGameplayPoolManager;
+
 /** Impact Effect manager **/
 var string ImpactEffectManagerClassPath;
 var transient Actor MyImpactEffectManager;
@@ -1423,6 +1427,7 @@ simulated function PreBeginPlay()
 	local class<Actor> ImpactEffectManagerClass;
 	local class<Actor> GoreEffectManagerClass;
 	local class<Actor> TurbEffectPoolClass;
+	local class<Actor> GameplayPoolManagerClass;
 
 
 	Super.PreBeginPlay();
@@ -1515,6 +1520,21 @@ simulated function PreBeginPlay()
 		ExplosionDecalManager.MaxActiveDecals = MaxExplosionDecals;
 
 	}
+
+
+	// Instance gameplay pool manager
+	if( WorldInfo.NetMode != NM_Client && IsInPersistentLevel() )
+	{
+		if (GameplayPoolManagerClassPath != "")
+		{
+			GameplayPoolManagerClass = class<Actor>(DynamicLoadObject(GameplayPoolManagerClassPath, class'Class'));
+			if (GameplayPoolManagerClass != None)
+			{
+				MyGameplayPoolManager = Spawn(GameplayPoolManagerClass, self,, vect(0,0,0), rot(0,0,0));
+			}
+		}
+	}
+
 }
 
 simulated function PostBeginPlay()
@@ -1885,6 +1905,7 @@ defaultproperties
    InverseChaoticFlickerCurve=(Points=((OutVal=1.000000,InterpMode=CIM_Constant),(InVal=0.800000,InterpMode=CIM_Constant),(InVal=0.812000,OutVal=1.000000,InterpMode=CIM_Constant),(InVal=0.824000,InterpMode=CIM_Constant),(InVal=0.832000,OutVal=1.000000,InterpMode=CIM_Constant),(InVal=0.840000,InterpMode=CIM_Constant),(InVal=0.860000,OutVal=1.000000,InterpMode=CIM_Constant)))
    EmitterPoolScale=1.000000
    DestructionLifetimeScale=1.000000
+   GameplayPoolManagerClassPath="KFGame.KFGameplayPoolManager"
    ImpactEffectManagerClassPath="KFGame.KFImpactEffectManager"
    GoreEffectManagerClassPath="KFGame.KFGoreManager"
    GroundFireEmitterPoolClassPath="KFGame.GroundFireEmitterPool"

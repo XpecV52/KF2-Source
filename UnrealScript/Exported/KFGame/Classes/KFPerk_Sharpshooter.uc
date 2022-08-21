@@ -326,6 +326,22 @@ simulated protected event PostSkillUpdate()
 	}
 
 	super.PostSkillUpdate();
+
+	if(Role == Role_Authority)
+	{
+		if(IsRhythmMethodActive())
+		{
+			ServerClearHeadShotsCombo();
+		}
+	}
+}
+
+event Destroyed()
+{
+	if(Role == Role_Authority)
+	{
+		ServerClearHeadShotsCombo();
+	}
 }
 
 /**

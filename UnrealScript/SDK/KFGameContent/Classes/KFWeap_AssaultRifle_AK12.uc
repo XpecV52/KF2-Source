@@ -31,6 +31,8 @@ var(Animations) const editconst	name	BurstFire3RdSightedAnim;
 var(Sounds)	WeaponFireSndInfo	WeaponFire2RdSnd;
 /** Sound to play when the weapon is fired in burst fire mode for 3 rounds */
 var(Sounds)	WeaponFireSndInfo	WeaponFire3RdSnd;
+/** Keeps track of whether or not the gun has played fire effects this burst. */
+var bool bBurstPlayedFireEffects;
 
 /*********************************************************************************************
  * State WeaponBurstFiring
@@ -51,6 +53,8 @@ simulated state WeaponBurstFiring
 			RecoilPitchBlendOutRate = maxRecoilPitch/RecoilRate * RecoilBlendOutRatio;
 		}
 
+		bBurstPlayedFireEffects = false;
+
 		super.BeginState(PrevStateName);
 	}
 
@@ -66,7 +70,7 @@ simulated state WeaponBurstFiring
 
         // Only play the burst fire sound on the first shot as the sound includes additional shot sounds baked in
         if( FireModeNum != ALTFIRE_FIREMODE || (FireModeNum == ALTFIRE_FIREMODE &&
-            (BurstAmount==default.BurstAmount || `IsInZedTime(self))) )
+            (!bBurstPlayedFireEffects || `IsInZedTime(self))) )
         {
             PlayFiringSound(CurrentFireMode);
     	}
@@ -74,7 +78,7 @@ simulated state WeaponBurstFiring
     	if( Instigator != none && Instigator.IsFirstPerson() )
     	{
     	    if ( !bPlayingLoopingFireAnim && (FireModeNum != ALTFIRE_FIREMODE || (FireModeNum == ALTFIRE_FIREMODE &&
-                BurstAmount==default.BurstAmount)) )
+                !bBurstPlayedFireEffects)) )
     	    {
     		    WeaponFireAnimName = GetWeaponFireAnim(FireModeNum);
 
@@ -91,6 +95,8 @@ simulated state WeaponBurstFiring
     	    // Start muzzle flash effect
     	    CauseMuzzleFlash(FireModeNum);
     	}
+
+    	bBurstPlayedFireEffects = true;
     }
 
     /** Overridden to include the BurstFireModifier*/

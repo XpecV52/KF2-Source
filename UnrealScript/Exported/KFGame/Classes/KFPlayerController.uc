@@ -2290,22 +2290,6 @@ reliable client function ClientSetCameraMode( name NewCamMode )
 		// If our nightvision is active... disable it
 		SetNightVision(false);
 
-		// Show boss overlay
-		if( KFBoss != none && KFBoss.Health > 0 && !PlayerReplicationInfo.bIsSpectator )
-		{
-			if(KFGameReplicationInfo(WorldInfo.GRI).AnyPlayersAlive()) //Boss intro
-			{
-				if(KFBoss.bVersusZed)
-				{
-					ShowBossNameplate(KFBoss, "("$KFBoss.PlayerReplicationInfo.PlayerName$")");
-				}
-				else
-				{
-					ShowBossNameplate(KFBoss);
-				}
-			}
-		}
-
 		// If our current view target is not a boss, make sure we find one
 		if( !ViewTarget.IsA('KFPawn_MonsterBoss') )
 		{
@@ -7173,10 +7157,10 @@ function MoveToValidSpectatorLocation()
 
 state Spectating
 {
-	local KFGFxHudWrapper GFxHUDWrapper;
-
 	event BeginState(Name PreviousStateName)
 	{
+		local KFGFxHudWrapper GFxHUDWrapper;
+
 		GFxHUDWrapper = KFGFxHudWrapper(myHUD);
 		if( GFxHUDWrapper != none)
 		{

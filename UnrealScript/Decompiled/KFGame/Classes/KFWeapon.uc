@@ -98,7 +98,7 @@ var byte SingleFireMode;
 /** Number of shots to fire per burst. */
 var(Weapon) byte BurstAmount;
 /** Determines which group a weapon falls into in weapon select */
-var(Inventory) const KFWeapon.EInventoryGroup InventoryGroup;
+var(Inventory) KFWeapon.EInventoryGroup InventoryGroup;
 /** Inventory (In blocks) cost */
 var(Inventory) byte InventorySize;
 var byte AmmoCount[2];
@@ -3188,7 +3188,11 @@ simulated function Activate()
 {
     if(bUseAltFireMode)
     {
-        ClearPendingFire(0);
+        ClearPendingFire(0);        
+    }
+    else
+    {
+        ClearPendingFire(1);
     }
     AttachWeaponTo(Instigator.Mesh);
     super.Activate();

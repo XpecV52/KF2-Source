@@ -16,12 +16,13 @@ var KFPawn_MonsterBoss BossPawn;
 
 function CreateHUDMovie(optional bool bForce)
 {
-    if(!Class'WorldInfo'.static.IsMenuLevel())
+    if((HudMovie != none) && !bForce)
     {
-        HudMovie = new HUDClass;
-        HudMovie.SetTimingMode(1);
-        HudMovie.Init(Class'Engine'.static.GetEngine().GamePlayers[HudMovie.LocalPlayerOwnerIndex]);
+        return;
     }
+    HudMovie = new HUDClass;
+    HudMovie.SetTimingMode(1);
+    HudMovie.Init(Class'Engine'.static.GetEngine().GamePlayers[HudMovie.LocalPlayerOwnerIndex]);
 }
 
 singular event Destroyed()

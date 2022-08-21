@@ -182,10 +182,11 @@ function ApplySpecialZoneHealthMod(float HealthMod)
 /** Override for Husk's backpack explosion */
 function bool CanInjureHitZone(class<DamageType> DamageType, int HitZoneIdx)
 {
-	if( HitZoneIdx == BackpackZoneIndex && !bPlayedDeath )
+	if( HitZoneIdx == BackpackZoneIndex && (!bPlayedDeath || WorldInfo.TimeSeconds == TimeOfDeath) )
 	{
 		return true;
 	}
+
 	return super.CanInjureHitZone(DamageType, HitZoneIdx);
 }
 
@@ -206,9 +207,12 @@ function TriggerExplosion(optional bool bIgnoreHumans)
 {
 	local KFExplosionActorReplicated ExploActor;
 	local Controller DamageInstigator, OldController;
+	local bool bExplodeOnDeath;
+
+	bExplodeOnDeath = WorldInfo.TimeSeconds == TimeOfDeath;
 
 	// Only living husks can explode... and only once
-	if ( !bHasExploded && !bPlayedDeath )
+	if( !bHasExploded && (!bPlayedDeath || bExplodeOnDeath) )
 	{
 		OldController = Controller;
 
@@ -234,7 +238,7 @@ function TriggerExplosion(optional bool bIgnoreHumans)
 			}
 
 			// Make sure we're dead!
-			if( !bPlayedDeath )
+			if( !bPlayedDeath || bExplodeOnDeath )
 			{
 				TakeRadiusDamage(DamageInstigator, 10000, ExplosionTemplate.DamageRadius, ExplosionTemplate.MyDamageType, ExplosionTemplate.MomentumTransferScale, Location, true, self);
 			}

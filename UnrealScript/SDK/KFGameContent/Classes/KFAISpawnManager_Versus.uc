@@ -117,6 +117,9 @@ function SetupNextWave(byte NextWaveIndex)
     }
     else
     {
+        // Set our boss pawn spawn timer
+        SetTimer( 5.f, false, nameOf(Timer_SpawnPlayerZeds), self );
+
         // Disable the spawn timer on clients
         MyKFGRIV.SetPlayerZedSpawnTime( 255, false );        
     }

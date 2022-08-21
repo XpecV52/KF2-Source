@@ -79,6 +79,8 @@ static function byte PackSMFlags( KFPawn P, byte InTauntType )
 
 function SpecialMoveStarted( bool bForced, Name PrevMove )
 {
+	local KFPawn_MonsterBoss KFBoss;
+
 	super.SpecialMoveStarted( bForced, PrevMove );
 
 	// This ensures the boss animation is always using the correct root bone axis option 
@@ -88,8 +90,23 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 	// Cache hud reference
 	if( KFPOwner.WorldInfo.NetMode != NM_DedicatedServer )
 	{
-		KFGFxHudWrapper(KFPOwner.WorldInfo.GetALocalPlayerController().myHUD).BossPawn = KFPawn_MonsterBoss(KFPOwner);
+		KFBoss = KFPawn_MonsterBoss(KFPOwner);
+
+		KFGFxHudWrapper(KFPOwner.WorldInfo.GetALocalPlayerController().myHUD).BossPawn = KFBoss;
+		if(KFGameReplicationInfo(KFPOwner.WorldInfo.GRI).AnyPlayersAlive()) //Boss intro
+		{
+			if(KFBoss.bVersusZed)
+			{
+				KFPlayerController(KFPOwner.WorldInfo.GetALocalPlayerController()).ShowBossNameplate(KFBoss, "("$KFBoss.PlayerReplicationInfo.PlayerName$")");
+			}
+			else
+			{
+				KFPlayerController(KFPOwner.WorldInfo.GetALocalPlayerController()).ShowBossNameplate(KFBoss);
+			}
+		}
 	}
+
+
 }
 
 function PlayAnimation()

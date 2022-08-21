@@ -260,7 +260,7 @@ state Pickup
             return false;
         }
         PickupLocation = Location - (vector(Rotation) * 15);
-        if(!FastTrace(Other.Location, PickupLocation,, true))
+        if(!FastTrace(Other.Location, PickupLocation) && !FastTrace(Other.Location, PickupLocation,, true))
         {
             return false;
         }

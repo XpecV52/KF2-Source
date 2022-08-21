@@ -87,7 +87,11 @@ function Popped()
 	ClearTimer( nameof(Timer_WanderDurationExpired), self );
 	AIZeroMovementVariables( true );
 	StopAllLatentMovement();
-	MyKFPawn.bCanUseHiddenSpeed = MyKFPawn.default.bCanUseHiddenSpeed;
+
+	if( MyKFPawn != none )
+	{
+		MyKFPawn.bCanUseHiddenSpeed = MyKFPawn.default.bCanUseHiddenSpeed;
+	}
 }
 
 function Timer_WanderDurationExpired()

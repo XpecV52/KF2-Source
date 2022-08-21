@@ -188,7 +188,6 @@ reliable client simulated function ClientReset()
         ++ I;
         goto J0xA7;
     }
-    Class'KFGameplayPoolManager'.static.GetPoolManager().Reset();
 }
 
 event InitInputSystem()

@@ -67,6 +67,10 @@ static function ClientReceive(PlayerController P, optional int Switch, optional 
     switch(Switch)
     {
         case 0:
+            if(!P.PlayerReplicationInfo.bOnlySpectator)
+            {
+                CloseMenus();
+            }
             Class'KFMusicStingerHelper'.static.PlayWaveStartStinger(P);
             break;
         case 1:
@@ -222,6 +226,17 @@ static function string GetMessageString(int Switch, optional out string Secondar
     }
 }
 
+static function CloseMenus()
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController());
+    if((KFPC != none) && KFPC.MyGFxManager != none)
+    {
+        KFPC.MyGFxManager.CloseMenus(true);
+    }
+}
+
 static function OpenPerkMenu()
 {
     local KFPlayerController KFPC;
@@ -229,7 +244,6 @@ static function OpenPerkMenu()
     KFPC = KFPlayerController(Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController());
     if((KFPC != none) && KFPC.MyGFxManager != none)
     {
-        LogInternal("OPEN PERK MENU CALLED DUE TO RECIEVE MESSAGE!!!");
         KFPC.MyGFxManager.OpenMenu(1, true);
     }
 }

@@ -92,6 +92,7 @@ var name SoundThemeName;
 var KFPlayerController KFPC;
 var int ValueToPromptDuplicateRecycle;
 var KFGFxMenu_Inventory.EINventory_Filter CurrentInventoryFilter;
+var ExchangeRuleSets RuleToExchange;
 
 function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
 {
@@ -451,6 +452,7 @@ function ConfirmRecycle()
     OnlineSub.IsExchangeable(TempItemIdHolder, ExchangeRules);
     if(OnlineSub.ExchangeReady(ExchangeRules[0]))
     {
+        OnlineSub.ClearInFlight();
         SetVisible(false);
         OnlineSub.Exchange(ExchangeRules[0]);        
         KFPC.ConsoleCommand("CE Recycle_Start");        
@@ -461,6 +463,14 @@ function ConfirmRecycle()
     }
 }
 
+function ExchangeDuplicatesEx()
+{
+    if(OnlineSub.ExchangeDuplicates(RuleToExchange, 10) > 0)
+    {
+        KFPC.SetTimer(0.1, false, 'ExchangeDuplicatesEx', self);
+    }
+}
+
 function ConfirmDuplicatesRecycle()
 {
     local array<ExchangeRuleSets> ExchangeRules;
@@ -468,8 +478,10 @@ function ConfirmDuplicatesRecycle()
     OnlineSub.IsExchangeable(TempItemIdHolder, ExchangeRules);
     if(OnlineSub.ExchangeReady(ExchangeRules[0]))
     {
+        OnlineSub.ClearInFlight();
+        RuleToExchange = ExchangeRules[0];
         SetVisible(false);
-        OnlineSub.ExchangeDuplicates(ExchangeRules[0]);        
+        KFPC.SetTimer(0.1, false, 'ExchangeDuplicatesEx', self);        
         KFPC.ConsoleCommand("CE Recycle_Start");        
     }
     else

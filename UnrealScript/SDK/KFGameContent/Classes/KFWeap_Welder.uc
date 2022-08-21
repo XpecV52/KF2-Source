@@ -54,6 +54,15 @@ var float LastTraceHitTime;
 var class<KFGFxWorld_WelderScreen> ScreenUIClass;
 var KFGFxWorld_WelderScreen ScreenUI;
 
+simulated event PreBeginPlay()
+{
+	Super.PreBeginPlay();
+	if(class'KFGameEngine'.default.bShowWelderInInv)
+	{
+		InventoryGroup=IG_Equipment;
+	}
+}
+
 /** Turn on the UI screen when we equip the healer */
 simulated function AttachWeaponTo( SkeletalMeshComponent MeshCpnt, optional Name SocketName )
 {

@@ -75,7 +75,10 @@ function Popped()
     Outer.ClearTimer('Timer_WanderDurationExpired', self);
     Outer.AIZeroMovementVariables(true);
     Outer.StopAllLatentMovement();
-    Outer.MyKFPawn.bCanUseHiddenSpeed = Outer.MyKFPawn.default.bCanUseHiddenSpeed;
+    if(Outer.MyKFPawn != none)
+    {
+        Outer.MyKFPawn.bCanUseHiddenSpeed = Outer.MyKFPawn.default.bCanUseHiddenSpeed;
+    }
 }
 
 function Timer_WanderDurationExpired()

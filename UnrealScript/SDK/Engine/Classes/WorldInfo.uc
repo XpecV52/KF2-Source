@@ -997,6 +997,10 @@ var transient bool bDropHighDetail;
 
 // ---------------------------------------------
 // Manager (singleton) objects
+/** Gameplay pool manager */
+var string GameplayPoolManagerClassPath;
+var transient Actor MyGameplayPoolManager;
+
 /** Impact Effect manager **/
 var string ImpactEffectManagerClassPath;
 var transient Actor MyImpactEffectManager;
@@ -1423,6 +1427,7 @@ simulated function PreBeginPlay()
 	local class<Actor> ImpactEffectManagerClass;
 	local class<Actor> GoreEffectManagerClass;
 	local class<Actor> TurbEffectPoolClass;
+	local class<Actor> GameplayPoolManagerClass;
 `endif
 
 	Super.PreBeginPlay();
@@ -1515,6 +1520,21 @@ simulated function PreBeginPlay()
 		ExplosionDecalManager.MaxActiveDecals = MaxExplosionDecals;
 `endif
 	}
+
+`if(`__TW_)
+	// Instance gameplay pool manager
+	if( WorldInfo.NetMode != NM_Client && IsInPersistentLevel() )
+	{
+		if (GameplayPoolManagerClassPath != "")
+		{
+			GameplayPoolManagerClass = class<Actor>(DynamicLoadObject(GameplayPoolManagerClassPath, class'Class'));
+			if (GameplayPoolManagerClass != None)
+			{
+				MyGameplayPoolManager = Spawn(GameplayPoolManagerClass, self,, vect(0,0,0), rot(0,0,0));
+			}
+		}
+	}
+`endif
 }
 
 simulated function PostBeginPlay()
@@ -1962,6 +1982,7 @@ defaultproperties
 	GlobalGravityZ=-1150
 	LastSuccessfulPathBuildTime="Never!"
 
+	GameplayPoolManagerClassPath="KFGame.KFGameplayPoolManager"
 	EmitterPoolClassPath="Engine.EmitterPool"
 	GroundFireEmitterPoolClassPath="KFGame.GroundFireEmitterPool"
 	ImpactFXEmitterPoolClassPath="KFGame.KFImpactFXEmitterPool"

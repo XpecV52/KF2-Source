@@ -415,6 +415,19 @@ final function SetMovementLock(bool bEnable)
 	}
 }
 
+/** Overridden to restrict movement when on the ground */
+function Tick( float DeltaTime )
+{
+	super.Tick( DeltaTime );
+
+	if( bMovementDisabled && KFPOwner != none && KFPOwner.Role == ROLE_Authority && KFPOwner.Physics == PHYS_Walking )
+	{
+		KFPOwner.Velocity.X = 0.f;
+		KFPOwner.Velocity.Y = 0.f;
+		KFPOwner.Acceleration = vect(0,0,0);
+	}
+}
+
 /**
  * Locks or UnLocks Pawn rotation.
  * When Pawn rotation is locked, Pawn will stop rotating to match the controller's Yaw.

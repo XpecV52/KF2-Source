@@ -38,6 +38,8 @@ var config float GammaMultiplier;
 var config bool bMusicVocalsEnabled;
 var config bool bMinimalChatter;
 var config bool bShowKillTicker;
+var config bool bHideBossHealthBar;
+var config bool bShowWelderInInv;
 var private config bool bShowCrossHair;
 var private bool bShowCrossHairConsole;
 var config bool bMuteOnLossOfFocus;

@@ -490,7 +490,7 @@ enum EInventoryGroup
 };
 
 /** Determines which group a weapon falls into in weapon select */
-var(Inventory) const EInventoryGroup	InventoryGroup;
+var(Inventory) EInventoryGroup	InventoryGroup;
 
 /** Inventory (In blocks) cost */
 var(Inventory) byte	InventorySize;
@@ -4664,11 +4664,15 @@ reliable server function ServerSyncReload(int ClientSpareAmmoCount)
 
 simulated function Activate()
 {
+	// Clear opposite firemode when coming from another weapon, this is required since
+	// StopFire() will only clear current firemode when the button is released.
 	if ( bUseAltFireMode )
 	{
-		// Clear default firemode when coming from another weapon, this is required since
-		// StopFire() will only clear alt firemode when the button is released.
 		ClearPendingFire(DEFAULT_FIREMODE);
+	}
+	else
+	{
+		ClearPendingFire(ALTFIRE_FIREMODE);
 	}
 
 	// The weapon is equipped, attach it to the mesh.

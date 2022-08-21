@@ -30,6 +30,15 @@ var float LastTraceHitTime;
 var class<KFGFxWorld_WelderScreen> ScreenUIClass;
 var KFGFxWorld_WelderScreen ScreenUI;
 
+simulated event PreBeginPlay()
+{
+    super.PreBeginPlay();
+    if(Class'KFGameEngine'.default.bShowWelderInInv)
+    {
+        InventoryGroup = 3;
+    }
+}
+
 simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional name SocketName)
 {
     super.AttachWeaponTo(MeshCpnt, SocketName);

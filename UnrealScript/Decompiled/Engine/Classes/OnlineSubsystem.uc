@@ -618,6 +618,7 @@ struct native CurrentInventoryEntry
     var const int Quantity;
     var int NewlyAdded;
     var int LastUsedTime;
+    var bool InFlight;
 
     structdefaultproperties
     {
@@ -626,6 +627,7 @@ struct native CurrentInventoryEntry
         Quantity=0
         NewlyAdded=0
         LastUsedTime=0
+        InFlight=false
     }
 };
 
@@ -745,6 +747,9 @@ native function int IsExchangeable(int SourceSKU, out array<ExchangeRuleSets> Re
 // Export UOnlineSubsystem::execClearNewlyAdded(FFrame&, void* const)
 native function ClearNewlyAdded();
 
+// Export UOnlineSubsystem::execClearInFlight(FFrame&, void* const)
+native function ClearInFlight();
+
 // Export UOnlineSubsystem::execExchangeReady(FFrame&, void* const)
 native function bool ExchangeReady(const out ExchangeRuleSets Rule);
 
@@ -752,7 +757,7 @@ native function bool ExchangeReady(const out ExchangeRuleSets Rule);
 native function bool Exchange(const out ExchangeRuleSets Rule);
 
 // Export UOnlineSubsystem::execExchangeDuplicates(FFrame&, void* const)
-native function int ExchangeDuplicates(const out ExchangeRuleSets Rule);
+native function int ExchangeDuplicates(const out ExchangeRuleSets Rule, const int maxToExchange);
 
 delegate OnInventoryReadComplete();
 

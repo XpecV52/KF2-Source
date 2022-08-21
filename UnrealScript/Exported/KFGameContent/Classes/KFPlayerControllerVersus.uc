@@ -268,9 +268,6 @@ reliable client function ClientReset()
 	{
 		BloodSplatActors[i].Reset();
 	}
-
-	// Clear pool manager
-    class'KFGameplayPoolManager'.static.GetPoolManager().Reset();
 }
 
 /**
