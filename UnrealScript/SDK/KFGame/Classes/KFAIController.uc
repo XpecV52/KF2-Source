@@ -338,6 +338,8 @@ var                     float       LastStuckTime;
 
 /** Is this AI allowed to teleport to move closer? */
 var 					bool 		bCanTeleportCloser;
+/** The minimum number of zeds remaining before teleportation is disabled for this zed */
+var(Teleport)           byte 	    AIRemainingTeleportThreshold;
 /** The last time this AI checked to see if it can teleport closer to it's enemy */
 var                     float       LastTeleportCheckTime;
 /** The last time this AI teleported either because it was stuck or relocated */
@@ -3748,7 +3750,7 @@ simulated function Tick( FLOAT DeltaTime )
     // Regularly check to see if this AI can teleport closer to the enemy
     if( bCanTeleportCloser && PendingDoor == none && Role == ROLE_Authority && MyKFPawn != none && MyKFGameInfo.MyKFGRI != None
     	&& MyKFPawn.Health > 0 && `TimeSince(LastTeleportCheckTime) > TeleportCheckInterval && !MyKFPawn.IsDoingSpecialMove()
-    	&& (MyKFGameInfo.MyKFGRI.AIRemaining > FrustrationThreshold || `TimeSince(LastAttackTime_Melee) > 20.f) )
+    	&& MyKFGameInfo.MyKFGRI.AIRemaining >= AIRemainingTeleportThreshold )
     {
         EvaluateTeleportPossibility(DeltaTime);
     }
@@ -7162,6 +7164,7 @@ DefaultProperties
 	bCanDoHeavyBump=false
 	ZedBumpEffectThreshold=270
 	ZedBumpObliterationEffectChance=0.4
+	AIRemainingTeleportThreshold=12.0
 	FrustrationThreshold=5.f
 	FrustrationDelay=2.5f
 	LastFrustrationCheckTime=0.f

@@ -294,7 +294,7 @@ private final simulated function bool IsLargeMagActive()
     return PerkSkills[1].bActive;
 }
 
-private final function bool IsBackupActive()
+private final simulated function bool IsBackupActive()
 {
     return PerkSkills[2].bActive;
 }

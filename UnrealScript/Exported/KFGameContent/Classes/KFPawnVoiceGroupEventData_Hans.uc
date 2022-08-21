@@ -499,9 +499,9 @@ class KFPawnVoiceGroupEventData_Hans extends KFPawnVoiceGroupEventData;
 
 defaultproperties
 {
-   Events(1)=(EventID=1,Priority=3,Chance=1.000000,CoolDownTime=12.000000,bCanBeMinimized=0,bCanInterruptEqualPriority=True)
-   Events(2)=(EventID=2,Priority=3,Chance=1.000000,CoolDownTime=12.000000,bCanBeMinimized=0)
-   Events(3)=(EventID=3,Priority=3,Chance=1.000000,CoolDownTime=12.000000,bCanBeMinimized=0)
+   Events(1)=(EventID=1,Priority=3,CoolDownTime=24.000000,bCanBeMinimized=0,bCanInterruptEqualPriority=True)
+   Events(2)=(EventID=2,Priority=3,CoolDownTime=24.000000,bCanBeMinimized=0)
+   Events(3)=(EventID=3,Priority=3,CoolDownTime=24.000000,bCanBeMinimized=0)
    Events(4)=(EventID=4,Priority=2,Chance=1.000000,CoolDownTime=6.000000,bCanBeMinimized=0)
    Events(5)=(EventID=5,Priority=2,Chance=1.000000,CoolDownTime=6.000000,bCanBeMinimized=0)
    Events(6)=(EventID=6,Priority=1,Chance=1.000000,CoolDownTime=0.000000,bCanBeMinimized=0)
@@ -514,7 +514,7 @@ defaultproperties
    Events(13)=()
    Events(14)=(EventID=14,Priority=2,Chance=1.000000,CoolDownTime=0.000000,bCanBeMinimized=0)
    Events(15)=(EventID=15,Priority=2,Chance=1.000000,CoolDownTime=0.000000,bCanBeMinimized=0)
-   Events(16)=(EventID=16,Priority=3,Chance=1.000000,CoolDownTime=12.000000,bCanBeMinimized=0)
+   Events(16)=(EventID=16,Priority=3,CoolDownTime=24.000000,bCanBeMinimized=0)
    Events(17)=(EventID=17,Priority=2,Chance=1.000000,CoolDownTime=6.000000,bCanBeMinimized=0,bCanInterruptEqualPriority=True)
    Events(18)=(EventID=18,Priority=1,Chance=1.000000,CoolDownTime=0.000000,bCanBeMinimized=0)
    Events(19)=(EventID=19,Priority=2,Chance=0.300000,CoolDownTime=5.000000,bCanBeMinimized=0)

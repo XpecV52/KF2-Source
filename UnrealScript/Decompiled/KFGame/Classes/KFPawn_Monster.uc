@@ -80,6 +80,7 @@ var bool bIsBlocking;
 var bool bJumped;
 var repnotify bool bIsPoisoned;
 var bool bMicrowavePanicked;
+var bool bKnockdownWhenJumpedOn;
 var bool bPlayPanicked;
 var bool bPlayShambling;
 var bool bCloakOnMeleeEnd;
@@ -90,6 +91,7 @@ var repnotify bool bIsEnraged;
 var private bool bIsStalkerClass;
 var private bool bIsCrawlerClass;
 var private bool bIsFleshpoundClass;
+var private bool bIsBloatClass;
 var bool bMatchEnemySpeed;
 var bool bRestoreCollisionOnLand;
 var transient bool bPlayedExplosionEffect;
@@ -607,6 +609,15 @@ function SetMovementPhysics()
         return;
     }
     super(Pawn).SetMovementPhysics();
+}
+
+function CrushedBy(Pawn OtherPawn)
+{
+    super(Pawn).CrushedBy(OtherPawn);
+    if((((bKnockdownWhenJumpedOn && Health > 0) && (OtherPawn.Location.Z - Location.Z) > (OtherPawn.CylinderComponent.CollisionHeight + CylinderComponent.CollisionHeight)) && !IsHumanControlled()) && GetTeamNum() != OtherPawn.GetTeamNum())
+    {
+        Knockdown(,, vect(1, 1, 1), OtherPawn.Location, 1000, 100);
+    }
 }
 
 // Export UKFPawn_Monster::execIsValidEnemyTargetFor(FFrame&, void* const)
@@ -2454,6 +2465,11 @@ static function bool IsCrawlerClass()
 static function bool IsFleshpoundClass()
 {
     return default.bIsFleshpoundClass;
+}
+
+static function bool IsBloatClass()
+{
+    return default.bIsBloatClass;
 }
 
 function float GetPerkDoTScaler(optional Controller InstigatedBy, optional class<KFDamageType> KFDT)

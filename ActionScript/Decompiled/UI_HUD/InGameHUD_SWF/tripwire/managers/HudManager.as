@@ -5,12 +5,14 @@ package tripwire.managers
     import fl.motion.AnimatorFactory3D;
     import fl.motion.MotionBase;
     import fl.motion.motion_internal;
+    import flash.display.BitmapData;
     import flash.display.Sprite;
     import flash.display.StageAlign;
     import flash.display.StageScaleMode;
     import flash.events.Event;
     import flash.filters.*;
     import flash.geom.*;
+    import flash.utils.getDefinitionByName;
     import scaleform.clik.constants.LayoutMode;
     import scaleform.clik.core.UIComponent;
     import scaleform.clik.layout.LayoutData;
@@ -134,6 +136,76 @@ package tripwire.managers
         
         public var barkTimeline:TimelineMax;
         
+        public const imageReplaceSubstring:String = "<%x%>";
+        
+        public const assetSubstring:String = "_Asset";
+        
+        public const buttonIconWidth:int = 32;
+        
+        public const buttonIconHeight:int = 32;
+        
+        public const buttonIconBaseLine:int = 100;
+        
+        public var dPadLeftBitmapdata:BitmapData;
+        
+        public var dPadRightBitmapdata:BitmapData;
+        
+        public var dPadUpBitmapdata:BitmapData;
+        
+        public var dPadDownBitmapdata:BitmapData;
+        
+        public var aButtonBitmapdata:BitmapData;
+        
+        public var bButtonBitmapdata:BitmapData;
+        
+        public var xButtonBitmapdata:BitmapData;
+        
+        public var yButtonBitmapdata:BitmapData;
+        
+        public var l1Bitmapdata:BitmapData;
+        
+        public var l2Bitmapdata:BitmapData;
+        
+        public var l3Bitmapdata:BitmapData;
+        
+        public var r1Bitmapdata:BitmapData;
+        
+        public var r2Bitmapdata:BitmapData;
+        
+        public var r3Bitmapdata:BitmapData;
+        
+        public const controllerIconPrefix:String = "XboxTypeS_";
+        
+        public const dDownSubString:String = "DPad_Down";
+        
+        public const dLeftSubString:String = "DPad_Left";
+        
+        public const dRightSubString:String = "DPad_Right";
+        
+        public const dUpSubString:String = "DPad_Up";
+        
+        public const aButtonSubString:String = "XboxTypeS_A";
+        
+        public const bButtonSubString:String = "XboxTypeS_B";
+        
+        public const xButtonSubString:String = "XboxTypeS_X";
+        
+        public const yButtonSubString:String = "XboxTypeS_Y";
+        
+        public const l1SubString:String = "LeftShoulder";
+        
+        public const l2SubString:String = "LeftTrigger";
+        
+        public const l3SubString:String = "LeftThumbStick";
+        
+        public const r1SubString:String = "RightShoulder";
+        
+        public const r2SubString:String = "RightTrigger";
+        
+        public const r3SubString:String = "RightThumbStick";
+        
+        public var controllerIconObjects;
+        
         public function HudManager()
         {
             this.BarkList = new Vector.<KillAlertMessage>();
@@ -142,9 +214,11 @@ package tripwire.managers
                 "useFrames":true,
                 "onComplete":this.clearBarkTimeline
             });
+            this.controllerIconObjects = new Array();
             addFrameScript(0,this.frame1);
             super();
             this.SpectatorInfoWidget.visible = false;
+            this.CreateBitMapData();
             _manager = this;
             addEventListener(Event.ADDED_TO_STAGE,this.__setPerspectiveProjection_);
             if(this.__animFactory_PlayerBackpackWidgetaf1 == null)
@@ -234,6 +308,136 @@ package tripwire.managers
         {
             root.transform.perspectiveProjection.fieldOfView = 32;
             root.transform.perspectiveProjection.projectionCenter = new Point(960,540);
+        }
+        
+        public function CreateBitMapData() : void
+        {
+            this.dPadDownBitmapdata = new (getDefinitionByName(this.controllerIconPrefix + this.dDownSubString + this.assetSubstring) as Class)() as BitmapData;
+            this.dPadLeftBitmapdata = new (getDefinitionByName(this.controllerIconPrefix + this.dLeftSubString + this.assetSubstring) as Class)() as BitmapData;
+            this.dPadRightBitmapdata = new (getDefinitionByName(this.controllerIconPrefix + this.dRightSubString + this.assetSubstring) as Class)() as BitmapData;
+            this.dPadUpBitmapdata = new (getDefinitionByName(this.controllerIconPrefix + this.dUpSubString + this.assetSubstring) as Class)() as BitmapData;
+            this.aButtonBitmapdata = new (getDefinitionByName(this.aButtonSubString + this.assetSubstring) as Class)() as BitmapData;
+            this.bButtonBitmapdata = new (getDefinitionByName(this.bButtonSubString + this.assetSubstring) as Class)() as BitmapData;
+            this.xButtonBitmapdata = new (getDefinitionByName(this.xButtonSubString + this.assetSubstring) as Class)() as BitmapData;
+            this.yButtonBitmapdata = new (getDefinitionByName(this.yButtonSubString + this.assetSubstring) as Class)() as BitmapData;
+            this.l1Bitmapdata = new (getDefinitionByName(this.controllerIconPrefix + this.l1SubString + this.assetSubstring) as Class)() as BitmapData;
+            this.l2Bitmapdata = new (getDefinitionByName(this.controllerIconPrefix + this.l2SubString + this.assetSubstring) as Class)() as BitmapData;
+            this.l3Bitmapdata = new (getDefinitionByName(this.controllerIconPrefix + this.l3SubString + this.assetSubstring) as Class)() as BitmapData;
+            this.r1Bitmapdata = new (getDefinitionByName(this.controllerIconPrefix + this.r1SubString + this.assetSubstring) as Class)() as BitmapData;
+            this.r2Bitmapdata = new (getDefinitionByName(this.controllerIconPrefix + this.r2SubString + this.assetSubstring) as Class)() as BitmapData;
+            this.r3Bitmapdata = new (getDefinitionByName(this.controllerIconPrefix + this.r3SubString + this.assetSubstring) as Class)() as BitmapData;
+            this.controllerIconObjects.push({
+                "subString":this.l1SubString,
+                "image":this.l1Bitmapdata,
+                "baseLineY":this.buttonIconBaseLine,
+                "width":40,
+                "height":40,
+                "id":this.r3SubString
+            });
+            this.controllerIconObjects.push({
+                "subString":this.l2SubString,
+                "image":this.l2Bitmapdata,
+                "baseLineY":this.buttonIconBaseLine,
+                "width":40,
+                "height":40,
+                "id":this.r3SubString
+            });
+            this.controllerIconObjects.push({
+                "subString":this.l3SubString,
+                "image":this.l3Bitmapdata,
+                "baseLineY":this.buttonIconBaseLine,
+                "width":40,
+                "height":40,
+                "id":this.r3SubString
+            });
+            this.controllerIconObjects.push({
+                "subString":this.r1SubString,
+                "image":this.r1Bitmapdata,
+                "baseLineY":this.buttonIconBaseLine,
+                "width":40,
+                "height":40,
+                "id":this.r3SubString
+            });
+            this.controllerIconObjects.push({
+                "subString":this.r2SubString,
+                "image":this.r2Bitmapdata,
+                "baseLineY":this.buttonIconBaseLine,
+                "width":40,
+                "height":40,
+                "id":this.r3SubString
+            });
+            this.controllerIconObjects.push({
+                "subString":this.r3SubString,
+                "image":this.r3Bitmapdata,
+                "baseLineY":this.buttonIconBaseLine,
+                "width":40,
+                "height":40,
+                "id":this.r3SubString
+            });
+            this.controllerIconObjects.push({
+                "subString":this.dDownSubString,
+                "image":this.dPadDownBitmapdata,
+                "baseLineY":this.buttonIconBaseLine,
+                "width":40,
+                "height":40,
+                "id":this.dDownSubString
+            });
+            this.controllerIconObjects.push({
+                "subString":this.dLeftSubString,
+                "image":this.dPadLeftBitmapdata,
+                "baseLineY":this.buttonIconBaseLine,
+                "width":40,
+                "height":40,
+                "id":this.dDownSubString
+            });
+            this.controllerIconObjects.push({
+                "subString":this.dRightSubString,
+                "image":this.dPadRightBitmapdata,
+                "baseLineY":this.buttonIconBaseLine,
+                "width":40,
+                "height":40,
+                "id":this.dDownSubString
+            });
+            this.controllerIconObjects.push({
+                "subString":this.dUpSubString,
+                "image":this.dPadUpBitmapdata,
+                "baseLineY":this.buttonIconBaseLine,
+                "width":40,
+                "height":40,
+                "id":this.dDownSubString
+            });
+            this.controllerIconObjects.push({
+                "subString":this.aButtonSubString,
+                "image":this.aButtonBitmapdata,
+                "baseLineY":this.buttonIconBaseLine,
+                "width":40,
+                "height":40,
+                "id":this.bButtonSubString
+            });
+            this.controllerIconObjects.push({
+                "subString":this.bButtonSubString,
+                "image":this.bButtonBitmapdata,
+                "baseLineY":this.buttonIconBaseLine,
+                "width":40,
+                "height":40,
+                "id":this.bButtonSubString
+            });
+            this.controllerIconObjects.push({
+                "subString":this.xButtonSubString,
+                "image":this.xButtonBitmapdata,
+                "baseLineY":this.buttonIconBaseLine,
+                "width":40,
+                "height":40,
+                "id":this.bButtonSubString
+            });
+            this.controllerIconObjects.push({
+                "subString":this.yButtonSubString,
+                "image":this.yButtonBitmapdata,
+                "baseLineY":this.buttonIconBaseLine,
+                "width":40,
+                "height":40,
+                "id":this.bButtonSubString
+            });
         }
         
         override protected function addedToStage(param1:Event) : void

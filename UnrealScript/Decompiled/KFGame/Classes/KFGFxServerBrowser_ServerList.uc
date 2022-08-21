@@ -228,7 +228,10 @@ function BuildServerFilters(KFGFxServerBrowser_Filters Filters, OnlineGameSearch
     {
         GameInterface.AddGametagFilter(GametagSearch, 'NumWaves', string(Length));
     }
-    GameInterface.TestAddBoolGametagFilter(GametagSearch, !Filters.bCustom, 'bCustom', 0);
+    if(Filters.bCustom)
+    {
+        GameInterface.TestAddBoolGametagFilter(GametagSearch, Filters.bCustom, 'bCustom', 0);
+    }
     if(Len(GametagSearch) > 0)
     {
         GameInterface.AddServerFilter(Search, "gametagsand", GametagSearch);

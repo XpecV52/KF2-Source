@@ -22,18 +22,6 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 	}
 }
 
-// function CrushedBy( Pawn OtherPawn )
-// {
-// 	// Let a falling Fleshpound kill any clots it lands on
-// 	if( OtherPawn.IsA('KFPawn_ZedFleshpound') )
-// 	{
-// 		TakeDamage( 10000, OtherPawn.Controller,Location, vect(0,0,0) , class'DmgType_Crushed' );
-// 		return;
-// 	}
-//
-// 	super.CrushedBy( OtherPawn );
-// }
-
 /** Returns (hardcoded) dialog event ID for when players spots this zed type */
 function int GetSpotterDialogID()
 {
@@ -62,6 +50,7 @@ function int GetSpotterDialogID()
 defaultproperties
 {
    bCanGrabAttack=True
+   bKnockdownWhenJumpedOn=True
    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Clot_ARCH.ZED_Clot_Undev_Archetype'
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
       BaseDamage=6.000000

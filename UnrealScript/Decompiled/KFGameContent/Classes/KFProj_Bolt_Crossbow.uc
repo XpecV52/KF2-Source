@@ -5,45 +5,8 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFProj_Bolt_Crossbow extends KFProj_Bullet_RackEmUp
+class KFProj_Bolt_Crossbow extends KFProj_RicochetStickBullet
     hidecategories(Navigation);
-
-struct StickInfo
-{
-    var Vector HitLocation;
-    var Vector HitNormal;
-    var Vector RayDir;
-    var export editinline PrimitiveComponent HitComponent;
-
-    structdefaultproperties
-    {
-        HitLocation=(X=0,Y=0,Z=0)
-        HitNormal=(X=0,Y=0,Z=0)
-        RayDir=(X=0,Y=0,Z=0)
-        HitComponent=none
-    }
-};
-
-var repnotify StickInfo RepStickInfo;
-var StickInfo DelayedStickInfo;
-var bool bStuck;
-var class<KFWeapon> WeaponClass;
-/** The radius size of the pickup collision when the blade stops moving */
-var() float PickupRadius;
-/** The height of the pickup collision when the blade stops moving */
-var() float PickupHeight;
-/** This is the effect that is played while in flight */
-var(Projectile) ParticleSystem ProjPickupTemplate;
-/** Sound to play when picking up ammo */
-var() AkEvent AmmoPickupSound;
-var float LifeSpanAfterStick;
-var Vector LastLocation;
-
-replication
-{
-     if(bNetDirty)
-        RepStickInfo;
-}
 
 simulated function SyncOriginalLocation()
 {
@@ -51,302 +14,15 @@ simulated function SyncOriginalLocation()
     super(KFProjectile).SyncOriginalLocation();
 }
 
-simulated event ReplicatedEvent(name VarName)
-{
-    if(VarName == 'RepStickInfo')
-    {
-        Stick(RepStickInfo, true);        
-    }
-    else
-    {
-        super(KFProjectile).ReplicatedEvent(VarName);
-    }
-}
-
-simulated function SpawnFlightEffects()
-{
-    super(KFProjectile).SpawnFlightEffects();
-    if((WorldInfo.NetMode != NM_DedicatedServer) && ProjEffects != none)
-    {
-        ProjEffects.SetVectorParameter('Rotation', vect(0, 0, 1));
-    }
-}
-
-simulated function Vector EncodeSmallVector(Vector V)
-{
-    return V * 256;
-}
-
-simulated function Vector DecodeSmallVector(Vector V)
-{
-    return V / 256;
-}
-
-simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
-{
-    local StickInfo MyStickInfo;
-    local KFDestructibleActor HitDestructible;
-    local editinline StaticMeshComponent HitComponent;
-    local Vector DestructableHitLocation;
-
-    SetRotation(rotator(Normal(Velocity)));
-    SetPhysics(2);
-    if(!Bounce(HitNormal, Wall))
-    {
-        if((WorldInfo.NetMode != NM_DedicatedServer) && ProjEffects != none)
-        {
-            ProjEffects.DeactivateSystem();
-            ProjEffects.SetVectorParameter('Rotation', vect(0, 0, 0));
-        }
-        if((!Wall.bStatic && !Wall.bWorldGeometry) && Wall.bProjTarget)
-        {
-            HitDestructible = KFDestructibleActor(Wall);
-            if((HitDestructible != none) && HitDestructible.ReplicationMode >= 2)
-            {
-                return;
-            }
-            TraceComponent(DestructableHitLocation, HitNormal, WallComp, Location, LastLocation,,, bCollideComplex);
-            SetLocation(DestructableHitLocation);            
-        }
-        else
-        {
-            HitComponent = StaticMeshComponent(WallComp);
-            if((HitComponent != none) && HitComponent.CanBecomeDynamic())
-            {
-                return;
-            }
-        }
-        MyStickInfo.HitLocation = Location;
-        MyStickInfo.HitNormal = HitNormal;
-        MyStickInfo.HitComponent = WallComp;
-        MyStickInfo.RayDir = EncodeSmallVector(Normal(Velocity));
-        Stick(MyStickInfo, false);
-        bBounce = false;
-    }
-}
-
-simulated function Stick(StickInfo MyStickInfo, bool bReplicated)
-{
-    if((WorldInfo.NetMode != NM_DedicatedServer) && ProjEffects != none)
-    {
-        ProjEffects.DeactivateSystem();
-        ProjEffects.SetTemplate(ProjPickupTemplate);
-        ProjEffects.ActivateSystem();
-        ProjEffects.SetVectorParameter('Rotation', vect(0, 0, 0));
-    }
-    if((WorldInfo.NetMode != NM_DedicatedServer) && !bStuck)
-    {
-        KFImpactEffectManager(WorldInfo.MyImpactEffectManager).PlayImpactEffects(Location, Instigator, MyStickInfo.HitNormal, ImpactEffects);
-    }
-    if(!IsZero(DecodeSmallVector(MyStickInfo.RayDir)))
-    {
-        SetRotation(rotator(DecodeSmallVector(MyStickInfo.RayDir)));        
-    }
-    else
-    {
-        SetRotation(rot(0, 0, 0));
-    }
-    SetPhysics(0);
-    if(bReplicated)
-    {
-        SetLocation(MyStickInfo.HitLocation);
-        bStuck = true;        
-    }
-    else
-    {
-        if(Role == ROLE_Authority)
-        {
-            bStuck = true;
-            LifeSpan = LifeSpanAfterStick;
-        }
-    }
-    if((bStopAmbientSoundOnExplode && AmbientSoundStopEvent != none) && AmbientComponent != none)
-    {
-        AmbientComponent.StopEvents();
-    }
-    if(WorldInfo.NetMode == NM_DedicatedServer)
-    {
-        DelayedStickInfo = MyStickInfo;
-        SetTimer(0.01, false, 'DelayedStick');        
-    }
-    else
-    {
-        if(Role == ROLE_Authority)
-        {
-            RepStickInfo = MyStickInfo;
-        }
-        bForceNetUpdate = true;
-        NetUpdateFrequency = 3;
-        GotoState('Pickup');
-    }
-}
-
-simulated function DelayedStick()
-{
-    RepStickInfo = DelayedStickInfo;
-    bForceNetUpdate = true;
-    NetUpdateFrequency = 3;
-    GotoState('Pickup');
-}
-
-simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
-{
-    local KFPawn KFP;
-    local bool bPassThrough;
-
-    if(((Other != Instigator) && !Other.bWorldGeometry) && Other.bCanBeDamaged)
-    {
-        if(Pawn(Other) != none)
-        {
-            if(Physics != 2)
-            {
-                if(CheckRepeatingTouch(Other))
-                {
-                    return;
-                }
-                ProcessBulletTouch(Other, HitLocation, HitNormal);
-                if((PenetrationPower > float(0)) || PassThroughDamage(Other))
-                {
-                    KFP = KFPawn(Other);
-                    if(KFP != none)
-                    {
-                        PenetrationPower -= KFP.PenetrationResistance;
-                    }
-                    bPassThrough = true;
-                }
-                if(!bPassThrough)
-                {
-                    if((WorldInfo.NetMode != NM_DedicatedServer) && ProjEffects != none)
-                    {
-                        ProjEffects.DeactivateSystem();
-                        ProjEffects.SetVectorParameter('Rotation', vect(0, 0, 0));
-                    }
-                    Velocity = vect(0, 0, 0);
-                    SetPhysics(2);
-                }
-            }            
-        }
-        else
-        {
-            ProcessDestructibleTouchOnBounce(Other, HitLocation, HitNormal);
-        }        
-    }
-    else
-    {
-        super(KFProj_Bullet).ProcessTouch(Other, HitLocation, HitNormal);
-    }
-}
-
-simulated function Tick(float DeltaTime)
-{
-    super(KFProj_Bullet).Tick(DeltaTime);
-    LastLocation = Location;
-    if((Physics == 6) && VSizeSq(Velocity) < ((Speed * Speed) * 0.1))
-    {
-        SetPhysics(2);
-        GravityScale = 1;
-    }
-    if(((WorldInfo.NetMode != NM_DedicatedServer) && Physics != 0) && Physics == 6)
-    {
-        SetRotation(rotator(Normal(Velocity)));
-    }
-}
-
-state Pickup
-{
-    function GiveTo(Pawn P)
-    {
-        local KFWeapon W;
-
-        foreach P.InvManager.InventoryActors(Class'KFWeapon', W)
-        {
-            if(W.Class == WeaponClass)
-            {
-                W.AddAmmo(1);
-                PlayerController(P.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 9,,, WeaponClass);
-                P.PlaySoundBase(AmmoPickupSound);
-                ShutDown();
-            }            
-        }        
-    }
-
-    function bool ValidTouch(Pawn Other)
-    {
-        local Vector PickupLocation;
-
-        if(((Other == none) || !Other.bCanPickupInventory) || (Other.DrivenVehicle == none) && Other.Controller == none)
-        {
-            return false;
-        }
-        PickupLocation = Location - (vector(Rotation) * 15);
-        if(!FastTrace(Other.Location, PickupLocation) && !FastTrace(Other.Location, PickupLocation,, true))
-        {
-            return false;
-        }
-        if(WorldInfo.Game.PickupQuery(Other, WeaponClass, self))
-        {
-            return true;
-        }
-        return false;
-    }
-
-    simulated event Touch(Actor Other, PrimitiveComponent OtherComp, Vector HitLocation, Vector HitNormal)
-    {
-        local Pawn P;
-
-        if(Role == ROLE_Authority)
-        {
-            P = Pawn(Other);
-            if((P != none) && ValidTouch(P))
-            {
-                GiveTo(P);
-            }
-        }
-    }
-
-    function CheckTouching()
-    {
-        local Pawn P;
-
-        foreach TouchingActors(Class'Pawn', P)
-        {
-            Touch(P, none, Location, Normal(Location - P.Location));            
-        }        
-    }
-
-    function BeginState(name PreviousStateName)
-    {
-        SetCollisionSize(PickupRadius, PickupHeight);
-        CylinderComponent.SetTraceBlocking(true, true);
-        CylinderComponent.SetActorCollision(true, false);
-        bCollideComplex = false;
-        SetOwner(none);
-    }
-
-    simulated function Tick(float DeltaTime)
-    {
-        if(((Role == ROLE_Authority) && RepStickInfo.HitComponent != none) && RepStickInfo.HitComponent.HiddenGame)
-        {
-            Explode(RepStickInfo.HitLocation, RepStickInfo.HitNormal);
-            ImpactedActor = none;
-        }
-    }
-Begin:
-
-    CheckTouching();
-    stop;        
-}
-
 defaultproperties
 {
     WeaponClass=Class'KFWeap_Bow_Crossbow'
-    PickupRadius=200
-    PickupHeight=100
-    ProjPickupTemplate=ParticleSystem'WEP_Crossbow_EMIT.FX_Crossbow_Projectile_Pickup'
     AmmoPickupSound=AkEvent'WW_WEP_SA_Crossbow.Play_Crossbow_Bolt_Pickup'
+    ProjPickupTemplate=ParticleSystem'WEP_Crossbow_EMIT.FX_Crossbow_Projectile_Pickup'
     LifeSpanAfterStick=180
+    BouncesLeft=0
+    bCheckRackEmUp=true
     bNoReplicationToInstigator=false
-    ExtraLineCollisionOffsets=/* Array type was not detected. */
     ProjFlightTemplate=ParticleSystem'WEP_Crossbow_EMIT.FX_Crossbow_Projectile'
     AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_Crossbow.Play_Bolt_Fly_By'
     AmbientSoundStopEvent=AkEvent'WW_WEP_SA_Crossbow.Stop_Bolt_Fly_By'
@@ -357,20 +33,12 @@ defaultproperties
     bBlockedByInstigator=false
     bRotationFollowsVelocity=false
     begin object name=CollisionCylinder class=CylinderComponent
-        CollisionHeight=1
-        CollisionRadius=1
         ReplacementPrimitive=none
-        CollideActors=true
-        BlockNonZeroExtent=false
     object end
     // Reference: CylinderComponent'Default__KFProj_Bolt_Crossbow.CollisionCylinder'
     CylinderComponent=CollisionCylinder
     begin object name=CollisionCylinder class=CylinderComponent
-        CollisionHeight=1
-        CollisionRadius=1
         ReplacementPrimitive=none
-        CollideActors=true
-        BlockNonZeroExtent=false
     object end
     // Reference: CylinderComponent'Default__KFProj_Bolt_Crossbow.CollisionCylinder'
     Components(0)=CollisionCylinder
@@ -379,11 +47,7 @@ defaultproperties
     bNoEncroachCheck=true
     LifeSpan=8
     begin object name=CollisionCylinder class=CylinderComponent
-        CollisionHeight=1
-        CollisionRadius=1
         ReplacementPrimitive=none
-        CollideActors=true
-        BlockNonZeroExtent=false
     object end
     // Reference: CylinderComponent'Default__KFProj_Bolt_Crossbow.CollisionCylinder'
     CollisionComponent=CollisionCylinder

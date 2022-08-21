@@ -163,11 +163,13 @@ var byte ParryResistance;
 
 /** true if we currently incap poisoned */
 var repnotify bool 	bIsPoisoned;
-
 /** Is microwave panic active? (server only) */
-var bool 	bMicrowavePanicked;
+var bool 			bMicrowavePanicked;
 /** Replicated material parameter */
 var repnotify byte	RepInflateMatParam;
+
+/** If true, jumping on this pawn triggers ragdoll knockdown */
+var bool bKnockdownWhenJumpedOn;
 
 /** Cached health before taking damage for status effect resistance */
 var transient int OldHealth;
@@ -212,6 +214,7 @@ var transient	ParticleSystemComponent PlayerRallyPSCs[2];
 var private 	bool 	bIsStalkerClass;
 var private		bool 	bIsCrawlerClass;
 var private		bool 	bIsFleshpoundClass;
+var private		bool 	bIsBloatClass;
 
 /*********************************************************************************************
  * @name	Movement
@@ -856,6 +859,25 @@ function SetMovementPhysics()
          return;
 
     super.SetMovementPhysics();
+}
+
+/** Implements bKnockdownWhenJumpedOn */
+function CrushedBy(Pawn OtherPawn)
+{
+	Super.CrushedBy(OtherPawn);
+
+	if ( bKnockdownWhenJumpedOn 
+		// Still alive after crush damage
+		&& Health > 0 
+		// Actually above and not a side-swipe
+		&& ((OtherPawn.Location.Z - Location.Z) > (OtherPawn.CylinderComponent.CollisionHeight + CylinderCOmponent.CollisionHeight))
+		// Opposing team; player only
+		&& !IsHumanControlled() 
+		&& GetTeamNum() != OtherPawn.GetTeamNum() 
+		)
+	{
+		Knockdown(, vect(1,1,1), OtherPawn.Location, 1000, 100 );
+	}
 }
 
 /*********************************************************************************************
@@ -3127,6 +3149,7 @@ simulated event UpdateSpottedStatus();
 static function bool IsStalkerClass(){ return default.bIsStalkerClass; }
 static function bool IsCrawlerClass(){ return default.bIsCrawlerClass; }
 static function bool IsFleshpoundClass(){ return default.bIsFleshpoundClass; }
+static function bool IsBloatClass(){ return default.bIsBloatClass; }
 
 function float GetPerkDoTScaler( optional Controller InstigatedBy, optional class<KFDamageType> KFDT )
 {
@@ -3668,6 +3691,7 @@ DefaultProperties
 	bIsStalkerClass=false
 	bIsCrawlerClass=false
 	bIsFleshpoundclass=false
+	bIsBloatClass=false
 
 	// ---------------------------------------------
 	// Hit Zones

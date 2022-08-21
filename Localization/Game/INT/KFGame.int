@@ -111,6 +111,7 @@ serverTypeList0="Ranked – Any map, no mods, no friendly fire, 6 players max (i
 serverTypeList1="Ranked Stock – Official Maps, no mods, no friendly fire, and 6 players max"
 serverTypeList2="Ranked Custom – Any map, whitelisted mods, any server setting"
 serverTypeList3="Unranked Custom – Non-whitelisted mods (only)"
+serverTypeList4="No preference - Will look for any of the previous selections"
 privacyList0=""
 privacyList1=""
 privacyList2=""
@@ -531,6 +532,7 @@ TotalString=Total
 CheckOutString=Check Out
 
 [KFGFxStoreContainer_Main]
+WeaponSkinsRotationString="Weapon Skins"
 WeaponSkinsString="Market Weapon Skins"
 MarketConsumablesString="Market Crates/USBs"
 MarketCosmeticsString="Market Cosmetics"

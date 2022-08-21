@@ -370,7 +370,7 @@ package tripwire.managers
                 switch(param1.details.navEquivalent)
                 {
                     case NavigationCode.GAMEPAD_L2:
-                        if(!this.menuList[this._currentMenuIndex].menuObject.bSelected)
+                        if(!this.menuList[this._currentMenuIndex].menuObject.bSelected && !this.menuList[this._currentMenuIndex].menuObject.bBlockContainerFocus)
                         {
                             this.menuList[this._currentMenuIndex].menuObject.focusGroupIn();
                             this.controllerEnableWidgets(false);

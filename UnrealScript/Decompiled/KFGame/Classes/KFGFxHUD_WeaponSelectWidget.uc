@@ -15,12 +15,14 @@ var const localized string EquiptmentString;
 var const localized string MeleeString;
 var const localized string SecondaryString;
 var const localized string ThrowString;
+var string ThrowGBA;
 var byte LastRefreshInvCount;
 
 function InitializeObject()
 {
     SetWeaponCategories();
     SetString("throwString", ThrowString);
+    SetThowButton();
 }
 
 simulated function RefreshWeaponSelect()
@@ -35,6 +37,21 @@ simulated function RefreshWeaponSelect()
         UpdateWeaponGroupOnHUD(I);
         ++ I;
         goto J0x0C;
+    }
+    SetThowButton();
+}
+
+function SetThowButton()
+{
+    local KFPlayerInput KFPI;
+    local KeyBind BoundKey;
+
+    KFPI = KFPlayerInput(Outer.GetPC().PlayerInput);
+    if(KFPI != none)
+    {
+        KFPI.SetGamepadLayout(KFPI.CurrentLayoutIndex);
+        KFPI.GetKeyBindFromCommand(BoundKey, ThrowGBA, false);
+        SetString("throwButton", string(BoundKey.Name));
     }
 }
 
@@ -211,4 +228,5 @@ defaultproperties
     MeleeString="MELEE"
     SecondaryString="SECONDARY"
     ThrowString="THROW WEAPON"
+    ThrowGBA="GBA_Grenade_Gamepad"
 }

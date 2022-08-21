@@ -10,7 +10,21 @@ class KFProj_Bullet extends KFProjectile
     native
     hidecategories(Navigation);
 
+var bool bCheckRackEmUp;
 var float ProjEffectsScale;
+
+simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
+{
+    if(bCheckRackEmUp && LastTouchComponent == none)
+    {
+        CheckForComboBreaker();
+        bCheckRackEmUp = false;
+    }
+    super(Projectile).HitWall(HitNormal, Wall, WallComp);
+}
+
+// Export UKFProj_Bullet::execCheckForComboBreaker(FFrame&, void* const)
+protected native simulated function CheckForComboBreaker();
 
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
 {

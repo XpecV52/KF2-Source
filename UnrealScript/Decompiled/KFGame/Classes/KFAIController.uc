@@ -199,6 +199,8 @@ var AIPluginStuckFix KfStuckFixPlugin;
 var AIPluginMovement KfWallWalkingPlugIn;
 var KFAiBehaviorTypes.MOVEMENT_PHASE_TYPE CurrentMovementPhase;
 var KFAiBehaviorTypes.MOVE_FAILURE_TYPE TypeOfMovementStuckOn;
+/** The minimum number of zeds remaining before teleportation is disabled for this zed */
+var(Teleport) byte AIRemainingTeleportThreshold;
 var byte PendingAnimStrikeIndex;
 /** The minimum number of zeds remaining before frustration mode (sprint) is activated */
 var(Frustration) byte FrustrationThreshold;
@@ -2833,7 +2835,7 @@ simulated function Tick(float DeltaTime)
     {
         EvaluateStuckPossibility(DeltaTime);
     }
-    if((((((((bCanTeleportCloser && PendingDoor == none) && Role == ROLE_Authority) && MyKFPawn != none) && MyKFGameInfo.MyKFGRI != none) && MyKFPawn.Health > 0) && (WorldInfo.TimeSeconds - LastTeleportCheckTime) > TeleportCheckInterval) && !MyKFPawn.IsDoingSpecialMove()) && (MyKFGameInfo.MyKFGRI.AIRemaining > FrustrationThreshold) || (WorldInfo.TimeSeconds - LastAttackTime_Melee) > 20)
+    if((((((((bCanTeleportCloser && PendingDoor == none) && Role == ROLE_Authority) && MyKFPawn != none) && MyKFGameInfo.MyKFGRI != none) && MyKFPawn.Health > 0) && (WorldInfo.TimeSeconds - LastTeleportCheckTime) > TeleportCheckInterval) && !MyKFPawn.IsDoingSpecialMove()) && MyKFGameInfo.MyKFGRI.AIRemaining >= AIRemainingTeleportThreshold)
     {
         EvaluateTeleportPossibility(DeltaTime);
     }
@@ -5497,6 +5499,7 @@ defaultproperties
     PathNodeShowRouteCacheCrossSize=25
     PathNodeShowRouteCacheNumberLabelOffset=(X=0,Y=0,Z=30)
     PathNodeShowRouteCacheNumberLabelDuration=60
+    AIRemainingTeleportThreshold=12
     PendingAnimStrikeIndex=255
     FrustrationThreshold=5
     Move_failure_type_none_color=(B=205,G=250,R=255,A=255)

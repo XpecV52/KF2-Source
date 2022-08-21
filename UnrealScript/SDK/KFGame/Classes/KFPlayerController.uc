@@ -6758,22 +6758,16 @@ unreliable server function ServerSetSpectatorActive();
 
 function MoveToValidSpectatorLocation()
 {
-	local KFPlayerStart KFPS;
+	local PlayerStart PS;
 	local vector CameraLocation;
-	local vector HitLocation, HitNormal;
 
 	// Make sure that our freecam isn't trapped in the lobby
-	foreach AllActors( class'KFPlayerStart', KFPS )
+	foreach AllActors( class'PlayerStart', PS )
 	{
-		CameraLocation = KFPS.Location + ( vect(0,0,1) * ((KFPS.CylinderComponent.CollisionHeight * 2.f) + 50.f) );
-		Trace( HitLocation, HitNormal, CameraLocation, KFPS.Location, false, vect(5,5,5),, TRACEFLAG_Bullet );
-		if( !IsZero(HitLocation) )
-		{
-			CameraLocation = KFPS.Location + ( vect(0,0,1) * (VSize(KFPS.Location - HitLocation) - 50.f) );
-		}
+		CameraLocation = PS.Location + ( vect(0,0,1) * (PS.CylinderComponent.CollisionHeight * 2.f) );
 		SetLocation( CameraLocation );
 		ServerSetSpectatorLocation( CameraLocation );
-		SetRotation( rot(-4096,0,0) );
+		SetRotation( rot(-1024,0,0) );
 		break;
 	}
 }
@@ -6783,6 +6777,7 @@ state Spectating
 	event BeginState(Name PreviousStateName)
 	{
 		local KFGFxHudWrapper GFxHUDWrapper;
+		local KFPlayerReplicationInfo KFPRI;
 
 		GFxHUDWrapper = KFGFxHudWrapper(myHUD);
 		if( GFxHUDWrapper != none)
@@ -6800,10 +6795,29 @@ state Spectating
 
 		Super.BeginState(PreviousStateName);
 
-		// Make sure we have a valid viewtarget
-		if( ViewTarget == none || ViewTarget.bDeleteMe || ViewTarget.bPendingDelete || KFPawn_Customization(ViewTarget) != none )
+		// Teleport controller to a valid in-world location
+		if( IsLocalPlayerController() && !bIsAchievementPlayer )
 		{
-			SetViewTarget( self );
+			MoveToValidSpectatorLocation();
+		}
+
+		// Try to get a player to spectate right away
+		if( WorldInfo.NetMode != NM_Client )
+		{
+			if( ViewTarget == none || ViewTarget == self || ViewTarget.bDeleteMe || (Pawn(ViewTarget) != none && !Pawn(ViewTarget).IsAliveAndWell()) )
+			{
+				ServerViewNextPlayer();
+			}
+
+			// Put us in roaming if our viewtarget is ourself
+			if( ViewTarget == self )
+			{
+				SpectateRoaming();
+			}
+			else
+			{
+				SpectatePlayer( SMODE_PawnFreeCam );
+			}
 		}
 
 		if( MyGFxHUD != none )
@@ -6811,15 +6825,6 @@ state Spectating
 			MyGFxHUD.SetHUDSpectating(true);
 		}
 
-		// Put us in roaming if our viewtarget is ourself
-		if( ViewTarget == self )
-		{
-			SpectatePlayer( SMODE_Roaming );
-		}
-		else
-		{
-			SpectatePlayer( SMODE_PawnFreeCam );
-		}
 		NotifyChangeSpectateViewTarget();
 
 		// If we end up spectating in standalone, toggle health FX off
@@ -6831,6 +6836,13 @@ state Spectating
 		if( IsLocalPlayerController() && !bIsAchievementPlayer && WorldInfo.GRI.ElapsedTime > 2.f )
 		{
 			MoveToValidSpectatorLocation();
+		}
+		KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
+		if(KFPRI != none)
+		{
+			KFPRI.PlayerHealth = 0;
+			KFPRI.PlayerHealthPercent = 0;
+			KFPRI.bNetDirty = true;				
 		}
 	}
 

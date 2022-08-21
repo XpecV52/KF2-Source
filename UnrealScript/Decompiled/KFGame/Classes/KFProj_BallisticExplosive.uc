@@ -31,35 +31,13 @@ replication
         bDud;
 }
 
-simulated event ReplicatedEvent(name VarName)
+simulated function SyncOriginalLocation()
 {
-    local Vector AimDir;
-    local float CurrentSpeed;
-    local bool bLowSpeed;
-
-    if(((((((VarName == 'bDud') && !bClientDudHit) && Owner != none) && KFWeapon(Owner) != none) && Instigator != none) && Instigator.Role < ROLE_Authority) && Instigator.IsLocallyControlled())
+    if((((Physics == 2) && Role < ROLE_Authority) && Instigator != none) && Instigator.IsLocallyControlled())
     {
-        CurrentSpeed = VSize(Velocity);
-        bLowSpeed = CurrentSpeed < (default.Speed * 0.75);
-        if(!bLowSpeed)
-        {
-            AimDir = Normal(Velocity);
-        }
-        if((bLowSpeed && !IsZero(OriginalLocation)) && VSize(Location - OriginalLocation) > float(100))
-        {
-            AimDir = Normal(Location - OriginalLocation);
-        }
-        if(IsZero(AimDir))
-        {
-            AimDir = Normal(vector(Rotation));
-        }
-        SetPhysics(default.Physics);
-        Velocity = Speed * Normal(AimDir);        
+        Velocity = vect(0, 0, 0);
     }
-    else
-    {
-        super.ReplicatedEvent(VarName);
-    }
+    super.SyncOriginalLocation();
 }
 
 simulated event PreBeginPlay()
@@ -331,7 +309,7 @@ defaultproperties
     GlassShatterType=FracturedMeshGlassShatterType.FMGS_ShatterAll
     ExtraLineCollisionOffsets(0)=
 /* Exception thrown while deserializing ExtraLineCollisionOffsets
-System.ArgumentException: Requested value '!=_7359' was not found.
+System.ArgumentException: Requested value '!=_7372' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

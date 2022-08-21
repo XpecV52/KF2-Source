@@ -11,6 +11,7 @@ class KFAIController_ZedStalker extends KFAIController_Monster;
 defaultproperties
 {
    SprintWithinEnemyRange=(X=600.000000,Y=1200.000000)
+   AIRemainingTeleportThreshold=0
    TeleportCooldown=5.000000
    EvadeGrenadeChance=0.900000
    SightCounterInterval=0.500000

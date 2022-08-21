@@ -9,6 +9,8 @@ package
         
         public var WeaponItemBG:MovieClip;
         
+        public var controllerTxt:TextField;
+        
         public var textfield:TextField;
         
         public function throwindicatormc()

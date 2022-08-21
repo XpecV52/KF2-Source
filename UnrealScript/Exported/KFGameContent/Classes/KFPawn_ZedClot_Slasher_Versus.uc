@@ -119,7 +119,7 @@ defaultproperties
    IncapSettings(2)=(Cooldown=0.500000,Vulnerability=(1.000000))
    IncapSettings(3)=(Cooldown=0.750000,Vulnerability=(1.000000))
    IncapSettings(4)=(Cooldown=3.000000,Vulnerability=(0.500000))
-   IncapSettings(5)=(Vulnerability=(0.500000,0.500000,0.100000,0.100000,0.100000))
+   IncapSettings(5)=(Duration=2.000000,Vulnerability=(0.500000,0.500000,0.100000,0.100000,0.100000))
    IncapSettings(6)=(Duration=2.000000)
    IncapSettings(7)=(Cooldown=3.000000,Vulnerability=(0.500000))
    IncapSettings(8)=(Vulnerability=(1.000000))

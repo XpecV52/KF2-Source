@@ -81,7 +81,15 @@ function SetPlayerStats()
 		TopWeaponCount = 0;
 		for (i = 0; i < TopWeaponList.length; i++)
 		{
-			ObjectTopWeaponsList.SetElementObject(TopWeaponCount,MakeWeaponObject(TopWeaponList[i].WeaponDef.static.GetItemName(), TopWeaponList[i].WeaponDef.static.GetImagePath(), TopWeaponList[i].DamageAmount, TopWeaponList[i].HeadShots, TopWeaponList[i].LargeZedKills) );	
+			if(TopWeaponList[i].WeaponDef == class'KFweapDef_Knife_Base')
+			{
+				ObjectTopWeaponsList.SetElementObject(TopWeaponCount,MakeWeaponObject(KnifeString, KFPC.CurrentPerk.KnifeWeaponDef.static.GetImagePath(), TopWeaponList[i].DamageAmount, TopWeaponList[i].HeadShots, TopWeaponList[i].LargeZedKills) );	
+			}
+			else
+			{
+				ObjectTopWeaponsList.SetElementObject(TopWeaponCount,MakeWeaponObject(TopWeaponList[i].WeaponDef.static.GetItemName(), TopWeaponList[i].WeaponDef.static.GetImagePath(), TopWeaponList[i].DamageAmount, TopWeaponList[i].HeadShots, TopWeaponList[i].LargeZedKills) );	
+			}
+			
 			TopWeaponCount++;
 			//clear the string so we do not get duplicate values
 		}

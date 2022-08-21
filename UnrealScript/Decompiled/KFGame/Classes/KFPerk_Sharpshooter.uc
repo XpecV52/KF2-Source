@@ -117,7 +117,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
 
 simulated function ModifyRateOfFire(out float InRate, KFWeapon KFW)
 {
-    if(IsTriggerActive())
+    if((IsTriggerActive()) && IsWeaponOnPerk(KFW))
     {
         InRate -= (InRate * PerkSkills[1].StartingValue);
     }
@@ -126,7 +126,7 @@ simulated function ModifyRateOfFire(out float InRate, KFWeapon KFW)
 simulated function ModifyRecoil(out float CurrentRecoilModifier, KFWeapon KFW)
 {
     CurrentRecoilModifier -= (CurrentRecoilModifier * (GetPassiveValue(Recoil, CurrentLevel)));
-    if(GetScopedActive(KFW))
+    if((GetScopedActive(KFW)) && IsWeaponOnPerk(KFW))
     {
         CurrentRecoilModifier -= (CurrentRecoilModifier * (GetSkillValue(PerkSkills[6])));
     }
@@ -299,11 +299,7 @@ function AddToHeadShotCombo(class<KFDamageType> KFDT, KFPawn_Monster KFPM)
             ++ HeadShotComboCount;
             ++ HeadShotComboCountDisplay;
             HeadShotComboCount = Min(HeadShotComboCount, MaxHeadShotComboCount);
-            HeadShotMessage(byte(HeadShotComboCount), byte(HeadShotComboCountDisplay),, KFPM);            
-        }
-        else
-        {
-            SubstractHeadShotCombo();
+            HeadShotMessage(byte(HeadShotComboCount), byte(HeadShotComboCountDisplay),, KFPM);
         }
     }
 }

@@ -72,6 +72,8 @@ package tripwire.widgets
         
         public var controllerIcon:MovieClip;
         
+        public var startIcon:MovieClip;
+        
         public var createPartyButton:TripButton;
         
         public var leaveButton:TripButton;
@@ -244,6 +246,7 @@ package tripwire.widgets
         {
             this.headerIcon.visible = !bManagerUsingGamepad || bSelected;
             this.controllerIcon.visible = bManagerUsingGamepad && !bSelected;
+            this.startIcon.visible = bManagerUsingGamepad && !bSelected && this.readyButton.visible;
         }
         
         public function set bInParty(param1:Boolean) : void

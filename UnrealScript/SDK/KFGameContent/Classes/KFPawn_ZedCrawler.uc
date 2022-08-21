@@ -318,7 +318,7 @@ defaultproperties
 	Begin Object Name=CollisionCylinder
 		// Use collision cube to make it easier when we orient the crawler to the
 		// wall.  Otherwise, we would need to dynamically adjust Mesh Translation
-		CollisionHeight=47.0
+		CollisionHeight=40.0
 		CollisionRadius=+47.0
 	End Object
 
@@ -348,6 +348,7 @@ defaultproperties
 	Health=55
 	DoshValue=10
 	Mass=50.f
+	bKnockdownWhenJumpedOn=true
 
 	// Penetration
     PenetrationResistance=0.5
@@ -403,7 +404,7 @@ defaultproperties
 	End Object
 
 	// for reference: Vulnerability=(default, head, legs, arms, special)
-	IncapSettings(AF_Stun)=		(Vulnerability=(2.0, 2.0, 1.0, 1.0, 1.0), Cooldown=5.0)
+	IncapSettings(AF_Stun)=		(Vulnerability=(2.0, 2.0, 1.0, 1.0, 1.0), Cooldown=5.0, Duration=2.5)
 	IncapSettings(AF_Knockdown)=(Vulnerability=(2.f),                     Cooldown=1.0)
 	IncapSettings(AF_Stumble)=	(Vulnerability=(2.f),                     Cooldown=0.2)
 	IncapSettings(AF_GunHit)=	(Vulnerability=(2.5),                     Cooldown=0.2)

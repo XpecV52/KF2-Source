@@ -30,7 +30,7 @@ defaultproperties
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'WEP_Freeze_Grenade_Arch.FreezeGrenade_Explosion'
         Damage=25
-        DamageRadius=600
+        DamageRadius=900
         MyDamageType=Class'KFDT_Freeze_FreezeGrenade'
         MomentumTransferScale=1
         ExplosionSound=AkEvent'WW_WEP_Freeze_Grenade.Play_Freeze_Grenade_Explo'

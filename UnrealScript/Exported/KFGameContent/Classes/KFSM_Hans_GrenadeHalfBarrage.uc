@@ -12,13 +12,13 @@ function SpecialMoveStarted( bool bForced, name PrevMove )
 {
 	local KFPawn_ZedHansBase HansPawn;
 
-	super.SpecialMoveStarted( bForced, PrevMove );
-
 	HansPawn = KFPawn_ZedHansBase(PawnOwner);
 	if( HansPawn != none )
 	{
 		HansPawn.PlayGrenadeDialog( true );
 	}
+
+	super.SpecialMoveStarted( bForced, PrevMove );
 }
 
 defaultproperties

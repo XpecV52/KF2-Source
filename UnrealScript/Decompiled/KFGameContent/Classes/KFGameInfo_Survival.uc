@@ -339,7 +339,7 @@ function UpdateGameSettings()
                 KFGameSettings.NumPublicConnections = MaxPlayersAllowed;
                 KFGameSettings.bRequiresPassword = RequiresPassword();
                 KFGameSettings.bCustom = bIsCustomGame;
-                KFGameSettings.bUsesStats = !bIsUnrankedGame;
+                KFGameSettings.bUsesStats = !IsUnrankedGame();
                 KFGameSettings.NumSpectators = NumSpectators;
                 if(MyKFGRI != none)
                 {

@@ -607,9 +607,9 @@ var int ReservationTimeout;
  * @name		Server type
  ***********************************************************************************/
  /** Whether the current game is a custom game (as opposed to standard) */
-var bool	bIsCustomGame;
+var protected const bool	bIsCustomGame;
 /** Whether the current game is unranked (as opposed to, you guessed it, ranked) */
-var bool	bIsUnrankedGame;
+var private const bool	bIsUnrankedGame;
 
 /** Whether we should check if this server is out of date and shut it down. Set in native PreBeginPlay */
 var const bool bEnableServerVersionCheck;
@@ -652,8 +652,6 @@ var bool	bNVDebugDamage;
 // (cpptext)
 // (cpptext)
 // (cpptext)
-// (cpptext)
-// (cpptext)
 
 // Returns num of alive AI
 native function int GetMonsterAliveCount();
@@ -670,7 +668,9 @@ native function bool IsMapAllowedInCycle(string MapName);
 // Returns if the server was just restarted
 native function bool MapCycleNeedsInit();
 // Sets game to ranked/unranked
-native function SetGameUnranked( bool bUnranked );
+native final function SetGameUnranked( bool bUnranked );
+
+native protected function bool IsUnrankedGame();
 
 /************************************************************************************
  * @name		Static functions
@@ -842,7 +842,7 @@ event InitGame( string Options, out string ErrorMessage )
 		SaveConfig();
 	}
 
-	bIsCustomGame = CheckForCustomSettings();
+	CheckForCustomSettings();
 	GameStartDelay = Clamp( GetIntOption( Options, "GameStartDelay", GameStartDelay ), 0, 60 );
 	ReadyUpDelay = Clamp( GetIntOption( Options, "ReadyUpDelay", ReadyUpDelay ), 0, 300 );
 	EndOfGameDelay = Clamp( GetIntOption( Options, "EndOfGameDelay", EndOfGameDelay ), 0, 120 );
@@ -881,7 +881,7 @@ static function float GetFloatOption( string Options, string ParseString, float 
  * 		  this a custom server
   * @return true if custom
  */
-protected native function bool CheckForCustomSettings();
+protected native function CheckForCustomSettings();
 
 event PreBeginPlay()
 {
@@ -3108,9 +3108,9 @@ defaultproperties
    DeathPenaltyModifiers(1)=0.100000
    DeathPenaltyModifiers(2)=0.200000
    DeathPenaltyModifiers(3)=0.250000
-   GameLengthDoshScale(0)=1.000000
+   GameLengthDoshScale(0)=1.750000
    GameLengthDoshScale(1)=1.000000
-   GameLengthDoshScale(2)=1.000000
+   GameLengthDoshScale(2)=0.800000
    GameConductorClass=Class'KFGame.KFGameConductor'
    ZedTimeSlomoScale=0.200000
    ZedTimeBlendOutTime=0.500000

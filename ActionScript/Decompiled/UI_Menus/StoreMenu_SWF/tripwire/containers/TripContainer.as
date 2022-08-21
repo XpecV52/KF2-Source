@@ -71,6 +71,8 @@ package tripwire.containers
         
         public var leftSidePanels:Array;
         
+        private var _bBlockContainerFocus:Boolean = false;
+        
         public function TripContainer()
         {
             this.rightSidePanels = new Array();
@@ -132,6 +134,20 @@ package tripwire.containers
         public function get bOpen() : Boolean
         {
             return this._bOpen;
+        }
+        
+        public function get bBlockContainerFocus() : Boolean
+        {
+            return this._bBlockContainerFocus;
+        }
+        
+        public function set bBlockContainerFocus(param1:Boolean) : void
+        {
+            if(param1 == this._bBlockContainerFocus)
+            {
+                return;
+            }
+            this._bBlockContainerFocus = param1;
         }
         
         public function openContainer(param1:Boolean = true) : void
@@ -291,7 +307,7 @@ package tripwire.containers
         public function dimLeftSide(param1:Boolean) : void
         {
             var _loc2_:int = 0;
-            if(this.leftSidePanels.length > 0)
+            if(this.leftSidePanels.length > 0 && this.bManagerUsingGamepad)
             {
                 _loc2_ = 0;
                 while(_loc2_ < this.leftSidePanels.length)
@@ -312,7 +328,7 @@ package tripwire.containers
         public function dimRightSide(param1:Boolean) : void
         {
             var _loc2_:int = 0;
-            if(this.rightSidePanels.length > 0)
+            if(this.rightSidePanels.length > 0 && this.bManagerUsingGamepad)
             {
                 _loc2_ = 0;
                 while(_loc2_ < this.rightSidePanels.length)
@@ -348,6 +364,10 @@ package tripwire.containers
         
         protected function openAnimation(param1:Boolean = true) : *
         {
+            if(!this.bManagerUsingGamepad)
+            {
+                param1 = true;
+            }
             TweenMax.killTweensOf(this);
             TweenMax.fromTo(this,this.ANIM_TIME,{
                 "z":this.ANIM_OFFSET_Z,

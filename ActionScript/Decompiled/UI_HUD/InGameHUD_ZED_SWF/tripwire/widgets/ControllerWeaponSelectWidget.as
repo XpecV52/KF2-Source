@@ -1,10 +1,14 @@
 package tripwire.widgets
 {
     import flash.events.Event;
+    import scaleform.gfx.TextFieldEx;
+    import tripwire.managers.HudManager;
     
     public class ControllerWeaponSelectWidget extends WeaponSelectWidget
     {
          
+        
+        public const controllerIconPrefix:String = "XboxTypeS_";
         
         public function ControllerWeaponSelectWidget()
         {
@@ -14,6 +18,16 @@ package tripwire.widgets
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
+        }
+        
+        public function set throwButton(param1:String) : void
+        {
+            if(param1.length > 15)
+            {
+                param1 = param1.substring(this.controllerIconPrefix.length);
+            }
+            throwIndicator.controllerTxt.text = param1;
+            TextFieldEx.setImageSubstitutions(throwIndicator.controllerTxt,HudManager.manager.controllerIconObjects);
         }
         
         override public function showOnlyHUDGroup(param1:int) : void

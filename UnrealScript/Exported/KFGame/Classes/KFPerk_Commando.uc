@@ -489,7 +489,7 @@ simulated protected function bool CouldRapidFireActive()
  *
  * @return true/false
  */
-final private simulated function bool IsLargeMagActive()
+simulated final private function bool IsLargeMagActive()
 {
 	return PerkSkills[ECommandoLargeMags].bActive;
 }
@@ -499,7 +499,7 @@ final private simulated function bool IsLargeMagActive()
  *
  * @return true/false
  */
-final private function bool IsBackupActive()
+simulated final private function bool IsBackupActive()
 {
 	return PerkSkills[ECommandoBackup].bActive;
 }

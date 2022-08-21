@@ -71,19 +71,26 @@ function SetPlayerStats()
 
         if(I < TopWeaponList.Length)
         {
-            ObjectTopWeaponsList.SetElementObject(TopWeaponCount, MakeWeaponObject(TopWeaponList[I].WeaponDef.static.GetItemName(), TopWeaponList[I].WeaponDef.static.GetImagePath(), TopWeaponList[I].DamageAmount, TopWeaponList[I].HeadShots, TopWeaponList[I].LargeZedKills));
+            if(TopWeaponList[I].WeaponDef == Class'KFweapDef_Knife_Base')
+            {
+                ObjectTopWeaponsList.SetElementObject(TopWeaponCount, MakeWeaponObject(KnifeString, KFPC.CurrentPerk.KnifeWeaponDef.static.GetImagePath(), TopWeaponList[I].DamageAmount, TopWeaponList[I].HeadShots, TopWeaponList[I].LargeZedKills));                
+            }
+            else
+            {
+                ObjectTopWeaponsList.SetElementObject(TopWeaponCount, MakeWeaponObject(TopWeaponList[I].WeaponDef.static.GetItemName(), TopWeaponList[I].WeaponDef.static.GetImagePath(), TopWeaponList[I].DamageAmount, TopWeaponList[I].HeadShots, TopWeaponList[I].LargeZedKills));
+            }
             ++ TopWeaponCount;
             ++ I;
             goto J0x3AC;
         }
         I = 0;
-        J0x504:
+        J0x631:
 
         if(I < StatCollector.ZedKillsArray.Length)
         {
             ObjectArrayAdvancedStats.SetElementObject(I, MakeZedKillObject(StatCollector.ZedKillsArray[I].MonsterClass, string(StatCollector.ZedKillsArray[I].KillCount)));
             ++ I;
-            goto J0x504;
+            goto J0x631;
         }
     }
     SetObject("topWeapons", ObjectTopWeaponsList);

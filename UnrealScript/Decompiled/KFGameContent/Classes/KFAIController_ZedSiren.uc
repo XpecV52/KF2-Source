@@ -142,6 +142,7 @@ function EnterZedVictoryState()
 
 defaultproperties
 {
+    bCanTeleportCloser=false
     bIsProbingMeleeRangeEvents=true
     SprintWithinEnemyRange=(X=600,Y=1200)
     LowIntensityAttackCooldown=7

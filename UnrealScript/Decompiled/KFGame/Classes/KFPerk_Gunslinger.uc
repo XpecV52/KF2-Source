@@ -162,11 +162,7 @@ function AddToHeadShotCombo(class<KFDamageType> KFDT, KFPawn_Monster KFPM)
             ++ HeadShotComboCount;
             ++ HeadShotComboCountDisplay;
             HeadShotComboCount = Min(HeadShotComboCount, MaxHeadShotComboCount);
-            HeadShotMessage(byte(HeadShotComboCount), byte(HeadShotComboCountDisplay),, KFPM);            
-        }
-        else
-        {
-            SubstractHeadShotCombo();
+            HeadShotMessage(byte(HeadShotComboCount), byte(HeadShotComboCountDisplay),, KFPM);
         }
     }
 }
@@ -508,7 +504,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BodyPartsCanStumble(1)=.!=_940
+    BodyPartsCanStumble(1)=.!=_942
     BodyPartsCanStumble(2)=.!=_5
     BodyPartsCanStumble(3)=.!=_1
     BodyPartsCanKnockDown(0)=4

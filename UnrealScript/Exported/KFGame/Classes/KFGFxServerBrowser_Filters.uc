@@ -360,7 +360,7 @@ function ResetFilters()
 	bNotFull 			= false;
 	bNotEmpty 			= false;
 	bUsesStats 			= true;
-	bCustom 			= false;
+	bCustom 			= true;
 	bDedicated 			= false;
 	bVAC_Secure 		= false;
 	bInLobby 			= false;

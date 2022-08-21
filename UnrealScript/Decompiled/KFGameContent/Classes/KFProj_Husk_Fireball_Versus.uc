@@ -42,7 +42,7 @@ simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor 
             }
             GFExplosionActor.maxTime = BurnDuration;
             GFExplosionActor.interval = BurnDamageInterval;
-            GFExplosionActor.Explode(ExplosionTemplate, HitNormal);
+            GFExplosionActor.Explode(GroundFireExplosionTemplate, HitNormal);
         }
     }
     super(KFProjectile).TriggerExplosion(HitLocation, HitNormal, HitActor);
@@ -58,7 +58,7 @@ defaultproperties
         bDirectionalExplosion=true
         Damage=1
         DamageRadius=150
-        MyDamageType=Class'KFDT_Fire_HuskFireball'
+        MyDamageType=Class'KFDT_Fire_ZedGround'
         KnockDownStrength=0
         MomentumTransferScale=0
         ExploLight=PointLightComponent'Default__KFProj_Husk_Fireball_Versus.FlamePointLight'

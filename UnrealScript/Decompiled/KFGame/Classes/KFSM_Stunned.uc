@@ -28,11 +28,11 @@ function DoStun()
     {
         if(KFPOwner.IsHumanControlled())
         {
-            StunDuration = RandRange(PlayerStunDurationRange.X, PlayerStunDurationRange.Y);            
+            StunDuration = ((KFPOwner.IncapSettings[5].Duration > float(0)) ? KFPOwner.IncapSettings[5].Duration : RandRange(PlayerStunDurationRange.X, PlayerStunDurationRange.Y));            
         }
         else
         {
-            StunDuration = RandRange(StunDurationRange.X, StunDurationRange.Y);
+            StunDuration = ((KFPOwner.IncapSettings[5].Duration > float(0)) ? KFPOwner.IncapSettings[5].Duration : RandRange(StunDurationRange.X, StunDurationRange.Y));
         }
         KFPOwner.SetTimer(StunDuration, false, 'DoWakeup', self);
     }

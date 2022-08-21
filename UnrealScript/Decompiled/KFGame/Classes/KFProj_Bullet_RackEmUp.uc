@@ -24,11 +24,8 @@ simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallCom
         CheckForComboBreaker();
         bCollided = true;
     }
-    super(Projectile).HitWall(HitNormal, Wall, WallComp);
+    super.HitWall(HitNormal, Wall, WallComp);
 }
-
-// Export UKFProj_Bullet_RackEmUp::execCheckForComboBreaker(FFrame&, void* const)
-private native final simulated function CheckForComboBreaker();
 
 defaultproperties
 {

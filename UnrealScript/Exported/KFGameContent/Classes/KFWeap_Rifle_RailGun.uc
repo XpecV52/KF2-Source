@@ -36,6 +36,9 @@ var(Locking) float		LockRange;
 /** How long does the player need to target an actor to lock on to it*/
 var(Locking) float		LockAcquireTime;
 
+/** How long does the player need to target a large zed to lock on to it */
+var(Locking) float		LockAcquireTime_Large;
+
 /** How long does the player need to target a boss to lock on to it*/
 var(Locking) float		LockAcquireTime_Boss;
 
@@ -515,7 +518,14 @@ simulated function CheckTargetLock(float DeltaTime)
 			}
 			else
 			{
-				PendingLockAcquireTimeLeft	= LockAcquireTime;
+				if(KFP.IsLargeZed())
+				{
+					PendingLockAcquireTimeLeft	= LockAcquireTime_Large;
+				}
+				else
+				{
+					PendingLockAcquireTimeLeft	= LockAcquireTime;
+				}
 			}
 
 			SetTimer(LockTargetingSoundInterval, true, nameof(PlayTargetingBeepTimer));
@@ -891,6 +901,7 @@ defaultproperties
    BlueIconColor=(R=0.250000,G=0.600000,B=1.000000,A=1.000000)
    LockRange=200000.000000
    LockAcquireTime=0.350000
+   LockAcquireTime_Large=1.100000
    LockAcquireTime_Boss=1.100000
    LockAcquireTime_Versus=1.100000
    LockTolerance=0.200000

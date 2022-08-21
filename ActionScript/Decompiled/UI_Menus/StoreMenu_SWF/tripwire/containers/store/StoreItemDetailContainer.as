@@ -88,9 +88,9 @@ package tripwire.containers.store
             {
                 this.imageLoader.source = param1.imageURLLarge;
             }
-            if(bManagerConsoleBuild && (param1.price == "" || param1.price == undefined))
+            if(bManagerConsoleBuild)
             {
-                this.addCartButton.visible = false;
+                this.addCartButton.visible = param1.price != undefined && param1.price != "";
             }
             if(bManagerUsingGamepad)
             {

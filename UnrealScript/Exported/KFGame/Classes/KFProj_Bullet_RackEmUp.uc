@@ -32,8 +32,6 @@ simulated event HitWall(vector HitNormal, actor Wall, PrimitiveComponent WallCom
 	Super.HitWall(HitNormal, Wall, WallComp);
 }
 
-native simulated final private function CheckForComboBreaker();
-
 defaultproperties
 {
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent Archetype=AkComponent'KFGame.Default__KFProj_Bullet:AmbientAkSoundComponent'

@@ -134,10 +134,6 @@ function AttachMuzzleFlash(SkeletalMeshComponent OwnerMesh, optional name Socket
             MuzzleFlashAlt.PSC.SetDepthPriorityGroup(MuzzleFlashAlt.FirstPersonDepthPriorityGroup);
             MuzzleFlashAlt.PSC.bDepthTestEnabled = MuzzleFlashAlt.FirstPersonDepthPriorityGroup == 2;
         }
-        if(ShellEjectPSC != none)
-        {
-            ShellEjectPSC.SetDepthPriorityGroup(2);
-        }
     }
     if(OwnerMesh.IsA('KFSkeletalMeshComponent'))
     {

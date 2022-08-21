@@ -110,8 +110,8 @@ var config bool bLogAIDefaults;
 var bool bLogReservations;
 var bool bLogAnalytics;
 var config bool bLogAICount;
-var bool bIsCustomGame;
-var bool bIsUnrankedGame;
+var protected const bool bIsCustomGame;
+var private const bool bIsUnrankedGame;
 var const bool bEnableServerVersionCheck;
 var bool bIsVersusGame;
 var bool bNVAlwaysDramatic;
@@ -207,7 +207,10 @@ native function bool IsMapAllowedInCycle(string MapName);
 native function bool MapCycleNeedsInit();
 
 // Export UKFGameInfo::execSetGameUnranked(FFrame&, void* const)
-native function SetGameUnranked(bool bUnranked);
+native final function SetGameUnranked(bool bUnranked);
+
+// Export UKFGameInfo::execIsUnrankedGame(FFrame&, void* const)
+protected native function bool IsUnrankedGame();
 
 static event class<GameInfo> SetGameType(string MapName, string Options, string Portal)
 {
@@ -361,7 +364,7 @@ event InitGame(string Options, out string ErrorMessage)
         MapCycleIndex = -1;
         SaveConfig();
     }
-    bIsCustomGame = CheckForCustomSettings();
+    CheckForCustomSettings();
     GameStartDelay = Clamp(GetIntOption(Options, "GameStartDelay", GameStartDelay), 0, 60);
     ReadyUpDelay = Clamp(GetIntOption(Options, "ReadyUpDelay", ReadyUpDelay), 0, 300);
     EndOfGameDelay = Clamp(GetIntOption(Options, "EndOfGameDelay", EndOfGameDelay), 0, 120);
@@ -385,7 +388,7 @@ static function float GetFloatOption(string Options, string ParseString, float C
 }
 
 // Export UKFGameInfo::execCheckForCustomSettings(FFrame&, void* const)
-protected native function bool CheckForCustomSettings();
+protected native function CheckForCustomSettings();
 
 event PreBeginPlay()
 {
@@ -2429,9 +2432,9 @@ defaultproperties
     DeathPenaltyModifiers(1)=0.1
     DeathPenaltyModifiers(2)=0.2
     DeathPenaltyModifiers(3)=0.25
-    GameLengthDoshScale(0)=1
+    GameLengthDoshScale(0)=1.75
     GameLengthDoshScale(1)=1
-    GameLengthDoshScale(2)=1
+    GameLengthDoshScale(2)=0.8
     GameConductorClass=Class'KFGameConductor'
     ZedTimeSlomoScale=0.2
     ZedTimeBlendOutTime=0.5

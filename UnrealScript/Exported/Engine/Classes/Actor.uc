@@ -812,7 +812,7 @@ enum EZedTimeType
 var private transient float ActorTimeSeconds;
 
 /** If set, do not process conditional/deferred component updates during post tick */
-var const bool bSkipPostTickComponentUpdate;
+var const transient bool bSkipPostTickComponentUpdate;
 
 
 //-----------------------------------------------------------------------------

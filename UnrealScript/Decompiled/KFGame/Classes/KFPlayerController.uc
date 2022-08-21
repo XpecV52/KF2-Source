@@ -4251,20 +4251,15 @@ unreliable server function ServerSetSpectatorActive();
 
 function MoveToValidSpectatorLocation()
 {
-    local KFPlayerStart KFPS;
-    local Vector CameraLocation, HitLocation, HitNormal;
+    local PlayerStart PS;
+    local Vector CameraLocation;
 
-    foreach AllActors(Class'KFPlayerStart', KFPS)
+    foreach AllActors(Class'PlayerStart', PS)
     {
-        CameraLocation = KFPS.Location + (vect(0, 0, 1) * ((KFPS.CylinderComponent.CollisionHeight * 2) + 50));
-        Trace(HitLocation, HitNormal, CameraLocation, KFPS.Location, false, vect(5, 5, 5),, 1);
-        if(!IsZero(HitLocation))
-        {
-            CameraLocation = KFPS.Location + (vect(0, 0, 1) * (VSize(KFPS.Location - HitLocation) - 50));
-        }
+        CameraLocation = PS.Location + (vect(0, 0, 1) * (PS.CylinderComponent.CollisionHeight * 2));
         SetLocation(CameraLocation);
         ServerSetSpectatorLocation(CameraLocation);
-        SetRotation(rot(-4096, 0, 0));
+        SetRotation(rot(-1024, 0, 0));
         break;        
     }    
 }
@@ -4882,6 +4877,7 @@ state Spectating
     event BeginState(name PreviousStateName)
     {
         local KFGFxHudWrapper GFxHUDWrapper;
+        local KFPlayerReplicationInfo KFPRI;
 
         GFxHUDWrapper = KFGFxHudWrapper(myHUD);
         if(GFxHUDWrapper != none)
@@ -4896,21 +4892,28 @@ state Spectating
             }
         }
         super.BeginState(PreviousStateName);
-        if((((ViewTarget == none) || ViewTarget.bDeleteMe) || ViewTarget.bPendingDelete) || KFPawn_Customization(ViewTarget) != none)
+        if((IsLocalPlayerController()) && !bIsAchievementPlayer)
         {
-            SetViewTarget(self);
+            MoveToValidSpectatorLocation();
+        }
+        if(WorldInfo.NetMode != NM_Client)
+        {
+            if((((ViewTarget == none) || ViewTarget == self) || ViewTarget.bDeleteMe) || (Pawn(ViewTarget) != none) && !Pawn(ViewTarget).IsAliveAndWell())
+            {
+                ServerViewNextPlayer();
+            }
+            if(ViewTarget == self)
+            {
+                SpectateRoaming();                
+            }
+            else
+            {
+                SpectatePlayer(0);
+            }
         }
         if(MyGFxHUD != none)
         {
             MyGFxHUD.SetHUDSpectating(true);
-        }
-        if(ViewTarget == self)
-        {
-            SpectatePlayer(3);            
-        }
-        else
-        {
-            SpectatePlayer(0);
         }
         NotifyChangeSpectateViewTarget();
         if(WorldInfo.NetMode == NM_Standalone)
@@ -4920,6 +4923,13 @@ state Spectating
         if(((IsLocalPlayerController()) && !bIsAchievementPlayer) && float(WorldInfo.GRI.ElapsedTime) > 2)
         {
             MoveToValidSpectatorLocation();
+        }
+        KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
+        if(KFPRI != none)
+        {
+            KFPRI.PlayerHealth = 0;
+            KFPRI.PlayerHealthPercent = 0;
+            KFPRI.bNetDirty = true;
         }
     }
 

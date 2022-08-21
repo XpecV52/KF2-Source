@@ -52,7 +52,7 @@ DefaultProperties
 	// ---------------------------------------------
 	// Within KFPawn
 	// for reference: Vulnerability=(default, head, legs, arms, special)
-	IncapSettings(AF_Stun)=		(Vulnerability=(2.0, 2.0, 1.0, 2.0, 1.0), Cooldown=3.0, Duration=2.0)
+	IncapSettings(AF_Stun)=		(Vulnerability=(2.0, 2.0, 1.0, 2.0, 1.0), Cooldown=3.0, Duration=3.0)
 	IncapSettings(AF_Knockdown)=(Vulnerability=(1.f),                     Cooldown=1.0)
 	IncapSettings(AF_Stumble)=	(Vulnerability=(1.3f),                    Cooldown=0.3)
 	IncapSettings(AF_GunHit)=	(Vulnerability=(2.f),                     Cooldown=0.2)

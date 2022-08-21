@@ -1260,7 +1260,7 @@ ProfessionalDescription="Shoot and reload in near real time."
 
 
 [KFPerk_FieldMedic]
-PerkName="Médico de Campo"
+PerkName="Médico"
 
 SkillCatagories[0]="Condicionamento"
 SkillCatagories[1]="Técnico em medicina"

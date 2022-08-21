@@ -284,4 +284,6 @@ DefaultProperties
 	// ---------------------------------------------
 	// Spawning
     MinSpawnSquadSizeType=EST_Large
+
+    bIsBloatClass=true
 }

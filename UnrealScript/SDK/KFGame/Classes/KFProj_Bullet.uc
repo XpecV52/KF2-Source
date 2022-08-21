@@ -11,8 +11,23 @@ class KFProj_Bullet extends KFProjectile
     native
 	abstract;
 
+var bool bCheckRackEmUp;
+
 /** Store the current scale of the ProjEffects for procedurally ramping them up/down */
 var float ProjEffectsScale;
+
+simulated event HitWall(vector HitNormal, actor Wall, PrimitiveComponent WallComp)
+{
+    if( bCheckRackEmUp && LastTouchComponent == None )
+    { 
+        CheckForComboBreaker();
+        bCheckRackEmUp = false;
+    }
+
+    Super.HitWall(HitNormal, Wall, WallComp);
+}
+
+native simulated protected function CheckForComboBreaker();
 
 /** Call ProcessBulletTouch */
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)

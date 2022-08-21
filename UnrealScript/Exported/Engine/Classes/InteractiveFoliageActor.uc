@@ -107,7 +107,6 @@ defaultproperties
    BlockRigidBody=False
    bBlockActors=False
    bProjTarget=True
-   bSkipPostTickComponentUpdate=True
    CollisionComponent=CollisionCylinder
    Name="Default__InteractiveFoliageActor"
    ObjectArchetype=StaticMeshActor'Engine.Default__StaticMeshActor'

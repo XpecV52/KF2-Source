@@ -353,10 +353,6 @@ function AddToHeadShotCombo( class<KFDamageType> KFDT, KFPawn_Monster KFPM )
 
 			HeadShotMessage( HeadShotComboCount, HeadShotComboCountDisplay,, KFPM );
 		}
-		else
-		{
-			SubstractHeadShotCombo();
-		}
 	}
 }
 

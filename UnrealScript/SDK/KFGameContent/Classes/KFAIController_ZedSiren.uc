@@ -170,6 +170,7 @@ DefaultProperties
 	DefaultCommandClass=class'AICommand_Base_Zed'
 	bIsProbingMeleeRangeEvents=true
 	LowIntensityAttackCooldown=7.0
+	bCanTeleportCloser=false
 
 	//DefaultBehavior="SirenMain"
 	//UsedETQQueries[ENQ_EnemySelection]="BaseZedEnemySelection"

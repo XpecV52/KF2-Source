@@ -1087,6 +1087,9 @@ defaultproperties
    MinNetPlayers=2
    DifficultyTemplate=KFDifficultyInfo'GP_Difficulty_ARCH.Difficulty_Versus'
    MaxGameDifficulty=0
+   GameLengthDoshScale(0)=1.000000
+   GameLengthDoshScale(1)=()
+   GameLengthDoshScale(2)=()
    SpawnManagerClasses(0)=Class'kfgamecontent.KFAISpawnManager_Versus'
    GameConductorClass=Class'kfgamecontent.KFGameConductorVersus'
    InValidMaps(0)="KF-Outpost"

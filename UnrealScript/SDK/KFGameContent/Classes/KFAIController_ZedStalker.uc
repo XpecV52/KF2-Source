@@ -17,4 +17,5 @@ DefaultProperties
 
 	TeleportCooldown=5.0
 	HiddenRelocateTeleportThreshold=5.0
+	AIRemainingTeleportThreshold=0
 }

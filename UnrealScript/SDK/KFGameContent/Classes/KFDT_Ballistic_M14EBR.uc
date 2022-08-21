@@ -37,7 +37,7 @@ defaultproperties
 	KDeathVel=250
 
     KnockdownPower=20
-	StunPower=40
+	StunPower=8 //40
 	StumblePower=0
 	GunHitPower=50
 	MeleeHitPower=0

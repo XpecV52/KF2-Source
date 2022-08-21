@@ -273,7 +273,7 @@ defaultproperties
    End Object
    Mesh=KFPawnSkeletalMeshComponent
    Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'kfgamecontent.Default__KFPawn_ZedCrawler:CollisionCylinder'
-      CollisionHeight=47.000000
+      CollisionHeight=40.000000
       CollisionRadius=47.000000
       ReplacementPrimitive=None
       CollideActors=True

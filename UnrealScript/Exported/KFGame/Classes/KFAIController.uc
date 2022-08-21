@@ -592,6 +592,8 @@ var                     float       LastStuckTime;
 
 /** Is this AI allowed to teleport to move closer? */
 var 					bool 		bCanTeleportCloser;
+/** The minimum number of zeds remaining before teleportation is disabled for this zed */
+var(Teleport)           byte 	    AIRemainingTeleportThreshold;
 /** The last time this AI checked to see if it can teleport closer to it's enemy */
 var                     float       LastTeleportCheckTime;
 /** The last time this AI teleported either because it was stuck or relocated */
@@ -4002,7 +4004,7 @@ simulated function Tick( FLOAT DeltaTime )
     // Regularly check to see if this AI can teleport closer to the enemy
     if( bCanTeleportCloser && PendingDoor == none && Role == ROLE_Authority && MyKFPawn != none && MyKFGameInfo.MyKFGRI != None
     	&& MyKFPawn.Health > 0 && (WorldInfo.TimeSeconds - LastTeleportCheckTime) > TeleportCheckInterval && !MyKFPawn.IsDoingSpecialMove()
-    	&& (MyKFGameInfo.MyKFGRI.AIRemaining > FrustrationThreshold || (WorldInfo.TimeSeconds - LastAttackTime_Melee) > 20.f) )
+    	&& MyKFGameInfo.MyKFGRI.AIRemaining >= AIRemainingTeleportThreshold )
     {
         EvaluateTeleportPossibility(DeltaTime);
     }
@@ -7422,6 +7424,7 @@ defaultproperties
    PathNodeShowRouteCacheCrossSize=25.000000
    PathNodeShowRouteCacheNumberLabelOffset=(X=0.000000,Y=0.000000,Z=30.000000)
    PathNodeShowRouteCacheNumberLabelDuration=60.000000
+   AIRemainingTeleportThreshold=12
    PendingAnimStrikeIndex=255
    FrustrationThreshold=5
    Move_failure_type_none_color=(B=205,G=250,R=255,A=255)

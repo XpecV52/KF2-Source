@@ -64,7 +64,7 @@ simulated function TriggerExplosion( Vector HitLocation, Vector HitNormal, Actor
 			GFExplosionActor.Interval = BurnDamageInterval;
 
 			// Boom
-			GFExplosionActor.Explode( ExplosionTemplate, HitNormal );
+			GFExplosionActor.Explode( GroundFireExplosionTemplate, HitNormal );
 		}
 	}
 

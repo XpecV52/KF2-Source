@@ -153,6 +153,7 @@ defaultproperties
     VomitRange=350
     VomitDamage=12
     ExplodeRange=500
+    bIsBloatClass=true
     CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Bloat_ARCH.ZED_Bloat_Archetype'
     HeadlessBleedOutTime=6
     ParryResistance=3

@@ -182,7 +182,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
  */
 simulated function ModifyRateOfFire( out float InRate, KFWeapon KFW )
 {
-	if( IsTriggerActive() )// && IsWeaponOnPerk( KFW ) )
+	if( IsTriggerActive() && IsWeaponOnPerk(KFW) )
 	{
 		`QALog( "(Trigger)" @ KFW @ GetPercentage( InRate, ( InRate - InRate *  PerkSkills[ESharpshooterTrigger].StartingValue ) ), bLogPerk );
 		InRate -= InRate * PerkSkills[ESharpshooterTrigger].StartingValue;
@@ -198,7 +198,7 @@ simulated function ModifyRecoil( out float CurrentRecoilModifier, KFWeapon KFW )
 {
 	CurrentRecoilModifier -= CurrentRecoilModifier * GetPassiveValue( Recoil, CurrentLevel );
 
-	if( GetScopedActive(KFW) ) // IsWeaponOnPerk( KFW ) )
+	if( GetScopedActive(KFW) && IsWeaponOnPerk(KFW) )
 	{
 		`QALog( "(Scoped)" @ KFW @ GetPercentage( CurrentRecoilModifier, CurrentRecoilModifier - CurrentRecoilModifier * GetSkillValue( PerkSkills[ESharpshooterScoped] ) ), bLogPerk );
 		CurrentRecoilModifier -= CurrentRecoilModifier * GetSkillValue( PerkSkills[ESharpshooterScoped] );
@@ -469,10 +469,6 @@ function AddToHeadShotCombo( class<KFDamageType> KFDT, KFPawn_Monster KFPM )
 
 			HeadShotMessage( HeadShotComboCount, HeadShotComboCountDisplay,, KFPM );
 		}
-		else
-		{
-			SubstractHeadShotCombo();
-		}
 	}
 }
 
@@ -629,6 +625,7 @@ DefaultProperties
 	HitAccuracyHandicap=-9.0
 	HeadshotAccuracyHandicap=-16.0
 
+	// xp per headshot (all headshots, not just lethal)
 	SecondaryXPModifier(0)=1
    	SecondaryXPModifier(1)=1
    	SecondaryXPModifier(2)=2

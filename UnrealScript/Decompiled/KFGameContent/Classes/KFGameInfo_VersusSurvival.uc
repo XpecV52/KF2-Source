@@ -904,6 +904,7 @@ defaultproperties
     MinNetPlayers=2
     DifficultyTemplate=KFDifficultyInfo'GP_Difficulty_ARCH.Difficulty_Versus'
     MaxGameDifficulty=0
+    GameLengthDoshScale=/* Array type was not detected. */
     SpawnManagerClasses=/* Array type was not detected. */
     GameConductorClass=Class'KFGameConductorVersus'
     InValidMaps=/* Array type was not detected. */

@@ -1025,13 +1025,28 @@ function ChangeOverviewState(bool bLeaderIsOnServerBrowser)
 
 event bool FilterButtonInput(int ControllerId, name ButtonName, Core.Object.EInputEvent InputEvent)
 {
+    local KFPlayerReplicationInfo KFPRI;
+
+    KFPRI = KFPlayerReplicationInfo(GetPC().PlayerReplicationInfo);
     if(Class'KFGameEngine'.static.IsFullScreenMoviePlaying())
     {
         return true;
     }
     if(((bAfterLobby || GetPC().WorldInfo.GRI.bMatchIsOver) && InputEvent == 0) && (ButtonName == 'Escape') || ButtonName == 'XboxTypeS_Start')
     {
-        return ToggleMenus();
+        return ToggleMenus();        
+    }
+    else
+    {
+        if((InputEvent == 0) && ButtonName == 'XboxTypeS_Start')
+        {
+            if(!GetPC().WorldInfo.GRI.bMatchIsOver && !bAfterLobby)
+            {
+                CurrentMenu.Callback_ReadyClicked(!KFPRI.bReadyToPlay);
+                PartyWidget.SetBool("bReady", KFPRI.bReadyToPlay);
+                PartyWidget.ReadyButton.SetBool("selected", KFPRI.bReadyToPlay);
+            }
+        }
     }
     if(CurrentMenu != none)
     {

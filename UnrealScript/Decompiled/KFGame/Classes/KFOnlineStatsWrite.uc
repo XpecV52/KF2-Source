@@ -782,7 +782,14 @@ private final event AddToKills(class<KFPawn_Monster> MonsterClass, byte Difficul
         {
             if(IsFleshPoundKill(MonsterClass, DT))
             {
-                AddFleshpoundKill(Difficulty);
+                AddFleshpoundKill(Difficulty);                
+            }
+            else
+            {
+                if(IsBloatKill(MonsterClass, DT))
+                {
+                    AddBloatKill(Difficulty);
+                }
             }
         }
     }
@@ -850,6 +857,16 @@ private final function AddFleshpoundKill(byte Difficulty)
     KFGameReplicationInfo(MyKFPC.WorldInfo.GRI).SecondaryXPAccumulator += Class'KFPerk_Demolitionist'.static.GetFleshpoundKillXP(Difficulty);
 }
 
+private final function AddBloatKill(byte Difficulty)
+{
+    AddXP(Class'KFPerk_Firebug', Class'KFPerk_Firebug'.static.GetBloatKillXP(Difficulty));
+    if(((MyKFPC != none) && MyKFPC.MatchStats != none) && Class'KFPerk_Firebug' != none)
+    {
+        MyKFPC.MatchStats.RecordSecondaryXPGain(Class'KFPerk_Firebug', Class'KFPerk_Firebug'.static.GetBloatKillXP(Difficulty));
+    }
+    KFGameReplicationInfo(MyKFPC.WorldInfo.GRI).SecondaryXPAccumulator += Class'KFPerk_Firebug'.static.GetBloatKillXP(Difficulty);
+}
+
 private final function bool IsCrawlerKill(class<KFPawn_Monster> MonsterClass, class<DamageType> DT)
 {
     return MonsterClass.static.IsCrawlerClass() && Class'KFPerk'.static.IsDamageTypeOnThisPerk(class<KFDamageType>(DT), Class'KFPerk_Firebug'.static.GetPerkClass());
@@ -863,6 +880,11 @@ private final function bool IsStalkerKill(class<KFPawn_Monster> MonsterClass, cl
 private final function bool IsFleshPoundKill(class<KFPawn_Monster> MonsterClass, class<DamageType> DT)
 {
     return MonsterClass.static.IsFleshpoundClass() && Class'KFPerk'.static.IsDamageTypeOnThisPerk(class<KFDamageType>(DT), Class'KFPerk_Demolitionist'.static.GetPerkClass());
+}
+
+private final function bool IsBloatKill(class<KFPawn_Monster> MonsterClass, class<DamageType> DT)
+{
+    return MonsterClass.static.IsBloatClass() && Class'KFPerk'.static.IsDamageTypeOnThisPerk(class<KFDamageType>(DT), Class'KFPerk_Firebug'.static.GetPerkClass());
 }
 
 private final function int ComputeWeldingXP(int Points)

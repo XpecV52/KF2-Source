@@ -359,6 +359,9 @@ struct native ObjectDamageModifier
 
 	/** light actors that are effected by this damage mod */
 	var() const array<LightDamageParams>		LightParams;
+
+	/** Whether this mod should apply actor blocking or not. @NOTE: Only used by undo mod */
+	var transient bool bMeshBlockActors;
 };
 
 /** This sound is played all of the time the object is in the world.  (good for radios and such) **/
@@ -1028,7 +1031,7 @@ simulated protected event UnShutDownObject()
 	{
 		SubObjects[SubObjIdx].Mesh.SetHidden(FALSE);
 		SubObjects[SubObjIdx].Mesh.SetTraceBlocking(TRUE, TRUE);
-		SubObjects[SubObjIdx].Mesh.SetActorCollision(TRUE, TRUE);
+		SubObjects[SubObjIdx].Mesh.SetActorCollision( TRUE, SubObjects[SubObjIdx].Mesh.BlockActors ); // BlockActors is determined by the undo object
 		SubObjects[SubObjIdx].Mesh.SetBlockRigidBody(TRUE);
 
 		// Reset vars for tracking damage mods

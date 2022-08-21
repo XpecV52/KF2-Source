@@ -19,6 +19,7 @@ enum EStore_Filter
     EStore_Max
 };
 
+var const localized string WeaponSkinsRotationString;
 var const localized string WeaponSkinsString;
 var const localized string MarketConsumablesString;
 var const localized string MarketCosmeticsString;
@@ -40,6 +41,7 @@ function LocalizeText()
     LocalizedObject = Outer.CreateObject("Object");
     LocalizedObject.SetString("back", Class'KFCommon_LocalizedStrings'.default.BackString);
     LocalizedObject.SetString("all", Class'KFGFxMenu_Inventory'.default.AllString);
+    LocalizedObject.SetString("weaponSkin", WeaponSkinsRotationString);
     LocalizedObject.SetString("cosmetics", Class'KFGFxMenu_Inventory'.default.CosmeticString);
     LocalizedObject.SetString("items", Class'KFGFxMenu_Inventory'.default.ItemString);
     LocalizedObject.SetString("marketWeaponSkins", WeaponSkinsString);
@@ -58,18 +60,21 @@ function UpdateFilter(int NewFilterIndex)
             NewFilter = 0;
             break;
         case 1:
-            NewFilter = 2;
+            NewFilter = 1;
             break;
         case 2:
-            NewFilter = 3;
+            NewFilter = 2;
             break;
         case 3:
-            NewFilter = 4;
+            NewFilter = 3;
             break;
         case 4:
-            NewFilter = 5;
+            NewFilter = 4;
             break;
         case 5:
+            NewFilter = 5;
+            break;
+        case 6:
             NewFilter = 6;
             break;
         default:
@@ -145,6 +150,7 @@ function bool IsFilterSame(Engine.OnlineSubsystem.ItemType FirstType, KFGFxStore
 
 defaultproperties
 {
+    WeaponSkinsRotationString="Weapon Skins"
     WeaponSkinsString="Market Weapon Skins"
     MarketConsumablesString="Market Crates/USBs"
     MarketCosmeticsString="Market Cosmetics"

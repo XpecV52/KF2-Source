@@ -309,6 +309,7 @@ function int GetSpotterDialogID()
 
 defaultproperties
 {
+   bKnockdownWhenJumpedOn=True
    bIsCrawlerClass=True
    CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Crawler_ARCH.ZED_Crawler_Archetype'
    MinSpawnSquadSizeType=EST_Crawler
@@ -362,7 +363,7 @@ defaultproperties
    IncapSettings(2)=(Vulnerability=(2.000000))
    IncapSettings(3)=(Cooldown=0.200000,Vulnerability=(2.500000))
    IncapSettings(4)=(Cooldown=0.200000,Vulnerability=(2.000000))
-   IncapSettings(5)=(Cooldown=5.000000,Vulnerability=(2.000000,2.000000,1.000000,1.000000,1.000000))
+   IncapSettings(5)=(Duration=2.500000,Cooldown=5.000000,Vulnerability=(2.000000,2.000000,1.000000,1.000000,1.000000))
    IncapSettings(6)=(Duration=5.500000,Cooldown=7.500000,Vulnerability=(10.000000))
    IncapSettings(7)=(Cooldown=1.000000,Vulnerability=(2.000000))
    IncapSettings(8)=(Duration=2.000000,Cooldown=1.500000,Vulnerability=(2.500000))
@@ -485,7 +486,7 @@ defaultproperties
    End Object
    Mesh=KFPawnSkeletalMeshComponent
    Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'KFGame.Default__KFPawn_Monster:CollisionCylinder'
-      CollisionHeight=47.000000
+      CollisionHeight=40.000000
       CollisionRadius=47.000000
       ReplacementPrimitive=None
       CollideActors=True

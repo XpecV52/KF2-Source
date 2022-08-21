@@ -185,10 +185,11 @@ function AttachMuzzleFlash(SkeletalMeshComponent OwnerMesh, optional name Socket
 			MuzzleFlashAlt.PSC.bDepthTestEnabled = MuzzleFlashAlt.FirstPersonDepthPriorityGroup == SDPG_Foreground;
 		}
 
-		if( ShellEjectPSC != none )
-		{
-			ShellEjectPSC.SetDepthPriorityGroup( SDPG_Foreground );
-		}
+		//if( ShellEjectPSC != none )
+		//{
+			//ShellEjectPSC.SetDepthPriorityGroup( SDPG_Foreground );
+			//ShellEjectPSC.bDepthTestEnabled = true;
+		//}
 	}
 
 	// If attaching to a mesh with a custom FOV

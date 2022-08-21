@@ -45,85 +45,17 @@ replication
 		bDud;
 }
 
-/* epic ===============================================
-* ::ReplicatedEvent
-*
-* Called when a variable with the property flag "RepNotify" is replicated
-*
-* =====================================================
-*/
-simulated event ReplicatedEvent(name VarName)
+simulated function SyncOriginalLocation()
 {
-    local vector AimDir;
-	local float CurrentSpeed;
-	local bool bLowSpeed;
+	// If server has already collided we need to recover our velocity.  Reuse the code
+	// in super by zeroing velocity.
+    if ( Physics == PHYS_Falling && Role < ROLE_Authority 
+        && Instigator != none && Instigator.IsLocallyControlled() )
+    {
+        Velocity = vect(0,0,0);
+    }
 
-    // If the projectile had become a dud, and this is the owning client,
-    // and it hasn't hit something yet, get it moving again so it can
-    // get a hit. Otherwise it might miss a client side hit on a pawn
-	if (VarName == nameof(bDud) && !bClientDudHit && Owner != none
-        && KFWeapon(Owner) != none && Instigator != none &&
-        Instigator.Role < ROLE_Authority && Instigator.IsLocallyControlled() )
-	{
-        CurrentSpeed = VSize(Velocity);
-
-        // Only used velocity if the projectile is still moving near full speed
-        bLowSpeed = CurrentSpeed < default.Speed * 0.75;
-
-        // Set the aim direction to the vector along the line where the
-        // projectile would hit based on velocity. This is the most accurate
-        if( !bLowSpeed )
-        {
-            AimDir = Normal(Velocity);
-        }
-
-        // Set the aim direction to the vector along the line where the
-        // projectile would hit based on where it has moved away from
-        // the original location if it has gone more than 1 meter
-        if( bLowSpeed && !IsZero(OriginalLocation) && VSize(Location-OriginalLocation) > 100  )
-        {
-            AimDir = Normal(Location-OriginalLocation);
-        }
-
-        // Use the rotation if the location calcs give a zero direction
-        if( IsZero(AimDir) )
-        {
-            AimDir = Normal(Vector(Rotation));
-        }
-
-        /*
-        // Direction debug drawing
-        // Green, velocity direction
-        Instigator.DrawDebugLine(Location + Vect(0,0,1),Location + Normal(Velocity) * 32.0,0,255,0,TRUE);
-        Instigator.DrawDebugSphere(Location, 3, 6, 0, 255, 0, TRUE);
-
-        // Red, Original Location direction
-        Instigator.DrawDebugLine(Location + Vect(0,0,2),Location + Normal(Location-OriginalLocation) * 32.0,255,0,0,TRUE);
-        Instigator.DrawDebugSphere(Location, 4, 6, 255, 0, 0, TRUE);
-
-        // Blue, Rotation direction
-        Instigator.DrawDebugLine(Location + Vect(0,0,3),Location + Normal(Vector(Rotation)) * 32.0,0,0,255,TRUE);
-        Instigator.DrawDebugSphere(Location, 5, 6, 0, 0, 255, TRUE);
-
-        // Yellow, used direction
-        Instigator.DrawDebugLine(Location,Location + AimDir * 32.0,255,255,0,TRUE);
-        Instigator.DrawDebugSphere(Location, 6, 6, 255, 255, 0, TRUE);
-
-        // White, original location
-        Instigator.DrawDebugSphere(OriginalLocation, 12, 6, 255, 255, 255, TRUE);
-        */
-
-        // Restore the original physics, since it will be set to none or falling on the server when it's a dud
-        SetPhysics(default.Physics);
-
-        // Adjust the velocity of the projectile so it will hit where
-        // it is supposed to
-        Velocity = Speed * Normal(AimDir);
-	}
-    else
-	{
-		Super.ReplicatedEvent(VarName);
-	}
+    Super.SyncOriginalLocation();
 }
 
 simulated event PreBeginPlay()
@@ -192,9 +124,9 @@ simulated event HitWall(vector HitNormal, actor Wall, PrimitiveComponent WallCom
                 bClientDudHit = true;
             }
 
-            LifeSpan=1.0;
+            LifeSpan = 1.0;
             SetPhysics(PHYS_Falling);
-            GravityScale=1.0;
+            GravityScale = 1.0;
 
             // Replace the flying effects with the dud mesh effects
             StopFlightEffects();

@@ -267,6 +267,11 @@ static simulated function int GetCrawlerKillXP(byte Difficulty)
     return default.SecondaryXPModifier[Difficulty];
 }
 
+static simulated function int GetBloatKillXP(byte Difficulty)
+{
+    return default.SecondaryXPModifier[Difficulty];
+}
+
 static function ModifyAssistDosh(out int EarnedDosh)
 {
     local float TempDosh;
@@ -344,8 +349,8 @@ defaultproperties
     PerkBuildStatID=31
     SecondaryXPModifier[0]=2
     SecondaryXPModifier[1]=3
-    SecondaryXPModifier[2]=4
-    SecondaryXPModifier[3]=7
+    SecondaryXPModifier[2]=3
+    SecondaryXPModifier[3]=5
     PerkName="Firebug"
     Passives(0)=(Title="Perk Weapon Damage",Description="Perk weapon damage increased by %x%",IconPath="")
     Passives(1)=(Title="Perk Weapon Reload",Description="Perk weapon reload speed increased by %x%",IconPath="")

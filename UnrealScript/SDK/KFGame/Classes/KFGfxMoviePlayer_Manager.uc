@@ -1182,15 +1182,29 @@ function ChangeOverviewState(bool bLeaderIsOnServerBrowser)
  and open / close the perk selector */
 event bool FilterButtonInput(int ControllerId, name ButtonName, EInputEvent InputEvent)
 {
+	local KFPlayerReplicationInfo KFPRI;
+
+	KFPRI = KFPlayerReplicationInfo(GetPC().PlayerReplicationInfo);
+
 	if ( class'KFGameEngine'.static.IsFullScreenMoviePlaying() )
 	{
 		return true;
 	}
+    
 	// Handle closing out of currently active menu
 	if ( (bAfterLobby || GetPC().WorldInfo.GRI.bMatchIsOver) && InputEvent == EInputEvent.IE_Pressed
 		&& (ButtonName == 'Escape' || ButtonName == 'XboxTypeS_Start') )
 	{
 		return ToggleMenus();
+	}
+	else if(InputEvent == EInputEvent.IE_Pressed && ButtonName == 'XboxTypeS_Start')
+	{
+		if(!GetPC().WorldInfo.GRI.bMatchIsOver && !bAfterLobby)
+		{
+			CurrentMenu.Callback_ReadyClicked(!KFPRI.bReadyToPlay);
+			PartyWidget.SetBool("bReady", KFPRI.bReadyToPlay);
+			PartyWidget.ReadyButton.SetBool("selected", KFPRI.bReadyToPlay);
+		}
 	}
 
 	if ( CurrentMenu != none )

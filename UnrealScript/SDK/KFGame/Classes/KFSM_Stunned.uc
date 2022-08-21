@@ -38,11 +38,11 @@ function DoStun()
 		// Disable Movement by using the DefaultAICommandClass to call LockdownAI()
 		if( KFPOwner.IsHumanControlled() )
 		{
-			StunDuration = RandRange( PlayerStunDurationRange.X, PlayerStunDurationRange.Y );		
+			StunDuration = KFPOwner.IncapSettings[AF_Stun].Duration > 0 ? KFPOwner.IncapSettings[AF_Stun].Duration : RandRange( PlayerStunDurationRange.X, PlayerStunDurationRange.Y );
 		}			
 		else
 		{
-			StunDuration = RandRange( StunDurationRange.X, StunDurationRange.Y );		
+			StunDuration = KFPOwner.IncapSettings[AF_Stun].Duration > 0 ? KFPOwner.IncapSettings[AF_Stun].Duration : RandRange( StunDurationRange.X, StunDurationRange.Y );		
 		}
 
 		KFPOwner.SetTimer( StunDuration, false, nameof(DoWakeup), self );

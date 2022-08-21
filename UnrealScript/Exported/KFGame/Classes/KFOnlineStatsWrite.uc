@@ -790,6 +790,10 @@ private event AddToKills( class<KFPawn_Monster> MonsterClass, byte Difficulty, c
 	{
 		AddFleshpoundKill( Difficulty );
 	}
+	else if( IsBloatKill( MonsterClass, DT ) )
+	{
+		AddBloatKill( Difficulty );
+	}
 	
 	if(MyKFPC!= none && MyKFPC.MatchStats != none ){MyKFPC.MatchStats.RecordZedKill(MonsterClass,DT);};
 }
@@ -865,6 +869,21 @@ private function AddFleshpoundKill( byte Difficulty )
 }
 
 /**
+ * @brief Adds EXP for a qualified bloat kill
+ * @details The Firebug perk only receives extra EXP when a bloat is killed
+ * 			with a Firebug weapon. The currently selected skill does not matter
+ * @param Difficulty current game difficulty
+ */
+private function AddBloatKill( byte Difficulty )
+{
+	AddXP( class'KFPerk_Firebug', class'KFPerk_Firebug'.static.GetBloatKillXP( Difficulty ) );
+	
+	//AAR
+	if(MyKFPC!= none && MyKFPC.MatchStats != none && class'KFPerk_Firebug'!= none){MyKFPC.MatchStats.RecordSecondaryXPGain(class'KFPerk_Firebug',class'KFPerk_Firebug'.static.GetBloatKillXP( Difficulty ));};
+	KFGameReplicationInfo(MyKFPC.WorldInfo.GRI).SecondaryXPAccumulator += class'KFPerk_Firebug'.static.GetBloatKillXP( Difficulty );
+}
+
+/**
  * @brief Checks if a stalker kill qualifies for Firebug EXP
  *
  * @param DT Used damage type
@@ -901,6 +920,19 @@ private final function bool IsFleshPoundKill( class<KFPawn_Monster> MonsterClass
 {
 	return  MonsterClass.static.IsFleshpoundClass() &&
 			class'KFPerk'.static.IsDamageTypeOnThisPerk( class<KFDamageType>(DT), class'KFPerk_Demolitionist'.static.GetPerkClass() );
+}
+
+/**
+ * @brief Checks if a bloat kill qualifies for Firebug EXP
+ *
+ * @param DT Used damage type
+ * @param MonsterClass the killed zed's class
+ * @return true if the zed was a crawler and the damage type is on perk
+ */
+private final function bool IsBloatKill( class<KFPawn_Monster> MonsterClass, class<DamageType> DT )
+{
+	return  MonsterClass.static.IsBloatClass() &&
+			class'KFPerk'.static.IsDamageTypeOnThisPerk( class<KFDamageType>(DT), class'KFPerk_Firebug'.static.GetPerkClass() );
 }
 
 /*

@@ -14,9 +14,9 @@ class KFPawnVoiceGroupEventData_Hans extends KFPawnVoiceGroupEventData;
 
 defaultproperties
 {
-	Events[`BOSS_TauntBase]=        (EventID=`BOSS_TauntBase,	    Priority=3, Weight=1, 	Chance=1.00,	CoolDownTime=12.00,							bCanBeMinimized=0,					bCanInterruptEqualPriority=true)
-	Events[`BOSS_Taunt_LT50]=       (EventID=`BOSS_Taunt_LT50,	    Priority=3, Weight=1, 	Chance=1.00,	CoolDownTime=12.00, 						bCanBeMinimized=0)
-	Events[`BOSS_Taunt_LT25]=       (EventID=`BOSS_Taunt_LT25,	    Priority=3, Weight=1, 	Chance=1.00,	CoolDownTime=12.00, 						bCanBeMinimized=0)
+	Events[`BOSS_TauntBase]=        (EventID=`BOSS_TauntBase,	    Priority=3, Weight=1, 	Chance=0.50,	CoolDownTime=24.00,							bCanBeMinimized=0,					bCanInterruptEqualPriority=true)
+	Events[`BOSS_Taunt_LT50]=       (EventID=`BOSS_Taunt_LT50,	    Priority=3, Weight=1, 	Chance=0.50,	CoolDownTime=24.00, 						bCanBeMinimized=0)
+	Events[`BOSS_Taunt_LT25]=       (EventID=`BOSS_Taunt_LT25,	    Priority=3, Weight=1, 	Chance=0.50,	CoolDownTime=24.00, 						bCanBeMinimized=0)
 	Events[`BOSS_Challenge]=        (EventID=`BOSS_Challenge,	    Priority=2, Weight=1, 	Chance=1.00,	CoolDownTime=6.00,							bCanBeMinimized=0)
 	Events[`BOSS_LoseTarget]=       (EventID=`BOSS_LoseTarget,	    Priority=2, Weight=1, 	Chance=1.00,	CoolDownTime=6.00,							bCanBeMinimized=0)
 
@@ -35,7 +35,7 @@ defaultproperties
 	Events[`BOSS_Jump]=             (EventID=`BOSS_Jump,	        Priority=2, Weight=1, 	Chance=1.00,	CoolDownTime=0.00,							bCanBeMinimized=0)
 	Events[`BOSS_Land]=             (EventID=`BOSS_Land,	        Priority=2, Weight=1, 	Chance=1.00,	CoolDownTime=0.00,							bCanBeMinimized=0)
 
-	Events[`HANS_Taunt_LT25_RO2]=   (EventID=`HANS_Taunt_LT25_RO2,	Priority=3, Weight=1, 	Chance=1.00,	CoolDownTime=12.00,							bCanBeMinimized=0)
+	Events[`HANS_Taunt_LT25_RO2]=   (EventID=`HANS_Taunt_LT25_RO2,	Priority=3, Weight=1, 	Chance=0.50,	CoolDownTime=24.00,							bCanBeMinimized=0)
 	Events[`HANS_SprintToward]=     (EventID=`HANS_SprintToward,	Priority=2, Weight=1, 	Chance=1.00,	CoolDownTime=6.00,		Radius=1000.00,		bCanBeMinimized=0,					bCanInterruptEqualPriority=true)
 	Events[`HANS_DrawGuns]=         (EventID=`HANS_DrawGuns,	    Priority=1, Weight=1, 	Chance=1.00,	CoolDownTime=0.00,							bCanBeMinimized=0)
 	Events[`HANS_DmgGuns]=          (EventID=`HANS_DmgGuns,	        Priority=2, Weight=1, 	Chance=0.30,	CoolDownTime=5.00,							bCanBeMinimized=0)

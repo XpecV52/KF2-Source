@@ -19,6 +19,8 @@ var localized string			MeleeString;
 var localized string			SecondaryString;
 var localized string 			ThrowString;
 
+var string ThrowGBA;
+
 /** How many weapons were in the inventory last time we counted */
 var byte LastRefreshInvCount;
 
@@ -26,6 +28,7 @@ function InitializeObject()
 {
 	SetWeaponCategories();
 	SetString("throwString", ThrowString);
+	SetThowButton();
 }
 
 simulated function RefreshWeaponSelect()
@@ -34,6 +37,23 @@ simulated function RefreshWeaponSelect()
 	for (i = 0; i < MAX_WEAPON_GROUPS; i++)
 	{
 		UpdateWeaponGroupOnHUD(i);
+	}
+	SetThowButton();
+}
+
+function SetThowButton()
+{
+	local KFPlayerInput KFPI;
+	local KeyBind BoundKey;
+
+	KFPI = KFPlayerInput(GetPC().PlayerInput);
+
+	if(KFPI != none)
+	{
+		KFPI.SetGamepadLayout(KFPI.CurrentLayoutIndex);
+		KFPI.GetKeyBindFromCommand(BoundKey, ThrowGBA, false);
+
+		SetString("throwButton", String(BoundKey.Name) );
 	}
 }
 
@@ -199,4 +219,9 @@ function SetWeaponSwitchStayOpen(bool bStayOpen)
 function FadeOut()
 {
 	bChangingWeapons = false;
+}
+
+DefaultProperties
+{
+	ThrowGBA="GBA_Grenade_Gamepad"
 }

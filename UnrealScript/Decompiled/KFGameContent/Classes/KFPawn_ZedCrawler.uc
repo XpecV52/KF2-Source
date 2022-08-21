@@ -147,6 +147,7 @@ function int GetSpotterDialogID()
 
 defaultproperties
 {
+    bKnockdownWhenJumpedOn=true
     bIsCrawlerClass=true
     CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Crawler_ARCH.ZED_Crawler_Archetype'
     MinSpawnSquadSizeType=ESquadType.EST_Crawler
@@ -205,7 +206,7 @@ defaultproperties
     // Reference: KFSkeletalMeshComponent'Default__KFPawn_ZedCrawler.KFPawnSkeletalMeshComponent'
     Mesh=KFPawnSkeletalMeshComponent
     begin object name=CollisionCylinder class=CylinderComponent
-        CollisionHeight=47
+        CollisionHeight=40
         CollisionRadius=47
         ReplacementPrimitive=none
     object end
@@ -217,7 +218,7 @@ defaultproperties
     // Reference: SpriteComponent'Default__KFPawn_ZedCrawler.Sprite'
     Components(0)=Sprite
     begin object name=CollisionCylinder class=CylinderComponent
-        CollisionHeight=47
+        CollisionHeight=40
         CollisionRadius=47
         ReplacementPrimitive=none
     object end
@@ -241,7 +242,7 @@ defaultproperties
     Components(7)=AkComponent'Default__KFPawn_ZedCrawler.DialogAkSoundComponent'
     bBlocksNavigation=true
     begin object name=CollisionCylinder class=CylinderComponent
-        CollisionHeight=47
+        CollisionHeight=40
         CollisionRadius=47
         ReplacementPrimitive=none
     object end

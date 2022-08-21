@@ -30,6 +30,8 @@ package tripwire.containers.store
         
         public var allButton:Button;
         
+        public var weaponSkinsButton:Button;
+        
         public var cosmeticsButton:Button;
         
         public var consumablesButton:Button;
@@ -66,6 +68,7 @@ package tripwire.containers.store
         public function set localizedText(param1:Object) : void
         {
             this.allButton.label = !!param1.all ? param1.all : "new stuff";
+            this.weaponSkinsButton.label = !!param1.weaponSkin ? param1.weaponSkin : "no string";
             this.cosmeticsButton.label = !!param1.cosmetics ? param1.cosmetics : "dudes";
             this.consumablesButton.label = !!param1.items ? param1.items : "shiny things";
             this.marketWeaponSkinsButton.label = !!param1.marketWeaponSkins ? param1.marketWeaponSkins : "w skins";
@@ -171,38 +174,23 @@ package tripwire.containers.store
         override protected function addedToStage(param1:Event) : void
         {
             super.addedToStage(param1);
-            this.buttonList.push(this.allButton,this.cosmeticsButton,this.consumablesButton,this.marketWeaponSkinsButton,this.marketCosmeticsButton,this.marketConsumableButton);
+            this.buttonList.push(this.allButton,this.weaponSkinsButton,this.cosmeticsButton,this.consumablesButton,this.marketWeaponSkinsButton,this.marketCosmeticsButton,this.marketConsumableButton);
             var _loc2_:int = 0;
             while(_loc2_ < this.buttonList.length)
             {
                 this.buttonList[_loc2_].addEventListener(FocusEvent.FOCUS_IN,this.onSectionFocusIn,false,0,true);
+                this.buttonList[_loc2_].addEventListener(ButtonEvent.CLICK,this.sectionButtonClicked,false,0,true);
+                this.buttonList[_loc2_].addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+                leftSidePanels.push(this.buttonList[_loc2_]);
                 _loc2_++;
             }
-            this.allButton.addEventListener(ButtonEvent.CLICK,this.sectionButtonClicked,false,0,true);
-            this.cosmeticsButton.addEventListener(ButtonEvent.CLICK,this.sectionButtonClicked,false,0,true);
-            this.consumablesButton.addEventListener(ButtonEvent.CLICK,this.sectionButtonClicked,false,0,true);
-            this.marketWeaponSkinsButton.addEventListener(ButtonEvent.CLICK,this.sectionButtonClicked,false,0,true);
-            this.marketCosmeticsButton.addEventListener(ButtonEvent.CLICK,this.sectionButtonClicked,false,0,true);
-            this.marketConsumableButton.addEventListener(ButtonEvent.CLICK,this.sectionButtonClicked,false,0,true);
             this.storeItemScrollingList.addEventListener(FocusHandlerEvent.FOCUS_IN,this.onStoreListFocusChange,false,0,true);
             this.storeItemScrollingList.addEventListener(FocusHandlerEvent.FOCUS_OUT,this.onStoreListFocusChange,false,0,true);
             this.setTabIndex();
-            this.allButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
-            this.cosmeticsButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
-            this.consumablesButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
-            this.marketWeaponSkinsButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
-            this.marketCosmeticsButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
-            this.marketConsumableButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.leftDimmingPanel.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.storeItemScrollingList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
             this.pageHeaderText.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
             this.rightDimmingPanel.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
-            leftSidePanels.push(this.allButton);
-            leftSidePanels.push(this.cosmeticsButton);
-            leftSidePanels.push(this.consumablesButton);
-            leftSidePanels.push(this.marketWeaponSkinsButton);
-            leftSidePanels.push(this.marketCosmeticsButton);
-            leftSidePanels.push(this.marketConsumableButton);
             rightSidePanels.push(this.storeItemScrollingList);
             rightSidePanels.push(this.pageHeaderText);
             this.allButton.selected = true;
@@ -234,12 +222,13 @@ package tripwire.containers.store
         protected function setTabIndex() : *
         {
             this.allButton.tabIndex = 1;
-            this.cosmeticsButton.tabIndex = 2;
-            this.consumablesButton.tabIndex = 3;
-            this.marketWeaponSkinsButton.tabIndex = 4;
-            this.marketCosmeticsButton.tabIndex = 5;
-            this.marketConsumableButton.tabIndex = 6;
-            this.storeItemScrollingList.tabIndex = 7;
+            this.weaponSkinsButton.tabIndex = 2;
+            this.cosmeticsButton.tabIndex = 3;
+            this.consumablesButton.tabIndex = 4;
+            this.marketWeaponSkinsButton.tabIndex = 5;
+            this.marketCosmeticsButton.tabIndex = 6;
+            this.marketConsumableButton.tabIndex = 7;
+            this.storeItemScrollingList.tabIndex = 8;
         }
         
         public function sectionButtonClicked(param1:ButtonEvent = null) : *
@@ -250,25 +239,35 @@ package tripwire.containers.store
                 case this.allButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",0);
                     break;
-                case this.cosmeticsButton:
+                case this.weaponSkinsButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",1);
                     break;
-                case this.consumablesButton:
+                case this.cosmeticsButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",2);
                     break;
-                case this.marketWeaponSkinsButton:
+                case this.consumablesButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",3);
                     break;
-                case this.marketCosmeticsButton:
+                case this.marketWeaponSkinsButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",4);
                     break;
-                case this.marketConsumableButton:
+                case this.marketCosmeticsButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",5);
+                    break;
+                case this.marketConsumableButton:
+                    ExternalInterface.call("Callback_StoreSectionChanged",6);
             }
             this.deselectButtons();
             this.storeItemScrollingList.focusable = true;
-            this.storeItemScrollingList.selectedIndex = 0;
-            FocusManager.setFocus(this.storeItemScrollingList);
+            if(bManagerUsingGamepad)
+            {
+                this.storeItemScrollingList.selectedIndex = 0;
+                FocusManager.setFocus(this.storeItemScrollingList);
+            }
+            else
+            {
+                FocusManager.setFocus(null);
+            }
             this.pageHeaderText.text = Button(param1.currentTarget).label;
             Button(param1.currentTarget).selected = true;
             this.currentFilter = _loc2_;
@@ -277,6 +276,7 @@ package tripwire.containers.store
         private function deselectButtons() : *
         {
             this.allButton.selected = false;
+            this.weaponSkinsButton.selected = false;
             this.cosmeticsButton.selected = false;
             this.consumablesButton.selected = false;
             this.marketWeaponSkinsButton.selected = false;

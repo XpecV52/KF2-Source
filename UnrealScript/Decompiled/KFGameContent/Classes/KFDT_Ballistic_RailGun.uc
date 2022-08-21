@@ -41,7 +41,7 @@ defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_RailGun'
     GoreDamageGroup=EGoreDamageGroup.DGT_Shotgun
-    StunPower=100
+    StunPower=50
     KnockdownPower=20
     StumblePower=600
     GunHitPower=300

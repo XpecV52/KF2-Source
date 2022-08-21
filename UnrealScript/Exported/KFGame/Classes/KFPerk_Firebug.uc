@@ -547,6 +547,18 @@ simulated static function int GetCrawlerKillXP( byte Difficulty )
 	return default.SecondaryXPModifier[Difficulty];
 }
 
+/**
+ * @brief how much XP is earned by a bloat kill depending on the game's difficulty
+ *
+ * @param Difficulty current game difficulty
+ * @return XP earned
+ */
+simulated static function int GetBloatKillXP( byte Difficulty )
+{
+	// Currently the same XP as a crawler
+	return default.SecondaryXPModifier[Difficulty];
+}
+
 static function ModifyAssistDosh( out int EarnedDosh )
 {
 	local float TempDosh;
@@ -626,8 +638,8 @@ defaultproperties
    PerkBuildStatID=31
    SecondaryXPModifier(0)=2
    SecondaryXPModifier(1)=3
-   SecondaryXPModifier(2)=4
-   SecondaryXPModifier(3)=7
+   SecondaryXPModifier(2)=3
+   SecondaryXPModifier(3)=5
    PerkName="Firebug"
    Passives(0)=(Title="Perk Weapon Damage",Description="Perk weapon damage increased by %x%")
    Passives(1)=(Title="Perk Weapon Reload",Description="Perk weapon reload speed increased by %x%")

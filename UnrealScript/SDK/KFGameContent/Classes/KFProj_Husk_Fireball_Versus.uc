@@ -64,7 +64,7 @@ simulated function TriggerExplosion( Vector HitLocation, Vector HitNormal, Actor
 			GFExplosionActor.Interval = BurnDamageInterval;
 
 			// Boom
-			GFExplosionActor.Explode( ExplosionTemplate, HitNormal );
+			GFExplosionActor.Explode( GroundFireExplosionTemplate, HitNormal );
 		}
 	}
 
@@ -135,7 +135,7 @@ DefaultProperties
 		MomentumTransferScale=0
 
 		// Damage Effects
-		MyDamageType=class'KFDT_Fire_HuskFireball'
+		MyDamageType=class'KFDT_Fire_ZedGround'
 		KnockDownStrength=0
 		FractureMeshRadius=0
 		ExplosionEffects=KFImpactEffectInfo'wep_molotov_arch.Molotov_GroundFire'

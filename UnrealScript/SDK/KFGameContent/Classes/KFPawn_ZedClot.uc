@@ -22,18 +22,6 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 	}
 }
 
-// function CrushedBy( Pawn OtherPawn )
-// {
-// 	// Let a falling Fleshpound kill any clots it lands on
-// 	if( OtherPawn.IsA('KFPawn_ZedFleshpound') )
-// 	{
-// 		TakeDamage( 10000, OtherPawn.Controller,Location, vect(0,0,0) , class'DmgType_Crushed' );
-// 		return;
-// 	}
-//
-// 	super.CrushedBy( OtherPawn );
-// }
-
 /** Returns (hardcoded) dialog event ID for when players spots this zed type */
 function int GetSpotterDialogID()
 {
@@ -78,10 +66,12 @@ DefaultProperties
 		MomentumTransfer=25000.f
 		MyDamageType=class'KFDT_Slashing_ZedWeak'
 	End Object
+	
 	Health=100 // 67% KF1 scale
 	DoshValue=7.0
 	Mass=50.f
 	KnockedDownBySonicWaveOdds=0.23f
+	bKnockdownWhenJumpedOn=true
 
 	// ---------------------------------------------
 	// Movement / Physics

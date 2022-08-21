@@ -293,6 +293,7 @@ struct native ObjectDamageModifier
     var deprecated array<deprecated StaticMeshActor> BecomeDynamicActors;
     /** light actors that are effected by this damage mod */
     var() const array<LightDamageParams> LightParams;
+    var transient bool bMeshBlockActors;
 
     structdefaultproperties
     {
@@ -315,6 +316,7 @@ struct native ObjectDamageModifier
         NextSpawnActorIdx=0
         ExploMod=(ExplosionTemplate=none,Damage=0,DamageRadius=0,RelativeLocation=(X=0,Y=0,Z=10),RelativeRotation=(Pitch=0,Yaw=0,Roll=0),ActorClassToIgnoreForDamage=none)
         LightParams=none
+        bMeshBlockActors=false
     }
 };
 
@@ -343,7 +345,7 @@ struct native DestructibleSubobject
         DamageMods=none
         DefaultHealth=50
         MaterialLightParams=none
-        UndoMod=(DamageModName=None,HealthThreshold=0,NewMesh=none,MaterialReplacements=none,MaterialScalarParams=none,MaterialTexParams=none,MaterialVectorParams=none,Sounds=none,bSelfDestruct=false,bSelfDestructAll=false,bStopAmbientSound=false,ParticleEffects=none,SplashDamage=(BaseDamage=0,DamageRadius=0,DamageType=Class'KFDT_Explosive',RelativeLocation=(X=0,Y=0,Z=10)),ActorsToSpawn=none,DependentSubObjs=none,bApplied=false,NextSpawnActorIdx=0,ExploMod=(ExplosionTemplate=none,Damage=0,DamageRadius=0,RelativeLocation=(X=0,Y=0,Z=10),RelativeRotation=(Pitch=0,Yaw=0,Roll=0),ActorClassToIgnoreForDamage=none),LightParams=none)
+        UndoMod=(DamageModName=None,HealthThreshold=0,NewMesh=none,MaterialReplacements=none,MaterialScalarParams=none,MaterialTexParams=none,MaterialVectorParams=none,Sounds=none,bSelfDestruct=false,bSelfDestructAll=false,bStopAmbientSound=false,ParticleEffects=none,SplashDamage=(BaseDamage=0,DamageRadius=0,DamageType=Class'KFDT_Explosive',RelativeLocation=(X=0,Y=0,Z=10)),ActorsToSpawn=none,DependentSubObjs=none,bApplied=false,NextSpawnActorIdx=0,ExploMod=(ExplosionTemplate=none,Damage=0,DamageRadius=0,RelativeLocation=(X=0,Y=0,Z=10),RelativeRotation=(Pitch=0,Yaw=0,Roll=0),ActorClassToIgnoreForDamage=none),LightParams=none,bMeshBlockActors=false)
         ActiveDamageModIdx=-1
         LastHitDamageType=none
         MICs=none
@@ -836,17 +838,17 @@ protected simulated event UnShutDownObject()
     {
         SubObjects[SubObjIdx].Mesh.SetHidden(false);
         SubObjects[SubObjIdx].Mesh.SetTraceBlocking(true, true);
-        SubObjects[SubObjIdx].Mesh.SetActorCollision(true, true);
+        SubObjects[SubObjIdx].Mesh.SetActorCollision(true, SubObjects[SubObjIdx].Mesh.BlockActors);
         SubObjects[SubObjIdx].Mesh.SetBlockRigidBody(true);
         SubObjects[SubObjIdx].ActiveDamageModIdx = -1;
         DamageModIdx = 0;
-        J0x17E:
+        J0x1B9:
 
         if(DamageModIdx < SubObjects[SubObjIdx].DamageMods.Length)
         {
             SubObjects[SubObjIdx].DamageMods[DamageModIdx].NextSpawnActorIdx = 0;
             ++ DamageModIdx;
-            goto J0x17E;
+            goto J0x1B9;
         }
         ++ SubObjIdx;
         goto J0x38;

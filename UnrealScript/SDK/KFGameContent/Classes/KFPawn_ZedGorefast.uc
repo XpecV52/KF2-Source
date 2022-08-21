@@ -81,7 +81,7 @@ DefaultProperties
 	End Object
 
 	// for reference: Vulnerability=(default, head, legs, arms, special)
-	IncapSettings(AF_Stun)=		(Vulnerability=(2.0, 2.0, 1.0, 1.0, 1.0), Cooldown=5.0)
+	IncapSettings(AF_Stun)=		(Vulnerability=(2.0, 2.0, 1.0, 1.0, 1.0), Cooldown=5.0, Duration=2.5)
 	IncapSettings(AF_Knockdown)=(Vulnerability=(1.f),                     Cooldown=1.0)
 	IncapSettings(AF_Stumble)=	(Vulnerability=(1.f),                     Cooldown=0.5)
 	IncapSettings(AF_GunHit)=	(Vulnerability=(1.75),                    Cooldown=0.0)

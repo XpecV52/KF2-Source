@@ -27,7 +27,7 @@ package tripwire.controls
         
         public var redBar:MovieClip;
         
-        public var bStayOpenOnSelection:Boolean;
+        public var bStayOpenOnSelection:Boolean = false;
         
         protected var _defaultAlpha:Number;
         
@@ -42,6 +42,10 @@ package tripwire.controls
         private var _fadeOut:TweenMax;
         
         private var _startingIndex:int;
+        
+        public var Owner:Object;
+        
+        public var bDropDown:Boolean = false;
         
         public function TripScrollingList()
         {
@@ -184,6 +188,11 @@ package tripwire.controls
             }
             super.handleInput(param1);
             var _loc2_:InputDetails = param1.details;
+            if(this.bDropDown)
+            {
+                param1.handled = false;
+                return;
+            }
             if(_loc2_.value == InputValue.KEY_DOWN)
             {
                 switch(_loc2_.navEquivalent)
@@ -223,9 +232,12 @@ package tripwire.controls
             {
                 if(this.bManagerUsingGamepad && !MenuManager.manager.bPopUpOpen)
                 {
-                    FocusManager.setModalClip(null);
                     FocusManager.setFocus(this.associatedButton);
                 }
+            }
+            if(FocusManager.getModalClip() == this)
+            {
+                FocusManager.setModalClip(null);
             }
         }
         
@@ -233,14 +245,18 @@ package tripwire.controls
         {
             if(param1)
             {
-                TripList.onOpen(this);
                 FocusManager.setModalClip(this);
             }
+            TripList.onOpen(this);
         }
         
         function onClose(param1:Event = null) : void
         {
             TripList.onClose(this);
+            if(FocusManager.getModalClip() == this)
+            {
+                FocusManager.setModalClip(null);
+            }
         }
     }
 }
