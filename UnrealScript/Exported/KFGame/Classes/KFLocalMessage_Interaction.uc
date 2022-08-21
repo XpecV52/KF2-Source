@@ -97,14 +97,14 @@ static function string GetKeyBind( PlayerController P, optional int Switch )
 	switch ( Switch )
 	{
 		// Use binding
+		case IMT_UseDoorWelded:
+		if(class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController().PlayerReplicationInfo.GetTeamNum() == 255)
+		{
+			KeyString = "";
+			break;
+		}
 		case IMT_UseTrader:
 		case IMT_UseDoor:
-		case IMT_UseDoorWelded:
-			if(class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController().PlayerReplicationInfo.GetTeamNum() == 255)
-			{
-				KeyString = "";
-				break;
-			}
 		case IMT_AcceptObjective:
 		case IMT_ReceiveAmmo:
 		case IMT_ReceiveGrenades:

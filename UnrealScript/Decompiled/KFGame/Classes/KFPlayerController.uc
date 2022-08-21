@@ -510,6 +510,7 @@ reliable client simulated function ClientRestart(Pawn NewPawn)
     }
     UsablePawn = KFPawn_Human(NewPawn);
     FixFOV();
+    SetRTPCValue('GRENADEFX', 0, true);
     MyGFxManager.CloseMenus();
     if(WorldInfo.MyGoreEffectManager != none)
     {

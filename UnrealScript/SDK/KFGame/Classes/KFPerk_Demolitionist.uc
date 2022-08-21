@@ -887,7 +887,7 @@ DefaultProperties
 	SacrificeExplosionTemplate=ExploTemplate0
 
 	Begin Object Class=KFGameExplosion Name=ExploTemplate1
-		Damage=15
+		Damage=45 //15
 		DamageRadius=450
 		DamageFalloffExponent=0.f
 		DamageDelay=0.f
@@ -941,7 +941,7 @@ DefaultProperties
 	NukeProjectileClassName="KFGameContent.KFProj_ExplosiveSubmunition_HX25_Nuke"
 	NukeIgnoredProjectileNames(0)="KFProj_ExplosiveSubmunition_HX25"
 	NukeIgnoredProjectileNames(1)="KFProj_ExplosiveSubmunition_HX25_Nuke"
-	NukeDamageModifier=1.25   //1.25
+	NukeDamageModifier=1.5   //1.25
 	NukeRadiusModifier=1.35  //1.25
 	LingeringNukePoisonDamage=10
 

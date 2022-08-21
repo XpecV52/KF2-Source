@@ -801,7 +801,7 @@ DefaultProperties
 	VampireAttackSpeedModifier=0.15
 
 	RegenerationInterval=1
-	RegenerationAmount=1
+	RegenerationAmount=2
 
 	ZedTimeModifyingStates(0)="MeleeChainAttacking"
 	ZedTimeModifyingStates(1)="MeleeAttackBasic"

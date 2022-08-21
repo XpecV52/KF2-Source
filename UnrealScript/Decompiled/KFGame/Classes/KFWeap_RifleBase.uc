@@ -38,6 +38,7 @@ defaultproperties
 {
     AimCorrectionSize=40
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_RifleBase.MeleeHelper'
+    InstantHitDamage=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

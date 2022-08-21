@@ -36,6 +36,7 @@ simulated event PreBeginPlay()
     if(Class'KFGameEngine'.default.bShowWelderInInv)
     {
         InventoryGroup = 3;
+        bAutoUnequip = false;
     }
 }
 

@@ -34,7 +34,6 @@ function DoScream(optional bool bCalledFromPreMove)
     if((MyKFPawn.SpecialMove == 0) || MyKFPawn.SpecialMove == 17)
     {
         Class'AICommand_Siren_Scream'.static.Scream(self);
-        MyKFPawn.DisablebOnDeathAchivement();
     }
     if(!bCalledFromPreMove)
     {

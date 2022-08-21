@@ -71,6 +71,12 @@ function EndRage()
     SetEnraged(false);
 }
 
+simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
+{
+    ClearTimer('Timer_RageBump');
+    super.PlayDying(DamageType, HitLoc);
+}
+
 defaultproperties
 {
     RageSprintSpeed=700

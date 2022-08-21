@@ -259,7 +259,10 @@ static function CloseMenus()
 
 	if(KFPC != none && KFPC.MyGfxManager != none)
 	{
-		KFPC.MyGfxManager.CloseMenus(true);
+		if(KFPC.MyGfxManager.bMenusOpen)
+		{
+			KFPC.MyGfxManager.CloseMenus(true);
+		}
 	}
 }
 

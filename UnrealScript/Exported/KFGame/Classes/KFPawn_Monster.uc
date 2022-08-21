@@ -914,8 +914,6 @@ function AdjustMovementSpeed(float SpeedAdjust)
 
     NormalGroundSpeed = DesiredAdjustedGroundSpeed;
 	NormalSprintSpeed = DesiredAdjustedSprintSpeed;
-
-    //`log(self$"SpeedAdjust = "$SpeedAdjust$" default.GroundSpeed = "$default.GroundSpeed$" GroundSpeed = "$GroundSpeed$" DesiredAdjustedGroundSpeed = "$DesiredAdjustedGroundSpeed$" RandomGroundSpeedModifier = "$RandomGroundSpeedModifier);
 }
 
 /** Overridden to cause slight camera shakes when walking. */
@@ -1568,6 +1566,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 	local KFPerk InstigatorPerk;
 	local KfPlayerReplicationInfo KFPRI;
 	local KFAIController KFAIC;
+	local KFPawn_Monster KFPM;
 
 	AIMonster = KFAIController_Monster(InstigatedBy);
 	KFDT = class<KFDamageType>(DamageType);
@@ -1622,6 +1621,17 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 		if( InstigatorPerk != none && KFDT != none )
 		{
 			bCouldTurnIntoShrapnel = InstigatorPerk.CouldBeZedShrapnel( KFDT );
+		}
+
+		if( ClassIsChildOf( KFDT, class'KFDT_Fire' ) && InstigatedBy != none )
+		{
+			foreach WorldInfo.AllPawns( class'KFPawn_Monster', KFPM, location, 30 )
+			{
+				if( KFPM != self )
+				{
+					CheckForNapalmInfect( KFPM, INDEX_NONE, InstigatedBy );
+				}
+			}
 		}
 
 		bShowHealth = true;
@@ -2028,24 +2038,24 @@ function ResetHealthVisibilty()
 	bShowHealth = false;
 }
 
-function CheckForNapalmInfect( KFPawn_Monster KFPM, byte DoTIndex )
+function CheckForNapalmInfect( KFPawn_Monster KFPM, byte DoTIndex, optional Controller InstigatedBy )
 {
 	local KFPerk InstigatorPerk;
 	local KFPlayerController KFPC;
 
-	if( DoTIndex >= DamageOverTimeArray.Length )
+	if( InstigatedBy == none && DoTIndex >= DamageOverTimeArray.Length )
 	{
 		return;
 	}
 
-	KFPC = KFPlayerController(DamageOverTimeArray[DotIndex].InstigatedBy);
+	KFPC = (InstigatedBy != none) ? KFPlayerController(InstigatedBy) : KFPlayerController(DamageOverTimeArray[DotIndex].InstigatedBy);
 	if( KFPC != none )
 	{
 		InstigatorPerk = KFPC.GetPerk();
 		if( InstigatorPerk != none && InstigatorPerk.CanSpreadNapalm() )
         {
 			KFPM.TakeDamage( 10,
-					 DamageOverTimeArray[DotIndex].InstigatedBy,
+					 KFPC,
 					 vect(0,0,0),
 					 vect(0,0,0),
 					 class'KFDT_Fire' );
@@ -2055,7 +2065,7 @@ function CheckForNapalmInfect( KFPawn_Monster KFPM, byte DoTIndex )
 }
 
 /**
- * @brief Spawns a radiactive cloud that hurts other Zeds
+ * @brief Spawns a radioactive cloud that hurts other Zeds
  *
  * @param Killer The monster's killer (that had the shrapnel skill enabled)
  */
@@ -2084,7 +2094,6 @@ function ShrapnelExplode( Controller Killer )
 		}
 
 		ExplosionTemplate = class'KFPerk_Firebug'.static.GetExplosionTemplate();
-		ExplosionTemplate.MyDamageType = class'KFPerk_Firebug'.static.GetShrapnelDamageTypeClass();
 		ExploActor.Explode( ExplosionTemplate );
 	}
 }

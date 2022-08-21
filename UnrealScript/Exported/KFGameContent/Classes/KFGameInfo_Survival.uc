@@ -579,7 +579,7 @@ function ReduceDamage(out int Damage, Pawn Injured, Controller InstigatedBy, vec
 	Super.ReduceDamage(Damage, Injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser);
 }
 
-function BossDied(controller Killer)
+function BossDied(Controller Killer, optional bool bCheckWaveEnded = true)
 {
 	local KFPawn_Monster AIP;
 	local KFGameReplicationInfo KFGRI;
@@ -606,8 +606,10 @@ function BossDied(controller Killer)
 			AIP.Died(none , none, AIP.Location);
 		}
 	}
-
- 	CheckWaveEnd( true );
+	if(bCheckWaveEnded)
+	{
+		CheckWaveEnd( true );
+	}
 }
 
 function UpdateGameSettings()

@@ -83,14 +83,14 @@ static function string GetKeyBind(PlayerController P, optional int Switch)
     }
     switch(Switch)
     {
-        case 4:
-        case 5:
         case 6:
             if(Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController().PlayerReplicationInfo.GetTeamNum() == 255)
             {
                 KeyString = "";
                 break;
             }
+        case 4:
+        case 5:
         case 1:
         case 2:
         case 3:

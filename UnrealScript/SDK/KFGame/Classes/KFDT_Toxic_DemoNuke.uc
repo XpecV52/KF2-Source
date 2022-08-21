@@ -27,8 +27,8 @@ defaultproperties
 	StumblePower=0
 
 	DoT_Duration=10.0
-	DoT_Interval=1.0
-	DoT_DamageScale=0.1
+	DoT_Interval=0.3 //1.0
+	DoT_DamageScale=1.0 //0.1
 
 	PoisonPower=1000
 	BurnPower=0

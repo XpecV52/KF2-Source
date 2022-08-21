@@ -153,6 +153,9 @@ enum EGameLength
 	GL_Long,
 };
 
+/** Amount to scale dosh reward based on game length */
+var array<float>    GameLengthDoshScale;
+
 /** Available spawn managers (game length) */
 var	array< class<KFAISpawnManager> >   	SpawnManagerClasses;
 
@@ -1548,7 +1551,7 @@ function int GetAdjustedTeamDeathPenalty( KFPlayerReplicationInfo KilledPlayerPR
 	return Round( KilledPlayerPRI.Score * GameDifficulty * TeamDeathPenaltyPerc );
 }
 
-function BossDied(Controller Killer);
+function BossDied(Controller Killer, optional bool bCheckWaveEnded = true);
 
 /************************************************************************************
  * @name		Scoring/DO$H
@@ -1658,6 +1661,7 @@ function float GetAdjustedAIDoshValue( class<KFPawn_Monster> MonsterClass )
 	TempValue = MonsterClass.static.GetDoshValue();
 	TempValue *= DifficultyInfo.GetKillCashModifier();
 	ModifyAIDoshValueForPlayerCount( TempValue );
+	TempValue *= GameLengthDoshScale[GameLength];
 
 	return TempValue;
 }
@@ -2782,6 +2786,10 @@ defaultproperties
     DeathPenaltyModifiers(1)=0.1f
     DeathPenaltyModifiers(2)=0.2f
     DeathPenaltyModifiers(3)=0.25
+
+    GameLengthDoshScale(0)=1.0 //1.75 // Short
+    GameLengthDoshScale(1)=1.0  // Medium
+    GameLengthDoshScale(2)=1.0 // 0.7  // Long
 
     AccessControlClass=class'KFGame.KFAccessControl'
 	OnlineGameSettingsClass=class'KFGame.KFOnlineGameSettings'

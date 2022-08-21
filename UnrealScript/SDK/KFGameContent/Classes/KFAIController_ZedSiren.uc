@@ -33,7 +33,6 @@ function DoScream( optional bool bCalledFromPreMove=false )
 	if( MyKFPawn.SpecialMove == SM_None || MyKFPawn.SpecialMove == SM_SonicAttack )
 	{
 		class'AICommand_Siren_Scream'.static.Scream( self );
-		MyKFPawn.DisablebOnDeathAchivement();
 	}
 
 	// Start moving to enemy

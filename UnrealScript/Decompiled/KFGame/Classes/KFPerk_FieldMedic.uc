@@ -132,19 +132,26 @@ simulated function ModifySpareAmmoAmount(KFWeapon KFW, out int PrimarySpareAmmo,
     local float TempAmmo;
     local class<KFPerk> WeaponPerkClass;
 
-    if(KFW == none)
-    {
-        WeaponPerkClass = TraderItem.AssociatedPerkClass;        
-    }
-    else
-    {
-        WeaponPerkClass = KFW.AssociatedPerkClass;
-    }
+    WeaponPerkClass = ((KFW == none) ? TraderItem.AssociatedPerkClass : KFW.AssociatedPerkClass);
     if(IsEnforcerActive() && (IsWeaponOnPerk(KFW, WeaponPerkClass)) || IsBackupWeapon(KFW))
     {
         TempAmmo = float(PrimarySpareAmmo);
-        TempAmmo *= FMin(PerkSkills[1].StartingValue, PerkSkills[1].MaxValue);
+        TempAmmo += (TempAmmo * (GetSkillValue(PerkSkills[1])));
         PrimarySpareAmmo = Round(TempAmmo);
+    }
+}
+
+simulated function ModifyMaxSpareAmmoAmount(KFWeapon KFW, out int MaxSpareAmmo, const optional out STraderItem TraderItem)
+{
+    local float TempMaxSpareAmmoAmount;
+    local class<KFPerk> WeaponPerkClass;
+
+    WeaponPerkClass = ((KFW == none) ? TraderItem.AssociatedPerkClass : KFW.AssociatedPerkClass);
+    if(IsEnforcerActive() && (IsWeaponOnPerk(KFW, WeaponPerkClass)) || IsBackupWeapon(KFW))
+    {
+        TempMaxSpareAmmoAmount = float(MaxSpareAmmo);
+        TempMaxSpareAmmoAmount += (TempMaxSpareAmmoAmount * (GetSkillValue(PerkSkills[1])));
+        MaxSpareAmmo = Round(TempMaxSpareAmmoAmount);
     }
 }
 
@@ -420,7 +427,7 @@ defaultproperties
     EXPAction2="Healing team-mates"
     PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Medic'
     PerkSkills(0)=(Name="HealingSurge",Increment=0,Rank=0,StartingValue=1.2,MaxValue=1.2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Medic.UI_Talents_Medic_HealingSurge",bActive=false)
-    PerkSkills(1)=(Name="Enforcer",Increment=0,Rank=0,StartingValue=1.2,MaxValue=1.2,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Enforcer",bActive=false)
+    PerkSkills(1)=(Name="Enforcer",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Enforcer",bActive=false)
     PerkSkills(2)=(Name="Combatant",Increment=0,Rank=0,StartingValue=0.6,MaxValue=0.6,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Combatant",bActive=false)
     PerkSkills(3)=(Name="Armament",Increment=0,Rank=0,StartingValue=0.25,MaxValue=0.01,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Armament",bActive=false)
     PerkSkills(4)=(Name="Regeneration",Increment=0,Rank=0,StartingValue=0.02,MaxValue=0.02,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Regenerate",bActive=false)

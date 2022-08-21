@@ -911,7 +911,7 @@ defaultproperties
    NukeProjectileClassName="KFGameContent.KFProj_ExplosiveSubmunition_HX25_Nuke"
    NukeIgnoredProjectileNames(0)="KFProj_ExplosiveSubmunition_HX25"
    NukeIgnoredProjectileNames(1)="KFProj_ExplosiveSubmunition_HX25_Nuke"
-   NukeDamageModifier=1.250000
+   NukeDamageModifier=1.500000
    NukeRadiusModifier=1.350000
    ConcussiveExplosionSound=AkEvent'WW_GLO_Runtime.Play_WEP_Demo_Conc'
    AoeDamageModifier=0.700000

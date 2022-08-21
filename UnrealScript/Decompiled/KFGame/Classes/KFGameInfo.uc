@@ -152,6 +152,7 @@ var const byte ForcedNumLivingPlayers;
 var array<float> DeathPenaltyModifiers;
 var array<float> MaxRespawnDosh;
 var int MaxGameDifficulty;
+var array<float> GameLengthDoshScale;
 var array< class<KFAISpawnManager> > SpawnManagerClasses;
 var KFGameConductor GameConductor;
 var class<KFGameConductor> GameConductorClass;
@@ -1215,7 +1216,10 @@ function int GetAdjustedTeamDeathPenalty(KFPlayerReplicationInfo KilledPlayerPRI
     return Round((KilledPlayerPRI.Score * GameDifficulty) * 0.05);
 }
 
-function BossDied(Controller Killer);
+function BossDied(Controller Killer, optional bool bCheckWaveEnded)
+{
+    bCheckWaveEnded = true;
+}
 
 static function int GetBossKillScore()
 {
@@ -1304,6 +1308,7 @@ function float GetAdjustedAIDoshValue(class<KFPawn_Monster> MonsterClass)
     TempValue = float(MonsterClass.static.GetDoshValue());
     TempValue *= DifficultyInfo.GetKillCashModifier();
     ModifyAIDoshValueForPlayerCount(TempValue);
+    TempValue *= GameLengthDoshScale[GameLength];
     return TempValue;
 }
 
@@ -2424,6 +2429,9 @@ defaultproperties
     DeathPenaltyModifiers(1)=0.1
     DeathPenaltyModifiers(2)=0.2
     DeathPenaltyModifiers(3)=0.25
+    GameLengthDoshScale(0)=1
+    GameLengthDoshScale(1)=1
+    GameLengthDoshScale(2)=1
     GameConductorClass=Class'KFGameConductor'
     ZedTimeSlomoScale=0.2
     ZedTimeBlendOutTime=0.5

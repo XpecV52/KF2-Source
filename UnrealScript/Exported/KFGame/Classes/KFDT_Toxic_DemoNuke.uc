@@ -21,6 +21,8 @@ static function bool AlwaysPoisons()
 defaultproperties
 {
    bNoInstigatorDamage=True
+   DoT_Interval=0.300000
+   DoT_DamageScale=1.000000
    PoisonPower=1000.000000
    Name="Default__KFDT_Toxic_DemoNuke"
    ObjectArchetype=KFDT_Toxic'KFGame.Default__KFDT_Toxic'

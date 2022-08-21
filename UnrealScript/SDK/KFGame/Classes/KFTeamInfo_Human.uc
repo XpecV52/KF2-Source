@@ -16,14 +16,14 @@ struct sTeamScoreData
 	var int RoundScore;
 
 	/** Stat tracking for end-of-match scoring */
-	var int WaveReached;
+	var int WaveBonus;
 	var int Deaths;
 	var int BossDamageDone;
 	var int BossDamageTaken;
 
 	StructDefaultProperties
 	{
-		WaveReached=-1
+		WaveBonus=-1
 	}
 };
 

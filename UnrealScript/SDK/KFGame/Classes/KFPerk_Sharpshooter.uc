@@ -196,6 +196,8 @@ simulated function ModifyRateOfFire( out float InRate, KFWeapon KFW )
  */
 simulated function ModifyRecoil( out float CurrentRecoilModifier, KFWeapon KFW )
 {
+	CurrentRecoilModifier -= CurrentRecoilModifier * GetPassiveValue( Recoil, CurrentLevel );
+
 	if( GetScopedActive(KFW) ) // IsWeaponOnPerk( KFW ) )
 	{
 		`QALog( "(Scoped)" @ KFW @ GetPercentage( CurrentRecoilModifier, CurrentRecoilModifier - CurrentRecoilModifier * GetSkillValue( PerkSkills[ESharpshooterScoped] ) ), bLogPerk );
@@ -229,7 +231,7 @@ simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo,
 {
 	local float TempMaxSpareAmmoAmount;
 
-	if( IsAmmoPouchActive() && IsWeaponOnPerk( KFW ) )
+	if( IsAmmoPouchActive() && IsWeaponOnPerk( KFW, TraderItem.AssociatedPerkClass ) )
 	{
 		TempMaxSpareAmmoAmount = MaxSpareAmmo;
 		TempMaxSpareAmmoAmount += TempMaxSpareAmmoAmount * GetSkillValue( PerkSkills[ESharpshooterAmmoPouch] );
@@ -253,9 +255,9 @@ simulated protected event PostSkillUpdate()
 
 	super.PostSkillUpdate();
 
-	if(Role == Role_Authority)
+	if( Role == Role_Authority )
 	{
-		if(IsRhythmMethodActive())
+		if( IsRhythmMethodActive() )
 		{
 			ServerClearHeadShotsCombo();
 		}
@@ -264,7 +266,7 @@ simulated protected event PostSkillUpdate()
 
 event Destroyed()
 {
-	if(Role == Role_Authority)
+	if( Role == Role_Authority )
 	{
 		ServerClearHeadShotsCombo();
 	}
@@ -279,7 +281,7 @@ event Destroyed()
 simulated function bool GetUsingTactialReload( KFWeapon KFW )
 {
 	`QALog( "Tactical Reload Active =" @ (IsTacticalReloadActive() && IsWeaponOnPerk( KFW )), bLogPerk );
-	return IsTacticalReloadActive() && IsWeaponOnPerk( KFW );
+	return IsTacticalReloadActive() && (IsWeaponOnPerk( KFW ) || IsBackupWeapon( KFW ));
 }
 
 /**
@@ -624,8 +626,8 @@ DefaultProperties
 	SkillZedTimeChance=0.05  //0.05
 
     // Skill tracking
-	HitAccuracyHandicap=-5.0
-	HeadshotAccuracyHandicap=-8.0
+	HitAccuracyHandicap=-9.0
+	HeadshotAccuracyHandicap=-16.0
 
 	SecondaryXPModifier(0)=1
    	SecondaryXPModifier(1)=1

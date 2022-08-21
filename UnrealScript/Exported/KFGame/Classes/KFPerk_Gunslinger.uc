@@ -821,7 +821,7 @@ defaultproperties
    PerkSkills(4)=(Name="SpeedReload",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_SpeedReload")
    PerkSkills(5)=(Name="Penetration",StartingValue=1.000000,MaxValue=1.000000,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_Penetration")
    PerkSkills(6)=(Name="CenterMass",StartingValue=2.000000,MaxValue=2.000000,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_CenterMass")
-   PerkSkills(7)=(Name="LimbShots",StartingValue=5.100000,MaxValue=5.100000,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_LimbShots")
+   PerkSkills(7)=(Name="LimbShots",StartingValue=10.100000,MaxValue=10.100000,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_LimbShots")
    PerkSkills(8)=(Name="Fanfare",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDSpeed")
    PerkSkills(9)=(Name="UberAmmo",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDAmmo")
    ZedTimeModifyingStates(0)="WeaponFiring"

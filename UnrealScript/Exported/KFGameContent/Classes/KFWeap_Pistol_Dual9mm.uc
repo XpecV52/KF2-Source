@@ -80,7 +80,7 @@ defaultproperties
    InstantHitDamage(0)=15.000000
    InstantHitDamage(1)=15.000000
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=()
+   InstantHitDamage(3)=10.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_9mm'
    InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_9mm'
    InstantHitDamageTypes(2)=None

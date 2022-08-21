@@ -550,7 +550,7 @@ defaultproperties
     SacrificeExplosionTemplate=ExploTemplate0
     begin object name=ExploTemplate1 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Explosions.Nuke_Explosion'
-        Damage=15
+        Damage=45
         DamageRadius=450
         DamageFalloffExponent=0
         MyDamageType=Class'KFDT_Toxic_DemoNuke'
@@ -582,7 +582,7 @@ defaultproperties
     NukeProjectileClassName="KFGameContent.KFProj_ExplosiveSubmunition_HX25_Nuke"
     NukeIgnoredProjectileNames(0)=KFProj_ExplosiveSubmunition_HX25
     NukeIgnoredProjectileNames(1)=KFProj_ExplosiveSubmunition_HX25_Nuke
-    NukeDamageModifier=1.25
+    NukeDamageModifier=1.5
     NukeRadiusModifier=1.35
     ConcussiveExplosionSound=AkEvent'WW_GLO_Runtime.Play_WEP_Demo_Conc'
     AoeDamageModifier=0.7

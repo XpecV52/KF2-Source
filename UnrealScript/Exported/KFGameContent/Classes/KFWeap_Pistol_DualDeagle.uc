@@ -81,7 +81,7 @@ defaultproperties
    InstantHitDamage(0)=91.000000
    InstantHitDamage(1)=91.000000
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=()
+   InstantHitDamage(3)=10.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_Deagle'
    InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_Deagle'
    InstantHitDamageTypes(2)=None

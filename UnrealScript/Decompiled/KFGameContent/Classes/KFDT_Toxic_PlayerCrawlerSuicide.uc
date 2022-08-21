@@ -11,6 +11,7 @@ class KFDT_Toxic_PlayerCrawlerSuicide extends KFDT_Toxic
 defaultproperties
 {
     bNoInstigatorDamage=true
+    bConsideredIndirectOrAoE=true
     DoT_Type=EDamageOverTimeGroup.DOT_None
     CameraLensEffectTemplate=Class'KFGame.KFCameraLensEmit_Puke_Light'
 }

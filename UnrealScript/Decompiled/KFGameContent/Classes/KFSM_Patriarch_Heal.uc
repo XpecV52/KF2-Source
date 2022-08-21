@@ -40,6 +40,7 @@ function DoHeal()
         if(HealAmount > 0)
         {
             MyPatPawn.HealDamage(HealAmount, MyPatPawn.Controller, Class'KFDT_Healing');
+            MyPatPawn.DisablebOnDeathAchivement();
         }
         MyPatPawn.SetFleeAndHealMode(false);
     }

@@ -908,7 +908,7 @@ defaultproperties
    PerkSkills(7)=(Name="Fury",StartingValue=0.200000,MaxValue=0.200000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Intimidate")
    PerkSkills(8)=(Name="Spartan",StartingValue=0.250000,MaxValue=0.250000,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Spartan")
    PerkSkills(9)=(Name="Flash",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Flash")
-   RegenerationAmount=1
+   RegenerationAmount=2
    ZedTimeModifyingStates(0)="MeleeChainAttacking"
    ZedTimeModifyingStates(1)="MeleeAttackBasic"
    ZedTimeModifyingStates(2)="MeleeHeavyAttacking"

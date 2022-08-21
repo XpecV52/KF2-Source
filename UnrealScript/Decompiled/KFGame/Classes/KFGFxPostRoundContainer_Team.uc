@@ -33,9 +33,9 @@ function CreateResultsForTeam()
     KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
     TeamScoreDataPacket = KFTeamInfo_Human(KFGRI.Teams[TeamID]).TeamScoreDataPacket;
     DataObject = Outer.CreateObject("Object");
-    if(TeamScoreDataPacket.WaveReached != -1)
+    if(TeamScoreDataPacket.WaveBonus != -1)
     {
-        DataObject.SetInt("waveNum", (TeamScoreDataPacket.WaveReached - 1) * Class'KFGameInfo'.default.POINTS_FOR_WAVE_COMPLETION);
+        DataObject.SetInt("waveNum", TeamScoreDataPacket.WaveBonus);
         DataObject.SetInt("bossDeadNum", ((KFGRI.bMatchVictory) ? Class'KFGameInfo'.static.GetBossKillScore() : 0));
         DataObject.SetInt("deathNum", TeamScoreDataPacket.Deaths * Class'KFGameInfo'.default.POINTS_PENALTY_FOR_DEATH);
         DataObject.SetInt("damagNum", ((KFGRI.bMatchVictory) ? TeamScoreDataPacket.BossDamageTaken : 0));

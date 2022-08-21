@@ -20,4 +20,5 @@ defaultproperties
 
     // Don't let Hans damage himself with his grenade
     bNoInstigatorDamage=true
+    bConsideredIndirectOrAoE=true
 }

@@ -50,6 +50,12 @@ protected simulated function Timer_RageBump()
     HurtRadius(float(RageBumpDamage), RageBumpRadius, RageBumpDamageType, RageBumpMomentum, Location, self, Controller);
 }
 
+simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
+{
+    ClearTimer('Timer_RageBump');
+    super.PlayDying(DamageType, HitLoc);
+}
+
 defaultproperties
 {
     RageSprintSpeed=650

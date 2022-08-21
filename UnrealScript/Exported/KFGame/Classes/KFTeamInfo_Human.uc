@@ -16,14 +16,14 @@ struct sTeamScoreData
 	var int RoundScore;
 
 	/** Stat tracking for end-of-match scoring */
-	var int WaveReached;
+	var int WaveBonus;
 	var int Deaths;
 	var int BossDamageDone;
 	var int BossDamageTaken;
 
 	StructDefaultProperties
 	{
-		WaveReached=-1
+		WaveBonus=-1
 	}
 };
 
@@ -120,7 +120,7 @@ function Reset()
 
 defaultproperties
 {
-   TeamScoreDataPacket=(WaveReached=-1)
+   TeamScoreDataPacket=(WaveBonus=-1)
    TeamIndex=0
    NetUpdateFrequency=1.000000
    Name="Default__KFTeamInfo_Human"

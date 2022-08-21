@@ -115,7 +115,7 @@ defaultproperties
 {
    MinScreamRange=130
    MaxScreamRange=920
-   ScreamCooldown=5.000000
+   ScreamCooldown=6.000000
    SpecialMove=SM_SonicAttack
    bIgnoreNotifies=True
    Name="Default__AICommand_Siren_Scream"

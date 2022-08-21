@@ -437,106 +437,115 @@ protected function RespawnZedHumanPlayers(KFSpawnVolume SpawnVolume, optional bo
         return;
     }
     Outer.RefreshMonsterAliveCount();
-    SetDesiredSquadTypeForZedList(CrawlerPawnClasses);
-    SpawnVolume = GetBestSpawnVolume(CrawlerPawnClasses,, CrawlerPlayers[0]);
-    I = 0;
-    J0x953:
-
-    if(I < CrawlerPlayers.Length)
+    if(CrawlerPlayers.Length > 0)
     {
-        if(!Outer.IsWaveActive())
+        SetDesiredSquadTypeForZedList(CrawlerPawnClasses);
+        SpawnVolume = GetBestSpawnVolume(CrawlerPawnClasses,, CrawlerPlayers[0]);
+        I = 0;
+        J0x963:
+
+        if(I < CrawlerPlayers.Length)
         {
-            return;
+            if(!Outer.IsWaveActive())
+            {
+                return;
+            }
+            if((Outer.MyKFGRI.WaveNum < Outer.MyKFGRI.WaveMax) && ((Outer.AIAliveCount + NumSpawned) + 1) > Outer.MyKFGRI.AIRemaining)
+            {
+                goto J0xB5D;
+            }
+            if((NumSquadMembers % 3) == 0)
+            {
+                SetDesiredSquadTypeForZedList(CrawlerPawnClasses);
+                SpawnVolume = GetBestSpawnVolume(CrawlerPawnClasses,, CrawlerPlayers[I]);
+            }
+            if(RestartPlayerZed(CrawlerPlayers[I], SpawnVolume, NearestPlayerLocation))
+            {
+                ++ NumSpawned;
+                ++ NumSquadMembers;
+            }
+            CrawlerPlayers.Remove(I, 1;
+            CrawlerPawnClasses.Remove(I, 1;
+            -- I;
+            ++ I;
+            goto J0x963;
         }
-        if((Outer.MyKFGRI.WaveNum < Outer.MyKFGRI.WaveMax) && ((Outer.AIAliveCount + NumSpawned) + 1) > Outer.MyKFGRI.AIRemaining)
-        {
-            goto J0xB4D;
-        }
-        if((NumSquadMembers % 3) == 0)
-        {
-            SetDesiredSquadTypeForZedList(CrawlerPawnClasses);
-            SpawnVolume = GetBestSpawnVolume(CrawlerPawnClasses,, CrawlerPlayers[I]);
-        }
-        if(RestartPlayerZed(CrawlerPlayers[I], SpawnVolume, NearestPlayerLocation))
-        {
-            ++ NumSpawned;
-            ++ NumSquadMembers;
-        }
-        CrawlerPlayers.Remove(I, 1;
-        CrawlerPawnClasses.Remove(I, 1;
-        -- I;
-        ++ I;
-        goto J0x953;
     }
-    J0xB4D:
+    J0xB5D:
 
-    NumSquadMembers = 0;
-    SetDesiredSquadTypeForZedList(MediumPawnClasses);
-    SpawnVolume = GetBestSpawnVolume(MediumPawnClasses,, MediumPlayers[0]);
-    I = 0;
-    J0xBA1:
-
-    if(I < MediumPlayers.Length)
+    if(MediumPlayers.Length > 0)
     {
-        if(!Outer.IsWaveActive())
+        NumSquadMembers = 0;
+        SetDesiredSquadTypeForZedList(MediumPawnClasses);
+        SpawnVolume = GetBestSpawnVolume(MediumPawnClasses,, MediumPlayers[0]);
+        I = 0;
+        J0xBC1:
+
+        if(I < MediumPlayers.Length)
         {
-            return;
+            if(!Outer.IsWaveActive())
+            {
+                return;
+            }
+            if((Outer.MyKFGRI.WaveNum < Outer.MyKFGRI.WaveMax) && ((Outer.AIAliveCount + NumSpawned) + 1) > Outer.MyKFGRI.AIRemaining)
+            {
+                goto J0xDBB;
+            }
+            if((NumSquadMembers % 3) == 0)
+            {
+                SetDesiredSquadTypeForZedList(MediumPawnClasses);
+                SpawnVolume = GetBestSpawnVolume(MediumPawnClasses,, MediumPlayers[I]);
+            }
+            if(RestartPlayerZed(MediumPlayers[I], SpawnVolume, NearestPlayerLocation))
+            {
+                ++ NumSpawned;
+                ++ NumSquadMembers;
+            }
+            MediumPlayers.Remove(I, 1;
+            MediumPawnClasses.Remove(I, 1;
+            -- I;
+            ++ I;
+            goto J0xBC1;
         }
-        if((Outer.MyKFGRI.WaveNum < Outer.MyKFGRI.WaveMax) && ((Outer.AIAliveCount + NumSpawned) + 1) > Outer.MyKFGRI.AIRemaining)
-        {
-            goto J0xD9B;
-        }
-        if((NumSquadMembers % 3) == 0)
-        {
-            SetDesiredSquadTypeForZedList(MediumPawnClasses);
-            SpawnVolume = GetBestSpawnVolume(MediumPawnClasses,, MediumPlayers[I]);
-        }
-        if(RestartPlayerZed(MediumPlayers[I], SpawnVolume, NearestPlayerLocation))
-        {
-            ++ NumSpawned;
-            ++ NumSquadMembers;
-        }
-        MediumPlayers.Remove(I, 1;
-        MediumPawnClasses.Remove(I, 1;
-        -- I;
-        ++ I;
-        goto J0xBA1;
     }
-    J0xD9B:
+    J0xDBB:
 
-    NumSquadMembers = 0;
-    SetDesiredSquadTypeForZedList(LargePawnClasses);
-    SpawnVolume = GetBestSpawnVolume(LargePawnClasses,, LargePlayers[0]);
-    I = 0;
-    J0xDEF:
-
-    if(I < LargePlayers.Length)
+    if(LargePlayers.Length > 0)
     {
-        if(!Outer.IsWaveActive())
+        NumSquadMembers = 0;
+        SetDesiredSquadTypeForZedList(LargePawnClasses);
+        SpawnVolume = GetBestSpawnVolume(LargePawnClasses,, LargePlayers[0]);
+        I = 0;
+        J0xE1F:
+
+        if(I < LargePlayers.Length)
         {
-            return;
+            if(!Outer.IsWaveActive())
+            {
+                return;
+            }
+            if((Outer.MyKFGRI.WaveNum < Outer.MyKFGRI.WaveMax) && ((Outer.AIAliveCount + NumSpawned) + 1) > Outer.MyKFGRI.AIRemaining)
+            {
+                goto J0x1019;
+            }
+            if((NumSquadMembers % 3) == 0)
+            {
+                SetDesiredSquadTypeForZedList(LargePawnClasses);
+                SpawnVolume = GetBestSpawnVolume(LargePawnClasses,, LargePlayers[I]);
+            }
+            if(RestartPlayerZed(LargePlayers[I], SpawnVolume, NearestPlayerLocation))
+            {
+                ++ NumSpawned;
+                ++ NumSquadMembers;
+            }
+            LargePlayers.Remove(I, 1;
+            LargePawnClasses.Remove(I, 1;
+            -- I;
+            ++ I;
+            goto J0xE1F;
         }
-        if((Outer.MyKFGRI.WaveNum < Outer.MyKFGRI.WaveMax) && ((Outer.AIAliveCount + NumSpawned) + 1) > Outer.MyKFGRI.AIRemaining)
-        {
-            goto J0xFE9;
-        }
-        if((NumSquadMembers % 3) == 0)
-        {
-            SetDesiredSquadTypeForZedList(LargePawnClasses);
-            SpawnVolume = GetBestSpawnVolume(LargePawnClasses,, LargePlayers[I]);
-        }
-        if(RestartPlayerZed(LargePlayers[I], SpawnVolume, NearestPlayerLocation))
-        {
-            ++ NumSpawned;
-            ++ NumSquadMembers;
-        }
-        LargePlayers.Remove(I, 1;
-        LargePawnClasses.Remove(I, 1;
-        -- I;
-        ++ I;
-        goto J0xDEF;
     }
-    J0xFE9:
+    J0x1019:
 
     Outer.AIAliveCount += NumSpawned;
     CheckForTakeoverTimer();

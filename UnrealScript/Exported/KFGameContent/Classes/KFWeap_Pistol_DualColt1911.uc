@@ -81,7 +81,7 @@ defaultproperties
    InstantHitDamage(0)=50.000000
    InstantHitDamage(1)=50.000000
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=()
+   InstantHitDamage(3)=10.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_Colt1911'
    InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_Colt1911'
    InstantHitDamageTypes(2)=None

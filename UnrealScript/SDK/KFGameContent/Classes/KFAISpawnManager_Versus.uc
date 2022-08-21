@@ -680,116 +680,125 @@ protected function RespawnZedHumanPlayers( KFSpawnVolume SpawnVolume, optional b
     RefreshMonsterAliveCount();
 
     // Crawlers
-    SetDesiredSquadTypeForZedList( CrawlerPawnClasses );
-    SpawnVolume = GetBestSpawnVolume( CrawlerPawnClasses,, CrawlerPlayers[0] );
-    for( i = 0; i < CrawlerPlayers.Length; ++i )
+    if( CrawlerPlayers.Length > 0 )
     {
-        if( !IsWaveActive() )
+        SetDesiredSquadTypeForZedList( CrawlerPawnClasses );
+        SpawnVolume = GetBestSpawnVolume( CrawlerPawnClasses,, CrawlerPlayers[0] );
+        for( i = 0; i < CrawlerPlayers.Length; ++i )
         {
-            return;
-        }
+            if( !IsWaveActive() )
+            {
+                return;
+            }
 
-        // Make sure we have enough slots
-        if( MyKFGRI.WaveNum < MyKFGRI.WaveMax && AIAliveCount + NumSpawned + 1 > MyKFGRI.AIRemaining )
-        {
-            break;
-        }
+            // Make sure we have enough slots
+            if( MyKFGRI.WaveNum < MyKFGRI.WaveMax && AIAliveCount + NumSpawned + 1 > MyKFGRI.AIRemaining )
+            {
+                break;
+            }
 
-        // Only allow 3 spawns per volume
-        if( NumSquadMembers % 3 == 0 )
-        {
-            SetDesiredSquadTypeForZedList( CrawlerPawnClasses );
-            SpawnVolume = GetBestSpawnVolume( CrawlerPawnClasses,, CrawlerPlayers[i] );
-        }
+            // Only allow 3 spawns per volume
+            if( NumSquadMembers % 3 == 0 )
+            {
+                SetDesiredSquadTypeForZedList( CrawlerPawnClasses );
+                SpawnVolume = GetBestSpawnVolume( CrawlerPawnClasses,, CrawlerPlayers[i] );
+            }
 
-        // Spawn player
-        if( RestartPlayerZed(CrawlerPlayers[i], SpawnVolume, NearestPlayerLocation) )
-        {
-            // Count the number of spawns, if we have more than 2 then choose a new spawn volume
-            ++NumSpawned;
-            ++NumSquadMembers;
-        }
+            // Spawn player
+            if( RestartPlayerZed(CrawlerPlayers[i], SpawnVolume, NearestPlayerLocation) )
+            {
+                // Count the number of spawns, if we have more than 2 then choose a new spawn volume
+                ++NumSpawned;
+                ++NumSquadMembers;
+            }
 
-        // Clear these zeds out of the array in case we need to get another spawn volume
-        CrawlerPlayers.Remove( i, 1 );
-        CrawlerPawnClasses.Remove( i, 1 );
-        --i;
+            // Clear these zeds out of the array in case we need to get another spawn volume
+            CrawlerPlayers.Remove( i, 1 );
+            CrawlerPawnClasses.Remove( i, 1 );
+            --i;
+        }
     }
 
     // Small-medium zeds
-    NumSquadMembers = 0;
-    SetDesiredSquadTypeForZedList( MediumPawnClasses );
-    SpawnVolume = GetBestSpawnVolume( MediumPawnClasses,, MediumPlayers[0] );
-    for( i = 0; i < MediumPlayers.Length; ++i )
+    if( MediumPlayers.Length > 0 )
     {
-        if( !IsWaveActive() )
+        NumSquadMembers = 0;
+        SetDesiredSquadTypeForZedList( MediumPawnClasses );
+        SpawnVolume = GetBestSpawnVolume( MediumPawnClasses,, MediumPlayers[0] );
+        for( i = 0; i < MediumPlayers.Length; ++i )
         {
-            return;
-        }
+            if( !IsWaveActive() )
+            {
+                return;
+            }
 
-        // Make sure we have enough slots
-        if( MyKFGRI.WaveNum < MyKFGRI.WaveMax && AIAliveCount + NumSpawned + 1 > MyKFGRI.AIRemaining )
-        {
-            break;
-        }
+            // Make sure we have enough slots
+            if( MyKFGRI.WaveNum < MyKFGRI.WaveMax && AIAliveCount + NumSpawned + 1 > MyKFGRI.AIRemaining )
+            {
+                break;
+            }
 
-        // Only allow 3 spawns per volume
-        if( NumSquadMembers % 3 == 0 )
-        {
-            SetDesiredSquadTypeForZedList( MediumPawnClasses );
-            SpawnVolume = GetBestSpawnVolume( MediumPawnClasses,, MediumPlayers[i] );
-        }
+            // Only allow 3 spawns per volume
+            if( NumSquadMembers % 3 == 0 )
+            {
+                SetDesiredSquadTypeForZedList( MediumPawnClasses );
+                SpawnVolume = GetBestSpawnVolume( MediumPawnClasses,, MediumPlayers[i] );
+            }
 
-        // Spawn player
-        if( RestartPlayerZed(MediumPlayers[i], SpawnVolume, NearestPlayerLocation) )
-        {
-            // Count the number of spawns, if we have more than 2 then choose a new spawn volume
-            ++NumSpawned;
-            ++NumSquadMembers;
-        }
+            // Spawn player
+            if( RestartPlayerZed(MediumPlayers[i], SpawnVolume, NearestPlayerLocation) )
+            {
+                // Count the number of spawns, if we have more than 2 then choose a new spawn volume
+                ++NumSpawned;
+                ++NumSquadMembers;
+            }
 
-        // Clear these zeds out of the array in case we need to get another spawn volume
-        MediumPlayers.Remove( i, 1 );
-        MediumPawnClasses.Remove( i, 1 );
-        --i;
+            // Clear these zeds out of the array in case we need to get another spawn volume
+            MediumPlayers.Remove( i, 1 );
+            MediumPawnClasses.Remove( i, 1 );
+            --i;
+        }
     }
 
     // Large zeds
-    NumSquadMembers = 0;
-    SetDesiredSquadTypeForZedList( LargePawnClasses );
-    SpawnVolume = GetBestSpawnVolume( LargePawnClasses,, LargePlayers[0] );
-    for( i = 0; i < LargePlayers.Length; ++i )
+    if( LargePlayers.Length > 0 )
     {
-        if( !IsWaveActive() )
+        NumSquadMembers = 0;
+        SetDesiredSquadTypeForZedList( LargePawnClasses );
+        SpawnVolume = GetBestSpawnVolume( LargePawnClasses,, LargePlayers[0] );
+        for( i = 0; i < LargePlayers.Length; ++i )
         {
-            return;
-        }
+            if( !IsWaveActive() )
+            {
+                return;
+            }
 
-        // Make sure we have enough slots
-        if( MyKFGRI.WaveNum < MyKFGRI.WaveMax && AIAliveCount + NumSpawned + 1 > MyKFGRI.AIRemaining )
-        {
-            break;
-        }
+            // Make sure we have enough slots
+            if( MyKFGRI.WaveNum < MyKFGRI.WaveMax && AIAliveCount + NumSpawned + 1 > MyKFGRI.AIRemaining )
+            {
+                break;
+            }
 
-        // Only allow 3 spawns per volume
-        if( NumSquadMembers % 3 == 0 )
-        {
-            SetDesiredSquadTypeForZedList( LargePawnClasses );
-            SpawnVolume = GetBestSpawnVolume( LargePawnClasses,, LargePlayers[i] );
-        }
+            // Only allow 3 spawns per volume
+            if( NumSquadMembers % 3 == 0 )
+            {
+                SetDesiredSquadTypeForZedList( LargePawnClasses );
+                SpawnVolume = GetBestSpawnVolume( LargePawnClasses,, LargePlayers[i] );
+            }
 
-        // Spawn player
-        if( RestartPlayerZed(LargePlayers[i], SpawnVolume, NearestPlayerLocation) )
-        {
-            // Count the number of spawns, if we have more than 2 then choose a new spawn volume
-            ++NumSpawned;
-            ++NumSquadMembers;
-        }
+            // Spawn player
+            if( RestartPlayerZed(LargePlayers[i], SpawnVolume, NearestPlayerLocation) )
+            {
+                // Count the number of spawns, if we have more than 2 then choose a new spawn volume
+                ++NumSpawned;
+                ++NumSquadMembers;
+            }
 
-        // Clear these zeds out of the array in case we need to get another spawn volume
-        LargePlayers.Remove( i, 1 );
-        LargePawnClasses.Remove( i, 1 );
-        --i;
+            // Clear these zeds out of the array in case we need to get another spawn volume
+            LargePlayers.Remove( i, 1 );
+            LargePawnClasses.Remove( i, 1 );
+            --i;
+        }
     }
 
     // Add spawned to monster alive count

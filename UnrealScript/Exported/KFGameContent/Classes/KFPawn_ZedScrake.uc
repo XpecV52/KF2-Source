@@ -342,7 +342,7 @@ defaultproperties
    IncapSettings(4)=(Cooldown=2.500000,Vulnerability=(0.300000))
    IncapSettings(5)=(Duration=1.200000,Cooldown=10.000000,Vulnerability=(0.500000,1.000000,0.500000,0.500000,0.500000))
    IncapSettings(6)=(Cooldown=20.500000,Vulnerability=(0.150000))
-   IncapSettings(7)=(Cooldown=10.000000,Vulnerability=(0.400000))
+   IncapSettings(7)=(Cooldown=10.000000,Vulnerability=(0.400000,0.400000,0.500000,0.400000))
    IncapSettings(8)=(Duration=1.000000,Cooldown=1.500000,Vulnerability=(0.980000))
    IncapSettings(9)=(Duration=2.500000,Cooldown=10.000000,Vulnerability=(1.000000))
    KnockdownImpulseScale=2.000000

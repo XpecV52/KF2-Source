@@ -233,7 +233,10 @@ static function CloseMenus()
     KFPC = KFPlayerController(Class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController());
     if((KFPC != none) && KFPC.MyGFxManager != none)
     {
-        KFPC.MyGFxManager.CloseMenus(true);
+        if(KFPC.MyGFxManager.bMenusOpen)
+        {
+            KFPC.MyGFxManager.CloseMenus(true);
+        }
     }
 }
 

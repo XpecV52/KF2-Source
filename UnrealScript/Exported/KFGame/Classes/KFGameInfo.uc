@@ -459,6 +459,9 @@ enum EGameLength
 	GL_Long,
 };
 
+/** Amount to scale dosh reward based on game length */
+var array<float>    GameLengthDoshScale;
+
 /** Available spawn managers (game length) */
 var	array< class<KFAISpawnManager> >   	SpawnManagerClasses;
 
@@ -1854,7 +1857,7 @@ function int GetAdjustedTeamDeathPenalty( KFPlayerReplicationInfo KilledPlayerPR
 	return Round( KilledPlayerPRI.Score * GameDifficulty * TeamDeathPenaltyPerc );
 }
 
-function BossDied(Controller Killer);
+function BossDied(Controller Killer, optional bool bCheckWaveEnded = true);
 
 /************************************************************************************
  * @name		Scoring/DO$H
@@ -1964,6 +1967,7 @@ function float GetAdjustedAIDoshValue( class<KFPawn_Monster> MonsterClass )
 	TempValue = MonsterClass.static.GetDoshValue();
 	TempValue *= DifficultyInfo.GetKillCashModifier();
 	ModifyAIDoshValueForPlayerCount( TempValue );
+	TempValue *= GameLengthDoshScale[GameLength];
 
 	return TempValue;
 }
@@ -3104,6 +3108,9 @@ defaultproperties
    DeathPenaltyModifiers(1)=0.100000
    DeathPenaltyModifiers(2)=0.200000
    DeathPenaltyModifiers(3)=0.250000
+   GameLengthDoshScale(0)=1.000000
+   GameLengthDoshScale(1)=1.000000
+   GameLengthDoshScale(2)=1.000000
    GameConductorClass=Class'KFGame.KFGameConductor'
    ZedTimeSlomoScale=0.200000
    ZedTimeBlendOutTime=0.500000

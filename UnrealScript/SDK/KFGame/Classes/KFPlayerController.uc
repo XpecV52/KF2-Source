@@ -786,6 +786,9 @@ reliable client function ClientRestart(Pawn NewPawn)
 	// Reinitialize FOV
     FixFOV();
 
+    // Reset low pass audio filter
+    SetRTPCValue( 'GRENADEFX', 0, true );
+
 	// Upon spawning close all menus
 	MyGFxManager.CloseMenus();
 

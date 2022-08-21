@@ -417,7 +417,7 @@ function SetBoolByEFilter_Key(KFGFxServerBrowser_Filters.EFilter_Key Filter, boo
             bNotEmptyPending = FilterValue;
             break;
         case 4:
-            bCustom = !FilterValue;
+            bCustomPending = !FilterValue;
             break;
         case 5:
             bDedicatedPending = FilterValue;

@@ -365,7 +365,7 @@ DefaultProperties
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
 
 	// BASH_FIREMODE
-	InstantHitDamage(BASH_FIREMODE)=10.0
+	InstantHitDamage(BASH_FIREMODE)=20.0 //10
 	
 	// Aim Assist
 	AimCorrectionSize=40.f

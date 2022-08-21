@@ -63,6 +63,7 @@ function DoHeal()
 		if( HealAmount > 0 )
 		{
 			MyPatPawn.HealDamage( HealAmount, MyPatPawn.Controller, class'KFDT_Healing' );
+			MyPatPawn.DisablebOnDeathAchivement();
 		}
 
 		// Exit flee and heal phase

@@ -43,7 +43,7 @@ var float RoundEndCinematicDelay;
 var float PostRoundWaitTime;
 
 /** Stat tracking for scoring */
-var protected int WaveReached;
+var protected int WaveBonus;
 var protected int BossDamageDone;
 var protected int BossSurvivorDamageTaken;
 var protected float PercentOfZedsKilledBeforeWipe;
@@ -238,13 +238,14 @@ function SetTeam(Controller Other, KFTeamInfo_Human NewTeam)
 
     if( OldTeam != none && NewTeam != OldTeam )
     {
+        KFPCV = KFPlayerControllerVersus( Other );
+        KFPCV.ServerNotifyTeamChanged();
         if( !IsPlayerReady(KFPlayerReplicationInfo(Other.PlayerReplicationInfo)) )
         {
             OnWaitingPlayerTeamSwapped( Other );
         }
         else
         {
-            KFPCV = KFPlayerControllerVersus( Other );
             if( OldTeam != none && OldTeam.TeamIndex == 255 && KFPCV != none && KFPCV.PlayerZedSpawnInfo.PendingZedPawnClass != none )
             {
                 // If this player switched teams, we need to recycle their zed pawn class back into rotation
@@ -489,32 +490,79 @@ function ReduceDamage( out int Damage, Pawn Injured, Controller InstigatedBy, ve
     }
 }
 
+function ScoreDamage( int DamageAmount, int HealthBeforeDamage, Controller InstigatedBy, Pawn DamagedPawn, class<DamageType> damageType )
+{
+    local KFPawn_MonsterBoss BossPawn;
+
+    if( InstigatedBy == none
+        || !InstigatedBy.bIsPlayer
+        || InstigatedBy.PlayerReplicationInfo == none
+        || InstigatedBy.GetTeamNum() == DamagedPawn.GetTeamNum() )
+    {
+        return;
+    }
+
+    DamageAmount = Min( DamageAmount, HealthBeforeDamage );
+    KFPlayerReplicationInfo(InstigatedBy.PlayerReplicationInfo).DamageDealtOnTeam += DamageAmount;
+
+    if(InstigatedBy.PlayerReplicationInfo.GetTeamNum() == 255)
+    {
+        BossPawn = KFPawn_MonsterBoss(InstigatedBy.Pawn);
+        if(BossPawn != none)
+        {
+            if(DamagedPawn.IsA('KFPawn_Human'))
+            {
+                //damage taken from boss
+                BossSurvivorDamageTaken += DamageAmount;
+            }   
+        }
+    }
+    else
+    {
+        BossPawn = KFPawn_MonsterBoss(DamagedPawn);
+        if(BossPawn != none)
+        {
+            //damage done to boss
+            BossDamageDone += DamageAmount;
+        }    
+    }
+}
+
 function ScoreKill(Controller Killer, Controller Other)
 {
     local KFPawn KFP;
+    local KFPlayerReplicationInfo DamagerKFPRI;
     local int i;
-    local DamageInfo Damager;
 
-    super.ScoreKill( Killer, Other );
-
-    // Score zed assists
-    if( Killer != none && Other != none && Killer.GetTeamNum() == 255 && Other.GetTeamNum() == 0 )
+    // Add player zed assists
+    if( Other.GetTeamNum() == 0 )
     {
-        KFP = KFPawn(Killer.Pawn);
-        if( KFP != none )
+        KFP = KFPawn( Other.Pawn );
+        for( i = 0; i < KFP.DamageHistory.Length; ++i )
         {
-            for( i = 0; i < KFP.DamageHistory.Length; ++i )
+            if( KFP.DamageHistory[i].DamagerController != none
+                && KFP.DamageHistory[i].DamagerController.bIsPlayer
+                && KFP.DamageHistory[i].DamagerPRI != none
+                && KFP.DamageHistory[i].DamagerPRI.GetTeamNum() == 255 )
             {
-                Damager = KFP.DamageHistory[i];
-                if( Damager.DamagerController != none
-                    && Damager.DamagerController != Killer
-                    && !Damager.DamagerController.PlayerReplicationInfo.bBot )
+                if( Killer.PlayerReplicationInfo != KFP.DamageHistory[i].DamagerPRI )
                 {
-                    ++KFPlayerReplicationInfo(Damager.DamagerController.PlayerReplicationInfo).Assists;
+                    DamagerKFPRI = KFPlayerReplicationInfo( KFP.DamageHistory[i].DamagerPRI );
+                    if( DamagerKFPRI != none )
+                    {
+                        ++DamagerKFPRI.Assists;
+                    }
                 }
             }
         }
     }
+    else if( MyKFGRIV.WaveNum == MyKFGRIV.WaveMax && KFPawn_MonsterBoss(Other.Pawn) != none )
+    {
+        // Add our boss kill points
+        BossDamageDone = POINTS_FOR_BOSS_KILL;
+    }
+
+    super.ScoreKill( Killer, Other );
 }
 
 //override from survival to send correct message
@@ -555,17 +603,21 @@ function EndOfMatch(bool bVictory)
     WorldInfo.TWPushLogs();
 
     // Calculate final score
-    TempScore = Max( (WaveReached - 1), 0) * POINTS_FOR_WAVE_COMPLETION;
+    WaveBonus = Max( (MyKFGRI.WaveNum - 1), 0) * POINTS_FOR_WAVE_COMPLETION;
+
     if( bVictory )
     {
         CheckRoundEndAchievements( 0 ); 
         TempScore += POINTS_FOR_BOSS_KILL;
+        TempScore -= BossSurvivorDamageTaken;
     }
     else
     {
         CheckRoundEndAchievements( 255 );
-        TempScore += int( float(POINTS_FOR_WAVE_COMPLETION) * PercentOfZedsKilledBeforeWipe );
+        WaveBonus += int( float(POINTS_FOR_WAVE_COMPLETION) * PercentOfZedsKilledBeforeWipe );
+        
     }
+    TempScore += WaveBonus;
     TempScore -= POINTS_PENALTY_FOR_DEATH * HumanDeaths;
     Teams[0].AddRoundScore( TempScore, true );
 
@@ -584,42 +636,11 @@ function EndOfMatch(bool bVictory)
 
 function Killed( Controller Killer, Controller KilledPlayer, Pawn KilledPawn, class<DamageType> damageType )
 {
-    local KFPawn KFP;
-    local KFPlayerReplicationInfo DamagerKFPRI;
-    local int i;
-
     super.Killed( Killer, KilledPlayer, KilledPawn, damageType );
 
     if( IsWaveActive() && GetAIControlledMonsterAliveCount() <= 0 && SpawnManager.IsFinishedSpawning() )
     {
         CheckPawnsForGriefing( true );
-    }
-
-    // Add our boss kill points
-    if( KilledPlayer.GetTeamNum() == 255 && MyKFGRIV.WaveNum == MyKFGRIV.WaveMax && KFPawn_MonsterBoss(KilledPawn) != none )
-    {
-        BossDamageDone = POINTS_FOR_BOSS_KILL;
-    }
-    else if( Killer.GetTeamNum() == 255 && KilledPawn.GetTeamNum() == 0 )
-    {
-        KFP = KFPawn( KilledPawn );
-        for( i = 0; i < KFP.DamageHistory.Length; ++i )
-        {
-            if( KFP.DamageHistory[i].DamagerController != none
-                && KFP.DamageHistory[i].DamagerController.bIsPlayer
-                && KFP.DamageHistory[i].DamagerPRI.GetTeamNum() == 255
-                && KFP.DamageHistory[i].DamagerPRI != none )
-            {
-                if( Killer.PlayerReplicationInfo != KFP.DamageHistory[i].DamagerPRI )
-                {
-                    DamagerKFPRI = KFPlayerReplicationInfo( KFP.DamageHistory[i].DamagerPRI );
-                    if( DamagerKFPRI != none )
-                    {
-                        ++DamagerKFPRI.Assists;
-                    }
-                }
-            }
-        }
     }
 }
 
@@ -637,8 +658,6 @@ function WaveEnded( EWaveEndCondition WinCondition )
     {
         PercentOfZedsKilledBeforeWipe = float(MyKFGRI.AIRemaining) / float(SpawnManager.WaveTotalAI);
     }
-
-    WaveReached = MyKFGRI.WaveNum;
 
     // Tabulate the number of kills this wave
     for( i = 0; i < WorldInfo.GRI.PRIArray.Length; ++i )
@@ -658,11 +677,17 @@ function WaveEnded( EWaveEndCondition WinCondition )
                 WaveKills -= KFPRIV.WaveKills[j];
             }
 
-            KFPRIV.WaveKills[WaveReached] = WaveKills;
+            KFPRIV.WaveKills[MyKFGRI.WaveNum] = WaveKills;
         }
     }
 
     super.WaveEnded( WinCondition );
+}
+
+
+function BossDied(Controller Killer, optional bool bCheckWaveEnded = true)
+{
+    super.BossDied(Killer, false);
 }
 
 /**
@@ -734,13 +759,13 @@ function UpdateFirstRoundTeamScore()
     Teams[1].TeamScoreDataPacket.RoundScore = Teams[0].TeamScoreDataPacket.RoundScore;
 
     // Cache wave reached
-    Teams[1].TeamScoreDataPacket.WaveReached = WaveReached;
+    Teams[1].TeamScoreDataPacket.WaveBonus = WaveBonus;
 
     // Cache survivor deaths
     Teams[1].TeamScoreDataPacket.Deaths = HumanDeaths;
 
     // Cache boss values if relevant
-    if( WaveReached == MyKFGRI.WaveMax )
+    if( MyKFGRI.WaveNum == MyKFGRI.WaveMax )
     {
         // Boss damage done
         Teams[1].TeamScoreDataPacket.BossDamageDone = BossDamageDone;
@@ -757,7 +782,7 @@ function UpdateFirstRoundTeamScore()
 
     // Reset merc team stats for second round
     Teams[0].TeamScoreDataPacket.RoundScore = 0;
-    Teams[0].TeamScoreDataPacket.WaveReached = -1;
+    Teams[0].TeamScoreDataPacket.WaveBonus = -1;
     Teams[0].TeamScoreDataPacket.Deaths = 0;
     Teams[0].TeamScoreDataPacket.BossDamageDone = 0;
     Teams[0].TeamScoreDataPacket.BossDamageTaken = 0;
@@ -773,13 +798,13 @@ function UpdateFirstRoundTeamScore()
 function UpdateSecondRoundTeamScore()
 {
     // Cache wave reached
-    Teams[0].TeamScoreDataPacket.WaveReached = WaveReached;
+    Teams[0].TeamScoreDataPacket.WaveBonus = WaveBonus;
 
     // Cache survivor deaths
     Teams[0].TeamScoreDataPacket.Deaths = HumanDeaths;
 
     // Cache boss values if relevant
-    if( WaveReached == MyKFGRI.WaveMax )
+    if( MyKFGRI.WaveNum == MyKFGRI.WaveMax )
     {
         // Boss damage done
         Teams[0].TeamScoreDataPacket.BossDamageDone = BossDamageDone;
@@ -830,7 +855,7 @@ function Reset()
     }
 
     // Reset score statistics
-    WaveReached = -1;
+    WaveBonus = -1;
     HumanDeaths = 0;
     BossDamageDone = 0;
     BossSurvivorDamageTaken = 0;

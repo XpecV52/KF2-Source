@@ -56,6 +56,14 @@ simulated protected function Timer_RageBump()
 	HurtRadius( RageBumpDamage, RageBumpRadius, RageBumpDamageType, RageBumpMomentum, Location, self, Controller );
 }
 
+/** Clear our rage bump timer */
+simulated function PlayDying( class<DamageType> DamageType, vector HitLoc )
+{
+	ClearTimer( nameOf(Timer_RageBump) );
+
+	super.PlayDying( DamageType, HitLoc );
+}
+
 DefaultProperties
 {
 	bVersusZed=true

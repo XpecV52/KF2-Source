@@ -277,12 +277,13 @@ function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, Vec
     super.ReduceDamage(Damage, injured, InstigatedBy, HitLocation, Momentum, DamageType, DamageCauser);
 }
 
-function BossDied(Controller Killer)
+function BossDied(Controller Killer, optional bool bCheckWaveEnded)
 {
     local KFPawn_Monster AIP;
     local KFGameReplicationInfo KFGRI;
     local KFPlayerController KFPC;
 
+    bCheckWaveEnded = true;
     KFPC = KFPlayerController(Killer);
     if((KFPC != none) && KFPC.MatchStats != none)
     {
@@ -301,7 +302,10 @@ function BossDied(Controller Killer)
             AIP.Died(none, none, AIP.Location);
         }        
     }    
-    CheckWaveEnd(true);
+    if(bCheckWaveEnded)
+    {
+        CheckWaveEnd(true);
+    }
 }
 
 function UpdateGameSettings()

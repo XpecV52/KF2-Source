@@ -33,19 +33,19 @@ defaultproperties
    XPValues(1)=11.000000
    XPValues(2)=11.000000
    XPValues(3)=11.000000
-   DamageTypeModifiers(1)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Submachinegun',DamageScale=(3.000000))
+   DamageTypeModifiers(1)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Submachinegun',DamageScale=(1.500000))
    DamageTypeModifiers(2)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AssaultRifle')
-   DamageTypeModifiers(3)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Shotgun',DamageScale=(0.900000))
+   DamageTypeModifiers(3)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Shotgun')
    DamageTypeModifiers(4)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Handgun',DamageScale=(1.010000))
-   DamageTypeModifiers(5)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rifle',DamageScale=(0.760000))
-   DamageTypeModifiers(6)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=(0.500000))
-   DamageTypeModifiers(7)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=(0.500000))
-   DamageTypeModifiers(8)=(DamageType=Class'KFGame.KFDT_Fire',DamageScale=(0.800000))
+   DamageTypeModifiers(5)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rifle')
+   DamageTypeModifiers(6)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=(0.850000))
+   DamageTypeModifiers(7)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=(0.900000))
+   DamageTypeModifiers(8)=(DamageType=Class'KFGame.KFDT_Fire')
    DamageTypeModifiers(9)=(DamageType=Class'kfgamecontent.KFDT_Microwave',DamageScale=(0.250000))
-   DamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=(0.850000))
+   DamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Explosive')
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Piercing')
-   DamageTypeModifiers(12)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.800000))
-   DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Slashing_Knife',DamageScale=(0.700000))
+   DamageTypeModifiers(12)=(DamageType=Class'KFGame.KFDT_Toxic')
+   DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Slashing_Knife')
    PawnAnimInfo=KFPawnAnimInfo'ZED_Clot_Anim.SlasherClot_AnimGroup'
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedClot:ThirdPersonHead0'
       ReplacementPrimitive=None

@@ -586,7 +586,6 @@ function IncrementBattlePhase()
 {
     CurrentBattlePhase++;
     bHealedThisPhase = true;
-    DisablebOnDeathAchivement();
 
     SetPhaseCooldowns( CurrentBattlePhase - 1 );
     OnBattlePhaseChanged();

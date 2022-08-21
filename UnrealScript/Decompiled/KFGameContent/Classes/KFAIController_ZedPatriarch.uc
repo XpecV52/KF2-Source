@@ -1252,8 +1252,17 @@ function NotifyFleeFinished(optional bool bAcquireNewEnemy)
 
 function ForceHeal()
 {
-    AbortCommand(CommandList);
-    NotifyFleeFinished();
+    if(bFleeing)
+    {
+        bFleeing = false;
+        bWantsToFlee = false;
+        AbortCommand(FindCommandOfClass(Class'AICommand_Flee'));        
+    }
+    else
+    {
+        bWantsToFlee = false;
+    }
+    NotifyFleeFinished(false);
 }
 
 function EnterZedVictoryState()

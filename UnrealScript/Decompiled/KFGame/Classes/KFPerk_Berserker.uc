@@ -548,7 +548,7 @@ defaultproperties
     PerkSkills(7)=(Name="Fury",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Intimidate",bActive=false)
     PerkSkills(8)=(Name="Spartan",Increment=0,Rank=0,StartingValue=0.25,MaxValue=0.25,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Spartan",bActive=false)
     PerkSkills(9)=(Name="Flash",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Flash",bActive=false)
-    RegenerationAmount=1
+    RegenerationAmount=2
     ZedTimeModifyingStates(0)=MeleeChainAttacking
     ZedTimeModifyingStates(1)=MeleeAttackBasic
     ZedTimeModifyingStates(2)=MeleeHeavyAttacking

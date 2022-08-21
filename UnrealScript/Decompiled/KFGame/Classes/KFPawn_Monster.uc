@@ -918,6 +918,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     local KFPerk InstigatorPerk;
     local KFPlayerReplicationInfo KFPRI;
     local KFAIController KFAIC;
+    local KFPawn_Monster KFPM;
 
     AIMonster = KFAIController_Monster(InstigatedBy);
     KFDT = class<KFDamageType>(DamageType);
@@ -962,6 +963,16 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
         if((InstigatorPerk != none) && KFDT != none)
         {
             bCouldTurnIntoShrapnel = InstigatorPerk.CouldBeZedShrapnel(KFDT);
+        }
+        if(ClassIsChildOf(KFDT, Class'KFDT_Fire') && InstigatedBy != none)
+        {
+            foreach WorldInfo.AllPawns(Class'KFPawn_Monster', KFPM, Location, 30)
+            {
+                if(KFPM != self)
+                {
+                    CheckForNapalmInfect(KFPM, 255, InstigatedBy);
+                }                
+            }            
         }
         bShowHealth = true;
         SetTimer(2, false, 'ResetHealthVisibilty');
@@ -1328,22 +1339,22 @@ function ResetHealthVisibilty()
     bShowHealth = false;
 }
 
-function CheckForNapalmInfect(KFPawn_Monster KFPM, byte DoTIndex)
+function CheckForNapalmInfect(KFPawn_Monster KFPM, byte DoTIndex, optional Controller InstigatedBy)
 {
     local KFPerk InstigatorPerk;
     local KFPlayerController KFPC;
 
-    if(DoTIndex >= DamageOverTimeArray.Length)
+    if((InstigatedBy == none) && DoTIndex >= DamageOverTimeArray.Length)
     {
         return;
     }
-    KFPC = KFPlayerController(DamageOverTimeArray[DoTIndex].InstigatedBy);
+    KFPC = ((InstigatedBy != none) ? KFPlayerController(InstigatedBy) : KFPlayerController(DamageOverTimeArray[DoTIndex].InstigatedBy));
     if(KFPC != none)
     {
         InstigatorPerk = KFPC.GetPerk();
         if((InstigatorPerk != none) && InstigatorPerk.CanSpreadNapalm())
         {
-            KFPM.TakeDamage(10, DamageOverTimeArray[DoTIndex].InstigatedBy, vect(0, 0, 0), vect(0, 0, 0), Class'KFDT_Fire');
+            KFPM.TakeDamage(10, KFPC, vect(0, 0, 0), vect(0, 0, 0), Class'KFDT_Fire');
             KFPM.bNapalmInfected = true;
         }
     }
@@ -1369,7 +1380,6 @@ function ShrapnelExplode(Controller Killer)
             ExploActor.Instigator = Killer.Pawn;
         }
         ExplosionTemplate = Class'KFPerk_Firebug'.static.GetExplosionTemplate();
-        ExplosionTemplate.MyDamageType = Class'KFPerk_Firebug'.static.GetShrapnelDamageTypeClass();
         ExploActor.Explode(ExplosionTemplate);
     }
 }

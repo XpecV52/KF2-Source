@@ -93,7 +93,7 @@ defaultproperties
 {
     MinScreamRange=130
     MaxScreamRange=920
-    ScreamCooldown=5
+    ScreamCooldown=6
     SpecialMove=ESpecialMove.SM_SonicAttack
     bIgnoreNotifies=true
 }

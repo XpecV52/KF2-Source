@@ -125,6 +125,7 @@ simulated function ModifyRateOfFire(out float InRate, KFWeapon KFW)
 
 simulated function ModifyRecoil(out float CurrentRecoilModifier, KFWeapon KFW)
 {
+    CurrentRecoilModifier -= (CurrentRecoilModifier * (GetPassiveValue(Recoil, CurrentLevel)));
     if(GetScopedActive(KFW))
     {
         CurrentRecoilModifier -= (CurrentRecoilModifier * (GetSkillValue(PerkSkills[6])));
@@ -149,7 +150,7 @@ simulated function ModifyMaxSpareAmmoAmount(KFWeapon KFW, out int MaxSpareAmmo, 
 {
     local float TempMaxSpareAmmoAmount;
 
-    if((IsAmmoPouchActive()) && IsWeaponOnPerk(KFW))
+    if((IsAmmoPouchActive()) && IsWeaponOnPerk(KFW, TraderItem.AssociatedPerkClass))
     {
         TempMaxSpareAmmoAmount = float(MaxSpareAmmo);
         TempMaxSpareAmmoAmount += (TempMaxSpareAmmoAmount * (GetSkillValue(PerkSkills[7])));
@@ -187,7 +188,7 @@ event Destroyed()
 
 simulated function bool GetUsingTactialReload(KFWeapon KFW)
 {
-    return (IsTacticalReloadActive()) && IsWeaponOnPerk(KFW);
+    return (IsTacticalReloadActive()) && (IsWeaponOnPerk(KFW)) || IsBackupWeapon(KFW);
 }
 
 function float GetStunPowerModifier(optional class<DamageType> DamageType, optional byte HitZoneIdx)
@@ -455,6 +456,6 @@ defaultproperties
     PrimaryWeaponDef=Class'KFWeapDef_Winchester1894'
     KnifeWeaponDef=Class'KFWeapDef_Knife_SharpShooter'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Sharpshooter'
-    HitAccuracyHandicap=-5
-    HeadshotAccuracyHandicap=-8
+    HitAccuracyHandicap=-9
+    HeadshotAccuracyHandicap=-16
 }

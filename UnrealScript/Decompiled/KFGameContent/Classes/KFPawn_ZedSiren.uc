@@ -17,6 +17,7 @@ function ANIMNOTIFY_SirenScream()
     if(ScreamSM != none)
     {
         ScreamSM.ScreamBegan();
+        DisablebOnDeathAchivement();
     }
 }
 

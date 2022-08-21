@@ -80,6 +80,14 @@ function EndRage()
 	SetEnraged( false );
 }
 
+/** Clear our rage bump timer */
+simulated function PlayDying( class<DamageType> DamageType, vector HitLoc )
+{
+	ClearTimer( nameOf(Timer_RageBump) );
+
+	super.PlayDying( DamageType, HitLoc );
+}
+
 DefaultProperties
 {
 	bVersusZed=true

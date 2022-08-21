@@ -15,5 +15,7 @@ static function bool AlwaysPoisons()
 defaultproperties
 {
     bNoInstigatorDamage=true
+    DoT_Interval=0.3
+    DoT_DamageScale=1
     PoisonPower=1000
 }

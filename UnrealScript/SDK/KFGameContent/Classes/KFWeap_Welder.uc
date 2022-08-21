@@ -60,6 +60,7 @@ simulated event PreBeginPlay()
 	if(class'KFGameEngine'.default.bShowWelderInInv)
 	{
 		InventoryGroup=IG_Equipment;
+		bAutoUnequip=false;
 	}
 }
 

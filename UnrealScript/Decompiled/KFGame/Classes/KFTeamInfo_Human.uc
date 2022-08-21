@@ -11,7 +11,7 @@ class KFTeamInfo_Human extends TeamInfo
 struct sTeamScoreData
 {
     var int RoundScore;
-    var int WaveReached;
+    var int WaveBonus;
     var int Deaths;
     var int BossDamageDone;
     var int BossDamageTaken;
@@ -19,7 +19,7 @@ struct sTeamScoreData
     structdefaultproperties
     {
         RoundScore=0
-        WaveReached=-1
+        WaveBonus=-1
         Deaths=0
         BossDamageDone=0
         BossDamageTaken=0
@@ -112,7 +112,7 @@ function Reset()
 
 defaultproperties
 {
-    TeamScoreDataPacket=(RoundScore=0,WaveReached=-1,Deaths=0,BossDamageDone=0,BossDamageTaken=0)
+    TeamScoreDataPacket=(RoundScore=0,WaveBonus=-1,Deaths=0,BossDamageDone=0,BossDamageTaken=0)
     TeamIndex=0
     NetUpdateFrequency=1
 }

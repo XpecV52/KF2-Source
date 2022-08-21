@@ -752,7 +752,7 @@ DefaultProperties
 	PerkSkills(EGunslingerSpeedReload)=(Name="SpeedReload",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_SpeedReload",Increment=0.f,Rank=0,StartingValue=0.0f,MaxValue=0.0f)
 	PerkSkills(EGunslingerPenetration)=(Name="Penetration",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_Penetration",Increment=0.f,Rank=0,StartingValue=1.f,MaxValue=1.f)
 	PerkSkills(EGunslingerCenterMass)=(Name="CenterMass",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_CenterMass",Increment=0.f,Rank=0,StartingValue=2.0,MaxValue=2.0)
-	PerkSkills(EGunslingerLimbShots)=(Name="LimbShots",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_LimbShots",Increment=0.f,Rank=0,StartingValue=5.1f,MaxValue=5.1f)
+	PerkSkills(EGunslingerLimbShots)=(Name="LimbShots",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_LimbShots",Increment=0.f,Rank=0,StartingValue=10.1f,MaxValue=10.1f) //5.1
 	PerkSkills(EGunslingerFanfare)=(Name="Fanfare",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDSpeed",Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
 	PerkSkills(EGunslingerUberAmmo)=(Name="UberAmmo",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_ZEDAmmo",Increment=0.f,Rank=0,StartingValue=0.0f,MaxValue=0.0f)
 

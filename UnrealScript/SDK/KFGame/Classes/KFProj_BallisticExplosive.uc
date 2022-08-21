@@ -41,7 +41,7 @@ var() vector LandedTranslationOffset;
 
 replication
 {
-	if ( Role == ROLE_Authority )
+	if ( Role == ROLE_Authority && !bNetOwner )
 		bDud;
 }
 
@@ -273,7 +273,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
         return;
     }
 
-	if ( !bCollideWithTeammates && Pawn(other) != None )
+	if ( !bCollideWithTeammates && Pawn(Other) != None )
 	{
         // Don't hit teammates
 		if( Other.GetTeamNum() == GetTeamNum() )

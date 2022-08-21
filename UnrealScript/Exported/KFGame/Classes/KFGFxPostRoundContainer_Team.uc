@@ -31,9 +31,9 @@ function CreateResultsForTeam()
 
 	DataObject = CreateObject("Object");
 
-	if(TeamScoreDataPacket.WaveReached != INDEX_NONE)
+	if( TeamScoreDataPacket.WaveBonus != INDEX_NONE )
 	{
-		DataObject.SetInt("waveNum", 		(TeamScoreDataPacket.WaveReached - 1) * class'KFGameInfo'.default.POINTS_FOR_WAVE_COMPLETION);
+		DataObject.SetInt("waveNum", 		TeamScoreDataPacket.WaveBonus);
 		DataObject.SetInt("bossDeadNum", 	KFGRI.bMatchVictory ? class'KFGameInfo'.static.GetBossKillScore() : 0);
 		DataObject.SetInt("deathNum", 		TeamScoreDataPacket.Deaths * class'KFGameInfo'.default.POINTS_PENALTY_FOR_DEATH);
 		DataObject.SetInt("damagNum", 		KFGRI.bMatchVictory ? TeamScoreDataPacket.BossDamageTaken : 0);

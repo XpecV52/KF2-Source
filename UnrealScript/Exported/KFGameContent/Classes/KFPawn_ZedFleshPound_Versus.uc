@@ -80,6 +80,14 @@ function EndRage()
 	SetEnraged( false );
 }
 
+/** Clear our rage bump timer */
+simulated function PlayDying( class<DamageType> DamageType, vector HitLoc )
+{
+	ClearTimer( nameOf(Timer_RageBump) );
+
+	super.PlayDying( DamageType, HitLoc );
+}
+
 defaultproperties
 {
    RageSprintSpeed=700.000000
@@ -142,7 +150,7 @@ defaultproperties
    IncapSettings(4)=(Cooldown=7.000000)
    IncapSettings(5)=(Duration=1.500000)
    IncapSettings(6)=(Duration=1.500000,Cooldown=20.000000,Vulnerability=(0.600000))
-   IncapSettings(7)=()
+   IncapSettings(7)=(Vulnerability=(0.250000,0.250000,0.250000,0.250000,0.400000))
    IncapSettings(8)=(Duration=0.500000)
    IncapSettings(9)=()
    SprintSpeed=550.000000

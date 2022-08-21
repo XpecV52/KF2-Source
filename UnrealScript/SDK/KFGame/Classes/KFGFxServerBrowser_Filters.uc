@@ -402,7 +402,7 @@ function SetBoolByEFilter_Key(EFilter_Key Filter, bool FilterValue)
 			bNoRankedStandard 		= FilterValue;
 			break;*/
 		case CUSTOM:
-			bCustom 				= !FilterValue;
+			bCustomPending 			= !FilterValue;
 			break;
 		/*case NO_UNRANKED:
 			bNoUnranked 			= FilterValue;

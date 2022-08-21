@@ -270,6 +270,8 @@ simulated function ModifyRateOfFire( out float InRate, KFWeapon KFW )
  */
 simulated function ModifyRecoil( out float CurrentRecoilModifier, KFWeapon KFW )
 {
+	CurrentRecoilModifier -= CurrentRecoilModifier * GetPassiveValue( Recoil, CurrentLevel );
+
 	if( GetScopedActive(KFW) ) // IsWeaponOnPerk( KFW ) )
 	{
 		;
@@ -303,7 +305,7 @@ simulated function ModifyMaxSpareAmmoAmount( KFWeapon KFW, out int MaxSpareAmmo,
 {
 	local float TempMaxSpareAmmoAmount;
 
-	if( IsAmmoPouchActive() && IsWeaponOnPerk( KFW ) )
+	if( IsAmmoPouchActive() && IsWeaponOnPerk( KFW, TraderItem.AssociatedPerkClass ) )
 	{
 		TempMaxSpareAmmoAmount = MaxSpareAmmo;
 		TempMaxSpareAmmoAmount += TempMaxSpareAmmoAmount * GetSkillValue( PerkSkills[ESharpshooterAmmoPouch] );
@@ -327,9 +329,9 @@ simulated protected event PostSkillUpdate()
 
 	super.PostSkillUpdate();
 
-	if(Role == Role_Authority)
+	if( Role == Role_Authority )
 	{
-		if(IsRhythmMethodActive())
+		if( IsRhythmMethodActive() )
 		{
 			ServerClearHeadShotsCombo();
 		}
@@ -338,7 +340,7 @@ simulated protected event PostSkillUpdate()
 
 event Destroyed()
 {
-	if(Role == Role_Authority)
+	if( Role == Role_Authority )
 	{
 		ServerClearHeadShotsCombo();
 	}
@@ -353,7 +355,7 @@ event Destroyed()
 simulated function bool GetUsingTactialReload( KFWeapon KFW )
 {
 	;
-	return IsTacticalReloadActive() && IsWeaponOnPerk( KFW );
+	return IsTacticalReloadActive() && (IsWeaponOnPerk( KFW ) || IsBackupWeapon( KFW ));
 }
 
 /**
@@ -706,8 +708,8 @@ defaultproperties
    PrimaryWeaponDef=Class'KFGame.KFWeapDef_Winchester1894'
    KnifeWeaponDef=Class'KFGame.KFWeapDef_Knife_SharpShooter'
    GrenadeWeaponDef=Class'KFGame.KFWeapDef_Grenade_Sharpshooter'
-   HitAccuracyHandicap=-5.000000
-   HeadshotAccuracyHandicap=-8.000000
+   HitAccuracyHandicap=-9.000000
+   HeadshotAccuracyHandicap=-16.000000
    Name="Default__KFPerk_Sharpshooter"
    ObjectArchetype=KFPerk'KFGame.Default__KFPerk'
 }

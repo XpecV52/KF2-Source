@@ -46,7 +46,7 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
 DefaultProperties
 {
 	// BASH_FIREMODE
-	InstantHitDamage(BASH_FIREMODE)=15.0
+	InstantHitDamage(BASH_FIREMODE)=25.0 //15
 	
 	// Aim Assist
 	AimCorrectionSize=40.f

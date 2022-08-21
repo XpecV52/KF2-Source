@@ -1769,9 +1769,22 @@ function NotifyFleeFinished( optional bool bAcquireNewEnemy=true )
 /** Forces a heal regardless of what state we're in */
 function ForceHeal()
 {
-	// Kill our flee and move commands
-    AbortCommand( CommandList );
-    NotifyFleeFinished();
+    if( bFleeing )
+    {
+        bFleeing = false;
+        bWantsToFlee = false;
+
+        // Kill our flee command
+        AbortCommand( FindCommandOfClass(class'AICommand_Flee') );
+    }
+    else
+    {
+        // Make sure hans doesn't try to flee again
+        bWantsToFlee = false;
+    }
+
+    // End flee as normal
+    NotifyFleeFinished( false );
 }
 
 /** Victory */
